@@ -298,3 +298,40 @@ export function withOpusFec(sdp: string): string {
     })
     .join('');
 }
+
+/**
+ * Splits an ingest URL into the two boxes an encoder actually has.
+ *
+ * OBS offers one Server field and one Stream Key field, and it joins them with
+ * a slash. The self-hosted ingest carries its credentials in the URL's query
+ * string, so handing the whole URL over as the Server puts the stream key
+ * INSIDE the password: the publish gate receives `user=dehub&pass=<key>/<key>`
+ * and refuses it. Verified against the live gate on 2026-09-16 — the corrupted
+ * form and the split form produce exactly that difference in its log.
+ *
+ * Livepeer's URL has no query and its key is a separate value, so it is left
+ * alone: server `rtmp://rtmp.livepeer.com/live`, key the stream key.
+ */
+export function encoderCredentials(
+  ingestUrl: string | null | undefined,
+  streamKey: string | null | undefined,
+): { server: string | null; key: string | null } {
+  const key = streamKey || null;
+  if (!ingestUrl) return { server: null, key };
+  const at = ingestUrl.indexOf('?');
+  // No query means nothing is hiding in the URL — the classic two-field shape.
+  if (at === -1) return { server: ingestUrl, key };
+
+  // Deliberately not URL(): React Native's polyfill does not parse a non-HTTP
+  // scheme consistently across platforms, and this only ever has to find the
+  // third slash.
+  const schemeEnd = ingestUrl.indexOf('://');
+  if (schemeEnd === -1) return { server: ingestUrl, key };
+  const pathStart = ingestUrl.indexOf('/', schemeEnd + 3);
+  if (pathStart === -1 || pathStart > at) return { server: ingestUrl, key };
+
+  return {
+    server: ingestUrl.slice(0, pathStart),
+    key: ingestUrl.slice(pathStart + 1),
+  };
+}

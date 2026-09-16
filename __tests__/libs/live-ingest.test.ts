@@ -11,6 +11,7 @@ import {
   hadRecentIngestFailure,
   isNetworkShapedError,
   withOpusFec,
+  encoderCredentials,
 } from "../../libs/live-ingest";
 
 /**
@@ -320,5 +321,38 @@ describe("whepEndpointFor", () => {
   it("answers null without a playbackId", () => {
     expect(whepEndpointFor({ provider: "mediamtx" })).toBeNull();
     expect(whepEndpointFor(null)).toBeNull();
+  });
+});
+
+/**
+ * OBS has one Server box and one Stream Key box and joins them with a slash.
+ * The self-hosted ingest keeps its credentials in the query string, so the
+ * whole URL as the Server would publish to `...?user=dehub&pass=<key>/<key>` —
+ * the key inside the password. Confirmed against the live publish gate on
+ * 2026-09-16, which logged exactly that.
+ */
+describe("encoderCredentials", () => {
+  const KEY = "a1b2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718";
+  const PLAYBACK = "2990f3b7a1a4627ae7bf3455";
+
+  it("splits a self-hosted URL at the host so the key never reaches the password", () => {
+    const url = `rtmp://live.dehub.io/${PLAYBACK}-rtmp?user=dehub&pass=${KEY}`;
+    const { server, key } = encoderCredentials(url, KEY);
+    expect(server).toBe("rtmp://live.dehub.io");
+    expect(key).toBe(`${PLAYBACK}-rtmp?user=dehub&pass=${KEY}`);
+    expect(`${server}/${key}`).toBe(url);
+    expect(`${server}/${key}`).not.toContain(`${KEY}/${KEY}`);
+  });
+
+  it("leaves a Livepeer URL alone — no query, nothing hiding in it", () => {
+    expect(encoderCredentials("rtmp://rtmp.livepeer.com/live", KEY)).toEqual({
+      server: "rtmp://rtmp.livepeer.com/live",
+      key: KEY,
+    });
+  });
+
+  it("survives an ingest URL that has not arrived yet", () => {
+    expect(encoderCredentials(null, KEY)).toEqual({ server: null, key: KEY });
+    expect(encoderCredentials("", null)).toEqual({ server: null, key: null });
   });
 });
