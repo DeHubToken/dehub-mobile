@@ -1468,7 +1468,35 @@
     "pasteFromClipboard": "Ngjit nga kujtesa",
     "learnMoreAt": "Mëso më shumë në dehub.io",
     "accountsOnDevice": "Llogaritë në këtë pajisje",
-    "use": "Përdor"
+    "use": "Përdor",
+    "verificationCode": "Kodi i verifikimit",
+    "sixDigitCode": "Kod me 6 shifra",
+    "verify": "Verifiko",
+    "resendCode": "Dërgo kodin sërish",
+    "noImportedAccounts": "Ende nuk ka llogari të importuara.",
+    "importedAccount": "Llogari e importuar",
+    "useAccount": "Përdor llogarinë {{name}}",
+    "removeAccount": "Hiq llogarinë {{name}}",
+    "showPrivateKey": "Shfaq çelësin privat",
+    "hidePrivateKey": "Fshih çelësin privat",
+    "invalidPrivateKey": "Çelës privat i pavlefshëm",
+    "couldNotImportWallet": "Portofoli nuk u importua dot",
+    "unlockToUse": "Shkyç këtë portofol DeHub për ta përdorur",
+    "noScreenLock": "Ky telefon nuk ka kyç ekrani, ndaj kushdo që e mban mund të përdorë portofolin tënd. Cakto një kod ose biometrikë te cilësimet e pajisjes.",
+    "noStoredKey": "Për këtë llogari nuk është ruajtur asnjë çelës privat. Importoje sërish këtë portofol që t'i lidhet çelësi.",
+    "failedToUseAccount": "Kjo llogari nuk u përdor dot",
+    "continueWithPhone": "Vazhdo me telefonin",
+    "phoneNumberA11y": "Numri i telefonit, fillimisht kodi i shtetit",
+    "phoneNumberHint": "Shkruaj numrin duke filluar me kodin e shtetit. Shenja plus shtohet automatikisht.",
+    "sendCodeA11y": "Dërgo kodin e hyrjes te ky numër",
+    "signInToContinue": "Hyr për të vazhduar",
+    "signInToContinueBody": "Duhet të hysh për ta kryer këtë veprim.",
+    "closeAuthModal": "Mbyll dritaren e hyrjes",
+    "legalLine": "Duke vazhduar, ti pranon <terms>Kushtet e Shërbimit</terms> dhe <privacy>Politikën e Privatësisë</privacy> tona.",
+    "chooseUsernameBody": "Zgjidh një emër përdoruesi dhe një emër shfaqjeje për të vazhduar. Mund t'i ndryshosh më vonë.",
+    "checkingAvailability": "Po kontrollohet disponueshmëria…",
+    "usernameTakenHint": "Emri është zënë — provo të shtosh numra ose një vizë të poshtme",
+    "displayNameLength": "Emri i shfaqjes duhet të ketë 2-50 karaktere."
   },
   "messages": {
     "smartRepliesOff": "Përgjigjet e sugjeruara u çaktivizuan",
@@ -3561,7 +3589,13 @@
     "thatsGoneToo": "Edhe ajo humbi — fillo nga e para gjithsesi",
     "tryBiometrics": "Provo biometrinë në këtë telefon",
     "unlockWithBiometrics": "Shkyç me biometri",
-    "confirmStartOver": "Konfirmo se dëshiron të fillosh nga e para me një portofol të ri"
+    "confirmStartOver": "Konfirmo se dëshiron të fillosh nga e para me një portofol të ri",
+    "understandOldWallet": "E kuptoj se portofoli i vjetër, dhe gjithçka në të, do të jetë përgjithmonë jashtë mundësive të mia",
+    "savedTwelveWords": "I kam ruajtur këto 12 fjalë në një vend të sigurt",
+    "legacyRecovered": "Verifikuam llogarinë tënde të vjetër{{suffix}} dhe rikuperuam portofolin e saj. Cakto një fjalëkalim që ta mbrojë në këtë pajisje — në këtë telefon dhe kudo tjetër, që tani e tutje.",
+    "passwordMin": "Fjalëkalimi (min {{min}} karaktere)",
+    "newPasswordMin": "Fjalëkalim i ri (min {{min}} karaktere)",
+    "newWalletPasswordMin": "Fjalëkalimi i portofolit të ri (min {{min}} karaktere)"
   },
   "transcript": {
     "title": "Transkript",
@@ -4047,5 +4081,21 @@
       "megalodon": "Ja kurora jote — tani je mbretëror i aplikacionit"
     },
     "continue": "Kthehu në DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Shumë i dobët",
+    "weak": "I dobët",
+    "fair": "Mesatar",
+    "good": "I mirë",
+    "strong": "I fortë",
+    "common": "Ky është një fjalëkalim i zakonshëm ose i parashikueshëm",
+    "tooShort": "Përdor të paktën {{n}} karaktere",
+    "mixChars": "Përziej shkronja të mëdha/vogla, numra dhe simbole",
+    "breached": "Ky fjalëkalim është shfaqur në një rrjedhje të dhënash — zgjidh një tjetër"
+  },
+  "phoneHint": {
+    "leadingZero": "Fillo me kodin e shtetit tënd (44 për Mbretërinë e Bashkuar, 1 për SHBA) — hiq zeron në fillim.",
+    "tooLong": "Kjo ka {{n}} shifra — një numër telefoni ka më së shumti {{max}}.",
+    "missingCountryCode": "Kontrollo kodin e shtetit — numrat e kopjuar nga Kontaktet shpesh nuk e kanë."
   }
 }

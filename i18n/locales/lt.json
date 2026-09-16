@@ -1467,7 +1467,35 @@
     "pasteFromClipboard": "Įklijuoti iš iškarpinės",
     "learnMoreAt": "Sužinokite daugiau dehub.io",
     "accountsOnDevice": "Paskyros šiame įrenginyje",
-    "use": "Naudoti"
+    "use": "Naudoti",
+    "verificationCode": "Patvirtinimo kodas",
+    "sixDigitCode": "6 skaitmenų kodas",
+    "verify": "Patvirtinti",
+    "resendCode": "Siųsti kodą iš naujo",
+    "noImportedAccounts": "Importuotų paskyrų kol kas nėra.",
+    "importedAccount": "Importuota paskyra",
+    "useAccount": "Naudoti paskyrą {{name}}",
+    "removeAccount": "Pašalinti paskyrą {{name}}",
+    "showPrivateKey": "Rodyti privatųjį raktą",
+    "hidePrivateKey": "Slėpti privatųjį raktą",
+    "invalidPrivateKey": "Netinkamas privatusis raktas",
+    "couldNotImportWallet": "Nepavyko importuoti piniginės",
+    "unlockToUse": "Atrakinkite šią DeHub piniginę, kad ja naudotumėtės",
+    "noScreenLock": "Šiame telefone nėra ekrano užrakto, todėl kiekvienas, paėmęs jį į rankas, gali naudotis jūsų pinigine. Įrenginio nustatymuose nustatykite kodą arba biometriją.",
+    "noStoredKey": "Šiai paskyrai neįrašytas joks privatusis raktas. Importuokite šią piniginę iš naujo, kad jos raktas būtų susietas.",
+    "failedToUseAccount": "Nepavyko naudoti šios paskyros",
+    "continueWithPhone": "Tęsti su telefonu",
+    "phoneNumberA11y": "Telefono numeris, pirma šalies kodas",
+    "phoneNumberHint": "Įveskite numerį pradėdami nuo šalies kodo. Pliuso ženklas pridedamas automatiškai.",
+    "sendCodeA11y": "Siųsti prisijungimo kodą šiuo numeriu",
+    "signInToContinue": "Prisijunkite, kad tęstumėte",
+    "signInToContinueBody": "Norėdami atlikti šį veiksmą, turite prisijungti.",
+    "closeAuthModal": "Uždaryti prisijungimo langą",
+    "legalLine": "Tęsdami sutinkate su mūsų <terms>paslaugų teikimo sąlygomis</terms> ir <privacy>privatumo politika</privacy>.",
+    "chooseUsernameBody": "Pasirinkite naudotojo vardą ir rodomą vardą, kad tęstumėte. Vėliau galėsite juos pakeisti.",
+    "checkingAvailability": "Tikrinamas prieinamumas…",
+    "usernameTakenHint": "Vardas užimtas — pabandykite pridėti skaičių arba apatinį brūkšnį",
+    "displayNameLength": "Rodomas vardas turi būti 2–50 simbolių."
   },
   "messages": {
     "smartRepliesOff": "Siūlomi atsakymai išjungti",
@@ -3561,7 +3589,13 @@
     "thatsGoneToo": "Ir to nebėra — vis tiek pradėti iš naujo",
     "tryBiometrics": "Išbandykite biometriją šiame telefone",
     "unlockWithBiometrics": "Atrakinti biometrija",
-    "confirmStartOver": "Patvirtinkite, kad norite pradėti iš naujo su nauja pinigine"
+    "confirmStartOver": "Patvirtinkite, kad norite pradėti iš naujo su nauja pinigine",
+    "understandOldWallet": "Suprantu, kad senoji piniginė ir visa, kas joje yra, man taps nepasiekiama visam laikui",
+    "savedTwelveWords": "Išsaugojau šiuos 12 žodžių saugioje vietoje",
+    "legacyRecovered": "Patvirtinome jūsų seną paskyrą{{suffix}} ir atkūrėme jos piniginę. Nustatykite slaptažodį, kuris nuo šiol ją saugos šiame įrenginyje — šiame telefone ir visur kitur.",
+    "passwordMin": "Slaptažodis (bent {{min}} simbolių)",
+    "newPasswordMin": "Naujas slaptažodis (bent {{min}} simbolių)",
+    "newWalletPasswordMin": "Naujos piniginės slaptažodis (bent {{min}} simbolių)"
   },
   "transcript": {
     "title": "Transkripcija",
@@ -4047,5 +4081,21 @@
       "megalodon": "Štai jūsų karūna — dabar esate programėlės honoraras"
     },
     "continue": "Grįžti į DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Labai silpnas",
+    "weak": "Silpnas",
+    "fair": "Vidutinis",
+    "good": "Geras",
+    "strong": "Stiprus",
+    "common": "Tai dažnas arba lengvai nuspėjamas slaptažodis",
+    "tooShort": "Naudokite bent {{n}} simbolių",
+    "mixChars": "Derinkite didžiąsias ir mažąsias raides, skaičius ir simbolius",
+    "breached": "Šis slaptažodis pasirodė duomenų nutekėjime — pasirinkite kitą"
+  },
+  "phoneHint": {
+    "leadingZero": "Pradėkite nuo savo šalies kodo (44 – JK, 1 – JAV) — praleiskite pradinį 0.",
+    "tooLong": "Tai {{n}} skaitmenų — telefono numeryje jų daugiausia {{max}}.",
+    "missingCountryCode": "Patikrinkite šalies kodą — iš kontaktų nukopijuoti numeriai dažnai jo neturi."
   }
 }

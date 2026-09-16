@@ -169,7 +169,9 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
         setError(
           full.breached === true
             ? t("switchAccount.breached")
-            : full.warnings[0] || t("switchAccount.stronger")
+            : full.warnings[0]
+            ? t(full.warnings[0], { n: MIN_PASSWORD_LENGTH })
+            : t("switchAccount.stronger")
         );
         return;
       }

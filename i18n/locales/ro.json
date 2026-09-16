@@ -1456,7 +1456,35 @@
     "pasteFromClipboard": "Lipește din clipboard",
     "learnMoreAt": "Află mai multe pe dehub.io",
     "accountsOnDevice": "Conturi de pe acest dispozitiv",
-    "use": "Folosește"
+    "use": "Folosește",
+    "verificationCode": "Cod de verificare",
+    "sixDigitCode": "Cod din 6 cifre",
+    "verify": "Verifică",
+    "resendCode": "Retrimite codul",
+    "noImportedAccounts": "Încă nu există conturi importate.",
+    "importedAccount": "Cont importat",
+    "useAccount": "Folosește contul {{name}}",
+    "removeAccount": "Elimină contul {{name}}",
+    "showPrivateKey": "Arată cheia privată",
+    "hidePrivateKey": "Ascunde cheia privată",
+    "invalidPrivateKey": "Cheie privată nevalidă",
+    "couldNotImportWallet": "Portofelul nu a putut fi importat",
+    "unlockToUse": "Deblochează acest portofel DeHub pentru a-l folosi",
+    "noScreenLock": "Acest telefon nu are blocare de ecran, așa că oricine îl ține în mână îți poate folosi portofelul. Setează un cod sau date biometrice în setările dispozitivului.",
+    "noStoredKey": "Nu există nicio cheie privată salvată pentru acest cont. Reimportă acest portofel pentru a-i lega cheia.",
+    "failedToUseAccount": "Acest cont nu a putut fi folosit",
+    "continueWithPhone": "Continuă cu telefonul",
+    "phoneNumberA11y": "Număr de telefon, mai întâi prefixul de țară",
+    "phoneNumberHint": "Introdu numărul începând cu prefixul de țară. Semnul plus este adăugat automat.",
+    "sendCodeA11y": "Trimite codul de conectare la acest număr",
+    "signInToContinue": "Conectează-te pentru a continua",
+    "signInToContinueBody": "Trebuie să te conectezi pentru a face această acțiune.",
+    "closeAuthModal": "Închide fereastra de conectare",
+    "legalLine": "Continuând, ești de acord cu <terms>Termenii serviciului</terms> și <privacy>Politica de confidențialitate</privacy>.",
+    "chooseUsernameBody": "Alege un nume de utilizator și un nume afișat pentru a continua. Le poți schimba mai târziu.",
+    "checkingAvailability": "Se verifică disponibilitatea…",
+    "usernameTakenHint": "Numele este ocupat — încearcă să adaugi cifre sau o liniuță de subliniere",
+    "displayNameLength": "Numele afișat trebuie să aibă 2-50 de caractere."
   },
   "bookmarks": {
     "title": "Your Bookmarks",
@@ -3575,7 +3603,13 @@
     "thatsGoneToo": "Și aceea s-a pierdut — începe din nou oricum",
     "tryBiometrics": "Încearcă biometria pe acest telefon",
     "unlockWithBiometrics": "Deblochează cu biometrie",
-    "confirmStartOver": "Confirmă că vrei să începi din nou cu un portofel nou"
+    "confirmStartOver": "Confirmă că vrei să începi din nou cu un portofel nou",
+    "understandOldWallet": "Înțeleg că portofelul vechi, și tot ce conține, va fi în afara accesului meu pentru totdeauna",
+    "savedTwelveWords": "Am salvat aceste 12 cuvinte într-un loc sigur",
+    "legacyRecovered": "Ți-am verificat contul vechi{{suffix}} și i-am recuperat portofelul. Setează o parolă care să-l protejeze pe acest dispozitiv — pe acest telefon și oriunde altundeva, de acum înainte.",
+    "passwordMin": "Parolă (min. {{min}} caractere)",
+    "newPasswordMin": "Parolă nouă (min. {{min}} caractere)",
+    "newWalletPasswordMin": "Parola noului portofel (min. {{min}} caractere)"
   },
   "transcript": {
     "title": "Transcriere",
@@ -4062,5 +4096,21 @@
       "megalodon": "Iată coroana dvs. — sunteți redevența aplicației acum"
     },
     "continue": "Înapoi la DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Foarte slabă",
+    "weak": "Slabă",
+    "fair": "Acceptabilă",
+    "good": "Bună",
+    "strong": "Puternică",
+    "common": "Aceasta este o parolă comună sau previzibilă",
+    "tooShort": "Folosește cel puțin {{n}} caractere",
+    "mixChars": "Combină majuscule, minuscule, cifre și simboluri",
+    "breached": "Această parolă a apărut într-o scurgere de date — alege alta"
+  },
+  "phoneHint": {
+    "leadingZero": "Începe cu prefixul țării tale (44 pentru Regatul Unit, 1 pentru SUA) — renunță la 0 de la început.",
+    "tooLong": "Sunt {{n}} cifre — un număr de telefon are cel mult {{max}}.",
+    "missingCountryCode": "Verifică prefixul de țară — numerele copiate din Contacte adesea nu îl includ."
   }
 }

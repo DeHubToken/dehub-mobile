@@ -1425,7 +1425,35 @@
     "pasteFromClipboard": "从剪贴板粘贴",
     "learnMoreAt": "在 dehub.io 了解更多",
     "accountsOnDevice": "此设备上的账号",
-    "use": "使用"
+    "use": "使用",
+    "verificationCode": "验证码",
+    "sixDigitCode": "6位验证码",
+    "verify": "验证",
+    "resendCode": "重新发送验证码",
+    "noImportedAccounts": "还没有导入的账户。",
+    "importedAccount": "导入的账户",
+    "useAccount": "使用账户 {{name}}",
+    "removeAccount": "移除账户 {{name}}",
+    "showPrivateKey": "显示私钥",
+    "hidePrivateKey": "隐藏私钥",
+    "invalidPrivateKey": "私钥无效",
+    "couldNotImportWallet": "无法导入钱包",
+    "unlockToUse": "解锁此 DeHub 钱包以使用",
+    "noScreenLock": "这部手机没有设置锁屏，任何拿到它的人都能使用你的钱包。请在设备设置中设置密码或生物识别。",
+    "noStoredKey": "此账户没有保存私钥。请重新导入该钱包以关联私钥。",
+    "failedToUseAccount": "无法使用此账户",
+    "continueWithPhone": "使用手机继续",
+    "phoneNumberA11y": "手机号码，先输入国家代码",
+    "phoneNumberHint": "请从国家代码开始输入号码，加号会自动补上。",
+    "sendCodeA11y": "向此号码发送登录验证码",
+    "signInToContinue": "登录后继续",
+    "signInToContinueBody": "执行此操作需要先登录。",
+    "closeAuthModal": "关闭登录窗口",
+    "legalLine": "继续即表示你同意我们的<terms>服务条款</terms>和<privacy>隐私政策</privacy>。",
+    "chooseUsernameBody": "请选择用户名和显示名称以继续，之后可以随时修改。",
+    "checkingAvailability": "正在检查可用性…",
+    "usernameTakenHint": "该用户名已被占用 — 试试加数字或下划线",
+    "displayNameLength": "显示名称需为 2-50 个字符。"
   },
   "messages": {
     "smartRepliesOff": "建议回复关咾",
@@ -3562,7 +3590,13 @@
     "thatsGoneToo": "那个也没了——仍然重新开始",
     "tryBiometrics": "在这台手机上试用生物识别",
     "unlockWithBiometrics": "用生物识别解锁",
-    "confirmStartOver": "确认你要用新钱包重新开始"
+    "confirmStartOver": "确认你要用新钱包重新开始",
+    "understandOldWallet": "我明白旧钱包以及里面的一切将永远无法再取回",
+    "savedTwelveWords": "我已把这 12 个词保存在安全的地方",
+    "legacyRecovered": "已验证你的旧账户{{suffix}}并找回了它的钱包。请设置密码，从现在起在本机以及其他任何地方保护它。",
+    "passwordMin": "密码（至少 {{min}} 个字符）",
+    "newPasswordMin": "新密码（至少 {{min}} 个字符）",
+    "newWalletPasswordMin": "新钱包密码（至少 {{min}} 个字符）"
   },
   "transcript": {
     "title": "文字记录",
@@ -4048,5 +4082,21 @@
       "megalodon": "这是你的王冠——你现在是应用程序皇族了"
     },
     "continue": "回到DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "非常弱",
+    "weak": "弱",
+    "fair": "一般",
+    "good": "良好",
+    "strong": "强",
+    "common": "这是一个常见或容易猜到的密码",
+    "tooShort": "请至少使用 {{n}} 个字符",
+    "mixChars": "混合大小写字母、数字和符号",
+    "breached": "该密码曾出现在数据泄露中 — 请换一个"
+  },
+  "phoneHint": {
+    "leadingZero": "请以国家代码开头（英国是 44，美国是 1）——去掉开头的 0。",
+    "tooLong": "这是 {{n}} 位数字——电话号码最多 {{max}} 位。",
+    "missingCountryCode": "检查一下国家代码——从通讯录复制的号码经常少这一段。"
   }
 }

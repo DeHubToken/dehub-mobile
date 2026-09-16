@@ -950,7 +950,35 @@
     "pasteFromClipboard": "Coller depuis le presse-papiers",
     "learnMoreAt": "En savoir plus sur dehub.io",
     "accountsOnDevice": "Comptes sur cet appareil",
-    "use": "Utiliser"
+    "use": "Utiliser",
+    "verificationCode": "Code de vérification",
+    "sixDigitCode": "Code à 6 chiffres",
+    "verify": "Vérifier",
+    "resendCode": "Renvoyer le code",
+    "noImportedAccounts": "Aucun compte importé pour l'instant.",
+    "importedAccount": "Compte importé",
+    "useAccount": "Utiliser le compte {{name}}",
+    "removeAccount": "Supprimer le compte {{name}}",
+    "showPrivateKey": "Afficher la clé privée",
+    "hidePrivateKey": "Masquer la clé privée",
+    "invalidPrivateKey": "Clé privée invalide",
+    "couldNotImportWallet": "Impossible d'importer le portefeuille",
+    "unlockToUse": "Déverrouillez ce portefeuille DeHub pour l'utiliser",
+    "noScreenLock": "Ce téléphone n'a pas de verrouillage d'écran : toute personne qui le tient peut utiliser votre portefeuille. Définissez un code ou une biométrie dans les réglages de l'appareil.",
+    "noStoredKey": "Aucune clé privée n'est enregistrée pour ce compte. Réimportez ce portefeuille pour lier sa clé.",
+    "failedToUseAccount": "Impossible d'utiliser ce compte",
+    "continueWithPhone": "Continuer avec le téléphone",
+    "phoneNumberA11y": "Numéro de téléphone, indicatif pays en premier",
+    "phoneNumberHint": "Saisissez votre numéro en commençant par l'indicatif du pays. Le signe plus est ajouté automatiquement.",
+    "sendCodeA11y": "Envoyer le code de connexion à ce numéro",
+    "signInToContinue": "Connectez-vous pour continuer",
+    "signInToContinueBody": "Vous devez vous connecter pour effectuer cette action.",
+    "closeAuthModal": "Fermer la fenêtre de connexion",
+    "legalLine": "En continuant, vous acceptez nos <terms>Conditions d'utilisation</terms> et notre <privacy>Politique de confidentialité</privacy>.",
+    "chooseUsernameBody": "Choisissez un nom d'utilisateur et un nom affiché pour continuer. Vous pourrez les modifier plus tard.",
+    "checkingAvailability": "Vérification de la disponibilité…",
+    "usernameTakenHint": "Ce nom est pris — essayez d'ajouter des chiffres ou un tiret bas",
+    "displayNameLength": "Le nom affiché doit comporter entre 2 et 50 caractères."
   },
   "explorePage": {
     "searchPlaceholder": "Rechercher des personnes, publications ou contenus...",
@@ -3636,7 +3664,13 @@
     "thatsGoneToo": "Cela aussi est perdu — recommencer quand même",
     "tryBiometrics": "Essayer la biométrie sur ce téléphone",
     "unlockWithBiometrics": "Déverrouiller par biométrie",
-    "confirmStartOver": "Confirmez que vous voulez recommencer avec un nouveau portefeuille"
+    "confirmStartOver": "Confirmez que vous voulez recommencer avec un nouveau portefeuille",
+    "understandOldWallet": "Je comprends que l'ancien portefeuille, et tout ce qu'il contient, sera hors de ma portée pour toujours",
+    "savedTwelveWords": "J'ai enregistré ces 12 mots en lieu sûr",
+    "legacyRecovered": "Nous avons vérifié votre ancien compte{{suffix}} et récupéré son portefeuille. Définissez un mot de passe pour le protéger sur cet appareil — sur ce téléphone et partout ailleurs — à partir de maintenant.",
+    "passwordMin": "Mot de passe (min. {{min}} caractères)",
+    "newPasswordMin": "Nouveau mot de passe (min. {{min}} caractères)",
+    "newWalletPasswordMin": "Mot de passe du nouveau portefeuille (min. {{min}} caractères)"
   },
   "transcript": {
     "title": "Transcription",
@@ -4124,5 +4158,21 @@
       "megalodon": "Voici votre couronne — vous êtes la redevance de l'application maintenant"
     },
     "continue": "Retour à DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Très faible",
+    "weak": "Faible",
+    "fair": "Moyen",
+    "good": "Bon",
+    "strong": "Fort",
+    "common": "Ce mot de passe est courant ou facile à deviner",
+    "tooShort": "Utilisez au moins {{n}} caractères",
+    "mixChars": "Mélangez majuscules, minuscules, chiffres et symboles",
+    "breached": "Ce mot de passe est apparu dans une fuite de données — choisissez-en un autre"
+  },
+  "phoneHint": {
+    "leadingZero": "Commencez par l'indicatif de votre pays (44 pour le Royaume-Uni, 1 pour les États-Unis) — supprimez le 0 initial.",
+    "tooLong": "Cela fait {{n}} chiffres — un numéro de téléphone en compte {{max}} au maximum.",
+    "missingCountryCode": "Vérifiez l'indicatif du pays — les numéros copiés depuis les contacts l'omettent souvent."
   }
 }

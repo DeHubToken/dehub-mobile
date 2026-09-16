@@ -1410,7 +1410,35 @@
     "pasteFromClipboard": "Paste from clipboard",
     "learnMoreAt": "Learn more for dehub.io",
     "accountsOnDevice": "Accounts wey dey dis device",
-    "use": "Use"
+    "use": "Use",
+    "verificationCode": "Verification code",
+    "sixDigitCode": "6-digit code",
+    "verify": "Verify",
+    "resendCode": "Send de code again",
+    "noImportedAccounts": "No account don import yet.",
+    "importedAccount": "Account wey import",
+    "useAccount": "Use account {{name}}",
+    "removeAccount": "Remove account {{name}}",
+    "showPrivateKey": "Show private key",
+    "hidePrivateKey": "Hide private key",
+    "invalidPrivateKey": "Private key no correct",
+    "couldNotImportWallet": "We no fit import di wallet",
+    "unlockToUse": "Open dis DeHub wallet so you fit use am",
+    "noScreenLock": "Dis phone no get screen lock, so anybody wey hold am fit use your wallet. Put passcode or fingerprint for your device settings.",
+    "noStoredKey": "No private key dey save for dis account. Abeg import dis wallet again so im key go connect.",
+    "failedToUseAccount": "We no fit use dis account",
+    "continueWithPhone": "Continue with Phone",
+    "phoneNumberA11y": "Phone number, country code first",
+    "phoneNumberHint": "Enter your number, start with di country code. We go add di plus sign for you.",
+    "sendCodeA11y": "Send sign-in code go dis phone number",
+    "signInToContinue": "Sign in make you continue",
+    "signInToContinueBody": "You need sign in before you fit do dis one.",
+    "closeAuthModal": "Close di sign-in window",
+    "legalLine": "If you continue, e mean say you gree with our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>.",
+    "chooseUsernameBody": "Pick username and display name make you continue. You fit change am later.",
+    "checkingAvailability": "We dey check if e dey available…",
+    "usernameTakenHint": "Somebody don take dis username — try add numbers or underscore",
+    "displayNameLength": "Display name suppose be 2-50 characters."
   },
   "messages": {
     "smartRepliesOff": "Dem don of di ansa dem weh wi propose",
@@ -3394,7 +3422,13 @@
     "thatsGoneToo": "Dat one don go too — still start again",
     "tryBiometrics": "Try biometrics for dis phone",
     "unlockWithBiometrics": "Unlock with biometrics",
-    "confirmStartOver": "Confirm say you wan start again with new wallet"
+    "confirmStartOver": "Confirm say you wan start again with new wallet",
+    "understandOldWallet": "I understand say di old wallet, and everything inside am, go comot from my hand forever",
+    "savedTwelveWords": "I don save dis 12 words for safe place",
+    "legacyRecovered": "We don verify your old account{{suffix}} and recover im wallet. Set password wey go protect am for dis device — for dis phone and everywhere else, from now.",
+    "passwordMin": "Password (at least {{min}} characters)",
+    "newPasswordMin": "New password (at least {{min}} characters)",
+    "newWalletPasswordMin": "New wallet password (at least {{min}} characters)"
   },
   "transcript": {
     "title": "Transcript",
@@ -3845,5 +3879,21 @@
       "megalodon": "Here na yu crown — yu don become app royalty now"
     },
     "continue": "Back to DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Very weak",
+    "weak": "Weak",
+    "fair": "Fair",
+    "good": "Good",
+    "strong": "Strong",
+    "common": "Dis password common, e easy for guess",
+    "tooShort": "Use at least {{n}} characters",
+    "mixChars": "Mix big and small letters, numbers, and symbols",
+    "breached": "Dis password don show for data leak — pick anoda one"
+  },
+  "phoneHint": {
+    "leadingZero": "Start with your country code (44 for UK, 1 for US) — remove di 0 wey dey front.",
+    "tooLong": "Na {{n}} digits be dat — phone number no fit pass {{max}}.",
+    "missingCountryCode": "Check di country code — numbers wey you copy from Contacts dey miss am plenty times."
   }
 }

@@ -1531,7 +1531,35 @@
     "pasteFromClipboard": "Dán từ bộ nhớ tạm",
     "learnMoreAt": "Tìm hiểu thêm tại dehub.io",
     "accountsOnDevice": "Tài khoản trên thiết bị này",
-    "use": "Dùng"
+    "use": "Dùng",
+    "verificationCode": "Mã xác minh",
+    "sixDigitCode": "Mã 6 chữ số",
+    "verify": "Xác minh",
+    "resendCode": "Gửi lại mã",
+    "noImportedAccounts": "Chưa có tài khoản nào được nhập.",
+    "importedAccount": "Tài khoản đã nhập",
+    "useAccount": "Dùng tài khoản {{name}}",
+    "removeAccount": "Xóa tài khoản {{name}}",
+    "showPrivateKey": "Hiện khóa riêng",
+    "hidePrivateKey": "Ẩn khóa riêng",
+    "invalidPrivateKey": "Khóa riêng không hợp lệ",
+    "couldNotImportWallet": "Không thể nhập ví",
+    "unlockToUse": "Mở khóa ví DeHub này để sử dụng",
+    "noScreenLock": "Điện thoại này không có khóa màn hình, nên bất kỳ ai cầm máy đều có thể dùng ví của bạn. Hãy đặt mật mã hoặc sinh trắc học trong cài đặt thiết bị.",
+    "noStoredKey": "Không có khóa riêng nào được lưu cho tài khoản này. Vui lòng nhập lại ví này để liên kết khóa.",
+    "failedToUseAccount": "Không thể dùng tài khoản này",
+    "continueWithPhone": "Tiếp tục bằng điện thoại",
+    "phoneNumberA11y": "Số điện thoại, mã quốc gia trước",
+    "phoneNumberHint": "Nhập số của bạn bắt đầu bằng mã quốc gia. Dấu cộng sẽ được thêm tự động.",
+    "sendCodeA11y": "Gửi mã đăng nhập tới số này",
+    "signInToContinue": "Đăng nhập để tiếp tục",
+    "signInToContinueBody": "Bạn cần đăng nhập để thực hiện thao tác này.",
+    "closeAuthModal": "Đóng cửa sổ đăng nhập",
+    "legalLine": "Khi tiếp tục, bạn đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy> của chúng tôi.",
+    "chooseUsernameBody": "Chọn tên người dùng và tên hiển thị để tiếp tục. Bạn có thể đổi sau.",
+    "checkingAvailability": "Đang kiểm tra khả dụng…",
+    "usernameTakenHint": "Tên này đã có người dùng — thử thêm số hoặc dấu gạch dưới",
+    "displayNameLength": "Tên hiển thị phải có 2-50 ký tự."
   },
   "bookmarks": {
     "title": "Mục đã lưu của bạn",
@@ -3650,7 +3678,13 @@
     "thatsGoneToo": "Cái đó cũng mất — vẫn bắt đầu lại",
     "tryBiometrics": "Thử sinh trắc học trên điện thoại này",
     "unlockWithBiometrics": "Mở khóa bằng sinh trắc học",
-    "confirmStartOver": "Xác nhận rằng bạn muốn bắt đầu lại với một ví mới"
+    "confirmStartOver": "Xác nhận rằng bạn muốn bắt đầu lại với một ví mới",
+    "understandOldWallet": "Tôi hiểu rằng ví cũ và mọi thứ trong đó sẽ vĩnh viễn ngoài tầm với của tôi",
+    "savedTwelveWords": "Tôi đã lưu 12 từ này ở nơi an toàn",
+    "legacyRecovered": "Đã xác minh tài khoản cũ của bạn{{suffix}} và khôi phục ví của nó. Hãy đặt mật khẩu để bảo vệ ví trên thiết bị này — trên điện thoại này và mọi nơi khác, kể từ bây giờ.",
+    "passwordMin": "Mật khẩu (tối thiểu {{min}} ký tự)",
+    "newPasswordMin": "Mật khẩu mới (tối thiểu {{min}} ký tự)",
+    "newWalletPasswordMin": "Mật khẩu ví mới (tối thiểu {{min}} ký tự)"
   },
   "transcript": {
     "title": "Bản ghi lời nói",
@@ -4136,5 +4170,21 @@
       "megalodon": "Đây là vương miện của bạn — bây giờ bạn đã là thành viên hoàng gia của ứng dụng"
     },
     "continue": "Quay lại DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Rất yếu",
+    "weak": "Yếu",
+    "fair": "Trung bình",
+    "good": "Tốt",
+    "strong": "Mạnh",
+    "common": "Đây là mật khẩu phổ biến hoặc dễ đoán",
+    "tooShort": "Dùng ít nhất {{n}} ký tự",
+    "mixChars": "Kết hợp chữ hoa, chữ thường, số và ký hiệu",
+    "breached": "Mật khẩu này đã xuất hiện trong một vụ rò rỉ dữ liệu — hãy chọn mật khẩu khác"
+  },
+  "phoneHint": {
+    "leadingZero": "Bắt đầu bằng mã quốc gia của bạn (44 cho Anh, 1 cho Mỹ) — bỏ số 0 ở đầu.",
+    "tooLong": "Đó là {{n}} chữ số — số điện thoại có tối đa {{max}}.",
+    "missingCountryCode": "Kiểm tra mã quốc gia — số chép từ Danh bạ thường thiếu phần này."
   }
 }

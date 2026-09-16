@@ -87,7 +87,11 @@ function scanFile(file) {
     hits.push({ line: lineOf(src, index), text: text.trim(), kind });
 
   // 1. Text sitting between two tags: >Save changes<
-  for (const hit of m.matchAll(/>\s*([^<>{}\n][^<>{}]*)\s*</g)) {
+  //
+  // The `>` of an arrow is excluded. `=> Promise<void>` looked like a tag pair,
+  // and `=> React.ReactNode;` has no closing `<` on its line, so one match ran
+  // on across a whole interface block and was reported as a single string.
+  for (const hit of m.matchAll(/[^=]>\s*([^<>{}\n][^<>{}]*)\s*</g)) {
     if (looksLikeProse(hit[1])) add(hit.index, hit[1], "jsx");
   }
 

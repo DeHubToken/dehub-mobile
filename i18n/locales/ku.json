@@ -1342,7 +1342,35 @@
     "pasteFromClipboard": "Ji panoyê pêve bike",
     "learnMoreAt": "Li dehub.io bêtir fêr bibe",
     "accountsOnDevice": "Hesabên li ser vê amûrê",
-    "use": "Bikar bîne"
+    "use": "Bikar bîne",
+    "verificationCode": "Koda pejirandinê",
+    "sixDigitCode": "Koda 6 hejmarî",
+    "verify": "Bipejirîne",
+    "resendCode": "Kodê dîsa bişîne",
+    "noImportedAccounts": "Hîn hesabên hatine anîn tune.",
+    "importedAccount": "Hesabê hatî anîn",
+    "useAccount": "Hesabê {{name}} bikar bîne",
+    "removeAccount": "Hesabê {{name}} rake",
+    "showPrivateKey": "Kilîla taybet nîşan bide",
+    "hidePrivateKey": "Kilîla taybet veşêre",
+    "invalidPrivateKey": "Kilîla taybet ne derbasdar e",
+    "couldNotImportWallet": "Berîk nehat anîn",
+    "unlockToUse": "Ji bo bikaranîna vê berîka DeHub kilîdê veke",
+    "noScreenLock": "Ev telefon kilîda ekranê tune, ji ber vê her kesê ku wê bigire dikare berîka te bikar bîne. Di sazkariyên amûrê de şîfreyek an biyometrîk saz bike.",
+    "noStoredKey": "Ji bo vê hesabê kilîlek taybet nehatiye tomarkirin. Ji kerema xwe vê berîkê dîsa bîne da ku kilîla wê girêbide.",
+    "failedToUseAccount": "Bikaranîna vê hesabê bi ser neket",
+    "continueWithPhone": "Bi telefonê bidomîne",
+    "phoneNumberA11y": "Hejmara telefonê, pêşî koda welêt",
+    "phoneNumberHint": "Hejmara xwe bi koda welêt dest pê bike û binivîse. Nîşana plusê bixweber tê zêdekirin.",
+    "sendCodeA11y": "Koda têketinê ji vê hejmarê re bişîne",
+    "signInToContinue": "Ji bo berdewamiyê têkeve",
+    "signInToContinueBody": "Divê tu têkevî da ku vê kiryarê pêk bînî.",
+    "closeAuthModal": "Paceya têketinê bigire",
+    "legalLine": "Bi berdewamkirinê, tu bi <terms>Mercên Karûbarê</terms> û <privacy>Siyaseta Nihêniyê</privacy> ya me razî dibî.",
+    "chooseUsernameBody": "Ji bo berdewamiyê navekî bikarhêner û navekî xuyanî hilbijêre. Tu dikarî paşê wan biguherînî.",
+    "checkingAvailability": "Berdestbûn tê kontrolkirin…",
+    "usernameTakenHint": "Ev nav hatiye girtin — hejmar an binxêzek lê zêde bike",
+    "displayNameLength": "Divê navê xuyanî 2-50 tîp be."
   },
   "messages": {
     "smartRepliesOff": "Bersivên pêşniyarkirî hatin girtin",
@@ -3293,7 +3321,13 @@
     "thatsGoneToo": "Ew jî winda bûye — bi her awayî ji nû ve dest pê bike",
     "tryBiometrics": "Li vê telefonê biyometrîkê biceribîne",
     "unlockWithBiometrics": "Bi biyometrîkê veke",
-    "confirmStartOver": "Piştrast bike ku tu dixwazî bi berîkeke nû ji nû ve dest pê bikî"
+    "confirmStartOver": "Piştrast bike ku tu dixwazî bi berîkeke nû ji nû ve dest pê bikî",
+    "understandOldWallet": "Ez fêm dikim ku berîka kevn û her tiştê tê de ji bo hertimî ji destê min derdikeve",
+    "savedTwelveWords": "Min ev 12 peyv li cihekî ewle tomar kirin",
+    "legacyRecovered": "Me hesabê te yê kevn{{suffix}} piştrast kir û berîka wê vegerand. Şîfreyekê saz bike ku ji niha pê ve wê li ser vê amûrê biparêze — li ser vê telefonê û li her derê din.",
+    "passwordMin": "Şîfre (kêmî {{min}} tîp)",
+    "newPasswordMin": "Şîfreya nû (kêmî {{min}} tîp)",
+    "newWalletPasswordMin": "Şîfreya berîka nû (kêmî {{min}} tîp)"
   },
   "transcript": {
     "title": "Nivîsandin",
@@ -3712,5 +3746,21 @@
   "calls": {
     "calling": "بانگ کردن - کار - پیشە",
     "tryAgain": "هەوڵێ دوبارە"
+  },
+  "passwordStrength": {
+    "veryWeak": "Pir lawaz",
+    "weak": "Lawaz",
+    "fair": "Navîn",
+    "good": "Baş",
+    "strong": "Bihêz",
+    "common": "Ev şîfreyeke berbelav an bi hêsanî tê texmînkirin e",
+    "tooShort": "Kêmî {{n}} tîp bikar bîne",
+    "mixChars": "Tîpên mezin/biçûk, hejmar û sembolan tevlihev bike",
+    "breached": "Ev şîfre di derketina daneyan de derketiye — yeke din hilbijêre"
+  },
+  "phoneHint": {
+    "leadingZero": "Bi koda welatê xwe dest pê bike (44 ji bo Brîtanya, 1 ji bo Amerîka) — 0 ya destpêkê rake.",
+    "tooLong": "Ew {{n}} hejmar in — hejmara telefonê herî zêde {{max}} e.",
+    "missingCountryCode": "Koda welêt kontrol bike — hejmarên ji Têkiliyan hatine kopîkirin gelek caran wê nagirin."
   }
 }

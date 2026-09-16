@@ -1443,7 +1443,35 @@
     "pasteFromClipboard": "ካብ ክሊፕቦርድ ለጥፍ",
     "learnMoreAt": "ኣብ dehub.io ተወሳኺ ፍለጥ",
     "accountsOnDevice": "ኣብዚ መሳርሒ ዘለዉ ኣካውንትታት",
-    "use": "ተጠቐም"
+    "use": "ተጠቐም",
+    "verificationCode": "ኮድ መረጋገጺ",
+    "sixDigitCode": "ናይ 6 ኣሃዝ ኮድ",
+    "verify": "ኣረጋግጽ",
+    "resendCode": "ኮድ ደጊምካ ስደድ",
+    "noImportedAccounts": "ክሳብ ሕጂ ዝኣተወ ሕሳብ የለን።",
+    "importedAccount": "ዝኣተወ ሕሳብ",
+    "useAccount": "ሕሳብ {{name}} ተጠቐም",
+    "removeAccount": "ሕሳብ {{name}} ኣወግድ",
+    "showPrivateKey": "ብሕታዊ መፍትሕ ኣርኢ",
+    "hidePrivateKey": "ብሕታዊ መፍትሕ ሓብእ",
+    "invalidPrivateKey": "ዘይቅቡል ብሕታዊ መፍትሕ",
+    "couldNotImportWallet": "ዋሌት ከነእቱ ኣይተኻእለን",
+    "unlockToUse": "ነዚ ናይ DeHub ዋሌት ንምጥቃም ክፈቶ",
+    "noScreenLock": "እዚ ስልኪ መዕጸዊ መርኣዪ የብሉን፡ ስለዚ ዝሓዞ ዝኾነ ሰብ ዋሌትካ ክጥቀም ይኽእል። ኣብ ናይ መሳርሒ ቅንብር ኮድ ወይ ባዮሜትሪክ ኣቐምጥ።",
+    "noStoredKey": "ነዚ ሕሳብ ዝተዓቀበ ብሕታዊ መፍትሕ የለን። መፍትሑ ንምትእስሳር በጃኹም ነዚ ዋሌት ደጊምኩም ኣእትዉዎ።",
+    "failedToUseAccount": "ነዚ ሕሳብ ክንጥቀመሉ ኣይከኣልናን",
+    "continueWithPhone": "ብስልኪ ቀጽል",
+    "phoneNumberA11y": "ቁጽሪ ስልኪ፡ መጀመርታ ኮድ ሃገር",
+    "phoneNumberHint": "ቁጽርኻ ካብ ኮድ ሃገር ጀሚርካ ኣእቱ። ምልክት ደመር ባዕሉ ይውሰኽ።",
+    "sendCodeA11y": "ናብዚ ቁጽሪ ስልኪ ኮድ ምእታው ስደድ",
+    "signInToContinue": "ንምቕጻል እቶ",
+    "signInToContinueBody": "እዚ ተግባር ንምፍጻም ክትኣቱ ኣለካ።",
+    "closeAuthModal": "መስኮት ምእታው ዕጸዎ",
+    "legalLine": "ብምቕጻል፡ ናትና <terms>ውዕላት ኣገልግሎት</terms>ን <privacy>ፖሊሲ ውልቃዊነት</privacy>ን ትቕበል ኣለኻ።",
+    "chooseUsernameBody": "ንምቕጻል ስም ተጠቃሚን ዝርአ ስምን ምረጽ። ደሓር ክትቅይሮም ትኽእል።",
+    "checkingAvailability": "ተረኽቦ ይምርመር ኣሎ…",
+    "usernameTakenHint": "እዚ ስም ተታሒዙ — ቁጽርታት ወይ ትሕቲ መስመር ወስኽ",
+    "displayNameLength": "ዝርአ ስም ካብ 2 ክሳብ 50 ፊደላት ክኸውን ኣለዎ።"
   },
   "messages": {
     "smartRepliesOff": "ዝተጠቕሱ መልስታት ጠፊኦም",
@@ -3527,7 +3555,13 @@
     "thatsGoneToo": "እቲውን ጠፊኡ — ብዝኾነ ካብ መጀመርታ ጀምር",
     "tryBiometrics": "ኣብዚ ተሌፎን ባዮመትሪክ ፈትን",
     "unlockWithBiometrics": "ብባዮመትሪክ ክፈት",
-    "confirmStartOver": "ብሓድሽ ዋሌት ከም ብሓድሽ ክትጅምር ከም እትደሊ ኣረጋግጽ"
+    "confirmStartOver": "ብሓድሽ ዋሌት ከም ብሓድሽ ክትጅምር ከም እትደሊ ኣረጋግጽ",
+    "understandOldWallet": "እቲ ዝሓለፈ ዋሌትን ኣብኡ ዘሎ ኩሉን ንዘልኣለም ካብ ኢደይ ከም ዝወጽእ ተረዲአ ኣለኹ",
+    "savedTwelveWords": "እዘን 12 ቃላት ኣብ ውሑስ ቦታ ኣቐሚጠየን",
+    "legacyRecovered": "ዝሓለፈ ሕሳብካ{{suffix}} ተረጋጊጹ ዋሌቱ ተመሊሱ። ካብ ሕጂ ጀሚሩ ኣብዚ መሳርሒ — ኣብዚ ስልክን ኣብ ካልእ ቦታታትን — ንምሕላዉ መሕለፊ ቃል ኣቐምጥ።",
+    "passwordMin": "መሕለፊ ቃል (ብውሑዱ {{min}} ፊደላት)",
+    "newPasswordMin": "ሓድሽ መሕለፊ ቃል (ብውሑዱ {{min}} ፊደላት)",
+    "newWalletPasswordMin": "መሕለፊ ቃል ናይ ሓድሽ ዋሌት (ብውሑዱ {{min}} ፊደላት)"
   },
   "transcript": {
     "title": "ጽሑፍ ቃል",
@@ -4007,5 +4041,21 @@
       "megalodon": "እዚ ድማ ዘውዲኻ እዩ — ሕጂ ናይ መተግበሪ ሮያሊቲ ኢኻ"
     },
     "continue": "ናብ ደሆብ ተመለስ"
+  },
+  "passwordStrength": {
+    "veryWeak": "ኣዝዩ ድኹም",
+    "weak": "ድኹም",
+    "fair": "ማእከላይ",
+    "good": "ጽቡቕ",
+    "strong": "ሓያል",
+    "common": "እዚ ልሙድ ወይ ብቐሊሉ ዝግመት መሕለፊ ቃል እዩ",
+    "tooShort": "ብውሑዱ {{n}} ፊደላት ተጠቐም",
+    "mixChars": "ዓበይቲን ንኣሽቱን ፊደላት፡ ቁጽርታትን ምልክታትን ሓዋውስ",
+    "breached": "እዚ መሕለፊ ቃል ኣብ ምፍሳስ ሓበሬታ ተራእዩ — ካልእ ምረጽ"
+  },
+  "phoneHint": {
+    "leadingZero": "ብኮድ ሃገርካ ጀምር (44 ንዓባይ ብሪጣንያ፡ 1 ንኣሜሪካ) — እቲ ኣብ መጀመርታ ዘሎ 0 ኣወግድ።",
+    "tooLong": "እዚ {{n}} ኣሃዛት እዩ — ቁጽሪ ስልኪ ብዝበዝሐ {{max}} ኣለዎ።",
+    "missingCountryCode": "ኮድ ሃገር ኣረጋግጽ — ካብ ርክባት ዝተቐድሑ ቁጽርታት መብዛሕትኡ ግዜ የብሎምን።"
   }
 }

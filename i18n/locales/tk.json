@@ -1207,7 +1207,35 @@
     "pasteFromClipboard": "Alyş-çalyş tagtasyndan goý",
     "learnMoreAt": "dehub.io-da has köp öwreniň",
     "accountsOnDevice": "Bu enjamdaky hasaplar",
-    "use": "Ulan"
+    "use": "Ulan",
+    "verificationCode": "Tassyklaýyş kody",
+    "sixDigitCode": "6 belgili kod",
+    "verify": "Tassykla",
+    "resendCode": "Kody gaýtadan iber",
+    "noImportedAccounts": "Heniz import edilen hasap ýok.",
+    "importedAccount": "Import edilen hasap",
+    "useAccount": "{{name}} hasabyny ulan",
+    "removeAccount": "{{name}} hasabyny aýyr",
+    "showPrivateKey": "Şahsy açary görkez",
+    "hidePrivateKey": "Şahsy açary gizle",
+    "invalidPrivateKey": "Nädogry şahsy açar",
+    "couldNotImportWallet": "Gapjyk import edip bolmady",
+    "unlockToUse": "Bu DeHub gapjygyny ulanmak üçin gulpuny aç",
+    "noScreenLock": "Bu telefonda ekran gulpy ýok, şonuň üçin ony eline alan islendik adam gapjygyňyzy ulanyp biler. Enjam sazlamalarynda parol ýa-da biometriýa belläň.",
+    "noStoredKey": "Bu hasap üçin şahsy açar saklanmaýar. Açaryny baglamak üçin bu gapjygy gaýtadan import ediň.",
+    "failedToUseAccount": "Bu hasaby ulanyp bolmady",
+    "continueWithPhone": "Telefon bilen dowam et",
+    "phoneNumberA11y": "Telefon belgisi, ilki ýurt kody",
+    "phoneNumberHint": "Belgiňizi ýurt kodundan başlap giriziň. Goşmak belgisi awtomatiki goşulýar.",
+    "sendCodeA11y": "Bu telefon belgisine giriş kodyny iber",
+    "signInToContinue": "Dowam etmek üçin giriň",
+    "signInToContinueBody": "Bu amaly ýerine ýetirmek üçin girmeli.",
+    "closeAuthModal": "Giriş penjiresini ýap",
+    "legalLine": "Dowam etmek bilen, siz biziň <terms>Hyzmat şertlerimizi</terms> we <privacy>Gizlinlik syýasatymyzy</privacy> kabul edýärsiňiz.",
+    "chooseUsernameBody": "Dowam etmek üçin ulanyjy ady we görkeziliş ady saýlaň. Soňra üýtgedip bilersiňiz.",
+    "checkingAvailability": "Elýeterlilik barlanýar…",
+    "usernameTakenHint": "Bu at eýýäm alnan — san ýa-da aşaky çyzyk goşup görüň",
+    "displayNameLength": "Görkeziliş ady 2-50 belgi bolmaly."
   },
   "bookmarks": {
     "title": "Bellikleriňiz",
@@ -3532,7 +3560,13 @@
     "thatsGoneToo": "Ol hem ýitdi — şonda-da täzeden başla",
     "tryBiometrics": "Bu telefonda biometrikany synap görüň",
     "unlockWithBiometrics": "Biometrika bilen aç",
-    "confirmStartOver": "Täze gapjyk bilen täzeden başlamak isleýändigiňizi tassyklaň"
+    "confirmStartOver": "Täze gapjyk bilen täzeden başlamak isleýändigiňizi tassyklaň",
+    "understandOldWallet": "Köne gapjygyň we onuň içindäki ähli zadyň hemişelik elimden gidjekdigine düşünýärin",
+    "savedTwelveWords": "Men bu 12 sözi howpsuz ýerde saklap goýdum",
+    "legacyRecovered": "Köne hasabyňyzy{{suffix}} tassykladyk we onuň gapjygyny dikeltdik. Şu wagtdan başlap ony şu enjamda — şu telefonda we beýleki ýerlerde — goramak üçin parol belläň.",
+    "passwordMin": "Parol (iň azyndan {{min}} belgi)",
+    "newPasswordMin": "Täze parol (iň azyndan {{min}} belgi)",
+    "newWalletPasswordMin": "Täze gapjygyň paroly (iň azyndan {{min}} belgi)"
   },
   "transcript": {
     "title": "Transkript",
@@ -4018,5 +4052,21 @@
       "megalodon": "Bu siziň täç — siz indi App royalty"
     },
     "continue": "DeHub-a dolanmak"
+  },
+  "passwordStrength": {
+    "veryWeak": "Örän gowşak",
+    "weak": "Gowşak",
+    "fair": "Orta",
+    "good": "Gowy",
+    "strong": "Güýçli",
+    "common": "Bu adaty ýa-da aňsat çaklanýan parol",
+    "tooShort": "Iň azyndan {{n}} belgi ulan",
+    "mixChars": "Uly/kiçi harplary, sanlary we nyşanlary garyşdyryň",
+    "breached": "Bu parol maglumat syzmasynda peýda boldy — başgasyny saýla"
+  },
+  "phoneHint": {
+    "leadingZero": "Ýurt kodyňyz bilen başlaň (44 Beýik Britaniýa, 1 ABŞ) — başdaky 0-y aýryň.",
+    "tooLong": "Bu {{n}} belgi — telefon belgisinde köp bolsa {{max}} bolýar.",
+    "missingCountryCode": "Ýurt kodyny barlaň — Kontaktlardan göçürilen belgilerde ol köplenç bolmaýar."
   }
 }

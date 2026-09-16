@@ -1860,7 +1860,35 @@
     "pasteFromClipboard": "Plak uit knipbord",
     "learnMoreAt": "Lees meer by dehub.io",
     "accountsOnDevice": "Rekeninge op hierdie toestel",
-    "use": "Gebruik"
+    "use": "Gebruik",
+    "verificationCode": "Verifikasiekode",
+    "sixDigitCode": "6-syferkode",
+    "verify": "Verifieer",
+    "resendCode": "Stuur kode weer",
+    "noImportedAccounts": "Nog geen ingevoerde rekeninge nie.",
+    "importedAccount": "Ingevoerde rekening",
+    "useAccount": "Gebruik rekening {{name}}",
+    "removeAccount": "Verwyder rekening {{name}}",
+    "showPrivateKey": "Wys private sleutel",
+    "hidePrivateKey": "Versteek private sleutel",
+    "invalidPrivateKey": "Ongeldige private sleutel",
+    "couldNotImportWallet": "Kon nie die beursie invoer nie",
+    "unlockToUse": "Ontsluit hierdie DeHub-beursie om dit te gebruik",
+    "noScreenLock": "Hierdie foon het geen skermslot nie, so enigiemand wat dit vashou kan jou beursie gebruik. Stel 'n wagkode of biometrie in jou toestelinstellings.",
+    "noStoredKey": "Geen private sleutel is vir hierdie rekening gestoor nie. Voer hierdie beursie asseblief weer in om die sleutel te koppel.",
+    "failedToUseAccount": "Kon nie hierdie rekening gebruik nie",
+    "continueWithPhone": "Gaan voort met foon",
+    "phoneNumberA11y": "Foonnommer, landkode eerste",
+    "phoneNumberHint": "Tik jou nommer in, begin met die landkode. Die plusteken word vir jou bygevoeg.",
+    "sendCodeA11y": "Stuur aanmeldkode na hierdie foonnommer",
+    "signInToContinue": "Meld aan om voort te gaan",
+    "signInToContinueBody": "Jy moet aanmeld om hierdie aksie uit te voer.",
+    "closeAuthModal": "Sluit verifikasievenster",
+    "legalLine": "Deur voort te gaan, stem jy in tot ons <terms>Diensbepalings</terms> en <privacy>Privaatheidsbeleid</privacy>.",
+    "chooseUsernameBody": "Kies 'n gebruikersnaam en vertoonnaam om voort te gaan. Jy kan dit later verander.",
+    "checkingAvailability": "Kontroleer beskikbaarheid…",
+    "usernameTakenHint": "Gebruikersnaam is geneem — probeer syfers of 'n onderstreep byvoeg",
+    "displayNameLength": "Vertoonnaam moet 2-50 karakters wees."
   },
   "bookmarks": {
     "title": "Your Bookmarks",
@@ -3679,7 +3707,13 @@
     "thatsGoneToo": "Dit is ook weg — begin in elk geval oor",
     "tryBiometrics": "Probeer biometrie op hierdie foon",
     "unlockWithBiometrics": "Ontsluit met biometrie",
-    "confirmStartOver": "Bevestig dat jy met 'n nuwe beursie wil oorbegin"
+    "confirmStartOver": "Bevestig dat jy met 'n nuwe beursie wil oorbegin",
+    "understandOldWallet": "Ek verstaan dat die ou beursie, en alles daarin, vir altyd buite my bereik sal wees",
+    "savedTwelveWords": "Ek het hierdie 12 woorde op 'n veilige plek gestoor",
+    "legacyRecovered": "Jou ou rekening{{suffix}} is geverifieer en die beursie herwin. Stel 'n wagwoord om dit op hierdie toestel te beskerm — op hierdie foon en oral elders, van nou af.",
+    "passwordMin": "Wagwoord (min. {{min}} karakters)",
+    "newPasswordMin": "Nuwe wagwoord (min. {{min}} karakters)",
+    "newWalletPasswordMin": "Nuwe beursiewagwoord (min. {{min}} karakters)"
   },
   "transcript": {
     "title": "Transkripsie",
@@ -4167,5 +4201,21 @@
       "megalodon": "Hier is jou kroon — jy is nou app koninklikes"
     },
     "continue": "Terug na Dehub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Baie swak",
+    "weak": "Swak",
+    "fair": "Redelik",
+    "good": "Goed",
+    "strong": "Sterk",
+    "common": "Hierdie is 'n algemene of voorspelbare wagwoord",
+    "tooShort": "Gebruik ten minste {{n}} karakters",
+    "mixChars": "Meng hoof- en kleinletters, syfers en simbole",
+    "breached": "Hierdie wagwoord het in 'n datalek verskyn — kies 'n ander een"
+  },
+  "phoneHint": {
+    "leadingZero": "Begin met jou landkode (44 vir die VK, 1 vir die VSA) — los die voorste 0 uit.",
+    "tooLong": "Dis {{n}} syfers — 'n foonnommer het hoogstens {{max}}.",
+    "missingCountryCode": "Kontroleer die landkode — nommers wat uit Kontakte gekopieer word, laat dit dikwels uit."
   }
 }

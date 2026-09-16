@@ -1511,7 +1511,35 @@
     "pasteFromClipboard": "Wklej ze schowka",
     "learnMoreAt": "Dowiedz się więcej na dehub.io",
     "accountsOnDevice": "Konta na tym urządzeniu",
-    "use": "Użyj"
+    "use": "Użyj",
+    "verificationCode": "Kod weryfikacyjny",
+    "sixDigitCode": "Kod 6-cyfrowy",
+    "verify": "Zweryfikuj",
+    "resendCode": "Wyślij kod ponownie",
+    "noImportedAccounts": "Brak zaimportowanych kont.",
+    "importedAccount": "Zaimportowane konto",
+    "useAccount": "Użyj konta {{name}}",
+    "removeAccount": "Usuń konto {{name}}",
+    "showPrivateKey": "Pokaż klucz prywatny",
+    "hidePrivateKey": "Ukryj klucz prywatny",
+    "invalidPrivateKey": "Nieprawidłowy klucz prywatny",
+    "couldNotImportWallet": "Nie udało się zaimportować portfela",
+    "unlockToUse": "Odblokuj ten portfel DeHub, aby go używać",
+    "noScreenLock": "Ten telefon nie ma blokady ekranu, więc każdy, kto go weźmie, może użyć twojego portfela. Ustaw kod lub biometrię w ustawieniach urządzenia.",
+    "noStoredKey": "Dla tego konta nie zapisano klucza prywatnego. Zaimportuj ten portfel ponownie, aby powiązać jego klucz.",
+    "failedToUseAccount": "Nie udało się użyć tego konta",
+    "continueWithPhone": "Kontynuuj z telefonem",
+    "phoneNumberA11y": "Numer telefonu, najpierw kod kraju",
+    "phoneNumberHint": "Wpisz numer, zaczynając od kodu kraju. Znak plus dodamy za Ciebie.",
+    "sendCodeA11y": "Wyślij kod logowania na ten numer",
+    "signInToContinue": "Zaloguj się, aby kontynuować",
+    "signInToContinueBody": "Aby wykonać tę czynność, musisz się zalogować.",
+    "closeAuthModal": "Zamknij okno logowania",
+    "legalLine": "Kontynuując, akceptujesz nasz <terms>Regulamin</terms> i <privacy>Politykę prywatności</privacy>.",
+    "chooseUsernameBody": "Wybierz nazwę użytkownika i nazwę wyświetlaną, aby kontynuować. Możesz je później zmienić.",
+    "checkingAvailability": "Sprawdzanie dostępności…",
+    "usernameTakenHint": "Nazwa jest zajęta — spróbuj dodać cyfry lub podkreślnik",
+    "displayNameLength": "Nazwa wyświetlana musi mieć 2–50 znaków."
   },
   "bookmarks": {
     "title": "Twoje zakładki",
@@ -3630,7 +3658,13 @@
     "thatsGoneToo": "Tego też nie ma — mimo to zacznij od nowa",
     "tryBiometrics": "Wypróbuj biometrię na tym telefonie",
     "unlockWithBiometrics": "Odblokuj biometrią",
-    "confirmStartOver": "Potwierdź, że chcesz zacząć od nowa z nowym portfelem"
+    "confirmStartOver": "Potwierdź, że chcesz zacząć od nowa z nowym portfelem",
+    "understandOldWallet": "Rozumiem, że stary portfel i wszystko w nim będzie dla mnie niedostępne na zawsze",
+    "savedTwelveWords": "Zapisałem te 12 słów w bezpiecznym miejscu",
+    "legacyRecovered": "Zweryfikowaliśmy Twoje stare konto{{suffix}} i odzyskaliśmy jego portfel. Ustaw hasło, które od teraz będzie go chronić na tym urządzeniu — na tym telefonie i wszędzie indziej.",
+    "passwordMin": "Hasło (min. {{min}} znaków)",
+    "newPasswordMin": "Nowe hasło (min. {{min}} znaków)",
+    "newWalletPasswordMin": "Hasło nowego portfela (min. {{min}} znaków)"
   },
   "transcript": {
     "title": "Transkrypcja",
@@ -4117,5 +4151,21 @@
       "megalodon": "Oto twoja korona — jesteś teraz członkiem rodziny królewskiej aplikacji"
     },
     "continue": "Powrót do DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Bardzo słabe",
+    "weak": "Słabe",
+    "fair": "Przeciętne",
+    "good": "Dobre",
+    "strong": "Silne",
+    "common": "To popularne lub łatwe do odgadnięcia hasło",
+    "tooShort": "Użyj co najmniej {{n}} znaków",
+    "mixChars": "Połącz wielkie i małe litery, cyfry i symbole",
+    "breached": "To hasło pojawiło się w wycieku danych — wybierz inne"
+  },
+  "phoneHint": {
+    "leadingZero": "Zacznij od kodu swojego kraju (44 dla Wielkiej Brytanii, 1 dla USA) — pomiń zero na początku.",
+    "tooLong": "To {{n}} cyfr — numer telefonu ma ich najwyżej {{max}}.",
+    "missingCountryCode": "Sprawdź kod kraju — numery kopiowane z kontaktów często go nie mają."
   }
 }

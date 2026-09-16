@@ -1534,7 +1534,35 @@
     "pasteFromClipboard": "Paste from clipboard",
     "learnMoreAt": "Learn more at dehub.io",
     "accountsOnDevice": "Accounts on this device",
-    "use": "Use"
+    "use": "Use",
+    "verificationCode": "Verification code",
+    "sixDigitCode": "6-digit code",
+    "verify": "Verify",
+    "resendCode": "Resend code",
+    "noImportedAccounts": "No imported accounts yet.",
+    "importedAccount": "Imported account",
+    "useAccount": "Use account {{name}}",
+    "removeAccount": "Remove account {{name}}",
+    "showPrivateKey": "Show private key",
+    "hidePrivateKey": "Hide private key",
+    "invalidPrivateKey": "Invalid private key",
+    "couldNotImportWallet": "Could not import wallet",
+    "unlockToUse": "Unlock this DeHub wallet to use it",
+    "noScreenLock": "This phone has no screen lock, so anyone holding it can use your wallet. Set a passcode or biometrics in your device settings.",
+    "noStoredKey": "No private key is stored for this account. Please re-import this wallet to link its key.",
+    "failedToUseAccount": "Failed to use this account",
+    "continueWithPhone": "Continue with Phone",
+    "phoneNumberA11y": "Phone number, country code first",
+    "phoneNumberHint": "Enter your number starting with the country code. The plus sign is added for you.",
+    "sendCodeA11y": "Send sign-in code to this phone number",
+    "signInToContinue": "Sign in to continue",
+    "signInToContinueBody": "You need to sign in to perform this action.",
+    "closeAuthModal": "Close authentication modal",
+    "legalLine": "By continuing, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>.",
+    "chooseUsernameBody": "Choose a username and display name to continue. You can change them later.",
+    "checkingAvailability": "Checking availability…",
+    "usernameTakenHint": "Username taken — try adding numbers or an underscore",
+    "displayNameLength": "Display name must be 2-50 characters."
   },
   "messages": {
     "smartRepliesOff": "Suggested replies turned off",
@@ -3632,7 +3660,13 @@
     "thatsGoneToo": "That's gone too — start over anyway",
     "tryBiometrics": "Try biometrics on this phone",
     "unlockWithBiometrics": "Unlock with biometrics",
-    "confirmStartOver": "Confirm you want to start over with a new wallet"
+    "confirmStartOver": "Confirm you want to start over with a new wallet",
+    "understandOldWallet": "I understand the old wallet, and anything in it, will be out of my reach for good",
+    "savedTwelveWords": "I've saved these 12 words somewhere safe",
+    "legacyRecovered": "Verified your old account{{suffix}} and recovered its wallet. Set a password to protect it on this device — on this phone and everywhere else, from now on.",
+    "passwordMin": "Password (min {{min}} chars)",
+    "newPasswordMin": "New password (min {{min}} chars)",
+    "newWalletPasswordMin": "New wallet password (min {{min}} chars)"
   },
   "transcript": {
     "title": "Transcript",
@@ -4113,5 +4147,21 @@
       "megalodon": "Here’s your crown — you’re app royalty now"
     },
     "continue": "Back to DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Very weak",
+    "weak": "Weak",
+    "fair": "Fair",
+    "good": "Good",
+    "strong": "Strong",
+    "common": "This is a common or predictable password",
+    "tooShort": "Use at least {{n}} characters",
+    "mixChars": "Mix upper/lowercase, numbers, and symbols",
+    "breached": "This password has appeared in a data breach — choose a different one"
+  },
+  "phoneHint": {
+    "leadingZero": "Start with your country code (44 for the UK, 1 for the US) — drop the leading 0.",
+    "tooLong": "That's {{n}} digits — a phone number has at most {{max}}.",
+    "missingCountryCode": "Check the country code — numbers copied from Contacts often leave it out."
   }
 }

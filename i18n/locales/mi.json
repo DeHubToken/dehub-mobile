@@ -1456,7 +1456,35 @@
     "pasteFromClipboard": "Whakapiri mai i te papatopenga",
     "learnMoreAt": "Akohia atu i dehub.io",
     "accountsOnDevice": "Ngā pūkete i tēnei pūrere",
-    "use": "Whakamahia"
+    "use": "Whakamahia",
+    "verificationCode": "Waehere whakaū",
+    "sixDigitCode": "Waehere mati 6",
+    "verify": "Whakaū",
+    "resendCode": "Tukuna anō te waehere",
+    "noImportedAccounts": "Kāore anō he pūkete kua kawemai.",
+    "importedAccount": "Pūkete kawemai",
+    "useAccount": "Whakamahia te pūkete {{name}}",
+    "removeAccount": "Tangohia te pūkete {{name}}",
+    "showPrivateKey": "Whakaatu i te kī matatapu",
+    "hidePrivateKey": "Hunaia te kī matatapu",
+    "invalidPrivateKey": "Kī matatapu muhu",
+    "couldNotImportWallet": "Kāore i taea te kawemai i te pūkoro",
+    "unlockToUse": "Wetewetehia tēnei pūkoro DeHub kia whakamahia",
+    "noScreenLock": "Kāore he raka mata i tēnei waea, nō reira ka taea e te tangata e pupuri ana te whakamahi i tō pūkoro. Whakaritea he waehere, he tohu koiora rānei i ngā tautuhinga pūrere.",
+    "noStoredKey": "Kāore he kī matatapu i rongoātia mō tēnei pūkete. Tēnā, kawemai anō i tēnei pūkoro kia hono ai tōna kī.",
+    "failedToUseAccount": "Kāore i taea te whakamahi i tēnei pūkete",
+    "continueWithPhone": "Haere tonu mā te waea",
+    "phoneNumberA11y": "Tau waea, ko te waehere whenua tuatahi",
+    "phoneNumberHint": "Tāuruhia tō tau mai i te waehere whenua. Ka tāpirihia te tohu tāpiri māu.",
+    "sendCodeA11y": "Tukuna te waehere takiuru ki tēnei tau waea",
+    "signInToContinue": "Takiuru kia haere tonu",
+    "signInToContinueBody": "Me takiuru koe ki te mahi i tēnei.",
+    "closeAuthModal": "Katia te matapihi takiuru",
+    "legalLine": "Mā te haere tonu, ka whakaae koe ki ā mātou <terms>Ture Ratonga</terms> me te <privacy>Kaupapa here Tūmataiti</privacy>.",
+    "chooseUsernameBody": "Kōwhiria he ingoa kaiwhakamahi me tētahi ingoa whakaatu kia haere tonu. Ka taea te whakarerekē ā muri ake.",
+    "checkingAvailability": "Kei te tirotiro i te wāteatanga…",
+    "usernameTakenHint": "Kua tangohia tēnei ingoa — whakamātauria te tāpiri tau, taiaro rānei",
+    "displayNameLength": "Me 2-50 ngā pū o te ingoa whakaatu."
   },
   "messages": {
     "smartRepliesOff": "Kua whakawetohia ngā whakautu tūtohu",
@@ -3547,7 +3575,13 @@
     "thatsGoneToo": "Kua ngaro hoki tērā — tīmata anō ahakoa",
     "tryBiometrics": "Whakamātauria te koiora i tēnei waea",
     "unlockWithBiometrics": "Wetewetehia mā te koiora",
-    "confirmStartOver": "Whakaūngia e hiahia ana koe ki te tīmata anō me tētahi pūkoro hou"
+    "confirmStartOver": "Whakaūngia e hiahia ana koe ki te tīmata anō me tētahi pūkoro hou",
+    "understandOldWallet": "Kei te mārama ahau ka ngaro tonu atu te pūkoro tawhito me ngā mea katoa o roto i ahau",
+    "savedTwelveWords": "Kua tiakina e au ēnei kupu 12 ki tētahi wāhi haumaru",
+    "legacyRecovered": "Kua whakaūngia tō pūkete tawhito{{suffix}}, kua whakaorangia tōna pūkoro. Whakaritea he kupuhipa hei tiaki i a ia i tēnei pūrere — i tēnei waea me ngā wāhi katoa, mai i tēnei wā.",
+    "passwordMin": "Kupuhipa ({{min}} pū te iti rawa)",
+    "newPasswordMin": "Kupuhipa hou ({{min}} pū te iti rawa)",
+    "newWalletPasswordMin": "Kupuhipa pūkoro hou ({{min}} pū te iti rawa)"
   },
   "transcript": {
     "title": "Tuhinga",
@@ -4034,5 +4068,21 @@
       "megalodon": "Tenei ko to koutou karauna — e koe App Royalty inaianei"
     },
     "continue": "Hoki ki DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Tino ngoikore",
+    "weak": "Ngoikore",
+    "fair": "Ahua pai",
+    "good": "Pai",
+    "strong": "Kaha",
+    "common": "He kupuhipa noa, he māmā rānei te matapae",
+    "tooShort": "Whakamahia kia {{n}} ngā pū",
+    "mixChars": "Whakaranua ngā pū matua/iti, ngā tau, me ngā tohu",
+    "breached": "Kua puta tēnei kupuhipa i tētahi rerenga raraunga — kōwhiria tētahi atu"
+  },
+  "phoneHint": {
+    "leadingZero": "Tīmata ki tō waehere whenua (44 mō te UK, 1 mō te US) — whakakāhoretia te 0 tuatahi.",
+    "tooLong": "He {{n}} mati ērā — {{max}} te maha rawa o ngā mati o tētahi tau waea.",
+    "missingCountryCode": "Tirohia te waehere whenua — kāore i te nuinga o te wā i roto i ngā tau i tāruatia mai i ngā Whakapā."
   }
 }

@@ -1468,7 +1468,35 @@
     "pasteFromClipboard": "Bandika kutoka ubao wa kunakili",
     "learnMoreAt": "Jifunze zaidi kwenye dehub.io",
     "accountsOnDevice": "Akaunti kwenye kifaa hiki",
-    "use": "Tumia"
+    "use": "Tumia",
+    "verificationCode": "Msimbo wa uthibitishaji",
+    "sixDigitCode": "Msimbo wa tarakimu 6",
+    "verify": "Thibitisha",
+    "resendCode": "Tuma msimbo tena",
+    "noImportedAccounts": "Bado hakuna akaunti zilizoingizwa.",
+    "importedAccount": "Akaunti iliyoingizwa",
+    "useAccount": "Tumia akaunti {{name}}",
+    "removeAccount": "Ondoa akaunti {{name}}",
+    "showPrivateKey": "Onyesha ufunguo wa faragha",
+    "hidePrivateKey": "Ficha ufunguo wa faragha",
+    "invalidPrivateKey": "Ufunguo wa faragha si sahihi",
+    "couldNotImportWallet": "Imeshindikana kuingiza pochi",
+    "unlockToUse": "Fungua pochi hii ya DeHub ili kuitumia",
+    "noScreenLock": "Simu hii haina kufuli la skrini, hivyo mtu yeyote anayeishika anaweza kutumia pochi yako. Weka nenosiri au bayometriki katika mipangilio ya kifaa.",
+    "noStoredKey": "Hakuna ufunguo wa faragha uliohifadhiwa kwa akaunti hii. Tafadhali ingiza pochi hii tena ili kuunganisha ufunguo wake.",
+    "failedToUseAccount": "Imeshindikana kutumia akaunti hii",
+    "continueWithPhone": "Endelea kwa Simu",
+    "phoneNumberA11y": "Nambari ya simu, msimbo wa nchi kwanza",
+    "phoneNumberHint": "Weka nambari yako ukianza na msimbo wa nchi. Alama ya kujumlisha huongezwa kiotomatiki.",
+    "sendCodeA11y": "Tuma msimbo wa kuingia kwa nambari hii",
+    "signInToContinue": "Ingia ili kuendelea",
+    "signInToContinueBody": "Unahitaji kuingia ili kufanya kitendo hiki.",
+    "closeAuthModal": "Funga dirisha la kuingia",
+    "legalLine": "Kwa kuendelea, unakubali <terms>Masharti ya Huduma</terms> na <privacy>Sera ya Faragha</privacy> yetu.",
+    "chooseUsernameBody": "Chagua jina la mtumiaji na jina la kuonyeshwa ili kuendelea. Unaweza kuyabadilisha baadaye.",
+    "checkingAvailability": "Inakagua upatikanaji…",
+    "usernameTakenHint": "Jina limeshachukuliwa — jaribu kuongeza namba au mstari wa chini",
+    "displayNameLength": "Jina la kuonyeshwa lazima liwe herufi 2-50."
   },
   "messages": {
     "smartRepliesOff": "Majibu yanayopendekezwa yamezimwa",
@@ -3562,7 +3590,13 @@
     "thatsGoneToo": "Hiyo pia imepotea — anza upya hata hivyo",
     "tryBiometrics": "Jaribu biometriki kwenye simu hii",
     "unlockWithBiometrics": "Fungua kwa biometriki",
-    "confirmStartOver": "Thibitisha unataka kuanza upya na pochi mpya"
+    "confirmStartOver": "Thibitisha unataka kuanza upya na pochi mpya",
+    "understandOldWallet": "Naelewa kuwa pochi ya zamani, na kila kilichomo, hakitapatikana tena milele",
+    "savedTwelveWords": "Nimehifadhi maneno haya 12 mahali salama",
+    "legacyRecovered": "Tumethibitisha akaunti yako ya zamani{{suffix}} na kurejesha pochi yake. Weka nenosiri la kuilinda kwenye kifaa hiki — kwenye simu hii na kila mahali pengine, kuanzia sasa.",
+    "passwordMin": "Nenosiri (angalau herufi {{min}})",
+    "newPasswordMin": "Nenosiri jipya (angalau herufi {{min}})",
+    "newWalletPasswordMin": "Nenosiri la pochi mpya (angalau herufi {{min}})"
   },
   "transcript": {
     "title": "Nakala ya maneno",
@@ -4049,5 +4083,21 @@
       "megalodon": "Hili ndilo taji lako — wewe ni mrahaba wa programu sasa"
     },
     "continue": "Rudi kwenye DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Dhaifu sana",
+    "weak": "Dhaifu",
+    "fair": "Wastani",
+    "good": "Nzuri",
+    "strong": "Imara",
+    "common": "Hili ni nenosiri la kawaida au rahisi kubahatisha",
+    "tooShort": "Tumia angalau herufi {{n}}",
+    "mixChars": "Changanya herufi kubwa/ndogo, namba na alama",
+    "breached": "Nenosiri hili limewahi kuonekana katika uvujaji wa data — chagua jingine"
+  },
+  "phoneHint": {
+    "leadingZero": "Anza na msimbo wa nchi yako (44 kwa Uingereza, 1 kwa Marekani) — ondoa 0 ya mwanzo.",
+    "tooLong": "Hizo ni tarakimu {{n}} — nambari ya simu ina {{max}} kwa juu zaidi.",
+    "missingCountryCode": "Angalia msimbo wa nchi — nambari zilizonakiliwa kutoka Anwani mara nyingi hazina."
   }
 }

@@ -802,7 +802,35 @@
     "pasteFromClipboard": "Colar da área de transferência",
     "learnMoreAt": "Saiba mais em dehub.io",
     "accountsOnDevice": "Contas neste dispositivo",
-    "use": "Usar"
+    "use": "Usar",
+    "verificationCode": "Código de verificação",
+    "sixDigitCode": "Código de 6 dígitos",
+    "verify": "Verificar",
+    "resendCode": "Reenviar código",
+    "noImportedAccounts": "Ainda não há contas importadas.",
+    "importedAccount": "Conta importada",
+    "useAccount": "Usar a conta {{name}}",
+    "removeAccount": "Remover a conta {{name}}",
+    "showPrivateKey": "Mostrar chave privada",
+    "hidePrivateKey": "Ocultar chave privada",
+    "invalidPrivateKey": "Chave privada inválida",
+    "couldNotImportWallet": "Não foi possível importar a carteira",
+    "unlockToUse": "Desbloqueie esta carteira DeHub para usá-la",
+    "noScreenLock": "Este telemóvel não tem bloqueio de ecrã, por isso qualquer pessoa que o tenha pode usar a tua carteira. Define um código de acesso ou biometria nas definições do dispositivo.",
+    "noStoredKey": "Não há nenhuma chave privada guardada para esta conta. Volta a importar esta carteira para ligar a chave.",
+    "failedToUseAccount": "Não foi possível usar esta conta",
+    "continueWithPhone": "Continuar com telefone",
+    "phoneNumberA11y": "Número de telefone, indicativo do país primeiro",
+    "phoneNumberHint": "Introduz o teu número a começar pelo indicativo do país. O sinal de mais é adicionado automaticamente.",
+    "sendCodeA11y": "Enviar o código de início de sessão para este número",
+    "signInToContinue": "Inicia sessão para continuar",
+    "signInToContinueBody": "Precisas de iniciar sessão para realizar esta ação.",
+    "closeAuthModal": "Fechar a janela de início de sessão",
+    "legalLine": "Ao continuar, aceitas os nossos <terms>Termos de Serviço</terms> e a <privacy>Política de Privacidade</privacy>.",
+    "chooseUsernameBody": "Escolhe um nome de utilizador e um nome a apresentar para continuar. Podes alterá-los mais tarde.",
+    "checkingAvailability": "A verificar a disponibilidade…",
+    "usernameTakenHint": "Nome já em uso — tenta acrescentar números ou um sublinhado",
+    "displayNameLength": "O nome a apresentar deve ter entre 2 e 50 caracteres."
   },
   "explorePage": {
     "searchPlaceholder": "Buscar pessoas, posts ou conteúdo...",
@@ -3636,7 +3664,13 @@
     "thatsGoneToo": "Isso também se perdeu — recomeçar mesmo assim",
     "tryBiometrics": "Tente a biometria neste telefone",
     "unlockWithBiometrics": "Desbloquear com biometria",
-    "confirmStartOver": "Confirme que você quer recomeçar com uma nova carteira"
+    "confirmStartOver": "Confirme que você quer recomeçar com uma nova carteira",
+    "understandOldWallet": "Compreendo que a carteira antiga, e tudo o que tem lá dentro, ficará fora do meu alcance para sempre",
+    "savedTwelveWords": "Guardei estas 12 palavras num sítio seguro",
+    "legacyRecovered": "Verificámos a tua conta antiga{{suffix}} e recuperámos a sua carteira. Define uma palavra-passe para a proteger neste dispositivo — neste telemóvel e em todo o lado, a partir de agora.",
+    "passwordMin": "Palavra-passe (mín. {{min}} caracteres)",
+    "newPasswordMin": "Nova palavra-passe (mín. {{min}} caracteres)",
+    "newWalletPasswordMin": "Palavra-passe da nova carteira (mín. {{min}} caracteres)"
   },
   "transcript": {
     "title": "Transcrição",
@@ -4123,5 +4157,21 @@
       "megalodon": "Aqui está a sua coroa — agora é a realeza da aplicação"
     },
     "continue": "Voltar ao DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Muito fraca",
+    "weak": "Fraca",
+    "fair": "Razoável",
+    "good": "Boa",
+    "strong": "Forte",
+    "common": "Esta é uma palavra-passe comum ou previsível",
+    "tooShort": "Usa pelo menos {{n}} caracteres",
+    "mixChars": "Combina maiúsculas, minúsculas, números e símbolos",
+    "breached": "Esta palavra-passe apareceu numa fuga de dados — escolhe outra"
+  },
+  "phoneHint": {
+    "leadingZero": "Começa pelo indicativo do teu país (44 para o Reino Unido, 1 para os EUA) — retira o 0 inicial.",
+    "tooLong": "São {{n}} dígitos — um número de telefone tem no máximo {{max}}.",
+    "missingCountryCode": "Confirma o indicativo do país — os números copiados dos contactos costumam não o incluir."
   }
 }

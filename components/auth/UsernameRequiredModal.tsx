@@ -90,7 +90,7 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
       <View style={{ padding: 24 }}>
         <Text style={authText.modalTitle}>{t("setProfile.title")}</Text>
         <Text style={[authText.body, { marginTop: 8, marginBottom: 20 }]}>
-          Choose a username and display name to continue. You can change them later.
+          {t("auth.chooseUsernameBody")}
         </Text>
         {/* Uncontrolled: passing `value` back causes char duplication on Android
             when re-renders (BlurView) lag behind fast typing */}
@@ -106,14 +106,14 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
           {checking && (
             <View style={statusRow}>
               <ActivityIndicator size="small" color={authColors.subtle} />
-              <Text style={authText.caption}>Checking availability…</Text>
+              <Text style={authText.caption}>{t("auth.checkingAvailability")}</Text>
             </View>
           )}
           {!checking && available === true && username.length > 0 && (
             <View style={statusRow}>
               <Ionicons name="checkmark-circle" size={14} color={authColors.label} />
               <Text style={[authText.caption, { color: authColors.label }]}>
-                Username is available
+                {t("profile.usernameAvailable")}
               </Text>
             </View>
           )}
@@ -123,12 +123,12 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
               <Text style={[authText.caption, { color: authColors.danger }]}>
                 {availabilityMessage && availabilityMessage !== 'Username taken'
                   ? availabilityMessage
-                  : 'Username taken — try adding numbers or an underscore'}
+                  : t("auth.usernameTakenHint")}
               </Text>
             </View>
           )}
           {available === null && !checking && username.length === 0 && (
-            <Text style={authText.caption}>3-30 chars: letters, numbers, underscore.</Text>
+            <Text style={authText.caption}>{t("setProfile.usernameHint")}</Text>
           )}
         </View>
 
@@ -144,7 +144,7 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
         <View style={{ marginTop: 8, minHeight: 20 }}>
           {!isDisplayNameValid && displayName.length > 0 && (
             <Text style={[authText.caption, { color: authColors.danger }]}>
-              Display name must be 2-50 characters.
+              {t("auth.displayNameLength")}
             </Text>
           )}
           {displayName.length === 0 && (
