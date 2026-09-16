@@ -5,6 +5,7 @@ import AppTopBar from '../AppTopBar';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import type { AppStackNavigationProp } from '../../navigation/types';
+import { useTranslation } from 'react-i18next';
 
 const AI_SPARKLE_ICON = require('../../assets/web-icons/ai-sparkle-icon.png');
 
@@ -31,6 +32,7 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
   styleEmoji,
   hasMessages,
 }) => {
+  const { t } = useTranslation();
   const navigation = useNavigation<AppStackNavigationProp<ScreenNames.Creator>>();
   return (
     <View className="bg-theme-neutrals-900">
@@ -49,11 +51,11 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
           resizeMode="contain"
         />
         <Text className="text-theme-neutrals-100 text-2xl font-medium ml-2.5 tracking-wide">
-          Assistant
+          {t('assistant.title')}
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity accessibilityRole="button" accessibilityLabel="Creator library and studio" onPress={() => navigation.navigate(ScreenNames.Creator)} className="w-10 h-10 rounded-lg items-center justify-center">
+      <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('assistant.creatorLibrary')} onPress={() => navigation.navigate(ScreenNames.Creator)} className="w-10 h-10 rounded-lg items-center justify-center">
         <Icon name="Clapperboard" size={18} color="#A6A9AC" />
       </TouchableOpacity>
     </View>
@@ -66,7 +68,7 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
             activeOpacity={0.7}
             hitSlop={4}
             accessibilityRole="button"
-            accessibilityLabel="New chat"
+            accessibilityLabel={t('assistant.newChat')}
           >
             <Icon name="SquarePen" size={16} color="#A6A9AC" />
           </TouchableOpacity>
@@ -78,7 +80,7 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
           activeOpacity={0.7}
           hitSlop={4}
           accessibilityRole="button"
-          accessibilityLabel="Chat history"
+          accessibilityLabel={t('assistant.chatHistory')}
         >
           <Icon name="History" size={16} color="#A6A9AC" />
         </TouchableOpacity>
@@ -92,7 +94,7 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
           activeOpacity={0.7}
           hitSlop={4}
           accessibilityRole="button"
-          accessibilityLabel="Support"
+          accessibilityLabel={t('settings.support')}
         >
           <Icon name="LifeBuoy" size={16} color="#A6A9AC" />
           {openTicketCount > 0 && (
@@ -123,7 +125,7 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
           activeOpacity={0.7}
           hitSlop={4}
           accessibilityRole="button"
-          accessibilityLabel="AI settings"
+          accessibilityLabel={t('assistant.aiSettings')}
         >
           <Icon name="Settings" size={16} color="#A6A9AC" />
         </TouchableOpacity>
@@ -135,7 +137,7 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
           activeOpacity={0.7}
           hitSlop={4}
           accessibilityRole="button"
-          accessibilityLabel="AI personality"
+          accessibilityLabel={t('assistant.aiPersonality')}
         >
           <Text style={{ fontSize: 17 }}>{styleEmoji}</Text>
         </TouchableOpacity>

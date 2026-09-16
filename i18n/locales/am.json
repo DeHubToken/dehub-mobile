@@ -878,7 +878,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "ድምፅ ተቀምጧል",
     "audioSaveFailed": "ያንን ትራክ ማስቀመጥ አልተቻለም",
-    "generatedWithAssistant": "በ DeHub ረዳት የተፈጠረ"
+    "generatedWithAssistant": "በ DeHub ረዳት የተፈጠረ",
+    "creatorLibrary": "የፈጣሪ ቤተ-መጻሕፍትና ስቱዲዮ",
+    "newChat": "አዲስ ውይይት",
+    "chatHistory": "የውይይት ታሪክ",
+    "postChat": "የልጥፍ ውይይት",
+    "clearAll": "ሁሉንም አጽዳ",
+    "chats": "ውይይቶች",
+    "noConversations": "እስካሁን ውይይት የለም",
+    "saveAudio": "ድምፅ አስቀምጥ",
+    "postAudio": "ድምፅ ለጥፍ",
+    "generatingImage": "ምስል እየተፈጠረ ነው…",
+    "dehubPoster": "የDeHub ፖስተር"
   },
   "publicChat": {
     "title": "ይፋ ውይይት",

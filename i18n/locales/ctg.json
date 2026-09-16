@@ -867,7 +867,7 @@
     "placeholder": "কিতাও জিগাও...",
     "send": "পাডাও",
     "thinking": "ভাবতাছে...",
-    "newChat": "নতুন চ্যাট",
+    "newChat": "নয়া চ্যাট",
     "history": "ইতিহাস",
     "suggestions": "পরামর্শ",
     "clearChat": "চ্যাট পরিষ্কার গরো",
@@ -943,7 +943,17 @@
     "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
     "audioSaved": "অডিও সেভ অইছে",
     "audioSaveFailed": "এই ট্র্যাক সেভ গরা ন যায়",
-    "generatedWithAssistant": "DeHub সহকারী দিয়া বানানো"
+    "generatedWithAssistant": "DeHub সহকারী দিয়া বানানো",
+    "creatorLibrary": "ক্রিয়েটর লাইব্রেরি আর স্টুডিও",
+    "chatHistory": "চ্যাটর ইতিহাস",
+    "postChat": "পোস্ট চ্যাট",
+    "clearAll": "হক্কল মুছন",
+    "chats": "চ্যাট",
+    "noConversations": "অহনো কোনো আলাপ নাই",
+    "saveAudio": "অডিও সেভ করন",
+    "postAudio": "অডিও পোস্ট করন",
+    "generatingImage": "ছবি বানানো অইতেছে…",
+    "dehubPoster": "DeHub পোস্টার"
   },
   "dao": {
     "subtitle": "এক ওয়ালেট, কমিউনিটি ফান্ডের, ভোট দিয়া খরচ",

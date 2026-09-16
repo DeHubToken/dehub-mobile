@@ -887,7 +887,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "اتحفظ الصوت",
     "audioSaveFailed": "مقدرناش نحفظ المقطع ده",
-    "generatedWithAssistant": "اتعمل بمساعد DeHub"
+    "generatedWithAssistant": "اتعمل بمساعد DeHub",
+    "creatorLibrary": "مكتبة المنشئ والاستوديو",
+    "newChat": "محادثة جديدة",
+    "chatHistory": "تاريخ المحادثات",
+    "postChat": "محادثة البوست",
+    "clearAll": "امسح الكل",
+    "chats": "المحادثات",
+    "noConversations": "مفيش محادثات لسه",
+    "saveAudio": "احفظ الصوت",
+    "postAudio": "انشر الصوت",
+    "generatingImage": "بيتعمل الصورة…",
+    "dehubPoster": "بوستر DeHub"
   },
   "publicChat": {
     "title": "محادثة عامة",

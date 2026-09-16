@@ -872,7 +872,18 @@
     "whatsHappeningNews": "What's happening in the news today?",
     "audioSaved": "ශ්‍රව්‍යය සුරකින ලදී",
     "audioSaveFailed": "එම ගීතය සුරැකීමට නොහැකි විය",
-    "generatedWithAssistant": "DeHub සහායක සමඟ සාදන ලදී"
+    "generatedWithAssistant": "DeHub සහායක සමඟ සාදන ලදී",
+    "creatorLibrary": "නිර්මාතෘ පුස්තකාලය සහ චිත්‍රාගාරය",
+    "newChat": "නව කතාබහ",
+    "chatHistory": "කතාබහ ඉතිහාසය",
+    "postChat": "පළකිරීමේ කතාබහ",
+    "clearAll": "සියල්ල මකන්න",
+    "chats": "කතාබහ",
+    "noConversations": "තවම සංවාද නැත",
+    "saveAudio": "ශ්‍රව්‍යය සුරකින්න",
+    "postAudio": "ශ්‍රව්‍යය පළ කරන්න",
+    "generatingImage": "රූපය සාදමින්…",
+    "dehubPoster": "DeHub පෝස්ටරය"
   },
   "publicChat": {
     "title": "පොදු කතාබහ",

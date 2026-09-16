@@ -1592,7 +1592,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Ljud sparat",
     "audioSaveFailed": "Kunde inte spara det spåret",
-    "generatedWithAssistant": "Skapad med DeHub-assistenten"
+    "generatedWithAssistant": "Skapad med DeHub-assistenten",
+    "creatorLibrary": "Skaparbibliotek och studio",
+    "newChat": "Ny chatt",
+    "chatHistory": "Chatthistorik",
+    "postChat": "Inläggschatt",
+    "clearAll": "Rensa alla",
+    "chats": "Chattar",
+    "noConversations": "Inga konversationer än",
+    "saveAudio": "Spara ljud",
+    "postAudio": "Publicera ljud",
+    "generatingImage": "Genererar bild…",
+    "dehubPoster": "DeHub-affisch"
   },
   "aiChat": {
     "title": "Assistent",

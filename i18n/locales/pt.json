@@ -1077,7 +1077,18 @@
     "videoGenFailedDetail": "Falha na geração do vídeo: {{error}}",
     "audioSaved": "Áudio salvo",
     "audioSaveFailed": "Não foi possível salvar essa faixa",
-    "generatedWithAssistant": "Gerado com o assistente DeHub"
+    "generatedWithAssistant": "Gerado com o assistente DeHub",
+    "creatorLibrary": "Biblioteca e estúdio do criador",
+    "newChat": "Nova conversa",
+    "chatHistory": "Histórico de conversas",
+    "postChat": "Conversa da publicação",
+    "clearAll": "Limpar tudo",
+    "chats": "Conversas",
+    "noConversations": "Ainda sem conversas",
+    "saveAudio": "Guardar áudio",
+    "postAudio": "Publicar áudio",
+    "generatingImage": "A gerar imagem…",
+    "dehubPoster": "Cartaz DeHub"
   },
   "aiChat": {
     "title": "Assistente",

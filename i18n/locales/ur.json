@@ -1589,7 +1589,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "آڈیو محفوظ ہو گیا",
     "audioSaveFailed": "وہ ٹریک محفوظ نہیں ہو سکا",
-    "generatedWithAssistant": "DeHub اسسٹنٹ سے بنایا گیا"
+    "generatedWithAssistant": "DeHub اسسٹنٹ سے بنایا گیا",
+    "creatorLibrary": "کریئیٹر لائبریری اور اسٹوڈیو",
+    "newChat": "نئی چیٹ",
+    "chatHistory": "چیٹ کی تاریخ",
+    "postChat": "پوسٹ چیٹ",
+    "clearAll": "سب صاف کریں",
+    "chats": "چیٹس",
+    "noConversations": "ابھی کوئی گفتگو نہیں",
+    "saveAudio": "آڈیو محفوظ کریں",
+    "postAudio": "آڈیو پوسٹ کریں",
+    "generatingImage": "تصویر بن رہی ہے…",
+    "dehubPoster": "DeHub پوسٹر"
   },
   "aiChat": {
     "title": "معاون",

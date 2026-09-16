@@ -1566,7 +1566,18 @@
     "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
     "audioSaved": "Аудіо збережено",
     "audioSaveFailed": "Не вдалося зберегти цей трек",
-    "generatedWithAssistant": "Створено за допомогою асистента DeHub"
+    "generatedWithAssistant": "Створено за допомогою асистента DeHub",
+    "creatorLibrary": "Бібліотека автора та студія",
+    "newChat": "Новий чат",
+    "chatHistory": "Історія чатів",
+    "postChat": "Чат допису",
+    "clearAll": "Очистити все",
+    "chats": "Чати",
+    "noConversations": "Розмов ще немає",
+    "saveAudio": "Зберегти аудіо",
+    "postAudio": "Опублікувати аудіо",
+    "generatingImage": "Створення зображення…",
+    "dehubPoster": "Постер DeHub"
   },
   "publicChat": {
     "title": "Public Chat",

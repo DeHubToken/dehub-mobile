@@ -874,7 +874,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Voatahiry ny feo",
     "audioSaveFailed": "Tsy afaka nitahiry an'io hira io",
-    "generatedWithAssistant": "Noforonina tamin'ny mpanampy DeHub"
+    "generatedWithAssistant": "Noforonina tamin'ny mpanampy DeHub",
+    "creatorLibrary": "Tranomboky sy studio mpamorona",
+    "newChat": "Resaka vaovao",
+    "chatHistory": "Tantaran'ny resaka",
+    "postChat": "Resaka momba ny lahatsoratra",
+    "clearAll": "Fafao daholo",
+    "chats": "Resaka",
+    "noConversations": "Mbola tsy misy resaka",
+    "saveAudio": "Tehirizo ny feo",
+    "postAudio": "Alefaso ny feo",
+    "generatingImage": "Mamorona sary…",
+    "dehubPoster": "Peta DeHub"
   },
   "publicChat": {
     "title": "Resaka ho an'ny rehetra",

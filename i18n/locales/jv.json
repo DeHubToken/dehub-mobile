@@ -847,7 +847,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Audio disimpen",
     "audioSaveFailed": "Ora bisa nyimpen trek kasebut",
-    "generatedWithAssistant": "Digawe nganggo asisten DeHub"
+    "generatedWithAssistant": "Digawe nganggo asisten DeHub",
+    "creatorLibrary": "Pustaka lan studio kreator",
+    "newChat": "Obrolan anyar",
+    "chatHistory": "Riwayat obrolan",
+    "postChat": "Obrolan kiriman",
+    "clearAll": "Busak kabeh",
+    "chats": "Obrolan",
+    "noConversations": "Durung ana obrolan",
+    "saveAudio": "Simpen audio",
+    "postAudio": "Kirim audio",
+    "generatingImage": "Nggawe gambar…",
+    "dehubPoster": "Poster DeHub"
   },
   "publicChat": {
     "title": "Obrolan Umum",

@@ -901,7 +901,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "აუდიო შენახულია",
     "audioSaveFailed": "ამ ჩანაწერის შენახვა ვერ მოხერხდა",
-    "generatedWithAssistant": "შექმნილია DeHub-ის ასისტენტით"
+    "generatedWithAssistant": "შექმნილია DeHub-ის ასისტენტით",
+    "creatorLibrary": "შემქმნელის ბიბლიოთეკა და სტუდია",
+    "newChat": "ახალი ჩატი",
+    "chatHistory": "ჩატის ისტორია",
+    "postChat": "პოსტის ჩატი",
+    "clearAll": "ყველას გასუფთავება",
+    "chats": "ჩატები",
+    "noConversations": "საუბრები ჯერ არ არის",
+    "saveAudio": "აუდიოს შენახვა",
+    "postAudio": "აუდიოს გამოქვეყნება",
+    "generatingImage": "სურათი იქმნება…",
+    "dehubPoster": "DeHub-ის პოსტერი"
   },
   "publicChat": {
     "title": "საჯარო ჩეთი",

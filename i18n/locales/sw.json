@@ -887,7 +887,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Sauti imehifadhiwa",
     "audioSaveFailed": "Imeshindwa kuhifadhi wimbo huo",
-    "generatedWithAssistant": "Imetengenezwa na msaidizi wa DeHub"
+    "generatedWithAssistant": "Imetengenezwa na msaidizi wa DeHub",
+    "creatorLibrary": "Maktaba na studio ya mtayarishaji",
+    "newChat": "Gumzo jipya",
+    "chatHistory": "Historia ya gumzo",
+    "postChat": "Gumzo la chapisho",
+    "clearAll": "Futa zote",
+    "chats": "Gumzo",
+    "noConversations": "Bado hakuna mazungumzo",
+    "saveAudio": "Hifadhi sauti",
+    "postAudio": "Chapisha sauti",
+    "generatingImage": "Inaunda picha…",
+    "dehubPoster": "Bango la DeHub"
   },
   "publicChat": {
     "title": "Mazungumzo ya Umma",

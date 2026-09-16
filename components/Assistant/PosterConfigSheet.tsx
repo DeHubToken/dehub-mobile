@@ -431,7 +431,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
           <View style={s.headerRow}>
             <View style={s.headerLeft}>
               <Icon name="Palette" size={20} color="#F9FBFF" />
-              <Text style={s.title}>DeHub Poster</Text>
+              <Text style={s.title}>{t('assistant.dehubPoster')}</Text>
             </View>
             <TouchableOpacity onPress={closeSheet} activeOpacity={0.7} hitSlop={8}>
               <Icon name="X" size={20} color="#6F7174" />

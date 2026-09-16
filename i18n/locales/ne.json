@@ -886,7 +886,18 @@
     "whatsHappeningNews": "What's happening in the news today?",
     "audioSaved": "अडियो सुरक्षित गरियो",
     "audioSaveFailed": "त्यो ट्र्याक सुरक्षित गर्न सकिएन",
-    "generatedWithAssistant": "DeHub सहायकद्वारा बनाइएको"
+    "generatedWithAssistant": "DeHub सहायकद्वारा बनाइएको",
+    "creatorLibrary": "सिर्जनाकर्ता पुस्तकालय र स्टुडियो",
+    "newChat": "नयाँ च्याट",
+    "chatHistory": "च्याट इतिहास",
+    "postChat": "पोस्ट च्याट",
+    "clearAll": "सबै मेट्नुहोस्",
+    "chats": "च्याटहरू",
+    "noConversations": "अहिलेसम्म कुनै कुराकानी छैन",
+    "saveAudio": "अडियो सुरक्षित गर्नुहोस्",
+    "postAudio": "अडियो पोस्ट गर्नुहोस्",
+    "generatingImage": "छवि बन्दै…",
+    "dehubPoster": "DeHub पोस्टर"
   },
   "publicChat": {
     "title": "सार्वजनिक च्याट",

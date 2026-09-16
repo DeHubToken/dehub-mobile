@@ -21,6 +21,7 @@ import Animated, {
   cancelAnimation,
 } from 'react-native-reanimated';
 import MarkdownText from '../ui/MarkdownText';
+import { useTranslation } from 'react-i18next';
 
 /** Shared travelling sheen. */
 function useShimmer(enabled = true) {
@@ -64,6 +65,7 @@ const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => (
 );
 
 const Sheen: React.FC<{ width: number }> = ({ width }) => {
+  const { t } = useTranslation();
   const progress = useShimmer();
   const style = useAnimatedStyle(() => ({
     transform: [{ translateX: -width + progress.value * width * 2 }],
@@ -89,7 +91,7 @@ export const ImageGenerationSkeleton: React.FC<{ size?: number }> = memo(({ size
   if (phase === 'spinner') {
     return (
       <View style={s.pill}>
-        <Text style={s.pillText}>Generating image…</Text>
+        <Text style={s.pillText}>{t("assistant.generatingImage")}</Text>
       </View>
     );
   }

@@ -784,7 +784,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Deng hate tomarkirin",
     "audioSaveFailed": "Ew stran nehat tomarkirin",
-    "generatedWithAssistant": "Bi alîkarê DeHub hate çêkirin"
+    "generatedWithAssistant": "Bi alîkarê DeHub hate çêkirin",
+    "creatorLibrary": "Pirtûkxane û studyoya afirîner",
+    "newChat": "Chata nû",
+    "chatHistory": "Dîroka chatê",
+    "postChat": "Chata postê",
+    "clearAll": "Hemûyan paqij bike",
+    "chats": "Chat",
+    "noConversations": "Hîn axaftin tune",
+    "saveAudio": "Dengê tomar bike",
+    "postAudio": "Dengê biweşîne",
+    "generatingImage": "Wêne tê çêkirin…",
+    "dehubPoster": "Posterê DeHub"
   },
   "publicChat": {
     "title": "Sohbeta Giştî",

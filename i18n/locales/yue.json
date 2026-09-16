@@ -888,7 +888,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "音訊已儲存",
     "audioSaveFailed": "無法儲存呢首歌",
-    "generatedWithAssistant": "由 DeHub 助手生成"
+    "generatedWithAssistant": "由 DeHub 助手生成",
+    "creatorLibrary": "創作者庫同工作室",
+    "newChat": "新對話",
+    "chatHistory": "對話記錄",
+    "postChat": "帖子對話",
+    "clearAll": "全部清除",
+    "chats": "對話",
+    "noConversations": "仲未有對話",
+    "saveAudio": "儲存音訊",
+    "postAudio": "發佈音訊",
+    "generatingImage": "正在生成圖片……",
+    "dehubPoster": "DeHub 海報"
   },
   "publicChat": {
     "title": "公開聊天",

@@ -1353,7 +1353,18 @@
     "loginRequired": "Log in om de AI Assistent te openen en functies zoals afbeeldings- en videogeneratie te ontgrendelen.",
     "audioSaved": "Audio opgeslagen",
     "audioSaveFailed": "Kon dat nummer niet opslaan",
-    "generatedWithAssistant": "Gemaakt met de DeHub-assistent"
+    "generatedWithAssistant": "Gemaakt met de DeHub-assistent",
+    "creatorLibrary": "Makersbibliotheek en studio",
+    "newChat": "Nieuwe chat",
+    "chatHistory": "Chatgeschiedenis",
+    "postChat": "Berichtchat",
+    "clearAll": "Alles wissen",
+    "chats": "Chats",
+    "noConversations": "Nog geen gesprekken",
+    "saveAudio": "Audio opslaan",
+    "postAudio": "Audio plaatsen",
+    "generatingImage": "Afbeelding genereren…",
+    "dehubPoster": "DeHub-poster"
   },
   "publicChat": {
     "title": "Openbare Chat",

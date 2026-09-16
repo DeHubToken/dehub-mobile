@@ -30,6 +30,7 @@ import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-g
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '../ui/Icon';
 import { AI_ASSISTANT_STYLE_OPTIONS } from '../../config/ai-styles.constants';
+import { useTranslation } from 'react-i18next';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const SHEET_HEIGHT = SCREEN_HEIGHT * 0.7;
@@ -47,6 +48,7 @@ const AssistantStyleSheetComponent: React.FC<AssistantStyleSheetProps> = ({
   selectedStyle,
   onSelect,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
@@ -120,7 +122,7 @@ const AssistantStyleSheetComponent: React.FC<AssistantStyleSheetProps> = ({
               <View style={s.headerRow}>
                 <View style={s.headerLeft}>
                   <Icon name="Sparkles" size={20} color="#F9FBFF" />
-                  <Text style={s.title}>AI Personality</Text>
+                  <Text style={s.title}>{t("assistant.aiPersonality")}</Text>
                 </View>
                 <TouchableOpacity onPress={closeSheet} activeOpacity={0.7} hitSlop={8}>
                   <Icon name="X" size={20} color="#6F7174" />

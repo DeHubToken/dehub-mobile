@@ -1589,7 +1589,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "השמע נשמר",
     "audioSaveFailed": "לא ניתן היה לשמור את הרצועה",
-    "generatedWithAssistant": "נוצר עם העוזר של DeHub"
+    "generatedWithAssistant": "נוצר עם העוזר של DeHub",
+    "creatorLibrary": "ספריית היוצר והאולפן",
+    "newChat": "צ'אט חדש",
+    "chatHistory": "היסטוריית צ'אטים",
+    "postChat": "צ'אט הפוסט",
+    "clearAll": "נקה הכול",
+    "chats": "צ'אטים",
+    "noConversations": "עדיין אין שיחות",
+    "saveAudio": "שמור אודיו",
+    "postAudio": "פרסם אודיו",
+    "generatingImage": "יוצר תמונה…",
+    "dehubPoster": "פוסטר DeHub"
   },
   "aiChat": {
     "title": "עוזר",

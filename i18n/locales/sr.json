@@ -1461,7 +1461,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Звук сачуван",
     "audioSaveFailed": "Није могуће сачувати ту нумеру",
-    "generatedWithAssistant": "Направљено помоћу DeHub асистента"
+    "generatedWithAssistant": "Направљено помоћу DeHub асистента",
+    "creatorLibrary": "Библиотека и студио аутора",
+    "newChat": "Нови ћаскање",
+    "chatHistory": "Историја ћаскања",
+    "postChat": "Ћаскање о објави",
+    "clearAll": "Обриши све",
+    "chats": "Ћаскања",
+    "noConversations": "Још нема разговора",
+    "saveAudio": "Сачувај звук",
+    "postAudio": "Објави звук",
+    "generatingImage": "Генерисање слике…",
+    "dehubPoster": "DeHub постер"
   },
   "aiChat": {
     "title": "Асистент",

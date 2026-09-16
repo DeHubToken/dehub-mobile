@@ -848,7 +848,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Аудио сакталды",
     "audioSaveFailed": "Бул тректи сактоо мүмкүн болбоду",
-    "generatedWithAssistant": "DeHub жардамчысы менен түзүлдү"
+    "generatedWithAssistant": "DeHub жардамчысы менен түзүлдү",
+    "creatorLibrary": "Автор китепканасы жана студия",
+    "newChat": "Жаңы чат",
+    "chatHistory": "Чат тарыхы",
+    "postChat": "Пост чаты",
+    "clearAll": "Баарын тазалоо",
+    "chats": "Чаттар",
+    "noConversations": "Азырынча маек жок",
+    "saveAudio": "Аудиону сактоо",
+    "postAudio": "Аудиону жарыялоо",
+    "generatingImage": "Сүрөт түзүлүүдө…",
+    "dehubPoster": "DeHub плакаты"
   },
   "publicChat": {
     "title": "Ачык Чат",

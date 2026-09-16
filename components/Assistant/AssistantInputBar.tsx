@@ -11,6 +11,7 @@ import {
   type TextInputSelectionChangeEventData,
 } from 'react-native';
 import Icon from '../ui/Icon';
+import { useTranslation } from 'react-i18next';
 
 const MAX_INPUT_HEIGHT = Dimensions.get('window').height * 0.3;
 
@@ -37,6 +38,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   disabled,
   loading,
 }) => {
+  const { t } = useTranslation();
   // Grow with the text, as web's auto-expanding textarea does. A single-line
   // input made every multi-paragraph prompt — which is most image prompts —
   // impossible to read back before sending.
@@ -58,7 +60,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
               onPress={onRemoveImage}
               activeOpacity={0.7}
               accessibilityRole="button"
-              accessibilityLabel="Remove image"
+              accessibilityLabel={t('upload.removeImage')}
             >
               <Icon name="X" size={12} color="#FFF" />
             </TouchableOpacity>
@@ -84,7 +86,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
               style={s.actionBtn}
               disabled={disabled || loading}
               accessibilityRole="button"
-              accessibilityLabel="Attach image"
+              accessibilityLabel={t('dm.attachImage')}
               accessibilityState={{ disabled: disabled || loading }}
             >
               <Icon
@@ -99,7 +101,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
             style={s.actionBtn}
             disabled={!canSend}
             accessibilityRole="button"
-            accessibilityLabel="Send message"
+            accessibilityLabel={t('dm.sendMessage')}
             accessibilityState={{ disabled: !canSend }}
           >
             {loading ? (

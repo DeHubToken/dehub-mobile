@@ -877,7 +877,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Səs yadda saxlanıldı",
     "audioSaveFailed": "Bu treki yadda saxlamaq mümkün olmadı",
-    "generatedWithAssistant": "DeHub köməkçisi ilə yaradılıb"
+    "generatedWithAssistant": "DeHub köməkçisi ilə yaradılıb",
+    "creatorLibrary": "Yaradıcı kitabxanası və studiya",
+    "newChat": "Yeni söhbət",
+    "chatHistory": "Söhbət tarixçəsi",
+    "postChat": "Paylaşım söhbəti",
+    "clearAll": "Hamısını sil",
+    "chats": "Söhbətlər",
+    "noConversations": "Hələ söhbət yoxdur",
+    "saveAudio": "Səsi saxla",
+    "postAudio": "Səsi paylaş",
+    "generatingImage": "Şəkil yaradılır…",
+    "dehubPoster": "DeHub afişi"
   },
   "publicChat": {
     "title": "Açıq Söhbət",

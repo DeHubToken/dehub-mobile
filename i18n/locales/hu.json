@@ -1592,7 +1592,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Hang mentve",
     "audioSaveFailed": "Nem sikerült menteni ezt a számot",
-    "generatedWithAssistant": "A DeHub asszisztenssel készült"
+    "generatedWithAssistant": "A DeHub asszisztenssel készült",
+    "creatorLibrary": "Alkotói könyvtár és stúdió",
+    "newChat": "Új csevegés",
+    "chatHistory": "Csevegési előzmények",
+    "postChat": "Bejegyzés-csevegés",
+    "clearAll": "Összes törlése",
+    "chats": "Csevegések",
+    "noConversations": "Még nincsenek beszélgetések",
+    "saveAudio": "Hang mentése",
+    "postAudio": "Hang közzététele",
+    "generatingImage": "Kép készítése…",
+    "dehubPoster": "DeHub-poszter"
   },
   "aiChat": {
     "title": "Asszisztens",

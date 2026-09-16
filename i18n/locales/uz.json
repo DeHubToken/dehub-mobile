@@ -887,7 +887,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Audio saqlandi",
     "audioSaveFailed": "Bu trekni saqlab bo‘lmadi",
-    "generatedWithAssistant": "DeHub yordamchisi bilan yaratilgan"
+    "generatedWithAssistant": "DeHub yordamchisi bilan yaratilgan",
+    "creatorLibrary": "Ijodkor kutubxonasi va studiya",
+    "newChat": "Yangi chat",
+    "chatHistory": "Chat tarixi",
+    "postChat": "Post chati",
+    "clearAll": "Hammasini tozalash",
+    "chats": "Chatlar",
+    "noConversations": "Hali suhbat yo'q",
+    "saveAudio": "Audioni saqlash",
+    "postAudio": "Audioni joylash",
+    "generatingImage": "Rasm yaratilmoqda…",
+    "dehubPoster": "DeHub afishasi"
   },
   "publicChat": {
     "title": "Ommaviy chat",

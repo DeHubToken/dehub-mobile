@@ -879,7 +879,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Codka waa la keydiyay",
     "audioSaveFailed": "Lama keydin karin heestaas",
-    "generatedWithAssistant": "Waxaa lagu sameeyay kaaliyaha DeHub"
+    "generatedWithAssistant": "Waxaa lagu sameeyay kaaliyaha DeHub",
+    "creatorLibrary": "Maktabadda iyo istuudiyaha abuuraha",
+    "newChat": "Wada sheekaysi cusub",
+    "chatHistory": "Taariikhda wada sheekaysiga",
+    "postChat": "Wada sheekaysiga qoraalka",
+    "clearAll": "Nadiifi dhammaan",
+    "chats": "Wada sheekaysiyo",
+    "noConversations": "Weli ma jiraan wada hadallo",
+    "saveAudio": "Keydi codka",
+    "postAudio": "Daabac codka",
+    "generatingImage": "Sawirka waa la abuurayaa…",
+    "dehubPoster": "Boostarka DeHub"
   },
   "publicChat": {
     "title": "Sheeko Dadweyne",

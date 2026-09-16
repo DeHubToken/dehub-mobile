@@ -875,7 +875,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Аудио хадгалагдлаа",
     "audioSaveFailed": "Тэр бичлэгийг хадгалж чадсангүй",
-    "generatedWithAssistant": "DeHub туслахаар үүсгэсэн"
+    "generatedWithAssistant": "DeHub туслахаар үүсгэсэн",
+    "creatorLibrary": "Бүтээгчийн сан ба студи",
+    "newChat": "Шинэ чат",
+    "chatHistory": "Чатын түүх",
+    "postChat": "Нийтлэлийн чат",
+    "clearAll": "Бүгдийг арилгах",
+    "chats": "Чатууд",
+    "noConversations": "Одоогоор яриа алга",
+    "saveAudio": "Аудиог хадгалах",
+    "postAudio": "Аудиог нийтлэх",
+    "generatingImage": "Зураг үүсгэж байна…",
+    "dehubPoster": "DeHub зурагт хуудас"
   },
   "publicChat": {
     "title": "Нийтийн чат",
