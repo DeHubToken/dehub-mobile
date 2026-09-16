@@ -52,7 +52,7 @@ import {
   PanResponder,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
-import { runOnJS, useSharedValue } from "react-native-reanimated";
+import Reanimated, { runOnJS, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -60,6 +60,7 @@ import { VideoView, useVideoPlayer } from "expo-video";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../libs/audioSession";
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
+import { useScrubGesture } from "../hooks/useScrubGesture";
 import { feedVolumeResponder } from "../libs/feed-volume-responder";
 import { getVolume, setVolume as persistVolume } from "../libs/video-preferences";
 import { LinearGradient } from "expo-linear-gradient";
@@ -469,6 +470,15 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   /** Touch origin for the swipe-down, read on the UI thread by hidePan. */
   const panStart = useSharedValue({ x: 0, y: 0 });
 
+  /** How far through the short we are, 0 → 1. A shared value rather than
+   *  state: the timeline moves four times a second and none of it needs a
+   *  React render — the fill is an animated style on the UI thread. */
+  const progress = useSharedValue(0);
+  const durationRef = useRef(0);
+  const [scrubbing, setScrubbing] = useState(false);
+  /** Read by the time listener, which is subscribed once per player. */
+  const scrubbingRef = useRef(false);
+
   // Double-tap Like / triple-tap Love gesture and animation.
   const lastTapRef = useRef(0);
   const tapCountRef = useRef(0);
@@ -581,6 +591,76 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     configureForBackgroundPlayback().catch(() => {});
     return () => { releaseBackgroundPlayback().catch(() => {}); };
   }, [isActive]);
+
+  /**
+   * The timeline clock. Only the short being watched runs one: expo-video's
+   * Android time-update timer re-posts itself on the main looper and is not
+   * stopped by release, so leaving it on for the preloaded neighbours would
+   * leave a 4 Hz native timer per short behind for the life of the session.
+   */
+  useEffect(() => {
+    if (!isActive) return;
+    try { player.timeUpdateEventInterval = 0.25; } catch {}
+    const sub = player.addListener("timeUpdate", ({ currentTime }: any) => {
+      const total = player.duration;
+      if (total > 0) durationRef.current = total;
+      // A drag owns the bar until the finger lifts; the clock would otherwise
+      // yank it back to wherever playback still is.
+      if (scrubbingRef.current || !(total > 0)) return;
+      progress.value = Math.max(0, Math.min(1, (currentTime ?? 0) / total));
+    });
+    return () => {
+      sub.remove();
+      try { player.timeUpdateEventInterval = 0; } catch {}
+    };
+  }, [isActive, player, progress]);
+
+  const handleScrubStart = useCallback(() => {
+    scrubbingRef.current = true;
+    setScrubbing(true);
+    // Scrubbing is attention, not neglect: whatever cleared the chrome, the
+    // viewer is clearly looking at this short.
+    setAutoHidden(false);
+  }, []);
+
+  const handleScrub = useCallback((ratio: number) => {
+    progress.value = ratio;
+  }, [progress]);
+
+  const handleScrubCommit = useCallback((ratio: number) => {
+    progress.value = ratio;
+    const total = durationRef.current;
+    if (total > 0) {
+      try { player.currentTime = ratio * total; } catch {}
+    }
+    scrubbingRef.current = false;
+    setScrubbing(false);
+  }, [player, progress]);
+
+  const handleScrubCancel = useCallback(() => {
+    scrubbingRef.current = false;
+    setScrubbing(false);
+  }, []);
+
+  // The pager is a vertical list and the scrub is sideways, but a drag that
+  // starts with any downward slant would otherwise turn into a page flick
+  // half way along the bar.
+  const scrubBlocks = useMemo(() => [pagerGesture], [pagerGesture]);
+
+  const { onLayout: onScrubTrackLayout, gesture: scrubGesture } = useScrubGesture({
+    onScrubStart: handleScrubStart,
+    onScrub: handleScrub,
+    onCommit: handleScrubCommit,
+    onCancel: handleScrubCancel,
+    enabled: isActive,
+    // A deliberate target at the foot of the screen, so it takes the touch
+    // straight away instead of waiting for travel.
+    immediate: true,
+    blocks: scrubBlocks,
+  });
+
+  const scrubFillStyle = useAnimatedStyle(() => ({ width: `${progress.value * 100}%` }));
+  const scrubThumbStyle = useAnimatedStyle(() => ({ left: `${progress.value * 100}%` }));
 
   useEffect(() => {
     const sub = player.addListener("playingChange", ({ isPlaying: playing }) => {
@@ -1277,6 +1357,32 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
           <Icon name="Play" size={64} color="rgba(255,255,255,0.7)" />
         </View>
       )}
+
+      {/* The timeline. Rendered before the chrome so that where its hit area
+          runs under the action row, the action row wins — the bar is a thin
+          strip on the floor of the screen and the buttons are the reason
+          anyone is pointing there. */}
+      <Animated.View
+        style={[styles.scrubTrack, { opacity: chromeOpacity }]}
+        pointerEvents={chromeVisible && isActive ? "auto" : "none"}
+      >
+        <GestureDetector gesture={scrubGesture}>
+          <View
+            style={styles.scrubHitArea}
+            onLayout={onScrubTrackLayout}
+            accessibilityRole="adjustable"
+          >
+            <View style={[styles.scrubLine, scrubbing && styles.scrubLineActive]}>
+              <Reanimated.View
+                style={[styles.scrubFill, scrubbing && styles.scrubFillActive, scrubFillStyle]}
+              />
+            </View>
+            {scrubbing && (
+              <Reanimated.View style={[styles.scrubThumb, scrubThumbStyle]} pointerEvents="none" />
+            )}
+          </View>
+        </GestureDetector>
+      </Animated.View>
 
       {/* Faded, not unmounted: the swipe-down clear and the restore tap both
           animate this, and keeping it mounted means nothing re-lays-out on the
@@ -2170,6 +2276,50 @@ const styles = StyleSheet.create({
     // scrim only has to cover the caption instead of washing out half the video.
     height: "34%",
     zIndex: 5,
+  },
+  scrubTrack: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    // Above the gradient, below the action row it tucks under.
+    zIndex: 8,
+  },
+  scrubHitArea: {
+    // The line is 2pt; the finger gets 24. The top 8 of those sit under the
+    // bottom stack, which is rendered after this and so takes them back.
+    height: 24,
+    justifyContent: "flex-end",
+    paddingHorizontal: EDGE,
+    paddingBottom: 6,
+  },
+  scrubLine: {
+    height: 2,
+    borderRadius: 1,
+    backgroundColor: "rgba(255,255,255,0.25)",
+    justifyContent: "center",
+  },
+  scrubLineActive: {
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: "rgba(255,255,255,0.35)",
+  },
+  scrubFill: {
+    height: "100%",
+    borderRadius: 2,
+    backgroundColor: "rgba(255,255,255,0.85)",
+  },
+  scrubFillActive: {
+    backgroundColor: "#fff",
+  },
+  scrubThumb: {
+    position: "absolute",
+    bottom: 1,
+    width: 14,
+    height: 14,
+    marginLeft: -7,
+    borderRadius: 7,
+    backgroundColor: "#fff",
   },
   bottomStack: {
     position: "absolute",

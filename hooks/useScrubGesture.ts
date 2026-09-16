@@ -1,6 +1,7 @@
-import { useCallback, useMemo, useRef } from "react";
+import React, { useCallback, useMemo, useRef } from "react";
 import type { LayoutChangeEvent } from "react-native";
 import { Gesture } from "react-native-gesture-handler";
+import type { GestureType } from "react-native-gesture-handler";
 import { usePagerGestureRef } from "../context/PagerGestureContext";
 
 /** Sideways travel that turns a touch into a scrub instead of a tap. */
@@ -23,6 +24,11 @@ interface ScrubGestureArgs {
    * something else (artwork, a card), so a vertical flick still scrolls.
    */
   immediate?: boolean;
+  /**
+   * Further gestures the scrub must outrank — the Shorts viewer's own pager,
+   * for instance, which is not the Home pager this hook finds through context.
+   */
+  blocks?: (GestureType | React.RefObject<GestureType | undefined>)[];
 }
 
 /**
@@ -47,6 +53,7 @@ export const useScrubGesture = ({
   onCancel,
   enabled = true,
   immediate = false,
+  blocks,
 }: ScrubGestureArgs) => {
   const widthRef = useRef(1);
 
@@ -91,13 +98,14 @@ export const useScrubGesture = ({
 
     // Composition does not carry `blocksExternalGesture` down to the members,
     // so each one declares it itself.
-    if (pagerRef) {
-      pan.blocksExternalGesture(pagerRef);
-      tap.blocksExternalGesture(pagerRef);
+    const blocked = [...(pagerRef ? [pagerRef] : []), ...(blocks ?? [])];
+    if (blocked.length) {
+      pan.blocksExternalGesture(...blocked);
+      tap.blocksExternalGesture(...blocked);
     }
 
     return Gesture.Race(pan, tap);
-  }, [enabled, immediate, onScrubStart, onScrub, onCommit, onCancel, pagerRef]);
+  }, [enabled, immediate, onScrubStart, onScrub, onCommit, onCancel, pagerRef, blocks]);
 
   return { onLayout, gesture };
 };
