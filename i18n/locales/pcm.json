@@ -3307,6 +3307,7 @@
     "otherChain": "Dis post dey settle for anoda chain, so you need DHB for your wallet dia."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Use dis one if na dis phone you set up di wallet and di key suppose don dey here already",
     "connectWalletApp": "Sign with di wallet app wey e dey inside",
     "signOutAndStartOver": "I no get am — sign out and start again",
     "restoreLocalNote": "Di key go stay only for dis phone.",

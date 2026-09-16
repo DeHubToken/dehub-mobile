@@ -3504,6 +3504,7 @@
     "otherChain": "这条帖子在另一条链上结算，所以你在那条链的钱包里需要有 DHB。"
   },
   "walletSetup": {
+    "tryBiometricsHint": "要是你是在这部手机上设的这个钱包，密钥应该已经在这儿，就用这个",
     "connectWalletApp": "用存着它的钱包应用签名",
     "signOutAndStartOver": "我没有 — 退出登录，重新来",
     "restoreLocalNote": "密钥只存在这部手机上。",

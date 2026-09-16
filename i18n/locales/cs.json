@@ -3508,6 +3508,7 @@
     "otherChain": "Tento příspěvek se vypořádává na jiném řetězci, takže tam potřebujete DHB v peněžence."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Použijte, pokud jste tuto peněženku nastavili v tomto telefonu a klíč by zde už měl být",
     "connectWalletApp": "Podepsat aplikací peněženky, ve které je",
     "signOutAndStartOver": "Nemám ji — odhlásit se a začít znovu",
     "restoreLocalNote": "Klíč zůstane jen v tomto telefonu.",

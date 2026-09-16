@@ -3448,6 +3448,7 @@
     "otherChain": "Nin post bɛ ban chain wɛrɛ kan, o la DHB ka kan ka kɛ i ka warijɛ kɔnɔ yen."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Nin kɛ ni i ye nin wari-mara labɛn nin telefɔni kan ani konnɛgɛ ka kan ka kɛ yan kaban",
     "connectWalletApp": "Bolonɔ bila ni wari-mara app min b'a kɔnɔ",
     "signOutAndStartOver": "A tɛ n bolo — bɔ ka daminɛ kura",
     "restoreLocalNote": "Konnɛgɛ bɛ to nin telefɔni dɔrɔn kan.",

@@ -3766,6 +3766,7 @@
     "otherChain": "Siaran ini diselesaikan pada rantai lain, jadi anda perlukan DHB dalam dompet anda di sana."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Gunakan ini jika anda menyediakan dompet ini pada telefon ini dan kuncinya sepatutnya sudah ada di sini",
     "connectWalletApp": "Tandatangan dengan aplikasi dompet tempat ia berada",
     "signOutAndStartOver": "Saya tiada — log keluar dan mula semula",
     "restoreLocalNote": "Kunci kekal pada telefon ini sahaja.",

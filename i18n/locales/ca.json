@@ -3504,6 +3504,7 @@
     "otherChain": "Aquesta publicació es liquida en una altra cadena, així que necessites DHB a la teva cartera allà."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Fes servir això si vas configurar aquesta cartera en aquest telèfon i ja hauria de tenir la clau",
     "connectWalletApp": "Signa amb l'app de cartera on es troba",
     "signOutAndStartOver": "No la tinc — tanca la sessió i comença de nou",
     "restoreLocalNote": "La clau es queda només en aquest telèfon.",

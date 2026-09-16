@@ -3504,6 +3504,7 @@
     "otherChain": "Chapisho hili linakamilishwa kwenye mnyororo mwingine, kwa hivyo unahitaji DHB kwenye pochi yako huko."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Tumia hii ikiwa uliweka pochi hii kwenye simu hii na ufunguo unapaswa kuwa tayari hapa",
     "connectWalletApp": "Tia saini kwa programu ya pochi iliyo nayo",
     "signOutAndStartOver": "Sina — ondoka na uanze upya",
     "restoreLocalNote": "Ufunguo unabaki kwenye simu hii pekee.",

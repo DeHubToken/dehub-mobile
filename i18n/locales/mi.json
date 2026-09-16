@@ -3489,6 +3489,7 @@
     "otherChain": "Ka whakataua tēnei pānui ki tētahi atu mekameka, nō reira me whai DHB koe i tō pūkoro i reira."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Whakamahia tēnei mēnā nāu i whakarite tēnei pūkoro i runga i tēnei waea, ā, me kua tae kē mai te kī ki konei",
     "connectWalletApp": "Hainatia ki te taupānga pūkoro kei reira",
     "signOutAndStartOver": "Kāore i a au — takiputa, ka tīmata anō",
     "restoreLocalNote": "Ka noho te kī ki runga i tēnei waea anake.",

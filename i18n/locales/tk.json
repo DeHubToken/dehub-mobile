@@ -3474,6 +3474,7 @@
     "otherChain": "Bu ýazgy başga zynjyrda hasaplaşylýar, şonuň üçin ol ýerdäki gapjygyňyzda DHB gerek."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Bu gapjygy şu telefonda gurnan bolsaňyz we açar eýýäm şu ýerde bolmaly bolsa, muny ulanyň",
     "connectWalletApp": "Ýerleşýän gapjyk programmasy bilen gol çekiň",
     "signOutAndStartOver": "Mende ýok — çykyp, täzeden başla",
     "restoreLocalNote": "Açar diňe şu telefonda galýar.",

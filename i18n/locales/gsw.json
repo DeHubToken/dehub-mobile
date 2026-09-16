@@ -3493,6 +3493,7 @@
     "otherChain": "De Biitrag wird uf ere andere Chain abgwicklet, drum bruuchsch dete DHB i dinere Wallet."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Bruuch das, wenn du die Wallet uf dem Telefon iigrichtet hesch und de Schlüssel scho da sii sött",
     "connectWalletApp": "Mit dr Wallet-App signiere, wo sie inne isch",
     "signOutAndStartOver": "Ich ha sie nöd — abmelde und neu aafange",
     "restoreLocalNote": "De Schlüssel blibt nur uf dem Telefon.",

@@ -3503,6 +3503,7 @@
     "otherChain": "See postitus arveldab teises ahelas, seega vajad seal oma rahakotis DHB-d."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Kasuta seda, kui seadistasid selle rahakoti selles telefonis ja võti peaks juba siin olema",
     "connectWalletApp": "Allkirjasta rahakotirakendusega, kus see asub",
     "signOutAndStartOver": "Mul pole seda — logi välja ja alusta uuesti",
     "restoreLocalNote": "Võti jääb ainult sellesse telefoni.",

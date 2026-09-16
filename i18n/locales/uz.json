@@ -3555,6 +3555,7 @@
     "otherChain": "Bu post boshqa zanjirda hisoblanadi, shuning uchun u yerdagi hamyoningizda DHB kerak."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Agar bu hamyonni shu telefonda sozlagan bo'lsangiz va kalit allaqachon shu yerda bo'lishi kerak bo'lsa, shundan foydalaning",
     "connectWalletApp": "U joylashgan hamyon ilovasi bilan imzolash",
     "signOutAndStartOver": "Menda yo'q — chiqish va qaytadan boshlash",
     "restoreLocalNote": "Kalit faqat shu telefonda qoladi.",

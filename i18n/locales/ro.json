@@ -3517,6 +3517,7 @@
     "otherChain": "Această postare se decontează pe alt lanț, deci ai nevoie de DHB în portofelul de acolo."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Folosește asta dacă ai configurat acest portofel pe acest telefon și cheia ar trebui să fie deja aici",
     "connectWalletApp": "Semnează cu aplicația de portofel în care se află",
     "signOutAndStartOver": "Nu o am — deconectare și reluare de la zero",
     "restoreLocalNote": "Cheia rămâne doar pe acest telefon.",

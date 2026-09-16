@@ -3574,6 +3574,7 @@
     "otherChain": "Questo post viene regolato su un'altra chain, quindi ti servono DHB nel tuo wallet lì."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Usa questa opzione se hai configurato questo wallet su questo telefono e dovrebbe già avere la chiave",
     "connectWalletApp": "Firma con l'app wallet in cui si trova",
     "signOutAndStartOver": "Non ce l'ho — esci e ricomincia",
     "restoreLocalNote": "La chiave resta solo su questo telefono.",

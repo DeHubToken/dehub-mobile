@@ -3482,6 +3482,7 @@
     "otherChain": "Post a na-akwụcha na chain ọzọ, ya mere ị chọrọ DHB n'obere akpa gị ebe ahụ."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Jiri nke a ma ọ bụrụ na ị haziri obere akpa ego a na ekwentị a ma igodo ahụ kwesịrị ịdịlarị ebe a",
     "connectWalletApp": "Binye aka na ngwa obere akpa ego ebe ọ nọ",
     "signOutAndStartOver": "Enweghị m ya — pụọ ma malite ọzọ",
     "restoreLocalNote": "Igodo ahụ na-anọ naanị na ekwentị a.",

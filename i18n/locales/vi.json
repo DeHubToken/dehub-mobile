@@ -3592,6 +3592,7 @@
     "otherChain": "Bài đăng này quyết toán trên chuỗi khác, nên bạn cần DHB trong ví ở chuỗi đó."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Dùng cách này nếu bạn đã tạo ví này trên chính điện thoại này và khóa lẽ ra đã có ở đây",
     "connectWalletApp": "Ký bằng ứng dụng ví đang giữ nó",
     "signOutAndStartOver": "Tôi không có — đăng xuất và bắt đầu lại",
     "restoreLocalNote": "Khóa chỉ lưu trên điện thoại này.",

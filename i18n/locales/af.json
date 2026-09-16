@@ -3621,6 +3621,7 @@
     "otherChain": "Hierdie plasing verreken op 'n ander ketting, dus benodig jy DHB in jou beursie daar."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Gebruik dit as jy hierdie beursie op hierdie foon opgestel het en die sleutel reeds hier behoort te wees",
     "connectWalletApp": "Teken met die beursie-app waarin dit is",
     "signOutAndStartOver": "Ek het dit nie — teken uit en begin oor",
     "restoreLocalNote": "Die sleutel bly net op hierdie foon.",

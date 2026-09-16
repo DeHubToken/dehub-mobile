@@ -3494,6 +3494,7 @@
     "otherChain": "Ìfìwéránṣẹ́ yìí ń parí lórí ẹ̀wọ̀n mìíràn, nítorí náà o nílò DHB nínú àpamọ́wọ́ rẹ níbẹ̀."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Lo èyí tí o bá ṣètò àpamọ́wọ́ yìí lórí fóònù yìí tí kọ́kọ́rọ́ náà sì yẹ kí ó ti wà níbí",
     "connectWalletApp": "Fọwọ́ sí i pẹ̀lú àpù àpamọ́wọ́ tí ó wà nínú rẹ̀",
     "signOutAndStartOver": "Mi ò ní i — jáde kí o sì bẹ̀rẹ̀ lẹ́ẹ̀kan sí i",
     "restoreLocalNote": "Kọ́kọ́rọ́ náà wà lórí fóònù yìí nìkan.",

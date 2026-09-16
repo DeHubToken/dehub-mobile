@@ -3578,6 +3578,7 @@
     "otherChain": "Cette publication se règle sur une autre chaîne : il vous faut donc des DHB dans votre portefeuille là-bas."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Utilisez ceci si vous avez configuré ce portefeuille sur ce téléphone et qu'il devrait déjà avoir la clé",
     "connectWalletApp": "Signer avec l'app de portefeuille où il se trouve",
     "signOutAndStartOver": "Je ne l'ai pas — se déconnecter et recommencer",
     "restoreLocalNote": "La clé reste uniquement sur ce téléphone.",

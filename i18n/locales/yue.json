@@ -3502,6 +3502,7 @@
     "otherChain": "呢個帖子喺另一條鏈上結算，所以你喺嗰條鏈嘅錢包要有 DHB。"
   },
   "walletSetup": {
+    "tryBiometricsHint": "如果你係喺呢部手機設定呢個錢包，密鑰應該已經喺度，請用呢個",
     "connectWalletApp": "用存放佢嘅錢包應用程式簽名",
     "signOutAndStartOver": "我冇 — 登出並重新開始",
     "restoreLocalNote": "密鑰只會保存喺呢部手機度。",

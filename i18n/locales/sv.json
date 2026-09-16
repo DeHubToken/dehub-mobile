@@ -3508,6 +3508,7 @@
     "otherChain": "Det här inlägget avvecklas på en annan kedja, så du behöver DHB i din plånbok där."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Använd detta om du skapade den här plånboken på den här telefonen och nyckeln redan borde finnas här",
     "connectWalletApp": "Signera med plånboksappen där den finns",
     "signOutAndStartOver": "Jag har den inte — logga ut och börja om",
     "restoreLocalNote": "Nyckeln stannar bara på den här telefonen.",

@@ -3771,6 +3771,7 @@
     "otherChain": "Dit bericht wordt op een andere chain afgewikkeld, dus je hebt daar DHB in je wallet nodig."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Gebruik dit als je deze wallet op deze telefoon hebt ingesteld en de sleutel er al zou moeten zijn",
     "connectWalletApp": "Ondertekenen met de wallet-app waarin hij staat",
     "signOutAndStartOver": "Ik heb hem niet — uitloggen en opnieuw beginnen",
     "restoreLocalNote": "De sleutel blijft alleen op deze telefoon.",

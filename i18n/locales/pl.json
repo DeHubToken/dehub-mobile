@@ -3572,6 +3572,7 @@
     "otherChain": "Ten post rozlicza się w innym łańcuchu, więc potrzebujesz tam DHB w portfelu."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Użyj tego, jeśli skonfigurowano ten portfel na tym telefonie i klucz powinien już tu być",
     "connectWalletApp": "Podpisz aplikacją portfela, w której się znajduje",
     "signOutAndStartOver": "Nie mam jej — wyloguj i zacznij od nowa",
     "restoreLocalNote": "Klucz pozostaje tylko na tym telefonie.",

@@ -3508,6 +3508,7 @@
     "otherChain": "Ez a bejegyzés egy másik láncon számolódik el, ezért ott kell DHB a tárcádban."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Ezt használd, ha ezt a tárcát ezen a telefonon állítottad be, és a kulcsnak már itt kellene lennie",
     "connectWalletApp": "Aláírás a tárcaalkalmazással, amelyben van",
     "signOutAndStartOver": "Nincs meg — kijelentkezés és újrakezdés",
     "restoreLocalNote": "A kulcs csak ezen a telefonon marad.",

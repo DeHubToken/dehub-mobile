@@ -3568,6 +3568,7 @@
     "otherChain": "Barreeffamni kun sarara biraa irratti raawwatama, kanaafuu achitti boorsaa kee keessatti DHB si barbaachisa."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Waalatii kana bilbila kana irratti yoo qopheessite fi furtuun duraan as jiraachuu qaba yoo ta'e kana fayyadami",
     "connectWalletApp": "Appii waalatii inni keessa jiruun mallatteessi",
     "signOutAndStartOver": "Hin qabu — bahiitii irra deebi'ii jalqabi",
     "restoreLocalNote": "Furtuun bilbila kana qofa irra tura.",

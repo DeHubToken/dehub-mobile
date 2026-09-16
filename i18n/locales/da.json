@@ -3508,6 +3508,7 @@
     "otherChain": "Dette opslag afvikles på en anden kæde, så du skal have DHB i din tegnebog der."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Brug dette, hvis du oprettede denne wallet på denne telefon, og nøglen allerede burde være her",
     "connectWalletApp": "Signér med den wallet-app, den ligger i",
     "signOutAndStartOver": "Jeg har den ikke — log ud og start forfra",
     "restoreLocalNote": "Nøglen bliver kun på denne telefon.",

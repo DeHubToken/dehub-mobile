@@ -3583,6 +3583,7 @@
     "otherChain": "Vita ao amin'ny rojo hafa ity lahatsoratra ity, ka mila DHB ao amin'ny poketranao any ianao."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Ampiasao ity raha tamin'ity finday ity no nanamboaranao ity kitapo ity ary tokony efa eto ny fanalahidy",
     "connectWalletApp": "Manaova sonia amin'ny rindranasa kitapo misy azy",
     "signOutAndStartOver": "Tsy manana izany aho — mivoaha ary manomboha indray",
     "restoreLocalNote": "Mijanona ao amin'ity finday ity ihany ny fanalahidy.",

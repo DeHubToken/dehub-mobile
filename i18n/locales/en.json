@@ -3574,6 +3574,7 @@
     "otherChain": "This post settles on another chain, so it needs DHB in your wallet there."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Use this if you set this wallet up on this phone and it should already have the key",
     "connectWalletApp": "Sign with the wallet app it lives in",
     "signOutAndStartOver": "I don't have it — sign out and start over",
     "restoreLocalNote": "The key stays on this phone only.",
