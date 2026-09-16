@@ -1176,6 +1176,8 @@
     "tryAgain": "Try Again"
   },
   "wallet": {
+    "connectUnavailable": "Connect Wallet isn't available in this build — restore with your recovery phrase instead.",
+    "connectedWrongWallet": "That wallet is {{connected}}, not {{address}}. Nothing was changed.",
     "restoreWrongWallet": "That opens a different wallet, not {{address}}. Nothing was changed.",
     "unlockNoAccount": "Your wallet is locked — no account is signed in on this device.",
     "unlockLookupFailed": "Your wallet is locked — couldn't reach your wallet record. Check your connection and try again.",
@@ -3572,6 +3574,8 @@
     "otherChain": "This post settles on another chain, so it needs DHB in your wallet there."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Use this if you set this wallet up on this phone and it should already have the key",
+    "connectWalletApp": "Sign with the wallet app it lives in",
     "signOutAndStartOver": "I don't have it — sign out and start over",
     "restoreLocalNote": "The key stays on this phone only.",
     "restoreMissing": "This profile's wallet isn't on this phone, so nothing can be signed yet. Enter its recovery phrase or private key to bring it here.",

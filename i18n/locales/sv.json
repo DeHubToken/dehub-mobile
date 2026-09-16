@@ -672,6 +672,8 @@
     "firstComments_other": "Första {{count}} kommentarer"
   },
   "wallet": {
+    "connectUnavailable": "Anslut plånbok är inte tillgängligt i den här versionen — återställ med din återställningsfras.",
+    "connectedWrongWallet": "Den plånboken är {{connected}}, inte {{address}}. Inget ändrades.",
     "restoreWrongWallet": "Det öppnar en annan plånbok, inte {{address}}. Inget ändrades.",
     "unlockNoAccount": "Din plånbok är låst — inget konto är inloggat på den här enheten.",
     "unlockLookupFailed": "Din plånbok är låst — det gick inte att nå din plånbokspost. Kontrollera anslutningen och försök igen.",
@@ -3506,6 +3508,8 @@
     "otherChain": "Det här inlägget avvecklas på en annan kedja, så du behöver DHB i din plånbok där."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Använd detta om du skapade den här plånboken på den här telefonen och nyckeln redan borde finnas här",
+    "connectWalletApp": "Signera med plånboksappen där den finns",
     "signOutAndStartOver": "Jag har den inte — logga ut och börja om",
     "restoreLocalNote": "Nyckeln stannar bara på den här telefonen.",
     "restoreMissing": "Den här profilens plånbok finns inte på den här telefonen, så inget kan signeras ännu. Ange dess återställningsfras eller privata nyckel för att hämta hit den.",

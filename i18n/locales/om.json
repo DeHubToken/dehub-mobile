@@ -1125,6 +1125,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Waalatii walqabsiisuun gosa kana keessatti hin jiru — jecha deebisuutiin deebisi.",
+    "connectedWrongWallet": "Waalatiin sun {{connected}} dha, {{address}} miti. Wanti jijjiirame hin jiru.",
     "restoreWrongWallet": "Kun waalatii biraa bana, {{address}} miti. Wanti jijjiirame hin jiru.",
     "unlockNoAccount": "Waalatiin kee cufameera — meeshaa kana irratti akkaawuntiin seene hin jiru.",
     "unlockLookupFailed": "Waalatiin kee cufameera — galmee waalatii kee argachuun hin danda'amne. Walitti hidhamiinsa kee mirkaneessii irra deebi'ii yaali.",
@@ -3566,6 +3568,8 @@
     "otherChain": "Barreeffamni kun sarara biraa irratti raawwatama, kanaafuu achitti boorsaa kee keessatti DHB si barbaachisa."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Waalatii kana bilbila kana irratti yoo qopheessite fi furtuun duraan as jiraachuu qaba yoo ta'e kana fayyadami",
+    "connectWalletApp": "Appii waalatii inni keessa jiruun mallatteessi",
     "signOutAndStartOver": "Hin qabu — bahiitii irra deebi'ii jalqabi",
     "restoreLocalNote": "Furtuun bilbila kana qofa irra tura.",
     "restoreMissing": "Waalatiin piroofaayilii kanaa bilbila kana irra hin jiru, kanaaf amma waan mallatteeffamu hin jiru. Asitti fiduuf jecha deebisuu ykn furtuu dhuunfaa isaa galchi.",

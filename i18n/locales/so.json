@@ -1101,6 +1101,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Ku xirista boorsada laguma heli karo nooca — soo celi weedha soo celinta.",
+    "connectedWrongWallet": "Boorsadaasi waa {{connected}}, ma aha {{address}}. Waxba lama beddelin.",
     "restoreWrongWallet": "Taasi waxay furaysaa boorso kale, ma aha {{address}}. Waxba lama beddelin.",
     "unlockNoAccount": "Boorsadaadu waa xiran tahay — ma jiro akoon ku galay qalabkan.",
     "unlockLookupFailed": "Boorsadaadu waa xiran tahay — diiwaanka boorsadaada lama gaari karin. Hubi xiriirkaaga oo mar kale isku day.",
@@ -3493,6 +3495,8 @@
     "otherChain": "Qoraalkan wuxuu ku dhammaystirmaa silsilad kale, markaa waxaad u baahan tahay DHB jeebkaaga halkaas."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Tan isticmaal haddii aad boorsadan ku samaysay taleefankan oo furaha uu horeba halkan u jiro",
+    "connectWalletApp": "Ku saxiix abka boorsada uu ku jiro",
     "signOutAndStartOver": "Ma hayo — ka bax oo mar kale bilow",
     "restoreLocalNote": "Furaha wuxuu ku sii jirayaa taleefankan oo keliya.",
     "restoreMissing": "Boorsada profile-kan kuma jirto taleefankan, sidaa darteed weli waxba lama saxiixi karo. Geli weedha soo celinta ama furaha gaarka ah si aad halkan u keento.",

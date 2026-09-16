@@ -1069,6 +1069,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Sambungake dompet ora kasedhiya ing versi iki — balekake nganggo frasa pemulihan.",
+    "connectedWrongWallet": "Dompet iku {{connected}}, dudu {{address}}. Ora ana sing owah.",
     "restoreWrongWallet": "Iku mbukak dompet liyane, dudu {{address}}. Ora ana sing owah.",
     "unlockNoAccount": "Dompetmu dikunci — ora ana akun sing mlebu ing piranti iki.",
     "unlockLookupFailed": "Dompetmu dikunci — rekaman dompet ora bisa diakses. Priksa sambungan lan coba maneh.",
@@ -3460,6 +3462,8 @@
     "otherChain": "Postingan iki ditutup ing chain liya, dadi butuh DHB ing dompetmu ana ing kono."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Gunakake iki yen sampeyan nyiyapake dompet iki ing ponsel iki lan kuncine mesthine wis ana ing kene",
+    "connectWalletApp": "Tandatangani nganggo aplikasi dompet panggonane",
     "signOutAndStartOver": "Aku ora duwe — metu lan miwiti maneh",
     "restoreLocalNote": "Kunci mung tetep ana ing ponsel iki.",
     "restoreMissing": "Dompet profil iki ora ana ing ponsel iki, dadi durung ana sing bisa ditandatangani. Lebokake frasa pemulihan utawa kunci pribadine kanggo nggawa mrene.",

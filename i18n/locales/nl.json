@@ -1575,6 +1575,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Wallet verbinden is niet beschikbaar in deze versie — herstel met je herstelzin.",
+    "connectedWrongWallet": "Die wallet is {{connected}}, niet {{address}}. Er is niets gewijzigd.",
     "restoreWrongWallet": "Dat opent een andere wallet, niet {{address}}. Er is niets gewijzigd.",
     "unlockNoAccount": "Je wallet is vergrendeld — er is geen account ingelogd op dit apparaat.",
     "unlockLookupFailed": "Je wallet is vergrendeld — je walletrecord was niet bereikbaar. Controleer je verbinding en probeer het opnieuw.",
@@ -3769,6 +3771,8 @@
     "otherChain": "Dit bericht wordt op een andere chain afgewikkeld, dus je hebt daar DHB in je wallet nodig."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Gebruik dit als je deze wallet op deze telefoon hebt ingesteld en de sleutel er al zou moeten zijn",
+    "connectWalletApp": "Ondertekenen met de wallet-app waarin hij staat",
     "signOutAndStartOver": "Ik heb hem niet — uitloggen en opnieuw beginnen",
     "restoreLocalNote": "De sleutel blijft alleen op deze telefoon.",
     "restoreMissing": "De wallet van dit profiel staat niet op deze telefoon, dus er kan nog niets worden ondertekend. Voer de herstelzin of privésleutel in om hem hierheen te halen.",

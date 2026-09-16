@@ -1372,6 +1372,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Łączenie portfela nie jest dostępne w tej wersji — przywróć go frazą odzyskiwania.",
+    "connectedWrongWallet": "Ten portfel to {{connected}}, nie {{address}}. Nic nie zmieniono.",
     "restoreWrongWallet": "To otwiera inny portfel, nie {{address}}. Nic nie zmieniono.",
     "unlockNoAccount": "Twój portfel jest zablokowany — na tym urządzeniu nie zalogowano żadnego konta.",
     "unlockLookupFailed": "Twój portfel jest zablokowany — nie udało się pobrać rekordu portfela. Sprawdź połączenie i spróbuj ponownie.",
@@ -3570,6 +3572,8 @@
     "otherChain": "Ten post rozlicza się w innym łańcuchu, więc potrzebujesz tam DHB w portfelu."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Użyj tego, jeśli skonfigurowano ten portfel na tym telefonie i klucz powinien już tu być",
+    "connectWalletApp": "Podpisz aplikacją portfela, w której się znajduje",
     "signOutAndStartOver": "Nie mam jej — wyloguj i zacznij od nowa",
     "restoreLocalNote": "Klucz pozostaje tylko na tym telefonie.",
     "restoreMissing": "Portfela tego profilu nie ma na tym telefonie, więc nie można jeszcze niczego podpisać. Wpisz jego frazę odzyskiwania lub klucz prywatny, aby go tu przenieść.",

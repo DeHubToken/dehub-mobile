@@ -1110,6 +1110,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Povezivanje novčanika nije dostupno u ovoj verziji — vratite ga frazom za oporavak.",
+    "connectedWrongWallet": "Taj novčanik je {{connected}}, a ne {{address}}. Ništa nije promijenjeno.",
     "restoreWrongWallet": "To otvara drugi novčanik, a ne {{address}}. Ništa nije promijenjeno.",
     "unlockNoAccount": "Vaš novčanik je zaključan — na ovom uređaju nije prijavljen nijedan račun.",
     "unlockLookupFailed": "Vaš novčanik je zaključan — zapis novčanika nije dostupan. Provjerite vezu i pokušajte ponovno.",
@@ -3502,6 +3504,8 @@
     "otherChain": "Ova se objava namiruje na drugom lancu pa vam ondje treba DHB u novčaniku."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Koristite ovo ako ste ovaj novčanik postavili na ovom telefonu i ključ bi već trebao biti ovdje",
+    "connectWalletApp": "Potpišite aplikacijom novčanika u kojoj se nalazi",
     "signOutAndStartOver": "Nemam je — odjava i početak ispočetka",
     "restoreLocalNote": "Ključ ostaje samo na ovom telefonu.",
     "restoreMissing": "Novčanik ovog profila nije na ovom telefonu, pa se još ništa ne može potpisati. Unesite njegovu frazu za oporavak ili privatni ključ da ga prenesete ovdje.",

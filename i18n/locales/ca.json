@@ -1110,6 +1110,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Connectar cartera no està disponible en aquesta versió — restaura amb la frase de recuperació.",
+    "connectedWrongWallet": "Aquesta cartera és {{connected}}, no {{address}}. No s'ha canviat res.",
     "restoreWrongWallet": "Això obre una altra cartera, no {{address}}. No s'ha canviat res.",
     "unlockNoAccount": "La teva cartera està bloquejada — no hi ha cap compte amb sessió iniciada en aquest dispositiu.",
     "unlockLookupFailed": "La teva cartera està bloquejada — no s'ha pogut accedir al registre de la cartera. Revisa la connexió i torna-ho a provar.",
@@ -3502,6 +3504,8 @@
     "otherChain": "Aquesta publicació es liquida en una altra cadena, així que necessites DHB a la teva cartera allà."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Fes servir això si vas configurar aquesta cartera en aquest telèfon i ja hauria de tenir la clau",
+    "connectWalletApp": "Signa amb l'app de cartera on es troba",
     "signOutAndStartOver": "No la tinc — tanca la sessió i comença de nou",
     "restoreLocalNote": "La clau es queda només en aquest telèfon.",
     "restoreMissing": "La cartera d'aquest perfil no és en aquest telèfon, així que encara no es pot signar res. Introdueix la frase de recuperació o la clau privada per portar-la aquí.",

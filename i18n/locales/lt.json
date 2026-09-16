@@ -1109,6 +1109,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Piniginės prijungimas šioje versijoje negalimas — atkurkite atkūrimo fraze.",
+    "connectedWrongWallet": "Ta piniginė yra {{connected}}, ne {{address}}. Niekas nepakeista.",
     "restoreWrongWallet": "Tai atidaro kitą piniginę, ne {{address}}. Niekas nepakeista.",
     "unlockNoAccount": "Jūsų piniginė užrakinta — šiame įrenginyje neprisijungta jokia paskyra.",
     "unlockLookupFailed": "Jūsų piniginė užrakinta — nepavyko pasiekti piniginės įrašo. Patikrinkite ryšį ir bandykite dar kartą.",
@@ -3501,6 +3503,8 @@
     "otherChain": "Šis įrašas atsiskaitomas kitoje grandinėje, todėl ten jums reikia DHB piniginėje."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Naudokite, jei šią piniginę nustatėte šiame telefone ir raktas jau turėtų būti čia",
+    "connectWalletApp": "Pasirašyti piniginės programėle, kurioje ji yra",
     "signOutAndStartOver": "Neturiu — atsijungti ir pradėti iš naujo",
     "restoreLocalNote": "Raktas lieka tik šiame telefone.",
     "restoreMissing": "Šio profilio piniginės šiame telefone nėra, todėl kol kas nieko negalima pasirašyti. Įveskite jos atkūrimo frazę arba privatų raktą, kad perkeltumėte ją čia.",

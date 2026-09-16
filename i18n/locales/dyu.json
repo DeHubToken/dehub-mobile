@@ -1096,6 +1096,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Wari-mara jɛnsɛn tɛ nin version kɔnɔ — a lasegin ni lasegin-kuma ye.",
+    "connectedWrongWallet": "O wari-mara ye {{connected}} ye, {{address}} tɛ. Foyi ma yɛlɛma.",
     "restoreWrongWallet": "O bɛ wari-mara wɛrɛ dayɛlɛ, {{address}} tɛ. Foyi ma yɛlɛma.",
     "unlockNoAccount": "I ka wari-mara datugulen don — konti si ma don nin minɛn kan.",
     "unlockLookupFailed": "I ka wari-mara datugulen don — i ka wari-mara sɛbɛn ma se ka sɔrɔ. I ka jɛnsɛn lajɛ ka segin k'a kɛ.",
@@ -3446,6 +3448,8 @@
     "otherChain": "Nin post bɛ ban chain wɛrɛ kan, o la DHB ka kan ka kɛ i ka warijɛ kɔnɔ yen."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Nin kɛ ni i ye nin wari-mara labɛn nin telefɔni kan ani konnɛgɛ ka kan ka kɛ yan kaban",
+    "connectWalletApp": "Bolonɔ bila ni wari-mara app min b'a kɔnɔ",
     "signOutAndStartOver": "A tɛ n bolo — bɔ ka daminɛ kura",
     "restoreLocalNote": "Konnɛgɛ bɛ to nin telefɔni dɔrɔn kan.",
     "restoreMissing": "Nin profili ka wari-mara tɛ nin telefɔni kan, o de kosɔn foyi tɛ se ka bolonɔ bila fɔlɔ. A ka lasegin-kuma walima a ka gundo-konnɛgɛ sɛbɛn walisa k'a lase yan.",

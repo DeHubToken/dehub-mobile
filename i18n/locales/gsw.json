@@ -1069,6 +1069,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Wallet verbinde isch i dem Build nöd verfüegbar — stell sie stattdesse mit dinere Wiederherstelligsphrase wieder her.",
+    "connectedWrongWallet": "Die Wallet isch {{connected}}, nöd {{address}}. Nüt isch gänderet worde.",
     "restoreWrongWallet": "Das macht en anderi Wallet uf, nöd {{address}}. Nüt isch gänderet worde.",
     "unlockNoAccount": "Dini Wallet isch gsperrt — uf dem Grät isch kei Konto aagmeldet.",
     "unlockLookupFailed": "Dini Wallet isch gsperrt — de Wallet-Iitrag isch nöd erreichbar gsi. Prüef dini Verbindig und probiers nomal.",
@@ -3491,6 +3493,8 @@
     "otherChain": "De Biitrag wird uf ere andere Chain abgwicklet, drum bruuchsch dete DHB i dinere Wallet."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Bruuch das, wenn du die Wallet uf dem Telefon iigrichtet hesch und de Schlüssel scho da sii sött",
+    "connectWalletApp": "Mit dr Wallet-App signiere, wo sie inne isch",
     "signOutAndStartOver": "Ich ha sie nöd — abmelde und neu aafange",
     "restoreLocalNote": "De Schlüssel blibt nur uf dem Telefon.",
     "restoreMissing": "D Wallet vo dem Profil isch nöd uf dem Telefon, drum cha no nüt signiert werde. Gib d Wiederherstelligsphrase oder de privat Schlüssel ii, zum sie daher hole.",

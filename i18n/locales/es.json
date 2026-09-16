@@ -1090,6 +1090,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Conectar billetera no está disponible en esta versión — restaura con tu frase de recuperación.",
+    "connectedWrongWallet": "Esa billetera es {{connected}}, no {{address}}. No se cambió nada.",
     "restoreWrongWallet": "Eso abre otra billetera, no {{address}}. No se cambió nada.",
     "unlockNoAccount": "Tu billetera está bloqueada — no hay ninguna cuenta con sesión iniciada en este dispositivo.",
     "unlockLookupFailed": "Tu billetera está bloqueada — no se pudo acceder a tu registro de billetera. Revisa tu conexión e inténtalo de nuevo.",
@@ -3572,6 +3574,8 @@
     "otherChain": "Esta publicación se liquida en otra cadena, así que necesitas DHB en tu cartera allí."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Usa esto si configuraste esta billetera en este teléfono y ya debería tener la clave",
+    "connectWalletApp": "Firmar con la app de billetera donde está",
     "signOutAndStartOver": "No la tengo — cerrar sesión y empezar de nuevo",
     "restoreLocalNote": "La clave se queda solo en este teléfono.",
     "restoreMissing": "La billetera de este perfil no está en este teléfono, así que aún no se puede firmar nada. Introduce su frase de recuperación o su clave privada para traerla aquí.",

@@ -1067,6 +1067,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "这个版本不能连接钱包 — 用助记词恢复。",
+    "connectedWrongWallet": "那个钱包是 {{connected}}，不是 {{address}}。什么也没改。",
     "restoreWrongWallet": "这打开的是另一个钱包，不是 {{address}}。什么也没改。",
     "unlockNoAccount": "你的钱包锁住了 — 这个设备上没有登录的账号。",
     "unlockLookupFailed": "你的钱包锁住了 — 钱包记录访问不到。检查一下网络再试。",
@@ -3499,6 +3501,8 @@
     "otherChain": "这条帖子在另一条链上结算，所以你在那条链的钱包里需要有 DHB。"
   },
   "walletSetup": {
+    "tryBiometricsHint": "如果你是在这部手机上设置的这个钱包，密钥应该已经在这里，就用这个",
+    "connectWalletApp": "用存着它的钱包应用签名",
     "signOutAndStartOver": "我没有 — 退出登录，重新开始",
     "restoreLocalNote": "密钥只存在这部手机上。",
     "restoreMissing": "这个账号的钱包不在这部手机上，所以现在还无法签名。输入它的助记词或私钥，把它带到这里来。",

@@ -673,6 +673,8 @@
     "firstComments_other": "Første {{count}} kommentarer"
   },
   "wallet": {
+    "connectUnavailable": "Forbind wallet er ikke tilgængelig i denne version — gendan med din gendannelsessætning.",
+    "connectedWrongWallet": "Den wallet er {{connected}}, ikke {{address}}. Intet blev ændret.",
     "restoreWrongWallet": "Det åbner en anden wallet, ikke {{address}}. Intet blev ændret.",
     "unlockNoAccount": "Din wallet er låst — ingen konto er logget ind på denne enhed.",
     "unlockLookupFailed": "Din wallet er låst — kunne ikke nå din wallet-post. Tjek forbindelsen og prøv igen.",
@@ -3506,6 +3508,8 @@
     "otherChain": "Dette opslag afvikles på en anden kæde, så du skal have DHB i din tegnebog der."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Brug dette, hvis du oprettede denne wallet på denne telefon, og nøglen allerede burde være her",
+    "connectWalletApp": "Signér med den wallet-app, den ligger i",
     "signOutAndStartOver": "Jeg har den ikke — log ud og start forfra",
     "restoreLocalNote": "Nøglen bliver kun på denne telefon.",
     "restoreMissing": "Denne profils wallet er ikke på denne telefon, så intet kan signeres endnu. Indtast dens gendannelsessætning eller private nøgle for at hente den hertil.",

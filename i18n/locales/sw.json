@@ -1110,6 +1110,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Kuunganisha pochi hakupatikani katika toleo hili — rejesha kwa kirai chako cha urejeshaji badala yake.",
+    "connectedWrongWallet": "Pochi hiyo ni {{connected}}, si {{address}}. Hakuna kilichobadilishwa.",
     "restoreWrongWallet": "Hiyo inafungua pochi tofauti, si {{address}}. Hakuna kilichobadilishwa.",
     "unlockNoAccount": "Pochi yako imefungwa — hakuna akaunti iliyoingia kwenye kifaa hiki.",
     "unlockLookupFailed": "Pochi yako imefungwa — rekodi ya pochi haikufikika. Angalia muunganisho wako na ujaribu tena.",
@@ -3502,6 +3504,8 @@
     "otherChain": "Chapisho hili linakamilishwa kwenye mnyororo mwingine, kwa hivyo unahitaji DHB kwenye pochi yako huko."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Tumia hii ikiwa uliweka pochi hii kwenye simu hii na ufunguo unapaswa kuwa tayari hapa",
+    "connectWalletApp": "Tia saini kwa programu ya pochi iliyo nayo",
     "signOutAndStartOver": "Sina — ondoka na uanze upya",
     "restoreLocalNote": "Ufunguo unabaki kwenye simu hii pekee.",
     "restoreMissing": "Pochi ya wasifu huu haipo kwenye simu hii, kwa hivyo hakuna kinachoweza kutiwa saini bado. Weka kirai chake cha urejeshaji au ufunguo wake wa faragha ili kukileta hapa.",
