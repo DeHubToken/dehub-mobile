@@ -117,8 +117,11 @@ function walk(dir, out = []) {
 }
 
 const args = process.argv.slice(2);
-const only = args.includes("--file") ? args[args.indexOf("--file") + 1] : null;
-const files = walk(ROOT).filter((f) => !only || f.includes(only));
+const onlyArg = args.includes("--file") ? args[args.indexOf("--file") + 1] : null;
+const only = onlyArg ? onlyArg.split("\\").join("/") : null;
+const files = walk(ROOT).filter(
+  (f) => !only || f.split("\\").join("/").includes(only),
+);
 
 const found = {};
 for (const f of files) {
@@ -130,6 +133,10 @@ for (const f of files) {
 const total = Object.values(found).reduce((n, h) => n + h.length, 0);
 
 if (args.includes("--baseline")) {
+  if (only) {
+    console.error("--baseline rewrites the whole file; run it without --file");
+    process.exit(2);
+  }
   const counts = {};
   for (const rel of Object.keys(found).sort()) counts[rel] = found[rel].length;
   fs.writeFileSync(BASELINE, JSON.stringify(counts, null, 2) + "\n");
@@ -144,7 +151,13 @@ if (args.includes("--list")) {
   }
 }
 
-const baseline = fs.existsSync(BASELINE) ? JSON.parse(fs.readFileSync(BASELINE, "utf8")) : {};
+let baseline = fs.existsSync(BASELINE) ? JSON.parse(fs.readFileSync(BASELINE, "utf8")) : {};
+
+if (only) {
+  baseline = Object.fromEntries(
+    Object.entries(baseline).filter(([rel]) => rel.includes(only)),
+  );
+}
 
 const regressions = [];
 const improvements = [];
