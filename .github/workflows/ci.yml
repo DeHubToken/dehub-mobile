@@ -50,6 +50,15 @@ jobs:
       - name: i18n coverage
         run: npm run i18n:coverage
 
+      # The check above can only see a key that reaches no locale. It cannot
+      # see text that was never keyed at all — that renders English in all 110
+      # languages and merges green, which is how ~780 of them accumulated. Not
+      # through screens anyone skipped: one row at a time, each added to a file
+      # that was already translated. literal-baseline.json is that backlog; a
+      # file above its entry fails here.
+      - name: i18n hardcoded text
+        run: npm run i18n:literals
+
       # A tool that reads UTF-8 as Latin-1 turns every dash, quote and emoji
       # into two or three junk characters. The JSON still parses and the diff
       # looks like ordinary copy, so nothing else here would catch it.
