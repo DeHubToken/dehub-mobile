@@ -57,8 +57,10 @@ export function takeWalletUnlockRefusal(): string | null {
  * than a failure — the user chose not to sign, exactly as they might dismiss a
  * hardware wallet prompt.
  */
+export const WALLET_LOCKED_DEFAULT_MESSAGE = "Your wallet is locked. Unlock it to continue.";
+
 export class WalletLockedError extends Error {
-  constructor(message = "Your wallet is locked. Unlock it to continue.") {
+  constructor(message = WALLET_LOCKED_DEFAULT_MESSAGE) {
     super(message);
     this.name = "WalletLockedError";
   }
