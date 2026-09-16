@@ -847,7 +847,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Audio gspeicheret",
     "audioSaveFailed": "Dä Track het nid chönne gspeicheret wärde",
-    "generatedWithAssistant": "Gmacht mit em DeHub-Assistänt"
+    "generatedWithAssistant": "Gmacht mit em DeHub-Assistänt",
+    "creatorLibrary": "Creator-Bibliothek und Studio",
+    "newChat": "Neue Chat",
+    "chatHistory": "Chatverlauf",
+    "postChat": "Biitrags-Chat",
+    "clearAll": "Alli lösche",
+    "chats": "Chats",
+    "noConversations": "No kei Unterhaltige",
+    "saveAudio": "Audio speichere",
+    "postAudio": "Audio poste",
+    "generatingImage": "Bild wird gmacht…",
+    "dehubPoster": "DeHub-Poster"
   },
   "publicChat": {
     "title": "Öffentliche Chat",

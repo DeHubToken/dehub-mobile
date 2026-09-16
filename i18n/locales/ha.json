@@ -878,7 +878,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "An ajiye sauti",
     "audioSaveFailed": "Ba a iya ajiye wannan waƙar ba",
-    "generatedWithAssistant": "An ƙirƙira da mataimakin DeHub"
+    "generatedWithAssistant": "An ƙirƙira da mataimakin DeHub",
+    "creatorLibrary": "Ɗakin karatu da ɗakin aiki na mahalicci",
+    "newChat": "Sabon hira",
+    "chatHistory": "Tarihin hira",
+    "postChat": "Hirar saƙo",
+    "clearAll": "Share duka",
+    "chats": "Hirarraki",
+    "noConversations": "Babu tattaunawa tukuna",
+    "saveAudio": "Ajiye sauti",
+    "postAudio": "Wallafa sauti",
+    "generatingImage": "Ana ƙirƙirar hoto…",
+    "dehubPoster": "Fostar na DeHub"
   },
   "publicChat": {
     "title": "Tattaunawar Jama'a",

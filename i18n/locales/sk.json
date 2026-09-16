@@ -979,7 +979,17 @@
     "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
     "audioSaved": "Zvuk uložený",
     "audioSaveFailed": "Túto stopu sa nepodarilo uložiť",
-    "generatedWithAssistant": "Vytvorené asistentom DeHub"
+    "generatedWithAssistant": "Vytvorené asistentom DeHub",
+    "creatorLibrary": "Knižnica a štúdio tvorcu",
+    "chatHistory": "História chatov",
+    "postChat": "Chat k príspevku",
+    "clearAll": "Vymazať všetko",
+    "chats": "Chaty",
+    "noConversations": "Zatiaľ žiadne konverzácie",
+    "saveAudio": "Uložiť audio",
+    "postAudio": "Publikovať audio",
+    "generatingImage": "Generuje sa obrázok…",
+    "dehubPoster": "Plagát DeHub"
   },
   "dao": {
     "title": "DAO pokladnica",

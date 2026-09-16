@@ -1705,7 +1705,18 @@
     "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
     "audioSaved": "Klank gestoor",
     "audioSaveFailed": "Kon nie daardie snit stoor nie",
-    "generatedWithAssistant": "Geskep met die DeHub-assistent"
+    "generatedWithAssistant": "Geskep met die DeHub-assistent",
+    "creatorLibrary": "Skeppersbiblioteek en ateljee",
+    "newChat": "Nuwe gesprek",
+    "chatHistory": "Gespreksgeskiedenis",
+    "postChat": "Plasinggesprek",
+    "clearAll": "Vee alles uit",
+    "chats": "Gesprekke",
+    "noConversations": "Nog geen gesprekke nie",
+    "saveAudio": "Stoor klank",
+    "postAudio": "Plaas klank",
+    "generatingImage": "Beeld word geskep…",
+    "dehubPoster": "DeHub-plakkaat"
   },
   "publicChat": {
     "title": "Public Chat",

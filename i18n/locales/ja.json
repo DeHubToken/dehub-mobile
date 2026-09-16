@@ -1074,7 +1074,18 @@
     "loginRequired": "アシスタントにアクセスするにはログインしてください。",
     "audioSaved": "音声を保存しました",
     "audioSaveFailed": "そのトラックを保存できませんでした",
-    "generatedWithAssistant": "DeHub アシスタントで生成"
+    "generatedWithAssistant": "DeHub アシスタントで生成",
+    "creatorLibrary": "クリエイターのライブラリとスタジオ",
+    "newChat": "新しいチャット",
+    "chatHistory": "チャット履歴",
+    "postChat": "投稿チャット",
+    "clearAll": "すべて消去",
+    "chats": "チャット",
+    "noConversations": "会話はまだありません",
+    "saveAudio": "音声を保存",
+    "postAudio": "音声を投稿",
+    "generatingImage": "画像を生成中…",
+    "dehubPoster": "DeHub ポスター"
   },
   "aiChat": {
     "title": "アシスタント",

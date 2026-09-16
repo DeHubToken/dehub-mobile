@@ -1170,7 +1170,18 @@
     "loginRequired": "Đăng nhập để dùng Trợ lý và mở khoá các tính năng mạnh như tạo ảnh và video.",
     "audioSaved": "Đã lưu âm thanh",
     "audioSaveFailed": "Không thể lưu bản nhạc đó",
-    "generatedWithAssistant": "Được tạo bằng trợ lý DeHub"
+    "generatedWithAssistant": "Được tạo bằng trợ lý DeHub",
+    "creatorLibrary": "Thư viện và studio của nhà sáng tạo",
+    "newChat": "Trò chuyện mới",
+    "chatHistory": "Lịch sử trò chuyện",
+    "postChat": "Trò chuyện về bài đăng",
+    "clearAll": "Xóa tất cả",
+    "chats": "Cuộc trò chuyện",
+    "noConversations": "Chưa có cuộc trò chuyện",
+    "saveAudio": "Lưu âm thanh",
+    "postAudio": "Đăng âm thanh",
+    "generatingImage": "Đang tạo ảnh…",
+    "dehubPoster": "Áp phích DeHub"
   },
   "publicChat": {
     "title": "Trò chuyện công khai",

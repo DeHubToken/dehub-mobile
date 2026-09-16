@@ -875,7 +875,18 @@
     "videoGenFailedDetail": "वीडियो नहीं बन सका: {{error}}",
     "audioSaved": "ऑडियो सेव हो गेल",
     "audioSaveFailed": "ऊ ट्रैक सेव ना हो सकल",
-    "generatedWithAssistant": "DeHub असिस्टेंट से बनल"
+    "generatedWithAssistant": "DeHub असिस्टेंट से बनल",
+    "creatorLibrary": "क्रिएटर लाइब्रेरी आ स्टूडियो",
+    "newChat": "नया चैट",
+    "chatHistory": "चैट के इतिहास",
+    "postChat": "पोस्ट चैट",
+    "clearAll": "सब मिटावऽ",
+    "chats": "चैट",
+    "noConversations": "अखनो कोई बातचीत ना",
+    "saveAudio": "ऑडियो सेव करऽ",
+    "postAudio": "ऑडियो पोस्ट करऽ",
+    "generatingImage": "फोटो बनइत हे…",
+    "dehubPoster": "DeHub पोस्टर"
   },
   "publicChat": {
     "title": "पब्लिक चैट",

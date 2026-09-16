@@ -841,7 +841,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "অডিও সেভ হইল",
     "audioSaveFailed": "ঐ ট্র্যাক সেভ করা গেল না",
-    "generatedWithAssistant": "DeHub সহকারী দিয়া বানানো"
+    "generatedWithAssistant": "DeHub সহকারী দিয়া বানানো",
+    "creatorLibrary": "کتێبخانە و ستۆدیۆی دروستکەر",
+    "newChat": "چاتی نوێ",
+    "chatHistory": "مێژووی چات",
+    "postChat": "چاتی پۆست",
+    "clearAll": "هەمووی بسڕەوە",
+    "chats": "چاتەکان",
+    "noConversations": "هێشتا هیچ گفتوگۆیەک نییە",
+    "saveAudio": "دەنگ پاشەکەوت بکە",
+    "postAudio": "دەنگ بڵاو بکەرەوە",
+    "generatingImage": "وێنە دروست دەکرێت…",
+    "dehubPoster": "پۆستەری DeHub"
   },
   "publicChat": {
     "title": "عام چیٹ",

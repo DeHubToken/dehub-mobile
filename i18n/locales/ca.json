@@ -888,7 +888,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Àudio desat",
     "audioSaveFailed": "No s'ha pogut desar aquesta pista",
-    "generatedWithAssistant": "Generat amb l'assistent de DeHub"
+    "generatedWithAssistant": "Generat amb l'assistent de DeHub",
+    "creatorLibrary": "Biblioteca i estudi del creador",
+    "newChat": "Xat nou",
+    "chatHistory": "Historial de xats",
+    "postChat": "Xat de la publicació",
+    "clearAll": "Esborra-ho tot",
+    "chats": "Xats",
+    "noConversations": "Encara no hi ha converses",
+    "saveAudio": "Desa l'àudio",
+    "postAudio": "Publica l'àudio",
+    "generatingImage": "S'està generant la imatge…",
+    "dehubPoster": "Cartell de DeHub"
   },
   "publicChat": {
     "title": "Xat públic",

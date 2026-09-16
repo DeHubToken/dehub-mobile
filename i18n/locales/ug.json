@@ -847,7 +847,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "ئاۋاز ساقلاندى",
     "audioSaveFailed": "بۇ ناخشىنى ساقلىغىلى بولمىدى",
-    "generatedWithAssistant": "DeHub ياردەمچىسى بىلەن ھاسىل قىلىندى"
+    "generatedWithAssistant": "DeHub ياردەمچىسى بىلەن ھاسىل قىلىندى",
+    "creatorLibrary": "ئىجادكار ئامبىرى ۋە ئىستۇدىيە",
+    "newChat": "يېڭى پاراڭ",
+    "chatHistory": "پاراڭ تارىخى",
+    "postChat": "يازما پاراڭى",
+    "clearAll": "ھەممىنى تازىلاش",
+    "chats": "پاراڭلار",
+    "noConversations": "تېخى سۆھبەت يوق",
+    "saveAudio": "ئۈننى ساقلاش",
+    "postAudio": "ئۈن يوللاش",
+    "generatingImage": "رەسىم ھاسىل قىلىنىۋاتىدۇ…",
+    "dehubPoster": "DeHub ئېلان تاختىسى"
   },
   "publicChat": {
     "title": "ئوممىۋى پاراڭ",

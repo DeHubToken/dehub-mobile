@@ -1588,7 +1588,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "ऑडिओ जतन केला",
     "audioSaveFailed": "तो ट्रॅक जतन करता आला नाही",
-    "generatedWithAssistant": "DeHub सहाय्यकाने तयार केले"
+    "generatedWithAssistant": "DeHub सहाय्यकाने तयार केले",
+    "creatorLibrary": "निर्माता लायब्ररी आणि स्टुडिओ",
+    "newChat": "नवीन चॅट",
+    "chatHistory": "चॅट इतिहास",
+    "postChat": "पोस्ट चॅट",
+    "clearAll": "सर्व साफ करा",
+    "chats": "चॅट",
+    "noConversations": "अजून संभाषणे नाहीत",
+    "saveAudio": "ऑडिओ जतन करा",
+    "postAudio": "ऑडिओ पोस्ट करा",
+    "generatingImage": "प्रतिमा तयार होत आहे…",
+    "dehubPoster": "DeHub पोस्टर"
   },
   "aiChat": {
     "title": "सहाय्यक",

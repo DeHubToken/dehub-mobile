@@ -1588,7 +1588,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "ஆடியோ சேமிக்கப்பட்டது",
     "audioSaveFailed": "அந்த ஒலிப்பதிவை சேமிக்க முடியவில்லை",
-    "generatedWithAssistant": "DeHub உதவியாளரால் உருவாக்கப்பட்டது"
+    "generatedWithAssistant": "DeHub உதவியாளரால் உருவாக்கப்பட்டது",
+    "creatorLibrary": "உருவாக்குநர் நூலகம் மற்றும் ஸ்டுடியோ",
+    "newChat": "புதிய அரட்டை",
+    "chatHistory": "அரட்டை வரலாறு",
+    "postChat": "இடுகை அரட்டை",
+    "clearAll": "அனைத்தையும் அழி",
+    "chats": "அரட்டைகள்",
+    "noConversations": "இன்னும் உரையாடல்கள் இல்லை",
+    "saveAudio": "ஆடியோவைச் சேமி",
+    "postAudio": "ஆடியோவை இடு",
+    "generatingImage": "படம் உருவாக்கப்படுகிறது…",
+    "dehubPoster": "DeHub சுவரொட்டி"
   },
   "aiChat": {
     "title": "உதவியாளர்",

@@ -17,6 +17,7 @@ import Icon from '../ui/Icon';
 import GeneratedAudioPlayer from './GeneratedAudioPlayer';
 import { AiToolProcessingSkeleton, VideoGenerationSkeleton } from './GenerationSkeleton';
 import type { AIChatMessage } from '../../services/ai.service';
+import { useTranslation } from 'react-i18next';
 
 const AI_AVATAR = require('../../assets/web-icons/ai-assistant-avatar.png');
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -120,6 +121,7 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
   onShareAudio,
   onRetry,
 }) => {
+  const { t } = useTranslation();
   const isUser = message.role === 'user';
 
   const imageUrls = useMemo(() => {
@@ -257,7 +259,7 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
 
         {message.isError && onRetry && (
           <TouchableOpacity onPress={onRetry} activeOpacity={0.7} style={s.retry}>
-            <Text style={s.retryText}>Retry</Text>
+            <Text style={s.retryText}>{t('common.retry')}</Text>
           </TouchableOpacity>
         )}
       </View>

@@ -895,7 +895,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Аудио сақталды",
     "audioSaveFailed": "Бұл тректі сақтау мүмкін болмады",
-    "generatedWithAssistant": "DeHub көмекшісімен жасалды"
+    "generatedWithAssistant": "DeHub көмекшісімен жасалды",
+    "creatorLibrary": "Автор кітапханасы және студия",
+    "newChat": "Жаңа чат",
+    "chatHistory": "Чат тарихы",
+    "postChat": "Жазба чаты",
+    "clearAll": "Барлығын тазалау",
+    "chats": "Чаттар",
+    "noConversations": "Әзірге әңгіме жоқ",
+    "saveAudio": "Аудионы сақтау",
+    "postAudio": "Аудионы жариялау",
+    "generatingImage": "Сурет жасалуда…",
+    "dehubPoster": "DeHub постері"
   },
   "publicChat": {
     "title": "Жария чат",

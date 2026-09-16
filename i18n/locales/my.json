@@ -880,7 +880,18 @@
     "whatsHappeningNews": "What's happening in the news today?",
     "audioSaved": "အသံ သိမ်းဆည်းပြီး",
     "audioSaveFailed": "ထိုသီချင်းကို သိမ်း၍မရပါ",
-    "generatedWithAssistant": "DeHub လက်ထောက်ဖြင့် ဖန်တီးထားသည်"
+    "generatedWithAssistant": "DeHub လက်ထောက်ဖြင့် ဖန်တီးထားသည်",
+    "creatorLibrary": "ဖန်တီးသူ စာကြည့်တိုက်နှင့် စတူဒီယို",
+    "newChat": "စကားပြောခန်း အသစ်",
+    "chatHistory": "စကားပြော မှတ်တမ်း",
+    "postChat": "ပို့စ် စကားပြော",
+    "clearAll": "အားလုံး ရှင်းလင်းပါ",
+    "chats": "စကားပြောခန်းများ",
+    "noConversations": "စကားပြောခန်းများ မရှိသေးပါ",
+    "saveAudio": "အသံ သိမ်းပါ",
+    "postAudio": "အသံ တင်ပါ",
+    "generatingImage": "ပုံ ဖန်တီးနေသည်…",
+    "dehubPoster": "DeHub ပိုစတာ"
   },
   "publicChat": {
     "title": "အများသုံးချက်တင်",

@@ -879,7 +879,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Kua tiakina te oro",
     "audioSaveFailed": "Kāore i taea te tiaki i taua oro",
-    "generatedWithAssistant": "I hangaia mā te kaiāwhina DeHub"
+    "generatedWithAssistant": "I hangaia mā te kaiāwhina DeHub",
+    "creatorLibrary": "Whare pukapuka me te taiwhanga kaihanga",
+    "newChat": "Kōrerorero hou",
+    "chatHistory": "Hītori kōrerorero",
+    "postChat": "Kōrerorero pou",
+    "clearAll": "Ūkuia katoa",
+    "chats": "Ngā kōrerorero",
+    "noConversations": "Kāore anō he kōrerorero",
+    "saveAudio": "Tiakina te oro",
+    "postAudio": "Tukuna te oro",
+    "generatingImage": "E hanga whakaahua ana…",
+    "dehubPoster": "Pānui DeHub"
   },
   "publicChat": {
     "title": "Kōrerorero tūmatanui",

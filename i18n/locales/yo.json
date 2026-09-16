@@ -883,7 +883,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Ohùn ti wà ní ìpamọ́",
     "audioSaveFailed": "Kò lè fi orin yẹn pamọ́",
-    "generatedWithAssistant": "A ṣe pẹ̀lú olùrànlọ́wọ́ DeHub"
+    "generatedWithAssistant": "A ṣe pẹ̀lú olùrànlọ́wọ́ DeHub",
+    "creatorLibrary": "Ilé-ìkàwé àti ilé-iṣẹ́ ẹlẹ́dàá",
+    "newChat": "Ìjíròrò tuntun",
+    "chatHistory": "Ìtàn ìjíròrò",
+    "postChat": "Ìjíròrò ìfìwéránṣẹ́",
+    "clearAll": "Nu gbogbo rẹ̀ nù",
+    "chats": "Àwọn ìjíròrò",
+    "noConversations": "Kò sí ìjíròrò kankan síbẹ̀",
+    "saveAudio": "Fi ohùn pamọ́",
+    "postAudio": "Fi ohùn ránṣẹ́",
+    "generatingImage": "Ń ṣẹ̀dá àwòrán…",
+    "dehubPoster": "Ìwé ìkéde DeHub"
   },
   "publicChat": {
     "title": "Ìfọ̀rọ̀wérọ̀ Gbangba",

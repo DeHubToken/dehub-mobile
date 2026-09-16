@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   View,
   Text,
@@ -54,6 +55,7 @@ const HistoryItem = memo<{
   onPress: () => void;
   onDelete: () => void;
 }>(({ item, isActive, onPress, onDelete }) => {
+  const { t } = useTranslation();
   const isPostChat = !!item.postId;
   return (
     <TouchableOpacity
@@ -75,7 +77,7 @@ const HistoryItem = memo<{
             {item.title}
           </Text>
           {isPostChat && (
-            <Text style={s.itemBadge}>Post Chat</Text>
+            <Text style={s.itemBadge}>{t('assistant.postChat')}</Text>
           )}
         </View>
       </View>
@@ -101,6 +103,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
   walletAddress,
   onMediaPress,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<'chats' | 'media'>('chats');
   const [media, setMedia] = useState<AssistantMediaItem[]>([]);
@@ -239,10 +242,10 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
                 <View style={s.handle} />
               </View>
               <View style={s.header}>
-                <Text style={s.headerTitle}>Chat History</Text>
+                <Text style={s.headerTitle}>{t('assistant.chatHistory')}</Text>
                 {conversations.length > 0 && (
                   <TouchableOpacity onPress={onClearAll} activeOpacity={0.7}>
-                    <Text style={s.clearText}>Clear All</Text>
+                    <Text style={s.clearText}>{t('assistant.clearAll')}</Text>
                   </TouchableOpacity>
                 )}
               </View>
@@ -252,7 +255,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
                   onPress={() => setActiveTab('chats')}
                   activeOpacity={0.7}
                 >
-                  <Text style={[s.tabText, activeTab === 'chats' && s.tabTextActive]}>Chats</Text>
+                  <Text style={[s.tabText, activeTab === 'chats' && s.tabTextActive]}>{t('assistant.chats')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={[s.tab, activeTab === 'media' && s.tabActive]}
@@ -312,7 +315,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
           ) : conversations.length === 0 ? (
             <View style={s.empty}>
               <Icon name="MessageCircle" size={36} color="#3A3C3F" />
-              <Text style={s.emptyText}>No conversations yet</Text>
+              <Text style={s.emptyText}>{t('assistant.noConversations')}</Text>
             </View>
           ) : (
             <FlatList

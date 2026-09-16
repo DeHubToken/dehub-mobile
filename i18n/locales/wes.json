@@ -832,7 +832,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Audio don save",
     "audioSaveFailed": "We no fit save dat track",
-    "generatedWithAssistant": "DeHub assistant make am"
+    "generatedWithAssistant": "DeHub assistant make am",
+    "creatorLibrary": "Creator library an studio",
+    "newChat": "New chat",
+    "chatHistory": "Chat history",
+    "postChat": "Post chat",
+    "clearAll": "Clear everytin",
+    "chats": "Chats",
+    "noConversations": "No conversation dey yet",
+    "saveAudio": "Save di audio",
+    "postAudio": "Post di audio",
+    "generatingImage": "Image dey generate…",
+    "dehubPoster": "DeHub poster"
   },
   "publicChat": {
     "title": "Public Chat",

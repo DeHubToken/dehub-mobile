@@ -876,7 +876,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "ድምጺ ተዓቂቡ",
     "audioSaveFailed": "እቲ ትራክ ከነዕቅቦ ኣይተኻእለን",
-    "generatedWithAssistant": "ብሓጋዚ DeHub ዝተፈጥረ"
+    "generatedWithAssistant": "ብሓጋዚ DeHub ዝተፈጥረ",
+    "creatorLibrary": "ናይ ፈጣሪ ቤተ-መጻሕፍትን ስቱድዮን",
+    "newChat": "ሓድሽ ዕላል",
+    "chatHistory": "ታሪኽ ዕላል",
+    "postChat": "ዕላል ጽሑፍ",
+    "clearAll": "ኩሉ ኣጽሪ",
+    "chats": "ዕላላት",
+    "noConversations": "ክሳብ ሕጂ ዝርርባት የለዉን",
+    "saveAudio": "ድምጺ ዓቅብ",
+    "postAudio": "ድምጺ ልጠፍ",
+    "generatingImage": "ስእሊ ይፍጠር ኣሎ…",
+    "dehubPoster": "ናይ DeHub ፖስተር"
   },
   "publicChat": {
     "title": "ህዝባዊ ዕላል",

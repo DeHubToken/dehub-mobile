@@ -887,7 +887,18 @@
     "whatsHappeningNews": "What's happening in the news today?",
     "audioSaved": "Аўдыя захавана",
     "audioSaveFailed": "Не ўдалося захаваць гэты трэк",
-    "generatedWithAssistant": "Створана з дапамогай асістэнта DeHub"
+    "generatedWithAssistant": "Створана з дапамогай асістэнта DeHub",
+    "creatorLibrary": "Бібліятэка аўтара і студыя",
+    "newChat": "Новы чат",
+    "chatHistory": "Гісторыя чатаў",
+    "postChat": "Чат паста",
+    "clearAll": "Ачысціць усё",
+    "chats": "Чаты",
+    "noConversations": "Размоў яшчэ няма",
+    "saveAudio": "Захаваць аўдыя",
+    "postAudio": "Апублікаваць аўдыя",
+    "generatingImage": "Стварэнне выявы…",
+    "dehubPoster": "Плакат DeHub"
   },
   "publicChat": {
     "title": "Публічны чат",
