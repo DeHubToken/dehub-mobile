@@ -15,6 +15,7 @@ import {
   fetchTurnServers,
   markIngestUnreachable,
   clearIngestUnreachable,
+  hadRecentIngestFailure,
   isNetworkShapedError,
   withOpusFec,
 } from "../../libs/live-ingest";
@@ -329,6 +330,10 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
       // recovery starts a second one behind it.
       let sawConnected = false;
       let answeredAt = 0;
+      // The direct signaling leg died before the server ever answered. Kept
+      // per attempt so the catch below can tell a dead route from a real
+      // error and hand the attempt to the relay instead of the creator.
+      let directSignalingDead = false;
 
       /**
        * Put the broadcast back up over the edge and a TURN relay, leaving the
@@ -385,11 +390,20 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         // the api.dehub.io edge and the media rides the relay; with no relay
         // the direct attempt proceeds and fails into the clear network-error
         // path rather than silently.
-        // forceRelayRef outranks the probe: it is set only after a direct
-        // attempt on this phone actually died, which is better evidence than a
-        // probe that passes on the very networks the relay exists for.
+        // forceRelayRef and the stored failure marker both outrank the probe:
+        // each is set only after a direct attempt on this phone actually died,
+        // which is better evidence than a probe that passes on the very
+        // networks the relay exists for. The marker survives the kill-and-retry
+        // loop a stuck creator performs, so a second attempt from a blocked
+        // phone goes relay-first instead of repeating the dead direct dial.
+        // Web made this move in GoLiveBroadcaster.tsx; mobile had not.
         let relayIce: RTCIceServer[] | undefined;
-        if (selfHosted && (forceRelayRef.current || !(await probeIngestReachable()))) {
+        if (
+          selfHosted &&
+          (forceRelayRef.current ||
+            (await hadRecentIngestFailure()) ||
+            !(await probeIngestReachable()))
+        ) {
           const turn = await fetchTurnServers();
           const edge = turn.length
             ? edgeWhipEndpointFor({ playbackId, provider, streamKey })
@@ -545,7 +559,10 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           // reach is as dead as the ingest — so remember it and the next mint
           // prefers Livepeer over re-running the same optimistic probe into
           // the same wall; a stuck creator's real behaviour is to retry.
-          if (selfHosted && isNetworkShapedError(e)) void markIngestUnreachable();
+          if (selfHosted && isNetworkShapedError(e)) {
+            void markIngestUnreachable();
+            if (directSelfHosted) directSignalingDead = true;
+          }
           throw e;
         }
         if (!resp.ok) {
@@ -554,7 +571,10 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           // from a middlebox or edge answering in the server's place, and it
           // repeats identically on every retry — remember it so the next
           // mint on this phone prefers Livepeer.
-          if (selfHosted && resp.status !== 401) void markIngestUnreachable();
+          if (selfHosted && resp.status !== 401) {
+            void markIngestUnreachable();
+            if (directSelfHosted) directSignalingDead = true;
+          }
           throw new Error(
             `WHIP offer failed: ${resp.status} ${await resp.text()}`
           );
@@ -611,6 +631,18 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
       } catch (e) {
         dbe('start() failed', e);
         startingRef.current = false;
+        // A direct WHIP POST that never reached the server condemns the
+        // route, not the broadcast. The media-failure path already earns one
+        // relay retry for the case where the server answered and no bytes
+        // followed; a POST that is dropped or forged into a refusal is the
+        // same dead route one step earlier and had been dead-ending on an
+        // error instead — the blocked networks the relay was built for hit
+        // this branch, not the other one. Same one-retry budget.
+        if (directSignalingDead && !mediaRetryUsedRef.current) {
+          mediaRetryUsedRef.current = true;
+          void restartOverRelay();
+          return;
+        }
         onErrorRef.current?.(e);
       }
     };
