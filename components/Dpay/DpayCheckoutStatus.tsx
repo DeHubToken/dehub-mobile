@@ -134,7 +134,10 @@ const DpayCheckoutStatus: React.FC<Props> = ({
           } catch {}
         }
       } catch (err) {
-        setStatusStripe("failed");
+        // A status read that did not come back says nothing about the payment.
+        // Marking it failed here also stopped the polling, so one dropped
+        // request on a phone turned a purchase in flight into a dead screen.
+        // Leave the last known state alone and try again on the next tick.
       } finally {
         setCheckingStatus(false);
       }
@@ -145,9 +148,9 @@ const DpayCheckoutStatus: React.FC<Props> = ({
   const shouldPoll = React.useMemo(() => {
     const s = (statusStripe || "").toLowerCase();
     const send = (tokenSendStatus || "").toLowerCase();
-    if (["failed", "expired", "canceled", "not_found"].includes(s))
+    if (["failed", "expired", "canceled", "cancelled", "not_found"].includes(s))
       return false;
-    if (["sent", "failed"].includes(send)) return false;
+    if (["sent", "failed", "cancelled"].includes(send)) return false;
     return true;
   }, [statusStripe, tokenSendStatus]);
 
@@ -243,7 +246,12 @@ const DpayCheckoutStatus: React.FC<Props> = ({
               <Text className="text-white text-sm font-semibold">
                 {(() => {
                   const s = (statusStripe || "").toLowerCase();
-                  if (s === "succeeded") return t("dpay.paymentCompleted");
+                  // The row's own enum is init|pending|succeeded|complete|
+                  // failed|expired, and a paid session is written as
+                  // `complete`. Matching only `succeeded` left every completed
+                  // payment reading "pending" on this screen.
+                  if (s === "succeeded" || s === "complete" || s === "paid")
+                    return t("dpay.paymentCompleted");
                   if (s === "processing") return t("dpay.paymentProcessing");
                   if (s === "requires_action") return t("dpay.actionRequired");
                   if (s === "requires_payment_method")
