@@ -1470,7 +1470,35 @@
     "pasteFromClipboard": "Clipboard nisqamanta k'askachiy",
     "learnMoreAt": "dehub.io pi astawan yachay",
     "accountsOnDevice": "Kay antapi cuentakuna",
-    "use": "Llamk'achiy"
+    "use": "Llamk'achiy",
+    "verificationCode": "Takyachiy kudigu",
+    "sixDigitCode": "6 yupaymanta kudigu",
+    "verify": "Takyachiy",
+    "resendCode": "Kudiguta kutichiy",
+    "noImportedAccounts": "Manaraqmi apamusqa kuentakuna kanchu.",
+    "importedAccount": "Apamusqa kuenta",
+    "useAccount": "{{name}} kuentata llamk'achiy",
+    "removeAccount": "{{name}} kuentata qichuy",
+    "showPrivateKey": "Pakasqa llavita rikuchiy",
+    "hidePrivateKey": "Pakasqa llavita pakay",
+    "invalidPrivateKey": "Mana allin pakasqa llave",
+    "couldNotImportWallet": "Manam kuchu wayaqata apamuyta atikunchu",
+    "unlockToUse": "Kay DeHub kuchu wayaqata kichay llamk'achinaykipaq",
+    "noScreenLock": "Kay celular mana qhawana wichq'anayuqchu, chayrayku pipas hap'iqqa kuchu wayaqaykita llamk'achinman. Kaqllamanta paskudita utaq biyumitrikata dispusitiwuykipi churay.",
+    "noStoredKey": "Kay kuentapaq mana ima pakasqa llave waqaychasqachu. Ama hina kaspa kay kuchu wayaqata kutimanta apamuy llaventa tinkinapaq.",
+    "failedToUseAccount": "Kay kuentata llamk'achiy manam atikunchu",
+    "continueWithPhone": "Telefonowan katiy",
+    "phoneNumberA11y": "Telefono yupay, ñawpaqta suyu kudigu",
+    "phoneNumberHint": "Yupayniykita suyu kudiguwan qallarispa churay. Yapay unanchaqa kikillanmanta yapakun.",
+    "sendCodeA11y": "Kay telefono yupayman yaykuna kudiguta apachiy",
+    "signInToContinue": "Katinaykipaq yaykuy",
+    "signInToContinueBody": "Kay ruwayta ruwanaykipaq yaykunaykim.",
+    "closeAuthModal": "Yaykuna qhawanata wichq'ay",
+    "legalLine": "Katispaqa, <terms>Servisiu kamachikuyniykuta</terms> hinaspa <privacy>Pakasqa Kamachiyniykuta</privacy> chaskikunki.",
+    "chooseUsernameBody": "Katinaykipaq huk sutita chaynataq rikuchina sutita akllay. Qhipaman t'ikrayta atinki.",
+    "checkingAvailability": "Kachkasqanta qhawachkan…",
+    "usernameTakenHint": "Kay sutiqa hap'isqañam — yupaykunata utaq uray raya yapayta yanapay",
+    "displayNameLength": "Rikuchina sutiqa 2-50 sananchayuq kanan."
   },
   "messages": {
     "smartRepliesOff": "Ñisqa kutichiykunaqa wañuchisqa",
@@ -3592,7 +3620,13 @@
     "thatsGoneToo": "Chaypas chinkarunmi — chaypas musuqmanta qallariy",
     "tryBiometrics": "Kay celularpi biometricota ruway",
     "unlockWithBiometrics": "Biometricowan kichay",
-    "confirmStartOver": "Musuq qullqi waqaychanawan musuqmanta qallariyta munasqaykita takyachiy"
+    "confirmStartOver": "Musuq qullqi waqaychanawan musuqmanta qallariyta munasqaykita takyachiy",
+    "understandOldWallet": "Yachanim mawk'a kuchu wayaqa, chaypi kaqkunapas, wiñaypaq mana hap'inayta atisqayta",
+    "savedTwelveWords": "Kay 12 simikunata allin waqaychana pachapi churarqani",
+    "legacyRecovered": "Mawk'a kuentaykita{{suffix}} takyachirqayku hinaspa kuchu wayaqanta kutichirqayku. Huk pasawrdita churay kay dispusitiwupi — kay celularpi hinaspa maypipas — kunanmanta amachanaykipaq.",
+    "passwordMin": "Pasawrdi ({{min}} sananchamanta pisipi)",
+    "newPasswordMin": "Musuq pasawrdi ({{min}} sananchamanta pisipi)",
+    "newWalletPasswordMin": "Musuq kuchu wayaqa pasawrdi ({{min}} sananchamanta pisipi)"
   },
   "transcript": {
     "title": "Qillqasqa rimay",
@@ -4077,5 +4111,21 @@
       "megalodon": "Kaypi coronayki — kunan app royalty kanki"
     },
     "continue": "DeHub nisqaman kutiy"
+  },
+  "passwordStrength": {
+    "veryWeak": "Ancha pisi kallpa",
+    "weak": "Pisi kallpa",
+    "fair": "Chawpi kallpa",
+    "good": "Allin",
+    "strong": "Sinchi",
+    "common": "Kayqa riqsisqa utaq facil watuy pasawrdum",
+    "tooShort": "{{n}} sananchakunata pisipi llamk'achiy",
+    "mixChars": "Hatun/huch'uy qillqakuna, yupaykuna, unanchakunapiwan chaqruy",
+    "breached": "Kay pasawrdiqa huk willakuy ch'aqwaypim rikurirqan — huktaña akllay"
+  },
+  "phoneHint": {
+    "leadingZero": "Suyuyki kudiguwan qallariy (44 Reino Unidopaq, 1 EE.UU.paq) — ñawpaq 0-ta qichuy.",
+    "tooLong": "Chayqa {{n}} yupaymi — telefono yupayqa {{max}}-lla kanman.",
+    "missingCountryCode": "Suyu kudiguta qhaway — kuntaktukunamanta kupiyasqa yupaykunaqa sapa kuti mana chaytachu apanku."
   }
 }

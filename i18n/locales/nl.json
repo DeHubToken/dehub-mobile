@@ -1714,7 +1714,35 @@
     "pasteFromClipboard": "Plakken vanaf klembord",
     "learnMoreAt": "Meer weten op dehub.io",
     "accountsOnDevice": "Accounts op dit apparaat",
-    "use": "Gebruiken"
+    "use": "Gebruiken",
+    "verificationCode": "Verificatiecode",
+    "sixDigitCode": "6-cijferige code",
+    "verify": "Verifiëren",
+    "resendCode": "Code opnieuw sturen",
+    "noImportedAccounts": "Nog geen geïmporteerde accounts.",
+    "importedAccount": "Geïmporteerd account",
+    "useAccount": "Account {{name}} gebruiken",
+    "removeAccount": "Account {{name}} verwijderen",
+    "showPrivateKey": "Privésleutel tonen",
+    "hidePrivateKey": "Privésleutel verbergen",
+    "invalidPrivateKey": "Ongeldige privésleutel",
+    "couldNotImportWallet": "Kon wallet niet importeren",
+    "unlockToUse": "Ontgrendel deze DeHub-wallet om hem te gebruiken",
+    "noScreenLock": "Deze telefoon heeft geen schermvergrendeling, dus iedereen die hem vasthoudt kan je wallet gebruiken. Stel een toegangscode of biometrie in bij je apparaatinstellingen.",
+    "noStoredKey": "Voor dit account is geen privésleutel opgeslagen. Importeer deze wallet opnieuw om de sleutel te koppelen.",
+    "failedToUseAccount": "Kon dit account niet gebruiken",
+    "continueWithPhone": "Doorgaan met telefoon",
+    "phoneNumberA11y": "Telefoonnummer, landcode eerst",
+    "phoneNumberHint": "Voer je nummer in, te beginnen met de landcode. Het plusteken wordt automatisch toegevoegd.",
+    "sendCodeA11y": "Inlogcode naar dit telefoonnummer sturen",
+    "signInToContinue": "Log in om door te gaan",
+    "signInToContinueBody": "Je moet inloggen om deze actie uit te voeren.",
+    "closeAuthModal": "Inlogvenster sluiten",
+    "legalLine": "Door door te gaan ga je akkoord met onze <terms>Servicevoorwaarden</terms> en <privacy>Privacybeleid</privacy>.",
+    "chooseUsernameBody": "Kies een gebruikersnaam en weergavenaam om door te gaan. Je kunt ze later wijzigen.",
+    "checkingAvailability": "Beschikbaarheid controleren…",
+    "usernameTakenHint": "Naam is al bezet — probeer cijfers of een underscore toe te voegen",
+    "displayNameLength": "Weergavenaam moet 2-50 tekens bevatten."
   },
   "bookmarks": {
     "title": "Jouw bladwijzers",
@@ -3829,7 +3857,13 @@
     "thatsGoneToo": "Dat is ook weg — begin toch opnieuw",
     "tryBiometrics": "Probeer biometrie op deze telefoon",
     "unlockWithBiometrics": "Ontgrendelen met biometrie",
-    "confirmStartOver": "Bevestig dat je opnieuw wilt beginnen met een nieuwe wallet"
+    "confirmStartOver": "Bevestig dat je opnieuw wilt beginnen met een nieuwe wallet",
+    "understandOldWallet": "Ik begrijp dat de oude wallet, en alles erin, voorgoed buiten mijn bereik zal zijn",
+    "savedTwelveWords": "Ik heb deze 12 woorden op een veilige plek bewaard",
+    "legacyRecovered": "We hebben je oude account{{suffix}} geverifieerd en de wallet hersteld. Stel een wachtwoord in dat hem vanaf nu op dit apparaat beschermt — op deze telefoon en overal elders.",
+    "passwordMin": "Wachtwoord (min. {{min}} tekens)",
+    "newPasswordMin": "Nieuw wachtwoord (min. {{min}} tekens)",
+    "newWalletPasswordMin": "Wachtwoord nieuwe wallet (min. {{min}} tekens)"
   },
   "transcript": {
     "title": "Transcript",
@@ -4316,5 +4350,21 @@
       "megalodon": "Hier is je kroon — je bent nu app-royalty"
     },
     "continue": "Terug naar DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Zeer zwak",
+    "weak": "Zwak",
+    "fair": "Redelijk",
+    "good": "Goed",
+    "strong": "Sterk",
+    "common": "Dit is een veelgebruikt of voorspelbaar wachtwoord",
+    "tooShort": "Gebruik minstens {{n}} tekens",
+    "mixChars": "Combineer hoofdletters, kleine letters, cijfers en symbolen",
+    "breached": "Dit wachtwoord is in een datalek verschenen — kies een ander"
+  },
+  "phoneHint": {
+    "leadingZero": "Begin met je landcode (44 voor het VK, 1 voor de VS) — laat de voorloopnul weg.",
+    "tooLong": "Dat zijn {{n}} cijfers — een telefoonnummer heeft er maximaal {{max}}.",
+    "missingCountryCode": "Controleer de landcode — nummers uit je contacten missen die vaak."
   }
 }

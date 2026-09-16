@@ -1228,7 +1228,35 @@
     "pasteFromClipboard": "Aus Zwischenablage einfügen",
     "learnMoreAt": "Mehr erfahren auf dehub.io",
     "accountsOnDevice": "Konten auf diesem Gerät",
-    "use": "Verwenden"
+    "use": "Verwenden",
+    "verificationCode": "Bestätigungscode",
+    "sixDigitCode": "6-stelliger Code",
+    "verify": "Bestätigen",
+    "resendCode": "Code erneut senden",
+    "noImportedAccounts": "Noch keine importierten Konten.",
+    "importedAccount": "Importiertes Konto",
+    "useAccount": "Konto {{name}} verwenden",
+    "removeAccount": "Konto {{name}} entfernen",
+    "showPrivateKey": "Privaten Schlüssel anzeigen",
+    "hidePrivateKey": "Privaten Schlüssel ausblenden",
+    "invalidPrivateKey": "Ungültiger privater Schlüssel",
+    "couldNotImportWallet": "Wallet konnte nicht importiert werden",
+    "unlockToUse": "Entsperre dieses DeHub-Wallet, um es zu verwenden",
+    "noScreenLock": "Dieses Telefon hat keine Bildschirmsperre, sodass jede Person, die es in der Hand hält, deine Wallet verwenden kann. Richte in den Geräteeinstellungen einen Code oder eine biometrische Sperre ein.",
+    "noStoredKey": "Für dieses Konto ist kein privater Schlüssel gespeichert. Importiere diese Wallet erneut, um den Schlüssel zu verknüpfen.",
+    "failedToUseAccount": "Dieses Konto konnte nicht verwendet werden",
+    "continueWithPhone": "Mit Telefon fortfahren",
+    "phoneNumberA11y": "Telefonnummer, Ländervorwahl zuerst",
+    "phoneNumberHint": "Gib deine Nummer mit der Ländervorwahl ein. Das Pluszeichen wird automatisch ergänzt.",
+    "sendCodeA11y": "Anmeldecode an diese Telefonnummer senden",
+    "signInToContinue": "Melde dich an, um fortzufahren",
+    "signInToContinueBody": "Für diese Aktion musst du angemeldet sein.",
+    "closeAuthModal": "Anmeldefenster schließen",
+    "legalLine": "Wenn du fortfährst, stimmst du unseren <terms>Nutzungsbedingungen</terms> und der <privacy>Datenschutzerklärung</privacy> zu.",
+    "chooseUsernameBody": "Wähle einen Benutzernamen und einen Anzeigenamen, um fortzufahren. Du kannst sie später ändern.",
+    "checkingAvailability": "Verfügbarkeit wird geprüft…",
+    "usernameTakenHint": "Der Name ist vergeben — versuch es mit Ziffern oder einem Unterstrich",
+    "displayNameLength": "Der Anzeigename muss 2–50 Zeichen lang sein."
   },
   "bookmarks": {
     "title": "Deine Lesezeichen",
@@ -3631,7 +3659,13 @@
     "thatsGoneToo": "Das ist auch weg — trotzdem neu beginnen",
     "tryBiometrics": "Biometrie auf diesem Telefon versuchen",
     "unlockWithBiometrics": "Mit Biometrie entsperren",
-    "confirmStartOver": "Bestätige, dass du mit einer neuen Wallet neu beginnen willst"
+    "confirmStartOver": "Bestätige, dass du mit einer neuen Wallet neu beginnen willst",
+    "understandOldWallet": "Mir ist klar, dass die alte Wallet und alles darin für immer außerhalb meiner Reichweite sein wird",
+    "savedTwelveWords": "Ich habe diese 12 Wörter an einem sicheren Ort gespeichert",
+    "legacyRecovered": "Wir haben dein altes Konto{{suffix}} bestätigt und seine Wallet wiederhergestellt. Lege ein Passwort fest, das sie ab jetzt auf diesem Gerät schützt — auf diesem Telefon und überall sonst.",
+    "passwordMin": "Passwort (mind. {{min}} Zeichen)",
+    "newPasswordMin": "Neues Passwort (mind. {{min}} Zeichen)",
+    "newWalletPasswordMin": "Passwort der neuen Wallet (mind. {{min}} Zeichen)"
   },
   "transcript": {
     "title": "Transkript",
@@ -4117,5 +4151,21 @@
       "megalodon": "Hier ist deine Krone — du bist jetzt App-König"
     },
     "continue": "Zurück zu DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Sehr schwach",
+    "weak": "Schwach",
+    "fair": "Mittel",
+    "good": "Gut",
+    "strong": "Stark",
+    "common": "Das ist ein häufiges oder leicht zu erratendes Passwort",
+    "tooShort": "Verwende mindestens {{n}} Zeichen",
+    "mixChars": "Mische Groß- und Kleinbuchstaben, Zahlen und Symbole",
+    "breached": "Dieses Passwort ist in einem Datenleck aufgetaucht — wähle ein anderes"
+  },
+  "phoneHint": {
+    "leadingZero": "Beginne mit deiner Ländervorwahl (44 für UK, 1 für die USA) — lass die führende 0 weg.",
+    "tooLong": "Das sind {{n}} Ziffern — eine Telefonnummer hat höchstens {{max}}.",
+    "missingCountryCode": "Prüfe die Ländervorwahl — aus den Kontakten kopierte Nummern haben sie oft nicht."
   }
 }

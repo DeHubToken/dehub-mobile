@@ -788,7 +788,35 @@
     "pasteFromClipboard": "Indsæt fra udklipsholder",
     "learnMoreAt": "Læs mere på dehub.io",
     "accountsOnDevice": "Konti på denne enhed",
-    "use": "Brug"
+    "use": "Brug",
+    "verificationCode": "Bekræftelseskode",
+    "sixDigitCode": "6-cifret kode",
+    "verify": "Bekræft",
+    "resendCode": "Send kode igen",
+    "noImportedAccounts": "Ingen importerede konti endnu.",
+    "importedAccount": "Importeret konto",
+    "useAccount": "Brug konto {{name}}",
+    "removeAccount": "Fjern konto {{name}}",
+    "showPrivateKey": "Vis privat nøgle",
+    "hidePrivateKey": "Skjul privat nøgle",
+    "invalidPrivateKey": "Ugyldig privat nøgle",
+    "couldNotImportWallet": "Kunne ikke importere tegnebogen",
+    "unlockToUse": "Lås denne DeHub-tegnebog op for at bruge den",
+    "noScreenLock": "Denne telefon har ingen skærmlås, så alle, der har den i hånden, kan bruge din tegnebog. Angiv en adgangskode eller biometri i enhedens indstillinger.",
+    "noStoredKey": "Der er ingen privat nøgle gemt for denne konto. Importér denne tegnebog igen for at tilknytte nøglen.",
+    "failedToUseAccount": "Kunne ikke bruge denne konto",
+    "continueWithPhone": "Fortsæt med telefon",
+    "phoneNumberA11y": "Telefonnummer, landekode først",
+    "phoneNumberHint": "Indtast dit nummer med landekoden først. Plustegnet tilføjes automatisk.",
+    "sendCodeA11y": "Send login-kode til dette telefonnummer",
+    "signInToContinue": "Log ind for at fortsætte",
+    "signInToContinueBody": "Du skal logge ind for at udføre denne handling.",
+    "closeAuthModal": "Luk login-vinduet",
+    "legalLine": "Ved at fortsætte accepterer du vores <terms>Servicevilkår</terms> og <privacy>Privatlivspolitik</privacy>.",
+    "chooseUsernameBody": "Vælg et brugernavn og et visningsnavn for at fortsætte. Du kan ændre dem senere.",
+    "checkingAvailability": "Tjekker tilgængelighed…",
+    "usernameTakenHint": "Navnet er taget — prøv at tilføje tal eller en understregning",
+    "displayNameLength": "Visningsnavn skal være på 2-50 tegn."
   },
   "explorePage": {
     "searchPlaceholder": "Søg personer, opslag eller indhold...",
@@ -3566,7 +3594,13 @@
     "thatsGoneToo": "Det er også væk — start alligevel forfra",
     "tryBiometrics": "Prøv biometri på denne telefon",
     "unlockWithBiometrics": "Lås op med biometri",
-    "confirmStartOver": "Bekræft, at du vil starte forfra med en ny tegnebog"
+    "confirmStartOver": "Bekræft, at du vil starte forfra med en ny tegnebog",
+    "understandOldWallet": "Jeg forstår, at den gamle tegnebog og alt i den vil være uden for min rækkevidde for altid",
+    "savedTwelveWords": "Jeg har gemt disse 12 ord et sikkert sted",
+    "legacyRecovered": "Vi har bekræftet din gamle konto{{suffix}} og gendannet dens tegnebog. Angiv en adgangskode, der beskytter den på denne enhed — på denne telefon og alle andre steder — fra nu af.",
+    "passwordMin": "Adgangskode (mindst {{min}} tegn)",
+    "newPasswordMin": "Ny adgangskode (mindst {{min}} tegn)",
+    "newWalletPasswordMin": "Adgangskode til ny tegnebog (mindst {{min}} tegn)"
   },
   "transcript": {
     "title": "Udskrift",
@@ -4053,5 +4087,21 @@
       "megalodon": "Her er din krone — du er app royalty nu"
     },
     "continue": "Tilbage til DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Meget svag",
+    "weak": "Svag",
+    "fair": "Middel",
+    "good": "God",
+    "strong": "Stærk",
+    "common": "Dette er en almindelig eller forudsigelig adgangskode",
+    "tooShort": "Brug mindst {{n}} tegn",
+    "mixChars": "Bland store og små bogstaver, tal og symboler",
+    "breached": "Denne adgangskode har optrådt i et datalæk — vælg en anden"
+  },
+  "phoneHint": {
+    "leadingZero": "Start med din landekode (44 for Storbritannien, 1 for USA) — udelad det indledende 0.",
+    "tooLong": "Det er {{n}} cifre — et telefonnummer har højst {{max}}.",
+    "missingCountryCode": "Tjek landekoden — numre kopieret fra Kontakter mangler den ofte."
   }
 }

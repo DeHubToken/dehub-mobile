@@ -1459,7 +1459,35 @@
     "pasteFromClipboard": "Ku dhaji clipboard-ka",
     "learnMoreAt": "Wax dheeraad ah ka baro dehub.io",
     "accountsOnDevice": "Koontooyinka qalabkan",
-    "use": "Isticmaal"
+    "use": "Isticmaal",
+    "verificationCode": "Koodhka xaqiijinta",
+    "sixDigitCode": "Koodh 6 god ah",
+    "verify": "Xaqiiji",
+    "resendCode": "Dib u dir koodhka",
+    "noImportedAccounts": "Weli lama soo dejin xisaabaad.",
+    "importedAccount": "Xisaab la soo dejiyay",
+    "useAccount": "Isticmaal xisaabta {{name}}",
+    "removeAccount": "Ka saar xisaabta {{name}}",
+    "showPrivateKey": "Muuji furaha gaarka ah",
+    "hidePrivateKey": "Qari furaha gaarka ah",
+    "invalidPrivateKey": "Fure gaar ah oo aan sax ahayn",
+    "couldNotImportWallet": "Boorsada lama soo dejin karin",
+    "unlockToUse": "Fur boorsada DeHub si aad u isticmaasho",
+    "noScreenLock": "Taleefankan ma laha qufulka shaashadda, sidaas awgeed qof kasta oo haysta wuxuu isticmaali karaa boorsadaada. Ku samee koodh ama biyometrik goobaha qalabka.",
+    "noStoredKey": "Xisaabtan looma kaydin fure gaar ah. Fadlan dib u soo deji boorsadan si furaheeda loo xidhiidhiyo.",
+    "failedToUseAccount": "Xisaabtan lama isticmaali karin",
+    "continueWithPhone": "Ku sii wad taleefanka",
+    "phoneNumberA11y": "Lambarka taleefanka, marka hore koodhka dalka",
+    "phoneNumberHint": "Geli lambarkaaga adigoo ka bilaabaya koodhka dalka. Calaamadda lagu darayo ayaa si toos ah loo darayaa.",
+    "sendCodeA11y": "U dir koodhka gelitaanka lambarkan taleefanka",
+    "signInToContinue": "Soo gal si aad u sii wadato",
+    "signInToContinueBody": "Waa inaad soo gashaa si aad tallaabadan u qabato.",
+    "closeAuthModal": "Xir daaqadda gelitaanka",
+    "legalLine": "Adigoo sii wata, waxaad ogolaanaysaa <terms>Shuruudaha Adeegga</terms> iyo <privacy>Siyaasadda Arrimaha Gaarka ah</privacy>.",
+    "chooseUsernameBody": "Dooro magac isticmaale iyo magac muuqda si aad u sii wadato. Markii dambe waad bedeli kartaa.",
+    "checkingAvailability": "Waxaa la hubinayaa helitaanka…",
+    "usernameTakenHint": "Magacan waa la qaatay — isku day inaad ku darto tirooyin ama xariiq hoose",
+    "displayNameLength": "Magaca muuqdaa waa inuu ka koobnaadaa 2-50 xaraf."
   },
   "messages": {
     "smartRepliesOff": "Jawaabaha la soo jeediyay waa la damiyay",
@@ -3553,7 +3581,13 @@
     "thatsGoneToo": "Taasna way lumtay — si kastaba dib u bilow",
     "tryBiometrics": "Isku day biometrics taleefankan",
     "unlockWithBiometrics": "Ku fur biometrics",
-    "confirmStartOver": "Xaqiiji inaad rabto inaad dib u bilowdo boorso cusub"
+    "confirmStartOver": "Xaqiiji inaad rabto inaad dib u bilowdo boorso cusub",
+    "understandOldWallet": "Waan fahmay in boorsada hore, iyo wax kasta oo ku jira, ay weligeed iga maqnaan doonto",
+    "savedTwelveWords": "Waxaan 12-kan eray ku kaydiyay meel ammaan ah",
+    "legacyRecovered": "Waan xaqiijinay xisaabtaadii hore{{suffix}} waana soo celinnay boorsadeeda. Samee erayga sirta ah si loo ilaaliyo qalabkan — taleefankan iyo meel kasta oo kale, hadda ka bilaabmaya.",
+    "passwordMin": "Erayga sirta (ugu yaraan {{min}} xaraf)",
+    "newPasswordMin": "Eray sir cusub (ugu yaraan {{min}} xaraf)",
+    "newWalletPasswordMin": "Erayga sirta boorsada cusub (ugu yaraan {{min}} xaraf)"
   },
   "transcript": {
     "title": "Qoraal hadal",
@@ -4039,5 +4073,21 @@
       "megalodon": "Halkan waa taajkaaga — waxaad tahay app Royalty hadda"
     },
     "continue": "Ku noqo DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Aad u daciif ah",
+    "weak": "Daciif",
+    "fair": "Dhexdhexaad",
+    "good": "Fiican",
+    "strong": "Xoogan",
+    "common": "Kani waa erayga sirta ah oo caan ah ama si fudud loo malayn karo",
+    "tooShort": "Isticmaal ugu yaraan {{n}} xaraf",
+    "mixChars": "Isku dar xarfo waaweyn/yaryar, tirooyin iyo astaamo",
+    "breached": "Erayga sirta ahi wuxuu ka soo muuqday xogdhac — mid kale dooro"
+  },
+  "phoneHint": {
+    "leadingZero": "Ku bilow koodhka dalkaaga (44 UK, 1 US) — ka saar 0-da hore.",
+    "tooLong": "Kaasi waa {{n}} god — lambarka taleefanku ugu badnaan wuxuu leeyahay {{max}}.",
+    "missingCountryCode": "Hubi koodhka dalka — lambarrada laga koobiyay Xiriirada badanaa ma laha."
   }
 }

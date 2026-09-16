@@ -359,7 +359,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
             color={acknowledged ? authColors.label : authColors.muted}
           />
           <Text style={[authText.body, { flex: 1, color: authColors.label }]}>
-            I understand the old wallet, and anything in it, will be out of my reach for good
+            {t("walletSetup.understandOldWallet")}
           </Text>
         </TouchableOpacity>
 
@@ -610,7 +610,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           setError(
             full.breached === true
               ? "This password has appeared in a data breach — choose a different one"
-              : full.warnings[0] || t("walletSetup.chooseStronger")
+              : full.warnings[0] ? t(full.warnings[0], { n: MIN_PASSWORD_LENGTH }) : t("walletSetup.chooseStronger")
           );
           return;
         }
@@ -680,7 +680,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           setError(
             full.breached === true
               ? "This password has appeared in a data breach — choose a different one"
-              : full.warnings[0] || t("walletSetup.chooseStronger")
+              : full.warnings[0] ? t(full.warnings[0], { n: MIN_PASSWORD_LENGTH }) : t("walletSetup.chooseStronger")
           );
           return;
         }
@@ -788,7 +788,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
             setError(
               full.breached === true
                 ? "This password has appeared in a data breach — choose a different one"
-                : full.warnings[0] || t("walletSetup.chooseStronger")
+                : full.warnings[0] ? t(full.warnings[0], { n: MIN_PASSWORD_LENGTH }) : t("walletSetup.chooseStronger")
             );
             return;
           }
@@ -941,7 +941,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   color={phraseAcknowledged ? authColors.label : authColors.muted}
                 />
                 <Text style={[authText.body, { flex: 1, color: authColors.label }]}>
-                  I&apos;ve saved these 12 words somewhere safe
+                  {t("walletSetup.savedTwelveWords")}
                 </Text>
               </TouchableOpacity>
 
@@ -1020,7 +1020,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               ) : (
                 <View>
                   <AuthField
-                    label={`Password (min ${MIN_PASSWORD_LENGTH} chars)`}
+                    label={t("walletSetup.passwordMin", { min: MIN_PASSWORD_LENGTH })}
                     value={password}
                     onChangeText={setPassword}
                     placeholder={t("walletSetup.password")}
@@ -1132,9 +1132,9 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           {mode === "legacy-recovered" && request?.mode === "legacy-recovered" && (
             <View>
               <Text style={[authText.body, { marginBottom: 16 }]}>
-                Verified your old account{request.label ? ` (${request.label})` : ""} and recovered
-                its wallet. Set a password to protect it on this device — on this phone and
-                everywhere else, from now on.
+                {t("walletSetup.legacyRecovered", {
+                  suffix: request.label ? ` (${request.label})` : "",
+                })}
               </Text>
               {legacyRecoveredAddress && (
                 <View style={styles.summaryCard}>
@@ -1146,7 +1146,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               )}
 
               <AuthField
-                label={`New password (min ${MIN_PASSWORD_LENGTH} chars)`}
+                label={t("walletSetup.newPasswordMin", { min: MIN_PASSWORD_LENGTH })}
                 value={password}
                 onChangeText={setPassword}
                 placeholder={t("walletSetup.password")}
@@ -1297,7 +1297,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     </Text>
                   )}
                   <AuthField
-                    label={`New wallet password (min ${MIN_PASSWORD_LENGTH} chars)`}
+                    label={t("walletSetup.newWalletPasswordMin", { min: MIN_PASSWORD_LENGTH })}
                     value={password}
                     onChangeText={setPassword}
                     placeholder={t("walletSetup.password")}
@@ -1399,7 +1399,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               {restoreNeedsPassword ? (
                 <>
                   <AuthField
-                    label={`New wallet password (min ${MIN_PASSWORD_LENGTH} chars)`}
+                    label={t("walletSetup.newWalletPasswordMin", { min: MIN_PASSWORD_LENGTH })}
                     value={password}
                     onChangeText={setPassword}
                     placeholder={t("walletSetup.password")}

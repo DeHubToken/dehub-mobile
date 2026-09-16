@@ -69,18 +69,24 @@ describe("isValidNationalDigits", () => {
 
 describe("phoneEntryHint", () => {
   it("calls out the trunk prefix, the one mistake that looks right", () => {
-    expect(phoneEntryHint("07911123456", "07911123456")).toMatch(/country code/i);
+    expect(phoneEntryHint("07911123456", "07911123456")?.key).toBe(
+      "phoneHint.leadingZero",
+    );
   });
 
   it("counts out an over-long number", () => {
     const digits = "1".repeat(18);
-    expect(phoneEntryHint(digits, digits)).toMatch(/18 digits/);
+    const hint = phoneEntryHint(digits, digits);
+    expect(hint?.key).toBe("phoneHint.tooLong");
+    expect(hint?.values?.n).toBe(18);
   });
 
   it("flags a formatted paste that carries no international prefix", () => {
     // Reduces to 4155552671, which is a well-formed number in Switzerland.
     // Nothing about the digits alone reveals the missing country code.
-    expect(phoneEntryHint("(415) 555-2671", "4155552671")).toMatch(/country code/i);
+    expect(phoneEntryHint("(415) 555-2671", "4155552671")?.key).toBe(
+      "phoneHint.missingCountryCode",
+    );
   });
 
   it("stays quiet when the paste says which country it is", () => {

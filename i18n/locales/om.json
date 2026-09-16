@@ -1496,7 +1496,35 @@
     "pasteFromClipboard": "Kiliippoordii irraa maxxansi",
     "learnMoreAt": "dehub.io irratti dabalataan baradhu",
     "accountsOnDevice": "Herrega meeshaa kana irra jiran",
-    "use": "Fayyadami"
+    "use": "Fayyadami",
+    "verificationCode": "Koodii mirkaneessaa",
+    "sixDigitCode": "Koodii lakkoofsa 6",
+    "verify": "Mirkaneessi",
+    "resendCode": "Koodii irra deebi'ii ergi",
+    "noImportedAccounts": "Herga galfaman ammaaf hin jiran.",
+    "importedAccount": "Herrega galfame",
+    "useAccount": "Herrega {{name}} fayyadami",
+    "removeAccount": "Herrega {{name}} haqi",
+    "showPrivateKey": "Furtuu dhuunfaa agarsiisi",
+    "hidePrivateKey": "Furtuu dhuunfaa dhoksi",
+    "invalidPrivateKey": "Furtuun dhuunfaa sirrii miti",
+    "couldNotImportWallet": "Boorsaan galfamuu hin dandeenye",
+    "unlockToUse": "Boorsaa DeHub kana fayyadamuuf banaa",
+    "noScreenLock": "Bilbilli kun cufaa iskiriinii hin qabu, kanaaf namni qabatu kamiyyuu boorsaa kee fayyadamuu danda'a. Qindaa'ina meeshaa keessatti paaskoodii ykn biyoomeetiriksii kaa'i.",
+    "noStoredKey": "Herrega kanaaf furtuun dhuunfaa hin kuufamne. Furtuu isaa walqabsiisuuf boorsaa kana irra deebi'ii galchi.",
+    "failedToUseAccount": "Herrega kana fayyadamuun hin danda'amne",
+    "continueWithPhone": "Bilbilaan itti fufi",
+    "phoneNumberA11y": "Lakkoofsa bilbilaa, dursa koodii biyyaa",
+    "phoneNumberHint": "Lakkoofsa kee koodii biyyaatiin jalqabi. Mallattoon idaa ofumaan siif ida'ama.",
+    "sendCodeA11y": "Koodii seensaa lakkoofsa bilbilaa kanaaf ergi",
+    "signInToContinue": "Itti fufuuf seeni",
+    "signInToContinueBody": "Gocha kana raawwachuuf seenuu qabda.",
+    "closeAuthModal": "Foddaa seensaa cufi",
+    "legalLine": "Itti fufuudhaan, <terms>Haala Tajaajilaa</terms> fi <privacy>Imaammata Dhuunfaa</privacy> keenya fudhatta.",
+    "chooseUsernameBody": "Itti fufuuf maqaa fayyadamaa fi maqaa mul'atu filadhu. Booda jijjiiruu dandeessa.",
+    "checkingAvailability": "Argamuu ilaalaa jira…",
+    "usernameTakenHint": "Maqaan kun fudhatameera — lakkoofsa ykn sarara jala ida'uu yaali",
+    "displayNameLength": "Maqaan mul'atu arfii 2-50 ta'uu qaba."
   },
   "messages": {
     "smartRepliesOff": "Deebiiwwan yaadaman dhaamamaniiru",
@@ -3626,7 +3654,13 @@
     "thatsGoneToo": "Sunis badeera — haa taʼu malee irra deebiʼii jalqabi",
     "tryBiometrics": "Bilbila kana irratti baayoomeetirikii yaali",
     "unlockWithBiometrics": "Baayoomeetirikiin bani",
-    "confirmStartOver": "Boorsaa haaraadhaan irra deebiʼanii jalqabuu barbaaduu kee mirkaneessi"
+    "confirmStartOver": "Boorsaa haaraadhaan irra deebiʼanii jalqabuu barbaaduu kee mirkaneessi",
+    "understandOldWallet": "Boorsaan durii fi wanti isa keessa jiru hundi bara baraan harka koo akka hin jirre nan hubadha",
+    "savedTwelveWords": "Jechoota 12 kanneen bakka nageenya qabutti kaa'eera",
+    "legacyRecovered": "Herrega kee durii{{suffix}} mirkaneessinee boorsaa isaa deebisneerra. Ammaan booda meeshaa kana irratti — bilbila kanaa fi bakka biraa hundatti — eeguuf jecha darbii kaa'i.",
+    "passwordMin": "Jecha darbii (yoo xiqqaate arfii {{min}})",
+    "newPasswordMin": "Jecha darbii haaraa (yoo xiqqaate arfii {{min}})",
+    "newWalletPasswordMin": "Jecha darbii boorsaa haaraa (yoo xiqqaate arfii {{min}})"
   },
   "transcript": {
     "title": "Barreeffama sagalee",
@@ -4112,5 +4146,21 @@
       "megalodon": "Kunoo gonfoo kee — ati amma app royalty taate"
     },
     "continue": "Gara DeHub tti deebi&#39;a"
+  },
+  "passwordStrength": {
+    "veryWeak": "Baay'ee dadhabaa",
+    "weak": "Dadhabaa",
+    "fair": "Giddu galeessa",
+    "good": "Gaarii",
+    "strong": "Cimaa",
+    "common": "Kun jecha darbii beekamaa ykn salphaatti tilmaamamu dha",
+    "tooShort": "Yoo xiqqaate arfii {{n}} fayyadami",
+    "mixChars": "Qubee guddaa/xiqqaa, lakkoofsaa fi mallattoo walitti makii",
+    "breached": "Jechi darbii kun dhangala'aa odeeffannoo keessatti mul'ateera — kan biraa fili"
+  },
+  "phoneHint": {
+    "leadingZero": "Koodii biyya keetiin jalqabi (44 UK, 1 US) — 0 duraa buusi.",
+    "tooLong": "Sun lakkoofsa {{n}} — lakkoofsi bilbilaa yoo baay'ate {{max}} qaba.",
+    "missingCountryCode": "Koodii biyyaa mirkaneeffadhu — lakkoofsonni Quunnamtii irraa waraabaman yeroo baay'ee isa hin qaban."
   }
 }

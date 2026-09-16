@@ -1386,7 +1386,35 @@
     "pasteFromClipboard": "Apetaho avy amin'ny fanaovan-tsoratra",
     "learnMoreAt": "Fantaro bebe kokoa ao amin'ny dehub.io",
     "accountsOnDevice": "Kaonty amin'ity fitaovana ity",
-    "use": "Ampiasao"
+    "use": "Ampiasao",
+    "verificationCode": "Kaody fanamarinana",
+    "sixDigitCode": "Kaody misy isa 6",
+    "verify": "Hamarino",
+    "resendCode": "Alefaso indray ny kaody",
+    "noImportedAccounts": "Mbola tsy misy kaonty nampidirina.",
+    "importedAccount": "Kaonty nampidirina",
+    "useAccount": "Ampiasao ny kaonty {{name}}",
+    "removeAccount": "Esory ny kaonty {{name}}",
+    "showPrivateKey": "Asehoy ny lakile manokana",
+    "hidePrivateKey": "Afeno ny lakile manokana",
+    "invalidPrivateKey": "Lakile manokana tsy mety",
+    "couldNotImportWallet": "Tsy voampiditra ny kitapom-bola",
+    "unlockToUse": "Vahao ity kitapom-bola DeHub ity mba hampiasa azy",
+    "noScreenLock": "Tsy misy hidin'efijery ity finday ity, ka izay rehetra mihazona azy dia afaka mampiasa ny kitapom-bolanao. Mametraha kaody na biometrika ao amin'ny kirakira fitaovana.",
+    "noStoredKey": "Tsy misy lakile manokana voatahiry ho an'ity kaonty ity. Ampidiro indray ity kitapom-bola ity mba hampifandray ny lakilany.",
+    "failedToUseAccount": "Tsy voampiasa ity kaonty ity",
+    "continueWithPhone": "Hanohy amin'ny finday",
+    "phoneNumberA11y": "Laharana finday, kaody firenena aloha",
+    "phoneNumberHint": "Ampidiro ny laharanao manomboka amin'ny kaody firenena. Ho ampiana ho anao ny marika plus.",
+    "sendCodeA11y": "Alefaso amin'ity laharana ity ny kaody fidirana",
+    "signInToContinue": "Midira mba hanohy",
+    "signInToContinueBody": "Mila miditra ianao hanao ity hetsika ity.",
+    "closeAuthModal": "Akatony ny varavarankely fidirana",
+    "legalLine": "Amin'ny fanohizana dia manaiky ny <terms>Fepetra fampiasana</terms> sy ny <privacy>Politikan'ny fiainana manokana</privacy> ianao.",
+    "chooseUsernameBody": "Misafidiana anaram-pikambana sy anarana aseho mba hanohy. Azonao ovaina any aoriana izy ireo.",
+    "checkingAvailability": "Manamarina ny fisiana…",
+    "usernameTakenHint": "Efa misy mampiasa io anarana io — andramo asiana isa na tsipika ambany",
+    "displayNameLength": "Tsy maintsy misy litera 2-50 ny anarana aseho."
   },
   "messages": {
     "smartRepliesOff": "Novonoina ny valiny atolotra",
@@ -3641,7 +3669,13 @@
     "thatsGoneToo": "Very koa izany — manomboka indray ihany",
     "tryBiometrics": "Andramo ny biometrika amin'ity finday ity",
     "unlockWithBiometrics": "Sokafy amin'ny biometrika",
-    "confirmStartOver": "Hamarino fa te hanomboka indray amin'ny poketra vaovao ianao"
+    "confirmStartOver": "Hamarino fa te hanomboka indray amin'ny poketra vaovao ianao",
+    "understandOldWallet": "Fantatro fa ho lavitra ny tanako mandrakizay ny kitapom-bola taloha sy izay rehetra ao anatiny",
+    "savedTwelveWords": "Efa notehiriziko toerana azo antoka ireo teny 12 ireo",
+    "legacyRecovered": "Voamarina ny kaontinao taloha{{suffix}} ary voaverina ny kitapom-bolany. Mametraha tenimiafina hiarovana azy amin'ity fitaovana ity — amin'ity finday ity sy any amin'ny toerana rehetra, manomboka izao.",
+    "passwordMin": "Tenimiafina (litera {{min}} farafahakeliny)",
+    "newPasswordMin": "Tenimiafina vaovao (litera {{min}} farafahakeliny)",
+    "newWalletPasswordMin": "Tenimiafinan'ny kitapom-bola vaovao (litera {{min}} farafahakeliny)"
   },
   "transcript": {
     "title": "Fandikana an-tsoratra",
@@ -4125,5 +4159,21 @@
       "megalodon": "Indro ny satroboninahitra — ianao fampiharana ny fanjakany ankehitriny"
     },
     "continue": "Bumalik sa DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Malemy be",
+    "weak": "Malemy",
+    "fair": "Antonony",
+    "good": "Tsara",
+    "strong": "Mahery",
+    "common": "Tenimiafina mahazatra na mora vinaniana ity",
+    "tooShort": "Ampiasao litera {{n}} farafahakeliny",
+    "mixChars": "Afangaroy ny litera lehibe/kely, isa ary marika",
+    "breached": "Efa niseho tamin'ny fitsofohan-data ity tenimiafina ity — misafidiana hafa"
+  },
+  "phoneHint": {
+    "leadingZero": "Manombòha amin'ny kaodin'ny firenenao (44 ho an'i Angletera, 1 ho an'i Etazonia) — esory ny 0 eo aloha.",
+    "tooLong": "Isa {{n}} izany — misy {{max}} farafaharatsiny ny laharana finday.",
+    "missingCountryCode": "Hamarino ny kaody firenena — matetika tsy ao amin'ny laharana nadika avy amin'ny Kaonty."
   }
 }

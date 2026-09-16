@@ -51,7 +51,7 @@ import { AuthService } from "../../services";
 import { createLogger } from "../../libs/logger";
 import { useWalletAuth } from "../../hooks/useWalletAuth";
 import { useScrollFieldIntoView } from "../../hooks/useScrollFieldIntoView";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 const log = createLogger("SignInGatewayModal");
 
@@ -602,9 +602,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           }}
         >
           <View style={{ alignItems: "center", marginTop: 8, marginBottom: 24 }}>
-            <Text style={[authText.title, { marginBottom: 8 }]}>Sign in to continue</Text>
+            <Text style={[authText.title, { marginBottom: 8 }]}>{t("auth.signInToContinue")}</Text>
             <Text style={[authText.body, { textAlign: "center" }]}>
-              You need to sign in to perform this action.
+              {t("auth.signInToContinueBody")}
             </Text>
           </View>
           <AuthErrorNotice message={inlineError} style={{ marginBottom: 16 }} />
@@ -680,23 +680,28 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           />
           <View style={{ marginTop: 24, marginBottom: 16 }}>
             <Text style={[authText.caption, { textAlign: "center" }]}>
-              By continuing, you agree to our{" "}
-              <Text
-                style={styles.legalLink}
-                onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
-                accessibilityRole="link"
-              >
-                Terms of Service
-              </Text>{" "}
-              and{" "}
-              <Text
-                style={styles.legalLink}
-                onPress={() => openInApp(PRIVACY_POLICY_LINK)}
-                accessibilityRole="link"
-              >
-                Privacy Policy
-              </Text>
-              .
+              {/* The two links travel with the sentence: languages that put the
+                  policy before the terms, or wrap them in different particles,
+                  only read correctly when the tags move with the words. */}
+              <Trans
+                i18nKey="auth.legalLine"
+                components={{
+                  terms: (
+                    <Text
+                      style={styles.legalLink}
+                      onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
+                      accessibilityRole="link"
+                    />
+                  ),
+                  privacy: (
+                    <Text
+                      style={styles.legalLink}
+                      onPress={() => openInApp(PRIVACY_POLICY_LINK)}
+                      accessibilityRole="link"
+                    />
+                  ),
+                }}
+              />
             </Text>
           </View>
         </ScrollView>
@@ -710,7 +715,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             label={t("common.cancel")}
             onPress={onClose}
             disabled={isBusy || needsUsername}
-            accessibilityLabel="Close authentication modal"
+            accessibilityLabel={t("auth.closeAuthModal")}
           />
         </View>
       </SafeAreaView>

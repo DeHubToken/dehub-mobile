@@ -1446,7 +1446,35 @@
     "pasteFromClipboard": "A fara ka bɔ marayɔrɔ la",
     "learnMoreAt": "Kunnafoni wɛrɛ sɔrɔ dehub.io kan",
     "accountsOnDevice": "Jate minnu bɛ nin minɛn kan",
-    "use": "A baara"
+    "use": "A baara",
+    "verificationCode": "Sɛbɛnni sɛgɛsɛgɛli kode",
+    "sixDigitCode": "Kode dama 6",
+    "verify": "Sɛgɛsɛgɛ",
+    "resendCode": "Kode ci kokura",
+    "noImportedAccounts": "Jate donnen tɛ yen fɔlɔ.",
+    "importedAccount": "Jate donnen",
+    "useAccount": "Jate {{name}} labaara",
+    "removeAccount": "Jate {{name}} bɔ",
+    "showPrivateKey": "Kilisi dogolen jira",
+    "hidePrivateKey": "Kilisi dogolen dogo",
+    "invalidPrivateKey": "Kilisi dogolen man ɲɛ",
+    "couldNotImportWallet": "Wari maraso donni ma se",
+    "unlockToUse": "Nin DeHub wari maraso da yɛlɛ walisa ka a labaara",
+    "noScreenLock": "Nin telefɔni tɛ ni ekaran datugulan ye, o la mɔgɔ o mɔgɔ min y'a minɛ, o bɛ se ka i ka wari maraso labaara. Ka tɔgɔ gundolen walima bolonkɔnidɛsɛ sigi minanw ka labɛnw kɔnɔ.",
+    "noStoredKey": "Kilisi dogolen si tɛ marali nin jate la. I ka nin wari maraso don kokura walisa a kilisi ka nɔrɔ.",
+    "failedToUseAccount": "Nin jate ma se ka labaara",
+    "continueWithPhone": "Taa ɲɛ ni telefɔni ye",
+    "phoneNumberA11y": "Telefɔni nimɔrɔ, jamana kode fɔlɔ",
+    "phoneNumberHint": "I ka nimɔrɔ sɛbɛn ka daminɛ ni jamana kode ye. Fara taamasiɲɛ bɛ fara a kan a yɛrɛ ma.",
+    "sendCodeA11y": "Donni kode ci nin telefɔni nimɔrɔ ma",
+    "signInToContinue": "I ka don walisa ka taa ɲɛ",
+    "signInToContinueBody": "I ka kan ka don walisa ka nin baara kɛ.",
+    "closeAuthModal": "Donni fɛnɛtiri datugu",
+    "legalLine": "N'i taara ɲɛ, i sɔnna an ka <terms>Baara sariyaw</terms> ni <privacy>Gundo politiki</privacy> ma.",
+    "chooseUsernameBody": "Baarakɛla tɔgɔ ni jirali tɔgɔ sugandi walisa ka taa ɲɛ. I bɛ se k'u yɛlɛma kɔfɛ.",
+    "checkingAvailability": "Sɔrɔli sɛgɛsɛgɛli bɛ kɛ…",
+    "usernameTakenHint": "Tɔgɔ in tara — a lajɛ ni jatedenw walima jukɔrɔsira ye",
+    "displayNameLength": "Jirali tɔgɔ ka kan ka kɛ sɛbɛnden 2 fo 50 ye."
   },
   "messages": {
     "smartRepliesOff": "Jaabi fɔlenw fagara",
@@ -3506,7 +3534,13 @@
     "thatsGoneToo": "O fana tununna — hali o, daminɛ kokura",
     "tryBiometrics": "Bolonɔ lajɛ nin telefɔni kan",
     "unlockWithBiometrics": "Bolonɔ la a da wuli",
-    "confirmStartOver": "Sɛmɛntiya ko i b'a fɛ ka daminɛ kokura ni wari maralan kura ye"
+    "confirmStartOver": "Sɛmɛntiya ko i b'a fɛ ka daminɛ kokura ni wari maralan kura ye",
+    "understandOldWallet": "N y'a faamu ko wari maraso kɔrɔ ni a kɔnɔfɛnw bɛɛ tɛna se n bolo tugun abada",
+    "savedTwelveWords": "N ye nin daɲɛ 12 mara yɔrɔ lakanani dɔ la",
+    "legacyRecovered": "An y'i ka jate kɔrɔ{{suffix}} sɛgɛsɛgɛ ani k'a ka wari maraso sɔrɔ. Tɔgɔ gundolen sigi walisa k'a lakana nin minan kan — nin telefɔni kan ani yɔrɔ bɛɛ, ka bɔ sisan.",
+    "passwordMin": "Tɔgɔ gundolen (sɛbɛnden {{min}} dɔɔni dɔɔni)",
+    "newPasswordMin": "Tɔgɔ gundolen kura (sɛbɛnden {{min}} dɔɔni dɔɔni)",
+    "newWalletPasswordMin": "Wari maraso kura tɔgɔ gundolen (sɛbɛnden {{min}} dɔɔni dɔɔni)"
   },
   "transcript": {
     "title": "Sɛbɛnni",
@@ -3989,5 +4023,21 @@
       "megalodon": "I ka masafugulan filɛ nin ye — i ye App Royalty ye sisan"
     },
     "continue": "An ka kɔsegi ka na."
+  },
+  "passwordStrength": {
+    "veryWeak": "A barika ka dɔgɔn kosɛbɛ",
+    "weak": "A barika ka dɔgɔn",
+    "fair": "A ka ɲi dɔɔni",
+    "good": "A ka ɲi",
+    "strong": "A barika ka bon",
+    "common": "Nin ye tɔgɔ gundolen ye min ka teli ka dɔn",
+    "tooShort": "Sɛbɛnden {{n}} labaara dɔɔni dɔɔni",
+    "mixChars": "Sɛbɛnden belebeleba ni fitininw, jate ni taamasiɲɛw ɲagami",
+    "breached": "Nin tɔgɔ gundolen bɔra kunnafoni bɔyɔrɔ dɔ la — dɔ wɛrɛ sugandi"
+  },
+  "phoneHint": {
+    "leadingZero": "Daminɛ ni i ka jamana kode ye (44 Angilɛtɛri, 1 Ameriki) — 0 fɔlɔ bɔ.",
+    "tooLong": "O ye jate {{n}} ye — telefɔni nimɔrɔ jate ka ca ni {{max}} ye.",
+    "missingCountryCode": "Jamana kode lajɛ — nimɔrɔw minnu bɔra kunnafonidilaw la, o tɛ sɔrɔ u la tuma caman na."
   }
 }

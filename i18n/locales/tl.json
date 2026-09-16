@@ -1663,7 +1663,35 @@
     "pasteFromClipboard": "I-paste mula sa clipboard",
     "learnMoreAt": "Matuto pa sa dehub.io",
     "accountsOnDevice": "Mga account sa device na ito",
-    "use": "Gamitin"
+    "use": "Gamitin",
+    "verificationCode": "Verification code",
+    "sixDigitCode": "6-digit na code",
+    "verify": "I-verify",
+    "resendCode": "Ipadala ulit ang code",
+    "noImportedAccounts": "Wala pang na-import na account.",
+    "importedAccount": "Na-import na account",
+    "useAccount": "Gamitin ang account na {{name}}",
+    "removeAccount": "Alisin ang account na {{name}}",
+    "showPrivateKey": "Ipakita ang private key",
+    "hidePrivateKey": "Itago ang private key",
+    "invalidPrivateKey": "Hindi wastong private key",
+    "couldNotImportWallet": "Hindi ma-import ang wallet",
+    "unlockToUse": "I-unlock ang DeHub wallet na ito para magamit",
+    "noScreenLock": "Walang screen lock ang teleponong ito, kaya kahit sino ang humawak nito ay pwedeng gamitin ang wallet mo. Maglagay ng passcode o biometrics sa device settings mo.",
+    "noStoredKey": "Walang naka-imbak na private key para sa account na ito. Pakiimport ulit ang wallet na ito para ma-link ang key nito.",
+    "failedToUseAccount": "Hindi magamit ang account na ito",
+    "continueWithPhone": "Magpatuloy gamit ang Telepono",
+    "phoneNumberA11y": "Numero ng telepono, country code muna",
+    "phoneNumberHint": "Ilagay ang numero mo simula sa country code. Awtomatikong idadagdag ang plus sign.",
+    "sendCodeA11y": "Ipadala ang sign-in code sa numerong ito",
+    "signInToContinue": "Mag-sign in para magpatuloy",
+    "signInToContinueBody": "Kailangan mong mag-sign in para gawin ito.",
+    "closeAuthModal": "Isara ang sign-in window",
+    "legalLine": "Sa pagpapatuloy, sumasang-ayon ka sa aming <terms>Mga Tuntunin ng Serbisyo</terms> at <privacy>Patakaran sa Privacy</privacy>.",
+    "chooseUsernameBody": "Pumili ng username at display name para magpatuloy. Puwede mo itong palitan mamaya.",
+    "checkingAvailability": "Sinusuri ang availability…",
+    "usernameTakenHint": "Kuha na ang username na ito — subukang magdagdag ng numero o underscore",
+    "displayNameLength": "Dapat 2-50 karakter ang display name."
   },
   "bookmarks": {
     "title": "Your Bookmarks",
@@ -3740,7 +3768,13 @@
     "thatsGoneToo": "Nawala rin iyon — magsimula pa rin muli",
     "tryBiometrics": "Subukan ang biometrics sa teleponong ito",
     "unlockWithBiometrics": "I-unlock gamit ang biometrics",
-    "confirmStartOver": "Kumpirmahin na gusto mong magsimula muli gamit ang bagong wallet"
+    "confirmStartOver": "Kumpirmahin na gusto mong magsimula muli gamit ang bagong wallet",
+    "understandOldWallet": "Nauunawaan ko na ang lumang wallet, at lahat ng laman nito, ay tuluyan nang mawawala sa akin",
+    "savedTwelveWords": "Nai-save ko na ang 12 salitang ito sa ligtas na lugar",
+    "legacyRecovered": "Na-verify ang dati mong account{{suffix}} at narekober ang wallet nito. Maglagay ng password na magpoprotekta rito sa device na ito — sa teleponong ito at kahit saan, simula ngayon.",
+    "passwordMin": "Password (hindi bababa sa {{min}} karakter)",
+    "newPasswordMin": "Bagong password (hindi bababa sa {{min}} karakter)",
+    "newWalletPasswordMin": "Password ng bagong wallet (hindi bababa sa {{min}} karakter)"
   },
   "transcript": {
     "title": "Transcript",
@@ -4225,5 +4259,21 @@
       "blueWhale": "Ang pinakamalaking bagay na nabuhay. Iyan ay ikaw.",
       "megalodon": "Narito ang iyong korona — ikaw ay app royalty ngayon"
     }
+  },
+  "passwordStrength": {
+    "veryWeak": "Napakahina",
+    "weak": "Mahina",
+    "fair": "Katamtaman",
+    "good": "Maganda",
+    "strong": "Malakas",
+    "common": "Karaniwan o madaling hulaan ang password na ito",
+    "tooShort": "Gumamit ng hindi bababa sa {{n}} karakter",
+    "mixChars": "Paghaluin ang malaki/maliit na letra, numero, at simbolo",
+    "breached": "Lumabas ang password na ito sa isang data breach — pumili ng iba"
+  },
+  "phoneHint": {
+    "leadingZero": "Magsimula sa country code mo (44 para sa UK, 1 para sa US) — alisin ang unang 0.",
+    "tooLong": "{{n}} digit iyan — ang phone number ay hanggang {{max}} lang.",
+    "missingCountryCode": "Tingnan ang country code — kadalasang wala nito ang mga numerong kinopya sa Contacts."
   }
 }
