@@ -1413,7 +1413,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 audioUrl={getAudioUrl(item.audioUrl!)}
                 duration={item.audioDuration || 0}
                 tokenId={tokenId}
-                listens={item.listens}
                 isVisible={isVisible}
                 isSignedIn={isSignedIn}
                 title={title}
