@@ -31,7 +31,7 @@ import {
   toggleAudioPost,
   useAudioPostPlayback,
 } from "../../libs/audio-post-playback";
-import { SeekBar, fmtDuration, useSeekSurface } from "./AudioPostPlayer";
+import { ScrubSurface, SeekBar, fmtDuration, useSeekSurface } from "./AudioPostPlayer";
 
 const noop = () => {};
 
@@ -127,12 +127,9 @@ const AudioPostMiniPlayer: React.FC = () => {
         </TouchableOpacity>
       </View>
 
-      <SeekBar
-        position={position}
-        hue={getCachedHue()}
-        onLayout={seek.onLayout}
-        panHandlers={seek.panHandlers}
-      />
+      <ScrubSurface surface={seek}>
+        <SeekBar position={position} hue={getCachedHue()} />
+      </ScrubSurface>
     </View>
   );
 };
