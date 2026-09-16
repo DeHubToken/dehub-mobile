@@ -12,7 +12,7 @@
  * them nothing about why they would want to. The ladder comes from the public
  * endpoint; only the allowance panel needs an account.
  *
- * All twelve powers are listed in unlock order. Killer Whale remains a badge
+ * All twelve powers are listed in unlock order. Great White Shark remains a badge
  * tier with a stronger allowance, but it does not add a separate power.
  */
 import React, { useMemo, useState } from "react";

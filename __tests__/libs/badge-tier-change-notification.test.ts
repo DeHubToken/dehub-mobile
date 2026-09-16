@@ -18,13 +18,13 @@ describe('badge tier change notifications', () => {
 
   it('reads as a congratulation naming the tier, with no actor anywhere', () => {
     const value = localizedNotificationContent(
-      { type: 'badge_tier_up', metadata: { tier: 'Blue Whale', previousTier: 'Great White Shark' } },
+      { type: 'badge_tier_up', metadata: { tier: 'Blue Whale', previousTier: 'Killer Whale' } },
       t,
     );
     expect(value).toContain('Blue Whale');
     // The rung left behind rides on the row for anyone who wants it, but the
     // sentence is about the one just reached.
-    expect(value).not.toContain('Great White Shark');
+    expect(value).not.toContain('Killer Whale');
   });
 
   it('falls back to a generic tier rather than an empty sentence', () => {

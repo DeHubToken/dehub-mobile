@@ -111,7 +111,7 @@ describe('badgeThresholds', () => {
 describe('getBadgeName with the ladder scaled', () => {
   it('lets a smaller bag reach a higher tier once the token is worth more', () => {
     expect(getBadgeName(5_000_000, { scale: badgeScaleForPrice(0.01) })).toBe('Megalodon');
-    expect(getBadgeName(5_000_000, { scale: 1 })).toBe('Killer Whale');
+    expect(getBadgeName(5_000_000, { scale: 1 })).toBe('Great White Shark');
   });
 
   it('reads the active scale when a caller passes none', () => {
@@ -124,13 +124,13 @@ describe('getBadgeName with the ladder scaled', () => {
 describe('the grandfather lock', () => {
   it('keeps a tier when the ladder climbs back over the holder', () => {
     const lock = { tier: 'Megalodon', requirement: 5_000_000 };
-    expect(getBadgeName(5_000_000, { scale: 1 })).toBe('Killer Whale');
+    expect(getBadgeName(5_000_000, { scale: 1 })).toBe('Great White Shark');
     expect(getBadgeName(5_000_000, { scale: 1, lock })).toBe('Megalodon');
   });
 
   it('drops the tier the moment the holder sells below what it cost them', () => {
     const lock = { tier: 'Megalodon', requirement: 5_000_000 };
-    // Killer Whale itself costs 5,000,000 here, so one under is Tiger Shark.
+    // Great White Shark itself costs 5,000,000 here, so one under is Tiger Shark.
     expect(getBadgeName(4_999_999, { scale: 1, lock })).toBe('Tiger Shark');
   });
 
@@ -149,7 +149,7 @@ describe('the grandfather lock', () => {
       requirement: 2500,
     });
     expect(getBadgeName(5_000_000, { scale: 1, lock: { tier: 'Kraken' } as any })).toBe(
-      'Killer Whale',
+      'Great White Shark',
     );
   });
 
