@@ -3701,5 +3701,8 @@
     "freeCovered": "Бесплатно (покривено кредитом)",
     "freeOnce": "Бесплатно, једном",
     "getPriceMany": "Добијте цену за {{n}} видеа"
+  },
+  "badgeAscension": {
+    "continue": "Назад на DeHub"
   }
 }
