@@ -21,6 +21,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
+import GlassIndicator from "../components/ui/GlassIndicator";
 import ScreenHeader from "../components/ScreenHeader";
 import { 
   getNotifications, 
@@ -251,17 +252,26 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, coun
                   color={isActive ? '#fff' : '#a1a1aa'}
                 />
                 {count > 0 && (
+                  // A flat white/20 fill sits on top of the glass tab pill, so
+                  // the count read as a see-through hole rather than a badge.
+                  // iOS gets the real glass bead (GlassIndicator, blurred);
+                  // Android has no working blur, so it takes an opaque fill.
                   <View
                     style={{
-                      backgroundColor: 'rgba(255,255,255,0.20)',
+                      backgroundColor:
+                        Platform.OS === 'ios' ? 'rgba(24,24,27,0.55)' : '#52525b',
                       borderRadius: 9,
                       minWidth: 18,
                       height: 18,
                       paddingHorizontal: 4,
                       alignItems: 'center',
                       justifyContent: 'center',
+                      overflow: 'hidden',
                     }}
                   >
+                    {Platform.OS === 'ios' && (
+                      <GlassIndicator borderRadius={9} blurIntensity={30} />
+                    )}
                     <Text style={{ color: '#fff', fontSize: 12, fontWeight: '700' }}>
                       {count > 99 ? '99+' : count}
                     </Text>
