@@ -20,8 +20,10 @@ const SEARCH_DIRS = ["components", "screens", "navigation", "hooks", "libs", "co
  *
  *  - the four context menus and GlassModal put theirs on the full-screen
  *    scrim, never on the panel — a scrim exists to reveal what it covers;
- *  - the feed nav pill, its sliding indicator and the floating tab bar are the
- *    swallow effect, where content reading through the glass is the point.
+ *  - the feed nav pill and its sliding indicator are the swallow effect, where
+ *    content reading through the glass is the point;
+ *  - the floating tab bar's own pill is opaque, but its center button keeps a
+ *    small frost over that fill, which is chrome on chrome, not a panel.
  *
  * Anything else is a panel, a card, a menu or a control, and must be opaque.
  * Adding a file here needs a reason that fits one of the two cases above.
