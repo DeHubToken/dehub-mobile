@@ -312,12 +312,25 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     // Live posts count. postType is "live", not "video", so isVideoItem alone
     // excluded them and a live card was never handed autoplay here — it sat on
     // its poster while the stream ran.
-    const topVideo = viewableItems
-      .filter(v =>
+    //
+    // A LIVE row outranks a video row for the slot, wherever it sits. The slot
+    // is exclusive — one player at a time is what keeps a feed of them out of
+    // an OutOfMemoryError — and handing it to whichever row happened to be
+    // higher meant any ordinary video above a live card left the broadcast
+    // sitting on its poster. Opening the post played it immediately, which is
+    // how this reads as "live only works if you tap in". A recorded video can
+    // wait for a scroll; a broadcast that is running right now cannot, and
+    // there are only ever a handful of them.
+    const playable = viewableItems.filter(
+      v =>
         v.isViewable &&
         !!(v.item as FeedItem | undefined)?.__listKey &&
-        (isVideoItem(v.item as UnifiedFeedItem) || isLiveItem(v.item as UnifiedFeedItem)))
-      .sort((a, b) => (a.index ?? 0) - (b.index ?? 0))[0];
+        (isVideoItem(v.item as UnifiedFeedItem) || isLiveItem(v.item as UnifiedFeedItem)),
+    );
+    const byPosition = (a: ViewToken, b: ViewToken) => (a.index ?? 0) - (b.index ?? 0);
+    const topVideo =
+      playable.filter(v => isLiveItem(v.item as UnifiedFeedItem)).sort(byPosition)[0] ??
+      playable.sort(byPosition)[0];
     visibilityStore.update(next, topVideo ? (topVideo.item as FeedItem).__listKey : null);
 
     // No auth gate: signed-out viewers count too, and the view service routes
