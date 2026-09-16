@@ -65,7 +65,6 @@ const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => (
 );
 
 const Sheen: React.FC<{ width: number }> = ({ width }) => {
-  const { t } = useTranslation();
   const progress = useShimmer();
   const style = useAnimatedStyle(() => ({
     transform: [{ translateX: -width + progress.value * width * 2 }],
@@ -80,6 +79,7 @@ const Sheen: React.FC<{ width: number }> = ({ width }) => {
  * final image size. Same two phases here.
  */
 export const ImageGenerationSkeleton: React.FC<{ size?: number }> = memo(({ size = 240 }) => {
+  const { t } = useTranslation();
   const [phase, setPhase] = useState<'spinner' | 'skeleton'>('spinner');
   const progress = useCreep(30);
 
