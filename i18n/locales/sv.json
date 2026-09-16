@@ -787,7 +787,35 @@
     "pasteFromClipboard": "Klistra in från urklipp",
     "learnMoreAt": "Läs mer på dehub.io",
     "accountsOnDevice": "Konton på den här enheten",
-    "use": "Använd"
+    "use": "Använd",
+    "verificationCode": "Verifieringskod",
+    "sixDigitCode": "6-siffrig kod",
+    "verify": "Verifiera",
+    "resendCode": "Skicka koden igen",
+    "noImportedAccounts": "Inga importerade konton ännu.",
+    "importedAccount": "Importerat konto",
+    "useAccount": "Använd kontot {{name}}",
+    "removeAccount": "Ta bort kontot {{name}}",
+    "showPrivateKey": "Visa privat nyckel",
+    "hidePrivateKey": "Dölj privat nyckel",
+    "invalidPrivateKey": "Ogiltig privat nyckel",
+    "couldNotImportWallet": "Det gick inte att importera plånboken",
+    "unlockToUse": "Lås upp den här DeHub-plånboken för att använda den",
+    "noScreenLock": "Den här telefonen har inget skärmlås, så vem som helst som håller i den kan använda din plånbok. Ställ in en kod eller biometri i enhetsinställningarna.",
+    "noStoredKey": "Ingen privat nyckel är sparad för det här kontot. Importera plånboken igen för att länka nyckeln.",
+    "failedToUseAccount": "Det gick inte att använda det här kontot",
+    "continueWithPhone": "Fortsätt med telefon",
+    "phoneNumberA11y": "Telefonnummer, landskod först",
+    "phoneNumberHint": "Ange ditt nummer med landskoden först. Plustecknet läggs till automatiskt.",
+    "sendCodeA11y": "Skicka inloggningskod till det här numret",
+    "signInToContinue": "Logga in för att fortsätta",
+    "signInToContinueBody": "Du måste logga in för att göra det här.",
+    "closeAuthModal": "Stäng inloggningsfönstret",
+    "legalLine": "Genom att fortsätta godkänner du våra <terms>användarvillkor</terms> och vår <privacy>integritetspolicy</privacy>.",
+    "chooseUsernameBody": "Välj ett användarnamn och visningsnamn för att fortsätta. Du kan ändra dem senare.",
+    "checkingAvailability": "Kontrollerar tillgänglighet…",
+    "usernameTakenHint": "Namnet är upptaget — prova att lägga till siffror eller ett understreck",
+    "displayNameLength": "Visningsnamnet måste vara 2–50 tecken."
   },
   "explorePage": {
     "searchPlaceholder": "Sök personer, inlägg eller innehåll...",
@@ -3566,7 +3594,13 @@
     "thatsGoneToo": "Det är också borta — börja om ändå",
     "tryBiometrics": "Prova biometri på den här telefonen",
     "unlockWithBiometrics": "Lås upp med biometri",
-    "confirmStartOver": "Bekräfta att du vill börja om med en ny plånbok"
+    "confirmStartOver": "Bekräfta att du vill börja om med en ny plånbok",
+    "understandOldWallet": "Jag förstår att den gamla plånboken, och allt i den, är utom räckhåll för alltid",
+    "savedTwelveWords": "Jag har sparat de här 12 orden på ett säkert ställe",
+    "legacyRecovered": "Vi har verifierat ditt gamla konto{{suffix}} och återställt dess plånbok. Ange ett lösenord som skyddar den på den här enheten — på den här telefonen och överallt annars, från och med nu.",
+    "passwordMin": "Lösenord (minst {{min}} tecken)",
+    "newPasswordMin": "Nytt lösenord (minst {{min}} tecken)",
+    "newWalletPasswordMin": "Lösenord för ny plånbok (minst {{min}} tecken)"
   },
   "transcript": {
     "title": "Transkription",
@@ -4053,5 +4087,21 @@
       "megalodon": "Här är din krona — du är app royalty nu"
     },
     "continue": "Tillbaka till DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Mycket svagt",
+    "weak": "Svagt",
+    "fair": "Godtagbart",
+    "good": "Bra",
+    "strong": "Starkt",
+    "common": "Det här är ett vanligt eller lättgissat lösenord",
+    "tooShort": "Använd minst {{n}} tecken",
+    "mixChars": "Blanda stora och små bokstäver, siffror och symboler",
+    "breached": "Det här lösenordet har förekommit i en dataläcka — välj ett annat"
+  },
+  "phoneHint": {
+    "leadingZero": "Börja med din landskod (44 för Storbritannien, 1 för USA) — hoppa över inledande 0.",
+    "tooLong": "Det är {{n}} siffror — ett telefonnummer har högst {{max}}.",
+    "missingCountryCode": "Kontrollera landskoden — nummer som kopieras från Kontakter saknar den ofta."
   }
 }

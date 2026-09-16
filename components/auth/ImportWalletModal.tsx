@@ -104,7 +104,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
         setIsImporting(true);
         setError(null);
         address = deriveAddressFromPrivateKey(privateKey)?.toLowerCase();
-        if (!address) throw new Error("Invalid private key");
+        if (!address) throw new Error(t("auth.invalidPrivateKey"));
         // Choose preferred chain (fallback to Base) for local EIP-1193 provider
         const preferred = await getPreferredChainId();
         const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
@@ -135,7 +135,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           await removeLocalAccount(address).catch(() => {});
         }
         if (!reportWalletSignupBlocked(e)) {
-          setError((e as any)?.message || "Could not import wallet");
+          setError((e as any)?.message || t("auth.couldNotImportWallet"));
         }
       } finally {
         setIsImporting(false);
@@ -148,15 +148,15 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           setIsImporting(true);
         setError(null);
           const pk = await getPrivateKeyForAddress(address, {
-            purpose: "Unlock this DeHub wallet to use it",
+            purpose: t("auth.unlockToUse"),
             onUnverified: () =>
               toastWarning(
-                "This phone has no screen lock, so anyone holding it can use your wallet. Set a passcode or biometrics in your device settings.",
+                t("auth.noScreenLock"),
               ),
           });
           if (!pk) {
             setError(
-              "No private key is stored for this account. Please re-import this wallet to link its key."
+              t("auth.noStoredKey")
             );
             return;
           }
@@ -178,7 +178,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           }
         } catch (e: any) {
           if (!reportWalletSignupBlocked(e)) {
-            setError((e as any)?.message || "Failed to use this account");
+            setError((e as any)?.message || t("auth.failedToUseAccount"));
           }
         } finally {
           setIsImporting(false);
@@ -229,7 +229,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
               <AuthIconButton
                 icon={showPk ? "eye-off-outline" : "eye-outline"}
                 onPress={() => setShowPk((s) => !s)}
-                accessibilityLabel={showPk ? "Hide private key" : "Show private key"}
+                accessibilityLabel={showPk ? t("auth.hidePrivateKey") : t("auth.showPrivateKey")}
               />
             }
           />
@@ -267,7 +267,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
 
           {accounts.length === 0 ? (
             <Text style={[authText.caption, { textAlign: "center", marginBottom: 12 }]}>
-              No imported accounts yet.
+              {t("auth.noImportedAccounts")}
             </Text>
           ) : (
             <ScrollView
@@ -280,7 +280,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
                 <View key={item.address} style={styles.accountRow}>
                   <View style={{ flex: 1 }}>
                     <Text style={styles.accountName}>
-                      {item.username || "Imported account"}
+                      {item.username || t("auth.importedAccount")}
                     </Text>
                     <Text style={authText.caption}>{miniAddress(item.address)}</Text>
                   </View>
@@ -290,13 +290,13 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
                       onPress={() => handleUse(item.address)}
                       disabled={busy}
                       style={styles.useButton}
-                      accessibilityLabel={`Use account ${item.username || miniAddress(item.address)}`}
+                      accessibilityLabel={t("auth.useAccount", { name: item.username || miniAddress(item.address) })}
                     />
                     <AuthIconButton
                       icon="trash-outline"
                       onPress={() => handleDelete(item.address)}
                       disabled={busy}
-                      accessibilityLabel={`Remove account ${item.username || miniAddress(item.address)}`}
+                      accessibilityLabel={t("auth.removeAccount", { name: item.username || miniAddress(item.address) })}
                     />
                   </View>
                 </View>

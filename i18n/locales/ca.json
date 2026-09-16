@@ -1468,7 +1468,35 @@
     "pasteFromClipboard": "Enganxa del porta-retalls",
     "learnMoreAt": "Més informació a dehub.io",
     "accountsOnDevice": "Comptes en aquest dispositiu",
-    "use": "Usa"
+    "use": "Usa",
+    "verificationCode": "Codi de verificació",
+    "sixDigitCode": "Codi de 6 dígits",
+    "verify": "Verifica",
+    "resendCode": "Torna a enviar el codi",
+    "noImportedAccounts": "Encara no hi ha comptes importats.",
+    "importedAccount": "Compte importat",
+    "useAccount": "Utilitza el compte {{name}}",
+    "removeAccount": "Elimina el compte {{name}}",
+    "showPrivateKey": "Mostra la clau privada",
+    "hidePrivateKey": "Amaga la clau privada",
+    "invalidPrivateKey": "Clau privada no vàlida",
+    "couldNotImportWallet": "No s'ha pogut importar la cartera",
+    "unlockToUse": "Desbloqueja aquesta cartera DeHub per utilitzar-la",
+    "noScreenLock": "Aquest telèfon no té bloqueig de pantalla, així que qualsevol que el tingui pot fer servir la teva cartera. Configura un codi d'accés o biometria als ajustos del dispositiu.",
+    "noStoredKey": "No hi ha cap clau privada desada per a aquest compte. Torna a importar aquesta cartera per vincular-ne la clau.",
+    "failedToUseAccount": "No s'ha pogut utilitzar aquest compte",
+    "continueWithPhone": "Continua amb el telèfon",
+    "phoneNumberA11y": "Número de telèfon, primer el prefix del país",
+    "phoneNumberHint": "Introdueix el teu número començant pel prefix del país. El signe més s'afegeix automàticament.",
+    "sendCodeA11y": "Envia el codi d'inici de sessió a aquest número",
+    "signInToContinue": "Inicia la sessió per continuar",
+    "signInToContinueBody": "Has d'iniciar la sessió per fer aquesta acció.",
+    "closeAuthModal": "Tanca la finestra d'inici de sessió",
+    "legalLine": "En continuar, acceptes les nostres <terms>Condicions del servei</terms> i la <privacy>Política de privadesa</privacy>.",
+    "chooseUsernameBody": "Tria un nom d'usuari i un nom visible per continuar. Els pots canviar més endavant.",
+    "checkingAvailability": "S'està comprovant la disponibilitat…",
+    "usernameTakenHint": "El nom ja està agafat: prova d'afegir-hi xifres o un guió baix",
+    "displayNameLength": "El nom visible ha de tenir entre 2 i 50 caràcters."
   },
   "messages": {
     "smartRepliesOff": "Respostes suggerides desactivades",
@@ -3562,7 +3590,13 @@
     "thatsGoneToo": "Això també s'ha perdut: torna a començar igualment",
     "tryBiometrics": "Prova la biometria en aquest telèfon",
     "unlockWithBiometrics": "Desbloqueja amb biometria",
-    "confirmStartOver": "Confirma que vols tornar a començar amb una cartera nova"
+    "confirmStartOver": "Confirma que vols tornar a començar amb una cartera nova",
+    "understandOldWallet": "Entenc que la cartera antiga, i tot el que hi ha, quedarà fora del meu abast per sempre",
+    "savedTwelveWords": "He desat aquestes 12 paraules en un lloc segur",
+    "legacyRecovered": "Hem verificat el teu compte antic{{suffix}} i n'hem recuperat la cartera. Defineix una contrasenya per protegir-la en aquest dispositiu —en aquest telèfon i a tot arreu— a partir d'ara.",
+    "passwordMin": "Contrasenya (mín. {{min}} caràcters)",
+    "newPasswordMin": "Contrasenya nova (mín. {{min}} caràcters)",
+    "newWalletPasswordMin": "Contrasenya de la cartera nova (mín. {{min}} caràcters)"
   },
   "transcript": {
     "title": "Transcripció",
@@ -4050,5 +4084,21 @@
       "megalodon": "Aquí tens la teva corona: ara ets la realeça de l'aplicació"
     },
     "continue": "Torna a DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Molt feble",
+    "weak": "Feble",
+    "fair": "Acceptable",
+    "good": "Bona",
+    "strong": "Forta",
+    "common": "Aquesta és una contrasenya comuna o previsible",
+    "tooShort": "Fes servir com a mínim {{n}} caràcters",
+    "mixChars": "Combina majúscules, minúscules, xifres i símbols",
+    "breached": "Aquesta contrasenya ha aparegut en una filtració de dades — tria'n una altra"
+  },
+  "phoneHint": {
+    "leadingZero": "Comença amb el prefix del teu país (44 per al Regne Unit, 1 per als EUA) i treu el 0 inicial.",
+    "tooLong": "Són {{n}} xifres: un número de telèfon en té com a màxim {{max}}.",
+    "missingCountryCode": "Comprova el prefix del país: els números copiats dels contactes sovint no en porten."
   }
 }

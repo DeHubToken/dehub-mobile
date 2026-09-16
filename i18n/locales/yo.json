@@ -1464,7 +1464,35 @@
     "pasteFromClipboard": "Lẹ̀ mọ́ láti ibi ìdìpọ̀",
     "learnMoreAt": "Kọ́ sí i ní dehub.io",
     "accountsOnDevice": "Àwọn àkàǹtì lórí ẹ̀rọ yìí",
-    "use": "Lò"
+    "use": "Lò",
+    "verificationCode": "Kóòdù ìfẹ̀rí",
+    "sixDigitCode": "Kóòdù nọ́ńbà 6",
+    "verify": "Fẹ̀rí",
+    "resendCode": "Fi kóòdù ránṣẹ́ lẹ́ẹ̀kan sí i",
+    "noImportedAccounts": "Kò sí àkọọ́lẹ̀ tí a kó wọlé síbẹ̀.",
+    "importedAccount": "Àkọọ́lẹ̀ tí a kó wọlé",
+    "useAccount": "Lo àkọọ́lẹ̀ {{name}}",
+    "removeAccount": "Yọ àkọọ́lẹ̀ {{name}} kúrò",
+    "showPrivateKey": "Fi kọ́kọ́rọ́ àdáni hàn",
+    "hidePrivateKey": "Fi kọ́kọ́rọ́ àdáni pamọ́",
+    "invalidPrivateKey": "Kọ́kọ́rọ́ àdáni kò tọ́",
+    "couldNotImportWallet": "A kò lè kó àpamọ́wọ́ wọlé",
+    "unlockToUse": "Ṣí àpamọ́wọ́ DeHub yìí kí o tó lò ó",
+    "noScreenLock": "Fóònù yìí kò ní ìdálùkùn ojú-ìran, nítorí náà ẹnikẹ́ni tó bá gbé e lè lo àpamọ́wọ́ rẹ. Ṣètò kóòdù ìwọlé tàbí ìdánimọ̀ ara nínú ètò ẹ̀rọ rẹ.",
+    "noStoredKey": "Kò sí kọ́kọ́rọ́ àdáni tí a fi pamọ́ fún àkọọ́lẹ̀ yìí. Jọ̀wọ́ kó àpamọ́wọ́ yìí wọlé lẹ́ẹ̀kan sí i láti so kọ́kọ́rọ́ rẹ̀ pọ̀.",
+    "failedToUseAccount": "A kò lè lo àkọọ́lẹ̀ yìí",
+    "continueWithPhone": "Tẹ̀síwájú pẹ̀lú Fóònù",
+    "phoneNumberA11y": "Nọ́ńbà fóònù, kóòdù orílẹ̀-èdè ní àkọ́kọ́",
+    "phoneNumberHint": "Tẹ nọ́ńbà rẹ bẹ̀rẹ̀ pẹ̀lú kóòdù orílẹ̀-èdè. A ó fi àmì àfikún kún un fún ọ.",
+    "sendCodeA11y": "Fi kóòdù ìwọlé ránṣẹ́ sí nọ́ńbà fóònù yìí",
+    "signInToContinue": "Wọlé láti tẹ̀síwájú",
+    "signInToContinueBody": "O nílò láti wọlé kí o tó lè ṣe ìgbésẹ̀ yìí.",
+    "closeAuthModal": "Ti fèrèsé ìwọlé",
+    "legalLine": "Nípa títẹ̀síwájú, o gbà pẹ̀lú <terms>Àwọn Òfin Iṣẹ́</terms> àti <privacy>Ìlànà Àṣírí</privacy> wa.",
+    "chooseUsernameBody": "Yan orúkọ ìwọlé àti orúkọ ìfihàn láti tẹ̀síwájú. O lè yí wọn padà nígbà mìíràn.",
+    "checkingAvailability": "À ń ṣàyẹ̀wò bóyá ó wà…",
+    "usernameTakenHint": "A ti gba orúkọ yìí — gbìyànjú láti fi nọ́ńbà tàbí ìlà ìsàlẹ̀ kún un",
+    "displayNameLength": "Orúkọ ìfihàn gbọ́dọ̀ jẹ́ àmì 2-50."
   },
   "messages": {
     "smartRepliesOff": "A ti pa àwọn èsì tí a dábàá",
@@ -3552,7 +3580,13 @@
     "thatsGoneToo": "Ìyẹn náà ti lọ — bẹ̀rẹ̀ láti ìbẹ̀rẹ̀ lọ́nàkọnà",
     "tryBiometrics": "Gbìyànjú biometrics lórí fóònù yìí",
     "unlockWithBiometrics": "Ṣí pẹ̀lú biometrics",
-    "confirmStartOver": "Jẹ́rìí pé o fẹ́ bẹ̀rẹ̀ láti ìbẹ̀rẹ̀ pẹ̀lú àpò owó tuntun"
+    "confirmStartOver": "Jẹ́rìí pé o fẹ́ bẹ̀rẹ̀ láti ìbẹ̀rẹ̀ pẹ̀lú àpò owó tuntun",
+    "understandOldWallet": "Mo mọ̀ pé àpamọ́wọ́ àtijọ́, àti ohunkóhun tó wà nínú rẹ̀, kò ní sí ní ọwọ́ mi mọ́ láéláé",
+    "savedTwelveWords": "Mo ti fi àwọn ọ̀rọ̀ 12 wọ̀nyí pamọ́ sí ibi tó dáàbò bò",
+    "legacyRecovered": "A ti fẹ̀rí àkọọ́lẹ̀ àtijọ́ rẹ{{suffix}} a sì ti gba àpamọ́wọ́ rẹ̀ padà. Ṣètò ọ̀rọ̀ ìgbaniwọlé láti dáàbò bò ó lórí ẹ̀rọ yìí — lórí fóònù yìí àti níbi gbogbo mìíràn, láti ìsinsìnyí lọ.",
+    "passwordMin": "Ọ̀rọ̀ ìgbaniwọlé (ó kéré tán àmì {{min}})",
+    "newPasswordMin": "Ọ̀rọ̀ ìgbaniwọlé tuntun (ó kéré tán àmì {{min}})",
+    "newWalletPasswordMin": "Ọ̀rọ̀ ìgbaniwọlé àpamọ́wọ́ tuntun (ó kéré tán àmì {{min}})"
   },
   "transcript": {
     "title": "Àkọsílẹ̀ ọ̀rọ̀",
@@ -4038,5 +4072,21 @@
       "megalodon": "Adé rẹ nìyí — o ti di ọba app báyìí"
     },
     "continue": "Padà sí DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Aláìlera gidigidi",
+    "weak": "Aláìlera",
+    "fair": "Ìwọ̀ntúnwọ̀nsì",
+    "good": "Dáradára",
+    "strong": "Lágbára",
+    "common": "Ọ̀rọ̀ ìgbaniwọlé yìí wọ́pọ̀ tàbí ó rọrùn láti mọ̀",
+    "tooShort": "Lo ó kéré tán àmì {{n}}",
+    "mixChars": "Da àwọn lẹ́tà ńlá/kékeré, nọ́ńbà, àti àmì pọ̀",
+    "breached": "Ọ̀rọ̀ ìgbaniwọlé yìí ti fara hàn nínú ìjáde dátà — yan òmíràn"
+  },
+  "phoneHint": {
+    "leadingZero": "Bẹ̀rẹ̀ pẹ̀lú kóòdù orílẹ̀-èdè rẹ (44 fún UK, 1 fún US) — yọ 0 àkọ́kọ́ kúrò.",
+    "tooLong": "Ìyẹn jẹ́ nọ́ńbà {{n}} — nọ́ńbà fóònù kò ju {{max}} lọ.",
+    "missingCountryCode": "Ṣàyẹ̀wò kóòdù orílẹ̀-èdè — àwọn nọ́ńbà tí a dà kọ láti inú Àwọn Olùbáraẹnisọ̀rọ̀ sábà máa ń fi í sílẹ̀."
   }
 }

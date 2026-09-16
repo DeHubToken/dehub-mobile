@@ -788,7 +788,35 @@
     "pasteFromClipboard": "Tempel dari papan klip",
     "learnMoreAt": "Pelajari lebih lanjut di dehub.io",
     "accountsOnDevice": "Akun di perangkat ini",
-    "use": "Gunakan"
+    "use": "Gunakan",
+    "verificationCode": "Kode verifikasi",
+    "sixDigitCode": "Kode 6 digit",
+    "verify": "Verifikasi",
+    "resendCode": "Kirim ulang kode",
+    "noImportedAccounts": "Belum ada akun yang diimpor.",
+    "importedAccount": "Akun yang diimpor",
+    "useAccount": "Gunakan akun {{name}}",
+    "removeAccount": "Hapus akun {{name}}",
+    "showPrivateKey": "Tampilkan kunci privat",
+    "hidePrivateKey": "Sembunyikan kunci privat",
+    "invalidPrivateKey": "Kunci privat tidak valid",
+    "couldNotImportWallet": "Tidak dapat mengimpor dompet",
+    "unlockToUse": "Buka kunci dompet DeHub ini untuk menggunakannya",
+    "noScreenLock": "Ponsel ini tidak punya kunci layar, jadi siapa pun yang memegangnya bisa memakai dompet Anda. Atur kode sandi atau biometrik di pengaturan perangkat.",
+    "noStoredKey": "Tidak ada kunci privat yang tersimpan untuk akun ini. Impor ulang dompet ini untuk menautkan kuncinya.",
+    "failedToUseAccount": "Gagal menggunakan akun ini",
+    "continueWithPhone": "Lanjutkan dengan Telepon",
+    "phoneNumberA11y": "Nomor telepon, kode negara dulu",
+    "phoneNumberHint": "Masukkan nomor Anda mulai dari kode negara. Tanda plus ditambahkan otomatis.",
+    "sendCodeA11y": "Kirim kode masuk ke nomor ini",
+    "signInToContinue": "Masuk untuk melanjutkan",
+    "signInToContinueBody": "Anda perlu masuk untuk melakukan tindakan ini.",
+    "closeAuthModal": "Tutup jendela masuk",
+    "legalLine": "Dengan melanjutkan, Anda menyetujui <terms>Ketentuan Layanan</terms> dan <privacy>Kebijakan Privasi</privacy> kami.",
+    "chooseUsernameBody": "Pilih nama pengguna dan nama tampilan untuk melanjutkan. Anda bisa mengubahnya nanti.",
+    "checkingAvailability": "Memeriksa ketersediaan…",
+    "usernameTakenHint": "Nama sudah dipakai — coba tambahkan angka atau garis bawah",
+    "displayNameLength": "Nama tampilan harus 2-50 karakter."
   },
   "explorePage": {
     "searchPlaceholder": "Cari orang, postingan, atau konten...",
@@ -3612,7 +3640,13 @@
     "thatsGoneToo": "Itu juga hilang — tetap mulai dari awal",
     "tryBiometrics": "Coba biometrik di ponsel ini",
     "unlockWithBiometrics": "Buka dengan biometrik",
-    "confirmStartOver": "Konfirmasi bahwa kamu ingin mulai dari awal dengan dompet baru"
+    "confirmStartOver": "Konfirmasi bahwa kamu ingin mulai dari awal dengan dompet baru",
+    "understandOldWallet": "Saya paham bahwa dompet lama dan semua isinya akan hilang dari jangkauan saya selamanya",
+    "savedTwelveWords": "Saya sudah menyimpan 12 kata ini di tempat yang aman",
+    "legacyRecovered": "Akun lama Anda{{suffix}} telah diverifikasi dan dompetnya dipulihkan. Buat kata sandi untuk melindunginya di perangkat ini — di ponsel ini dan di mana pun, mulai sekarang.",
+    "passwordMin": "Kata sandi (min {{min}} karakter)",
+    "newPasswordMin": "Kata sandi baru (min {{min}} karakter)",
+    "newWalletPasswordMin": "Kata sandi dompet baru (min {{min}} karakter)"
   },
   "transcript": {
     "title": "Transkrip",
@@ -4099,5 +4133,21 @@
       "megalodon": "Ini mahkotamu — kamu royalti aplikasi sekarang"
     },
     "continue": "Kembali ke DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Sangat lemah",
+    "weak": "Lemah",
+    "fair": "Cukup",
+    "good": "Bagus",
+    "strong": "Kuat",
+    "common": "Ini kata sandi yang umum atau mudah ditebak",
+    "tooShort": "Gunakan minimal {{n}} karakter",
+    "mixChars": "Campurkan huruf besar/kecil, angka, dan simbol",
+    "breached": "Kata sandi ini pernah muncul dalam kebocoran data — pilih yang lain"
+  },
+  "phoneHint": {
+    "leadingZero": "Mulai dengan kode negara Anda (44 untuk Inggris, 1 untuk AS) — hilangkan 0 di depan.",
+    "tooLong": "Itu {{n}} digit — nomor telepon paling banyak {{max}}.",
+    "missingCountryCode": "Periksa kode negaranya — nomor yang disalin dari Kontak sering tidak menyertakannya."
   }
 }

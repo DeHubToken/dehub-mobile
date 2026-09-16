@@ -1468,7 +1468,35 @@
     "pasteFromClipboard": "Zalijepi iz međuspremnika",
     "learnMoreAt": "Saznajte više na dehub.io",
     "accountsOnDevice": "Računi na ovom uređaju",
-    "use": "Koristi"
+    "use": "Koristi",
+    "verificationCode": "Kod za potvrdu",
+    "sixDigitCode": "Šesteroznamenkasti kod",
+    "verify": "Potvrdi",
+    "resendCode": "Pošalji kod ponovno",
+    "noImportedAccounts": "Još nema uvezenih računa.",
+    "importedAccount": "Uvezeni račun",
+    "useAccount": "Koristi račun {{name}}",
+    "removeAccount": "Ukloni račun {{name}}",
+    "showPrivateKey": "Prikaži privatni ključ",
+    "hidePrivateKey": "Sakrij privatni ključ",
+    "invalidPrivateKey": "Neispravan privatni ključ",
+    "couldNotImportWallet": "Novčanik nije moguće uvesti",
+    "unlockToUse": "Otključajte ovaj DeHub novčanik da biste ga koristili",
+    "noScreenLock": "Ovaj telefon nema zaključavanje zaslona, pa svatko tko ga drži može koristiti vaš novčanik. Postavite pristupni kod ili biometriju u postavkama uređaja.",
+    "noStoredKey": "Za ovaj račun nije pohranjen privatni ključ. Ponovno uvezite ovaj novčanik da biste povezali njegov ključ.",
+    "failedToUseAccount": "Ovaj račun nije moguće koristiti",
+    "continueWithPhone": "Nastavi s telefonom",
+    "phoneNumberA11y": "Telefonski broj, prvo pozivni broj države",
+    "phoneNumberHint": "Unesite broj počevši od pozivnog broja države. Znak plus dodaje se automatski.",
+    "sendCodeA11y": "Pošalji kod za prijavu na ovaj broj",
+    "signInToContinue": "Prijavite se za nastavak",
+    "signInToContinueBody": "Morate se prijaviti da biste izvršili ovu radnju.",
+    "closeAuthModal": "Zatvori prozor za prijavu",
+    "legalLine": "Nastavkom prihvaćate naše <terms>Uvjete pružanja usluge</terms> i <privacy>Pravila privatnosti</privacy>.",
+    "chooseUsernameBody": "Odaberite korisničko ime i prikazano ime za nastavak. Kasnije ih možete promijeniti.",
+    "checkingAvailability": "Provjera dostupnosti…",
+    "usernameTakenHint": "Ime je zauzeto — pokušajte dodati brojeve ili donju crtu",
+    "displayNameLength": "Prikazano ime mora imati 2-50 znakova."
   },
   "messages": {
     "smartRepliesOff": "Predloženi odgovori isključeni",
@@ -3562,7 +3590,13 @@
     "thatsGoneToo": "I to je nestalo — svejedno počni ispočetka",
     "tryBiometrics": "Isprobaj biometriju na ovom telefonu",
     "unlockWithBiometrics": "Otključaj biometrijom",
-    "confirmStartOver": "Potvrdi da želiš početi ispočetka s novim novčanikom"
+    "confirmStartOver": "Potvrdi da želiš početi ispočetka s novim novčanikom",
+    "understandOldWallet": "Razumijem da će stari novčanik i sve u njemu zauvijek biti izvan mog dosega",
+    "savedTwelveWords": "Spremio sam ovih 12 riječi na sigurno mjesto",
+    "legacyRecovered": "Potvrdili smo vaš stari račun{{suffix}} i vratili njegov novčanik. Postavite lozinku koja će ga od sada štititi na ovom uređaju — na ovom telefonu i svugdje drugdje.",
+    "passwordMin": "Lozinka (najmanje {{min}} znakova)",
+    "newPasswordMin": "Nova lozinka (najmanje {{min}} znakova)",
+    "newWalletPasswordMin": "Lozinka novog novčanika (najmanje {{min}} znakova)"
   },
   "transcript": {
     "title": "Transkript",
@@ -4050,5 +4084,21 @@
       "megalodon": "Ovo je tvoja kruna — sada si član tantijema za aplikaciju"
     },
     "continue": "Natrag na DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Vrlo slaba",
+    "weak": "Slaba",
+    "fair": "Osrednja",
+    "good": "Dobra",
+    "strong": "Jaka",
+    "common": "Ovo je uobičajena ili predvidljiva lozinka",
+    "tooShort": "Upotrijebite barem {{n}} znakova",
+    "mixChars": "Kombinirajte velika i mala slova, brojeve i simbole",
+    "breached": "Ova se lozinka pojavila u curenju podataka — odaberite drugu"
+  },
+  "phoneHint": {
+    "leadingZero": "Počnite pozivnim brojem svoje države (44 za UK, 1 za SAD) — izostavite početnu nulu.",
+    "tooLong": "To je {{n}} znamenki — telefonski broj ima najviše {{max}}.",
+    "missingCountryCode": "Provjerite pozivni broj države — brojevi kopirani iz kontakata često ga nemaju."
   }
 }

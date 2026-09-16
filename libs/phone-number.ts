@@ -79,19 +79,28 @@ export function isValidNationalDigits(digits: string): boolean {
  * pasted or autofilled, not keyed in) yet has no "+" or "00" to say which
  * country it belongs to.
  */
-export function phoneEntryHint(raw: string, digits: string): string | null {
+export interface PhoneEntryHint {
+  /** i18n key — render with t(key, values). */
+  key: string;
+  values?: Record<string, number>;
+}
+
+export function phoneEntryHint(raw: string, digits: string): PhoneEntryHint | null {
   if (digits.startsWith("0")) {
-    return "Start with your country code (44 for the UK, 1 for the US) — drop the leading 0.";
+    return { key: "phoneHint.leadingZero" };
   }
   if (digits.length > MAX_E164_DIGITS) {
-    return `That's ${digits.length} digits — a phone number has at most ${MAX_E164_DIGITS}.`;
+    return {
+      key: "phoneHint.tooLong",
+      values: { n: digits.length, max: MAX_E164_DIGITS },
+    };
   }
   if (
     isValidNationalDigits(digits) &&
     HAS_SEPARATOR.test((raw ?? "").trim()) &&
     !HAS_INTERNATIONAL_PREFIX.test(raw ?? "")
   ) {
-    return "Check the country code — numbers copied from Contacts often leave it out.";
+    return { key: "phoneHint.missingCountryCode" };
   }
   return null;
 }

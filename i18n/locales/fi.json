@@ -1214,7 +1214,35 @@
     "pasteFromClipboard": "Liitä leikepöydältä",
     "learnMoreAt": "Lue lisää osoitteessa dehub.io",
     "accountsOnDevice": "Tilit tällä laitteella",
-    "use": "Käytä"
+    "use": "Käytä",
+    "verificationCode": "Vahvistuskoodi",
+    "sixDigitCode": "6-numeroinen koodi",
+    "verify": "Vahvista",
+    "resendCode": "Lähetä koodi uudelleen",
+    "noImportedAccounts": "Ei vielä tuotuja tilejä.",
+    "importedAccount": "Tuotu tili",
+    "useAccount": "Käytä tiliä {{name}}",
+    "removeAccount": "Poista tili {{name}}",
+    "showPrivateKey": "Näytä yksityinen avain",
+    "hidePrivateKey": "Piilota yksityinen avain",
+    "invalidPrivateKey": "Virheellinen yksityinen avain",
+    "couldNotImportWallet": "Lompakon tuonti epäonnistui",
+    "unlockToUse": "Avaa tämä DeHub-lompakko käyttääksesi sitä",
+    "noScreenLock": "Tässä puhelimessa ei ole näytön lukitusta, joten kuka tahansa sen käsiinsä saava voi käyttää lompakkoasi. Aseta pääsykoodi tai biometrinen tunnistus laitteen asetuksissa.",
+    "noStoredKey": "Tälle tilille ei ole tallennettu yksityistä avainta. Tuo lompakko uudelleen, jotta avain linkittyy.",
+    "failedToUseAccount": "Tämän tilin käyttö epäonnistui",
+    "continueWithPhone": "Jatka puhelimella",
+    "phoneNumberA11y": "Puhelinnumero, maakoodi ensin",
+    "phoneNumberHint": "Syötä numerosi maakoodista alkaen. Plusmerkki lisätään puolestasi.",
+    "sendCodeA11y": "Lähetä kirjautumiskoodi tähän numeroon",
+    "signInToContinue": "Kirjaudu sisään jatkaaksesi",
+    "signInToContinueBody": "Sinun on kirjauduttava sisään tehdäksesi tämän.",
+    "closeAuthModal": "Sulje kirjautumisikkuna",
+    "legalLine": "Jatkamalla hyväksyt <terms>käyttöehtomme</terms> ja <privacy>tietosuojakäytäntömme</privacy>.",
+    "chooseUsernameBody": "Valitse käyttäjänimi ja näyttönimi jatkaaksesi. Voit muuttaa niitä myöhemmin.",
+    "checkingAvailability": "Tarkistetaan saatavuutta…",
+    "usernameTakenHint": "Nimi on varattu — kokeile lisätä numeroita tai alaviiva",
+    "displayNameLength": "Näyttönimen pituus on oltava 2–50 merkkiä."
   },
   "bookmarks": {
     "title": "Kirjanmerkkisi",
@@ -3562,7 +3590,13 @@
     "thatsGoneToo": "Sekin on mennyt — aloita silti alusta",
     "tryBiometrics": "Kokeile biometriaa tällä puhelimella",
     "unlockWithBiometrics": "Avaa biometrialla",
-    "confirmStartOver": "Vahvista, että haluat aloittaa alusta uudella lompakolla"
+    "confirmStartOver": "Vahvista, että haluat aloittaa alusta uudella lompakolla",
+    "understandOldWallet": "Ymmärrän, että vanha lompakko ja kaikki sen sisältö jää lopullisesti ulottumattomiini",
+    "savedTwelveWords": "Olen tallentanut nämä 12 sanaa turvalliseen paikkaan",
+    "legacyRecovered": "Vahvistimme vanhan tilisi{{suffix}} ja palautimme sen lompakon. Aseta salasana, joka suojaa sitä tästä lähtien tällä laitteella — tässä puhelimessa ja kaikkialla muualla.",
+    "passwordMin": "Salasana (väh. {{min}} merkkiä)",
+    "newPasswordMin": "Uusi salasana (väh. {{min}} merkkiä)",
+    "newWalletPasswordMin": "Uuden lompakon salasana (väh. {{min}} merkkiä)"
   },
   "transcript": {
     "title": "Litterointi",
@@ -4049,5 +4083,21 @@
       "megalodon": "Tässä kruunusi — olet nyt sovelluksen kuninkaallinen"
     },
     "continue": "Takaisin DeHubiin"
+  },
+  "passwordStrength": {
+    "veryWeak": "Erittäin heikko",
+    "weak": "Heikko",
+    "fair": "Kohtalainen",
+    "good": "Hyvä",
+    "strong": "Vahva",
+    "common": "Tämä on yleinen tai helposti arvattava salasana",
+    "tooShort": "Käytä vähintään {{n}} merkkiä",
+    "mixChars": "Sekoita isoja ja pieniä kirjaimia, numeroita ja symboleja",
+    "breached": "Tämä salasana on esiintynyt tietovuodossa — valitse toinen"
+  },
+  "phoneHint": {
+    "leadingZero": "Aloita maakoodilla (44 = Britannia, 1 = Yhdysvallat) — jätä alun 0 pois.",
+    "tooLong": "Tuossa on {{n}} numeroa — puhelinnumerossa on enintään {{max}}.",
+    "missingCountryCode": "Tarkista maakoodi — yhteystiedoista kopioiduista numeroista se usein puuttuu."
   }
 }

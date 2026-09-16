@@ -1237,7 +1237,35 @@
     "pasteFromClipboard": "Mapụta site na clipboard",
     "learnMoreAt": "Mụtakwuo na dehub.io",
     "accountsOnDevice": "Akaụntụ dị na ngwaọrụ a",
-    "use": "Jiri"
+    "use": "Jiri",
+    "verificationCode": "Koodu nkwenye",
+    "sixDigitCode": "Koodu dijit 6",
+    "verify": "Kwenye",
+    "resendCode": "Zipụghachi koodu",
+    "noImportedAccounts": "Enwebeghị akaụntụ ebubatara.",
+    "importedAccount": "Akaụntụ ebubatara",
+    "useAccount": "Jiri akaụntụ {{name}}",
+    "removeAccount": "Wepụ akaụntụ {{name}}",
+    "showPrivateKey": "Gosi igodo nzuzo",
+    "hidePrivateKey": "Zoo igodo nzuzo",
+    "invalidPrivateKey": "Igodo nzuzo ezighị ezi",
+    "couldNotImportWallet": "Enweghị ike ibubata obere akpa",
+    "unlockToUse": "Kpọghee obere akpa DeHub a iji jiri ya",
+    "noScreenLock": "Ekwentị a enweghị mkpọchi ihuenyo, ya mere onye ọ bụla ji ya nwere ike iji obere akpa gị. Tọọ koodu nzuzo ma ọ bụ biometrics na ntọala ngwaọrụ gị.",
+    "noStoredKey": "Enweghị igodo nzuzo echekwara maka akaụntụ a. Biko bubatagharịa obere akpa a iji jikọọ igodo ya.",
+    "failedToUseAccount": "Ọ dara iji akaụntụ a",
+    "continueWithPhone": "Jiri ekwentị gaa n'ihu",
+    "phoneNumberA11y": "Nọmba ekwentị, koodu mba buru ụzọ",
+    "phoneNumberHint": "Tinye nọmba gị malite na koodu mba. A na-agbakwunye akara mgbakwunye maka gị.",
+    "sendCodeA11y": "Zipụ koodu nbanye na nọmba ekwentị a",
+    "signInToContinue": "Banye iji gaa n'ihu",
+    "signInToContinueBody": "Ịkwesịrị ịbanye iji mee ihe a.",
+    "closeAuthModal": "Mechie windo nbanye",
+    "legalLine": "Site n'ịga n'ihu, ị kwenyere na <terms>Usoro Ọrụ</terms> na <privacy>Amụma Nzuzo</privacy> anyị.",
+    "chooseUsernameBody": "Họrọ aha njirimara na aha ngosi iji gaa n'ihu. Ị nwere ike gbanwee ha emesịa.",
+    "checkingAvailability": "Na-enyocha ịdị adị…",
+    "usernameTakenHint": "E werela aha a — gbalịa ịtinye ọnụọgụ ma ọ bụ ahịrị n'okpuru",
+    "displayNameLength": "Aha ngosi ga-abụrịrị mkpụrụedemede 2-50."
   },
   "bookmarks": {
     "title": "Akara mpịnye gị",
@@ -3540,7 +3568,13 @@
     "thatsGoneToo": "Nke ahụ efukwala — malitegharịa n'agbanyeghị",
     "tryBiometrics": "Nwaa biometrics na ekwentị a",
     "unlockWithBiometrics": "Jiri biometrics mepee",
-    "confirmStartOver": "Kwado na ịchọrọ ịmalitegharị na obere akpa ọhụrụ"
+    "confirmStartOver": "Kwado na ịchọrọ ịmalitegharị na obere akpa ọhụrụ",
+    "understandOldWallet": "Aghọtara m na obere akpa ochie ahụ, na ihe niile dị na ya, agaghị erute m ruo mgbe ebighị ebi",
+    "savedTwelveWords": "Echekwaala m okwu 12 ndị a n'ebe dị nchebe",
+    "legacyRecovered": "Anyị enyochaala akaụntụ ochie gị{{suffix}} wee weghachite obere akpa ya. Tọọ okwuntughe iji chekwaa ya na ngwaọrụ a — na ekwentị a na ebe ọ bụla ọzọ, site ugbu a.",
+    "passwordMin": "Okwuntughe (opekata mpe mkpụrụedemede {{min}})",
+    "newPasswordMin": "Okwuntughe ọhụrụ (opekata mpe mkpụrụedemede {{min}})",
+    "newWalletPasswordMin": "Okwuntughe obere akpa ọhụrụ (opekata mpe mkpụrụedemede {{min}})"
   },
   "transcript": {
     "title": "Ihe edere ede",
@@ -4026,5 +4060,21 @@
       "megalodon": "Nke a bụ okpueze gị — ị bụ eze ngwa ugbu a"
     },
     "continue": "Laghachi na DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Adịghị ike ma ọlị",
+    "weak": "Adịghị ike",
+    "fair": "Nke dị mma nwa",
+    "good": "Ọ dị mma",
+    "strong": "Siri ike",
+    "common": "Nke a bụ okwuntughe a na-ahụkarị maọbụ nke dị mfe ịkọ",
+    "tooShort": "Jiri opekata mpe mkpụrụedemede {{n}}",
+    "mixChars": "Gwakọta mkpụrụedemede ukwu/nta, ọnụọgụ na akara",
+    "breached": "Okwuntughe a apụtala na mbipụta data — họrọ nke ọzọ"
+  },
+  "phoneHint": {
+    "leadingZero": "Malite na koodu mba gị (44 maka UK, 1 maka US) — wepụ 0 nke mbụ.",
+    "tooLong": "Nke ahụ bụ dijit {{n}} — nọmba ekwentị nwere kacha {{max}}.",
+    "missingCountryCode": "Lelee koodu mba ahụ — nọmba edepụtara na Kọntaktị na-ahapụkarị ya."
   }
 }

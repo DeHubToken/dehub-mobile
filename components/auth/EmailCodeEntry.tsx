@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { View, Text, TextInput } from "react-native";
 import { AuthButton, AuthField, AuthTextButton, authText } from "./AuthControls";
+import { useTranslation } from "react-i18next";
 
 interface EmailCodeEntryProps {
   email: string;
@@ -19,6 +20,7 @@ const EmailCodeEntry: React.FC<EmailCodeEntryProps> = ({
   loading,
   disabled,
 }) => {
+  const { t } = useTranslation();
   const [code, setCode] = useState("");
   const inputRef = useRef<TextInput>(null);
 
@@ -44,8 +46,8 @@ const EmailCodeEntry: React.FC<EmailCodeEntryProps> = ({
         icon="key"
         value={code}
         onChangeText={setCode}
-        placeholder="6-digit code"
-        accessibilityLabel="Verification code"
+        placeholder={t("auth.sixDigitCode")}
+        accessibilityLabel={t("auth.verificationCode")}
         editable={!loading && !disabled}
         keyboardType="number-pad"
         textContentType="oneTimeCode"
@@ -59,16 +61,16 @@ const EmailCodeEntry: React.FC<EmailCodeEntryProps> = ({
 
       <AuthButton
         variant="primary"
-        label="Verify"
+        label={t("auth.verify")}
         onPress={handleSubmit}
         disabled={code.trim().length < 6 || disabled}
         loading={loading}
       />
 
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <AuthTextButton label="Back" onPress={onBack} disabled={loading} align="start" />
+        <AuthTextButton label={t("profile.back")} onPress={onBack} disabled={loading} align="start" />
         <AuthTextButton
-          label="Resend code"
+          label={t("auth.resendCode")}
           onPress={onResend}
           disabled={loading}
           tone="default"

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { AuthButton, AuthField, authColors, authText } from "./AuthControls";
+import { useTranslation } from "react-i18next";
 import {
   isValidNationalDigits,
   phoneEntryHint,
@@ -27,6 +28,7 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
   disabled,
   onExpand,
 }) => {
+  const { t } = useTranslation();
   const [showInput, setShowInput] = useState(false);
   // Digits only — the "+" is painted by the field, never typed. The raw text is
   // kept alongside them because the hint needs it: a pasted national number
@@ -72,7 +74,7 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
     return (
       <AuthButton
         icon="call"
-        label="Continue with Phone"
+        label={t("auth.continueWithPhone")}
         onPress={() => setShowInput(true)}
         disabled={disabled}
         loading={loading}
@@ -89,8 +91,8 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
         value={digits}
         onChangeText={handleChange}
         placeholder="1 415 555 2671"
-        accessibilityLabel="Phone number, country code first"
-        accessibilityHint="Enter your number starting with the country code. The plus sign is added for you."
+        accessibilityLabel={t("auth.phoneNumberA11y")}
+        accessibilityHint={t("auth.phoneNumberHint")}
         editable={!loading && !disabled}
         // `inputMode` is the prop the New Architecture actually reads;
         // `keyboardType` is kept for the old renderer and for iOS, where
@@ -120,16 +122,16 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
       />
       {!!hint && (
         <Text style={styles.hint} accessibilityLiveRegion="polite">
-          {hint}
+          {t(hint.key, hint.values)}
         </Text>
       )}
       <AuthButton
         variant="primary"
-        label="Send code"
+        label={t("loginModal.sendCode")}
         onPress={handleSubmit}
         disabled={!isValid || disabled}
         loading={loading}
-        accessibilityLabel="Send sign-in code to this phone number"
+        accessibilityLabel={t("auth.sendCodeA11y")}
       />
     </View>
   );

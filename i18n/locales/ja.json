@@ -908,7 +908,35 @@
     "pasteFromClipboard": "クリップボードから貼り付け",
     "learnMoreAt": "詳しくは dehub.io をご覧ください",
     "accountsOnDevice": "この端末のアカウント",
-    "use": "使う"
+    "use": "使う",
+    "verificationCode": "確認コード",
+    "sixDigitCode": "6桁のコード",
+    "verify": "確認",
+    "resendCode": "コードを再送信",
+    "noImportedAccounts": "インポート済みのアカウントはまだありません。",
+    "importedAccount": "インポートしたアカウント",
+    "useAccount": "アカウント {{name}} を使用",
+    "removeAccount": "アカウント {{name}} を削除",
+    "showPrivateKey": "秘密鍵を表示",
+    "hidePrivateKey": "秘密鍵を非表示",
+    "invalidPrivateKey": "秘密鍵が正しくありません",
+    "couldNotImportWallet": "ウォレットをインポートできませんでした",
+    "unlockToUse": "この DeHub ウォレットを使うにはロックを解除してください",
+    "noScreenLock": "この端末には画面ロックが設定されていないため、手にした人は誰でもウォレットを使えます。端末の設定でパスコードか生体認証を設定してください。",
+    "noStoredKey": "このアカウントには秘密鍵が保存されていません。鍵を紐付けるため、このウォレットをもう一度インポートしてください。",
+    "failedToUseAccount": "このアカウントを使用できませんでした",
+    "continueWithPhone": "電話番号で続ける",
+    "phoneNumberA11y": "電話番号（国番号から）",
+    "phoneNumberHint": "国番号から電話番号を入力してください。プラス記号は自動で付きます。",
+    "sendCodeA11y": "この電話番号にサインインコードを送信",
+    "signInToContinue": "続けるにはサインインしてください",
+    "signInToContinueBody": "この操作を行うにはサインインが必要です。",
+    "closeAuthModal": "サインイン画面を閉じる",
+    "legalLine": "続行すると、<terms>利用規約</terms>および<privacy>プライバシーポリシー</privacy>に同意したものとみなされます。",
+    "chooseUsernameBody": "続けるにはユーザー名と表示名を選んでください。あとから変更できます。",
+    "checkingAvailability": "利用できるか確認中…",
+    "usernameTakenHint": "このユーザー名は使用済みです。数字やアンダースコアを足してみてください",
+    "displayNameLength": "表示名は2〜50文字にしてください。"
   },
   "explorePage": {
     "searchPlaceholder": "人、投稿、コンテンツを検索...",
@@ -3629,7 +3657,13 @@
     "thatsGoneToo": "それも失いました — それでも最初からやり直す",
     "tryBiometrics": "この端末で生体認証を試す",
     "unlockWithBiometrics": "生体認証で解除",
-    "confirmStartOver": "新しいウォレットでやり直すことを確認してください"
+    "confirmStartOver": "新しいウォレットでやり直すことを確認してください",
+    "understandOldWallet": "古いウォレットとその中身には、今後二度とアクセスできなくなることを理解しています",
+    "savedTwelveWords": "この12単語を安全な場所に保管しました",
+    "legacyRecovered": "以前のアカウント{{suffix}}を確認し、そのウォレットを復元しました。今後この端末で——この電話でもほかの場所でも——保護するためのパスワードを設定してください。",
+    "passwordMin": "パスワード（{{min}}文字以上）",
+    "newPasswordMin": "新しいパスワード（{{min}}文字以上）",
+    "newWalletPasswordMin": "新しいウォレットのパスワード（{{min}}文字以上）"
   },
   "transcript": {
     "title": "文字起こし",
@@ -4116,5 +4150,21 @@
       "megalodon": "これがあなたの王冠です。これであなたはアプリのロイヤリティです"
     },
     "continue": "DeHubに戻る"
+  },
+  "passwordStrength": {
+    "veryWeak": "非常に弱い",
+    "weak": "弱い",
+    "fair": "ふつう",
+    "good": "良い",
+    "strong": "強い",
+    "common": "よく使われる、または推測されやすいパスワードです",
+    "tooShort": "{{n}} 文字以上にしてください",
+    "mixChars": "大文字・小文字・数字・記号を組み合わせてください",
+    "breached": "このパスワードは情報漏えいに含まれています。別のものを選んでください"
+  },
+  "phoneHint": {
+    "leadingZero": "国番号から始めてください（英国は44、米国は1）。先頭の0は不要です。",
+    "tooLong": "{{n}}桁あります。電話番号は最大{{max}}桁です。",
+    "missingCountryCode": "国番号を確認してください。連絡先からコピーした番号にはよく抜けています。"
   }
 }

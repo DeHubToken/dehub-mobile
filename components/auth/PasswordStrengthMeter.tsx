@@ -1,6 +1,8 @@
 import React, { memo } from "react";
 import { View, Text } from "react-native";
 import type { PasswordAssessment } from "../../libs/wallet-core/passwordStrength";
+import { MIN_PASSWORD_LENGTH } from "../../libs/wallet-core/passwordStrength";
+import { useTranslation } from "react-i18next";
 
 export interface PasswordStrengthMeterProps {
   assessment: PasswordAssessment | null;
@@ -11,6 +13,7 @@ export interface PasswordStrengthMeterProps {
 const BAR_COLORS = ["#52525B", "#808089", "#A1A1AA", "#D4D4D8", "#FAFAFA"];
 
 const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = memo(({ assessment }) => {
+  const { t } = useTranslation();
   if (!assessment) return null;
   const { score, label, warnings, breached } = assessment;
   const color = BAR_COLORS[score];
@@ -31,15 +34,17 @@ const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = memo(({ asse
         ))}
       </View>
       <Text className="text-xs mt-1" style={{ color }}>
-        {label}
+        {t(label)}
       </Text>
       {breached === true && (
         <Text className="text-white/80 text-xs mt-1">
-          This password has appeared in a data breach — choose a different one
+          {t("passwordStrength.breached")}
         </Text>
       )}
       {warnings.length > 0 && breached !== true && (
-        <Text className="text-theme-neutrals-500 text-xs mt-1">{warnings[0]}</Text>
+        <Text className="text-theme-neutrals-500 text-xs mt-1">
+          {t(warnings[0], { n: MIN_PASSWORD_LENGTH })}
+        </Text>
       )}
     </View>
   );

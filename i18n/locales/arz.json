@@ -1466,7 +1466,35 @@
     "pasteFromClipboard": "الصق من الحافظة",
     "learnMoreAt": "اعرف أكتر على dehub.io",
     "accountsOnDevice": "الحسابات على الجهاز ده",
-    "use": "استخدم"
+    "use": "استخدم",
+    "verificationCode": "كود التأكيد",
+    "sixDigitCode": "كود من 6 أرقام",
+    "verify": "تأكيد",
+    "resendCode": "ابعت الكود تاني",
+    "noImportedAccounts": "مفيش حسابات متستوردة لسه.",
+    "importedAccount": "حساب متستورد",
+    "useAccount": "استخدم حساب {{name}}",
+    "removeAccount": "شيل حساب {{name}}",
+    "showPrivateKey": "اظهر المفتاح الخاص",
+    "hidePrivateKey": "اخفي المفتاح الخاص",
+    "invalidPrivateKey": "مفتاح خاص مش صحيح",
+    "couldNotImportWallet": "مقدرناش نستورد المحفظة",
+    "unlockToUse": "افتح محفظة DeHub دي علشان تستخدمها",
+    "noScreenLock": "الموبايل ده مفيهوش قفل شاشة، يعني أي حد يمسكه يقدر يستخدم محفظتك. اعمل باسكود أو بصمة من إعدادات الجهاز.",
+    "noStoredKey": "مفيش مفتاح خاص متخزن للحساب ده. من فضلك استورد المحفظة دي تاني علشان يترط مفتاحها.",
+    "failedToUseAccount": "مقدرناش نستخدم الحساب ده",
+    "continueWithPhone": "كمل بالموبايل",
+    "phoneNumberA11y": "رقم الموبايل، كود البلد الأول",
+    "phoneNumberHint": "اكتب رقمك مبتدي بكود البلد. علامة الزائد بتتضاف لوحدها.",
+    "sendCodeA11y": "ابعت كود الدخول للرقم ده",
+    "signInToContinue": "سجل دخول علشان تكمل",
+    "signInToContinueBody": "لازم تسجل دخول علشان تعمل ده.",
+    "closeAuthModal": "اقفل نافذة تسجيل الدخول",
+    "legalLine": "لما تكمل، يبقى انت موافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy> بتاعتنا.",
+    "chooseUsernameBody": "اختار اسم مستخدم واسم للعرض علشان تكمل. تقدر تغيرهم بعدين.",
+    "checkingAvailability": "بنتأكد من التوفر…",
+    "usernameTakenHint": "الاسم متاخد — جرب تضيف أرقام أو شرطة سفلية",
+    "displayNameLength": "اسم العرض لازم يكون بين 2 و50 حرف."
   },
   "messages": {
     "smartRepliesOff": "اتقفلت الردود المقترحة",
@@ -3558,7 +3586,13 @@
     "thatsGoneToo": "ده كمان راح — ابدأ من جديد برضه",
     "tryBiometrics": "جرّب البصمة على التليفون ده",
     "unlockWithBiometrics": "افتح بالبصمة",
-    "confirmStartOver": "أكّد إنك عايز تبدأ من جديد بمحفظة جديدة"
+    "confirmStartOver": "أكّد إنك عايز تبدأ من جديد بمحفظة جديدة",
+    "understandOldWallet": "أنا فاهم إن المحفظة القديمة وكل اللي فيها هتبقى بعيدة عني للأبد",
+    "savedTwelveWords": "حفظت الـ12 كلمة دي في مكان آمن",
+    "legacyRecovered": "أكدنا حسابك القديم{{suffix}} ورجعنا محفظته. حط كلمة سر تحميها على الجهاز ده — على الموبايل ده وفي أي مكان تاني، من دلوقتي.",
+    "passwordMin": "كلمة السر (على الأقل {{min}} حرف)",
+    "newPasswordMin": "كلمة سر جديدة (على الأقل {{min}} حرف)",
+    "newWalletPasswordMin": "كلمة سر المحفظة الجديدة (على الأقل {{min}} حرف)"
   },
   "transcript": {
     "title": "النص المكتوب",
@@ -4044,5 +4078,21 @@
       "megalodon": "ها هو تاجك — أنت أحد ملوك التطبيق الآن"
     },
     "continue": "العودة إلى DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "ضعيف جداً",
+    "weak": "ضعيف",
+    "fair": "مقبول",
+    "good": "كويس",
+    "strong": "قوي",
+    "common": "دي كلمة سر شائعة أو سهل تتخمن",
+    "tooShort": "استخدم على الأقل {{n}} حرف",
+    "mixChars": "اخلط حروف كبيرة وصغيرة وأرقام ورموز",
+    "breached": "كلمة السر دي ظهرت في تسريب بيانات — اختار واحدة تانية"
+  },
+  "phoneHint": {
+    "leadingZero": "ابدأ بكود بلدك (44 لبريطانيا، 1 لأمريكا) — واشطب الصفر اللي في الأول.",
+    "tooLong": "دول {{n}} رقم — رقم الموبايل أكتر حاجة {{max}}.",
+    "missingCountryCode": "اتأكد من كود البلد — الأرقام المنسوخة من جهات الاتصال غالباً مبيبقاش فيها."
   }
 }

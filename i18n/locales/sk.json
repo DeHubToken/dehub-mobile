@@ -2098,7 +2098,35 @@
     "pasteFromClipboard": "Vložiť zo schránky",
     "learnMoreAt": "Viac informácií na dehub.io",
     "accountsOnDevice": "Účty na tomto zariadení",
-    "use": "Použiť"
+    "use": "Použiť",
+    "verificationCode": "Overovací kód",
+    "sixDigitCode": "6-miestny kód",
+    "verify": "Overiť",
+    "resendCode": "Poslať kód znova",
+    "noImportedAccounts": "Zatiaľ žiadne importované účty.",
+    "importedAccount": "Importovaný účet",
+    "useAccount": "Použiť účet {{name}}",
+    "removeAccount": "Odstrániť účet {{name}}",
+    "showPrivateKey": "Zobraziť súkromný kľúč",
+    "hidePrivateKey": "Skryť súkromný kľúč",
+    "invalidPrivateKey": "Neplatný súkromný kľúč",
+    "couldNotImportWallet": "Peňaženku sa nepodarilo importovať",
+    "unlockToUse": "Odomknite túto peňaženku DeHub, aby ste ju mohli použiť",
+    "noScreenLock": "Tento telefón nemá zámok obrazovky, takže ktokoľvek, kto ho drží, môže použiť vašu peňaženku. V nastaveniach zariadenia nastavte kód alebo biometriu.",
+    "noStoredKey": "Pre tento účet nie je uložený žiadny súkromný kľúč. Importujte túto peňaženku znova, aby sa jej kľúč prepojil.",
+    "failedToUseAccount": "Tento účet sa nepodarilo použiť",
+    "continueWithPhone": "Pokračovať cez telefón",
+    "phoneNumberA11y": "Telefónne číslo, najprv predvoľba krajiny",
+    "phoneNumberHint": "Zadajte číslo počnúc predvoľbou krajiny. Znamienko plus sa doplní automaticky.",
+    "sendCodeA11y": "Poslať prihlasovací kód na toto číslo",
+    "signInToContinue": "Pokračujte prihlásením",
+    "signInToContinueBody": "Na vykonanie tejto akcie sa musíte prihlásiť.",
+    "closeAuthModal": "Zavrieť prihlasovacie okno",
+    "legalLine": "Pokračovaním súhlasíte s našimi <terms>Podmienkami služby</terms> a <privacy>Zásadami ochrany súkromia</privacy>.",
+    "chooseUsernameBody": "Vyberte si používateľské a zobrazované meno, aby ste mohli pokračovať. Neskôr ich môžete zmeniť.",
+    "checkingAvailability": "Kontroluje sa dostupnosť…",
+    "usernameTakenHint": "Meno je obsadené — skúste pridať číslice alebo podčiarkovník",
+    "displayNameLength": "Zobrazované meno musí mať 2 – 50 znakov."
   },
   "music": {
     "all": "All",
@@ -3729,7 +3757,13 @@
     "thatsGoneToo": "To je tiež preč — aj tak začať odznova",
     "tryBiometrics": "Vyskúšať biometriu na tomto telefóne",
     "unlockWithBiometrics": "Odomknúť biometriou",
-    "confirmStartOver": "Potvrďte, že chcete začať odznova s novou peňaženkou"
+    "confirmStartOver": "Potvrďte, že chcete začať odznova s novou peňaženkou",
+    "understandOldWallet": "Rozumiem, že stará peňaženka a všetko v nej bude navždy mimo môjho dosahu",
+    "savedTwelveWords": "Uložil som si týchto 12 slov na bezpečné miesto",
+    "legacyRecovered": "Overili sme váš starý účet{{suffix}} a obnovili jeho peňaženku. Nastavte heslo, ktoré ju odteraz ochráni na tomto zariadení — v tomto telefóne aj všade inde.",
+    "passwordMin": "Heslo (min. {{min}} znakov)",
+    "newPasswordMin": "Nové heslo (min. {{min}} znakov)",
+    "newWalletPasswordMin": "Heslo novej peňaženky (min. {{min}} znakov)"
   },
   "transcript": {
     "title": "Prepis",
@@ -4215,5 +4249,21 @@
       "megalodon": "Tu je vaša koruna — teraz ste app royalty"
     },
     "continue": "Späť na DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Veľmi slabé",
+    "weak": "Slabé",
+    "fair": "Priemerné",
+    "good": "Dobré",
+    "strong": "Silné",
+    "common": "Toto je bežné alebo ľahko uhádnuteľné heslo",
+    "tooShort": "Použite aspoň {{n}} znakov",
+    "mixChars": "Kombinujte veľké a malé písmená, čísla a symboly",
+    "breached": "Toto heslo sa objavilo v úniku dát — zvoľte iné"
+  },
+  "phoneHint": {
+    "leadingZero": "Začnite predvoľbou svojej krajiny (44 pre Britániu, 1 pre USA) — počiatočnú nulu vynechajte.",
+    "tooLong": "To je {{n}} číslic — telefónne číslo má najviac {{max}}.",
+    "missingCountryCode": "Skontrolujte predvoľbu krajiny — čísla skopírované z kontaktov ju často nemajú."
   }
 }

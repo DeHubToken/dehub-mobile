@@ -1457,7 +1457,35 @@
     "pasteFromClipboard": "ከቅንጥብ ሰሌዳ ለጥፍ",
     "learnMoreAt": "በ dehub.io ላይ የበለጠ ይወቁ",
     "accountsOnDevice": "በዚህ መሣሪያ ላይ ያሉ መለያዎች",
-    "use": "ተጠቀም"
+    "use": "ተጠቀም",
+    "verificationCode": "የማረጋገጫ ኮድ",
+    "sixDigitCode": "የ6 አሃዝ ኮድ",
+    "verify": "አረጋግጥ",
+    "resendCode": "ኮድ እንደገና ላክ",
+    "noImportedAccounts": "እስካሁን የገቡ መለያዎች የሉም።",
+    "importedAccount": "የገባ መለያ",
+    "useAccount": "መለያ {{name}} ተጠቀም",
+    "removeAccount": "መለያ {{name}} አስወግድ",
+    "showPrivateKey": "የግል ቁልፍ አሳይ",
+    "hidePrivateKey": "የግል ቁልፍ ደብቅ",
+    "invalidPrivateKey": "ልክ ያልሆነ የግል ቁልፍ",
+    "couldNotImportWallet": "ቦርሳውን ማስገባት አልተቻለም",
+    "unlockToUse": "ይህን የDeHub ቦርሳ ለመጠቀም ይክፈቱት",
+    "noScreenLock": "ይህ ስልክ የማያ ቁልፍ የለውም፣ ስለዚህ የያዘው ማንኛውም ሰው ቦርሳዎን መጠቀም ይችላል። በመሣሪያ ቅንብሮች ውስጥ የይለፍ ኮድ ወይም ባዮሜትሪክ ያዘጋጁ።",
+    "noStoredKey": "ለዚህ መለያ የተቀመጠ የግል ቁልፍ የለም። ቁልፉን ለማገናኘት ይህን ቦርሳ እንደገና ያስገቡ።",
+    "failedToUseAccount": "ይህን መለያ መጠቀም አልተቻለም",
+    "continueWithPhone": "በስልክ ይቀጥሉ",
+    "phoneNumberA11y": "የስልክ ቁጥር፣ መጀመሪያ የአገር ኮድ",
+    "phoneNumberHint": "ቁጥርዎን በአገር ኮድ ጀምረው ያስገቡ። የመደመሪያ ምልክቱ ለእርስዎ ይታከላል።",
+    "sendCodeA11y": "የመግቢያ ኮድ ወደዚህ የስልክ ቁጥር ላክ",
+    "signInToContinue": "ለመቀጠል ይግቡ",
+    "signInToContinueBody": "ይህን እርምጃ ለመፈጸም መግባት ያስፈልግዎታል።",
+    "closeAuthModal": "የመግቢያ መስኮት ዝጋ",
+    "legalLine": "በመቀጠል፣ የእኛን <terms>የአገልግሎት ውሎች</terms> እና <privacy>የግላዊነት ፖሊሲ</privacy> ይቀበላሉ።",
+    "chooseUsernameBody": "ለመቀጠል የተጠቃሚ ስምና የማሳያ ስም ይምረጡ። በኋላ መቀየር ይችላሉ።",
+    "checkingAvailability": "ተገኝነት እየተረጋገጠ ነው…",
+    "usernameTakenHint": "ስሙ ተይዟል — ቁጥሮች ወይም የታች ሰረዝ ለመጨመር ይሞክሩ",
+    "displayNameLength": "የማሳያ ስም ከ2 እስከ 50 ቁምፊ መሆን አለበት።"
   },
   "messages": {
     "smartRepliesOff": "የተጠቆሙ ምላሾች ጠፍተዋል",
@@ -3557,7 +3585,13 @@
     "thatsGoneToo": "ያም ጠፍቷል — ለማንኛውም እንደገና ጀምር",
     "tryBiometrics": "በዚህ ስልክ ባዮሜትሪክ ሞክር",
     "unlockWithBiometrics": "በባዮሜትሪክ ክፈት",
-    "confirmStartOver": "በአዲስ ቦርሳ እንደገና መጀመር እንደሚፈልጉ ያረጋግጡ"
+    "confirmStartOver": "በአዲስ ቦርሳ እንደገና መጀመር እንደሚፈልጉ ያረጋግጡ",
+    "understandOldWallet": "የቀድሞው ቦርሳና በውስጡ ያለው ሁሉ ለዘላለም ከእጄ እንደሚወጣ ተረድቻለሁ",
+    "savedTwelveWords": "እነዚህን 12 ቃላት ደህና በሆነ ቦታ አስቀምጫለሁ",
+    "legacyRecovered": "የቀድሞ መለያዎ{{suffix}} ተረጋግጦ ቦርሳው ተመልሷል። ከአሁን ጀምሮ በዚህ ስልክና በሌላም ቦታ ሁሉ እንዲጠበቅ የይለፍ ቃል ያስቀምጡ።",
+    "passwordMin": "የይለፍ ቃል (ቢያንስ {{min}} ቁምፊ)",
+    "newPasswordMin": "አዲስ የይለፍ ቃል (ቢያንስ {{min}} ቁምፊ)",
+    "newWalletPasswordMin": "የአዲሱ ቦርሳ የይለፍ ቃል (ቢያንስ {{min}} ቁምፊ)"
   },
   "transcript": {
     "title": "ግልባጭ",
@@ -4038,5 +4072,21 @@
       "megalodon": "የእርስዎ ዘውድ ይኸውልዎት — አሁን የመተግበሪያ ንጉሣዊ ነዎት"
     },
     "continue": "ወደ DeHub ተመለስ"
+  },
+  "passwordStrength": {
+    "veryWeak": "በጣም ደካማ",
+    "weak": "ደካማ",
+    "fair": "መካከለኛ",
+    "good": "ጥሩ",
+    "strong": "ጠንካራ",
+    "common": "ይህ የተለመደ ወይም በቀላሉ የሚገመት የይለፍ ቃል ነው",
+    "tooShort": "ቢያንስ {{n}} ቁምፊዎችን ይጠቀሙ",
+    "mixChars": "አቢይና ትንንሽ ፊደላት፣ ቁጥሮችና ምልክቶች ያዋህዱ",
+    "breached": "ይህ የይለፍ ቃል በመረጃ ፍሰት ውስጥ ታይቷል — ሌላ ይምረጡ"
+  },
+  "phoneHint": {
+    "leadingZero": "በአገርዎ ኮድ ይጀምሩ (44 ለዩኬ፣ 1 ለአሜሪካ) — መጀመሪያ ያለውን 0 ያስወግዱ።",
+    "tooLong": "ይህ {{n}} አሃዝ ነው — የስልክ ቁጥር ቢበዛ {{max}} አሃዝ ነው።",
+    "missingCountryCode": "የአገሩን ኮድ ያረጋግጡ — ከእውቂያዎች የተቀዱ ቁጥሮች ብዙ ጊዜ ይተዉታል።"
   }
 }

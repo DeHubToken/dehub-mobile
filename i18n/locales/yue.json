@@ -1467,7 +1467,35 @@
     "pasteFromClipboard": "由剪貼簿貼上",
     "learnMoreAt": "喺 dehub.io 了解更多",
     "accountsOnDevice": "呢部裝置上嘅帳戶",
-    "use": "使用"
+    "use": "使用",
+    "verificationCode": "驗證碼",
+    "sixDigitCode": "6位數字碼",
+    "verify": "驗證",
+    "resendCode": "重新發送驗證碼",
+    "noImportedAccounts": "仲未有匯入嘅帳戶。",
+    "importedAccount": "匯入嘅帳戶",
+    "useAccount": "使用帳戶 {{name}}",
+    "removeAccount": "移除帳戶 {{name}}",
+    "showPrivateKey": "顯示私鑰",
+    "hidePrivateKey": "隱藏私鑰",
+    "invalidPrivateKey": "私鑰無效",
+    "couldNotImportWallet": "無法匯入錢包",
+    "unlockToUse": "解鎖呢個 DeHub 錢包先可以用",
+    "noScreenLock": "呢部電話冇設定螢幕鎖，任何攞到佢嘅人都用到你個錢包。請喺裝置設定入面設密碼或者生物辨識。",
+    "noStoredKey": "呢個帳戶冇儲存私鑰。請重新匯入呢個錢包嚟連結佢個私鑰。",
+    "failedToUseAccount": "無法使用呢個帳戶",
+    "continueWithPhone": "用電話繼續",
+    "phoneNumberA11y": "電話號碼，先輸入國家代碼",
+    "phoneNumberHint": "請由國家代碼開始輸入你個號碼，加號會自動幫你加。",
+    "sendCodeA11y": "將登入碼發送去呢個電話號碼",
+    "signInToContinue": "登入先可以繼續",
+    "signInToContinueBody": "你要登入先做到呢個動作。",
+    "closeAuthModal": "閂登入視窗",
+    "legalLine": "繼續即表示你同意我哋嘅<terms>服務條款</terms>同<privacy>私隱政策</privacy>。",
+    "chooseUsernameBody": "揀個用戶名同顯示名先可以繼續，之後可以改。",
+    "checkingAvailability": "檢查緊有冇得用…",
+    "usernameTakenHint": "呢個用戶名已經有人用咗 — 試吓加數字或者底線",
+    "displayNameLength": "顯示名要 2-50 個字元。"
   },
   "messages": {
     "smartRepliesOff": "已閂咗建議回覆",
@@ -3560,7 +3588,13 @@
     "thatsGoneToo": "嗰個都冇咗——照樣重新開始",
     "tryBiometrics": "喺呢部電話試用生物辨識",
     "unlockWithBiometrics": "用生物辨識解鎖",
-    "confirmStartOver": "確認你想用新錢包重新開始"
+    "confirmStartOver": "確認你想用新錢包重新開始",
+    "understandOldWallet": "我明白舊錢包同入面嘅嘢會永遠攞唔返",
+    "savedTwelveWords": "我已經將呢 12 個字儲咗喺安全嘅地方",
+    "legacyRecovered": "已經驗證咗你個舊帳戶{{suffix}}，亦都搵返個錢包。請設個密碼，由而家開始喺呢部電話同其他地方保護佢。",
+    "passwordMin": "密碼（最少 {{min}} 個字元）",
+    "newPasswordMin": "新密碼（最少 {{min}} 個字元）",
+    "newWalletPasswordMin": "新錢包密碼（最少 {{min}} 個字元）"
   },
   "transcript": {
     "title": "文字記錄",
@@ -4046,5 +4080,21 @@
       "megalodon": "呢個係你嘅皇冠 — 你而家係應用程式版稅"
     },
     "continue": "返去 DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "非常弱",
+    "weak": "弱",
+    "fair": "一般",
+    "good": "良好",
+    "strong": "強",
+    "common": "呢個係常見或者容易估到嘅密碼",
+    "tooShort": "最少要用 {{n}} 個字元",
+    "mixChars": "混合大小寫字母、數字同符號",
+    "breached": "呢個密碼曾經喺資料外洩入面出現過 — 請揀第二個"
+  },
+  "phoneHint": {
+    "leadingZero": "請由你個國家代碼開始（英國係 44，美國係 1）——唔好要前面嗰個 0。",
+    "tooLong": "呢個係 {{n}} 個數字——電話號碼最多 {{max}} 個。",
+    "missingCountryCode": "檢查吓國家代碼——喺通訊錄複製嘅號碼好多時都冇。"
   }
 }

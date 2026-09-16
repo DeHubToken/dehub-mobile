@@ -28,7 +28,9 @@ const COMMON = new Set([
 
 export interface PasswordAssessment {
   score: 0 | 1 | 2 | 3 | 4;
+  /** i18n key — render with t(label). */
   label: string;
+  /** i18n keys — render with t(warning, { n: MIN_PASSWORD_LENGTH }). */
   warnings: string[];
   classCount: number;
   longEnough: boolean;
@@ -36,7 +38,15 @@ export interface PasswordAssessment {
   acceptable: boolean;
 }
 
-const LABELS = ["Very weak", "Weak", "Fair", "Good", "Strong"] as const;
+// i18n keys, not copy: the meter is rendered in whatever language the app
+// is set to, and this file has no translator. Callers pass these through t().
+const LABELS = [
+  "passwordStrength.veryWeak",
+  "passwordStrength.weak",
+  "passwordStrength.fair",
+  "passwordStrength.good",
+  "passwordStrength.strong",
+] as const;
 
 function classCount(pw: string): number {
   let c = 0;
@@ -69,10 +79,10 @@ export function assessLocal(pw: string): PasswordAssessment {
 
   if (looksTrivial(pw)) {
     score = Math.min(score, 1);
-    warnings.push("This is a common or predictable password");
+    warnings.push("passwordStrength.common");
   }
-  if (!longEnough) warnings.push(`Use at least ${MIN_PASSWORD_LENGTH} characters`);
-  else if (classes < 2) warnings.push("Mix upper/lowercase, numbers, and symbols");
+  if (!longEnough) warnings.push("passwordStrength.tooShort");
+  else if (classes < 2) warnings.push("passwordStrength.mixChars");
 
   const clamped = Math.max(0, Math.min(4, score)) as 0 | 1 | 2 | 3 | 4;
   return {

@@ -1456,7 +1456,35 @@
     "pasteFromClipboard": "Mübadilə buferindən yapışdır",
     "learnMoreAt": "dehub.io saytında ətraflı öyrənin",
     "accountsOnDevice": "Bu cihazdakı hesablar",
-    "use": "İstifadə et"
+    "use": "İstifadə et",
+    "verificationCode": "Təsdiq kodu",
+    "sixDigitCode": "6 rəqəmli kod",
+    "verify": "Təsdiqlə",
+    "resendCode": "Kodu yenidən göndər",
+    "noImportedAccounts": "Hələ idxal edilmiş hesab yoxdur.",
+    "importedAccount": "İdxal edilmiş hesab",
+    "useAccount": "{{name}} hesabından istifadə et",
+    "removeAccount": "{{name}} hesabını sil",
+    "showPrivateKey": "Şəxsi açarı göstər",
+    "hidePrivateKey": "Şəxsi açarı gizlət",
+    "invalidPrivateKey": "Yanlış şəxsi açar",
+    "couldNotImportWallet": "Cüzdan idxal edilə bilmədi",
+    "unlockToUse": "Bu DeHub cüzdanını istifadə etmək üçün kiliddən çıxarın",
+    "noScreenLock": "Bu telefonda ekran kilidi yoxdur, ona görə onu əlinə alan hər kəs cüzdanınızdan istifadə edə bilər. Cihaz parametrlərində parol və ya biometrika təyin edin.",
+    "noStoredKey": "Bu hesab üçün saxlanmış şəxsi açar yoxdur. Açarını bağlamaq üçün bu cüzdanı yenidən idxal edin.",
+    "failedToUseAccount": "Bu hesabdan istifadə edilə bilmədi",
+    "continueWithPhone": "Telefonla davam et",
+    "phoneNumberA11y": "Telefon nömrəsi, əvvəlcə ölkə kodu",
+    "phoneNumberHint": "Nömrənizi ölkə kodundan başlayaraq daxil edin. Artı işarəsi avtomatik əlavə olunur.",
+    "sendCodeA11y": "Bu telefon nömrəsinə giriş kodu göndər",
+    "signInToContinue": "Davam etmək üçün daxil olun",
+    "signInToContinueBody": "Bu əməliyyatı yerinə yetirmək üçün daxil olmalısınız.",
+    "closeAuthModal": "Giriş pəncərəsini bağla",
+    "legalLine": "Davam etməklə <terms>Xidmət Şərtlərimizi</terms> və <privacy>Məxfilik Siyasətimizi</privacy> qəbul edirsiniz.",
+    "chooseUsernameBody": "Davam etmək üçün istifadəçi adı və görünən ad seçin. Sonra dəyişə bilərsiniz.",
+    "checkingAvailability": "Əlçatanlıq yoxlanılır…",
+    "usernameTakenHint": "Bu ad tutulub — rəqəm və ya alt xətt əlavə etməyi sınayın",
+    "displayNameLength": "Görünən ad 2-50 simvol olmalıdır."
   },
   "messages": {
     "smartRepliesOff": "Təklif olunan cavablar söndürüldü",
@@ -3546,7 +3574,13 @@
     "thatsGoneToo": "O da yoxdur — yenə də yenidən başla",
     "tryBiometrics": "Bu telefonda biometrikanı sınayın",
     "unlockWithBiometrics": "Biometrika ilə aç",
-    "confirmStartOver": "Yeni cüzdanla yenidən başlamaq istədiyinizi təsdiqləyin"
+    "confirmStartOver": "Yeni cüzdanla yenidən başlamaq istədiyinizi təsdiqləyin",
+    "understandOldWallet": "Köhnə cüzdanın və içindəki hər şeyin həmişəlik əlçatmaz olacağını başa düşürəm",
+    "savedTwelveWords": "Bu 12 sözü təhlükəsiz bir yerdə saxladım",
+    "legacyRecovered": "Köhnə hesabınız{{suffix}} təsdiqləndi və cüzdanı bərpa olundu. Bundan sonra bu cihazda — bu telefonda və hər yerdə — qorunması üçün parol təyin edin.",
+    "passwordMin": "Parol (ən azı {{min}} simvol)",
+    "newPasswordMin": "Yeni parol (ən azı {{min}} simvol)",
+    "newWalletPasswordMin": "Yeni cüzdan parolu (ən azı {{min}} simvol)"
   },
   "transcript": {
     "title": "Transkript",
@@ -4032,5 +4066,21 @@
       "megalodon": "Bu da sizin tacınız — indi tətbiq royalsınız"
     },
     "continue": "DeHub-a qayıt"
+  },
+  "passwordStrength": {
+    "veryWeak": "Çox zəif",
+    "weak": "Zəif",
+    "fair": "Orta",
+    "good": "Yaxşı",
+    "strong": "Güclü",
+    "common": "Bu geniş yayılmış və ya asan təxmin edilən paroldur",
+    "tooShort": "Ən azı {{n}} simvol istifadə edin",
+    "mixChars": "Böyük/kiçik hərfləri, rəqəmləri və simvolları qarışdırın",
+    "breached": "Bu parol məlumat sızmasında görünüb — başqasını seçin"
+  },
+  "phoneHint": {
+    "leadingZero": "Ölkə kodunuzla başlayın (Britaniya üçün 44, ABŞ üçün 1) — baştakı 0-ı yazmayın.",
+    "tooLong": "Bu {{n}} rəqəmdir — telefon nömrəsi ən çox {{max}} rəqəm olur.",
+    "missingCountryCode": "Ölkə kodunu yoxlayın — Kontaktlardan kopyalanan nömrələrdə o çox vaxt olmur."
   }
 }

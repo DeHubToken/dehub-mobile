@@ -2,6 +2,7 @@ import React, { memo, useCallback, useState } from "react";
 import { View } from "react-native";
 import ImportWalletModal from "./ImportWalletModal";
 import { AuthButton, AuthDivider } from "./AuthControls";
+import { useTranslation } from "react-i18next";
 
 export type ImportWalletProps = {
   onImport?: () => void;
@@ -12,6 +13,7 @@ export type ImportWalletProps = {
 
 const ImportWallet: React.FC<ImportWalletProps> = memo(
   ({ onImport, disabled, busy, className }) => {
+    const { t } = useTranslation();
     const isDisabled = !!disabled || !!busy;
     const [modalVisible, setModalVisible] = useState(false);
     
@@ -30,11 +32,11 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
 
     return (
       <View className={className}>
-        <AuthDivider label="or" />
+        <AuthDivider label={t("loginModal.or")} />
 
         <AuthButton
           icon="key"
-          label="Import external wallet"
+          label={t("auth.importExternalWallet")}
           onPress={handlePress}
           disabled={isDisabled}
         />

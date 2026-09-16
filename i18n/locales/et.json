@@ -1467,7 +1467,35 @@
     "pasteFromClipboard": "Kleebi lõikelaualt",
     "learnMoreAt": "Loe lähemalt dehub.io-s",
     "accountsOnDevice": "Selle seadme kontod",
-    "use": "Kasuta"
+    "use": "Kasuta",
+    "verificationCode": "Kinnituskood",
+    "sixDigitCode": "6-kohaline kood",
+    "verify": "Kinnita",
+    "resendCode": "Saada kood uuesti",
+    "noImportedAccounts": "Imporditud kontosid veel pole.",
+    "importedAccount": "Imporditud konto",
+    "useAccount": "Kasuta kontot {{name}}",
+    "removeAccount": "Eemalda konto {{name}}",
+    "showPrivateKey": "Näita privaatvõtit",
+    "hidePrivateKey": "Peida privaatvõti",
+    "invalidPrivateKey": "Vigane privaatvõti",
+    "couldNotImportWallet": "Rahakoti importimine ebaõnnestus",
+    "unlockToUse": "Ava see DeHubi rahakott, et seda kasutada",
+    "noScreenLock": "Sellel telefonil pole ekraanilukku, nii et igaüks, kes selle kätte saab, saab su rahakotti kasutada. Määra seadme seadetes pääsukood või biomeetria.",
+    "noStoredKey": "Selle konto jaoks pole privaatvõtit salvestatud. Impordi see rahakott uuesti, et võti siduda.",
+    "failedToUseAccount": "Selle konto kasutamine ebaõnnestus",
+    "continueWithPhone": "Jätka telefoniga",
+    "phoneNumberA11y": "Telefoninumber, riigikood esimesena",
+    "phoneNumberHint": "Sisesta oma number riigikoodiga alustades. Plussmärk lisatakse automaatselt.",
+    "sendCodeA11y": "Saada sisselogimiskood sellele numbrile",
+    "signInToContinue": "Jätkamiseks logi sisse",
+    "signInToContinueBody": "Selle toimingu tegemiseks pead sisse logima.",
+    "closeAuthModal": "Sulge sisselogimisaken",
+    "legalLine": "Jätkates nõustud meie <terms>teenusetingimustega</terms> ja <privacy>privaatsuspoliitikaga</privacy>.",
+    "chooseUsernameBody": "Jätkamiseks vali kasutajanimi ja kuvatav nimi. Neid saab hiljem muuta.",
+    "checkingAvailability": "Saadavuse kontrollimine…",
+    "usernameTakenHint": "Nimi on võetud — proovi lisada numbreid või alakriipsu",
+    "displayNameLength": "Kuvatav nimi peab olema 2–50 tähemärki."
   },
   "messages": {
     "smartRepliesOff": "Soovitatud vastused on välja lülitatud",
@@ -3561,7 +3589,13 @@
     "thatsGoneToo": "See on ka kadunud — alusta ikkagi uuesti",
     "tryBiometrics": "Proovi biomeetriat selles telefonis",
     "unlockWithBiometrics": "Ava biomeetriaga",
-    "confirmStartOver": "Kinnita, et soovid uue rahakotiga otsast alustada"
+    "confirmStartOver": "Kinnita, et soovid uue rahakotiga otsast alustada",
+    "understandOldWallet": "Saan aru, et vana rahakott ja kõik selles jääb mulle jäädavalt kättesaamatuks",
+    "savedTwelveWords": "Olen need 12 sõna turvalisse kohta salvestanud",
+    "legacyRecovered": "Kinnitasime su vana konto{{suffix}} ja taastasime selle rahakoti. Määra parool, mis kaitseb seda nüüdsest selles seadmes — selles telefonis ja igal pool mujal.",
+    "passwordMin": "Parool (vähemalt {{min}} tähemärki)",
+    "newPasswordMin": "Uus parool (vähemalt {{min}} tähemärki)",
+    "newWalletPasswordMin": "Uue rahakoti parool (vähemalt {{min}} tähemärki)"
   },
   "transcript": {
     "title": "Transkriptsioon",
@@ -4048,5 +4082,21 @@
       "megalodon": "Siin on sinu kroon — oled nüüd rakenduse autoritasu"
     },
     "continue": "Tagasi DeHubi"
+  },
+  "passwordStrength": {
+    "veryWeak": "Väga nõrk",
+    "weak": "Nõrk",
+    "fair": "Keskmine",
+    "good": "Hea",
+    "strong": "Tugev",
+    "common": "See on levinud või kergesti äraarvatav parool",
+    "tooShort": "Kasuta vähemalt {{n}} tähemärki",
+    "mixChars": "Sega suur- ja väiketähti, numbreid ja sümboleid",
+    "breached": "See parool on esinenud andmelekkes — vali mõni teine"
+  },
+  "phoneHint": {
+    "leadingZero": "Alusta oma riigikoodist (44 Ühendkuningriigi, 1 USA puhul) — jäta algusest 0 ära.",
+    "tooLong": "See on {{n}} numbrit — telefoninumbris on neid kõige rohkem {{max}}.",
+    "missingCountryCode": "Kontrolli riigikoodi — kontaktidest kopeeritud numbritel see sageli puudub."
   }
 }

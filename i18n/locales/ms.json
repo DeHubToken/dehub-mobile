@@ -1705,7 +1705,35 @@
     "pasteFromClipboard": "Tampal dari papan keratan",
     "learnMoreAt": "Ketahui lebih lanjut di dehub.io",
     "accountsOnDevice": "Akaun pada peranti ini",
-    "use": "Guna"
+    "use": "Guna",
+    "verificationCode": "Kod pengesahan",
+    "sixDigitCode": "Kod 6 digit",
+    "verify": "Sahkan",
+    "resendCode": "Hantar semula kod",
+    "noImportedAccounts": "Tiada akaun diimport lagi.",
+    "importedAccount": "Akaun diimport",
+    "useAccount": "Guna akaun {{name}}",
+    "removeAccount": "Buang akaun {{name}}",
+    "showPrivateKey": "Tunjuk kunci persendirian",
+    "hidePrivateKey": "Sembunyikan kunci persendirian",
+    "invalidPrivateKey": "Kunci persendirian tidak sah",
+    "couldNotImportWallet": "Tidak dapat mengimport dompet",
+    "unlockToUse": "Buka kunci dompet DeHub ini untuk menggunakannya",
+    "noScreenLock": "Telefon ini tiada kunci skrin, jadi sesiapa yang memegangnya boleh menggunakan dompet anda. Tetapkan kod laluan atau biometrik dalam tetapan peranti.",
+    "noStoredKey": "Tiada kunci persendirian disimpan untuk akaun ini. Sila import semula dompet ini untuk memautkan kuncinya.",
+    "failedToUseAccount": "Gagal menggunakan akaun ini",
+    "continueWithPhone": "Teruskan dengan Telefon",
+    "phoneNumberA11y": "Nombor telefon, kod negara dahulu",
+    "phoneNumberHint": "Masukkan nombor anda bermula dengan kod negara. Tanda tambah ditambah secara automatik.",
+    "sendCodeA11y": "Hantar kod log masuk ke nombor ini",
+    "signInToContinue": "Log masuk untuk teruskan",
+    "signInToContinueBody": "Anda perlu log masuk untuk melakukan tindakan ini.",
+    "closeAuthModal": "Tutup tetingkap log masuk",
+    "legalLine": "Dengan meneruskan, anda bersetuju dengan <terms>Terma Perkhidmatan</terms> dan <privacy>Dasar Privasi</privacy> kami.",
+    "chooseUsernameBody": "Pilih nama pengguna dan nama paparan untuk teruskan. Anda boleh ubahnya kemudian.",
+    "checkingAvailability": "Menyemak ketersediaan…",
+    "usernameTakenHint": "Nama sudah diambil — cuba tambah nombor atau garis bawah",
+    "displayNameLength": "Nama paparan mesti 2-50 aksara."
   },
   "bookmarks": {
     "title": "Your Bookmarks",
@@ -3824,7 +3852,13 @@
     "thatsGoneToo": "Itu pun sudah hilang — mula semula juga",
     "tryBiometrics": "Cuba biometrik pada telefon ini",
     "unlockWithBiometrics": "Buka dengan biometrik",
-    "confirmStartOver": "Sahkan anda mahu mula semula dengan dompet baharu"
+    "confirmStartOver": "Sahkan anda mahu mula semula dengan dompet baharu",
+    "understandOldWallet": "Saya faham bahawa dompet lama dan segala isinya akan hilang daripada capaian saya selamanya",
+    "savedTwelveWords": "Saya telah menyimpan 12 perkataan ini di tempat selamat",
+    "legacyRecovered": "Akaun lama anda{{suffix}} telah disahkan dan dompetnya dipulihkan. Tetapkan kata laluan untuk melindunginya pada peranti ini — pada telefon ini dan di mana-mana sahaja, mulai sekarang.",
+    "passwordMin": "Kata laluan (min {{min}} aksara)",
+    "newPasswordMin": "Kata laluan baharu (min {{min}} aksara)",
+    "newWalletPasswordMin": "Kata laluan dompet baharu (min {{min}} aksara)"
   },
   "transcript": {
     "title": "Transkrip",
@@ -4312,5 +4346,21 @@
       "megalodon": "Inilah mahkota anda — anda adalah royalti aplikasi sekarang"
     },
     "continue": "Kembali ke DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Sangat lemah",
+    "weak": "Lemah",
+    "fair": "Sederhana",
+    "good": "Baik",
+    "strong": "Kuat",
+    "common": "Ini kata laluan biasa atau mudah diteka",
+    "tooShort": "Gunakan sekurang-kurangnya {{n}} aksara",
+    "mixChars": "Campurkan huruf besar/kecil, nombor dan simbol",
+    "breached": "Kata laluan ini pernah muncul dalam kebocoran data — pilih yang lain"
+  },
+  "phoneHint": {
+    "leadingZero": "Mulakan dengan kod negara anda (44 untuk UK, 1 untuk AS) — buang 0 di hadapan.",
+    "tooLong": "Itu {{n}} digit — nombor telefon paling banyak {{max}}.",
+    "missingCountryCode": "Semak kod negaranya — nombor yang disalin daripada Kenalan selalunya tiada kod itu."
   }
 }

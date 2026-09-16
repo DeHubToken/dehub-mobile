@@ -1467,7 +1467,35 @@
     "pasteFromClipboard": "Namathisela kusuka ebhodini lokukopisha",
     "learnMoreAt": "Funda kabanzi ku-dehub.io",
     "accountsOnDevice": "Ama-akhawunti kule divayisi",
-    "use": "Sebenzisa"
+    "use": "Sebenzisa",
+    "verificationCode": "Ikhodi yokuqinisekisa",
+    "sixDigitCode": "Ikhodi yamadijithi ayi-6",
+    "verify": "Qinisekisa",
+    "resendCode": "Thumela ikhodi futhi",
+    "noImportedAccounts": "Awekho ama-akhawunti angeniswe okwamanje.",
+    "importedAccount": "I-akhawunti engenisiwe",
+    "useAccount": "Sebenzisa i-akhawunti {{name}}",
+    "removeAccount": "Susa i-akhawunti {{name}}",
+    "showPrivateKey": "Bonisa ukhiye oyimfihlo",
+    "hidePrivateKey": "Fihla ukhiye oyimfihlo",
+    "invalidPrivateKey": "Ukhiye oyimfihlo ongalungile",
+    "couldNotImportWallet": "Ayikwazanga ukungenisa isikhwama",
+    "unlockToUse": "Vula lesi sikhwama se-DeHub ukuze usisebenzise",
+    "noScreenLock": "Le foni ayinawo umkhiya wesikrini, ngakho noma ubani oyiphethe angasebenzisa isikhwama sakho. Setha ikhodi yokungena noma i-biometrics kuzilungiselelo zedivayisi.",
+    "noStoredKey": "Awukho ukhiye oyimfihlo ogcinelwe le akhawunti. Sicela ungenise futhi lesi sikhwama ukuze uxhume ukhiye waso.",
+    "failedToUseAccount": "Ayikwazanga ukusebenzisa le akhawunti",
+    "continueWithPhone": "Qhubeka ngefoni",
+    "phoneNumberA11y": "Inombolo yefoni, ikhodi yezwe kuqala",
+    "phoneNumberHint": "Faka inombolo yakho uqale ngekhodi yezwe. Uphawu lokuhlanganisa lwengezwa ngokuzenzakalela.",
+    "sendCodeA11y": "Thumela ikhodi yokungena kule nombolo yefoni",
+    "signInToContinue": "Ngena ukuze uqhubeke",
+    "signInToContinueBody": "Kudingeka ungene ukuze wenze lesi senzo.",
+    "closeAuthModal": "Vala iwindi lokungena",
+    "legalLine": "Ngokuqhubeka, uyavuma <terms>Imigomo Yesevisi</terms> kanye <privacy>Nenqubomgomo Yobumfihlo</privacy> yethu.",
+    "chooseUsernameBody": "Khetha igama lomsebenzisi negama elibonisiwe ukuze uqhubeke. Ungawashintsha kamuva.",
+    "checkingAvailability": "Kuhlolwa ukutholakala…",
+    "usernameTakenHint": "Leli gama selithathiwe — zama ukungeza izinombolo noma umudwa ongaphansi",
+    "displayNameLength": "Igama elibonisiwe kumele libe nezinhlamvu ezingu-2-50."
   },
   "messages": {
     "smartRepliesOff": "Izimpendulo eziphakanyisiwe zivaliwe",
@@ -3591,7 +3619,13 @@
     "thatsGoneToo": "Nalokho kulahlekile — qala kabusha noma kunjalo",
     "tryBiometrics": "Zama i-biometrics kule foni",
     "unlockWithBiometrics": "Vula nge-biometrics",
-    "confirmStartOver": "Qinisekisa ukuthi ufuna ukuqala kabusha ngesikhwama esisha"
+    "confirmStartOver": "Qinisekisa ukuthi ufuna ukuqala kabusha ngesikhwama esisha",
+    "understandOldWallet": "Ngiyaqonda ukuthi isikhwama esidala, nakho konke okukuso, ngeke ngisakwazi ukukuthola naphakade",
+    "savedTwelveWords": "Sengiwagcinile la magama ayi-12 endaweni ephephile",
+    "legacyRecovered": "Siqinisekise i-akhawunti yakho endala{{suffix}} futhi sabuyisa isikhwama sayo. Setha iphasiwedi ukuyivikela kule divayisi — kule foni nakuzo zonke ezinye izindawo, kusukela manje.",
+    "passwordMin": "Iphasiwedi (okungenani izinhlamvu ezingu-{{min}})",
+    "newPasswordMin": "Iphasiwedi elisha (okungenani izinhlamvu ezingu-{{min}})",
+    "newWalletPasswordMin": "Iphasiwedi lesikhwama esisha (okungenani izinhlamvu ezingu-{{min}})"
   },
   "transcript": {
     "title": "Umbhalo wokukhulunywayo",
@@ -4077,5 +4111,21 @@
       "megalodon": "Nanku umqhele wakho — usebukhosini be-app manje"
     },
     "continue": "Buyela ku-DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Buthakathaka kakhulu",
+    "weak": "Buthakathaka",
+    "fair": "Kulungile",
+    "good": "Kuhle",
+    "strong": "Kuqinile",
+    "common": "Leli yiphasiwedi elivamile noma elilula ukuliqagela",
+    "tooShort": "Sebenzisa okungenani izinhlamvu ezingu-{{n}}",
+    "mixChars": "Xuba onobumba abakhulu/abancane, izinombolo, nezimpawu",
+    "breached": "Leli phasiwedi selike lavela ekuvuzeni kwedatha — khetha elinye"
+  },
+  "phoneHint": {
+    "leadingZero": "Qala ngekhodi yezwe lakho (44 ye-UK, 1 ye-US) — susa u-0 wokuqala.",
+    "tooLong": "Lawo ngamadijithi angu-{{n}} — inombolo yefoni inawo angu-{{max}} ubukhulu bawo.",
+    "missingCountryCode": "Hlola ikhodi yezwe — izinombolo ezikopishwe kwabathintwayo zivame ukuyishiya."
   }
 }

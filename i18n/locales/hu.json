@@ -787,7 +787,35 @@
     "pasteFromClipboard": "Beillesztés a vágólapról",
     "learnMoreAt": "Tudj meg többet a dehub.io oldalon",
     "accountsOnDevice": "Fiókok ezen az eszközön",
-    "use": "Használ"
+    "use": "Használ",
+    "verificationCode": "Ellenőrző kód",
+    "sixDigitCode": "6 jegyű kód",
+    "verify": "Ellenőrzés",
+    "resendCode": "Kód újraküldése",
+    "noImportedAccounts": "Még nincs importált fiók.",
+    "importedAccount": "Importált fiók",
+    "useAccount": "{{name}} fiók használata",
+    "removeAccount": "{{name}} fiók eltávolítása",
+    "showPrivateKey": "Privát kulcs megjelenítése",
+    "hidePrivateKey": "Privát kulcs elrejtése",
+    "invalidPrivateKey": "Érvénytelen privát kulcs",
+    "couldNotImportWallet": "A tárca importálása nem sikerült",
+    "unlockToUse": "Oldd fel ezt a DeHub tárcát a használatához",
+    "noScreenLock": "Ezen a telefonon nincs képernyőzár, így bárki, aki a kezébe veszi, használhatja a tárcádat. Állíts be kódot vagy biometrikus azonosítást az eszköz beállításaiban.",
+    "noStoredKey": "Ehhez a fiókhoz nincs tárolt privát kulcs. Importáld újra ezt a tárcát, hogy a kulcsa összekapcsolódjon.",
+    "failedToUseAccount": "A fiók használata nem sikerült",
+    "continueWithPhone": "Folytatás telefonnal",
+    "phoneNumberA11y": "Telefonszám, először az országhívó",
+    "phoneNumberHint": "Add meg a számod az országhívóval kezdve. A plusz jelet automatikusan hozzáadjuk.",
+    "sendCodeA11y": "Bejelentkezési kód küldése erre a számra",
+    "signInToContinue": "Jelentkezz be a folytatáshoz",
+    "signInToContinueBody": "Ehhez a művelethez be kell jelentkezned.",
+    "closeAuthModal": "Bejelentkezési ablak bezárása",
+    "legalLine": "A folytatással elfogadod a <terms>Szolgáltatási feltételeinket</terms> és az <privacy>Adatvédelmi szabályzatunkat</privacy>.",
+    "chooseUsernameBody": "Válassz felhasználónevet és megjelenített nevet a folytatáshoz. Később módosíthatod őket.",
+    "checkingAvailability": "Elérhetőség ellenőrzése…",
+    "usernameTakenHint": "Ez a név foglalt — próbálj számokat vagy aláhúzást hozzáadni",
+    "displayNameLength": "A megjelenített névnek 2–50 karakter hosszúnak kell lennie."
   },
   "explorePage": {
     "searchPlaceholder": "Emberek, bejegyzések vagy tartalom keresése...",
@@ -3566,7 +3594,13 @@
     "thatsGoneToo": "Az is odalett — kezdd újra mindenképp",
     "tryBiometrics": "Próbáld a biometriát ezen a telefonon",
     "unlockWithBiometrics": "Feloldás biometriával",
-    "confirmStartOver": "Erősítsd meg, hogy új tárcával szeretnéd újrakezdeni"
+    "confirmStartOver": "Erősítsd meg, hogy új tárcával szeretnéd újrakezdeni",
+    "understandOldWallet": "Megértem, hogy a régi tárca és minden benne lévő örökre elérhetetlenné válik számomra",
+    "savedTwelveWords": "Elmentettem ezt a 12 szót egy biztonságos helyre",
+    "legacyRecovered": "Ellenőriztük a régi fiókodat{{suffix}}, és visszaállítottuk a tárcáját. Adj meg egy jelszót, amely mostantól ezen az eszközön — ezen a telefonon és mindenhol máshol — védi.",
+    "passwordMin": "Jelszó (min. {{min}} karakter)",
+    "newPasswordMin": "Új jelszó (min. {{min}} karakter)",
+    "newWalletPasswordMin": "Az új tárca jelszava (min. {{min}} karakter)"
   },
   "transcript": {
     "title": "Átirat",
@@ -4053,5 +4087,21 @@
       "megalodon": "Íme a koronád — mostantól alkalmazásjogosult vagy"
     },
     "continue": "Vissza a DeHubra"
+  },
+  "passwordStrength": {
+    "veryWeak": "Nagyon gyenge",
+    "weak": "Gyenge",
+    "fair": "Közepes",
+    "good": "Jó",
+    "strong": "Erős",
+    "common": "Ez egy gyakori vagy könnyen kitalálható jelszó",
+    "tooShort": "Használj legalább {{n}} karaktert",
+    "mixChars": "Keverj nagy- és kisbetűket, számokat és szimbólumokat",
+    "breached": "Ez a jelszó szerepelt egy adatszivárgásban — válassz másikat"
+  },
+  "phoneHint": {
+    "leadingZero": "Kezdd az országhívóval (44 az Egyesült Királyság, 1 az USA esetén) — hagyd el a kezdő 0-t.",
+    "tooLong": "Ez {{n}} számjegy — egy telefonszám legfeljebb {{max}} jegyű.",
+    "missingCountryCode": "Ellenőrizd az országhívót — a névjegyekből másolt számokból gyakran hiányzik."
   }
 }
