@@ -4093,5 +4093,24 @@
     "close": "Schließen",
     "callbackRequest": "Rückrufanfrage",
     "tryAgain": "Erneut versuchen"
+  },
+  "badgeAscension": {
+    "reached": "Du hast {{tier}} erreicht",
+    "yourBalance": "Ihr Guthaben · {{amount}} DHB",
+    "lines": {
+      "crab": "Du gehst an Orte,",
+      "lobster": "Schwimmen Sie weiter",
+      "piranha": "Klein, aber es beißt",
+      "tortoise": "Langsam und stetig kamen Sie hierher",
+      "cobra": "Die Leute gehen jetzt aus dem Weg",
+      "octopus": "Acht Arme, jeder Topf",
+      "crocodile": "Nichts überquert diesen Fluss",
+      "dolphin": "Du bist jetzt ein großer Fisch",
+      "tigerShark": "Das Wasser wurde gerade ruhiger",
+      "greatWhiteShark": "Jeder weiß, dass Flosse",
+      "killerWhale": "An der Spitze der Nahrungskette, und Sie jagen in Packungen",
+      "blueWhale": "Das Größte, was je gelebt hat. Das bist du.",
+      "megalodon": "Hier ist deine Krone — du bist jetzt App-König"
+    }
   }
 }

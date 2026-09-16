@@ -4010,5 +4010,24 @@
     "close": "Tata",
     "callbackRequest": "Whakapā mai",
     "tryAgain": "Whakamātauria ano"
+  },
+  "badgeAscension": {
+    "reached": "Kua tae mai koe {{tier}}",
+    "yourBalance": "To koutou toenga · {{amount}} DHB",
+    "lines": {
+      "crab": "Kei te haere koe ki nga waahi",
+      "lobster": "Haere tonu ki te kaukau",
+      "piranha": "He iti, engari he iti",
+      "tortoise": "He puhoi, he puhoi, kua tae mai koe ki konei",
+      "cobra": "Ka neke atu te iwi i te ara inaianei",
+      "octopus": "E waru nga ringa, nga potae katoa",
+      "crocodile": "Kaore he mea e whiti ana i tenei awa",
+      "dolphin": "He ika nui koe inaianei",
+      "tigerShark": "He iti ake te wai",
+      "greatWhiteShark": "E mohio ana te katoa ki te mutunga",
+      "killerWhale": "I runga i te mekameka kai, a ka hopu koe i roto i nga kohinga",
+      "blueWhale": "Ko te mea nui rawa atu kua ora. Ko koe tenei.",
+      "megalodon": "Tenei ko to koutou karauna — e koe App Royalty inaianei"
+    }
   }
 }

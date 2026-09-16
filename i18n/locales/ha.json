@@ -4014,5 +4014,24 @@
     "close": "Kusa",
     "callbackRequest": "Callback bukatar",
     "tryAgain": "Gwada kuma"
+  },
+  "badgeAscension": {
+    "reached": "Kun isa {{tier}}",
+    "yourBalance": "Daidaitawar ku · {{amount}} DHB",
+    "lines": {
+      "crab": "Kuna zuwa wurare",
+      "lobster": "Ci gaba da iyo",
+      "piranha": "Ƙananan, amma yana ciji",
+      "tortoise": "A hankali da kuma m samu ku a nan",
+      "cobra": "Mutane suna motsawa daga hanyar yanzu",
+      "octopus": "Makamai takwas, kowane tukunya",
+      "crocodile": "Babu wani abu da ya haye wannan kogin",
+      "dolphin": "Kai babban kifi ne yanzu",
+      "tigerShark": "Ruwan kawai ya sami nutsuwa",
+      "greatWhiteShark": "Kowa ya san cewa fin",
+      "killerWhale": "Top na abinci sarkar, kuma ka farauta a cikin fakiti",
+      "blueWhale": "Abu mafi girma da ya taɓa rayuwa. Wannan shi ne ku.",
+      "megalodon": "Ga kambinku — kun kasance app royalty yanzu"
+    }
   }
 }

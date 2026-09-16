@@ -4002,5 +4002,24 @@
     "close": "Mechie",
     "callbackRequest": "Kpọtụrụ arịrịọ",
     "tryAgain": "Gbalịa ọzọ"
+  },
+  "badgeAscension": {
+    "reached": "Ị ruru {{tier}}",
+    "yourBalance": "Gị itule · {{amount}} DHB",
+    "lines": {
+      "crab": "Ị na-aga ebe",
+      "lobster": "Nọgidenụ na-egwu mmiri",
+      "piranha": "Obere, mana ọ na-ata",
+      "tortoise": "Nwayọọ nwayọọ ma kwụsie ike nwetara gị ebe a",
+      "cobra": "Ndị mmadụ si n 'ụzọ pụọ ugbu a",
+      "octopus": "Ogwe aka asatọ, ite ọ bụla",
+      "crocodile": "Ọ dịghị ihe gafee osimiri a",
+      "dolphin": "Ị bụ nnukwu azụ ugbu a",
+      "tigerShark": "Mmiri ahụ ka dị jụụ.",
+      "greatWhiteShark": "Onye ọ bụla maara na njedebe",
+      "killerWhale": "N 'elu nri, ma ị na-achụ nta n' ime ngwugwu",
+      "blueWhale": "Ihe kachasị ukwuu nke dịrịla ndụ. Nke ahụ bụ gị.",
+      "megalodon": "Nke a bụ okpueze gị — ị bụ eze ngwa ugbu a"
+    }
   }
 }

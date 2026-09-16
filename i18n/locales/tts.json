@@ -3982,5 +3982,22 @@
     "close": "ปิด",
     "callbackRequest": "คำขอเรียกกลับ",
     "tryAgain": "ลองอีกครั้ง"
+  },
+  "badgeAscension": {
+    "lines": {
+      "crab": "You're going places",
+      "lobster": "Keep swimming",
+      "piranha": "เล็กน้อย แต่มันกัดได้",
+      "tortoise": "ช้าๆ แต่ก็ได้ผลมาถึงตรงนี้",
+      "cobra": "คนต่างๆ หลบทางให้ตอนนี้",
+      "octopus": "Eight arms, every pot",
+      "crocodile": "ไม่มีอะไรข้ามแม่น้ำนี้ได้",
+      "dolphin": "You're a big fish now",
+      "tigerShark": "น้ำเงียบลงไปแล้ว",
+      "greatWhiteShark": "ทุกคนรู้จักครีบนั่นแล้ว",
+      "killerWhale": "อยู่ยอดสายอาหาร และเจ้าล่าเป็นฝูง",
+      "blueWhale": "The biggest thing that has ever lived. That's you.",
+      "megalodon": "Here's your crown — you're app royalty now"
+    }
   }
 }

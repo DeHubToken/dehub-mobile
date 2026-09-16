@@ -4092,5 +4092,24 @@
     "close": "閉じる",
     "callbackRequest": "折り返しの電話リクエスト",
     "tryAgain": "もう一度お試しください"
+  },
+  "badgeAscension": {
+    "reached": "{{tier}}に到達しました",
+    "yourBalance": "残高· {{amount}} DHB",
+    "lines": {
+      "crab": "あなたは場所に行くつもりです",
+      "lobster": "泳ぎ続ける",
+      "piranha": "小さくても噛み付く",
+      "tortoise": "ゆっくりと着実にあなたをここに連れてきました",
+      "cobra": "人々は今、邪魔にならないように移動しています",
+      "octopus": "8本の腕、すべての鍋",
+      "crocodile": "この川を渡るものは何もありません",
+      "dolphin": "あなたは今や大きな魚です",
+      "tigerShark": "水が穏やかになりました",
+      "greatWhiteShark": "誰もがそのフィンを知っています",
+      "killerWhale": "食物連鎖の頂点で、パックで狩りをします",
+      "blueWhale": "これまでで最大のものです。それはあなたです。",
+      "megalodon": "これがあなたの王冠です。これであなたはアプリのロイヤリティです"
+    }
   }
 }

@@ -4070,5 +4070,24 @@
     "close": "Yopish",
     "callbackRequest": "Qayta qo&#39;ng&#39;iroq qilish so&#39;rovi",
     "tryAgain": "Qayta urinish"
+  },
+  "badgeAscension": {
+    "reached": "Siz {{tier}} ga yetdingiz",
+    "yourBalance": "Balansingiz · {{amount}} DHB",
+    "lines": {
+      "crab": "Siz joylarga borasiz",
+      "lobster": "Suzishda davom eting",
+      "piranha": "Kichik, lekin tishlaydi",
+      "tortoise": "Sekin va barqaror sizni bu yerga olib keldi",
+      "cobra": "Odamlar endi yo&#39;ldan ketishmoqda",
+      "octopus": "Sakkiz qo&#39;l, har bir qozon",
+      "crocodile": "Bu daryodan hech narsa o&#39;tmaydi",
+      "dolphin": "Sen endi katta baliqsan",
+      "tigerShark": "Suv shunchaki tinchlandi",
+      "greatWhiteShark": "Hamma bu finni biladi",
+      "killerWhale": "Oziq-ovqat zanjirining yuqori qismida, va siz suruvlarda ov qilasiz",
+      "blueWhale": "Dunyoda yashagan eng buyuk narsa. Bu sizsiz.",
+      "megalodon": "Mana sizning tojingiz — endi siz royalti ilovasidasiz"
+    }
   }
 }

@@ -4112,5 +4112,24 @@
     "close": "Đóng",
     "callbackRequest": "Yêu cầu gọi lại",
     "tryAgain": "Thử lại"
+  },
+  "badgeAscension": {
+    "reached": "Bạn đã đến {{tier}}",
+    "yourBalance": "Số dư của bạn · {{amount}} DHB",
+    "lines": {
+      "crab": "Bạn sắp đi đến nhiều nơi",
+      "lobster": "Bơi tiếp đi",
+      "piranha": "Nhỏ, nhưng nó cắn",
+      "tortoise": "Chậm và ổn định đã đưa bạn đến đây",
+      "cobra": "Mọi người di chuyển ra khỏi con đường bây giờ",
+      "octopus": "Tám cánh tay, mỗi nồi",
+      "crocodile": "Không có gì vượt qua con sông này",
+      "dolphin": "Bây giờ bạn là một con cá lớn",
+      "tigerShark": "Nước vừa trở nên yên tĩnh hơn",
+      "greatWhiteShark": "Mọi người đều biết rằng vây",
+      "killerWhale": "Đứng đầu chuỗi thức ăn, và bạn đi săn theo bầy đàn",
+      "blueWhale": "Điều vĩ đại nhất đã từng tồn tại. Đó chính là bạn.",
+      "megalodon": "Đây là vương miện của bạn — bây giờ bạn đã là thành viên hoàng gia của ứng dụng"
+    }
   }
 }

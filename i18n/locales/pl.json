@@ -4093,5 +4093,24 @@
     "close": "Zamknij",
     "callbackRequest": "Prośba o oddzwonienie",
     "tryAgain": "Spróbuj ponownie"
+  },
+  "badgeAscension": {
+    "reached": "Osiągnięto {{tier}}",
+    "yourBalance": "Twoje saldo · {{amount}} DHB",
+    "lines": {
+      "crab": "Wybierasz się w różne miejsca",
+      "lobster": "Płyń dalej",
+      "piranha": "Mały, ale gryzie",
+      "tortoise": "Powolny i stabilny doprowadził Cię tutaj",
+      "cobra": "Ludzie usuwają się teraz z drogi",
+      "octopus": "Osiem ramion, każdy garnek",
+      "crocodile": "Nic nie przecina tej rzeki",
+      "dolphin": "Jesteś teraz grubą rybą",
+      "tigerShark": "Woda właśnie się uspokoiła",
+      "greatWhiteShark": "Wszyscy wiedzą, że płetwa",
+      "killerWhale": "Szczyt łańcucha pokarmowego i polujesz w opakowaniach",
+      "blueWhale": "Największa rzecz, jaka kiedykolwiek żyła. To ty.",
+      "megalodon": "Oto twoja korona — jesteś teraz członkiem rodziny królewskiej aplikacji"
+    }
   }
 }

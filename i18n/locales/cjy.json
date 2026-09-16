@@ -4024,5 +4024,24 @@
     "close": "关闭",
     "callbackRequest": "回拨请求",
     "tryAgain": "重试"
+  },
+  "badgeAscension": {
+    "reached": "你到达了 {{tier}}",
+    "yourBalance": "你的余额 · {{amount}} DHB",
+    "lines": {
+      "crab": "你要去的地方",
+      "lobster": "继续游泳",
+      "piranha": "小，但会咬人",
+      "tortoise": "慢而稳定让你到达这里",
+      "cobra": "人们现在让开了",
+      "octopus": "八条胳膊，每个锅",
+      "crocodile": "没有什么能跨越这条河",
+      "dolphin": "你现在是条大鱼了",
+      "tigerShark": "水刚刚安静了下来",
+      "greatWhiteShark": "每个人都认识那条鳍",
+      "killerWhale": "食物链的顶端，你成群狩猎",
+      "blueWhale": "有史以来最大的东西。那就是你。",
+      "megalodon": "这是你的王冠——你现在是应用程序皇族了"
+    }
   }
 }

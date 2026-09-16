@@ -3965,5 +3965,24 @@
     "close": "O kɔ, a ye dɔ fara",
     "callbackRequest": "K'i ka juru sara",
     "tryAgain": "Try tun tun tun"
+  },
+  "badgeAscension": {
+    "reached": "I sera {{tier}}",
+    "yourBalance": "I ka balansi · {{amount}} DHB",
+    "lines": {
+      "crab": "I be taga yɔrɔ minw na,",
+      "lobster": "Fɛɛn minw be se ka kɛ jii la",
+      "piranha": "A ka nɔgɔ, nka a ka nɔgɔ",
+      "tortoise": "A ka dimi ka dɔgɔ ani a be sumana ka taga",
+      "cobra": "Mɔgɔw be boli ka bɔ sira kan sisan",
+      "octopus": "Fanga kelen kelen bɛɛ la, a be se ka kɛ ni fanga ye",
+      "crocodile": "A ma deli ka cɛncɛn baji tigɛ.",
+      "dolphin": "Sisan, i ye jigɛ belebeleba ye",
+      "tigerShark": "Ji tun be sumana ka tɛmɛ fɔlɔta kan",
+      "greatWhiteShark": "U bɛɛ b'a lɔn ko a laban",
+      "killerWhale": "O la, i bena to ka dumuni kɛ.",
+      "blueWhale": "Mɔgɔ si ma deli ka ɲɛnamaya kɛ cogo min na, o ye koo ɲuman ye. O ye i yɛrɛ lo ye.",
+      "megalodon": "I ka masafugulan filɛ nin ye — i ye App Royalty ye sisan"
+    }
   }
 }

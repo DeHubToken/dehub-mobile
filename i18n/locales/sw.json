@@ -4025,5 +4025,24 @@
     "close": "Funga",
     "callbackRequest": "Ombi la kupigiwa simu",
     "tryAgain": "Jaribu tena"
+  },
+  "badgeAscension": {
+    "reached": "Umefikia {{tier}}",
+    "yourBalance": "Salio lako · {{amount}} DHB",
+    "lines": {
+      "crab": "Unaenda mahali",
+      "lobster": "Endelea kuogelea",
+      "piranha": "Ndogo, lakini inauma",
+      "tortoise": "Polepole na thabiti ilikufikisha hapa",
+      "cobra": "Watu huondoka sasa",
+      "octopus": "Mikono minane, kila sufuria",
+      "crocodile": "Hakuna kinachovuka mto huu",
+      "dolphin": "Wewe ni samaki mkubwa sasa",
+      "tigerShark": "Maji yametulia zaidi",
+      "greatWhiteShark": "Kila mtu anajua kwamba mwisho",
+      "killerWhale": "Juu ya mnyororo wa chakula, na unawinda kwenye vifurushi",
+      "blueWhale": "Jambo kubwa zaidi ambalo limewahi kuishi. Huyo ni wewe.",
+      "megalodon": "Hili ndilo taji lako — wewe ni mrahaba wa programu sasa"
+    }
   }
 }

@@ -4095,5 +4095,24 @@
     "close": "Cerrar",
     "callbackRequest": "Solicitud de devolución de llamada",
     "tryAgain": "Inténtalo de nuevo"
+  },
+  "badgeAscension": {
+    "reached": "Has llegado a {{tier}}",
+    "yourBalance": "Su saldo · {{amount}} DHB",
+    "lines": {
+      "crab": "Vas a ir a lugares",
+      "lobster": "Seguir nadando",
+      "piranha": "Pequeño, pero muerde",
+      "tortoise": "Lento y constante te trajo aquí",
+      "cobra": "La gente se aparta ahora",
+      "octopus": "Ocho brazos, cada olla",
+      "crocodile": "Nada cruza este río",
+      "dolphin": "Ahora eres un pez grande",
+      "tigerShark": "El agua se ha vuelto más silenciosa",
+      "greatWhiteShark": "Todo el mundo conoce esa aleta",
+      "killerWhale": "En la parte superior de la cadena alimentaria, y cazan en paquetes",
+      "blueWhale": "La cosa más grande que jamás haya existido. Eres tú.",
+      "megalodon": "Aquí está tu corona: ahora eres parte de la realeza de la aplicación"
+    }
   }
 }

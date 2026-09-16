@@ -4099,5 +4099,24 @@
     "close": "Fechar",
     "callbackRequest": "Solicitação de retorno de chamada",
     "tryAgain": "Tentar novamente"
+  },
+  "badgeAscension": {
+    "reached": "Atingiu {{tier}}",
+    "yourBalance": "Seu saldo · {{amount}} DHB",
+    "lines": {
+      "crab": "Vai a sítios",
+      "lobster": "Continuar a nadar",
+      "piranha": "Pequeno, mas morde",
+      "tortoise": "Devagar e sempre te trouxe até aqui",
+      "cobra": "As pessoas saem do caminho agora",
+      "octopus": "Oito braços, cada pote",
+      "crocodile": "Nada atravessa este rio",
+      "dolphin": "Você é um peixe grande agora",
+      "tigerShark": "A água ficou mais silenciosa",
+      "greatWhiteShark": "Todos sabem que a barbatana",
+      "killerWhale": "No topo da cadeia alimentar, e você caça em bandos",
+      "blueWhale": "A maior coisa que já existiu. É o senhor.",
+      "megalodon": "Aqui está a sua coroa — agora é a realeza da aplicação"
+    }
   }
 }

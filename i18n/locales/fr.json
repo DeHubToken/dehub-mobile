@@ -4100,5 +4100,24 @@
     "close": "Fermer",
     "callbackRequest": "Demande de rappel",
     "tryAgain": "Réessayer"
+  },
+  "badgeAscension": {
+    "reached": "Vous avez atteint {{tier}}",
+    "yourBalance": "Votre solde · {{amount}} DHB",
+    "lines": {
+      "crab": "Vous allez dans des endroits",
+      "lobster": "Continuez à nager",
+      "piranha": "Petit, mais il mord",
+      "tortoise": "Lentement et régulièrement, vous y êtes arrivé",
+      "cobra": "Les gens s'éloignent maintenant",
+      "octopus": "Huit bras, chaque pot",
+      "crocodile": "Rien ne traverse cette rivière",
+      "dolphin": "Tu es un gros poisson maintenant",
+      "tigerShark": "L'eau est devenue plus calme",
+      "greatWhiteShark": "Tout le monde connaît cette nageoire",
+      "killerWhale": "Au sommet de la chaîne alimentaire, et vous chassez en meute",
+      "blueWhale": "La plus grande chose qui ait jamais vécu. C'est toi.",
+      "megalodon": "Voici votre couronne — vous êtes la redevance de l'application maintenant"
+    }
   }
 }

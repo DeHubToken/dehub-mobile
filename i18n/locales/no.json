@@ -4010,5 +4010,24 @@
     "close": "Lukk",
     "callbackRequest": "Tilbakeringingsforespørsel",
     "tryAgain": "Prøv igjen"
+  },
+  "badgeAscension": {
+    "reached": "Du nådde {{tier}}",
+    "yourBalance": "Din saldo · {{amount}} DHB",
+    "lines": {
+      "crab": "Du kommer til å dra mange steder",
+      "lobster": "Fortsett å svømme",
+      "piranha": "Liten, men den biter",
+      "tortoise": "Sakte og jevnt fikk du deg hit",
+      "cobra": "Folk flytter seg ut av veien nå",
+      "octopus": "Åtte armer, hver pott",
+      "crocodile": "Ingenting krysser denne elven",
+      "dolphin": "Du er en stor fisk nå",
+      "tigerShark": "Vannet ble nettopp stillere",
+      "greatWhiteShark": "Alle kjenner den finnen",
+      "killerWhale": "Toppen av næringskjeden, og dere jakter i flokk",
+      "blueWhale": "Det største som noen gang har levd. Det er deg.",
+      "megalodon": "Her er kronen din – nå er du app-kongelig"
+    }
   }
 }

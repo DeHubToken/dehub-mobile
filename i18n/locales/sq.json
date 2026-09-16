@@ -4023,5 +4023,24 @@
     "close": "Mbyll",
     "callbackRequest": "Kërkesë për kthimin e thirrjes",
     "tryAgain": "Provo përsëri"
+  },
+  "badgeAscension": {
+    "reached": "Arrite në {{tier}}",
+    "yourBalance": "Bilanci juaj · {{amount}} DHB",
+    "lines": {
+      "crab": "Do të shkosh në vende",
+      "lobster": "Vazhdo të notosh",
+      "piranha": "E vogël, por kafshon",
+      "tortoise": "Ngadalë dhe me qëndrueshmëri të solla këtu",
+      "cobra": "Njerëzit largohen nga rruga tani",
+      "octopus": "Tetë krahë, çdo tenxhere",
+      "crocodile": "Asgjë nuk e kalon këtë lumë",
+      "dolphin": "Ti je një peshk i madh tani",
+      "tigerShark": "Uji sapo u bë më i qetë",
+      "greatWhiteShark": "Këtë e dinë të gjithë",
+      "killerWhale": "Në krye të zinxhirit ushqimor dhe ti gjuan në pako",
+      "blueWhale": "Gjëja më e madhe që ka jetuar ndonjëherë. Kjo je ti.",
+      "megalodon": "Ja kurora jote — tani je mbretëror i aplikacionit"
+    }
   }
 }

@@ -4288,5 +4288,24 @@
     "close": "Tutup",
     "callbackRequest": "Permohonan panggilan balik",
     "tryAgain": "Cuba lagi"
+  },
+  "badgeAscension": {
+    "reached": "Anda telah menghubungi {{tier}}",
+    "yourBalance": "Baki anda · {{amount}} DHB",
+    "lines": {
+      "crab": "Anda akan pergi ke pelbagai tempat",
+      "lobster": "Terus berenang",
+      "piranha": "Kecil, tetapi ia menggigit",
+      "tortoise": "Perlahan dan mantap membawa anda ke sini",
+      "cobra": "Orang ramai bergerak keluar dari jalan sekarang",
+      "octopus": "Lapan lengan, setiap periuk",
+      "crocodile": "Tiada apa yang menyeberangi sungai ini",
+      "dolphin": "Awak dah jadi ikan besar sekarang",
+      "tigerShark": "Air semakin tenang",
+      "greatWhiteShark": "Semua orang tahu sirip itu",
+      "killerWhale": "Bahagian atas rantaian makanan, dan anda memburu dalam pek",
+      "blueWhale": "Perkara terbesar yang pernah hidup. Itu awak.",
+      "megalodon": "Inilah mahkota anda — anda adalah royalti aplikasi sekarang"
+    }
   }
 }
