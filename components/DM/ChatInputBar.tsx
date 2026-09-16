@@ -150,6 +150,11 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const smartReplies = useSmartReplies(thread ?? [], peerName);
   const hasThread = !!thread && thread.length > 0;
 
+  // A suggested reply answers an INCOMING message. When the user holds the last
+  // word there is nothing to reply to, so the tray stands down rather than
+  // drafting follow-ups to oneself — and no model call is spent on it either.
+  const awaitingReply = hasThread && thread![thread!.length - 1]?.from === "them";
+
 
   // Thread tail a draft has already been spent on. One model call per message,
   // whichever side sent it: re-rendering and re-showing the tray must never
@@ -169,12 +174,13 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
    * changes instead — held back only when the user has already started typing,
    * because then they know what to say.
    *
-   * The drafter handles both directions: an incoming tail gets replies, the
-   * user's own last word gets follow-ups. Mirrors dehubweb's ChatInput.
+   * Only an incoming tail is drafted against: once the user has replied, the
+   * tray is gone until the other side speaks again. Mirrors dehubweb's
+   * ChatInput.
    */
   useEffect(() => {
     // Switched off is switched off: no tray, and no model call behind it.
-    if (!hasThread || !smartRepliesEnabled) return;
+    if (!hasThread || !awaitingReply || !smartRepliesEnabled) return;
     const { smartReplies: sr, text: draft } = latest.current;
     if (draft.trim()) return;
     if (draftedFor.current === sr.tailKey) return;
@@ -183,7 +189,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     // SUCCESSFUL draft goes stale, so a single failure would otherwise leave
     // the tray showing that failure for every message after it.
     if (sr.status === "idle" || sr.status === "error") sr.generate();
-  }, [hasThread, smartRepliesEnabled, smartReplies.tailKey]);
+  }, [hasThread, awaitingReply, smartRepliesEnabled, smartReplies.tailKey]);
 
   // A new message re-arms the per-message stand-down. It does NOT reopen a
   // tray the user switched off — that is what the preference is for.
@@ -447,12 +453,13 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const hasContent = text.trim().length > 0 || !!media || !!gifUrl;
   // Show send button when there's content OR a tip is attached (tip-only send)
   const showSendButton = hasContent || tipAmount > 0;
-  // The tray is up in EVERY open thread with an empty composer — a thread with
-  // nothing to draft from still gets its quiet one-liner, because an empty band
-  // and a broken feature are indistinguishable at a glance. Anything the user
-  // has already started (text, an attachment, an edit) takes the space back.
+  // The tray is up in every thread whose last word belongs to the other side —
+  // the only moment a suggested reply means anything. Whether the drafter found
+  // something to say is still a question the tray ANSWERS, with the orb there to
+  // press; that check must never gate the mount. Anything the user has already
+  // started (text, an attachment, an edit) takes the space back.
   const showTray =
-    hasThread && smartRepliesEnabled && !trayDismissed && !hasContent && !editingMessage;
+    hasThread && awaitingReply && smartRepliesEnabled && !trayDismissed && !hasContent && !editingMessage;
   const hasMediaOrGif = !!media || !!gifUrl;
   const placeholder = hasMediaOrGif ? "Add a caption…" : "Message…";
 
@@ -487,8 +494,9 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   return (
     <>
       <View className="bg-theme-neutrals-900 border-t border-theme-neutrals-800/50">
-        {/* Up in every open thread with an empty composer, keyboard or no
-            keyboard — it sits above the input, so nothing covers it. Whether
+        {/* Up whenever the other side spoke last and the composer is empty,
+            keyboard or no keyboard — it sits above the input, so nothing
+            covers it. Whether
             there is anything to draft is a question the tray ANSWERS, with the
             orb still there to press, not one that decides whether it exists:
             gating the mount on that check is what made the feature vanish for
