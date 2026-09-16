@@ -8,11 +8,10 @@ import {
   Modal,
   StyleSheet,
   LayoutChangeEvent,
-  PanResponder,
-  GestureResponderEvent,
-  PanResponderGestureState,
-  GestureResponderHandlers,
 } from "react-native";
+import { GestureDetector } from "react-native-gesture-handler";
+import { useScrubGesture } from "../../hooks/useScrubGesture";
+import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -54,9 +53,6 @@ import {
 // before it is treated as scrolled-to rather than scrolled-past.
 const PRELOAD_SETTLE_MS = 400;
 
-/** Horizontal travel before a drag over the artwork counts as a scrub. */
-const SCRUB_THRESHOLD_PX = 6;
-
 /**
  * Skip buttons on the lock screen. An audio post is a finite file with a real
  * seek map behind it, so unlike a live radio stream they do something.
@@ -83,6 +79,16 @@ export const fmtDuration = (seconds: number): string => {
 
 const clamp01 = (n: number) => (Number.isFinite(n) ? Math.max(0, Math.min(1, n)) : 0);
 
+/**
+ * Hands a native control that owns sideways movement — a slider, a pill strip —
+ * priority over the Home pager's page turn. Outside a pager it renders nothing
+ * of its own.
+ */
+const PagerSafe: React.FC<{ children: React.ReactElement }> = ({ children }) => {
+  const guard = useHorizontalScrollGuard();
+  return guard ? <GestureDetector gesture={guard}>{children}</GestureDetector> : children;
+};
+
 /* ─── Seek gestures ──────────────────────────────────────────────────────
    Two kinds of surface want to scrub, and they must not behave the same way.
 
@@ -93,7 +99,11 @@ const clamp01 = (n: number) => (Number.isFinite(n) ? Math.max(0, Math.min(1, n))
    feed. It used to claim every touch that started on it, which meant a finger
    landing on an audio post could not scroll the feed at all — so it now only
    takes over once a gesture is clearly sideways, and a vertical flick passes
-   straight through to the list. */
+   straight through to the list.
+
+   Both are gesture-handler gestures rather than PanResponders, so that inside
+   the Home pager they can block the page turn while a scrub is running — see
+   useScrubGesture. */
 interface SeekSurfaceArgs {
   position: SharedValue<number>;
   onScrubStart: () => void;
@@ -113,45 +123,50 @@ export const useSeekSurface = ({
   claimOnStart,
   enabled = true,
 }: SeekSurfaceArgs) => {
-  const widthRef = useRef(1);
+  const handleScrubStart = useCallback(() => onScrubStart(), [onScrubStart]);
 
-  const onLayout = useCallback((e: LayoutChangeEvent) => {
-    widthRef.current = e.nativeEvent.layout.width || 1;
-  }, []);
-
-  const panResponder = useMemo(
-    () =>
-      PanResponder.create({
-        onStartShouldSetPanResponder: () => enabled && claimOnStart,
-        onMoveShouldSetPanResponder: (_e: GestureResponderEvent, gs: PanResponderGestureState) => {
-          if (!enabled) return false;
-          if (claimOnStart) return true;
-          return Math.abs(gs.dx) > SCRUB_THRESHOLD_PX && Math.abs(gs.dx) > Math.abs(gs.dy);
-        },
-        onPanResponderGrant: (e) => {
-          onScrubStart();
-          const p = clamp01(e.nativeEvent.locationX / widthRef.current);
-          position.value = p;
-          onScrub(p);
-        },
-        onPanResponderMove: (e) => {
-          const p = clamp01(e.nativeEvent.locationX / widthRef.current);
-          position.value = p; // UI thread, no React re-render per pixel
-          onScrub(p);
-        },
-        onPanResponderRelease: (e) => {
-          const p = clamp01(e.nativeEvent.locationX / widthRef.current);
-          position.value = p;
-          onCommit(p);
-        },
-        onPanResponderTerminate: onCancel,
-        onPanResponderTerminationRequest: () => true,
-      }),
-    [enabled, claimOnStart, position, onScrubStart, onScrub, onCommit, onCancel],
+  const handleScrub = useCallback(
+    (ratio: number) => {
+      position.value = ratio; // UI thread, no React re-render per pixel
+      onScrub(ratio);
+    },
+    [position, onScrub],
   );
 
-  return { onLayout, panHandlers: enabled ? panResponder.panHandlers : {} };
+  const handleCommit = useCallback(
+    (ratio: number) => {
+      position.value = ratio;
+      onCommit(ratio);
+    },
+    [position, onCommit],
+  );
+
+  return useScrubGesture({
+    onScrubStart: handleScrubStart,
+    onScrub: handleScrub,
+    onCommit: handleCommit,
+    onCancel,
+    enabled,
+    immediate: claimOnStart,
+  });
 };
+
+/**
+ * Wraps a scrub surface's content so the gesture lives on an ancestor view —
+ * the visualizers paint into their own trees and only need the touches to
+ * reach them.
+ */
+export const ScrubSurface: React.FC<{
+  surface: ReturnType<typeof useSeekSurface>;
+  style?: any;
+  children: React.ReactNode;
+}> = ({ surface, style, children }) => (
+  <GestureDetector gesture={surface.gesture}>
+    <View onLayout={surface.onLayout} style={style}>
+      {children}
+    </View>
+  </GestureDetector>
+);
 
 /* ─── SeekBar — the scrubber, live in every visualizer style ────
    The old build painted a 3px progress line that could only be watched: there
@@ -160,11 +175,9 @@ export const useSeekSurface = ({
 interface SeekBarProps {
   position: SharedValue<number>;
   hue: number;
-  onLayout: (e: LayoutChangeEvent) => void;
-  panHandlers: Partial<GestureResponderHandlers>;
 }
 
-export const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue, onLayout, panHandlers }) => {
+export const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue }) => {
   const accent = hue === 0 ? "rgba(255,255,255,0.9)" : `hsla(${hue}, 85%, 65%, 0.95)`;
 
   const fillStyle = useAnimatedStyle(() => ({
@@ -177,8 +190,6 @@ export const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue, onLayout, 
 
   return (
     <View
-      onLayout={onLayout}
-      {...panHandlers}
       style={{ height: 18, justifyContent: "center" }}
       hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }}
     >
@@ -211,6 +222,7 @@ interface StylePickerProps {
 }
 
 const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onStyleChange }) => (
+  <PagerSafe>
   <ScrollView
     horizontal
     showsHorizontalScrollIndicator={false}
@@ -246,6 +258,7 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
       );
     })}
   </ScrollView>
+  </PagerSafe>
 ));
 
 /* ─── Color Hue Slider ──────────────────────────────────────── */
@@ -279,6 +292,7 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
           borderRadius: 5,
         }}
       />
+      <PagerSafe>
       <Slider
         style={{ width: "100%" }}
         minimumValue={0}
@@ -291,6 +305,7 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
         maximumTrackTintColor="transparent"
         thumbTintColor={previewColor}
       />
+      </PagerSafe>
     </View>
   );
 });
@@ -815,8 +830,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   );
 
   // Reads progress through a ref rather than closing over it: every one of
-  // these callbacks feeds a PanResponder built in a useMemo, and one that
-  // changed identity ten times a second would rebuild the responder mid-drag.
+  // these callbacks feeds a gesture built in a useMemo, and one that changed
+  // identity ten times a second would rebuild the gesture mid-drag.
   const handleScrubCancel = useCallback(() => {
     isDraggingRef.current = false;
     isSeekingRef.current = false;
@@ -917,14 +932,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
             </TouchableOpacity>
 
             <View className="flex-1">
-              <StaticWaveform
-                seed={seed}
-                position={position}
-                compact
-                hue={hue}
-                onLayout={compactSurface.onLayout}
-                panHandlers={compactSurface.panHandlers}
-              />
+              <ScrubSurface surface={compactSurface}>
+                <StaticWaveform seed={seed} position={position} compact hue={hue} />
+              </ScrubSurface>
             </View>
 
             <Text
@@ -940,16 +950,16 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   }
 
   const renderVisualizer = (height: number) => (
-    <AudioVisualizer
-      style={vizStyle}
-      seed={seed}
-      isPlaying={shownPlaying}
-      hue={hue}
-      position={position}
-      height={height}
-      onLayout={artworkSurface.onLayout}
-      panHandlers={artworkSurface.panHandlers}
-    />
+    <ScrubSurface surface={artworkSurface}>
+      <AudioVisualizer
+        style={vizStyle}
+        seed={seed}
+        isPlaying={shownPlaying}
+        hue={hue}
+        position={position}
+        height={height}
+      />
+    </ScrubSurface>
   );
 
   /* Bounty stays at the top left; volume, pop-out and fullscreen sit on the
@@ -977,6 +987,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
             <Icon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} size={14} color="rgba(255,255,255,0.85)" />
           </TouchableOpacity>
           <View style={{ width: 72, height: CONTROL_SIZE, justifyContent: "center" }}>
+            <PagerSafe>
             <Slider
               style={{ width: "100%" }}
               minimumValue={0}
@@ -988,6 +999,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
               maximumTrackTintColor="rgba(255,255,255,0.25)"
               thumbTintColor="#ffffff"
             />
+            </PagerSafe>
           </View>
         </View>
 
@@ -1030,12 +1042,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           {fmtDuration(shownTime)}
         </Text>
         <View className="flex-1">
-          <SeekBar
-            position={position}
-            hue={hue}
-            onLayout={seekBarSurface.onLayout}
-            panHandlers={seekBarSurface.panHandlers}
-          />
+          <ScrubSurface surface={seekBarSurface}>
+            <SeekBar position={position} hue={hue} />
+          </ScrubSurface>
         </View>
         <Text
           className="text-white/50 text-[11px]"
