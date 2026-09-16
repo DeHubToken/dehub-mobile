@@ -1959,6 +1959,13 @@
     "cancelRecording": "রেকর্ডিং বাতিল করন",
     "sendVoiceNote": "ভয়েস নোট পাঠান",
     "noneYetAddYours": "অহনো কোনো মন্তব্য নাই, আঁর গান যোগ করন।",
+    "pinnedBadge": "পিন গরা",
+    "pinnedByCreator": "বানাইন্যা পিন গইজ্জে",
+    "pinAction": "উঁয়ত পিন গরন",
+    "unpinAction": "পিন হরাইয়ন",
+    "pinnedToast": "এই পোস্টর উঁয়ত পিন গরা অইয়ে",
+    "unpinnedToast": "পিন হরাই ফালাইয়ে",
+    "pinFailed": "ঐ কমেন্টটা পিন গরন ন যায়",
     "kidsOnlyThread": "এই পোস্টটা বাচ্চাদের জন্য। শুধুমাত্র কিডস মোড এ কমেন্ট করতে পারবে।"
   },
   "postInfo": {

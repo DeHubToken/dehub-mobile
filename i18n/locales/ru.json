@@ -1850,6 +1850,13 @@
     "cancelRecording": "Отменить запись",
     "sendVoiceNote": "Отправить голосовую заметку",
     "noneYetAddYours": "Комментариев пока нет — добавьте свой.",
+    "pinnedBadge": "Закреплено",
+    "pinnedByCreator": "Закреплено автором",
+    "pinAction": "Закрепить вверху",
+    "unpinAction": "Убрать закрепление",
+    "pinnedToast": "Закреплено вверху этого поста",
+    "unpinnedToast": "Закрепление убрано",
+    "pinFailed": "Не удалось закрепить этот комментарий",
     "kidsOnlyThread": "Эта статья для детей. Комментировать его может только Kids Mode."
   },
   "postInfo": {

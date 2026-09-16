@@ -1790,6 +1790,13 @@
     "cancelRecording": "取消录制",
     "sendVoiceNote": "发送语音留言",
     "noneYetAddYours": "还没有评论，来写第一条。",
+    "pinnedBadge": "已置顶",
+    "pinnedByCreator": "由创作者置顶",
+    "pinAction": "置顶",
+    "unpinAction": "取消置顶",
+    "pinnedToast": "已置顶到这条帖子最上面",
+    "unpinnedToast": "已取消置顶",
+    "pinFailed": "没法置顶那条评论",
     "kidsOnlyThread": "这个帖子是给孩子们的。只有儿童模式才能评论。"
   },
   "postInfo": {

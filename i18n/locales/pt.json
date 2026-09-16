@@ -1852,6 +1852,13 @@
     "cancelRecording": "Cancelar gravação",
     "sendVoiceNote": "Enviar nota de voz",
     "noneYetAddYours": "Ainda sem comentários; adicione o seu.",
+    "pinnedBadge": "Fixado",
+    "pinnedByCreator": "Fixado pelo criador",
+    "pinAction": "Fixar no topo",
+    "unpinAction": "Remover fixação",
+    "pinnedToast": "Fixado no topo desta publicação",
+    "unpinnedToast": "Fixação removida",
+    "pinFailed": "Não foi possível fixar esse comentário",
     "kidsOnlyThread": "Este post é para crianças. Apenas o Modo Infantil pode comentar."
   },
   "postInfo": {

@@ -1829,6 +1829,13 @@
     "cancelRecording": "રેકોર્ડિંગ રદ કરો",
     "sendVoiceNote": "વૉઇસ નોટ મોકલો",
     "noneYetAddYours": "હજી કોઈ ટિપ્પણી નથી, તમારી ઉમેરો.",
+    "pinnedBadge": "પિન કરેલું",
+    "pinnedByCreator": "સર્જકે પિન કર્યું",
+    "pinAction": "ઉપર પિન કરો",
+    "unpinAction": "પિન હટાવો",
+    "pinnedToast": "આ પોસ્ટની ટોચ પર પિન કર્યું",
+    "unpinnedToast": "પિન હટાવ્યું",
+    "pinFailed": "એ ટિપ્પણી પિન કરી શકાઈ નહીં",
     "kidsOnlyThread": "આ પોસ્ટ બાળકો માટે છે. ફક્ત કિડ્સ મોડ જ તેના પર ટિપ્પણી કરી શકે છે."
   },
   "postInfo": {

@@ -1792,6 +1792,13 @@
     "cancelRecording": "Batalake rekaman",
     "sendVoiceNote": "Kirim pesen swara",
     "noneYetAddYours": "Durung ana komentar, tambahna duwekmu.",
+    "pinnedBadge": "Dipasang",
+    "pinnedByCreator": "Dipasang déning sing nggawé",
+    "pinAction": "Pasang ing ndhuwur",
+    "unpinAction": "Copot pasangan",
+    "pinnedToast": "Dipasang ing ndhuwur dhéwé postingan iki",
+    "unpinnedToast": "Pasangan dicopot",
+    "pinFailed": "Komentar kuwi ora bisa dipasang",
     "kidsOnlyThread": "Kiriman iki kanggo bocah-bocah. Mung Kids Mode sing bisa nglasani."
   },
   "postInfo": {

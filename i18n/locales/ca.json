@@ -1833,6 +1833,13 @@
     "cancelRecording": "Cancel·la la gravació",
     "sendVoiceNote": "Envia la nota de veu",
     "noneYetAddYours": "Encara no hi ha comentaris; afegeix el teu.",
+    "pinnedBadge": "Fixat",
+    "pinnedByCreator": "Fixat pel creador",
+    "pinAction": "Fixa a dalt",
+    "unpinAction": "Treu la fixació",
+    "pinnedToast": "Fixat a dalt de tot d'aquesta publicació",
+    "unpinnedToast": "Fixació tret",
+    "pinFailed": "No s'ha pogut fixar aquest comentari",
     "kidsOnlyThread": "Aquesta publicació és per a nens. Només el mode nens pot comentar-ho."
   },
   "postInfo": {

@@ -1803,6 +1803,13 @@
     "cancelRecording": "ثبتول لغوه کړئ",
     "sendVoiceNote": "غږیز یادښت ولیږئ",
     "noneYetAddYours": "تر اوسه تبصره نشته، خپله ورزیاته کړئ.",
+    "pinnedBadge": "نښلول شوی",
+    "pinnedByCreator": "جوړونکي نښلولی",
+    "pinAction": "پورته یې ونښلوه",
+    "unpinAction": "نښلون لرې کړه",
+    "pinnedToast": "د دې پوسټ په سر کې ونښلول شو",
+    "unpinnedToast": "نښلون لرې شو",
+    "pinFailed": "هغه تبصره ونه نښلول شوه",
     "kidsOnlyThread": "دا لیکنه د ماشومانو لپاره ده. یوازې ماشومان کولی شي پدې اړه تبصره وکړي."
   },
   "postInfo": {

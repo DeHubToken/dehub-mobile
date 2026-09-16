@@ -1852,6 +1852,13 @@
     "cancelRecording": "Annuler l'enregistrement",
     "sendVoiceNote": "Envoyer la note vocale",
     "noneYetAddYours": "Aucun commentaire pour l'instant, ajoutez le vôtre.",
+    "pinnedBadge": "Épinglé",
+    "pinnedByCreator": "Épinglé par le créateur",
+    "pinAction": "Épingler en haut",
+    "unpinAction": "Retirer l'épingle",
+    "pinnedToast": "Épinglé en haut de cette publication",
+    "unpinnedToast": "Épingle retirée",
+    "pinFailed": "Impossible d'épingler ce commentaire",
     "kidsOnlyThread": "Cet article est pour les enfants. Seul le mode enfants peut le commenter."
   },
   "postInfo": {

@@ -1804,6 +1804,13 @@
     "cancelRecording": "रिकॉर्डिंग रद्द करऽ",
     "sendVoiceNote": "आवाज नोट भेजऽ",
     "noneYetAddYours": "अखनो कोई टिप्पणी ना, अपन जोड़ऽ।",
+    "pinnedBadge": "पिन कइल",
+    "pinnedByCreator": "बनावे वला पिन कइलक",
+    "pinAction": "ऊपर पिन करू",
+    "unpinAction": "पिन हटाऊ",
+    "pinnedToast": "ई पोस्ट के सबसे ऊपर पिन कइल गेल",
+    "unpinnedToast": "पिन हटा देल गेल",
+    "pinFailed": "ऊ टिप्पणी पिन ना हो सकल",
     "kidsOnlyThread": "उ भवन बच्चा के लेल खतरा के घर हई । केवल लेखक द्वारा लिखित अनुमति के साथ पुनर्प्रकाशित ।"
   },
   "postInfo": {

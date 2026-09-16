@@ -1852,6 +1852,13 @@
     "cancelRecording": "ቀረጻውን ሰርዝ",
     "sendVoiceNote": "የድምፅ ማስታወሻ ላክ",
     "noneYetAddYours": "እስካሁን አስተያየት የለም፣ የእርስዎን ያክሉ።",
+    "pinnedBadge": "ተሰክቷል",
+    "pinnedByCreator": "በፈጣሪው ተሰክቷል",
+    "pinAction": "ወደ ላይ ሰካ",
+    "unpinAction": "ሰኩን አስወግድ",
+    "pinnedToast": "በዚህ ልጥፍ ላይ ተሰክቷል",
+    "unpinnedToast": "ሰኩ ተወግዷል",
+    "pinFailed": "ያንን አስተያየት መሰካት አልተቻለም",
     "kidsOnlyThread": "ይህ ልጥፍ ለልጆች ነው ። በዚህ ጉዳይ ላይ አስተያየት መስጠት የሚችሉት የልጆች ሁነታ ብቻ ነው ።"
   },
   "postInfo": {

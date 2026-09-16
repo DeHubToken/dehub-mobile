@@ -1884,6 +1884,13 @@
     "cancelRecording": "បោះបង់ការថត",
     "sendVoiceNote": "ផ្ញើសារជាសំឡេង",
     "noneYetAddYours": "មិនទាន់មានមតិទេ បន្ថែមមតិរបស់អ្នក។",
+    "pinnedBadge": "បានខ្ទាស់",
+    "pinnedByCreator": "អ្នកបង្កើតបានខ្ទាស់",
+    "pinAction": "ខ្ទាស់នៅខាងលើ",
+    "unpinAction": "ដកការខ្ទាស់",
+    "pinnedToast": "បានខ្ទាស់នៅខាងលើបំផុតនៃការបង្ហោះនេះ",
+    "unpinnedToast": "បានដកការខ្ទាស់",
+    "pinFailed": "មិនអាចខ្ទាស់មតិនោះបានទេ",
     "kidsOnlyThread": "អគារ នោះ ជា ផ្ទះ ដែល មាន គ្រោះថ្នាក់ ដល់ កុមារ ។ តែ Kids Mode អាច ធ្វើ ការ អត្ថាធិប្បាយ លើ វា បាន ។"
   },
   "postInfo": {

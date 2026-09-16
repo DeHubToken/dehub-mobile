@@ -1833,6 +1833,13 @@
     "cancelRecording": "Otkaži snimanje",
     "sendVoiceNote": "Pošalji glasovnu poruku",
     "noneYetAddYours": "Još nema komentara, dodajte svoj.",
+    "pinnedBadge": "Prikvačeno",
+    "pinnedByCreator": "Prikvačio autor",
+    "pinAction": "Prikvači na vrh",
+    "unpinAction": "Ukloni prikvačivanje",
+    "pinnedToast": "Prikvačeno na vrh ove objave",
+    "unpinnedToast": "Prikvačivanje uklonjeno",
+    "pinFailed": "Taj komentar nije bilo moguće prikvačiti",
     "kidsOnlyThread": "Ova je objava namijenjena djeci. Samo dječji način rada može komentirati."
   },
   "postInfo": {

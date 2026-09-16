@@ -1805,6 +1805,13 @@
     "cancelRecording": "रिकॉर्डिंग रद्द करव",
     "sendVoiceNote": "आवाज नोट भेजव",
     "noneYetAddYours": "अभी कोनो टिप्पणी नइ हे, अपन जोड़व।",
+    "pinnedBadge": "पिन करे गे",
+    "pinnedByCreator": "बनइया ह पिन करे हे",
+    "pinAction": "ऊपर पिन करव",
+    "unpinAction": "पिन हटाव",
+    "pinnedToast": "ये पोस्ट के सबले ऊपर पिन कर दे गे",
+    "unpinnedToast": "पिन हटा दे गे",
+    "pinFailed": "वो टिप्पनी पिन नइ हो सकिस",
     "kidsOnlyThread": "ए लेख लइकामन बर हवय । केवल किड्स मोड ए बारे म टिप्पणी कर सकत हवय ।"
   },
   "postInfo": {

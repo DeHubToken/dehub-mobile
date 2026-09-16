@@ -1821,6 +1821,13 @@
     "cancelRecording": "Whakakorea te hopu",
     "sendVoiceNote": "Tukuna te tuhipoka reo",
     "noneYetAddYours": "Kāore anō he kōrero, tāpirihia tāu.",
+    "pinnedBadge": "Kua titia",
+    "pinnedByCreator": "Na te kaihanga i titi",
+    "pinAction": "Titia ki runga",
+    "unpinAction": "Tangohia te titi",
+    "pinnedToast": "Kua titia ki runga ake o tēnei pou",
+    "unpinnedToast": "Kua tangohia te titi",
+    "pinFailed": "Kāore i taea te titi i taua kōrero",
     "kidsOnlyThread": "Ko tenei tuhinga mo nga tamariki. Ko te tikanga tamariki anake e taea te kōrero i runga i te reira."
   },
   "postInfo": {

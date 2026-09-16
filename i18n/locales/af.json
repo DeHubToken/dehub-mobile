@@ -2144,6 +2144,13 @@
     "cancelRecording": "Kanselleer opname",
     "sendVoiceNote": "Stuur stemnota",
     "noneYetAddYours": "Nog geen kommentaar nie — voeg joune by.",
+    "pinnedBadge": "Vasgespeld",
+    "pinnedByCreator": "Vasgespeld deur die skepper",
+    "pinAction": "Speld boaan vas",
+    "unpinAction": "Verwyder speld",
+    "pinnedToast": "Boaan hierdie plasing vasgespeld",
+    "unpinnedToast": "Speld verwyder",
+    "pinFailed": "Kon nie daardie opmerking vasspeld nie",
     "kidsOnlyThread": "Hierdie artikel is vir kinders. Net kinders kan hierop kommentaar lewer."
   },
   "postInfo": {

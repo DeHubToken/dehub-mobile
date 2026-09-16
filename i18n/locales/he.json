@@ -1834,6 +1834,13 @@
     "cancelRecording": "בטל הקלטה",
     "sendVoiceNote": "שלח הודעה קולית",
     "noneYetAddYours": "עדיין אין תגובות — הוסיפו את שלכם.",
+    "pinnedBadge": "מוצמד",
+    "pinnedByCreator": "הוצמד על ידי היוצר",
+    "pinAction": "הצמד למעלה",
+    "unpinAction": "הסר הצמדה",
+    "pinnedToast": "הוצמד לראש הפוסט הזה",
+    "unpinnedToast": "ההצמדה הוסרה",
+    "pinFailed": "לא ניתן היה להצמיד את התגובה",
     "kidsOnlyThread": "הפוסט הזה מיועד לילדים. רק 'מצב ילדים' יכול להגיב על זה."
   },
   "postInfo": {
