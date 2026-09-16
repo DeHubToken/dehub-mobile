@@ -330,7 +330,7 @@ describe('libs/misc', () => {
 
     it('returns highest matching badge', () => {
       expect(getBadgeName(50_000_000)).toBe('Megalodon');
-      expect(getBadgeName(5_000_000)).toBe('Killer Whale');
+      expect(getBadgeName(5_000_000)).toBe('Great White Shark');
     });
 
     it('handles string input', () => {
@@ -396,8 +396,8 @@ describe('libs/misc', () => {
 
     it.each([
       'Crab', 'Lobster', 'Piranha', 'Tortoise', 'Cobra', 'Octopus',
-      'Crocodile', 'Dolphin', 'Tiger Shark', 'Killer Whale',
-      'Great White Shark', 'Blue Whale', 'Megalodon',
+      'Crocodile', 'Dolphin', 'Tiger Shark', 'Great White Shark',
+      'Killer Whale', 'Blue Whale', 'Megalodon',
     ])('keeps the %s artwork raised inside an explicit text line height', (tier) => {
       const source = badgeImageFor(tier);
       expect(source).toBeDefined();

@@ -44,8 +44,8 @@ describe('services/badge-delegation.service', () => {
     const summary = {
       address: '0xabc',
       ownBadgeBalance: 5_000_000,
-      ownTier: 'Killer Whale',
-      effectiveTier: 'Killer Whale',
+      ownTier: 'Great White Shark',
+      effectiveTier: 'Great White Shark',
       slots: 10,
       slotsUsed: 2,
       grantableTier: 'Tiger Shark',
