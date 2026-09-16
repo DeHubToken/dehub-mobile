@@ -19,7 +19,7 @@
  * screen, which is what keeps the top-tier fireworks cinematic rather than
  * gaudy.
  */
-import React, { useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Dimensions, Modal, Pressable, StyleSheet, Text, View, Image } from "react-native";
 import Animated, {
   type SharedValue,
@@ -82,12 +82,19 @@ function outBack(x: number) {
   return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2);
 }
 
+/** Where the ceremony stops and waits for the holder. */
+const HOLD_AT = BEATS.name[1];
+/** The trip home, once they ask for it. */
+const RETURN_MS = 760;
+
 export default function BadgeAscension({ from, to, slot, balance, onDone }: Props) {
   const { t, i18n } = useTranslation();
   const motion = useMemo(() => badgeMotion(to), [to]);
   const prior = useMemo(() => badgeMotion(from), [from]);
   const threshold = useMemo(() => badgeThreshold(to), [to]);
   const progress = useSharedValue(0);
+  /** True once the timed beats are done and it is waiting on the holder. */
+  const [holding, setHolding] = useState(false);
 
   const start = slot ?? { x: HERO_X, y: SCREEN_H * 0.22, size: 22 };
   const startR = start.size / 2;
@@ -167,18 +174,42 @@ export default function BadgeAscension({ from, to, slot, balance, onDone }: Prop
       onDone();
       return;
     }
+    // The timed beats run to the end of the name beat and stop there. The trip
+    // home is not played until the holder asks for it — read at a glance, the
+    // last beat was gone before anyone finished the line, and a tier is earned
+    // once.
     progress.value = 0;
     progress.value = withTiming(
-      1,
-      { duration: motion.durationMs, easing: Easing.linear },
+      HOLD_AT,
+      { duration: Math.round(motion.durationMs * HOLD_AT), easing: Easing.linear },
       (done) => {
-        if (done) runOnJS(onDone)();
+        if (done) runOnJS(setHolding)(true);
       },
     );
     // onDone is stable enough for one ceremony; restarting on its identity
     // would replay the animation from zero mid-flight.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [motion]);
+
+  /**
+   * A tap during the ceremony skips to the end of it rather than dismissing:
+   * someone who taps early wants the answer sooner, not to lose it. Only a tap
+   * once it is holding sends the badge home.
+   */
+  const requestReturn = useCallback(() => {
+    if (!holding) {
+      progress.value = withTiming(HOLD_AT, { duration: 220, easing: Easing.out(Easing.quad) }, (done) => {
+        if (done) runOnJS(setHolding)(true);
+      });
+      return;
+    }
+    setHolding(false);
+    progress.value = withTiming(1, { duration: RETURN_MS, easing: Easing.inOut(Easing.quad) }, (done) => {
+      if (done) runOnJS(onDone)();
+    });
+    // onDone is read once, at the end of the ceremony it closes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [holding]);
 
   /* ---------- the badge in flight ---------- */
   const badgeStyle = useAnimatedStyle(() => {
@@ -285,7 +316,7 @@ export default function BadgeAscension({ from, to, slot, balance, onDone }: Prop
 
   return (
     <Modal transparent animationType="none" statusBarTranslucent onRequestClose={onDone}>
-      <Pressable style={StyleSheet.absoluteFill} onPress={onDone} accessibilityRole="button">
+      <Pressable style={StyleSheet.absoluteFill} onPress={requestReturn} accessibilityRole="button">
         <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, backdropStyle]} pointerEvents="none" />
 
         {motion.fx.halo && (
@@ -361,6 +392,13 @@ export default function BadgeAscension({ from, to, slot, balance, onDone }: Prop
           )}
           {balanceText && (
             <Text style={styles.balance}>{t("badgeAscension.yourBalance", { amount: balanceText })}</Text>
+          )}
+          {/* The way out. It arrives only once the ceremony is waiting, so it
+              never competes with the beats for attention. */}
+          {holding && (
+            <Pressable style={styles.cta} onPress={requestReturn} accessibilityRole="button">
+              <Text style={styles.ctaText}>{t("badgeAscension.continue")}</Text>
+            </Pressable>
           )}
         </Animated.View>
       </Pressable>
@@ -565,4 +603,14 @@ const styles = StyleSheet.create({
   chipText: { color: "#ffffff", fontSize: 15, fontWeight: "700" },
   rule: { width: 1, height: 14, backgroundColor: "rgba(255,255,255,0.2)" },
   balance: { color: "#808089", fontSize: 12.5, marginTop: 8 },
+  cta: {
+    marginTop: 24,
+    paddingVertical: 11,
+    paddingHorizontal: 24,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.2)",
+    backgroundColor: "rgba(255,255,255,0.1)",
+  },
+  ctaText: { color: "#ffffff", fontSize: 14, fontWeight: "700" },
 });
