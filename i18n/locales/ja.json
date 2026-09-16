@@ -794,6 +794,8 @@
     "firstComments_other": "最初の {{count}} 件のコメント"
   },
   "wallet": {
+    "connectUnavailable": "このビルドではウォレット接続を利用できません — 代わりにリカバリーフレーズで復元してください。",
+    "connectedWrongWallet": "そのウォレットは {{connected}} で、{{address}} ではありません。何も変更されていません。",
     "restoreWrongWallet": "これは {{address}} ではなく別のウォレットを開きます。何も変更されていません。",
     "unlockNoAccount": "ウォレットはロックされています — この端末にサインインしているアカウントがありません。",
     "unlockLookupFailed": "ウォレットはロックされています — ウォレットの記録にアクセスできませんでした。接続を確認して再試行してください。",
@@ -3569,6 +3571,7 @@
     "otherChain": "この投稿は別のチェーンで決済されるため、そのチェーンのウォレットに DHB が必要です。"
   },
   "walletSetup": {
+    "connectWalletApp": "保管しているウォレットアプリで署名",
     "signOutAndStartOver": "持っていない — ログアウトして最初からやり直す",
     "restoreLocalNote": "鍵はこの端末にのみ保存されます。",
     "restoreMissing": "このプロフィールのウォレットはこの端末にないため、まだ何も署名できません。ここに持ってくるには、リカバリーフレーズまたは秘密鍵を入力してください。",

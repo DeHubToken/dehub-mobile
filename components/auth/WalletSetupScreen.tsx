@@ -112,6 +112,12 @@ export interface WalletSetupScreenProps {
    * row and the mode switch.
    */
   onResetWallet?: () => Promise<void>;
+  /**
+   * restore mode: the wallet lives in an external wallet app (Trust, MetaMask)
+   * reached over WalletConnect. Reopen that connection and, once the same
+   * address is back, sign with it — no phrase needed.
+   */
+  onConnectWallet?: () => Promise<void>;
 }
 
 /** Shared reveal toggle for every password field on this screen. */
@@ -403,6 +409,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     onCreateConfirmed,
     onSwitchAccount,
     onResetWallet,
+    onConnectWallet,
   }) => {
     const { t } = useTranslation();
     const [password, setPassword] = useState("");
@@ -794,6 +801,19 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         setBusy(false);
       }
     }, [canSubmitRestore, busy, onSwitchAccount, normalizedRestoreSecret, password, reset, restoreNeedsPassword]);
+
+    const handleConnectPress = useCallback(async () => {
+      if (!onConnectWallet || busy) return;
+      setBusy(true);
+      setError(null);
+      try {
+        await onConnectWallet();
+      } catch (e: any) {
+        setError(e?.message || t("walletSetup.couldNotRestore"));
+      } finally {
+        setBusy(false);
+      }
+    }, [onConnectWallet, busy]);
 
     /** Another copy of this seed exists, so the user is not actually stuck. */
     const hasOtherWayIn = !!otherCopies && (otherCopies.recovery || otherCopies.passkeys > 0);
@@ -1345,6 +1365,19 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   {request.address.slice(0, 6)}…{request.address.slice(-4)}
                 </Text>
               </View>
+              {!!onConnectWallet && (
+                <>
+                  <AuthButton
+                    variant="primary"
+                    icon="wallet-outline"
+                    label={t("walletSetup.connectWalletApp")}
+                    onPress={handleConnectPress}
+                    disabled={busy}
+                    loading={busy}
+                  />
+                  <AuthDivider label={t("walletSetup.orRestoreIt")} />
+                </>
+              )}
               <AuthField
                 label={t("walletSetup.recoveryPhraseLabel")}
                 value={restoreSecret}

@@ -51,6 +51,8 @@ import { setupAAProvider } from "../../libs/wallet-core/smart-account";
 import { getPreferredChainId } from "../../libs/auth.utils";
 import { ChainId } from "../../config/constants";
 import { useAuthActions } from "../../context/AuthContext";
+import { setSigningProvider } from "../../libs/provider.registry";
+import { getAppKitInstance } from "../../config/reown.config";
 import { createLogger } from "../../libs/logger";
 
 const log = createLogger("WalletUnlockHost");
@@ -304,6 +306,66 @@ const WalletUnlockHost: React.FC = () => {
     await signOut();
   }, [settle, signOut]);
 
+  /**
+   * The external-wallet route: reopen the WalletConnect picker and wait for
+   * the session's own address to come back. Resolves quietly if the picker is
+   * closed without connecting (the sheet stays up, nothing changes); rejects
+   * if a different wallet connects, so the user sees which one they picked.
+   */
+  const handleConnectWallet = useCallback(async () => {
+    const current = pendingRef.current;
+    if (!current || current.request.mode !== "restore") return;
+    const address = current.request.address.toLowerCase();
+    const kit = getAppKitInstance();
+    if (!kit) throw new Error(i18n.t("wallet.connectUnavailable"));
+
+    const short = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
+    const adopt = (provider: any): boolean => {
+      if (!provider || typeof provider.request !== "function") return false;
+      setSigningProvider(provider);
+      log.info("unlock:adopted-connected-wallet", { address: short(address) });
+      settle(true);
+      return true;
+    };
+
+    if (kit.getIsConnected() && kit.getAddress()?.toLowerCase() === address && adopt(kit.getWalletProvider())) {
+      return;
+    }
+
+    await new Promise<void>((resolve, reject) => {
+      let done = false;
+      const finish = (fn: () => void) => {
+        if (done) return;
+        done = true;
+        unsubProvider();
+        unsubOpen();
+        fn();
+      };
+      const unsubProvider = kit.subscribeProvider((state) => {
+        if (!state.isConnected || !state.address) return;
+        if (state.address.toLowerCase() !== address) {
+          finish(() =>
+            reject(
+              new Error(
+                i18n.t("wallet.connectedWrongWallet", {
+                  connected: short(state.address as string),
+                  address: short(address),
+                }),
+              ),
+            ),
+          );
+          return;
+        }
+        if (adopt(state.provider)) finish(resolve);
+      });
+      const unsubOpen = kit.subscribeStateKey("open", (open) => {
+        // Picker dismissed without a matching connection: back to the sheet.
+        if (!open) setTimeout(() => finish(resolve), 500);
+      });
+      kit.open().catch((e: unknown) => finish(() => reject(e instanceof Error ? e : new Error(String(e)))));
+    });
+  }, [settle]);
+
   const handleClose = useCallback(() => {
     setWalletUnlockRefusal(i18n.t("wallet.unlockCancelled"));
     settle(false);
@@ -318,6 +380,7 @@ const WalletUnlockHost: React.FC = () => {
       onBiometricUnlock={handleBiometricUnlock}
       onSwitchAccount={handleSwitchAccount}
       onResetWallet={handleResetWallet}
+      onConnectWallet={handleConnectWallet}
       onCreate={async () => undefined}
     />
   );

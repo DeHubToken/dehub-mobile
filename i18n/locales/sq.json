@@ -1110,6 +1110,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Lidhja e portofolit nuk është e disponueshme në këtë version — rikthe me frazën e rikuperimit.",
+    "connectedWrongWallet": "Ai portofol është {{connected}}, jo {{address}}. Asgjë nuk u ndryshua.",
     "restoreWrongWallet": "Kjo hap një portofol tjetër, jo {{address}}. Asgjë nuk u ndryshua.",
     "unlockNoAccount": "Portofoli yt është i kyçur — asnjë llogari nuk është e identifikuar në këtë pajisje.",
     "unlockLookupFailed": "Portofoli yt është i kyçur — regjistri i portofolit nuk u arrit. Kontrollo lidhjen dhe provo sërish.",
@@ -3501,6 +3503,7 @@
     "otherChain": "Ky postim shlyhet në një zinxhir tjetër, prandaj të duhet DHB në portofolin tënd atje."
   },
   "walletSetup": {
+    "connectWalletApp": "Nënshkruaj me aplikacionin e portofolit ku ndodhet",
     "signOutAndStartOver": "Nuk e kam — dil dhe fillo nga e para",
     "restoreLocalNote": "Çelësi mbetet vetëm në këtë telefon.",
     "restoreMissing": "Portofoli i këtij profili nuk është në këtë telefon, kështu që ende nuk mund të nënshkruhet asgjë. Shkruaj frazën e rikuperimit ose çelësin privat për ta sjellë këtu.",

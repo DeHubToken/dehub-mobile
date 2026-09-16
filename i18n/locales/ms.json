@@ -1566,6 +1566,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Sambung dompet tidak tersedia dalam versi ini — pulihkan dengan frasa pemulihan.",
+    "connectedWrongWallet": "Dompet itu {{connected}}, bukan {{address}}. Tiada apa-apa berubah.",
     "restoreWrongWallet": "Itu membuka dompet lain, bukan {{address}}. Tiada apa-apa berubah.",
     "unlockNoAccount": "Dompet anda dikunci — tiada akaun yang log masuk pada peranti ini.",
     "unlockLookupFailed": "Dompet anda dikunci — rekod dompet tidak dapat dicapai. Semak sambungan dan cuba lagi.",
@@ -3764,6 +3766,7 @@
     "otherChain": "Siaran ini diselesaikan pada rantai lain, jadi anda perlukan DHB dalam dompet anda di sana."
   },
   "walletSetup": {
+    "connectWalletApp": "Tandatangan dengan aplikasi dompet tempat ia berada",
     "signOutAndStartOver": "Saya tiada — log keluar dan mula semula",
     "restoreLocalNote": "Kunci kekal pada telefon ini sahaja.",
     "restoreMissing": "Dompet profil ini tiada pada telefon ini, jadi belum ada apa-apa yang boleh ditandatangani. Masukkan frasa pemulihan atau kunci peribadinya untuk membawanya ke sini.",

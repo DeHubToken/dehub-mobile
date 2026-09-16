@@ -687,6 +687,8 @@
     "firstComments_other": "Primeiros {{count}} comentários"
   },
   "wallet": {
+    "connectUnavailable": "Ligar carteira não está disponível nesta versão — restaure com a sua frase de recuperação.",
+    "connectedWrongWallet": "Essa carteira é {{connected}}, não {{address}}. Nada foi alterado.",
     "restoreWrongWallet": "Isso abre outra carteira, não {{address}}. Nada foi alterado.",
     "unlockNoAccount": "A sua carteira está bloqueada — nenhuma conta tem sessão iniciada neste dispositivo.",
     "unlockLookupFailed": "A sua carteira está bloqueada — não foi possível aceder ao registo da carteira. Verifique a ligação e tente novamente.",
@@ -3576,6 +3578,7 @@
     "otherChain": "Esta publicação é liquidada em outra cadeia, então você precisa de DHB na sua carteira lá."
   },
   "walletSetup": {
+    "connectWalletApp": "Assinar com a app de carteira onde ela está",
     "signOutAndStartOver": "Não a tenho — terminar sessão e recomeçar",
     "restoreLocalNote": "A chave fica apenas neste telemóvel.",
     "restoreMissing": "A carteira deste perfil não está neste telemóvel, por isso ainda não é possível assinar nada. Introduza a frase de recuperação ou a chave privada para a trazer para aqui.",

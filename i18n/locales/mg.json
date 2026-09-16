@@ -1029,6 +1029,8 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "wallet": {
+    "connectUnavailable": "Tsy misy ny fampifandraisana kitapo amin'ity kinova ity — avereno amin'ny fehezanteny famerenana.",
+    "connectedWrongWallet": "Io kitapo io dia {{connected}}, fa tsy {{address}}. Tsy nisy niova.",
     "restoreWrongWallet": "Kitapo hafa no sokafan'izany, fa tsy {{address}}. Tsy nisy niova.",
     "unlockNoAccount": "Mihidy ny kitaponao — tsy misy kaonty tafiditra amin'ity fitaovana ity.",
     "unlockLookupFailed": "Mihidy ny kitaponao — tsy azo ny firaketan'ny kitaponao. Jereo ny fifandraisanao ary andramo indray.",
@@ -3581,6 +3583,7 @@
     "otherChain": "Vita ao amin'ny rojo hafa ity lahatsoratra ity, ka mila DHB ao amin'ny poketranao any ianao."
   },
   "walletSetup": {
+    "connectWalletApp": "Manaova sonia amin'ny rindranasa kitapo misy azy",
     "signOutAndStartOver": "Tsy manana izany aho — mivoaha ary manomboha indray",
     "restoreLocalNote": "Mijanona ao amin'ity finday ity ihany ny fanalahidy.",
     "restoreMissing": "Tsy ao amin'ity finday ity ny kitapon'ity mombamomba ity, ka mbola tsy misy azo soniavina. Ampidiro ny fehezanteny famerenana na ny fanalahidy manokana mba hitondrana azy eto.",

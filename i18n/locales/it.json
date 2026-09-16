@@ -687,6 +687,8 @@
     "firstComments_other": "Primi {{count}} commenti"
   },
   "wallet": {
+    "connectUnavailable": "Connetti wallet non è disponibile in questa versione — ripristina con la frase di recupero.",
+    "connectedWrongWallet": "Quel wallet è {{connected}}, non {{address}}. Non è stato modificato nulla.",
     "restoreWrongWallet": "Questo apre un wallet diverso, non {{address}}. Non è stato modificato nulla.",
     "unlockNoAccount": "Il tuo wallet è bloccato — nessun account ha effettuato l'accesso su questo dispositivo.",
     "unlockLookupFailed": "Il tuo wallet è bloccato — impossibile raggiungere il record del wallet. Controlla la connessione e riprova.",
@@ -3572,6 +3574,7 @@
     "otherChain": "Questo post viene regolato su un'altra chain, quindi ti servono DHB nel tuo wallet lì."
   },
   "walletSetup": {
+    "connectWalletApp": "Firma con l'app wallet in cui si trova",
     "signOutAndStartOver": "Non ce l'ho — esci e ricomincia",
     "restoreLocalNote": "La chiave resta solo su questo telefono.",
     "restoreMissing": "Il wallet di questo profilo non è su questo telefono, quindi non è ancora possibile firmare nulla. Inserisci la frase di recupero o la chiave privata per portarlo qui.",

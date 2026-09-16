@@ -1109,6 +1109,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Ukuxhuma isikhwama akutholakali kule nguqulo — buyisela ngomushwana wokubuyisela.",
+    "connectedWrongWallet": "Leso sikhwama singu-{{connected}}, hhayi u-{{address}}. Akukho okushintshiwe.",
     "restoreWrongWallet": "Lokho kuvula esinye isikhwama, hhayi u-{{address}}. Akukho okushintshiwe.",
     "unlockNoAccount": "Isikhwama sakho sikhiyiwe — akukho i-akhawunti engene kule divayisi.",
     "unlockLookupFailed": "Isikhwama sakho sikhiyiwe — irekhodi lesikhwama alifinyelelekanga. Hlola uxhumano lwakho bese uzama futhi.",
@@ -3531,6 +3533,7 @@
     "otherChain": "Lokhu okuthunyelwe kuqedwa kwesinye ishini, ngakho udinga i-DHB esikhwameni sakho lapho."
   },
   "walletSetup": {
+    "connectWalletApp": "Sayina nge-app yesikhwama esikuyo",
     "signOutAndStartOver": "Anginaso — phuma bese uqala phansi",
     "restoreLocalNote": "Ukhiye uhlala kule foni kuphela.",
     "restoreMissing": "Isikhwama sale phrofayela asikho kule foni, ngakho akukho okungasayinwa okwamanje. Faka umushwana wokubuyisela noma ukhiye wangasese ukuze usilethe lapha.",

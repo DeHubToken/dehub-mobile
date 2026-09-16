@@ -1099,6 +1099,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Pulqabı qoşmaq bu versiyada mövcud deyil — bərpa ifadənlə bərpa et.",
+    "connectedWrongWallet": "O pulqabı {{connected}}-dir, {{address}} deyil. Heç nə dəyişdirilmədi.",
     "restoreWrongWallet": "Bu {{address}} deyil, başqa bir pulqabını açır. Heç nə dəyişdirilmədi.",
     "unlockNoAccount": "Pulqabın kilidlidir — bu cihazda daxil olmuş hesab yoxdur.",
     "unlockLookupFailed": "Pulqabın kilidlidir — pulqabı qeydinə çatmaq mümkün olmadı. Bağlantını yoxla və yenidən cəhd et.",
@@ -3486,6 +3488,7 @@
     "otherChain": "Bu paylaşım başqa zəncirdə hesablanır, ona görə orada cüzdanınızda DHB olmalıdır."
   },
   "walletSetup": {
+    "connectWalletApp": "Olduğu pulqabı tətbiqi ilə imzala",
     "signOutAndStartOver": "Məndə yoxdur — çıx və yenidən başla",
     "restoreLocalNote": "Açar yalnız bu telefonda qalır.",
     "restoreMissing": "Bu profilin pulqabı bu telefonda deyil, ona görə hələ heç nə imzalana bilməz. Onu bura gətirmək üçün bərpa ifadəsini və ya şəxsi açarını daxil et.",

@@ -835,6 +835,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Connecter un portefeuille n'est pas disponible dans cette version — restaurez avec votre phrase de récupération.",
+    "connectedWrongWallet": "Ce portefeuille est {{connected}}, pas {{address}}. Rien n'a été modifié.",
     "restoreWrongWallet": "Cela ouvre un autre portefeuille, pas {{address}}. Rien n'a été modifié.",
     "unlockNoAccount": "Votre portefeuille est verrouillé — aucun compte n'est connecté sur cet appareil.",
     "unlockLookupFailed": "Votre portefeuille est verrouillé — impossible d'atteindre votre enregistrement de portefeuille. Vérifiez votre connexion et réessayez.",
@@ -3576,6 +3578,7 @@
     "otherChain": "Cette publication se règle sur une autre chaîne : il vous faut donc des DHB dans votre portefeuille là-bas."
   },
   "walletSetup": {
+    "connectWalletApp": "Signer avec l'app de portefeuille où il se trouve",
     "signOutAndStartOver": "Je ne l'ai pas — se déconnecter et recommencer",
     "restoreLocalNote": "La clé reste uniquement sur ce téléphone.",
     "restoreMissing": "Le portefeuille de ce profil n'est pas sur ce téléphone, donc rien ne peut encore être signé. Saisissez sa phrase de récupération ou sa clé privée pour le rapatrier ici.",
