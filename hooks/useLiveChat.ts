@@ -75,8 +75,20 @@ export interface UseLiveChatReturn {
   updateBannedList: (address: string, banned: boolean) => void;
 }
 
-export const useLiveChat = (): UseLiveChatReturn => {
+/**
+ * @param roomId The room to sit in. Omitted, the platform's global room —
+ *   what the public chat has always used. A live post names its room
+ *   `stream:<tokenId>`, the same key the web app joins for it, so a viewer on
+ *   a phone and one in a browser are in one conversation. The livestream
+ *   gateway's own room (`stream:<mongoId>`) is a different socket and a
+ *   different store; the two never met, which is why a phone's messages were
+ *   invisible from the web and vice versa.
+ */
+export const useLiveChat = (roomId?: string): UseLiveChatReturn => {
   const user = useUser();
+  const roomIdRef = useRef<string | undefined>(roomId);
+  roomIdRef.current = roomId;
+  const joinPayload = () => (roomIdRef.current ? { roomId: roomIdRef.current } : undefined);
   const { isSignedIn } = useAuthState();
   const isFocused = useIsFocused();
 
@@ -132,7 +144,7 @@ export const useLiveChat = (): UseLiveChatReturn => {
         if (cancelled) return;
         log.debug("Connected");
         setConnected(true);
-        socket.emit(EVENTS.JOIN);
+        socket.emit(EVENTS.JOIN, joinPayload());
         setJoining(true);
       });
 
@@ -312,7 +324,8 @@ export const useLiveChat = (): UseLiveChatReturn => {
       setConnected(false);
       setJoining(false);
     };
-  }, [isSignedIn]);
+    // A new room is a new socket: the gateway holds one room per connection.
+  }, [isSignedIn, roomId]);
 
   // Pause/resume on app background — reconnect + rejoin
   useEffect(() => {
@@ -323,7 +336,7 @@ export const useLiveChat = (): UseLiveChatReturn => {
         if (!socket.connected) {
           socket.connect();
         } else if (!joinedRef.current) {
-          socket.emit(EVENTS.JOIN);
+          socket.emit(EVENTS.JOIN, joinPayload());
           setJoining(true);
         }
       }
@@ -333,7 +346,9 @@ export const useLiveChat = (): UseLiveChatReturn => {
   }, []);
 
   const sendMessage = useCallback((payload: SendMessagePayload) => {
-    socketRef.current?.emit(EVENTS.SEND, payload);
+    // The gateway posts to the room this socket joined and ignores the field;
+    // older builds read it. Same redundancy the web client sends.
+    socketRef.current?.emit(EVENTS.SEND, roomIdRef.current ? { ...payload, roomId: roomIdRef.current } : payload);
   }, []);
 
   const editMessage = useCallback((messageId: string, content: string) => {
@@ -401,7 +416,7 @@ export const useLiveChat = (): UseLiveChatReturn => {
         socket.connect();
       } else if (!joinedRef.current) {
         setJoining(true);
-        socket.emit(EVENTS.JOIN);
+        socket.emit(EVENTS.JOIN, joinPayload());
       }
     }
   }, []);

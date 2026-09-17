@@ -57,6 +57,8 @@ import LiveWebRtcView from "../LiveViewer/LiveWebRtcView";
 import { extractReplayUrl } from "../../libs/live-replay";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import LiveViewerPlayerControls from "../LiveViewer/LiveViewerPlayerControls";
+import { useLiveChat } from "../../hooks/useLiveChat";
+import { useLivePostReactions } from "../../hooks/useLivePostReactions";
 import { EDGE } from "../common/ViewerChrome";
 
 type LiveStreamPlayerProps = {
@@ -1135,37 +1137,22 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     }
   }, [streamLoading, streamEntity, navigation, streamId]);
 
-  // Derive user vote from isLiked field in stream entity
-  const actionsUserVote = useMemo(() => {
-    if (typeof (streamEntity as any)?.isLiked === 'boolean') {
-      return (streamEntity as any).isLiked ? 'like' : null;
-    }
-    const addr = (user?.walletAddress || user?.address || "").toLowerCase();
-    const rec = (streamEntity?.likesRecord || {}) as Record<string, boolean>;
-    return addr && rec && !!rec[addr] ? "like" : null;
-  }, [user?.walletAddress, user?.address, streamEntity?.likesRecord, (streamEntity as any)?.isLiked]);
-
-  // Like/unlike handler for the reactions bar
-  const [likePending, setLikePending] = useState(false);
+  // Reactions are the POST's, exactly as on the feed card and on web: the
+  // same nine, the same counts, the same shared overlay. The heart used to
+  // post to /api/live/:id/like — a counter on the stream document nothing
+  // else reads — so a like here never showed anywhere else, and never showed
+  // as pressed after a reload.
+  const postTokenId = streamEntity?.tokenId ?? tokenId ?? null;
+  const postReactions = useLivePostReactions({
+    tokenId: postTokenId,
+    userAddress: (user?.walletAddress || user?.address || "").toLowerCase() || undefined,
+    requireAuth,
+    onError: () => toastError("Could not save your reaction"),
+  });
   const handleLiveLike = useCallback(() => {
-    if (!streamId || !isLiveEffective) return;
-    if (likePending) return;
-    const isUnliking = actionsUserVote === "like";
-    requireAuth?.(async () => {
-      try {
-        setLikePending(true);
-        setLiveLikes((c) => (isUnliking ? Math.max(0, c - 1) : c + 1));
-        const res: any = await likeLiveStream(streamId, {});
-        const serverLikes = res?.likes ?? res?.result?.likes;
-        const serverIsLiked = res?.isLiked ?? res?.result?.isLiked;
-        if (typeof serverLikes === "number") setLiveLikes(serverLikes);
-      } catch {
-        setLiveLikes((c) => (isUnliking ? c + 1 : Math.max(0, c - 1)));
-      } finally {
-        setLikePending(false);
-      }
-    });
-  }, [streamId, isLiveEffective, likePending, actionsUserVote, requireAuth]);
+    if (!isLiveEffective) return;
+    postReactions.toggle(true);
+  }, [isLiveEffective, postReactions]);
 
   // Share handler
   const handleShare = useCallback(async () => {
@@ -1269,26 +1256,52 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   }, [isLiveEffective, isSignedIn, requireAuth]);
 
   // Chat send handler
+  // The stream's chat room, keyed by the post's tokenId — the room the web
+  // app joins for the same post. Messages used to ride the livestream
+  // gateway's own room and store, which no web client ever read: a phone
+  // and a browser watching the same stream were in two different chats,
+  // and the phone's had no avatars because that gateway sends none.
+  const chatRoomId = postTokenId != null ? `stream:${postTokenId}` : undefined;
+  const liveChat = useLiveChat(chatRoomId);
+
+  // One list for the chat overlay: the room's messages, plus the join/gift/
+  // system moments the livestream socket still carries.
+  const chatActivities = useMemo<Activity[]>(() => {
+    const moments = activities.filter((a) => a.status !== StreamActivityType.MESSAGE);
+    const messages: Activity[] = liveChat.messages.map((m) => ({
+      id: m._id,
+      status: StreamActivityType.MESSAGE,
+      address: (m.senderAddress || m.sender?.address || "").toLowerCase(),
+      createdAt: m.createdAt ? Date.parse(m.createdAt) : Date.now(),
+      user: m.sender
+        ? {
+            address: m.sender.address,
+            username: m.sender.username,
+            displayName: m.sender.displayName,
+            avatarImageUrl: m.sender.avatarUrl,
+            badgeBalance: m.sender.badgeBalance,
+            followers: m.sender.followers,
+            followings: m.sender.followings,
+          }
+        : undefined,
+      meta: {
+        username: m.sender?.displayName || m.sender?.username,
+        content: m.content,
+        avatarImageUrl: m.sender?.avatarUrl,
+      },
+    }));
+    return [...moments, ...messages].sort((a, b) => a.createdAt - b.createdAt);
+  }, [activities, liveChat.messages]);
+
   const handleSendMessage = useCallback(
     (content: string) => {
-      if (!content.trim() || !streamId || !isSignedIn) return;
-      const addr = (user?.walletAddress || user?.address || "").toLowerCase();
-      const username = (user as any)?.username || "You";
-      const key = `${(addr || username || "").toLowerCase()}::${content.trim()}`;
-      const idx = activities.length;
-      try {
-        rememberOptimistic(key, idx);
-      } catch {}
-      addActivity({
-        status: StreamActivityType.MESSAGE,
-        address: addr,
-        meta: { username, content },
-        createdAt: Date.now(),
-        optimistic: true,
-      });
-      socketEmitAuthed(LivestreamEvents.SendMessage, { streamId, content });
+      if (!content.trim() || !chatRoomId || !isSignedIn) return;
+      // No optimistic row: the gateway re-broadcasts the message to the room,
+      // sender included, within the round trip, and a refused send comes back
+      // on its error channel instead of vanishing.
+      liveChat.sendMessage({ content: content.trim(), messageType: "text" });
     },
-    [streamId, isSignedIn, user, activities.length, rememberOptimistic, addActivity, socketEmitAuthed]
+    [chatRoomId, isSignedIn, liveChat]
   );
 
 
@@ -1459,8 +1472,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   
                 {/* Chat overlay */}
                 <LiveViewerChat
-                  activities={activities}
-                  canSend={!!canChat}
+                  activities={chatActivities}
+                  canSend={!!canChat && liveChat.connected && !liveChat.isBanned}
                   isLive={isLiveEffective}
                   isEnded={isEndedEffective}
                   isScheduled={isScheduledEffective}
@@ -1475,9 +1488,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                   onLike={handleLiveLike}
                   onShare={handleShare}
                   disabled={!isSignedIn || !isLiveEffective}
-                  likeCount={liveLikes}
-                  isLiked={actionsUserVote === "like"}
-                  likePending={likePending}
+                  likeCount={postReactions.likeCount}
+                  isLiked={postReactions.isLiked}
+                  likePending={false}
                   isLive={isLiveEffective}
                 />
               </View>

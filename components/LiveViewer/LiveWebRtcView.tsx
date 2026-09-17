@@ -27,7 +27,12 @@ const LiveWebRtcView: React.FC<Props> = ({ stream, objectFit = "contain" }) => (
       streamURL={stream.toURL()}
       style={StyleSheet.absoluteFill}
       objectFit={objectFit}
-      zOrder={0}
+      /* On Android an RTCView is a SurfaceView, and two of them at zOrder 0
+         resolve by luck. The feed's own preview of the same stream can still
+         hold its surface underneath this screen — pages stay mounted — and
+         when it did, the post page drew black over a card that kept playing.
+         The viewer's picture sits above anything the feed left behind. */
+      zOrder={1}
     />
   </View>
 );
