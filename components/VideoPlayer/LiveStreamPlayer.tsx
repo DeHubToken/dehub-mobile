@@ -59,6 +59,7 @@ import PostOptionsMenu from "../common/PostOptionsMenu";
 import LiveViewerPlayerControls from "../LiveViewer/LiveViewerPlayerControls";
 import { useLiveChat } from "../../hooks/useLiveChat";
 import { useLivePostReactions } from "../../hooks/useLivePostReactions";
+import { useTranslation } from "../../hooks/useTranslation";
 import { EDGE } from "../common/ViewerChrome";
 
 type LiveStreamPlayerProps = {
@@ -97,6 +98,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     createdAt: createdAtProp,
   } = props;
   const user = useUser();
+  const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
   const { requireAuth } = useAuthActions();
   const {
@@ -1147,7 +1149,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     tokenId: postTokenId,
     userAddress: (user?.walletAddress || user?.address || "").toLowerCase() || undefined,
     requireAuth,
-    onError: () => toastError("Could not save your reaction"),
+    onError: () => toastError(t("feedCard.reactionFailed")),
   });
   const handleLiveLike = useCallback(() => {
     if (!isLiveEffective) return;
