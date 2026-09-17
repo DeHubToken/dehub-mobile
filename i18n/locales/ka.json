@@ -2808,6 +2808,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "თამაშები, რომლებიც ამ აპლიკაციაშივე მუშაობს. არაფრის დაყენება ან ყიდვა არ სჭირდება — ღია კოდით და თავად DeHub-ისგან მიწოდებული."
   },
   "usernames": {

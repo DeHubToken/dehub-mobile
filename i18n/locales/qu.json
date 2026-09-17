@@ -2803,6 +2803,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Kay app ukhupi pukllaykuna. Mana imapas churanapaq, mana imapas rantinapaq — kichasqa pukyu, DeHub kikin quwanchik."
   },
   "usernames": {

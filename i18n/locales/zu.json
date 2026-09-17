@@ -2800,6 +2800,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Imidlalo esebenza lapha ku-app. Akukho okufakwayo, akukho okuthengwayo — umthombo ovulekile, futhi ilethwa yi-DeHub uqobo."
   },
   "usernames": {

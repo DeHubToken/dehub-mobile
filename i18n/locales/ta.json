@@ -2763,6 +2763,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "இந்த ஆப்பிலேயே இயங்கும் விளையாட்டுகள். நிறுவ எதுவும் இல்லை, வாங்க எதுவும் இல்லை — திறந்த மூலம், DeHub இலிருந்தே வழங்கப்படுகிறது."
   },
   "usernames": {

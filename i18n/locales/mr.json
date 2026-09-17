@@ -2763,6 +2763,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "याच अ‍ॅपमध्ये चालणारे गेम. इन्स्टॉल करण्यासारखे काही नाही, विकत घेण्यासारखे काही नाही — मुक्त स्रोत, आणि DeHub स्वतःच पुरवते."
   },
   "usernames": {

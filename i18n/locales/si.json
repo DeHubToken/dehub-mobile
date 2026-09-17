@@ -2764,6 +2764,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "මෙම යෙදුම තුළම ධාවනය වන ක්‍රීඩා. ස්ථාපනය කිරීමට කිසිවක් නැත, මිලදී ගැනීමට කිසිවක් නැත — විවෘත මූලාශ්‍ර, DeHub විසින්ම සපයනු ලැබේ."
   },
   "usernames": {

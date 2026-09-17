@@ -2757,6 +2757,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "এমন গেম যা এই অ্যাপেই চলে। ইনস্টল করার কিছু নেই, কেনার কিছু নেই — ওপেন সোর্স, আর DeHub নিজেই পরিবেশন করে।"
   },
   "usernames": {

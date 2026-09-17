@@ -2759,6 +2759,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Ngā kēmu e rere ana i konei tonu i te taupānga. Kāore he mea hei whakauru, kāore he mea hei hoko — pūtake tuwhera, ā, nā DeHub tonu i tuku."
   },
   "usernames": {

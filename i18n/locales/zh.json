@@ -2774,6 +2774,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "直接在应用里运行的游戏。无需安装，无需购买——开源，并由 DeHub 自己提供。"
   },
   "usernames": {

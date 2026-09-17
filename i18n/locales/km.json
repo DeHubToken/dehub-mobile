@@ -2792,6 +2792,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "ហ្គេមដែលដំណើរការនៅទីនេះក្នុងកម្មវិធីតែម្ដង។ គ្មានអ្វីត្រូវដំឡើង គ្មានអ្វីត្រូវទិញ — ប្រភពបើកចំហ និងផ្ដល់ជូនដោយ DeHub ផ្ទាល់។"
   },
   "usernames": {

@@ -2769,6 +2769,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "ఈ యాప్‌లోనే నడిచే గేమ్‌లు. ఇన్‌స్టాల్ చేయాల్సిన అవసరం లేదు, కొనాల్సిన అవసరం లేదు — ఓపెన్ సోర్స్, DeHub నుండే అందించబడుతుంది."
   },
   "usernames": {

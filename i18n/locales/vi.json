@@ -2859,6 +2859,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Những trò chơi chạy ngay trong ứng dụng. Không cần cài, không cần mua — mã nguồn mở và do chính DeHub phục vụ."
   },
   "usernames": {

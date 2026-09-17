@@ -2743,6 +2743,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "क्रीडाः याः अत्रैव अनुप्रयोगे चलन्ति। न किमपि संस्थापनीयम्, न किमपि क्रेतव्यम् — मुक्तस्रोतः, DeHub स्वयमेव ददाति।"
   },
   "usernames": {

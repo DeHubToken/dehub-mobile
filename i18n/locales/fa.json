@@ -2786,6 +2786,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "بازی‌هایی که همین‌جا در برنامه اجرا می‌شوند. چیزی برای نصب و خرید نیست — متن‌باز و از خود DeHub سرو می‌شود."
   },
   "usernames": {

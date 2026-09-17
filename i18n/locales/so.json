@@ -2762,6 +2762,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Ciyaaro halkan app-ka gudihiisa ku shaqeeya. Waxba lama rakibayo, waxba lama iibsanayo — il furan, oo DeHub laftiisa uu bixiyo."
   },
   "usernames": {

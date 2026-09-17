@@ -2752,6 +2752,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Şu ýerde, programmanyň içinde işleýän oýunlar. Gurnamaga zat ýok, satyn almaga zat ýok — açyk çeşme we DeHub-yň özi hödürleýär."
   },
   "usernames": {
