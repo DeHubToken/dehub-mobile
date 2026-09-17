@@ -43,6 +43,8 @@ export default function NearIntentBuy() {
     if (chain !== receipt.paymentChainId) throw new Error(t('nearBuy.wrongNetwork'));
     const accounts = await signing.request({ method: 'eth_accounts' });
     if (accounts?.[0]?.toLowerCase() !== wallet.toLowerCase()) throw new Error(t('nearBuy.wrongWallet'));
+    if (wallet.toLowerCase() !== receipt.refundTo?.toLowerCase()) throw new Error(t('nearBuy.wrongWallet'));
+    if (receipt.expiresAt * 1000 <= Date.now()) throw new Error(t('nearBuy.phase_expired'));
     const amount = ethers.utils.parseUnits(receipt.amountInFormatted, receipt.paymentDecimals);
     if (receipt.wrapNativePayment && receipt.paymentTokenAddress && signing.smartAccount) {
       const token = new ethers.utils.Interface(['function deposit() payable', 'function transfer(address to,uint256 amount) returns (bool)']);

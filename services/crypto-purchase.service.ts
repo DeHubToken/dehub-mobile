@@ -10,7 +10,7 @@ async function confirm(id: string, txHash: string): Promise<Purchase> {
   return receipt;
 }
 export const cryptoPurchaseApi: PurchaseApi = {
-  assets: async () => (await apiClient.get<{ tokens: PaymentAsset[] }>('/dpay/crypto/tokens')).tokens,
+  assets: async () => (await apiClient.get<{ tokens: PaymentAsset[] }>('/dpay/crypto/payment-options')).tokens,
   quote: params => apiClient.post('/dpay/crypto/quote', params, { timeoutMs: 40_000 }),
   create: params => apiClient.post('/dpay/crypto/intent', params, { isAuthRequired: true, timeoutMs: 40_000 }),
   list: async () => (await apiClient.get<{ intents: Purchase[] }>('/dpay/crypto/intents', { isAuthRequired: true })).intents,
