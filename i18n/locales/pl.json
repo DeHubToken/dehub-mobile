@@ -4202,8 +4202,6 @@
     "pickTier": "Wybierz uroczystość",
     "plays": "Odtwarza {{tier}} na streamie",
     "you": "Ty",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Serce",
       "chocolate": "Pudełko czekoladek",

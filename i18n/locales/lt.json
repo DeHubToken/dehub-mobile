@@ -4132,8 +4132,6 @@
     "pickTier": "Pasirinkite šventę",
     "plays": "Rodo {{tier}} tiesioginiame eteryje",
     "you": "Jūs",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Meilės širdis",
       "chocolate": "Dėžutė saldainių",

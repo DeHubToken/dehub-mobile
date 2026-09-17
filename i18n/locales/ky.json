@@ -4127,8 +4127,6 @@
     "pickTier": "Майрамды тандаңыз",
     "plays": "Эфирде {{tier}} ойнойт",
     "you": "Сиз",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Сүйүү жүрөгү",
       "chocolate": "Шоколад кутусу",

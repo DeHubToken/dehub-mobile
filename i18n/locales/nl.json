@@ -4401,8 +4401,6 @@
     "pickTier": "Kies een viering",
     "plays": "Speelt {{tier}} op de stream",
     "you": "Jij",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Liefdeshart",
       "chocolate": "Doos chocolade",

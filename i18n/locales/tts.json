@@ -4089,8 +4089,6 @@
     "pickTier": "เลือกการเฉลิมฉลอง",
     "plays": "เล่น {{tier}} บนสตรีม",
     "you": "คุณ",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "หัวใจ",
       "chocolate": "กล่องช็อกโกแลต",

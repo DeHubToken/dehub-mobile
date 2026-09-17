@@ -4124,8 +4124,6 @@
     "pickTier": "U dooro dabaaldeg",
     "plays": "Waxay ciyaartaa {{tier}} durdurka",
     "you": "Adiga",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Jaceylka Wadnaha",
       "chocolate": "Sanduuqa Shokolada",

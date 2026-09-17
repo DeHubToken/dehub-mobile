@@ -4138,8 +4138,6 @@
     "pickTier": "Välj en firande",
     "plays": "Spelar {{tier}} på strömmen",
     "you": "Du",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Kärlekshjärta",
       "chocolate": "Chokladask",

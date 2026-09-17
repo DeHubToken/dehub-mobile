@@ -4138,8 +4138,6 @@
     "pickTier": "Válassz egy ünnepséget",
     "plays": "Játssza le a(z) {{tier}} a streamben",
     "you": "Te",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Szív",
       "chocolate": "Csokoládé doboz",

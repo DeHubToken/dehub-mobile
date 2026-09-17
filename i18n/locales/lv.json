@@ -4132,8 +4132,6 @@
     "pickTier": "Izvēlieties svinības",
     "plays": "Atskaņo {{tier}} straumē",
     "you": "Jūs",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Sirds",
       "chocolate": "Šokolādes kaste",

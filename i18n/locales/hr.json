@@ -4135,8 +4135,6 @@
     "pickTier": "Odaberi proslavu",
     "plays": "Reproducira {{tier}} na streamu",
     "you": "Ti",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Srce",
       "chocolate": "Kutija čokolade",

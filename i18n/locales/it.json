@@ -4205,8 +4205,6 @@
     "pickTier": "Scegli una celebrazione",
     "plays": "Riproduce {{tier}} in streaming",
     "you": "Tu",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Cuore d'amore",
       "chocolate": "Scatola di cioccolatini",

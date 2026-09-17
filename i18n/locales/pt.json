@@ -4208,8 +4208,6 @@
     "pickTier": "Escolha uma celebração",
     "plays": "Reproduz {{tier}} na transmissão",
     "you": "Você",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Coração",
       "chocolate": "Caixa de Chocolate",

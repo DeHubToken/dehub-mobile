@@ -4131,8 +4131,6 @@
   "liveGift": {
     "pickTier": "Pick a celebration",
     "you": "You",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Love Heart",
       "chocolate": "Box of Chocolate",

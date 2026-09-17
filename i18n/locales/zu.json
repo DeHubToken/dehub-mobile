@@ -4162,8 +4162,6 @@
     "pickTier": "Khetha umkhosi",
     "plays": "Idlala i-{{tier}} kusigcawu",
     "you": "Wena",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Inhliziyo Yothando",
       "chocolate": "Ibhokisi Likashokoledi",

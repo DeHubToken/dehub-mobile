@@ -4138,8 +4138,6 @@
     "pickTier": "Vyberte oslavu",
     "plays": "Přehrává {{tier}} na streamu",
     "you": "Ty",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Srdce",
       "chocolate": "Krabička čokolády",

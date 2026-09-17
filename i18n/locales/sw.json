@@ -4134,8 +4134,6 @@
     "pickTier": "Chagua sherehe",
     "plays": "Inacheza {{tier}} kwenye kipindi",
     "you": "Wewe",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Moyo wa Upendo",
       "chocolate": "Sanduku la Chokoleti",

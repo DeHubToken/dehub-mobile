@@ -4122,8 +4122,6 @@
     "pickTier": "Wähle es Fäscht",
     "plays": "Spilet {{tier}} uf em Stream",
     "you": "Du",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Herz",
       "chocolate": "Schoggi-Schachtle",

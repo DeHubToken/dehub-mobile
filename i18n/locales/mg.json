@@ -4210,8 +4210,6 @@
     "pickTier": "Misafidiana lanonana",
     "plays": "Mampiseho ny {{tier}} ao amin'ny stream",
     "you": "Ianao",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Fona",
       "chocolate": "Boaty Chocolat",

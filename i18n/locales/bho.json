@@ -4077,8 +4077,6 @@
     "pickTier": "कोई उत्सव चुनें",
     "plays": "स्ट्रीम पर {{tier}} चलाता है",
     "you": "आप",
-    "sentBy": "{{name}} · {{amount}} डीएचबी",
-    "sentAmount": "{{amount}} डीएचबी",
     "tier": {
       "heart": "प्यार का दिल",
       "chocolate": "चॉकलेट का डिब्बा",

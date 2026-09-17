@@ -4197,8 +4197,6 @@
     "pickTier": "Abaabii filadhu",
     "plays": "Taphata {{tier}} irratti",
     "you": "Ati",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Garaa Jaalala",
       "chocolate": "Sanduuqa Shokoolaataa",
