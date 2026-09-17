@@ -163,64 +163,6 @@ const LiveViewerActionBar: React.FC<Props> = ({
         </Pressable>
       ) : null}
 
-      {/* Gift · share · thumb, hard right above the composer — the three
-          things you do to a broadcast. The row underneath is for saying
-          something, and it keeps the full width.
-
-          Tap the thumb to like the post; hold it for the rest of the
-          reactions, which is the same gesture the web action bar uses and
-          the same one a long-press already means everywhere else here. */}
-      <View style={styles.cluster} pointerEvents="box-none">
-        {isLive ? (
-          <Pressable
-            onPress={onGiftPress}
-            hitSlop={CHROME_HIT_SLOP}
-            accessibilityRole="button"
-            accessibilityLabel={t("postOptions.sendTip", { defaultValue: "Send Tip" })}
-            style={styles.circle}
-          >
-            <ChromeFill />
-            <Icon name="Gift" size={19} color="#fff" strokeWidth={1.8} />
-          </Pressable>
-        ) : null}
-
-        <Pressable
-          onPress={onShare}
-          hitSlop={CHROME_HIT_SLOP}
-          accessibilityRole="button"
-          accessibilityLabel={t("postOptions.share", { defaultValue: "Share" })}
-          style={styles.circle}
-        >
-          <ChromeFill />
-          <Icon name="Share2" size={19} color="#fff" strokeWidth={1.8} />
-        </Pressable>
-
-        <Pressable
-          onPress={onLike}
-          onLongPress={isLive ? openReactions : undefined}
-          delayLongPress={400}
-          disabled={!isLive}
-          hitSlop={CHROME_HIT_SLOP}
-          accessibilityRole="button"
-          accessibilityLabel={isLiked ? "Unlike" : "Like"}
-          style={[styles.circle, !isLive ? styles.dim : null]}
-        >
-          <ChromeFill />
-          <Icon
-            name="ThumbsUp"
-            size={19}
-            color="#fff"
-            strokeWidth={1.8}
-            fill={isLiked ? "#fff" : "none"}
-          />
-          {likeCount > 0 ? (
-            <Text style={styles.badge} numberOfLines={1}>
-              {formatCompactNumber(likeCount)}
-            </Text>
-          ) : null}
-        </Pressable>
-      </View>
-
       <View style={styles.row} pointerEvents="box-none">
         <View style={styles.inputWrap}>
           <ChromeFill />
@@ -249,24 +191,83 @@ const LiveViewerActionBar: React.FC<Props> = ({
           ) : null}
         </View>
 
+        {/* Gift · share · thumb, on the composer's own row after the send
+            button — the three things you do to a broadcast, where the thumb
+            already is.
+
+            They stand down while there is a message in the box: typing hands
+            the whole row to the text and the send button, and the moment it
+            is empty again they come back. Nothing is ever on this row that
+            the viewer is not about to use. */}
+        {canSubmit ? null : (
+          <View style={styles.cluster} pointerEvents="box-none">
+          {isLive ? (
+            <Pressable
+              onPress={onGiftPress}
+              hitSlop={CHROME_HIT_SLOP}
+              accessibilityRole="button"
+              accessibilityLabel={t("postOptions.sendTip", { defaultValue: "Send Tip" })}
+              style={styles.circle}
+            >
+              <ChromeFill />
+              <Icon name="Gift" size={19} color="#fff" strokeWidth={1.8} />
+            </Pressable>
+          ) : null}
+
+          <Pressable
+            onPress={onShare}
+            hitSlop={CHROME_HIT_SLOP}
+            accessibilityRole="button"
+            accessibilityLabel={t("postOptions.share", { defaultValue: "Share" })}
+            style={styles.circle}
+          >
+            <ChromeFill />
+            <Icon name="Share2" size={19} color="#fff" strokeWidth={1.8} />
+          </Pressable>
+
+          <Pressable
+            onPress={onLike}
+            onLongPress={isLive ? openReactions : undefined}
+            delayLongPress={400}
+            disabled={!isLive}
+            hitSlop={CHROME_HIT_SLOP}
+            accessibilityRole="button"
+            accessibilityLabel={isLiked ? "Unlike" : "Like"}
+            style={[styles.circle, !isLive ? styles.dim : null]}
+          >
+            <ChromeFill />
+            <Icon
+              name="ThumbsUp"
+              size={19}
+              color="#fff"
+              strokeWidth={1.8}
+              fill={isLiked ? "#fff" : "none"}
+            />
+            {likeCount > 0 ? (
+              <Text style={styles.badge} numberOfLines={1}>
+                {formatCompactNumber(likeCount)}
+              </Text>
+            ) : null}
+          </Pressable>
+          </View>
+        )}
       </View>
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: EDGE,
+    gap: 8,
   },
   cluster: {
-    alignSelf: "flex-end",
     flexDirection: "row",
     alignItems: "center",
-    gap: CHROME_GAP,
-    paddingRight: EDGE,
-    marginBottom: 10,
+    gap: 8,
   },
   inputWrap: {
     flex: 1,
