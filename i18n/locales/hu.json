@@ -2775,6 +2775,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Játékok, amelyek itt, az appban futnak. Nincs mit telepíteni, nincs mit megvenni — nyílt forráskódúak, és magától a DeHubtól érkeznek."
   },
   "usernames": {

@@ -2771,6 +2771,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Lojëra që ekzekutohen pikërisht këtu në aplikacion. Asgjë për të instaluar, asgjë për të blerë — me burim të hapur dhe të shërbyera nga vetë DeHub."
   },
   "usernames": {

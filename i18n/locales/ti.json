@@ -2746,6 +2746,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "ኣብዚ ኣፕሊኬሽን ዝሰርሑ ጸወታታት። ዝጽዓን የለን፡ ዝግዛእ የለን — ክፉት ምንጪ፡ ብ DeHub ባዕሉ ዝቐርብ።"
   },
   "usernames": {

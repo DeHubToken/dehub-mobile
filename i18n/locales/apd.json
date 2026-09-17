@@ -2729,6 +2729,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "ألعاب بتشتغل هنا جوة التطبيق نفسو. ما في حاجة تتركب ولا حاجة تتشترى — مفتوحة المصدر، وDeHub نفسو بيقدمها."
   },
   "usernames": {

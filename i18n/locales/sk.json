@@ -2938,6 +2938,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Hry, ktoré bežia priamo tu v aplikácii. Nič na inštaláciu, nič na kúpu — otvorený kód a servírované priamo DeHubom."
   },
   "usernames": {

@@ -2772,6 +2772,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "ایسے کھیل جو اسی ایپ میں چلتے ہیں۔ نہ کچھ انسٹال کرنا، نہ کچھ خریدنا — اوپن سورس، اور DeHub سے ہی پیش کیے گئے۔"
   },
   "usernames": {

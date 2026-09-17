@@ -2825,6 +2825,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "To'g'ridan-to'g'ri shu ilovada ishlaydigan o'yinlar. O'rnatadigan ham, sotib oladigan ham narsa yo'q — ochiq kod, DeHub'ning o'zi taqdim etadi."
   },
   "usernames": {

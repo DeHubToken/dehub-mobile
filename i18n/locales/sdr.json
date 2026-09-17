@@ -2793,6 +2793,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "کھیل جے یہیں ایپ میں چلے ہے۔ لگائے کے کچھ نہیں ہے، خریدے کے کچھ نہیں ہے — کھلل سورس، اور DeHub خود دیئے ہے۔"
   },
   "usernames": {

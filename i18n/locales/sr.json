@@ -2628,6 +2628,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Игре које се покрећу овде у апликацији. Ништа за инсталирање, ништа за куповину — отворен код и послужено од самог DeHub-а."
   },
   "usernames": {

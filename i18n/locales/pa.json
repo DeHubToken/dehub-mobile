@@ -2749,6 +2749,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "ਇਸੇ ਐਪ ਵਿੱਚ ਚੱਲਣ ਵਾਲੀਆਂ ਖੇਡਾਂ। ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਕੁਝ ਨਹੀਂ, ਖਰੀਦਣ ਲਈ ਕੁਝ ਨਹੀਂ — ਓਪਨ ਸੋਰਸ, ਅਤੇ DeHub ਖੁਦ ਹੀ ਦਿੰਦਾ ਹੈ।"
   },
   "usernames": {

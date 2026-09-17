@@ -2728,6 +2728,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "就勒搿只应用里向跑个游戏。呒啥好装，呒啥好买 — 开源个，DeHub 自家供个。"
   },
   "usernames": {

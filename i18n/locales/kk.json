@@ -2831,6 +2831,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Тікелей осы қосымшада жұмыс істейтін ойындар. Орнататын да, сатып алатын да ештеңе жоқ — ашық бастапқы код, DeHub-тың өзінен ұсынылады."
   },
   "usernames": {

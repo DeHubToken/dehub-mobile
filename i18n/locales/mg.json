@@ -2855,6 +2855,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Lalao mandeha eto amin'ny fampiharana ihany. Tsy misy apetraka, tsy misy vidina — loharano misokatra, ary avy amin'ny DeHub mivantana."
   },
   "usernames": {

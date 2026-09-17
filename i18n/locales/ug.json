@@ -2763,6 +2763,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "دەل مۇشۇ ئەپ ئىچىدە ئىشلەيدىغان ئويۇنلار. ئورنىتىدىغان نەرسە يوق، سېتىۋالىدىغان نەرسە يوق — ئوچۇق مەنبە ۋە DeHub ئۆزى تەمىنلەيدۇ."
   },
   "usernames": {

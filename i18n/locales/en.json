@@ -2922,6 +2922,10 @@
     "soon": "Soon"
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Games that run right here in the app. Nothing to install, nothing to buy — open source, and served from DeHub itself."
   },
   "videoLooks": {

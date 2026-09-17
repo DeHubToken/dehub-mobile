@@ -2770,6 +2770,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Mängud, mis töötavad siinsamas rakenduses. Midagi ei pea paigaldama ega ostma — avatud lähtekoodiga ja serveeritud DeHubi enda poolt."
   },
   "usernames": {

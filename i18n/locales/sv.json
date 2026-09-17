@@ -2775,6 +2775,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Spel som körs här i appen. Inget att installera, inget att köpa — öppen källkod och serverade från DeHub självt."
   },
   "usernames": {
