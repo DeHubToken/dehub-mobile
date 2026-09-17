@@ -1,5 +1,5 @@
 
-import { estimateMinutes, isPurchaseTerminal, paymentKey, purchasePhase, purchasePollDelay, validDhbAmount, type Purchase } from '../../libs/crypto-purchase';
+import { estimateMinutes, featuredPaymentAssets, formatPaymentAmount, isPurchaseTerminal, paymentKey, purchasePhase, purchasePollDelay, validDhbAmount, type Purchase } from '../../libs/crypto-purchase';
 
 const now = Date.parse('2026-09-17T12:00:00Z');
 const purchase: Purchase = { id: 'purchase', originAsset: 'btc', amountInFormatted: '0.01', depositAddress: 'address', expiresAt: (now - 1000) / 1000 };
@@ -50,5 +50,22 @@ describe('crypto purchase lifecycle', () => {
   it('rejects non-finite and fractional purchase inputs', () => {
     for (const amount of [NaN, Infinity, -1, 0, 0.1, Number.MAX_SAFE_INTEGER + 1]) expect(validDhbAmount(amount)).toBe(false);
     expect(validDhbAmount(50000)).toBe(true);
+  });
+  it('shows concise payment amounts without changing the amount submitted', () => {
+    const exact = '0.193739247929379325';
+    expect(formatPaymentAmount(exact)).toBe('0.193739');
+    expect(exact).toBe('0.193739247929379325');
+    expect(formatPaymentAmount('0.00000001')).toBe('<0.000001');
+  });
+  it('features supported payment currencies from the live catalogue', () => {
+    const assets = [
+      { assetId: 'usdc-base', symbol: 'USDC', blockchain: 'base', decimals: 6 },
+      { assetId: 'eth-base', symbol: 'ETH', blockchain: 'base', decimals: 18 },
+      { assetId: 'eth-near', symbol: 'ETH', blockchain: 'near', decimals: 18 },
+      { assetId: 'bnb-bsc', symbol: 'BNB', blockchain: 'bsc', decimals: 18 },
+      { assetId: 'sol-sol', symbol: 'SOL', blockchain: 'sol', decimals: 9 },
+      { assetId: 'usdt-base', symbol: 'USDT', blockchain: 'base', decimals: 6 },
+    ];
+    expect(featuredPaymentAssets(assets).map(asset => asset.assetId)).toEqual(['eth-base', 'bnb-bsc', 'sol-sol', 'usdt-base', 'usdc-base']);
   });
 });
