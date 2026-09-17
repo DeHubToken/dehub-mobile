@@ -4323,6 +4323,14 @@
     "directTiming": "DHB is delivered once your payment confirms.",
     "wrongNetwork": "Switch to the selected payment network and try again.",
     "wrongWallet": "Connect the wallet shown on this purchase and try again.",
-    "reviewPay": "Review the amount, then confirm the payment in your wallet."
+    "reviewPay": "Review the amount, then confirm the payment in your wallet.",
+    "currency": "Currency",
+    "checkingBalances": "Checking your wallet balances…",
+    "walletBalances": "Your balances by network",
+    "noWalletFunds": "Choose a currency, or search other currencies and networks.",
+    "otherCurrencies": "Other currencies",
+    "connectSolana": "Connect Solana wallet",
+    "balanceUnknown": "Balance unavailable",
+    "balanceAmount": "Available: {{amount}} {{symbol}}"
   }
 }
