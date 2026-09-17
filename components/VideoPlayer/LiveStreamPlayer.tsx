@@ -1160,10 +1160,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     requireAuth,
     onError: () => toastError(t("feedCard.reactionFailed")),
   });
+  // A reaction on a live post is a post reaction, allowed whenever the post
+  // exists — an ended stream is still a post, exactly as on web.
   const handleLiveLike = useCallback(() => {
-    if (!isLiveEffective) return;
     postReactions.toggle(true);
-  }, [isLiveEffective, postReactions]);
+  }, [postReactions]);
 
   // Share handler
   const handleShare = useCallback(async () => {
