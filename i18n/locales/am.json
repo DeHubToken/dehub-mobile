@@ -4147,5 +4147,15 @@
     "ttsLabel": "ጮክ ብለህ የሆነ ነገር ተናገር",
     "ttsPlaceholder": "ወደ ዥረት ያንብቡ...",
     "ttsHint": "ስጦታዎ በሚወርድበት ጊዜ ለሚመለከቱ ሁሉ ጮክ ብለው ያንብቡ ።"
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "ይህ ቁልፍ በጭራሽ አይለወጥም ። ኢንኮደርዎን አንድ ጊዜ ያዘጋጁ — በሚቀጥለው ጊዜ ልክ እዚያ ይጀምሩ እና DeHub ልጥፉን ለእርስዎ ይፈጥራል ።",
+    "externalLiveTitle": "ከውጭ መሣሪያ ዥረት",
+    "externalTitle": "ውጫዊ ዥረት ሁነታ",
+    "externalLiveHint": "የእርስዎ ዥረት ውጫዊ ሶፍትዌር በኩል በቀጥታ ነው. የውስጠ-መተግበሪያ ካሜራ ተሰናክሏል.",
+    "externalHint": "ከዚህ በታች ያሉትን ዝርዝሮች በመጠቀም የዥረት ሶፍትዌርዎን ያገናኙ ፣ ከዚያ ስርጭትን ይጀምሩ ።",
+    "useInAppCamera": "ይልቅ የውስጠ-መተግበሪያ ካሜራ ይጠቀሙ"
   }
 }

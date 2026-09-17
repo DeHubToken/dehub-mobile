@@ -4242,5 +4242,15 @@
     "ttsLabel": "大声说出来",
     "ttsPlaceholder": "念给直播间听……",
     "ttsHint": "当你的礼物送达时，念给所有观看的人听。"
+  },
+  "goLive": {
+    "streamKey": "推流密钥",
+    "ingestUrl": "推流地址",
+    "encoderPermanentHint": "这个钥匙永远不会改变。设置一次编码器—下次只需按“从那里开始” ， DeHub就会为您创建帖子。",
+    "externalLiveTitle": "从外部设备流式传输",
+    "externalTitle": "外部流式传输模式",
+    "externalLiveHint": "您的视频流通过外部软件实时播放。 应用内摄像头已禁用。",
+    "externalHint": "使用以下详细信息连接您的流媒体软件，然后开始广播。",
+    "useInAppCamera": "改用应用内摄像头"
   }
 }

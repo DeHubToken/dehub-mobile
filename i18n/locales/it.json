@@ -4256,5 +4256,15 @@
     "ttsLabel": "Dì qualcosa ad alta voce",
     "ttsPlaceholder": "Leggi al torrente...",
     "ttsHint": "Leggi ad alta voce a tutti coloro che guardano quando arriva il tuo regalo."
+  },
+  "goLive": {
+    "streamKey": "Chiave dello stream",
+    "ingestUrl": "URL di acquisizione",
+    "encoderPermanentHint": "Questa chiave non cambia mai. Imposta il tuo encoder una volta — la prossima volta premi Avvia lì e DeHub creerà il post per te.",
+    "externalLiveTitle": "STREAMING DA DISPOSITIVO ESTERNO",
+    "externalTitle": "Modalità di streaming esterno",
+    "externalLiveHint": "Il tuo stream è attivo tramite software esterno. La fotocamera dell'app è disabilitata.",
+    "externalHint": "Collega il tuo software di streaming utilizzando i dettagli sottostanti, quindi avvia la trasmissione.",
+    "useInAppCamera": "Usa invece la fotocamera dell'app"
   }
 }

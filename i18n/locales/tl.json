@@ -4361,5 +4361,15 @@
     "ttsLabel": "Sabihin nang malakas ang isang bagay",
     "ttsPlaceholder": "Basahin sa stream...",
     "ttsHint": "Basahin nang malakas sa lahat ng nanonood kapag nakarating ang iyong regalo."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Ang key na ito ay hindi kailanman nagbabago. Itakda ang iyong encoder up ng isang beses — sa susunod na oras lamang pindutin ang Start doon at DeHub ay lumilikha ng post para sa iyo.",
+    "externalLiveTitle": "STREAMING MULA SA PANLABAS NA DEVICE",
+    "externalTitle": "Panlabas na Streaming Mode",
+    "externalLiveHint": "Ang iyong stream ay live sa pamamagitan ng panlabas na software. Hindi pinagana ang in - app camera.",
+    "externalHint": "Ikonekta ang iyong streaming software gamit ang mga detalye sa ibaba, pagkatapos ay simulan ang pagsasahimpapawid.",
+    "useInAppCamera": "Gamitin sa halip ang In - App Camera"
   }
 }

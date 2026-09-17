@@ -4183,5 +4183,15 @@
     "ttsLabel": "Pasakykite ką nors garsiai",
     "ttsPlaceholder": "Perskaitykite sraute...",
     "ttsHint": "Skaitykite garsiai visiems, stebintiems, kada nusileidžia jūsų dovana."
+  },
+  "goLive": {
+    "streamKey": "Srauto raktas",
+    "ingestUrl": "Įėjimo URL",
+    "encoderPermanentHint": "Šis raktas niekada nesikeičia. Nustatykite koduotuvą vieną kartą — kitą kartą tiesiog paspauskite Pradėti ir DeHub sukurs įrašą už jus.",
+    "externalLiveTitle": "TRANSLIACIJA IŠ IŠORINIO ĮRENGINIO",
+    "externalTitle": "Išorinio srautinio perdavimo režimas",
+    "externalLiveHint": "Jūsų srautas tiesiogiai transliuojamas per išorinę programinę įrangą. Kamera programėlėje išjungta.",
+    "externalHint": "Prijunkite srautinio perdavimo programinę įrangą naudodami toliau pateiktą informaciją, tada pradėkite transliuoti.",
+    "useInAppCamera": "Vietoj to naudoti kamerą programėlėje"
   }
 }

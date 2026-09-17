@@ -4162,5 +4162,15 @@
     "ttsLabel": "Чизе бо овози баланд гӯед",
     "ttsPlaceholder": "Хондан ба ҷараён...",
     "ttsHint": "Хондан баланд ба ҳамаи тамошобинон, вақте ки заминҳои атои шумо."
+  },
+  "goLive": {
+    "streamKey": "Калиди ҷараён",
+    "ingestUrl": "URL-и ворид",
+    "encoderPermanentHint": "Ин калид ҳеҷ гоҳ тағйир намеёбад. I-set ang iyong encoder up ng isang beses — susunod na beses lamang ang Pindutin dito at DeHub lumikha ng post para sa iyo.",
+    "externalLiveTitle": "Ҷараёни ҷараён аз дастгоҳи беруна",
+    "externalTitle": "Усули ҷараёнҳои берунӣ",
+    "externalLiveHint": "Ang iyong stream ay live sa pamamagitan ng panlabas na Камера дар дохили барнома ғайрифаъол аст.",
+    "externalHint": "I-ugnay ang iyong software ng streaming gamit ang mga detalye sa ibaba, pagkatapos ay",
+    "useInAppCamera": "Ба ҷои он камераи дарунсохтро истифода баред"
   }
 }

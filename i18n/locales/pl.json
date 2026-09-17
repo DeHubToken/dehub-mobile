@@ -4253,5 +4253,15 @@
     "ttsLabel": "Powiedz coś na głos",
     "ttsPlaceholder": "Odczytaj strumień…",
     "ttsHint": "Czytaj na głos wszystkim, którzy patrzą, kiedy wyląduje Twój prezent."
+  },
+  "goLive": {
+    "streamKey": "Klucz transmisji",
+    "ingestUrl": "Adres URL pozyskiwania",
+    "encoderPermanentHint": "Ten klucz nigdy się nie zmienia. Skonfiguruj koder raz — następnym razem po prostu naciśnij Start, a DeHub utworzy post dla Ciebie.",
+    "externalLiveTitle": "PRZESYŁANIE STRUMIENIOWE Z URZĄDZENIA ZEWNĘTRZNEGO",
+    "externalTitle": "Zewnętrzny tryb przesyłania strumieniowego",
+    "externalLiveHint": "Twoja transmisja jest transmitowana na żywo za pośrednictwem zewnętrznego oprogramowania. Kamera w aplikacji jest wyłączona.",
+    "externalHint": "Podłącz oprogramowanie do przesyłania strumieniowego, korzystając z poniższych szczegółów, a następnie rozpocznij transmisję.",
+    "useInAppCamera": "Zamiast tego użyj aparatu w aplikacji"
   }
 }

@@ -4125,5 +4125,15 @@
     "ttsLabel": "A' ye kuma dɔ fɔ ka bɔ a kaan na",
     "ttsPlaceholder": "A filɛ, a be se ka kɛ cogo min na.",
     "ttsHint": "N'i ye fɛɛn dɔ di mɔgɔw ma, i ka kan k'o kalan."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "O la, a tun be se ka kɛ ko a tun be se ka kɛ cogo min na. I ka coder sigi siɲɛ kelen — siɲɛ wɛrɛ, i ka Start kan ani DeHub ka baara kɛ i ye.",
+    "externalLiveTitle": "Fɛɛn minw be se ka mɔgɔ bali ka baara kɛ n'u ye",
+    "externalTitle": "Fanga be yɔrɔ minw na, u be se ka bɔ yen.",
+    "externalLiveHint": "I ka fɔrɔmasɔn be sɔrɔ yɔrɔ wɛrɛw la. O kama, a ka ɲi ka to ka to ka baara kɛ n'a ye.",
+    "externalHint": "I ka fɔrɔmasɔn labɛn ka tɛmɛ kunnafoniw kan, o kɔ, i ka fɔrɔmasɔn daminɛ.",
+    "useInAppCamera": "O kama, an ka ɲi ka to ka baara kɛ n'an ka kamera ye."
   }
 }

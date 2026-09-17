@@ -4452,5 +4452,15 @@
     "ttsLabel": "Zeg iets hardop",
     "ttsPlaceholder": "Lees uit naar de stream...",
     "ttsHint": "Lees hardop voor aan iedereen die kijkt wanneer je cadeau binnenkomt."
+  },
+  "goLive": {
+    "streamKey": "Stream-sleutel",
+    "ingestUrl": "Ingest-URL",
+    "encoderPermanentHint": "Deze toets verandert nooit. Stel uw encoder één keer in — druk de volgende keer gewoon op Start daar en DeHub maakt de post voor u aan.",
+    "externalLiveTitle": "STREAMING VANAF EEN EXTERN APPARAAT",
+    "externalTitle": "Externe streamingmodus",
+    "externalLiveHint": "Uw stream is live via externe software. De camera in de app is uitgeschakeld.",
+    "externalHint": "Verbind uw streamingsoftware met behulp van de onderstaande gegevens en begin vervolgens met uitzenden.",
+    "useInAppCamera": "Gebruik in plaats daarvan de camera in de app"
   }
 }

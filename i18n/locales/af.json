@@ -4303,5 +4303,15 @@
     "ttsLabel": "Sê iets hardop",
     "ttsPlaceholder": "Lees tot by die stroom...",
     "ttsHint": "Lees hardop vir almal wat kyk wanneer jou gawe land."
+  },
+  "goLive": {
+    "streamKey": "Stream-sleutel",
+    "ingestUrl": "Ingestie-URL",
+    "encoderPermanentHint": "Die sleutel het nie verander nie. Stel jou enkodeerder een keer op — volgende keer druk net Begin daar en DeHub skep die pos vir jou.",
+    "externalLiveTitle": "Stroom vanaf eksterne toestel",
+    "externalTitle": "Eksterne Stroom Modus",
+    "externalLiveHint": "U stroom is regstreeks via eksterne sagteware. Die in-app kamera is gedeaktiveer.",
+    "externalHint": "Verbind jou stroomprogrammatuur met die onderstaande besonderhede en begin dan uitsaai.",
+    "useInAppCamera": "Gebruik In-App kamera In plaas"
   }
 }

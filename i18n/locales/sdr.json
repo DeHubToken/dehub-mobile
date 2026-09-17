@@ -4170,5 +4170,15 @@
     "ttsLabel": "Say something out loud",
     "ttsPlaceholder": "Read out to the stream…",
     "ttsHint": "Read aloud to everyone watching when your gift lands."
+  },
+  "goLive": {
+    "streamKey": "स्ट्रीम की",
+    "ingestUrl": "इनजेस्ट यूआरएल",
+    "encoderPermanentHint": "دا کی تل بدل نه شي. خپل انکوډر یو ځل تنظیم کړئ — راتلونکی ځل یوازې هلته پیل کړئ او DeHub به ستاسو لپاره پوسټ جوړ کړي.",
+    "externalLiveTitle": "EXTERNAL DEVICE SE STREAMING",
+    "externalTitle": "External Streaming Mode",
+    "externalLiveHint": "Apanar stream external software se live hae. In-app camera disable hae.",
+    "externalHint": "Niche dewa detail use kar ke apanar streaming software connect kara, tab broadcasting start kara.",
+    "useInAppCamera": "In-App Camera Use Kara"
   }
 }
