@@ -4448,5 +4448,15 @@
     "ttsLabel": "Katakan sesuatu dengan kuat",
     "ttsPlaceholder": "Bacakan kepada strim...",
     "ttsHint": "Baca dengan kuat kepada semua orang yang menonton apabila hadiah anda tiba."
+  },
+  "goLive": {
+    "streamKey": "Kunci Siaran",
+    "ingestUrl": "URL Pengambilan",
+    "encoderPermanentHint": "Kunci ini tidak pernah berubah. Sediakan pengekod anda sekali — lain kali hanya tekan Mula di sana dan DeHub mencipta hantaran untuk anda.",
+    "externalLiveTitle": "PENSTRIMAN DARIPADA PERANTI LUARAN",
+    "externalTitle": "Mod Penstriman Luaran",
+    "externalLiveHint": "Strim anda disiarkan secara langsung melalui perisian luaran. Kamera dalam aplikasi dilumpuhkan.",
+    "externalHint": "Sambungkan perisian penstriman anda menggunakan butiran di bawah, kemudian mulakan penyiaran.",
+    "useInAppCamera": "Gunakan Kamera Dalam Aplikasi"
   }
 }

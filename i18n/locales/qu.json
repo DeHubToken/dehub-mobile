@@ -4213,5 +4213,15 @@
     "ttsLabel": "Imatapas kallpawan rimay",
     "ttsPlaceholder": "Kawsay willakuyman ñawinchay...",
     "ttsHint": "Regaloyki chayamuqtin llapa qhawaqkunaman kallpawan leey."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Kay llaveqa manan hayk’aqpas cambianchu. Huk kuti codificadorniyki churay — qhipa kuti chaypi Qallarina ñit&#39;iylla chaymanta DeHub qampaq qillqa ruwan.",
+    "externalLiveTitle": "HAWAN DISPOSITIVOMANTA RUWAY",
+    "externalTitle": "Modo de Streaming Exterior nisqamanta",
+    "externalLiveHint": "Mayuykiqa hawa software kaqnintakama kawsachkan. App ukhupi kaq cámara mana llamk&#39;achisqa kachkan.",
+    "externalHint": "Kaypi kaqta hap'iqkuy mayninniykiwan, chaymanta kachariy kachariyta.",
+    "useInAppCamera": "Chaypa rantinpi In-App Camera nisqawan yanapachikuy"
   }
 }

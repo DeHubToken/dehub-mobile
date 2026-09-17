@@ -4154,5 +4154,15 @@
     "ttsLabel": "Bir zady gaty aýt",
     "ttsPlaceholder": "Garawul diňi we Garawul diňi",
     "ttsHint": "Seniň sowgatyňy görýänleriň ählisine sesli okamagy öwreniň."
+  },
+  "goLive": {
+    "streamKey": "Akış Anahtarı",
+    "ingestUrl": "Alım URL'si",
+    "encoderPermanentHint": "Bu açar hiç haçan üýtgemeýär. Bir gezek kodlaýjyňyzy goýuň — indiki gezek diňe şol ýere basyň we DeHub size post ýaratýar.",
+    "externalLiveTitle": "Garawul diňi we Garawul diňi",
+    "externalTitle": "Daşary akma modu",
+    "externalLiveHint": "Siziň akyşyňyz daşary ýardamy arkaly diridir. Ulymaç kamerasy ýitirilýär.",
+    "externalHint": "Öwrenme ýardamyny aşakdaky jikme-jikleri ulanyp, soňra ýaýratmaga başlaň.",
+    "useInAppCamera": "Gaýtam, ulagda kamera ulan"
   }
 }

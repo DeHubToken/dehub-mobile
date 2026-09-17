@@ -4198,5 +4198,15 @@
     "ttsLabel": "Spune ceva cu voce tare",
     "ttsPlaceholder": "Citiți în flux...",
     "ttsHint": "Citește cu voce tare tuturor celor care te privesc atunci când cadoul tău aterizează."
+  },
+  "goLive": {
+    "streamKey": "Cheie de transmisiune",
+    "ingestUrl": "URL de ingestie",
+    "encoderPermanentHint": "Această cheie nu se schimbă niciodată. Setați codificatorul o dată — data viitoare trebuie doar să apăsați Start acolo și DeHub creează postarea pentru dvs.",
+    "externalLiveTitle": "REDARE ÎN FLUX DE PE UN DISPOZITIV EXTERN",
+    "externalTitle": "Mod de redare în flux extern",
+    "externalLiveHint": "Fluxul dvs. este live prin intermediul unui software extern. Camera din aplicație este dezactivată.",
+    "externalHint": "Conectați software-ul de streaming utilizând detaliile de mai jos, apoi începeți să difuzați.",
+    "useInAppCamera": "Folosește în schimb camera din aplicație"
   }
 }

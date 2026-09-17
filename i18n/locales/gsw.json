@@ -4173,5 +4173,15 @@
     "ttsLabel": "Sag öppis laut",
     "ttsPlaceholder": "Lies em Stream vor…",
     "ttsHint": "Lies em ganzi Chat vor, wänn din Gschänk-Gift landet."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Dä Schlüssel verändert sich nie. Stell din Encoder eimal i – nächstes Mal drucksch eifach uf Start und DeHub macht de Post für dich.",
+    "externalLiveTitle": "STREAMING VOM EXTERNE GERT",
+    "externalTitle": "Externi Streaming Modus",
+    "externalLiveHint": "Dini Stream isch live über externi Software. D In-App Kamera isch deaktiviert.",
+    "externalHint": "Verbind din Streaming Software mit de Date drunter, und fang denn a z'sende.",
+    "useInAppCamera": "Bruuch d In-App Kamera statt dem"
   }
 }

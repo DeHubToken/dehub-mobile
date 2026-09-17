@@ -3968,5 +3968,15 @@
     "ttsLabel": "Talk someting loud",
     "ttsPlaceholder": "Read am out to di stream…",
     "ttsHint": "Read am aloud to everybody wey dey watch when your gift land."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "This key never changes. Set your encoder up once — next time just press Start there and DeHub creates the post for you.",
+    "externalLiveTitle": "STREAMING FROM EXTERNAL DEVICE",
+    "externalTitle": "External Streaming Mode",
+    "externalLiveHint": "Your stream is live via external software. The in-app camera is disabled.",
+    "externalHint": "Connect your streaming software using the details below, then start broadcasting.",
+    "useInAppCamera": "Use In-App Camera Instead"
   }
 }

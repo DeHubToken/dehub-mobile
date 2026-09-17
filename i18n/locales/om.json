@@ -4248,5 +4248,15 @@
     "ttsLabel": "Sagalee ol kaastee waan tokko dubbadhu",
     "ttsPlaceholder": "Tamsaasa kallattiif dubbisi...",
     "ttsHint": "Yeroo kennaan kee bu'u nama ilaalu hundaaf sagalee ol kaastee dubbisi."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Furtuun kun gonkumaa hin jijjiiramu. Encoder kee al tokko saagi — yeroo itti aanutti Start achitti dhiibaa qofa DeHub post sana siif uuma.",
+    "externalLiveTitle": "MEESHAA ALAA IRRAA DHAABBACHUU",
+    "externalTitle": "Haala Dhangala&#39;aa Alaa",
+    "externalLiveHint": "Stream keessan karaa software alaa live ta&#39;a. Kaameeraan appii keessaa hojiirraa ooleera.",
+    "externalHint": "Bal&#39;ina armaan gadii fayyadamuun software streaming keessan wal qunnamsiisaa, sana booda tamsaasa jalqabaa.",
+    "useInAppCamera": "Bakka isaa Kaameeraa Appii Keessaa Fayyadamaa"
   }
 }

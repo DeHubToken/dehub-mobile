@@ -4186,5 +4186,15 @@
     "ttsLabel": "Recite nešto naglas",
     "ttsPlaceholder": "Čitajte u streamu…",
     "ttsHint": "Čitajte naglas svima koji gledaju kada vaš dar sleti."
+  },
+  "goLive": {
+    "streamKey": "Ključ strima",
+    "ingestUrl": "URL unosa",
+    "encoderPermanentHint": "Ova tipka se nikada ne mijenja. Postavite svoj koder jednom — sljedeći put samo pritisnite Start there i DeHub kreira objavu za vas.",
+    "externalLiveTitle": "STREAMING S VANJSKOG UREĐAJA",
+    "externalTitle": "Način rada za vanjski streaming",
+    "externalLiveHint": "Vaš stream je uživo putem vanjskog softvera. Kamera u aplikaciji je onemogućena.",
+    "externalHint": "Povežite svoj softver za streaming pomoću dolje navedenih pojedinosti, a zatim započnite emitiranje.",
+    "useInAppCamera": "Umjesto toga upotrijebite kameru u aplikaciji"
   }
 }

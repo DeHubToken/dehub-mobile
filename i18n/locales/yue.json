@@ -4182,5 +4182,15 @@
     "ttsLabel": "大聲說出來",
     "ttsPlaceholder": "在串流中讀出...",
     "ttsHint": "當禮物送達時，請大聲朗讀給所有觀眾。"
+  },
+  "goLive": {
+    "streamKey": "串流金鑰",
+    "ingestUrl": "擷取 URL",
+    "encoderPermanentHint": "呢個密鑰永遠唔會改變。設定一次你嘅編碼器 — 下次只需要撳嗰度開始， DeHub 就會為你建立帖子。",
+    "externalLiveTitle": "由外部裝置串流",
+    "externalTitle": "外部串流模式",
+    "externalLiveHint": "你嘅串流係透過外部軟件直播。應用程式內相機已經停用。",
+    "externalHint": "使用以下詳情連接串流軟件，然後開始廣播。",
+    "useInAppCamera": "改用應用程式內相機"
   }
 }

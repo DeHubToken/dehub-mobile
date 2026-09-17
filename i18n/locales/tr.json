@@ -4247,5 +4247,15 @@
     "ttsLabel": "Yüksek sesle bir şey söyle",
     "ttsPlaceholder": "Akışa yüksek sesle okuyun…",
     "ttsHint": "Hediyeniz geldiğinde izleyen herkese yüksek sesle okuyun."
+  },
+  "goLive": {
+    "streamKey": "Yayın anahtarı",
+    "ingestUrl": "Ingest adresi",
+    "encoderPermanentHint": "Bu anahtar asla değişmez. Kodlayıcınızı bir kez ayarlayın — bir dahaki sefere buradan Başlat'a basmanız yeterlidir ve DeHub sizin için gönderiyi oluşturur.",
+    "externalLiveTitle": "HARİCİ CİHAZDAN AKIŞ",
+    "externalTitle": "Harici Akış Modu",
+    "externalLiveHint": "Akışınız harici yazılımlar aracılığıyla canlıdır. Uygulama içi kamera devre dışıdır.",
+    "externalHint": "Aşağıdaki bilgileri kullanarak akış yazılımınızı bağlayın, ardından yayına başlayın.",
+    "useInAppCamera": "Bunun Yerine Uygulama İçi Kamera Kullanın"
   }
 }

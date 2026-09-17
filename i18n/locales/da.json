@@ -4189,5 +4189,15 @@
     "ttsLabel": "Sig noget højt",
     "ttsPlaceholder": "Læs ud til strømmen...",
     "ttsHint": "Læs højt for alle, der ser på, når din gave lander."
+  },
+  "goLive": {
+    "streamKey": "Stream-nøgle",
+    "ingestUrl": "Ingest-URL",
+    "encoderPermanentHint": "Denne nøgle ændres aldrig. Indstil din encoder én gang — næste gang skal du bare trykke på Start der, så opretter DeHub opslaget for dig.",
+    "externalLiveTitle": "STREAMING FRA EKSTERN ENHED",
+    "externalTitle": "Ekstern streamingtilstand",
+    "externalLiveHint": "Din stream er live via ekstern software. Kameraet i appen er deaktiveret.",
+    "externalHint": "Tilslut din streamingsoftware ved hjælp af nedenstående oplysninger, og begynd derefter at sende.",
+    "useInAppCamera": "Brug in-app-kamera i stedet"
   }
 }

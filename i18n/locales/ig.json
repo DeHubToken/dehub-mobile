@@ -4162,5 +4162,15 @@
     "ttsLabel": "Kwuo ihe n 'olu dara ụda",
     "ttsPlaceholder": "Gụpụta na iyi...",
     "ttsHint": "Gụọ onye ọ bụla na-ekiri mgbe onyinye gị rutere."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Igodo a anaghị agbanwe agbanwe. Nịm gị encoder elu otu ugboro — oge ọzọ dị nnọọ pịa Malite n 'ebe ahụ na DeHub emepụta post n' ihi na ị.",
+    "externalLiveTitle": "Gụgharia site na mpụga ngwaọrụ",
+    "externalTitle": "Mpụga gụgharia Mode",
+    "externalLiveHint": "Gị iyi bụ ndụ site mpụga software. Igwefoto dị n 'ime ngwa ahụ nwere nkwarụ.",
+    "externalHint": "Jikọọ gị gụgharia software iji nkọwa n 'okpuru, mgbe ahụ na-amalite na agbasa ozi n' ikuku.",
+    "useInAppCamera": "Jiri Igwefoto In-App Kama"
   }
 }

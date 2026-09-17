@@ -4142,5 +4142,15 @@
     "ttsLabel": "Ucapake kanthi seru",
     "ttsPlaceholder": "Waosen ing stream...",
     "ttsHint": "Waosen kanthi banter marang kabeh sing nonton nalika hadiahmu teka."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Kunci iki ora bakal owah. Setel encoder-mu sepisan — sabanjure mung pencet Mulai ing kana lan DeHub bakal nggawe kiriman kanggo sampeyan.",
+    "externalLiveTitle": "STREAMING SAKA PIRANTI EKSTERNAL",
+    "externalTitle": "Mode Streaming Eksternal",
+    "externalLiveHint": "Siaranmu wis urip liwat piranti lunak eksternal. Kamera ing aplikasi wis dipateni.",
+    "externalHint": "Sambungake piranti lunak streamingmu nganggo katrangan ing ngisor iki, banjur wiwiti siaran.",
+    "useInAppCamera": "Gunakake Kamera Ing Aplikasi Gantine"
   }
 }
