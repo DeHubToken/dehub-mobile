@@ -21,6 +21,7 @@ import {
   TextInput,
   Pressable,
   StyleSheet,
+  Platform,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
@@ -126,7 +127,17 @@ const LiveViewerActionBar: React.FC<Props> = ({
 
   // The keyboard lifts the whole bar, reactions strip included, so an open
   // strip does not end up behind the keyboard it was opened above.
-  const lift = useMemo(() => (kbVisible ? keyboardHeight : 0), [kbVisible, keyboardHeight]);
+  //
+  // iOS only. Android runs with `adjustResize` (app.json
+  // softwareKeyboardLayoutMode), which shrinks the whole window by the
+  // keyboard's height before this hook ever reports it — so adding the height
+  // again lifted the bar a second time, clean off the top of the shrunken
+  // screen. A viewer opening the keyboard on a phone watched the text box
+  // vanish and typed blind.
+  const lift = useMemo(
+    () => (kbVisible && Platform.OS !== "android" ? keyboardHeight : 0),
+    [kbVisible, keyboardHeight],
+  );
 
   return (
     <View style={{ marginBottom: lift }} pointerEvents="box-none">
