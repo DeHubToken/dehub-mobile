@@ -4,6 +4,18 @@ import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Avatar from "../common/Avatar";
+import { TEXT_SHADOW } from "../common/ViewerChrome";
+
+/**
+ * Messages ride the picture, not a pill.
+ *
+ * Each line used to sit in its own dark rounded box, which over a
+ * broadcast reads as a stack of little cards rather than as a room
+ * talking. The shade at the foot of the frame and this shadow carry the
+ * legibility the boxes were carrying — the same arrangement the web
+ * viewer's overlay chat uses.
+ */
+const MESSAGE_TEXT = { color: "#FFFFFF", ...TEXT_SHADOW } as const;
 
 /** Shared shape for the `userReferenceProjection` returned by both socket events and REST activities. */
 export interface UserReference {
@@ -101,11 +113,11 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
   switch (a.status) {
     case StreamActivityType.MESSAGE:
       return (
-        <View className="mb-1.5 dark-surface bg-zinc-900/70 rounded-2xl px-2.5 py-1.5 self-start max-w-[85%] flex-row items-start">
+        <View className="mb-2 self-start max-w-[92%] flex-row items-start">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
             <Avatar uri={avatarUrl} size={20} name={displayName} />
           </TouchableOpacity>
-          <Text style={{ color: '#FFFFFF' }} className="text-[12px] leading-[17px] flex-1 flex-shrink">
+          <Text style={MESSAGE_TEXT} className="text-[13px] leading-[18px] flex-1 flex-shrink">
             <Text
               className="font-bold"
               style={{ color: colorForUser(displayName) }}
