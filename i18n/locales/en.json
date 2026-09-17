@@ -1742,6 +1742,7 @@
     "amountUsd": "Amount (USD)",
     "customAmount": "Custom amount",
     "minPurchase": "Minimum purchase is $5",
+    "minDhbPurchase": "Minimum DHB purchase is $0.50",
     "youPay": "You pay",
     "youReceive": "You receive (est.)",
     "paymentMethod": "Payment Method",
@@ -4265,6 +4266,7 @@
     "useInAppCamera": "Use In-App Camera Instead"
   },
   "nearBuy": {
+    "otherCurrencies": "Other currencies",
     "description": "Choose a token to pay. Receive DHB in your wallet.",
     "dhbAmount": "DHB amount",
     "search": "Search token, network or contract",
