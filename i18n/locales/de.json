@@ -4197,5 +4197,34 @@
     "didNotRecoverEither": "Diese Anmeldung hat keines der hier gezeigten Profile wiederhergestellt. Es wurde nichts geändert. Versuch die ursprüngliche Anmeldung für das gewünschte Profil.",
     "didNotRecoverThis": "Diese Anmeldung hat eine andere Wallet wiederhergestellt als die dieses Profils. Es wurde nichts geändert. Versuch die Anmeldung, mit der es ursprünglich erstellt wurde.",
     "couldNotRetrieve": "Diese alte Wallet konnte auf diesem Gerät nicht abgerufen werden. Du kannst sie unten auf dehub.io trotzdem wiederherstellen."
+  },
+  "liveGift": {
+    "pickTier": "Wähle eine Feier",
+    "plays": "Spielt {{tier}} im Stream",
+    "you": "Du",
+    "tier": {
+      "heart": "Herz",
+      "chocolate": "Schachtel Pralinen",
+      "bouquet": "Blumenstrauß",
+      "crown": "Krone",
+      "magicRing": "Zauberring",
+      "spartans": "Spartaner-Armee",
+      "party": "Party-Feier",
+      "gold3": "Goldener Bildschirm (3s)",
+      "gold10": "Goldener Bildschirm (10s)",
+      "ultimate": "Ultimative Feier"
+    },
+    "tierDesc": {
+      "heart": "Herzen schweben die Ecke des Streams empor.",
+      "chocolate": "Eine Schachtel Pralinen purzelt den Bildschirm hoch.",
+      "bouquet": "Ein Blumenstrauß platzt in der Ecke auf.",
+      "crown": "Eine Krone steigt über den Stream und glänzt.",
+      "magicRing": "Ein Ring landet in der Mitte und klingelt in Glitzer.",
+      "spartans": "Eine Schirmwand marschiert über den Stream.",
+      "party": "Konfetti fliegt und eine Discokugel fällt herein.",
+      "gold3": "Der Bildschirm wird golden und Münzen regnen 3 Sekunden lang herab.",
+      "gold10": "Der Bildschirm wird golden und Münzen regnen 10 Sekunden lang herab.",
+      "ultimate": "Jede Feier gleichzeitig – Gold, Konfetti, Münzen und eine Trophäe."
+    }
   }
 }

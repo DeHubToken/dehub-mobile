@@ -4130,5 +4130,34 @@
     "didNotRecoverEither": "Ta prijava nije oporavila nijedan ovdje prikazani profil. Ništa nije promijenjeno. Pokušajte s izvornom prijavom za profil koji želite.",
     "didNotRecoverThis": "Ta je prijava oporavila novčanik koji nije od ovog profila. Ništa nije promijenjeno. Pokušajte s prijavom kojom je izvorno stvoren.",
     "couldNotRetrieve": "Taj stari novčanik nije bilo moguće dohvatiti na ovom uređaju. I dalje ga možete oporaviti na dehub.io u nastavku."
+  },
+  "liveGift": {
+    "pickTier": "Odaberi proslavu",
+    "plays": "Reproducira {{tier}} na streamu",
+    "you": "Ti",
+    "tier": {
+      "heart": "Srce",
+      "chocolate": "Kutija čokolade",
+      "bouquet": "Buket cvijeća",
+      "crown": "Kruna",
+      "magicRing": "Čarobni prsten",
+      "spartans": "Spartanska vojska",
+      "party": "Proslava zabave",
+      "gold3": "Zlatni ekran (3s)",
+      "gold10": "Zlatni ekran (10s)",
+      "ultimate": "Vrhunska proslava"
+    },
+    "tierDesc": {
+      "heart": "Srca lebde prema vrhu ekrana.",
+      "chocolate": "Kutija čokolade kotrlja se prema vrhu ekrana.",
+      "bouquet": "Buket se otvara u kutu.",
+      "crown": "Kruna se podiže iznad streama i blista.",
+      "magicRing": "Prsten slijeće u sredinu i zvoni iskricama.",
+      "spartans": "Štit se pomiče preko streama.",
+      "party": "Konfeti lete i spušta se disko kugla.",
+      "gold3": "Ekran postaje zlatan i novčići padaju 3 sekunde.",
+      "gold10": "Ekran postaje zlatan i novčići padaju 10 sekundi.",
+      "ultimate": "Svaka proslava odjednom — zlato, konfeti, novčići i trofej."
+    }
   }
 }

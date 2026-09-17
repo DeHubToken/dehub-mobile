@@ -4295,5 +4295,34 @@
     "didNotRecoverEither": "Toto prihlásenie neobnovilo ani jeden z tu zobrazených profilov. Nič sa nezmenilo. Skúste pôvodné prihlásenie pre profil, ktorý chcete.",
     "didNotRecoverThis": "Toto prihlásenie obnovilo inú peňaženku, než patrí k tomuto profilu. Nič sa nezmenilo. Skúste prihlásenie, ktorým bol pôvodne vytvorený.",
     "couldNotRetrieve": "Túto starú peňaženku sa na tomto zariadení nepodarilo získať. Stále ju môžete obnoviť na dehub.io nižšie."
+  },
+  "liveGift": {
+    "pickTier": "Vyberte oslavu",
+    "plays": "Prehrá {{tier}} na streame",
+    "you": "Ty",
+    "tier": {
+      "heart": "Srdiečko",
+      "chocolate": "Krabička čokolády",
+      "bouquet": "Kytica kvetov",
+      "crown": "Koruna",
+      "magicRing": "Magický prsteň",
+      "spartans": "Spartská armáda",
+      "party": "Párty oslava",
+      "gold3": "Zlatá obrazovka (3s)",
+      "gold10": "Zlatá obrazovka (10s)",
+      "ultimate": "Ultimátna oslava"
+    },
+    "tierDesc": {
+      "heart": "Srdiečka stúpajú do rohu streamu.",
+      "chocolate": "Krabička čokolády sa kotúľa po obrazovke nahor.",
+      "bouquet": "Kytica sa rozletí v rohu.",
+      "crown": "Koruna sa vznáša nad streamom a trbliece sa.",
+      "magicRing": "Prsteň pristane uprostred a zazvoní v iskričkách.",
+      "spartans": "Štítová stena pochoduje cez stream.",
+      "party": "Konfety lietajú a zhodí sa disco guľa.",
+      "gold3": "Obrazovka zožltne a na 3 sekundy prší mince.",
+      "gold10": "Obrazovka zožltne a na 10 sekúnd prší mince.",
+      "ultimate": "Každá oslava naraz — zlato, konfety, mince a trofej."
+    }
   }
 }

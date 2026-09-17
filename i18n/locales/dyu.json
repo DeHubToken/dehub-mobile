@@ -4069,5 +4069,34 @@
     "didNotRecoverEither": "O donni ma jate si segin yan. Foyi ma yɛlɛma. Jate min b'i diya, o donni fɔlɔ lajɛ.",
     "didNotRecoverThis": "O donni ye wari maraso wɛrɛ segin, nin jate ta tɛ. Foyi ma yɛlɛma. Donni min y'a da fɔlɔ, o lajɛ.",
     "couldNotRetrieve": "An ma se ka o wari maraso kɔrɔ sɔrɔ nin minan kan. I bɛ se hali bi k'a segin dehub.io kan duguma."
+  },
+  "liveGift": {
+    "pickTier": "Ka ɲanagwɛ kɛ",
+    "plays": "Add {{tier}} on the stream",
+    "you": "Aw kɔni, aw ye",
+    "tier": {
+      "heart": "Kanuya min be mɔgɔ dusu la",
+      "chocolate": "Chocolat ka kɛsu",
+      "bouquet": "Furuw ka yiriw",
+      "crown": "Masacɛ ka masafugulan",
+      "magicRing": "O ye kabako ye.",
+      "spartans": "Spartan ka sɔrɔdasiw",
+      "party": "Ka ɲanagwɛ kɛ",
+      "gold3": "O ye fɛɛn min ye, o ye fɛɛn ye.",
+      "gold10": "O ye fɛɛn min ye, o ye fɛɛn ye.",
+      "ultimate": "A laban, a ye ɲanagwɛ kɛ"
+    },
+    "tierDesc": {
+      "heart": "O kɔ, a ye sira ta ka taga n'a ye.",
+      "chocolate": "O kɔ, i ka sinsinin dɔ bɔ ka bɔ i ka filɛli la.",
+      "bouquet": "Fani dɔ tun be yen min tun be se ka kɛ sababu ye ka mɔgɔ dɔ ka bana ban.",
+      "crown": "O kɔ, a ye masafugulan dɔ biri a kuun na.",
+      "magicRing": "O kɔ, a ye bololanigɛ dɔ kɛ ka bɔ a cɛmancɛ la ka bɔ a cɛmancɛ la ka bɔ a cɛmancɛ la.",
+      "spartans": "Masini minan dɔ tun lɔnin be baji daa la.",
+      "party": "O kɔ, a ye dɔ fara a ka fɔta kan.",
+      "gold3": "O kɔ, u ye sanu ni wari min di, u ye o yɛlɛma ka kɛ sanu ye.",
+      "gold10": "O kɔ, u ye sanu ni wari min di, u y'o yɛlɛma ka kɛ sanu ye.",
+      "ultimate": "O kɔ, u ye ɲanagwɛ bɛɛ kɛ ɲɔgɔn fɛ. U ye sanu, konfɛti, warigwɛ ani tɔnɔ sɔrɔ."
+    }
   }
 }

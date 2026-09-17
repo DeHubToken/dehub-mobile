@@ -4157,5 +4157,34 @@
     "didNotRecoverEither": "Chay yaykuyqa manam kaypi rikuchisqa ima perfiltapas kutichirqanchu. Manam imapas tikrarqanchu. Munasqayki perfilpa ñawpaq yaykuyninta yanapay.",
     "didNotRecoverThis": "Chay yaykuyqa kay perfilpa mana kaq huk kuchu wayaqatam kutichirqan. Manam imapas tikrarqanchu. Ñawpaqta kamaq yaykuyta yanapay.",
     "couldNotRetrieve": "Kay dispusitiwupi mana atirqaykuchu chay mawk'a kuchu wayaqata apamuyta. Uraypi kaq dehub.io-pi kutichiwaqraqmi."
+  },
+  "liveGift": {
+    "pickTier": "Apuyaqta akllay",
+    "plays": "P'anqapi kachkan {{tier}}",
+    "you": "Qan",
+    "tier": {
+      "heart": "Munay Sonqo",
+      "chocolate": "Chokolate K'uychi",
+      "bouquet": "Yana K'uychi",
+      "crown": "Quri Kuraj",
+      "magicRing": "Quri Killa",
+      "spartans": "Sparta Runakuna",
+      "party": "Apuyaq",
+      "gold3": "Quri P'anqa (3s)",
+      "gold10": "Quri P'anqa (10s)",
+      "ultimate": "Sut'in Apuyaq"
+    },
+    "tierDesc": {
+      "heart": "Sonqokuna p'anqaman wichqaykun.",
+      "chocolate": "Chokolate k'uychi p'anqaman wichqan.",
+      "bouquet": "Yana k'uychi p'anqapi pakikun.",
+      "crown": "Kuraj p'anqapi wichqan, qoriyuq kachkan.",
+      "magicRing": "Killa p'anqapi uriykun, qoriyuq kachkan.",
+      "spartans": "P'anqapi puriqkuna puriqkuna.",
+      "party": "K'uychi phutikun, disco k'uychi uriykun.",
+      "gold3": "P'anqa qoriyuq tukun, quri qullqi uriykun 3 segundokunapi.",
+      "gold10": "P'anqa qoriyuq tukun, quri qullqi uriykun 10 segundokunapi.",
+      "ultimate": "Sut'in apuyaq tukuy — quri, k'uychi, qullqi, wanachiy."
+    }
   }
 }

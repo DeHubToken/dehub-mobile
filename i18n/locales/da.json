@@ -4133,5 +4133,34 @@
     "didNotRecoverEither": "Det login gendannede ingen af profilerne her. Intet blev ændret. Prøv det oprindelige login for den profil, du vil have.",
     "didNotRecoverThis": "Det login gendannede en anden tegnebog end denne profils. Intet blev ændret. Prøv det login, der oprindeligt oprettede den.",
     "couldNotRetrieve": "Den gamle tegnebog kunne ikke hentes på denne enhed. Du kan stadig gendanne den på dehub.io nedenfor."
+  },
+  "liveGift": {
+    "pickTier": "Vælg en fejring",
+    "plays": "Afspiller {{tier}} på streamen",
+    "you": "Dig",
+    "tier": {
+      "heart": "Kærlighedshjerte",
+      "chocolate": "Chokoladeæske",
+      "bouquet": "Blomsterbuket",
+      "crown": "Krone",
+      "magicRing": "Magisk ring",
+      "spartans": "Spartanernes hær",
+      "party": "Festlig fejring",
+      "gold3": "Gylden skærm (3s)",
+      "gold10": "Gylden skærm (10s)",
+      "ultimate": "Ultimativ fejring"
+    },
+    "tierDesc": {
+      "heart": "Hjerter driver op i hjørnet af streamen.",
+      "chocolate": "En æske chokolade tumler op ad skærmen.",
+      "bouquet": "En buket springer op i hjørnet.",
+      "crown": "En krone stiger op over streamen og glimter.",
+      "magicRing": "En ring lander i midten og ringer ud i gnister.",
+      "spartans": "En skjoldmur marcherer hen over streamen.",
+      "party": "Konfetti flyver, og en diskokugle falder ned.",
+      "gold3": "Skærmen bliver gylden, og mønter regner ned i 3 sekunder.",
+      "gold10": "Skærmen bliver gylden, og mønter regner ned i 10 sekunder.",
+      "ultimate": "Hver fejring på én gang — guld, konfetti, mønter og et trofæ."
+    }
   }
 }

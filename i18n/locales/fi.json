@@ -4129,5 +4129,34 @@
     "didNotRecoverEither": "Tämä kirjautuminen ei palauttanut kumpaakaan tässä näkyvää profiilia. Mikään ei muuttunut. Kokeile haluamasi profiilin alkuperäistä kirjautumistapaa.",
     "didNotRecoverThis": "Tämä kirjautuminen palautti eri lompakon kuin tämän profiilin. Mikään ei muuttunut. Kokeile kirjautumistapaa, jolla se alun perin luotiin.",
     "couldNotRetrieve": "Vanhaa lompakkoa ei saatu haettua tällä laitteella. Voit silti palauttaa sen alta osoitteessa dehub.io."
+  },
+  "liveGift": {
+    "pickTier": "Valitse juhla",
+    "plays": "Toistaa {{tier}} striimissä",
+    "you": "Sinä",
+    "tier": {
+      "heart": "Sydän",
+      "chocolate": "Suklaarasia",
+      "bouquet": "Kukkakimppu",
+      "crown": "Kruunu",
+      "magicRing": "Taikasormus",
+      "spartans": "Spartanien armeija",
+      "party": "Juhla",
+      "gold3": "Kultainen näyttö (3s)",
+      "gold10": "Kultainen näyttö (10s)",
+      "ultimate": "Ultimaattinen juhla"
+    },
+    "tierDesc": {
+      "heart": "Sydämet leijuvat striimin kulmaan.",
+      "chocolate": "Suklaarasia putoaa striimin yläreunaan.",
+      "bouquet": "Kukkakimppu räjähtää auki kulmassa.",
+      "crown": "Kruunu nousee striimin ylle ja kimaltelee.",
+      "magicRing": "Sormus laskeutuu keskelle ja soi kimaltelevasti.",
+      "spartans": "Kilpimuuri marssii striimin poikki.",
+      "party": "Konfettia lentää ja diskopallo putoaa.",
+      "gold3": "Näyttö muuttuu kultaiseksi ja kolikoita sataa 3 sekunnin ajan.",
+      "gold10": "Näyttö muuttuu kultaiseksi ja kolikoita sataa 10 sekunnin ajan.",
+      "ultimate": "Kaikki juhlat kerralla – kultaa, konfettia, kolikoita ja pokaali."
+    }
   }
 }

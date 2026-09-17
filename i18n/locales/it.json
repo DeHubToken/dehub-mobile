@@ -4200,5 +4200,34 @@
     "didNotRecoverEither": "Quell'accesso non ha recuperato nessuno dei profili mostrati qui. Non è cambiato nulla. Prova l'accesso originale del profilo che vuoi.",
     "didNotRecoverThis": "Quell'accesso ha recuperato un portafoglio diverso da quello di questo profilo. Non è cambiato nulla. Prova l'accesso che lo ha creato in origine.",
     "couldNotRetrieve": "Non è stato possibile recuperare quel vecchio portafoglio su questo dispositivo. Puoi comunque recuperarlo su dehub.io qui sotto."
+  },
+  "liveGift": {
+    "pickTier": "Scegli una celebrazione",
+    "plays": "Riproduce {{tier}} in streaming",
+    "you": "Tu",
+    "tier": {
+      "heart": "Cuore d'amore",
+      "chocolate": "Scatola di cioccolatini",
+      "bouquet": "Mazzo di fiori",
+      "crown": "Corona",
+      "magicRing": "Anello magico",
+      "spartans": "Esercito spartano",
+      "party": "Festa",
+      "gold3": "Schermo dorato (3s)",
+      "gold10": "Schermo dorato (10s)",
+      "ultimate": "Celebrazione definitiva"
+    },
+    "tierDesc": {
+      "heart": "I cuori salgono nell'angolo dello schermo.",
+      "chocolate": "Una scatola di cioccolatini rotola sullo schermo.",
+      "bouquet": "Un mazzo di fiori si apre nell'angolo.",
+      "crown": "Una corona si alza sullo schermo e brilla.",
+      "magicRing": "Un anello atterra al centro e risuona di scintille.",
+      "spartans": "Un muro di scudi marcia attraverso lo schermo.",
+      "party": "I coriandoli volano e una palla da discoteca scende.",
+      "gold3": "Lo schermo diventa dorato e le monete piovono per 3 secondi.",
+      "gold10": "Lo schermo diventa dorato e le monete piovono per 10 secondi.",
+      "ultimate": "Ogni celebrazione contemporaneamente: oro, coriandoli, monete e un trofeo."
+    }
   }
 }

@@ -4118,5 +4118,34 @@
     "didNotRecoverEither": "Wannan shiga bai dawo da ko ɗaya daga cikin bayanan martaba da aka nuna a nan ba. Babu abin da ya canza. Gwada shigar asali na bayanan martaba da kake so.",
     "didNotRecoverThis": "Wannan shiga ya dawo da walat daban da na wannan bayanan martaba. Babu abin da ya canza. Gwada shigar da ya ƙirƙira shi tun farko.",
     "couldNotRetrieve": "Ba a iya samo wannan tsohon walat a wannan na'urar ba. Har yanzu za ka iya dawo da shi a dehub.io a ƙasa."
+  },
+  "liveGift": {
+    "pickTier": "Zaɓi bikin",
+    "plays": "Yana kunna {{tier}} a kan tashar",
+    "you": "Kai",
+    "tier": {
+      "heart": "Soyayyar Zuciya",
+      "chocolate": "Akwatin Chocolates",
+      "bouquet": "Buket na Furanni",
+      "crown": "Rawani",
+      "magicRing": "Zoben Sihiri",
+      "spartans": "Tawagar Spartans",
+      "party": "Bikin Party",
+      "gold3": "Allon Zinare (3s)",
+      "gold10": "Allon Zinare (10s)",
+      "ultimate": "Bikin Ƙarshe"
+    },
+    "tierDesc": {
+      "heart": "Zukata suna tashi zuwa kusurwar tashar.",
+      "chocolate": "Akwatin chocolates yana faɗuwa sama a kan allo.",
+      "bouquet": "Buket yana buɗewa a kusurwa.",
+      "crown": "Rawani yana tashi sama da tashar kuma yana walƙiya.",
+      "magicRing": "Zobe ya sauka a tsakiya kuma yana yin kararwa cikin walƙiya.",
+      "spartans": "Ginin garkuwa yana tafiya a kan tashar.",
+      "party": "Confetti yana tashi kuma kwallon disco yana faɗuwa.",
+      "gold3": "Allon ya zama zinare kuma kuɗi suna ruwan sama na tsawon daƙiƙa 3.",
+      "gold10": "Allon ya zama zinare kuma kuɗi suna ruwan sama na tsawon daƙiƙa 10.",
+      "ultimate": "Kowane biki a lokaci ɗaya — zinare, confetti, kuɗi da kofi."
+    }
   }
 }

@@ -4119,5 +4119,34 @@
     "didNotRecoverEither": "Gelitaankaas midna kama soo celin astaamaha halkan lagu muujiyay. Waxba isma beddelin. Isku day gelitaankii asalka ahaa ee astaanta aad rabto.",
     "didNotRecoverThis": "Gelitaankaas wuxuu soo celiyay boorso ka duwan tan astaantan. Waxba isma beddelin. Isku day gelitaankii asal ahaan abuuray.",
     "couldNotRetrieve": "Boorsadaas hore laguma heli karin qalabkan. Weli waad ka soo celin kartaa dehub.io ee hoose."
+  },
+  "liveGift": {
+    "pickTier": "U dooro dabaaldeg",
+    "plays": "Waxay ciyaartaa {{tier}} durdurka",
+    "you": "Adiga",
+    "tier": {
+      "heart": "Jaceylka Wadnaha",
+      "chocolate": "Sanduuqa Shokolada",
+      "bouquet": "Ubax Gunti ah",
+      "crown": "Taaj",
+      "magicRing": "Rings Magic",
+      "spartans": "Ciidanka Spartans",
+      "party": "Dabaaldeg Xisbi",
+      "gold3": "Shaashadda Dahabka ah (3s)",
+      "gold10": "Shaashadda Dahabka ah (10s)",
+      "ultimate": "Dabaaldeg Ugu Dambeysa"
+    },
+    "tierDesc": {
+      "heart": "Wadnaha ayaa kor ugu kaca geeska durdurka.",
+      "chocolate": "Sanduuq shukulaato ah ayaa kor ugu soo boodaya shaashadda.",
+      "bouquet": "Ubax ayaa ku qarxaya geeska.",
+      "crown": "Taaj ayaa ka soo baxa durdurka oo dhalaalaya.",
+      "magicRing": "Rings ayaa dhexda ku soo dhacda oo ku dhawaaqaysa xiddigo.",
+      "spartans": "Darbi gaashaan ah ayaa ka soo gudbaya durdurka.",
+      "party": "Qaraxyo ayaa soo dhacaya oo kubbad disco ah ayaa soo degaysa.",
+      "gold3": "Shaashadda ayaa noqota dahab oo qadaadiicda ayaa da'aysa 3 ilbiriqsi.",
+      "gold10": "Shaashadda ayaa noqota dahab oo qadaadiicda ayaa da'aysa 10 ilbiriqsi.",
+      "ultimate": "Dabaaldeg kasta isku mar — dahab, qaraxyo, qadaadiic iyo koob."
+    }
   }
 }

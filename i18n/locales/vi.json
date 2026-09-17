@@ -4216,5 +4216,34 @@
     "didNotRecoverEither": "Cách đăng nhập đó không khôi phục được hồ sơ nào hiển thị ở đây. Không có gì thay đổi. Hãy thử cách đăng nhập ban đầu của hồ sơ bạn muốn.",
     "didNotRecoverThis": "Cách đăng nhập đó đã khôi phục một ví khác, không phải của hồ sơ này. Không có gì thay đổi. Hãy thử cách đăng nhập đã tạo ra nó ban đầu.",
     "couldNotRetrieve": "Không thể lấy ví cũ đó trên thiết bị này. Bạn vẫn có thể khôi phục nó trên dehub.io bên dưới."
+  },
+  "liveGift": {
+    "pickTier": "Chọn một màn ăn mừng",
+    "plays": "Phát {{tier}} trên luồng trực tiếp",
+    "you": "Bạn",
+    "tier": {
+      "heart": "Trái tim yêu thương",
+      "chocolate": "Hộp sô cô la",
+      "bouquet": "Bó hoa",
+      "crown": "Vương miện",
+      "magicRing": "Nhẫn thần kỳ",
+      "spartans": "Đội quân Sparta",
+      "party": "Tiệc ăn mừng",
+      "gold3": "Màn hình vàng (3s)",
+      "gold10": "Màn hình vàng (10s)",
+      "ultimate": "Ăn mừng đỉnh cao"
+    },
+    "tierDesc": {
+      "heart": "Những trái tim trôi lên góc màn hình.",
+      "chocolate": "Một hộp sô cô la rơi lên màn hình.",
+      "bouquet": "Một bó hoa bung nở ở góc màn hình.",
+      "crown": "Một vương miện trồi lên trên màn hình và lấp lánh.",
+      "magicRing": "Một chiếc nhẫn rơi xuống giữa màn hình và phát sáng lấp lánh.",
+      "spartans": "Một bức tường khiên diễu hành ngang màn hình.",
+      "party": "Pháo giấy bay tung tóe và một quả cầu disco rơi xuống.",
+      "gold3": "Màn hình chuyển sang màu vàng và tiền xu rơi xuống trong 3 giây.",
+      "gold10": "Màn hình chuyển sang màu vàng và tiền xu rơi xuống trong 10 giây.",
+      "ultimate": "Mọi màn ăn mừng cùng lúc — vàng, pháo giấy, tiền xu và một chiếc cúp."
+    }
   }
 }

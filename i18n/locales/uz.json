@@ -4174,5 +4174,34 @@
     "didNotRecoverEither": "Bu kirish bu yerda ko'rsatilgan profillarning birortasini ham tiklamadi. Hech narsa o'zgarmadi. Kerakli profilning dastlabki kirish usulini sinab ko'ring.",
     "didNotRecoverThis": "Bu kirish ushbu profilnikidan boshqa hamyonni tikladi. Hech narsa o'zgarmadi. Uni dastlab yaratgan kirish usulini sinab ko'ring.",
     "couldNotRetrieve": "Bu qurilmada o'sha eski hamyonni olib bo'lmadi. Uni quyidagi dehub.io saytida hamon tiklashingiz mumkin."
+  },
+  "liveGift": {
+    "pickTier": "Bir bayramni tanlang",
+    "plays": "Streamda {{tier}} ijro etadi",
+    "you": "Siz",
+    "tier": {
+      "heart": "Sevgi yuragi",
+      "chocolate": "Shokolad qutisi",
+      "bouquet": "Gullar dastasi",
+      "crown": "Toj",
+      "magicRing": "Sehrli uzuk",
+      "spartans": "Spartaliklar armiyasi",
+      "party": "Bayram ziyofati",
+      "gold3": "Oltin ekran (3 soniya)",
+      "gold10": "Oltin ekran (10 soniya)",
+      "ultimate": "Yakuniy bayram"
+    },
+    "tierDesc": {
+      "heart": "Stream burchagidan yuraklar ko'tariladi.",
+      "chocolate": "Stream bo'ylab shokolad qutisi dumaladi.",
+      "bouquet": "Gullar dastasi burchakda ochiladi.",
+      "crown": "Stream ustidan toj ko'tarilib, miltillaydi.",
+      "magicRing": "O'rtaga uzuk tushib, uchqunlar bilan jiringlaydi.",
+      "spartans": "Stream bo'ylab qalqon devori yuradi.",
+      "party": "Konfetti uchadi va diskoshari tushadi.",
+      "gold3": "Ekran oltin rangga kiradi va 3 soniya davomida tangalar yog'iladi.",
+      "gold10": "Ekran oltin rangga kiradi va 10 soniya davomida tangalar yog'iladi.",
+      "ultimate": "Har bir bayram bir vaqtda — oltin, konfetti, tangalar va kubok."
+    }
   }
 }

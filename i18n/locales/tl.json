@@ -4305,5 +4305,34 @@
     "didNotRecoverEither": "Walang narekober na profile ang login na iyon sa mga ipinapakita rito. Walang nabago. Subukan ang orihinal na sign-in ng profile na gusto mo.",
     "didNotRecoverThis": "Ibang wallet ang narekober ng login na iyon, hindi ang sa profile na ito. Walang nabago. Subukan ang sign-in na orihinal na gumawa nito.",
     "couldNotRetrieve": "Hindi makuha ang lumang wallet na iyon sa device na ito. Puwede mo pa rin itong bawiin sa dehub.io sa ibaba."
+  },
+  "liveGift": {
+    "pickTier": "Pumili ng isang pagdiriwang",
+    "plays": "Nagpe-play ng {{tier}} sa stream",
+    "you": "Ikaw",
+    "tier": {
+      "heart": "Love Heart",
+      "chocolate": "Box of Chocolate",
+      "bouquet": "Bouquet of Flowers",
+      "crown": "Crown",
+      "magicRing": "Magic Ring",
+      "spartans": "Spartans Army",
+      "party": "Party Celebration",
+      "gold3": "Golden Screen (3s)",
+      "gold10": "Golden Screen (10s)",
+      "ultimate": "Ultimate Celebration"
+    },
+    "tierDesc": {
+      "heart": "Lumulutang pataas ang mga puso sa sulok ng stream.",
+      "chocolate": "Isang kahon ng tsokolate ang gumugulong pataas sa screen.",
+      "bouquet": "Isang bouquet ang bumubukas sa sulok.",
+      "crown": "Isang korona ang umaangat sa ibabaw ng stream at kumikinang.",
+      "magicRing": "Isang singsing ang bumabagsak sa gitna at nagri-ring sa mga kislap.",
+      "spartans": "Isang pader ng kalasag ang nagmamartsa sa stream.",
+      "party": "Lumilipad ang confetti at bumabagsak ang disco ball.",
+      "gold3": "Nagiging ginto ang screen at umuulan ng mga barya sa loob ng 3 segundo.",
+      "gold10": "Nagiging ginto ang screen at umuulan ng mga barya sa loob ng 10 segundo.",
+      "ultimate": "Lahat ng pagdiriwang nang sabay-sabay — ginto, confetti, mga barya, at isang tropeo."
+    }
   }
 }
