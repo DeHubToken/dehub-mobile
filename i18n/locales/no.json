@@ -4114,5 +4114,34 @@
     "didNotRecoverEither": "Den innloggingen gjenopprettet ingen av profilene som vises her. Ingenting ble endret. Prøv den opprinnelige innloggingen for profilen du vil ha.",
     "didNotRecoverThis": "Den innloggingen gjenopprettet en annen lommebok enn denne profilens. Ingenting ble endret. Prøv innloggingen som opprinnelig opprettet den.",
     "couldNotRetrieve": "Fikk ikke hentet den gamle lommeboken på denne enheten. Du kan fortsatt gjenopprette den på dehub.io nedenfor."
+  },
+  "liveGift": {
+    "pickTier": "Velg en feiring",
+    "plays": "Spiller {{tier}} på strømmen",
+    "you": "Du",
+    "tier": {
+      "heart": "Hjerte",
+      "chocolate": "Sjokoladeeske",
+      "bouquet": "Blomsterbukett",
+      "crown": "Krone",
+      "magicRing": "Magisk ring",
+      "spartans": "Spartanernes hær",
+      "party": "Festfeiring",
+      "gold3": "Gyllen skjerm (3s)",
+      "gold10": "Gyllen skjerm (10s)",
+      "ultimate": "Ultimat feiring"
+    },
+    "tierDesc": {
+      "heart": "Hjerter driver opp i hjørnet av strømmen.",
+      "chocolate": "En sjokoladeeske tumler oppover skjermen.",
+      "bouquet": "En bukett sprekker opp i hjørnet.",
+      "crown": "En krone stiger over strømmen og glimter.",
+      "magicRing": "En ring lander i midten og ringer ut i glitrende lys.",
+      "spartans": "En skjoldmur marsjerer over strømmen.",
+      "party": "Konfetti flyr og en discokule faller ned.",
+      "gold3": "Skjermen blir gyllen og mynter regner ned i 3 sekunder.",
+      "gold10": "Skjermen blir gyllen og mynter regner ned i 10 sekunder.",
+      "ultimate": "Hver feiring samtidig — gull, konfetti, mynter og en pokal."
+    }
   }
 }

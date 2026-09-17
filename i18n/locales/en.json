@@ -4193,5 +4193,34 @@
     "didNotRecoverEither": "That login did not recover either profile shown here. Nothing changed. Try the original sign-in for the profile you want.",
     "didNotRecoverThis": "That login recovered a different wallet from this profile. Nothing changed. Try the sign-in that originally created it.",
     "couldNotRetrieve": "Could not retrieve that old wallet on this device. You can still recover it on dehub.io below."
+  },
+  "liveGift": {
+    "pickTier": "Pick a celebration",
+    "plays": "Plays {{tier}} on the stream",
+    "you": "You",
+    "tier": {
+      "heart": "Love Heart",
+      "chocolate": "Box of Chocolate",
+      "bouquet": "Bouquet of Flowers",
+      "crown": "Crown",
+      "magicRing": "Magic Ring",
+      "spartans": "Spartans Army",
+      "party": "Party Celebration",
+      "gold3": "Golden Screen (3s)",
+      "gold10": "Golden Screen (10s)",
+      "ultimate": "Ultimate Celebration"
+    },
+    "tierDesc": {
+      "heart": "Hearts drift up the corner of the stream.",
+      "chocolate": "A box of chocolates tumbles up the screen.",
+      "bouquet": "A bouquet bursts open across the corner.",
+      "crown": "A crown rises over the stream and glints.",
+      "magicRing": "A ring lands in the middle and rings out in sparkles.",
+      "spartans": "A shield wall marches across the stream.",
+      "party": "Confetti flies and a disco ball drops in.",
+      "gold3": "The screen turns gold and coins rain down for 3 seconds.",
+      "gold10": "The screen turns gold and coins rain down for 10 seconds.",
+      "ultimate": "Every celebration at once — gold, confetti, coins and a trophy."
+    }
   }
 }

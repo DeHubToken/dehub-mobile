@@ -4205,5 +4205,34 @@
     "didNotRecoverEither": "Tsy namerina izay mombamomba aseho eto io fidirana io. Tsy nisy niova. Andramo ny fidirana tany am-boalohany ho an'ny mombamomba tianao.",
     "didNotRecoverThis": "Namerina kitapom-bola hafa io fidirana io, fa tsy an'ity mombamomba ity. Tsy nisy niova. Andramo ny fidirana namorona azy tany am-boalohany.",
     "couldNotRetrieve": "Tsy azo natsangana teto amin'ity fitaovana ity ilay kitapom-bola taloha. Mbola azonao averina ao amin'ny dehub.io etsy ambany izy."
+  },
+  "liveGift": {
+    "pickTier": "Misafidiana lanonana",
+    "plays": "Mampiseho ny {{tier}} ao amin'ny stream",
+    "you": "Ianao",
+    "tier": {
+      "heart": "Fona",
+      "chocolate": "Boaty Chocolat",
+      "bouquet": "Vongon-tahaka voninkazo",
+      "crown": "Satro-boninahitra",
+      "magicRing": "Peratra majika",
+      "spartans": "Tafiky ny Spartana",
+      "party": "Fankalazana fety",
+      "gold3": "Ekrana volamena (3s)",
+      "gold10": "Ekrana volamena (10s)",
+      "ultimate": "Fankalazana faratampony"
+    },
+    "tierDesc": {
+      "heart": "Mihanika mankany amin'ny zoron'ny stream ny fo.",
+      "chocolate": "Mihazakazaka mankany amin'ny efijery ny boaty chocolates.",
+      "bouquet": "Mibontsina manerana ny zorony ny vongon-tahaka voninkazo.",
+      "crown": "Mihamira eo ambonin'ny stream ny satro-boninahitra ary mamirapiratra.",
+      "magicRing": "Mianjera eo afovoany ny peratra ary maneno amin'ny kintana.",
+      "spartans": "Mandeha manerana ny stream ny rindrin'ny ampinga.",
+      "party": "Mitsambikina ny konfety ary midina ny baolina disco.",
+      "gold3": "Mivadika volamena ny efijery ary milatsaka ny vola mandritra ny 3 segondra.",
+      "gold10": "Mivadika volamena ny efijery ary milatsaka ny vola mandritra ny 10 segondra.",
+      "ultimate": "Ny fankalazana rehetra miaraka - volamena, konfety, vola ary amboara."
+    }
   }
 }

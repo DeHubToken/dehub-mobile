@@ -4106,5 +4106,34 @@
     "didNotRecoverEither": "Nbanye ahụ eweghachighị profaịlụ ọ bụla egosiri ebe a. Ọ dịghị ihe gbanwere. Nwaa ụzọ nbanye mbụ maka profaịlụ ị chọrọ.",
     "didNotRecoverThis": "Nbanye ahụ weghachiri obere akpa dị iche na nke profaịlụ a. Ọ dịghị ihe gbanwere. Nwaa nbanye nke mepụtara ya na mbụ.",
     "couldNotRetrieve": "Enweghị ike ịnweta obere akpa ochie ahụ na ngwaọrụ a. Ị ka nwere ike iweghachi ya na dehub.io n'okpuru."
+  },
+  "liveGift": {
+    "pickTier": "Họrọ ememe",
+    "plays": "Egwu {{tier}} na iyi ahụ",
+    "you": "Gị",
+    "tier": {
+      "heart": "Mmasị Obi",
+      "chocolate": "Igbe Chọkọletị",
+      "bouquet": "Akwa Ifufe",
+      "crown": "Okpueze",
+      "magicRing": "Mgbaaka Ebube",
+      "spartans": "Ndị Agha Spartans",
+      "party": "Ememe Oriri",
+      "gold3": "Ihuenyo Ọlaedo (3s)",
+      "gold10": "Ihuenyo Ọlaedo (10s)",
+      "ultimate": "Ememe Kachasị Mma"
+    },
+    "tierDesc": {
+      "heart": "Obi na-arị elu n'akụkụ iyi ahụ.",
+      "chocolate": "Igbe chọkọletị na-adaba n'elu ihuenyo.",
+      "bouquet": "Akwa ifufe na-agbawa n'akụkụ akụkụ ahụ.",
+      "crown": "Okpueze na-arị elu n'elu iyi ahụ ma na-enwu.",
+      "magicRing": "Mgbaaka na-ada n'etiti ma na-ada ụda na ọkụ.",
+      "spartans": "Mgbidi agha na-ejegharị n'elu iyi ahụ.",
+      "party": "Confetti na-efegharị ma bọl disko na-ada.",
+      "gold3": "Ihuenyo ahụ na-aghọ ọlaedo ma mkpụrụ ego na-ezo maka sekọnd 3.",
+      "gold10": "Ihuenyo ahụ na-aghọ ọlaedo ma mkpụrụ ego na-ezo maka sekọnd 10.",
+      "ultimate": "Ememe ọ bụla n'otu oge — ọlaedo, confetti, mkpụrụ ego na ihe nrite."
+    }
   }
 }

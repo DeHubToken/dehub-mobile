@@ -4130,5 +4130,34 @@
     "didNotRecoverEither": "Aquest inici de sessió no ha recuperat cap dels perfils que es mostren aquí. No s'ha canviat res. Prova l'inici de sessió original del perfil que vols.",
     "didNotRecoverThis": "Aquest inici de sessió ha recuperat una cartera diferent de la d'aquest perfil. No s'ha canviat res. Prova l'inici de sessió que el va crear.",
     "couldNotRetrieve": "No s'ha pogut obtenir aquella cartera antiga en aquest dispositiu. Encara la pots recuperar a dehub.io, a sota."
+  },
+  "liveGift": {
+    "pickTier": "Tria una celebració",
+    "plays": "Reprodueix {{tier}} a la transmissió",
+    "you": "Tu",
+    "tier": {
+      "heart": "Cor d'amor",
+      "chocolate": "Caixa de bombons",
+      "bouquet": "Ram de flors",
+      "crown": "Corona",
+      "magicRing": "Anell màgic",
+      "spartans": "Exèrcit espartà",
+      "party": "Celebració de festa",
+      "gold3": "Pantalla daurada (3s)",
+      "gold10": "Pantalla daurada (10s)",
+      "ultimate": "Celebració definitiva"
+    },
+    "tierDesc": {
+      "heart": "Els cors pugen per la cantonada de la transmissió.",
+      "chocolate": "Una caixa de bombons cau per la pantalla.",
+      "bouquet": "Un ram s'obre a la cantonada.",
+      "crown": "Una corona s'eleva sobre la transmissió i brilla.",
+      "magicRing": "Un anell aterra al mig i sona amb centelleigs.",
+      "spartans": "Una muralla d'escuts marxa per la transmissió.",
+      "party": "El confeti vola i cau una bola de disc.",
+      "gold3": "La pantalla es torna daurada i plouen monedes durant 3 segons.",
+      "gold10": "La pantalla es torna daurada i plouen monedes durant 10 segons.",
+      "ultimate": "Totes les celebracions alhora: or, confeti, monedes i un trofeu."
+    }
   }
 }

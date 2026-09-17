@@ -4118,5 +4118,34 @@
     "didNotRecoverEither": "Ìwọlé yẹn kò gba èyíkéyìí nínú àwọn àlàyé tí ó hàn níbí padà. Kò sí ohun tí ó yí padà. Gbìyànjú ìwọlé àkọ́kọ́ fún àlàyé tí o fẹ́.",
     "didNotRecoverThis": "Ìwọlé yẹn gba àpamọ́wọ́ mìíràn padà, kì í ṣe ti àlàyé yìí. Kò sí ohun tí ó yí padà. Gbìyànjú ìwọlé tí ó kọ́kọ́ dá a sílẹ̀.",
     "couldNotRetrieve": "A kò lè gba àpamọ́wọ́ àtijọ́ yẹn lórí ẹ̀rọ yìí. O ṣì lè gbà á padà lórí dehub.io nísàlẹ̀."
+  },
+  "liveGift": {
+    "pickTier": "Yan ayẹyẹ kan",
+    "plays": "Ṣe afihan {{tier}} lori ṣiṣan",
+    "you": "Iwọ",
+    "tier": {
+      "heart": "Ifẹ Ọkàn",
+      "chocolate": "Apoti Chocolate",
+      "bouquet": "Ìtòlẹ́ Ọ̀gbọ́n",
+      "crown": "Ade",
+      "magicRing": "Orin Idan",
+      "spartans": "Ologun Sparta",
+      "party": "Ayẹyẹ Àríyá",
+      "gold3": "Ibòojú Gọ́ọ̀lù (3s)",
+      "gold10": "Ibòojú Gọ́ọ̀lù (10s)",
+      "ultimate": "Ayẹyẹ Tòótọ́"
+    },
+    "tierDesc": {
+      "heart": "Àwọn Ọkàn ń gòkè lọ sí igun ojú ìbòojú.",
+      "chocolate": "Apoti chocolate kan ń rọ̀ sókè ojú ìbòojú.",
+      "bouquet": "Ìtòlẹ́ kan fọ́ sí igun náà.",
+      "crown": "Ade kan gòkè sórí ṣiṣan náà, ó sì kọjá.",
+      "magicRing": "Orin kan bàlẹ̀ sí àárín, ó sì kọjá pẹ̀lú ìtànná.",
+      "spartans": "Ologun apata kan ń gba ṣiṣan náà kọjá.",
+      "party": "Àwọn ẹ̀yà-ẹ̀yà ń fò, bọ́ọ̀lù àwòkòkò kan sì ń bọ́ sílẹ̀.",
+      "gold3": "Ojú ìbòojú náà di gọ́ọ̀lù, owó sì ń rọ̀ fún ìṣẹ́jú mẹ́ta.",
+      "gold10": "Ojú ìbòojú náà di gọ́ọ̀lù, owó sì ń rọ̀ fún ìṣẹ́jú mẹ́wàá.",
+      "ultimate": "Gbogbo ayẹyẹ nígbà kan náà — gọ́ọ̀lù, ẹ̀yà-ẹ̀yà, owó, àti ife-ẹ̀yẹ."
+    }
   }
 }

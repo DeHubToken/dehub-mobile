@@ -4142,5 +4142,34 @@
     "didNotRecoverEither": "Acea conectare nu a recuperat niciunul dintre profilurile afișate aici. Nu s-a schimbat nimic. Încearcă conectarea inițială a profilului dorit.",
     "didNotRecoverThis": "Acea conectare a recuperat un portofel diferit de cel al acestui profil. Nu s-a schimbat nimic. Încearcă conectarea cu care a fost creat inițial.",
     "couldNotRetrieve": "Nu am putut prelua acel portofel vechi pe acest dispozitiv. Îl poți recupera în continuare pe dehub.io mai jos."
+  },
+  "liveGift": {
+    "pickTier": "Alege o sărbătoare",
+    "plays": "Redă {{tier}} pe stream",
+    "you": "Tu",
+    "tier": {
+      "heart": "Inimă",
+      "chocolate": "Cutie de ciocolată",
+      "bouquet": "Buchet de flori",
+      "crown": "Coroană",
+      "magicRing": "Inel magic",
+      "spartans": "Armata Spartanilor",
+      "party": "Petrecere",
+      "gold3": "Ecran auriu (3s)",
+      "gold10": "Ecran auriu (10s)",
+      "ultimate": "Sărbătoare supremă"
+    },
+    "tierDesc": {
+      "heart": "Inimile plutesc în sus pe colțul stream-ului.",
+      "chocolate": "O cutie de ciocolată se rostogolește în sus pe ecran.",
+      "bouquet": "Un buchet se deschide brusc pe colț.",
+      "crown": "O coroană se ridică deasupra stream-ului și sclipește.",
+      "magicRing": "Un inel aterizează în mijloc și răsună în scântei.",
+      "spartans": "Un zid de scuturi mărșăluiește pe stream.",
+      "party": "Confeti zboară și o minge disco coboară.",
+      "gold3": "Ecranul devine auriu și monede plouă timp de 3 secunde.",
+      "gold10": "Ecranul devine auriu și monede plouă timp de 10 secunde.",
+      "ultimate": "Fiecare sărbătoare deodată — aur, confeti, monede și un trofeu."
+    }
   }
 }
