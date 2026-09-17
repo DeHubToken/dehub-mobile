@@ -4134,8 +4134,6 @@
     "pickTier": "Valitse juhla",
     "plays": "Toistaa {{tier}} striimissä",
     "you": "Sinä",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Sydän",
       "chocolate": "Suklaarasia",

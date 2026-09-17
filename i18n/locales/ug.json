@@ -4123,8 +4123,6 @@
   "liveGift": {
     "plays": "ئويۇن {{tier}} نى قويىدۇ",
     "you": "سىز",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "سۆيگۈ يۈرىكى",
       "chocolate": "تاتلىق كەمپۈت قۇتىسى",

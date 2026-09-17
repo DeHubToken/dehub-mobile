@@ -4078,8 +4078,6 @@
     "pickTier": "उत्सव चुनें",
     "plays": "स्ट्रीम पर {{tier}} चलता है",
     "you": "आप",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "प्रेम हृदय",
       "chocolate": "चॉकलेट का डिब्बा",

@@ -4184,8 +4184,6 @@
     "pickTier": "Pilih perayaan",
     "plays": "Memutar {{tier}} di stream",
     "you": "Anda",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Love Heart",
       "chocolate": "Box of Chocolate",

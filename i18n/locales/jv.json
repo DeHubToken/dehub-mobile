@@ -4091,8 +4091,6 @@
     "pickTier": "Pilih perayaan",
     "plays": "Putar {{tier}} ing stream",
     "you": "Sampeyan",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Ati Tresna",
       "chocolate": "Kothak Coklat",

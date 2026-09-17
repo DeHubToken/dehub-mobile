@@ -4124,8 +4124,6 @@
     "pickTier": "Ընտրեք տոնակատարություն",
     "plays": "Stream-ում {{tier}} է նվագում",
     "you": "Դուք",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Սիրո սիրտ",
       "chocolate": "Շոկոլադի տուփ",

@@ -4111,8 +4111,6 @@
     "pickTier": "Интихоб кунед ид",
     "plays": "Мебозад {{tier}} дар ҷараён",
     "you": "Шумо",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Дили муҳаббат",
       "chocolate": "Қуттии шоколад",

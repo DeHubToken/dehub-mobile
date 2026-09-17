@@ -4221,8 +4221,6 @@
     "pickTier": "Chọn một màn ăn mừng",
     "plays": "Phát {{tier}} trên luồng trực tiếp",
     "you": "Bạn",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Trái tim yêu thương",
       "chocolate": "Hộp sô cô la",

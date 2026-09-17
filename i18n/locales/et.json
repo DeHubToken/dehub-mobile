@@ -4133,8 +4133,6 @@
     "pickTier": "Vali tähistamine",
     "plays": "Mängib {{tier}} striimil",
     "you": "Sina",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Armastus Südamega",
       "chocolate": "Šokolaadikarbi",

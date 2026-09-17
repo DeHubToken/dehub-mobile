@@ -4147,8 +4147,6 @@
     "pickTier": "Alege o sărbătoare",
     "plays": "Redă {{tier}} pe stream",
     "you": "Tu",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Inimă",
       "chocolate": "Cutie de ciocolată",

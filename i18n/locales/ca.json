@@ -4135,8 +4135,6 @@
     "pickTier": "Tria una celebració",
     "plays": "Reprodueix {{tier}} a la transmissió",
     "you": "Tu",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Cor d'amor",
       "chocolate": "Caixa de bombons",

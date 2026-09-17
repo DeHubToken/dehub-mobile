@@ -4117,8 +4117,6 @@
     "pickTier": "Bir bayram seçin",
     "plays": "Stream-də {{tier}} oynayır",
     "you": "Siz",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Sevgi Ürəyi",
       "chocolate": "Şokolad Qutusu",

@@ -4310,8 +4310,6 @@
     "pickTier": "Pumili ng isang pagdiriwang",
     "plays": "Nagpe-play ng {{tier}} sa stream",
     "you": "Ikaw",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Love Heart",
       "chocolate": "Box of Chocolate",

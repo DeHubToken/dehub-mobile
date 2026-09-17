@@ -4252,8 +4252,6 @@
     "pickTier": "Kies 'n viering",
     "plays": "Speel {{tier}} op die stroom",
     "you": "Jy",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Liefdeshart",
       "chocolate": "Boks Sjokolade",

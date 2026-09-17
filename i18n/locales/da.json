@@ -4138,8 +4138,6 @@
     "pickTier": "Vælg en fejring",
     "plays": "Afspiller {{tier}} på streamen",
     "you": "Dig",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Kærlighedshjerte",
       "chocolate": "Chokoladeæske",

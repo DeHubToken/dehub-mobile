@@ -4202,8 +4202,6 @@
     "pickTier": "Wähle eine Feier",
     "plays": "Spielt {{tier}} im Stream",
     "you": "Du",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Herz",
       "chocolate": "Schachtel Pralinen",

@@ -4198,8 +4198,6 @@
     "pickTier": "Pick a celebration",
     "plays": "Plays {{tier}} on the stream",
     "you": "You",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Love Heart",
       "chocolate": "Box of Chocolate",

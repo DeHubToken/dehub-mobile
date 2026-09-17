@@ -4196,8 +4196,6 @@
     "pickTier": "Bir kutlama seçin",
     "plays": "Yayında {{tier}} oynat",
     "you": "Siz",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Sevgi Kalbi",
       "chocolate": "Çikolata Kutusu",

@@ -4119,8 +4119,6 @@
     "pickTier": "Velg en feiring",
     "plays": "Spiller {{tier}} på strømmen",
     "you": "Du",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Hjerte",
       "chocolate": "Sjokoladeeske",

@@ -4132,8 +4132,6 @@
     "pickTier": "Zgjidh një festë",
     "plays": "Luan {{tier}} në transmetim",
     "you": "Ti",
-    "sentBy": "{{name}} · {{amount}} DHB",
-    "sentAmount": "{{amount}} DHB",
     "tier": {
       "heart": "Zemër dashurie",
       "chocolate": "Kuti me çokollata",
