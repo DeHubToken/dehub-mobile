@@ -1231,7 +1231,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
             first frame (or forever on a load failure). Draw the thumbnail under
             the VideoView and drop it once a frame has painted. */}
         {thumbnail && (!firstFrameRendered || !isActive) ? (
-          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit={showComments ? "contain" : "cover"} pointerEvents="none" />
+          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
         ) : (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
         )}
@@ -1244,7 +1244,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
             startsPictureInPictureAutomatically={isPlaying}
             player={player}
             style={StyleSheet.absoluteFill}
-            contentFit={showComments ? "contain" : "cover"}
+            contentFit="contain"
             nativeControls={false}
             pointerEvents="none"
             onFirstFrameRender={() => setFirstFrameRendered(true)}
