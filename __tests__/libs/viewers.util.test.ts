@@ -30,9 +30,9 @@ describe('seedViewerStats', () => {
     expect(seeded.peakViewers).not.toBe(3);
   });
 
-  it('falls back to peakViewers when the API predates viewerCount', () => {
+  it('does not show the peak as current viewers when viewerCount is absent', () => {
     expect(seedViewerStats({ peakViewers: 2, totalViews: 9 })).toEqual({
-      liveViewers: 2,
+      liveViewers: 0,
       peakViewers: 2,
     });
   });

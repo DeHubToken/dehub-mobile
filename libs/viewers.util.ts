@@ -13,9 +13,8 @@ export type ViewerStats = {
 // console on a number that could only climb, and "Peak" on a reconnect tally.
 //
 // `viewerCount` is the real concurrent figure, straight off the presence
-// gateway's own counter. The old fields stay as a fallback for an API that
-// predates it, where the seed is at least in the right order of magnitude
-// until the first socket update replaces it.
+// gateway's own counter. When it is absent, current viewers stay at zero
+// until the socket provides a count; a historical peak is never current.
 export function seedViewerStats(entity: any | null | undefined): ViewerStats {
   const e = entity as any;
   const live =
