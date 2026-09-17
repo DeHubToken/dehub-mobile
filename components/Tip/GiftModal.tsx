@@ -30,6 +30,7 @@ import {
   Flower2,
   Gift as GiftIcon,
   Heart,
+  Gem,
 } from "lucide-react-native";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { limitTip, supportedTokens } from "../../config/constants";
@@ -332,7 +333,11 @@ const GiftModal: React.FC<GiftModalProps> = ({
     >
       <TouchableOpacity activeOpacity={1} onPress={Keyboard.dismiss} className="p-5">
         <View className="gap-1">
-          <Text className="text-white text-2xl font-bold">Send a Gift</Text>
+          {/* The diamond leads the sheet on web too — same mark, same side. */}
+          <View className="flex-row items-center gap-2">
+            <Gem size={20} color="#fff" />
+            <Text className="text-white text-2xl font-bold">Send a Gift</Text>
+          </View>
           <Text className="text-white/70 text-[12px]">
             to {toAddress?.slice(0, 6)}…{toAddress?.slice(-4)}
           </Text>
