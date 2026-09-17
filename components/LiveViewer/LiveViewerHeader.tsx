@@ -161,7 +161,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
           accessibilityRole="button"
           accessibilityLabel={"Open profile of " + displayName}
         >
-          <ChromeFill />
+          <ChromeFill sheer />
           <Avatar
             uri={avatarUrl}
             size={34}
@@ -232,7 +232,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
             accessibilityRole="button"
             accessibilityLabel={t("postOptions.options", { defaultValue: "Options" })}
           >
-            <ChromeFill />
+            <ChromeFill sheer />
             <Icon name="Ellipsis" size={18} color="#fff" />
           </Pressable>
         ) : null}
@@ -245,7 +245,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
             accessibilityRole="button"
             accessibilityLabel={t("common.fullscreen", { defaultValue: "Fullscreen" })}
           >
-            <ChromeFill />
+            <ChromeFill sheer />
             <Icon name="ChevronDown" size={20} color="#fff" />
           </Pressable>
         ) : null}
@@ -257,7 +257,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
           accessibilityRole="button"
           accessibilityLabel={t("common.close", { defaultValue: "Close" })}
         >
-          <ChromeFill />
+          <ChromeFill sheer />
           <Icon name="X" size={20} color="#fff" />
         </Pressable>
       </View>
@@ -349,16 +349,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: CHROME_GAP - 4,
   },
+  /** 48, with the capsule: one height across the row. */
   chromeButton: {
-    width: CHROME_SIZE,
-    height: CHROME_SIZE,
+    width: 48,
+    height: 48,
     borderRadius: CHROME_RADIUS,
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
   },
   followButton: {
-    height: CHROME_SIZE - 6,
+    height: 48,
     flexDirection: "row",
     alignItems: "center",
     gap: 3,

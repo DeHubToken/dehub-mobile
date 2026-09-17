@@ -145,7 +145,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
     <View style={{ marginBottom: lift }} pointerEvents="box-none">
       {reactionsOpen && isLive ? (
         <Pressable style={styles.reactionStrip} onPress={closeReactions}>
-          <ChromeFill />
+          <ChromeFill sheer />
           {REACTION_OPTIONS.map((opt) => (
             <Pressable
               key={opt.type}
@@ -165,7 +165,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
 
       <View style={styles.row} pointerEvents="box-none">
         <View style={styles.inputWrap}>
-          <ChromeFill />
+          <ChromeFill sheer />
           <TextInput
             value={message}
             onChangeText={setMessage}
@@ -209,7 +209,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
               accessibilityLabel={t("postOptions.sendTip", { defaultValue: "Send Tip" })}
               style={styles.circle}
             >
-              <ChromeFill />
+              <ChromeFill sheer />
               <Icon name="Gift" size={19} color="#fff" strokeWidth={1.8} />
             </Pressable>
           ) : null}
@@ -221,7 +221,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
             accessibilityLabel={t("postOptions.share", { defaultValue: "Share" })}
             style={styles.circle}
           >
-            <ChromeFill />
+            <ChromeFill sheer />
             <Icon name="Share2" size={19} color="#fff" strokeWidth={1.8} />
           </Pressable>
 
@@ -235,7 +235,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
             accessibilityLabel={isLiked ? "Unlike" : "Like"}
             style={[styles.circle, !isLive ? styles.dim : null]}
           >
-            <ChromeFill />
+            <ChromeFill sheer />
             <Icon
               name="ThumbsUp"
               size={19}

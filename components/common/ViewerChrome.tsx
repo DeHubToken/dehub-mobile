@@ -31,6 +31,19 @@ export const CHROME_RADIUS = 12;
  */
 export const CHROME_FILL = "#18181B";
 /**
+ * The same fill, most of the way out.
+ *
+ * On a stream the opaque zinc put every icon on its own little slab and the
+ * head of the frame read as a row of cards laid on the broadcast. At 20% the
+ * shape is still there — it still groups the icon and still says 'control' —
+ * but the picture reads straight through it. The scrim and TEXT_SHADOW carry
+ * the contrast the fill used to.
+ *
+ * Shorts keeps the opaque one: its chrome sits over a 9:16 video that fills
+ * the frame edge to edge, where there is no scrim to lean on.
+ */
+export const CHROME_FILL_SHEER = "rgba(0,0,0,0.20)";
+/**
  * Takes the 40pt buttons past the 44pt tap minimum. The horizontal half is
  * exactly CHROME_GAP / 2, so neighbours in a group meet at the midpoint of the
  * gap instead of overlapping and stealing each other's taps.
@@ -65,7 +78,10 @@ export const TEXT_SHADOW = {
  * re-snapshots the root view every frame and throws when a list mutates its
  * children mid-draw, which is fatal on chrome pinned over a recycling feed.
  */
-export const ChromeFill: React.FC<{ radius?: number }> = ({ radius }) => (
+export const ChromeFill: React.FC<{ radius?: number; sheer?: boolean }> = ({
+  radius,
+  sheer,
+}) => (
   <View
     pointerEvents="none"
     style={[
@@ -74,7 +90,12 @@ export const ChromeFill: React.FC<{ radius?: number }> = ({ radius }) => (
       radius === undefined ? null : { borderRadius: radius },
     ]}
   >
-    <View style={[StyleSheet.absoluteFill, { backgroundColor: CHROME_FILL }]} />
+    <View
+      style={[
+        StyleSheet.absoluteFill,
+        { backgroundColor: sheer ? CHROME_FILL_SHEER : CHROME_FILL },
+      ]}
+    />
   </View>
 );
 
