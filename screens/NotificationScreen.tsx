@@ -70,6 +70,20 @@ import {
 
 type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'communities' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
 
+function hideDuplicateReplyMentions(items: NotificationItem[]): NotificationItem[] {
+  const replies = new Set(
+    items
+      .filter((item) => item.type === NotificationType.COMMENT_REPLY && item.commentId && item.actorAddress)
+      .map((item) => `${item.commentId}:${item.actorAddress!.toLowerCase()}`),
+  );
+  return items.filter((item) =>
+    item.type !== NotificationType.MENTION ||
+    !item.commentId ||
+    !item.actorAddress ||
+    !replies.has(`${item.commentId}:${item.actorAddress.toLowerCase()}`),
+  );
+}
+
 // `label` is an i18n key: the screen is wired to i18next, and hardcoded tab
 // names left 109 locales reading English here.
 const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] = [
@@ -1228,15 +1242,16 @@ const NotificationScreen = () => {
     const visible = dismissedIds.size
       ? notifications.filter((n) => !dismissedIds.has(n._id))
       : notifications;
-    if (selectedFilter === 'all') return visible;
+    const unique = hideDuplicateReplyMentions(visible);
+    if (selectedFilter === 'all') return unique;
     const allowedTypes = FILTER_TYPE_MAP[selectedFilter];
-    return visible.filter((n) => allowedTypes.includes(n.type as NotificationType));
+    return unique.filter((n) => allowedTypes.includes(n.type as NotificationType));
   }, [notifications, selectedFilter, dismissedIds]);
 
   // Both badge sources — the tabs and the app icon — count what is still on
   // screen, so a cleared row stops being counted the moment it goes.
   const visibleCountsSource = useMemo(
-    () => (dismissedIds.size ? countsSource.filter((n) => !dismissedIds.has(n._id)) : countsSource),
+    () => hideDuplicateReplyMentions(dismissedIds.size ? countsSource.filter((n) => !dismissedIds.has(n._id)) : countsSource),
     [countsSource, dismissedIds],
   );
 
