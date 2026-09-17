@@ -30,7 +30,9 @@ import { formatCompactNumber } from "../../libs/numbers.util";
 import { useKeyboard } from "../../hooks/useKeyboard";
 import {
   ChromeFill,
+  CHROME_GAP,
   CHROME_HIT_SLOP,
+  CHROME_RADIUS,
   CHROME_SIZE,
   EDGE,
   TEXT_SHADOW,
@@ -114,14 +116,14 @@ const LiveViewerActionBar: React.FC<Props> = ({
       const now = Date.now();
       if (now - lastTapRef.current < COOLDOWN_MS) return;
       lastTapRef.current = now;
+      setReactionsOpen(false);
       onReact(type);
     },
     [onReact]
   );
 
-  const toggleReactions = useCallback(() => {
-    setReactionsOpen((open) => !open);
-  }, []);
+  const openReactions = useCallback(() => setReactionsOpen(true), []);
+  const closeReactions = useCallback(() => setReactionsOpen(false), []);
 
   const canSubmit = !!message.trim() && !inputDisabled;
 
@@ -142,8 +144,8 @@ const LiveViewerActionBar: React.FC<Props> = ({
   return (
     <View style={{ marginBottom: lift }} pointerEvents="box-none">
       {reactionsOpen && isLive ? (
-        <View style={styles.reactionStrip}>
-          <ChromeFill radius={CHROME_SIZE / 2} />
+        <Pressable style={styles.reactionStrip} onPress={closeReactions}>
+          <ChromeFill />
           {REACTION_OPTIONS.map((opt) => (
             <Pressable
               key={opt.type}
@@ -158,12 +160,70 @@ const LiveViewerActionBar: React.FC<Props> = ({
               <Text style={styles.glyph}>{opt.emoji}</Text>
             </Pressable>
           ))}
-        </View>
+        </Pressable>
       ) : null}
+
+      {/* Gift · share · thumb, hard right above the composer — the three
+          things you do to a broadcast. The row underneath is for saying
+          something, and it keeps the full width.
+
+          Tap the thumb to like the post; hold it for the rest of the
+          reactions, which is the same gesture the web action bar uses and
+          the same one a long-press already means everywhere else here. */}
+      <View style={styles.cluster} pointerEvents="box-none">
+        {isLive ? (
+          <Pressable
+            onPress={onGiftPress}
+            hitSlop={CHROME_HIT_SLOP}
+            accessibilityRole="button"
+            accessibilityLabel={t("postOptions.sendTip", { defaultValue: "Send Tip" })}
+            style={styles.circle}
+          >
+            <ChromeFill />
+            <Icon name="Gift" size={19} color="#fff" strokeWidth={1.8} />
+          </Pressable>
+        ) : null}
+
+        <Pressable
+          onPress={onShare}
+          hitSlop={CHROME_HIT_SLOP}
+          accessibilityRole="button"
+          accessibilityLabel={t("postOptions.share", { defaultValue: "Share" })}
+          style={styles.circle}
+        >
+          <ChromeFill />
+          <Icon name="Share2" size={19} color="#fff" strokeWidth={1.8} />
+        </Pressable>
+
+        <Pressable
+          onPress={onLike}
+          onLongPress={isLive ? openReactions : undefined}
+          delayLongPress={400}
+          disabled={!isLive}
+          hitSlop={CHROME_HIT_SLOP}
+          accessibilityRole="button"
+          accessibilityLabel={isLiked ? "Unlike" : "Like"}
+          style={[styles.circle, !isLive ? styles.dim : null]}
+        >
+          <ChromeFill />
+          <Icon
+            name="ThumbsUp"
+            size={19}
+            color="#fff"
+            strokeWidth={1.8}
+            fill={isLiked ? "#fff" : "none"}
+          />
+          {likeCount > 0 ? (
+            <Text style={styles.badge} numberOfLines={1}>
+              {formatCompactNumber(likeCount)}
+            </Text>
+          ) : null}
+        </Pressable>
+      </View>
 
       <View style={styles.row} pointerEvents="box-none">
         <View style={styles.inputWrap}>
-          <ChromeFill radius={CHROME_SIZE / 2} />
+          <ChromeFill />
           <TextInput
             value={message}
             onChangeText={setMessage}
@@ -189,71 +249,6 @@ const LiveViewerActionBar: React.FC<Props> = ({
           ) : null}
         </View>
 
-        {isLive ? (
-          <Pressable
-            onPress={toggleReactions}
-            hitSlop={CHROME_HIT_SLOP}
-            accessibilityRole="button"
-            accessibilityLabel={t("notifications.reactions", { defaultValue: "Reactions" })}
-            style={styles.circle}
-          >
-            <ChromeFill radius={CHROME_SIZE / 2} />
-            <Icon
-              name="Smile"
-              size={19}
-              color="#fff"
-              strokeWidth={1.8}
-              fill={reactionsOpen ? "rgba(255,255,255,0.18)" : "none"}
-            />
-          </Pressable>
-        ) : null}
-
-        <Pressable
-          onPress={onLike}
-          disabled={!isLive}
-          hitSlop={CHROME_HIT_SLOP}
-          accessibilityRole="button"
-          accessibilityLabel={isLiked ? "Unlike" : "Like"}
-          style={[styles.circle, !isLive ? styles.dim : null]}
-        >
-          <ChromeFill radius={CHROME_SIZE / 2} />
-          <Icon
-            name="Heart"
-            size={19}
-            color="#fff"
-            strokeWidth={1.8}
-            fill={isLiked ? "#fff" : "none"}
-          />
-          {likeCount > 0 ? (
-            <Text style={styles.badge} numberOfLines={1}>
-              {formatCompactNumber(likeCount)}
-            </Text>
-          ) : null}
-        </Pressable>
-
-        {isLive ? (
-          <Pressable
-            onPress={onGiftPress}
-            hitSlop={CHROME_HIT_SLOP}
-            accessibilityRole="button"
-            accessibilityLabel={t("postOptions.sendTip", { defaultValue: "Send Tip" })}
-            style={styles.circle}
-          >
-            <ChromeFill radius={CHROME_SIZE / 2} />
-            <Icon name="Gift" size={19} color="#fff" strokeWidth={1.8} />
-          </Pressable>
-        ) : null}
-
-        <Pressable
-          onPress={onShare}
-          hitSlop={CHROME_HIT_SLOP}
-          accessibilityRole="button"
-          accessibilityLabel={t("postOptions.share", { defaultValue: "Share" })}
-          style={styles.circle}
-        >
-          <ChromeFill radius={CHROME_SIZE / 2} />
-          <Icon name="Share2" size={19} color="#fff" strokeWidth={1.8} />
-        </Pressable>
       </View>
     </View>
   );
@@ -264,14 +259,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: EDGE,
-    gap: 8,
+  },
+  cluster: {
+    alignSelf: "flex-end",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: CHROME_GAP,
+    paddingRight: EDGE,
+    marginBottom: 10,
   },
   inputWrap: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
     height: CHROME_SIZE,
-    borderRadius: CHROME_SIZE / 2,
+    borderRadius: CHROME_RADIUS,
     paddingLeft: 16,
     paddingRight: 6,
     gap: 4,
@@ -292,7 +294,7 @@ const styles = StyleSheet.create({
   circle: {
     width: CHROME_SIZE,
     height: CHROME_SIZE,
-    borderRadius: CHROME_SIZE / 2,
+    borderRadius: CHROME_RADIUS,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -313,7 +315,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     height: CHROME_SIZE,
-    borderRadius: CHROME_SIZE / 2,
+    borderRadius: CHROME_RADIUS,
     marginRight: EDGE,
     marginBottom: 8,
     paddingHorizontal: 4,
