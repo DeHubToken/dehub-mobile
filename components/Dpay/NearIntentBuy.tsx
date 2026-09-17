@@ -3,7 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { AppState, View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import * as Clipboard from 'expo-clipboard';
-import { useAuthActions, useUser } from '../../context/AuthContext';
+import { useAuthActions, useProvider, useUser } from '../../context/AuthContext';
+import { ethers } from 'ethers';
+import { getSigningProvider } from '../../libs/provider.registry';
+import { writeBatchAA } from '../../libs/aa.write';
+import type { Purchase } from '../../libs/crypto-purchase';
 import { toastError, toastSuccess } from '../../libs/toast';
 import { openInApp } from '../../libs/links.utils';
 import { TERMS_OF_SERVICE_LINK } from '../../config/links';
@@ -18,7 +22,8 @@ function Action({ label, onPress, disabled = false }: { label: string; onPress: 
 export default function NearIntentBuy() {
   const { t } = useTranslation();
   const user = useUser() as any;
-  const { refreshUser } = useAuthActions();
+  const { refreshUser, switchChain } = useAuthActions();
+  const { provider } = useProvider();
   const wallet = (user?.walletAddress || user?.address || '') as string;
   const focused = useIsFocused();
   const [foreground, setForeground] = useState(AppState.currentState === 'active');
@@ -28,6 +33,33 @@ export default function NearIntentBuy() {
   const amount = Number(amountText);
   const flow = useCryptoPurchase(cryptoPurchaseApi, wallet, amount, foreground && focused, user?.solanaAddress);
   const { purchase, quote, selected, busy } = flow;
+  const direct = purchase ? purchase.route === 'direct' : selected?.route === 'direct';
+  const sendPayment = async (receipt: Purchase) => {
+    if (!receipt.paymentChainId || receipt.paymentDecimals == null) throw new Error(t('nearBuy.statusError'));
+    await switchChain(receipt.paymentChainId);
+    const signing = getSigningProvider() || provider;
+    if (!signing?.request) throw new Error(t('nearBuy.statusError'));
+    const chain = Number(await signing.request({ method: 'eth_chainId' }));
+    if (chain !== receipt.paymentChainId) throw new Error(t('nearBuy.wrongNetwork'));
+    const accounts = await signing.request({ method: 'eth_accounts' });
+    if (accounts?.[0]?.toLowerCase() !== wallet.toLowerCase()) throw new Error(t('nearBuy.wrongWallet'));
+    const amount = ethers.utils.parseUnits(receipt.amountInFormatted, receipt.paymentDecimals);
+    if (receipt.wrapNativePayment && receipt.paymentTokenAddress && signing.smartAccount) {
+      const token = new ethers.utils.Interface(['function deposit() payable', 'function transfer(address to,uint256 amount) returns (bool)']);
+      return (await writeBatchAA(signing, [
+        { to: receipt.paymentTokenAddress, data: token.encodeFunctionData('deposit') as `0x${string}`, value: amount },
+        { to: receipt.paymentTokenAddress, data: token.encodeFunctionData('transfer', [receipt.depositAddress, amount]) as `0x${string}` },
+      ], { context: 'crypto purchase' })).hash;
+    }
+    const isToken = receipt.paymentTokenAddress && !receipt.wrapNativePayment;
+    const data = isToken ? new ethers.utils.Interface(['function transfer(address to,uint256 amount) returns (bool)']).encodeFunctionData('transfer', [receipt.depositAddress, amount]) : '0x';
+    return signing.request({ method: 'eth_sendTransaction', params: [{ from: wallet, to: isToken ? receipt.paymentTokenAddress : receipt.depositAddress, data, value: isToken ? '0x0' : amount.toHexString() }] }) as Promise<string>;
+  };
+  const begin = async () => {
+    if (!quote) return flow.price();
+    const saved = await flow.create();
+    if (saved?.route === 'direct' && saved.amountInFormatted === quote.amountInFormatted) await flow.pay(saved, sendPayment);
+  };
   const phase = purchase ? purchasePhase(purchase, flow.now) : null;
   useEffect(() => {
     if (purchase?.tokenSendStatus === 'sent') void refreshUser().catch(() => {});
@@ -42,7 +74,7 @@ export default function NearIntentBuy() {
     try { await Clipboard.setStringAsync(value); toastSuccess(t('nearBuy.copied')); }
     catch { toastError(t('nearBuy.copyFailed')); }
   };
-  const estimate = <Text className="text-theme-neutrals-400 text-xs my-2">{minutes ? t('nearBuy.swapEstimate', { minutes }) : t('nearBuy.estimateUnknown')} {t('nearBuy.confirmationTime')}</Text>;
+  const estimate = <Text className="text-theme-neutrals-400 text-xs my-2">{direct ? t('nearBuy.directTiming') : `${minutes ? t('nearBuy.swapEstimate', { minutes }) : t('nearBuy.estimateUnknown')} ${t('nearBuy.confirmationTime')}`}</Text>;
   const field = 'bg-theme-neutrals-900 text-white rounded-xl px-3 py-3 mb-2';
 
   return <View className="bg-theme-neutrals-800 rounded-xl p-4 border border-theme-neutrals-700/60 my-4">
@@ -52,19 +84,20 @@ export default function NearIntentBuy() {
     {purchase ? <View>
       <View accessibilityLiveRegion="polite" className="border border-white/10 rounded-xl p-3 mb-3">
         <Text className="text-white font-semibold">{t(`nearBuy.phase_${phase}`)}</Text>
-        <Text className="text-theme-neutrals-300 text-sm mt-1">{t(`nearBuy.detail_${phase}`)}</Text>
+        <Text className="text-theme-neutrals-300 text-sm mt-1">{t(direct && phase === 'awaiting' ? 'nearBuy.reviewPay' : `nearBuy.detail_${phase}`)}</Text>
         {estimate}<Text className="text-theme-neutrals-400 text-xs">{t('nearBuy.saved')}</Text>
       </View>
       {flow.statusFailed && <Text className="text-amber-300 text-sm">{t('nearBuy.statusError')}</Text>}
       {phase === 'awaiting' && !canSendPayment(purchase, flow.now) && <Text className="text-amber-300 text-sm">{t('nearBuy.statusError')}</Text>}
       <Action label={t('nearBuy.checkStatus')} onPress={flow.refresh} />
       {flow.lastChecked && <Text className="text-theme-neutrals-400 text-xs my-1">{t('nearBuy.lastChecked', { time: new Date(flow.lastChecked).toLocaleTimeString() })}</Text>}
-      <Text className="text-white text-sm my-2">{t(canSendPayment(purchase, flow.now) ? 'nearBuy.sendExact' : 'nearBuy.paymentSummary', { amount: purchase.amountInFormatted || '', symbol: purchase.originSymbol || '', chain: paymentChainName(purchase.originBlockchain || '') })}</Text>
+      <Text className="text-white text-sm my-2">{t(!direct && canSendPayment(purchase, flow.now) ? 'nearBuy.sendExact' : 'nearBuy.paymentSummary', { amount: purchase.amountInFormatted || '', symbol: purchase.originSymbol || '', chain: paymentChainName(purchase.originBlockchain || '') })}</Text>
       <Text className="text-white text-sm">{t('nearBuy.receiveNet', { amount: Number(purchase.tokenReceived || purchase.estimatedTokensToReceive || 0).toLocaleString(undefined, { maximumFractionDigits: 4 }) })}</Text>
       <Text className="text-theme-neutrals-400 text-xs my-1">{t('nearBuy.gasReserve', { amount: (purchase.gasReserveUsd || 0).toFixed(4) })}</Text>
       <Text className="text-theme-neutrals-400 text-xs my-2">{t('nearBuy.deadline', { date: new Date(purchase.expiresAt * 1000).toLocaleString() })}</Text>
-      <Text selectable className="bg-theme-neutrals-900 rounded-xl p-3 text-white text-xs">{purchase.depositAddress}</Text>
-      {canSendPayment(purchase, flow.now) && <Action label={t('nearBuy.copyPayment')} onPress={() => copy(purchase.depositAddress)} />}
+      {direct && canSendPayment(purchase, flow.now) && <Action label={busy ? t('nearBuy.loading') : t('nearBuy.pay')} disabled={!!busy} onPress={() => flow.pay(purchase, sendPayment)} />}
+      {!direct && <Text selectable className="bg-theme-neutrals-900 rounded-xl p-3 text-white text-xs">{purchase.depositAddress}</Text>}
+      {!direct && canSendPayment(purchase, flow.now) && <Action label={t('nearBuy.copyPayment')} onPress={() => copy(purchase.depositAddress)} />}
       {purchase.depositMemo != null && <View className="border border-amber-400/40 rounded-xl p-3 my-2"><Text className="text-amber-300 text-sm">{t('nearBuy.memoNotice')}</Text><Text selectable className="text-white my-2">{purchase.depositMemo}</Text>{canSendPayment(purchase, flow.now) && <Action label={t('nearBuy.copyMemo')} onPress={() => copy(purchase.depositMemo!)} />}</View>}
       <Text selectable className="text-theme-neutrals-400 text-xs my-2">{t('nearBuy.refundReceipt', { address: purchase.refundTo || '' })}</Text>
       <Text selectable className="text-theme-neutrals-400 text-xs mb-2">{t('nearBuy.destination', { address: purchase.receiverAddress || wallet })}</Text>
@@ -82,12 +115,12 @@ export default function NearIntentBuy() {
       </ScrollView>
       {flow.assetsFailed && <><Text className="text-amber-300 text-sm">{t('nearBuy.tokensError')}</Text><Action label={t('nearBuy.retry')} onPress={flow.refresh} /></>}
       {selected && <View className="mt-3">
-        <Text className="text-theme-neutrals-400 text-xs mb-1">{t('nearBuy.refundAddress', { chain: paymentChainName(selected.blockchain) })}</Text>
+        {!direct && <><Text className="text-theme-neutrals-400 text-xs mb-1">{t('nearBuy.refundAddress', { chain: paymentChainName(selected.blockchain) })}</Text>
         <TextInput value={flow.refund} onChangeText={flow.setRefund} editable={busy !== 'create'} autoCapitalize="none" autoCorrect={false} placeholder={t('nearBuy.refundPlaceholder')} placeholderTextColor="#71717A" className={field} />
-        <Text className="text-theme-neutrals-400 text-xs mb-2">{t('nearBuy.refundHint')}</Text>
+        <Text className="text-theme-neutrals-400 text-xs mb-2">{t('nearBuy.refundHint')}</Text></>}
         {quote && <View className="border border-white/10 rounded-xl p-3 mb-2"><Text className="text-white text-sm">{t('nearBuy.quoteSummary', { amount: quote.amountInFormatted, symbol: selected.symbol, chain: paymentChainName(selected.blockchain) })}</Text><Text className="text-white text-sm my-1">{t('nearBuy.receiveNet', { amount: (quote.estimatedTokensToReceive || 0).toLocaleString(undefined, { maximumFractionDigits: 4 }) })}</Text><Text className="text-theme-neutrals-400 text-xs">{t('nearBuy.gasReserve', { amount: (quote.gasReserveUsd || 0).toFixed(4) })}</Text>{estimate}<Text className="text-theme-neutrals-400 text-xs">{t('nearBuy.finalQuote')}</Text></View>}
         {quote && <><TouchableOpacity accessibilityRole="checkbox" accessibilityState={{ checked: agreed }} disabled={busy === 'create'} onPress={() => setAgreed(value => !value)} className="py-2"><Text className="text-white text-xs">{agreed ? '☑' : '☐'} {t('nearBuy.acceptTerms')}</Text></TouchableOpacity><Action label={t('nearBuy.terms')} onPress={() => openInApp(TERMS_OF_SERVICE_LINK)} /></>}
-        <Action label={busy ? t('nearBuy.loading') : quote ? t('nearBuy.paymentAction') : t('nearBuy.getQuote')} disabled={flow.loading || flow.historyFailed || !!busy || !validDhbAmount(amount) || (!!quote && (!flow.refund.trim() || !agreed))} onPress={() => quote ? flow.create() : flow.price()} />
+        <Action label={busy ? t('nearBuy.loading') : quote ? t(direct ? 'nearBuy.pay' : 'nearBuy.paymentAction') : t('nearBuy.getQuote')} disabled={flow.loading || flow.historyFailed || !!busy || !validDhbAmount(amount) || (!!quote && (!flow.refund.trim() || !agreed))} onPress={begin} />
       </View>}
     </>}
     {!!flow.error && <Text accessibilityLiveRegion="polite" className="text-red-400 text-sm my-2">{flow.error}</Text>}
