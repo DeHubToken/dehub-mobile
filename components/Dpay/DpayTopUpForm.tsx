@@ -146,6 +146,8 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   const amountValidationError = React.useMemo(() => {
     if (!Number.isFinite(parsedAmount) || parsedAmount <= 0)
       return t("dpay.invalidAmountGtZero");
+    if (parsedAmount < 0.5)
+      return t("buyCoins.minDhbPurchase");
     // if (!computedPrice || computedPrice <= 0) return "Price unavailable. Try again shortly.";
     if (supplyOnChain === 0)
       return t("dpay.noSupply", { symbol: tokenSymbol });
@@ -266,6 +268,10 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       return;
     }
     const amt = parseFloat(amountUsd || "0");
+    if (Number.isFinite(amt) && amt > 0 && amt < 0.5) {
+      toastError(t("buyCoins.minDhbPurchase"));
+      return;
+    }
     const price =
       typeof tokenPrice === "number"
         ? tokenPrice
@@ -274,7 +280,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
         : 0;
     if (
       !Number.isFinite(amt) ||
-      amt <= 0 ||
+      amt < 0.5 ||
       !Number.isFinite(price) ||
       price <= 0
     ) {
