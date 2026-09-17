@@ -3,10 +3,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { PurchaseApi } from '../hooks/useCryptoPurchase';
 import type { PaymentAsset, Purchase } from '../libs/crypto-purchase';
 
+const pendingPayments = new Map<string, string>();
+
 async function confirm(id: string, txHash: string): Promise<Purchase> {
-  await AsyncStorage.setItem(`dehub.payment.${id}`, txHash);
+  pendingPayments.set(id, txHash);
+  try { await AsyncStorage.setItem(`dehub.payment.${id}`, txHash); } catch { /* Still register the broadcast payment with the server. */ }
   const receipt = await apiClient.post<Purchase>('/dpay/crypto/direct/confirm', { id, txHash }, { isAuthRequired: true });
-  if (receipt.settlement === 'DIRECT_SETTLED') await AsyncStorage.removeItem(`dehub.payment.${id}`);
+  if (receipt.settlement === 'DIRECT_SETTLED') {
+    pendingPayments.delete(id);
+    try { await AsyncStorage.removeItem(`dehub.payment.${id}`); } catch { /* The server already has the settled payment. */ }
+  }
   return receipt;
 }
 export const cryptoPurchaseApi: PurchaseApi = {
@@ -16,7 +22,8 @@ export const cryptoPurchaseApi: PurchaseApi = {
   list: async () => (await apiClient.get<{ intents: Purchase[] }>('/dpay/crypto/intents', { isAuthRequired: true })).intents,
   confirm,
   status: async id => {
-    const pending = await AsyncStorage.getItem(`dehub.payment.${id}`);
+    let pending = pendingPayments.get(id);
+    try { pending ||= (await AsyncStorage.getItem(`dehub.payment.${id}`)) || undefined; } catch { /* Retry from memory when device storage is unavailable. */ }
     return pending ? confirm(id, pending) : apiClient.get(`/dpay/crypto/intent/${encodeURIComponent(id)}`, { isAuthRequired: true });
   },
 };
