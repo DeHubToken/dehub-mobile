@@ -4204,5 +4204,36 @@
     "didNotRecoverEither": "Cette connexion n'a récupéré aucun des profils affichés ici. Rien n'a changé. Essayez la connexion d'origine du profil souhaité.",
     "didNotRecoverThis": "Cette connexion a récupéré un portefeuille différent de celui de ce profil. Rien n'a changé. Essayez la connexion qui l'a créé à l'origine.",
     "couldNotRetrieve": "Impossible de récupérer cet ancien portefeuille sur cet appareil. Vous pouvez toujours le récupérer sur dehub.io ci-dessous."
+  },
+  "liveGift": {
+    "pickTier": "Choisissez une célébration",
+    "plays": "Joue {{tier}} sur le stream",
+    "you": "Vous",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Cœur d'amour",
+      "chocolate": "Boîte de chocolats",
+      "bouquet": "Bouquet de fleurs",
+      "crown": "Couronne",
+      "magicRing": "Bague magique",
+      "spartans": "Armée spartiate",
+      "party": "Célébration de fête",
+      "gold3": "Écran doré (3s)",
+      "gold10": "Écran doré (10s)",
+      "ultimate": "Célébration ultime"
+    },
+    "tierDesc": {
+      "heart": "Des cœurs flottent dans le coin du stream.",
+      "chocolate": "Une boîte de chocolats dégringole sur l'écran.",
+      "bouquet": "Un bouquet éclate dans le coin.",
+      "crown": "Une couronne s'élève au-dessus du stream et scintille.",
+      "magicRing": "Une bague atterrit au milieu et sonne dans des étincelles.",
+      "spartans": "Un mur de boucliers traverse le stream.",
+      "party": "Des confettis volent et une boule à facettes descend.",
+      "gold3": "L'écran devient doré et des pièces pleuvent pendant 3 secondes.",
+      "gold10": "L'écran devient doré et des pièces pleuvent pendant 10 secondes.",
+      "ultimate": "Chaque célébration à la fois — or, confettis, pièces et un trophée."
+    }
   }
 }

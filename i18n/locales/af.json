@@ -4247,5 +4247,36 @@
     "didNotRecoverEither": "Daardie aanmelding het nie een van die profiele hier herwin nie. Niks is verander nie. Probeer die oorspronklike aanmelding vir die profiel wat jy wil hê.",
     "didNotRecoverThis": "Daardie aanmelding het 'n ander beursie herwin as hierdie profiel s'n. Niks is verander nie. Probeer die aanmelding wat dit oorspronklik geskep het.",
     "couldNotRetrieve": "Kon nie daardie ou beursie op hierdie toestel haal nie. Jy kan dit steeds op dehub.io hieronder herwin."
+  },
+  "liveGift": {
+    "pickTier": "Kies 'n viering",
+    "plays": "Speel {{tier}} op die stroom",
+    "you": "Jy",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Liefdeshart",
+      "chocolate": "Boks Sjokolade",
+      "bouquet": "Boeket Blomme",
+      "crown": "Kroon",
+      "magicRing": "Towerring",
+      "spartans": "Spartaanse Leër",
+      "party": "Partytjiefees",
+      "gold3": "Goue Skerm (3s)",
+      "gold10": "Goue Skerm (10s)",
+      "ultimate": "Uiteindelike Viering"
+    },
+    "tierDesc": {
+      "heart": "Harte dryf op na die hoek van die stroom.",
+      "chocolate": "'n Boks sjokolade tuimel op die skerm.",
+      "bouquet": "'n Boeket bars oop oor die hoek.",
+      "crown": "'n Kroon rys oor die stroom en skitter.",
+      "magicRing": "'n Ring land in die middel en lui met vonke.",
+      "spartans": "'n Skildmuur marsjeer oor die stroom.",
+      "party": "Konfetti vlieg en 'n diskobal val in.",
+      "gold3": "Die skerm word goud en munte reën vir 3 sekondes.",
+      "gold10": "Die skerm word goud en munte reën vir 10 sekondes.",
+      "ultimate": "Elke viering gelyktydig — goud, konfetti, munte en 'n trofee."
+    }
   }
 }

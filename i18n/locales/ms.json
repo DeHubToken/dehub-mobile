@@ -4392,5 +4392,36 @@
     "didNotRecoverEither": "Log masuk itu tidak memulihkan mana-mana profil yang ditunjukkan di sini. Tiada apa-apa berubah. Cuba log masuk asal bagi profil yang anda mahu.",
     "didNotRecoverThis": "Log masuk itu memulihkan dompet yang berbeza daripada profil ini. Tiada apa-apa berubah. Cuba log masuk yang asalnya menciptanya.",
     "couldNotRetrieve": "Dompet lama itu tidak dapat diperoleh pada peranti ini. Anda masih boleh memulihkannya di dehub.io di bawah."
+  },
+  "liveGift": {
+    "pickTier": "Pilih sambutan",
+    "plays": "Mainkan {{tier}} di strim",
+    "you": "Anda",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Love Heart",
+      "chocolate": "Box of Chocolate",
+      "bouquet": "Bouquet of Flowers",
+      "crown": "Crown",
+      "magicRing": "Magic Ring",
+      "spartans": "Spartans Army",
+      "party": "Party Celebration",
+      "gold3": "Golden Screen (3s)",
+      "gold10": "Golden Screen (10s)",
+      "ultimate": "Ultimate Celebration"
+    },
+    "tierDesc": {
+      "heart": "Hati-hati melayang ke sudut strim.",
+      "chocolate": "Sekotak coklat berguling ke atas skrin.",
+      "bouquet": "Bunga mekar pecah di sudut.",
+      "crown": "Mahkota naik di atas strim dan berkilauan.",
+      "magicRing": "Cincin mendarat di tengah dan berdering dalam kilauan.",
+      "spartans": "Dinding perisai berarak melintasi strim.",
+      "party": "Konfeti terbang dan bola disko jatuh.",
+      "gold3": "Skrin bertukar emas dan syiling hujan turun selama 3 saat.",
+      "gold10": "Skrin bertukar emas dan syiling hujan turun selama 10 saat.",
+      "ultimate": "Setiap sambutan serentak — emas, konfeti, syiling dan trofi."
+    }
   }
 }

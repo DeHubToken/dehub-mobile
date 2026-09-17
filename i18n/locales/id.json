@@ -4179,5 +4179,36 @@
     "didNotRecoverEither": "Masuk itu tidak memulihkan satu pun profil yang ditampilkan di sini. Tidak ada yang berubah. Coba cara masuk asal untuk profil yang Anda inginkan.",
     "didNotRecoverThis": "Masuk itu memulihkan dompet yang berbeda dari profil ini. Tidak ada yang berubah. Coba cara masuk yang dulu membuatnya.",
     "couldNotRetrieve": "Dompet lama itu tidak bisa diambil di perangkat ini. Anda masih bisa memulihkannya di dehub.io di bawah."
+  },
+  "liveGift": {
+    "pickTier": "Pilih perayaan",
+    "plays": "Memutar {{tier}} di stream",
+    "you": "Anda",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Love Heart",
+      "chocolate": "Box of Chocolate",
+      "bouquet": "Bouquet of Flowers",
+      "crown": "Crown",
+      "magicRing": "Magic Ring",
+      "spartans": "Spartans Army",
+      "party": "Party Celebration",
+      "gold3": "Golden Screen (3s)",
+      "gold10": "Golden Screen (10s)",
+      "ultimate": "Ultimate Celebration"
+    },
+    "tierDesc": {
+      "heart": "Hati melayang ke sudut stream.",
+      "chocolate": "Sekotak cokelat berguling ke atas layar.",
+      "bouquet": "Sebuket bunga meledak terbuka di sudut.",
+      "crown": "Sebuah mahkota naik di atas stream dan berkilauan.",
+      "magicRing": "Sebuah cincin mendarat di tengah dan berdering dalam kilauan.",
+      "spartans": "Dinding perisai berbaris melintasi stream.",
+      "party": "Konfeti beterbangan dan bola disko turun.",
+      "gold3": "Layar berubah menjadi emas dan koin menghujani selama 3 detik.",
+      "gold10": "Layar berubah menjadi emas dan koin menghujani selama 10 detik.",
+      "ultimate": "Setiap perayaan sekaligus — emas, konfeti, koin, dan piala."
+    }
   }
 }

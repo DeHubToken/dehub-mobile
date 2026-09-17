@@ -4098,5 +4098,35 @@
     "didNotRecoverEither": "Ol giriş şu ýerde görkezilen profilleriň hiç birini dikeltmedi. Hiç zat üýtgemedi. Isleýän profiliňiziň asyl giriş usulyny synanyň.",
     "didNotRecoverThis": "Ol giriş bu profiliňkiden başga gapjygy dikeltdi. Hiç zat üýtgemedi. Ony ilkibaşda döreden giriş usulyny synanyň.",
     "couldNotRetrieve": "Ol köne gapjygy şu enjamda alyp bolmady. Aşakdaky dehub.io-da ony henizem dikeldip bilersiňiz."
+  },
+  "liveGift": {
+    "pickTier": "Bir baýramçylyga gatnaşmak",
+    "plays": "Oýunlar {{tier}} akymda",
+    "you": "sen",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Söýgi ýüregi",
+      "chocolate": "Çokolad şeraby",
+      "bouquet": "Güllerden güllerden",
+      "crown": "Täç",
+      "magicRing": "Jadygöýlik ýüzükleri",
+      "spartans": "Spartan goşuny",
+      "party": "Baýramçylyk",
+      "gold3": "Foto galerisi (3)",
+      "gold10": "Ýuwaşlyk bilen ýuwaşlyk bilen (10)",
+      "ultimate": "Ýatlama agşamy"
+    },
+    "tierDesc": {
+      "heart": "Ýürekler derýanyň köşesine tarap öwrülýär.",
+      "chocolate": "Çokoladyň bir gapy ekranda ýapyşýar.",
+      "bouquet": "Bir küýze açylýar, bir küýze açylýar.",
+      "crown": "Bir täç derýadan çykyp, şöhle saçýar.",
+      "magicRing": "Bir ýüzük ýer ýüzüniň ortasynda ýerleşýär we parlaýan ýüzükler bilen çykýar.",
+      "spartans": "Garawul diňi we Garawul diňi.",
+      "party": "Konfetti uçup, diskoteka topy düşýär.",
+      "gold3": "Ekran altyn we kümüşden 3 saniýede ýagyş ýagýar.",
+      "gold10": "Ekranda altyn we kümüşler 10 saniye ýagyş ýagýar.",
+      "ultimate": "Her bir baýramçylyk bir gezekde — altyn, konfet, kümüş we trofeýa."
+    }
   }
 }

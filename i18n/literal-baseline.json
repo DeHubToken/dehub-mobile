@@ -76,7 +76,6 @@
   "components/LiveProducer/ProducerHeader.tsx": 2,
   "components/LiveProducer/ProducerShopButton.tsx": 1,
   "components/LiveProducer/StreamDetailsTooltip.tsx": 7,
-  "components/LiveProducer/TipAnimationsOverlay.tsx": 6,
   "components/LiveProducer/WebRTCPublisher.tsx": 2,
   "components/LiveViewer/LiveViewerChat.tsx": 3,
   "components/LiveViewer/LiveViewerHeader.tsx": 3,

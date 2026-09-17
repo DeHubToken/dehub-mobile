@@ -4086,5 +4086,36 @@
     "didNotRecoverEither": "Mlebu kuwi ora mbalèkake profil apa wae sing katon ing kene. Ora ana sing owah. Coba cara mlebu asli kanggo profil sing dikarepake.",
     "didNotRecoverThis": "Mlebu kuwi mbalèkake dompet liya, dudu duweke profil iki. Ora ana sing owah. Coba cara mlebu sing biyèn nggawe iki.",
     "couldNotRetrieve": "Dompet lawas kuwi ora bisa dijupuk ing piranti iki. Sampeyan isih bisa mbalèkake liwat dehub.io ing ngisor."
+  },
+  "liveGift": {
+    "pickTier": "Pilih perayaan",
+    "plays": "Putar {{tier}} ing stream",
+    "you": "Sampeyan",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Ati Tresna",
+      "chocolate": "Kothak Coklat",
+      "bouquet": "Buket Kembang",
+      "crown": "Makutha",
+      "magicRing": "Cincin Sihir",
+      "spartans": "Pasukan Spartan",
+      "party": "Perayaan Pesta",
+      "gold3": "Layar Emas (3s)",
+      "gold10": "Layar Emas (10s)",
+      "ultimate": "Perayaan Paling Puncak"
+    },
+    "tierDesc": {
+      "heart": "Ati munggah ing pojok stream.",
+      "chocolate": "Kothak coklat tiba munggah ing layar.",
+      "bouquet": "Buket mbukak ing pojok.",
+      "crown": "Makutha munggah ing ndhuwur stream lan sumunar.",
+      "magicRing": "Cincin tiba ing tengah lan muni ing gemerlap.",
+      "spartans": "Tembok tameng mlaku ing stream.",
+      "party": "Konfeti mabur lan bola disko tiba.",
+      "gold3": "Layar dadi emas lan koin udan mudhun suwene 3 detik.",
+      "gold10": "Layar dadi emas lan koin udan mudhun suwene 10 detik.",
+      "ultimate": "Saben perayaan bebarengan — emas, konfeti, koin lan piala."
+    }
   }
 }

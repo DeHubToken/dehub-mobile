@@ -4133,5 +4133,36 @@
     "didNotRecoverEither": "Ez a bejelentkezés egyik itt látható profilt sem állította vissza. Semmi nem változott. Próbáld a kívánt profil eredeti bejelentkezését.",
     "didNotRecoverThis": "Ez a bejelentkezés egy másik tárcát állított vissza, nem ehhez a profilhoz tartozót. Semmi nem változott. Próbáld azt a bejelentkezést, amellyel eredetileg létrejött.",
     "couldNotRetrieve": "Azt a régi tárcát nem sikerült lekérni ezen az eszközön. Alább a dehub.io oldalon még visszaállíthatod."
+  },
+  "liveGift": {
+    "pickTier": "Válassz egy ünnepséget",
+    "plays": "Játssza le a(z) {{tier}} a streamben",
+    "you": "Te",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Szív",
+      "chocolate": "Csokoládé doboz",
+      "bouquet": "Virágcsokor",
+      "crown": "Korona",
+      "magicRing": "Varázslatos Gyűrű",
+      "spartans": "Spartai Hadsereg",
+      "party": "Parti Ünnepség",
+      "gold3": "Arany Képernyő (3 mp)",
+      "gold10": "Arany Képernyő (10 mp)",
+      "ultimate": "Végső Ünnepség"
+    },
+    "tierDesc": {
+      "heart": "Szívek úsznak fel a sarokban.",
+      "chocolate": "Egy csokoládé doboz zuhan fel a képernyőn.",
+      "bouquet": "Egy virágcsokor robban szét a sarokban.",
+      "crown": "Egy korona emelkedik fel a streamben és csillog.",
+      "magicRing": "Egy gyűrű landol középen és szikrákban cseng ki.",
+      "spartans": "Egy pajzsfal menetel át a streamben.",
+      "party": "Konfetti repül és egy diszkógömb ereszkedik le.",
+      "gold3": "A képernyő arannyá válik és érmék esnek alá 3 másodpercig.",
+      "gold10": "A képernyő arannyá válik és érmék esnek alá 10 másodpercig.",
+      "ultimate": "Minden ünnepség egyszerre — arany, konfetti, érmék és egy trófea."
+    }
   }
 }

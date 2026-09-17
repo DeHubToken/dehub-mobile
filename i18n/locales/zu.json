@@ -4157,5 +4157,36 @@
     "didNotRecoverEither": "Lokho kungena akubuyisanga noma yiliphi iphrofayela elibonisiwe lapha. Akukho okushintshile. Zama ukungena kwasekuqaleni kwephrofayela olifunayo.",
     "didNotRecoverThis": "Lokho kungena kubuyise isikhwama esehlukile, hhayi esalelo phrofayela. Akukho okushintshile. Zama ukungena okwakulidale ekuqaleni.",
     "couldNotRetrieve": "Asikwazanga ukuthola leso sikhwama esidala kule divayisi. Usengasibuyisa ku-dehub.io ngezansi."
+  },
+  "liveGift": {
+    "pickTier": "Khetha umkhosi",
+    "plays": "Idlala i-{{tier}} kusigcawu",
+    "you": "Wena",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Inhliziyo Yothando",
+      "chocolate": "Ibhokisi Likashokoledi",
+      "bouquet": "Imibukiso Yezimbali",
+      "crown": "Umqhele",
+      "magicRing": "Indandatho Yomlingo",
+      "spartans": "Ibutho LamaSpartan",
+      "party": "Umkhosi Womgubho",
+      "gold3": "Isikrini segolide (3s)",
+      "gold10": "Isikrini segolide (10s)",
+      "ultimate": "Umkhosi Omkhulu"
+    },
+    "tierDesc": {
+      "heart": "Izinhliziyo zinyukela ekhoneni lesigcawu.",
+      "chocolate": "Ibhokisi likashokoledi liyawa esikrinini.",
+      "bouquet": "Imibukiso yezimbali ivuleka ekhoneni.",
+      "crown": "Umqhele unyuka phezu kwesigcawu futhi ucwebezela.",
+      "magicRing": "Indandatho yehla phakathi bese iyakhala ngemikhomba.",
+      "spartans": "Udonga lwesihlangu luhamba esigcawini.",
+      "party": "I-confetti iyandiza futhi ibhola le-disco liyehla.",
+      "gold3": "Isikrini sijika sibe segolide futhi izinhlamvu zemali ziyana imizuzwana emi-3.",
+      "gold10": "Isikrini sijika sibe segolide futhi izinhlamvu zemali ziyana imizuzwana eyi-10.",
+      "ultimate": "Wonke umkhosi ngesikhathi esisodwa — igolide, i-confetti, izinhlamvu zemali kanye netrofi."
+    }
   }
 }
