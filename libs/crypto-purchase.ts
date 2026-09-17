@@ -4,6 +4,8 @@ export interface PaymentAsset {
   blockchain: string;
   decimals: number;
   contractAddress?: string;
+  route?: 'direct' | 'swap';
+  chainId?: number;
 }
 
 export interface PaymentQuote {
@@ -15,6 +17,12 @@ export interface PaymentQuote {
 }
 
 export interface Purchase extends PaymentQuote {
+  route?: 'direct' | 'swap';
+  paymentChainId?: number;
+  paymentTokenAddress?: string;
+  wrapNativePayment?: boolean;
+  paymentDecimals?: number;
+  paymentTxHash?: string;
   id: string;
   depositAddress: string;
   depositMemo?: string;
@@ -47,8 +55,9 @@ export function purchasePhase(p: Purchase, now = Date.now()): PurchasePhase {
   if (p.settlement === 'INCOMPLETE_DEPOSIT') return 'incomplete';
   if (p.settlement === 'KNOWN_DEPOSIT_TX') return 'confirming';
   if (p.settlement === 'PROCESSING') return 'swapping';
+  if (p.settlement === 'DIRECT_PENDING' && p.paymentTxHash) return 'confirming';
   if (p.settlement === 'EXPIRED' || p.paymentStatus === 'expired') return 'expired';
-  if (!p.settlement || p.settlement === 'PENDING_DEPOSIT') return p.expiresAt * 1000 <= now ? 'expired' : 'awaiting';
+  if (!p.settlement || p.settlement === 'PENDING_DEPOSIT' || p.settlement === 'DIRECT_PENDING') return p.expiresAt * 1000 <= now ? 'expired' : 'awaiting';
   return 'checking';
 }
 

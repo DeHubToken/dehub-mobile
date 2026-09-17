@@ -7,6 +7,7 @@ export interface PurchaseApi {
   create(params: { originAsset: string; tokensToReceive: number; refundTo: string; receiverAddress: string; termsAndServicesAccepted: boolean; requestId: string }): Promise<Purchase>;
   list(): Promise<Purchase[]>;
   status(id: string): Promise<Purchase>;
+  confirm?(id: string, hash: string): Promise<Purchase>;
 }
 
 /** Shared with mobile. The server owns purchase recovery; a screen is only a view. */
@@ -17,7 +18,7 @@ export function useCryptoPurchase(api: PurchaseApi, wallet: string, amount: numb
   const [quoted, setQuoted] = useState<{ key: string; at: number; data: PaymentQuote } | null>(null);
   const [purchase, setPurchase] = useState<Purchase | null>(null);
   const [history, setHistory] = useState<Purchase[]>([]);
-  const [busy, setBusy] = useState<'quote' | 'create' | null>(null);
+  const [busy, setBusy] = useState<'quote' | 'create' | 'pay' | null>(null);
   const [error, setError] = useState('');
   const [assetsFailed, setAssetsFailed] = useState(false);
   const [historyFailed, setHistoryFailed] = useState(false);
@@ -56,7 +57,12 @@ export function useCryptoPurchase(api: PurchaseApi, wallet: string, amount: numb
     setLoading(true); setAssetsFailed(false); setHistoryFailed(false);
     void Promise.allSettled([api.assets(), api.list()]).then(([catalogue, purchases]) => {
       if (cancelled) return;
-      if (catalogue.status === 'fulfilled') setAssets(catalogue.value.filter(a => !/deprecated/i.test(a.symbol)));
+      if (catalogue.status === 'fulfilled') {
+        const available = catalogue.value.filter(a => !/deprecated/i.test(a.symbol));
+        setAssets(available);
+        const preferred = available.find(a => a.route === 'direct' && a.blockchain === 'base' && a.symbol === 'ETH');
+        if (preferred) setAssetId(current => { if (current) return current; setRefund(wallet); return preferred.assetId; });
+      }
       else setAssetsFailed(true);
       if (purchases.status === 'fulfilled') {
         setHistory(purchases.value);
@@ -79,7 +85,7 @@ export function useCryptoPurchase(api: PurchaseApi, wallet: string, amount: numb
         const result = await api.status(id);
         if (cancelled) return;
         latest = { ...purchase, ...result };
-        setPurchase(current => current?.id === id ? { ...current, ...result } : current);
+        setPurchase(current => current?.id === id ? { ...current, ...result, paymentTxHash: result.paymentTxHash || current.paymentTxHash } : current);
         setHistory(rows => rows.map(row => row.id === id ? { ...row, ...result } : row));
         setStatusFailed(false); setLastChecked(Date.now());
       } catch {
@@ -119,6 +125,7 @@ export function useCryptoPurchase(api: PurchaseApi, wallet: string, amount: numb
       if (account.current !== owner) return;
       const saved = { ...result, originSymbol: result.originSymbol || selected.symbol, originBlockchain: result.originBlockchain || selected.blockchain };
       setPurchase(saved); setHistory(rows => [saved, ...rows.filter(row => row.id !== saved.id)]); setQuoted(null); retry.current = null;
+      return saved;
     } catch (e) {
       if (account.current !== owner) return;
       setError(e instanceof Error ? e.message : String(e));
@@ -126,6 +133,17 @@ export function useCryptoPurchase(api: PurchaseApi, wallet: string, amount: numb
       setRevision(v => v + 1);
     } finally { createLock.current = false; if (account.current === owner) setBusy(null); }
   };
+  const pay = async (receipt: Purchase, send: (receipt: Purchase) => Promise<string>) => {
+    if (createLock.current || receipt.paymentTxHash || receipt.expiresAt * 1000 <= Date.now() || !api.confirm) return;
+    createLock.current = true; setBusy('pay'); setError('');
+    try {
+      const hash = await send(receipt);
+      setPurchase({ ...receipt, paymentTxHash: hash });
+      const updated = await api.confirm(receipt.id, hash);
+      setPurchase(updated);
+    } catch (error) { setError(error instanceof Error ? error.message : String(error)); }
+    finally { createLock.current = false; setBusy(null); refresh(); }
+  };
   const refresh = useCallback(() => setRevision(v => v + 1), []);
-  return { assets, selected, assetId, selectAsset, refund, setRefund, quote, price, create, purchase, setPurchase, history, busy, error, assetsFailed, historyFailed, statusFailed, lastChecked, loading, now, refresh };
+  return { assets, selected, assetId, selectAsset, refund, setRefund, quote, price, create, pay, purchase, setPurchase, history, busy, error, assetsFailed, historyFailed, statusFailed, lastChecked, loading, now, refresh };
 }

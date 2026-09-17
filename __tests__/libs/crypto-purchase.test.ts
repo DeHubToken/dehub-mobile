@@ -5,6 +5,10 @@ const now = Date.parse('2026-09-17T12:00:00Z');
 const purchase: Purchase = { id: 'purchase', originAsset: 'btc', amountInFormatted: '0.01', depositAddress: 'address', expiresAt: (now - 1000) / 1000 };
 
 describe('crypto purchase lifecycle', () => {
+  it('keeps a submitted direct payment in confirmation even after its quote deadline', () => {
+    expect(purchasePhase({ ...purchase, settlement: 'DIRECT_PENDING', paymentTxHash: '0xpaid' }, now)).toBe('confirming');
+    expect(purchasePhase({ ...purchase, settlement: 'DIRECT_PENDING', expiresAt: now / 1000 + 60 }, now)).toBe('awaiting');
+  });
   it('does not expire funds already confirming or swapping when the deposit deadline passes', () => {
     expect(purchasePhase({ ...purchase, settlement: 'KNOWN_DEPOSIT_TX', paymentStatus: 'expired' }, now)).toBe('confirming');
     expect(purchasePhase({ ...purchase, settlement: 'PROCESSING' }, now)).toBe('swapping');
