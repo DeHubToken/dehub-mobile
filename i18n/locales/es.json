@@ -1585,6 +1585,7 @@
     "amountUsd": "Monto (USD)",
     "customAmount": "Monto personalizado",
     "minPurchase": "La compra mínima es $5",
+    "minDhbPurchase": "La compra mínima de DHB es $0.50",
     "youPay": "Pagas",
     "youReceive": "Recibes (est.)",
     "paymentMethod": "Método de pago",
