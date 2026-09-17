@@ -3033,6 +3033,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Permainan yang berjalan terus dalam apl ini. Tiada pemasangan, tiada pembelian — sumber terbuka dan dihidangkan oleh DeHub sendiri."
   },
   "usernames": {

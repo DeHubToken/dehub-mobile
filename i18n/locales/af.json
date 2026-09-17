@@ -2888,6 +2888,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Speletjies wat reg hier in die app loop. Niks om te installeer nie, niks om te koop nie — oopbron, en bedien vanaf DeHub self."
   },
   "usernames": {

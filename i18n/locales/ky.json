@@ -2765,6 +2765,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Ушул колдонмонун ичинде эле иштеген оюндар. Орното турган да, сатып ала турган да эч нерсе жок — ачык булак, DeHub'тун өзү тартуулайт."
   },
   "usernames": {

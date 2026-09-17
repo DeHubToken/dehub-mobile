@@ -80,13 +80,13 @@ const ArcadeScreen = () => {
 
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel="Submit a game to the arcade"
+          accessibilityLabel={t("arcade.submitAccessibility")}
           onPress={() => Linking.openURL(`${WEBSITE_LINK}/arcade?submit=1`)}
           style={({ pressed }) => [styles.submitCard, pressed && styles.cardPressed]}
         >
-          <Text style={styles.submitTitle}>Made a game?</Text>
-          <Text style={styles.submitDescription}>Send us a playable link for review.</Text>
-          <Text style={styles.submitAction}>Submit a game →</Text>
+          <Text style={styles.submitTitle}>{t("arcade.submitTitle")}</Text>
+          <Text style={styles.submitDescription}>{t("arcade.submitDescription")}</Text>
+          <Text style={styles.submitAction}>{t("arcade.submitAction")}</Text>
         </Pressable>
 
         {ARCADE_GAMES.map((game) => (

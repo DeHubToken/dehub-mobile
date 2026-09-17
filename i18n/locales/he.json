@@ -2759,6 +2759,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "משחקים שרצים כאן ממש באפליקציה. אין מה להתקין, אין מה לקנות — קוד פתוח, ומוגשים מ-DeHub עצמה."
   },
   "usernames": {

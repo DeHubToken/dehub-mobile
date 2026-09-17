@@ -2730,6 +2730,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Game sing mlaku langsung ing aplikasi iki. Ora ana sing kudu diinstal, ora ana sing kudu dituku — sumber terbuka, lan disedhiyakake dening DeHub dhewe."
   },
   "usernames": {

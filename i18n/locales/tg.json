@@ -2753,6 +2753,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Бозиҳое, ки маҳз дар ҳамин барнома кор мекунанд. Чизе барои насб кардан нест, чизе барои харидан нест — манбаи кушода ва аз ҷониби худи DeHub пешниҳод мешавад."
   },
   "usernames": {

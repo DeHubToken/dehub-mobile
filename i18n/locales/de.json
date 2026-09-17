@@ -2785,6 +2785,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Spiele, die direkt hier in der App laufen. Nichts zu installieren, nichts zu kaufen – Open Source und von DeHub selbst ausgeliefert."
   },
   "usernames": {

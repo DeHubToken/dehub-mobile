@@ -2730,6 +2730,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "ألعاب تشتغل هنا جوّه التطبيق نفسه. ماكو شي ينتصب ولا شي ينشرى — مفتوحة المصدر، وDeHub نفسه يقدمها."
   },
   "usernames": {

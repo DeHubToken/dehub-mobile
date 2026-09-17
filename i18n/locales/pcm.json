@@ -2666,6 +2666,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Games wey dey run right here for di app. Nothing to install, nothing to buy — open source, and na DeHub dey serve am."
   },
   "usernames": {

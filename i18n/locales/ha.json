@@ -2761,6 +2761,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Wasanni da ke gudana a nan cikin manhajar. Babu abin shigarwa, babu abin siya — buɗaɗɗen tushe, kuma DeHub kanta ke bayarwa."
   },
   "usernames": {

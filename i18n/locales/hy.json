@@ -2770,6 +2770,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Խաղեր, որոնք աշխատում են հենց այստեղ՝ հավելվածում։ Ոչինչ տեղադրելու կամ գնելու կարիք չկա — բաց կոդով և մատուցվում են հենց DeHub-ի կողմից։"
   },
   "usernames": {

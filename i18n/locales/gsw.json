@@ -2760,6 +2760,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Spiil wo grad da i de App laufe. Nüt z'installiere, nüt z'chaufe — Open Source, und vo DeHub sälber usgliferet."
   },
   "usernames": {

@@ -2771,6 +2771,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Michezo inayoendeshwa hapa hapa kwenye programu. Hakuna cha kusakinisha, hakuna cha kununua — chanzo huria, na inatolewa na DeHub yenyewe."
   },
   "usernames": {

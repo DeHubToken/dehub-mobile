@@ -3038,6 +3038,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Games die hier direct in de app draaien. Niets te installeren, niets te kopen — opensource en geserveerd vanaf DeHub zelf."
   },
   "usernames": {

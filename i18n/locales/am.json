@@ -2777,6 +2777,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "እዚሁ በመተግበሪያው ውስጥ የሚሠሩ ጨዋታዎች። የሚጫን ነገር የለም፣ የሚገዛ ነገር የለም — ክፍት ምንጭ፣ እና ከDeHub ራሱ የሚቀርብ።"
   },
   "usernames": {
