@@ -4144,5 +4144,29 @@
     "externalLiveHint": "हालाँकि, बाहरी प्रोग्रामिंग के उपयोग के लिए आपके कंप्यूटर के उपयोग की अनुमति है । हां, Analiv Tablets आपके लिए सुरक्षित है ।",
     "externalHint": "नीचे दिए गए विवरण के उपयोग के साथ अपना स्ट्रीमिंग सॉफ़्टवेयर जोड़ें, फिर प्रसारण शुरू करें ।",
     "useInAppCamera": "हल - इन - एप्लिकेशन कैमरा के बजाय"
+  },
+  "nearBuy": {
+    "description": "Use any payment token supported by NEAR Intents. DHB arrives on Base.",
+    "dhbAmount": "DHB to receive",
+    "search": "Search token or chain",
+    "onChain": "on {{chain}}",
+    "refundAddress": "Your {{chain}} refund address",
+    "refundPlaceholder": "Address on the payment chain",
+    "refundHint": "Failed payments return to this address.",
+    "quoteSummary": "Send {{amount}} {{symbol}} on {{chain}}",
+    "quoteEstimate": "Receive {{amount}} DHB · Estimated {{minutes}} min",
+    "getQuote": "Get crypto quote",
+    "sendExact": "Send exactly {{amount}} {{symbol}} on {{chain}}.",
+    "copyPayment": "Tap to copy payment address",
+    "memoNotice": "Include this memo with your payment:",
+    "copyMemo": "Tap to copy memo",
+    "delivered": "DHB delivered",
+    "settled": "Crypto settled. Delivering DHB…",
+    "status": "Status: {{status}}",
+    "expires": "Address expires {{date}}.",
+    "startAnother": "Start another purchase",
+    "tokensError": "Payment tokens are unavailable",
+    "quoteError": "Could not price this purchase",
+    "intentError": "Could not open this purchase"
   }
 }

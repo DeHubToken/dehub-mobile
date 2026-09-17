@@ -4216,5 +4216,29 @@
     "externalLiveHint": "ការផ្សាយបន្តផ្ទាល់របស់អ្នកត្រូវបានផ្សាយបន្តផ្ទាល់តាមរយៈកម្មវិធីខាងក្រៅ ។ កាមេរ៉ាក្នុងកម្មវិធីត្រូវបានបិទ ។",
     "externalHint": "ភ្ជាប់សូហ្វវែរស្ទ្រីមរបស់អ្នកដោយប្រើព័ត៌មានលម្អិតខាងក្រោម បន្ទាប់មកចាប់ផ្តើមការផ្សាយ ។",
     "useInAppCamera": "ប្រើកាមេរ៉ាក្នុងកម្មវិធីជំនួសវិញ"
+  },
+  "nearBuy": {
+    "description": "Use any payment token supported by NEAR Intents. DHB arrives on Base.",
+    "dhbAmount": "DHB to receive",
+    "search": "Search token or chain",
+    "onChain": "on {{chain}}",
+    "refundAddress": "Your {{chain}} refund address",
+    "refundPlaceholder": "Address on the payment chain",
+    "refundHint": "Failed payments return to this address.",
+    "quoteSummary": "Send {{amount}} {{symbol}} on {{chain}}",
+    "quoteEstimate": "Receive {{amount}} DHB · Estimated {{minutes}} min",
+    "getQuote": "Get crypto quote",
+    "sendExact": "Send exactly {{amount}} {{symbol}} on {{chain}}.",
+    "copyPayment": "Tap to copy payment address",
+    "memoNotice": "Include this memo with your payment:",
+    "copyMemo": "Tap to copy memo",
+    "delivered": "DHB delivered",
+    "settled": "Crypto settled. Delivering DHB…",
+    "status": "Status: {{status}}",
+    "expires": "Address expires {{date}}.",
+    "startAnother": "Start another purchase",
+    "tokensError": "Payment tokens are unavailable",
+    "quoteError": "Could not price this purchase",
+    "intentError": "Could not open this purchase"
   }
 }

@@ -4231,5 +4231,29 @@
     "externalLiveHint": "तपाईंको स्ट्रिम बाह्य सफ्टवेयर मार्फत प्रत्यक्ष छ । इन - एप क्यामेरा असक्षम गरिएको छ ।",
     "externalHint": "तलका विवरणहरू प्रयोग गरेर आफ्नो स्ट्रिमिङ सफ्टवेयर जडान गर्नुहोस्, त्यसपछि प्रसारण सुरु गर्नुहोस् ।",
     "useInAppCamera": "यसको सट्टामा इन - एप क्यामेरा प्रयोग गर्नुहोस्"
+  },
+  "nearBuy": {
+    "description": "Use any payment token supported by NEAR Intents. DHB arrives on Base.",
+    "dhbAmount": "DHB to receive",
+    "search": "Search token or chain",
+    "onChain": "on {{chain}}",
+    "refundAddress": "Your {{chain}} refund address",
+    "refundPlaceholder": "Address on the payment chain",
+    "refundHint": "Failed payments return to this address.",
+    "quoteSummary": "Send {{amount}} {{symbol}} on {{chain}}",
+    "quoteEstimate": "Receive {{amount}} DHB · Estimated {{minutes}} min",
+    "getQuote": "Get crypto quote",
+    "sendExact": "Send exactly {{amount}} {{symbol}} on {{chain}}.",
+    "copyPayment": "Tap to copy payment address",
+    "memoNotice": "Include this memo with your payment:",
+    "copyMemo": "Tap to copy memo",
+    "delivered": "DHB delivered",
+    "settled": "Crypto settled. Delivering DHB…",
+    "status": "Status: {{status}}",
+    "expires": "Address expires {{date}}.",
+    "startAnother": "Start another purchase",
+    "tokensError": "Payment tokens are unavailable",
+    "quoteError": "Could not price this purchase",
+    "intentError": "Could not open this purchase"
   }
 }
