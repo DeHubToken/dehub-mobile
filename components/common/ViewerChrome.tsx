@@ -44,6 +44,17 @@ export const CHROME_FILL = "#18181B";
  */
 export const CHROME_FILL_SHEER = "rgba(0,0,0,0.20)";
 /**
+ * A touch more than sheer, for the row at the foot of the screen.
+ *
+ * The header sits on the top gradient and can be almost clear. The
+ * composer and its buttons sit on the picture itself, below where the
+ * bottom scrim has any weight, so they carry their own — the same black/40
+ * and hairline the web viewer gives them.
+ */
+export const CHROME_FILL_GLASS = "rgba(0,0,0,0.40)";
+/** The hairline around that glass, as `border-white/15` on the web. */
+export const CHROME_HAIRLINE = "rgba(255,255,255,0.15)";
+/**
  * Takes the 40pt buttons past the 44pt tap minimum. The horizontal half is
  * exactly CHROME_GAP / 2, so neighbours in a group meet at the midpoint of the
  * gap instead of overlapping and stealing each other's taps.
@@ -78,10 +89,11 @@ export const TEXT_SHADOW = {
  * re-snapshots the root view every frame and throws when a list mutates its
  * children mid-draw, which is fatal on chrome pinned over a recycling feed.
  */
-export const ChromeFill: React.FC<{ radius?: number; sheer?: boolean }> = ({
-  radius,
-  sheer,
-}) => (
+export const ChromeFill: React.FC<{
+  radius?: number;
+  sheer?: boolean;
+  glass?: boolean;
+}> = ({ radius, sheer, glass }) => (
   <View
     pointerEvents="none"
     style={[
@@ -93,7 +105,13 @@ export const ChromeFill: React.FC<{ radius?: number; sheer?: boolean }> = ({
     <View
       style={[
         StyleSheet.absoluteFill,
-        { backgroundColor: sheer ? CHROME_FILL_SHEER : CHROME_FILL },
+        {
+          backgroundColor: glass
+            ? CHROME_FILL_GLASS
+            : sheer
+              ? CHROME_FILL_SHEER
+              : CHROME_FILL,
+        },
       ]}
     />
   </View>

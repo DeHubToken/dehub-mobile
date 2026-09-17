@@ -33,7 +33,7 @@ import {
   CHROME_GAP,
   CHROME_HIT_SLOP,
   CHROME_RADIUS,
-  CHROME_SIZE,
+  CHROME_HAIRLINE,
   EDGE,
   TEXT_SHADOW,
 } from "../common/ViewerChrome";
@@ -47,6 +47,9 @@ const REACTION_OPTIONS: { type: ReactionType; emoji: string }[] = [
 ];
 
 const COOLDOWN_MS = 400;
+
+/** The height of everything on the bottom row, and on the header above it. */
+const BAR_SIZE = 48;
 
 interface Props {
   /** Chat */
@@ -145,7 +148,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
     <View style={{ marginBottom: lift }} pointerEvents="box-none">
       {reactionsOpen && isLive ? (
         <Pressable style={styles.reactionStrip} onPress={closeReactions}>
-          <ChromeFill sheer />
+          <ChromeFill glass />
           {REACTION_OPTIONS.map((opt) => (
             <Pressable
               key={opt.type}
@@ -165,7 +168,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
 
       <View style={styles.row} pointerEvents="box-none">
         <View style={styles.inputWrap}>
-          <ChromeFill sheer />
+          <ChromeFill glass />
           <TextInput
             value={message}
             onChangeText={setMessage}
@@ -209,7 +212,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
               accessibilityLabel={t("postOptions.sendTip", { defaultValue: "Send Tip" })}
               style={styles.circle}
             >
-              <ChromeFill sheer />
+              <ChromeFill glass />
               <Icon name="Gift" size={19} color="#fff" strokeWidth={1.8} />
             </Pressable>
           ) : null}
@@ -221,7 +224,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
             accessibilityLabel={t("postOptions.share", { defaultValue: "Share" })}
             style={styles.circle}
           >
-            <ChromeFill sheer />
+            <ChromeFill glass />
             <Icon name="Share2" size={19} color="#fff" strokeWidth={1.8} />
           </Pressable>
 
@@ -235,7 +238,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
             accessibilityLabel={isLiked ? "Unlike" : "Like"}
             style={[styles.circle, !isLive ? styles.dim : null]}
           >
-            <ChromeFill sheer />
+            <ChromeFill glass />
             <Icon
               name="ThumbsUp"
               size={19}
@@ -267,12 +270,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
   },
+  /**
+   * 48 with a hairline, matching the buttons beside it and the header
+   * above it. This row sits on the picture rather than on the bottom
+   * scrim, so unlike the header's chrome it carries its own contrast —
+   * the same black/40 and white/15 the web viewer gives the composer.
+   */
   inputWrap: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    height: CHROME_SIZE,
+    height: BAR_SIZE,
+    borderWidth: 1,
+    borderColor: CHROME_HAIRLINE,
     borderRadius: CHROME_RADIUS,
+
     paddingLeft: 16,
     paddingRight: 6,
     gap: 4,
@@ -291,8 +303,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   circle: {
-    width: CHROME_SIZE,
-    height: CHROME_SIZE,
+    width: BAR_SIZE,
+    height: BAR_SIZE,
+    borderWidth: 1,
+    borderColor: CHROME_HAIRLINE,
     borderRadius: CHROME_RADIUS,
     alignItems: "center",
     justifyContent: "center",
@@ -313,7 +327,9 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     flexDirection: "row",
     alignItems: "center",
-    height: CHROME_SIZE,
+    height: BAR_SIZE,
+    borderWidth: 1,
+    borderColor: CHROME_HAIRLINE,
     borderRadius: CHROME_RADIUS,
     marginRight: EDGE,
     marginBottom: 8,
@@ -322,7 +338,7 @@ const styles = StyleSheet.create({
   },
   reactionCell: {
     width: 38,
-    height: CHROME_SIZE,
+    height: BAR_SIZE,
     alignItems: "center",
     justifyContent: "center",
   },
