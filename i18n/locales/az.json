@@ -2759,6 +2759,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Elə burada, tətbiqin içində işləyən oyunlar. Quraşdırmağa, almağa heç nə yoxdur — açıq mənbə və birbaşa DeHub-dan verilir."
   },
   "usernames": {

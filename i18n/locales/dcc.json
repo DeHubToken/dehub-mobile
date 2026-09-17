@@ -2620,6 +2620,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "کھیل جو یہیں ایپ میں چلتے ہیں۔ لگانے کو کچھ نکو، خریدنے کو کچھ نکو — اوپن سورس، اور DeHub خود دیتا ہے۔"
   },
   "usernames": {

@@ -2787,6 +2787,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "खेल जऊन ह इहें ऐप म चलथे। इंस्टॉल करे के कुछु नइ हे, बिसाय के कुछु नइ हे — ओपन सोर्स, अउ DeHub खुदे देथे।"
   },
   "usernames": {

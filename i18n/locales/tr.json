@@ -2784,6 +2784,10 @@
     "pageSaveFailed": "Davet sayfası kaydedilemedi"
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Doğrudan uygulamanın içinde çalışan oyunlar. Kurulacak bir şey yok, satın alınacak bir şey yok — açık kaynak ve DeHub'ın kendisinden sunuluyor."
   },
   "usernames": {

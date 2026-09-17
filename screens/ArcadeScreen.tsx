@@ -11,7 +11,7 @@
  * the grid is a list, so restoring a game there is the whole change.
  */
 import React, { useCallback } from "react";
-import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Pressable, ScrollView, Linking } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -21,6 +21,7 @@ import { TrenchstarIcon } from "../components/trenchstar/TrenchstarIcon";
 import ScreenHeader from "../components/ScreenHeader";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { ARCADE_GAMES, type ArcadeGame } from "../config/arcade-games";
+import { WEBSITE_LINK } from "../config/links";
 import { colors } from "../theme/colors";
 
 const GameCard = ({ game, onPress }: { game: ArcadeGame; onPress: (slug: string) => void }) => (
@@ -77,6 +78,17 @@ const ArcadeScreen = () => {
       >
         <Text style={styles.intro}>{t("arcade.intro")}</Text>
 
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={t("arcade.submitAccessibility")}
+          onPress={() => Linking.openURL(`${WEBSITE_LINK}/arcade?submit=1`)}
+          style={({ pressed }) => [styles.submitCard, pressed && styles.cardPressed]}
+        >
+          <Text style={styles.submitTitle}>{t("arcade.submitTitle")}</Text>
+          <Text style={styles.submitDescription}>{t("arcade.submitDescription")}</Text>
+          <Text style={styles.submitAction}>{t("arcade.submitAction")}</Text>
+        </Pressable>
+
         {ARCADE_GAMES.map((game) => (
           <GameCard key={game.slug} game={game} onPress={openGame} />
         ))}
@@ -95,6 +107,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
     marginBottom: 2,
   },
+  submitCard: {
+    borderRadius: 16,
+    padding: 16,
+    backgroundColor: "#18181B",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.15)",
+    gap: 5,
+  },
+  submitTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "600" },
+  submitDescription: { color: "#A1A1AA", fontSize: 12 },
+  submitAction: { color: "#FFFFFF", fontSize: 12, fontWeight: "600", marginTop: 5 },
   card: {
     borderRadius: 16,
     overflow: "hidden",

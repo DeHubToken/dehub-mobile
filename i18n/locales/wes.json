@@ -2682,6 +2682,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Game dem weh dem di run rait hia fo di app. Notin for install, notin for buy — open source, an na DeHub sef di serv-am."
   },
   "usernames": {

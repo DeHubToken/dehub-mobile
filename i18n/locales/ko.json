@@ -2786,6 +2786,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "앱 안에서 바로 실행되는 게임. 설치할 것도 살 것도 없습니다 — 오픈소스이며 DeHub에서 직접 제공합니다."
   },
   "usernames": {

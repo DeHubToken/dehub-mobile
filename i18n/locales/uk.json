@@ -3250,6 +3250,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Ігри, що працюють просто в застосунку. Нічого не треба встановлювати чи купувати — відкритий код, роздаються самим DeHub."
   },
   "usernames": {

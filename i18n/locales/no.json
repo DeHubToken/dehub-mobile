@@ -2767,6 +2767,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Spill som kjører rett her i appen. Ingenting å installere, ingenting å kjøpe — åpen kildekode og servert fra DeHub selv."
   },
   "usernames": {

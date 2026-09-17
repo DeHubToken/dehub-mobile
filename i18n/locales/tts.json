@@ -2730,6 +2730,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "เกมที่แล่นอยู่ในแอปนี้เลย บ่ต้องติดตั้ง บ่ต้องซื้อ — โอเพนซอร์ส และ DeHub เป็นผู้ให้เอง"
   },
   "usernames": {

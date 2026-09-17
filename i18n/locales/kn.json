@@ -2780,6 +2780,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "ಇಲ್ಲೇ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲೇ ಚಲಿಸುವ ಆಟಗಳು. ಸ್ಥಾಪಿಸಲು ಏನೂ ಇಲ್ಲ, ಖರೀದಿಸಲು ಏನೂ ಇಲ್ಲ — ಮುಕ್ತ ಮೂಲ, ಮತ್ತು DeHub ನಿಂದಲೇ ಒದಗಿಸಲಾಗಿದೆ."
   },
   "usernames": {

@@ -2786,6 +2786,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "ဤအက်ပ်ထဲမှာပင် တိုက်ရိုက်ဆော့နိုင်သော ဂိမ်းများ။ ထည့်သွင်းစရာ မလို၊ ဝယ်စရာ မလို — အရင်းအမြစ်ဖွင့်ဖြစ်ပြီး DeHub ကိုယ်တိုင် ပံ့ပိုးပေးသည်။"
   },
   "usernames": {

@@ -2775,6 +2775,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Hry, které běží přímo tady v aplikaci. Nic k instalaci, nic ke koupi — otevřený kód a servírované přímo DeHubem."
   },
   "usernames": {

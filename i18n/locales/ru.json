@@ -2788,6 +2788,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Игры, которые работают прямо в приложении. Ничего не нужно устанавливать и покупать — открытый код, раздаются самим DeHub."
   },
   "usernames": {

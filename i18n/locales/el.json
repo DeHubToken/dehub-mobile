@@ -2800,6 +2800,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "Παιχνίδια που τρέχουν εδώ μέσα στην εφαρμογή. Τίποτα να εγκαταστήσετε, τίποτα να αγοράσετε — ανοιχτού κώδικα και σερβίρονται από το ίδιο το DeHub."
   },
   "usernames": {

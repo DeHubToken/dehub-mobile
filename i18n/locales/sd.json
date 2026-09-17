@@ -2756,6 +2756,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "راندين جيڪي هتي ئي ايپ ۾ هلن ٿيون. ڪجهه انسٽال ڪرڻ جي ضرورت ناهي، ڪجهه خريد ڪرڻ جي ضرورت ناهي — اوپن سورس، ۽ DeHub پاڻ فراهم ڪري ٿو."
   },
   "usernames": {

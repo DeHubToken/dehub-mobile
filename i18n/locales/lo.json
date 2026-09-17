@@ -2736,6 +2736,10 @@
     }
   },
   "arcade": {
+    "submitAccessibility": "Submit a game to the arcade",
+    "submitTitle": "Made a game?",
+    "submitDescription": "Send us a playable link for review.",
+    "submitAction": "Submit a game →",
     "intro": "ເກມທີ່ແລ່ນຢູ່ໃນແອັບນີ້ເລີຍ. ບໍ່ຕ້ອງຕິດຕັ້ງ, ບໍ່ຕ້ອງຊື້ — ໂອເພນຊອດ, ແລະ DeHub ເປັນຜູ້ໃຫ້ບໍລິການເອງ."
   },
   "usernames": {
