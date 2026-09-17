@@ -35,6 +35,22 @@ interface AAChainInfo {
 // (Ethereum mainnet, old testnets, ...) falls through to the plain EOA path -- same
 // coverage as web (CHAIN_CONFIGS in src/lib/contracts/dhb-token.ts).
 const AA_CHAIN_CONFIGS: Record<number, AAChainInfo> = {
+  1: {
+    chainId: "0x1",
+    rpcTarget: "https://ethereum-rpc.publicnode.com",
+    displayName: "Ethereum",
+    blockExplorerUrl: "https://etherscan.io",
+    ticker: "ETH",
+    tickerName: "Ethereum",
+  },
+  4663: {
+    chainId: "0x1237",
+    rpcTarget: "https://rpc.mainnet.chain.robinhood.com",
+    displayName: "Robinhood Chain",
+    blockExplorerUrl: "https://robinhoodchain.blockscout.com",
+    ticker: "ETH",
+    tickerName: "Ethereum",
+  },
   [BASE_CHAIN_ID]: {
     chainId: "0x2105",
     // Same endpoints web uses (src/lib/smart-wallet.ts). These were the public
