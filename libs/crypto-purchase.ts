@@ -9,8 +9,8 @@ export interface PaymentAsset {
 }
 
 const FEATURED_PAYMENTS = [
-  ['ETH', 'base'], ['USDC', 'base'], ['USDT', 'base'],
-  ['BTC', 'btc'], ['SOL', 'sol'], ['BNB', 'bsc'],
+  ['ETH', 'base'], ['BNB', 'bsc'], ['SOL', 'sol'],
+  ['USDT', 'base'], ['USDC', 'base'],
 ] as const;
 
 export function featuredPaymentAssets(assets: PaymentAsset[]): PaymentAsset[] {

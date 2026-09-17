@@ -62,7 +62,10 @@ describe('crypto purchase lifecycle', () => {
       { assetId: 'usdc-base', symbol: 'USDC', blockchain: 'base', decimals: 6 },
       { assetId: 'eth-base', symbol: 'ETH', blockchain: 'base', decimals: 18 },
       { assetId: 'eth-near', symbol: 'ETH', blockchain: 'near', decimals: 18 },
+      { assetId: 'bnb-bsc', symbol: 'BNB', blockchain: 'bsc', decimals: 18 },
+      { assetId: 'sol-sol', symbol: 'SOL', blockchain: 'sol', decimals: 9 },
+      { assetId: 'usdt-base', symbol: 'USDT', blockchain: 'base', decimals: 6 },
     ];
-    expect(featuredPaymentAssets(assets).map(asset => asset.assetId)).toEqual(['eth-base', 'usdc-base']);
+    expect(featuredPaymentAssets(assets).map(asset => asset.assetId)).toEqual(['eth-base', 'bnb-bsc', 'sol-sol', 'usdt-base', 'usdc-base']);
   });
 });
