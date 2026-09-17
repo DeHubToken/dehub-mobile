@@ -574,7 +574,31 @@
     "kidsModeTurnOff": "Uşaq Rejimini qeyri-aktiv edin",
     "kidsModePinMismatch": "Həmin PIN kodlar fərqlidir. Yenidən başlayın.",
     "kidsModeFailed": "Bu alınmadı. Yenidən cəhd edin.",
-    "kidsModeForgotPin": "Unutmusunuz? Uşaqlar Rejimini söndürmək üçün başqa bir cihazda cüzdanınızla daxil olun."
+    "kidsModeForgotPin": "Unutmusunuz? Uşaqlar Rejimini söndürmək üçün başqa bir cihazda cüzdanınızla daxil olun.",
+    "streamKey": {
+      "section": "Yayım açarı",
+      "blurb": "Bunları OBS, tutma proqramınız və ya konsolunuza bir dəfə yapışdırın. Onlar heç vaxt dəyişmir — kodlayıcınızda Başla düyməsini basın və DeHub sizin üçün canlı post yaradacaq.",
+      "server": "Server",
+      "key": "Yayım açarı",
+      "copyServer": "Serveri kopyala",
+      "copyKey": "Yayım açarını kopyala",
+      "reveal": "Yayım açarını göstər",
+      "hide": "Yayım açarını gizlə",
+      "copyFailed": "Kopyalana bilmədi",
+      "keyWarning": "Bu açarı tutan hər kəs sizin kimi yayımlaya bilər. Heç vaxt yayıma göstərməyin.",
+      "defaultTitle": "Defolt yayım başlığı",
+      "defaultTitlePlaceholder": "Kodlayıcınızın yayımları belə adlanır",
+      "defaultTitleHint": "Əvvəlcə post qurmadan kodlayıcıdan yayıma keçdiyiniz zaman istifadə olunur.",
+      "titleSaved": "Saxlanıldı",
+      "titleFailed": "Başlığı saxlamaq mümkün olmadı",
+      "rotate": "Yayım açarını sıfırla",
+      "rotateConfirm": "Yeni yayım açarı verilsin? Köhnə açardan istifadə edən hər bir kodlayıcı yeni açarı yapışdırana qədər işləməyi dayandıracaq.",
+      "rotated": "Yeni yayım açarı verildi",
+      "rotateFailed": "Yeni açar verilə bilmədi",
+      "unavailable": "Hesabınızda hazırda kodlayıcıdan yayımlamaq mümkün deyil.",
+      "serverCopied": "Server kopyalandı",
+      "keyCopied": "Axın açarı kopyalandı"
+    }
   },
   "common": {
     "mute": "Səssiz et",

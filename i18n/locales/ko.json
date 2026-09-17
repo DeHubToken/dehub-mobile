@@ -597,7 +597,31 @@
     "kidsModeTurnOff": "키즈 모드 끄기",
     "kidsModePinMismatch": "PIN이 다릅니다. 다시 시작하세요.",
     "kidsModeFailed": "실패했습니다. 다시 시도하세요.",
-    "kidsModeForgotPin": "잊어버리셨나요? 다른 기기에서 지갑으로 로그인하여 키즈 모드를 끄세요."
+    "kidsModeForgotPin": "잊어버리셨나요? 다른 기기에서 지갑으로 로그인하여 키즈 모드를 끄세요.",
+    "streamKey": {
+      "section": "스트림 키",
+      "blurb": "이것들을 OBS, 캡처 앱 또는 콘솔에 한 번 붙여넣으세요. 절대 변경되지 않습니다. 인코더에서 시작을 누르면 DeHub가 라이브 게시물을 만들어 드립니다.",
+      "server": "서버",
+      "key": "스트림 키",
+      "copyServer": "서버 복사",
+      "copyKey": "스트림 키 복사",
+      "reveal": "스트림 키 보기",
+      "hide": "스트림 키 숨기기",
+      "copyFailed": "복사할 수 없음",
+      "keyWarning": "이 키를 가진 사람은 누구나 당신으로서 방송할 수 있습니다. 스트림에서 절대 보여주지 마세요.",
+      "defaultTitle": "기본 스트림 제목",
+      "defaultTitlePlaceholder": "인코더 스트림의 이름",
+      "defaultTitleHint": "게시물을 먼저 설정하지 않고 인코더에서 라이브를 시작할 때 사용됩니다.",
+      "titleSaved": "저장됨",
+      "titleFailed": "제목을 저장할 수 없음",
+      "rotate": "스트림 키 재설정",
+      "rotateConfirm": "새 스트림 키를 발급하시겠습니까? 이전 키를 사용하는 모든 인코더는 새 키를 붙여넣기 전까지 작동을 멈춥니다.",
+      "rotated": "새 스트림 키가 발급되었습니다.",
+      "rotateFailed": "새 키를 발급할 수 없음",
+      "unavailable": "현재 계정에서는 인코더로 스트리밍할 수 없습니다.",
+      "serverCopied": "서버 복사 완료",
+      "keyCopied": "스트림 키 복사됨"
+    }
   },
   "common": {
     "mute": "음소거",

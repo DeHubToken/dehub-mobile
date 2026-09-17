@@ -585,7 +585,31 @@
     "kidsModeTurnOff": "Desactiva el mode nens",
     "kidsModePinMismatch": "Aquests PIN són diferents. Torna a començar.",
     "kidsModeFailed": "No ha funcionat. Torna-ho a provar.",
-    "kidsModeForgotPin": "Ho has oblidat? Inicia sessió amb la teva cartera en un altre dispositiu per desactivar el mode nens."
+    "kidsModeForgotPin": "Ho has oblidat? Inicia sessió amb la teva cartera en un altre dispositiu per desactivar el mode nens.",
+    "streamKey": {
+      "section": "Clau de transmissió",
+      "blurb": "Enganxa-les a OBS, a la teva aplicació de captura o a la teva consola una vegada. Mai canvien: prem \"Començar\" al teu codificador i DeHub crea la publicació en directe per a tu.",
+      "server": "Servidor",
+      "key": "Clau de transmissió",
+      "copyServer": "Copia el servidor",
+      "copyKey": "Copia la clau de transmissió",
+      "reveal": "Mostra la clau de transmissió",
+      "hide": "Oculta la clau de transmissió",
+      "copyFailed": "No s'ha pogut copiar",
+      "keyWarning": "Qualsevol persona que tingui aquesta clau pot emetre com tu. No la mostris mai a la transmissió.",
+      "defaultTitle": "Títol de transmissió per defecte",
+      "defaultTitlePlaceholder": "Com s'anomenen les teves transmissions del codificador",
+      "defaultTitleHint": "S'utilitza quan comences una transmissió des d'un codificador sense configurar una publicació primer.",
+      "titleSaved": "Desat",
+      "titleFailed": "No s'ha pogut desar el títol",
+      "rotate": "Restableix la clau de transmissió",
+      "rotateConfirm": "Vols emetre una nova clau de transmissió? Tots els codificadors que utilitzin l'antiga deixaran de funcionar fins que enganxis la nova clau.",
+      "rotated": "Nova clau de transmissió emesa",
+      "rotateFailed": "No s'ha pogut emetre una nova clau",
+      "unavailable": "La transmissió des d'un codificador no està disponible al teu compte ara mateix.",
+      "serverCopied": "Servidor copiat",
+      "keyCopied": "S'ha copiat la clau del flux"
+    }
   },
   "common": {
     "mute": "Silencia",

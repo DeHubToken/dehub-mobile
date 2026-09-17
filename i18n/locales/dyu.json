@@ -571,7 +571,31 @@
     "kidsModeTurnOff": "Aw ye denmisɛnw bila ka bɔ u ka sira kan",
     "kidsModePinMismatch": "O kɔ, u y'a daminɛ ka dɔ fara a kan.",
     "kidsModeFailed": "N'i ma siran, o be yɛlɛma ka kɛ ten.",
-    "kidsModeForgotPin": "I ka wari bila baarakɛminan wɛrɛ kan walisa ka denmisɛnw bali ka baara kɛ."
+    "kidsModeForgotPin": "I ka wari bila baarakɛminan wɛrɛ kan walisa ka denmisɛnw bali ka baara kɛ.",
+    "streamKey": {
+      "section": "Fɛɛn min be se ka kɛ sababu ye ka",
+      "blurb": "I be se k'o kɛ siɲɛ kelen OBS, i ka app wala i ka konsoli kɔnɔ. U tɛ yɛlɛma abada — Start in your encoder ani DeHub be to ka to ka to ka to ka to ka to ka to ka baara kɛ i ye.",
+      "server": "Ka baara kɛ ni baaradenw ye",
+      "key": "Fɛɛn min be se ka kɛ sababu ye ka",
+      "copyServer": "Kɔrɔbɔli min be sɔrɔ a ka baara la",
+      "copyKey": "Copy stream key ka baara kɛ",
+      "reveal": "Fɛɛn min be se k'a to a be se ka yɛlɛma",
+      "hide": "Fanga min be mɔgɔ la, o ye ka to ka to ka to",
+      "copyFailed": "A tun tɛ se ka kopi kɛ",
+      "keyWarning": "Mɔgɔ o mɔgɔ be se k'o kɛ, o tigi be se k'o kɛ i n'a fɔ i yɛrɛ. O tɛ se ka kɛ sababu ye mɔgɔ tɛ se ka koo jugu kɛ.",
+      "defaultTitle": "Fanga min be sɔrɔ o la, o ye ka to ka to ka",
+      "defaultTitlePlaceholder": "I tɔgɔ be min na, o ye nin ye:",
+      "defaultTitleHint": "N'i be taga yɔrɔ dɔ la, i ka baara kɛ n'o ye.",
+      "titleSaved": "An kisira",
+      "titleFailed": "Ne tɛ se ka n tɔgɔ kisi",
+      "rotate": "Fɛɛn min be se k'a to a be se ka yɛlɛma",
+      "rotateConfirm": "Mun na jɔnjɔn dɔ lo? Mɔgɔ minw be baara kɛ ni kɔrɔman ye, olu bɛɛ bena ban ka baara kɛ fɔɔ aw ka yɛlɛyɔrɔ kura don.",
+      "rotated": "Fɛɛn kura min be se ka kɛ sababu ye ka mɔgɔ ka koo ɲɛnabɔ",
+      "rotateFailed": "Ne ma se ka n ka konnɛgɛ sɔrɔ",
+      "unavailable": "I ka ladɛrɛsi tɛ sɔrɔ i ka ladɛrɛsi la sisan.",
+      "serverCopied": "Kopiw",
+      "keyCopied": "Riviera Maison Key Copy"
+    }
   },
   "common": {
     "mute": "Kan bɔ",

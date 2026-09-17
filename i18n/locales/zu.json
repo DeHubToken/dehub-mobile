@@ -583,7 +583,31 @@
     "kidsModeTurnOff": "Vala Imodi Yezingane",
     "kidsModePinMismatch": "Lawo ma-PIN ahlukile. Qala futhi.",
     "kidsModeFailed": "Lokho akuzange kusebenze. Phinda uzame.",
-    "kidsModeForgotPin": "Uyikhohliwe? Ngena ngemvume ngesikhwama sakho semali kwenye idivayisi ukuze uvale Imodi Yezingane."
+    "kidsModeForgotPin": "Uyikhohliwe? Ngena ngemvume ngesikhwama sakho semali kwenye idivayisi ukuze uvale Imodi Yezingane.",
+    "streamKey": {
+      "section": "Ushuthu lokusakaza",
+      "blurb": "Namathisela lezi ku-OBS, uhlelo lwakho lokuthwebula, noma ikhonsoli yakho kanye. Azishintshi—cindezela u-Qala ku-encoder yakho futhi i-DeHub izokudala okuthunyelwe bukhoma kuwe.",
+      "server": "Iseva",
+      "key": "Ushuthu lokusakaza",
+      "copyServer": "Kopisha iseva",
+      "copyKey": "Kopisha ushuthu lokusakaza",
+      "reveal": "Bonisa ushuthu lokusakaza",
+      "hide": "Fihla ushuthu lokusakaza",
+      "copyFailed": "Ayikwazanga ukukopisha",
+      "keyWarning": "Noma ubani onalo ushuthu angasakaza njengawe. Ungalubonisi kusakazo.",
+      "defaultTitle": "Isihloko sokusakaza esizenzakalelayo",
+      "defaultTitlePlaceholder": "Okubizwa ngakho ukusakaza kwe-encoder yakho",
+      "defaultTitleHint": "Isetshenziswa uma uqala ukusakaza kusuka ku-encoder ngaphandle kokusetha okuthunyelwe kuqala.",
+      "titleSaved": "Kugciniwe",
+      "titleFailed": "Ayikwazanga ukulondoloza isihloko",
+      "rotate": "Setha kabusha ushuthu lokusakaza",
+      "rotateConfirm": "Ufuna ukukhipha ushuthu olusha lokusakaza? Wonke ama-encoder asebenzisa okudala azoyeka ukusebenza kuze kube yilapho unamathelisa khona ushuthu olusha.",
+      "rotated": "Kukhishwe ushuthu olusha lokusakaza",
+      "rotateFailed": "Ayikwazanga ukukhipha ushuthu olusha",
+      "unavailable": "Ukusakaza kusuka ku-encoder akutholakali ku-akhawunti yakho njengamanje.",
+      "serverCopied": "Iseva ikopishiwe",
+      "keyCopied": "Ukhiye wokusakaza ukopishiwe"
+    }
   },
   "common": {
     "mute": "Thulisa",

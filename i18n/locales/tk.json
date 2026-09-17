@@ -578,7 +578,31 @@
     "kidsModeTurnOff": "Çagalary aýyr",
     "kidsModePinMismatch": "Bu PIN-ler başgaça. Täze başlaň.",
     "kidsModeFailed": "Ol ýene-de şeýle dolanyp gelýär.",
-    "kidsModeForgotPin": "Çagalar moduny söndürmek üçin başga bir esbapda pulçuk bilen ýazyl."
+    "kidsModeForgotPin": "Çagalar moduny söndürmek üçin başga bir esbapda pulçuk bilen ýazyl.",
+    "streamKey": {
+      "section": "Akym açary",
+      "blurb": "Muny OBS, surata düşüriş goşundysy ýa-da konsolyňyza bir gezek ýapyşdyryň. Olar hiç haçan üýtgeýänok — kodlaýjyda Başla düwmesini basyň we DeHub siziň üçin göni ýaýlymda ýazgyny döreder.",
+      "server": "Serwer",
+      "key": "Akym açary",
+      "copyServer": "Serweri göçüriň",
+      "copyKey": "Akym açaryny göçüriň",
+      "reveal": "Akym açaryny görkez",
+      "hide": "Akym açaryny gizle",
+      "copyFailed": "Göçirip bolmady",
+      "keyWarning": "Bu açary saklaýan islendik adam siziň adyňyzdan ýaýlyma çykyp biler. Ony ýaýlymda hiç haçan görkezme.",
+      "defaultTitle": "Akymyň adaty ady",
+      "defaultTitlePlaceholder": "Kodlaýjyňyzdan ýaýlyma çykýan zatlaryň ady",
+      "defaultTitleHint": "Ilkinji bolup ýazgy düzmän, kodlaýjyda ýaýlyma çykanyňyzda ulanylýar.",
+      "titleSaved": "Saklanan",
+      "titleFailed": "Ady saklap bolmady",
+      "rotate": "Akym açaryny täzeden düzmek",
+      "rotateConfirm": "Akym açaryny çykarmaly? Köne açary ulanýan islendik kodlaýjy täze açary ýapyşdyrýançaňyz işlemegi bes eder.",
+      "rotated": "Täze akym açary berildi",
+      "rotateFailed": "Täze açary berip bolmady",
+      "unavailable": "Kodlaýjyda ýaýlyma çykmak şu wagt siziň hasabyňyzda elýeterli däl.",
+      "serverCopied": "Serwer nusgalady",
+      "keyCopied": "Kopyalan akma açary"
+    }
   },
   "common": {
     "mute": "Sesi öçür",

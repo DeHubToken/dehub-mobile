@@ -55,6 +55,7 @@ import AssetsPanel from "../components/Settings/AssetsPanel";
 import MessagesPanel from "../components/Settings/MessagesPanel";
 import ProfilesSection from "../components/Settings/ProfilesSection";
 import EnsHandleSection from "../components/Settings/EnsHandleSection";
+import StreamKeySection from "../components/Settings/StreamKeySection";
 import {
   SettingsSection,
   SettingsLinkRow,
@@ -269,6 +270,11 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           <EnsHandleSection />
         </SettingsAnchor>
       ) : null}
+
+      {/* Permanent encoder credentials — set OBS, a capture app or a console
+          up once and never re-key it again. Under the profile rows because it
+          is an account-level credential, not a per-broadcast one. */}
+      {isSignedIn ? <StreamKeySection /> : null}
 
       <SettingsSection label={t("settings.yourContent")} icon="Film" anchor="your-content">
         <SettingsLinkRow

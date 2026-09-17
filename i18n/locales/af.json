@@ -793,7 +793,31 @@
     "kidsModeTurnOff": "Skakel die kindermodus af",
     "kidsModePinMismatch": "Daardie PIN's is anders. Begin weer.",
     "kidsModeFailed": "Dit het nie gewerk nie. Probeer weer.",
-    "kidsModeForgotPin": "Vergeet dit? Teken in met jou beursie op 'n ander toestel om Kids Mode af te skakel."
+    "kidsModeForgotPin": "Vergeet dit? Teken in met jou beursie op 'n ander toestel om Kids Mode af te skakel.",
+    "streamKey": {
+      "section": "Stroom sleutel",
+      "blurb": "Plak dit een keer in OBS, jou opname-app of jou konsole. Hulle verander nooit — druk Begin in jou enkoder en DeHub skep die regstreekse plasing vir jou.",
+      "server": "Bediener",
+      "key": "Stroom sleutel",
+      "copyServer": "Kopieer bediener",
+      "copyKey": "Kopieer stroom sleutel",
+      "reveal": "Wys stroom sleutel",
+      "hide": "Versteek stroom sleutel",
+      "copyFailed": "Kon nie kopieer nie",
+      "keyWarning": "Enigiemand wat hierdie sleutel hou, kan as jou uitsaai. Moet dit nooit op die stroom wys nie.",
+      "defaultTitle": "Verstek stroom titel",
+      "defaultTitlePlaceholder": "Waaraan jou enkoder se strome genoem word",
+      "defaultTitleHint": "Gebruik wanneer jy regstreeks vanaf 'n enkoder begin sonder om eers 'n plasing op te stel.",
+      "titleSaved": "Gered",
+      "titleFailed": "Kon nie die titel stoor nie",
+      "rotate": "Stel stroom sleutel terug",
+      "rotateConfirm": "Uitreik van 'n nuwe stroom sleutel? Elke enkoder wat die ou een gebruik, sal ophou werk totdat jy die nuwe sleutel insit.",
+      "rotated": "Nuwe stroom sleutel uitgereik",
+      "rotateFailed": "Kon nie 'n nuwe sleutel uitreik nie",
+      "unavailable": "Stroom vanaf 'n enkoder is tans nie op jou rekening beskikbaar nie.",
+      "serverCopied": "Bediener gekopieer",
+      "keyCopied": "Stroom sleutel gekopieer"
+    }
   },
   "wallet": {
     "connectUnavailable": "Koppel beursie is nie in hierdie weergawe beskikbaar nie — herstel eerder met jou herstelfrase.",

@@ -584,7 +584,31 @@
     "kidsModeTurnOff": "Bolalar rejimini o&#39;chirib qo&#39;ying",
     "kidsModePinMismatch": "PIN-kodlar boshqacha. Qaytadan boshlang.",
     "kidsModeFailed": "Bu ish bermadi. Qaytadan urinib ko&#39;ring.",
-    "kidsModeForgotPin": "Unutdingizmi? Bolalar rejimini o&#39;chirish uchun boshqa qurilmada hamyoningiz bilan tizimga kiring."
+    "kidsModeForgotPin": "Unutdingizmi? Bolalar rejimini o&#39;chirish uchun boshqa qurilmada hamyoningiz bilan tizimga kiring.",
+    "streamKey": {
+      "section": "Oqim kaliti",
+      "blurb": "Buni OBS, suratga olish ilovasi yoki konsolingizga bir marta joylashtiring. Ular hech qachon o'zgarmaydi — kodlaydigan qurilmada Boshlash tugmasini bosing va DeHub siz uchun jonli postni yaratadi.",
+      "server": "Server",
+      "key": "Oqim kaliti",
+      "copyServer": "Serverni nusxalash",
+      "copyKey": "Oqim kalitini nusxalash",
+      "reveal": "Oqim kalitini ko'rsatish",
+      "hide": "Oqim kalitini yashirish",
+      "copyFailed": "Nusxalash mumkin emas",
+      "keyWarning": "Bu kalitga ega bo'lgan har qanday kishi sizning nomingizdan efirga uzatishi mumkin. Uni hech qachon efirda ko'rsatmang.",
+      "defaultTitle": "Oqimning standart sarlavhasi",
+      "defaultTitlePlaceholder": "Kodlaydigan qurilmangiz oqimlari qanday nomlanadi",
+      "defaultTitleHint": "Oldindan postni sozlamasdan kodlaydigan qurilmadan jonli efirga chiqqaningizda ishlatiladi.",
+      "titleSaved": "Saqlandi",
+      "titleFailed": "Sarlavhani saqlab bo'lmadi",
+      "rotate": "Oqim kalitini tiklash",
+      "rotateConfirm": "Oqim kalitini chiqarish kerakmi? Eski kalitdan foydalanadigan har qanday kodlaydigan qurilma yangi kalitni joylashtirmaguningizcha ishlamay qoladi.",
+      "rotated": "Yangi oqim kaliti chiqarildi",
+      "rotateFailed": "Yangi kalitni chiqarib bo'lmadi",
+      "unavailable": "Kodlaydigan qurilmadan efirga uzatish hozirda hisobingizda mavjud emas.",
+      "serverCopied": "Server nusxalandi",
+      "keyCopied": "Oqim kaliti nusxalandi"
+    }
   },
   "common": {
     "mute": "Ovozni o‘chirish",

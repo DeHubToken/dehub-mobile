@@ -541,7 +541,31 @@
     "kidsModeTurnOff": "किड्स मोड बंद करें",
     "kidsModePinMismatch": "वे PIN अलग हैं। फिर से शुरू करें।",
     "kidsModeFailed": "यह काम नहीं आया। फिर से कोशिश करें।",
-    "kidsModeForgotPin": "भूल गए? किड्स मोड को बंद करने के लिए दूसरे डिवाइस पर अपने वॉलेट से साइन इन करें।"
+    "kidsModeForgotPin": "भूल गए? किड्स मोड को बंद करने के लिए दूसरे डिवाइस पर अपने वॉलेट से साइन इन करें।",
+    "streamKey": {
+      "section": "Stream key",
+      "blurb": "دې ته OBS، د نیولو اپلیکیشن یا کنسول کې یو ځل پیسټ کړئ. دا هیڅکله نه بدلیږي — په خپل انکوډر کې پیل فشار ورکړئ او DeHub ستاسو لپاره ژوندی پوسټ جوړوي.",
+      "server": "Server",
+      "key": "Stream key",
+      "copyServer": "Copy server",
+      "copyKey": "Copy stream key",
+      "reveal": "Show stream key",
+      "hide": "Hide stream key",
+      "copyFailed": "کاپي نشو شو",
+      "keyWarning": "هر څوک چې دا کیلي لري کولی شي ستاسو په توګه خپرونه وکړي. هیڅکله یې په سټریم کې مه ښکاره کوئ.",
+      "defaultTitle": "Default stream title",
+      "defaultTitlePlaceholder": "ستاسو انکوډر څه خپروي",
+      "defaultTitleHint": "کله چې تاسو له انکوډر څخه ژوندی شئ پرته لدې چې لومړی پوسټ تنظیم کړئ.",
+      "titleSaved": "Saved",
+      "titleFailed": "عنوان نشو خوندي کیدی",
+      "rotate": "Reset stream key",
+      "rotateConfirm": "نوی سټریم کیلي خپره کړئ؟ زاړه کاروونکي انکوډرونه به تر هغه وخته کار بند کړي تر څو چې تاسو نوې کیلي پیسټ نه کړئ.",
+      "rotated": "نوې سټریم کیلي خپره شوه",
+      "rotateFailed": "نوې کیلي خپره نشوه",
+      "unavailable": "ستاسو له حساب څخه د انکوډر څخه خپرونه اوس مهال شتون نلري.",
+      "serverCopied": "सर्वर कॉपी भेल",
+      "keyCopied": "स्ट्रीम की कॉपी भेल"
+    }
   },
   "common": {
     "mute": "आवाज बंद करा",
