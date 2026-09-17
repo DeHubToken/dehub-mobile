@@ -444,10 +444,21 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       }
       const id = (item as any).tokenId ?? (item as any).id;
       const streamRow = id == null ? undefined : liveStreams.byToken.get(String(id));
-      if (streamRow) {
-        // The post stays the source of truth for everything a post owns
-        // (text, counts, gating); the stream only answers for the broadcast.
-        out.push({ ...(item as any), stream: (item as any).stream ?? streamRow });
+      // The post stays the source of truth for everything a post owns (text,
+      // counts, gating); the stream only answers for the broadcast. The feed
+      // already joins the stream onto the row, so the post's own copy is the
+      // first choice and /live is the fallback for a row that lacks one.
+      const stream = (item as any).stream ?? streamRow;
+      if (stream) {
+        // Hide a stream that never aired, not one that has ended. /live lists
+        // only LIVE/PAUSED/SCHEDULED/OFFLINE, so keying the strand rule on
+        // "absent from /live" dropped every finished broadcast: a stream that
+        // ran for 40 minutes reached neither Home nor the Live tab, on a post
+        // that was public, undeleted and carrying a ready replay. A failed Go
+        // Live launch is still dropped, on the predicate web settled on in
+        // dehubweb#890.
+        if (!(stream as any).startedAt) continue;
+        out.push({ ...(item as any), stream });
       } else if (!liveStreams.complete) {
         out.push(item);
       }
