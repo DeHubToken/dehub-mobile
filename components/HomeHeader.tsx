@@ -91,14 +91,22 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
         >
           <Icon name="Bell" size={24} color={colors.neutrals[200]} />
           {hasUnread && (
-            // rounded-md on an 18px box read as a square block. A full pill
-            // with a black ring separates it from the bell the way the rest of
-            // the app's badges do.
             <View
-              className="absolute -top-0.5 -right-1 min-w-[18px] h-[18px] px-[5px] bg-white rounded-full border-[1.5px] border-black items-center justify-center"
+              style={{
+                position: "absolute",
+                top: -6,
+                right: -8,
+                minWidth: 18,
+                height: 18,
+                paddingHorizontal: 4,
+                backgroundColor: "#ef4444",
+                borderRadius: 6,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
               pointerEvents="none"
             >
-              <Text className="text-zinc-950 text-[10px] font-bold leading-[12px]">
+              <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700", lineHeight: 12, textAlign: "center" }}>
                 {unreadCount > 99 ? "99+" : unreadCount}
               </Text>
             </View>
