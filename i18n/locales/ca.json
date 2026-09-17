@@ -4186,5 +4186,15 @@
     "ttsLabel": "Digues alguna cosa en veu alta",
     "ttsPlaceholder": "Llegiu el flux...",
     "ttsHint": "Llegiu en veu alta a tothom que estigui mirant quan arribi el vostre regal."
+  },
+  "goLive": {
+    "streamKey": "Clau de transmissió",
+    "ingestUrl": "URL d'ingestió",
+    "encoderPermanentHint": "Aquesta clau no canvia mai. Configura el codificador una vegada: la propera vegada només has de prémer Comença i DeHub crearà la publicació per a tu.",
+    "externalLiveTitle": "TRANSMISSIÓ DES D'UN DISPOSITIU EXTERN",
+    "externalTitle": "Mode de transmissió externa",
+    "externalLiveHint": "La transmissió és en directe a través de programari extern. La càmera de l'aplicació està desactivada.",
+    "externalHint": "Connecta el programari de transmissió mitjançant les dades següents i, a continuació, comença a emetre.",
+    "useInAppCamera": "Utilitza la càmera de l'aplicació"
   }
 }

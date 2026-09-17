@@ -4170,5 +4170,15 @@
     "ttsLabel": "Korero i tetahi mea i runga i te reo nui",
     "ttsPlaceholder": "Pānuitia atu ki te awa...",
     "ttsHint": "Pānuihia te reo nui ki te hunga katoa e titiro ana ki to koutou taonga whenua."
+  },
+  "goLive": {
+    "streamKey": "Te Kī Rauemi Tukutuku",
+    "ingestUrl": "Te URL Whakauru",
+    "encoderPermanentHint": "E kore e huri tenei kī. Whakatuwherahia to waehere kotahi — i te wa e whai ake nei ka pēhi noa i te Tīmata i reira ka hanga e DeHub te pou mo koe.",
+    "externalLiveTitle": "Te rere mai i te taputapu o waho",
+    "externalTitle": "Te aratau rere o waho",
+    "externalLiveHint": "Kei te ora tō awa mā te pūmanawa o waho. He ngoikore te kāmera i roto i te taupānga.",
+    "externalHint": "Hono i tō pūmanawa rere mā te whakamahi i ngā taipitopito i raro nei, ka tīmata te tuku.",
+    "useInAppCamera": "Whakamahia i roto i-App kāmera i te wahi"
   }
 }

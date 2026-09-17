@@ -4213,5 +4213,15 @@
     "ttsLabel": "Yisho okuthile ngokuzwakalayo",
     "ttsPlaceholder": "Funda ukuze usakaze...",
     "ttsHint": "Funda ngokuzwakalayo kuwo wonke umuntu obuka lapho isipho sakho sifika."
+  },
+  "goLive": {
+    "streamKey": "Ukhiye Wokusasaza",
+    "ingestUrl": "I-URL Yokunyusa",
+    "encoderPermanentHint": "Lesi sikhiye asishintshi. Setha ikhodi yakho kanye — ngokuzayo vele ucindezele okuthi Qala lapho bese i-DeHub ikusungulela iphosti.",
+    "externalLiveTitle": "UKUSAKAZA KUSUKA KUDIVAYISI YANGAPHANDLE",
+    "externalTitle": "Imodi Yokusakaza Kwangaphandle",
+    "externalLiveHint": "Ukusakaza kwakho kubukhoma ngesofthiwe yangaphandle. Ikhamera engaphakathi kwe-app ivaliwe.",
+    "externalHint": "Xhuma isofthiwe yakho yokusakaza usebenzisa imininingwane engezansi, bese uqala ukusakaza.",
+    "useInAppCamera": "Sebenzisa Ikhamera Engaphakathi ku-App Kunalokho"
   }
 }

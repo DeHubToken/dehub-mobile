@@ -4230,5 +4230,15 @@
     "ttsLabel": "Ovoz chiqarib bir narsa ayting",
     "ttsPlaceholder": "Oqimga o'qing…",
     "ttsHint": "Sovg'angiz qo'lga tushganda, tomosha qilayotgan barchaga ovoz chiqarib o'qing."
+  },
+  "goLive": {
+    "streamKey": "Oqim Kaliti",
+    "ingestUrl": "Qabul qilish URL manzili",
+    "encoderPermanentHint": "Bu tugma hech qachon o&#39;zgarmaydi. Enkoderingizni bir marta sozlang — keyingi safar shunchaki u yerda &quot;Ishga tushirish&quot; tugmasini bosing va DeHub siz uchun post yaratadi.",
+    "externalLiveTitle": "TASHQI QURILMADAN TRIMING",
+    "externalTitle": "Tashqi oqim rejimi",
+    "externalLiveHint": "Translatsiyangiz tashqi dastur orqali jonli efirda. Ilova ichidagi kamera o&#39;chirib qo&#39;yilgan.",
+    "externalHint": "Quyidagi ma&#39;lumotlardan foydalanib, striming dasturini ulang, so&#39;ngra strimingni boshlang.",
+    "useInAppCamera": "Buning o&#39;rniga ilova ichidagi kameradan foydalaning"
   }
 }

@@ -4168,5 +4168,15 @@
     "ttsLabel": "Yüksək səslə nəsə deyin",
     "ttsPlaceholder": "Axına baxın...",
     "ttsHint": "Hədiyyəniz yerə endikdə izləyən hər kəsə ucadan oxuyun."
+  },
+  "goLive": {
+    "streamKey": "Axın Açarı",
+    "ingestUrl": "Qəbul URL-i",
+    "encoderPermanentHint": "Bu açar heç vaxt dəyişmir. Kodlamanızı bir dəfə qurun — növbəti dəfə sadəcə Başla düyməsini basın və DeHub yazını sizin üçün yaradır.",
+    "externalLiveTitle": "XARİCİ CİHAZDAN AXIN",
+    "externalTitle": "Xarici Axın Rejimi",
+    "externalLiveHint": "Yayımınız xarici proqram təminatı vasitəsilə yayımlanır. Tətbiqdaxili kamera deaktiv edilib.",
+    "externalHint": "Aşağıdakı təfərrüatlardan istifadə edərək yayım proqramınızı qoşun, sonra isə yayıma başlayın.",
+    "useInAppCamera": "Əvəzində Giriş Kamerasından istifadə edin"
   }
 }

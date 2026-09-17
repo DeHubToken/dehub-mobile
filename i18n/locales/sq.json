@@ -4183,5 +4183,15 @@
     "ttsLabel": "Thuaj diçka me zë të lartë",
     "ttsPlaceholder": "Lexo te rrjedha...",
     "ttsHint": "Lexo me zë të lartë për të gjithë ata që shikojnë se kur do të mbërrijë dhurata jote."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Ky çelës nuk ndryshon kurrë. Vendosni koduesin tuaj një herë — herën tjetër vetëm shtypni Start atje dhe DeHub krijon postimin për ju.",
+    "externalLiveTitle": "TRANSMETIMI NGA PAJISJA E JASHTME",
+    "externalTitle": "Modaliteti i transmetimit të jashtëm",
+    "externalLiveHint": "Transmetimi yt është i drejtpërdrejtë përmes softuerit të jashtëm. Kamera brenda aplikacionit është çaktivizuar.",
+    "externalHint": "Lidhni softuerin tuaj të transmetimit duke përdorur detajet e mëposhtme, pastaj filloni transmetimin.",
+    "useInAppCamera": "Përdor më mirë kamerën brenda aplikacionit"
   }
 }

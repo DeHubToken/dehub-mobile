@@ -4272,5 +4272,15 @@
     "ttsLabel": "Nói to điều gì đó",
     "ttsPlaceholder": "Đọc ra luồng…",
     "ttsHint": "Đọc to cho mọi người xem khi món quà của bạn hạ cánh."
+  },
+  "goLive": {
+    "streamKey": "Khóa Luồng Phát Sóng",
+    "ingestUrl": "URL Nhập Liệu",
+    "encoderPermanentHint": "Phím này không bao giờ thay đổi. Thiết lập bộ mã hóa của bạn một lần — lần tới chỉ cần nhấn Bắt đầu ở đó và DeHub sẽ tạo bài đăng cho bạn.",
+    "externalLiveTitle": "TRUYỀN PHÁT TỪ THIẾT BỊ BÊN NGOÀI",
+    "externalTitle": "Chế độ phát trực tuyến bên ngoài",
+    "externalLiveHint": "Phát trực tuyến của bạn đang phát trực tuyến qua phần mềm bên ngoài. Camera trong ứng dụng đã bị tắt.",
+    "externalHint": "Kết nối phần mềm phát trực tuyến của bạn bằng cách sử dụng các chi tiết bên dưới, sau đó bắt đầu phát sóng.",
+    "useInAppCamera": "Thay vào đó, hãy sử dụng máy ảnh trong ứng dụng"
   }
 }

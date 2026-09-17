@@ -4188,5 +4188,15 @@
     "ttsLabel": "मुख सूं बोल",
     "ttsPlaceholder": "स्ट्रीम नूं पढ़ के सुनाओ…",
     "ttsHint": "जब थारो गिफ्ट लैंड होवै तो देखण वाळा सबनूं पढ़ के सुनाओ।"
+  },
+  "goLive": {
+    "streamKey": "স্ট্রিম কী",
+    "ingestUrl": "ইনজেস্ট URL",
+    "encoderPermanentHint": "This key never changes. Set your encoder up once — next time just press Start there and DeHub creates the post for you.",
+    "externalLiveTitle": "STREAMING FROM EXTERNAL DEVICE",
+    "externalTitle": "External Streaming Mode",
+    "externalLiveHint": "Your stream is live via external software. The in-app camera is disabled.",
+    "externalHint": "Connect your streaming software using the details below, then start broadcasting.",
+    "useInAppCamera": "Use In-App Camera Instead"
   }
 }

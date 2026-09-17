@@ -4252,5 +4252,15 @@
     "ttsLabel": "큰 소리로 말하기",
     "ttsPlaceholder": "스트림으로 읽기...",
     "ttsHint": "선물이 도착하면 구경하는 모든 사람에게 큰 소리로 읽어주세요."
+  },
+  "goLive": {
+    "streamKey": "스트림 키",
+    "ingestUrl": "수집 URL",
+    "encoderPermanentHint": "이 키는 절대 변경되지 않습니다. 인코더를 한 번 설정하십시오. 다음에 시작을 누르면 DeHub가 게시물을 생성합니다.",
+    "externalLiveTitle": "외부 장치에서 스트리밍",
+    "externalTitle": "외부 스트리밍 모드",
+    "externalLiveHint": "스트림은 외부 소프트웨어를 통해 실시간으로 제공됩니다. 앱 내 카메라가 비활성화되었습니다.",
+    "externalHint": "아래 세부 정보를 사용하여 스트리밍 소프트웨어를 연결한 다음 방송을 시작하십시오.",
+    "useInAppCamera": "대신 앱 내 카메라를 사용하세요"
   }
 }

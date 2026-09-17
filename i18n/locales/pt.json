@@ -4259,5 +4259,15 @@
     "ttsLabel": "Diga algo em voz alta",
     "ttsPlaceholder": "Leia para o stream...",
     "ttsHint": "Leia em voz alta para todos que assistem quando o seu presente chegar."
+  },
+  "goLive": {
+    "streamKey": "Chave de Transmissão",
+    "ingestUrl": "URL de Ingestão",
+    "encoderPermanentHint": "Esta chave nunca muda. Configure o codificador uma vez — da próxima vez, basta pressionar Iniciar e o DeHub cria o post para você.",
+    "externalLiveTitle": "STREAMING A PARTIR DE DISPOSITIVO EXTERNO",
+    "externalTitle": "Modo de Transmissão Externa",
+    "externalLiveHint": "Sua transmissão é ao vivo por meio de um software externo. A câmara na aplicação está desativada.",
+    "externalHint": "Conecte o seu software de streaming usando os detalhes abaixo e, em seguida, comece a transmitir.",
+    "useInAppCamera": "Em vez disso, use a câmara na aplicação"
   }
 }

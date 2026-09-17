@@ -4175,5 +4175,15 @@
     "ttsLabel": "Wax qaylo dheer dheh",
     "ttsPlaceholder": "Ka akhri qulqulka...",
     "ttsHint": "Aqri qof walba oo daawanaya marka hadiyaddaadu soo degto."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Furahan waligiis isma beddelo. Deji encoder-kaaga hal mar — marka xigta kaliya riix Ka bilow halkaas oo DeHub ayaa kuu abuuraya boostada.",
+    "externalLiveTitle": "Daadinta qalabka dibadda",
+    "externalTitle": "Habka Daadinta Dibadda",
+    "externalLiveHint": "Your stream waa live via software dibadda. Kaamirada gudaha ee app-ka ayaa naafo ah.",
+    "externalHint": "Isku xir barnaamijkaaga qulqulka adoo adeegsanaya faahfaahinta hoose, ka dibna bilaw baahinta.",
+    "useInAppCamera": "Isticmaal In-App Camera Halkii"
   }
 }
