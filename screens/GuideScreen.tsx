@@ -323,7 +323,7 @@ const SECTIONS: GuideSection[] = [
     id: "buying-dhb",
     title: "Buying DHB",
     icon: "ShoppingCart",
-    intro: "Buy DHB tokens directly within the app using the built-in swap interface.",
+    intro: "Buy DHB tokens directly in DPay using card or supported crypto.",
     steps: [
       "Navigate to the 'Buy' page from the sidebar.",
       "Select the token you want to swap from (e.g., ETH, USDC).",
