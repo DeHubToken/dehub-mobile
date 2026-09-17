@@ -68,7 +68,6 @@
   "components/LiveChat/LiveChatMessage.tsx": 2,
   "components/LiveChat/PinnedMessagesBar.tsx": 3,
   "components/LiveProducer/ChatSidePanel.tsx": 3,
-  "components/LiveProducer/ExternalStreamingOverlay.tsx": 5,
   "components/LiveProducer/GiftModal.tsx": 3,
   "components/LiveProducer/LiveChatPanel.tsx": 1,
   "components/LiveProducer/ProducerBottomBar.tsx": 2,

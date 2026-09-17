@@ -1,5 +1,39 @@
 import { apiClient } from "../libs";
 
+export interface CryptoPayableAsset {
+  assetId: string;
+  symbol: string;
+  blockchain: string;
+  decimals: number;
+}
+
+export interface CryptoPurchaseQuote {
+  amountInFormatted: string;
+  amountInUsd: string;
+  timeEstimateSeconds: number;
+}
+
+export interface CryptoPurchaseIntent extends CryptoPurchaseQuote {
+  id: string;
+  depositAddress: string;
+  depositMemo?: string;
+  expiresAt: number;
+}
+
+export const getCryptoPayableAssets = async () => {
+  const result = await apiClient.get<{ tokens: CryptoPayableAsset[] }>("/dpay/crypto/tokens");
+  return result.tokens;
+};
+
+export const getCryptoPurchaseQuote = (data: { originAsset: string; tokensToReceive: number; refundTo?: string }) =>
+  apiClient.post<CryptoPurchaseQuote>("/dpay/crypto/quote", data);
+
+export const createCryptoPurchaseIntent = (data: { originAsset: string; tokensToReceive: number; receiverAddress: string; refundTo: string; termsAndServicesAccepted: boolean }) =>
+  apiClient.post<CryptoPurchaseIntent>("/dpay/crypto/intent", data, { isAuthRequired: true });
+
+export const getCryptoPurchaseStatus = (id: string) =>
+  apiClient.get<{ settlement: string; tokenSendStatus?: string }>(`/dpay/crypto/intent/${encodeURIComponent(id)}`, { isAuthRequired: true });
+
 // Local helpers (mirroring pattern used in feed.service)
 function removeUndefined<T extends Record<string, any>>(obj?: T): Partial<T> {
   if (!obj) return {};

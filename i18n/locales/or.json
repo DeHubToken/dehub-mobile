@@ -4164,5 +4164,29 @@
     "externalLiveHint": "ଆପଣଙ୍କର ପ୍ରବାହ ବାହ୍ୟ ସଫ୍ଟୱେର ମାଧ୍ୟମରେ ଜୀବନ୍ତ ଅଟେ । ଇନ-ଆପ କ୍ୟାମେରାକୁ ନିଷ୍କ୍ରିୟ କରାଯାଇଛି ।",
     "externalHint": "ନିମ୍ନଲିଖିତ ବିବରଣୀ ବ୍ୟବହାର କରି ଆପଣଙ୍କର ଷ୍ଟ୍ରିମିଂ ସଫ୍ଟୱେରକୁ ସଂଯୋଗ କରନ୍ତୁ, ତା 'ପରେ ପ୍ରସାରଣ ଆରମ୍ଭ କରନ୍ତୁ ।",
     "useInAppCamera": "ପରିବର୍ତ୍ତେ ଇନ-ଆପ୍ କ୍ୟାମେରା ବ୍ୟବହାର କରନ୍ତୁ"
+  },
+  "nearBuy": {
+    "description": "Use any payment token supported by NEAR Intents. DHB arrives on Base.",
+    "dhbAmount": "DHB to receive",
+    "search": "Search token or chain",
+    "onChain": "on {{chain}}",
+    "refundAddress": "Your {{chain}} refund address",
+    "refundPlaceholder": "Address on the payment chain",
+    "refundHint": "Failed payments return to this address.",
+    "quoteSummary": "Send {{amount}} {{symbol}} on {{chain}}",
+    "quoteEstimate": "Receive {{amount}} DHB · Estimated {{minutes}} min",
+    "getQuote": "Get crypto quote",
+    "sendExact": "Send exactly {{amount}} {{symbol}} on {{chain}}.",
+    "copyPayment": "Tap to copy payment address",
+    "memoNotice": "Include this memo with your payment:",
+    "copyMemo": "Tap to copy memo",
+    "delivered": "DHB delivered",
+    "settled": "Crypto settled. Delivering DHB…",
+    "status": "Status: {{status}}",
+    "expires": "Address expires {{date}}.",
+    "startAnother": "Start another purchase",
+    "tokensError": "Payment tokens are unavailable",
+    "quoteError": "Could not price this purchase",
+    "intentError": "Could not open this purchase"
   }
 }
