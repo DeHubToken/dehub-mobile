@@ -75,6 +75,7 @@ interface VideoPlayerCoreProps {
    */
   muted?: boolean;
   liveMode?: boolean;
+  hideControls?: boolean;
   /** Suppress the built-in top controls row when an external header already provides close/mute. */
   hideTopControls?: boolean;
   /** Use the full parent surface for live viewing, including portrait video. */
@@ -110,6 +111,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   initialMuted = false,
   muted,
   liveMode = false,
+  hideControls = false,
   hideTopControls = false,
   fillContainer = false,
   onVideoSize,
@@ -793,7 +795,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
       )}
 
       {/* Tap interaction layers */}
-      <View
+      {!hideControls && <View
         className="absolute inset-0"
         pointerEvents={showControls ? 'none' : 'auto'}
       >
@@ -817,10 +819,10 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           onPress={() => handleSurfaceTouch('right')}
           accessibilityLabel="Double tap to skip forward"
         />
-      </View>
+      </View>}
 
       {/* Controls Overlay */}
-      {showControls && (
+      {showControls && !hideControls && (
         <View
           className="absolute inset-0 justify-between"
           style={{
