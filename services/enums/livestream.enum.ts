@@ -4,6 +4,7 @@ export enum LivestreamEvents {
   JoinRoom = "stream.join.room",
   EndStream = "stream.end",
   JoinStream = "stream.join",
+  AnonJoinStream = "stream.join.anon",
   LeaveStream = "stream.left",
   TipStreamer = "streamer.tip",
   SendMessage = "stream.message",

@@ -481,6 +481,7 @@ const LiveProducerScreen: React.FC = () => {
       });
     });
     make(LivestreamEvents.JoinStream, (data: any) => {
+      if (data?.streamId && data.streamId !== streamId) return;
       const userRef = data?.user || data?.account || undefined;
       const joinName = userRef?.displayName || userRef?.username || data?.username || '';
       const joinAvatar = userRef?.avatarImageUrl;
@@ -493,6 +494,13 @@ const LiveProducerScreen: React.FC = () => {
           username: userRef?.username || data?.username,
           avatarImageUrl: userRef?.avatarImageUrl,
         },
+      });
+    });
+    make(LivestreamEvents.AnonJoinStream, (data: any) => {
+      if (data?.streamId && data.streamId !== streamId) return;
+      addChatActivity({
+        status: StreamActivityType.JOINED,
+        meta: { username: 'Visitor' },
       });
     });
     make(LivestreamEvents.LeaveStream, (data: any) => {

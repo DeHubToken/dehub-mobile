@@ -731,6 +731,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       });
     });
     bind(LivestreamEvents.JoinStream, (data: any) => {
+      if (data?.streamId && data.streamId !== streamId) return;
       const userRef = data?.user || data?.account || undefined;
       const joinName = userRef?.displayName || userRef?.username || data?.username || '';
       const joinAvatar = userRef?.avatarImageUrl;
@@ -743,6 +744,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           username: userRef?.username || data?.username,
           avatarImageUrl: userRef?.avatarImageUrl,
         },
+      });
+    });
+    bind(LivestreamEvents.AnonJoinStream, (data: any) => {
+      if (data?.streamId && data.streamId !== streamId) return;
+      addActivity({
+        status: StreamActivityType.JOINED,
+        meta: { username: "Visitor" },
       });
     });
     bind(LivestreamEvents.LeaveStream, (data: any) => {
