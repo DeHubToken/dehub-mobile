@@ -586,7 +586,31 @@
     "kidsModeTurnOff": "Nonaktifkan Mode Anak",
     "kidsModePinMismatch": "PIN itu berbeda. Mulai lagi.",
     "kidsModeFailed": "Itu tidak berhasil. Coba lagi.",
-    "kidsModeForgotPin": "Lupa? Masuk dengan dompet Anda di perangkat lain untuk menonaktifkan Mode Anak."
+    "kidsModeForgotPin": "Lupa? Masuk dengan dompet Anda di perangkat lain untuk menonaktifkan Mode Anak.",
+    "streamKey": {
+      "section": "Kunci streaming",
+      "blurb": "Tempelkan ini ke OBS, aplikasi penangkap Anda, atau konsol Anda sekali. Kunci ini tidak pernah berubah — tekan Mulai di encoder Anda dan DeHub akan membuat postingan langsung untuk Anda.",
+      "server": "Server",
+      "key": "Kunci streaming",
+      "copyServer": "Salin server",
+      "copyKey": "Salin kunci streaming",
+      "reveal": "Tampilkan kunci streaming",
+      "hide": "Sembunyikan kunci streaming",
+      "copyFailed": "Tidak dapat disalin",
+      "keyWarning": "Siapa pun yang memegang kunci ini dapat menyiarkan sebagai Anda. Jangan pernah menunjukkannya di stream.",
+      "defaultTitle": "Judul stream default",
+      "defaultTitlePlaceholder": "Nama stream encoder Anda",
+      "defaultTitleHint": "Digunakan saat Anda siaran langsung dari encoder tanpa menyiapkan postingan terlebih dahulu.",
+      "titleSaved": "Tersimpan",
+      "titleFailed": "Tidak dapat menyimpan judul",
+      "rotate": "Atur ulang kunci streaming",
+      "rotateConfirm": "Terbitkan kunci streaming baru? Setiap encoder yang menggunakan yang lama akan berhenti berfungsi sampai Anda menempelkan kunci baru di sana.",
+      "rotated": "Kunci streaming baru diterbitkan",
+      "rotateFailed": "Tidak dapat menerbitkan kunci baru",
+      "unavailable": "Streaming dari encoder tidak tersedia di akun Anda saat ini.",
+      "serverCopied": "Server disalin",
+      "keyCopied": "Kunci streaming disalin"
+    }
   },
   "common": {
     "mute": "Bisukan",

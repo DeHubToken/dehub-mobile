@@ -586,7 +586,31 @@
     "kidsModeTurnOff": "Slå børnetilstand fra",
     "kidsModePinMismatch": "Disse pinkoder er forskellige. Start forfra.",
     "kidsModeFailed": "Det virkede ikke. Prøv igen.",
-    "kidsModeForgotPin": "Har du glemt det? Log ind med din tegnebog på en anden enhed for at slå Børnetilstand fra."
+    "kidsModeForgotPin": "Har du glemt det? Log ind med din tegnebog på en anden enhed for at slå Børnetilstand fra.",
+    "streamKey": {
+      "section": "Stream nøgle",
+      "blurb": "Indsæt disse i OBS, din capture-app eller din konsol én gang. De ændrer sig aldrig — tryk på Start i din encoder, og DeHub opretter det live-opslag for dig.",
+      "server": "Server",
+      "key": "Stream nøgle",
+      "copyServer": "Kopier server",
+      "copyKey": "Kopier stream nøgle",
+      "reveal": "Vis stream nøgle",
+      "hide": "Skjul stream nøgle",
+      "copyFailed": "Kunne ikke kopiere",
+      "keyWarning": "Enhver, der har denne nøgle, kan streame som dig. Vis den aldrig på streamen.",
+      "defaultTitle": "Standard streamtitel",
+      "defaultTitlePlaceholder": "Hvad dine encoder-streams hedder",
+      "defaultTitleHint": "Bruges, når du går live fra en encoder uden først at have sat et opslag op.",
+      "titleSaved": "Gemt",
+      "titleFailed": "Kunne ikke gemme titlen",
+      "rotate": "Nulstil stream nøgle",
+      "rotateConfirm": "Udsted en ny stream nøgle? Enhver encoder, der bruger den gamle, vil stoppe med at virke, indtil du indsætter den nye nøgle.",
+      "rotated": "Ny stream nøgle udstedt",
+      "rotateFailed": "Kunne ikke udstede en ny nøgle",
+      "unavailable": "Streaming fra en encoder er ikke tilgængelig på din konto lige nu.",
+      "serverCopied": "Server kopieret",
+      "keyCopied": "Streamnøgle kopieret"
+    }
   },
   "common": {
     "mute": "Slå lyd fra",

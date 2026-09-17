@@ -1074,7 +1074,31 @@
     "kidsModeTurnOff": "Isara ang Kids Mode",
     "kidsModePinMismatch": "Ang mga PIN na iyon ay iba. Magsimula muli.",
     "kidsModeFailed": "Hindi ito gumana. Subukan muli.",
-    "kidsModeForgotPin": "Nakalimutan mo? Mag-sign in gamit ang iyong wallet sa ibang device upang isara ang Kids Mode."
+    "kidsModeForgotPin": "Nakalimutan mo? Mag-sign in gamit ang iyong wallet sa ibang device upang isara ang Kids Mode.",
+    "streamKey": {
+      "section": "Susi sa stream",
+      "blurb": "I-paste ang mga ito sa OBS, sa iyong capture app, o sa iyong console nang isang beses. Hindi ito nagbabago — pindutin ang Simula sa iyong encoder at gagawa ang DeHub ng live post para sa iyo.",
+      "server": "Server",
+      "key": "Susi sa stream",
+      "copyServer": "Kopyahin ang server",
+      "copyKey": "Kopyahin ang susi sa stream",
+      "reveal": "Ipakita ang susi sa stream",
+      "hide": "Itago ang susi sa stream",
+      "copyFailed": "Hindi makopya",
+      "keyWarning": "Sinumang may hawak ng susi na ito ay maaaring mag-broadcast bilang ikaw. Huwag itong ipakita sa stream.",
+      "defaultTitle": "Pamagat ng default na stream",
+      "defaultTitlePlaceholder": "Ang tawag sa mga stream ng iyong encoder",
+      "defaultTitleHint": "Ginagamit kapag nag-live ka mula sa isang encoder nang hindi muna nagse-set up ng post.",
+      "titleSaved": "Nai-save",
+      "titleFailed": "Hindi nai-save ang pamagat",
+      "rotate": "I-reset ang susi sa stream",
+      "rotateConfirm": "Mag-isyu ng bagong susi sa stream? Lahat ng encoder na gumagamit ng luma ay hihinto sa paggana hanggang sa i-paste mo ang bagong susi.",
+      "rotated": "Bagong susi sa stream ang na-isyu",
+      "rotateFailed": "Hindi makapag-isyu ng bagong susi",
+      "unavailable": "Hindi available ang streaming mula sa isang encoder sa iyong account sa ngayon.",
+      "serverCopied": "Kinopya ang server",
+      "keyCopied": "Kinopya ang stream key"
+    }
   },
   "postOptions": {
     "options": "Options",

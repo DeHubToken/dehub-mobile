@@ -584,7 +584,31 @@
     "kidsModeTurnOff": "Lülita laste režiim välja",
     "kidsModePinMismatch": "Need PIN-koodid on erinevad. Alusta uuesti.",
     "kidsModeFailed": "See ei õnnestunud. Proovi uuesti.",
-    "kidsModeForgotPin": "Unustasid selle? Laste režiimi väljalülitamiseks logi sisse oma rahakotiga teises seadmes."
+    "kidsModeForgotPin": "Unustasid selle? Laste režiimi väljalülitamiseks logi sisse oma rahakotiga teises seadmes.",
+    "streamKey": {
+      "section": "Voogedastuse võti",
+      "blurb": "Kleepige need OBS-i, oma püüdmisrakendusse või konsooli üks kord. Need ei muutu kunagi – vajutage kodeerijas nuppu Start ja DeHub loob teie jaoks otseülekande postituse.",
+      "server": "Server",
+      "key": "Voogedastuse võti",
+      "copyServer": "Kopeeri server",
+      "copyKey": "Kopeeri voogedastuse võti",
+      "reveal": "Näita voogedastuse võtit",
+      "hide": "Peida voogedastuse võti",
+      "copyFailed": "Ei õnnestunud kopeerida",
+      "keyWarning": "Igaüks, kellel on see võti, saab teie nimel edastada. Ärge kunagi näidake seda otseülekandes.",
+      "defaultTitle": "Vaikimisi voo pealkiri",
+      "defaultTitlePlaceholder": "Kuidas teie kodeerija voogedastusi nimetatakse",
+      "defaultTitleHint": "Kasutatakse, kui lähete otseülekandesse kodeerijast, seadistamata eelnevalt postitust.",
+      "titleSaved": "Salvestatud",
+      "titleFailed": "Ei õnnestunud pealkirja salvestada",
+      "rotate": "Voogedastuse võtme lähtestamine",
+      "rotateConfirm": "Kas soovite uue voogedastuse võtme väljastada? Iga kodeerija, mis kasutab vana võtit, lõpetab töötamise, kuni te uue võtme sisestate.",
+      "rotated": "Uus voogedastuse võti väljastatud",
+      "rotateFailed": "Ei õnnestunud uut võtit väljastada",
+      "unavailable": "Kodeerijast voogedastamine pole teie kontol praegu saadaval.",
+      "serverCopied": "Server kopeeritud",
+      "keyCopied": "Voo võti on kopeeritud"
+    }
   },
   "common": {
     "mute": "Vaigista",

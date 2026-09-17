@@ -584,7 +584,31 @@
     "kidsModeTurnOff": "Izslēgt bērnu režīmu",
     "kidsModePinMismatch": "Šie PIN ir atšķirīgi. Sāciet vēlreiz.",
     "kidsModeFailed": "Tas neizdevās. Mēģiniet vēlreiz.",
-    "kidsModeForgotPin": "Vai aizmirsāt to? Pierakstieties ar maku citā ierīcē, lai izslēgtu bērnu režīmu."
+    "kidsModeForgotPin": "Vai aizmirsāt to? Pierakstieties ar maku citā ierīcē, lai izslēgtu bērnu režīmu.",
+    "streamKey": {
+      "section": "Straumēšanas atslēga",
+      "blurb": "Ievietojiet šīs vērtības OBS, savā uztveršanas lietotnē vai konsolē vienreiz. Tās nekad nemainās — nospiediet \"Sākt\" savā kodētājā, un DeHub izveidos tiešraides ierakstu jūsu vietā.",
+      "server": "Serveris",
+      "key": "Straumēšanas atslēga",
+      "copyServer": "Kopēt serveri",
+      "copyKey": "Kopēt straumēšanas atslēgu",
+      "reveal": "Rādīt straumēšanas atslēgu",
+      "hide": "Slēpt straumēšanas atslēgu",
+      "copyFailed": "Neizdevās kopēt",
+      "keyWarning": "Jebkurš, kam ir šī atslēga, var straumēt jūsu vārdā. Nekad nerādiet to straumē.",
+      "defaultTitle": "Noklusējuma straumēšanas nosaukums",
+      "defaultTitlePlaceholder": "Kā tiek saukti jūsu kodētāja straumējumi",
+      "defaultTitleHint": "Tiek izmantots, kad sākat straumēt no kodētāja, iepriekš nenorādot ierakstu.",
+      "titleSaved": "Saglabāts",
+      "titleFailed": "Neizdevās saglabāt nosaukumu",
+      "rotate": "Atiestatīt straumēšanas atslēgu",
+      "rotateConfirm": "Vai izdot jaunu straumēšanas atslēgu? Katrs kodētājs, kas izmanto veco, pārtrauks darboties, kamēr neievietosiet jauno atslēgu.",
+      "rotated": "Jauna straumēšanas atslēga izdota",
+      "rotateFailed": "Neizdevās izdot jaunu atslēgu",
+      "unavailable": "Straumēšana no kodētāja pašlaik nav pieejama jūsu kontā.",
+      "serverCopied": "Serveris nokopēts",
+      "keyCopied": "Straumes atslēga nokopēta"
+    }
   },
   "common": {
     "mute": "Izslēgt skaņu",

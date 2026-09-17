@@ -580,7 +580,31 @@
     "kidsModeTurnOff": "Yipada Ipo Awọn ọmọde",
     "kidsModePinMismatch": "Àwọn PIN wọ̀nyẹn yàtọ̀. Bẹ̀rẹ̀ lẹ́ẹ̀kan síi.",
     "kidsModeFailed": "Ìyẹn kò ṣiṣẹ́. Gbìyànjú lẹ́ẹ̀kan síi.",
-    "kidsModeForgotPin": "Gbagbe rẹ? Wọlé pẹlu apamọwọ rẹ lori ẹrọ miiran lati pa Ipo Awọn ọmọde."
+    "kidsModeForgotPin": "Gbagbe rẹ? Wọlé pẹlu apamọwọ rẹ lori ẹrọ miiran lati pa Ipo Awọn ọmọde.",
+    "streamKey": {
+      "section": "Bọtini ṣiṣan",
+      "blurb": "Fi eyi sinu OBS, ohun elo iwoye rẹ tabi kọnputa rẹ ni ẹẹkan. Wọn kii yipada — tẹ Bẹrẹ ninu ẹrọ ṣiṣan rẹ ati DeHub yoo ṣẹda ifiweranṣẹ laaye fun ọ.",
+      "server": "Olupin",
+      "key": "Bọtini ṣiṣan",
+      "copyServer": "Da oluṣakoso naa",
+      "copyKey": "Da bọtini ṣiṣan naa",
+      "reveal": "Fihan bọtini ṣiṣan",
+      "hide": "Fipamọ bọtini ṣiṣan",
+      "copyFailed": "Ko le daakọ",
+      "keyWarning": "Ẹnikẹni ti o ba ni bọtini yii le ṣafihan bi iwọ. Maṣe fi han lori ṣiṣan.",
+      "defaultTitle": "Akọle ṣiṣan aiyipada",
+      "defaultTitlePlaceholder": "Kini awọn ṣiṣan ẹrọ ṣiṣan rẹ ni a pe",
+      "defaultTitleHint": "Lo nigbati o ba lọ laaye lati ẹrọ ṣiṣan laisi ṣeto ifiweranṣẹ kan ni akọkọ.",
+      "titleSaved": "Ti fipamọ",
+      "titleFailed": "Ko le fipamọ akọle naa",
+      "rotate": "Tun bọtini ṣiṣan pada",
+      "rotateConfirm": "Ṣe ipinfunni bọtini ṣiṣan tuntun? Gbogbo ẹrọ ṣiṣan ti nlo eyi ti o ti kọja yoo dawọ ṣiṣẹ titi iwọ o fi fi bọtini tuntun sii.",
+      "rotated": "Bọtini ṣiṣan tuntun ti a ti pese",
+      "rotateFailed": "Ko le pese bọtini tuntun",
+      "unavailable": "Ṣiṣan lati ẹrọ ṣiṣan ko si lori akọọlẹ rẹ lọwọlọwọ.",
+      "serverCopied": "A daakọ olupin",
+      "keyCopied": "Ṣàdàkọ bọtini ṣiṣan"
+    }
   },
   "common": {
     "mute": "Pa ohùn",

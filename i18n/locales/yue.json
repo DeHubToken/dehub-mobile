@@ -585,7 +585,31 @@
     "kidsModeTurnOff": "閂兒童模式",
     "kidsModePinMismatch": "嗰啲 PIN 唔同。重新開始。",
     "kidsModeFailed": "噉樣做唔到。再試多次。",
-    "kidsModeForgotPin": "唔記得咗？喺另一部裝置上面用銀包登入就可以閂兒童模式。"
+    "kidsModeForgotPin": "唔記得咗？喺另一部裝置上面用銀包登入就可以閂兒童模式。",
+    "streamKey": {
+      "section": "直播金鑰",
+      "blurb": "將這些貼到 OBS、你的擷取應用程式或主控台一次。它們永遠不會改變 — 在你的編碼器中按下開始，DeHub 就會為你建立直播貼文。",
+      "server": "伺服器",
+      "key": "直播金鑰",
+      "copyServer": "複製伺服器",
+      "copyKey": "複製直播金鑰",
+      "reveal": "顯示直播金鑰",
+      "hide": "隱藏直播金鑰",
+      "copyFailed": "無法複製",
+      "keyWarning": "持有此金鑰的任何人都可以以你的名義進行直播。切勿在直播中顯示。",
+      "defaultTitle": "預設直播標題",
+      "defaultTitlePlaceholder": "你的編碼器串流的名稱",
+      "defaultTitleHint": "當你從編碼器進行直播，但沒有先設定貼文時使用。",
+      "titleSaved": "已儲存",
+      "titleFailed": "無法儲存標題",
+      "rotate": "重設直播金鑰",
+      "rotateConfirm": "要發佈新直播金鑰嗎？所有使用舊金鑰的編碼器將停止運作，直到你貼上新金鑰為止。",
+      "rotated": "已發佈新直播金鑰",
+      "rotateFailed": "無法發佈新金鑰",
+      "unavailable": "你的帳戶目前無法從編碼器進行直播。",
+      "serverCopied": "伺服器複製咗",
+      "keyCopied": "串流密鑰複製咗"
+    }
   },
   "common": {
     "mute": "靜音",

@@ -586,7 +586,31 @@
     "kidsModeTurnOff": "Modo Niños nisqatapas apagay",
     "kidsModePinMismatch": "Chay PIN nisqakunaqa hukniraymi. Hukmanta qallariy.",
     "kidsModeFailed": "Chayqa manan allinchu karqan. Hukmanta kallpachakuy.",
-    "kidsModeForgotPin": "¿Qunqarqankichu? Huk dispositivopi billeteraykiwan yaykuy Modo Niños nisqa wañuchinaykipaq."
+    "kidsModeForgotPin": "¿Qunqarqankichu? Huk dispositivopi billeteraykiwan yaykuy Modo Niños nisqa wañuchinaykipaq.",
+    "streamKey": {
+      "section": "Kuyuchiy kiy",
+      "blurb": "Kaykunata OBS, hap'iq maywasiykimanta utaq p'anqaykiman churakuy imakama. Manañataqmi tukukunqachu — k'uyuchiyta kallariy, DeHubmi kawsayta k'uyuchiyta ruwanqa.",
+      "server": "Kamachiq",
+      "key": "Kuyuchiy kiy",
+      "copyServer": "Kamachiqta kopiay",
+      "copyKey": "Kuyuchiy kiyta kopiay",
+      "reveal": "Kuyuchiy kiyta rikuchiy",
+      "hide": "Kuyuchiy kiyta pakay",
+      "copyFailed": "Mana kopiayta atirqachu",
+      "keyWarning": "Kay kiyta hap'iq mayqanpas qan hina k'uyuchiyta atinqa. Mana imaymanata rikuchiychu k'uyuchiykimpi.",
+      "defaultTitle": "Sut'inchay k'uyuchiy",
+      "defaultTitlePlaceholder": "Maywasiykikunamanta k'uyuchiykuna sutin",
+      "defaultTitleHint": "Churakunqa kawsayta kallariykiman maywasiykimanta mana ñawpaqta k'uyuchiyta churakuspa.",
+      "titleSaved": "Waqaychasqa",
+      "titleFailed": "Mana waqaychayta atirqachu sutin",
+      "rotate": "Kuyuchiy kiyta kutichiy",
+      "rotateConfirm": "Musuq kiyta kamachiyta munankichu? Kaykuna maywasiykikunamanta k'uyuchiyta ruwaqqa mana llamk'anqachu chay musuq kiyta churakuykama.",
+      "rotated": "Musuq kiy kamachisqa",
+      "rotateFailed": "Mana musuq kiyta kamachiyta atirqachu",
+      "unavailable": "Maywasiykikunamanta k'uyuchiyqa manam kunanqa kaqllachu kaqniykimpi.",
+      "serverCopied": "Servidor copiasqa",
+      "keyCopied": "Llave de corriente copiasqa"
+    }
   },
   "common": {
     "mute": "Upallachiy",

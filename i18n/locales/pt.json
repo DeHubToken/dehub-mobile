@@ -600,7 +600,31 @@
     "kidsModeTurnOff": "Desativar o Modo Infantil",
     "kidsModePinMismatch": "Esses PINs são diferentes. Comece de novo.",
     "kidsModeFailed": "Isso não funcionou. Tente novamente.",
-    "kidsModeForgotPin": "Esqueceu-se? Inicie sessão com a sua carteira noutro dispositivo para desativar o Modo Criança."
+    "kidsModeForgotPin": "Esqueceu-se? Inicie sessão com a sua carteira noutro dispositivo para desativar o Modo Criança.",
+    "streamKey": {
+      "section": "Chave de transmissão",
+      "blurb": "Cole isto no OBS, na sua aplicação de captura ou na sua consola uma vez. Elas nunca mudam — prima Iniciar no seu codificador e o DeHub cria a publicação ao vivo para si.",
+      "server": "Servidor",
+      "key": "Chave de transmissão",
+      "copyServer": "Copiar servidor",
+      "copyKey": "Copiar chave de transmissão",
+      "reveal": "Mostrar chave de transmissão",
+      "hide": "Ocultar chave de transmissão",
+      "copyFailed": "Não foi possível copiar",
+      "keyWarning": "Qualquer pessoa que possua esta chave pode transmitir como você. Nunca a mostre na transmissão.",
+      "defaultTitle": "Título de transmissão padrão",
+      "defaultTitlePlaceholder": "Como se chamam as transmissões do seu codificador",
+      "defaultTitleHint": "Usado quando entra em direto a partir de um codificador sem configurar uma publicação primeiro.",
+      "titleSaved": "Guardado",
+      "titleFailed": "Não foi possível guardar o título",
+      "rotate": "Repor chave de transmissão",
+      "rotateConfirm": "Emitir uma nova chave de transmissão? Todos os codificadores que usam a antiga deixarão de funcionar até que cole a nova chave.",
+      "rotated": "Nova chave de transmissão emitida",
+      "rotateFailed": "Não foi possível emitir uma nova chave",
+      "unavailable": "A transmissão a partir de um codificador não está disponível na sua conta neste momento.",
+      "serverCopied": "Servidor copiado",
+      "keyCopied": "Chave de transmissão copiada"
+    }
   },
   "common": {
     "mute": "Silenciar",

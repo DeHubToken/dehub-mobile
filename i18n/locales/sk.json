@@ -671,7 +671,31 @@
     "kidsModeTurnOff": "Vypnúť detský režim",
     "kidsModePinMismatch": "Tieto PINy sú rozdielne. Začnite znova.",
     "kidsModeFailed": "To nefungovalo. Skúste znova.",
-    "kidsModeForgotPin": "Zabudli ste? Prihláste sa pomocou peňaženky na inom zariadení a vypnite detský režim."
+    "kidsModeForgotPin": "Zabudli ste? Prihláste sa pomocou peňaženky na inom zariadení a vypnite detský režim.",
+    "streamKey": {
+      "section": "Streamovací kľúč",
+      "blurb": "Tieto údaje vložte do OBS, vašej zachytávacej aplikácie alebo konzoly raz. Nikdy sa nemenia — stlačte Štart v kódovači a DeHub pre vás vytvorí živý príspevok.",
+      "server": "Server",
+      "key": "Streamovací kľúč",
+      "copyServer": "Skopírovať server",
+      "copyKey": "Skopírovať streamovací kľúč",
+      "reveal": "Zobraziť streamovací kľúč",
+      "hide": "Skryť streamovací kľúč",
+      "copyFailed": "Nepodarilo sa skopírovať",
+      "keyWarning": "Ktokoľvek, kto má tento kľúč, môže vysielať ako vy. Nikdy ho nezobrazujte v streame.",
+      "defaultTitle": "Predvolený názov streamu",
+      "defaultTitlePlaceholder": "Ako sa nazývajú vaše streamy z kódovača",
+      "defaultTitleHint": "Používa sa, keď spustíte živé vysielanie z kódovača bez toho, aby ste najprv nastavili príspevok.",
+      "titleSaved": "Uložené",
+      "titleFailed": "Nepodarilo sa uložiť názov",
+      "rotate": "Resetovať streamovací kľúč",
+      "rotateConfirm": "Vydáte nový streamovací kľúč? Každý kódovač používajúci starý prestane fungovať, kým nevložíte nový kľúč.",
+      "rotated": "Nový streamovací kľúč vydaný",
+      "rotateFailed": "Nepodarilo sa vydať nový kľúč",
+      "unavailable": "Streamovanie z kódovača nie je momentálne na vašom účte dostupné.",
+      "serverCopied": "Server skopírovaný",
+      "keyCopied": "Kľúč streamu bol skopírovaný"
+    }
   },
   "notifications": {
     "title": "Upozornenia",

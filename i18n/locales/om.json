@@ -600,7 +600,31 @@
     "kidsModeTurnOff": "Haala Ijoollee cufaa",
     "kidsModePinMismatch": "PIN sun adda adda. Ammas jalqabi.",
     "kidsModeFailed": "Sun hin hojjenne. Ammas yaalaa.",
-    "kidsModeForgotPin": "Irraanfattee? Meeshaa biraa irratti boorsaa keessaniin galmaa&#39;uun Kids Mode dhaamsaa."
+    "kidsModeForgotPin": "Irraanfattee? Meeshaa biraa irratti boorsaa keessaniin galmaa&#39;uun Kids Mode dhaamsaa.",
+    "streamKey": {
+      "section": "Guddata yaa dhangalaasaa",
+      "blurb": "Kun hunda OBS, appii qabachuu keessaniifi yookiin console keessaniitti yeroo tokko galchaa. Isaan hin jijjiramu — Start irraa kaasiitii encoder keessaniin DeHubin boqonnaa dhugaa isiniif uuma.",
+      "server": "Meemii",
+      "key": "Guddata yaa dhangalaasaa",
+      "copyServer": "Meemii kopi godhi",
+      "copyKey": "Guddata yaa dhangalaasaa kopi godhi",
+      "reveal": "Guddata yaa dhangalaasaa agarsiisi",
+      "hide": "Guddata yaa dhangalaasaa dhoksi",
+      "copyFailed": "Kopi godhamuu hin dandeenye",
+      "keyWarning": "Namni guddaticha qabu kamiyyuu isinitti dhangalaasuuf ni danda’a. Dhangalaasa irratti hin agarsiisin.",
+      "defaultTitle": "Mata duree dhangalaasaa bu’uuraa",
+      "defaultTitlePlaceholder": "Mata duree dhangalaasota encoder keessanii",
+      "defaultTitleHint": "Yeroo encoder irraa dhugaa taatan malee boqonnaa osoo hin qopheessin itti fayyadama.",
+      "titleSaved": "Eegame",
+      "titleFailed": "Mata dureen eegamuufi hin dandeenye",
+      "rotate": "Guddata yaa dhangalaasaa irra deebi’i",
+      "rotateConfirm": "Guddata yaa dhangalaasaa haaraa baasuufi? Encoder hundii kan duraan itti fayyadama ture kan haaraa san encoder keessaniitti osoo hin galchin hojii irraa ni dhabama.",
+      "rotated": "Guddata yaa dhangalaasaa haaraa baafame",
+      "rotateFailed": "Guddata yaa dhangalaasaa baasuufi hin dandeenye",
+      "unavailable": "Dhangalaasuun encoder irraa yeroo ammaa kana maamiloota keessaniif hin danda’amu.",
+      "serverCopied": "Sarvariin waraabame",
+      "keyCopied": "Furtuun yaa&#39;aa waraabame"
+    }
   },
   "common": {
     "mute": "Sagalee cufi",
