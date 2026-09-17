@@ -1,4 +1,5 @@
 import env from "../config/env";
+import { LIGHT_BADGE_IMAGES } from "./light-badge-artwork";
 import { Share, Platform } from "react-native";
 import { cdnImage } from "./cdnImage";
 import { overrideTierNameFor } from "./badgeOverrides";
@@ -580,7 +581,7 @@ export function getBadgeOpticalStyle(
   verticalOffset = 0,
   textLineHeight = size * 1.4,
 ) {
-  const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source);
+  const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
   const optics = tier ? BADGE_OPTICS[tier] : undefined;
   const renderedSize = size * 1.2 * (optics?.scale ?? 1);
   const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
@@ -647,9 +648,9 @@ export function getBadgeUrl(
 }
 
 /** The badge art for a tier name, for surfaces that already know the tier. */
-export function badgeImage(tier: string | null | undefined): number | undefined {
+export function badgeImage(tier: string | null | undefined, appearance: 'dark' | 'light' = 'dark'): number | undefined {
   const name = canonicalTierName(tier);
-  return name ? BADGE_IMAGES[name] : undefined;
+  return name ? (appearance === 'light' ? LIGHT_BADGE_IMAGES : BADGE_IMAGES)[name] : undefined;
 }
 
 /**
