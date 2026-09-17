@@ -651,7 +651,31 @@
     "kidsModeTurnOff": "Turn Kids Mode off",
     "kidsModePinMismatch": "Those PINs are different. Start again.",
     "kidsModeFailed": "That did not work. Try again.",
-    "kidsModeForgotPin": "Forgotten it? Sign in with your wallet on another device to turn Kids Mode off."
+    "kidsModeForgotPin": "Forgotten it? Sign in with your wallet on another device to turn Kids Mode off.",
+    "streamKey": {
+      "section": "Stream key",
+      "blurb": "Paste these into OBS, your capture app or your console once. They never change — press Start in your encoder and DeHub creates the live post for you.",
+      "server": "Server",
+      "key": "Stream key",
+      "copyServer": "Copy server",
+      "copyKey": "Copy stream key",
+      "reveal": "Show stream key",
+      "hide": "Hide stream key",
+      "copyFailed": "Could not copy",
+      "keyWarning": "Anyone holding this key can broadcast as you. Never show it on stream.",
+      "defaultTitle": "Default stream title",
+      "defaultTitlePlaceholder": "What your encoder streams are called",
+      "defaultTitleHint": "Used when you go live from an encoder without setting a post up first.",
+      "titleSaved": "Saved",
+      "titleFailed": "Could not save the title",
+      "rotate": "Reset stream key",
+      "rotateConfirm": "Issue a new stream key? Every encoder using the old one will stop working until you paste the new key in.",
+      "rotated": "New stream key issued",
+      "rotateFailed": "Could not issue a new key",
+      "unavailable": "Streaming from an encoder is not available on your account right now.",
+      "serverCopied": "Server copied",
+      "keyCopied": "Stream key copied"
+    }
   },
   "common": {
     "mute": "Mute",

@@ -585,7 +585,31 @@
     "kidsModeTurnOff": "Wyłącz tryb dziecięcy",
     "kidsModePinMismatch": "Te kody PIN są inne. Zacznij od nowa.",
     "kidsModeFailed": "To nie zadziałało. Spróbuj ponownie.",
-    "kidsModeForgotPin": "Zapomniałeś? Zaloguj się za pomocą portfela na innym urządzeniu, aby wyłączyć tryb dziecięcy."
+    "kidsModeForgotPin": "Zapomniałeś? Zaloguj się za pomocą portfela na innym urządzeniu, aby wyłączyć tryb dziecięcy.",
+    "streamKey": {
+      "section": "Klucz strumienia",
+      "blurb": "Wklej te dane raz do OBS, aplikacji do przechwytywania lub konsoli. Nigdy się nie zmieniają — naciśnij Start w swoim enkoderze, a DeHub utworzy dla Ciebie post na żywo.",
+      "server": "Serwer",
+      "key": "Klucz strumienia",
+      "copyServer": "Kopiuj serwer",
+      "copyKey": "Kopiuj klucz strumienia",
+      "reveal": "Pokaż klucz strumienia",
+      "hide": "Ukryj klucz strumienia",
+      "copyFailed": "Nie udało się skopiować",
+      "keyWarning": "Każdy, kto posiada ten klucz, może nadawać jako Ty. Nigdy nie pokazuj go na streamie.",
+      "defaultTitle": "Domyślny tytuł strumienia",
+      "defaultTitlePlaceholder": "Jak nazywają się Twoje strumienie z enkodera",
+      "defaultTitleHint": "Używane, gdy przechodzisz na żywo z enkodera bez wcześniejszego skonfigurowania posta.",
+      "titleSaved": "Zapisano",
+      "titleFailed": "Nie udało się zapisać tytułu",
+      "rotate": "Resetuj klucz strumienia",
+      "rotateConfirm": "Wydać nowy klucz strumienia? Każdy enkoder używający starego przestanie działać, dopóki nie wkleisz nowego klucza.",
+      "rotated": "Wydano nowy klucz strumienia",
+      "rotateFailed": "Nie udało się wydać nowego klucza",
+      "unavailable": "Strumieniowanie z enkodera nie jest obecnie dostępne na Twoim koncie.",
+      "serverCopied": "Skopiowano serwer",
+      "keyCopied": "Skopiowano klucz strumienia"
+    }
   },
   "common": {
     "mute": "Wycisz",

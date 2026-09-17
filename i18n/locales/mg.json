@@ -571,7 +571,31 @@
     "kidsModeTurnOff": "Avereno ny fomba fiasan'ny ankizy",
     "kidsModePinMismatch": "Ireo PINs dia hafa. Avereno indray.",
     "kidsModeFailed": "Tsy nandeha izany. Andramo indray.",
-    "kidsModeForgotPin": "Adinoy izany? Midira amin'ny kitapom-batsy amin'ny fitaovana hafa mba hampody ny Kids Mode eny."
+    "kidsModeForgotPin": "Adinoy izany? Midira amin'ny kitapom-batsy amin'ny fitaovana hafa mba hampody ny Kids Mode eny.",
+    "streamKey": {
+      "section": "Fanalahidin'ny fampitana",
+      "blurb": "Apetraho ao amin'ny OBS, ny fampiharana fakana anao na ny console-nao indray mandeha izany. Tsy miova mihitsy izy ireo — tsindrio ny Start ao amin'ny encoder-nao ary ny DeHub no hamorona ny lahatsoratra mivantana ho anao.",
+      "server": "Server",
+      "key": "Fanalahidin'ny fampitana",
+      "copyServer": "Kopia ny server",
+      "copyKey": "Kopia ny fanalahidin'ny fampitana",
+      "reveal": "Aseho ny fanalahidin'ny fampitana",
+      "hide": "Afenina ny fanalahidin'ny fampitana",
+      "copyFailed": "Tsy nahafaka naka",
+      "keyWarning": "Izay olona manana ity fanalahidy ity dia afaka mampita ho anao. Aza aseho mihitsy izany amin'ny fampitana.",
+      "defaultTitle": "Lohataona fampitana default",
+      "defaultTitlePlaceholder": "Ny anaran'ny fampitana avy amin'ny encoder-nao",
+      "defaultTitleHint": "Ampiasaina rehefa mandeha mivantana avy amin'ny encoder ianao nefa tsy mametraka lahatsoratra aloha.",
+      "titleSaved": "Voavonjy",
+      "titleFailed": "Tsy nahafaka namonjy ny lohateny",
+      "rotate": "Averina ny fanalahidin'ny fampitana",
+      "rotateConfirm": "Mamoaka fanalahidin'ny fampitana vaovao? Ny encoder rehetra mampiasa ilay taloha dia hijanona tsy mandeha mandra-pandraisanao ilay fanalahidy vaovao.",
+      "rotated": "Nisy fanalahidin'ny fampitana vaovao nivoaka",
+      "rotateFailed": "Tsy nahafaka namoaka fanalahidy vaovao",
+      "unavailable": "Tsy azo atao amin'ny kaontinao amin'izao fotoana izao ny fampitana avy amin'ny encoder.",
+      "serverCopied": "Nadika avy tamin'ny mpizara",
+      "keyCopied": "KEY FITEHIRY Nadika"
+    }
   },
   "common": {
     "mute": "Hampangina",

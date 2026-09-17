@@ -585,7 +585,31 @@
     "kidsModeTurnOff": "Vypnout dětský režim",
     "kidsModePinMismatch": "Tyto kódy PIN jsou jiné. Začněte znovu.",
     "kidsModeFailed": "To nefungovalo. Zkuste to znovu.",
-    "kidsModeForgotPin": "Zapomněli jste? Přihlaste se pomocí peněženky na jiném zařízení a vypněte dětský režim."
+    "kidsModeForgotPin": "Zapomněli jste? Přihlaste se pomocí peněženky na jiném zařízení a vypněte dětský režim.",
+    "streamKey": {
+      "section": "Streamovací klíč",
+      "blurb": "Vložte je do OBS, vaší aplikace pro zachycení nebo konzole jednou. Nikdy se nemění — stiskněte Start ve svém enkodéru a DeHub pro vás vytvoří živý příspěvek.",
+      "server": "Server",
+      "key": "Streamovací klíč",
+      "copyServer": "Zkopírovat server",
+      "copyKey": "Zkopírovat streamovací klíč",
+      "reveal": "Zobrazit streamovací klíč",
+      "hide": "Skrýt streamovací klíč",
+      "copyFailed": "Nelze zkopírovat",
+      "keyWarning": "Kdokoliv, kdo bude mít tento klíč, může vysílat za vás. Nikdy ho nezobrazujte ve streamu.",
+      "defaultTitle": "Výchozí název streamu",
+      "defaultTitlePlaceholder": "Jak se nazývají streamy vašeho enkodéru",
+      "defaultTitleHint": "Používá se, když spustíte živé vysílání z enkodéru, aniž byste nejprve nastavili příspěvek.",
+      "titleSaved": "Uloženo",
+      "titleFailed": "Nelze uložit název",
+      "rotate": "Resetovat streamovací klíč",
+      "rotateConfirm": "Vystavit nový streamovací klíč? Každý enkodér používající starý přestane fungovat, dokud do něj nevložíte nový klíč.",
+      "rotated": "Nový streamovací klíč vystaven",
+      "rotateFailed": "Nelze vystavit nový klíč",
+      "unavailable": "Streamování z enkodéru není na vašem účtu momentálně k dispozici.",
+      "serverCopied": "Server zkopírován",
+      "keyCopied": "Klíč streamu zkopírován"
+    }
   },
   "common": {
     "mute": "Ztlumit",

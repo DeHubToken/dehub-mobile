@@ -1116,7 +1116,31 @@
     "kidsModeTurnOff": "Matikan Mod Kanak-kanak",
     "kidsModePinMismatch": "Pin itu berbeza. Mulakan semula.",
     "kidsModeFailed": "Itu tidak berjaya. Cuba lagi.",
-    "kidsModeForgotPin": "Lupa? Log masuk dengan dompet anda pada peranti lain untuk mematikan Mod Kanak-kanak."
+    "kidsModeForgotPin": "Lupa? Log masuk dengan dompet anda pada peranti lain untuk mematikan Mod Kanak-kanak.",
+    "streamKey": {
+      "section": "Kunci strim",
+      "blurb": "Tampal ini ke dalam OBS, aplikasi penangkapan anda atau konsol anda sekali. Ia tidak pernah berubah — tekan Mula dalam pengekod anda dan DeHub akan mencipta siaran langsung untuk anda.",
+      "server": "Pelayan",
+      "key": "Kunci strim",
+      "copyServer": "Salin pelayan",
+      "copyKey": "Salin kunci strim",
+      "reveal": "Tunjukkan kunci strim",
+      "hide": "Sembunyikan kunci strim",
+      "copyFailed": "Tidak dapat disalin",
+      "keyWarning": "Sesiapa yang memegang kunci ini boleh menyiar sebagai anda. Jangan sekali-kali menunjukkannya dalam strim.",
+      "defaultTitle": "Tajuk strim lalai",
+      "defaultTitlePlaceholder": "Nama strim pengekod anda",
+      "defaultTitleHint": "Digunakan apabila anda mula bersiaran daripada pengekod tanpa menetapkan siaran terlebih dahulu.",
+      "titleSaved": "Disimpan",
+      "titleFailed": "Tidak dapat menyimpan tajuk",
+      "rotate": "Tetapkan semula kunci strim",
+      "rotateConfirm": "Keluarkan kunci strim baharu? Setiap pengekod yang menggunakan yang lama akan berhenti berfungsi sehingga anda menampal kunci baharu di sana.",
+      "rotated": "Kunci strim baharu dikeluarkan",
+      "rotateFailed": "Tidak dapat mengeluarkan kunci baharu",
+      "unavailable": "Strim daripada pengekod tidak tersedia pada akaun anda buat masa ini.",
+      "serverCopied": "Pelayan disalin",
+      "keyCopied": "Kunci strim disalin"
+    }
   },
   "postOptions": {
     "options": "Options",

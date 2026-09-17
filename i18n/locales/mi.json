@@ -576,7 +576,31 @@
     "kidsModeTurnOff": "Hurihia nga tamariki ki waho",
     "kidsModePinMismatch": "He rerekē aua PIN. Tīmata anō.",
     "kidsModeFailed": "Kaore i mahi. Whakamātauria ano.",
-    "kidsModeForgotPin": "Kua warewarehia? Hokona ki to putea i runga i tetahi atu taputapu ki te huri i te Kids Mode."
+    "kidsModeForgotPin": "Kua warewarehia? Hokona ki to putea i runga i tetahi atu taputapu ki te huri i te Kids Mode.",
+    "streamKey": {
+      "section": "Kī raraunga roma",
+      "blurb": "Whakapiripiria ēnei ki OBS, ki tō taupānga hopu, ki tō papatohu kotahi. Kare anō ēnei e puta – pēhia te Tīmata ki tō kaikōkiri, ka hanga a DeHub i te pou ora māu.",
+      "server": "Tūmau",
+      "key": "Kī raraunga roma",
+      "copyServer": "Kōpi tūmau",
+      "copyKey": "Kōpi kī raraunga roma",
+      "reveal": "Whakaatu kī raraunga roma",
+      "hide": "Huna kī raraunga roma",
+      "copyFailed": "Kāore i taea te kōpi",
+      "keyWarning": "Ko te tangata kei a ia tēnei kī ka taea te whakapaoho hei koe. Kaua rawa e whakaatu ki runga i te roma.",
+      "defaultTitle": "Taitara roma taunoa",
+      "defaultTitlePlaceholder": "Ko te ingoa o ngā roma a tō kaikōkiri",
+      "defaultTitleHint": "Ka whakamahia ina tīmata koe ki te whakapaoho mai i tētahi kaikōkiri me te kore e whakatau i tētahi pou i te tuatahi.",
+      "titleSaved": "Tiakina",
+      "titleFailed": "Kāore i taea te tiaki i te taitara",
+      "rotate": "Tautuhi anō i te kī raraunga roma",
+      "rotateConfirm": "Tīmata anō i tētahi kī raraunga roma hou? Ka mutu te mahi o ngā kaikōkiri katoa e whakamahi ana i te kī tawhito kia whakapiripiria ra ano te kī hou.",
+      "rotated": "Kī raraunga roma hou kua tīmatahia",
+      "rotateFailed": "Kāore i taea te tīmata i tētahi kī hou",
+      "unavailable": "Kāore e wātea ana te whakapaoho mai i tētahi kaikōkiri ki tō pūkete i tēnei wā.",
+      "serverCopied": "Ka kape te tūmau",
+      "keyCopied": "Tīpakohia te kī o te kōpae"
+    }
   },
   "common": {
     "mute": "Whakangū",

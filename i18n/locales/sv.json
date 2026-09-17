@@ -585,7 +585,31 @@
     "kidsModeTurnOff": "Stäng av barnläge",
     "kidsModePinMismatch": "Dessa PIN-koder är olika. Börja om.",
     "kidsModeFailed": "Det fungerade inte. Försök igen.",
-    "kidsModeForgotPin": "Har du glömt det? Logga in med din plånbok på en annan enhet för att stänga av barnläget."
+    "kidsModeForgotPin": "Har du glömt det? Logga in med din plånbok på en annan enhet för att stänga av barnläget.",
+    "streamKey": {
+      "section": "Stream-nyckel",
+      "blurb": "Klistra in dessa i OBS, din inspelningsapp eller din konsol en gång. De ändras aldrig — tryck på Start i din kodare och DeHub skapar liveinlägget åt dig.",
+      "server": "Server",
+      "key": "Stream-nyckel",
+      "copyServer": "Kopiera server",
+      "copyKey": "Kopiera stream-nyckel",
+      "reveal": "Visa stream-nyckel",
+      "hide": "Dölj stream-nyckel",
+      "copyFailed": "Kunde inte kopiera",
+      "keyWarning": "Vem som helst som har denna nyckel kan sända som du. Visa den aldrig i din stream.",
+      "defaultTitle": "Standard streamtitel",
+      "defaultTitlePlaceholder": "Vad dina kodarströmmar kallas",
+      "defaultTitleHint": "Används när du går live från en kodare utan att först ha ställt in ett inlägg.",
+      "titleSaved": "Sparad",
+      "titleFailed": "Kunde inte spara titeln",
+      "rotate": "Återställ stream-nyckel",
+      "rotateConfirm": "Vill du utfärda en ny stream-nyckel? Alla kodare som använder den gamla kommer att sluta fungera tills du klistrar in den nya nyckeln.",
+      "rotated": "Ny stream-nyckel utfärdad",
+      "rotateFailed": "Kunde inte utfärda en ny nyckel",
+      "unavailable": "Att streama från en kodare är inte tillgängligt på ditt konto just nu.",
+      "serverCopied": "Servern kopierades",
+      "keyCopied": "Strömningsnyckel kopierad"
+    }
   },
   "common": {
     "mute": "Stäng av ljud",

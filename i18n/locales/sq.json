@@ -585,7 +585,31 @@
     "kidsModeTurnOff": "Fik Modalitetin për Fëmijë",
     "kidsModePinMismatch": "Ato PIN-a janë të ndryshme. Fillo përsëri.",
     "kidsModeFailed": "Kjo nuk funksionoi. Provo përsëri.",
-    "kidsModeForgotPin": "E ke harruar? Hyr me portofolin tuaj në një pajisje tjetër për të fikur Modalitetin për Fëmijë."
+    "kidsModeForgotPin": "E ke harruar? Hyr me portofolin tuaj në një pajisje tjetër për të fikur Modalitetin për Fëmijë.",
+    "streamKey": {
+      "section": "Çelësi i transmetimit",
+      "blurb": "Vendosni këto në OBS, aplikacionin tuaj të kapjes ose konsolën tuaj një herë. Ato nuk ndryshojnë kurrë — shtypni Start në koduesin tuaj dhe DeHub krijon postimin live për ju.",
+      "server": "Server",
+      "key": "Çelësi i transmetimit",
+      "copyServer": "Kopjo serverin",
+      "copyKey": "Kopjo çelësin e transmetimit",
+      "reveal": "Trego çelësin e transmetimit",
+      "hide": "Fshih çelësin e transmetimit",
+      "copyFailed": "Nuk u kopjua dot",
+      "keyWarning": "Kushdo që ka këtë çelës mund të transmetojë si ju. Mos e tregoni kurrë në transmetim.",
+      "defaultTitle": "Titulli i parazgjedhur i transmetimit",
+      "defaultTitlePlaceholder": "Si quhen transmetimet tuaja nga koduesi",
+      "defaultTitleHint": "Përdoret kur filloni transmetimin nga një kodues pa vendosur më parë një postim.",
+      "titleSaved": "Ruajtur",
+      "titleFailed": "Nuk u ruajt dot titulli",
+      "rotate": "Rivendos çelësin e transmetimit",
+      "rotateConfirm": "Lëshoni një çelës të ri transmetimi? Çdo kodues që përdor atë të vjetrin do të ndalojë së punuari derisa të vendosni çelësin e ri.",
+      "rotated": "Çelësi i ri i transmetimit u lëshua",
+      "rotateFailed": "Nuk u lëshua dot çelësi i ri",
+      "unavailable": "Transmetimi nga një kodues nuk është i disponueshëm në llogarinë tuaj tani.",
+      "serverCopied": "Serveri u kopjua",
+      "keyCopied": "Çelësi i transmetimit u kopjua"
+    }
   },
   "common": {
     "mute": "Hiq zërin",

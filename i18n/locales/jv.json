@@ -544,7 +544,31 @@
     "kidsModeTurnOff": "Mateni Mode Anak-anak",
     "kidsModePinMismatch": "PIN-PIN kasebut beda. Mulai maneh.",
     "kidsModeFailed": "Iku ora bisa. Coba maneh.",
-    "kidsModeForgotPin": "Lali? Mlebu nganggo dompet sampeyan ing piranti liya kanggo mateni Mode Anak-anak."
+    "kidsModeForgotPin": "Lali? Mlebu nganggo dompet sampeyan ing piranti liya kanggo mateni Mode Anak-anak.",
+    "streamKey": {
+      "section": "Tombol siaran",
+      "blurb": "Tempelake iki menyang OBS, aplikasi tangkapanmu utawa konsolmu sapisan. Iki ora bakal owah — pencet Mulai ing encoder-mu lan DeHub bakal nggawe kiriman langsung kanggo kowe.",
+      "server": "Server",
+      "key": "Tombol siaran",
+      "copyServer": "Salin server",
+      "copyKey": "Salin tombol siaran",
+      "reveal": "Tampilake tombol siaran",
+      "hide": "Sumimpen tombol siaran",
+      "copyFailed": "Ora bisa disalin",
+      "keyWarning": "Sapa wae sing nyekel tombol iki bisa siaran kaya kowe. Aja tau ditampilake ing siaran.",
+      "defaultTitle": "Judhul siaran standar",
+      "defaultTitlePlaceholder": "Jeneng siaran encoder-mu",
+      "defaultTitleHint": "Digunakake nalika kowe siaran saka encoder tanpa nyiyapake kiriman dhisik.",
+      "titleSaved": "Disimpen",
+      "titleFailed": "Ora bisa nyimpen judhul",
+      "rotate": "Setel ulang tombol siaran",
+      "rotateConfirm": "Ngetokake tombol siaran anyar? Saben encoder sing nggunakake sing lawas bakal mandheg digunakake nganti kowe nempelake tombol anyar.",
+      "rotated": "Tombol siaran anyar wis ditokake",
+      "rotateFailed": "Ora bisa ngetokake tombol anyar",
+      "unavailable": "Siaran saka encoder ora kasedhiya ing akunmu saiki.",
+      "serverCopied": "Server disalin",
+      "keyCopied": "Kunci stream disalin"
+    }
   },
   "common": {
     "mute": "Bisu",

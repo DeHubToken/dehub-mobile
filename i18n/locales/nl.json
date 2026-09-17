@@ -600,7 +600,31 @@
     "kidsModeTurnOff": "Zet de kindermodus uit",
     "kidsModePinMismatch": "Die pincodes zijn anders. Begin opnieuw.",
     "kidsModeFailed": "Dat werkte niet. Probeer het opnieuw.",
-    "kidsModeForgotPin": "Ben je het vergeten? Log in met je portemonnee op een ander apparaat om de kindermodus uit te schakelen."
+    "kidsModeForgotPin": "Ben je het vergeten? Log in met je portemonnee op een ander apparaat om de kindermodus uit te schakelen.",
+    "streamKey": {
+      "section": "Stream sleutel",
+      "blurb": "Plak deze eenmalig in OBS, je capture-app of je console. Ze veranderen nooit — druk op Start in je encoder en DeHub maakt de live-post voor je aan.",
+      "server": "Server",
+      "key": "Stream sleutel",
+      "copyServer": "Kopieer server",
+      "copyKey": "Kopieer stream sleutel",
+      "reveal": "Stream sleutel tonen",
+      "hide": "Stream sleutel verbergen",
+      "copyFailed": "Kon niet kopiëren",
+      "keyWarning": "Iedereen die deze sleutel heeft, kan als jou uitzenden. Toon hem nooit tijdens de stream.",
+      "defaultTitle": "Standaard streamtitel",
+      "defaultTitlePlaceholder": "Hoe je streams vanuit je encoder worden genoemd",
+      "defaultTitleHint": "Wordt gebruikt wanneer je live gaat vanuit een encoder zonder eerst een post in te stellen.",
+      "titleSaved": "Opgeslagen",
+      "titleFailed": "Titel kon niet worden opgeslagen",
+      "rotate": "Stream sleutel opnieuw instellen",
+      "rotateConfirm": "Wil je een nieuwe stream sleutel uitgeven? Elke encoder die de oude gebruikt, stopt met werken totdat je de nieuwe sleutel hebt ingevoerd.",
+      "rotated": "Nieuwe stream sleutel uitgegeven",
+      "rotateFailed": "Kon geen nieuwe sleutel uitgeven",
+      "unavailable": "Streamen vanuit een encoder is momenteel niet beschikbaar op je account.",
+      "serverCopied": "Server gekopieerd",
+      "keyCopied": "Stream-sleutel gekopieerd"
+    }
   },
   "common": {
     "mute": "Dempen",

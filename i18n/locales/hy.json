@@ -584,7 +584,31 @@
     "kidsModeTurnOff": "Անջատել երեխաների ռեժիմը",
     "kidsModePinMismatch": "Այդ PIN - երը տարբեր են ։ Սկսեք նորից ։",
     "kidsModeFailed": "Դա չստացվեց ։ Նորից փորձեք ։",
-    "kidsModeForgotPin": "Մոռացե ՞ լ եք այն ։ Երեխաների ռեժիմն անջատելու համար մուտք գործեք դրամապանակով մեկ այլ սարքի միջոցով ։"
+    "kidsModeForgotPin": "Մոռացե ՞ լ եք այն ։ Երեխաների ռեժիմն անջատելու համար մուտք գործեք դրամապանակով մեկ այլ սարքի միջոցով ։",
+    "streamKey": {
+      "section": "Stream key",
+      "blurb": "OBS-ում, ձեր capture հավելվածում կամ կոնսոլում մեկ անգամ մուտքագրեք սրանք։ Նրանք երբեք չեն փոխվում — սեղմեք Start ձեր encoder-ում, և DeHub-ը կստեղծի ուղիղ եթերի գրառումը ձեզ համար։",
+      "server": "Server",
+      "key": "Stream key",
+      "copyServer": "Copy server",
+      "copyKey": "Copy stream key",
+      "reveal": "Show stream key",
+      "hide": "Hide stream key",
+      "copyFailed": "Չհաջողվեց պատճենել",
+      "keyWarning": "Այս բանալին ունեցող ցանկացած մեկը կարող է հեռարձակել ձեր անունից։ Երբեք մի ցույց տվեք այն եթերում։",
+      "defaultTitle": "Default stream title",
+      "defaultTitlePlaceholder": "Ինչպես են կոչվում ձեր encoder-ի stream-երը",
+      "defaultTitleHint": "Օգտագործվում է, երբ դուք ուղիղ եթեր եք մտնում encoder-ից՝ առանց նախապես գրառում ստեղծելու։",
+      "titleSaved": "Saved",
+      "titleFailed": "Չհաջողվեց պահպանել վերնագիրը",
+      "rotate": "Reset stream key",
+      "rotateConfirm": "Թողարկե՞լ նոր stream key։ Հինը օգտագործող յուրաքանչյուր encoder կդադարի աշխատել, մինչև որ դուք մուտքագրեք նոր բանալին։",
+      "rotated": "Տրվել է հոսքի նոր բանալի",
+      "rotateFailed": "Չհաջողվեց նոր բանալի թողարկել",
+      "unavailable": "Encoder-ից հեռարձակումը ներկայումս հասանելի չէ ձեր հաշվում։",
+      "serverCopied": "Սերվերը պատճենված է",
+      "keyCopied": "Հոսքի բանալին պատճենված է"
+    }
   },
   "common": {
     "mute": "Անջատել ձայնը",

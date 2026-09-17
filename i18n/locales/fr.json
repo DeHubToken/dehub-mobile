@@ -600,7 +600,31 @@
     "kidsModeTurnOff": "Désactiver le mode enfants",
     "kidsModePinMismatch": "Ces codes pin sont différents. Recommencez.",
     "kidsModeFailed": "Cela n'a pas fonctionné. Réessayez.",
-    "kidsModeForgotPin": "Vous l'avez oublié ? Connectez-vous avec votre portefeuille sur un autre appareil pour désactiver le mode Enfant."
+    "kidsModeForgotPin": "Vous l'avez oublié ? Connectez-vous avec votre portefeuille sur un autre appareil pour désactiver le mode Enfant.",
+    "streamKey": {
+      "section": "Clé de flux",
+      "blurb": "Collez ceci dans OBS, votre application de capture ou votre console une fois. Elles ne changent jamais — appuyez sur Démarrer dans votre encodeur et DeHub crée la publication en direct pour vous.",
+      "server": "Serveur",
+      "key": "Clé de flux",
+      "copyServer": "Copier le serveur",
+      "copyKey": "Copier la clé de flux",
+      "reveal": "Afficher la clé de flux",
+      "hide": "Masquer la clé de flux",
+      "copyFailed": "Impossible de copier",
+      "keyWarning": "Toute personne détenant cette clé peut diffuser en votre nom. Ne l'affichez jamais en direct.",
+      "defaultTitle": "Titre de flux par défaut",
+      "defaultTitlePlaceholder": "Comment sont nommés vos flux d'encodeur",
+      "defaultTitleHint": "Utilisé lorsque vous passez en direct depuis un encodeur sans avoir configuré de publication au préalable.",
+      "titleSaved": "Enregistré",
+      "titleFailed": "Impossible d'enregistrer le titre",
+      "rotate": "Réinitialiser la clé de flux",
+      "rotateConfirm": "Émettre une nouvelle clé de flux ? Tous les encodeurs utilisant l'ancienne cesseront de fonctionner jusqu'à ce que vous colliez la nouvelle clé.",
+      "rotated": "Nouvelle clé de flux émise",
+      "rotateFailed": "Impossible d'émettre une nouvelle clé",
+      "unavailable": "Le streaming depuis un encodeur n'est pas disponible sur votre compte pour le moment.",
+      "serverCopied": "Serveur copié",
+      "keyCopied": "Clé de flux copiée"
+    }
   },
   "common": {
     "mute": "Couper le son",
