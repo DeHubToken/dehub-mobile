@@ -53,7 +53,9 @@ import {
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { revokeAudioFocus } from '../../libs/audioFocus';
+import { requestAudioFocus, releaseAudioFocus } from '../../libs/audioFocus';
+import { requestFeedVideoFocus, releaseFeedVideoFocus } from '../../libs/feedVideoFocus';
+import { stopActivePreview } from '../../libs/previewRegistry';
 import { createLogger } from '../../libs/logger';
 import { getCachedMuted, setMutedState } from '../../libs/videoMutedState';
 
@@ -235,6 +237,14 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     }
   });
 
+  const stopPlayback = useCallback(() => {
+    try { player.pause(); } catch {}
+    releaseAudioFocus(stopPlayback);
+    releaseFeedVideoFocus(stopPlayback);
+  }, [player]);
+
+  useEffect(() => () => stopPlayback(), [stopPlayback]);
+
   useEffect(() => {
     return () => {
       // Stop expo-video's native time-update clock before the instance is
@@ -297,7 +307,14 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         if (!isMountedRef.current) return;
         setIsPlaying(playing);
         onPlayStateChange?.(playing);
-        if (playing) revokeAudioFocus();
+        if (playing) {
+          stopActivePreview();
+          requestFeedVideoFocus(stopPlayback);
+          requestAudioFocus(stopPlayback);
+        } else {
+          releaseAudioFocus(stopPlayback);
+          releaseFeedVideoFocus(stopPlayback);
+        }
       }),
 
       player.addListener('statusChange', ({ status, error }) => {
@@ -359,7 +376,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     return () => {
       subscriptions.forEach((sub) => sub.remove());
     };
-  }, [player, onPlayStateChange, onReady, onProgress, onVideoSize, isReady, duration, onError, maybeSkipSegment]);
+  }, [player, onPlayStateChange, onReady, onProgress, onVideoSize, isReady, duration, onError, maybeSkipSegment, stopPlayback]);
 
   // Handle navigation events to stop playback when leaving screen
   // Guard with isInPiPRef — returning from PiP also triggers beforeRemove
@@ -378,6 +395,13 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
     return unsubscribe;
   }, [navigation, player]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      if (!isInPiPRef.current) stopPlayback();
+    });
+    return unsubscribe;
+  }, [navigation, stopPlayback]);
 
   // Playback controls
   const togglePlay = useCallback(() => {
