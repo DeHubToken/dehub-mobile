@@ -62,11 +62,14 @@ interface LiveViewerHeaderProps {
    * two places they read as facts about two different things.
    */
   viewerCount?: number;
+  likeCount?: number;
   /** Gifts sent to this stream, all told. */
   giftCount?: number;
   fallbackMinter?: string | number;
   /** Opens the shared post options sheet — the same one every other post has. */
   onOptionsPress?: () => void;
+  isMuted: boolean;
+  onToggleMute: () => void;
   /** Drops the chrome and keeps the picture. The chevron, as on every live app. */
   onCollapse?: () => void;
 }
@@ -80,9 +83,12 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
   onUnfollow,
   viewerAddress,
   viewerCount,
+  likeCount,
   giftCount,
   fallbackMinter,
   onOptionsPress,
+  isMuted,
+  onToggleMute,
   onCollapse,
 }) => {
   const navigation = useNavigation<any>();
@@ -104,16 +110,6 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
       (fallbackMinter ? String(fallbackMinter) : "Creator")
     );
   }, [creator, creatorLoading, fallbackMinter]);
-
-  const followerCount = useMemo(
-    () =>
-      typeof creator?.followers === "number"
-        ? creator.followers
-        : Array.isArray(creator?.followers)
-          ? creator!.followers!.length
-          : 0,
-    [creator?.followers]
-  );
 
   const badgeImage = getBadgeUrlFor(creator as any);
 
@@ -181,7 +177,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
             <View style={styles.metaRow}>
               <Icon name="Heart" size={9} color="rgba(255,255,255,0.7)" fill="rgba(255,255,255,0.7)" />
               <Text style={styles.meta} numberOfLines={1}>
-                {formatCompactNumber(Math.max(0, followerCount))}
+                {formatCompactNumber(Math.max(0, likeCount ?? 0))}
               </Text>
               {viewerCount != null ? (
                 <>
@@ -191,7 +187,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
                   </Text>
                 </>
               ) : null}
-              {giftCount ? (
+              {giftCount != null ? (
                 <>
                   <DhbCoin size={10} />
                   <Text style={styles.meta} numberOfLines={1}>
@@ -222,6 +218,11 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
       </View>
 
       <View style={styles.controls}>
+        <Pressable onPress={onToggleMute} hitSlop={CHROME_HIT_SLOP} style={styles.chromeButton}
+          accessibilityRole="button" accessibilityLabel={isMuted ? "Unmute" : "Mute"}>
+          <ChromeFill sheer />
+          <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
+        </Pressable>
         {onOptionsPress ? (
           <Pressable
             onPress={onOptionsPress}
@@ -231,7 +232,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
             accessibilityLabel={t("postOptions.options", { defaultValue: "Options" })}
           >
             <ChromeFill sheer />
-            <Icon name="Ellipsis" size={18} color="#fff" />
+            <Icon name="EllipsisVertical" size={18} color="#fff" />
           </Pressable>
         ) : null}
 
@@ -270,7 +271,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: EDGE,
     paddingTop: EDGE,
-    gap: 8,
+    gap: 4,
   },
   /**
    * Takes the row's spare width and gives it up before the controls do.
@@ -283,7 +284,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: 4,
   },
   /**
    * A capsule, not a card: over a moving picture the fully rounded shape reads
@@ -349,7 +350,7 @@ const styles = StyleSheet.create({
   },
   /** 48, with the capsule: one height across the row. */
   chromeButton: {
-    width: 48,
+    width: 40,
     height: 48,
     borderRadius: CHROME_RADIUS,
     alignItems: "center",
@@ -364,7 +365,7 @@ const styles = StyleSheet.create({
    * screen reader.
    */
   followButton: {
-    width: 48,
+    width: 40,
     height: 48,
     flexDirection: "row",
     alignItems: "center",

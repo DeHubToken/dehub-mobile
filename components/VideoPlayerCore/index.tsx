@@ -29,7 +29,7 @@ import {
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 import { VideoView, useVideoPlayer, VideoPlayer } from 'expo-video';
-import { FULLSCREEN_BUFFER_OPTIONS } from "../../libs/videoBuffering";
+import { FULLSCREEN_BUFFER_OPTIONS, LIVE_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from '../../libs/video-preferences';
 import { useAppPrefs } from '../../hooks/useAppPrefs';
 import { useVideoSegments, segmentAt } from '../../hooks/useVideoSegments';
@@ -231,7 +231,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     // it should move the sound to the lock screen, not end it.
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
-    p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
+    p.bufferOptions = liveMode ? LIVE_BUFFER_OPTIONS : FULLSCREEN_BUFFER_OPTIONS;
     if (autoplay && sourceUrl) {
       p.play();
     }
@@ -835,11 +835,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           }}
         >
           {/* Top Controls — suppressed when an external header already provides them */}
-          {hideTopControls ? (
-            <View style={{ alignItems: 'flex-end' }}>
-              <PictureInPictureButton videoRef={viewRef} />
-            </View>
-          ) : (
+          {hideTopControls ? null : (
             <TopControls
               onClose={handleClosePress}
               onMute={toggleMute}
