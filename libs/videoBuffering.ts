@@ -61,3 +61,11 @@ export const FULLSCREEN_BUFFER_OPTIONS: BufferOptions = {
   preferredForwardBufferDuration: 30,
   maxBufferBytes: 32 * 1024 * 1024,
 };
+
+/** Keep HLS close to the live edge when WebRTC is unavailable. */
+export const LIVE_BUFFER_OPTIONS: BufferOptions = {
+  preferredForwardBufferDuration: 3,
+  maxBufferBytes: 12 * 1024 * 1024,
+  minBufferForPlayback: 0.5,
+  waitsToMinimizeStalling: false,
+};
