@@ -18,6 +18,7 @@ import React, { memo, useCallback, useMemo } from "react";
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
+import { DhbCoin } from "../common/DhbCoin";
 import Icon from "../ui/Icon";
 import {
   ChromeFill,
@@ -54,6 +55,15 @@ interface LiveViewerHeaderProps {
   onFollow: () => void;
   onUnfollow: () => void;
   viewerAddress?: string;
+  /** How many are watching, right now.
+   *
+   * On the name's own line rather than in a chip of its own: followers,
+   * watching and gifts are three facts about one stream, and split across
+   * two places they read as facts about two different things.
+   */
+  viewerCount?: number;
+  /** Gifts sent to this stream, all told. */
+  giftCount?: number;
   fallbackMinter?: string | number;
   /** Opens the shared post options sheet — the same one every other post has. */
   onOptionsPress?: () => void;
@@ -69,6 +79,8 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
   onFollow,
   onUnfollow,
   viewerAddress,
+  viewerCount,
+  giftCount,
   fallbackMinter,
   onOptionsPress,
   onCollapse,
@@ -171,7 +183,24 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
               <Text style={styles.meta} numberOfLines={1}>
                 {formatCompactNumber(Math.max(0, followerCount))}
               </Text>
+              {viewerCount != null ? (
+                <>
+                  <Icon name="Eye" size={10} color="rgba(255,255,255,0.7)" strokeWidth={2} />
+                  <Text style={styles.meta} numberOfLines={1}>
+                    {formatCompactNumber(Math.max(0, viewerCount))}
+                  </Text>
+                </>
+              ) : null}
+              {giftCount ? (
+                <>
+                  <DhbCoin size={10} />
+                  <Text style={styles.meta} numberOfLines={1}>
+                    {formatCompactNumber(Math.max(0, giftCount))}
+                  </Text>
+                </>
+              ) : null}
             </View>
+
           </View>
         </Pressable>
 
@@ -301,7 +330,7 @@ const styles = StyleSheet.create({
   metaRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 3,
+    gap: 4,
     marginTop: 1,
   },
   meta: {
