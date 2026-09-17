@@ -26,6 +26,8 @@ interface Props {
   immersive: boolean;
   onToggleMute: () => void;
   onToggleImmersive: () => void;
+  /** The live viewer's header carries its own collapse chevron. */
+  hideImmersiveToggle?: boolean;
 }
 
 const LiveViewerPlayerControls: React.FC<Props> = ({
@@ -33,6 +35,7 @@ const LiveViewerPlayerControls: React.FC<Props> = ({
   immersive,
   onToggleMute,
   onToggleImmersive,
+  hideImmersiveToggle,
 }) => {
   const { t } = useTranslation();
   return (
@@ -51,6 +54,7 @@ const LiveViewerPlayerControls: React.FC<Props> = ({
         <ChromeFill />
         <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
       </Pressable>
+      {hideImmersiveToggle ? null : (
       <Pressable
         onPress={onToggleImmersive}
         hitSlop={CHROME_HIT_SLOP}
@@ -65,6 +69,7 @@ const LiveViewerPlayerControls: React.FC<Props> = ({
         <ChromeFill />
         <Icon name={immersive ? "Minimize" : "Maximize"} size={20} color="#fff" />
       </Pressable>
+      )}
     </View>
   );
 };

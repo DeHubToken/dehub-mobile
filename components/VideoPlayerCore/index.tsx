@@ -90,6 +90,13 @@ interface VideoPlayerCoreProps {
   onReady?: (durationMs: number) => void;
   onPlayStateChange?: (playing: boolean) => void;
   onProgress?: (positionMs: number, durationMs: number) => void;
+  /**
+   * Handed the player's seek function once a duration is known, and null
+   * when there is nothing seekable. Lets a surface that draws its own
+   * timeline — the live viewer's scrub line — move playback without
+   * reaching for the expo-video player itself.
+   */
+  seekRef?: React.MutableRefObject<((ratio: number) => void) | null>;
   onClose?: () => void;
   onError?: (error: Error) => void;
 }
@@ -110,6 +117,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   onReady,
   onPlayStateChange,
   onProgress,
+  seekRef,
   onClose,
   onError,
 }) => {
@@ -546,6 +554,17 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     },
     [liveMode, duration, seekToPosition]
   );
+
+  // Publish the seek to whoever drew their own timeline. Null while the
+  // source has no duration, which is what a genuinely live stream reports —
+  // the bar then draws but refuses the drag rather than seeking to nowhere.
+  useEffect(() => {
+    if (!seekRef) return;
+    seekRef.current = liveMode || !duration ? null : seekToRatio;
+    return () => {
+      seekRef.current = null;
+    };
+  }, [seekRef, seekToRatio, liveMode, duration]);
 
   const handleSeek = useCallback(
     (direction: SeekDirection) => {

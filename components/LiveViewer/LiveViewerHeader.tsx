@@ -1,13 +1,22 @@
 /**
  * The live viewer's top bar.
  *
- * Drawn from the same kit as the shorts viewer (components/common/ViewerChrome)
- * rather than its own set of black/50 circles and hairline borders: a rounded
- * card on the left, a 40pt chrome button per control on the right. A viewer
- * opening a stream and a viewer opening a short now see one app.
+ * One row, laid out the way every live app on a phone lays it out: a compact
+ * creator pill on the left with the follow button hung straight off it, then
+ * the audience count, then the two ways out — collapse the chrome, or leave.
+ * The previous version gave the creator card the whole left half of the screen
+ * and stacked status, viewers and followers into it, which pushed everything
+ * else into a second line and read as a settings row rather than as chrome
+ * over a video.
+ *
+ * Everything is drawn from components/common/ViewerChrome, so this and the
+ * shorts viewer stay one surface: zinc-900 fills, 12pt radii, 40pt buttons,
+ * white icons, no hue anywhere. Stream state moved out to the pill row
+ * underneath (LiveViewerPills) where it sits beside the title.
  */
 import React, { memo, useCallback, useMemo } from "react";
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import {
@@ -45,13 +54,12 @@ interface LiveViewerHeaderProps {
   onFollow: () => void;
   onUnfollow: () => void;
   viewerAddress?: string;
-  isLive: boolean;
-  isPaused: boolean;
-  isEnded: boolean;
   viewerCount: number;
   fallbackMinter?: string | number;
   /** Opens the shared post options sheet — the same one every other post has. */
   onOptionsPress?: () => void;
+  /** Drops the chrome and keeps the picture. The chevron, as on every live app. */
+  onCollapse?: () => void;
 }
 
 const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
@@ -62,16 +70,15 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
   onFollow,
   onUnfollow,
   viewerAddress,
-  isLive,
-  isPaused,
-  isEnded,
   viewerCount,
   fallbackMinter,
   onOptionsPress,
+  onCollapse,
 }) => {
   const navigation = useNavigation<any>();
   const { showUserProfile } = useUserProfileSheet();
   const { requireAuth } = useAuthActions();
+  const { t } = useTranslation();
 
   const avatarUrl = useMemo(
     () => getAvatarUrl(creator?.avatarImageUrl) || undefined,
@@ -79,7 +86,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
   );
 
   const displayName = useMemo(() => {
-    if (creatorLoading) return "Loading...";
+    if (creatorLoading) return "…";
     return (
       creator?.displayName ||
       creator?.username ||
@@ -102,8 +109,8 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
 
   const isSelf = useMemo(() => {
     const v = (viewerAddress || "").toLowerCase();
-    const t = (creator?.walletAddress || creator?.address || "").toLowerCase();
-    return !!v && !!t && v === t;
+    const t2 = (creator?.walletAddress || creator?.address || "").toLowerCase();
+    return !!v && !!t2 && v === t2;
   }, [viewerAddress, creator]);
 
   const profileId = useMemo(
@@ -131,101 +138,98 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
     });
   }, [isSelf, requireAuth, isFollowing, onUnfollow, onFollow]);
 
-  /**
-   * Monochrome, per the design system: the state is carried by the dot's
-   * opacity and the label, never by a hue. Paused and ended were previously
-   * two different greys that read as the same colour anyway.
-   */
-  const statusLabel = isPaused
-    ? "PAUSED"
-    : isLive
-      ? "LIVE"
-      : isEnded
-        ? "ENDED"
-        : "OFFLINE";
-
-  const statusDim = !isLive || isPaused;
+  const showFollow = !isSelf && !creatorLoading && !!creator && !isFollowing;
 
   return (
     <View style={styles.bar} pointerEvents="box-none">
-      {/* Creator card */}
-      <Pressable
-        onPress={handleOpenProfile}
-        style={styles.creatorCard}
-        accessibilityRole="button"
-        accessibilityLabel={"Open profile of " + displayName}
-      >
-        <ChromeFill />
-        <Avatar
-          uri={avatarUrl}
-          size={36}
+      {/* Creator pill + follow. Grouped and shrink together, so a long name
+          gives up characters before the follow button gives up the row. */}
+      <View style={styles.left}>
+        <Pressable
           onPress={handleOpenProfile}
-          name={displayName}
-          style={styles.avatar}
-        />
-        <View style={styles.creatorText}>
-          <View style={styles.nameRow}>
-            <Text style={styles.name} numberOfLines={1}>
-              {displayName}
-            </Text>
-            {badgeImage ? (
-              <Image source={badgeImage} style={styles.badge} />
-            ) : null}
-          </View>
-          <View style={styles.metaRow}>
-            <View style={styles.statusChip}>
-              <View
-                style={[styles.statusDot, statusDim ? styles.statusDotDim : null]}
-              />
-              <Text style={styles.statusText}>{statusLabel}</Text>
+          style={styles.creatorCard}
+          accessibilityRole="button"
+          accessibilityLabel={"Open profile of " + displayName}
+        >
+          <ChromeFill radius={CHROME_SIZE / 2} />
+          <Avatar
+            uri={avatarUrl}
+            size={30}
+            onPress={handleOpenProfile}
+            name={displayName}
+            style={styles.avatar}
+          />
+          <View style={styles.creatorText}>
+            <View style={styles.nameRow}>
+              <Text style={styles.name} numberOfLines={1}>
+                {displayName}
+              </Text>
+              {badgeImage ? (
+                <Image source={badgeImage} style={styles.badge} />
+              ) : null}
             </View>
-            <Text style={styles.meta} numberOfLines={1}>
-              {formatCompactNumber(Math.max(0, viewerCount))} watching
-              {" · "}
-              {formatCompactNumber(followerCount)} followers
-            </Text>
+            <View style={styles.metaRow}>
+              <Icon name="Heart" size={9} color="rgba(255,255,255,0.7)" fill="rgba(255,255,255,0.7)" />
+              <Text style={styles.meta} numberOfLines={1}>
+                {formatCompactNumber(Math.max(0, followerCount))}
+              </Text>
+            </View>
           </View>
-        </View>
-      </Pressable>
+        </Pressable>
 
-      <View style={styles.controls}>
-        {/* Follow — the one filled control on the frame, as on the feed card. */}
-        {!isSelf && !creatorLoading && creator && (
+        {/* The one filled control on the frame. It disappears once following —
+            an already-followed creator does not need a button parked on their
+            own stream, and the row gets the width back. */}
+        {showFollow ? (
           <Pressable
             onPress={handleFollowPress}
             disabled={followLoading}
             hitSlop={CHROME_HIT_SLOP}
-            style={[
-              styles.followButton,
-              isFollowing ? null : styles.followButtonSolid,
-              followLoading ? styles.pending : null,
-            ]}
+            style={[styles.followButton, followLoading ? styles.pending : null]}
             accessibilityRole="button"
           >
-            {isFollowing ? <ChromeFill /> : null}
-            <Text
-              style={[
-                styles.followLabel,
-                isFollowing ? styles.followingLabel : styles.followLabelSolid,
-              ]}
-            >
-              {isFollowing ? "Following" : "Follow"}
+            <Icon name="Plus" size={13} color="#09090B" strokeWidth={2.5} />
+            <Text style={styles.followLabel}>
+              {t("follow.follow", { defaultValue: "Follow" })}
             </Text>
           </Pressable>
-        )}
+        ) : null}
+      </View>
 
-        {/* Options — save, share, report, block and the owner actions. The
-            stream page was the only post surface in the app without it. */}
+      <View style={styles.controls}>
+        {/* Audience. A count, not an avatar stack: the socket carries a number
+            and inventing faces for it would be a lie at a glance. */}
+        <View style={styles.viewerChip} pointerEvents="none">
+          <ChromeFill radius={CHROME_SIZE / 2} />
+          <Icon name="Eye" size={13} color="#fff" strokeWidth={1.8} />
+          <Text style={styles.viewerCount}>
+            {formatCompactNumber(Math.max(0, viewerCount))}
+          </Text>
+        </View>
+
         {onOptionsPress ? (
           <Pressable
             onPress={onOptionsPress}
             hitSlop={CHROME_HIT_SLOP}
             style={styles.chromeButton}
             accessibilityRole="button"
-            accessibilityLabel="More options"
+            accessibilityLabel={t("postOptions.options", { defaultValue: "Options" })}
           >
-            <ChromeFill />
-            <Icon name="Ellipsis" size={20} color="#fff" />
+            <ChromeFill radius={CHROME_SIZE / 2} />
+            <Icon name="Ellipsis" size={18} color="#fff" />
+          </Pressable>
+        ) : null}
+
+        {onCollapse ? (
+          <Pressable
+            onPress={onCollapse}
+            hitSlop={CHROME_HIT_SLOP}
+            style={styles.chromeButton}
+            accessibilityRole="button"
+            accessibilityLabel={t("common.fullscreen", { defaultValue: "Fullscreen" })}
+          >
+            <ChromeFill radius={CHROME_SIZE / 2} />
+            <Icon name="ChevronDown" size={20} color="#fff" />
           </Pressable>
         ) : null}
 
@@ -234,9 +238,9 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
           hitSlop={CHROME_HIT_SLOP}
           style={styles.chromeButton}
           accessibilityRole="button"
-          accessibilityLabel="Close"
+          accessibilityLabel={t("common.close", { defaultValue: "Close" })}
         >
-          <ChromeFill />
+          <ChromeFill radius={CHROME_SIZE / 2} />
           <Icon name="X" size={20} color="#fff" />
         </Pressable>
       </View>
@@ -247,30 +251,36 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
 const styles = StyleSheet.create({
   bar: {
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: EDGE,
     paddingTop: EDGE,
-    paddingBottom: 10,
-    gap: CHROME_GAP,
+    gap: 8,
+  },
+  left: {
+    flexShrink: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
   /**
-   * Real padding on all four sides — the old pill had pl-1/py-1 around a 32pt
-   * avatar, which left the image touching the left edge and the text crowding
-   * the right.
+   * A capsule, not a card: over a moving picture the fully rounded shape reads
+   * as a floating tag, and it is the same silhouette as every other control on
+   * the row now that they are all circles.
    */
   creatorCard: {
     flexShrink: 1,
     flexDirection: "row",
     alignItems: "center",
-    borderRadius: CHROME_RADIUS,
-    padding: 8,
-    gap: 8,
+    height: CHROME_SIZE,
+    borderRadius: CHROME_SIZE / 2,
+    paddingLeft: 5,
+    paddingRight: 12,
+    gap: 7,
     overflow: "hidden",
   },
-  /** Web draws avatars as rounded squares; Avatar's own 16% would give 6. */
   avatar: {
-    borderRadius: 10,
+    borderRadius: 15,
   },
   creatorText: {
     flexShrink: 1,
@@ -283,68 +293,62 @@ const styles = StyleSheet.create({
   name: {
     color: "#fff",
     fontSize: 13,
-    fontWeight: "600",
+    fontWeight: "700",
     flexShrink: 1,
     ...TEXT_SHADOW,
   },
   badge: {
-    width: 13,
-    height: 13,
+    width: 12,
+    height: 12,
   },
   metaRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 6,
-    marginTop: 2,
-  },
-  statusChip: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-  },
-  statusDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: "#fff",
-  },
-  statusDotDim: {
-    backgroundColor: "rgba(255,255,255,0.4)",
-  },
-  statusText: {
-    color: "#fff",
-    fontSize: 10,
-    fontWeight: "700",
-    letterSpacing: 0.4,
+    gap: 3,
+    marginTop: 1,
   },
   meta: {
     color: "rgba(255,255,255,0.7)",
     fontSize: 11,
+    fontWeight: "600",
     flexShrink: 1,
     ...TEXT_SHADOW,
   },
   controls: {
     flexDirection: "row",
     alignItems: "center",
-    gap: CHROME_GAP,
+    gap: CHROME_GAP - 4,
+  },
+  viewerChip: {
+    flexDirection: "row",
+    alignItems: "center",
+    height: CHROME_SIZE,
+    borderRadius: CHROME_SIZE / 2,
+    paddingHorizontal: 11,
+    gap: 5,
+    overflow: "hidden",
+  },
+  viewerCount: {
+    color: "#fff",
+    fontSize: 12,
+    fontWeight: "700",
+    ...TEXT_SHADOW,
   },
   chromeButton: {
     width: CHROME_SIZE,
     height: CHROME_SIZE,
-    borderRadius: CHROME_RADIUS,
+    borderRadius: CHROME_SIZE / 2,
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
   },
   followButton: {
-    height: CHROME_SIZE,
-    paddingHorizontal: 14,
-    borderRadius: CHROME_RADIUS,
+    height: CHROME_SIZE - 6,
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
-  },
-  followButtonSolid: {
+    gap: 3,
+    paddingHorizontal: 12,
+    borderRadius: (CHROME_SIZE - 6) / 2,
     backgroundColor: "#fff",
   },
   pending: {
@@ -353,12 +357,7 @@ const styles = StyleSheet.create({
   followLabel: {
     fontSize: 13,
     fontWeight: "700",
-  },
-  followLabelSolid: {
     color: "#09090B",
-  },
-  followingLabel: {
-    color: "rgba(255,255,255,0.85)",
   },
 });
 
