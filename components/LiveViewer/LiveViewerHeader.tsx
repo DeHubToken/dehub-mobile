@@ -151,7 +151,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
           accessibilityRole="button"
           accessibilityLabel={"Open profile of " + displayName}
         >
-          <ChromeFill radius={CHROME_SIZE / 2} />
+          <ChromeFill />
           <Avatar
             uri={avatarUrl}
             size={30}
@@ -200,7 +200,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
         {/* Audience. A count, not an avatar stack: the socket carries a number
             and inventing faces for it would be a lie at a glance. */}
         <View style={styles.viewerChip} pointerEvents="none">
-          <ChromeFill radius={CHROME_SIZE / 2} />
+          <ChromeFill />
           <Icon name="Eye" size={13} color="#fff" strokeWidth={1.8} />
           <Text style={styles.viewerCount}>
             {formatCompactNumber(Math.max(0, viewerCount))}
@@ -215,7 +215,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
             accessibilityRole="button"
             accessibilityLabel={t("postOptions.options", { defaultValue: "Options" })}
           >
-            <ChromeFill radius={CHROME_SIZE / 2} />
+            <ChromeFill />
             <Icon name="Ellipsis" size={18} color="#fff" />
           </Pressable>
         ) : null}
@@ -228,7 +228,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
             accessibilityRole="button"
             accessibilityLabel={t("common.fullscreen", { defaultValue: "Fullscreen" })}
           >
-            <ChromeFill radius={CHROME_SIZE / 2} />
+            <ChromeFill />
             <Icon name="ChevronDown" size={20} color="#fff" />
           </Pressable>
         ) : null}
@@ -240,7 +240,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
           accessibilityRole="button"
           accessibilityLabel={t("common.close", { defaultValue: "Close" })}
         >
-          <ChromeFill radius={CHROME_SIZE / 2} />
+          <ChromeFill />
           <Icon name="X" size={20} color="#fff" />
         </Pressable>
       </View>
@@ -273,14 +273,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     height: CHROME_SIZE,
-    borderRadius: CHROME_SIZE / 2,
+    borderRadius: CHROME_RADIUS,
     paddingLeft: 5,
     paddingRight: 12,
     gap: 7,
     overflow: "hidden",
   },
+  /** Web draws avatars as rounded squares; this is the kit radius, less 2. */
   avatar: {
-    borderRadius: 15,
+    borderRadius: 10,
   },
   creatorText: {
     flexShrink: 1,
@@ -323,7 +324,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     height: CHROME_SIZE,
-    borderRadius: CHROME_SIZE / 2,
+    borderRadius: CHROME_RADIUS,
     paddingHorizontal: 11,
     gap: 5,
     overflow: "hidden",
@@ -337,7 +338,7 @@ const styles = StyleSheet.create({
   chromeButton: {
     width: CHROME_SIZE,
     height: CHROME_SIZE,
-    borderRadius: CHROME_SIZE / 2,
+    borderRadius: CHROME_RADIUS,
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
@@ -348,7 +349,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 3,
     paddingHorizontal: 12,
-    borderRadius: (CHROME_SIZE - 6) / 2,
+    borderRadius: CHROME_RADIUS,
     backgroundColor: "#fff",
   },
   pending: {
