@@ -4158,6 +4158,9 @@
       "gold3": "Ekran postaje zlatan i novčići padaju 3 sekunde.",
       "gold10": "Ekran postaje zlatan i novčići padaju 10 sekundi.",
       "ultimate": "Svaka proslava odjednom — zlato, konfeti, novčići i trofej."
-    }
+    },
+    "ttsLabel": "Recite nešto naglas",
+    "ttsPlaceholder": "Čitajte u streamu…",
+    "ttsHint": "Čitajte naglas svima koji gledaju kada vaš dar sleti."
   }
 }

@@ -3788,5 +3788,10 @@
     "didNotRecoverEither": "Та пријава није опоравила ниједан од овде приказаних профила. Ништа се није променило. Покушајте првобитну пријаву за профил који желите.",
     "didNotRecoverThis": "Та пријава је опоравила други новчаник, не онај овог профила. Ништа се није променило. Покушајте пријаву којом је првобитно направљен.",
     "couldNotRetrieve": "Тај стари новчаник није било могуће преузети на овом уређају. И даље га можете опоравити на dehub.io испод."
+  },
+  "liveGift": {
+    "ttsLabel": "Recite nešto naglas",
+    "ttsPlaceholder": "Čitajte u strimu…",
+    "ttsHint": "Čitajte naglas svima koji gledaju kada vaš poklon sleti."
   }
 }

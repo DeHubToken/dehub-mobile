@@ -4157,6 +4157,9 @@
       "gold3": "Näyttö muuttuu kultaiseksi ja kolikoita sataa 3 sekunnin ajan.",
       "gold10": "Näyttö muuttuu kultaiseksi ja kolikoita sataa 10 sekunnin ajan.",
       "ultimate": "Kaikki juhlat kerralla – kultaa, konfettia, kolikoita ja pokaali."
-    }
+    },
+    "ttsLabel": "Sano jotain ääneen",
+    "ttsPlaceholder": "Lue suoratoistoon...",
+    "ttsHint": "Lue ääneen kaikille, jotka katsovat, kun lahjasi saapuu."
   }
 }

@@ -4155,6 +4155,9 @@
       "gold3": "Ekranas tampa auksiniu ir monetos lyja 3 sekundes.",
       "gold10": "Ekranas tampa auksiniu ir monetos lyja 10 sekundžių.",
       "ultimate": "Visos šventės vienu metu – auksas, konfeti, monetos ir trofėjus."
-    }
+    },
+    "ttsLabel": "Pasakykite ką nors garsiai",
+    "ttsPlaceholder": "Perskaitykite sraute...",
+    "ttsHint": "Skaitykite garsiai visiems, stebintiems, kada nusileidžia jūsų dovana."
   }
 }

@@ -3820,6 +3820,9 @@
       "gold3": "شاشەکە زێڕین دەبێت و بۆ ماوەی ٣ چرکە دراو باران دەبارێت.",
       "gold10": "شاشەکە زێڕین دەبێت و بۆ ماوەی ١٠ چرکە دراو باران دەبارێت.",
       "ultimate": "هەموو ئاهەنگەکان لە یەک کاتدا — زێڕ، کۆنفیتی، دراو و جام."
-    }
+    },
+    "ttsLabel": "Tiştekî bi dengekî bilind bêje",
+    "ttsPlaceholder": "Bixwîne bo weşanê…",
+    "ttsHint": "Bi dengekî bilind ji her kesê re bixwîne ku temaşe dike kengî diyariya te digihîje."
   }
 }

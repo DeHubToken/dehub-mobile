@@ -4244,6 +4244,9 @@
       "gold3": "Màn hình chuyển sang màu vàng và tiền xu rơi xuống trong 3 giây.",
       "gold10": "Màn hình chuyển sang màu vàng và tiền xu rơi xuống trong 10 giây.",
       "ultimate": "Mọi màn ăn mừng cùng lúc — vàng, pháo giấy, tiền xu và một chiếc cúp."
-    }
+    },
+    "ttsLabel": "Nói to điều gì đó",
+    "ttsPlaceholder": "Đọc ra luồng…",
+    "ttsHint": "Đọc to cho mọi người xem khi món quà của bạn hạ cánh."
   }
 }

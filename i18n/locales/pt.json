@@ -4231,6 +4231,9 @@
       "gold3": "A tela fica dourada e moedas chovem por 3 segundos.",
       "gold10": "A tela fica dourada e moedas chovem por 10 segundos.",
       "ultimate": "Todas as celebrações ao mesmo tempo — ouro, confetes, moedas e um troféu."
-    }
+    },
+    "ttsLabel": "Diga algo em voz alta",
+    "ttsPlaceholder": "Leia para o stream...",
+    "ttsHint": "Leia em voz alta para todos que assistem quando o seu presente chegar."
   }
 }

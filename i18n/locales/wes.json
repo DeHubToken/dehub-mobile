@@ -3940,6 +3940,9 @@
       "gold3": "Golden Screen (3s)",
       "gold10": "Golden Screen (10s)",
       "ultimate": "Ultimate Celebration"
-    }
+    },
+    "ttsLabel": "Talk someting loud",
+    "ttsPlaceholder": "Read am out to di stream…",
+    "ttsHint": "Read am aloud to everybody wey dey watch when your gift land."
   }
 }

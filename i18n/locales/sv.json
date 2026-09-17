@@ -4161,6 +4161,9 @@
       "gold3": "Skärmen blir guld och mynt regnar ner i 3 sekunder.",
       "gold10": "Skärmen blir guld och mynt regnar ner i 10 sekunder.",
       "ultimate": "Varje firande på en gång – guld, konfetti, mynt och en trofé."
-    }
+    },
+    "ttsLabel": "Säg något högt",
+    "ttsPlaceholder": "Läs upp till strömmen...",
+    "ttsHint": "Läs högt för alla som ser när din gåva landar."
   }
 }

@@ -4157,6 +4157,9 @@
       "gold3": "Skrini hugeuka dhahabu na sarafu hunyesha kwa sekunde 3.",
       "gold10": "Skrini hugeuka dhahabu na sarafu hunyesha kwa sekunde 10.",
       "ultimate": "Kila sherehe kwa wakati mmoja — dhahabu, ndege, sarafu na kombe."
-    }
+    },
+    "ttsLabel": "Sema kitu kwa sauti",
+    "ttsPlaceholder": "Soma hadi kwenye mkondo...",
+    "ttsHint": "Soma kwa sauti kwa kila mtu anayetazama zawadi yako inapotua."
   }
 }

@@ -4225,6 +4225,9 @@
       "gold3": "Ekran staje się złoty i przez 3 sekundy spadają monety.",
       "gold10": "Ekran staje się złoty i przez 10 sekund spadają monety.",
       "ultimate": "Każda celebracja naraz — złoto, konfetti, monety i trofeum."
-    }
+    },
+    "ttsLabel": "Powiedz coś na głos",
+    "ttsPlaceholder": "Odczytaj strumień…",
+    "ttsHint": "Czytaj na głos wszystkim, którzy patrzą, kiedy wyląduje Twój prezent."
   }
 }

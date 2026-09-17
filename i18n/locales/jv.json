@@ -4114,6 +4114,9 @@
       "gold3": "Layar dadi emas lan koin udan mudhun suwene 3 detik.",
       "gold10": "Layar dadi emas lan koin udan mudhun suwene 10 detik.",
       "ultimate": "Saben perayaan bebarengan — emas, konfeti, koin lan piala."
-    }
+    },
+    "ttsLabel": "Ucapake kanthi seru",
+    "ttsPlaceholder": "Waosen ing stream...",
+    "ttsHint": "Waosen kanthi banter marang kabeh sing nonton nalika hadiahmu teka."
   }
 }

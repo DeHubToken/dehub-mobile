@@ -4219,6 +4219,9 @@
       "gold3": "Ekran 3 saniye boyunca altına döner ve paralar yağar.",
       "gold10": "Ekran 10 saniye boyunca altına döner ve paralar yağar.",
       "ultimate": "Her kutlama aynı anda — altın, konfetiler, paralar ve bir kupa."
-    }
+    },
+    "ttsLabel": "Yüksek sesle bir şey söyle",
+    "ttsPlaceholder": "Akışa yüksek sesle okuyun…",
+    "ttsHint": "Hediyeniz geldiğinde izleyen herkese yüksek sesle okuyun."
   }
 }

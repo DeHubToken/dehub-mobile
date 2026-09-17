@@ -4097,6 +4097,9 @@
       "gold3": "O kɔ, u ye sanu ni wari min di, u ye o yɛlɛma ka kɛ sanu ye.",
       "gold10": "O kɔ, u ye sanu ni wari min di, u y'o yɛlɛma ka kɛ sanu ye.",
       "ultimate": "O kɔ, u ye ɲanagwɛ bɛɛ kɛ ɲɔgɔn fɛ. U ye sanu, konfɛti, warigwɛ ani tɔnɔ sɔrɔ."
-    }
+    },
+    "ttsLabel": "A' ye kuma dɔ fɔ ka bɔ a kaan na",
+    "ttsPlaceholder": "A filɛ, a be se ka kɛ cogo min na.",
+    "ttsHint": "N'i ye fɛɛn dɔ di mɔgɔw ma, i ka kan k'o kalan."
   }
 }

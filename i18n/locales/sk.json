@@ -4323,6 +4323,9 @@
       "gold3": "Obrazovka zožltne a na 3 sekundy prší mince.",
       "gold10": "Obrazovka zožltne a na 10 sekúnd prší mince.",
       "ultimate": "Každá oslava naraz — zlato, konfety, mince a trofej."
-    }
+    },
+    "ttsLabel": "Povedzte niečo nahlas",
+    "ttsPlaceholder": "Prečítajte si do prúdu...",
+    "ttsHint": "Čítajte nahlas všetkým, ktorí sledujú, kedy váš dar príde."
   }
 }

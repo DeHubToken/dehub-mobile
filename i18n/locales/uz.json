@@ -4202,6 +4202,9 @@
       "gold3": "Ekran oltin rangga kiradi va 3 soniya davomida tangalar yog'iladi.",
       "gold10": "Ekran oltin rangga kiradi va 10 soniya davomida tangalar yog'iladi.",
       "ultimate": "Har bir bayram bir vaqtda — oltin, konfetti, tangalar va kubok."
-    }
+    },
+    "ttsLabel": "Ovoz chiqarib bir narsa ayting",
+    "ttsPlaceholder": "Oqimga o'qing…",
+    "ttsHint": "Sovg'angiz qo'lga tushganda, tomosha qilayotgan barchaga ovoz chiqarib o'qing."
   }
 }

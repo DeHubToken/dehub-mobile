@@ -4158,6 +4158,9 @@
       "gold3": "La pantalla es torna daurada i plouen monedes durant 3 segons.",
       "gold10": "La pantalla es torna daurada i plouen monedes durant 10 segons.",
       "ultimate": "Totes les celebracions alhora: or, confeti, monedes i un trofeu."
-    }
+    },
+    "ttsLabel": "Digues alguna cosa en veu alta",
+    "ttsPlaceholder": "Llegiu el flux...",
+    "ttsHint": "Llegiu en veu alta a tothom que estigui mirant quan arribi el vostre regal."
   }
 }

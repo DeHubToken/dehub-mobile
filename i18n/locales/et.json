@@ -4156,6 +4156,9 @@
       "gold3": "Ekraan muutub kuldseks ja mündid sajavad 3 sekundi jooksul alla.",
       "gold10": "Ekraan muutub kuldseks ja mündid sajavad 10 sekundi jooksul alla.",
       "ultimate": "Kõik tähistamised korraga – kuld, peopallid, mündid ja trofee."
-    }
+    },
+    "ttsLabel": "Ütle midagi valjusti",
+    "ttsPlaceholder": "Loe voogu ette…",
+    "ttsHint": "Loe valjusti kõigile, kes vaatavad, millal su kingitus maandub."
   }
 }

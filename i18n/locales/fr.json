@@ -4232,6 +4232,9 @@
       "gold3": "L'écran devient doré et des pièces pleuvent pendant 3 secondes.",
       "gold10": "L'écran devient doré et des pièces pleuvent pendant 10 secondes.",
       "ultimate": "Chaque célébration à la fois — or, confettis, pièces et un trophée."
-    }
+    },
+    "ttsLabel": "Dites quelque chose à haute voix",
+    "ttsPlaceholder": "Lire à voix haute sur le live…",
+    "ttsHint": "Lisez à haute voix à tous ceux qui regardent quand votre cadeau atterrit."
   }
 }

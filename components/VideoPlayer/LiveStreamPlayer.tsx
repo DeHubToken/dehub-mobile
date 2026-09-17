@@ -61,6 +61,8 @@ import { useLiveChat } from "../../hooks/useLiveChat";
 import { useLivePostReactions } from "../../hooks/useLivePostReactions";
 import { useTranslation as useCopy } from "react-i18next";
 import { EDGE } from "../common/ViewerChrome";
+import { speakTipMessage, setTipTtsEnabled } from "../../libs/tipTts";
+import { TipSpeaker } from "../Live/TipSpeaker";
 
 type LiveStreamPlayerProps = {
   // Minimal inputs; additional params may be forwarded from route
@@ -779,6 +781,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     });
     // Dedupe optimistic gifts with server TipStreamer confirmation
     bind(LivestreamEvents.TipStreamer, (payload: any) => {
+      // Read the sender line out over the stream. Spoken off the BROADCAST
+      // rather than the optimistic send, so it is said exactly once and every
+      // viewer hears the same words at the same moment.
+      speakTipMessage(payload?.gift?.meta?.message);
       const amt = Number(payload?.gift?.meta?.amount || 0);
       const username = payload?.gift?.meta?.username || payload?.gift?.meta?.displayName;
       // Prefer nested user/account ref for rich profile data
@@ -1173,6 +1179,14 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // `hideTopControls` and no mute button in the header, a viewer who had
   // ever muted a feed card got a silent stream and nothing to press.
   const [isMuted, setIsMuted] = useState(false);
+
+  // Muting the stream mutes the tip readings with it. They are synthesised in
+  // a WebView, so the player own volume does not reach them — a viewer who
+  // muted a stream in a quiet room would otherwise have had an old man start
+  // shouting tip messages at them.
+  useEffect(() => {
+    setTipTtsEnabled(!isMuted);
+  }, [isMuted]);
   const toggleMute = useCallback(() => setIsMuted((m) => !m), []);
 
   /*
@@ -1321,6 +1335,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   return (
     <View className="flex-1 dark-surface bg-black">
+      {/* Reads tip messages out loud. Zero-size, no chrome, no layout. */}
+      <TipSpeaker />
       {/* Full-screen video player as background */}
       <View className="absolute inset-0">
         {whepLive.stream ? (

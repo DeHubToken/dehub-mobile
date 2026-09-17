@@ -4220,6 +4220,9 @@
       "gold3": "Bishaan warqee ta'ee meetiin sekondii 3f bu'a.",
       "gold10": "Bishaan warqee ta'ee meetiin sekondii 10f bu'a.",
       "ultimate": "Abaabii hunda walitti — warqee, kofetii, meetii fi trofii."
-    }
+    },
+    "ttsLabel": "Sagalee ol kaastee waan tokko dubbadhu",
+    "ttsPlaceholder": "Tamsaasa kallattiif dubbisi...",
+    "ttsHint": "Yeroo kennaan kee bu'u nama ilaalu hundaaf sagalee ol kaastee dubbisi."
   }
 }

@@ -4170,6 +4170,9 @@
       "gold3": "Ecranul devine auriu și monede plouă timp de 3 secunde.",
       "gold10": "Ecranul devine auriu și monede plouă timp de 10 secunde.",
       "ultimate": "Fiecare sărbătoare deodată — aur, confeti, monede și un trofeu."
-    }
+    },
+    "ttsLabel": "Spune ceva cu voce tare",
+    "ttsPlaceholder": "Citiți în flux...",
+    "ttsHint": "Citește cu voce tare tuturor celor care te privesc atunci când cadoul tău aterizează."
   }
 }

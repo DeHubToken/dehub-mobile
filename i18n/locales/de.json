@@ -4225,6 +4225,9 @@
       "gold3": "Der Bildschirm wird golden und Münzen regnen 3 Sekunden lang herab.",
       "gold10": "Der Bildschirm wird golden und Münzen regnen 10 Sekunden lang herab.",
       "ultimate": "Jede Feier gleichzeitig – Gold, Konfetti, Münzen und eine Trophäe."
-    }
+    },
+    "ttsLabel": "Sagen Sie etwas laut",
+    "ttsPlaceholder": "In den Stream vorlesen...",
+    "ttsHint": "Lies jedem vor, der zuschaut, wenn dein Geschenk landet."
   }
 }
