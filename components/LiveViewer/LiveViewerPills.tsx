@@ -22,6 +22,7 @@ interface Props {
   isLive: boolean;
   isPaused: boolean;
   isEnded: boolean;
+  /** Kept for the caller's sake; the strip no longer says anything about it. */
   isScheduled?: boolean;
   /** When the broadcast started, for the running clock. */
   startedAt?: Date | null;
@@ -60,17 +61,6 @@ const LiveViewerPills: React.FC<Props> = ({
   /* Reused keys, not new ones: these five words are already translated
      into all 110 locales elsewhere in the bundle, and a fresh set would
      have shipped as English everywhere but here. */
-  const statusLabel = isPaused
-    ? t("ads.statuses.paused", { defaultValue: "Paused" }).toUpperCase()
-    : isLive
-      ? t("stages.live", { defaultValue: "LIVE" })
-      : isEnded
-        ? t("stages.ended", { defaultValue: "ENDED" })
-        : isScheduled
-          ? t("commandCentre.soon", { defaultValue: "SOON" })
-          : t("postInfo.streamOffline", { defaultValue: "Stream Offline" }).toUpperCase();
-  const statusDim = !isLive || isPaused;
-
   // One interval, and only while the stream is actually running — an ended
   // stream's clock would otherwise keep counting past the end of it.
   const running = isLive && !isPaused && !!startedAt;
@@ -95,25 +85,11 @@ const LiveViewerPills: React.FC<Props> = ({
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
     >
-      <Pill>
-        <View style={[styles.dot, statusDim ? styles.dotDim : null]} />
-        <Text style={styles.label}>{statusLabel}</Text>
-      </Pill>
-
-      {/* Audience. A count, not an avatar stack: the socket carries a
-          number and inventing faces for it would be a lie at a glance.
-          Here rather than in the header because that row was a capsule, a
-          follow button and four controls over 375pt, and this is the one
-          of them that is not a control. */}
-      {viewerCount != null ? (
-        <Pill>
-          <Icon name="Eye" size={11} color="rgba(255,255,255,0.75)" strokeWidth={2} />
-          <Text style={styles.value}>
-            {formatCompactNumber(Math.max(0, viewerCount))}
-          </Text>
-        </Pill>
-      ) : null}
-
+      {/* No state pill and no audience pill. Whether a stream is live or
+          over is on the card you pressed to get here and on the profile
+          before that, and the count now sits under the creator's name
+          with the followers and the gifts — three facts about one stream,
+          in one place. */}
       {elapsed ? (
         <Pill>
           <Icon name="Clock" size={11} color="rgba(255,255,255,0.75)" strokeWidth={2} />
