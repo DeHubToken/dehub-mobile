@@ -4192,5 +4192,36 @@
     "didNotRecoverEither": "Seensi sun piroofaayila asitti argaman keessaa tokkollee hin deebifne. Homtuu hin jijjiiramne. Piroofaayila barbaaddu sanaaf seensa jalqabaa yaali.",
     "didNotRecoverThis": "Seensi sun boorsaa piroofaayila kanaa hin taane deebise. Homtuu hin jijjiiramne. Seensa jalqaba isa uume yaali.",
     "couldNotRetrieve": "Boorsaa durii sana meeshaa kana irratti argachuun hin danda'amne. Ammas dehub.io armaan gadii irratti deebisuu dandeessa."
+  },
+  "liveGift": {
+    "pickTier": "Abaabii filadhu",
+    "plays": "Taphata {{tier}} irratti",
+    "you": "Ati",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Garaa Jaalala",
+      "chocolate": "Sanduuqa Shokoolaataa",
+      "bouquet": "Kophee Aduu",
+      "crown": "Gooftummaa",
+      "magicRing": "Riqicha Maajikii",
+      "spartans": "Ejjennaa Spartaanotaa",
+      "party": "Abaabii Ayyaanaa",
+      "gold3": "Bishaan Warqee (3s)",
+      "gold10": "Bishaan Warqee (10s)",
+      "ultimate": "Abaabii Xumuraa"
+    },
+    "tierDesc": {
+      "heart": "Garaawwan olitti yaa'u.",
+      "chocolate": "Sanduuq shokoolaataa olitti yaa'a.",
+      "bouquet": "Kopheen Aduu bifa olitti yaa'a.",
+      "crown": "Gooftummaan olitti yaa'a, ifa godha.",
+      "magicRing": "Riqichi gidduutti bu'ee ifa godha.",
+      "spartans": "Ejjennaan olitti yaa'a.",
+      "party": "Kofeteen olitti yaa'a, kubbaan diskoo bu'a.",
+      "gold3": "Bishaan warqee ta'ee meetiin sekondii 3f bu'a.",
+      "gold10": "Bishaan warqee ta'ee meetiin sekondii 10f bu'a.",
+      "ultimate": "Abaabii hunda walitti — warqee, kofetii, meetii fi trofii."
+    }
   }
 }

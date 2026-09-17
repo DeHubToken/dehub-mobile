@@ -3792,5 +3792,34 @@
     "didNotRecoverEither": "Wê têketinê tu profîlek ku li vir tê nîşandan venegerand. Tiştek neguherî. Ji bo profîla ku tu dixwazî têketina resen biceribîne.",
     "didNotRecoverThis": "Wê têketinê berîkek din vegerand, ne ya vê profîlê. Tiştek neguherî. Têketina ku ew di destpêkê de çêkiribû biceribîne.",
     "couldNotRetrieve": "Nikarîbû ew berîka kevn li ser vê amûrê were wergirtin. Tu hîn jî dikarî wê li jêr li ser dehub.io vegerînî."
+  },
+  "liveGift": {
+    "pickTier": "ئاهەنگێک هەڵبژێرە",
+    "plays": "لە ستریمدا {{tier}} گەڕاندرا",
+    "you": "تۆ",
+    "tier": {
+      "heart": "دڵی خۆشەویستی",
+      "chocolate": "قوتووی شوکولاتە",
+      "bouquet": "گوڵدانی گوڵ",
+      "crown": "تاج",
+      "magicRing": "خاڵی جادوویی",
+      "spartans": "سوپای سپارتان",
+      "party": "ئاهەنگی ئاهەنگ",
+      "gold3": "شاشەی زێڕین (٣ چرکە)",
+      "gold10": "شاشەی زێڕین (١٠ چرکە)",
+      "ultimate": "ئاهەنگی کۆتایی"
+    },
+    "tierDesc": {
+      "heart": "دڵەکان بەرەو سەرەوەی ستریمەکە دەڕۆن.",
+      "chocolate": "قوتوویەکی شوکولاتە بەرەو سەرەوەی شاشەکە دەکەوێت.",
+      "bouquet": "گوڵدانی گوڵ لە گۆشەیەکدا دەکرێتەوە.",
+      "crown": "تاجێک بەسەر ستریمەکەدا هەڵدەکشێت و دەدرەوشێتەوە.",
+      "magicRing": "خاڵکێک لە ناوەڕاستدا دادەنیشێت و بە درەوشانەوە دەنگ دەدات.",
+      "spartans": "دیواری قەڵغانێک بە ستریمەکەدا دەڕوات.",
+      "party": "کۆنفیتی فڕێ دەدرێت و تۆپێکی دیسکۆ دادەبەزێت.",
+      "gold3": "شاشەکە زێڕین دەبێت و بۆ ماوەی ٣ چرکە دراو باران دەبارێت.",
+      "gold10": "شاشەکە زێڕین دەبێت و بۆ ماوەی ١٠ چرکە دراو باران دەبارێت.",
+      "ultimate": "هەموو ئاهەنگەکان لە یەک کاتدا — زێڕ، کۆنفیتی، دراو و جام."
+    }
   }
 }

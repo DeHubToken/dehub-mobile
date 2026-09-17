@@ -4133,5 +4133,36 @@
     "didNotRecoverEither": "Den inloggningen återställde ingen av profilerna som visas här. Inget ändrades. Prova den ursprungliga inloggningen för profilen du vill ha.",
     "didNotRecoverThis": "Den inloggningen återställde en annan plånbok än den här profilens. Inget ändrades. Prova inloggningen som ursprungligen skapade den.",
     "couldNotRetrieve": "Det gick inte att hämta den gamla plånboken på den här enheten. Du kan fortfarande återställa den på dehub.io nedan."
+  },
+  "liveGift": {
+    "pickTier": "Välj en firande",
+    "plays": "Spelar {{tier}} på strömmen",
+    "you": "Du",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Kärlekshjärta",
+      "chocolate": "Chokladask",
+      "bouquet": "Blombukett",
+      "crown": "Krona",
+      "magicRing": "Magisk ring",
+      "spartans": "Spartansk armé",
+      "party": "Festfirande",
+      "gold3": "Gyllene skärm (3s)",
+      "gold10": "Gyllene skärm (10s)",
+      "ultimate": "Ultimat firande"
+    },
+    "tierDesc": {
+      "heart": "Hjärtan driver upp i hörnet av strömmen.",
+      "chocolate": "En chokladask tumlar upp på skärmen.",
+      "bouquet": "En blombukett spricker upp över hörnet.",
+      "crown": "En krona stiger över strömmen och glimmar.",
+      "magicRing": "En ring landar i mitten och klingar ut i gnistor.",
+      "spartans": "En sköldmur marscherar över strömmen.",
+      "party": "Konfetti flyger och en discokula faller ner.",
+      "gold3": "Skärmen blir guld och mynt regnar ner i 3 sekunder.",
+      "gold10": "Skärmen blir guld och mynt regnar ner i 10 sekunder.",
+      "ultimate": "Varje firande på en gång – guld, konfetti, mynt och en trofé."
+    }
   }
 }

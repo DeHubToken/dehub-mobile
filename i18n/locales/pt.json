@@ -4203,5 +4203,36 @@
     "didNotRecoverEither": "Esse início de sessão não recuperou nenhum dos perfis aqui mostrados. Nada mudou. Experimenta o início de sessão original do perfil que queres.",
     "didNotRecoverThis": "Esse início de sessão recuperou uma carteira diferente da deste perfil. Nada mudou. Experimenta o início de sessão que o criou originalmente.",
     "couldNotRetrieve": "Não foi possível obter essa carteira antiga neste dispositivo. Ainda a podes recuperar em dehub.io abaixo."
+  },
+  "liveGift": {
+    "pickTier": "Escolha uma celebração",
+    "plays": "Reproduz {{tier}} na transmissão",
+    "you": "Você",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Coração",
+      "chocolate": "Caixa de Chocolate",
+      "bouquet": "Buquê de Flores",
+      "crown": "Coroa",
+      "magicRing": "Anel Mágico",
+      "spartans": "Exército Espartano",
+      "party": "Celebração de Festa",
+      "gold3": "Tela Dourada (3s)",
+      "gold10": "Tela Dourada (10s)",
+      "ultimate": "Celebração Suprema"
+    },
+    "tierDesc": {
+      "heart": "Corações flutuam pelo canto da transmissão.",
+      "chocolate": "Uma caixa de chocolates cai pela tela.",
+      "bouquet": "Um buquê se abre no canto.",
+      "crown": "Uma coroa sobe sobre a transmissão e brilha.",
+      "magicRing": "Um anel pousa no meio e ressoa em brilhos.",
+      "spartans": "Uma muralha de escudos marcha pela transmissão.",
+      "party": "Confetes voam e uma bola de discoteca desce.",
+      "gold3": "A tela fica dourada e moedas chovem por 3 segundos.",
+      "gold10": "A tela fica dourada e moedas chovem por 10 segundos.",
+      "ultimate": "Todas as celebrações ao mesmo tempo — ouro, confetes, moedas e um troféu."
+    }
   }
 }

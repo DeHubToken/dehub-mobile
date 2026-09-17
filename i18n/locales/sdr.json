@@ -4127,5 +4127,23 @@
     "didNotRecoverEither": "ئەو چوونەژوورەوەیە هیچ کام لە پرۆفایلەکانی ئێرەی نەگەڕاندەوە. هیچ نەگۆڕا. ڕێگای چوونەژوورەوەی سەرەکی ئەو پرۆفایلە تاقی بکەرەوە کە دەتەوێت.",
     "didNotRecoverThis": "ئەو چوونەژوورەوەیە جزدانێکی جیاوازی گەڕاندەوە، نەک هی ئەم پرۆفایلە. هیچ نەگۆڕا. ئەو چوونەژوورەوەیە تاقی بکەرەوە کە لە سەرەتادا دروستی کردووە.",
     "couldNotRetrieve": "نەتوانرا ئەو جزدانە کۆنە لەسەر ئەم ئامێرە بهێنرێت. هێشتا دەتوانیت لە خوارەوە لە dehub.io بیگەڕێنیتەوە."
+  },
+  "liveGift": {
+    "pickTier": "Pick a celebration",
+    "you": "You",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Love Heart",
+      "chocolate": "Box of Chocolate",
+      "bouquet": "Bouquet of Flowers",
+      "crown": "Crown",
+      "magicRing": "Magic Ring",
+      "spartans": "Spartans Army",
+      "party": "Party Celebration",
+      "gold3": "Golden Screen (3s)",
+      "gold10": "Golden Screen (10s)",
+      "ultimate": "Ultimate Celebration"
+    }
   }
 }

@@ -19,6 +19,7 @@ import {
   ScrollView,
   Keyboard,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { Ionicons } from "@expo/vector-icons";
@@ -55,82 +56,41 @@ export interface GiftModalProps {
   onSent?: (payload: { amount: number; message?: string }) => void;
 }
 
-// Full gift categories with descriptions and visual metadata
+/**
+ * The picker's display metadata, one row per rung of the ladder.
+ *
+ * The ladder itself — amounts, wire names, durations — lives in
+ * config/gift-tiers so the celebration overlay and dehubweb read the same
+ * numbers. Only the icon and the i18n keys are here. `name` is kept as the
+ * English fallback and as what goes on the wire; `key` is what the overlay
+ * and the translations are looked up by.
+ */
 export const giftTiers = [
-  {
-    min: 1000000,
-    name: "Ultimate Celebration",
-    icon: Trophy,
-    color: "text-indigo-500",
-    description:
-      "Includes all celebrations and Emojis! with extra confetti and party music.",
-  },
-  {
-    min: 750000,
-    name: "Golden Screen (10s)",
-    icon: Star,
-    color: "text-yellow-500",
-    description:
-      "Screen goes gold and coins drop from sky with sirens (10 seconds).",
-  },
-  {
-    min: 500000,
-    name: "Golden Screen (3s)",
-    icon: Star,
-    color: "text-amber-500",
-    description:
-      "Screen goes gold and coins drop from sky with sirens (3 seconds).",
-  },
-  {
-    min: 300000,
-    name: "Party Celebration",
-    icon: PartyPopper,
-    color: "text-pink-400",
-    description: "Party starts, confetti flies, disco balls spin.",
-  },
-  {
-    min: 200000,
-    name: "Spartans Army",
-    icon: ShieldPlus,
-    color: "text-white/80",
-    description: "Spartans Army run on Screen",
-  },
-  {
-    min: 100000,
-    name: "Magic Ring",
-    icon: BellRing,
-    color: "text-purple-500",
-    description: "Magic Ring Emoji pops up on Screen",
-  },
-  {
-    min: 50000,
-    name: "Crown",
-    icon: Crown,
-    color: "text-yellow-500",
-    description: "Crown Emoji pops on Screen",
-  },
-  {
-    min: 25000,
-    name: "Bouquet of Flowers",
-    icon: Flower2,
-    color: "text-rose-400",
-    description: "Bouquet of flowers Emoji Pops up on Screen",
-  },
-  {
-    min: 10000,
-    name: "Box of Chocolate",
-    icon: GiftIcon,
-    color: "text-brown-500",
-    description: "Box of Chocolate Emoji Pops Up on Screen.",
-  },
-  {
-    min: 1000,
-    name: "Love Heart",
-    icon: Heart,
-    color: "text-white/80",
-    description: "Love Heart Emoji Pop up on screen.",
-  },
+  { key: "ultimate", min: 1000000, name: "Ultimate Celebration", icon: Trophy, color: "text-indigo-500" },
+  { key: "gold10", min: 750000, name: "Golden Screen (10s)", icon: Star, color: "text-yellow-500" },
+  { key: "gold3", min: 500000, name: "Golden Screen (3s)", icon: Star, color: "text-amber-500" },
+  { key: "party", min: 300000, name: "Party Celebration", icon: PartyPopper, color: "text-pink-400" },
+  { key: "spartans", min: 200000, name: "Spartans Army", icon: ShieldPlus, color: "text-white/80" },
+  { key: "magicRing", min: 100000, name: "Magic Ring", icon: BellRing, color: "text-purple-500" },
+  { key: "crown", min: 50000, name: "Crown", icon: Crown, color: "text-yellow-500" },
+  { key: "bouquet", min: 25000, name: "Bouquet of Flowers", icon: Flower2, color: "text-rose-400" },
+  { key: "chocolate", min: 10000, name: "Box of Chocolate", icon: GiftIcon, color: "text-brown-500" },
+  { key: "heart", min: 1000, name: "Love Heart", icon: Heart, color: "text-white/80" },
 ] as const;
+
+/** English fallbacks for the picker's one-liners. Translations live in i18n. */
+const TIER_DESCRIPTION: Record<(typeof giftTiers)[number]["key"], string> = {
+  ultimate: "Every celebration at once — gold, confetti, coins and a trophy.",
+  gold10: "The screen turns gold and coins rain down for 10 seconds.",
+  gold3: "The screen turns gold and coins rain down for 3 seconds.",
+  party: "Confetti flies and a disco ball drops in.",
+  spartans: "A shield wall marches across the stream.",
+  magicRing: "A ring lands in the middle and rings out in sparkles.",
+  crown: "A crown rises over the stream and glints.",
+  bouquet: "A bouquet bursts open across the corner.",
+  chocolate: "A box of chocolates tumbles up the screen.",
+  heart: "Hearts drift up the corner of the stream.",
+};
 
 const GiftModal: React.FC<GiftModalProps> = ({
   open,
@@ -140,6 +100,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
   stream,
   onSent,
 }) => {
+  const { t } = useTranslation();
   const user = useUser();
   const { patchUser, requireAuth } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
@@ -412,7 +373,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                             className="text-white text-[11px] font-semibold"
                             numberOfLines={1}
                           >
-                            {item.name}
+                            {t(`liveGift.tier.${item.key}`, { defaultValue: item.name }) as string}
                           </Text>
                           <Text className="text-white/60 text-[10px]">
                             {item.min.toLocaleString()} <DhbCoin />
@@ -426,7 +387,9 @@ const GiftModal: React.FC<GiftModalProps> = ({
             </View>
             {selectedTier ? (
               <Text className="text-white/70 text-[11px] mt-1">
-                {selectedTier.description}
+                {t(`liveGift.tierDesc.${selectedTier.key}`, {
+                  defaultValue: TIER_DESCRIPTION[selectedTier.key],
+                }) as string}
               </Text>
             ) : null}
 

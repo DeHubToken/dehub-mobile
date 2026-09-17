@@ -1,16 +1,13 @@
 import { useCallback, useMemo, useRef, useState } from "react";
+import {
+  GIFT_TIERS,
+  tierFromAmount,
+  tierFromGift,
+  type GiftTierSpec,
+  type TipTierKey,
+} from "../config/gift-tiers";
 
-export type TipTierKey =
-  | "ultimate"
-  | "gold10"
-  | "gold3"
-  | "party"
-  | "spartans"
-  | "magicRing"
-  | "crown"
-  | "bouquet"
-  | "chocolate"
-  | "heart";
+export type { TipTierKey };
 
 export type TipAnimationItem = {
   id: string;
@@ -36,50 +33,22 @@ type UseTipAnimationsOpts = {
 
 const nowId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
-// Map amount thresholds to tiers per provided giftTiers
-export const tierKeyFromAmount = (amt: number): TipTierKey => {
-  if (amt >= 1_000_000) return "ultimate";
-  if (amt >= 750_000) return "gold10";
-  if (amt >= 500_000) return "gold3";
-  if (amt >= 300_000) return "party";
-  if (amt >= 200_000) return "spartans";
-  if (amt >= 100_000) return "magicRing";
-  if (amt >= 50_000) return "crown";
-  if (amt >= 25_000) return "bouquet";
-  if (amt >= 10_000) return "chocolate";
-  return "heart";
-};
+/** The tier an amount lands on. The ladder itself lives in config/gift-tiers. */
+export const tierKeyFromAmount = (amt: number): TipTierKey => tierFromAmount(amt).key;
 
-const durationFromTier = (tier: TipTierKey): number => {
-  switch (tier) {
-    case "ultimate":
-      return 12000; // "all celebrations + extra" slightly longer
-    case "gold10":
-      return 10000;
-    case "gold3":
-      return 3000;
-    case "party":
-      return 4000;
-    case "spartans":
-      return 4000;
-    case "magicRing":
-      return 2500;
-    case "crown":
-      return 2500;
-    case "bouquet":
-      return 2500;
-    case "chocolate":
-      return 2200;
-    case "heart":
-    default:
-      return 1800;
-  }
-};
+const durationFromTier = (tier: TipTierKey): number =>
+  (GIFT_TIERS.find((t) => t.key === tier) ?? GIFT_TIERS[GIFT_TIERS.length - 1]).durationMs;
 
-const normalizeTierFromGift = (gift?: GiftMeta): TipTierKey => {
-  const amt = Number(gift?.amount || 0);
-  return tierKeyFromAmount(amt);
-};
+/**
+ * Which celebration a gift bought.
+ *
+ * Reads `selectedTier` first and only falls back to the amount. This used to
+ * go on amount alone, which was fine while every gift came from this app's own
+ * picker — the picker sets the amount TO the tier's min — but web sends
+ * arbitrary amounts, so a 600,000 DHB gift bought and paid for as a Golden
+ * Screen has to play as one rather than round down.
+ */
+const specFromGift = (gift?: GiftMeta): GiftTierSpec => tierFromGift(gift);
 
 export const useTipAnimations = (opts?: UseTipAnimationsOpts) => {
   const maxConcurrent = opts?.maxConcurrent ?? 2;
@@ -123,7 +92,7 @@ export const useTipAnimations = (opts?: UseTipAnimationsOpts) => {
 
   const enqueueFromGift = useCallback(
     (gift: GiftMeta | undefined) => {
-      const tier = normalizeTierFromGift(gift);
+      const tier = specFromGift(gift).key;
       const amount = Number(gift?.amount || 0);
       const username = gift?.username || gift?.displayName;
       return enqueue({ tier, amount, message: gift?.message, username });

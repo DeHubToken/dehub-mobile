@@ -4128,5 +4128,36 @@
     "didNotRecoverEither": "See sisselogimine ei taastanud ühtki siin näidatud profiili. Midagi ei muutunud. Proovi soovitud profiili algset sisselogimist.",
     "didNotRecoverThis": "See sisselogimine taastas teise rahakoti kui selle profiili oma. Midagi ei muutunud. Proovi sisselogimist, millega see algselt loodi.",
     "couldNotRetrieve": "Seda vana rahakotti ei õnnestunud selles seadmes kätte saada. Saad selle siiski taastada allpool saidil dehub.io."
+  },
+  "liveGift": {
+    "pickTier": "Vali tähistamine",
+    "plays": "Mängib {{tier}} striimil",
+    "you": "Sina",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Armastus Südamega",
+      "chocolate": "Šokolaadikarbi",
+      "bouquet": "Lillekimp",
+      "crown": "Kroon",
+      "magicRing": "Maagiline Sõrmus",
+      "spartans": "Spartanite Armee",
+      "party": "Peo Tähistamine",
+      "gold3": "Kuldne Ekraan (3s)",
+      "gold10": "Kuldne Ekraan (10s)",
+      "ultimate": "Ülim Tähistamine"
+    },
+    "tierDesc": {
+      "heart": "Südamed triivivad striimi nurka üles.",
+      "chocolate": "Šokolaadikarbike kukub mööda ekraani üles.",
+      "bouquet": "Lillekimp plahvatab nurga kohal.",
+      "crown": "Kroon tõuseb üle striimi ja särab.",
+      "magicRing": "Sõrmus maandub keskele ja heliseb sädemetes.",
+      "spartans": "Kilbimüür marsib üle striimi.",
+      "party": "Peopallid lendavad ja diskokuul kukub alla.",
+      "gold3": "Ekraan muutub kuldseks ja mündid sajavad 3 sekundi jooksul alla.",
+      "gold10": "Ekraan muutub kuldseks ja mündid sajavad 10 sekundi jooksul alla.",
+      "ultimate": "Kõik tähistamised korraga – kuld, peopallid, mündid ja trofee."
+    }
   }
 }

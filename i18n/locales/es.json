@@ -4199,5 +4199,36 @@
     "didNotRecoverEither": "Ese inicio de sesión no ha recuperado ninguno de los perfiles que se muestran aquí. No se ha cambiado nada. Prueba el inicio de sesión original del perfil que quieras.",
     "didNotRecoverThis": "Ese inicio de sesión ha recuperado una cartera distinta de la de este perfil. No se ha cambiado nada. Prueba el inicio de sesión que lo creó originalmente.",
     "couldNotRetrieve": "No se ha podido obtener esa cartera antigua en este dispositivo. Todavía puedes recuperarla en dehub.io, más abajo."
+  },
+  "liveGift": {
+    "pickTier": "Elige una celebración",
+    "plays": "Reproduce {{tier}} en el stream",
+    "you": "Tú",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Corazón de Amor",
+      "chocolate": "Caja de Chocolates",
+      "bouquet": "Ramo de Flores",
+      "crown": "Corona",
+      "magicRing": "Anillo Mágico",
+      "spartans": "Ejército Espartano",
+      "party": "Celebración de Fiesta",
+      "gold3": "Pantalla Dorada (3s)",
+      "gold10": "Pantalla Dorada (10s)",
+      "ultimate": "Celebración Definitiva"
+    },
+    "tierDesc": {
+      "heart": "Los corazones flotan hacia la esquina del stream.",
+      "chocolate": "Una caja de chocolates cae por la pantalla.",
+      "bouquet": "Un ramo de flores estalla en la esquina.",
+      "crown": "Una corona se eleva sobre el stream y brilla.",
+      "magicRing": "Un anillo aterriza en el centro y resuena en destellos.",
+      "spartans": "Una muralla de escudos marcha a través del stream.",
+      "party": "El confeti vuela y una bola de discoteca desciende.",
+      "gold3": "La pantalla se vuelve dorada y llueven monedas durante 3 segundos.",
+      "gold10": "La pantalla se vuelve dorada y llueven monedas durante 10 segundos.",
+      "ultimate": "Cada celebración a la vez: oro, confeti, monedas y un trofeo."
+    }
   }
 }

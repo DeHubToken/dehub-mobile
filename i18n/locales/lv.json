@@ -4127,5 +4127,36 @@
     "didNotRecoverEither": "Šī pieteikšanās neatguva nevienu šeit redzamo profilu. Nekas nemainījās. Izmēģiniet vēlamā profila sākotnējo pieteikšanos.",
     "didNotRecoverThis": "Šī pieteikšanās atguva citu maku, nevis šī profila. Nekas nemainījās. Izmēģiniet pieteikšanos, ar kuru tas sākotnēji tika izveidots.",
     "couldNotRetrieve": "Šajā ierīcē neizdevās iegūt to veco maku. Jūs joprojām varat to atgūt vietnē dehub.io zemāk."
+  },
+  "liveGift": {
+    "pickTier": "Izvēlieties svinības",
+    "plays": "Atskaņo {{tier}} straumē",
+    "you": "Jūs",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Sirds",
+      "chocolate": "Šokolādes kaste",
+      "bouquet": "Ziedu pušķis",
+      "crown": "Kronis",
+      "magicRing": "Burvju gredzens",
+      "spartans": "Spartiešu armija",
+      "party": "Ballītes svinības",
+      "gold3": "Zelta ekrāns (3s)",
+      "gold10": "Zelta ekrāns (10s)",
+      "ultimate": "Galvenās svinības"
+    },
+    "tierDesc": {
+      "heart": "Sirdis peld uz augšu pa ekrāna stūri.",
+      "chocolate": "Šokolādes kaste uzlido pa ekrānu.",
+      "bouquet": "Pušķis uzsprāgst ekrāna stūrī.",
+      "crown": "Kronis uzlido virs straumes un mirdz.",
+      "magicRing": "Gredzens nolaižas vidū un izstaro dzirksteles.",
+      "spartans": "Vairogu siena dodas pāri straumei.",
+      "party": "Konfeti izlido un iekšā nokrīt disko bumba.",
+      "gold3": "Ekrāns kļūst zelts un monētas līst lejā 3 sekundes.",
+      "gold10": "Ekrāns kļūst zelts un monētas līst lejā 10 sekundes.",
+      "ultimate": "Visas svinības vienlaicīgi — zelts, konfeti, monētas un trofeja."
+    }
   }
 }

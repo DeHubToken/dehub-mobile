@@ -4127,5 +4127,36 @@
     "didNotRecoverEither": "Tas prisijungimas neatkūrė nė vieno čia rodomo profilio. Niekas nepasikeitė. Pabandykite norimo profilio pradinį prisijungimą.",
     "didNotRecoverThis": "Tas prisijungimas atkūrė kitą piniginę, ne šio profilio. Niekas nepasikeitė. Pabandykite prisijungimą, kuriuo jis buvo sukurtas.",
     "couldNotRetrieve": "Šiame įrenginyje nepavyko gauti tos senos piniginės. Vis tiek galite ją atkurti svetainėje dehub.io žemiau."
+  },
+  "liveGift": {
+    "pickTier": "Pasirinkite šventę",
+    "plays": "Rodo {{tier}} tiesioginiame eteryje",
+    "you": "Jūs",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Meilės širdis",
+      "chocolate": "Dėžutė saldainių",
+      "bouquet": "Gėlių puokštė",
+      "crown": "Karūna",
+      "magicRing": "Magijos žiedas",
+      "spartans": "Spartiečių armija",
+      "party": "Šventinė puota",
+      "gold3": "Auksinis ekranas (3s)",
+      "gold10": "Auksinis ekranas (10s)",
+      "ultimate": "Didžioji šventė"
+    },
+    "tierDesc": {
+      "heart": "Širdelės plaukia į viršų ekrano kampu.",
+      "chocolate": "Dėžutė saldainių rieda aukštyn ekranu.",
+      "bouquet": "Puokštė sprogsta ekrano kampe.",
+      "crown": "Karūna pakyla virš tiesioginio eterio ir žybteli.",
+      "magicRing": "Žiedas nusileidžia viduryje ir suskamba kibirkštėlėmis.",
+      "spartans": "Skydų siena žygiuoja per tiesioginį eterį.",
+      "party": "Konfeti skraido, o diskogublys nusileidžia.",
+      "gold3": "Ekranas tampa auksiniu ir monetos lyja 3 sekundes.",
+      "gold10": "Ekranas tampa auksiniu ir monetos lyja 10 sekundžių.",
+      "ultimate": "Visos šventės vienu metu – auksas, konfeti, monetos ir trofėjus."
+    }
   }
 }

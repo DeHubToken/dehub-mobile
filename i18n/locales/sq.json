@@ -4127,5 +4127,36 @@
     "didNotRecoverEither": "Ajo hyrje nuk rikuperoi asnjë nga profilet e shfaqura këtu. Asgjë nuk ndryshoi. Provo hyrjen fillestare për profilin që dëshiron.",
     "didNotRecoverThis": "Ajo hyrje rikuperoi një portofol tjetër, jo atë të këtij profili. Asgjë nuk ndryshoi. Provo hyrjen që e krijoi fillimisht.",
     "couldNotRetrieve": "Ai portofol i vjetër nuk u mor dot në këtë pajisje. Ende mund ta rikuperosh te dehub.io më poshtë."
+  },
+  "liveGift": {
+    "pickTier": "Zgjidh një festë",
+    "plays": "Luan {{tier}} në transmetim",
+    "you": "Ti",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Zemër dashurie",
+      "chocolate": "Kuti me çokollata",
+      "bouquet": "Tufë lulesh",
+      "crown": "Kurorë",
+      "magicRing": "Unazë magjike",
+      "spartans": "Ushtria e Spartës",
+      "party": "Festë",
+      "gold3": "Ekran i artë (3s)",
+      "gold10": "Ekran i artë (10s)",
+      "ultimate": "Festë supreme"
+    },
+    "tierDesc": {
+      "heart": "Zemrat lundrojnë lart në cepin e transmetimit.",
+      "chocolate": "Një kuti me çokollata rrëshqet lart në ekran.",
+      "bouquet": "Një tufë lulesh çel në cep.",
+      "crown": "Një kurorë ngrihet mbi transmetim dhe shkëlqen.",
+      "magicRing": "Një unazë bie në mes dhe bie me shkëlqime.",
+      "spartans": "Një mur me mburoja marshon nëpër transmetim.",
+      "party": "Konfeti fluturon dhe një top disko bie brenda.",
+      "gold3": "Ekrani bëhet i artë dhe monedhat bien për 3 sekonda.",
+      "gold10": "Ekrani bëhet i artë dhe monedhat bien për 10 sekonda.",
+      "ultimate": "Çdo festë në të njëjtën kohë — ar, konfeti, monedha dhe një trofe."
+    }
   }
 }

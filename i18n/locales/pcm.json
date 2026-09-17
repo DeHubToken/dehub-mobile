@@ -3874,5 +3874,23 @@
     "didNotRecoverEither": "Dat login no recover any of di profiles wey dey here. Nothing change. Try di original sign-in for di profile wey you want.",
     "didNotRecoverThis": "Dat login recover anoda wallet, no be dis profile own. Nothing change. Try di sign-in wey first create am.",
     "couldNotRetrieve": "We no fit get dat old wallet for dis device. You still fit recover am for dehub.io wey dey below."
+  },
+  "liveGift": {
+    "pickTier": "Pick a celebration",
+    "you": "You",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Love Heart",
+      "chocolate": "Box of Chocolate",
+      "bouquet": "Bouquet of Flowers",
+      "crown": "Crown",
+      "magicRing": "Magic Ring",
+      "spartans": "Spartans Army",
+      "party": "Party Celebration",
+      "gold3": "Golden Screen (3s)",
+      "gold10": "Golden Screen (10s)",
+      "ultimate": "Ultimate Celebration"
+    }
   }
 }

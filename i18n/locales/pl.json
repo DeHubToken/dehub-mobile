@@ -4197,5 +4197,36 @@
     "didNotRecoverEither": "To logowanie nie odzyskało żadnego z pokazanych tu profili. Nic się nie zmieniło. Spróbuj pierwotnego logowania dla profilu, który chcesz.",
     "didNotRecoverThis": "To logowanie odzyskało inny portfel niż ten profil. Nic się nie zmieniło. Spróbuj logowania, którym został pierwotnie utworzony.",
     "couldNotRetrieve": "Nie udało się pobrać tego starego portfela na tym urządzeniu. Nadal możesz go odzyskać na dehub.io poniżej."
+  },
+  "liveGift": {
+    "pickTier": "Wybierz uroczystość",
+    "plays": "Odtwarza {{tier}} na streamie",
+    "you": "Ty",
+    "sentBy": "{{name}} · {{amount}} DHB",
+    "sentAmount": "{{amount}} DHB",
+    "tier": {
+      "heart": "Serce",
+      "chocolate": "Pudełko czekoladek",
+      "bouquet": "Bukiet kwiatów",
+      "crown": "Korona",
+      "magicRing": "Magiczny pierścień",
+      "spartans": "Armia Spartan",
+      "party": "Imprezowa celebracja",
+      "gold3": "Złoty ekran (3s)",
+      "gold10": "Złoty ekran (10s)",
+      "ultimate": "Ostateczna celebracja"
+    },
+    "tierDesc": {
+      "heart": "Serduszka unoszą się w górę ekranu.",
+      "chocolate": "Pudełko czekoladek toczy się w górę ekranu.",
+      "bouquet": "Bukiet otwiera się w rogu.",
+      "crown": "Korona unosi się nad strumieniem i błyszczy.",
+      "magicRing": "Pierścień ląduje pośrodku i rozbrzmiewa iskrami.",
+      "spartans": "Ściana tarcz maszeruje przez strumień.",
+      "party": "Lecą konfetti i spada kula dyskotekowa.",
+      "gold3": "Ekran staje się złoty i przez 3 sekundy spadają monety.",
+      "gold10": "Ekran staje się złoty i przez 10 sekund spadają monety.",
+      "ultimate": "Każda celebracja naraz — złoto, konfetti, monety i trofeum."
+    }
   }
 }
