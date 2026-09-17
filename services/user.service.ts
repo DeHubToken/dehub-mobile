@@ -120,6 +120,8 @@ export interface NotificationItem {
     createdAt?: string;
     isPrivate?: boolean;
     badgeBalance?: number;
+    badgeLock?: { tier: string; requirement: number } | null;
+    hideBadgeAndBalance?: boolean;
     isFollowing?: boolean;
     followsYou?: boolean;
     isFollowRequestPending?: boolean;

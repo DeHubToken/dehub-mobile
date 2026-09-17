@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  Image,
   Platform,
   UIManager,
 } from "react-native";
@@ -47,7 +48,7 @@ import { localizedNotificationContent } from "../libs/notification-content";
 import { formatNotificationDate } from "../libs/date.util";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { seedUserProfileCache } from "../hooks/useUserProfileData";
-import { buildCdnPath, getAvatarUrl, getShortsThumbnailUrl } from "../libs";
+import { buildCdnPath, getAvatarUrl, getBadgeUrlFor, getShortsThumbnailUrl } from "../libs";
 import { cdnImage } from "../libs/cdnImage";
 import { addDismissedIds, getDismissedIds } from "../libs/notifications.dismissed";
 import { openInApp } from "../libs/links.utils";
@@ -516,6 +517,15 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
     item.type !== NotificationType.VIDEO_REMOVAL &&
     item.type !== NotificationType.SYSTEM &&
     item.type !== NotificationType.ACCOUNT_WARNING;
+  const sentence = localizedNotificationContent(item, t) ?? item.content;
+  const actorName = item.actor?.displayName || item.actor?.username || item.actorUsername;
+  const actorBadge = item.actor && !item.actor.hideBadgeAndBalance && !(item.aggregatedCount && item.aggregatedCount > 1)
+    ? getBadgeUrlFor(item.actor)
+    : undefined;
+  const actorNameAt = actorName ? sentence.indexOf(actorName) : -1;
+  const showActorBadge = !!actorBadge && actorNameAt >= 0 &&
+    !/\w/.test(sentence.charAt(actorNameAt - 1)) &&
+    !/\w/.test(sentence.charAt(actorNameAt + (actorName?.length || 0)));
 
   const clickable = isNotificationClickable(item);
   const thumbnail = useMemo(() => resolveNotificationThumbnail(item), [item]);
@@ -690,7 +700,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             }}
             numberOfLines={3}
           >
-            {localizedNotificationContent(item, t) ?? item.content}
+            {showActorBadge ? <>{sentence.slice(0, actorNameAt)}{actorName}<Image source={actorBadge!} style={{ width: 16, height: 16 }} />{sentence.slice(actorNameAt + actorName!.length)}</> : sentence}
           </Text>
 
           {/* Aggregation indicator */}
