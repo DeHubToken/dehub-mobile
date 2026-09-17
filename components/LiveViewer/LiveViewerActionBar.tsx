@@ -216,7 +216,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
           <View style={styles.cluster} pointerEvents="box-none">
           {isLive && !inputDisabled ? (
             <Pressable onPress={() => setGifPickerVisible(true)} hitSlop={CHROME_HIT_SLOP}
-              accessibilityRole="button" accessibilityLabel="Send GIF" style={styles.circle}>
+              accessibilityRole="button" accessibilityLabel={t("comments.addGif")} style={styles.circle}>
               <ChromeFill glass />
               <Text style={styles.gifLabel}>GIF</Text>
             </Pressable>
