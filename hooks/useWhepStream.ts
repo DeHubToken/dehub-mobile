@@ -60,6 +60,7 @@ export function useWhepStream({ enabled, stream, muted = false }: Options): Resu
 
     let cancelled = false;
     let timer: ReturnType<typeof setTimeout> | undefined;
+    let playing = false;
 
     const giveUp = () => {
       if (cancelled) return;
@@ -77,7 +78,10 @@ export function useWhepStream({ enabled, stream, muted = false }: Options): Resu
           endpoint,
           onStateChange: (state) => {
             if (cancelled) return;
-            if (state === 'playing') clearTimeout(timer);
+            if (state === 'playing') {
+              playing = true;
+              clearTimeout(timer);
+            }
             else if (state === 'failed') giveUp();
           },
         });
@@ -95,7 +99,7 @@ export function useWhepStream({ enabled, stream, muted = false }: Options): Resu
     timer = setTimeout(() => {
       // Nothing playing by now: the negotiation either never finished or the
       // media leg never arrived.
-      if (!cancelled && !sessionRef.current) giveUp();
+      if (!cancelled && !playing) giveUp();
     }, START_TIMEOUT_MS);
 
     void start();

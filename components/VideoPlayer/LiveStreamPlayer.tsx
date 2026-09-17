@@ -1209,7 +1209,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
    * really on air — falls straight back to the HLS ladder.
    */
   const whepLive = useWhepStream({
-    enabled: isPlayable && isLiveEffective && !isPlayingReplay,
+    // Android plays this same HLS ladder in the home card. Prefer that proven
+    // path here too: an attached WHEP track can negotiate without rendering a
+    // frame, leaving the viewer black while the feed keeps playing.
+    enabled: Platform.OS !== "android" && isPlayable && isLiveEffective && !isPlayingReplay,
     stream: { playbackId, provider: streamEntity?.provider },
     muted: isMuted,
   });
@@ -1427,12 +1430,14 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             shorts viewer draws, from the same component. It stays through
             immersive: a viewer who has just cleared the chrome to watch is
             exactly the one who wants to move about in a replay. */}
-        <ViewerScrubBar
-          progress={progress}
-          onSeek={handleSeek}
-          enabled={seekable}
-          onScrubbingChange={handleScrubbingChange}
-        />
+        {isPlayingReplay && (
+          <ViewerScrubBar
+            progress={progress}
+            onSeek={handleSeek}
+            enabled={seekable}
+            onScrubbingChange={handleScrubbingChange}
+          />
+        )}
 
         {/* Immersive: just the picture, with sound and a way back in the corner. */}
         {immersive && (
