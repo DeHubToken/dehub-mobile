@@ -51,7 +51,7 @@ const LiveViewerPlayerControls: React.FC<Props> = ({
             : t("common.mute", { defaultValue: "Mute" })
         }
       >
-        <ChromeFill />
+        <ChromeFill sheer />
         <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
       </Pressable>
       {hideImmersiveToggle ? null : (
@@ -66,7 +66,7 @@ const LiveViewerPlayerControls: React.FC<Props> = ({
             : t("common.fullscreen", { defaultValue: "Fullscreen" })
         }
       >
-        <ChromeFill />
+        <ChromeFill sheer />
         <Icon name={immersive ? "Minimize" : "Maximize"} size={20} color="#fff" />
       </Pressable>
       )}

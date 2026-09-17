@@ -43,7 +43,7 @@ const formatElapsed = (ms: number) => {
 
 const Pill: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <View style={styles.pill}>
-    <ChromeFill radius={13} />
+    <ChromeFill radius={13} sheer />
     {children}
   </View>
 );
