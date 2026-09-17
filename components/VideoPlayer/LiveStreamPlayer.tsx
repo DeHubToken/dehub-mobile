@@ -59,7 +59,7 @@ import PostOptionsMenu from "../common/PostOptionsMenu";
 import LiveViewerPlayerControls from "../LiveViewer/LiveViewerPlayerControls";
 import { useLiveChat } from "../../hooks/useLiveChat";
 import { useLivePostReactions } from "../../hooks/useLivePostReactions";
-import { useTranslation } from "../../hooks/useTranslation";
+import { useTranslation as useCopy } from "react-i18next";
 import { EDGE } from "../common/ViewerChrome";
 
 type LiveStreamPlayerProps = {
@@ -98,7 +98,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     createdAt: createdAtProp,
   } = props;
   const user = useUser();
-  const { t } = useTranslation();
+  const { t } = useCopy();
   const { isSignedIn } = useAuthState();
   const { requireAuth } = useAuthActions();
   const {
