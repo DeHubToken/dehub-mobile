@@ -23,6 +23,8 @@ export interface VideoAreaProps {
   minter?: string;
   tokenId: number | string | undefined;
   onProgress?: (positionMs: number, durationMs: number) => void;
+  /** See VideoPlayerCore — the live viewer draws its own scrub line. */
+  seekRef?: React.MutableRefObject<((ratio: number) => void) | null>;
   isLive?: boolean;
   onPPVSuccess?: () => void;
   /** When true, video fills the entire container instead of using 16:9 aspect ratio */
@@ -45,6 +47,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   minter,
   tokenId,
   onProgress,
+  seekRef,
   isLive,
   onPPVSuccess,
   fullscreen,
@@ -375,6 +378,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         tokenId={isLive ? undefined : tokenId}
         creator={isLive ? undefined : minterAddress}
         onProgress={onProgress}
+        seekRef={seekRef}
       />
     </View>
   );
