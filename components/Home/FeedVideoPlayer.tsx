@@ -433,7 +433,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     clearHideTimer();
     hideControlsTimerRef.current = setTimeout(() => {
       setShowControls(false);
-    }, 1500);
+    }, 2000);
   }, [clearHideTimer]);
 
   useEffect(() => {
@@ -724,7 +724,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     setSourceRequested(true);
     flushPendingPlay();
     setShowControls(true);
-    startHideTimer(); // Auto-hide after 1.5s when playing
+    startHideTimer();
   }, [canPlay, onPress, stopPlayback, flushPendingPlay, clearHideTimer, startHideTimer, onUserStarted, beginStarting, videoReady, firstFrameRendered]);
 
   const handleMediaSurfacePress = useCallback((event: GestureResponderEvent) => {
@@ -1091,7 +1091,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           onPress={() => {
             stopPlayback();
             setShowControls(true);
-            clearHideTimer(); // Stay visible while paused
+            startHideTimer();
           }}
           style={styles.playOverlay}
           accessibilityRole="button"
