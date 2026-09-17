@@ -942,7 +942,31 @@
     "kidsModeTurnOff": "Tắt Chế độ trẻ em",
     "kidsModePinMismatch": "Các mã PIN đó khác nhau. Hãy bắt đầu lại.",
     "kidsModeFailed": "Điều đó không hiệu quả. Hãy thử lại.",
-    "kidsModeForgotPin": "Quên? Đăng nhập bằng ví của bạn trên một thiết bị khác để tắt Chế độ trẻ em."
+    "kidsModeForgotPin": "Quên? Đăng nhập bằng ví của bạn trên một thiết bị khác để tắt Chế độ trẻ em.",
+    "streamKey": {
+      "section": "Khóa luồng",
+      "blurb": "Dán các khóa này vào OBS, ứng dụng chụp màn hình hoặc bảng điều khiển của bạn một lần. Chúng không bao giờ thay đổi — nhấn Bắt đầu trong bộ mã hóa của bạn và DeHub sẽ tạo bài đăng trực tiếp cho bạn.",
+      "server": "Máy chủ",
+      "key": "Khóa luồng",
+      "copyServer": "Sao chép máy chủ",
+      "copyKey": "Sao chép khóa luồng",
+      "reveal": "Hiển thị khóa luồng",
+      "hide": "Ẩn khóa luồng",
+      "copyFailed": "Không thể sao chép",
+      "keyWarning": "Bất kỳ ai giữ khóa này đều có thể phát sóng với tư cách của bạn. Không bao giờ hiển thị nó trên luồng.",
+      "defaultTitle": "Tiêu đề luồng mặc định",
+      "defaultTitlePlaceholder": "Tên các luồng của bộ mã hóa của bạn",
+      "defaultTitleHint": "Được sử dụng khi bạn phát trực tiếp từ bộ mã hóa mà không thiết lập bài đăng trước.",
+      "titleSaved": "Đã lưu",
+      "titleFailed": "Không thể lưu tiêu đề",
+      "rotate": "Đặt lại khóa luồng",
+      "rotateConfirm": "Phát hành khóa luồng mới? Mọi bộ mã hóa sử dụng khóa cũ sẽ ngừng hoạt động cho đến khi bạn dán khóa mới vào.",
+      "rotated": "Khóa luồng mới đã được phát hành",
+      "rotateFailed": "Không thể phát hành khóa mới",
+      "unavailable": "Hiện tại, bạn không thể phát trực tiếp từ bộ mã hóa trên tài khoản của mình.",
+      "serverCopied": "Đã sao chép máy chủ",
+      "keyCopied": "Đã sao chép khóa phát trực tuyến"
+    }
   },
   "postOptions": {
     "options": "Tuỳ chọn",

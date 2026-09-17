@@ -585,7 +585,31 @@
     "kidsModeTurnOff": "Kytke lapset-tila pois päältä",
     "kidsModePinMismatch": "Nämä PIN-koodit ovat erilaisia. Aloita alusta.",
     "kidsModeFailed": "Se ei toiminut. Yritä uudelleen.",
-    "kidsModeForgotPin": "Unohditko sen? Kirjaudu sisään lompakollasi toisella laitteella kytkeäksesi lapsitilan pois päältä."
+    "kidsModeForgotPin": "Unohditko sen? Kirjaudu sisään lompakollasi toisella laitteella kytkeäksesi lapsitilan pois päältä.",
+    "streamKey": {
+      "section": "Striimiavain",
+      "blurb": "Liitä nämä OBS:ään, tallennussovellukseesi tai konsoliisi kerran. Ne eivät koskaan muutu – paina Käynnistä kooderissasi ja DeHub luo live-postauksen puolestasi.",
+      "server": "Palvelin",
+      "key": "Striimiavain",
+      "copyServer": "Kopioi palvelin",
+      "copyKey": "Kopioi striimiavain",
+      "reveal": "Näytä striimiavain",
+      "hide": "Piilota striimiavain",
+      "copyFailed": "Kopiointi epäonnistui",
+      "keyWarning": "Kuka tahansa, jolla on tämä avain, voi lähettää lähetyksiä sinuna. Älä koskaan näytä sitä lähetyksessä.",
+      "defaultTitle": "Oletusstriimin otsikko",
+      "defaultTitlePlaceholder": "Mitä kooderisi lähetykset ovat nimeltään",
+      "defaultTitleHint": "Käytetään, kun aloitat lähetyksen kooderista asettamatta ensin postausta.",
+      "titleSaved": "Tallennettu",
+      "titleFailed": "Otsikkoa ei voitu tallentaa",
+      "rotate": "Nollaa striimiavain",
+      "rotateConfirm": "Haluatko antaa uuden striimiavaimen? Jokainen vanhaa avainta käyttävä kooderi lakkaa toimimasta, kunnes liität uuden avaimen.",
+      "rotated": "Uusi striimiavain annettu",
+      "rotateFailed": "Uutta avainta ei voitu antaa",
+      "unavailable": "Striimaus kooderista ei ole tällä hetkellä tililläsi käytettävissä.",
+      "serverCopied": "Palvelin kopioitu",
+      "keyCopied": "Virta-avain kopioitu"
+    }
   },
   "common": {
     "mute": "Mykistä",

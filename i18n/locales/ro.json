@@ -827,7 +827,31 @@
     "kidsModeTurnOff": "Dezactivează Modul pentru copii",
     "kidsModePinMismatch": "Acele PIN-uri sunt diferite. Începe din nou.",
     "kidsModeFailed": "Asta nu a funcționat. Încearcă din nou.",
-    "kidsModeForgotPin": "L-ai uitat? Conectează-te cu portofelul tău pe alt dispozitiv pentru a dezactiva Modul pentru copii."
+    "kidsModeForgotPin": "L-ai uitat? Conectează-te cu portofelul tău pe alt dispozitiv pentru a dezactiva Modul pentru copii.",
+    "streamKey": {
+      "section": "Cheie de streaming",
+      "blurb": "Introduceți acestea în OBS, aplicația de captură sau consola dvs. o singură dată. Nu se schimbă niciodată — apăsați Start în codificatorul dvs. și DeHub creează postarea live pentru dvs.",
+      "server": "Server",
+      "key": "Cheie de streaming",
+      "copyServer": "Copiați serverul",
+      "copyKey": "Copiați cheia de streaming",
+      "reveal": "Afișați cheia de streaming",
+      "hide": "Ascundeți cheia de streaming",
+      "copyFailed": "Nu s-a putut copia",
+      "keyWarning": "Oricine deține această cheie se poate difuza ca dvs. Nu o afișați niciodată pe stream.",
+      "defaultTitle": "Titlu implicit al streamului",
+      "defaultTitlePlaceholder": "Cum se numesc streamurile dvs. de la codificator",
+      "defaultTitleHint": "Folosit atunci când începeți un stream de la un codificator fără a configura mai întâi o postare.",
+      "titleSaved": "Salvat",
+      "titleFailed": "Nu s-a putut salva titlul",
+      "rotate": "Resetați cheia de streaming",
+      "rotateConfirm": "Doriți să emiteți o nouă cheie de streaming? Fiecare codificator care folosește cea veche va înceta să funcționeze până când introduceți noua cheie.",
+      "rotated": "Nouă cheie de streaming emisă",
+      "rotateFailed": "Nu s-a putut emite o nouă cheie",
+      "unavailable": "Streamingul de la un codificator nu este disponibil în contul dvs. în acest moment.",
+      "serverCopied": "Server copiat",
+      "keyCopied": "Cheie flux copiată"
+    }
   },
   "common": {
     "mute": "Dezactivează sunetul",

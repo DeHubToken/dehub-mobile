@@ -585,7 +585,31 @@
     "kidsModeTurnOff": "关闭儿童模式",
     "kidsModePinMismatch": "这些PIN码不同。重新开始。",
     "kidsModeFailed": "无效。请重试。",
-    "kidsModeForgotPin": "忘记了？在另一台设备上使用钱包登录以关闭儿童模式。"
+    "kidsModeForgotPin": "忘记了？在另一台设备上使用钱包登录以关闭儿童模式。",
+    "streamKey": {
+      "section": "推流密钥",
+      "blurb": "将这些粘贴到 OBS、捕获应用程序或控制台中一次。它们永远不会改变 — 在编码器中按开始，DeHub 会为您创建直播帖子。",
+      "server": "服务器",
+      "key": "推流密钥",
+      "copyServer": "复制服务器",
+      "copyKey": "复制推流密钥",
+      "reveal": "显示推流密钥",
+      "hide": "隐藏推流密钥",
+      "copyFailed": "无法复制",
+      "keyWarning": "持有此密钥的任何人都可以以您的身份进行直播。切勿在直播中显示它。",
+      "defaultTitle": "默认直播标题",
+      "defaultTitlePlaceholder": "您的编码器流的名称",
+      "defaultTitleHint": "当您在未先设置帖子的情况下从编码器进行直播时使用。",
+      "titleSaved": "已保存",
+      "titleFailed": "无法保存标题",
+      "rotate": "重置推流密钥",
+      "rotateConfirm": "要生成新的推流密钥吗？所有使用旧密钥的编码器将停止工作，直到您粘贴新密钥。",
+      "rotated": "已生成新推流密钥",
+      "rotateFailed": "无法生成新密钥",
+      "unavailable": "您的帐户目前无法从编码器进行直播。",
+      "serverCopied": "服务器已复制",
+      "keyCopied": "流密钥已复制"
+    }
   },
   "common": {
     "mute": "静音",

@@ -585,7 +585,31 @@
     "kidsModeTurnOff": "Gyermek üzemmód kikapcsolása",
     "kidsModePinMismatch": "Ezek a PIN-kódok eltérőek. Kezdje újra.",
     "kidsModeFailed": "Ez nem sikerült. Próbálkozz újra.",
-    "kidsModeForgotPin": "Elfelejtette? A Gyermek üzemmód kikapcsolásához jelentkezzen be a pénztárcájával egy másik eszközön."
+    "kidsModeForgotPin": "Elfelejtette? A Gyermek üzemmód kikapcsolásához jelentkezzen be a pénztárcájával egy másik eszközön.",
+    "streamKey": {
+      "section": "Stream kulcs",
+      "blurb": "Illeszd be ezeket az OBS-be, a rögzítő alkalmazásodba vagy a konzolodba egyszer. Ezek soha nem változnak – nyomd meg a Start gombot az enkódereden, és a DeHub létrehozza az élő posztot neked.",
+      "server": "Szerver",
+      "key": "Stream kulcs",
+      "copyServer": "Másold a szervert",
+      "copyKey": "Másold a stream kulcsot",
+      "reveal": "Mutasd a stream kulcsot",
+      "hide": "Rejtsd el a stream kulcsot",
+      "copyFailed": "Nem sikerült másolni",
+      "keyWarning": "Bárki, aki birtokolja ezt a kulcsot, te helyetted sugározhat. Soha ne mutasd meg streamelés közben.",
+      "defaultTitle": "Alapértelmezett stream címe",
+      "defaultTitlePlaceholder": "Hogyan nevezik az enkódered streamjeit",
+      "defaultTitleHint": "Akkor használatos, amikor egy enkóderből indítasz élő adást anélkül, hogy először beállítanál egy posztot.",
+      "titleSaved": "Mentve",
+      "titleFailed": "Nem sikerült elmenteni a címet",
+      "rotate": "Stream kulcs visszaállítása",
+      "rotateConfirm": "Új stream kulcsot szeretnél kiadni? Minden enkóder, amely a régit használja, leáll, amíg be nem illeszted az újat.",
+      "rotated": "Új stream kulcs kiadva",
+      "rotateFailed": "Nem sikerült új kulcsot kiadni",
+      "unavailable": "Az enkóderből történő streamelés jelenleg nem elérhető a fiókodban.",
+      "serverCopied": "Szerver másolva",
+      "keyCopied": "Adatfolyamkulcs másolva"
+    }
   },
   "common": {
     "mute": "Némítás",

@@ -544,7 +544,31 @@
     "kidsModeTurnOff": "Chindermodus usschalte",
     "kidsModePinMismatch": "Die PINs sind verschide. Fang nomol a.",
     "kidsModeFailed": "Das het nid funktioniert. Versuchs nomol.",
-    "kidsModeForgotPin": "Vergesse? Melde dich uf nem andere Gerät mit dim Wallet a, um de Chindermodus auszschalte."
+    "kidsModeForgotPin": "Vergesse? Melde dich uf nem andere Gerät mit dim Wallet a, um de Chindermodus auszschalte.",
+    "streamKey": {
+      "section": "Stream-Schlüssel",
+      "blurb": "Päschte die einisch i OBS, din Capture-App oder din Konsole. Si ändere sich nie — drück Starte i dim Encoder und DeHub macht de Live-Post für dich.",
+      "server": "Server",
+      "key": "Stream-Schlüssel",
+      "copyServer": "Server kopiere",
+      "copyKey": "Stream-Schlüssel kopiere",
+      "reveal": "Stream-Schlüssel zeige",
+      "hide": "Stream-Schlüssel verstecke",
+      "copyFailed": "Konnt nöd kopiere",
+      "keyWarning": "Jede wo de Schlüssel hät, chan als du uusstrahle. Zeig en nie im Stream.",
+      "defaultTitle": "Standard-Stream-Titel",
+      "defaultTitlePlaceholder": "Wie din Encoder-Stream heisst",
+      "defaultTitleHint": "Wird bruucht, wenn du vo dim Encoder live gaasch, ohni vorher en Post z'mache.",
+      "titleSaved": "Gspeicheret",
+      "titleFailed": "Konnt de Titel nöd gspichere",
+      "rotate": "Stream-Schlüssel zruggsetze",
+      "rotateConfirm": "Neuen Stream-Schlüssel usgä? Jeder Encoder wo de alte bruucht, hört uf z'funktioniere, bis du de neue Schlüssel iipäschtesch.",
+      "rotated": "Neuer Stream-Schlüssel usgä",
+      "rotateFailed": "Konnt de neue Schlüssel nöd usgä",
+      "unavailable": "Vom Encoder us z'strahle isch grad nöd uf dim Konto verfügbar.",
+      "serverCopied": "Server copied",
+      "keyCopied": "Stream key copied"
+    }
   },
   "common": {
     "mute": "Stumm schalte",

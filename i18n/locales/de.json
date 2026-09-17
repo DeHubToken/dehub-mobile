@@ -599,7 +599,31 @@
     "kidsModeTurnOff": "Kindermodus ausschalten",
     "kidsModePinMismatch": "Diese PINs unterscheiden sich. Beginnen Sie erneut.",
     "kidsModeFailed": "Das hat nicht funktioniert. Versuchen Sie es erneut.",
-    "kidsModeForgotPin": "Haben Sie es vergessen? Melden Sie sich mit Ihrer Brieftasche auf einem anderen Gerät an, um den Kindermodus auszuschalten."
+    "kidsModeForgotPin": "Haben Sie es vergessen? Melden Sie sich mit Ihrer Brieftasche auf einem anderen Gerät an, um den Kindermodus auszuschalten.",
+    "streamKey": {
+      "section": "Stream-Schlüssel",
+      "blurb": "Fügen Sie diese einmal in OBS, Ihre Capture-App oder Ihre Konsole ein. Sie ändern sich nie – drücken Sie auf Start in Ihrem Encoder und DeHub erstellt den Live-Post für Sie.",
+      "server": "Server",
+      "key": "Stream-Schlüssel",
+      "copyServer": "Server kopieren",
+      "copyKey": "Stream-Schlüssel kopieren",
+      "reveal": "Stream-Schlüssel anzeigen",
+      "hide": "Stream-Schlüssel ausblenden",
+      "copyFailed": "Konnte nicht kopiert werden",
+      "keyWarning": "Jeder, der diesen Schlüssel besitzt, kann als Sie streamen. Zeigen Sie ihn niemals im Stream an.",
+      "defaultTitle": "Standard-Stream-Titel",
+      "defaultTitlePlaceholder": "Wie Ihre Encoder-Streams heißen",
+      "defaultTitleHint": "Wird verwendet, wenn Sie von einem Encoder aus live gehen, ohne zuerst einen Post einzurichten.",
+      "titleSaved": "Gespeichert",
+      "titleFailed": "Titel konnte nicht gespeichert werden",
+      "rotate": "Stream-Schlüssel zurücksetzen",
+      "rotateConfirm": "Neuen Stream-Schlüssel ausgeben? Jeder Encoder, der den alten verwendet, wird nicht mehr funktionieren, bis Sie den neuen Schlüssel eingefügt haben.",
+      "rotated": "Neuer Stream-Schlüssel ausgegeben",
+      "rotateFailed": "Neuer Schlüssel konnte nicht ausgegeben werden",
+      "unavailable": "Streaming von einem Encoder ist derzeit nicht für Ihr Konto verfügbar.",
+      "serverCopied": "Server kopiert",
+      "keyCopied": "Stream-Schlüssel kopiert"
+    }
   },
   "common": {
     "mute": "Stumm schalten",

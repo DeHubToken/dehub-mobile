@@ -584,7 +584,31 @@
     "kidsModeTurnOff": "Zima Hali ya Watoto",
     "kidsModePinMismatch": "PIN hizo ni tofauti. Anza tena.",
     "kidsModeFailed": "Hiyo haikufanya kazi. Jaribu tena.",
-    "kidsModeForgotPin": "Umesahau? Ingia kwa kutumia pochi yako kwenye kifaa kingine ili kuzima Modi ya Watoto."
+    "kidsModeForgotPin": "Umesahau? Ingia kwa kutumia pochi yako kwenye kifaa kingine ili kuzima Modi ya Watoto.",
+    "streamKey": {
+      "section": "Ufunguo wa matangazo",
+      "blurb": "Bandika haya kwenye OBS, programu yako ya kunasa au kiweko chako mara moja. Hazibadilika kamwe — bonyeza Anza kwenye kiendeshi chako na DeHub itatengeneza chapisho la moja kwa moja kwa ajili yako.",
+      "server": "Kihudumu",
+      "key": "Ufunguo wa matangazo",
+      "copyServer": "Nakili kihudumu",
+      "copyKey": "Nakili ufunguo wa matangazo",
+      "reveal": "Onyesha ufunguo wa matangazo",
+      "hide": "Ficha ufunguo wa matangazo",
+      "copyFailed": "Imeshindwa kunakili",
+      "keyWarning": "Mtu yeyote anayeshikilia ufunguo huu anaweza kutangaza kama wewe. Kamwe usiionyeshe kwenye matangazo.",
+      "defaultTitle": "Kichwa chaguo-msingi cha matangazo",
+      "defaultTitlePlaceholder": "Matangazo yako ya kiendeshi yanaitwa nini",
+      "defaultTitleHint": "Inatumiwa unapowasha moja kwa moja kutoka kwa kiendeshi bila kuweka chapisho kwanza.",
+      "titleSaved": "Imehifadhiwa",
+      "titleFailed": "Imeshindwa kuhifadhi kichwa",
+      "rotate": "Weka upya ufunguo wa matangazo",
+      "rotateConfirm": "Toa ufunguo mpya wa matangazo? Kila kiendeshi kinachotumia cha zamani kitaacha kufanya kazi hadi utakapobandika ufunguo mpya.",
+      "rotated": "Ufunguo mpya wa matangazo umetolewa",
+      "rotateFailed": "Imeshindwa kutoa ufunguo mpya",
+      "unavailable": "Kutangaza kutoka kwa kiendeshi hakupatikani kwenye akaunti yako kwa sasa.",
+      "serverCopied": "Seva imenakiliwa",
+      "keyCopied": "Ufunguo wa mkondo umenakiliwa"
+    }
   },
   "common": {
     "mute": "Nyamazisha",

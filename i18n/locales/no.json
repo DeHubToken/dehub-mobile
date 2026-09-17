@@ -582,7 +582,31 @@
     "kidsModeTurnOff": "Slå av barnemodus",
     "kidsModePinMismatch": "Disse PIN-kodene er forskjellige. Start på nytt.",
     "kidsModeFailed": "Det fungerte ikke. Prøv igjen.",
-    "kidsModeForgotPin": "Glemt det? Logg på med lommeboken din på en annen enhet for å slå av barnemodus."
+    "kidsModeForgotPin": "Glemt det? Logg på med lommeboken din på en annen enhet for å slå av barnemodus.",
+    "streamKey": {
+      "section": "Strømmenøkkel",
+      "blurb": "Lim inn disse i OBS, fangstappen din eller konsollen din én gang. De endres aldri — trykk Start i koderen din og DeHub oppretter live-innlegget for deg.",
+      "server": "Server",
+      "key": "Strømmenøkkel",
+      "copyServer": "Kopier server",
+      "copyKey": "Kopier strømmenøkkel",
+      "reveal": "Vis strømmenøkkel",
+      "hide": "Skjul strømmenøkkel",
+      "copyFailed": "Kunne ikke kopiere",
+      "keyWarning": "Alle som har denne nøkkelen kan kringkaste som deg. Aldri vis den på strømmen.",
+      "defaultTitle": "Standard strømmetittel",
+      "defaultTitlePlaceholder": "Hva strømmene dine fra koderen kalles",
+      "defaultTitleHint": "Brukes når du går live fra en koder uten å sette opp et innlegg først.",
+      "titleSaved": "Lagret",
+      "titleFailed": "Kunne ikke lagre tittelen",
+      "rotate": "Tilbakestill strømmenøkkel",
+      "rotateConfirm": "Utstede en ny strømmenøkkel? Alle kodere som bruker den gamle vil slutte å fungere før du limer inn den nye nøkkelen.",
+      "rotated": "Ny strømmenøkkel utstedt",
+      "rotateFailed": "Kunne ikke utstede en ny nøkkel",
+      "unavailable": "Strømming fra en koder er ikke tilgjengelig på kontoen din akkurat nå.",
+      "serverCopied": "Serveren er kopiert",
+      "keyCopied": "Strømnøkkel kopiert"
+    }
   },
   "common": {
     "mute": "Demp",

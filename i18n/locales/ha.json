@@ -575,7 +575,31 @@
     "kidsModeTurnOff": "Kashe Yanayin Yara",
     "kidsModePinMismatch": "Waɗannan PINs sun bambanta. sake farawa.",
     "kidsModeFailed": "Wannan bai yi aiki ba. sake gwadawa.",
-    "kidsModeForgotPin": "Ka manta da shi? Shiga tare da walat ɗinka a kan wani na'urar don kunna Yanayin Kids kashe."
+    "kidsModeForgotPin": "Ka manta da shi? Shiga tare da walat ɗinka a kan wani na'urar don kunna Yanayin Kids kashe.",
+    "streamKey": {
+      "section": "Mabudin watsawa",
+      "blurb": "Danna waɗannan a cikin OBS, aikace-aikacen kamara ko na'urarka sau ɗaya. Ba sa canzawa — danna Fara a cikin encoder ɗinka kuma DeHub zai ƙirƙiri sakon kai tsaye don ku.",
+      "server": "Uwar garke",
+      "key": "Mabudin watsawa",
+      "copyServer": "Kwafin uwar garke",
+      "copyKey": "Kwafin mabudin watsawa",
+      "reveal": "Nuna mabudin watsawa",
+      "hide": "Boye mabudin watsawa",
+      "copyFailed": "An kasa kwafa",
+      "keyWarning": "Duk wanda ke riƙe da wannan mabudin zai iya watsawa kamar ku. Kada ku nuna shi a watsawa.",
+      "defaultTitle": "Take watsawa na farko",
+      "defaultTitlePlaceholder": "Abin da ake kiran watsawa na encoder ɗinku",
+      "defaultTitleHint": "Ana amfani da shi lokacin da kuka fara watsawa daga encoder ba tare da saita sakon farko ba.",
+      "titleSaved": "An adana",
+      "titleFailed": "An kasa adana taken",
+      "rotate": "Sake saita mabudin watsawa",
+      "rotateConfirm": "Fitowa da sabon mabudin watsawa? Duk encoder da ke amfani da tsohon zai daina aiki har sai kun danna sabon mabudin.",
+      "rotated": "An fitar da sabon mabudin watsawa",
+      "rotateFailed": "An kasa fitar da sabon mabudin",
+      "unavailable": "Watsawa daga encoder ba ta samuwa a asusunka a yanzu.",
+      "serverCopied": "An kwafa Server",
+      "keyCopied": "Stream key kwafe"
+    }
   },
   "common": {
     "mute": "Kashe sauti",

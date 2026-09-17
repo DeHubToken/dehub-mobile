@@ -577,7 +577,31 @@
     "kidsModeTurnOff": "Gbanyụọ ọnọdụ ụmụaka",
     "kidsModePinMismatch": "PIN ndị ahụ dị iche. Malite ọzọ.",
     "kidsModeFailed": "Nke ahụ arụghị ọrụ. Gbalịa ọzọ.",
-    "kidsModeForgotPin": "Echefuola ya? Jiri obere akpa gị banye na ngwaọrụ ọzọ iji gbanyụọ ọnọdụ ụmụaka."
+    "kidsModeForgotPin": "Echefuola ya? Jiri obere akpa gị banye na ngwaọrụ ọzọ iji gbanyụọ ọnọdụ ụmụaka.",
+    "streamKey": {
+      "section": "Igodo ntinye",
+      "blurb": "Tinye ndị a na OBS, ngwa njide gị ma ọ bụ njikwa gị otu ugbo. Ha agaghị agbanwe - pịa Malite na ihe ndekọ gị ma DeHub mepụta ntinye ndụ maka gị.",
+      "server": "Njikwa",
+      "key": "Igodo ntinye",
+      "copyServer": "Detuo njikwa",
+      "copyKey": "Detuo igodo ntinye",
+      "reveal": "Gosi igodo ntinye",
+      "hide": "Zobe igodo ntinye",
+      "copyFailed": "E nweghị ike idetuo ya",
+      "keyWarning": "Onye ọ bụla ji igodo a nwere ike ịgbasa dị ka gị. Agbala gosi ya na ntinye.",
+      "defaultTitle": "Aha ntinye ndabere",
+      "defaultTitlePlaceholder": "A na-akpọ ihe ndekọ gị aha",
+      "defaultTitleHint": "Ejiri mgbe ị gara ndụ site na ihe ndekọ na-enweghị ịtọlite ntinye mbụ.",
+      "titleSaved": "Echekwara",
+      "titleFailed": "E nweghị ike ịchekwa aha ahụ",
+      "rotate": "Tọgharịa igodo ntinye",
+      "rotateConfirm": "Nye igodo ntinye ọhụrụ? Ihe ndekọ ọ bụla na-eji nke ochie ga-akwụsị ịrụ ọrụ ruo mgbe ị detoro igodo ọhụrụ ahụ.",
+      "rotated": "Igodo ntinye ọhụrụ enyere",
+      "rotateFailed": "E nweghị ike inye igodo ọhụrụ",
+      "unavailable": "Ntinye site na ihe ndekọ adịghị maka akaụntụ gị ugbu a.",
+      "serverCopied": "Edebata sava",
+      "keyCopied": "Edebata kíìrìọ́ọ̀ltụ̀"
+    }
   },
   "common": {
     "mute": "Mechie ụda",

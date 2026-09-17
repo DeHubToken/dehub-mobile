@@ -585,7 +585,31 @@
     "kidsModeTurnOff": "Isključi dječji način rada",
     "kidsModePinMismatch": "Ti su PIN-ovi različiti. Krenite ispočetka.",
     "kidsModeFailed": "To nije uspjelo. Pokušajte ponovno.",
-    "kidsModeForgotPin": "Zaboravili ste? Prijavite se svojim novčanikom na drugom uređaju da biste isključili način rada za djecu."
+    "kidsModeForgotPin": "Zaboravili ste? Prijavite se svojim novčanikom na drugom uređaju da biste isključili način rada za djecu.",
+    "streamKey": {
+      "section": "Ključ za prijenos uživo",
+      "blurb": "Zalijepite ovo u OBS, svoju aplikaciju za snimanje ili konzolu jednom. Nikada se ne mijenjaju — pritisnite Pokreni u svom kodiranju i DeHub će automatski stvoriti objavu uživo za vas.",
+      "server": "Poslužitelj",
+      "key": "Ključ za prijenos uživo",
+      "copyServer": "Kopiraj poslužitelj",
+      "copyKey": "Kopiraj ključ za prijenos uživo",
+      "reveal": "Prikaži ključ za prijenos uživo",
+      "hide": "Sakrij ključ za prijenos uživo",
+      "copyFailed": "Nije moguće kopirati",
+      "keyWarning": "Svatko tko posjeduje ovaj ključ može emitirati kao vi. Nikada ga ne prikazujte u prijenosu uživo.",
+      "defaultTitle": "Zadani naslov prijenosa uživo",
+      "defaultTitlePlaceholder": "Kako se zovu vaši prijenosi uživo iz kodiranja",
+      "defaultTitleHint": "Koristi se kada započnete prijenos uživo iz kodiranja bez prethodnog postavljanja objave.",
+      "titleSaved": "Spremljeno",
+      "titleFailed": "Nije moguće spremiti naslov",
+      "rotate": "Poništi ključ za prijenos uživo",
+      "rotateConfirm": "Izdati novi ključ za prijenos uživo? Svako kodiranje koje koristi stari ključ prestat će raditi dok ne zalijepite novi ključ.",
+      "rotated": "Novi ključ za prijenos uživo je izdan",
+      "rotateFailed": "Nije moguće izdati novi ključ",
+      "unavailable": "Prijenos uživo iz kodiranja trenutno nije dostupan na vašem računu.",
+      "serverCopied": "Poslužitelj je kopiran",
+      "keyCopied": "Tipka za stream je kopirana"
+    }
   },
   "common": {
     "mute": "Isključi zvuk",
