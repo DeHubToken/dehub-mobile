@@ -1,118 +1,131 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { View, Text, TextInput, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
-import * as Clipboard from "expo-clipboard";
-import { useUser } from "../../context/AuthContext";
-import { toastError, toastSuccess } from "../../libs/toast";
-import {
-  createCryptoPurchaseIntent,
-  getCryptoPayableAssets,
-  getCryptoPurchaseQuote,
-  getCryptoPurchaseStatus,
-  type CryptoPayableAsset,
-  type CryptoPurchaseIntent,
-  type CryptoPurchaseQuote,
-} from "../../services/dpay.service";
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { AppState, View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
+import * as Clipboard from 'expo-clipboard';
+import { useAuthActions, useProvider, useUser } from '../../context/AuthContext';
+import { ethers } from 'ethers';
+import { getSigningProvider } from '../../libs/provider.registry';
+import { writeBatchAA } from '../../libs/aa.write';
+import type { Purchase } from '../../libs/crypto-purchase';
+import { toastError, toastSuccess } from '../../libs/toast';
+import { openInApp } from '../../libs/links.utils';
+import { TERMS_OF_SERVICE_LINK } from '../../config/links';
+import { cryptoPurchaseApi } from '../../services/crypto-purchase.service';
+import { canSendPayment, estimateMinutes, paymentChainName, purchasePhase, validDhbAmount } from '../../libs/crypto-purchase';
+import { useCryptoPurchase } from '../../hooks/useCryptoPurchase';
 
-const EVM_CHAINS = new Set(["eth", "base", "arb", "bsc", "pol", "op", "avax", "gnosis", "scroll", "monad", "bera", "xlayer", "plasma", "abs", "hypercore"]);
-const CHAIN_NAMES: Record<string, string> = { eth: "Ethereum", base: "Base", arb: "Arbitrum", bsc: "BNB Chain", pol: "Polygon", sol: "Solana", btc: "Bitcoin", near: "NEAR", tron: "Tron", xrp: "XRP Ledger", ton: "TON", sui: "Sui" };
-const chainName = (id: string) => CHAIN_NAMES[id] || id.toUpperCase();
+function Action({ label, onPress, disabled = false }: { label: string; onPress: () => void; disabled?: boolean }) {
+  return <TouchableOpacity accessibilityRole="button" disabled={disabled} onPress={onPress} className={`rounded-xl bg-white/10 border border-white/15 px-3 py-3 my-1 ${disabled ? 'opacity-40' : ''}`}><Text className="text-white text-center text-sm">{label}</Text></TouchableOpacity>;
+}
 
-const NearIntentBuy: React.FC = () => {
+export default function NearIntentBuy() {
   const { t } = useTranslation();
   const user = useUser() as any;
-  const walletAddress = (user?.walletAddress || user?.address || "") as string;
-  const [assets, setAssets] = useState<CryptoPayableAsset[]>([]);
-  const [loadingAssets, setLoadingAssets] = useState(true);
-  const [search, setSearch] = useState("");
-  const [assetId, setAssetId] = useState("");
-  const [dhbAmount, setDhbAmount] = useState("50000");
-  const [manualRefund, setManualRefund] = useState("");
-  const [quote, setQuote] = useState<CryptoPurchaseQuote | null>(null);
-  const [intent, setIntent] = useState<CryptoPurchaseIntent | null>(null);
-  const [status, setStatus] = useState("");
-  const [busy, setBusy] = useState(false);
-
+  const { refreshUser, switchChain } = useAuthActions();
+  const { provider } = useProvider();
+  const wallet = (user?.walletAddress || user?.address || '') as string;
+  const focused = useIsFocused();
+  const [foreground, setForeground] = useState(AppState.currentState === 'active');
+  const [amountText, setAmountText] = useState('50000');
+  const [search, setSearch] = useState('');
+  const [agreed, setAgreed] = useState(false);
+  const amount = Number(amountText);
+  const flow = useCryptoPurchase(cryptoPurchaseApi, wallet, amount, foreground && focused, user?.solanaAddress);
+  const { purchase, quote, selected, busy } = flow;
+  const direct = purchase ? purchase.route === 'direct' : selected?.route === 'direct';
+  const sendPayment = async (receipt: Purchase) => {
+    if (!receipt.paymentChainId || receipt.paymentDecimals == null) throw new Error(t('nearBuy.statusError'));
+    await switchChain(receipt.paymentChainId);
+    const signing = getSigningProvider() || provider;
+    if (!signing?.request) throw new Error(t('nearBuy.statusError'));
+    const chain = Number(await signing.request({ method: 'eth_chainId' }));
+    if (chain !== receipt.paymentChainId) throw new Error(t('nearBuy.wrongNetwork'));
+    const accounts = await signing.request({ method: 'eth_accounts' });
+    if (accounts?.[0]?.toLowerCase() !== wallet.toLowerCase()) throw new Error(t('nearBuy.wrongWallet'));
+    if (wallet.toLowerCase() !== receipt.refundTo?.toLowerCase()) throw new Error(t('nearBuy.wrongWallet'));
+    if (receipt.expiresAt * 1000 <= Date.now()) throw new Error(t('nearBuy.phase_expired'));
+    const amount = ethers.utils.parseUnits(receipt.amountInFormatted, receipt.paymentDecimals);
+    if (receipt.wrapNativePayment && receipt.paymentTokenAddress && signing.smartAccount) {
+      const token = new ethers.utils.Interface(['function deposit() payable', 'function transfer(address to,uint256 amount) returns (bool)']);
+      return (await writeBatchAA(signing, [
+        { to: receipt.paymentTokenAddress, data: token.encodeFunctionData('deposit') as `0x${string}`, value: amount },
+        { to: receipt.paymentTokenAddress, data: token.encodeFunctionData('transfer', [receipt.depositAddress, amount]) as `0x${string}` },
+      ], { context: 'crypto purchase' })).hash;
+    }
+    const isToken = receipt.paymentTokenAddress && !receipt.wrapNativePayment;
+    const data = isToken ? new ethers.utils.Interface(['function transfer(address to,uint256 amount) returns (bool)']).encodeFunctionData('transfer', [receipt.depositAddress, amount]) : '0x';
+    return signing.request({ method: 'eth_sendTransaction', params: [{ from: wallet, to: isToken ? receipt.paymentTokenAddress : receipt.depositAddress, data, value: isToken ? '0x0' : amount.toHexString() }] }) as Promise<string>;
+  };
+  const begin = async () => {
+    if (!quote) return flow.price();
+    const saved = await flow.create();
+    if (saved?.route === 'direct' && saved.amountInFormatted === quote.amountInFormatted) await flow.pay(saved, sendPayment);
+  };
+  const phase = purchase ? purchasePhase(purchase, flow.now) : null;
   useEffect(() => {
-    let active = true;
-    getCryptoPayableAssets().then(tokens => { if (active) setAssets(tokens); })
-      .catch(error => toastError(error, t("nearBuy.tokensError")))
-      .finally(() => { if (active) setLoadingAssets(false); });
-    return () => { active = false; };
+    if (purchase?.tokenSendStatus === 'sent') void refreshUser().catch(() => {});
+  }, [purchase?.id, purchase?.tokenSendStatus, refreshUser]);
+  const minutes = estimateMinutes(purchase?.timeEstimateSeconds ?? quote?.timeEstimateSeconds);
+  const rows = flow.assets.filter(asset => `${asset.symbol} ${paymentChainName(asset.blockchain)} ${asset.contractAddress || ''} ${asset.assetId}`.toLowerCase().includes(search.trim().toLowerCase()));
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', state => setForeground(state === 'active'));
+    return () => subscription.remove();
   }, []);
-  const selected = assets.find(asset => asset.assetId === assetId);
-  const filtered = useMemo(() => assets.filter(asset =>
-    !/deprecated/i.test(asset.symbol) && `${asset.symbol} ${chainName(asset.blockchain)}`.toLowerCase().includes(search.toLowerCase()),
-  ), [assets, search]);
-  const refundTo = selected && EVM_CHAINS.has(selected.blockchain) ? walletAddress : manualRefund.trim();
-  const amount = Math.floor(Number(dhbAmount));
-  useEffect(() => { setQuote(null); }, [assetId, dhbAmount, manualRefund]);
-  useEffect(() => {
-    if (!intent || ["sent", "REFUNDED", "FAILED", "EXPIRED"].includes(status)) return;
-    let active = true;
-    const check = async () => {
-      try {
-        const result = await getCryptoPurchaseStatus(intent.id);
-        if (active) setStatus(result.tokenSendStatus === "sent" ? "sent" : result.settlement);
-      } catch { /* The address stays visible when a status read fails. */ }
-    };
-    void check();
-    const timer = setInterval(check, 5000);
-    return () => { active = false; clearInterval(timer); };
-  }, [intent?.id, status]);
-
-  const requestQuote = async () => {
-    if (!selected || !Number.isFinite(amount) || amount <= 0) return;
-    setBusy(true);
-    try { setQuote(await getCryptoPurchaseQuote({ originAsset: selected.assetId, tokensToReceive: amount, refundTo: refundTo || undefined })); }
-    catch (error) { toastError(error, t("nearBuy.quoteError")); }
-    finally { setBusy(false); }
+  const copy = async (value: string) => {
+    try { await Clipboard.setStringAsync(value); toastSuccess(t('nearBuy.copied')); }
+    catch { toastError(t('nearBuy.copyFailed')); }
   };
-  const requestAddress = async () => {
-    if (!selected || !walletAddress || !refundTo || !quote) return;
-    setBusy(true);
-    try {
-      const opened = await createCryptoPurchaseIntent({ originAsset: selected.assetId, tokensToReceive: amount, receiverAddress: walletAddress, refundTo, termsAndServicesAccepted: true });
-      setIntent(opened); setStatus("PENDING_DEPOSIT");
-    } catch (error) { toastError(error, t("nearBuy.intentError")); }
-    finally { setBusy(false); }
-  };
-  const copy = async (value: string) => { await Clipboard.setStringAsync(value); toastSuccess(t("commandCentre.copiedAddress")); };
+  const estimate = <Text className="text-theme-neutrals-400 text-xs my-2">{direct ? t('nearBuy.directTiming') : `${minutes ? t('nearBuy.swapEstimate', { minutes }) : t('nearBuy.estimateUnknown')} ${t('nearBuy.confirmationTime')}`}</Text>;
+  const field = 'bg-theme-neutrals-900 text-white rounded-xl px-3 py-3 mb-2';
 
   return <View className="bg-theme-neutrals-800 rounded-xl p-4 border border-theme-neutrals-700/60 my-4">
-    <Text className="text-white font-semibold text-lg">{t("commandCentre.buyWithCrypto")}</Text>
-    <Text className="text-theme-neutrals-400 text-xs mt-1 mb-3">{t("nearBuy.description")}</Text>
-    {!intent ? <>
-      <Text className="text-theme-neutrals-400 text-xs mb-1">{t("nearBuy.dhbAmount")}</Text>
-      <TextInput value={dhbAmount} onChangeText={setDhbAmount} keyboardType="numeric" placeholder="50000" placeholderTextColor="#71717A" className="bg-theme-neutrals-900 text-white rounded-xl px-3 py-3 mb-3" />
-      <TextInput value={search} onChangeText={setSearch} placeholder={t("nearBuy.search")} placeholderTextColor="#71717A" className="bg-theme-neutrals-900 text-white rounded-xl px-3 py-3 mb-2" />
-      <ScrollView nestedScrollEnabled style={{ maxHeight: 180 }}>
-        {filtered.map(asset => <TouchableOpacity key={asset.assetId} onPress={() => { setAssetId(asset.assetId); setManualRefund(""); }} className={`rounded-lg px-3 py-2 mb-1 ${assetId === asset.assetId ? "bg-white/20" : "bg-theme-neutrals-900"}`}>
-          <Text className="text-white text-sm"><Text className="font-semibold">{asset.symbol}</Text> {t("nearBuy.onChain", { chain: chainName(asset.blockchain) })}</Text>
-        </TouchableOpacity>)}
-        {loadingAssets && <ActivityIndicator color="white" />}
-        {!loadingAssets && filtered.length === 0 && <Text className="text-theme-neutrals-400 text-sm py-3">{t("explorePage.noResults")}</Text>}
+    <Text className="text-white font-semibold text-lg">{t('nearBuy.title')}</Text>
+    <Text className="text-theme-neutrals-400 text-xs mt-1 mb-3">{t('nearBuy.description')}</Text>
+    {flow.historyFailed && <><Text className="text-amber-300 text-sm">{t('nearBuy.historyError')}</Text><Action label={t('nearBuy.retry')} onPress={flow.refresh} /></>}
+    {purchase ? <View>
+      <View accessibilityLiveRegion="polite" className="border border-white/10 rounded-xl p-3 mb-3">
+        <Text className="text-white font-semibold">{t(`nearBuy.phase_${phase}`)}</Text>
+        <Text className="text-theme-neutrals-300 text-sm mt-1">{t(direct && phase === 'awaiting' ? 'nearBuy.reviewPay' : `nearBuy.detail_${phase}`)}</Text>
+        {estimate}<Text className="text-theme-neutrals-400 text-xs">{t('nearBuy.saved')}</Text>
+      </View>
+      {flow.statusFailed && <Text className="text-amber-300 text-sm">{t('nearBuy.statusError')}</Text>}
+      {phase === 'awaiting' && !canSendPayment(purchase, flow.now) && <Text className="text-amber-300 text-sm">{t('nearBuy.statusError')}</Text>}
+      <Action label={t('nearBuy.checkStatus')} onPress={flow.refresh} />
+      {flow.lastChecked && <Text className="text-theme-neutrals-400 text-xs my-1">{t('nearBuy.lastChecked', { time: new Date(flow.lastChecked).toLocaleTimeString() })}</Text>}
+      <Text className="text-white text-sm my-2">{t(!direct && canSendPayment(purchase, flow.now) ? 'nearBuy.sendExact' : 'nearBuy.paymentSummary', { amount: purchase.amountInFormatted || '', symbol: purchase.originSymbol || '', chain: paymentChainName(purchase.originBlockchain || '') })}</Text>
+      <Text className="text-white text-sm">{t('nearBuy.receiveNet', { amount: Number(purchase.tokenReceived || purchase.estimatedTokensToReceive || 0).toLocaleString(undefined, { maximumFractionDigits: 4 }) })}</Text>
+      <Text className="text-theme-neutrals-400 text-xs my-1">{t('nearBuy.gasReserve', { amount: (purchase.gasReserveUsd || 0).toFixed(4) })}</Text>
+      <Text className="text-theme-neutrals-400 text-xs my-2">{t('nearBuy.deadline', { date: new Date(purchase.expiresAt * 1000).toLocaleString() })}</Text>
+      {direct && canSendPayment(purchase, flow.now) && <Action label={busy ? t('nearBuy.loading') : t('nearBuy.pay')} disabled={!!busy} onPress={() => flow.pay(purchase, sendPayment)} />}
+      {!direct && <Text selectable className="bg-theme-neutrals-900 rounded-xl p-3 text-white text-xs">{purchase.depositAddress}</Text>}
+      {!direct && canSendPayment(purchase, flow.now) && <Action label={t('nearBuy.copyPayment')} onPress={() => copy(purchase.depositAddress)} />}
+      {purchase.depositMemo != null && <View className="border border-amber-400/40 rounded-xl p-3 my-2"><Text className="text-amber-300 text-sm">{t('nearBuy.memoNotice')}</Text><Text selectable className="text-white my-2">{purchase.depositMemo}</Text>{canSendPayment(purchase, flow.now) && <Action label={t('nearBuy.copyMemo')} onPress={() => copy(purchase.depositMemo!)} />}</View>}
+      <Text selectable className="text-theme-neutrals-400 text-xs my-2">{t('nearBuy.refundReceipt', { address: purchase.refundTo || '' })}</Text>
+      <Text selectable className="text-theme-neutrals-400 text-xs mb-2">{t('nearBuy.destination', { address: purchase.receiverAddress || wallet })}</Text>
+      {purchase.tokenSendTxnHash && /^0x[0-9a-fA-F]{64}$/.test(purchase.tokenSendTxnHash) && <Action label={t('nearBuy.viewDelivery')} onPress={() => openInApp(`https://basescan.org/tx/${purchase.tokenSendTxnHash}`)} />}
+      <Action label={t('nearBuy.purchaseId', { id: purchase.id })} onPress={() => copy(purchase.id)} />
+      <Action label={t('nearBuy.startAnother')} onPress={() => { flow.setPurchase(null); setAgreed(false); }} />
+    </View> : <>
+      <Text className="text-theme-neutrals-400 text-xs mb-1">{t('nearBuy.dhbAmount')}</Text>
+      <TextInput value={amountText} onChangeText={setAmountText} editable={busy !== 'create'} keyboardType="numeric" accessibilityLabel={t('nearBuy.dhbAmount')} className={field} />
+      <TextInput value={search} onChangeText={setSearch} editable={busy !== 'create'} placeholder={t('nearBuy.search')} placeholderTextColor="#71717A" className={field} />
+      <ScrollView nestedScrollEnabled style={{ maxHeight: 200 }}>
+        {rows.map(asset => <TouchableOpacity key={asset.assetId} accessibilityRole="button" accessibilityState={{ selected: asset.assetId === flow.assetId }} disabled={busy === 'create'} onPress={() => { flow.selectAsset(asset); setAgreed(false); }} className={`rounded-lg px-3 py-2 mb-1 ${asset.assetId === flow.assetId ? 'bg-white/20' : 'bg-theme-neutrals-900'}`}><Text className="text-white text-sm">{asset.symbol} · {paymentChainName(asset.blockchain)}</Text>{asset.contractAddress && <Text className="text-theme-neutrals-400 text-[10px]">{asset.contractAddress}</Text>}</TouchableOpacity>)}
+        {flow.loading && <Text className="text-theme-neutrals-400 text-sm">{t('nearBuy.loading')}</Text>}
+        {!flow.loading && !flow.assetsFailed && !rows.length && <Text className="text-theme-neutrals-400 text-sm">{t('nearBuy.noMatches')}</Text>}
       </ScrollView>
-      {selected && <>
-        {!EVM_CHAINS.has(selected.blockchain) && <View className="mt-3">
-          <Text className="text-theme-neutrals-400 text-xs mb-1">{t("nearBuy.refundAddress", { chain: chainName(selected.blockchain) })}</Text>
-          <TextInput value={manualRefund} onChangeText={setManualRefund} autoCapitalize="none" placeholder={t("nearBuy.refundPlaceholder")} placeholderTextColor="#71717A" className="bg-theme-neutrals-900 text-white rounded-xl px-3 py-3" />
-          <Text className="text-theme-neutrals-400 text-xs mt-1">{t("nearBuy.refundHint")}</Text>
-        </View>}
-        {quote && <View className="rounded-xl bg-theme-neutrals-900 p-3 mt-3"><Text className="text-white text-sm">{t("nearBuy.quoteSummary", { amount: quote.amountInFormatted, symbol: selected.symbol, chain: chainName(selected.blockchain) })}</Text><Text className="text-theme-neutrals-400 text-xs mt-1">{t("nearBuy.quoteEstimate", { amount: amount.toLocaleString(), minutes: Math.ceil(quote.timeEstimateSeconds / 60) })}</Text></View>}
-        <TouchableOpacity onPress={quote ? requestAddress : requestQuote} disabled={busy || amount <= 0 || (!!quote && !refundTo)} className="bg-white/15 border border-white/25 rounded-xl py-3 mt-3 items-center disabled:opacity-50">
-          {busy ? <ActivityIndicator color="white" /> : <Text className="text-white font-semibold">{quote ? t("commandCentre.getDepositAddress") : t("nearBuy.getQuote")}</Text>}
-        </TouchableOpacity>
-      </>}
-    </> : <View>
-      <Text className="text-white mb-2">{t("nearBuy.sendExact", { amount: intent.amountInFormatted, symbol: selected?.symbol, chain: chainName(selected?.blockchain || "") })}</Text>
-      <TouchableOpacity onPress={() => copy(intent.depositAddress)} className="bg-theme-neutrals-900 rounded-xl p-3 mb-2"><Text selectable className="text-white text-xs">{intent.depositAddress}</Text><Text className="text-theme-neutrals-400 text-xs mt-1">{t("nearBuy.copyPayment")}</Text></TouchableOpacity>
-      {intent.depositMemo && <TouchableOpacity onPress={() => copy(intent.depositMemo!)} className="bg-theme-neutrals-900 rounded-xl p-3 mb-2"><Text className="text-amber-300 text-xs">{t("nearBuy.memoNotice")}</Text><Text selectable className="text-white">{intent.depositMemo}</Text><Text className="text-theme-neutrals-400 text-xs">{t("nearBuy.copyMemo")}</Text></TouchableOpacity>}
-      <Text className="text-theme-neutrals-400 text-xs mt-2">{status === "sent" ? t("nearBuy.delivered") : status === "SUCCESS" ? t("nearBuy.settled") : t("nearBuy.status", { status: status.replace(/_/g, " ").toLowerCase() })}</Text>
-      <Text className="text-theme-neutrals-400 text-xs mt-1">{t("nearBuy.expires", { date: new Date(intent.expiresAt * 1000).toLocaleString() })}</Text>
-      <TouchableOpacity onPress={() => { setIntent(null); setQuote(null); setStatus(""); }} className="py-3 mt-2"><Text className="text-white text-center">{t("nearBuy.startAnother")}</Text></TouchableOpacity>
-    </View>}
+      {flow.assetsFailed && <><Text className="text-amber-300 text-sm">{t('nearBuy.tokensError')}</Text><Action label={t('nearBuy.retry')} onPress={flow.refresh} /></>}
+      {selected && <View className="mt-3">
+        {!direct && <><Text className="text-theme-neutrals-400 text-xs mb-1">{t('nearBuy.refundAddress', { chain: paymentChainName(selected.blockchain) })}</Text>
+        <TextInput value={flow.refund} onChangeText={flow.setRefund} editable={busy !== 'create'} autoCapitalize="none" autoCorrect={false} placeholder={t('nearBuy.refundPlaceholder')} placeholderTextColor="#71717A" className={field} />
+        <Text className="text-theme-neutrals-400 text-xs mb-2">{t('nearBuy.refundHint')}</Text></>}
+        {quote && <View className="border border-white/10 rounded-xl p-3 mb-2"><Text className="text-white text-sm">{t('nearBuy.quoteSummary', { amount: quote.amountInFormatted, symbol: selected.symbol, chain: paymentChainName(selected.blockchain) })}</Text><Text className="text-white text-sm my-1">{t('nearBuy.receiveNet', { amount: (quote.estimatedTokensToReceive || 0).toLocaleString(undefined, { maximumFractionDigits: 4 }) })}</Text><Text className="text-theme-neutrals-400 text-xs">{t('nearBuy.gasReserve', { amount: (quote.gasReserveUsd || 0).toFixed(4) })}</Text>{estimate}<Text className="text-theme-neutrals-400 text-xs">{t('nearBuy.finalQuote')}</Text></View>}
+        {quote && <><TouchableOpacity accessibilityRole="checkbox" accessibilityState={{ checked: agreed }} disabled={busy === 'create'} onPress={() => setAgreed(value => !value)} className="py-2"><Text className="text-white text-xs">{agreed ? '☑' : '☐'} {t('nearBuy.acceptTerms')}</Text></TouchableOpacity><Action label={t('nearBuy.terms')} onPress={() => openInApp(TERMS_OF_SERVICE_LINK)} /></>}
+        <Action label={busy ? t('nearBuy.loading') : quote ? t(direct ? 'nearBuy.pay' : 'nearBuy.paymentAction') : t('nearBuy.getQuote')} disabled={flow.loading || flow.historyFailed || !!busy || !validDhbAmount(amount) || (!!quote && (!flow.refund.trim() || !agreed))} onPress={begin} />
+      </View>}
+    </>}
+    {!!flow.error && <Text accessibilityLiveRegion="polite" className="text-red-400 text-sm my-2">{flow.error}</Text>}
+    {flow.history.length > 0 && <View className="border-t border-white/10 pt-3 mt-3"><Text className="text-white text-sm mb-2">{t('nearBuy.history')}</Text><ScrollView nestedScrollEnabled style={{ maxHeight: 180 }}>{flow.history.map(row => <Action key={row.id} label={`${row.originSymbol || ''} · ${paymentChainName(row.originBlockchain || '')} · ${t(`nearBuy.phase_${purchasePhase(row, flow.now)}`)}${row.createdAt ? ` · ${new Date(row.createdAt).toLocaleString()}` : ''}`} onPress={() => { flow.setPurchase(row); flow.refresh(); }} />)}</ScrollView></View>}
   </View>;
-};
-
-export default NearIntentBuy;
+}
