@@ -14,9 +14,6 @@ import {
   ActivityIndicator,
   Animated,
   FlatList,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
   Keyboard,
 } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -324,16 +321,15 @@ const GiftModal: React.FC<GiftModalProps> = ({
       presentation="bottom"
       maxHeight="85%"
       blurIntensity={30}
+      // The sheet's scrolling and keyboard avoidance belong to GlassModal, the
+      // way every other sheet in the app does it. Rolling our own pair here
+      // put an auto-height KeyboardAvoidingView between the panel and the
+      // ScrollView, so the ScrollView sized itself to its content instead of
+      // to the panel: nothing to scroll, and everything past 85% of the
+      // screen — amount, message, Send Gift — clipped away by the panel's
+      // overflow.
+      scrollable
     >
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
-      >
-      <ScrollView
-        bounces={false}
-        keyboardShouldPersistTaps="handled"
-        showsVerticalScrollIndicator={false}
-      >
       <TouchableOpacity activeOpacity={1} onPress={Keyboard.dismiss} className="p-5">
         <View className="gap-1">
           <Text className="text-white text-2xl font-bold">Send a Gift</Text>
@@ -349,6 +345,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                 data={giftTiers as any}
                 keyExtractor={(item: any) => String(item.min)}
                 numColumns={2}
+                nestedScrollEnabled
                 showsVerticalScrollIndicator={false}
                 columnWrapperStyle={{ justifyContent: "space-between" }}
                 renderItem={({ item }: any) => {
@@ -544,8 +541,6 @@ const GiftModal: React.FC<GiftModalProps> = ({
           </View>
         )}
       </TouchableOpacity>
-      </ScrollView>
-      </KeyboardAvoidingView>
     </GlassModal>
   );
 };
