@@ -18,6 +18,7 @@ import ScreenHeader from "../components/ScreenHeader";
 import DpayInfoCards from "../components/Dpay/DpayInfoCards";
 import DpayTopUpForm from "../components/Dpay/DpayTopUpForm";
 import DpayOtherTokens from "../components/Dpay/DpayOtherTokens";
+import NearIntentBuy from "../components/Dpay/NearIntentBuy";
 import DpayTransactions from "../components/Dpay/DpayTransactions";
 import DpayAbout from "../components/Dpay/DpayAbout";
 import DpayHeader from "../components/Dpay/DpayHeader";
@@ -228,6 +229,7 @@ const DpayScreen: React.FC = () => {
           {activeTab === "buy" && (
             <>
               <DpayTopUpForm initialPrice={initialPrice ?? undefined} supplyData={supplyData ?? undefined} />
+              <NearIntentBuy />
               <DpayOtherTokens />
               <DpayInfoCards transfersTotal={transfersTotal ?? undefined} supplyAmount={supplyAmount ?? undefined} />
               <DpayTransactions />
