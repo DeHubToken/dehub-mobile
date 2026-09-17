@@ -4260,5 +4260,15 @@
     "ttsLabel": "Dites quelque chose à haute voix",
     "ttsPlaceholder": "Lire à voix haute sur le live…",
     "ttsHint": "Lisez à haute voix à tous ceux qui regardent quand votre cadeau atterrit."
+  },
+  "goLive": {
+    "streamKey": "Clé de flux",
+    "ingestUrl": "URL d'ingestion",
+    "encoderPermanentHint": "Cette touche ne change jamais. Configurez votre encodeur une fois — la prochaine fois, appuyez simplement sur Démarrer là et DeHub crée la publication pour vous.",
+    "externalLiveTitle": "STREAMING À PARTIR D'UN APPAREIL EXTERNE",
+    "externalTitle": "Mode de streaming externe",
+    "externalLiveHint": "Votre flux est en direct via un logiciel externe. La caméra intégrée à l'application est désactivée.",
+    "externalHint": "Connectez votre logiciel de streaming en utilisant les détails ci-dessous, puis commencez à diffuser.",
+    "useInAppCamera": "Utilisez plutôt une caméra intégrée à l'application"
   }
 }

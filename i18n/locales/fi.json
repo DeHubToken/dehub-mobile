@@ -4185,5 +4185,15 @@
     "ttsLabel": "Sano jotain ääneen",
     "ttsPlaceholder": "Lue suoratoistoon...",
     "ttsHint": "Lue ääneen kaikille, jotka katsovat, kun lahjasi saapuu."
+  },
+  "goLive": {
+    "streamKey": "Striimin avain",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Tämä avain ei koskaan muutu. Aseta kooderi kerran — seuraavalla kerralla vain paina Aloita siellä ja DeHub luo julkaisun sinulle.",
+    "externalLiveTitle": "SUORATOISTO ULKOISESTA LAITTEESTA",
+    "externalTitle": "Ulkoinen suoratoistotila",
+    "externalLiveHint": "Suoratoistosi on suorassa lähetyksessä ulkoisen ohjelmiston kautta. Sovelluksen sisäinen kamera on poistettu käytöstä.",
+    "externalHint": "Yhdistä suoratoisto-ohjelmistosi alla olevien tietojen avulla ja aloita sitten lähettäminen.",
+    "useInAppCamera": "Käytä sen sijaan sovelluksen sisäistä kameraa"
   }
 }

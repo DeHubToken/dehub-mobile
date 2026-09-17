@@ -4253,5 +4253,15 @@
     "ttsLabel": "Sagen Sie etwas laut",
     "ttsPlaceholder": "In den Stream vorlesen...",
     "ttsHint": "Lies jedem vor, der zuschaut, wenn dein Geschenk landet."
+  },
+  "goLive": {
+    "streamKey": "Stream-Schlüssel",
+    "ingestUrl": "Ingest-URL",
+    "encoderPermanentHint": "Dieser Schlüssel ändert sich nie. Stellen Sie Ihren Encoder einmal ein — drücken Sie das nächste Mal einfach auf Start und DeHub erstellt den Beitrag für Sie.",
+    "externalLiveTitle": "STREAMING VON EXTERNEM GERÄT",
+    "externalTitle": "Externer Streaming-Modus",
+    "externalLiveHint": "Ihr Stream ist live über externe Software. Die In-App-Kamera ist deaktiviert.",
+    "externalHint": "Verbinden Sie Ihre Streaming-Software mit den folgenden Details und beginnen Sie dann mit der Übertragung.",
+    "useInAppCamera": "Stattdessen In-App-Kamera verwenden"
   }
 }

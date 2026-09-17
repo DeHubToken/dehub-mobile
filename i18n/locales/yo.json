@@ -4174,5 +4174,15 @@
     "ttsLabel": "Sọ ohun kan lókè",
     "ttsPlaceholder": "Ka jade si ṣiṣan...",
     "ttsHint": "Ka sókè sí gbogbo ènìyàn tí ó ń wo ìgbà tí ẹ̀bùn rẹ bá dé."
+  },
+  "goLive": {
+    "streamKey": "Ìfipamọ́ Kìkì",
+    "ingestUrl": "URL Ìgbésẹ̀",
+    "encoderPermanentHint": "Bọtini yìí kò yí padà láéláé. Ṣètò àdàkọ rẹ lẹ́ẹ̀kan — ìgbà mìíràn kàn tẹ Bẹ̀rẹ̀ níbẹ̀ àti DeHub ṣẹ̀dá ìfiránṣẹ́ náà fún ọ.",
+    "externalLiveTitle": "Ṣíṣàn láti inú ẹ̀rọ ìta",
+    "externalTitle": "Ipo Sisanwọle Ita",
+    "externalLiveHint": "Sisanwọle rẹ wà láàyè nípasẹ̀ sọfitiwia ìta. Kámẹ́rà inú ohun-èlò náà ti di aláìlẹ́gbẹ́.",
+    "externalHint": "So ẹ̀rọ-ayárabíàsá rẹ pọ̀ pẹ̀lú lílo àwọn àlàyé tó wà nísàlẹ̀ yìí, kí o sì bẹ̀rẹ̀ sí í ṣe àtẹ̀jíṣẹ́.",
+    "useInAppCamera": "Lo In-App Camera dípò"
   }
 }

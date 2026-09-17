@@ -4255,5 +4255,15 @@
     "ttsLabel": "Di algo en voz alta",
     "ttsPlaceholder": "Lee la transmisión...",
     "ttsHint": "Lee en voz alta a todos los que estén viendo cuando llegue tu regalo."
+  },
+  "goLive": {
+    "streamKey": "Clave de retransmisión",
+    "ingestUrl": "URL de ingesta",
+    "encoderPermanentHint": "Esta clave nunca cambia. Configure su codificador una vez: la próxima vez solo presione Iniciar allí y DeHub creará la publicación para usted.",
+    "externalLiveTitle": "TRANSMISIÓN DESDE UN DISPOSITIVO EXTERNO",
+    "externalTitle": "Modo de transmisión externa",
+    "externalLiveHint": "Tu transmisión se transmite en directo a través de un software externo. La cámara de la app está desactivada.",
+    "externalHint": "Conecta tu software de transmisión utilizando los detalles a continuación y luego comienza a transmitir.",
+    "useInAppCamera": "Utilice la cámara en la aplicación en su lugar"
   }
 }

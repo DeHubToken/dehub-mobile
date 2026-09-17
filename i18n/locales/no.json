@@ -4170,5 +4170,15 @@
     "ttsLabel": "Si noe høyt",
     "ttsPlaceholder": "Les ut til strømmen...",
     "ttsHint": "Les høyt for alle som ser på når gaven din lander."
+  },
+  "goLive": {
+    "streamKey": "Strømnøkkel",
+    "ingestUrl": "Inntak-URL",
+    "encoderPermanentHint": "Denne tasten endres aldri. Konfigurer koderen én gang – neste gang trykker du bare på Start der, så oppretter DeHub innlegget for deg.",
+    "externalLiveTitle": "STRØMMING FRA EKSTERN ENHET",
+    "externalTitle": "Ekstern strømmemodus",
+    "externalLiveHint": "Strømmen din er direkte via ekstern programvare. Kameraet i appen er deaktivert.",
+    "externalHint": "Koble til strømmeprogramvaren din ved hjelp av detaljene nedenfor, og start deretter kringkastingen.",
+    "useInAppCamera": "Bruk kameraet i appen i stedet"
   }
 }

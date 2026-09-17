@@ -4245,5 +4245,15 @@
     "ttsLabel": "জোরে কিছু কও",
     "ttsPlaceholder": "স্ট্রিম-এ পড়ি শুনাইও…",
     "ttsHint": "তোমার গিফট ল্যান্ড করলে সব দেখনের লোকরে জোরে পড়ি শুনাইও।"
+  },
+  "goLive": {
+    "streamKey": "স্ট্রিম কী",
+    "ingestUrl": "ইনজেস্ট ইউআরএল",
+    "encoderPermanentHint": "এই কী-টা কুনুদিনও বদলায় না। একবার আপনার এনকোডার সেট করলেই — পরের বার শুধু স্টার্ট টিপলেই ডিহাব আপনার পোস্ট তৈরি করে দিবো।",
+    "externalLiveTitle": "STREAMING FROM EXTERNAL DEVICE",
+    "externalTitle": "External Streaming Mode",
+    "externalLiveHint": "Your stream is live via external software. The in-app camera is disabled.",
+    "externalHint": "Connect your streaming software using the details below, then start broadcasting.",
+    "useInAppCamera": "Use In-App Camera Instead"
   }
 }

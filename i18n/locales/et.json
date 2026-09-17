@@ -4184,5 +4184,15 @@
     "ttsLabel": "Ütle midagi valjusti",
     "ttsPlaceholder": "Loe voogu ette…",
     "ttsHint": "Loe valjusti kõigile, kes vaatavad, millal su kingitus maandub."
+  },
+  "goLive": {
+    "streamKey": "Striimi võti",
+    "ingestUrl": "Sisestamise URL",
+    "encoderPermanentHint": "See võti ei muutu kunagi. Seadistage oma kodeerija üks kord — järgmine kord vajutage lihtsalt nuppu Start ja DeHub loob teile postituse.",
+    "externalLiveTitle": "VOOGEDASTUS VÄLISSEADMELT",
+    "externalTitle": "Väline voogedastusrežiim",
+    "externalLiveHint": "Teie voog on otseülekanne välise tarkvara kaudu. Rakendusesisene kaamera on keelatud.",
+    "externalHint": "Ühendage oma voogedastustarkvara, kasutades allolevaid üksikasju, seejärel alustage edastamist.",
+    "useInAppCamera": "Kasuta selle asemel rakendusesisest kaamerat"
   }
 }

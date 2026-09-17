@@ -4189,5 +4189,15 @@
     "ttsLabel": "Mondj valamit hangosan",
     "ttsPlaceholder": "Olvass fel a patakba...",
     "ttsHint": "Olvasd fel hangosan, hogy mindenki láthassa, amikor az ajándékod megérkezik."
+  },
+  "goLive": {
+    "streamKey": "Stream kulcs",
+    "ingestUrl": "Beviteli URL",
+    "encoderPermanentHint": "Ez a kulcs soha nem változik. Állítsa be egyszer a kódolót — legközelebb csak nyomja meg a Start gombot, és a DeHub létrehozza a bejegyzést az Ön számára.",
+    "externalLiveTitle": "STREAMING KÜLSŐ ESZKÖZRŐL",
+    "externalTitle": "Külső adatfolyam mód",
+    "externalLiveHint": "Az adatfolyamod külső szoftveren keresztül érhető el. Az alkalmazáson belüli kamera le van tiltva.",
+    "externalHint": "Csatlakoztassa a streaming szoftvert az alábbi adatokkal, majd indítsa el a műsorszórást.",
+    "useInAppCamera": "Használd inkább az alkalmazáson belüli kamerát"
   }
 }

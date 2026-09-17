@@ -4235,5 +4235,15 @@
     "ttsLabel": "Katakan sesuatu dengan lantang",
     "ttsPlaceholder": "Bacakan untuk streaming…",
     "ttsHint": "Bacakan dengan lantang kepada semua orang yang menonton saat hadiah Anda mendarat."
+  },
+  "goLive": {
+    "streamKey": "Kunci siaran",
+    "ingestUrl": "URL ingest",
+    "encoderPermanentHint": "Kunci ini tidak pernah berubah. Atur enkoder Anda satu kali — lain kali cukup tekan Mulai di sana dan DeHub membuat postingan untuk Anda.",
+    "externalLiveTitle": "STREAMING DARI PERANGKAT EKSTERNAL",
+    "externalTitle": "Mode Streaming Eksternal",
+    "externalLiveHint": "Streaming Anda ditayangkan melalui perangkat lunak eksternal. Kamera dalam aplikasi dinonaktifkan.",
+    "externalHint": "Hubungkan perangkat lunak streaming Anda menggunakan detail di bawah ini, lalu mulai penyiaran.",
+    "useInAppCamera": "Gunakan Kamera Dalam Aplikasi"
   }
 }

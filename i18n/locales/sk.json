@@ -4351,5 +4351,15 @@
     "ttsLabel": "Povedzte niečo nahlas",
     "ttsPlaceholder": "Prečítajte si do prúdu...",
     "ttsHint": "Čítajte nahlas všetkým, ktorí sledujú, kedy váš dar príde."
+  },
+  "goLive": {
+    "streamKey": "Kľúč toku",
+    "ingestUrl": "Adresa URL príjmu",
+    "encoderPermanentHint": "Tento kľúč sa nikdy nemení. Nastavte svoj kodér raz — nabudúce stačí stlačiť tlačidlo Štart a DeHub vytvorí príspevok za vás.",
+    "externalLiveTitle": "STREAMOVANIE Z EXTERNÉHO ZARIADENIA",
+    "externalTitle": "Režim externého streamovania",
+    "externalLiveHint": "Váš stream je vysielaný naživo prostredníctvom externého softvéru. Kamera v aplikácii je zakázaná.",
+    "externalHint": "Pripojte svoj streamovací softvér pomocou nižšie uvedených podrobností a potom začnite vysielať.",
+    "useInAppCamera": "Namiesto toho použite kameru v aplikácii"
   }
 }

@@ -4174,5 +4174,15 @@
     "ttsLabel": "Ka ce wani abu mai ƙarfi",
     "ttsPlaceholder": "Karanta zuwa rafi...",
     "ttsHint": "Karanta da ƙarfi ga kowa da kowa yana kallo lokacin da kyautarku ta sauka."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Wannan maɓallin ba ya canzawa. Saita encoder ɗinku sau ɗaya — lokaci na gaba kawai latsa Fara can kuma DeHub ya ƙirƙiri post ɗin a gare ku.",
+    "externalLiveTitle": "STREAMING daga waje na'urar",
+    "externalTitle": "Yanayin Streaming na waje",
+    "externalLiveHint": "Your rafi ne live via waje software. A ciki-app kamara ne nakasa.",
+    "externalHint": "Haša ka streaming software ta yin amfani da cikakken bayani a kasa, sa'an nan kuma fara watsa shirye-shirye.",
+    "useInAppCamera": "Yi amfani da In-App Kamara Maimakon"
   }
 }

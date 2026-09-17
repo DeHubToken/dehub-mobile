@@ -4189,5 +4189,15 @@
     "ttsLabel": "Řekněte něco nahlas",
     "ttsPlaceholder": "Přečti si to ve streamu...",
     "ttsHint": "Čtěte nahlas všem, kteří sledují, kdy váš dárek dorazí."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Tento klíč se nikdy nemění. Nastavte kodér jednou — příště stačí stisknout Start a DeHub vytvoří příspěvek za vás.",
+    "externalLiveTitle": "STREAMOVÁNÍ Z EXTERNÍHO ZAŘÍZENÍ",
+    "externalTitle": "Režim externího streamování",
+    "externalLiveHint": "Váš stream je živě prostřednictvím externího softwaru. Kamera v aplikaci je vypnutá.",
+    "externalHint": "Připojte svůj streamovací software pomocí níže uvedených podrobností a začněte vysílat.",
+    "useInAppCamera": "Použít místo toho kameru v aplikaci"
   }
 }

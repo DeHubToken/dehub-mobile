@@ -4185,5 +4185,15 @@
     "ttsLabel": "Sema kitu kwa sauti",
     "ttsPlaceholder": "Soma hadi kwenye mkondo...",
     "ttsHint": "Soma kwa sauti kwa kila mtu anayetazama zawadi yako inapotua."
+  },
+  "goLive": {
+    "streamKey": "Ufunguo wa Mtiririko",
+    "ingestUrl": "URL ya Kuingiza",
+    "encoderPermanentHint": "Ufunguo huu haubadiliki kamwe. Weka kisimbiko chako mara moja — wakati mwingine bonyeza tu Anza hapo na DeHub ikutengenezee chapisho.",
+    "externalLiveTitle": "KUTIRIRIKA KUTOKA KWENYE KIFAA CHA NJE",
+    "externalTitle": "Hali ya Utiririshaji wa Nje",
+    "externalLiveHint": "Mtiririko wako ni wa moja kwa moja kupitia programu ya nje. Kamera ya ndani ya programu imezimwa.",
+    "externalHint": "Unganisha programu yako ya utiririshaji kwa kutumia maelezo yaliyo hapa chini, kisha anza kutangaza.",
+    "useInAppCamera": "Tumia Kamera ya Ndani ya Programu Badala yake"
   }
 }

@@ -4301,5 +4301,15 @@
     "ttsLabel": "কইতাও কিছু জোরে",
     "ttsPlaceholder": "Stream-এ পড়ি শুনাইতাও…",
     "ttsHint": "Tohfa land করনের সময় যারা দেখতাছে সবারে জোরে পড়ি শুনাইতাও।"
+  },
+  "goLive": {
+    "streamKey": "স্ট্রিম কী",
+    "ingestUrl": "ইনজেস্ট URL",
+    "encoderPermanentHint": "এই কী-টা কুনুদিনো বদলায় না। আপনার এনকোডার একবার সেট করুন — পরের বার শুধু স্টার্ট চাপুন আর ডিহাব আপনার জন্য পোস্ট তৈরি করে দেবে।",
+    "externalLiveTitle": "STREAMING FROM EXTERNAL DEVICE",
+    "externalTitle": "External Streaming Mode",
+    "externalLiveHint": "Your stream is live via external software. The in-app camera is disabled.",
+    "externalHint": "Connect your streaming software using the details below, then start broadcasting.",
+    "useInAppCamera": "Use In-App Camera Instead"
   }
 }

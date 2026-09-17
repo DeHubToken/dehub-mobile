@@ -4189,5 +4189,15 @@
     "ttsLabel": "Säg något högt",
     "ttsPlaceholder": "Läs upp till strömmen...",
     "ttsHint": "Läs högt för alla som ser när din gåva landar."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Den här nyckeln ändras aldrig. Ställ in din kodare en gång — nästa gång trycker du bara på Start där och DeHub skapar inlägget åt dig.",
+    "externalLiveTitle": "STREAMING FRÅN EXTERN ENHET",
+    "externalTitle": "Externt strömningsläge",
+    "externalLiveHint": "Din ström är live via extern programvara. Kameran i appen är inaktiverad.",
+    "externalHint": "Anslut din strömmande programvara med hjälp av informationen nedan och börja sedan sända.",
+    "useInAppCamera": "Använd kameran i appen istället"
   }
 }

@@ -4183,5 +4183,15 @@
     "ttsLabel": "Izsakiet kaut ko skaļi",
     "ttsPlaceholder": "Nolasīt straumē...",
     "ttsHint": "Lasiet skaļi visiem, kas skatās, kad jūsu dāvana pienāk."
+  },
+  "goLive": {
+    "streamKey": "Tiešraides atslēga",
+    "ingestUrl": "Ievades URL",
+    "encoderPermanentHint": "Šī atslēga nekad nemainās. Iestatiet kodētāju vienu reizi — nākamreiz vienkārši nospiediet Start (Sākt), un DeHub izveidos jums ziņu.",
+    "externalLiveTitle": "STRAUMĒŠANA NO ĀRĒJĀS IERĪCES",
+    "externalTitle": "Ārējās straumēšanas režīms",
+    "externalLiveHint": "Jūsu straume ir tiešraidē, izmantojot ārēju programmatūru. Kamera lietotnē ir atspējota.",
+    "externalHint": "Pievienojiet straumēšanas programmatūru, izmantojot tālāk norādīto informāciju, un pēc tam sāciet apraidi.",
+    "useInAppCamera": "Tā vietā izmantot lietotnes kameru"
   }
 }

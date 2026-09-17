@@ -4175,5 +4175,15 @@
     "ttsLabel": "講出來",
     "ttsPlaceholder": "唸給直播聽…",
     "ttsHint": "送禮物落地時唸給所有觀眾聽。"
+  },
+  "goLive": {
+    "streamKey": "流密钥",
+    "ingestUrl": "摄入 URL",
+    "encoderPermanentHint": "This key never changes. Set your encoder up once — next time just press Start there and DeHub creates the post for you.",
+    "externalLiveTitle": "外部设备串流",
+    "externalTitle": "外部串流模式",
+    "externalLiveHint": "汝个串流通过外部软件直播。应用内相机已禁用。",
+    "externalHint": "用下方个详情连接汝个串流软件，然后开始直播。",
+    "useInAppCamera": "改用应用内相机"
   }
 }

@@ -4261,5 +4261,15 @@
     "ttsLabel": "Lazao zavatra mafy",
     "ttsPlaceholder": "Hivoaka eny amin'ny tosaka...",
     "ttsHint": "Vakio mafy ny olona rehetra mijery rehefa tonga ny fanomezam-pahasoavanao."
+  },
+  "goLive": {
+    "streamKey": "Stream Key",
+    "ingestUrl": "Ingest URL",
+    "encoderPermanentHint": "Ity fanalahidy ity dia tsy miova mihitsy. Amboary indray mandeha ny encoder-nao — amin'ny manaraka dia tsindrio fotsiny ny \"Start\" eo ary ny DeHub no hamorona ny lahatsoratra ho anao.",
+    "externalLiveTitle": "Mandeha avy amin'ny fitaovana ivelany",
+    "externalTitle": "Fomban'ny mirohotra ivelany",
+    "externalLiveHint": "Fitsipika tsara toy ny miasa amin'ny rindrambaiko. Ny fàfana misy ao anaty app dia natsahatra.",
+    "externalHint": "Mampifandray ny rindrambaiko mivantana amin'ny fampiasana ny antsipiriany etsy ambany, ary manomboka mandefa fandaharana.",
+    "useInAppCamera": "Ampiasao ny fakantsary amin'nypp fa tsy"
   }
 }
