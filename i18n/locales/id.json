@@ -4207,6 +4207,9 @@
       "gold3": "Layar berubah menjadi emas dan koin menghujani selama 3 detik.",
       "gold10": "Layar berubah menjadi emas dan koin menghujani selama 10 detik.",
       "ultimate": "Setiap perayaan sekaligus — emas, konfeti, koin, dan piala."
-    }
+    },
+    "ttsLabel": "Katakan sesuatu dengan lantang",
+    "ttsPlaceholder": "Bacakan untuk streaming…",
+    "ttsHint": "Bacakan dengan lantang kepada semua orang yang menonton saat hadiah Anda mendarat."
   }
 }

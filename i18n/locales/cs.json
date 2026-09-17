@@ -4161,6 +4161,9 @@
       "gold3": "Obrazovka zezlátne a mince prší po dobu 3 sekund.",
       "gold10": "Obrazovka zezlátne a mince prší po dobu 10 sekund.",
       "ultimate": "Všechny oslavy najednou — zlato, konfety, mince a trofej."
-    }
+    },
+    "ttsLabel": "Řekněte něco nahlas",
+    "ttsPlaceholder": "Přečti si to ve streamu...",
+    "ttsHint": "Čtěte nahlas všem, kteří sledují, kdy váš dárek dorazí."
   }
 }

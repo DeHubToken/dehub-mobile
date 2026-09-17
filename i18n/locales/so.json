@@ -4147,6 +4147,9 @@
       "gold3": "Shaashadda ayaa noqota dahab oo qadaadiicda ayaa da'aysa 3 ilbiriqsi.",
       "gold10": "Shaashadda ayaa noqota dahab oo qadaadiicda ayaa da'aysa 10 ilbiriqsi.",
       "ultimate": "Dabaaldeg kasta isku mar — dahab, qaraxyo, qadaadiic iyo koob."
-    }
+    },
+    "ttsLabel": "Wax qaylo dheer dheh",
+    "ttsPlaceholder": "Ka akhri qulqulka...",
+    "ttsHint": "Aqri qof walba oo daawanaya marka hadiyaddaadu soo degto."
   }
 }

@@ -4155,6 +4155,9 @@
       "gold3": "Ekrāns kļūst zelts un monētas līst lejā 3 sekundes.",
       "gold10": "Ekrāns kļūst zelts un monētas līst lejā 10 sekundes.",
       "ultimate": "Visas svinības vienlaicīgi — zelts, konfeti, monētas un trofeja."
-    }
+    },
+    "ttsLabel": "Izsakiet kaut ko skaļi",
+    "ttsPlaceholder": "Nolasīt straumē...",
+    "ttsHint": "Lasiet skaļi visiem, kas skatās, kad jūsu dāvana pienāk."
   }
 }

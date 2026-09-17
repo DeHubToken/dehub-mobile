@@ -4227,6 +4227,9 @@
       "gold3": "La pantalla se vuelve dorada y llueven monedas durante 3 segundos.",
       "gold10": "La pantalla se vuelve dorada y llueven monedas durante 10 segundos.",
       "ultimate": "Cada celebración a la vez: oro, confeti, monedas y un trofeo."
-    }
+    },
+    "ttsLabel": "Di algo en voz alta",
+    "ttsPlaceholder": "Lee la transmisión...",
+    "ttsHint": "Lee en voz alta a todos los que estén viendo cuando llegue tu regalo."
   }
 }

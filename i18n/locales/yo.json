@@ -4146,6 +4146,9 @@
       "gold3": "Ojú ìbòojú náà di gọ́ọ̀lù, owó sì ń rọ̀ fún ìṣẹ́jú mẹ́ta.",
       "gold10": "Ojú ìbòojú náà di gọ́ọ̀lù, owó sì ń rọ̀ fún ìṣẹ́jú mẹ́wàá.",
       "ultimate": "Gbogbo ayẹyẹ nígbà kan náà — gọ́ọ̀lù, ẹ̀yà-ẹ̀yà, owó, àti ife-ẹ̀yẹ."
-    }
+    },
+    "ttsLabel": "Sọ ohun kan lókè",
+    "ttsPlaceholder": "Ka jade si ṣiṣan...",
+    "ttsHint": "Ka sókè sí gbogbo ènìyàn tí ó ń wo ìgbà tí ẹ̀bùn rẹ bá dé."
   }
 }

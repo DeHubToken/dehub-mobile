@@ -4185,6 +4185,9 @@
       "gold3": "Isikrini sijika sibe segolide futhi izinhlamvu zemali ziyana imizuzwana emi-3.",
       "gold10": "Isikrini sijika sibe segolide futhi izinhlamvu zemali ziyana imizuzwana eyi-10.",
       "ultimate": "Wonke umkhosi ngesikhathi esisodwa — igolide, i-confetti, izinhlamvu zemali kanye netrofi."
-    }
+    },
+    "ttsLabel": "Yisho okuthile ngokuzwakalayo",
+    "ttsPlaceholder": "Funda ukuze usakaze...",
+    "ttsHint": "Funda ngokuzwakalayo kuwo wonke umuntu obuka lapho isipho sakho sifika."
   }
 }

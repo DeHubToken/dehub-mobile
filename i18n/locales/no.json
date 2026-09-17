@@ -4142,6 +4142,9 @@
       "gold3": "Skjermen blir gyllen og mynter regner ned i 3 sekunder.",
       "gold10": "Skjermen blir gyllen og mynter regner ned i 10 sekunder.",
       "ultimate": "Hver feiring samtidig — gull, konfetti, mynter og en pokal."
-    }
+    },
+    "ttsLabel": "Si noe høyt",
+    "ttsPlaceholder": "Les ut til strømmen...",
+    "ttsHint": "Les høyt for alle som ser på når gaven din lander."
   }
 }

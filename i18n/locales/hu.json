@@ -4161,6 +4161,9 @@
       "gold3": "A képernyő arannyá válik és érmék esnek alá 3 másodpercig.",
       "gold10": "A képernyő arannyá válik és érmék esnek alá 10 másodpercig.",
       "ultimate": "Minden ünnepség egyszerre — arany, konfetti, érmék és egy trófea."
-    }
+    },
+    "ttsLabel": "Mondj valamit hangosan",
+    "ttsPlaceholder": "Olvass fel a patakba...",
+    "ttsHint": "Olvasd fel hangosan, hogy mindenki láthassa, amikor az ajándékod megérkezik."
   }
 }
