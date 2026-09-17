@@ -124,7 +124,7 @@ export default function NearIntentBuy() {
     </View> : <>
       <Text className="text-theme-neutrals-400 text-xs mb-1">{t('nearBuy.dhbAmount')}</Text>
       <TextInput value={amountText} onChangeText={setAmountText} editable={busy !== 'create'} keyboardType="numeric" accessibilityLabel={t('nearBuy.dhbAmount')} className={field} />
-      <View className="flex-row flex-wrap justify-between" accessibilityLabel="Main currencies">
+      <View className="flex-row flex-wrap justify-between" accessibilityLabel={t('nearBuy.search')}>
         {featured.map(asset => <TouchableOpacity key={asset.assetId} accessibilityRole="button" accessibilityState={{ selected: asset.assetId === flow.assetId }} disabled={busy === 'create'} onPress={() => { flow.selectAsset(asset); setAgreed(false); }} className={`w-[48%] flex-row items-center rounded-xl border px-3 py-3 mb-2 ${asset.assetId === flow.assetId ? 'bg-white/15 border-white/40' : 'bg-theme-neutrals-900 border-white/10'}`}><Image source={tokenLogos[asset.symbol]} className="w-6 h-6 mr-2 rounded-full" resizeMode="contain" /><View><Text className="text-white text-sm font-semibold">{asset.symbol}</Text><Text className="text-theme-neutrals-400 text-xs">{paymentChainName(asset.blockchain)}</Text></View></TouchableOpacity>)}
       </View>
       <Action label={t('nearBuy.otherCurrencies', { defaultValue: 'Other currencies' })} onPress={() => setOtherOpen(open => !open)} />
