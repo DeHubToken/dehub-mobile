@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -214,6 +215,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   onUserStarted,
   onPictureInPictureChange,
 }) => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(() => getCachedMuted());
@@ -683,11 +685,19 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // state while the source was still being prepared.
     if (isStartingRef.current && !isPlayingRef.current) return;
 
-    // Toggle play state and manage controls visibility
+    // A tap on a playing clip reveals the controls; it does not pause. The
+    // controls only ever drew while the clip was stopped, so the sound and
+    // fullscreen buttons were unreachable without first pausing the video —
+    // which reads as "there are no buttons". Pausing is the centre button's
+    // job, drawn below while the controls are up.
     if (isPlayingRef.current) {
-      stopPlayback();
-      setShowControls(true);
-      clearHideTimer(); // Stay visible while paused
+      if (showControlsRef.current) {
+        setShowControls(false);
+        clearHideTimer();
+      } else {
+        setShowControls(true);
+        startHideTimer();
+      }
       return;
     }
 
@@ -1072,6 +1082,24 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 <Icon name="Play" size={24} color="#fff" />
               </View>
             )}
+          </View>
+        </Pressable>
+      )}
+
+      {!hideControls && !isContentGated && isPlaying && showControls && !isProcessing && !isFailed && (
+        <Pressable
+          onPress={() => {
+            stopPlayback();
+            setShowControls(true);
+            clearHideTimer(); // Stay visible while paused
+          }}
+          style={styles.playOverlay}
+          accessibilityRole="button"
+          accessibilityLabel={t("audioPost.pause")}
+        >
+          <View style={styles.glassPlayButton}>
+            <View style={styles.glassOverlay} />
+            <Icon name="Pause" size={24} color="#fff" />
           </View>
         </Pressable>
       )}
