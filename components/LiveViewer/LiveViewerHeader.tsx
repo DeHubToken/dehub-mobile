@@ -164,7 +164,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
           <ChromeFill />
           <Avatar
             uri={avatarUrl}
-            size={30}
+            size={34}
             onPress={handleOpenProfile}
             name={displayName}
             style={styles.avatar}
@@ -297,9 +297,12 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     flexDirection: "row",
     alignItems: "center",
-    height: CHROME_SIZE,
+    // 48, not the kit's 40: the name and the three numbers under it need
+    // 30pt between them, and at 40 they sat hard against the rounded corner
+    // they are drawn in — which reads as clipped whether or not it is.
+    height: 48,
     borderRadius: CHROME_RADIUS,
-    paddingLeft: 5,
+    paddingLeft: 6,
     paddingRight: 12,
     gap: 7,
     overflow: "hidden",
