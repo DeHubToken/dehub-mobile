@@ -21,9 +21,7 @@ export function seedViewerStats(entity: any | null | undefined): ViewerStats {
   const live =
     typeof e?.viewerCount === 'number'
       ? (e.viewerCount as number)
-      : typeof e?.peakViewers === 'number'
-        ? (e.peakViewers as number)
-        : 0;
+      : 0;
   const peak = typeof e?.peakViewers === 'number' ? (e.peakViewers as number) : 0;
   return { liveViewers: live || 0, peakViewers: Math.max(peak, live) };
 }

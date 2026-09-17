@@ -1,6 +1,7 @@
 import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useMemo, useRef } from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { Image } from "expo-image";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Avatar from "../common/Avatar";
@@ -43,6 +44,7 @@ export interface ChatActivity {
   meta?: Record<string, any> & {
     username?: string;
     content?: string;
+    gifUrl?: string;
     amount?: number;
     avatarImageUrl?: string;
     message?: string;
@@ -117,7 +119,8 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
             <Avatar uri={avatarUrl} size={20} name={displayName} />
           </TouchableOpacity>
-          <Text style={MESSAGE_TEXT} className="text-[13px] leading-[18px] flex-1 flex-shrink">
+          <View className="flex-1 flex-shrink">
+          <Text style={MESSAGE_TEXT} className="text-[13px] leading-[18px]">
             <Text
               className="font-bold"
               style={{ color: colorForUser(displayName) }}
@@ -125,10 +128,10 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
             >
               {displayName}{" "}
             </Text>
-            <Text style={a.optimistic ? { opacity: 0.6, color: '#FFFFFF' } : { color: '#FFFFFF' }}>
-              {a.meta?.content}
-            </Text>
+            {!a.meta?.gifUrl ? <Text style={{ color: '#FFFFFF' }}>{a.meta?.content}</Text> : null}
           </Text>
+          {a.meta?.gifUrl ? <Image source={{ uri: a.meta.gifUrl }} style={{ width: 160, height: 120, borderRadius: 8, marginTop: 4 }} contentFit="cover" /> : null}
+          </View>
         </View>
       );
 

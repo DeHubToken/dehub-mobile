@@ -1300,9 +1300,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   const [giftOpen, setGiftOpen] = useState(false);
   const handleGiftPress = useCallback(() => {
-    if (!isLiveEffective || !isSignedIn) return;
+    if (!isLiveEffective) return;
     requireAuth?.(() => setGiftOpen(true));
-  }, [isLiveEffective, isSignedIn, requireAuth]);
+  }, [isLiveEffective, requireAuth]);
 
   // Chat send handler
   // The stream's chat room, keyed by the post's tokenId — the room the web
@@ -1336,6 +1336,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       meta: {
         username: m.sender?.displayName || m.sender?.username,
         content: m.content,
+        gifUrl: m.messageType === "gif" ? (m.media?.[0]?.url || m.gif?.url || m.content) : undefined,
         avatarImageUrl: m.sender?.avatarUrl,
       },
     }));
@@ -1352,6 +1353,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     },
     [chatRoomId, isSignedIn, liveChat]
   );
+  const handleSendGif = useCallback((url: string) => {
+    if (!chatRoomId || !isSignedIn || !url) return;
+    liveChat.sendMessage({ content: url, messageType: "gif", media: [{ url, type: "gif" }] });
+  }, [chatRoomId, isSignedIn, liveChat]);
 
 
   // Determine status overlay type
@@ -1475,7 +1480,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 onUnfollow={handleUnfollow}
                 viewerAddress={(user?.walletAddress || user?.address) as string}
                 viewerCount={liveViewers}
+                likeCount={postReactions.likeCount}
                 giftCount={resolvedTotalTips}
+                isMuted={isMuted}
+                onToggleMute={toggleMute}
                 fallbackMinter={minterProp}
                 onOptionsPress={() => setShowOptionsMenu(true)}
                 onCollapse={enterImmersive}
@@ -1490,18 +1498,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 startedAt={startedAtDate}
                 title={resolvedTitle || undefined}
               />
-
-              {/* Sound. The player's own row is hidden by the header, and
-                  the way into immersive is the header's chevron. */}
-              <View style={{ paddingHorizontal: EDGE, marginTop: 8 }} pointerEvents="box-none">
-                <LiveViewerPlayerControls
-                  isMuted={isMuted}
-                  immersive={false}
-                  onToggleMute={toggleMute}
-                  onToggleImmersive={enterImmersive}
-                  hideImmersiveToggle
-                />
-              </View>
 
               {/* Middle area - transparent, shows video */}
               <View className="flex-1" pointerEvents="box-none" />
@@ -1541,6 +1537,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                   isEnded={isEndedEffective}
                   isScheduled={isScheduledEffective}
                   onSendMessage={handleSendMessage}
+                  onSendGif={handleSendGif}
                   onReact={handleSendReaction}
                   onLike={handleLiveLike}
                   onShare={handleShare}

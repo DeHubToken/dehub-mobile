@@ -22,12 +22,14 @@ import {
   Pressable,
   StyleSheet,
   Platform,
+  useWindowDimensions,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import type { ReactionType } from "../LiveProducer/ReactionOverlay";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useKeyboard } from "../../hooks/useKeyboard";
+import GifPicker from "../DM/GifPicker";
 import {
   ChromeFill,
   CHROME_GAP,
@@ -59,6 +61,7 @@ interface Props {
   isEnded: boolean;
   isScheduled: boolean;
   onSendMessage: (content: string) => void;
+  onSendGif: (url: string) => void;
   /** Actions */
   onReact: (type: ReactionType) => void;
   onLike: () => void;
@@ -76,6 +79,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
   isEnded,
   isScheduled,
   onSendMessage,
+  onSendGif,
   onReact,
   onLike,
   onShare,
@@ -87,8 +91,11 @@ const LiveViewerActionBar: React.FC<Props> = ({
   const { t } = useTranslation();
   const [message, setMessage] = useState("");
   const [reactionsOpen, setReactionsOpen] = useState(false);
+  const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const lastTapRef = useRef(0);
   const { height: keyboardHeight, isVisible: kbVisible } = useKeyboard();
+  const { height: windowHeight } = useWindowDimensions();
+  const initialWindowHeight = useRef(windowHeight);
 
   const inputDisabled = !canSend || !chatEnabled || isScheduled;
 
@@ -139,10 +146,13 @@ const LiveViewerActionBar: React.FC<Props> = ({
   // again lifted the bar a second time, clean off the top of the shrunken
   // screen. A viewer opening the keyboard on a phone watched the text box
   // vanish and typed blind.
-  const lift = useMemo(
-    () => (kbVisible && Platform.OS !== "android" ? keyboardHeight : 0),
-    [kbVisible, keyboardHeight],
-  );
+  const lift = useMemo(() => {
+    if (!kbVisible) return 0;
+    if (Platform.OS !== "android") return keyboardHeight;
+    // Edge-to-edge Android can leave an absolute overlay at the old window
+    // bottom even with adjustResize. Account for any resize already applied.
+    return Math.max(0, keyboardHeight - Math.max(0, initialWindowHeight.current - windowHeight));
+  }, [kbVisible, keyboardHeight, windowHeight]);
 
   return (
     <View style={{ marginBottom: lift }} pointerEvents="box-none">
@@ -204,6 +214,13 @@ const LiveViewerActionBar: React.FC<Props> = ({
             the viewer is not about to use. */}
         {canSubmit ? null : (
           <View style={styles.cluster} pointerEvents="box-none">
+          {isLive && !inputDisabled ? (
+            <Pressable onPress={() => setGifPickerVisible(true)} hitSlop={CHROME_HIT_SLOP}
+              accessibilityRole="button" accessibilityLabel={t("comments.addGif")} style={styles.circle}>
+              <ChromeFill glass />
+              <Text style={styles.gifLabel}>GIF</Text>
+            </Pressable>
+          ) : null}
           {isLive ? (
             <Pressable
               onPress={onGiftPress}
@@ -213,7 +230,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
               style={styles.circle}
             >
               <ChromeFill glass />
-              <Icon name="Gift" size={19} color="#fff" strokeWidth={1.8} />
+              <Icon name="Gem" size={19} color="#fff" strokeWidth={1.8} />
             </Pressable>
           ) : null}
 
@@ -232,11 +249,10 @@ const LiveViewerActionBar: React.FC<Props> = ({
             onPress={onLike}
             onLongPress={isLive ? openReactions : undefined}
             delayLongPress={400}
-            disabled={!isLive}
             hitSlop={CHROME_HIT_SLOP}
             accessibilityRole="button"
             accessibilityLabel={isLiked ? "Unlike" : "Like"}
-            style={[styles.circle, !isLive ? styles.dim : null]}
+            style={styles.circle}
           >
             <ChromeFill glass />
             <Icon
@@ -253,6 +269,8 @@ const LiveViewerActionBar: React.FC<Props> = ({
           </View>
         )}
       </View>
+      <GifPicker visible={gifPickerVisible} onClose={() => setGifPickerVisible(false)}
+        onPick={(url) => { setGifPickerVisible(false); onSendGif(url); }} />
     </View>
   );
 };
@@ -303,7 +321,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   circle: {
-    width: BAR_SIZE,
+    width: 42,
     height: BAR_SIZE,
     borderWidth: 1,
     borderColor: CHROME_HAIRLINE,
@@ -311,6 +329,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  gifLabel: { color: "#fff", fontSize: 12, fontWeight: "800" },
   /**
    * The count rides the circle rather than sitting under it, so the row keeps
    * one height whether or not a stream has any likes yet.
