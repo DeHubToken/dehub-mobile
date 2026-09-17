@@ -4161,6 +4161,9 @@
       "gold3": "Skærmen bliver gylden, og mønter regner ned i 3 sekunder.",
       "gold10": "Skærmen bliver gylden, og mønter regner ned i 10 sekunder.",
       "ultimate": "Hver fejring på én gang — guld, konfetti, mønter og et trofæ."
-    }
+    },
+    "ttsLabel": "Sig noget højt",
+    "ttsPlaceholder": "Læs ud til strømmen...",
+    "ttsHint": "Læs højt for alle, der ser på, når din gave lander."
   }
 }

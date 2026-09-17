@@ -46,6 +46,7 @@ import * as ethersImport from "ethers";
 import { applyGasMargin, parseTxError } from "../../libs/web3.util";
 import { writeContractAA } from "../../libs/aa.write";
 import { recordLiveGift } from "../../services/live.service";
+import { MAX_TTS_CHARS } from "../../libs/tipTts";
 
 export interface GiftModalProps {
   open: boolean;
@@ -418,6 +419,37 @@ const GiftModal: React.FC<GiftModalProps> = ({
                   Max: {limitTip}
                 </Text>
               </View>
+
+              {/* Tip-to-speech. Optional: an empty box is exactly the gift it
+                  was before, and nothing is spoken. The cap is the
+                  synthesiser's — past it one tip holds the stream audio for
+                  too long — and it matches web so the same message reads the
+                  same length on both. */}
+              <View className="mt-4">
+                <Text className="text-white text-xs mb-1">
+                  {t("liveGift.ttsLabel", { defaultValue: "Say something out loud" }) as string}
+                </Text>
+                <View className="flex-row items-start bg-white/10 rounded-xl px-3 py-2">
+                  <Ionicons name="volume-high-outline" size={16} color="#fff" />
+                  <TextInput
+                    value={message}
+                    onChangeText={(v) => setMessage(v.slice(0, MAX_TTS_CHARS))}
+                    placeholder={t("liveGift.ttsPlaceholder", { defaultValue: "Read out to the stream…" }) as string}
+                    placeholderTextColor="#8a8a8a"
+                    multiline
+                    className="flex-1 text-white text-[13px] ml-2"
+                  />
+                </View>
+                <View className="flex-row justify-between mt-1">
+                  <Text className="text-[11px] text-white/60 flex-1 pr-2">
+                    {t("liveGift.ttsHint", { defaultValue: "Read aloud to everyone watching when your gift lands." }) as string}
+                  </Text>
+                  <Text className="text-[11px] text-white/40">
+                    {message.length}/{MAX_TTS_CHARS}
+                  </Text>
+                </View>
+              </View>
+
               {insufficient && (
                 <Text className="text-xs text-white/80 mt-1">
                   Insufficient balance

@@ -4233,6 +4233,9 @@
       "gold3": "Mivadika volamena ny efijery ary milatsaka ny vola mandritra ny 3 segondra.",
       "gold10": "Mivadika volamena ny efijery ary milatsaka ny vola mandritra ny 10 segondra.",
       "ultimate": "Ny fankalazana rehetra miaraka - volamena, konfety, vola ary amboara."
-    }
+    },
+    "ttsLabel": "Lazao zavatra mafy",
+    "ttsPlaceholder": "Hivoaka eny amin'ny tosaka...",
+    "ttsHint": "Vakio mafy ny olona rehetra mijery rehefa tonga ny fanomezam-pahasoavanao."
   }
 }

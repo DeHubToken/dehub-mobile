@@ -4420,6 +4420,9 @@
       "gold3": "Skrin bertukar emas dan syiling hujan turun selama 3 saat.",
       "gold10": "Skrin bertukar emas dan syiling hujan turun selama 10 saat.",
       "ultimate": "Setiap sambutan serentak — emas, konfeti, syiling dan trofi."
-    }
+    },
+    "ttsLabel": "Katakan sesuatu dengan kuat",
+    "ttsPlaceholder": "Bacakan kepada strim...",
+    "ttsHint": "Baca dengan kuat kepada semua orang yang menonton apabila hadiah anda tiba."
   }
 }

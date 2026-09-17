@@ -4142,6 +4142,9 @@
       "gold3": "Golden Screen (3s)",
       "gold10": "Golden Screen (10s)",
       "ultimate": "Ultimate Celebration"
-    }
+    },
+    "ttsLabel": "Say something out loud",
+    "ttsPlaceholder": "Read out to the stream…",
+    "ttsHint": "Read aloud to everyone watching when your gift lands."
   }
 }

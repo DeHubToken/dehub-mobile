@@ -4185,6 +4185,9 @@
       "gold3": "P'anqa qoriyuq tukun, quri qullqi uriykun 3 segundokunapi.",
       "gold10": "P'anqa qoriyuq tukun, quri qullqi uriykun 10 segundokunapi.",
       "ultimate": "Sut'in apuyaq tukuy — quri, k'uychi, qullqi, wanachiy."
-    }
+    },
+    "ttsLabel": "Imatapas kallpawan rimay",
+    "ttsPlaceholder": "Kawsay willakuyman ñawinchay...",
+    "ttsHint": "Regaloyki chayamuqtin llapa qhawaqkunaman kallpawan leey."
   }
 }

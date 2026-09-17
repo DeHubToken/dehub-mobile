@@ -4142,6 +4142,9 @@
       "gold3": "Ka kōura te mata, ka ua ngā moni mō te 3 hēkona.",
       "gold10": "Ka kōura te mata, ka ua ngā moni mō te 10 hēkona.",
       "ultimate": "Ngā whakanui katoa i te wā kotahi — koura, konfeti, moni me tētahi tohu."
-    }
+    },
+    "ttsLabel": "Korero i tetahi mea i runga i te reo nui",
+    "ttsPlaceholder": "Pānuitia atu ki te awa...",
+    "ttsHint": "Pānuihia te reo nui ki te hunga katoa e titiro ana ki to koutou taonga whenua."
   }
 }

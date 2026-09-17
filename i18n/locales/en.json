@@ -4221,6 +4221,9 @@
       "gold3": "The screen turns gold and coins rain down for 3 seconds.",
       "gold10": "The screen turns gold and coins rain down for 10 seconds.",
       "ultimate": "Every celebration at once — gold, confetti, coins and a trophy."
-    }
+    },
+    "ttsLabel": "Say something out loud",
+    "ttsPlaceholder": "Read out to the stream…",
+    "ttsHint": "Read aloud to everyone watching when your gift lands."
   }
 }

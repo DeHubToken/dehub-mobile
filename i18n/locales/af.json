@@ -4275,6 +4275,9 @@
       "gold3": "Die skerm word goud en munte reën vir 3 sekondes.",
       "gold10": "Die skerm word goud en munte reën vir 10 sekondes.",
       "ultimate": "Elke viering gelyktydig — goud, konfetti, munte en 'n trofee."
-    }
+    },
+    "ttsLabel": "Sê iets hardop",
+    "ttsPlaceholder": "Lees tot by die stroom...",
+    "ttsHint": "Lees hardop vir almal wat kyk wanneer jou gawe land."
   }
 }

@@ -4155,6 +4155,9 @@
       "gold3": "Ekrani bëhet i artë dhe monedhat bien për 3 sekonda.",
       "gold10": "Ekrani bëhet i artë dhe monedhat bien për 10 sekonda.",
       "ultimate": "Çdo festë në të njëjtën kohë — ar, konfeti, monedha dhe një trofe."
-    }
+    },
+    "ttsLabel": "Thuaj diçka me zë të lartë",
+    "ttsPlaceholder": "Lexo te rrjedha...",
+    "ttsHint": "Lexo me zë të lartë për të gjithë ata që shikojnë se kur do të mbërrijë dhurata jote."
   }
 }

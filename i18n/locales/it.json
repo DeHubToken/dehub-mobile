@@ -4228,6 +4228,9 @@
       "gold3": "Lo schermo diventa dorato e le monete piovono per 3 secondi.",
       "gold10": "Lo schermo diventa dorato e le monete piovono per 10 secondi.",
       "ultimate": "Ogni celebrazione contemporaneamente: oro, coriandoli, monete e un trofeo."
-    }
+    },
+    "ttsLabel": "Dì qualcosa ad alta voce",
+    "ttsPlaceholder": "Leggi al torrente...",
+    "ttsHint": "Leggi ad alta voce a tutti coloro che guardano quando arriva il tuo regalo."
   }
 }

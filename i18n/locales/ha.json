@@ -4146,6 +4146,9 @@
       "gold3": "Allon ya zama zinare kuma kuɗi suna ruwan sama na tsawon daƙiƙa 3.",
       "gold10": "Allon ya zama zinare kuma kuɗi suna ruwan sama na tsawon daƙiƙa 10.",
       "ultimate": "Kowane biki a lokaci ɗaya — zinare, confetti, kuɗi da kofi."
-    }
+    },
+    "ttsLabel": "Ka ce wani abu mai ƙarfi",
+    "ttsPlaceholder": "Karanta zuwa rafi...",
+    "ttsHint": "Karanta da ƙarfi ga kowa da kowa yana kallo lokacin da kyautarku ta sauka."
   }
 }

@@ -4140,6 +4140,9 @@
       "gold3": "Ekran qızıl olur və 3 saniyə ərzində pullar yağır.",
       "gold10": "Ekran qızıl olur və 10 saniyə ərzində pullar yağır.",
       "ultimate": "Hər bayram eyni anda — qızıl, konfeti, pullar və bir kubok."
-    }
+    },
+    "ttsLabel": "Yüksək səslə nəsə deyin",
+    "ttsPlaceholder": "Axına baxın...",
+    "ttsHint": "Hədiyyəniz yerə endikdə izləyən hər kəsə ucadan oxuyun."
   }
 }

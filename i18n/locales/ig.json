@@ -4134,6 +4134,9 @@
       "gold3": "Ihuenyo ahụ na-aghọ ọlaedo ma mkpụrụ ego na-ezo maka sekọnd 3.",
       "gold10": "Ihuenyo ahụ na-aghọ ọlaedo ma mkpụrụ ego na-ezo maka sekọnd 10.",
       "ultimate": "Ememe ọ bụla n'otu oge — ọlaedo, confetti, mkpụrụ ego na ihe nrite."
-    }
+    },
+    "ttsLabel": "Kwuo ihe n 'olu dara ụda",
+    "ttsPlaceholder": "Gụpụta na iyi...",
+    "ttsHint": "Gụọ onye ọ bụla na-ekiri mgbe onyinye gị rutere."
   }
 }
