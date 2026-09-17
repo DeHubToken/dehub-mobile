@@ -8,6 +8,26 @@ export interface PaymentAsset {
   chainId?: number;
 }
 
+const FEATURED_PAYMENTS = [
+  ['ETH', 'base'], ['USDC', 'base'], ['USDT', 'base'],
+  ['BTC', 'btc'], ['SOL', 'sol'], ['BNB', 'bsc'],
+] as const;
+
+export function featuredPaymentAssets(assets: PaymentAsset[]): PaymentAsset[] {
+  return FEATURED_PAYMENTS.flatMap(([symbol, blockchain]) => {
+    const asset = assets.find(item => item.symbol === symbol && item.blockchain === blockchain);
+    return asset ? [asset] : [];
+  });
+}
+
+// Display only. Payment submission always uses the full amountInFormatted string.
+export function formatPaymentAmount(amount: string): string {
+  const value = Number(amount);
+  if (!Number.isFinite(value) || value <= 0) return amount;
+  if (value < 0.000001) return '<0.000001';
+  return value.toLocaleString(undefined, { maximumFractionDigits: 6 });
+}
+
 export interface PaymentQuote {
   amountInFormatted: string;
   amountInUsd?: string;
