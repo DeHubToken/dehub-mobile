@@ -214,11 +214,9 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
             hitSlop={CHROME_HIT_SLOP}
             style={[styles.followButton, followLoading ? styles.pending : null]}
             accessibilityRole="button"
+            accessibilityLabel={t("follow.follow", { defaultValue: "Follow" })}
           >
-            <Icon name="Plus" size={13} color="#09090B" strokeWidth={2.5} />
-            <Text style={styles.followLabel}>
-              {t("follow.follow", { defaultValue: "Follow" })}
-            </Text>
+            <Icon name="Plus" size={20} color="#09090B" strokeWidth={2.5} />
           </Pressable>
         ) : null}
       </View>
@@ -358,22 +356,24 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     overflow: "hidden",
   },
+  /**
+   * A square, like the rest of the row. The word cost about 60pt on a
+   * 375pt line and the creator capsule paid it, so the name came out
+   * truncated with the numbers squeezed under it. A filled plus on a
+   * creator's own stream is not ambiguous, and the label stays for a
+   * screen reader.
+   */
   followButton: {
+    width: 48,
     height: 48,
     flexDirection: "row",
     alignItems: "center",
-    gap: 3,
-    paddingHorizontal: 12,
+    justifyContent: "center",
     borderRadius: CHROME_RADIUS,
     backgroundColor: "#fff",
   },
   pending: {
     opacity: 0.6,
-  },
-  followLabel: {
-    fontSize: 13,
-    fontWeight: "700",
-    color: "#09090B",
   },
 });
 
