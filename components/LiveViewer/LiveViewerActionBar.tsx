@@ -243,11 +243,9 @@ const LiveViewerActionBar: React.FC<Props> = ({
               strokeWidth={1.8}
               fill={isLiked ? "#fff" : "none"}
             />
-            {likeCount > 0 ? (
-              <Text style={styles.badge} numberOfLines={1}>
-                {formatCompactNumber(likeCount)}
-              </Text>
-            ) : null}
+            {/* No tally. The icon is the control, and a number hung off
+                each of three buttons is three more figures on somebody
+                else's broadcast — the counts live on the post. */}
           </Pressable>
           </View>
         )}

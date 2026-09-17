@@ -1474,7 +1474,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 onFollow={handleFollow}
                 onUnfollow={handleUnfollow}
                 viewerAddress={(user?.walletAddress || user?.address) as string}
-                viewerCount={liveViewers}
                 fallbackMinter={minterProp}
                 onOptionsPress={() => setShowOptionsMenu(true)}
                 onCollapse={enterImmersive}
@@ -1487,6 +1486,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 isEnded={isEndedEffective}
                 isScheduled={isScheduledEffective}
                 startedAt={startedAtDate}
+                viewerCount={liveViewers}
                 title={resolvedTitle || undefined}
               />
 

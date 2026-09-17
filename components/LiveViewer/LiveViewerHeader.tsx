@@ -54,7 +54,6 @@ interface LiveViewerHeaderProps {
   onFollow: () => void;
   onUnfollow: () => void;
   viewerAddress?: string;
-  viewerCount: number;
   fallbackMinter?: string | number;
   /** Opens the shared post options sheet — the same one every other post has. */
   onOptionsPress?: () => void;
@@ -70,7 +69,6 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
   onFollow,
   onUnfollow,
   viewerAddress,
-  viewerCount,
   fallbackMinter,
   onOptionsPress,
   onCollapse,
@@ -197,16 +195,6 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
       </View>
 
       <View style={styles.controls}>
-        {/* Audience. A count, not an avatar stack: the socket carries a number
-            and inventing faces for it would be a lie at a glance. */}
-        <View style={styles.viewerChip} pointerEvents="none">
-          <ChromeFill />
-          <Icon name="Eye" size={13} color="#fff" strokeWidth={1.8} />
-          <Text style={styles.viewerCount}>
-            {formatCompactNumber(Math.max(0, viewerCount))}
-          </Text>
-        </View>
-
         {onOptionsPress ? (
           <Pressable
             onPress={onOptionsPress}
@@ -257,7 +245,14 @@ const styles = StyleSheet.create({
     paddingTop: EDGE,
     gap: 8,
   },
+  /**
+   * Takes the row's spare width and gives it up before the controls do.
+   * On a 375pt screen the header was a capsule, a follow button and four
+   * controls arguing over the same line, and the name — which truncates —
+   * was the one that lost.
+   */
   left: {
+    flex: 1,
     flexShrink: 1,
     flexDirection: "row",
     alignItems: "center",
@@ -269,6 +264,7 @@ const styles = StyleSheet.create({
    * the row now that they are all circles.
    */
   creatorCard: {
+    flex: 1,
     flexShrink: 1,
     flexDirection: "row",
     alignItems: "center",
@@ -316,24 +312,10 @@ const styles = StyleSheet.create({
     ...TEXT_SHADOW,
   },
   controls: {
+    flexShrink: 0,
     flexDirection: "row",
     alignItems: "center",
     gap: CHROME_GAP - 4,
-  },
-  viewerChip: {
-    flexDirection: "row",
-    alignItems: "center",
-    height: CHROME_SIZE,
-    borderRadius: CHROME_RADIUS,
-    paddingHorizontal: 11,
-    gap: 5,
-    overflow: "hidden",
-  },
-  viewerCount: {
-    color: "#fff",
-    fontSize: 12,
-    fontWeight: "700",
-    ...TEXT_SHADOW,
   },
   chromeButton: {
     width: CHROME_SIZE,

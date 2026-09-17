@@ -15,6 +15,7 @@ import React, { memo, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Icon from "../ui/Icon";
+import { formatCompactNumber } from "../../libs/numbers.util";
 import { ChromeFill, EDGE, TEXT_SHADOW } from "../common/ViewerChrome";
 
 interface Props {
@@ -24,6 +25,8 @@ interface Props {
   isScheduled?: boolean;
   /** When the broadcast started, for the running clock. */
   startedAt?: Date | null;
+  /** How many are watching. A pill, not a header chip — see the note below. */
+  viewerCount?: number;
   title?: string;
 }
 
@@ -50,6 +53,7 @@ const LiveViewerPills: React.FC<Props> = ({
   isEnded,
   isScheduled,
   startedAt,
+  viewerCount,
   title,
 }) => {
   const { t } = useTranslation();
@@ -95,6 +99,20 @@ const LiveViewerPills: React.FC<Props> = ({
         <View style={[styles.dot, statusDim ? styles.dotDim : null]} />
         <Text style={styles.label}>{statusLabel}</Text>
       </Pill>
+
+      {/* Audience. A count, not an avatar stack: the socket carries a
+          number and inventing faces for it would be a lie at a glance.
+          Here rather than in the header because that row was a capsule, a
+          follow button and four controls over 375pt, and this is the one
+          of them that is not a control. */}
+      {viewerCount != null ? (
+        <Pill>
+          <Icon name="Eye" size={11} color="rgba(255,255,255,0.75)" strokeWidth={2} />
+          <Text style={styles.value}>
+            {formatCompactNumber(Math.max(0, viewerCount))}
+          </Text>
+        </Pill>
+      ) : null}
 
       {elapsed ? (
         <Pill>
