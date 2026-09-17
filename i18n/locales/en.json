@@ -4265,6 +4265,7 @@
     "useInAppCamera": "Use In-App Camera Instead"
   },
   "nearBuy": {
+    "otherCurrencies": "Other currencies",
     "description": "Choose a token to pay. Receive DHB in your wallet.",
     "dhbAmount": "DHB amount",
     "search": "Search token, network or contract",
