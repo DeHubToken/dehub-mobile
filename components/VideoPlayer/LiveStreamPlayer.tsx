@@ -47,7 +47,8 @@ import { shareProfile } from "../../libs/misc";
 import { WEBSITE_LINK } from "../../config";
 import LiveViewerHeader from "../LiveViewer/LiveViewerHeader";
 import LiveViewerChat from "../LiveViewer/LiveViewerChat";
-import LiveViewerReactionsBar from "../LiveViewer/LiveViewerReactionsBar";
+import LiveViewerActionBar from "../LiveViewer/LiveViewerActionBar";
+import LiveViewerPills from "../LiveViewer/LiveViewerPills";
 import LiveViewerStatusOverlay from "../LiveViewer/LiveViewerStatusOverlay";
 import LiveEventBanner from "../LiveViewer/LiveEventBanner";
 import type { EventBannerData } from "../LiveViewer/LiveEventBanner";
@@ -63,6 +64,8 @@ import { useTranslation as useCopy } from "react-i18next";
 import { EDGE } from "../common/ViewerChrome";
 import { speakTipMessage, setTipTtsEnabled } from "../../libs/tipTts";
 import { TipSpeaker } from "../Live/TipSpeaker";
+import ViewerScrubBar from "../common/ViewerScrubBar";
+import { useSharedValue } from "react-native-reanimated";
 
 type LiveStreamPlayerProps = {
   // Minimal inputs; additional params may be forwarded from route
@@ -1216,6 +1219,35 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // the middle with the chat over it — which is what "it isn't fullscreen"
   // reports were describing. Portrait streams already fill the screen and
   // only lose the chrome.
+  /**
+   * The timeline the scrub line draws, in 0..1 of the source.
+   *
+   * A stream that is actually on air has no duration to scrub through, so
+   * `seekRef` comes back null and the bar sits at zero and refuses the
+   * drag. A replay — an ended stream with a recording, which is most of
+   * what anyone opens after the fact — is an ordinary file, and gets the
+   * same bar the shorts viewer has.
+   */
+  const progress = useSharedValue(0);
+  const durationRef = useRef(0);
+  const scrubbingRef = useRef(false);
+  const seekRef = useRef<((ratio: number) => void) | null>(null);
+  const [seekable, setSeekable] = useState(false);
+  const handleProgress = useCallback((positionMs: number, durationMs: number) => {
+    durationRef.current = durationMs;
+    setSeekable(durationMs > 0);
+    // A drag owns the bar until the finger lifts; the clock would otherwise
+    // yank it back to wherever playback still is.
+    if (scrubbingRef.current || !(durationMs > 0)) return;
+    progress.value = Math.max(0, Math.min(1, positionMs / durationMs));
+  }, [progress]);
+  const handleScrubbingChange = useCallback((scrubbing: boolean) => {
+    scrubbingRef.current = scrubbing;
+  }, []);
+  const handleSeek = useCallback((ratio: number) => {
+    seekRef.current?.(ratio);
+  }, []);
+
   const [immersive, setImmersive] = useState(false);
   const immersiveRef = useRef(false);
   const videoSizeRef = useRef<{ width: number; height: number } | null>(null);
@@ -1369,7 +1401,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             streamInfo={streamEntity?.streamInfo as any}
             minter={(streamEntity?.address as any) || (minterProp as any)}
             tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
-            onProgress={() => {}}
+            onProgress={handleProgress}
+            seekRef={seekRef}
             /* A replay is a finished file: it gets a scrubber, a live stream does not. */
             isLive={!isPlayingReplay}
             fullscreen
@@ -1384,6 +1417,17 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
       {/* Overlay container on top of video */}
       <View className="absolute inset-0" pointerEvents="box-none">
+        {/* The timeline, on the floor of the screen — the same bar the
+            shorts viewer draws, from the same component. It stays through
+            immersive: a viewer who has just cleared the chrome to watch is
+            exactly the one who wants to move about in a replay. */}
+        <ViewerScrubBar
+          progress={progress}
+          onSeek={handleSeek}
+          enabled={seekable}
+          onScrubbingChange={handleScrubbingChange}
+        />
+
         {/* Immersive: just the picture, with sound and a way back in the corner. */}
         {immersive && (
           <View
@@ -1429,43 +1473,39 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 onFollow={handleFollow}
                 onUnfollow={handleUnfollow}
                 viewerAddress={(user?.walletAddress || user?.address) as string}
-                isLive={isLiveEffective && !isPausedEffective}
-                isPaused={isPausedEffective}
-                isEnded={isEndedEffective}
                 viewerCount={liveViewers}
                 fallbackMinter={minterProp}
                 onOptionsPress={() => setShowOptionsMenu(true)}
+                onCollapse={enterImmersive}
               />
   
-              {/* Stream title - below header */}
-              {resolvedTitle ? (
-                <View className="px-4 mt-1" pointerEvents="none">
-                  <Text
-                    className="text-white text-sm font-semibold"
-                    numberOfLines={1}
-                    style={{ textShadowColor: "rgba(0,0,0,0.8)", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 3 }}
-                  >
-                    {resolvedTitle}
-                  </Text>
-                </View>
-              ) : null}
-  
-              {/* Sound and fullscreen. The player's own row is hidden by the
-                  header, and the header keeps its width for the creator card. */}
+              {/* State, elapsed time and title, on one scrollable line. */}
+              <LiveViewerPills
+                isLive={isLiveEffective}
+                isPaused={isPausedEffective}
+                isEnded={isEndedEffective}
+                isScheduled={isScheduledEffective}
+                startedAt={startedAtDate}
+                title={resolvedTitle || undefined}
+              />
+
+              {/* Sound. The player's own row is hidden by the header, and
+                  the way into immersive is the header's chevron. */}
               <View style={{ paddingHorizontal: EDGE, marginTop: 8 }} pointerEvents="box-none">
                 <LiveViewerPlayerControls
                   isMuted={isMuted}
                   immersive={false}
                   onToggleMute={toggleMute}
                   onToggleImmersive={enterImmersive}
+                  hideImmersiveToggle
                 />
               </View>
-  
+
               {/* Middle area - transparent, shows video */}
               <View className="flex-1" pointerEvents="box-none" />
   
               {/* Bottom section: shop + chat + reactions + input */}
-              <View pointerEvents="box-none" style={{ paddingBottom: EDGE }}>
+              <View pointerEvents="box-none" style={{ paddingBottom: EDGE + 10 }}>
                 {/* Whatever the host has put "on air", above the chat so a busy
                     room cannot scroll it away. Renders nothing when the stream
                     has no products attached. */}
@@ -1488,28 +1528,24 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 {/* TikTok-style join/gift banners */}
                 <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
   
-                {/* Chat overlay */}
-                <LiveViewerChat
-                  activities={chatActivities}
+                {/* The room. Read-only now — saying something is the bar's job. */}
+                <LiveViewerChat activities={chatActivities} />
+
+                {/* Say something, or do something: one row of it. */}
+                <LiveViewerActionBar
                   canSend={!!canChat && liveChat.connected && !liveChat.isBanned}
+                  chatEnabled={liveChatEnabled}
                   isLive={isLiveEffective}
                   isEnded={isEndedEffective}
                   isScheduled={isScheduledEffective}
                   onSendMessage={handleSendMessage}
-                  onGiftPress={handleGiftPress}
-                  chatEnabled={liveChatEnabled}
-                />
-  
-                {/* Reactions bar */}
-                <LiveViewerReactionsBar
                   onReact={handleSendReaction}
                   onLike={handleLiveLike}
                   onShare={handleShare}
-                  disabled={!isSignedIn || !isLiveEffective}
+                  onGiftPress={handleGiftPress}
                   likeCount={postReactions.likeCount}
                   isLiked={postReactions.isLiked}
-                  likePending={false}
-                  isLive={isLiveEffective}
+                  actionsDisabled={!isSignedIn || !isLiveEffective}
                 />
               </View>
             </View>

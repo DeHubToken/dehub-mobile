@@ -1,15 +1,7 @@
 import { DhbCoin } from "../common/DhbCoin";
-import React, { memo, useCallback, useMemo, useRef, useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-import { Send, Gift } from "lucide-react-native";
+import React, { memo, useCallback, useMemo, useRef } from "react";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
-import { useKeyboard } from "../../hooks/useKeyboard";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Avatar from "../common/Avatar";
 
@@ -48,13 +40,6 @@ export interface ChatActivity {
 
 interface LiveViewerChatProps {
   activities: ChatActivity[];
-  canSend: boolean;
-  isLive: boolean;
-  isEnded: boolean;
-  isScheduled: boolean;
-  onSendMessage: (content: string) => void;
-  onGiftPress: () => void;
-  chatEnabled: boolean;
 }
 
 /** Deterministic color palette for usernames (monochrome neutrals ramp) */
@@ -116,7 +101,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
   switch (a.status) {
     case StreamActivityType.MESSAGE:
       return (
-        <View className="mb-1.5 dark-surface bg-black/60 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] flex-row items-start">
+        <View className="mb-1.5 dark-surface bg-zinc-900/70 rounded-2xl px-2.5 py-1.5 self-start max-w-[85%] flex-row items-start">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
             <Avatar uri={avatarUrl} size={20} name={displayName} />
           </TouchableOpacity>
@@ -169,7 +154,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
     case StreamActivityType.TIP: {
       const amt = a.meta?.amount || 0;
       return (
-        <View className="mb-1.5 bg-white/10 border border-white/20 rounded-xl px-2.5 py-2 self-start max-w-[85%] flex-row items-start">
+        <View className="mb-1.5 bg-white/10 rounded-2xl px-2.5 py-2 self-start max-w-[85%] flex-row items-start">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
             <Avatar uri={avatarUrl} size={20} name={displayName} />
           </TouchableOpacity>
@@ -214,19 +199,8 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
   }
 });
 
-const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
-  activities,
-  canSend,
-  isLive,
-  isEnded,
-  isScheduled,
-  onSendMessage,
-  onGiftPress,
-  chatEnabled,
-}) => {
-  const [message, setMessage] = useState("");
+const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities }) => {
   const listRef = useRef<FlatList<ChatActivity> | null>(null);
-  const { height: keyboardHeight, isVisible: kbVisible } = useKeyboard();
   const { showUserProfile } = useUserProfileSheet();
 
   const handleUserPress = useCallback(
@@ -252,13 +226,6 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
     [filteredActivities]
   );
 
-  const handleSend = useCallback(() => {
-    const content = message.trim();
-    if (!content || !canSend || !chatEnabled) return;
-    onSendMessage(content);
-    setMessage("");
-  }, [message, canSend, chatEnabled, onSendMessage]);
-
   const renderItem = useCallback(
     ({ item }: { item: ChatActivity }) => <ChatBubble a={item} onUserPress={handleUserPress} />,
     [handleUserPress]
@@ -273,92 +240,25 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
     return `${t}:${a.status}:${who}:${contentKey}:${idx}`;
   }, []);
 
-  const inputDisabled = !canSend || !chatEnabled || isScheduled;
-
-  const placeholderText = isEnded
-    ? "Stream ended"
-    : isScheduled
-      ? "Chat will open when live"
-      : !isLive
-        ? "Waiting for stream..."
-        : !chatEnabled
-          ? "Chat is disabled"
-          : !canSend
-            ? "Sign in to chat"
-            : "Say something...";
-
-  const inputBottomOffset = useMemo(() => {
-    if (!kbVisible) return 0;
-    return keyboardHeight;
-  }, [kbVisible, keyboardHeight]);
-
   return (
-    <View pointerEvents="box-none">
-      {/* Chat messages - floating, transparent */}
-      <View
-        style={{ height: 260 }}
-        pointerEvents="box-none"
-      >
-        <FlatList
-          ref={listRef}
-          data={reversed}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
-          className="px-4"
-          contentContainerStyle={{ paddingTop: 8, paddingBottom: 4 }}
-          initialNumToRender={15}
-          maxToRenderPerBatch={20}
-          windowSize={5}
-          removeClippedSubviews={false}
-          inverted
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
-
-      {/* Input bar */}
-      <View
-        className="flex-row items-center px-4 pb-2 pt-1"
-        style={{ marginBottom: inputBottomOffset }}
-      >
-        <View className="flex-1 flex-row items-center bg-zinc-900/60 rounded-xl px-4 mr-3" style={{ height: 40 }}>
-          <TextInput
-            value={message}
-            onChangeText={setMessage}
-            placeholder={placeholderText}
-            placeholderTextColor="#999999"
-            className="flex-1 text-[14px]"
-            style={{ color: '#FFFFFF', paddingVertical: 0 }}
-            editable={!inputDisabled}
-            maxLength={500}
-            multiline={false}
-            returnKeyType="send"
-            onSubmitEditing={handleSend}
-          />
-          {message.trim() && !inputDisabled ? (
-            <TouchableOpacity
-              onPress={handleSend}
-              activeOpacity={0.7}
-              className="ml-1 p-2"
-              hitSlop={8}
-              accessibilityRole="button"
-              accessibilityLabel="Send message"
-            >
-              <Send color="#F4F4F5" size={18} />
-            </TouchableOpacity>
-          ) : null}
-        </View>
-
-        {/* Gift button */}
-        {isLive && (
-          <TouchableOpacity
-            onPress={onGiftPress}
-            activeOpacity={0.7}
-            className="w-10 h-10 rounded-xl bg-zinc-900/60 items-center justify-center"
-          >
-            <Gift color="#D4D4D8" size={18} />
-          </TouchableOpacity>
-        )}
-      </View>
+    /* The room, floating over the picture. 220 rather than 260: the bar
+       under it is one row now instead of two, and the extra height was
+       only ever covering more of the stream with nothing in it. */
+    <View style={{ height: 220 }} pointerEvents="box-none">
+      <FlatList
+        ref={listRef}
+        data={reversed}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        className="px-4"
+        contentContainerStyle={{ paddingTop: 8, paddingBottom: 4 }}
+        initialNumToRender={15}
+        maxToRenderPerBatch={20}
+        windowSize={5}
+        removeClippedSubviews={false}
+        inverted
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 };
