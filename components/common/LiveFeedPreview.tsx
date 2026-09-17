@@ -10,7 +10,7 @@
  * this app runs ExoPlayer out of memory.
  */
 
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { VideoView, useVideoPlayer } from "expo-video";
 import SmartImage from "./SmartImage";
@@ -83,13 +83,15 @@ function LivePlayer({ url }: { url: string }) {
 
 function LiveFeedPreviewComponent({ url, thumbnail, active, label }: Props) {
   const poster = usablePoster(thumbnail);
+  const [failedPoster, setFailedPoster] = useState<string | undefined>();
   return (
     <View style={StyleSheet.absoluteFill}>
-      {poster ? (
+      {poster && poster !== failedPoster ? (
         <SmartImage
           source={{ uri: poster }}
           style={StyleSheet.absoluteFill}
           recyclingKey={poster}
+          onError={() => setFailedPoster(poster)}
         />
       ) : (
         // The self-hosted ingest renders no thumbnail, so this is the common

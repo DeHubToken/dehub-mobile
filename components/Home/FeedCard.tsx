@@ -385,7 +385,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     return "";
   }, [item, stream, isLive, isVideo, isShort, tokenId]);
 
-  const hasThumb = typeof thumbnail === "string" && thumbnail.trim().length > 0;
+  const [failedLiveThumbnail, setFailedLiveThumbnail] = useState<string | null>(null);
+  const hasThumb = typeof thumbnail === "string" && thumbnail.trim().length > 0
+    && (!isLive || thumbnail !== failedLiveThumbnail);
   const liveDurationSec = isLive ? replayDurationSec(stream) : undefined;
   const durationSeconds = (item as any).videoDuration || liveDurationSec;
   const duration = durationSeconds ? secondsToHMMSS(durationSeconds) : undefined;
@@ -1326,6 +1328,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           style={StyleSheet.absoluteFill}
           recyclingKey={thumbnail}
           priority={prioritizeMedia ? "high" : "normal"}
+          onError={() => setFailedLiveThumbnail(thumbnail)}
         />
       ) : (
         /* Last resort: no cover, no provider poster, nothing on the post.
