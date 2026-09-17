@@ -840,10 +840,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const handleCommentPress = useCallback(() => {
     if (onCommentPressProp) {
       onCommentPressProp();
+    } else if (isLive) {
+      // A live post's conversation is its chat, in the viewer — not a comment
+      // sheet beside it. Same as the web feed card, which opens the room.
+      handleCardPress();
     } else if (tokenId != null) {
       setShowComments(true);
     }
-  }, [tokenId, onCommentPressProp]);
+  }, [tokenId, onCommentPressProp, isLive, handleCardPress]);
 
   // Open the Share sheet. Ungated so logged-out users can still copy the link /
   // share as image; repost & quote gate themselves via requireAuth.
@@ -1438,7 +1442,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
   };
 
-  const showActionBar = contentType !== "live";
+  // A live post is a post: the same reaction bar as every other card, not a
+  // stream-only heart. The heart posted to a counter on the stream document
+  // that nothing else read, so a like on the feed never reached the post.
+  const showActionBar = true;
 
   // The App Store build does not advertise or transact crypto-funded digital
   // content. Omitting these entries also removes price, reward and unlock
@@ -1666,15 +1673,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           }
         />
         </DeferredBlock>
-      )}
-
-      {isLive && (
-        <View className="flex-row items-center pt-2">
-          <View className="flex-row items-center gap-1">
-            <Icon name="Heart" size={16} color="#F4F4F5" />
-            <Text style={{ color: "#F9FBFF", fontSize: 13 }}>{formatCompactNumber(liveLikes)}</Text>
-          </View>
-        </View>
       )}
 
       {showComments && tokenId != null && (
