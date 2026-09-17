@@ -33,7 +33,8 @@ describe('live card with no cover', () => {
     expect(preview).toContain('function usablePoster');
     expect(preview).toContain('/^(https?:|data:|file:|content:|asset:)/i');
     expect(preview).toContain('const poster = usablePoster(thumbnail);');
-    expect(preview).toContain('{poster ? (');
+    expect(preview).toContain('{poster && poster !== failedPoster ? (');
+    expect(preview).toContain('onError={() => setFailedPoster(poster)}');
   });
 
   it('says what the stream is when there is nothing to show', () => {
