@@ -15,7 +15,7 @@ describe('live composer keyboard geometry', () => {
     jest.replaceProperty(Platform, 'OS', 'android');
     jest.spyOn(Keyboard, 'addListener').mockImplementation((name, listener) => {
       listeners[name] = listener;
-      return { remove: jest.fn() } as ReturnType<typeof Keyboard.addListener>;
+      return { remove: jest.fn() } as unknown as ReturnType<typeof Keyboard.addListener>;
     });
   });
   afterEach(() => jest.restoreAllMocks());
