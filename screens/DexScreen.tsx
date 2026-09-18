@@ -111,7 +111,7 @@ export default function DexScreen() {
     try {
       const next = await readSharedMarket();
       if (Date.now() / 1000 - next.observedAt > 180) {
-        setListError(true);
+        setListError(!hasSnapshot.current);
       } else setListError(false);
       if (next.observedAt !== snapshotTime.current) {
         snapshotTime.current = next.observedAt;
