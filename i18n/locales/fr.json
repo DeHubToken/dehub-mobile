@@ -4380,6 +4380,11 @@
     "balanceAmount": "Available: {{amount}} {{symbol}}"
   },
   "dex": {
+    "lowestSell": "Vente la plus basse · USDC",
+    "liveChartHint": "Vente la plus basse · USDC · glissez pour examiner",
+    "noSellHistory": "Les bougies commencent lorsque des liquidités de vente vérifiées sont disponibles.",
+    "sharedChange24": "Variation sur 24 h",
+    "sharedCandleNote": "Prix de vente le plus bas partagé · USDC · relevé chaque minute. Tout le monde voit le même historique ; les périodes non observées restent vides.",
     "automaticStage": {
       "tokenApproval": "Approbation automatique des jetons…",
       "permitApproval": "Approbation automatique de l’accès à la position…",
