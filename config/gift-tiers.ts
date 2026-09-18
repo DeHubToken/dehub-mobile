@@ -10,7 +10,7 @@
  * a name silently downgrades every cross-platform gift to a Love Heart, so
  * these strings match src/lib/live/gift-tiers.ts on web exactly.
  *
- * The display copy in components/Tip/GiftModal.tsx (lucide icon, description)
+ * The display copy in components/Tip/GiftModal.tsx (description)
  * hangs off the same mins and names — keep the two in step.
  */
 export type TipTierKey =
