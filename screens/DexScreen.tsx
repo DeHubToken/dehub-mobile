@@ -27,7 +27,7 @@ export default function DexScreen() {
   const navigation = useNavigation();
   const focused = useIsFocused();
   const user = useUser();
-  const { chainId: connectedChain } = useProvider();
+  const { chainId: connectedChain, authMethod } = useProvider();
   const { switchChain } = useAuthActions();
   const address = user?.walletAddress || user?.address || '';
   const [side, setSide] = useState<'buy' | 'sell'>('sell');
@@ -203,7 +203,7 @@ export default function DexScreen() {
       {!!review && !pending && <Text style={s.review}>{t('dex.reviewToken', { amount, token, chain: chainId ? DEX_CHAINS[chainId].name : '', minPrice, maxPrice })}{review.createPool ? ` ${t('dex.initializes')}` : ''}</Text>}
       {!!pending && <TouchableOpacity onPress={() => void Linking.openURL(`${explorer(pending.input.chainId)}/tx/${pending.txHash}`)}><Text style={s.review}>{t('dex.pendingNote')}</Text></TouchableOpacity>}
       {!!formError && <Text accessibilityRole="alert" style={s.alert}>{formError}</Text>}
-      <TouchableOpacity disabled={busy || checking || !!withdrawing || (!chainId && !pending)} onPress={() => void create()} style={[s.submit, { backgroundColor: side === 'buy' ? '#20c997' : '#f05b72', opacity: busy || checking || (!chainId && !pending) ? .5 : 1 }]}>{busy && <ActivityIndicator color="#061410" />}<Text style={s.darkText}>{busy ? t(`dex.stage.${stage}`) : pending ? t('dex.resume') : review ? t('dex.approve') : t('dex.review')}</Text></TouchableOpacity><Text style={s.note}>{t('dex.reversalNote')}</Text>
+      <TouchableOpacity disabled={busy || checking || !!withdrawing || (!chainId && !pending)} onPress={() => void create()} style={[s.submit, { backgroundColor: side === 'buy' ? '#20c997' : '#f05b72', opacity: busy || checking || (!chainId && !pending) ? .5 : 1 }]}>{busy && <ActivityIndicator color="#061410" />}<Text style={s.darkText}>{busy ? t(`dex.${authMethod === 'local' && ['tokenApproval', 'permitApproval', 'submit'].includes(stage) ? 'automaticStage' : 'stage'}.${stage}`) : pending ? t('dex.resume') : review ? t('dex.approve') : t('dex.review')}</Text></TouchableOpacity><Text style={s.note}>{t('dex.reversalNote')}</Text>
     </View>}
     <View style={[s.panel, { marginTop: 18 }]}><View style={s.toolbar}><View style={s.inline}>{[false, true].map((value) => <TouchableOpacity key={String(value)} style={[s.smallTab, mine === value && s.selected]} onPress={() => { setMine(value); setPage(0); }}><Text style={s.white}>{t(value ? 'dex.myPositions' : 'dex.allListings')}</Text></TouchableOpacity>)}</View><Text style={s.muted}>{shown.length}</Text></View>
       {!shown.length && <Text style={s.empty}>{t(loading ? 'dex.verifying' : mine ? 'dex.noMyPositions' : 'dex.noListings')}</Text>}
