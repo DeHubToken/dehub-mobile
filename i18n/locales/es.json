@@ -4230,6 +4230,9 @@
     "couldNotRetrieve": "No se ha podido obtener esa cartera antigua en este dispositivo. Todavía puedes recuperarla en dehub.io, más abajo."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Elige una celebración",
     "plays": "Reproduce {{tier}} en el stream",
     "you": "Tú",

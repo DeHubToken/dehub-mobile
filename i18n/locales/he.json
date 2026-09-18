@@ -4145,6 +4145,9 @@
     "couldNotRetrieve": "לא ניתן היה לאחזר את הארנק הישן הזה במכשיר הזה. עדיין אפשר לשחזר אותו ב-dehub.io למטה."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "בחר חגיגה",
     "plays": "משחק {{tier}} בסטרים",
     "you": "אתה",

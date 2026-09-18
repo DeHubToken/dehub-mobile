@@ -4192,6 +4192,9 @@
     "couldNotRetrieve": "Не ўдалося атрымаць той стары кашалёк на гэтай прыладзе. Вы ўсё яшчэ можаце аднавіць яго на dehub.io ніжэй."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Выберыце свята",
     "plays": "Прайгравае {{tier}} у стрыме",
     "you": "Вы",

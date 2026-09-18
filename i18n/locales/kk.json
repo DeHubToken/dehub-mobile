@@ -4213,6 +4213,9 @@
     "couldNotRetrieve": "Осы құрылғыда ол ескі әмиянды алу мүмкін болмады. Оны төмендегі dehub.io сайтында қалпына келтіре аласыз."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Сыйлық таңдаңыз",
     "plays": "Stream-де {{tier}} ойнайды",
     "you": "Сіз",

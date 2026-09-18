@@ -4159,6 +4159,9 @@
     "couldNotRetrieve": "Онзи стар портфейл не можа да бъде извлечен на това устройство. Все още можете да го възстановите в dehub.io по-долу."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Избери празненство",
     "plays": "Пуска {{tier}} на стрийма",
     "you": "Ти",

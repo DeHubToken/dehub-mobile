@@ -4149,6 +4149,9 @@
     "couldNotRetrieve": "Այդ հին դրամապանակը չհաջողվեց ստանալ այս սարքում։ Դուք դեռ կարող եք վերականգնել այն ստորև՝ dehub.io-ում։"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Ընտրեք տոնակատարություն",
     "plays": "Stream-ում {{tier}} է նվագում",
     "you": "Դուք",

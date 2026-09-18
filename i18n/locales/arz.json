@@ -4154,6 +4154,9 @@
     "couldNotRetrieve": "مقدرناش نجيب المحفظة القديمة دي على الجهاز ده. لسه تقدر ترجّعها على dehub.io تحت."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "اختار احتفال",
     "plays": "يعرض {{tier}} على البث",
     "you": "أنت",

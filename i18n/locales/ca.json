@@ -4160,6 +4160,9 @@
     "couldNotRetrieve": "No s'ha pogut obtenir aquella cartera antiga en aquest dispositiu. Encara la pots recuperar a dehub.io, a sota."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Tria una celebració",
     "plays": "Reprodueix {{tier}} a la transmissió",
     "you": "Tu",

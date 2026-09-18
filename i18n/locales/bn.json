@@ -4144,6 +4144,9 @@
     "couldNotRetrieve": "এই ডিভাইসে ওই পুরনো ওয়ালেটটি আনা যায়নি। আপনি এখনও নিচে dehub.io-তে এটি পুনরুদ্ধার করতে পারেন।"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "একটি উদযাপন বেছে নিন",
     "plays": "স্ট্রিমে {{tier}} বাজান",
     "you": "আপনি",

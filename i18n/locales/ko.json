@@ -4226,6 +4226,9 @@
     "couldNotRetrieve": "이 기기에서는 그 이전 지갑을 가져올 수 없었습니다. 아래 dehub.io에서는 여전히 복구할 수 있습니다."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "축하를 선택하세요",
     "plays": "스트림에서 {{tier}} 재생",
     "you": "당신",

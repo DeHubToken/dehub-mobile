@@ -4159,6 +4159,9 @@
     "couldNotRetrieve": "Haikuwezekana kupata pochi hiyo ya zamani kwenye kifaa hiki. Bado unaweza kuirejesha kwenye dehub.io hapa chini."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Chagua sherehe",
     "plays": "Inacheza {{tier}} kwenye kipindi",
     "you": "Wewe",

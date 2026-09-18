@@ -4215,6 +4215,9 @@
     "couldNotRetrieve": "इस डिवाइस पर वह पुराना वॉलेट नहीं मिल सका। आप अब भी नीचे dehub.io पर इसे वापस पा सकते हैं।"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "एक उत्सव चुनें",
     "plays": "स्ट्रीम पर {{tier}} चलाता है",
     "you": "आप",

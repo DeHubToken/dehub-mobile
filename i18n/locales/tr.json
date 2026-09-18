@@ -4221,6 +4221,9 @@
     "couldNotRetrieve": "Bu cihazda o eski cüzdan alınamadı. Aşağıdaki dehub.io üzerinden hâlâ kurtarabilirsiniz."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Bir kutlama seçin",
     "plays": "Yayında {{tier}} oynat",
     "you": "Siz",

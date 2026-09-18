@@ -3822,6 +3822,9 @@
     "couldNotRetrieve": "Nikarîbû ew berîka kevn li ser vê amûrê were wergirtin. Tu hîn jî dikarî wê li jêr li ser dehub.io vegerînî."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "ئاهەنگێک هەڵبژێرە",
     "plays": "لە ستریمدا {{tier}} گەڕاندرا",
     "you": "تۆ",

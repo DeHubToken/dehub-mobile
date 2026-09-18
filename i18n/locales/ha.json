@@ -4148,6 +4148,9 @@
     "couldNotRetrieve": "Ba a iya samo wannan tsohon walat a wannan na'urar ba. Har yanzu za ka iya dawo da shi a dehub.io a ƙasa."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Zaɓi bikin",
     "plays": "Yana kunna {{tier}} a kan tashar",
     "you": "Kai",

@@ -4176,6 +4176,9 @@
     "couldNotRetrieve": "មិនអាចទាញយកកាបូបចាស់នោះនៅលើឧបករណ៍នេះបានទេ។ អ្នកនៅតែអាចសង្គ្រោះវានៅ dehub.io ខាងក្រោម។"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "ជ្រើសរើសការប្រារព្ធពិធី",
     "plays": "ចាក់ {{tier}} លើស្ទ្រីម",
     "you": "អ្នក",

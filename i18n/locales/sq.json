@@ -4157,6 +4157,9 @@
     "couldNotRetrieve": "Ai portofol i vjetër nuk u mor dot në këtë pajisje. Ende mund ta rikuperosh te dehub.io më poshtë."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Zgjidh një festë",
     "plays": "Luan {{tier}} në transmetim",
     "you": "Ti",

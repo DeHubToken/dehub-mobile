@@ -4163,6 +4163,9 @@
     "couldNotRetrieve": "Det gick inte att hämta den gamla plånboken på den här enheten. Du kan fortfarande återställa den på dehub.io nedan."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Välj en firande",
     "plays": "Spelar {{tier}} på strömmen",
     "you": "Du",

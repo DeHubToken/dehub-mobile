@@ -4230,6 +4230,9 @@
     "couldNotRetrieve": "Non è stato possibile recuperare quel vecchio portafoglio su questo dispositivo. Puoi comunque recuperarlo su dehub.io qui sotto."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Scegli una celebrazione",
     "plays": "Riproduce {{tier}} in streaming",
     "you": "Tu",

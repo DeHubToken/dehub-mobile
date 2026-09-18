@@ -4157,6 +4157,9 @@
     "couldNotRetrieve": "Šiame įrenginyje nepavyko gauti tos senos piniginės. Vis tiek galite ją atkurti svetainėje dehub.io žemiau."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Pasirinkite šventę",
     "plays": "Rodo {{tier}} tiesioginiame eteryje",
     "you": "Jūs",

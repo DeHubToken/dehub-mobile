@@ -4158,6 +4158,9 @@
     "couldNotRetrieve": "在本机上无法取回那个旧钱包。你仍然可以在下方的 dehub.io 上找回它。"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "选择一个庆祝活动",
     "plays": "在直播中播放 {{tier}}",
     "you": "你",

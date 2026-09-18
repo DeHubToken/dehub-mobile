@@ -4227,6 +4227,9 @@
     "couldNotRetrieve": "Nie udało się pobrać tego starego portfela na tym urządzeniu. Nadal możesz go odzyskać na dehub.io poniżej."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Wybierz uroczystość",
     "plays": "Odtwarza {{tier}} na streamie",
     "you": "Ty",

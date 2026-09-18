@@ -4156,6 +4156,9 @@
     "couldNotRetrieve": "喺呢部裝置攞唔到嗰個舊錢包。你仲可以喺下面嘅 dehub.io 恢復佢。"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "揀一個慶祝活動",
     "plays": "喺直播度播放 {{tier}}",
     "you": "你",

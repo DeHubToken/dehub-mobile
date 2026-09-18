@@ -4114,6 +4114,9 @@
     "couldNotRetrieve": "ບໍ່ສາມາດດຶງກະເປົ໋າເກົ່ານັ້ນໃນອຸປະກອນນີ້ໄດ້. ທ່ານຍັງສາມາດກູ້ຄືນທີ່ dehub.io ຂ້າງລຸ່ມ."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "ເລືອກການສະຫຼອງ",
     "plays": "ຫຼິ້ນ {{tier}} ຢູ່ໃນສະຕຣີມ",
     "you": "ເຈົ້າ",

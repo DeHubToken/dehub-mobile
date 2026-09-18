@@ -4134,6 +4134,9 @@
     "couldNotRetrieve": "ਇਸ ਡਿਵਾਈਸ 'ਤੇ ਉਹ ਪੁਰਾਣਾ ਵਾਲਿਟ ਨਹੀਂ ਮਿਲ ਸਕਿਆ। ਤੁਸੀਂ ਹਾਲੇ ਵੀ ਹੇਠਾਂ dehub.io 'ਤੇ ਇਸਨੂੰ ਵਾਪਸ ਲੈ ਸਕਦੇ ਹੋ।"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "ਇੱਕ ਜਸ਼ਨ ਚੁਣੋ",
     "plays": "ਸਟ੍ਰੀਮ 'ਤੇ {{tier}} ਚਲਾਉਂਦਾ ਹੈ",
     "you": "ਤੁਸੀਂ",

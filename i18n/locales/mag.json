@@ -4104,6 +4104,9 @@
     "couldNotRetrieve": "ई डिवाइस पर ऊ पुरनका वॉलेट नइ मिलल। तू अखनियो नीचे dehub.io पर ओकरा वापस पा सकऽ हऽ।"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "कोनो उत्सव चुनीं",
     "plays": "स्ट्रीम पर {{tier}} चलता है",
     "you": "तुम",
