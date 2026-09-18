@@ -3,8 +3,7 @@
  * ============
  * Native port of the web ArcadePage (/arcade) — the front door to every game
  * playable in the app. Reads `config/arcade-games` and shows all of them; the
- * card art is the same real capture the web cards use, not key art, because a
- * card that promises more than the game delivers is worse than no card.
+ * cards use the same approved branding or game captures as the web cards.
  *
  * The registry is one game long on native and three on web, and the reason is
  * written out in `config/arcade-games.ts`. Nothing here assumes either count:
@@ -33,20 +32,22 @@ const GameCard = ({ game, onPress }: { game: ArcadeGame; onPress: (slug: string)
   >
     <View style={styles.artWrap}>
       <Image
-        source={{ uri: game.art }}
-        accessibilityLabel={game.artAlt}
+        source={game.brand ?? { uri: game.art }}
+        accessibilityLabel={game.brand ? game.title : game.artAlt}
         style={StyleSheet.absoluteFill}
-        contentFit="cover"
+        contentFit={game.brand ? "contain" : "cover"}
         // The capture is served with a year of `immutable` (dehubweb's
         // public/_headers), so it is worth holding on disk between sessions.
         cachePolicy="memory-disk"
         transition={200}
       />
       {/* Keeps the title legible over whatever the capture happens to be. */}
-      <View style={styles.artScrim} pointerEvents="none" />
-      <Text style={styles.artTitle} numberOfLines={1}>
-        {game.title}
-      </Text>
+      {!game.brand && <>
+        <View style={styles.artScrim} pointerEvents="none" />
+        <Text style={styles.artTitle} numberOfLines={1}>
+          {game.title}
+        </Text>
+      </>}
     </View>
 
     <View style={styles.cardBody}>

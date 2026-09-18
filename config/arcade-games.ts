@@ -82,6 +82,8 @@ export interface ArcadeGame {
   art: string;
   /** Alt text for the art. */
   artAlt: string;
+  /** Bundled logo and wordmark for the arcade card and loading screen. */
+  brand?: number;
   credit: ArcadeGameCredit;
   /** Absolute URL the WebView loads. */
   url: string;
@@ -255,6 +257,7 @@ export const ARCADE_GAMES: ArcadeGame[] = [
   {
     slug: 'trenchstar',
     title: 'Chartopia',
+    brand: require('../assets/brand/chartopia-brand-v1.webp'),
     tagline: 'Stand in a trading floor built out of live markets.',
     description:
       'The mother of all arenas. Trade like a time traveller with dozens of screens. Enjoy live feeds from Binance, Dexscreener or any thing you want from videos, to browser tabs and all between.',
