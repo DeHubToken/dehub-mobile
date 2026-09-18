@@ -4,7 +4,22 @@ import { Pool, Position, V4PositionManager } from '@uniswap/v4-sdk';
 import { encodeSqrtRatioX96, TickMath } from '@uniswap/v3-sdk';
 import { ChainId } from '../config/constants';
 import { DHB_TOKEN_ADDRESSES } from '../config/web3.constants';
-import { ethersService } from '../services/ethers.service';
+import { readWithTimeout, type OrderStage } from './dex-read-timeout';
+
+const providers = new Map<number, ethers.providers.FallbackProvider>();
+export function dexProvider(chainId: DexChainId) {
+  let provider = providers.get(chainId);
+  if (!provider) {
+    const urls = chainId === ChainId.BASE_MAINNET ? ['https://base-rpc.publicnode.com', 'https://mainnet.base.org']
+      : ['https://bsc-rpc.publicnode.com', 'https://bsc-dataseed.binance.org'];
+    provider = new ethers.providers.FallbackProvider(urls.map((url, index) => ({
+      provider: new ethers.providers.StaticJsonRpcProvider({ url, timeout: 10000, throttleLimit: 1 }, chainId),
+      priority: index + 1, stallTimeout: 1000, weight: 1,
+    })), 1);
+    providers.set(chainId, provider);
+  }
+  return provider;
+}
 
 export type DexChainId = ChainId.BASE_MAINNET | ChainId.BSC_MAINNET;
 export const DEX_CHAINS = {
@@ -82,6 +97,7 @@ export interface VerifiedPosition extends IndexedPosition {
   maxPrice: number;
   amountDhb: number;
   amountUsdc: number;
+  marketPrice: number;
 }
 
 function unpackTick(value: bigint, shift: bigint) {
@@ -94,16 +110,16 @@ function usdAtTick(tick: number, chainId: DexChainId) {
   return chainId === ChainId.BASE_MAINNET ? 1e12 / raw : raw;
 }
 
-export async function verifyPosition(row: IndexedPosition): Promise<VerifiedPosition | null> {
+export async function verifyPosition(row: IndexedPosition, blockTag?: number): Promise<VerifiedPosition | null> {
   if (row.chain_id !== ChainId.BASE_MAINNET && row.chain_id !== ChainId.BSC_MAINNET) return null;
   const chainId = row.chain_id;
   const cfg = DEX_CHAINS[chainId];
-  const provider = ethersService.getProvider(chainId);
+  const provider = dexProvider(chainId);
   const manager = new ethers.Contract(cfg.manager, POSITION_READ, provider);
   try {
     const [owner, liquidity, info, receipt] = await Promise.all([
-      manager.ownerOf(row.token_id), manager.getPositionLiquidity(row.token_id),
-      manager.getPoolAndPositionInfo(row.token_id), provider.getTransactionReceipt(row.mint_tx_hash),
+      manager.ownerOf(row.token_id, { blockTag }), manager.getPositionLiquidity(row.token_id, { blockTag }),
+      manager.getPoolAndPositionInfo(row.token_id, { blockTag }), provider.getTransactionReceipt(row.mint_tx_hash),
     ]);
     if (!receipt || receipt.status !== 1 || liquidity.isZero() ||
       (row.side !== 'buy' && row.side !== 'sell')) return null;
@@ -131,7 +147,7 @@ export async function verifyPosition(row: IndexedPosition): Promise<VerifiedPosi
       ['tuple(address,address,uint24,int24,address)'], [[key[0], key[1], key[2], key[3], key[4]]]));
     const state = new ethers.Contract(cfg.stateView, STATE, provider);
     const [slot0, poolLiquidity] = await Promise.all([
-      state.getSlot0(poolId), state.getLiquidity(poolId),
+      state.getSlot0(poolId, { blockTag }), state.getLiquidity(poolId, { blockTag }),
     ]);
     const tick = Number(slot0[1]);
     const dhb = new Token(chainId, cfg.dhb, 18, 'DHB');
@@ -150,16 +166,17 @@ export async function verifyPosition(row: IndexedPosition): Promise<VerifiedPosi
         : tick <= lower ? 'Filled' : tick >= upper ? 'Open' : 'In range';
     return { ...row, owner, liquidity: liquidity.toString(), tickLower: lower, tickUpper: upper,
       poolFee, tickSpacing, amountDhb, amountUsdc,
+      marketPrice: chainId === ChainId.BASE_MAINNET ? 1e12 / (Number(slot0[0].toString()) / 2 ** 96) ** 2 : (Number(slot0[0].toString()) / 2 ** 96) ** 2,
       status, minPrice: Math.min(...prices), maxPrice: Math.max(...prices) };
-  } catch { return null; }
+  } catch (error) { if ((error as { code?: string }).code === 'CALL_EXCEPTION') return null; throw error; }
 }
 
 export async function detectDhbChain(address: string): Promise<{
   chainId: DexChainId | null; balance: string; base: string; bnb: string;
 }> {
   const [baseRead, bnbRead] = await Promise.allSettled([
-    ethersService.getErc20Balance(DEX_CHAINS[ChainId.BASE_MAINNET].dhb, address, ChainId.BASE_MAINNET),
-    ethersService.getErc20Balance(DEX_CHAINS[ChainId.BSC_MAINNET].dhb, address, ChainId.BSC_MAINNET),
+    readWithTimeout(new ethers.Contract(DEX_CHAINS[ChainId.BASE_MAINNET].dhb, ERC20, dexProvider(ChainId.BASE_MAINNET)).balanceOf(address) as Promise<ethers.BigNumber>, 'Base balance'),
+    readWithTimeout(new ethers.Contract(DEX_CHAINS[ChainId.BSC_MAINNET].dhb, ERC20, dexProvider(ChainId.BSC_MAINNET)).balanceOf(address) as Promise<ethers.BigNumber>, 'BNB balance'),
   ]);
   if (baseRead.status === 'rejected' && bnbRead.status === 'rejected') {
     throw new Error('Could not read DHB balances on Base or BNB Chain');
@@ -176,8 +193,8 @@ export async function detectDhbChain(address: string): Promise<{
 
 export async function detectUsdcChain(address: string): Promise<{ chainId: DexChainId | null; balance: string }> {
   const [baseRead, bnbRead] = await Promise.allSettled([
-    ethersService.getErc20Balance(DEX_CHAINS[ChainId.BASE_MAINNET].usdc, address, ChainId.BASE_MAINNET),
-    ethersService.getErc20Balance(DEX_CHAINS[ChainId.BSC_MAINNET].usdc, address, ChainId.BSC_MAINNET),
+    readWithTimeout(new ethers.Contract(DEX_CHAINS[ChainId.BASE_MAINNET].usdc, ERC20, dexProvider(ChainId.BASE_MAINNET)).balanceOf(address) as Promise<ethers.BigNumber>, 'Base balance'),
+    readWithTimeout(new ethers.Contract(DEX_CHAINS[ChainId.BSC_MAINNET].usdc, ERC20, dexProvider(ChainId.BSC_MAINNET)).balanceOf(address) as Promise<ethers.BigNumber>, 'BNB balance'),
   ]);
   if (baseRead.status === 'rejected' && bnbRead.status === 'rejected') {
     throw new Error('Could not read USDC balances on Base or BNB Chain');
@@ -223,9 +240,9 @@ export async function quoteSell(input: SellInput) {
   const dhb = new Token(input.chainId, cfg.dhb, 18, 'DHB');
   const usdc = new Token(input.chainId, cfg.usdc, cfg.usdcDecimals, 'USDC');
   const poolId = Pool.getPoolId(dhb, usdc, FEE, SPACING, ethers.constants.AddressZero);
-  const provider = ethersService.getProvider(input.chainId);
+  const provider = dexProvider(input.chainId);
   const state = new ethers.Contract(cfg.stateView, STATE, provider);
-  const [slot0, liquidity] = await Promise.all([state.getSlot0(poolId), state.getLiquidity(poolId)]);
+  const [slot0, liquidity] = await readWithTimeout(Promise.all([state.getSlot0(poolId), state.getLiquidity(poolId)]), 'Pool preparation');
   const createPool = slot0[0].isZero();
   const startingSqrt = createPool ? initialSqrt(input.chainId,
     input.side === 'sell' ? input.minPrice : input.maxPrice) : null;
@@ -265,42 +282,60 @@ export async function quoteSell(input: SellInput) {
   return { amountWei, tickLower, tickUpper, createPool, ...call };
 }
 
-async function sendTx(signingProvider: any, chainId: DexChainId, from: string, to: string, data: string, value = '0x0') {
+async function sendTx(signingProvider: any, chainId: DexChainId, from: string, to: string, data: string, value = '0x0', submitted?: (hash: string) => void) {
+  const actualChain = await readWithTimeout(signingProvider.request({ method: 'eth_chainId' }) as Promise<string>, 'Wallet network');
+  const accounts = await readWithTimeout(signingProvider.request({ method: 'eth_accounts' }) as Promise<string[]>, 'Wallet address');
+  if (Number(BigInt(actualChain)) !== chainId || accounts[0]?.toLowerCase() !== from.toLowerCase()) throw new Error('Wallet account or network changed. Review the order again.');
   const hash = await signingProvider.request({
     method: 'eth_sendTransaction', params: [{ from, to, data, value }],
   }) as string;
-  const receipt = await ethersService.getProvider(chainId).waitForTransaction(hash, 1, 120_000);
-  if (!receipt || receipt.status !== 1) throw new Error('Transaction was not confirmed');
+  submitted?.(hash);
+  const receipt = await dexProvider(chainId).waitForTransaction(hash, 1, 120_000);
+  if (!receipt) throw new Error('Transaction was not confirmed yet');
+  if (receipt.status !== 1) throw Object.assign(new Error('Transaction reverted. No changes were confirmed.'), { code: 'DEX_REVERTED' });
   return receipt;
 }
 
-export async function mintSell(input: SellInput, signingProvider: any): Promise<{ tokenId: string; txHash: string }> {
-  const accounts = await signingProvider.request({ method: 'eth_accounts' }) as string[];
+export async function mintSell(input: SellInput, signingProvider: any, progress: (stage: OrderStage) => void = () => {}, submitted?: (hash: string) => void): Promise<{ tokenId: string; txHash: string }> {
+  const accounts = await readWithTimeout(signingProvider.request({ method: 'eth_accounts' }) as Promise<string[]>, 'Wallet account');
   if (!accounts[0] || accounts[0].toLowerCase() !== input.walletAddress.toLowerCase()) {
     throw new Error('The signing wallet does not match this DHB address');
   }
+  progress('quote');
   let quote = await quoteSell(input);
   if (quote.amountWei > MAX_UINT160) throw new Error('Amount exceeds Permit2 limits');
   const cfg = DEX_CHAINS[input.chainId];
-  const provider = ethersService.getProvider(input.chainId);
+  const provider = dexProvider(input.chainId);
   const tokenAddress = input.side === 'sell' ? cfg.dhb : cfg.usdc;
   const token = new ethers.Contract(tokenAddress, ERC20, provider);
-  const balance = await token.balanceOf(input.walletAddress) as ethers.BigNumber;
+  progress('balance');
+  const balance = await readWithTimeout(token.balanceOf(input.walletAddress) as Promise<ethers.BigNumber>, 'Token balance');
   if (BigInt(balance.toString()) < quote.amountWei) throw new Error('Insufficient token balance');
-  const allowance = await token.allowance(input.walletAddress, PERMIT2) as ethers.BigNumber;
+  const allowance = await readWithTimeout(token.allowance(input.walletAddress, PERMIT2) as Promise<ethers.BigNumber>, 'Token allowance');
   if (BigInt(allowance.toString()) < quote.amountWei) {
+    progress('tokenApproval');
     await sendTx(signingProvider, input.chainId, input.walletAddress, tokenAddress,
       ERC20.encodeFunctionData('approve', [PERMIT2, quote.amountWei.toString()]));
   }
   const permit = new ethers.Contract(PERMIT2, PERMIT, provider);
-  const [permitted, expiration] = await permit.allowance(input.walletAddress, tokenAddress, cfg.manager);
+  const [permitted, expiration] = await readWithTimeout(permit.allowance(input.walletAddress, tokenAddress, cfg.manager) as Promise<[ethers.BigNumber, number, number]>, 'Position allowance');
   if (BigInt(permitted.toString()) < quote.amountWei || Number(expiration) <= Date.now() / 1000 + 1200) {
+    progress('permitApproval');
     await sendTx(signingProvider, input.chainId, input.walletAddress, PERMIT2,
       PERMIT.encodeFunctionData('approve', [tokenAddress, cfg.manager, quote.amountWei.toString(), Math.floor(Date.now() / 1000) + 86400]));
   }
   quote = await quoteSell(input);
+  progress('submit');
   const receipt = await sendTx(signingProvider, input.chainId, input.walletAddress, cfg.manager,
-    quote.calldata, ethers.BigNumber.from(quote.value).toHexString());
+    quote.calldata, ethers.BigNumber.from(quote.value).toHexString(), (hash) => { progress('confirm'); submitted?.(hash); });
+  return recoverMint(input, receipt.transactionHash);
+}
+
+export async function recoverMint(input: SellInput, hash: string): Promise<{ tokenId: string; txHash: string }> {
+  const cfg = DEX_CHAINS[input.chainId];
+  const receipt = await readWithTimeout(dexProvider(input.chainId).getTransactionReceipt(hash), 'Transaction receipt');
+  if (!receipt) throw new Error('Transaction submitted. Confirmation is not available yet.');
+  if (receipt.status !== 1) throw Object.assign(new Error('The position transaction reverted. No position was created.'), { code: 'DEX_REVERTED' });
   const transferTopic = ethers.utils.id('Transfer(address,address,uint256)');
   const mintLog = receipt.logs.find((log: ethers.providers.Log) =>
     log.address.toLowerCase() === cfg.manager.toLowerCase() &&
@@ -313,19 +348,22 @@ export async function mintSell(input: SellInput, signingProvider: any): Promise<
 }
 
 export async function withdrawSell(position: VerifiedPosition, walletAddress: string, signingProvider: any) {
+  const fresh = await readWithTimeout(verifyPosition(position), 'Position refresh');
+  if (!fresh) throw new Error('This position has already been withdrawn or is unavailable');
+  position = fresh;
   if (position.owner.toLowerCase() !== walletAddress.toLowerCase()) {
     throw new Error('Only the current position owner can withdraw');
   }
   const chainId = position.chain_id as DexChainId;
   const cfg = DEX_CHAINS[chainId];
-  const accounts = await signingProvider.request({ method: 'eth_accounts' }) as string[];
+  const accounts = await readWithTimeout(signingProvider.request({ method: 'eth_accounts' }) as Promise<string[]>, 'Wallet account');
   if (accounts[0]?.toLowerCase() !== walletAddress.toLowerCase()) {
     throw new Error('Connect the wallet that owns this position');
   }
   const dhb = new Token(chainId, cfg.dhb, 18, 'DHB');
   const usdc = new Token(chainId, cfg.usdc, cfg.usdcDecimals, 'USDC');
   const poolId = Pool.getPoolId(dhb, usdc, position.poolFee, position.tickSpacing, ethers.constants.AddressZero);
-  const state = new ethers.Contract(cfg.stateView, STATE, ethersService.getProvider(chainId));
+  const state = new ethers.Contract(cfg.stateView, STATE, dexProvider(chainId));
   const [slot0, poolLiquidity] = await Promise.all([state.getSlot0(poolId), state.getLiquidity(poolId)]);
   const pool = new Pool(dhb, usdc, position.poolFee, position.tickSpacing, ethers.constants.AddressZero,
     slot0[0].toString(), poolLiquidity.toString(), Number(slot0[1]));
@@ -334,7 +372,7 @@ export async function withdrawSell(position: VerifiedPosition, walletAddress: st
   const call = V4PositionManager.removeCallParameters(sdkPosition, {
     tokenId: position.token_id,
     liquidityPercentage: new Percent(1, 1),
-    slippageTolerance: new Percent(5, 100),
+    slippageTolerance: new Percent(5, 1000),
     deadline: Math.floor(Date.now() / 1000) + 1200,
     burnToken: true,
   });
