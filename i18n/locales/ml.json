@@ -4140,6 +4140,9 @@
     "couldNotRetrieve": "ഈ ഉപകരണത്തിൽ ആ പഴയ വാലറ്റ് ലഭ്യമാക്കാനായില്ല. താഴെയുള്ള dehub.io-യിൽ ഇപ്പോഴും അത് വീണ്ടെടുക്കാം."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "ഒരു ആഘോഷം തിരഞ്ഞെടുക്കുക",
     "plays": "സ്ട്രീമിൽ {{tier}} പ്ലേ ചെയ്യുന്നു",
     "you": "നിങ്ങൾ",

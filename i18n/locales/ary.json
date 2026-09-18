@@ -4145,6 +4145,9 @@
     "couldNotRetrieve": "ما قدرناش نجيبو داك البورتفوي القديم فهاد الجهاز. مازال تقدر ترجعو ف dehub.io تحت."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "اختيار احتفال",
     "plays": "تشغيل {{tier}} على البث",
     "you": "أنت",

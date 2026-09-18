@@ -4277,6 +4277,9 @@
     "couldNotRetrieve": "Kon nie daardie ou beursie op hierdie toestel haal nie. Jy kan dit steeds op dehub.io hieronder herwin."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Kies 'n viering",
     "plays": "Speel {{tier}} op die stroom",
     "you": "Jy",

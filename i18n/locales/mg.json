@@ -4235,6 +4235,9 @@
     "couldNotRetrieve": "Tsy azo natsangana teto amin'ity fitaovana ity ilay kitapom-bola taloha. Mbola azonao averina ao amin'ny dehub.io etsy ambany izy."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Misafidiana lanonana",
     "plays": "Mampiseho ny {{tier}} ao amin'ny stream",
     "you": "Ianao",

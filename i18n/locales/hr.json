@@ -4160,6 +4160,9 @@
     "couldNotRetrieve": "Taj stari novčanik nije bilo moguće dohvatiti na ovom uređaju. I dalje ga možete oporaviti na dehub.io u nastavku."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Odaberi proslavu",
     "plays": "Reproducira {{tier}} na streamu",
     "you": "Ti",

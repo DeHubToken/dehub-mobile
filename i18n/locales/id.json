@@ -4209,6 +4209,9 @@
     "couldNotRetrieve": "Dompet lama itu tidak bisa diambil di perangkat ini. Anda masih bisa memulihkannya di dehub.io di bawah."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Pilih perayaan",
     "plays": "Memutar {{tier}} di stream",
     "you": "Anda",

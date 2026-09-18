@@ -4124,6 +4124,9 @@
     "couldNotRetrieve": "ଏହି ଡିଭାଇସରେ ସେହି ପୁରୁଣା ୱାଲେଟ୍ ଆଣିହେଲା ନାହିଁ। ଆପଣ ତଥାପି ତଳେ dehub.io ରେ ଏହାକୁ ଫେରାଇ ଆଣିପାରିବେ।"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "ଏକ ଉତ୍ସବ ବାଛନ୍ତୁ",
     "plays": "ଷ୍ଟ୍ରିମରେ {{tier}} ବଜାଏ",
     "you": "ଆପଣ",

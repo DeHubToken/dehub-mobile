@@ -4136,6 +4136,9 @@
     "couldNotRetrieve": "Enweghị ike ịnweta obere akpa ochie ahụ na ngwaọrụ a. Ị ka nwere ike iweghachi ya na dehub.io n'okpuru."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Họrọ ememe",
     "plays": "Egwu {{tier}} na iyi ahụ",
     "you": "Gị",

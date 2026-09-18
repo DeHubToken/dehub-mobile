@@ -4187,6 +4187,9 @@
     "couldNotRetrieve": "Kay dispusitiwupi mana atirqaykuchu chay mawk'a kuchu wayaqata apamuyta. Uraypi kaq dehub.io-pi kutichiwaqraqmi."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Apuyaqta akllay",
     "plays": "P'anqapi kachkan {{tier}}",
     "you": "Qan",

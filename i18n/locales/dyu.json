@@ -4099,6 +4099,9 @@
     "couldNotRetrieve": "An ma se ka o wari maraso kɔrɔ sɔrɔ nin minan kan. I bɛ se hali bi k'a segin dehub.io kan duguma."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Ka ɲanagwɛ kɛ",
     "plays": "Add {{tier}} on the stream",
     "you": "Aw kɔni, aw ye",

@@ -514,7 +514,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                 onPress={() => setBuyOpen(true)}
                 className="h-11 rounded-xl bg-white/10 items-center justify-center"
               >
-                <Text className="text-white font-semibold">Buy tokens</Text>
+                <Text className="text-white font-semibold">{t("liveGift.buyTokens")}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 disabled={isBusy}
@@ -568,8 +568,8 @@ const GiftModal: React.FC<GiftModalProps> = ({
       scrollable
     >
       <View className="p-5">
-        <Text className="text-white text-2xl font-bold mb-1">Buy tokens</Text>
-        <Text className="text-white/60 text-xs mb-4">Buy DHB and return to your gift. Your amount and message stay ready.</Text>
+        <Text className="text-white text-2xl font-bold mb-1">{t("liveGift.buyTokens")}</Text>
+        <Text className="text-white/60 text-xs mb-4">{t("liveGift.buyHint")}</Text>
         <View className="flex-row gap-2 mb-4">
           {(["card", "crypto"] as const).map((method) => (
             <TouchableOpacity
@@ -595,7 +595,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
           />
         )}
         <TouchableOpacity onPress={() => setBuyOpen(false)} className="h-11 mt-4 rounded-xl bg-white/10 items-center justify-center">
-          <Text className="text-white font-semibold">Back to gift</Text>
+          <Text className="text-white font-semibold">{t("liveGift.backToGift")}</Text>
         </TouchableOpacity>
       </View>
     </GlassModal>

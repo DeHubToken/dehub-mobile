@@ -4133,6 +4133,9 @@
     "couldNotRetrieve": "Энэ төхөөрөмж дээр тэр хуучин түрийвчийг авч чадсангүй. Доорх dehub.io дээр та түүнийг сэргээж болно."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Баяр ёслолоо сонгоно уу",
     "plays": "Шууд дамжуулалтад {{tier}} тоглоно",
     "you": "Та",

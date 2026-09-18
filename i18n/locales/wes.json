@@ -3955,6 +3955,9 @@
     "couldNotRetrieve": "We no fit get dat old wallet for dis device. You still fit recover am for dehub.io wey dey below."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Pick a celebration",
     "you": "You",
     "tier": {

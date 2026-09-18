@@ -4144,6 +4144,9 @@
     "couldNotRetrieve": "இந்தச் சாதனத்தில் அந்தப் பழைய வாலட்டைப் பெற முடியவில்லை. கீழே உள்ள dehub.io-இல் இன்னும் அதை மீட்டெடுக்கலாம்."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "ஒரு கொண்டாட்டத்தைத் தேர்ந்தெடுங்கள்",
     "plays": "ஸ்ட்ரீமில் {{tier}} ஐ இயக்குகிறது",
     "you": "நீங்கள்",

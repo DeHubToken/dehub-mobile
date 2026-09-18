@@ -4228,6 +4228,9 @@
     "couldNotRetrieve": "Не удалось получить этот старый кошелёк на данном устройстве. Вы всё ещё можете восстановить его на dehub.io ниже."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Выберите празднование",
     "plays": "Воспроизводит {{tier}} в трансляции",
     "you": "Вы",

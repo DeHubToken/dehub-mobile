@@ -4148,6 +4148,9 @@
     "couldNotRetrieve": "ያንን የቀድሞ ቦርሳ በዚህ መሣሪያ ላይ ማምጣት አልተቻለም። አሁንም ከታች በdehub.io ላይ መመለስ ይችላሉ።"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "ttsLabel": "ጮክ ብለህ የሆነ ነገር ተናገር",
     "ttsPlaceholder": "ወደ ዥረት ያንብቡ...",
     "ttsHint": "ስጦታዎ በሚወርድበት ጊዜ ለሚመለከቱ ሁሉ ጮክ ብለው ያንብቡ ።"
