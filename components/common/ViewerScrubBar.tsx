@@ -15,7 +15,8 @@ import React, { memo, useCallback, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import type { GestureType } from "react-native-gesture-handler";
-import Reanimated, { useAnimatedStyle } from "react-native-reanimated";
+import Reanimated, { runOnJS, useAnimatedReaction, useAnimatedStyle } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 import type { SharedValue } from "react-native-reanimated";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
 import { EDGE } from "./ViewerChrome";
@@ -40,7 +41,14 @@ const ViewerScrubBar: React.FC<Props> = ({
   onScrubbingChange,
   blocks,
 }) => {
+  const { t } = useTranslation();
   const [scrubbing, setScrubbing] = useState(false);
+  const [progressPercent, setProgressPercent] = useState(0);
+  useAnimatedReaction(
+    () => Math.round(Math.max(0, Math.min(1, progress.value)) * 100),
+    (next, previous) => { if (next !== previous) runOnJS(setProgressPercent)(next); },
+    [progress],
+  );
 
   const handleScrubStart = useCallback(() => {
     setScrubbing(true);
@@ -98,6 +106,17 @@ const ViewerScrubBar: React.FC<Props> = ({
           onLayout={onLayout}
           {...touchGuard}
           accessibilityRole="adjustable"
+          accessible={enabled}
+          accessibilityLabel={t('feed.videos')}
+          accessibilityState={{ disabled: !enabled }}
+          accessibilityValue={{ min: 0, max: 100, now: progressPercent }}
+          accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
+          onAccessibilityAction={({ nativeEvent }) => {
+            if (!enabled) return;
+            const delta = nativeEvent.actionName === 'increment' ? 0.05
+              : nativeEvent.actionName === 'decrement' ? -0.05 : 0;
+            if (delta) handleCommit(Math.max(0, Math.min(1, progress.value + delta)));
+          }}
         >
           <View style={[styles.line, scrubbing && styles.lineActive]}>
             <Reanimated.View
