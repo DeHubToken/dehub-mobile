@@ -67,6 +67,7 @@ export default function DexScreen() {
   const [depth, setDepth] = useState(false);
   const [increment, setIncrement] = useState(.000001);
   const loadLock = useRef(false);
+  const hasSnapshot = useRef(false);
   const token = side === 'buy' ? 'USDC' : 'DHB';
   const locked = busy || !!pending || !!withdrawing;
   const decimals = side === 'sell' ? 18 : chainId ? DEX_CHAINS[chainId].usdcDecimals : 6;
@@ -117,8 +118,9 @@ export default function DexScreen() {
         setSnapshot(next);
         setListings(next.positions);
         setUpdated(next.observedAt * 1000);
+        hasSnapshot.current = true;
       }
-    } catch { setListError(true); }
+    } catch { if (!hasSnapshot.current) setListError(true); }
     finally { setLoading(false); loadLock.current = false; }
   }, []);
   useEffect(() => {

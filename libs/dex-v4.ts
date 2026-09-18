@@ -68,6 +68,8 @@ const POSITION_READ = new ethers.utils.Interface([
   'function getPositionLiquidity(uint256) view returns (uint128)',
   'function getPoolAndPositionInfo(uint256) view returns ((address,address,uint24,int24,address),uint256)',
 ]);
+// A confirmed mint receipt is immutable; avoid fetching it on every market tick.
+const verifiedMints = new Set<string>();
 
 export interface SellInput {
   walletAddress: string;
@@ -122,18 +124,21 @@ export async function verifyPosition(row: IndexedPosition, blockTag?: number): P
   const provider = dexProvider(chainId);
   const manager = new ethers.Contract(cfg.manager, POSITION_READ, provider);
   try {
+    const mintKey = `${chainId}:${row.token_id}:${row.owner_address.toLowerCase()}:${row.mint_tx_hash.toLowerCase()}`;
     const [owner, liquidity, info, receipt] = await Promise.all([
       manager.ownerOf(row.token_id, { blockTag }), manager.getPositionLiquidity(row.token_id, { blockTag }),
-      manager.getPoolAndPositionInfo(row.token_id, { blockTag }), dexReceipt(chainId, row.mint_tx_hash),
+      manager.getPoolAndPositionInfo(row.token_id, { blockTag }),
+      verifiedMints.has(mintKey) ? Promise.resolve(null) : dexReceipt(chainId, row.mint_tx_hash),
     ]);
-    if (!receipt || receipt.status !== 1 || liquidity.isZero() ||
+    if (liquidity.isZero() ||
       (row.side !== 'buy' && row.side !== 'sell')) return null;
     const mintTopic = ethers.utils.id('Transfer(address,address,uint256)');
-    const minted = receipt.logs.some((log) => log.address.toLowerCase() === cfg.manager.toLowerCase() &&
+    const minted = verifiedMints.has(mintKey) || (receipt?.status === 1 && receipt.logs.some((log) => log.address.toLowerCase() === cfg.manager.toLowerCase() &&
       log.topics[0] === mintTopic && log.topics[1] === `0x${'0'.repeat(64)}` &&
       log.topics[2]?.toLowerCase() === `0x${row.owner_address.slice(2).toLowerCase().padStart(64, '0')}` &&
-      log.topics[3] === `0x${BigInt(row.token_id).toString(16).padStart(64, '0')}`);
+      log.topics[3] === `0x${BigInt(row.token_id).toString(16).padStart(64, '0')}`));
     if (!minted) return null;
+    verifiedMints.add(mintKey);
     const [key, packed] = info;
     const currencies = [key[0].toLowerCase(), key[1].toLowerCase()];
     const poolFee = Number(key[2]);
