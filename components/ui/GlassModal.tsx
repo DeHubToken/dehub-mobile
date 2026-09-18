@@ -10,6 +10,7 @@ import {
   KeyboardAvoidingView,
   PanResponder,
   ScrollView,
+  TextInput,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
@@ -64,6 +65,11 @@ const GlassModal: React.FC<GlassModalProps> = ({
   const isBottom = presentation === "bottom";
   const translateY = useRef(new Animated.Value(0)).current;
   const scrollY = useRef(0);
+  const scrollRef = useRef<ScrollView>(null);
+  const revealInput = () => {
+    const input = TextInput.State.currentlyFocusedInput();
+    if (input) scrollRef.current?.scrollResponderScrollNativeHandleToKeyboard(input, 24, true);
+  };
   const startedAtTop = useRef(true);
   useEffect(() => {
     translateY.setValue(0);
@@ -90,8 +96,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
       Animated.spring(translateY, { toValue: 0, useNativeDriver: true }).start();
     },
   });
-  const panResponder = useMemo(() => makePanResponder(false),
-    [dismissible, isBottom, onClose, scrollable, translateY]);
   const handleResponder = useMemo(() => makePanResponder(true),
     [dismissible, isBottom, onClose, scrollable, translateY]);
 
@@ -104,7 +108,10 @@ const GlassModal: React.FC<GlassModalProps> = ({
     if (!isBottom) return;
     const showEvent = Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
     const hideEvent = Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
-    const show = Keyboard.addListener(showEvent, () => setKeyboardUp(true));
+    const show = Keyboard.addListener(showEvent, () => {
+      setKeyboardUp(true);
+      requestAnimationFrame(revealInput);
+    });
     const hide = Keyboard.addListener(hideEvent, () => setKeyboardUp(false));
     return () => {
       show.remove();
@@ -179,7 +186,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
               resizes for the keyboard, so inputs in bottom sheets were
               covered. */}
           <KeyboardAvoidingView
-            behavior="padding"
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
             // This view starts below the foreground's safe-area padding;
             // keyboard frames are measured from the top of the modal window.
             keyboardVerticalOffset={insets.top}
@@ -193,7 +200,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
           >
             {wrapPanel ? (
               <Animated.View
-                {...(isBottom ? panResponder.panHandlers : {})}
                 style={[
                   styles.panel,
                   isBottom ? styles.panelDrawer : styles.panelCard,
@@ -207,7 +213,10 @@ const GlassModal: React.FC<GlassModalProps> = ({
               >
                 {scrollable ? (
                   <ScrollView
+                    ref={scrollRef}
                     style={{ flexShrink: 1 }}
+                    onLayout={() => { if (keyboardUp) requestAnimationFrame(revealInput); }}
+                    onContentSizeChange={() => { if (keyboardUp) requestAnimationFrame(revealInput); }}
                     keyboardShouldPersistTaps="handled"
                     nestedScrollEnabled
                     bounces={false}

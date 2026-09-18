@@ -531,6 +531,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // Join room on connect; only JoinStream when stream is actually LIVE and we're a viewer
   useEffect(() => {
     if (!streamId || !connected) return;
+    if (!prevConnectedRef.current) {
+      connectedGenRef.current += 1;
+      prevConnectedRef.current = true;
+    }
     maybeJoinRoom(streamId);
     // Only join as active viewer when stream is confirmed LIVE and user is signed in viewer
     if (isSignedIn && ownerStatus === "viewer" && isLiveEffective) {
@@ -601,16 +605,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   // On reconnect rising edge, bump epoch and re-emit joins exactly once per stream
   useEffect(() => {
-    const prev = prevConnectedRef.current;
-    if (!prev && connected) {
-      connectedGenRef.current += 1;
-      if (streamId) {
-        // Clear per-epoch keys by virtue of new epoch; then emit
-        maybeJoinRoom(streamId);
-        maybeJoinStream(streamId);
-      }
-    }
-    prevConnectedRef.current = connected;
+    if (!connected) prevConnectedRef.current = false;
   }, [connected, streamId, maybeJoinRoom, maybeJoinStream]);
 
   // Always listen for Start/End to update local effective status
@@ -1333,7 +1328,15 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // One list for the chat overlay: the room's messages, plus the join/gift/
   // system moments the livestream socket still carries.
   const chatActivities = useMemo<Activity[]>(() => {
-    const moments = activities.filter((a) => a.status !== StreamActivityType.MESSAGE);
+    const arrivals = new Set<string>();
+    const moments = [...activities].reverse().filter((a) => {
+      if (a.status === StreamActivityType.MESSAGE) return false;
+      const address = (a.address || a.user?.address || "").toLowerCase();
+      if (a.status !== StreamActivityType.JOINED || !address) return true;
+      if (arrivals.has(address)) return false;
+      arrivals.add(address);
+      return true;
+    }).reverse();
     if ((isLiveEffective || isEndedEffective) && !moments.some((a) => a.status === StreamActivityType.START)) {
       moments.unshift({ status: StreamActivityType.START, createdAt: 0 });
     }
