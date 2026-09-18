@@ -24,7 +24,7 @@ export function useCryptoPurchase(api: PurchaseApi, wallet: string, amount: numb
   const [historyFailed, setHistoryFailed] = useState(false);
   const [statusFailed, setStatusFailed] = useState(false);
   const [lastChecked, setLastChecked] = useState<number | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(active && !!wallet);
   const [now, setNow] = useState(Date.now());
   const [revision, setRevision] = useState(0);
   const quoteSequence = useRef(0);
@@ -52,7 +52,7 @@ export function useCryptoPurchase(api: PurchaseApi, wallet: string, amount: numb
   }, [active]);
 
   useEffect(() => {
-    if (!active || !wallet) return;
+    if (!active || !wallet) { setLoading(false); return; }
     let cancelled = false;
     setLoading(true); setAssetsFailed(false); setHistoryFailed(false);
     void Promise.allSettled([api.assets(), api.list()]).then(([catalogue, purchases]) => {
