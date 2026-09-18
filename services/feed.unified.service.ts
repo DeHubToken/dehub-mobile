@@ -82,6 +82,7 @@ export interface UnifiedFeedItem {
   name?: string;
   title?: string;
   description?: string;
+  articleBody?: string;
   imageUrl?: string;
   imageUrls?: string[]; // For multi-image posts
   thumbnailUrl?: string;

@@ -109,6 +109,7 @@ function rebuildFormData(job: UploadJob): FormData {
 
   fd.append("name", payload.bodyText.trim());
   fd.append("description", payload.description.trim());
+  if (payload.articleBody) fd.append("articleBody", payload.articleBody.trim());
   fd.append("chainId", String(job.chainId));
   fd.append("category", JSON.stringify(payload.categories));
   fd.append("postType", payload.postType);
