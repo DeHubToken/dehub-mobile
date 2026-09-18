@@ -222,7 +222,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
   // Create VideoPlayer instance
   const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (p) => {
-    p.loop = loop;
+    p.loop = !liveMode && loop;
     p.muted = muted ?? getCachedMuted();
     p.timeUpdateEventInterval = PLAYER_CONSTANTS.TIME_UPDATE_INTERVAL;
     // A rate pinned to this creator applies from the first frame. Live has no
@@ -234,10 +234,18 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
     p.bufferOptions = liveMode ? LIVE_BUFFER_OPTIONS : FULLSCREEN_BUFFER_OPTIONS;
-    if (autoplay && sourceUrl) {
+    if (!liveMode && autoplay && sourceUrl) {
       p.play();
     }
   });
+
+  // Start live HLS after the player has been configured and attached, as the
+  // feed preview does. Live timelines must not enter the file-repeat path.
+  useEffect(() => {
+    if (liveMode && autoplay && sourceUrl) {
+      player.play();
+    }
+  }, [player, liveMode, autoplay, sourceUrl]);
 
   const stopPlayback = useCallback(() => {
     try { player.pause(); } catch {}
