@@ -254,16 +254,16 @@ export const ARCADE_GAMES: ArcadeGame[] = [
   },
   {
     slug: 'trenchstar',
-    title: 'Trenchstar',
+    title: 'Chartopia',
     tagline: 'Stand in a trading floor built out of live markets.',
     description:
       'The mother of all arenas. Trade like a time traveller with dozens of screens. Enjoy live feeds from Binance, Dexscreener or any thing you want from videos, to browser tabs and all between.',
     action: 'Take the desk',
     art: `${WEBSITE_LINK}/arcade/trenchstar.webp`,
     artAlt:
-      'A curved wall of live candle charts and market panels around a dark trading floor in Trenchstar',
+      'A curved wall of live candle charts and market panels around a dark trading floor in Chartopia',
     credit: {
-      name: 'Trenchstar',
+      name: 'Chartopia',
       url: 'https://dehub.io',
       licence: 'MIT',
       licenceFile: 'LICENSE-Trenchstar',
