@@ -1,3 +1,4 @@
+import Animated from "react-native-reanimated";
 import React, {
   useCallback,
   useEffect,
@@ -21,7 +22,8 @@ import { GetNFTsResult } from "../../services/nft.service";
 import ProfileEmptyState from "../Profile/ProfileEmptyState";
 
 interface CompactVideoInfiniteListProps {
-  address: string; // user address to fetch videos for
+  address: string;
+  listRef?: React.RefObject<import("react-native").FlatList<any> | null>; // user address to fetch videos for
   pageSize?: number;
   enablePreview?: boolean; // preview disabled automatically for live unless forced
   onLoadedFirstPage?: (count: number) => void;
@@ -48,8 +50,10 @@ interface VideoItem extends GetNFTsResult {}
 
 const DEFAULT_PAGE_SIZE = 40;
 
-const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
+const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteList
+      listRef={listRef}Props> = ({
   address,
+  listRef,
   pageSize = DEFAULT_PAGE_SIZE,
   enablePreview,
   onLoadedFirstPage,
@@ -177,7 +181,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
 
   return (
     <View className="flex-1">
-      <FlatList
+      <Animated.FlatList
       className="flex-1 bg-theme-background"
       data={items}
       keyExtractor={keyExtractor}

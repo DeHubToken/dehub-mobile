@@ -480,6 +480,7 @@ const UserProfileBottomContentTabs: React.FC<
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             <FeedRoute
+              listRef={listRef}
               address={address}
               onScroll={scrollHandler}
               scrollEnabled={scrollEnabled}
@@ -494,6 +495,7 @@ const UserProfileBottomContentTabs: React.FC<
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             <PostsRoute
+              listRef={listRef}
               address={address}
               onScroll={scrollHandler}
               scrollEnabled={scrollEnabled}
@@ -505,25 +507,30 @@ const UserProfileBottomContentTabs: React.FC<
       case "images":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            {isFullScreen && fullScreenListHeader}
             {imagesLoading ? (
-              <View style={{ alignItems: "center", paddingVertical: 40 }}>
-                <ActivityIndicator color="#fff" />
-              </View>
+              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled}>
+                {isFullScreen && fullScreenListHeader}
+                <View style={{ alignItems: "center", paddingVertical: 40 }}><ActivityIndicator color="#fff" /></View>
+              </Animated.ScrollView>
             ) : images.length === 0 ? (
+              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled}>
+                {isFullScreen && fullScreenListHeader}
               <ProfileEmptyState
                 kind="images"
                 title={t("profile.noImages")}
                 subtitle={t("profile.noImagesSub")}
               />
+              </Animated.ScrollView>
             ) : (
               // onScroll was previously omitted here, so this tab alone never
               // drove the sticky bar / back-to-top button.
               <ProfileImageGrid
-                images={gridImages}
+              listRef={listRef}
+              images={gridImages}
                 scrollEnabled={scrollEnabled}
                 onImagePress={handleImagePress}
                 onScroll={scrollHandler}
+                ListHeaderComponent={isFullScreen ? fullScreenListHeader : undefined}
               />
             )}
           </View>
@@ -531,19 +538,24 @@ const UserProfileBottomContentTabs: React.FC<
       case "subscribers":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            {isFullScreen && fullScreenListHeader}
             {plansLoading ? (
-              <View style={{ alignItems: "center", paddingVertical: 40 }}>
-                <ActivityIndicator color="#fff" />
-              </View>
+              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled}>
+                {isFullScreen && fullScreenListHeader}
+                <View style={{ alignItems: "center", paddingVertical: 40 }}><ActivityIndicator color="#fff" /></View>
+              </Animated.ScrollView>
             ) : plans.length === 0 ? (
+              <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} scrollEnabled={scrollEnabled}>
+                {isFullScreen && fullScreenListHeader}
               <ProfileEmptyState
                 kind="subscribers"
                 title={t("profile.noPlans")}
                 subtitle={t("profile.noPlansSub")}
               />
+              </Animated.ScrollView>
             ) : (
               <Animated.FlatList
+                ref={listRef}
+                ListHeaderComponent={isFullScreen ? fullScreenListHeader : undefined}
                 data={plans}
                 keyExtractor={(item: SubscriptionPlan) => String(item._id || item.id || Math.random())}
                 renderItem={({ item }: { item: SubscriptionPlan }) => <View style={{ paddingHorizontal: CONTENT_PX, marginBottom: 8 }}><PlanCard plan={item} /></View>}
@@ -558,15 +570,16 @@ const UserProfileBottomContentTabs: React.FC<
       case "videos":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            {isFullScreen && fullScreenListHeader}
-            <VideosRoute address={address} onBeforeNavigate={onClose} {...contentQuery} />
+            <VideosRoute listRef={listRef} address={address} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} {...contentQuery} />
           </View>
         );
       case "songs":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            {isFullScreen && fullScreenListHeader}
             <ProfileFeedTypeRoute
+              listRef={listRef}
+              onScroll={scrollHandler}
+              listHeader={isFullScreen ? fullScreenListHeader : undefined}
               address={address}
               postType="feed-audio"
               onBeforeNavigate={onClose}
@@ -576,22 +589,19 @@ const UserProfileBottomContentTabs: React.FC<
       case "live":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            {isFullScreen && fullScreenListHeader}
-            <LivestreamsRoute address={address} onBeforeNavigate={onClose} />
+            <LivestreamsRoute listRef={listRef} address={address} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
           </View>
         );
       case "fractions":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            {isFullScreen && fullScreenListHeader}
-            <FractionsRoute address={address} isOwnProfile={isOwnProfile} />
+            <FractionsRoute listRef={listRef} address={address} isOwnProfile={isOwnProfile} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
           </View>
         );
       case "pinned":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            {isFullScreen && fullScreenListHeader}
-            <PinnedRoute address={address} onBeforeNavigate={onClose} />
+            <PinnedRoute listRef={listRef} address={address} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
           </View>
         );
       default:

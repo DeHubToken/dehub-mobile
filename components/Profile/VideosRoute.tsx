@@ -16,6 +16,7 @@ interface VideosRouteProps {
   hasBounty?: boolean;
   isLocked?: boolean;
   address?: string;
+  listRef?: React.RefObject<import("react-native").FlatList<any> | null>;
   showCreator?: boolean;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   listHeader?: React.ReactElement | null;
@@ -24,6 +25,7 @@ interface VideosRouteProps {
 
 const VideosRoute: React.FC<VideosRouteProps> = ({
   address,
+  listRef,
   showCreator = true,
   onScroll,
   listHeader,
@@ -39,6 +41,7 @@ const VideosRoute: React.FC<VideosRouteProps> = ({
 }) => {
   return (
     <CompactVideoInfiniteList
+      listRef={listRef}
       address={address || FALLBACK_ADDRESS}
       bottomPadding={80}
       showCreator={showCreator}
