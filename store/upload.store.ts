@@ -35,6 +35,7 @@ export interface SerializedPollData {
 export interface SerializedUploadPayload {
   bodyText: string;
   description: string;
+  articleBody?: string;
   categories: string[];
   /** "short" is legacy — kept so a queue persisted by an older build still types. */
   postType: "video" | "feed-audio" | "feed-images" | "feed-simple" | "short";

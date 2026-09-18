@@ -53,6 +53,7 @@ export interface PickedAudio {
 export type UploadPayload = {
   bodyText: string;
   description: string;
+  articleBody?: string;
   categories: string[];
   pickedImages: ImagePicker.ImagePickerAsset[];
   pickedVideo: ImagePicker.ImagePickerAsset | null;
@@ -156,6 +157,9 @@ export function useUploadPost() {
       );
       if (p.description.trim().length < 1 && !hasPoll) {
         return { valid: false, error: "Write something or add a poll to post." };
+      }
+      if (p.articleBody && (!p.bodyText.trim() || !p.description.trim() || p.articleBody.trim().length < 100)) {
+        return { valid: false, error: "Articles need a title, summary and at least 100 characters of body text." };
       }
     }
 
@@ -286,6 +290,7 @@ export function useUploadPost() {
       const serialized: SerializedUploadPayload = {
         bodyText: p.bodyText,
         description: p.description,
+        articleBody: p.articleBody,
         categories: mergedCategories,
         postType,
         images,

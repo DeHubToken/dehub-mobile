@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
+import { t } from "i18next";
 import { View, Text, Image, TouchableOpacity, ActivityIndicator, Dimensions } from "react-native";
 import Icon from "../ui/Icon";
 import { getNFT } from "../../services/nft.service";
@@ -18,6 +19,7 @@ interface PostMeta {
   thumbnail: string | null;
   creator: string;
   creatorAvatar: string | null;
+  isArticle: boolean;
 }
 
 // Module-level cache so the same shared post isn't re-fetched for every render
@@ -59,6 +61,7 @@ const resolveMeta = (raw: any, tokenId: string): PostMeta => {
     thumbnail,
     creator,
     creatorAvatar: rawAvatar ? getAvatarUrl(rawAvatar) : null,
+    isArticle: !!r.articleBody,
   };
 };
 
@@ -152,7 +155,7 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
       <View className="px-3 py-2">
         <View className="flex-row items-center gap-1 mb-0.5">
           <Icon name="Link" size={11} color={isMine ? "rgba(255,255,255,0.6)" : "#808089"} />
-          <Text className={`text-[11px] ${subColor}`}>DeHub post</Text>
+          <Text className={`text-[11px] ${subColor}`}>{meta?.isArticle ? t("articles.dehubArticle") : t("articles.dehubPost")}</Text>
         </View>
         {!!title && (
           <Text className={`text-[13px] font-semibold leading-4 ${titleColor}`} numberOfLines={2}>

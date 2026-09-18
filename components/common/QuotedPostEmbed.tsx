@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
+import { t } from "i18next";
 import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -178,6 +179,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
 
         {/* Content */}
         <View className="p-3">
+          {!!quotedPost.articleBody && <Text className="text-white/60 text-xs font-semibold uppercase mb-1">{t("articles.label")}</Text>}
           {/* Creator row */}
           <View className="flex-row items-center gap-2 mb-1.5">
             <Avatar uri={avatarUrl} size={18} name={displayName} />

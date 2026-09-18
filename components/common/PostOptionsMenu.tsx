@@ -75,6 +75,7 @@ export interface PostOptionsMenuProps {
   currentTitle?: string;
   /** Current description (for edit) */
   currentDescription?: string;
+  currentArticleBody?: string;
   /** Current categories (for edit) */
   currentCategories?: string[];
   /** Current state of the creator's comments toggle for this post. */
@@ -199,6 +200,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   isFollowRequestPending = false,
   currentTitle,
   currentDescription,
+  currentArticleBody,
   currentCategories,
   currentCommentsDisabled,
   currentShopLinks,
@@ -710,6 +712,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         tokenId={tokenId}
         initialTitle={currentTitle}
         initialDescription={currentDescription}
+        initialArticleBody={currentArticleBody}
         initialCategories={currentCategories}
         initialCommentsDisabled={currentCommentsDisabled}
         initialShopLinks={currentShopLinks}

@@ -540,6 +540,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [isFollowReqPending, setIsFollowReqPending] = useState(!!((item as any).isFollowRequestPending));
   const [localTitle, setLocalTitle] = useState(title);
   const [localDescription, setLocalDescription] = useState(description);
+  const [localArticleBody, setLocalArticleBody] = useState(item.articleBody);
   const [localCommentsDisabled, setLocalCommentsDisabled] = useState<boolean>(!!(item as any).commentsDisabled);
   const [localCategories, setLocalCategories] = useState<string[]>(item.category || []);
 
@@ -991,9 +992,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     setIsHidden(hidden);
   }, []);
 
-  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; forKids?: boolean; shopLinks?: ShopLink[]; shopListingCount?: number }) => {
+  const handleEditSuccess = useCallback((data: { name?: string; description?: string; articleBody?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; forKids?: boolean; shopLinks?: ShopLink[]; shopListingCount?: number }) => {
     if (data.name !== undefined) setLocalTitle(data.name);
     if (data.description !== undefined) setLocalDescription(data.description);
+    if (data.articleBody !== undefined) setLocalArticleBody(data.articleBody);
     if (data.category !== undefined) setLocalCategories(data.category);
     // Without this the composer stays live until the feed refetches, so the
     // creator would still see an input on a post they just closed.
@@ -1573,6 +1575,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onReaction={handleVideoTapReaction}
         onPress={disablePress ? undefined : handleCardPress}
       >
+      {!!localArticleBody && <Text className="text-white/60 text-xs font-semibold uppercase mx-4 mb-1">{t("articles.label")}</Text>}
       <FeedCaption
         title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
         description={displayCaption || undefined}
@@ -1583,6 +1586,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         showCategories={fullContent}
         flagged={item.communityAlertStatus === "pending"}
       />
+      {!!localArticleBody && (fullContent && (isOwnerPost || (!isLocked && (!streamInfo?.isPayPerView || ppvUnlocked) && !isActuallySubGated)) ? (
+        <Text selectable className="text-white/90 text-base leading-7 mx-4 mt-4">{localArticleBody}</Text>
+      ) : (
+        <Text className="text-white font-semibold text-sm mx-4 mt-3">{t("articles.read")} →</Text>
+      ))}
       </PostTapSurface>
 
       {(item as any).isQuotePost && (
@@ -1794,6 +1802,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           isFollowRequestPending={isFollowReqPending}
           currentTitle={localTitle}
           currentDescription={localDescription}
+          currentArticleBody={localArticleBody}
           currentCategories={localCategories}
           currentCommentsDisabled={localCommentsDisabled}
           currentShopLinks={localShopLinks ?? (item as any).shopLinks}

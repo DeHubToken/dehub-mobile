@@ -37,6 +37,7 @@ interface EditPostModalProps {
   tokenId: number | string | undefined;
   initialTitle?: string;
   initialDescription?: string;
+  initialArticleBody?: string;
   initialCategories?: string[];
   initialCommentsDisabled?: boolean;
   /** The Shop board already on the post. Empty means the toggle is off. */
@@ -50,6 +51,7 @@ interface EditPostModalProps {
   onSuccess?: (data: {
     name?: string;
     description?: string;
+    articleBody?: string;
     category?: string[];
     commentsDisabled?: boolean;
     contentRating?: string;
@@ -65,6 +67,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   tokenId,
   initialTitle = "",
   initialDescription = "",
+  initialArticleBody,
   initialCategories = [],
   initialCommentsDisabled = false,
   initialShopLinks,
@@ -94,6 +97,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const listingIds = pickedIds ?? attachedIds;
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
+  const [articleBody, setArticleBody] = useState(initialArticleBody ?? "");
   const titleMentions = useMentions(title, setTitle);
   const descMentions = useMentions(description, setDescription);
   const [selectedCategories, setSelectedCategories] =
@@ -169,12 +173,13 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     if (visible) {
       setTitle(initialTitle);
       setDescription(initialDescription);
+      setArticleBody(initialArticleBody ?? "");
       setSelectedCategories(initialCategories);
       setCommentsDisabled(initialCommentsDisabled);
       setIsMature(initialContentRating === "mature");
       setIsForKids(initialForKids === true);
     }
-  }, [visible, initialTitle, initialDescription, initialCategories, initialCommentsDisabled, initialContentRating, initialForKids]);
+  }, [visible, initialTitle, initialDescription, initialArticleBody, initialCategories, initialCommentsDisabled, initialContentRating, initialForKids]);
 
   // Load categories when modal opens
   useEffect(() => {
@@ -218,6 +223,10 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     if (tokenId == null) return;
     const trimmedTitle = title.trim();
     const trimmedDesc = description.trim();
+    if (initialArticleBody !== undefined && articleBody.trim().length < 100) {
+      toastError(t("articles.bodyTooShort"));
+      return;
+    }
 
     if (trimmedTitle.length > 0 && trimmedTitle.length < 3) {
       toastError(t("editPost.titleTooShort"));
@@ -233,6 +242,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       const payload: Record<string, any> = {};
       if (trimmedTitle && trimmedTitle !== initialTitle) payload.name = trimmedTitle;
       if (trimmedDesc !== initialDescription) payload.description = trimmedDesc;
+      if (initialArticleBody !== undefined && articleBody.trim() !== initialArticleBody) payload.articleBody = articleBody.trim();
       if (
         JSON.stringify(selectedCategories.sort()) !==
         JSON.stringify([...(initialCategories || [])].sort())
@@ -285,6 +295,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       onSuccess?.({
         name: payload.name,
         description: payload.description,
+        articleBody: payload.articleBody,
         category: payload.category,
         commentsDisabled: payload.commentsDisabled,
         contentRating: payload.contentRating,
@@ -302,6 +313,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     tokenId,
     title,
     description,
+    articleBody,
     selectedCategories,
     commentsDisabled,
     isMature,
@@ -313,6 +325,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     detach,
     initialTitle,
     initialDescription,
+    initialArticleBody,
     initialCategories,
     initialCommentsDisabled,
     initialShopLinks,
@@ -325,6 +338,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const hasChanges =
     title.trim() !== initialTitle ||
     description.trim() !== initialDescription ||
+    (initialArticleBody !== undefined && articleBody.trim() !== initialArticleBody) ||
     commentsDisabled !== initialCommentsDisabled ||
     (isMature ? "mature" : "safe") !== (initialContentRating ?? "safe") ||
     isForKids !== (initialForKids === true) ||
@@ -400,6 +414,13 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         ) : null}
 
         {/* Description — only shown if the post has a description */}
+        {initialArticleBody !== undefined && <View className="mb-3">
+          <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase mb-1">{t("articles.body")}</Text>
+          <TextInput value={articleBody} onChangeText={setArticleBody} maxLength={20000} multiline
+            placeholder={t("articles.placeholder")} placeholderTextColor="#8B8D90"
+            textAlignVertical="top" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm min-h-[220px]" />
+          <Text className="text-theme-neutrals-500 text-xs text-right">{articleBody.length}/20,000</Text>
+        </View>}
         {initialDescription ? (
           <>
             <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
