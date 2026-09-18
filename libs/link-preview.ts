@@ -44,7 +44,9 @@ export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | n
       url: data.url,
       title: data.title,
       description: data.description,
-      image: data.image ?? null,
+      // OG attributes can contain HTML-escaped query separators. Decode them
+      // before the share-image endpoint receives the URL.
+      image: typeof data.image === 'string' ? data.image.replace(/&amp;/gi, '&') : null,
       siteName: data.siteName,
     };
 
