@@ -1,3 +1,4 @@
+import { aggregateCandles, recordCandle, restoreCandles, lowestSellPrice, CANDLE_INTERVALS, CANDLE_STORAGE_KEY, type Candle, type CandleInterval } from '../libs/dex-live-market';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, AppState, Linking, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
@@ -10,7 +11,7 @@ import { useAuthActions, useProvider, useUser } from '../context/AuthContext';
 import { ChainId } from '../config/constants';
 import { DEX_CHAINS, detectDhbChain, detectUsdcChain, dexProvider, mintSell, quoteSell, recoverMint, verifyPosition, withdrawSell, type SellInput, type DexChainId, type VerifiedPosition, type IndexedPosition } from '../libs/dex-v4';
 import { aggregateBook, balanceFraction, formatPrice, formatSize, type BookLevel } from '../libs/dex-orderbook';
-import { fetchMarketData, type ChartPeriod, type MarketData } from '../libs/dex-market-data';
+import { fetchMarketData, type MarketData } from '../libs/dex-market-data';
 import { readWithTimeout, type OrderStage } from '../libs/dex-read-timeout';
 import { getSigningProvider } from '../libs/provider.registry';
 import { withWalletHeader } from '../libs/supabase-wallet-client';
@@ -54,10 +55,19 @@ export default function DexScreen() {
   const [page, setPage] = useState(0);
   const [mine, setMine] = useState(false);
   const [withdrawing, setWithdrawing] = useState<string | null>(null);
-  const [period, setPeriod] = useState<ChartPeriod>('1W');
+  const [period, setPeriod] = useState<CandleInterval>('1m');
+  const [minutes, setMinutes] = useState<Candle[]>([]);
+  const candleHistory = useRef<Candle[]>([]);
+  const [historyReady, setHistoryReady] = useState(false);
+  useEffect(() => {
+    let live = true;
+    AsyncStorage.getItem(CANDLE_STORAGE_KEY)
+      .then((raw) => { if (live) { candleHistory.current = restoreCandles(raw); setMinutes(candleHistory.current); } })
+      .catch(() => {}).finally(() => { if (live) setHistoryReady(true); });
+    return () => { live = false; };
+  }, []);
+  const candles = useMemo(() => aggregateCandles(minutes, period), [minutes, period]);
   const [market, setMarket] = useState<MarketData | null>(null);
-  const [chartLoading, setChartLoading] = useState(true);
-  const [chartError, setChartError] = useState(false);
   const [marketRevision, setMarketRevision] = useState(0);
   const [depth, setDepth] = useState(false);
   const [increment, setIncrement] = useState(.000001);
@@ -66,6 +76,7 @@ export default function DexScreen() {
   const locked = busy || !!pending || !!withdrawing;
   const decimals = side === 'sell' ? 18 : chainId ? DEX_CHAINS[chainId].usdcDecimals : 6;
   const { bids, asks } = useMemo(() => aggregateBook(listings, increment), [listings, increment]);
+  const bestAsk = lowestSellPrice(listings);
   const shown = useMemo(() => mine ? listings.filter((item) => item.owner.toLowerCase() === address.toLowerCase()) : listings, [listings, mine, address]);
   const visible = shown.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
   const hasMorePages = shown.length > PAGE_SIZE;
@@ -115,22 +126,35 @@ export default function DexScreen() {
         const batch = await Promise.all(rows.slice(offset, offset + 8).map((row) => readWithTimeout(verifyPosition(row, blocks.get(row.chain_id as DexChainId)), 'Position verification')));
         checked.push(...batch.filter((item): item is VerifiedPosition => item !== null));
       }
+      const observationTime = Date.now() / 1000;
+      candleHistory.current = recordCandle(candleHistory.current, lowestSellPrice(checked), observationTime);
+      setMinutes(candleHistory.current);
+      void AsyncStorage.setItem(CANDLE_STORAGE_KEY, JSON.stringify(candleHistory.current)).catch(() => {});
       setListings(checked); setListError(false); setUpdated(Date.now());
     } catch { setListError(true); }
     finally { loadLock.current = false; setLoading(false); }
   }, []);
   useEffect(() => {
-    if (!focused) return;
+    if (!focused || !historyReady) return;
     void loadListings();
-    const timer = setInterval(() => { if (AppState.currentState === 'active' && !busyRef.current) void loadListings(); }, 45000);
-    return () => clearInterval(timer);
-  }, [loadListings, focused]);
+    let lastBlockRefresh = 0;
+    const onBlock = () => {
+      if (AppState.currentState !== 'active' || busyRef.current || Date.now() - lastBlockRefresh < 4000) return;
+      lastBlockRefresh = Date.now();
+      void loadListings();
+    };
+    const providers = [dexProvider(ChainId.BASE_MAINNET), dexProvider(ChainId.BSC_MAINNET)];
+    providers.forEach((provider) => provider.on('block', onBlock));
+    const timer = setInterval(() => { if (AppState.currentState === 'active' && !busyRef.current) void loadListings(); }, 10000);
+    const resume = AppState.addEventListener('change', (state) => { if (state === 'active') void loadListings(); });
+    return () => { clearInterval(timer); resume.remove(); providers.forEach((provider) => provider.off('block', onBlock)); };
+  }, [loadListings, focused, historyReady]);
   useEffect(() => {
-    let active = true; setChartLoading(true); setChartError(false); setMarket(null);
-    fetchMarketData(period).then((data) => { if (active) setMarket(data); })
-      .catch(() => { if (active) setChartError(true); }).finally(() => { if (active) setChartLoading(false); });
+    let active = true; setMarket(null);
+    fetchMarketData('1D').then((data) => { if (active) setMarket(data); })
+      .catch(() => {});
     return () => { active = false; };
-  }, [period, marketRevision]);
+  }, [marketRevision]);
   useEffect(() => { setPage((value) => Math.min(value, Math.max(0, Math.ceil(shown.length / PAGE_SIZE) - 1))); }, [shown.length]);
 
   function choosePrice(price: number, next = side) {
@@ -185,13 +209,12 @@ export default function DexScreen() {
 
   return <View style={s.root}><ScreenHeader title={t('dex.title')} onBackPress={() => navigation.goBack()} /><ScrollView contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
     <View style={s.header}><View><Text style={s.pair}>{t('dex.title')}</Text><Text style={s.muted}>{t('dex.combined')}</Text></View><TouchableOpacity disabled={loading || busy} onPress={() => { void loadListings(); setMarketRevision((n) => n + 1); setBalanceRevision((n) => n + 1); }}><Text style={s.link}>{t(loading ? 'dex.updating' : 'dex.refresh')}</Text></TouchableOpacity></View>
-    <View style={s.stats}><View><Text style={s.muted}>{t('dex.reference')}</Text><Text style={s.price}>{market?.price ? `$${formatPrice(market.price)}` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.change24')}</Text><Text style={[s.statValue, { color: (market?.change || 0) >= 0 ? '#20c997' : '#f05b72' }]}>{market?.change != null ? `${market.change >= 0 ? '+' : ''}${market.change.toFixed(2)}%` : '—'}</Text></View></View>
+    <View style={s.stats}><View><Text style={s.muted}>{t('dex.lowestSell', { defaultValue: 'Lowest sell · USDC' })}</Text><Text style={s.price}>{bestAsk != null ? `${formatPrice(bestAsk)} USDC` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.change24')}</Text><Text style={[s.statValue, { color: (market?.change || 0) >= 0 ? '#20c997' : '#f05b72' }]}>{market?.change != null ? `${market.change >= 0 ? '+' : ''}${market.change.toFixed(2)}%` : '—'}</Text></View></View>
     {listError && <Text style={s.alert}>{t('dex.snapshotError')}</Text>}
     <View style={s.tabs}>{(['chart', 'book', 'trade'] as const).map((value) => <TouchableOpacity key={value} accessibilityRole="tab" accessibilityState={{ selected: tab === value }} onPress={() => setTab(value)} style={[s.tab, tab === value && s.tabActive]}><Text style={tab === value ? s.white : s.muted}>{t(`dex.tab.${value}`)}</Text></TouchableOpacity>)}</View>
-    {tab === 'chart' && <View style={s.panel}><View style={s.toolbar}><View style={s.inline}>{[false, true].map((value) => <TouchableOpacity key={String(value)} style={[s.smallTab, depth === value && s.selected]} onPress={() => setDepth(value)}><Text style={s.white}>{t(value ? 'dex.depth' : 'dex.price')}</Text></TouchableOpacity>)}</View>{!depth && <View style={s.inline}>{(['1D', '1W', '1M'] as const).map((value) => <TouchableOpacity style={[s.smallTab, period === value && s.selected]} key={value} onPress={() => setPeriod(value)}><Text style={s.white}>{value}</Text></TouchableOpacity>)}</View>}</View>
-      {!depth && chartLoading ? <ActivityIndicator style={{ height: 250 }} color="#20c997" /> : !depth && chartError ? <View style={s.emptyWrap}><Text style={s.empty}>{t('dex.chartError')}</Text><TouchableOpacity onPress={() => setMarketRevision((n) => n + 1)}><Text style={s.link}>{t('dex.retry')}</Text></TouchableOpacity></View> : <DexMarketChart points={market?.points || []} bids={bids} asks={asks} depth={depth} />}
-      <Text style={s.note}>{t(depth ? 'dex.depthNote' : 'dex.referenceNote')}{market?.partial && !depth ? ` ${t('dex.partialHistory')}` : ''}</Text>
-      {!depth && <View style={[s.inline, { padding: 12 }]}>{market?.sources.map((source) => <TouchableOpacity key={source.name} onPress={() => void Linking.openURL(source.url)}><Text style={s.link}>{t('dex.source', { name: source.name })}</Text></TouchableOpacity>)}</View>}
+    {tab === 'chart' && <View style={s.panel}><View style={s.toolbar}><View style={s.inline}>{[false, true].map((value) => <TouchableOpacity key={String(value)} style={[s.smallTab, depth === value && s.selected]} onPress={() => setDepth(value)}><Text style={s.white}>{t(value ? 'dex.depth' : 'dex.price')}</Text></TouchableOpacity>)}</View>{!depth && <View style={s.inline}>{CANDLE_INTERVALS.map((value) => <TouchableOpacity style={[s.smallTab, period === value && s.selected]} key={value} onPress={() => setPeriod(value)}><Text style={s.white}>{value}</Text></TouchableOpacity>)}</View>}</View>
+      {!depth && loading && !updated ? <ActivityIndicator style={{ height: 250 }} color="#20c997" /> : <DexMarketChart candles={candles} bids={bids} asks={asks} depth={depth} />}
+      <Text style={s.note}>{depth ? t('dex.depthNote') : t('dex.liveCandleNote', { defaultValue: 'Lowest sell observations · USDC · updates on new blocks, with a 10s fallback. History is saved on this device; gaps are not trades.' })}{updated ? ' · ' + new Date(updated).toLocaleTimeString() : ''}</Text>
     </View>}
     {tab === 'book' && <View style={s.panel}><View style={s.toolbar}><Text style={s.heading}>{t('dex.orderBook')}</Text><TouchableOpacity onPress={() => setIncrement((value) => value === .000001 ? .0000001 : value === .0000001 ? .00000001 : .000001)}><Text style={s.muted}>{increment.toFixed(8)}</Text></TouchableOpacity></View><View style={s.bookHead}><Text style={[s.cell, s.muted]}>{t('dex.price')}</Text><Text style={[s.cell, s.muted, s.right]}>DHB</Text><Text style={[s.cell, s.muted, s.right]}>{t('dex.totalDhb')}</Text></View>{book(asks, false)}<View style={s.spread}><Text style={s.muted}>{t(spread != null && spread < 0 ? 'dex.overlap' : 'dex.spread')}</Text><Text style={s.white}>{spread == null ? '—' : formatPrice(Math.abs(spread))} USDC</Text></View>{book(bids, true)}<View style={s.ratio}><View style={{ width: `${bidTotal + askTotal ? bidTotal / (bidTotal + askTotal) * 100 : 50}%`, height: 3, backgroundColor: '#20c997' }} /></View><Text style={s.note}>{t('dex.depthNote')}{updated ? ` · ${new Date(updated).toLocaleTimeString()}` : ''}</Text></View>}
     {tab === 'trade' && <View style={[s.panel, s.ticket]}><View style={s.side}>{(['buy', 'sell'] as const).map((value) => <TouchableOpacity disabled={locked} key={value} onPress={() => { setAmount(''); choosePrice(.001, value); }} style={[s.sideButton, side === value && { backgroundColor: value === 'buy' ? '#20c997' : '#f05b72' }]}><Text style={side === value ? s.darkText : s.muted}>{t(value === 'buy' ? 'dex.buy' : 'dex.sell')}</Text></TouchableOpacity>)}</View>
@@ -222,8 +245,8 @@ const s = StyleSheet.create({
   price: { fontSize: 24, fontWeight: '500', color: '#e9edf2', marginTop: 5, fontVariant: ['tabular-nums'] }, statValue: { fontSize: 17, marginTop: 8 },
   tabs: { flexDirection: 'row', marginBottom: 12 }, tab: { flex: 1, alignItems: 'center', padding: 12, borderBottomWidth: 2, borderColor: 'transparent' }, tabActive: { borderColor: '#e9edf2' },
   panel: { backgroundColor: '#11151b', borderWidth: 1, borderColor: '#252b34', borderRadius: 8, overflow: 'hidden' },
-  toolbar: { padding: 12, borderBottomWidth: 1, borderColor: '#252b34', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  inline: { flexDirection: 'row', gap: 8 }, smallTab: { paddingVertical: 7, paddingHorizontal: 8, borderRadius: 4 }, selected: { backgroundColor: '#29313b' }, heading: { color: '#e9edf2', fontWeight: '600' },
+  toolbar: { flexWrap: 'wrap', gap: 8, padding: 12, borderBottomWidth: 1, borderColor: '#252b34', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  inline: { flexDirection: 'row', flexWrap: 'wrap', gap: 4 }, smallTab: { paddingVertical: 7, paddingHorizontal: 8, borderRadius: 4 }, selected: { backgroundColor: '#29313b' }, heading: { color: '#e9edf2', fontWeight: '600' },
   note: { color: '#919ca9', fontSize: 10, lineHeight: 16, padding: 12 }, empty: { color: '#919ca9', padding: 30, textAlign: 'center', fontSize: 12 }, emptyWrap: { minHeight: 240, alignItems: 'center', justifyContent: 'center' },
   bookHead: { flexDirection: 'row', padding: 12 }, cell: { flex: 1, color: '#c5ced8', fontSize: 10, fontVariant: ['tabular-nums'] }, right: { textAlign: 'right' },
   bookLabel: { padding: 12, paddingBottom: 6, fontSize: 10 }, bookRow: { flexDirection: 'row', paddingHorizontal: 12, paddingVertical: 7, position: 'relative' }, depthBar: { position: 'absolute', right: 0, top: 1, bottom: 1, opacity: .09 },
