@@ -27,8 +27,8 @@ export const DEX_CHAINS = {
 } as const;
 
 const PERMIT2 = '0x000000000022D473030F116dDEE9F6B43aC78BA3';
-const FEE = 3000;
-const SPACING = 60;
+const FEE = 0;
+const SPACING = 1;
 const MAX_UINT160 = (1n << 160n) - 1n;
 const ERC20 = new ethers.utils.Interface([
   'function balanceOf(address) view returns (uint256)',
@@ -52,6 +52,7 @@ const POSITION_READ = new ethers.utils.Interface([
 export interface SellInput {
   walletAddress: string;
   chainId: DexChainId;
+  side: 'buy' | 'sell';
   amount: string;
   minPrice: string;
   maxPrice: string;
@@ -62,7 +63,9 @@ export interface IndexedPosition {
   token_id: string;
   owner_address: string;
   mint_tx_hash: string;
-  dhb_amount: number;
+  dhb_amount: number | null;
+  usdc_amount: number | null;
+  side: 'buy' | 'sell';
   min_usdc_per_dhb: number;
   max_usdc_per_dhb: number;
 }
@@ -72,9 +75,13 @@ export interface VerifiedPosition extends IndexedPosition {
   liquidity: string;
   tickLower: number;
   tickUpper: number;
+  poolFee: number;
+  tickSpacing: number;
   status: 'Open' | 'In range' | 'Filled';
   minPrice: number;
   maxPrice: number;
+  amountDhb: number;
+  amountUsdc: number;
 }
 
 function unpackTick(value: bigint, shift: bigint) {
@@ -98,7 +105,8 @@ export async function verifyPosition(row: IndexedPosition): Promise<VerifiedPosi
       manager.ownerOf(row.token_id), manager.getPositionLiquidity(row.token_id),
       manager.getPoolAndPositionInfo(row.token_id), provider.getTransactionReceipt(row.mint_tx_hash),
     ]);
-    if (!receipt || receipt.status !== 1 || liquidity.isZero()) return null;
+    if (!receipt || receipt.status !== 1 || liquidity.isZero() ||
+      (row.side !== 'buy' && row.side !== 'sell')) return null;
     const mintTopic = ethers.utils.id('Transfer(address,address,uint256)');
     const minted = receipt.logs.some((log) => log.address.toLowerCase() === cfg.manager.toLowerCase() &&
       log.topics[0] === mintTopic && log.topics[1] === `0x${'0'.repeat(64)}` &&
@@ -107,8 +115,12 @@ export async function verifyPosition(row: IndexedPosition): Promise<VerifiedPosi
     if (!minted) return null;
     const [key, packed] = info;
     const currencies = [key[0].toLowerCase(), key[1].toLowerCase()];
+    const poolFee = Number(key[2]);
+    const tickSpacing = Number(key[3]);
+    const supportedPool = (poolFee === 0 && tickSpacing === 1) ||
+      (poolFee === 3000 && tickSpacing === 60);
     if (!currencies.includes(cfg.dhb.toLowerCase()) || !currencies.includes(cfg.usdc.toLowerCase()) ||
-      Number(key[2]) !== 3000 || Number(key[3]) !== 60 ||
+      !supportedPool ||
       key[4].toLowerCase() !== ethers.constants.AddressZero) return null;
     const positionInfo = BigInt(packed.toString());
     const lower = unpackTick(positionInfo, 8n);
@@ -118,12 +130,26 @@ export async function verifyPosition(row: IndexedPosition): Promise<VerifiedPosi
     const poolId = ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode(
       ['tuple(address,address,uint24,int24,address)'], [[key[0], key[1], key[2], key[3], key[4]]]));
     const state = new ethers.Contract(cfg.stateView, STATE, provider);
-    const slot0 = await state.getSlot0(poolId);
+    const [slot0, poolLiquidity] = await Promise.all([
+      state.getSlot0(poolId), state.getLiquidity(poolId),
+    ]);
     const tick = Number(slot0[1]);
-    const status = chainId === ChainId.BASE_MAINNET
-      ? tick <= lower ? 'Filled' : tick >= upper ? 'Open' : 'In range'
-      : tick >= upper ? 'Filled' : tick <= lower ? 'Open' : 'In range';
+    const dhb = new Token(chainId, cfg.dhb, 18, 'DHB');
+    const usdc = new Token(chainId, cfg.usdc, cfg.usdcDecimals, 'USDC');
+    const pool = new Pool(dhb, usdc, poolFee, tickSpacing, ethers.constants.AddressZero,
+      slot0[0].toString(), poolLiquidity.toString(), tick);
+    const sdkPosition = new Position({ pool, liquidity: liquidity.toString(), tickLower: lower, tickUpper: upper });
+    const amountDhb = Number(ethers.utils.formatUnits(
+      (chainId === ChainId.BASE_MAINNET ? sdkPosition.amount1 : sdkPosition.amount0).quotient.toString(), 18));
+    const amountUsdc = Number(ethers.utils.formatUnits(
+      (chainId === ChainId.BASE_MAINNET ? sdkPosition.amount0 : sdkPosition.amount1).quotient.toString(), cfg.usdcDecimals));
+    const status = row.side === 'sell'
+      ? chainId === ChainId.BASE_MAINNET ? tick <= lower ? 'Filled' : tick >= upper ? 'Open' : 'In range'
+        : tick >= upper ? 'Filled' : tick <= lower ? 'Open' : 'In range'
+      : chainId === ChainId.BASE_MAINNET ? tick >= upper ? 'Filled' : tick <= lower ? 'Open' : 'In range'
+        : tick <= lower ? 'Filled' : tick >= upper ? 'Open' : 'In range';
     return { ...row, owner, liquidity: liquidity.toString(), tickLower: lower, tickUpper: upper,
+      poolFee, tickSpacing, amountDhb, amountUsdc,
       status, minPrice: Math.min(...prices), maxPrice: Math.max(...prices) };
   } catch { return null; }
 }
@@ -148,6 +174,21 @@ export async function detectDhbChain(address: string): Promise<{
   };
 }
 
+export async function detectUsdcChain(address: string): Promise<{ chainId: DexChainId | null; balance: string }> {
+  const [baseRead, bnbRead] = await Promise.allSettled([
+    ethersService.getErc20Balance(DEX_CHAINS[ChainId.BASE_MAINNET].usdc, address, ChainId.BASE_MAINNET),
+    ethersService.getErc20Balance(DEX_CHAINS[ChainId.BSC_MAINNET].usdc, address, ChainId.BSC_MAINNET),
+  ]);
+  if (baseRead.status === 'rejected' && bnbRead.status === 'rejected') {
+    throw new Error('Could not read USDC balances on Base or BNB Chain');
+  }
+  const base = baseRead.status === 'fulfilled' ? baseRead.value : ethers.constants.Zero;
+  const bnb = bnbRead.status === 'fulfilled' ? bnbRead.value : ethers.constants.Zero;
+  const chainId: DexChainId | null = base.gt(0) ? ChainId.BASE_MAINNET : bnb.gt(0) ? ChainId.BSC_MAINNET : null;
+  return { chainId, balance: ethers.utils.formatUnits(chainId === ChainId.BASE_MAINNET ? base : bnb,
+    chainId ? DEX_CHAINS[chainId].usdcDecimals : 6) };
+}
+
 function ticks(chainId: DexChainId, floor: number, ceiling: number): [number, number] {
   const lowerRaw = chainId === ChainId.BASE_MAINNET ? 1e12 / ceiling : floor;
   const upperRaw = chainId === ChainId.BASE_MAINNET ? 1e12 / floor : ceiling;
@@ -168,15 +209,16 @@ function initialSqrt(chainId: DexChainId, floor: string): ReturnType<typeof enco
 }
 
 export async function quoteSell(input: SellInput) {
-  const amountWei = BigInt(ethers.utils.parseUnits(input.amount, 18).toString());
+  const cfg = DEX_CHAINS[input.chainId];
+  const amountWei = BigInt(ethers.utils.parseUnits(input.amount,
+    input.side === 'sell' ? 18 : cfg.usdcDecimals).toString());
   const floor = Number(input.minPrice);
   const ceiling = Number(input.maxPrice);
   if (amountWei <= 0n || !Number.isFinite(floor) || !Number.isFinite(ceiling) ||
       floor <= 0 || ceiling <= floor || !/^\d+(?:\.\d{1,8})?$/.test(input.minPrice) ||
       !/^\d+(?:\.\d{1,8})?$/.test(input.maxPrice)) {
-    throw new Error('Enter a valid DHB amount and price range (up to 8 decimal places)');
+    throw new Error('Enter a valid amount and price range (up to 8 decimal places)');
   }
-  const cfg = DEX_CHAINS[input.chainId];
   const [tickLower, tickUpper] = ticks(input.chainId, floor, ceiling);
   const dhb = new Token(input.chainId, cfg.dhb, 18, 'DHB');
   const usdc = new Token(input.chainId, cfg.usdc, cfg.usdcDecimals, 'USDC');
@@ -185,23 +227,32 @@ export async function quoteSell(input: SellInput) {
   const state = new ethers.Contract(cfg.stateView, STATE, provider);
   const [slot0, liquidity] = await Promise.all([state.getSlot0(poolId), state.getLiquidity(poolId)]);
   const createPool = slot0[0].isZero();
-  const startingSqrt = createPool ? initialSqrt(input.chainId, input.minPrice) : null;
+  const startingSqrt = createPool ? initialSqrt(input.chainId,
+    input.side === 'sell' ? input.minPrice : input.maxPrice) : null;
   const sqrt = startingSqrt ? startingSqrt.toString() : slot0[0].toString();
   const currentTick = startingSqrt ? TickMath.getTickAtSqrtRatio(startingSqrt) : Number(slot0[1]);
-  const dhbOnly = input.chainId === ChainId.BASE_MAINNET ? currentTick >= tickUpper : currentTick <= tickLower;
-  if (!dhbOnly) throw new Error('This range overlaps the current pool price. Move it above the market price to list DHB alone.');
+  const oneSided = input.side === 'sell'
+    ? input.chainId === ChainId.BASE_MAINNET ? currentTick >= tickUpper : currentTick <= tickLower
+    : input.chainId === ChainId.BASE_MAINNET ? currentTick <= tickLower : currentTick >= tickUpper;
+  if (!oneSided) throw new Error(input.side === 'sell'
+    ? 'This range overlaps the pool price. Move it above the market price to list DHB alone.'
+    : 'This range overlaps the pool price. Move it below the market price to list USDC alone.');
   const pool = new Pool(dhb, usdc, FEE, SPACING, ethers.constants.AddressZero,
     sqrt, createPool ? '0' : liquidity.toString(), currentTick);
   const position = Position.fromAmounts({
     pool, tickLower, tickUpper,
-    amount0: input.chainId === ChainId.BSC_MAINNET ? amountWei.toString() : '0',
-    amount1: input.chainId === ChainId.BASE_MAINNET ? amountWei.toString() : '0',
+    amount0: (input.side === 'sell') === (input.chainId === ChainId.BSC_MAINNET) ? amountWei.toString() : '0',
+    amount1: (input.side === 'sell') === (input.chainId === ChainId.BASE_MAINNET) ? amountWei.toString() : '0',
     useFullPrecision: true,
   });
-  if (position.liquidity.toString() === '0') throw new Error('DHB amount is too small for this range');
-  const usdcRequired = input.chainId === ChainId.BASE_MAINNET ? position.mintAmounts.amount0 : position.mintAmounts.amount1;
-  const dhbRequired = input.chainId === ChainId.BASE_MAINNET ? position.mintAmounts.amount1 : position.mintAmounts.amount0;
-  if (BigInt(usdcRequired.toString()) !== 0n || BigInt(dhbRequired.toString()) > amountWei) {
+  if (position.liquidity.toString() === '0') throw new Error('Amount is too small for this range');
+  const requested = input.side === 'sell'
+    ? input.chainId === ChainId.BASE_MAINNET ? position.mintAmounts.amount1 : position.mintAmounts.amount0
+    : input.chainId === ChainId.BASE_MAINNET ? position.mintAmounts.amount0 : position.mintAmounts.amount1;
+  const other = input.side === 'sell'
+    ? input.chainId === ChainId.BASE_MAINNET ? position.mintAmounts.amount0 : position.mintAmounts.amount1
+    : input.chainId === ChainId.BASE_MAINNET ? position.mintAmounts.amount1 : position.mintAmounts.amount0;
+  if (BigInt(other.toString()) !== 0n || BigInt(requested.toString()) > amountWei) {
     throw new Error('The position would require more tokens than requested');
   }
   const call = V4PositionManager.addCallParameters(position, {
@@ -229,22 +280,23 @@ export async function mintSell(input: SellInput, signingProvider: any): Promise<
     throw new Error('The signing wallet does not match this DHB address');
   }
   let quote = await quoteSell(input);
-  if (quote.amountWei > MAX_UINT160) throw new Error('DHB amount exceeds Permit2 limits');
+  if (quote.amountWei > MAX_UINT160) throw new Error('Amount exceeds Permit2 limits');
   const cfg = DEX_CHAINS[input.chainId];
   const provider = ethersService.getProvider(input.chainId);
-  const token = new ethers.Contract(cfg.dhb, ERC20, provider);
+  const tokenAddress = input.side === 'sell' ? cfg.dhb : cfg.usdc;
+  const token = new ethers.Contract(tokenAddress, ERC20, provider);
   const balance = await token.balanceOf(input.walletAddress) as ethers.BigNumber;
-  if (BigInt(balance.toString()) < quote.amountWei) throw new Error('Insufficient liquid DHB');
+  if (BigInt(balance.toString()) < quote.amountWei) throw new Error('Insufficient token balance');
   const allowance = await token.allowance(input.walletAddress, PERMIT2) as ethers.BigNumber;
   if (BigInt(allowance.toString()) < quote.amountWei) {
-    await sendTx(signingProvider, input.chainId, input.walletAddress, cfg.dhb,
+    await sendTx(signingProvider, input.chainId, input.walletAddress, tokenAddress,
       ERC20.encodeFunctionData('approve', [PERMIT2, quote.amountWei.toString()]));
   }
   const permit = new ethers.Contract(PERMIT2, PERMIT, provider);
-  const [permitted, expiration] = await permit.allowance(input.walletAddress, cfg.dhb, cfg.manager);
+  const [permitted, expiration] = await permit.allowance(input.walletAddress, tokenAddress, cfg.manager);
   if (BigInt(permitted.toString()) < quote.amountWei || Number(expiration) <= Date.now() / 1000 + 1200) {
     await sendTx(signingProvider, input.chainId, input.walletAddress, PERMIT2,
-      PERMIT.encodeFunctionData('approve', [cfg.dhb, cfg.manager, quote.amountWei.toString(), Math.floor(Date.now() / 1000) + 86400]));
+      PERMIT.encodeFunctionData('approve', [tokenAddress, cfg.manager, quote.amountWei.toString(), Math.floor(Date.now() / 1000) + 86400]));
   }
   quote = await quoteSell(input);
   const receipt = await sendTx(signingProvider, input.chainId, input.walletAddress, cfg.manager,
@@ -272,10 +324,10 @@ export async function withdrawSell(position: VerifiedPosition, walletAddress: st
   }
   const dhb = new Token(chainId, cfg.dhb, 18, 'DHB');
   const usdc = new Token(chainId, cfg.usdc, cfg.usdcDecimals, 'USDC');
-  const poolId = Pool.getPoolId(dhb, usdc, FEE, SPACING, ethers.constants.AddressZero);
+  const poolId = Pool.getPoolId(dhb, usdc, position.poolFee, position.tickSpacing, ethers.constants.AddressZero);
   const state = new ethers.Contract(cfg.stateView, STATE, ethersService.getProvider(chainId));
   const [slot0, poolLiquidity] = await Promise.all([state.getSlot0(poolId), state.getLiquidity(poolId)]);
-  const pool = new Pool(dhb, usdc, FEE, SPACING, ethers.constants.AddressZero,
+  const pool = new Pool(dhb, usdc, position.poolFee, position.tickSpacing, ethers.constants.AddressZero,
     slot0[0].toString(), poolLiquidity.toString(), Number(slot0[1]));
   const sdkPosition = new Position({ pool, liquidity: position.liquidity,
     tickLower: position.tickLower, tickUpper: position.tickUpper });
