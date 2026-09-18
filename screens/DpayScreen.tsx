@@ -227,9 +227,9 @@ const DpayScreen: React.FC = () => {
         <View className="px-4">
           {activeTab === "buy" && (
             <>
+              <DpayInfoCards transfersTotal={transfersTotal ?? undefined} supplyAmount={supplyAmount ?? undefined} />
               <DpayTopUpForm initialPrice={initialPrice ?? undefined} supplyData={supplyData ?? undefined} />
               <NearIntentBuy />
-              <DpayInfoCards transfersTotal={transfersTotal ?? undefined} supplyAmount={supplyAmount ?? undefined} />
               <DpayTransactions />
               <DpayAbout />
             </>
