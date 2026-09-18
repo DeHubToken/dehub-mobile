@@ -4367,6 +4367,11 @@
     "balanceAmount": "Available: {{amount}} {{symbol}}"
   },
   "dex": {
+    "automaticStage": {
+      "tokenApproval": "Approbation automatique des jetons…",
+      "permitApproval": "Approbation automatique de l’accès à la position…",
+      "submit": "Création automatique de votre position…"
+    },
     "combined": "Marché combiné · Base + BNB",
     "reference": "Référence du marché · USD",
     "change24": "Variation de référence sur 24 h",
