@@ -127,7 +127,7 @@ const ProfileAssets = () => {
   const [transferOpen, setTransferOpen] = useState(false);
   const dhbActions = [
     { key: "topUp", label: t("assets.topUp"), subtitle: undefined, disabled: false },
-    { key: "sell", label: "Sell", subtitle: undefined, disabled: false },
+    { key: "sell", label: t("accounts.sell"), subtitle: undefined, disabled: false },
     { key: "bridge", label: t("assets.bridge"), subtitle: t("assets.comingSoon"), disabled: true },
     { key: "transfer", label: t("commandCentre.transfer"), disabled: false },
   ];
@@ -149,13 +149,13 @@ const ProfileAssets = () => {
       ? ChainId.BSC_MAINNET
       : null;
     if (!target) {
-      toastInfo("No liquid DHB found on Base or BNB Chain");
+      toastInfo(t("toasts.no_dhb_tokens_either_chain"));
       return;
     }
-    Linking.openURL(sellLiquidityLink(target)).catch(() =>
-      toastInfo("Could not open Uniswap"),
+    Linking.openURL(sellLiquidityLink(target)).catch((error) =>
+      toastError(error),
     );
-  }, [user?.balanceData]);
+  }, [user?.balanceData, t]);
 
   const toggleDHBOptions = () => {
     setShowDHBOptions((prev) => !prev);
