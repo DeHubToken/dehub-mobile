@@ -11,7 +11,9 @@
  */
 
 import React, { memo, useEffect, useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Pressable } from "react-native";
+import { useEvent } from "expo";
+import { useTranslation } from "react-i18next";
 import { VideoView, useVideoPlayer } from "expo-video";
 import SmartImage from "./SmartImage";
 import Icon from "../ui/Icon";
@@ -53,11 +55,21 @@ function usablePoster(thumbnail?: string): string | undefined {
  * while `active` is the difference between one player and one per live card.
  */
 function LivePlayer({ url }: { url: string }) {
+  const { t } = useTranslation();
+  const [muted, setMuted] = useState(true);
+  const [controlsVisible, setControlsVisible] = useState(true);
   const player = useVideoPlayer(url, p => {
     p.muted = true;
     p.loop = false;
     p.bufferOptions = FEED_BUFFER_OPTIONS;
   });
+  const { isPlaying } = useEvent(player, "playingChange", { isPlaying: player.playing });
+
+  useEffect(() => {
+    if (!controlsVisible) return;
+    const timer = setTimeout(() => setControlsVisible(false), 3000);
+    return () => clearTimeout(timer);
+  }, [controlsVisible, isPlaying, muted]);
 
   useEffect(() => {
     try {
@@ -69,7 +81,12 @@ function LivePlayer({ url }: { url: string }) {
   }, [player]);
 
   return (
-    <VideoView
+    <View style={StyleSheet.absoluteFill}>
+      <Pressable accessibilityLabel={t("stages.liveNow")} style={StyleSheet.absoluteFill} onPress={(event) => {
+        event.stopPropagation();
+        setControlsVisible(value => !value);
+      }}>
+      <VideoView
       style={StyleSheet.absoluteFill}
       player={player}
       nativeControls={false}
@@ -77,7 +94,26 @@ function LivePlayer({ url }: { url: string }) {
       // A SurfaceView is composited beneath the app window, so the card's
       // rounded-corner clip never reached it on Android.
       surfaceType="textureView"
-    />
+      />
+      </Pressable>
+      {controlsVisible && <View style={styles.controls}>
+        <Pressable accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} style={styles.control} onPress={(event) => {
+          event.stopPropagation();
+          if (player.playing) player.pause();
+          else player.play();
+        }}>
+          <Icon name={isPlaying ? "Pause" : "Play"} size={18} color="#FFFFFF" />
+        </Pressable>
+        <View style={{ flex: 1 }} />
+        <Pressable accessibilityRole="button" accessibilityLabel={t(muted ? "common.unmute" : "common.mute")} style={styles.control} onPress={(event) => {
+          event.stopPropagation();
+          player.muted = !muted;
+          setMuted(!muted);
+        }}>
+          <Icon name={muted ? "VolumeX" : "Volume2"} size={18} color="#FFFFFF" />
+        </Pressable>
+      </View>}
+    </View>
   );
 }
 
@@ -118,6 +154,23 @@ function LiveFeedPreviewComponent({ url, thumbnail, active, label }: Props) {
 }
 
 const styles = StyleSheet.create({
+  controls: {
+    position: "absolute",
+    left: 12,
+    right: 12,
+    bottom: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  control: {
+    width: 36,
+    height: 36,
+    borderRadius: 12,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   placeholder: {
     backgroundColor: "#18181B",
     alignItems: "center",
