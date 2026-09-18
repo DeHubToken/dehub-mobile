@@ -195,7 +195,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
       return (
         <View className="mb-1 self-start">
           <Text className="text-white/70 text-[11px] font-semibold">
-            Stream has started
+            Live started
           </Text>
         </View>
       );
@@ -225,11 +225,12 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities }) => {
     [showUserProfile]
   );
 
-  // Only show messages & tips (filter out most join/leave noise for cleaner UI)
+  // Keep viewer arrivals alongside messages and stream milestones.
   const filteredActivities = useMemo(() => {
     return activities.filter(
       (a) =>
         a.status === StreamActivityType.MESSAGE ||
+        a.status === StreamActivityType.JOINED ||
         a.status === StreamActivityType.TIP ||
         a.status === StreamActivityType.START ||
         a.status === StreamActivityType.END
