@@ -3,7 +3,7 @@ import { t } from "i18next";
 import { View, Text, Image, TouchableOpacity, ActivityIndicator, Dimensions } from "react-native";
 import Icon from "../ui/Icon";
 import { getNFT } from "../../services/nft.service";
-import { getAvatarUrl } from "../../libs/misc";
+import { getAvatarUrl, buildFeedImageUrls } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import { nftToReplyPost, resolveReplyPostThumbnail } from "../../libs/replyPostDisplay";
 
@@ -41,7 +41,7 @@ const resolveMeta = (raw: any, tokenId: string): PostMeta => {
   // video/shorts, …) — same resolution the web's QuotedPostEmbed uses, so the
   // card shows the post image for every post type, not just video thumbnails.
   const tid = Number(tokenId) || 0;
-  const thumbnail = resolveReplyPostThumbnail(nftToReplyPost(r, tid), tid) ?? null;
+  const thumbnail = (r.articleImageUrl ? buildFeedImageUrls([r.articleImageUrl], 480)[0] : null) || resolveReplyPostThumbnail(nftToReplyPost(r, tid), tid) || null;
   const creator =
     r.minterUser?.displayName ||
     r.minterUser?.username ||

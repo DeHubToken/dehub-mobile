@@ -209,10 +209,16 @@ const MarkdownText: React.FC<MarkdownTextProps> = ({ content, style, color = '#F
       return;
     }
 
+    const quoteMatch = line.match(/^>\s+(.+)$/);
+    if (quoteMatch) {
+      blocks.push(<View key={`q-${index}`} style={s.quote}><Text style={baseStyle}>{renderInline(quoteMatch[1], `q-${index}`)}</Text></View>);
+      return;
+    }
+
     const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
     if (headingMatch) {
       const level = headingMatch[1].length;
-      const size = level <= 1 ? baseSize + 4 : level === 2 ? baseSize + 2 : baseSize;
+      const size = level <= 1 ? baseSize + 8 : level === 2 ? baseSize + 4 : baseSize;
       blocks.push(
         <Text
           key={`h-${index}`}
@@ -247,6 +253,7 @@ const s = StyleSheet.create({
   },
   link: { textDecorationLine: 'underline' },
   heading: { fontWeight: '700', marginTop: 8, marginBottom: 2 },
+  quote: { borderLeftWidth: 2, borderLeftColor: 'rgba(255,255,255,0.4)', paddingLeft: 12, marginVertical: 8 },
   list: { marginTop: 2, marginBottom: 2 },
   listRow: { flexDirection: 'row', alignItems: 'flex-start' },
   listMarker: { width: 20 },

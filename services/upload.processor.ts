@@ -110,6 +110,10 @@ function rebuildFormData(job: UploadJob): FormData {
   fd.append("name", payload.bodyText.trim());
   fd.append("description", payload.description.trim());
   if (payload.articleBody) fd.append("articleBody", payload.articleBody.trim());
+  if (payload.articleBody) {
+    fd.append("articleImageIncluded", String(!!payload.articleImageUri));
+    fd.append("socialImageIncluded", String(!!payload.socialImageUri));
+  }
   fd.append("chainId", String(job.chainId));
   fd.append("category", JSON.stringify(payload.categories));
   fd.append("postType", payload.postType);
@@ -150,6 +154,11 @@ function rebuildFormData(job: UploadJob): FormData {
         name: img.name,
         type: img.mimeType,
       } as any);
+    }
+  }
+  if (payload.articleBody && payload.postType === "feed-simple") {
+    for (const [uri, name] of [[payload.articleImageUri, "article-image.jpg"], [payload.socialImageUri, "social-image.jpg"]]) {
+      if (uri) fd.append("file", { uri, name, type: "image/jpeg" } as any);
     }
   }
 
