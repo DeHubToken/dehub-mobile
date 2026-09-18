@@ -111,7 +111,13 @@ const DpayCheckoutStatus: React.FC<Props> = ({
         }
         const data = dataArr[0];
         setTxData(data);
-        setStatusStripe(String(data?.status_stripe || "pending"));
+        const expiredByHook = Array.isArray(data?.stripe_hooks) &&
+          data.stripe_hooks.some((hook: Record<string, unknown>) =>
+            hook && typeof hook === "object" && "checkout.session.expired" in hook
+          );
+        setStatusStripe(data?.status_stripe === "failed" && expiredByHook
+          ? "expired"
+          : String(data?.status_stripe || "pending"));
         setTokenSendStatus(data?.tokenSendStatus ?? null);
 
         // On success (token sent), update balances once
@@ -193,6 +199,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
   }, [navigation, onClose]);
 
   const isSuccess = (tokenSendStatus ?? "").toLowerCase() === "sent";
+  const isExpired = (statusStripe ?? "").toLowerCase() === "expired";
 
   const handleClose = React.useCallback(() => {
     if (pollRef.current) { clearInterval(pollRef.current); pollRef.current = null; }
@@ -240,7 +247,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
       ) : (
         <View>
           <Text className="text-white text-xl font-semibold text-center mb-4">
-            Waiting for confirmation…
+            {isExpired ? t("dpay.paymentExpired") : "Waiting for confirmation…"}
           </Text>
 
           <View className="border-t border-theme-neutrals-700/60 mt-2">
@@ -294,7 +301,9 @@ const DpayCheckoutStatus: React.FC<Props> = ({
             {shouldPoll ? <ActivityIndicator color="#F4F4F5" /> : null}
           </View>
           <Text className="text-gray-400 text-[11px] text-center mt-2 px-4">
-            You can leave this screen. Your tokens will arrive in your wallet once your payment is confirmed.
+            {isExpired
+              ? "No payment was completed. Start a new checkout when you are ready."
+              : "You can leave this screen. Your tokens will arrive in your wallet once your payment is confirmed."}
           </Text>
 
           <View className="mt-5">
