@@ -18,6 +18,7 @@ import {
 import type { User } from "../context/AuthContext";
 import { streamInfoKeys } from "../config/constants";
 import { isHoldGated, isSubscriberGated } from "./content-gate";
+import { isDhbHoldingsGate, ownedDhbHoldings } from "./holdings-gate";
 
 export interface UserBalanceEntry {
   chainId: number;
@@ -55,6 +56,7 @@ export interface StreamInfoShape {
   lockContentChainIds?: number | number[];
   lockContentTokenSymbol?: string;
   lockContentAmount?: string | number;
+  lockContentContractAddress?: string;
   isPayPerView?: boolean;
   payPerViewTokenSymbol?: string;
   payPerViewAmount?: string | number;
@@ -108,7 +110,7 @@ export const maxStacked = (balanceData: any): number => {
 const toArray = <T>(v: T | T[] | undefined): T[] =>
   Array.isArray(v) ? v : v === undefined ? [] : [v];
 
-const computeStreamAccessInfo = (
+export const computeStreamAccessInfo = (
   nftMetadata: NFTMetadataLike | null | undefined,
   userInfo: UserInfoLite | null,
   chainId: number
@@ -151,17 +153,22 @@ const computeStreamAccessInfo = (
     } else {
       const targetSymbol = info.lockContentTokenSymbol || DEFAULT_TOKEN_SYMBOL;
       const needed = Number(info.lockContentAmount || 0);
+      const gateChains = toArray(info.lockContentChainIds ?? DEFAULT_CHAIN_ID);
+      const isDhb = isDhbHoldingsGate(targetSymbol, info.lockContentContractAddress, gateChains);
 
       // Aggregate wallet + staked across ALL chains for the target token
-      let totalBalance = 0;
+      let totalBalance = isDhb ? ownedDhbHoldings(userInfo.balanceData) : 0;
       userInfo.balanceData.forEach((entry) => {
+        if (isDhb || !gateChains.includes(entry.chainId)) return;
         const tokenItem = supportedTokensForLockContent.find(
           (t) =>
-            t.address.toLowerCase() === entry.tokenAddress &&
+            t.address.toLowerCase() === entry.tokenAddress.toLowerCase() &&
             t.chainId === entry.chainId
         );
         if (!tokenItem || tokenItem.symbol !== targetSymbol) return;
-        totalBalance += (entry.walletBalance || 0) + (entry.staked || 0);
+        if (info.lockContentContractAddress &&
+          info.lockContentContractAddress.toLowerCase() !== entry.tokenAddress.toLowerCase()) return;
+        totalBalance += Number(entry.walletBalance) || 0;
       });
 
       streamStatus.isLockedWithLockContent = totalBalance < needed;
@@ -234,11 +241,11 @@ export const useStreamAccessInfo = (
             walletBalance: e.walletBalance || 0,
             staked: e.staked || 0,
           }))
-        : supportedTokens.map((t) => ({
+        : supportedTokens.filter(t => t.chainId === (chainId || DEFAULT_CHAIN_ID)).map((t) => ({
             chainId: t.chainId,
             tokenAddress: t.address.toLowerCase(),
             walletBalance: (user as any)?.tokenBalances?.[t.symbol] || 0,
-            staked: (user as any)?.stakedDHB || 0,
+            staked: t.symbol === 'DHB' ? (user as any)?.stakedDHB || 0 : 0,
           }));
 
     const userInfo: UserInfoLite | null = user
