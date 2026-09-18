@@ -5,10 +5,8 @@
  * comes from react-native-webrtc, which the viewer half of the app otherwise
  * never touches.
  *
- * Deliberately plain — no controls, no overlays. Everything a viewer taps on a
- * live stream is drawn by LiveStreamPlayer on top of whatever is rendering the
- * picture, so this has to be exactly what VideoArea is underneath: a surface
- * that fills its parent and nothing else.
+ * LiveStreamPlayer owns the controls. This surface keeps a small loader visible
+ * until the native renderer reports a picture size.
  */
 
 import React, { useState } from "react";
