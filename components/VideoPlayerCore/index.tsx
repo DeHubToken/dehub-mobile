@@ -43,6 +43,7 @@ import { Ionicons } from '@expo/vector-icons';
 import TopControls from './TopControls';
 import PictureInPictureButton from '../common/PictureInPictureButton';
 import CenterControls from './CenterControls';
+import { DeHubLoader } from '../DeHubLoader';
 import ProgressBar from './ProgressBar';
 import SeekOverlay from './SeekOverlay';
 import CaptionOverlay from './CaptionOverlay';
@@ -146,6 +147,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const [position, setPosition] = useState(0);
   const [bufferedPosition, setBufferedPosition] = useState(0);
   const [isBuffering, setIsBuffering] = useState(false);
+  const [firstFrameSource, setFirstFrameSource] = useState<string | null>(null);
   const [fullscreen, setFullscreen] = useState(false);
   const [progressBarWidth, setProgressBarWidth] = useState(0);
   const [isSeeking, setIsSeeking] = useState(false);
@@ -419,10 +421,11 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
       player.pause();
       clearHideTimer();
     } else {
+      if (liveMode && player.status !== 'readyToPlay') setIsBuffering(true);
       player.play();
       scheduleHide();
     }
-  }, [player, clearHideTimer, scheduleHide]);
+  }, [player, liveMode, clearHideTimer, scheduleHide]);
 
   const toggleLoop = useCallback(() => {
     const nextLoop = !isLooping;
@@ -772,6 +775,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
             viewRef.current = r as VideoView | null;
           }}
           player={player}
+          onFirstFrameRender={() => setFirstFrameSource(sourceUrl)}
           focusable={false}
           style={styles.video}
           contentFit="contain"
@@ -785,6 +789,14 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           onPictureInPictureStop={handlePiPStop}
         />
       )}
+
+      {/* Live hides its controls, so buffering feedback must live outside them. */}
+      {liveMode && sourceUrl && isPlaying && !hasError &&
+        (firstFrameSource !== sourceUrl || isBuffering) && (
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center' }]}>
+            <DeHubLoader size={40} />
+          </View>
+        )}
 
       {/* Loading state when no source */}
       {!sourceUrl && (

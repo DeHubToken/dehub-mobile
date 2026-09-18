@@ -15,9 +15,10 @@ import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useEvent } from "expo";
 import { useTranslation } from "react-i18next";
 import { VideoView, useVideoPlayer } from "expo-video";
+import { DeHubLoader } from "../DeHubLoader";
 import SmartImage from "./SmartImage";
 import Icon from "../ui/Icon";
-import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
+import { LIVE_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 
 interface Props {
   /** HLS ladder for the stream. */
@@ -55,14 +56,16 @@ function usablePoster(thumbnail?: string): string | undefined {
  * while `active` is the difference between one player and one per live card.
  */
 function LivePlayer({ url }: { url: string }) {
+  const [firstFrame, setFirstFrame] = useState(false);
   const { t } = useTranslation();
   const [muted, setMuted] = useState(true);
   const [controlsVisible, setControlsVisible] = useState(true);
   const player = useVideoPlayer(url, p => {
     p.muted = true;
     p.loop = false;
-    p.bufferOptions = FEED_BUFFER_OPTIONS;
+    p.bufferOptions = LIVE_BUFFER_OPTIONS;
   });
+  const { status } = useEvent(player, 'statusChange', { status: player.status });
   const { isPlaying } = useEvent(player, "playingChange", { isPlaying: player.playing });
 
   useEffect(() => {
@@ -89,6 +92,7 @@ function LivePlayer({ url }: { url: string }) {
       <VideoView
       style={StyleSheet.absoluteFill}
       player={player}
+      onFirstFrameRender={() => setFirstFrame(true)}
       nativeControls={false}
       contentFit="cover"
       // A SurfaceView is composited beneath the app window, so the card's
@@ -96,6 +100,9 @@ function LivePlayer({ url }: { url: string }) {
       surfaceType="textureView"
       />
       </Pressable>
+      {status !== 'error' && (!firstFrame || status === 'loading') && (
+        <View pointerEvents="none" style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center' }]}><DeHubLoader size={40} /></View>
+      )}
       {controlsVisible && <View style={styles.controls}>
         <Pressable accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} style={styles.control} onPress={(event) => {
           event.stopPropagation();
@@ -148,7 +155,7 @@ function LiveFeedPreviewComponent({ url, thumbnail, active, label }: Props) {
           feed of live posts mounted one per card — which is the shape that
           produced the OutOfMemoryError in ExoPlayerImplInternal. The poster
           below stays put, so an inactive card still shows the stream's frame. */}
-      {active && <LivePlayer url={url} />}
+      {active && <LivePlayer key={url} url={url} />}
     </View>
   );
 }
