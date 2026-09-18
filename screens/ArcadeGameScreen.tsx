@@ -37,6 +37,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, StatusBar, AppState } from "react-native";
 import { WebView } from "react-native-webview";
+import { Image } from "expo-image";
 import type { WebViewMessageEvent, WebViewNavigation } from "react-native-webview";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import * as ScreenOrientation from "expo-screen-orientation";
@@ -478,8 +479,11 @@ const ArcadeGameScreen = () => {
           somebody staring at a black screen has is "is this doing anything". */}
       {!failed && showBoot ? (
         <View style={styles.boot} pointerEvents="box-none">
-          {game.slug === "trenchstar" && <TrenchstarIcon name="focus" size={52} />}
-          <Text style={styles.bootTitle}>{game.title}</Text>
+          {game.brand ? (
+            <Image source={game.brand} style={styles.bootBrand} contentFit="contain" accessibilityLabel={game.title} />
+          ) : (
+            <Text style={styles.bootTitle}>{game.title}</Text>
+          )}
           <View
             accessibilityRole="progressbar"
             accessibilityLabel={`Loading ${game.title}`}
@@ -505,6 +509,7 @@ const ArcadeGameScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  bootBrand: { width: "80%", maxWidth: 320, aspectRatio: 1.5 },
   screen: { flex: 1, backgroundColor: "#000" },
   web: { flex: 1, backgroundColor: "#000" },
   privacyWarning: {
