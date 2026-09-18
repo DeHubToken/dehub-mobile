@@ -1,5 +1,5 @@
 
-import { estimateMinutes, featuredPaymentAssets, formatPaymentAmount, isPurchaseTerminal, paymentKey, purchasePhase, purchasePollDelay, validDhbAmount, type Purchase } from '../../libs/crypto-purchase';
+import { defaultRefund, estimateMinutes, featuredPaymentAssets, formatPaymentAmount, isPurchaseTerminal, paymentKey, paymentChainName, purchasePhase, purchasePollDelay, validDhbAmount, type Purchase } from '../../libs/crypto-purchase';
 
 const now = Date.parse('2026-09-17T12:00:00Z');
 const purchase: Purchase = { id: 'purchase', originAsset: 'btc', amountInFormatted: '0.01', depositAddress: 'address', expiresAt: (now - 1000) / 1000 };
@@ -65,7 +65,14 @@ describe('crypto purchase lifecycle', () => {
       { assetId: 'bnb-bsc', symbol: 'BNB', blockchain: 'bsc', decimals: 18 },
       { assetId: 'sol-sol', symbol: 'SOL', blockchain: 'sol', decimals: 9 },
       { assetId: 'usdt-base', symbol: 'USDT', blockchain: 'base', decimals: 6 },
+      { assetId: 'eth-robinhood', symbol: 'ETH', blockchain: 'robinhood', decimals: 18 },
+      { assetId: 'usdt-robinhood', symbol: 'USDT', blockchain: 'robinhood', decimals: 6 },
+      { assetId: 'usdc-robinhood', symbol: 'USDC', blockchain: 'robinhood', decimals: 6 },
     ];
-    expect(featuredPaymentAssets(assets).map(asset => asset.assetId)).toEqual(['eth-base', 'bnb-bsc', 'sol-sol', 'usdt-base', 'usdc-base']);
+    expect(featuredPaymentAssets(assets).map(asset => asset.assetId)).toEqual(['eth-base', 'bnb-bsc', 'sol-sol', 'usdt-base', 'usdc-base', 'eth-robinhood', 'usdt-robinhood', 'usdc-robinhood']);
+  });
+  it('labels Robinhood payments and refunds to the EVM wallet', () => {
+    expect(paymentChainName('robinhood')).toBe('Robinhood Chain');
+    expect(defaultRefund('robinhood', '0xBuyer')).toBe('0xBuyer');
   });
 });
