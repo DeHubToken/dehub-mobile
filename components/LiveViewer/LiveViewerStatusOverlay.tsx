@@ -87,9 +87,8 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
 
   if (status === "loading") {
     return (
-      <View style={[StyleSheet.absoluteFill, styles.centre, styles.loadingWash]}>
-        <DeHubLoader size={56} />
-        <Text style={styles.loadingText}>{t("liveViewer.loadingStream")}</Text>
+      <View style={[StyleSheet.absoluteFill, styles.centre]} pointerEvents="none" accessibilityLabel={t("liveViewer.loadingStream")}>
+        <DeHubLoader size={40} />
       </View>
     );
   }
