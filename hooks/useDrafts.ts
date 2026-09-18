@@ -38,6 +38,9 @@ export interface Draft {
    * `bodyText` and its body in `description` (the pre-split field mapping).
    */
   titleText?: string;
+  articleBody?: string;
+  articleImageUri?: string | null;
+  socialImageUri?: string | null;
   categories: string[];
   imageUris: string[];
   videoUri: string | null;
@@ -100,7 +103,10 @@ const fromRow = (row: any): Draft => ({
   id: `remote_${row.id}`,
   bodyText: row.text ?? "",
   description: row.description ?? "",
-  titleText: row.metadata?.titleText,
+  titleText: row.metadata?.titleText || row.metadata?.articleTitle,
+  articleBody: row.metadata?.articleBody,
+  articleImageUri: null,
+  socialImageUri: null,
   categories: row.metadata?.categories ?? (row.selected_category ? [row.selected_category] : []),
   imageUris: [],
   videoUri: null,
@@ -163,6 +169,7 @@ const pushRemote = async (draft: Draft, address?: string): Promise<string | null
             categories: draft.categories,
             monetization: draft.monetization,
             titleText: draft.titleText ?? "",
+            articleBody: draft.articleBody ?? "",
             source: "mobile",
           },
         })

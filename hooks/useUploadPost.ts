@@ -54,6 +54,8 @@ export type UploadPayload = {
   bodyText: string;
   description: string;
   articleBody?: string;
+  articleImageUri?: string | null;
+  socialImageUri?: string | null;
   categories: string[];
   pickedImages: ImagePicker.ImagePickerAsset[];
   pickedVideo: ImagePicker.ImagePickerAsset | null;
@@ -291,6 +293,8 @@ export function useUploadPost() {
         bodyText: p.bodyText,
         description: p.description,
         articleBody: p.articleBody,
+        articleImageUri: p.articleImageUri || undefined,
+        socialImageUri: p.socialImageUri || undefined,
         categories: mergedCategories,
         postType,
         images,
