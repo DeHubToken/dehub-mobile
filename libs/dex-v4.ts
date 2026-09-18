@@ -1,3 +1,4 @@
+import { readReceiptFromProviders } from './dex-receipt';
 import { ethers } from 'ethers';
 import { Percent, Token } from '@uniswap/sdk-core';
 import { Pool, Position, V4PositionManager } from '@uniswap/v4-sdk';
@@ -10,8 +11,8 @@ const providers = new Map<number, ethers.providers.FallbackProvider>();
 export function dexProvider(chainId: DexChainId) {
   let provider = providers.get(chainId);
   if (!provider) {
-    const urls = chainId === ChainId.BASE_MAINNET ? ['https://base-rpc.publicnode.com', 'https://mainnet.base.org']
-      : ['https://bsc-rpc.publicnode.com', 'https://bsc-dataseed.binance.org'];
+    const urls = chainId === ChainId.BASE_MAINNET ? ['https://mainnet.base.org', 'https://base-rpc.publicnode.com']
+      : ['https://bsc-dataseed.binance.org', 'https://bsc-rpc.publicnode.com'];
     provider = new ethers.providers.FallbackProvider(urls.map((url, index) => ({
       provider: new ethers.providers.StaticJsonRpcProvider({ url, timeout: 10000, throttleLimit: 1 }, chainId),
       priority: index + 1, stallTimeout: 1000, weight: 1,
@@ -19,6 +20,10 @@ export function dexProvider(chainId: DexChainId) {
     providers.set(chainId, provider);
   }
   return provider;
+}
+
+export function dexReceipt(chainId: DexChainId, hash: string) {
+  return readReceiptFromProviders(dexProvider(chainId).providerConfigs.map(config => config.provider), hash);
 }
 
 export type DexChainId = ChainId.BASE_MAINNET | ChainId.BSC_MAINNET;
@@ -119,7 +124,7 @@ export async function verifyPosition(row: IndexedPosition, blockTag?: number): P
   try {
     const [owner, liquidity, info, receipt] = await Promise.all([
       manager.ownerOf(row.token_id, { blockTag }), manager.getPositionLiquidity(row.token_id, { blockTag }),
-      manager.getPoolAndPositionInfo(row.token_id, { blockTag }), provider.getTransactionReceipt(row.mint_tx_hash),
+      manager.getPoolAndPositionInfo(row.token_id, { blockTag }), dexReceipt(chainId, row.mint_tx_hash),
     ]);
     if (!receipt || receipt.status !== 1 || liquidity.isZero() ||
       (row.side !== 'buy' && row.side !== 'sell')) return null;
@@ -290,7 +295,9 @@ async function sendTx(signingProvider: any, chainId: DexChainId, from: string, t
     method: 'eth_sendTransaction', params: [{ from, to, data, value }],
   }) as string;
   submitted?.(hash);
-  const receipt = await dexProvider(chainId).waitForTransaction(hash, 1, 120_000);
+  const receipt = await readReceiptFromProviders(dexProvider(chainId).providerConfigs.map(config => ({
+    getTransactionReceipt: (txHash: string) => config.provider.waitForTransaction(txHash, 1, 60_000),
+  })), hash);
   if (!receipt) throw new Error('Transaction was not confirmed yet');
   if (receipt.status !== 1) throw Object.assign(new Error('Transaction reverted. No changes were confirmed.'), { code: 'DEX_REVERTED' });
   return receipt;
@@ -333,7 +340,7 @@ export async function mintSell(input: SellInput, signingProvider: any, progress:
 
 export async function recoverMint(input: SellInput, hash: string): Promise<{ tokenId: string; txHash: string }> {
   const cfg = DEX_CHAINS[input.chainId];
-  const receipt = await readWithTimeout(dexProvider(input.chainId).getTransactionReceipt(hash), 'Transaction receipt');
+  const receipt = await readWithTimeout(dexReceipt(input.chainId, hash), 'Transaction receipt');
   if (!receipt) throw new Error('Transaction submitted. Confirmation is not available yet.');
   if (receipt.status !== 1) throw Object.assign(new Error('The position transaction reverted. No position was created.'), { code: 'DEX_REVERTED' });
   const transferTopic = ethers.utils.id('Transfer(address,address,uint256)');
