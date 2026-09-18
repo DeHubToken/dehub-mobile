@@ -93,6 +93,7 @@ const buildHlsFromPlayback = (
 ) => hlsUrlFor({ playbackId, provider });
 
 const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
+  const [viewportHeight, setViewportHeight] = useState(0);
   const {
     tokenId,
     streamId: streamIdProp,
@@ -1399,7 +1400,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   }, [streamLoading, streamEntity, isPausedEffective, isLiveEffective, isEndedEffective, isPlayingReplay, isScheduledEffective, isOfflineEffective]);
 
   return (
-    <View className="flex-1 dark-surface bg-black">
+    <View className="flex-1 dark-surface bg-black"
+      onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}>
       {/* Reads tip messages out loud. Zero-size, no chrome, no layout. */}
       <TipSpeaker />
       {/* Full-screen video player as background */}
@@ -1562,6 +1564,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
                 {/* Say something, or do something: one row of it. */}
                 <LiveViewerActionBar
+                  viewportHeight={viewportHeight}
                   canSend={!!canChat && liveChat.connected && !liveChat.isBanned}
                   chatEnabled={liveChatEnabled}
                   isLive={isLiveEffective}
