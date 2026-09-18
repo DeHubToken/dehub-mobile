@@ -4246,6 +4246,9 @@
     "couldNotRetrieve": "Không thể lấy ví cũ đó trên thiết bị này. Bạn vẫn có thể khôi phục nó trên dehub.io bên dưới."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Chọn một màn ăn mừng",
     "plays": "Phát {{tier}} trên luồng trực tiếp",
     "you": "Bạn",

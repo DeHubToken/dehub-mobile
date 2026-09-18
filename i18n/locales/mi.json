@@ -4144,6 +4144,9 @@
     "couldNotRetrieve": "Kāore i taea te tiki i taua pūkoro tawhito i tēnei pūrere. Ka taea tonu e koe te whakaora i dehub.io i raro nei."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Tīpakohia tētahi whakanui",
     "plays": "Ka tākaro a {{tier}} ki runga i te roma",
     "you": "Tō",

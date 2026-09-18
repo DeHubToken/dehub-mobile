@@ -4109,6 +4109,9 @@
     "couldNotRetrieve": "ဤစက်ပစ္စည်းတွင် ထိုပိုက်ဆံအိတ်ဟောင်းကို မရယူနိုင်ခဲ့ပါ။ အောက်ပါ dehub.io တွင် ဆက်လက်၍ ပြန်ရယူနိုင်ပါသည်။"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "ပွဲတော်တစ်ခုကို ရွေးချယ်ပါ။",
     "plays": "Stream တွင် {{tier}} ကို ဖွင့်ပါ။",
     "you": "သင်",

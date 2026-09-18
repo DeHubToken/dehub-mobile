@@ -4150,6 +4150,9 @@
     "couldNotRetrieve": "ఈ పరికరంలో ఆ పాత వాలెట్‌ను పొందలేకపోయాం. కింద ఉన్న dehub.io లో ఇప్పటికీ దాన్ని తిరిగి పొందవచ్చు."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "ఒక వేడుకను ఎంచుకోండి",
     "plays": "స్ట్రీమ్‌లో {{tier}} ప్లే అవుతుంది",
     "you": "మీరు",

@@ -45,6 +45,8 @@ import { applyGasMargin, parseTxError } from "../../libs/web3.util";
 import { writeContractAA } from "../../libs/aa.write";
 import { recordLiveGift } from "../../services/live.service";
 import { MAX_TTS_CHARS } from "../../libs/tipTts";
+import DpayTopUpForm from "../Dpay/DpayTopUpForm";
+import NearIntentBuy from "../Dpay/NearIntentBuy";
 
 export interface GiftModalProps {
   open: boolean;
@@ -101,7 +103,9 @@ const GiftModal: React.FC<GiftModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const user = useUser();
-  const { patchUser, requireAuth } = useAuthActions();
+  const { patchUser, requireAuth, refreshUser } = useAuthActions();
+  const [buyOpen, setBuyOpen] = useState(false);
+  const [buyMethod, setBuyMethod] = useState<"card" | "crypto">("card");
   const { provider, account, chainId } = useWeb3Provider();
   const tokenMeta = useMemo(() => {
     if (!chainId) return undefined;
@@ -315,7 +319,12 @@ const GiftModal: React.FC<GiftModalProps> = ({
     }
   }, [open]);
 
+  const handleFunded = useCallback(() => {
+    void refreshUser().finally(() => setBuyOpen(false));
+  }, [refreshUser]);
+
   return (
+    <>
     <GlassModal
       visible={open}
       onClose={() => onOpenChange(false)}
@@ -472,16 +481,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
               )}
             </View>
 
-            <View className="flex-row items-center justify-end gap-3 mt-4">
-              <TouchableOpacity
-                disabled={isBusy}
-                onPress={() => onOpenChange(false)}
-                className={`px-5 h-11 rounded-xl bg-white/10 items-center justify-center ${
-                  isBusy ? "opacity-60" : ""
-                }`}
-              >
-                <Text className="text-white font-semibold">Cancel</Text>
-              </TouchableOpacity>
+            <View className="gap-2 mt-4">
               <AccentButtonGradient
                 style={disableSend ? { opacity: 0.5 } : undefined}
               >
@@ -489,7 +489,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                   disabled={disableSend}
                   onPress={handleSend}
                   activeOpacity={0.85}
-                  className="flex-row items-center gap-2 px-5 h-11"
+                  className="flex-row items-center justify-center gap-2 px-5 h-11"
                 >
                   {isBusy ? (
                     <ActivityIndicator color="#fff" />
@@ -510,6 +510,19 @@ const GiftModal: React.FC<GiftModalProps> = ({
                   </Text>
                 </TouchableOpacity>
               </AccentButtonGradient>
+              <TouchableOpacity
+                onPress={() => setBuyOpen(true)}
+                className="h-11 rounded-xl bg-white/10 items-center justify-center"
+              >
+                <Text className="text-white font-semibold">{t("liveGift.buyTokens")}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                disabled={isBusy}
+                onPress={() => onOpenChange(false)}
+                className={`h-11 rounded-xl bg-white/10 items-center justify-center ${isBusy ? "opacity-60" : ""}`}
+              >
+                <Text className="text-white font-semibold">Cancel</Text>
+              </TouchableOpacity>
             </View>
           </>
         ) : (
@@ -547,6 +560,45 @@ const GiftModal: React.FC<GiftModalProps> = ({
         )}
       </TouchableOpacity>
     </GlassModal>
+    <GlassModal
+      visible={buyOpen && open}
+      onClose={() => setBuyOpen(false)}
+      presentation="bottom"
+      maxHeight="90%"
+      scrollable
+    >
+      <View className="p-5">
+        <Text className="text-white text-2xl font-bold mb-1">{t("liveGift.buyTokens")}</Text>
+        <Text className="text-white/60 text-xs mb-4">{t("liveGift.buyHint")}</Text>
+        <View className="flex-row gap-2 mb-4">
+          {(["card", "crypto"] as const).map((method) => (
+            <TouchableOpacity
+              key={method}
+              onPress={() => setBuyMethod(method)}
+              className={`flex-1 h-11 rounded-xl border items-center justify-center ${buyMethod === method ? "bg-white/20 border-white/40" : "bg-white/5 border-white/10"}`}
+            >
+              <Text className="text-white font-semibold">{method === "card" ? "Card" : "Crypto"}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+        {buyMethod === "card" ? (
+          <DpayTopUpForm
+            embedded
+            onDelivered={handleFunded}
+          />
+        ) : (
+          <NearIntentBuy
+            active
+            initialDhbAmount={Math.max(1, Math.ceil(numericAmount - balance))}
+            onDelivered={handleFunded}
+          />
+        )}
+        <TouchableOpacity onPress={() => setBuyOpen(false)} className="h-11 mt-4 rounded-xl bg-white/10 items-center justify-center">
+          <Text className="text-white font-semibold">{t("liveGift.backToGift")}</Text>
+        </TouchableOpacity>
+      </View>
+    </GlassModal>
+    </>
   );
 };
 

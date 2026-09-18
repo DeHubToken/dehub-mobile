@@ -4222,6 +4222,9 @@
     "couldNotRetrieve": "Boorsaa durii sana meeshaa kana irratti argachuun hin danda'amne. Ammas dehub.io armaan gadii irratti deebisuu dandeessa."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Abaabii filadhu",
     "plays": "Taphata {{tier}} irratti",
     "you": "Ati",

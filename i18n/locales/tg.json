@@ -4136,6 +4136,9 @@
     "couldNotRetrieve": "Он ҳамёни кӯҳнаро дар ин дастгоҳ гирифтан нашуд. Шумо ҳанӯз метавонед онро дар dehub.io дар поён барқарор кунед."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Интихоб кунед ид",
     "plays": "Мебозад {{tier}} дар ҷараён",
     "you": "Шумо",

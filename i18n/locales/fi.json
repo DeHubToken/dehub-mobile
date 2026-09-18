@@ -4159,6 +4159,9 @@
     "couldNotRetrieve": "Vanhaa lompakkoa ei saatu haettua tällä laitteella. Voit silti palauttaa sen alta osoitteessa dehub.io."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Valitse juhla",
     "plays": "Toistaa {{tier}} striimissä",
     "you": "Sinä",

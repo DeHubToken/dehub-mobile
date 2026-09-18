@@ -4195,6 +4195,9 @@
     "couldNotRetrieve": "ไม่สามารถดึงกระเป๋าเงินเดิมนั้นบนเครื่องนี้ได้ คุณยังกู้คืนได้ที่ dehub.io ด้านล่าง"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "เลือกการเฉลิมฉลอง",
     "plays": "เล่น {{tier}} ในสตรีม",
     "you": "คุณ",

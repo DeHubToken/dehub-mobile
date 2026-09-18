@@ -4187,6 +4187,9 @@
     "couldNotRetrieve": "Asikwazanga ukuthola leso sikhwama esidala kule divayisi. Usengasibuyisa ku-dehub.io ngezansi."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Khetha umkhosi",
     "plays": "Idlala i-{{tier}} kusigcawu",
     "you": "Wena",

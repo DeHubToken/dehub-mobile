@@ -4157,6 +4157,9 @@
     "couldNotRetrieve": "Šajā ierīcē neizdevās iegūt to veco maku. Jūs joprojām varat to atgūt vietnē dehub.io zemāk."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Izvēlieties svinības",
     "plays": "Atskaņo {{tier}} straumē",
     "you": "Jūs",

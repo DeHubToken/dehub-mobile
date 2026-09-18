@@ -4634,6 +4634,9 @@
     "couldNotRetrieve": "Не вдалося отримати цей старий гаманець на цьому пристрої. Ви все одно можете відновити його на dehub.io нижче."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Оберіть святкування",
     "plays": "Відтворює {{tier}} на стрімі",
     "you": "Ви",

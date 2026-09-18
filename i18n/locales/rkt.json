@@ -4189,6 +4189,9 @@
     "couldNotRetrieve": "এই ডিভাইসত ঐ পুরান ওয়ালেটটা আনা গেল না। আপনি এলাও তলত dehub.io-ত ইয়াক ফিরি আনির পান।"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "ttsLabel": "मुख सूं बोल",
     "ttsPlaceholder": "स्ट्रीम नूं पढ़ के सुनाओ…",
     "ttsHint": "जब थारो गिफ्ट लैंड होवै तो देखण वाळा सबनूं पढ़ के सुनाओ।"

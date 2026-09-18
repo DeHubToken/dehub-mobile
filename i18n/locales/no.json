@@ -4144,6 +4144,9 @@
     "couldNotRetrieve": "Fikk ikke hentet den gamle lommeboken på denne enheten. Du kan fortsatt gjenopprette den på dehub.io nedenfor."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Velg en feiring",
     "plays": "Spiller {{tier}} på strømmen",
     "you": "Du",

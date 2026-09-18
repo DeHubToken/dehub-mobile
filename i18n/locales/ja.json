@@ -4226,6 +4226,9 @@
     "couldNotRetrieve": "この端末では、その古いウォレットを取得できませんでした。下の dehub.io からなら復元できます。"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "お祝いを選択",
     "plays": "配信で{{tier}}を再生",
     "you": "あなた",

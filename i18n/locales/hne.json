@@ -4156,6 +4156,9 @@
     "couldNotRetrieve": "ए डिवाइस म ओ जुन्ना वॉलेट नइ मिलिस। तेंह अभो ले खाल्हे dehub.io म ओला वापिस पा सकत हस।"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "कोनो तिहार चुनो",
     "plays": "स्ट्रीम म {{tier}} बजाथे",
     "you": "तहूं",

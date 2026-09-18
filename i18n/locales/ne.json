@@ -4191,6 +4191,9 @@
     "couldNotRetrieve": "यो यन्त्रमा त्यो पुरानो वालेट ल्याउन सकिएन। तपाईं अझै तलको dehub.io मा यो फिर्ता ल्याउन सक्नुहुन्छ।"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "उत्सव छान्नुहोस्",
     "plays": "स्ट्रिममा {{tier}} बजाउँछ",
     "you": "तपाईं",

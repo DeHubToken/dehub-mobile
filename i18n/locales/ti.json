@@ -4117,6 +4117,9 @@
     "couldNotRetrieve": "ኣብዚ መሳርሒ ነቲ ናይ ቀደም ዋሌት ክንረኽቦ ኣይከኣልናን። ኣብ ታሕቲ ኣብ dehub.io ግና ክትመልሶ ትኽእል ኢኻ።"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "በዓል ምረጽ",
     "plays": "{{tier}} ኣብ መርበብ ሓበሬታ",
     "you": "ንስኻ/ኺ",

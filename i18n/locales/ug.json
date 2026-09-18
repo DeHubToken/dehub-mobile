@@ -4149,6 +4149,9 @@
     "couldNotRetrieve": "بۇ ئۈسكۈنىدە ئۇ كونا ھەميانغا ئېرىشەلمىدۇق. تۆۋەندىكى dehub.io دا يەنىلا ئەسلىگە كەلتۈرەلەيسىز."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "plays": "ئويۇن {{tier}} نى قويىدۇ",
     "you": "سىز",
     "tier": {

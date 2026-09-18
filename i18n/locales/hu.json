@@ -4163,6 +4163,9 @@
     "couldNotRetrieve": "Azt a régi tárcát nem sikerült lekérni ezen az eszközön. Alább a dehub.io oldalon még visszaállíthatod."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Válassz egy ünnepséget",
     "plays": "Játssza le a(z) {{tier}} a streamben",
     "you": "Te",

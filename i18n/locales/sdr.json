@@ -4157,6 +4157,9 @@
     "couldNotRetrieve": "نەتوانرا ئەو جزدانە کۆنە لەسەر ئەم ئامێرە بهێنرێت. هێشتا دەتوانیت لە خوارەوە لە dehub.io بیگەڕێنیتەوە."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Pick a celebration",
     "you": "You",
     "tier": {

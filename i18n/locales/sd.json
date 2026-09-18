@@ -4142,6 +4142,9 @@
     "couldNotRetrieve": "هن ڊوائيس تي اهو پراڻو والٽ حاصل نه ٿي سگهيو. توهان اڃا به هيٺ dehub.io تي ان کي بحال ڪري سگهو ٿا."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "ڪا جشن چونڊيو",
     "plays": "اسٽريم تي {{tier}} کيڏي ٿو",
     "you": "تون",

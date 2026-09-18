@@ -4172,6 +4172,9 @@
     "couldNotRetrieve": "Nu am putut prelua acel portofel vechi pe acest dispozitiv. Îl poți recupera în continuare pe dehub.io mai jos."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Alege o sărbătoare",
     "plays": "Redă {{tier}} pe stream",
     "you": "Tu",
