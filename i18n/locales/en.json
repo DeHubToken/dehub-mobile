@@ -4358,6 +4358,11 @@
     "balanceAmount": "Available: {{amount}} {{symbol}}"
   },
   "dex": {
+    "automaticStage": {
+      "tokenApproval": "Approving tokens automatically…",
+      "permitApproval": "Approving position access automatically…",
+      "submit": "Creating your position automatically…"
+    },
     "combined": "Combined market · Base + BNB",
     "reference": "Market reference · USD",
     "change24": "24h reference change",
