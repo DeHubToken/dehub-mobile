@@ -196,7 +196,7 @@ const ArcadeGameScreen = () => {
   const game = getArcadeGame(slug);
   const gameUrl = React.useMemo(() => {
     if (!game || slug !== 'trenchstar') return game?.url;
-    const query = ['room', 'symbol', 'view'].filter(key => typeof route.params?.[key] === 'string')
+    const query = ['room', 'symbol'].filter(key => typeof route.params?.[key] === 'string')
       .map(key => `${key}=${encodeURIComponent(route.params[key])}`).join('&');
     return `${game.url}${query ? '&' + query : ''}`;
   }, [game, slug, route.params]);
