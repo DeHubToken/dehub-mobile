@@ -43,7 +43,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
             : "—"}
         </Text>
       </Card>
-      <Card title="Supply Monitor" className="flex-1">
+      <Card title="Available to buy now" className="flex-1">
         <View className="flex-row items-center mb-2">
           <View className="flex-row items-center">
             <Image source={baseIcon} className="w-6 h-6 rounded-full" />
