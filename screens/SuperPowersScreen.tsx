@@ -25,14 +25,12 @@ import {
   ActivityIndicator,
   Image,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { theme } from "../theme";
 import { badgeImage } from "../libs";
 import { BadgeProgress } from "../components/Badge/BadgeProgress";
-import { ScreenNames } from "../navigation/ScreenNames";
 import {
   useCancelBoost,
   useSuperpowerLadder,
@@ -47,6 +45,7 @@ import {
   type SuperPowerInfo,
 } from "../services/superpower.service";
 import SuperPowerIcon from "../components/common/SuperPowerIcon";
+import BuyDhbSheet from "../components/Dpay/BuyDhbSheet";
 
 /** Total slot minutes a tier holds per cycle — the number worth comparing. */
 function formatMinutes(total: number): string {
@@ -57,7 +56,6 @@ function formatMinutes(total: number): string {
 }
 
 export default function SuperPowersScreen() {
-  const navigation = useNavigation<any>();
   const { t, i18n } = useTranslation();
   const { data: status, isLoading: loadingStatus, refetch: refetchStatus } = useSuperpowers();
   const { data: ladder, isLoading: loadingLadder } = useSuperpowerLadder();
@@ -83,6 +81,7 @@ export default function SuperPowersScreen() {
   const [spending, setSpending] = useState<SuperPowerInfo | null>(null);
   const [historyPower, setHistoryPower] = useState<SuperPowerInfo | null>(null);
   const [teamUpOpen, setTeamUpOpen] = useState(false);
+  const [buyOpen, setBuyOpen] = useState(false);
 
   const historyBookings = historyPower
     ? (status?.bookings.filter(booking => booking.power === historyPower.key) ?? [])
@@ -104,7 +103,7 @@ export default function SuperPowersScreen() {
       <ScreenHeader
         title={t("superpowers.screenTitle")}
         subtitle={t("superpowers.screenSubtitle")}
-        rightContent={<Icon name="Rocket" size={22} color={theme.colors.accent} />}
+        rightContent={<Icon name="Zap" size={22} color={theme.colors.accent} />}
       />
 
       <ScrollView contentContainerStyle={styles.content}>
@@ -131,7 +130,7 @@ export default function SuperPowersScreen() {
             <Text style={styles.muted}>{t("superpowers.teamUpOpenToAll")}</Text>
             <BadgeProgress balance={status?.badgeBalance ?? 0} compact />
             <Pressable
-              onPress={() => navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" })}
+              onPress={() => setBuyOpen(true)}
               style={styles.cta}
             >
               <Text style={styles.ctaText}>{t("superpowers.getDhb")}</Text>
@@ -260,6 +259,8 @@ export default function SuperPowersScreen() {
         {/* The honest sentence, once, where the numbers are. */}
         <Text style={styles.footnote}>{t("superpowers.rotationNote")}</Text>
       </ScrollView>
+
+      <BuyDhbSheet visible={buyOpen} onClose={() => setBuyOpen(false)} onDelivered={() => void refetchStatus()} />
 
       <SpendPowerSheet
         power={spending}
