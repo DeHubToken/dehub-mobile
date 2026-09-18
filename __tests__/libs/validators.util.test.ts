@@ -8,6 +8,7 @@ jest.mock('../../context/AuthContext', () => ({
 
 import {
   maxStacked,
+  computeStreamAccessInfo,
   isOwner,
   getTotalBountyAmount,
   isValidDataForMinting,
@@ -26,6 +27,21 @@ const token = supportedTokens[0] as {
 };
 
 describe('libs/validators.util', () => {
+  it('unlocks post 3256 for BNB staking even when the post names Base DHB', () => {
+    const result = computeStreamAccessInfo({ tokenId: 3256, streamInfo: {
+      isLockContent: true, lockContentAmount: 5, lockContentTokenSymbol: 'DHB',
+      lockContentContractAddress: '0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c', lockContentChainIds: [8453],
+    } }, { balanceData: [{ chainId: 56, tokenAddress: '0x680D3113caf77B61b510f332D5Ef4cf5b41A761D', walletBalance: 0, staked: 50000000 }] }, 8453);
+    expect(result.streamStatus?.isLockedWithLockContent).toBe(false);
+  });
+
+  it('does not use DHB holdings for a different contract using the DHB label', () => {
+    const result = computeStreamAccessInfo({ streamInfo: {
+      isLockContent: true, lockContentAmount: 5, lockContentTokenSymbol: 'DHB',
+      lockContentContractAddress: '0x1111111111111111111111111111111111111111', lockContentChainIds: [56],
+    } }, { balanceData: [{ chainId: 56, tokenAddress: '0x680d3113caf77b61b510f332d5ef4cf5b41a761d', walletBalance: 50000000 }] }, 56);
+    expect(result.streamStatus?.isLockedWithLockContent).toBe(true);
+  });
   describe('maxStacked', () => {
     it('returns 0 for missing balance data', () => {
       expect(maxStacked(undefined)).toBe(0);
