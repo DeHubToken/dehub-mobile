@@ -4158,6 +4158,9 @@
     "couldNotRetrieve": "Seda vana rahakotti ei õnnestunud selles seadmes kätte saada. Saad selle siiski taastada allpool saidil dehub.io."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Vali tähistamine",
     "plays": "Mängib {{tier}} striimil",
     "you": "Sina",

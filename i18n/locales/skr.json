@@ -4099,6 +4099,9 @@
     "couldNotRetrieve": "ایں ڈیوائس تے او پرانا والٹ کائنی ملیا۔ تُساں ہالاں وی تلے dehub.io تے ایں کوں بحال کر سڳدے او۔"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "ttsLabel": "کجھ زور نال آکھو",
     "ttsPlaceholder": "سٹریم تے وِچّھ آکھو…",
     "ttsHint": "جدوں تہاڈا تحفہ آوے تے ویکھن والے ساریاں نوں زور نال آکھو۔"

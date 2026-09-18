@@ -4103,6 +4103,9 @@
     "couldNotRetrieve": "अस्मिन् यन्त्रे सः प्राचीनः कोशः आनेतुं न शक्तः। अधःस्थे dehub.io इत्यत्र भवान् तं पुनःप्राप्तुं शक्नोति।"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "उत्सव चुनें",
     "plays": "स्ट्रीम पर {{tier}} चलता है",
     "you": "आप",

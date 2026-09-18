@@ -4149,6 +4149,9 @@
     "couldNotRetrieve": "Boorsadaas hore laguma heli karin qalabkan. Weli waad ka soo celin kartaa dehub.io ee hoose."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "U dooro dabaaldeg",
     "plays": "Waxay ciyaartaa {{tier}} durdurka",
     "you": "Adiga",

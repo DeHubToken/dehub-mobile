@@ -4116,6 +4116,9 @@
     "couldNotRetrieve": "Dompet lawas kuwi ora bisa dijupuk ing piranti iki. Sampeyan isih bisa mbalèkake liwat dehub.io ing ngisor."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Pilih perayaan",
     "plays": "Putar {{tier}} ing stream",
     "you": "Sampeyan",

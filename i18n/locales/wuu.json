@@ -4106,6 +4106,9 @@
     "couldNotRetrieve": "勒格部手机上取勿转来格个旧钱包。侬还好勒下头个 dehub.io 上寻转来。"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "选一个庆祝方式",
     "plays": "在直播间播放 {{tier}}",
     "you": "你",

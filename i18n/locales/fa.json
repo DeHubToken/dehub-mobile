@@ -4171,6 +4171,9 @@
     "couldNotRetrieve": "دریافت آن کیف پول قدیمی روی این دستگاه ممکن نشد. هنوز می‌توانید آن را در dehub.io پایین بازیابی کنید."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "یک جشن انتخاب کنید",
     "plays": "پخش {{tier}} در استریم",
     "you": "شما",

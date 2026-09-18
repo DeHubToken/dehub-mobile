@@ -4181,6 +4181,9 @@
     "couldNotRetrieve": "Δεν ήταν δυνατή η ανάκτηση εκείνου του παλιού πορτοφολιού σε αυτή τη συσκευή. Μπορείτε ακόμη να το ανακτήσετε στο dehub.io παρακάτω."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Διάλεξε μια γιορτή",
     "plays": "Παίζει {{tier}} στο stream",
     "you": "Εσύ",

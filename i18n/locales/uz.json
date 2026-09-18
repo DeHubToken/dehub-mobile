@@ -4204,6 +4204,9 @@
     "couldNotRetrieve": "Bu qurilmada o'sha eski hamyonni olib bo'lmadi. Uni quyidagi dehub.io saytida hamon tiklashingiz mumkin."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Bir bayramni tanlang",
     "plays": "Streamda {{tier}} ijro etadi",
     "you": "Siz",

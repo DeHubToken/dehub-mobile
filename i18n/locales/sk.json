@@ -4325,6 +4325,9 @@
     "couldNotRetrieve": "Túto starú peňaženku sa na tomto zariadení nepodarilo získať. Stále ju môžete obnoviť na dehub.io nižšie."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Vyberte oslavu",
     "plays": "Prehrá {{tier}} na streame",
     "you": "Ty",

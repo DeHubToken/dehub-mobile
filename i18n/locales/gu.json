@@ -4147,6 +4147,9 @@
     "couldNotRetrieve": "આ ડિવાઇસ પર એ જૂનું વૉલેટ મેળવી શકાયું નહીં. તમે હજી નીચે dehub.io પર તેને પાછું મેળવી શકો છો."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "કોઈ ઉજવણી પસંદ કરો",
     "plays": "સ્ટ્રીમ પર {{tier}} વગાડે છે",
     "you": "તમે",

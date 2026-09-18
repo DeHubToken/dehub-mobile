@@ -4142,6 +4142,9 @@
     "couldNotRetrieve": "Həmin köhnə cüzdanı bu cihazda əldə etmək mümkün olmadı. Yenə də onu aşağıdakı dehub.io saytında bərpa edə bilərsiniz."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Bir bayram seçin",
     "plays": "Stream-də {{tier}} oynayır",
     "you": "Siz",

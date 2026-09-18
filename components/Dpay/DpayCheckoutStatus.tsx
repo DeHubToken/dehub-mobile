@@ -23,6 +23,7 @@ type Props = {
   tokenSymbol?: string; // default DHB
   initialSid?: string | null;
   onClose: () => void;
+  onCompleted?: () => void;
 };
 
 const DpayCheckoutStatus: React.FC<Props> = ({
@@ -31,6 +32,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
   tokenSymbol = "DHB",
   initialSid,
   onClose,
+  onCompleted,
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
@@ -132,6 +134,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
                 } as any)
             );
           } catch {}
+          onCompleted?.();
         }
       } catch (err) {
         // A status read that did not come back says nothing about the payment.
@@ -142,7 +145,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
         setCheckingStatus(false);
       }
     },
-    [sid, address, chainId, tokenSymbol, patchUser, completed, playCheck]
+    [sid, address, chainId, tokenSymbol, patchUser, completed, playCheck, onCompleted]
   );
 
   const shouldPoll = React.useMemo(() => {

@@ -4148,6 +4148,9 @@
     "couldNotRetrieve": "A kò lè gba àpamọ́wọ́ àtijọ́ yẹn lórí ẹ̀rọ yìí. O ṣì lè gbà á padà lórí dehub.io nísàlẹ̀."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Yan ayẹyẹ kan",
     "plays": "Ṣe afihan {{tier}} lori ṣiṣan",
     "you": "Iwọ",

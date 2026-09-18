@@ -4152,6 +4152,9 @@
     "couldNotRetrieve": "Бул түзмөктө ал эски капчыкты алуу мүмкүн болгон жок. Аны төмөндөгү dehub.io сайтында дагы эле калыбына келтире аласыз."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Майрамды тандаңыз",
     "plays": "Эфирде {{tier}} ойнойт",
     "you": "Сиз",

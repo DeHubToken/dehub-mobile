@@ -4426,6 +4426,9 @@
     "couldNotRetrieve": "Die oude wallet kon niet op dit apparaat worden opgehaald. Je kunt hem hieronder nog steeds herstellen op dehub.io."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Kies een viering",
     "plays": "Speelt {{tier}} op de stream",
     "you": "Jij",

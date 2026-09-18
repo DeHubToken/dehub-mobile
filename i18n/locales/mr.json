@@ -4145,6 +4145,9 @@
     "couldNotRetrieve": "या डिव्हाइसवर ते जुने वॉलेट मिळवता आले नाही. तुम्ही अजूनही खाली dehub.io वर ते परत मिळवू शकता."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "एक उत्सव निवडा",
     "plays": "स्ट्रीमवर {{tier}} वाजवते",
     "you": "तुम्ही",

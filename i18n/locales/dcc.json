@@ -3789,6 +3789,9 @@
     "couldNotRetrieve": "اس ڈیوائس پر وہ پرانا والٹ نہیں مل سکا۔ تم پھر بھی نیچے dehub.io پر اسے بحال کر سکتے ہو۔"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "ttsLabel": "Ek goṣṭ bol",
     "ttsPlaceholder": "Stream la vāchūn dākhav…",
     "ttsHint": "Tūjh gift land jhālā tar pahāṇāryānnā vāchūn dākhav."

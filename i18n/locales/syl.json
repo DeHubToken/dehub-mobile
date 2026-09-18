@@ -4302,6 +4302,9 @@
     "couldNotRetrieve": "ইঁ ডিভাইসো ওই পুরান ওয়ালেট আনা গেল না। তুমি অখনও তলর dehub.io-ত ইতা ফিরত আনতে পারবা।"
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "ttsLabel": "কইতাও কিছু জোরে",
     "ttsPlaceholder": "Stream-এ পড়ি শুনাইতাও…",
     "ttsHint": "Tohfa land করনের সময় যারা দেখতাছে সবারে জোরে পড়ি শুনাইতাও।"

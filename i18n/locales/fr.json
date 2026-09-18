@@ -4234,6 +4234,9 @@
     "couldNotRetrieve": "Impossible de récupérer cet ancien portefeuille sur cet appareil. Vous pouvez toujours le récupérer sur dehub.io ci-dessous."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Choisissez une célébration",
     "plays": "Joue {{tier}} sur le stream",
     "you": "Vous",

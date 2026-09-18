@@ -3818,6 +3818,9 @@
     "couldNotRetrieve": "Тај стари новчаник није било могуће преузети на овом уређају. И даље га можете опоравити на dehub.io испод."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "ttsLabel": "Recite nešto naglas",
     "ttsPlaceholder": "Čitajte u strimu…",
     "ttsHint": "Čitajte naglas svima koji gledaju kada vaš poklon sleti."

@@ -4192,6 +4192,9 @@
     "couldNotRetrieve": "ამ მოწყობილობაზე ვერ მოხერხდა იმ ძველი საფულის მიღება. მისი აღდგენა მაინც შეგიძლიათ ქვემოთ, dehub.io-ზე."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "აირჩიეთ ზეიმი",
     "plays": "უკრავს {{tier}} სტრიმზე",
     "you": "შენ",

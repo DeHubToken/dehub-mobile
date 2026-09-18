@@ -4127,6 +4127,9 @@
     "couldNotRetrieve": "මෙම උපාංගයේ එම පැරණි පසුම්බිය ලබා ගත නොහැකි විය. පහත dehub.io හි තවමත් එය නැවත ලබා ගත හැක."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "උත්සවයක් තෝරන්න",
     "plays": "සජීවී විකාශයේ {{tier}} වාදනය කරයි",
     "you": "ඔබ",

@@ -4163,6 +4163,9 @@
     "couldNotRetrieve": "ಈ ಸಾಧನದಲ್ಲಿ ಆ ಹಳೆಯ ವಾಲೆಟ್ ಪಡೆಯಲಾಗಲಿಲ್ಲ. ಕೆಳಗಿನ dehub.io ನಲ್ಲಿ ಈಗಲೂ ಅದನ್ನು ಮರಳಿ ಪಡೆಯಬಹುದು."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "ಒಂದು ಆಚರಣೆಯನ್ನು ಆರಿಸಿ",
     "plays": "ಸ್ಟ್ರೀಮ್‌ನಲ್ಲಿ {{tier}} ಪ್ಲೇ ಆಗುತ್ತದೆ",
     "you": "ನೀವು",

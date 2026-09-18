@@ -4227,6 +4227,9 @@
     "couldNotRetrieve": "Diese alte Wallet konnte auf diesem Gerät nicht abgerufen werden. Du kannst sie unten auf dehub.io trotzdem wiederherstellen."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "Wähle eine Feier",
     "plays": "Spielt {{tier}} im Stream",
     "you": "Du",

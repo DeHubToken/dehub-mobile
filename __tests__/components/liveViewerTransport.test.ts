@@ -19,7 +19,7 @@ describe('live viewer transport', () => {
     expect(player).toContain('const whepLive = useWhepStream({');
     // Same three conditions the HLS URL is built under: playable, live, and
     // not a replay. A paywall that the transport can step around is not one.
-    expect(player).toContain('enabled: isPlayable && isLiveEffective && !isPlayingReplay');
+    expect(player).toContain('enabled: Platform.OS !== "android" && isPlayable && isLiveEffective && !isPlayingReplay');
   });
 
   it('keeps HLS as the fallback rather than replacing it', () => {

@@ -4103,6 +4103,9 @@
     "couldNotRetrieve": "پر دې وسیله هغه زوړ والټ ترلاسه نه شو. تاسو لاهم کولی شئ لاندې په dehub.io کې یې بیرته ترلاسه کړئ."
   },
   "liveGift": {
+    "buyTokens": "Buy tokens",
+    "buyHint": "Buy DHB and return to your gift. Your amount and message stay ready.",
+    "backToGift": "Back to gift",
     "pickTier": "یو اختر وټاکئ",
     "plays": "په سټریم کې {{tier}} غږوي",
     "you": "تاسو",
