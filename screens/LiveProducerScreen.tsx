@@ -395,7 +395,8 @@ const LiveProducerScreen: React.FC = () => {
       getPeak: () => peakViewersRef.current,
       debounceMs: 500,
     });
-    make(LivestreamEvents.ViewCountUpdate, ({ viewerCount }: any) => {
+    make(LivestreamEvents.ViewCountUpdate, ({ streamId: updatedStreamId, viewerCount }: any) => {
+      if (updatedStreamId !== streamId) return;
       console.log('[producer] frontend received', LivestreamEvents.ViewCountUpdate, { viewerCount });
       updater.onViewCount(typeof viewerCount === 'number' ? viewerCount : 0);
     });

@@ -903,7 +903,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       getPeak: () => peakViewersRef.current,
       debounceMs: 500,
     });
-    bind(LivestreamEvents.ViewCountUpdate as any, ({ viewerCount }: any) => {
+    bind(LivestreamEvents.ViewCountUpdate as any, ({ streamId: updatedStreamId, viewerCount }: any) => {
+      if (updatedStreamId !== streamId) return;
       updater.onViewCount(typeof viewerCount === "number" ? viewerCount : 0);
     });
     return () => {
