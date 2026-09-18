@@ -1322,6 +1322,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // system moments the livestream socket still carries.
   const chatActivities = useMemo<Activity[]>(() => {
     const moments = activities.filter((a) => a.status !== StreamActivityType.MESSAGE);
+    if ((isLiveEffective || isEndedEffective) && !moments.some((a) => a.status === StreamActivityType.START)) {
+      moments.unshift({ status: StreamActivityType.START, createdAt: 0 });
+    }
     const messages: Activity[] = liveChat.messages.map((m) => ({
       id: m._id,
       status: StreamActivityType.MESSAGE,
@@ -1345,8 +1348,12 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         avatarImageUrl: m.sender?.avatarUrl,
       },
     }));
-    return [...moments, ...messages].sort((a, b) => a.createdAt - b.createdAt);
-  }, [activities, liveChat.messages]);
+    return [...moments, ...messages].sort((a, b) => {
+      if (a.status === StreamActivityType.START) return b.status === StreamActivityType.START ? 0 : -1;
+      if (b.status === StreamActivityType.START) return 1;
+      return a.createdAt - b.createdAt;
+    });
+  }, [activities, liveChat.messages, isLiveEffective, isEndedEffective]);
 
   const handleSendMessage = useCallback(
     (content: string) => {
