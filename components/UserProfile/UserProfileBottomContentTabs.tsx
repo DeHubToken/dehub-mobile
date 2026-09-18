@@ -440,8 +440,8 @@ const UserProfileBottomContentTabs: React.FC<
   const fullScreenListHeader = useMemo(() => {
     if (!profileHeader) return undefined;
     return (
-      <View onLayout={handleHeaderLayout}>
-        {profileHeader}
+      <View>
+        <View onLayout={handleHeaderLayout}>{profileHeader}</View>
         {TabBar}
         {ContentToolbar}
       </View>
