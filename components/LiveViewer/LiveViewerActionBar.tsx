@@ -14,21 +14,19 @@
  * icons, no hue. The like fills white when it is on, exactly as the shorts
  * action row does.
  */
-import React, { memo, useCallback, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useRef, useState } from "react";
 import {
   View,
   Text,
   TextInput,
   Pressable,
   StyleSheet,
-  Platform,
-  useWindowDimensions,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import type { ReactionType } from "../LiveProducer/ReactionOverlay";
 import { formatCompactNumber } from "../../libs/numbers.util";
-import { useKeyboard } from "../../hooks/useKeyboard";
+import { useComposerKeyboard } from "../../hooks/useComposerKeyboard";
 import GifPicker from "../DM/GifPicker";
 import {
   ChromeFill,
@@ -54,6 +52,7 @@ const COOLDOWN_MS = 400;
 const BAR_SIZE = 48;
 
 interface Props {
+  viewportHeight: number;
   /** Chat */
   canSend: boolean;
   chatEnabled: boolean;
@@ -73,6 +72,7 @@ interface Props {
 }
 
 const LiveViewerActionBar: React.FC<Props> = ({
+  viewportHeight,
   canSend,
   chatEnabled,
   isLive,
@@ -93,9 +93,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
   const [reactionsOpen, setReactionsOpen] = useState(false);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const lastTapRef = useRef(0);
-  const { height: keyboardHeight, isVisible: kbVisible } = useKeyboard();
-  const { height: windowHeight } = useWindowDimensions();
-  const initialWindowHeight = useRef(windowHeight);
+  const composerKeyboard = useComposerKeyboard(viewportHeight);
 
   const inputDisabled = !canSend || !chatEnabled || isScheduled;
 
@@ -137,25 +135,9 @@ const LiveViewerActionBar: React.FC<Props> = ({
 
   const canSubmit = !!message.trim() && !inputDisabled;
 
-  // The keyboard lifts the whole bar, reactions strip included, so an open
-  // strip does not end up behind the keyboard it was opened above.
-  //
-  // iOS only. Android runs with `adjustResize` (app.json
-  // softwareKeyboardLayoutMode), which shrinks the whole window by the
-  // keyboard's height before this hook ever reports it — so adding the height
-  // again lifted the bar a second time, clean off the top of the shrunken
-  // screen. A viewer opening the keyboard on a phone watched the text box
-  // vanish and typed blind.
-  const lift = useMemo(() => {
-    if (!kbVisible) return 0;
-    if (Platform.OS !== "android") return keyboardHeight;
-    // Edge-to-edge Android can leave an absolute overlay at the old window
-    // bottom even with adjustResize. Account for any resize already applied.
-    return Math.max(0, keyboardHeight - Math.max(0, initialWindowHeight.current - windowHeight));
-  }, [kbVisible, keyboardHeight, windowHeight]);
-
   return (
-    <View style={{ marginBottom: lift }} pointerEvents="box-none">
+    <View ref={composerKeyboard.ref} collapsable={false} onLayout={composerKeyboard.onLayout}
+      style={{ marginBottom: composerKeyboard.lift }} pointerEvents="box-none">
       {reactionsOpen && isLive ? (
         <Pressable style={styles.reactionStrip} onPress={closeReactions}>
           <ChromeFill glass />
