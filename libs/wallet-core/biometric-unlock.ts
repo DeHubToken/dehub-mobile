@@ -58,7 +58,10 @@ export async function hasBiometricWrapKey(address: string): Promise<boolean> {
   try {
     const raw = await SecureStore.getItemAsync(WRAP_KEY_PREFIX + address.toLowerCase());
     return !!raw;
-  } catch {
+  } catch (error) {
+    // A failed keystore read is different from a device that never enrolled.
+    // Keep that distinction in shipped diagnostics without recording key data.
+    log.error("biometric-key-probe-failed", { errorName: error instanceof Error ? error.name : "unknown" });
     return false;
   }
 }
@@ -118,9 +121,17 @@ export async function unlockWithBiometrics(
   const addr = address.toLowerCase();
   const raw = await SecureStore.getItemAsync(WRAP_KEY_PREFIX + addr);
   if (!raw) {
+    log.error("biometric-key-missing-at-unlock", { reason: "no-local-wrap-key" });
     throw new BiometricUnavailableError("No biometric-protected wallet is stored on this device.");
   }
-  await requireDeviceOwner("Unlock your DeHub wallet");
+  try {
+    await requireDeviceOwner("Unlock your DeHub wallet");
+  } catch (error) {
+    if (!(error instanceof BiometricRejectedError)) {
+      log.error("biometric-verification-unavailable", { errorName: error instanceof Error ? error.name : "unknown" });
+    }
+    throw error;
+  }
   const wrapKey = hexToBytes(raw);
   try {
     return await decryptStringWithKeyMaterial(payload, wrapKey);
