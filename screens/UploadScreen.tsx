@@ -1958,6 +1958,21 @@ export default function UploadScreen() {
       >
         <Pressable className="flex-1" onPress={Keyboard.dismiss} accessible={false}>
         <View className="px-4 pt-4">
+          {!isQuoteMode && <View className="flex-row items-center justify-center mb-3" style={{ gap: 12 }}>
+            <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isLiveMode }}
+              onPress={() => { setArticleMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
+              <Text className={isLiveMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.livestream")}</Text>
+            </TouchableOpacity>
+            <Text className="text-white/25 text-xs">|</Text>
+            <TouchableOpacity accessibilityRole="button" onPress={() => openStages("create")}>
+              <Text className="text-white/55 text-xs font-medium">{t("nav.stages")}</Text>
+            </TouchableOpacity>
+            <Text className="text-white/25 text-xs">|</Text>
+            <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: articleMode }}
+              onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(!articleMode); setShowTitle(!articleMode); if (!articleMode) setMonetization(emptyMonetization()); }}>
+              <Text className={articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.label")}</Text>
+            </TouchableOpacity>
+          </View>}
           {/* Match web's composer header exactly: identity on the left, then
               chain, schedule and drafts on the right. The editor starts below
               this row and owns the full width. */}
@@ -2047,9 +2062,6 @@ export default function UploadScreen() {
           )}
 
           <View className="mt-3">
-            <TouchableOpacity onPress={() => { setArticleMode(!articleMode); setShowTitle(!articleMode); if (!articleMode) setMonetization(emptyMonetization()); }} className="mb-3 rounded-xl border border-white/20 px-4 py-3">
-              <Text className="text-white font-medium">{articleMode ? t("articles.switchToPost") : t("articles.write")}</Text>
-            </TouchableOpacity>
             {showTitleInput && (
               <TextInput
                 ref={titleRef}

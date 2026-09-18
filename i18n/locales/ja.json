@@ -1,6 +1,7 @@
 {
   "articles": {
     "label": "Article",
+    "livestream": "Livestream",
     "read": "Read article",
     "write": "Write an article",
     "switchToPost": "Writing an article · switch to post",
