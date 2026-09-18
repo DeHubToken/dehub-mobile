@@ -57,7 +57,7 @@ import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.servic
 import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
-import { getPostImageBytesForBadge, getPostImageLimitForBadge } from "../libs/post-image-allowance";
+import { getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES } from "../libs/post-image-allowance";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import AssetSuggestions from "../components/common/AssetSuggestions";
@@ -452,13 +452,9 @@ export default function UploadScreen() {
    */
   const [postQuota, setPostQuota] = useState<PostQuotaStatus | null>(null);
   const mediaUploadLimitBytes = postQuota?.mediaBytesPerDay ?? BASE_MEDIA_UPLOAD_SIZE_BYTES;
-  // How much of a picture survives upload is the creator's badge tier — this
-  // is the size the API will STORE, so a file over it is refused here rather
-  // than sent to be crushed. The API is the authority; the local ladder covers
-  // the moment before the quota lands.
-  const imageLimitBytes = postQuota?.mediaBytesPerDay
-    ?? getPostImageBytesForBadge(authUser?.badgeBalance, authUser?.username, authUser?.badgeLock);
-  const imageLimitMb = Math.round(imageLimitBytes / (1024 * 1024));
+  const imageLimitBytes = Math.min(MAX_IMAGE_UPLOAD_BYTES, postQuota?.mediaBytesPerDay
+    ?? getPostImageBytesForBadge(authUser?.badgeBalance, authUser?.username, authUser?.badgeLock));
+  const imageLimitMb = imageLimitBytes / 1_000_000;
   const mediaUploadLimitLabel = `${Number((mediaUploadLimitBytes / (1024 ** 3)).toFixed(1))} GB`;
   useEffect(() => {
     if (!authUser?.address) {

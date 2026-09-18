@@ -4,6 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { getNFT, replacePostImage, addPostImages, getPostImageAllowance } from '../../services/nft.service';
 import { ensureMediaLibraryPermission } from '../../libs/permissions.util';
 import { buildFeedImageUrls, toastError, toastSuccess } from '../../libs';
+import { MAX_IMAGE_UPLOAD_BYTES } from '../../libs/post-image-allowance';
 
 export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
   tokenId: number | string; disabled: boolean; onBusyChange: (busy: boolean) => void;
@@ -39,6 +40,7 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
       const picked = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, quality: 1 });
       if (picked.canceled || !picked.assets?.[0]) return;
       const image = picked.assets[0];
+      if ((image.fileSize ?? 0) > MAX_IMAGE_UPLOAD_BYTES) { toastError('Image must be 42.069 MB or smaller'); return; }
       const updated = await replacePostImage(tokenId, index, {
         uri: image.uri, name: image.fileName || 'replacement.jpg', type: image.mimeType || 'image/jpeg',
       });
@@ -66,6 +68,7 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
       });
       if (picked.canceled || !picked.assets?.length) return;
       if (images.length + picked.assets.length > imageLimit) { toastError(`Your badge tier allows up to ${imageLimit} images per post`); return; }
+      if (picked.assets.some(image => (image.fileSize ?? 0) > MAX_IMAGE_UPLOAD_BYTES)) { toastError('Images must be 42.069 MB or smaller'); return; }
       const updated = await addPostImages(tokenId, picked.assets.map(image => ({
         uri: image.uri, name: image.fileName || 'image.jpg', type: image.mimeType || 'image/jpeg',
       })));
