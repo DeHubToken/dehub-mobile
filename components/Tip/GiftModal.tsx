@@ -20,18 +20,8 @@ import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  Trophy,
-  Star,
-  PartyPopper,
-  ShieldPlus,
-  BellRing,
-  Crown,
-  Flower2,
-  Gift as GiftIcon,
-  Heart,
-  Gem,
-} from "lucide-react-native";
+import { Gem } from "lucide-react-native";
+import { GIFT_TIERS } from "../../config/gift-tiers";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { limitTip, supportedTokens } from "../../config/constants";
 import AnimatedCheck from "../common/AnimatedCheck";
@@ -62,22 +52,11 @@ export interface GiftModalProps {
  *
  * The ladder itself — amounts, wire names, durations — lives in
  * config/gift-tiers so the celebration overlay and dehubweb read the same
- * numbers. Only the icon and the i18n keys are here. `name` is kept as the
+ * numbers and emoji. `name` is kept as the
  * English fallback and as what goes on the wire; `key` is what the overlay
  * and the translations are looked up by.
  */
-export const giftTiers = [
-  { key: "ultimate", min: 1000000, name: "Ultimate Celebration", icon: Trophy, color: "text-indigo-500" },
-  { key: "gold10", min: 750000, name: "Golden Screen (10s)", icon: Star, color: "text-yellow-500" },
-  { key: "gold3", min: 500000, name: "Golden Screen (3s)", icon: Star, color: "text-amber-500" },
-  { key: "party", min: 300000, name: "Party Celebration", icon: PartyPopper, color: "text-pink-400" },
-  { key: "spartans", min: 200000, name: "Spartans Army", icon: ShieldPlus, color: "text-white/80" },
-  { key: "magicRing", min: 100000, name: "Magic Ring", icon: BellRing, color: "text-purple-500" },
-  { key: "crown", min: 50000, name: "Crown", icon: Crown, color: "text-yellow-500" },
-  { key: "bouquet", min: 25000, name: "Bouquet of Flowers", icon: Flower2, color: "text-rose-400" },
-  { key: "chocolate", min: 10000, name: "Box of Chocolate", icon: GiftIcon, color: "text-brown-500" },
-  { key: "heart", min: 1000, name: "Love Heart", icon: Heart, color: "text-white/80" },
-] as const;
+export const giftTiers = GIFT_TIERS;
 
 /** English fallbacks for the picker's one-liners. Translations live in i18n. */
 const TIER_DESCRIPTION: Record<(typeof giftTiers)[number]["key"], string> = {
@@ -363,7 +342,6 @@ const GiftModal: React.FC<GiftModalProps> = ({
                 showsVerticalScrollIndicator={false}
                 columnWrapperStyle={{ justifyContent: "space-between" }}
                 renderItem={({ item }: any) => {
-                  const Icon = item.icon as any;
                   const selected = Number(amount) === item.min;
                   const onPress = () => selectTier(item.min);
                   return (
@@ -377,8 +355,8 @@ const GiftModal: React.FC<GiftModalProps> = ({
                       }`}
                     >
                       <View className="flex-row items-center gap-2">
-                        <View className={`rounded-xl p-2 bg-white/10`}>
-                          <Icon size={16} color="#fff" />
+                        <View className="rounded-xl bg-white/10 w-8 h-8 items-center justify-center">
+                          <Text style={{ fontSize: 18, lineHeight: 24 }}>{item.emoji}</Text>
                         </View>
                         <View className="flex-1">
                           <Text
@@ -440,7 +418,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                 <Text className="text-white text-xs mb-1">
                   {t("liveGift.ttsLabel", { defaultValue: "Say something out loud" }) as string}
                 </Text>
-                <View className="flex-row items-start bg-white/10 rounded-xl px-3 py-2">
+                <View className="flex-row items-center bg-white/10 rounded-xl px-3 py-2">
                   <Ionicons name="volume-high-outline" size={16} color="#fff" />
                   <TextInput
                     value={message}
