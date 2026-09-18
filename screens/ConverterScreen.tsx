@@ -107,6 +107,7 @@ export default function ConverterScreen() {
   const [reviewLoading, setReviewLoading] = useState(false);
   const [reviewName, setReviewName] = useState('');
   const [reviewDescription, setReviewDescription] = useState('');
+  const [reviewRotation, setReviewRotation] = useState<0 | 90 | 180 | 270>(0);
   const [reviewSource, setReviewSource] = useState<string | null>(null);
   const [reviewIsLive, setReviewIsLive] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -255,7 +256,7 @@ export default function ConverterScreen() {
    * path gates on the checkbox, and "Try again" re-runs a link whose
    * attestation was made when it was first queued. */
   const queueImport = useCallback(
-    async (rawUrl: string, kind?: MediaKind, details?: { name: string; description: string }) => {
+    async (rawUrl: string, kind?: MediaKind, details?: { name: string; description: string; rotation?: 0 | 90 | 180 | 270 }) => {
       setSubmitting(true);
       try {
         // Omitted rather than guessed when re-running a failed tile: the
@@ -268,6 +269,7 @@ export default function ConverterScreen() {
           mediaKind: kind,
           name: details?.name || undefined,
           description: details?.description || undefined,
+          rotation: details?.rotation,
         });
         setUrl('');
         toastInfo(t('converter.toastQueued'));
@@ -294,6 +296,7 @@ export default function ConverterScreen() {
       setReviewing(rawUrl);
       setReviewName('');
       setReviewDescription('');
+      setReviewRotation(0);
       setReviewSource(null);
       setReviewIsLive(false);
       setReviewLoading(true);
@@ -676,6 +679,16 @@ export default function ConverterScreen() {
               />
             </View>
 
+            {mediaKind === 'video' && (
+              <View className="flex-row items-center gap-2">
+                <Icon name="RotateCw" size={18} color="#a1a1aa" />
+                {([0, 90, 180, 270] as const).map(degrees => (
+                  <Pressable key={degrees} onPress={() => setReviewRotation(degrees)} accessibilityRole="button" accessibilityLabel={`${degrees}°`} accessibilityState={{ selected: reviewRotation === degrees }} className="flex-1 h-11 rounded-xl items-center justify-center" style={{ backgroundColor: reviewRotation === degrees ? 'rgba(255,255,255,0.15)' : 'transparent' }}>
+                    <Text className="text-theme-neutrals-50">{degrees}°</Text>
+                  </Pressable>
+                ))}
+              </View>
+            )}
             {reviewIsLive && (
               <Text className="text-xs" style={{ color: '#fbbf24' }}>
                 {t('converter.reviewLiveWarning')}
@@ -700,6 +713,7 @@ export default function ConverterScreen() {
                     void queueImport(target, mediaKind, {
                       name: reviewName.trim(),
                       description: reviewDescription.trim(),
+                      rotation: mediaKind === 'video' ? reviewRotation : 0,
                     });
                   }
                 }}

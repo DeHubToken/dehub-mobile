@@ -1,3 +1,4 @@
+import Animated from "react-native-reanimated";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
@@ -25,8 +26,10 @@ interface FractionHolding {
 
 interface FractionsRouteProps {
   address?: string;
+  listRef?: React.RefObject<import("react-native").FlatList<any> | null>;
   isOwnProfile?: boolean;
   listHeader?: React.ReactElement | null;
+  onScroll?: any;
 }
 
 async function fetchHoldings(address: string): Promise<FractionHolding[]> {
@@ -79,8 +82,10 @@ async function fetchHoldings(address: string): Promise<FractionHolding[]> {
 
 const FractionsRoute: React.FC<FractionsRouteProps> = ({
   address,
+  listRef,
   isOwnProfile,
   listHeader,
+  onScroll,
 }) => {
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
@@ -145,18 +150,18 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
 
   if (loading) {
     return (
-      <ScrollView>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
         <View style={styles.center}>
           <DeHubLoader size={56} />
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
     );
   }
 
   if (error) {
     return (
-      <ScrollView>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
         <View style={styles.center}>
           <Icon name="CircleAlert" size={40} color="#4B5563" />
@@ -165,13 +170,13 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
             <Text style={styles.retryText}>Retry</Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
     );
   }
 
   if (!address || holdings.length === 0) {
     return (
-      <ScrollView>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
         <ProfileEmptyState
           kind="fractions"
@@ -182,13 +187,16 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
               : "This user holds no post fractions yet"
           }
         />
-      </ScrollView>
+      </Animated.ScrollView>
     );
   }
 
   return (
     <View style={{ flex: 1 }}>
-      <FlatList
+      <Animated.FlatList
+      ref={listRef}
+      onScroll={onScroll}
+      scrollEventThrottle={16}
       data={holdings}
       keyExtractor={(h) => h.token_id}
       renderItem={renderItem}

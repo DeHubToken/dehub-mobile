@@ -6,6 +6,8 @@ import { StreamActivityType } from "../../services/enums/livestream.enum";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Avatar from "../common/Avatar";
 import { TEXT_SHADOW } from "../common/ViewerChrome";
+import { useTranslation } from "../../hooks/useTranslation";
+import TranslateButton from "../ui/TranslateButton";
 
 /**
  * Messages ride the picture, not a pill.
@@ -107,6 +109,8 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
   const displayName = resolveDisplayName(a);
   const avatarUrl = resolveAvatarUrl(a);
   const profileId = resolveProfileId(a);
+  const texts = useMemo(() => ({ content: a.status === StreamActivityType.MESSAGE && !a.meta?.gifUrl ? a.meta?.content || '' : '' }), [a.status, a.meta?.gifUrl, a.meta?.content]);
+  const translation = useTranslation(texts, undefined, false);
 
   const handlePress = useCallback(() => {
     if (profileId) onUserPress(profileId);
@@ -128,9 +132,18 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
             >
               {displayName}{" "}
             </Text>
-            {!a.meta?.gifUrl ? <Text style={{ color: '#FFFFFF' }}>{a.meta?.content}</Text> : null}
+            {!a.meta?.gifUrl ? <Text style={{ color: '#FFFFFF' }}>{translation.isTranslated ? translation.translatedTexts.content : a.meta?.content}</Text> : null}
           </Text>
           {a.meta?.gifUrl ? <Image source={{ uri: a.meta.gifUrl }} style={{ width: 160, height: 120, borderRadius: 8, marginTop: 4 }} contentFit="cover" /> : null}
+          {translation.shouldShow && (
+            <TranslateButton
+              isTranslated={translation.isTranslated}
+              isLoading={translation.isLoading}
+              detectedLanguage={translation.sourceLang}
+              onTranslate={translation.handleTranslate}
+              onShowOriginal={translation.handleShowOriginal}
+            />
+          )}
           </View>
         </View>
       );

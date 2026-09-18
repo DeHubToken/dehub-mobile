@@ -13,6 +13,7 @@ import ProfileEmptyState, { type ProfileEmptyStateKind } from "./ProfileEmptySta
 
 interface ProfileFeedTypeRouteProps {
   address?: string;
+  listRef?: React.RefObject<import("react-native").FlatList<any> | null>;
   /** Which single post type to show (e.g. "feed-simple" for Posts, "feed-audio" for Audio). */
   postType: FeedPostType;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
@@ -29,6 +30,7 @@ interface ProfileFeedTypeRouteProps {
  */
 const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
   address,
+  listRef,
   postType,
   onScroll,
   listHeader,
@@ -78,6 +80,7 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
   return (
     <View className={`flex-1 ${listHeader ? '' : 'px-4'}`}>
       <InfiniteFeed
+        listRef={listRef}
         insideNavigatorScreen={false}
         cacheKey={["profile-feed-type", address ?? "", postType]}
         fetchPage={fetchPage}

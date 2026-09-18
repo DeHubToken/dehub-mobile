@@ -1670,6 +1670,7 @@ const ShortsViewerScreen = () => {
   const shuffleSeedRef = useRef<string | undefined>(feedParams.shuffleSeed);
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const [containerHeight, setContainerHeight] = useState(SCREEN_HEIGHT);
+  const [hasMeasuredViewport, setHasMeasuredViewport] = useState(false);
   const [viewportHeight, setViewportHeight] = useState(SCREEN_HEIGHT);
   const [noMoreShorts, setNoMoreShorts] = useState(false);
   // True until the first page resolves when the viewer opened without items.
@@ -1752,6 +1753,7 @@ const ShortsViewerScreen = () => {
   const handleContainerLayout = useCallback((e: LayoutChangeEvent) => {
     const h = e.nativeEvent.layout.height;
     if (h <= 0) return;
+    setHasMeasuredViewport(true);
     setViewportHeight(h);
     // Keep pager offsets stable while Android resizes for the reply keyboard.
     // Only the active short's split area should shrink, not every list item.
@@ -2039,7 +2041,7 @@ const ShortsViewerScreen = () => {
 
       {/* The Native gesture is what makes the pager nameable in a relation —
           see pagerGesture. It wraps the list without changing how it scrolls. */}
-      <GestureDetector gesture={pagerGesture}>
+      {hasMeasuredViewport && <GestureDetector gesture={pagerGesture}>
         <FlatList
           ref={listRef}
           data={items}
@@ -2063,7 +2065,7 @@ const ShortsViewerScreen = () => {
           initialNumToRender={2}
           getItemLayout={getItemLayout}
         />
-      </GestureDetector>
+      </GestureDetector>}
 
       {/* Fixed header overlay – back left, playback chrome right (as on web).
           box-none so only the buttons themselves take touches; the rest of the

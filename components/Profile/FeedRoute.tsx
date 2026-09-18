@@ -21,6 +21,7 @@ interface FeedRouteProps {
   hasBounty?: boolean;
   isLocked?: boolean;
   address?: string;
+  listRef?: React.RefObject<import("react-native").FlatList<any> | null>;
   /** Profile header rendered as the scrollable list header (banner, info, tabs). */
   listHeader?: React.ReactNode;
   onBeforeNavigate?: () => void;
@@ -37,6 +38,7 @@ interface FeedRouteProps {
  */
 const FeedRoute: React.FC<FeedRouteProps> = ({
   address,
+  listRef,
   listHeader,
   onBeforeNavigate,
   onScroll,
@@ -117,6 +119,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
   return (
     <View className="flex-1">
       <InfiniteFeed
+        listRef={listRef}
         insideNavigatorScreen={false}
         // Everything fetchPage closes over has to be in here: InfiniteFeed
         // reads fetchPage through a ref, so a key that omits the toolbar state
