@@ -4371,6 +4371,10 @@
     "balanceAmount": "Available: {{amount}} {{symbol}}"
   },
   "dex": {
+    "lowestSell": "Lowest sell · USDC",
+    "liveChartHint": "Lowest sell · USDC · drag to inspect",
+    "noSellHistory": "Candles start when verified sell liquidity is available.",
+    "liveCandleNote": "Lowest sell observations · USDC · updates on new blocks, with a 10s fallback. History is saved on this device; gaps are not trades.",
     "automaticStage": {
       "tokenApproval": "Approving tokens automatically…",
       "permitApproval": "Approving position access automatically…",
