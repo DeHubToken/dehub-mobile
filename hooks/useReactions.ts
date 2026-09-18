@@ -1,30 +1,33 @@
-import { useCallback, useRef, useState } from 'react';
-import type { FloatingReaction, ReactionType } from '../components/LiveProducer/ReactionOverlay';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { ReactionFlowQueue, REACTION_STEP_MS, type ReactionParticle } from '../libs/live-reaction-flow';
 
-const nowId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-
-export interface UseReactionsResult {
-  reactions: FloatingReaction[];
-  addReaction: (type: ReactionType, username?: string) => void;
-  removeReaction: (id: string) => void;
-  clearReactions: () => void;
-}
-
-export const useReactions = (maxConcurrent = 20): UseReactionsResult => {
-  const [reactions, setReactions] = useState<FloatingReaction[]>([]);
-
-  const addReaction = useCallback((type: ReactionType, username?: string) => {
-    const item: FloatingReaction = { id: nowId(), type, username };
-    setReactions((prev) => [...prev, item].slice(-maxConcurrent));
-  }, [maxConcurrent]);
-
-  const removeReaction = useCallback((id: string) => {
-    setReactions((prev) => prev.filter((r) => r.id !== id));
-  }, []);
-
+export function useReactions() {
+  const queue = useRef(new ReactionFlowQueue());
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [reactions, setReactions] = useState<ReactionParticle[]>([]);
   const clearReactions = useCallback(() => {
+    if (timer.current !== null) clearTimeout(timer.current);
+    timer.current = null;
+    queue.current.clear();
     setReactions([]);
   }, []);
-
+  useEffect(() => () => {
+    if (timer.current !== null) clearTimeout(timer.current);
+    timer.current = null;
+    queue.current.clear();
+  }, []);
+  const addReaction = useCallback((type: unknown, _username?: string, weight = 1) => {
+    queue.current.enqueue(type, weight);
+    if (timer.current !== null || !queue.current.busy) return;
+    const step = () => {
+      setReactions(queue.current.tick(Date.now()));
+      timer.current = queue.current.busy ? setTimeout(step, REACTION_STEP_MS) : null;
+    };
+    step();
+  }, []);
+  const removeReaction = useCallback((id: string) => {
+    queue.current.remove(id);
+    setReactions(items => items.filter(item => item.id !== id));
+  }, []);
   return { reactions, addReaction, removeReaction, clearReactions };
-};
+}

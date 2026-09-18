@@ -38,6 +38,10 @@ import SmartImage from "../common/SmartImage";
 import ContainedFeedImage from "./ContainedFeedImage";
 import PostTapSurface from "./PostTapSurface";
 import LiveFeedPreview from "../common/LiveFeedPreview";
+import LiveFeedReactionFlow from "../LiveProducer/LiveFeedReactionFlow";
+import { useWebSocket } from "../../context/WebSocketContext";
+import { liveReactionType } from "../../libs/live-reaction-flow";
+import { LivestreamEvents } from "../../services/enums/livestream.enum";
 import { cdnImage } from "../../libs/cdnImage";
 import { FEED_BENTO_RADIUS } from "../../libs/feed-image-layout";
 import { hlsUrlFor, liveThumbnailFor } from "../../libs/live-ingest";
@@ -429,6 +433,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const rawStatus: string | undefined = stream?.status || (item as any).status;
   const status = rawStatus ? rawStatus.toUpperCase() : undefined;
   const isCurrentlyLive = isStreamLive(stream, status === "LIVE" || status === "PAUSED");
+  const liveReactionStreamId = isLive ? stream?._id || stream?.id || (item as any)._id : undefined;
+  const { emitAuthed: emitLiveReaction, connected: reactionSocketConnected } = useWebSocket();
 
   // HLS ladder for the in-card preview. Derived from the playbackId the same
   // way the post page does it — `playbackUrl` off the API is usually absent
@@ -660,6 +666,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const voteInFlightRef = useRef(false);
   const handleReaction = useCallback((reaction: PostReaction) => {
     if (tokenId == null) return;
+    if (isCurrentlyLive && liveReactionStreamId && reactionSocketConnected) {
+      requireAuth?.(() => emitLiveReaction(LivestreamEvents.StreamReaction, {
+        streamId: liveReactionStreamId, reactionType: liveReactionType(reaction),
+      }));
+    }
     // One vote at a time: a double-tap otherwise reads the same stale
     // myReaction twice and fires two toggles that cancel server-side, leaving
     // the overlay asserting a reaction the server no longer holds.
@@ -754,7 +765,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           voteInFlightRef.current = false;
         });
     });
-  }, [tokenId, liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts, engagementKey, userAddress, requireAuth, voteWeight]);
+  }, [tokenId, liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts, engagementKey, userAddress, requireAuth, voteWeight, isCurrentlyLive, liveReactionStreamId, reactionSocketConnected, emitLiveReaction]);
 
   /**
    * Tapping a thumb casts whichever reaction it is WEARING: a card leading with
@@ -1305,6 +1316,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const renderLiveThumbnail = () => (
     <Pressable onPress={handleCardPress} className="relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2">
+      {isCurrentlyLive && isVisible && liveReactionStreamId && (
+        <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 2 }]}>
+          <LiveFeedReactionFlow streamId={liveReactionStreamId} />
+        </View>
+      )}
       {livePlayableUrl && !isActuallyGated ? (
         /* On air: play the stream in the card; once it has ended, its replay.
            The feed used to show a poster (often none at all, since the
