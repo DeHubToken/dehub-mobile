@@ -55,6 +55,7 @@ import type { EventBannerData } from "../LiveViewer/LiveEventBanner";
 import { hlsUrlFor } from "../../libs/live-ingest";
 import { useWhepStream } from "../../hooks/useWhepStream";
 import LiveWebRtcView from "../LiveViewer/LiveWebRtcView";
+import { DeHubLoader } from "../DeHubLoader";
 import { extractReplayUrl } from "../../libs/live-replay";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import LiveViewerPlayerControls from "../LiveViewer/LiveViewerPlayerControls";
@@ -1391,7 +1392,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
              buffered its first segments, and starting both means the viewer
              watches the stream begin and then restart. Bounded by the hook's
              own start timeout, after which this is false and HLS takes over. */
-          <View className="flex-1 dark-surface bg-black" />
+          <View className="flex-1 dark-surface bg-black items-center justify-center" pointerEvents="none">
+            <DeHubLoader size={40} />
+          </View>
         ) : (isLiveEffective || isEndedEffective) && effectiveVideoUrl ? (
           <VideoArea
             isTranscoding={false}
