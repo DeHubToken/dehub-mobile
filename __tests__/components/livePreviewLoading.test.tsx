@@ -4,7 +4,7 @@ import LiveFeedPreview from '../../components/common/LiveFeedPreview';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
-  View: 'View', Text: 'Text', TextInput: 'TextInput', ScrollView: 'ScrollView', Switch: 'Switch',
+  View: 'View', Pressable: 'Pressable', Text: 'Text', TextInput: 'TextInput', ScrollView: 'ScrollView', Switch: 'Switch',
   StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s },
 }));
 
