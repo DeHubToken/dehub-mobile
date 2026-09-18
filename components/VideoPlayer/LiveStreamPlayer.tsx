@@ -1,3 +1,4 @@
+import { hasStreamEnded } from '../../libs/live-status';
 import React, {
   useCallback,
   useEffect,
@@ -127,7 +128,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   }, [streamIdProp]);
 
   // Fetch livestream details (structure differs from NFT)
-  const { streamEntity, streamLoading } = useStreamDetails(
+  const { streamEntity, streamLoading, refetchStream } = useStreamDetails(
     resolvedStreamId || undefined,
     false
   );
@@ -405,7 +406,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     ? (statusUpper as StreamStatus)
     : undefined;
   const isLiveStatus = statusEnum === StreamStatus.LIVE || statusEnum === StreamStatus.PAUSED;
-  const isEndedStatus = statusEnum === StreamStatus.ENDED;
+  const isEndedStatus = hasStreamEnded(streamEntity);
   const scheduledForRaw: any = (streamEntity as any)?.scheduledFor;
   const scheduledForDate = scheduledForRaw ? new Date(scheduledForRaw) : null;
   const isScheduledStatus =
@@ -453,7 +454,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   // Treat PAUSED as "still live" — keep player mounted, chat open, tips/likes allowed
   const isLiveEffective =
-    socketStatus === "LIVE" || isPausedEffective || (isLiveStatus && socketStatus !== "ENDED");
+    !isEndedStatus && (socketStatus === "LIVE" || isPausedEffective || (isLiveStatus && socketStatus !== "ENDED"));
   const isEndedEffective = socketStatus === "ENDED" || isEndedStatus;
   // Effective playback URL, only when playable.
   //
@@ -639,6 +640,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         data
       );
       setSocketStatus("ENDED");
+      refetchStream();
       // Clear paused state on end
       setStreamPaused(false);
       setGraceCountdown(0);

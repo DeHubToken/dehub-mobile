@@ -1,3 +1,4 @@
+import { isStreamLive } from '../../libs/live-status';
 import { isHoldGated } from "../../libs/content-gate";
 import React, { memo, useCallback, useRef, useState, useMemo, useEffect } from "react";
 import {
@@ -427,7 +428,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // stream that was running.
   const rawStatus: string | undefined = stream?.status || (item as any).status;
   const status = rawStatus ? rawStatus.toUpperCase() : undefined;
-  const isCurrentlyLive = status === "LIVE" || status === "PAUSED";
+  const isCurrentlyLive = isStreamLive(stream, status === "LIVE" || status === "PAUSED");
 
   // HLS ladder for the in-card preview. Derived from the playbackId the same
   // way the post page does it — `playbackUrl` off the API is usually absent
