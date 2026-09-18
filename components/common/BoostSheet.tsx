@@ -25,10 +25,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, Pressable, ActivityIndicator, Image, TextInput, ScrollView } from "react-native";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigation } from "@react-navigation/native";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
-import { ScreenNames } from "../../navigation/ScreenNames";
 import { getBadgeUrl } from "../../libs";
 import { getNFT } from "../../services/nft.service";
 import { useBookBoost, useSuperpowerLadder, useSuperpowers } from "../../hooks/useSuperpowers";
@@ -40,6 +38,7 @@ import {
 import { toastError, toastPromise, toastSuccess } from "../../libs";
 import SuperPowerIcon from "./SuperPowerIcon";
 import { appLocale } from "../../libs/date.util";
+import BuyDhbSheet from "../Dpay/BuyDhbSheet";
 
 export interface BoostSheetProps {
   visible: boolean;
@@ -64,7 +63,6 @@ export default function BoostSheet({
   postTitle,
   isOwnPost,
 }: BoostSheetProps) {
-  const navigation = useNavigation<any>();
   const { data: status, isLoading, isError } = useSuperpowers();
   const { data: ladder } = useSuperpowerLadder();
   const bookBoost = useBookBoost();
@@ -72,6 +70,7 @@ export default function BoostSheet({
   const [chosen, setChosen] = useState<SuperPowerKey | null>(null);
   const [targetAccount, setTargetAccount] = useState("");
   const [targetTiers, setTargetTiers] = useState<string[]>([]);
+  const [buyOpen, setBuyOpen] = useState(false);
 
   // The post's real timestamp, fetched rather than taken from the card a caller
   // happens to hold. Feed rows carry a display string in some places, and
@@ -154,7 +153,8 @@ export default function BoostSheet({
   };
 
   return (
-    <GlassModal visible={visible} onClose={onClose} presentation="bottom">
+    <>
+    <GlassModal visible={visible && !buyOpen} onClose={onClose} presentation="bottom">
       <View className="px-5 pb-8 pt-4">
         <View className="mb-4 flex-row items-center gap-2">
           <Icon name="Zap" size={20} color="#fff" />
@@ -179,16 +179,13 @@ export default function BoostSheet({
           <View className="items-center gap-4 py-4">
             <Icon name="Lock" size={28} color="#808089" />
             <Text className="text-center text-sm text-white">
-              SuperPowers need a staking badge. Stake DHB to unlock them.
+              Any badge holder gets SuperPowers. Buy DHB to unlock a badge — staking is not required.
             </Text>
             <Pressable
-              onPress={() => {
-                onClose();
-                navigation.navigate(ScreenNames.Dpay, { initialTab: "stake" });
-              }}
+              onPress={() => setBuyOpen(true)}
               className="rounded-xl border border-white/20 px-5 py-3"
             >
-              <Text className="text-sm text-white">Stake DHB</Text>
+              <Text className="text-sm text-white">Buy DHB</Text>
             </Pressable>
           </View>
         ) : (
@@ -333,5 +330,7 @@ export default function BoostSheet({
         )}
       </View>
     </GlassModal>
+    <BuyDhbSheet visible={visible && buyOpen} onClose={() => setBuyOpen(false)} />
+    </>
   );
 }

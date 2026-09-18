@@ -85,7 +85,7 @@ const NAV_ITEMS: DrawerItem[] = [
   // Sits under Staking because it is what staking buys. No `requiresAuth`: the
   // ladder is worth reading before you hold a badge, which is the whole point
   // of the screen.
-  { icon: "Rocket", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers, storefrontHidden: true },
+  { icon: "Zap", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers, storefrontHidden: true },
   { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance, storefrontHidden: true },
   { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao, storefrontHidden: true },
   { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work, storefrontHidden: true },
