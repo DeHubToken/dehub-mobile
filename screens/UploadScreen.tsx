@@ -276,6 +276,8 @@ export default function UploadScreen() {
   const bodyAssets = useAssetPicker(bodyText, setBodyText);
   const [titleText, setTitleText] = useState("");
   const [showTitle, setShowTitle] = useState(false);
+  const [articleMode, setArticleMode] = useState(false);
+  const [articleBody, setArticleBody] = useState("");
 
   // Same preference web keeps in localStorage under `post_show_title`.
   useEffect(() => {
@@ -589,7 +591,8 @@ export default function UploadScreen() {
   // live mode (the stream title); otherwise it follows the user's toggle.
   const showTitleInput = showTitle || hasVideoOrAudio || isLiveMode;
   const pollIsValid = pollEnabled && pollQuestion.trim().length > 0 && pollOptions.filter(o => o.trim()).length >= 2;
-  const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid);
+  const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid) &&
+    (!articleMode || (!!titleText.trim() && !!bodyText.trim() && articleBody.trim().length >= 100 && !hasMedia));
   const canGoLive = isLiveMode && titleText.trim().length > 0 && !!(liveThumbnailUri || coverUri);
 
   // The post options are rendered unconditionally, as web's PostAccessToggles is.
@@ -926,6 +929,7 @@ export default function UploadScreen() {
     return {
       bodyText: name,
       description: descWithSound,
+      articleBody: articleMode ? articleBody.trim() : undefined,
       categories,
       pickedImages,
       pickedVideo,
@@ -951,7 +955,7 @@ export default function UploadScreen() {
       shopLinks: shopLinks.length ? shopLinks : undefined,
       shopListingIds,
     };
-  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -2043,6 +2047,9 @@ export default function UploadScreen() {
           )}
 
           <View className="mt-3">
+            <TouchableOpacity onPress={() => { setArticleMode(!articleMode); setShowTitle(!articleMode); if (!articleMode) setMonetization(emptyMonetization()); }} className="mb-3 rounded-xl border border-white/20 px-4 py-3">
+              <Text className="text-white font-medium">{articleMode ? t("articles.switchToPost") : t("articles.write")}</Text>
+            </TouchableOpacity>
             {showTitleInput && (
               <TextInput
                 ref={titleRef}
@@ -2081,6 +2088,16 @@ export default function UploadScreen() {
               autoFocus
               scrollEnabled={false}
             />
+            {articleMode && (
+              <View className="mt-4">
+                <Text className="text-white/70 text-sm mb-2">{t("articles.body")}</Text>
+                <TextInput value={articleBody} onChangeText={setArticleBody} maxLength={20000} multiline
+                  placeholder={t("articles.placeholder")}
+                  placeholderTextColor="#6F7174" className="text-white text-base rounded-xl border border-white/20 p-4"
+                  style={{ minHeight: 240, textAlignVertical: "top" }} />
+                <Text className="text-white/50 text-xs mt-2">{t("articles.lengthHint", { length: articleBody.length })}</Text>
+              </View>
+            )}
 
             <MentionSuggestions
               visible={bodyMentions.showSuggestions}
@@ -2719,7 +2736,7 @@ export default function UploadScreen() {
                 />
               </TouchableOpacity>
 
-              {!isQuoteMode && (
+              {!isQuoteMode && !articleMode && (
                 <MonetizationPanel
                   state={monetization}
                   onChange={handleMonetizationChange}

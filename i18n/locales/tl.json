@@ -1,4 +1,16 @@
 {
+  "articles": {
+    "label": "Article",
+    "read": "Read article",
+    "write": "Write an article",
+    "switchToPost": "Writing an article · switch to post",
+    "body": "Article body",
+    "bodyTooShort": "Article body must be at least 100 characters",
+    "placeholder": "Write your article here. Use blank lines between paragraphs.",
+    "lengthHint": "{{length}}/20,000 · minimum 100 characters. The text above is the summary.",
+    "dehubArticle": "DeHub article",
+    "dehubPost": "DeHub post"
+  },
   "storefront": {
     "unavailable": "Hindi available sa bersyong ito ng app"
   },

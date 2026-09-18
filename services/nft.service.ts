@@ -1157,6 +1157,7 @@ export async function getShopLinkAllowance(): Promise<ShopLinkAllowance> {
 export interface EditPostInput {
   name?: string;
   description?: string;
+  articleBody?: string;
   category?: string[];
   /** true turns replies off. Existing comments stay readable — only new ones
    *  are refused, server-side — so re-enabling restores the thread intact. */
