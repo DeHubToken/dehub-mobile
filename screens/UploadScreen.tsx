@@ -60,6 +60,7 @@ import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
 import { getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
 import Avatar from "../components/common/Avatar";
+import MarkdownText from "../components/ui/MarkdownText";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import AssetSuggestions from "../components/common/AssetSuggestions";
 import { useAssetPicker } from "../hooks/useAssetPicker";
@@ -153,6 +154,8 @@ async function measureUploadBytes(payload: {
   pickedAudio: { uri: string } | null;
   coverUri: string | null;
   thumbnailUri: string | null;
+  articleImageUri?: string | null;
+  socialImageUri?: string | null;
 }): Promise<number> {
   const uris = [
     ...payload.pickedImages.map((m) => m.uri),
@@ -160,6 +163,8 @@ async function measureUploadBytes(payload: {
     payload.pickedAudio?.uri,
     // Only one of these is ever uploaded — enqueueJob takes cover first.
     payload.coverUri || payload.thumbnailUri,
+    payload.articleImageUri,
+    payload.socialImageUri,
   ].filter(Boolean) as string[];
 
   const sizes = await Promise.all(
@@ -278,6 +283,23 @@ export default function UploadScreen() {
   const [showTitle, setShowTitle] = useState(false);
   const [articleMode, setArticleMode] = useState(false);
   const [articleBody, setArticleBody] = useState("");
+  const [articlePreview, setArticlePreview] = useState(false);
+  const [articleSelection, setArticleSelection] = useState({ start: 0, end: 0 });
+  const formatArticle = useCallback((before: string, after: string, placeholder: string, block = false) => {
+    const { start, end } = articleSelection;
+    const selected = articleBody.slice(start, end) || placeholder;
+    const prefix = block && start > 0 && articleBody[start - 1] !== "\n" ? "\n" : "";
+    setArticleBody(`${articleBody.slice(0, start)}${prefix}${before}${selected}${after}${articleBody.slice(end)}`.slice(0, 20000));
+    setArticleSelection({ start: start + prefix.length + before.length, end: start + prefix.length + before.length + selected.length });
+  }, [articleBody, articleSelection]);
+  const [articleImageUri, setArticleImageUri] = useState<string | null>(null);
+  const [socialImageUri, setSocialImageUri] = useState<string | null>(null);
+  const pickArticleImage = useCallback(async (kind: "article" | "social") => {
+    await runWithPermissions(["photos"], async () => {
+      const uri = await openCroppedImagePicker({ width: 1200, height: 630, quality: 0.9, forceJpg: true });
+      if (uri) (kind === "article" ? setArticleImageUri : setSocialImageUri)(uri);
+    });
+  }, []);
 
   // Same preference web keeps in localStorage under `post_show_title`.
   useEffect(() => {
@@ -683,6 +705,13 @@ export default function UploadScreen() {
     } else {
       setBodyText(incomingDraft.bodyText || incomingDraft.description);
     }
+    if (incomingDraft.articleBody) {
+      setArticleMode(true);
+      setArticleBody(incomingDraft.articleBody);
+      setShowTitle(true);
+      setArticleImageUri(incomingDraft.articleImageUri || null);
+      setSocialImageUri(incomingDraft.socialImageUri || null);
+    }
     setCategories(incomingDraft.categories);
     if (incomingDraft.thumbnailUri) setThumbnailUri(incomingDraft.thumbnailUri);
     if (incomingDraft.coverUri) setCoverUri(incomingDraft.coverUri);
@@ -930,6 +959,8 @@ export default function UploadScreen() {
       bodyText: name,
       description: descWithSound,
       articleBody: articleMode ? articleBody.trim() : undefined,
+      articleImageUri: articleMode ? articleImageUri : null,
+      socialImageUri: articleMode ? socialImageUri : null,
       categories,
       pickedImages,
       pickedVideo,
@@ -955,7 +986,7 @@ export default function UploadScreen() {
       shopLinks: shopLinks.length ? shopLinks : undefined,
       shopListingIds,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1280,6 +1311,9 @@ export default function UploadScreen() {
   const buildDraftData = useCallback(() => ({
     bodyText,
     titleText,
+    articleBody: articleMode ? articleBody : undefined,
+    articleImageUri: articleMode ? articleImageUri : null,
+    socialImageUri: articleMode ? socialImageUri : null,
     description: "",
     categories,
     imageUris: pickedImages.map((img) => img.uri),
@@ -1287,7 +1321,7 @@ export default function UploadScreen() {
     thumbnailUri,
     coverUri,
     monetization,
-  }), [bodyText, titleText, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization]);
+  }), [bodyText, titleText, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization]);
 
   /** "Draft" button in top bar */
   const handleDraftButton = useCallback(() => {
@@ -2103,11 +2137,36 @@ export default function UploadScreen() {
             {articleMode && (
               <View className="mt-4">
                 <Text className="text-white/70 text-sm mb-2">{t("articles.body")}</Text>
-                <TextInput value={articleBody} onChangeText={setArticleBody} maxLength={20000} multiline
+                <View className="flex-row flex-wrap items-center mb-2">
+                  {([
+                    ["Large", "# ", "", "Heading", true], ["Heading", "## ", "", "Heading", true],
+                    ["Bold", "**", "**", "bold text", false], ["Italic", "*", "*", "italic text", false],
+                    ["Quote", "> ", "", "Quote", true], ["Bullets", "- ", "", "List item", true],
+                    ["Numbers", "1. ", "", "List item", true], ["Link", "[", "](https://example.com)", "link text", false],
+                  ] as const).map(([label, before, after, placeholder, block]) => (
+                    <TouchableOpacity key={label} accessibilityRole="button" onPress={() => formatArticle(before, after, placeholder, block)} className="px-2 py-2"><Text className="text-white/70 text-xs">{label}</Text></TouchableOpacity>
+                  ))}
+                  <TouchableOpacity accessibilityRole="button" onPress={() => setArticlePreview(!articlePreview)} className="px-2 py-2"><Text className="text-white text-xs">{articlePreview ? "Edit" : "Preview"}</Text></TouchableOpacity>
+                </View>
+                {articlePreview ? <View className="rounded-xl border border-white/20 p-4 min-h-60"><MarkdownText content={articleBody} style={{ fontSize: 16 }} /></View> : <TextInput value={articleBody} onChangeText={setArticleBody} maxLength={20000} multiline
+                  selection={articleSelection} onSelectionChange={e => setArticleSelection(e.nativeEvent.selection)}
                   placeholder={t("articles.placeholder")}
                   placeholderTextColor="#6F7174" className="text-white text-base rounded-xl border border-white/20 p-4"
-                  style={{ minHeight: 240, textAlignVertical: "top" }} />
+                  style={{ minHeight: 240, textAlignVertical: "top" }} />}
                 <Text className="text-white/50 text-xs mt-2">{t("articles.lengthHint", { length: articleBody.length })}</Text>
+                <View className="flex-row gap-3 mt-4">
+                  {([
+                    { kind: "article" as const, label: t("articles.articleImage"), uri: articleImageUri, clear: setArticleImageUri },
+                    { kind: "social" as const, label: t("articles.socialImage"), uri: socialImageUri, clear: setSocialImageUri },
+                  ]).map(({ kind, label, uri, clear }) => (
+                    <View key={kind} className="flex-1">
+                      <TouchableOpacity accessibilityRole="button" onPress={() => pickArticleImage(kind)} className="rounded-xl border border-white/20 p-3 min-h-20 justify-center">
+                        {uri ? <Image source={{ uri }} className="w-full h-24 rounded-lg" resizeMode="cover" /> : <Text className="text-white/70 text-xs text-center">{label}</Text>}
+                      </TouchableOpacity>
+                      {uri && <TouchableOpacity accessibilityRole="button" onPress={() => clear(null)} className="mt-2"><Text className="text-white/60 text-xs">{t("articles.removeImage")}</Text></TouchableOpacity>}
+                    </View>
+                  ))}
+                </View>
               </View>
             )}
 

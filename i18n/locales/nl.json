@@ -1,5 +1,8 @@
 {
   "articles": {
+    "articleImage": "Article image",
+    "socialImage": "Social share image",
+    "removeImage": "Remove image",
     "label": "Article",
     "livestream": "Livestream",
     "read": "Read article",
