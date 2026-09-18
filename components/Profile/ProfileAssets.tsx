@@ -1,6 +1,6 @@
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import InfoTooltip from "../ui/InfoTooltip";
 import dhbIcon from "../../assets/tokens/DHB.png";
@@ -10,6 +10,7 @@ import ethIcon from "../../assets/chains/base-icon.png";
 import bnbIcon from "../../assets/chains/bnb-icon.png";
 import { useUser, useAuthState, useProvider } from "../../context/AuthContext";
 import { ChainId } from "../../config/constants";
+import { sellLiquidityLink } from "../../libs/sell-liquidity-link";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { toastError, toastInfo, toastSuccess } from "../../libs";
@@ -126,6 +127,7 @@ const ProfileAssets = () => {
   const [transferOpen, setTransferOpen] = useState(false);
   const dhbActions = [
     { key: "topUp", label: t("assets.topUp"), subtitle: undefined, disabled: false },
+    { key: "sell", label: "Sell", subtitle: undefined, disabled: false },
     { key: "bridge", label: t("assets.bridge"), subtitle: t("assets.comingSoon"), disabled: true },
     { key: "transfer", label: t("commandCentre.transfer"), disabled: false },
   ];
@@ -137,6 +139,23 @@ const ProfileAssets = () => {
     }
     navigation.navigate(ScreenNames.Dpay);
   }, [chainId, navigation, t]);
+
+  const handleSell = React.useCallback(() => {
+    const base = user?.balanceData?.find((row) => row.chainId === ChainId.BASE_MAINNET);
+    const bnb = user?.balanceData?.find((row) => row.chainId === ChainId.BSC_MAINNET);
+    const target = Number(base?.walletBalance) > 0
+      ? ChainId.BASE_MAINNET
+      : Number(bnb?.walletBalance) > 0
+      ? ChainId.BSC_MAINNET
+      : null;
+    if (!target) {
+      toastInfo("No liquid DHB found on Base or BNB Chain");
+      return;
+    }
+    Linking.openURL(sellLiquidityLink(target)).catch(() =>
+      toastInfo("Could not open Uniswap"),
+    );
+  }, [user?.balanceData]);
 
   const toggleDHBOptions = () => {
     setShowDHBOptions((prev) => !prev);
@@ -274,6 +293,8 @@ const ProfileAssets = () => {
                       ? undefined
                       : action.key === "topUp"
                       ? handleTopUp
+                      : action.key === "sell"
+                      ? handleSell
                       : action.key === "transfer"
                       ? () => setTransferOpen(true)
                       : undefined
