@@ -17,7 +17,7 @@ interface PinnedRouteProps {
 
 const PAGE_SIZE = 20;
 
-const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader, onBeforeNavigate }) => {
+const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, listHeader, onBeforeNavigate }) => {
   const [items, setItems] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
