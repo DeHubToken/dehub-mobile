@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ActivityIndicator, DeviceEventEmitter } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from 'expo-file-system/legacy';
 import { getNFT, replacePostImage, addPostImages, getPostImageAllowance } from '../../services/nft.service';
 import { ensureMediaLibraryPermission } from '../../libs/permissions.util';
 import { buildFeedImageUrls, toastError, toastSuccess } from '../../libs';
-import { MAX_IMAGE_UPLOAD_BYTES } from '../../libs/post-image-allowance';
+import { MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from '../../libs/post-image-allowance';
 
 export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
   tokenId: number | string; disabled: boolean; onBusyChange: (busy: boolean) => void;
@@ -69,6 +70,12 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
       if (picked.canceled || !picked.assets?.length) return;
       if (images.length + picked.assets.length > imageLimit) { toastError(`Your badge tier allows up to ${imageLimit} images per post`); return; }
       if (picked.assets.some(image => (image.fileSize ?? 0) > MAX_IMAGE_UPLOAD_BYTES)) { toastError('Images must be 42.069 MB or smaller'); return; }
+      const totalBytes = (await Promise.all(picked.assets.map(async image => {
+        if (image.fileSize != null) return image.fileSize;
+        const info = await FileSystem.getInfoAsync(image.uri).catch(() => null);
+        return (info as any)?.size ?? 0;
+      }))).reduce((total, size) => total + size, 0);
+      if (totalBytes > MAX_REQUEST_IMAGE_BYTES) { toastError('Images in one upload must total 100 MB or less'); return; }
       const updated = await addPostImages(tokenId, picked.assets.map(image => ({
         uri: image.uri, name: image.fileName || 'image.jpg', type: image.mimeType || 'image/jpeg',
       })));
