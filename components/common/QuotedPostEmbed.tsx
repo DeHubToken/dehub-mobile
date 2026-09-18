@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, getAudioUrl, getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
+import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { getNFT } from "../../services/nft.service";
 import Avatar from "./Avatar";
@@ -119,6 +119,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
     const thumbnailUrl = (() => {
       // Audio posts don't use a thumbnail — they render the AudioPostPlayer
       if (quotedPost.postType === "feed-audio") return "";
+      if (quotedPost.articleImageUrl) return buildFeedImageUrls([quotedPost.articleImageUrl], 480)[0];
       // feed-images: imageUrls are relative API paths, need getImageUrlApiSimple
       if (quotedPost.postType === "feed-images") {
         const urls = Array.isArray(quotedPost.imageUrls) ? quotedPost.imageUrls : [];

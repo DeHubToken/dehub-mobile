@@ -35,6 +35,7 @@ import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
+import MarkdownText from "../ui/MarkdownText";
 import ContainedFeedImage from "./ContainedFeedImage";
 import PostTapSurface from "./PostTapSurface";
 import LiveFeedPreview from "../common/LiveFeedPreview";
@@ -1576,6 +1577,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onPress={disablePress ? undefined : handleCardPress}
       >
       {!!localArticleBody && <Text className="text-white/60 text-xs font-semibold uppercase mx-4 mb-1">{t("articles.label")}</Text>}
+      {!!localArticleBody && !!item.articleImageUrl && <SmartImage source={{ uri: buildFeedImageUrls([item.articleImageUrl], IMAGE_WIDTH)[0] }} style={{ width: '100%', aspectRatio: 16 / 9, marginBottom: 12 }} contentFit="cover" />}
       <FeedCaption
         title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
         description={displayCaption || undefined}
@@ -1587,7 +1589,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         flagged={item.communityAlertStatus === "pending"}
       />
       {!!localArticleBody && (fullContent && (isOwnerPost || (!isLocked && (!streamInfo?.isPayPerView || ppvUnlocked) && !isActuallySubGated)) ? (
-        <Text selectable className="text-white/90 text-base leading-7 mx-4 mt-4">{localArticleBody}</Text>
+        <View className="mx-4 mt-4"><MarkdownText content={localArticleBody} style={{ fontSize: 16 }} /></View>
       ) : (
         <Text className="text-white font-semibold text-sm mx-4 mt-3">{t("articles.read")} →</Text>
       ))}
