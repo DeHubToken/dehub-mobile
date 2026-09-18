@@ -584,7 +584,6 @@ const GiftModal: React.FC<GiftModalProps> = ({
         {buyMethod === "card" ? (
           <DpayTopUpForm
             embedded
-            initialUsdAmount={String(Math.max(0.5, Math.ceil(Math.max(0, numericAmount - balance) / 900 * 100) / 100))}
             onDelivered={handleFunded}
           />
         ) : (
