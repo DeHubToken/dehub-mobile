@@ -94,7 +94,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
             <View
               style={{
                 position: "absolute",
-                top: -6,
+                top: 0,
                 right: -8,
                 minWidth: 18,
                 height: 18,
