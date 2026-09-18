@@ -322,6 +322,10 @@ function AppNavigatorContent() {
               getComponent={() => require("../screens/DpayScreen").default}
             />
             <Stack.Screen
+              name={ScreenNames.Dex}
+              getComponent={() => require("../screens/DexScreen").default}
+            />
+            <Stack.Screen
               name={ScreenNames.CommandCentre}
               getComponent={() => require("../screens/CommandCentreScreen").default}
             />
