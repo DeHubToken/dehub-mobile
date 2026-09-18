@@ -16,6 +16,7 @@ import {
   Platform,
   Modal,
   Keyboard,
+  PanResponder,
 } from "react-native";
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
@@ -104,6 +105,38 @@ const SHOULD_MINT_KEY = "post_should_mint";
 
 const TITLE_MAX = POST_TITLE_MAX;
 const DESCRIPTION_MAX = 500;
+
+/** The handle owns the pan, leaving image taps and the composer's scrolling alone. */
+function PhotoOrderHandle({ index, count, columnWidth, onMove, onDrag }: {
+  index: number;
+  count: number;
+  columnWidth: number;
+  onMove: (from: number, to: number) => void;
+  onDrag: (index: number | null, x?: number, y?: number) => void;
+}) {
+  const responder = useMemo(() => PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onMoveShouldSetPanResponder: () => true,
+    onPanResponderMove: (_, gesture) => onDrag(index, gesture.dx, gesture.dy),
+    onPanResponderRelease: (_, gesture) => {
+      const row = Math.max(0, Math.round(index / 2 + gesture.dy / 168 - (index % 2) / 2));
+      const column = Math.max(0, Math.min(1, Math.round((index % 2) + gesture.dx / columnWidth)));
+      onMove(index, Math.min(count - 1, row * 2 + column));
+      onDrag(null);
+    },
+    onPanResponderTerminate: () => onDrag(null),
+    onPanResponderTerminationRequest: () => false,
+  }), [index, count, columnWidth, onMove, onDrag]);
+
+  return (
+    <View {...responder.panHandlers} style={{ position: "absolute", left: 8, bottom: 8, zIndex: 10 }}
+      className="bg-black/80 rounded-lg px-2 py-1 flex-row items-center"
+      accessible accessibilityRole="button" accessibilityLabel={`Drag to reorder photo ${index + 1} of ${count}`}>
+      <Icon name="Grip" size={16} color="#fff" />
+      <Text className="text-white text-xs ml-1">{index + 1}</Text>
+    </View>
+  );
+}
 
 /**
  * Bytes this upload will send, thumbnail included.
@@ -258,6 +291,19 @@ export default function UploadScreen() {
   const [communityOpen, setCommunityOpen] = useState(false);
   const [userCommunities, setUserCommunities] = useState<Community[]>([]);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
+  const [photoGridWidth, setPhotoGridWidth] = useState(0);
+  const [draggedPhoto, setDraggedPhoto] = useState<{ index: number; x: number; y: number } | null>(null);
+  const movePhoto = useCallback((from: number, to: number) => {
+    setPickedImages(prev => {
+      if (from === to || from < 0 || to < 0 || from >= prev.length || to >= prev.length) return prev;
+      const next = [...prev];
+      next.splice(to, 0, ...next.splice(from, 1));
+      return next;
+    });
+  }, []);
+  const onPhotoDrag = useCallback((index: number | null, x = 0, y = 0) => {
+    setDraggedPhoto(index === null ? null : { index, x, y });
+  }, []);
   const [fullscreenImageUri, setFullscreenImageUri] = useState<string | null>(null);
   const [pickedVideo, setPickedVideo] = useState<PickedAsset | null>(null);
   const [pickedAudio, setPickedAudio] = useState<PickedAudio | null>(null);
@@ -2141,11 +2187,12 @@ export default function UploadScreen() {
             )}
 
             {!isLiveMode && mediaMode === "images" && (
-              <View className="mt-3 flex-row flex-wrap -m-1">
+              <View className="mt-3 flex-row flex-wrap -m-1" onLayout={event => setPhotoGridWidth(event.nativeEvent.layout.width)}>
                 {pickedImages.map((img, idx) => (
                   <View
                     key={`img-${img.assetId || img.uri}-${idx}`}
                     className="w-1/2 p-1"
+                    style={draggedPhoto?.index === idx ? { zIndex: 20, transform: [{ translateX: draggedPhoto.x }, { translateY: draggedPhoto.y }] } : undefined}
                   >
                     <View className="rounded-xl overflow-hidden border border-theme-neutrals-700">
                       <TouchableOpacity
@@ -2178,6 +2225,10 @@ export default function UploadScreen() {
                       >
                         <Icon name="Pencil" size={14} color="#fff" />
                       </TouchableOpacity>
+                      {pickedImages.length > 1 && photoGridWidth > 0 && (
+                        <PhotoOrderHandle index={idx} count={pickedImages.length} columnWidth={photoGridWidth / 2}
+                          onMove={movePhoto} onDrag={onPhotoDrag} />
+                      )}
                     </View>
                   </View>
                 ))}
