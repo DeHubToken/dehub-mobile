@@ -794,9 +794,10 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         />
       )}
 
-      {/* Live hides its controls, so buffering feedback must live outside them. */}
-      {liveMode && sourceUrl && playRequested && !hasError &&
-        (firstFrameSource !== sourceUrl || isBuffering) && (
+      {/* Keep buffering visible when live or replay controls are hidden. */}
+      {sourceUrl && playRequested && !hasError &&
+        ((liveMode && firstFrameSource !== sourceUrl) ||
+          (isBuffering && (liveMode || hideControls || !showControls))) && (
           <View pointerEvents="none" style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center' }]}>
             <DeHubLoader size={40} />
           </View>
