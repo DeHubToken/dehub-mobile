@@ -517,10 +517,11 @@ const LiveProducerScreen: React.FC = () => {
     });
     // Reaction events from viewers
     make(LivestreamEvents.StreamReaction, (data: any) => {
+      if (data?.streamId && data.streamId !== streamId) return;
       // Backend sends { reactionType, user: <userRef> }
       const type = data?.reactionType as import('../components/LiveProducer/ReactionOverlay').ReactionType;
       const username = data?.user?.displayName || data?.user?.username;
-      if (type) addReaction(type, username);
+      if (type) addReaction(type, username, data?.weight);
     });
     // Settings update (echoed back when we PATCH, or from admin)
     make(LivestreamEvents.SettingsUpdate, (data: any) => {
