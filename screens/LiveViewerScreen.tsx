@@ -37,7 +37,7 @@ const LiveViewerScreen: React.FC = () => {
         backgroundColor="transparent"
         translucent={Platform.OS === "android"}
       />
-      <LiveStreamPlayer {...params} streamId={streamId ?? params.streamId} />
+      <LiveStreamPlayer key={streamId ?? params.tokenId} {...params} streamId={streamId ?? params.streamId} />
     </View>
   );
 };
