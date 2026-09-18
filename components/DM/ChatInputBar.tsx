@@ -493,7 +493,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
 
   return (
     <>
-      <View className="bg-theme-neutrals-900 border-t border-theme-neutrals-800/50">
+      <View className="bg-theme-neutrals-900 border-t border-theme-neutrals-600">
         {/* Up whenever the other side spoke last and the composer is empty,
             keyboard or no keyboard — it sits above the input, so nothing
             covers it. Whether
@@ -669,7 +669,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
         )}
 
         {/* Text input — full width */}
-        <View className="px-3 pt-2 pb-1">
+        <View className="px-3 pt-3 pb-2">
           <TextInput
             ref={inputRef}
             value={text}
@@ -679,7 +679,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             multiline
             maxLength={DM_TEXT_MAX_LENGTH}
             className="text-white text-[15px] leading-5 p-0 m-0"
-            style={{ maxHeight: 100 }}
+            style={{ minHeight: 44, maxHeight: 120, textAlignVertical: 'top' }}
           />
         </View>
 

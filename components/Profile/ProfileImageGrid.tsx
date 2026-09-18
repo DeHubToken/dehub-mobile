@@ -26,6 +26,7 @@ interface ImagePost {
 
 interface ProfileImageGridProps {
   images: ImagePost[];
+  listRef?: React.RefObject<import("react-native").FlatList<any> | null>;
   onImagePress?: (index: number) => void;
   scrollEnabled?: boolean;
   /** Either a plain callback, or a Reanimated worklet scroll handler. */
@@ -81,6 +82,7 @@ const ImageTile = memo<{ post: ImagePost; size: number; onPress: () => void }>(
     );
   },
   (prev, next) =>
+    prev.onPress === next.onPress && prev.post === next.post &&
     (prev.post.id ?? prev.post.tokenId) ===
       (next.post.id ?? next.post.tokenId) && prev.size === next.size,
 );
@@ -124,7 +126,7 @@ const GridRow = memo<{ row: GridRowData; data: ImagePost[]; onPress: (index: num
   },
 );
 
-const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePress, scrollEnabled = true, onScroll, ListHeaderComponent }) => {
+const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, listRef, onImagePress, scrollEnabled = true, onScroll, ListHeaderComponent }) => {
   const rows = useMemo(() => buildRows(images.length), [images.length]);
 
   const renderRow = useCallback(
@@ -153,6 +155,7 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePres
   if (images.length < 4) {
     return (
       <Animated.FlatList
+        ref={listRef}
         data={[]}
         keyExtractor={() => "x"}
         renderItem={null as any}
@@ -180,6 +183,7 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePres
 
   return (
     <Animated.FlatList
+        ref={listRef}
       data={rows}
       keyExtractor={keyExtractor}
       renderItem={renderRow}

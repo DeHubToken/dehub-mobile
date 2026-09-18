@@ -1,3 +1,4 @@
+import Animated from "react-native-reanimated";
 import React, {
   useCallback,
   useEffect,
@@ -22,6 +23,7 @@ import ProfileEmptyState from "../Profile/ProfileEmptyState";
 
 interface CompactVideoInfiniteListProps {
   address: string; // user address to fetch videos for
+  listRef?: React.RefObject<FlatList<any> | null>;
   pageSize?: number;
   enablePreview?: boolean; // preview disabled automatically for live unless forced
   onLoadedFirstPage?: (count: number) => void;
@@ -50,6 +52,7 @@ const DEFAULT_PAGE_SIZE = 40;
 
 const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
   address,
+  listRef,
   pageSize = DEFAULT_PAGE_SIZE,
   enablePreview,
   onLoadedFirstPage,
@@ -177,7 +180,8 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
 
   return (
     <View className="flex-1">
-      <FlatList
+      <Animated.FlatList
+        ref={listRef}
       className="flex-1 bg-theme-background"
       data={items}
       keyExtractor={keyExtractor}

@@ -223,6 +223,9 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 };
 
 const ShortsGridCard = memo(ShortsGridCardComponent, (prev, next) =>
+  prev.onPress === next.onPress &&
+  prev.onUnavailable === next.onUnavailable &&
+  prev.item === next.item &&
   prev.item.tokenId === next.item.tokenId &&
   prev.item.likes === next.item.likes &&
   // Compare the same number the card renders. Comparing the raw `views` half

@@ -1,3 +1,4 @@
+import Animated from "react-native-reanimated";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View, ScrollView, FlatList, ActivityIndicator, Pressable, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import Icon from "../ui/Icon";
@@ -8,6 +9,7 @@ import ProfileEmptyState from "./ProfileEmptyState";
 
 interface PinnedRouteProps {
   address?: string;
+  listRef?: React.RefObject<import("react-native").FlatList<any> | null>;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   listHeader?: React.ReactElement | null;
   onBeforeNavigate?: () => void;
@@ -15,7 +17,7 @@ interface PinnedRouteProps {
 
 const PAGE_SIZE = 20;
 
-const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader, onBeforeNavigate }) => {
+const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, listHeader, onBeforeNavigate }) => {
   const [items, setItems] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -68,18 +70,18 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader
 
   if (loading) {
     return (
-      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
           <ActivityIndicator color="#fff" />
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
     );
   }
 
   if (error) {
     return (
-      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24, gap: 12 }}>
           <Icon name="WifiOff" size={48} color="#808089" />
@@ -92,25 +94,26 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader
             <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "500" }}>Retry</Text>
           </Pressable>
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
     );
   }
 
   if (items.length === 0) {
     return (
-      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
         <ProfileEmptyState
           kind="pinned"
           title="No pinned posts yet"
           subtitle="Pinned posts will appear here"
         />
-      </ScrollView>
+      </Animated.ScrollView>
     );
   }
 
   return (
-    <FlatList
+    <Animated.FlatList
+      ref={listRef}
       data={items}
       keyExtractor={(item, idx) => `${item.tokenId ?? idx}`}
       renderItem={({ item }) => (
