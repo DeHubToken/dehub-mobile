@@ -57,7 +57,7 @@ import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.servic
 import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
-import { getPostImageBytesForBadge, getPostImageLimitForBadge } from "../libs/post-image-allowance";
+import { getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import AssetSuggestions from "../components/common/AssetSuggestions";
@@ -452,13 +452,9 @@ export default function UploadScreen() {
    */
   const [postQuota, setPostQuota] = useState<PostQuotaStatus | null>(null);
   const mediaUploadLimitBytes = postQuota?.mediaBytesPerDay ?? BASE_MEDIA_UPLOAD_SIZE_BYTES;
-  // How much of a picture survives upload is the creator's badge tier — this
-  // is the size the API will STORE, so a file over it is refused here rather
-  // than sent to be crushed. The API is the authority; the local ladder covers
-  // the moment before the quota lands.
-  const imageLimitBytes = postQuota?.mediaBytesPerDay
-    ?? getPostImageBytesForBadge(authUser?.badgeBalance, authUser?.username, authUser?.badgeLock);
-  const imageLimitMb = Math.round(imageLimitBytes / (1024 * 1024));
+  const imageLimitBytes = Math.min(MAX_IMAGE_UPLOAD_BYTES, postQuota?.mediaBytesPerDay
+    ?? getPostImageBytesForBadge(authUser?.badgeBalance, authUser?.username, authUser?.badgeLock));
+  const imageLimitMb = imageLimitBytes / 1_000_000;
   const mediaUploadLimitLabel = `${Number((mediaUploadLimitBytes / (1024 ** 3)).toFixed(1))} GB`;
   useEffect(() => {
     if (!authUser?.address) {
@@ -1375,23 +1371,32 @@ export default function UploadScreen() {
   /** Size-filters image assets and appends them up to the creator's badge cap. */
   const adoptImageAssets = useCallback(async (assets: PickedAsset[]) => {
     const validAssets: PickedAsset[] = [];
+    let requestImageBytes = (await Promise.all(pickedImages.map(async image => {
+      const info = await FileSystem.getInfoAsync(image.uri).catch(() => null);
+      return (info as any)?.size ?? image.fileSize ?? 0;
+    }))).reduce((total, size) => total + size, 0);
     for (const asset of assets) {
       try {
         const info = await FileSystem.getInfoAsync(asset.uri);
-        const size = (info as any)?.size as number | undefined;
+        const size = ((info as any)?.size ?? asset.fileSize) as number | undefined;
         if (size && size > imageLimitBytes) {
           toastError(postQuota?.tier
             ? t("toasts.image_too_large_tier", { tier: postQuota.tier, limit: imageLimitMb })
             : t("toasts.image_too_large_untiered", { limit: imageLimitMb }));
           continue;
         }
+        if (size && requestImageBytes + size > MAX_REQUEST_IMAGE_BYTES) {
+          toastError('Images in one upload must total 100 MB or less');
+          continue;
+        }
+        requestImageBytes += size ?? 0;
       } catch {}
       validAssets.push(asset);
     }
     if (validAssets.length > 0) {
       setPickedImages((prev) => [...prev, ...validAssets].slice(0, imageLimit));
     }
-  }, [imageLimit, imageLimitBytes, imageLimitMb, postQuota?.tier, t]);
+  }, [pickedImages, imageLimit, imageLimitBytes, imageLimitMb, postQuota?.tier, t]);
 
   /** "Add more" tile on the image grid — already in image mode, so images only. */
   const handlePickMoreImages = useCallback(async () => {
