@@ -41,6 +41,7 @@ type ProfilePostRow =
 
 interface PostsRouteProps {
   address?: string;
+  listRef?: React.RefObject<import("react-native").FlatList<any> | null>;
   /** Either a plain callback, or a Reanimated worklet scroll handler. */
   onScroll?: ((event: NativeSyntheticEvent<NativeScrollEvent>) => void) | any;
   listHeader?: React.ReactNode;
@@ -52,6 +53,7 @@ interface PostsRouteProps {
 /** Web-parity Posts tab: text posts merged with comments and replies. */
 const PostsRoute: React.FC<PostsRouteProps> = ({
   address,
+  listRef,
   onScroll,
   listHeader,
   scrollEnabled = true,
@@ -260,6 +262,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   return (
     <View className="flex-1">
       <Animated.FlatList
+      ref={listRef}
         data={merged}
         keyExtractor={rowKeyExtractor}
         ListHeaderComponent={headerElement}

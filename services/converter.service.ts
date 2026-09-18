@@ -25,6 +25,7 @@ export interface ConverterImportParams {
    * source's own title", which is what clearing the box asks for. */
   name?: string;
   description?: string;
+  rotation?: 0 | 90 | 180 | 270;
   chainId?: number;
 }
 
