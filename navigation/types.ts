@@ -111,6 +111,7 @@ export type AppStackParamList = {
   [ScreenNames.EditProfile]: undefined;
   /** `initialTab` lets the drawer's Staking entry deep-link straight to the stake tab. */
   [ScreenNames.Dpay]: { initialTab?: "buy" | "stake" | "bridge" | "solana" } | undefined;
+  [ScreenNames.Dex]: undefined;
   [ScreenNames.PrivacySettings]: undefined;
   [ScreenNames.UploadQueue]: undefined;
   [ScreenNames.Drafts]: undefined;

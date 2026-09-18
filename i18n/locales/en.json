@@ -4356,5 +4356,31 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "dex": {
+    "title": "DeHub DEX",
+    "heading": "DHB sell positions",
+    "intro": "Offer DHB for USDC in a Uniswap v4 range. Trading must move through the range before the position fills.",
+    "newPosition": "New DHB / USDC position",
+    "amount": "DHB amount",
+    "minimum": "Minimum USDC per DHB",
+    "maximum": "Maximum USDC per DHB",
+    "balance": "{{chain}} · {{amount}} liquid DHB",
+    "noBalance": "No liquid DHB on Base or BNB Chain",
+    "reviewDetail": "Review: list {{amount}} DHB on {{chain}} at {{minPrice}}–{{maxPrice}} USDC per DHB. Your wallet will ask for approvals and mint the position.",
+    "approve": "Approve and create",
+    "review": "Review position",
+    "allListings": "All listings",
+    "listError": "Listings are unavailable right now.",
+    "noListings": "No listings yet.",
+    "previous": "Previous",
+    "next": "Next",
+    "connectDhb": "Connect a wallet holding liquid DHB",
+    "checkAmount": "Check the DHB amount",
+    "created": "Sell position created",
+    "withdrawn": "Position withdrawn to your wallet",
+    "withdrawing": "Withdrawing…",
+    "withdrawUsdc": "Withdraw USDC",
+    "withdrawPosition": "Withdraw position"
   }
 }

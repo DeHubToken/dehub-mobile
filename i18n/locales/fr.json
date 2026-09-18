@@ -4365,5 +4365,31 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "dex": {
+    "title": "DeHub DEX",
+    "heading": "Positions de vente DHB",
+    "intro": "Proposez des DHB contre des USDC dans une fourchette Uniswap v4. Les échanges doivent traverser cette fourchette pour remplir la position.",
+    "newPosition": "Nouvelle position DHB / USDC",
+    "amount": "Montant de DHB",
+    "minimum": "USDC minimum par DHB",
+    "maximum": "USDC maximum par DHB",
+    "balance": "{{chain}} · {{amount}} DHB disponibles",
+    "noBalance": "Aucun DHB disponible sur Base ou BNB Chain",
+    "reviewDetail": "Vérification : proposer {{amount}} DHB sur {{chain}} entre {{minPrice}} et {{maxPrice}} USDC par DHB. Votre portefeuille demandera les autorisations puis créera la position.",
+    "approve": "Autoriser et créer",
+    "review": "Vérifier la position",
+    "allListings": "Toutes les offres",
+    "listError": "Les offres sont indisponibles pour le moment.",
+    "noListings": "Aucune offre pour le moment.",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "connectDhb": "Connectez un portefeuille contenant des DHB disponibles",
+    "checkAmount": "Vérifiez le montant de DHB",
+    "created": "Position de vente créée",
+    "withdrawn": "Position retirée vers votre portefeuille",
+    "withdrawing": "Retrait en cours…",
+    "withdrawUsdc": "Retirer les USDC",
+    "withdrawPosition": "Retirer la position"
   }
 }
