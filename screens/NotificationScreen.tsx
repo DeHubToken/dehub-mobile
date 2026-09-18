@@ -1071,7 +1071,7 @@ const NotificationScreen = () => {
     // Navigate based on notification type
     switch (type as string) {
       case 'trench_price_alert':
-        navigation.navigate(ScreenNames.ArcadeGame as never, {slug:'trenchstar',view:'focus',symbol:(notification as CustomNotificationItem).customReferenceTitle || 'BTC'} as never);
+        navigation.navigate(ScreenNames.ArcadeGame as never, {slug:'trenchstar',symbol:(notification as CustomNotificationItem).customReferenceTitle || 'BTC'} as never);
         break;
       // The row stores job_number (what web's canonical /bounty/<n> URL is
       // keyed on); this screen's route wants the uuid, so it is resolved on tap
