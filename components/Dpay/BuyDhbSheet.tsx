@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Text, TouchableOpacity, View } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import DpayTopUpForm from "./DpayTopUpForm";
@@ -10,12 +11,13 @@ export default function BuyDhbSheet({ visible, onClose, onDelivered }: {
   onDelivered?: () => void;
 }) {
   const [method, setMethod] = useState<"card" | "crypto">("card");
+  const { t } = useTranslation();
   const delivered = () => { onDelivered?.(); onClose(); };
   return (
     <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="90%" scrollable>
       <View className="p-5">
-        <Text className="text-white text-2xl font-bold mb-1">Buy DHB</Text>
-        <Text className="text-white/60 text-xs mb-4">Buy DHB here and keep your place.</Text>
+        <Text className="text-white text-2xl font-bold mb-1">{t("superpowers.getDhb")}</Text>
+        <Text className="text-white/60 text-xs mb-4">{t("superpowers.holdToUnlock")}</Text>
         <View className="flex-row gap-2 mb-4">
           {(["card", "crypto"] as const).map(option => (
             <TouchableOpacity key={option} onPress={() => setMethod(option)}
@@ -27,7 +29,7 @@ export default function BuyDhbSheet({ visible, onClose, onDelivered }: {
         {method === "card" ? <DpayTopUpForm embedded onDelivered={delivered} /> :
           <NearIntentBuy active initialDhbAmount={1} onDelivered={delivered} />}
         <TouchableOpacity onPress={onClose} className="h-11 mt-4 rounded-xl bg-white/10 items-center justify-center">
-          <Text className="text-white font-semibold">Back to SuperPowers</Text>
+          <Text className="text-white font-semibold">{t("profile.back")}</Text>
         </TouchableOpacity>
       </View>
     </GlassModal>
