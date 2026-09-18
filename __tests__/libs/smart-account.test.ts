@@ -43,6 +43,7 @@ import {
 const BASE = 8453;
 const BNB = 56;
 const ETH_MAINNET = 1;
+const UNSUPPORTED_CHAIN = 999999;
 const PK = '0x' + '11'.repeat(32);
 const EOA = '0xEOAeoaEOAeoaEOAeoaEOAeoaEOAeoaEOAeoa1111';
 const SAFE = '0xSAFEsafeSAFEsafeSAFEsafeSAFEsafeSAFE2222';
@@ -74,11 +75,11 @@ describe('isChainAASupported', () => {
   it('covers the chains DeHub deploys to', () => {
     expect(isChainAASupported(BASE)).toBe(true);
     expect(isChainAASupported(BNB)).toBe(true);
+    expect(isChainAASupported(ETH_MAINNET)).toBe(true);
   });
 
   it('excludes chains with no Safe/Pimlico setup', () => {
-    expect(isChainAASupported(ETH_MAINNET)).toBe(false);
-    expect(isChainAASupported(999999)).toBe(false);
+    expect(isChainAASupported(UNSUPPORTED_CHAIN)).toBe(false);
   });
 });
 
@@ -113,10 +114,10 @@ describe('hasAASetupFailed', () => {
 
 describe('setupAAProvider outcome reasons', () => {
   it('records unsupported-chain without touching the network', async () => {
-    await expect(setupAAProvider(EOA, PK, ETH_MAINNET)).resolves.toBeNull();
+    await expect(setupAAProvider(EOA, PK, UNSUPPORTED_CHAIN)).resolves.toBeNull();
 
     expect(mockInvoke).not.toHaveBeenCalled();
-    expect(getAASetupOutcome(ETH_MAINNET)).toEqual({
+    expect(getAASetupOutcome(UNSUPPORTED_CHAIN)).toEqual({
       ok: false,
       reason: 'unsupported-chain',
     });
