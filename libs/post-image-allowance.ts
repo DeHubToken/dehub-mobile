@@ -27,19 +27,14 @@ export function getPostImageLimitForBadge(
 }
 
 /**
- * How big a single picture may be, per badge tier — the size the API stores,
- * not just the size it accepts. A megabyte with no badge, one more per tier,
- * then a jump to 20 and 30 for Blue Whale and Megalodon.
- *
- * The API is the authority (PostQuotaStatus.imageBytes); this table is what
- * the composer uses before that has loaded, and against an older API. Keep it
- * in step with POST_QUOTA_TIERS in the backend.
+ * Fallback media upload allowance before the API quota has loaded. Images,
+ * video and audio share this ceiling. Keep it aligned with POST_QUOTA_TIERS.
  */
-const IMAGE_MB_BY_BADGE_INDEX = [
-  2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 20, 30,
+const MEDIA_GB_BY_BADGE_INDEX = [
+  1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.5, 5, 10,
 ] as const;
 
-export const BASE_POST_IMAGE_BYTES = 1024 * 1024;
+export const BASE_POST_IMAGE_BYTES = 1024 ** 3;
 
 export function getPostImageBytesForBadge(
   badgeBalance: number | string | null | undefined,
@@ -51,7 +46,7 @@ export function getPostImageBytesForBadge(
     lock: parseBadgeLock(badgeLock),
   });
   const badgeIndex = badge ? BADGE_ORDER.indexOf(badge) : -1;
-  const mb = badgeIndex >= 0 ? IMAGE_MB_BY_BADGE_INDEX[badgeIndex] : undefined;
+  const gb = badgeIndex >= 0 ? MEDIA_GB_BY_BADGE_INDEX[badgeIndex] : undefined;
 
-  return mb ? mb * 1024 * 1024 : BASE_POST_IMAGE_BYTES;
+  return gb ? gb * 1024 ** 3 : BASE_POST_IMAGE_BYTES;
 }
