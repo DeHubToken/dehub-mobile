@@ -9,7 +9,7 @@ const service = (): PurchaseApi => ({
 
 it('loads currencies when the buy screen becomes focused', async () => {
   const api = service();
-  const { result, rerender, unmount } = renderHook(({ active }) => useCryptoPurchase(api, 'wallet', 50000, active), { initialProps: { active: false } });
+  const { result, rerender, unmount } = renderHook<ReturnType<typeof useCryptoPurchase>, { active: boolean }>(({ active }) => useCryptoPurchase(api, 'wallet', 50000, active), { initialProps: { active: false } });
   expect(result.current.loading).toBe(false);
   expect(api.assets).not.toHaveBeenCalled();
   rerender({ active: true });
@@ -23,7 +23,7 @@ it('loads currencies when the buy screen becomes focused', async () => {
 
 it('does not stay loading before the wallet is ready', async () => {
   const api = service();
-  const { result, rerender, unmount } = renderHook(({ wallet }) => useCryptoPurchase(api, wallet, 50000, true), { initialProps: { wallet: '' } });
+  const { result, rerender, unmount } = renderHook<ReturnType<typeof useCryptoPurchase>, { wallet: string }>(({ wallet }) => useCryptoPurchase(api, wallet, 50000, true), { initialProps: { wallet: '' } });
   expect(result.current.loading).toBe(false);
   expect(api.assets).not.toHaveBeenCalled();
   rerender({ wallet: 'wallet' });
