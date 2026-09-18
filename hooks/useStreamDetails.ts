@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { AppState } from 'react-native';
 import { getLiveStream, getStreamKey, LiveStreamEntity } from '../services/live.service';
+import { streamRefreshInterval } from '../libs/live-status';
 
 export interface UseStreamDetailsResult {
   streamEntity: LiveStreamEntity | null;
@@ -19,21 +21,25 @@ export const useStreamDetails = (streamId?: string, fetchKey: boolean = true): U
   const [streamKeyValue, setStreamKeyValue] = useState<string | null>(null);
   const [streamKeyLoading, setStreamKeyLoading] = useState<boolean>(false);
   const [streamKeyError, setStreamKeyError] = useState<string | null>(null);
+  const generation = useRef(0);
 
-  const fetchStream = () => {
+  const fetchStream = useCallback((background = false) => {
     if (!streamId) return;
-    setStreamLoading(true);
+    const requestGeneration = generation.current;
+    if (!background) setStreamLoading(true);
     setStreamError(null);
     getLiveStream(streamId)
       .then((res: any) => {
+        if (requestGeneration !== generation.current) return;
         const entity: any = res?.result || res;
         setStreamEntity(entity || null);
       })
       .catch((e: any) => {
+        if (requestGeneration !== generation.current) return;
         setStreamError(e?.message || 'Failed to load stream');
       })
-      .finally(() => setStreamLoading(false));
-  };
+      .finally(() => { if (requestGeneration === generation.current) setStreamLoading(false); });
+  }, [streamId]);
 
   const fetchStreamKey = () => {
     if (!streamId || !fetchKey) return;
@@ -49,10 +55,24 @@ export const useStreamDetails = (streamId?: string, fetchKey: boolean = true): U
   };
 
   useEffect(() => {
+    generation.current += 1;
+    setStreamEntity(null);
+    setStreamKeyValue(null);
     if (!streamId) return;
     fetchStream();
     if (fetchKey) fetchStreamKey();
+    return () => { generation.current += 1; };
   }, [streamId, fetchKey]);
+
+  useEffect(() => {
+    if (!streamId || fetchKey) return;
+    const delay = streamRefreshInterval(streamEntity);
+    if (!delay) return;
+    const timer = setInterval(() => {
+      if (AppState.currentState === 'active') fetchStream(true);
+    }, delay);
+    return () => clearInterval(timer);
+  }, [streamId, streamEntity, fetchKey, fetchStream]);
 
   return {
     streamEntity,
