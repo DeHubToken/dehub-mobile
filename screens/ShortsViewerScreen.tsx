@@ -2041,8 +2041,8 @@ const ShortsViewerScreen = () => {
 
       {/* The Native gesture is what makes the pager nameable in a relation —
           see pagerGesture. It wraps the list without changing how it scrolls. */}
-      <GestureDetector gesture={pagerGesture}>
-        {hasMeasuredViewport && <FlatList
+      {hasMeasuredViewport && <GestureDetector gesture={pagerGesture}>
+        <FlatList
           ref={listRef}
           data={items}
           keyExtractor={keyExtractor}
@@ -2064,8 +2064,8 @@ const ShortsViewerScreen = () => {
           maxToRenderPerBatch={2}
           initialNumToRender={2}
           getItemLayout={getItemLayout}
-        />}
-      </GestureDetector>
+        />
+      </GestureDetector>}
 
       {/* Fixed header overlay – back left, playback chrome right (as on web).
           box-none so only the buttons themselves take touches; the rest of the
