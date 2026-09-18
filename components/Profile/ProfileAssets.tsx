@@ -126,6 +126,7 @@ const ProfileAssets = () => {
   const [transferOpen, setTransferOpen] = useState(false);
   const dhbActions = [
     { key: "topUp", label: t("assets.topUp"), subtitle: undefined, disabled: false },
+    { key: "sell", label: t("dex.buySell"), subtitle: undefined, disabled: false },
     { key: "bridge", label: t("assets.bridge"), subtitle: t("assets.comingSoon"), disabled: true },
     { key: "transfer", label: t("commandCentre.transfer"), disabled: false },
   ];
@@ -274,6 +275,8 @@ const ProfileAssets = () => {
                       ? undefined
                       : action.key === "topUp"
                       ? handleTopUp
+                      : action.key === "sell"
+                      ? () => navigation.navigate(ScreenNames.Dex)
                       : action.key === "transfer"
                       ? () => setTransferOpen(true)
                       : undefined
