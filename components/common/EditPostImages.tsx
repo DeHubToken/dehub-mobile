@@ -39,7 +39,6 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
       const picked = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, quality: 1 });
       if (picked.canceled || !picked.assets?.[0]) return;
       const image = picked.assets[0];
-      if ((image.fileSize ?? 0) > 20 * 1024 * 1024) { toastError('Image must be 20 MB or smaller'); return; }
       const updated = await replacePostImage(tokenId, index, {
         uri: image.uri, name: image.fileName || 'replacement.jpg', type: image.mimeType || 'image/jpeg',
       });
@@ -67,7 +66,6 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
       });
       if (picked.canceled || !picked.assets?.length) return;
       if (images.length + picked.assets.length > imageLimit) { toastError(`Your badge tier allows up to ${imageLimit} images per post`); return; }
-      if (picked.assets.some(image => (image.fileSize ?? 0) > 20 * 1024 * 1024)) { toastError('Images must be 20 MB or smaller'); return; }
       const updated = await addPostImages(tokenId, picked.assets.map(image => ({
         uri: image.uri, name: image.fileName || 'image.jpg', type: image.mimeType || 'image/jpeg',
       })));
