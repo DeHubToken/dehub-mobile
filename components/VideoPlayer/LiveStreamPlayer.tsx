@@ -1172,14 +1172,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   // Share handler
   const handleShare = useCallback(async () => {
-    const url = streamId
-      ? `${WEBSITE_LINK}/app/post/${streamId}`
-      : tokenId
-        ? `${WEBSITE_LINK}/app/post/${tokenId}`
-        : null;
+    const postId = streamEntity?.tokenId ?? tokenId ?? streamId;
+    const url = postId != null ? `${WEBSITE_LINK}/app/post/${postId}` : null;
     if (!url) return;
     await shareProfile(url, `Check out this stream ${url}`);
-  }, [streamId, tokenId]);
+  }, [streamEntity?.tokenId, streamId, tokenId]);
 
   // Sound. A stream is opened on purpose, so it starts audible whether or not
   // the user has silenced the feed. The player used to seed itself from the
