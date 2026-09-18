@@ -4374,6 +4374,11 @@
     "balanceAmount": "Available: {{amount}} {{symbol}}"
   },
   "dex": {
+    "lowestSell": "Lowest sell · USDC",
+    "liveChartHint": "Lowest sell · USDC · drag to inspect",
+    "noSellHistory": "Candles start when verified sell liquidity is available.",
+    "sharedChange24": "24h change",
+    "sharedCandleNote": "Shared lowest sell price · USDC · sampled once per minute. Everyone sees the same history; unobserved periods remain empty.",
     "automaticStage": {
       "tokenApproval": "Approving tokens automatically…",
       "permitApproval": "Approving position access automatically…",
