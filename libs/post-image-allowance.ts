@@ -1,5 +1,7 @@
 import { BADGE_ORDER, getBadgeName, parseBadgeLock } from "./misc";
 
+export const MAX_IMAGE_UPLOAD_BYTES = 42_069_000;
+
 /**
  * Feed-image allowance per post. The first four images are available to every
  * creator; higher badge tiers add room gradually, with Megalodon capped at 20.
