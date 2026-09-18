@@ -15,13 +15,13 @@ describe('live composer keyboard geometry', () => {
     jest.replaceProperty(Platform, 'OS', 'android');
     jest.spyOn(Keyboard, 'addListener').mockImplementation((name, listener) => {
       listeners[name] = listener;
-      return { remove: jest.fn() };
+      return { remove: jest.fn() } as ReturnType<typeof Keyboard.addListener>;
     });
   });
   afterEach(() => jest.restoreAllMocks());
 
   it('responds to parent resize even when window dimensions do not change, then restores on dismiss', () => {
-    const { result, rerender } = renderHook(({ height }) => useComposerKeyboard(height), {
+    const { result, rerender } = renderHook<ReturnType<typeof useComposerKeyboard>, { height: number }>(({ height }) => useComposerKeyboard(height), {
       initialProps: { height: 800 },
     });
     let bottom = 774;
