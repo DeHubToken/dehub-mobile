@@ -299,6 +299,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
     }
     // Supply checks
     try {
+      if (supplyData) {
       const chainSupplyRoot =
         supplyData?.[String(chain)] ||
         supplyData?.[Number(chain) as any] ||
@@ -325,6 +326,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
           t("dpay.insufficientSupply", { symbol: tokenSymbol, available: supplyOnChain })
         );
         return;
+      }
       }
     } catch {}
 
@@ -394,6 +396,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
     chain,
     currency,
     embedded,
+    supplyData,
   ]);
 
   const checkoutHtml = React.useMemo(() => {
