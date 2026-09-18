@@ -19,6 +19,8 @@ import { openInApp } from "../../libs/links.utils";
 import { theme } from "../../theme";
 import { appScheme } from "../../config/web3.constants";
 import DpayCheckoutStatus from "./DpayCheckoutStatus";
+import { WebView } from "react-native-webview";
+import env from "../../config/env";
 import { FIELD_TEXT } from "../../theme/inputs";
 // Auth signing not required here; apiClient handles auth via isAuthRequired
 
@@ -32,6 +34,9 @@ type DpayTopUpFormProps = {
     tokenSymbol: string;
     chainId: number;
   }) => Promise<number | null>;
+  embedded?: boolean;
+  initialUsdAmount?: string;
+  onDelivered?: () => void;
 };
 
 const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
@@ -39,13 +44,17 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   initialPrice,
   supplyData,
   onRequestPrice,
+  embedded = false,
+  initialUsdAmount = "10",
+  onDelivered,
 }) => {
   const user = useUser() as any;
   const address: string | undefined = (user?.walletAddress || user?.address) as
     | string
     | undefined;
   const { t } = useTranslation();
-  const [amountUsd, setAmountUsd] = React.useState<string>("10");
+  const [amountUsd, setAmountUsd] = React.useState<string>(initialUsdAmount);
+  const [checkoutSecret, setCheckoutSecret] = React.useState<string | null>(null);
   const [currency, setCurrency] = React.useState<string>("usd");
   const [chain, setChain] = React.useState<string>(
     String(ChainId.BASE_MAINNET)
@@ -243,6 +252,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
     // Reset checkout/status flow so next attempt starts fresh
     setStatusVisible(false);
     setStatusSid(null);
+    setCheckoutSecret(null);
     setLoadingCheckout(false);
     setTermsAccepted(false);
   }, []);
@@ -332,7 +342,10 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
         tokensToReceive,
         tokenSymbol,
         currency,
-        redirect: `${appScheme}://dpay-result`,
+        redirect: embedded
+          ? `${WEBSITE_LINK}/app/buy?gift_payment=return&session_id={CHECKOUT_SESSION_ID}`
+          : `${appScheme}://dpay-result`,
+        embedded,
         termsAndServicesAccepted: termsAccepted,
       } as const;
 
@@ -342,10 +355,16 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       const sessionId: string | undefined = data?.sessionId || data?.id;
       const redirectUrl: string | undefined =
         data?.url || data?.redirectUrl || data?.checkoutUrl;
+      const clientSecret: string | undefined = data?.clientSecret;
 
       // Keep modal open and show status component; seed with sessionId if present
       if (sessionId) setStatusSid(sessionId);
-      if (redirectUrl) {
+      if (embedded && clientSecret) {
+        setCheckoutSecret(clientSecret);
+      } else if (embedded) {
+        toastError(t("dpay.checkoutUnavailable"));
+        return;
+      } else if (redirectUrl) {
         await openInApp(redirectUrl);
         toastSuccess(t("dpay.redirecting"));
       } else if (sessionId) {
@@ -374,7 +393,15 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
     priceUsd,
     chain,
     currency,
+    embedded,
   ]);
+
+  const checkoutHtml = React.useMemo(() => {
+    if (!checkoutSecret || !env.STRIPE_PUBLISHABLE_KEY) return '';
+    const key = JSON.stringify(env.STRIPE_PUBLISHABLE_KEY).replace(/</g, '\\u003c');
+    const secret = JSON.stringify(checkoutSecret).replace(/</g, '\\u003c');
+    return `<!doctype html><meta name="viewport" content="width=device-width, initial-scale=1"><script src="https://js.stripe.com/v3/"></script><div id="checkout"></div><script>(async()=>{try{const stripe=Stripe(${key});const checkout=await stripe.initEmbeddedCheckout({clientSecret:${secret},onComplete:()=>window.ReactNativeWebView.postMessage('complete')});checkout.mount('#checkout')}catch(e){window.ReactNativeWebView.postMessage('error:'+String(e.message||e))}})();</script>`;
+  }, [checkoutSecret]);
 
   return (
     <View className="bg-theme-neutrals-800 rounded-xl p-5 border border-theme-neutrals-700/60">
@@ -482,7 +509,8 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       <GlassModal
         visible={confirmOpen}
         onClose={onCloseConfirm}
-        presentation="center"
+        presentation={embedded ? "bottom" : "center"}
+        maxHeight={embedded ? "90%" : undefined}
         backdropScope="panel"
       >
         <View className="p-5">
@@ -564,6 +592,24 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                 </View>
               </View>
             </>
+          ) : checkoutSecret ? (
+            <View style={{ height: 560 }}>
+              <WebView
+                source={{ html: checkoutHtml, baseUrl: "https://dehub.io" }}
+                originWhitelist={["https://*", `${appScheme}://*`]}
+                onMessage={(event) => {
+                  if (event.nativeEvent.data === 'complete') setCheckoutSecret(null);
+                  else if (event.nativeEvent.data.startsWith('error:')) toastError(event.nativeEvent.data.slice(6));
+                }}
+                onShouldStartLoadWithRequest={(request) => {
+                  if (request.url.includes('gift_payment=return') || request.url.startsWith(`${appScheme}://dpay-result`)) {
+                    setCheckoutSecret(null);
+                    return false;
+                  }
+                  return true;
+                }}
+              />
+            </View>
           ) : (
             <DpayCheckoutStatus
               address={address as string}
@@ -571,6 +617,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
               tokenSymbol={tokenSymbol}
               initialSid={statusSid}
               onClose={onCloseConfirm}
+              onCompleted={onDelivered}
             />
           )}
         </View>

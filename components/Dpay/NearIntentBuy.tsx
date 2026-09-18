@@ -48,7 +48,7 @@ function Action({ label, onPress, disabled = false }: { label: string; onPress: 
   return <TouchableOpacity accessibilityRole="button" disabled={disabled} onPress={onPress} className={`rounded-xl bg-white/10 border border-white/15 px-3 py-3 my-1 ${disabled ? 'opacity-40' : ''}`}><Text className="text-white text-center text-sm">{label}</Text></TouchableOpacity>;
 }
 
-export default function NearIntentBuy() {
+export default function NearIntentBuy({ active = false, initialDhbAmount = 50000, onDelivered }: { active?: boolean; initialDhbAmount?: number; onDelivered?: () => void } = {}) {
   const { t } = useTranslation();
   const user = useUser() as any;
   const { refreshUser, switchChain } = useAuthActions();
@@ -56,14 +56,15 @@ export default function NearIntentBuy() {
   const wallet = (user?.walletAddress || user?.address || '') as string;
   const focused = useIsFocused();
   const [foreground, setForeground] = useState(AppState.currentState === 'active');
-  const [amountText, setAmountText] = useState('50000');
+  const [amountText, setAmountText] = useState(String(initialDhbAmount));
+  const deliveredRef = React.useRef<string | null>(null);
   const [search, setSearch] = useState('');
   const [agreed, setAgreed] = useState(false);
   const [connectingSolana, setConnectingSolana] = useState(false);
   const amount = Number(amountText);
-  const flow = useCryptoPurchase(cryptoPurchaseApi, wallet, amount, foreground && focused, user?.solanaAddress);
+  const flow = useCryptoPurchase(cryptoPurchaseApi, wallet, amount, foreground && (active || focused), user?.solanaAddress);
   const { purchase, quote, selected, busy } = flow;
-  const picker = usePaymentPicker(flow.assets, wallet, user?.solanaAddress, foreground && focused, loadPaymentBalances, flow.selectAsset);
+  const picker = usePaymentPicker(flow.assets, wallet, user?.solanaAddress, foreground && (active || focused), loadPaymentBalances, flow.selectAsset);
   const direct = purchase ? purchase.route === 'direct' : selected?.route === 'direct';
   const sendPayment = async (receipt: Purchase) => {
     if (receipt.paymentChainId === 101) return sendSolanaPurchase(receipt);
@@ -112,8 +113,11 @@ export default function NearIntentBuy() {
   const needsSolana = selected?.route === 'direct' && selected?.blockchain === 'sol' && (!user?.solanaAddress || !user?.solanaAddressVerifiedAt);
   const phase = purchase ? purchasePhase(purchase, flow.now) : null;
   useEffect(() => {
-    if (purchase?.tokenSendStatus === 'sent') void refreshUser().catch(() => {});
-  }, [purchase?.id, purchase?.tokenSendStatus, refreshUser]);
+    if (purchase?.tokenSendStatus === 'sent' && purchase.id !== deliveredRef.current) {
+      deliveredRef.current = purchase.id;
+      void refreshUser().then(() => onDelivered?.()).catch(() => onDelivered?.());
+    }
+  }, [purchase?.id, purchase?.tokenSendStatus, refreshUser, onDelivered]);
   const minutes = estimateMinutes(purchase?.timeEstimateSeconds ?? quote?.timeEstimateSeconds);
   const rows = picker.rows.filter(asset => `${asset.symbol} ${paymentChainName(asset.blockchain)} ${asset.contractAddress || ''} ${asset.assetId}`.toLowerCase().includes((picker.other ? search : '').trim().toLowerCase()));
   useEffect(() => {
