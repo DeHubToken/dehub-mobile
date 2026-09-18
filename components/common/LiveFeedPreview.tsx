@@ -13,6 +13,7 @@
 import React, { memo, useEffect, useState } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useEvent } from "expo";
+import { useTranslation } from "react-i18next";
 import { VideoView, useVideoPlayer } from "expo-video";
 import SmartImage from "./SmartImage";
 import Icon from "../ui/Icon";
@@ -54,6 +55,7 @@ function usablePoster(thumbnail?: string): string | undefined {
  * while `active` is the difference between one player and one per live card.
  */
 function LivePlayer({ url }: { url: string }) {
+  const { t } = useTranslation();
   const [muted, setMuted] = useState(true);
   const [controlsVisible, setControlsVisible] = useState(true);
   const player = useVideoPlayer(url, p => {
@@ -80,7 +82,7 @@ function LivePlayer({ url }: { url: string }) {
 
   return (
     <View style={StyleSheet.absoluteFill}>
-      <Pressable accessibilityLabel="Show live controls" style={StyleSheet.absoluteFill} onPress={(event) => {
+      <Pressable accessibilityLabel={t("stages.liveNow")} style={StyleSheet.absoluteFill} onPress={(event) => {
         event.stopPropagation();
         setControlsVisible(value => !value);
       }}>
@@ -95,7 +97,7 @@ function LivePlayer({ url }: { url: string }) {
       />
       </Pressable>
       {controlsVisible && <View style={styles.controls}>
-        <Pressable accessibilityRole="button" accessibilityLabel={isPlaying ? "Pause" : "Play"} style={styles.control} onPress={(event) => {
+        <Pressable accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} style={styles.control} onPress={(event) => {
           event.stopPropagation();
           if (player.playing) player.pause();
           else player.play();
@@ -103,7 +105,7 @@ function LivePlayer({ url }: { url: string }) {
           <Icon name={isPlaying ? "Pause" : "Play"} size={18} color="#FFFFFF" />
         </Pressable>
         <View style={{ flex: 1 }} />
-        <Pressable accessibilityRole="button" accessibilityLabel={muted ? "Unmute" : "Mute"} style={styles.control} onPress={(event) => {
+        <Pressable accessibilityRole="button" accessibilityLabel={t(muted ? "common.unmute" : "common.mute")} style={styles.control} onPress={(event) => {
           event.stopPropagation();
           player.muted = !muted;
           setMuted(!muted);
