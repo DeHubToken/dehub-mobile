@@ -81,6 +81,7 @@ export function formatCompactNumber(value: number | undefined | null): string {
   const sign = value < 0 ? '-' : '';
   // Small value formatting (<1) – mimic ETH balance formatting logic (up to 6 decimals)
   if (abs > 0 && abs < 1) {
+    if (abs < 0.000001) return sign + '<0.000001';
     const fixed = abs.toFixed(6); // 6 decimals
     // Trim trailing zeros and optional decimal point
     const trimmed = fixed.replace(/\.?(0+)$/,'').replace(/\.0+$/,'');

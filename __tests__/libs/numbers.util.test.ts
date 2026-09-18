@@ -1,6 +1,11 @@
 import { pad, clamp, toNumberSafe, percent, formatCompactNumber, formatNumber, resolveViewCount } from '../../libs/numbers.util';
 
 describe('libs/numbers.util', () => {
+  it('keeps a positive dust balance visibly distinct from zero', () => {
+    expect(formatCompactNumber(0.0000001)).toBe('<0.000001');
+    expect(formatCompactNumber(0.000030758)).toBe('0.000031');
+    expect(formatCompactNumber(0)).toBe('0');
+  });
   describe('resolveViewCount', () => {
     it('prefers totalViews — the whole audience', () => {
       expect(resolveViewCount({ totalViews: 250, views: 200 })).toBe(250);
