@@ -456,6 +456,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const isLiveEffective =
     !isEndedStatus && (socketStatus === "LIVE" || isPausedEffective || (isLiveStatus && socketStatus !== "ENDED"));
   const isEndedEffective = socketStatus === "ENDED" || isEndedStatus;
+  useEffect(() => {
+    if (!isLiveEffective) clearReactions();
+  }, [isLiveEffective, clearReactions]);
   // Effective playback URL, only when playable.
   //
   // The HLS ladder is dead the moment ingest stops, so an ended stream played
@@ -877,10 +880,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     });
     // Reaction events from other viewers or self-echo
     bind(LivestreamEvents.StreamReaction as any, (data: any) => {
+      if (data?.streamId && data.streamId !== streamId) return;
       // Backend sends { reactionType, user: <userRef> }
       const type = data?.reactionType as ReactionType;
       const rUsername = data?.user?.displayName || data?.user?.username;
-      if (type) addReaction(type, rUsername);
+      if (type) addReaction(type, rUsername, data?.weight);
     });
     // Settings updates from streamer (e.g. chat toggled)
     bind(LivestreamEvents.SettingsUpdate as any, (data: any) => {
@@ -1130,10 +1134,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   // Send a reaction via socket
   const handleSendReaction = useCallback((type: ReactionType) => {
-    if (!streamId || !isLiveEffective || !isSignedIn) return;
-    addReaction(type, (user as any)?.username);
+    if (!streamId || !isLiveEffective || !isSignedIn || !connected) return;
+    // Render the room echo once, with the sender's server-resolved badge weight.
     socketEmitAuthed(LivestreamEvents.StreamReaction as any, { streamId, reactionType: type });
-  }, [streamId, isLiveEffective, isSignedIn, addReaction, socketEmitAuthed, user]);
+  }, [streamId, isLiveEffective, isSignedIn, connected, socketEmitAuthed]);
 
   // First-load redirect: if not ended and current user is owner, go to LiveProducer
   // Uses isOwner from streamEntity (set by backend) — no extra checkIfBroadcastOwner call needed
@@ -1175,8 +1179,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // A reaction on a live post is a post reaction, allowed whenever the post
   // exists — an ended stream is still a post, exactly as on web.
   const handleLiveLike = useCallback(() => {
+    requireAuth(() => handleSendReaction('LIKE'));
     postReactions.toggle(true);
-  }, [postReactions]);
+  }, [postReactions, requireAuth, handleSendReaction]);
 
   // Share handler
   const handleShare = useCallback(async () => {
