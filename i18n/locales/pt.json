@@ -4377,5 +4377,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "dex": {
+    "lowestSell": "Menor preço de venda · USDC",
+    "liveChartHint": "Menor preço de venda · USDC · arraste para consultar",
+    "noSellHistory": "As velas começam quando há liquidez de venda verificada.",
+    "liveCandleNote": "Menor preço de venda observado · USDC · atualizado a cada novo bloco, com verificação a cada 10 s. O histórico é salvo neste dispositivo; lacunas não são negociações."
   }
 }

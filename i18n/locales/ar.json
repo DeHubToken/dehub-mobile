@@ -4358,5 +4358,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "dex": {
+    "lowestSell": "أدنى سعر بيع · USDC",
+    "liveChartHint": "أدنى سعر بيع · USDC · اسحب للفحص",
+    "noSellHistory": "تبدأ الشموع عند توفر سيولة بيع تم التحقق منها.",
+    "liveCandleNote": "رصد أدنى سعر بيع · USDC · يتحدث مع الكتل الجديدة، مع فحص احتياطي كل 10 ثوانٍ. يُحفظ السجل على هذا الجهاز؛ الفجوات ليست صفقات."
   }
 }

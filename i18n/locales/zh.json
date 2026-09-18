@@ -4360,5 +4360,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "dex": {
+    "lowestSell": "最低卖价 · USDC",
+    "liveChartHint": "最低卖价 · USDC · 拖动查看",
+    "noSellHistory": "有经验证的卖出流动性时开始绘制蜡烛图。",
+    "liveCandleNote": "最低卖价观测值 · USDC · 随新区块更新，并每10秒检查一次。历史记录保存在此设备上；空缺不代表成交。"
   }
 }

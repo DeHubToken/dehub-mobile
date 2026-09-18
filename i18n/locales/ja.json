@@ -4370,5 +4370,11 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "dex": {
+    "lowestSell": "最安売値 · USDC",
+    "liveChartHint": "最安売値 · USDC · ドラッグして確認",
+    "noSellHistory": "検証済みの売却流動性があるとローソク足の記録が始まります。",
+    "liveCandleNote": "観測された最安売値 · USDC · 新しいブロックで更新し、10秒ごとにも確認します。履歴はこの端末に保存され、空白は取引を表しません。"
   }
 }
