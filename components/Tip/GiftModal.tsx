@@ -319,7 +319,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
       // overflow.
       scrollable
     >
-      <TouchableOpacity activeOpacity={1} onPress={Keyboard.dismiss} className="p-5">
+      <View className="p-5">
         <View className="gap-1">
           {/* The diamond leads the sheet on web too — same mark, same side. */}
           <View className="flex-row items-center gap-2">
@@ -536,7 +536,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
             </View>
           </View>
         )}
-      </TouchableOpacity>
+      </View>
     </GlassModal>
     <GlassModal
       visible={buyOpen && open}

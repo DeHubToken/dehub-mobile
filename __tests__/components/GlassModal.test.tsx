@@ -26,32 +26,19 @@ const drag = (dy: number, dx = 0, vy = 0) => ({ dy, dx, vy });
 const handlers = (index = 0) => (PanResponder.create as jest.Mock).mock.calls[index][0];
 beforeEach(() => jest.clearAllMocks());
 
-it('scrolls long menus, preserving taps and yielding while content is away from the top', () => {
-  const close = jest.fn();
-  const screen = render(<GlassModal visible presentation="bottom" scrollable onClose={close}><View /></GlassModal>);
+it('keeps drawer gestures on the handle, outside scrollable inputs', () => {
+  const screen = render(<GlassModal visible presentation="bottom" scrollable onClose={jest.fn()}><View /></GlassModal>);
   const scroll = screen.UNSAFE_getByType(ScrollView);
   expect(scroll.props.keyboardShouldPersistTaps).toBe('handled');
-  const pan = handlers();
-  expect(pan.onMoveShouldSetPanResponderCapture({}, drag(4))).toBe(false);
-  expect(pan.onMoveShouldSetPanResponderCapture({}, drag(-100))).toBe(false);
-  expect(pan.onMoveShouldSetPanResponderCapture({}, drag(30, 70))).toBe(false);
-  fireEvent.scroll(scroll, { nativeEvent: { contentOffset: { y: 100 } } });
-  pan.onStartShouldSetPanResponderCapture();
-  expect(pan.onMoveShouldSetPanResponderCapture({}, drag(100))).toBe(false);
-  fireEvent.scroll(scroll, { nativeEvent: { contentOffset: { y: 0 } } });
-  expect(pan.onMoveShouldSetPanResponderCapture({}, drag(100))).toBe(false);
-  pan.onStartShouldSetPanResponderCapture();
-  expect(pan.onMoveShouldSetPanResponderCapture({}, drag(100))).toBe(true);
-  pan.onPanResponderRelease({}, drag(100));
-  expect(close).toHaveBeenCalledTimes(1);
+  const panel = screen.UNSAFE_getByType('AnimatedView' as any);
+  expect(panel.props.onMoveShouldSetPanResponderCapture).toBeUndefined();
+  expect(handlers().onMoveShouldSetPanResponderCapture({}, drag(100))).toBe(true);
 });
-
 it('keeps custom lists independent and allows dismissal from the handle', () => {
   const close = jest.fn();
   const screen = render(<GlassModal visible presentation="bottom" onClose={close}><View /></GlassModal>);
   expect(screen.UNSAFE_queryAllByType(ScrollView)).toHaveLength(0);
-  expect(handlers().onMoveShouldSetPanResponderCapture({}, drag(100))).toBe(false);
-  const handle = handlers(1);
+  const handle = handlers();
   expect(handle.onMoveShouldSetPanResponderCapture({}, drag(100))).toBe(true);
   handle.onPanResponderRelease({}, drag(25, 0, 1));
   expect(close).toHaveBeenCalledTimes(1);
@@ -61,15 +48,14 @@ it.each([{ presentation: 'center' as const }, { presentation: 'bottom' as const,
   'does not drag a center or locked modal: %j', (props) => {
     render(<GlassModal visible scrollable onClose={jest.fn()} {...props}><View /></GlassModal>);
     expect(handlers().onMoveShouldSetPanResponderCapture({}, drag(100))).toBe(false);
-    expect(handlers(1).onMoveShouldSetPanResponderCapture({}, drag(100))).toBe(false);
   },
 );
 
 it('does not dismiss for a short drag or cancellation', () => {
   const close = jest.fn();
   render(<GlassModal visible presentation="bottom" onClose={close}><View /></GlassModal>);
-  handlers(1).onPanResponderRelease({}, drag(15));
-  handlers(1).onPanResponderTerminate();
+  handlers().onPanResponderRelease({}, drag(15));
+  handlers().onPanResponderTerminate();
   expect(close).not.toHaveBeenCalled();
 });
 
