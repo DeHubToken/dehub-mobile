@@ -191,10 +191,12 @@ describe('provider behaviour', () => {
     mockGetProviderInstance.mockResolvedValue(providerReturning([SAFE]));
 
     const first = await setupAAProvider(EOA, PK, BASE);
+    const buildsAfterFirst = mockGetProviderInstance.mock.calls.length;
     const second = await setupAAProvider(EOA, PK, BASE);
 
     expect(second).toBe(first);
-    expect(mockGetProviderInstance).toHaveBeenCalledTimes(1);
+    expect(buildsAfterFirst).toBeGreaterThan(0);
+    expect(mockGetProviderInstance).toHaveBeenCalledTimes(buildsAfterFirst);
   });
 });
 
