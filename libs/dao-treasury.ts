@@ -15,8 +15,8 @@ import { ChainId, DHB_ADDRESSESS } from '../config/constants';
 import { NETWORK_URLS } from '../config/web3.constants';
 import env from '../config/env';
 
-/** Same address as the EVM line on dehub.io/docs/donate. Change both or neither. */
-export const DAO_TREASURY_ADDRESS = '0x1759ceb6255dbebfe2c0c51edbcd29ad7efb9229';
+/** Same address as web's DAO treasury and the EVM line on dehub.io/docs/donate. Change all together. */
+export const DAO_TREASURY_ADDRESS = '0xb6FCACda06676B775188Dfc9c4D7C4AEb564d3c4';
 
 export const DAO_CONTRIBUTION_CHAINS: number[] = [ChainId.BASE_MAINNET, ChainId.BSC_MAINNET];
 export const DAO_BALANCE_CHAINS: number[] = [ChainId.BASE_MAINNET, ChainId.BSC_MAINNET, ChainId.MAINNET];
