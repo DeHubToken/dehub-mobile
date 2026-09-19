@@ -3,6 +3,12 @@ import { parseTxError, applyGasMargin } from "./web3.util";
 
 type Hex = `0x${string}`;
 
+export const SELF_FUNDED_GAS_INSUFFICIENT = "SELF_FUNDED_GAS_INSUFFICIENT";
+
+export function isSelfFundedGasInsufficientError(error: unknown): boolean {
+  return error instanceof Error && error.message === SELF_FUNDED_GAS_INSUFFICIENT;
+}
+
 function toHex(value?: string | number | ethers.BigNumber | null): Hex | undefined {
   if (value === undefined || value === null) return undefined;
   try {
@@ -139,6 +145,19 @@ export async function writeBatchAA(
     return { hash: receipt.receipt.transactionHash as string };
   } catch (err: any) {
     if (err?.message === "BATCH_UNSUPPORTED") throw err;
+    if (options?.sponsored === false) {
+      let raw = err instanceof Error ? err.message : String(err);
+      try { raw += ` ${JSON.stringify(err)}`; } catch { /* Best-effort nested error inspection. */ }
+      const lower = raw.toLowerCase();
+      if (
+        lower.includes("aa21") ||
+        lower.includes("prefund") ||
+        lower.includes("insufficient funds") ||
+        lower.includes("insufficient balance")
+      ) {
+        throw new Error(SELF_FUNDED_GAS_INSUFFICIENT);
+      }
+    }
     throw new Error(parseTxError(err, options?.context || "send"));
   }
 }
