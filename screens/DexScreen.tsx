@@ -1,3 +1,4 @@
+import { dexActionError } from '../libs/dex-action-error';
 import { minuteCache, parseSharedMarket, CANDLE_INTERVALS, type SharedMarket, type CandleInterval } from '../libs/dex-live-market';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, AppState, Linking, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -13,6 +14,7 @@ import { DEX_CHAINS, detectDhbChain, detectUsdcChain, mintSell, quoteSell, recov
 import { aggregateBook, balanceFraction, formatPrice, formatSize, type BookLevel } from '../libs/dex-orderbook';
 import { readWithTimeout, type OrderStage } from '../libs/dex-read-timeout';
 import { getSigningProvider } from '../libs/provider.registry';
+import { prepareWalletForQueuedMint } from '../libs/wallet-signing-preflight';
 import { withWalletHeader } from '../libs/supabase-wallet-client';
 import { toastError, toastSuccess } from '../libs';
 import { supabase } from '../services/supabase';
@@ -45,8 +47,10 @@ export default function DexScreen() {
   const navigation = useNavigation();
   const focused = useIsFocused();
   const user = useUser();
-  const { chainId: connectedChain, authMethod } = useProvider();
+  const { chainId: connectedChain, authMethod, provider: sessionProvider } = useProvider();
   const { switchChain } = useAuthActions();
+  const sessionProviderRef = useRef(sessionProvider);
+  sessionProviderRef.current = sessionProvider;
   const address = user?.walletAddress || user?.address || '';
   const [side, setSide] = useState<'buy' | 'sell'>('sell');
   const [tab, setTab] = useState<'chart' | 'book' | 'trade'>('chart');
@@ -177,23 +181,25 @@ export default function DexScreen() {
       const input: SellInput = { walletAddress: address, chainId: chainId!, side, amount, minPrice, maxPrice };
       if (!review) { setReview(await quoteSell(input)); return; }
       setStage('wallet');
+      await prepareWalletForQueuedMint(getSigningProvider() || sessionProviderRef.current);
       if (connectedChain !== chainId) await readWithTimeout(Promise.resolve(switchChain(chainId!)), 'Wallet network', 60000);
-      const provider = getSigningProvider();
+      const provider = getSigningProvider() || sessionProviderRef.current;
       if (!provider) throw new Error(t('dex.unlockWallet'));
       const minted = await mintSell(input, provider, setStage, (txHash) => savePending({ input, txHash }));
       await register({ input, ...minted });
-    } catch (error) { if ((error as { code?: string }).code === 'DEX_REVERTED') { savePending(null); setReview(null); } setFormError(error instanceof Error ? error.message : String(error)); }
+    } catch (error) { if ((error as { code?: string }).code === 'DEX_REVERTED') { savePending(null); setReview(null); } setFormError(dexActionError(error)); }
     finally { setBusy(false); busyRef.current = false; }
   }
   async function withdraw(item: VerifiedPosition) {
     if (!address || locked) return;
     setWithdrawing(`${item.chain_id}:${item.token_id}`);
     try {
+      await prepareWalletForQueuedMint(getSigningProvider() || sessionProviderRef.current);
       if (connectedChain !== item.chain_id) await readWithTimeout(Promise.resolve(switchChain(item.chain_id)), 'Wallet network', 60000);
-      const provider = getSigningProvider(); if (!provider) throw new Error(t('dex.unlockWallet'));
+      const provider = getSigningProvider() || sessionProviderRef.current; if (!provider) throw new Error(t('dex.unlockWallet'));
       await withdrawSell(item, address, provider); toastSuccess(t('dex.withdrawn'));
       await loadListings(); setBalanceRevision((n) => n + 1);
-    } catch (error) { toastError(error instanceof Error ? error.message : String(error)); }
+    } catch (error) { toastError(dexActionError(error)); }
     finally { setWithdrawing(null); }
   }
   const field = (label: string, value: string, setValue: (value: string) => void, unit: string) => <View style={s.field}><Text style={s.muted}>{label}</Text><View style={s.inputWrap}><TextInput accessibilityLabel={label} editable={!locked} value={value} keyboardType="decimal-pad" onChangeText={(next) => { setValue(next); setReview(null); }} style={s.input} placeholder="0.00" placeholderTextColor="#596675" /><Text style={s.unit}>{unit}</Text></View></View>;

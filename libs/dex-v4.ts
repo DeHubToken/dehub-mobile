@@ -1,26 +1,14 @@
+import { dexProvider } from './dex-rpc';
+export { dexProvider } from './dex-rpc';
 import { readReceiptFromProviders } from './dex-receipt';
 import { ethers } from 'ethers';
+import env from '../config/env';
 import { Percent, Token } from '@uniswap/sdk-core';
 import { Pool, Position, V4PositionManager } from '@uniswap/v4-sdk';
 import { encodeSqrtRatioX96, TickMath } from '@uniswap/v3-sdk';
 import { ChainId } from '../config/constants';
 import { DHB_TOKEN_ADDRESSES } from '../config/web3.constants';
 import { readWithTimeout, type OrderStage } from './dex-read-timeout';
-
-const providers = new Map<number, ethers.providers.FallbackProvider>();
-export function dexProvider(chainId: DexChainId) {
-  let provider = providers.get(chainId);
-  if (!provider) {
-    const urls = chainId === ChainId.BASE_MAINNET ? ['https://mainnet.base.org', 'https://base-rpc.publicnode.com']
-      : ['https://bsc-dataseed.binance.org', 'https://bsc-rpc.publicnode.com'];
-    provider = new ethers.providers.FallbackProvider(urls.map((url, index) => ({
-      provider: new ethers.providers.StaticJsonRpcProvider({ url, timeout: 10000, throttleLimit: 1 }, chainId),
-      priority: index + 1, stallTimeout: 1000, weight: 1,
-    })), 1);
-    providers.set(chainId, provider);
-  }
-  return provider;
-}
 
 export function dexReceipt(chainId: DexChainId, hash: string) {
   return readReceiptFromProviders(dexProvider(chainId).providerConfigs.map(config => config.provider), hash);
