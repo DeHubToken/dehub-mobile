@@ -188,6 +188,8 @@ export interface AAProviderLike {
    */
   bundlerClient?: any;
   smartAccount?: any;
+  selfFundedBundlerClient?: any;
+  selfFundedSmartAccount?: any;
 }
 
 /**
@@ -198,7 +200,11 @@ export interface AAProviderLike {
  * "Provider is missing" for unrelated callers (e.g. the upload queue) whenever a
  * live Safe-address lookup hiccuped. Every other method still passes through live.
  */
-function wrapWithStableAccounts(provider: AccountAbstractionProvider, address: string): AAProviderLike {
+function wrapWithStableAccounts(
+  provider: AccountAbstractionProvider,
+  address: string,
+  selfFundedProvider?: AccountAbstractionProvider,
+): AAProviderLike {
   const normalized = address.toLowerCase();
   const raw = provider as unknown as AAProviderLike;
   return {
@@ -214,6 +220,8 @@ function wrapWithStableAccounts(provider: AccountAbstractionProvider, address: s
     // Public getters on the SDK provider — see AAProviderLike.
     bundlerClient: (provider as any).bundlerClient,
     smartAccount: (provider as any).smartAccount,
+    selfFundedBundlerClient: (selfFundedProvider as any)?.bundlerClient,
+    selfFundedSmartAccount: (selfFundedProvider as any)?.smartAccount,
   };
 }
 
@@ -288,6 +296,22 @@ export async function setupAAProvider(
       bundlerConfig: { url: bundlerUrl },
       paymasterConfig: { url: paymasterUrl },
     });
+    // Purchases funded with native gas tokens must use the buyer's balance for
+    // gas. Giving this provider no paymaster prevents an available sponsor from
+    // becoming a prerequisite for spending ETH the Safe already owns.
+    let selfFundedProvider: AccountAbstractionProvider | undefined;
+    try {
+      selfFundedProvider = await AccountAbstractionProvider.getProviderInstance({
+        eoaProvider: eoaProvider as unknown as IProvider,
+        smartAccountInit: new SafeSmartAccount(),
+        chainConfig,
+        bundlerConfig: { url: bundlerUrl },
+      });
+    } catch (e) {
+      // Sponsorship-backed app actions must keep working even if the optional
+      // self-funded checkout client cannot be built on this device.
+      log.error("Self-funded AA provider unavailable", e);
+    }
 
     // Resolve the Safe address once up front so eth_accounts is a memoized read
     // from here on (see wrapWithStableAccounts).
@@ -311,7 +335,7 @@ export async function setupAAProvider(
       return null;
     }
 
-    const wrapped = wrapWithStableAccounts(aaProvider, safeAddress);
+    const wrapped = wrapWithStableAccounts(aaProvider, safeAddress, selfFundedProvider);
     storedAAProviders.set(key, wrapped);
     recordAAOutcome(chainId, { ok: true, safeAddress });
     log.info("AA provider ready", { chainId, safeAddress });
