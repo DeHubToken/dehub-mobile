@@ -66,3 +66,13 @@ export async function getProposals(tab: GovernanceTab): Promise<GovernancePropos
   if (tab === "active") return proposals;
   return proposals.filter((p) => verdictOf(p) === tab);
 }
+
+export async function getProposal(proposalId: string): Promise<GovernanceProposal | null> {
+  const { data, error } = await supabase
+    .from("governance_proposals")
+    .select("*")
+    .eq("id", proposalId)
+    .maybeSingle();
+  if (error) throw error;
+  return data as GovernanceProposal | null;
+}
