@@ -4448,6 +4448,7 @@
     "price": "Price",
     "totalDhb": "Total DHB",
     "noOrders": "No orders",
+    "noBids": "No Bids",
     "noDepth": "Depth appears when positions are listed.",
     "amountToken": "{{token}} amount",
     "balanceToken": "{{chain}} · {{amount}} {{token}} available",
