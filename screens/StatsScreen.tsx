@@ -12,8 +12,10 @@ import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubR
 import Svg, { Line, Polyline } from "react-native-svg";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import FeedbackSection from "../components/Stats/FeedbackSection";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 type Range = "7d" | "30d" | "1y" | "all";
 
@@ -111,6 +113,7 @@ export default function StatsScreen() {
     retry: 1,
   });
   const { t } = useTranslation();
+  const navigation = useNavigation<any>();
   const option = RANGE_OPTIONS.find((item) => item.key === range)!;
   const rows = useMemo(() => {
     const all = query.data?.history.days ?? [];
@@ -147,7 +150,15 @@ export default function StatsScreen() {
             <Metric label={t("stats.range7d")} value={query.data.active.weekly} />
             <Metric label={t("stats.range30d")} value={query.data.active.monthly} />
           </View>
-          <Text style={styles.sectionTitle}>{t("stats.newMembers")}</Text>
+          <Pressable
+            onPress={() => navigation.navigate(ScreenNames.Search)}
+            accessibilityRole="link"
+            accessibilityLabel={t("stats.newMembers", "New members")}
+            style={styles.membersHeading}
+          >
+            <Text style={styles.sectionTitle}>{t("stats.newMembers")}</Text>
+            <Text style={styles.membersLink}>{t("stats.newMembers", "New members")}</Text>
+          </Pressable>
           <View style={styles.grid}>
             <Metric label={t("explorePage.today")} value={query.data.newUsers.today} />
             <Metric label={t("explorePage.thisMonth")} value={query.data.newUsers.thisMonth} />
@@ -184,6 +195,8 @@ const styles = StyleSheet.create({
   metricValue: { color: "#FFFFFF", fontSize: 24, fontWeight: "700", marginTop: 3 },
   metricHint: { color: "#8B8D90", fontSize: 11, marginTop: 3 },
   sectionTitle: { color: "#F4F4F5", fontSize: 14, fontWeight: "700", marginTop: 4 },
+  membersHeading: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 4 },
+  membersLink: { color: "#A1A1AA", fontSize: 12, fontWeight: "600" },
   grid: { flexDirection: "row", gap: 8 },
   card: { backgroundColor: "#1C1C1C", borderColor: "#333333", borderWidth: 1, borderRadius: 16, padding: 14, overflow: "hidden" },
   cardHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "baseline", marginBottom: 8 },
