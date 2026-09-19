@@ -68,11 +68,9 @@ export async function fetchWallet(userId: string): Promise<StoredWallet | null> 
     throw new Error("Supabase session not ready — cannot load cloud wallet");
   }
   if (sessionUid !== userId) {
-    // eslint-disable-next-line no-console
-    console.warn("[fetchWallet] session user id mismatch", {
-      expected: `${userId.slice(0, 8)}...`,
-      session: `${sessionUid.slice(0, 8)}...`,
-    });
+    // RLS returns zero rows for another identity, not an error. That must
+    // remain a failed lookup, never evidence that this wallet does not exist.
+    throw new Error("Wallet session does not match this account. Sign in with your original login method.");
   }
 
   const { data, error } = await db()
