@@ -294,12 +294,16 @@ export default function UploadScreen() {
   }, [articleBody, articleSelection]);
   const [articleImageUri, setArticleImageUri] = useState<string | null>(null);
   const [socialImageUri, setSocialImageUri] = useState<string | null>(null);
-  const pickArticleImage = useCallback(async (kind: "article" | "social") => {
+  const pickArticleImage = useCallback(async () => {
     await runWithPermissions(["photos"], async () => {
       const uri = await openCroppedImagePicker({ width: 1200, height: 630, quality: 0.9, forceJpg: true });
-      if (uri) (kind === "article" ? setArticleImageUri : setSocialImageUri)(uri);
+      if (uri) {
+        setArticleImageUri(uri);
+        setSocialImageUri(uri);
+      }
     });
   }, []);
+  const articleShareImageUri = socialImageUri || articleImageUri;
 
   // Same preference web keeps in localStorage under `post_show_title`.
   useEffect(() => {
@@ -709,8 +713,9 @@ export default function UploadScreen() {
       setArticleMode(true);
       setArticleBody(incomingDraft.articleBody);
       setShowTitle(true);
-      setArticleImageUri(incomingDraft.articleImageUri || null);
-      setSocialImageUri(incomingDraft.socialImageUri || null);
+      const shareImageUri = incomingDraft.socialImageUri || incomingDraft.articleImageUri || null;
+      setArticleImageUri(shareImageUri);
+      setSocialImageUri(shareImageUri);
     }
     setCategories(incomingDraft.categories);
     if (incomingDraft.thumbnailUri) setThumbnailUri(incomingDraft.thumbnailUri);
@@ -959,8 +964,8 @@ export default function UploadScreen() {
       bodyText: name,
       description: descWithSound,
       articleBody: articleMode ? articleBody.trim() : undefined,
-      articleImageUri: articleMode ? articleImageUri : null,
-      socialImageUri: articleMode ? socialImageUri : null,
+      articleImageUri: articleMode ? (socialImageUri || articleImageUri) : null,
+      socialImageUri: articleMode ? (socialImageUri || articleImageUri) : null,
       categories,
       pickedImages,
       pickedVideo,
@@ -1312,8 +1317,8 @@ export default function UploadScreen() {
     bodyText,
     titleText,
     articleBody: articleMode ? articleBody : undefined,
-    articleImageUri: articleMode ? articleImageUri : null,
-    socialImageUri: articleMode ? socialImageUri : null,
+    articleImageUri: articleMode ? (socialImageUri || articleImageUri) : null,
+    socialImageUri: articleMode ? (socialImageUri || articleImageUri) : null,
     description: "",
     categories,
     imageUris: pickedImages.map((img) => img.uri),
@@ -1993,6 +1998,11 @@ export default function UploadScreen() {
         <Pressable className="flex-1" onPress={Keyboard.dismiss} accessible={false}>
         <View className="px-4 pt-4">
           {!isQuoteMode && <View className="flex-row items-center justify-center mb-3" style={{ gap: 12 }}>
+            <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !articleMode }}
+              onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setShowTitle(false); }}>
+              <Text className={!isLiveMode && !articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("comments.post")}</Text>
+            </TouchableOpacity>
+            <Text className="text-white/25 text-xs">|</Text>
             <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isLiveMode }}
               onPress={() => { setArticleMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
               <Text className={isLiveMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.livestream")}</Text>
@@ -2003,7 +2013,7 @@ export default function UploadScreen() {
             </TouchableOpacity>
             <Text className="text-white/25 text-xs">|</Text>
             <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: articleMode }}
-              onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(!articleMode); setShowTitle(!articleMode); if (!articleMode) setMonetization(emptyMonetization()); }}>
+              onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(true); setShowTitle(true); setMonetization(emptyMonetization()); }}>
               <Text className={articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.label")}</Text>
             </TouchableOpacity>
           </View>}
@@ -2136,6 +2146,23 @@ export default function UploadScreen() {
             />
             {articleMode && (
               <View className="mt-4">
+                <Text className="text-white/70 text-sm mb-2">{t("articles.socialImage")}</Text>
+                <TouchableOpacity accessibilityRole="button" onPress={pickArticleImage} className="overflow-hidden rounded-xl border border-white/20 bg-white/5">
+                  {articleShareImageUri ? (
+                    <View>
+                      <Image source={{ uri: articleShareImageUri }} className="w-full" style={{ aspectRatio: 1.91 }} resizeMode="cover" />
+                      <View className="p-3">
+                        <Text className="text-white text-sm font-semibold" numberOfLines={1}>{titleText.trim() || "Your article title"}</Text>
+                        <Text className="text-white/60 text-xs mt-1" numberOfLines={2}>{bodyText.trim() || "Your article summary will appear here when this is shared."}</Text>
+                      </View>
+                    </View>
+                  ) : (
+                    <View className="items-center justify-center px-4" style={{ aspectRatio: 1.91 }}>
+                      <Text className="text-white/60 text-xs text-center">{t("articles.socialImage")}</Text>
+                    </View>
+                  )}
+                </TouchableOpacity>
+                {articleShareImageUri && <TouchableOpacity accessibilityRole="button" onPress={() => { setArticleImageUri(null); setSocialImageUri(null); }} className="mt-2 mb-2"><Text className="text-white/60 text-xs">{t("articles.removeImage")}</Text></TouchableOpacity>}
                 <Text className="text-white/70 text-sm mb-2">{t("articles.body")}</Text>
                 <View className="flex-row flex-wrap items-center mb-2">
                   {([
@@ -2154,19 +2181,6 @@ export default function UploadScreen() {
                   placeholderTextColor="#6F7174" className="text-white text-base rounded-xl border border-white/20 p-4"
                   style={{ minHeight: 240, textAlignVertical: "top" }} />}
                 <Text className="text-white/50 text-xs mt-2">{t("articles.lengthHint", { length: articleBody.length })}</Text>
-                <View className="flex-row gap-3 mt-4">
-                  {([
-                    { kind: "article" as const, label: t("articles.articleImage"), uri: articleImageUri, clear: setArticleImageUri },
-                    { kind: "social" as const, label: t("articles.socialImage"), uri: socialImageUri, clear: setSocialImageUri },
-                  ]).map(({ kind, label, uri, clear }) => (
-                    <View key={kind} className="flex-1">
-                      <TouchableOpacity accessibilityRole="button" onPress={() => pickArticleImage(kind)} className="rounded-xl border border-white/20 p-3 min-h-20 justify-center">
-                        {uri ? <Image source={{ uri }} className="w-full h-24 rounded-lg" resizeMode="cover" /> : <Text className="text-white/70 text-xs text-center">{label}</Text>}
-                      </TouchableOpacity>
-                      {uri && <TouchableOpacity accessibilityRole="button" onPress={() => clear(null)} className="mt-2"><Text className="text-white/60 text-xs">{t("articles.removeImage")}</Text></TouchableOpacity>}
-                    </View>
-                  ))}
-                </View>
               </View>
             )}
 
