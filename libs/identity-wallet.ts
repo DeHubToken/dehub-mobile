@@ -13,7 +13,6 @@ import { deriveSolanaAddress } from "./solana-derive";
 import {
   upsertLocalAccount,
   hasPrivateKeyForAddress,
-  getPrivateKeyForAddress,
   removeLocalAccount,
 } from "./wallets.local";
 import { createLogger } from "./logger";
@@ -26,6 +25,7 @@ import {
 import { encryptString, getPayloadKdf, type EncryptedPayload } from "./wallet-core/crypto";
 import { generateMnemonic12, deriveFromSecret } from "./wallet-core/derive";
 import { assertWalletAddress } from "./wallet-core/assert-wallet-address";
+import { findLocalWalletKeyAddress, recoverLocalWalletKey } from './wallet-core/local-key-recovery';
 import {
   enrollBiometricUnlock,
   forgetBiometricWrapKey,
@@ -206,7 +206,7 @@ export async function resolveEvmWalletForIdentity(
   // anything. Logging in and authorising a signature are different questions;
   // this one is answerable without the key.
   const tryReady = async (address: string): Promise<EvmWalletResolution | null> => {
-    if (!(await hasPrivateKeyForAddress(address))) return null;
+    if (!(await findLocalWalletKeyAddress(address))) return null;
     return { status: "ready", address };
   };
 
@@ -275,7 +275,7 @@ export async function resolveEvmWalletForIdentity(
  * the ordinary login never gets here.
  */
 export async function releaseWalletKeyForSignIn(address: string): Promise<string | null> {
-  return getPrivateKeyForAddress(address, { purpose: "Sign in to DeHub" });
+  return recoverLocalWalletKey(address, 'Sign in to DeHub');
 }
 
 /** Supabase-stored wallet address when resolution already knows one. */
@@ -317,6 +317,13 @@ export async function finishBiometricUnlock(
   address: string,
   payload: EncryptedPayload,
 ): Promise<{ address: string; privateKey: string }> {
+  const survivingKey = await recoverLocalWalletKey(address, 'Unlock your DeHub wallet');
+  if (survivingKey) {
+    const derived = deriveFromSecret(survivingKey);
+    await finishWalletUnlock(supabaseUserId, address, survivingKey);
+    await finishWalletUnlock(supabaseUserId, derived.ethAddress, survivingKey);
+    return { address: derived.ethAddress, privateKey: survivingKey };
+  }
   const secret = await unlockWithBiometrics(address, payload);
   const derived = deriveFromSecret(secret);
   await assertWalletAddress(derived.ethAddress, address);

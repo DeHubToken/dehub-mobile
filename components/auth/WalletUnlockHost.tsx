@@ -47,6 +47,8 @@ import {
 import { getAuthUser } from "../../libs/auth.utils";
 import { decryptString } from "../../libs/wallet-core/crypto";
 import { deriveFromSecret } from "../../libs/wallet-core/derive";
+import { verifyWalletKeyForAccount } from '../../libs/wallet-core/local-key-recovery';
+import { assertWalletAddress } from '../../libs/wallet-core/assert-wallet-address';
 import { setupAAProvider } from "../../libs/wallet-core/smart-account";
 import { getPreferredChainId } from "../../libs/auth.utils";
 import { ChainId } from "../../config/constants";
@@ -78,19 +80,23 @@ type Pending = {
  */
 async function adoptKeyForSession(
   supabaseUserId: string | null,
-  derivedAddress: string,
+  expectedWalletAddress: string,
   privateKey: string,
   sessionAddress: string | null,
 ): Promise<void> {
+  // The cloud row may name the EOA or its Safe. Derive the actual key owner
+  // and verify BOTH the row and the signed-in account before writing aliases.
+  const owner = await verifyWalletKeyForAccount(privateKey, expectedWalletAddress, sessionAddress);
+  const ownerAddress = owner.ethAddress;
   if (supabaseUserId) {
-    await finishWalletUnlock(supabaseUserId, derivedAddress, privateKey);
+    await finishWalletUnlock(supabaseUserId, ownerAddress, privateKey);
   } else {
-    await upsertLocalAccount({ address: derivedAddress, privateKey });
+    await upsertLocalAccount({ address: ownerAddress, privateKey });
   }
-  if (sessionAddress && sessionAddress.toLowerCase() !== derivedAddress.toLowerCase()) {
+  if (sessionAddress && sessionAddress.toLowerCase() !== ownerAddress.toLowerCase()) {
     await upsertLocalAccount({ address: sessionAddress, privateKey });
     log.info("adoptKeyForSession:filed-under-session-address", {
-      derived: `${derivedAddress.slice(0, 6)}...${derivedAddress.slice(-4)}`,
+      owner: `${ownerAddress.slice(0, 6)}...${ownerAddress.slice(-4)}`,
       session: `${sessionAddress.slice(0, 6)}...${sessionAddress.slice(-4)}`,
     });
   }
@@ -220,18 +226,7 @@ const WalletUnlockHost: React.FC = () => {
 
     const secret = await decryptString(payload, password);
     const derived = deriveFromSecret(secret);
-    if (derived.ethAddress.toLowerCase() !== address.toLowerCase()) {
-      // Same refusal as the sign-in path: the password worked but opened a
-      // different wallet than this identity's row names. Adopting it would
-      // hand the live session a key for somebody else's account.
-      log.error("unlock:address-mismatch", {
-        derived: derived.ethAddress,
-        expected: address,
-      });
-      throw new Error(
-        "This password unlocked a different wallet than expected for this account. Nothing was changed — please contact support."
-      );
-    }
+    await assertWalletAddress(derived.ethAddress, address);
     await adoptKeyForSession(
       supabaseUserId,
       derived.ethAddress,
