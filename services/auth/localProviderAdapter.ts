@@ -10,6 +10,8 @@ import { isChainAASupported, setupAAProvider } from '../../libs/wallet-core/smar
 import { createLockedEip1193 } from './lockedProviderShim';
 import { getAppKitInstance } from '../../config/reown.config';
 import { createLogger } from '../../libs/logger';
+import { selectSessionProvider } from '../../libs/wallet-core/session-provider';
+import { assertWalletAddress } from '../../libs/wallet-core/assert-wallet-address';
 
 const log = createLogger('LocalProviderAdapter');
 
@@ -252,35 +254,24 @@ export class LocalProviderAdapter implements AuthAdapter {
 
     const built = await buildLocalEip1193FromPrivateKey(details.privateKey, targetChainId);
     if (!built) return null;
+    await assertWalletAddress(built.address, activeAddr);
 
-    // Always keep the plain EOA signer/provider around -- getPrivateKey()/
-    // getChainId() below rely on it regardless of which shim gets returned,
-    // and "export private key" must always export the EOA owner key, never
-    // a smart-account address.
+    // A Safe session must never fall back to sending from its owner EOA.
+    // Conversely, an EOA session must not silently turn into a Safe session.
+    const smartSession = activeAddr.toLowerCase() !== built.address.toLowerCase();
+    const aaProvider = smartSession
+      ? await setupAAProvider(built.address, details.privateKey, targetChainId)
+      : null;
+    const shimToUse = await selectSessionProvider(
+      activeAddr, built.address, built.shim, aaProvider as Eip1193Shim | null,
+    );
+    // Keep the owner signer for key export and EOA-derived messaging, while
+    // the account identity and transaction provider remain the session's.
     this.signer = built.signer;
     this.provider = built.provider;
-    this.address = built.address;
+    this.address = activeAddr;
     this.chainId = built.chainId;
-
-    // Publish the plain EOA shim before the Safe path can replace it below.
-    // A message signed by the Safe is a different value from one signed by its
-    // owner, so anything whose result has to match another device -- DM
-    // encryption keys, derived from exactly one signature -- signs here.
     setEoaSigningProvider(built.shim as any);
-
-    // Prefer the gasless Safe smart-account path (matches web's Pimlico setup).
-    // setupAAProvider never throws -- it returns null on any failure (unsupported
-    // chain, Pimlico outage, ...) so a sponsor-side problem falls back to the
-    // plain EOA shim below rather than blocking the write entirely.
-    let shimToUse: Eip1193Shim = built.shim;
-    try {
-      const aaProvider = await setupAAProvider(built.address, details.privateKey, targetChainId);
-      if (aaProvider) {
-        shimToUse = aaProvider as unknown as Eip1193Shim;
-      }
-    } catch (e) {
-      log.warn('AA provider unavailable, using plain EOA signer', e);
-    }
 
     this.shim = shimToUse;
     setSigningProvider(shimToUse as any);
@@ -318,9 +309,8 @@ export class LocalProviderAdapter implements AuthAdapter {
   }
 
   async getAccounts(): Promise<string[]> {
-    // Ask the live shim first -- once the Safe smart-account path is active, eth_accounts
-    // returns the Safe address, not the cached EOA address in this.address. Only fall back
-    // to this.address (the EOA identity address) if the shim can't answer.
+    // Ask the live shim first, falling back only to the same session account
+    // identity. The owner EOA is kept separately for signing and key export.
     const prov: any = this.shim || (await this.getProvider());
     if (prov?.request) {
       try {

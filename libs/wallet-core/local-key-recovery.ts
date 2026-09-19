@@ -6,6 +6,18 @@ import { createLogger } from '../logger';
 
 const log = createLogger('wallet-key-recovery');
 
+/** The private key belongs to the EOA; an account address may be its Safe. */
+export async function verifyWalletKeyForAccount(
+  privateKey: string,
+  expectedWalletAddress: string,
+  sessionAccountAddress?: string | null,
+) {
+  const owner = deriveFromSecret(privateKey);
+  await assertWalletAddress(owner.ethAddress, expectedWalletAddress);
+  if (sessionAccountAddress) await assertWalletAddress(owner.ethAddress, sessionAccountAddress);
+  return owner;
+}
+
 /** Presence only: old installs may have filed the owner key under its Safe. */
 export async function findLocalWalletKeyAddress(expected: string): Promise<string | null> {
   const address = expected.toLowerCase();
@@ -27,8 +39,7 @@ export async function recoverLocalWalletKey(expected: string, purpose: string): 
   if (!storedAddress) return null;
   const privateKey = await getPrivateKeyForAddress(storedAddress, { purpose });
   if (!privateKey) return null;
-  const derived = deriveFromSecret(privateKey);
-  await assertWalletAddress(derived.ethAddress, expected);
+  await verifyWalletKeyForAccount(privateKey, expected);
   if (storedAddress.toLowerCase() !== expected.toLowerCase()) {
     await upsertLocalAccount({ address: expected, privateKey });
     log.error('recovered-key-from-wallet-alias', { source: 'verified-local-key' });

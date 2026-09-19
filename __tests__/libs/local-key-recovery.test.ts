@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 import { ethers } from 'ethers';
 import { requireDeviceOwner } from '../../libs/biometric-gate';
 import { upsertLocalAccount, forgetDeviceVerification } from '../../libs/wallets.local';
-import { findLocalWalletKeyAddress, recoverLocalWalletKey } from '../../libs/wallet-core/local-key-recovery';
+import { findLocalWalletKeyAddress, recoverLocalWalletKey, verifyWalletKeyForAccount } from '../../libs/wallet-core/local-key-recovery';
 import { predictSafeAddress } from '../../libs/wallet-core/predict-safe-address';
 
 jest.mock('../../libs/biometric-gate', () => ({ requireDeviceOwner: jest.fn().mockResolvedValue('verified') }));
@@ -46,4 +46,15 @@ it('never repairs a key when device-owner verification is rejected', async () =>
   (requireDeviceOwner as jest.Mock).mockRejectedValueOnce(new Error('cancelled'));
   await expect(recoverLocalWalletKey(owner, 'Unlock')).rejects.toThrow('cancelled');
   expect(await SecureStore.getItemAsync(`local_wallet_pk_${owner}`)).toBeNull();
+});
+
+it('keeps the derived EOA owner separate from a Smart Wallet session address', async () => {
+  const result = await verifyWalletKeyForAccount(key, safe, safe);
+  expect(result.ethAddress.toLowerCase()).toBe(owner);
+  expect(result.ethAddress.toLowerCase()).not.toBe(safe);
+});
+
+it('rejects a different session account even when the cloud wallet matches the owner', async () => {
+  await expect(verifyWalletKeyForAccount(key, owner, '0x4444444444444444444444444444444444444444')).rejects.toThrow();
+  expect(SecureStore.setItemAsync).not.toHaveBeenCalled();
 });
