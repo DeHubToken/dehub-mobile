@@ -1,4 +1,4 @@
-import { aggregateBook, balanceFraction } from '../dex-orderbook';
+import { aggregateBook, balanceFraction, displayBookLevels, formatPrice } from '../dex-orderbook';
 
 describe('combined range liquidity', () => {
   const range = { minPrice: .001, maxPrice: .00121 };
@@ -29,6 +29,16 @@ describe('combined range liquidity', () => {
     expect(bids[0].price).toBeLessThanOrEqual(.001105);
     expect(asks[0].price).toBeGreaterThanOrEqual(.001105);
     expect(asks.at(-1)?.cumulativeDhb).toBeCloseTo(5, 9);
+  });
+  it('renders the cheapest ask at the bottom beside the spread', () => {
+    const { asks } = aggregateBook([{ ...range, marketPrice: .001, amountDhb: 5, amountUsdc: 0 }]);
+    const displayed = displayBookLevels(asks, false);
+    expect(displayed[0].price).toBeGreaterThan(displayed.at(-1)!.price);
+    expect(displayed.at(-1)!.price).toBe(asks[0].price);
+  });
+  it('shows no more than five decimal places without unnecessary zeroes', () => {
+    expect(formatPrice(.001)).toBe('0.001');
+    expect(formatPrice(.123456)).toBe('0.12346');
   });
   it('ignores invalid ranges and withdrawn positions', () => {
     expect(aggregateBook([{ ...range, marketPrice: .0011, amountDhb: 0, amountUsdc: 0 },

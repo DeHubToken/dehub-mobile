@@ -42,8 +42,12 @@ export function aggregateBook(positions: BookPosition[], increment = 0.00000001)
   };
   return { bids: finish(bids, true), asks: finish(asks, false) };
 }
+/** Keep the best price beside the spread: asks descend toward it, bids already descend from it. */
+export function displayBookLevels(levels: BookLevel[], bid: boolean) {
+  return bid ? levels : [...levels].reverse();
+}
 export function formatPrice(value: number | null | undefined) {
-  return value != null && Number.isFinite(value) ? value.toLocaleString('en-US', { minimumFractionDigits: 6, maximumFractionDigits: 8 }) : '—';
+  return value != null && Number.isFinite(value) ? value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 5 }) : '—';
 }
 export function formatSize(value: number) {
   return value.toLocaleString('en-US', { maximumFractionDigits: value < 1 ? 6 : 2 });
