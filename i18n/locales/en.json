@@ -1987,6 +1987,7 @@
     "governanceBadge": "Governance",
     "weightedVotes": "Weighted: {{for}} for · {{against}} against",
     "weightedVotesFor": "{{count}} weighted votes for",
+    "comments": "Discussion",
     "noCommentsYet": "No comments yet",
     "addComment": "Add a comment...",
     "submitProposal": "Submit Governance Proposal",
