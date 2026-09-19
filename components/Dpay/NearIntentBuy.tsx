@@ -26,20 +26,20 @@ const tokenLogos: Record<string, number> = {
   SOL: require('../../assets/tokens/SOL.png'), BNB: require('../../assets/tokens/BNB.png'),
 };
 
-function PaymentPair({ payAmount, paySymbol, payChain, receiveAmount }: { payAmount?: string; paySymbol?: string; payChain?: string; receiveAmount: number }) {
+function PaymentPair({ payAmount, paySymbol, payChain, receiveAmount, editable = false, onPayChange, onReceiveChange }: { payAmount?: string; paySymbol?: string; payChain?: string; receiveAmount: number; editable?: boolean; onPayChange?: (value: string) => void; onReceiveChange?: (value: string) => void }) {
   const { t } = useTranslation();
   return <View accessibilityLabel={t('nearBuy.title')}>
     <View className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3.5">
       <View className="flex-row justify-between"><Text className="text-theme-neutrals-400 text-xs">{t('buyCoins.youPay')}</Text><Text className="text-theme-neutrals-400 text-xs">{payChain ? paymentChainName(payChain) : ''}</Text></View>
       <View className="flex-row items-center mt-2">
         {paySymbol && tokenLogos[paySymbol] ? <Image source={tokenLogos[paySymbol]} className="w-9 h-9 rounded-full mr-3" resizeMode="contain" /> : <View className="w-9 h-9 rounded-full bg-white/10 mr-3" />}
-        <Text numberOfLines={1} className="flex-1 text-white text-xl font-semibold">{payAmount ? `≈${formatPaymentAmount(payAmount)}` : '—'}</Text><Text className="text-white text-sm font-semibold ml-2">{paySymbol || '—'}</Text>
+        {editable ? <TextInput value={payAmount || ''} onChangeText={onPayChange} keyboardType="decimal-pad" accessibilityLabel={t('buyCoins.youPay')} className="flex-1 text-white text-xl font-semibold p-0" /> : <Text numberOfLines={1} className="flex-1 text-white text-xl font-semibold">{payAmount ? `≈${formatPaymentAmount(payAmount)}` : '—'}</Text>}<Text className="text-white text-sm font-semibold ml-2">{paySymbol || '—'}</Text>
       </View>
     </View>
     <View className="items-center -my-3 z-10"><View className="w-9 h-9 items-center justify-center rounded-xl border border-white/15 bg-theme-neutrals-900"><Icon name="ArrowDown" size={16} color="#ffffff" /></View></View>
     <View className="rounded-2xl border border-white/15 bg-white/[0.07] px-4 py-3.5">
       <View className="flex-row justify-between"><Text className="text-theme-neutrals-400 text-xs">{t('buyCoins.youReceive')}</Text><Text className="text-theme-neutrals-400 text-xs">{paymentChainName('base')}</Text></View>
-      <View className="flex-row items-center mt-2"><Image source={dhbLogo} className="w-9 h-9 rounded-full mr-3" resizeMode="contain" /><Text numberOfLines={1} className="flex-1 text-white text-xl font-semibold">{receiveAmount > 0 ? receiveAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '—'}</Text><Text className="text-white text-sm font-semibold ml-2">DHB</Text></View>
+      <View className="flex-row items-center mt-2"><Image source={dhbLogo} className="w-9 h-9 rounded-full mr-3" resizeMode="contain" />{editable ? <TextInput value={receiveAmount > 0 ? String(receiveAmount) : ''} onChangeText={onReceiveChange} keyboardType="numeric" accessibilityLabel={t('buyCoins.youReceive')} className="flex-1 text-white text-xl font-semibold p-0" /> : <Text numberOfLines={1} className="flex-1 text-white text-xl font-semibold">{receiveAmount > 0 ? receiveAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '—'}</Text>}<Text className="text-white text-sm font-semibold ml-2">DHB</Text></View>
     </View>
   </View>;
 }
@@ -66,6 +66,12 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
   const { purchase, quote, selected, busy } = flow;
   const picker = usePaymentPicker(flow.assets, wallet, user?.solanaAddress, foreground && (active || focused), loadPaymentBalances, flow.selectAsset);
   const direct = purchase ? purchase.route === 'direct' : selected?.route === 'direct';
+  const changeReceiveAmount = (value: string) => setAmountText(value.replace(/[^0-9]/g, ''));
+  const changePayAmount = (value: string) => {
+    if (!quote || !/^(?:\d+\.?\d*|\.\d+)$/.test(value)) return;
+    const rate = Number(quote.estimatedTokensToReceive || amount) / Number(quote.amountInFormatted || 0);
+    if (rate > 0) setAmountText(String(Math.max(1, Math.floor(Number(value) * rate))));
+  };
   const sendPayment = async (receipt: Purchase) => {
     if (receipt.paymentChainId === 101) return sendSolanaPurchase(receipt);
     if (!receipt.paymentChainId || receipt.paymentDecimals == null) throw new Error(t('nearBuy.statusError'));
@@ -182,7 +188,7 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
         {!direct && <><Text className="text-theme-neutrals-400 text-xs mb-1">{t('nearBuy.refundAddress', { chain: paymentChainName(selected.blockchain) })}</Text>
         <TextInput value={flow.refund} onChangeText={flow.setRefund} editable={busy !== 'create'} autoCapitalize="none" autoCorrect={false} placeholder={t('nearBuy.refundPlaceholder')} placeholderTextColor="#71717A" className={field} />
         <Text className="text-theme-neutrals-400 text-xs mb-2">{t('nearBuy.refundHint')}</Text></>}
-        <PaymentPair payAmount={quote?.amountInFormatted} paySymbol={selected.symbol} payChain={selected.blockchain} receiveAmount={quote?.estimatedTokensToReceive || amount} />
+        <PaymentPair editable onPayChange={changePayAmount} onReceiveChange={changeReceiveAmount} payAmount={quote?.amountInFormatted} paySymbol={selected.symbol} payChain={selected.blockchain} receiveAmount={quote?.estimatedTokensToReceive || amount} />
         {quote && <View className="my-2"><Text className="text-theme-neutrals-400 text-xs">{t('nearBuy.gasReserve', { amount: (quote.gasReserveUsd || 0).toFixed(4) })}</Text>{estimate}</View>}
         {quote && <><TouchableOpacity accessibilityRole="checkbox" accessibilityState={{ checked: agreed }} disabled={busy === 'create'} onPress={() => setAgreed(value => !value)} className="py-2"><Text className="text-white text-xs">{agreed ? '☑' : '☐'} {t('nearBuy.acceptTerms')}</Text></TouchableOpacity><Action label={t('nearBuy.terms')} onPress={() => openInApp(TERMS_OF_SERVICE_LINK)} /></>}
         {needsSolana && <Action label={t(connectingSolana ? 'nearBuy.loading' : 'nearBuy.connectSolana')} disabled={connectingSolana} onPress={connectSolana} />}
