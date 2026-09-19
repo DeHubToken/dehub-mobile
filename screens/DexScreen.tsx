@@ -13,6 +13,7 @@ import { DEX_CHAINS, detectDhbChain, detectUsdcChain, mintSell, quoteSell, recov
 import { aggregateBook, balanceFraction, formatPrice, formatSize, type BookLevel } from '../libs/dex-orderbook';
 import { readWithTimeout, type OrderStage } from '../libs/dex-read-timeout';
 import { getSigningProvider } from '../libs/provider.registry';
+import { prepareWalletForQueuedMint } from '../libs/wallet-signing-preflight';
 import { withWalletHeader } from '../libs/supabase-wallet-client';
 import { toastError, toastSuccess } from '../libs';
 import { supabase } from '../services/supabase';
@@ -45,8 +46,10 @@ export default function DexScreen() {
   const navigation = useNavigation();
   const focused = useIsFocused();
   const user = useUser();
-  const { chainId: connectedChain, authMethod } = useProvider();
+  const { chainId: connectedChain, authMethod, provider: sessionProvider } = useProvider();
   const { switchChain } = useAuthActions();
+  const sessionProviderRef = useRef(sessionProvider);
+  sessionProviderRef.current = sessionProvider;
   const address = user?.walletAddress || user?.address || '';
   const [side, setSide] = useState<'buy' | 'sell'>('sell');
   const [tab, setTab] = useState<'chart' | 'book' | 'trade'>('chart');
@@ -177,8 +180,9 @@ export default function DexScreen() {
       const input: SellInput = { walletAddress: address, chainId: chainId!, side, amount, minPrice, maxPrice };
       if (!review) { setReview(await quoteSell(input)); return; }
       setStage('wallet');
+      await prepareWalletForQueuedMint(getSigningProvider() || sessionProviderRef.current);
       if (connectedChain !== chainId) await readWithTimeout(Promise.resolve(switchChain(chainId!)), 'Wallet network', 60000);
-      const provider = getSigningProvider();
+      const provider = getSigningProvider() || sessionProviderRef.current;
       if (!provider) throw new Error(t('dex.unlockWallet'));
       const minted = await mintSell(input, provider, setStage, (txHash) => savePending({ input, txHash }));
       await register({ input, ...minted });
@@ -189,8 +193,9 @@ export default function DexScreen() {
     if (!address || locked) return;
     setWithdrawing(`${item.chain_id}:${item.token_id}`);
     try {
+      await prepareWalletForQueuedMint(getSigningProvider() || sessionProviderRef.current);
       if (connectedChain !== item.chain_id) await readWithTimeout(Promise.resolve(switchChain(item.chain_id)), 'Wallet network', 60000);
-      const provider = getSigningProvider(); if (!provider) throw new Error(t('dex.unlockWallet'));
+      const provider = getSigningProvider() || sessionProviderRef.current; if (!provider) throw new Error(t('dex.unlockWallet'));
       await withdrawSell(item, address, provider); toastSuccess(t('dex.withdrawn'));
       await loadListings(); setBalanceRevision((n) => n + 1);
     } catch (error) { toastError(error instanceof Error ? error.message : String(error)); }
