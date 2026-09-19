@@ -201,6 +201,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const visibleKeysRef = useRef<Set<string>>(new Set());
   const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
+  // Android's maintainVisibleContentPosition can preserve the old first row
+  // when an async prepend lands, even with autoscrollToTopThreshold set. Keep
+  // a one-shot correction for the boost slot so a viewer who is still at the
+  // top actually sees the new position-zero row.
+  const pendingBoostRevealRef = useRef(false);
+  const revealedBoostRef = useRef<string | undefined>(undefined);
   // Set for the life of a drag or fling. Everything that would rewrite the
   // list mid-scroll — the live-count poll, the counts a fetched page carries,
   // the appended page itself — waits on this and lands from settleScroll().
@@ -549,6 +555,30 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       ...rest,
     ];
   }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId]);
+
+  useEffect(() => {
+    const post = (boostedPost as any)?.result;
+    if (!boostedTokenId || !post || revealedBoostRef.current === String(boostedTokenId)) return;
+
+    revealedBoostRef.current = String(boostedTokenId);
+    if (prevYRef.current > MAINTAIN_POSITION.autoscrollToTopThreshold) return;
+
+    pendingBoostRevealRef.current = true;
+    const frame = requestAnimationFrame(() => {
+      if (!pendingBoostRevealRef.current) return;
+      listRef.current?.scrollToOffset({ offset: 0, animated: false });
+      pendingBoostRevealRef.current = false;
+      prevYRef.current = 0;
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [boostedPost, boostedTokenId]);
+
+  const handleContentSizeChange = useCallback(() => {
+    if (!pendingBoostRevealRef.current) return;
+    listRef.current?.scrollToOffset({ offset: 0, animated: false });
+    pendingBoostRevealRef.current = false;
+    prevYRef.current = 0;
+  }, []);
 
   // The rows the list is showing. A page that lands mid-fling is held here
   // until the scroll settles: applying it meant parse → flatten → cap → every
@@ -978,6 +1008,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         // thumbnail decodes. minIndexForVisible: 1 excludes the header cell, so
         // scroll-to-top and pull-to-refresh still behave normally.
         maintainVisibleContentPosition={MAINTAIN_POSITION}
+        onContentSizeChange={handleContentSizeChange}
         initialNumToRender={3}
         // One card per batch, mounted farther ahead. A screen recording of an
         // upward fling on a Galaxy S24+ showed the content freezing for one to
