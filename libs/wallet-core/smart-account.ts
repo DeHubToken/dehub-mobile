@@ -16,6 +16,7 @@ import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { AccountAbstractionProvider, SafeSmartAccount } from "@web3auth/account-abstraction-provider";
 import { supabase } from "../../services/supabase";
 import { createLogger } from "../logger";
+import { pimlicoUserOperationFees } from "../pimlico-fees";
 
 const log = createLogger("SmartAccount");
 
@@ -293,7 +294,7 @@ export async function setupAAProvider(
       eoaProvider: eoaProvider as unknown as IProvider,
       smartAccountInit: new SafeSmartAccount(),
       chainConfig,
-      bundlerConfig: { url: bundlerUrl },
+      bundlerConfig: { url: bundlerUrl, userOperation: pimlicoUserOperationFees },
       paymasterConfig: { url: paymasterUrl },
     });
     // Purchases funded with native gas tokens must use the buyer's balance for
@@ -305,7 +306,7 @@ export async function setupAAProvider(
         eoaProvider: eoaProvider as unknown as IProvider,
         smartAccountInit: new SafeSmartAccount(),
         chainConfig,
-        bundlerConfig: { url: bundlerUrl },
+        bundlerConfig: { url: bundlerUrl, userOperation: pimlicoUserOperationFees },
       });
     } catch (e) {
       // Sponsorship-backed app actions must keep working even if the optional
