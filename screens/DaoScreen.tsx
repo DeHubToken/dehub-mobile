@@ -53,7 +53,10 @@ function useContributorProfile(address: string) {
     queryFn: async () => {
       try {
         const res = await getAccount(address);
-        return (res as any)?.data?.result ?? null;
+        // The API is deployed in both envelope shapes. Only accepting the
+        // older `data.result` response made live contributor rows fall back
+        // to wallet addresses and initials while web showed their profiles.
+        return (res as any)?.data?.result ?? (res as any)?.result ?? null;
       } catch {
         return null;
       }
