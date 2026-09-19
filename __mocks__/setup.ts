@@ -137,6 +137,11 @@ jest.mock('expo-constants', () => ({
   expoConfig: { version: '1.0.0-test' },
 }));
 
+jest.mock('expo-application', () => ({
+  nativeApplicationVersion: '0.9.0-native',
+  nativeBuildVersion: '44',
+}));
+
 // Read by libs/errorReporter for the device context on an error row.
 jest.mock('expo-device', () => ({
   modelName: 'Test Device',

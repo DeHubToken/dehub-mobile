@@ -61,6 +61,9 @@ describe('error reporter', () => {
     expect(JSON.parse(row.metadata.detail)).toEqual({ tokenId: 42 });
     // The context an OOM report is useless without.
     expect(row.metadata.totalMemory).toBeGreaterThan(0);
+    expect(row.metadata.appVersion).toBe('1.0.0-test');
+    expect(row.metadata.nativeAppVersion).toBe('0.9.0-native');
+    expect(row.metadata.nativeBuildVersion).toBe('44');
   });
 
   it('tags rows with the signed-in account, lowercased', async () => {
