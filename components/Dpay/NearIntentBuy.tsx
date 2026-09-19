@@ -91,7 +91,7 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
       return (await writeBatchAA(signing, [
         { to: receipt.paymentTokenAddress, data: token.encodeFunctionData('deposit') as `0x${string}`, value: amount },
         { to: receipt.paymentTokenAddress, data: token.encodeFunctionData('transfer', [receipt.depositAddress, amount]) as `0x${string}` },
-      ], { context: 'crypto purchase' })).hash;
+      ], { context: 'crypto purchase', sponsored: false })).hash;
     }
     const isToken = receipt.paymentTokenAddress && !receipt.wrapNativePayment;
     const data = isToken ? new ethers.utils.Interface(['function transfer(address to,uint256 amount) returns (bool)']).encodeFunctionData('transfer', [receipt.depositAddress, amount]) : '0x';
