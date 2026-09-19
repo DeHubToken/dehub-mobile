@@ -2000,7 +2000,7 @@ export default function UploadScreen() {
           {!isQuoteMode && <View className="flex-row items-center justify-center mb-3" style={{ gap: 12 }}>
             <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !articleMode }}
               onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setShowTitle(false); }}>
-              <Text className={!isLiveMode && !articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>Post</Text>
+              <Text className={!isLiveMode && !articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("comments.post")}</Text>
             </TouchableOpacity>
             <Text className="text-white/25 text-xs">|</Text>
             <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isLiveMode }}
@@ -2158,7 +2158,7 @@ export default function UploadScreen() {
                     </View>
                   ) : (
                     <View className="items-center justify-center px-4" style={{ aspectRatio: 1.91 }}>
-                      <Text className="text-white/60 text-xs text-center">Add the image shown at the top of your article and in social previews</Text>
+                      <Text className="text-white/60 text-xs text-center">{t("articles.socialImage")}</Text>
                     </View>
                   )}
                 </TouchableOpacity>
