@@ -14,8 +14,10 @@
 import React, { memo } from "react";
 import { View, Text, Linking, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useBannedAccount } from "../../hooks/useBannedAccount";
+import { ScreenNames } from "../../navigation/ScreenNames";
 
 const DELETE_ACCOUNT_URL = "https://dehub.io/delete-account";
 
@@ -29,6 +31,7 @@ const BannedAccountNoticeComponent: React.FC<BannedAccountNoticeProps> = ({
   className = "",
 }) => {
   const { t } = useTranslation();
+  const navigation = useNavigation();
   const { isBanned, bannedReason } = useBannedAccount();
 
   if (!isBanned) return null;
@@ -62,6 +65,14 @@ const BannedAccountNoticeComponent: React.FC<BannedAccountNoticeProps> = ({
           {t("banned.reason", { reason: bannedReason })}
         </Text>
       ) : null}
+      <TouchableOpacity
+        onPress={() => navigation.navigate(ScreenNames.Dex as never)}
+        className="mt-3 rounded-lg bg-amber-300 px-3 py-2"
+      >
+        <Text className="text-[12px] font-semibold text-amber-950">
+          {t("dex.title")}
+        </Text>
+      </TouchableOpacity>
       <TouchableOpacity
         onPress={() => Linking.openURL(DELETE_ACCOUNT_URL)}
         className="mt-3 py-1"
