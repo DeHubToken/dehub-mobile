@@ -14,17 +14,26 @@ function units(raw: bigint, decimals: number) {
   return decimals ? `${value.slice(0, -decimals)}.${value.slice(-decimals)}`.replace(/\.?0+$/, '') : value;
 }
 /** Read-only balances. A failed network stays unknown, never a fabricated zero. */
-export async function readPaymentBalances(assets: PaymentAsset[], wallet: string, solana: string | undefined, urls: Record<string, string>): Promise<PaymentBalances> {
+export async function readPaymentBalances(assets: PaymentAsset[], wallet: string, solana: string | undefined, urls: Record<string, string | string[]>): Promise<PaymentBalances> {
   const rpc = async (chain: string, method: string, params: unknown[]) => {
-    if (!urls[chain]) throw new Error('Network unavailable');
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 10000);
-    try {
-      const response = await fetch(urls[chain], { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }), signal: controller.signal });
-      const body = await response.json();
-      if (!response.ok || body.error || body.result == null) throw new Error('Balance unavailable');
-      return body.result;
-    } finally { clearTimeout(timer); }
+    const endpoints = [...new Set([urls[chain]].flatMap(value => Array.isArray(value) ? value : value ? [value] : []))];
+    if (!endpoints.length) throw new Error('Network unavailable');
+    let lastError: unknown;
+    for (const endpoint of endpoints) {
+      for (let attempt = 0; attempt < (Array.isArray(urls[chain]) ? 2 : 1); attempt += 1) {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 8000);
+        try {
+          const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }), signal: controller.signal });
+          const body = await response.json();
+          if (response.ok && !body.error && body.result != null) return body.result;
+          lastError = new Error(`RPC ${response.status || 'error'}`);
+          if (response.status !== 429 && response.status !== 408 && response.status < 500) break;
+        } catch (error) { lastError = error; }
+        finally { clearTimeout(timer); }
+      }
+    }
+    throw lastError || new Error('Balance unavailable');
   };
   const entries = await Promise.all(assets.filter(isPrimaryPayment).map(async asset => {
     let balance: string | null = null;
