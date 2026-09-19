@@ -170,7 +170,12 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
       <Avatar uri={displayAvatar} size={72} name={displayName} />
 
       {/* Name + badge */}
-      <View className="flex-row items-center mt-2 px-0.5" style={{ maxWidth: 130 }}>
+      {/* Keep a fixed name-and-badge line so an unbadged profile cannot pull
+          the metadata and Follow button upward. */}
+      <View
+        className="flex-row items-center mt-2 px-0.5"
+        style={{ maxWidth: 130, minHeight: 20 }}
+      >
         <Text
           className="text-white font-semibold text-center flex-shrink"
           style={{ fontSize: 16, lineHeight: 20 }}
