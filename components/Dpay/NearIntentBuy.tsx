@@ -9,7 +9,7 @@ import * as Clipboard from 'expo-clipboard';
 import { useAuthActions, useProvider, useUser } from '../../context/AuthContext';
 import { ethers } from 'ethers';
 import { getSigningProvider } from '../../libs/provider.registry';
-import { writeBatchAA } from '../../libs/aa.write';
+import { isSelfFundedGasInsufficientError, writeBatchAA } from '../../libs/aa.write';
 import type { Purchase } from '../../libs/crypto-purchase';
 import { toastError, toastSuccess } from '../../libs/toast';
 import { openInApp } from '../../libs/links.utils';
@@ -86,12 +86,22 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
         throw new Error(`Insufficient ${symbol} on ${paymentChainName(receipt.originBlockchain || '')}. Your wallet has ${formatPaymentAmount(ethers.utils.formatUnits(balance, receipt.paymentDecimals))} ${symbol}; this payment needs ${formatPaymentAmount(receipt.amountInFormatted)} ${symbol}. Choose another currency or a smaller amount.`);
       }
     }
-    if (receipt.wrapNativePayment && receipt.paymentTokenAddress && signing.smartAccount) {
+    if (signing.smartAccount) {
       const token = new ethers.utils.Interface(['function deposit() payable', 'function transfer(address to,uint256 amount) returns (bool)']);
-      return (await writeBatchAA(signing, [
-        { to: receipt.paymentTokenAddress, data: token.encodeFunctionData('deposit') as `0x${string}`, value: amount },
-        { to: receipt.paymentTokenAddress, data: token.encodeFunctionData('transfer', [receipt.depositAddress, amount]) as `0x${string}` },
-      ], { context: 'crypto purchase', sponsored: false })).hash;
+      const calls = receipt.wrapNativePayment && receipt.paymentTokenAddress
+        ? [
+            { to: receipt.paymentTokenAddress, data: token.encodeFunctionData('deposit') as `0x${string}`, value: amount },
+            { to: receipt.paymentTokenAddress, data: token.encodeFunctionData('transfer', [receipt.depositAddress, amount]) as `0x${string}` },
+          ]
+        : receipt.paymentTokenAddress
+          ? [{ to: receipt.paymentTokenAddress, data: token.encodeFunctionData('transfer', [receipt.depositAddress, amount]) as `0x${string}` }]
+          : [{ to: receipt.depositAddress, data: '0x' as `0x${string}`, value: amount }];
+      try {
+        return (await writeBatchAA(signing, calls, { context: 'crypto purchase', sponsored: false })).hash;
+      } catch (error) {
+        if (!isSelfFundedGasInsufficientError(error)) throw error;
+        return (await writeBatchAA(signing, calls, { context: 'crypto purchase' })).hash;
+      }
     }
     const isToken = receipt.paymentTokenAddress && !receipt.wrapNativePayment;
     const data = isToken ? new ethers.utils.Interface(['function transfer(address to,uint256 amount) returns (bool)']).encodeFunctionData('transfer', [receipt.depositAddress, amount]) : '0x';
