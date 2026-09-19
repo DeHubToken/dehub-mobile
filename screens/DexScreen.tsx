@@ -1,3 +1,4 @@
+import { dexActionError } from '../libs/dex-action-error';
 import { minuteCache, parseSharedMarket, CANDLE_INTERVALS, type SharedMarket, type CandleInterval } from '../libs/dex-live-market';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, AppState, Linking, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -186,7 +187,7 @@ export default function DexScreen() {
       if (!provider) throw new Error(t('dex.unlockWallet'));
       const minted = await mintSell(input, provider, setStage, (txHash) => savePending({ input, txHash }));
       await register({ input, ...minted });
-    } catch (error) { if ((error as { code?: string }).code === 'DEX_REVERTED') { savePending(null); setReview(null); } setFormError(error instanceof Error ? error.message : String(error)); }
+    } catch (error) { if ((error as { code?: string }).code === 'DEX_REVERTED') { savePending(null); setReview(null); } setFormError(dexActionError(error)); }
     finally { setBusy(false); busyRef.current = false; }
   }
   async function withdraw(item: VerifiedPosition) {
@@ -198,7 +199,7 @@ export default function DexScreen() {
       const provider = getSigningProvider() || sessionProviderRef.current; if (!provider) throw new Error(t('dex.unlockWallet'));
       await withdrawSell(item, address, provider); toastSuccess(t('dex.withdrawn'));
       await loadListings(); setBalanceRevision((n) => n + 1);
-    } catch (error) { toastError(error instanceof Error ? error.message : String(error)); }
+    } catch (error) { toastError(dexActionError(error)); }
     finally { setWithdrawing(null); }
   }
   const field = (label: string, value: string, setValue: (value: string) => void, unit: string) => <View style={s.field}><Text style={s.muted}>{label}</Text><View style={s.inputWrap}><TextInput accessibilityLabel={label} editable={!locked} value={value} keyboardType="decimal-pad" onChangeText={(next) => { setValue(next); setReview(null); }} style={s.input} placeholder="0.00" placeholderTextColor="#596675" /><Text style={s.unit}>{unit}</Text></View></View>;
