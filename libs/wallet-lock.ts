@@ -108,6 +108,7 @@ export async function requestWalletUnlock(reason: string): Promise<boolean> {
     try {
       return await current();
     } catch (e) {
+      if (e instanceof Error && e.name === 'WalletStorageError') setWalletUnlockRefusal(e.message);
       log.warn("requestWalletUnlock:error", e);
       return false;
     }

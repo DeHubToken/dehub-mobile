@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
+import * as Application from 'expo-application';
 import * as Device from "expo-device";
 import { AppState, Platform } from "react-native";
 import env from "../config/env";
@@ -87,7 +88,9 @@ function deviceContext(): Record<string, unknown> {
   cachedDevice = {
     platform: Platform.OS,
     osVersion: String(Platform.Version),
-    appVersion: expo?.version,
+      appVersion: expo?.version,
+      nativeAppVersion: Application.nativeApplicationVersion,
+      nativeBuildVersion: Application.nativeBuildVersion,
     build:
       Platform.OS === "android"
         ? expo?.android?.versionCode

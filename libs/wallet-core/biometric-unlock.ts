@@ -24,16 +24,13 @@ import {
 } from "../biometric-gate";
 import { encryptStringWithKeyMaterial, decryptStringWithKeyMaterial, type EncryptedPayload } from "./crypto";
 import { createLogger } from "../logger";
+import { readWalletStorage, writeWalletStorage, WalletStorageError } from './secure-storage';
 
 const log = createLogger("wallet-core/biometric-unlock");
 
 export { BiometricRejectedError, BiometricUnavailableError };
 
 const WRAP_KEY_PREFIX = "wallet_biometric_wrapkey_"; // + lowercase address
-
-const KEY_ACCESSIBILITY = {
-  keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
-} as const;
 
 function bytesToHex(bytes: Uint8Array): string {
   return Array.from(bytes)
@@ -55,15 +52,7 @@ export async function isBiometricUnlockAvailable(): Promise<boolean> {
 
 /** True if THIS device already holds a biometric wrap key for `address`. */
 export async function hasBiometricWrapKey(address: string): Promise<boolean> {
-  try {
-    const raw = await SecureStore.getItemAsync(WRAP_KEY_PREFIX + address.toLowerCase());
-    return !!raw;
-  } catch (error) {
-    // A failed keystore read is different from a device that never enrolled.
-    // Keep that distinction in shipped diagnostics without recording key data.
-    log.error("biometric-key-probe-failed", { errorName: error instanceof Error ? error.name : "unknown" });
-    return false;
-  }
+  return !!(await readWalletStorage(WRAP_KEY_PREFIX + address.toLowerCase()));
 }
 
 /**
@@ -75,12 +64,15 @@ export async function enrollBiometricUnlock(
   address: string,
   secret: string,
 ): Promise<EncryptedPayload> {
-  const wrapKey = ExpoCrypto.getRandomBytes(32);
+  // A retry must not replace the only key capable of opening an existing
+  // cloud payload before the replacement payload has been saved.
+  const existing = await readWalletStorage(WRAP_KEY_PREFIX + address.toLowerCase());
+  if (existing && !/^[0-9a-f]{64}$/i.test(existing)) throw new WalletStorageError();
+  const wrapKey = existing ? hexToBytes(existing) : ExpoCrypto.getRandomBytes(32);
   try {
-    await SecureStore.setItemAsync(
+    await writeWalletStorage(
       WRAP_KEY_PREFIX + address.toLowerCase(),
       bytesToHex(wrapKey),
-      KEY_ACCESSIBILITY,
     );
     const payload = await encryptStringWithKeyMaterial(secret, wrapKey);
     log.info("enroll:ok", { address: `${address.slice(0, 6)}...${address.slice(-4)}` });
@@ -119,7 +111,7 @@ export async function unlockWithBiometrics(
   payload: EncryptedPayload,
 ): Promise<string> {
   const addr = address.toLowerCase();
-  const raw = await SecureStore.getItemAsync(WRAP_KEY_PREFIX + addr);
+  const raw = await readWalletStorage(WRAP_KEY_PREFIX + addr);
   if (!raw) {
     log.error("biometric-key-missing-at-unlock", { reason: "no-local-wrap-key" });
     throw new BiometricUnavailableError("No biometric-protected wallet is stored on this device.");

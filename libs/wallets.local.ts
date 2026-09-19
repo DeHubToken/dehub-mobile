@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from "expo-secure-store";
 import { requireDeviceOwner, type VerificationOutcome } from "./biometric-gate";
 import { createLogger } from "./logger";
+import { readWalletStorage, writeWalletStorage } from './wallet-core/secure-storage';
 
 const log = createLogger("wallets.local");
 
@@ -23,10 +24,6 @@ const PK_PREFIX = "local_wallet_pk_"; // per-address key in SecureStore
 // device backups, so a wallet cannot silently follow someone onto a second
 // device or be lifted from a backup. Applied to new writes; pre-existing items
 // stay readable and are upgraded in place by `hardenStoredKey`.
-const KEY_ACCESSIBILITY = {
-  keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
-} as const;
-
 // Releasing a key requires a fresh wallet credential or device-owner check,
 // but the signer is built once per session and would otherwise re-prompt on
 // every provider rebuild. A short grace window keeps that to a single prompt
@@ -115,29 +112,11 @@ export async function upsertLocalAccount(acc: {
   };
   if (idx >= 0) list[idx] = { ...list[idx], ...next };
   else list.unshift(next);
-  await writeAll(list);
   // Store private key securely if provided
   if (acc.privateKey) {
-    try {
-      const pkNorm = acc.privateKey.startsWith("0x") ? acc.privateKey : `0x${acc.privateKey}`;
-      log.debug("secure:set:start", { address });
-      // Align accessibility with setPrivateKeyForAddress for consistency
-      await SecureStore.setItemAsync(PK_PREFIX + address, pkNorm, KEY_ACCESSIBILITY);
-      // Verify write succeeded (some platforms may silently fail)
-      try {
-        const roundtrip = await SecureStore.getItemAsync(PK_PREFIX + address);
-        if (!roundtrip) {
-          log.warn("secure:set:verify:failed", { address });
-        }
-        else log.debug("secure:set:verify:ok", { address });
-      } catch (verErr) {
-        log.warn("secure:set:verify:error", verErr);
-      }
-    } catch (e) {
-      log.warn("secure:set:error", e);
-      // ignore secure store failures silently
-    }
+    await setPrivateKeyForAddress(address, acc.privateKey);
   }
+  await writeAll(list);
   log.info("upsert:done", { address });
   return list;
 }
@@ -175,13 +154,7 @@ export async function clearLocalAccounts(): Promise<void> {
  */
 export async function hasPrivateKeyForAddress(address: string): Promise<boolean> {
   if (!address) return false;
-  try {
-    const pk = await SecureStore.getItemAsync(PK_PREFIX + address.toLowerCase());
-    return !!pk;
-  } catch (error) {
-    log.warn("secure:has:error", { address, error });
-    return false;
-  }
+  return !!(await readWalletStorage(PK_PREFIX + address.toLowerCase()));
 }
 
 export interface KeyAccessOptions {
@@ -247,15 +220,7 @@ export async function getPrivateKeyForAddress(
     }
   }
 
-  try {
-    log.debug("secure:get:start", { address: addr });
-    const pk = await SecureStore.getItemAsync(PK_PREFIX + addr);
-    log.debug("secure:get:done", { address: addr, found: !!pk });
-    return pk || null;
-  } catch (error) {
-    log.warn("secure:get:error", { address, error });
-    return null;
-  }
+  return readWalletStorage(PK_PREFIX + addr);
 }
 
 /**
@@ -273,7 +238,7 @@ export async function hardenStoredKey(address: string): Promise<boolean> {
   });
   if (!pk) return false;
   try {
-    await SecureStore.setItemAsync(PK_PREFIX + addr, pk, KEY_ACCESSIBILITY);
+    await writeWalletStorage(PK_PREFIX + addr, pk);
     log.info("secure:harden:ok", { address: addr });
     return true;
   } catch (e) {
@@ -285,22 +250,8 @@ export async function hardenStoredKey(address: string): Promise<boolean> {
 export async function setPrivateKeyForAddress(address: string, privateKey: string): Promise<void> {
   const addr = address?.toLowerCase();
   if (!addr || !privateKey) return;
-  try {
-    const pkNorm = privateKey.startsWith("0x") ? privateKey : `0x${privateKey}`;
-    log.debug("secure:set:direct:start", { address: addr });
-    await SecureStore.setItemAsync(PK_PREFIX + addr, pkNorm, KEY_ACCESSIBILITY);
-    // Verify write
-    try {
-      const roundtrip = await SecureStore.getItemAsync(PK_PREFIX + addr);
-      if (!roundtrip) log.warn("secure:set:direct:verify:failed", { address: addr });
-      else log.debug("secure:set:direct:verify:ok", { address: addr });
-    } catch (verErr) {
-      log.warn("secure:set:direct:verify:error", verErr);
-    }
-  } catch {
-    log.warn("secure:set:direct:error", { address: addr });
-    // ignore
-  }
+  const pkNorm = privateKey.startsWith("0x") ? privateKey : `0x${privateKey}`;
+  await writeWalletStorage(PK_PREFIX + addr, pkNorm);
 }
 
 export async function getLocalAccount(address: string): Promise<LocalAccount | null> {

@@ -528,8 +528,11 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         return;
       }
       let cancelled = false;
+      setDeviceWrapKeyReady(null);
       hasBiometricWrapKey(request.address).then((ready) => {
         if (!cancelled) setDeviceWrapKeyReady(ready);
+      }).catch((error) => {
+        if (!cancelled) setBiometricError(error.message);
       });
       return () => {
         cancelled = true;
@@ -1203,7 +1206,17 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           {mode === "biometric-unlock" && resetStage === "hidden" && (
             <View>
               {deviceWrapKeyReady === null ? (
-                <ActivityIndicator color={authColors.label} style={{ marginVertical: 24 }} />
+                biometricError ? (
+                  <>
+                    <AuthErrorNotice message={biometricError} style={{ marginBottom: 12 }} />
+                    <AuthButton
+                      icon="finger-print"
+                      label={t("walletSetup.tryBiometrics")}
+                      onPress={handleBiometricUnlockPress}
+                      loading={busy}
+                    />
+                  </>
+                ) : <ActivityIndicator color={authColors.label} style={{ marginVertical: 24 }} />
               ) : deviceWrapKeyReady ? (
                 <>
                   <Text style={[authText.body, { marginBottom: 20 }]}>
