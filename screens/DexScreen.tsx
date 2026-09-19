@@ -215,7 +215,7 @@ export default function DexScreen() {
 }
 
 const s = StyleSheet.create({
-  root: { flex: 1, backgroundColor: '#0b0e11' }, content: { padding: 12, paddingBottom: 80 },
+  root: { flex: 1 }, content: { padding: 12, paddingBottom: 80 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 8 },
   pair: { color: '#edf1f6', fontSize: 23, fontWeight: '600', marginBottom: 4 }, muted: { color: '#919ca9', fontSize: 11 },
   white: { color: '#e9edf2', fontSize: 12, fontVariant: ['tabular-nums'] }, darkText: { color: '#061410', fontSize: 12, fontWeight: '700' },

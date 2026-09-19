@@ -126,7 +126,7 @@ const ProfileAssets = () => {
   const [transferOpen, setTransferOpen] = useState(false);
   const dhbActions = [
     { key: "topUp", label: t("assets.topUp"), subtitle: undefined, disabled: false },
-    { key: "sell", label: t("dex.buySell"), subtitle: undefined, disabled: false },
+    { key: "sell", label: "Trade", subtitle: undefined, disabled: false },
     { key: "bridge", label: t("assets.bridge"), subtitle: t("assets.comingSoon"), disabled: true },
     { key: "transfer", label: t("commandCentre.transfer"), disabled: false },
   ];
@@ -284,6 +284,9 @@ const ProfileAssets = () => {
                   disabled={action.disabled}
                 >
                   <View className="items-center">
+                    {action.key === "sell" && (
+                      <Ionicons name="stats-chart-outline" size={18} color="#FFFFFF" className="mb-1" />
+                    )}
                     <Text
                       className={`text-xs ${
                         action.disabled ? "text-gray-500" : "text-white"
