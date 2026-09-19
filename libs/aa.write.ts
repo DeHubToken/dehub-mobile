@@ -108,12 +108,16 @@ export async function writeContractAA(
 export async function writeBatchAA(
   provider: any,
   calls: { to: string; data: Hex; value?: ethers.BigNumber }[],
-  options?: { context?: string },
+  options?: { context?: string; sponsored?: boolean },
 ): Promise<{ hash: string }> {
   if (!calls?.length) throw new Error("writeBatchAA called with no calls");
 
-  const bundlerClient = provider?.bundlerClient;
-  const smartAccount = provider?.smartAccount;
+  const bundlerClient = options?.sponsored === false
+    ? provider?.selfFundedBundlerClient
+    : provider?.bundlerClient;
+  const smartAccount = options?.sponsored === false
+    ? provider?.selfFundedSmartAccount
+    : provider?.smartAccount;
   if (!bundlerClient || !smartAccount) throw new Error("BATCH_UNSUPPORTED");
 
   try {
