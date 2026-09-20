@@ -5,6 +5,7 @@ import { Image } from "expo-image";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Avatar from "../common/Avatar";
+import { getAvatarUrl } from "../../libs/misc";
 import { TEXT_SHADOW } from "../common/ViewerChrome";
 import { useTranslation } from "../../hooks/useTranslation";
 import TranslateButton from "../ui/TranslateButton";
@@ -92,9 +93,19 @@ const shortAddr = (addr?: string) =>
 const resolveDisplayName = (a: ChatActivity): string =>
   a.user?.displayName || a.user?.username || a.meta?.username || shortAddr(a.user?.address || a.address) || "user";
 
-/** Resolve the best avatar URL from an activity. */
-const resolveAvatarUrl = (a: ChatActivity): string | undefined =>
-  a.user?.avatarImageUrl || a.meta?.avatarImageUrl;
+/**
+ * Resolve the best avatar from an activity, as something fetchable.
+ *
+ * The API never hands a URL out here. `userReferenceProjection` carries the
+ * stored path — `avatars/0x....jpg` — and the livechat sender lookup carries
+ * that path prefixed onto the API host, which 404s because only the CDN holds
+ * the objects. Either one reaches <Image> with nothing it can fetch, so every
+ * face in the chat fell back to its initial the moment you joined a stream.
+ * getAvatarUrl re-bases both onto the CDN, the way every other avatar in the
+ * app is resolved.
+ */
+const resolveAvatarUrl = (a: ChatActivity): string =>
+  getAvatarUrl(a.user?.avatarImageUrl || a.meta?.avatarImageUrl);
 
 /** Resolve the best identifier to open a profile sheet (prefer username, fallback address). */
 const resolveProfileId = (a: ChatActivity): string | undefined =>
