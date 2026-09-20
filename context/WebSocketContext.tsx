@@ -9,7 +9,27 @@ import { createLogger } from '../libs/logger';
 import { DMSocketEvent, DMSocketEventSet } from '../services/enums/dm-socket-events.enum';
 
 interface WebSocketContextValue {
+  /**
+   * Either namespace is up. Useful for a spinner, useless for anything that
+   * has to be in a room: the DM socket being alive says nothing about the core
+   * one, and this stays true right through a core reconnect.
+   */
   connected: boolean;
+  /**
+   * The core namespace specifically — the one that carries livestream rooms,
+   * reactions and gifts.
+   */
+  coreConnected: boolean;
+  /**
+   * Bumped every time the core socket comes up, first connection included.
+   *
+   * A socket.io room belongs to one connection, so every reconnect drops the
+   * app out of every room it had joined and each one has to be re-emitted.
+   * Anything that joins a room keys its "already sent" bookkeeping on this and
+   * lists it as an effect dependency; a boolean cannot carry that, because a
+   * reconnect leaves it true the whole way through.
+   */
+  connectionEpoch: number;
   emit: (event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => void;
   emitAuthed: (event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => void;
   on: (event: string, handler: (data: any) => void) => () => void;
@@ -74,6 +94,8 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const clientRef = useRef<WebSocketClient | null>(null);
   const dmClientRef = useRef<WebSocketClient | null>(null);
   const [connected, setConnected] = useState(false);
+  const [coreConnected, setCoreConnected] = useState(false);
+  const [connectionEpoch, setConnectionEpoch] = useState(0);
   const connectedCoreRef = useRef<boolean>(false);
   const connectedDMRef = useRef<boolean>(false);
   const reconnectListenersRef = useRef<Set<() => void>>(new Set());
@@ -137,6 +159,8 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         log.info('connected (core namespace)');
         connectedCoreRef.current = true;
         setConnected(true);
+        setCoreConnected(true);
+        setConnectionEpoch((n) => n + 1);
         // Notify reconnect listeners
         reconnectListenersRef.current.forEach((fn) => {
           try { fn(); } catch {}
@@ -145,6 +169,7 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       clientRef.current.on('disconnected', () => { 
         log.info('disconnected (core namespace)');
         connectedCoreRef.current = false;
+        setCoreConnected(false);
         setConnected(connectedDMRef.current);
       });
       // No domain event listeners registered.
@@ -280,7 +305,10 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       subsRef.current.delete(sub);
     }
   }, []);
-  const value = useMemo(() => ({ connected, emit, emitAuthed, on, off, client: clientRef.current }), [connected, emit, emitAuthed, on, off]);
+  const value = useMemo(
+    () => ({ connected, coreConnected, connectionEpoch, emit, emitAuthed, on, off, client: clientRef.current }),
+    [connected, coreConnected, connectionEpoch, emit, emitAuthed, on, off],
+  );
 
   return <WebSocketContext.Provider value={value}>{children}</WebSocketContext.Provider>;
 };
