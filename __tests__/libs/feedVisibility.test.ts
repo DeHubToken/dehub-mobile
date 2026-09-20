@@ -42,4 +42,52 @@ describe("createFeedVisibilityStore", () => {
     store.update(new Set(["a"]), null);
     expect(calls).toEqual([]);
   });
+
+  // A tab switch used to reach every mounted cell through renderItem. Now it
+  // is one flag, and only the rows that were on screen hear it.
+  it("going dark reaches only the rows that were visible or autoplaying", () => {
+    const store = createFeedVisibilityStore();
+    const calls: string[] = [];
+    store.subscribe("a", () => calls.push("a"));
+    store.subscribe("b", () => calls.push("b"));
+    store.subscribe("c", () => calls.push("c"));
+    store.update(new Set(["a", "b"]), "a");
+    calls.length = 0;
+
+    store.setLive(false);
+    expect(calls.sort()).toEqual(["a", "b"]);
+    expect(store.isVisible("a")).toBe(false);
+    expect(store.isAutoplay("a")).toBe(false);
+    expect(store.isVisible("b")).toBe(false);
+
+    calls.length = 0;
+    // Same value again is a no-op.
+    store.setLive(false);
+    expect(calls).toEqual([]);
+
+    // Coming back restores the same rows without a new tick.
+    store.setLive(true);
+    expect(calls.sort()).toEqual(["a", "b"]);
+    expect(store.isVisible("a")).toBe(true);
+    expect(store.isAutoplay("a")).toBe(true);
+    expect(store.isVisible("c")).toBe(false);
+  });
+
+  it("keeps a tick's bookkeeping while dark and applies it on return", () => {
+    const store = createFeedVisibilityStore(false);
+    const calls: string[] = [];
+    store.subscribe("a", () => calls.push("a"));
+    store.subscribe("b", () => calls.push("b"));
+
+    store.update(new Set(["a"]), "a");
+    // Dark: nobody's answer moved, so nobody is told.
+    expect(calls).toEqual([]);
+    expect(store.isVisible("a")).toBe(false);
+
+    store.setLive(true);
+    expect(calls).toEqual(["a"]);
+    expect(store.isVisible("a")).toBe(true);
+    expect(store.isAutoplay("a")).toBe(true);
+    expect(store.isVisible("b")).toBe(false);
+  });
 });
