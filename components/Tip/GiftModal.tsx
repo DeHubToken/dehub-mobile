@@ -199,7 +199,36 @@ const GiftModal: React.FC<GiftModalProps> = ({
             [tokenIdNum, amountBN, toAddress, tokenAddress],
             { context: "send" }
           );
-          const receipt = await res.wait?.(1);
+          // res.hash already proves the user operation was submitted; the
+          // DHB has moved. .wait() only polls for the receipt, and the
+          // public RPC this chain is configured against
+          // (base-rpc.publicnode.com) rejects that poll as an "archive
+          // request" often enough that treating it as a failed tip is what
+          // actually broke live gifting: the viewer saw "Transaction
+          // failed" over a tip that had already landed, retried, and paid
+          // again — and recordLiveGift below never ran, so the room got no
+          // celebration, no read-out and no activity row.
+          //
+          // A receipt we never got is not evidence either way, so it stays
+          // "sent". A receipt that arrives SAYING status 0 is evidence:
+          // under account abstraction wait() resolves on a reverted
+          // transaction rather than throwing, so without this check a
+          // revert would take the success path. Same shape as
+          // GlassTipSheet, which was fixed for this in #262.
+          let receipt: any;
+          try {
+            receipt = await res.wait?.(1);
+          } catch (waitErr) {
+            console.warn(
+              "[GiftModal] Receipt wait failed (gift was still sent):",
+              waitErr,
+            );
+          }
+          if (receipt && receipt.status !== undefined && receipt.status !== 1) {
+            setPhase("error");
+            setGiftError(t("wallet.transactionFailed") as string);
+            return;
+          }
           const txHash = res.hash || receipt?.transactionHash;
           setPhase("sent");
           setLastAmount(numericAmount);
