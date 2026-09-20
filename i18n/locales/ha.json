@@ -3966,7 +3966,11 @@
     "moreOptions": "Ƙarin zaɓuɓɓuka",
     "processing": "Bidiyo mai sarrafawa...",
     "processingFailed": "Bidiyo aiki bai yi nasara ba",
-    "processingFailedOwner": "Wani abu ya tafi ba daidai ba a gefenmu. Share wannan post da kuma upload da video sake."
+    "retryHint": "Babu wani abu da za a sake sakawa — mun adana fayil ɗinka.",
+    "retry": "Gwada kuma",
+    "retrying": "Komawa...",
+    "retryQueued": "Processing kuma",
+    "retryFailed": "Ba za a iya dawo da wannan post ɗin ba"
   },
   "liveViewer": {
     "loadingStream": "Ana loda yaɗawa...",

@@ -4240,7 +4240,11 @@
     "moreOptions": "Lagi pilihan",
     "processing": "Memproses video...",
     "processingFailed": "Pemprosesan video gagal",
-    "processingFailedOwner": "Ada sesuatu yang tidak kena di pihak kami. Hapuskan hantaran ini dan muat naik video sekali lagi."
+    "retryHint": "Tiada apa-apa untuk dimuat naik semula — kami menyimpan fail anda.",
+    "retry": "Cuba lagi",
+    "retrying": "Mencuba semula...",
+    "retryQueued": "Sedang diproses semula",
+    "retryFailed": "Tidak dapat mencuba semula hantaran tersebut"
   },
   "liveViewer": {
     "loadingStream": "Memuatkan siaran...",

@@ -4040,7 +4040,11 @@
     "moreOptions": "Diğer seçenekler",
     "processing": "Video işleniyor...",
     "processingFailed": "Video işleme başarısız oldu",
-    "processingFailedOwner": "Bizim tarafımızda bir şeyler ters gitti. Bu gönderiyi silin ve videoyu tekrar yükleyin."
+    "retryHint": "Yeniden yüklenecek bir şey yok. Dosyanızı sakladık.",
+    "retry": "Tekrar deneyin",
+    "retrying": "Yeniden deneniyor...",
+    "retryQueued": "Tekrar işleniyor",
+    "retryFailed": "Bu gönderi yeniden denenemedi"
   },
   "liveViewer": {
     "loadingStream": "Yayın yükleniyor...",

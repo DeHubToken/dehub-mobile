@@ -3982,7 +3982,11 @@
     "moreOptions": "Fler alternativ",
     "processing": "Bearbetar video...",
     "processingFailed": "Videobearbetningen misslyckades",
-    "processingFailedOwner": "Något gick fel på vår sida. Ta bort det här inlägget och ladda upp videon igen."
+    "retryHint": "Inget att ladda upp igen — vi behöll din fil.",
+    "retry": "Försök igen",
+    "retrying": "Försöker igen...",
+    "retryQueued": "Behandlas igen",
+    "retryFailed": "Det gick inte att försöka igen med det inlägget"
   },
   "liveViewer": {
     "loadingStream": "Läser in sändning...",

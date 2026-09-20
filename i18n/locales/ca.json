@@ -3978,7 +3978,11 @@
     "moreOptions": "Més opcions",
     "processing": "S'està processant el vídeo...",
     "processingFailed": "Ha fallat el processament del vídeo",
-    "processingFailedOwner": "S'ha produït un error al nostre costat. Elimina aquesta publicació i torna a pujar el vídeo."
+    "retryHint": "No has de tornar a pujar res. Hem guardat el teu fitxer.",
+    "retry": "Torna-ho a provar",
+    "retrying": "Tornant a intentar-ho...",
+    "retryQueued": "S'està processant de nou",
+    "retryFailed": "No s'ha pogut tornar a intentar aquesta publicació"
   },
   "liveViewer": {
     "loadingStream": "S'està carregant l'emissió...",

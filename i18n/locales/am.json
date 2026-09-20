@@ -3972,7 +3972,11 @@
     "moreOptions": "ተጨማሪ አማራጮች",
     "processing": "ቪዲዮ ማቀነባበሪያ…",
     "processingFailed": "የቪዲዮ ማቀነባበሪያ አልተሳካም",
-    "processingFailedOwner": "ከጎናችን የሆነ ነገር ተሳስቷል ። ይህን ልጥፍ ሰርዝ እና ቪዲዮውን እንደገና ይስቀሉ."
+    "retryHint": "እንደገና ለመጫን ምንም ነገር የለም — ፋይልዎን ጠብቀናል ።",
+    "retry": "እንደገና ሞክር",
+    "retrying": "ወደ ኋላ መመለስ...",
+    "retryQueued": "እንደገና ማቀነባበር",
+    "retryFailed": "ያንን ልጥፍ መመለስ አልተቻለም"
   },
   "liveViewer": {
     "loadingStream": "ስርጭቱ እየተጫነ ነው...",

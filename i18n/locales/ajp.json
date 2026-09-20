@@ -3933,7 +3933,11 @@
     "moreOptions": "خيارات أكتر",
     "processing": "عم نجهز الفيديو...",
     "processingFailed": "فشل تجهيز الفيديو",
-    "processingFailedOwner": "صار شي غلط من عنا. احذف هالبوست ورجع نزّل الفيديو."
+    "retryHint": "ما في شي نعيد تحميله — احتفظنا بملفّك.",
+    "retry": "جرّب مرة تانية",
+    "retrying": "عم بعيد المحاولة…",
+    "retryQueued": "عم بعالج مرة تانية",
+    "retryFailed": "ما قدرنا نعيد محاولة هالمنشور"
   },
   "liveViewer": {
     "loadingStream": "عم بيحمّل البث...",

@@ -4155,7 +4155,11 @@
     "moreOptions": "Higit pang opsyon",
     "processing": "Pinoproseso ang video...",
     "processingFailed": "Nabigo ang pagpoproseso ng video",
-    "processingFailedOwner": "Nagkaproblema sa aming panig. Tanggalin ang post na ito at i - upload muli ang video."
+    "retryHint": "Walang dapat i — re — upload — iningatan namin ang iyong file.",
+    "retry": "Subukan muli",
+    "retrying": "Sinusubukang muli...",
+    "retryQueued": "Pinoproseso muli",
+    "retryFailed": "Hindi masubukang muli ang post na iyon"
   },
   "liveViewer": {
     "loadingStream": "Nilo-load ang stream...",

@@ -3769,7 +3769,10 @@
     "playbackSpeed": "Playback speed",
     "moreOptions": "More options",
     "processing": "Processing video…",
-    "processingFailed": "Video processing failed"
+    "processingFailed": "Video processing failed",
+    "retry": "Try again",
+    "retrying": "Retrying…",
+    "retryQueued": "Processing again"
   },
   "liveViewer": {
     "loadingStream": "Stream dey load...",

@@ -4028,7 +4028,11 @@
     "moreOptions": "Opsi lainnya",
     "processing": "Memproses video…",
     "processingFailed": "Pemrosesan video gagal",
-    "processingFailedOwner": "Terjadi kesalahan di pihak kami. Hapus postingan ini dan unggah video lagi."
+    "retryHint": "Tidak ada yang perlu diunggah ulang — kami menyimpan file Anda.",
+    "retry": "Coba lagi",
+    "retrying": "Mencoba lagi…",
+    "retryQueued": "Memproses lagi",
+    "retryFailed": "Tidak dapat mencoba kembali postingan itu"
   },
   "liveViewer": {
     "loadingStream": "Memuat siaran...",

@@ -3977,7 +3977,11 @@
     "moreOptions": "更多选项",
     "processing": "正在处理视频…",
     "processingFailed": "视频处理失败",
-    "processingFailedOwner": "我们的服务器出现了一些问题。请删除此帖子并重新上传视频。"
+    "retryHint": "无需重新上传 — 我们已保留您的文件。",
+    "retry": "重试",
+    "retrying": "正在重试…",
+    "retryQueued": "正在再次处理",
+    "retryFailed": "无法重试该帖子"
   },
   "liveViewer": {
     "loadingStream": "正在加载直播……",

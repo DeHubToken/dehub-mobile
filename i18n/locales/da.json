@@ -3982,7 +3982,11 @@
     "moreOptions": "Flere valgmuligheder",
     "processing": "Behandler video...",
     "processingFailed": "Videobehandling mislykkedes",
-    "processingFailedOwner": "Der gik noget galt fra vores side. Slet dette opslag, og upload videoen igen."
+    "retryHint": "Intet at uploade igen — vi beholdt din fil.",
+    "retry": "Prøv igen",
+    "retrying": "Forsøger igen...",
+    "retryQueued": "Behandler igen",
+    "retryFailed": "Kunne ikke prøve dette indlæg igen"
   },
   "liveViewer": {
     "loadingStream": "Indlæser stream...",

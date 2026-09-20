@@ -3976,7 +3976,11 @@
     "moreOptions": "هەڵبژاردەی زیاتر",
     "processing": "Video process korotay lagayche…",
     "processingFailed": "Video process korotay fail hoigelo",
-    "processingFailedOwner": "Amader dike kichu ekta bhul hoyeche. Ei post ta delete kore abar video upload korun."
+    "retryHint": "هیچ چیز برای آپلود مجدد وجود ندارد — فایل شما را نگه داشتیم.",
+    "retry": "دوباره امتحان کنید",
+    "retrying": "دوباره امتحان می‌کنم…",
+    "retryQueued": "دوباره پردازش می‌شود",
+    "retryFailed": "نتوانستیم آن پست را دوباره امتحان کنیم"
   },
   "liveViewer": {
     "loadingStream": "پەخش بار دەکرێت...",
