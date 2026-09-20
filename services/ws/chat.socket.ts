@@ -2,13 +2,13 @@ import { actions } from '../../store/messages.state';
 import { ID, Message, Conversation, TypingEvent, ReadReceipt } from '../../store/messages.types';
 import { createLogger } from '../../libs/logger';
 import { useEffect } from 'react';
-import { useWebSocket } from '../../context/WebSocketContext';
+import { useWebSocketApi } from '../../context/WebSocketContext';
 
 const log = createLogger('ChatSocket');
 
 let registered = false;
 
-function registerGlobalSocketHandlers(ws: ReturnType<typeof useWebSocket>) {
+function registerGlobalSocketHandlers(ws: ReturnType<typeof useWebSocketApi>) {
   if (registered) return;
   registered = true;
 
@@ -39,7 +39,7 @@ function registerGlobalSocketHandlers(ws: ReturnType<typeof useWebSocket>) {
 }
 
 export function useChatSocket() {
-  const ws = useWebSocket();
+  const ws = useWebSocketApi();
   useEffect(() => {
     registerGlobalSocketHandlers(ws);
   }, [ws]);

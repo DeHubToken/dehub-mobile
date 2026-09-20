@@ -59,7 +59,7 @@ import SmartImage from "../components/common/SmartImage";
 import { reactionMeta } from "../libs/reactions";
 import AppealSheet from "../components/Notifications/AppealSheet";
 import { createLogger } from "../libs/logger";
-import { useWebSocket } from "../context/WebSocketContext";
+import { useWebSocketApi } from "../context/WebSocketContext";
 import { orderNotificationTabKeys } from "../libs/notification-tab-order";
 import {
   NotificationType,
@@ -905,7 +905,7 @@ const NotificationScreen = () => {
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   const navigation = useNavigation<any>();
-  const { on: onSocketEvent } = useWebSocket();
+  const { on: onSocketEvent } = useWebSocketApi();
   const { showUserProfile } = useUserProfileSheet();
   
   const walletAddress = user?.walletAddress || user?.address || null;

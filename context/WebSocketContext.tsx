@@ -8,7 +8,12 @@ import { tokenRefreshManager } from '../libs/token-refresh';
 import { createLogger } from '../libs/logger';
 import { DMSocketEvent, DMSocketEventSet } from '../services/enums/dm-socket-events.enum';
 
-interface WebSocketContextValue {
+/**
+ * Connection state. Changes on every connect and disconnect of either
+ * namespace — which on Android is every trip through the background, since
+ * the sockets detach there and reconnect on return.
+ */
+export interface WebSocketStatus {
   /**
    * Either namespace is up. Useful for a spinner, useless for anything that
    * has to be in a room: the DM socket being alive says nothing about the core
@@ -30,15 +35,38 @@ interface WebSocketContextValue {
    * reconnect leaves it true the whole way through.
    */
   connectionEpoch: number;
+}
+
+/**
+ * The socket API. Every function here is identity-stable for the life of the
+ * provider, so a consumer that only sends and subscribes never re-renders for
+ * a connection change — and an effect that binds handlers through `on` binds
+ * them once. Subscriptions made before the sockets exist (signed out, or
+ * before auth resolves) are held and attached when they come up.
+ */
+export interface WebSocketApi {
   emit: (event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => void;
   emitAuthed: (event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => void;
   on: (event: string, handler: (data: any) => void) => () => void;
   off: (event: string, handler: (data: any) => void) => void;
+  /**
+   * Point-in-time read of the core namespace, for a handler that only needs
+   * to know at the moment it fires — a tap that sends a reaction — without the
+   * component subscribing to the status for the rest of its life.
+   */
+  isCoreConnected: () => boolean;
   /** Direct access to the underlying client for advanced use-cases (avoid in generic UI code) */
   client?: WebSocketClient | null;
 }
 
-const WebSocketContext = createContext<WebSocketContextValue | null>(null);
+type WebSocketContextValue = WebSocketStatus & WebSocketApi;
+
+// Two contexts, one provider. The value used to be a single object holding
+// both halves, so every consumer of `emit`/`on` — every mounted feed card among
+// them — re-rendered on each connect and disconnect, and effects keyed on the
+// whole object tore down and re-bound all their handlers each time.
+const WebSocketApiContext = createContext<WebSocketApi | null>(null);
+const WebSocketStatusContext = createContext<WebSocketStatus | null>(null);
 
 export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const log = useMemo(() => createLogger('WebSocketContext'), []);
@@ -305,16 +333,51 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       subsRef.current.delete(sub);
     }
   }, []);
-  const value = useMemo(
-    () => ({ connected, coreConnected, connectionEpoch, emit, emitAuthed, on, off, client: clientRef.current }),
-    [connected, coreConnected, connectionEpoch, emit, emitAuthed, on, off],
+  const isCoreConnected = useCallback(() => connectedCoreRef.current, []);
+
+  // `client` is read off the ref at memo time, as before. It is created once
+  // per provider (see the identity gate above), so the api value is rebuilt
+  // only when `coreConnected` first flips true after the sockets exist — a
+  // single change per session in practice — and stays put through reconnects.
+  const clientCreated = coreConnected || !!clientRef.current;
+  const api = useMemo<WebSocketApi>(
+    () => ({ emit, emitAuthed, on, off, isCoreConnected, client: clientRef.current }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [emit, emitAuthed, on, off, isCoreConnected, clientCreated],
+  );
+  const status = useMemo<WebSocketStatus>(
+    () => ({ connected, coreConnected, connectionEpoch }),
+    [connected, coreConnected, connectionEpoch],
   );
 
-  return <WebSocketContext.Provider value={value}>{children}</WebSocketContext.Provider>;
+  return (
+    <WebSocketApiContext.Provider value={api}>
+      <WebSocketStatusContext.Provider value={status}>{children}</WebSocketStatusContext.Provider>
+    </WebSocketApiContext.Provider>
+  );
 };
 
-export const useWebSocket = (): WebSocketContextValue => {
-  const ctx = useContext(WebSocketContext);
-  if (!ctx) throw new Error('useWebSocket must be used within WebSocketProvider');
+/** Send and subscribe. Stable: never re-renders the caller for a connection change. */
+export const useWebSocketApi = (): WebSocketApi => {
+  const ctx = useContext(WebSocketApiContext);
+  if (!ctx) throw new Error('useWebSocketApi must be used within WebSocketProvider');
   return ctx;
+};
+
+/** Connection state. Re-renders the caller on every connect and disconnect. */
+export const useWebSocketStatus = (): WebSocketStatus => {
+  const ctx = useContext(WebSocketStatusContext);
+  if (!ctx) throw new Error('useWebSocketStatus must be used within WebSocketProvider');
+  return ctx;
+};
+
+/**
+ * Both halves. For screens that genuinely need the epoch or the flags at
+ * render time — a live room that re-joins on reconnect. Anything that only
+ * sends or listens wants `useWebSocketApi` instead.
+ */
+export const useWebSocket = (): WebSocketContextValue => {
+  const api = useWebSocketApi();
+  const status = useWebSocketStatus();
+  return useMemo(() => ({ ...status, ...api }), [api, status]);
 };
