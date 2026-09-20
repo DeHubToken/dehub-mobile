@@ -3970,7 +3970,10 @@
     "openSettings": "افتح الإعدادات",
     "viewPlans": "شوف الخطط",
     "playbackSpeed": "سرعة التشغيل",
-    "moreOptions": "خيارات تانية"
+    "moreOptions": "خيارات تانية",
+    "processing": "جارٍ معالجة الفيديو...",
+    "processingFailed": "فشلت معالجة الفيديو",
+    "processingFailedOwner": "حدث خطأ ما من جانبنا. احذف هذا المنشور وقم بتحميل الفيديو مرة أخرى."
   },
   "liveViewer": {
     "loadingStream": "بيحمل البث...",

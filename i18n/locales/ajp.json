@@ -3930,7 +3930,10 @@
     "openSettings": "افتح الإعدادات",
     "viewPlans": "شوف الخطط",
     "playbackSpeed": "سرعة التشغيل",
-    "moreOptions": "خيارات أكتر"
+    "moreOptions": "خيارات أكتر",
+    "processing": "عم نجهز الفيديو...",
+    "processingFailed": "فشل تجهيز الفيديو",
+    "processingFailedOwner": "صار شي غلط من عنا. احذف هالبوست ورجع نزّل الفيديو."
   },
   "liveViewer": {
     "loadingStream": "عم بيحمّل البث...",

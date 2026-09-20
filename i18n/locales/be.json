@@ -4008,7 +4008,10 @@
     "openSettings": "Адкрыць налады",
     "viewPlans": "Паглядзець планы",
     "playbackSpeed": "Хуткасць прайгравання",
-    "moreOptions": "Больш опцый"
+    "moreOptions": "Больш опцый",
+    "processing": "Апрацоўка відэа...",
+    "processingFailed": "Апрацоўка відэа не атрымалася",
+    "processingFailedOwner": "Нешта пайшло не так з нашага боку. Выдаліць гэты пост і загрузіць відэа зноў."
   },
   "liveViewer": {
     "loadingStream": "Загрузка трансляцыі...",

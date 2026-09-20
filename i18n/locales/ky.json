@@ -3967,7 +3967,10 @@
     "openSettings": "Жөндөөлөрдү ачуу",
     "viewPlans": "Пландарды көрүү",
     "playbackSpeed": "Ойнотуу ылдамдыгы",
-    "moreOptions": "Дагы параметрлер"
+    "moreOptions": "Дагы параметрлер",
+    "processing": "Видеону иштеп чыгуу…",
+    "processingFailed": "Видео иштетүү ишке ашкан жок",
+    "processingFailedOwner": "Биз тараптан бир нерсе туура эмес кетти. Бул постту өчүрүп, видеону кайра жүктөө."
   },
   "liveViewer": {
     "loadingStream": "Стрим жүктөлүүдө...",

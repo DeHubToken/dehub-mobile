@@ -3926,7 +3926,10 @@
     "openSettings": "सेटिंग खोलऽ",
     "viewPlans": "प्लान देखऽ",
     "playbackSpeed": "प्लेबैक स्पीड",
-    "moreOptions": "अउर विकल्प"
+    "moreOptions": "अउर विकल्प",
+    "processing": "वीडियो को हल करे (Processing Video) -",
+    "processingFailed": "असफल हई वीडियो प्रोसेसिंग",
+    "processingFailedOwner": "हम्मर बेटिया पर कुछ गलत हो गेल हल । उस पोस्ट को डिलीट करे और फिर Video पर क्लिक करे ।"
   },
   "liveViewer": {
     "loadingStream": "स्ट्रीम लोड होइत हे...",

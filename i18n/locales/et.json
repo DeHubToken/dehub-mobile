@@ -3974,7 +3974,10 @@
     "openSettings": "Ava seaded",
     "viewPlans": "Vaata plaane",
     "playbackSpeed": "Taasesituse kiirus",
-    "moreOptions": "Rohkem valikuid"
+    "moreOptions": "Rohkem valikuid",
+    "processing": "Video töötlemine...",
+    "processingFailed": "Videotöötlus ebaõnnestus",
+    "processingFailedOwner": "Meie poolel läks midagi valesti. Kustuta see postitus ja laadi video uuesti üles."
   },
   "liveViewer": {
     "loadingStream": "Voo laadimine...",

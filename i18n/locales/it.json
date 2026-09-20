@@ -4045,7 +4045,10 @@
     "openSettings": "Apri impostazioni",
     "viewPlans": "Vedi i piani",
     "playbackSpeed": "Velocità di riproduzione",
-    "moreOptions": "Altre opzioni"
+    "moreOptions": "Altre opzioni",
+    "processing": "Elaborazione video in corso...",
+    "processingFailed": "Elaborazione video non riuscita",
+    "processingFailedOwner": "Qualcosa è andato storto da parte nostra. Elimina questo post e carica di nuovo il video."
   },
   "liveViewer": {
     "loadingStream": "Caricamento diretta...",

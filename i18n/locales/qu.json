@@ -4004,7 +4004,10 @@
     "openSettings": "Allichaykunata kichay",
     "viewPlans": "Planokunata qhaway",
     "playbackSpeed": "Uyarichiy utqay",
-    "moreOptions": "Astawan akllanakuna"
+    "moreOptions": "Astawan akllanakuna",
+    "processing": "Videota ruwaspa...",
+    "processingFailed": "Video ruwayqa manam atikurqachu",
+    "processingFailedOwner": "Ladoykupiqa imapas mana allintam pasarqa. Kay qillqasqata qulluy hinaspa videota yapamanta churay."
   },
   "liveViewer": {
     "loadingStream": "Chayachiy chaskichkan...",

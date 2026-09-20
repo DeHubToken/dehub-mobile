@@ -4037,7 +4037,10 @@
     "openSettings": "Ayarları aç",
     "viewPlans": "Planları görüntüle",
     "playbackSpeed": "Oynatma hızı",
-    "moreOptions": "Diğer seçenekler"
+    "moreOptions": "Diğer seçenekler",
+    "processing": "Video işleniyor...",
+    "processingFailed": "Video işleme başarısız oldu",
+    "processingFailedOwner": "Bizim tarafımızda bir şeyler ters gitti. Bu gönderiyi silin ve videoyu tekrar yükleyin."
   },
   "liveViewer": {
     "loadingStream": "Yayın yükleniyor...",

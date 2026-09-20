@@ -4092,7 +4092,10 @@
     "openSettings": "Open instellings",
     "viewPlans": "Bekyk planne",
     "playbackSpeed": "Terugspeelspoed",
-    "moreOptions": "Meer opsies"
+    "moreOptions": "Meer opsies",
+    "processing": "Verwerking van video...",
+    "processingFailed": "Videoverwerking het misluk",
+    "processingFailedOwner": "Iets het verkeerd gegaan aan ons kant. Verwyder hierdie plasing en laai die video weer op."
   },
   "liveViewer": {
     "loadingStream": "Laai stroom...",

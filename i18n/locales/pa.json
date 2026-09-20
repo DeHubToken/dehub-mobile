@@ -3950,7 +3950,10 @@
     "openSettings": "ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ",
     "viewPlans": "ਪਲਾਨ ਦੇਖੋ",
     "playbackSpeed": "ਪਲੇਬੈਕ ਸਪੀਡ",
-    "moreOptions": "ਹੋਰ ਵਿਕਲਪ"
+    "moreOptions": "ਹੋਰ ਵਿਕਲਪ",
+    "processing": "ਵਿਡੀਓ ਪਰੋਸੈਸ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...",
+    "processingFailed": "ਵੀਡੀਓ ਪ੍ਰੋਸੈਸਿੰਗ ਫੇਲ੍ਹ ਹੋਈ",
+    "processingFailedOwner": "ਸਾਡੀ ਤਰਫੋਂ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ । ਇਸ ਪੋਸਟ ਨੂੰ ਮਿਟਾਓ ਅਤੇ ਵੀਡੀਓ ਦੁਬਾਰਾ ਅਪਲੋਡ ਕਰੋ."
   },
   "liveViewer": {
     "loadingStream": "ਸਟ੍ਰੀਮ ਲੋਡ ਹੋ ਰਹੀ ਹੈ...",

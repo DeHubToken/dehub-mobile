@@ -4025,7 +4025,10 @@
     "openSettings": "Buka pengaturan",
     "viewPlans": "Lihat paket",
     "playbackSpeed": "Kecepatan pemutaran",
-    "moreOptions": "Opsi lainnya"
+    "moreOptions": "Opsi lainnya",
+    "processing": "Memproses video…",
+    "processingFailed": "Pemrosesan video gagal",
+    "processingFailedOwner": "Terjadi kesalahan di pihak kami. Hapus postingan ini dan unggah video lagi."
   },
   "liveViewer": {
     "loadingStream": "Memuat siaran...",

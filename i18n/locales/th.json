@@ -4010,7 +4010,10 @@
     "openSettings": "เปิดการตั้งค่า",
     "viewPlans": "ดูแพ็กเกจ",
     "playbackSpeed": "ความเร็วการเล่น",
-    "moreOptions": "ตัวเลือกเพิ่มเติม"
+    "moreOptions": "ตัวเลือกเพิ่มเติม",
+    "processing": "กำลังประมวลผลวิดีโอ...",
+    "processingFailed": "การประมวลผลวิดีโอล้มเหลว",
+    "processingFailedOwner": "มีบางอย่างผิดปกติเกิดขึ้นในฝั่งของเรา ลบโพสต์นี้และอัปโหลดวิดีโออีกครั้ง"
   },
   "liveViewer": {
     "loadingStream": "กำลังโหลดสตรีม...",

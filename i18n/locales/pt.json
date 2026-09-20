@@ -4049,7 +4049,10 @@
     "openSettings": "Abrir definições",
     "viewPlans": "Ver planos",
     "playbackSpeed": "Velocidade de reprodução",
-    "moreOptions": "Mais opções"
+    "moreOptions": "Mais opções",
+    "processing": "A processar vídeo...",
+    "processingFailed": "Falha no processamento do vídeo",
+    "processingFailedOwner": "Ocorreu um erro do nosso lado. Exclua este post e envie o vídeo novamente."
   },
   "liveViewer": {
     "loadingStream": "A carregar transmissão...",

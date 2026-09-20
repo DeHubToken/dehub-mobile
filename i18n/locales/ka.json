@@ -4009,7 +4009,10 @@
     "openSettings": "პარამეტრების გახსნა",
     "viewPlans": "ნახე გეგმები",
     "playbackSpeed": "დაკვრის სიჩქარე",
-    "moreOptions": "სხვა ვარიანტები"
+    "moreOptions": "სხვა ვარიანტები",
+    "processing": "Ვიდეოს დამუშავება…",
+    "processingFailed": "Ვიდეოს დამუშავება ვერ მოხერხდა",
+    "processingFailedOwner": "Მცირე შეფერხებაა. Წაშალეთ ეს პოსტი და ხელახლა ატვირთეთ ვიდეო."
   },
   "liveViewer": {
     "loadingStream": "სტრიმის ჩატვირთვა...",

@@ -3964,7 +3964,10 @@
     "openSettings": "Ṣí àwọn ètò",
     "viewPlans": "Wo àwọn ètò",
     "playbackSpeed": "Ìyára ìṣeré",
-    "moreOptions": "Àwọn àṣàyàn mìíràn"
+    "moreOptions": "Àwọn àṣàyàn mìíràn",
+    "processing": "Ṣíṣe fídíò...",
+    "processingFailed": "Ṣíṣe fídíò kùnà",
+    "processingFailedOwner": "Nǹkan kan kò lọ dáadáa ní ẹ̀gbẹ́ wa. Pa àtẹ̀jíṣẹ́ yìí rẹ́ kí o sì gbé fídíò náà sókè lẹ́ẹ̀kan síi."
   },
   "liveViewer": {
     "loadingStream": "Ń ṣe ìkójọpọ̀ ìtànkálẹ̀...",

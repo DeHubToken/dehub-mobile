@@ -3939,7 +3939,10 @@
     "openSettings": "ቅንብራት ክፈት",
     "viewPlans": "መደባት ርአ",
     "playbackSpeed": "ፍጥነት ምጽዋት",
-    "moreOptions": "ተወሳኺ ኣማራጺታት"
+    "moreOptions": "ተወሳኺ ኣማራጺታት",
+    "processing": "ቪድዮ ምስራሕ...",
+    "processingFailed": "ቪድዮ ምስራሕ ኣይተዓወተን ።",
+    "processingFailedOwner": "ኣብ ጐድና ገለ ነገር ኣጋጢሙ እዩ ። ነዚ ጽሑፍ እዚ ሰርዝ እሞ ነቲ ቪድዮ መሊስካ ስዓቦ ።"
   },
   "liveViewer": {
     "loadingStream": "ስርጭት ይጽዓን ኣሎ...",

@@ -3969,7 +3969,10 @@
     "openSettings": "ቅንብሮችን ክፈት",
     "viewPlans": "ዕቅዶችን ይመልከቱ",
     "playbackSpeed": "የመልሶ ማጫወት ፍጥነት",
-    "moreOptions": "ተጨማሪ አማራጮች"
+    "moreOptions": "ተጨማሪ አማራጮች",
+    "processing": "ቪዲዮ ማቀነባበሪያ…",
+    "processingFailed": "የቪዲዮ ማቀነባበሪያ አልተሳካም",
+    "processingFailedOwner": "ከጎናችን የሆነ ነገር ተሳስቷል ። ይህን ልጥፍ ሰርዝ እና ቪዲዮውን እንደገና ይስቀሉ."
   },
   "liveViewer": {
     "loadingStream": "ስርጭቱ እየተጫነ ነው...",

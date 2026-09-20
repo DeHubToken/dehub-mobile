@@ -3973,7 +3973,10 @@
     "openSettings": "Atidaryti nustatymus",
     "viewPlans": "Peržiūrėti planus",
     "playbackSpeed": "Atkūrimo greitis",
-    "moreOptions": "Daugiau parinkčių"
+    "moreOptions": "Daugiau parinkčių",
+    "processing": "Apdorojamas vaizdo įrašas...",
+    "processingFailed": "Nepavyko apdoroti vaizdo įrašo",
+    "processingFailedOwner": "Mūsų atveju įvyko klaida. Ištrink šį įrašą ir įkelk vaizdo įrašą dar kartą."
   },
   "liveViewer": {
     "loadingStream": "Įkeliama transliacija...",

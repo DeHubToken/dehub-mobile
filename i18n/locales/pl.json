@@ -4043,7 +4043,10 @@
     "openSettings": "Otwórz ustawienia",
     "viewPlans": "Zobacz plany",
     "playbackSpeed": "Prędkość odtwarzania",
-    "moreOptions": "Więcej opcji"
+    "moreOptions": "Więcej opcji",
+    "processing": "Przetwarzanie wideo…",
+    "processingFailed": "Przetwarzanie wideo nie powiodło się",
+    "processingFailedOwner": "Coś poszło nie tak po naszej stronie. Usuń ten post i prześlij film ponownie."
   },
   "liveViewer": {
     "loadingStream": "Wczytywanie transmisji...",
