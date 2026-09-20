@@ -124,12 +124,12 @@ export async function requireDeviceOwner(purpose: string): Promise<VerificationO
     });
   } catch (e) {
     // A throw here is the platform refusing to present the prompt at all.
-    log.warn("authenticate:error", e);
+    log.error("authenticate:unavailable", { errorName: e instanceof Error ? e.name : "unknown" });
     throw new BiometricUnavailableError("Couldn't start device verification.");
   }
 
   if (!result.success) {
-    log.info("authenticate:rejected", { error: (result as { error?: string }).error });
+    log.error("authenticate:rejected", { code: result.error });
     throw new BiometricRejectedError();
   }
   log.info("authenticate:ok");

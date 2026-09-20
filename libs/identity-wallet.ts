@@ -234,9 +234,9 @@ export async function resolveEvmWalletForIdentity(
       console.error("[resolveEvmWallet] cloud payload", { kdf, address: `${remoteAddr.slice(0, 6)}...` });
       if (kdf === "hkdf") {
         const hasWrap = await hasBiometricWrapKey(remoteAddr);
-        // eslint-disable-next-line no-console
-        console.error("[resolveEvmWallet] hkdf wallet", {
-          address: `${remoteAddr.slice(0, 6)}...`,
+        log.error("unlock:device-key-state", {
+          cloudWalletAddress: remoteAddr,
+          hasLocalPrivateKey: false,
           hasDeviceWrapKey: hasWrap,
         });
         return { status: "needs-biometric-unlock", address: remoteAddr, payload: remote.payload };
