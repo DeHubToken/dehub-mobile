@@ -3918,7 +3918,10 @@
     "openSettings": "Latigɛliw da wuli",
     "viewPlans": "Labɛnw lajɛ",
     "playbackSpeed": "Lafɔli teliya",
-    "moreOptions": "Sugandili wɛrɛw"
+    "moreOptions": "Sugandili wɛrɛw",
+    "processing": "O video ye min ye...",
+    "processingFailed": "Video baara banna",
+    "processingFailedOwner": "Koo dɔ kɛra an na. Aw ye videwo nin bila ka taga a fɛ."
   },
   "liveViewer": {
     "loadingStream": "Stream bɛ lajɛ...",

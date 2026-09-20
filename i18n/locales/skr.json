@@ -3918,7 +3918,10 @@
     "openSettings": "سیٹنگز کھولو",
     "viewPlans": "پلان ݙیکھو",
     "playbackSpeed": "پلے بیک رفتار",
-    "moreOptions": "ودھیک آپشن"
+    "moreOptions": "ودھیک آپشن",
+    "processing": "وڈیو پراسیس کریندے پئے آں…",
+    "processingFailed": "وڈیو پراسیسنگ ناکام تھی ڳئی",
+    "processingFailedOwner": "ساݙے پاسوں کوئی گڑبڑ تھی ڳئی۔ اے پوسٹ ڈیلیٹ کر تے وڈیو ٻیا اپلوڈ کر۔"
   },
   "liveViewer": {
     "loadingStream": "اسٹریم لوڈ تھیندی پئی ہے...",

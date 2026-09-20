@@ -4049,7 +4049,10 @@
     "openSettings": "Ouvrir les réglages",
     "viewPlans": "Voir les formules",
     "playbackSpeed": "Vitesse de lecture",
-    "moreOptions": "Plus d'options"
+    "moreOptions": "Plus d'options",
+    "processing": "Traitement de la vidéo…",
+    "processingFailed": "Échec du traitement vidéo",
+    "processingFailedOwner": "Un problème est survenu de notre côté. Supprimez cette publication et téléchargez à nouveau la vidéo."
   },
   "liveViewer": {
     "loadingStream": "Chargement de la diffusion...",

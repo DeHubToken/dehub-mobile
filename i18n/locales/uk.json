@@ -4450,7 +4450,10 @@
     "openSettings": "Відкрити налаштування",
     "viewPlans": "Переглянути плани",
     "playbackSpeed": "Швидкість відтворення",
-    "moreOptions": "Інші параметри"
+    "moreOptions": "Інші параметри",
+    "processing": "Обробка відео…",
+    "processingFailed": "Не вдалося обробити відео",
+    "processingFailedOwner": "З нашого боку щось пішло не так. Видаліть цей допис і завантажте відео знову."
   },
   "liveViewer": {
     "loadingStream": "Завантаження трансляції...",

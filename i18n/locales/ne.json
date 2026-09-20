@@ -4008,7 +4008,10 @@
     "openSettings": "सेटिङ खोल्नुहोस्",
     "viewPlans": "योजनाहरू हेर्नुहोस्",
     "playbackSpeed": "प्लेब्याक गति",
-    "moreOptions": "थप विकल्प"
+    "moreOptions": "थप विकल्प",
+    "processing": "भिडियो प्रशोधन गर्दैछ...",
+    "processingFailed": "भिडियो प्रशोधन असफल भयो",
+    "processingFailedOwner": "हाम्रो छेउमा केही खराबी भयो । यो पोस्ट मेटाउनुहोस् र भिडियो फेरि अपलोड गर्नुहोस् ।"
   },
   "liveViewer": {
     "loadingStream": "स्ट्रिम लोड हुँदै...",

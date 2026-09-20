@@ -3975,7 +3975,10 @@
     "openSettings": "Otvori postavke",
     "viewPlans": "Pogledaj planove",
     "playbackSpeed": "Brzina reprodukcije",
-    "moreOptions": "Više opcija"
+    "moreOptions": "Više opcija",
+    "processing": "Obrada videozapisa...",
+    "processingFailed": "Obrada videozapisa nije uspjela",
+    "processingFailedOwner": "Došlo je do pogreške s naše strane. Izbriši ovu objavu i ponovno prenesi videozapis."
   },
   "liveViewer": {
     "loadingStream": "Učitavanje prijenosa...",

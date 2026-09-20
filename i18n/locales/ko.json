@@ -4043,7 +4043,10 @@
     "openSettings": "설정 열기",
     "viewPlans": "플랜 보기",
     "playbackSpeed": "재생 속도",
-    "moreOptions": "추가 옵션"
+    "moreOptions": "추가 옵션",
+    "processing": "동영상 처리 중...",
+    "processingFailed": "동영상 처리 실패",
+    "processingFailedOwner": "저희 쪽에서 문제가 발생했습니다. 이 포스트를 삭제하고 동영상을 다시 업로드하세요."
   },
   "liveViewer": {
     "loadingStream": "스트림 불러오는 중…",

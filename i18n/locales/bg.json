@@ -3975,7 +3975,10 @@
     "openSettings": "Отвори настройките",
     "viewPlans": "Виж плановете",
     "playbackSpeed": "Скорост на възпроизвеждане",
-    "moreOptions": "Още опции"
+    "moreOptions": "Още опции",
+    "processing": "Видеоклипът се обработва…",
+    "processingFailed": "Неуспешна обработка на видео",
+    "processingFailedOwner": "Нещо се обърка от наша страна. Изтрийте тази публикация и качете видеоклипа отново."
   },
   "liveViewer": {
     "loadingStream": "Зареждане на потока...",

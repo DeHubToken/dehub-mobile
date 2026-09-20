@@ -4141,7 +4141,10 @@
     "openSettings": "Otvoriť nastavenia",
     "viewPlans": "Zobraziť plány",
     "playbackSpeed": "Rýchlosť prehrávania",
-    "moreOptions": "Ďalšie možnosti"
+    "moreOptions": "Ďalšie možnosti",
+    "processing": "Spracováva sa video...",
+    "processingFailed": "Spracovanie videa zlyhalo",
+    "processingFailedOwner": "Z našej strany sa niečo pokazilo. Odstráňte tento príspevok a znova nahrajte video."
   },
   "liveViewer": {
     "loadingStream": "Načítava sa stream...",

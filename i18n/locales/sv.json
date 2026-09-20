@@ -3979,7 +3979,10 @@
     "openSettings": "Öppna inställningar",
     "viewPlans": "Visa planer",
     "playbackSpeed": "Uppspelningshastighet",
-    "moreOptions": "Fler alternativ"
+    "moreOptions": "Fler alternativ",
+    "processing": "Bearbetar video...",
+    "processingFailed": "Videobearbetningen misslyckades",
+    "processingFailedOwner": "Något gick fel på vår sida. Ta bort det här inlägget och ladda upp videon igen."
   },
   "liveViewer": {
     "loadingStream": "Läser in sändning...",

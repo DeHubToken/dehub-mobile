@@ -3964,7 +3964,10 @@
     "openSettings": "Åpne innstillinger",
     "viewPlans": "Se planer",
     "playbackSpeed": "Avspillingshastighet",
-    "moreOptions": "Flere alternativer"
+    "moreOptions": "Flere alternativer",
+    "processing": "Behandler video",
+    "processingFailed": "Videobehandlingen mislyktes",
+    "processingFailedOwner": "Noe gikk galt hos oss. Slett dette innlegget og last opp videoen på nytt."
   },
   "liveViewer": {
     "loadingStream": "Laster strøm...",

@@ -4046,7 +4046,10 @@
     "openSettings": "Open Settings",
     "viewPlans": "View plans",
     "playbackSpeed": "Playback speed",
-    "moreOptions": "More options"
+    "moreOptions": "More options",
+    "processing": "Processing video…",
+    "processingFailed": "Video processing failed",
+    "processingFailedOwner": "Something went wrong on our side. Delete this post and upload the video again."
   },
   "liveViewer": {
     "loadingStream": "Loading stream...",

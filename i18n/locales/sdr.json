@@ -3973,7 +3973,10 @@
     "openSettings": "ڕێکخستنەکان بکەرەوە",
     "viewPlans": "پلانەکان ببینە",
     "playbackSpeed": "خێرایی لێدان",
-    "moreOptions": "هەڵبژاردەی زیاتر"
+    "moreOptions": "هەڵبژاردەی زیاتر",
+    "processing": "Video process korotay lagayche…",
+    "processingFailed": "Video process korotay fail hoigelo",
+    "processingFailedOwner": "Amader dike kichu ekta bhul hoyeche. Ei post ta delete kore abar video upload korun."
   },
   "liveViewer": {
     "loadingStream": "پەخش بار دەکرێت...",

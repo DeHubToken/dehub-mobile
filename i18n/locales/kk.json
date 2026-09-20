@@ -4030,7 +4030,10 @@
     "openSettings": "Параметрлерді ашу",
     "viewPlans": "Жоспарларды қарау",
     "playbackSpeed": "Ойнату жылдамдығы",
-    "moreOptions": "Қосымша опциялар"
+    "moreOptions": "Қосымша опциялар",
+    "processing": "Бейне өңделуде...",
+    "processingFailed": "Бейне өңдеу сәтсіз аяқталды",
+    "processingFailedOwner": "Бірдеңе дұрыс болмады. Бұл лауазымды жойып, бейнені қайта жүктеңіз."
   },
   "liveViewer": {
     "loadingStream": "Ағын жүктелуде...",

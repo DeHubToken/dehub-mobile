@@ -3952,7 +3952,10 @@
     "openSettings": "Танзимотро кушоед",
     "viewPlans": "Нақшаҳоро бинед",
     "playbackSpeed": "Суръати пахш",
-    "moreOptions": "Имконоти бештар"
+    "moreOptions": "Имконоти бештар",
+    "processing": "Коркарди видео...",
+    "processingFailed": "Коркарди видео қатъ шуд",
+    "processingFailedOwner": "Чизе аз тарафи мо нодуруст шуд. Tanggalin ang post na ito at mag-upload muli ng video."
   },
   "liveViewer": {
     "loadingStream": "Пахш бор мешавад...",

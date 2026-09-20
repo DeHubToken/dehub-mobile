@@ -3963,7 +3963,10 @@
     "openSettings": "Iistellige uftue",
     "viewPlans": "Plän aaluege",
     "playbackSpeed": "Abspiilgschwindigkeit",
-    "moreOptions": "Meh Optione"
+    "moreOptions": "Meh Optione",
+    "processing": "Video wird verarbeitet…",
+    "processingFailed": "Video-Verarbeitung fehlgeschlagen",
+    "processingFailedOwner": "Es isch öppis schief gange bi eus. Lösch die Post und lade s Video nomal ufe."
   },
   "liveViewer": {
     "loadingStream": "Stream wird glade...",

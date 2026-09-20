@@ -4044,7 +4044,10 @@
     "openSettings": "Einstellungen öffnen",
     "viewPlans": "Pläne ansehen",
     "playbackSpeed": "Wiedergabegeschwindigkeit",
-    "moreOptions": "Weitere Optionen"
+    "moreOptions": "Weitere Optionen",
+    "processing": "Video wird verarbeitet...",
+    "processingFailed": "Videoverarbeitung fehlgeschlagen",
+    "processingFailedOwner": "Auf unserer Seite ist etwas schiefgelaufen. Lösche diesen Beitrag und lade das Video erneut hoch."
   },
   "liveViewer": {
     "loadingStream": "Stream wird geladen...",

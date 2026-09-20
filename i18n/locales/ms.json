@@ -4237,7 +4237,10 @@
     "openSettings": "Buka tetapan",
     "viewPlans": "Lihat pelan",
     "playbackSpeed": "Kelajuan main balik",
-    "moreOptions": "Lagi pilihan"
+    "moreOptions": "Lagi pilihan",
+    "processing": "Memproses video...",
+    "processingFailed": "Pemprosesan video gagal",
+    "processingFailedOwner": "Ada sesuatu yang tidak kena di pihak kami. Hapuskan hantaran ini dan muat naik video sekali lagi."
   },
   "liveViewer": {
     "loadingStream": "Memuatkan siaran...",

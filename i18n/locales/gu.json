@@ -3966,7 +3966,10 @@
     "openSettings": "સેટિંગ્સ ખોલો",
     "viewPlans": "પ્લાન જુઓ",
     "playbackSpeed": "પ્લેબેક સ્પીડ",
-    "moreOptions": "વધુ વિકલ્પો"
+    "moreOptions": "વધુ વિકલ્પો",
+    "processing": "વિડિઓ પર પ્રક્રિયા થઈ રહી છે...",
+    "processingFailed": "વિડિઓ પ્રોસેસ કરવામાં નિષ્ફળ",
+    "processingFailedOwner": "અમારી બાજુમાં કંઈક ખોટું થયું. આ પોસ્ટ કાઢી નાખો અને ફરીથી વિડિઓ અપલોડ કરો."
   },
   "liveViewer": {
     "loadingStream": "સ્ટ્રીમ લોડ થઈ રહી છે...",

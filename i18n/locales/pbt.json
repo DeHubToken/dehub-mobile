@@ -3924,7 +3924,10 @@
     "openSettings": "امستنې خلاصې کړئ",
     "viewPlans": "پلانونه وګورئ",
     "playbackSpeed": "د غږولو سرعت",
-    "moreOptions": "نور انتخابونه"
+    "moreOptions": "نور انتخابونه",
+    "processing": "د ویډیو پروسس کول...",
+    "processingFailed": "د ویډیو پروسیجر ناکام شو",
+    "processingFailedOwner": "زموږ په برخه کې یو څه غلط شوي. دا ویډیو لرې کړئ او بیا یې پورته کړئ."
   },
   "liveViewer": {
     "loadingStream": "خپرونه لوډیږي...",

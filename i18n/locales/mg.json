@@ -4053,7 +4053,10 @@
     "openSettings": "Sokafy ny fandrindrana",
     "viewPlans": "Jereo ny drafitra",
     "playbackSpeed": "Hafainganam-pamerenana",
-    "moreOptions": "Safidy hafa"
+    "moreOptions": "Safidy hafa",
+    "processing": "Hikirakira ny lahatsary...",
+    "processingFailed": "Tsy nahomby ny fikirakirana sary",
+    "processingFailedOwner": "Nisy zavatra nitranga teo aminao sy izy. Noho izany dia avereno ity lahatsoratra ity ary avereno indray ilay lahatsoratra."
   },
   "liveViewer": {
     "loadingStream": "Mampiditra ny fandefasana...",

@@ -4038,7 +4038,10 @@
     "openSettings": "Qindaaʼina bani",
     "viewPlans": "Karoora ilaali",
     "playbackSpeed": "Saffisa taphachuu",
-    "moreOptions": "Filannoo dabalataa"
+    "moreOptions": "Filannoo dabalataa",
+    "processing": "Viidiyoo hojjechuuf...",
+    "processingFailed": "Adeemsi viidiyoo hin milkoofne",
+    "processingFailedOwner": "Gama keenyaan wanti tokko dogoggora ta&#39;e. Barreeffama kana haqaatii viidiyoo sana irra deebi&#39;aa ol kaa&#39;aa."
   },
   "liveViewer": {
     "loadingStream": "Tamsaasa fe'aa jira...",

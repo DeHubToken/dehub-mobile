@@ -4031,7 +4031,10 @@
     "openSettings": "सेटिंग्स खोलें",
     "viewPlans": "प्लान देखें",
     "playbackSpeed": "प्लेबैक गति",
-    "moreOptions": "और विकल्प"
+    "moreOptions": "और विकल्प",
+    "processing": "वीडियो प्रोसेस किया जा रहा है...",
+    "processingFailed": "वीडियो प्रोसेस नहीं हो सका",
+    "processingFailedOwner": "हमारी ओर से कुछ गड़बड़ हुई। इस पोस्ट को हटाएँ और वीडियो फिर से अपलोड करें।"
   },
   "liveViewer": {
     "loadingStream": "स्ट्रीम लोड हो रही है...",

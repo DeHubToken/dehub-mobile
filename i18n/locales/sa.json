@@ -3930,7 +3930,10 @@
     "openSettings": "समायोजनानि उद्घाटयतु",
     "viewPlans": "योजनाः पश्यतु",
     "playbackSpeed": "प्रचालनवेगः",
-    "moreOptions": "अधिकविकल्पाः"
+    "moreOptions": "अधिकविकल्पाः",
+    "processing": "विडियों प्रक्रियेत...",
+    "processingFailed": "विडिओ प्रशोधन असफल",
+    "processingFailedOwner": "- आम्, आसन्दं तस्य उपरि इच्छति वा? कृपया एतत् पृष्ठं पुनरपि क्लिक् कुर्वन्तु ।"
   },
   "liveViewer": {
     "loadingStream": "प्रसारणम् आरोप्यते...",

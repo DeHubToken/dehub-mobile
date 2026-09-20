@@ -3957,7 +3957,10 @@
     "openSettings": "سيٽنگون کوليو",
     "viewPlans": "پلان ڏسو",
     "playbackSpeed": "پلي بيڪ رفتار",
-    "moreOptions": "وڌيڪ آپشن"
+    "moreOptions": "وڌيڪ آپشن",
+    "processing": "وڊيو پروسيس ڪندي...",
+    "processingFailed": "وڊيو پروسيسنگ ناڪام ٿي",
+    "processingFailedOwner": "اسان جي پاسي کان ڪجھ غلط ٿيو. هن پوسٽ کي ختم ڪريو ۽ ٻيهر وڊيو اپلوڊ ڪريو."
   },
   "liveViewer": {
     "loadingStream": "اسٽريم لوڊ ٿي رهي آهي...",
