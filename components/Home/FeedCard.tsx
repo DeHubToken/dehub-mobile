@@ -39,7 +39,7 @@ import MarkdownText from "../ui/MarkdownText";
 import ContainedFeedImage from "./ContainedFeedImage";
 import PostTapSurface from "./PostTapSurface";
 import LiveFeedPreview from "../common/LiveFeedPreview";
-import LiveFeedReactionFlow from "../LiveProducer/LiveFeedReactionFlow";
+import LiveFeedReactionFlow, { type SelfReaction } from "../LiveProducer/LiveFeedReactionFlow";
 import { useWebSocket } from "../../context/WebSocketContext";
 import { liveReactionType } from "../../libs/live-reaction-flow";
 import { LivestreamEvents } from "../../services/enums/livestream.enum";
@@ -436,6 +436,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isCurrentlyLive = isStreamLive(stream, status === "LIVE" || status === "PAUSED");
   const liveReactionStreamId = isLive ? stream?._id || stream?.id || (item as any)._id : undefined;
   const { emitAuthed: emitLiveReaction, connected: reactionSocketConnected } = useWebSocket();
+  // The viewer's own floating reaction, played on tap rather than waiting on
+  // the room echo — see LiveFeedReactionFlow's `self`.
+  const [selfLiveReaction, setSelfLiveReaction] = useState<SelfReaction | null>(null);
+  const selfLiveReactionNonce = useRef(0);
 
   // HLS ladder for the in-card preview. Derived from the playbackId the same
   // way the post page does it — `playbackUrl` off the API is usually absent
@@ -668,10 +672,18 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const voteInFlightRef = useRef(false);
   const handleReaction = useCallback((reaction: PostReaction) => {
     if (tokenId == null) return;
-    if (isCurrentlyLive && liveReactionStreamId && reactionSocketConnected) {
-      requireAuth?.(() => emitLiveReaction(LivestreamEvents.StreamReaction, {
-        streamId: liveReactionStreamId, reactionType: liveReactionType(reaction),
-      }));
+    if (isCurrentlyLive) {
+      requireAuth?.(() => {
+        // The sender's own bubble, always. A missing stream id or a dropped
+        // socket costs the room its copy, never the person who tapped theirs.
+        selfLiveReactionNonce.current += 1;
+        setSelfLiveReaction({ type: reaction, weight: voteWeight, nonce: selfLiveReactionNonce.current });
+        if (liveReactionStreamId && reactionSocketConnected) {
+          emitLiveReaction(LivestreamEvents.StreamReaction, {
+            streamId: liveReactionStreamId, reactionType: liveReactionType(reaction),
+          });
+        }
+      });
     }
     // One vote at a time: a double-tap otherwise reads the same stale
     // myReaction twice and fires two toggles that cancel server-side, leaving
@@ -1319,9 +1331,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const renderLiveThumbnail = () => (
     <Pressable onPress={handleCardPress} className="relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2">
-      {isCurrentlyLive && isVisible && liveReactionStreamId && (
+      {isCurrentlyLive && isVisible && (
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 2 }]}>
-          <LiveFeedReactionFlow streamId={liveReactionStreamId} />
+          <LiveFeedReactionFlow
+            streamId={liveReactionStreamId}
+            selfAddress={userAddress ? String(userAddress).toLowerCase() : null}
+            self={selfLiveReaction}
+          />
         </View>
       )}
       {livePlayableUrl && !isActuallyGated ? (
