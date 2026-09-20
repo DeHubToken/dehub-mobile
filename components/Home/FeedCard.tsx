@@ -625,6 +625,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         nft: item,
         accessInfo,
         streamId,
+        tokenId,
       } as never);
     } else if (isShort && tokenId != null) {
       navigation.navigate(ScreenNames.ShortsViewer, {

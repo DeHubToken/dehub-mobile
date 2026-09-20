@@ -83,8 +83,18 @@ export interface UseLiveChatReturn {
  *   gateway's own room (`stream:<mongoId>`) is a different socket and a
  *   different store; the two never met, which is why a phone's messages were
  *   invisible from the web and vice versa.
+ * @param options.requireRoom Set by any caller that belongs to one specific
+ *   room and nothing else. Its room id arrives a moment after mount — a
+ *   stream's is keyed on the post's tokenId, which is only known once the
+ *   stream loads — and without this the hook spent that moment connected to
+ *   the global room and painted the public chat under the stream. It then
+ *   stayed there for good on any stream whose tokenId never resolved.
  */
-export const useLiveChat = (roomId?: string): UseLiveChatReturn => {
+export const useLiveChat = (
+  roomId?: string,
+  options?: { requireRoom?: boolean },
+): UseLiveChatReturn => {
+  const requireRoom = options?.requireRoom === true;
   const user = useUser();
   const roomIdRef = useRef<string | undefined>(roomId);
   roomIdRef.current = roomId;
@@ -116,8 +126,19 @@ export const useLiveChat = (roomId?: string): UseLiveChatReturn => {
   // Connect socket
   useEffect(() => {
     if (!isSignedIn) return;
+    // No room yet for a caller that only ever wants its own: wait, rather
+    // than fall through to the global room.
+    if (requireRoom && !roomId) {
+      setJoining(true);
+      return;
+    }
 
     let cancelled = false;
+    // A different room is a different conversation: drop the last one's
+    // messages now instead of leaving them on screen until the join lands.
+    setMessages([]);
+    setRoom(null);
+    setHasMore(true);
     setJoining(true); // Show loading immediately
 
     const connect = async () => {
@@ -185,7 +206,11 @@ export const useLiveChat = (roomId?: string): UseLiveChatReturn => {
         joinedRef.current = true;
         setJoining(false);
 
-        // Fetch accurate online count from REST (Redis counter)
+        // Fetch accurate online count from REST (Redis counter). The endpoint
+        // has no room dimension — it counts everybody on the platform chat —
+        // so only the global room may read it. In a stream it was reporting
+        // strangers as that stream's audience.
+        if (roomIdRef.current) return;
         getLiveChatOnlineCount()
           .then((res) => { if (res?.count) setOnlineCount(res.count); })
           .catch(() => {});
@@ -325,7 +350,7 @@ export const useLiveChat = (roomId?: string): UseLiveChatReturn => {
       setJoining(false);
     };
     // A new room is a new socket: the gateway holds one room per connection.
-  }, [isSignedIn, roomId]);
+  }, [isSignedIn, roomId, requireRoom]);
 
   // Pause/resume on app background — reconnect + rejoin
   useEffect(() => {
@@ -389,7 +414,12 @@ export const useLiveChat = (roomId?: string): UseLiveChatReturn => {
     setLoadingMore(true);
     try {
       const oldest = messagesRef.current[0];
-      const res = await getLiveChatMessages({ before: oldest._id, limit: 50 });
+      // Scoped to this room, or the page comes back full of global chat.
+      const res = await getLiveChatMessages({
+        before: oldest._id,
+        limit: 50,
+        roomId: roomIdRef.current,
+      });
       if (res.messages.length > 0) {
         setMessages((prev) => {
           const existingIds = new Set(prev.map((m) => m._id));

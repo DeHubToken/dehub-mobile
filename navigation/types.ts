@@ -60,6 +60,13 @@ export type AppStackParamList = {
     streamId?: string;
     playbackId?: string;
     hostUsername?: string;
+    // The post behind the stream. Its chat room is keyed on this, so passing
+    // it means the viewer joins the right room on the first render instead of
+    // waiting on the stream request.
+    tokenId?: string | number;
+    isLive?: boolean;
+    nft?: any;
+    accessInfo?: any;
   };
   [ScreenNames.Leaderboard]: undefined;
   [ScreenNames.Notifications]: undefined;
