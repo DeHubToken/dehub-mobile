@@ -31,6 +31,7 @@ import StreamShopOverlay from "../LiveViewer/StreamShopOverlay";
 import ShopBoard from "../common/ShopBoard";
 import { useTipAnimations } from "../../hooks/useTipAnimations";
 import { useReactions } from "../../hooks/useReactions";
+import { useEngagementWeight } from "../../hooks/useEngagementWeight";
 import type { ReactionType } from "../LiveProducer/ReactionOverlay";
 import { useWebSocket } from "../../context/WebSocketContext";
 import {
@@ -299,6 +300,18 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const { items: tipEffects, enqueueFromGift, clearAll: clearTipEffects } = useTipAnimations({ maxConcurrent: 2 });
   // Floating reaction bubbles
   const { reactions, addReaction, removeReaction, clearReactions } = useReactions();
+  // Read through a ref: the socket bindings below are set up once per stream
+  // and must not be torn down when the signed-in account resolves.
+  const myAddress = String(
+    (user?.walletAddress || user?.address || "") as string
+  ).toLowerCase();
+  const myAddressRef = useRef(myAddress);
+  useEffect(() => {
+    myAddressRef.current = myAddress;
+  }, [myAddress]);
+  // The viewer's own badge multiplier, so their thumb comes up as thick as the
+  // server echo would have drawn it.
+  const liveReactionWeight = useEngagementWeight();
   // Stream paused/resumed state
   const [streamPaused, setStreamPaused] = useState(false);
   // Dynamic chat enabled (settings can change mid-stream)
@@ -874,11 +887,15 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         selectedTier: payload?.gift?.meta?.selectedTier,
       } as any);
     });
-    // Reaction events from other viewers or self-echo
+    // Reaction events from other viewers. The viewer's own thumb is played on
+    // tap (handleLiveLike) the same beat a tipper gets their celebration, so
+    // the echo of their own reaction is dropped here rather than shown twice.
     bind(LivestreamEvents.StreamReaction as any, (data: any) => {
       if (data?.streamId && data.streamId !== streamId) return;
       // Backend sends { reactionType, user: <userRef> }
       const type = data?.reactionType as ReactionType;
+      const from = String(data?.user?.address || "").toLowerCase();
+      if (from && myAddressRef.current && from === myAddressRef.current) return;
       const rUsername = data?.user?.displayName || data?.user?.username;
       if (type) addReaction(type, rUsername, data?.weight);
     });
@@ -1175,9 +1192,16 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // A reaction on a live post is a post reaction, allowed whenever the post
   // exists — an ended stream is still a post, exactly as on web.
   const handleLiveLike = useCallback(() => {
-    requireAuth(() => handleSendReaction('LIKE'));
+    requireAuth(() => {
+      // The thumb floats the moment it is tapped, the way a tip's celebration
+      // plays on submission. The room's copy still rides the socket echo, but
+      // it is no longer the ONLY source: a viewer whose socket had dropped, or
+      // who was never in the room, tapped and saw nothing at all.
+      addReaction('LIKE', undefined, liveReactionWeight);
+      handleSendReaction('LIKE');
+    });
     postReactions.toggle(true);
-  }, [postReactions, requireAuth, handleSendReaction]);
+  }, [postReactions, requireAuth, handleSendReaction, addReaction, liveReactionWeight]);
 
   // Share handler
   const handleShare = useCallback(async () => {
