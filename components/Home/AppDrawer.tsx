@@ -10,6 +10,7 @@ import {
   Dimensions,
   BackHandler,
   Keyboard,
+  I18nManager,
 } from "react-native";
 import { CommonActions, useNavigation, useNavigationState } from "@react-navigation/native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -33,6 +34,17 @@ import { useTranslation } from "react-i18next";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const DRAWER_WIDTH = SCREEN_WIDTH * 0.82;
+
+// Under a right-to-left locale React Native mirrors `left: 0` to the right
+// edge, so the drawer lives on the right and has to leave the screen to the
+// RIGHT. Hiding it with -DRAWER_WIDTH pushed it left instead and left the
+// last 18% of it painted down the left edge of every screen while closed: an
+// icon rail nobody designed. The drag that closes it flips with it.
+const IS_RTL = I18nManager.isRTL;
+const CLOSED_X = IS_RTL ? DRAWER_WIDTH : -DRAWER_WIDTH;
+// Multiplies a horizontal delta so that "toward the drawer's own edge" is
+// always negative: left in LTR, right in RTL.
+const TOWARD_EDGE = IS_RTL ? -1 : 1;
 
 const OPEN_TIMING = { duration: 280, easing: Easing.bezier(0.25, 0.1, 0.25, 1) };
 const CLOSE_TIMING = { duration: 220, easing: Easing.bezier(0.25, 0.1, 0.25, 1) };
@@ -224,14 +236,15 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
       dragging.value = true;
     })
     .onUpdate((e) => {
-      const clamped = Math.max(0, Math.min(1, 1 + e.translationX / DRAWER_WIDTH));
+      const clamped = Math.max(0, Math.min(1, 1 + (TOWARD_EDGE * e.translationX) / DRAWER_WIDTH));
       progress.value = clamped;
     })
     .onEnd((e) => {
       dragging.value = false;
+      const velocity = TOWARD_EDGE * e.velocityX;
       const shouldClose =
-        e.velocityX < -VELOCITY_THRESHOLD ||
-        (e.velocityX <= VELOCITY_THRESHOLD && progress.value < 1 - POSITION_THRESHOLD / DRAWER_WIDTH);
+        velocity < -VELOCITY_THRESHOLD ||
+        (velocity <= VELOCITY_THRESHOLD && progress.value < 1 - POSITION_THRESHOLD / DRAWER_WIDTH);
 
       if (shouldClose) {
         progress.value = withTiming(0, CLOSE_TIMING);
@@ -254,7 +267,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   const drawerStyle = useAnimatedStyle(() => ({
     transform: [
-      { translateX: interpolate(progress.value, [0, 1], [-DRAWER_WIDTH, 0]) },
+      { translateX: interpolate(progress.value, [0, 1], [CLOSED_X, 0]) },
     ],
   }));
 

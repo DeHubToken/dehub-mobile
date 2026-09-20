@@ -16,6 +16,7 @@ jest.mock('react-native', () => ({
   StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s },
   BackHandler: { addEventListener: () => ({ remove: jest.fn() }) },
   Keyboard: { dismiss: jest.fn() },
+  I18nManager: { isRTL: false },
 }));
 jest.mock('@react-navigation/native', () => ({
   CommonActions: { navigate: (payload: unknown) => ({ type: 'NAVIGATE', payload }) },
