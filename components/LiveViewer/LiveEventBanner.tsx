@@ -9,10 +9,12 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import Avatar from "../common/Avatar";
+import { getAvatarUrl } from "../../libs/misc";
 
 export interface EventBannerData {
   id: string;
   displayName: string;
+  /** Stored avatar path as the API gives it, not a URL — resolved on render. */
   avatarUrl?: string;
 }
 
@@ -55,7 +57,7 @@ const BannerRow: React.FC<{
 
   return (
     <Animated.View style={animStyle} className={`flex-row items-center self-start ${bgClass} rounded-full px-2.5 py-1 mb-1`}>
-      <Avatar uri={event.avatarUrl} size={16} name={event.displayName} />
+      <Avatar uri={getAvatarUrl(event.avatarUrl)} size={16} name={event.displayName} />
       <Text style={{ color: textColor }} className="text-[11px] ml-1.5 font-medium" numberOfLines={1}>
         {event.displayName}
       </Text>
@@ -93,7 +95,7 @@ const GiftBannerRow: React.FC<{
 
   return (
     <Animated.View style={animStyle} className="flex-row items-center self-start bg-white/15 border border-white/20 rounded-lg px-2.5 py-1 mb-1">
-      <Avatar uri={event.avatarUrl} size={16} name={event.displayName} />
+      <Avatar uri={getAvatarUrl(event.avatarUrl)} size={16} name={event.displayName} />
       <Text className="text-white/80 text-[11px] ml-1.5 font-semibold" numberOfLines={1}>
         {event.displayName}
       </Text>
