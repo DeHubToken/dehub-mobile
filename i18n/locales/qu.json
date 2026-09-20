@@ -3972,6 +3972,8 @@
     "removeAttachment": "Yapasqata qichuy",
     "addTip": "Yanapay qullqita yapay",
     "chooseGif": "GIF akllay",
+    "searchGifs": "GIF nisqakunata maskay",
+    "gifsLoadFailed": "GIF nisqakunata manam kargayta atirqanchu",
     "attachImage": "Rikchata yapay",
     "attachVideo": "Videota yapay",
     "attachFile": "Willañiqita yapay",

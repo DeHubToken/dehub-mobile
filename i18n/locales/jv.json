@@ -3900,6 +3900,8 @@
     "removeAttachment": "Busak lampiran",
     "addTip": "Tambah tip",
     "chooseGif": "Pilih GIF",
+    "searchGifs": "Telusuri GIF",
+    "gifsLoadFailed": "Ora bisa mbukak GIF",
     "attachImage": "Lampirake gambar",
     "attachVideo": "Lampirake video",
     "attachFile": "Lampirake berkas",

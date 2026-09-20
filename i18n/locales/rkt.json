@@ -3973,6 +3973,8 @@
     "removeAttachment": "সংযুক্তি সরান",
     "addTip": "টিপ যোগ করেন",
     "chooseGif": "একটা GIF বাছেন",
+    "searchGifs": "GIFs खोजें",
+    "gifsLoadFailed": "GIFs लोड नहीं हो सके",
     "attachImage": "ছবি যোগ করেন",
     "attachVideo": "ভিডিও যোগ করেন",
     "attachFile": "ফাইল যোগ করেন",

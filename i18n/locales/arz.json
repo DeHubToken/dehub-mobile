@@ -3938,6 +3938,8 @@
     "removeAttachment": "شيل المرفق",
     "addTip": "ضيف إكرامية",
     "chooseGif": "اختار GIF",
+    "searchGifs": "البحث في صور GIF",
+    "gifsLoadFailed": "تعذر تحميل ملفات GIF",
     "attachImage": "ارفق صورة",
     "attachVideo": "ارفق فيديو",
     "attachFile": "ارفق ملف",

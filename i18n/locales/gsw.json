@@ -3931,6 +3931,8 @@
     "removeAttachment": "Aahang entfärne",
     "addTip": "Trinkgäld hinzuefüege",
     "chooseGif": "GIF uswähle",
+    "searchGifs": "GIFs sueche",
+    "gifsLoadFailed": "Chönt kei GIFs laade",
     "attachImage": "Bild aahänke",
     "attachVideo": "Video aahänke",
     "attachFile": "Datei aahänke",

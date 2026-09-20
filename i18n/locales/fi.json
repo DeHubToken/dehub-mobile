@@ -3943,6 +3943,8 @@
     "removeAttachment": "Poista liite",
     "addTip": "Lisää tippi",
     "chooseGif": "Valitse GIF",
+    "searchGifs": "Hae GIF-tiedostoja",
+    "gifsLoadFailed": "GIF-tiedostoja ei voitu ladata",
     "attachImage": "Liitä kuva",
     "attachVideo": "Liitä video",
     "attachFile": "Liitä tiedosto",

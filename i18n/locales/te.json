@@ -3936,6 +3936,8 @@
     "removeAttachment": "జోడింపును తీసివేయండి",
     "addTip": "టిప్ జోడించండి",
     "chooseGif": "GIF ఎంచుకోండి",
+    "searchGifs": "GIFలను శోధించండి",
+    "gifsLoadFailed": "GIFలను లోడ్ చేయడం సాధ్యం కాలేదు",
     "attachImage": "చిత్రాన్ని జతచేయండి",
     "attachVideo": "వీడియోను జతచేయండి",
     "attachFile": "ఫైల్‌ను జతచేయండి",

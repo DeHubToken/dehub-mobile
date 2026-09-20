@@ -4012,6 +4012,8 @@
     "removeAttachment": "Anhang entfernen",
     "addTip": "Trinkgeld hinzufügen",
     "chooseGif": "GIF auswählen",
+    "searchGifs": "GIFs durchsuchen",
+    "gifsLoadFailed": "GIFs konnten nicht geladen werden",
     "attachImage": "Bild anhängen",
     "attachVideo": "Video anhängen",
     "attachFile": "Datei anhängen",

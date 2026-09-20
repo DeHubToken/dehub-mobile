@@ -3976,6 +3976,8 @@
     "removeAttachment": "संलग्नक हटाउनुहोस्",
     "addTip": "टिप थप्नुहोस्",
     "chooseGif": "GIF छान्नुहोस्",
+    "searchGifs": "GIF हरू खोजी गर्नुहोस्",
+    "gifsLoadFailed": "GIFs लोड गर्न सकिएन",
     "attachImage": "छवि संलग्न गर्नुहोस्",
     "attachVideo": "भिडियो संलग्न गर्नुहोस्",
     "attachFile": "फाइल संलग्न गर्नुहोस्",

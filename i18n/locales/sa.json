@@ -3898,6 +3898,8 @@
     "removeAttachment": "संलग्नं निष्कासयतु",
     "addTip": "पारितोषिकं योजयतु",
     "chooseGif": "GIF चिनोतु",
+    "searchGifs": "GIFs खोजें",
+    "gifsLoadFailed": "GIFs लोड करने में असमर्थ",
     "attachImage": "चित्रं संयोजयतु",
     "attachVideo": "चलचित्रं संयोजयतु",
     "attachFile": "सञ्चिकां संयोजयतु",

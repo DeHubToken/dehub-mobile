@@ -3900,6 +3900,8 @@
     "removeAttachment": "ລຶບໄຟລ໌ແນບ",
     "addTip": "ເພີ່ມທິບ",
     "chooseGif": "ເລືອກ GIF",
+    "searchGifs": "ຄົ້ນຫາ GIFs",
+    "gifsLoadFailed": "ບໍ່ສາມາດໂຫຼດ GIF ໄດ້",
     "attachImage": "ແນບຮູບ",
     "attachVideo": "ແນບວິດີໂອ",
     "attachFile": "ແນບໄຟລ໌",

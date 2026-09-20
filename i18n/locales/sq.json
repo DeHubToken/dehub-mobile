@@ -3941,6 +3941,8 @@
     "removeAttachment": "Hiq bashkëngjitjen",
     "addTip": "Shto bakshish",
     "chooseGif": "Zgjidh një GIF",
+    "searchGifs": "Kërko GIF",
+    "gifsLoadFailed": "I pamundur ngarkimi i GIF-ve",
     "attachImage": "Bashkëngjit imazh",
     "attachVideo": "Bashkëngjit video",
     "attachFile": "Bashkëngjit skedar",

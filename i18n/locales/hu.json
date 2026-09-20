@@ -3947,6 +3947,8 @@
     "removeAttachment": "Melléklet eltávolítása",
     "addTip": "Borravaló hozzáadása",
     "chooseGif": "GIF kiválasztása",
+    "searchGifs": "GIF-ek keresése",
+    "gifsLoadFailed": "Nem sikerült betölteni a GIF-eket",
     "attachImage": "Kép csatolása",
     "attachVideo": "Videó csatolása",
     "attachFile": "Fájl csatolása",

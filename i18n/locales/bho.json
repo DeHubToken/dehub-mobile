@@ -3892,6 +3892,8 @@
     "removeAttachment": "अटैचमेंट हटाईं",
     "addTip": "टिप जोड़ीं",
     "chooseGif": "GIF चुनीं",
+    "searchGifs": "GIFs खोजें",
+    "gifsLoadFailed": "Txt फ़ाइलें नहीं खोजेंगे.",
     "attachImage": "फोटो जोड़ीं",
     "attachVideo": "वीडियो जोड़ीं",
     "attachFile": "फाइल जोड़ीं",

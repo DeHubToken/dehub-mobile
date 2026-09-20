@@ -3947,6 +3947,8 @@
     "removeAttachment": "Ta bort bilaga",
     "addTip": "Lägg till dricks",
     "chooseGif": "Välj en GIF",
+    "searchGifs": "Sök GIF-filer",
+    "gifsLoadFailed": "Det gick inte att ladda GIF-filer",
     "attachImage": "Bifoga bild",
     "attachVideo": "Bifoga video",
     "attachFile": "Bifoga fil",

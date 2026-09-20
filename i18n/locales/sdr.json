@@ -3941,6 +3941,8 @@
     "removeAttachment": "هاوپێچ لابدە",
     "addTip": "بەخشیش زیاد بکە",
     "chooseGif": "GIF هەڵبژێرە",
+    "searchGifs": "GIFs खोजें",
+    "gifsLoadFailed": "GIFs लोड नहीं हो सके",
     "attachImage": "وێنە هاوپێچ بکە",
     "attachVideo": "ڤیدیۆ هاوپێچ بکە",
     "attachFile": "فایل هاوپێچ بکە",

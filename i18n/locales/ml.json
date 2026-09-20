@@ -3924,6 +3924,8 @@
     "removeAttachment": "അറ്റാച്ച്മെന്റ് നീക്കുക",
     "addTip": "ടിപ്പ് ചേർക്കുക",
     "chooseGif": "GIF തിരഞ്ഞെടുക്കുക",
+    "searchGifs": "GIF-കൾ തിരയുക",
+    "gifsLoadFailed": "GIF-കൾ ലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല",
     "attachImage": "ചിത്രം അറ്റാച്ച് ചെയ്യുക",
     "attachVideo": "വീഡിയോ അറ്റാച്ച് ചെയ്യുക",
     "attachFile": "ഫയൽ അറ്റാച്ച് ചെയ്യുക",

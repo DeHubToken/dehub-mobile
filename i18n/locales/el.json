@@ -3965,6 +3965,8 @@
     "removeAttachment": "Αφαίρεση συνημμένου",
     "addTip": "Προσθήκη φιλοδωρήματος",
     "chooseGif": "Επιλογή GIF",
+    "searchGifs": "Αναζήτηση GIF",
+    "gifsLoadFailed": "Δεν ήταν δυνατή η φόρτωση των GIF",
     "attachImage": "Επισύναψη εικόνας",
     "attachVideo": "Επισύναψη βίντεο",
     "attachFile": "Επισύναψη αρχείου",
