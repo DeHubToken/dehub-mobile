@@ -4,13 +4,14 @@ import {
   hasWalletUnlockHandler,
   WalletLockedError,
 } from "../../libs/wallet-lock";
+const mockError = jest.fn();
 
 jest.mock("../../libs/logger", () => ({
   createLogger: () => ({
     debug: jest.fn(),
     info: jest.fn(),
     warn: jest.fn(),
-    error: jest.fn(),
+    error: (...args: unknown[]) => mockError(...args),
   }),
 }));
 
@@ -72,6 +73,18 @@ describe("wallet-lock", () => {
       throw new Error("sheet exploded");
     });
     await expect(requestWalletUnlock("personal_sign")).resolves.toBe(false);
+  });
+
+  it("reports the failing gate without uploading exception contents", async () => {
+    mockError.mockClear();
+    const error = new Error("sensitive signing payload");
+    error.name = "BiometricRejectedError";
+    unregister = registerWalletUnlockHandler(async () => { throw error; });
+    await expect(requestWalletUnlock("personal_sign")).resolves.toBe(false);
+    expect(mockError).toHaveBeenCalledWith("requestWalletUnlock:error", {
+      reason: "personal_sign", errorName: "BiometricRejectedError",
+    });
+    expect(JSON.stringify(mockError.mock.calls)).not.toContain("sensitive signing payload");
   });
 
   it("does not let a late unmount clear a newer host", async () => {

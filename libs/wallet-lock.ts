@@ -95,7 +95,7 @@ export async function requestWalletUnlock(reason: string): Promise<boolean> {
   if (!current) {
     // No host mounted: signed out, or the root is still booting. Refusing is
     // right — inventing a prompt here would have nothing to render it.
-    log.warn("requestWalletUnlock:no-host", { reason });
+    log.error("requestWalletUnlock:no-host", { reason });
     return false;
   }
   if (inFlight) {
@@ -109,7 +109,12 @@ export async function requestWalletUnlock(reason: string): Promise<boolean> {
       return await current();
     } catch (e) {
       if (e instanceof Error && e.name === 'WalletStorageError') setWalletUnlockRefusal(e.message);
-      log.warn("requestWalletUnlock:error", e);
+      // Do not upload exception messages: an underlying signer can include
+      // sensitive request data. The error type identifies the failed gate.
+      log.error("requestWalletUnlock:error", {
+        reason,
+        errorName: e instanceof Error ? e.name : "unknown",
+      });
       return false;
     }
   })();

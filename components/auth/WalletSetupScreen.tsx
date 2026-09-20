@@ -28,6 +28,9 @@ import { probeOtherSeedCopies, type OtherSeedCopies } from "../../libs/wallet-co
 import { isRawPrivateKey, isValidMnemonic } from "../../libs/wallet-core/derive";
 import { openInApp } from "../../libs/links.utils";
 import { WEBSITE_LINK } from "../../config/links";
+import { createLogger } from "../../libs/logger";
+
+const unlockLog = createLogger("WalletUnlock");
 
 import type { EncryptedPayload } from "../../libs/wallet-core/crypto";
 import { getPayloadKdf } from "../../libs/wallet-core/crypto";
@@ -634,6 +637,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         await onUnlock(password);
         reset();
       } catch (e: any) {
+        unlockLog.error("unlock:password-failed", { errorName: e instanceof Error ? e.name : "unknown" });
         setError(e?.message || t("walletSetup.incorrectPassword"));
       } finally {
         setBusy(false);
@@ -648,6 +652,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         await onBiometricUnlock();
         reset();
       } catch (e: any) {
+        unlockLog.error("unlock:biometric-failed", { errorName: e instanceof Error ? e.name : "unknown" });
         setBiometricError(e?.message || t("walletSetup.biometricFailed"));
       } finally {
         setBusy(false);

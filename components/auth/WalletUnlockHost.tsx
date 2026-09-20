@@ -141,7 +141,10 @@ const WalletUnlockHost: React.FC = () => {
     const current = pendingRef.current;
     pendingRef.current = null;
     setPending(null);
-    if (current) current.resolve(unlocked);
+    if (current) {
+      log.error("unlock:sheet-settled", { unlocked, mode: current.request.mode });
+      current.resolve(unlocked);
+    }
   }, []);
 
   useEffect(() => {
@@ -157,7 +160,7 @@ const WalletUnlockHost: React.FC = () => {
         });
 
       const refuse = (why: string, message: string): false => {
-        log.warn(`unlock:${why}`);
+        log.error(`unlock:${why}`);
         setWalletUnlockRefusal(message);
         return false;
       };
@@ -174,6 +177,12 @@ const WalletUnlockHost: React.FC = () => {
         // One blip must not become "import your recovery phrase".
         resolution = await resolveEvmWalletForIdentity(supabaseUserId);
       }
+
+      log.error("unlock:resolution", {
+        status: resolution.status,
+        sessionAccountAddress: sessionAddress,
+        cloudWalletAddress: "address" in resolution ? resolution.address : null,
+      });
 
       switch (resolution.status) {
         case "ready": {
