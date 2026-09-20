@@ -4003,7 +4003,10 @@
     "openSettings": "Vula izilungiselelo",
     "viewPlans": "Buka amaphakheji",
     "playbackSpeed": "Isivinini sokudlala",
-    "moreOptions": "Ezinye izinketho"
+    "moreOptions": "Ezinye izinketho",
+    "processing": "Iphrosesa ividiyo...",
+    "processingFailed": "Ukuphrosesa ividiyo kwehlulekile",
+    "processingFailedOwner": "Kukhona okungahambanga kahle ohlangothini lwethu. Susa le phosti bese uphinde ufake ividiyo."
   },
   "liveViewer": {
     "loadingStream": "Kulayishwa ukusakaza...",

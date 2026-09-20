@@ -4062,7 +4062,10 @@
     "openSettings": "Mở cài đặt",
     "viewPlans": "Xem các gói",
     "playbackSpeed": "Tốc độ phát",
-    "moreOptions": "Tùy chọn khác"
+    "moreOptions": "Tùy chọn khác",
+    "processing": "Đang xử lý video…",
+    "processingFailed": "Xử lý video không thành công",
+    "processingFailedOwner": "Đã xảy ra sự cố về phía chúng tôi. Xóa bài đăng này và tải lên lại video."
   },
   "liveViewer": {
     "loadingStream": "Đang tải luồng phát...",

@@ -3962,7 +3962,10 @@
     "openSettings": "सेटिंग्ज उघडा",
     "viewPlans": "योजना पहा",
     "playbackSpeed": "प्लेबॅक वेग",
-    "moreOptions": "अधिक पर्याय"
+    "moreOptions": "अधिक पर्याय",
+    "processing": "व्हिडिओवर प्रक्रिया करत आहे...",
+    "processingFailed": "व्हिडिओ प्रक्रिया अयशस्वी झाली",
+    "processingFailedOwner": "आमच्या पक्षात काहीतरी गडबड झाली आहे. ही पोस्ट हटवा आणि व्हिडिओ पुन्हा अपलोड करा."
   },
   "liveViewer": {
     "loadingStream": "स्ट्रीम लोड होत आहे...",

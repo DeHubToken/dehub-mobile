@@ -3975,7 +3975,10 @@
     "openSettings": "सेटिंग खोलव",
     "viewPlans": "प्लान देखव",
     "playbackSpeed": "प्लेबैक स्पीड",
-    "moreOptions": "अउ विकल्प"
+    "moreOptions": "अउ विकल्प",
+    "processing": "वीडियो प्रोसेसिंग करत हे...",
+    "processingFailed": "वीडियो प्रोसेसिंग फेल",
+    "processingFailedOwner": "हमर तरफ ले कुछु गलत होइस । ओ पोस्ट म घलो, जिहां म पहिली पोस्ट करे हंव ।"
   },
   "liveViewer": {
     "loadingStream": "स्ट्रीम लोड होवत हे...",

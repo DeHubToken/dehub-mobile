@@ -3973,7 +3973,10 @@
     "openSettings": "Hap cilësimet",
     "viewPlans": "Shiko planet",
     "playbackSpeed": "Shpejtësia e luajtjes",
-    "moreOptions": "Më shumë opsione"
+    "moreOptions": "Më shumë opsione",
+    "processing": "Duke përpunuar videon...",
+    "processingFailed": "Përpunimi i videos dështoi",
+    "processingFailedOwner": "Pati një problem nga ana jonë. Fshije këtë postim dhe ngarkoje përsëri videon."
   },
   "liveViewer": {
     "loadingStream": "Po ngarkohet transmetimi...",

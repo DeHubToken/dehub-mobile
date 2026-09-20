@@ -3975,7 +3975,10 @@
     "openSettings": "Fungua mipangilio",
     "viewPlans": "Tazama mipango",
     "playbackSpeed": "Kasi ya kucheza",
-    "moreOptions": "Chaguo zaidi"
+    "moreOptions": "Chaguo zaidi",
+    "processing": "Inatayarisha video...",
+    "processingFailed": "Uchakataji wa video umes",
+    "processingFailedOwner": "Hitilafu imetokea upande wetu. Futa chapisho hili na upakie video tena."
   },
   "liveViewer": {
     "loadingStream": "Inapakia matangazo...",

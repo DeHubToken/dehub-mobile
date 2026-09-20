@@ -3975,7 +3975,10 @@
     "openSettings": "Avaa asetukset",
     "viewPlans": "Katso paketit",
     "playbackSpeed": "Toistonopeus",
-    "moreOptions": "Lisää vaihtoehtoja"
+    "moreOptions": "Lisää vaihtoehtoja",
+    "processing": "Käsitellään videota...",
+    "processingFailed": "Videon käsittely epäonnistui",
+    "processingFailedOwner": "Jokin meni vikaan meidän puolellamme. Poista tämä julkaisu ja lataa video uudelleen."
   },
   "liveViewer": {
     "loadingStream": "Ladataan lähetystä...",

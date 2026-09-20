@@ -3973,7 +3973,10 @@
     "openSettings": "Atvērt iestatījumus",
     "viewPlans": "Skatīt plānus",
     "playbackSpeed": "Atskaņošanas ātrums",
-    "moreOptions": "Vairāk opciju"
+    "moreOptions": "Vairāk opciju",
+    "processing": "Notiek video apstrāde...",
+    "processingFailed": "Video apstrāde neizdevās",
+    "processingFailedOwner": "Radās problēma. Dzēsiet šo ziņu un augšupielādējiet videoklipu vēlreiz."
   },
   "liveViewer": {
     "loadingStream": "Ielādē straumi...",

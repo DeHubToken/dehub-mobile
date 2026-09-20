@@ -3971,7 +3971,10 @@
     "openSettings": "打开设置",
     "viewPlans": "查看方案",
     "playbackSpeed": "播放速度",
-    "moreOptions": "更多选项"
+    "moreOptions": "更多选项",
+    "processing": "處理影片中…",
+    "processingFailed": "影片處理失敗",
+    "processingFailedOwner": "我方發生錯誤。請刪除此貼文並重新上傳影片。"
   },
   "liveViewer": {
     "loadingStream": "正在加载直播……",

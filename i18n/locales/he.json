@@ -3961,7 +3961,10 @@
     "openSettings": "פתח הגדרות",
     "viewPlans": "צפה בתוכניות",
     "playbackSpeed": "מהירות הפעלה",
-    "moreOptions": "אפשרויות נוספות"
+    "moreOptions": "אפשרויות נוספות",
+    "processing": "מעבד וידאו...",
+    "processingFailed": "עיבוד הווידאו נכשל",
+    "processingFailedOwner": "משהו השתבש בצד שלנו. מחק פוסט זה והעלה את הסרטון שוב."
   },
   "liveViewer": {
     "loadingStream": "טוען שידור...",

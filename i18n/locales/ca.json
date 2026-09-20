@@ -3975,7 +3975,10 @@
     "openSettings": "Obre la configuració",
     "viewPlans": "Mira els plans",
     "playbackSpeed": "Velocitat de reproducció",
-    "moreOptions": "Més opcions"
+    "moreOptions": "Més opcions",
+    "processing": "S'està processant el vídeo...",
+    "processingFailed": "Ha fallat el processament del vídeo",
+    "processingFailedOwner": "S'ha produït un error al nostre costat. Elimina aquesta publicació i torna a pujar el vídeo."
   },
   "liveViewer": {
     "loadingStream": "S'està carregant l'emissió...",

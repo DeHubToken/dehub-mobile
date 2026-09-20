@@ -3988,7 +3988,10 @@
     "openSettings": "باز کردن تنظیمات",
     "viewPlans": "مشاهده طرح‌ها",
     "playbackSpeed": "سرعت پخش",
-    "moreOptions": "گزینه‌های بیشتر"
+    "moreOptions": "گزینه‌های بیشتر",
+    "processing": "در حال پردازش ویدیو…",
+    "processingFailed": "پردازش ویدیو ناموفق بود",
+    "processingFailedOwner": "مشکلی از طرف ما پیش آمده است. این پست را حذف کنید و ویدیو را دوباره آپلود کنید."
   },
   "liveViewer": {
     "loadingStream": "در حال بارگذاری پخش...",

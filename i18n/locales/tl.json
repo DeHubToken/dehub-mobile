@@ -4152,7 +4152,10 @@
     "openSettings": "Buksan ang settings",
     "viewPlans": "Tingnan ang mga plano",
     "playbackSpeed": "Bilis ng playback",
-    "moreOptions": "Higit pang opsyon"
+    "moreOptions": "Higit pang opsyon",
+    "processing": "Pinoproseso ang video...",
+    "processingFailed": "Nabigo ang pagpoproseso ng video",
+    "processingFailedOwner": "Nagkaproblema sa aming panig. Tanggalin ang post na ito at i - upload muli ang video."
   },
   "liveViewer": {
     "loadingStream": "Nilo-load ang stream...",

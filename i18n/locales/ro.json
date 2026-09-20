@@ -3988,7 +3988,10 @@
     "openSettings": "Deschide setările",
     "viewPlans": "Vezi planurile",
     "playbackSpeed": "Viteza de redare",
-    "moreOptions": "Mai multe opțiuni"
+    "moreOptions": "Mai multe opțiuni",
+    "processing": "Se procesează videoclipul...",
+    "processingFailed": "Procesarea video a eșuat",
+    "processingFailedOwner": "Ceva nu a mers bine din partea noastră. Șterge această postare și încarcă videoclipul din nou."
   },
   "liveViewer": {
     "loadingStream": "Se încarcă transmisiunea...",

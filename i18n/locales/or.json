@@ -3945,7 +3945,10 @@
     "openSettings": "ସେଟିଂସ୍ ଖୋଲନ୍ତୁ",
     "viewPlans": "ପ୍ଲାନ୍ ଦେଖନ୍ତୁ",
     "playbackSpeed": "ପ୍ଲେବ୍ୟାକ୍ ଗତି",
-    "moreOptions": "ଅଧିକ ବିକଳ୍ପ"
+    "moreOptions": "ଅଧିକ ବିକଳ୍ପ",
+    "processing": "ଭିଡିଓକୁ ପ୍ରକ୍ରିୟାକରଣ କରୁଅଛି...",
+    "processingFailed": "ଭିଡିଓ ପ୍ରକ୍ରିୟାକରଣ ବିଫଳ ହୋଇଛି",
+    "processingFailedOwner": "ଆମ ତରଫରୁ କିଛି ତ୍ରୁଟି ଥିଲା । ଏହି ପୋଷ୍ଟକୁ ଡିଲିଟ କରି ପୁଣି ଭିଡ଼ିଓ ଅପଲୋଡ କରନ୍ତୁ ।"
   },
   "liveViewer": {
     "loadingStream": "ଷ୍ଟ୍ରିମ ଲୋଡ୍ ହେଉଛି...",

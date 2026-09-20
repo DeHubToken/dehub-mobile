@@ -3944,7 +3944,10 @@
     "openSettings": "Sazlamalary aç",
     "viewPlans": "Meýilnamalary gör",
     "playbackSpeed": "Ýaňadan görkeziş tizligi",
-    "moreOptions": "Has köp warýant"
+    "moreOptions": "Has köp warýant",
+    "processing": "Videolary işlemek...",
+    "processingFailed": "Video işlemesi başarnyksyz",
+    "processingFailedOwner": "Biziň tarapymyzda bir zat nädogry boldy. Bu posty goýup, videony gaýtalap goýuň."
   },
   "liveViewer": {
     "loadingStream": "Ýaýlym ýüklenýär...",

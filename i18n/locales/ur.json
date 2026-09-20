@@ -3972,7 +3972,10 @@
     "openSettings": "سیٹنگز کھولیں",
     "viewPlans": "پلانز دیکھیں",
     "playbackSpeed": "پلے بیک اسپیڈ",
-    "moreOptions": "مزید آپشنز"
+    "moreOptions": "مزید آپشنز",
+    "processing": "ویڈیو پروسیس ہو رہی ہے…",
+    "processingFailed": "ویڈیو پروسیسنگ ناکام ہو گئی",
+    "processingFailedOwner": "ہماری طرف سے کچھ غلط ہو گیا۔ اس پوسٹ کو حذف کریں اور ویڈیو دوبارہ اپ لوڈ کریں۔"
   },
   "liveViewer": {
     "loadingStream": "اسٹریم لوڈ ہو رہی ہے...",

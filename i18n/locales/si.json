@@ -3946,7 +3946,10 @@
     "openSettings": "සැකසුම් විවෘත කරන්න",
     "viewPlans": "සැලසුම් බලන්න",
     "playbackSpeed": "වාදන වේගය",
-    "moreOptions": "තවත් විකල්ප"
+    "moreOptions": "තවත් විකල්ප",
+    "processing": "වීඩියෝව සකසමින්...",
+    "processingFailed": "වීඩියෝ සැකසීම අසාර්ථක විය",
+    "processingFailedOwner": "අපේ පැත්තෙන් යම් වැරදීමක් සිදු වී ඇත. මෙම ලිපිය මකා දමා නැවත වීඩියෝව උඩුගත කරන්න."
   },
   "liveViewer": {
     "loadingStream": "ප්‍රවාහය පූරණය වෙමින්...",

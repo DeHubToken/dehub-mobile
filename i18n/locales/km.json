@@ -3993,7 +3993,10 @@
     "openSettings": "បើកការកំណត់",
     "viewPlans": "មើលគម្រោង",
     "playbackSpeed": "ល្បឿនចាក់",
-    "moreOptions": "ជម្រើសបន្ថែម"
+    "moreOptions": "ជម្រើសបន្ថែម",
+    "processing": "កំពុងដំណើរការវីដេអូ...",
+    "processingFailed": "ដំណើរការវីដេអូបានបរាជ័យ",
+    "processingFailedOwner": "មានរឿងមួយកើតឡើងនៅភាគខាងយើង ។ លុបប្រកាសនេះហើយអាប់ឡូតវីដេអូនេះម្តងទៀត ។"
   },
   "liveViewer": {
     "loadingStream": "កំពុងផ្ទុកការផ្សាយ...",

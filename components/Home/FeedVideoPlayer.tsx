@@ -1031,18 +1031,16 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       {isProcessing && (
         <View style={styles.statusOverlay}>
           <ActivityIndicator size="small" color="#fff" />
-          <Text style={styles.statusText}>Processing video…</Text>
+          <Text style={styles.statusText}>{t("player.processing")}</Text>
         </View>
       )}
 
       {isFailed && (
         <View style={styles.statusOverlay}>
           <Icon name="TriangleAlert" size={28} color="#fff" />
-          <Text style={styles.statusText}>Failed to process video</Text>
+          <Text style={styles.statusText}>{t("player.processingFailed")}</Text>
           {isOwner && (
-            <Text style={styles.statusHintText}>
-              Replace it with a standard MP4 via Edit in the ⋮ menu, top right of the post.
-            </Text>
+            <Text style={styles.statusHintText}>{t("player.processingFailedOwner")}</Text>
           )}
         </View>
       )}

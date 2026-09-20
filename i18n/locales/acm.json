@@ -3932,7 +3932,10 @@
     "openSettings": "افتح الإعدادات",
     "viewPlans": "شوف الخطط",
     "playbackSpeed": "سرعة التشغيل",
-    "moreOptions": "خيارات أكثر"
+    "moreOptions": "خيارات أكثر",
+    "processing": "جاري معالجة الفيديو…",
+    "processingFailed": "فشلت معالجة الفيديو",
+    "processingFailedOwner": "حدث خطأ ما من جانبنا. احذف هذا المنشور وحمّل الفيديو مرة أخرى."
   },
   "liveViewer": {
     "loadingStream": "يجري تحميل البث...",

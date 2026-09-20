@@ -3932,7 +3932,10 @@
     "openSettings": "Bukak setelan",
     "viewPlans": "Deleng paket",
     "playbackSpeed": "Kacepetan muter",
-    "moreOptions": "Pilihan liyane"
+    "moreOptions": "Pilihan liyane",
+    "processing": "Ngolah video…",
+    "processingFailed": "Gagal ngolah video",
+    "processingFailedOwner": "Ana sing salah ing sisih kita. Busaken kiriman iki lan unggah maneh videone."
   },
   "liveViewer": {
     "loadingStream": "Ngunggah siaran...",

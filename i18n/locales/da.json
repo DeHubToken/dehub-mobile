@@ -3979,7 +3979,10 @@
     "openSettings": "Åbn indstillinger",
     "viewPlans": "Se planer",
     "playbackSpeed": "Afspilningshastighed",
-    "moreOptions": "Flere valgmuligheder"
+    "moreOptions": "Flere valgmuligheder",
+    "processing": "Behandler video...",
+    "processingFailed": "Videobehandling mislykkedes",
+    "processingFailedOwner": "Der gik noget galt fra vores side. Slet dette opslag, og upload videoen igen."
   },
   "liveViewer": {
     "loadingStream": "Indlæser stream...",

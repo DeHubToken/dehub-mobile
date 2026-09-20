@@ -3952,7 +3952,10 @@
     "openSettings": "Mepee ntọala",
     "viewPlans": "Lee atụmatụ",
     "playbackSpeed": "Ọsọ nkpọghe",
-    "moreOptions": "Nhọrọ ndị ọzọ"
+    "moreOptions": "Nhọrọ ndị ọzọ",
+    "processing": "Na-edozi vidiyo...",
+    "processingFailed": "Nhazi vidiyo dara ada",
+    "processingFailedOwner": "O nwere ihe mebiri n 'akụkụ anyị. Hichapụ a post na bulite video ọzọ."
   },
   "liveViewer": {
     "loadingStream": "Na-ebu mgbasa...",

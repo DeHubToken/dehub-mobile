@@ -3965,7 +3965,10 @@
     "openSettings": "Fur goobaha",
     "viewPlans": "Eeg qorshayaasha",
     "playbackSpeed": "Xawaaraha ciyaarista",
-    "moreOptions": "Doorasho dheeraad ah"
+    "moreOptions": "Doorasho dheeraad ah",
+    "processing": "Fiidiyowga ka baaraandegida...",
+    "processingFailed": "Ka baaraandegista fiidiyowga ayaa fashilantay",
+    "processingFailedOwner": "Waxbaa naga khaldamay. Tirtir qoraalkan oo mar kale ku dheji fiidiyowga."
   },
   "liveViewer": {
     "loadingStream": "Baahinta waa la soo rarayaa...",

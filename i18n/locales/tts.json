@@ -3933,7 +3933,10 @@
     "openSettings": "เปิดกาน໊ตั้งก้า",
     "viewPlans": "ผ่อแพ็กเกจ",
     "playbackSpeed": "ความไวกาน໊หลิ้น",
-    "moreOptions": "ตั๋วเลือกเพิ่มเติม"
+    "moreOptions": "ตั๋วเลือกเพิ่มเติม",
+    "processing": "กำลังประมวลผลวิดีโอ...",
+    "processingFailed": "การประมวลผลวิดีโอไม่สำเร็จ",
+    "processingFailedOwner": "มีบางอย่างผิดพลาดในระบบของเรา กรุณาลบโพสต์นี้แล้วอัปโหลดวิดีโอใหม่"
   },
   "liveViewer": {
     "loadingStream": "กำลังโหลดสตรีม...",

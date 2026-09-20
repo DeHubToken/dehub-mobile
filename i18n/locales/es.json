@@ -4046,7 +4046,10 @@
     "openSettings": "Abrir ajustes",
     "viewPlans": "Ver planes",
     "playbackSpeed": "Velocidad de reproducción",
-    "moreOptions": "Más opciones"
+    "moreOptions": "Más opciones",
+    "processing": "Procesando vídeo...",
+    "processingFailed": "Error en el procesamiento de vídeo",
+    "processingFailedOwner": "Algo salió mal de nuestro lado. Elimina esta publicación y vuelve a subir el vídeo."
   },
   "liveViewer": {
     "loadingStream": "Cargando emisión...",

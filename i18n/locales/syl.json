@@ -4118,7 +4118,10 @@
     "openSettings": "সেটিংস খুলউ",
     "viewPlans": "প্ল্যান দেখউ",
     "playbackSpeed": "প্লেব্যাক গতি",
-    "moreOptions": "আরো অপশন"
+    "moreOptions": "আরো অপশন",
+    "processing": "ভিডিও প্রসেসিং হচ্ছে…",
+    "processingFailed": "ভিডিও প্রসেসিং ব্যর্থ হয়েছে",
+    "processingFailedOwner": "আমাদের দিক থেকে কিছু একটা সমস্যা হয়েছে। এই পোস্টটি ডিলিট করে ভিডিওটি আবার আপলোড করুন।"
   },
   "liveViewer": {
     "loadingStream": "স্ট্রিম লোড অইরা...",

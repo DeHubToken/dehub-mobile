@@ -4064,7 +4064,10 @@
     "openSettings": "সেটিংস খুলন",
     "viewPlans": "প্ল্যান দেহন",
     "playbackSpeed": "প্লেব্যাক গতি",
-    "moreOptions": "আরও অপশন"
+    "moreOptions": "আরও অপশন",
+    "processing": "Video process করতাছি…",
+    "processingFailed": "Video process অইনাই",
+    "processingFailedOwner": "আম্মাগো সাইডে কিছু একটা গন্ডগোল অইছে। এই পোস্ট ডিলিট করি আর ভিডিওটা আবার আপলোড করি।"
   },
   "liveViewer": {
     "loadingStream": "স্ট্রিম লোড অইতেছে...",

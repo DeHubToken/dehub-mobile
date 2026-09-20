@@ -3767,7 +3767,9 @@
     "openSettings": "Open settings",
     "viewPlans": "See plans",
     "playbackSpeed": "Playback speed",
-    "moreOptions": "More options"
+    "moreOptions": "More options",
+    "processing": "Processing video…",
+    "processingFailed": "Video processing failed"
   },
   "liveViewer": {
     "loadingStream": "Stream dey load...",

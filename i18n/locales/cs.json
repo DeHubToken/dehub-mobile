@@ -3979,7 +3979,10 @@
     "openSettings": "Otevřít nastavení",
     "viewPlans": "Zobrazit plány",
     "playbackSpeed": "Rychlost přehrávání",
-    "moreOptions": "Další možnosti"
+    "moreOptions": "Další možnosti",
+    "processing": "Zpracovává se video...",
+    "processingFailed": "Zpracování videa selhalo",
+    "processingFailedOwner": "Z naší strany se něco pokazilo. Smažte tento příspěvek a video nahrajte znovu."
   },
   "liveViewer": {
     "loadingStream": "Načítání streamu...",

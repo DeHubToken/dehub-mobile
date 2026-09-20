@@ -3979,7 +3979,10 @@
     "openSettings": "Beállítások megnyitása",
     "viewPlans": "Csomagok megtekintése",
     "playbackSpeed": "Lejátszási sebesség",
-    "moreOptions": "További lehetőségek"
+    "moreOptions": "További lehetőségek",
+    "processing": "Videó feldolgozása folyamatban...",
+    "processingFailed": "A videó feldolgozása nem sikerült",
+    "processingFailedOwner": "Valami hiba történt a mi oldalunkon. Töröld ezt a bejegyzést, és töltsd fel újra a videót."
   },
   "liveViewer": {
     "loadingStream": "Közvetítés betöltése...",

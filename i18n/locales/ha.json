@@ -3963,7 +3963,10 @@
     "openSettings": "Buɗe saituna",
     "viewPlans": "Duba tsare-tsare",
     "playbackSpeed": "Saurin kunnawa",
-    "moreOptions": "Ƙarin zaɓuɓɓuka"
+    "moreOptions": "Ƙarin zaɓuɓɓuka",
+    "processing": "Bidiyo mai sarrafawa...",
+    "processingFailed": "Bidiyo aiki bai yi nasara ba",
+    "processingFailedOwner": "Wani abu ya tafi ba daidai ba a gefenmu. Share wannan post da kuma upload da video sake."
   },
   "liveViewer": {
     "loadingStream": "Ana loda yaɗawa...",

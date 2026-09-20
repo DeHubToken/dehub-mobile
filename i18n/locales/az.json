@@ -3959,7 +3959,10 @@
     "openSettings": "Parametrləri aç",
     "viewPlans": "Planlara bax",
     "playbackSpeed": "Oxutma sürəti",
-    "moreOptions": "Daha çox seçim"
+    "moreOptions": "Daha çox seçim",
+    "processing": "Video emal edilir...",
+    "processingFailed": "Video emalı uğursuz oldu",
+    "processingFailedOwner": "Tərəfimizdən xəta baş verdi. Bu yazını silin və videonu yenidən yükləyin."
   },
   "liveViewer": {
     "loadingStream": "Yayım yüklənir...",

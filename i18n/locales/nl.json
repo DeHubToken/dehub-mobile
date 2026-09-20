@@ -4242,7 +4242,10 @@
     "openSettings": "Instellingen openen",
     "viewPlans": "Abonnementen bekijken",
     "playbackSpeed": "Afspeelsnelheid",
-    "moreOptions": "Meer opties"
+    "moreOptions": "Meer opties",
+    "processing": "Video wordt verwerkt...",
+    "processingFailed": "Videoverwerking mislukt",
+    "processingFailedOwner": "Er is iets misgegaan aan onze kant. Verwijder dit bericht en upload de video opnieuw."
   },
   "liveViewer": {
     "loadingStream": "Stream laden...",

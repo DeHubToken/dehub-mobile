@@ -3959,7 +3959,10 @@
     "openSettings": "Whakatuwherahia ngā tautuhinga",
     "viewPlans": "Tirohia ngā mahere",
     "playbackSpeed": "Tere pūrei",
-    "moreOptions": "Ētahi atu kōwhiringa"
+    "moreOptions": "Ētahi atu kōwhiringa",
+    "processing": "He ataata whakamātau...",
+    "processingFailed": "Kaore i tutuki te tukatuka ataata",
+    "processingFailedOwner": "I puta tetahi mea i to tatou taha. Tangohia tenei tuhinga me te tuku ano i te ataata."
   },
   "liveViewer": {
     "loadingStream": "E uta ana i te rerenga...",

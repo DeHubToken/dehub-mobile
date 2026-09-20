@@ -4025,7 +4025,10 @@
     "openSettings": "Sozlamalarni ochish",
     "viewPlans": "Rejalarni ko'rish",
     "playbackSpeed": "Ijro tezligi",
-    "moreOptions": "Boshqa variantlar"
+    "moreOptions": "Boshqa variantlar",
+    "processing": "Video qayta ishlanmoqda…",
+    "processingFailed": "Videoni qayta ishlashda xatolik yuz berdi",
+    "processingFailedOwner": "Biz tomonda nimadir noto&#39;g&#39;ri ketdi. Ushbu postni o&#39;chirib tashlang va videoni qayta yuklang."
   },
   "liveViewer": {
     "loadingStream": "Efir yuklanmoqda...",
