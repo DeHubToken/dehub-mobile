@@ -13,6 +13,7 @@ import { ArrowUpCircle, MessageCircleOff } from "lucide-react-native";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Avatar from "../common/Avatar";
+import { getAvatarUrl } from "../../libs/misc";
 import { useKeyboard } from "../../hooks/useKeyboard";
 import type { UserReference } from "../LiveViewer/LiveViewerChat";
 
@@ -50,9 +51,9 @@ const shortAddr = (addr?: string): string =>
 const resolveDisplayName = (a: ProducerChatActivity): string =>
   a.user?.displayName || a.user?.username || a.meta?.username || shortAddr(a.user?.address || a.address) || "user";
 
-/** Resolve avatar URL from user ref or meta fallback. */
-const resolveAvatarUrl = (a: ProducerChatActivity): string | undefined =>
-  a.user?.avatarImageUrl || a.meta?.avatarImageUrl;
+/** Resolve the avatar from user ref or meta fallback, re-based onto the CDN. */
+const resolveAvatarUrl = (a: ProducerChatActivity): string =>
+  getAvatarUrl(a.user?.avatarImageUrl || a.meta?.avatarImageUrl);
 
 /** Resolve identifier for profile sheet (prefer username, fallback address). */
 const resolveProfileId = (a: ProducerChatActivity): string | undefined =>
