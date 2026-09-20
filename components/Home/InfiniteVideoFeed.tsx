@@ -143,18 +143,17 @@ const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
 
 // One row. Subscribes to its own visibility so a tick that moves another row
-// on or off screen never reaches this one.
+// on or off screen never reaches this one. Whether the list as a whole is on
+// screen (active pager page, focused tab) is folded into the same store — see
+// setLive below — so a tab switch reaches only the rows that were playing.
 const VisibleFeedCard = memo(function VisibleFeedCard({
   item,
   store,
   onCategorySelect,
-  live,
 }: {
   item: UnifiedFeedItem & { __listKey: string };
   store: FeedVisibilityStore;
   onCategorySelect?: (category: string) => void;
-  /** False while this list is a hidden tab or the screen is unfocused. */
-  live: boolean;
 }) {
   const { isVisible, isAutoplay } = useRowVisibility(store, item.__listKey);
   return (
@@ -164,8 +163,8 @@ const VisibleFeedCard = memo(function VisibleFeedCard({
       // On screen, so it may hold a player and answer a tap. Autoplay is
       // the separate, exclusive flag below — conflating the two meant the
       // second video on screen could not be started at all.
-      isVisible={live && isVisible}
-      isAutoplayActive={live && isAutoplay}
+      isVisible={isVisible}
+      isAutoplayActive={isAutoplay}
       enablePreview
     />
   );
@@ -197,7 +196,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const [refreshing, setRefreshing] = useState(false);
   // Row visibility lives outside React state so a viewability tick re-renders
   // only the rows it changed, not every mounted cell. See libs/feedVisibility.
-  const visibilityStore = useMemo(() => createFeedVisibilityStore(), []);
+  // Created dark when this list mounts as a hidden pager page (the warm-up
+  // mounts five of them), so a row never sees a true it has to take back.
+  const visibilityStore = useMemo(
+    () => createFeedVisibilityStore(active),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
   const visibleKeysRef = useRef<Set<string>>(new Set());
   const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
@@ -233,6 +238,16 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const isFocused = useIsFocused();
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
+
+  // On screen at all: the active pager page, on the focused bottom tab. This
+  // used to be a `live` prop on every row, built into renderItem, so a switch
+  // of either kind rebuilt renderItem and re-rendered every mounted cell of
+  // every feed list — three lists, eleven viewports each — to stop or start
+  // the two or three rows that were actually playing. The store tells just
+  // those rows.
+  useEffect(() => {
+    visibilityStore.setLive(active && isFocused);
+  }, [visibilityStore, active, isFocused]);
 
   // View tracking: map of tokenId -> tracker (for feed posts only, not videos)
   const viewTrackersRef = useRef<Map<string, ReturnType<typeof createPostViewTracker>>>(new Map());
@@ -858,7 +873,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           item={item}
           store={visibilityStore}
           onCategorySelect={onCategorySelect}
-          live={active && isFocused}
         />
       );
 
@@ -874,7 +888,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
       return <>{card}</>;
     },
-    [visibilityStore, isFocused, active, onCategorySelect],
+    // Stable across a tab switch on purpose: `active` and focus reach the rows
+    // through the store (see setLive above), never through this callback.
+    [visibilityStore, onCategorySelect],
   );
 
   const keyExtractor = useCallback((item: FeedItem) => item.__listKey, []);

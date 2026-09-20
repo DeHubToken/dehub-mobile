@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect, useDeferredValue } from "react";
 import { BackHandler, View, StyleSheet, InteractionManager, useWindowDimensions } from "react-native";
-import { useIsFocused } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
+import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import Animated, {
   cancelAnimation,
   runOnJS,
@@ -38,6 +39,9 @@ import type {
   UnifiedFeedItem,
 } from "../services/feed.unified.service";
 import { TAB_BAR_CONTENT_INSET } from "../navigation/tabBarLayout";
+import { ScreenNames } from "../navigation/ScreenNames";
+import type { BottomTabParamList } from "../navigation/types";
+import { isKidsModeLocked } from "../libs/kids-mode-lock";
 import {
   useUserProfilePresentation,
   useUserProfileSheet,
@@ -95,6 +99,16 @@ const VELOCITY_PROJECTION = 0.12;
 // drop a visible run of frames.
 const WARM_STEP_MS = 220;
 const PREFETCH_STEP_MS = 260;
+// The other bottom tabs, in the order people reach for them. They are `lazy`
+// in BottomTabNavigator, so without this the first press on each paid for
+// evaluating the screen's module, mounting it and running its first fetches —
+// all after the tap, with nothing on screen to show for it. Preloading mounts
+// them hidden once the pager warm-up above has finished, and the first press
+// becomes the same instant swap as every later one.
+const PRELOAD_TABS = [ScreenNames.DM, ScreenNames.Explore, ScreenNames.AIChat] as const;
+// Starts after the last warm-up and prefetch step has had a moment to land.
+const PRELOAD_START_MS = 2_200;
+const PRELOAD_STEP_MS = 600;
 
 /**
  * Pager slot for a post type. Filter-panel-only types ("feed-simple") have no
@@ -461,6 +475,43 @@ export default function HomeScreen() {
       timers.forEach(clearTimeout);
     };
   }, []);
+
+  // Preload the other bottom tabs — see PRELOAD_TABS. Only while Home is still
+  // the focused tab when each step fires: someone already switching tabs by
+  // hand is loading the one they want, and a route that has been visited and
+  // left is frozen, which preloading would undo until the next visit.
+  const tabNavigation = useNavigation<BottomTabNavigationProp<BottomTabParamList>>();
+  useEffect(() => {
+    let cancelled = false;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (cancelled) return;
+      PRELOAD_TABS.forEach((name, i) => {
+        timers.push(
+          setTimeout(() => {
+            if (cancelled) return;
+            // None of these tabs exist in Kids Mode (see FloatingBottomTabBar).
+            // Read at fire time, not subscribed: the lock has settled by now,
+            // and a hook here would tie this whole screen to the user context.
+            if (isKidsModeLocked()) return;
+            const state = tabNavigation.getState();
+            if (state.routes[state.index]?.name !== ScreenNames.Home) return;
+            try {
+              tabNavigation.preload(name);
+            } catch {
+              // A navigator that has already unmounted (sign-out mid-boot) has
+              // nothing to preload into.
+            }
+          }, PRELOAD_START_MS + i * PRELOAD_STEP_MS),
+        );
+      });
+    });
+    return () => {
+      cancelled = true;
+      task.cancel();
+      timers.forEach(clearTimeout);
+    };
+  }, [tabNavigation]);
 
   // Prefetch the other tabs' first pages so the first switch renders from cache
   // instead of a skeleton. Keys mirror the ones used by InfiniteVideoFeed,

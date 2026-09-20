@@ -11,22 +11,39 @@
  * key with `useSyncExternalStore`, so a tick re-renders only the rows whose
  * answer actually changed. The list's `renderItem` no longer depends on
  * visibility at all.
+ *
+ * Whether the list is live at all — on the active pager page, on the focused
+ * bottom tab — lives here too, for the same reason. It used to ride into
+ * `renderItem` as a prop, so every tab switch in either direction rebuilt the
+ * callback and re-rendered every mounted cell of every feed list to tell the
+ * two or three on-screen rows to stop or start. Now a switch writes one flag
+ * and only those rows hear about it.
  */
 import { useSyncExternalStore } from "react";
 
 export interface FeedVisibilityStore {
-  /** Rows at or above the viewability threshold. */
+  /** Rows at or above the viewability threshold, while the list is live. */
   isVisible(key: string): boolean;
-  /** The one row currently holding the autoplay slot. */
+  /** The one row currently holding the autoplay slot, while the list is live. */
   isAutoplay(key: string): boolean;
   /** Apply a viewability tick. Notifies only the rows whose state changed. */
   update(visible: ReadonlySet<string>, autoplayKey: string | null): void;
+  /**
+   * Whether the list is on screen at all. Off, every row answers "not visible"
+   * and "not autoplay" whatever the last tick said, so a hidden list's players
+   * stop and stay stopped; the tick's own bookkeeping is kept, so coming back
+   * restores the same rows without waiting for a scroll. Flipping it notifies
+   * only the rows whose answer moves — the ones on screen — not every mounted
+   * cell.
+   */
+  setLive(live: boolean): void;
   subscribe(key: string, fn: () => void): () => void;
 }
 
-export function createFeedVisibilityStore(): FeedVisibilityStore {
+export function createFeedVisibilityStore(initialLive = true): FeedVisibilityStore {
   let visible: ReadonlySet<string> = new Set();
   let autoplay: string | null = null;
+  let live = initialLive;
   const listeners = new Map<string, Set<() => void>>();
 
   const notify = (key: string) => {
@@ -36,8 +53,8 @@ export function createFeedVisibilityStore(): FeedVisibilityStore {
   };
 
   return {
-    isVisible: (key) => visible.has(key),
-    isAutoplay: (key) => autoplay === key,
+    isVisible: (key) => live && visible.has(key),
+    isAutoplay: (key) => live && autoplay === key,
     update(nextVisible, nextAutoplay) {
       const changed = new Set<string>();
       for (const key of visible) if (!nextVisible.has(key)) changed.add(key);
@@ -48,7 +65,16 @@ export function createFeedVisibilityStore(): FeedVisibilityStore {
       }
       visible = nextVisible;
       autoplay = nextAutoplay;
-      changed.forEach(notify);
+      // Nobody's answer moves while the list is dark; they all read false
+      // before and after. The rows learn where they stand when it comes back.
+      if (live) changed.forEach(notify);
+    },
+    setLive(next) {
+      if (next === live) return;
+      live = next;
+      const affected = new Set(visible);
+      if (autoplay) affected.add(autoplay);
+      affected.forEach(notify);
     },
     subscribe(key, fn) {
       let fns = listeners.get(key);
