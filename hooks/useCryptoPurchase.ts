@@ -153,8 +153,9 @@ export function useCryptoPurchase(api: PurchaseApi, wallet: string, amount: numb
     } finally { createLock.current = false; if (account.current === owner) setBusy(null); }
   };
   const pay = async (receipt: Purchase, send: (receipt: Purchase) => Promise<string>) => {
-    const skipped = createLock.current ? 'busy' : receipt.paymentTxHash ? 'already-paid' : receipt.expiresAt * 1000 <= Date.now() ? 'expired' : !api.confirm ? 'no-confirm' : null;
-    if (skipped) {
+    const confirm = api.confirm;
+    const skipped = createLock.current ? 'busy' : receipt.paymentTxHash ? 'already-paid' : receipt.expiresAt * 1000 <= Date.now() ? 'expired' : !confirm ? 'no-confirm' : null;
+    if (skipped || !confirm) {
       log.warn('Payment step skipped', { step: 'pay', reason: skipped, id: receipt.id, asset: receipt.originAsset, chain: receipt.paymentChainId });
       return;
     }
@@ -163,7 +164,7 @@ export function useCryptoPurchase(api: PurchaseApi, wallet: string, amount: numb
     try {
       hash = await send(receipt);
       setPurchase({ ...receipt, paymentTxHash: hash });
-      const updated = await api.confirm(receipt.id, hash);
+      const updated = await confirm(receipt.id, hash);
       setPurchase(updated);
     } catch (error) {
       // Which half failed matters: before a hash nothing left the wallet;
