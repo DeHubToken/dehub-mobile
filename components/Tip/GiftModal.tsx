@@ -12,9 +12,7 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  Animated,
   FlatList,
-  Keyboard,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
@@ -24,17 +22,17 @@ import { Gem } from "lucide-react-native";
 import { GIFT_TIERS } from "../../config/gift-tiers";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { limitTip, supportedTokens } from "../../config/constants";
-import AnimatedCheck from "../common/AnimatedCheck";
 import {
   useWeb3Provider,
   useERC20Contract,
   useStreamControllerContract,
 } from "../../hooks/use-web3";
 import * as ethersImport from "ethers";
-import { applyGasMargin, parseTxError } from "../../libs/web3.util";
+import { parseTxError } from "../../libs/web3.util";
 import { writeContractAA } from "../../libs/aa.write";
 import { recordLiveGift } from "../../services/live.service";
 import { MAX_TTS_CHARS } from "../../libs/tipTts";
+import { toastError, toastSuccess } from "../../libs/toast";
 import DpayTopUpForm from "../Dpay/DpayTopUpForm";
 import NearIntentBuy from "../Dpay/NearIntentBuy";
 
@@ -44,7 +42,27 @@ export interface GiftModalProps {
   tokenId: number | string;
   toAddress: string;
   stream?: any;
-  onSent?: (payload: { amount: number; message?: string }) => void;
+  /** Fired the moment the user operation is SUBMITTED, with its hash — not
+   *  on confirmation. The sheet is already closed by then; the player plays
+   *  the celebration and reads the line out on this call. */
+  onSent?: (payload: { amount: number; message?: string; txHash?: string }) => void;
+}
+
+/**
+ * Record the gift on the stream so the room gets the broadcast and the
+ * activity row. The backend accepts a gift only while ITS status is LIVE or
+ * PAUSED, which flips on the ingest webhook — often seconds after the player
+ * already shows live — so a send in that window is retried with backoff.
+ * The DHB moved on-chain either way; this is bookkeeping, never the payment.
+ */
+function recordGiftWithRetry(streamId: string, payload: Parameters<typeof recordLiveGift>[1], attempt = 1) {
+  recordLiveGift(streamId, payload).catch((e) => {
+    if (attempt < 3) {
+      setTimeout(() => recordGiftWithRetry(streamId, payload, attempt + 1), attempt === 1 ? 8000 : 20000);
+    } else {
+      console.warn("[GiftModal] recordLiveGift failed after retries", e);
+    }
+  });
 }
 
 /**
@@ -103,11 +121,14 @@ const GiftModal: React.FC<GiftModalProps> = ({
   const [amount, setAmount] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [phase, setPhase] = useState<
-    "idle" | "approving" | "sending" | "sent" | "error"
+    "idle" | "approving" | "sending" | "error"
   >("idle");
   const [giftError, setGiftError] = useState<string | null>(null);
-  const [lastAmount, setLastAmount] = useState<number | null>(null);
-  const successScale = useRef(new Animated.Value(0.6)).current;
+  // `phase` alone does not stop a double tap: the second tap of a quick
+  // double-tap runs before React re-renders the disabled button, reads the
+  // same stale "idle" out of the closure, and submits a second user
+  // operation — two gifts for one tap. The ref flips synchronously.
+  const inFlight = useRef(false);
 
   // Enforce minimum tip from stream settings (default to 1 DHB when missing)
   const minTip = useMemo(() => {
@@ -141,7 +162,9 @@ const GiftModal: React.FC<GiftModalProps> = ({
 
   const handleSend = useCallback(() => {
     requireAuth(async () => {
+      if (inFlight.current) return;
       if (disableSend || (phase !== "idle" && phase !== "error")) return;
+      inFlight.current = true;
       setGiftError(null);
       if (
         !provider ||
@@ -153,10 +176,12 @@ const GiftModal: React.FC<GiftModalProps> = ({
         !tokenAddress ||
         !controllerAddress
       ) {
+        inFlight.current = false;
         setGiftError("Missing web3 context");
         return;
       }
       if (isSelf) {
+        inFlight.current = false;
         setGiftError("You can't tip yourself");
         return;
       }
@@ -191,96 +216,78 @@ const GiftModal: React.FC<GiftModalProps> = ({
           }
         }
         setPhase("sending");
-        try {
-          const tokenIdNum = Number(tokenId) || 0;
-          const res = await writeContractAA(
-            controllerContract,
-            "sendTip",
-            [tokenIdNum, amountBN, toAddress, tokenAddress],
-            { context: "send" }
-          );
-          // res.hash already proves the user operation was submitted; the
-          // DHB has moved. .wait() only polls for the receipt, and the
-          // public RPC this chain is configured against
-          // (base-rpc.publicnode.com) rejects that poll as an "archive
-          // request" often enough that treating it as a failed tip is what
-          // actually broke live gifting: the viewer saw "Transaction
-          // failed" over a tip that had already landed, retried, and paid
-          // again — and recordLiveGift below never ran, so the room got no
-          // celebration, no read-out and no activity row.
-          //
-          // A receipt we never got is not evidence either way, so it stays
-          // "sent". A receipt that arrives SAYING status 0 is evidence:
-          // under account abstraction wait() resolves on a reverted
-          // transaction rather than throwing, so without this check a
-          // revert would take the success path. Same shape as
-          // GlassTipSheet, which was fixed for this in #262.
-          let receipt: any;
-          try {
-            receipt = await res.wait?.(1);
-          } catch (waitErr) {
-            console.warn(
-              "[GiftModal] Receipt wait failed (gift was still sent):",
-              waitErr,
-            );
-          }
-          if (receipt && receipt.status !== undefined && receipt.status !== 1) {
-            setPhase("error");
-            setGiftError(t("wallet.transactionFailed") as string);
-            return;
-          }
-          const txHash = res.hash || receipt?.transactionHash;
-          setPhase("sent");
-          setLastAmount(numericAmount);
-          try {
-            await patchUser(
-              (prev) =>
-                ({
-                  tokenBalances: {
-                    ...(prev.tokenBalances || {}),
-                    DHB: Math.max(
-                      0,
-                      Number((prev.tokenBalances || {}).DHB || 0) -
-                        Number(numericAmount || 0)
-                    ),
-                  },
-                } as any)
-            );
-          } catch {}
-          // Send to backend
-          try {
-            if (stream?._id) {
-              const selectedTier = (giftTiers as any).find(
-                (t: any) => Number(amount) === t.min
-              );
-              await recordLiveGift(stream._id, {
-                address: String(account || '').toLowerCase(),
-                amount: numericAmount,
-                message: message?.trim() || undefined,
-                recipient: toAddress,
-                selectedTier: selectedTier?.name,
-                tokenAddress,
-                tokenId: Number(tokenId) || 0,
-                transactionHash: txHash,
-              });
-            }
-          } catch (e) {
-            // Non-fatal: log and continue
-            console.warn('[GiftModal] recordLiveGift failed', e);
-          }
-          onSent?.({
-            amount: numericAmount,
-            message: message.trim() || undefined,
+        const tokenIdNum = Number(tokenId) || 0;
+        const res = await writeContractAA(
+          controllerContract,
+          "sendTip",
+          [tokenIdNum, amountBN, toAddress, tokenAddress],
+          { context: "send" }
+        );
+        // res.hash proves the user operation was submitted: the DHB has
+        // moved. Everything the viewer can see happens on this line — the
+        // sheet closes, the celebration plays, the line is read out — and
+        // nothing below waits on the chain. Base confirms in a second or
+        // two, but the receipt poll against base-rpc.publicnode.com is what
+        // used to hold the sheet open for ages (and, before #1063, report a
+        // landed tip as "Transaction failed", so people paid twice).
+        const txHash: string = String(res.hash || "").toLowerCase();
+        const spoken = message.trim() || undefined;
+        const sentAmount = numericAmount;
+        const tierName = (giftTiers as any).find(
+          (t: any) => Number(amount) === t.min
+        )?.name;
+        setAmount("");
+        setMessage("");
+        setPhase("idle");
+        onOpenChange(false);
+        toastSuccess(t("tip.sent") as string);
+        onSent?.({ amount: sentAmount, message: spoken, txHash });
+        patchUser(
+          (prev) =>
+            ({
+              tokenBalances: {
+                ...(prev.tokenBalances || {}),
+                DHB: Math.max(
+                  0,
+                  Number((prev.tokenBalances || {}).DHB || 0) - sentAmount
+                ),
+              },
+            } as any)
+        ).catch(() => {});
+        // Bookkeeping, in the background: the stream's activity row and the
+        // room's broadcast. Retried because the backend only takes a gift
+        // once ITS status is live.
+        if (stream?._id && txHash) {
+          recordGiftWithRetry(stream._id, {
+            address: String(account || "").toLowerCase(),
+            amount: sentAmount,
+            message: spoken,
+            recipient: toAddress,
+            selectedTier: tierName,
+            tokenAddress,
+            tokenId: tokenIdNum,
+            transactionHash: txHash,
           });
-          setAmount("");
-          setMessage("");
-        } catch (e) {
-          setPhase("error");
-          setGiftError(parseTxError(e, "send"));
         }
+        // The receipt, also in the background. A poll that fails is not
+        // evidence either way and is ignored. A receipt that arrives saying
+        // status 0 IS evidence: under account abstraction wait() resolves on
+        // a reverted transaction rather than throwing, so that one case is
+        // surfaced as a toast — the sheet is long gone by then.
+        Promise.resolve(res.wait?.(1))
+          .then((receipt: any) => {
+            if (receipt && receipt.status !== undefined && receipt.status !== 1) {
+              toastError(null, t("wallet.transactionFailed") as string);
+            }
+          })
+          .catch((waitErr: unknown) => {
+            console.warn("[GiftModal] Receipt wait failed (gift was still sent):", waitErr);
+          });
       } catch (e) {
         setPhase("error");
         setGiftError(parseTxError(e, "send"));
+      } finally {
+        inFlight.current = false;
       }
     });
   }, [
@@ -297,24 +304,16 @@ const GiftModal: React.FC<GiftModalProps> = ({
     controllerAddress,
     isSelf,
     numericAmount,
+    amount,
     tokenId,
     toAddress,
     onSent,
+    onOpenChange,
     message,
     patchUser,
+    stream,
+    t,
   ]);
-
-  useEffect(() => {
-    if (phase === "sent") {
-      successScale.setValue(0.6);
-      Animated.spring(successScale, {
-        toValue: 1,
-        useNativeDriver: true,
-        friction: 6,
-        tension: 140,
-      }).start();
-    }
-  }, [phase, successScale]);
 
   useEffect(() => {
     if (!open) {
@@ -323,7 +322,6 @@ const GiftModal: React.FC<GiftModalProps> = ({
       setMessage("");
       setGiftError(null);
       setPhase("idle");
-      setLastAmount(null);
     }
   }, [open]);
 
@@ -360,8 +358,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
           </Text>
         </View>
 
-        {phase !== "sent" ? (
-          <>
+        <>
             <View className="mt-4" style={{ maxHeight: 256 }}>
               <FlatList
                 data={giftTiers as any}
@@ -532,39 +529,6 @@ const GiftModal: React.FC<GiftModalProps> = ({
               </TouchableOpacity>
             </View>
           </>
-        ) : (
-          <View className="items-center gap-6 mt-6">
-            <AnimatedCheck
-              size={80}
-              className="bg-theme-accent"
-              iconColor="#09090B"
-              animateKey={phase}
-            />
-            <Text className="text-white text-base font-semibold">
-              You gifted {lastAmount} <DhbCoin size={15} />
-            </Text>
-            <View className="flex-row gap-3">
-              <AccentButtonGradient>
-                <TouchableOpacity
-                  onPress={() => {
-                    setPhase("idle");
-                    setAmount(lastAmount ? String(lastAmount) : "");
-                  }}
-                  activeOpacity={0.85}
-                  className="px-5 h-11 items-center justify-center"
-                >
-                  <Text className="text-white font-semibold">Resend</Text>
-                </TouchableOpacity>
-              </AccentButtonGradient>
-              <TouchableOpacity
-                onPress={() => onOpenChange(false)}
-                className="px-5 h-11 rounded-xl bg-white/10 items-center justify-center"
-              >
-                <Text className="text-white font-semibold">Close</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
       </View>
     </GlassModal>
     <GlassModal
