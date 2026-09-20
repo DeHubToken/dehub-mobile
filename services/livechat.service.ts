@@ -142,11 +142,18 @@ export async function getLiveChatMessages(params?: {
   before?: string;
   after?: string;
   limit?: number;
+  /**
+   * The room to page through. Left off, the backend answers with the global
+   * platform room, so a stream's chat pulled public messages in under its own
+   * as soon as anyone scrolled up.
+   */
+  roomId?: string;
 }): Promise<LiveChatMessagesResponse> {
   const qs = new URLSearchParams();
   if (params?.before) qs.set("before", params.before);
   if (params?.after) qs.set("after", params.after);
   if (params?.limit) qs.set("limit", String(params.limit));
+  if (params?.roomId) qs.set("roomId", params.roomId);
   const query = qs.toString();
   return apiClient.get<LiveChatMessagesResponse>(
     `/livechat/messages${query ? `?${query}` : ""}`
