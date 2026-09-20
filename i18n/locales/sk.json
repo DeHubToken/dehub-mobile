@@ -4144,7 +4144,11 @@
     "moreOptions": "Ďalšie možnosti",
     "processing": "Spracováva sa video...",
     "processingFailed": "Spracovanie videa zlyhalo",
-    "processingFailedOwner": "Z našej strany sa niečo pokazilo. Odstráňte tento príspevok a znova nahrajte video."
+    "retryHint": "Nie je čo znova nahrávať — váš súbor sme si ponechali.",
+    "retry": "Skúsiť znova",
+    "retrying": "Skúšam znova...",
+    "retryQueued": "Opäť sa spracováva",
+    "retryFailed": "Tento príspevok sa nepodarilo zopakovať"
   },
   "liveViewer": {
     "loadingStream": "Načítava sa stream...",

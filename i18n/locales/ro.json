@@ -3991,7 +3991,11 @@
     "moreOptions": "Mai multe opțiuni",
     "processing": "Se procesează videoclipul...",
     "processingFailed": "Procesarea video a eșuat",
-    "processingFailedOwner": "Ceva nu a mers bine din partea noastră. Șterge această postare și încarcă videoclipul din nou."
+    "retryHint": "Nimic de reîncărcat. Ți-am păstrat fișierul.",
+    "retry": "Încearcă din nou",
+    "retrying": "Se încearcă din nou...",
+    "retryQueued": "Se procesează din nou",
+    "retryFailed": "Nu s-a putut reîncerca acea postare"
   },
   "liveViewer": {
     "loadingStream": "Se încarcă transmisiunea...",

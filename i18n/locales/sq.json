@@ -3976,7 +3976,11 @@
     "moreOptions": "Më shumë opsione",
     "processing": "Duke përpunuar videon...",
     "processingFailed": "Përpunimi i videos dështoi",
-    "processingFailedOwner": "Pati një problem nga ana jonë. Fshije këtë postim dhe ngarkoje përsëri videon."
+    "retryHint": "Nuk ka asgjë për të ri-ngarkuar — e mbajtëm skedarin tënd.",
+    "retry": "Provo përsëri",
+    "retrying": "Po provon përsëri...",
+    "retryQueued": "Po përpunohet përsëri",
+    "retryFailed": "Nuk mund ta riprovoj atë postim"
   },
   "liveViewer": {
     "loadingStream": "Po ngarkohet transmetimi...",

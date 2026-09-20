@@ -3947,7 +3947,11 @@
     "moreOptions": "Has köp warýant",
     "processing": "Videolary işlemek...",
     "processingFailed": "Video işlemesi başarnyksyz",
-    "processingFailedOwner": "Biziň tarapymyzda bir zat nädogry boldy. Bu posty goýup, videony gaýtalap goýuň."
+    "retryHint": "Hiç zat gaýtarylmaýar — biz seniň faýlyňy sakladyk.",
+    "retry": "Gaýtalaň",
+    "retrying": "Geri çekilmek...",
+    "retryQueued": "Gaýtalaň",
+    "retryFailed": "Men bu posty gaýtaryp bilmedim"
   },
   "liveViewer": {
     "loadingStream": "Ýaýlym ýüklenýär...",

@@ -4095,7 +4095,11 @@
     "moreOptions": "Meer opsies",
     "processing": "Verwerking van video...",
     "processingFailed": "Videoverwerking het misluk",
-    "processingFailedOwner": "Iets het verkeerd gegaan aan ons kant. Verwyder hierdie plasing en laai die video weer op."
+    "retryHint": "Niks om weer op te laai nie — ons het u lêer gehou.",
+    "retry": "Probeer weer",
+    "retrying": "Herprobeer tans...",
+    "retryQueued": "Verwerking weer",
+    "retryFailed": "Kon nie die plasing weer probeer nie"
   },
   "liveViewer": {
     "loadingStream": "Laai stroom...",

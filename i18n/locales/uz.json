@@ -4028,7 +4028,11 @@
     "moreOptions": "Boshqa variantlar",
     "processing": "Video qayta ishlanmoqda…",
     "processingFailed": "Videoni qayta ishlashda xatolik yuz berdi",
-    "processingFailedOwner": "Biz tomonda nimadir noto&#39;g&#39;ri ketdi. Ushbu postni o&#39;chirib tashlang va videoni qayta yuklang."
+    "retryHint": "Qayta yuklash uchun hech narsa yo&#39;q — biz sizning faylingizni saqlab qoldik.",
+    "retry": "Qayta urinish",
+    "retrying": "Qayta urinilmoqda…",
+    "retryQueued": "Qayta ishlov berilmoqda",
+    "retryFailed": "Bu postni qayta urib bo&#39;lmadi"
   },
   "liveViewer": {
     "loadingStream": "Efir yuklanmoqda...",

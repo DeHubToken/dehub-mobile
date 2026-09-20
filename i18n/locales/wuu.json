@@ -3928,7 +3928,11 @@
     "moreOptions": "更多选项",
     "processing": "视频处理中…",
     "processingFailed": "视频处理失败",
-    "processingFailedOwner": "我方出现了一些问题。请删除此帖并重新上传视频。"
+    "retryHint": "呒啥好重传个——吾伲留脱侬个文件。",
+    "retry": "试一试",
+    "retrying": "重试中…",
+    "retryQueued": "重新处理",
+    "retryFailed": "重试勿脱迭个帖子"
   },
   "liveViewer": {
     "loadingStream": "正在加载直播……",

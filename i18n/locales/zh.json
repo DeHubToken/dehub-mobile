@@ -4035,7 +4035,11 @@
     "moreOptions": "更多选项",
     "processing": "正在处理视频…",
     "processingFailed": "视频处理失败",
-    "processingFailedOwner": "我们这边出错了。 删除此帖子，然后重新上传视频。"
+    "retryHint": "无需重新上传—我们保留了您的文件。",
+    "retry": "重试",
+    "retrying": "重试中…",
+    "retryQueued": "再次处理中",
+    "retryFailed": "无法重试该帖子"
   },
   "liveViewer": {
     "loadingStream": "正在加载直播……",

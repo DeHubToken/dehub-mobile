@@ -4052,7 +4052,11 @@
     "moreOptions": "Plus d'options",
     "processing": "Traitement de la vidéo…",
     "processingFailed": "Échec du traitement vidéo",
-    "processingFailedOwner": "Un problème est survenu de notre côté. Supprimez cette publication et téléchargez à nouveau la vidéo."
+    "retryHint": "Rien à retélécharger — nous avons conservé votre fichier.",
+    "retry": "Réessayer",
+    "retrying": "Nouvelle tentative...",
+    "retryQueued": "Traitement à nouveau",
+    "retryFailed": "Impossible de réessayer cette publication"
   },
   "liveViewer": {
     "loadingStream": "Chargement de la diffusion...",

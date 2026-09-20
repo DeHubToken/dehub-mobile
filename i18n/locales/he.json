@@ -3964,7 +3964,11 @@
     "moreOptions": "אפשרויות נוספות",
     "processing": "מעבד וידאו...",
     "processingFailed": "עיבוד הווידאו נכשל",
-    "processingFailedOwner": "משהו השתבש בצד שלנו. מחק פוסט זה והעלה את הסרטון שוב."
+    "retryHint": "אין מה להעלות מחדש — שמרנו את הקובץ שלך.",
+    "retry": "ניסיון חוזר",
+    "retrying": "מנסה שוב…",
+    "retryQueued": "מעבד שוב",
+    "retryFailed": "לא ניתן לנסות שוב את הפוסט הזה"
   },
   "liveViewer": {
     "loadingStream": "טוען שידור...",

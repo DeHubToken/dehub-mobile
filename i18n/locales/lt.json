@@ -3976,7 +3976,11 @@
     "moreOptions": "Daugiau parinkčių",
     "processing": "Apdorojamas vaizdo įrašas...",
     "processingFailed": "Nepavyko apdoroti vaizdo įrašo",
-    "processingFailedOwner": "Mūsų atveju įvyko klaida. Ištrink šį įrašą ir įkelk vaizdo įrašą dar kartą."
+    "retryHint": "Nėra ką įkelti iš naujo — išsaugojome jūsų failą.",
+    "retry": "Bandyti dar kartą",
+    "retrying": "Bandoma dar kartą...",
+    "retryQueued": "Apdorojama dar kartą",
+    "retryFailed": "Nepavyko pakartoti šio įrašo"
   },
   "liveViewer": {
     "loadingStream": "Įkeliama transliacija...",

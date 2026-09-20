@@ -4041,7 +4041,11 @@
     "moreOptions": "Filannoo dabalataa",
     "processing": "Viidiyoo hojjechuuf...",
     "processingFailed": "Adeemsi viidiyoo hin milkoofne",
-    "processingFailedOwner": "Gama keenyaan wanti tokko dogoggora ta&#39;e. Barreeffama kana haqaatii viidiyoo sana irra deebi&#39;aa ol kaa&#39;aa."
+    "retryHint": "Wanti irra deebi&#39;ee olkaa&#39;amu hin jiru — faayila kee eegnee turre.",
+    "retry": "Ammas yaalaa",
+    "retrying": "Irra deebiin yaalaa jira...",
+    "retryQueued": "Ammas adeemsifamaa jira",
+    "retryFailed": "Maxxansa sana irra deebi&#39;ee yaalu hin dandeenye"
   },
   "liveViewer": {
     "loadingStream": "Tamsaasa fe'aa jira...",

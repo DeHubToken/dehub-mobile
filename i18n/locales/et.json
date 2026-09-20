@@ -3977,7 +3977,11 @@
     "moreOptions": "Rohkem valikuid",
     "processing": "Video töötlemine...",
     "processingFailed": "Videotöötlus ebaõnnestus",
-    "processingFailedOwner": "Meie poolel läks midagi valesti. Kustuta see postitus ja laadi video uuesti üles."
+    "retryHint": "Pole midagi uuesti üles laadida — säilitasime sinu faili.",
+    "retry": "Proovi uuesti",
+    "retrying": "Uuesti proovimine...",
+    "retryQueued": "Uuesti töötlemine",
+    "retryFailed": "Seda postitust ei saanud uuesti proovida"
   },
   "liveViewer": {
     "loadingStream": "Voo laadimine...",

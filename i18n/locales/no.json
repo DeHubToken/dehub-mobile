@@ -3967,7 +3967,11 @@
     "moreOptions": "Flere alternativer",
     "processing": "Behandler video",
     "processingFailed": "Videobehandlingen mislyktes",
-    "processingFailedOwner": "Noe gikk galt hos oss. Slett dette innlegget og last opp videoen på nytt."
+    "retryHint": "Ingenting å laste opp på nytt – vi beholdt filen din.",
+    "retry": "Prøv igjen",
+    "retrying": "Prøver igjen.",
+    "retryQueued": "Behandler igjen",
+    "retryFailed": "Kunne ikke prøve å legge inn innlegget på nytt"
   },
   "liveViewer": {
     "loadingStream": "Laster strøm...",

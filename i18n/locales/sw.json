@@ -3978,7 +3978,11 @@
     "moreOptions": "Chaguo zaidi",
     "processing": "Inatayarisha video...",
     "processingFailed": "Uchakataji wa video umes",
-    "processingFailedOwner": "Hitilafu imetokea upande wetu. Futa chapisho hili na upakie video tena."
+    "retryHint": "Hakuna cha kupakia tena — tumehifadhi faili lako.",
+    "retry": "Jaribu tena",
+    "retrying": "Inajaribu tena...",
+    "retryQueued": "Inachakata tena",
+    "retryFailed": "Imeshindwa kujaribu tena chapisho hilo"
   },
   "liveViewer": {
     "loadingStream": "Inapakia matangazo...",

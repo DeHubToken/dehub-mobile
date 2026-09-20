@@ -4048,7 +4048,11 @@
     "moreOptions": "Altre opzioni",
     "processing": "Elaborazione video in corso...",
     "processingFailed": "Elaborazione video non riuscita",
-    "processingFailedOwner": "Qualcosa è andato storto da parte nostra. Elimina questo post e carica di nuovo il video."
+    "retryHint": "Niente da ricaricare: abbiamo conservato il tuo file.",
+    "retry": "Riprova",
+    "retrying": "Nuovo tentativo in corso...",
+    "retryQueued": "Elaborazione di nuovo",
+    "retryFailed": "Impossibile riprovare quel post"
   },
   "liveViewer": {
     "loadingStream": "Caricamento diretta...",

@@ -4066,8 +4066,7 @@
     "playbackSpeed": "প্লেব্যাক গতি",
     "moreOptions": "আরও অপশন",
     "processing": "Video process করতাছি…",
-    "processingFailed": "Video process অইনাই",
-    "processingFailedOwner": "আম্মাগো সাইডে কিছু একটা গন্ডগোল অইছে। এই পোস্ট ডিলিট করি আর ভিডিওটা আবার আপলোড করি।"
+    "processingFailed": "Video process অইনাই"
   },
   "liveViewer": {
     "loadingStream": "স্ট্রিম লোড অইতেছে...",

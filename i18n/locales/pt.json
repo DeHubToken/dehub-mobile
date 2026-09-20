@@ -4052,7 +4052,11 @@
     "moreOptions": "Mais opções",
     "processing": "A processar vídeo...",
     "processingFailed": "Falha no processamento do vídeo",
-    "processingFailedOwner": "Ocorreu um erro do nosso lado. Exclua este post e envie o vídeo novamente."
+    "retryHint": "Nada para reenviar — mantivemos o seu ficheiro.",
+    "retry": "Tentar novamente",
+    "retrying": "A tentar novamente...",
+    "retryQueued": "A processar novamente",
+    "retryFailed": "Não foi possível repetir esse post"
   },
   "liveViewer": {
     "loadingStream": "A carregar transmissão...",
