@@ -4011,6 +4011,8 @@
     "removeAttachment": "Usuń załącznik",
     "addTip": "Dodaj napiwek",
     "chooseGif": "Wybierz GIF",
+    "searchGifs": "Wyszukaj GIF-y",
+    "gifsLoadFailed": "Nie można załadować plików GIF",
     "attachImage": "Załącz obraz",
     "attachVideo": "Załącz wideo",
     "attachFile": "Załącz plik",

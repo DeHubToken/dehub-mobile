@@ -3943,6 +3943,8 @@
     "removeAttachment": "अटैचमेंट हटाव",
     "addTip": "टिप जोड़व",
     "chooseGif": "GIF चुनव",
+    "searchGifs": "खोजव जीआईएफएस",
+    "gifsLoadFailed": "गिफ लोड नइ कर सकिस",
     "attachImage": "फोटो जोड़व",
     "attachVideo": "वीडियो जोड़व",
     "attachFile": "फाइल जोड़व",

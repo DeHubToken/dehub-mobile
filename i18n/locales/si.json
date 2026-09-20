@@ -3914,6 +3914,8 @@
     "removeAttachment": "ඇමුණුම ඉවත් කරන්න",
     "addTip": "ටිප් එකක් එක් කරන්න",
     "chooseGif": "GIF එකක් තෝරන්න",
+    "searchGifs": "GIFs සොයන්න",
+    "gifsLoadFailed": "GIF පූරණය කළ නොහැකි විය",
     "attachImage": "රූපයක් අමුණන්න",
     "attachVideo": "වීඩියෝවක් අමුණන්න",
     "attachFile": "ගොනුවක් අමුණන්න",

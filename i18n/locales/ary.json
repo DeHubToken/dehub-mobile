@@ -3958,6 +3958,8 @@
     "removeAttachment": "حيد المرفق",
     "addTip": "زيد بقشيش",
     "chooseGif": "ختار GIF",
+    "searchGifs": "البحث في صور GIF",
+    "gifsLoadFailed": "تعذر تحميل ملفات GIF",
     "attachImage": "رفق تصويرة",
     "attachVideo": "رفق فيديو",
     "attachFile": "رفق ملف",

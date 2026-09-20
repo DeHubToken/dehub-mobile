@@ -3998,6 +3998,8 @@
     "removeAttachment": "Тіркемені жою",
     "addTip": "Шайлық қосу",
     "chooseGif": "GIF таңдау",
+    "searchGifs": "Іздеу GIF-тері",
+    "gifsLoadFailed": "GIF-терді жүктеу мүмкін болмады",
     "attachImage": "Сурет тіркеу",
     "attachVideo": "Бейне тіркеу",
     "attachFile": "Файл тіркеу",

@@ -3913,6 +3913,8 @@
     "removeAttachment": "ସଂଲଗ୍ନକ ହଟାନ୍ତୁ",
     "addTip": "ଟିପ୍ ଯୋଡ଼ନ୍ତୁ",
     "chooseGif": "ଏକ GIF ବାଛନ୍ତୁ",
+    "searchGifs": "GIFଗୁଡ଼ିକୁ ଖୋଜନ୍ତୁ",
+    "gifsLoadFailed": "GIFଗୁଡ଼ିକୁ ଧାରଣ କରିପାରିଲା ନାହିଁ",
     "attachImage": "ଛବି ସଂଲଗ୍ନ କରନ୍ତୁ",
     "attachVideo": "ଭିଡିଓ ସଂଲଗ୍ନ କରନ୍ତୁ",
     "attachFile": "ଫାଇଲ ସଂଲଗ୍ନ କରନ୍ତୁ",

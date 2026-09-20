@@ -3925,6 +3925,8 @@
     "removeAttachment": "منسلڪ هٽايو",
     "addTip": "ٽپ شامل ڪريو",
     "chooseGif": "GIF چونڊيو",
+    "searchGifs": "GIF ڳوليو",
+    "gifsLoadFailed": "GIF لوڊ نه ڪري سگھيو",
     "attachImage": "تصوير شامل ڪريو",
     "attachVideo": "وڊيو شامل ڪريو",
     "attachFile": "فائل شامل ڪريو",

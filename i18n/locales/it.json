@@ -4013,6 +4013,8 @@
     "removeAttachment": "Rimuovi allegato",
     "addTip": "Aggiungi mancia",
     "chooseGif": "Scegli una GIF",
+    "searchGifs": "Cerca GIF",
+    "gifsLoadFailed": "Impossibile caricare GIF",
     "attachImage": "Allega immagine",
     "attachVideo": "Allega video",
     "attachFile": "Allega file",

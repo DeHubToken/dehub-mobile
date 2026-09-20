@@ -3940,6 +3940,8 @@
     "removeAttachment": "移除附件",
     "addTip": "加入打賞",
     "chooseGif": "選擇 GIF",
+    "searchGifs": "搜尋 GIF",
+    "gifsLoadFailed": "載入唔到 GIF",
     "attachImage": "附加圖片",
     "attachVideo": "附加影片",
     "attachFile": "附加檔案",

@@ -4017,6 +4017,8 @@
     "removeAttachment": "Retirer la pièce jointe",
     "addTip": "Ajouter un pourboire",
     "chooseGif": "Choisir un GIF",
+    "searchGifs": "Rechercher des GIF",
+    "gifsLoadFailed": "Impossible de charger les GIF",
     "attachImage": "Joindre une image",
     "attachVideo": "Joindre une vidéo",
     "attachFile": "Joindre un fichier",

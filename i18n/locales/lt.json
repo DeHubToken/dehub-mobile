@@ -3941,6 +3941,8 @@
     "removeAttachment": "Pašalinti priedą",
     "addTip": "Pridėti arbatpinigių",
     "chooseGif": "Pasirinkti GIF",
+    "searchGifs": "Ieškoti GIF failų",
+    "gifsLoadFailed": "Nepavyko įkelti GIF failų",
     "attachImage": "Pridėti paveikslėlį",
     "attachVideo": "Pridėti vaizdo įrašą",
     "attachFile": "Pridėti failą",

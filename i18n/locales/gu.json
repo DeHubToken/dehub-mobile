@@ -3934,6 +3934,8 @@
     "removeAttachment": "જોડાણ કાઢો",
     "addTip": "ટિપ ઉમેરો",
     "chooseGif": "GIF પસંદ કરો",
+    "searchGifs": "GIFs શોધો",
+    "gifsLoadFailed": "GIFs લોડ કરી શક્યા નહિં",
     "attachImage": "છબી જોડો",
     "attachVideo": "વિડિયો જોડો",
     "attachFile": "ફાઇલ જોડો",

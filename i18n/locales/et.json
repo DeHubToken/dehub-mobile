@@ -3942,6 +3942,8 @@
     "removeAttachment": "Eemalda manus",
     "addTip": "Lisa jootraha",
     "chooseGif": "Vali GIF",
+    "searchGifs": "Otsi GIF-e",
+    "gifsLoadFailed": "GIF-e ei saanud laadida",
     "attachImage": "Manusta pilt",
     "attachVideo": "Manusta video",
     "attachFile": "Manusta fail",

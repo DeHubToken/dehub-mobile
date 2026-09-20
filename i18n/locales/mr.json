@@ -3930,6 +3930,8 @@
     "removeAttachment": "संलग्नक काढा",
     "addTip": "टिप जोडा",
     "chooseGif": "GIF निवडा",
+    "searchGifs": "GIF शोधा",
+    "gifsLoadFailed": "GIF दाखल करू शकले नाही",
     "attachImage": "प्रतिमा जोडा",
     "attachVideo": "व्हिडिओ जोडा",
     "attachFile": "फाइल जोडा",

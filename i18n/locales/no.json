@@ -3932,6 +3932,8 @@
     "removeAttachment": "Fjern vedlegg",
     "addTip": "Legg til tips",
     "chooseGif": "Velg en GIF",
+    "searchGifs": "Søk etter gifs",
+    "gifsLoadFailed": "Kunne ikke laste inn GIF-ene",
     "attachImage": "Legg ved bilde",
     "attachVideo": "Legg ved video",
     "attachFile": "Legg ved fil",

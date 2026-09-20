@@ -3921,6 +3921,8 @@
     "removeAttachment": "Хавсралтыг устгах",
     "addTip": "Шан нэмэх",
     "chooseGif": "GIF сонгох",
+    "searchGifs": "GIF хайх",
+    "gifsLoadFailed": "GIF-ийг ачаалж чадсангүй",
     "attachImage": "Зураг хавсаргах",
     "attachVideo": "Видео хавсаргах",
     "attachFile": "Файл хавсаргах",

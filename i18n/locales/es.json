@@ -4014,6 +4014,8 @@
     "removeAttachment": "Quitar adjunto",
     "addTip": "Añadir propina",
     "chooseGif": "Elige un GIF",
+    "searchGifs": "Buscar GIF",
+    "gifsLoadFailed": "No se han podido cargar los GIF",
     "attachImage": "Adjuntar imagen",
     "attachVideo": "Adjuntar vídeo",
     "attachFile": "Adjuntar archivo",

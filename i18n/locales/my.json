@@ -3922,6 +3922,8 @@
     "removeAttachment": "ပူးတွဲဖိုင် ဖယ်ရှားပါ",
     "addTip": "လက်ဆောင်ငွေ ထည့်ပါ",
     "chooseGif": "GIF ရွေးပါ",
+    "searchGifs": "GIFs ကိုရှာပါ",
+    "gifsLoadFailed": "GIF များကို ဖွင့် ၍ မရပါ",
     "attachImage": "ပုံ ပူးတွဲပါ",
     "attachVideo": "ဗီဒီယို ပူးတွဲပါ",
     "attachFile": "ဖိုင် ပူးတွဲပါ",

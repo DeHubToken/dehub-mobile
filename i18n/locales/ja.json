@@ -4010,6 +4010,8 @@
     "removeAttachment": "添付を削除",
     "addTip": "投げ銭を追加",
     "chooseGif": "GIF を選ぶ",
+    "searchGifs": "GIFを検索",
+    "gifsLoadFailed": "GIFを読み込めませんでした",
     "attachImage": "画像を添付",
     "attachVideo": "動画を添付",
     "attachFile": "ファイルを添付",

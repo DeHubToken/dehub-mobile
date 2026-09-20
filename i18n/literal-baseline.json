@@ -31,7 +31,7 @@
   "components/DM/DMSettingsModal.tsx": 1,
   "components/DM/DmFeeBanner.tsx": 1,
   "components/DM/ForwardPickerModal.tsx": 4,
-  "components/DM/GifPicker.tsx": 2,
+  "components/DM/GifPicker.tsx": 1,
   "components/DM/MessageBubble.tsx": 7,
   "components/DM/MessageContextMenu.tsx": 1,
   "components/DM/NewChatIntro.tsx": 1,

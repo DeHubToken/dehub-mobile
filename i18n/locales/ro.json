@@ -3956,6 +3956,8 @@
     "removeAttachment": "Elimină atașamentul",
     "addTip": "Adaugă bacșiș",
     "chooseGif": "Alege un GIF",
+    "searchGifs": "Căutați GIF-uri",
+    "gifsLoadFailed": "Nu s-au putut încărca GIF-uri",
     "attachImage": "Atașează imagine",
     "attachVideo": "Atașează videoclip",
     "attachFile": "Atașează fișier",

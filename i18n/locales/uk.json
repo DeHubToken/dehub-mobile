@@ -4418,6 +4418,8 @@
     "removeAttachment": "Видалити вкладення",
     "addTip": "Додати чайові",
     "chooseGif": "Вибрати GIF",
+    "searchGifs": "Пошук GIF-файлів",
+    "gifsLoadFailed": "Не вдалося завантажити GIF-файли",
     "attachImage": "Прикріпити зображення",
     "attachVideo": "Прикріпити відео",
     "attachFile": "Прикріпити файл",

@@ -3998,6 +3998,8 @@
     "removeAttachment": "إزالة المرفق",
     "addTip": "أضف إكرامية",
     "chooseGif": "اختر GIF",
+    "searchGifs": "البحث في صور GIF",
+    "gifsLoadFailed": "تعذر تحميل ملفات GIF",
     "attachImage": "أرفق صورة",
     "attachVideo": "أرفق فيديو",
     "attachFile": "أرفق ملفًا",

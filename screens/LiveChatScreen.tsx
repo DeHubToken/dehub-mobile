@@ -369,7 +369,7 @@ const LiveChatScreen: React.FC = () => {
       const payload: SendMessagePayload = {
         messageType: "gif",
         gif: {
-          provider: "tenor",
+          provider: "giphy",
           gifId: url,
           url,
           previewUrl: url,

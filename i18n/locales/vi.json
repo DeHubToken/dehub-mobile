@@ -4030,6 +4030,8 @@
     "removeAttachment": "Xóa tệp đính kèm",
     "addTip": "Thêm tiền thưởng",
     "chooseGif": "Chọn GIF",
+    "searchGifs": "Tìm kiếm ảnh GIF",
+    "gifsLoadFailed": "Không thể tải GIF",
     "attachImage": "Đính kèm ảnh",
     "attachVideo": "Đính kèm video",
     "attachFile": "Đính kèm tệp",

@@ -3929,6 +3929,8 @@
     "removeAttachment": "הסר קובץ מצורף",
     "addTip": "הוסף טיפ",
     "chooseGif": "בחר GIF",
+    "searchGifs": "חפש קובצי GIF",
+    "gifsLoadFailed": "לא ניתן לטעון קובצי GIF",
     "attachImage": "צרף תמונה",
     "attachVideo": "צרף וידאו",
     "attachFile": "צרף קובץ",

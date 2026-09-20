@@ -3892,6 +3892,8 @@
     "removeAttachment": "نښلونی لرې کړئ",
     "addTip": "بخشش ورزیات کړئ",
     "chooseGif": "GIF غوره کړئ",
+    "searchGifs": "GIFs وپلټئ",
+    "gifsLoadFailed": "GIFs ونه شو لودېدلی",
     "attachImage": "انځور ونښلوئ",
     "attachVideo": "ویډیو ونښلوئ",
     "attachFile": "فایل ونښلوئ",

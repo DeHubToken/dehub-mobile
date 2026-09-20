@@ -3893,6 +3893,8 @@
     "removeAttachment": "移除附件",
     "addTip": "添加打赏",
     "chooseGif": "选择 GIF",
+    "searchGifs": "搜寻GIF动图",
+    "gifsLoadFailed": "GIF动图加载失败",
     "attachImage": "附加图片",
     "attachVideo": "附加视频",
     "attachFile": "附加文件",

@@ -3941,6 +3941,8 @@
     "removeAttachment": "Noņemt pielikumu",
     "addTip": "Pievienot dzeramnaudu",
     "chooseGif": "Izvēlēties GIF",
+    "searchGifs": "Meklēt GIF failus",
+    "gifsLoadFailed": "Nevarēja ielādēt GIF failus",
     "attachImage": "Pievienot attēlu",
     "attachVideo": "Pievienot video",
     "attachFile": "Pievienot failu",

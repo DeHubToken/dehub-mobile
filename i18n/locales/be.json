@@ -3976,6 +3976,8 @@
     "removeAttachment": "Выдаліць укладанне",
     "addTip": "Дадаць чаявыя",
     "chooseGif": "Выбраць GIF",
+    "searchGifs": "Пошук GIF-файлаў",
+    "gifsLoadFailed": "Немагчыма загрузіць GIF-файлы",
     "attachImage": "Далучыць выяву",
     "attachVideo": "Далучыць відэа",
     "attachFile": "Далучыць файл",

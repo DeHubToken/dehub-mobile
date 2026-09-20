@@ -3947,6 +3947,8 @@
     "removeAttachment": "ಲಗತ್ತು ತೆಗೆದುಹಾಕಿ",
     "addTip": "ಟಿಪ್ ಸೇರಿಸಿ",
     "chooseGif": "GIF ಆಯ್ಕೆಮಾಡಿ",
+    "searchGifs": "GIF ಗಳನ್ನು ಹುಡುಕಿ",
+    "gifsLoadFailed": "GIF ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
     "attachImage": "ಚಿತ್ರ ಲಗತ್ತಿಸಿ",
     "attachVideo": "ವೀಡಿಯೊ ಲಗತ್ತಿಸಿ",
     "attachFile": "ಫೈಲ್ ಲಗತ್ತಿಸಿ",

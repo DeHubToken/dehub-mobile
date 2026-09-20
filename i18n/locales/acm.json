@@ -3900,6 +3900,8 @@
     "removeAttachment": "شيل المرفق",
     "addTip": "ضيف إكرامية",
     "chooseGif": "اختار GIF",
+    "searchGifs": "بحث GIFs",
+    "gifsLoadFailed": "ما كدرت أحمل GIFs",
     "attachImage": "أرفق صورة",
     "attachVideo": "أرفق فيديو",
     "attachFile": "أرفق ملف",

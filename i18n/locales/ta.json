@@ -3930,6 +3930,8 @@
     "removeAttachment": "இணைப்பை நீக்கு",
     "addTip": "டிப் சேர்",
     "chooseGif": "GIF தேர்ந்தெடு",
+    "searchGifs": "GIF களைத் தேடுங்கள்",
+    "gifsLoadFailed": "GIF களை ஏற்ற முடியவில்லை",
     "attachImage": "படத்தை இணை",
     "attachVideo": "வீடியோவை இணை",
     "attachFile": "கோப்பை இணை",

@@ -3971,6 +3971,8 @@
     "removeAttachment": "Susa okunamathiselwe",
     "addTip": "Engeza ithiphu",
     "chooseGif": "Khetha i-GIF",
+    "searchGifs": "Sesha ama-GIF",
+    "gifsLoadFailed": "Ayikwazanga ukufaka ama-GIF",
     "attachImage": "Namathisela isithombe",
     "attachVideo": "Namathisela ividiyo",
     "attachFile": "Namathisela ifayela",

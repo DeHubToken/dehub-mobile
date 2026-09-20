@@ -3933,6 +3933,8 @@
     "removeAttachment": "Ka saar lifaaqa",
     "addTip": "Ku dar tip",
     "chooseGif": "Dooro GIF",
+    "searchGifs": "Raadi GIF-yada",
+    "gifsLoadFailed": "Can 't load GIFs ah ah ah",
     "attachImage": "Lifaaq sawir",
     "attachVideo": "Lifaaq fiidyo",
     "attachFile": "Lifaaq fayl",

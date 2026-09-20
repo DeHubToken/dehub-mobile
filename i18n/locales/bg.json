@@ -3943,6 +3943,8 @@
     "removeAttachment": "Премахни прикачения файл",
     "addTip": "Добави бакшиш",
     "chooseGif": "Избери GIF",
+    "searchGifs": "Търсене на GIF файлове",
+    "gifsLoadFailed": "Неуспешно зареждане на GIF файлове",
     "attachImage": "Прикачи изображение",
     "attachVideo": "Прикачи видео",
     "attachFile": "Прикачи файл",

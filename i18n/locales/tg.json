@@ -3920,6 +3920,8 @@
     "removeAttachment": "Замимаро нест кунед",
     "addTip": "Чойпулӣ илова кунед",
     "chooseGif": "GIF интихоб кунед",
+    "searchGifs": "Ҷустуҷӯи GIF",
+    "gifsLoadFailed": "GIF-ҳоро бор карда натавонист",
     "attachImage": "Тасвир замима кунед",
     "attachVideo": "Видео замима кунед",
     "attachFile": "Файл замима кунед",

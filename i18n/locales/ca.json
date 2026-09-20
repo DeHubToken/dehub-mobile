@@ -3943,6 +3943,8 @@
     "removeAttachment": "Elimina l'adjunt",
     "addTip": "Afegeix propina",
     "chooseGif": "Tria un GIF",
+    "searchGifs": "Cerca GIF",
+    "gifsLoadFailed": "No s'han pogut carregar els GIF",
     "attachImage": "Adjunta una imatge",
     "attachVideo": "Adjunta un vídeo",
     "attachFile": "Adjunta un fitxer",

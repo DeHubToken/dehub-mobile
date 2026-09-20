@@ -3993,6 +3993,8 @@
     "removeAttachment": "Hapus lampiran",
     "addTip": "Tambah tip",
     "chooseGif": "Pilih GIF",
+    "searchGifs": "Cari GIF",
+    "gifsLoadFailed": "Tidak dapat memuat GIF",
     "attachImage": "Lampirkan gambar",
     "attachVideo": "Lampirkan video",
     "attachFile": "Lampirkan berkas",

@@ -4060,6 +4060,8 @@
     "removeAttachment": "Verwyder aanhegsel",
     "addTip": "Voeg fooitjie by",
     "chooseGif": "Kies 'n GIF",
+    "searchGifs": "Soek GIF's",
+    "gifsLoadFailed": "Kon nie GIF's laai nie",
     "attachImage": "Heg prent aan",
     "attachVideo": "Heg video aan",
     "attachFile": "Heg lêer aan",

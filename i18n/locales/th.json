@@ -3978,6 +3978,8 @@
     "removeAttachment": "ลบไฟล์แนบ",
     "addTip": "เพิ่มทิป",
     "chooseGif": "เลือก GIF",
+    "searchGifs": "ค้นหา GIF",
+    "gifsLoadFailed": "โหลด GIF ไม่ได้",
     "attachImage": "แนบรูป",
     "attachVideo": "แนบวิดีโอ",
     "attachFile": "แนบไฟล์",
