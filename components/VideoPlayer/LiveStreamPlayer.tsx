@@ -1358,15 +1358,25 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // One list for the chat overlay: the room's messages, plus the join/gift/
   // system moments the livestream socket still carries.
   const chatActivities = useMemo<Activity[]>(() => {
+    // One "joined" per viewer, and it is the FIRST one. The socket re-emits
+    // JoinStream on every reconnect and every background/foreground, and
+    // keeping the latest copy moved a viewer's arrival below the tip they
+    // sent minutes earlier. A LEFT in between clears the slot so a real
+    // return still shows.
     const arrivals = new Set<string>();
-    const moments = [...activities].reverse().filter((a) => {
+    const moments = activities.filter((a) => {
       if (a.status === StreamActivityType.MESSAGE) return false;
       const address = (a.address || a.user?.address || "").toLowerCase();
-      if (a.status !== StreamActivityType.JOINED || !address) return true;
+      if (!address) return true;
+      if (a.status === StreamActivityType.LEFT) {
+        arrivals.delete(address);
+        return true;
+      }
+      if (a.status !== StreamActivityType.JOINED) return true;
       if (arrivals.has(address)) return false;
       arrivals.add(address);
       return true;
-    }).reverse();
+    });
     if ((isLiveEffective || isEndedEffective) && !moments.some((a) => a.status === StreamActivityType.START)) {
       moments.unshift({ status: StreamActivityType.START, createdAt: 0 });
     }
