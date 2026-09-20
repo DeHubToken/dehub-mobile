@@ -66,6 +66,7 @@ import { useLivePostReactions } from "../../hooks/useLivePostReactions";
 import { useTranslation as useCopy } from "react-i18next";
 import { EDGE } from "../common/ViewerChrome";
 import { speakTipMessage, setTipTtsEnabled } from "../../libs/tipTts";
+import { tierFromAmount } from "../../config/gift-tiers";
 import { TipSpeaker } from "../Live/TipSpeaker";
 import ViewerScrubBar from "../common/ViewerScrubBar";
 import { useSharedValue } from "react-native-reanimated";
@@ -312,6 +313,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     (user?.walletAddress || user?.address || "") as string
   ).toLowerCase();
   const myAddressRef = useRef(myAddress);
+  /** Tx hashes of the gifts this viewer sent, so their echo off the room
+   *  broadcast is recognised as theirs whatever address form it carries. */
+  const ownGiftHashesRef = useRef<Set<string>>(new Set());
   useEffect(() => {
     myAddressRef.current = myAddress;
   }, [myAddress]);
@@ -808,10 +812,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     });
     // Dedupe optimistic gifts with server TipStreamer confirmation
     bind(LivestreamEvents.TipStreamer, (payload: any) => {
-      // Read the sender line out over the stream. Spoken off the BROADCAST
-      // rather than the optimistic send, so it is said exactly once and every
-      // viewer hears the same words at the same moment.
-      speakTipMessage(payload?.gift?.meta?.message);
       const amt = Number(payload?.gift?.meta?.amount || 0);
       const username = payload?.gift?.meta?.username || payload?.gift?.meta?.displayName;
       // Prefer nested user/account ref for rich profile data
@@ -823,16 +823,16 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         "";
       const sender = String(senderRaw || "").toLowerCase();
       const me = String((user?.walletAddress || user?.address || "")).toLowerCase();
+      const txHash = String(payload?.gift?.meta?.transactionHash || "").toLowerCase();
       const now = Date.now();
-      // If it's our own confirmed gift, try to confirm an optimistic one instead of adding a duplicate
-      if (me && sender && sender === me) {
-        // Enqueue tip visual effect for own gifts too
-        enqueueFromGift({
-          amount: amt,
-          message: payload?.gift?.meta?.message,
-          username,
-          selectedTier: payload?.gift?.meta?.selectedTier,
-        } as any);
+      // Our own gift coming back round. Its celebration and its read-out
+      // already played at submit time (onGiftOptimistic), so here it only
+      // confirms the optimistic activity row. Matched on the tx hash first:
+      // the wallet compare misses when the row carries one address form and
+      // the session another, and the miss was a paid-for celebration
+      // playing twice and the tip listed twice in the activity log.
+      const mine = (txHash && ownGiftHashesRef.current.has(txHash)) || (!!me && !!sender && sender === me);
+      if (mine) {
         setActivities((prev) => {
           const copy = prev.slice();
           // find most recent optimistic TIP from me with same amount in the last 15s
@@ -843,9 +843,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               (x) =>
                 x.a.optimistic &&
                 x.a.status === StreamActivityType.TIP &&
-                String(x.a.address || "").toLowerCase() === me &&
-                Number(x.a?.meta?.amount) === amt &&
-                now - (x.a.createdAt || now) < 15000
+                ((txHash && String(x.a?.meta?.transactionHash || "").toLowerCase() === txHash) ||
+                  (String(x.a.address || "").toLowerCase() === me &&
+                    Number(x.a?.meta?.amount) === amt &&
+                    now - (x.a.createdAt || now) < 15000))
             )?.i ?? -1;
           if (idx >= 0) {
             const existing = copy[idx];
@@ -871,7 +872,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         });
         return;
       }
-      // Gifts from other users: add once
+      // Gifts from other users: add once. Read the sender line out over the
+      // stream off the broadcast, so every viewer hears the same words on
+      // the same beat; the sender heard their own at submit time.
+      speakTipMessage(payload?.gift?.meta?.message);
       addActivity({
         status: StreamActivityType.TIP,
         address: sender,
@@ -1127,7 +1131,18 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   // Optimistic gift echo: called on on-chain gift success
   const onGiftOptimistic = useCallback(
-    ({ amount, message }: { amount: number; message?: string }) => {
+    ({ amount, message, txHash }: { amount: number; message?: string; txHash?: string }) => {
+      if (txHash) ownGiftHashesRef.current.add(String(txHash).toLowerCase());
+      // The celebration the viewer just paid for plays now, on submission —
+      // not when the backend has recorded it and echoed it back seconds
+      // later. Their line is read out on the same beat, once.
+      enqueueFromGift({
+        amount,
+        message,
+        selectedTier: tierFromAmount(amount).name,
+        username: (user as any)?.username || undefined,
+      } as any);
+      speakTipMessage(message);
       const username = (user as any)?.username || undefined;
       const address = ((user?.walletAddress || user?.address) as
         | string
@@ -1139,11 +1154,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         id,
         status: StreamActivityType.TIP,
         address,
-        meta: { username, amount, message },
+        meta: { username, amount, message, transactionHash: txHash },
         optimistic: true,
       });
     },
-    [user, addActivity]
+    [user, addActivity, enqueueFromGift]
   );
 
   // Send a reaction via socket
@@ -1686,9 +1701,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         tokenId={((streamEntity?.tokenId as number) || (tokenId as number)) || 0}
         toAddress={((streamEntity?.address as string) || (minterProp as string) || "") as string}
         stream={streamEntity || { _id: streamId }}
-        onSent={({ amount, message }) => {
+        onSent={({ amount, message, txHash }) => {
           try {
-            onGiftOptimistic({ amount, message });
+            onGiftOptimistic({ amount, message, txHash });
           } catch {}
         }}
       />
