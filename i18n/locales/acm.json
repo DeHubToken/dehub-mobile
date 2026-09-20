@@ -3935,7 +3935,11 @@
     "moreOptions": "خيارات أكثر",
     "processing": "جاري معالجة الفيديو…",
     "processingFailed": "فشلت معالجة الفيديو",
-    "processingFailedOwner": "حدث خطأ ما من جانبنا. احذف هذا المنشور وحمّل الفيديو مرة أخرى."
+    "retryHint": "ماكو شي نعيده — ملفك عدنه.",
+    "retry": "حاول مرة ثانية",
+    "retrying": "جاي نحاول…",
+    "retryQueued": "جاي نعالج مرة ثانية",
+    "retryFailed": "ما كدرنه نعيد هاي المنشورة"
   },
   "liveViewer": {
     "loadingStream": "يجري تحميل البث...",

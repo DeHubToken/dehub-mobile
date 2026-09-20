@@ -3978,7 +3978,11 @@
     "moreOptions": "Lisää vaihtoehtoja",
     "processing": "Käsitellään videota...",
     "processingFailed": "Videon käsittely epäonnistui",
-    "processingFailedOwner": "Jokin meni vikaan meidän puolellamme. Poista tämä julkaisu ja lataa video uudelleen."
+    "retryHint": "Ei uudelleenlatausta — säilytimme tiedostosi.",
+    "retry": "Yritä uudelleen",
+    "retrying": "Yritetään uudelleen...",
+    "retryQueued": "Käsitellään uudelleen",
+    "retryFailed": "Tätä julkaisua ei voitu yrittää uudelleen"
   },
   "liveViewer": {
     "loadingStream": "Ladataan lähetystä...",

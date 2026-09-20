@@ -3921,7 +3921,11 @@
     "moreOptions": "Sugandili wɛrɛw",
     "processing": "O video ye min ye...",
     "processingFailed": "Video baara banna",
-    "processingFailedOwner": "Koo dɔ kɛra an na. Aw ye videwo nin bila ka taga a fɛ."
+    "retryHint": "I tɛ se ka foyi kɛ tugun — an b'i ka sɛbɛ mara.",
+    "retry": "Try tun tun tun",
+    "retrying": "Ka segi ka na...",
+    "retryQueued": "Ka segi ka baara kɛ",
+    "retryFailed": "Ne tɛ se ka o barokun ta tugun"
   },
   "liveViewer": {
     "loadingStream": "Stream bɛ lajɛ...",

@@ -1292,6 +1292,23 @@ export async function replaceVideoFile(
   });
 }
 
+/**
+ * Put a post whose processing failed back through the encoder.
+ *
+ * Sends nothing: the server kept the file the creator uploaded, which is the
+ * only reason this is a button rather than a second upload over mobile data.
+ * Throws with the server's own message — a post that failed before the
+ * archive existed has nothing to retry from and says so.
+ */
+export async function retryTranscode(tokenId: number | string): Promise<ReplaceVideoResponse> {
+  if (tokenId == null) throw new Error('tokenId required');
+  return apiClient.post<ReplaceVideoResponse>(
+    `/nft/${encodeURIComponent(String(tokenId))}/retry-transcode`,
+    {},
+    { isAuthRequired: true },
+  );
+}
+
 export interface ToggleVisibilityResponse {
   result: boolean;
   data?: Record<string, any>;

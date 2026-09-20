@@ -4046,7 +4046,11 @@
     "moreOptions": "추가 옵션",
     "processing": "동영상 처리 중...",
     "processingFailed": "동영상 처리 실패",
-    "processingFailedOwner": "저희 쪽에서 문제가 발생했습니다. 이 포스트를 삭제하고 동영상을 다시 업로드하세요."
+    "retryHint": "다시 업로드할 것이 없습니다. 파일을 보관했습니다.",
+    "retry": "다시 시도하기",
+    "retrying": "다시 시도 중...",
+    "retryQueued": "다시 처리 중",
+    "retryFailed": "해당 게시물을 다시 시도할 수 없습니다"
   },
   "liveViewer": {
     "loadingStream": "스트림 불러오는 중…",

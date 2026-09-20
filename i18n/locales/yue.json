@@ -3975,7 +3975,11 @@
     "moreOptions": "更多選項",
     "processing": "處理緊影片 …",
     "processingFailed": "影片處理失敗",
-    "processingFailedOwner": "我哋嗰邊有啲嘢唔妥。刪除呢個帖子，然後再上載條片。"
+    "retryHint": "冇嘢可以重新上載 — 我哋保留咗你嘅檔案。",
+    "retry": "再試多次",
+    "retrying": "重試緊 …",
+    "retryQueued": "再次處理緊",
+    "retryFailed": "重試唔到嗰個帖子"
   },
   "liveViewer": {
     "loadingStream": "正在載入直播……",

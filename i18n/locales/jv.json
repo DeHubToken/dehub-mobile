@@ -3935,7 +3935,11 @@
     "moreOptions": "Pilihan liyane",
     "processing": "Ngolah video…",
     "processingFailed": "Gagal ngolah video",
-    "processingFailedOwner": "Ana sing salah ing sisih kita. Busaken kiriman iki lan unggah maneh videone."
+    "retryHint": "Ora ana sing perlu diunggah maneh — filemu wis disimpen.",
+    "retry": "Coba maneh",
+    "retrying": "Ngulang maneh…",
+    "retryQueued": "Diproses maneh",
+    "retryFailed": "Ora bisa ngulang kiriman kuwi"
   },
   "liveViewer": {
     "loadingStream": "Ngunggah siaran...",

@@ -3929,7 +3929,11 @@
     "moreOptions": "अउर विकल्प",
     "processing": "वीडियो को हल करे (Processing Video) -",
     "processingFailed": "असफल हई वीडियो प्रोसेसिंग",
-    "processingFailedOwner": "हम्मर बेटिया पर कुछ गलत हो गेल हल । उस पोस्ट को डिलीट करे और फिर Video पर क्लिक करे ।"
+    "retryHint": "कुछ भी नहीं भाषण, स्वाभाविक रूप से, IMHO..",
+    "retry": "फिर से कोशिश करे",
+    "retrying": "हालाँकि, दोहराएंः",
+    "retryQueued": "फिर से प्रैक्टिस करे",
+    "retryFailed": "अगला लेखसड़क पर केकरो ध्यान न हई"
   },
   "liveViewer": {
     "loadingStream": "स्ट्रीम लोड होइत हे...",

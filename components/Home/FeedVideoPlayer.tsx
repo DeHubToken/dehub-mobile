@@ -51,6 +51,8 @@ import { useMediaAspect } from "../../hooks/useMediaAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { SEGMENT_LABELS } from "../../services/video-segments.service";
 import { toastInfo } from "../../libs";
+import { toastError, toastSuccess } from "../../libs/toast";
+import { retryTranscode } from "../../services/nft.service";
 import { movedBeyondMediaTapSlop } from "../../libs/media-gesture";
 import {
   continuesTapGesture,
@@ -314,6 +316,29 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const isProcessing = transcodingStatus === "pending" || transcodingStatus === "on";
   const isFailed = transcodingStatus === "failed";
+
+  /**
+   * The creator's own failed post can be re-run from the file the server
+   * kept, so the overlay carries a button rather than an instruction to go
+   * and find the original again.
+   */
+  const [retryState, setRetryState] = useState<"idle" | "sending" | "queued">("idle");
+  const handleRetryTranscode = useCallback(async () => {
+    if (tokenId == null) return;
+    setRetryState("sending");
+    try {
+      await retryTranscode(tokenId);
+      // The post moves to 'pending' on the next feed read; until then this
+      // stands in for it, so the button cannot be pressed twice.
+      setRetryState("queued");
+      toastSuccess(t("player.retryQueued"));
+    } catch (e: any) {
+      setRetryState("idle");
+      // The server's wording: it knows whether the file is missing, the post
+      // is already processing, or something transient went wrong.
+      toastError(e?.message || t("player.retryFailed"));
+    }
+  }, [tokenId, t]);
   const canPlay = !isContentGated && !!videoUrl && !isProcessing && !isFailed;
 
   // True once something has actually asked for media: the autoplay settle
@@ -1037,10 +1062,37 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
       {isFailed && (
         <View style={styles.statusOverlay}>
-          <Icon name="TriangleAlert" size={28} color="#fff" />
-          <Text style={styles.statusText}>{t("player.processingFailed")}</Text>
-          {isOwner && (
-            <Text style={styles.statusHintText}>{t("player.processingFailedOwner")}</Text>
+          {retryState === "queued" ? (
+            <>
+              <ActivityIndicator size="small" color="#fff" />
+              <Text style={styles.statusText}>{t("player.retryQueued")}</Text>
+            </>
+          ) : (
+            <>
+              <Icon name="TriangleAlert" size={28} color="#fff" />
+              <Text style={styles.statusText}>{t("player.processingFailed")}</Text>
+              {isOwner && (
+                <>
+                  <Text style={styles.statusHintText}>{t("player.retryHint")}</Text>
+                  <TouchableOpacity
+                    accessibilityRole="button"
+                    accessibilityLabel={t("player.retry")}
+                    onPress={handleRetryTranscode}
+                    disabled={retryState === "sending"}
+                    style={styles.retryButton}
+                  >
+                    {retryState === "sending" ? (
+                      <ActivityIndicator size="small" color="#fff" />
+                    ) : (
+                      <Icon name="RotateCcw" size={14} color="#fff" />
+                    )}
+                    <Text style={styles.retryButtonText}>
+                      {retryState === "sending" ? t("player.retrying") : t("player.retry")}
+                    </Text>
+                  </TouchableOpacity>
+                </>
+              )}
+            </>
           )}
         </View>
       )}
@@ -1327,6 +1379,23 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,0.6)",
     fontSize: 11,
     textAlign: "center",
+  },
+  retryButton: {
+    marginTop: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 7,
+    borderRadius: 999,
+    backgroundColor: "rgba(255,255,255,0.15)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.2)",
+  },
+  retryButtonText: {
+    color: "#fff",
+    fontSize: 12,
+    fontWeight: "500",
   },
   playOverlay: {
     ...StyleSheet.absoluteFillObject,

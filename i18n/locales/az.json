@@ -3962,7 +3962,11 @@
     "moreOptions": "Daha çox seçim",
     "processing": "Video emal edilir...",
     "processingFailed": "Video emalı uğursuz oldu",
-    "processingFailedOwner": "Tərəfimizdən xəta baş verdi. Bu yazını silin və videonu yenidən yükləyin."
+    "retryHint": "Yenidən yükləmək üçün heç nə yoxdur — faylınızı saxladıq.",
+    "retry": "Yenidən cəhd et",
+    "retrying": "Yenidən cəhd edilir...",
+    "retryQueued": "Yenidən emal edilir",
+    "retryFailed": "Həmin yazını yenidən redaktə etmək mümkün olmadı"
   },
   "liveViewer": {
     "loadingStream": "Yayım yüklənir...",

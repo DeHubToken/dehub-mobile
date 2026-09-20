@@ -3942,7 +3942,11 @@
     "moreOptions": "ተወሳኺ ኣማራጺታት",
     "processing": "ቪድዮ ምስራሕ...",
     "processingFailed": "ቪድዮ ምስራሕ ኣይተዓወተን ።",
-    "processingFailedOwner": "ኣብ ጐድና ገለ ነገር ኣጋጢሙ እዩ ። ነዚ ጽሑፍ እዚ ሰርዝ እሞ ነቲ ቪድዮ መሊስካ ስዓቦ ።"
+    "retryHint": "ክትመልሶ እትኽእል ነገር የለን — ነቲ ፋይልካ ሓልዩና እዩ ።",
+    "retry": "እንደገና ፈትኖ",
+    "retrying": "ንድሕሪት ምልስ ኢልካ...",
+    "retryQueued": "ዳግማይ ምድላው",
+    "retryFailed": "ነቲ ልኡኽ ክትመልሶ ኣይትኽእልን ኢኻ"
   },
   "liveViewer": {
     "loadingStream": "ስርጭት ይጽዓን ኣሎ...",

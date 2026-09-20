@@ -4056,7 +4056,11 @@
     "moreOptions": "Safidy hafa",
     "processing": "Hikirakira ny lahatsary...",
     "processingFailed": "Tsy nahomby ny fikirakirana sary",
-    "processingFailedOwner": "Nisy zavatra nitranga teo aminao sy izy. Noho izany dia avereno ity lahatsoratra ity ary avereno indray ilay lahatsoratra."
+    "retryHint": "Tsy Maninona Ka — namaha izany fotsiny.",
+    "retry": "Andramo indray",
+    "retrying": "Miezaha indray...",
+    "retryQueued": "Asa atao indray",
+    "retryFailed": "Tsy afaka nanandrana intsony io lahatsoratra io"
   },
   "liveViewer": {
     "loadingStream": "Mampiditra ny fandefasana...",

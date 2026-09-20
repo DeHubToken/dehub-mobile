@@ -3982,7 +3982,11 @@
     "moreOptions": "További lehetőségek",
     "processing": "Videó feldolgozása folyamatban...",
     "processingFailed": "A videó feldolgozása nem sikerült",
-    "processingFailedOwner": "Valami hiba történt a mi oldalunkon. Töröld ezt a bejegyzést, és töltsd fel újra a videót."
+    "retryHint": "Nincs mit újra feltölteni — megőrizzük a fájlodat.",
+    "retry": "Próbálkozz újra",
+    "retrying": "Újrapróbálkozás…",
+    "retryQueued": "Újbóli feldolgozás",
+    "retryFailed": "Nem sikerült újra megpróbálni ezt a bejegyzést"
   },
   "liveViewer": {
     "loadingStream": "Közvetítés betöltése...",

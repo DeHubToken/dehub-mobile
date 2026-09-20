@@ -3982,7 +3982,11 @@
     "moreOptions": "Další možnosti",
     "processing": "Zpracovává se video...",
     "processingFailed": "Zpracování videa selhalo",
-    "processingFailedOwner": "Z naší strany se něco pokazilo. Smažte tento příspěvek a video nahrajte znovu."
+    "retryHint": "Nic k opětovnému nahrání — tvou složku jsme si nechali.",
+    "retry": "Zkusit znovu",
+    "retrying": "Probíhá opakování...",
+    "retryQueued": "Opět se zpracovává",
+    "retryFailed": "Příspěvek se nepodařilo zopakovat"
   },
   "liveViewer": {
     "loadingStream": "Načítání streamu...",

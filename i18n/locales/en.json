@@ -4049,7 +4049,11 @@
     "moreOptions": "More options",
     "processing": "Processing video…",
     "processingFailed": "Video processing failed",
-    "processingFailedOwner": "Something went wrong on our side. Delete this post and upload the video again."
+    "retryHint": "Nothing to re-upload — we kept your file.",
+    "retry": "Try again",
+    "retrying": "Retrying…",
+    "retryQueued": "Processing again",
+    "retryFailed": "Could not retry that post"
   },
   "liveViewer": {
     "loadingStream": "Loading stream...",
