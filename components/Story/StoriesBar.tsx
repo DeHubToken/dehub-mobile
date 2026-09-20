@@ -36,8 +36,11 @@ const StoriesBar: React.FC<StoriesBarProps> = ({ refreshKey = 0 }) => {
   // Story create/upload hidden for now — view-only.
   // const [addOpen, setAddOpen] = useState(false);
 
+  // Only a bumped key refetches. Running on mount too made every remount of
+  // this rail — one per return to the Home tab — a second request on top of
+  // the hook's own load.
   React.useEffect(() => {
-    refresh();
+    if (refreshKey > 0) refresh();
   }, [refreshKey, refresh]);
 
   const sortedUsers = useMemo(() => {

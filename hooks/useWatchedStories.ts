@@ -1,46 +1,65 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const WATCHED_STORIES_KEY = "dehub_watched_stories";
 
-export function useWatchedStories() {
-  const [watchedIds, setWatchedIds] = useState<Set<string>>(new Set());
-  const [ready, setReady] = useState(false);
+// One set for the process, not one per mount. Each mount used to start with
+// an empty set and read AsyncStorage for itself, so every remount of the
+// stories rail — one per return to the Home tab — painted every ring bright,
+// then re-sorted the row and dimmed the watched ones a beat later when the
+// read landed. Loaded once here, a remount renders the settled answer in its
+// first frame.
+let watchedIds: ReadonlySet<string> = new Set();
+let ready = false;
+let loadPromise: Promise<void> | null = null;
+const listeners = new Set<() => void>();
 
-  useEffect(() => {
-    let cancelled = false;
-    AsyncStorage.getItem(WATCHED_STORIES_KEY)
+const notify = () => listeners.forEach((fn) => fn());
+
+const load = (): Promise<void> => {
+  if (!loadPromise) {
+    loadPromise = AsyncStorage.getItem(WATCHED_STORIES_KEY)
       .then((raw) => {
-        if (cancelled || !raw) return;
+        if (!raw) return;
         try {
-          setWatchedIds(new Set(JSON.parse(raw) as string[]));
+          const stored = new Set(JSON.parse(raw) as string[]);
+          // Anything marked while the read was in flight stays marked.
+          watchedIds = new Set([...stored, ...watchedIds]);
         } catch {
-          setWatchedIds(new Set());
+          // Corrupt entry: start clean rather than fail every mount.
         }
       })
+      .catch(() => {})
       .finally(() => {
-        if (!cancelled) setReady(true);
+        ready = true;
+        notify();
       });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  }
+  return loadPromise;
+};
 
-  const markWatched = useCallback((storyId: string) => {
-    if (!storyId) return;
-    setWatchedIds((prev) => {
-      if (prev.has(storyId)) return prev;
-      const next = new Set(prev);
-      next.add(storyId);
-      AsyncStorage.setItem(WATCHED_STORIES_KEY, JSON.stringify([...next])).catch(() => {});
-      return next;
-    });
-  }, []);
+const subscribe = (fn: () => void) => {
+  listeners.add(fn);
+  void load();
+  return () => {
+    listeners.delete(fn);
+  };
+};
 
-  const isWatched = useCallback(
-    (storyId: string) => watchedIds.has(storyId),
-    [watchedIds],
-  );
+const markWatched = (storyId: string) => {
+  if (!storyId || watchedIds.has(storyId)) return;
+  const next = new Set(watchedIds);
+  next.add(storyId);
+  watchedIds = next;
+  notify();
+  AsyncStorage.setItem(WATCHED_STORIES_KEY, JSON.stringify([...next])).catch(() => {});
+};
 
-  return { markWatched, isWatched, ready };
+export function useWatchedStories() {
+  const ids = useSyncExternalStore(subscribe, () => watchedIds);
+  const isReady = useSyncExternalStore(subscribe, () => ready);
+
+  const isWatched = useCallback((storyId: string) => ids.has(storyId), [ids]);
+
+  return { markWatched, isWatched, ready: isReady };
 }
