@@ -40,7 +40,7 @@ import ContainedFeedImage from "./ContainedFeedImage";
 import PostTapSurface from "./PostTapSurface";
 import LiveFeedPreview from "../common/LiveFeedPreview";
 import LiveFeedReactionFlow, { type SelfReaction } from "../LiveProducer/LiveFeedReactionFlow";
-import { useWebSocket } from "../../context/WebSocketContext";
+import { useWebSocketApi } from "../../context/WebSocketContext";
 import { liveReactionType } from "../../libs/live-reaction-flow";
 import { LivestreamEvents } from "../../services/enums/livestream.enum";
 import { cdnImage } from "../../libs/cdnImage";
@@ -436,8 +436,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isCurrentlyLive = isStreamLive(stream, status === "LIVE" || status === "PAUSED");
   const liveReactionStreamId = isLive ? stream?._id || stream?.id || (item as any)._id : undefined;
   // The core namespace specifically: the shared flag is also true when only
-  // the DM socket is up, which would send the reaction nowhere.
-  const { emitAuthed: emitLiveReaction, coreConnected: reactionSocketConnected } = useWebSocket();
+  // the DM socket is up, which would send the reaction nowhere. Read at tap
+  // time through the getter, not subscribed: the status half of the socket
+  // context changes on every reconnect — every return from the background on
+  // Android — and every mounted card re-rendered for it.
+  const { emitAuthed: emitLiveReaction, isCoreConnected: isReactionSocketConnected } = useWebSocketApi();
   // The viewer's own floating reaction, played on tap rather than waiting on
   // the room echo — see LiveFeedReactionFlow's `self`.
   const [selfLiveReaction, setSelfLiveReaction] = useState<SelfReaction | null>(null);
@@ -681,7 +684,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         // socket costs the room its copy, never the person who tapped theirs.
         selfLiveReactionNonce.current += 1;
         setSelfLiveReaction({ type: reaction, weight: voteWeight, nonce: selfLiveReactionNonce.current });
-        if (liveReactionStreamId && reactionSocketConnected) {
+        if (liveReactionStreamId && isReactionSocketConnected()) {
           emitLiveReaction(LivestreamEvents.StreamReaction, {
             streamId: liveReactionStreamId, reactionType: liveReactionType(reaction),
           });
@@ -782,7 +785,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           voteInFlightRef.current = false;
         });
     });
-  }, [tokenId, liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts, engagementKey, userAddress, requireAuth, voteWeight, isCurrentlyLive, liveReactionStreamId, reactionSocketConnected, emitLiveReaction]);
+  }, [tokenId, liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts, engagementKey, userAddress, requireAuth, voteWeight, isCurrentlyLive, liveReactionStreamId, isReactionSocketConnected, emitLiveReaction]);
 
   /**
    * Tapping a thumb casts whichever reaction it is WEARING: a card leading with
