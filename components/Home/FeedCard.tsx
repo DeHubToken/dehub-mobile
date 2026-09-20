@@ -435,7 +435,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const status = rawStatus ? rawStatus.toUpperCase() : undefined;
   const isCurrentlyLive = isStreamLive(stream, status === "LIVE" || status === "PAUSED");
   const liveReactionStreamId = isLive ? stream?._id || stream?.id || (item as any)._id : undefined;
-  const { emitAuthed: emitLiveReaction, connected: reactionSocketConnected } = useWebSocket();
+  // The core namespace specifically: the shared flag is also true when only
+  // the DM socket is up, which would send the reaction nowhere.
+  const { emitAuthed: emitLiveReaction, coreConnected: reactionSocketConnected } = useWebSocket();
   // The viewer's own floating reaction, played on tap rather than waiting on
   // the room echo — see LiveFeedReactionFlow's `self`.
   const [selfLiveReaction, setSelfLiveReaction] = useState<SelfReaction | null>(null);

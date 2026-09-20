@@ -110,10 +110,16 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const { t } = useCopy();
   const { isSignedIn } = useAuthState();
   const { requireAuth } = useAuthActions();
+  // Rooms, reactions and gifts all ride the core namespace, so that is the
+  // socket this screen cares about — the shared `connected` flag is also true
+  // when only the DM socket is up, and stays true straight through a core
+  // reconnect. The epoch is what actually moves: one tick per core
+  // connection, which is one round of rooms to re-join.
   const {
     on: socketOn,
     emitAuthed: socketEmitAuthed,
-    connected,
+    coreConnected: connected,
+    connectionEpoch,
   } = useWebSocket();
   const navigation = useNavigation<any>();
 
@@ -401,9 +407,12 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const didJoinRef = useRef<boolean>(false);
   const didLeaveRef = useRef<boolean>(false);
 
-  // Dedupe mechanics across reconnects: track connection epochs and per-epoch sends
+  // Dedupe mechanics across reconnects: one send per stream per connection.
+  // The epoch is the provider's, so a socket swapped out underneath us — a
+  // token refresh, a return from the background — counts as a new connection
+  // here without this screen having to notice the swap itself.
   const connectedGenRef = useRef<number>(0);
-  const prevConnectedRef = useRef<boolean>(false);
+  connectedGenRef.current = connectionEpoch;
   const joinRoomSentKeyRef = useRef<string | null>(null);
   const joinStreamSentKeyRef = useRef<string | null>(null);
   const maybeJoinRoomRef = useRef<(sid?: string | null) => void>(() => {});
@@ -545,16 +554,12 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // Join room on connect; only JoinStream when stream is actually LIVE and we're a viewer
   useEffect(() => {
     if (!streamId || !connected) return;
-    if (!prevConnectedRef.current) {
-      connectedGenRef.current += 1;
-      prevConnectedRef.current = true;
-    }
     maybeJoinRoom(streamId);
     // Only join as active viewer when stream is confirmed LIVE and user is signed in viewer
     if (isSignedIn && ownerStatus === "viewer" && isLiveEffective) {
       maybeJoinStream(streamId);
     }
-  }, [streamId, connected, maybeJoinRoom, maybeJoinStream, isSignedIn, ownerStatus, isLiveEffective]);
+  }, [streamId, connected, connectionEpoch, maybeJoinRoom, maybeJoinStream, isSignedIn, ownerStatus, isLiveEffective]);
 
   // Rejoin on reconnect is defined later after effective status is computed
 
@@ -617,10 +622,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     seededInitialActivitiesRef.current = sid;
   }, [streamEntity, streamId]);
 
-  // On reconnect rising edge, bump epoch and re-emit joins exactly once per stream
-  useEffect(() => {
-    if (!connected) prevConnectedRef.current = false;
-  }, [connected, streamId, maybeJoinRoom, maybeJoinStream]);
 
   // Always listen for Start/End to update local effective status
   useEffect(() => {

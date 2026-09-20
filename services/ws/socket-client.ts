@@ -256,13 +256,23 @@ export class WebSocketClient {
   // Built-in reconnection is enabled; no manual scheduleReconnect needed
 
   private destroySocketOnly() {
+    // Tearing the transport down by hand is still a disconnection, and every
+    // subscriber has to hear about it: rooms live on the socket, so anything
+    // that joined one is out of it the moment this runs. The listeners came
+    // off first, so socket.io's own 'disconnect' never reached us — a token
+    // refresh or a trip to the background left the app believing it was still
+    // connected, and nothing rejoined when the replacement socket came up.
+    const wasLive = !!this.socket?.connected;
     try {
       this.socket?.removeAllListeners();
       this.socket?.disconnect();
     } catch {}
     this.connecting = false;
     this.clearConnectAttemptTimer();
+    this.stopHeartbeat();
+    this.stopPingCheck();
     this.socket = null;
+    if (wasLive) this.emitInternal("disconnected");
   }
 
   disconnect() {

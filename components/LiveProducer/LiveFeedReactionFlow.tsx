@@ -37,7 +37,9 @@ export default function LiveFeedReactionFlow({
    */
   self?: SelfReaction | null;
 }) {
-  const { on, emit, connected } = useWebSocket();
+  // Reactions are a core-namespace room, and every core connection is a fresh
+  // room to join — the epoch below is what makes the re-join happen.
+  const { on, emit, coreConnected: connected, connectionEpoch } = useWebSocket();
   const { reactions, addReaction, clearReactions } = useReactions();
   const meRef = useRef(selfAddress || null);
   useEffect(() => { meRef.current = selfAddress || null; }, [selfAddress]);
@@ -53,7 +55,7 @@ export default function LiveFeedReactionFlow({
     });
     if (connected) emit(LivestreamEvents.JoinRoom, { streamId });
     return () => { off(); clearReactions(); };
-  }, [streamId, connected, on, emit, addReaction, clearReactions]);
+  }, [streamId, connected, connectionEpoch, on, emit, addReaction, clearReactions]);
 
   const lastSelfNonce = useRef<number | null>(null);
   useEffect(() => {
