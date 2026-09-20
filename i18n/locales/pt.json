@@ -4017,6 +4017,8 @@
     "removeAttachment": "Remover anexo",
     "addTip": "Adicionar gorjeta",
     "chooseGif": "Escolher um GIF",
+    "searchGifs": "Pesquisar GIFs",
+    "gifsLoadFailed": "Não foi possível carregar GIFs",
     "attachImage": "Anexar imagem",
     "attachVideo": "Anexar vídeo",
     "attachFile": "Anexar ficheiro",

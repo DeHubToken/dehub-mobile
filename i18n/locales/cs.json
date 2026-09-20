@@ -3947,6 +3947,8 @@
     "removeAttachment": "Odebrat přílohu",
     "addTip": "Přidat spropitné",
     "chooseGif": "Vybrat GIF",
+    "searchGifs": "Hledat ve formátu GIF",
+    "gifsLoadFailed": "Nelze načíst GIFy",
     "attachImage": "Připojit obrázek",
     "attachVideo": "Připojit video",
     "attachFile": "Připojit soubor",

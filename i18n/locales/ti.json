@@ -3907,6 +3907,8 @@
     "removeAttachment": "መተሓሓዚ ኣልግስ",
     "addTip": "ጉርሻ ወስኽ",
     "chooseGif": "GIF ምረጽ",
+    "searchGifs": "GIFs ድለዩ",
+    "gifsLoadFailed": "GIFs ክጭፍልቕ ኣይከኣልኩን ።",
     "attachImage": "ስእሊ ኣተሓሒዝ",
     "attachVideo": "ቪድዮ ኣተሓሒዝ",
     "attachFile": "ፋይል ኣተሓሒዝ",

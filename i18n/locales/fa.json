@@ -3956,6 +3956,8 @@
     "removeAttachment": "حذف پیوست",
     "addTip": "افزودن انعام",
     "chooseGif": "انتخاب GIF",
+    "searchGifs": "جستجوی GIF ها",
+    "gifsLoadFailed": "نتوانستم GIF ها را بارگذاری کنم",
     "attachImage": "پیوست تصویر",
     "attachVideo": "پیوست ویدیو",
     "attachFile": "پیوست فایل",

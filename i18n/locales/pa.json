@@ -3918,6 +3918,8 @@
     "removeAttachment": "ਨੱਥੀ ਹਟਾਓ",
     "addTip": "ਟਿਪ ਜੋੜੋ",
     "chooseGif": "GIF ਚੁਣੋ",
+    "searchGifs": "GIF ਖੋਜ",
+    "gifsLoadFailed": "GIF ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ",
     "attachImage": "ਤਸਵੀਰ ਨੱਥੀ ਕਰੋ",
     "attachVideo": "ਵੀਡੀਓ ਨੱਥੀ ਕਰੋ",
     "attachFile": "ਫਾਈਲ ਨੱਥੀ ਕਰੋ",

@@ -4012,6 +4012,8 @@
     "removeAttachment": "Удалить вложение",
     "addTip": "Добавить чаевые",
     "chooseGif": "Выбрать GIF",
+    "searchGifs": "Поиск по GIF-файлам",
+    "gifsLoadFailed": "Не удалось загрузить GIF-файлы",
     "attachImage": "Прикрепить изображение",
     "attachVideo": "Прикрепить видео",
     "attachFile": "Прикрепить файл",

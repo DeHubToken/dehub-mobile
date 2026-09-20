@@ -3937,6 +3937,8 @@
     "removeAttachment": "አባሪውን አስወግድ",
     "addTip": "ጉርሻ ጨምር",
     "chooseGif": "GIF ይምረጡ",
+    "searchGifs": "GIFs ን ይፈልጉ",
+    "gifsLoadFailed": "GIFs መጫን አልተቻለም",
     "attachImage": "ምስል አያይዝ",
     "attachVideo": "ቪዲዮ አያይዝ",
     "attachFile": "ፋይል አያይዝ",

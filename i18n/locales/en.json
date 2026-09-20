@@ -4014,6 +4014,8 @@
     "removeAttachment": "Remove attachment",
     "addTip": "Add tip",
     "chooseGif": "Choose a GIF",
+    "searchGifs": "Search GIFs",
+    "gifsLoadFailed": "Couldn't load GIFs",
     "attachImage": "Attach image",
     "attachVideo": "Attach video",
     "attachFile": "Attach file",

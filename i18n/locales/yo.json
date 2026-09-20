@@ -3932,6 +3932,8 @@
     "removeAttachment": "Yọ ìsopọ̀ kúrò",
     "addTip": "Fi ẹ̀bùn kún",
     "chooseGif": "Yan GIF",
+    "searchGifs": "Wá àwọn GIF",
+    "gifsLoadFailed": "Kò lè gba àwọn GIF lọ́wọ́",
     "attachImage": "So àwòrán mọ́",
     "attachVideo": "So fídíò mọ́",
     "attachFile": "So fáìlì mọ́",

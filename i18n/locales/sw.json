@@ -3943,6 +3943,8 @@
     "removeAttachment": "Ondoa kiambatisho",
     "addTip": "Ongeza bakshishi",
     "chooseGif": "Chagua GIF",
+    "searchGifs": "Tafuta GIF",
+    "gifsLoadFailed": "Imeshindwa kupakia GIF",
     "attachImage": "Ambatisha picha",
     "attachVideo": "Ambatisha video",
     "attachFile": "Ambatisha faili",

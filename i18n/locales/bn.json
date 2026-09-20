@@ -3927,6 +3927,8 @@
     "removeAttachment": "সংযুক্তি সরান",
     "addTip": "টিপ যোগ করুন",
     "chooseGif": "একটি GIF বাছুন",
+    "searchGifs": "GIF অনুসন্ধান করুন",
+    "gifsLoadFailed": "GIF লোড করা যায়নি",
     "attachImage": "ছবি যুক্ত করুন",
     "attachVideo": "ভিডিও যুক্ত করুন",
     "attachFile": "ফাইল যুক্ত করুন",

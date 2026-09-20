@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, KeyboardAvoidingView, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import env from '../../config/env';
+import { useTranslation } from 'react-i18next';
 
 export type GifPickerProps = {
   visible: boolean;
@@ -10,33 +10,31 @@ export type GifPickerProps = {
   onPick: (url: string) => void;
 };
 
-type TenorResult = {
+// Google retired the Tenor API in 2026 — every call now answers
+// 403 "Tenor API is discontinued". GIPHY is what the web picker
+// (dehubweb EmojiGifPicker) has used all along, with this same public beta
+// key, so both apps now post URLs from one CDN and render each other's GIFs.
+const GIPHY_API_KEY = 'GlVGYHkr3WSBnllca54iNt0yFbjz7L65';
+const GIPHY_BASE = 'https://api.giphy.com/v1/gifs';
+const PAGE_SIZE = 30;
+
+type GiphyGif = {
   id: string;
   title?: string;
-  media_formats?: Record<string, { url: string }>;
-  media?: Array<Record<string, { url: string }>>; // legacy v1 compat
+  images?: {
+    fixed_width?: { url?: string; width?: string; height?: string };
+    fixed_width_small?: { url?: string };
+    original?: { url?: string };
+  };
 };
 
-const CLIENT_KEY = 'dehub-mobile';
+/** The URL a picked GIF is posted with — `fixed_width` matches web. */
+const getGifUrl = (item: GiphyGif): string | null =>
+  item.images?.fixed_width?.url || item.images?.original?.url || null;
 
-const getGifUrl = (item: TenorResult): string | null => {
-  // Prefer v2 media_formats first
-  const fm = item.media_formats || {};
-  const preferred = ['tinygif', 'gif', 'nanogif', 'mp4'];
-  for (const key of preferred) {
-    const u = fm[key]?.url;
-    if (u) return u;
-  }
-  // v1 fallback structure
-  if (Array.isArray(item.media) && item.media.length > 0) {
-    const cand = item.media[0];
-    for (const k of Object.keys(cand)) {
-      const u = (cand as any)[k]?.url;
-      if (u) return u;
-    }
-  }
-  return null;
-};
+/** A lighter rendition for the grid tile; falls back to the posted URL. */
+const getThumbUrl = (item: GiphyGif): string | null =>
+  item.images?.fixed_width_small?.url || getGifUrl(item);
 
 const useDebouncedCallback = (fn: (q: string) => void, delay = 400) => {
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -48,65 +46,74 @@ const useDebouncedCallback = (fn: (q: string) => void, delay = 400) => {
 
 const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
-  const [items, setItems] = useState<TenorResult[]>([]);
+  const [items, setItems] = useState<GiphyGif[]>([]);
   const [error, setError] = useState<string | null>(null);
+  // A slow trending response must not overwrite the search that replaced it.
+  const requestSeq = useRef(0);
 
-  const key = env.TENOR_API_KEY;
-
-  const fetchTenor = useCallback(async (q?: string) => {
-    if (!key) {
-      setError('Missing TENOR_API_KEY');
-      return;
-    }
+  const fetchGifs = useCallback(async (q?: string) => {
+    const seq = ++requestSeq.current;
     setLoading(true);
     setError(null);
     try {
-      const base = 'https://tenor.googleapis.com/v2';
-      const url = q && q.trim().length > 0
-        ? `${base}/search?q=${encodeURIComponent(q)}&key=${key}&client_key=${CLIENT_KEY}&limit=30&media_filter=gif` 
-        : `${base}/featured?key=${key}&client_key=${CLIENT_KEY}&limit=30&media_filter=gif`;
+      const trimmed = q?.trim() ?? '';
+      const url = trimmed.length > 0
+        ? `${GIPHY_BASE}/search?api_key=${GIPHY_API_KEY}&q=${encodeURIComponent(trimmed)}&limit=${PAGE_SIZE}&rating=pg-13`
+        : `${GIPHY_BASE}/trending?api_key=${GIPHY_API_KEY}&limit=${PAGE_SIZE}&rating=pg-13`;
       const res = await fetch(url);
+      if (!res.ok) throw new Error(`GIPHY ${res.status}`);
       const json = await res.json();
-      const results: TenorResult[] = json?.results || [];
-      setItems(results);
+      if (seq !== requestSeq.current) return;
+      const results: GiphyGif[] = Array.isArray(json?.data) ? json.data : [];
+      setItems(results.filter((g) => !!getGifUrl(g)));
     } catch (e: any) {
-      setError(e?.message || 'Failed to load GIFs');
+      if (seq !== requestSeq.current) return;
+      setError(t('dm.gifsLoadFailed'));
     } finally {
-      setLoading(false);
+      if (seq === requestSeq.current) setLoading(false);
     }
-  }, [key]);
+  }, [t]);
 
-  const debouncedSearch = useDebouncedCallback((q) => fetchTenor(q), 450);
+  const debouncedSearch = useDebouncedCallback((q) => fetchGifs(q), 450);
 
   useEffect(() => {
     if (visible) {
-      fetchTenor('');
+      fetchGifs('');
     } else {
+      requestSeq.current++;
       setQuery('');
       setItems([]);
       setError(null);
+      setLoading(false);
     }
-  }, [visible, fetchTenor]);
+  }, [visible, fetchGifs]);
 
-  const onChangeText = useCallback((t: string) => {
-    setQuery(t);
-    debouncedSearch(t);
+  const onChangeText = useCallback((text: string) => {
+    setQuery(text);
+    debouncedSearch(text);
   }, [debouncedSearch]);
 
-  const renderItem = useCallback(({ item }: { item: TenorResult }) => {
+  const renderItem = useCallback(({ item }: { item: GiphyGif }) => {
     const url = getGifUrl(item);
-    if (!url) return null;
+    const thumb = getThumbUrl(item);
+    if (!url || !thumb) return null;
     const onPress = () => onPick(url);
     return (
-      <TouchableOpacity onPress={onPress} activeOpacity={0.8} className="w-1/3 p-1">
+      <TouchableOpacity
+        onPress={onPress}
+        activeOpacity={0.8}
+        className="w-1/3 p-1"
+        accessibilityRole="button"
+        accessibilityLabel={item.title || undefined}
+      >
         <View className="w-full aspect-square rounded-md overflow-hidden bg-theme-neutrals-800 items-center justify-center">
           <Image
-            source={{ uri: url }}
+            source={{ uri: thumb }}
             style={{ width: '100%', height: '100%' }}
             resizeMode="cover"
-            onLoadStart={() => {}}
           />
         </View>
       </TouchableOpacity>
@@ -126,16 +133,17 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
         >
           <View className="flex-row items-center mb-2">
             <TextInput
-              placeholder="Search GIFs"
+              placeholder={t('dm.searchGifs')}
               placeholderTextColor="#9CA3AF"
               value={query}
               onChangeText={onChangeText}
+              autoCorrect={false}
               className="flex-1 h-11 px-3 rounded-lg bg-theme-neutrals-800 text-theme-neutrals-100"
             />
             <TouchableOpacity
               onPress={onPressClose}
               accessibilityRole="button"
-              accessibilityLabel="Close"
+              accessibilityLabel={t('common.close')}
               className="ml-2 w-10 h-10 rounded-xl bg-theme-neutrals-800 items-center justify-center active:opacity-80"
             >
               <Ionicons name="close" size={18} color="#E5E7EB" />
@@ -157,6 +165,8 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
               showsVerticalScrollIndicator={false}
             />
           )}
+          {/* GIPHY's attribution mark — a brand string, kept in English on web too. */}
+          <Text className="text-[10px] text-theme-neutrals-500 text-center pt-2">Powered by GIPHY</Text>
         </View>
       </KeyboardAvoidingView>
     </Modal>

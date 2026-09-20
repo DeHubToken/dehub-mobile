@@ -4109,6 +4109,8 @@
     "removeAttachment": "Odstrániť prílohu",
     "addTip": "Pridať prepitné",
     "chooseGif": "Vybrať GIF",
+    "searchGifs": "Hľadať vo formáte GIF",
+    "gifsLoadFailed": "Nepodarilo sa načítať súbory GIF",
     "attachImage": "Priložiť obrázok",
     "attachVideo": "Priložiť video",
     "attachFile": "Priložiť súbor",

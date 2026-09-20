@@ -4005,6 +4005,8 @@
     "removeAttachment": "Eki kaldır",
     "addTip": "Bahşiş ekle",
     "chooseGif": "GIF seç",
+    "searchGifs": "GIF ara",
+    "gifsLoadFailed": "GIF'ler yüklenemedi",
     "attachImage": "Görsel ekle",
     "attachVideo": "Video ekle",
     "attachFile": "Dosya ekle",

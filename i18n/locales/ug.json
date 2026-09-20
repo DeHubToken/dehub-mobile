@@ -3932,6 +3932,8 @@
     "removeAttachment": "قوشۇمچىنى ئۆچۈرۈش",
     "addTip": "چاي پۇلى قوشۇش",
     "chooseGif": "GIF تاللاش",
+    "searchGifs": "GIF ئىزدەش",
+    "gifsLoadFailed": "GIFلارنى يۈكلىيەلمىدى",
     "attachImage": "رەسىم قوشۇش",
     "attachVideo": "سىن قوشۇش",
     "attachFile": "ھۆججەت قوشۇش",

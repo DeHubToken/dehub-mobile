@@ -4032,6 +4032,8 @@
     "removeAttachment": "সংযুক্তি সরান",
     "addTip": "টিপ যোগ করন",
     "chooseGif": "একগান GIF বাছন",
+    "searchGifs": "GIFs খুঁজুন",
+    "gifsLoadFailed": "GIF লোড অইতা অইসে না",
     "attachImage": "ছবি যোগ করন",
     "attachVideo": "ভিডিও যোগ করন",
     "attachFile": "ফাইল যোগ করন",

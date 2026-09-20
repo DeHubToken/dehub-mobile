@@ -3927,6 +3927,8 @@
     "removeAttachment": "Əlavəni sil",
     "addTip": "Bəxşiş əlavə et",
     "chooseGif": "GIF seç",
+    "searchGifs": "GIF-ləri axtarın",
+    "gifsLoadFailed": "GIF-ləri yükləmək mümkün olmadı",
     "attachImage": "Şəkil əlavə et",
     "attachVideo": "Video əlavə et",
     "attachFile": "Fayl əlavə et",

@@ -3912,6 +3912,8 @@
     "removeAttachment": "Goşundyny aýyr",
     "addTip": "Çaýpuly goş",
     "chooseGif": "GIF saýla",
+    "searchGifs": "GIF-leri gözle",
+    "gifsLoadFailed": "GIF-leri ýükläp bolmady",
     "attachImage": "Surat goş",
     "attachVideo": "Wideo goş",
     "attachFile": "Faýl goş",

@@ -4011,6 +4011,8 @@
     "removeAttachment": "첨부 삭제",
     "addTip": "후원 추가",
     "chooseGif": "GIF 선택",
+    "searchGifs": "GIF 검색",
+    "gifsLoadFailed": "GIF를 로드할 수 없습니다",
     "attachImage": "이미지 첨부",
     "attachVideo": "동영상 첨부",
     "attachFile": "파일 첨부",

@@ -3947,6 +3947,8 @@
     "removeAttachment": "Fjern vedhæftning",
     "addTip": "Tilføj drikkepenge",
     "chooseGif": "Vælg en GIF",
+    "searchGifs": "Søg i GIF'er",
+    "gifsLoadFailed": "Kunne ikke indlæse GIF'er",
     "attachImage": "Vedhæft billede",
     "attachVideo": "Vedhæft video",
     "attachFile": "Vedhæft fil",

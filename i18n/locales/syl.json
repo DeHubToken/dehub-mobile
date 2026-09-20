@@ -4086,6 +4086,8 @@
     "removeAttachment": "সংযুক্তি সরাও",
     "addTip": "টিপ যোগ করউ",
     "chooseGif": "একটা GIF বাছউ",
+    "searchGifs": "GIFs খুঁজুন",
+    "gifsLoadFailed": "GIF লোড করা যায়নি",
     "attachImage": "ছবি যোগ করউ",
     "attachVideo": "ভিডিও যোগ করউ",
     "attachFile": "ফাইল যোগ করউ",

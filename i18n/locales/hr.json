@@ -3943,6 +3943,8 @@
     "removeAttachment": "Ukloni privitak",
     "addTip": "Dodaj napojnicu",
     "chooseGif": "Odaberi GIF",
+    "searchGifs": "Pretraži GIF-ove",
+    "gifsLoadFailed": "Učitavanje GIF-ova nije uspjelo",
     "attachImage": "Priloži sliku",
     "attachVideo": "Priloži videozapis",
     "attachFile": "Priloži datoteku",

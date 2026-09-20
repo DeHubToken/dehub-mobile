@@ -3936,6 +3936,8 @@
     "removeAttachment": "Հեռացնել կցորդը",
     "addTip": "Ավելացնել թեյավճար",
     "chooseGif": "Ընտրել GIF",
+    "searchGifs": "Որոնել gif - եր",
+    "gifsLoadFailed": "Չհաջողվեց բեռնել gif - եր",
     "attachImage": "Կցել նկար",
     "attachVideo": "Կցել տեսանյութ",
     "attachFile": "Կցել ֆայլ",

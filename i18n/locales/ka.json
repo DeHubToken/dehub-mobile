@@ -3977,6 +3977,8 @@
     "removeAttachment": "დანართის წაშლა",
     "addTip": "ჩაის დამატება",
     "chooseGif": "აირჩიე GIF",
+    "searchGifs": "GIF-ების ძებნა",
+    "gifsLoadFailed": "GIF-ების ჩატვირთვის შეცდომა",
     "attachImage": "სურათის მიმაგრება",
     "attachVideo": "ვიდეოს მიმაგრება",
     "attachFile": "ფაილის მიმაგრება",

@@ -3961,6 +3961,8 @@
     "removeAttachment": "លុបឯកសារភ្ជាប់",
     "addTip": "បន្ថែមទឹកតែ",
     "chooseGif": "ជ្រើសរើស GIF",
+    "searchGifs": "ស្វែងរក GIFs",
+    "gifsLoadFailed": "មិនអាចផ្ទុក GIF បានទេ",
     "attachImage": "ភ្ជាប់រូបភាព",
     "attachVideo": "ភ្ជាប់វីដេអូ",
     "attachFile": "ភ្ជាប់ឯកសារ",

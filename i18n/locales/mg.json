@@ -4021,6 +4021,8 @@
     "removeAttachment": "Esory ny tovana",
     "addTip": "Manampy tolotra",
     "chooseGif": "Mifidiana GIF",
+    "searchGifs": "Karohy GIFs",
+    "gifsLoadFailed": "Tsy afaka naka ny GIF",
     "attachImage": "Tohizo sary",
     "attachVideo": "Tohizo lahatsary",
     "attachFile": "Tohizo rakitra",

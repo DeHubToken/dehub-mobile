@@ -3940,6 +3940,8 @@
     "removeAttachment": "منسلکہ ہٹائیں",
     "addTip": "ٹپ شامل کریں",
     "chooseGif": "GIF منتخب کریں",
+    "searchGifs": "GIFs تلاش کریں",
+    "gifsLoadFailed": "GIFs لوڈ نہیں ہو سکے",
     "attachImage": "تصویر منسلک کریں",
     "attachVideo": "ویڈیو منسلک کریں",
     "attachFile": "فائل منسلک کریں",

@@ -3684,6 +3684,8 @@
     "removeAttachment": "Уклони прилог",
     "addTip": "Додај напојницу",
     "chooseGif": "Изабери GIF",
+    "searchGifs": "Pretražite GIF-ove",
+    "gifsLoadFailed": "Učitavanje GIF-ova nije uspelo",
     "attachImage": "Приложи слику",
     "attachVideo": "Приложи видео",
     "attachFile": "Приложи датотеку",

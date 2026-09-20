@@ -3927,6 +3927,8 @@
     "removeAttachment": "Tangohia te āpitihanga",
     "addTip": "Tāpiri koha",
     "chooseGif": "Kōwhiria he GIF",
+    "searchGifs": "Rapua nga GIF",
+    "gifsLoadFailed": "Kaore e taea te utaina GIF",
     "attachImage": "Āpitihia he whakaahua",
     "attachVideo": "Āpitihia he ataata",
     "attachFile": "Āpitihia he kōnae",

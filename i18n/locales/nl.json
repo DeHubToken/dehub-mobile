@@ -4210,6 +4210,8 @@
     "removeAttachment": "Bijlage verwijderen",
     "addTip": "Fooi toevoegen",
     "chooseGif": "Kies een GIF",
+    "searchGifs": "GIF's zoeken",
+    "gifsLoadFailed": "Kan GIF's niet laden",
     "attachImage": "Afbeelding bijvoegen",
     "attachVideo": "Video bijvoegen",
     "attachFile": "Bestand bijvoegen",
