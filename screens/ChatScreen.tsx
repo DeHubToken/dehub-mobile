@@ -49,7 +49,7 @@ import { useUser, useAuthState, useAuthActions, useProvider } from "../context/A
 import { useTranslation } from "react-i18next";
 import { useBannedAccount } from "../hooks/useBannedAccount";
 import type { User } from "../context/AuthContext";
-import { useWebSocket } from "../context/WebSocketContext";
+import { useWebSocketApi } from "../context/WebSocketContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
@@ -152,7 +152,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 
-  const ws = useWebSocket();
+  const ws = useWebSocketApi();
   const { showUserProfile } = useUserProfileSheet();
 
   const { provider, account, chainId } = useWeb3Provider();
