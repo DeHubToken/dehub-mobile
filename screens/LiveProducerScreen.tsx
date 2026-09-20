@@ -83,7 +83,8 @@ const LiveProducerScreen: React.FC = () => {
   const {
     on: socketOn,
     emitAuthed: socketEmitAuthed,
-    connected,
+    coreConnected: connected,
+    connectionEpoch,
   } = useWebSocket();
   // console.log("LiveProducers", { connected });
   const [showEndConfirm, setShowEndConfirm] = useState(false);
@@ -335,7 +336,9 @@ const LiveProducerScreen: React.FC = () => {
     joinedRoomRef.current = true;
   }, [streamId, socketEmitAuthed]);
 
-  // Rejoin on reconnect
+  // Rejoin on reconnect. Keyed on the connection epoch rather than on a
+  // boolean: a socket replaced underneath the screen never shows a false, and
+  // the host would have spent the rest of the broadcast outside their own room.
   useEffect(() => {
     if (!connected || !streamId) return;
     console.log("[LiveProducer] Reconnected, rejoin room");
@@ -344,7 +347,7 @@ const LiveProducerScreen: React.FC = () => {
     // if (stage === 'starting' || stage === 'live') {
     //   socketEmitAuthed(LivestreamEvents.JoinStream, { streamId });
     // }
-  }, [connected, streamId, stage, socketEmitAuthed]);
+  }, [connected, connectionEpoch, streamId, stage, socketEmitAuthed]);
 
   // Socket event listeners: start, end, view count, like, tip
   useEffect(() => {
