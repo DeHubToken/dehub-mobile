@@ -158,6 +158,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
           nft,
           accessInfo,
           streamId: (nft as any)?.stream?._id || (nft as any)?.stream?.id || nft?._id,
+          tokenId,
         });
       } else {
         navigation.navigate(ScreenNames.FeedDetail, {

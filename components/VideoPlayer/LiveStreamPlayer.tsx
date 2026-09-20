@@ -1182,7 +1182,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // post to /api/live/:id/like — a counter on the stream document nothing
   // else reads — so a like here never showed anywhere else, and never showed
   // as pressed after a reload.
-  const postTokenId = streamEntity?.tokenId ?? tokenId ?? null;
+  // The feed card already holds the post, so its tokenId is known before the
+  // stream request comes back — and it is the only source for a stream whose
+  // details omit it.
+  const postTokenId =
+    streamEntity?.tokenId ?? tokenId ?? (nftProp as any)?.tokenId ?? null;
   const postReactions = useLivePostReactions({
     tokenId: postTokenId,
     userAddress: (user?.walletAddress || user?.address || "").toLowerCase() || undefined,
@@ -1348,7 +1352,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // and a browser watching the same stream were in two different chats,
   // and the phone's had no avatars because that gateway sends none.
   const chatRoomId = postTokenId != null ? `stream:${postTokenId}` : undefined;
-  const liveChat = useLiveChat(chatRoomId);
+  const liveChat = useLiveChat(chatRoomId, { requireRoom: true });
 
   // One list for the chat overlay: the room's messages, plus the join/gift/
   // system moments the livestream socket still carries.
