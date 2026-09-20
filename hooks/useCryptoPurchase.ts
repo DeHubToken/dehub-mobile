@@ -1,5 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { defaultRefund, isPurchaseTerminal, paymentKey, purchasePollDelay, validDhbAmount, type PaymentAsset, type PaymentQuote, type Purchase } from '../libs/crypto-purchase';
+import { createLogger } from '../libs/logger';
+
+// Every failure in this flow used to end as red text under the form and
+// nothing else. Twenty purchases expired in four days with no payment on
+// chain and no row anywhere saying why; the buyer's screen was the only
+// record. Ship the reason with the step it failed at.
+const log = createLogger('CryptoPurchase');
+const describe = (e: unknown) => (e instanceof Error ? e.message : String(e));
 
 export interface PurchaseApi {
   assets(): Promise<PaymentAsset[]>;
@@ -112,11 +120,21 @@ export function useCryptoPurchase(api: PurchaseApi, wallet: string, amount: numb
       const data = await api.quote({ originAsset: selected.assetId, tokensToReceive: amount, refundTo: refund.trim() || undefined, address: wallet });
       if (sequence === quoteSequence.current && currentKey.current === requestedKey) setQuoted({ key: requestedKey, at: Date.now(), data });
     } catch (e) {
-      if (sequence === quoteSequence.current && currentKey.current === requestedKey) setError(e instanceof Error ? e.message : String(e));
+      log.error('Quote failed', { step: 'quote', asset: selected.assetId, amount, error: describe(e) }, e);
+      if (sequence === quoteSequence.current && currentKey.current === requestedKey) setError(describe(e));
     } finally { if (sequence === quoteSequence.current) setBusy(null); }
   };
   const create = async () => {
-    if (loading || historyFailed || !quote || !quoted || Date.now() - quoted.at >= 60_000 || !selected || !wallet || !refund.trim() || !validDhbAmount(amount) || createLock.current) return;
+    if (loading || historyFailed || !selected || !wallet || !refund.trim() || !validDhbAmount(amount) || createLock.current) return;
+    // A quote is good for a minute. Past that the button used to do nothing
+    // at all — no error, no request — so a buyer who read the terms for a
+    // while pressed Pay into a void. Re-price instead; the button then reads
+    // "Pay" again with a live number behind it.
+    if (!quote || !quoted || Date.now() - quoted.at >= 60_000) {
+      log.warn('Quote expired before payment; re-pricing', { step: 'create', asset: selected.assetId, amount });
+      await price();
+      return;
+    }
     createLock.current = true; setBusy('create'); setError('');
     const owner = wallet;
     if (retry.current?.key !== key) retry.current = { key, id: `purchase_${Date.now()}_${Math.random().toString(36).slice(2)}` };
@@ -127,21 +145,33 @@ export function useCryptoPurchase(api: PurchaseApi, wallet: string, amount: numb
       setPurchase(saved); setHistory(rows => [saved, ...rows.filter(row => row.id !== saved.id)]); setQuoted(null); retry.current = null;
       return saved;
     } catch (e) {
+      log.error('Purchase could not be opened', { step: 'create', asset: selected.assetId, amount, error: describe(e) }, e);
       if (account.current !== owner) return;
-      setError(e instanceof Error ? e.message : String(e));
+      setError(describe(e));
       // A timed-out response may already have created the purchase. Recover it.
       setRevision(v => v + 1);
     } finally { createLock.current = false; if (account.current === owner) setBusy(null); }
   };
   const pay = async (receipt: Purchase, send: (receipt: Purchase) => Promise<string>) => {
-    if (createLock.current || receipt.paymentTxHash || receipt.expiresAt * 1000 <= Date.now() || !api.confirm) return;
+    const confirm = api.confirm;
+    const skipped = createLock.current ? 'busy' : receipt.paymentTxHash ? 'already-paid' : receipt.expiresAt * 1000 <= Date.now() ? 'expired' : !confirm ? 'no-confirm' : null;
+    if (skipped || !confirm) {
+      log.warn('Payment step skipped', { step: 'pay', reason: skipped, id: receipt.id, asset: receipt.originAsset, chain: receipt.paymentChainId });
+      return;
+    }
     createLock.current = true; setBusy('pay'); setError('');
+    let hash: string | undefined;
     try {
-      const hash = await send(receipt);
+      hash = await send(receipt);
       setPurchase({ ...receipt, paymentTxHash: hash });
-      const updated = await api.confirm(receipt.id, hash);
+      const updated = await confirm(receipt.id, hash);
       setPurchase(updated);
-    } catch (error) { setError(error instanceof Error ? error.message : String(error)); }
+    } catch (error) {
+      // Which half failed matters: before a hash nothing left the wallet;
+      // after one the money moved and only the server has not heard yet.
+      log.error(hash ? 'Payment sent but not confirmed' : 'Payment could not be sent', { step: hash ? 'confirm' : 'send', id: receipt.id, asset: receipt.originAsset, chain: receipt.paymentChainId, wrap: receipt.wrapNativePayment, hash, error: describe(error) }, error);
+      setError(describe(error));
+    }
     finally { createLock.current = false; setBusy(null); refresh(); }
   };
   const refresh = useCallback(() => setRevision(v => v + 1), []);
