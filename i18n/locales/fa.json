@@ -2492,7 +2492,8 @@
     "livePreview": "پیش‌نمایش زنده",
     "publishChanges": "انتشار تغییرات",
     "pagePublished": "صفحه دعوت منتشر شد",
-    "pageSaveFailed": "ذخیره صفحه دعوت ممکن نشد"
+    "pageSaveFailed": "ذخیره صفحه دعوت ممکن نشد",
+    "selfVisitsExcluded": "بازدیدهای خودتان از لینکتان محاسبه نمی‌شود."
   },
   "top100": {
     "title": "۱۰۰ برتر",

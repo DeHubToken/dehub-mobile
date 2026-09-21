@@ -2466,7 +2466,8 @@
     "livePreview": "Live-Vorschau",
     "publishChanges": "Änderige veröffentliche",
     "pagePublished": "Iiladigssite veröffentlicht",
-    "pageSaveFailed": "D Iiladigssite het nöd chöne gspeicheret werde"
+    "pageSaveFailed": "D Iiladigssite het nöd chöne gspeicheret werde",
+    "selfVisitsExcluded": "Dini eigete Bsuech uf dim Link wärded nöd mitzählt."
   },
   "top100": {
     "title": "Top 100",

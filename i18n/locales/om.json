@@ -2542,7 +2542,8 @@
     "livePreview": "Duraargii kallattii",
     "publishChanges": "Jijjiirama maxxansi",
     "pagePublished": "Fuulli afeerraa maxxanfameera",
-    "pageSaveFailed": "Fuula afeerraa olkaa'uun hin dandaʼamne"
+    "pageSaveFailed": "Fuula afeerraa olkaa'uun hin dandaʼamne",
+    "selfVisitsExcluded": "Daawwannaan mataa keessanii link keessan irratti gootan hin lakkaa&#39;amu."
   },
   "top100": {
     "title": "Ol'aanaa 100",

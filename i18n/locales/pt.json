@@ -2496,7 +2496,8 @@
     "livePreview": "Pré-visualização ao vivo",
     "publishChanges": "Publicar alterações",
     "pagePublished": "Página de convite publicada",
-    "pageSaveFailed": "Não foi possível guardar a página de convite"
+    "pageSaveFailed": "Não foi possível guardar a página de convite",
+    "selfVisitsExcluded": "As suas próprias visitas ao seu link não são contabilizadas."
   },
   "top100": {
     "title": "Top 100",

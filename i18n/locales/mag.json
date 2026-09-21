@@ -2446,7 +2446,8 @@
     "livePreview": "लाइव झलक",
     "publishChanges": "बदलाव प्रकासित करऽ",
     "pagePublished": "नेवता पन्ना प्रकासित भ गेल",
-    "pageSaveFailed": "नेवता पन्ना सेव ना हो सकल"
+    "pageSaveFailed": "नेवता पन्ना सेव ना हो सकल",
+    "selfVisitsExcluded": "अपन रिज्यूमे के लिंक अपने के मेल न मिलल हई ।"
   },
   "top100": {
     "title": "शीर्ष 100",

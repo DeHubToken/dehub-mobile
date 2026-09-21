@@ -2478,7 +2478,8 @@
     "livePreview": "Pratinjau langsung",
     "publishChanges": "Terbitkan perubahan",
     "pagePublished": "Halaman undangan diterbitkan",
-    "pageSaveFailed": "Tidak dapat menyimpan halaman undangan"
+    "pageSaveFailed": "Tidak dapat menyimpan halaman undangan",
+    "selfVisitsExcluded": "Kunjungan Anda sendiri ke tautan Anda tidak dihitung."
   },
   "top100": {
     "title": "Top 100",

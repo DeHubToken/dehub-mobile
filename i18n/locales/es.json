@@ -2493,7 +2493,8 @@
     "livePreview": "Vista previa en vivo",
     "publishChanges": "Publicar cambios",
     "pagePublished": "Página de invitación publicada",
-    "pageSaveFailed": "No se pudo guardar la página de invitación"
+    "pageSaveFailed": "No se pudo guardar la página de invitación",
+    "selfVisitsExcluded": "Sus propias visitas a su enlace no se cuentan."
   },
   "top100": {
     "title": "Top 100",

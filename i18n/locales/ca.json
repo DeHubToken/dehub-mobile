@@ -2477,7 +2477,8 @@
     "livePreview": "Vista prèvia en directe",
     "publishChanges": "Publica els canvis",
     "pagePublished": "Pàgina d'invitació publicada",
-    "pageSaveFailed": "No s'ha pogut desar la pàgina d'invitació"
+    "pageSaveFailed": "No s'ha pogut desar la pàgina d'invitació",
+    "selfVisitsExcluded": "Les teves pròpies visites a l'enllaç no es comptabilitzen."
   },
   "top100": {
     "title": "Top 100",

@@ -2444,7 +2444,8 @@
     "livePreview": "ژوندۍ مخکتنه",
     "publishChanges": "بدلونونه خپاره کړئ",
     "pagePublished": "د بلنې پاڼه خپره شوه",
-    "pageSaveFailed": "د بلنې پاڼه ونه ساتل شوه"
+    "pageSaveFailed": "د بلنې پاڼه ونه ساتل شوه",
+    "selfVisitsExcluded": "ستاسو په لینک کې ستاسو شخصي لیدنې حساب نه کیږي."
   },
   "top100": {
     "title": "لوړ 100",

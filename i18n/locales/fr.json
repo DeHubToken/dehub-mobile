@@ -2496,7 +2496,8 @@
     "livePreview": "Aperçu en direct",
     "publishChanges": "Publier les modifications",
     "pagePublished": "Page d'invitation publiée",
-    "pageSaveFailed": "Impossible d'enregistrer la page d'invitation"
+    "pageSaveFailed": "Impossible d'enregistrer la page d'invitation",
+    "selfVisitsExcluded": "Vos propres visites sur votre lien ne sont pas comptabilisées."
   },
   "top100": {
     "title": "Top 100",

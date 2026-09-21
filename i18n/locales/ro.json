@@ -2490,7 +2490,8 @@
     "livePreview": "Previzualizare live",
     "publishChanges": "Publică modificările",
     "pagePublished": "Pagina de invitație a fost publicată",
-    "pageSaveFailed": "Pagina de invitație nu a putut fi salvată"
+    "pageSaveFailed": "Pagina de invitație nu a putut fi salvată",
+    "selfVisitsExcluded": "Vizitele dvs. la link-ul dvs. nu sunt luate în considerare."
   },
   "top100": {
     "title": "Top 100",

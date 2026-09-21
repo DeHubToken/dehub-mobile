@@ -2476,7 +2476,8 @@
     "livePreview": "即時預覽",
     "publishChanges": "發佈更改",
     "pagePublished": "邀請頁已發佈",
-    "pageSaveFailed": "無法儲存邀請頁"
+    "pageSaveFailed": "無法儲存邀請頁",
+    "selfVisitsExcluded": "你自己瀏覽你嘅連結唔會計入去。"
   },
   "top100": {
     "title": "頭 100",

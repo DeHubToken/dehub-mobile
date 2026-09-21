@@ -2492,7 +2492,8 @@
     "livePreview": "실시간 미리보기",
     "publishChanges": "변경사항 게시",
     "pagePublished": "초대 페이지를 게시했습니다",
-    "pageSaveFailed": "초대 페이지를 저장하지 못했습니다"
+    "pageSaveFailed": "초대 페이지를 저장하지 못했습니다",
+    "selfVisitsExcluded": "직접 링크를 방문한 횟수는 계산되지 않습니다."
   },
   "top100": {
     "title": "톱 100",

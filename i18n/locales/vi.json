@@ -2565,7 +2565,8 @@
     "livePreview": "Xem trước trực tiếp",
     "publishChanges": "Đăng thay đổi",
     "pagePublished": "Đã đăng trang mời",
-    "pageSaveFailed": "Không lưu được trang mời"
+    "pageSaveFailed": "Không lưu được trang mời",
+    "selfVisitsExcluded": "Số lượt truy cập vào liên kết của bạn không được tính."
   },
   "top100": {
     "title": "Top 100",

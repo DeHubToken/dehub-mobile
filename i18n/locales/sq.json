@@ -2477,7 +2477,8 @@
     "livePreview": "Parapamje live",
     "publishChanges": "Publiko ndryshimet",
     "pagePublished": "Faqja e ftesës u publikua",
-    "pageSaveFailed": "Faqja e ftesës nuk u ruajt dot"
+    "pageSaveFailed": "Faqja e ftesës nuk u ruajt dot",
+    "selfVisitsExcluded": "Vizitat e tua në linkun tënd nuk llogariten."
   },
   "top100": {
     "title": "Top 100",

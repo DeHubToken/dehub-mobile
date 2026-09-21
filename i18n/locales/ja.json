@@ -2491,7 +2491,8 @@
     "livePreview": "ライブプレビュー",
     "publishChanges": "変更を公開",
     "pagePublished": "招待ページを公開しました",
-    "pageSaveFailed": "招待ページを保存できませんでした"
+    "pageSaveFailed": "招待ページを保存できませんでした",
+    "selfVisitsExcluded": "リンクへのあなた自身の訪問はカウントされません。"
   },
   "top100": {
     "title": "トップ 100",

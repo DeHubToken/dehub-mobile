@@ -2465,7 +2465,8 @@
     "livePreview": "תצוגה מקדימה חיה",
     "publishChanges": "פרסום השינויים",
     "pagePublished": "עמוד ההזמנה פורסם",
-    "pageSaveFailed": "לא ניתן היה לשמור את עמוד ההזמנה"
+    "pageSaveFailed": "לא ניתן היה לשמור את עמוד ההזמנה",
+    "selfVisitsExcluded": "הביקורים שלכם בקישור לא נספרו."
   },
   "top100": {
     "title": "100 המובילים",

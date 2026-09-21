@@ -2492,7 +2492,8 @@
     "livePreview": "Anteprima dal vivo",
     "publishChanges": "Pubblica le modifiche",
     "pagePublished": "Pagina di invito pubblicata",
-    "pageSaveFailed": "Impossibile salvare la pagina di invito"
+    "pageSaveFailed": "Impossibile salvare la pagina di invito",
+    "selfVisitsExcluded": "Le tue visite al tuo link non vengono conteggiate."
   },
   "top100": {
     "title": "Top 100",

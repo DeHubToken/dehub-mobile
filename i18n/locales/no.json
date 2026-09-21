@@ -2473,7 +2473,8 @@
     "livePreview": "Direkteforhåndsvisning",
     "publishChanges": "Publiser endringer",
     "pagePublished": "Invitasjonssiden er publisert",
-    "pageSaveFailed": "Kunne ikke lagre invitasjonssiden"
+    "pageSaveFailed": "Kunne ikke lagre invitasjonssiden",
+    "selfVisitsExcluded": "Dine egne besøk på lenken din telles ikke."
   },
   "top100": {
     "title": "Topp 100",

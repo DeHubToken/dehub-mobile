@@ -2481,7 +2481,8 @@
     "livePreview": "Élő előnézet",
     "publishChanges": "Változtatások közzététele",
     "pagePublished": "A meghívó oldal közzétéve",
-    "pageSaveFailed": "A meghívó oldalt nem sikerült menteni"
+    "pageSaveFailed": "A meghívó oldalt nem sikerült menteni",
+    "selfVisitsExcluded": "A linkjére tett saját látogatásait a rendszer nem számolja."
   },
   "top100": {
     "title": "Top 100",
