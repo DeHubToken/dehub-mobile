@@ -626,7 +626,14 @@
     },
     "socialFollowers": "Abalandeli ku- {{platform}}",
     "socialFollowersHint": "Kuboniswe kuphrofayili yakho njengengxenye yengqikithi yokufinyelela kwakho. Faka inombolo ngokwakho — asiyifundi enkundleni.",
-    "socialFollowersPlaceholder": "isib. 12500"
+    "socialFollowersPlaceholder": "isib. 12500",
+    "aiScraping": {
+      "section": "Ukuqeqeshwa kwe-AI",
+      "label": "Vumela i-AI iklwebhe okusunguliwe kwami",
+      "hintAllow": "Amasistimu we-AI nabakhasa abahlonipha lesi siginali bangaqeqesha kumsindo wakho, emisebenzini yobuciko nasekubhaleni.",
+      "hintDeny": "Amasistimu we-AI nabakhasa abahlonipha lesi siginali bacelwa ukuba bangaqeqeshi umsindo, ubuciko nokubhala kwakho. Ama-crawlers angayinaki isignali awavinjwa yiyo.",
+      "saved": "Okuthandwa ukuqeqeshwa kwe-AI kugciniwe"
+    }
   },
   "common": {
     "mute": "Thulisa",
@@ -1631,7 +1638,11 @@
       "dehubFollowers": "Abalandeli be-DeHub",
       "selfReported": "Izibalo zabalandeli zomphakathi zifakwa umsunguli."
     },
-    "tabPlaylists": "Uhlu lokudlalwayo"
+    "tabPlaylists": "Uhlu lokudlalwayo",
+    "aiScraping": {
+      "allowed": "Lo msunguli uvumela ukuqeqeshwa kwe-AI kulokhu okuqukethwe.",
+      "denied": "Lo msunguli akakuvumeli ukuqeqeshwa kwe-AI kulokhu okusunguliwe."
+    }
   },
   "tv": {
     "title": "TV",

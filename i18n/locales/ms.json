@@ -1159,7 +1159,14 @@
     },
     "socialFollowers": "Pengikut di {{platform}}",
     "socialFollowersHint": "Ditunjukkan pada profil anda sebagai sebahagian daripada jumlah capaian anda. Masukkan nombor itu sendiri — kami tidak membacanya dari platform.",
-    "socialFollowersPlaceholder": "cth. 12500"
+    "socialFollowersPlaceholder": "cth. 12500",
+    "aiScraping": {
+      "section": "Latihan AI",
+      "label": "Benarkan AI mengikis kandungan saya",
+      "hintAllow": "Sistem AI dan perayap yang menghormati isyarat ini boleh melatih audio, karya seni dan tulisan anda.",
+      "hintDeny": "Sistem AI dan perayap yang menghormati isyarat ini diminta untuk tidak melatih audio, karya seni dan tulisan anda. Perayap yang mengabaikan isyarat tidak disekat olehnya.",
+      "saved": "Pilihan latihan AI disimpan"
+    }
   },
   "postOptions": {
     "options": "Options",
@@ -2088,7 +2095,11 @@
       "dehubFollowers": "Pengikut DeHub",
       "selfReported": "Kiraan pengikut sosial dimasukkan oleh pengkarya."
     },
-    "tabPlaylists": "Senarai main"
+    "tabPlaylists": "Senarai main",
+    "aiScraping": {
+      "allowed": "Pengkarya ini membenarkan latihan AI pada kandungan ini.",
+      "denied": "Pengkarya ini tidak membenarkan latihan AI pada kandungan ini."
+    }
   },
   "tv": {
     "title": "TV",

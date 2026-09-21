@@ -628,7 +628,14 @@
     },
     "socialFollowers": "Obserwujący na {{platform}}",
     "socialFollowersHint": "Wyświetlane na Twoim profilu jako część całkowitego zasięgu. Wpisz numer samodzielnie — nie odczytujemy go z platformy.",
-    "socialFollowersPlaceholder": "np. 12500"
+    "socialFollowersPlaceholder": "np. 12500",
+    "aiScraping": {
+      "section": "Szkolenie AI",
+      "label": "Zezwalaj na skrobanie moich treści przez sztuczną inteligencję",
+      "hintAllow": "Systemy sztucznej inteligencji i roboty, które respektują ten sygnał, mogą trenować dźwięk, grafikę i pisanie.",
+      "hintDeny": "Systemy sztucznej inteligencji i roboty, które respektują ten sygnał, są proszone o nieszkolenie się w zakresie dźwięku, grafiki i pisania. Nie blokuje on robotów, które ignorują sygnał.",
+      "saved": "Zapisano preferencje treningu sztucznej inteligencji"
+    }
   },
   "common": {
     "mute": "Wycisz",
@@ -1894,7 +1901,11 @@
       "dehubFollowers": "Obserwujący DeHub",
       "selfReported": "Liczby obserwujących społeczności są wprowadzane przez twórcę."
     },
-    "tabPlaylists": "Playlisty"
+    "tabPlaylists": "Playlisty",
+    "aiScraping": {
+      "allowed": "Ten twórca zezwala na szkolenie sztucznej inteligencji w zakresie tych treści.",
+      "denied": "Ten twórca nie zezwala na szkolenie sztucznej inteligencji w zakresie tych treści."
+    }
   },
   "tv": {
     "title": "TV",

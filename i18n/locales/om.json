@@ -643,7 +643,14 @@
     },
     "socialFollowers": "Hordoftoota irratti {{platform}}",
     "socialFollowersHint": "Gama profayila keetiin akka walii galatti argamuuf. Lakkofsa ofii kee galchi — isaa platform irraa hin dubbisnu.",
-    "socialFollowersPlaceholder": "fknf 12500"
+    "socialFollowersPlaceholder": "fknf 12500",
+    "aiScraping": {
+      "section": "Leenjii AI",
+      "label": "Qabiyyee koo AIn akka scraping godhu hayyami",
+      "hintAllow": "Sirnoonni AI fi crawlers mallattoo kana kabajan sagalee, hojii aartii fi barreeffama keessan irratti leenji&#39;uu danda&#39;u.",
+      "hintDeny": "Sirnoonni AI fi crawlers mallattoo kana kabajan sagalee, hojii aartii fi barreeffama keessan irratti akka hin leenjifamne gaafatamna. Crawlers kanneen mallattoo tuffatan ittiin hin ugguraman.",
+      "saved": "Filannoon leenjii AI qusatameera"
+    }
   },
   "common": {
     "mute": "Sagalee cufi",
@@ -1660,7 +1667,11 @@
       "dehubFollowers": "Hordoftoota DeHub",
       "selfReported": "Lakkoofsi hordoftoota hawaasummaa uumaan galcha."
     },
-    "tabPlaylists": "Tarreewwan tapha"
+    "tabPlaylists": "Tarreewwan tapha",
+    "aiScraping": {
+      "allowed": "Uumaan kun qabiyyee kana irratti leenjii AI ni hayyama.",
+      "denied": "Uumaan kun qabiyyee kana irratti leenjii AI hin hayyamu."
+    }
   },
   "dao": {
     "title": "Kasaa DAO",

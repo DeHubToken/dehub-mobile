@@ -627,7 +627,14 @@
     },
     "socialFollowers": "Sekėjai {{platform}}",
     "socialFollowersHint": "Rodoma jūsų profilyje kaip bendro pasiekiamumo dalis. Įveskite numerį patys — mes jo nenuskaitome iš platformos.",
-    "socialFollowersPlaceholder": "pvz., 12500"
+    "socialFollowersPlaceholder": "pvz., 12500",
+    "aiScraping": {
+      "section": "Dirbtinio intelekto mokymas",
+      "label": "Leisti DI išgryninti mano turinį",
+      "hintAllow": "Dirbtinio intelekto sistemos ir skaitytuvai, kurie atsižvelgia į šį signalą, gali treniruoti jūsų garsą, meno kūrinius ir rašymą.",
+      "hintDeny": "Dirbtinio intelekto sistemų ir skaitytuvų, kurie atsižvelgia į šį signalą, prašoma nesitreniruoti garso, meno kūrinių ir rašymo srityse. Šliaužiklių, kurie ignoruoja signalą, jis neblokuoja.",
+      "saved": "Dirbtinio intelekto mokymo nuostata išsaugota"
+    }
   },
   "common": {
     "mute": "Nutildyti",
@@ -1631,7 +1638,11 @@
       "dehubFollowers": "„DeHub“ sekėjai",
       "selfReported": "Socialinių sekėjų skaičių įveda kūrėjas."
     },
-    "tabPlaylists": "Grojaraščiai"
+    "tabPlaylists": "Grojaraščiai",
+    "aiScraping": {
+      "allowed": "Šis kūrėjas leidžia DI mokymus apie šį turinį.",
+      "denied": "Šis kūrėjas neleidžia DI mokymų apie šį turinį."
+    }
   },
   "tv": {
     "title": "TV",
