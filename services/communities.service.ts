@@ -1,5 +1,10 @@
 import { supabase } from "./supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
+import {
+  contentTypeForExtension,
+  fileExtension,
+  uploadLocalFileToBucket,
+} from "../libs/storage-upload";
 import type {
   AdminRight,
   Community,
@@ -299,19 +304,17 @@ export async function uploadCommunityMedia(
   slug: string,
   type: "avatar" | "banner",
 ): Promise<string> {
-  const ext = localUri.split(".").pop()?.split("?")[0] || "jpg";
+  const ext = fileExtension({ uri: localUri }, "jpg");
   const path = `${slug}/${type}_${Date.now()}.${ext}`;
-  const response = await fetch(localUri);
-  const blob = await response.blob();
   // Not upsert: the path already carries a timestamp so it never collides, and
   // storage UPDATE is no longer granted to anyone — it was the hole that let any
   // visitor replace a community's branding at its published path.
-  const { error } = await supabase.storage
-    .from("community-media")
-    .upload(path, blob, { upsert: false, contentType: blob.type || "image/jpeg" });
-  if (error) throw error;
-  const { data } = supabase.storage.from("community-media").getPublicUrl(path);
-  return data.publicUrl;
+  return uploadLocalFileToBucket({
+    bucket: "community-media",
+    path,
+    uri: localUri,
+    contentType: contentTypeForExtension(ext, "image/jpeg"),
+  });
 }
 
 // ─── Moderation RPCs ─────────────────────────────────────────────────────────

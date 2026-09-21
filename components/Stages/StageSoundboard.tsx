@@ -21,6 +21,7 @@ import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator, Alert } fr
 import * as DocumentPicker from "expo-document-picker";
 import Icon from "../ui/Icon";
 import { supabase } from "../../services/supabase";
+import { uploadLocalFileToBucket } from "../../libs/storage-upload";
 import { useStages } from "../../context/StageContext";
 import { useAuth } from "../../context/AuthContext";
 import { toastError, toastSuccess } from "../../libs";
@@ -130,11 +131,12 @@ const StageSoundboard: React.FC = () => {
       setIsUploading(true);
       const safeName = (asset.name || "sound").replace(/[^a-zA-Z0-9._-]/g, "_").toLowerCase();
       const path = `${folder}/${Date.now()}-${safeName}`;
-      const blob = await (await fetch(asset.uri)).blob();
-      const { error } = await supabase.storage
-        .from(BUCKET)
-        .upload(path, blob, { upsert: false, contentType: asset.mimeType || blob.type || "audio/mpeg" });
-      if (error) throw error;
+      await uploadLocalFileToBucket({
+        bucket: BUCKET,
+        path,
+        uri: asset.uri,
+        contentType: asset.mimeType || "audio/mpeg",
+      });
 
       toastSuccess("Sound uploaded");
       await loadCustomSounds();
