@@ -637,7 +637,10 @@
       "unavailable": "현재 계정에서는 인코더로 스트리밍할 수 없습니다.",
       "serverCopied": "서버 복사 완료",
       "keyCopied": "스트림 키 복사됨"
-    }
+    },
+    "socialFollowers": "{{platform}} 의 팔로워",
+    "socialFollowersHint": "전체 도달 범위의 일부로 프로필에 표시됩니다. 번호를 직접 입력하세요. 플랫폼에서 읽지 않습니다.",
+    "socialFollowersPlaceholder": "예: 12500"
   },
   "common": {
     "mute": "음소거",
@@ -1509,7 +1512,13 @@
     "noImages": "아직 이미지가 없습니다",
     "noImagesSub": "이미지 게시물이 여기에 표시됩니다",
     "noPlans": "구독 플랜이 없습니다",
-    "noPlansSub": "이 크리에이터는 아직 플랜을 만들지 않았습니다"
+    "noPlansSub": "이 크리에이터는 아직 플랜을 만들지 않았습니다",
+    "reach": {
+      "total": "총 도달 범위",
+      "breakdownTitle": "도달 범위의 출처",
+      "dehubFollowers": "DeHub 팔로워",
+      "selfReported": "소셜 팔로워 수는 크리에이터가 입력합니다."
+    }
   },
   "tv": {
     "title": "TV",

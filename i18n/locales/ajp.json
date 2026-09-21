@@ -584,7 +584,10 @@
       "unavailable": "البث من المشفر غير متاح حاليًا على حسابك.",
       "serverCopied": "تم نسخ السيرفر",
       "keyCopied": "تم نسخ مفتاح البث"
-    }
+    },
+    "socialFollowers": "المتابعون على {{platform}}",
+    "socialFollowersHint": "يظهرون على ملفك الشخصي كجزء من إجمالي وصولك. أدخل الرقم بنفسك - نحن لا نقرأه من المنصة.",
+    "socialFollowersPlaceholder": "مثال: 12500"
   },
   "common": {
     "mute": "اكتم الصوت",
@@ -1560,7 +1563,13 @@
     "noImages": "ما في صور بعد",
     "noImagesSub": "منشورات الصور رح تظهر هون",
     "noPlans": "ما في خطط اشتراك",
-    "noPlansSub": "هاد المنشئ لسا ما عمل أي خطة"
+    "noPlansSub": "هاد المنشئ لسا ما عمل أي خطة",
+    "reach": {
+      "total": "إجمالي الوصول",
+      "breakdownTitle": "من أين يأتي هذا الوصول",
+      "dehubFollowers": "متابعي DeHub",
+      "selfReported": "عدد المتابعين الاجتماعيين يدخله المنشئ."
+    }
   },
   "tv": {
     "title": "تلفزيون",

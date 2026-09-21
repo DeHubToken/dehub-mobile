@@ -624,7 +624,10 @@
       "unavailable": "Kutangaza kutoka kwa kiendeshi hakupatikani kwenye akaunti yako kwa sasa.",
       "serverCopied": "Seva imenakiliwa",
       "keyCopied": "Ufunguo wa mkondo umenakiliwa"
-    }
+    },
+    "socialFollowers": "Wafuasi kwenye {{platform}}",
+    "socialFollowersHint": "Inaonyeshwa kwenye wasifu wako kama sehemu ya jumla ya ufikiaji wako. Weka nambari mwenyewe — hatuisomi kutoka kwenye tovuti.",
+    "socialFollowersPlaceholder": "mfano 12500"
   },
   "common": {
     "mute": "Nyamazisha",
@@ -1603,7 +1606,13 @@
     "noImages": "Bado hakuna picha",
     "noImagesSub": "Machapisho ya picha yataonekana hapa",
     "noPlans": "Hakuna mipango ya usajili",
-    "noPlansSub": "Mtayarishaji huyu bado hajaweka mipango yoyote"
+    "noPlansSub": "Mtayarishaji huyu bado hajaweka mipango yoyote",
+    "reach": {
+      "total": "Jumla ya ufikiaji",
+      "breakdownTitle": "Ufikiaji huu unatoka wapi",
+      "dehubFollowers": "Wafuasi wa DeHub",
+      "selfReported": "Hesabu za wafuasi wa kijamii zimewekwa na muundaji."
+    }
   },
   "tv": {
     "title": "TV",

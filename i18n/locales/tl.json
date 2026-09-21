@@ -1114,7 +1114,10 @@
       "unavailable": "Hindi available ang streaming mula sa isang encoder sa iyong account sa ngayon.",
       "serverCopied": "Kinopya ang server",
       "keyCopied": "Kinopya ang stream key"
-    }
+    },
+    "socialFollowers": "Mga tagasunod sa {{platform}}",
+    "socialFollowersHint": "Ipinapakita sa iyong profile bilang bahagi ng iyong kabuuang abot. Ipasok ang numero sa iyong sarili — hindi namin ito binabasa mula sa platform.",
+    "socialFollowersPlaceholder": "hal. 12500"
   },
   "postOptions": {
     "options": "Options",
@@ -1978,7 +1981,13 @@
     "noImages": "Wala pang larawan",
     "noImagesSub": "Lalabas dito ang mga image post",
     "noPlans": "Walang subscription plan",
-    "noPlansSub": "Wala pang naitakdang plano ang creator na ito"
+    "noPlansSub": "Wala pang naitakdang plano ang creator na ito",
+    "reach": {
+      "total": "Kabuuang maaabot",
+      "breakdownTitle": "Saan nagmumula ang abot na ito",
+      "dehubFollowers": "Mga tagasunod ng DeHub",
+      "selfReported": "Ang mga bilang ng mga social follower ay ipinasok ng tagalikha."
+    }
   },
   "tv": {
     "title": "TV",

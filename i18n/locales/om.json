@@ -640,7 +640,10 @@
       "unavailable": "Dhangalaasuun encoder irraa yeroo ammaa kana maamiloota keessaniif hin danda’amu.",
       "serverCopied": "Sarvariin waraabame",
       "keyCopied": "Furtuun yaa&#39;aa waraabame"
-    }
+    },
+    "socialFollowers": "Hordoftoota irratti {{platform}}",
+    "socialFollowersHint": "Gama profayila keetiin akka walii galatti argamuuf. Lakkofsa ofii kee galchi — isaa platform irraa hin dubbisnu.",
+    "socialFollowersPlaceholder": "fknf 12500"
   },
   "common": {
     "mute": "Sagalee cufi",
@@ -1631,7 +1634,13 @@
     "noImages": "Amma suuraan hin jiru",
     "noImagesSub": "Barreeffamni suuraa asitti mul'ata",
     "noPlans": "Karoorri galmee hin jiru",
-    "noPlansSub": "Uumaan kun amma karoora kamiyyuu hin qopheessine"
+    "noPlansSub": "Uumaan kun amma karoora kamiyyuu hin qopheessine",
+    "reach": {
+      "total": "Waliigala qaqqabummaa",
+      "breakdownTitle": "Eessaa dhaqqabummaan kun dhufa",
+      "dehubFollowers": "Hordoftoota DeHub",
+      "selfReported": "Lakkoofsi hordoftoota hawaasummaa uumaan galcha."
+    }
   },
   "dao": {
     "title": "Kasaa DAO",

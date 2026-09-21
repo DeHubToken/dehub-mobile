@@ -640,7 +640,10 @@
       "unavailable": "Streamen vanuit een encoder is momenteel niet beschikbaar op je account.",
       "serverCopied": "Server gekopieerd",
       "keyCopied": "Stream-sleutel gekopieerd"
-    }
+    },
+    "socialFollowers": "Volgers op {{platform}}",
+    "socialFollowersHint": "Wordt op je profiel weergegeven als onderdeel van je totale bereik. Voer het nummer zelf in — we lezen het niet van het platform.",
+    "socialFollowersPlaceholder": "bijv. 12500"
   },
   "common": {
     "mute": "Dempen",
@@ -2068,7 +2071,13 @@
     "noImages": "Nog geen afbeeldingen",
     "noImagesSub": "Berichten met afbeeldingen verschijnen hier",
     "noPlans": "Geen abonnementen",
-    "noPlansSub": "Deze maker heeft nog geen abonnementen ingesteld"
+    "noPlansSub": "Deze maker heeft nog geen abonnementen ingesteld",
+    "reach": {
+      "total": "Totaal bereik",
+      "breakdownTitle": "Waar dit bereik vandaan komt",
+      "dehubFollowers": "DeHub-volgers",
+      "selfReported": "Het aantal sociale volgers wordt ingevoerd door de maker."
+    }
   },
   "tv": {
     "title": "TV",

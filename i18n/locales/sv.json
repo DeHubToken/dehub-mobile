@@ -625,7 +625,10 @@
       "unavailable": "Att streama från en kodare är inte tillgängligt på ditt konto just nu.",
       "serverCopied": "Servern kopierades",
       "keyCopied": "Strömningsnyckel kopierad"
-    }
+    },
+    "socialFollowers": "Följare på {{platform}}",
+    "socialFollowersHint": "Visas på din profil som en del av din totala räckvidd. Ange numret själv — vi läser det inte från plattformen.",
+    "socialFollowersPlaceholder": "t.ex. 12500"
   },
   "common": {
     "mute": "Stäng av ljud",
@@ -1465,7 +1468,13 @@
     "noImages": "Inga bilder än",
     "noImagesSub": "Bildinlägg visas här",
     "noPlans": "Inga prenumerationsplaner",
-    "noPlansSub": "Den här skaparen har inte skapat några planer än"
+    "noPlansSub": "Den här skaparen har inte skapat några planer än",
+    "reach": {
+      "total": "Total räckvidd",
+      "breakdownTitle": "Varifrån denna räckvidd kommer",
+      "dehubFollowers": "DeHub-följare",
+      "selfReported": "Antal följare i sociala medier anges av kreatören."
+    }
   },
   "messages": {
     "smartRepliesOff": "Föreslagna svar avstängda",

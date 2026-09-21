@@ -640,7 +640,10 @@
       "unavailable": "La transmisión desde un codificador no está disponible en tu cuenta en este momento.",
       "serverCopied": "Servidor copiado",
       "keyCopied": "Clave de flujo copiada"
-    }
+    },
+    "socialFollowers": "Seguidores en {{platform}}",
+    "socialFollowersHint": "Se muestra en tu perfil como parte de tu alcance total. Introduce el número tú mismo, no lo leemos desde la plataforma.",
+    "socialFollowersPlaceholder": "por ejemplo, 12500"
   },
   "common": {
     "mute": "Silenciar",
@@ -1583,7 +1586,13 @@
     "noImages": "Aún no hay imágenes",
     "noImagesSub": "Las publicaciones con imágenes aparecerán aquí",
     "noPlans": "Sin planes de suscripción",
-    "noPlansSub": "Este creador aún no ha creado ningún plan"
+    "noPlansSub": "Este creador aún no ha creado ningún plan",
+    "reach": {
+      "total": "Alcance total",
+      "breakdownTitle": "De dónde viene este alcance",
+      "dehubFollowers": "Seguidores de DeHub",
+      "selfReported": "El creador introduce el número de seguidores en redes sociales."
+    }
   },
   "tv": {
     "title": "TV",

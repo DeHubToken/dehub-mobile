@@ -616,7 +616,10 @@
       "unavailable": "Streemka kombiyuutarka laguma heli karo akoonkaaga hadda.",
       "serverCopied": "Server waa la nuqulay",
       "keyCopied": "Furaha Stream la nuqulay"
-    }
+    },
+    "socialFollowers": "Raacayaasha {{platform}}",
+    "socialFollowersHint": "Ku shub astaantaada qayb ka mid ah gaaritaankaaga guud. Ku qor lambarka naftaada — ma akhrineyno barxadda.",
+    "socialFollowersPlaceholder": "tusaale ahaan 12500"
   },
   "common": {
     "mute": "Aamusi",
@@ -1594,7 +1597,13 @@
     "noImages": "Weli ma jiraan sawirro",
     "noImagesSub": "Qoraallada sawirka halkan ayay ka muuqan doonaan",
     "noPlans": "Ma jiraan qorshayaal rukumaad",
-    "noPlansSub": "Abuuraha ma uusan weli samayn wax qorshayaal ah"
+    "noPlansSub": "Abuuraha ma uusan weli samayn wax qorshayaal ah",
+    "reach": {
+      "total": "Wadarta gaarista",
+      "breakdownTitle": "Halka ay gaadiidkani ka yimaadaan",
+      "dehubFollowers": "DeHub raacayaasha",
+      "selfReported": "Tirooyinka raacayaasha bulshada waxaa soo galaya abuuraha."
+    }
   },
   "tv": {
     "title": "TV",

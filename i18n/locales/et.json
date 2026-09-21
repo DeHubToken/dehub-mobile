@@ -624,7 +624,10 @@
       "unavailable": "Kodeerijast voogedastamine pole teie kontol praegu saadaval.",
       "serverCopied": "Server kopeeritud",
       "keyCopied": "Voo võti on kopeeritud"
-    }
+    },
+    "socialFollowers": "Jälgijad rakenduses {{platform}}",
+    "socialFollowersHint": "Näidatakse Sinu profiilil osana Sinu koguulatusest. Sisesta number ise — me ei loe seda platvormilt.",
+    "socialFollowersPlaceholder": "nt 12500"
   },
   "common": {
     "mute": "Vaigista",
@@ -1602,7 +1605,13 @@
     "noImages": "Pilte veel pole",
     "noImagesSub": "Pildipostitused ilmuvad siia",
     "noPlans": "Tellimusplaane pole",
-    "noPlansSub": "See looja pole veel plaane seadistanud"
+    "noPlansSub": "See looja pole veel plaane seadistanud",
+    "reach": {
+      "total": "Koguhaare",
+      "breakdownTitle": "Kust see haare pärineb",
+      "dehubFollowers": "DeHubi jälgijad",
+      "selfReported": "Sotsiaalsete jälgijate arvu sisestab looja."
+    }
   },
   "tv": {
     "title": "TV",

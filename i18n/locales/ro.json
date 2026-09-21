@@ -867,7 +867,10 @@
       "unavailable": "Streamingul de la un codificator nu este disponibil în contul dvs. în acest moment.",
       "serverCopied": "Server copiat",
       "keyCopied": "Cheie flux copiată"
-    }
+    },
+    "socialFollowers": "Urmăritori pe {{platform}}",
+    "socialFollowersHint": "Afișat în profilul tău ca parte a razei tale totale de acțiune. Introduceți singur numărul — nu îl citim de pe platformă.",
+    "socialFollowersPlaceholder": "de ex. 12500"
   },
   "common": {
     "mute": "Dezactivează sunetul",
@@ -1810,7 +1813,13 @@
     "noImages": "Încă nicio imagine",
     "noImagesSub": "Postările cu imagini vor apărea aici",
     "noPlans": "Niciun plan de abonament",
-    "noPlansSub": "Acest creator nu a creat încă niciun plan"
+    "noPlansSub": "Acest creator nu a creat încă niciun plan",
+    "reach": {
+      "total": "Acoperire totală",
+      "breakdownTitle": "De unde provine această acoperire",
+      "dehubFollowers": "Urmăritori DeHub",
+      "selfReported": "Numărul de urmăritori sociali este introdus de creator."
+    }
   },
   "tv": {
     "title": "TV",

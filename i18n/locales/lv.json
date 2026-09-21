@@ -624,7 +624,10 @@
       "unavailable": "Straumēšana no kodētāja pašlaik nav pieejama jūsu kontā.",
       "serverCopied": "Serveris nokopēts",
       "keyCopied": "Straumes atslēga nokopēta"
-    }
+    },
+    "socialFollowers": "Sekotāji {{platform}}",
+    "socialFollowersHint": "Redzams jūsu profilā kā daļa no jūsu kopējās sasniedzamības. Ievadiet numuru pats — mēs to nenolasām no platformas.",
+    "socialFollowersPlaceholder": "piem., 12500"
   },
   "common": {
     "mute": "Izslēgt skaņu",
@@ -1602,7 +1605,13 @@
     "noImages": "Vēl nav attēlu",
     "noImagesSub": "Ieraksti ar attēliem parādīsies šeit",
     "noPlans": "Nav abonementu plānu",
-    "noPlansSub": "Šis autors vēl nav izveidojis plānus"
+    "noPlansSub": "Šis autors vēl nav izveidojis plānus",
+    "reach": {
+      "total": "Kopējā sasniedzamība",
+      "breakdownTitle": "No kurienes nāk šī saziņa",
+      "dehubFollowers": "DeHub sekotāji",
+      "selfReported": "Sociālo sekotāju skaitu ievada veidotājs."
+    }
   },
   "tv": {
     "title": "TV",

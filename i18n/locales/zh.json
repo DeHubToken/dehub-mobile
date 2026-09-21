@@ -625,7 +625,10 @@
       "unavailable": "您的帐户目前无法从编码器进行直播。",
       "serverCopied": "服务器已复制",
       "keyCopied": "流密钥已复制"
-    }
+    },
+    "socialFollowers": "{{platform}}的关注者",
+    "socialFollowersHint": "作为总覆盖范围的一部分显示在您的个人资料中。 请自行输入号码，我们不会从平台上读取该号码。",
+    "socialFollowersPlaceholder": "例如： 12500"
   },
   "common": {
     "mute": "静音",
@@ -1602,7 +1605,13 @@
     "noImages": "还没有图片",
     "noImagesSub": "图片帖子会显示在这里",
     "noPlans": "没有订阅方案",
-    "noPlansSub": "这位创作者还没有设置方案"
+    "noPlansSub": "这位创作者还没有设置方案",
+    "reach": {
+      "total": "总覆盖率",
+      "breakdownTitle": "这种影响力来自何处",
+      "dehubFollowers": "DeHub关注者",
+      "selfReported": "社交关注者数量由创作者输入。"
+    }
   },
   "tv": {
     "title": "电视",

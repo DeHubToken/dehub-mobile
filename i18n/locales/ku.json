@@ -556,7 +556,8 @@
       "unavailable": "پەخشکردن لە کۆدەرێکەوە لە ئێستادا لەسەر هەژمارەکەت بەردەست نییە.",
       "serverCopied": "Server copied",
       "keyCopied": "Stream key copied"
-    }
+    },
+    "socialFollowersPlaceholder": "mînak 12500"
   },
   "common": {
     "mute": "Bêdeng bike",

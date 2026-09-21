@@ -618,7 +618,10 @@
       "unavailable": "Kodlaýjyda ýaýlyma çykmak şu wagt siziň hasabyňyzda elýeterli däl.",
       "serverCopied": "Serwer nusgalady",
       "keyCopied": "Kopyalan akma açary"
-    }
+    },
+    "socialFollowers": "{{platform}}",
+    "socialFollowersHint": "Ýüküňiň bir bölegi hökmünde profilyňda görkezilýär. Bu sany özüňiz ýazyň — biz ony platformdan okamaýarys.",
+    "socialFollowersPlaceholder": "12500 ýyl"
   },
   "common": {
     "mute": "Sesi öçür",
@@ -1549,7 +1552,13 @@
     "noImages": "Heniz surat ýok",
     "noImagesSub": "Surat ýazgylary şu ýerde görkeziler",
     "noPlans": "Abunýa meýilnamalary ýok",
-    "noPlansSub": "Bu döredijiniň heniz meýilnamasy ýok"
+    "noPlansSub": "Bu döredijiniň heniz meýilnamasy ýok",
+    "reach": {
+      "total": "Ýüklüge ýetmek",
+      "breakdownTitle": "Bu çakylyk nireden gelýär?",
+      "dehubFollowers": "DeHub diňleýjileri",
+      "selfReported": "Işgärleriň sanyna Ýaradyjy girýär."
+    }
   },
   "tv": {
     "title": "TV",

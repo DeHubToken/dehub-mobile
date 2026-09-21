@@ -577,7 +577,9 @@
       "unavailable": "Streaming from an encoder is not available on your account right now.",
       "serverCopied": "Server copied",
       "keyCopied": "Stream key copied"
-    }
+    },
+    "socialFollowers": "Followers on {{platform}}",
+    "socialFollowersPlaceholder": "e.g. 12500"
   },
   "common": {
     "mute": "Off di sound",
@@ -1530,7 +1532,11 @@
     "noImages": "No image dey yet",
     "noImagesSub": "Image post go show here",
     "noPlans": "No subscription plan dey",
-    "noPlansSub": "Dis creator never set any plan yet"
+    "noPlansSub": "Dis creator never set any plan yet",
+    "reach": {
+      "total": "Total reach",
+      "dehubFollowers": "DeHub followers"
+    }
   },
   "tv": {
     "title": "TV",
