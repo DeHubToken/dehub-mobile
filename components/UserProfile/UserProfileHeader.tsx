@@ -3,7 +3,6 @@ import { View, Text, Image, ImageBackground, TouchableOpacity, ActivityIndicator
 import { LinearGradient } from "expo-linear-gradient";
 import { SvgXml } from "react-native-svg";
 import Avatar from "../common/Avatar";
-import StoryAvatarRing from "../Story/StoryAvatarRing";
 import Icon from "../ui/Icon";
 import { copyToClipboard, getBadgeOpticalStyle } from "../../libs";
 import { toastSuccess } from "../../libs/toast";
@@ -89,9 +88,6 @@ export interface UserProfileHeaderProps {
   /** True while the mutual-followers request is still in flight — reserves
    *  the row's height instead of popping it in once the list arrives. */
   mutualsLoading?: boolean;
-  hasStories?: boolean;
-  hasUnwatchedStories?: boolean;
-  onStoryPress?: () => void;
   /** The creator has published at least one subscription plan. */
   hasPlans?: boolean;
   /** True while the creator's plans are still loading — reserves the
@@ -135,9 +131,6 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   socials,
   mutuals,
   mutualsLoading = false,
-  hasStories = false,
-  hasUnwatchedStories = false,
-  onStoryPress,
   hasPlans = false,
   plansLoading = false,
   onSubscribe,
@@ -295,14 +288,12 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 
       <View className="px-5">
         <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
-          <StoryAvatarRing
+          <Avatar
             uri={avatarUrl || undefined}
             name={displayName}
             size={88}
-            hasStories={hasStories}
-            unwatched={hasUnwatchedStories}
-            onPressStory={onStoryPress}
-            onPressAvatar={() => onOpenImage("avatar")}
+            style={{ borderWidth: 3, borderColor: "#010305" }}
+            onPress={() => onOpenImage("avatar")}
           />
           {!isBlocked && (
             <View className="flex-row items-center gap-2 mb-1">
