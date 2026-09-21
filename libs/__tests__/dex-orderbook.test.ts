@@ -1,4 +1,4 @@
-import { aggregateBook, balanceFraction, displayBookLevels, formatPrice } from '../dex-orderbook';
+import { aggregateBook, balanceFraction, defaultOrderPrice, displayBookLevels, fillFraction, formatBookPrice, formatIncrement, formatPrice, incrementDecimals, nearestBookLevels, spreadPercent } from '../dex-orderbook';
 
 describe('combined range liquidity', () => {
   const range = { minPrice: .001, maxPrice: .00121 };
@@ -36,9 +36,61 @@ describe('combined range liquidity', () => {
     expect(displayed[0].price).toBeGreaterThan(displayed.at(-1)!.price);
     expect(displayed.at(-1)!.price).toBe(asks[0].price);
   });
+  it('keeps only the levels nearest the spread, in display order', () => {
+    const { bids, asks } = aggregateBook([{ ...range, marketPrice: .0011, amountDhb: 450, amountUsdc: .55 }]);
+    const nearAsks = nearestBookLevels(asks, false, 3);
+    expect(nearAsks).toHaveLength(3);
+    expect(nearAsks.at(-1)!.price).toBe(asks[0].price);
+    const nearBids = nearestBookLevels(bids, true, 3);
+    expect(nearBids[0].price).toBe(bids[0].price);
+    expect(nearestBookLevels(bids, true, 500)).toHaveLength(bids.length);
+  });
   it('shows no more than five decimal places without unnecessary zeroes', () => {
     expect(formatPrice(.001)).toBe('0.001');
     expect(formatPrice(.123456)).toBe('0.12346');
+  });
+  it('keeps five significant digits for sub-cent prices so neighbouring listings differ', () => {
+    expect(formatPrice(.0010001033)).toBe('0.0010001');
+    expect(formatPrice(.0010010037)).toBe('0.001001');
+    expect(formatPrice(.0010000417)).toBe('0.001');
+    expect(formatPrice(.00000006)).toBe('0.00000006');
+    expect(formatPrice(1.0000026)).toBe('1.00');
+    expect(formatPrice(0)).toBe('0.00');
+    expect(formatPrice(null)).toBe('—');
+  });
+  it('prints book rows with exactly the grouping precision', () => {
+    expect(incrementDecimals(.000001)).toBe(6);
+    expect(incrementDecimals(.00000001)).toBe(8);
+    expect(incrementDecimals(.00001)).toBe(5);
+    expect(formatBookPrice(.001001, .000001)).toBe('0.001001');
+    expect(formatBookPrice(.00100004, .00000001)).toBe('0.00100004');
+    expect(formatBookPrice(.001, .00001)).toBe('0.00100');
+    expect(formatIncrement(.000001)).toBe('0.000001');
+    expect(formatIncrement(.00001)).toBe('0.00001');
+  });
+  it('reports the spread relative to the mid price', () => {
+    expect(spreadPercent(.001, .001001)).toBeCloseTo(.09995, 4);
+    expect(spreadPercent(0, 0)).toBeNull();
+  });
+  it('seeds the ticket one step clear of the pool price on each side', () => {
+    const market = .0010000416923231982;
+    expect(defaultOrderPrice('sell', market)).toBe('0.00100100');
+    expect(defaultOrderPrice('buy', market)).toBe('0.00099900');
+    expect(Number(defaultOrderPrice('sell', market, .00000001))).toBeGreaterThan(market * 1.0004);
+    expect(Number(defaultOrderPrice('buy', market, .00000001))).toBeLessThan(market * .9996);
+    expect(defaultOrderPrice('sell', null)).toBe('0.00100000');
+    expect(defaultOrderPrice('buy', NaN)).toBe('0.00100000');
+  });
+  it('measures how much of a range order has converted', () => {
+    const sell = { minPrice: .0010000033, maxPrice: .0010009037, side: 'sell' as const };
+    expect(fillFraction({ ...sell, marketPrice: .0010000417 })).toBeCloseTo(.043, 2);
+    expect(fillFraction({ ...sell, marketPrice: .0009 })).toBe(0);
+    expect(fillFraction({ ...sell, marketPrice: .002 })).toBe(1);
+    const buy = { minPrice: .000998, maxPrice: .000999, side: 'buy' as const };
+    expect(fillFraction({ ...buy, marketPrice: .0009985 })).toBeCloseTo(.5, 1);
+    expect(fillFraction({ ...buy, marketPrice: .002 })).toBe(0);
+    expect(fillFraction({ ...buy, marketPrice: .0005 })).toBe(1);
+    expect(fillFraction({ minPrice: 0, maxPrice: 1, marketPrice: .5, side: 'buy' })).toBe(0);
   });
   it('ignores invalid ranges and withdrawn positions', () => {
     expect(aggregateBook([{ ...range, marketPrice: .0011, amountDhb: 0, amountUsdc: 0 },

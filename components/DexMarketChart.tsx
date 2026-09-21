@@ -14,6 +14,8 @@ export default function DexMarketChart({ candles, bids, asks, depth }: { candles
   const minX = Math.min(...data.map((p) => p.x)), maxX = Math.max(...data.map((p) => p.x));
   const low = depth ? 0 : Math.min(...candles.map((p) => p.low)), high = depth ? Math.max(...data.map((p) => p.y)) : Math.max(...candles.map((p) => p.high));
   const padding = Math.max((high - low) * .12, high * .005), minY = Math.max(0, low - padding), maxY = high + padding;
+  const axisStep = (maxY - minY) / 4;
+  const axisDecimals = axisStep > 0 && Number.isFinite(axisStep) ? Math.min(8, Math.max(2, Math.ceil(-Math.log10(axisStep)) + 1)) : 2;
   const x = (value: number) => 8 + (maxX === minX ? .5 : (value - minX) / (maxX - minX)) * 290;
   const y = (value: number) => 225 - (value - minY) / (maxY - minY || 1) * 200;
   const line = (values: { x: number; y: number }[], step = false) => values.map((p, i) => `${i ? step ? `H${x(p.x)}V${y(p.y)}` : `L${x(p.x)},${y(p.y)}` : `M${x(p.x)},${y(p.y)}`}`).join(' ');
@@ -21,7 +23,7 @@ export default function DexMarketChart({ candles, bids, asks, depth }: { candles
   return <View onLayout={(e) => setWidth(e.nativeEvent.layout.width)} onTouchMove={(e) => setHover(e.nativeEvent.locationX / width * 370)} onTouchEnd={() => setHover(null)}>
     <Text style={{ color: '#919ca9', fontSize: 10, height: 28, paddingHorizontal: 12 }}>{cursor ? `${depth ? formatSize(cursor.y) : formatPrice(cursor.y)} ${depth ? 'DHB' : 'USDC'} · ${depth ? formatPrice(cursor.x) : new Date(cursor.x * 1000).toLocaleString(undefined, { hour: '2-digit', minute: '2-digit' })}` : depth ? t('dex.depthHint') : t('dex.liveChartHint', { defaultValue: 'Lowest sell · USDC · drag to inspect' })}</Text>
     <Svg width="100%" height={260} viewBox="0 0 370 260">
-      {[0, 1, 2, 3, 4].map((i) => { const value = minY + (maxY - minY) * i / 4; return <React.Fragment key={i}><Line x1="8" x2="298" y1={y(value)} y2={y(value)} stroke="#252b34" strokeDasharray="3 5" /><SvgText x="304" y={y(value) + 3} fill="#919ca9" fontSize="8">{depth ? formatSize(value) : formatPrice(value)}</SvgText></React.Fragment>; })}
+      {[0, 1, 2, 3, 4].map((i) => { const value = minY + (maxY - minY) * i / 4; return <React.Fragment key={i}><Line x1="8" x2="298" y1={y(value)} y2={y(value)} stroke="#252b34" strokeDasharray="3 5" /><SvgText x="304" y={y(value) + 3} fill="#919ca9" fontSize="8">{depth ? formatSize(value) : value.toFixed(axisDecimals)}</SvgText></React.Fragment>; })}
       {depth ? [{ levels: bids, color: '#20c997' }, { levels: asks, color: '#f05b72' }].map(({ levels, color }) => { const values = [...levels].sort((a, b) => a.price - b.price).map((p) => ({ x: p.price, y: p.cumulativeDhb })); if (!values.length) return null; const path = line(values, true); return <React.Fragment key={color}><Path d={`${path}L${x(values.at(-1)!.x)},225L${x(values[0].x)},225Z`} fill={color} fillOpacity={.12} /><Path d={path} fill="none" stroke={color} strokeWidth="1.5" /><Circle cx={x(values[0].x)} cy={y(values[0].y)} r="2" fill={color} /></React.Fragment>; }) : candles.map((candle) => {
         const color = candle.close >= candle.open ? '#20c997' : '#f05b72';
         const width = Math.max(1, Math.min(10, 220 / candles.length));
