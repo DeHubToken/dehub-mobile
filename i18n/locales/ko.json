@@ -1552,7 +1552,9 @@
     "onrampCreated": "입금 세션 생성됨",
     "failedOnramp": "입금 실패",
     "otherTokens": "기타 토큰",
-    "otherTokensDesc": "카드로 Base에서 ETH 또는 USDC 구매"
+    "otherTokensDesc": "카드로 Base에서 ETH 또는 USDC 구매",
+    "shareToFeed": "내 피드에 공유",
+    "sharePostTemplate": "방금 DeHub의 스택에 {{amount}} $ DHB를 추가했습니다. 커뮤니티와 함께 만들기. # DeHub # DHB"
   },
   "agents": {
     "title": "AI 에이전트",
@@ -3979,7 +3981,10 @@
     "redirecting": "결제 페이지로 이동 중…",
     "openingCheckout": "결제 페이지 여는 중…",
     "checkoutUnavailable": "결제 링크를 사용할 수 없습니다. 다시 시도해 주세요.",
-    "acceptTerms": "다음에 동의합니다: <terms>서비스 약관</terms>"
+    "acceptTerms": "다음에 동의합니다: <terms>서비스 약관</terms>",
+    "sentTo": "{{amount}} {{symbol}} 이 (가) {{address}} (으) 로 전송되었습니다.",
+    "tokensSentTo": "토큰이 {{address}} (으) 로 전송되었습니다",
+    "goToProfile": "프로필로 이동"
   },
   "musicSheet": {
     "title": "곡 만들기",

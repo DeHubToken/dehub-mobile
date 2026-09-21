@@ -1879,7 +1879,9 @@
     "onrampCreated": "สร้างเซสชันการซื้อแล้ว",
     "failedOnramp": "เริ่มระบบซื้อไม่สำเร็จ",
     "otherTokens": "โทเคนอื่น ๆ",
-    "otherTokensDesc": "ซื้อ ETH หรือ USDC บน Base ด้วยบัตรของคุณ"
+    "otherTokensDesc": "ซื้อ ETH หรือ USDC บน Base ด้วยบัตรของคุณ",
+    "shareToFeed": "แชร์ไปยังฟีดของฉัน",
+    "sharePostTemplate": "เพิ่งเพิ่ม {{amount}} $ DHB ในสแต็กของฉันบน DeHub ร่วมสร้างกับชุมชน # DeHub # DHB"
   },
   "agents": {
     "title": "AI Agent",
@@ -3946,7 +3948,10 @@
     "redirecting": "กำลังพาไปหน้าชำระเงิน…",
     "openingCheckout": "กำลังเปิดหน้าชำระเงิน…",
     "checkoutUnavailable": "ลิงก์ชำระเงินใช้ไม่ได้ กรุณาลองใหม่",
-    "acceptTerms": "ฉันยอมรับ <terms>ข้อกำหนดในการให้บริการ</terms>"
+    "acceptTerms": "ฉันยอมรับ <terms>ข้อกำหนดในการให้บริการ</terms>",
+    "sentTo": "{{amount}}{{symbol}} ถูกส่งไปที่ {{address}}",
+    "tokensSentTo": "โทเค็นถูกส่งไปที่ {{address}}",
+    "goToProfile": "ไปที่โปรไฟล์"
   },
   "musicSheet": {
     "title": "สร้างเพลง",

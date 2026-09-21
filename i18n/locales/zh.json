@@ -1645,7 +1645,9 @@
     "onrampCreated": "入金会话已创建",
     "failedOnramp": "入金失败",
     "otherTokens": "其他代币",
-    "otherTokensDesc": "用你的银行卡在 Base 上购买 ETH 或 USDC"
+    "otherTokensDesc": "用你的银行卡在 Base 上购买 ETH 或 USDC",
+    "shareToFeed": "分享到我的订阅源",
+    "sharePostTemplate": "刚刚在DeHub上向我的堆栈添加了{{amount}} $ DHB。 与社区共同建设。# DeHub # DHB"
   },
   "agents": {
     "title": "AI代理",
@@ -3968,7 +3970,10 @@
     "redirecting": "正在跳转到结账…",
     "openingCheckout": "正在打开结账页…",
     "checkoutUnavailable": "结账链接不可用。请重试。",
-    "acceptTerms": "我接受 <terms>服务条款</terms>"
+    "acceptTerms": "我接受 <terms>服务条款</terms>",
+    "sentTo": "{{amount}} {{symbol}}已发送至{{address}}",
+    "tokensSentTo": "代币已发送至{{address}}",
+    "goToProfile": "前往个人资料"
   },
   "musicSheet": {
     "title": "创作一首歌",

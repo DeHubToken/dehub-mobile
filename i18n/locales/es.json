@@ -1627,7 +1627,9 @@
     "onrampCreated": "Sesión de rampa creada",
     "failedOnramp": "Error al iniciar rampa",
     "otherTokens": "Otros tokens",
-    "otherTokensDesc": "Compra ETH o USDC en Base con tu tarjeta"
+    "otherTokensDesc": "Compra ETH o USDC en Base con tu tarjeta",
+    "shareToFeed": "Compartir en mi feed",
+    "sharePostTemplate": "Acabo de añadir {{amount}} $DHB a mi pila en DeHub. Construir con la comunidad. #DeHub #DHB"
   },
   "agents": {
     "title": "Agentes IA",
@@ -3982,7 +3984,10 @@
     "redirecting": "Redirigiendo al pago…",
     "openingCheckout": "Abriendo el pago…",
     "checkoutUnavailable": "El enlace de pago no está disponible. Inténtalo de nuevo.",
-    "acceptTerms": "Acepto los <terms>Términos y condiciones del servicio</terms>"
+    "acceptTerms": "Acepto los <terms>Términos y condiciones del servicio</terms>",
+    "sentTo": "Se envió {{amount}} {{symbol}} a {{address}}",
+    "tokensSentTo": "Se han enviado tokens a {{address}}",
+    "goToProfile": "Ir a Perfil"
   },
   "musicSheet": {
     "title": "Crear una canción",

@@ -1644,7 +1644,9 @@
     "onrampCreated": "جلسة الأونرامب تخلقت",
     "failedOnramp": "ما قدرش يبدأ الأونرامب",
     "otherTokens": "عملات أخرى",
-    "otherTokensDesc": "شري ETH ولا USDC على Base بالكارط ديالك"
+    "otherTokensDesc": "شري ETH ولا USDC على Base بالكارط ديالك",
+    "shareToFeed": "المشاركة على خلاصتي",
+    "sharePostTemplate": "لقد أضفت للتو {{amount}} $ إلى مكدسي على. البناء مع المجتمع. #DeHub #DHB"
   },
   "agents": {
     "title": "وكلاء AI",
@@ -3926,7 +3928,10 @@
     "redirecting": "كيحولك للخلاص…",
     "openingCheckout": "كيحل صفحة الخلاص…",
     "checkoutUnavailable": "رابط الخلاص ماشي متوفر. عاود جرب.",
-    "acceptTerms": "كنوافق على <terms>شروط الخدمة</terms>"
+    "acceptTerms": "كنوافق على <terms>شروط الخدمة</terms>",
+    "sentTo": "تم إرسال {{amount}}{{symbol}} إلى {{address}}",
+    "tokensSentTo": "تم إرسال الرموز إلى {{address}}",
+    "goToProfile": "الانتقال إلى الملف الشخصي"
   },
   "musicSheet": {
     "title": "دير أغنية",

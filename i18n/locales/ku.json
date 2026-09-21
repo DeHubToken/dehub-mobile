@@ -1520,7 +1520,9 @@
     "onrampCreated": "Danişîna onramp hate çêkirin",
     "failedOnramp": "Destpêkirina onramp têkçû",
     "otherTokens": "Tokenên din",
-    "otherTokensDesc": "Bi karta xwe li ser Base ETH an USDC bikire"
+    "otherTokensDesc": "Bi karta xwe li ser Base ETH an USDC bikire",
+    "shareToFeed": "هاوبەشی بکە لەگەڵ فیدەکەم",
+    "sharePostTemplate": "تازە {{amount}} $DHB بۆ کۆکراوەکەم لە DeHub زیاد کرد. دروستکردن لەگەڵ کۆمەڵگە. #DeHub #DHB"
   },
   "agents": {
     "title": "Ajanên AI",

@@ -1535,7 +1535,9 @@
     "onrampCreated": "సెషన్ సృష్టించబడింది",
     "failedOnramp": "ప్రారంభించడం విఫలమైంది",
     "otherTokens": "ఇతర టోకెన్లు",
-    "otherTokensDesc": "మీ కార్డుతో Base పై ETH లేదా USDC కొనండి"
+    "otherTokensDesc": "మీ కార్డుతో Base పై ETH లేదా USDC కొనండి",
+    "shareToFeed": "నా ఫీడ్ ‌ కు షేర్ చేయండి",
+    "sharePostTemplate": "DeHubలోని నా స్టాక్ ‌ కు {{amount}} $ DHBని ఇప్పుడే జోడించాను. సమాజంతో నిర్మించడం. #DeHub #DHB"
   },
   "agents": {
     "title": "AI ఏజెంట్లు",
@@ -3904,7 +3906,9 @@
     "redirecting": "చెక్‌అవుట్‌కు తీసుకెళ్తోంది…",
     "openingCheckout": "చెక్‌అవుట్ తెరుస్తోంది…",
     "checkoutUnavailable": "చెక్‌అవుట్ లింక్ అందుబాటులో లేదు. మళ్లీ ప్రయత్నించండి.",
-    "acceptTerms": "నేను అంగీకరిస్తున్నాను <terms>సేవా నిబంధనలు</terms>"
+    "acceptTerms": "నేను అంగీకరిస్తున్నాను <terms>సేవా నిబంధనలు</terms>",
+    "tokensSentTo": "టోకెన్ ‌ లు {{address}} కు పంపబడ్డాయి",
+    "goToProfile": "ప్రొఫైల్ ‌ కు వెళ్లండి"
   },
   "musicSheet": {
     "title": "పాట సృష్టించండి",

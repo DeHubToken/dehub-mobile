@@ -1645,7 +1645,9 @@
     "onrampCreated": "Rampos sesija sukurta",
     "failedOnramp": "Nepavyko pradėti rampos",
     "otherTokens": "Kiti tokenai",
-    "otherTokensDesc": "Pirkite ETH arba USDC „Base“ tinkle savo kortele"
+    "otherTokensDesc": "Pirkite ETH arba USDC „Base“ tinkle savo kortele",
+    "shareToFeed": "Dalytis mano sklaidos kanale",
+    "sharePostTemplate": "Ką tik pridėjau {{amount}} $DHB prie mano „DeHub“ rietuvės. Kuriame kartu su bendruomene. #DeHub #DHB"
   },
   "agents": {
     "title": "DI agentai",
@@ -3909,7 +3911,10 @@
     "redirecting": "Nukreipiama į apmokėjimą…",
     "openingCheckout": "Atveriamas apmokėjimas…",
     "checkoutUnavailable": "Mokėjimo nuoroda nepasiekiama. Bandykite dar kartą.",
-    "acceptTerms": "Sutinku su <terms>Paslaugų teikimo sąlygos</terms>"
+    "acceptTerms": "Sutinku su <terms>Paslaugų teikimo sąlygos</terms>",
+    "sentTo": "{{amount}}{{symbol}} buvo išsiųstas {{address}}",
+    "tokensSentTo": "Ženklai išsiųsti {{address}}",
+    "goToProfile": "Eiti į profilį"
   },
   "musicSheet": {
     "title": "Sukurti dainą",

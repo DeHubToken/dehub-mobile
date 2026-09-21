@@ -1661,7 +1661,9 @@
     "onrampCreated": "Sessione rampa creata",
     "failedOnramp": "Impossibile avviare la rampa",
     "otherTokens": "Altri token",
-    "otherTokensDesc": "Acquista ETH o USDC su Base con la tua carta"
+    "otherTokensDesc": "Acquista ETH o USDC su Base con la tua carta",
+    "shareToFeed": "Condividi sul mio feed",
+    "sharePostTemplate": "Ho appena aggiunto {{amount}} $DHB al mio stack su DeHub. Costruire con la comunità. #DeHub #DHB"
   },
   "agents": {
     "title": "Agenti AI",
@@ -3981,7 +3983,10 @@
     "redirecting": "Reindirizzamento al pagamento…",
     "openingCheckout": "Apertura del pagamento…",
     "checkoutUnavailable": "Link di pagamento non disponibile. Riprova.",
-    "acceptTerms": "Accetto i <terms>Termini di servizio</terms>"
+    "acceptTerms": "Accetto i <terms>Termini di servizio</terms>",
+    "sentTo": "{{amount}} {{symbol}} è stato inviato a {{address}}",
+    "tokensSentTo": "I token sono stati inviati a {{address}}",
+    "goToProfile": "Vai al profilo"
   },
   "musicSheet": {
     "title": "Crea una canzone",

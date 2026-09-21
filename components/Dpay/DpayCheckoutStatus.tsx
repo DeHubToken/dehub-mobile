@@ -16,6 +16,7 @@ import { useAuthActions } from "../../context/AuthContext";
 import { ethersService } from "../../services/ethers.service";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useNavigation } from "@react-navigation/native";
+import { navigationRef } from "../../App";
 
 type Props = {
   address: string;
@@ -206,6 +207,32 @@ const DpayCheckoutStatus: React.FC<Props> = ({
     onClose();
   }, [onClose]);
 
+  // Whole tokens for the post text: the row's delivered figure, or the quote
+  // the session was created with. Only a DHB buy is a story for the feed —
+  // the template names the coin.
+  const shareAmount = React.useMemo(() => {
+    const val = Number(txData?.tokenReceived ?? txData?.approxTokensToReceive ?? 0);
+    return Number.isFinite(val) && val > 0 ? val : 0;
+  }, [txData]);
+  const canShare = tokenSymbol === "DHB" && shareAmount > 0;
+
+  const shareToFeed = React.useCallback(() => {
+    const initialText = t("buyCoins.sharePostTemplate", {
+      amount: Intl.NumberFormat(undefined, { maximumFractionDigits: 0 }).format(shareAmount),
+    });
+    handleClose();
+    // Pre-filled, not published: the composer still asks for the mint.
+    if (navigationRef.isReady()) {
+      // The { name, params } form rather than two arguments: the ref is
+      // created untyped in App.tsx, so a two-argument navigate() does not
+      // typecheck whatever it is cast to.
+      navigationRef.navigate({
+        name: ScreenNames.Upload,
+        params: { initialText },
+      } as never);
+    }
+  }, [shareAmount, handleClose, t]);
+
   return (
     <View>
       {isSuccess ? (
@@ -216,12 +243,22 @@ const DpayCheckoutStatus: React.FC<Props> = ({
           <Text className="text-white text-xl font-semibold mt-3">{t("dpay.success")}</Text>
           <Text className="text-gray-300 text-sm mt-1 text-center">
             {amountStr
-              ? `${amountStr} ${tokenSymbol} was sent to ${miniAddress(
-                  address
-                )}`
-              : `Tokens were sent to ${miniAddress(address)}`}
+              ? t("dpay.sentTo", { amount: amountStr, symbol: tokenSymbol, address: miniAddress(address) })
+              : t("dpay.tokensSentTo", { address: miniAddress(address) })}
           </Text>
-          <View className="flex-row mt-5">
+          {canShare && (
+            <TouchableOpacity
+              onPress={shareToFeed}
+              activeOpacity={0.9}
+              className="w-full rounded-xl bg-white py-3 mt-5 flex-row items-center justify-center"
+            >
+              <Ionicons name="paper-plane-outline" size={16} color="#09090B" />
+              <Text className="text-theme-neutrals-900 text-sm font-semibold ml-2">
+                {t("buyCoins.shareToFeed")}
+              </Text>
+            </TouchableOpacity>
+          )}
+          <View className={canShare ? "flex-row mt-3" : "flex-row mt-5"}>
             <View className="flex-1 mr-2">
               <TouchableOpacity
                 onPress={handleClose}
@@ -235,10 +272,14 @@ const DpayCheckoutStatus: React.FC<Props> = ({
               <TouchableOpacity
                 onPress={goProfile}
                 activeOpacity={0.9}
-                className="rounded-xl bg-white py-3 items-center"
+                className={
+                  canShare
+                    ? "rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 py-3 items-center"
+                    : "rounded-xl bg-white py-3 items-center"
+                }
               >
-                <Text className="text-theme-neutrals-900 text-sm font-semibold">
-                  Go to Profile
+                <Text className={canShare ? "text-white text-sm font-semibold" : "text-theme-neutrals-900 text-sm font-semibold"}>
+                  {t("dpay.goToProfile")}
                 </Text>
               </TouchableOpacity>
             </View>

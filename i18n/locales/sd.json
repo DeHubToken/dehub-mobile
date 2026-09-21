@@ -1631,7 +1631,9 @@
     "onrampCreated": "آنريمپ سيشن ٺاهيو ويو",
     "failedOnramp": "آنريمپ شروع نه ٿي سگهيو",
     "otherTokens": "ٻيا ٽوڪن",
-    "otherTokensDesc": "پنھنجي ڪارڊ سان Base تي ETH يا USDC خريد ڪريو"
+    "otherTokensDesc": "پنھنجي ڪارڊ سان Base تي ETH يا USDC خريد ڪريو",
+    "shareToFeed": "منهنجي فيڊ ۾ حصيداري ڪريو",
+    "sharePostTemplate": "بس {{amount}} $ DHB کي DeHub تي منهنجي اسٽيڪ ۾ شامل ڪيو. برادري سان تعاون ڪريو. # DeHub# ڊي ايڇ بي"
   },
   "agents": {
     "title": "AI ايجنٽ",
@@ -3893,7 +3895,10 @@
     "redirecting": "چيڪ آئوٽ ڏانهن موڪليو پيو وڃي…",
     "openingCheckout": "چيڪ آئوٽ کوليو پيو وڃي…",
     "checkoutUnavailable": "چيڪ آئوٽ لنڪ دستياب ناهي. ٻيهر ڪوشش ڪريو.",
-    "acceptTerms": "آئون قبول ڪريان ٿو <terms>خدمت جون شرطون</terms>"
+    "acceptTerms": "آئون قبول ڪريان ٿو <terms>خدمت جون شرطون</terms>",
+    "sentTo": "{{amount}}{{symbol}} کي موڪليو ويو {{address}}",
+    "tokensSentTo": "ٽوڪن ڏانهن موڪليو ويو {{address}}",
+    "goToProfile": "پروفائل ڏانھن وڃو"
   },
   "musicSheet": {
     "title": "گيت ٺاهيو",

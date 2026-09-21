@@ -1554,7 +1554,9 @@
     "onrampCreated": "Сессия создана",
     "failedOnramp": "Не удалось начать",
     "otherTokens": "Другие токены",
-    "otherTokensDesc": "Купите ETH или USDC в сети Base своей картой"
+    "otherTokensDesc": "Купите ETH или USDC в сети Base своей картой",
+    "shareToFeed": "Поделиться в ленте",
+    "sharePostTemplate": "Только что добавил {{amount}} $DHB в свой стек на DeHub. Построение с сообществом. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Агенты",
@@ -3980,7 +3982,10 @@
     "redirecting": "Перенаправление к оплате…",
     "openingCheckout": "Открытие оплаты…",
     "checkoutUnavailable": "Ссылка на оплату недоступна. Попробуйте ещё раз.",
-    "acceptTerms": "Я принимаю <terms>Условия обслуживания</terms>"
+    "acceptTerms": "Я принимаю <terms>Условия обслуживания</terms>",
+    "sentTo": "{{amount}} {{symbol}} отправлено на адрес {{address}}",
+    "tokensSentTo": "Токены отправлены на {{address}}",
+    "goToProfile": "Перейти в профиль"
   },
   "musicSheet": {
     "title": "Создать песню",

@@ -1646,7 +1646,9 @@
     "onrampCreated": "Sesija pristupnika stvorena",
     "failedOnramp": "Pokretanje pristupnika nije uspjelo",
     "otherTokens": "Ostali tokeni",
-    "otherTokensDesc": "Kupite ETH ili USDC na Baseu svojom karticom"
+    "otherTokensDesc": "Kupite ETH ili USDC na Baseu svojom karticom",
+    "shareToFeed": "Podijeli na moj feed",
+    "sharePostTemplate": "Upravo sam dodao {{amount}} $DHB na svoj stog na DeHubu. Gradimo zajedno sa zajednicom. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agenti",
@@ -3911,7 +3913,10 @@
     "redirecting": "Preusmjeravanje na naplatu…",
     "openingCheckout": "Otvaranje naplate…",
     "checkoutUnavailable": "Poveznica za plaćanje nije dostupna. Pokušajte ponovno.",
-    "acceptTerms": "Prihvaćam <terms>Uvjeti pružanja usluge</terms>"
+    "acceptTerms": "Prihvaćam <terms>Uvjeti pružanja usluge</terms>",
+    "sentTo": "{{amount}} {{symbol}} je poslan na {{address}}",
+    "tokensSentTo": "Tokeni su poslani na {{address}}",
+    "goToProfile": "Otvori profil"
   },
   "musicSheet": {
     "title": "Stvori pjesmu",

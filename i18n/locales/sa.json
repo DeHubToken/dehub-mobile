@@ -1618,7 +1618,8 @@
     "onrampCreated": "आनरैम्प्-सत्रं सृष्टम्",
     "failedOnramp": "आनरैम्प्-आरम्भयितुं विफलम्",
     "otherTokens": "अन्ये टोकनाः",
-    "otherTokensDesc": "भवतः कार्डेन Base इत्यत्र ETH अथवा USDC क्रीणातु"
+    "otherTokensDesc": "भवतः कार्डेन Base इत्यत्र ETH अथवा USDC क्रीणातु",
+    "shareToFeed": "मेरे भोजन के प्रति निवर्त्यता"
   },
   "agents": {
     "title": "AI एजेण्ट्",
@@ -3866,7 +3867,8 @@
     "redirecting": "भुक्तिपृष्ठं प्रति नीयते…",
     "openingCheckout": "भुक्तिपृष्ठम् उद्घाट्यते…",
     "checkoutUnavailable": "भुक्तिसंयोजनं न उपलब्धम्। पुनः प्रयतताम्।",
-    "acceptTerms": "अहं स्वीकरोमि <terms>सेवानियमाः</terms>"
+    "acceptTerms": "अहं स्वीकरोमि <terms>सेवानियमाः</terms>",
+    "goToProfile": "प्रोफाइलमध्ये जाऊ"
   },
   "musicSheet": {
     "title": "गीतं रचयतु",

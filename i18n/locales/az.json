@@ -1634,7 +1634,9 @@
     "onrampCreated": "Onramp seansı yaradıldı",
     "failedOnramp": "Onramp başlatmaq uğursuz oldu",
     "otherTokens": "Digər tokenlər",
-    "otherTokensDesc": "Kartınızla Base şəbəkəsində ETH və ya USDC alın"
+    "otherTokensDesc": "Kartınızla Base şəbəkəsində ETH və ya USDC alın",
+    "shareToFeed": "Yemimlə paylaşın",
+    "sharePostTemplate": "İndicə {{amount}} $ DHB-ni DeHub-dakı stekimə əlavə etdim. İcma ilə qurmaq. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agentləri",
@@ -3895,7 +3897,9 @@
     "redirecting": "Ödənişə yönləndirilir…",
     "openingCheckout": "Ödəniş səhifəsi açılır…",
     "checkoutUnavailable": "Ödəniş linki əlçatmazdır. Zəhmət olmasa yenidən cəhd edin.",
-    "acceptTerms": "Qəbul edirəm <terms>Xidmət şərtləri</terms>"
+    "acceptTerms": "Qəbul edirəm <terms>Xidmət şərtləri</terms>",
+    "tokensSentTo": "Tokenlər {{address}} ünvanına göndərildi",
+    "goToProfile": "Profilə keç"
   },
   "musicSheet": {
     "title": "Mahnı yarat",

@@ -1642,7 +1642,9 @@
     "onrampCreated": "A ti ṣẹ̀dá àkókò ọ̀nà",
     "failedOnramp": "Kò le bẹ̀rẹ̀ ọ̀nà",
     "otherTokens": "Àwọn tóòkẹ̀nì mìíràn",
-    "otherTokensDesc": "Fi káàdì rẹ ra ETH tàbí USDC lórí Base"
+    "otherTokensDesc": "Fi káàdì rẹ ra ETH tàbí USDC lórí Base",
+    "shareToFeed": "Pin si ifunni mi",
+    "sharePostTemplate": "Kàn fi {{amount}} $DHB kún àkójọpọ̀ mi lórí DeHub. Ilé pẹ̀lú àwùjọ. #DeHub #DHB"
   },
   "agents": {
     "title": "Àwọn Aṣojú AI",
@@ -3900,7 +3902,9 @@
     "redirecting": "Ń darí rẹ sí ojú ìsanwó…",
     "openingCheckout": "Ń ṣí ojú ìsanwó…",
     "checkoutUnavailable": "Ọ̀nà ìsanwó kò sí. Gbìyànjú lẹ́ẹ̀kan sí i.",
-    "acceptTerms": "Mo gba <terms>Àwọn Òfin Iṣẹ́</terms>"
+    "acceptTerms": "Mo gba <terms>Àwọn Òfin Iṣẹ́</terms>",
+    "tokensSentTo": "Wọ́n fi àmì ránṣẹ́ sí {{address}}",
+    "goToProfile": "Lọ si Profaili"
   },
   "musicSheet": {
     "title": "Ṣẹ̀dá orin",

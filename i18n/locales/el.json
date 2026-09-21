@@ -1645,7 +1645,9 @@
     "onrampCreated": "Συνεδρία onramp δημιουργήθηκε",
     "failedOnramp": "Αποτυχία έναρξης onramp",
     "otherTokens": "Άλλα tokens",
-    "otherTokensDesc": "Αγόρασε ETH ή USDC στο Base με την κάρτα σου"
+    "otherTokensDesc": "Αγόρασε ETH ή USDC στο Base με την κάρτα σου",
+    "shareToFeed": "Κοινοποίηση στη ροή μου",
+    "sharePostTemplate": "Μόλις πρόσθεσα {{amount}} $DHB στη στοίβα μου στο DeHub. Οικοδόμηση με την κοινότητα. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agents",
@@ -3933,7 +3935,10 @@
     "redirecting": "Ανακατεύθυνση στο ταμείο…",
     "openingCheckout": "Άνοιγμα ταμείου…",
     "checkoutUnavailable": "Ο σύνδεσμος πληρωμής δεν είναι διαθέσιμος. Δοκίμασε ξανά.",
-    "acceptTerms": "Αποδέχομαι τους <terms>Όροι παροχής υπηρεσιών</terms>"
+    "acceptTerms": "Αποδέχομαι τους <terms>Όροι παροχής υπηρεσιών</terms>",
+    "sentTo": "{{amount}}{{symbol}} εστάλη στο {{address}}",
+    "tokensSentTo": "Τα διακριτικά εστάλησαν στο {{address}}",
+    "goToProfile": "Μετάβαση στο προφίλ"
   },
   "musicSheet": {
     "title": "Δημιουργήστε ένα τραγούδι",

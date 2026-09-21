@@ -1604,7 +1604,9 @@
     "onrampCreated": "جلسة الشراء انشأت",
     "failedOnramp": "فشل بدء الشراء",
     "otherTokens": "عملات ثانية",
-    "otherTokensDesc": "اشترِ ETH أو USDC على Base ببطاقتك"
+    "otherTokensDesc": "اشترِ ETH أو USDC على Base ببطاقتك",
+    "shareToFeed": "شارك على صفحتي",
+    "sharePostTemplate": "تم إضافة {{amount}} $DHB إلى مجموعتي على DeHub. نبني مع المجتمع. #DeHub #DHB"
   },
   "agents": {
     "title": "وكلاء الذكاء الاصطناعي",
@@ -3867,7 +3869,10 @@
     "redirecting": "عم يحولك للدفع…",
     "openingCheckout": "عم يفتح صفحة الدفع…",
     "checkoutUnavailable": "رابط الدفع مش متوفر. رجاءً جرّب مرة تانية.",
-    "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>"
+    "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>",
+    "sentTo": "{{amount}} {{symbol}} انرسل لـ {{address}}",
+    "tokensSentTo": "التوكنز انرسلت لـ {{address}}",
+    "goToProfile": "روح للبروفايل"
   },
   "musicSheet": {
     "title": "سوّي أغنية",
