@@ -723,6 +723,22 @@ export default function UploadScreen() {
     // Web-created (and pre-monetization) drafts carry no monetization blob;
     // restoring undefined crashes the first monetization.ppvEnabled read.
     setMonetization(incomingDraft.monetization ?? emptyMonetization());
+    if (incomingDraft.poll) {
+      setPollEnabled(true);
+      setPollQuestion(incomingDraft.poll.question ?? "");
+      const options = (incomingDraft.poll.options ?? []).map((o) => o.text ?? "");
+      setPollOptions(options.length >= 2 ? options : [...options, "", ""].slice(0, 2));
+      setPollDurationHours(incomingDraft.poll.duration ?? 24);
+      setPollIsMultiple(Boolean(incomingDraft.poll.isMultipleChoice));
+    }
+    if (incomingDraft.isMature) setIsMature(true);
+    if (incomingDraft.isForKids) setIsForKids(true);
+    if (incomingDraft.scheduledDate) {
+      const when = new Date(incomingDraft.scheduledDate);
+      // A schedule that has already passed is dropped: the post goes out now
+      // rather than being refused for a time in the past.
+      if (!Number.isNaN(when.getTime()) && when.getTime() > Date.now()) setScheduledDate(when);
+    }
 
     // Restore images (we can only restore URIs — they may be stale)
     if (incomingDraft.imageUris.length > 0) {
@@ -1326,7 +1342,22 @@ export default function UploadScreen() {
     thumbnailUri,
     coverUri,
     monetization,
-  }), [bodyText, titleText, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization]);
+    // A poll is the whole point of some posts, and saving a draft used to drop
+    // it. Option ids are synthesised because the web composer keys on them.
+    poll: pollIsValid
+      ? {
+          question: pollQuestion.trim(),
+          options: pollOptions
+            .filter((o) => o.trim())
+            .map((o, i) => ({ id: String(i + 1), text: o.trim() })),
+          duration: pollDurationHours,
+          isMultipleChoice: pollIsMultiple,
+        }
+      : null,
+    scheduledDate: scheduledDate ? scheduledDate.toISOString() : null,
+    isMature,
+    isForKids,
+  }), [bodyText, titleText, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, isMature, isForKids]);
 
   /** "Draft" button in top bar */
   const handleDraftButton = useCallback(() => {
