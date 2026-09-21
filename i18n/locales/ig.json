@@ -1557,6 +1557,10 @@
     "returnHome": "Laghachi Ụlọ"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Nke a post bụ adịghị",
+      "commentUnavailable": "Nkwupụta a adịkwaghị"
+    },
     "back": "Laghachi",
     "usernameAvailable": "Aha onye ọrụ dị!",
     "signUpToClaim": "Debanye aha taa iji nweta",

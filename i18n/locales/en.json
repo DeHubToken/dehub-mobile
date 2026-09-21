@@ -1639,6 +1639,10 @@
     "returnHome": "Return Home"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "This post is unavailable",
+      "commentUnavailable": "This comment is no longer available"
+    },
     "back": "Back",
     "tabHome": "Home",
     "tabImages": "Images",

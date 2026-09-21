@@ -1573,6 +1573,10 @@
     "returnHome": "ပင်မသို့ပြန်ရန်"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "ဒီ post ကိုမရရှိနိုင်ပါ",
+      "commentUnavailable": "ဤမှတ်ချက်ကို မရနိုင်တော့ပါ"
+    },
     "back": "နောက်သို့",
     "notFound": "ပရိုဖိုင် မတွေ့ပါ",
     "followers": "စောင့်ကြည့်သူများ",

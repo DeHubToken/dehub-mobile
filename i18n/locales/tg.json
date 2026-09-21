@@ -1519,6 +1519,10 @@
     "returnHome": "Бозгашт ба асосӣ"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Hindi magagamit ang post na ito",
+      "commentUnavailable": "Hindi na magagamit ang komentong ito"
+    },
     "back": "Бозгашт",
     "usernameAvailable": "Номи корбар озод аст!",
     "signUpToClaim": "Сабтином кунед то гиред",

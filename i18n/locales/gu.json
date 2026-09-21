@@ -1568,6 +1568,10 @@
     "returnHome": "હોમ પર પાછા જાઓ"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "આ પોસ્ટ અનુપલબ્ધ છે",
+      "commentUnavailable": "આ ટિપ્પણી હવે ઉપલબ્ધ નથી"
+    },
     "back": "પાછા",
     "usernameAvailable": "યુઝરનેમ ઉપલબ્ધ છે!",
     "signUpToClaim": "ક્લેમ કરવા સાઇન અપ કરો",

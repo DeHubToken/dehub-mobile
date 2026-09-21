@@ -1556,6 +1556,10 @@
     "returnHome": "Нүүр хуудас руу буцах"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Энэ нийтлэл боломжгүй байна",
+      "commentUnavailable": "Энэ сэтгэгдэл байхгүй байна"
+    },
     "back": "Буцах",
     "usernameAvailable": "Хэрэглэгчийн нэр боломжтой!",
     "signUpToClaim": "Авахын тулд бүртгүүлнэ үү",

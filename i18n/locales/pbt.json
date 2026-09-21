@@ -1542,6 +1542,10 @@
     "returnHome": "کور ته بیرته لاړ شئ"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "دا پوسټ د نه منلو وړ دی",
+      "commentUnavailable": "د دې خبرې نور جزیات نه دي په ډاګه شوي"
+    },
     "back": "بیرته",
     "usernameAvailable": "کارن نوم شتون لري!",
     "signUpToClaim": "نن ثبت نام وکړئ ترلاسه یې کړئ",

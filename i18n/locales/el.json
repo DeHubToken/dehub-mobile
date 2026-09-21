@@ -1571,6 +1571,10 @@
     "returnHome": "Επιστροφή στην Αρχική"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Αυτή η ανάρτηση δεν είναι διαθέσιμη",
+      "commentUnavailable": "Αυτό το σχόλιο δεν είναι πλέον διαθέσιμο"
+    },
     "back": "Πίσω",
     "usernameAvailable": "Το όνομα χρήστη είναι διαθέσιμο!",
     "signUpToClaim": "Εγγραφείτε σήμερα για να δεσμεύσετε",

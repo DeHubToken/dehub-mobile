@@ -1582,6 +1582,10 @@
     "returnHome": "Вярнуцца на галоўную"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Гэты пост недаступны",
+      "commentUnavailable": "Гэты каментар больш не даступны"
+    },
     "back": "Назад",
     "notFound": "Профіль не знойдзены",
     "followers": "Падпісчыкі",

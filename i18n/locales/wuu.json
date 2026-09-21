@@ -1529,6 +1529,10 @@
     "returnHome": "返回主页"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "迭篇内容弗可用",
+      "commentUnavailable": "迭条评论弗可用了"
+    },
     "back": "返回",
     "usernameAvailable": "用户名可用！",
     "signUpToClaim": "注册来拿",

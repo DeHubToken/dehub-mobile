@@ -1329,6 +1329,10 @@
     "returnHome": "होम पर लौटें"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "यह पोस्ट उपलब्ध नहीं है",
+      "commentUnavailable": "यह टिप्पणी अब उपलब्ध नहीं है"
+    },
     "back": "वापस",
     "usernameAvailable": "यूज़रनेम उपलब्ध है!",
     "signUpToClaim": "क्लेम करने के लिए आज ही साइन अप करें",

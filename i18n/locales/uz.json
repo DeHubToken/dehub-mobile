@@ -1551,6 +1551,10 @@
     "returnHome": "Bosh sahifaga qaytish"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Bu post mavjud emas",
+      "commentUnavailable": "Bu izoh endi mavjud emas"
+    },
     "back": "Orqaga",
     "usernameAvailable": "Foydalanuvchi nomi boʻsh!",
     "signUpToClaim": "Olish uchun roʻyxatdan oʻting",

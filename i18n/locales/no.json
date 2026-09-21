@@ -1533,6 +1533,10 @@
     "returnHome": "Gå tilbake til hjem"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Dette innlegget er ikke tilgjengelig",
+      "commentUnavailable": "Denne kommentaren er ikke lenger tilgjengelig"
+    },
     "back": "Tilbake",
     "usernameAvailable": "Brukernavn tilgjengelig!",
     "signUpToClaim": "Registrer deg i dag for å sikre det",

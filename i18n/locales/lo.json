@@ -1567,6 +1567,10 @@
     "returnHome": "ກັບໜ້າຫຼັກ"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Désolé, ວິດີໂອນີ້ບໍ່ສາມາດໃຊ້ໄດ້",
+      "commentUnavailable": "Désolé, ວິດີໂອນີ້ບໍ່ສາມາດໃຊ້ໄດ້ອີກຕໍ່ໄປ"
+    },
     "back": "ກັບຄືນ",
     "usernameAvailable": "ຊື່ຜູ້ໃຊ້ວ່າງ!",
     "signUpToClaim": "ສະໝັກມື້ນີ້ເພື່ອຈອງ",

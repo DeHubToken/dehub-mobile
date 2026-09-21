@@ -712,28 +712,42 @@ export interface UserReplyAuthor {
   hideBadgeAndBalance?: boolean;
 }
 
-/** Lightweight post context attached to each comment. */
+/**
+ * Post context attached to each comment. The comments endpoint sends only a
+ * sliver — tokenId, name, imageUrl, postType and the minter as a bare
+ * address; the rest is filled from the full post (nftToReplyPost).
+ */
 export interface UserReplyPost {
   tokenId: number;
   name?: string;
   title?: string;
   description?: string;
+  articleBody?: string;
   imageUrl?: string;
   imageUrls?: string[];
   thumbnailUrl?: string;
   thumbnail_url?: string;
   videoUrl?: string;
   postType?: string;
+  createdAt?: string;
   minter?: string;
   minterUsername?: string;
   minterDisplayName?: string;
+  minterAvatarUrl?: string;
+  /** The minter's account row — name, avatar, badge — once the full post is known. */
+  minterUser?: UserReplyAuthor;
 }
 
-/** The parent comment snippet (only present when isReply=true). */
+/** The parent comment snippet (only present when isReply=true and the parent still exists). */
 export interface UserReplyParentComment {
   id: number;
   content?: string;
+  imageUrl?: string | null;
+  gifUrl?: string | null;
+  audioUrl?: string | null;
+  audioDuration?: number;
   address?: string;
+  createdAt?: string;
   author?: UserReplyAuthor;
 }
 

@@ -1490,6 +1490,10 @@
     "returnHome": "Miverina any amin'ny fandraisana"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Ity fahazoan-dàlana ity dia tsy azo ampiasaina",
+      "commentUnavailable": "Io filazana io dia tsy hita intsony"
+    },
     "back": "Miverina",
     "usernameAvailable": "Misy io anaram-pikambana io!",
     "signUpToClaim": "Misorata mba haka azy",

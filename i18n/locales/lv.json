@@ -1571,6 +1571,10 @@
     "returnHome": "Atgriezties sākumā"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Šī ziņa nav pieejama",
+      "commentUnavailable": "Šis komentārs vairs nav pieejams"
+    },
     "back": "Atpakaļ",
     "usernameAvailable": "Lietotājvārds ir pieejams!",
     "signUpToClaim": "Reģistrējieties šodien, lai to iegūtu",

@@ -1432,6 +1432,10 @@
     "attachmentTooLarge": "يجب أن يكون كل ملف أقل من 20 ميغابايت"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "هذا المنشور غير متاح",
+      "commentUnavailable": "لم يعد هذا التعليق متاحًا"
+    },
     "back": "رجوع",
     "usernameAvailable": "اسم المستخدم متاح!",
     "signUpToClaim": "سجّل للحصول عليه",

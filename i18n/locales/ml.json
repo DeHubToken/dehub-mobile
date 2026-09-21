@@ -1559,6 +1559,10 @@
     "returnHome": "ഹോമിലേക്ക് മടങ്ങുക"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "ഈ പോസ്റ്റ് ലഭ്യമല്ല",
+      "commentUnavailable": "ഈ അഭിപ്രായം ഇനി ലഭ്യമല്ല"
+    },
     "back": "പിന്നിലേക്ക്",
     "usernameAvailable": "ഉപയോക്തൃനാമം ലഭ്യമാണ്!",
     "signUpToClaim": "ക്ലെയിം ചെയ്യാൻ സൈൻ അപ്പ് ചെയ്യുക",
