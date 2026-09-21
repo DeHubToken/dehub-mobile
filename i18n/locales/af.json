@@ -1928,6 +1928,10 @@
     "importWallet": "Voer beursie in",
     "privateKeyPlaceholder": "Voer jou private sleutel in",
     "importExternalWallet": "Voer eksterne beursie in",
+    "migrateAccount": "Migreer rekening",
+    "migrateAccountBody": "Het jy al voorheen 'n DeHub-rekening gehad? Teken in met dieselfde e-pos, telefoon, Google of Apple-aanmelding wat jy destyds gebruik het. As dit ooreenstem met 'n vorige rekening, sal jy aangebied word om sy beursie, gebruikersnaam en balans oor te bring.",
+    "migrateAccountNote": "'N Eenmalige aanmelding met die ou aanmelding kry u beursie-sleutel veilig op hierdie toestel. Dit raak nooit aan ons bedieners nie.",
+    "migrateAccountContinue": "Gaan voort om in te teken",
     "privateKey": "Private sleutel",
     "pasteFromClipboard": "Plak uit knipbord",
     "learnMoreAt": "Lees meer by dehub.io",
@@ -4399,6 +4403,7 @@
     "recoverOnWebsite": "Herwin op dehub.io",
     "createNewAnyway": "Ek wil nie daardie rekening hê nie — skep eerder 'n nuwe een",
     "couldNotRead": "Ons kon nie daardie herwinde beursie lees nie. Niks is verander nie.",
+    "noOldAccountFound": "Daar is geen vorige DeHub-rekening op hierdie aanmelding nie, so daar is niks om oor te bring nie. Skep 'n nuwe rekening in plaas daarvan.",
     "didNotRecoverEither": "Daardie aanmelding het nie een van die profiele hier herwin nie. Niks is verander nie. Probeer die oorspronklike aanmelding vir die profiel wat jy wil hê.",
     "didNotRecoverThis": "Daardie aanmelding het 'n ander beursie herwin as hierdie profiel s'n. Niks is verander nie. Probeer die aanmelding wat dit oorspronklik geskep het.",
     "couldNotRetrieve": "Kon nie daardie ou beursie op hierdie toestel haal nie. Jy kan dit steeds op dehub.io hieronder herwin."

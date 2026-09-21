@@ -1570,6 +1570,10 @@
     "importWallet": "Nhập ví",
     "privateKeyPlaceholder": "Nhập khóa riêng của bạn",
     "importExternalWallet": "Nhập ví bên ngoài",
+    "migrateAccount": "Di chuyển tài khoản",
+    "migrateAccountBody": "Bạn đã từng có tài khoản DeHub trước đây? Đăng nhập bằng cùng thông tin đăng nhập email, điện thoại, Google hoặc Apple mà bạn đã sử dụng trước đó. Nếu nó khớp với tài khoản trước đó, bạn sẽ được đề nghị mang theo ví, tên người dùng và số dư của nó.",
+    "migrateAccountNote": "Đăng nhập một lần với thông tin đăng nhập cũ sẽ lấy khóa ví của bạn một cách an toàn trên thiết bị này. Nó không bao giờ chạm vào máy chủ của chúng tôi.",
+    "migrateAccountContinue": "Tiếp tục đăng nhập",
     "privateKey": "Khóa riêng",
     "pasteFromClipboard": "Dán từ bộ nhớ tạm",
     "learnMoreAt": "Tìm hiểu thêm tại dehub.io",
@@ -4367,6 +4371,7 @@
     "recoverOnWebsite": "Khôi phục trên dehub.io",
     "createNewAnyway": "Tôi không cần tài khoản đó — cứ tạo tài khoản mới",
     "couldNotRead": "Chúng tôi không đọc được ví đã khôi phục đó. Không có gì thay đổi.",
+    "noOldAccountFound": "Không có tài khoản DeHub trước đó về thông tin đăng nhập này, vì vậy không có gì để mang lại. Thay vào đó, hãy thiết lập tài khoản mới.",
     "didNotRecoverEither": "Cách đăng nhập đó không khôi phục được hồ sơ nào hiển thị ở đây. Không có gì thay đổi. Hãy thử cách đăng nhập ban đầu của hồ sơ bạn muốn.",
     "didNotRecoverThis": "Cách đăng nhập đó đã khôi phục một ví khác, không phải của hồ sơ này. Không có gì thay đổi. Hãy thử cách đăng nhập đã tạo ra nó ban đầu.",
     "couldNotRetrieve": "Không thể lấy ví cũ đó trên thiết bị này. Bạn vẫn có thể khôi phục nó trên dehub.io bên dưới."

@@ -1518,6 +1518,10 @@
     "importWallet": "Kó àpamọ́wọ́ wọlé",
     "privateKeyPlaceholder": "Tẹ kọ́kọ́rọ́ ìkọ̀kọ̀ rẹ sí i",
     "importExternalWallet": "Kó àpamọ́wọ́ òde wọlé",
+    "migrateAccount": "Migrate account",
+    "migrateAccountBody": "Ṣé o ní àkọsílẹ̀ DeHub tẹ́lẹ̀? Wọlé pẹ̀lú ìforúkọsílẹ̀ imeeli kan náà, ẹ̀rọ ìbánisọ̀rọ̀, Google tàbí Apple tí o lò nígbà náà. Tí ó bá bá àkáǹtì tẹ́lẹ̀ mu, wọ́n máa fún ẹ láti mú àpamọ́wọ́ rẹ̀, orúkọ aṣàmúlò rẹ̀ àti ìdúróṣánṣán rẹ̀ wá.",
+    "migrateAccountNote": "Ìforúkọsílẹ̀ ìgbà kan pẹ̀lú ìforúkọsílẹ̀ àtijọ́ máa ń gba kọ́kọ́rọ́ àpamọ́ rẹ padà ní ààbò lórí ẹ̀rọ yìí. Kò fi ọwọ́ kan àwọn sérvérà wa rí.",
+    "migrateAccountContinue": "Tesiwaju lati wọle",
     "privateKey": "Kọ́kọ́rọ́ ìkọ̀kọ̀",
     "pasteFromClipboard": "Lẹ̀ mọ́ láti ibi ìdìpọ̀",
     "learnMoreAt": "Kọ́ sí i ní dehub.io",
@@ -4269,6 +4273,7 @@
     "recoverOnWebsite": "Gbà á padà lórí dehub.io",
     "createNewAnyway": "Mi ò fẹ́ àkọọ́lẹ̀ yẹn — dá tuntun sílẹ̀ lọ́nàkọnà",
     "couldNotRead": "A kò lè ka àpamọ́wọ́ tí a gbà padà náà. Kò sí ohun tí ó yí padà.",
+    "noOldAccountFound": "Ko si iroyin DeHub tẹlẹ lori wọle yii, nitorina ko si ohun ti o le mu wa. Ṣeto iroyin tuntun dipo.",
     "didNotRecoverEither": "Ìwọlé yẹn kò gba èyíkéyìí nínú àwọn àlàyé tí ó hàn níbí padà. Kò sí ohun tí ó yí padà. Gbìyànjú ìwọlé àkọ́kọ́ fún àlàyé tí o fẹ́.",
     "didNotRecoverThis": "Ìwọlé yẹn gba àpamọ́wọ́ mìíràn padà, kì í ṣe ti àlàyé yìí. Kò sí ohun tí ó yí padà. Gbìyànjú ìwọlé tí ó kọ́kọ́ dá a sílẹ̀.",
     "couldNotRetrieve": "A kò lè gba àpamọ́wọ́ àtijọ́ yẹn lórí ẹ̀rọ yìí. O ṣì lè gbà á padà lórí dehub.io nísàlẹ̀."

@@ -827,6 +827,10 @@
     "importWallet": "Importér wallet",
     "privateKeyPlaceholder": "Indtast din private nøgle",
     "importExternalWallet": "Importér ekstern wallet",
+    "migrateAccount": "Overfør konto",
+    "migrateAccountBody": "Havde du en DeHub-konto før? Log ind med det samme e-mail-, telefon-, Google- eller Apple-login, som du brugte dengang. Hvis den matcher en tidligere konto, vil du blive tilbudt at overføre dens tegnebog, brugernavn og saldo.",
+    "migrateAccountNote": "Et engangslogin med det gamle login henter din tegnebogsnøgle sikkert på denne enhed. Den rører aldrig vores servere.",
+    "migrateAccountContinue": "Fortsæt med at logge ind",
     "privateKey": "Privat nøgle",
     "pasteFromClipboard": "Indsæt fra udklipsholder",
     "learnMoreAt": "Læs mere på dehub.io",
@@ -4285,6 +4289,7 @@
     "recoverOnWebsite": "Gendan på dehub.io",
     "createNewAnyway": "Jeg vil ikke have den konto — opret en ny alligevel",
     "couldNotRead": "Vi kunne ikke læse den gendannede tegnebog. Intet blev ændret.",
+    "noOldAccountFound": "Der er ingen tidligere DeHub-konto på dette login, så der er intet at overføre. Opsætning af en ny konto i stedet.",
     "didNotRecoverEither": "Det login gendannede ingen af profilerne her. Intet blev ændret. Prøv det oprindelige login for den profil, du vil have.",
     "didNotRecoverThis": "Det login gendannede en anden tegnebog end denne profils. Intet blev ændret. Prøv det login, der oprindeligt oprettede den.",
     "couldNotRetrieve": "Den gamle tegnebog kunne ikke hentes på denne enhed. Du kan stadig gendanne den på dehub.io nedenfor."

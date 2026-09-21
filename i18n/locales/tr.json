@@ -982,6 +982,10 @@
     "importWallet": "Cüzdan içe aktar",
     "privateKeyPlaceholder": "Özel anahtarınızı girin",
     "importExternalWallet": "Harici cüzdanı içe aktar",
+    "migrateAccount": "Hesabı taşı",
+    "migrateAccountBody": "Daha önce DeHub hesabınız var mıydı? O zamanlar kullandığınız e - posta, telefon, Google veya Apple giriş bilgileriyle oturum açın. Daha önceki bir hesapla eşleşirse cüzdanını, kullanıcı adını ve bakiyesini getirmeniz teklif edilir.",
+    "migrateAccountNote": "Eski oturum açma bilgileriyle tek seferlik oturum açma, cüzdan anahtarınızı bu cihazda güvenli bir şekilde alır. Sunucularımıza asla dokunmaz.",
+    "migrateAccountContinue": "Oturum açmaya devam et",
     "privateKey": "Özel anahtar",
     "pasteFromClipboard": "Panodan yapıştır",
     "learnMoreAt": "dehub.io adresinden daha fazlasını öğren",
@@ -4343,6 +4347,7 @@
     "recoverOnWebsite": "dehub.io üzerinden kurtar",
     "createNewAnyway": "O hesabı istemiyorum — yine de yeni bir tane oluştur",
     "couldNotRead": "Kurtarılan cüzdanı okuyamadık. Hiçbir şey değişmedi.",
+    "noOldAccountFound": "Bu girişte daha eski bir DeHub hesabı yok, bu yüzden getirilecek bir şey yok. Bunun yerine yeni bir hesap oluşturun.",
     "didNotRecoverEither": "Bu giriş burada gösterilen profillerin hiçbirini kurtarmadı. Hiçbir şey değişmedi. İstediğiniz profilin orijinal oturum açma yöntemini deneyin.",
     "didNotRecoverThis": "Bu giriş, bu profilinkinden farklı bir cüzdanı kurtardı. Hiçbir şey değişmedi. Onu ilk oluşturan oturum açma yöntemini deneyin.",
     "couldNotRetrieve": "Bu cihazda o eski cüzdan alınamadı. Aşağıdaki dehub.io üzerinden hâlâ kurtarabilirsiniz."

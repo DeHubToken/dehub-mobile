@@ -1479,6 +1479,10 @@
     "importWallet": "导入钱包",
     "privateKeyPlaceholder": "输入你的私钥",
     "importExternalWallet": "导入外部钱包",
+    "migrateAccount": "迁移账户",
+    "migrateAccountBody": "以前有过 DeHub 账户？用以前用的同一个邮箱、电话、Google 或 Apple 登录。如果和之前的账户匹配，系统会提示你带回你的钱包、用户名和余额。",
+    "migrateAccountNote": "用旧的登录方式进行一次性登录，会在本设备上安全地检索你的钱包密钥。这个过程不会触及我们的服务器。",
+    "migrateAccountContinue": "继续登录",
     "privateKey": "私钥",
     "pasteFromClipboard": "从剪贴板粘贴",
     "learnMoreAt": "在 dehub.io 了解更多",
@@ -4228,6 +4232,7 @@
     "recoverOnWebsite": "勒 dehub.io 上寻转来",
     "createNewAnyway": "我勿要格个账户 — 还是新建一个",
     "couldNotRead": "阿拉读勿了寻转来个钱包，啥也呒没变。",
+    "noOldAccountFound": "呢个登录没得早前个DeHub账号，所以没得啥物事可以带过来。现在设置一个新账号。",
     "didNotRecoverEither": "格个登录方式呒没寻转来此地列出个任何档案，啥也呒没变。请试试侬要个档案个原始登录方式。",
     "didNotRecoverThis": "格个登录方式寻转来个是另外一个钱包，勿是格个档案个。啥也呒没变。请试试最早建伊个登录方式。",
     "couldNotRetrieve": "勒格部手机上取勿转来格个旧钱包。侬还好勒下头个 dehub.io 上寻转来。"

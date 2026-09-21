@@ -1481,6 +1481,10 @@
     "importWallet": "Impor dompet",
     "privateKeyPlaceholder": "Lebokna kunci pribadimu",
     "importExternalWallet": "Impor dompet njaba",
+    "migrateAccount": "Migrasi akun",
+    "migrateAccountBody": "Nate kagungan akun DeHub? mlebet nganggo email, nomer telpon, login Google utawa Apple sing sami dipun ginakaken nalika samanten. Menawi cocog kaliyan akun saderengipun, badhé dipun tawani kangge ngasta dompet, jeneng panganggo, lan imbanganipun.",
+    "migrateAccountNote": "Mlebet sepisan nganggo login lawas badhé ngundhuh kunci dompet kanthi aman wonten ing piranti menika. Mboten nate nyentuh server kita.",
+    "migrateAccountContinue": "Lajengaken kangge mlebet",
     "privateKey": "Kunci pribadi",
     "pasteFromClipboard": "Tempel saka papan klip",
     "learnMoreAt": "Sinau luwih lengkap ing dehub.io",
@@ -4238,6 +4242,7 @@
     "recoverOnWebsite": "Balèkake ing dehub.io",
     "createNewAnyway": "Aku ora pengin akun kuwi — gawe sing anyar wae",
     "couldNotRead": "Kita ora bisa maca dompet sing dibalèkake kuwi. Ora ana sing owah.",
+    "noOldAccountFound": "Ora ana akun DeHub sadurunge ing login iki, mula ora ana sing bisa digawa. Nggawe akun anyar wae.",
     "didNotRecoverEither": "Mlebu kuwi ora mbalèkake profil apa wae sing katon ing kene. Ora ana sing owah. Coba cara mlebu asli kanggo profil sing dikarepake.",
     "didNotRecoverThis": "Mlebu kuwi mbalèkake dompet liya, dudu duweke profil iki. Ora ana sing owah. Coba cara mlebu sing biyèn nggawe iki.",
     "couldNotRetrieve": "Dompet lawas kuwi ora bisa dijupuk ing piranti iki. Sampeyan isih bisa mbalèkake liwat dehub.io ing ngisor."

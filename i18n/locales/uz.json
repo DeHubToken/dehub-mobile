@@ -1486,6 +1486,10 @@
     "importWallet": "Hamyonni import qilish",
     "privateKeyPlaceholder": "Shaxsiy kalitingizni kiriting",
     "importExternalWallet": "Tashqi hamyonni import qilish",
+    "migrateAccount": "Hisobni ko'chirish",
+    "migrateAccountBody": "Ilgari DeHub akkaunti bo&#39;lganmi? O&#39;sha paytda foydalangan elektron pochta manzili, telefon raqami, Google yoki Apple loginingiz bilan tizimga kiring. Agar u avvalgi akkauntga mos kelsa, sizga uning hamyoni, foydalanuvchi nomi va balansini olib kelish taklif qilinadi.",
+    "migrateAccountNote": "Eski login bilan bir martalik kirish hamyon kalitingizni ushbu qurilmada xavfsiz ravishda oladi. U hech qachon bizning serverlarimizga tegmaydi.",
+    "migrateAccountContinue": "Kirishda davom etish",
     "privateKey": "Shaxsiy kalit",
     "pasteFromClipboard": "Almashish buferidan qo'yish",
     "learnMoreAt": "dehub.io da batafsil bilib oling",
@@ -4323,6 +4327,7 @@
     "recoverOnWebsite": "dehub.io da tiklash",
     "createNewAnyway": "Menga u hisob kerak emas — baribir yangisini yarating",
     "couldNotRead": "Tiklangan hamyonni o'qiy olmadik. Hech narsa o'zgarmadi.",
+    "noOldAccountFound": "Bu tizimga kirishda avvalgi DeHub hisobi yo&#39;q, shuning uchun uni qayta tiklashning hojati yo&#39;q. Buning o&#39;rniga yangi hisob yaratilmoqda.",
     "didNotRecoverEither": "Bu kirish bu yerda ko'rsatilgan profillarning birortasini ham tiklamadi. Hech narsa o'zgarmadi. Kerakli profilning dastlabki kirish usulini sinab ko'ring.",
     "didNotRecoverThis": "Bu kirish ushbu profilnikidan boshqa hamyonni tikladi. Hech narsa o'zgarmadi. Uni dastlab yaratgan kirish usulini sinab ko'ring.",
     "couldNotRetrieve": "Bu qurilmada o'sha eski hamyonni olib bo'lmadi. Uni quyidagi dehub.io saytida hamon tiklashingiz mumkin."

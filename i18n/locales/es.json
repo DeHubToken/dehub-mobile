@@ -1268,6 +1268,10 @@
     "importWallet": "Importar cartera",
     "privateKeyPlaceholder": "Introduce tu clave privada",
     "importExternalWallet": "Importar cartera externa",
+    "migrateAccount": "Migrar cuenta",
+    "migrateAccountBody": "¿Tenías una cuenta de DeHub antes? Inicia sesión con el mismo correo electrónico, teléfono, inicio de sesión de Google o Apple que usabas en ese momento. Si coincide con una cuenta anterior, se le ofrecerá traer su billetera, nombre de usuario y saldo.",
+    "migrateAccountNote": "Un inicio de sesión único con el inicio de sesión anterior recupera la clave de su billetera de forma segura en este dispositivo. Nunca toca nuestros servidores.",
+    "migrateAccountContinue": "Continuar para iniciar sesión",
     "privateKey": "Clave privada",
     "pasteFromClipboard": "Pegar del portapapeles",
     "learnMoreAt": "Más información en dehub.io",
@@ -4352,6 +4356,7 @@
     "recoverOnWebsite": "Recuperar en dehub.io",
     "createNewAnyway": "No quiero esa cuenta: crea una nueva de todos modos",
     "couldNotRead": "No hemos podido leer la cartera recuperada. No se ha cambiado nada.",
+    "noOldAccountFound": "No hay una cuenta anterior de DeHub en este inicio de sesión, por lo que no hay nada que traer. En su lugar, configura una cuenta nueva.",
     "didNotRecoverEither": "Ese inicio de sesión no ha recuperado ninguno de los perfiles que se muestran aquí. No se ha cambiado nada. Prueba el inicio de sesión original del perfil que quieras.",
     "didNotRecoverThis": "Ese inicio de sesión ha recuperado una cartera distinta de la de este perfil. No se ha cambiado nada. Prueba el inicio de sesión que lo creó originalmente.",
     "couldNotRetrieve": "No se ha podido obtener esa cartera antigua en este dispositivo. Todavía puedes recuperarla en dehub.io, más abajo."

@@ -1550,6 +1550,10 @@
     "importWallet": "Importuj portfel",
     "privateKeyPlaceholder": "Wprowadź swój klucz prywatny",
     "importExternalWallet": "Importuj zewnętrzny portfel",
+    "migrateAccount": "Przenieś konto",
+    "migrateAccountBody": "Czy miałeś wcześniej konto DeHub? Zaloguj się za pomocą tego samego adresu e-mail, telefonu, loginu Google lub Apple, którego używałeś wtedy. Jeśli pasuje do wcześniejszego konta, otrzymasz propozycję przyniesienia portfela, nazwy użytkownika i salda.",
+    "migrateAccountNote": "Jednorazowe logowanie za pomocą starego loginu bezpiecznie pobiera klucz portfela na tym urządzeniu. Nigdy nie dotyka naszych serwerów.",
+    "migrateAccountContinue": "Kontynuuj logowanie",
     "privateKey": "Klucz prywatny",
     "pasteFromClipboard": "Wklej ze schowka",
     "learnMoreAt": "Dowiedz się więcej na dehub.io",
@@ -4349,6 +4353,7 @@
     "recoverOnWebsite": "Odzyskaj na dehub.io",
     "createNewAnyway": "Nie chcę tamtego konta — utwórz mimo to nowe",
     "couldNotRead": "Nie udało się odczytać odzyskanego portfela. Nic nie zostało zmienione.",
+    "noOldAccountFound": "Na tym loginie nie ma wcześniejszego konta DeHub, więc nie ma co przynosić. Zamiast tego skonfiguruj nowe konto.",
     "didNotRecoverEither": "To logowanie nie odzyskało żadnego z pokazanych tu profili. Nic się nie zmieniło. Spróbuj pierwotnego logowania dla profilu, który chcesz.",
     "didNotRecoverThis": "To logowanie odzyskało inny portfel niż ten profil. Nic się nie zmieniło. Spróbuj logowania, którym został pierwotnie utworzony.",
     "couldNotRetrieve": "Nie udało się pobrać tego starego portfela na tym urządzeniu. Nadal możesz go odzyskać na dehub.io poniżej."

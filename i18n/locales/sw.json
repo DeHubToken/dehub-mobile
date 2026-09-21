@@ -1522,6 +1522,10 @@
     "importWallet": "Ingiza pochi",
     "privateKeyPlaceholder": "Weka ufunguo wako wa faragha",
     "importExternalWallet": "Ingiza pochi ya nje",
+    "migrateAccount": "Hamisha akaunti",
+    "migrateAccountBody": "Je, ulikuwa na akaunti ya DeHub hapo awali? Ingia kwa kutumia barua pepe ile ile, simu, Google au kuingia kwa Apple uliyotumia wakati huo. Ikiwa inalingana na akaunti ya awali, utajitolea kuleta mkoba wake, jina la mtumiaji na salio.",
+    "migrateAccountNote": "Kuingia mara moja na kuingia kwa zamani kunachukua ufunguo wako wa mkoba salama kwenye kifaa hiki. Haigusi seva zetu kamwe.",
+    "migrateAccountContinue": "Endelea kuingia",
     "privateKey": "Ufunguo wa faragha",
     "pasteFromClipboard": "Bandika kutoka ubao wa kunakili",
     "learnMoreAt": "Jifunze zaidi kwenye dehub.io",
@@ -4281,6 +4285,7 @@
     "recoverOnWebsite": "Rejesha kwenye dehub.io",
     "createNewAnyway": "Sitaki akaunti hiyo — tengeneza mpya tu",
     "couldNotRead": "Hatukuweza kusoma pochi hiyo iliyorejeshwa. Hakuna kilichobadilika.",
+    "noOldAccountFound": "Hakuna akaunti ya awali ya DeHub kwenye kuingia hii, kwa hivyo hakuna kitu cha kuleta. Kufungua akaunti mpya badala yake.",
     "didNotRecoverEither": "Kuingia huko hakukurejesha wasifu wowote ulioonyeshwa hapa. Hakuna kilichobadilika. Jaribu njia ya asili ya kuingia kwa wasifu unaotaka.",
     "didNotRecoverThis": "Kuingia huko kulirejesha pochi tofauti na ya wasifu huu. Hakuna kilichobadilika. Jaribu njia ya kuingia iliyouunda mwanzoni.",
     "couldNotRetrieve": "Haikuwezekana kupata pochi hiyo ya zamani kwenye kifaa hiki. Bado unaweza kuirejesha kwenye dehub.io hapa chini."

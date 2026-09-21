@@ -1550,6 +1550,10 @@
     "importWallet": "Boorsaa galchi",
     "privateKeyPlaceholder": "Furtuu dhuunfaa kee galchi",
     "importExternalWallet": "Boorsaa alaa galchi",
+    "migrateAccount": "Maamila jijjiiru",
+    "migrateAccountBody": "Maamila DeHub duraan qabtaa? E-mail, bilbila, Google ykn Apple walitti qabsiisa duraan itti fayyadamtaniin seenaa. Maamila duraanii wajjin walitti yoo bu'e, saanduqa, maqaa fi qabiiqoo isaa fideef ni dhihaata.",
+    "migrateAccountNote": "Maamila duraan itti fayyadamtaniin seenaa yeroo tokko qofa gochuun saanduqa keessan bilbila kana irratti amanummaan ol fudhata. Karaa keenya irra hin darbine.",
+    "migrateAccountContinue": "Seenaa gochuuf itti fufi",
     "privateKey": "Furtuu dhuunfaa",
     "pasteFromClipboard": "Kiliippoordii irraa maxxansi",
     "learnMoreAt": "dehub.io irratti dabalataan baradhu",
@@ -4344,6 +4348,7 @@
     "recoverOnWebsite": "dehub.io irratti deebisi",
     "createNewAnyway": "Herrega sana hin barbaadu — haaraa uumi",
     "couldNotRead": "Boorsaa deebi'e sana dubbisuu hin dandeenye. Homtuu hin jijjiiramne.",
+    "noOldAccountFound": "Seensa kana irratti akkaawuntii DeHub duraanii hin jiru, kanaaf wanti fidu hin jiru. Bakka isaa akkaawuntii haaraa diriirsuu.",
     "didNotRecoverEither": "Seensi sun piroofaayila asitti argaman keessaa tokkollee hin deebifne. Homtuu hin jijjiiramne. Piroofaayila barbaaddu sanaaf seensa jalqabaa yaali.",
     "didNotRecoverThis": "Seensi sun boorsaa piroofaayila kanaa hin taane deebise. Homtuu hin jijjiiramne. Seensa jalqaba isa uume yaali.",
     "couldNotRetrieve": "Boorsaa durii sana meeshaa kana irratti argachuun hin danda'amne. Ammas dehub.io armaan gadii irratti deebisuu dandeessa."

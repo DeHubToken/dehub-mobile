@@ -1922,6 +1922,10 @@
     "importWallet": "ওয়ালেট ইমপোর্ট করন",
     "privateKeyPlaceholder": "আঁর প্রাইভেট কী দন",
     "importExternalWallet": "বাইরের ওয়ালেট ইমপোর্ট করন",
+    "migrateAccount": "Migrate account",
+    "migrateAccountBody": "DeHub account আছিল? হেই সেইম ইমেইল, ফোন, Google বা Apple login দিয়া sign in করু যেতা আগে ব্যবহার করসিলি। যদি হেইটা আগের একাউন্টর লগে মিলে, তয় তোক তার wallet, username আর balance নিয়া আইবার অফার দিবো।",
+    "migrateAccountNote": "Old login দিয়া একবার sign in করলেই তোর wallet key এই ডিভাইসতে secure হই যাইবো। হেইটা আমাগো server touch করবো না।",
+    "migrateAccountContinue": "Continue to sign in",
     "privateKey": "প্রাইভেট কী",
     "pasteFromClipboard": "ক্লিপবোর্ডত্তুন পেস্ট করন",
     "learnMoreAt": "dehub.io ত আরও জানন",
@@ -4320,6 +4324,7 @@
     "recoverOnWebsite": "dehub.io-ত ফিরত আনন",
     "createNewAnyway": "আঁই হেই একাউন্ট ন চাই — নয়া এক্কান বানান",
     "couldNotRead": "উদ্ধার গরা ওয়ালেট পড়ন ন গেলো। কিছুই বদলায় ন।",
+    "noOldAccountFound": "এই লগইনে আগে কোনো DeHub অ্যাকাউন্ট নাই, তাই কিছু আনার নাই। নতুন অ্যাকাউন্ট খুলতাছি।",
     "didNotRecoverEither": "এই লগইনে এডে দেহানি কোনো প্রোফাইলই ফিরত আনে ন। কিছুই বদলায় ন। তুঁই যেই প্রোফাইলগান চান হেতার মূল সাইন-ইন চেষ্টা গরন।",
     "didNotRecoverThis": "এই লগইনে এই প্রোফাইলর ন, অন্য এক্কান ওয়ালেট ফিরত আনছে। কিছুই বদলায় ন। যেই সাইন-ইন দি ইয়ান বানা অইছিল হেতা চেষ্টা গরন।",
     "couldNotRetrieve": "এই ডিভাইসত হেই পুরান ওয়ালেট আনন ন গেলো। তুঁই এহনও নিচে dehub.io-ত ইয়ান ফিরত আনিত পারিবান।"

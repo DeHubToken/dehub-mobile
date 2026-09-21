@@ -841,6 +841,10 @@
     "importWallet": "Importar carteira",
     "privateKeyPlaceholder": "Introduza a sua chave privada",
     "importExternalWallet": "Importar carteira externa",
+    "migrateAccount": "Migrar conta",
+    "migrateAccountBody": "Já teve uma conta DeHub antes? Inicie sessão com o mesmo e-mail, telefone, login do Google ou Apple que usou anteriormente. Se corresponder a uma conta anterior, ser-lhe-á oferecido trazer a sua carteira, nome de utilizador e saldo.",
+    "migrateAccountNote": "Uma única sessão com o login antigo recupera a sua chave de carteira de forma segura neste dispositivo. Nunca toca nos nossos servidores.",
+    "migrateAccountContinue": "Continuar para iniciar sessão",
     "privateKey": "Chave privada",
     "pasteFromClipboard": "Colar da área de transferência",
     "learnMoreAt": "Saiba mais em dehub.io",
@@ -4355,6 +4359,7 @@
     "recoverOnWebsite": "Recuperar em dehub.io",
     "createNewAnyway": "Não quero essa conta — cria uma nova mesmo assim",
     "couldNotRead": "Não conseguimos ler essa carteira recuperada. Nada foi alterado.",
+    "noOldAccountFound": "Não há nenhuma conta DeHub anterior neste login, então não há nada para trazer. Configurando uma nova conta em vez disso.",
     "didNotRecoverEither": "Esse início de sessão não recuperou nenhum dos perfis aqui mostrados. Nada mudou. Experimenta o início de sessão original do perfil que queres.",
     "didNotRecoverThis": "Esse início de sessão recuperou uma carteira diferente da deste perfil. Nada mudou. Experimenta o início de sessão que o criou originalmente.",
     "couldNotRetrieve": "Não foi possível obter essa carteira antiga neste dispositivo. Ainda a podes recuperar em dehub.io abaixo."
