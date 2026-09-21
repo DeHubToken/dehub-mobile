@@ -1649,7 +1649,16 @@
     "password": "Teny miafina",
     "sendCode": "Alefaso ny kaody",
     "usePasswordInstead": "Mampiasà tenimiafina fa tsy izany",
-    "useCodeInstead": "Alefaso mailaka ho ahy ny kaody"
+    "useCodeInstead": "Alefaso mailaka ho ahy ny kaody",
+    "continuePasskey": "Tohizo ny dian-tongotra",
+    "passkeyIntro": "Ny rantsan-tananao na ny tavanao no kaontinao. Tsy misy tokony hotsarovanao, tsy misy tokony soratanao.",
+    "passkeySignIn": "Midira amin'ny rantsan-tananao",
+    "passkeyCreate": "Mamorona kaonty vaovao",
+    "passkeyUnsupported": "Io fitaovana io dia tsy afaka miditra amin'ny alalan'ny rantsan-tànana na tarehy. Mampiasà safidy hafa.",
+    "passkeyNotLinked": "Mbola tsy misy kaonty mifandray amin'io rantsan-tànana io. Mamorona kaonty vaovao fa tsy izany.",
+    "passkeyAlreadyRegistered": "Efa misy kaonty io rantsan-tànana io. Mampiasà \"Midira\" fa tsy izany.",
+    "passkeyFailed": "Tsy nahomby ny fidirana amin'ny rantsan-tànana. Mba andramo indray.",
+    "passkeyBackupHint": "Ny kaontinao dia ao anaty \"passkey\" an'ity fitaovana ity. Amin'ny ankamaroan'ny telefaona dia mifandray amin'ny kaonty Google na Apple anao izany, ary azonao atao ny manampy backup tenimiafina ao amin'ny \"Settings\"."
   },
   "careers": {
     "title": "Asa ao amin'i DeHub",

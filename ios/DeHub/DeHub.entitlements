@@ -11,6 +11,7 @@
     <key>com.apple.developer.associated-domains</key>
     <array>
       <string>applinks:dehub.io</string>
+      <string>webcredentials:dehub.io</string>
     </array>
   </dict>
 </plist>

@@ -1731,7 +1731,16 @@
     "password": "Lozinka",
     "sendCode": "Pošalji kod",
     "usePasswordInstead": "Umjesto toga koristi lozinku",
-    "useCodeInstead": "Umjesto toga pošalji mi kod e-poštom"
+    "useCodeInstead": "Umjesto toga pošalji mi kod e-poštom",
+    "continuePasskey": "Nastavite s otiskom prsta",
+    "passkeyIntro": "Vaš otisak prsta ili lice je vaš račun. Ništa za pamćenje, ništa za upisivanje.",
+    "passkeySignIn": "Prijavi se otiskom prsta",
+    "passkeyCreate": "Stvori novi račun",
+    "passkeyUnsupported": "Ovaj uređaj se ne može prijaviti otiskom prsta ili licem. Upotrijebi drugu opciju.",
+    "passkeyNotLinked": "Nijedan račun nije povezan s tim otiskom prsta. Stvori novi račun.",
+    "passkeyAlreadyRegistered": "Taj otisak prsta već ima račun. Upotrijebi Prijava.",
+    "passkeyFailed": "Prijava otiskom prsta nije uspjela. Pokušaj ponovno.",
+    "passkeyBackupHint": "Vaš račun živi u šifri ovog uređaja. Na većini telefona sinkronizira se s vašim Google ili Apple računom, a sigurnosnu kopiju lozinke možete dodati u Postavkama."
   },
   "careers": {
     "title": "Karijere u DeHubu",

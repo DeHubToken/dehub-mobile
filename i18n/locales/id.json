@@ -1732,7 +1732,16 @@
     "password": "Kata sandi",
     "sendCode": "Kirim kode",
     "usePasswordInstead": "Gunakan kata sandi saja",
-    "useCodeInstead": "Kirimi saya kode lewat email"
+    "useCodeInstead": "Kirimi saya kode lewat email",
+    "continuePasskey": "Lanjutkan dengan sidik jari",
+    "passkeyIntro": "Sidik jari atau wajah Anda adalah akun Anda. Tidak perlu mengingat, tidak perlu mengetik.",
+    "passkeySignIn": "Masuk dengan sidik jari",
+    "passkeyCreate": "Buat akun baru",
+    "passkeyUnsupported": "Perangkat ini tidak dapat masuk dengan sidik jari atau wajah. Gunakan opsi lain.",
+    "passkeyNotLinked": "Belum ada akun yang tertaut ke sidik jari itu. Buat akun baru saja.",
+    "passkeyAlreadyRegistered": "Sidik jari itu sudah memiliki akun. Gunakan Masuk saja.",
+    "passkeyFailed": "Masuk sidik jari gagal. Silakan coba lagi.",
+    "passkeyBackupHint": "Akun Anda tersimpan di passkey perangkat ini. Di sebagian besar ponsel, passkey tersinkronisasi dengan akun Google atau Apple Anda, dan Anda dapat menambahkan cadangan sandi di Setelan."
   },
   "careers": {
     "title": "Karir di DeHub",

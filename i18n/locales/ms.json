@@ -2187,7 +2187,16 @@
     "password": "Kata laluan",
     "sendCode": "Hantar kod",
     "usePasswordInstead": "Guna kata laluan sebaliknya",
-    "useCodeInstead": "Hantar kod melalui e-mel sebaliknya"
+    "useCodeInstead": "Hantar kod melalui e-mel sebaliknya",
+    "continuePasskey": "Teruskan dengan cap jari",
+    "passkeyIntro": "Cap jari atau wajah anda adalah akaun anda. Tiada apa yang perlu diingat, tiada apa yang perlu ditaip.",
+    "passkeySignIn": "Log masuk dengan cap jari",
+    "passkeyCreate": "Cipta akaun baharu",
+    "passkeyUnsupported": "Peranti ini tidak boleh log masuk dengan cap jari atau wajah. Gunakan pilihan lain.",
+    "passkeyNotLinked": "Tiada akaun yang dipautkan dengan cap jari itu lagi. Cipta akaun baharu sebaliknya.",
+    "passkeyAlreadyRegistered": "Cap jari itu sudah mempunyai akaun. Gunakan Log masuk sebaliknya.",
+    "passkeyFailed": "Log masuk cap jari gagal. Sila cuba lagi.",
+    "passkeyBackupHint": "Akaun anda berada dalam kunci laluan peranti ini. Pada kebanyakan telefon, ia disegerakkan dengan akaun Google atau Apple anda, dan anda boleh menambah sandaran kata laluan dalam Tetapan."
   },
   "careers": {
     "title": "Careers at DeHub",

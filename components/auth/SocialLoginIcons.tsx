@@ -4,9 +4,11 @@ import { SvgXml } from "react-native-svg";
 import { useTranslation } from "react-i18next";
 import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
+import PasskeyLoginFlow from "./PasskeyLoginFlow";
 import { AuthButton } from "./AuthControls";
 import { isWalletConnectAvailable } from "../../config/reown.config";
 import { isTelegramLoginAvailable } from "../../services/auth/supabaseAuth.service";
+import { isPasskeyLoginAvailable } from "../../services/auth/passkeyAuth.service";
 
 // Monochrome Google glyph — tinted at render time so it stays legible on both
 // the white-glass secondary fill and (if ever reused) the light primary fill.
@@ -35,11 +37,20 @@ interface SocialLoginIconsProps {
    * function's env, on its own deploy track, so an app build cannot know.
    */
   onTelegram?: () => void;
+  /**
+   * Passkey-only sign-in: the fingerprint/face passkey IS the account. The row
+   * renders only when the platform can do passkeys (Android 9+ with Google
+   * Play services, iOS 15+).
+   */
+  onPasskeySignIn?: () => void;
+  onPasskeySignUp?: () => void;
+  passkeyError?: string | null;
+  passkeySuggestCreate?: boolean;
   onEmailSubmit: (email: string) => void;
   onEmailPasswordSubmit?: (email: string, password: string) => void;
   onPhoneSubmit: (phone: string) => void;
   onConnectWallet?: () => void;
-  busyProvider?: string; // 'google' | 'apple' | 'email' | 'phone' | 'wallet'
+  busyProvider?: string; // 'google' | 'apple' | 'email' | 'phone' | 'wallet' | 'passkey-signin' | 'passkey-signup'
   disabled?: boolean;
   /**
    * Passed straight to the two rows that expand into a text field. The host
@@ -60,6 +71,10 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   onGoogle,
   onApple,
   onTelegram,
+  onPasskeySignIn,
+  onPasskeySignUp,
+  passkeyError,
+  passkeySuggestCreate,
   onEmailSubmit,
   onEmailPasswordSubmit,
   onPhoneSubmit,
@@ -70,6 +85,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
 }) => {
   const { t } = useTranslation();
   const [telegramReady, setTelegramReady] = useState(false);
+  const passkeyReady = !!onPasskeySignIn && !!onPasskeySignUp && isPasskeyLoginAvailable();
 
   // Starts false and only ever turns on: a project with no bot configured
   // shows no Telegram row at all, rather than one that fails when tapped.
@@ -95,6 +111,17 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
         disabled={disabled}
         onExpand={onFieldExpand}
       />
+
+      {passkeyReady && (
+        <PasskeyLoginFlow
+          onSignIn={onPasskeySignIn!}
+          onSignUp={onPasskeySignUp!}
+          busy={busyProvider === "passkey-signin" ? "signin" : busyProvider === "passkey-signup" ? "signup" : null}
+          disabled={disabled}
+          error={passkeyError}
+          suggestCreate={passkeySuggestCreate}
+        />
+      )}
 
       <AuthButton
         label={t("loginModal.continueGoogle", "Continue with Google")}

@@ -1730,7 +1730,16 @@
     "password": "Parool",
     "sendCode": "Saada kood",
     "usePasswordInstead": "Kasuta hoopis parooli",
-    "useCodeInstead": "Saada mulle kood hoopis e-postiga"
+    "useCodeInstead": "Saada mulle kood hoopis e-postiga",
+    "continuePasskey": "Jätka sõrmejäljega",
+    "passkeyIntro": "Sinu sõrmejälg või nägu on sinu konto. Midagi pole vaja meelde jätta ega sisestada.",
+    "passkeySignIn": "Logi sisse sõrmejäljega",
+    "passkeyCreate": "Loo uus konto",
+    "passkeyUnsupported": "See seade ei saa sisse logida sõrmejälje või näoga. Kasuta muud valikut.",
+    "passkeyNotLinked": "Selle sõrmejäljega pole veel ühtegi kontot seotud. Loo selle asemel uus konto.",
+    "passkeyAlreadyRegistered": "See sõrmejälg on juba seotud kontoga. Kasuta selle asemel sisselogimist.",
+    "passkeyFailed": "Sõrmejäljega sisselogimine ebaõnnestus. Palun proovi uuesti.",
+    "passkeyBackupHint": "Sinu konto asub selle seadme pääsukoodis. Enamikus telefonides sünkroonitakse see sinu Google'i või Apple'i kontoga ning saad seadetes lisada parooli varukoopia."
   },
   "careers": {
     "title": "Karjäär DeHubis",

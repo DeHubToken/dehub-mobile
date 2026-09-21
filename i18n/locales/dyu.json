@@ -1709,7 +1709,16 @@
     "password": "Tɔgɔla",
     "sendCode": "Kode ci",
     "usePasswordInstead": "A nɔ na, tɔgɔmasɛbɛn kɛ",
-    "useCodeInstead": "A nɔ na, kode ci n ma e-mail la"
+    "useCodeInstead": "A nɔ na, kode ci n ma e-mail la",
+    "continuePasskey": "Aw ye aw bolokunnadenw to yen",
+    "passkeyIntro": "I ka sɛbɛri wala i ka sɛbɛri ye i ka sɛbɛri ye. I tɛ se ka foyi fɔ, i tɛ se ka foyi fɔ.",
+    "passkeySignIn": "I ka sɛbɛri kɛ n'i bolokunnaden ye",
+    "passkeyCreate": "Lɔnniya Kɛ ka kunnafoni kura dɔ di",
+    "passkeyUnsupported": "O baarakɛminan tɛ se ka don ni a bolokunnaden wala a ɲada ye. O la, i bena se ka dɔ wɛrɛ kɛ.",
+    "passkeyNotLinked": "O la, a tun be se ka kɛ ko a tun ye mɔgɔ dɔ ye min tun ye mɔgɔ dɔ ye. Ka kɔn ka kunnafoni kura dɔ di, ka sɔrɔ ka kɔn ka kunnafoni kura dɔ di.",
+    "passkeyAlreadyRegistered": "O la, a tun be se ka kɛ ko a tun ye mɔgɔ dɔ ye min tun ye mɔgɔ dɔ ye I ka siginiden bila a nɔɔ na.",
+    "passkeyFailed": "N'i b'a fɛ ka tugu a kɔ, n'i b'a fɛ ka tugu a kɔ, i ka taga a filɛ.",
+    "passkeyBackupHint": "I ka ladɛrɛsi be to ka to ka baara kɛ n'o masini ye. Telefoni caaman kɔnɔ, a be baara kɛ i ka Google wala i ka Apple ka ɔriganisasiyɔn ka ɔriganisasiyɔn ka ɔriganisasiyɔn kɔnɔ."
   },
   "careers": {
     "title": "Kɔrɔbɔ",

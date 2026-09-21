@@ -1745,7 +1745,16 @@
     "password": "パスワード",
     "sendCode": "コードを送信",
     "usePasswordInstead": "代わりにパスワードを使う",
-    "useCodeInstead": "代わりにコードをメールで送る"
+    "useCodeInstead": "代わりにコードをメールで送る",
+    "continuePasskey": "フィンガープリントで続行",
+    "passkeyIntro": "指紋または顔があなたのアカウントになります。覚える必要も、入力する必要もありません。",
+    "passkeySignIn": "指紋でサインイン",
+    "passkeyCreate": "新しいアカウントを作成",
+    "passkeyUnsupported": "このデバイスでは指紋または顔でサインインできません。別のオプションを使用してください。",
+    "passkeyNotLinked": "その指紋にはまだアカウントがリンクされていません。代わりに新しいアカウントを作成してください。",
+    "passkeyAlreadyRegistered": "その指紋には既 にアカウントがあります。代わりにサインインを使用してください。",
+    "passkeyFailed": "指紋サインインに失敗しました。もう一度お試しください。",
+    "passkeyBackupHint": "あなたのアカウントは、このデバイスのパスキーに保存されます。ほとんどの電話では、GoogleまたはAppleアカウントと同期され、設定でパスワードのバックアップを追加できます。"
   },
   "careers": {
     "title": "DeHub で働く",

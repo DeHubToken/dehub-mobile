@@ -1710,7 +1710,16 @@
     "password": "Passwort",
     "sendCode": "Code senden",
     "usePasswordInstead": "Stattdessen Passwort verwenden",
-    "useCodeInstead": "Stattdessen Code per E-Mail senden"
+    "useCodeInstead": "Stattdessen Code per E-Mail senden",
+    "continuePasskey": "Weiter mit Fingerabdruck",
+    "passkeyIntro": "Dein Fingerabdruck oder dein Gesicht ist dein Konto. Nichts zu merken, nichts einzugeben.",
+    "passkeySignIn": "Mit Fingerabdruck anmelden",
+    "passkeyCreate": "Neues Konto erstellen",
+    "passkeyUnsupported": "Dieses Gerät kann sich nicht mit Fingerabdruck oder Gesicht anmelden. Verwende eine andere Option.",
+    "passkeyNotLinked": "Noch ist kein Konto mit diesem Fingerabdruck verknüpft. Erstelle stattdessen ein neues Konto.",
+    "passkeyAlreadyRegistered": "Dieser Fingerabdruck hat bereits ein Konto. Verwende stattdessen Anmelden.",
+    "passkeyFailed": "Fingerabdruck-Anmeldung fehlgeschlagen. Bitte versuche es erneut.",
+    "passkeyBackupHint": "Dein Konto befindet sich im Passkey dieses Geräts. Auf den meisten Handys synchronisiert es sich mit deinem Google- oder Apple-Konto, und du kannst in den Einstellungen ein Passwort-Backup hinzufügen."
   },
   "careers": {
     "title": "Karriere bei DeHub",

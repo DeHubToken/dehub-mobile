@@ -1731,7 +1731,16 @@
     "password": "Nenosiri",
     "sendCode": "Tuma msimbo",
     "usePasswordInstead": "Tumia nenosiri badala yake",
-    "useCodeInstead": "Nitumie msimbo kwa barua pepe badala yake"
+    "useCodeInstead": "Nitumie msimbo kwa barua pepe badala yake",
+    "continuePasskey": "Endelea kwa alama ya kidole",
+    "passkeyIntro": "Alama yako ya kidole au uso wako ndiyo akaunti yako. Hakuna cha kukumbuka, hakuna cha kuandika.",
+    "passkeySignIn": "Ingia kwa kutumia alama ya kidole",
+    "passkeyCreate": "Tengeneza akaunti mpya",
+    "passkeyUnsupported": "Kifaa hiki hakiwezi kuingia kwa kutumia alama ya kidole au uso. Tumia njia nyingine.",
+    "passkeyNotLinked": "Hakuna akaunti iliyounganishwa na alama hiyo ya kidole bado. Tengeneza akaunti mpya badala yake.",
+    "passkeyAlreadyRegistered": "Alama hiyo ya kidole tayari ina akaunti. Tumia kuingia badala yake.",
+    "passkeyFailed": "Kuingia kwa alama ya kidole kumefeli. Tafadhali jaribu tena.",
+    "passkeyBackupHint": "Akaunti yako ipo kwenye nenosiri la kifaa hiki. Kwenye simu nyingi huunganishwa na akaunti yako ya Google au Apple, na unaweza kuongeza nakala rudufu ya nenosiri katika Mipangilio."
   },
   "careers": {
     "title": "Kazi katika DeHub",

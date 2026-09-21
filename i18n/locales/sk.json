@@ -1379,7 +1379,16 @@
     "password": "Heslo",
     "sendCode": "Odoslať kód",
     "usePasswordInstead": "Použiť namiesto toho heslo",
-    "useCodeInstead": "Poslať mi kód e-mailom"
+    "useCodeInstead": "Poslať mi kód e-mailom",
+    "continuePasskey": "Pokračovať s odtlačkom prsta",
+    "passkeyIntro": "Vaša odtlačok prsta alebo tvár je váš účet. Nemusíte si nič pamätať ani nič písať.",
+    "passkeySignIn": "Prihlásiť sa pomocou odtlačku prsta",
+    "passkeyCreate": "Vytvoriť nový účet",
+    "passkeyUnsupported": "Toto zariadenie sa nemôže prihlásiť pomocou odtlačku prsta alebo tváre. Použite inú možnosť.",
+    "passkeyNotLinked": "K tomuto odtlačku prsta zatiaľ nie je pripojený žiadny účet. Namiesto toho vytvorte nový účet.",
+    "passkeyAlreadyRegistered": "Tento odtlačok prsta už má účet. Namiesto toho použite prihlásenie.",
+    "passkeyFailed": "Prihlásenie pomocou odtlačku prsta zlyhalo. Skúste to znova.",
+    "passkeyBackupHint": "Váš účet žije v kľúči zariadenia. Na väčšine telefónov sa synchronizuje s vaším účtom Google alebo Apple a v nastaveniach môžete pridať zálohu hesla."
   },
   "sidebar": {
     "talkOfTheTown": "Téma dňa",

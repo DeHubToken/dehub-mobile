@@ -1688,7 +1688,16 @@
     "password": "密码",
     "sendCode": "发送验证码",
     "usePasswordInstead": "改用密码",
-    "useCodeInstead": "改为给我发邮件验证码"
+    "useCodeInstead": "改为给我发邮件验证码",
+    "continuePasskey": "继续指纹",
+    "passkeyIntro": "您的指纹或面部就是您的账户。无需记忆，无需输入。",
+    "passkeySignIn": "使用指纹登录",
+    "passkeyCreate": "创建新账户",
+    "passkeyUnsupported": "此设备无法使用指纹或面部登录。请使用其他选项。",
+    "passkeyNotLinked": "尚未有账户与该指纹关联。请创建新账户。",
+    "passkeyAlreadyRegistered": "该指纹已关联账户。请使用登录。",
+    "passkeyFailed": "指纹登录失败。请重试。",
+    "passkeyBackupHint": "您的账户保存在此设备的通行密钥中。在大多数手机上，它会与您的 Google 或 Apple 账户同步，您可以在设置中添加密码备份。"
   },
   "careers": {
     "title": "DeHub招聘",

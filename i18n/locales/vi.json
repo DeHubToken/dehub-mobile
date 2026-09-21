@@ -2013,7 +2013,16 @@
     "password": "Mật khẩu",
     "sendCode": "Gửi mã",
     "usePasswordInstead": "Dùng mật khẩu thay thế",
-    "useCodeInstead": "Gửi mã cho tôi qua email"
+    "useCodeInstead": "Gửi mã cho tôi qua email",
+    "continuePasskey": "Tiếp tục với dấu vân tay",
+    "passkeyIntro": "Dấu vân tay hoặc khuôn mặt của bạn là tài khoản của bạn. Không cần ghi nhớ, không cần gõ.",
+    "passkeySignIn": "Đăng nhập bằng vân tay",
+    "passkeyCreate": "Tạo tài khoản mới",
+    "passkeyUnsupported": "Thiết bị này không thể đăng nhập bằng vân tay hoặc khuôn mặt. Vui lòng sử dụng tùy chọn khác.",
+    "passkeyNotLinked": "Chưa có tài khoản nào được liên kết với vân tay đó. Vui lòng tạo tài khoản mới.",
+    "passkeyAlreadyRegistered": "Vân tay đó đã có tài khoản. Vui lòng sử dụng Đăng nhập.",
+    "passkeyFailed": "Đăng nhập bằng vân tay không thành công. Vui lòng thử lại.",
+    "passkeyBackupHint": "Tài khoản của bạn nằm trong khóa mật của thiết bị này. Trên hầu hết điện thoại, khóa mật này sẽ đồng bộ hóa với tài khoản Google hoặc Apple của bạn và bạn có thể thêm bản sao lưu mật khẩu trong Cài đặt."
   },
   "careers": {
     "title": "Cơ hội nghề nghiệp tại DeHub",

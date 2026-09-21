@@ -1688,7 +1688,16 @@
     "password": "密码",
     "sendCode": "发送验证码",
     "usePasswordInstead": "改用密码",
-    "useCodeInstead": "改为拿验证码发我邮箱"
+    "useCodeInstead": "改为拿验证码发我邮箱",
+    "continuePasskey": "继续指纹",
+    "passkeyIntro": "侬个指纹或面孔就是侬个账号。呒啥要记，呒啥要打。",
+    "passkeySignIn": "用指纹登录",
+    "passkeyCreate": "创建新账号",
+    "passkeyUnsupported": "迭台设备呒法用指纹或面孔登录。请用别个选项。",
+    "passkeyNotLinked": "迭个指纹呒绑定账号。请创建新账号。",
+    "passkeyAlreadyRegistered": "迭个指纹已经有账号了。请用登录。",
+    "passkeyFailed": "指纹登录失败。请再试一次。",
+    "passkeyBackupHint": "侬个账号就存在迭台设备个密钥里。大部分手机会同步到侬个Google或Apple账号，侬还可以在设置里加一个密码备份。"
   },
   "careers": {
     "title": "加入DeHub",

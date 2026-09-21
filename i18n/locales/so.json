@@ -1722,7 +1722,16 @@
     "password": "Erayga sirta ah",
     "sendCode": "Dir koodhka",
     "usePasswordInstead": "Halkii isticmaal furaha sirta ah",
-    "useCodeInstead": "Halkii ii soo dir koodhka iimaylka"
+    "useCodeInstead": "Halkii ii soo dir koodhka iimaylka",
+    "continuePasskey": "Ku xiro fartaada (fingerprint)",
+    "passkeyIntro": "Farahaaga ama wejigaaga ayaa ah xisaabtaada. Waxba ma xasuusnaanaysid, waxba ma qori doontid.",
+    "passkeySignIn": "Ku soo gal faraha",
+    "passkeyCreate": "Samee xisaab cusub",
+    "passkeyUnsupported": "Qalabkan kuma soo gali karo faraha ama wejiga. Isticmaal ikhtiyaar kale.",
+    "passkeyNotLinked": "Ma jirto xisaab ku xiran farahaas weli. Samee xisaab cusub halkii.",
+    "passkeyAlreadyRegistered": "Farahaas horeyba waa u leeyahay xisaab. Isticmaal \"Ku soo gal\" halkii.",
+    "passkeyFailed": "Gasho faraha oo fashilmay. Fadlan mar kale isku day.",
+    "passkeyBackupHint": "Xisaabtaada waxa ay ku nooshahay furaha sirta ah ee qalabkan. Inta badan taleefannada, waxa ay la jaanqaadi doontaa xisaabtaada Google ama Apple, waxaadna ku dari kartaa kayd xogeed oo ereyga sirta ah ah qaybta Settings."
   },
   "careers": {
     "title": "Shaqooyinka DeHub",

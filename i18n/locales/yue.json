@@ -1730,7 +1730,16 @@
     "password": "密碼",
     "sendCode": "發送驗證碼",
     "usePasswordInstead": "改用密碼",
-    "useCodeInstead": "改為電郵驗證碼畀我"
+    "useCodeInstead": "改為電郵驗證碼畀我",
+    "continuePasskey": "繼續用指紋",
+    "passkeyIntro": "你嘅指紋或樣貌就係你嘅帳戶。唔需要記，唔需要打字。",
+    "passkeySignIn": "用指紋登入",
+    "passkeyCreate": "建立新帳戶",
+    "passkeyUnsupported": "呢部裝置無法用指紋或樣貌登入。請用其他選項。",
+    "passkeyNotLinked": "目前無帳戶連結到該指紋。請建立新帳戶。",
+    "passkeyAlreadyRegistered": "該指紋已有帳戶。請改用登入。",
+    "passkeyFailed": "指紋登入失敗。請再試一次。",
+    "passkeyBackupHint": "你嘅帳戶儲存在呢部裝置嘅密碼匙度。喺大部分手機上，佢會同你嘅 Google 或 Apple 帳戶同步，你仲可以喺設定度加入密碼備份。"
   },
   "careers": {
     "title": "加入DeHub",

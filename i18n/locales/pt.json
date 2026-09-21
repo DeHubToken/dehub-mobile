@@ -1750,7 +1750,16 @@
     "password": "Senha",
     "sendCode": "Enviar código",
     "usePasswordInstead": "Usar uma palavra-passe",
-    "useCodeInstead": "Enviar-me um código por e-mail"
+    "useCodeInstead": "Enviar-me um código por e-mail",
+    "continuePasskey": "Continuar com a impressão digital",
+    "passkeyIntro": "Sua impressão digital ou rosto é sua conta. Nada para lembrar, nada para digitar.",
+    "passkeySignIn": "Entrar com impressão digital",
+    "passkeyCreate": "Criar uma nova conta",
+    "passkeyUnsupported": "Este dispositivo não pode entrar com impressão digital ou rosto. Use outra opção.",
+    "passkeyNotLinked": "Nenhuma conta está vinculada a essa impressão digital ainda. Crie uma nova conta em vez disso.",
+    "passkeyAlreadyRegistered": "Essa impressão digital já tem uma conta. Use Entrar em vez disso.",
+    "passkeyFailed": "Entrada com impressão digital falhou. Por favor, tente novamente.",
+    "passkeyBackupHint": "Sua conta vive na chave de acesso deste dispositivo. Na maioria dos telefones, ela sincroniza com sua conta Google ou Apple, e você pode adicionar um backup de senha nas Configurações."
   },
   "careers": {
     "title": "Carreiras no DeHub",

@@ -1677,7 +1677,16 @@
     "password": "Parol",
     "sendCode": "Kody iber",
     "usePasswordInstead": "Munuň ýerine paroly ulan",
-    "useCodeInstead": "Munuň ýerine maňa e-poçta kod iber"
+    "useCodeInstead": "Munuň ýerine maňa e-poçta kod iber",
+    "continuePasskey": "Barmaklary bilen ýöremek",
+    "passkeyIntro": "Siziň barmak yzygatyňyz ýa-da ýüzüňiz hasabyňyzdyr. Ýatda saklamaly zat ýok, ýazmaly zat ýok.",
+    "passkeySignIn": "Barmak yzygaty bilen gir",
+    "passkeyCreate": "Täze hasap dörediň",
+    "passkeyUnsupported": "Bu enjam barmak yzygaty ýa-da ýüz bilen girip bilmeýär. Başga bir mümkinçilik ulanyň.",
+    "passkeyNotLinked": "Şol barmak yzygaty bilen heniz hasap birikdirilmedik. Munuň ýerine täze hasap dörediň.",
+    "passkeyAlreadyRegistered": "Şol barmak yzygatynda eýýäm hasap bar. Munuň ýerine \"Giriň\" ulanyň.",
+    "passkeyFailed": "Barmak yzygaty bilen giriş başa barmady. Gaýtadan synanyşyň.",
+    "passkeyBackupHint": "Hasabyňyz bu enjamyň açar sözünde ýerleşýär. Köp telefonlarda ol Google ýa-da Apple hasabyňyz bilen sazlaşýar we \"Sazlamalar\" bölüminde şifr goşmaça ýazgysyny goşup bilersiňiz."
   },
   "careers": {
     "title": "DeHub-daky işler",

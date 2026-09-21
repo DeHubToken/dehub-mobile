@@ -1703,7 +1703,16 @@
     "password": "गुप्तशब्दः",
     "sendCode": "सङ्केतं प्रेषय",
     "usePasswordInstead": "तस्य स्थाने गुप्तशब्दं प्रयुङ्क्ष्व",
-    "useCodeInstead": "तस्य स्थाने मह्यं विपत्रे सङ्केतं प्रेषय"
+    "useCodeInstead": "तस्य स्थाने मह्यं विपत्रे सङ्केतं प्रेषय",
+    "continuePasskey": "Fingerprint इत्यनेन सह अधो लिखितानां पृष्ठानां परिसन्धि",
+    "passkeyIntro": "तव हस्तमुद्रा वा मुखं तव लेखा इति। स्मर्तव्यं नास्ति, न च टाइपयितव्यम्।",
+    "passkeySignIn": "हस्तमुद्रया प्रवेशं कुरु",
+    "passkeyCreate": "नूतनलेखं सृज",
+    "passkeyUnsupported": "इदं यन्त्रं हस्तमुद्रया वा मुखेन प्रवेशं कर्तुं न शक्नोति। अपरं विकल्पं प्रयोजय।",
+    "passkeyNotLinked": "तादृश्या हस्तमुद्रया सह न कोऽपि लेखः सम्बद्धः। नूतनलेखं सृज।",
+    "passkeyAlreadyRegistered": "तादृशी हस्तमुद्रा पूर्वमेव लेखं धारयति। प्रवेशं प्रयोजय।",
+    "passkeyFailed": "हस्तमुद्रया प्रवेशः असफलः। पुनः प्रयत्नं कुरु।",
+    "passkeyBackupHint": "Your account lives in this device's passkey. On most phones it syncs with your Google or Apple account, and you can add a password backup in Settings."
   },
   "careers": {
     "title": "DeHub मध्ये वृत्तयः",

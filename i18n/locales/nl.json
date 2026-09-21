@@ -2196,7 +2196,16 @@
     "password": "Wachtwoord",
     "sendCode": "Code versturen",
     "usePasswordInstead": "Gebruik in plaats daarvan een wachtwoord",
-    "useCodeInstead": "Stuur me in plaats daarvan een code per e-mail"
+    "useCodeInstead": "Stuur me in plaats daarvan een code per e-mail",
+    "continuePasskey": "Doorgaan met vingerafdruk",
+    "passkeyIntro": "Je vingerafdruk of gezicht is je account. Niets om te onthouden, niets om in te typen.",
+    "passkeySignIn": "Inloggen met vingerafdruk",
+    "passkeyCreate": "Maak een nieuw account aan",
+    "passkeyUnsupported": "Dit apparaat kan niet inloggen met een vingerafdruk of gezicht. Gebruik een andere optie.",
+    "passkeyNotLinked": "Er is nog geen account gekoppeld aan die vingerafdruk. Maak in plaats daarvan een nieuw account aan.",
+    "passkeyAlreadyRegistered": "Die vingerafdruk heeft al een account. Gebruik in plaats daarvan Inloggen.",
+    "passkeyFailed": "Inloggen met vingerafdruk mislukt. Probeer het opnieuw.",
+    "passkeyBackupHint": "Je account staat in de passkey van dit apparaat. Op de meeste telefoons synchroniseert deze met je Google- of Apple-account, en je kunt een back-upwachtwoord toevoegen in Instellingen."
   },
   "careers": {
     "title": "Vacatures bij DeHub",

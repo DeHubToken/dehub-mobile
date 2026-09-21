@@ -1727,7 +1727,16 @@
     "password": "Ọ̀rọ̀ aṣínà",
     "sendCode": "Fi koodu ranṣẹ",
     "usePasswordInstead": "Lo ọrọ igbaniwọle dipo",
-    "useCodeInstead": "Fi koodu ranṣẹ si mi nipasẹ imeeli dipo"
+    "useCodeInstead": "Fi koodu ranṣẹ si mi nipasẹ imeeli dipo",
+    "continuePasskey": "Tesiwaju pẹlu itẹka",
+    "passkeyIntro": "Ìwọ̀ tàbí ojú rẹ ni ìwọ̀nyàwòrán rẹ. Kò sí ohun tí o ní láti rántí, kò sí ohun tí o ní láti tẹ.",
+    "passkeySignIn": "Wọlé pẹ̀lú ìwọ̀tẹ̀",
+    "passkeyCreate": "Ṣẹ̀dá ìwọ̀nyàwòrán tuntun",
+    "passkeyUnsupported": "Èyí ni ẹrọ tí kò lè wọlé pẹ̀lú ìwọ̀tẹ̀ tàbí ojú. Lo àyànfẹ́ mìíràn.",
+    "passkeyNotLinked": "Kò sí ìwọ̀nyàwòrán tí a ti dá sí ìwọ̀nyàwòrán náà títí di ìsinsìnyí. Ṣẹ̀dá ìwọ̀nyàwòrán tuntun dípò rẹ̀.",
+    "passkeyAlreadyRegistered": "Ìwọ̀nyàwòrán náà ti ní ìwọ̀nyàwòrán kan tẹ́lẹ̀. Lo wọlé dípò rẹ̀.",
+    "passkeyFailed": "Ìwọ̀tẹ̀ wọlé kùnà. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan sí i.",
+    "passkeyBackupHint": "Ìwọ̀nyàwòrán rẹ wà nínú àmì-ìfọwọ́ sí ẹrọ yìí. Ní ọ̀pọ̀lọpọ̀ fonùn, ó máa ń ṣàgbékalẹ̀ pẹ̀lú ìwọ̀nyàwòrán Google tàbí Apple rẹ, o sì lè fi àdáwọ́-òdì sílẹ̀ nínú Ìfàṣẹ́yìn."
   },
   "careers": {
     "title": "Iṣẹ́ ní DeHub",

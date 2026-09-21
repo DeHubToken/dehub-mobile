@@ -1938,7 +1938,16 @@
     "password": "Parolă",
     "sendCode": "Trimite codul",
     "usePasswordInstead": "Folosește o parolă în schimb",
-    "useCodeInstead": "Trimite-mi în schimb un cod pe e-mail"
+    "useCodeInstead": "Trimite-mi în schimb un cod pe e-mail",
+    "continuePasskey": "Continuă cu amprenta",
+    "passkeyIntro": "Amprenta sau fața ta este contul tău. Nu ai nimic de reținut, nimic de tastat.",
+    "passkeySignIn": "Autentificare cu amprentă",
+    "passkeyCreate": "Creează un cont nou",
+    "passkeyUnsupported": "Acest dispozitiv nu poate autentifica cu amprentă sau față. Folosește o altă opțiune.",
+    "passkeyNotLinked": "Niciun cont nu este asociat cu acea amprentă încă. Creează un cont nou în schimb.",
+    "passkeyAlreadyRegistered": "Acea amprentă are deja un cont. Folosește Autentificare în schimb.",
+    "passkeyFailed": "Autentificarea cu amprentă a eșuat. Te rugăm să încerci din nou.",
+    "passkeyBackupHint": "Contul tău se află în cheia de acces a acestui dispozitiv. Pe majoritatea telefoanelor, aceasta se sincronizează cu contul tău Google sau Apple, iar tu poți adăuga o copie de rezervă a parolei în Setări."
   },
   "careers": {
     "title": "Careers at DeHub",

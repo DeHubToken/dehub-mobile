@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import { View, Text, Image, ScrollView, Platform, type TextStyle } from "react-native";
 import { toastError } from "../../libs";
+import { useTranslation } from "react-i18next";
 import { AuthButton, authColors, authText } from "../../components/auth/AuthControls";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
@@ -81,6 +82,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const keyboardOffset = useKeyboardOffset(0);
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
+  const { t } = useTranslation();
+  const [passkeyError, setPasskeyError] = useState<string | null>(null);
+  const [passkeySuggestCreate, setPasskeySuggestCreate] = useState(false);
   const [authStep, setAuthStep] = useState<"main" | "email-code" | "phone-code">("main");
   // Email/Phone expand a field mid-stack and autoFocus it; without this the
   // keyboard opens over the field that was just revealed.
@@ -573,6 +577,42 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     }
   }, [runProvisionAndSignIn]);
 
+  /**
+   * Passkey-only sign-in (see services/auth/passkeyAuth.service). The OS sheet
+   * hands back a Supabase session; from there it is any other provider.
+   */
+  const handlePasskey = useCallback(async (mode: "signin" | "signup") => {
+    hasNavigatedRef.current = false;
+    setIsLocalLoading(true);
+    setCurrentProvider(mode === "signup" ? "passkey-signup" : "passkey-signin");
+    setPasskeyError(null);
+    try {
+      const { signInWithPasskey, signUpWithPasskey, PasskeyCancelledError, PasskeyLoginError } =
+        await import("../../services/auth/passkeyAuth.service");
+      try {
+        const supabaseUserId = mode === "signup" ? await signUpWithPasskey() : await signInWithPasskey();
+        await runProvisionAndSignIn(supabaseUserId);
+      } catch (e: any) {
+        if (e instanceof PasskeyCancelledError) return;
+        log.error("Passkey login error", e?.stack || e);
+        if (e instanceof PasskeyLoginError && e.code === "UNKNOWN_CREDENTIAL") {
+          setPasskeySuggestCreate(true);
+          setPasskeyError(t("loginModal.passkeyNotLinked", "No account is linked to that fingerprint yet. Create a new account instead."));
+        } else if (e instanceof PasskeyLoginError && e.code === "ALREADY_REGISTERED") {
+          setPasskeyError(t("loginModal.passkeyAlreadyRegistered", "That fingerprint already has an account. Use Sign in instead."));
+        } else {
+          setPasskeyError(e?.message || t("loginModal.passkeyFailed", "Fingerprint sign-in failed. Please try again."));
+        }
+        hasNavigatedRef.current = false;
+      }
+    } finally {
+      if (isMountedRef.current) {
+        setIsLocalLoading(false);
+        setCurrentProvider("");
+      }
+    }
+  }, [runProvisionAndSignIn, t]);
+
   const handleTelegramLogin = useCallback(async () => {
     hasNavigatedRef.current = false;
     setIsLocalLoading(true);
@@ -756,6 +796,10 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               onGoogle={handleGoogleLogin}
               onApple={handleAppleLogin}
               onTelegram={handleTelegramLogin}
+              onPasskeySignIn={() => void handlePasskey("signin")}
+              onPasskeySignUp={() => void handlePasskey("signup")}
+              passkeyError={passkeyError}
+              passkeySuggestCreate={passkeySuggestCreate}
               onEmailSubmit={handleEmailSubmit}
               onEmailPasswordSubmit={handleEmailPasswordSubmit}
               onPhoneSubmit={handlePhoneSubmit}

@@ -1605,7 +1605,16 @@
     "password": "Şîfre",
     "sendCode": "Kodê bişîne",
     "usePasswordInstead": "Li şûna wê şîfreyê bikar bîne",
-    "useCodeInstead": "Li şûna wê ji min re kodê bi e-nameyê bişîne"
+    "useCodeInstead": "Li şûna wê ji min re kodê bi e-nameyê bişîne",
+    "continuePasskey": "Continue with fingerprint",
+    "passkeyIntro": "Your fingerprint or face is your account. Nothing to remember, nothing to type.",
+    "passkeySignIn": "بە پەنجەمۆر بچۆژوورەوە",
+    "passkeyCreate": "هه‌ژمارێكی نوێ دروست بكه‌",
+    "passkeyUnsupported": "ئەم ئامێرە ناتوانێت بە پەنجەمۆر یان ڕوخسار بچێتەژوورەوە. ڕێگەیەکی تر بەکاربهێنە.",
+    "passkeyNotLinked": "هیچ هه‌ژمارێك به‌و پەنجەمۆرەوە به‌ستراو نییه‌. له‌ جیاتی ئه‌وه‌ هه‌ژمارێكی نوێ دروست بكه‌.",
+    "passkeyAlreadyRegistered": "ئەو پەنجەمۆرە پێشتر هه‌ژماری هه‌یه‌. له‌ جیاتی ئه‌وه‌ بچوونه‌ژووره‌وه‌ به‌كاربهێنه‌.",
+    "passkeyFailed": "چوونه‌ژووره‌وه‌ به‌ په‌نجه‌مۆر شكستی هێنا. تکایە دووبارە هەوڵ بدەوە.",
+    "passkeyBackupHint": "هه‌ژماره‌كه‌ت له‌سه‌ر كۆدی تێپه‌ڕبوونی ئه‌م ئامێره‌ دایه‌. له‌ زۆربه‌ی مۆبایله‌كاندا، ئه‌م كۆده‌ له‌گه‌ڵ هه‌ژماره‌كه‌ی گووگڵ یان ئه‌پڵه‌كه‌تدا یه‌ك ده‌گرێته‌وه‌، و ده‌توانیت له‌ ڕێگه‌ی ڕێکخستنه‌كانه‌وه‌ وه‌ك پشته‌وانی پاسوۆردێك زیاد بكه‌یت."
   },
   "careers": {
     "title": "Karên li DeHub",
