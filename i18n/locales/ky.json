@@ -1318,7 +1318,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Коомдук ойнотуу тизмеси",
+      "makePublicHint": "Бул папканы профилиңизден ар бир адам көрө алат.",
+      "publicBadge": "Коомдук",
+      "copyLink": "Ойнотуу тизмесинин шилтемесин көч",
+      "linkCopied": "Ойнотуу тизмесинин шилтемеси көч",
+      "itemsCount": "{{count}} билдирүүлөр",
+      "emptyOwnerHint": "Бул жерде көрсөтүү үчүн бетбелги папкасын ачык кылыңыз.",
+      "emptyVisitor": "Бул профилде азырынча коомдук ойнотмо тизмелери жок.",
+      "openBookmarks": "Бетбелгилеримди ачуу",
+      "back": "Бардык ойнотмо тизмелер",
+      "noPosts": "Бул ойнотуу тизмесинде азырынча билдирүүлөр жок.",
+      "unavailable": "Бул ойнотуу тизмеси мындан ары жок.",
+      "loadMore": "Көбүрөөк билдирүүлөрдү көрсөтүү"
+    }
   },
   "notifications": {
     "title": "Билдирүүлөр",
@@ -1571,7 +1586,8 @@
       "breakdownTitle": "Бул жеткиликтүүлүк кайдан келип чыккан",
       "dehubFollowers": "DeHub жолдоочулары",
       "selfReported": "Социалдык жолдоочулардын эсептери жаратуучу тарабынан киргизилет."
-    }
+    },
+    "tabPlaylists": "Плейлисттер"
   },
   "tv": {
     "title": "ТВ",

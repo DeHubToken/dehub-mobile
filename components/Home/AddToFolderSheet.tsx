@@ -25,6 +25,7 @@ import Animated, {
 import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
+import CustomSwitch from "../ui/CustomSwitch";
 import {
   getFolders,
   getFolderItems,
@@ -68,6 +69,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
   const [loading, setLoading] = useState(false);
   const [newFolderName, setNewFolderName] = useState("");
   const [newFolderDesc, setNewFolderDesc] = useState("");
+  const [newFolderPublic, setNewFolderPublic] = useState(false);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [creating, setCreating] = useState(false);
   const [notice, setNotice] = useState<SheetNotice | null>(null);
@@ -120,6 +122,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
       setShowCreateForm(false);
       setNewFolderName("");
       setNewFolderDesc("");
+      setNewFolderPublic(false);
       setNotice(null);
       loadFoldersAndContainment();
 
@@ -215,13 +218,14 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
     if (!newFolderName.trim() || creating) return;
     setCreating(true);
     try {
-      const res = await createFolder(newFolderName, newFolderDesc);
+      const res = await createFolder(newFolderName, newFolderDesc, newFolderPublic);
       const newFolder = res.result;
 
       // Add to local state and immediately add item to it
       if (newFolder) {
         setNewFolderName("");
         setNewFolderDesc("");
+        setNewFolderPublic(false);
         setShowCreateForm(false);
         
         // Add item to newly created folder
@@ -258,9 +262,16 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
         <View style={styles.folderInfo}>
           <Icon name="Folder" size={20} color="#D4D4D8" />
           <View style={{ marginLeft: 12, flex: 1 }}>
-            <Text style={styles.folderName} numberOfLines={1}>
-              {item.name}
-            </Text>
+            <View style={styles.folderTitleRow}>
+              <Text style={[styles.folderName, { flexShrink: 1 }]} numberOfLines={1}>
+                {item.name}
+              </Text>
+              {!!item.isPublic && (
+                <View accessibilityLabel={t("bookmarks.playlist.publicBadge")}>
+                  <Icon name="Globe" size={14} color="#A6A9AC" />
+                </View>
+              )}
+            </View>
             {!!item.description && (
               <Text style={styles.folderDesc} numberOfLines={1}>
                 {item.description}
@@ -410,6 +421,13 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
                     maxLength={200}
                     returnKeyType="done"
                   />
+                  <View style={styles.publicRow}>
+                    <View style={{ flex: 1 }}>
+                      <Text style={styles.publicTitle}>{t("bookmarks.playlist.makePublic")}</Text>
+                      <Text style={styles.publicHint}>{t("bookmarks.playlist.makePublicHint")}</Text>
+                    </View>
+                    <CustomSwitch value={newFolderPublic} onValueChange={setNewFolderPublic} />
+                  </View>
                   <View style={styles.formButtons}>
                     <TouchableOpacity
                       onPress={() => setShowCreateForm(false)}
@@ -644,6 +662,27 @@ const styles = StyleSheet.create({
   },
   createForm: {
     gap: 7,
+  },
+  folderTitleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+  },
+  publicRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+    paddingVertical: 2,
+  },
+  publicTitle: {
+    color: "#F9FBFF",
+    fontSize: 14,
+    fontWeight: "600",
+  },
+  publicHint: {
+    color: "#8B8D90",
+    fontSize: 12,
+    marginTop: 2,
   },
   fieldLabel: {
     color: "#D4D4D8",

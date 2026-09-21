@@ -1316,7 +1316,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Halkara oýunlar listasy",
+      "makePublicHint": "Bu faýly siziň profilyňyzda her kes görüp biler.",
+      "publicBadge": "Halk",
+      "copyLink": "Playlist baglaýyşyny nusgala",
+      "linkCopied": "Kopyalan oýun listasy baglaýyşy",
+      "itemsCount": "{{count}} postlar",
+      "emptyOwnerHint": "Bu ýerde görkezmek üçin bir kitapçany açyň.",
+      "emptyVisitor": "Bu profilyň henizem jemagat oýunlary ýok.",
+      "openBookmarks": "Nyşanlarymy aç",
+      "back": "Ähli oýun listeleri",
+      "noPosts": "Häzirki ýaly, bu mekdepde boşadylmagymy öňünden yglan etmedim.",
+      "unavailable": "Désolé, bu CD indi ýok.",
+      "loadMore": "Gowrak postlary görkeziň"
+    }
   },
   "notifications": {
     "badgeTierUp": "Gutlaýarys! Indi siz {{tier}} 🎉",
@@ -1558,7 +1573,8 @@
       "breakdownTitle": "Bu çakylyk nireden gelýär?",
       "dehubFollowers": "DeHub diňleýjileri",
       "selfReported": "Işgärleriň sanyna Ýaradyjy girýär."
-    }
+    },
+    "tabPlaylists": "Çykyşlar"
   },
   "tv": {
     "title": "TV",

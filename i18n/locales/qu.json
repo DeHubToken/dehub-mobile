@@ -1316,7 +1316,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Tupanachiykunaq listan",
+      "makePublicHint": "Kay q'atutaqa mayqinkunachus qhawayta atinqachik kikinpi.",
+      "publicBadge": "Tupanachiy",
+      "copyLink": "Tupanachiykunaq linkninta hark'ay",
+      "linkCopied": "Tupanachiykunaq linknin hark'asqa",
+      "itemsCount": "{{count}} kaqkunata",
+      "emptyOwnerHint": "Ruwaykuy huk hark'asqa q'atuta tupanachiykunaq listanpi kachun chayta rikuchinapaq.",
+      "emptyVisitor": "Kay kikinpiqa manan kachkanchu tupanachiykunaq listan.",
+      "openBookmarks": "Hark'asqaykuna kichariy",
+      "back": "Tupanachiykuna tukuy",
+      "noPosts": "Kay tupanachiykunaqa manan kachkanchu.",
+      "unavailable": "Kay tupanachiyqa manañan kachkanchu.",
+      "loadMore": "Astawan kaqkunata rikuchiy"
+    }
   },
   "notifications": {
     "title": "Willay",
@@ -1614,7 +1629,8 @@
       "breakdownTitle": "Maymantataq kay chayay hamun",
       "dehubFollowers": "DeHub qatiqninkuna",
       "selfReported": "Social qatiq yupaykunataqa kamaqmi yaykuchin."
-    }
+    },
+    "tabPlaylists": "Pukllay listakuna"
   },
   "tv": {
     "title": "TV",

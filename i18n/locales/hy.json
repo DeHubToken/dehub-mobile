@@ -1322,7 +1322,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Հանրային երգացանկ",
+      "makePublicHint": "Յուրաքանչյուրը կարող է տեսնել այս թղթապանակը ձեր պրոֆիլում:",
+      "publicBadge": "Հանրային",
+      "copyLink": "Պատճենել երգացանկի հղումը",
+      "linkCopied": "Երգացանկի հղումը պատճենված է",
+      "itemsCount": "{{count}} գրառումներ",
+      "emptyOwnerHint": "Հրապարակեք էջանիշի թղթապանակը ՝ այն այստեղ ցուցադրելու համար:",
+      "emptyVisitor": "Այս պրոֆիլը դեռ չունի հանրային երգացանկեր ։",
+      "openBookmarks": "Բացել իմ էջանիշերը",
+      "back": "Բոլոր երգացանկերը",
+      "noPosts": "Այս երգացանկը դեռ գրառումներ չունի:",
+      "unavailable": "Այս երգացանկն այլևս հասանելի չէ ։",
+      "loadMore": "Ցույց տալ այլ գրառումներ"
+    }
   },
   "notifications": {
     "title": "Tsanoutsagroumner",
@@ -1576,7 +1591,8 @@
       "breakdownTitle": "Որտեղից է գալիս այս հասանելիությունը",
       "dehubFollowers": "ԴեՀյուբի հետևորդներ",
       "selfReported": "Սոցիալական հետևորդների թիվը մուտքագրվում է հեղինակի կողմից:"
-    }
+    },
+    "tabPlaylists": "Երգացանկեր"
   },
   "tv": {
     "title": "TV",

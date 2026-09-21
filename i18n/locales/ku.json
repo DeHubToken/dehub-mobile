@@ -1140,7 +1140,10 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "unavailable": "ئەم پلەیلیستە ئیتر بەردەست نییە."
+    }
   },
   "notifications": {
     "badgeTierUp": "Pîroz be! Tu niha {{tier}} î 🎉",

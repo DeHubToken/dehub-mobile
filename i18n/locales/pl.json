@@ -1620,7 +1620,22 @@
     "noVideosYet": "Brak zapisanych filmów",
     "videosStartSaving": "Zapisuj posty z filmami, a zbiorą się tutaj.",
     "noTextYet": "Brak zapisanych postów tekstowych",
-    "textStartSaving": "Zapisuj posty zawierające sam tekst, a pojawią się tutaj."
+    "textStartSaving": "Zapisuj posty zawierające sam tekst, a pojawią się tutaj.",
+    "playlist": {
+      "makePublic": "Publiczna lista odtwarzania",
+      "makePublicHint": "Każdy może zobaczyć ten folder w Twoim profilu.",
+      "publicBadge": "Publiczne",
+      "copyLink": "Kopiuj link do playlisty",
+      "linkCopied": "Link do playlisty został skopiowany",
+      "itemsCount": "Posty: {{count}}",
+      "emptyOwnerHint": "Ustaw folder zakładek jako publiczny, aby wyświetlić go tutaj.",
+      "emptyVisitor": "Ten profil nie ma jeszcze publicznych list odtwarzania.",
+      "openBookmarks": "Otwórz moje zakładki",
+      "back": "Wszystkie playlisty",
+      "noPosts": "Ta lista odtwarzania nie ma jeszcze żadnych postów.",
+      "unavailable": "Ta lista odtwarzania nie jest już dostępna.",
+      "loadMore": "Pokaż więcej postów"
+    }
   },
   "notifications": {
     "title": "Powiadomienia",
@@ -1874,7 +1889,8 @@
       "breakdownTitle": "Skąd się bierze ten zasięg",
       "dehubFollowers": "Obserwujący DeHub",
       "selfReported": "Liczby obserwujących społeczności są wprowadzane przez twórcę."
-    }
+    },
+    "tabPlaylists": "Playlisty"
   },
   "tv": {
     "title": "TV",

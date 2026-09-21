@@ -1247,7 +1247,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "ລາຍການຫຼິ້ນສາທາລະນະ",
+      "makePublicHint": "ໃຜກໍ່ສາມາດເບິ່ງໂຟນເດີນີ້ໃນໂປຣໄຟລ໌ຂອງທ່ານໄດ້.",
+      "publicBadge": "ສາທາລະນະ",
+      "copyLink": "ສຳເນົາລິ້ງລາຍຊື່ຫຼິ້ນ",
+      "linkCopied": "ສຳເນົາລິ້ງລາຍຊື່ຫຼິ້ນ",
+      "itemsCount": "{{count}} ຂໍ້ຄວາມ",
+      "emptyOwnerHint": "ສ້າງ Folder Bookmark ສາທາລະນະເພື່ອສະແດງມັນຢູ່ທີ່ນີ້.",
+      "emptyVisitor": "ໂປຣໄຟລ໌ນີ້ຍັງບໍ່ມີລາຍຊື່ຫຼິ້ນສາທາລະນະເທື່ອ.",
+      "openBookmarks": "ເປີດ bookmarks ຂອງຂ້າພະເຈົ້າ",
+      "back": "ລາຍການຫຼິ້ນທັງໝົດ",
+      "noPosts": "ລາຍການຫຼິ້ນນີ້ຍັງບໍ່ມີໂພສເທື່ອ.",
+      "unavailable": "ລາຍຊື່ນີ້ບໍ່ສາມາດໃຊ້ໄດ້ອີກຕໍ່ໄປ.",
+      "loadMore": "ສະແດງຂໍ້ຄວາມເພີ່ມເຕີມ"
+    }
   },
   "notifications": {
     "title": "ການແຈ້ງເຕືອນ",
@@ -1601,7 +1616,8 @@
     "noImages": "ຍັງບໍ່ມີຮູບ",
     "noImagesSub": "ໂພສຮູບຈະປາກົດຢູ່ນີ້",
     "noPlans": "ບໍ່ມີແພັກເກດສະໝັກ",
-    "noPlansSub": "ຜູ້ສ້າງນີ້ຍັງບໍ່ໄດ້ຕັ້ງແພັກເກດໃດເທື່ອ"
+    "noPlansSub": "ຜູ້ສ້າງນີ້ຍັງບໍ່ໄດ້ຕັ້ງແພັກເກດໃດເທື່ອ",
+    "tabPlaylists": "ລາຍການຫຼິ້ນ"
   },
   "tv": {
     "title": "ໂທລະພາບ",

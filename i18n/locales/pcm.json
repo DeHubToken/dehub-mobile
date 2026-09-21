@@ -1253,7 +1253,16 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Public playlist",
+      "publicBadge": "Public",
+      "copyLink": "Copy playlist link",
+      "linkCopied": "Playlist link copied",
+      "itemsCount": "{{count}} posts",
+      "openBookmarks": "Open my bookmarks",
+      "back": "All playlists"
+    }
   },
   "notifications": {
     "badgeTierUp": "Congrats! You be {{tier}} now 🎉",
@@ -1536,7 +1545,8 @@
     "reach": {
       "total": "Total reach",
       "dehubFollowers": "DeHub followers"
-    }
+    },
+    "tabPlaylists": "Playlists"
   },
   "tv": {
     "title": "TV",

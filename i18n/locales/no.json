@@ -1319,7 +1319,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Offentlig spilleliste",
+      "makePublicHint": "Alle kan se denne mappen på profilen din.",
+      "publicBadge": "Offentlig",
+      "copyLink": "Kopier spillelistelenke",
+      "linkCopied": "Spillelistelenke kopiert",
+      "itemsCount": "{{count}} innlegg",
+      "emptyOwnerHint": "Gjør en bokmerkemappe offentlig for å vise den her.",
+      "emptyVisitor": "Denne profilen har ingen offentlige spillelister ennå.",
+      "openBookmarks": "Åpne bokmerkene mine",
+      "back": "Alle spillelister",
+      "noPosts": "Denne spillelisten har ingen innlegg ennå.",
+      "unavailable": "Denne spillelisten er ikke lenger tilgjengelig.",
+      "loadMore": "Vis flere innlegg"
+    }
   },
   "notifications": {
     "title": "Varsler",
@@ -1573,7 +1588,8 @@
       "breakdownTitle": "Hvor denne rekkevidden kommer fra",
       "dehubFollowers": "DeHub-følgere",
       "selfReported": "Antall følgere på sosiale medier legges inn av skaperen."
-    }
+    },
+    "tabPlaylists": "Spillelister"
   },
   "tv": {
     "title": "TV",

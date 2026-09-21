@@ -1249,7 +1249,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Offentlig spellista",
+      "makePublicHint": "Alla kan se den här mappen på din profil.",
+      "publicBadge": "Offentlig",
+      "copyLink": "Kopiera spellänken",
+      "linkCopied": "Spellänk kopierad",
+      "itemsCount": "{{count}} inlägg",
+      "emptyOwnerHint": "Gör en bokmärkesmapp offentlig för att visa den här.",
+      "emptyVisitor": "Den här profilen har inga offentliga spellistor ännu.",
+      "openBookmarks": "Öppna mina bokmärken",
+      "back": "Alla spellistor",
+      "noPosts": "Den här spellistan har inga inlägg ännu.",
+      "unavailable": "Den här spellistan är inte längre tillgänglig.",
+      "loadMore": "Visa fler inlägg"
+    }
   },
   "notifications": {
     "title": "Aviseringar",
@@ -1474,7 +1489,8 @@
       "breakdownTitle": "Varifrån denna räckvidd kommer",
       "dehubFollowers": "DeHub-följare",
       "selfReported": "Antal följare i sociala medier anges av kreatören."
-    }
+    },
+    "tabPlaylists": "Spellistor"
   },
   "messages": {
     "smartRepliesOff": "Föreslagna svar avstängda",

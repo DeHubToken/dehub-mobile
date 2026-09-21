@@ -1244,7 +1244,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "పబ్లిక్ ప్లేజాబితా",
+      "makePublicHint": "మీ ప్రొఫైల్ ‌ లో ఎవరైనా ఈ ఫోల్డర్ ‌ ను చూడవచ్చు.",
+      "publicBadge": "పబ్లిక్",
+      "copyLink": "ప్లేజాబితా లింక్ ‌ ను కాపీ చేయండి",
+      "linkCopied": "ప్లేజాబితా లింక్ కాపీ చేయబడింది",
+      "itemsCount": "{{count}} పోస్ట్లు",
+      "emptyOwnerHint": "ఇక్కడ చూపించడానికి బుక్ ‌ మార్క్ ఫోల్డర్ ‌ ను పబ్లిక్ చేయండి.",
+      "emptyVisitor": "ఈ ప్రొఫైల్ ‌ లో ఇంకా పబ్లిక్ ప్లేజాబితాలు లేవు.",
+      "openBookmarks": "నా బుక్ ‌ మార్క్ ‌ లను తెరవండి",
+      "back": "అన్ని ప్లేజాబితాలు",
+      "noPosts": "ఈ ప్లేజాబితాలో ఇంకా పోస్ట్ ‌ లు లేవు.",
+      "unavailable": "ఈ ప్లేజాబితా ఇకపై అందుబాటులో లేదు.",
+      "loadMore": "మరిన్ని పోస్ట్ ‌ లను చూపించండి"
+    }
   },
   "notifications": {
     "title": "నోటిఫికేషన్లు",
@@ -1468,7 +1483,8 @@
       "breakdownTitle": "ఈ చేరుకోవడం ఎక్కడ నుండి వస్తుంది",
       "dehubFollowers": "DeHub అనుచరులు",
       "selfReported": "సామాజిక అనుచరుల సంఖ్యను సృష్టికర్త నమోదు చేస్తారు."
-    }
+    },
+    "tabPlaylists": "పాటలజాబితా"
   },
   "messages": {
     "smartRepliesOff": "సూచించిన సమాధానాలు ఆఫ్ చేయబడ్డాయి",

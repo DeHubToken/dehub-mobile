@@ -1369,7 +1369,22 @@
     "noVideosYet": "Ainda sem vídeos salvos",
     "videosStartSaving": "Salve publicações com vídeos e elas ficam reunidas aqui.",
     "noTextYet": "Ainda sem publicações de texto salvas",
-    "textStartSaving": "Salve publicações só de texto e elas aparecem aqui."
+    "textStartSaving": "Salve publicações só de texto e elas aparecem aqui.",
+    "playlist": {
+      "makePublic": "Playlist pública",
+      "makePublicHint": "Qualquer pessoa pode ver esta pasta no seu perfil.",
+      "publicBadge": "Pública",
+      "copyLink": "Copiar link da playlist",
+      "linkCopied": "Link da playlist copiado",
+      "itemsCount": "{{count}} publicações",
+      "emptyOwnerHint": "Torne uma pasta de favoritos pública para exibi-la aqui.",
+      "emptyVisitor": "Este perfil ainda não tem playlists públicas.",
+      "openBookmarks": "Abrir meus favoritos",
+      "back": "Todas as playlists",
+      "noPosts": "Esta playlist ainda não tem publicações.",
+      "unavailable": "Esta playlist não está mais disponível.",
+      "loadMore": "Mostrar mais publicações"
+    }
   },
   "notifications": {
     "title": "Notificações",
@@ -1627,7 +1642,8 @@
       "breakdownTitle": "De onde vem esse alcance",
       "dehubFollowers": "Seguidores do DeHub",
       "selfReported": "As contagens de seguidores nas redes sociais são inseridas pelo criador."
-    }
+    },
+    "tabPlaylists": "Playlists"
   },
   "tv": {
     "title": "TV",

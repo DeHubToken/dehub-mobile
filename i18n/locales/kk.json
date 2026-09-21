@@ -1597,7 +1597,8 @@
       "breakdownTitle": "Бұл қол жетімділік қайдан келеді",
       "dehubFollowers": "DeHub ізбасарлары",
       "selfReported": "Әлеуметтік ізбасарлар сандарын жасаушы енгізеді."
-    }
+    },
+    "tabPlaylists": "Ойнату тізімдері"
   },
   "tv": {
     "title": "Теледидар",
@@ -2310,7 +2311,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Қоғамдық ойнату тізімі",
+      "makePublicHint": "Бұл қалтаны кез келген адам профиліңізде көре алады.",
+      "publicBadge": "Қоғамдық",
+      "copyLink": "Ойнату тізімінің сілтемесін көшіру",
+      "linkCopied": "Ойнату тізімінің сілтемесі көшірілді",
+      "itemsCount": "{{count}} посттары",
+      "emptyOwnerHint": "Мұнда көрсету үшін бетбелгі қалтасын көпшілікке көрсетіңіз.",
+      "emptyVisitor": "Бұл профильде әлі қоғамдық ойнату тізімдері жоқ.",
+      "openBookmarks": "Менің бетбелгілерімді ашыңыз",
+      "back": "Барлық ойнату тізімдері",
+      "noPosts": "Бұл ойнату тізімінде әлі хабарламалар жоқ.",
+      "unavailable": "Бұл ойнату тізімі енді қол жетімді емес.",
+      "loadMore": "Қосымша хабарламаларды көрсету"
+    }
   },
   "staking": {
     "title": "Staking",

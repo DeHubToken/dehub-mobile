@@ -1239,7 +1239,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "सार्वजनिक प्लेलिस्ट",
+      "makePublicHint": "तुमच्या प्रोफाइलवर कोणीही हा फोल्डर पाहू शकतो.",
+      "publicBadge": "सार्वजनिक",
+      "copyLink": "प्लेलिस्ट लिंक कॉपी करा",
+      "linkCopied": "प्लेलिस्ट लिंक कॉपी केली",
+      "itemsCount": "{{count}} पोस्ट्स",
+      "emptyOwnerHint": "येथे दर्शविण्यासाठी बुकमार्क फोल्डर सार्वजनिक करा.",
+      "emptyVisitor": "या प्रोफाइलमध्ये अद्याप सार्वजनिक प्लेलिस्ट नाहीत.",
+      "openBookmarks": "माझे वाचनखूणा उघडा",
+      "back": "सर्व प्लेलिस्ट",
+      "noPosts": "या प्लेलिस्टमध्ये अद्याप कोणतेही पोस्ट नाहीत.",
+      "unavailable": "ही प्लेलिस्ट आता उपलब्ध नाही.",
+      "loadMore": "अधिक पोस्ट दर्शवा"
+    }
   },
   "notifications": {
     "title": "सूचना",
@@ -1462,7 +1477,8 @@
       "breakdownTitle": "कुठून आली ही उष्णता",
       "dehubFollowers": "DeHub अनुयायी",
       "selfReported": "निर्मात्याकडून सामाजिक अनुयायी संख्या प्रविष्ट केली जाते."
-    }
+    },
+    "tabPlaylists": "प्लेलिस्ट"
   },
   "messages": {
     "smartRepliesOff": "सुचवलेली उत्तरे बंद केली",

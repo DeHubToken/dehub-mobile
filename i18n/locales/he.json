@@ -1246,7 +1246,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "פלייליסט ציבורי",
+      "makePublicHint": "כל אחד יכול לראות את התיקייה הזו בפרופיל שלך.",
+      "publicBadge": "ציבורי",
+      "copyLink": "העתקת קישור לפלייליסט",
+      "linkCopied": "הקישור לפלייליסט הועתק",
+      "itemsCount": "{{count}} פוסטים",
+      "emptyOwnerHint": "הפוך תיקיית סימניות לציבורית כדי להציג אותה כאן.",
+      "emptyVisitor": "לפרופיל זה עדיין אין פלייליסטים ציבוריים.",
+      "openBookmarks": "פתיחת הסימניות שלי",
+      "back": "כל הפלייליסטים",
+      "noPosts": "לפלייליסט זה עדיין אין פוסטים.",
+      "unavailable": "הפלייליסט הזה כבר לא זמין.",
+      "loadMore": "הצגת פוסטים נוספים"
+    }
   },
   "notifications": {
     "title": "התראות",
@@ -1471,7 +1486,8 @@
       "breakdownTitle": "מאיפה ההגעה הזו מגיעה?",
       "dehubFollowers": "חסידי DeHub",
       "selfReported": "מספר העוקבים החברתיים מוזן על ידי היוצר."
-    }
+    },
+    "tabPlaylists": "פלייליסטים"
   },
   "messages": {
     "smartRepliesOff": "התשובות המוצעות כובו",

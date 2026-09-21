@@ -1346,7 +1346,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Ndesịta egwu ọha",
+      "makePublicHint": "Onye ọbụla nwere ike ịhụ nsomebefaịlụ a na profaịlụ gị.",
+      "publicBadge": "Public",
+      "copyLink": "Debata ụzọ njikọ ndesịta egwu",
+      "linkCopied": "Edebatara njikọ ndesịta egwu",
+      "itemsCount": "{{count}} posts",
+      "emptyOwnerHint": "Mee nsomebefaịlụ ibe edokọbara n 'ihu ọha iji gosi ya ebe a.",
+      "emptyVisitor": "Profaịlụ a enweghị ndepụta ọkpụkpọ ọha ugbua.",
+      "openBookmarks": "Mepee búùkmáàks m",
+      "back": "Ndesịta egwu niile",
+      "noPosts": "Nke a playlist enweghị posts ma.",
+      "unavailable": "Ndesịta egwu a adịkwaghị.",
+      "loadMore": "Gosi ndị ọzọ posts"
+    }
   },
   "notifications": {
     "badgeTierUp": "Ekele! Ugbu a ị bụ {{tier}} 🎉",
@@ -1597,7 +1612,8 @@
       "breakdownTitle": "Ebee ka iru a si abịa",
       "dehubFollowers": "DeHub na-eso ụzọ",
       "selfReported": "Onye na-emepụta ihe na-abanye ọnụ ọgụgụ ndị na-eso ụzọ ọha."
-    }
+    },
+    "tabPlaylists": "Ndepụta egwu"
   },
   "tv": {
     "title": "TV",

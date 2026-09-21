@@ -1211,7 +1211,22 @@
     "noVideosYet": "Noch keine gespeicherten Videos",
     "videosStartSaving": "Speichere Beiträge mit Videos, dann sammeln sie sich hier.",
     "noTextYet": "Noch keine gespeicherten Textbeiträge",
-    "textStartSaving": "Speichere reine Textbeiträge, dann erscheinen sie hier."
+    "textStartSaving": "Speichere reine Textbeiträge, dann erscheinen sie hier.",
+    "playlist": {
+      "makePublic": "Öffentlichi Playlist",
+      "makePublicHint": "Jede cha das Ordner uf dim Profil gseh.",
+      "publicBadge": "Öffentli",
+      "copyLink": "Playlist-Link kopiere",
+      "linkCopied": "Playlist-Link kopiert",
+      "itemsCount": "{{count}} Posts",
+      "emptyOwnerHint": "Mach en Lesezeiche-Ordner öffentli zum das do zeige.",
+      "emptyVisitor": "Das Profil hät no kei öffentliche Playlist.",
+      "openBookmarks": "Mini Lesezeiche öffne",
+      "back": "Alli Playlist",
+      "noPosts": "Die Playlist hät no kei Posts.",
+      "unavailable": "Die Playlist isch nümme verfügbar.",
+      "loadMore": "Meh Posts zeige"
+    }
   },
   "notifications": {
     "title": "Nochrichtä",
@@ -1571,7 +1586,8 @@
       "breakdownTitle": "Woher die Reichwiite chunt",
       "dehubFollowers": "DeHub Follower",
       "selfReported": "Soziali Follower-Zahle werded vom Creator yygäbe."
-    }
+    },
+    "tabPlaylists": "Playlistä"
   },
   "tv": {
     "title": "TV",

@@ -1366,7 +1366,22 @@
     "noVideosYet": "保存した動画はまだありません",
     "videosStartSaving": "動画付きの投稿をブックマークすると、ここにまとまります。",
     "noTextYet": "保存したテキスト投稿はまだありません",
-    "textStartSaving": "テキストだけの投稿をブックマークすると、ここに表示されます。"
+    "textStartSaving": "テキストだけの投稿をブックマークすると、ここに表示されます。",
+    "playlist": {
+      "makePublic": "公開プレイリスト",
+      "makePublicHint": "誰でもあなたのプロフィールでこのフォルダーを見ることができます。",
+      "publicBadge": "公開",
+      "copyLink": "プレイリストのリンクをコピー",
+      "linkCopied": "プレイリストのリンクをコピーしました",
+      "itemsCount": "{{count}}件の投稿",
+      "emptyOwnerHint": "ブックマークフォルダを公開して、ここに表示します。",
+      "emptyVisitor": "このプロフィールには公開プレイリストがありません。",
+      "openBookmarks": "ブックマークを開く",
+      "back": "すべてのプレイリスト",
+      "noPosts": "このプレイリストにはまだ投稿がありません。",
+      "unavailable": "このプレイリストはもう利用できません。",
+      "loadMore": "その他の投稿を表示"
+    }
   },
   "notifications": {
     "title": "通知",
@@ -1624,7 +1639,8 @@
       "breakdownTitle": "このリーチがどこから来たのか",
       "dehubFollowers": "DeHubフォロワー",
       "selfReported": "ソーシャルフォロワー数は、クリエイターが入力します。"
-    }
+    },
+    "tabPlaylists": "プレイリスト"
   },
   "tv": {
     "title": "テレビ",

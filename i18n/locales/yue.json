@@ -1251,7 +1251,22 @@
     "noVideosYet": "还没有收藏的视频",
     "videosStartSaving": "收藏带视频的帖子，它们会集中在这里。",
     "noTextYet": "还没有收藏的文字帖子",
-    "textStartSaving": "收藏纯文字帖子，它们会出现在这里。"
+    "textStartSaving": "收藏纯文字帖子，它们会出现在这里。",
+    "playlist": {
+      "makePublic": "公開播放列表",
+      "makePublicHint": "任何人都可以喺你個人檔案入面睇到呢個資料夾。",
+      "publicBadge": "公眾",
+      "copyLink": "複製播放清單連結",
+      "linkCopied": "複製咗播放清單連結",
+      "itemsCount": "{{count}} 帖子",
+      "emptyOwnerHint": "將書籤資料夾設為公開，即可在此顯示。",
+      "emptyVisitor": "呢個個人檔案仲未有公開播放清單。",
+      "openBookmarks": "打開我嘅書籤",
+      "back": "所有播放清單",
+      "noPosts": "呢個播放清單仲未有帖子。",
+      "unavailable": "呢個播放清單唔再有得用。",
+      "loadMore": "顯示更多帖子"
+    }
   },
   "notifications": {
     "title": "通知",
@@ -1611,7 +1626,8 @@
       "breakdownTitle": "呢個觸及範圍嚟自邊度",
       "dehubFollowers": "DeHub 追蹤者",
       "selfReported": "社交追蹤者數目係由創作者輸入。"
-    }
+    },
+    "tabPlaylists": "播放清單"
   },
   "tv": {
     "title": "電視",

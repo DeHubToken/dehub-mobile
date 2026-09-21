@@ -1209,7 +1209,22 @@
     "noVideosYet": "还没有收藏的视频",
     "videosStartSaving": "收藏带视频的帖子，它们会集中在这里。",
     "noTextYet": "还没有收藏的文字帖子",
-    "textStartSaving": "收藏纯文字帖子，它们会出现在这里。"
+    "textStartSaving": "收藏纯文字帖子，它们会出现在这里。",
+    "playlist": {
+      "makePublic": "公开歌单",
+      "makePublicHint": "任何人都可以看到你个人主页上的这个文件夹。",
+      "publicBadge": "公开",
+      "copyLink": "复制歌单链接",
+      "linkCopied": "歌单链接已复制",
+      "itemsCount": "{{count}} 条动态",
+      "emptyOwnerHint": "将书签文件夹设为公开，即可在此处显示。",
+      "emptyVisitor": "此个人主页尚无公开歌单。",
+      "openBookmarks": "打开我的书签",
+      "back": "所有歌单",
+      "noPosts": "此歌单尚无动态。",
+      "unavailable": "此歌单已不可用。",
+      "loadMore": "显示更多动态"
+    }
   },
   "notifications": {
     "title": "通知",
@@ -1569,7 +1584,8 @@
       "breakdownTitle": "呢个触达从边度嚟",
       "dehubFollowers": "DeHub 关注者",
       "selfReported": "社交关注数由创作者输入。"
-    }
+    },
+    "tabPlaylists": "歌单"
   },
   "tv": {
     "title": "电视",

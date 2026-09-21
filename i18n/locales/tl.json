@@ -1772,7 +1772,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Pampublikong playlist",
+      "makePublicHint": "Kahit sino ay maaaring makita ang folder na ito sa iyong profile.",
+      "publicBadge": "Pampubliko",
+      "copyLink": "Kopyahin ang link ng playlist",
+      "linkCopied": "Kinopya ang link ng playlist",
+      "itemsCount": "{{count}} mga post",
+      "emptyOwnerHint": "Gawing pampubliko ang isang folder ng bookmark upang ipakita ito dito.",
+      "emptyVisitor": "Wala pang pampublikong playlist ang profile na ito.",
+      "openBookmarks": "Buksan ang aking mga bookmark",
+      "back": "Lahat ng mga playlist",
+      "noPosts": "Wala pang mga post ang playlist na ito.",
+      "unavailable": "Hindi na available ang playlist na ito.",
+      "loadMore": "Magpakita ng higit pang mga post"
+    }
   },
   "notifications": {
     "title": "Notifications",
@@ -1987,7 +2002,8 @@
       "breakdownTitle": "Saan nagmumula ang abot na ito",
       "dehubFollowers": "Mga tagasunod ng DeHub",
       "selfReported": "Ang mga bilang ng mga social follower ay ipinasok ng tagalikha."
-    }
+    },
+    "tabPlaylists": "Mga Playlist"
   },
   "tv": {
     "title": "TV",

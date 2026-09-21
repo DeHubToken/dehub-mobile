@@ -1237,7 +1237,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "عام پلی لیست",
+      "makePublicHint": "دا فولډر ستاسو په پروفایل کې هر څوک لیدلی شي.",
+      "publicBadge": "عام",
+      "copyLink": "د پلی لیست لینک کاپي کړئ",
+      "linkCopied": "د پلی لیست لینک کاپي شو",
+      "itemsCount": "{{count}} پوسټونه",
+      "emptyOwnerHint": "د بک مارک فولډر عام کړئ ترڅو دلته ښکاره شي.",
+      "emptyVisitor": "دا پروفایل لا تر اوسه عام پلی لیستونه نلري.",
+      "openBookmarks": "زما بک مارکونه خلاص کړئ",
+      "back": "ټول پلی لیستونه",
+      "noPosts": "دا پلی لیست لا تر اوسه پوسټونه نلري.",
+      "unavailable": "دا پلی لیست نور شتون نلري.",
+      "loadMore": "نور پوسټونه وښایاست"
+    }
   },
   "notifications": {
     "badgeTierUp": "مبارک شه! اوس تاسو {{tier}} یاست 🎉",
@@ -1581,7 +1596,8 @@
       "breakdownTitle": "له کوم ځایه چې دا رسم له کوم ځای څخه راځي",
       "dehubFollowers": "د DeHub پیروان په نښه کړئ",
       "selfReported": "د ټولنیز پیروانو شمیر د خالق لخوا ننوتل کیږي."
-    }
+    },
+    "tabPlaylists": "د لوبې لیستونه"
   },
   "tv": {
     "title": "TV",

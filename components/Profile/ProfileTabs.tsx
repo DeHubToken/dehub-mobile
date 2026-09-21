@@ -13,6 +13,7 @@ import ProfileFeedTypeRoute from "./ProfileFeedTypeRoute";
 import PostsRoute from "./PostsRoute";
 import SubscribersRoute from "./SubscribersRoute";
 import PinnedRoute from "./PinnedRoute";
+import PlaylistsRoute from "./PlaylistsRoute";
 import FractionsRoute from "./FractionsRoute";
 import ProfileTabBar, { type ProfileTabItem } from "./ProfileTabBar";
 import ProfileContentToolbar from "./ProfileContentToolbar";
@@ -59,6 +60,10 @@ const ProfileTabs: React.FC = () => {
       { key: "fractions", title: "Fractions", icon: "ChartPie" },
       { key: "pinned", title: t("profile.tabPinned", "Pinned"), icon: "Pin" },
     ];
+    // Public playlists only earn a tab once there is one to show.
+    if ((counts.playlists ?? 0) > 0) {
+      rest.push({ key: "playlists", title: t("profile.tabPlaylists"), icon: "ListVideo" });
+    }
     rest.sort(
       (a, b) =>
         ((counts as Record<string, number | undefined>)[b.key] ?? 0) -
@@ -123,6 +128,8 @@ const ProfileTabs: React.FC = () => {
         return <FractionsRoute address={address} isOwnProfile listHeader={listHeader} />;
       case "pinned":
         return <PinnedRoute address={address} listHeader={listHeader} />;
+      case "playlists":
+        return <PlaylistsRoute address={address} listHeader={listHeader} isOwnProfile />;
       default:
         return null;
     }

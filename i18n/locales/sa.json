@@ -1239,7 +1239,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "सार्वजनिक प्लेलिस्ट",
+      "makePublicHint": "कोणीही तुमच्या प्रोफाइलवर हे फोल्डर पाहू शकतो.",
+      "publicBadge": "सार्वजनिक",
+      "copyLink": "प्लेलिस्ट लिंक कॉपी करा",
+      "linkCopied": "प्लेलिस्ट लिंक कॉपी केली",
+      "itemsCount": "{{count}} पोस्ट्स",
+      "emptyOwnerHint": "येथे दर्शविण्यासाठी बुकमार्क फोल्डर सार्वजनिक करा.",
+      "emptyVisitor": "या प्रोफाइलवर अद्याप सार्वजनिक प्लेलिस्ट नाहीत.",
+      "openBookmarks": "माझी बुकमार्क्स उघडा",
+      "back": "सर्व प्लेलिस्ट",
+      "noPosts": "या प्लेलिस्टमध्ये अद्याप पोस्ट नाहीत.",
+      "unavailable": "ही प्लेलिस्ट आता उपलब्ध नाही.",
+      "loadMore": "अधिक पोस्ट्स दर्शवा"
+    }
   },
   "notifications": {
     "badgeTierUp": "अभिनन्दनम्! अधुना भवान् {{tier}} अस्ति 🎉",
@@ -1583,7 +1598,8 @@
       "breakdownTitle": "इह कस्मान्न भवति?",
       "dehubFollowers": "DEHUB अनुयायी",
       "selfReported": "समाजे प्रवेष्टुमर्हति सृष्टिकर्ता प्रविशति ।"
-    }
+    },
+    "tabPlaylists": "वाद्यसूचीः"
   },
   "tv": {
     "title": "दूरदर्शनम्",

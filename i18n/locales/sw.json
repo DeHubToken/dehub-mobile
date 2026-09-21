@@ -1314,7 +1314,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Orodha ya kucheza ya umma",
+      "makePublicHint": "Mtu yeyote anaweza kuona folda hii kwenye wasifu wako.",
+      "publicBadge": "Umma",
+      "copyLink": "Nakili kiunganishi cha orodha ya kucheza",
+      "linkCopied": "Kiunganishi cha orodha ya kucheza kimenakiliwa",
+      "itemsCount": "{{count}} posts",
+      "emptyOwnerHint": "Fanya folda ya alamisho iwe ya umma ili kuionyesha hapa.",
+      "emptyVisitor": "Wasifu huu hauna orodha za kucheza za umma bado.",
+      "openBookmarks": "Fungua alamisho zangu",
+      "back": "Orodha zote za kucheza",
+      "noPosts": "Orodha hii ya kucheza haina machapisho bado.",
+      "unavailable": "Orodha hii ya kucheza haipatikani tena.",
+      "loadMore": "Onyesha machapisho zaidi"
+    }
   },
   "notifications": {
     "title": "Arifa",
@@ -1612,7 +1627,8 @@
       "breakdownTitle": "Ufikiaji huu unatoka wapi",
       "dehubFollowers": "Wafuasi wa DeHub",
       "selfReported": "Hesabu za wafuasi wa kijamii zimewekwa na muundaji."
-    }
+    },
+    "tabPlaylists": "Orodha za kucheza"
   },
   "tv": {
     "title": "TV",

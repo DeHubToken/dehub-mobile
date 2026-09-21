@@ -1251,7 +1251,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Viešas grojaraštis",
+      "makePublicHint": "Kiekvienas gali matyti šį aplanką jūsų profilyje.",
+      "publicBadge": "Vieša",
+      "copyLink": "Kopijuoti grojaraščio nuorodą",
+      "linkCopied": "Grojaraščio nuoroda nukopijuota",
+      "itemsCount": "{{count}} įrašai",
+      "emptyOwnerHint": "Padarykite žymių aplanką viešą, kad jis būtų rodomas čia.",
+      "emptyVisitor": "Šiame profilyje dar nėra viešųjų grojaraščių.",
+      "openBookmarks": "Atidaryti mano žymes",
+      "back": "Visi grojaraščiai",
+      "noPosts": "Šiame grojaraštyje dar nėra įrašų.",
+      "unavailable": "Šis grojaraštis nebepasiekiamas.",
+      "loadMore": "Rodyti daugiau įrašų"
+    }
   },
   "notifications": {
     "title": "Pranešimai",
@@ -1611,7 +1626,8 @@
       "breakdownTitle": "Iš kur šis pasiekiamumas",
       "dehubFollowers": "„DeHub“ sekėjai",
       "selfReported": "Socialinių sekėjų skaičių įveda kūrėjas."
-    }
+    },
+    "tabPlaylists": "Grojaraščiai"
   },
   "tv": {
     "title": "TV",

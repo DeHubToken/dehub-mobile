@@ -1238,7 +1238,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "عوامي پلے لسٽ",
+      "makePublicHint": "ڪو به توهان جي پروفائل تي هي فولڊر ڏسي سگهي ٿو.",
+      "publicBadge": "عوامي",
+      "copyLink": "پلے لسٽ لنڪ ڪاپي ڪريو",
+      "linkCopied": "پلے لسٽ لنڪ ڪاپي ڪيو ويو",
+      "itemsCount": "{{count}} پوسٽون",
+      "emptyOwnerHint": "هن کي هتي ڏيکارڻ لاءِ بڪ مارڪ فولڊر کي عوامي ٺاهيو.",
+      "emptyVisitor": "هن پروفائل ۾ اڃا تائين ڪا به عوامي پلے لسٽ ناهي.",
+      "openBookmarks": "منهنجا بڪ مارڪ کوليو",
+      "back": "سڀئي پلے لسٽون",
+      "noPosts": "هن پلے لسٽ ۾ اڃا تائين ڪا به پوسٽ ناهي.",
+      "unavailable": "هي پلے لسٽ هاڻي موجود ناهي.",
+      "loadMore": "وڌيڪ پوسٽون ڏيکاريو"
+    }
   },
   "notifications": {
     "title": "اطلاعون",
@@ -1597,7 +1612,8 @@
       "breakdownTitle": "هي پهچ ڪٿان آندي",
       "dehubFollowers": "DeHub پوئلڳن",
       "selfReported": "تخليقڪار طرفان سماجي پوئلڳن جي ڳڻپ داخل ڪئي وئي آهي."
-    }
+    },
+    "tabPlaylists": "پلي لسٽون"
   },
   "tv": {
     "title": "TV",

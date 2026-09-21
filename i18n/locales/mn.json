@@ -1237,7 +1237,21 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Нийтийн тоглуулах жагсаалт",
+      "makePublicHint": "Профайл дээр энэ фолдерыг хэн ч харж болно.",
+      "publicBadge": "Олон нийт",
+      "copyLink": "Тоглуулах жагсаалтын холбоосыг хуулах",
+      "linkCopied": "Тоглуулах жагсаалтаас хуулсан",
+      "emptyOwnerHint": "Харуулахын тулд хавчуургын хавтасыг нийтэд оруулна уу.",
+      "emptyVisitor": "Энэ профайл одоогоор олон нийтийн тоглуулах жагсаалт алга байна.",
+      "openBookmarks": "Миний хавчуургыг нээнэ үү",
+      "back": "Бүх тоглуулах жагсаалт",
+      "noPosts": "Энэ тоглуулах жагсаалт одоогоор нийтлэгдээгүй байна.",
+      "unavailable": "Энэ тоглуулах жагсаалт дахиж боломжгүй байна.",
+      "loadMore": "Илүү дэлгэрэнгүй мэдэгдлүүдийг үзэх"
+    }
   },
   "notifications": {
     "title": "Мэдэгдлүүд",
@@ -1596,7 +1610,8 @@
       "breakdownTitle": "Энэ хүрэх боломж хаанаас үүсдэг",
       "dehubFollowers": "Дешубын дагалдагчид",
       "selfReported": "Бүтээгч олон нийтийн дагагчийн тоонд ордог."
-    }
+    },
+    "tabPlaylists": "Тоглуулах жагсаалт"
   },
   "tv": {
     "title": "ТВ",

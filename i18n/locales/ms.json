@@ -1814,7 +1814,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Senarai main awam",
+      "makePublicHint": "Sesiapa sahaja boleh melihat folder ini pada profil anda.",
+      "publicBadge": "Awam",
+      "copyLink": "Salin pautan senarai main",
+      "linkCopied": "Pautan senarai main disalin",
+      "itemsCount": "{{count}} hantaran",
+      "emptyOwnerHint": "Jadikan folder penanda halaman umum untuk menunjukkannya di sini.",
+      "emptyVisitor": "Profil ini belum mempunyai senarai main awam.",
+      "openBookmarks": "Buka penanda halaman saya",
+      "back": "Semua senarai main",
+      "noPosts": "Senarai main ini belum mempunyai hantaran.",
+      "unavailable": "Senarai main ini tidak tersedia lagi.",
+      "loadMore": "Tunjukkan lebih banyak hantaran"
+    }
   },
   "notifications": {
     "title": "Notifications",
@@ -2068,7 +2083,8 @@
       "breakdownTitle": "Dari mana datangnya jangkauan ini",
       "dehubFollowers": "Pengikut DeHub",
       "selfReported": "Kiraan pengikut sosial dimasukkan oleh pengkarya."
-    }
+    },
+    "tabPlaylists": "Senarai main"
   },
   "tv": {
     "title": "TV",

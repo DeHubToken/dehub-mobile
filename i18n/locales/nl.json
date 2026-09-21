@@ -1823,7 +1823,22 @@
     "noVideosYet": "Nog geen bewaarde video's",
     "videosStartSaving": "Bewaar posts met video's en ze komen hier samen.",
     "noTextYet": "Nog geen bewaarde tekstposts",
-    "textStartSaving": "Bewaar posts met alleen tekst en ze verschijnen hier."
+    "textStartSaving": "Bewaar posts met alleen tekst en ze verschijnen hier.",
+    "playlist": {
+      "makePublic": "Openbare afspeellijst",
+      "makePublicHint": "Iedereen kan deze map op je profiel zien.",
+      "publicBadge": "Openbaar",
+      "copyLink": "Afspeellijstlink kopiëren",
+      "linkCopied": "Afspeellijstlink gekopieerd",
+      "itemsCount": "{{count}} posts",
+      "emptyOwnerHint": "Maak een bladwijzermap openbaar om deze hier weer te geven.",
+      "emptyVisitor": "Dit profiel heeft nog geen openbare afspeellijsten.",
+      "openBookmarks": "Mijn bladwijzers openen",
+      "back": "Alle afspeellijsten",
+      "noPosts": "Deze afspeellijst heeft nog geen berichten.",
+      "unavailable": "Deze afspeellijst is niet meer beschikbaar.",
+      "loadMore": "Meer berichten weergeven"
+    }
   },
   "notifications": {
     "title": "Meldingen",
@@ -2077,7 +2092,8 @@
       "breakdownTitle": "Waar dit bereik vandaan komt",
       "dehubFollowers": "DeHub-volgers",
       "selfReported": "Het aantal sociale volgers wordt ingevoerd door de maker."
-    }
+    },
+    "tabPlaylists": "Afspeellijsten"
   },
   "tv": {
     "title": "TV",

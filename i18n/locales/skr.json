@@ -1204,7 +1204,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "عوامی پلے لسٹ",
+      "makePublicHint": "کوئی وی بندا تہاڈی پروفائل تے ایہ فولڈر دیکھ سکدا اے۔",
+      "publicBadge": "عوامی",
+      "copyLink": "پلے لسٹ دا لنک کاپی کرو",
+      "linkCopied": "پلے لسٹ دا لنک کاپی تھئی گئیا",
+      "itemsCount": "{{count}} پوسٹاں",
+      "emptyOwnerHint": "ایس جگہ تے ظاہر کرن لئی بک مارک فولڈر نوں عوامی بناؤ۔",
+      "emptyVisitor": "ایس پروفائل تے ہجے کوئی عوامی پلے لسٹ کونی۔",
+      "openBookmarks": "میڈیاں بک مارکاں کھولھو",
+      "back": "ساریاں پلے لسٹاں",
+      "noPosts": "ایس پلے لسٹ وچ ہجے کوئی پوسٹ کونی۔",
+      "unavailable": "ایس ویلّے ایہ پلے لسٹ موجود کونی۔",
+      "loadMore": "ہور پوسٹاں وکھاؤ"
+    }
   },
   "notifications": {
     "title": "اطلاع",
@@ -1564,7 +1579,8 @@
       "breakdownTitle": "اِیتھے اِیہہ پهچ کِیتھوں آندی ھِ",
       "dehubFollowers": "ڈی ھب فالوورز",
       "selfReported": "سوشل فالوورز گِݨتی تخلیق کار دِتّی ھِ۔"
-    }
+    },
+    "tabPlaylists": "پلے لسٹ"
   },
   "tv": {
     "title": "ٹی وی",

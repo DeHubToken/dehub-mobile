@@ -1304,7 +1304,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Jerin wasan kwaikwayo na jama'a",
+      "makePublicHint": "Kowane mutum na iya ganin wannan babban fayil a kan bayanan ku.",
+      "publicBadge": "Jama'a",
+      "copyLink": "Kwafi lissafin waža mahada",
+      "linkCopied": "Playlist mahada kwafe",
+      "itemsCount": "{{count}} posts",
+      "emptyOwnerHint": "Make wani bookmark babban fayil jama'a don nuna shi a nan.",
+      "emptyVisitor": "Wannan bayanin martaba ba shi da jerin waƙoƙin jama'a har yanzu.",
+      "openBookmarks": "Bude alamomin littafina",
+      "back": "Duk lissafin waža",
+      "noPosts": "Wannan playlist ba shi da posts tukuna.",
+      "unavailable": "Wannan jerin waƙoƙin ba shi da amfani kuma.",
+      "loadMore": "Nuna ƙarin posts"
+    }
   },
   "notifications": {
     "title": "Sanarwa",
@@ -1602,7 +1617,8 @@
       "breakdownTitle": "Inda wannan isa ya fito daga",
       "dehubFollowers": "DeHub mabiya",
       "selfReported": "An shigar da ƙididdigar mabiya zamantakewa ta mahalicci."
-    }
+    },
+    "tabPlaylists": "Jerin-bidiyoyi"
   },
   "tv": {
     "title": "Talabijin",
