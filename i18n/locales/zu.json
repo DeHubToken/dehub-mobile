@@ -3487,7 +3487,10 @@
     "newMembers": "Amalungu amasha",
     "membersOverTime": "Amalungu ngokuhamba kwesikhathi",
     "lastDays": "Izinsuku ezingu-{{count}} ezidlule",
-    "source": "Umlando we-akhawunti orekhodiwe ophuma kwi-endpoint yezibalo zomphakathi ye-DeHub. Awekho amanani alinganiselwe asetshenziswa kuleli shadi."
+    "source": "Umlando we-akhawunti orekhodiwe ophuma kwi-endpoint yezibalo zomphakathi ye-DeHub. Awekho amanani alinganiselwe asetshenziswa kuleli shadi.",
+    "community": {
+      "openNewMembers": "Vula uhlu lwamalungu amasha"
+    }
   },
   "solana": {
     "unavailableTitle": "Isikhwama se-Solana asitholakali",

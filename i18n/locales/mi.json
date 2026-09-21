@@ -3443,7 +3443,10 @@
     "newMembers": "Mema hou",
     "membersOverTime": "Ngā mema i roto i te wā",
     "lastDays": "Ngā rā {{count}} kua pahure",
-    "source": "Hītori pūkete kua tuhia mai i te pito tatauranga tūmatanui a DeHub. Kāore he uara whakatau e whakamahia ana i tēnei tūtohi."
+    "source": "Hītori pūkete kua tuhia mai i te pito tatauranga tūmatanui a DeHub. Kāore he uara whakatau e whakamahia ana i tēnei tūtohi.",
+    "community": {
+      "openNewMembers": "Whakatuwherahia te raarangi mema hou"
+    }
   },
   "solana": {
     "unavailableTitle": "Kāore e wātea te pūkoro Solana",

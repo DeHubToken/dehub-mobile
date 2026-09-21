@@ -3462,7 +3462,10 @@
     "newMembers": "Noví členové",
     "membersOverTime": "Členové v čase",
     "lastDays": "Posledních {{count}} dní",
-    "source": "Zaznamenaná historie účtů z veřejného statistického endpointu DeHub. V tomto grafu se nepoužívají odhadované hodnoty."
+    "source": "Zaznamenaná historie účtů z veřejného statistického endpointu DeHub. V tomto grafu se nepoužívají odhadované hodnoty.",
+    "community": {
+      "openNewMembers": "Otevřít seznam nových členů"
+    }
   },
   "solana": {
     "unavailableTitle": "Peněženka Solana není dostupná",

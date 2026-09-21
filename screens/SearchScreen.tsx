@@ -163,7 +163,7 @@ const SearchScreen: React.FC = () => {
   } = useCollapsibleHeader({ collapseHeight: SCREEN_HEADER_HEIGHT });
   // The app drawer's menu search hands off here when what was typed is not a
   // page — see AppDrawer's runFullSearch.
-  const route = useRoute<{ key: string; name: string; params?: { q?: string } }>();
+  const route = useRoute<{ key: string; name: string; params?: { q?: string; section?: "newMembers" } }>();
   const navigation = useNavigation<any>();
   const routeParams = route.params;
   const authUser = useUser() as { address?: string } | null;
@@ -341,6 +341,49 @@ const SearchScreen: React.FC = () => {
     setSearchQuery(q);
     setInputFocused(false);
     executeSearch(q, activeTab, 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [routeParams]);
+
+  // Arriving from the Live Stats "New members" heading. The rail only exists
+  // in the idle branch, so an open search is put away first — without the
+  // focus `clearSearch` gives the box, which would swap in recent searches
+  // instead — and the list then settles on the rail once it has laid out. It
+  // renders nothing until the roster arrives, so this waits for a real height
+  // and stops quietly when nobody joined recently. The timer lives in a ref
+  // and the param is cleared only once it is done: clearing it first would
+  // re-run this effect and tear the timer down before it ever fired.
+  const newMembersLayout = useRef<{ y: number; height: number } | null>(null);
+  const idleListRef = useRef<Animated.ScrollView>(null);
+  const settleTimer = useRef<ReturnType<typeof setInterval> | null>(null);
+  useEffect(() => () => { if (settleTimer.current) clearInterval(settleTimer.current); }, []);
+  useEffect(() => {
+    if (routeParams?.section !== "newMembers") return;
+    if (hasSearched || searchQuery.trim()) {
+      showHeader();
+      setSearchQuery("");
+      setAccounts([]);
+      setContent([]);
+      setAccountsPagination(null);
+      setContentPagination(null);
+      setSuggestions([]);
+      setHasSearched(false);
+      lastQuery.current = "";
+    }
+    setInputFocused(false);
+    inputRef.current?.blur();
+    if (settleTimer.current) clearInterval(settleTimer.current);
+    let attempts = 0;
+    settleTimer.current = setInterval(() => {
+      const rail = newMembersLayout.current;
+      const list = idleListRef.current;
+      const settled = !!rail && rail.height > 0 && !!list;
+      if (settled) list.scrollTo({ y: Math.max(0, rail.y - headerHeight), animated: true });
+      if (settled || ++attempts >= 20) {
+        if (settleTimer.current) clearInterval(settleTimer.current);
+        settleTimer.current = null;
+        navigation.setParams({ section: undefined });
+      }
+    }, 150);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routeParams]);
 
@@ -768,6 +811,7 @@ const SearchScreen: React.FC = () => {
     // Not typing / not focused → new members, then trending
     return (
       <Animated.ScrollView
+        ref={idleListRef}
         style={{ flex: 1 }}
         showsVerticalScrollIndicator={false}
         onScroll={scrollHandler}
@@ -777,8 +821,11 @@ const SearchScreen: React.FC = () => {
       >
         {/* Above trending on purpose: this is the screen people already open to
             find other people, and a welcome is worth less the longer it waits.
-            Renders nothing when nobody joined recently. */}
-        <NewMembersRail />
+            Renders nothing when nobody joined recently. The wrapper reports
+            where the rail landed for the Live Stats deep link above. */}
+        <View onLayout={(e) => { newMembersLayout.current = e.nativeEvent.layout; }}>
+          <NewMembersRail />
+        </View>
         {/*
           Trending topics, above trending posts on purpose: the topics are the
           shorter, scannable answer to "what is happening", and the posts below

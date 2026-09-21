@@ -3448,7 +3448,10 @@
     "newMembers": "Àwọn ọmọ ẹgbẹ́ tuntun",
     "membersOverTime": "Àwọn ọmọ ẹgbẹ́ lórí àkókò",
     "lastDays": "Ọjọ́ {{count}} sẹ́yìn",
-    "source": "Ìtàn àkọọ́lẹ̀ tí a kọ sílẹ̀ láti ojú-ọ̀nà ìṣirò gbangba ti DeHub. Kò sí iye àfojúsùn tí a lò nínú àwòrán yìí."
+    "source": "Ìtàn àkọọ́lẹ̀ tí a kọ sílẹ̀ láti ojú-ọ̀nà ìṣirò gbangba ti DeHub. Kò sí iye àfojúsùn tí a lò nínú àwòrán yìí.",
+    "community": {
+      "openNewMembers": "Ṣí àtòjọ àwọn ọmọ ẹgbẹ́ tuntun"
+    }
   },
   "solana": {
     "unavailableTitle": "Àpò owó Solana kò sí",

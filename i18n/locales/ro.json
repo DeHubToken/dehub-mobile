@@ -3471,7 +3471,10 @@
     "newMembers": "Membri noi",
     "membersOverTime": "Membri în timp",
     "lastDays": "Ultimele {{count}} zile",
-    "source": "Istoric de conturi înregistrat din punctul final public de statistici al DeHub. În acest grafic nu sunt folosite valori estimate."
+    "source": "Istoric de conturi înregistrat din punctul final public de statistici al DeHub. În acest grafic nu sunt folosite valori estimate.",
+    "community": {
+      "openNewMembers": "Deschideți lista de membri noi"
+    }
   },
   "solana": {
     "unavailableTitle": "Portofelul Solana nu este disponibil",

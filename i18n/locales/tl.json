@@ -3636,7 +3636,10 @@
     "newMembers": "Mga bagong miyembro",
     "membersOverTime": "Mga miyembro sa paglipas ng panahon",
     "lastDays": "Huling {{count}} araw",
-    "source": "Naitalang kasaysayan ng account mula sa pampublikong stats endpoint ng DeHub. Walang tinatayang halaga na ginagamit sa chart na ito."
+    "source": "Naitalang kasaysayan ng account mula sa pampublikong stats endpoint ng DeHub. Walang tinatayang halaga na ginagamit sa chart na ito.",
+    "community": {
+      "openNewMembers": "Buksan ang listahan ng mga bagong miyembro"
+    }
   },
   "solana": {
     "unavailableTitle": "Hindi available ang Solana wallet",

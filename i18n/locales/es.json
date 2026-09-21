@@ -3529,7 +3529,10 @@
     "newMembers": "Miembros nuevos",
     "membersOverTime": "Miembros a lo largo del tiempo",
     "lastDays": "Últimos {{count}} días",
-    "source": "Historial de cuentas registrado desde el endpoint público de estadísticas de DeHub. En este gráfico no se usan valores estimados."
+    "source": "Historial de cuentas registrado desde el endpoint público de estadísticas de DeHub. En este gráfico no se usan valores estimados.",
+    "community": {
+      "openNewMembers": "Abrir la lista de nuevos miembros"
+    }
   },
   "solana": {
     "unavailableTitle": "Billetera de Solana no disponible",
@@ -4300,7 +4303,7 @@
     "useInAppCamera": "Utilice la cámara en la aplicación en su lugar"
   },
   "nearBuy": {
-    "otherCurrencies": "Otras monedas",
+    "otherCurrencies": "Other currencies",
     "description": "Choose a token to pay. Receive DHB in your wallet.",
     "dhbAmount": "DHB amount",
     "search": "Search token, network or contract",
@@ -4383,7 +4386,6 @@
     "checkingBalances": "Checking your wallet balances…",
     "walletBalances": "Your balances by network",
     "noWalletFunds": "Choose a currency, or search other currencies and networks.",
-    "otherCurrencies": "Other currencies",
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"

@@ -3526,7 +3526,10 @@
     "newMembers": "신규 회원",
     "membersOverTime": "시간에 따른 회원 수",
     "lastDays": "최근 {{count}}일",
-    "source": "DeHub의 공개 통계 엔드포인트에 기록된 계정 이력입니다. 이 차트에는 추정값을 사용하지 않습니다."
+    "source": "DeHub의 공개 통계 엔드포인트에 기록된 계정 이력입니다. 이 차트에는 추정값을 사용하지 않습니다.",
+    "community": {
+      "openNewMembers": "새 구성원 목록 열기"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana 지갑을 사용할 수 없습니다",

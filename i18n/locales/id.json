@@ -3508,7 +3508,10 @@
     "newMembers": "Anggota baru",
     "membersOverTime": "Anggota dari waktu ke waktu",
     "lastDays": "{{count}} hari terakhir",
-    "source": "Riwayat akun yang tercatat dari endpoint statistik publik DeHub. Tidak ada nilai perkiraan yang digunakan dalam grafik ini."
+    "source": "Riwayat akun yang tercatat dari endpoint statistik publik DeHub. Tidak ada nilai perkiraan yang digunakan dalam grafik ini.",
+    "community": {
+      "openNewMembers": "Buka daftar anggota baru"
+    }
   },
   "solana": {
     "unavailableTitle": "Dompet Solana tidak tersedia",

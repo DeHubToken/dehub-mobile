@@ -3510,7 +3510,10 @@
     "newMembers": "Yangi a'zolar",
     "membersOverTime": "Vaqt bo‘yicha a'zolar",
     "lastDays": "Oxirgi {{count}} kun",
-    "source": "DeHub'ning ommaviy statistika so‘nggi nuqtasidan yozib olingan hisob tarixi. Ushbu diagrammada taxminiy qiymatlar ishlatilmagan."
+    "source": "DeHub'ning ommaviy statistika so‘nggi nuqtasidan yozib olingan hisob tarixi. Ushbu diagrammada taxminiy qiymatlar ishlatilmagan.",
+    "community": {
+      "openNewMembers": "Yangi a&#39;zolar ro&#39;yxatini oching"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana hamyoni mavjud emas",

@@ -3462,7 +3462,10 @@
     "newMembers": "Új tagok",
     "membersOverTime": "Tagok az idő során",
     "lastDays": "Utolsó {{count}} nap",
-    "source": "Rögzített fiókelőzmények a DeHub nyilvános statisztikai végpontjáról. Ebben a diagramban nincsenek becsült értékek."
+    "source": "Rögzített fiókelőzmények a DeHub nyilvános statisztikai végpontjáról. Ebben a diagramban nincsenek becsült értékek.",
+    "community": {
+      "openNewMembers": "Nyissa meg az új tagok listáját"
+    }
   },
   "solana": {
     "unavailableTitle": "A Solana tárca nem érhető el",
