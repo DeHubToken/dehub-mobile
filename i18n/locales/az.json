@@ -1881,7 +1881,25 @@
     "active": "Aktiv",
     "noActiveNow": "Hazırda aktiv təklif yoxdur",
     "subtitle": "Platformanı formalaşdıran təkliflərə səs ver",
-    "loadFailed": "Təkliflər yüklənmədi"
+    "loadFailed": "Təkliflər yüklənmədi",
+    "forLabel": "Elan Növü",
+    "againstLabel": "Qarşı",
+    "discussion": {
+      "title": "Müzakirə",
+      "intro": "Səs verməzdən əvvəl ard-arda suallar verin və ya təklifi müzakirə edin.",
+      "reply": "Cavablandır",
+      "replyingTo": "{{name}} ünvanına cavab vermək",
+      "writeReply": "Cavab yazın",
+      "edited": "redaktə edilib",
+      "showMoreReplies": "Daha çox cavab {{count}} göstər",
+      "showMoreReplies_one": "Daha çox cavab {{count}} göstər",
+      "deleteTitle": "Bu şərh silinsin?",
+      "deleteDescription": "Bu, hər kəs üçün şərhi və cavabları silir.",
+      "signInToComment": "Müzakirəyə qoşulmaq üçün daxil olun",
+      "empty": "Hələ sual yoxdur. Müzakirəyə başlayın.",
+      "joinOnProposal": "Müzakirəyə qoşulun",
+      "authorChip": "Təklif müəllifi"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Şəhərin Söhbəti",

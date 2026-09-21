@@ -1922,7 +1922,25 @@
     "active": "Kuyasebenza",
     "noActiveNow": "Azikho iziphakamiso ezisebenzayo njengamanje",
     "subtitle": "Vota eziphakamisweni ezakha inkundla",
-    "loadFailed": "Ayikwazanga ukulayisha iziphakamiso"
+    "loadFailed": "Ayikwazanga ukulayisha iziphakamiso",
+    "forLabel": "recurrpage",
+    "againstLabel": "Ngokumelene",
+    "discussion": {
+      "title": "Ingxoxo",
+      "intro": "Buza imibuzo yokulandelela noma uxoxe ngesiphakamiso ngaphambi kokuba uvote.",
+      "reply": "Phendula",
+      "replyingTo": "Iphendula ku- {{name}}",
+      "writeReply": "Bhala impendulo",
+      "edited": "ihlelwe",
+      "showMoreReplies": "Bonisa {{count}} izimpendulo ezengeziwe",
+      "showMoreReplies_one": "Bonisa {{count}} impendulo eyengeziwe",
+      "deleteTitle": "Susa lokhu kuphawula?",
+      "deleteDescription": "Lokhu kususa ukuphawula nezimpendulo zako kuwo wonke umuntu.",
+      "signInToComment": "Ngena ngemvume ukuze ujoyine ingxoxo",
+      "empty": "Ayikho imibuzo okwamanje. Qala ingxoxo.",
+      "joinOnProposal": "Joyina ingxoxo",
+      "authorChip": "Umbhali wesiphakamiso"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Izindaba Zomuzi",

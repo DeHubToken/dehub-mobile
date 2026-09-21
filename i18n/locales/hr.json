@@ -1893,7 +1893,25 @@
     "active": "Aktivni",
     "noActiveNow": "Trenutačno nema aktivnih prijedloga",
     "subtitle": "Glasaj o prijedlozima koji oblikuju platformu",
-    "loadFailed": "Prijedloge nije moguće učitati"
+    "loadFailed": "Prijedloge nije moguće učitati",
+    "forLabel": "Za",
+    "againstLabel": "Protiv",
+    "discussion": {
+      "title": "Rasprava",
+      "intro": "Postavite dodatna pitanja ili raspravite o prijedlogu prije glasovanja.",
+      "reply": "Odgovori",
+      "replyingTo": "Odgovor za korisnika {{name}}",
+      "writeReply": "Napišite odgovor",
+      "edited": "uređeno",
+      "showMoreReplies": "Prikaži još {{count}} odgovora",
+      "showMoreReplies_one": "Prikaži još odgovora: {{count}}",
+      "deleteTitle": "Želite li izbrisati ovaj komentar?",
+      "deleteDescription": "Time se uklanja komentar i njegovi odgovori za sve.",
+      "signInToComment": "Prijavite se da biste se pridružili raspravi",
+      "empty": "Još nema pitanja. Započnite raspravu.",
+      "joinOnProposal": "Uključite se u raspravu",
+      "authorChip": "Autor prijedloga"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Priča grada",

@@ -1868,7 +1868,22 @@
     "active": "ንጡፍ",
     "noActiveNow": "ሕጂ ንጡፍ እማመ የለን",
     "subtitle": "ነቶም መድረኽ ዝቐርጹ እማመታት ድምጺ ሃብ",
-    "loadFailed": "እማመታት ክጽዓኑ ኣይከኣሉን"
+    "loadFailed": "እማመታት ክጽዓኑ ኣይከኣሉን",
+    "forLabel": "ን",
+    "discussion": {
+      "title": "ዘተ",
+      "intro": "ቅድሚ ምምራጽካ ተኸታታሊ ሕቶታት ሕተቶ ወይ ነቲ ሓሳብ ተዘራረብ ።",
+      "reply": "መልሲ",
+      "replyingTo": "መልሲ {{name}}",
+      "writeReply": "መልሲ ጽሓፍ",
+      "edited": "እተዳለወ",
+      "deleteTitle": "ነዚ ሓሳብ እዚ ጠፊእካዮዶ ፧",
+      "deleteDescription": "እዚ ድማ ነቲ ርእይቶን መልስን ንኹሉ ዘጥፍኦ እዩ ።",
+      "signInToComment": "ኣብቲ ዘተ ንምስታፍ ተጸምቢርካ",
+      "empty": "ሕቶ የለን ። ነቲ ዝርርብ ምጅማር ።",
+      "joinOnProposal": "ኣብቲ ዘተ ተጸምቢርካ",
+      "authorChip": "ደራሲ"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "ናይ ከተማ ዕላል",

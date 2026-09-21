@@ -1894,7 +1894,25 @@
     "active": "פעילות",
     "noActiveNow": "אין הצעות פעילות כרגע",
     "subtitle": "הצבע על הצעות שמעצבות את הפלטפורמה",
-    "loadFailed": "טעינת ההצעות נכשלה"
+    "loadFailed": "טעינת ההצעות נכשלה",
+    "forLabel": "עבור",
+    "againstLabel": "מול",
+    "discussion": {
+      "title": "דיון",
+      "intro": "שאלו שאלות המשך או דנו בהצעה לפני שתצביעו.",
+      "reply": "השב",
+      "replyingTo": "מענה ל -{{name}}",
+      "writeReply": "כתיבת תגובה",
+      "edited": "נערך",
+      "showMoreReplies": "הצגת {{count}} תשובות נוספות",
+      "showMoreReplies_one": "הצגת {{count}} תגובות נוספות",
+      "deleteTitle": "למחוק את התגובה הזו?",
+      "deleteDescription": "פעולה זו מסירה את ההערה ואת תשובותיה עבור כולם.",
+      "signInToComment": "היכנס כדי להצטרף לדיון",
+      "empty": "אין שאלות עדיין. התחילו את הדיון.",
+      "joinOnProposal": "הצטרפות לדיון",
+      "authorChip": "מחבר ההצעה"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "שיחת העיר",

@@ -2268,7 +2268,25 @@
     "active": "Aktibo",
     "noActiveNow": "Walang aktibong panukala ngayon",
     "subtitle": "Bumoto sa mga panukalang humuhubog sa platform",
-    "loadFailed": "Hindi ma-load ang mga panukala"
+    "loadFailed": "Hindi ma-load ang mga panukala",
+    "forLabel": "Para",
+    "againstLabel": "kinahinatnan",
+    "discussion": {
+      "title": "Talakayan",
+      "intro": "Magtanong ng mga follow - up na tanong o talakayin ang panukala bago ka bumoto.",
+      "reply": "Tumugon",
+      "replyingTo": "Tumutugon kay {{name}}",
+      "writeReply": "Sumulat ng tugon",
+      "edited": "na - edit",
+      "showMoreReplies": "Magpakita ng {{count}} higit pang tugon",
+      "showMoreReplies_one": "Magpakita ng {{count}} pang tugon",
+      "deleteTitle": "Tanggalin ang komentong ito?",
+      "deleteDescription": "Tinatanggal nito ang komento at mga tugon nito para sa lahat.",
+      "signInToComment": "Mag - sign in para sumali sa talakayan",
+      "empty": "Wala pang tanong.Simulan ang talakayan.",
+      "joinOnProposal": "Sumali sa talakayan",
+      "authorChip": "May - akda ng panukala"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

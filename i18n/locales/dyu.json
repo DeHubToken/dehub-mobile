@@ -1870,7 +1870,25 @@
     "active": "Baara la",
     "noActiveNow": "Laɲini baarala si tɛ yen sisan",
     "subtitle": "Kalata laɲiniw kan minnu bɛ plateforme labɛn",
-    "loadFailed": "Laɲiniw ma se ka lajɛ"
+    "loadFailed": "Laɲiniw ma se ka lajɛ",
+    "forLabel": "Mun na do?",
+    "againstLabel": "O kama, a ka ɲi ka",
+    "discussion": {
+      "title": "Ɲiningaliw",
+      "intro": "A ka fisa fana ka baro kɛ n'i ma vote.",
+      "reply": "An ka jaabiliw",
+      "replyingTo": "A ka jaabili ye {{name}}",
+      "writeReply": "Ka ɲiningaliw jaabi",
+      "edited": "ka kɛ",
+      "showMoreReplies": "A yira {{count}} more replies",
+      "showMoreReplies_one": "A yira {{count}} more reply",
+      "deleteTitle": "Yala i be se k'o kumaw bɛɛ bɔ yen wa?",
+      "deleteDescription": "O b'a to mɔgɔ si tɛ se ka kuma n'a ka jaabiliw fɔ.",
+      "signInToComment": "I ka kan ka sɛbɛri kɛ walisa ka se ka baro kɛ",
+      "empty": "O kama, n' tun b'a fɛ ka kuma n' fɛ.",
+      "joinOnProposal": "O be se ka kɛ sababu ye an be baro kɛ",
+      "authorChip": "Sɛbɛbaga"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Kɔrɔbɔ",

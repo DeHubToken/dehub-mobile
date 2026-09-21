@@ -2100,7 +2100,25 @@
     "active": "Active",
     "noActiveNow": "Momentan nu există propuneri active",
     "subtitle": "Votează propunerile care modelează platforma",
-    "loadFailed": "Propunerile nu au putut fi încărcate"
+    "loadFailed": "Propunerile nu au putut fi încărcate",
+    "forLabel": "Pentru,",
+    "againstLabel": "împotriva",
+    "discussion": {
+      "title": "Discuție",
+      "intro": "Puneți întrebări ulterioare sau discutați propunerea înainte de a vota.",
+      "reply": "Răspunde",
+      "replyingTo": "Răspuns către {{name}}",
+      "writeReply": "Scrie un răspuns",
+      "edited": "editat",
+      "showMoreReplies": "Afișează încă {{count}} răspunsuri",
+      "showMoreReplies_one": "Afișează încă {{count}} răspuns",
+      "deleteTitle": "Ștergeți acest comentariu?",
+      "deleteDescription": "Acest lucru elimină comentariul și răspunsurile sale pentru toată lumea.",
+      "signInToComment": "Conectați-vă pentru a vă alătura discuției",
+      "empty": "Încă nu există întrebări. Începeți discuția.",
+      "joinOnProposal": "Alăturați-vă discuției",
+      "authorChip": "Autorul propunerii"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

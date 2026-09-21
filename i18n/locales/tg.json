@@ -1840,7 +1840,24 @@
     "active": "Фаъол",
     "noActiveNow": "Ҳоло пешниҳодҳои фаъол нестанд",
     "subtitle": "Ба пешниҳодҳое, ки платформаро ташаккул медиҳанд, овоз диҳед",
-    "loadFailed": "Пешниҳодҳо бор нашуданд"
+    "loadFailed": "Пешниҳодҳо бор нашуданд",
+    "forLabel": "Барои...",
+    "againstLabel": "Бар зидди",
+    "discussion": {
+      "title": "Баҳс",
+      "intro": "Саволҳои пайгириро пурсед ё пеш аз овоздиҳӣ муҳокима кунед.",
+      "reply": "Ҷавоб",
+      "replyingTo": "Ҷавоб додан {{name}}",
+      "writeReply": "Навиштани ҷавоб",
+      "edited": "таҳриршуда",
+      "showMoreReplies": "Намоиши {{count}}info: whatsthis",
+      "showMoreReplies_one": "Намоиши {{count}}info: whatsthis",
+      "deleteTitle": "Tanggalin ang komentong ito?",
+      "deleteDescription": "Ito ay tanggalin ang komento at mga tugon para sa lahat.",
+      "empty": "Ягон савол нест. Оғоз кардани мубоҳиса.",
+      "joinOnProposal": "Ба мубоҳиса ҳамроҳ шавед",
+      "authorChip": "Муаллифи пешниҳод"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Маъмултарин",
