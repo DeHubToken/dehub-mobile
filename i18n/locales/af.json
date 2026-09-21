@@ -300,7 +300,8 @@
       "breakdownTitle": "Waar hierdie reikwydte vandaan kom",
       "dehubFollowers": "DeHub-volgelinge",
       "selfReported": "Sosiale volgelinge tel word deur die skepper ingevoer."
-    }
+    },
+    "tabPlaylists": "Speellyste"
   },
   "settings": {
     "smartReplies": "Voorgestelde antwoorde",
@@ -1997,7 +1998,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Publieke speellys",
+      "makePublicHint": "Enigeen kan hierdie gids op jou profiel sien.",
+      "publicBadge": "Publiek",
+      "copyLink": "Kopieer speellys skakel",
+      "linkCopied": "Speellys skakel gekopieer",
+      "itemsCount": "{{count}} plasings",
+      "emptyOwnerHint": "Maak 'n boekmerkmap publiek om dit hier te wys.",
+      "emptyVisitor": "Hierdie profiel het nog geen publieke snitlyste nie.",
+      "openBookmarks": "Open my boekmerke",
+      "back": "Alle speellyste",
+      "noPosts": "Hierdie speellys het nog geen plasings nie.",
+      "unavailable": "Hierdie speellys is nie meer beskikbaar nie.",
+      "loadMore": "Wys meer plasings"
+    }
   },
   "messages": {
     "smartRepliesOff": "Voorgestelde antwoorde afgeskakel",

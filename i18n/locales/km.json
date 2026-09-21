@@ -1276,7 +1276,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "បញ្ជីចាក់ជាសាធារណៈ",
+      "makePublicHint": "អ្នកគ្រប់គ្នាអាចមើលឃើញសឺមីនេះនៅលើប្រវត្តិរូបរបស់អ្នក ។",
+      "publicBadge": "សាធារណៈ",
+      "copyLink": "ចម្លងតំណបញ្ជីចាក់",
+      "linkCopied": "បាន ចម្លង តំណ បញ្ជី ចាក់",
+      "itemsCount": "{{count}} ប្រកាស",
+      "emptyOwnerHint": "បង្កើតសឺមីចំណាំជាសាធារណៈដើម្បីបង្ហាញវានៅទីនេះ ។",
+      "emptyVisitor": "ទម្រង់នេះមិនទាន់មានបញ្ជីចាក់ជាសាធារណៈនៅឡើយទេ ។",
+      "openBookmarks": "បើក ចំណាំ របស់ ខ្ញុំ",
+      "back": "បញ្ជីចាក់ទាំងអស់",
+      "noPosts": "បញ្ជីចាក់នេះមិនទាន់មានប្រកាសនៅឡើយទេ ។",
+      "unavailable": "បញ្ជីចាក់នេះលែងមានទៀតហើយ ។",
+      "loadMore": "បង្ហាញការបង្ហោះច្រើនទៀត"
+    }
   },
   "notifications": {
     "title": "ការជូនដំណឹង",
@@ -1636,7 +1651,8 @@
       "breakdownTitle": "តើ ការ សម្រេច នេះ មក ពី ណា?",
       "dehubFollowers": "អ្នកដើរតាម DeHub",
       "selfReported": "ចំនួនអ្នកតាមដានសង្គមត្រូវបានបញ្ចូលដោយអ្នកបង្កើត ។"
-    }
+    },
+    "tabPlaylists": "បញ្ជី​ចាក់"
   },
   "dao": {
     "title": "ឃ្លាំងរបស់ DAO",

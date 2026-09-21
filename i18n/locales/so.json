@@ -1243,7 +1243,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Liiska Ciyaarta Dadweynaha",
+      "makePublicHint": "Qof kastaa wuxuu ku arki karaa faylkan astaantaada.",
+      "publicBadge": "Dadweynaha",
+      "copyLink": "Nuqul Liiska Ciyaarta",
+      "linkCopied": "LINK LIKE Playlist waa la nuqulay",
+      "itemsCount": "{{count}} posts",
+      "emptyOwnerHint": "Samee folder bookmark dadweynaha si aad u muujiso halkan.",
+      "emptyVisitor": "Muuqaalkani weli ma laha liisaska playlists dadweynaha.",
+      "openBookmarks": "Fur calaamadaha buugaagtayda",
+      "back": "Dhamaan Liisaska Ciyaarta",
+      "noPosts": "Liiskan playlist-ka weli ma laha wax qoraal ah.",
+      "unavailable": "Liiskan ciyaarta mar dambe lama heli karo.",
+      "loadMore": "Muuji qoraallo dheeraad ah"
+    }
   },
   "notifications": {
     "title": "Ogeysiisyo",
@@ -1603,7 +1618,8 @@
       "breakdownTitle": "Halka ay gaadiidkani ka yimaadaan",
       "dehubFollowers": "DeHub raacayaasha",
       "selfReported": "Tirooyinka raacayaasha bulshada waxaa soo galaya abuuraha."
-    }
+    },
+    "tabPlaylists": "Liisaska ciyaarta"
   },
   "tv": {
     "title": "TV",

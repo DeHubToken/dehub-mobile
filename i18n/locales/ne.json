@@ -1262,7 +1262,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "सार्वजनिक प्लेसूची",
+      "makePublicHint": "कसैले पनि तपाईंको प्रोफाइलमा यो फोल्डर हेर्न सक्छ ।",
+      "publicBadge": "सार्वजनिक",
+      "copyLink": "प्लेलिस्ट लिङ्क प्रतिलिपि गर्नुहोस्",
+      "linkCopied": "प्लेलिस्ट लिङ्क प्रतिलिपि गरियो",
+      "itemsCount": "{{count}} पोष्टहरू",
+      "emptyOwnerHint": "यहाँ देखाउनको लागि बुकमार्क फोल्डर सार्वजनिक गर्नुहोस् ।",
+      "emptyVisitor": "यस प्रोफाइलमा अहिलेसम्म कुनै सार्वजनिक प्लेलिस्टहरू छैनन् ।",
+      "openBookmarks": "मेरा बुकमार्कहरू खोल्नुहोस्",
+      "back": "सबै प्लेसूचीहरू",
+      "noPosts": "यस प्लेलिस्टमा अहिलेसम्म कुनै पोष्टहरू छैनन् ।",
+      "unavailable": "यो प्लेलिस्ट अब उपलब्ध छैन ।",
+      "loadMore": "थप पोस्टहरू देखाउनुहोस्"
+    }
   },
   "notifications": {
     "title": "सूचनाहरू",
@@ -1622,7 +1637,8 @@
       "breakdownTitle": "यो पहुँच कहाँबाट आउँछ",
       "dehubFollowers": "DeHub अनुयायीहरू",
       "selfReported": "सामाजिक अनुयायी गणनाहरू सृष्टिकर्ताद्वारा प्रविष्ट गरिन्छ ।"
-    }
+    },
+    "tabPlaylists": "प्लेसूची"
   },
   "dao": {
     "title": "DAO कोष",

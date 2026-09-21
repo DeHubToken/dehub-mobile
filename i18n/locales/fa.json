@@ -1352,7 +1352,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "لیست پخش عمومی",
+      "makePublicHint": "هر کسی می‌تواند این پوشه را در پروفایل شما ببیند.",
+      "publicBadge": "عمومی",
+      "copyLink": "کپی کردن لینک پلی‌لیست",
+      "linkCopied": "لینک لیست پخش کپی شد",
+      "itemsCount": "{{count}} پست",
+      "emptyOwnerHint": "یک پوشه نشانک را عمومی کنید تا اینجا نمایش داده شود.",
+      "emptyVisitor": "این پروفایل هنوز هیچ لیست پخش عمومی ندارد.",
+      "openBookmarks": "نشان شده های من",
+      "back": "همه لیست های پخش",
+      "noPosts": "این لیست پخش هنوز هیچ پستی ندارد.",
+      "unavailable": "این لیست پخش دیگر در دسترس نیست.",
+      "loadMore": "نمایش موارد بیشتر"
+    }
   },
   "notifications": {
     "title": "اعلان‌ها",
@@ -1610,7 +1625,8 @@
       "breakdownTitle": "این دسترسی از کجا می‌آید؟",
       "dehubFollowers": "دنبال‌کنندگان دی‌هاب",
       "selfReported": "تعداد دنبال‌کنندگان شبکه‌های اجتماعی توسط سازنده وارد می‌شود."
-    }
+    },
+    "tabPlaylists": "فهرست‌های پخش"
   },
   "tv": {
     "title": "تلویزیون",

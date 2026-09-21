@@ -1251,7 +1251,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Δημόσια λίστα αναπαραγωγής",
+      "makePublicHint": "Όλοι μπορούν να δουν αυτόν τον φάκελο στο προφίλ σας.",
+      "publicBadge": "Δημόσιο",
+      "copyLink": "Αντιγραφή συνδέσμου λίστας αναπαραγωγής",
+      "linkCopied": "Ο σύνδεσμος λίστας αναπαραγωγής αντιγράφηκε",
+      "itemsCount": "{{count}} αναρτήσεις",
+      "emptyOwnerHint": "Κάντε έναν φάκελο σελιδοδεικτών δημόσιο για να τον εμφανίσετε εδώ.",
+      "emptyVisitor": "Αυτό το προφίλ δεν έχει ακόμα δημόσιες λίστες αναπαραγωγής.",
+      "openBookmarks": "Άνοιγμα των σελιδοδεικτών μου",
+      "back": "Όλες οι λίστες αναπαραγωγής",
+      "noPosts": "Αυτή η λίστα αναπαραγωγής δεν έχει αναρτήσεις ακόμα.",
+      "unavailable": "Αυτή η λίστα αναπαραγωγής δεν είναι πλέον διαθέσιμη.",
+      "loadMore": "Εμφάνιση περισσότερων αναρτήσεων"
+    }
   },
   "notifications": {
     "title": "Ειδοποιήσεις",
@@ -1611,7 +1626,8 @@
       "breakdownTitle": "Από πού προέρχεται αυτή η εμβέλεια",
       "dehubFollowers": "Ακόλουθοι DeHub",
       "selfReported": "Ο αριθμός των ακολούθων στα μέσα κοινωνικής δικτύωσης εισάγεται από τον δημιουργό."
-    }
+    },
+    "tabPlaylists": "Λίστες αναπαραγωγής"
   },
   "tv": {
     "title": "TV",

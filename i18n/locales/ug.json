@@ -1317,7 +1317,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "ئاممىۋى قويۇش تىزىملىكى",
+      "makePublicHint": "ھەرقانداق ئادەم بۇ قىسقۇچنى سىزنىڭ پروفىلىڭىزدا كۆرەلەيدۇ.",
+      "publicBadge": "ئاممىۋى",
+      "copyLink": "ئويۇن تىزىملىكى ئۇلىنى كۆچۈر",
+      "linkCopied": "ئويۇن تىزىملىكى ئۇلانمىسى كۆچۈرۈلگەن",
+      "itemsCount": "{{count}} يازمىلار",
+      "emptyOwnerHint": "بۇ يەردە كۆرسىتىش ئۈچۈن، بىر بەت بېتى قىسقۇچنى ئومۇملاشتۇرۇڭ.",
+      "emptyVisitor": "بۇ پروفىلدا تېخى ئاممىۋى ئويۇن تىزىملىكى يوق.",
+      "openBookmarks": "خاتىرىلىرىمنى ئېچىش پروگراممىسى",
+      "back": "بارلىق قويغۇلار تىزىملىكى",
+      "noPosts": "بۇ قويغۇچ تىزىملىكىدە تېخى يازمىلار يوق.",
+      "unavailable": "بۇ قويغۇچ تىزىملىكى ھازىر يوق.",
+      "loadMore": "تېخىمۇ كۆپ يازمىلارنى كۆرسىتىش"
+    }
   },
   "notifications": {
     "badgeTierUp": "قۇتلۇق بولسۇن! ھازىر سىز {{tier}} 🎉",
@@ -1569,7 +1584,8 @@
       "breakdownTitle": "بۇ قوللىنىشچانلىق قەيەردىن كەلگەن",
       "dehubFollowers": "DeHub ئەگەشكۈچىلىرى",
       "selfReported": "ئىجتىمائىي ئەگەشكۈچىلەرنىڭ سانىنى ياراتقۇچى كىرگۈزىدۇ."
-    }
+    },
+    "tabPlaylists": "ئويۇن تىزىملىكى"
   },
   "tv": {
     "title": "TV",

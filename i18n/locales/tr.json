@@ -1305,7 +1305,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Herkese açık çalma listesi",
+      "makePublicHint": "Bu klasörü profilinizde herkes görebilir.",
+      "publicBadge": "Kamu",
+      "copyLink": "Oynatma listesi bağlantısını kopyala",
+      "linkCopied": "Oynatma listesi bağlantısı kopyalandı",
+      "itemsCount": "{{count}} gönderi",
+      "emptyOwnerHint": "Burada göstermek için bir yer işareti klasörünü herkese açık hale getirin.",
+      "emptyVisitor": "Bu profilde henüz genel bir oynatma listesi yok.",
+      "openBookmarks": "Yer işaretlerimi aç",
+      "back": "Tüm çalma listeleri",
+      "noPosts": "Bu oynatma listesinin henüz bir yayını yok.",
+      "unavailable": "Bu oynatma listesi artık mevcut değil.",
+      "loadMore": "Daha fazla gönderi göster"
+    }
   },
   "notifications": {
     "title": "Bildirimler",
@@ -1592,7 +1607,8 @@
       "breakdownTitle": "Bu erişimin nereden geldiği",
       "dehubFollowers": "DeHub takipçileri",
       "selfReported": "Sosyal takipçi sayıları yaratıcı tarafından girilir."
-    }
+    },
+    "tabPlaylists": "Oynatma Listeleri"
   },
   "messages": {
     "smartRepliesOff": "Önerilen yanıtlar kapatıldı",

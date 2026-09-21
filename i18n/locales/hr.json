@@ -1252,7 +1252,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Javni popis za reprodukciju",
+      "makePublicHint": "Svatko može vidjeti ovu mapu na vašem profilu.",
+      "publicBadge": "Javno",
+      "copyLink": "Kopiraj poveznicu popisa za reprodukciju",
+      "linkCopied": "Poveznica na popis za reprodukciju je kopirana",
+      "itemsCount": "{{count}} objava",
+      "emptyOwnerHint": "Neka mapa s oznakama bude javna kako bi se prikazala ovdje.",
+      "emptyVisitor": "Ovaj profil još nema javnih popisa za reprodukciju.",
+      "openBookmarks": "Otvori moje oznake",
+      "back": "Svi popisi za reprodukciju",
+      "noPosts": "Ovaj popis za reprodukciju još nema objava.",
+      "unavailable": "Ovaj popis za reprodukciju više nije dostupan.",
+      "loadMore": "Prikaži još objava"
+    }
   },
   "notifications": {
     "title": "Obavijesti",
@@ -1612,7 +1627,8 @@
       "breakdownTitle": "Odakle dolazi taj doseg",
       "dehubFollowers": "Pratitelji na DeHubu",
       "selfReported": "Kreator unosi broj pratitelja na društvenim mrežama."
-    }
+    },
+    "tabPlaylists": "Popisi izvođenja"
   },
   "tv": {
     "title": "TV",

@@ -1255,7 +1255,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "အများပြည်သူဖွင့်ရန်စာရင်း",
+      "makePublicHint": "သင် ၏ ပရိုဖိုင်တွင်ဤဖိုင်တွဲကိုမည်သူမဆိုတွေ့နိုင်သည် ။",
+      "publicBadge": "အများပြည်သူ",
+      "copyLink": "တီးဝိုင်းလင့်ခ်ကို မိတ္တူကူးပါ",
+      "linkCopied": "တီးဝိုင်းလင့်ခ်ကို ကူးယူထားသည်",
+      "itemsCount": "{{count}} ပို့စ်များ",
+      "emptyOwnerHint": "ဤနေရာတွင်ပြသရန် bookmark ဖိုင်တွဲကိုအများပြည်သူသို့ပြုလုပ်ပါ ။",
+      "emptyVisitor": "ဤပရိုဖိုင်းတွင် အများပြည်သူဆိုင်ရာ ဖွင့်ရန်စာရင်းများ မရှိသေးပါ ။",
+      "openBookmarks": "ငါ့ရဲ့ မှတ်သားစရာတွေကို ဖွင့်ပါ",
+      "back": "ဖွင့်ရန်စာရင်းအားလုံး",
+      "noPosts": "ဤဖွင့်ရန်စာရင်းတွင် ပို့စ်များ မရှိသေးပါ ။",
+      "unavailable": "ဤကစားစရာစာရင်းကို မရနိုင်တော့ပါ ။",
+      "loadMore": "နောက်ထပ်ပို့စ်များကို ပြသပါ"
+    }
   },
   "notifications": {
     "title": "အကြောင်းကြားချက်များ",
@@ -1613,7 +1628,8 @@
       "breakdownTitle": "ဤလက်လှမ်းမီမှုသည် မည်သည့်နေရာမှ လာသနည်း ။",
       "dehubFollowers": "DeHub နောက်လိုက်များ",
       "selfReported": "Social follower အရေအတွက်ကိုဖန်တီးသူမှထည့်သွင်းသည် ။"
-    }
+    },
+    "tabPlaylists": "ဖွင့်စာရင်းများ"
   },
   "dao": {
     "title": "DAO ဘဏ္ဍာရေး",

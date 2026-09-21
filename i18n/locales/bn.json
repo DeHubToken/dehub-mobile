@@ -1340,7 +1340,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "পাবলিক প্লেলিস্ট",
+      "makePublicHint": "যে কেউ আপনার প্রোফাইলে এই ফোল্ডারটি দেখতে পারেন ।",
+      "publicBadge": "সর্বজনীন",
+      "copyLink": "প্লেলিস্ট লিঙ্ক কপি করুন",
+      "linkCopied": "প্লেলিস্ট লিঙ্ক অনুলিপি করা হয়েছে",
+      "itemsCount": "{{count}} পোস্ট",
+      "emptyOwnerHint": "এখানে দেখানোর জন্য একটি বুকমার্ক ফোল্ডার সর্বজনীন করুন ।",
+      "emptyVisitor": "এই প্রোফাইলে এখনও কোনও সর্বজনীন প্লেলিস্ট নেই ।",
+      "openBookmarks": "আমার বুকমার্কগুলি খুলুন",
+      "back": "সমস্ত প্লেলিস্ট",
+      "noPosts": "এই প্লেলিস্টে এখনও কোনও পোস্ট নেই ।",
+      "unavailable": "এই প্লেলিস্টটি আর উপলভ্য নয় ।",
+      "loadMore": "আরও পোস্ট দেখান"
+    }
   },
   "notifications": {
     "title": "বিজ্ঞপ্তি",
@@ -1598,7 +1613,8 @@
       "breakdownTitle": "এই নাগালটি কোথা থেকে এসেছে",
       "dehubFollowers": "DeHub অনুসারীদের",
       "selfReported": "সামাজিক অনুগামীদের গণনা স্রষ্টার দ্বারা প্রবেশ করা হয় ।"
-    }
+    },
+    "tabPlaylists": "প্লেলিস্ট"
   },
   "tv": {
     "title": "টিভি",
