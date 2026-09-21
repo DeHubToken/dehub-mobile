@@ -25,6 +25,7 @@ import {
   resolveBadgeUsername,
 } from "../../libs/misc";
 import BadgeAscension, { type BadgeSlot } from "./BadgeAscension";
+import StreamerLevelCard from "../Live/StreamerLevelCard";
 import { useBadgeCeremony } from "../../hooks/useBadgeCeremony";
 import { openExternalLink } from "../../libs/links.utils";
 import { ensProfileUrl } from "../../libs/ens-handle";
@@ -544,6 +545,10 @@ const ProfileHeader = () => {
                 socials. Absent until a social carries a count. */}
             <TotalReachPill source={user} followers={followersCount} />
           </View>
+
+          {/* The streamer ladder. Renders nothing until a stream has ended,
+              so a non-streamer's profile is unchanged. */}
+          <StreamerLevelCard address={address} className="mt-4" />
         </View>
       </View>
 

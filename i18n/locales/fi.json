@@ -3937,7 +3937,60 @@
     "liveChat": "Live-keskustelu",
     "pickDate": "Valitse päivä",
     "pickTime": "Valitse aika",
-    "minTip": "Vähimmäisjuomaraha"
+    "minTip": "Vähimmäisjuomaraha",
+    "progress": {
+      "title": "Striimaajan taso",
+      "level": "Taso {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} minuuttia lisää kelpoisuusaikaa saavuttaaksesi tason {{level}}",
+      "rule": "Vain vähintään kymmenen minuuttia kestävät ja vähintään yhden katsojan saaneet striimit kerryttävät tasoasi.",
+      "streak": "{{count}} viikon putki",
+      "bestStreak": "Paras putki {{count}} viikkoa",
+      "hours": "{{hours}} kelpoisuustuntia",
+      "minutes": "{{count}} minuuttia",
+      "viewers": "{{count}} katsojaa",
+      "viewCards": "Korttinäkymät",
+      "cardsTitle": "Keräilykortit",
+      "locked": "Lukittu",
+      "earnedOn": "Ansaittu {{date}}",
+      "recentTitle": "Viimeisimmät striimit",
+      "notCounted": "Ei laskettu",
+      "noStreams": "Aloita striimaaminen ansaitaksesi XP:tä.",
+      "card": {
+        "first-light": {
+          "name": "Ensimmäinen valo",
+          "hint": "Suorita ensimmäinen kelpoisuusaikaan laskettava striimisi."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Striimaa kaksi tuntia yhdessä sessiossa."
+        },
+        "night-owl": {
+          "name": "Yökyöpeli",
+          "hint": "Lopeta striimi keskiyön ja aamun kello viiden välillä."
+        },
+        "regular": {
+          "name": "Säännöllinen",
+          "hint": "Striimaa neljänä peräkkäisenä viikkona."
+        },
+        "iron-streak": {
+          "name": "Rautainen putki",
+          "hint": "Striimaa kahdentoista peräkkäisenä viikkona."
+        },
+        "crowd": {
+          "name": "Yleisö",
+          "hint": "Saat kymmenen ihmistä katsomaan samanaikaisesti."
+        },
+        "century": {
+          "name": "Vuosisata",
+          "hint": "Saavuta sata hyväksyttyä tuntia lähetyksessä."
+        },
+        "legend": {
+          "name": "Selite",
+          "hint": "Saavuta taso 10."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Osta tästä lähetyksestä",

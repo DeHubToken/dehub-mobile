@@ -3999,7 +3999,60 @@
     "liveChat": "Canlı sohbet",
     "pickDate": "Tarih seç",
     "pickTime": "Saat seç",
-    "minTip": "Min. bahşiş"
+    "minTip": "Min. bahşiş",
+    "progress": {
+      "title": "Yayıncı seviyesi",
+      "level": "Seviye {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} seviyesine ulaşmak için {{level}} dakika daha",
+      "rule": "Seviyenize yalnızca on dakika veya daha uzun süren ve en az bir izleyicisi olan yayınlar dahildir.",
+      "streak": "{{count}} haftalık seri",
+      "bestStreak": "En iyi seri {{count}} hafta",
+      "hours": "{{hours}} nitelikli saat",
+      "minutes": "{{count}} dakika",
+      "viewers": "{{count}} izleyici",
+      "viewCards": "Kartları görüntüle",
+      "cardsTitle": "Koleksiyon kartları",
+      "locked": "Kilitli",
+      "earnedOn": "Kazanıldı {{date}}",
+      "recentTitle": "Son yayınlar",
+      "notCounted": "Sayılmadı",
+      "noStreams": "XP kazanmaya başlamak için yayına girin.",
+      "card": {
+        "first-light": {
+          "name": "İlk ışık",
+          "hint": "Sayılan ilk yayınınızı tamamlayın."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Tek seansta iki saat yayın yapın."
+        },
+        "night-owl": {
+          "name": "Gece kuşu",
+          "hint": "Yayını gece yarısı ile sabah beşi arasında bitirin."
+        },
+        "regular": {
+          "name": "Düzenli",
+          "hint": "Art arda dört hafta yayın yapın."
+        },
+        "iron-streak": {
+          "name": "Demir seri",
+          "hint": "Art arda on iki hafta yayın yapın."
+        },
+        "crowd": {
+          "name": "Kalabalık",
+          "hint": "Aynı anda on kişinin izlemesini sağlayın."
+        },
+        "century": {
+          "name": "Yüzyıl",
+          "hint": "Yayında yüz nitelikli saate ulaşın."
+        },
+        "legend": {
+          "name": "Efsane",
+          "hint": "Onuncu seviyeye ulaşın."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Bu yayından alışveriş yapın",

@@ -3925,7 +3925,60 @@
     "liveChat": "Direktechat",
     "pickDate": "Velg dato",
     "pickTime": "Velg tidspunkt",
-    "minTip": "Min. tips"
+    "minTip": "Min. tips",
+    "progress": {
+      "title": "Strømnivå",
+      "level": "Nivå {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} flere kvalifiserende minutter for å nå nivå {{level}}",
+      "rule": "Kun direktesendinger som varer ti minutter eller lenger med minst én seer teller mot nivået ditt.",
+      "streak": "{{count}} ukes strek",
+      "bestStreak": "Beste strek {{count}} uker",
+      "hours": "{{hours}} kvalifiserende timer",
+      "minutes": "{{count}} minutter",
+      "viewers": "{{count}} seere",
+      "viewCards": "Vis kort",
+      "cardsTitle": "Samlekort",
+      "locked": "Låst",
+      "earnedOn": "Tjent {{date}}",
+      "recentTitle": "Nylige direktesendinger",
+      "notCounted": "Telte ikke",
+      "noStreams": "Gå live for å begynne å tjene XP.",
+      "card": {
+        "first-light": {
+          "name": "Første lys",
+          "hint": "Fullfør din første direktesending som teller."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Strøm i to timer i én økt."
+        },
+        "night-owl": {
+          "name": "Natteravn",
+          "hint": "Avslutt en direktesending mellom midnatt og fem om morgenen."
+        },
+        "regular": {
+          "name": "Regelmessig",
+          "hint": "Strøm i fire uker på rad."
+        },
+        "iron-streak": {
+          "name": "Jernstrek",
+          "hint": "Strøm i tolv uker på rad."
+        },
+        "crowd": {
+          "name": "Folkemengde",
+          "hint": "Ha ti personer som ser på samtidig."
+        },
+        "century": {
+          "name": "Århundre",
+          "hint": "Nå hundre kvalifiserende timer på lufta."
+        },
+        "legend": {
+          "name": "Sagn",
+          "hint": "Nå nivå ti."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Handle fra denne sendingen",

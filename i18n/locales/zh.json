@@ -3994,7 +3994,60 @@
     "liveChat": "直播聊天",
     "pickDate": "选择日期",
     "pickTime": "选择时间",
-    "minTip": "最低打赏"
+    "minTip": "最低打赏",
+    "progress": {
+      "title": "主播等级",
+      "level": "等级 {{level}}",
+      "xp": "{{xp}} 经验值",
+      "toNext": "{{minutes}} 分钟才能升到 {{level}} 级",
+      "rule": "只有时长十分钟以上且至少有一名观众的直播才能计入您的等级。",
+      "streak": "{{count}} 周连胜",
+      "bestStreak": "最佳连胜 {{count}} 周",
+      "hours": "{{hours}} 达标小时数",
+      "minutes": "{{count}} 分钟",
+      "viewers": "{{count}} 位观众",
+      "viewCards": "观看卡牌",
+      "cardsTitle": "收藏卡牌",
+      "locked": "已锁定",
+      "earnedOn": "已获得 {{date}}",
+      "recentTitle": "近期直播",
+      "notCounted": "未计入",
+      "noStreams": "开始直播以赚取经验值。",
+      "card": {
+        "first-light": {
+          "name": "初次直播",
+          "hint": "完成您的第一次达标直播。"
+        },
+        "marathon": {
+          "name": "马拉松",
+          "hint": "单次直播两小时。"
+        },
+        "night-owl": {
+          "name": "夜猫子",
+          "hint": "在午夜至凌晨五点之间结束直播。"
+        },
+        "regular": {
+          "name": "规律直播",
+          "hint": "连续四周直播。"
+        },
+        "iron-streak": {
+          "name": "钢铁连胜",
+          "hint": "连续十二周直播。"
+        },
+        "crowd": {
+          "name": "人气爆棚",
+          "hint": "同时有十人观看。"
+        },
+        "century": {
+          "name": "百年庆典",
+          "hint": "在空中达到一百个合格小时。"
+        },
+        "legend": {
+          "name": "传奇",
+          "hint": "达到十级。"
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "在本场直播购物",

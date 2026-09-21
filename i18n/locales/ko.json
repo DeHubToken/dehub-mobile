@@ -4004,7 +4004,60 @@
     "liveChat": "라이브 채팅",
     "pickDate": "날짜 선택",
     "pickTime": "시간 선택",
-    "minTip": "최소 팁"
+    "minTip": "최소 팁",
+    "progress": {
+      "title": "스트리머 레벨",
+      "level": "레벨 {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{level}} 레벨 달성을 위한 {{minutes}}분 추가 자격 시간",
+      "rule": "시청자 1명 이상이 10분 이상 시청한 스트림만 레벨에 반영됩니다.",
+      "streak": "{{count}}주 연속 스트림",
+      "bestStreak": "최고 연속 {{count}}주",
+      "hours": "{{hours}}시간 자격",
+      "minutes": "{{count}}분",
+      "viewers": "{{count}}명 시청자",
+      "viewCards": "카드 보기",
+      "cardsTitle": "수집 가능한 카드",
+      "locked": "잠김",
+      "earnedOn": "획득함 {{date}}",
+      "recentTitle": "최근 스트림",
+      "notCounted": "집계되지 않음",
+      "noStreams": "XP를 얻으려면 라이브 스트리밍을 시작하세요.",
+      "card": {
+        "first-light": {
+          "name": "첫 방송",
+          "hint": "집계되는 첫 스트림을 완료하세요."
+        },
+        "marathon": {
+          "name": "마라톤",
+          "hint": "한 세션에서 2시간 동안 스트리밍하세요."
+        },
+        "night-owl": {
+          "name": "야행성",
+          "hint": "자정에서 오전 5시 사이에 스트림을 종료하세요."
+        },
+        "regular": {
+          "name": "꾸준함",
+          "hint": "4주 연속 스트리밍하세요."
+        },
+        "iron-streak": {
+          "name": "강철 멘탈",
+          "hint": "12주 연속 스트리밍하세요."
+        },
+        "crowd": {
+          "name": "군중",
+          "hint": "동시에 10명의 시청자를 확보하세요."
+        },
+        "century": {
+          "name": "세기",
+          "hint": "요건을 충족하는 방송 시간 100시간을 달성하세요."
+        },
+        "legend": {
+          "name": "범례",
+          "hint": "레벨 10에 도달하세요."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "이 방송에서 쇼핑하기",

@@ -3914,7 +3914,60 @@
     "liveChat": "Nkata ndụ",
     "pickDate": "Họrọ ụbọchị",
     "pickTime": "Họrọ oge",
-    "minTip": "Opekempe ego nturu ugo"
+    "minTip": "Opekempe ego nturu ugo",
+    "progress": {
+      "title": "Ọkwa onye mgbasa ozi",
+      "level": "Ọkwa {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} nkeji ndị ruru eru iji ruo ọkwa {{level}}",
+      "rule": "Naanị mgbasa ozi ndị na-adịru nkeji iri ma ọ bụ karịa na opekata mpe otu onye na-ekiri na-agụ maka ọkwa gị.",
+      "streak": "{{count}} izu ụka",
+      "bestStreak": "Ihe kacha mma {{count}} izu ụka",
+      "hours": "{{hours}} awa ndị ruru eru",
+      "minutes": "{{count}} nkeji",
+      "viewers": "{{count}} ndị na-ekiri",
+      "viewCards": "Kaadị elele",
+      "cardsTitle": "Kaadị nchịkọta",
+      "locked": "Akpọchiri",
+      "earnedOn": "Nweta {{date}}",
+      "recentTitle": "Mgbasa ozi ndị na-adịbeghị anya",
+      "notCounted": "E gụghị ya",
+      "noStreams": "Banye ndụ iji malite inweta XP.",
+      "card": {
+        "first-light": {
+          "name": "Ìhè mbụ",
+          "hint": "Mechaa mgbasa ozi mbụ gị nke ruru eru."
+        },
+        "marathon": {
+          "name": "Marathon",
+          "hint": "Mgbasa ozi maka awa abụọ n'otu oge."
+        },
+        "night-owl": {
+          "name": "Nnụnụ abalị",
+          "hint": "Kwụsị mgbasa ozi n'etiti etiti abalị na ise nke ụtụtụ."
+        },
+        "regular": {
+          "name": "Onye na-achị achị",
+          "hint": "Mgbasa ozi n'ime izu anọ n'usoro."
+        },
+        "iron-streak": {
+          "name": "Ihe ịma aka ígwè",
+          "hint": "Mgbasa ozi n'ime izu iri na abụọ n'usoro."
+        },
+        "crowd": {
+          "name": "Ìgwè mmadụ",
+          "hint": "Nwee mmadụ iri na-ekiri n'otu oge."
+        },
+        "century": {
+          "name": "Nke narị afọ",
+          "hint": "Rute otu narị awa ruru eru na ikuku."
+        },
+        "legend": {
+          "name": "Akụkọ ifo",
+          "hint": "Nzọụkwụ 10."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Zụọ ihe site na ngosi a",

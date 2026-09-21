@@ -4199,7 +4199,60 @@
     "liveChat": "Sembang langsung",
     "pickDate": "Pilih tarikh",
     "pickTime": "Pilih masa",
-    "minTip": "Tip minimum"
+    "minTip": "Tip minimum",
+    "progress": {
+      "title": "Tahap strimer",
+      "level": "Tahap {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} lagi minit kelayakan untuk mencapai tahap {{level}}",
+      "rule": "Hanya strim yang berjalan sepuluh minit atau lebih dengan sekurang-kurangnya seorang penonton dikira untuk tahap anda.",
+      "streak": "Rentetan {{count}} minggu",
+      "bestStreak": "Rentetan terbaik {{count}} minggu",
+      "hours": "{{hours}} jam kelayakan",
+      "minutes": "{{count}} minit",
+      "viewers": "{{count}} penonton",
+      "viewCards": "Kad pandangan",
+      "cardsTitle": "Kad koleksi",
+      "locked": "Terkunci",
+      "earnedOn": "Diperoleh {{date}}",
+      "recentTitle": "Strim terkini",
+      "notCounted": "Tidak dikira",
+      "noStreams": "Strim langsung untuk mula memperoleh XP.",
+      "card": {
+        "first-light": {
+          "name": "Cahaya pertama",
+          "hint": "Selesaikan strim pertama anda yang dikira."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Strim selama dua jam dalam satu sesi."
+        },
+        "night-owl": {
+          "name": "Burung hantu malam",
+          "hint": "Tamatkan strim antara tengah malam dan lima pagi."
+        },
+        "regular": {
+          "name": "Biasa",
+          "hint": "Strim dalam empat minggu berturut-turut."
+        },
+        "iron-streak": {
+          "name": "Rentetan besi",
+          "hint": "Strim dalam dua belas minggu berturut-turut."
+        },
+        "crowd": {
+          "name": "Keramaian",
+          "hint": "Ada sepuluh orang menonton pada masa yang sama."
+        },
+        "century": {
+          "name": "Abad",
+          "hint": "Capai seratus jam kelayakan siaran."
+        },
+        "legend": {
+          "name": "Legenda",
+          "hint": "Capai tahap sepuluh."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Beli-belah dari siaran ini",

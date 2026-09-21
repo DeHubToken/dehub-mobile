@@ -13,6 +13,7 @@ import { useTranslation } from "../../hooks/useTranslation";
 import { TranslateButton } from "../ui/TranslateButton";
 import FakeGlass from "../ui/FakeGlass";
 import MutualFollowers from "./MutualFollowers";
+import StreamerLevelCard from "../Live/StreamerLevelCard";
 import BadgePatronChip from "../common/BadgePatronChip";
 import { useTranslation as useI18n } from "react-i18next";
 import { formatCompactNumber } from "../../libs/numbers.util";
@@ -452,6 +453,10 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         ) : (
           <MutualFollowers mutuals={mutuals || []} />
         )}
+
+        {/* The streamer ladder. Renders nothing until a stream has ended,
+            so a non-streamer's profile is unchanged. */}
+        {!isBlocked && <StreamerLevelCard address={address} className="mt-3" />}
 
         {/* Subscribe CTA — web parity. A creator who has published a plan sells
             to anyone, so this does not wait on following; it jumps the sheet to

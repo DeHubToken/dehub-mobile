@@ -4008,7 +4008,60 @@
     "liveChat": "Chat en directo",
     "pickDate": "Elegir fecha",
     "pickTime": "Elegir hora",
-    "minTip": "Propina mínima"
+    "minTip": "Propina mínima",
+    "progress": {
+      "title": "Nivel de streamer",
+      "level": "Nivel {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} minutos más para alcanzar el nivel {{level}}",
+      "rule": "Solo los streams que duren diez minutos o más con al menos un espectador cuentan para tu nivel.",
+      "streak": "Racha de {{count}} semanas",
+      "bestStreak": "Mejor racha: {{count}} semanas",
+      "hours": "{{hours}} horas calificadas",
+      "minutes": "{{count}} minutos",
+      "viewers": "{{count}} espectadores",
+      "viewCards": "Tarjetas de vista",
+      "cardsTitle": "Tarjetas coleccionables",
+      "locked": "Bloqueado",
+      "earnedOn": "Conseguido {{date}}",
+      "recentTitle": "Streams recientes",
+      "notCounted": "No contaron",
+      "noStreams": "Transmite en vivo para empezar a ganar XP.",
+      "card": {
+        "first-light": {
+          "name": "Primeros pasos",
+          "hint": "Completa tu primer stream que cuente."
+        },
+        "marathon": {
+          "name": "Maratón",
+          "hint": "Transmite durante dos horas en una sola sesión."
+        },
+        "night-owl": {
+          "name": "Noctámbulo",
+          "hint": "Termina un stream entre la medianoche y las cinco de la mañana."
+        },
+        "regular": {
+          "name": "Regular",
+          "hint": "Transmite durante cuatro semanas seguidas."
+        },
+        "iron-streak": {
+          "name": "Racha de hierro",
+          "hint": "Transmite durante doce semanas seguidas."
+        },
+        "crowd": {
+          "name": "Multitud",
+          "hint": "Ten diez personas mirando al mismo tiempo."
+        },
+        "century": {
+          "name": "Siglo",
+          "hint": "Alcanza cien horas de calificación en el aire."
+        },
+        "legend": {
+          "name": "Leyendas",
+          "hint": "Alcanza el nivel diez."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Compra en esta emisión",

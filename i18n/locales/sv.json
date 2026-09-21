@@ -3941,7 +3941,60 @@
     "liveChat": "Livechatt",
     "pickDate": "Välj datum",
     "pickTime": "Välj tid",
-    "minTip": "Min. dricks"
+    "minTip": "Min. dricks",
+    "progress": {
+      "title": "Streamer-nivå",
+      "level": "Nivå {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} fler kvalificerade minuter för att nå nivå {{level}}",
+      "rule": "Endast sändningar som är tio minuter eller längre med minst en tittare räknas mot din nivå.",
+      "streak": "{{count}} veckors svit",
+      "bestStreak": "Bästa svit {{count}} veckor",
+      "hours": "{{hours}} kvalificerade timmar",
+      "minutes": "{{count}} minuter",
+      "viewers": "{{count}} tittare",
+      "viewCards": "Visa kort",
+      "cardsTitle": "Samlarkort",
+      "locked": "Låst",
+      "earnedOn": "Tjänat {{date}}",
+      "recentTitle": "Senaste sändningar",
+      "notCounted": "Räknades inte",
+      "noStreams": "Gå live för att börja tjäna XP.",
+      "card": {
+        "first-light": {
+          "name": "Första ljuset",
+          "hint": "Slutför din första sändning som räknas."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Sänd i två timmar i en sittning."
+        },
+        "night-owl": {
+          "name": "Nattuggla",
+          "hint": "Avsluta en sändning mellan midnatt och fem på morgonen."
+        },
+        "regular": {
+          "name": "Regelbunden",
+          "hint": "Sänd i fyra veckor i rad."
+        },
+        "iron-streak": {
+          "name": "Järnsvit",
+          "hint": "Sänd i tolv veckor i rad."
+        },
+        "crowd": {
+          "name": "Publik",
+          "hint": "Ha tio personer som tittar samtidigt."
+        },
+        "century": {
+          "name": "Århundrade",
+          "hint": "Nå hundra kvalificerande timmar i luften."
+        },
+        "legend": {
+          "name": "Förklaring",
+          "hint": "Nå nivå tio."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Handla från den här sändningen",

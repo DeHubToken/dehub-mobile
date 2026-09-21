@@ -3924,7 +3924,60 @@
     "liveChat": "Hira kai tsaye",
     "pickDate": "Zaɓi kwanan wata",
     "pickTime": "Zaɓi lokaci",
-    "minTip": "Mafi ƙarancin kyauta"
+    "minTip": "Mafi ƙarancin kyauta",
+    "progress": {
+      "title": "Matakin Mai Watsa Shirye-shirye",
+      "level": "Mataki {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} ƙarin mintuna masu cancanta don kaiwa mataki {{level}}",
+      "rule": "Waɗannan kawai shirye-shiryen da suka kai mintuna goma ko fiye da haka tare da aƙalla mai kallo ɗaya ne ke ƙididdigewa don matakin ku.",
+      "streak": "{{count}} mako streak",
+      "bestStreak": "Mafi kyawun streak {{count}} makonni",
+      "hours": "{{hours}} awanni masu cancanta",
+      "minutes": "{{count}} mintuna",
+      "viewers": "{{count}} masu kallo",
+      "viewCards": "Katin Watsa Shirye-shirye",
+      "cardsTitle": "Katin Tarawa",
+      "locked": "An Rufe",
+      "earnedOn": "An Sami {{date}}",
+      "recentTitle": "Shirye-shiryen Kwanan Nan",
+      "notCounted": "Bai Ƙididdige ba",
+      "noStreams": "Watsa kai tsaye don fara samun XP.",
+      "card": {
+        "first-light": {
+          "name": "Farkon Haske",
+          "hint": "Gama farkon watsa shirye-shiryenku da ya cancanta."
+        },
+        "marathon": {
+          "name": "Marathon",
+          "hint": "Watsa shirye-shirye na tsawon awanni biyu a zaman ɗaya."
+        },
+        "night-owl": {
+          "name": "Jigon Dare",
+          "hint": "Ƙare watsa shirye-shirye tsakanin tsakar dare zuwa biyar na safe."
+        },
+        "regular": {
+          "name": "Maimaitawa",
+          "hint": "Watsa shirye-shirye a makonni huɗu a jere."
+        },
+        "iron-streak": {
+          "name": "Tsanin Karfe",
+          "hint": "Watsa shirye-shirye a makonni goma sha biyu a jere."
+        },
+        "crowd": {
+          "name": "Taron Jama'a",
+          "hint": "Samun mutane goma suna kallo a lokaci guda."
+        },
+        "century": {
+          "name": "Karni",
+          "hint": "Samu sa'o'i ɗari masu cancanta a iska."
+        },
+        "legend": {
+          "name": "Alama",
+          "hint": "Samu matsayi na goma."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Yi sayayya daga wannan watsawar",

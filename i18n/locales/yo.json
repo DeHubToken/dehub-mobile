@@ -3926,7 +3926,60 @@
     "liveChat": "Ìfọ̀rọ̀wérọ̀ tààrà",
     "pickDate": "Yan ọjọ́",
     "pickTime": "Yan àkókò",
-    "minTip": "Owó ìdùnnú tó kéré jù"
+    "minTip": "Owó ìdùnnú tó kéré jù",
+    "progress": {
+      "title": "Ipele streamer",
+      "level": "Ipele {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} iṣẹju afiyẹwo diẹ sii lati de ipele {{level}}",
+      "rule": "Awọn ṣiṣan nikan ti o ṣiṣẹ iṣẹju mẹwa tabi ju bẹẹ lọ pẹlu oju-iwoye o kere ju ọkan ni iṣiro fun ipele rẹ.",
+      "streak": "{{count}} ọsẹ itẹlera",
+      "bestStreak": "Itẹlera ti o dara julọ {{count}} ọsẹ",
+      "hours": "{{hours}} wakati afiyẹwo",
+      "minutes": "{{count}} iṣẹju",
+      "viewers": "{{count}} awọn oluwo",
+      "viewCards": "Awọn kaadi iwoye",
+      "cardsTitle": "Awọn kaadi ikojọpọ",
+      "locked": "Ti dina",
+      "earnedOn": "Gba {{date}}",
+      "recentTitle": "Awọn ṣiṣan laipẹ",
+      "notCounted": "Ko ka",
+      "noStreams": "Ṣe afihan lati bẹrẹ si ni XP.",
+      "card": {
+        "first-light": {
+          "name": "Imọlẹ akọkọ",
+          "hint": "Pari ṣiṣan akọkọ rẹ ti o ka."
+        },
+        "marathon": {
+          "name": "Marathon",
+          "hint": "Ṣe ṣiṣan fun wakati meji ni ipade kan."
+        },
+        "night-owl": {
+          "name": "Owibooṣe",
+          "hint": "Pari ṣiṣan laarin ọganjọ oru ati marun ni owurọ."
+        },
+        "regular": {
+          "name": "Deede",
+          "hint": "Ṣe ṣiṣan ni ọsẹ mẹrin ni ọna kan."
+        },
+        "iron-streak": {
+          "name": "Itẹlera irin",
+          "hint": "Ṣe ṣiṣan ni ọsẹ mejila ni ọna kan."
+        },
+        "crowd": {
+          "name": "Ọpọlọpọ eniyan",
+          "hint": "Ni eniyan mẹwa nwo ni akoko kanna."
+        },
+        "century": {
+          "name": "Orilẹ-ede",
+          "hint": "Ṣe awọn wakatii ti o yẹ fun afẹfẹ ọgọrun."
+        },
+        "legend": {
+          "name": "Aṣaaju",
+          "hint": "Kọ ẹkọ ipele mẹwa."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Ra ọjà láti inú ìgbóhùnsáfẹ́fẹ́ yìí",

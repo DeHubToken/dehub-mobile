@@ -3965,7 +3965,60 @@
     "liveChat": "Ingxoxo ebukhoma",
     "pickDate": "Khetha usuku",
     "pickTime": "Khetha isikhathi",
-    "minTip": "Ithiphu encane"
+    "minTip": "Ithiphu encane",
+    "progress": {
+      "title": "Izinga lomdlali",
+      "level": "Izinga {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} imizuzu eyengeziwe efanelekayo ukuze ufinyelele ileveli {{level}}",
+      "rule": "Imifudlana kuphela ehamba imizuzu eyishumi noma ngaphezulu nombonisi oyedwa okungenani ibalwa ngezinga lakho.",
+      "streak": "{{count}} isonto elilandelanayo",
+      "bestStreak": "Isikhathi esihle kakhulu {{count}} amasonto",
+      "hours": "{{hours}} amahora afanelekayo",
+      "minutes": "{{count}} imizuzu",
+      "viewers": "{{count}} ababukeli",
+      "viewCards": "Amakhadi okubuka",
+      "cardsTitle": "Amakhadi okuqoqwa",
+      "locked": "Avaliwe",
+      "earnedOn": "Kutholwe {{date}}",
+      "recentTitle": "Imifudlana yakamuva",
+      "notCounted": "Ayibalwanga",
+      "noStreams": "Dlala bukhoma ukuze uqale ukuthola i-XP.",
+      "card": {
+        "first-light": {
+          "name": "Ukukhanya kokuqala",
+          "hint": "Qedela umfudlana wakho wokuqala obalwayo."
+        },
+        "marathon": {
+          "name": "I-Marathon",
+          "hint": "Dlala amahora amabili eseshini eyodwa."
+        },
+        "night-owl": {
+          "name": "Ubusuku bonke",
+          "hint": "Qedela umfudlana phakathi kwamabili nohora lesihlanu ekuseni."
+        },
+        "regular": {
+          "name": "Okujwayelekile",
+          "hint": "Dlala emavikini amane alandelanayo."
+        },
+        "iron-streak": {
+          "name": "Isikhathi sokuqala sensimbi",
+          "hint": "Dlala emavikini ayishumi nambili alandelanayo."
+        },
+        "crowd": {
+          "name": "Isixuku",
+          "hint": "Yiba nabantu abayishumi ababukele ngesikhathi esifanayo."
+        },
+        "century": {
+          "name": "Ikhulu",
+          "hint": "Finyelela amahora ayikhulu afanelekayo emoyeni."
+        },
+        "legend": {
+          "name": "Inganekwane",
+          "hint": "Finyelela ileveli eyishumi."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Thenga kulokhu kusakazwa",
