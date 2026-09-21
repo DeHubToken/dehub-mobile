@@ -1878,7 +1878,25 @@
     "active": "فعال",
     "noActiveNow": "هن وقت ڪا فعال تجويز ناهي",
     "subtitle": "انهن تجويزن تي ووٽ ڏيو جيڪي پليٽ فارم ٺاهين ٿيون",
-    "loadFailed": "تجويزون لوڊ نه ٿي سگهيون"
+    "loadFailed": "تجويزون لوڊ نه ٿي سگهيون",
+    "forLabel": "لاءِ",
+    "againstLabel": "خلاف",
+    "discussion": {
+      "title": "بحث",
+      "intro": "سوال پڇو يا ووٽ ڏيڻ کان اڳ تجويز تي بحث ڪريو.",
+      "reply": "جواب ڏيو",
+      "replyingTo": "{{name}} کي جواب ڏيو",
+      "writeReply": "جواب لکو",
+      "edited": "ترميم ٿيل",
+      "showMoreReplies": "ڏيکاريو {{count}} وڌيڪ جواب",
+      "showMoreReplies_one": "ڏيکاريو {{count}} وڌيڪ جواب",
+      "deleteTitle": "ھي تبصرو ختم ڪريو ؟",
+      "deleteDescription": "اهو سڀني جي تبصرن ۽ انهن جي جوابن کي ختم ڪري ٿو.",
+      "signInToComment": "بحث ۾ شامل ٿيڻ لاء سائن ان ڪريو",
+      "empty": "اڃان تائين ڪو سوال ناهي بحث شروع ڪريو.",
+      "joinOnProposal": "بحث ۾ شامل ٿيو",
+      "authorChip": "تجويز ليکڪ"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "شهر جي ڳالهه",

@@ -1893,7 +1893,25 @@
     "active": "Actives",
     "noActiveNow": "Ara mateix no hi ha propostes actives",
     "subtitle": "Vota les propostes que donen forma a la plataforma",
-    "loadFailed": "No s'han pogut carregar les propostes"
+    "loadFailed": "No s'han pogut carregar les propostes",
+    "forLabel": "Per",
+    "againstLabel": "contra",
+    "discussion": {
+      "title": "Discussió",
+      "intro": "Fes preguntes de seguiment o discuteix la proposta abans de votar.",
+      "reply": "Respon",
+      "replyingTo": "En resposta a {{name}}",
+      "writeReply": "Escriu una resposta",
+      "edited": "editat",
+      "showMoreReplies": "Mostra {{count}} més respostes",
+      "showMoreReplies_one": "Mostra {{count}} més respostes",
+      "deleteTitle": "Vols eliminar aquest comentari?",
+      "deleteDescription": "Això elimina el comentari i les seves respostes per a tothom.",
+      "signInToComment": "Inicia sessió per unir-te al debat",
+      "empty": "Encara no tens cap pregunta. Comença el debat.",
+      "joinOnProposal": "Uneix-te al debat",
+      "authorChip": "Autor de la proposta"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "El tema del moment",

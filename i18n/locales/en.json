@@ -2032,7 +2032,25 @@
     "active": "Active",
     "noActiveNow": "No active proposals right now",
     "subtitle": "Vote on proposals that shape the platform",
-    "loadFailed": "Couldn't load proposals"
+    "loadFailed": "Couldn't load proposals",
+    "forLabel": "For",
+    "againstLabel": "Against",
+    "discussion": {
+      "title": "Discussion",
+      "intro": "Ask follow-up questions or discuss the proposal before you vote.",
+      "reply": "Reply",
+      "replyingTo": "Replying to {{name}}",
+      "writeReply": "Write a reply",
+      "edited": "edited",
+      "showMoreReplies": "Show {{count}} more replies",
+      "showMoreReplies_one": "Show {{count}} more reply",
+      "deleteTitle": "Delete this comment?",
+      "deleteDescription": "This removes the comment and its replies for everyone.",
+      "signInToComment": "Sign in to join the discussion",
+      "empty": "No questions yet. Start the discussion.",
+      "joinOnProposal": "Join the discussion",
+      "authorChip": "Proposal author"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

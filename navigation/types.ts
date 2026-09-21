@@ -218,8 +218,11 @@ export type AppStackParamList = {
     job?: import('../hooks/useWork').WorkJob;
   };
   [ScreenNames.WorkPost]: undefined;
-  /** `proposalId` is a notification's deep link into one proposal. */
+  /** `proposalId` is an older deep link into one proposal; the board hands it on. */
   [ScreenNames.Governance]: { proposalId?: string } | undefined;
+  /** One proposal and its discussion. `commentId` is the comment a
+   *  notification was about, opened and lit inside the thread. */
+  [ScreenNames.GovernanceProposal]: { proposalId: string; commentId?: string };
   [ScreenNames.Dao]: undefined;
   [ScreenNames.SuperPowers]: undefined;
 };

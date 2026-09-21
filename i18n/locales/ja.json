@@ -1907,7 +1907,25 @@
     "active": "進行中",
     "noActiveNow": "現在進行中の提案はありません",
     "subtitle": "プラットフォームを形づくる提案に投票しましょう",
-    "loadFailed": "提案を読み込めませんでした"
+    "loadFailed": "提案を読み込めませんでした",
+    "forLabel": "のために",
+    "againstLabel": "反する",
+    "discussion": {
+      "title": "ディスカッション",
+      "intro": "投票する前に、フォローアップの質問をしたり、提案について話し合ったりしてください。",
+      "reply": "返信する",
+      "replyingTo": "{{name}}に返信中",
+      "writeReply": "返信する",
+      "edited": "編集済み",
+      "showMoreReplies": "さらに{{count}}件の返信を表示",
+      "showMoreReplies_one": "さらに{{count}}件の返信を表示",
+      "deleteTitle": "このコメントを削除しますか？",
+      "deleteDescription": "これにより、全員に対するコメントとその返信が削除されます。",
+      "signInToComment": "サインインしてディスカッションに参加",
+      "empty": "質問はまだありません。ディスカッションを開始してください。",
+      "joinOnProposal": "ディスカッションに参加する",
+      "authorChip": "提案者"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "話題の中心",

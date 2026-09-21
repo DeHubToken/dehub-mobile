@@ -1839,7 +1839,25 @@
     "active": "Işjeň",
     "noActiveNow": "Häzir işjeň teklip ýok",
     "subtitle": "Platformany emele getirýän tekliplere ses beriň",
-    "loadFailed": "Teklipler ýüklenip bilmedi"
+    "loadFailed": "Teklipler ýüklenip bilmedi",
+    "forLabel": "Üçin",
+    "againstLabel": "Garşylyk",
+    "discussion": {
+      "title": "Dawalaşmak",
+      "intro": "Siz seslenmezden öň, indiki soraglary beriň ýa-da teklibi gürrüň beriň.",
+      "reply": "Jawap",
+      "replyingTo": "Jawap {{name}}",
+      "writeReply": "Jawap ýaz",
+      "edited": "edit",
+      "showMoreReplies": "{{count}} has köp jogaplary görkeziň",
+      "showMoreReplies_one": "{{count}} has köp jogap beriň",
+      "deleteTitle": "Bu sözleriň manysy näme?",
+      "deleteDescription": "Bu hemmeleriň pikirini we jogaplaryny aýyrýar.",
+      "signInToComment": "Dawalaşmaga goşul",
+      "empty": "Häzir hiç hili sorag ýok. Dawalaşmagy başla.",
+      "joinOnProposal": "Dawalaşmagyň öňüni almak",
+      "authorChip": "Ýazgyçy"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Iň köp gürrüňi edilýän",

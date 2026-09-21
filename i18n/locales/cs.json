@@ -1897,7 +1897,25 @@
     "active": "Aktivní",
     "noActiveNow": "Momentálně žádné aktivní návrhy",
     "subtitle": "Hlasujte o návrzích, které utvářejí platformu",
-    "loadFailed": "Návrhy se nepodařilo načíst"
+    "loadFailed": "Návrhy se nepodařilo načíst",
+    "forLabel": "Pro",
+    "againstLabel": "Dožádaný stát",
+    "discussion": {
+      "title": "Diskuze",
+      "intro": "Před hlasováním se zeptejte na navazující otázky nebo diskutujte o návrhu.",
+      "reply": "Odpovědět",
+      "replyingTo": "Odpověď uživateli {{name}}",
+      "writeReply": "Napsat odpověď",
+      "edited": "upraveno",
+      "showMoreReplies": "Zobrazit {{count}} další odpovědi",
+      "showMoreReplies_one": "Zobrazit {{count}} další odpověď",
+      "deleteTitle": "Smazat tento komentář?",
+      "deleteDescription": "Tímto odstraníte komentář a jeho odpovědi pro všechny.",
+      "signInToComment": "Přihlaste se a připojte se k diskusi",
+      "empty": "Zatím žádné otázky. Začněte diskusi.",
+      "joinOnProposal": "Zapojte se do diskuse",
+      "authorChip": "Autor návrhu"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "O čem se mluví",

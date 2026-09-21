@@ -1834,7 +1834,17 @@
     "active": "Active",
     "noActiveNow": "No active proposal dey now",
     "subtitle": "Vote for proposals wey dey shape di platform",
-    "loadFailed": "We no fit load di proposals"
+    "loadFailed": "We no fit load di proposals",
+    "forLabel": "For",
+    "againstLabel": "Againist",
+    "discussion": {
+      "title": "Discussion",
+      "reply": "Reply",
+      "replyingTo": "Replying to {{name}}",
+      "writeReply": "Write a reply",
+      "edited": "edited",
+      "authorChip": "Proposal author"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Talk of Di Town",

@@ -1893,7 +1893,25 @@
     "active": "Aktive",
     "noActiveNow": "Aktualisht nuk ka propozime aktive",
     "subtitle": "Voto propozimet që formësojnë platformën",
-    "loadFailed": "Propozimet nuk u ngarkuan dot"
+    "loadFailed": "Propozimet nuk u ngarkuan dot",
+    "forLabel": "Për",
+    "againstLabel": "Kundër",
+    "discussion": {
+      "title": "Diskutim",
+      "intro": "Bëj pyetje vijuese ose diskuto propozimin para se të votosh.",
+      "reply": "Përgjigju",
+      "replyingTo": "Duke iu përgjigjur {{name}}",
+      "writeReply": "Shkruaj një përgjigje",
+      "edited": "redaktuar",
+      "showMoreReplies": "Shfaq {{count}} më shumë përgjigje",
+      "showMoreReplies_one": "Shfaq {{count}} më shumë përgjigje",
+      "deleteTitle": "Do ta fshish këtë koment?",
+      "deleteDescription": "Kjo heq komentin dhe përgjigjet e tij për të gjithë.",
+      "signInToComment": "Hyr për t 'iu bashkuar diskutimit",
+      "empty": "Nuk ka ende pyetje. Fillo diskutimin.",
+      "joinOnProposal": "Bashkoju diskutimit",
+      "authorChip": "Autori i propozimit"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Biseda e Qytetit",

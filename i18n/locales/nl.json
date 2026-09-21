@@ -2358,7 +2358,25 @@
     "active": "Actief",
     "noActiveNow": "Momenteel geen actieve voorstellen",
     "subtitle": "Stem op voorstellen die het platform vormgeven",
-    "loadFailed": "Kon voorstellen niet laden"
+    "loadFailed": "Kon voorstellen niet laden",
+    "forLabel": "Voor",
+    "againstLabel": "Tegen",
+    "discussion": {
+      "title": "Discussie",
+      "intro": "Stel vervolgvragen of bespreek het voorstel voordat je stemt.",
+      "reply": "Beantwoorden",
+      "replyingTo": "Reageren op {{name}}",
+      "writeReply": "Schrijf een reactie",
+      "edited": "bewerkt",
+      "showMoreReplies": "Toon nog {{count}} antwoorden",
+      "showMoreReplies_one": "Toon nog {{count}} antwoord",
+      "deleteTitle": "Deze reactie verwijderen?",
+      "deleteDescription": "Hierdoor worden de opmerking en de antwoorden voor iedereen verwijderd.",
+      "signInToComment": "Meld je aan om deel te nemen aan de discussie",
+      "empty": "Nog geen vragen. Start de discussie.",
+      "joinOnProposal": "Neem deel aan de discussie",
+      "authorChip": "Voorstel auteur"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Onderwerp van de dag",

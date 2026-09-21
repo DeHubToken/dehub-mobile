@@ -1892,7 +1892,25 @@
     "active": "進行中",
     "noActiveNow": "目前冇進行中嘅提案",
     "subtitle": "為塑造平台嘅提案投票",
-    "loadFailed": "無法載入提案"
+    "loadFailed": "無法載入提案",
+    "forLabel": "畀",
+    "againstLabel": "反對",
+    "discussion": {
+      "title": "討論",
+      "intro": "喺投票之前問啲跟進問題或者討論個提案。",
+      "reply": "回覆",
+      "replyingTo": "回覆 {{name}}",
+      "writeReply": "寫個回覆",
+      "edited": "編輯咗",
+      "showMoreReplies": "顯示 {{count}} 更多回覆",
+      "showMoreReplies_one": "顯示 {{count}} 更多回覆",
+      "deleteTitle": "刪除呢個留言？",
+      "deleteDescription": "呢個操作會移除所有人嘅留言同埋佢嘅回覆。",
+      "signInToComment": "登入嚟加入討論",
+      "empty": "未有問題。開始討論。",
+      "joinOnProposal": "加入討論",
+      "authorChip": "提案作者"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "城中熱話",
