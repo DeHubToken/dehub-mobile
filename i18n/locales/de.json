@@ -1337,7 +1337,22 @@
     "noVideosYet": "Noch keine gespeicherten Videos",
     "videosStartSaving": "Speichere Beiträge mit Videos, dann sammeln sie sich hier.",
     "noTextYet": "Noch keine gespeicherten Textbeiträge",
-    "textStartSaving": "Speichere reine Textbeiträge, dann erscheinen sie hier."
+    "textStartSaving": "Speichere reine Textbeiträge, dann erscheinen sie hier.",
+    "playlist": {
+      "makePublic": "Öffentliche Wiedergabeliste",
+      "makePublicHint": "Jeder kann diesen Ordner in Ihrem Profil sehen.",
+      "publicBadge": "Öffentlich",
+      "copyLink": "Wiedergabelisten-Link kopieren",
+      "linkCopied": "Wiedergabelistenlink kopiert",
+      "itemsCount": "{{count}} Beiträge",
+      "emptyOwnerHint": "Machen Sie einen Lesezeichenordner öffentlich, um ihn hier anzuzeigen.",
+      "emptyVisitor": "Dieses Profil hat noch keine öffentlichen Wiedergabelisten.",
+      "openBookmarks": "Meine Lesezeichen öffnen",
+      "back": "Alle Wiedergabelisten",
+      "noPosts": "Diese Playlist hat noch keine Beiträge.",
+      "unavailable": "Diese Wiedergabeliste ist nicht mehr verfügbar.",
+      "loadMore": "Weitere Beiträge anzeigen"
+    }
   },
   "notifications": {
     "title": "Benachrichtigungen",
@@ -1591,7 +1606,8 @@
       "breakdownTitle": "Woher diese Reichweite kommt",
       "dehubFollowers": "DeHub-Follower",
       "selfReported": "Die Anzahl der sozialen Follower wird vom Ersteller eingegeben."
-    }
+    },
+    "tabPlaylists": "Playlisten"
   },
   "tv": {
     "title": "TV",

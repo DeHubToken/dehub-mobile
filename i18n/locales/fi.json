@@ -1323,7 +1323,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Julkinen soittolista",
+      "makePublicHint": "Kuka tahansa voi nähdä tämän kansion profiilissasi.",
+      "publicBadge": "Julkinen",
+      "copyLink": "Kopioi soittolistan linkki",
+      "linkCopied": "Soittolistan linkki kopioitu",
+      "itemsCount": "{{count}} julkaisua",
+      "emptyOwnerHint": "Tee kirjanmerkkikansiosta julkinen näyttääksesi sen täällä.",
+      "emptyVisitor": "Tällä profiililla ei ole vielä julkisia soittolistoja.",
+      "openBookmarks": "Avaa kirjanmerkkini",
+      "back": "Kaikki soittolistat",
+      "noPosts": "Tällä soittolistalla ei ole vielä julkaisuja.",
+      "unavailable": "Tämä soittolista ei ole enää saatavilla.",
+      "loadMore": "Näytä lisää julkaisuja"
+    }
   },
   "notifications": {
     "title": "Ilmoitukset",
@@ -1577,7 +1592,8 @@
       "breakdownTitle": "Mistä tämä REACH-järjestelmä on peräisin",
       "dehubFollowers": "DeHub-seuraajat",
       "selfReported": "Tekijä syöttää sosiaalisen seuraajamäärän."
-    }
+    },
+    "tabPlaylists": "Soittolistat"
   },
   "tv": {
     "title": "TV",

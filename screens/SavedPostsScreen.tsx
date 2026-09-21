@@ -20,6 +20,7 @@ import PostsInfiniteList from "../components/Profile/PostsInfiniteList";
 import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import Icon from "../components/ui/Icon";
+import CustomSwitch from "../components/ui/CustomSwitch";
 import { toastError, toastSuccess } from "../libs";
 import {
   getFolders,
@@ -52,6 +53,8 @@ const SavedPostsScreen: React.FC = () => {
   // Text inputs
   const [folderName, setFolderName] = useState("");
   const [folderDesc, setFolderDesc] = useState("");
+  // Public means the folder is a playlist on the profile.
+  const [folderPublic, setFolderPublic] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   // Menu action state
@@ -81,11 +84,12 @@ const SavedPostsScreen: React.FC = () => {
     if (!folderName.trim() || submitting) return;
     setSubmitting(true);
     try {
-      const res = await createFolder(folderName, folderDesc);
+      const res = await createFolder(folderName, folderDesc, folderPublic);
       if (res.status) {
         toastSuccess(t("savedPosts.folderCreated", { name: res.result.name }));
         setFolderName("");
         setFolderDesc("");
+        setFolderPublic(false);
         setShowCreateModal(false);
         fetchFoldersList(true);
       }
@@ -104,12 +108,14 @@ const SavedPostsScreen: React.FC = () => {
       const res = await updateFolder(folderToEdit._id, {
         name: folderName.trim(),
         description: folderDesc,
+        isPublic: folderPublic,
       });
       if (res.status) {
         toastSuccess(t("savedPosts.folderUpdated"));
         setFolderToEdit(null);
         setFolderName("");
         setFolderDesc("");
+        setFolderPublic(false);
         setShowEditModal(false);
         fetchFoldersList(true);
       }
@@ -151,6 +157,7 @@ const SavedPostsScreen: React.FC = () => {
     setFolderToEdit(folder);
     setFolderName(folder.name);
     setFolderDesc(folder.description || "");
+    setFolderPublic(!!folder.isPublic);
     setShowEditModal(true);
   };
 
@@ -176,9 +183,16 @@ const SavedPostsScreen: React.FC = () => {
               <Icon name="MoveVertical" size={20} color="#8B8D90" />
             </TouchableOpacity>
           </View>
-          <Text style={styles.folderName} numberOfLines={1}>
-            {item.name}
-          </Text>
+          <View style={styles.folderTitleRow}>
+            <Text style={[styles.folderName, { flexShrink: 1 }]} numberOfLines={1}>
+              {item.name}
+            </Text>
+            {!!item.isPublic && (
+              <View accessibilityLabel={t("bookmarks.playlist.publicBadge")}>
+                <Icon name="Globe" size={14} color="#A6A9AC" />
+              </View>
+            )}
+          </View>
           <Text style={styles.folderCount} numberOfLines={1}>
             {item.itemCount} {item.itemCount === 1 ? "post" : "posts"}
           </Text>
@@ -292,6 +306,7 @@ const SavedPostsScreen: React.FC = () => {
             setShowEditModal(false);
             setFolderName("");
             setFolderDesc("");
+            setFolderPublic(false);
           }}
         >
           <View style={styles.modalBackdrop}>
@@ -314,12 +329,20 @@ const SavedPostsScreen: React.FC = () => {
                 multiline
                 maxLength={200}
               />
+              <View style={styles.publicRow}>
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.publicTitle}>{t("bookmarks.playlist.makePublic")}</Text>
+                  <Text style={styles.publicHint}>{t("bookmarks.playlist.makePublicHint")}</Text>
+                </View>
+                <CustomSwitch value={folderPublic} onValueChange={setFolderPublic} />
+              </View>
               <View style={styles.modalButtons}>
                 <TouchableOpacity
                   onPress={() => {
                     setShowEditModal(false);
                     setFolderName("");
                     setFolderDesc("");
+                    setFolderPublic(false);
                   }}
                   style={styles.modalCancel}
                 >
@@ -391,6 +414,7 @@ const SavedPostsScreen: React.FC = () => {
                   onPress={() => {
                     setFolderName("");
                     setFolderDesc("");
+                    setFolderPublic(false);
                     setShowCreateModal(true);
                   }}
                   style={styles.createCard}
@@ -472,6 +496,7 @@ const SavedPostsScreen: React.FC = () => {
           setShowCreateModal(false);
           setFolderName("");
           setFolderDesc("");
+          setFolderPublic(false);
         }}
       >
         <KeyboardAvoidingView
@@ -498,12 +523,20 @@ const SavedPostsScreen: React.FC = () => {
               multiline
               maxLength={200}
             />
+            <View style={styles.publicRow}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.publicTitle}>{t("bookmarks.playlist.makePublic")}</Text>
+                <Text style={styles.publicHint}>{t("bookmarks.playlist.makePublicHint")}</Text>
+              </View>
+              <CustomSwitch value={folderPublic} onValueChange={setFolderPublic} />
+            </View>
             <View style={styles.modalButtons}>
               <TouchableOpacity
                 onPress={() => {
                   setShowCreateModal(false);
                   setFolderName("");
                   setFolderDesc("");
+                  setFolderPublic(false);
                 }}
                 style={styles.modalCancel}
               >
@@ -534,6 +567,7 @@ const SavedPostsScreen: React.FC = () => {
           setShowEditModal(false);
           setFolderName("");
           setFolderDesc("");
+          setFolderPublic(false);
         }}
       >
         <KeyboardAvoidingView
@@ -559,12 +593,20 @@ const SavedPostsScreen: React.FC = () => {
               multiline
               maxLength={200}
             />
+            <View style={styles.publicRow}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.publicTitle}>{t("bookmarks.playlist.makePublic")}</Text>
+                <Text style={styles.publicHint}>{t("bookmarks.playlist.makePublicHint")}</Text>
+              </View>
+              <CustomSwitch value={folderPublic} onValueChange={setFolderPublic} />
+            </View>
             <View style={styles.modalButtons}>
               <TouchableOpacity
                 onPress={() => {
                   setShowEditModal(false);
                   setFolderName("");
                   setFolderDesc("");
+                  setFolderPublic(false);
                 }}
                 style={styles.modalCancel}
               >
@@ -673,6 +715,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  folderTitleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+  },
   folderName: {
     color: "#F9FBFF",
     fontSize: 15,
@@ -704,6 +751,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 24,
+  },
+  publicRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+    paddingVertical: 4,
+  },
+  publicTitle: {
+    color: "#F9FBFF",
+    fontSize: 14,
+    fontWeight: "600",
+  },
+  publicHint: {
+    color: "#A6A9AC",
+    fontSize: 12,
+    marginTop: 2,
   },
   modalCard: {
     width: "100%",

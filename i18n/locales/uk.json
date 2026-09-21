@@ -2035,7 +2035,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Публічний список відтворення",
+      "makePublicHint": "Будь-хто може бачити цю папку у вашому профілі.",
+      "publicBadge": "Публічний",
+      "copyLink": "Копіювати посилання на список відтворення",
+      "linkCopied": "Посилання на список відтворення скопійовано",
+      "itemsCount": "Дописи: {{count}}",
+      "emptyOwnerHint": "Зробіть папку закладок загальнодоступною, щоб відобразити її тут.",
+      "emptyVisitor": "У цьому профілі ще немає загальнодоступних списків відтворення.",
+      "openBookmarks": "Відкрити мої закладки",
+      "back": "Усі списки відтворення",
+      "noPosts": "У цьому списку відтворення ще немає дописів.",
+      "unavailable": "Цей список відтворення більше не доступний.",
+      "loadMore": "Показати більше дописів"
+    }
   },
   "notifications": {
     "title": "Notifications",
@@ -2285,7 +2300,8 @@
       "breakdownTitle": "Звідки це охоплення",
       "dehubFollowers": "Підписники DeHub",
       "selfReported": "Кількість підписників у соціальних мережах вводить автор."
-    }
+    },
+    "tabPlaylists": "Плейлісти"
   },
   "tv": {
     "title": "TV",

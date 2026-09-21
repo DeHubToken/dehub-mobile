@@ -15,7 +15,8 @@ export type ProfileEmptyStateKind =
   | "songs"
   | "live"
   | "fractions"
-  | "pinned";
+  | "pinned"
+  | "playlists";
 
 const ICONS: Record<ProfileEmptyStateKind, ImageSourcePropType> = {
   home: require("../../assets/web-icons/home-3d-icon.png"),
@@ -27,6 +28,7 @@ const ICONS: Record<ProfileEmptyStateKind, ImageSourcePropType> = {
   live: require("../../assets/web-icons/live-3d-icon.png"),
   fractions: require("../../assets/web-icons/fractions-3d-icon.png"),
   pinned: require("../../assets/web-icons/bookmark-3d-icon.png"),
+  playlists: require("../../assets/web-icons/bookmark-3d-icon.png"),
 };
 
 interface ProfileEmptyStateProps {

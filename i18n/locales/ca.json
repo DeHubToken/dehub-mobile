@@ -1252,7 +1252,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Llista de reproducció pública",
+      "makePublicHint": "Tothom pot veure aquesta carpeta al teu perfil.",
+      "publicBadge": "Públic",
+      "copyLink": "Copia l'enllaç de la llista de reproducció",
+      "linkCopied": "S'ha copiat l'enllaç de la llista de",
+      "itemsCount": "{{count}} publicacions",
+      "emptyOwnerHint": "Fes pública una carpeta d'adreces d'interès per mostrar-la aquí.",
+      "emptyVisitor": "Aquest perfil encara no té llistes de reproducció públiques.",
+      "openBookmarks": "Obre les meves adreces d'interès",
+      "back": "Totes les llistes de reproducció",
+      "noPosts": "Aquesta llista de reproducció encara no té cap publicació.",
+      "unavailable": "Aquesta llista de reproducció ja no està disponible.",
+      "loadMore": "Mostra més publicacions"
+    }
   },
   "notifications": {
     "title": "Notificacions",
@@ -1612,7 +1627,8 @@
       "breakdownTitle": "D'on ve aquest abast",
       "dehubFollowers": "Seguidors de DeHub",
       "selfReported": "El creador introdueix els recomptes de seguidors socials."
-    }
+    },
+    "tabPlaylists": "Llista de reproducció"
   },
   "tv": {
     "title": "TV",

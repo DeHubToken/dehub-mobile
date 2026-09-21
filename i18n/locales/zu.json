@@ -1313,7 +1313,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Uhlu lwadlalwayo lomphakathi",
+      "makePublicHint": "Noma ubani angabona leli folda kuphrofayela lakho.",
+      "publicBadge": "Umphakathi",
+      "copyLink": "Kopisha isixhumanisi sohlu lwadlalwayo",
+      "linkCopied": "Isixhumanisi sohlu lwadlalwayo sikopishiwe",
+      "itemsCount": "{{count}} okuthunyelwe",
+      "emptyOwnerHint": "Yenza ifolda yokubekisa ibe umphakathi ukuze uyibonise lapha.",
+      "emptyVisitor": "Le phrofayela ayinawo amavidiyo omphakathi okwamanje.",
+      "openBookmarks": "Vula izincwadi zami",
+      "back": "Zonke izinhlu zokudlalwayo",
+      "noPosts": "Lolu hlu lwadlalwayo alunawo okuthunyelwe okwamanje.",
+      "unavailable": "Lolu hlu lwadlalwayo alusatholakali.",
+      "loadMore": "Bonisa okuthunyelwe okwengeziwe"
+    }
   },
   "notifications": {
     "title": "Zaziso",
@@ -1611,7 +1626,8 @@
       "breakdownTitle": "Loku kufinyelela kuvela kuphi",
       "dehubFollowers": "Abalandeli be-DeHub",
       "selfReported": "Izibalo zabalandeli zomphakathi zifakwa umsunguli."
-    }
+    },
+    "tabPlaylists": "Uhlu lokudlalwayo"
   },
   "tv": {
     "title": "TV",

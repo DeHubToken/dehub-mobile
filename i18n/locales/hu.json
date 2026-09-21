@@ -1249,7 +1249,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Nyilvános lejátszási lista",
+      "makePublicHint": "Ezt a mappát bárki láthatja a profilodban.",
+      "publicBadge": "Nyilvános",
+      "copyLink": "Lejátszási lista link másolása",
+      "linkCopied": "Lejátszólista-hivatkozás másolva",
+      "itemsCount": "{{count}} bejegyzés",
+      "emptyOwnerHint": "Tegyél nyilvánossá egy könyvjelzőmappát, ha itt szeretnéd megjeleníteni.",
+      "emptyVisitor": "Ennek a profilnak még nincsenek nyilvános lejátszási listái.",
+      "openBookmarks": "Könyvjelzőim megnyitása",
+      "back": "Összes lejátszási lista",
+      "noPosts": "Ennek a lejátszási listának még nincsenek bejegyzései.",
+      "unavailable": "Ez a lejátszási lista már nem érhető el.",
+      "loadMore": "További bejegyzések megjelenítése"
+    }
   },
   "notifications": {
     "title": "Értesítések",
@@ -1474,7 +1489,8 @@
       "breakdownTitle": "Honnan származik ez a hatókör?",
       "dehubFollowers": "DeHub követők",
       "selfReported": "A közösségi követők számát az alkotó adja meg."
-    }
+    },
+    "tabPlaylists": "Játéklisták"
   },
   "messages": {
     "smartRepliesOff": "A javasolt válaszok ki vannak kapcsolva",

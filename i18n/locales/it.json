@@ -1369,7 +1369,22 @@
     "noVideosYet": "Ancora nessun video salvato",
     "videosStartSaving": "Salva i post con video e li ritroverai qui.",
     "noTextYet": "Ancora nessun post di testo salvato",
-    "textStartSaving": "Salva i post di solo testo e li ritroverai qui."
+    "textStartSaving": "Salva i post di solo testo e li ritroverai qui.",
+    "playlist": {
+      "makePublic": "Playlist pubblica",
+      "makePublicHint": "Chiunque può vedere questa cartella sul tuo profilo.",
+      "publicBadge": "Pubblico",
+      "copyLink": "Copia il link della playlist",
+      "linkCopied": "Link alla playlist copiato",
+      "itemsCount": "{{count}} post",
+      "emptyOwnerHint": "Rendi pubblica una cartella dei segnalibri per mostrarla qui.",
+      "emptyVisitor": "Questo profilo non ha ancora playlist pubbliche.",
+      "openBookmarks": "Apri i miei segnalibri",
+      "back": "Tutte le playlist",
+      "noPosts": "Questa playlist non ha ancora post.",
+      "unavailable": "Questa playlist non è più disponibile.",
+      "loadMore": "Mostra altri post"
+    }
   },
   "notifications": {
     "title": "Notifiche",
@@ -1594,7 +1609,8 @@
       "breakdownTitle": "Da dove proviene questa portata",
       "dehubFollowers": "Follower DeHub",
       "selfReported": "Il conteggio dei follower social viene inserito dal creator."
-    }
+    },
+    "tabPlaylists": "Playlist"
   },
   "messages": {
     "smartRepliesOff": "Risposte suggerite disattivate",

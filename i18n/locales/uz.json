@@ -1591,7 +1591,8 @@
       "breakdownTitle": "Bu imkoniyat qayerdan keladi",
       "dehubFollowers": "DeHub izdoshlari",
       "selfReported": "Ijtimoiy tarmoqlardagi obunachilar soni yaratuvchi tomonidan kiritiladi."
-    }
+    },
+    "tabPlaylists": "Qoʻshiq roʻyxatlari"
   },
   "tv": {
     "title": "Televizor",
@@ -2302,7 +2303,21 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Ommaviy pleylist",
+      "makePublicHint": "Profilingizdagi ushbu papkani istalgan kishi ko&#39;rishi mumkin.",
+      "publicBadge": "Ommaviy",
+      "copyLink": "Pleylist havolasini nusxalash",
+      "linkCopied": "Pleylist havolasi nusxalandi",
+      "emptyOwnerHint": "Bu yerda ko&#39;rsatish uchun xatcho&#39;plar papkasini hammaga ochiq qiling.",
+      "emptyVisitor": "Bu profilning hali ommaviy pleylisti yo'q.",
+      "openBookmarks": "Mening xatchoʻplarim",
+      "back": "Barcha pleylistlar",
+      "noPosts": "Bu pleylistda hali postlar yo&#39;q.",
+      "unavailable": "Bu pleylist endi mavjud emas.",
+      "loadMore": "Ko'proq postlarni ko'rsatish"
+    }
   },
   "staking": {
     "title": "Staking",

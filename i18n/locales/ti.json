@@ -1239,7 +1239,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "ሕዝባዊ መዝገብ",
+      "makePublicHint": "እዚ መዝገብ ኣብ መርበብ ሓበሬታኻ ክርኢ ይኽእል።",
+      "publicBadge": "ሕዝባዊ",
+      "copyLink": "መዝገብ መርበብ ሓበሬታ ኣባጻሕ",
+      "linkCopied": "መርበብ ሓበሬታ መዝገብ ተቐሪጹ",
+      "itemsCount": "{{count}} ጽሑፋት",
+      "emptyOwnerHint": "መዝገብ ምልክት ንምርኣይ ሕዝባዊ ግበሮ።",
+      "emptyVisitor": "እዚ መርበብ ሓበሬታ ገና ሕዝባዊ መዝገብ የብሉን።",
+      "openBookmarks": "መዝገባትይ ክፈትሕ",
+      "back": "ኩሉ መዝገብ",
+      "noPosts": "እዚ መዝገብ ገና ጽሑፋት የብሉን።",
+      "unavailable": "እዚ መዝገብ ኣይርከብን።",
+      "loadMore": "ተወሳኺ ጽሑፋት ኣርእዮ"
+    }
   },
   "notifications": {
     "badgeTierUp": "እንኳዕ ሓጎሰካ! ሕጂ {{tier}} ኢኻ 🎉",
@@ -1587,7 +1602,8 @@
       "breakdownTitle": "እዚ ምብጻሕ እዚ ካበይ እዩ መጺኡ ፧",
       "dehubFollowers": "ተኸታተልቲ DeHub",
       "selfReported": "ማሕበራዊ ተኸታተልቲ ቆጸራታት ብፈጣሪ ይኣትዉ እዮም ።"
-    }
+    },
+    "tabPlaylists": "ዝርዝር መጻወቲ"
   },
   "tv": {
     "title": "ቲቪ",

@@ -10,6 +10,7 @@ export interface ProfileContentCounts {
   live?: number;
   subscribers?: number;
   pinned?: number;
+  playlists?: number;
 }
 
 /**

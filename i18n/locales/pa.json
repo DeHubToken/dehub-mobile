@@ -1237,7 +1237,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "ਪਬਲਿਕ ਪਲੇਲਿਸਟ",
+      "makePublicHint": "ਇਹ ਫੋਲਡਰ ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ 'ਤੇ ਕੋਈ ਵੀ ਦੇਖ ਸਕਦਾ ਹੈ।",
+      "publicBadge": "ਪਬਲਿਕ",
+      "copyLink": "ਪਲੇਲਿਸਟ ਲਿੰਕ ਕਾਪੀ ਕਰੋ",
+      "linkCopied": "ਪਲੇਲਿਸਟ ਲਿੰਕ ਕਾਪੀ ਹੋ ਗਿਆ",
+      "itemsCount": "{{count}} ਪੋਸਟਾਂ",
+      "emptyOwnerHint": "ਇਸਨੂੰ ਇੱਥੇ ਦਿਖਾਉਣ ਲਈ ਇੱਕ ਬੁੱਕਮਾਰਕ ਫੋਲਡਰ ਨੂੰ ਪਬਲਿਕ ਬਣਾਓ।",
+      "emptyVisitor": "ਇਸ ਪ੍ਰੋਫਾਈਲ ਵਿੱਚ ਅਜੇ ਕੋਈ ਪਬਲਿਕ ਪਲੇਲਿਸਟ ਨਹੀਂ ਹੈ।",
+      "openBookmarks": "ਮੇਰੀਆਂ ਬੁੱਕਮਾਰਕਸ ਖੋਲ੍ਹੋ",
+      "back": "ਸਾਰੀਆਂ ਪਲੇਲਿਸਟਾਂ",
+      "noPosts": "ਇਸ ਪਲੇਲਿਸਟ ਵਿੱਚ ਅਜੇ ਕੋਈ ਪੋਸਟ ਨਹੀਂ ਹੈ।",
+      "unavailable": "ਇਹ ਪਲੇਲਿਸਟ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।",
+      "loadMore": "ਹੋਰ ਪੋਸਟਾਂ ਦਿਖਾਓ"
+    }
   },
   "notifications": {
     "title": "ਸੂਚਨਾਵਾਂ",
@@ -1461,7 +1476,8 @@
       "breakdownTitle": "ਕਿੱਥੋਂ ਆਉਂਦੀ ਹੈ ਇਹ ਪਹੁੰਚ",
       "dehubFollowers": "DeHub ਪੈਰੋਕਾਰ",
       "selfReported": "ਸਮਾਜਿਕ ਅਨੁਯਾਈਆਂ ਦੀ ਗਿਣਤੀ ਸਿਰਜਣਹਾਰ ਦੁਆਰਾ ਦਾਖਲ ਕੀਤੀ ਜਾਂਦੀ ਹੈ."
-    }
+    },
+    "tabPlaylists": "ਪਲੇਲਿਸਟਾਂ"
   },
   "messages": {
     "smartRepliesOff": "ਸੁਝਾਏ ਜਵਾਬ ਬੰਦ ਕਰ ਦਿੱਤੇ",

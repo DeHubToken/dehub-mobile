@@ -1604,7 +1604,8 @@
       "breakdownTitle": "Საიდან მოდის ეს წვდომა",
       "dehubFollowers": "Დეჰაბის მიმდევრები",
       "selfReported": "Სოციალური მიმდევრების რაოდენობა შეყვანილია შემქმნელის მიერ."
-    }
+    },
+    "tabPlaylists": "დასაკრავი სიები"
   },
   "tv": {
     "title": "ტელევიზია",
@@ -2317,7 +2318,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Საჯარო დასაკრავი სია",
+      "makePublicHint": "Ამ საქაღალდის ნახვა ნებისმიერ მსურველს შეუძლია თქვენს პროფილში.",
+      "publicBadge": "Საჯარო",
+      "copyLink": "Დასაკრავი სიის ბმულის კოპირება",
+      "linkCopied": "Დასაკრავი სიის ბმული დაკოპირებულია",
+      "itemsCount": "{{count}} შეტყობინებები",
+      "emptyOwnerHint": "Აქ გამოსაჩენად გაასაჯაროვეთ სანიშნე საქაღალდე.",
+      "emptyVisitor": "Ამ პროფილს ჯერ არ აქვს საჯარო დასაკრავი სიები.",
+      "openBookmarks": "Სანიშნების გახსნა",
+      "back": "Ყველა დასაკრავი სია",
+      "noPosts": "Ამ დასაკრავ სიას პოსტები ჯერ არ აქვს.",
+      "unavailable": "Ეს დასაკრავი სია აღარ არის ხელმისაწვდომი.",
+      "loadMore": "Სხვა პოსტების ჩვენება"
+    }
   },
   "staking": {
     "title": "Staking",

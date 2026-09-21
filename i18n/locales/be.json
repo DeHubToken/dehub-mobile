@@ -1263,7 +1263,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Публічны спіс прайгравання",
+      "makePublicHint": "Любы жадаючы можа ўбачыць гэтую тэчку ў вашым профілі.",
+      "publicBadge": "Публічна",
+      "copyLink": "Скапіраваць спасылку на спіс прайгравання",
+      "linkCopied": "Спасылка на спіс прайгравання скапіяваная",
+      "itemsCount": "{{count}} паведамленні",
+      "emptyOwnerHint": "Зрабіць публічнай тэчку закладак, каб паказаць яе тут.",
+      "emptyVisitor": "Гэты профіль пакуль не мае публічных спісаў прайгравання.",
+      "openBookmarks": "Адкрыць закладкі",
+      "back": "Усе плэйлісты",
+      "noPosts": "Гэты спіс прайгравання пакуль не мае паведамленняў.",
+      "unavailable": "Гэты спіс прайгравання больш не даступны.",
+      "loadMore": "Паказаць больш паведамленняў"
+    }
   },
   "notifications": {
     "title": "Апавяшчэнні",
@@ -1622,7 +1637,8 @@
       "breakdownTitle": "Адкуль паходзіць гэтая дасяжнасць",
       "dehubFollowers": "Падпісчыкі DeHub",
       "selfReported": "Колькасць сацыяльных паслядоўнікаў уводзіцца стваральнікам."
-    }
+    },
+    "tabPlaylists": "Спісы прайгравання"
   },
   "dao": {
     "title": "Казначейства DAO",
