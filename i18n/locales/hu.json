@@ -4479,5 +4479,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Új vagy itt? Szeretnél egy rövid, vezetett túrát?",
+      "body": "Lépésről lépésre végigvezetünk a DeHubon, és megkérdezzük, hogyan ment az egyes lépések, hogy kijavíthassuk, ami esetleg zavaró.",
+      "yes": "Igen, mutasd meg",
+      "no": "Nem, köszönöm"
+    },
+    "checklist": {
+      "title": "Elkezdeni",
+      "subtitle": "Néhány rövid lépés a DeHubon való beállításhoz.",
+      "progress": "{{done}} / {{total}} kész",
+      "go": "Vigyen oda",
+      "done": "Jelölje készre",
+      "skip": "Hagyja ki ezt a lépést",
+      "dismiss": "Elrejteni az induló lépéseket",
+      "reopen": "Nyissa meg az útmutatót",
+      "finishedTitle": "Ez minden – ügyesen csináltad.",
+      "finishedBody": "Köszönjük, hogy elmondta, hogyan mentek az egyes lépések. Válaszai egyenesen azokhoz jutnak, akik ezt építik.",
+      "chip": "Elkezdeni"
+    },
+    "rating": {
+      "question": "Ez könnyű volt?",
+      "easy": "Igen, ez könnyű volt",
+      "hard": "Nem, ez nehéz volt",
+      "thanks": "Köszönjük, ez segít."
+    },
+    "steps": {
+      "profile": {
+        "title": "Állítsa be a felhasználónevét és a képét",
+        "body": "Válasszon egy nevet, amit az emberek felismernek, és adjon hozzá egy profilképet, hogy a bejegyzései úgy tűnjenek, mintha Öntől származnának."
+      },
+      "wallet": {
+        "title": "Tekintse meg a pénztárcáját és a DHB-t",
+        "body": "A pénztárcája már létezik, és tartalmazza a DHB-t. Nézze meg, mi van benne, és honnan származik."
+      },
+      "feed": {
+        "title": "Válassza ki, mit szeretne látni",
+        "body": "Válaszoljon néhány gyors kérdésre, és a hírfolyam elkezd olyan bejegyzéseket mutatni, amilyeneket valójában szeretne."
+      },
+      "first-post": {
+        "title": "Készítse el az első bejegyzését",
+        "body": "Osszon meg egy gondolatot, egy fotót vagy egy videót. Csak egy pillanatig tart, és így találnak meg az emberek."
+      },
+      "follow": {
+        "title": "Követjen három alkotót",
+        "body": "A hírfolyama sokkal jobb lesz, ha követ néhány embert. Böngésszen, ki van itt, és válasszon ki hármat az induláshoz."
+      },
+      "comment": {
+        "title": "Hagyjon egy megjegyzést egy bejegyzéshez",
+        "body": "Válaszolj valamire, ami tetszett a hírfolyamodban. A beszélgetések azok, ahol a DeHub legnagyobb része valójában történik."
+      },
+      "rewards": {
+        "title": "Nézd meg, hogyan működik a pénzkeresés",
+        "body": "Tudd meg, hogy a borravalók, a jelvények és a szuperképességek hogyan alakítják a munkádat olyanná, amiből pénzt kereshetsz."
+      }
+    }
   }
 }

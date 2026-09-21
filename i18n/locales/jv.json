@@ -4432,5 +4432,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Anyar ing kene? Pengin tur ringkes?",
+      "body": "Kita bisa nuntun sampeyan liwat DeHub kanthi siji-siji, lan takon kepiye saben langkah, supaya kita bisa ndandani apa wae sing bingung.",
+      "yes": "Ya, tulung tunjukake",
+      "no": "Ora, matur nuwun"
+    },
+    "checklist": {
+      "title": "Miwiti",
+      "subtitle": "Sawetara langkah cekak kanggo nyiyapake sampeyan ing DeHub.",
+      "progress": "{{done}} saka {{total}} rampung",
+      "go": "Gawa aku menyang kana",
+      "done": "Tandhani wis rampung",
+      "skip": "Lewati langkah iki",
+      "dismiss": "Sembunyikan langkah miwiti",
+      "reopen": "Buka pandhuan",
+      "finishedTitle": "Iku kabeh — wis rampung kanthi apik.",
+      "finishedBody": "Matur nuwun wis ngandhani kepiye saben langkah. Jawaban sampeyan langsung dikirim menyang wong sing nggawe iki.",
+      "chip": "Miwiti"
+    },
+    "rating": {
+      "question": "Apa iki gampang?",
+      "easy": "Ya, iki gampang",
+      "hard": "Ora, iki angel",
+      "thanks": "Matur nuwun, iki mbantu."
+    },
+    "steps": {
+      "profile": {
+        "title": "Setel jeneng pangguna lan gambar sampeyan",
+        "body": "Pilih jeneng sing bakal dikenali wong lan tambahake gambar profil, supaya kiriman sampeyan katon kaya asale saka sampeyan."
+      },
+      "wallet": {
+        "title": "Deleng dompet sampeyan lan apa iku DHB",
+        "body": "Dompet sampeyan wis ana lan isine DHB. Coba delengen apa isine lan saka ngendi asale."
+      },
+      "feed": {
+        "title": "Pilih apa sing pengin sampeyan deleng",
+        "body": "Wangsulana sawetara pitakonan cepet lan umpan sampeyan bakal nuduhake jinis kiriman sing pancen dikarepake."
+      },
+      "first-post": {
+        "title": "Gawe kiriman pisanan sampeyan",
+        "body": "Bagike pamikiran, foto, utawa video. Mbutuhake mung sedhela lan iki carane wong nemokake sampeyan."
+      },
+      "follow": {
+        "title": "Tindakake telung kreator",
+        "body": "Umpan sampeyan dadi luwih apik yen sampeyan ngetutake sawetara wong. Jelajahi sapa wae ing kene lan pilih telu kanggo miwiti."
+      },
+      "comment": {
+        "title": "Tinggalake komentar ing kiriman",
+        "body": "Wangsulana bab sing disenengi ing feed sampeyan. Obrolan minangka papan ing ngendi umume DeHub kedadeyan."
+      },
+      "rewards": {
+        "title": "Deleng carane entuk dhuwit",
+        "body": "Temokake carane tip, lencana, lan SuperPowers ngowahi apa sing sampeyan lakoni ing kene dadi apa sing sampeyan entuk."
+      }
+    }
   }
 }

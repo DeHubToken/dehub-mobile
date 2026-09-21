@@ -4543,5 +4543,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Neu hier? Möchten Sie eine kurze Führung?",
+      "body": "Wir können Sie Schritt für Schritt durch DeHub führen und fragen, wie jeder Schritt verlief, damit wir alles klären können, was verwirrend ist.",
+      "yes": "Ja, zeig es mir",
+      "no": "Nein danke"
+    },
+    "checklist": {
+      "title": "Erste Schritte",
+      "subtitle": "Ein paar kurze Schritte, um sich bei DeHub einzurichten.",
+      "progress": "{{done}} von {{total}} erledigt",
+      "go": "Bring mich dorthin",
+      "done": "Als erledigt markieren",
+      "skip": "Diesen Schritt überspringen",
+      "dismiss": "Die ersten Schritte ausblenden",
+      "reopen": "Führung öffnen",
+      "finishedTitle": "Das ist alles – gut gemacht.",
+      "finishedBody": "Vielen Dank, dass Sie uns mitteilen, wie jeder Schritt verlief. Ihre Antworten gehen direkt an die Leute, die dies entwickeln.",
+      "chip": "Erste Schritte"
+    },
+    "rating": {
+      "question": "War das einfach?",
+      "easy": "Ja, das war einfach",
+      "hard": "Nein, das war schwierig",
+      "thanks": "Danke, das hilft."
+    },
+    "steps": {
+      "profile": {
+        "title": "Legen Sie Ihren Benutzernamen und Ihr Bild fest",
+        "body": "Wählen Sie einen Namen, den die Leute wiedererkennen, und fügen Sie ein Profilbild hinzu, damit Ihre Beiträge von Ihnen zu stammen scheinen."
+      },
+      "wallet": {
+        "title": "Sehen Sie Ihre Wallet und was DHB ist",
+        "body": "Ihre Wallet existiert bereits und enthält Ihr DHB. Schauen Sie sich an, was darin ist und woher es stammt."
+      },
+      "feed": {
+        "title": "Wählen Sie aus, was Sie sehen möchten",
+        "body": "Beantworten Sie ein paar schnelle Fragen und Ihr Feed wird beginnen, die Art von Beiträgen anzuzeigen, die Sie wirklich sehen möchten."
+      },
+      "first-post": {
+        "title": "Machen Sie Ihren ersten Beitrag",
+        "body": "Teilen Sie einen Gedanken, ein Foto oder ein Video. Es dauert nur einen Moment und so finden Sie die Leute."
+      },
+      "follow": {
+        "title": "Folgen Sie drei Erstellern",
+        "body": "Ihr Feed wird viel besser, sobald Sie ein paar Leuten folgen. Stöbern Sie, wer hier ist, und wählen Sie drei zum Anfang aus."
+      },
+      "comment": {
+        "title": "Hinterlassen Sie einen Kommentar zu einem Beitrag",
+        "body": "Antworte auf etwas, das dir in deinem Feed gefallen hat. Unterhaltungen sind der Ort, an dem das meiste von DeHub tatsächlich stattfindet."
+      },
+      "rewards": {
+        "title": "So funktionieren Umsätze",
+        "body": "Finde heraus, wie Trinkgelder, Abzeichen und Superkräfte das, was du hier tust, in etwas verwandeln, mit dem du dir etwas dazuverdienst."
+      }
+    }
   }
 }

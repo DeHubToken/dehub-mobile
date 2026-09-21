@@ -4464,5 +4464,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Halkan cusub? Ma rabtaa soo-dhaweyn gaaban?",
+      "body": "Waxaan ku dhex mari karnaa DeHub tallaabo tallaabo, waxaanan weydiin doonaa sida tallaabo kasta u dhacday si aan u hagaajin karno wax kasta oo jahawareer ah.",
+      "yes": "Haa, ii soo bandhig",
+      "no": "Maya mahadsanid"
+    },
+    "checklist": {
+      "title": "Bilowga",
+      "subtitle": "Tallaabooyin gaaban si aad naftaada ugu dejiso DeHub.",
+      "progress": "{{done}} oo ah {{total}} la dhammaystiray",
+      "go": "I geey",
+      "done": "Calaamadee sidii loo dhammaystiray",
+      "skip": "Ka bood tallaabadan",
+      "dismiss": "Qari tallaabooyinka bilowga",
+      "reopen": "Fur hagaha",
+      "finishedTitle": "Taasi waa wax walba — si wanaagsan loo sameeyay.",
+      "finishedBody": "Mahadsanid inaad noo sheegtay sida tallaabo kasta u dhacday. Jawaabahaagu waxay si toos ah u aadaan dadka wax dhisaya.",
+      "chip": "Bilowga"
+    },
+    "rating": {
+      "question": "Ma fududayd?",
+      "easy": "Haa, taas waa fududayd",
+      "hard": "Maya, taas waa adkayd",
+      "thanks": "Mahadsanid, taas ayaa caawisa."
+    },
+    "steps": {
+      "profile": {
+        "title": "Deji magacaaga isticmaale iyo sawirkaaga",
+        "body": "Dooro magac ay dadku aqoonsan doonaan oo ku dar sawirkaaga profile, si ay boostadaadu u muuqdaan inay ka yimaadeen adiga."
+      },
+      "wallet": {
+        "title": "Arag boorsadaada iyo waxa DHB yahay",
+        "body": "Boorsadaadu mar horeba way jirtaa oo waxay haysaa DHB-gaaga. Eeg waxa ku jira iyo meesha ay ka timid."
+      },
+      "feed": {
+        "title": "Dooro waxaad rabto inaad aragto",
+        "body": "Ka jawaab su'aalo kooban oo degdeg ah, iyo feedhkaagu wuxuu bilaabi doonaa inuu muujiyo nooca boostada ee aad runtii rabto."
+      },
+      "first-post": {
+        "title": "Samee boostadaada ugu horreysa",
+        "body": "La wadaag fikrad, sawir ama muuqaal. Waxay qaadataa kaliya daqiiqad waana sida dadku kuu helaan."
+      },
+      "follow": {
+        "title": "Raac saddexda abuuraha",
+        "body": "Feedhkaagu wuu fiicnaanayaa mar haddii aad raacdo dad yar. Baadh cidda halkan joogta oo dooro saddex si aad u bilowdo."
+      },
+      "comment": {
+        "title": "Ka tag faallo boostada ah",
+        "body": "Ka jawaab wax aad jeceshahay quudintaada. Wadahadaladu waa halka ay dhab ahaantii ka dhacaan inta badan DeHub."
+      },
+      "rewards": {
+        "title": "Fiiri sida ay u shaqeyso kasbashada",
+        "body": "Ogow sida talooyinka, calaamadaha iyo SuperPowers u beddelaan waxa aad halkan ku samayso wax aad ka kasbato."
+      }
+    }
   }
 }

@@ -4473,5 +4473,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Naujokas? Norite trumpo ekskursijos?",
+      "body": "Galime žingsnis po žingsnio supažindinti jus su DeHub ir paklausti, kaip sekėsi kiekvienas žingsnis, kad galėtume ištaisyti viską, kas neaišku.",
+      "yes": "Taip, aprodyti",
+      "no": "Ne, ačiū"
+    },
+    "checklist": {
+      "title": "Pradžia",
+      "subtitle": "Keletas trumpų žingsnių, kad galėtumėte pradėti naudotis DeHub.",
+      "progress": "{{done}} iš {{total}} atlikta",
+      "go": "Nuvesti mane ten",
+      "done": "Pažymėti kaip atlikta",
+      "skip": "Praleisti šį žingsnį",
+      "dismiss": "Paslėpti pradžios veiksmus",
+      "reopen": "Atidaryti vadovą",
+      "finishedTitle": "Viskas – puikiai atlikta.",
+      "finishedBody": "Ačiū, kad pasakojote, kaip sekėsi kiekvienas žingsnis. Jūsų atsakymai pasiekia žmones, kurie tai kuria.",
+      "chip": "Pradžia"
+    },
+    "rating": {
+      "question": "Ar tai buvo lengva?",
+      "easy": "Taip, tai buvo lengva",
+      "hard": "Ne, tai buvo sunku",
+      "thanks": "Ačiū, tai padeda."
+    },
+    "steps": {
+      "profile": {
+        "title": "Nustatykite savo vartotojo vardą ir nuotrauką",
+        "body": "Pasirinkite vardą, kurį žmonės atpažins, ir pridėkite profilio nuotrauką, kad jūsų įrašai atrodytų, jog juos paskelbėte jūs."
+      },
+      "wallet": {
+        "title": "Peržiūrėkite savo piniginę ir kas yra DHB",
+        "body": "Jūsų piniginė jau egzistuoja ir joje laikomas jūsų DHB. Pažvelkite, kas joje yra ir iš kur ji atsirado."
+      },
+      "feed": {
+        "title": "Pasirinkite, ką norite matyti",
+        "body": "Atsakykite į kelis greitus klausimus, ir jūsų naujienų kanale pradės rodytis tokie įrašai, kokių iš tikrųjų norite."
+      },
+      "first-post": {
+        "title": "Paskelbkite savo pirmąjį įrašą",
+        "body": "Pasidalykite mintimi, nuotrauka ar vaizdo įrašu. Tai užtrunka tik akimirką ir taip jus randa žmonės."
+      },
+      "follow": {
+        "title": "Stebėkite tris kūrėjus",
+        "body": "Jūsų naujienų kanalas tampa daug geresnis, kai pradedate sekti kelis žmones. Peržiūrėkite, kas čia yra, ir pasirinkite tris pradžiai."
+      },
+      "comment": {
+        "title": "Palikite komentarą po įrašu",
+        "body": "Atsakykite į tai, kas jums patiko sklaidos kanale. Pokalbiai yra ta vieta, kur iš tikrųjų vyksta didžioji dalis „DeHub“."
+      },
+      "rewards": {
+        "title": "Sužinokite, kaip gaunamos pajamos",
+        "body": "Sužinokite, kaip patarimai, ženkleliai ir supergalios paverčia tai, ką čia darote, tuo, iš ko uždirbate."
+      }
+    }
   }
 }

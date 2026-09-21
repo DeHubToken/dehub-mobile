@@ -4593,5 +4593,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Nuwe hier? Wil jy 'n kort begeleide toer hê?",
+      "body": "Ons kan jou stap vir stap deur DeHub neem, en vra hoe elke stap gegaan het sodat ons kan regstel wat ook al verwarrend is.",
+      "yes": "Ja, wys my rond",
+      "no": "Nee dankie"
+    },
+    "checklist": {
+      "title": "Om te begin",
+      "subtitle": "'n Paar kort stappe om jouself op DeHub op te stel.",
+      "progress": "{{done}} van {{total}} gedoen",
+      "go": "Neem my daarheen",
+      "done": "Merk as gedoen",
+      "skip": "Slaan hierdie stap oor",
+      "dismiss": "Versteek die begin-stappe",
+      "reopen": "Maak die gids oop",
+      "finishedTitle": "Dit is alles — mooi gedoen.",
+      "finishedBody": "Dankie dat jy ons vertel het hoe elke stap gegaan het. Jou antwoorde gaan reguit na die mense wat dit bou.",
+      "chip": "Om te begin"
+    },
+    "rating": {
+      "question": "Was dit maklik?",
+      "easy": "Ja, dit was maklik",
+      "hard": "Nee, dit was moeilik",
+      "thanks": "Dankie, dit help."
+    },
+    "steps": {
+      "profile": {
+        "title": "Stel jou gebruikersnaam en prentjie in",
+        "body": "Kies 'n naam wat mense sal herken en voeg 'n profielprent by, sodat jou plasings lyk asof dit van jou af kom."
+      },
+      "wallet": {
+        "title": "Sien jou beursie en wat DHB is",
+        "body": "Jou beursie bestaan reeds en hou jou DHB. Neem 'n blik op wat daarin is en waar dit vandaan kom."
+      },
+      "feed": {
+        "title": "Kies wat jy wil sien",
+        "body": "Beantwoord 'n paar vinnige vrae en jou voer sal begin om die soort plasings te wys wat jy eintlik wil hê."
+      },
+      "first-post": {
+        "title": "Maak jou eerste plasing",
+        "body": "Deel 'n gedagte, 'n foto of 'n video. Dit neem net 'n oomblik en dit is hoe mense jou vind."
+      },
+      "follow": {
+        "title": "Volg drie skeppers",
+        "body": "Jou voer word baie beter sodra jy 'n paar mense volg. Blaai deur wie hier is en kies drie om mee te begin."
+      },
+      "comment": {
+        "title": "Los 'n opmerking op 'n plasing",
+        "body": "Beantwoord iets wat jy graag op jou voer. Gesprekke is waar die meeste DeHub eintlik gebeur."
+      },
+      "rewards": {
+        "title": "Kyk hoe geld verdien",
+        "body": "Vind uit hoe wenke, kentekens en Super Powers verander wat jy hier doen in iets wat jy verdien uit."
+      }
+    }
   }
 }

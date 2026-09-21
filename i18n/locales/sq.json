@@ -4473,5 +4473,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Të reja këtu? Dëshironi një tur të shkurtër të udhëhequr?",
+      "body": "Ne mund t'ju udhëheqim nëpër DeHub hap pas hapi, dhe të pyesim se si shkoi çdo hap, në mënyrë që të mund të rregullojmë çdo gjë që është konfuzuese.",
+      "yes": "Po, më tregoni",
+      "no": "Jo faleminderit"
+    },
+    "checklist": {
+      "title": "Fillimi",
+      "subtitle": "Disa hapa të shkurtër për t'u vendosur në DeHub.",
+      "progress": "{{done}} nga {{total}} e kryer",
+      "go": "Më çoni atje",
+      "done": "Shëno si të kryer",
+      "skip": "Kaloje këtë hap",
+      "dismiss": "Fshih hapat e fillimit",
+      "reopen": "Hap udhëzuesin",
+      "finishedTitle": "Kjo është gjithçka — mirë e bërë.",
+      "finishedBody": "Faleminderit që na treguat se si shkoi çdo hap. Përgjigjet tuaja shkojnë drejt tek njerëzit që po e ndërtojnë këtë.",
+      "chip": "Fillimi"
+    },
+    "rating": {
+      "question": "A ishte e lehtë?",
+      "easy": "Po, ishte e lehtë",
+      "hard": "Jo, ishte e vështirë",
+      "thanks": "Faleminderit, kjo ndihmon."
+    },
+    "steps": {
+      "profile": {
+        "title": "Vendosni emrin tuaj të përdoruesit dhe foton",
+        "body": "Zgjidhni një emër që njerëzit do ta njohin dhe shtoni një foto profili, në mënyrë që postimet tuaja të duken sikur vijnë nga ju."
+      },
+      "wallet": {
+        "title": "Shihni kuletën tuaj dhe çfarë është DHB",
+        "body": "Kuleta juaj ekziston tashmë dhe përmban DHB-në tuaj. Merrni një vështrim se çfarë ka brenda dhe nga ka ardhur."
+      },
+      "feed": {
+        "title": "Zgjidhni se çfarë dëshironi të shihni",
+        "body": "Përgjigjuni disa pyetjeve të shpejta dhe rrjedha juaj do të fillojë të tregojë llojin e postimeve që dëshironi në të vërtetë."
+      },
+      "first-post": {
+        "title": "Bëni postimin tuaj të parë",
+        "body": "Ndani një mendim, një foto ose një video. Kërkon vetëm një moment dhe kështu ju gjejnë njerëzit."
+      },
+      "follow": {
+        "title": "Ndiqni tre krijues",
+        "body": "Rrjedha juaj bëhet shumë më e mirë pasi të ndiqni disa njerëz. Shfletoni kush është këtu dhe zgjidhni tre për të filluar."
+      },
+      "comment": {
+        "title": "Lini një koment në një postim",
+        "body": "Përgjigju diçkaje që të pëlqeu në furnizuesin tënd. Bisedat janë vendi ku ndodh pjesa më e madhe e DeHub-it."
+      },
+      "rewards": {
+        "title": "Zbulo se si funksionon fitimi",
+        "body": "Zbulo se si sugjerimet, distinktivët dhe Superfuqitë e kthejnë atë që bën këtu në diçka nga e cila fiton."
+      }
+    }
   }
 }

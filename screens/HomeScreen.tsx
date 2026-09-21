@@ -46,6 +46,7 @@ import {
   useUserProfileSheet,
 } from "../context/UserProfileSheetContext";
 import UserProfileBottomSheet from "../components/UserProfile/UserProfileBottomSheet";
+import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -909,6 +910,11 @@ export default function HomeScreen() {
           onClose={handleCloseImageFeed}
         />
       ) : null}
+
+      {/* Draws nothing at all unless this account is mid-walkthrough or has
+          just been offered one. Outside the pager so it is the same card on
+          every tab rather than a header in one of six lists. */}
+      <GettingStartedCard />
     </View>
   );
 }

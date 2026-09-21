@@ -4525,5 +4525,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Baru di sini? Ingin tur singkat yang dipandu?",
+      "body": "Kami dapat memandu Anda melalui DeHub selangkah demi selangkah, dan menanyakan bagaimana setiap langkah berjalan agar kami dapat memperbaiki apa pun yang membingungkan.",
+      "yes": "Ya, tunjukkan",
+      "no": "Tidak, terima kasih"
+    },
+    "checklist": {
+      "title": "Memulai",
+      "subtitle": "Beberapa langkah singkat untuk menyiapkan diri Anda di DeHub.",
+      "progress": "{{done}} dari {{total}} selesai",
+      "go": "Bawa saya ke sana",
+      "done": "Tandai selesai",
+      "skip": "Lewati langkah ini",
+      "dismiss": "Sembunyikan langkah-langkah memulai",
+      "reopen": "Buka panduan",
+      "finishedTitle": "Itu saja — bagus sekali.",
+      "finishedBody": "Terima kasih telah memberi tahu kami bagaimana setiap langkah berjalan. Jawaban Anda langsung sampai ke orang-orang yang membangun ini.",
+      "chip": "Memulai"
+    },
+    "rating": {
+      "question": "Apakah ini mudah?",
+      "easy": "Ya, itu mudah",
+      "hard": "Tidak, itu sulit",
+      "thanks": "Terima kasih, itu membantu."
+    },
+    "steps": {
+      "profile": {
+        "title": "Atur nama pengguna dan gambar Anda",
+        "body": "Pilih nama yang akan dikenali orang dan tambahkan gambar profil, agar postingan Anda terlihat berasal dari Anda."
+      },
+      "wallet": {
+        "title": "Lihat dompet Anda dan apa itu DHB",
+        "body": "Dompet Anda sudah ada dan berisi DHB Anda. Lihat apa yang ada di dalamnya dan dari mana asalnya."
+      },
+      "feed": {
+        "title": "Pilih apa yang ingin Anda lihat",
+        "body": "Jawab beberapa pertanyaan singkat dan feed Anda akan mulai menampilkan jenis postingan yang sebenarnya Anda inginkan."
+      },
+      "first-post": {
+        "title": "Buat postingan pertama Anda",
+        "body": "Bagikan pemikiran, foto, atau video. Hanya perlu sesaat dan begitulah orang menemukan Anda."
+      },
+      "follow": {
+        "title": "Ikuti tiga kreator",
+        "body": "Feed Anda menjadi jauh lebih baik setelah Anda mengikuti beberapa orang. Jelajahi siapa saja yang ada di sini dan pilih tiga untuk memulai."
+      },
+      "comment": {
+        "title": "Tinggalkan komentar di sebuah postingan",
+        "body": "Balas sesuatu yang Anda sukai di feed Anda. Percakapan adalah tempat sebagian besar DeHub benar - benar terjadi."
+      },
+      "rewards": {
+        "title": "Lihat cara kerja penghasilan",
+        "body": "Cari tahu bagaimana tips, lencana, dan SuperPower mengubah apa yang Anda lakukan di sini menjadi sesuatu yang Anda peroleh."
+      }
+    }
   }
 }

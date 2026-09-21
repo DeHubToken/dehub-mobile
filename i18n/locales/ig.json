@@ -4451,5 +4451,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Ọhụrụ ebe a? Ị chọrọ njem nlegharị anya dị mkpirikpi?",
+      "body": "Anyị nwere ike ije gị na DeHub otu nzọụ ụzọ, ma jụọ ka esi eme nzọụ ụzọ ọ bụla ka anyị wee dozie ihe ọ bụla na-enye nsogbu.",
+      "yes": "Ee, gosi m gburugburu",
+      "no": "Mba daalụ"
+    },
+    "checklist": {
+      "title": "Ịmalite",
+      "subtitle": "Nzọụzọ ole na ole dị mkpirikpi iji guzobe onwe gị na DeHub.",
+      "progress": "{{done}} nke {{total}} emechara",
+      "go": "Kpọ m ebe ahụ",
+      "done": "Mark dị ka emechara",
+      "skip": "Wepu nzọụzọ a",
+      "dismiss": "Zoo nzọụzọ mmalite",
+      "reopen": "Mepee ntuziaka",
+      "finishedTitle": "Nke ahụ bụ ihe niile — nke ọma mere.",
+      "finishedBody": "Daalụ maka ịgwa anyị ka esi eme nzọụzọ ọ bụla. Azịza gị na-aga ozugbo na ndị na-ewu nke a.",
+      "chip": "Ịmalite"
+    },
+    "rating": {
+      "question": "Nke a dị mfe?",
+      "easy": "Ee, nke ahụ dị mfe",
+      "hard": "Mba, nke ahụ siri ike",
+      "thanks": "Daalụ, nke ahụ na-enyere aka."
+    },
+    "steps": {
+      "profile": {
+        "title": "Tọọ aha njirimara gị na onyonyo gị",
+        "body": "Họrọ aha ndị mmadụ ga-amata ma tinye onyonyo profaịlụ, ka posts gị wee dị ka ha sitere n'aka gị."
+      },
+      "wallet": {
+        "title": "Hụ akpa gị na ihe DHB bụ",
+        "body": "Akpa gị adịlarị ma na-ejide DHB gị. Lelee ihe dị na ya na ebe o si bịa."
+      },
+      "feed": {
+        "title": "Họrọ ihe ịchọrọ ịhụ",
+        "body": "Zaa ajụjụ ole na ole ngwa ngwa, na nri gị ga-amalite igosi ụdị posts ị chọrọ n'ezie."
+      },
+      "first-post": {
+        "title": "Dee post mbụ gị",
+        "body": "Kekọrịta echiche, foto ma ọ bụ vidiyo. Ọ na-ewe naanị oge ma ọ bụ otú ndị mmadụ si achọta gị."
+      },
+      "follow": {
+        "title": "Soro ndị okike atọ",
+        "body": "Nri gị na-akawanye mma ozugbo ị soro mmadụ ole na ole. Chọgharịa onye nọ ebe a ma họrọ atọ iji malite."
+      },
+      "comment": {
+        "title": "Hapụ okwu na post",
+        "body": "Zaa ihe masịrị gị na ndepụta gị. Mkparịta ụka bụ ebe ọtụtụ n 'ime DeHub na-eme n' ezie."
+      },
+      "rewards": {
+        "title": "Lee otú ịkpata ọrụ na-arụ ọrụ",
+        "body": "Chọpụta ka ndụmọdụ, baajị na SuperPower si gbanwee ihe ị na-eme ebe a ka ọ bụrụ ihe ị na-enweta site na ya."
+      }
+    }
   }
 }
