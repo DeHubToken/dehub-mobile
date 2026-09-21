@@ -1854,6 +1854,10 @@
     "returnHome": "Return Home"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Bài đăng này không khả dụng",
+      "commentUnavailable": "Bình luận này không còn khả dụng"
+    },
     "back": "Quay lại",
     "usernameAvailable": "Tên người dùng còn trống!",
     "signUpToClaim": "Đăng ký ngay để nhận",

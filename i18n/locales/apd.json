@@ -1530,6 +1530,10 @@
     "returnHome": "ارجع للرئيسية"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "البوست ده ما متوفر",
+      "commentUnavailable": "التعليق ده ما بقى متوفر"
+    },
     "back": "ارجع",
     "usernameAvailable": "اسم المستخدم متاح!",
     "signUpToClaim": "سجّل للحصول عليهو",

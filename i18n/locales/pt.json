@@ -1587,6 +1587,10 @@
     "returnHome": "Voltar ao início"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Esta publicação não está disponível",
+      "commentUnavailable": "Este comentário já não está disponível"
+    },
     "back": "Voltar",
     "usernameAvailable": "Nome disponível!",
     "signUpToClaim": "Cadastre-se para reivindicar",

@@ -1563,6 +1563,10 @@
     "returnHome": "Ku Noqo Guriga"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Qoraalkani waa mid aan la heli karin.",
+      "commentUnavailable": "Faalladan mar dambe lama heli karo."
+    },
     "back": "Dib",
     "usernameAvailable": "Magaca isticmaalaha waa la heli karaa!",
     "signUpToClaim": "Maanta isdiiwaangeli si aad u hesho",

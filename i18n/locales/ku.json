@@ -1446,6 +1446,10 @@
     "returnHome": "Vegere Malê"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "ئەم پۆستە بەردەست نییە",
+      "commentUnavailable": "ئەم کۆمێنتە ئیتر بەردەست نییە"
+    },
     "back": "Paş",
     "usernameAvailable": "Navê bikarhêner peyda ye!",
     "signUpToClaim": "Îro qeyd bibin ku bidest bixin",

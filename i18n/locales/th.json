@@ -1805,6 +1805,10 @@
     "returnHome": "Return Home"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "โพสต์นี้ไม่พร้อมใช้งาน",
+      "commentUnavailable": "ความคิดเห็นนี้ไม่มีแล้ว"
+    },
     "back": "ย้อนกลับ",
     "usernameAvailable": "ชื่อผู้ใช้นี้ว่างอยู่!",
     "signUpToClaim": "สมัครวันนี้เพื่อรับสิทธิ์",

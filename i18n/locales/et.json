@@ -1571,6 +1571,10 @@
     "returnHome": "Tagasi avalehele"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "See postitus pole saadaval",
+      "commentUnavailable": "See kommentaar pole enam saadaval"
+    },
     "back": "Tagasi",
     "usernameAvailable": "Kasutajanimi on saadaval!",
     "signUpToClaim": "Registreeru täna, et see endale saada",

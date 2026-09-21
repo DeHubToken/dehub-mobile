@@ -1531,6 +1531,10 @@
     "returnHome": "กลับหน้าหลัก"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "โพสต์นี้ไม่พร้อมใช้งาน",
+      "commentUnavailable": "ความคิดเห็นนี้ไม่พร้อมใช้งานอีกต่อไป"
+    },
     "back": "กลับ",
     "usernameAvailable": "ชื่อผู้ใช้ว่างอยู่!",
     "signUpToClaim": "สมัครวันนี้เพื่อจอง",

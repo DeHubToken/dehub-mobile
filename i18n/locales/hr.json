@@ -1572,6 +1572,10 @@
     "returnHome": "Povratak na početnu"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Ova objava nije dostupna",
+      "commentUnavailable": "Ovaj komentar više nije dostupan"
+    },
     "back": "Natrag",
     "usernameAvailable": "Korisničko ime dostupno!",
     "signUpToClaim": "Prijavite se danas da biste preuzeli",

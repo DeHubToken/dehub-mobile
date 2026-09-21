@@ -1547,6 +1547,10 @@
     "returnHome": "ናብ ገዛ ተመለስ"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "እዚ ጽሑፍ እዚ ኣይተረኽበን ።",
+      "commentUnavailable": "እዚ ሓሳብ እዚ ሕጂ ኣይተረኽበን ።"
+    },
     "back": "ተመለስ",
     "usernameAvailable": "ስም ተጠቃሚ ኣሎ!",
     "signUpToClaim": "ንምሓዝ ሎሚ ተመዝገብ",

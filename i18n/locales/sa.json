@@ -1544,6 +1544,10 @@
     "returnHome": "गृहं प्रतिगच्छतु"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "इदं पदं अप्राप्य",
+      "commentUnavailable": "अयं वर्गः इदानीं न उपलभ्यते ।"
+    },
     "back": "प्रतिगच्छतु",
     "usernameAvailable": "उपयोक्तृनाम उपलभ्यते!",
     "signUpToClaim": "दावीकर्तुं अद्य पञ्जीकुर्वन्तु",

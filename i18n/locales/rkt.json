@@ -120,6 +120,10 @@
     "mentioned": "যাদের নাম নেওয়া হইছে"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "এই পোস্টটি উপলভ্য নয়",
+      "commentUnavailable": "এই মন্তব্যটি আর উপলভ্য নয়"
+    },
     "posts": "পোস্ট",
     "replies": "জবাব",
     "media": "মিডিয়া",

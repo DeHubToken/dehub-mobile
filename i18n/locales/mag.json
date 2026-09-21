@@ -1543,6 +1543,10 @@
     "returnHome": "घर वापस जाओ"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "ई पोस्ट के की ई प्रस्ताव अभी जारी हइ?",
+      "commentUnavailable": "ठहर, पत्र अभियो तैयार नयँ हइ ।"
+    },
     "back": "वापस",
     "usernameAvailable": "यूजरनेम उपलब्ध बा!",
     "signUpToClaim": "आज साइन अप करके लो",

@@ -1557,6 +1557,10 @@
     "returnHome": "Басты бетке қайту"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Бұл пост қол жетімді емес",
+      "commentUnavailable": "Бұл түсініктеме енді қол жетімді емес"
+    },
     "back": "Артқа",
     "usernameAvailable": "Пайдаланушы аты бос!",
     "signUpToClaim": "Алу үшін тіркеліңіз",

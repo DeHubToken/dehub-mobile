@@ -1536,6 +1536,10 @@
     "returnHome": "Veradardel glkhavaorej"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Այս գրառումն անհասանելի է",
+      "commentUnavailable": "Այս մեկնաբանությունն այլևս հասանելի չէ"
+    },
     "back": "Hed",
     "usernameAvailable": "Ogtvoroghi anouneh hasaneli e!",
     "signUpToClaim": "Grantsvek ayso stahalyalou hamar",

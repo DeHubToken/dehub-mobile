@@ -1422,6 +1422,10 @@
     "attachmentTooLarge": "प्रत्येक फाइल 20MB पेक्षा कमी असावी"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "ही पोस्ट अनुपलब्ध आहे",
+      "commentUnavailable": "ही टिप्पणी यापुढे उपलब्ध नाही"
+    },
     "back": "मागे",
     "usernameAvailable": "वापरकर्तानाव उपलब्ध आहे!",
     "signUpToClaim": "मिळवण्यासाठी साइन अप करा",
