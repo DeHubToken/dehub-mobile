@@ -366,6 +366,7 @@ export default function AffiliateScreen() {
             hint={t("affiliate.residual", "residual · perpetual")}
           />
         </View>
+        <Text style={styles.statNote}>{t("affiliate.selfVisitsExcluded")}</Text>
 
         <View style={styles.card}>
           <Text style={styles.cardTitle}>{t("affiliate.customizeTitle")}</Text>
@@ -660,6 +661,7 @@ const styles = StyleSheet.create({
   },
   statValue: { color: "#FFFFFF", fontSize: 22, fontWeight: "700", marginTop: 8 },
   statHint: { color: "#A1A1AA", fontSize: 12, marginTop: 4 },
+  statNote: { color: "#71717A", fontSize: 12, lineHeight: 17, marginTop: -8, marginBottom: 16 },
   statSkeleton: {
     height: 26,
     width: 80,

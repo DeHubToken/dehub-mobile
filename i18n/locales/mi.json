@@ -2465,7 +2465,8 @@
     "livePreview": "Arokite ora",
     "publishChanges": "Whakaputa panonitanga",
     "pagePublished": "Kua whakaputaina te whārangi pōwhiri",
-    "pageSaveFailed": "Kāore i taea te tiaki i te whārangi pōwhiri"
+    "pageSaveFailed": "Kāore i taea te tiaki i te whārangi pōwhiri",
+    "selfVisitsExcluded": "Ko to koutou ake haerenga ki to koutou hononga e kore e tatau."
   },
   "top100": {
     "title": "Runga 100",

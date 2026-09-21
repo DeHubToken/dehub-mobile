@@ -2482,7 +2482,8 @@
     "livePreview": "Live-forhåndsvisning",
     "publishChanges": "Udgiv ændringer",
     "pagePublished": "Invitationssiden er udgivet",
-    "pageSaveFailed": "Kunne ikke gemme invitationssiden"
+    "pageSaveFailed": "Kunne ikke gemme invitationssiden",
+    "selfVisitsExcluded": "Dine egne besøg på dit link tælles ikke med."
   },
   "top100": {
     "title": "Top 100",

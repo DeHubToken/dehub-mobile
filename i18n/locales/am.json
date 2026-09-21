@@ -2483,7 +2483,8 @@
     "livePreview": "ቀጥታ ቅድመ እይታ",
     "publishChanges": "ለውጦችን አትም",
     "pagePublished": "የግብዣ ገጽ ታትሟል",
-    "pageSaveFailed": "የግብዣ ገጹን ማስቀመጥ አልተቻለም"
+    "pageSaveFailed": "የግብዣ ገጹን ማስቀመጥ አልተቻለም",
+    "selfVisitsExcluded": "ወደ አገናኝዎ የራስዎ ጉብኝቶች አይቆጠሩም ።"
   },
   "top100": {
     "title": "ከፍተኛ 100",

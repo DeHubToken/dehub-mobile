@@ -2477,7 +2477,8 @@
     "livePreview": "Reaaliaikainen esikatselu",
     "publishChanges": "Julkaise muutokset",
     "pagePublished": "Kutsusivu julkaistu",
-    "pageSaveFailed": "Kutsusivun tallennus epäonnistui"
+    "pageSaveFailed": "Kutsusivun tallennus epäonnistui",
+    "selfVisitsExcluded": "Omia käyntejäsi linkissäsi ei lasketa."
   },
   "top100": {
     "title": "Top 100",

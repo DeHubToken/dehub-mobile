@@ -2436,7 +2436,8 @@
     "livePreview": "ต้นอย่างสด",
     "publishChanges": "เผยแผ่กาน໊เปี่ยนแปง",
     "pagePublished": "เผยแผ่หน้าเจิญแล้ว",
-    "pageSaveFailed": "บันทึกหน้าเจิญบ่ได้"
+    "pageSaveFailed": "บันทึกหน้าเจิญบ่ได้",
+    "selfVisitsExcluded": "การเข้าชมลิงก์ของคุณเองจะไม่ถูกนับ"
   },
   "top100": {
     "title": "เทิงสุด 100",

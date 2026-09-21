@@ -2477,7 +2477,8 @@
     "livePreview": "Onyesho la moja kwa moja",
     "publishChanges": "Chapisha mabadiliko",
     "pagePublished": "Ukurasa wa mwaliko umechapishwa",
-    "pageSaveFailed": "Imeshindwa kuhifadhi ukurasa wa mwaliko"
+    "pageSaveFailed": "Imeshindwa kuhifadhi ukurasa wa mwaliko",
+    "selfVisitsExcluded": "Ziara zako mwenyewe kwenye kiunganishi chako hazihesabiwi."
   },
   "top100": {
     "title": "Bora 100",

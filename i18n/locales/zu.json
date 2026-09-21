@@ -2506,7 +2506,8 @@
     "livePreview": "Ukubuka kuqala okubukhoma",
     "publishChanges": "Shicilela izinguquko",
     "pagePublished": "Ikhasi lesimemo lishicilelwe",
-    "pageSaveFailed": "Ayikwazanga ukulondoloza ikhasi lesimemo"
+    "pageSaveFailed": "Ayikwazanga ukulondoloza ikhasi lesimemo",
+    "selfVisitsExcluded": "Ukuvakasha kwakho siqu kwilinki yakho akubalwa."
   },
   "top100": {
     "title": "Okuphezulu okungu-100",

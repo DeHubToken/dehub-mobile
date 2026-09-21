@@ -2479,7 +2479,8 @@
     "livePreview": "معاينة مباشرة",
     "publishChanges": "انشر التغييرات",
     "pagePublished": "تم نشر صفحة الدعوة",
-    "pageSaveFailed": "تعذّر حفظ صفحة الدعوة"
+    "pageSaveFailed": "تعذّر حفظ صفحة الدعوة",
+    "selfVisitsExcluded": "لا يتم احتساب زياراتك الخاصة إلى رابطك."
   },
   "top100": {
     "title": "أفضل 100",

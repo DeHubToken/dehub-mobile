@@ -2491,7 +2491,8 @@
     "livePreview": "Live-Vorschau",
     "publishChanges": "Änderungen veröffentlichen",
     "pagePublished": "Einladungsseite veröffentlicht",
-    "pageSaveFailed": "Einladungsseite konnte nicht gespeichert werden"
+    "pageSaveFailed": "Einladungsseite konnte nicht gespeichert werden",
+    "selfVisitsExcluded": "Ihre eigenen Besuche auf Ihren Link werden nicht gezählt."
   },
   "top100": {
     "title": "Top 100",

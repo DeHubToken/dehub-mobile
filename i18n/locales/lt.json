@@ -2476,7 +2476,8 @@
     "livePreview": "Tiesioginė peržiūra",
     "publishChanges": "Paskelbti pakeitimus",
     "pagePublished": "Kvietimo puslapis paskelbtas",
-    "pageSaveFailed": "Nepavyko išsaugoti kvietimo puslapio"
+    "pageSaveFailed": "Nepavyko išsaugoti kvietimo puslapio",
+    "selfVisitsExcluded": "Jūsų apsilankymai jūsų nuorodoje neįskaičiuojami."
   },
   "top100": {
     "title": "Top 100",

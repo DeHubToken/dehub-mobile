@@ -2493,7 +2493,8 @@
     "livePreview": "लाइव झलक",
     "publishChanges": "बदलाव प्रकासित करव",
     "pagePublished": "नेवता पेज प्रकासित होगे",
-    "pageSaveFailed": "नेवता पेज सेव नइ हो सकिस"
+    "pageSaveFailed": "नेवता पेज सेव नइ हो सकिस",
+    "selfVisitsExcluded": "अपन लिंक म अपन खुद के यात्रा गिनती नी करे जात हवय ।"
   },
   "top100": {
     "title": "शीर्ष 100",

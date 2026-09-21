@@ -2509,7 +2509,8 @@
     "livePreview": "Kunan qhaway",
     "publishChanges": "Hukchasqakunata willay",
     "pagePublished": "Waqyakuy panqa willasqa",
-    "pageSaveFailed": "Waqyakuy panqata mana waqaychayta atinchu"
+    "pageSaveFailed": "Waqyakuy panqata mana waqaychayta atinchu",
+    "selfVisitsExcluded": "Kikin watukusqaykikuna t&#39;inkiykiman mana yupasqachu."
   },
   "top100": {
     "title": "Hanaq 100",

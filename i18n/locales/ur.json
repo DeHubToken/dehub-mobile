@@ -2478,7 +2478,8 @@
     "livePreview": "لائیو جھلک",
     "publishChanges": "تبدیلیاں شائع کریں",
     "pagePublished": "دعوتی صفحہ شائع ہو گیا",
-    "pageSaveFailed": "دعوتی صفحہ محفوظ نہیں ہو سکا"
+    "pageSaveFailed": "دعوتی صفحہ محفوظ نہیں ہو سکا",
+    "selfVisitsExcluded": "آپ کے لنک پر آپ کے اپنے وزٹ کو شمار نہیں کیا جاتا ہے ۔"
   },
   "top100": {
     "title": "ٹاپ 100",

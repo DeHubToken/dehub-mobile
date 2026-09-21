@@ -2797,7 +2797,8 @@
     "livePreview": "Canlı önizleme",
     "publishChanges": "Değişiklikleri yayınla",
     "pagePublished": "Davet sayfası yayınlandı",
-    "pageSaveFailed": "Davet sayfası kaydedilemedi"
+    "pageSaveFailed": "Davet sayfası kaydedilemedi",
+    "selfVisitsExcluded": "Bağlantınıza yaptığınız kendi ziyaretleriniz sayılmaz."
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",

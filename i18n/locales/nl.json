@@ -2744,7 +2744,8 @@
     "livePreview": "Livevoorbeeld",
     "publishChanges": "Wijzigingen publiceren",
     "pagePublished": "Uitnodigingspagina gepubliceerd",
-    "pageSaveFailed": "Kan uitnodigingspagina niet opslaan"
+    "pageSaveFailed": "Kan uitnodigingspagina niet opslaan",
+    "selfVisitsExcluded": "Uw eigen bezoeken aan uw link worden niet meegeteld."
   },
   "top100": {
     "title": "Top 100",

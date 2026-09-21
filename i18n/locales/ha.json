@@ -2467,7 +2467,8 @@
     "livePreview": "Samfurin kai tsaye",
     "publishChanges": "Buga canje-canje",
     "pagePublished": "An buga shafin gayyata",
-    "pageSaveFailed": "An kasa adana shafin gayyata"
+    "pageSaveFailed": "An kasa adana shafin gayyata",
+    "selfVisitsExcluded": "Ba a ƙidaya ziyarar ku zuwa hanyar haɗin ku ba."
   },
   "top100": {
     "title": "Na sama 100",

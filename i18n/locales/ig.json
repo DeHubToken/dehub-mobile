@@ -2462,7 +2462,8 @@
     "livePreview": "Nlele ndụ",
     "publishChanges": "Bipụta mgbanwe",
     "pagePublished": "E bipụtara ibe ọkpụkpọ òkù",
-    "pageSaveFailed": "Enweghị ike ịchekwa ibe ọkpụkpọ òkù"
+    "pageSaveFailed": "Enweghị ike ịchekwa ibe ọkpụkpọ òkù",
+    "selfVisitsExcluded": "A gụghị ọbịbịa nke gị na njikọ gị."
   },
   "top100": {
     "title": "Kacha elu 100",

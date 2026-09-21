@@ -2465,7 +2465,8 @@
     "livePreview": "Canlı önizləmə",
     "publishChanges": "Dəyişiklikləri dərc et",
     "pagePublished": "Dəvət səhifəsi dərc edildi",
-    "pageSaveFailed": "Dəvət səhifəsi saxlanıla bilmədi"
+    "pageSaveFailed": "Dəvət səhifəsi saxlanıla bilmədi",
+    "selfVisitsExcluded": "Linkinizə daxil olan öz ziyarətləriniz nəzərə alınmır."
   },
   "top100": {
     "title": "İlk 100",

@@ -2473,7 +2473,8 @@
     "livePreview": "Àwòtẹ́lẹ̀ tààrà",
     "publishChanges": "Tẹ àwọn àyípadà jáde",
     "pagePublished": "A ti tẹ ojú-ìwé ìpè jáde",
-    "pageSaveFailed": "Kò ṣeé ṣe láti fi ojú-ìwé ìpè pamọ́"
+    "pageSaveFailed": "Kò ṣeé ṣe láti fi ojú-ìwé ìpè pamọ́",
+    "selfVisitsExcluded": "Àwọn àbẹ̀wò tìrẹ sí àsopọ̀ rẹ kì í ṣe iye."
   },
   "top100": {
     "title": "Òkè 100",
