@@ -1897,6 +1897,10 @@
     "importWallet": "ওয়ালেট ইমপোর্ট করেন",
     "privateKeyPlaceholder": "নিজের প্রাইভেট কী দেন",
     "importExternalWallet": "বাইরার ওয়ালেট ইমপোর্ট করেন",
+    "migrateAccount": "Migrate account",
+    "migrateAccountBody": "Had a DeHub account before? Sign in with the same email, phone, Google or Apple login you used back then. If it matches an earlier account, you will be offered to bring over its wallet, username and balance.",
+    "migrateAccountNote": "A one-time sign-in with the old login retrieves your wallet key securely on this device. It never touches our servers.",
+    "migrateAccountContinue": "Continue to sign in",
     "privateKey": "প্রাইভেট কী",
     "pasteFromClipboard": "ক্লিপবোর্ড থাকি পেস্ট করেন",
     "learnMoreAt": "dehub.io ত আরো জানেন",
@@ -4216,6 +4220,7 @@
     "recoverOnWebsite": "dehub.io-ত ফিরি আনেন",
     "createNewAnyway": "মোর ঐ একাউন্ট নাগে না — তাও নয়া এখান বানান",
     "couldNotRead": "ফিরি পাওয়া ওয়ালেটটা পড়া গেল না। কিছুই বদলায় নাই।",
+    "noOldAccountFound": "There is no earlier DeHub account on this login, so there is nothing to bring over. Setting up a new account instead.",
     "didNotRecoverEither": "ঐ লগইনে এটে দেখা যাওয়া কোনো প্রোফাইলই ফিরি আনে নাই। কিছুই বদলায় নাই। আপনি যে প্রোফাইলটা চান তার মূল সাইন-ইন চেষ্টা করেন।",
     "didNotRecoverThis": "ঐ লগইনে এই প্রোফাইলের নয়, আরেকখান ওয়ালেট ফিরি আনছে। কিছুই বদলায় নাই। যে সাইন-ইন দিয়া এইটা বানা হইছিল সেইটা চেষ্টা করেন।",
     "couldNotRetrieve": "এই ডিভাইসত ঐ পুরান ওয়ালেটটা আনা গেল না। আপনি এলাও তলত dehub.io-ত ইয়াক ফিরি আনির পান।"

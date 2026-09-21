@@ -947,6 +947,10 @@
     "importWallet": "ウォレットをインポート",
     "privateKeyPlaceholder": "秘密鍵を入力してください",
     "importExternalWallet": "外部ウォレットをインポート",
+    "migrateAccount": "アカウントの移行",
+    "migrateAccountBody": "以前にDeHubアカウントをお持ちでしたか？ 以前に使用したのと同じメールアドレス、電話番号、GoogleまたはAppleログイン名でサインインします。 以前のアカウントと一致する場合は、ウォレット、ユーザー名、残高を引き継ぐことができます。",
+    "migrateAccountNote": "古いログインでワンタイムサインインすると、このデバイスでウォレットキーが安全に取得されます。 サーバーには決して触れません。",
+    "migrateAccountContinue": "サインインを続ける",
     "privateKey": "秘密鍵",
     "pasteFromClipboard": "クリップボードから貼り付け",
     "learnMoreAt": "詳しくは dehub.io をご覧ください",
@@ -4348,6 +4352,7 @@
     "recoverOnWebsite": "dehub.io で復元",
     "createNewAnyway": "そのアカウントは不要です。新しく作成します",
     "couldNotRead": "復元したウォレットを読み取れませんでした。何も変更されていません。",
+    "noOldAccountFound": "このログインでは以前のDeHubアカウントが見つからなかったため、引き継ぐものはありません。代わりに新しいアカウントを設定します。",
     "didNotRecoverEither": "そのログインでは、ここに表示されているどのプロフィールも復元できませんでした。何も変わっていません。使いたいプロフィールの元のサインイン方法をお試しください。",
     "didNotRecoverThis": "そのログインで復元されたのは、このプロフィールとは別のウォレットでした。何も変わっていません。最初に作成したサインイン方法をお試しください。",
     "couldNotRetrieve": "この端末では、その古いウォレットを取得できませんでした。下の dehub.io からなら復元できます。"

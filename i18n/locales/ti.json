@@ -1497,6 +1497,10 @@
     "importWallet": "ዋሌት ኣእቱ",
     "privateKeyPlaceholder": "ናትካ ብሕታዊ መፍትሕ ኣእቱ",
     "importExternalWallet": "ናይ ደገ ዋሌት ኣእቱ",
+    "migrateAccount": "ሕሳብ ስደድ",
+    "migrateAccountBody": "ቅድሚ ሕጂ ናይ DeHub መለያ ኣለካዶ? ነቲ ሽዑ እተጠቕመሉ ኢመይል ፡ ስልኪ ፡ ጉግል ወይ ኣፕል ኣመልኪትካ ኣመልኪት ። ምስ ናይ ቀደም ሕሳብ እንተተኣሳሲሩ ፡ ነቲ ቦርሳ ፡ ስምን ሚዛንን ክትመልሶ ኢኻ እትቐርብ ።",
+    "migrateAccountNote": "ሓደ ግዜ ምስ ናይ ቀደም መእተዊ ምዝገባ ፡ ነቲ ናይ ቦርሳ ቁልፊኻ ኣብዚ መሳርሒ እዚ ብደሓን ይመልሶ ። ንኣገልጋሊና ፈጺሙ ኣይትንክፎን እዩ ።",
+    "migrateAccountContinue": "ክትእዝዝ ቀጽል",
     "privateKey": "ብሕታዊ መፍትሕ",
     "pasteFromClipboard": "ካብ ክሊፕቦርድ ለጥፍ",
     "learnMoreAt": "ኣብ dehub.io ተወሳኺ ፍለጥ",
@@ -4234,6 +4238,7 @@
     "recoverOnWebsite": "ኣብ dehub.io መልስ",
     "createNewAnyway": "ነቲ ሕሳብ ኣይደልዮን — ኮይኑ ግና ሓድሽ ፍጠር",
     "couldNotRead": "ነቲ ዝተመልሰ ዋሌት ከነንብቦ ኣይከኣልናን። ዝተቐየረ የለን።",
+    "noOldAccountFound": "ኣብዚ መእተዊ እዚ ኣቐዲሙ DeHub መለያ ስለዘየለ ፡ ክመሓላለፍ ዝኽእል ነገር የለን ። ኣብ ክንዳኡስ ፡ ሓድሽ ሕሳብ ኣዳሉ ።",
     "didNotRecoverEither": "እቲ ምእታው ካብዞም ኣብዚ ዝተራእዩ መለለዪታት ሓደ እኳ ኣይመለሰን። ዝተቐየረ የለን። ነቲ እትደልዮ መለለዪ ናይ መጀመርታ ምእታው ፈትን።",
     "didNotRecoverThis": "እቲ ምእታው ካብዚ መለለዪ እዚ ዝተፈልየ ዋሌት መሊሱ። ዝተቐየረ የለን። ነቲ ብመጀመርታ ዝፈጠሮ ምእታው ፈትን።",
     "couldNotRetrieve": "ኣብዚ መሳርሒ ነቲ ናይ ቀደም ዋሌት ክንረኽቦ ኣይከኣልናን። ኣብ ታሕቲ ኣብ dehub.io ግና ክትመልሶ ትኽእል ኢኻ።"

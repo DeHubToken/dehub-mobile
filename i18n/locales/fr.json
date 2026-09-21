@@ -989,6 +989,10 @@
     "importWallet": "Importer un portefeuille",
     "privateKeyPlaceholder": "Saisissez votre clé privée",
     "importExternalWallet": "Importer un portefeuille externe",
+    "migrateAccount": "Migrer le compte",
+    "migrateAccountBody": "Vous aviez déjà un compte DeHub ? Connectez-vous avec la même adresse e-mail, le même téléphone, la même connexion Google ou Apple que vous utilisiez à l'époque. S'il correspond à un compte antérieur, il vous sera proposé d'apporter son portefeuille, son nom d'utilisateur et son solde.",
+    "migrateAccountNote": "Une connexion unique avec l'ancienne connexion récupère votre clé de portefeuille en toute sécurité sur cet appareil. Il ne touche jamais nos serveurs.",
+    "migrateAccountContinue": "Continuer à vous connecter",
     "privateKey": "Clé privée",
     "pasteFromClipboard": "Coller depuis le presse-papiers",
     "learnMoreAt": "En savoir plus sur dehub.io",
@@ -4356,6 +4360,7 @@
     "recoverOnWebsite": "Récupérer sur dehub.io",
     "createNewAnyway": "Je ne veux pas ce compte — créez-en un nouveau quand même",
     "couldNotRead": "Nous n'avons pas pu lire ce portefeuille récupéré. Rien n'a été modifié.",
+    "noOldAccountFound": "Il n'y a pas de compte DeHub antérieur sur cette connexion, il n'y a donc rien à apporter. Configurer un nouveau compte à la place.",
     "didNotRecoverEither": "Cette connexion n'a récupéré aucun des profils affichés ici. Rien n'a changé. Essayez la connexion d'origine du profil souhaité.",
     "didNotRecoverThis": "Cette connexion a récupéré un portefeuille différent de celui de ce profil. Rien n'a changé. Essayez la connexion qui l'a créé à l'origine.",
     "couldNotRetrieve": "Impossible de récupérer cet ancien portefeuille sur cet appareil. Vous pouvez toujours le récupérer sur dehub.io ci-dessous."

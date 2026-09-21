@@ -1249,6 +1249,10 @@
     "importWallet": "Importer lommebok",
     "privateKeyPlaceholder": "Skriv inn den private nøkkelen din",
     "importExternalWallet": "Importer ekstern lommebok",
+    "migrateAccount": "Migrer konto",
+    "migrateAccountBody": "Hadde du en DeHub-konto før? Logg inn med samme e-postadresse, telefonnummer, Google- eller Apple-pålogging som du brukte den gang. Hvis den samsvarer med en tidligere konto, vil du bli bedt om å ta med lommeboken, brukernavnet og saldoen.",
+    "migrateAccountNote": "Én gangs innlogging med den gamle innloggingen henter lommeboknøkkelen din sikkert på denne enheten. Den berører aldri serverne våre.",
+    "migrateAccountContinue": "Fortsett å logge inn",
     "privateKey": "Privat nøkkel",
     "pasteFromClipboard": "Lim inn fra utklippstavlen",
     "learnMoreAt": "Les mer på dehub.io",
@@ -4265,6 +4269,7 @@
     "recoverOnWebsite": "Gjenopprett på dehub.io",
     "createNewAnyway": "Jeg vil ikke ha den kontoen — opprett en ny likevel",
     "couldNotRead": "Vi kunne ikke lese den gjenopprettede lommeboken. Ingenting ble endret.",
+    "noOldAccountFound": "Det finnes ingen tidligere DeHub-konto på denne påloggingen, så det er ingenting å ta med seg. Opprett en ny konto i stedet.",
     "didNotRecoverEither": "Den innloggingen gjenopprettet ingen av profilene som vises her. Ingenting ble endret. Prøv den opprinnelige innloggingen for profilen du vil ha.",
     "didNotRecoverThis": "Den innloggingen gjenopprettet en annen lommebok enn denne profilens. Ingenting ble endret. Prøv innloggingen som opprinnelig opprettet den.",
     "couldNotRetrieve": "Fikk ikke hentet den gamle lommeboken på denne enheten. Du kan fortsatt gjenopprette den på dehub.io nedenfor."

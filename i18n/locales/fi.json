@@ -1253,6 +1253,10 @@
     "importWallet": "Tuo lompakko",
     "privateKeyPlaceholder": "Syötä yksityinen avaimesi",
     "importExternalWallet": "Tuo ulkoinen lompakko",
+    "migrateAccount": "Siirrä tili",
+    "migrateAccountBody": "Onko sinulla aiemmin ollut DeHub-tili? Kirjaudu sisään samalla sähköpostiosoitteella, puhelimella, Google- tai Apple-kirjautumistunnuksella, jota käytit silloin. Jos se vastaa aiempaa tiliä, sinulle tarjotaan mahdollisuus tuoda sen lompakko, käyttäjänimi ja saldo.",
+    "migrateAccountNote": "Kertakirjautuminen vanhalla kirjautumistunnuksella palauttaa lompakkoavaimesi turvallisesti tälle laitteelle. Se ei koskaan kosketa palvelimiamme.",
+    "migrateAccountContinue": "Jatka kirjautumista",
     "privateKey": "Yksityinen avain",
     "pasteFromClipboard": "Liitä leikepöydältä",
     "learnMoreAt": "Lue lisää osoitteessa dehub.io",
@@ -4281,6 +4285,7 @@
     "recoverOnWebsite": "Palauta osoitteessa dehub.io",
     "createNewAnyway": "En halua sitä tiliä — luo silti uusi",
     "couldNotRead": "Palautettua lompakkoa ei voitu lukea. Mitään ei muutettu.",
+    "noOldAccountFound": "Tällä kirjautumistunnuksella ei ole aiempaa DeHub-tiliä, joten ei ole mitään tuotavaa. Luo sen sijaan uusi tili.",
     "didNotRecoverEither": "Tämä kirjautuminen ei palauttanut kumpaakaan tässä näkyvää profiilia. Mikään ei muuttunut. Kokeile haluamasi profiilin alkuperäistä kirjautumistapaa.",
     "didNotRecoverThis": "Tämä kirjautuminen palautti eri lompakon kuin tämän profiilin. Mikään ei muuttunut. Kokeile kirjautumistapaa, jolla se alun perin luotiin.",
     "couldNotRetrieve": "Vanhaa lompakkoa ei saatu haettua tällä laitteella. Voit silti palauttaa sen alta osoitteessa dehub.io."

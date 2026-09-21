@@ -827,6 +827,10 @@
     "importWallet": "Impor dompet",
     "privateKeyPlaceholder": "Masukkan kunci privat Anda",
     "importExternalWallet": "Impor dompet eksternal",
+    "migrateAccount": "Migrasikan akun",
+    "migrateAccountBody": "Punya akun DeHub sebelumnya? Masuk dengan email, telepon, Google, atau login Apple yang sama dengan yang Anda gunakan saat itu. Jika cocok dengan akun sebelumnya, Anda akan ditawarkan untuk membawa dompet, nama pengguna, dan saldo.",
+    "migrateAccountNote": "Satu kali masuk dengan login lama mengambil kunci dompet Anda dengan aman di perangkat ini. Tidak pernah menyentuh server kami.",
+    "migrateAccountContinue": "Lanjutkan masuk",
     "privateKey": "Kunci privat",
     "pasteFromClipboard": "Tempel dari papan klip",
     "learnMoreAt": "Pelajari lebih lanjut di dehub.io",
@@ -4331,6 +4335,7 @@
     "recoverOnWebsite": "Pulihkan di dehub.io",
     "createNewAnyway": "Saya tidak mau akun itu — buat saja yang baru",
     "couldNotRead": "Kami tidak bisa membaca dompet yang dipulihkan itu. Tidak ada yang berubah.",
+    "noOldAccountFound": "Tidak ada akun DeHub sebelumnya pada login ini, jadi tidak ada yang perlu dibawa. Menyiapkan akun baru sebagai gantinya.",
     "didNotRecoverEither": "Masuk itu tidak memulihkan satu pun profil yang ditampilkan di sini. Tidak ada yang berubah. Coba cara masuk asal untuk profil yang Anda inginkan.",
     "didNotRecoverThis": "Masuk itu memulihkan dompet yang berbeda dari profil ini. Tidak ada yang berubah. Coba cara masuk yang dulu membuatnya.",
     "couldNotRetrieve": "Dompet lama itu tidak bisa diambil di perangkat ini. Anda masih bisa memulihkannya di dehub.io di bawah."

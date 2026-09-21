@@ -826,6 +826,10 @@
     "importWallet": "Importovat peněženku",
     "privateKeyPlaceholder": "Zadejte svůj soukromý klíč",
     "importExternalWallet": "Importovat externí peněženku",
+    "migrateAccount": "Migrovat účet",
+    "migrateAccountBody": "Měl/a jste již dříve účet DeHub? Přihlaste se pomocí stejného e-mailu, telefonu, přihlašovacího jména Google nebo Apple, které jste používali tehdy. Pokud se shoduje s dřívějším účtem, nabídneme vám jeho peněženku, uživatelské jméno a zůstatek.",
+    "migrateAccountNote": "Jednorázové přihlášení se starým přihlášením bezpečně načte klíč od vaší peněženky na tomto zařízení. Nikdy se nedotýká našich serverů.",
+    "migrateAccountContinue": "Pokračovat v přihlašování",
     "privateKey": "Soukromý klíč",
     "pasteFromClipboard": "Vložit ze schránky",
     "learnMoreAt": "Více informací na dehub.io",
@@ -4285,6 +4289,7 @@
     "recoverOnWebsite": "Obnovit na dehub.io",
     "createNewAnyway": "Ten účet nechci — vytvořte raději nový",
     "couldNotRead": "Obnovenou peněženku se nepodařilo přečíst. Nic se nezměnilo.",
+    "noOldAccountFound": "Na tomto přihlášení není žádný dřívější účet DeHub, takže není co přinést. Místo toho si založ nový účet.",
     "didNotRecoverEither": "Toto přihlášení neobnovilo ani jeden ze zde uvedených profilů. Nic se nezměnilo. Zkuste původní přihlášení pro profil, který chcete.",
     "didNotRecoverThis": "Toto přihlášení obnovilo jinou peněženku, než patří k tomuto profilu. Nic se nezměnilo. Zkuste přihlášení, kterým byl původně vytvořen.",
     "couldNotRetrieve": "Tu starou peněženku se na tomto zařízení nepodařilo získat. Stále ji můžete obnovit na dehub.io níže."

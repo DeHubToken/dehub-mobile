@@ -1521,6 +1521,10 @@
     "importWallet": "Importēt maku",
     "privateKeyPlaceholder": "Ievadiet savu privāto atslēgu",
     "importExternalWallet": "Importēt ārējo maku",
+    "migrateAccount": "Migrēt kontu",
+    "migrateAccountBody": "Vai jums iepriekš bija DeHub konts? Pierakstieties ar to pašu e-pasta adresi, tālruni, Google vai Apple pieteikumvārdu, ko toreiz izmantojāt. Ja tas atbilst iepriekšējam kontam, tev tiks piedāvāts paņemt līdzi tā maku, lietotājvārdu un atlikumu.",
+    "migrateAccountNote": "Vienreizēja pierakstīšanās ar veco pieteikumvārdu droši izgūst jūsu maka atslēgu šajā ierīcē. Tas nekad neskar mūsu serverus.",
+    "migrateAccountContinue": "Turpināt pierakstīšanos",
     "privateKey": "Privātā atslēga",
     "pasteFromClipboard": "Ielīmēt no starpliktuves",
     "learnMoreAt": "Uzziniet vairāk vietnē dehub.io",
@@ -4279,6 +4283,7 @@
     "recoverOnWebsite": "Atgūt vietnē dehub.io",
     "createNewAnyway": "Es nevēlos to kontu — izveidojiet jaunu",
     "couldNotRead": "Neizdevās nolasīt atgūto maku. Nekas netika mainīts.",
+    "noOldAccountFound": "Šajā pieteikumvārdā nav iepriekšēja DeHub konta, tāpēc nav ko pārnest. Tā vietā izveidojiet jaunu kontu.",
     "didNotRecoverEither": "Šī pieteikšanās neatguva nevienu šeit redzamo profilu. Nekas nemainījās. Izmēģiniet vēlamā profila sākotnējo pieteikšanos.",
     "didNotRecoverThis": "Šī pieteikšanās atguva citu maku, nevis šī profila. Nekas nemainījās. Izmēģiniet pieteikšanos, ar kuru tas sākotnēji tika izveidots.",
     "couldNotRetrieve": "Šajā ierīcē neizdevās iegūt to veco maku. Jūs joprojām varat to atgūt vietnē dehub.io zemāk."

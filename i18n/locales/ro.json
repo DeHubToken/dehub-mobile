@@ -1495,6 +1495,10 @@
     "importWallet": "Importă portofel",
     "privateKeyPlaceholder": "Introdu cheia ta privată",
     "importExternalWallet": "Importă portofel extern",
+    "migrateAccount": "Migrează contul",
+    "migrateAccountBody": "Ai avut deja un cont DeHub? Autentifică-te cu același e-mail, număr de telefon, cont Google sau Apple pe care l-ai folosit atunci. Dacă se potrivește cu un cont anterior, ți se va oferi posibilitatea de a-ți transfera portofelul, numele de utilizator și soldul.",
+    "migrateAccountNote": "O singură autentificare cu vechiul login îți va prelua cheia portofelului în siguranță pe acest dispozitiv. Aceasta nu atinge niciodată serverele noastre.",
+    "migrateAccountContinue": "Continuă pentru a te autentifica",
     "privateKey": "Cheie privată",
     "pasteFromClipboard": "Lipește din clipboard",
     "learnMoreAt": "Află mai multe pe dehub.io",
@@ -4294,6 +4298,7 @@
     "recoverOnWebsite": "Recuperează pe dehub.io",
     "createNewAnyway": "Nu vreau acel cont — creează totuși unul nou",
     "couldNotRead": "Nu am putut citi portofelul recuperat. Nu s-a schimbat nimic.",
+    "noOldAccountFound": "Nu există un cont DeHub anterior la această autentificare, deci nu este nimic de transferat. Se va crea un cont nou în schimb.",
     "didNotRecoverEither": "Acea conectare nu a recuperat niciunul dintre profilurile afișate aici. Nu s-a schimbat nimic. Încearcă conectarea inițială a profilului dorit.",
     "didNotRecoverThis": "Acea conectare a recuperat un portofel diferit de cel al acestui profil. Nu s-a schimbat nimic. Încearcă conectarea cu care a fost creat inițial.",
     "couldNotRetrieve": "Nu am putut prelua acel portofel vechi pe acest dispozitiv. Îl poți recupera în continuare pe dehub.io mai jos."

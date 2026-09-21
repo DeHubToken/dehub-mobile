@@ -1481,6 +1481,10 @@
     "importWallet": "Wallet importiere",
     "privateKeyPlaceholder": "Gib din private Schlüssel ii",
     "importExternalWallet": "Externi Wallet importiere",
+    "migrateAccount": "Account migriere",
+    "migrateAccountBody": "Schon mal en DeHub Account gha? Log dich mit de glich E-Mail, Telefonnummer, Google oder Apple Login ih, wo du damals bruucht häsch. Wenns zu eme frühere Account passt, wirsch gfrogt, öb du dini Wallet, Username und Saldo übernimmä wottsch.",
+    "migrateAccountNote": "En einmaligi Ihlogge mit em alte Login holt din Wallet Key sicher uf dim Gerät. Er berührt nie üsi Server.",
+    "migrateAccountContinue": "Witer zum Ihlogge",
     "privateKey": "Private Schlüssel",
     "pasteFromClipboard": "Us de Zwischeablag iifüege",
     "learnMoreAt": "Meh erfahre uf dehub.io",
@@ -4269,6 +4273,7 @@
     "recoverOnWebsite": "Uf dehub.io wiederherstelle",
     "createNewAnyway": "Ich wott das Konto nöd — mach trotzdem es neus",
     "couldNotRead": "Mir hend s wiederhergstellt Wallet nöd chöne läse. Es isch nüt gänderet worde.",
+    "noOldAccountFound": "Es git kei früehneri DeHub-Account uf dem Login, drum git's nüt zum überneh. Mir richtet stattdesse en nöie Account ii.",
     "didNotRecoverEither": "Die Aamäldig het kes vo de Profil do wiederhergstellt. Es isch nüt gänderet. Probier d ursprünglich Aamäldig für s Profil, wo du wottsch.",
     "didNotRecoverThis": "Die Aamäldig het es anders Wallet wiederhergstellt als das vo däm Profil. Es isch nüt gänderet. Probier d Aamäldig, wo's ursprünglich gmacht hät.",
     "couldNotRetrieve": "Das alt Wallet het uf däm Grät nöd chöne ghollt werde. Du chasch's aber unte uf dehub.io wiederherstelle."
