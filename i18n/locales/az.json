@@ -1891,6 +1891,11 @@
     "searchDehubFor": "DeHub-da «{{query}}» axtar"
   },
   "comments": {
+    "reportComment": "Şərh bildir",
+    "reportCommentTitle": "Bu şərh haqqında məlumat verin",
+    "reportCommentDescription": "Bu şərhin səhv olduğunu bizə bildirin. Moderatorlarımız onu nəzərdən keçirəcək.",
+    "reportCommentAlready": "Bu şərhi artıq bildirmisiniz.",
+    "reportReasonPlaceholder": "Onu nəzərdən keçirməyimizə kömək edən istənilən təfərrüatı əlavə edin (qeyri-məcburi)",
     "showAll": "Bütün şərhləri göstər",
     "discardTitle": "Şərhinizi ləğv edirsiniz?",
     "discardBody": "Qaralama kimi saxlanılıb, qayıtdığınızda burada olacaq.",

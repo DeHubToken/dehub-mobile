@@ -1902,6 +1902,11 @@
     "searchDehubFor": "Otsi DeHubist „{{query}}“"
   },
   "comments": {
+    "reportComment": "Teata kommentaarist",
+    "reportCommentTitle": "Teata sellest kommentaarist",
+    "reportCommentDescription": "Ütle meile, mis selle kommentaariga valesti on, ja meie moderaatorid vaatavad selle üle.",
+    "reportCommentAlready": "Olete sellest kommentaarist juba teatanud.",
+    "reportReasonPlaceholder": "Lisa üksikasjad, mis aitavad meil seda üle vaadata (valikuline)",
     "showAll": "Näita kõiki kommentaare",
     "discardTitle": "Kas loobuda kommentaarist?",
     "discardBody": "See on salvestatud mustandina ja ootab siin, kui tagasi tuled.",

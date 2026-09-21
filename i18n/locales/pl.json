@@ -2165,6 +2165,11 @@
     "searchDehubFor": "Szukaj „{{query}}\" w DeHub"
   },
   "comments": {
+    "reportComment": "Zgłoś komentarz",
+    "reportCommentTitle": "Zgłoś ten komentarz",
+    "reportCommentDescription": "Powiedz nam, co jest nie tak z tym komentarzem, a nasi moderatorzy go sprawdzą.",
+    "reportCommentAlready": "Już zgłosiłeś ten komentarz.",
+    "reportReasonPlaceholder": "Dodaj szczegóły, które pomogą nam go przejrzeć (opcjonalnie)",
     "showAll": "Pokaż wszystkie komentarze",
     "discardTitle": "Odrzucić komentarz?",
     "discardBody": "Zapisaliśmy go jako szkic, więc będzie tu, gdy wrócisz.",

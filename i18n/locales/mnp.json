@@ -1858,6 +1858,11 @@
     "searchDehubFor": "在 DeHub 顶寻「{{query}}」"
   },
   "comments": {
+    "reportComment": "報告評論",
+    "reportCommentTitle": "報告此評論",
+    "reportCommentDescription": "講一下此評論有啥問題，我伲的審核員會來審核。",
+    "reportCommentAlready": "汝已經報告過此評論。",
+    "reportReasonPlaceholder": "加點啥能幫我伲審核的細節（可選）",
     "showAll": "显示所有其评论",
     "discardTitle": "要放掉你其评论？",
     "discardBody": "已经存做草稿了，转来还会在。",

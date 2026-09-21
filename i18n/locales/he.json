@@ -1904,6 +1904,11 @@
     "searchDehubFor": "חיפוש \"{{query}}\" ב-DeHub"
   },
   "comments": {
+    "reportComment": "דווח על תגובה",
+    "reportCommentTitle": "דיווח על תגובה זו",
+    "reportCommentDescription": "ספרו לנו מה לא בסדר בתגובה הזו והמנהלים שלנו יבדקו אותה.",
+    "reportCommentAlready": "כבר דיווחתם על תגובה זו.",
+    "reportReasonPlaceholder": "הוספת פרטים שיעזרו לנו לבדוק אותו (אופציונלי)",
     "showAll": "להציג כל %d התגובות",
     "discardTitle": "למחוק את התגובה שלך?",
     "discardBody": "היא נשמרה כטיוטה, אז היא תחכה לך כאן.",

@@ -1904,6 +1904,11 @@
     "searchDehubFor": "Cari \"{{query}}\" di DeHub"
   },
   "comments": {
+    "reportComment": "Laporkan komentar",
+    "reportCommentTitle": "Laporkan komentar ini",
+    "reportCommentDescription": "Beri tahu kami apa yang salah dengan komentar ini dan moderator kami akan meninjaunya.",
+    "reportCommentAlready": "Anda telah melaporkan komentar ini.",
+    "reportReasonPlaceholder": "Tambahkan detail apa pun yang membantu kami meninjaunya (opsional)",
     "showAll": "Semua Komentar",
     "discardTitle": "Buang komentar kamu?",
     "discardBody": "Sudah tersimpan sebagai draf, jadi akan ada di sini saat kamu kembali.",

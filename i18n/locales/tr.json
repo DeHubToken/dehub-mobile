@@ -1987,6 +1987,11 @@
     "searchDehubFor": "DeHub'ta \"{{query}}\" ara"
   },
   "comments": {
+    "reportComment": "Yorumu bildir",
+    "reportCommentTitle": "Bu yorumu bildir",
+    "reportCommentDescription": "Bu yorumda neyin yanlış olduğunu bize bildirin, moderatörlerimiz bunu inceleyecektir.",
+    "reportCommentAlready": "Bu yorumu zaten bildirdiniz.",
+    "reportReasonPlaceholder": "İncelememize yardımcı olacak ayrıntıları ekleyin (isteğe bağlı)",
     "showAll": "Tüm Yorumları Göster",
     "discardTitle": "Yorumun silinsin mi?",
     "discardBody": "Taslak olarak kaydedildi, geri döndüğünde burada olacak.",

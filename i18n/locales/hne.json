@@ -1875,6 +1875,11 @@
     "searchDehubFor": "DeHub म \"{{query}}\" खोजव"
   },
   "comments": {
+    "reportComment": "टिप्पनी रिपोट करव",
+    "reportCommentTitle": "ये टिप्पणी ल फॉलो करे",
+    "reportCommentDescription": "हमन ला बता कि ए टिप्पणी म का गलत हवय अउ हमर मॉडिटरमन एला समीक्षा करहीं ।",
+    "reportCommentAlready": "तुमन ए टिप्पणी ल पहले ही रिपोर्ट करे हव ।",
+    "reportReasonPlaceholder": "हमन ला मदद करे बर कोनो विवरण जोड़ें (वैकल्पिक)",
     "showAll": "सब्बो टिप्पनी देखाव",
     "discardTitle": "अपन कमेंट ल छोड़ देबे?",
     "discardBody": "ये ड्राफ्ट म सहेजा गे हे, लहुटे के बाद इहें मिलही।",

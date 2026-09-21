@@ -2028,6 +2028,11 @@
     "fillRequired": "Please fill in all required fields"
   },
   "comments": {
+    "reportComment": "রিপোর্ট কমেন্ট",
+    "reportCommentTitle": "এই কমেন্টটা রিপোর্ট করুন",
+    "reportCommentDescription": "এই কমেন্টটা কি ভুল আছে তা আমাদের বলুন এবং আমাদের মডারেটররা এটা রিভিউ করবে।",
+    "reportCommentAlready": "আপনি এই কমেন্টটা আগেই রিপোর্ট করেছেন।",
+    "reportReasonPlaceholder": "রিভিউ করতে সাহায্য করে এমন কোনো ডিটেইলস যোগ করুন (ঐচ্ছিক)",
     "showAll": "হকল কমেন্ট দেখাও",
     "discardTitle": "আঁর মন্তব্য বাদ দিবা নি?",
     "discardBody": "ইতা খসড়া হিসাবে রাখা অইয়ে, ফিরি আইলে ইখানে পাইবা।",

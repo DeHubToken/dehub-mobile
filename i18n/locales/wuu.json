@@ -1860,6 +1860,11 @@
     "searchDehubFor": "勒 DeHub 浪寻「{{query}}」"
   },
   "comments": {
+    "reportComment": "举报评论",
+    "reportCommentTitle": "举报此评论",
+    "reportCommentDescription": "请告诉我们此评论有何不妥，我们的管理员会进行审核。",
+    "reportCommentAlready": "您已举报过此评论。",
+    "reportReasonPlaceholder": "可添加有助于我们审核的详细信息（选填）",
     "showAll": "显示所有评论",
     "discardTitle": "要勿要撇脱侬个评论？",
     "discardBody": "已经存做草稿了，转来还有个。",

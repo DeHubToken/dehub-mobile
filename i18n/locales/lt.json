@@ -1902,6 +1902,11 @@
     "searchDehubFor": "Ieškoti „{{query}}“ DeHub svetainėje"
   },
   "comments": {
+    "reportComment": "Pranešti apie komentarą",
+    "reportCommentTitle": "Pranešti apie šį komentarą",
+    "reportCommentDescription": "Papasakokite, kas negerai su šiuo komentaru, ir mūsų moderatoriai jį peržiūrės.",
+    "reportCommentAlready": "Jau pranešėte apie šį komentarą.",
+    "reportReasonPlaceholder": "Pridėkite bet kokią informaciją, kuri padėtų mums ją peržiūrėti (neprivaloma)",
     "showAll": "Rodyti visus %d komentarus",
     "discardTitle": "Atsisakyti komentaro?",
     "discardBody": "Jis išsaugotas kaip juodraštis, tad lauks čia, kai grįši.",

@@ -31,6 +31,7 @@ import type { VoiceNoteResult } from "./VoiceNoteRecorder";
 import GifPicker from "../DM/GifPicker";
 import EmojiSheet from "../Upload/EmojiSheet";
 import GlassTipSheet from "../Tip/GlassTipSheet";
+import ReportModal from "../common/ReportModal";
 import Avatar from "../common/Avatar";
 import { useTranslation } from "react-i18next";
 import MentionSuggestions from "../common/MentionSuggestions";
@@ -186,6 +187,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
   const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
+  // The comment whose Report row was picked; the sheet is aimed at it.
+  const [reportTarget, setReportTarget] = useState<Comment | null>(null);
 
   // Tip-a-comment state + per-comment totals from tip_records
   const [tipComment, setTipComment] = useState<Comment | null>(null);
@@ -1007,6 +1010,13 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     if (contextComment) handleStartEdit(contextComment);
   }, [contextComment, handleStartEdit]);
 
+  // Context menu action: report somebody else's comment
+  const handleContextReport = useCallback(() => {
+    if (!contextComment || !requireAuth) return;
+    const target = contextComment;
+    requireAuth(() => setReportTarget(target));
+  }, [contextComment, requireAuth]);
+
   // Context menu action: like
   const handleContextLike = useCallback(async () => {
     if (!contextComment) return;
@@ -1512,6 +1522,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         onReply={handleContextReply}
         onEdit={contextMeta?.isOwnComment ? handleContextEdit : undefined}
         onDelete={contextMeta?.isOwnComment ? handleContextDelete : undefined}
+        onReport={contextMeta?.isOwnComment || !userAddress ? undefined : handleContextReport}
         onAnchor={
           contextMeta?.isOwnComment && !contextMeta?.isReply && canAnchor
             ? handleContextAnchor
@@ -1527,6 +1538,16 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         onShowLikers={
           contextComment ? () => setLikersCommentId(Number(contextComment.id)) : undefined
         }
+        tokenId={tokenId}
+      />
+
+      {/* Report somebody else's comment. One sheet for the whole section,
+          aimed at whichever comment's Report row was picked. */}
+      <ReportModal
+        visible={reportTarget !== null}
+        onClose={() => setReportTarget(null)}
+        type="comment"
+        commentId={reportTarget?.id}
         tokenId={tokenId}
       />
 

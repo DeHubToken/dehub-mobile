@@ -1891,6 +1891,11 @@
     "searchDehubFor": "Rapua \"{{query}}\" i DeHub"
   },
   "comments": {
+    "reportComment": "Ngā kōrero pūrongo",
+    "reportCommentTitle": "Whakapuaki i tenei korero",
+    "reportCommentDescription": "Korero mai ki a matou he aha te he ki tenei korero, a ka arotakehia e o maatau kaiwhakawhanake.",
+    "reportCommentAlready": "Kua korerotia e koe tenei kōrero.",
+    "reportReasonPlaceholder": "Tāpirihia he taipitopito e āwhina ana i a mātou ki te arotake i a ia (kōwhiringa)",
     "showAll": "Whakaatuhia nga korero katoa",
     "discardTitle": "Whakakorea tō kōrero?",
     "discardBody": "Kua tiakina hei hukihuki, ka noho tonu ki konei ina hoki mai koe.",

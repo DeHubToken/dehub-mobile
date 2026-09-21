@@ -1903,6 +1903,11 @@
     "searchDehubFor": "Kërko „{{query}}” në DeHub"
   },
   "comments": {
+    "reportComment": "Raporto komentin",
+    "reportCommentTitle": "Raporto këtë koment",
+    "reportCommentDescription": "Na thuaj se çfarë nuk shkon me këtë koment dhe moderatorët tanë do ta shqyrtojnë atë.",
+    "reportCommentAlready": "E ke raportuar tashmë këtë koment.",
+    "reportReasonPlaceholder": "Shto çdo detaj që na ndihmon ta shqyrtojmë (me zgjedhje)",
     "showAll": "Të gjitha komentet",
     "discardTitle": "Ta heqësh komentin?",
     "discardBody": "Është ruajtur si skicë, kështu që do të jetë këtu kur të kthehesh.",

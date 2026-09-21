@@ -1907,6 +1907,11 @@
     "searchDehubFor": "Hledat „{{query}}“ na DeHubu"
   },
   "comments": {
+    "reportComment": "Nahlásit komentář",
+    "reportCommentTitle": "Nahlásit tento komentář",
+    "reportCommentDescription": "Řekněte nám, co je na tomto komentáři špatného, a naši moderátoři jej zkontrolují.",
+    "reportCommentAlready": "Tento komentář jste již nahlásili.",
+    "reportReasonPlaceholder": "Přidej všechny podrobnosti, které nám pomohou s jeho kontrolou (nepovinné)",
     "showAll": "Zobrazit všechny komentáře %d",
     "discardTitle": "Zahodit komentář?",
     "discardBody": "Uložili jsme ho jako koncept, takže tu bude, až se vrátíš.",

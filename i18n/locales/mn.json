@@ -1887,6 +1887,11 @@
     "searchDehubFor": "DeHub дээр \"{{query}}\"-г хай"
   },
   "comments": {
+    "reportComment": "Тайлан",
+    "reportCommentTitle": "Энэ сэтгэгдлийг мэдээлэх",
+    "reportCommentDescription": "Энэ сэтгэгдлийг юу буруу байгааг бидэнд хэлээд манай зохицуулагчид хянаж үзэх болно.",
+    "reportCommentAlready": "Та энэ сэтгэгдлийг аль хэдийн мэдээлсэн байна.",
+    "reportReasonPlaceholder": "Хяналт хийхэд тус болох аливаа мэдээллийг нэмэх (заавал биш)",
     "showAll": "Бүх Сэтгэгдэл",
     "discardTitle": "Сэтгэгдлээ хаях уу?",
     "discardBody": "Ноорог болгон хадгалсан тул буцаж ирэхэд энд байх болно.",

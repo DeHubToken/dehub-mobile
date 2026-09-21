@@ -1894,6 +1894,11 @@
     "searchDehubFor": "DeHub 'ਤੇ \"{{query}}\" ਖੋਜੋ"
   },
   "comments": {
+    "reportComment": "ਰਿਪੋਰਟ ਟਿੱਪਣੀ",
+    "reportCommentTitle": "ਇਸ ਟਿੱਪਣੀ ਦੀ ਰਿਪੋਰਟ ਕਰੋ",
+    "reportCommentDescription": "ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਇਸ ਟਿੱਪਣੀ ਵਿੱਚ ਕੀ ਗਲਤ ਹੈ ਅਤੇ ਸਾਡੇ ਸੰਚਾਲਕ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕਰਨਗੇ.",
+    "reportCommentAlready": "ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਇਸ ਟਿੱਪਣੀ ਦੀ ਰਿਪੋਰਟ ਕਰ ਚੁੱਕੇ ਹੋ.",
+    "reportReasonPlaceholder": "ਕੋਈ ਵੀ ਵੇਰਵਾ ਸ਼ਾਮਲ ਕਰੋ ਜੋ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕਰਨ ਵਿੱਚ ਸਾਡੀ ਮਦਦ ਕਰੇ (ਵਿਕਲਪਿਕ)",
     "showAll": "ਟਿੱਪਣੀ:",
     "discardTitle": "ਆਪਣੀ ਟਿੱਪਣੀ ਛੱਡ ਦੇਣੀ ਹੈ?",
     "discardBody": "ਇਹ ਡਰਾਫਟ ਵਜੋਂ ਸੰਭਾਲੀ ਗਈ ਹੈ, ਵਾਪਸ ਆਉਣ ਤੇ ਇੱਥੇ ਹੀ ਮਿਲੇਗੀ।",

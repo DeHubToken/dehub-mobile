@@ -1902,6 +1902,11 @@
     "searchDehubFor": "Meklēt “{{query}}” vietnē DeHub"
   },
   "comments": {
+    "reportComment": "Ziņot par komentāru",
+    "reportCommentTitle": "Ziņot par šo komentāru",
+    "reportCommentDescription": "Pastāstiet mums, kas nav kārtībā ar šo komentāru, un mūsu moderatori to pārskatīs.",
+    "reportCommentAlready": "Jūs jau ziņojāt par šo komentāru.",
+    "reportReasonPlaceholder": "Pievienojiet jebkādu informāciju, kas mums palīdzēs to pārskatīt (neobligāti)",
     "showAll": "Jaunāki komentāri",
     "discardTitle": "Atmest komentāru?",
     "discardBody": "Tas ir saglabāts kā melnraksts, tāpēc būs šeit, kad atgriezīsies.",

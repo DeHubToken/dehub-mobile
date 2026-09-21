@@ -1906,6 +1906,11 @@
     "searchDehubFor": "DeHub پر \"{{query}}\" کھوجو"
   },
   "comments": {
+    "reportComment": "دې تبصرې ته راپور ورکړئ",
+    "reportCommentTitle": "دې تبصرې ته راپور ورکړئ",
+    "reportCommentDescription": "موږ ته ووایاست چې پدې تبصره کې څه غلط دي او زموږ مدیران به یې بیاکتنه وکړي.",
+    "reportCommentAlready": "تاسو دمخه دې تبصرې ته راپور ورکړی دی.",
+    "reportReasonPlaceholder": "هر هغه توضیحات اضافه کړئ چې موږ سره یې په بیاکتنه کې مرسته کوي (اختیاري)",
     "showAll": "Nang show ko tanan nga mga komento",
     "discardTitle": "اپنا تبصرہ چھوڑ دیبے؟",
     "discardBody": "ای ڈرافٹ میں سیو ہے، لوٹے پر اہیں ملے گا۔",

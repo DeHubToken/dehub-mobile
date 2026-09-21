@@ -2214,6 +2214,11 @@
     "searchDehubFor": "Soek “{{query}}” op DeHub"
   },
   "comments": {
+    "reportComment": "Rapporteer kommentaar",
+    "reportCommentTitle": "Rapporteer hierdie kommentaar",
+    "reportCommentDescription": "Vertel ons wat fout is met hierdie kommentaar en ons moderators sal dit hersien.",
+    "reportCommentAlready": "Jy het reeds hierdie kommentaar gerapporteer.",
+    "reportReasonPlaceholder": "Voeg enige besonderhede by wat ons help om dit te hersien (opsioneel)",
     "showAll": "Alle kommentaar",
     "discardTitle": "Kommentaar weggooi?",
     "discardBody": "Dit is as konsep gestoor, so dit sal hier wees wanneer jy terugkom.",
