@@ -2545,7 +2545,8 @@
     "livePreview": "Podgląd na żywo",
     "publishChanges": "Opublikuj zmiany",
     "pagePublished": "Strona zaproszenia opublikowana",
-    "pageSaveFailed": "Nie udało się zapisać strony zaproszenia"
+    "pageSaveFailed": "Nie udało się zapisać strony zaproszenia",
+    "selfVisitsExcluded": "Twoje własne wizyty na Twoim linku nie są liczone."
   },
   "top100": {
     "title": "Top 100",

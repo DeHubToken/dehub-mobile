@@ -2561,7 +2561,8 @@
     "livePreview": "Topi-maso mivantana",
     "publishChanges": "Avoaka ny fanovana",
     "pagePublished": "Navoaka ny pejy fanasana",
-    "pageSaveFailed": "Tsy voatahiry ny pejy fanasana"
+    "pageSaveFailed": "Tsy voatahiry ny pejy fanasana",
+    "selfVisitsExcluded": "Ny fitsidihanao manokana ny rohy alefanao dia tsy raisina."
   },
   "top100": {
     "title": "Ambony 100",

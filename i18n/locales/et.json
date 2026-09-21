@@ -2476,7 +2476,8 @@
     "livePreview": "Reaalajas eelvaade",
     "publishChanges": "Avalda muudatused",
     "pagePublished": "Kutseleht avaldatud",
-    "pageSaveFailed": "Kutselehe salvestamine ebaõnnestus"
+    "pageSaveFailed": "Kutselehe salvestamine ebaõnnestus",
+    "selfVisitsExcluded": "Sinu enda lingi külastusi ei arvestata."
   },
   "top100": {
     "title": "Top 100",

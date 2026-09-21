@@ -2516,7 +2516,8 @@
     "livePreview": "ตัวอย่างสด",
     "publishChanges": "เผยแพร่การเปลี่ยนแปลง",
     "pagePublished": "เผยแพร่หน้าเชิญแล้ว",
-    "pageSaveFailed": "บันทึกหน้าเชิญไม่สำเร็จ"
+    "pageSaveFailed": "บันทึกหน้าเชิญไม่สำเร็จ",
+    "selfVisitsExcluded": "การเข้าชมลิงก์ของคุณเองจะไม่ถูกนับ"
   },
   "top100": {
     "title": "100 อันดับแรก",

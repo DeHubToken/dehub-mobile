@@ -2496,7 +2496,8 @@
     "livePreview": "Aperçu en direct",
     "publishChanges": "Publier les modifications",
     "pagePublished": "Page d'invitation publiée",
-    "pageSaveFailed": "Impossible d'enregistrer la page d'invitation"
+    "pageSaveFailed": "Impossible d'enregistrer la page d'invitation",
+    "selfVisitsExcluded": "Vos propres visites sur votre lien ne sont pas comptabilisées."
   },
   "top100": {
     "title": "Top 100",
@@ -4407,7 +4408,11 @@
     "change24": "Variation de référence sur 24 h",
     "refresh": "Actualiser",
     "updating": "Actualisation…",
-    "tab": { "chart": "Graphique", "book": "Carnet d'ordres", "trade": "Acheter / Vendre" },
+    "tab": {
+      "chart": "Graphique",
+      "book": "Carnet d'ordres",
+      "trade": "Acheter / Vendre"
+    },
     "depth": "Profondeur",
     "depthHint": "DHB cumulés · glissez pour explorer",
     "chartHint": "Référence du marché · USD · glissez pour explorer",
@@ -4449,9 +4454,14 @@
     "unlockWallet": "Déverrouillez votre portefeuille pour continuer.",
     "snapshotError": "Échec de l'actualisation. Le dernier état complet est affiché ; les montants peuvent être périmés.",
     "stage": {
-      "quote": "Lecture du pool…", "wallet": "Déverrouillez ou connectez le portefeuille…", "balance": "Vérification des autorisations…",
-      "tokenApproval": "Confirmez l'autorisation du token…", "permitApproval": "Confirmez l'autorisation de la position…",
-      "submit": "Confirmez la position dans le portefeuille…", "confirm": "En attente de confirmation…", "index": "Inscription de la position…"
+      "quote": "Lecture du pool…",
+      "wallet": "Déverrouillez ou connectez le portefeuille…",
+      "balance": "Vérification des autorisations…",
+      "tokenApproval": "Confirmez l'autorisation du token…",
+      "permitApproval": "Confirmez l'autorisation de la position…",
+      "submit": "Confirmez la position dans le portefeuille…",
+      "confirm": "En attente de confirmation…",
+      "index": "Inscription de la position…"
     },
     "title": "DHB / USDC",
     "heading": "DHB / USDC",

@@ -2442,7 +2442,8 @@
     "livePreview": "ຕົວຢ່າງສົດ",
     "publishChanges": "ເຜີຍແຜ່ການປ່ຽນແປງ",
     "pagePublished": "ເຜີຍແຜ່ໜ້າເຊີນແລ້ວ",
-    "pageSaveFailed": "ບັນທຶກໜ້າເຊີນບໍ່ສຳເລັດ"
+    "pageSaveFailed": "ບັນທຶກໜ້າເຊີນບໍ່ສຳເລັດ",
+    "selfVisitsExcluded": "ການເຂົ້າຊົມລິ້ງຂອງທ່ານເອງຈະບໍ່ຖືກນັບ."
   },
   "top100": {
     "title": "ອັນດັບ 100",

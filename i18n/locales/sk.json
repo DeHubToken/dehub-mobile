@@ -2644,7 +2644,8 @@
     "livePreview": "Živý náhľad",
     "publishChanges": "Publikovať zmeny",
     "pagePublished": "Pozývacia stránka bola publikovaná",
-    "pageSaveFailed": "Pozývaciu stránku sa nepodarilo uložiť"
+    "pageSaveFailed": "Pozývaciu stránku sa nepodarilo uložiť",
+    "selfVisitsExcluded": "Vaše vlastné návštevy vášho odkazu sa nezapočítavajú."
   },
   "top100": {
     "title": "Top 100",

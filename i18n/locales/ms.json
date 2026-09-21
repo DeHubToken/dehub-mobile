@@ -2739,7 +2739,8 @@
     "livePreview": "Pratonton langsung",
     "publishChanges": "Terbitkan perubahan",
     "pagePublished": "Halaman jemputan diterbitkan",
-    "pageSaveFailed": "Tidak dapat menyimpan halaman jemputan"
+    "pageSaveFailed": "Tidak dapat menyimpan halaman jemputan",
+    "selfVisitsExcluded": "Lawatan anda sendiri ke pautan anda tidak dikira."
   },
   "top100": {
     "title": "Top 100",

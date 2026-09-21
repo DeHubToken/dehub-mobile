@@ -2531,7 +2531,8 @@
     "livePreview": "Jonli ko'rib chiqish",
     "publishChanges": "O'zgarishlarni chop etish",
     "pagePublished": "Taklif sahifasi chop etildi",
-    "pageSaveFailed": "Taklif sahifasini saqlab bo'lmadi"
+    "pageSaveFailed": "Taklif sahifasini saqlab bo'lmadi",
+    "selfVisitsExcluded": "Havolangizga shaxsiy tashriflaringiz hisobga olinmaydi."
   },
   "top100": {
     "title": "Top 100",

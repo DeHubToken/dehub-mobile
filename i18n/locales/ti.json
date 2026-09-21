@@ -2452,7 +2452,8 @@
     "livePreview": "ቀጥታ ቅድመ ምርኣይ",
     "publishChanges": "ለውጥታት ኣውጽእ",
     "pagePublished": "ናይ ዕድመ ገጽ ወጺኡ",
-    "pageSaveFailed": "ናይ ዕድመ ገጽ ክዕቀብ ኣይተኻእለን"
+    "pageSaveFailed": "ናይ ዕድመ ገጽ ክዕቀብ ኣይተኻእለን",
+    "selfVisitsExcluded": "ናይ ገዛእ ርእስኻ ምብጻሕ ናብ ትሕዝቶኻ ኣይቑጸርን እዩ ።"
   },
   "top100": {
     "title": "ላዕለዎት 100",

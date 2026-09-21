@@ -2656,7 +2656,8 @@
     "livePreview": "Live preview",
     "publishChanges": "I-publish ang mga pagbabago",
     "pagePublished": "Na-publish ang invite page",
-    "pageSaveFailed": "Hindi ma-save ang invite page"
+    "pageSaveFailed": "Hindi ma-save ang invite page",
+    "selfVisitsExcluded": "Ang iyong sariling mga pagbisita sa iyong link ay hindi binibilang."
   },
   "top100": {
     "title": "Top 100",

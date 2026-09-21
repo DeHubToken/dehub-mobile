@@ -2478,7 +2478,8 @@
     "livePreview": "实时预览",
     "publishChanges": "发布更改",
     "pagePublished": "邀请页已发布",
-    "pageSaveFailed": "无法保存邀请页"
+    "pageSaveFailed": "无法保存邀请页",
+    "selfVisitsExcluded": "您自己对链接的访问不计入。"
   },
   "top100": {
     "title": "头 100",

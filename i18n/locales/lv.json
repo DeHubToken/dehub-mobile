@@ -2476,7 +2476,8 @@
     "livePreview": "Tiešais priekšskatījums",
     "publishChanges": "Publicēt izmaiņas",
     "pagePublished": "Ielūguma lapa publicēta",
-    "pageSaveFailed": "Neizdevās saglabāt ielūguma lapu"
+    "pageSaveFailed": "Neizdevās saglabāt ielūguma lapu",
+    "selfVisitsExcluded": "Jūsu pašu saites apmeklējumi netiek ieskaitīti."
   },
   "top100": {
     "title": "Top 100",

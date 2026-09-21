@@ -2436,7 +2436,8 @@
     "livePreview": "Pratinjau langsung",
     "publishChanges": "Terbitake owahan",
     "pagePublished": "Kaca undangan wis diterbitake",
-    "pageSaveFailed": "Ora bisa nyimpen kaca undangan"
+    "pageSaveFailed": "Ora bisa nyimpen kaca undangan",
+    "selfVisitsExcluded": "Kunjungan sampeyan dhewe menyang link sampeyan ora diitung."
   },
   "top100": {
     "title": "Ndhuwur 100",
