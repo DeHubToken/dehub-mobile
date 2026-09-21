@@ -1883,7 +1883,25 @@
     "active": "Masu aiki",
     "noActiveNow": "Babu shawarwari masu aiki a yanzu",
     "subtitle": "Ka kada kuri'a kan shawarwarin da ke tsara dandamalin",
-    "loadFailed": "An kasa loda shawarwari"
+    "loadFailed": "An kasa loda shawarwari",
+    "forLabel": "domin",
+    "againstLabel": "A kan",
+    "discussion": {
+      "title": "Tattaunawa",
+      "intro": "Tambayi tambayoyi masu biyowa ko tattauna shawarwarin kafin ka kada kuri'a.",
+      "reply": "Amsa",
+      "replyingTo": "Amsa zuwa {{name}}",
+      "writeReply": "Rubuta amsa",
+      "edited": "gyaran",
+      "showMoreReplies": "Nuna {{count}} karin martani",
+      "showMoreReplies_one": "Nuna {{count}} karin amsa",
+      "deleteTitle": "Share wannan sharhi?",
+      "deleteDescription": "Wannan yana kawar da tsokaci da amsoshinsa ga kowa da kowa.",
+      "signInToComment": "Shiga don shiga tattaunawar",
+      "empty": "Babu tambayoyi har yanzu. Fara tattaunawar.",
+      "joinOnProposal": "Shiga cikin tattaunawar",
+      "authorChip": "Mawallafi mai gabatarwa"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Labarin gari",

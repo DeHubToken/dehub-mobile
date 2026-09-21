@@ -1858,7 +1858,25 @@
     "active": "Aktiiviset",
     "noActiveNow": "Ei aktiivisia ehdotuksia juuri nyt",
     "subtitle": "Äänestä ehdotuksista, jotka muovaavat alustaa",
-    "loadFailed": "Ehdotuksia ei voitu ladata"
+    "loadFailed": "Ehdotuksia ei voitu ladata",
+    "forLabel": "Tietoa",
+    "againstLabel": "Vastaan",
+    "discussion": {
+      "title": "Keskustelu",
+      "intro": "Esitä jatkokysymyksiä tai keskustele ehdotuksesta ennen äänestystä.",
+      "reply": "Vastaa",
+      "replyingTo": "Vastataan käyttäjälle {{name}}",
+      "writeReply": "Kirjoita vastaus",
+      "edited": "muokattu",
+      "showMoreReplies": "Näytä {{count}} vastausta lisää",
+      "showMoreReplies_one": "Näytä vielä {{count}} vastausta",
+      "deleteTitle": "Poistetaanko tämä kommentti?",
+      "deleteDescription": "Tämä poistaa kommentin ja sen vastaukset kaikilta.",
+      "signInToComment": "Kirjaudu sisään liittyäksesi keskusteluun",
+      "empty": "Ei vielä kysymyksiä. Aloita keskustelu.",
+      "joinOnProposal": "Liity keskusteluun",
+      "authorChip": "Ehdotuksen tekijä"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Puheenaiheena",

@@ -1010,7 +1010,25 @@
     "active": "Aktief",
     "noActiveNow": "Geen aktiewe voorstelle op die oomblik nie",
     "subtitle": "Stem oor voorstelle wat die platform vorm",
-    "loadFailed": "Kon nie voorstelle laai nie"
+    "loadFailed": "Kon nie voorstelle laai nie",
+    "forLabel": "vir",
+    "againstLabel": "teen",
+    "discussion": {
+      "title": "Bespreking",
+      "intro": "Stel opvolgvrae of bespreek die voorstel voordat u stem.",
+      "reply": "Antwoord",
+      "replyingTo": "Reageer op {{name}}",
+      "writeReply": "Skryf 'n antwoord",
+      "edited": "geredigeer",
+      "showMoreReplies": "Vertoon {{count}} meer antwoorde",
+      "showMoreReplies_one": "Wys {{count}} meer antwoord",
+      "deleteTitle": "Skrap hierdie kommentaar?",
+      "deleteDescription": "Dit verwyder die kommentaar en sy antwoorde vir almal.",
+      "signInToComment": "Teken in om by die bespreking aan te sluit",
+      "empty": "Nog geen vrae nie. Begin die bespreking.",
+      "joinOnProposal": "Sluit aan by die bespreking",
+      "authorChip": "Voorstel outeur"
+    }
   },
   "careers": {
     "title": "Loopbane",

@@ -1892,7 +1892,25 @@
     "active": "Aktiivsed",
     "noActiveNow": "Praegu pole aktiivseid ettepanekuid",
     "subtitle": "Hääleta ettepanekute üle, mis kujundavad platvormi",
-    "loadFailed": "Ettepanekuid ei õnnestunud laadida"
+    "loadFailed": "Ettepanekuid ei õnnestunud laadida",
+    "forLabel": "Kasutamine",
+    "againstLabel": "vastu",
+    "discussion": {
+      "title": "Arutelu",
+      "intro": "Esita enne hääletamist täiendavaid küsimusi või aruta ettepanekut.",
+      "reply": "Vasta",
+      "replyingTo": "Vastab kasutajale {{name}}",
+      "writeReply": "Kirjuta vastus",
+      "edited": "muudetud",
+      "showMoreReplies": "Kuva veel {{count}} vastust",
+      "showMoreReplies_one": "Näita veel {{count}} vastust",
+      "deleteTitle": "Kas kustutada see kommentaar?",
+      "deleteDescription": "See eemaldab kommentaari ja selle vastused kõigi jaoks.",
+      "signInToComment": "Aruteluga liitumiseks logi sisse",
+      "empty": "Küsimusi pole veel. Alustage arutelu.",
+      "joinOnProposal": "Liitu aruteluga",
+      "authorChip": "Ettepaneku autor"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Linna jutt",

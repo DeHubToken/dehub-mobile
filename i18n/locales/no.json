@@ -1854,7 +1854,24 @@
     "active": "Aktive",
     "noActiveNow": "Ingen aktive forslag akkurat nå",
     "subtitle": "Stem på forslag som former plattformen",
-    "loadFailed": "Kunne ikke laste forslag"
+    "loadFailed": "Kunne ikke laste forslag",
+    "forLabel": "For",
+    "againstLabel": "Mot",
+    "discussion": {
+      "title": "Samtale",
+      "intro": "Still oppfølgingsspørsmål eller diskuter forslaget før du stemmer.",
+      "reply": "Svar",
+      "replyingTo": "Svarer til {{name}}",
+      "writeReply": "Skriv et svar",
+      "edited": "redigert",
+      "showMoreReplies_one": "Vis {{count}} flere svar",
+      "deleteTitle": "Slett denne kommentaren",
+      "deleteDescription": "Dette fjerner kommentaren og svarene for alle.",
+      "signInToComment": "Logg inn for å delta i diskusjonen",
+      "empty": "Ingen spørsmål ennå. Start diskusjonen.",
+      "joinOnProposal": "Bli med i diskusjonen",
+      "authorChip": "Forslagsforfatter"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Snakkisen i byen",

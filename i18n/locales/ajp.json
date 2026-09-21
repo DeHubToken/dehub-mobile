@@ -1850,7 +1850,25 @@
     "active": "نشطة",
     "noActiveNow": "ما في مقترحات نشطة هلأ",
     "subtitle": "صوّت على المقترحات يلي بتشكل المنصة",
-    "loadFailed": "ما قدرنا نحمّل المقترحات"
+    "loadFailed": "ما قدرنا نحمّل المقترحات",
+    "forLabel": "لـ",
+    "againstLabel": "ضد",
+    "discussion": {
+      "title": "مناقشة",
+      "intro": "اطرح أسئلة متابعة أو ناقش الاقتراح قبل التصويت.",
+      "reply": "رد",
+      "replyingTo": "بالرد على {{name}}",
+      "writeReply": "اكتب رداً",
+      "edited": "تم التعديل",
+      "showMoreReplies": "عرض {{count}} ردود أخرى",
+      "showMoreReplies_one": "عرض {{count}} رد آخر",
+      "deleteTitle": "هل تريد حذف هذا التعليق؟",
+      "deleteDescription": "سيؤدي هذا إلى إزالة التعليق وردوده من عند الجميع.",
+      "signInToComment": "سجّل الدخول للانضمام إلى المناقشة",
+      "empty": "لا توجد أسئلة بعد. ابدأ المناقشة.",
+      "joinOnProposal": "انضم إلى المناقشة",
+      "authorChip": "صاحب الاقتراح"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "حديث المدينة",

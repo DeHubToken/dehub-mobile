@@ -1910,7 +1910,25 @@
     "active": "ንቁ",
     "noActiveNow": "አሁን ንቁ ሀሳቦች የሉም",
     "subtitle": "መድረኩን በሚቀርጹ ሀሳቦች ላይ ድምጽ ይስጡ",
-    "loadFailed": "ሀሳቦችን መጫን አልተቻለም"
+    "loadFailed": "ሀሳቦችን መጫን አልተቻለም",
+    "forLabel": "ለ",
+    "againstLabel": "ተቃራኒ",
+    "discussion": {
+      "title": "ውይይት",
+      "intro": "የተከታታይ ጥያቄዎችን ይጠይቁ ወይም ከመምረጥዎ በፊት ሀሳቡን ይወያዩ ።",
+      "reply": "መልስ ይስጡ",
+      "replyingTo": "ለ {{name}} መልስ ይስጡ",
+      "writeReply": "መልስ ይጻፉ",
+      "edited": "አርትዖት",
+      "showMoreReplies": "አሳይ {{count}} ተጨማሪ ምላሾች",
+      "showMoreReplies_one": "አሳይ {{count}} ተጨማሪ መልስ",
+      "deleteTitle": "ይህን አስተያየት ሰርዝ?",
+      "deleteDescription": "ይህ ለሁሉም ሰው አስተያየቱን እና መልሱን ያስወግዳል ።",
+      "signInToComment": "ውይይቱን ለመቀላቀል ይግቡ",
+      "empty": "እስካሁን ምንም ጥያቄዎች የሉም. ውይይቱን ይጀምሩ.",
+      "joinOnProposal": "ውይይቱን ይቀላቀሉ",
+      "authorChip": "ፕሮፖዛል ደራሲ"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "የከተማ ወሬ",

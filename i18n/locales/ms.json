@@ -2349,7 +2349,25 @@
     "active": "Aktif",
     "noActiveNow": "Tiada cadangan aktif buat masa ini",
     "subtitle": "Undi cadangan yang membentuk platform",
-    "loadFailed": "Tidak dapat memuatkan cadangan"
+    "loadFailed": "Tidak dapat memuatkan cadangan",
+    "forLabel": "Misalnya,",
+    "againstLabel": "Disaster",
+    "discussion": {
+      "title": "Perbincangan",
+      "intro": "Tanya soalan susulan atau bincangkan cadangan sebelum anda mengundi.",
+      "reply": "Balas",
+      "replyingTo": "Membalas kepada {{name}}",
+      "writeReply": "Tulis jawapan",
+      "edited": "diedit",
+      "showMoreReplies": "Tunjukkan {{count}} lagi jawapan",
+      "showMoreReplies_one": "Tunjukkan {{count}} lagi jawapan",
+      "deleteTitle": "Hapuskan komen ini?",
+      "deleteDescription": "Ini membuang komen dan jawapannya untuk semua orang.",
+      "signInToComment": "Log masuk untuk menyertai perbincangan",
+      "empty": "Tiada soalan lagi. Mulakan perbincangan.",
+      "joinOnProposal": "Sertai perbincangan",
+      "authorChip": "Pengarang cadangan"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

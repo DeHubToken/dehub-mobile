@@ -1912,7 +1912,25 @@
     "active": "Ativas",
     "noActiveNow": "Sem propostas ativas no momento",
     "subtitle": "Vote nas propostas que moldam a plataforma",
-    "loadFailed": "Não foi possível carregar as propostas"
+    "loadFailed": "Não foi possível carregar as propostas",
+    "forLabel": "Para",
+    "againstLabel": "Contra",
+    "discussion": {
+      "title": "Discussão",
+      "intro": "Faça perguntas de acompanhamento ou discuta a proposta antes de votar.",
+      "reply": "Responder",
+      "replyingTo": "Responder a {{name}}",
+      "writeReply": "Escreva uma resposta",
+      "edited": "editado",
+      "showMoreReplies": "Mostrar mais {{count}} respostas",
+      "showMoreReplies_one": "Mostrar mais {{count}} resposta",
+      "deleteTitle": "Eliminar este comentário?",
+      "deleteDescription": "Isso remove o comentário e suas respostas para todos.",
+      "signInToComment": "Inicie sessão para participar na discussão",
+      "empty": "Ainda não há perguntas. Comece a discussão.",
+      "joinOnProposal": "Participe da discussão",
+      "authorChip": "Autor da proposta"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Assunto do momento",

@@ -1872,7 +1872,23 @@
     "active": "Faol",
     "noActiveNow": "Hozircha faol takliflar yo‘q",
     "subtitle": "Platformani shakllantiruvchi takliflarga ovoz bering",
-    "loadFailed": "Takliflarni yuklab bo‘lmadi"
+    "loadFailed": "Takliflarni yuklab bo‘lmadi",
+    "forLabel": "Quyidagi uchun",
+    "againstLabel": "Qarshi",
+    "discussion": {
+      "title": "Muhokama",
+      "intro": "Ovoz berishdan oldin qo&#39;shimcha savollar bering yoki taklifni muhokama qiling.",
+      "replyingTo": "{{name}} ga javob bermoqda",
+      "writeReply": "Javobni bu erda yozing ...",
+      "showMoreReplies": "{{count}} ko&#39;proq javoblarni ko&#39;rsatish",
+      "showMoreReplies_one": "{{count}} ko&#39;proq javobni ko&#39;rsatish",
+      "deleteTitle": "Bu izoh oʻchirilsinmi?",
+      "deleteDescription": "Bu izoh va unga berilgan javoblarni hamma uchun olib tashlaydi.",
+      "signInToComment": "Muhokamaga qo&#39;shilish uchun tizimga kiring",
+      "empty": "Hali savollar yo&#39;q. Muhokamani boshlang.",
+      "joinOnProposal": "Muhokamaga qo&#39;shiling",
+      "authorChip": "Taklif muallifi"
+    }
   },
   "spaces": {
     "title": "Boʻlimlar",

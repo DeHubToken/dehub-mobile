@@ -1898,7 +1898,25 @@
     "active": "Aktive",
     "noActiveNow": "Ingen aktive forslag lige nu",
     "subtitle": "Stem om forslag, der former platformen",
-    "loadFailed": "Kunne ikke indlæse forslag"
+    "loadFailed": "Kunne ikke indlæse forslag",
+    "forLabel": "Til",
+    "againstLabel": "Mod",
+    "discussion": {
+      "title": "Diskussion",
+      "intro": "Stil opfølgende spørgsmål eller diskuter forslaget, før du stemmer.",
+      "reply": "Svar",
+      "replyingTo": "Svar til {{name}}",
+      "writeReply": "Skriv et svar",
+      "edited": "redigeret",
+      "showMoreReplies": "Vis{{count}} flere svar",
+      "showMoreReplies_one": "Vis{{count}}svar mere",
+      "deleteTitle": "Vil du slette denne kommentar?",
+      "deleteDescription": "Dette fjerner kommentaren og dens svar for alle.",
+      "signInToComment": "Log ind for at deltage i diskussionen",
+      "empty": "Ingen spørgsmål endnu. Start diskussionen.",
+      "joinOnProposal": "Deltag i diskussionen",
+      "authorChip": "Forslagsforfatter"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Byens snak",

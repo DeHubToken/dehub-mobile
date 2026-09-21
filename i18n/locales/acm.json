@@ -1852,7 +1852,25 @@
     "active": "نشطة",
     "noActiveNow": "ماكو مقترحات نشطة هسه",
     "subtitle": "صوّت على المقترحات اللي تشكل المنصة",
-    "loadFailed": "ما گدرنا نحمّل المقترحات"
+    "loadFailed": "ما گدرنا نحمّل المقترحات",
+    "forLabel": "لـ",
+    "againstLabel": "ضد",
+    "discussion": {
+      "title": "مناقشة",
+      "intro": "اطرح أسئلة متابعة أو ناقش الاقتراح قبل التصويت.",
+      "reply": "رد",
+      "replyingTo": "ردًا على {{name}}",
+      "writeReply": "اكتب ردًا",
+      "edited": "محرر",
+      "showMoreReplies": "عرض {{count}} المزيد من الردود",
+      "showMoreReplies_one": "عرض {{count}} رد آخر",
+      "deleteTitle": "هل تريد حذف هذا التعليق؟",
+      "deleteDescription": "سيؤدي هذا إلى إزالة التعليق وردوده للجميع.",
+      "signInToComment": "سجّل الدخول للانضمام إلى المناقشة",
+      "empty": "لا توجد أسئلة بعد. ابدأ المناقشة.",
+      "joinOnProposal": "انضم إلى المناقشة",
+      "authorChip": "صاحب الاقتراح"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "حديث المدينة",

@@ -1850,7 +1850,25 @@
     "active": "进行中",
     "noActiveNow": "当前没有进行中的提案",
     "subtitle": "为塑造平台的提案投票",
-    "loadFailed": "无法加载提案"
+    "loadFailed": "无法加载提案",
+    "forLabel": "为了",
+    "againstLabel": "反对",
+    "discussion": {
+      "title": "讨论",
+      "intro": "在投票前提出后续问题或讨论该提案。",
+      "reply": "回复",
+      "replyingTo": "回复 {{name}}",
+      "writeReply": "写回复",
+      "edited": "已编辑",
+      "showMoreReplies": "显示 {{count}} 更多回复",
+      "showMoreReplies_one": "显示 {{count}} 更多回复",
+      "deleteTitle": "删除此评论？",
+      "deleteDescription": "这将移除该评论及其所有回复。",
+      "signInToComment": "登录以加入讨论",
+      "empty": "尚无问题。开始讨论。",
+      "joinOnProposal": "加入讨论",
+      "authorChip": "提案作者"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "热门话题",

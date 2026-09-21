@@ -1882,7 +1882,25 @@
     "active": "Aktiv",
     "noActiveNow": "Momentan kei aktivi Vorschläg",
     "subtitle": "Stimm über Vorschläg ab, wo d Plattform präged",
-    "loadFailed": "D Vorschläg händ nid chönne glade wärde"
+    "loadFailed": "D Vorschläg händ nid chönne glade wärde",
+    "forLabel": "Für",
+    "againstLabel": "Gäge",
+    "discussion": {
+      "title": "Diskussio",
+      "intro": "Stell nöchti Froge oder diskutiere der Vorschlag, bevor du abstimmisch.",
+      "reply": "Antworte",
+      "replyingTo": "Antworte uf {{name}}",
+      "writeReply": "Schrib e Antwort",
+      "edited": "bearbeitet",
+      "showMoreReplies": "Zeig {{count}} meh Antworte",
+      "showMoreReplies_one": "Zeig {{count}} meh Antwort",
+      "deleteTitle": "Dä Kommentar lösche?",
+      "deleteDescription": "Das entfernt dä Kommentar und sini Antworte für alli.",
+      "signInToComment": "Melde dich a, zum bi de Diskussio mitz'mache",
+      "empty": "No kei Froge. Starte d'Diskussio.",
+      "joinOnProposal": "Mach bi de Diskussio mit",
+      "authorChip": "Vorschlag-Autor"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Stadtgspröch",

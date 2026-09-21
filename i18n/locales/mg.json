@@ -1811,7 +1811,24 @@
     "active": "Mavitrika",
     "noActiveNow": "Tsy misy tolo-kevitra mavitrika amin'izao",
     "subtitle": "Mifidiana tolo-kevitra izay mamolavola ny sehatra",
-    "loadFailed": "Tsy voaloatra ny tolo-kevitra"
+    "loadFailed": "Tsy voaloatra ny tolo-kevitra",
+    "forLabel": "Ny",
+    "againstLabel": "Manohitra",
+    "discussion": {
+      "title": "Fifanakalozan-kevitra",
+      "intro": "Anontanio ny fanontaniana fanaraha-maso na mifanakalo hevitra momba izany alohan'ny hifidiananao.",
+      "reply": "Fanehoan-kevitra",
+      "replyingTo": "Valiny ao amin'ny {{name}}",
+      "writeReply": "Manorata valiny",
+      "edited": "novaina",
+      "showMoreReplies": "Mijere {{count}} valin-",
+      "deleteTitle": "Fafana io fanehoankevitra io?",
+      "deleteDescription": "Izany dia ahitana ny hevitra sy ny valiny ho an'ny rehetra.",
+      "signInToComment": "Midira hanatevin-daharana ny fifanakalozan-kevitra",
+      "empty": "Tsy mbola misy fanontaniana. Atombohy ny fifanakalozan-kevitra.",
+      "joinOnProposal": "Hiditra amin'ny firesahana amin'ny",
+      "authorChip": "Mpanoratra ohabolana"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Resak'olona",

@@ -1893,7 +1893,25 @@
     "active": "Zinazoendelea",
     "noActiveNow": "Hakuna mapendekezo yanayoendelea sasa",
     "subtitle": "Piga kura kwa mapendekezo yanayounda jukwaa",
-    "loadFailed": "Imeshindwa kupakia mapendekezo"
+    "loadFailed": "Imeshindwa kupakia mapendekezo",
+    "forLabel": "Kwa",
+    "againstLabel": "Dhidi ya",
+    "discussion": {
+      "title": "Majadiliano",
+      "intro": "Uliza maswali ya kufuatilia au jadili pendekezo kabla ya kupiga kura.",
+      "reply": "Jibu",
+      "replyingTo": "Anajibu {{name}}",
+      "writeReply": "Andika jibu",
+      "edited": "imehaririwa",
+      "showMoreReplies": "Onyesha {{count}} majibu zaidi",
+      "showMoreReplies_one": "Onyesha {{count}} jibu zaidi",
+      "deleteTitle": "Ungependa kufuta maoni haya?",
+      "deleteDescription": "Hii huondoa maoni na majibu yake kwa kila mtu.",
+      "signInToComment": "Ingia ili ujiunge na majadiliano",
+      "empty": "Hakuna maswali bado. Anza majadiliano.",
+      "joinOnProposal": "Jiunge na majadiliano",
+      "authorChip": "Mwandishi wa pendekezo"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Mazungumzo ya Mji",

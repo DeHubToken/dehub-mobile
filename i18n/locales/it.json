@@ -1908,7 +1908,25 @@
     "active": "Attive",
     "noActiveNow": "Nessuna proposta attiva al momento",
     "subtitle": "Vota le proposte che danno forma alla piattaforma",
-    "loadFailed": "Impossibile caricare le proposte"
+    "loadFailed": "Impossibile caricare le proposte",
+    "forLabel": "Si può prendere in considerazione l’ utilizzo di Metacam sospensione orale per cani per un dosaggio ancora più preciso.",
+    "againstLabel": "Contro",
+    "discussion": {
+      "title": "Discussione",
+      "intro": "Poni domande di follow-up o discuti la proposta prima di votare.",
+      "reply": "Rispondi",
+      "replyingTo": "Risposta a {{name}}",
+      "writeReply": "Scrivi una risposta",
+      "edited": "modificato",
+      "showMoreReplies": "Mostra altre {{count}} risposte",
+      "showMoreReplies_one": "Mostra altre {{count}} risposte",
+      "deleteTitle": "Eliminare questo commento?",
+      "deleteDescription": "Questo rimuove il commento e le sue risposte per tutti.",
+      "signInToComment": "Accedi per partecipare alla discussione",
+      "empty": "Ancora nessuna domanda. Inizia la discussione.",
+      "joinOnProposal": "Partecipa alla discussione",
+      "authorChip": "Autore della proposta"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Di cosa si parla",

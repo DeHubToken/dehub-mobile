@@ -1713,7 +1713,25 @@
     "active": "Hojiirra",
     "noActiveNow": "Amma yaadni hojiirra jiru hin jiru",
     "subtitle": "Yaadota waldorgommii bocan irratti sagalee kenni",
-    "loadFailed": "Yaadota fe'uun hin dandaʼamne"
+    "loadFailed": "Yaadota fe'uun hin dandaʼamne",
+    "forLabel": "F",
+    "againstLabel": "Faallaa",
+    "discussion": {
+      "title": "Marii",
+      "intro": "Sagalee kennuu kee dura gaaffii hordoffii gaafadhu ykn yaada dhihaate irratti mari’adhu.",
+      "reply": "Deebisuu",
+      "replyingTo": "Deebii kennuudhaan {{name}}",
+      "writeReply": "Deebii barreessi",
+      "edited": "gulaalame",
+      "showMoreReplies": "Deebii dabalataa {{count}} agarsiisi",
+      "showMoreReplies_one": "Deebii dabalataa {{count}} agarsiisi",
+      "deleteTitle": "Yaada kana haquu?",
+      "deleteDescription": "Kunis yaada fi deebii isaa hundaaf ni haqa.",
+      "signInToComment": "Marii kana irratti hirmaachuuf galmaa&#39;aa",
+      "empty": "Ammatti gaaffiin hin jiru. Marii jalqabi.",
+      "joinOnProposal": "Marii kana irratti hirmaadhaa",
+      "authorChip": "Barreessaan piropozaalii"
+    }
   },
   "spaces": {
     "title": "Bakkeewwan",

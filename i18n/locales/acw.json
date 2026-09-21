@@ -1851,7 +1851,25 @@
     "active": "نشطة",
     "noActiveNow": "ما في مقترحات نشطة هلق",
     "subtitle": "صوّت على المقترحات يلي بتشكل المنصة",
-    "loadFailed": "ما قدرنا نحمّل المقترحات"
+    "loadFailed": "ما قدرنا نحمّل المقترحات",
+    "forLabel": "لـ",
+    "againstLabel": "ضد",
+    "discussion": {
+      "title": "نقاش",
+      "intro": "اسأل أسئلة متابعة أو ناقش الاقتراح قبل التصويت.",
+      "reply": "رد",
+      "replyingTo": "رد على {{name}}",
+      "writeReply": "اكتب ردًا",
+      "edited": "معدل",
+      "showMoreReplies": "عرض {{count}} ردود أخرى",
+      "showMoreReplies_one": "عرض {{count}} رد آخر",
+      "deleteTitle": "هل تريد حذف هذا التعليق؟",
+      "deleteDescription": "سيؤدي هذا إلى إزالة التعليق وردوده للجميع.",
+      "signInToComment": "سجّل الدخول للانضمام إلى النقاش",
+      "empty": "لا توجد أسئلة بعد. ابدأ النقاش.",
+      "joinOnProposal": "انضم إلى النقاش",
+      "authorChip": "صاحب الاقتراح"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "حديث المدينة",
