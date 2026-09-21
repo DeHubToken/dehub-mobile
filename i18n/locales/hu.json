@@ -3889,7 +3889,60 @@
     "liveChat": "Élő csevegés",
     "pickDate": "Dátum kiválasztása",
     "pickTime": "Időpont kiválasztása",
-    "minTip": "Min. borravaló"
+    "minTip": "Min. borravaló",
+    "progress": {
+      "title": "Streamer szint",
+      "level": "{{level}}. szint",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} perccel több a {{level}}. szint eléréséhez",
+      "rule": "Csak a legalább tíz percig tartó és legalább egy nézővel rendelkező streamek számítanak a szintedhez.",
+      "streak": "{{count}} hetes sorozat",
+      "bestStreak": "Legjobb sorozat: {{count}} hét",
+      "hours": "{{hours}} minősített óra",
+      "minutes": "{{count}} perc",
+      "viewers": "{{count}} néző",
+      "viewCards": "Kártyák megtekintése",
+      "cardsTitle": "Gyűjthető kártyák",
+      "locked": "Zárolva",
+      "earnedOn": "{{date}} szerezve",
+      "recentTitle": "Legutóbbi streamek",
+      "notCounted": "Nem számított",
+      "noStreams": "Indíts streameket, hogy XP-t szerezz.",
+      "card": {
+        "first-light": {
+          "name": "Első fény",
+          "hint": "Teljesítsd az első, számító streamedet."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Streamelj két órát egy menetben."
+        },
+        "night-owl": {
+          "name": "Éjjeli bagoly",
+          "hint": "Fejezd be a streameket éjfél és reggel öt óra között."
+        },
+        "regular": {
+          "name": "Rendszeres",
+          "hint": "Streamelj négy egymást követő héten."
+        },
+        "iron-streak": {
+          "name": "Vassorozat",
+          "hint": "Streamelj tizenkét egymást követő héten."
+        },
+        "crowd": {
+          "name": "Tömeg",
+          "hint": "Tíz ember figyeljen egyszerre."
+        },
+        "century": {
+          "name": "Század",
+          "hint": "Érj el száz órányi minősítést élő adásban."
+        },
+        "legend": {
+          "name": "Jelmagyarázat",
+          "hint": "Érd el a tízes szintet."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Vásárolj ebből az adásból",

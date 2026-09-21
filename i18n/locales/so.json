@@ -3875,7 +3875,60 @@
     "liveChat": "Sheeko toos ah",
     "pickDate": "Dooro taariikhda",
     "pickTime": "Dooro waqtiga",
-    "minTip": "Baqshiish ugu yar"
+    "minTip": "Baqshiish ugu yar",
+    "progress": {
+      "title": "Darajada streamer-ka",
+      "level": "Darajada {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} daqiiqo oo dheeraad ah si aad u gaadho darajada {{level}}",
+      "rule": "Keliya durdurrada socda muddo toban daqiiqo ah oo leh ugu yaraan hal daawade ayaa ku xisaabtamaya darajadaada.",
+      "streak": "{{count}} toddobaad oo isku xigta",
+      "bestStreak": "Guulaha ugu fiican {{count}} toddobaad",
+      "hours": "{{hours}} saacadood oo u qalma",
+      "minutes": "{{count}} daqiiqo",
+      "viewers": "{{count}} daawade",
+      "viewCards": "Kaararka daawashada",
+      "cardsTitle": "Kaararka la uruurin karo",
+      "locked": "La xidhay",
+      "earnedOn": "La helay {{date}}",
+      "recentTitle": "Durdurradii ugu dambeeyay",
+      "notCounted": "Ma xisaabmin",
+      "noStreams": "Noqo mid toos ah si aad u bilowdo inaad kasbato XP.",
+      "card": {
+        "first-light": {
+          "name": "Ifraaxdii ugu horreysay",
+          "hint": "Dhamee durdurkaaga ugu horreeya ee xisaabtamaya."
+        },
+        "marathon": {
+          "name": "Marathon",
+          "hint": "Durdur muddo laba saacadood ah hal fadhi."
+        },
+        "night-owl": {
+          "name": "Qofka habeenkii toosa",
+          "hint": "Dhamee durdurkaaga inta u dhaxaysa saqda dhexe iyo shan subaxnimo."
+        },
+        "regular": {
+          "name": "Caadi",
+          "hint": "Durdur afar toddobaad oo isku xigta."
+        },
+        "iron-streak": {
+          "name": "Durdur bir ah",
+          "hint": "Durdur laba iyo toban toddobaad oo isku xigta."
+        },
+        "crowd": {
+          "name": "Dadweyne",
+          "hint": "Toobad keeno toban qof oo isla markiiba daawanaya."
+        },
+        "century": {
+          "name": "Qarnigii",
+          "hint": "Gaadho boqol saacadood oo u qalma hawada."
+        },
+        "legend": {
+          "name": "Halyeey",
+          "hint": "Darajada 10aad."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Ka iibso daawashadan",

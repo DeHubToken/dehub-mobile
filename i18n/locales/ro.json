@@ -3898,7 +3898,60 @@
     "liveChat": "Chat live",
     "pickDate": "Alege data",
     "pickTime": "Alege ora",
-    "minTip": "Bacșiș minim"
+    "minTip": "Bacșiș minim",
+    "progress": {
+      "title": "Nivel streamer",
+      "level": "Nivel {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} minute calificate în plus pentru a ajunge la nivelul {{level}}",
+      "rule": "Doar streamurile care durează cel puțin zece minute și au cel puțin un spectator contribuie la nivelul tău.",
+      "streak": "{{count}} săptămâni consecutive",
+      "bestStreak": "Cel mai bun streak {{count}} săptămâni",
+      "hours": "{{hours}} ore calificate",
+      "minutes": "{{count}} minute",
+      "viewers": "{{count}} spectatori",
+      "viewCards": "Carduri de vizualizare",
+      "cardsTitle": "Carduri de colecție",
+      "locked": "Blocat",
+      "earnedOn": "Câștigat {{date}}",
+      "recentTitle": "Streamuri recente",
+      "notCounted": "Nu au contat",
+      "noStreams": "Intră live pentru a începe să câștigi XP.",
+      "card": {
+        "first-light": {
+          "name": "Prima lumină",
+          "hint": "Termină primul stream care contează."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Stream pentru două ore într-o singură sesiune."
+        },
+        "night-owl": {
+          "name": "Bufniță de noapte",
+          "hint": "Termină un stream între miezul nopții și ora cinci dimineața."
+        },
+        "regular": {
+          "name": "Regulat",
+          "hint": "Stream în patru săptămâni consecutive."
+        },
+        "iron-streak": {
+          "name": "Streak de fier",
+          "hint": "Stream în douăsprezece săptămâni consecutive."
+        },
+        "crowd": {
+          "name": "Mulțime",
+          "hint": "Zece persoane care urmăresc în același timp."
+        },
+        "century": {
+          "name": "Secol",
+          "hint": "Atinge o sută de ore calificate în emisie."
+        },
+        "legend": {
+          "name": "Legendă",
+          "hint": "Atinge nivelul zece."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Cumpără din această transmisiune",

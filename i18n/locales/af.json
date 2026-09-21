@@ -4002,7 +4002,60 @@
     "liveChat": "Regstreekse klets",
     "pickDate": "Kies datum",
     "pickTime": "Kies tyd",
-    "minTip": "Min. fooi"
+    "minTip": "Min. fooi",
+    "progress": {
+      "title": "Stroomvlak",
+      "level": "Vlak {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} meer kwalifiserende minute om vlak {{level}} te bereik",
+      "rule": "Slegs strome wat tien minute of langer duur met ten minste een kyker tel vir jou vlak.",
+      "streak": "{{count}} week streep",
+      "bestStreak": "Beste streep {{count}} weke",
+      "hours": "{{hours}} kwalifiserende ure",
+      "minutes": "{{count}} minute",
+      "viewers": "{{count}} kykers",
+      "viewCards": "Kaarte wys",
+      "cardsTitle": "Versamelbare kaarte",
+      "locked": "Gesluit",
+      "earnedOn": "Verdien {{date}}",
+      "recentTitle": "Onlangse strome",
+      "notCounted": "Het nie getel nie",
+      "noStreams": "Gaan regstreeks om XP te verdien.",
+      "card": {
+        "first-light": {
+          "name": "Eerste lig",
+          "hint": "Voltooi jou eerste stroom wat tel."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Stroom vir twee uur in een sessie."
+        },
+        "night-owl": {
+          "name": "Naguil",
+          "hint": "Beëindig 'n stroom tussen middernag en vyf in die oggend."
+        },
+        "regular": {
+          "name": "Gereeld",
+          "hint": "Stroom in vier weke agtereenvolgens."
+        },
+        "iron-streak": {
+          "name": "Yster streep",
+          "hint": "Stroom in twaalf weke agtereenvolgens."
+        },
+        "crowd": {
+          "name": "Massa",
+          "hint": "Hê tien mense wat gelyktydig kyk."
+        },
+        "century": {
+          "name": "Eeu",
+          "hint": "Bereik honderd kwalifiserende ure op die lug."
+        },
+        "legend": {
+          "name": "Legende",
+          "hint": "Bereik Level 10."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Koop uit hierdie uitsending",

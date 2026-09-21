@@ -3959,7 +3959,60 @@
     "liveChat": "Chat ao vivo",
     "pickDate": "Escolher data",
     "pickTime": "Escolher hora",
-    "minTip": "Gorjeta mínima"
+    "minTip": "Gorjeta mínima",
+    "progress": {
+      "title": "Nível do streamer",
+      "level": "Nível {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} minutos qualificatórios a mais para alcançar o nível {{level}}",
+      "rule": "Apenas transmissões com duração de dez minutos ou mais e com pelo menos um espectador contam para o seu nível.",
+      "streak": "{{count}} semana de sequência",
+      "bestStreak": "Melhor sequência {{count}} semanas",
+      "hours": "{{hours}} horas qualificatórias",
+      "minutes": "{{count}} minutos",
+      "viewers": "{{count}} espectadores",
+      "viewCards": "Cartas de visualização",
+      "cardsTitle": "Cartas colecionáveis",
+      "locked": "Bloqueado",
+      "earnedOn": "Conquistado {{date}}",
+      "recentTitle": "Transmissões recentes",
+      "notCounted": "Não contou",
+      "noStreams": "Entre ao vivo para começar a ganhar XP.",
+      "card": {
+        "first-light": {
+          "name": "Primeira transmissão",
+          "hint": "Conclua sua primeira transmissão que conta."
+        },
+        "marathon": {
+          "name": "Maratona",
+          "hint": "Transmita por duas horas em uma única sessão."
+        },
+        "night-owl": {
+          "name": "Coruja",
+          "hint": "Termine uma transmissão entre meia-noite e cinco da manhã."
+        },
+        "regular": {
+          "name": "Regular",
+          "hint": "Transmita em quatro semanas seguidas."
+        },
+        "iron-streak": {
+          "name": "Sequência de ferro",
+          "hint": "Transmita em doze semanas seguidas."
+        },
+        "crowd": {
+          "name": "Multidão",
+          "hint": "Tenha dez pessoas assistindo ao mesmo tempo."
+        },
+        "century": {
+          "name": "Século",
+          "hint": "Alcance cem horas qualificadas no ar."
+        },
+        "legend": {
+          "name": "Lenda",
+          "hint": "Alcance o nível dez."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Compre nesta transmissão",

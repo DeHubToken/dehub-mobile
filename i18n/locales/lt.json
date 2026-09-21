@@ -3883,7 +3883,60 @@
     "liveChat": "Tiesioginis pokalbis",
     "pickDate": "Pasirinkti datą",
     "pickTime": "Pasirinkti laiką",
-    "minTip": "Min. arbatpinigiai"
+    "minTip": "Min. arbatpinigiai",
+    "progress": {
+      "title": "Transliuotojo lygis",
+      "level": "Lygis {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} kvalifikacinių minučių iki {{level}} lygio pasiekimo",
+      "rule": "Tik transliacijos, trunkančios dešimt minučių ar ilgiau ir turinčios bent vieną žiūrovą, įskaitomos į jūsų lygį.",
+      "streak": "{{count}} savaitės serija",
+      "bestStreak": "Geriausia serija {{count}} savaitės",
+      "hours": "{{hours}} kvalifikacinės valandos",
+      "minutes": "{{count}} minutės",
+      "viewers": "{{count}} žiūrovai",
+      "viewCards": "Peržiūrėti korteles",
+      "cardsTitle": "Kolekcionuojamos kortelės",
+      "locked": "Užrakinta",
+      "earnedOn": "Uždirbta {{date}}",
+      "recentTitle": "Naujausios transliacijos",
+      "notCounted": "Neįskaityta",
+      "noStreams": "Pradėkite transliuoti, kad pradėtumėte uždirbti XP.",
+      "card": {
+        "first-light": {
+          "name": "Pirmasis šviesulys",
+          "hint": "Užbaikite savo pirmąją įskaitomą transliaciją."
+        },
+        "marathon": {
+          "name": "Maratonas",
+          "hint": "Transliuokite dvi valandas vienoje sesijoje."
+        },
+        "night-owl": {
+          "name": "Naktinė pelėda",
+          "hint": "Baigti transliaciją tarp vidurnakčio ir penktos ryto."
+        },
+        "regular": {
+          "name": "Reguliarus",
+          "hint": "Transliuokite keturias savaites iš eilės."
+        },
+        "iron-streak": {
+          "name": "Geležinė serija",
+          "hint": "Transliuokite dvylika savaičių iš eilės."
+        },
+        "crowd": {
+          "name": "Minia",
+          "hint": "Turėkite dešimt žiūrovų tuo pačiu metu."
+        },
+        "century": {
+          "name": "Šimtmetis",
+          "hint": "Pasiekite šimtą kvalifikacinių valandų ore."
+        },
+        "legend": {
+          "name": "Legenda",
+          "hint": "Pasiekite dešimtą lygį."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Pirkite iš šios transliacijos",

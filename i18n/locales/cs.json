@@ -3889,7 +3889,60 @@
     "liveChat": "Živý chat",
     "pickDate": "Vybrat datum",
     "pickTime": "Vybrat čas",
-    "minTip": "Min. spropitné"
+    "minTip": "Min. spropitné",
+    "progress": {
+      "title": "Úroveň streamera",
+      "level": "Úroveň {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} kvalifikačních minut do dosažení úrovně {{level}}",
+      "rule": "Do úrovně se započítávají pouze streamy, které trvají deset minut nebo déle a mají alespoň jednoho diváka.",
+      "streak": "{{count}} týdenní série",
+      "bestStreak": "Nejlepší série {{count}} týdnů",
+      "hours": "{{hours}} kvalifikačních hodin",
+      "minutes": "{{count}} minut",
+      "viewers": "{{count}} diváků",
+      "viewCards": "Karty zobrazení",
+      "cardsTitle": "Sběratelské karty",
+      "locked": "Zamčeno",
+      "earnedOn": "Získané {{date}}",
+      "recentTitle": "Poslední streamy",
+      "notCounted": "Nezapočítáno",
+      "noStreams": "Začněte streamovat a získejte XP.",
+      "card": {
+        "first-light": {
+          "name": "První světlo",
+          "hint": "Dokončete svůj první stream, který se započítává."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Streamujte dvě hodiny v jedné relaci."
+        },
+        "night-owl": {
+          "name": "Noční sova",
+          "hint": "Ukončete stream mezi půlnocí a pátou hodinou ranní."
+        },
+        "regular": {
+          "name": "Pravidelný",
+          "hint": "Streamujte čtyři týdny v řadě."
+        },
+        "iron-streak": {
+          "name": "Železná série",
+          "hint": "Streamujte dvanáct týdnů v řadě."
+        },
+        "crowd": {
+          "name": "Dav",
+          "hint": "Mějte deset diváků současně."
+        },
+        "century": {
+          "name": "Století",
+          "hint": "Dosáhněte sta kvalifikačních hodin ve vysílání."
+        },
+        "legend": {
+          "name": "Legenda",
+          "hint": "Dosáhněte desáté úrovně."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Nakupujte z tohoto vysílání",

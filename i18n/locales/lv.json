@@ -3883,7 +3883,60 @@
     "liveChat": "Tiešraides tērzēšana",
     "pickDate": "Izvēlieties datumu",
     "pickTime": "Izvēlieties laiku",
-    "minTip": "Min. dzeramnauda"
+    "minTip": "Min. dzeramnauda",
+    "progress": {
+      "title": "Straumes līmenis",
+      "level": "Līmenis {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} vairāk kvalificējošu minūšu, lai sasniegtu {{level}} līmeni",
+      "rule": "Tikai straumes, kas ilgst desmit minūtes vai ilgāk ar vismaz vienu skatītāju, tiek ieskaitītas jūsu līmenim.",
+      "streak": "{{count}} nedēļas sērija",
+      "bestStreak": "Labākā sērija {{count}} nedēļas",
+      "hours": "{{hours}} kvalificējošas stundas",
+      "minutes": "{{count}} minūtes",
+      "viewers": "{{count}} skatītāji",
+      "viewCards": "Skatīt kartītes",
+      "cardsTitle": "Kolekcionējamas kartītes",
+      "locked": "Aizslēgts",
+      "earnedOn": "Nopelnīts {{date}}",
+      "recentTitle": "Nesenās straumes",
+      "notCounted": "Netika ieskaitītas",
+      "noStreams": "Sāciet straumēt, lai sāktu pelnīt XP.",
+      "card": {
+        "first-light": {
+          "name": "Pirmā gaisma",
+          "hint": "Pabeidziet savu pirmo ieskaitāmo straumi."
+        },
+        "marathon": {
+          "name": "Maratons",
+          "hint": "Straume divas stundas vienā sesijā."
+        },
+        "night-owl": {
+          "name": "Nakts pūce",
+          "hint": "Pabeidziet straumi starp pusnakti un pieciem rītā."
+        },
+        "regular": {
+          "name": "Regulāri",
+          "hint": "Straume četras nedēļas pēc kārtas."
+        },
+        "iron-streak": {
+          "name": "Dzelzs sērija",
+          "hint": "Straume divpadsmit nedēļas pēc kārtas."
+        },
+        "crowd": {
+          "name": "Pūlis",
+          "hint": "Vienlaicīgi skatās desmit cilvēki."
+        },
+        "century": {
+          "name": "Gadsimts",
+          "hint": "Sasniedziet simts kvalifikācijas stundas ēterā."
+        },
+        "legend": {
+          "name": "Apzīmējumi",
+          "hint": "Sasniedziet desmito līmeni."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Iepērcieties šajā tiešraidē",

@@ -134,3 +134,57 @@ export async function getIngestUrl(streamId: string) {
     { isAuthRequired: true }
   );
 }
+
+// ─── Streamer progress ────────────────────────────────────────────────────────
+
+export type StreamerCardId =
+  | "first-light"
+  | "marathon"
+  | "night-owl"
+  | "regular"
+  | "iron-streak"
+  | "crowd"
+  | "century"
+  | "legend";
+
+export interface StreamerProgressCard {
+  id: StreamerCardId;
+  earnedAt: string | null;
+}
+
+export interface StreamerRecentStream {
+  streamId: string;
+  title: string;
+  minutes: number;
+  peakViewers: number;
+  endedAt: string | null;
+  qualified: boolean;
+}
+
+/**
+ * The streamer ladder, derived server-side from ended streams. XP is one per
+ * qualifying minute; a stream only qualifies when it ran ten minutes or longer
+ * with at least one viewer. Level k needs 30·k·(k+1) XP.
+ */
+export interface StreamerProgress {
+  xp: number;
+  level: number;
+  nextLevelXp: number;
+  levelStartXp: number;
+  /** 0..1 across the current level. */
+  progressToNext: number;
+  qualifyingMinutes: number;
+  qualifyingStreams: number;
+  totalStreams: number;
+  longestStreamMinutes: number;
+  currentStreakWeeks: number;
+  bestStreakWeeks: number;
+  cards: StreamerProgressCard[];
+  recent: StreamerRecentStream[];
+}
+
+export async function getStreamerProgress(address: string): Promise<StreamerProgress> {
+  const res = await apiClient.get<any>(`/live/creator/${encodeURIComponent(address.toLowerCase())}/progress`);
+  const body = res && typeof res === "object" && res.result && typeof res.result === "object" && "level" in res.result ? res.result : res;
+  return body as StreamerProgress;
+}

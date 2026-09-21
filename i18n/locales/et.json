@@ -3884,7 +3884,60 @@
     "liveChat": "Otsevestlus",
     "pickDate": "Vali kuupäev",
     "pickTime": "Vali kellaaeg",
-    "minTip": "Min. jootraha"
+    "minTip": "Min. jootraha",
+    "progress": {
+      "title": "Streameri tase",
+      "level": "Tase {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} kvalifitseeruvat minutit veel, et jõuda tasemele {{level}}",
+      "rule": "Ainult kümme minutit või kauem kestvad ja vähemalt ühe vaatajaga striimid lähevad sinu taseme arvestusse.",
+      "streak": "{{count}} nädala järjest",
+      "bestStreak": "Parim seeria {{count}} nädalat",
+      "hours": "{{hours}} kvalifitseeruvat tundi",
+      "minutes": "{{count}} minutit",
+      "viewers": "{{count}} vaatajat",
+      "viewCards": "Vaata kaarte",
+      "cardsTitle": "Kogutavad kaardid",
+      "locked": "Lukus",
+      "earnedOn": "Teenitud {{date}}",
+      "recentTitle": "Hiljutised striimid",
+      "notCounted": "Ei läinud arvesse",
+      "noStreams": "Striimi alustamiseks, et hakata XP-d teenima.",
+      "card": {
+        "first-light": {
+          "name": "Esimene valgus",
+          "hint": "Lõpeta oma esimene arvesse minev striim."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Striimi kaks tundi ühes sessioonis."
+        },
+        "night-owl": {
+          "name": "Öökull",
+          "hint": "Lõpeta striim kesköö ja hommikul kella viie vahel."
+        },
+        "regular": {
+          "name": "Regulaarne",
+          "hint": "Striimi neli nädalat järjest."
+        },
+        "iron-streak": {
+          "name": "Raudne seeria",
+          "hint": "Striimi kaksteist nädalat järjest."
+        },
+        "crowd": {
+          "name": "Rahvamass",
+          "hint": "Ole korraga kümne vaatajaga."
+        },
+        "century": {
+          "name": "Sajand",
+          "hint": "Saavuta sada kvalifitseeruvat tundi eetris."
+        },
+        "legend": {
+          "name": "Legend",
+          "hint": "Saavuta kümnes tase."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Osta sellest voost",

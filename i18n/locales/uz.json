@@ -3933,7 +3933,60 @@
     "liveChat": "Jonli chat",
     "pickDate": "Sanani tanlang",
     "pickTime": "Vaqtni tanlang",
-    "minTip": "Minimal choychaqa"
+    "minTip": "Minimal choychaqa",
+    "progress": {
+      "title": "Streamer darajasi",
+      "level": "Daraja {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{level}} darajasiga erishish uchun {{minutes}} daqiqa qoldi",
+      "rule": "Faqat o'n daqiqa yoki undan ko'proq davom etgan va kamida bitta tomoshabinga ega bo'lgan translyatsiyalar darajangizga hisoblanadi.",
+      "streak": "{{count}} haftalik uzluksiz seriya",
+      "bestStreak": "Eng yaxshi seriya {{count}} hafta",
+      "hours": "{{hours}} malakali soat",
+      "minutes": "{{count}} daqiqa",
+      "viewers": "{{count}} tomoshabin",
+      "viewCards": "Kartalarni ko'rish",
+      "cardsTitle": "Kolleksion kartalar",
+      "locked": "Qulflangan",
+      "earnedOn": "Qozonilgan {{date}}",
+      "recentTitle": "So'nggi translyatsiyalar",
+      "notCounted": "Hisoblanmadi",
+      "noStreams": "XP olishni boshlash uchun jonli efirga chiqing.",
+      "card": {
+        "first-light": {
+          "name": "Birinchi nur",
+          "hint": "Hisoblanadigan birinchi translyatsiyangizni yakunlang."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Bir sessiyada ikki soat translyatsiya qiling."
+        },
+        "night-owl": {
+          "name": "Tun qushi",
+          "hint": "Tungi yarim tundan tonggi beshlargacha translyatsiyani yakunlang."
+        },
+        "regular": {
+          "name": "Muntazam",
+          "hint": "To'rt hafta ketma-ket translyatsiya qiling."
+        },
+        "iron-streak": {
+          "name": "Temir seriya",
+          "hint": "O'n ikki hafta ketma-ket translyatsiya qiling."
+        },
+        "crowd": {
+          "name": "To'plam",
+          "hint": "Bir vaqtning o'zida o'nta odam tomosha qilsin."
+        },
+        "century": {
+          "name": "Asr",
+          "hint": "Efirda yuz soatlik saralash bosqichiga erishing."
+        },
+        "legend": {
+          "name": "Afsona",
+          "hint": "O&#39;ninchi darajaga yeting."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Ushbu efirdan xarid qiling",

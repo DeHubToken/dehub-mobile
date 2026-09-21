@@ -3889,7 +3889,60 @@
     "liveChat": "Livechat",
     "pickDate": "Vælg dato",
     "pickTime": "Vælg tidspunkt",
-    "minTip": "Min. drikkepenge"
+    "minTip": "Min. drikkepenge",
+    "progress": {
+      "title": "Streamer-niveau",
+      "level": "Niveau {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} flere kvalificerende minutter for at nå niveau {{level}}",
+      "rule": "Kun streams, der varer ti minutter eller længere med mindst én seer, tæller med til dit niveau.",
+      "streak": "{{count}} uges streak",
+      "bestStreak": "Bedste streak {{count}} uger",
+      "hours": "{{hours}} kvalificerende timer",
+      "minutes": "{{count}} minutter",
+      "viewers": "{{count}} seere",
+      "viewCards": "Vis kort",
+      "cardsTitle": "Samlekort",
+      "locked": "Låst",
+      "earnedOn": "Optjent {{date}}",
+      "recentTitle": "Seneste streams",
+      "notCounted": "Talte ikke med",
+      "noStreams": "Gå live for at begynde at optjene XP.",
+      "card": {
+        "first-light": {
+          "name": "Første lys",
+          "hint": "Afslut din første stream, der tæller med."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Stream i to timer i én session."
+        },
+        "night-owl": {
+          "name": "Natteravn",
+          "hint": "Afslut en stream mellem midnat og kl. fem om morgenen."
+        },
+        "regular": {
+          "name": "Regelmæssig",
+          "hint": "Stream i fire uger i træk."
+        },
+        "iron-streak": {
+          "name": "Jern streak",
+          "hint": "Stream i tolv uger i træk."
+        },
+        "crowd": {
+          "name": "Publikum",
+          "hint": "Hav ti personer, der ser med på samme tid."
+        },
+        "century": {
+          "name": "Århundrede",
+          "hint": "Opnå hundrede kvalificerende timer i æteren."
+        },
+        "legend": {
+          "name": "Legende",
+          "hint": "Nå niveau ti."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Shop fra denne stream",

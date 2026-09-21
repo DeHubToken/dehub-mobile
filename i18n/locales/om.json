@@ -3948,7 +3948,58 @@
     "liveChat": "Haasaa kallattii",
     "pickDate": "Guyyaa filadhu",
     "pickTime": "Yeroo filadhu",
-    "minTip": "Kennaa xiqqaa"
+    "minTip": "Kennaa xiqqaa",
+    "progress": {
+      "title": "Sadarkaa Streamer",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} daqiiqaawwan ulaagaa dabalataa sadarkaa {{level}}",
+      "rule": "Yoo xiqqaate daawwataa tokko waliin daqiiqaa kudhan fi isaa ol kan fiigan qofti gara sadarkaa keetii lakkaa&#39;ama.",
+      "streak": "{{count}} torbee walitti aansuun",
+      "bestStreak": "Tartiiba gaarii {{count}} torban",
+      "hours": "{{hours}} sa&#39;aatii ulaagaa guutuu",
+      "viewers": "{{count}} daawwattoota",
+      "viewCards": "Kaardii ilaali",
+      "cardsTitle": "Kaardii walitti qabamuu danda’u",
+      "locked": "Cufamee jira",
+      "earnedOn": "{{date}} argate.",
+      "recentTitle": "Dhangala&#39;aa dhiheenya kanaa",
+      "notCounted": "Hin lakkaa&#39;amne",
+      "noStreams": "XP argachuu jalqabuuf live deemaa.",
+      "card": {
+        "first-light": {
+          "name": "Macaafni jalqabaa",
+          "hint": "Dhangala&#39;aa kee isa jalqabaa kan lakkaa&#39;amu xumuri."
+        },
+        "marathon": {
+          "name": "Maraatoonii",
+          "hint": "Kutaa tokko keessatti sa&#39;aatii lamaaf tamsaasu."
+        },
+        "night-owl": {
+          "name": "Owwii halkanii",
+          "hint": "Halkan walakkaa hanga ganama sa’aatii shanii gidduutti sulula tokko xumuri."
+        },
+        "regular": {
+          "name": "Idilee",
+          "hint": "Torban afur walitti aansuun tamsa&#39;aa."
+        },
+        "iron-streak": {
+          "name": "Aduu qola",
+          "hint": "Torban kudha lama walitti aansuun dhangalaasaa."
+        },
+        "crowd": {
+          "name": "Tuuta",
+          "hint": "Warra daawwattoota 10 qabaa isii wajjin."
+        },
+        "century": {
+          "name": "Gooftummaa",
+          "hint": "Sa'aatii qulqullinaa 100 irratti ga'i."
+        },
+        "legend": {
+          "name": "Aduu",
+          "hint": "Lakkofsa 10 gahi."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Tamsaasa kana irraa bitadhu",
