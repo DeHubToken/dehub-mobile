@@ -642,7 +642,14 @@
     },
     "socialFollowers": "Follower auf {{platform}}",
     "socialFollowersHint": "Wird in deinem Profil als Teil deiner Gesamtreichweite angezeigt. Geben Sie die Nummer selbst ein — wir lesen sie nicht von der Plattform ab.",
-    "socialFollowersPlaceholder": "z.B. 12500"
+    "socialFollowersPlaceholder": "z.B. 12500",
+    "aiScraping": {
+      "section": "KI-Training",
+      "label": "KI-Scraping meiner Inhalte zulassen",
+      "hintAllow": "KI-Systeme und Crawler, die dieses Signal respektieren, können Ihre Audio-, Grafik- und Schreibfähigkeiten trainieren.",
+      "hintDeny": "KI-Systeme und Crawler, die dieses Signal respektieren, werden gebeten, nicht mit Ihrem Audio, Ihren Grafiken und Ihrem Schreiben zu trainieren. Crawler, die das Signal ignorieren, werden dadurch nicht blockiert.",
+      "saved": "KI-Schulungspräferenz gespeichert"
+    }
   },
   "common": {
     "mute": "Stumm schalten",
@@ -1611,7 +1618,11 @@
       "dehubFollowers": "DeHub-Follower",
       "selfReported": "Die Anzahl der sozialen Follower wird vom Ersteller eingegeben."
     },
-    "tabPlaylists": "Playlisten"
+    "tabPlaylists": "Playlisten",
+    "aiScraping": {
+      "allowed": "Dieser Ersteller ermöglicht KI-Schulungen zu diesen Inhalten.",
+      "denied": "Dieser Ersteller erlaubt keine KI-Schulungen zu diesen Inhalten."
+    }
   },
   "tv": {
     "title": "TV",

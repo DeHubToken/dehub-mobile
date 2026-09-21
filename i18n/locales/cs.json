@@ -628,7 +628,14 @@
     },
     "socialFollowers": "Sledující: {{platform}}",
     "socialFollowersHint": "Zobrazí se na vašem profilu jako součást vašeho celkového dosahu. Číslo zadávejte sami — z platformy ho nečteme.",
-    "socialFollowersPlaceholder": "např. 12500"
+    "socialFollowersPlaceholder": "např. 12500",
+    "aiScraping": {
+      "section": "Školení AI",
+      "label": "Povolit AI škrábání mého obsahu",
+      "hintAllow": "Systémy umělé inteligence a prohledávače, které tento signál respektují, mohou trénovat váš zvuk, umělecká díla a psaní.",
+      "hintDeny": "Umělá inteligence a prohledávače, které respektují tento signál, jsou žádány, aby netrénovaly na vašem zvuku, uměleckých dílech a psaní. Prohledávače, které ignorují signál, nejsou blokovány.",
+      "saved": "Předvolba školení AI uložena"
+    }
   },
   "common": {
     "mute": "Ztlumit",
@@ -1494,7 +1501,11 @@
       "dehubFollowers": "Následovníci DeHubu",
       "selfReported": "Počet sledujících na sociálních sítích zadává tvůrce."
     },
-    "tabPlaylists": "Playlisty"
+    "tabPlaylists": "Playlisty",
+    "aiScraping": {
+      "allowed": "Tento tvůrce umožňuje školení AI o tomto obsahu.",
+      "denied": "Tento tvůrce nepovoluje školení AI o tomto obsahu."
+    }
   },
   "messages": {
     "smartRepliesOff": "Navrhované odpovědi jsou vypnuté",

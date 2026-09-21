@@ -614,7 +614,14 @@
     },
     "socialFollowers": "Mpanaraka ao amin'ny {{platform}}",
     "socialFollowersHint": "Hita ao amin'ny mombamomba anao ho toy ny ampahany amin'ny tontolonao. Tsy Maninona Ka — namaha izany fotsiny.",
-    "socialFollowersPlaceholder": "ohatra 12500"
+    "socialFollowersPlaceholder": "ohatra 12500",
+    "aiScraping": {
+      "section": "Fanofanana AI",
+      "label": "Avelao AI hikapoka ny votoatiko",
+      "hintAllow": "AI rafitra sy ny crawlers izay manaja izany famantarana dia mety hampiofana eo amin'ny feo, zavakanto sy ny soratra.",
+      "hintDeny": "Ny rafitra AI sy ny mpitsikilo izay manaja ity mari-pamantarana ity dia angatahana tsy hampiofana ny feo, ny zavakanto ary ny soratra. Tsy voasakana ireo mpidoroka tsy miraharaha ny fanairana.",
+      "saved": "AI fiofanana voatahiry"
+    }
   },
   "common": {
     "mute": "Hampangina",
@@ -1550,7 +1557,11 @@
       "dehubFollowers": "Mpanara-dia an'i DeHub",
       "selfReported": "Ny fandrindrana ara-tsosialy dia nampidirina tamin'ny mpamorona."
     },
-    "tabPlaylists": "Lisitra filalao"
+    "tabPlaylists": "Lisitra filalao",
+    "aiScraping": {
+      "allowed": "Ity mpamorona ity dia mamela ny fampianarana AI amin'ity votoaty ity.",
+      "denied": "Ny mpamorona azy dia tsy mamela ny fampianarana AI amin'ity votoaty ity."
+    }
   },
   "tv": {
     "title": "TV",

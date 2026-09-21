@@ -628,7 +628,14 @@
     },
     "socialFollowers": "Ndjekësit në {{platform}}",
     "socialFollowersHint": "Shfaqet në profilin tënd si pjesë e shtrirjes tënde totale. Vendos numrin vetë — nuk e lexojmë nga platforma.",
-    "socialFollowersPlaceholder": "p.sh. 12500"
+    "socialFollowersPlaceholder": "p.sh. 12500",
+    "aiScraping": {
+      "section": "Trajnim për GSH",
+      "label": "Lejo skrapimin e përmbajtjes sime nga AI",
+      "hintAllow": "Sistemet AI dhe zvarritësit që respektojnë këtë sinjal mund të trajnohen në audio, vepra arti dhe shkrime.",
+      "hintDeny": "Sistemet AI dhe zvarritësit që respektojnë këtë sinjal u kërkohet të mos trajnohen në audio, vepra arti dhe shkrime. Zvarritësit që injorojnë sinjalin nuk bllokohen prej tij.",
+      "saved": "Preferenca e trajnimit të AI u ruajt"
+    }
   },
   "common": {
     "mute": "Hiq zërin",
@@ -1632,7 +1639,11 @@
       "dehubFollowers": "Ndjekësit e DeHub",
       "selfReported": "Numrat e ndjekësve socialë futen nga krijuesi."
     },
-    "tabPlaylists": "Listat e luajtjes"
+    "tabPlaylists": "Listat e luajtjes",
+    "aiScraping": {
+      "allowed": "Ky krijues lejon trajnimin e IA për këtë përmbajtje.",
+      "denied": "Ky krijues nuk lejon trajnimin e IA për këtë përmbajtje."
+    }
   },
   "tv": {
     "title": "TV",

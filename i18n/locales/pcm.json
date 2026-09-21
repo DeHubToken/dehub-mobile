@@ -579,7 +579,11 @@
       "keyCopied": "Stream key copied"
     },
     "socialFollowers": "Followers on {{platform}}",
-    "socialFollowersPlaceholder": "e.g. 12500"
+    "socialFollowersPlaceholder": "e.g. 12500",
+    "aiScraping": {
+      "section": "AI training",
+      "saved": "AI training preference saved"
+    }
   },
   "common": {
     "mute": "Off di sound",

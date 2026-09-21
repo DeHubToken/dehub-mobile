@@ -621,7 +621,14 @@
     },
     "socialFollowers": "{{platform}}",
     "socialFollowersHint": "Ýüküňiň bir bölegi hökmünde profilyňda görkezilýär. Bu sany özüňiz ýazyň — biz ony platformdan okamaýarys.",
-    "socialFollowersPlaceholder": "12500 ýyl"
+    "socialFollowersPlaceholder": "12500 ýyl",
+    "aiScraping": {
+      "section": "Öwretmek",
+      "label": "Men öz içgimi ýitirip bilerin",
+      "hintAllow": "Bu habary hormatlaýan AI sistemeleri we krawler siziň ses, sanat we ýazma işleriňiziň üstünde tälim berip bilerler.",
+      "hintDeny": "Bu habary berjaý edýän AI sistemasy we krawler ses, sanat we ýazgylaryňyzda tälim bermezligi haýyş edýärler. Sinyaly äsgermezlik edýän krawler ony saklamaýarlar.",
+      "saved": "Öwrenme terjimesi halas boldy"
+    }
   },
   "common": {
     "mute": "Sesi öçür",
@@ -1578,7 +1585,11 @@
       "dehubFollowers": "DeHub diňleýjileri",
       "selfReported": "Işgärleriň sanyna Ýaradyjy girýär."
     },
-    "tabPlaylists": "Çykyşlar"
+    "tabPlaylists": "Çykyşlar",
+    "aiScraping": {
+      "allowed": "Bu ýaradyjy bu mähelläniň üstünde AI-de tälim bermäge mümkinçilik berýär.",
+      "denied": "Bu ýaradyjy bu maglumaty AI-de taýýarlamaga rugsat bermeýär."
+    }
   },
   "tv": {
     "title": "TV",

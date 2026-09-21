@@ -618,7 +618,14 @@
     },
     "socialFollowers": "Mabiya akan {{platform}}",
     "socialFollowersHint": "Shown a kan profile a matsayin wani ɓangare na your total isa. Shigar da lambar da kanka — ba mu karanta shi daga dandamali ba.",
-    "socialFollowersPlaceholder": "misali 12500"
+    "socialFollowersPlaceholder": "misali 12500",
+    "aiScraping": {
+      "section": "AI horo",
+      "label": "Bada AI scraping na abun ciki na",
+      "hintAllow": "AI tsarin da crawlers waɗanda ke girmama wannan siginar na iya horar da sauti, zane-zane da rubutu.",
+      "hintDeny": "AI tsarin da crawlers da ke girmama wannan siginar ana tambayar su kada su horar da sauti, zane-zane da rubutu. Crawlers da suka yi watsi da siginar ba a toshe shi ba.",
+      "saved": "AI horo fifiko ceto"
+    }
   },
   "common": {
     "mute": "Kashe sauti",
@@ -1622,7 +1629,11 @@
       "dehubFollowers": "DeHub mabiya",
       "selfReported": "An shigar da ƙididdigar mabiya zamantakewa ta mahalicci."
     },
-    "tabPlaylists": "Jerin-bidiyoyi"
+    "tabPlaylists": "Jerin-bidiyoyi",
+    "aiScraping": {
+      "allowed": "Wannan mahalicci yana ba da damar horar da AI akan wannan abun ciki.",
+      "denied": "Wannan mahalicci ba ya ba da izinin horo na AI akan wannan abun ciki."
+    }
   },
   "tv": {
     "title": "Talabijin",

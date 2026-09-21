@@ -1117,7 +1117,14 @@
     },
     "socialFollowers": "Mga tagasunod sa {{platform}}",
     "socialFollowersHint": "Ipinapakita sa iyong profile bilang bahagi ng iyong kabuuang abot. Ipasok ang numero sa iyong sarili — hindi namin ito binabasa mula sa platform.",
-    "socialFollowersPlaceholder": "hal. 12500"
+    "socialFollowersPlaceholder": "hal. 12500",
+    "aiScraping": {
+      "section": "Pagsasanay sa AI",
+      "label": "Pahintulutan ang pag - scrape ng AI ng aking nilalaman",
+      "hintAllow": "Ang mga sistema ng AI at mga crawler na iginagalang ang signal na ito ay maaaring magsanay sa iyong audio, likhang sining at pagsulat.",
+      "hintDeny": "Ang mga sistema ng AI at mga crawler na iginagalang ang signal na ito ay hinihiling na huwag sanayin sa iyong audio, likhang sining at pagsulat. Crawlers na huwag pansinin ang signal ay hindi hinarangan ng mga ito.",
+      "saved": "Na - save ang preperensiya sa pagsasanay ng AI"
+    }
   },
   "postOptions": {
     "options": "Options",
@@ -2007,7 +2014,11 @@
       "dehubFollowers": "Mga tagasunod ng DeHub",
       "selfReported": "Ang mga bilang ng mga social follower ay ipinasok ng tagalikha."
     },
-    "tabPlaylists": "Mga Playlist"
+    "tabPlaylists": "Mga Playlist",
+    "aiScraping": {
+      "allowed": "Pinapayagan ng tagalikha na ito ang pagsasanay sa AI sa nilalamang ito.",
+      "denied": "Hindi pinapayagan ng tagalikha na ito ang pagsasanay sa AI sa nilalamang ito."
+    }
   },
   "tv": {
     "title": "TV",

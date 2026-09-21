@@ -619,7 +619,14 @@
     },
     "socialFollowers": "Ko nga kaiwhaiwhai i runga i {{platform}}",
     "socialFollowersHint": "Hokona i runga i to koutou pūkete rite te wahi o to koutou REACH katoa. Whakauru i te tau ki a koe ano — e kore matou e pānui i te reira i te papa.",
-    "socialFollowersPlaceholder": "e ai ki te 12500"
+    "socialFollowersPlaceholder": "e ai ki te 12500",
+    "aiScraping": {
+      "section": "Te whakangungu AI",
+      "label": "Waiho atu he poroporoaki, he maumaharatanga ki a koe",
+      "hintAllow": "Ko nga punaha AI me nga kaiwhaiwhai e whakaute ana i tenei tohu ka taea te whakangungu i runga i to ororongo, mahi toi me te tuhi.",
+      "hintDeny": "Ko nga punaha AI me nga kaiwhaiwhai e whakaute ana i tenei tohu ka tonoa kia kaua e whakangungu i runga i to ororongo, mahi toi me te tuhi. Ko nga kaiwhaiwhai e kore e aro ki te tohu kaore i te aukati i a ia.",
+      "saved": "Ko te hiahia o te whakangungu AI e ora ana"
+    }
   },
   "common": {
     "mute": "Whakangū",
@@ -1620,7 +1627,11 @@
       "dehubFollowers": "Ngā kaiwhaiwhai o DeHub",
       "selfReported": "Ko nga kaute whaiwhai pāpori e whakauruhia ana e te kaihanga."
     },
-    "tabPlaylists": "Rārangi purei"
+    "tabPlaylists": "Rārangi purei",
+    "aiScraping": {
+      "allowed": "Ka taea e tēnei kaihanga te whakangungu AI i runga i tēnei ihirangi.",
+      "denied": "Kaore tenei kaihanga e tuku i te whakangungu AI mo tenei ihirangi."
+    }
   },
   "tv": {
     "title": "TV",

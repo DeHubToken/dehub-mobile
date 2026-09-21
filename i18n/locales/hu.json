@@ -628,7 +628,14 @@
     },
     "socialFollowers": "Követők a következőn:{{platform}}",
     "socialFollowersHint": "A teljes elérés részeként jelenik meg a profilodon. Adja meg a számot — nem olvassuk el a platformról.",
-    "socialFollowersPlaceholder": "pl. 12500"
+    "socialFollowersPlaceholder": "pl. 12500",
+    "aiScraping": {
+      "section": "MI-képzés",
+      "label": "A tartalmaim AI-kaparásának engedélyezése",
+      "hintAllow": "Azok a mesterségesintelligencia-rendszerek és feltérképező robotok, amelyek tiszteletben tartják ezt a jelet, képezhetik az Ön hangját, grafikáját és írását.",
+      "hintDeny": "Azokat az MI-rendszereket és robotokat, amelyek tiszteletben tartják ezt a jelet, arra kérjük, hogy ne gyakoroljanak a hangra, a műalkotásokra és az írásra. Azok a lánctalpasok, amelyek figyelmen kívül hagyják a jelet, nem blokkolják azt.",
+      "saved": "AI képzési preferencia mentve"
+    }
   },
   "common": {
     "mute": "Némítás",
@@ -1494,7 +1501,11 @@
       "dehubFollowers": "DeHub követők",
       "selfReported": "A közösségi követők számát az alkotó adja meg."
     },
-    "tabPlaylists": "Játéklisták"
+    "tabPlaylists": "Játéklisták",
+    "aiScraping": {
+      "allowed": "Ez az alkotó engedélyezi a mesterséges intelligencia képzését ezen a tartalomon.",
+      "denied": "Ez az alkotó nem engedélyezi a mesterséges intelligencia képzését ezen a tartalomon."
+    }
   },
   "messages": {
     "smartRepliesOff": "A javasolt válaszok ki vannak kapcsolva",

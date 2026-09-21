@@ -629,7 +629,14 @@
     },
     "socialFollowers": "Qatiqninkuna {{platform}} nisqapi.",
     "socialFollowersHint": "Perfilniykipi rikuchisqa tukuy chayayniykimanta huknin hina. Kikiyki yupayta qillqay — manam plataformamantachu ñawiriyku.",
-    "socialFollowersPlaceholder": "p.h. 12500"
+    "socialFollowersPlaceholder": "p.h. 12500",
+    "aiScraping": {
+      "section": "AI nisqamanta yachachiy",
+      "label": "Permitir AI raspadota contenidoymanta",
+      "hintAllow": "AI sistemakuna chaymanta rastreadores kay señalta respetanku uyarinaykipi, arte ruwasqaykipi chaymanta qillqaykipi entrenankuman.",
+      "hintDeny": "Sistemas AI kaqmanta chaymanta rastreadores kaqmanta kay señalta respetakuq mañasqa kanku ama audioykipi, arte ruwasqaykipi chaymanta qillqaykipi yachachinankupaq. Chay señalta mana uyariq rastreadorkunaqa manam chaywan harkasqachu.",
+      "saved": "AI yachachiy munasqa waqaychasqa"
+    }
   },
   "common": {
     "mute": "Upallachiy",
@@ -1634,7 +1641,11 @@
       "dehubFollowers": "DeHub qatiqninkuna",
       "selfReported": "Social qatiq yupaykunataqa kamaqmi yaykuchin."
     },
-    "tabPlaylists": "Pukllay listakuna"
+    "tabPlaylists": "Pukllay listakuna",
+    "aiScraping": {
+      "allowed": "Kay kamaqqa kay contenidomanta AI yachachiyta saqin.",
+      "denied": "Kay kamaqqa mana kay contenidomanta AI yachachiyta saqinchu."
+    }
   },
   "tv": {
     "title": "TV",

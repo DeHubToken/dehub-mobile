@@ -643,7 +643,14 @@
     },
     "socialFollowers": "Seguidores em {{platform}}",
     "socialFollowersHint": "Exibido no seu perfil como parte do seu alcance total. Insira o número você mesmo — não o lemos na plataforma.",
-    "socialFollowersPlaceholder": "por exemplo, 12500"
+    "socialFollowersPlaceholder": "por exemplo, 12500",
+    "aiScraping": {
+      "section": "Formação em IA",
+      "label": "Permitir a extração de IA do meu conteúdo",
+      "hintAllow": "Sistemas de IA e rastreadores que respeitam esse sinal podem treinar em seu áudio, arte e escrita.",
+      "hintDeny": "Os sistemas de IA e rastreadores que respeitam esse sinal são solicitados a não treinar em seu áudio, arte e escrita. Os rastreadores que ignoram o sinal não são bloqueados por ele.",
+      "saved": "Preferência de formação em IA guardada"
+    }
   },
   "common": {
     "mute": "Silenciar",
@@ -1647,7 +1654,11 @@
       "dehubFollowers": "Seguidores do DeHub",
       "selfReported": "As contagens de seguidores nas redes sociais são inseridas pelo criador."
     },
-    "tabPlaylists": "Playlists"
+    "tabPlaylists": "Playlists",
+    "aiScraping": {
+      "allowed": "Este criador permite formação em IA sobre este conteúdo.",
+      "denied": "Este criador não permite formação em IA sobre este conteúdo."
+    }
   },
   "tv": {
     "title": "TV",

@@ -628,7 +628,14 @@
     },
     "socialFollowers": "{{platform}}的关注者",
     "socialFollowersHint": "作为总覆盖范围的一部分显示在您的个人资料中。 请自行输入号码，我们不会从平台上读取该号码。",
-    "socialFollowersPlaceholder": "例如： 12500"
+    "socialFollowersPlaceholder": "例如： 12500",
+    "aiScraping": {
+      "section": "人工智能培训",
+      "label": "允许AI抓取我的内容",
+      "hintAllow": "尊重此信号的人工智能系统和爬虫可能会训练您的音频、艺术品和写作。",
+      "hintDeny": "尊重此信号的人工智能系统和爬虫被要求不要训练你的音频、艺术品和写作。 忽略信号的爬虫不会被其拦截。",
+      "saved": "人工智能培训偏好已保存"
+    }
   },
   "common": {
     "mute": "静音",
@@ -1631,7 +1638,11 @@
       "dehubFollowers": "DeHub关注者",
       "selfReported": "社交关注者数量由创作者输入。"
     },
-    "tabPlaylists": "播放列表"
+    "tabPlaylists": "播放列表",
+    "aiScraping": {
+      "allowed": "此创作者允许对此内容进行人工智能培训。",
+      "denied": "此创作者不允许对此内容进行人工智能培训。"
+    }
   },
   "tv": {
     "title": "电视",
