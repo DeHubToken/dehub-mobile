@@ -7,7 +7,11 @@ import * as ImagePicker from "expo-image-picker";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import { useStages } from "../../context/StageContext";
-import { supabase } from "../../services/supabase";
+import {
+  contentTypeForExtension,
+  fileExtension,
+  uploadLocalFileToBucket,
+} from "../../libs/storage-upload";
 import { ShareLinks } from "../../navigation/linking.config";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { navigationRef } from "../../App";
@@ -105,17 +109,16 @@ const CreateStageModal: React.FC = () => {
 
   const uploadCover = async (localUri: string): Promise<string | null> => {
     try {
-      const ext = localUri.split(".").pop()?.split("?")[0] || "jpg";
+      const ext = fileExtension({ uri: localUri }, "jpg");
       // Timestamped path: storage RLS here is insert-only by design, so a
       // unique name is what keeps one upload from clobbering another.
       const path = `stages/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-      const response = await fetch(localUri);
-      const blob = await response.blob();
-      const { error: uploadErr } = await supabase.storage
-        .from("community-media")
-        .upload(path, blob, { upsert: false, contentType: blob.type || "image/jpeg" });
-      if (uploadErr) throw uploadErr;
-      return supabase.storage.from("community-media").getPublicUrl(path).data.publicUrl;
+      return await uploadLocalFileToBucket({
+        bucket: "community-media",
+        path,
+        uri: localUri,
+        contentType: contentTypeForExtension(ext, "image/jpeg"),
+      });
     } catch (err) {
       log.error("Cover upload failed:", err);
       return null;
