@@ -29,6 +29,12 @@ import {
   joinTeamUp,
   leaveTeamUp,
   removeTeamUpMember,
+  updateTeamUp,
+  cancelTeamUpRequest,
+  approveTeamUpRequest,
+  denyTeamUpRequest,
+  type TeamUpCreateInput,
+  type TeamUpSettings,
   fetchSuperpowerStatus,
   fetchSuperpowerTiers,
   type SuperPowerKey,
@@ -153,7 +159,7 @@ export function useTeamUpTeams(query: string, enabled = true) {
   });
 }
 
-function useTeamUpMutation<TVariables>(mutationFn: (variables: TVariables) => Promise<unknown>) {
+function useTeamUpMutation<TVariables, TResult = unknown>(mutationFn: (variables: TVariables) => Promise<TResult>) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn,
@@ -166,11 +172,32 @@ function useTeamUpMutation<TVariables>(mutationFn: (variables: TVariables) => Pr
 }
 
 export function useCreateTeamUp() {
-  return useTeamUpMutation((name: string) => createTeamUp(name));
+  return useTeamUpMutation((input: TeamUpCreateInput) => createTeamUp(input));
 }
 
+/** Owner only: the description and whether joins need approval. */
+export function useUpdateTeamUp() {
+  return useTeamUpMutation((settings: TeamUpSettings) => updateTeamUp(settings));
+}
+
+/** Joins a public team at once; on a private one the result is `{ requested: true }`. */
 export function useJoinTeamUp() {
-  return useTeamUpMutation((teamId: string) => joinTeamUp(teamId));
+  return useTeamUpMutation(({ teamId, message }: { teamId: string; message?: string }) =>
+    joinTeamUp(teamId, message));
+}
+
+export function useCancelTeamUpRequest() {
+  return useTeamUpMutation((teamId: string) => cancelTeamUpRequest(teamId));
+}
+
+export function useApproveTeamUpRequest() {
+  return useTeamUpMutation(({ teamId, address }: { teamId: string; address: string }) =>
+    approveTeamUpRequest(teamId, address));
+}
+
+export function useDenyTeamUpRequest() {
+  return useTeamUpMutation(({ teamId, address }: { teamId: string; address: string }) =>
+    denyTeamUpRequest(teamId, address));
 }
 
 export function useLeaveTeamUp() {
