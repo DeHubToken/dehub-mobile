@@ -2021,7 +2021,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "Ibang token",
-    "otherTokensDesc": "Bumili ng ETH o USDC sa Base gamit ang iyong card"
+    "otherTokensDesc": "Bumili ng ETH o USDC sa Base gamit ang iyong card",
+    "shareToFeed": "Ibahagi sa aking feed",
+    "sharePostTemplate": "Idinagdag lang ang {{amount}} $DHB sa aking stack sa DeHub. Pagbuo kasama ang komunidad. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agents",
@@ -4088,7 +4090,9 @@
     "redirecting": "Dinadala sa checkout…",
     "openingCheckout": "Binubuksan ang checkout…",
     "checkoutUnavailable": "Hindi available ang checkout link. Subukan ulit.",
-    "acceptTerms": "Tinatanggap ko ang <terms>Mga Tuntunin ng Serbisyo</terms>"
+    "acceptTerms": "Tinatanggap ko ang <terms>Mga Tuntunin ng Serbisyo</terms>",
+    "tokensSentTo": "Ipinadala ang mga token sa {{address}}",
+    "goToProfile": "Pumunta sa Profile"
   },
   "musicSheet": {
     "title": "Gumawa ng kanta",

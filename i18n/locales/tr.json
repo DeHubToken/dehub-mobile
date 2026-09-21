@@ -1730,7 +1730,9 @@
     "onrampCreated": "Rampa oturumu oluşturuldu",
     "failedOnramp": "Rampa başlatılamadı",
     "otherTokens": "Diğer tokenlar",
-    "otherTokensDesc": "Kartınızla Base ağında ETH veya USDC satın alın"
+    "otherTokensDesc": "Kartınızla Base ağında ETH veya USDC satın alın",
+    "shareToFeed": "Akışımda paylaş",
+    "sharePostTemplate": "Az önce DeHub'daki yığınıma {{amount}} $DHB'yi ekledim. Toplulukla birlikte inşa etmek. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Ajanları",
@@ -3973,7 +3975,10 @@
     "redirecting": "Ödemeye yönlendiriliyor…",
     "openingCheckout": "Ödeme açılıyor…",
     "checkoutUnavailable": "Ödeme bağlantısı kullanılamıyor. Lütfen tekrar deneyin.",
-    "acceptTerms": "Kabul ediyorum: <terms>Hizmet Şartları</terms>"
+    "acceptTerms": "Kabul ediyorum: <terms>Hizmet Şartları</terms>",
+    "sentTo": "{{amount}}{{symbol}},{{address}} adresine gönderildi",
+    "tokensSentTo": "Jetonlar {{address}} adresine gönderildi",
+    "goToProfile": "Profile Git"
   },
   "musicSheet": {
     "title": "Şarkı oluştur",

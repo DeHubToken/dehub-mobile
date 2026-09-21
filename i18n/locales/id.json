@@ -1647,7 +1647,9 @@
     "onrampCreated": "Sesi onramp dibuat",
     "failedOnramp": "Gagal memulai onramp",
     "otherTokens": "Token lainnya",
-    "otherTokensDesc": "Beli ETH atau USDC di Base dengan kartu Anda"
+    "otherTokensDesc": "Beli ETH atau USDC di Base dengan kartu Anda",
+    "shareToFeed": "Bagikan ke feed saya",
+    "sharePostTemplate": "Baru saja menambahkan {{amount}} $DHB ke tumpukan saya di DeHub. Membangun bersama masyarakat. #DeHub #DHB"
   },
   "agents": {
     "title": "Agen AI",
@@ -3961,7 +3963,10 @@
     "redirecting": "Mengalihkan ke pembayaran…",
     "openingCheckout": "Membuka pembayaran…",
     "checkoutUnavailable": "Tautan pembayaran tidak tersedia. Coba lagi.",
-    "acceptTerms": "Saya menerima <terms>Ketentuan Layanan</terms>"
+    "acceptTerms": "Saya menerima <terms>Ketentuan Layanan</terms>",
+    "sentTo": "{{amount}}{{symbol}} dikirim ke {{address}}",
+    "tokensSentTo": "Token dikirim ke {{address}}",
+    "goToProfile": "Buka Profil"
   },
   "musicSheet": {
     "title": "Buat lagu",

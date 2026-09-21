@@ -1645,7 +1645,9 @@
     "onrampCreated": "Rambi seanss loodud",
     "failedOnramp": "Rambi alustamine ebaõnnestus",
     "otherTokens": "Muud tokenid",
-    "otherTokensDesc": "Osta ETH või USDC Base'is oma kaardiga"
+    "otherTokensDesc": "Osta ETH või USDC Base'is oma kaardiga",
+    "shareToFeed": "Jaga minu voos",
+    "sharePostTemplate": "Lisasin just {{amount}} $DHB oma DeHubi pinusse. Ehitamine koos kogukonnaga. #DeHub #DHB"
   },
   "agents": {
     "title": "AI agendid",
@@ -3910,7 +3912,10 @@
     "redirecting": "Suunamine makselehele…",
     "openingCheckout": "Makselehe avamine…",
     "checkoutUnavailable": "Makselink pole saadaval. Proovi uuesti.",
-    "acceptTerms": "Nõustun <terms>Teenusetingimused</terms>"
+    "acceptTerms": "Nõustun <terms>Teenusetingimused</terms>",
+    "sentTo": "{{amount}} {{symbol}} saadeti numbrile {{address}}",
+    "tokensSentTo": "Tokenid saadeti aadressile {{address}}",
+    "goToProfile": "Mine profiili juurde"
   },
   "musicSheet": {
     "title": "Loo laul",

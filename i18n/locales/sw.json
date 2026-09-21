@@ -1646,7 +1646,9 @@
     "onrampCreated": "Kipindi cha njia kimeundwa",
     "failedOnramp": "Imeshindwa kuanza njia",
     "otherTokens": "Tokeni nyingine",
-    "otherTokensDesc": "Nunua ETH au USDC kwenye Base kwa kadi yako"
+    "otherTokensDesc": "Nunua ETH au USDC kwenye Base kwa kadi yako",
+    "shareToFeed": "Shiriki kwenye mpasho wangu",
+    "sharePostTemplate": "Nimeweka {{amount}} $DHB kwenye stakabadhi yangu kwenye DeHub. Kujenga na jumuiya. #DeHub #DHB"
   },
   "agents": {
     "title": "Mawakala wa AI",
@@ -3911,7 +3913,10 @@
     "redirecting": "Inakuelekeza kwenye malipo…",
     "openingCheckout": "Inafungua malipo…",
     "checkoutUnavailable": "Kiungo cha malipo hakipatikani. Jaribu tena.",
-    "acceptTerms": "Ninakubali <terms>Masharti ya Huduma</terms>"
+    "acceptTerms": "Ninakubali <terms>Masharti ya Huduma</terms>",
+    "sentTo": "{{amount}} {{symbol}} ilitumwa kwa {{address}}",
+    "tokensSentTo": "Tokeni zilitumwa kwa {{address}}",
+    "goToProfile": "Nenda kwenye Wasifu"
   },
   "musicSheet": {
     "title": "Tengeneza wimbo",

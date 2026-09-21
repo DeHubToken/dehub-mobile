@@ -1646,7 +1646,9 @@
     "onrampCreated": "Sessió de rampa creada",
     "failedOnramp": "Error en iniciar la rampa",
     "otherTokens": "Altres tokens",
-    "otherTokensDesc": "Compra ETH o USDC a Base amb la teva targeta"
+    "otherTokensDesc": "Compra ETH o USDC a Base amb la teva targeta",
+    "shareToFeed": "Comparteix al meu canal",
+    "sharePostTemplate": "Acabo d'afegir {{amount}} $DHB a la meva pila a DeHub. Construir amb la comunitat. #DeHub #DHB"
   },
   "agents": {
     "title": "Agents IA",
@@ -3911,7 +3913,10 @@
     "redirecting": "S'està redirigint a la compra…",
     "openingCheckout": "S'està obrint la compra…",
     "checkoutUnavailable": "L'enllaç de pagament no està disponible. Torna-ho a provar.",
-    "acceptTerms": "Accepto els <terms>Termes i condicions del servei</terms>"
+    "acceptTerms": "Accepto els <terms>Termes i condicions del servei</terms>",
+    "sentTo": "S'ha enviat {{amount}} {{symbol}} a {{address}}",
+    "tokensSentTo": "S'han enviat fitxes a {{address}}",
+    "goToProfile": "Ves a Perfil."
   },
   "musicSheet": {
     "title": "Crea una cançó",

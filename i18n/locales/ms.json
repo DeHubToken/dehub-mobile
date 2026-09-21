@@ -2102,7 +2102,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "Token lain",
-    "otherTokensDesc": "Beli ETH atau USDC di Base dengan kad anda"
+    "otherTokensDesc": "Beli ETH atau USDC di Base dengan kad anda",
+    "shareToFeed": "Kongsi ke suapan saya",
+    "sharePostTemplate": "Baru sahaja menambah {{amount}} $DHB ke tindanan saya di DeHub. Membina bersama komuniti. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agents",
@@ -4173,7 +4175,10 @@
     "redirecting": "Mengalihkan ke pembayaran…",
     "openingCheckout": "Membuka pembayaran…",
     "checkoutUnavailable": "Pautan pembayaran tidak tersedia. Cuba lagi.",
-    "acceptTerms": "Saya menerima <terms>Terma Perkhidmatan</terms>"
+    "acceptTerms": "Saya menerima <terms>Terma Perkhidmatan</terms>",
+    "sentTo": "{{amount}} {{symbol}} telah dihantar kepada {{address}}",
+    "tokensSentTo": "Token telah dihantar kepada {{address}}",
+    "goToProfile": "Pergi ke Profil"
   },
   "musicSheet": {
     "title": "Cipta lagu",

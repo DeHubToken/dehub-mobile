@@ -3905,7 +3905,10 @@
     "redirecting": "ወደ ክፍያ በማዞር ላይ…",
     "openingCheckout": "የክፍያ ገጽ በመክፈት ላይ…",
     "checkoutUnavailable": "የክፍያ አገናኝ የለም። እባክዎ እንደገና ይሞክሩ።",
-    "acceptTerms": "እስማማለሁ በ <terms>የአገልግሎት ውሎች</terms>"
+    "acceptTerms": "እስማማለሁ በ <terms>የአገልግሎት ውሎች</terms>",
+    "sentTo": "{{amount}} {{symbol}} ወደ {{address}} ተልኳል",
+    "tokensSentTo": "ምልክቶችን ወደ {{address}} ተልኳል",
+    "goToProfile": "ወደ መገለጫ ይሂዱ"
   },
   "musicSheet": {
     "title": "ዘፈን ይፍጠሩ",

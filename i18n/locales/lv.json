@@ -1645,7 +1645,9 @@
     "onrampCreated": "Rampas sesija izveidota",
     "failedOnramp": "Rampas sākšana neizdevās",
     "otherTokens": "Citi tokeni",
-    "otherTokensDesc": "Pērciet ETH vai USDC tīklā Base ar savu karti"
+    "otherTokensDesc": "Pērciet ETH vai USDC tīklā Base ar savu karti",
+    "shareToFeed": "Kopīgot manā plūsmā",
+    "sharePostTemplate": "Tikko pievienoju {{amount}} $DHB savam DeHub salikumam. Veidošana kopā ar kopienu. #DeHub #DHB"
   },
   "agents": {
     "title": "MI aģenti",
@@ -3909,7 +3911,10 @@
     "redirecting": "Novirza uz apmaksu…",
     "openingCheckout": "Tiek atvērta apmaksa…",
     "checkoutUnavailable": "Maksājuma saite nav pieejama. Mēģiniet vēlreiz.",
-    "acceptTerms": "Es piekrītu <terms>Pakalpojuma noteikumi</terms>"
+    "acceptTerms": "Es piekrītu <terms>Pakalpojuma noteikumi</terms>",
+    "sentTo": "{{amount}} {{symbol}} tika nosūtīts uz {{address}}",
+    "tokensSentTo": "Žetoni tika nosūtīti uz {{address}}",
+    "goToProfile": "Doties uz profilu"
   },
   "musicSheet": {
     "title": "Izveidot dziesmu",

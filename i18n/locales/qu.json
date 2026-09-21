@@ -1648,7 +1648,9 @@
     "onrampCreated": "Yaykuna sesión kamarisqa",
     "failedOnramp": "Mana yaykuna qallayta atirqanchu",
     "otherTokens": "Huk tokenkuna",
-    "otherTokensDesc": "Base nisqapi ETH icha USDC rantiy tarjetaykiwan"
+    "otherTokensDesc": "Base nisqapi ETH icha USDC rantiy tarjetaykiwan",
+    "shareToFeed": "Mikhuyman rakinakuy",
+    "sharePostTemplate": "Chayraqmi {{amount}} $DHBta DeHub nisqapi pilayman yapasqa. Ayllu llaqtawan wasichakuy. #DeHub #DHB nisqa"
   },
   "agents": {
     "title": "AI Wakinkuna",
@@ -3940,7 +3942,10 @@
     "redirecting": "Qullqi qupuy p'anqaman apachkan…",
     "openingCheckout": "Qullqi qupuy p'anqata kichachkan…",
     "checkoutUnavailable": "Qullqi qupuy t'inkiy mana kanchu. Yapamanta ruray.",
-    "acceptTerms": "Chaskikuni <terms>Llamk'ay kamachikuykuna</terms>"
+    "acceptTerms": "Chaskikuni <terms>Llamk'ay kamachikuykuna</terms>",
+    "sentTo": "{{amount}} {{symbol}} {{address}} nisqaman apachisqa karqan.",
+    "tokensSentTo": "Tokenkunata {{address}} nisqaman apachirqanku.",
+    "goToProfile": "Perfil nisqaman riy"
   },
   "musicSheet": {
     "title": "Takita ruway",

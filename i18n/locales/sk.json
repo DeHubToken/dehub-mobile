@@ -2296,7 +2296,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "Ďalšie tokeny",
-    "otherTokensDesc": "Kúpte ETH alebo USDC v sieti Base svojou kartou"
+    "otherTokensDesc": "Kúpte ETH alebo USDC v sieti Base svojou kartou",
+    "shareToFeed": "Zdieľať v mojom informačnom kanáli",
+    "sharePostTemplate": "Práve som pridal {{amount}} $DHB do môjho zásobníka na DeHub. Budovanie s komunitou. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agents",
@@ -4077,7 +4079,10 @@
     "redirecting": "Presmerovanie na platbu…",
     "openingCheckout": "Otvára sa platba…",
     "checkoutUnavailable": "Odkaz na platbu nie je dostupný. Skúste znova.",
-    "acceptTerms": "Súhlasím s <terms>Podmienky služby</terms>"
+    "acceptTerms": "Súhlasím s <terms>Podmienky služby</terms>",
+    "sentTo": "{{amount}} {{symbol}} bola odoslaná na {{address}}",
+    "tokensSentTo": "Tokeny boli odoslané na adresu {{address}}",
+    "goToProfile": "Prejsť na profil"
   },
   "musicSheet": {
     "title": "Vytvoriť pieseň",

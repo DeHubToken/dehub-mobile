@@ -1607,7 +1607,9 @@
     "onrampCreated": "Rampe-økt opprettet",
     "failedOnramp": "Kunne ikke starte rampe",
     "otherTokens": "Andre tokens",
-    "otherTokensDesc": "Kjøp ETH eller USDC på Base med kortet ditt"
+    "otherTokensDesc": "Kjøp ETH eller USDC på Base med kortet ditt",
+    "shareToFeed": "Del i feeden min",
+    "sharePostTemplate": "Har nettopp lagt til {{amount}} $DHB i DeHub-stacken min. Bygger med fellesskapet. #DeHub #DHB"
   },
   "agents": {
     "title": "AI-agenter",
@@ -3900,7 +3902,10 @@
     "redirecting": "Omdirigerer til betaling…",
     "openingCheckout": "Åpner betaling…",
     "checkoutUnavailable": "Betalingslenken er ikke tilgjengelig. Prøv igjen.",
-    "acceptTerms": "Jeg godtar <terms>Vilkår for tjenesten</terms>"
+    "acceptTerms": "Jeg godtar <terms>Vilkår for tjenesten</terms>",
+    "sentTo": "{{amount}} {{symbol}} ble sendt til {{address}}",
+    "tokensSentTo": "Tokener ble sendt til {{address}}",
+    "goToProfile": "Gå til profil"
   },
   "musicSheet": {
     "title": "Lag en sang",

@@ -1877,7 +1877,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "වෙනත් ටෝකන",
-    "otherTokensDesc": "ඔබේ කාඩ්පතින් Base මත ETH හෝ USDC මිලදී ගන්න"
+    "otherTokensDesc": "ඔබේ කාඩ්පතින් Base මත ETH හෝ USDC මිලදී ගන්න",
+    "shareToFeed": "මගේ ෆීඩ් එකට ශෙයා කරන්න",
+    "sharePostTemplate": "මම දැන් DeHub හි මගේ ස්ටැක් එකට {{amount}} $DHB එකතු කර ඇත. ප්‍රජාව සමඟ ගොඩනඟමි. #DeHub #DHB"
   },
   "agents": {
     "title": "AI නියෝජිත",
@@ -3882,7 +3884,9 @@
     "redirecting": "ගෙවීමට යොමු කරමින්…",
     "openingCheckout": "ගෙවීම විවෘත කරමින්…",
     "checkoutUnavailable": "ගෙවීම් සබැඳිය නොමැත. නැවත උත්සාහ කරන්න.",
-    "acceptTerms": "මම පිළිගනිමි <terms>සේවා කොන්දේසි</terms>"
+    "acceptTerms": "මම පිළිගනිමි <terms>සේවා කොන්දේසි</terms>",
+    "tokensSentTo": "ටෝකන් {{address}} වෙත යවන ලදී",
+    "goToProfile": "පැතිකඩ වෙත යන්න"
   },
   "musicSheet": {
     "title": "ගීතයක් සාදන්න",

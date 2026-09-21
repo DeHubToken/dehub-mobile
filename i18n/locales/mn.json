@@ -1630,7 +1630,9 @@
     "onrampCreated": "Онрамп сессия үүсгэгдлээ",
     "failedOnramp": "Онрамп эхлүүлэхэд алдаа гарлаа",
     "otherTokens": "Бусад токен",
-    "otherTokensDesc": "Картаараа Base дээр ETH эсвэл USDC худалдаж авах"
+    "otherTokensDesc": "Картаараа Base дээр ETH эсвэл USDC худалдаж авах",
+    "shareToFeed": "Миний хоолонд хуваалцах",
+    "sharePostTemplate": "{{amount}} $ DHB-гDeHub дээрээ стек дээр нэмсэн. Олон нийттэй хамтран ажиллах. #DeHub #DHB"
   },
   "agents": {
     "title": "AI агентууд",
@@ -3889,7 +3891,9 @@
     "redirecting": "Төлбөрийн хуудас руу шилжүүлж байна…",
     "openingCheckout": "Төлбөрийн хуудсыг нээж байна…",
     "checkoutUnavailable": "Төлбөрийн холбоос боломжгүй. Дахин оролдоно уу.",
-    "acceptTerms": "Би зөвшөөрч байна <terms>Үйлчилгээний нөхцөл</terms>"
+    "acceptTerms": "Би зөвшөөрч байна <terms>Үйлчилгээний нөхцөл</terms>",
+    "tokensSentTo": "Токенсийг {{address}} руу илгээсэн",
+    "goToProfile": "Профайл руу орох"
   },
   "musicSheet": {
     "title": "Дуу үүсгэх",

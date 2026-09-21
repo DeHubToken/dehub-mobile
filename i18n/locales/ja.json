@@ -1658,7 +1658,9 @@
     "onrampCreated": "入金セッション作成",
     "failedOnramp": "入金失敗",
     "otherTokens": "その他のトークン",
-    "otherTokensDesc": "カードで Base 上の ETH または USDC を購入"
+    "otherTokensDesc": "カードで Base 上の ETH または USDC を購入",
+    "shareToFeed": "フィードにシェアする",
+    "sharePostTemplate": "DeHubのスタックに{{amount}} $ DHBを追加しました。 コミュニティと一緒に構築しましょう。# DeHub # DHB"
   },
   "agents": {
     "title": "AIエージェント",
@@ -3978,7 +3980,10 @@
     "redirecting": "決済ページへ移動中…",
     "openingCheckout": "決済ページを開いています…",
     "checkoutUnavailable": "決済リンクを利用できません。もう一度お試しください。",
-    "acceptTerms": "同意します: <terms>利用規約</terms>"
+    "acceptTerms": "同意します: <terms>利用規約</terms>",
+    "sentTo": "{{amount}}{{symbol}}が{{address}}に送信されました",
+    "tokensSentTo": "トークンは{{address}}に送信されました",
+    "goToProfile": "プロフィールに移動"
   },
   "musicSheet": {
     "title": "曲をつくる",

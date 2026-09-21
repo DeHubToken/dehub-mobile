@@ -1898,7 +1898,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "अन्य टोकन",
-    "otherTokensDesc": "आफ्नो कार्डबाट Base मा ETH वा USDC किन्नुहोस्"
+    "otherTokensDesc": "आफ्नो कार्डबाट Base मा ETH वा USDC किन्नुहोस्",
+    "shareToFeed": "मेरो फिडमा साझेदारी गर्नुहोस्",
+    "sharePostTemplate": "भर्खरै DeHub मा मेरो स्ट्याकमा {{amount}} $DHB थपियो । समुदायसँग मिलेर निर्माण गर्ने । #DeHub #DHB"
   },
   "agents": {
     "title": "AI एजेन्ट",
@@ -3944,7 +3946,10 @@
     "redirecting": "चेकआउटमा लैजाँदै…",
     "openingCheckout": "चेकआउट खोल्दै…",
     "checkoutUnavailable": "चेकआउट लिंक उपलब्ध छैन। फेरि प्रयास गर्नुहोस्।",
-    "acceptTerms": "म स्वीकार गर्छु <terms>सेवाका सर्तहरू</terms>"
+    "acceptTerms": "म स्वीकार गर्छु <terms>सेवाका सर्तहरू</terms>",
+    "sentTo": "{{amount}}{{symbol}} लाई{{address}} मा पठाइएको थियो",
+    "tokensSentTo": "टोकनहरू {{address}} मा पठाइयो",
+    "goToProfile": "प्रोफाइलमा जानुहोस्"
   },
   "musicSheet": {
     "title": "गीत बनाउनुहोस्",

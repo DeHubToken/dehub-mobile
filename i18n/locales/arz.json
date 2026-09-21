@@ -1644,7 +1644,9 @@
     "onrampCreated": "جلسة الأونرامب اتعملت",
     "failedOnramp": "فشل بدء الأونرامب",
     "otherTokens": "عملات تانية",
-    "otherTokensDesc": "اشتري ETH أو USDC على Base بالكارت بتاعك"
+    "otherTokensDesc": "اشتري ETH أو USDC على Base بالكارت بتاعك",
+    "shareToFeed": "المشاركة على خلاصتي",
+    "sharePostTemplate": "لقد أضفت للتو {{amount}} $ إلى مكدسي على. البناء مع المجتمع. #DeHub #DHB"
   },
   "agents": {
     "title": "إيجنتات AI",
@@ -3906,7 +3908,10 @@
     "redirecting": "بيحولك للدفع…",
     "openingCheckout": "بيفتح صفحة الدفع…",
     "checkoutUnavailable": "لينك الدفع مش متاح. من فضلك جرّب تاني.",
-    "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>"
+    "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>",
+    "sentTo": "تم إرسال {{amount}}{{symbol}} إلى {{address}}",
+    "tokensSentTo": "تم إرسال الرموز إلى {{address}}",
+    "goToProfile": "الانتقال إلى الملف الشخصي"
   },
   "musicSheet": {
     "title": "اعمل أغنية",

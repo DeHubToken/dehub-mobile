@@ -2024,7 +2024,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "আর টোকেন",
-    "otherTokensDesc": "তুাইনর কার্ড দি Base-ও ETH বা USDC কিনউক্কা"
+    "otherTokensDesc": "তুাইনর কার্ড দি Base-ও ETH বা USDC কিনউক্কা",
+    "shareToFeed": "আমার ফিডে শেয়ার করুন",
+    "sharePostTemplate": "এইমাত্র DeHub-এ {{amount}} $DHB আমার স্ট্যাকে যোগ করেছি। কমিউনিটির সাথে তৈরি করছি। #DeHub #DHB"
   },
   "agents": {
     "title": "AI এজেন্ট",
@@ -4054,7 +4056,10 @@
     "redirecting": "চেকআউটো লই যাইরো…",
     "openingCheckout": "চেকআউট খুলরো…",
     "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাইরো না। আবার চেষ্টা করউক্কা।",
-    "acceptTerms": "আমি মানি লাইরাম <terms>সেবার শর্ত</terms>"
+    "acceptTerms": "আমি মানি লাইরাম <terms>সেবার শর্ত</terms>",
+    "sentTo": "{{amount}} {{symbol}} {{address}}-এ পাঠানো হয়েছে",
+    "tokensSentTo": "টোকেন {{address}}-এ পাঠানো হয়েছে",
+    "goToProfile": "প্রোফাইলে যান"
   },
   "musicSheet": {
     "title": "গান বানাও",

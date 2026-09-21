@@ -1889,7 +1889,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "အခြားတိုကင်များ",
-    "otherTokensDesc": "သင့်ကတ်ဖြင့် Base ပေါ်တွင် ETH သို့မဟုတ် USDC ဝယ်ပါ"
+    "otherTokensDesc": "သင့်ကတ်ဖြင့် Base ပေါ်တွင် ETH သို့မဟုတ် USDC ဝယ်ပါ",
+    "shareToFeed": "ကျွနု်ပ် ၏ Feed ကိုမျှဝေပါ",
+    "sharePostTemplate": "DeHub တွင်ကျွန်ုပ် ၏ stack သို့ {{amount}} $DHB ကိုသာထည့်သွင်းခဲ့သည် ။ လူမှုအသိုင်းအဝိုင်းနဲ့ ပေါင်းသင်းဆက်ဆံပါ ။ #DeHub #DHB"
   },
   "agents": {
     "title": "AI အေးဂျင့်",
@@ -3890,7 +3892,9 @@
     "redirecting": "ငွေရှင်းရန် စာမျက်နှာသို့ ပို့နေသည်…",
     "openingCheckout": "ငွေရှင်းရန် စာမျက်နှာ ဖွင့်နေသည်…",
     "checkoutUnavailable": "ငွေရှင်းရန် လင့်ခ် မရနိုင်ပါ။ ထပ်စမ်းပါ။",
-    "acceptTerms": "ကျွန်ုပ် လက်ခံပါသည် <terms>ဝန်ဆောင်မှု စည်းကမ်းချက်များ</terms>"
+    "acceptTerms": "ကျွန်ုပ် လက်ခံပါသည် <terms>ဝန်ဆောင်မှု စည်းကမ်းချက်များ</terms>",
+    "tokensSentTo": "တိုကင်များကို {{address}} သို့ ပေးပို့ခဲ့သည်",
+    "goToProfile": "ပရိုဖိုင်သို့သွားပါ"
   },
   "musicSheet": {
     "title": "သီချင်း ဖန်တီးပါ",
