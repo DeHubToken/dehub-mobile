@@ -1,10 +1,7 @@
-import React, { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import React, { useState, useMemo, useCallback, useRef } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, Dimensions } from "react-native";
 import SmartImage from "../common/SmartImage";
-import StoryAvatarRing from "../Story/StoryAvatarRing";
-import { useWatchedStories } from "../../hooks/useWatchedStories";
-import { useStoryViewer } from "../../context/StoryViewerContext";
-import { getStoriesForWallet, type Story } from "../../services/stories.service";
+import Avatar from "../common/Avatar";
 import { Ionicons } from "@expo/vector-icons";
 import LiquidGlass from "../ui/LiquidGlass";
 import { useNavigation } from "@react-navigation/native";
@@ -36,7 +33,7 @@ import { shareProfile } from "../../libs/misc";
 import CopyAddressSheet from "../Wallet/CopyAddressSheet";
 import * as ImagePicker from "expo-image-picker";
 
-/** Matches the StoryAvatarRing `size={88}` below. */
+/** Matches the Avatar `size={88}` below. */
 const PROFILE_AVATAR_PT = 88;
 /** The cover is full-bleed, so it is fetched at the screen's own width. */
 const COVER_WIDTH_PT = Dimensions.get("window").width;
@@ -75,30 +72,12 @@ const ProfileHeader = () => {
   const [uploadingCover, setUploadingCover] = useState(false);
   const [localCoverUri, setLocalCoverUri] = useState<string | null>(null);
 
-  // Stories — gradient ring + play badge when active stories exist (web flow)
   const displayName = user?.displayName || "Unknown";
   const username = user?.username || user?.address || "";
   const address = user?.walletAddress || user?.address || "";
   // An alias, not a rename — `username` above is untouched by it, and every
   // share link on this screen still points at the username URL.
   const ensName = user?.ensName || "";
-  const { isWatched, markWatched } = useWatchedStories();
-  const { openStories } = useStoryViewer();
-  const [myStories, setMyStories] = useState<Story[]>([]);
-  const hasStories = myStories.length > 0;
-  const hasUnwatchedStories = myStories.some((s) => !isWatched(s.id));
-
-  const refreshMyStories = useCallback(() => {
-    if (!address) {
-      setMyStories([]);
-      return;
-    }
-    getStoriesForWallet(address).then(setMyStories).catch(() => setMyStories([]));
-  }, [address]);
-
-  useEffect(() => {
-    refreshMyStories();
-  }, [refreshMyStories]);
 
   const shortAddr = truncateAddress(address, 5, 5);
   // Explicit sizes: this avatar renders at 88pt, well above the 48pt default
@@ -142,16 +121,6 @@ const ProfileHeader = () => {
   // plain number elsewhere) — resolveCount normalises both to a count.
   const followersCount = resolveCount(user?.followers, (user as any)?.follower_count);
   const followingCount = resolveCount(user?.followings, (user as any)?.following_count);
-
-  const openMyStories = useCallback(() => {
-    if (!myStories.length) return;
-    myStories.forEach((s) => markWatched(s.id));
-    openStories(myStories, {
-      viewerWalletAddress: address,
-      onStoryShown: (story) => markWatched(story.id),
-      onStoriesChanged: refreshMyStories,
-    });
-  }, [myStories, markWatched, openStories, address, refreshMyStories]);
 
   // Deterministic default banner based on user ID/address
   const defaultBanner = useMemo(
@@ -355,14 +324,12 @@ const ProfileHeader = () => {
         {/* Avatar overlapping cover + actions on the right */}
         <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
           <View>
-            <StoryAvatarRing
+            <Avatar
               uri={avatarUrl === "default-avatar" ? undefined : avatarUrl}
               name={displayName}
               size={88}
-              hasStories={hasStories}
-              unwatched={hasUnwatchedStories}
-              onPressStory={openMyStories}
-              onPressAvatar={() =>
+              style={{ borderWidth: 3, borderColor: "#010305" }}
+              onPress={() =>
                 openViewer(
                   avatarFullUrl === "default-avatar" ? undefined : avatarFullUrl
                 )
