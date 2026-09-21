@@ -40,6 +40,8 @@ import { createViewCountUpdater, seedViewerStats } from "../libs/viewers.util";
 import { updateStreamSettings, getIngestUrl } from "../services/live.service";
 import { deletePost } from "../services/nft.service";
 import { useUser, useAuthState } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
+import { useStreamerProgress } from "../hooks/useStreamerProgress";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { appLocale } from "../libs/date.util";
 
@@ -76,6 +78,13 @@ const LiveProducerScreen: React.FC = () => {
   const route = useRoute<any>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
+  const { t } = useTranslation();
+  // Where this broadcast lands on the streamer ladder, shown before Start so
+  // the ten-minute / one-viewer rule is in front of the creator rather than
+  // discovered after the bar did not move.
+  const { data: streamerProgress } = useStreamerProgress(
+    (user as any)?.walletAddress || (user as any)?.address || null
+  );
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   const { streamId, tokenId, ingestUrl, streamKey, startExternal, discardIfNeverLive } =
@@ -1343,6 +1352,19 @@ const LiveProducerScreen: React.FC = () => {
                 {/* Controls: flip, mic, camera, go live / end */}
                 {!uiHidden ? (
                   <View className="mt-3">
+                    {(stage === "idle" || stage === "creating" || stage === "ready") && streamerProgress ? (
+                      <View className="mx-3 mb-2 rounded-xl bg-black/40 px-3 py-2">
+                        <Text className="text-white text-xs" numberOfLines={2}>
+                          {t("live.progress.level", { level: streamerProgress.level })}
+                          {" · "}
+                          {t("live.progress.toNext", {
+                            minutes: Math.max(0, streamerProgress.nextLevelXp - streamerProgress.xp),
+                            level: streamerProgress.level + 1,
+                          })}
+                        </Text>
+                        <Text className="text-zinc-400 text-[10px] mt-0.5">{t("live.progress.rule")}</Text>
+                      </View>
+                    ) : null}
                     <ProducerBottomBar
                       stage={stage}
                       onStart={onStart}

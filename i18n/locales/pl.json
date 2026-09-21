@@ -4005,7 +4005,60 @@
     "liveChat": "Czat na żywo",
     "pickDate": "Wybierz datę",
     "pickTime": "Wybierz godzinę",
-    "minTip": "Min. napiwek"
+    "minTip": "Min. napiwek",
+    "progress": {
+      "title": "Poziom streamera",
+      "level": "Poziom {{level}}",
+      "xp": "{{xp}} punktów doświadczenia",
+      "toNext": "{{minutes}} więcej kwalifikujących się minut do osiągnięcia poziomu {{level}}",
+      "rule": "Tylko transmisje trwające co najmniej dziesięć minut z co najmniej jednym widzem liczą się do Twojego poziomu.",
+      "streak": "{{count}} tygodniowa seria",
+      "bestStreak": "Najlepsza seria {{count}} tygodni",
+      "hours": "{{hours}} kwalifikujących się godzin",
+      "minutes": "{{count}} minut",
+      "viewers": "{{count}} widzów",
+      "viewCards": "Karty widoków",
+      "cardsTitle": "Kolekcjonerskie karty",
+      "locked": "Zablokowane",
+      "earnedOn": "Zdobyto {{date}}",
+      "recentTitle": "Ostatnie transmisje",
+      "notCounted": "Nie zaliczono",
+      "noStreams": "Rozpocznij transmisję, aby zacząć zdobywać punkty doświadczenia.",
+      "card": {
+        "first-light": {
+          "name": "Pierwsze światło",
+          "hint": "Ukończ swoją pierwszą kwalifikującą się transmisję."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Transmisja przez dwie godziny w jednej sesji."
+        },
+        "night-owl": {
+          "name": "Nocny marek",
+          "hint": "Zakończ transmisję między północą a piątą rano."
+        },
+        "regular": {
+          "name": "Regularny",
+          "hint": "Transmisja przez cztery tygodnie z rzędu."
+        },
+        "iron-streak": {
+          "name": "Żelazna seria",
+          "hint": "Transmisja przez dwanaście tygodni z rzędu."
+        },
+        "crowd": {
+          "name": "Tłum",
+          "hint": "Dziesięciu widzów oglądających w tym samym czasie."
+        },
+        "century": {
+          "name": "Stulecie",
+          "hint": "Osiągnij sto godzin kwalifikacyjnych na antenie."
+        },
+        "legend": {
+          "name": "Legenda",
+          "hint": "Osiągnij poziom dziesiąty."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Kupuj w tej transmisji",

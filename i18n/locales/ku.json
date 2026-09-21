@@ -3620,7 +3620,58 @@
     "liveChat": "Chata rasterast",
     "pickDate": "Dîrokê hilbijêre",
     "pickTime": "Demê hilbijêre",
-    "minTip": "Bexşîşa herî kêm"
+    "minTip": "Bexşîşa herî kêm",
+    "progress": {
+      "title": "ئاستی ستریمەر",
+      "level": "ئاستی {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} خولەکی دیکە بۆ گەیشتن بە ئاستی {{level}}",
+      "rule": "تەنها ستریمەکان کە دە خولەک یان زیاتر بەردەوام دەبن و لانیکەم یەک بینەریان هەیە، بۆ ئاستەکەت هەژمار دەکرێن.",
+      "streak": "{{count}} هەفتە streaks",
+      "bestStreak": "باشترین streak {{count}} هەفتە",
+      "hours": "{{hours}} کاتژمێری شیاو",
+      "minutes": "{{count}} خولەک",
+      "viewers": "{{count}} بینەر",
+      "viewCards": "کارتەکانی View",
+      "cardsTitle": "کارتەکانی کۆکراوە",
+      "locked": "داخراو",
+      "earnedOn": "بەدەستهاتوو {{date}}",
+      "recentTitle": "ستریمەکانی دوایی",
+      "notCounted": "هەژمار نەکرا",
+      "noStreams": "بڕۆ بە ژیان بۆ دەستپێکردنی بەدەستهێنانی XP.",
+      "card": {
+        "first-light": {
+          "name": "یەکەم ڕۆژ",
+          "hint": "یەکەم ستریمەکەت تەواو بکە کە هەژمار دەکرێت."
+        },
+        "marathon": {
+          "name": "ماراتۆن",
+          "hint": "لە یەک دانیشتندا دوو کاتژمێر ستریم بکە."
+        },
+        "night-owl": {
+          "name": "کەسێکی شەوکار",
+          "hint": "ستریمێک لە نێوان نیوەشەو و پێنجی بەیانیدا کۆتایی پێبهێنە."
+        },
+        "regular": {
+          "name": "ئاسایی",
+          "hint": "لە چوار هەفتەی یەک لەدوای یەکدا ستریم بکە."
+        },
+        "iron-streak": {
+          "name": "Streak ی ئاسنین",
+          "hint": "لە دوازدە هەفتەی یەک لەدوای یەکدا ستریم بکە."
+        },
+        "crowd": {
+          "name": "جەماوەر",
+          "hint": "دە کەس لە یەک کاتدا سەیری بکەن."
+        },
+        "century": {
+          "name": "سەدەیی"
+        },
+        "legend": {
+          "hint": "گەیشتنە ئاستی دە."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Ji vê weşanê bikire",

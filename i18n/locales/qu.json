@@ -3966,7 +3966,60 @@
     "liveChat": "Kunan pacha rimanakuy",
     "pickDate": "P'unchawta akllay",
     "pickTime": "Pachata akllay",
-    "minTip": "Aswan pisi yanapay"
+    "minTip": "Aswan pisi yanapay",
+    "progress": {
+      "title": "Nivel de streamer",
+      "level": "Nivel {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} minutos calificativos más para alcanzar el nivel {{level}}",
+      "rule": "Solo las transmisiones que duren diez minutos o más con al menos un espectador cuentan para tu nivel.",
+      "streak": "Racha de {{count}} semanas",
+      "bestStreak": "Mejor racha {{count}} semanas",
+      "hours": "{{hours}} horas calificativas",
+      "minutes": "{{count}} minutos",
+      "viewers": "{{count}} espectadores",
+      "viewCards": "Tarjetas de vista",
+      "cardsTitle": "Tarjetas coleccionables",
+      "locked": "Bloqueado",
+      "earnedOn": "Ganado {{date}}",
+      "recentTitle": "Transmisiones recientes",
+      "notCounted": "No contó",
+      "noStreams": "Transmite en vivo para empezar a ganar XP.",
+      "card": {
+        "first-light": {
+          "name": "Primer amanecer",
+          "hint": "Termina tu primera transmisión que cuente."
+        },
+        "marathon": {
+          "name": "Maratón",
+          "hint": "Transmite durante dos horas en una sola sesión."
+        },
+        "night-owl": {
+          "name": "Noctámbulo",
+          "hint": "Termina una transmisión entre la medianoche y las cinco de la mañana."
+        },
+        "regular": {
+          "name": "Regular",
+          "hint": "Transmite durante cuatro semanas seguidas."
+        },
+        "iron-streak": {
+          "name": "Racha de hierro",
+          "hint": "Transmite durante doce semanas seguidas."
+        },
+        "crowd": {
+          "name": "Multitud",
+          "hint": "Ten diez personas mirando al mismo tiempo."
+        },
+        "century": {
+          "name": "Siglo",
+          "hint": "Pachak horas calificativas nisqaman chayay aire nisqapi."
+        },
+        "legend": {
+          "name": "Kawsay",
+          "hint": "Chunka pataman chayay."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Kay willakuymanta rantiy",

@@ -3934,7 +3934,60 @@
     "liveChat": "直播聊天",
     "pickDate": "選擇日期",
     "pickTime": "選擇時間",
-    "minTip": "最低打賞"
+    "minTip": "最低打賞",
+    "progress": {
+      "title": "主播等級",
+      "level": "等級 {{level}}",
+      "xp": "{{xp}} 經驗值",
+      "toNext": "{{minutes}} 分鐘才能達到 {{level}} 等級",
+      "rule": "只有長度達十分鐘且至少有一位觀眾的直播才會計入你的等級。",
+      "streak": "{{count}} 週連勝紀錄",
+      "bestStreak": "最佳連勝紀錄 {{count}} 週",
+      "hours": "{{hours}} 合格時數",
+      "minutes": "{{count}} 分鐘",
+      "viewers": "{{count}} 位觀眾",
+      "viewCards": "觀看卡牌",
+      "cardsTitle": "收藏卡牌",
+      "locked": "已鎖定",
+      "earnedOn": "已獲得 {{date}}",
+      "recentTitle": "近期直播",
+      "notCounted": "未計入",
+      "noStreams": "開始直播以賺取經驗值。",
+      "card": {
+        "first-light": {
+          "name": "初次登場",
+          "hint": "完成一場計入的直播。"
+        },
+        "marathon": {
+          "name": "馬拉松",
+          "hint": "單次直播兩小時。"
+        },
+        "night-owl": {
+          "name": "夜貓子",
+          "hint": "在午夜至早上五點之間結束直播。"
+        },
+        "regular": {
+          "name": "常規",
+          "hint": "連續四周直播。"
+        },
+        "iron-streak": {
+          "name": "鋼鐵連勝紀錄",
+          "hint": "連續十二周直播。"
+        },
+        "crowd": {
+          "name": "人潮",
+          "hint": "同時有十人觀看。"
+        },
+        "century": {
+          "name": "世紀",
+          "hint": "播放時間達到一百個合格小時。"
+        },
+        "legend": {
+          "name": "傳奇",
+          "hint": "達到十級。"
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "喺呢場直播購物",

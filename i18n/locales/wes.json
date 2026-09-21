@@ -3730,7 +3730,49 @@
     "liveChat": "Live chat",
     "pickDate": "Pick date",
     "pickTime": "Pick time",
-    "minTip": "Min tip"
+    "minTip": "Min tip",
+    "progress": {
+      "title": "Streamer level",
+      "level": "Level {{level}}",
+      "xp": "{{xp}} XP",
+      "streak": "{{count}} week streak",
+      "bestStreak": "Best streak {{count}} weeks",
+      "hours": "{{hours}} qualifying hours",
+      "minutes": "{{count}} minutes",
+      "viewers": "{{count}} viewers",
+      "viewCards": "View cards",
+      "cardsTitle": "Collectible cards",
+      "locked": "Locked",
+      "earnedOn": "Earned {{date}}",
+      "recentTitle": "Recent streams",
+      "card": {
+        "first-light": {
+          "name": "First light"
+        },
+        "marathon": {
+          "name": "Marathon"
+        },
+        "night-owl": {
+          "name": "Night owl"
+        },
+        "regular": {
+          "name": "Regular"
+        },
+        "iron-streak": {
+          "name": "Iron streak"
+        },
+        "crowd": {
+          "name": "Crowd"
+        },
+        "century": {
+          "name": "Century"
+        },
+        "legend": {
+          "name": "Legend",
+          "hint": "Reach level ten."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Shop for dis stream",

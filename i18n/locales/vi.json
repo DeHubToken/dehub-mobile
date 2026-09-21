@@ -4024,7 +4024,60 @@
     "liveChat": "Trò chuyện trực tiếp",
     "pickDate": "Chọn ngày",
     "pickTime": "Chọn giờ",
-    "minTip": "Tiền boa tối thiểu"
+    "minTip": "Tiền boa tối thiểu",
+    "progress": {
+      "title": "Cấp độ streamer",
+      "level": "Cấp độ {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} phút đủ điều kiện nữa để đạt cấp độ {{level}}",
+      "rule": "Chỉ các buổi phát trực tiếp kéo dài mười phút trở lên với ít nhất một người xem mới được tính vào cấp độ của bạn.",
+      "streak": "Chuỗi {{count}} tuần",
+      "bestStreak": "Chuỗi tốt nhất {{count}} tuần",
+      "hours": "{{hours}} giờ đủ điều kiện",
+      "minutes": "{{count}} phút",
+      "viewers": "{{count}} người xem",
+      "viewCards": "Thẻ xem",
+      "cardsTitle": "Thẻ sưu tập",
+      "locked": "Đã khóa",
+      "earnedOn": "Đã kiếm được {{date}}",
+      "recentTitle": "Các buổi phát trực tiếp gần đây",
+      "notCounted": "Không được tính",
+      "noStreams": "Phát trực tiếp để bắt đầu kiếm XP.",
+      "card": {
+        "first-light": {
+          "name": "Buổi phát đầu tiên",
+          "hint": "Hoàn thành buổi phát trực tiếp đầu tiên của bạn."
+        },
+        "marathon": {
+          "name": "Chạy marathon",
+          "hint": "Phát trực tiếp trong hai giờ trong một phiên."
+        },
+        "night-owl": {
+          "name": "Cú đêm",
+          "hint": "Kết thúc buổi phát trực tiếp giữa nửa đêm và 5 giờ sáng."
+        },
+        "regular": {
+          "name": "Thường xuyên",
+          "hint": "Phát trực tiếp trong bốn tuần liên tiếp."
+        },
+        "iron-streak": {
+          "name": "Chuỗi Sắt",
+          "hint": "Phát trực tiếp trong mười hai tuần liên tiếp."
+        },
+        "crowd": {
+          "name": "Đám đông",
+          "hint": "Có mười người xem cùng lúc."
+        },
+        "century": {
+          "name": "Thế kỷ",
+          "hint": "Đạt một trăm giờ phát sóng đủ điều kiện."
+        },
+        "legend": {
+          "name": "Huyền thoại",
+          "hint": "Đạt cấp mười."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Mua sắm từ buổi phát này",

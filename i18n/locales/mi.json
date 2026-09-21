@@ -3921,7 +3921,60 @@
     "liveChat": "Kōrerorero ora",
     "pickDate": "Kōwhiria te rā",
     "pickTime": "Kōwhiria te wā",
-    "minTip": "Tohu iti rawa"
+    "minTip": "Tohu iti rawa",
+    "progress": {
+      "title": "Taumata o te kaiwhakatere",
+      "level": "Taumata {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} meneti whai tohu atu hei eke ki te taumata {{level}}",
+      "rule": "Ko ngā rerenga katoa e tekau meneti te roa, ā, kotahi te iti rawa o te kai-titiro, ka tatau ki tō taumata.",
+      "streak": "{{count}} wiki tū",
+      "bestStreak": "Te tū pai rawa {{count}} wiki",
+      "hours": "{{hours}} haora whai tohu",
+      "minutes": "{{count}} meneti",
+      "viewers": "{{count}} kai-titiro",
+      "viewCards": "Ngā kaari tiro",
+      "cardsTitle": "Ngā kaari kohikohi",
+      "locked": "Kua raka",
+      "earnedOn": "Kua riro {{date}}",
+      "recentTitle": "Ngā rerenga tata nei",
+      "notCounted": "Kāore i tatau",
+      "noStreams": "Haere ora ki te tīmata ki te whiwhi XP.",
+      "card": {
+        "first-light": {
+          "name": "Te rama tuatahi",
+          "hint": "Whakaotia tō rerenga tuatahi ka tatau."
+        },
+        "marathon": {
+          "name": "Marathon",
+          "hint": "Rere mō ngā haora e rua i te wā kotahi."
+        },
+        "night-owl": {
+          "name": "Pūngāwhā pō",
+          "hint": "Mutua he rerenga i waenganui i te pōpō me te rima o ngā ata."
+        },
+        "regular": {
+          "name": "Mātau",
+          "hint": "Rere i roto i ngā wiki e whā tū."
+        },
+        "iron-streak": {
+          "name": "Tū hao",
+          "hint": "Rere i roto i ngā wiki kotahi tekau mā rua tū."
+        },
+        "crowd": {
+          "name": "Tāhū",
+          "hint": "Kia tekau ngā tāngata e matakitaki ana i te wā kotahi."
+        },
+        "century": {
+          "name": "Rau tau",
+          "hint": "Kia kotahi rau haora e tika ana i runga i te rangi."
+        },
+        "legend": {
+          "name": "Ngā kōrero",
+          "hint": "Haere ki te taumata 10."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Hokona mai i tēnei hōtaka",

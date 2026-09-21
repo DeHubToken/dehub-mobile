@@ -4008,7 +4008,60 @@
     "liveChat": "Live Chat",
     "pickDate": "Pick Date",
     "pickTime": "Pick Time",
-    "minTip": "Min Tip"
+    "minTip": "Min Tip",
+    "progress": {
+      "title": "Streamer level",
+      "level": "Level {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} more qualifying minutes to reach level {{level}}",
+      "rule": "Only streams that run ten minutes or longer with at least one viewer count toward your level.",
+      "streak": "{{count}} week streak",
+      "bestStreak": "Best streak {{count}} weeks",
+      "hours": "{{hours}} qualifying hours",
+      "minutes": "{{count}} minutes",
+      "viewers": "{{count}} viewers",
+      "viewCards": "View cards",
+      "cardsTitle": "Collectible cards",
+      "locked": "Locked",
+      "earnedOn": "Earned {{date}}",
+      "recentTitle": "Recent streams",
+      "notCounted": "Did not count",
+      "noStreams": "Go live to start earning XP.",
+      "card": {
+        "first-light": {
+          "name": "First light",
+          "hint": "Finish your first stream that counts."
+        },
+        "marathon": {
+          "name": "Marathon",
+          "hint": "Stream for two hours in one session."
+        },
+        "night-owl": {
+          "name": "Night owl",
+          "hint": "End a stream between midnight and five in the morning."
+        },
+        "regular": {
+          "name": "Regular",
+          "hint": "Stream in four weeks in a row."
+        },
+        "iron-streak": {
+          "name": "Iron streak",
+          "hint": "Stream in twelve weeks in a row."
+        },
+        "crowd": {
+          "name": "Crowd",
+          "hint": "Have ten people watching at the same time."
+        },
+        "century": {
+          "name": "Century",
+          "hint": "Reach one hundred qualifying hours on air."
+        },
+        "legend": {
+          "name": "Legend",
+          "hint": "Reach level ten."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Shop this stream",

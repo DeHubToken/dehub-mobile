@@ -3921,7 +3921,60 @@
     "liveChat": "Canlı söhbət",
     "pickDate": "Tarix seç",
     "pickTime": "Vaxt seç",
-    "minTip": "Min. bəxşiş"
+    "minTip": "Min. bəxşiş",
+    "progress": {
+      "title": "Streamer səviyyəsi",
+      "level": "Səviyyə {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "Səviyyə {{level}}-ə çatmaq üçün {{minutes}} daha uyğun dəqiqə",
+      "rule": "Yalnız on dəqiqə və ya daha uzun müddət davam edən və ən azı bir tamaşaçısı olan strimlar səviyyənizə daxil edilir.",
+      "streak": "{{count}} həftəlik seriya",
+      "bestStreak": "Ən yaxşı seriya {{count}} həftə",
+      "hours": "{{hours}} uyğun saat",
+      "minutes": "{{count}} dəqiqə",
+      "viewers": "{{count}} tamaşaçı",
+      "viewCards": "Kartları izləyin",
+      "cardsTitle": "Kolleksiya kartları",
+      "locked": "Kilidli",
+      "earnedOn": "Qazanılmış {{date}}",
+      "recentTitle": "Son strimlar",
+      "notCounted": "Hesaba qatılmadı",
+      "noStreams": "XP qazanmağa başlamaq üçün canlı yayıma keçin.",
+      "card": {
+        "first-light": {
+          "name": "İlk işıq",
+          "hint": "Hesaba qatılan ilk strimınızı bitirin."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Bir sessiyada iki saat strim edin."
+        },
+        "night-owl": {
+          "name": "Gecə bayquşu",
+          "hint": "Gecə yarısı ilə səhər beş arasında strimi bitirin."
+        },
+        "regular": {
+          "name": "Mütəmadi",
+          "hint": "Dörd həftə ardıcıl strim edin."
+        },
+        "iron-streak": {
+          "name": "Dəmir seriya",
+          "hint": "On iki həftə ardıcıl strim edin."
+        },
+        "crowd": {
+          "name": "Kütlə",
+          "hint": "Eyni anda on nəfərin izləməsini təmin edin."
+        },
+        "century": {
+          "name": "Əsr",
+          "hint": "Havada yüz uyğun saat əldə edin."
+        },
+        "legend": {
+          "name": "Əfsanə",
+          "hint": "On səviyyəyə çatın."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Bu yayımdan alış-veriş edin",

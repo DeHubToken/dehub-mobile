@@ -3925,7 +3925,60 @@
     "liveChat": "Live-Chat",
     "pickDate": "Datum uswähle",
     "pickTime": "Ziit uswähle",
-    "minTip": "Min. Trinkgäld"
+    "minTip": "Min. Trinkgäld",
+    "progress": {
+      "title": "Streamer-Level",
+      "level": "Level {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} meh qualifizierendi Minute zum Level {{level}} erreiche",
+      "rule": "Nur Streams, wo zehn Minute oder meh lang sind und mindestens ein Zueschauer hend, zelle für dini Level.",
+      "streak": "{{count}} Wuche-Serie",
+      "bestStreak": "Bester Serie {{count}} Wuche",
+      "hours": "{{hours}} qualifizierendi Stundä",
+      "minutes": "{{count}} Minute",
+      "viewers": "{{count}} Zueschauer",
+      "viewCards": "Kärtli luege",
+      "cardsTitle": "Sammelchärtli",
+      "locked": "Gschlosse",
+      "earnedOn": "Verdient {{date}}",
+      "recentTitle": "Letscht Streams",
+      "notCounted": "Han nöd gzehlt",
+      "noStreams": "Gang live zum XP verdienä.",
+      "card": {
+        "first-light": {
+          "name": "Ersti Luuchti",
+          "hint": "Mach din erschte Stream, wo zellt."
+        },
+        "marathon": {
+          "name": "Marathon",
+          "hint": "Stream zwei Stundä lang i einere Sitzig."
+        },
+        "night-owl": {
+          "name": "Nachtuul",
+          "hint": "Mach en Stream zwüsche Mitternacht und füüf Uhr morgens."
+        },
+        "regular": {
+          "name": "Regulär",
+          "hint": "Stream vier Wuche hinterenand."
+        },
+        "iron-streak": {
+          "name": "Iiserne Serie",
+          "hint": "Stream zwölfi Wuche hinterenand."
+        },
+        "crowd": {
+          "name": "Grosi Menge",
+          "hint": "Zeh Lüüt glichzitig zuegucke."
+        },
+        "century": {
+          "name": "Jahrhundert",
+          "hint": "Erreich hundert qualifizieriendi Stundä uf em Äir."
+        },
+        "legend": {
+          "name": "Legende",
+          "hint": "Erreich Level zäh."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "I dem Stream iichaufe",

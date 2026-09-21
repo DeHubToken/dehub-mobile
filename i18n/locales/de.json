@@ -4006,7 +4006,60 @@
     "liveChat": "Live-Chat",
     "pickDate": "Datum wählen",
     "pickTime": "Uhrzeit wählen",
-    "minTip": "Min. Trinkgeld"
+    "minTip": "Min. Trinkgeld",
+    "progress": {
+      "title": "Streamer-Level",
+      "level": "Level {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} weitere qualifizierende Minuten, um Level {{level}} zu erreichen",
+      "rule": "Nur Streams, die zehn Minuten oder länger dauern und mindestens einen Zuschauer haben, zählen für dein Level.",
+      "streak": "{{count}} Wochen Streak",
+      "bestStreak": "Bester Streak {{count}} Wochen",
+      "hours": "{{hours}} qualifizierende Stunden",
+      "minutes": "{{count}} Minuten",
+      "viewers": "{{count}} Zuschauer",
+      "viewCards": "Karten anzeigen",
+      "cardsTitle": "Sammelkarten",
+      "locked": "Gesperrt",
+      "earnedOn": "Verdient {{date}}",
+      "recentTitle": "Letzte Streams",
+      "notCounted": "Nicht gezählt",
+      "noStreams": "Gehe live, um XP zu sammeln.",
+      "card": {
+        "first-light": {
+          "name": "Erstes Licht",
+          "hint": "Schließe deinen ersten Stream ab, der zählt."
+        },
+        "marathon": {
+          "name": "Marathon",
+          "hint": "Streame zwei Stunden in einer Sitzung."
+        },
+        "night-owl": {
+          "name": "Nachteule",
+          "hint": "Beende einen Stream zwischen Mitternacht und fünf Uhr morgens."
+        },
+        "regular": {
+          "name": "Regelmäßig",
+          "hint": "Streame vier Wochen hintereinander."
+        },
+        "iron-streak": {
+          "name": "Eiserner Streak",
+          "hint": "Streame zwölf Wochen hintereinander."
+        },
+        "crowd": {
+          "name": "Menge",
+          "hint": "Zehn Leute gleichzeitig zuschauen lassen."
+        },
+        "century": {
+          "name": "Jahrhundert",
+          "hint": "Erreichen Sie hundert qualifizierende Stunden auf Sendung."
+        },
+        "legend": {
+          "name": "Legende",
+          "hint": "Erreiche Stufe zehn."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "In diesem Stream einkaufen",
