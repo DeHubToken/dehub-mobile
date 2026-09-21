@@ -624,7 +624,10 @@
       "unavailable": "Transliacija iš koduotės šiuo metu jūsų paskyroje negalima.",
       "serverCopied": "Serveris nukopijuotas",
       "keyCopied": "Srauto raktas nukopijuotas"
-    }
+    },
+    "socialFollowers": "Sekėjai {{platform}}",
+    "socialFollowersHint": "Rodoma jūsų profilyje kaip bendro pasiekiamumo dalis. Įveskite numerį patys — mes jo nenuskaitome iš platformos.",
+    "socialFollowersPlaceholder": "pvz., 12500"
   },
   "common": {
     "mute": "Nutildyti",
@@ -1602,7 +1605,13 @@
     "noImages": "Paveikslėlių dar nėra",
     "noImagesSub": "Įrašai su paveikslėliais bus rodomi čia",
     "noPlans": "Nėra prenumeratos planų",
-    "noPlansSub": "Šis kūrėjas dar nesukūrė jokių planų"
+    "noPlansSub": "Šis kūrėjas dar nesukūrė jokių planų",
+    "reach": {
+      "total": "Bendras pasiekiamumas",
+      "breakdownTitle": "Iš kur šis pasiekiamumas",
+      "dehubFollowers": "„DeHub“ sekėjai",
+      "selfReported": "Socialinių sekėjų skaičių įveda kūrėjas."
+    }
   },
   "tv": {
     "title": "TV",

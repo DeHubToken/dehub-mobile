@@ -640,7 +640,10 @@
       "unavailable": "Le streaming depuis un encodeur n'est pas disponible sur votre compte pour le moment.",
       "serverCopied": "Serveur copié",
       "keyCopied": "Clé de flux copiée"
-    }
+    },
+    "socialFollowers": "Abonnés sur {{platform}}",
+    "socialFollowersHint": "Indiqué sur votre profil dans le cadre de votre portée totale. Saisissez le numéro vous-même — nous ne le lisons pas sur la plateforme.",
+    "socialFollowersPlaceholder": "par exemple 12500"
   },
   "common": {
     "mute": "Couper le son",
@@ -1618,7 +1621,13 @@
     "noImages": "Aucune image pour l'instant",
     "noImagesSub": "Les publications avec images apparaîtront ici",
     "noPlans": "Aucune formule d'abonnement",
-    "noPlansSub": "Ce créateur n'a pas encore créé de formule"
+    "noPlansSub": "Ce créateur n'a pas encore créé de formule",
+    "reach": {
+      "total": "Portée totale",
+      "breakdownTitle": "D'où vient cette portée",
+      "dehubFollowers": "Abonnés DeHub",
+      "selfReported": "Les comptes d'abonnés sociaux sont saisis par le créateur."
+    }
   },
   "tv": {
     "title": "TV",

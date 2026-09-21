@@ -1156,7 +1156,10 @@
       "unavailable": "Strim daripada pengekod tidak tersedia pada akaun anda buat masa ini.",
       "serverCopied": "Pelayan disalin",
       "keyCopied": "Kunci strim disalin"
-    }
+    },
+    "socialFollowers": "Pengikut di {{platform}}",
+    "socialFollowersHint": "Ditunjukkan pada profil anda sebagai sebahagian daripada jumlah capaian anda. Masukkan nombor itu sendiri — kami tidak membacanya dari platform.",
+    "socialFollowersPlaceholder": "cth. 12500"
   },
   "postOptions": {
     "options": "Options",
@@ -2059,7 +2062,13 @@
     "noImages": "Belum ada imej",
     "noImagesSub": "Siaran imej akan muncul di sini",
     "noPlans": "Tiada pelan langganan",
-    "noPlansSub": "Pencipta ini belum menyediakan sebarang pelan"
+    "noPlansSub": "Pencipta ini belum menyediakan sebarang pelan",
+    "reach": {
+      "total": "Jumlah capaian",
+      "breakdownTitle": "Dari mana datangnya jangkauan ini",
+      "dehubFollowers": "Pengikut DeHub",
+      "selfReported": "Kiraan pengikut sosial dimasukkan oleh pengkarya."
+    }
   },
   "tv": {
     "title": "TV",

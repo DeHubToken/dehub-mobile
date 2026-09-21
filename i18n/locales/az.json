@@ -614,7 +614,10 @@
       "unavailable": "Hesabınızda hazırda kodlayıcıdan yayımlamaq mümkün deyil.",
       "serverCopied": "Server kopyalandı",
       "keyCopied": "Axın açarı kopyalandı"
-    }
+    },
+    "socialFollowers": "İzləyicilər {{platform}}",
+    "socialFollowersHint": "Profilinizdə ümumi çatınızın bir hissəsi görünəcək. Nömrəni özünüz daxil edin — onu platformadan oxumuruq.",
+    "socialFollowersPlaceholder": "məs., 12500"
   },
   "common": {
     "mute": "Səssiz et",
@@ -1591,7 +1594,13 @@
     "noImages": "Hələ şəkil yoxdur",
     "noImagesSub": "Şəkil paylaşımları burada görünəcək",
     "noPlans": "Abunə planı yoxdur",
-    "noPlansSub": "Bu yaradıcı hələ plan qurmayıb"
+    "noPlansSub": "Bu yaradıcı hələ plan qurmayıb",
+    "reach": {
+      "total": "Ümumi əlaqə",
+      "breakdownTitle": "Bu əlaqə haradan gəlir",
+      "dehubFollowers": "DeHub izləyiciləri",
+      "selfReported": "Sosial izləyici sayları yaradıcı şəxs tərəfindən daxil edilir."
+    }
   },
   "tv": {
     "title": "TV",

@@ -616,7 +616,10 @@
       "unavailable": "ከኢንኮደር ዥረት በአሁኑ ጊዜ በእርስዎ መለያ ላይ አይገኝም።",
       "serverCopied": "አገልጋይ ተገለበጠ",
       "keyCopied": "ዥረት ቁልፍ ተገለበጠ"
-    }
+    },
+    "socialFollowers": "ተከታዮች በ {{platform}}",
+    "socialFollowersHint": "እንደ አጠቃላይ መድረሻዎ አካል በመገለጫዎ ላይ ይንሸራተቱ ። ቁጥሩን እራስዎ ያስገቡ — ከመድረክ አናነበውም ።",
+    "socialFollowersPlaceholder": "ለምሳሌ 12500"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",
@@ -1592,7 +1595,13 @@
     "noImages": "እስካሁን ምስል የለም",
     "noImagesSub": "የምስል ልጥፎች እዚህ ይታያሉ",
     "noPlans": "የምዝገባ ዕቅድ የለም",
-    "noPlansSub": "ይህ ፈጣሪ እስካሁን ምንም ዕቅድ አላዘጋጀም"
+    "noPlansSub": "ይህ ፈጣሪ እስካሁን ምንም ዕቅድ አላዘጋጀም",
+    "reach": {
+      "total": "ጠቅላላ ተደራሽነት",
+      "breakdownTitle": "ይህ ተደራሽነት ከየት እንደመጣ",
+      "dehubFollowers": "DeHub ተከታዮች",
+      "selfReported": "የማኅበራዊ መከታተያ ቁጥሮች በፈጣሪ ይካተታሉ ።"
+    }
   },
   "tv": {
     "title": "ቴሌቪዥን",

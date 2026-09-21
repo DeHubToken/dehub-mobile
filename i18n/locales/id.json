@@ -626,7 +626,10 @@
       "unavailable": "Streaming dari encoder tidak tersedia di akun Anda saat ini.",
       "serverCopied": "Server disalin",
       "keyCopied": "Kunci streaming disalin"
-    }
+    },
+    "socialFollowers": "Pengikut di {{platform}}",
+    "socialFollowersHint": "Ditampilkan di profil Anda sebagai bagian dari jangkauan total Anda. Masukkan nomornya sendiri — kami tidak membacanya dari platform.",
+    "socialFollowersPlaceholder": "misalnya 12500"
   },
   "common": {
     "mute": "Bisukan",
@@ -1604,7 +1607,13 @@
     "noImages": "Belum ada gambar",
     "noImagesSub": "Postingan gambar akan muncul di sini",
     "noPlans": "Tidak ada paket langganan",
-    "noPlansSub": "Kreator ini belum membuat paket apa pun"
+    "noPlansSub": "Kreator ini belum membuat paket apa pun",
+    "reach": {
+      "total": "Total jangkauan",
+      "breakdownTitle": "Dari mana jangkauan ini berasal",
+      "dehubFollowers": "Pengikut DeHub",
+      "selfReported": "Jumlah pengikut sosial dimasukkan oleh kreator."
+    }
   },
   "tv": {
     "title": "TV",

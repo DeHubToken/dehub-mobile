@@ -620,7 +620,10 @@
       "unavailable": "Ṣiṣan lati ẹrọ ṣiṣan ko si lori akọọlẹ rẹ lọwọlọwọ.",
       "serverCopied": "A daakọ olupin",
       "keyCopied": "Ṣàdàkọ bọtini ṣiṣan"
-    }
+    },
+    "socialFollowers": "Àwọn ọmọ-ẹ̀yìn lórí {{platform}}",
+    "socialFollowersHint": "Ṣàfihàn lórí àkójọpọ̀ rẹ gẹ́gẹ́ bí apá kan ìfikúnsí rẹ pátápátá. Fún ara rẹ ní nọ́mbà náà — a kò kà á láti orí ìtàgé.",
+    "socialFollowersPlaceholder": "e.g. 12500"
   },
   "common": {
     "mute": "Pa ohùn",
@@ -1599,7 +1602,13 @@
     "noImages": "Kò sí àwòrán síbẹ̀",
     "noImagesSub": "Àwọn ìfìwéránṣẹ́ àwòrán yóò hàn níbí",
     "noPlans": "Kò sí ètò alábùwọlé",
-    "noPlansSub": "Ẹlẹ́dàá yìí kò tíì ṣẹ̀dá ètò kankan"
+    "noPlansSub": "Ẹlẹ́dàá yìí kò tíì ṣẹ̀dá ètò kankan",
+    "reach": {
+      "total": "Lapapọ arọwọto",
+      "breakdownTitle": "Nibo ni arọwọto yii ti wa",
+      "dehubFollowers": "Àwọn ọmọ-ẹ̀yìn DeHub",
+      "selfReported": "Olùṣẹ̀dá ló máa ń tẹ iye àwọn ọmọlẹ́yìn tó ń tẹ̀lé àwùjọ."
+    }
   },
   "tv": {
     "title": "TV",

@@ -625,7 +625,10 @@
       "unavailable": "Transmetimi nga një kodues nuk është i disponueshëm në llogarinë tuaj tani.",
       "serverCopied": "Serveri u kopjua",
       "keyCopied": "Çelësi i transmetimit u kopjua"
-    }
+    },
+    "socialFollowers": "Ndjekësit në {{platform}}",
+    "socialFollowersHint": "Shfaqet në profilin tënd si pjesë e shtrirjes tënde totale. Vendos numrin vetë — nuk e lexojmë nga platforma.",
+    "socialFollowersPlaceholder": "p.sh. 12500"
   },
   "common": {
     "mute": "Hiq zërin",
@@ -1603,7 +1606,13 @@
     "noImages": "Ende pa imazhe",
     "noImagesSub": "Postimet me imazhe do të shfaqen këtu",
     "noPlans": "Pa plane abonimi",
-    "noPlansSub": "Ky krijues nuk ka krijuar ende asnjë plan"
+    "noPlansSub": "Ky krijues nuk ka krijuar ende asnjë plan",
+    "reach": {
+      "total": "Arritja totale",
+      "breakdownTitle": "Nga vjen kjo arritje",
+      "dehubFollowers": "Ndjekësit e DeHub",
+      "selfReported": "Numrat e ndjekësve socialë futen nga krijuesi."
+    }
   },
   "tv": {
     "title": "TV",

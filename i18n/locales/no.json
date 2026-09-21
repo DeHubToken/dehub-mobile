@@ -622,7 +622,10 @@
       "unavailable": "Strømming fra en koder er ikke tilgjengelig på kontoen din akkurat nå.",
       "serverCopied": "Serveren er kopiert",
       "keyCopied": "Strømnøkkel kopiert"
-    }
+    },
+    "socialFollowers": "Følgere på {{platform}}",
+    "socialFollowersHint": "Vises på profilen din som en del av din totale rekkevidde. Skriv inn tallet selv – vi leser det ikke fra plattformen.",
+    "socialFollowersPlaceholder": "f.eks. 12500"
   },
   "common": {
     "mute": "Demp",
@@ -1564,7 +1567,13 @@
     "noImages": "Ingen bilder ennå",
     "noImagesSub": "Bildeinnlegg vises her",
     "noPlans": "Ingen abonnementsplaner",
-    "noPlansSub": "Denne skaperen har ikke laget planer ennå"
+    "noPlansSub": "Denne skaperen har ikke laget planer ennå",
+    "reach": {
+      "total": "Total rekkevidde",
+      "breakdownTitle": "Hvor denne rekkevidden kommer fra",
+      "dehubFollowers": "DeHub-følgere",
+      "selfReported": "Antall følgere på sosiale medier legges inn av skaperen."
+    }
   },
   "tv": {
     "title": "TV",

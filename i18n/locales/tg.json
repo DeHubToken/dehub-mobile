@@ -612,7 +612,10 @@
       "unavailable": "Ҷараён аз кодер дар айни замон дар суратҳисоби шумо дастрас нест.",
       "serverCopied": "Сервер нусхабардорӣ шудааст",
       "keyCopied": "Калиди ҷараён нусхабардорӣ шудааст"
-    }
+    },
+    "socialFollowers": "Пайравони {{platform}}",
+    "socialFollowersHint": "Ipinapakita sa iyong profile bilang bahagi ng iyong kabuuang pag Рақамро худатон ворид кунед — мо онро аз платформа намехонем.",
+    "socialFollowersPlaceholder": "масалан, 12500"
   },
   "common": {
     "mute": "Хомӯш кардани садо",
@@ -1550,7 +1553,13 @@
     "noImages": "Ҳанӯз тасвир нест",
     "noImagesSub": "Паёмҳои тасвирӣ дар ин ҷо пайдо мешаванд",
     "noPlans": "Нақшаҳои обуна нест",
-    "noPlansSub": "Ин эҷодкор ҳанӯз ягон нақша нақшабандӣ накардааст"
+    "noPlansSub": "Ин эҷодкор ҳанӯз ягон нақша нақшабандӣ накардааст",
+    "reach": {
+      "total": "Дастрасии умумӣ",
+      "breakdownTitle": "НОҲИЯИ ПАНҶ МЕГӮЯ",
+      "dehubFollowers": "Пайравони DeHub",
+      "selfReported": "Ang mga sukatan ng Social Follower ay nagpasok ng lumikha."
+    }
   },
   "tv": {
     "title": "TV",

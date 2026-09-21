@@ -625,7 +625,10 @@
       "unavailable": "La transmissió des d'un codificador no està disponible al teu compte ara mateix.",
       "serverCopied": "Servidor copiat",
       "keyCopied": "S'ha copiat la clau del flux"
-    }
+    },
+    "socialFollowers": "Seguidors a {{platform}}",
+    "socialFollowersHint": "Es mostra al teu perfil com a part del teu abast total. Introdueix el número tu mateix: no el llegim des de la plataforma.",
+    "socialFollowersPlaceholder": "p. ex. 12500"
   },
   "common": {
     "mute": "Silencia",
@@ -1603,7 +1606,13 @@
     "noImages": "Encara no hi ha imatges",
     "noImagesSub": "Les publicacions amb imatges apareixeran aquí",
     "noPlans": "Sense plans de subscripció",
-    "noPlansSub": "Aquest creador encara no ha creat cap pla"
+    "noPlansSub": "Aquest creador encara no ha creat cap pla",
+    "reach": {
+      "total": "Abast total",
+      "breakdownTitle": "D'on ve aquest abast",
+      "dehubFollowers": "Seguidors de DeHub",
+      "selfReported": "El creador introdueix els recomptes de seguidors socials."
+    }
   },
   "tv": {
     "title": "TV",

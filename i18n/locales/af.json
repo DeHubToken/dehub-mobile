@@ -294,7 +294,13 @@
     "noImages": "Nog geen beelde nie",
     "noImagesSub": "Beeldplasings sal hier verskyn",
     "noPlans": "Geen intekenplanne nie",
-    "noPlansSub": "Hierdie skepper het nog geen planne opgestel nie"
+    "noPlansSub": "Hierdie skepper het nog geen planne opgestel nie",
+    "reach": {
+      "total": "Totale bereik",
+      "breakdownTitle": "Waar hierdie reikwydte vandaan kom",
+      "dehubFollowers": "DeHub-volgelinge",
+      "selfReported": "Sosiale volgelinge tel word deur die skepper ingevoer."
+    }
   },
   "settings": {
     "smartReplies": "Voorgestelde antwoorde",
@@ -837,7 +843,10 @@
       "unavailable": "Stroom vanaf 'n enkoder is tans nie op jou rekening beskikbaar nie.",
       "serverCopied": "Bediener gekopieer",
       "keyCopied": "Stroom sleutel gekopieer"
-    }
+    },
+    "socialFollowers": "Volgers op {{platform}}",
+    "socialFollowersHint": "Wys op jou profiel as deel van jou totale bereik. Voer die nommer self in — ons lees dit nie van die platform af nie.",
+    "socialFollowersPlaceholder": "bv. 12500"
   },
   "wallet": {
     "connectUnavailable": "Koppel beursie is nie in hierdie weergawe beskikbaar nie — herstel eerder met jou herstelfrase.",

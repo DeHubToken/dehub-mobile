@@ -639,7 +639,10 @@
       "unavailable": "Streaming von einem Encoder ist derzeit nicht für Ihr Konto verfügbar.",
       "serverCopied": "Server kopiert",
       "keyCopied": "Stream-Schlüssel kopiert"
-    }
+    },
+    "socialFollowers": "Follower auf {{platform}}",
+    "socialFollowersHint": "Wird in deinem Profil als Teil deiner Gesamtreichweite angezeigt. Geben Sie die Nummer selbst ein — wir lesen sie nicht von der Plattform ab.",
+    "socialFollowersPlaceholder": "z.B. 12500"
   },
   "common": {
     "mute": "Stumm schalten",
@@ -1582,7 +1585,13 @@
     "noImages": "Noch keine Bilder",
     "noImagesSub": "Bildbeiträge erscheinen hier",
     "noPlans": "Keine Abo-Pläne",
-    "noPlansSub": "Dieser Creator hat noch keine Pläne eingerichtet"
+    "noPlansSub": "Dieser Creator hat noch keine Pläne eingerichtet",
+    "reach": {
+      "total": "Gesamtreichweite",
+      "breakdownTitle": "Woher diese Reichweite kommt",
+      "dehubFollowers": "DeHub-Follower",
+      "selfReported": "Die Anzahl der sozialen Follower wird vom Ersteller eingegeben."
+    }
   },
   "tv": {
     "title": "TV",
