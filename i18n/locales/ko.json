@@ -1260,7 +1260,22 @@
     "noVideosYet": "저장한 동영상이 없습니다",
     "videosStartSaving": "동영상이 있는 게시물을 저장하면 여기에 모입니다.",
     "noTextYet": "저장한 텍스트 게시물이 없습니다",
-    "textStartSaving": "텍스트만 있는 게시물을 저장하면 여기에 표시됩니다."
+    "textStartSaving": "텍스트만 있는 게시물을 저장하면 여기에 표시됩니다.",
+    "playlist": {
+      "makePublic": "공개 재생 목록",
+      "makePublicHint": "누구나 프로필에서 이 폴더를 볼 수 있습니다.",
+      "publicBadge": "공개",
+      "copyLink": "재생 목록 링크 복사",
+      "linkCopied": "재생 목록 링크 복사됨",
+      "itemsCount": "{{count}} 개의 포스트",
+      "emptyOwnerHint": "여기에 표시하려면 북마크 폴더를 공개로 설정하세요.",
+      "emptyVisitor": "이 프로필에는 아직 공개 재생목록이 없습니다.",
+      "openBookmarks": "내 북마크 열기",
+      "back": "모든 재생 목록",
+      "noPosts": "이 재생 목록에는 아직 게시물이 없습니다.",
+      "unavailable": "이 재생 목록은 더 이상 사용할 수 없습니다.",
+      "loadMore": "포스트 더 보기"
+    }
   },
   "notifications": {
     "title": "알림",
@@ -1518,7 +1533,8 @@
       "breakdownTitle": "도달 범위의 출처",
       "dehubFollowers": "DeHub 팔로워",
       "selfReported": "소셜 팔로워 수는 크리에이터가 입력합니다."
-    }
+    },
+    "tabPlaylists": "재생 목록"
   },
   "tv": {
     "title": "TV",

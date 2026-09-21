@@ -1355,7 +1355,22 @@
     "noVideosYet": "Belum ada video tersimpan",
     "videosStartSaving": "Simpan postingan berisi video dan semuanya terkumpul di sini.",
     "noTextYet": "Belum ada postingan teks tersimpan",
-    "textStartSaving": "Simpan postingan berisi teks saja dan semuanya akan muncul di sini."
+    "textStartSaving": "Simpan postingan berisi teks saja dan semuanya akan muncul di sini.",
+    "playlist": {
+      "makePublic": "Daftar putar publik",
+      "makePublicHint": "Siapa pun dapat melihat folder ini di profil Anda.",
+      "publicBadge": "Publik",
+      "copyLink": "Salin tautan daftar putar",
+      "linkCopied": "Tautan daftar putar disalin",
+      "itemsCount": "{{count}} postingan",
+      "emptyOwnerHint": "Jadikan folder bookmark publik untuk menampilkannya di sini.",
+      "emptyVisitor": "Profil ini belum memiliki daftar putar publik.",
+      "openBookmarks": "Buka bookmark saya",
+      "back": "Semua daftar putar",
+      "noPosts": "Daftar putar ini belum memiliki postingan.",
+      "unavailable": "Daftar putar ini tidak tersedia lagi.",
+      "loadMore": "Tampilkan postingan lainnya"
+    }
   },
   "notifications": {
     "title": "Notifikasi",
@@ -1613,7 +1628,8 @@
       "breakdownTitle": "Dari mana jangkauan ini berasal",
       "dehubFollowers": "Pengikut DeHub",
       "selfReported": "Jumlah pengikut sosial dimasukkan oleh kreator."
-    }
+    },
+    "tabPlaylists": "Daftar Putar"
   },
   "tv": {
     "title": "TV",

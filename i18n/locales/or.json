@@ -1240,7 +1240,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "ସାଧାରଣ ପ୍ଲେଲିଷ୍ଟ",
+      "makePublicHint": "ଏହି ଫୋଲ୍ଡରକୁ ତୁମ ପ୍ରୋଫାଇଲରେ କେହି ବି ଦେଖିପାରିବେ।",
+      "publicBadge": "ସାଧାରଣ",
+      "copyLink": "ପ୍ଲେଲିଷ୍ଟ ଲିଙ୍କ୍ କପି କରନ୍ତୁ",
+      "linkCopied": "ପ୍ଲେଲିଷ୍ଟ ଲିଙ୍କ୍ କପି ହୋଇଗଲାଣି",
+      "itemsCount": "{{count}} ପୋଷ୍ଟ",
+      "emptyOwnerHint": "ଏହାକୁ ଏଠାରେ ଦେଖାଇବା ପାଇଁ ଏକ ବୁକମାର୍କ ଫୋଲ୍ଡରକୁ ସାଧାରଣ କରନ୍ତୁ।",
+      "emptyVisitor": "ଏହି ପ୍ରୋଫାଇଲରେ ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ସାଧାରଣ ପ୍ଲେଲିଷ୍ଟ ନାହିଁ।",
+      "openBookmarks": "ମୋ ବୁକମାର୍କ ଖୋଲନ୍ତୁ",
+      "back": "ସମସ୍ତ ପ୍ଲେଲିଷ୍ଟ",
+      "noPosts": "ଏହି ପ୍ଲେଲିଷ୍ଟରେ ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ପୋଷ୍ଟ ନାହିଁ।",
+      "unavailable": "ଏହି ପ୍ଲେଲିଷ୍ଟ ଆଉ ଉପଲବ୍ଧ ନାହିଁ।",
+      "loadMore": "ଆହୁରି ପୋଷ୍ଟ ଦେଖାନ୍ତୁ"
+    }
   },
   "notifications": {
     "badgeTierUp": "ଅଭିନନ୍ଦନ! ଏବେ ଆପଣ {{tier}} 🎉",
@@ -1587,7 +1602,8 @@
       "breakdownTitle": "ଏହି ପହଁଚ କେଉଁଠୁ ଆସିଲା?",
       "dehubFollowers": "DeHub ଅନୁଗାମୀ",
       "selfReported": "ସୃଷ୍ଟିକର୍ତ୍ତାଙ୍କ ଦ୍ୱାରା ସାମାଜିକ ଅନୁଗାମୀ ଗଣନା କରାଯାଇଥାଏ ।"
-    }
+    },
+    "tabPlaylists": "ପ୍ଲେ-ଲିଷ୍ଟଗୁଡ଼ିକ"
   },
   "tv": {
     "title": "TV",

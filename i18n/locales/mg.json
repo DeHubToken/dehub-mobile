@@ -1171,7 +1171,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Ny laharam-pehintaniny ary ny lah",
+      "makePublicHint": "Na iza na iza dia afaka mahita ity rakitra ity ao amin'ny mombamomba anao.",
+      "publicBadge": "Ny",
+      "copyLink": "Adikao ny rohin'ny playlist",
+      "linkCopied": "Nadika ny rohin'ny playlist",
+      "itemsCount": "{{count}} post",
+      "emptyOwnerHint": "Alefaso ny rohin'ny rohy ho hitan'ny besinimaro mba hampisehoana izany eto.",
+      "emptyVisitor": "Mbola tsy manana ny antontan-taratasiny ny Global Voices amin'izao fotoana izao.",
+      "openBookmarks": "Sokafy ny tobin-drohy",
+      "back": "Playlists rehetra",
+      "noPosts": "Tsy mbola misy hatramin'izao ireo rakipeo miresaka zavatra toy izany.",
+      "unavailable": "Tsy azo ampiasaina intsony izany sommet des 4 izany ê!",
+      "loadMore": "FANAMPIM-PANAZAVANA F"
+    }
   },
   "notifications": {
     "title": "Fampandrenesana",
@@ -1530,7 +1545,8 @@
       "breakdownTitle": "Avy aiza no nihavian'izany",
       "dehubFollowers": "Mpanara-dia an'i DeHub",
       "selfReported": "Ny fandrindrana ara-tsosialy dia nampidirina tamin'ny mpamorona."
-    }
+    },
+    "tabPlaylists": "Lisitra filalao"
   },
   "tv": {
     "title": "TV",

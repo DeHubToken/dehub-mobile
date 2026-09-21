@@ -38,6 +38,7 @@ import VideosRoute from "../Profile/VideosRoute";
 import LivestreamsRoute from "../Profile/LivestreamsRoute";
 import FractionsRoute from "../Profile/FractionsRoute";
 import PinnedRoute from "../Profile/PinnedRoute";
+import PlaylistsRoute from "../Profile/PlaylistsRoute";
 import ProfileFeedTypeRoute from "../Profile/ProfileFeedTypeRoute";
 import PostsRoute from "../Profile/PostsRoute";
 import FeedRoute from "../Profile/FeedRoute";
@@ -96,7 +97,8 @@ type ContentTab =
   | "live"
   | "fractions"
   | "subscribers"
-  | "pinned";
+  | "pinned"
+  | "playlists";
 
 const BASE_TAB_ITEMS: ProfileTabItem<ContentTab>[] = [
   { key: "home", label: "All", icon: "House" },
@@ -108,6 +110,7 @@ const BASE_TAB_ITEMS: ProfileTabItem<ContentTab>[] = [
   { key: "live", label: "Live", icon: "Radio" },
   { key: "fractions", label: "Fractions", icon: "ChartPie" },
   { key: "pinned", label: "Pinned", icon: "Pin" },
+  { key: "playlists", label: "Playlists", icon: "ListVideo" },
 ];
 
 const UserProfileBottomContentTabs: React.FC<
@@ -159,14 +162,17 @@ const UserProfileBottomContentTabs: React.FC<
   const tabItems = useMemo<ProfileTabItem<ContentTab>[]>(() => {
     const withCounts = BASE_TAB_ITEMS.map((item) => ({
       ...item,
+      label: item.key === "playlists" ? t("profile.tabPlaylists") : item.label,
       count: (counts as Record<string, number | undefined>)[item.key] ?? 0,
-    }));
+    }))
+      // Public playlists only earn a tab once there is one to show.
+      .filter((item) => item.key !== "playlists" || (item.count ?? 0) > 0);
     const home = withCounts.find((item) => item.key === "home")!;
     const rest = withCounts
       .filter((item) => item.key !== "home")
       .sort((a, b) => (b.count ?? 0) - (a.count ?? 0));
     return [home, ...rest];
-  }, [counts]);
+  }, [counts, t]);
 
   // Track scroll offset for sticky bar + back-to-top
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -602,6 +608,12 @@ const UserProfileBottomContentTabs: React.FC<
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             <PinnedRoute listRef={listRef} address={address} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
+          </View>
+        );
+      case "playlists":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            <PlaylistsRoute listRef={listRef} address={address} isOwnProfile={isOwnProfile} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
           </View>
         );
       default:

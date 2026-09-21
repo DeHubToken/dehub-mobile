@@ -1303,7 +1303,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "የህዝብ ማጫወቻ ዝርዝር",
+      "makePublicHint": "ማንም ሰው ይህንን አቃፊ በመገለጫዎ ላይ ማየት ይችላል ።",
+      "publicBadge": "የህዝብ",
+      "copyLink": "የአጫዋች ዝርዝር አገናኝን ይቅዱ",
+      "linkCopied": "የ Playlist አገናኝ ተገለበጠ",
+      "itemsCount": "{{count}} ልጥፎች",
+      "emptyOwnerHint": "እዚህ ለማሳየት አንድ ዕልባት አቃፊ ይፋ አድርግ.",
+      "emptyVisitor": "ይህ መገለጫ እስካሁን የህዝብ አጫዋች ዝርዝር የለውም ።",
+      "openBookmarks": "የእኔን ዕልባቶች ይክፈቱ",
+      "back": "ሁሉም አጫዋች ዝርዝሮች",
+      "noPosts": "ይህ አጫዋች ዝርዝር እስካሁን ምንም ልጥፎች የሉትም ።",
+      "unavailable": "ይህ አጫዋች ዝርዝር ከአሁን በኋላ አይገኝም ።",
+      "loadMore": "ተጨማሪ ልጥፎችን አሳይ"
+    }
   },
   "notifications": {
     "title": "ማሳወቂያዎች",
@@ -1601,7 +1616,8 @@
       "breakdownTitle": "ይህ ተደራሽነት ከየት እንደመጣ",
       "dehubFollowers": "DeHub ተከታዮች",
       "selfReported": "የማኅበራዊ መከታተያ ቁጥሮች በፈጣሪ ይካተታሉ ።"
-    }
+    },
+    "tabPlaylists": "አጫዋች ዝርዝሮች"
   },
   "tv": {
     "title": "ቴሌቪዥን",

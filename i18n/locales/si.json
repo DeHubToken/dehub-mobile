@@ -1248,7 +1248,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "ප්‍රසිද්ධ ධාවන ලැයිස්තුව",
+      "makePublicHint": "මෙම ෆෝල්ඩරය ඔබේ පැතිකඩෙහි ඕනෑම කෙනෙකුට දැකගත හැකිය.",
+      "publicBadge": "ප්‍රසිද්ධයි",
+      "copyLink": "ධාවන ලැයිස්තු සබැඳිය පිටපත් කරන්න",
+      "linkCopied": "ධාවන ලැයිස්තු සබැඳිය පිටපත් කරන ලදී",
+      "itemsCount": "{{count}} පළ කිරීම්",
+      "emptyOwnerHint": "මෙතැන පෙන්වීමට පිටු සලකුණු ෆෝල්ඩරයක් ප්‍රසිද්ධ කරන්න.",
+      "emptyVisitor": "මෙම පැතිකඩෙහි තවමත් ප්‍රසිද්ධ ධාවන ලැයිස්තු නොමැත.",
+      "openBookmarks": "මගේ පිටු සලකුණු විවෘත කරන්න",
+      "back": "සියලුම ධාවන ලැයිස්තු",
+      "noPosts": "මෙම ධාවන ලැයිස්තුවෙහි තවමත් පළ කිරීම් නොමැත.",
+      "unavailable": "මෙම ධාවන ලැයිස්තුව තවදුරටත් නොමැත.",
+      "loadMore": "තවත් පළ කිරීම් පෙන්වන්න"
+    }
   },
   "notifications": {
     "badgeTierUp": "සුබ පැතුම්! දැන් ඔබ {{tier}} කෙනෙක් 🎉",
@@ -1601,7 +1616,8 @@
       "breakdownTitle": "මෙම ප් ‍ රවේශය පැමිණෙන්නේ කොහෙන්ද?",
       "dehubFollowers": "DeHub අනුගාමිකයන්",
       "selfReported": "නිර්මාණකරුවා විසින් සමාජ අනුගාමිකයන් ගණනය කරනු ලැබේ."
-    }
+    },
+    "tabPlaylists": "වාදන ලැයිස්තුව"
   },
   "dao": {
     "title": "DAO භmාව",

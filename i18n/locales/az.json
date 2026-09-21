@@ -1241,7 +1241,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "İctimai oyun siyahısı",
+      "makePublicHint": "Bu qovluğu profilinizdə hər kəs görə bilər.",
+      "publicBadge": "İctimai",
+      "copyLink": "Səsləndirmə siyahısı linkini kopyal",
+      "linkCopied": "Səsləndirmə siyahısı linki kopyalandı",
+      "itemsCount": "{{count}} ismarıc",
+      "emptyOwnerHint": "Onu burada göstərmək üçün əlfəcin qovluğunu ictimaiyyətə açıq edin.",
+      "emptyVisitor": "Bu profilin hələ ictimai siyahıları yoxdur.",
+      "openBookmarks": "Əlfəcinlərimi aç",
+      "back": "Bütün çalğı siyahıları",
+      "noPosts": "Bu ifa siyahısında hələ heç bir yazı yoxdur.",
+      "unavailable": "Bu pleylist artıq mövcud deyil.",
+      "loadMore": "Daha çox yazı göstər"
+    }
   },
   "notifications": {
     "badgeTierUp": "Təbriklər! İndi siz {{tier}}-siniz 🎉",
@@ -1600,7 +1615,8 @@
       "breakdownTitle": "Bu əlaqə haradan gəlir",
       "dehubFollowers": "DeHub izləyiciləri",
       "selfReported": "Sosial izləyici sayları yaradıcı şəxs tərəfindən daxil edilir."
-    }
+    },
+    "tabPlaylists": "Səsləndirmə siyahıları"
   },
   "tv": {
     "title": "TV",

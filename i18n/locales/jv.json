@@ -1211,7 +1211,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Dhaptar puter umum",
+      "makePublicHint": "Sapa waé bisa ndelok folder iki ing profilmu.",
+      "publicBadge": "Umum",
+      "copyLink": "Salin tautan dhaptar puter",
+      "linkCopied": "Tautan dhaptar puter wis disalin",
+      "itemsCount": "{{count}} kiriman",
+      "emptyOwnerHint": "Jadikan folder tetenger umum kanggo nampilake ing kene.",
+      "emptyVisitor": "Profil iki durung duwe dhaptar puter umum.",
+      "openBookmarks": "Buka tetengeranku",
+      "back": "Kabèh dhaptar puter",
+      "noPosts": "Dhaptar puter iki durung ana kirimané.",
+      "unavailable": "Dhaptar puter iki wis ora kasedhiya.",
+      "loadMore": "Tampilaké kiriman liyané"
+    }
   },
   "notifications": {
     "title": "Notifikasi",
@@ -1571,7 +1586,8 @@
       "breakdownTitle": "Saka ngendi jangkauan iki",
       "dehubFollowers": "Pengikut DeHub",
       "selfReported": "Jumlah pengikut sosial dilebokake dening kreator."
-    }
+    },
+    "tabPlaylists": "Dhaptar Puter"
   },
   "tv": {
     "title": "TV",

@@ -1262,7 +1262,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "ಸಾರ್ವಜನಿಕ ಪ್ಲೇಪಟ್ಟಿ",
+      "makePublicHint": "ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಯಾರಾದರೂ ಈ ಫೋಲ್ಡರ್ ಅನ್ನು ನೋಡಬಹುದು.",
+      "publicBadge": "ಸಾರ್ವಜನಿಕ",
+      "copyLink": "ಪ್ಲೇಪಟ್ಟಿ ಲಿಂಕ್ ಅನ್ನು ನಕಲಿಸಿ",
+      "linkCopied": "ಪ್ಲೇಪಟ್ಟಿ ಲಿಂಕ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ",
+      "itemsCount": "{{count}} ಪೋಸ್ಟ್‌ಗಳು",
+      "emptyOwnerHint": "ಬುಕ್‌ಮಾರ್ಕ್ ಫೋಲ್ಡರ್ ಅನ್ನು ಇಲ್ಲಿ ತೋರಿಸಲು ಸಾರ್ವಜನಿಕವಾಗಿ ಮಾಡಿ.",
+      "emptyVisitor": "ಈ ಪ್ರೊಫೈಲ್ ಇನ್ನೂ ಯಾವುದೇ ಸಾರ್ವಜನಿಕ ಪ್ಲೇಪಟ್ಟಿಗಳನ್ನು ಹೊಂದಿಲ್ಲ.",
+      "openBookmarks": "ನನ್ನ ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ",
+      "back": "ಎಲ್ಲಾ ಪ್ಲೇಪಟ್ಟಿಗಳು",
+      "noPosts": "ಈ ಪ್ಲೇಪಟ್ಟಿಗೆ ಇನ್ನೂ ಯಾವುದೇ ಪೋಸ್ಟ್‌ಗಳಿಲ್ಲ.",
+      "unavailable": "ಈ ಪ್ಲೇಪಟ್ಟಿ ಇನ್ನು ಮುಂದೆ ಲಭ್ಯವಿಲ್ಲ.",
+      "loadMore": "ಹೆಚ್ಚಿನ ಪೋಸ್ಟ್‌ಗಳನ್ನು ತೋರಿಸಿ"
+    }
   },
   "notifications": {
     "title": "ಅಧಿಸೂಚನೆಗಳು",
@@ -1621,7 +1636,8 @@
       "breakdownTitle": "ಈ ವ್ಯಾಪ್ತಿ ಎಲ್ಲಿಂದ ಬರುತ್ತದೆ",
       "dehubFollowers": "DeHub ಅನುಯಾಯಿಗಳು",
       "selfReported": "ಸಾಮಾಜಿಕ ಅನುಯಾಯಿಗಳ ಎಣಿಕೆಗಳನ್ನು ಸೃಷ್ಟಿಕರ್ತರು ನಮೂದಿಸುತ್ತಾರೆ."
-    }
+    },
+    "tabPlaylists": "ಚಲಾವಣಾಪಟ್ಟಿಗಳು"
   },
   "tv": {
     "title": "ಟಿವಿ",

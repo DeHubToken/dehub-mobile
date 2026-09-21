@@ -1310,7 +1310,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Плейлисти ҷамъиятӣ",
+      "makePublicHint": "Ҳар кас метавонад ин ҷузвдонро дар профили шумо бубинад.",
+      "publicBadge": "Оммавӣ",
+      "copyLink": "Истиноди плейлисти нусхабардорӣ",
+      "linkCopied": "Истиноди плейлист нусхабардорӣ шуд",
+      "itemsCount": "{{count}} пост",
+      "emptyOwnerHint": "Ҷузвдони мунтахабро оммавӣ кунед, то дар ин ҷо нишон дода шавад.",
+      "emptyVisitor": "Ин профил ҳанӯз плейлистҳои оммавӣ надорад.",
+      "openBookmarks": "Мунтахабҳои маро кушоед",
+      "back": "Ҳамаи плейлистҳо",
+      "noPosts": "Ин плейлист ҳанӯз пост надорад.",
+      "unavailable": "Ин плейлист дигар дастрас нест.",
+      "loadMore": "Намоиши постҳои бештар"
+    }
   },
   "notifications": {
     "badgeTierUp": "Табрик! Акнун шумо {{tier}} ҳастед 🎉",
@@ -1559,7 +1574,8 @@
       "breakdownTitle": "НОҲИЯИ ПАНҶ МЕГӮЯ",
       "dehubFollowers": "Пайравони DeHub",
       "selfReported": "Ang mga sukatan ng Social Follower ay nagpasok ng lumikha."
-    }
+    },
+    "tabPlaylists": "Феҳристҳои пахш"
   },
   "tv": {
     "title": "TV",

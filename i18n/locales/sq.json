@@ -1252,7 +1252,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Lista e luajtjes publike",
+      "makePublicHint": "Çdokush mund ta shohë këtë dosje në profilin tënd.",
+      "publicBadge": "Publike",
+      "copyLink": "Kopjo linkun e listës së luajtjes",
+      "linkCopied": "Linku i listës së luajtjes u kopj",
+      "itemsCount": "{{count}} postimet",
+      "emptyOwnerHint": "Bëj publike një dosje faqerojtësish për ta shfaqur këtu.",
+      "emptyVisitor": "Ky profil nuk ka ende listat publike të luajtjes.",
+      "openBookmarks": "Hap faqeshënuesit e mi",
+      "back": "Të gjitha listat e luajtjes",
+      "noPosts": "Kjo listë luajtjeje nuk ka ende postime.",
+      "unavailable": "Kjo listë lojërash nuk është më e disponueshme.",
+      "loadMore": "Shfaq më shumë postime"
+    }
   },
   "notifications": {
     "title": "Njoftimet",
@@ -1612,7 +1627,8 @@
       "breakdownTitle": "Nga vjen kjo arritje",
       "dehubFollowers": "Ndjekësit e DeHub",
       "selfReported": "Numrat e ndjekësve socialë futen nga krijuesi."
-    }
+    },
+    "tabPlaylists": "Listat e luajtjes"
   },
   "tv": {
     "title": "TV",

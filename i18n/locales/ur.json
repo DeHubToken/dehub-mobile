@@ -1246,7 +1246,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "عوامی پلے لسٹ",
+      "makePublicHint": "کوئی بھی آپ کی پروفائل پر یہ فولڈر دیکھ سکتا ہے ۔",
+      "publicBadge": "عوامی",
+      "copyLink": "پلے لسٹ کا لنک کاپی کریں",
+      "linkCopied": "پلے لسٹ کا لنک کاپی ہو گیا",
+      "itemsCount": "{{count}} پوسٹس",
+      "emptyOwnerHint": "یہاں دکھانے کے لیے بک مارک فولڈر کو عوامی بنائیں ۔",
+      "emptyVisitor": "اس پروفائل میں ابھی تک کوئی عوامی پلے لسٹس نہیں ہیں ۔",
+      "openBookmarks": "میرے بُک مارکس کھولیں",
+      "back": "تمام پلے لسٹس",
+      "noPosts": "اس پلے لسٹ میں ابھی تک کوئی پوسٹس نہیں ہیں ۔",
+      "unavailable": "یہ پلے لسٹ اب دستیاب نہیں ہے ۔",
+      "loadMore": "مزید پوسٹس دکھائیں"
+    }
   },
   "notifications": {
     "title": "اطلاعات",
@@ -1471,7 +1486,8 @@
       "breakdownTitle": "یہ پہنچ کہاں سے آتی ہے",
       "dehubFollowers": "DeHub کے فالوورز",
       "selfReported": "تخلیق کار کی جانب سے سماجی پیروکاروں کی تعداد درج کی جاتی ہے ۔"
-    }
+    },
+    "tabPlaylists": "پلے لسٹس"
   },
   "messages": {
     "smartRepliesOff": "تجویز کردہ جوابات بند کر دیے گئے",

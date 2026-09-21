@@ -1565,7 +1565,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Listă de redare publică",
+      "makePublicHint": "Oricine poate vedea acest dosar în profilul tău.",
+      "publicBadge": "Public",
+      "copyLink": "Copiază linkul listei de redare",
+      "linkCopied": "Link-ul listei de redare a fost copiat",
+      "itemsCount": "Postări {{count}}",
+      "emptyOwnerHint": "Faceți public un dosar cu marcaje pentru a-l afișa aici.",
+      "emptyVisitor": "Acest profil nu are încă liste de redare publice.",
+      "openBookmarks": "Deschideți marcajele mele",
+      "back": "Toate listele de redare",
+      "noPosts": "Această listă de redare nu are încă postări.",
+      "unavailable": "Această listă de redare nu mai este disponibilă.",
+      "loadMore": "Afișează mai multe postări"
+    }
   },
   "notifications": {
     "title": "Notifications",
@@ -1819,7 +1834,8 @@
       "breakdownTitle": "De unde provine această acoperire",
       "dehubFollowers": "Urmăritori DeHub",
       "selfReported": "Numărul de urmăritori sociali este introdus de creator."
-    }
+    },
+    "tabPlaylists": "Liste de redare"
   },
   "tv": {
     "title": "TV",

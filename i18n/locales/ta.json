@@ -1240,7 +1240,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "பொது பிளேலிஸ்ட்",
+      "makePublicHint": "உங்கள் சுயவிவரத்தில் இந்த கோப்புறையை எவரும் பார்க்கலாம்.",
+      "publicBadge": "பொது",
+      "copyLink": "பிளேலிஸ்ட் இணைப்பை நகலெடுக்கவும்",
+      "linkCopied": "பிளேலிஸ்ட் இணைப்பு நகலெடுக்கப்பட்டது",
+      "itemsCount": "{{count}} இடுகைகள்",
+      "emptyOwnerHint": "இங்கே காட்ட ஒரு புக்மார்க் கோப்புறையை பகிரங்கமாக்கவும்.",
+      "emptyVisitor": "இந்த சுயவிவரத்தில் இதுவரை பொது பிளேலிஸ்ட்கள் எதுவும் இல்லை.",
+      "openBookmarks": "எனது புக்மார்க்குகளைத் திறக்கவும்",
+      "back": "அனைத்து பிளேலிஸ்ட்களும்",
+      "noPosts": "இந்த பிளேலிஸ்ட்டில் இதுவரை இடுகைகள் எதுவும் இல்லை.",
+      "unavailable": "இந்த பிளேலிஸ்ட் இனி கிடைக்காது.",
+      "loadMore": "மேலும் இடுகைகளைக் காட்டு"
+    }
   },
   "notifications": {
     "badgeTierUp": "வாழ்த்துக்கள்! இப்போது நீங்கள் {{tier}} 🎉",
@@ -1462,7 +1477,8 @@
       "breakdownTitle": "இந்த அணுகல் எங்கிருந்து வருகிறது",
       "dehubFollowers": "DeHub பின்தொடர்பவர்கள்",
       "selfReported": "சமூக பின்தொடர்பவர்களின் எண்ணிக்கை படைப்பாளரால் உள்ளிடப்படுகிறது."
-    }
+    },
+    "tabPlaylists": "வாசிப்பு பட்டியல்கள்"
   },
   "messages": {
     "smartRepliesOff": "பரிந்துரைக்கப்பட்ட பதில்கள் அணைக்கப்பட்டன",

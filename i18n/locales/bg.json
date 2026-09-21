@@ -1248,7 +1248,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Публичен плейлист",
+      "makePublicHint": "Всеки може да види тази папка в профила ви.",
+      "publicBadge": "Публичен",
+      "copyLink": "Копиране на връзка към плейлиста",
+      "linkCopied": "Връзката към плейлиста е копирана",
+      "itemsCount": "{{count}} публикации",
+      "emptyOwnerHint": "Направете публична папка с отметки, за да я покажете тук.",
+      "emptyVisitor": "Този профил все още няма публични плейлисти.",
+      "openBookmarks": "Отваряне на отметките ми",
+      "back": "Всички плейлисти",
+      "noPosts": "Този плейлист все още няма публикации.",
+      "unavailable": "Тази плейлиста вече не е налична.",
+      "loadMore": "Показване на още публикации"
+    }
   },
   "notifications": {
     "title": "Известия",
@@ -1473,7 +1488,8 @@
       "breakdownTitle": "Откъде идва този обхват",
       "dehubFollowers": "Последователи на DeHub",
       "selfReported": "Броят последователи в социалните мрежи се въвежда от твореца."
-    }
+    },
+    "tabPlaylists": "Списъци със записи"
   },
   "messages": {
     "smartRepliesOff": "Предложените отговори са изключени",

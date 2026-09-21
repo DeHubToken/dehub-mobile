@@ -1249,7 +1249,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "સાર્વજનિક પ્લેલિસ્ટ",
+      "makePublicHint": "કોઈપણ તમારી પ્રોફાઇલ પર આ ફોલ્ડર જોઈ શકે છે.",
+      "publicBadge": "સાર્વજનિક",
+      "copyLink": "પ્લેલિસ્ટ લિંકની નકલ કરો",
+      "linkCopied": "પ્લેલિસ્ટની લિંક કૉપિ કરી",
+      "itemsCount": "{{count}} પોસ્ટ્સ",
+      "emptyOwnerHint": "અહીં બતાવવા માટે બુકમાર્ક ફોલ્ડરને સાર્વજનિક કરો.",
+      "emptyVisitor": "આ પ્રોફાઇલમાં હજી સુધી કોઈ સાર્વજનિક પ્લેલિસ્ટ્સ નથી.",
+      "openBookmarks": "મારા બુકમાર્ક્સ ખોલો",
+      "back": "બધી પ્લેલિસ્ટ્સ",
+      "noPosts": "આ પ્લેલિસ્ટમાં હજી સુધી કોઈ પોસ્ટ્સ નથી.",
+      "unavailable": "આ પ્લેલિસ્ટ હવે ઉપલબ્ધ નથી.",
+      "loadMore": "વધુ પોસ્ટ્સ બતાવો"
+    }
   },
   "notifications": {
     "title": "સૂચનાઓ",
@@ -1608,7 +1623,8 @@
       "breakdownTitle": "આ પહોંચ ક્યાંથી આવે છે",
       "dehubFollowers": "DeHub અનુયાયીઓ",
       "selfReported": "સર્જક દ્વારા સામાજિક અનુયાયીઓની ગણતરી દાખલ કરવામાં આવે છે."
-    }
+    },
+    "tabPlaylists": "પ્લેલીસ્ટો"
   },
   "tv": {
     "title": "TV",

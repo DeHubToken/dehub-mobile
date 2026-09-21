@@ -171,7 +171,8 @@
       "breakdownTitle": "এই রিচ কোথা থেকে আসে",
       "dehubFollowers": "DeHub ফলোয়ার",
       "selfReported": "সোশ্যাল ফলোয়ার সংখ্যা ক্রিয়েটর দ্বারা প্রবেশ করানো হয়।"
-    }
+    },
+    "tabPlaylists": "প্লেলিস্ট"
   },
   "settings": {
     "smartReplies": "ꠙꠞꠣꠝꠞ꠆ꠡ ꠖꠤꠅꠣ ꠎꠛꠣꠛ",
@@ -1458,7 +1459,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "পাবলিক প্লেলিস্ট",
+      "makePublicHint": "এই ফোল্ডারটি আপনার প্রোফাইলে যে কেউ দেখতে পারবে।",
+      "publicBadge": "পাবলিক",
+      "copyLink": "প্লেলিস্ট লিংক কপি করুন",
+      "linkCopied": "প্লেলিস্ট লিংক কপি করা হয়েছে",
+      "itemsCount": "{{count}} পোস্ট",
+      "emptyOwnerHint": "এখানে দেখানোর জন্য একটি বুকমার্ক ফোল্ডার পাবলিক করুন।",
+      "emptyVisitor": "এই প্রোফাইলে এখনো কোনো পাবলিক প্লেলিস্ট নেই।",
+      "openBookmarks": "আমার বুকমার্ক খুলুন",
+      "back": "সব প্লেলিস্ট",
+      "noPosts": "এই প্লেলিস্টে এখনো কোনো পোস্ট নেই।",
+      "unavailable": "এই প্লেলিস্ট আর উপলব্ধ নেই।",
+      "loadMore": "আরও পোস্ট দেখান"
+    }
   },
   "stories": {
     "title": "গল্প",

@@ -1203,7 +1203,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "پەرتوکی گشتی",
+      "makePublicHint": "هەموو کەسێک دەتوانێت ئەم سندووقە لە پڕۆفایلەکەت ببینێت.",
+      "publicBadge": "گشتی",
+      "copyLink": "لینکى پەرتووکەکە کۆپی بکە",
+      "linkCopied": "لینکى پەرتووکەکە کۆپی کرا",
+      "itemsCount": "{{count}} پۆست",
+      "emptyOwnerHint": "بۆ ئەوەی لێرە نیشان بدرێت، سندووقی نیشانەکان بکە بە گشتی.",
+      "emptyVisitor": "ئەم پڕۆفایلە هێشتا هیچ پەرتووکێکی گشتی نییە.",
+      "openBookmarks": "نیشانەکانی من بکەرەوە",
+      "back": "هەموو پەرتووکەکان",
+      "noPosts": "ئەم پەرتووکە هیچ پۆستێکی نییە.",
+      "unavailable": "ئەم پەرتووکە ئیتر بەردەست نییە.",
+      "loadMore": "زیاتر پۆست نیشان بدە"
+    }
   },
   "notifications": {
     "title": "خبر",
@@ -1615,7 +1630,8 @@
       "breakdownTitle": "यह पहुंच कहां से आती है",
       "dehubFollowers": "डीहब फॉलोअर्स",
       "selfReported": "सोशल फॉलोअर्स की संख्या क्रिएटर द्वारा दर्ज की जाती है।"
-    }
+    },
+    "tabPlaylists": "پلے لسٹ"
   },
   "tv": {
     "title": "ٹی وی",

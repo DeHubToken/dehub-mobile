@@ -1194,7 +1194,21 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Public playlist",
+      "makePublicHint": "Everybody fit see dis folder for your profile.",
+      "publicBadge": "Public",
+      "copyLink": "Copy playlist link",
+      "linkCopied": "Playlist link copied",
+      "itemsCount": "{{count}} posts",
+      "emptyOwnerHint": "Make one bookmark folder public make e show here.",
+      "emptyVisitor": "Dis profile no get any public playlists yet.",
+      "openBookmarks": "Open my bookmarks",
+      "back": "All playlists",
+      "noPosts": "Dis playlist no get any posts yet.",
+      "unavailable": "Dis playlist no dey again."
+    }
   },
   "notifications": {
     "title": "Notifications",
@@ -1552,7 +1566,8 @@
     "reach": {
       "total": "Total reach",
       "dehubFollowers": "DeHub followers"
-    }
+    },
+    "tabPlaylists": "Playlists"
   },
   "tv": {
     "title": "TV",

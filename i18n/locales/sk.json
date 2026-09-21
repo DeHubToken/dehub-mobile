@@ -171,7 +171,8 @@
       "breakdownTitle": "Odkiaľ pochádza tento dosah",
       "dehubFollowers": "Sledovatelia DeHubu",
       "selfReported": "Počet sledovateľov na sociálnych sieťach zadáva tvorca."
-    }
+    },
+    "tabPlaylists": "Playlisty"
   },
   "settings": {
     "smartReplies": "Navrhované odpovede",
@@ -1356,7 +1357,22 @@
     "noVideosYet": "No saved videos yet",
     "videosStartSaving": "Bookmark posts with videos and they'll be collected here.",
     "noTextYet": "No saved text posts yet",
-    "textStartSaving": "Bookmark text-only posts and they'll appear here."
+    "textStartSaving": "Bookmark text-only posts and they'll appear here.",
+    "playlist": {
+      "makePublic": "Verejný zoznam skladieb",
+      "makePublicHint": "Tento priečinok môže vo vašom profile vidieť ktokoľvek.",
+      "publicBadge": "Verejné",
+      "copyLink": "Kopírovať odkaz na zoznam videí",
+      "linkCopied": "Odkaz na zoznam videí bol skopírovaný",
+      "itemsCount": "Príspevky ({{count}})",
+      "emptyOwnerHint": "Zverejnite priečinok záložiek a zobrazte ho tu.",
+      "emptyVisitor": "Tento profil zatiaľ nemá žiadne verejné zoznamy videí.",
+      "openBookmarks": "Otvoriť moje záložky",
+      "back": "Všetky zoznamy skladieb",
+      "noPosts": "Tento zoznam skladieb zatiaľ nemá žiadne príspevky.",
+      "unavailable": "Tento zoznam skladieb už nie je k dispozícii.",
+      "loadMore": "Zobraziť viac príspevkov"
+    }
   },
   "stories": {
     "title": "Príbehy",
