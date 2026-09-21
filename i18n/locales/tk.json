@@ -4500,5 +4500,49 @@
         "body": "Bu ýerde edýän işleriňizi gazanç edýän zadyňyza öwrüp biljekdigiňizi görüň."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Umumy Ýer",
+      "sectionLabel": "Maslahat",
+      "sheetHint": "Jogabyňyzdan öň gysga arakesme. Jogaplaryňyz gizlin galýar.",
+      "toggleLabel": "Umumy Ýer rejimi",
+      "toggleHint": "Ilkinji jogabyndan öň, okyjylardan beýleki tarapyň iň güýçli nokady we iki tarapyň näme paýlaşýandygy soralýar, soňra \"ýa-da-ýa\" pikir etmezlik ýatladylýar.",
+      "banner": "Bu dörediji Umumy Ýer rejimini işjeňleşdirdi. Jogap bermezden ozal, beýleki tarapyň iň güýçli nokady we näme paýlaşýandygyňyz soraljak.",
+      "stepOf": "{{step}}-nji ädim {{total}}-den",
+      "step1Title": "Bir jümlede, beýleki tarapyň iň güýçli nokady näme?",
+      "step1Placeholder": "Olaryň iň gowy öňe sürýän zady şudur welin…",
+      "step2Title": "Siz we olar hakykatdanam näme bilen ylalaşýarsyňyz?",
+      "step2Placeholder": "Ikimiz hem isleýäris…",
+      "reminderTitle": "Hemme zady ýa-da hiç zady pikir etmezlige üns beriň",
+      "reminderBody": "Käbir jedeller iki ekstremal ýagdaýyň arasynda saýlanma däl. Sorag \"ýa-da-ýa\" ýaly bolsa, adatça ortada üçünji mümkinçilik bar.",
+      "example1": "Köçäniň dym-dyrs bolmagyny isleýän goňşy we köpräk awtoulag goýmak isleýän goňşy ikisi-de öz islegleri barada hakly bolup biler.",
+      "example2": "Iki ene-ata çaganyň ekran wagty barada ylalaşyp bilmeýärler we çaganyň ýatmagy we mekdepde gowy işlemegi bilen ylalaşyp bilerler.",
+      "noShouting": "Çylşyrymly meseleler hiç haçan gygyrmak ýa-da haýbat atmak bilen çözülmeýär. Dym-dyrs, anyk jogap hakykatdanam okalýan jogapdyr.",
+      "reviewTitle": "Jogabyňyzy soňky gezek gözden geçiriň",
+      "privateNote": "Jogaplaryňyz diňe siziň üçin we jogabyňyz bilen çap edilmeýär.",
+      "continueLabel": "Dowam et",
+      "back": "Yza",
+      "postReply": "Jogabymy ýerleşdiriň",
+      "tooShort": "Hakyky pikir etmegiň hasaby üçin azyndan 10 harp ýazyň.",
+      "saveFailed": "Umumy Ýer sazlamasyny ýatda saklap bolmady. Ýene synanyşyň."
+    },
+    "coach": {
+      "title": "Söhbetdeşlik tälimçisi",
+      "checkTone": "Tonumy barlaň",
+      "checking": "Jogabyňyzyň tonuny barlaýarys…",
+      "allClear": "Hiç zat tapylmady. Jogabyňyz adalatly we dym-dyrs ýaly görünýär.",
+      "postAnyway": "Ýöne-de ýerleşdiriň",
+      "dismiss": "Bu teklibi ýatyryň",
+      "settingLabel": "Tälim tekliplerini görkez",
+      "settingHint": "Ol uzyn pikirlere çalt seretmegi we post etmänkäňiz, köplenç pikirlenýän pikirleri görkezmegi teklip edýär. Bir teklip, hiç haçan blok.",
+      "kind": {
+        "ad_hominem": "Adamy öldürmek",
+        "straw_man": "Görüşüňi ýalňyşdyr",
+        "false_dilemma": "Ýa-da çaryş",
+        "overgeneralisation": "Dawaçylyk haky",
+        "hostile_tone": "Duşman sesi"
+      }
+    }
   }
 }

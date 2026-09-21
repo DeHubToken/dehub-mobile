@@ -4600,5 +4600,49 @@
         "body": "Dowiedz się, jak wskazówki, odznaki i supermocarstwa zamieniają to, co tutaj robisz, w coś, na czym zarabiasz."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Wspólny grunt",
+      "sectionLabel": "Dyskusja",
+      "sheetHint": "Krótka pauza przed Twoją odpowiedzią. Twoje odpowiedzi pozostają prywatne.",
+      "toggleLabel": "Tryb wspólnego gruntu",
+      "toggleHint": "Przed pierwszą odpowiedzią czytelnicy są proszeni o podanie najmocniejszego argumentu drugiej strony i tego, co łączy obie strony, a następnie przypomina się im o unikaniu myślenia typu \"wszystko albo nic\".",
+      "banner": "Ten twórca włączył tryb wspólnego gruntu. Zanim odpowiesz, zostaniesz poproszony o podanie najmocniejszego argumentu drugiej strony i tego, co Was łączy.",
+      "stepOf": "Krok {{step}} z {{total}}",
+      "step1Title": "W jednym zdaniu, jaki jest najmocniejszy argument drugiej strony?",
+      "step1Placeholder": "Najlepszy argument, jaki mogliby przedstawić, to taki, że…",
+      "step2Title": "W czym zgadzacie się Ty i oni?",
+      "step2Placeholder": "Oboje chcemy…",
+      "reminderTitle": "Uważaj na myślenie typu \"wszystko albo nic\"",
+      "reminderBody": "Większość nieporozumień nie jest wyborem między dwoma skrajnościami. Kiedy pytanie wydaje się być typu \"wszystko albo nic\", zazwyczaj istnieje trzecia opcja gdzieś pośrodku.",
+      "example1": "Sąsiad, który chce spokojniejszej ulicy i sąsiad, który chce więcej miejsc parkingowych, mogą mieć rację co do swoich potrzeb.",
+      "example2": "Dwoje rodziców może się nie zgadzać co do czasu spędzanego przed ekranem, ale nadal zgadzać się co do tego, że dziecko powinno dobrze spać i dobrze sobie radzić w szkole.",
+      "noShouting": "Złożonych kwestii nigdy nie rozwiązuje się krzykiem ani groźbami. Spokojna, konkretna odpowiedź jest tą, którą ludzie faktycznie czytają.",
+      "reviewTitle": "Jeszcze jedno spojrzenie na Twoją odpowiedź",
+      "privateNote": "Twoje odpowiedzi są tylko dla Ciebie i nie są publikowane wraz z Twoją odpowiedzią.",
+      "continueLabel": "Kontynuuj",
+      "back": "Wstecz",
+      "postReply": "Opublikuj moją odpowiedź",
+      "tooShort": "Napisz co najmniej 10 znaków, aby refleksja została zaliczona.",
+      "saveFailed": "Nie udało się zapisać ustawienia wspólnego gruntu. Spróbuj ponownie."
+    },
+    "coach": {
+      "title": "Asystent rozmowy",
+      "checkTone": "Sprawdź mój ton",
+      "checking": "Sprawdzanie tonu Twojej odpowiedzi…",
+      "allClear": "Nic nie zostało zauważone. Twoja odpowiedź brzmi sprawiedliwie i spokojnie.",
+      "postAnyway": "Opublikuj mimo to",
+      "dismiss": "Odrzuć tę sugestię",
+      "settingLabel": "Pokaż sugestie dotyczące coachingu",
+      "settingHint": "Oferuje szybką kontrolę tonu dłuższych komentarzy i wskazuje na najczęstsze błędy w rozumowaniu przed opublikowaniem. Tylko sugestie, nigdy blok.",
+      "kind": {
+        "ad_hominem": "Atakuje osobę",
+        "straw_man": "Błędnie przedstawia swój pogląd",
+        "false_dilemma": "Either-or framing",
+        "overgeneralisation": "Roszczenie o zamiatanie",
+        "hostile_tone": "Wrogi ton"
+      }
+    }
   }
 }

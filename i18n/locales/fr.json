@@ -4723,5 +4723,49 @@
         "body": "Découvrez comment les conseils, les badges et les SuperPowers transforment ce que vous faites ici en quelque chose que vous gagnez."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Terrain d'entente",
+      "sectionLabel": "Discussion",
+      "sheetHint": "Une courte pause avant votre réponse. Vos réponses restent privées.",
+      "toggleLabel": "Mode Terrain d'entente",
+      "toggleHint": "Avant leur première réponse, il est demandé aux lecteurs quel est le point le plus fort de l'autre partie et ce que les deux parties partagent, puis il leur est rappelé d'éviter la pensée dichotomique.",
+      "banner": "Ce créateur a activé le mode Terrain d'entente. Avant de répondre, il vous sera demandé quel est le point le plus fort de l'autre partie et ce que vous partagez.",
+      "stepOf": "Étape {{step}} sur {{total}}",
+      "step1Title": "En une phrase, quel est le point le plus fort de l'autre partie ?",
+      "step1Placeholder": "Le meilleur argument qu'ils pourraient avancer est que…",
+      "step2Title": "Sur quoi êtes-vous d'accord avec eux ?",
+      "step2Placeholder": "Nous voulons tous les deux…",
+      "reminderTitle": "Attention à la pensée dichotomique",
+      "reminderBody": "La plupart des désaccords ne sont pas un choix entre deux extrêmes. Lorsqu'une question semble être une dichotomie, il existe généralement une troisième option quelque part au milieu.",
+      "example1": "Un voisin qui souhaite une rue plus calme et un voisin qui souhaite plus de places de parking peuvent tous deux avoir raison sur leurs besoins.",
+      "example2": "Deux parents peuvent être en désaccord sur le temps d'écran et être d'accord sur le fait que l'enfant doit bien dormir et réussir à l'école.",
+      "noShouting": "Les questions complexes ne sont jamais résolues par des cris ou des menaces. Une réponse calme et précise est celle que les gens lisent réellement.",
+      "reviewTitle": "Un dernier regard sur votre réponse",
+      "privateNote": "Vos réponses sont uniquement pour vous et ne sont pas publiées avec votre réponse.",
+      "continueLabel": "Continuer",
+      "back": "Retour",
+      "postReply": "Publier ma réponse",
+      "tooShort": "Écrivez au moins 10 caractères pour que la réflexion compte réellement.",
+      "saveFailed": "Impossible d'enregistrer le paramètre Terrain d'entente. Veuillez réessayer."
+    },
+    "coach": {
+      "title": "Coach de conversation",
+      "checkTone": "Vérifier mon ton",
+      "checking": "Vérification du ton de votre réponse…",
+      "allClear": "Rien ne ressort. Votre réponse semble juste et calme.",
+      "postAnyway": "Publier quand même",
+      "dismiss": "Ignorer cette suggestion",
+      "settingLabel": "Afficher les suggestions de coaching",
+      "settingHint": "Offre une vérification rapide de la tonalité sur les commentaires plus longs et signale les sauts de raisonnement courants avant de publier. Suggestions seulement, jamais un bloc.",
+      "kind": {
+        "ad_hominem": "Attaque la personne",
+        "straw_man": "Informe leur point de vue",
+        "false_dilemma": "Encadrement ou encadrement",
+        "overgeneralisation": "Réclamation de balayage",
+        "hostile_tone": "Tonalité hostile"
+      }
+    }
   }
 }

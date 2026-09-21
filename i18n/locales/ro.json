@@ -4545,5 +4545,49 @@
         "body": "Află cum recompensele, insignele și superputerile transformă ceea ce faci aici în ceva din care câștigi bani."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Teren comun",
+      "sectionLabel": "Discuție",
+      "sheetHint": "O scurtă pauză înainte de răspunsul tău. Răspunsurile tale rămân private.",
+      "toggleLabel": "Modul Teren comun",
+      "toggleHint": "Înainte de primul lor răspuns, cititorilor li se cere punctul cel mai puternic al celeilalte părți și ce au în comun ambele părți, apoi li se reamintește să evite gândirea de tipul „ori-ori”.",
+      "banner": "Acest creator a activat modul Teren comun. Înainte de a răspunde, ți se va cere punctul cel mai puternic al celeilalte părți și ce aveți în comun.",
+      "stepOf": "Pasul {{step}} din {{total}}",
+      "step1Title": "Într-o singură propoziție, care este punctul cel mai puternic al celeilalte părți?",
+      "step1Placeholder": "Cel mai bun argument pe care l-ar putea aduce este că…",
+      "step2Title": "Asupra cărui aspect chiar sunteți de acord tu și cealaltă parte?",
+      "step2Placeholder": "Amândoi dorim…",
+      "reminderTitle": "Ferește-te de gândirea de tipul „totul sau nimic”",
+      "reminderBody": "Majoritatea dezacordurilor nu sunt o alegere între două extreme. Când o întrebare pare să fie de tipul „ori-ori”, există de obicei o a treia opțiune undeva la mijloc.",
+      "example1": "Un vecin care dorește o stradă mai liniștită și un vecin care dorește mai mult loc de parcare pot avea amândoi dreptate în ceea ce privește nevoile lor.",
+      "example2": "Doi părinți pot fi în dezacord cu privire la timpul petrecut în fața ecranului și totuși să fie de acord că copilul ar trebui să doarmă bine și să se descurce la școală.",
+      "noShouting": "Problemele complexe nu sunt niciodată rezolvate prin țipete sau amenințări. Un răspuns calm și specific este cel pe care oamenii îl citesc de fapt.",
+      "reviewTitle": "O ultimă privire asupra răspunsului tău",
+      "privateNote": "Răspunsurile tale sunt doar pentru tine și nu sunt postate odată cu răspunsul tău.",
+      "continueLabel": "Continuă",
+      "back": "Înapoi",
+      "postReply": "Postează răspunsul meu",
+      "tooShort": "Scrie cel puțin 10 caractere pentru ca reflecția să conteze cu adevărat.",
+      "saveFailed": "Setarea Teren comun nu a putut fi salvată. Te rugăm să încerci din nou."
+    },
+    "coach": {
+      "title": "Antrenor de conversație",
+      "checkTone": "Verifică-mi tonul",
+      "checking": "Se verifică tonul răspunsului tău…",
+      "allClear": "Nimic nu a ieșit în evidență. Răspunsul tău pare corect și calm.",
+      "postAnyway": "Postează oricum",
+      "dismiss": "Ignoră această sugestie",
+      "settingLabel": "Afișează sugestiile de antrenament",
+      "settingHint": "Oferă o verificare rapidă a tonului pentru comentariile mai lungi și indică greșeli comune de raționament înainte de a posta. Doar sugestii, niciodată blocare.",
+      "kind": {
+        "ad_hominem": "Atacă persoana",
+        "straw_man": "Denaturează punctul de vedere",
+        "false_dilemma": "Încadrare de tipul \"ori-ori\"",
+        "overgeneralisation": "Afirmație generală",
+        "hostile_tone": "Ton ostil"
+      }
+    }
   }
 }

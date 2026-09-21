@@ -4593,5 +4593,49 @@
         "body": "Akkamitti gargaarsi, mallattooleen fi \"SuperPowers\" hojii kee as irratti taasistu gara wantoota irraa argachuu dandeessutti jijjiiruuf gargaaran hubadhu."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Garee Walii",
+      "sectionLabel": "Mari'ii",
+      "sheetHint": "Yeroo gabaabaa deebii kee dura. Deebiin kee dhoksaa jira.",
+      "toggleLabel": "Modii Garee Walii",
+      "toggleHint": "Deebii isaanii dura, dubbisaan dhimmama isaanii cimaa fi walii isaanii maal akka ta'e gaafatamuu, achiis yaada \"amma ykn sana\" irraa fagaachuuf yaadachiifamu.",
+      "banner": "Uumaan kun modii Garee Walii godheera. Deebii kee dura, dhimmama isaanii cimaa fi maal walii isaanii akka ta'e gaafatamta.",
+      "stepOf": "Sadarkaa {{step}} irraa hanga {{total}}",
+      "step1Title": "Dubbii tokkoon, dhimmama isaanii cimaa maali?",
+      "step1Placeholder": "Isaan argachuu danda'an cimaan...",
+      "step2Title": "Waliin maal walii galtee qabdu?",
+      "step2Placeholder": "Isaan lamaanuu fedhii qabna...",
+      "reminderTitle": "Yaada \"amma ykn sana\" irraa of eeggadhu",
+      "reminderBody": "Akkuma baay'ina isaanii walitti bu'iinsi lama qofa miti. Gaaffiin yoo \"amma ykn sana\" fakkaatte, sadarkaa gidduu jira.",
+      "example1": "Bagaa tokko karaa isaa ceepha'uu fedhuu fi bagaa biraa konkolaataa kaawwachuu fedhuun, fedhii isaanii irratti mirga qabaachuu danda'u.",
+      "example2": "Maatiin lama yeroo bilisummaa bilisaa irratti walii galuu baatanillee, ilmoon isaanii si'aayina qabaachuu fi mana barumsaa irratti milkaa'uu qabdi jechuun walii galuu danda'u.",
+      "noShouting": "Mariiwwan ulfaatoo sagalee ol'aanaan ykn sodaa'aan hin xumuramu. Deebiin bilchaataa fi ifa ta'e namoonni dubbisuuf fedhii qaban sanuma.",
+      "reviewTitle": "Qorannoo dhumaa deebii kee irratti",
+      "privateNote": "Deebiin kee siif qofa malee, deebii kee waliin hin maxxanfamu.",
+      "continueLabel": "Itti fufi",
+      "back": "Garuu",
+      "postReply": "Deebii koo maxxansi",
+      "tooShort": "Qabxii 10 ol barreessi si'a ta'u, qorannoon dhugumaan lakkaa'amu.",
+      "saveFailed": "Modii Garee Walii galmeessuu hin danda'amne. Yeroo biraa yaali."
+    },
+    "coach": {
+      "title": "Barsiisaa marii",
+      "checkTone": "Sagalee koo ilaali",
+      "checking": "Sagalee deebii kee ilaaluu...",
+      "allClear": "Waan tokko hin muldhine. Deebiin kee qajeelaa fi bilchaataa fakkaata.",
+      "postAnyway": "Akkuma jiruutti maxxansi",
+      "dismiss": "Yaada kana dhiisi",
+      "settingLabel": "Yaada barsiisaa agarsiisi",
+      "settingHint": "Yaada dheeraa irratti sagalee saffisaan sakatta’uu kan dhiyeessu yoo ta’u, osoo hin maxxansiin dura slips sababeeffannaa waliigalaa ni akeeka. Yaada qofa, gonkumaa block.",
+      "kind": {
+        "ad_hominem": "Nama sanatti haleela",
+        "straw_man": "Ilaalcha isaanii dogoggoraan ibsa",
+        "false_dilemma": "Yookaan-ykn framing",
+        "overgeneralisation": "Himata bal&#39;aa",
+        "hostile_tone": "Sagalee diinummaa"
+      }
+    }
   }
 }

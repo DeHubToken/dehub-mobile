@@ -4713,5 +4713,49 @@
         "body": "Find out how tips, badges and SuperPowers turn what you do here into something you earn from."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Common Ground",
+      "sectionLabel": "Discussion",
+      "sheetHint": "A short pause before your reply. Your answers stay private.",
+      "toggleLabel": "Common Ground mode",
+      "toggleHint": "Before their first reply, readers are asked for the other side's strongest point and what both sides share, then reminded to avoid either-or thinking.",
+      "banner": "This creator turned on Common Ground mode. Before you reply you'll be asked for the other side's strongest point and what you share.",
+      "stepOf": "Step {{step}} of {{total}}",
+      "step1Title": "In one sentence, what is the strongest point on the other side?",
+      "step1Placeholder": "The best case they could make is that…",
+      "step2Title": "What do you and they actually agree on?",
+      "step2Placeholder": "We both want…",
+      "reminderTitle": "Watch out for all-or-nothing thinking",
+      "reminderBody": "Most disagreements are not a choice between two extremes. When a question feels like either-or, there is usually a third option somewhere in the middle.",
+      "example1": "A neighbour who wants a quieter street and a neighbour who wants more parking can both be right about what they need.",
+      "example2": "Two parents can disagree about screen time and still agree that the child should sleep well and do fine at school.",
+      "noShouting": "Complex issues are never settled by shouting or threats. A calm, specific reply is the one people actually read.",
+      "reviewTitle": "One last look at your reply",
+      "privateNote": "Your answers are for you alone and are not posted with your reply.",
+      "continueLabel": "Continue",
+      "back": "Back",
+      "postReply": "Post my reply",
+      "tooShort": "Write at least 10 characters so the reflection actually counts.",
+      "saveFailed": "Could not save the Common Ground setting. Please try again."
+    },
+    "coach": {
+      "title": "Conversation coach",
+      "checkTone": "Check my tone",
+      "checking": "Checking the tone of your reply…",
+      "allClear": "Nothing stood out. Your reply reads as fair and calm.",
+      "postAnyway": "Post anyway",
+      "dismiss": "Dismiss this suggestion",
+      "settingLabel": "Show coaching suggestions",
+      "settingHint": "Offers a quick tone check on longer comments and points out common reasoning slips before you post. Suggestions only, never a block.",
+      "kind": {
+        "ad_hominem": "Attacks the person",
+        "straw_man": "Misstates their view",
+        "false_dilemma": "Either-or framing",
+        "overgeneralisation": "Sweeping claim",
+        "hostile_tone": "Hostile tone"
+      }
+    }
   }
 }

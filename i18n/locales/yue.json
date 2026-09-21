@@ -4529,5 +4529,49 @@
         "body": "睇下貼士、徽章同超級力量點樣將你喺呢度做嘅嘢變成你賺錢嘅嘢。"
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "共同點",
+      "sectionLabel": "討論",
+      "sheetHint": "回覆前稍作停頓。您的回覆將保持私密。",
+      "toggleLabel": "共同點模式",
+      "toggleHint": "在讀者首次回覆前，會詢問對方最強的論點以及雙方共同點，然後提醒避免二元對立思維。",
+      "banner": "這位創作者已開啟共同點模式。在您回覆前，將會詢問對方最強的論點以及您們的共同點。",
+      "stepOf": "第 {{step}} 步，共 {{total}} 步",
+      "step1Title": "用一句話說，對方最強的論點是什麼？",
+      "step1Placeholder": "他們最強的論點是…",
+      "step2Title": "您和對方實際上同意什麼？",
+      "step2Placeholder": "我們都希望…",
+      "reminderTitle": "小心非黑即白的思維",
+      "reminderBody": "大多數分歧並非在兩個極端之間做選擇。當一個問題感覺像是非黑即白時，通常中間存在第三種選擇。",
+      "example1": "想要街道更安靜的鄰居和想要更多停車位的鄰居，他們對自己所需的需求都可能是對的。",
+      "example2": "兩位家長可能在螢幕使用時間上意見不合，但仍同意孩子應該睡得好，並且在學校表現良好。",
+      "noShouting": "複雜的問題從來無法透過叫喊或威脅來解決。冷靜、具體的答覆才是人們真正會閱讀的。",
+      "reviewTitle": "最後再看一眼您的回覆",
+      "privateNote": "您的回覆僅供您個人參考，不會與您的回覆一同發布。",
+      "continueLabel": "繼續",
+      "back": "返回",
+      "postReply": "發布我的回覆",
+      "tooShort": "請輸入至少 10 個字元，以便反思計數。",
+      "saveFailed": "無法儲存共同點設定。請再試一次。"
+    },
+    "coach": {
+      "title": "對話教練",
+      "checkTone": "檢查我的語氣",
+      "checking": "正在檢查您的回覆語氣…",
+      "allClear": "沒有特別突出的地方。您的回覆顯得公平且冷靜。",
+      "postAnyway": "仍然發布",
+      "dismiss": "關閉此建議",
+      "settingLabel": "顯示教練建議",
+      "settingHint": "喺發佈之前，提供一個快速嘅語氣檢查較長嘅留言，同埋指出常見嘅推理單。只係建議，永遠唔會阻止。",
+      "kind": {
+        "ad_hominem": "攻擊個人",
+        "straw_man": "講錯咗佢哋嘅觀點",
+        "false_dilemma": "一係 - 或者係框架",
+        "overgeneralisation": "掃地聲稱",
+        "hostile_tone": "敵對語氣"
+      }
+    }
   }
 }

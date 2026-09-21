@@ -4536,5 +4536,49 @@
         "body": "Find ud af, hvordan tips, badges og superkræfter forvandler det, du gør her, til noget, du tjener penge på."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Fælles grund",
+      "sectionLabel": "Diskussion",
+      "sheetHint": "En kort pause før dit svar. Dine svar forbliver private.",
+      "toggleLabel": "Fælles grund-tilstand",
+      "toggleHint": "Før deres første svar bliver læsere bedt om den anden sides stærkeste argument og hvad begge sider deler, og derefter mindet om at undgå enten-eller-tænkning.",
+      "banner": "Denne skaber har aktiveret Fælles grund-tilstand. Før du svarer, vil du blive bedt om den anden sides stærkeste argument og hvad I deler.",
+      "stepOf": "Trin {{step}} af {{total}}",
+      "step1Title": "Hvad er den anden sides stærkeste argument i én sætning?",
+      "step1Placeholder": "Det bedste argument, de kunne fremføre, er, at…",
+      "step2Title": "Hvad er det, du og de faktisk er enige om?",
+      "step2Placeholder": "Vi vil begge gerne…",
+      "reminderTitle": "Pas på alt-eller-intet-tænkning",
+      "reminderBody": "De fleste uenigheder er ikke et valg mellem to ekstremer. Når et spørgsmål føles som enten-eller, er der normalt en tredje mulighed et sted i midten.",
+      "example1": "En nabo, der ønsker en roligere gade, og en nabo, der ønsker mere parkering, kan begge have ret i, hvad de har brug for.",
+      "example2": "To forældre kan være uenige om skærmtid og stadig være enige om, at barnet skal sove godt og klare sig fint i skolen.",
+      "noShouting": "Komplekse emner afgøres aldrig ved at råbe eller true. Et roligt, specifikt svar er det, folk rent faktisk læser.",
+      "reviewTitle": "Et sidste kig på dit svar",
+      "privateNote": "Dine svar er kun til dig og bliver ikke offentliggjort sammen med dit svar.",
+      "continueLabel": "Fortsæt",
+      "back": "Tilbage",
+      "postReply": "Send mit svar",
+      "tooShort": "Skriv mindst 10 tegn, så refleksionen rent faktisk tæller.",
+      "saveFailed": "Kunne ikke gemme indstillingen for Fælles grund. Prøv igen."
+    },
+    "coach": {
+      "title": "Samtale-coach",
+      "checkTone": "Tjek min tone",
+      "checking": "Tjekker tonen i dit svar…",
+      "allClear": "Intet skilte sig ud. Dit svar virker fair og roligt.",
+      "postAnyway": "Send alligevel",
+      "dismiss": "Afvis dette forslag",
+      "settingLabel": "Vis coaching-forslag",
+      "settingHint": "Tilbyder et hurtigt tonekontrol på længere kommentarer og påpeger almindelige ræsonnementslister, før du slår op. Kun forslag, aldrig en blokering.",
+      "kind": {
+        "ad_hominem": "Angriber personen",
+        "straw_man": "Fejlagtig angivelse af deres synspunkt",
+        "false_dilemma": "Enten-eller indramning",
+        "overgeneralisation": "Fejende krav",
+        "hostile_tone": "Fjendtlig tone"
+      }
+    }
   }
 }

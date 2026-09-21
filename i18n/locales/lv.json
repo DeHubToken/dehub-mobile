@@ -4530,5 +4530,49 @@
         "body": "Uzziniet, kā padomi, nozīmītes un superspējas pārvērš to, ko šeit darāt, par kaut ko, no kā nopelnāt."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Kopējā valoda",
+      "sectionLabel": "Diskusija",
+      "sheetHint": "Īsa pauze pirms atbildes. Jūsu atbildes paliek privātas.",
+      "toggleLabel": "Kopējās valodas režīms",
+      "toggleHint": "Pirms savas pirmās atbildes lasītājiem tiek lūgts norādīt otras puses spēcīgāko argumentu un to, kas abām pusēm ir kopīgs, pēc tam tiek atgādināts izvairīties no domāšanas \"vai nu-vai\".",
+      "banner": "Šis satura veidotājs ir ieslēdzis Kopējās valodas režīmu. Pirms atbildat, jums tiks lūgts norādīt otras puses spēcīgāko argumentu un to, kas jums ir kopīgs.",
+      "stepOf": "1. {{step}}. darbība no {{total}}",
+      "step1Title": "Vienā teikumā, kāds ir otras puses spēcīgākais arguments?",
+      "step1Placeholder": "Labākais arguments, ko viņi varētu izvirzīt, ir tas, ka…",
+      "step2Title": "Par ko jūs un viņi patiesībā vienojaties?",
+      "step2Placeholder": "Mēs abi vēlamies…",
+      "reminderTitle": "Uzmanieties no domāšanas \"viss vai nekas\"",
+      "reminderBody": "Lielākā daļa domstarpību nav izvēle starp diviem galējumiem. Kad jautājums šķiet \"vai nu-vai\", parasti ir kāda trešā iespēja vidū.",
+      "example1": "Kaimiņš, kurš vēlas klusāku ielu, un kaimiņš, kurš vēlas vairāk autostāvvietu, abi var būt pareizi savās vajadzībās.",
+      "example2": "Divi vecāki var domstarpībās par ekrāna laiku un joprojām vienoties, ka bērnam ir labi jāsaglabā miegs un jābūt veiksmīgam skolā.",
+      "noShouting": "Sarežģīti jautājumi nekad netiek atrisināti ar kliegšanu vai draudiem. Tiek izlasīta mierīga, konkrēta atbilde.",
+      "reviewTitle": "Pēdējā atbilde",
+      "privateNote": "Jūsu atbildes ir tikai jums pašiem un netiek publicētas kopā ar jūsu atbildi.",
+      "continueLabel": "Turpināt",
+      "back": "Atpakaļ",
+      "postReply": "Publicēt manu atbildi",
+      "tooShort": "Uzrakstiet vismaz 10 rakstzīmes, lai pārdomas tiktu ieskaitītas.",
+      "saveFailed": "Neizdevās saglabāt Kopējās valodas iestatījumu. Lūdzu, mēģiniet vēlreiz."
+    },
+    "coach": {
+      "title": "Sarunu treneris",
+      "checkTone": "Pārbaudīt manu toni",
+      "checking": "Jūsu atbildes tonis tiek pārbaudīts…",
+      "allClear": "Nekas nav izcēlies. Jūsu atbilde šķiet godīga un mierīga.",
+      "postAnyway": "Publicēt tomēr",
+      "dismiss": "Noraidīt šo ieteikumu",
+      "settingLabel": "Rādīt trenera ieteikumus",
+      "settingHint": "Piedāvā ātru toņa pārbaudi garākiem komentāriem un norāda uz izplatītām argumentācijas lapiņām pirms publicēšanas. Tikai ieteikumi, nekad nebloķējiet.",
+      "kind": {
+        "ad_hominem": "Uzbrūk personai",
+        "straw_man": "Nepareizi pauž savu viedokli",
+        "false_dilemma": "Ierāmēšana vai nu, vai nu",
+        "overgeneralisation": "Slaucīšanas pieprasījums",
+        "hostile_tone": "Naidīgs tonis"
+      }
+    }
   }
 }

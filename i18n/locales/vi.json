@@ -4618,5 +4618,49 @@
         "body": "Tìm hiểu cách các mẹo, huy hiệu và Siêu năng lực biến những gì bạn làm ở đây thành thứ bạn kiếm được từ đó."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Điểm chung",
+      "sectionLabel": "Thảo luận",
+      "sheetHint": "Tạm dừng một chút trước khi bạn trả lời. Câu trả lời của bạn sẽ được giữ kín.",
+      "toggleLabel": "Chế độ Điểm chung",
+      "toggleHint": "Trước khi trả lời lần đầu, người đọc sẽ được hỏi về điểm mạnh nhất của bên kia và những gì cả hai bên cùng chia sẻ, sau đó được nhắc nhở tránh suy nghĩ \"hoặc là/hoặc là\".",
+      "banner": "Người sáng tạo này đã bật chế độ Điểm chung. Trước khi bạn trả lời, bạn sẽ được hỏi về điểm mạnh nhất của bên kia và những gì bạn chia sẻ.",
+      "stepOf": "Bước {{step}} trong số {{total}}",
+      "step1Title": "Trong một câu, điểm mạnh nhất của bên kia là gì?",
+      "step1Placeholder": "Lập luận tốt nhất mà họ có thể đưa ra là…",
+      "step2Title": "Bạn và họ thực sự đồng ý về điều gì?",
+      "step2Placeholder": "Cả hai chúng ta đều muốn…",
+      "reminderTitle": "Cẩn thận với suy nghĩ \"tất cả hoặc không có gì\"",
+      "reminderBody": "Hầu hết các bất đồng không phải là lựa chọn giữa hai thái cực. Khi một câu hỏi có vẻ như \"hoặc là/hoặc là\", thường có một lựa chọn thứ ba ở đâu đó ở giữa.",
+      "example1": "Một người hàng xóm muốn có một con phố yên tĩnh hơn và một người hàng xóm muốn có nhiều chỗ đậu xe hơn đều có thể đúng về nhu cầu của họ.",
+      "example2": "Hai phụ huynh có thể không đồng ý về thời gian sử dụng thiết bị điện tử nhưng vẫn đồng ý rằng đứa trẻ nên ngủ ngon và học tốt ở trường.",
+      "noShouting": "Các vấn đề phức tạp không bao giờ được giải quyết bằng cách la hét hay đe dọa. Một câu trả lời bình tĩnh, cụ thể là câu trả lời mà mọi người thực sự đọc.",
+      "reviewTitle": "Xem lại lần cuối câu trả lời của bạn",
+      "privateNote": "Câu trả lời của bạn chỉ dành cho bạn và sẽ không được đăng kèm với câu trả lời của bạn.",
+      "continueLabel": "Tiếp tục",
+      "back": "Quay lại",
+      "postReply": "Đăng câu trả lời của tôi",
+      "tooShort": "Viết ít nhất 10 ký tự để phần suy ngẫm thực sự có giá trị.",
+      "saveFailed": "Không thể lưu cài đặt Điểm chung. Vui lòng thử lại."
+    },
+    "coach": {
+      "title": "Huấn luyện viên hội thoại",
+      "checkTone": "Kiểm tra giọng điệu của tôi",
+      "checking": "Đang kiểm tra giọng điệu câu trả lời của bạn…",
+      "allClear": "Không có gì nổi bật. Câu trả lời của bạn đọc như công bằng và điềm tĩnh.",
+      "postAnyway": "Vẫn đăng",
+      "dismiss": "Bỏ qua gợi ý này",
+      "settingLabel": "Hiển thị các gợi ý huấn luyện",
+      "settingHint": "Cung cấp kiểm tra giọng điệu nhanh chóng cho các bình luận dài hơn và chỉ ra các phiếu suy luận phổ biến trước khi bạn đăng. Chỉ đề xuất, không bao giờ bị chặn.",
+      "kind": {
+        "ad_hominem": "Tấn công người đó",
+        "straw_man": "Nói sai quan điểm của họ",
+        "false_dilemma": "Đóng khung một trong hai",
+        "overgeneralisation": "Yêu cầu thanh toán trực tiếp",
+        "hostile_tone": "Giọng điệu thù địch"
+      }
+    }
   }
 }

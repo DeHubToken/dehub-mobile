@@ -4603,5 +4603,49 @@
         "body": "Descubre cómo los consejos, las insignias y los superpoderes convierten lo que haces aquí en algo con lo que ganas."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Tierra Común",
+      "sectionLabel": "Discusión",
+      "sheetHint": "Una breve pausa antes de tu respuesta. Tus respuestas son privadas.",
+      "toggleLabel": "Modo Tierra Común",
+      "toggleHint": "Antes de su primera respuesta, se les pide a los lectores el punto más fuerte del otro lado y lo que ambos lados comparten, y luego se les recuerda evitar el pensamiento de \"o lo uno o lo otro\".",
+      "banner": "Este creador activó el modo Tierra Común. Antes de responder, se te pedirá el punto más fuerte del otro lado y lo que comparten.",
+      "stepOf": "Paso {{step}} de {{total}}",
+      "step1Title": "En una oración, ¿cuál es el punto más fuerte del otro lado?",
+      "step1Placeholder": "El mejor argumento que podrían presentar es que…",
+      "step2Title": "¿En qué están de acuerdo tú y ellos?",
+      "step2Placeholder": "Ambos queremos…",
+      "reminderTitle": "Cuidado con el pensamiento de \"todo o nada\"",
+      "reminderBody": "La mayoría de los desacuerdos no son una elección entre dos extremos. Cuando una pregunta se siente como \"o lo uno o lo otro\", generalmente hay una tercera opción en algún punto intermedio.",
+      "example1": "Un vecino que quiere una calle más tranquila y un vecino que quiere más estacionamiento pueden tener razón en lo que necesitan.",
+      "example2": "Dos padres pueden estar en desacuerdo sobre el tiempo de pantalla y aun así estar de acuerdo en que el niño debe dormir bien y estar bien en la escuela.",
+      "noShouting": "Los problemas complejos nunca se resuelven a gritos o amenazas. Una respuesta calmada y específica es la que la gente realmente lee.",
+      "reviewTitle": "Un último vistazo a tu respuesta",
+      "privateNote": "Tus respuestas son solo para ti y no se publican con tu respuesta.",
+      "continueLabel": "Continuar",
+      "back": "Atrás",
+      "postReply": "Publicar mi respuesta",
+      "tooShort": "Escribe al menos 10 caracteres para que la reflexión cuente.",
+      "saveFailed": "No se pudo guardar la configuración de Tierra Común. Inténtalo de nuevo."
+    },
+    "coach": {
+      "title": "Entrenador de conversación",
+      "checkTone": "Revisar mi tono",
+      "checking": "Revisando el tono de tu respuesta…",
+      "allClear": "Nada destacó. Tu respuesta se lee como justa y calmada.",
+      "postAnyway": "Publicar de todos modos",
+      "dismiss": "Descartar esta sugerencia",
+      "settingLabel": "Mostrar sugerencias de entrenamiento",
+      "settingHint": "Ofrece una verificación rápida del tono de los comentarios más largos y señala los resbalones de razonamiento comunes antes de publicar. Solo sugerencias, nunca un bloque.",
+      "kind": {
+        "ad_hominem": "Ataca a la persona",
+        "straw_man": "Declara erróneamente su punto de vista",
+        "false_dilemma": "Cualquiera o enmarcado",
+        "overgeneralisation": "Sweeping claim",
+        "hostile_tone": "Tono hostil"
+      }
+    }
   }
 }
