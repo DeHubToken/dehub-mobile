@@ -40,6 +40,7 @@ import {
   switchActiveWalletForIdentity,
 } from "../../libs/identity-wallet";
 import { provisionAndSignIn, markProvisionedIdentity } from "../../libs/provision-and-sign-in";
+import { takeWalletSetupIntent } from "../../libs/wallet-setup-intent";
 import { decryptString, getPayloadKdf } from "../../libs/wallet-core/crypto";
 import { fetchWalletReliably } from "../../libs/wallet-core/store";
 import { deriveFromSecret, generateMnemonic12, isValidMnemonic } from "../../libs/wallet-core/derive";
@@ -176,9 +177,16 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
         case "signed-in":
           return;
         case "wallet-setup":
+          // "Migrate account" was pressed, but this login has no earlier
+          // account behind it: say so, rather than opening a new-account sheet
+          // that reads as the migration having silently done nothing.
+          if (takeWalletSetupIntent() === "migrate" && outcome.request.mode === "create") {
+            setInlineError(t("legacy.noOldAccountFound"));
+          }
           setWalletSetupRequest(outcome.request);
           return;
         case "legacy-warning":
+          takeWalletSetupIntent();
           setPendingCreateUserId(outcome.supabaseUserId);
           setLegacyAccounts(outcome.accounts);
           return;
