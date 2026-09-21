@@ -4536,5 +4536,49 @@
         "body": "Tudd meg, hogy a borravalók, a jelvények és a szuperképességek hogyan alakítják a munkádat olyanná, amiből pénzt kereshetsz."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Közös nevező",
+      "sectionLabel": "Beszélgetés",
+      "sheetHint": "Rövid szünet a válaszod előtt. Válaszaid privátak maradnak.",
+      "toggleLabel": "Közös nevező mód",
+      "toggleHint": "Az első válaszuk előtt az olvasókat megkérdezzük a másik fél legerősebb érvéről és arról, hogy mi a közös bennük, majd emlékeztetjük őket, hogy kerüljék a \"vagy-vagy\" gondolkodást.",
+      "banner": "Ez a tartalomkészítő bekapcsolta a Közös nevező módot. Mielőtt válaszolnál, megkérdezzük a másik fél legerősebb érvéről és arról, hogy mi a közös bennetek.",
+      "stepOf": "{{step}}. lépés a(z) {{total}}-ből",
+      "step1Title": "Egy mondatban, mi a másik fél legerősebb érve?",
+      "step1Placeholder": "A legjobb érvük az lehet, hogy…",
+      "step2Title": "Miben értetek egyet valójában?",
+      "step2Placeholder": "Mindketten azt szeretnénk, hogy…",
+      "reminderTitle": "Vigyázz a minden vagy semmi gondolkodásmódra",
+      "reminderBody": "A legtöbb nézeteltérés nem két véglet közötti választás. Amikor egy kérdés \"vagy-vagy\"-nak tűnik, általában van egy harmadik lehetőség valahol középen.",
+      "example1": "Egy szomszéd, aki csendesebb utcát szeretne, és egy szomszéd, aki több parkolóhelyet szeretne, mindketten igazak lehetnek abban, amit igényelnek.",
+      "example2": "Két szülő vitatkozhat a képernyőidőről, és még mindig egyetérthet abban, hogy a gyermeknek jól kell aludnia és jól kell teljesítenie az iskolában.",
+      "noShouting": "A bonyolult kérdéseket soha nem lehet kiabálással vagy fenyegetéssel megoldani. Egy nyugodt, konkrét válasz az, amit az emberek valóban elolvasnak.",
+      "reviewTitle": "Még egy pillantás a válaszodra",
+      "privateNote": "Válaszaid csak neked szólnak, és nem jelennek meg a válaszoddal együtt.",
+      "continueLabel": "Folytatás",
+      "back": "Vissza",
+      "postReply": "Küldjem el a válaszomat",
+      "tooShort": "Írj legalább 10 karaktert, hogy az átgondolás számítson.",
+      "saveFailed": "Nem sikerült menteni a Közös nevező beállítást. Kérlek, próbáld újra."
+    },
+    "coach": {
+      "title": "Beszélgetési edző",
+      "checkTone": "Ellenőrizd a hangnememet",
+      "checking": "A válaszod hangnemének ellenőrzése…",
+      "allClear": "Semmi sem tűnt fel. A válaszod méltányosnak és nyugodtnak tűnik.",
+      "postAnyway": "Küldjem el így is",
+      "dismiss": "Hagyjam figyelmen kívül ezt a javaslatot",
+      "settingLabel": "Mutasd az edzői javaslatokat",
+      "settingHint": "Gyors tónusellenőrzést kínál a hosszabb hozzászólásoknál, és rámutat a gyakori érvelési hibákra a közzététel előtt. Csak javaslatok, blokkolás soha.",
+      "kind": {
+        "ad_hominem": "Megtámadja a személyt",
+        "straw_man": "Téves a véleményük",
+        "false_dilemma": "Vagy-vagy keretezés",
+        "overgeneralisation": "Söprési igény",
+        "hostile_tone": "Ellenséges hangnem"
+      }
+    }
   }
 }

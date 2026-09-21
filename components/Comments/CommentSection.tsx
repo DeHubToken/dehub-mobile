@@ -68,6 +68,11 @@ import type { PostCreator } from "../../libs/impersonation";
 import type { PostReaction } from "../../libs/reactions";
 import { useBannedAccount } from "../../hooks/useBannedAccount";
 import { BannedAccountNotice } from "../common/BannedAccountNotice";
+import { usePostDiscussionSettings, useCommonGroundCompletion } from "../../hooks/usePostDiscussionSettings";
+import { useConversationCoach, COACH_MIN_CHARS } from "../../hooks/useConversationCoach";
+import { useAppPrefs } from "../../hooks/useAppPrefs";
+import CoachSuggestions from "./CoachSuggestions";
+import CommonGroundSheet from "./CommonGroundSheet";
 
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
@@ -267,6 +272,33 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
   const userAddress = user?.address || user?.walletAddress || undefined;
+
+  // The post itself, read through the same cached key BoostSheet uses, so
+  // opening comments after opening the sheet costs nothing. Its minter is
+  // what the anchor rung, the pin and Common Ground all key off, so it lives
+  // up here ahead of every callback that needs it.
+  const { data: threadPost } = useQuery({
+    queryKey: ["boosted-post", String(tokenId ?? "")],
+    queryFn: () => getNFT(tokenId),
+    enabled: tokenId != null,
+    staleTime: 5 * 60 * 1000,
+    retry: false,
+  });
+  const threadAuthor = ((threadPost as any)?.result?.minter ?? "").toLowerCase();
+  /** This thread is the viewer's own post, which is what a pin needs. */
+  const isOwnThread =
+    !!userAddress && !!threadAuthor && threadAuthor === userAddress.toLowerCase();
+
+  // Common Ground mode: a creator-side switch kept in Supabase and only
+  // honoured when the row's creator is this post's minter (see
+  // libs/discussion-settings). Off while the composer is off — nothing to gate.
+  const { commonGround } = usePostDiscussionSettings(tokenId, threadAuthor || postCreator?.address, !commentsDisabled);
+  const { isDone: commonGroundDone, markDone: markCommonGroundDone } = useCommonGroundCompletion(tokenId);
+  const [commonGroundVisible, setCommonGroundVisible] = useState(false);
+  // The tone check on the draft. Destructured because the hook's callbacks
+  // are stable and the object is not.
+  const coachEnabled = useAppPrefs().coach;
+  const { status: coachStatus, flags: coachFlags, check: coachCheck, dismiss: coachDismiss, reset: coachReset } = useConversationCoach();
   const userAvatar = getAvatarUrl(user?.avatarImageUrl || "");
 
   // Keyboard lift for input
@@ -741,7 +773,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyingTo, user, userAddress]);
 
   // Post comment or save edit - with optimistic updates
-  const handlePost = useCallback(async () => {
+  const submitComment = useCallback(async () => {
     if (!inputText.trim() || posting) return;
     if (!requireAuth) return;
 
@@ -884,6 +916,34 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     });
   }, [inputText, posting, requireAuth, tokenId, replyingTo, editingComment, loadComments, user, userAddress, armAssistantReply]);
 
+  /**
+   * What every Post control calls. On a Common Ground thread the first reply
+   * of the session goes through the sheet first; the sheet's own Post button
+   * then calls submitComment. The creator is never asked on their own post,
+   * an edit is not a reply, and the same guards as submitComment apply so an
+   * empty tap opens nothing.
+   */
+  const handlePost = useCallback(async () => {
+    if (!inputText.trim() || posting) return;
+    if (commonGround && !isOwnThread && !editingComment && !commonGroundDone()) {
+      setCommonGroundVisible(true);
+      return;
+    }
+    coachReset();
+    await submitComment();
+  }, [inputText, posting, commonGround, isOwnThread, editingComment, commonGroundDone, coachReset, submitComment]);
+
+  const handleCommonGroundConfirm = useCallback(() => {
+    markCommonGroundDone();
+    setCommonGroundVisible(false);
+    coachReset();
+    void submitComment();
+  }, [markCommonGroundDone, coachReset, submitComment]);
+
+  const handleCheckTone = useCallback(() => {
+    void coachCheck(inputText);
+  }, [coachCheck, inputText]);
+
   const handlePostTouchStart = useCallback(() => {
     if (Platform.OS !== "android") return;
     submittedOnTouchStartRef.current = true;
@@ -933,15 +993,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const { data: superpowerStatus } = useSuperpowers();
   const anchorComment = useBookBoost();
 
-  const { data: threadPost } = useQuery({
-    queryKey: ["boosted-post", String(tokenId ?? "")],
-    queryFn: () => getNFT(tokenId),
-    enabled: tokenId != null,
-    staleTime: 5 * 60 * 1000,
-    retry: false,
-  });
-
-  const threadAuthor = ((threadPost as any)?.result?.minter ?? "").toLowerCase();
   const canAnchor =
     !!userAddress &&
     !!threadAuthor &&
@@ -962,10 +1013,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       },
     );
   }, [contextComment, anchorComment]);
-
-  /** This thread is the viewer's own post, which is what a pin needs. */
-  const isOwnThread =
-    !!userAddress && !!threadAuthor && threadAuthor === userAddress.toLowerCase();
 
   /**
    * Pin a comment to the top of your own thread, or take the pin off.
@@ -1327,6 +1374,53 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           </View>
         )}
 
+        {/* Common Ground: say up front that the first reply goes through the
+            steps, so the sheet is not a surprise when Post is tapped. */}
+        {commonGround && !isOwnThread && !commentsDisabled && !kidsOnlyThread && !accountBanned && (
+          <View
+            className="flex-row items-start"
+            style={{ gap: 8, paddingHorizontal: COMPOSER.gutter, paddingTop: 10 }}
+            testID="common-ground-banner"
+          >
+            <View style={{ marginTop: 1 }}>
+              <Icon name="Handshake" size={14} color="#D4D4D8" />
+            </View>
+            <Text style={{ flex: 1, fontSize: 12, color: "#D4D4D8" }}>{t("conversation.commonGround.banner")}</Text>
+          </View>
+        )}
+
+        {/* The coach: its cards above the field, and the button that asks for
+            them once there is enough text to review. Advice only — Post stays
+            live underneath, and "Post anyway" is the same call. */}
+        {(coachStatus !== "idle" || (coachEnabled && !editingComment && inputText.trim().length >= COACH_MIN_CHARS)) &&
+          !commentsDisabled && !kidsOnlyThread && !accountBanned && (
+          <View style={{ paddingHorizontal: COMPOSER.gutter, paddingTop: 8, gap: 6 }}>
+            <CoachSuggestions
+              status={coachStatus}
+              flags={coachFlags}
+              onDismiss={coachDismiss}
+              onClear={coachReset}
+              onPostAnyway={inputText.trim() && !posting ? () => { void handlePost(); } : undefined}
+            />
+            {coachEnabled && !editingComment && inputText.trim().length >= COACH_MIN_CHARS && coachStatus !== "loading" && (
+              <View className="flex-row justify-end">
+                <Pressable
+                  onPress={handleCheckTone}
+                  hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("conversation.coach.checkTone")}
+                  testID="coach-check-tone"
+                  className="flex-row items-center"
+                  style={{ gap: 6, paddingVertical: 4, paddingHorizontal: 10, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.06)" }}
+                >
+                  <Icon name="Sparkles" size={13} color="#A6A9AC" />
+                  <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{t("conversation.coach.checkTone")}</Text>
+                </Pressable>
+              </View>
+            )}
+          </View>
+        )}
+
         <MentionSuggestions
           visible={mentions.showSuggestions}
           suggestions={mentions.suggestions}
@@ -1497,6 +1591,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           </View>
         )}
       </View>
+
+      {/* Common Ground steps, opened by the first Post of the session on a
+          thread that has the mode on. Its own Post button sends the reply. */}
+      <CommonGroundSheet
+        visible={commonGroundVisible}
+        onClose={() => setCommonGroundVisible(false)}
+        draft={inputText}
+        onConfirm={handleCommonGroundConfirm}
+      />
 
       <GifPicker
         visible={gifPickerVisible}

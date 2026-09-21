@@ -4603,5 +4603,49 @@
         "body": "Scopri come suggerimenti, badge e Superpoteri trasformano ciò che fai qui in qualcosa da cui guadagni."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Terreno Comune",
+      "sectionLabel": "Discussione",
+      "sheetHint": "Una breve pausa prima della tua risposta. Le tue risposte rimangono private.",
+      "toggleLabel": "Modalità Terreno Comune",
+      "toggleHint": "Prima della loro prima risposta, ai lettori viene chiesto il punto più forte dell'altra parte e cosa condividono entrambe le parti, quindi viene ricordato di evitare il pensiero \"o l'uno o l'altro\".",
+      "banner": "Questo creator ha attivato la modalità Terreno Comune. Prima di rispondere ti verrà chiesto il punto più forte dell'altra parte e cosa condividete.",
+      "stepOf": "Passaggio {{step}} di {{total}}",
+      "step1Title": "In una frase, qual è il punto più forte dell'altra parte?",
+      "step1Placeholder": "La migliore argomentazione che potrebbero fare è che…",
+      "step2Title": "Su cosa siete effettivamente d'accordo tu e loro?",
+      "step2Placeholder": "Entrambi vogliamo…",
+      "reminderTitle": "Attenzione al pensiero \"tutto o niente\"",
+      "reminderBody": "La maggior parte dei disaccordi non è una scelta tra due estremi. Quando una domanda sembra essere \"o l'uno o l'altro\", di solito c'è una terza opzione nel mezzo.",
+      "example1": "Un vicino che desidera una strada più tranquilla e un vicino che desidera più parcheggio possono entrambi avere ragione su ciò di cui hanno bisogno.",
+      "example2": "Due genitori possono non essere d'accordo sull'uso degli schermi e comunque concordare sul fatto che il bambino debba dormire bene e andare bene a scuola.",
+      "noShouting": "Le questioni complesse non vengono mai risolte urlando o minacciando. Una risposta calma e specifica è quella che le persone leggono effettivamente.",
+      "reviewTitle": "Un ultimo sguardo alla tua risposta",
+      "privateNote": "Le tue risposte sono solo per te e non vengono pubblicate con la tua risposta.",
+      "continueLabel": "Continua",
+      "back": "Indietro",
+      "postReply": "Pubblica la mia risposta",
+      "tooShort": "Scrivi almeno 10 caratteri affinché la riflessione conti effettivamente.",
+      "saveFailed": "Impossibile salvare l'impostazione Terreno Comune. Riprova."
+    },
+    "coach": {
+      "title": "Assistente di conversazione",
+      "checkTone": "Controlla il mio tono",
+      "checking": "Controllo il tono della tua risposta…",
+      "allClear": "Non è emerso nulla di particolare. La tua risposta appare equa e calma.",
+      "postAnyway": "Pubblica comunque",
+      "dismiss": "Ignora questo suggerimento",
+      "settingLabel": "Mostra suggerimenti di coaching",
+      "settingHint": "Offre un rapido controllo del tono sui commenti più lunghi e sottolinea le note di ragionamento comuni prima di pubblicare. Solo suggerimenti, mai un blocco.",
+      "kind": {
+        "ad_hominem": "Attacca la persona",
+        "straw_man": "Dichiara erroneamente il proprio punto di vista",
+        "false_dilemma": "Inquadratura o- o",
+        "overgeneralisation": "Reclamo a tappeto",
+        "hostile_tone": "Tono ostile"
+      }
+    }
   }
 }

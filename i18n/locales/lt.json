@@ -4530,5 +4530,49 @@
         "body": "Sužinokite, kaip patarimai, ženkleliai ir supergalios paverčia tai, ką čia darote, tuo, iš ko uždirbate."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Bendras sutarimas",
+      "sectionLabel": "Diskusija",
+      "sheetHint": "Trumpa pauzė prieš jūsų atsakymą. Jūsų atsakymai lieka privatūs.",
+      "toggleLabel": "Bendro sutarimo režimas",
+      "toggleHint": "Prieš pirmąjį atsakymą skaitytojams užduodama klausimus apie stipriausią kitos pusės argumentą ir tai, ką abi pusės dalijasi, tada primenama vengti mąstymo „viskas arba nieko“.",
+      "banner": "Šis kūrėjas įjungė Bendro sutarimo režimą. Prieš atsakydami būsite paklausti apie stipriausią kitos pusės argumentą ir tai, ką dalijatės.",
+      "stepOf": "{{step}} žingsnis iš {{total}}",
+      "step1Title": "Vienu sakiniu, koks yra stipriausias kitos pusės argumentas?",
+      "step1Placeholder": "Geriausias jų argumentas galėtų būti tas, kad…",
+      "step2Title": "Dėl ko jūs ir jie iš tikrųjų sutariate?",
+      "step2Placeholder": "Mes abu norime…",
+      "reminderTitle": "Saugokitės mąstymo „viskas arba nieko“",
+      "reminderBody": "Dauguma nesutarimų nėra pasirinkimas tarp dviejų kraštutinumų. Kai klausimas atrodo kaip „viskas arba nieko“, dažnai viduryje slypi trečia galimybė.",
+      "example1": "Kaimynas, norintis ramesnės gatvės, ir kaimynas, norintis daugiau automobilių stovėjimo vietų, gali būti teisūs dėl savo poreikių.",
+      "example2": "Du tėvai gali nesutarti dėl ekrano laiko ir vis tiek sutarti, kad vaikas turėtų gerai miegoti ir gerai jaustis mokykloje.",
+      "noShouting": "Sudėtingi klausimai niekada neišsprendžiami šaukimu ar grasinimais. Ramus, konkretus atsakymas yra tas, kurį žmonės iš tikrųjų perskaito.",
+      "reviewTitle": "Dar kartą peržiūrėkite savo atsakymą",
+      "privateNote": "Jūsų atsakymai yra tik jūsų ir nebus paskelbti kartu su jūsų atsakymu.",
+      "continueLabel": "Tęsti",
+      "back": "Atgal",
+      "postReply": "Paskelbti mano atsakymą",
+      "tooShort": "Parašykite bent 10 simbolių, kad apmąstymas būtų įskaitytas.",
+      "saveFailed": "Nepavyko išsaugoti Bendro sutarimo nustatymo. Bandykite dar kartą."
+    },
+    "coach": {
+      "title": "Pokalbio treneris",
+      "checkTone": "Patikrinti mano toną",
+      "checking": "Tikrinamas jūsų atsakymo tonas…",
+      "allClear": "Nieko nepastebėta. Jūsų atsakymas atrodo sąžiningas ir ramus.",
+      "postAnyway": "Vis tiek paskelbti",
+      "dismiss": "Atmesti šį pasiūlymą",
+      "settingLabel": "Rodyti trenerio pasiūlymus",
+      "settingHint": "Siūlo greitą ilgesnių komentarų tono patikrinimą ir nurodo įprastus argumentus prieš paskelbiant. Tik pasiūlymai, niekada užblokuoti.",
+      "kind": {
+        "ad_hominem": "Užpuolė asmenį",
+        "straw_man": "Netinkamai perteikia savo nuomonę",
+        "false_dilemma": "Įrėminimas",
+        "overgeneralisation": "Šlavimo paraiška",
+        "hostile_tone": "Priešiškas tonas"
+      }
+    }
   }
 }

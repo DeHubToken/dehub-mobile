@@ -4582,5 +4582,49 @@
         "body": "Cari tahu bagaimana tips, lencana, dan SuperPower mengubah apa yang Anda lakukan di sini menjadi sesuatu yang Anda peroleh."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Tanah Bersama",
+      "sectionLabel": "Diskusi",
+      "sheetHint": "Jeda singkat sebelum balasan Anda. Jawaban Anda tetap pribadi.",
+      "toggleLabel": "Mode Tanah Bersama",
+      "toggleHint": "Sebelum balasan pertama mereka, pembaca diminta untuk menyebutkan poin terkuat dari pihak lain dan apa yang dibagikan kedua belah pihak, lalu diingatkan untuk menghindari pemikiran \"salah satu atau yang lain\".",
+      "banner": "Pembuat ini mengaktifkan mode Tanah Bersama. Sebelum Anda membalas, Anda akan diminta untuk menyebutkan poin terkuat dari pihak lain dan apa yang Anda bagikan.",
+      "stepOf": "Langkah {{step}} dari {{total}}",
+      "step1Title": "Dalam satu kalimat, apa poin terkuat dari pihak lain?",
+      "step1Placeholder": "Kasus terbaik yang bisa mereka buat adalah bahwa…",
+      "step2Title": "Apa yang Anda dan mereka sepakati?",
+      "step2Placeholder": "Kita berdua ingin…",
+      "reminderTitle": "Hati-hati dengan pemikiran serba atau tidak sama sekali",
+      "reminderBody": "Sebagian besar ketidaksepakatan bukanlah pilihan antara dua ekstrem. Ketika sebuah pertanyaan terasa seperti salah satu atau yang lain, biasanya ada pilihan ketiga di tengahnya.",
+      "example1": "Tetangga yang menginginkan jalan yang lebih tenang dan tetangga yang menginginkan lebih banyak parkir bisa saja benar tentang apa yang mereka butuhkan.",
+      "example2": "Dua orang tua bisa tidak sepakat tentang waktu layar dan tetap sepakat bahwa anak harus tidur nyenyak dan berprestasi di sekolah.",
+      "noShouting": "Masalah kompleks tidak pernah terselesaikan dengan teriakan atau ancaman. Balasan yang tenang dan spesifik adalah yang benar-benar dibaca orang.",
+      "reviewTitle": "Satu pandangan terakhir pada balasan Anda",
+      "privateNote": "Jawaban Anda hanya untuk Anda sendiri dan tidak diposting bersama balasan Anda.",
+      "continueLabel": "Lanjutkan",
+      "back": "Kembali",
+      "postReply": "Kirim balasan saya",
+      "tooShort": "Tulis setidaknya 10 karakter agar refleksi benar-benar dihitung.",
+      "saveFailed": "Tidak dapat menyimpan pengaturan Tanah Bersama. Silakan coba lagi."
+    },
+    "coach": {
+      "title": "Pelatih percakapan",
+      "checkTone": "Periksa nada saya",
+      "checking": "Memeriksa nada balasan Anda…",
+      "allClear": "Tidak ada yang menonjol. Balasan Anda terbaca adil dan tenang.",
+      "postAnyway": "Kirim saja",
+      "dismiss": "Abaikan saran ini",
+      "settingLabel": "Tampilkan saran pelatihan",
+      "settingHint": "Menawarkan pemeriksaan nada cepat pada komentar yang lebih panjang dan menunjukkan slip penalaran umum sebelum Anda memposting. Saran saja, jangan pernah blokir.",
+      "kind": {
+        "ad_hominem": "Menyerang orang tersebut",
+        "straw_man": "Salah mengartikan pandangan mereka",
+        "false_dilemma": "Entah - atau framing",
+        "overgeneralisation": "Klaim menyapu",
+        "hostile_tone": "Nada bermusuhan"
+      }
+    }
   }
 }

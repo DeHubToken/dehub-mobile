@@ -4520,5 +4520,49 @@
         "body": "Findi us, wie Trinkgeld, Abzeiche und SuperPowers das, wo du do machsch, zu öppis machä, wo du us em verdienst."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Gemeinsami Grund",
+      "sectionLabel": "Diskussione",
+      "sheetHint": "E chliini Pausi vor dim Antwurt. Dini Antworte bliebed privat.",
+      "toggleLabel": "Gemeinsami Grund Modus",
+      "toggleHint": "Bevor d Lüt zum erste Mal antworted, werded sie nach em stärggschte Punkt vo de andere Site und was beidi Site gmeinsam hend gfrogt, und denn dra erinnert, dass sie \"entweder-oder\"-Denke vermiede sönd.",
+      "banner": "Dä Creator hät de Gemeinsami Grund Modus agschaltet. Bevor du antwörisch, wirsch nach em stärggschte Punkt vo de andere Site und was du mit ihne gmeinsam hesch gfrogt.",
+      "stepOf": "Schritt {{step}} vo {{total}}",
+      "step1Title": "In eiim Satz, was isch de stärggschti Punkt uf de andere Site?",
+      "step1Placeholder": "De beschti Fall, wo sie chönd mache, isch, dass...",
+      "step2Title": "Worüber sind sich du und sie sich tatsächlech einig?",
+      "step2Placeholder": "Mir beidi wönd...",
+      "reminderTitle": "Pass uf für \"alles-oder-nüt\"-Denke",
+      "reminderBody": "D meischtä Stritt sind kei Wahl zwüsched zwei Extremä. Wenn sich e Frog wie \"entweder-oder\" aaluegt, git's meistens e dritti Option irgendwo i de Mitti.",
+      "example1": "En Nachbar, wo sich e ruhigeri Strasse wünscht, und en Nachbar, wo meh Parkplätz wünscht, chönd beidi Recht ha, was sie bruched.",
+      "example2": "Zwei Eltere chönd sich über Bildschirmziit uneinig sii und sich trotzdem einig sii, dass s Chind guet schlafe und i de Schuel guet laufe söll.",
+      "noShouting": "Komplexi Sache werded nie mit Gschrei oder Drohige glöst. E ruhigi, spezifischi Antwurt isch die, wo d Lüt tatsächlech läsed.",
+      "reviewTitle": "No einisch e Blick uf dini Antwurt",
+      "privateNote": "Dini Antworte sind nur für dich und werded nöd mit dim Antwurt publiziert.",
+      "continueLabel": "Witer",
+      "back": "Zurück",
+      "postReply": "Mini Antwurt postä",
+      "tooShort": "Schrib mindestens 10 Zeiche, damit d Reflexion au zählt.",
+      "saveFailed": "Hät de Gemeinsami Grund-Stellig nöd chönne speichere. Bitte probier's no einisch."
+    },
+    "coach": {
+      "title": "Konversations-Coach",
+      "checkTone": "Mini Tonfall checke",
+      "checking": "De Tonfall vo dim Antwurt wird checkt...",
+      "allClear": "Nüt isch ufgfalle. Dini Antwurt liest sich fair und ruhig.",
+      "postAnyway": "Trotdem postä",
+      "dismiss": "Das Vorschlag ignoriere",
+      "settingLabel": "Coaching-Vorschläg zeige",
+      "settingHint": "Bietet en schnelli Ton-Kontroll für längeri Kommentär und zeigt gängigi Denkfehler uff, bevor du postisch. Nur Vorschläg, nie en Block.",
+      "kind": {
+        "ad_hominem": "Greift d Person a",
+        "straw_man": "Verzerrt ihri Sicht",
+        "false_dilemma": "Entweder-oder-Darstellig",
+        "overgeneralisation": "Pauschaliierendi Behauptig",
+        "hostile_tone": "Feindselige Tonart"
+      }
+    }
   }
 }

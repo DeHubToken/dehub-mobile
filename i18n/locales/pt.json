@@ -4606,5 +4606,49 @@
         "body": "Descubra como gratificações, emblemas e SuperPoderes transformam o que faz aqui em algo com que ganha."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Terreno Comum",
+      "sectionLabel": "Discussão",
+      "sheetHint": "Uma pequena pausa antes da sua resposta. Suas respostas permanecem privadas.",
+      "toggleLabel": "Modo Terreno Comum",
+      "toggleHint": "Antes da primeira resposta, os leitores são questionados sobre o ponto mais forte do outro lado e o que ambos os lados compartilham, e depois lembrados de evitar o pensamento \"ou um ou outro\".",
+      "banner": "Este criador ativou o modo Terreno Comum. Antes de responder, você será questionado sobre o ponto mais forte do outro lado e o que vocês compartilham.",
+      "stepOf": "Etapa {{step}} de {{total}}",
+      "step1Title": "Em uma frase, qual é o ponto mais forte do outro lado?",
+      "step1Placeholder": "O melhor argumento que eles poderiam apresentar é que…",
+      "step2Title": "No que você e eles realmente concordam?",
+      "step2Placeholder": "Ambos queremos…",
+      "reminderTitle": "Cuidado com o pensamento \"tudo ou nada\"",
+      "reminderBody": "A maioria dos desacordos não é uma escolha entre dois extremos. Quando uma questão parece ser \"ou um ou outro\", geralmente há uma terceira opção no meio.",
+      "example1": "Um vizinho que quer uma rua mais silenciosa e um vizinho que quer mais estacionamento podem ambos estar certos sobre o que precisam.",
+      "example2": "Dois pais podem discordar sobre o tempo de tela e ainda concordar que a criança deve dormir bem e ir bem na escola.",
+      "noShouting": "Questões complexas nunca são resolvidas com gritos ou ameaças. Uma resposta calma e específica é aquela que as pessoas realmente leem.",
+      "reviewTitle": "Uma última olhada na sua resposta",
+      "privateNote": "Suas respostas são apenas para você e não são postadas com sua resposta.",
+      "continueLabel": "Continuar",
+      "back": "Voltar",
+      "postReply": "Postar minha resposta",
+      "tooShort": "Escreva pelo menos 10 caracteres para que a reflexão realmente conte.",
+      "saveFailed": "Não foi possível salvar a configuração de Terreno Comum. Tente novamente."
+    },
+    "coach": {
+      "title": "Coach de conversação",
+      "checkTone": "Verificar meu tom",
+      "checking": "Verificando o tom da sua resposta…",
+      "allClear": "Nada se destacou. Sua resposta parece justa e calma.",
+      "postAnyway": "Postar mesmo assim",
+      "dismiss": "Ignorar esta sugestão",
+      "settingLabel": "Mostrar sugestões de coaching",
+      "settingHint": "Oferece uma verificação rápida de tom em comentários mais longos e aponta deslizes de raciocínio comuns antes de postar. Apenas sugestões, nunca um bloco.",
+      "kind": {
+        "ad_hominem": "Ataca a pessoa",
+        "straw_man": "Distorce a sua opinião",
+        "false_dilemma": "Enquadramento ou-ou",
+        "overgeneralisation": "Reivindicação abrangente",
+        "hostile_tone": "Tom hostil"
+      }
+    }
   }
 }

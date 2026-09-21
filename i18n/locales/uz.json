@@ -4574,5 +4574,49 @@
         "body": "Maslahatlar, nishonlar va Super Kuchlar bu yerda qilayotgan ishlaringizni qanday qilib daromad keltiradigan narsaga aylantirishini bilib oling."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Umumiy zamin",
+      "sectionLabel": "Munozara",
+      "sheetHint": "Javobingizdan oldin qisqa tanaffus. Javoblaringiz maxfiy qoladi.",
+      "toggleLabel": "Umumiy zamin rejimi",
+      "toggleHint": "O'quvchilar o'zlarining birinchi javobidan oldin, qarshi tomonning eng kuchli jihati va ikki tomon ham nimada umumiy fikrga ega ekanligi haqida so'raladi, so'ngra \"yoki-yoki\" fikrlashdan qochish eslatib o'tiladi.",
+      "banner": "Bu ijodkor Umumiy zamin rejimini yoqdi. Javob berishdan oldin sizdan qarshi tomonning eng kuchli jihati va nimalarda umumiy fikrga ega ekanligingiz haqida so'raladi.",
+      "stepOf": "{{step}} qadam {{total}} dan",
+      "step1Title": "Bir gap bilan, qarshi tomonning eng kuchli jihati nima?",
+      "step1Placeholder": "Ularning eng yaxshi dalili shuki...",
+      "step2Title": "Siz va ular aslida nimada kelishib olgan?",
+      "step2Placeholder": "Ikkimiz ham xohlaymiz...",
+      "reminderTitle": "\"Hammasi yoki hech narsa\" fikrlashdan saqlaning",
+      "reminderBody": "Ko'pgina kelishmovchiliklar ikki ekstremal holat o'rtasidagi tanlov emas. Savol \"yoki-yoki\" kabi tuyulsa, odatda o'rtada uchinchi variant mavjud bo'ladi.",
+      "example1": "Ko'chani jimroq qilishni istagan qo'shni va ko'proq mashina qo'yish joyini istagan qo'shni o'z ehtiyojlari haqida to'g'ri bo'lishi mumkin.",
+      "example2": "Ikki ota-ona ekran vaqtida kelishmovchiliklarga ega bo'lishi mumkin va baribir bola yaxshi uxlamoqda va maktabda yaxshi o'qimoqda degan fikrda bo'lishi mumkin.",
+      "noShouting": "Murakkab masalalar hech qachon baqirish yoki tahdidlar bilan hal etilmaydi. Xotirjam, aniq javob odamlar tomonidan haqiqatan ham o'qiladigan javobdir.",
+      "reviewTitle": "Javobingizni bir marta ko'rib chiqing",
+      "privateNote": "Javoblaringiz faqat siz uchun va javobingiz bilan birga chop etilmaydi.",
+      "continueLabel": "Davom etish",
+      "back": "Orqaga",
+      "postReply": "Javobimni chop etish",
+      "tooShort": "Aks holda, aks ettirish haqiqatan ham hisobga olinishi uchun kamida 10 ta belgi yozing.",
+      "saveFailed": "Umumiy zamin sozlamalari saqlanmadi. Iltimos, qayta urinib ko'ring."
+    },
+    "coach": {
+      "title": "Suhbat murabbiyi",
+      "checkTone": "Tonimni tekshirish",
+      "checking": "Javobingizning ohangini tekshirish...",
+      "allClear": "Hech narsa ajralib chiqmadi. Javobingiz adolatli va xotirjam ko'rinadi.",
+      "postAnyway": "Boshqa chop etish",
+      "dismiss": "Ushbu taklifni rad etish",
+      "settingLabel": "Murabbiylik takliflarini ko'rsatish",
+      "settingHint": "Uzoq sharhlarni tezkor ohangini tekshiradi va joylashtirishdan oldin keng tarqalgan mantiqiy xatolarni ko'rsatadi. Faqat takliflar, hech qachon bloklash yo'q.",
+      "kind": {
+        "ad_hominem": "Shaxsga hujum qiladi",
+        "straw_man": "Uning fikrini noto'g'ri bayon qiladi",
+        "false_dilemma": "\"Yoki-yoki\" deb ramkalash",
+        "overgeneralisation": "Keng qamrovli da'vo",
+        "hostile_tone": "Dushmanona ohang"
+      }
+    }
   }
 }

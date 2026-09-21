@@ -4520,5 +4520,49 @@
         "body": "Gano yadda tukwici, badges da SuperPowers ke juya abin da kuke yi a nan zuwa wani abu da kuka samu daga."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Dandali na gama gari",
+      "sectionLabel": "Tattaunawa",
+      "sheetHint": "Jinkiri kaɗan kafin amsa ku. Amsa ku ba ta bayyana ga kowa.",
+      "toggleLabel": "Yanayin Dandali na gama gari",
+      "toggleHint": "Kafin amsa ta farko, ana tambayar masu karatu game da mafi muhimmancin batu na ɓangaren gaba da kuma abin da dukkan ɓangarorin ke da shi, sannan a tunatar da su su guji tunanin ko dai-ko-wannan.",
+      "banner": "Wannan mai ƙirƙirar ya kunna yanayin Dandali na gama gari. Kafin ka amsa za a tambaye ka game da mafi muhimmancin batu na ɓangaren gaba da kuma abin da kuke da shi tare.",
+      "stepOf": "Mataki {{step}} na {{total}}",
+      "step1Title": "A jumla ɗaya, menene mafi muhimmancin batu a ɓangaren gaba?",
+      "step1Placeholder": "Mafi kyawun abin da za su iya faɗi shine cewa…",
+      "step2Title": "Me kuke da su tare da su da gaske kuke yarda a kai?",
+      "step2Placeholder": "Duk muna so…",
+      "reminderTitle": "Yi hankali da tunanin ko dai-ko-wannan",
+      "reminderBody": "Yawancin rashin jituwa ba zaɓi ne tsakanin abubuwa biyu masu tsattsauran ra'ayi ba. Lokacin da tambaya ta zama kamar ko dai-ko-wannan, yawanci akwai wata hanya ta uku a tsakiya.",
+      "example1": "Maƙwabci wanda yake son titin ya yi tsit da maƙwabci wanda yake son wurin ajiye mota na ƙarin motoci dukansu za su iya zama daidai game da abin da suke bukata.",
+      "example2": "Iyaye biyu za su iya rashin jituwa game da lokacin amfani da allo kuma har yanzu su yarda cewa yaron ya kamata ya yi barci sosai kuma ya yi kyau a makaranta.",
+      "noShouting": "Abubuwa masu rikitarwa ba sa samun mafita ta hanyar kururuwa ko barazana. Amsa mai nutsuwa, takamaimi ita ce wadda mutane ke karantawa da gaske.",
+      "reviewTitle": "Duban ƙarshe a amsa ku",
+      "privateNote": "Amsa ku ta ku kaɗai ce kuma ba a buga ta tare da amsa ku ba.",
+      "continueLabel": "Ci gaba",
+      "back": "Baya",
+      "postReply": "Aika amsa ta",
+      "tooShort": "Rubuta aƙalla haruffa 10 don tunani ya ƙidaya da gaske.",
+      "saveFailed": "An kasa adana saitin Dandali na gama gari. Da fatan za a sake gwadawa."
+    },
+    "coach": {
+      "title": "Masanin tattaunawa",
+      "checkTone": "Duba yanayin magana ta",
+      "checking": "Ana duba yanayin magana ta amsa ku…",
+      "allClear": "Babu abin da ya fito fili. Amsa ku ta fito kamar mai adalci da nutsuwa.",
+      "postAnyway": "Aika ko ta halin kaka",
+      "dismiss": "Watsi da wannan shawarar",
+      "settingLabel": "Nuna shawarwarin koyarwa",
+      "settingHint": "Bayar da sauri sautin duba a kan dogon sharhi da kuma nuna fitar da na kowa reasoning slips kafin ka post. Shawarwari kawai, ba a taɓa toshewa ba.",
+      "kind": {
+        "ad_hominem": "Ya kai hari ga mutumin",
+        "straw_man": "Ya ɓata ra'ayinsu",
+        "false_dilemma": "Ko dai- ko framing",
+        "overgeneralisation": "Sweeping da'awar",
+        "hostile_tone": "Sautin mai masaukin baki"
+      }
+    }
   }
 }

@@ -4531,5 +4531,49 @@
         "body": "Vaata, kuidas nõuanded, märgid ja SuperPowers muudavad selle, mida sa siin teed, millekski, millega sa teenid."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Ühine alus",
+      "sectionLabel": "Arutelu",
+      "sheetHint": "Lühike paus enne vastust. Teie vastused jäävad privaatseks.",
+      "toggleLabel": "Ühise aluse režiim",
+      "toggleHint": "Enne esimest vastust palutakse lugejatel nimetada teise poole tugevaim argument ja see, mida mõlemad pooled jagavad, ning tuletatakse meelde, et tuleks vältida kas-või mõtlemist.",
+      "banner": "See looja on lülitanud sisse ühise aluse režiimi. Enne vastamist palutakse teil nimetada teise poole tugevaim argument ja see, mida te jagate.",
+      "stepOf": "{{step}}. samm {{total}}-st",
+      "step1Title": "Milles seisneb teise poole tugevaim argument ühe lausega?",
+      "step1Placeholder": "Parim argument, mida nad võiksid esitada, on see, et…",
+      "step2Title": "Millest teie ja nemad tegelikult kokku lepite?",
+      "step2Placeholder": "Me mõlemad tahame…",
+      "reminderTitle": "Hoiduge kõikehõlmavast mõtlemisest",
+      "reminderBody": "Enamik erimeelsusi ei ole valik kahe äärmuse vahel. Kui küsimus tundub kas-või, on keskel tavaliselt kolmas võimalus.",
+      "example1": "Naaber, kes soovib vaiksemat tänavat, ja naaber, kes soovib rohkem parkimiskohti, võivad mõlemad vajadustelt õiged olla.",
+      "example2": "Kaks vanemat võivad laste ekraaniaja osas eriarvamusele jääda ja siiski nõustuda, et laps peaks hästi magama ja koolis edukas olema.",
+      "noShouting": "Keerulisi küsimusi ei lahendata kunagi karjumise või ähvardustega. Rahulik, konkreetne vastus on see, mida inimesed tegelikult loevad.",
+      "reviewTitle": "Viimane pilk teie vastusele",
+      "privateNote": "Teie vastused on ainult teile ja neid ei avaldata koos teie vastusega.",
+      "continueLabel": "Jätka",
+      "back": "Tagasi",
+      "postReply": "Postita minu vastus",
+      "tooShort": "Kirjutage vähemalt 10 tähemärki, et peegeldus tõesti arvesse läheks.",
+      "saveFailed": "Ühise aluse sätet ei õnnestunud salvestada. Palun proovige uuesti."
+    },
+    "coach": {
+      "title": "Vestlusjuhend",
+      "checkTone": "Kontrolli minu tooni",
+      "checking": "Teie vastuse tooni kontrollimine…",
+      "allClear": "Midagi erilist ei paistnud silma. Teie vastus mõjub ausa ja rahuliku tooniga.",
+      "postAnyway": "Postita ikkagi",
+      "dismiss": "Lükka see soovitus tagasi",
+      "settingLabel": "Näita juhendamise ettepanekuid",
+      "settingHint": "Võimaldab pikemaid kommentaare kiiresti kontrollida ja osutab enne postitamist levinud arutluskäikudele. Ainult soovitused, mitte kunagi plokk.",
+      "kind": {
+        "ad_hominem": "Ründab inimest",
+        "straw_man": "Kirjeldab oma vaadet valesti",
+        "false_dilemma": "Kas või kadreerimine",
+        "overgeneralisation": "Pühkimise nõue",
+        "hostile_tone": "Vaenulik toon"
+      }
+    }
   }
 }

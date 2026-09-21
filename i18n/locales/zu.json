@@ -4560,5 +4560,49 @@
         "body": "Thola indlela amacebiso, amabheji ne-SuperPower okuguqula ngayo lokho okwenzayo lapha kube yinto oyitholayo."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Umhlaba Ovamile",
+      "sectionLabel": "Ingxoxo",
+      "sheetHint": "Ikhefu elifushane ngaphambi kokuphendula kwakho. Izimpendulo zakho zihlala ziyimfihlo.",
+      "toggleLabel": "Imodi Yomhlaba Ovamile",
+      "toggleHint": "Ngaphambi kokuphendula kwabo kokuqala, abafundi bayacelwa iphuzu elinamandla kakhulu kolunye uhlangothi nokuthi bobabili babelana ngani, bese bekhunjuzwa ukuthi bagweme ukucabanga okuthi \"noma lokhu noma lokho\".",
+      "banner": "Lo mdali uvule imodi Yomhlaba Ovamile. Ngaphambi kokuba uphendule uzocelwa iphuzu elinamandla kakhulu kolunye uhlangothi nokuthi yini eniyihlanganyelayo.",
+      "stepOf": "Isinyathelo {{step}} kwezi {{total}}",
+      "step1Title": "Ngokomushwana owodwa, yini iphuzu elinamandla kakhulu kolunye uhlangothi?",
+      "step1Placeholder": "Iphuzu elihle kakhulu abangakwenza ukuthi…",
+      "step2Title": "Yini enivumelana ngayo wena nabo empeleni?",
+      "step2Placeholder": "Sonke sifuna…",
+      "reminderTitle": "Qaphela ukucabanga okuthi konke noma akukho lutho",
+      "reminderBody": "Okungavumelani okuningi akukona ukukhetha phakathi kwezinto ezimbili eziphambene. Lapho umbuzo uzwakala sengathi \"noma lokhu noma lokho\", kuvame ukuba khona inketho yesithathu phakathi.",
+      "example1": "Umakhelwane ofuna umgwaqo othule nokuthi umakhelwane ofuna indawo yokupaka eyengeziwe bangaba nelungelo ngalokho abakudingayo.",
+      "example2": "Abazali ababili bangase bangavumelani ngesikhathi sokusebenzisa izikrini futhi basavumelana ngokuthi ingane kufanele ilele kahle futhi iphumelele esikoleni.",
+      "noShouting": "Izindaba eziyinkimbinkimbi azisoze zahlanganiswa ngokumemeza noma izinsongo. Impendulo ethule, enemininingwane iyona abantu abayifundayo ngempela.",
+      "reviewTitle": "Ukubheka okokugcina impendulo yakho",
+      "privateNote": "Izimpendulo zakho zingezakho zodwa futhi azifakwa nempendulo yakho.",
+      "continueLabel": "Qhubeka",
+      "back": "Emuva",
+      "postReply": "Thumela impendulo yami",
+      "tooShort": "Bhala okungenani izinhlamvu eziyi-10 ukuze ukucabanga kubalwe ngempela.",
+      "saveFailed": "Ayikwazanga ukulondoloza isilungiselelo soMhlaba Ovamile. Sicela uzame futhi."
+    },
+    "coach": {
+      "title": "Umqeqeshi wezingxoxo",
+      "checkTone": "Hlola isimo sami sengqondo",
+      "checking": "Kuhlolwa isimo sengqondo sempumelelo yakho…",
+      "allClear": "Akukho lutho olugqamile. Impendulo yakho ibonakala ilungile futhi ithule.",
+      "postAnyway": "Thumela noma kunjalo",
+      "dismiss": "Yeka lesi siphakamiso",
+      "settingLabel": "Bonisa iziphakamiso zokuqeqesha",
+      "settingHint": "Inikeza ukuhlola okusheshayo kwesitayela kumazwana amade futhi ikhombe iziphambeko ezijwayelekile zokucabanga ngaphambi kokuthumela. Iziphakamiso kuphela, akukaze kube ukuvinjelwa.",
+      "kind": {
+        "ad_hominem": "Uhlasela umuntu",
+        "straw_man": "Uphambanisa umbono wakhe",
+        "false_dilemma": "Ukubeka izinto ngendlela eyodwa noma enye",
+        "overgeneralisation": "Isimangalo esibanzi",
+        "hostile_tone": "Isitayela esinobutha"
+      }
+    }
   }
 }

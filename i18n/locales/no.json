@@ -4516,5 +4516,49 @@
         "body": "Finn ut hvordan tips, merker og superkrefter gjør det du gjør her til noe du tjener penger på."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Felles grunn",
+      "sectionLabel": "Diskusjon",
+      "sheetHint": "En kort pause før svaret ditt. Svarene dine forblir private.",
+      "toggleLabel": "Felles grunn-modus",
+      "toggleHint": "Før sitt første svar blir leserne bedt om den andres sterkeste argument og hva begge sider deler, og blir deretter minnet om å unngå enten-eller-tenkning.",
+      "banner": "Denne skaperen har aktivert Felles grunn-modus. Før du svarer, vil du bli bedt om den andres sterkeste argument og hva dere deler.",
+      "stepOf": "Trinn {{step}} av {{total}}",
+      "step1Title": "I én setning, hva er det sterkeste argumentet på den andre siden?",
+      "step1Placeholder": "Det beste argumentet de kunne fremme er at…",
+      "step2Title": "Hva er du og de faktisk enige om?",
+      "step2Placeholder": "Vi ønsker begge…",
+      "reminderTitle": "Pass deg for alt-eller-ingenting-tenkning",
+      "reminderBody": "De fleste uenigheter er ikke et valg mellom to ytterpunkter. Når et spørsmål føles som enten-eller, finnes det vanligvis en tredje mulighet et sted i midten.",
+      "example1": "En nabo som ønsker en roligere gate og en nabo som ønsker mer parkering, kan begge ha rett i hva de trenger.",
+      "example2": "To foreldre kan være uenige om skjermtid og likevel være enige om at barnet bør sove godt og klare seg bra på skolen.",
+      "noShouting": "Komplekse saker blir aldri løst ved å rope eller true. Et rolig, spesifikt svar er det folk faktisk leser.",
+      "reviewTitle": "En siste titt på svaret ditt",
+      "privateNote": "Svarene dine er kun for deg og blir ikke publisert sammen med svaret ditt.",
+      "continueLabel": "Fortsett",
+      "back": "Tilbake",
+      "postReply": "Send svaret mitt",
+      "tooShort": "Skriv minst 10 tegn slik at refleksjonene faktisk teller.",
+      "saveFailed": "Kunne ikke lagre innstillingen for Felles grunn. Vennligst prøv igjen."
+    },
+    "coach": {
+      "title": "Samtalecoach",
+      "checkTone": "Sjekk tonen min",
+      "checking": "Sjekker tonen i svaret ditt…",
+      "allClear": "Ingenting skilte seg ut. Svaret ditt virker rettferdig og rolig.",
+      "postAnyway": "Send likevel",
+      "dismiss": "Avvis dette forslaget",
+      "settingLabel": "Vis coachingforslag",
+      "settingHint": "Gir en rask tonesjekk på lengre kommentarer og påpeker vanlige argumentasjonsfeil før du legger ut innlegg. Kun forslag, aldri en blokkering.",
+      "kind": {
+        "ad_hominem": "Angriper personen",
+        "straw_man": "Feilaktig fremsetter synspunktet deres",
+        "false_dilemma": "Enten-eller-innramming",
+        "overgeneralisation": "Feiende krav",
+        "hostile_tone": "Fiendtlig tone"
+      }
+    }
   }
 }

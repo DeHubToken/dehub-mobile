@@ -4530,5 +4530,49 @@
         "body": "Zbulo se si sugjerimet, distinktivët dhe Superfuqitë e kthejnë atë që bën këtu në diçka nga e cila fiton."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Tokë e Përbashkët",
+      "sectionLabel": "Diskutim",
+      "sheetHint": "Një pauzë e shkurtër para përgjigjes suaj. Përgjigjet tuaja mbeten private.",
+      "toggleLabel": "Mënyra e Tokës së Përbashkët",
+      "toggleHint": "Para përgjigjes së tyre të parë, lexuesve u kërkohet pika më e fortë e palës tjetër dhe çfarë ndajnë të dyja palët, pastaj u kujtohet të shmangin mendimin \"ose-ose\".",
+      "banner": "Ky krijues ka aktivizuar mënyrën e Tokës së Përbashkët. Para se të përgjigjeni, do t'ju kërkohet pika më e fortë e palës tjetër dhe çfarë ndani.",
+      "stepOf": "Hapi {{step}} nga {{total}}",
+      "step1Title": "Në një fjali, cili është pika më e fortë e palës tjetër?",
+      "step1Placeholder": "Rasti më i mirë që ata mund të bënin është se…",
+      "step2Title": "Me çfarë pajtoheni ju dhe ata në fakt?",
+      "step2Placeholder": "Të dy duam…",
+      "reminderTitle": "Kujdes nga mendimi \"gjithçka ose asgjë\"",
+      "reminderBody": "Shumica e mosmarrëveshjeve nuk janë një zgjedhje midis dy ekstremeve. Kur një pyetje ndihet si \"ose-ose\", zakonisht ka një opsion të tretë diku në mes.",
+      "example1": "Një fqinj që dëshiron një rrugë më të qetë dhe një fqinj që dëshiron më shumë parkim, të dy mund të jenë të drejtë për atë që u nevojitet.",
+      "example2": "Dy prindër mund të mos pajtohen për kohën e ekranit dhe prapëseprapë të pajtohen se fëmija duhet të flejë mirë dhe të jetë mirë në shkollë.",
+      "noShouting": "Çështjet komplekse nuk zgjidhen kurrë duke bërtitur apo kërcënuar. Një përgjigje e qetë dhe specifike është ajo që njerëzit në fakt lexojnë.",
+      "reviewTitle": "Një vështrim i fundit në përgjigjen tuaj",
+      "privateNote": "Përgjigjet tuaja janë vetëm për ju dhe nuk publikohen me përgjigjen tuaj.",
+      "continueLabel": "Vazhdo",
+      "back": "Mbrapa",
+      "postReply": "Posto përgjigjen time",
+      "tooShort": "Shkruani të paktën 10 karaktere në mënyrë që reflektimi të vlejë.",
+      "saveFailed": "Nuk u ruajt cilësimi i Tokës së Përbashkët. Ju lutem provoni përsëri."
+    },
+    "coach": {
+      "title": "Trajner i bisedës",
+      "checkTone": "Kontrollo tonin tim",
+      "checking": "Duke kontrolluar tonin e përgjigjes suaj…",
+      "allClear": "Asgjë nuk ra në sy. Përgjigja juaj lexohet si e drejtë dhe e qetë.",
+      "postAnyway": "Posto gjithsesi",
+      "dismiss": "Shkarko këtë sugjerim",
+      "settingLabel": "Trego sugjerimet e trajnerit",
+      "settingHint": "Ofron një kontroll të shpejtë të tonit të komenteve më të gjata dhe vë në dukje gabimet e zakonshme të arsyetimit para se të postosh. Vetëm sugjerime, kurrë bllokim.",
+      "kind": {
+        "ad_hominem": "Sulmon personin",
+        "straw_man": "Deklaron gabimisht pikëpamjen e tyre",
+        "false_dilemma": "Ose inkuadrim ose inkuadrim",
+        "overgeneralisation": "Kërkesë për dëmshpërblim gjithëpërfshirës",
+        "hostile_tone": "Toni armiqësor"
+      }
+    }
   }
 }

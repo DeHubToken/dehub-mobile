@@ -4435,5 +4435,48 @@
         "body": "A filɛ i be min kɛra yan, i be se k'o yɛlɛma cogo min na k'a kɛ i be wari sɔrɔ o la."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Jamana minw be yen",
+      "sectionLabel": "Ɲiningaliw",
+      "sheetHint": "A ka ɲi ka mɛn ka sɔrɔ ka jaabili di. I ka jaabiliw be to i yɛrɛ ma.",
+      "toggleLabel": "Fɛɛn min be kɛ jamana kɔnɔ",
+      "toggleHint": "Sanni u ka jaabili fɔlɔ ka se, u be mɔgɔ kalanbagaw ɲininga u tɔɲɔgɔn ka miiriya barikaman na ani u be min fɔ ɲɔgɔn ye. O kɔ, u b'u hakili jigi ko u kana miiri o la.",
+      "banner": "O la, a tun be se ka kɛ ko a tun be dugukolo yɔrɔ bɛɛ la. Sanni i ka jaabili di, u bena i ɲininga i ka miiriya barikaman ani i be min fɔ ɲɔgɔn ye.",
+      "step1Title": "O kɔrɔ ko, fɛɛn min kɔrɔtanin lo ka tɛmɛ fɛɛn bɛɛ kan, o ye mun lo ye?",
+      "step1Placeholder": "U be se ka min kɛ, o ye...",
+      "step2Title": "I ni u be bɛn tiɲɛn na mun lo la?",
+      "step2Placeholder": "U fila bɛɛ tun b'a fɛ ka...",
+      "reminderTitle": "I hakili to a la ko i ka ɲi ka miiri koo bɛɛ la",
+      "reminderBody": "O kama, an ka ɲi k'a ɲini k'a lɔn ko an ka ɲi ka mun lo kɛ walisa ka se k'an yɛrɛ tanga o ma. N'i ye ɲiningali dɔ kɛ, o be se ka kɛ sababu ye i be se ka mɔgɔ sabanan sugandi yɔrɔ dɔ la.",
+      "example1": "Mɔgɔ minw b'a fɛ ka mobili lɔ ka ɲɛ ani minw b'a fɛ ka mobili lɔ ka ɲɛ, olu fila bɛɛ be se ka la a la ko u mako be fɛɛn min na, o bɛnnin lo.",
+      "example2": "Bangebaga fila be se ka bɛn a ka wagati la ani u b'a fɔ ko a ka ɲi ka sinɔgɔ koɲuman ani ka koo ɲuman kɛ lakɔliso la.",
+      "noShouting": "Koo gwilimanw tɛ se ka ɲɛnabɔ ni kulekan ye wala ni bagabaga ye. Mɔgɔ minw be kalan kɛra, olu be se k'u yɛrɛ tanga o ma.",
+      "reviewTitle": "I ka jaabili filɛ",
+      "privateNote": "I ka jaabiliw ye i yɛrɛ ta ye ani u tɛ bila i ka jaabiliw kɔnɔ.",
+      "continueLabel": "Ka to ka taga",
+      "back": "Ka segi ka na",
+      "postReply": "Ne ka jaabili filɛ nin ye",
+      "tooShort": "I ka kan ka sɛbɛri kɛ ni kumaden 10 ye walisa k'a yira ko i be miiri koɲuman.",
+      "saveFailed": "O kama, a tun man nɔgɔ ka taga jamana wɛrɛ la. N'i b'a fɛ ka dɔ fara a kan, i ka segi k'a ɲini."
+    },
+    "coach": {
+      "title": "Kalanfaw ka baro",
+      "checkTone": "I ka kan ka ne ka kuma lamɛn",
+      "checking": "N'i ye n ka jaabili jaabi, o bena diya i ye.",
+      "allClear": "I ka jaabili ka ɲi ani a ka ɲi.",
+      "postAnyway": "O bɛɛ n'a ta,",
+      "dismiss": "Ka sɔn o ma",
+      "settingLabel": "Kalanfaw ka ladiliw",
+      "settingHint": "I be se ka kuma minw fɔ, i ka miiri u la joona joona ani k'a yira ko i be se ka kuma minw fɔ, u bɛnnin lo. O kama, a ka ɲi ka ladili ɲumanw di an ma.",
+      "kind": {
+        "ad_hominem": "Ka mɔgɔ faga",
+        "straw_man": "U be fili u ka miiriya la",
+        "false_dilemma": "O la, a tun be se ka kɛ ko a tun ye mɔgɔ ye.",
+        "overgeneralisation": "Fanga be min na, o ye ka to ka to ka to ka",
+        "hostile_tone": "Tɔɔrɔ min be mɔgɔ kan"
+      }
+    }
   }
 }

@@ -4533,5 +4533,49 @@
         "body": "Saznajte kako savjeti, značke i SuperPowers pretvaraju ono što ovdje radite u nešto od čega zarađujete."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Zajednički teren",
+      "sectionLabel": "Rasprava",
+      "sheetHint": "Kratka stanka prije vašeg odgovora. Vaši odgovori ostaju privatni.",
+      "toggleLabel": "Način rada Zajednički teren",
+      "toggleHint": "Prije prvog odgovora, čitateljima se postavlja pitanje o najjačoj strani druge strane i o tome što obje strane dijele, a zatim ih se podsjeća da izbjegavaju razmišljanje \"ili-ili\".",
+      "banner": "Ovaj je kreator uključio način rada Zajednički teren. Prije nego što odgovorite, pitat će vas se o najjačoj strani druge strane i o tome što dijelite.",
+      "stepOf": "Korak {{step}} od {{total}}",
+      "step1Title": "U jednoj rečenici, koja je najjača točka druge strane?",
+      "step1Placeholder": "Najbolji argument koji bi mogli iznijeti je taj da…",
+      "step2Title": "O čemu se vi i oni zapravo slažete?",
+      "step2Placeholder": "Oboje želimo…",
+      "reminderTitle": "Pazite na razmišljanje \"sve ili ništa\"",
+      "reminderBody": "Većina neslaganja nije izbor između dva ekstrema. Kada se pitanje čini kao \"ili-ili\", obično postoji treća opcija negdje u sredini.",
+      "example1": "Susjed koji želi tišu ulicu i susjed koji želi više parkirnih mjesta mogu biti u pravu u vezi s onim što im treba.",
+      "example2": "Dva roditelja mogu se ne složiti oko vremena provedenog pred ekranom, a i dalje se slagati da bi dijete trebalo dobro spavati i dobro se snalaziti u školi.",
+      "noShouting": "Složena pitanja nikada se ne rješavaju vikanjem ili prijetnjama. Miran, specifičan odgovor je onaj koji ljudi zapravo pročitaju.",
+      "reviewTitle": "Još jedan pogled na vaš odgovor",
+      "privateNote": "Vaši odgovori su samo za vas i ne objavljuju se uz vaš odgovor.",
+      "continueLabel": "Nastavi",
+      "back": "Natrag",
+      "postReply": "Objavi moj odgovor",
+      "tooShort": "Napišite najmanje 10 znakova kako bi refleksija zapravo bila zabilježena.",
+      "saveFailed": "Postavka Zajedničkog terena nije spremljena. Pokušajte ponovno."
+    },
+    "coach": {
+      "title": "Kouč za razgovor",
+      "checkTone": "Provjeri moj ton",
+      "checking": "Provjeravam ton vašeg odgovora…",
+      "allClear": "Ništa nije upalo u oči. Vaš odgovor djeluje pošteno i smireno.",
+      "postAnyway": "Objavi svejedno",
+      "dismiss": "Odbaci ovaj prijedlog",
+      "settingLabel": "Pokaži prijedloge za koučing",
+      "settingHint": "Nudi brzu tonsku provjeru dužih komentara i ukazuje na uobičajene greške u razmišljanju prije nego što objavite. Samo prijedlozi, nikad blokada.",
+      "kind": {
+        "ad_hominem": "Napada osobu",
+        "straw_man": "Pogrešno izražava svoje mišljenje",
+        "false_dilemma": "Ili-ili uokvirivanje",
+        "overgeneralisation": "Zahtjev za brisanje",
+        "hostile_tone": "Neprijateljski ton"
+      }
+    }
   }
 }

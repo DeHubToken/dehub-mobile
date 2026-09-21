@@ -28,6 +28,9 @@ const KEYS = {
   // Suggested replies in DMs. The x on the tray switches them off; the
   // Messages settings tab switches them back on. Web's key name.
   smartReplies: 'dehub_smart_replies',
+  // Coaching suggestions in the comment composer ("Check my tone" and the
+  // last step of a Common Ground reply). Web's key name.
+  coach: 'dehub.coach.enabled',
   quietHoursEnabled: 'dehub_qh_enabled',
   quietHoursStart: 'dehub_qh_start',
   quietHoursEnd: 'dehub_qh_end',
@@ -54,6 +57,7 @@ export interface AppPrefs {
   dimStrength: number;
   buyBotHidden: boolean;
   smartReplies: boolean;
+  coach: boolean;
   quietHoursEnabled: boolean;
   quietHoursStart: number;
   quietHoursEnd: number;
@@ -78,6 +82,7 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   dimStrength: 50,
   buyBotHidden: false,
   smartReplies: true,
+  coach: true,
   quietHoursEnabled: false,
   quietHoursStart: 22,
   quietHoursEnd: 8,
@@ -131,6 +136,7 @@ function init() {
         dimStrength: parseNum(get('dimStrength'), DEFAULT_APP_PREFS.dimStrength),
         buyBotHidden: parseBool(get('buyBotHidden'), DEFAULT_APP_PREFS.buyBotHidden),
         smartReplies: parseBool(get('smartReplies'), DEFAULT_APP_PREFS.smartReplies),
+        coach: parseBool(get('coach'), DEFAULT_APP_PREFS.coach),
         quietHoursEnabled: parseBool(get('quietHoursEnabled'), DEFAULT_APP_PREFS.quietHoursEnabled),
         quietHoursStart: parseNum(get('quietHoursStart'), DEFAULT_APP_PREFS.quietHoursStart),
         quietHoursEnd: parseNum(get('quietHoursEnd'), DEFAULT_APP_PREFS.quietHoursEnd),
