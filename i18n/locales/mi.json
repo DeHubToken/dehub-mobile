@@ -4516,5 +4516,49 @@
         "body": "Tirohia me pehea te huri i nga tohutohu, nga tohu me nga SuperPowers i nga mea e mahi ana koe i konei ki tetahi mea e whiwhi ana koe."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Te Wāhi Tūhono",
+      "sectionLabel": "Kōrero",
+      "sheetHint": "He okiokinga poto i mua i tō whakautu. Ka noho tūmataiti ō whakautu.",
+      "toggleLabel": "Arānga Tūhono",
+      "toggleHint": "I mua i tā rātou whakautu tuatahi, ka pātaia ngā kaipānui mō te pūtake kaha o tērā taha me ngā mea e hono ana rāua, ā, ka whakamaharatia kia kaua e whakaaro ki te \"tetahi, ki te rānei\".",
+      "banner": "Kua whakakāhia e tēnei kaihanga te arānga Tūhono. I mua i tō whakautu ka pātaia koe mō te pūtake kaha o tērā taha me ngā mea e hono ana kōrua.",
+      "stepOf": "Tāpae {{step}} o {{total}}",
+      "step1Title": "I roto i te rerenga kotahi, he aha te pūtake kaha o tērā taha?",
+      "step1Placeholder": "Ko te pai rawa atu ka taea e rātou ko te…",
+      "step2Title": "He aha ngā mea e whakaae ana kōrua ko rātou?",
+      "step2Placeholder": "E hiahia ana māua ko rātou kia…",
+      "reminderTitle": "Kia tūpato ki te whakaaro \"tetahi, ki te rānei\"",
+      "reminderBody": "Ko te nuinga o ngā rerekētanga kāore he kōwhiringa i waenganui i ngā pito e rua. A, ka puta te pātai me te mea he \"tetahi, ki te rānei\", he maha tonu te kōwhiringa tuatoru kei waenganui.",
+      "example1": "Ka taea e tētahi hoa tata e hiahia ana kia ata noho te tiriti me tētahi hoa tata e hiahia ana kia nui ake te wāhi waka kia tika ngā hiahia.",
+      "example2": "Ka taea e ngā mātua te rerekē te whakaaro mō te wā mata me te whakaae tonu kia pai te moe o te tamaiti, kia pai hoki āna mahi ki te kura.",
+      "noShouting": "Kāore e taea te whakatau i ngā take uaua mā te hamama, mā te whakawehi rānei. Ko te whakautu marino, whai kiko te mea ka pānuitia e te tangata.",
+      "reviewTitle": "Tētahi titiro whakamutunga ki tō whakautu",
+      "privateNote": "Ko ō whakautu mō koe anake, kāore hoki e whakairia ki tō whakautu.",
+      "continueLabel": "Haere tonu",
+      "back": "Hoki",
+      "postReply": "Tukua taku whakautu",
+      "tooShort": "Tuhia te 10 pūāhua te iti rawa kia tatau ai te whakaata.",
+      "saveFailed": "Kāore i taea te whakaora i te tautuhinga Tūhono. Tēnā ka whakamātau anō."
+    },
+    "coach": {
+      "title": "Kaitohutohu Kōrero",
+      "checkTone": "Tirohia taku reo",
+      "checking": "Kei te tirotirohia te reo o tō whakautu…",
+      "allClear": "Kāore he mea i puta ake. Ka tika, ka marino hoki te pānuitanga o tō whakautu.",
+      "postAnyway": "Tukua tonu",
+      "dismiss": "Whakakore i tēnei tūtohutanga",
+      "settingLabel": "Whakaaturia ngā tūtohutanga kaitohutohu",
+      "settingHint": "E tuku ana i te tirotiro tangi tere i runga i ngā kōrero roa ake, me te tohu i ngā slips whakaaro noa i mua i te tuku. Ko nga whakaaro anake, kaore he aukati.",
+      "kind": {
+        "ad_hominem": "Te whakaeke i te tangata",
+        "straw_man": "He kino ki to ratou whakaaro",
+        "false_dilemma": "Whakatuwherahia te Whakatuwheratanga",
+        "overgeneralisation": "Te whakahē i te tono",
+        "hostile_tone": "Tonoa Hostile"
+      }
+    }
   }
 }

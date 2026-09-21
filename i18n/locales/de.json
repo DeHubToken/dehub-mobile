@@ -4600,5 +4600,49 @@
         "body": "Finde heraus, wie Trinkgelder, Abzeichen und Superkräfte das, was du hier tust, in etwas verwandeln, mit dem du dir etwas dazuverdienst."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Gemeinsamer Nenner",
+      "sectionLabel": "Diskussion",
+      "sheetHint": "Eine kurze Pause vor deiner Antwort. Deine Antworten bleiben privat.",
+      "toggleLabel": "Modus \"Gemeinsamer Nenner\"",
+      "toggleHint": "Bevor sie zum ersten Mal antworten, werden die Leser nach dem stärksten Argument der Gegenseite und dem gefragt, was beide Seiten gemeinsam haben, und dann daran erinnert, \"entweder-oder\"-Denken zu vermeiden.",
+      "banner": "Dieser Ersteller hat den Modus \"Gemeinsamer Nenner\" aktiviert. Bevor du antwortest, wirst du nach dem stärksten Argument der Gegenseite und dem gefragt, was du gemeinsam hast.",
+      "stepOf": "Schritt {{step}} von {{total}}",
+      "step1Title": "Was ist in einem Satz das stärkste Argument der Gegenseite?",
+      "step1Placeholder": "Das beste Argument, das sie vorbringen könnten, ist, dass…",
+      "step2Title": "Worüber bist du und sie sich tatsächlich einig?",
+      "step2Placeholder": "Wir beide wollen…",
+      "reminderTitle": "Achte auf Schwarz-Weiß-Denken",
+      "reminderBody": "Die meisten Meinungsverschiedenheiten sind keine Wahl zwischen zwei Extremen. Wenn sich eine Frage wie \"entweder-oder\" anfühlt, gibt es normalerweise eine dritte Option irgendwo dazwischen.",
+      "example1": "Ein Nachbar, der eine ruhigere Straße möchte, und ein Nachbar, der mehr Parkplätze möchte, können beide mit ihren Bedürfnissen Recht haben.",
+      "example2": "Zwei Eltern können sich über Bildschirmzeit streiten und sich trotzdem einig sein, dass das Kind gut schlafen und in der Schule gut zurechtkommen sollte.",
+      "noShouting": "Komplexe Probleme werden niemals durch Schreien oder Drohungen gelöst. Eine ruhige, spezifische Antwort ist diejenige, die die Leute tatsächlich lesen.",
+      "reviewTitle": "Ein letzter Blick auf deine Antwort",
+      "privateNote": "Deine Antworten sind nur für dich bestimmt und werden nicht mit deiner Antwort veröffentlicht.",
+      "continueLabel": "Weiter",
+      "back": "Zurück",
+      "postReply": "Meine Antwort posten",
+      "tooShort": "Schreibe mindestens 10 Zeichen, damit die Reflexion auch zählt.",
+      "saveFailed": "Die Einstellung \"Gemeinsamer Nenner\" konnte nicht gespeichert werden. Bitte versuche es erneut."
+    },
+    "coach": {
+      "title": "Konversationscoach",
+      "checkTone": "Überprüfe meinen Ton",
+      "checking": "Der Ton deiner Antwort wird überprüft…",
+      "allClear": "Nichts fiel auf. Deine Antwort wirkt fair und ruhig.",
+      "postAnyway": "Trotzdem posten",
+      "dismiss": "Diesen Vorschlag ablehnen",
+      "settingLabel": "Coaching-Vorschläge anzeigen",
+      "settingHint": "Bietet einen schnellen Ton-Check bei längeren Kommentaren und weist auf häufige Argumentationsfehler hin, bevor Sie posten. Nur Vorschläge, nie ein Block.",
+      "kind": {
+        "ad_hominem": "Greift die Person an",
+        "straw_man": "Verzerrt ihre Sichtweise",
+        "false_dilemma": "Entweder-oder-Rahmen",
+        "overgeneralisation": "Kehranspruch",
+        "hostile_tone": "Feindseliger Ton"
+      }
+    }
   }
 }

@@ -4697,5 +4697,49 @@
         "body": "Zistite, ako rady, odznaky a SuperPowers premenia to, čo tu robíte, na niečo, z čoho si zarobíte."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Spoločná reč",
+      "sectionLabel": "Diskusia",
+      "sheetHint": "Krátka pauza pred vašou odpoveďou. Vaše odpovede zostávajú súkromné.",
+      "toggleLabel": "Režim Spoločná reč",
+      "toggleHint": "Pred prvou odpoveďou sa čitateľov opýtajú na najsilnejší argument druhej strany a na to, čo majú obe strany spoločné, a potom im pripomenú, aby sa vyhli mysleniu typu „buď-alebo“.",
+      "banner": "Tento tvorca zapol režim Spoločná reč. Pred odpoveďou sa vás opýtame na najsilnejší argument druhej strany a na to, čo máte spoločné.",
+      "stepOf": "Krok {{step}} z {{total}}",
+      "step1Title": "V jednej vete, aký je najsilnejší argument druhej strany?",
+      "step1Placeholder": "Najlepší argument, aký by mohli predniesť, je, že…",
+      "step2Title": "Na čom sa zhodujete vy a oni?",
+      "step2Placeholder": "Obaja chceme…",
+      "reminderTitle": "Dávajte si pozor na myslenie typu „všetko alebo nič“",
+      "reminderBody": "Väčšina nezhôd nie je voľbou medzi dvoma extrémami. Keď sa otázka javí ako „buď-alebo“, zvyčajne existuje tretia možnosť niekde uprostred.",
+      "example1": "Sused, ktorý chce tichšiu ulicu, a sused, ktorý chce viac parkovacích miest, môžu mať obaja pravdu o tom, čo potrebujú.",
+      "example2": "Dvaja rodičia sa môžu nezhodnúť na čase strávenom pri obrazovke a stále sa zhodnúť na tom, že dieťa by malo dobre spať a v škole sa mu dariť.",
+      "noShouting": "Zložité problémy sa nikdy nevyriešia krikom ani vyhrážkami. Pokojná, konkrétna odpoveď je tá, ktorú si ľudia skutočne prečítajú.",
+      "reviewTitle": "Ešte jeden pohľad na vašu odpoveď",
+      "privateNote": "Vaše odpovede sú len pre vás a nezverejňujú sa s vašou odpoveďou.",
+      "continueLabel": "Pokračovať",
+      "back": "Späť",
+      "postReply": "Odoslať moju odpoveď",
+      "tooShort": "Napíšte aspoň 10 znakov, aby sa reflexia naozaj započítala.",
+      "saveFailed": "Nastavenie Spoločnej reči sa nepodarilo uložiť. Skúste to znova."
+    },
+    "coach": {
+      "title": "Tréner konverzácie",
+      "checkTone": "Skontrolujte môj tón",
+      "checking": "Kontroluje sa tón vašej odpovede…",
+      "allClear": "Nič zvláštne nevyniklo. Vaša odpoveď pôsobí férovo a pokojne.",
+      "postAnyway": "Aj tak odošlite",
+      "dismiss": "Odmietnuť tento návrh",
+      "settingLabel": "Zobraziť návrhy trénera",
+      "settingHint": "Ponúka rýchlu kontrolu tónu dlhších komentárov a poukazuje na bežné zdôvodnenia pred uverejnením príspevku. Len návrhy, nikdy neblokujte.",
+      "kind": {
+        "ad_hominem": "Útočí na osobu",
+        "straw_man": "Nesprávne vyjadruje svoj názor",
+        "false_dilemma": "Buď - alebo rámovanie",
+        "overgeneralisation": "Nárok na zametanie",
+        "hostile_tone": "Nepriateľský tón"
+      }
+    }
   }
 }

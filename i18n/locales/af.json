@@ -4650,5 +4650,49 @@
         "body": "Vind uit hoe wenke, kentekens en Super Powers verander wat jy hier doen in iets wat jy verdien uit."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Algemene Grond",
+      "sectionLabel": "Bespreking",
+      "sheetHint": "'n Kort pouse voor jou antwoord. Jou antwoorde bly privaat.",
+      "toggleLabel": "Algemene Grond-modus",
+      "toggleHint": "Voor hul eerste antwoord word lesers gevra vir die ander kant se sterkste punt en wat albei kante deel, dan word hulle daaraan herinner om óf-óf denke te vermy.",
+      "banner": "Hierdie skepper het Algemene Grond-modus aangeskakel. Voordat jy antwoord, sal jy gevra word vir die ander kant se sterkste punt en wat julle deel.",
+      "stepOf": "Stap {{step}} van {{total}}",
+      "step1Title": "In een sin, wat is die sterkste punt aan die ander kant?",
+      "step1Placeholder": "Die beste saak wat hulle kon maak is dat…",
+      "step2Title": "Waarmee stem jy en hulle eintlik ooreen?",
+      "step2Placeholder": "Ons wil albei…",
+      "reminderTitle": "Pasop vir alles-of-niks denke",
+      "reminderBody": "Die meeste meningsverskille is nie 'n keuse tussen twee uiterstes nie. Wanneer 'n vraag soos óf-óf voel, is daar gewoonlik 'n derde opsie iewers in die middel.",
+      "example1": "'n Buurman wat 'n stiller straat wil hê en 'n buurman wat meer parkering wil hê, kan albei reg wees oor wat hulle nodig het.",
+      "example2": "Twee ouers kan verskil oor skermtyd en steeds saamstem dat die kind goed moet slaap en goed op skool moet vaar.",
+      "noShouting": "Komplekse kwessies word nooit met geskree of dreigemente opgelos nie. 'n Kalm, spesifieke antwoord is die een wat mense eintlik lees.",
+      "reviewTitle": "Nog 'n laaste kyk na jou antwoord",
+      "privateNote": "Jou antwoorde is net vir jou alleen en word nie met jou antwoord geplaas nie.",
+      "continueLabel": "Gaan voort",
+      "back": "Terug",
+      "postReply": "Plaas my antwoord",
+      "tooShort": "Skryf ten minste 10 karakters sodat die refleksie wel tel.",
+      "saveFailed": "Kon nie die Algemene Grond-instelling stoor nie. Probeer asseblief weer."
+    },
+    "coach": {
+      "title": "Gespreksafrigter",
+      "checkTone": "Kontroleer my toon",
+      "checking": "Die toon van jou antwoord word nagegaan…",
+      "allClear": "Niks het uitgestaan nie. Jou antwoord lees as regverdig en kalm.",
+      "postAnyway": "Plaas tog",
+      "dismiss": "Verwerp hierdie voorstel",
+      "settingLabel": "Wys afrigtingvoorstelle",
+      "settingHint": "Bied 'n vinnige toon tjek op langer kommentaar en wys algemene redenasie gly voordat jy plaas. Aanbevelings alleenlik, nooit 'n blok nie.",
+      "kind": {
+        "ad_hominem": "Aanval op die persoon",
+        "straw_man": "Misleidende visie",
+        "false_dilemma": "Een of ander raamwerk",
+        "overgeneralisation": "Vloeiende bewering",
+        "hostile_tone": "Vyandige toon"
+      }
+    }
   }
 }

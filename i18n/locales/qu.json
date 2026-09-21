@@ -4560,5 +4560,49 @@
         "body": "Yachay imaynatas consejos, insignias chaymanta SuperPowers kaypi ruwasqaykita imamanta ganasqaykiman tikranku."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Común nisqa",
+      "sectionLabel": "Rimanakuy",
+      "sheetHint": "Kutichinayki kachkaptin pisilla samay. Kutichisqaykikunaqa sapallanmi qhepan.",
+      "toggleLabel": "Modo Común Tierra",
+      "toggleHint": "Ñawpaqtañataqmi, ñawpaq kutita qayakuyta mancharispa, kaqninpa allin kaqnin imataq kasqanta, iskayninpas imata hap'iqasqanta, chaymantañataqmi \"ichaqa kay ichaqa chay\" nisqata ama hap'iqanankupaq hark'ayta yuyaychayku.",
+      "banner": "Kay kamaqqa Common Ground nisqa modota llank&#39;achirqan. Manaraq kutichichkaspa huk ladomanta aswan kallpayuq kaqta tapusunkiku chaymanta imatachus rakinakusqaykita.",
+      "stepOf": "Paso {{step}} nisqamanta {{total}} nisqamanta.",
+      "step1Title": "Huk rimaypi, ¿imataq huk ladomanta aswan kallpayuq?",
+      "step1Placeholder": "Aswan allin caso ruway atisqankuqa kaymi...",
+      "step2Title": "¿Imamantataq qampas paykunapas chiqaptapuni acuerdopi kankichik?",
+      "step2Placeholder": "Iskayninkum munanchik...",
+      "reminderTitle": "Tukuy-utaq-mana ima yuyaymanta qhawariy",
+      "reminderBody": "Yaqa llapan mana acuerdopi kaqkunaqa manam iskay extremo nisqamanta akllakuychu. Tapukuy mayqinpas-utaq hina sientekuptinqa, yaqa llapanpim kimsa kaq akllana maypipas chawpipi kan.",
+      "example1": "Aswan ch’in calleta munaq vecinopas, aswan estacionamientota munaq vecinopas iskayninkun allinta rimankuman imachus necesitasqankumanta.",
+      "example2": "Iskay tayta-mamakunaqa manan acuerdopichu kankuman pantallapi tiempomanta, hinallataqmi acuerdopi kankuman wawa allinta puñunanmanta, escuelapipas allinta ruwananmantawan.",
+      "noShouting": "Sasa sasachakuykunaqa manan hayk’aqpas qapariywan nitaq amenazaspachu allichakun. Thaklla, sut’i kutichiyqa runakunaq cheqaqtapuni leesqanmi.",
+      "reviewTitle": "Huk qhipa qhawariy kutichiyniykita",
+      "privateNote": "Kutichisqaykikunaqa qanllapaqmi, manan kutichiyniykiwanqa churasqachu.",
+      "continueLabel": "Qatiy",
+      "back": "Wasa",
+      "postReply": "Kutichiyniyta churay",
+      "tooShort": "10 qillqakunatapas qillqay, chaynapi yuyaymanayqa chiqaptapuni yupananpaq.",
+      "saveFailed": "Mana Common Ground nisqa churayta waqaychayta atirqanchu. Ama hina kaspa, hukmanta kallpachakuy."
+    },
+    "coach": {
+      "title": "Rimanakuy entrenador",
+      "checkTone": "Tonoyta qhaway",
+      "checking": "Kutichiyniykipa tononta qawaspa...",
+      "allClear": "Manam imapas resaltarqachu. Kutichiyniykiqa chanin hinallataq thak hina leekun.",
+      "postAnyway": "Imayna kaptinpas qillqay",
+      "dismiss": "Kay yuyaychayta mana allinpaq qhawariy",
+      "settingLabel": "Coaching yuyaychaykunata rikuchiy",
+      "settingHint": "Aswan unay comentarios kaqpi usqhaylla tono qhawayta qun chaymanta común razonamiento slips nisqakunata rikuchin manaraq qillqachkaspa. Yuyaychaykunalla, mana hayk’aqpas huk bloque.",
+      "kind": {
+        "ad_hominem": "Runata ataca",
+        "straw_man": "Paykunaq qhawarisqankuta pantachin",
+        "false_dilemma": "Yaqa-utaq enmarcación",
+        "overgeneralisation": "Reclamación barredora",
+        "hostile_tone": "Tono awqa"
+      }
+    }
   }
 }

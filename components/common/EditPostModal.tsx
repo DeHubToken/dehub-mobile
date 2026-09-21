@@ -25,6 +25,8 @@ import { editPost, getCategoriesCached, replaceVideoFile, type ShopLink } from "
 import ShopSheet, { type ShopBoardDraft } from "../Upload/ShopSheet";
 import { useStreamProducts, useStreamProductActions } from "../../hooks/useStreamShopping";
 import { useShopLinkAllowance } from "../../hooks/useShopLinks";
+import { usePostDiscussionSettings, useSetCommonGround } from "../../hooks/usePostDiscussionSettings";
+import { useUser } from "../../context/AuthContext";
 import { toastSuccess, toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
@@ -82,6 +84,23 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const [isForKids, setIsForKids] = useState(initialForKids === true);
   const [shopLinks, setShopLinks] = useState<ShopLink[]>(initialShopLinks ?? []);
   const [shopSheetVisible, setShopSheetVisible] = useState(false);
+  /**
+   * Common Ground mode lives in Supabase, not on the token, so it is read and
+   * written beside the post edit rather than through it. Only fetched while
+   * the modal is open — every card can mount this. The row is validated
+   * against the editor's own wallet: whoever opened this modal is the minter,
+   * so that is the address the setting belongs to.
+   */
+  const editor = useUser();
+  const editorAddress = editor?.address || editor?.walletAddress || null;
+  const discussion = usePostDiscussionSettings(tokenId, editorAddress, visible);
+  const setCommonGroundMutation = useSetCommonGround(tokenId);
+  const [commonGround, setCommonGround] = useState<boolean | null>(null);
+  const commonGroundOn = commonGround ?? discussion.commonGround;
+  const commonGroundChanged = commonGround !== null && commonGround !== discussion.commonGround;
+  useEffect(() => {
+    if (visible) setCommonGround(null);
+  }, [visible, tokenId]);
   const shopAllowance = useShopLinkAllowance();
   /**
    * The post exists here, so its listings are read and written directly rather
@@ -281,6 +300,11 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       }
 
       if (Object.keys(payload).length === 0) {
+        // Not a field on the post — a Supabase row of its own.
+        if (commonGroundChanged) {
+          await setCommonGroundMutation.mutateAsync(commonGround === true);
+          toastSuccess(t("editPost.updated"));
+        }
         onClose();
         return;
       }
@@ -289,6 +313,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       // error rather than a count on the token that nothing backs.
       for (const id of toDetach) await detach.mutateAsync(id);
       for (const id of toAttach) await attach.mutateAsync({ listingId: id });
+      if (commonGroundChanged) await setCommonGroundMutation.mutateAsync(commonGround === true);
 
       await editPost(tokenId, payload);
       toastSuccess(t("editPost.updated"));
@@ -323,6 +348,10 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     attachedIds,
     attach,
     detach,
+    commonGround,
+    commonGroundChanged,
+    setCommonGroundMutation,
+    t,
     initialTitle,
     initialDescription,
     initialArticleBody,
@@ -340,6 +369,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     description.trim() !== initialDescription ||
     (initialArticleBody !== undefined && articleBody.trim() !== initialArticleBody) ||
     commentsDisabled !== initialCommentsDisabled ||
+    commonGroundChanged ||
     (isMature ? "mature" : "safe") !== (initialContentRating ?? "safe") ||
     isForKids !== (initialForKids === true) ||
     JSON.stringify(shopLinks) !== JSON.stringify(initialShopLinks ?? []) ||
@@ -506,6 +536,34 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               </Text>
             </View>
             <Ionicons name="bag-outline" size={18} color="#6F7174" />
+          </TouchableOpacity>
+
+          {/* Common Ground mode — readers reflect before their first reply.
+              Same row shape as the comments toggle below. */}
+          <TouchableOpacity
+            onPress={() => setCommonGround(!commonGroundOn)}
+            disabled={discussion.isLoading}
+            activeOpacity={0.7}
+            accessibilityRole="switch"
+            accessibilityState={{ checked: commonGroundOn }}
+            testID="common-ground-toggle"
+            className="flex-row items-center justify-between mt-4 p-3 rounded-xl bg-white/[0.03] border border-white/10"
+          >
+            <View className="flex-1 mr-3">
+              <Text className="text-white text-sm font-semibold">{t("conversation.commonGround.toggleLabel")}</Text>
+              <Text className="text-theme-neutrals-400 text-xs mt-0.5">{t("conversation.commonGround.toggleHint")}</Text>
+            </View>
+            <View
+              className={`w-11 h-6 rounded-full justify-center ${
+                commonGroundOn ? "bg-white" : "bg-neutral-700"
+              }`}
+            >
+              <View
+                className={`w-5 h-5 rounded-full ${commonGroundOn ? "bg-zinc-950 " : "bg-white "}${
+                  commonGroundOn ? "ml-[22px]" : "ml-0.5"
+                }`}
+              />
+            </View>
           </TouchableOpacity>
 
           {/* Comments toggle. Mirrors web's EditPostModal so the same post

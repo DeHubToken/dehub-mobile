@@ -194,10 +194,16 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
   /** Whether the cards-per-hour picker is open. */
   const [ratePicker, setRatePicker] = useState(false);
 
-  const { buyBotHidden } = useAppPrefs();
+  const { buyBotHidden, coach: coachEnabled } = useAppPrefs();
   const buyBotAlerts = !buyBotHidden;
   const onToggleBuyBot = useCallback((val: boolean) => {
     setAppPref('buyBotHidden', !val);
+  }, []);
+  // Coaching suggestions in the comment composer. Not a notification, but it
+  // is about comments and this is where people look for anything the comment
+  // box does. Device-local, same key web writes.
+  const onToggleCoach = useCallback((val: boolean) => {
+    setAppPref('coach', val);
   }, []);
 
   useEffect(() => {
@@ -577,6 +583,19 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                   </View>
                 </View>
                 <CustomSwitch value={buyBotAlerts} onValueChange={onToggleBuyBot} />
+              </View>
+              <Divider />
+              <View className="px-4 py-3.5 flex-row items-center justify-between" testID="coach-suggestions-row">
+                <View className="flex-row items-center flex-1 pr-3">
+                  <View className="mr-3 w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center">
+                    <Icon name="Sparkles" size={16} color="#9ca3af" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-sm font-medium">{t('conversation.coach.settingLabel')}</Text>
+                    <Text className="text-theme-neutrals-500 text-xs">{t('conversation.coach.settingHint')}</Text>
+                  </View>
+                </View>
+                <CustomSwitch value={coachEnabled} onValueChange={onToggleCoach} />
               </View>
             </View>
           </View>

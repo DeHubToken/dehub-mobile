@@ -4519,5 +4519,17 @@
         "body": "了解提示、徽章和超級能力如何將你在這裡所做的事情變成你可以賺取收入的東西。"
       }
     }
+  },
+  "conversation": {
+    "coach": {
+      "settingHint": "提供对长评论的快速语气检查，并在您发布前指出常见的推理失误。仅提供建议，从不阻止。",
+      "kind": {
+        "ad_hominem": "攻击个人",
+        "straw_man": "歪曲其观点",
+        "false_dilemma": "非此即彼的框架",
+        "overgeneralisation": "以偏概全的说法",
+        "hostile_tone": "敌对的语气"
+      }
+    }
   }
 }

@@ -4607,5 +4607,49 @@
         "body": "Fantaro ny fomba toro-hevitra, karatra ary SuperPowers mitodika ny zavatra ataonao eto ho zavatra azonao avy."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Tena Iombonana",
+      "sectionLabel": "Tafatafatra",
+      "sheetHint": "Fiatoana fohy alohan'ny famalianao. Tsy ho zaraina amin'ny hafa ny valinteninao.",
+      "toggleLabel": "Fomba Tena Iombonana",
+      "toggleHint": "Alohan'ny famaliany voalohany, angatahina ny mpamaky ny hevi-dehibe indrindra amin'ny lafiny iray sy izay iombonan'ny roa tonta, ary ampirisihina mba tsy hisy fisafidianana roa tonta.",
+      "banner": "Nampandre ny fomba Tena Iombonana ity mpamorona ity. Alohan'ny hamalianao dia angatahina ny hevi-dehibe indrindra amin'ny lafiny iray sy izay iombonanareo.",
+      "stepOf": "Dingana {{step}} amin'ny {{total}}",
+      "step1Title": "Amin'ny fehezanteny iray, inona no hevi-dehibe indrindra amin'ny lafiny iray?",
+      "step1Placeholder": "Ny zavatra tsara indrindra azony lazaina dia hoe…",
+      "step2Title": "Inona no iombonanareo sy izy ireo?",
+      "step2Placeholder": "Samy te-hahazo…",
+      "reminderTitle": "Tandremo ny fisafidianana roa tonta",
+      "reminderBody": "Ny ankamaroan'ny tsy fitovian-kevitra dia tsy safidy eo amin'ny roa tonta. Rehefa mahatsapa ho toy ny safidy roa tonta ny fanontaniana iray, dia matetika misy safidy fahatelo eo afovoany.",
+      "example1": "Mety samy manana ny rariny ny mpifanolo-bodirindrina iray izay te-hanana arabe mangina kokoa sy mpifanolo-bodirindrina iray izay te-hanana toerana fiantohana bebe kokoa.",
+      "example2": "Mety tsy hitovy hevitra momba ny fotoana fampiasana efijery ny ray aman-dreny roa nefa samy manaiky fa tokony hatory tsara ny zaza ary hahomby eny an-tsekoly.",
+      "noShouting": "Tsy ho voavaha mihitsy ny olana sarotra amin'ny fampiakarana feo na fandrahonana. Ny valiny milamina sy mazava no tena vakiana.",
+      "reviewTitle": "Hijery farany ny valinteninao",
+      "privateNote": "Ho anao irery ihany ny valinteninao ary tsy ho zaraina miaraka amin'ny valinteninao.",
+      "continueLabel": "Tohizo",
+      "back": "Miverina",
+      "postReply": "Alefaso ny valinteniko",
+      "tooShort": "Soraty farafahakeliny 10 tarehintsoratra mba hisy dikany ny fisaintsainana.",
+      "saveFailed": "Tsy nahavita nitahiry ny toe-javatra Tena Iombonana. Mba andramo indray."
+    },
+    "coach": {
+      "title": "Mpanoro hevitra momba ny resaka",
+      "checkTone": "Tariho ny fomba fiteninao",
+      "checking": "Mijery ny fomba fitenenanao…",
+      "allClear": "Tsy nisy zavatra niavaka. Ny valinteninao dia toa rariny sy milamina.",
+      "postAnyway": "Alefaso ihany",
+      "dismiss": "Atsipazo ity soso-kevitra ity",
+      "settingLabel": "Asehoy ny soso-kevitra momba ny fanoroana hevitra",
+      "settingHint": "Manolotra haingana feo maso amin'ny fanehoan-kevitra intsony, ary manondro hevitra iraisana eo anoloan'ny hevitra taratasy kely. Ny sosokevitro fotsiny: aza dia sakanana velively.",
+      "kind": {
+        "ad_hominem": "Manenjika ny olona",
+        "straw_man": "Diso ny fomba fijerin'izy ireo",
+        "false_dilemma": "Na-na sary",
+        "overgeneralisation": "Ny fehinteny ho fiarovana",
+        "hostile_tone": "Ny'alotha Allseer"
+      }
+    }
   }
 }

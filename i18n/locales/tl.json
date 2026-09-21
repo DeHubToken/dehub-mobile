@@ -4707,5 +4707,49 @@
         "body": "Alamin kung paano ginagawa ng mga tip, badge, at SuperPower ang ginagawa mo rito bilang isang bagay na kinikita mo."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Karaniwang Lupa",
+      "sectionLabel": "Talakayan",
+      "sheetHint": "Maikling paghinto bago ang iyong tugon. Ang iyong mga sagot ay mananatiling pribado.",
+      "toggleLabel": "Mode ng Karaniwang Lupa",
+      "toggleHint": "Bago ang kanilang unang tugon, tinatanong ang mga mambabasa para sa pinakamalakas na punto ng kabilang panig at kung ano ang ibinabahagi ng parehong panig, pagkatapos ay pinaalalahanan na iwasan ang pag-iisip na alinman-o.",
+      "banner": "Binuksan ng creator na ito ang mode ng Karaniwang Lupa. Bago ka tumugon, tatanungin ka para sa pinakamalakas na punto ng kabilang panig at kung ano ang ibinabahagi mo.",
+      "stepOf": "Hakbang {{step}} ng {{total}}",
+      "step1Title": "Sa isang pangungusap, ano ang pinakamalakas na punto sa kabilang panig?",
+      "step1Placeholder": "Ang pinakamahusay na argumento na maaari nilang gawin ay…",
+      "step2Title": "Ano ang napagkasunduan ninyo at nila?",
+      "step2Placeholder": "Pareho naming gusto…",
+      "reminderTitle": "Mag-ingat sa pag-iisip na alinman-o",
+      "reminderBody": "Karamihan sa mga hindi pagkakaunawaan ay hindi pagpipilian sa pagitan ng dalawang sukdulan. Kapag ang isang tanong ay parang alinman-o, karaniwang mayroong pangatlong opsyon sa pagitan.",
+      "example1": "Ang isang kapitbahay na nais ng mas tahimik na kalye at isang kapitbahay na nais ng mas maraming paradahan ay parehong maaaring tama tungkol sa kanilang kailangan.",
+      "example2": "Ang dalawang magulang ay maaaring hindi magkasundo tungkol sa screen time at magkasundo pa rin na ang bata ay dapat matulog nang maayos at maging maayos sa paaralan.",
+      "noShouting": "Ang mga kumplikadong isyu ay hindi kailanman nalulutas sa pamamagitan ng pagsigaw o mga banta. Ang isang mahinahon, tiyak na tugon ay ang binabasa ng mga tao.",
+      "reviewTitle": "Isang huling tingin sa iyong tugon",
+      "privateNote": "Ang iyong mga sagot ay para lamang sa iyo at hindi ipinopost kasama ng iyong tugon.",
+      "continueLabel": "Magpatuloy",
+      "back": "Bumalik",
+      "postReply": "I-post ang aking tugon",
+      "tooShort": "Sumulat ng hindi bababa sa 10 karakter upang mabilang ang pagninilay.",
+      "saveFailed": "Hindi nai-save ang setting ng Karaniwang Lupa. Pakisubukang muli."
+    },
+    "coach": {
+      "title": "Coach ng Pag-uusap",
+      "checkTone": "Suriin ang aking tono",
+      "checking": "Sinusuri ang tono ng iyong tugon…",
+      "allClear": "Walang napansin. Ang iyong tugon ay tila patas at mahinahon.",
+      "postAnyway": "I-post pa rin",
+      "dismiss": "Balewalain ang mungkahing ito",
+      "settingLabel": "Ipakita ang mga mungkahi sa pagtuturo",
+      "settingHint": "Nag-aalok ng mabilis na pagsusuri ng tono sa mas mahahabang komento at itinuturo ang mga karaniwang pagkakamali sa pangangatwiran bago mo i-post. Mga mungkahi lamang, hindi kailanman pagbabawal.",
+      "kind": {
+        "ad_hominem": "Inaatake ang tao",
+        "straw_man": "Maling paglalahad ng kanilang pananaw",
+        "false_dilemma": "Framing na \"alinman-o\"",
+        "overgeneralisation": "Malawakang pahayag",
+        "hostile_tone": "Mapusok na tono"
+      }
+    }
   }
 }

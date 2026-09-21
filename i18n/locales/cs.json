@@ -4536,5 +4536,49 @@
         "body": "Zjistěte, jak spropitné, odznaky a SuperPowers mění to, co zde děláte, na něco, z čeho si vyděláte."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Společná řeč",
+      "sectionLabel": "Diskuse",
+      "sheetHint": "Krátká pauza před vaší odpovědí. Vaše odpovědi zůstávají soukromé.",
+      "toggleLabel": "Režim Společná řeč",
+      "toggleHint": "Před svou první odpovědí budou čtenáři požádáni o nejlepší argument druhé strany a o to, co obě strany sdílejí, a poté jim bude připomenuto, aby se vyhnuli myšlení typu buď/nebo.",
+      "banner": "Tento tvůrce zapnul režim Společná řeč. Než odpovíte, budete požádáni o nejlepší argument druhé strany a o to, co sdílíte.",
+      "stepOf": "Krok {{step}} z {{total}}",
+      "step1Title": "Jednou větou, jaký je nejlepší argument druhé strany?",
+      "step1Placeholder": "Nejlepší argument, který by mohli přednést, je, že…",
+      "step2Title": "Na čem se shodnete vy a druhá strana?",
+      "step2Placeholder": "Oba chceme…",
+      "reminderTitle": "Pozor na myšlení typu buď/nebo",
+      "reminderBody": "Většina neshod není volbou mezi dvěma extrémy. Když se otázka jeví jako buď/nebo, obvykle existuje někde uprostřed třetí možnost.",
+      "example1": "Soused, který chce klidnější ulici, a soused, který chce více parkovacích míst, mohou mít oba pravdu o tom, co potřebují.",
+      "example2": "Dva rodiče se mohou neshodnout na době strávené u obrazovky a stále se shodnout na tom, že dítě by mělo dobře spát a ve škole se mu dařit.",
+      "noShouting": "Složité problémy se nikdy nevyřeší křikem nebo hrozbami. Klidná, konkrétní odpověď je ta, kterou si lidé skutečně přečtou.",
+      "reviewTitle": "Ještě jeden pohled na vaši odpověď",
+      "privateNote": "Vaše odpovědi jsou pouze pro vás a nebudou zveřejněny s vaší odpovědí.",
+      "continueLabel": "Pokračovat",
+      "back": "Zpět",
+      "postReply": "Odeslat mou odpověď",
+      "tooShort": "Napište alespoň 10 znaků, aby se reflexe skutečně započítala.",
+      "saveFailed": "Nastavení Společné řeči se nepodařilo uložit. Zkuste to prosím znovu."
+    },
+    "coach": {
+      "title": "Konverzační kouč",
+      "checkTone": "Zkontrolovat můj tón",
+      "checking": "Kontroluje se tón vaší odpovědi…",
+      "allClear": "Nic zvláštního nebylo zjištěno. Vaše odpověď působí spravedlivě a klidně.",
+      "postAnyway": "Přesto odeslat",
+      "dismiss": "Zavřít toto doporučení",
+      "settingLabel": "Zobrazit doporučení kouče",
+      "settingHint": "Nabízí rychlou kontrolu tónů u delších komentářů a upozorňuje na běžné argumenty před zveřejněním příspěvku. Pouze návrhy, nikdy ne blok.",
+      "kind": {
+        "ad_hominem": "Napadne osobu",
+        "straw_man": "Nesprávně vyjadřuje svůj názor",
+        "false_dilemma": "Buď - nebo rámování",
+        "overgeneralisation": "Zametací nárok",
+        "hostile_tone": "Nepřátelský tón"
+      }
+    }
   }
 }

@@ -4532,5 +4532,49 @@
         "body": "Fahamu jinsi vidokezi, beji na Nguvu Kubwa zinavyogeuza kile unachofanya hapa kuwa kitu unachopata kutokana nacho."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Ardhi ya Pamoja",
+      "sectionLabel": "Majadiliano",
+      "sheetHint": "Kipindi kifupi cha kusubiri kabla ya jibu lako. Majibu yako yanabaki kuwa ya faragha.",
+      "toggleLabel": "Hali ya Ardhi ya Pamoja",
+      "toggleHint": "Kabla ya jibu lao la kwanza, wasomaji wanaulizwa kuhusu hoja yenye nguvu zaidi ya upande mwingine na kile pande zote mbili zinashiriki, kisha wakakumbushwa kuepuka kufikiri kwa \"ama-au\".",
+      "banner": "Mtu huyu aliwasha hali ya Ardhi ya Pamoja. Kabla ya kujibu utaulizwa kuhusu hoja yenye nguvu zaidi ya upande mwingine na kile mnachoshiriki.",
+      "stepOf": "Hatua {{step}} kati ya {{total}}",
+      "step1Title": "Kwa sentensi moja, ni hoja gani yenye nguvu zaidi kwa upande mwingine?",
+      "step1Placeholder": "Kesi bora zaidi ambayo wanaweza kuwasilisha ni kwamba…",
+      "step2Title": "Mnakubaliana kuhusu nini hasa wewe na wao?",
+      "step2Placeholder": "Sote tunataka…",
+      "reminderTitle": "Jihadharini na kufikiri kwa \"kila kitu au hakuna kitu\"",
+      "reminderBody": "Migogoro mingi si uchaguzi kati ya mambo mawili yaliyo kinyume. Wakati swali linahisi kama \"ama-au\", kwa kawaida kuna chaguo la tatu mahali fulani katikati.",
+      "example1": "Jirani anayetaka barabara tulivu zaidi na jirani anayetaka maegesho zaidi wanaweza kuwa sahihi kuhusu kile wanachohitaji.",
+      "example2": "Wazazi wawili wanaweza kutofautiana kuhusu muda wa kutumia skrini na bado wakakubaliana kwamba mtoto anapaswa kulala vizuri na kufanya vizuri shuleni.",
+      "noShouting": "Masuala magumu hayatatuliwi kamwe kwa kupiga kelele au vitisho. Jibu tulivu na maalum ndilo watu husoma kweli.",
+      "reviewTitle": "Tazama jibu lako kwa mara ya mwisho",
+      "privateNote": "Majibu yako ni kwa ajili yako pekee na hayachapishwi pamoja na jibu lako.",
+      "continueLabel": "Endelea",
+      "back": "Rudi Nyuma",
+      "postReply": "Chapisha jibu langu",
+      "tooShort": "Andika angalau herufi 10 ili tafakari iweze kuhesabiwa.",
+      "saveFailed": "Imeshindwa kuhifadhi mpangilio wa Ardhi ya Pamoja. Tafadhali jaribu tena."
+    },
+    "coach": {
+      "title": "Kocha wa Mazungumzo",
+      "checkTone": "Angalia toni yangu",
+      "checking": "Inachunguza toni ya jibu lako…",
+      "allClear": "Hakuna kilichojitokeza. Jibu lako linaonekana kuwa la haki na tulivu.",
+      "postAnyway": "Chapisha hata hivyo",
+      "dismiss": "Futa maoni haya",
+      "settingLabel": "Onyesha mapendekezo ya ukocha",
+      "settingHint": "Hutoa ukaguzi wa haraka wa sauti kwenye maoni marefu na huonyesha utelezi wa kawaida wa hoja kabla ya kuchapisha. Mapendekezo tu, kamwe si kizuizi.",
+      "kind": {
+        "ad_hominem": "Anamshambulia mtu huyo",
+        "straw_man": "Hupotosha maoni yao",
+        "false_dilemma": "Ama-au kutunga fremu",
+        "overgeneralisation": "Dai la kufagia",
+        "hostile_tone": "Toni ya chuki"
+      }
+    }
   }
 }

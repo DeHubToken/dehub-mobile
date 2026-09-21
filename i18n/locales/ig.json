@@ -4508,5 +4508,49 @@
         "body": "Chọpụta ka ndụmọdụ, baajị na SuperPower si gbanwee ihe ị na-eme ebe a ka ọ bụrụ ihe ị na-enweta site na ya."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Ebe Anya",
+      "sectionLabel": "Mkparịta ụka",
+      "sheetHint": "Nkwụsị obere oge tupu nzaghachi gị. Nzaghachi gị na-anọgide na nzuzo.",
+      "toggleLabel": "Ụdị Ebe Anya",
+      "toggleHint": "Tupu nzaghachi mbụ ha, a jụrụ ndị na-agụ ihe banyere isi ihe kachasị ike nke onye nke ọzọ na ihe ha abụọ kerịta, wee cheta ka ha zere echiche \"ma ọ bụ nke a ma ọ bụ nke ahụ\".",
+      "banner": "Onye okike a gbanyere ụdị Ebe Anya. Tupu ị zaa, a ga-ajụ gị maka isi ihe kachasị ike nke onye nke ọzọ na ihe ị kerịta.",
+      "stepOf": "Nzọụkwụ {{step}} nke {{total}}",
+      "step1Title": "N'otu ahịrịokwu, gịnị bụ isi ihe kachasị ike n'akụkụ nke ọzọ?",
+      "step1Placeholder": "Ihe kacha mma ha nwere ike ikwu bụ na…",
+      "step2Title": "Gịnị ka gị na ha kwenyere na ya n'ezie?",
+      "step2Placeholder": "Anyị abụọ chọrọ…",
+      "reminderTitle": "Kpachara anya maka echiche \"ma ọ bụ ihe niile ma ọ bụ ihe ọ bụla\"",
+      "reminderBody": "Ọtụtụ esemokwu abụghị nhọrọ n'etiti ihe abụọ dị oke egwu. Mgbe ajụjụ yiri ka ọ bụ \"ma ọ bụ nke a ma ọ bụ nke ahụ\", enwere ike ịnwe nhọrọ nke atọ n'etiti.",
+      "example1": "Onye agbata obi chọrọ okporo ụzọ dị jụụ na onye agbata obi chọrọ ebe a na-adọba ụgbọala nwere ike ịbụ ndị ziri ezi banyere ihe ha chọrọ.",
+      "example2": "Nne na nna abụọ nwere ike ịkparịta ụka banyere oge ihuenyo ma ka kwenyere na nwatakịrị ahụ kwesịrị ihi ụra nke ọma ma mee nke ọma n'ụlọ akwụkwọ.",
+      "noShouting": "Ihe omimi siri ike anaghị edozi site n'ibe akwa ma ọ bụ iyi egwu. Nzaghachi dị jụụ, nke doro anya bụ nke ndị mmadụ na-agụ n'ezie.",
+      "reviewTitle": "Nlele ikpeazụ na nzaghachi gị",
+      "privateNote": "Nzaghachi gị bụ naanị maka gị ma anaghị ebipụta ha na nzaghachi gị.",
+      "continueLabel": "Gaa n'ihu",
+      "back": "Laghere",
+      "postReply": "Bipụta nzaghachi m",
+      "tooShort": "Dee opekata mpe mkpụrụedemede 10 ka ntụgharị uche wee gụọ n'ezie.",
+      "saveFailed": "Enweghị ike ịchekwa ntọala Ebe Anya. Biko nwaa ọzọ."
+    },
+    "coach": {
+      "title": "Onye nkuzi mkparịta ụka",
+      "checkTone": "Lelee ụda olu m",
+      "checking": "Na-enyocha ụda olu nzaghachi gị…",
+      "allClear": "Ọ dịghị ihe pụtara. Nzaghachi gị na-agụ dị ka nke ziri ezi na nke dị jụụ.",
+      "postAnyway": "Bipụta ka emechara",
+      "dismiss": "Kwụsị ndụmọdụ a",
+      "settingLabel": "Gosi ndụmọdụ nkuzi",
+      "settingHint": "Enye a ngwa ngwa ụda ego na ogologo kwuru na-ezo si nkịtị echiche ileghara tupu ị biputere. Atụmatụ naanị, ọ dịghị mgbe ọ bụ ngọngọ.",
+      "kind": {
+        "ad_hominem": "Na-akpagbu onye ahụ",
+        "straw_man": "Na-ezighị ezi ha echiche",
+        "false_dilemma": "Ma ọ bụ-ma ọ bụ framing",
+        "overgeneralisation": "Swieping na-ekwu",
+        "hostile_tone": "Akpọrọ asị ụda"
+      }
+    }
   }
 }
