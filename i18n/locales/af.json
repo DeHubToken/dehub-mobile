@@ -2108,7 +2108,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "Ander tokens",
-    "otherTokensDesc": "Koop ETH of USDC op Base met jou kaart"
+    "otherTokensDesc": "Koop ETH of USDC op Base met jou kaart",
+    "shareToFeed": "Deel met my voer",
+    "sharePostTemplate": "Net bygevoeg {{amount}} $DHB na my stapel op DeHub. Bou met die gemeenskap. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agents",
@@ -4028,7 +4030,10 @@
     "redirecting": "Herlei na betaling…",
     "openingCheckout": "Maak betaling oop…",
     "checkoutUnavailable": "Betaalskakel nie beskikbaar nie. Probeer asseblief weer.",
-    "acceptTerms": "Ek aanvaar die <terms>Diensvoorwaardes</terms>"
+    "acceptTerms": "Ek aanvaar die <terms>Diensvoorwaardes</terms>",
+    "sentTo": "{{amount}} {{symbol}} is gestuur na {{address}}",
+    "tokensSentTo": "Tekens is gestuur na {{address}}",
+    "goToProfile": "Gaan na profiel"
   },
   "musicSheet": {
     "title": "Skep 'n liedjie",

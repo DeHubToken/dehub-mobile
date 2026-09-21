@@ -41,7 +41,6 @@
   "components/DM/ShareToDmSheet.tsx": 5,
   "components/DM/SharedPostPreview.tsx": 0,
   "components/Dpay/DpayAbout.tsx": 8,
-  "components/Dpay/DpayCheckoutStatus.tsx": 3,
   "components/Dpay/DpayInfoCards.tsx": 5,
   "components/Dpay/DpayTopUpForm.tsx": 1,
   "components/Dpay/DpayTransactions.tsx": 3,

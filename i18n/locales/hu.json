@@ -1541,7 +1541,9 @@
     "onrampCreated": "Munkamenet létrehozva",
     "failedOnramp": "Indítás sikertelen",
     "otherTokens": "Egyéb tokenek",
-    "otherTokensDesc": "Vásárolj ETH-t vagy USDC-t a Base hálózaton a kártyáddal"
+    "otherTokensDesc": "Vásárolj ETH-t vagy USDC-t a Base hálózaton a kártyáddal",
+    "shareToFeed": "Megosztás a feedemben",
+    "sharePostTemplate": "Most adtam hozzá {{amount}} $DHB-t a DeHubon lévő stackemhez. Építkezés a közösséggel. #DeHub #DHB"
   },
   "agents": {
     "title": "AI ügynökök",
@@ -3915,7 +3917,10 @@
     "redirecting": "Átirányítás a pénztárhoz…",
     "openingCheckout": "Pénztár megnyitása…",
     "checkoutUnavailable": "A fizetési link nem érhető el. Próbáld újra.",
-    "acceptTerms": "Elfogadom a <terms>Szolgáltatási feltételek</terms>"
+    "acceptTerms": "Elfogadom a <terms>Szolgáltatási feltételek</terms>",
+    "sentTo": "{{amount}}{{symbol}} elküldve {{address}} részére",
+    "tokensSentTo": "A tokeneket elküldtük {{address}}részére",
+    "goToProfile": "Ugrás a profilhoz"
   },
   "musicSheet": {
     "title": "Dal készítése",

@@ -1638,7 +1638,9 @@
     "onrampCreated": "ონრემპი სესია შექმნილია",
     "failedOnramp": "ონრემპის დაწყება ვერ მოხერხდა",
     "otherTokens": "სხვა ტოკენები",
-    "otherTokensDesc": "იყიდეთ ETH ან USDC Base-ზე თქვენი ბარათით"
+    "otherTokensDesc": "იყიდეთ ETH ან USDC Base-ზე თქვენი ბარათით",
+    "shareToFeed": "Გაუზიარეთ ჩემს არხებს",
+    "sharePostTemplate": "{{amount}} $DHB დაემატა ჩემს დასტას DeHub-ზე. Შეიმუშავეთ გაერთიანებასთან ერთად. #DeHub #DHB"
   },
   "agents": {
     "title": "AI აგენტი",
@@ -3945,7 +3947,10 @@
     "redirecting": "გადამისამართება გადახდაზე…",
     "openingCheckout": "გადახდის გახსნა…",
     "checkoutUnavailable": "გადახდის ბმული მიუწვდომელია. სცადეთ ხელახლა.",
-    "acceptTerms": "ვეთანხმები <terms>მომსახურების პირობები</terms>"
+    "acceptTerms": "ვეთანხმები <terms>მომსახურების პირობები</terms>",
+    "sentTo": "{{amount}} {{symbol}} გაგზავნილია ელფოსტაზე {{address}}",
+    "tokensSentTo": "Კოდები გაიგზავნა {{address}} ‑ ზე",
+    "goToProfile": "Პროფილზე გადასვლა"
   },
   "musicSheet": {
     "title": "შექმენით სიმღერა",

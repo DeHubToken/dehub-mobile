@@ -1538,7 +1538,9 @@
     "onrampCreated": "ההפעלה נוצרה",
     "failedOnramp": "ההפעלה נכשלה",
     "otherTokens": "טוקנים אחרים",
-    "otherTokensDesc": "קנה ETH או USDC ב-Base עם הכרטיס שלך"
+    "otherTokensDesc": "קנה ETH או USDC ב-Base עם הכרטיס שלך",
+    "shareToFeed": "שתף בפיד שלי",
+    "sharePostTemplate": "בדיוק הוספתי {{amount}} $DHB לערימה שלי ב - DeHub. בונים יחד עם הקהילה. #DeHub #DHB"
   },
   "agents": {
     "title": "סוכני AI",
@@ -3897,7 +3899,10 @@
     "redirecting": "מעביר לתשלום…",
     "openingCheckout": "פותח את התשלום…",
     "checkoutUnavailable": "קישור התשלום אינו זמין. נסו שוב.",
-    "acceptTerms": "אני מקבל את <terms>תנאי השירות</terms>"
+    "acceptTerms": "אני מקבל את <terms>תנאי השירות</terms>",
+    "sentTo": "{{amount}} {{symbol}} נשלח אל {{address}}",
+    "tokensSentTo": "אסימונים נשלחו אל {{address}}",
+    "goToProfile": "מעבר לפרופיל"
   },
   "musicSheet": {
     "title": "יצירת שיר",

@@ -1611,7 +1611,9 @@
     "onrampCreated": "Ramppi-istunto luotu",
     "failedOnramp": "Rampin aloitus epäonnistui",
     "otherTokens": "Muut tokenit",
-    "otherTokensDesc": "Osta ETH tai USDC Basessa kortillasi"
+    "otherTokensDesc": "Osta ETH tai USDC Basessa kortillasi",
+    "shareToFeed": "Jaa syötteeseeni",
+    "sharePostTemplate": "Lisäsin juuri {{amount}} $DHB: n pinooni DeHubissa. Rakennamme yhdessä yhteisön kanssa. #DeHub #DHB"
   },
   "agents": {
     "title": "Tekoälyagentit",
@@ -3911,7 +3913,10 @@
     "redirecting": "Ohjataan kassalle…",
     "openingCheckout": "Avataan kassaa…",
     "checkoutUnavailable": "Maksulinkki ei ole käytettävissä. Yritä uudelleen.",
-    "acceptTerms": "Hyväksyn <terms>Käyttöehdot</terms>"
+    "acceptTerms": "Hyväksyn <terms>Käyttöehdot</terms>",
+    "sentTo": "{{amount}} {{symbol}} lähetettiin henkilölle {{address}}",
+    "tokensSentTo": "Poletit lähetettiin osoitteeseen {{address}}",
+    "goToProfile": "Siirry profiiliin"
   },
   "musicSheet": {
     "title": "Luo kappale",

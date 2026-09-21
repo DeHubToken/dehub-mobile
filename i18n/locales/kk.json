@@ -1631,7 +1631,9 @@
     "onrampCreated": "Онрамп сеансы жасалды",
     "failedOnramp": "Онрампты бастау сәтсіз аяқталды",
     "otherTokens": "Басқа токендер",
-    "otherTokensDesc": "Картаңызбен Base желісінде ETH немесе USDC сатып алыңыз"
+    "otherTokensDesc": "Картаңызбен Base желісінде ETH немесе USDC сатып алыңыз",
+    "shareToFeed": "Менің арнама бөлісу",
+    "sharePostTemplate": "Жаңа DeHub-дағы жинағыма {{amount}} $DHB қосылды. Қоғаммен байланыс орнату. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Агент",
@@ -3966,7 +3968,9 @@
     "redirecting": "Төлем бетіне бағыттау…",
     "openingCheckout": "Төлем беті ашылуда…",
     "checkoutUnavailable": "Төлем сілтемесі қолжетімсіз. Қайталап көріңіз.",
-    "acceptTerms": "Мен қабылдаймын <terms>Қызмет көрсету шарттары</terms>"
+    "acceptTerms": "Мен қабылдаймын <terms>Қызмет көрсету шарттары</terms>",
+    "tokensSentTo": "Токендер {{address}} мекенжайына жіберілді",
+    "goToProfile": "Профильге өту"
   },
   "musicSheet": {
     "title": "Ән жасау",

@@ -1641,7 +1641,9 @@
     "onrampCreated": "ສ້າງເຊສຊັນອອນແຣມແລ້ວ",
     "failedOnramp": "ເລີ່ມອອນແຣມບໍ່ສຳເລັດ",
     "otherTokens": "ໂທເຄນອື່ນ",
-    "otherTokensDesc": "ຊື້ ETH ຫຼື USDC ໃນ Base ດ້ວຍບັດຂອງທ່ານ"
+    "otherTokensDesc": "ຊື້ ETH ຫຼື USDC ໃນ Base ດ້ວຍບັດຂອງທ່ານ",
+    "shareToFeed": "ແບ່ງ ປັນ ກັບ ອາ ຫານ ຂອງ ຂ້າ ພະ ເຈົ້າ",
+    "sharePostTemplate": "ຂ້ອຍພຽງແຕ່ເພີ່ມ {{amount}} $DHB ໃສ່ stack ຂອງຂ້ອຍໃນ DeHub. ການກໍ່ສ້າງກັບຊຸມຊົນ. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agents",
@@ -3868,7 +3870,10 @@
     "redirecting": "ກຳລັງໄປຫາໜ້າຊຳລະເງິນ…",
     "openingCheckout": "ກຳລັງເປີດໜ້າຊຳລະເງິນ…",
     "checkoutUnavailable": "ລິ້ງຊຳລະເງິນບໍ່ພ້ອມໃຊ້. ລອງໃໝ່.",
-    "acceptTerms": "ຂ້ອຍຍອມຮັບ <terms>ເງື່ອນໄຂການໃຫ້ບໍລິການ</terms>"
+    "acceptTerms": "ຂ້ອຍຍອມຮັບ <terms>ເງື່ອນໄຂການໃຫ້ບໍລິການ</terms>",
+    "sentTo": "{{amount}}{{symbol}} ຖືກສົ່ງໄປຫາ {{address}}",
+    "tokensSentTo": "Tokens ຖືກສົ່ງໄປຫາ {{address}}",
+    "goToProfile": "ຊອກຫາໂປຣໄຟລ໌"
   },
   "musicSheet": {
     "title": "ສ້າງເພງ",

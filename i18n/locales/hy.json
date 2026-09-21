@@ -1610,7 +1610,9 @@
     "onrampCreated": "Ramp hovanavor steghtsvaats",
     "failedOnramp": "Chehaghordagrvats sksel ramp",
     "otherTokens": "Այլ թոքեններ",
-    "otherTokensDesc": "Գնեք ETH կամ USDC Base-ում ձեր քարտով"
+    "otherTokensDesc": "Գնեք ETH կամ USDC Base-ում ձեր քարտով",
+    "shareToFeed": "Կիսվեք իմ լրահոսով",
+    "sharePostTemplate": "Հենց նոր {{amount}} $DHB - ն ավելացվեց DeHub - ի իմ դեղին ։ Կառուցեք համայնքի հետ միասին ։ #DeHub #DHB"
   },
   "agents": {
     "title": "AI Gortsakalner",
@@ -3904,7 +3906,10 @@
     "redirecting": "Վերահղում վճարման էջ…",
     "openingCheckout": "Վճարման էջի բացում…",
     "checkoutUnavailable": "Վճարման հղումն անհասանելի է։ Փորձեք կրկին։",
-    "acceptTerms": "Ես ընդունում եմ <terms>Ծառայության պայմաններ</terms>"
+    "acceptTerms": "Ես ընդունում եմ <terms>Ծառայության պայմաններ</terms>",
+    "sentTo": "{{amount}} {{symbol}}- ն ուղարկվել է {{address}}-ին",
+    "tokensSentTo": "Նշանակներն ուղարկվել են {{address}}",
+    "goToProfile": "Բացել Պրոֆիլը"
   },
   "musicSheet": {
     "title": "Ստեղծել երգ",

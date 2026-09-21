@@ -1645,7 +1645,9 @@
     "onrampCreated": "Iseshini yendlela idalwe",
     "failedOnramp": "Kuhlulekile ukuqala indlela",
     "otherTokens": "Amanye amathokheni",
-    "otherTokensDesc": "Thenga i-ETH noma i-USDC ku-Base ngekhadi lakho"
+    "otherTokensDesc": "Thenga i-ETH noma i-USDC ku-Base ngekhadi lakho",
+    "shareToFeed": "Yabelana ku-feed yami",
+    "sharePostTemplate": "Ngisanda kufaka i-{{amount}} $DHB esitaki sami ku-DeHub. Ukwakha nomphakathi. #DeHub #DHB"
   },
   "agents": {
     "title": "Ejensi ye-AI",
@@ -3939,7 +3941,10 @@
     "redirecting": "Iqondisa ekukhokheni…",
     "openingCheckout": "Ivula ukukhokha…",
     "checkoutUnavailable": "Isixhumanisi sokukhokha asitholakali. Zama futhi.",
-    "acceptTerms": "Ngiyayamukela <terms>Imigomo Yesevisi</terms>"
+    "acceptTerms": "Ngiyayamukela <terms>Imigomo Yesevisi</terms>",
+    "sentTo": "{{amount}}{{symbol}} ithunyelwe ku- {{address}}",
+    "tokensSentTo": "Amathokheni athunyelwe ku- {{address}}",
+    "goToProfile": "Iya kokuthi Iphrofayili"
   },
   "musicSheet": {
     "title": "Dala ingoma",

@@ -2111,7 +2111,9 @@
     "onrampCreated": "Onramp-sessie aangemaakt",
     "failedOnramp": "Onramp starten mislukt",
     "otherTokens": "Andere tokens",
-    "otherTokensDesc": "Koop ETH of USDC op Base met je kaart"
+    "otherTokensDesc": "Koop ETH of USDC op Base met je kaart",
+    "shareToFeed": "Deel met mijn feed",
+    "sharePostTemplate": "Ik heb zojuist {{amount}} $DHB toegevoegd aan mijn stapel op DeHub. Bouwen met de community. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agenten",
@@ -4178,7 +4180,10 @@
     "redirecting": "Doorsturen naar afrekenen…",
     "openingCheckout": "Afrekenen openen…",
     "checkoutUnavailable": "Betaallink niet beschikbaar. Probeer het opnieuw.",
-    "acceptTerms": "Ik accepteer de <terms>Servicevoorwaarden</terms>"
+    "acceptTerms": "Ik accepteer de <terms>Servicevoorwaarden</terms>",
+    "sentTo": "{{amount}} {{symbol}} is verzonden naar {{address}}",
+    "tokensSentTo": "Tokens zijn verzonden naar {{address}}",
+    "goToProfile": "Ga naar profiel"
   },
   "musicSheet": {
     "title": "Een nummer maken",

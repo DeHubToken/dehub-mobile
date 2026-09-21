@@ -1538,7 +1538,9 @@
     "onrampCreated": "سیشن بن گیا",
     "failedOnramp": "شروع کرنے میں ناکامی",
     "otherTokens": "دیگر ٹوکن",
-    "otherTokensDesc": "اپنے کارڈ سے Base پر ETH یا USDC خریدیں"
+    "otherTokensDesc": "اپنے کارڈ سے Base پر ETH یا USDC خریدیں",
+    "shareToFeed": "میری فیڈ میں شیئر کریں",
+    "sharePostTemplate": "ابھی DeHub پر میرے اسٹیک میں {{amount}} $ DHB شامل کیا ہے ۔ کمیونٹی کے ساتھ مل کر کام کرنا ۔ #DeHub #DHB"
   },
   "agents": {
     "title": "AI ایجنٹس",
@@ -3908,7 +3910,10 @@
     "redirecting": "چیک آؤٹ پر بھیجا جا رہا ہے…",
     "openingCheckout": "چیک آؤٹ کھولا جا رہا ہے…",
     "checkoutUnavailable": "چیک آؤٹ لنک دستیاب نہیں۔ دوبارہ کوشش کریں۔",
-    "acceptTerms": "میں قبول کرتا ہوں <terms>سروس کی شرائط</terms>"
+    "acceptTerms": "میں قبول کرتا ہوں <terms>سروس کی شرائط</terms>",
+    "sentTo": "{{amount}}{{symbol}} کو {{address}} پر بھیجا گیا تھا",
+    "tokensSentTo": "ٹوکنز {{address}} پر بھیجے گئے تھے",
+    "goToProfile": "پروفائل پر جائیں"
   },
   "musicSheet": {
     "title": "گانا بنائیں",

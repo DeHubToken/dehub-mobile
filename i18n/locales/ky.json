@@ -1605,7 +1605,9 @@
     "onrampCreated": "Рампа сессиясы түзүлдү",
     "failedOnramp": "Рампаны баштоо ишке ашкан жок",
     "otherTokens": "Башка токендер",
-    "otherTokensDesc": "Картаңыз менен Base тармагында ETH же USDC сатып алыңыз"
+    "otherTokensDesc": "Картаңыз менен Base тармагында ETH же USDC сатып алыңыз",
+    "shareToFeed": "Менин тоюмду бөлүшүү",
+    "sharePostTemplate": "Жөн гана кошулду {{amount}} $ DHB DeHub менин стекке. Коомчулук менен түзүү. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Агенттер",
@@ -3903,7 +3905,10 @@
     "redirecting": "Төлөмгө багыттоо…",
     "openingCheckout": "Төлөм бети ачылууда…",
     "checkoutUnavailable": "Төлөм шилтемеси жеткиликсиз. Кайра аракет кылыңыз.",
-    "acceptTerms": "Мен кабыл алам <terms>Кызмат көрсөтүү шарттары</terms>"
+    "acceptTerms": "Мен кабыл алам <terms>Кызмат көрсөтүү шарттары</terms>",
+    "sentTo": "{{amount}} {{symbol}} {{address}} дарегине жөнөтүлдү",
+    "tokensSentTo": "Токендер {{address}} дарегине жөнөтүлдү",
+    "goToProfile": "Профилге өтүү"
   },
   "musicSheet": {
     "title": "Ыр түзүү",

@@ -1624,7 +1624,8 @@
     "onrampCreated": "Kɔrɔbɔ",
     "failedOnramp": "Kɔrɔbɔ bɔ",
     "otherTokens": "Token wɛrɛw",
-    "otherTokensDesc": "I ka karti ye ETH walima USDC san Base kan"
+    "otherTokensDesc": "I ka karti ye ETH walima USDC san Base kan",
+    "shareToFeed": "Ne ka dumuni di ne ma"
   },
   "agents": {
     "title": "AI Kɔrɔbɔ",
@@ -3854,7 +3855,9 @@
     "redirecting": "I bɛ bila sarali yɔrɔ la…",
     "openingCheckout": "Sarali yɔrɔ bɛ da wuli…",
     "checkoutUnavailable": "Sarali sira tɛ yen. A lajɛ tuguni.",
-    "acceptTerms": "N sɔnna <terms>Baara sariyaw</terms>"
+    "acceptTerms": "N sɔnna <terms>Baara sariyaw</terms>",
+    "tokensSentTo": "Tokens ka kan ka ci {{address}}",
+    "goToProfile": "I ka kunnafoniw lajɛ"
   },
   "musicSheet": {
     "title": "Dɔnkili dilan",

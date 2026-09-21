@@ -1604,7 +1604,9 @@
     "onrampCreated": "جلسة الأونرامب اتنشأت",
     "failedOnramp": "ما قدرنا ننشئ الأونرامب",
     "otherTokens": "عملات تانية",
-    "otherTokensDesc": "اشتري ETH أو USDC على Base بالكرت بتاعك"
+    "otherTokensDesc": "اشتري ETH أو USDC على Base بالكرت بتاعك",
+    "shareToFeed": "شارك في موجزي",
+    "sharePostTemplate": "تمت إضافة {{amount}} $DHB إلى مجموعتي على DeHub. بناء مع المجتمع. #DeHub #DHB"
   },
   "agents": {
     "title": "وكلاء AI",
@@ -3867,7 +3869,10 @@
     "redirecting": "بيحولك للدفع…",
     "openingCheckout": "بيفتح صفحة الدفع…",
     "checkoutUnavailable": "لينك الدفع ما متاح. جرب تاني.",
-    "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>"
+    "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>",
+    "sentTo": "{{amount}} {{symbol}} تم إرسالها إلى {{address}}",
+    "tokensSentTo": "تم إرسال التوكنز إلى {{address}}",
+    "goToProfile": "اذهب إلى الملف الشخصي"
   },
   "musicSheet": {
     "title": "سوّي أغنية",

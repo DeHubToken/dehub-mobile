@@ -1631,7 +1631,9 @@
     "onrampCreated": "Emepụtala oge onramp",
     "failedOnramp": "Enweghị ike ịmalite onramp",
     "otherTokens": "Token ndị ọzọ",
-    "otherTokensDesc": "Jiri kaadị gị zụta ETH ma ọ bụ USDC na Base"
+    "otherTokensDesc": "Jiri kaadị gị zụta ETH ma ọ bụ USDC na Base",
+    "shareToFeed": "Kekọrịta na ndepụta m",
+    "sharePostTemplate": "Naanị tinye {{amount}} $DHB na nchịkọta m na DeHub. Iwulite na obodo. #DeHub #DHB"
   },
   "agents": {
     "title": "Ndị Ọrụ AI",
@@ -3888,7 +3890,9 @@
     "redirecting": "Na-eduga gị na ịkwụ ụgwọ…",
     "openingCheckout": "Na-emepe ịkwụ ụgwọ…",
     "checkoutUnavailable": "Njikọ ịkwụ ụgwọ adịghị. Nwaa ọzọ.",
-    "acceptTerms": "Anabatara m <terms>Usoro ọrụ</terms>"
+    "acceptTerms": "Anabatara m <terms>Usoro ọrụ</terms>",
+    "tokensSentTo": "E zigara Tokens na {{address}}",
+    "goToProfile": "Gaa na profaịlụ"
   },
   "musicSheet": {
     "title": "Mepụta abụ",

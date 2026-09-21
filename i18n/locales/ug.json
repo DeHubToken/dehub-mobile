@@ -1603,7 +1603,9 @@
     "onrampCreated": "رامپا يىغىنى قۇرۇلدى",
     "failedOnramp": "رامپىنى باشلاش مەغلۇب بولدى",
     "otherTokens": "باشقا توكەنلار",
-    "otherTokensDesc": "كارتىڭىز بىلەن Base دا ETH ياكى USDC سېتىۋېلىڭ"
+    "otherTokensDesc": "كارتىڭىز بىلەن Base دا ETH ياكى USDC سېتىۋېلىڭ",
+    "shareToFeed": "مېنىڭ يېمەكلىكىمگە ئورتاقلاش",
+    "sharePostTemplate": "ھازىرلا {{amount}} $ DHB نى DeHub دىكى توپلىمىمغا قوشۇپ قويدۇم. (ئى مۇھەممەد!) سەن ئۇلارنىڭ ئارىسىدىكى مەلۇم كىشىلەر بىلەن (مۇشرىكلارغا ياردەم بەرمەسلىكلىرى ئۈستىدە) مۇن #DeHub #DHB"
   },
   "agents": {
     "title": "سۈنئىي ئەقىل ۋاكالەتچىلىرى",
@@ -3900,7 +3902,9 @@
     "redirecting": "پۇل تۆلەش بېتىگە يېتەكلىنىۋاتىدۇ…",
     "openingCheckout": "پۇل تۆلەش بېتى ئېچىلىۋاتىدۇ…",
     "checkoutUnavailable": "پۇل تۆلەش ئۇلانمىسى يوق. قايتا سىناڭ.",
-    "acceptTerms": "مەن قوبۇل قىلىمەن <terms>مۇلازىمەت شەرتلىرى</terms>"
+    "acceptTerms": "مەن قوبۇل قىلىمەن <terms>مۇلازىمەت شەرتلىرى</terms>",
+    "tokensSentTo": "خەتكۈچلەر {{address}} غا ئەۋەتىلدى",
+    "goToProfile": "پروفىلغا كىرىش"
   },
   "musicSheet": {
     "title": "ناخشا قۇرۇش",

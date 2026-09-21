@@ -1644,7 +1644,9 @@
     "onrampCreated": "جلسه درگاه ایجاد شد",
     "failedOnramp": "شروع درگاه ناموفق بود",
     "otherTokens": "توکن‌های دیگر",
-    "otherTokensDesc": "با کارت خود ETH یا USDC را روی Base بخرید"
+    "otherTokensDesc": "با کارت خود ETH یا USDC را روی Base بخرید",
+    "shareToFeed": "در فید من به اشتراک بگذارید",
+    "sharePostTemplate": "همین الان {{amount}} $DHB رو به استک خودم توی DeHub اضافه کردم. دارم با همکاری جامعه کار می‌کنم. #DeHub #DHB"
   },
   "agents": {
     "title": "عوامل هوش مصنوعی",
@@ -3924,7 +3926,10 @@
     "redirecting": "در حال انتقال به پرداخت…",
     "openingCheckout": "در حال باز کردن صفحه پرداخت…",
     "checkoutUnavailable": "لینک پرداخت در دسترس نیست. دوباره تلاش کنید.",
-    "acceptTerms": "می‌پذیرم <terms>شرایط خدمات</terms>"
+    "acceptTerms": "می‌پذیرم <terms>شرایط خدمات</terms>",
+    "sentTo": "{{amount}} {{symbol}} به {{address}} ارسال شد",
+    "tokensSentTo": "توکن‌ها به {{address}} ارسال شدند.",
+    "goToProfile": "رفتن به پروفایل"
   },
   "musicSheet": {
     "title": "یک آهنگ بسازید",

@@ -1928,7 +1928,9 @@
     "onrampCreated": "Đã tạo phiên mua",
     "failedOnramp": "Không khởi tạo được cổng mua",
     "otherTokens": "Token khác",
-    "otherTokensDesc": "Mua ETH hoặc USDC trên Base bằng thẻ của bạn"
+    "otherTokensDesc": "Mua ETH hoặc USDC trên Base bằng thẻ của bạn",
+    "shareToFeed": "Chia sẻ với nguồn cấp dữ liệu của tôi",
+    "sharePostTemplate": "Vừa thêm {{amount}} $DHB vào ngăn xếp của tôi trên DeHub. Xây dựng với cộng đồng. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agent",
@@ -3998,7 +4000,9 @@
     "redirecting": "Đang chuyển đến trang thanh toán…",
     "openingCheckout": "Đang mở trang thanh toán…",
     "checkoutUnavailable": "Không có liên kết thanh toán. Vui lòng thử lại.",
-    "acceptTerms": "Tôi chấp nhận <terms>Điều khoản dịch vụ</terms>"
+    "acceptTerms": "Tôi chấp nhận <terms>Điều khoản dịch vụ</terms>",
+    "tokensSentTo": "Mã thông báo đã được gửi đến {{address}}",
+    "goToProfile": "Vào mục Hồ sơ"
   },
   "musicSheet": {
     "title": "Tạo bài hát",

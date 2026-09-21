@@ -1605,7 +1605,9 @@
     "onrampCreated": "สร้างเซสชันออนแรมป์แล้ว",
     "failedOnramp": "เริ่มออนแรมป์ล้มเหลว",
     "otherTokens": "โทเคนอื่น",
-    "otherTokensDesc": "ซื้อ ETH หรือ USDC เทิง Base นำบัตรของเจ้า"
+    "otherTokensDesc": "ซื้อ ETH หรือ USDC เทิง Base นำบัตรของเจ้า",
+    "shareToFeed": "แชร์ไปยังฟีดของฉัน",
+    "sharePostTemplate": "เพิ่งเพิ่ม {{amount}} $DHB เข้าในสแต็กของฉันบน DeHub สร้างร่วมกับชุมชน #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agent",
@@ -3869,7 +3871,10 @@
     "redirecting": "กำลังพาไปหน้าชำระเงิน…",
     "openingCheckout": "กำลังเปิดหน้าชำระเงิน…",
     "checkoutUnavailable": "ลิงก์ชำระเงินใช้บ่ได้ กรุณาลองใหม่",
-    "acceptTerms": "ข้อยยอมฮับ <terms>ข้อกำหนดในการให้บริการ</terms>"
+    "acceptTerms": "ข้อยยอมฮับ <terms>ข้อกำหนดในการให้บริการ</terms>",
+    "sentTo": "{{amount}} {{symbol}} ถืกส่งไปให้ {{address}}",
+    "tokensSentTo": "โทเคนถืกส่งไปให้ {{address}}",
+    "goToProfile": "ไปที่โปรไฟล์"
   },
   "musicSheet": {
     "title": "สร้างเปลง",

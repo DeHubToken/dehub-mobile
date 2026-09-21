@@ -1636,7 +1636,9 @@
     "onrampCreated": "An ƙirƙiri zaman hanyar",
     "failedOnramp": "Ba a iya fara hanyar ba",
     "otherTokens": "Sauran tokens",
-    "otherTokensDesc": "Sayi ETH ko USDC a Base da katinka"
+    "otherTokensDesc": "Sayi ETH ko USDC a Base da katinka",
+    "shareToFeed": "Raba zuwa ciyarwata",
+    "sharePostTemplate": "Kawai ƙara {{amount}} $DHB zuwa stack na akan DeHub. Gina tare da al'umma. #DeHub #DHB"
   },
   "agents": {
     "title": "Wakilan AI",
@@ -3898,7 +3900,10 @@
     "redirecting": "Ana tura ka zuwa biya…",
     "openingCheckout": "Ana buɗe shafin biya…",
     "checkoutUnavailable": "Hanyar biya ba ta samuwa. Sake gwadawa.",
-    "acceptTerms": "Na yarda da <terms>Sharuɗɗan Sabis</terms>"
+    "acceptTerms": "Na yarda da <terms>Sharuɗɗan Sabis</terms>",
+    "sentTo": "{{amount}} {{symbol}} an aika zuwa {{address}}",
+    "tokensSentTo": "An aika da Tokens zuwa {{address}}",
+    "goToProfile": "Je zuwa Profile"
   },
   "musicSheet": {
     "title": "Ƙirƙiri waƙa",

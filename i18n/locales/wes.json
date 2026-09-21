@@ -1588,7 +1588,8 @@
     "onrampCreated": "Onramp session don create",
     "failedOnramp": "E no fit start onramp",
     "otherTokens": "Oda tokens",
-    "otherTokensDesc": "Yus yua kad fo bai ETH o USDC fo Base"
+    "otherTokensDesc": "Yus yua kad fo bai ETH o USDC fo Base",
+    "shareToFeed": "Share to my feed"
   },
   "agents": {
     "title": "AI Agents",
@@ -3728,7 +3729,10 @@
     "redirecting": "Dey take you go checkout…",
     "openingCheckout": "Dey open di checkout…",
     "checkoutUnavailable": "Checkout link no dey. Try again.",
-    "acceptTerms": "I gree wit di <terms>Terms and service</terms>"
+    "acceptTerms": "I gree wit di <terms>Terms and service</terms>",
+    "sentTo": "{{amount}} {{symbol}} go {{address}}",
+    "tokensSentTo": "Tokens go {{address}}",
+    "goToProfile": "Go to Profile"
   },
   "musicSheet": {
     "title": "Mek song",

@@ -1592,7 +1592,9 @@
     "onrampCreated": "Rampa sessiýasy döredildi",
     "failedOnramp": "Rampany başlamak başa barmady",
     "otherTokens": "Beýleki tokenler",
-    "otherTokensDesc": "Kartyňyz bilen Base-de ETH ýa-da USDC satyn alyň"
+    "otherTokensDesc": "Kartyňyz bilen Base-de ETH ýa-da USDC satyn alyň",
+    "shareToFeed": "Meniň iýmitimi paýlaň",
+    "sharePostTemplate": "Men diňe {{amount}} $ DHB-i DeHub-da ýerleşýän ýerime goşdum. Halkara ynsan hukuk jemgyýeti bilen baglanyşykly. #Güýçli #Güýçli"
   },
   "agents": {
     "title": "Emeli aň agentleri",
@@ -3880,7 +3882,9 @@
     "redirecting": "Töleg sahypasyna geçirilýär…",
     "openingCheckout": "Töleg açylýar…",
     "checkoutUnavailable": "Töleg salgysy elýeterli däl. Gaýtadan synanyşyň.",
-    "acceptTerms": "Men kabul edýärin <terms>Hyzmat şertleri</terms>"
+    "acceptTerms": "Men kabul edýärin <terms>Hyzmat şertleri</terms>",
+    "tokensSentTo": "Çykyşlar {{address}} adresineiberildi",
+    "goToProfile": "Profil ýarat"
   },
   "musicSheet": {
     "title": "Aýdym döret",

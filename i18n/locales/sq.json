@@ -1646,7 +1646,9 @@
     "onrampCreated": "Sesioni onramp u krijua",
     "failedOnramp": "Dështoi fillimi i onramp",
     "otherTokens": "Token të tjerë",
-    "otherTokensDesc": "Blej ETH ose USDC në Base me kartën tënde"
+    "otherTokensDesc": "Blej ETH ose USDC në Base me kartën tënde",
+    "shareToFeed": "Shpërndaje në burimin tim",
+    "sharePostTemplate": "Sapo shtova {{amount}} $DHB në rafte në DeHub. Ndërtimi me komunitetin. #DeHub #DHB"
   },
   "agents": {
     "title": "Agjentët AI",
@@ -3909,7 +3911,10 @@
     "redirecting": "Po ridrejtohesh te pagesa…",
     "openingCheckout": "Po hapet pagesa…",
     "checkoutUnavailable": "Lidhja e pagesës nuk është e disponueshme. Provo sërish.",
-    "acceptTerms": "I pranoj <terms>Kushtet e shërbimit</terms>"
+    "acceptTerms": "I pranoj <terms>Kushtet e shërbimit</terms>",
+    "sentTo": "{{amount}} {{symbol}} u dërgua në {{address}}",
+    "tokensSentTo": "Shenjat u dërguan në {{address}}",
+    "goToProfile": "Shko te profili"
   },
   "musicSheet": {
     "title": "Krijo një këngë",

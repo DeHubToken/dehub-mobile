@@ -1605,7 +1605,9 @@
     "onrampCreated": "Onramp-Sitzig erstellt",
     "failedOnramp": "Onramp starte fehlgschlage",
     "otherTokens": "Anderi Token",
-    "otherTokensDesc": "Chauf ETH oder USDC uf Base mit dinere Charte"
+    "otherTokensDesc": "Chauf ETH oder USDC uf Base mit dinere Charte",
+    "shareToFeed": "Teile uf min Feed",
+    "sharePostTemplate": "Grad {{amount}} $DHB zu minere Stäcke uf DeHub dezue tue. Baue mit de Community. #DeHub #DHB"
   },
   "agents": {
     "title": "KI-Agente",
@@ -3899,7 +3901,10 @@
     "redirecting": "Wiiterleitig zur Kasse…",
     "openingCheckout": "Kasse wird ufgmacht…",
     "checkoutUnavailable": "Zahligslink nöd verfüegbar. Probier s nomol.",
-    "acceptTerms": "Ich akzeptier d <terms>Nutzigsbedingige</terms>"
+    "acceptTerms": "Ich akzeptier d <terms>Nutzigsbedingige</terms>",
+    "sentTo": "{{amount}} {{symbol}} isch zu {{address}} gschickt worde",
+    "tokensSentTo": "Tokens sind zu {{address}} gschickt worde",
+    "goToProfile": "Gang zum Profil"
   },
   "musicSheet": {
     "title": "Es Lied mache",
