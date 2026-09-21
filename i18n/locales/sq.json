@@ -3915,7 +3915,60 @@
     "liveChat": "Bisedë live",
     "pickDate": "Zgjidh datën",
     "pickTime": "Zgjidh orën",
-    "minTip": "Bakshish minimal"
+    "minTip": "Bakshish minimal",
+    "progress": {
+      "title": "Niveli i transmetuesit",
+      "level": "Niveli {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} minuta kualifikuese më shumë për të arritur nivelin {{level}}",
+      "rule": "Vetëm transmetimet që zgjasin dhjetë minuta ose më shumë me të paktën një shikues kontribuojnë në nivelin tuaj.",
+      "streak": "{{count}} javë rresht",
+      "bestStreak": "Rekordi më i mirë {{count}} javë",
+      "hours": "{{hours}} orë kualifikuese",
+      "minutes": "{{count}} minuta",
+      "viewers": "{{count}} shikues",
+      "viewCards": "Kartat e shikimit",
+      "cardsTitle": "Kartat e koleksionueshme",
+      "locked": "E mbyllur",
+      "earnedOn": "Fitoni {{date}}",
+      "recentTitle": "Transmetime të fundit",
+      "notCounted": "Nuk u numërua",
+      "noStreams": "Transmetoni drejtpërdrejt për të filluar fitimin e XP.",
+      "card": {
+        "first-light": {
+          "name": "Drita e parë",
+          "hint": "Përfundoni transmetimin tuaj të parë që numërohet."
+        },
+        "marathon": {
+          "name": "Maratonë",
+          "hint": "Transmetoni për dy orë në një sesion."
+        },
+        "night-owl": {
+          "name": "Buf natë",
+          "hint": "Mbyllni një transmetim midis mesnatës dhe pesës së mëngjesit."
+        },
+        "regular": {
+          "name": "Rregullt",
+          "hint": "Transmetoni katër javë rresht."
+        },
+        "iron-streak": {
+          "name": "Rreku i hekurt",
+          "hint": "Transmetoni dymëmbëdhjetë javë rresht."
+        },
+        "crowd": {
+          "name": "Turmë",
+          "hint": "Keni dhjetë persona që shikojnë në të njëjtën kohë."
+        },
+        "century": {
+          "name": "Shekull",
+          "hint": "Arrijini njëqind orë kualifikuese në transmetim."
+        },
+        "legend": {
+          "name": "Legjenda",
+          "hint": "Arrijeni nivelin dhjetë."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Bli nga ky transmetim",

@@ -3917,7 +3917,60 @@
     "liveChat": "Xat en directe",
     "pickDate": "Tria la data",
     "pickTime": "Tria l'hora",
-    "minTip": "Propina mínima"
+    "minTip": "Propina mínima",
+    "progress": {
+      "title": "Nivell de streamer",
+      "level": "Nivell {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} minuts qualificats més per arribar al nivell {{level}}",
+      "rule": "Només els streams de deu minuts o més amb almenys un espectador compten per al teu nivell.",
+      "streak": "{{count}} setmana de ratxa",
+      "bestStreak": "Millor ratxa {{count}} setmanes",
+      "hours": "{{hours}} hores qualificades",
+      "minutes": "{{count}} minuts",
+      "viewers": "{{count}} espectadors",
+      "viewCards": "Targetes de visualització",
+      "cardsTitle": "Targetes col·leccionables",
+      "locked": "Tancat",
+      "earnedOn": "Guanyades {{date}}",
+      "recentTitle": "Streams recents",
+      "notCounted": "No s'ha comptat",
+      "noStreams": "Posa't en directe per començar a guanyar XP.",
+      "card": {
+        "first-light": {
+          "name": "Primer llum",
+          "hint": "Acaba el teu primer stream que compta."
+        },
+        "marathon": {
+          "name": "Marató",
+          "hint": "Fes un stream de dues hores en una sessió."
+        },
+        "night-owl": {
+          "name": "Bruixot de nit",
+          "hint": "Acaba un stream entre mitjanit i les cinc del matí."
+        },
+        "regular": {
+          "name": "Regular",
+          "hint": "Fes un stream durant quatre setmanes seguides."
+        },
+        "iron-streak": {
+          "name": "Ratxa de ferro",
+          "hint": "Fes un stream durant dotze setmanes seguides."
+        },
+        "crowd": {
+          "name": "Multitud",
+          "hint": "Que deu persones estiguin mirant al mateix temps."
+        },
+        "century": {
+          "name": "Centenari",
+          "hint": "Aconsegueixi cent hores de qualificació en l'aire."
+        },
+        "legend": {
+          "name": "Llegenda",
+          "hint": "Arriba al nivell deu."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Compra en aquesta emissió",

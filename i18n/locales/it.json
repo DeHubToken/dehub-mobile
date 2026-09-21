@@ -3987,7 +3987,60 @@
     "liveChat": "Chat dal vivo",
     "pickDate": "Scegli la data",
     "pickTime": "Scegli l'ora",
-    "minTip": "Mancia minima"
+    "minTip": "Mancia minima",
+    "progress": {
+      "title": "Livello streamer",
+      "level": "Livello {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} minuti qualificanti in più per raggiungere il livello {{level}}",
+      "rule": "Solo gli stream di almeno dieci minuti con almeno uno spettatore contano per il tuo livello.",
+      "streak": "Striscia di {{count}} settimane",
+      "bestStreak": "Miglior striscia {{count}} settimane",
+      "hours": "{{hours}} ore qualificanti",
+      "minutes": "{{count}} minuti",
+      "viewers": "{{count}} spettatori",
+      "viewCards": "Schede di visualizzazione",
+      "cardsTitle": "Schede da collezione",
+      "locked": "Bloccato",
+      "earnedOn": "Guadagnato {{date}}",
+      "recentTitle": "Stream recenti",
+      "notCounted": "Non conteggiato",
+      "noStreams": "Vai in diretta per iniziare a guadagnare XP.",
+      "card": {
+        "first-light": {
+          "name": "Prima luce",
+          "hint": "Completa il tuo primo stream che conta."
+        },
+        "marathon": {
+          "name": "Maratona",
+          "hint": "Fai uno stream di due ore in una sessione."
+        },
+        "night-owl": {
+          "name": "Nottambulo",
+          "hint": "Termina uno stream tra mezzanotte e le cinque del mattino."
+        },
+        "regular": {
+          "name": "Regolare",
+          "hint": "Fai uno stream per quattro settimane di fila."
+        },
+        "iron-streak": {
+          "name": "Striscia di ferro",
+          "hint": "Fai uno stream per dodici settimane di fila."
+        },
+        "crowd": {
+          "name": "Folla",
+          "hint": "Fai guardare dieci persone contemporaneamente."
+        },
+        "century": {
+          "name": "Secolo",
+          "hint": "Raggiungi le cento ore di qualificazione in onda."
+        },
+        "legend": {
+          "name": "Legenda",
+          "hint": "Raggiungi il livello dieci."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Acquista da questa diretta",

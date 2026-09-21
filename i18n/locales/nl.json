@@ -4184,7 +4184,60 @@
     "liveChat": "Livechat",
     "pickDate": "Datum kiezen",
     "pickTime": "Tijd kiezen",
-    "minTip": "Min. fooi"
+    "minTip": "Min. fooi",
+    "progress": {
+      "title": "Streamer level",
+      "level": "Level {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} minuten meer om level {{level}} te bereiken",
+      "rule": "Alleen streams van tien minuten of langer met minimaal één kijker tellen mee voor je level.",
+      "streak": "{{count}} week streak",
+      "bestStreak": "Beste streak {{count}} weken",
+      "hours": "{{hours}} kwalificerende uren",
+      "minutes": "{{count}} minuten",
+      "viewers": "{{count}} kijkers",
+      "viewCards": "Bekijk kaarten",
+      "cardsTitle": "Verzamelkaarten",
+      "locked": "Vergrendeld",
+      "earnedOn": "Verdiend {{date}}",
+      "recentTitle": "Recente streams",
+      "notCounted": "Telde niet mee",
+      "noStreams": "Ga live om XP te verdienen.",
+      "card": {
+        "first-light": {
+          "name": "Eerste licht",
+          "hint": "Voltooi je eerste stream die meetelt."
+        },
+        "marathon": {
+          "name": "Marathon",
+          "hint": "Stream twee uur in één sessie."
+        },
+        "night-owl": {
+          "name": "Nachtuil",
+          "hint": "Beëindig een stream tussen middernacht en vijf uur 's ochtends."
+        },
+        "regular": {
+          "name": "Regelmatig",
+          "hint": "Stream vier weken achter elkaar."
+        },
+        "iron-streak": {
+          "name": "IJzeren streak",
+          "hint": "Stream twaalf weken achter elkaar."
+        },
+        "crowd": {
+          "name": "Publiek",
+          "hint": "Heb tien mensen tegelijkertijd kijken."
+        },
+        "century": {
+          "name": "Eeuw",
+          "hint": "Bereik honderd kwalificerende uren in de lucht."
+        },
+        "legend": {
+          "name": "Legenda",
+          "hint": "Bereik niveau tien."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Shop in deze stream",

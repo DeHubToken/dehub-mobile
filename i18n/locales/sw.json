@@ -3917,7 +3917,60 @@
     "liveChat": "Gumzo la moja kwa moja",
     "pickDate": "Chagua tarehe",
     "pickTime": "Chagua saa",
-    "minTip": "Bahashishi ya chini"
+    "minTip": "Bahashishi ya chini",
+    "progress": {
+      "title": "Ngazi ya Mchezaji",
+      "level": "Ngazi {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} dakika zinazostahiki zaidi kufikia ngazi {{level}}",
+      "rule": "Ni mitiririko tu inayodumu dakika kumi au zaidi ikiwa na angalau mtazamaji mmoja ndiyo inayochangia kwenye ngazi yako.",
+      "streak": "{{count}} wiki mfululizo",
+      "bestStreak": "Mfululizo bora zaidi {{count}} wiki",
+      "hours": "{{hours}} saa zinazostahiki",
+      "minutes": "{{count}} dakika",
+      "viewers": "{{count}} watazamaji",
+      "viewCards": "Kadi za kutazama",
+      "cardsTitle": "Kadi za kukusanya",
+      "locked": "Zimefungwa",
+      "earnedOn": "Zilizopatikana {{date}}",
+      "recentTitle": "Mitiririko ya hivi karibuni",
+      "notCounted": "Haikuhesabiwa",
+      "noStreams": "Anza kutiririsha ili uanze kupata XP.",
+      "card": {
+        "first-light": {
+          "name": "Mwanga wa kwanza",
+          "hint": "Maliza mtiiririko wako wa kwanza unaohesabiwa."
+        },
+        "marathon": {
+          "name": "Marathon",
+          "hint": "Tiririsha kwa saa mbili katika kipindi kimoja."
+        },
+        "night-owl": {
+          "name": "Bundi wa usiku",
+          "hint": "Maliza mtiiririko kati ya usiku wa manane na saa tano asubuhi."
+        },
+        "regular": {
+          "name": "Kawaida",
+          "hint": "Tiririsha kwa wiki nne mfululizo."
+        },
+        "iron-streak": {
+          "name": "Mfululizo wa chuma",
+          "hint": "Tiririsha kwa wiki kumi na mbili mfululizo."
+        },
+        "crowd": {
+          "name": "Umati",
+          "hint": "Kuwa na watu kumi wanaotazama kwa wakati mmoja."
+        },
+        "century": {
+          "name": "Karne",
+          "hint": "Fikia saa mia moja za kufuzu hewani."
+        },
+        "legend": {
+          "name": "Hadithi",
+          "hint": "Fikia kiwango cha kumi."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Nunua kutoka matangazo haya",

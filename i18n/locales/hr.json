@@ -3917,7 +3917,60 @@
     "liveChat": "Chat uživo",
     "pickDate": "Odaberi datum",
     "pickTime": "Odaberi vrijeme",
-    "minTip": "Min. napojnica"
+    "minTip": "Min. napojnica",
+    "progress": {
+      "title": "Razina streamera",
+      "level": "Razina {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} više kvalifikacijskih minuta za postizanje razine {{level}}",
+      "rule": "Samo streamovi koji traju deset minuta ili duže s barem jednim gledateljem računaju se za vašu razinu.",
+      "streak": "{{count}} tjedni niz",
+      "bestStreak": "Najbolji niz {{count}} tjedana",
+      "hours": "{{hours}} kvalifikacijskih sati",
+      "minutes": "{{count}} minuta",
+      "viewers": "{{count}} gledatelja",
+      "viewCards": "Kartice prikaza",
+      "cardsTitle": "Sakupljive kartice",
+      "locked": "Zaključano",
+      "earnedOn": "Zarađeno {{date}}",
+      "recentTitle": "Nedavni streamovi",
+      "notCounted": "Nije uračunato",
+      "noStreams": "Krenite uživo kako biste počeli zarađivati XP.",
+      "card": {
+        "first-light": {
+          "name": "Prva svjetlost",
+          "hint": "Završite svoj prvi stream koji se računa."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Streamajte dva sata u jednoj sesiji."
+        },
+        "night-owl": {
+          "name": "Noćna ptica",
+          "hint": "Završite stream između ponoći i pet ujutro."
+        },
+        "regular": {
+          "name": "Redoviti",
+          "hint": "Streamajte četiri tjedna zaredom."
+        },
+        "iron-streak": {
+          "name": "Gvozdeni niz",
+          "hint": "Streamajte dvanaest tjedana zaredom."
+        },
+        "crowd": {
+          "name": "Publika",
+          "hint": "Imajte deset ljudi koji gledaju u isto vrijeme."
+        },
+        "century": {
+          "name": "Stoljeće",
+          "hint": "Dosegnite sto kvalificirajućih sati u eteru."
+        },
+        "legend": {
+          "name": "Legenda",
+          "hint": "Dosegnite razinu deset."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Kupujte iz ovog prijenosa",

@@ -3886,7 +3886,60 @@
     "liveChat": "Göni söhbet",
     "pickDate": "Senäni saýla",
     "pickTime": "Wagty saýla",
-    "minTip": "Iň az çaý puly"
+    "minTip": "Iň az çaý puly",
+    "progress": {
+      "title": "Streamer derejesi",
+      "level": "Dereje {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{level}} derejäniňize ýetmek üçin {{minutes}} minut goşmaça derejä laýyk minutlar",
+      "rule": "Diňe on minutdan gowrak dowam eden we azyndan bir tomaşaçysy bolan ýaýlymlar derejäňize goşulýar.",
+      "streak": "{{count}} hepde yzly-yzlyna",
+      "bestStreak": "Iň gowy yzly-yzlyna {{count}} hepde",
+      "hours": "{{hours}} derejä laýyk sagat",
+      "minutes": "{{count}} minut",
+      "viewers": "{{count}} tomaşaçy",
+      "viewCards": "Kartlary görkez",
+      "cardsTitle": "Söwda kartlary",
+      "locked": "Ýapyk",
+      "earnedOn": "Gazanylan {{date}}",
+      "recentTitle": "Soňky ýaýlymlar",
+      "notCounted": "Hasaba alynmady",
+      "noStreams": "XP gazanyp başlamak üçin göni ýaýlyma çykyň.",
+      "card": {
+        "first-light": {
+          "name": "Ilkinji ýagtylyk",
+          "hint": "Hasaba alynýan ilkinji ýaýlymyňyzy tamamlaň."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Bir sessiýada iki sagat ýaýlym alyp baryň."
+        },
+        "night-owl": {
+          "name": "Gijeki guş",
+          "hint": "Ýary gije bilen ertiriň bäş aralygynda ýaýlymyňyzy tamamlanyň."
+        },
+        "regular": {
+          "name": "Adaty",
+          "hint": "Dört hepde yzly-yzlyna ýaýlym alyp baryň."
+        },
+        "iron-streak": {
+          "name": "Polat yzly-yzlyna",
+          "hint": "On iki hepde yzly-yzlyna ýaýlym alyp baryň."
+        },
+        "crowd": {
+          "name": "Köpsüň",
+          "hint": "Bir wagtyň özünde on adamyň tomaşa etmegini üpjün ediň."
+        },
+        "century": {
+          "name": "Asyr",
+          "hint": "Ýüz sagatlyk hawada."
+        },
+        "legend": {
+          "name": "Asly",
+          "hint": "10. Honto ýönekeý kesildi"
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Bu ýaýlymdan satyn alyň",

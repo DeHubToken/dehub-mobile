@@ -3874,7 +3874,60 @@
     "liveChat": "Obrolan langsung",
     "pickDate": "Pilih tanggal",
     "pickTime": "Pilih wektu",
-    "minTip": "Tip minimum"
+    "minTip": "Tip minimum",
+    "progress": {
+      "title": "Tingkat streamer",
+      "level": "Tingkat {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} menit maneh sing mumpuni kanggo tekan tingkat {{level}}",
+      "rule": "Mung stream sing mlaku sepuluh menit utawa luwih suwe kanthi paling ora siji penonton sing diitung kanggo tingkat sampeyan.",
+      "streak": "{{count}} minggu berturut-turut",
+      "bestStreak": "Streak paling apik {{count}} minggu",
+      "hours": "{{hours}} jam sing mumpuni",
+      "minutes": "{{count}} menit",
+      "viewers": "{{count}} penonton",
+      "viewCards": "Kartu tampilan",
+      "cardsTitle": "Kartu koleksi",
+      "locked": "Terlindungi",
+      "earnedOn": "Entuk {{date}}",
+      "recentTitle": "Stream paling anyar",
+      "notCounted": "Ora diitung",
+      "noStreams": "Urip kanggo miwiti entuk XP.",
+      "card": {
+        "first-light": {
+          "name": "Cahya pisanan",
+          "hint": "Rampungake stream pisanan sing diitung."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Stream nganti rong jam ing siji sesi."
+        },
+        "night-owl": {
+          "name": "Burung hantu wengi",
+          "hint": "Pungkasi stream antarane tengah wengi lan jam lima esuk."
+        },
+        "regular": {
+          "name": "Reguler",
+          "hint": "Stream ing patang minggu berturut-turut."
+        },
+        "iron-streak": {
+          "name": "Streak wesi",
+          "hint": "Stream ing rolas minggu berturut-turut."
+        },
+        "crowd": {
+          "name": "Kerumunan",
+          "hint": "Duwe sepuluh wong nonton ing wektu sing padha."
+        },
+        "century": {
+          "name": "Abad",
+          "hint": "Nganti satus jam siaran sing mumpuni."
+        },
+        "legend": {
+          "name": "Legenda",
+          "hint": "Nganti tingkat sepuluh."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Blanja saka siaran iki",

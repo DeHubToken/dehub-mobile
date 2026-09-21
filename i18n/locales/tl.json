@@ -4094,7 +4094,60 @@
     "liveChat": "Live chat",
     "pickDate": "Pumili ng petsa",
     "pickTime": "Pumili ng oras",
-    "minTip": "Min. tip"
+    "minTip": "Min. tip",
+    "progress": {
+      "title": "Antas ng Streamer",
+      "level": "Antas {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} pang mga minuto para maabot ang antas {{level}}",
+      "rule": "Tanging mga stream na tumatakbo ng sampung minuto o higit pa na may kahit isang manonood ang bibilangin para sa iyong antas.",
+      "streak": "{{count}} linggong sunod-sunod",
+      "bestStreak": "Pinakamahusay na sunod-sunod {{count}} linggo",
+      "hours": "{{hours}} mga oras na kwalipikado",
+      "minutes": "{{count}} minuto",
+      "viewers": "{{count}} manonood",
+      "viewCards": "Mga card ng view",
+      "cardsTitle": "Mga nakokolektang card",
+      "locked": "Naka-lock",
+      "earnedOn": "Nakuha {{date}}",
+      "recentTitle": "Mga kamakailang stream",
+      "notCounted": "Hindi nabibilang",
+      "noStreams": "Mag-live para magsimulang kumita ng XP.",
+      "card": {
+        "first-light": {
+          "name": "Unang liwanag",
+          "hint": "Tapusin ang iyong unang stream na nabibilang."
+        },
+        "marathon": {
+          "name": "Marathon",
+          "hint": "Mag-stream ng dalawang oras sa isang sesyon."
+        },
+        "night-owl": {
+          "name": "Night owl",
+          "hint": "Tapusin ang isang stream sa pagitan ng hatinggabi at alas-singko ng umaga."
+        },
+        "regular": {
+          "name": "Regular",
+          "hint": "Mag-stream sa apat na linggo nang sunud-sunod."
+        },
+        "iron-streak": {
+          "name": "Iron streak",
+          "hint": "Mag-stream sa labindalawang linggo nang sunud-sunod."
+        },
+        "crowd": {
+          "name": "Crowd",
+          "hint": "Magkaroon ng sampung tao na nanonood nang sabay-sabay."
+        },
+        "century": {
+          "name": "Century",
+          "hint": "Abutin ang isang daang kwalipikadong oras sa himpapawid."
+        },
+        "legend": {
+          "name": "Alamat",
+          "hint": "Abutin ang level ten."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Mamili mula sa stream na ito",

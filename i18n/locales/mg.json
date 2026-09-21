@@ -3994,7 +3994,60 @@
     "liveChat": "Resaka mivantana",
     "pickDate": "Mifidy daty",
     "pickTime": "Mifidy ora",
-    "minTip": "Tsolotra ambany indrindra"
+    "minTip": "Tsolotra ambany indrindra",
+    "progress": {
+      "title": "Ambaratonga mpitroka",
+      "level": "Ambaratonga {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} minitra mahafeno fepetra kokoa mba hahatratra ny ambaratonga {{level}}",
+      "rule": "Ny fampitetezana maharitra folo minitra farafahakeliny miaraka amin'ny mpijery iray farafahakeliny no isaina ho an'ny ambaratonganao.",
+      "streak": "{{count}} herinandro nifanesy",
+      "bestStreak": "Tsara indrindra {{count}} herinandro",
+      "hours": "{{hours}} ora mahafeno fepetra",
+      "minutes": "{{count}} minitra",
+      "viewers": "{{count}} mpijery",
+      "viewCards": "Karatra fijerena",
+      "cardsTitle": "Karatra fanangonana",
+      "locked": "Voasivana",
+      "earnedOn": "Nahazo {{date}}",
+      "recentTitle": "Fampitetezana vao haingana",
+      "notCounted": "Tsy isaina",
+      "noStreams": "Mifohaza mba hanombohana mahazo XP.",
+      "card": {
+        "first-light": {
+          "name": "Fahazavana voalohany",
+          "hint": "Vitao ny fampitetezanao voalohany izay isaina."
+        },
+        "marathon": {
+          "name": "Lafatra",
+          "hint": "Mampiteteza adiny roa amin'ny fotoana iray."
+        },
+        "night-owl": {
+          "name": "Vorona alina",
+          "hint": "Mampiteteza eo anelanelan'ny misasakalina sy dimy maraina."
+        },
+        "regular": {
+          "name": "Mahazatra",
+          "hint": "Mampiteteza herinandro efatra nifanesy."
+        },
+        "iron-streak": {
+          "name": "Lafatra vy",
+          "hint": "Mampiteteza herinandro roa ambin'ny folo nifanesy."
+        },
+        "crowd": {
+          "name": "Vahoaka",
+          "hint": "Misy olona folo mijery miaraka."
+        },
+        "century": {
+          "name": "Taonjato",
+          "hint": "Mahatratra 100 ora tsy azo anoharana eny an'habakabaka."
+        },
+        "legend": {
+          "name": "Angano",
+          "hint": "Ny faritr'ora dia +10."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Mividiana amin'ity fandefasana ity",

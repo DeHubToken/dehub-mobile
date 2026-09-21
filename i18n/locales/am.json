@@ -3909,7 +3909,19 @@
     "liveChat": "የቀጥታ ውይይት",
     "pickDate": "ቀን ይምረጡ",
     "pickTime": "ሰዓት ይምረጡ",
-    "minTip": "ዝቅተኛ ስጦታ"
+    "minTip": "ዝቅተኛ ስጦታ",
+    "progress": {
+      "xp": "{{xp}} XP",
+      "card": {
+        "century": {
+          "hint": "በአየር ላይ አንድ መቶ የብቃት ሰዓቶች ይድረሱ."
+        },
+        "legend": {
+          "name": "አፈ ታሪክ",
+          "hint": "ደረጃ አስር ይድረሱ."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "ከዚህ ስርጭት ይግዙ",

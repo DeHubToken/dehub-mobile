@@ -3967,7 +3967,60 @@
     "liveChat": "Obrolan langsung",
     "pickDate": "Pilih tanggal",
     "pickTime": "Pilih waktu",
-    "minTip": "Tip minimum"
+    "minTip": "Tip minimum",
+    "progress": {
+      "title": "Tingkat streamer",
+      "level": "Tingkat {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "{{minutes}} menit lagi yang memenuhi syarat untuk mencapai tingkat {{level}}",
+      "rule": "Hanya streaming yang berjalan sepuluh menit atau lebih lama dengan setidaknya satu penonton yang diperhitungkan untuk tingkat Anda.",
+      "streak": "{{count}} minggu berturut-turut",
+      "bestStreak": "Rekor terbaik {{count}} minggu",
+      "hours": "{{hours}} jam yang memenuhi syarat",
+      "minutes": "{{count}} menit",
+      "viewers": "{{count}} penonton",
+      "viewCards": "Kartu tampilan",
+      "cardsTitle": "Kartu koleksi",
+      "locked": "Terkunci",
+      "earnedOn": "Didapat {{date}}",
+      "recentTitle": "Streaming terbaru",
+      "notCounted": "Tidak dihitung",
+      "noStreams": "Mulai streaming untuk mulai mendapatkan XP.",
+      "card": {
+        "first-light": {
+          "name": "Pijar pertama",
+          "hint": "Selesaikan streaming pertama Anda yang dihitung."
+        },
+        "marathon": {
+          "name": "Maraton",
+          "hint": "Streaming selama dua jam dalam satu sesi."
+        },
+        "night-owl": {
+          "name": "Kupu-kupu malam",
+          "hint": "Akhiri streaming antara tengah malam dan lima pagi."
+        },
+        "regular": {
+          "name": "Reguler",
+          "hint": "Streaming dalam empat minggu berturut-turut."
+        },
+        "iron-streak": {
+          "name": "Rekor besi",
+          "hint": "Streaming dalam dua belas minggu berturut-turut."
+        },
+        "crowd": {
+          "name": "Kerumunan",
+          "hint": "Miliki sepuluh orang menonton pada saat yang sama."
+        },
+        "century": {
+          "name": "Abad",
+          "hint": "Capai seratus jam kualifikasi saat mengudara."
+        },
+        "legend": {
+          "name": "Legenda",
+          "hint": "Capai level sepuluh."
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "Belanja dari siaran ini",

@@ -3984,7 +3984,60 @@
     "liveChat": "ライブチャット",
     "pickDate": "日付を選択",
     "pickTime": "時刻を選択",
-    "minTip": "最低チップ"
+    "minTip": "最低チップ",
+    "progress": {
+      "title": "配信者レベル",
+      "level": "レベル {{level}}",
+      "xp": "{{xp}} XP",
+      "toNext": "レベル {{level}} に到達するために {{minutes}} 分多く必要です",
+      "rule": "10分以上視聴者が1人以上いる配信のみレベルにカウントされます。",
+      "streak": "{{count}} 週連続",
+      "bestStreak": "最高連続記録 {{count}} 週",
+      "hours": "{{hours}} 時間",
+      "minutes": "{{count}} 分",
+      "viewers": "{{count}} 人の視聴者",
+      "viewCards": "カードを見る",
+      "cardsTitle": "コレクションカード",
+      "locked": "ロック済み",
+      "earnedOn": "獲得済み {{date}}",
+      "recentTitle": "最近の配信",
+      "notCounted": "カウントされませんでした",
+      "noStreams": "配信を開始してXPを獲得しましょう。",
+      "card": {
+        "first-light": {
+          "name": "初配信",
+          "hint": "カウントされる初配信を完了しましょう。"
+        },
+        "marathon": {
+          "name": "マラソン",
+          "hint": "1回の配信で2時間配信しましょう。"
+        },
+        "night-owl": {
+          "name": "夜更かし",
+          "hint": "深夜0時から午前5時の間に配信を終了しましょう。"
+        },
+        "regular": {
+          "name": "レギュラー",
+          "hint": "4週連続で配信しましょう。"
+        },
+        "iron-streak": {
+          "name": "アイアンスリーク",
+          "hint": "12週連続で配信しましょう。"
+        },
+        "crowd": {
+          "name": "群衆",
+          "hint": "同時に10人の視聴者がいる状態にしましょう。"
+        },
+        "century": {
+          "name": "センチュリー",
+          "hint": "放送時間が100時間に達します。"
+        },
+        "legend": {
+          "name": "凡例",
+          "hint": "レベル10に到達する。"
+        }
+      }
+    }
   },
   "liveShop": {
     "title": "この配信でショッピング",
