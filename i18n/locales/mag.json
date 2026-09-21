@@ -1874,6 +1874,11 @@
     "searchDehubFor": "DeHub पर \"{{query}}\" खोजूँ"
   },
   "comments": {
+    "reportComment": "रपट करे वाला कमेन्ट",
+    "reportCommentTitle": "रिपोर्ट मैं जइसन बताये हव वैसन लिखे हे,",
+    "reportCommentDescription": "अब बताथिन, ई सब के की मतलब होवऽ हइ, आउ ई सब के बारे में अपने जानऽ हथिन, कि ई सब के बारे में की बात कइल जा हइ?",
+    "reportCommentAlready": "तूहूँ बनल रहऽ, हमहूँ बनल रहीं!",
+    "reportReasonPlaceholder": "1) सबसे पहले, App Find करे (यह Step TV के लिए है)",
     "showAll": "सभी तरह के प्रश्नो को हल करे",
     "discardTitle": "अपन कमेंट छोड़ देब?",
     "discardBody": "ई ड्राफ्ट में सेव हो गेल, लौटला पर इहँ मिली।",

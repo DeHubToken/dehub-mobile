@@ -1872,6 +1872,11 @@
     "searchDehubFor": "DeHub पर \"{{query}}\" खोजीं"
   },
   "comments": {
+    "reportComment": "टिप्पणी कइल जाय",
+    "reportCommentTitle": "आपन टिप्पणी एह पर लिख भेजीं",
+    "reportCommentDescription": "अब हम आप के का बताईं कि एह लेख में का गलत बा आ हमनी का एह बारे में आपन राय जरूर दीं ।",
+    "reportCommentAlready": "आप एह बारे में पहिले से ही लिख चुकल बानी ।",
+    "reportReasonPlaceholder": "लेख जिनहन में बिस्तार से बिस्तार कइल गइल बा (वैकल्पिक)",
     "showAll": "दिखावे के सभी टाइलें",
     "discardTitle": "आपन कमेंट छोड़ दीं?",
     "discardBody": "ई ड्राफ्ट में सेव बा, लौटला पर इहँवे मिली।",

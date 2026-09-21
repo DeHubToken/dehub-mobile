@@ -1922,6 +1922,11 @@
     "searchDehubFor": "በDeHub ላይ \"{{query}}\" ፈልግ"
   },
   "comments": {
+    "reportComment": "አስተያየት ሪፖርት ያድርጉ",
+    "reportCommentTitle": "ይህንን አስተያየት ሪፖርት ያድርጉ",
+    "reportCommentDescription": "በዚህ አስተያየት ላይ ምን ስህተት እንዳለ ይንገሩን እና አስተባባሪዎቻችን ይገመግሙታል ።",
+    "reportCommentAlready": "ይህንን አስተያየት አስቀድመህ ሪፖርት አድርገሃል ።",
+    "reportReasonPlaceholder": "እሱን ለመገምገም የሚረዱንን ማንኛውንም ዝርዝሮች ያክሉ (አማራጭ)",
     "showAll": "ሁሉንም አስተያየቶች አሳይ",
     "discardTitle": "አስተያየትዎን ይጣሉ?",
     "discardBody": "እንደ ረቂቅ ተቀምጧል፣ ስለዚህ ሲመለሱ እዚህ ይኖራል።",

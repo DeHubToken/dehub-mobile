@@ -1540,3 +1540,66 @@ export async function getPostLikers(input: GetPostLikersInput): Promise<GetPostL
     throw e;
   }
 }
+
+// ─── Comment reports ─────────────────────────────────────────────────────────
+
+export interface ReportCommentInput {
+  commentId: number | string;
+  reason: string;
+  additionalInfo?: string;
+}
+
+export interface ReportReasonOption {
+  value: string;
+  label: string;
+}
+
+/**
+ * Report a comment for review.
+ * POST /api/report/comment
+ */
+export async function reportComment(input: ReportCommentInput): Promise<ReportResponse> {
+  if (input.commentId == null || input.commentId === '') throw new Error('commentId required');
+  try {
+    const res = await apiClient.post<ReportResponse>('/report/comment', {
+      commentId: String(input.commentId),
+      reason: input.reason,
+      additionalInfo: input.additionalInfo || '',
+    }, { isAuthRequired: true });
+    return res;
+  } catch (e) {
+    console.error('[NFTService] reportComment error', e);
+    throw e;
+  }
+}
+
+/**
+ * The standardized reasons a comment can be reported for.
+ * GET /api/report/reasons/comment
+ */
+export async function getCommentReportReasons(): Promise<ReportReasonOption[]> {
+  try {
+    const res = await apiClient.get<{ result: boolean; data?: ReportReasonOption[] }>('/report/reasons/comment');
+    return Array.isArray(res?.data) ? res.data : [];
+  } catch (e) {
+    console.error('[NFTService] getCommentReportReasons error', e);
+    throw e;
+  }
+}
+
+/**
+ * Check if the current user has already reported this comment.
+ * GET /api/report/comment/status/:commentId
+ */
+export async function getCommentReportStatus(commentId: number | string): Promise<ReportStatusResponse> {
+  try {
+    const res = await apiClient.get<{ result: boolean; data?: { hasReported: boolean; report?: { _id?: string } | null } }>(
+      `/report/comment/status/${commentId}`,
+      { isAuthRequired: true }
+    );
+    return { hasReported: !!res?.data?.hasReported, reportId: res?.data?.report?._id };
+  } catch (e) {
+    console.error('[NFTService] getCommentReportStatus error', e);
+    throw e;
+  }
+}

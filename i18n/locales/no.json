@@ -1864,6 +1864,11 @@
     "searchDehubFor": "Søk etter «{{query}}» på DeHub"
   },
   "comments": {
+    "reportComment": "Rapportkommentar",
+    "reportCommentTitle": "Rapporter denne kommentaren",
+    "reportCommentDescription": "Fortell oss hva som er galt med denne kommentaren, så vil moderatorene våre gjennomgå den.",
+    "reportCommentAlready": "Du har allerede rapportert dette",
+    "reportReasonPlaceholder": "Legg til eventuelle detaljer som hjelper oss med å gjennomgå det (valgfritt)",
     "showAll": "Vis alle %d kommentarer",
     "discardTitle": "Forkaste kommentaren?",
     "discardBody": "Den er lagret som utkast, så den ligger her når du kommer tilbake.",

@@ -2359,6 +2359,11 @@
     "searchDehubFor": "Cari \"{{query}}\" di DeHub"
   },
   "comments": {
+    "reportComment": "Laporkan komen",
+    "reportCommentTitle": "Laporkan komen ini",
+    "reportCommentDescription": "Beritahu kami apa yang tidak kena dengan komen ini dan moderator kami akan menyemaknya.",
+    "reportCommentAlready": "Anda telah melaporkan komen ini.",
+    "reportReasonPlaceholder": "Tambah sebarang butiran yang membantu kami menyemaknya (pilihan)",
     "showAll": "All Comments",
     "discardTitle": "Buang komen anda?",
     "discardBody": "Ia disimpan sebagai draf, jadi ia akan ada di sini apabila anda kembali.",

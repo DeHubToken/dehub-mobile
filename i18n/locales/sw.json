@@ -1903,6 +1903,11 @@
     "searchDehubFor": "Tafuta \"{{query}}\" kwenye DeHub"
   },
   "comments": {
+    "reportComment": "Ripoti maoni",
+    "reportCommentTitle": "Ripoti maoni haya",
+    "reportCommentDescription": "Tuambie ni nini kibaya na maoni haya na wasimamizi wetu watayatathmini.",
+    "reportCommentAlready": "Tayari umeripoti maoni haya.",
+    "reportReasonPlaceholder": "Weka maelezo yoyote yanayotusaidia kuitathmini (hiari)",
     "showAll": "Onyesha maoni yote",
     "discardTitle": "Utupe maoni yako?",
     "discardBody": "Yamehifadhiwa kama rasimu, hivyo yatakuwa hapa utakaporudi.",

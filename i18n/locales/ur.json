@@ -1904,6 +1904,11 @@
     "searchDehubFor": "DeHub پر \"{{query}}\" تلاش کریں"
   },
   "comments": {
+    "reportComment": "تبصرہ رپورٹ کریں",
+    "reportCommentTitle": "اس تبصرے کی اطلاع دیں",
+    "reportCommentDescription": "ہمیں بتائیں کہ اس تبصرے میں کیا غلط ہے اور ہمارے منتظمین اس کا جائزہ لیں گے ۔",
+    "reportCommentAlready": "آپ پہلے ہی اس تبصرے کی اطلاع دے چکے ہیں ۔",
+    "reportReasonPlaceholder": "ایسی کوئی بھی تفصیلات شامل کریں جو اس کا جائزہ لینے میں ہماری مدد کریں (آپشنل)",
     "showAll": "تمام تبصرے دکھائیں",
     "discardTitle": "اپنا تبصرہ چھوڑ دیں؟",
     "discardBody": "یہ مسودے کے طور پر محفوظ ہے، واپس آنے پر یہیں ملے گا۔",

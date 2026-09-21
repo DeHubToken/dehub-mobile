@@ -1922,6 +1922,11 @@
     "searchDehubFor": "Pesquisar «{{query}}» na DeHub"
   },
   "comments": {
+    "reportComment": "Denunciar comentário",
+    "reportCommentTitle": "Denunciar este comentário",
+    "reportCommentDescription": "Diga-nos o que há de errado com este comentário e os nossos moderadores irão analisá-lo.",
+    "reportCommentAlready": "Já denunciou este comentário.",
+    "reportReasonPlaceholder": "Adicione quaisquer informações que nos ajudem a analisá-lo (opcional)",
     "showAll": "Exibir todos os comentários",
     "discardTitle": "Descartar o seu comentário?",
     "discardBody": "Está guardado como rascunho, por isso estará aqui quando voltar.",

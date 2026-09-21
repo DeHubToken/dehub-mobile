@@ -16,7 +16,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
-import { reportContent, reportUser } from "../../services/nft.service";
+import { reportContent, reportUser, reportComment } from "../../services/nft.service";
 import { toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
 import { useTranslation } from "react-i18next";
@@ -52,7 +52,18 @@ const USER_REASONS: ReportReason[] = [
   { id: "other", label: "Other", icon: "ellipsis-horizontal-outline" },
 ];
 
-export type ReportType = "content" | "user";
+const COMMENT_REASONS: ReportReason[] = [
+  { id: "spam", label: "Spam", icon: "alert-circle-outline" },
+  { id: "harassment", label: "Harassment", icon: "hand-left-outline" },
+  { id: "hate_speech", label: "Hate speech", icon: "ban-outline" },
+  { id: "sexual_content", label: "Sexual content", icon: "eye-off-outline" },
+  { id: "violence", label: "Violence", icon: "warning-outline" },
+  { id: "scam_or_fraud", label: "Scam or fraud", icon: "card-outline" },
+  { id: "misinformation", label: "Misinformation", icon: "megaphone-outline" },
+  { id: "other", label: "Other", icon: "ellipsis-horizontal-outline" },
+];
+
+export type ReportType = "content" | "user" | "comment";
 
 interface ReportModalProps {
   visible: boolean;
@@ -64,6 +75,8 @@ interface ReportModalProps {
   userId?: string;
   /** Display name for the user being reported */
   userName?: string;
+  /** Comment id — required when type === "comment" */
+  commentId?: number | string;
 }
 
 const ReportModalComponent: React.FC<ReportModalProps> = ({
@@ -73,6 +86,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
   tokenId,
   userId,
   userName,
+  commentId,
 }) => {
   const { t } = useTranslation();
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
@@ -82,7 +96,12 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
 
   const reasons = useMemo(
-    () => (type === "content" ? CONTENT_REASONS : USER_REASONS),
+    () =>
+      type === "content"
+        ? CONTENT_REASONS
+        : type === "comment"
+          ? COMMENT_REASONS
+          : USER_REASONS,
     [type]
   );
 
@@ -94,6 +113,15 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
         ? {
             title: "Report Video",
             subtitle: "Why are you reporting this video?",
+            icon: "flag-outline" as keyof typeof Ionicons.glyphMap,
+            iconColor: accentColor,
+            iconBg: "bg-yellow-500/15",
+            successMessage: t("toasts.reported_for_moderation"),
+          }
+        : type === "comment"
+        ? {
+            title: t("comments.reportCommentTitle"),
+            subtitle: t("comments.reportCommentDescription"),
             icon: "flag-outline" as keyof typeof Ionicons.glyphMap,
             iconColor: accentColor,
             iconBg: "bg-yellow-500/15",
@@ -135,6 +163,13 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
           reason: selectedReason,
           additionalInfo: additionalInfo.trim() || undefined,
         });
+      } else if (type === "comment") {
+        if (commentId == null || commentId === "") throw new Error("Missing commentId");
+        await reportComment({
+          commentId,
+          reason: selectedReason,
+          additionalInfo: additionalInfo.trim() || undefined,
+        });
       } else {
         if (!userId) throw new Error("Missing userId");
         await reportUser({
@@ -149,14 +184,18 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
       const msg = e?.message || "Failed to submit report";
       // Handle duplicate report gracefully
       if (msg.toLowerCase().includes("already reported")) {
-        toastError("You've already reported this. We're reviewing it.");
+        toastError(
+          type === "comment"
+            ? t("comments.reportCommentAlready")
+            : "You've already reported this. We're reviewing it."
+        );
       } else {
         toastError(msg);
       }
     } finally {
       setSubmitting(false);
     }
-  }, [type, tokenId, userId, selectedReason, additionalInfo]);
+  }, [type, tokenId, userId, commentId, selectedReason, additionalInfo, t]);
 
   if (submitted) {
     return (
@@ -296,7 +335,11 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
               value={additionalInfo}
               onChangeText={setAdditionalInfo}
               maxLength={500}
-              placeholder="Provide more context…"
+              placeholder={
+                type === "comment"
+                  ? t("comments.reportReasonPlaceholder")
+                  : "Provide more context…"
+              }
               placeholderTextColor="#8B8D90"
               multiline
               numberOfLines={3}

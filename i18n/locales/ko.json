@@ -1918,6 +1918,11 @@
     "searchDehubFor": "DeHub에서 \"{{query}}\" 검색"
   },
   "comments": {
+    "reportComment": "댓글 신고",
+    "reportCommentTitle": "이 댓글 신고하기",
+    "reportCommentDescription": "이 댓글에 어떤 문제가 있는지 알려주시면 운영자가 검토할 것입니다.",
+    "reportCommentAlready": "이미 이 댓글을 신고하셨습니다.",
+    "reportReasonPlaceholder": "검토에 도움이 되는 세부 정보를 입력해주세요 (선택사항).",
     "showAll": "모든 댓글 보기",
     "discardTitle": "댓글을 삭제할까요?",
     "discardBody": "임시 저장되어 있어서 다시 오면 그대로 있어요.",

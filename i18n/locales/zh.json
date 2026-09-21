@@ -1906,6 +1906,11 @@
     "searchDehubFor": "在 DeHub 中搜索\"{{query}}\""
   },
   "comments": {
+    "reportComment": "报告评论",
+    "reportCommentTitle": "举报此评论",
+    "reportCommentDescription": "告诉我们此评论有什么问题，我们的主持人将对其进行审核。",
+    "reportCommentAlready": "您已经举报了此评论。",
+    "reportReasonPlaceholder": "添加有助于我们审核的所有详细信息（选填）",
     "showAll": "显示所有评论",
     "discardTitle": "要放弃你的评论吗？",
     "discardBody": "已保存为草稿，回来时还在这里。",

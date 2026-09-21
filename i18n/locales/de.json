@@ -1917,6 +1917,11 @@
     "searchDehubFor": "DeHub nach „{{query}}\" durchsuchen"
   },
   "comments": {
+    "reportComment": "Berichtskommentar",
+    "reportCommentTitle": "Diesen Kommentar melden",
+    "reportCommentDescription": "Teilen Sie uns mit, was mit diesem Kommentar nicht stimmt, und unsere Moderatoren werden ihn überprüfen.",
+    "reportCommentAlready": "Sie haben diesen Kommentar bereits gemeldet.",
+    "reportReasonPlaceholder": "Füge alle Details hinzu, die uns bei der Überprüfung helfen (optional)",
     "showAll": "Alle Kommentare anzeigen",
     "discardTitle": "Kommentar verwerfen?",
     "discardBody": "Er ist als Entwurf gespeichert und wartet hier, wenn du zurückkommst.",

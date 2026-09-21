@@ -55,6 +55,12 @@ interface CommentContextMenuProps {
   onEdit?: () => void;
   onDelete?: () => void;
   /**
+   * Report this comment to moderation, or undefined when the viewer is signed
+   * out. Never shown on the viewer's own comment — the server refuses a
+   * self-report, so the row would only ever fail.
+   */
+  onReport?: () => void;
+  /**
    * Spend a Comment Anchor on this comment, or undefined when it cannot be.
    *
    * Undefined for a comment that is not yours, on a thread that IS yours, or
@@ -267,6 +273,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
   onShare,
   onEdit,
   onDelete,
+  onReport,
   onAnchor,
   onPin,
   onLike,
@@ -482,6 +489,22 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
                 onPress={() => {
                   onClose();
                   setTimeout(() => onPin(), 150);
+                }}
+              />
+            )}
+
+            {/*
+              Report — somebody else's comment only. Sits with Edit and Delete
+              because it is the other thing you do TO a comment rather than
+              with it, and never on your own: the server refuses a self-report.
+            */}
+            {!isOwnComment && onReport && (
+              <ActionRow
+                icon="Flag"
+                label={t("comments.reportComment")}
+                onPress={() => {
+                  onClose();
+                  setTimeout(() => onReport(), 150);
                 }}
               />
             )}

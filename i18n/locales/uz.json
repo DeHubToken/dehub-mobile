@@ -1919,6 +1919,11 @@
     "searchDehubFor": "DeHub'da «{{query}}» ni qidirish"
   },
   "comments": {
+    "reportComment": "Fikr haqida xabar berish",
+    "reportCommentTitle": "Bu izoh haqida xabar bering",
+    "reportCommentDescription": "Ushbu izohda nima noto&#39;g&#39;ri ekanligini bizga ayting, shunda moderatorlarimiz uni ko&#39;rib chiqadilar.",
+    "reportCommentAlready": "Siz bu izoh haqida allaqachon xabar bergansiz.",
+    "reportReasonPlaceholder": "Uni ko&#39;rib chiqishimizga yordam beradigan har qanday ma&#39;lumotlarni qo&#39;shing (ixtiyoriy)",
     "showAll": "Barcha izohlarni ko&#39;rsatish",
     "discardTitle": "Izohingizni bekor qilasizmi?",
     "discardBody": "U qoralama sifatida saqlandi, qaytganingizda shu yerda bo'ladi.",
