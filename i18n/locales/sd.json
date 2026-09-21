@@ -1557,6 +1557,10 @@
     "returnHome": "گھر واپس وڃو"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "هي پوسٽ دستياب ناهي",
+      "commentUnavailable": "ھي تبصرو ھاڻي دستياب ناھي"
+    },
     "back": "واپس",
     "usernameAvailable": "يوزرنيم دستياب آهي!",
     "signUpToClaim": "حاصل ڪرڻ لاءِ سائن اپ ڪريو",

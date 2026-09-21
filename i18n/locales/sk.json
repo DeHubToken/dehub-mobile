@@ -120,6 +120,10 @@
     "mentioned": "Spomenutí"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Tento príspevok nie je k dispozícii",
+      "commentUnavailable": "Tento komentár už nie je k dispozícii"
+    },
     "posts": "Príspevky",
     "replies": "Odpovede",
     "media": "Médiá",

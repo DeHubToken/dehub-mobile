@@ -2037,6 +2037,10 @@
     "returnHome": "Terug naar home"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Dit bericht is niet beschikbaar",
+      "commentUnavailable": "Deze reactie is niet meer beschikbaar"
+    },
     "back": "Terug",
     "usernameAvailable": "Gebruikersnaam beschikbaar!",
     "signUpToClaim": "Meld je vandaag aan om te claimen",

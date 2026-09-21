@@ -1573,6 +1573,10 @@
     "returnHome": "Kembali ke Beranda"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Postingan ini tidak tersedia",
+      "commentUnavailable": "Komentar ini tidak lagi tersedia"
+    },
     "back": "Kembali",
     "usernameAvailable": "Nama pengguna tersedia!",
     "signUpToClaim": "Daftar hari ini untuk mengklaim",

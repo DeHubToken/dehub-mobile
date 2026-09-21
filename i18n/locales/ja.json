@@ -1584,6 +1584,10 @@
     "returnHome": "ホームに戻る"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "この投稿は利用できません",
+      "commentUnavailable": "このコメントはもう利用できません"
+    },
     "back": "戻る",
     "usernameAvailable": "ユーザー名が利用可能です！",
     "signUpToClaim": "登録して取得",

@@ -1435,6 +1435,10 @@
     "attachmentTooLarge": "Hver fil skal være under 20 MB"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Dette opslag er ikke tilgængeligt",
+      "commentUnavailable": "Denne kommentar er ikke længere tilgængelig"
+    },
     "back": "Tilbage",
     "usernameAvailable": "Brugernavn er ledigt!",
     "signUpToClaim": "Tilmeld dig og gør krav på det",

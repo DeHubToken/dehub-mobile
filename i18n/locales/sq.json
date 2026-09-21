@@ -1572,6 +1572,10 @@
     "returnHome": "Kthehu në Kryefaqe"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Ky postim është i padisponueshëm",
+      "commentUnavailable": "Ky koment nuk është më i disponueshëm"
+    },
     "back": "Kthehu",
     "usernameAvailable": "Emri i përdoruesit është i disponueshëm!",
     "signUpToClaim": "Regjistrohu sot për ta marrë",

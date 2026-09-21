@@ -1562,6 +1562,10 @@
     "returnHome": "Koma Gida"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Wannan post ba shi da samuwa",
+      "commentUnavailable": "Ba a sake samun wannan sharhi ba"
+    },
     "back": "Koma baya",
     "usernameAvailable": "Sunan mai amfani yana samuwa!",
     "signUpToClaim": "Yi rajista yau don ɗauka",

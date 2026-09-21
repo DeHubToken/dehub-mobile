@@ -1552,6 +1552,10 @@
     "attachmentTooLarge": "Her dosya 20MB’den küçük olmalı"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Bu gönderi kullanılamıyor",
+      "commentUnavailable": "Bu yorum artık mevcut değil"
+    },
     "back": "Geri",
     "usernameAvailable": "Kullanıcı adı mevcut!",
     "signUpToClaim": "Almak için bugün kaydolun",

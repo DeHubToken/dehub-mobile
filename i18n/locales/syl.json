@@ -120,6 +120,10 @@
     "mentioned": "যাগোরে মেনশন করা"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "এই পোস্টটি পাওয়া যাচ্ছে না",
+      "commentUnavailable": "এই মন্তব্যটি আর পাওয়া যাচ্ছে না"
+    },
     "posts": "পোস্ট",
     "replies": "জবাব",
     "media": "মিডিয়া",

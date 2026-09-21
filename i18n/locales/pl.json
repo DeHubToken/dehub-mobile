@@ -1834,6 +1834,10 @@
     "returnHome": "Wróć na stronę główną"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Ten post jest niedostępny",
+      "commentUnavailable": "Ten komentarz nie jest już dostępny"
+    },
     "back": "Wróć",
     "usernameAvailable": "Nazwa użytkownika dostępna!",
     "signUpToClaim": "Zarejestruj się dzisiaj, aby ją zarezerwować",

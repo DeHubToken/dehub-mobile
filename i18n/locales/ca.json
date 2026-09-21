@@ -1572,6 +1572,10 @@
     "returnHome": "Tornar a l'inici"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Aquesta publicació no està disponible",
+      "commentUnavailable": "Aquest comentari ja no està disponible"
+    },
     "back": "Enrere",
     "usernameAvailable": "Nom d'usuari disponible!",
     "signUpToClaim": "Registra't avui per reclamar",

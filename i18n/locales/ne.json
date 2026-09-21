@@ -1582,6 +1582,10 @@
     "returnHome": "गृहपृष्ठमा फर्कनुहोस्"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "यो पोष्ट उपलब्ध छैन",
+      "commentUnavailable": "यो टिप्पणी अब उपलब्ध छैन"
+    },
     "back": "पछाडि",
     "notFound": "प्रोफाइल फेला परेन",
     "followers": "फलोअरहरू",

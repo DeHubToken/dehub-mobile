@@ -1541,6 +1541,10 @@
     "returnHome": "घरे लौटीं"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "ई पोस्ट अबहिन ले साफ नइखे ।",
+      "commentUnavailable": "एह श्रेणी के हटावल न जाय; फिलहाल ई खाली बा ।"
+    },
     "back": "वापस",
     "usernameAvailable": "यूजरनेम उपलब्ध बा!",
     "signUpToClaim": "पावे खातिर साइन अप करीं",

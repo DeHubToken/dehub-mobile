@@ -2028,6 +2028,10 @@
     "returnHome": "Return Home"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Hantaran ini tidak tersedia",
+      "commentUnavailable": "Komen ini tidak lagi tersedia"
+    },
     "back": "Back",
     "usernameAvailable": "Username available!",
     "signUpToClaim": "Sign up today to claim",

@@ -1529,6 +1529,10 @@
     "returnHome": "回首页"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "此帖子无法显示",
+      "commentUnavailable": "此评论已不再可用"
+    },
     "back": "返回",
     "usernameAvailable": "用户名可用！",
     "signUpToClaim": "今天注册来认领",

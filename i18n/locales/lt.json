@@ -1571,6 +1571,10 @@
     "returnHome": "Grįžti į pradžią"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Šis įrašas nepasiekiamas",
+      "commentUnavailable": "Šis komentaras nebepasiekiamas"
+    },
     "back": "Atgal",
     "usernameAvailable": "Naudotojo vardas laisvas!",
     "signUpToClaim": "Užsiregistruokite šiandien, kad užsitikrintumėte",

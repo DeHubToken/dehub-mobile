@@ -1571,6 +1571,10 @@
     "returnHome": "Buyela Ekhaya"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Le phosti ayitholakali",
+      "commentUnavailable": "Lokhu kuphawula akusatholakali"
+    },
     "back": "Emuva",
     "usernameAvailable": "Igama lomsebenzisi liyatholakala!",
     "signUpToClaim": "Bhalisa namhlanje ukufuna",

@@ -1568,6 +1568,10 @@
     "returnHome": "Padà sí Ilé"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Ifiweranṣẹ yii ko si.",
+      "commentUnavailable": "Àlàyé yìí kò sí mọ́."
+    },
     "back": "Padà",
     "usernameAvailable": "Orúkọ oníṣàmúlò wà!",
     "signUpToClaim": "Forúkọsílẹ̀ lónìí láti gba",

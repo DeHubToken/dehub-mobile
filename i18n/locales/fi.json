@@ -1537,6 +1537,10 @@
     "returnHome": "Palaa etusivulle"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Tämä julkaisu ei ole saatavilla",
+      "commentUnavailable": "Tämä kommentti ei ole enää saatavilla"
+    },
     "back": "Takaisin",
     "usernameAvailable": "Käyttäjätunnus on saatavilla!",
     "signUpToClaim": "Rekisteröidy tänään varataksesi",

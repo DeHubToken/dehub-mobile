@@ -1581,6 +1581,10 @@
     "returnHome": "ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "ಈ ಪೋಸ್ಟ್ ಲಭ್ಯವಿಲ್ಲ",
+      "commentUnavailable": "ಈ ಕಾಮೆಂಟ್ ಇನ್ನು ಮುಂದೆ ಲಭ್ಯವಿಲ್ಲ"
+    },
     "back": "ಹಿಂತಿರುಗಿ",
     "usernameAvailable": "ಬಳಕೆದಾರ ಹೆಸರು ಲಭ್ಯವಿದೆ!",
     "signUpToClaim": "ಪಡೆಯಲು ಸೈನ್ ಅಪ್ ಮಾಡಿ",

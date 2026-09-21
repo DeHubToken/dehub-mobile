@@ -1564,6 +1564,10 @@
     "returnHome": "მთავარზე დაბრუნება"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Ეს პოსტი მიუწვდომელია",
+      "commentUnavailable": "Ეს კომენტარი აღარ არის ხელმისაწვდომი"
+    },
     "back": "უკან",
     "usernameAvailable": "მომხმარებლის სახელი თავისუფალია!",
     "signUpToClaim": "დარეგისტრირდით მისაღებად",

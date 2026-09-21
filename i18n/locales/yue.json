@@ -1571,6 +1571,10 @@
     "returnHome": "返回主頁"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "呢個帖子冇得用",
+      "commentUnavailable": "呢個留言已經唔可以用喇"
+    },
     "back": "返回",
     "usernameAvailable": "用戶名可用！",
     "signUpToClaim": "註冊嚟攞",

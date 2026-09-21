@@ -1548,6 +1548,10 @@
     "returnHome": "ହୋମକୁ ଫେରନ୍ତୁ"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "ଏହି ପୋଷ୍ଟଟି ଉପଲବ୍ଧ ନାହିଁ",
+      "commentUnavailable": "ଏହି ମନ୍ତବ୍ୟଟି ଆଉ ଉପଲବ୍ଧ ନାହିଁ"
+    },
     "back": "ପଛକୁ",
     "usernameAvailable": "ୟୁଜରନେମ ଉପଲବ୍ଧ!",
     "signUpToClaim": "କ୍ଲେମ କରିବାକୁ ସାଇନ ଅପ କରନ୍ତୁ",

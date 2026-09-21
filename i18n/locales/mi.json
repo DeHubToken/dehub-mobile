@@ -1560,6 +1560,10 @@
     "returnHome": "Hoki ki te kāinga"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Kāore e wātea ana tēnei pou",
+      "commentUnavailable": "Kāore e wātea ana tēnei kōrero"
+    },
     "back": "Hoki",
     "usernameAvailable": "Kei te wātea te ingoa kaiwhakamahi!",
     "signUpToClaim": "Rēhitatia āianei ki te pupuri",

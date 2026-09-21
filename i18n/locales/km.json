@@ -1596,6 +1596,10 @@
     "returnHome": "ត្រឡប់ទៅទំព័រដើម"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "ការបង្ហោះនេះមិនមានទេ",
+      "commentUnavailable": "មតិយោបល់នេះលែងមានទៀតហើយ"
+    },
     "back": "ត្រឡប់ក្រោយ",
     "notFound": "រកប្រវត្តិរូបមិនឃើញ",
     "followers": "អ្នកតាមដាន",

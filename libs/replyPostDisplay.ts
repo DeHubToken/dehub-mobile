@@ -1,4 +1,5 @@
 import { buildImageUrl, getImageUrl, getImageUrlApiSimple } from "./misc";
+import { getNFT } from "../services/nft.service";
 import type { UserReplyPost } from "../services/user.service";
 
 const UNTITLED = "untitled";
@@ -78,9 +79,69 @@ export function resolveReplyPostThumbnail(
   return buildImageUrl(post.tokenId ?? tokenId, rawThumb) || getImageUrl(rawThumb) || undefined;
 }
 
+/**
+ * The post author's handle for display. Never the wallet address: the
+ * comments endpoint only carries the minter as an address, and until the full
+ * post is fetched there is simply no handle to show.
+ */
 export function resolveReplyPostCreator(post?: UserReplyPost | null): string | undefined {
   if (!post) return undefined;
-  return cleanText(post.minterUsername || post.minterDisplayName || post.minter) || undefined;
+  return (
+    cleanText(
+      post.minterUser?.username ||
+        post.minterUsername ||
+        post.minterUser?.displayName ||
+        post.minterDisplayName,
+    ) || undefined
+  );
+}
+
+/**
+ * Title and body the way the feed card splits them: the API often copies the
+ * first line of the body into `name`, so a name is a title only when it says
+ * something the body does not.
+ */
+export function resolveReplyPostBody(post?: UserReplyPost | null): { title?: string; body?: string } {
+  if (!post) return {};
+  const name = cleanText(post.title || post.name);
+  const description = (post.description || "").trim();
+  const hasTitle =
+    name.length > 0 &&
+    name.toLowerCase() !== UNTITLED &&
+    name !== description.replace(/\s+/g, " ").trim() &&
+    !description.replace(/\s+/g, " ").trim().startsWith(name);
+  const body = description || (hasTitle ? "" : name);
+  return { title: hasTitle ? name : undefined, body: body || undefined };
+}
+
+/** The comments endpoint never names the post's author; the full post does. */
+export function needsReplyPostAuthor(post?: UserReplyPost | null): boolean {
+  return !post || (!post.minterUser && !post.minterUsername && !post.minterDisplayName);
+}
+
+const replyPostRequests = new Map<number, Promise<UserReplyPost | null>>();
+
+/**
+ * Fetch the full post behind a reply once per tokenId — every reply on the
+ * same post shares the request. Resolves null when the post cannot be read
+ * (deleted, hidden, network), and forgets the failure so a remount can retry.
+ */
+export function loadReplyPost(tokenId: number): Promise<UserReplyPost | null> {
+  let pending = replyPostRequests.get(tokenId);
+  if (!pending) {
+    pending = getNFT(tokenId)
+      .then((res) => {
+        const nft = res?.result;
+        if (!nft) throw new Error("no post");
+        return nftToReplyPost(nft as Record<string, any>, tokenId);
+      })
+      .catch(() => {
+        replyPostRequests.delete(tokenId);
+        return null;
+      });
+    replyPostRequests.set(tokenId, pending);
+  }
+  return pending;
 }
 
 export function hasDisplayablePostContext(
@@ -110,14 +171,18 @@ export function nftToReplyPost(nft: Record<string, any>, tokenId: number): UserR
     name: nft.name,
     title: nft.title,
     description: nft.description,
+    articleBody: nft.articleBody,
     imageUrl: nft.imageUrl,
     imageUrls: nft.imageUrls,
     thumbnailUrl: nft.thumbnailUrl ?? nft.thumbnail_url,
     thumbnail_url: nft.thumbnail_url ?? nft.thumbnailUrl,
     videoUrl: nft.videoUrl,
     postType: nft.postType ?? nft.media_type,
+    createdAt: nft.createdAt,
     minter: nft.minter,
-    minterUsername: nft.minterUsername ?? nft.minterUser?.username,
+    minterUsername: nft.minterUsername ?? nft.minterUser?.username ?? nft.mintername,
     minterDisplayName: nft.minterDisplayName ?? nft.minterUser?.displayName,
+    minterAvatarUrl: nft.minterAvatarUrl ?? nft.minterUser?.avatarImageUrl,
+    minterUser: nft.minterUser ?? undefined,
   };
 }

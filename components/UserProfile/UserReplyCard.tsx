@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -6,21 +6,47 @@ import {
   Image,
   Animated,
   Share,
+  StyleSheet,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
 import { buildCdnPath, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
 import { WEBSITE_LINK } from "../../config/links";
-import type { UserReplyItem } from "../../services/user.service";
+import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import type {
+  UserReplyAuthor,
+  UserReplyItem,
+  UserReplyParentComment,
+  UserReplyPost,
+} from "../../services/user.service";
 import { likeComment, type LikeCommentResult } from "../../services/nft.service";
 import {
-  resolveReplyPostCreator,
+  loadReplyPost,
+  needsReplyPostAuthor,
+  needsReplyPostEnrichment,
+  resolveReplyPostBody,
   resolveReplyPostThumbnail,
-  resolveReplyPostTitle,
 } from "../../libs/replyPostDisplay";
 
+// A reply is shown as the thread it belongs to, the way the comments section
+// draws one: the post on top, the comment being answered when there is one,
+// then this user's reply, with a line running through the avatars. Every row
+// carries its author's display name, handle and badge — a wallet address is
+// never what ends up on screen.
+
+/** Avatar column: 32px wide, so its centre — and the thread line — sits at 16. */
+const AVATAR_SIZE = 32;
+const AVATAR_GAP = 10;
+/** The content column starts after the avatar and its gap. */
+const THREAD_INDENT = AVATAR_SIZE + AVATAR_GAP;
+
+const threadLineStyles = StyleSheet.create({
+  above: { position: "absolute", left: AVATAR_SIZE / 2, top: 0, height: AVATAR_SIZE / 2, width: 1, backgroundColor: "rgba(255,255,255,0.2)" },
+  below: { position: "absolute", left: AVATAR_SIZE / 2, top: AVATAR_SIZE / 2, bottom: 0, width: 1, backgroundColor: "rgba(255,255,255,0.2)" },
+});
 
 /** Resolve a media path: local file URIs pass through, relative paths go through CDN. */
 const resolveMediaUrl = (path: string): string => {
@@ -28,14 +54,6 @@ const resolveMediaUrl = (path: string): string => {
     return path;
   }
   return buildCdnPath(path) ?? path;
-};
-
-/** Post type → icon name mapping. */
-const POST_TYPE_ICON: Record<string, string> = {
-  video: "Video",
-  "feed-images": "Image",
-  "feed-audio": "Headphones",
-  "feed-simple": "FileText",
 };
 
 /** Short-form elapsed time. */
@@ -76,6 +94,239 @@ const parseMentions = (
   return parts.length > 0 ? parts : [{ text, isMention: false }];
 };
 
+const shortAddress = (address?: string): string =>
+  address ? `${address.slice(0, 6)}…${address.slice(-4)}` : "";
+
+/** The avatar helper answers a sentinel for "no avatar"; the Avatar wants undefined. */
+const avatarUriFor = (path?: string | null): string | undefined => {
+  if (!path) return undefined;
+  const url = getAvatarUrl(path);
+  return url && url !== "default-avatar" ? url : undefined;
+};
+
+interface AuthorDisplay {
+  name: string;
+  handle?: string;
+  avatarUri?: string;
+  badgeImg?: number;
+  /** What the profile sheet opens on — the username, else the address. */
+  profileId?: string;
+}
+
+/**
+ * Everything a header row shows for an author. The wallet address is the
+ * last resort for the name and never stands in for the handle — a user with
+ * no username simply shows no handle.
+ */
+function describeAuthor(author: UserReplyAuthor | null | undefined, fallbackAddress?: string): AuthorDisplay {
+  const handle = author?.username || undefined;
+  const name = author?.displayName || handle || shortAddress(author?.address || fallbackAddress);
+  return {
+    name,
+    handle,
+    avatarUri: avatarUriFor(author?.avatarImageUrl),
+    badgeImg: author?.hideBadgeAndBalance ? undefined : getBadgeUrlFor(author),
+    profileId: author?.username || author?.address || fallbackAddress || undefined,
+  };
+}
+
+/**
+ * One row of the thread. The line segments run to the row's own top and
+ * bottom edges so neighbouring rows join into one line; the opaque avatar
+ * paints over the middle and the line reads as leaving its rim. Kept inside
+ * the row's bounds on purpose: Android clips a child that hangs outside.
+ */
+const ThreadRow: React.FC<{ lineAbove?: boolean; lineBelow?: boolean; children: React.ReactNode }> = ({
+  lineAbove,
+  lineBelow,
+  children,
+}) => (
+  <View style={{ position: "relative" }}>
+    {lineAbove && <View style={threadLineStyles.above} pointerEvents="none" />}
+    {lineBelow && <View style={threadLineStyles.below} pointerEvents="none" />}
+    {children}
+  </View>
+);
+
+const AuthorHeader: React.FC<AuthorDisplay & { time?: string; onPress?: () => void }> = ({
+  name,
+  handle,
+  avatarUri,
+  badgeImg,
+  time,
+  onPress,
+}) => (
+  <View className="flex-row items-center">
+    <TouchableOpacity onPress={onPress} disabled={!onPress} activeOpacity={0.7}>
+      <Avatar uri={avatarUri} size={AVATAR_SIZE} name={name} />
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={onPress}
+      disabled={!onPress}
+      activeOpacity={0.7}
+      className="flex-1"
+      style={{ marginLeft: AVATAR_GAP, minWidth: 0 }}
+    >
+      <View className="flex-row items-center">
+        <Text className="text-sm font-semibold text-white" numberOfLines={1} style={{ flexShrink: 1 }}>
+          {name}
+        </Text>
+        {badgeImg ? (
+          <Image
+            source={badgeImg}
+            style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
+            resizeMode="contain"
+          />
+        ) : null}
+      </View>
+      {handle || time ? (
+        <View className="flex-row items-center">
+          {handle ? (
+            <Text className="text-xs text-zinc-500" numberOfLines={1} style={{ flexShrink: 1 }}>
+              @{handle}
+            </Text>
+          ) : null}
+          {handle && time ? <Text className="text-xs text-zinc-600"> · </Text> : null}
+          {time ? <Text className="text-xs text-zinc-500">{time}</Text> : null}
+        </View>
+      ) : null}
+    </TouchableOpacity>
+  </View>
+);
+
+const ThreadSkeletonRow: React.FC = () => (
+  <View className="flex-row items-center" style={{ paddingBottom: 14, opacity: 0.7 }}>
+    <View style={{ width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: 8, backgroundColor: "rgba(255,255,255,0.08)" }} />
+    <View style={{ marginLeft: AVATAR_GAP, flex: 1 }}>
+      <View style={{ height: 10, width: 110, borderRadius: 5, backgroundColor: "rgba(255,255,255,0.08)" }} />
+      <View style={{ height: 10, width: 170, borderRadius: 5, backgroundColor: "rgba(255,255,255,0.06)", marginTop: 8 }} />
+    </View>
+  </View>
+);
+
+const ThreadNoteRow: React.FC<{ text: string }> = ({ text }) => (
+  <View className="flex-row items-center" style={{ paddingBottom: 14 }}>
+    <View
+      style={{
+        width: AVATAR_SIZE,
+        height: AVATAR_SIZE,
+        borderRadius: 8,
+        backgroundColor: "rgba(255,255,255,0.05)",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Icon name="MessageSquare" size={14} color="#52525b" />
+    </View>
+    <Text className="text-sm text-zinc-500 italic" style={{ marginLeft: AVATAR_GAP, flex: 1 }}>
+      {text}
+    </Text>
+  </View>
+);
+
+/** The post a comment sits under: its author, its text and its media. */
+const ThreadPostRow: React.FC<{ post: UserReplyPost; tokenId: number; onUserPress: (id?: string) => void }> = ({
+  post,
+  tokenId,
+  onUserPress,
+}) => {
+  const author = describeAuthor(
+    post.minterUser ?? {
+      address: post.minter || "",
+      username: post.minterUsername,
+      displayName: post.minterDisplayName,
+      avatarImageUrl: post.minterAvatarUrl,
+    },
+    post.minter,
+  );
+  const { title, body } = resolveReplyPostBody(post);
+  const thumbnail = resolveReplyPostThumbnail(post, tokenId);
+  const isVideo = post.postType === "video" || post.postType === "short";
+  return (
+    <>
+      <AuthorHeader {...author} time={formatShortTime(post.createdAt)} onPress={() => onUserPress(author.profileId)} />
+      <View style={{ paddingLeft: THREAD_INDENT, paddingBottom: 14 }}>
+        {title ? (
+          <Text className="text-sm font-semibold text-white mt-2 leading-5" numberOfLines={2}>
+            {title}
+          </Text>
+        ) : null}
+        {body ? (
+          <Text className="text-sm text-white/90 leading-5" style={{ marginTop: title ? 4 : 8 }} numberOfLines={6}>
+            {body}
+          </Text>
+        ) : null}
+        {thumbnail ? (
+          <View style={{ marginTop: 8, borderRadius: 12, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.05)" }}>
+            <Image source={{ uri: thumbnail }} style={{ width: "100%", height: 170 }} resizeMode="cover" />
+            {isVideo && (
+              <View
+                style={{
+                  position: "absolute",
+                  top: 0, left: 0, right: 0, bottom: 0,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <View
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 20,
+                    backgroundColor: "rgba(0,0,0,0.6)",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Icon name="Play" size={18} color="#fff" />
+                </View>
+              </View>
+            )}
+          </View>
+        ) : null}
+      </View>
+    </>
+  );
+};
+
+/** The comment this reply answers. */
+const ThreadParentCommentRow: React.FC<{ parent: UserReplyParentComment; onUserPress: (id?: string) => void }> = ({
+  parent,
+  onUserPress,
+}) => {
+  const author = describeAuthor(parent.author, parent.address);
+  const image = parent.imageUrl || parent.gifUrl;
+  return (
+    <>
+      <AuthorHeader {...author} time={formatShortTime(parent.createdAt)} onPress={() => onUserPress(author.profileId)} />
+      <View style={{ paddingLeft: THREAD_INDENT, paddingBottom: 14 }}>
+        {parent.content ? (
+          <Text className="text-sm text-white/90 mt-2 leading-5" numberOfLines={6}>
+            {parent.content}
+          </Text>
+        ) : null}
+        {image ? (
+          <View className="mt-2 rounded-lg overflow-hidden" style={{ maxWidth: 240 }}>
+            <Image
+              source={{ uri: resolveMediaUrl(image) }}
+              style={{ width: 240, height: 160, borderRadius: 8 }}
+              resizeMode="cover"
+            />
+          </View>
+        ) : null}
+        {parent.audioUrl ? (
+          <View className="mt-2 rounded-lg bg-theme-neutrals-800/60 px-2" style={{ maxWidth: 240 }}>
+            <VoiceNotePlayer
+              audioUrl={resolveMediaUrl(parent.audioUrl)}
+              duration={parent.audioDuration}
+              compact
+            />
+          </View>
+        ) : null}
+      </View>
+    </>
+  );
+};
 
 interface UserReplyCardProps {
   item: UserReplyItem;
@@ -83,12 +334,13 @@ interface UserReplyCardProps {
   onLongPress?: (item: UserReplyItem) => void;
 }
 
-
 const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
   item,
   onPress,
   onLongPress,
 }) => {
+  const { t } = useTranslation();
+  const { showUserProfile } = useUserProfileSheet();
   const [liked, setLiked] = useState(item.isLiked);
   const [likeCount, setLikeCount] = useState(item.likeCount ?? 0);
   const [isLiking, setIsLiking] = useState(false);
@@ -97,24 +349,42 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
   const timeAgo = useMemo(() => formatShortTime(item.createdAt), [item.createdAt]);
   const parsedContent = useMemo(() => parseMentions(item.content || ""), [item.content]);
 
-  const author = item.author;
-  const displayName = author?.displayName || author?.username || "Unknown";
-  const handle = author?.username;
-  const avatarUrl = getAvatarUrl(author?.avatarImageUrl);
-  const badgeImg = author?.hideBadgeAndBalance ? undefined : getBadgeUrlFor(author);
-
-  // Post context — title, description, thumbnail (web-style quoted post)
-  const post = item.post;
-  const postThumbnail = resolveReplyPostThumbnail(post, item.tokenId);
-  const postTitle = resolveReplyPostTitle(post);
-  const postCreator = resolveReplyPostCreator(post);
-  const postType = post?.postType ?? "feed-simple";
-  const postTypeIcon = POST_TYPE_ICON[postType] ?? "FileText";
+  const author = useMemo(() => describeAuthor(item.author, item.address), [item.author, item.address]);
   const replyCount = (item as any).replyIds?.length ?? 0;
-  const showPostContext = !!(post || item.tokenId);
+
+  // The comments endpoint only knows the post's minter as an address. The
+  // full post — author, avatar, badge, media — is fetched once per tokenId
+  // and shared between every reply on the same post.
+  const tokenId = item.tokenId ?? item.post?.tokenId ?? 0;
+  const needsPost = !!tokenId && (needsReplyPostAuthor(item.post) || needsReplyPostEnrichment(item.post, tokenId));
+  // undefined: still loading. null: could not be fetched (deleted, hidden).
+  const [loadedPost, setLoadedPost] = useState<UserReplyPost | null | undefined>(undefined);
+  useEffect(() => {
+    if (!needsPost) return;
+    let cancelled = false;
+    loadReplyPost(tokenId).then((post) => {
+      if (!cancelled) setLoadedPost(post);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [needsPost, tokenId]);
+  const post = needsPost ? loadedPost : item.post;
+  const postFailed = needsPost && loadedPost === null;
+
+  const isReply = !!item.isReply || (item.parentId != null && item.parentId > 0);
+  const parentComment = isReply ? item.parentComment : undefined;
+  // A reply whose parent the API could not resolve any more (deleted, hidden).
+  const parentCommentGone = isReply && !parentComment;
 
   const handlePress = useCallback(() => onPress(item), [item, onPress]);
   const handleLongPress = useCallback(() => onLongPress?.(item), [item, onLongPress]);
+  const handleUserPress = useCallback(
+    (id?: string) => {
+      if (id) showUserProfile(id);
+    },
+    [showUserProfile],
+  );
 
   const handleShare = useCallback(async () => {
     try {
@@ -155,7 +425,6 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
     }
   }, [liked, likeCount, isLiking, item.id, likeScale]);
 
-
   return (
     <TouchableOpacity
       onPress={handlePress}
@@ -168,215 +437,130 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
         borderRadius: 12,
         overflow: "hidden",
         marginVertical: 4,
+        padding: 12,
       }}
     >
-      {showPostContext && (
-        <View
-          style={{
-            marginHorizontal: 12,
-            marginTop: 12,
-            borderWidth: 1,
-            borderColor: "rgba(255,255,255,0.06)",
-            borderRadius: 10,
-            backgroundColor: "rgba(255,255,255,0.03)",
-            overflow: "hidden",
-          }}
-        >
-          <View className="flex-row gap-3 p-2.5">
-            {postThumbnail ? (
-              <View style={{ width: 56, height: 56, borderRadius: 8, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.05)" }}>
-                <Image
-                  source={{ uri: postThumbnail }}
-                  style={{ width: 56, height: 56 }}
-                  resizeMode="cover"
-                />
-                {postType === "video" && (
-                  <View
-                    style={{
-                      position: "absolute",
-                      top: 0, left: 0, right: 0, bottom: 0,
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "rgba(0,0,0,0.3)",
-                    }}
-                  >
-                    <Icon name="Play" size={14} color="#fff" />
-                  </View>
-                )}
-              </View>
-            ) : postTitle ? null : (
-              <View
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 8,
-                  backgroundColor: "rgba(255,255,255,0.05)",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Icon
-                  name={postTypeIcon as any}
-                  size={18}
-                  color="#52525b"
-                />
-              </View>
-            )}
-            <View className="flex-1 justify-center" style={{ minWidth: 0 }}>
-              {postCreator ? (
-                <Text className="text-xs text-zinc-500 mb-0.5" numberOfLines={1}>
-                  @{postCreator}
-                </Text>
-              ) : null}
-              {postTitle ? (
-                <Text className="text-sm text-zinc-300 leading-snug" numberOfLines={3}>
-                  {postTitle}
-                </Text>
-              ) : !postThumbnail ? (
-                <Text className="text-sm text-zinc-500 italic" numberOfLines={1}>
-                  {postType === "video"
-                    ? "Video post"
-                    : postType === "feed-images"
-                      ? "Image post"
-                      : postType === "feed-audio"
-                        ? "Audio post"
-                        : "Post"}
-                </Text>
-              ) : null}
-            </View>
-          </View>
-        </View>
-      )}
-
-      {item.tokenId ? (
-        <View className="flex-row items-center gap-1.5 mt-2 mb-1 px-3" style={{ paddingLeft: 52 }}>
-          <Icon name="CornerDownRight" size={12} color="#6F7174" />
-          <Text className="text-[11px] text-zinc-500">
-            {item.parentId ? "Replied to a comment" : "Commented on this post"}
-          </Text>
-        </View>
+      {/* The post — the top of every thread. */}
+      {tokenId ? (
+        <ThreadRow lineBelow>
+          {post ? (
+            <ThreadPostRow post={post} tokenId={tokenId} onUserPress={handleUserPress} />
+          ) : postFailed ? (
+            <ThreadNoteRow text={t("profile.replyThread.postUnavailable")} />
+          ) : (
+            <ThreadSkeletonRow />
+          )}
+        </ThreadRow>
       ) : null}
 
-      <View style={{ padding: 12, paddingTop: 4 }}>
-        <View className="flex-row items-center">
-          <Avatar
-            uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
-            size={32}
-            name={displayName}
-          />
-          <View className="ml-2.5 flex-1" style={{ minWidth: 0 }}>
-            <View className="flex-row items-center">
-              <Text className="text-sm font-semibold text-white" numberOfLines={1}>
-                {displayName}
-              </Text>
-              {badgeImg ? (
-                <Image
-                  source={badgeImg}
-                  style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
-                  resizeMode="contain"
-                />
-              ) : null}
-              {handle ? (
-                <Text className="text-xs text-zinc-500 ml-1.5" numberOfLines={1}>
-                  @{handle}
+      {/* The comment being answered, when this is a reply to one. */}
+      {parentComment ? (
+        <ThreadRow lineAbove lineBelow>
+          <ThreadParentCommentRow parent={parentComment} onUserPress={handleUserPress} />
+        </ThreadRow>
+      ) : null}
+      {parentCommentGone ? (
+        <ThreadRow lineAbove lineBelow>
+          <ThreadNoteRow text={t("profile.replyThread.commentUnavailable")} />
+        </ThreadRow>
+      ) : null}
+
+      {/* This user's comment or reply. */}
+      <ThreadRow lineAbove={!!tokenId}>
+        <AuthorHeader {...author} time={timeAgo} onPress={() => handleUserPress(author.profileId)} />
+
+        <View style={{ paddingLeft: THREAD_INDENT }}>
+          {item.content ? (
+            <Text className="text-sm text-white/90 mt-2 leading-5" numberOfLines={4}>
+              {parsedContent.map((part, idx) => (
+                <Text
+                  key={idx}
+                  className={part.isMention ? "font-bold text-white" : "font-normal"}
+                >
+                  {part.text}
                 </Text>
-              ) : null}
-            </View>
-          </View>
-        </View>
+              ))}
+            </Text>
+          ) : null}
 
-        {item.content ? (
-          <Text className="text-sm text-white/90 mt-2.5 leading-5" numberOfLines={4}>
-            {parsedContent.map((part, idx) => (
-              <Text
-                key={idx}
-                className={part.isMention ? "font-bold text-white" : "font-normal"}
-              >
-                {part.text}
-              </Text>
-            ))}
-          </Text>
-        ) : null}
-
-        {item.imageUrl ? (
-          <View className="mt-2 rounded-lg overflow-hidden" style={{ maxWidth: 240 }}>
-            <Image
-              source={{ uri: resolveMediaUrl(item.imageUrl) }}
-              style={{ width: 240, height: 160, borderRadius: 8 }}
-              resizeMode="cover"
-            />
-          </View>
-        ) : null}
-
-        {item.gifUrl ? (
-          <View className="mt-2 rounded-lg overflow-hidden" style={{ maxWidth: 240 }}>
-            <Image
-              source={{ uri: item.gifUrl }}
-              style={{ width: 240, height: 160, borderRadius: 8 }}
-              resizeMode="cover"
-            />
-          </View>
-        ) : null}
-
-        {item.audioUrl ? (
-          <View className="mt-2 rounded-lg bg-theme-neutrals-800/60 px-2" style={{ maxWidth: 240 }}>
-            <VoiceNotePlayer
-              audioUrl={resolveMediaUrl(item.audioUrl)}
-              duration={item.audioDuration}
-              compact
-            />
-          </View>
-        ) : null}
-
-        <Text className="text-xs text-zinc-500 mt-2.5">{timeAgo}</Text>
-
-        <View className="flex-row items-center mt-2 -ml-1.5">
-          <TouchableOpacity
-            onPress={handleLike}
-            disabled={isLiking}
-            activeOpacity={0.7}
-            className="flex-row items-center gap-1.5 px-2 py-1.5"
-          >
-            <Animated.View style={{ transform: [{ scale: likeScale }] }}>
-              <Icon
-                name="ThumbsUp"
-                size={15}
-                color={liked ? "#F9FBFF" : "#6F7174"}
-                fill={liked ? "#F9FBFF" : undefined}
-                strokeWidth={1.8}
+          {item.imageUrl ? (
+            <View className="mt-2 rounded-lg overflow-hidden" style={{ maxWidth: 240 }}>
+              <Image
+                source={{ uri: resolveMediaUrl(item.imageUrl) }}
+                style={{ width: 240, height: 160, borderRadius: 8 }}
+                resizeMode="cover"
               />
-            </Animated.View>
-            {likeCount > 0 && (
-              <Text style={{ fontSize: 11, color: "#8B8D90" }}>
-                {likeCount}
-              </Text>
-            )}
-          </TouchableOpacity>
+            </View>
+          ) : null}
 
-          {!item.isReply && (
+          {item.gifUrl ? (
+            <View className="mt-2 rounded-lg overflow-hidden" style={{ maxWidth: 240 }}>
+              <Image
+                source={{ uri: item.gifUrl }}
+                style={{ width: 240, height: 160, borderRadius: 8 }}
+                resizeMode="cover"
+              />
+            </View>
+          ) : null}
+
+          {item.audioUrl ? (
+            <View className="mt-2 rounded-lg bg-theme-neutrals-800/60 px-2" style={{ maxWidth: 240 }}>
+              <VoiceNotePlayer
+                audioUrl={resolveMediaUrl(item.audioUrl)}
+                duration={item.audioDuration}
+                compact
+              />
+            </View>
+          ) : null}
+
+          <View className="flex-row items-center mt-2 -ml-1.5">
             <TouchableOpacity
-              onPress={handlePress}
+              onPress={handleLike}
+              disabled={isLiking}
               activeOpacity={0.7}
               className="flex-row items-center gap-1.5 px-2 py-1.5"
             >
-              <Icon name="MessageSquare" size={15} color="#6F7174" />
-              {replyCount > 0 && (
+              <Animated.View style={{ transform: [{ scale: likeScale }] }}>
+                <Icon
+                  name="ThumbsUp"
+                  size={15}
+                  color={liked ? "#F9FBFF" : "#6F7174"}
+                  fill={liked ? "#F9FBFF" : undefined}
+                  strokeWidth={1.8}
+                />
+              </Animated.View>
+              {likeCount > 0 && (
                 <Text style={{ fontSize: 11, color: "#8B8D90" }}>
-                  {replyCount}
+                  {likeCount}
                 </Text>
               )}
             </TouchableOpacity>
-          )}
 
-          <TouchableOpacity
-            onPress={handleShare}
-            activeOpacity={0.7}
-            className="flex-row items-center gap-1.5 px-2 py-1.5"
-          >
-            <Icon name="Share2" size={15} color="#6F7174" />
-          </TouchableOpacity>
+            {!isReply && (
+              <TouchableOpacity
+                onPress={handlePress}
+                activeOpacity={0.7}
+                className="flex-row items-center gap-1.5 px-2 py-1.5"
+              >
+                <Icon name="MessageSquare" size={15} color="#6F7174" />
+                {replyCount > 0 && (
+                  <Text style={{ fontSize: 11, color: "#8B8D90" }}>
+                    {replyCount}
+                  </Text>
+                )}
+              </TouchableOpacity>
+            )}
+
+            <TouchableOpacity
+              onPress={handleShare}
+              activeOpacity={0.7}
+              className="flex-row items-center gap-1.5 px-2 py-1.5"
+            >
+              <Icon name="Share2" size={15} color="#6F7174" />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </ThreadRow>
     </TouchableOpacity>
   );
 };

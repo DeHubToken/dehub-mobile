@@ -1431,6 +1431,10 @@
     "attachmentTooLarge": "כל קובץ חייב להיות מתחת ל-20MB"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "הפוסט הזה לא זמין",
+      "commentUnavailable": "התגובה הזו כבר לא זמינה"
+    },
     "back": "חזור",
     "usernameAvailable": "שם המשתמש זמין!",
     "signUpToClaim": "הירשם כדי לתפוס",
