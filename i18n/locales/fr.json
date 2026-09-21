@@ -4666,5 +4666,62 @@
     "withdrawing": "Retrait en cours…",
     "withdrawUsdc": "Retirer les USDC",
     "withdrawPosition": "Retirer la position"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Nouveau ici ? Vous voulez une courte visite guidée ?",
+      "body": "Nous pouvons vous guider à travers DeHub étape par étape, et vous demander comment chaque étape s'est déroulée afin que nous puissions corriger tout ce qui est confus.",
+      "yes": "Oui, montrez-moi",
+      "no": "Non merci"
+    },
+    "checklist": {
+      "title": "Pour commencer",
+      "subtitle": "Quelques courtes étapes pour vous configurer sur DeHub.",
+      "progress": "{{done}} sur {{total}} terminé",
+      "go": "Amenez-moi là",
+      "done": "Marquer comme terminé",
+      "skip": "Passer cette étape",
+      "dismiss": "Masquer les étapes de démarrage",
+      "reopen": "Ouvrir le guide",
+      "finishedTitle": "C'est tout — bien joué.",
+      "finishedBody": "Merci de nous avoir dit comment chaque étape s'est déroulée. Vos réponses vont directement aux personnes qui construisent ceci.",
+      "chip": "Pour commencer"
+    },
+    "rating": {
+      "question": "Était-ce facile ?",
+      "easy": "Oui, c'était facile",
+      "hard": "Non, c'était difficile",
+      "thanks": "Merci, c'est utile."
+    },
+    "steps": {
+      "profile": {
+        "title": "Définissez votre nom d'utilisateur et votre photo",
+        "body": "Choisissez un nom que les gens reconnaîtront et ajoutez une photo de profil, afin que vos publications semblent venir de vous."
+      },
+      "wallet": {
+        "title": "Voir votre portefeuille et ce qu'est le DHB",
+        "body": "Votre portefeuille existe déjà et contient votre DHB. Jetez un œil à ce qu'il contient et d'où il vient."
+      },
+      "feed": {
+        "title": "Choisissez ce que vous voulez voir",
+        "body": "Répondez à quelques questions rapides et votre fil d'actualité commencera à afficher le type de publications que vous souhaitez réellement."
+      },
+      "first-post": {
+        "title": "Faites votre première publication",
+        "body": "Partagez une pensée, une photo ou une vidéo. Cela ne prend qu'un instant et c'est ainsi que les gens vous trouvent."
+      },
+      "follow": {
+        "title": "Suivez trois créateurs",
+        "body": "Votre fil d'actualité s'améliore considérablement une fois que vous suivez quelques personnes. Parcourez qui est ici et choisissez-en trois pour commencer."
+      },
+      "comment": {
+        "title": "Laissez un commentaire sur une publication",
+        "body": "Répondez à quelque chose que vous avez aimé sur votre flux. Les conversations sont l'endroit où DeHub se déroule le plus souvent."
+      },
+      "rewards": {
+        "title": "Découvrez le fonctionnement des revenus",
+        "body": "Découvrez comment les conseils, les badges et les SuperPowers transforment ce que vous faites ici en quelque chose que vous gagnez."
+      }
+    }
   }
 }

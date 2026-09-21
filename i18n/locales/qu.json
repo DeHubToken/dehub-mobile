@@ -4503,5 +4503,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Musuqmantam kachkanki? Qhawachiyta munankichu?",
+      "body": "DeHubpi puriyta atisunmi, imaynatam tarisqaykikunata tapuspa, imapas pantasqata allinchanapaq.",
+      "yes": "Arí, qhawachiway",
+      "no": "Mana munani"
+    },
+    "checklist": {
+      "title": "Qallarinapaq",
+      "subtitle": "Sut'i kachkan DeHubpi tiyanaykipaq.",
+      "progress": "{{done}} de {{total}} ruwasqa",
+      "go": "Apaway",
+      "done": "Ruwasqata churanay",
+      "skip": "Kayta p'itiriy",
+      "dismiss": "Musuqmanta qallariyta pakay",
+      "reopen": "Qhawachiyta kichariy",
+      "finishedTitle": "Chaymi tukuytaq – allintam ruwarqanki.",
+      "finishedBody": "Agradeciyku imaynatam tarisqaykikunata willawasqaykimanta. Willakuykikunaqa chaykunata ruwaqkunamanmi directumanta ripunku.",
+      "chip": "Qallarinapaq"
+    },
+    "rating": {
+      "question": "Allinllachu karqan?",
+      "easy": "Arí, allinllataq karqan",
+      "hard": "Mana, sasallataq karqan",
+      "thanks": "Agradeciyku, yanapawanku."
+    },
+    "steps": {
+      "profile": {
+        "title": "Sutiykita ruway, nuñuykita ima",
+        "body": "Sutita akuy imaymana rikunankupaq, nuñuykita yapay, chaymanta qhawachinqa imaymana qanmanta."
+      },
+      "wallet": {
+        "title": "Qhawariy qullqiykita, imayna DHB kasqanta",
+        "body": "Qullqiykiqa tiyanñam, chaypiqa kan DHB. Qhawariy imayna kasqanta, maymantataq hamusqanta."
+      },
+      "feed": {
+        "title": "Imata munanki qhawana",
+        "body": "Sut'i tapuykunata kutichiy, chaymanta qhawanaqa munakusqayki kaqkunatam rikuchinqa."
+      },
+      "first-post": {
+        "title": "Ruway ñawpaq kaq qhawachiykita",
+        "body": "Yuyaykita, nuñuykita utaq video-ta partekuy. Sapa kutiqa chaynam tarisunki."
+      },
+      "follow": {
+        "title": "Tawa kamayuqkunata qatiy",
+        "body": "Qhawanaqa allinmi kanqa achkha runakunata qatiqtin. Kaypi kaqkunata qhawariy, kimsa akuy qallarinaykipaq."
+      },
+      "comment": {
+        "title": "Commentta churay huk qhawachiypi",
+        "body": "Mikhuyniykipi imapas gustasusqaykiman kutichiy. Rimanakuykunaqa maypichus aswan DeHub chiqamanta ruwakun chaypi."
+      },
+      "rewards": {
+        "title": "Qaway imaynatam ganay llamkan",
+        "body": "Yachay imaynatas consejos, insignias chaymanta SuperPowers kaypi ruwasqaykita imamanta ganasqaykiman tikranku."
+      }
+    }
   }
 }

@@ -42,6 +42,7 @@ import { recordScreenView, setScreenViewAddress } from "./services/pageView.serv
 import WalletUnlockHost from "./components/auth/WalletUnlockHost";
 import { WebSocketProvider } from "./context/WebSocketContext";
 import { DMProvider } from "./context/DMContext";
+import { OnboardingChecklistProvider } from "./context/OnboardingChecklistContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import NewMemberRegistrar from "./components/common/NewMemberRegistrar";
 import RootNavigator from "./navigation/RootNavigator";
@@ -178,7 +179,12 @@ export default function App() {
             <AuthProvider>
               <WebSocketProvider>
                 <DMProvider>
-                  <BootGate staged={staged} />
+                  {/* Inside AuthProvider because the checklist is per wallet,
+                      and above the navigator so the home card and the settings
+                      row read one copy of the progress row. */}
+                  <OnboardingChecklistProvider>
+                    <BootGate staged={staged} />
+                  </OnboardingChecklistProvider>
                 </DMProvider>
               </WebSocketProvider>
               {/* Signing in no longer requires an openable wallet, so the

@@ -4550,5 +4550,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Vaovao eto? Te hanao fitsidihana fohy ve ianao?",
+      "body": "Afaka mitondra anao manerana ny DeHub tsikelikely izahay, ary manontany momba ny fahombiazan'ny dingana tsirairay mba hahafahantsika manamboatra izay mety ho sarotra.",
+      "yes": "Eny, asehoy ahy",
+      "no": "Tsia, misaotra"
+    },
+    "checklist": {
+      "title": "Fanombohana",
+      "subtitle": "Dingana vitsivitsy fohy mba hametrahana ny tenanao ao amin'ny DeHub.",
+      "progress": "{{done}} amin'ny {{total}} vita",
+      "go": "Ento aho",
+      "done": "Marka ho vita",
+      "skip": "Atsipazo ity dingana ity",
+      "dismiss": "Afenina ny dingana fanombohana",
+      "reopen": "Sokafy ny torolalana",
+      "finishedTitle": "Izay rehetra izany — vita tsara.",
+      "finishedBody": "Misaotra anao nilaza taminay ny fahombiazan'ny dingana tsirairay. Ny valinteninao dia alefa mivantana any amin'ireo olona manangana izany.",
+      "chip": "Fanombohana"
+    },
+    "rating": {
+      "question": "Noraizina ve izany?",
+      "easy": "Eny, mora izany",
+      "hard": "Tsia, sarotra izany",
+      "thanks": "Misaotra, manampy izany."
+    },
+    "steps": {
+      "profile": {
+        "title": "Apetraho ny anaranao sy ny sarinao",
+        "body": "Misafidiana anarana ahafantarana anao ary ampidiro sary momba anao, mba ho toy ny avy aminao ny lahatsoratrao."
+      },
+      "wallet": {
+        "title": "Jereo ny poketrao sy izay DHB",
+        "body": "Efa misy ny poketrao ary misy ny DHB ao anatiny. Jereo izay ao anatiny sy avy aiza izany."
+      },
+      "feed": {
+        "title": "Fidiana izay tianao ho hita",
+        "body": "Valio fanontaniana vitsivitsy haingana ary ny sakafonao dia hanomboka hampiseho karazana lahatsoratra tianao tokoa."
+      },
+      "first-post": {
+        "title": "Manaova lahatsoratra voalohany",
+        "body": "Mizara hevitra, sary na video. Mila fotoana fohy fohy izany ary izany no fomba ahitanao olona."
+      },
+      "follow": {
+        "title": "Araho ireo mpamorona telo",
+        "body": "Mora kokoa ny sakafonao rehefa manaraka olona vitsivitsy ianao. Mizaha ireo eto ary misafidiana telo mba hanombohana."
+      },
+      "comment": {
+        "title": "Avelao ny hevitra momba ny lahatsoratra iray",
+        "body": "Mamaly izay zavatra tianao eo amin'ny sakafo. Ny adihevitra dia ny hoe aiza no tena mitranga ny ankamaroan'ny DeHub."
+      },
+      "rewards": {
+        "title": "Jereo ny fomba fitadiavam-bola asa",
+        "body": "Fantaro ny fomba toro-hevitra, karatra ary SuperPowers mitodika ny zavatra ataonao eto ho zavatra azonao avy."
+      }
+    }
   }
 }

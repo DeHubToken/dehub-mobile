@@ -40,6 +40,7 @@ import { setLocalAuthChainId } from "../services/auth/localProviderAdapter";
 import { setViewAccount } from "../services/view.service";
 import { tokenRefreshManager } from "../libs/token-refresh";
 import { clearPersistedNavigationState } from "../hooks/useNavigationPersistence";
+import { markOnboardingOfferPending } from "../hooks/useOnboardingChecklist";
 import {
   currentProfileId,
   beginAddProfileAttempt,
@@ -322,6 +323,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const timer = setTimeout(() => setUsernameStepReady(true), 300);
     return () => clearTimeout(timer);
   }, [showSignInModal, needsUsername, provisionalUser]);
+  // needsUsername is set from the backend's isNewAccount, and is the only
+  // moment this client knows somebody has just signed up. Sign-up and the
+  // first look at the home feed are two different app sessions — the profile
+  // step sits between them — so the guided-tour offer is written to durable
+  // storage here and read back on Home rather than kept in memory.
+  useEffect(() => {
+    if (needsUsername) markOnboardingOfferPending();
+  }, [needsUsername]);
+
   const [authMethod, setAuthMethodState] = useState<'local' | null>(null);
   const isMountedRef = useRef(true);
   const [isSwitchingChain, setIsSwitchingChain] = useState(false);

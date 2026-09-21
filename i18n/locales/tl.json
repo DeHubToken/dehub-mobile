@@ -4650,5 +4650,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Bago ka dito? Gusto mo ng maikling guided tour?",
+      "body": "Maaari ka naming gabayan sa DeHub nang paisa-isa, at itanong kung kumusta ang bawat hakbang para maayos namin ang anumang nakakalito.",
+      "yes": "Oo, ipakita mo sa akin",
+      "no": "Hindi salamat"
+    },
+    "checklist": {
+      "title": "Pagsisimula",
+      "subtitle": "Ilang maikling hakbang para ma-set up ang iyong sarili sa DeHub.",
+      "progress": "{{done}} ng {{total}} tapos na",
+      "go": "Dalhin mo ako doon",
+      "done": "Markahan bilang tapos",
+      "skip": "Laktawan ang hakbang na ito",
+      "dismiss": "Itago ang mga hakbang sa pagsisimula",
+      "reopen": "Buksan ang gabay",
+      "finishedTitle": "Tapos na ang lahat — mahusay na nagawa.",
+      "finishedBody": "Salamat sa pagsasabi sa amin kung kumusta ang bawat hakbang. Ang iyong mga sagot ay direktang napupunta sa mga taong gumagawa nito.",
+      "chip": "Pagsisimula"
+    },
+    "rating": {
+      "question": "Madali ba ito?",
+      "easy": "Oo, madali lang iyon",
+      "hard": "Hindi, mahirap iyon",
+      "thanks": "Salamat, nakakatulong iyan."
+    },
+    "steps": {
+      "profile": {
+        "title": "Itakda ang iyong username at larawan",
+        "body": "Pumili ng pangalan na makikilala ng mga tao at magdagdag ng profile picture, para mukhang galing sa iyo ang iyong mga post."
+      },
+      "wallet": {
+        "title": "Tingnan ang iyong wallet at kung ano ang DHB",
+        "body": "Ang iyong wallet ay umiiral na at naglalaman ng iyong DHB. Silipin kung ano ang laman nito at saan ito nanggaling."
+      },
+      "feed": {
+        "title": "Piliin kung ano ang gusto mong makita",
+        "body": "Sagutin ang ilang mabilis na tanong at ang iyong feed ay magsisimulang magpakita ng mga uri ng post na gusto mo talaga."
+      },
+      "first-post": {
+        "title": "Gumawa ng iyong unang post",
+        "body": "Magbahagi ng isang saloobin, isang larawan, o isang video. Sandali lang ito at ito ang paraan para mahanap ka ng mga tao."
+      },
+      "follow": {
+        "title": "Sundan ang tatlong creator",
+        "body": "Mas gumaganda ang iyong feed kapag sumunod ka sa ilang tao. Mag-browse kung sino ang nandito at pumili ng tatlo para simulan."
+      },
+      "comment": {
+        "title": "Mag-iwan ng komento sa isang post",
+        "body": "Tumugon sa isang bagay na nagustuhan mo sa iyong feed. Ang mga pag - uusap ay kung saan ang karamihan sa DeHub ay talagang nangyayari."
+      },
+      "rewards": {
+        "title": "Tingnan kung paano gumagana ang kita",
+        "body": "Alamin kung paano ginagawa ng mga tip, badge, at SuperPower ang ginagawa mo rito bilang isang bagay na kinikita mo."
+      }
+    }
   }
 }

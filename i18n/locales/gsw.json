@@ -4463,5 +4463,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Neu do? Wotsch e chlii Gidid Tour?",
+      "body": "Mir chönd der DeHub Schritt für Schritt zeige, und fröge, wie jeder Schritt glunge isch, damit mir chönd fiixe, was au immer verwirrend isch.",
+      "yes": "Ja, zeig mers",
+      "no": "Nei danke"
+    },
+    "checklist": {
+      "title": "Aafange",
+      "subtitle": "E paar chlii Schritt zum dich uf DeHub iirichte.",
+      "progress": "{{done}} vo {{total}} gmacht",
+      "go": "Nimm mich dorthin",
+      "done": "Als gmacht markiere",
+      "skip": "Dä Schritt überspringe",
+      "dismiss": "D'Aafangs-Schritt verstecke",
+      "reopen": "D'Anleitig ufmache",
+      "finishedTitle": "Das isch alles — guet gmacht.",
+      "finishedBody": "Danke, dass du eus gseit hesch, wie jeder Schritt glunge isch. Dinä Antworte gaht direkt a die Lüüt, wo das baue.",
+      "chip": "Aafange"
+    },
+    "rating": {
+      "question": "Isch das eifach gsi?",
+      "easy": "Ja, das isch eifach gsi",
+      "hard": "Nei, das isch schwirig gsi",
+      "thanks": "Danke, das hilft."
+    },
+    "steps": {
+      "profile": {
+        "title": "Setz din Benutzername und Bild",
+        "body": "Wähl en Name, wo d Lüüt erkänned, und füeg es Profilbild derzue, damit dinä Post so usgseht, als chäm er vo dir."
+      },
+      "wallet": {
+        "title": "Zeig din Wallet und was DHB isch",
+        "body": "Din Wallet existiert scho und hebet din DHB. Lueg mal, was drin isch und woher das chunt."
+      },
+      "feed": {
+        "title": "Wähl us, was du wotsch gseh",
+        "body": "Beantworte e paar schnelli Froge und din Feed wird aafange, dir die Art vo Post zeige, wo du würkli wotsch."
+      },
+      "first-post": {
+        "title": "Mach din erschte Post",
+        "body": "Teil en Gedanke, es Foto oder es Video. Das gaht ganz schnäll und so finded dich d Lüüt."
+      },
+      "follow": {
+        "title": "Folge drei Creator",
+        "body": "Din Feed wird viel besser, wenn du ein paar Lüüt folgsch. Lueg, wer do isch und wähl drü zum Aafange."
+      },
+      "comment": {
+        "title": "Hinterlass en Kommentar bi mim Post",
+        "body": "Antworte uf öppis, wo dir uf dim Feed gfalle isch. Gespräch sind, wo de Grossteil vo DeHub eigentlich passiert."
+      },
+      "rewards": {
+        "title": "Lueg, wie's Verdienä funktioniert",
+        "body": "Findi us, wie Trinkgeld, Abzeiche und SuperPowers das, wo du do machsch, zu öppis machä, wo du us em verdienst."
+      }
+    }
   }
 }

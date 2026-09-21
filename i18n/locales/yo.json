@@ -4463,5 +4463,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Ṣe o wa nibi tuntun? Ṣe o fẹ irin-ajo kukuru ti a ṣe itọsọna?",
+      "body": "A le mu ọ kọja DeHub ni igbesẹ kan ni akoko kan, ki a beere bi igbesẹ kọọkan ṣe lọ ki a le ṣatunṣe ohunkunrin ti o daamu.",
+      "yes": "Bẹẹni, fihan mi ni ayika",
+      "no": "Rara, o ṣeun"
+    },
+    "checklist": {
+      "title": "Bí a ṣe bẹ̀rẹ̀",
+      "subtitle": "Awọn igbesẹ diẹ kukuru lati fi ara rẹ si DeHub.",
+      "progress": "{{done}} ninu {{total}} ti pari",
+      "go": "Mu mi lọ sibẹ",
+      "done": "Samisi bi o ti pari",
+      "skip": "Foju igbesẹ yii",
+      "dismiss": "Fara pamọ awọn igbesẹ ibẹrẹ",
+      "reopen": "Ṣii itọsọna naa",
+      "finishedTitle": "Iyẹn ni gbogbo rẹ — dara julọ ti pari.",
+      "finishedBody": "E dupe fun sisọ fun wa bi igbesẹ kọọkan ṣe lọ. Awọn idahun rẹ lọ taara si awọn eniyan ti n kọ eyi.",
+      "chip": "Bí a ṣe bẹ̀rẹ̀"
+    },
+    "rating": {
+      "question": "Ṣe eyi rọrun?",
+      "easy": "Bẹẹni, iyẹn rọrun",
+      "hard": "Rara, iyẹn nira",
+      "thanks": "E dupe, iyẹn ran."
+    },
+    "steps": {
+      "profile": {
+        "title": "Ṣeto orukọ olumulo ati aworan rẹ",
+        "body": "Yan orukọ ti awọn eniyan yoo mọ ki o si fi aworan profaili kun, ki awọn ifiweranṣẹ rẹ dabi pe o wa lati ọdọ rẹ."
+      },
+      "wallet": {
+        "title": "Wo apamọwọ rẹ ati ohun ti DHB jẹ",
+        "body": "Apamọwọ rẹ ti wa tẹlẹ ati pe o ni DHB rẹ. Wo ohun ti o wa ninu rẹ ati ibiti o ti wa."
+      },
+      "feed": {
+        "title": "Yan ohun ti o fẹ lati ri",
+        "body": "Dáhùn awọn ibeere diẹ ni iyara ati ifunni rẹ yoo bẹrẹ si fihan iru awọn ifiweranṣẹ ti o fẹ gaan."
+      },
+      "first-post": {
+        "title": "Ṣe ifiweranṣẹ akọkọ rẹ",
+        "body": "Pin ero, fọto tabi fidio kan. O gba akoko diẹ nikan ati pe o jẹ bi awọn eniyan ṣe n wa ọ."
+      },
+      "follow": {
+        "title": "Tẹle awọn oludasile mẹta",
+        "body": "Ifunni rẹ dara julọ ni kete ti o ba tẹle awọn eniyan diẹ. Ṣawakiri tani o wa nibi ki o si yan mẹta lati bẹrẹ pẹlu."
+      },
+      "comment": {
+        "title": "Fi asọye silẹ lori ifiweranṣẹ kan",
+        "body": "Fèsì sí ohun tí o fẹ́ràn lórí oúnjẹ rẹ. Ìjíròrò ni ibi tí èyí tó pọ̀ jù nínú DeHub ti ń ṣẹlẹ̀ ní tòótọ́."
+      },
+      "rewards": {
+        "title": "Wo bí èrè ṣe ń ṣiṣẹ́",
+        "body": "Ṣàwárí bí àwọn ìmọ̀ràn, àmì ẹ̀yẹ àti SuperPowers ṣe yí ohun tí ò ń ṣe níbí padà sí nǹkan tí ò ń rí owó gbà."
+      }
+    }
   }
 }

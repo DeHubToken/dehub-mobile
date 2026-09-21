@@ -4546,5 +4546,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "¿Nuevo aquí? ¿Quieres un breve recorrido guiado?",
+      "body": "Podemos guiarte por DeHub paso a paso y preguntarte cómo fue cada paso para poder solucionar cualquier cosa que sea confusa.",
+      "yes": "Sí, muéstrame",
+      "no": "No, gracias"
+    },
+    "checklist": {
+      "title": "Empezando",
+      "subtitle": "Unos pocos pasos cortos para configurar tu cuenta en DeHub.",
+      "progress": "{{done}} de {{total}} completado",
+      "go": "Lléname allí",
+      "done": "Marcar como completado",
+      "skip": "Saltar este paso",
+      "dismiss": "Ocultar los pasos de inicio",
+      "reopen": "Abrir la guía",
+      "finishedTitle": "Eso es todo — bien hecho.",
+      "finishedBody": "Gracias por decirnos cómo fue cada paso. Tus respuestas van directamente a las personas que están construyendo esto.",
+      "chip": "Empezando"
+    },
+    "rating": {
+      "question": "¿Fue esto fácil?",
+      "easy": "Sí, fue fácil",
+      "hard": "No, fue difícil",
+      "thanks": "Gracias, eso ayuda."
+    },
+    "steps": {
+      "profile": {
+        "title": "Establece tu nombre de usuario y foto",
+        "body": "Elige un nombre que la gente reconozca y añade una foto de perfil, para que tus publicaciones parezcan tuyas."
+      },
+      "wallet": {
+        "title": "Ver tu billetera y qué es DHB",
+        "body": "Tu billetera ya existe y contiene tu DHB. Echa un vistazo a lo que hay en ella y de dónde viene."
+      },
+      "feed": {
+        "title": "Elige lo que quieres ver",
+        "body": "Responde un par de preguntas rápidas y tu feed empezará a mostrar el tipo de publicaciones que realmente quieres."
+      },
+      "first-post": {
+        "title": "Haz tu primera publicación",
+        "body": "Comparte un pensamiento, una foto o un vídeo. Solo lleva un momento y es así como la gente te encuentra."
+      },
+      "follow": {
+        "title": "Sigue a tres creadores",
+        "body": "Tu feed mejora mucho una vez que sigues a algunas personas. Explora quién está aquí y elige tres para empezar."
+      },
+      "comment": {
+        "title": "Deja un comentario en una publicación",
+        "body": "Responde a algo que te haya gustado en tu feed. Las conversaciones son donde realmente ocurre la mayor parte de DeHub."
+      },
+      "rewards": {
+        "title": "Descubre cómo funcionan las ganancias",
+        "body": "Descubre cómo los consejos, las insignias y los superpoderes convierten lo que haces aquí en algo con lo que ganas."
+      }
+    }
   }
 }

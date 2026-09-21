@@ -4457,5 +4457,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Yeni gəlmisiniz? Qısa bələdçi turu istəyirsiniz?",
+      "body": "Sizi DeHub-da addım-addım gəzdirə bilərik və hər addımın necə keçdiyini soruşa bilərik ki, çaşdırıcı olan hər şeyi düzəldə bilək.",
+      "yes": "Bəli, məni gəzdirin",
+      "no": "Xeyr, təşəkkürlər"
+    },
+    "checklist": {
+      "title": "Başlanğıc",
+      "subtitle": "DeHub-da özünüzü təyin etmək üçün bir neçə qısa addım.",
+      "progress": "{{done}}-dan {{total}} tamamlandı",
+      "go": "Məni aparın",
+      "done": "Tamamlandı olaraq qeyd edin",
+      "skip": "Bu addımı keçin",
+      "dismiss": "Başlanğıc addımlarını gizləyin",
+      "reopen": "Bələdçini açın",
+      "finishedTitle": "Budur hər şey - yaxşı iş.",
+      "finishedBody": "Hər addımın necə keçdiyini bizə bildirdiyiniz üçün təşəkkür edirik. Cavablarınız birbaşa bunu quran insanlara gedir.",
+      "chip": "Başlanğıc"
+    },
+    "rating": {
+      "question": "Bu asan idi?",
+      "easy": "Bəli, bu asan idi",
+      "hard": "Xeyr, bu çətin idi",
+      "thanks": "Təşəkkürlər, bu kömək edir."
+    },
+    "steps": {
+      "profile": {
+        "title": "İstifadəçi adınızı və şəklinizi təyin edin",
+        "body": "İnsanların tanıyacağı bir ad seçin və profil şəkli əlavə edin ki, yazılarınız sizdən gəlmiş kimi görünsün."
+      },
+      "wallet": {
+        "title": "Cüzdanınızı və DHB-nin nə olduğunu görün",
+        "body": "Cüzdanınız artıq mövcuddur və DHB-nizi saxlayır. İçində nə olduğunu və haradan gəldiyini nəzərdən keçirin."
+      },
+      "feed": {
+        "title": "Nə görmək istədiyinizi seçin",
+        "body": "Bir neçə tez suala cavab verin və lentiniz həqiqətən istədiyiniz yazı növünü göstərməyə başlayacaq."
+      },
+      "first-post": {
+        "title": "İlk yazınızı yazın",
+        "body": "Bir fikir, foto və ya video paylaşın. Cəmi bir an çəkir və insanların sizi tapmasının yolu budur."
+      },
+      "follow": {
+        "title": "Üç yaradıcıya abunə olun",
+        "body": "Bir neçə insana abunə olduqdan sonra lentiniz daha yaxşı olur. Burada kimlərin olduğunu nəzərdən keçirin və başlamaq üçün üçünü seçin."
+      },
+      "comment": {
+        "title": "Bir yazıya şərh yazın",
+        "body": "Lentinizdə bəyəndiyiniz bir şeyə cavab verin. Söhbətlər DeHub-ın əksəriyyətinin faktiki olaraq baş verdiyi yerdir."
+      },
+      "rewards": {
+        "title": "Qazancın necə işlədiyinə baxın",
+        "body": "İpucları, nişanlar və Super Güclərin burada etdiklərinizi necə qazandığınız bir şeyə çevirdiyini öyrənin."
+      }
+    }
   }
 }

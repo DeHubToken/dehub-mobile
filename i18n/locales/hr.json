@@ -4476,5 +4476,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Novo ovdje? Želite kratki obilazak?",
+      "body": "Možemo vas provesti kroz DeHub korak po korak i pitati kako je svaki korak prošao kako bismo mogli popraviti sve što je zbunjujuće.",
+      "yes": "Da, pokaži mi",
+      "no": "Ne, hvala"
+    },
+    "checklist": {
+      "title": "Početak",
+      "subtitle": "Nekoliko kratkih koraka za postavljanje na DeHub.",
+      "progress": "{{done}} od {{total}} gotovo",
+      "go": "Odvedi me tamo",
+      "done": "Označi kao gotovo",
+      "skip": "Preskoči ovaj korak",
+      "dismiss": "Sakrij početne korake",
+      "reopen": "Otvori vodič",
+      "finishedTitle": "To je sve — dobro obavljeno.",
+      "finishedBody": "Hvala vam što ste nam rekli kako je svaki korak prošao. Vaši odgovori idu izravno ljudima koji ovo grade.",
+      "chip": "Početak"
+    },
+    "rating": {
+      "question": "Je li ovo bilo lako?",
+      "easy": "Da, bilo je lako",
+      "hard": "Ne, bilo je teško",
+      "thanks": "Hvala, to pomaže."
+    },
+    "steps": {
+      "profile": {
+        "title": "Postavite svoje korisničko ime i sliku",
+        "body": "Odaberite ime koje će ljudi prepoznati i dodajte profilnu sliku kako bi vaši postovi izgledali kao da dolaze od vas."
+      },
+      "wallet": {
+        "title": "Pogledajte svoj novčanik i što je DHB",
+        "body": "Vaš novčanik već postoji i sadrži vaš DHB. Pogledajte što je u njemu i odakle je došlo."
+      },
+      "feed": {
+        "title": "Odaberite što želite vidjeti",
+        "body": "Odgovorite na nekoliko brzih pitanja i vaš će feed početi prikazivati ​​vrstu postova koje zapravo želite."
+      },
+      "first-post": {
+        "title": "Napravite svoj prvi post",
+        "body": "Podijelite misao, fotografiju ili video. Potrebno je samo trenutak i tako vas ljudi pronalaze."
+      },
+      "follow": {
+        "title": "Pratite tri kreatora",
+        "body": "Vaš feed postaje puno bolji kada pratite nekoliko ljudi. Pregledajte tko je ovdje i odaberite tri za početak."
+      },
+      "comment": {
+        "title": "Ostavite komentar na objavu",
+        "body": "Odgovori na nešto što ti se svidjelo u feedu. Razgovori su mjesto gdje se većina DeHubovih razgovora zapravo odvija."
+      },
+      "rewards": {
+        "title": "Pogledaj kako funkcionira zarada",
+        "body": "Saznajte kako savjeti, značke i SuperPowers pretvaraju ono što ovdje radite u nešto od čega zarađujete."
+      }
+    }
   }
 }
