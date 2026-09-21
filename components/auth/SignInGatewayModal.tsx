@@ -86,6 +86,8 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   // which a native RN Modal covers — a toastError fired while this modal is
   // up is invisible, so errors here must be rendered in the modal itself.
   const [inlineError, setInlineError] = useState<string | null>(null);
+  const [passkeyError, setPasskeyError] = useState<string | null>(null);
+  const [passkeySuggestCreate, setPasskeySuggestCreate] = useState(false);
   // Secret from a create attempt that has not finished yet: either it saved to
   // Supabase but failed at the DeHub sign-in step (reused on retry so the saved
   // row isn't overwritten by a fresh mnemonic), or it is a biometric wallet
@@ -449,6 +451,35 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
     }
   }, [runProvisionAndSignIn]);
 
+  const handlePasskey = useCallback(async (mode: "signin" | "signup") => {
+    setIsLocalLoading(true);
+    setCurrentProvider(mode === "signup" ? "passkey-signup" : "passkey-signin");
+    setInlineError(null);
+    setPasskeyError(null);
+    try {
+      const { signInWithPasskey, signUpWithPasskey, PasskeyCancelledError, PasskeyLoginError } =
+        await import("../../services/auth/passkeyAuth.service");
+      try {
+        const supabaseUserId = mode === "signup" ? await signUpWithPasskey() : await signInWithPasskey();
+        await runProvisionAndSignIn(supabaseUserId);
+      } catch (e: any) {
+        if (e instanceof PasskeyCancelledError) return;
+        console.error("[SignInGatewayModal] Passkey login error", e);
+        if (e instanceof PasskeyLoginError && e.code === "UNKNOWN_CREDENTIAL") {
+          setPasskeySuggestCreate(true);
+          setPasskeyError(t("loginModal.passkeyNotLinked", "No account is linked to that fingerprint yet. Create a new account instead."));
+        } else if (e instanceof PasskeyLoginError && e.code === "ALREADY_REGISTERED") {
+          setPasskeyError(t("loginModal.passkeyAlreadyRegistered", "That fingerprint already has an account. Use Sign in instead."));
+        } else {
+          setPasskeyError(e?.message || t("loginModal.passkeyFailed", "Fingerprint sign-in failed. Please try again."));
+        }
+      }
+    } finally {
+      setIsLocalLoading(false);
+      setCurrentProvider("");
+    }
+  }, [runProvisionAndSignIn, t]);
+
   const handleTelegramLogin = useCallback(async () => {
     setIsLocalLoading(true);
     setCurrentProvider("telegram");
@@ -616,6 +647,10 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
               onGoogle={handleGoogleLogin}
               onApple={handleAppleLogin}
               onTelegram={handleTelegramLogin}
+              onPasskeySignIn={() => void handlePasskey("signin")}
+              onPasskeySignUp={() => void handlePasskey("signup")}
+              passkeyError={passkeyError}
+              passkeySuggestCreate={passkeySuggestCreate}
               onEmailSubmit={handleEmailSubmit}
               onEmailPasswordSubmit={handleEmailPasswordSubmit}
               onPhoneSubmit={handlePhoneSubmit}

@@ -2106,7 +2106,16 @@
     "password": "Password",
     "sendCode": "Ipadala ang code",
     "usePasswordInstead": "Gumamit na lang ng password",
-    "useCodeInstead": "Padalhan na lang ako ng code sa email"
+    "useCodeInstead": "Padalhan na lang ako ng code sa email",
+    "continuePasskey": "Magpatuloy gamit ang fingerprint",
+    "passkeyIntro": "Ang iyong fingerprint o mukha ang iyong account. Walang kailangang tandaan, walang kailangang i-type.",
+    "passkeySignIn": "Mag-sign in gamit ang fingerprint",
+    "passkeyCreate": "Gumawa ng bagong account",
+    "passkeyUnsupported": "Hindi makapag-sign in gamit ang fingerprint o mukha ang device na ito. Gumamit ng ibang opsyon.",
+    "passkeyNotLinked": "Wala pang account na naka-link sa fingerprint na iyon. Gumawa na lang ng bagong account.",
+    "passkeyAlreadyRegistered": "May account na ang fingerprint na iyon. Gamitin ang Mag-sign in sa halip.",
+    "passkeyFailed": "Nabigo ang pag-sign in gamit ang fingerprint. Pakisubukang muli.",
+    "passkeyBackupHint": "Nakatira ang iyong account sa passkey ng device na ito. Sa karamihan ng mga telepono, nag-si-sync ito sa iyong Google o Apple account, at maaari kang magdagdag ng password backup sa Mga Setting."
   },
   "careers": {
     "title": "Careers at DeHub",

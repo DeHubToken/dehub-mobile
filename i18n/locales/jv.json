@@ -1690,7 +1690,16 @@
     "password": "Tembung sandi",
     "sendCode": "Kirim kode",
     "usePasswordInstead": "Gunakake sandhi wae",
-    "useCodeInstead": "Kirimi aku kode liwat email wae"
+    "useCodeInstead": "Kirimi aku kode liwat email wae",
+    "continuePasskey": "Terusake nganggo sidik driji",
+    "passkeyIntro": "Sidik driji utawa rai sampeyan minangka akun sampeyan. Ora perlu ngeling-eling, ora perlu ngetik.",
+    "passkeySignIn": "mlebu nganggo sidik driji",
+    "passkeyCreate": "Gawe akun anyar",
+    "passkeyUnsupported": "Piranti iki ora bisa mlebu nganggo sidik driji utawa rai. Gunakake pilihan liyane.",
+    "passkeyNotLinked": "Ora ana akun sing disambungake karo sidik driji kasebut. Gawe akun anyar wae.",
+    "passkeyAlreadyRegistered": "Sidik driji kasebut wis duwe akun. Gunakake mlebu wae.",
+    "passkeyFailed": "Mlebu nganggo sidik driji gagal. Coba maneh.",
+    "passkeyBackupHint": "Akun sampeyan ana ing passkey piranti iki. Ing umume telpon, iki bakal sinkronisasi karo akun Google utawa Apple sampeyan, lan sampeyan bisa nambah cadangan sandhi ing Setelan."
   },
   "careers": {
     "title": "Gabung DeHub",

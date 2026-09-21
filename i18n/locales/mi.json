@@ -1719,7 +1719,16 @@
     "password": "Kupuhipa",
     "sendCode": "Tukuna te waehere",
     "usePasswordInstead": "Whakamahia he kupuhipa kē",
-    "useCodeInstead": "Tukuna mai he waehere mā te īmēra"
+    "useCodeInstead": "Tukuna mai he waehere mā te īmēra",
+    "continuePasskey": "Haere tonu ki te tohu maihao",
+    "passkeyIntro": "Ko tō matimati, ko tō kanohi rānei tō pūkete. Kāore he mea hei maumahara, kāore he mea hei patopato.",
+    "passkeySignIn": "Takiuru mā te matimati",
+    "passkeyCreate": "Hanga he pūkete hou",
+    "passkeyUnsupported": "Kāore e taea e tēnei pūrere te takiuru mā te matimati, mā te kanohi rānei. Whakamahia tētahi atu kōwhiringa.",
+    "passkeyNotLinked": "Kāore anō kia honoa tētahi pūkete ki taua matimati. Hanga he pūkete hou hei utu.",
+    "passkeyAlreadyRegistered": "Kua whai pūkete kē taua matimati. Whakamahia te Takiuru hei utu.",
+    "passkeyFailed": "Kua rahua te takiuru mā te matimati. Tēnā ka whakamātau anō.",
+    "passkeyBackupHint": "Kei roto i te kīhōpuku o tēnei pūrere tō pūkete. I te nuinga o ngā waea, ka honoa tēnei ki tō pūkete Google, Apple rānei, ā, ka taea e koe te tāpiri i tētahi pūrua kupuhipa ki ngā Tautuhinga."
   },
   "careers": {
     "title": "Mahi i DeHub",

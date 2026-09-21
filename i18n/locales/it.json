@@ -1746,7 +1746,16 @@
     "password": "Password",
     "sendCode": "Invia codice",
     "usePasswordInstead": "Usa invece una password",
-    "useCodeInstead": "Inviami invece un codice via e-mail"
+    "useCodeInstead": "Inviami invece un codice via e-mail",
+    "continuePasskey": "Continua con l'impronta digitale",
+    "passkeyIntro": "La tua impronta digitale o il tuo volto sono il tuo account. Niente da ricordare, niente da digitare.",
+    "passkeySignIn": "Accedi con impronta digitale",
+    "passkeyCreate": "Crea un nuovo account",
+    "passkeyUnsupported": "Questo dispositivo non può accedere con impronta digitale o volto. Usa un'altra opzione.",
+    "passkeyNotLinked": "Nessun account è ancora collegato a quell'impronta digitale. Crea un nuovo account invece.",
+    "passkeyAlreadyRegistered": "Quell'impronta digitale ha già un account. Usa Accedi invece.",
+    "passkeyFailed": "Accesso con impronta digitale fallito. Riprova.",
+    "passkeyBackupHint": "Il tuo account risiede nella passkey di questo dispositivo. Sulla maggior parte dei telefoni si sincronizza con il tuo account Google o Apple, e puoi aggiungere un backup della password nelle Impostazioni."
   },
   "careers": {
     "title": "Carriere su DeHub",

@@ -1721,7 +1721,16 @@
     "password": "Kalmar sirri",
     "sendCode": "Aika lambar",
     "usePasswordInstead": "Yi amfani da kalmar sirri maimakon haka",
-    "useCodeInstead": "A aiko min da lamba ta imel"
+    "useCodeInstead": "A aiko min da lamba ta imel",
+    "continuePasskey": "Ci gaba da rubutun yatsa",
+    "passkeyIntro": "Alamar yatsa ko fuskarka ita ce asusunka. Babu abin da za a tuna, babu abin da za a rubuta.",
+    "passkeySignIn": "Shiga da alamar yatsa",
+    "passkeyCreate": "Ƙirƙiri sabon asusu",
+    "passkeyUnsupported": "Wannan na'urar ba za ta iya shiga da alamar yatsa ko fuska ba. Yi amfani da wata zaɓi.",
+    "passkeyNotLinked": "Babu asusu da aka haɗa da wannan alamar yatsa tukuna. Ƙirƙiri sabon asusu a maimakon.",
+    "passkeyAlreadyRegistered": "Wannan alamar yatsa tana da asusu a riga. Yi amfani da Shiga a maimakon.",
+    "passkeyFailed": "Shiga da alamar yatsa ya kasa. Da fatan za a sake gwadawa.",
+    "passkeyBackupHint": "Asusunka yana zaune a cikin kalmar sirri ta wannan na'urar. A yawancin wayoyi yana haɗawa da asusun Google ko Apple ɗinka, kuma za ka iya ƙara madadin kalmar sirri a Saituna."
   },
   "careers": {
     "title": "Ayyuka a DeHub",

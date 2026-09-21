@@ -1733,7 +1733,16 @@
     "password": "Contraseña",
     "sendCode": "Kodeta apachiy",
     "usePasswordInstead": "Chaypa rantin password nisqata llamk’achiy",
-    "useCodeInstead": "Chaypa rantin kodeta email nisqapi apachiway"
+    "useCodeInstead": "Chaypa rantin kodeta email nisqapi apachiway",
+    "continuePasskey": "Dedopa marcanwan hinalla ruway",
+    "passkeyIntro": "Sut'inchayki utaq uyan qanpa kañayki. Mana imapas yuyayta, mana imapas qillqayta.",
+    "passkeySignIn": "Sut'inchaywan yaykuy",
+    "passkeyCreate": "Mushuq kañayta kamariy",
+    "passkeyUnsupported": "Kay llamk'anaqa manam sut'inchay utaq uyanwan yaykuyta atinchu. Hukta llamk'achiy.",
+    "passkeyNotLinked": "Mana imapas kañayqa manam chay sut'inchaywan hap'isqachu. Mushuq kañayta kamariy.",
+    "passkeyAlreadyRegistered": "Chay sut'inchayqa hap'isqam kachkan huk kañayta. Yaykuyta llamk'achiy.",
+    "passkeyFailed": "Sut'inchaywan yaykuyqa mana allinchu. K'umuyta prupakuy.",
+    "passkeyBackupHint": "Kañaykiqa kay llamk'anapi kañayninpi kachkan. Ashwan achka k'uychiykunapiqa Google utaq Apple kañaynikiwan hap'isqa kachkan, hinallataqmi Qillqana Wasipi huk qillqana yanapaqta yapayta atinki."
   },
   "careers": {
     "title": "Llamkay DeHub-pi",

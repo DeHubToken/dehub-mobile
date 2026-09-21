@@ -1730,7 +1730,16 @@
     "password": "Parole",
     "sendCode": "Nosūtīt kodu",
     "usePasswordInstead": "Tā vietā izmantot paroli",
-    "useCodeInstead": "Tā vietā nosūtīt man kodu e-pastā"
+    "useCodeInstead": "Tā vietā nosūtīt man kodu e-pastā",
+    "continuePasskey": "Turpināt ar pirksta nospiedumu",
+    "passkeyIntro": "Jūsu pirkstu nospiedums vai seja ir jūsu konts. Nav nekas, kas jāatceras, nekas, kas jāraksta.",
+    "passkeySignIn": "Pierakstīties ar pirkstu nospiedumu",
+    "passkeyCreate": "Izveidot jaunu kontu",
+    "passkeyUnsupported": "Šī ierīce nevar pierakstīties ar pirkstu nospiedumu vai seju. Izmantojiet citu opciju.",
+    "passkeyNotLinked": "Ar šo pirkstu nospiedumu vēl nav saistīts neviens konts. Izveidojiet jaunu kontu.",
+    "passkeyAlreadyRegistered": "Šim pirkstu nospiedumam jau ir konts. Izmantojiet pierakstīšanos.",
+    "passkeyFailed": "Pirkstu nospieduma pierakstīšanās neizdevās. Lūdzu, mēģiniet vēlreiz.",
+    "passkeyBackupHint": "Jūsu konts atrodas šīs ierīces paroles atslēgā. Lielākajā daļā tālruņu tas sinhronizējas ar jūsu Google vai Apple kontu, un iestatījumos varat pievienot paroles dublējumu."
   },
   "careers": {
     "title": "Karjera DeHub",
