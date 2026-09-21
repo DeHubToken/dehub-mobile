@@ -2458,7 +2458,8 @@
     "livePreview": "Janly deslapky syn",
     "publishChanges": "Üýtgeşmeleri çap et",
     "pagePublished": "Çakylyk sahypasy çap edildi",
-    "pageSaveFailed": "Çakylyk sahypasyny ýatda saklap bolmady"
+    "pageSaveFailed": "Çakylyk sahypasyny ýatda saklap bolmady",
+    "selfVisitsExcluded": "Siziň öz baglanyşygyňyza barmagyňyz hasaplanmaýar."
   },
   "top100": {
     "title": "Ýokary 100",

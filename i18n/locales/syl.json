@@ -2627,7 +2627,8 @@
     "livePreview": "লাইভ প্রিভিউ",
     "publishChanges": "পরিবর্তন প্রকাশ করউ",
     "pagePublished": "দাওয়াতর পেজ প্রকাশ অইছে",
-    "pageSaveFailed": "দাওয়াতর পেজ সেভ করা গেল না"
+    "pageSaveFailed": "দাওয়াতর পেজ সেভ করা গেল না",
+    "selfVisitsExcluded": "আপনার লিংকে আপনার নিজের ভিজিট গণনা করা হয় না।"
   },
   "top100": {
     "title": "শীর্ষ ১০০",

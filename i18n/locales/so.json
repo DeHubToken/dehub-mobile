@@ -2468,7 +2468,8 @@
     "livePreview": "Horudhac toos ah",
     "publishChanges": "Daabac isbeddellada",
     "pagePublished": "Boggii casuumaadda waa la daabacay",
-    "pageSaveFailed": "Boggii casuumaadda lama keydin karin"
+    "pageSaveFailed": "Boggii casuumaadda lama keydin karin",
+    "selfVisitsExcluded": "Booqashooyinkaaga xiriirkaaga lama tirin karo."
   },
   "top100": {
     "title": "Sare 100",

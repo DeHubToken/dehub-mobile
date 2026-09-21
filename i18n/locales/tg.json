@@ -2459,7 +2459,8 @@
     "livePreview": "Пешнамоиши зинда",
     "publishChanges": "Тағйиротро нашр кунед",
     "pagePublished": "Саҳифаи даъват нашр шуд",
-    "pageSaveFailed": "Саҳифаи даъватро захира кардан нашуд"
+    "pageSaveFailed": "Саҳифаи даъватро захира кардан нашуд",
+    "selfVisitsExcluded": "Hindi account ang iyong sariling mga pagbisita sa iyong link."
   },
   "top100": {
     "title": "Беҳтарин 100",

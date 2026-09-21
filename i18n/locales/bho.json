@@ -2444,7 +2444,8 @@
     "livePreview": "लाइव झलक",
     "publishChanges": "बदलाव प्रकाशित करीं",
     "pagePublished": "न्योता पन्ना प्रकाशित हो गइल",
-    "pageSaveFailed": "न्योता पन्ना सेव ना हो सकल"
+    "pageSaveFailed": "न्योता पन्ना सेव ना हो सकल",
+    "selfVisitsExcluded": "रउआ लोग से सलाह बा कि कृपया कौनो लेख पर हस्ताक्षर ना करब ।"
   },
   "top100": {
     "title": "शीर्ष 100",

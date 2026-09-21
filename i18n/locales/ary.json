@@ -2505,7 +2505,8 @@
     "livePreview": "معاينة مباشرة",
     "publishChanges": "نشر التغييرات",
     "pagePublished": "تنشرات صفحة الدعوة",
-    "pageSaveFailed": "ما قدرناش نسجلو صفحة الدعوة"
+    "pageSaveFailed": "ما قدرناش نسجلو صفحة الدعوة",
+    "selfVisitsExcluded": "لا يتم احتساب زياراتك الخاصة إلى رابطك."
   },
   "top100": {
     "title": "أعلى 100",

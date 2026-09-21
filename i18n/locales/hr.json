@@ -2477,7 +2477,8 @@
     "livePreview": "Pregled uživo",
     "publishChanges": "Objavi promjene",
     "pagePublished": "Stranica pozivnice je objavljena",
-    "pageSaveFailed": "Stranicu pozivnice nije bilo moguće spremiti"
+    "pageSaveFailed": "Stranicu pozivnice nije bilo moguće spremiti",
+    "selfVisitsExcluded": "Vaše se posjete poveznici ne računaju."
   },
   "top100": {
     "title": "Top 100",

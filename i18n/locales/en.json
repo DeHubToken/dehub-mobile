@@ -107,7 +107,8 @@
     "livePreview": "Live preview",
     "publishChanges": "Publish changes",
     "pagePublished": "Invite page published",
-    "pageSaveFailed": "Could not save invite page"
+    "pageSaveFailed": "Could not save invite page",
+    "selfVisitsExcluded": "Your own visits to your link are not counted."
   },
   "feed": {
     "home": "Home",
@@ -4377,7 +4378,6 @@
     "checkingBalances": "Checking your wallet balances…",
     "walletBalances": "Your balances by network",
     "noWalletFunds": "Choose a currency, or search other currencies and networks.",
-    "otherCurrencies": "Other currencies",
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
@@ -4398,7 +4398,11 @@
     "change24": "24h reference change",
     "refresh": "Refresh",
     "updating": "Updating…",
-    "tab": { "chart": "Chart", "book": "Order book", "trade": "Buy / Sell" },
+    "tab": {
+      "chart": "Chart",
+      "book": "Order book",
+      "trade": "Buy / Sell"
+    },
     "depth": "Depth",
     "depthHint": "Cumulative DHB · drag to inspect",
     "chartHint": "Market reference · USD · drag to inspect",
@@ -4440,9 +4444,14 @@
     "unlockWallet": "Unlock your wallet to continue.",
     "snapshotError": "Market refresh failed. Showing the last complete snapshot; amounts may be out of date.",
     "stage": {
-      "quote": "Reading pool…", "wallet": "Unlock or connect your wallet…", "balance": "Checking token approvals…",
-      "tokenApproval": "Confirm token approval in your wallet…", "permitApproval": "Confirm position approval in your wallet…",
-      "submit": "Confirm position in your wallet…", "confirm": "Waiting for confirmation…", "index": "Registering your position…"
+      "quote": "Reading pool…",
+      "wallet": "Unlock or connect your wallet…",
+      "balance": "Checking token approvals…",
+      "tokenApproval": "Confirm token approval in your wallet…",
+      "permitApproval": "Confirm position approval in your wallet…",
+      "submit": "Confirm position in your wallet…",
+      "confirm": "Waiting for confirmation…",
+      "index": "Registering your position…"
     },
     "title": "DHB / USDC",
     "heading": "DHB / USDC",

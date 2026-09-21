@@ -2594,7 +2594,8 @@
     "livePreview": "Lewendige voorskou",
     "publishChanges": "Publiseer veranderinge",
     "pagePublished": "Uitnodigingsblad gepubliseer",
-    "pageSaveFailed": "Kon nie die uitnodigingsblad stoor nie"
+    "pageSaveFailed": "Kon nie die uitnodigingsblad stoor nie",
+    "selfVisitsExcluded": "Jou eie besoeke aan jou skakel word nie getel nie."
   },
   "top100": {
     "title": "Top 100",

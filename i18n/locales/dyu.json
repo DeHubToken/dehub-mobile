@@ -2436,7 +2436,8 @@
     "livePreview": "Ɲɛfɛlajɛ",
     "publishChanges": "Yɛlɛmaliw bɔ kɛnɛ kan",
     "pagePublished": "Weleli ɲɛ bɔra kɛnɛ kan",
-    "pageSaveFailed": "Weleli ɲɛ ma se ka mara"
+    "pageSaveFailed": "Weleli ɲɛ ma se ka mara",
+    "selfVisitsExcluded": "I yɛrɛ ka taga bɔ i ka site web kan, o tɛ jate."
   },
   "top100": {
     "title": "Sanfɛ 100",
