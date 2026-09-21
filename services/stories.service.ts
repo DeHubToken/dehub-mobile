@@ -1,6 +1,11 @@
 import * as VideoThumbnails from "expo-video-thumbnails";
 import { supabase } from "./supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
+import {
+  contentTypeForExtension,
+  fileExtension,
+  uploadLocalFileToBucket,
+} from "../libs/storage-upload";
 
 /**
  * Stories — shared Supabase `stories` table (same schema as web).
@@ -127,32 +132,28 @@ export async function uploadStory(params: {
   let thumbnailUrl: string | null = null;
   try {
     const { uri: thumbUri } = await VideoThumbnails.getThumbnailAsync(localVideoUri, { time: 0 });
-    const thumbBlob = await (await fetch(thumbUri)).blob();
-    const { error: thumbError } = await supabase.storage
-      .from("stories")
-      .upload(thumbFilename, thumbBlob, { contentType: "image/jpeg", upsert: false });
-    if (!thumbError) {
-      thumbnailUrl = supabase.storage.from("stories").getPublicUrl(thumbFilename).data.publicUrl;
-    }
+    thumbnailUrl = await uploadLocalFileToBucket({
+      bucket: "stories",
+      path: thumbFilename,
+      uri: thumbUri,
+      contentType: "image/jpeg",
+    });
   } catch {
     // thumbnail optional
   }
 
   onProgress?.(35);
 
-  const videoBlob = await (await fetch(localVideoUri)).blob();
-  const contentType = videoBlob.type?.startsWith("video/") ? videoBlob.type : "video/mp4";
-
   onProgress?.(55);
 
-  const { error: videoError } = await supabase.storage
-    .from("stories")
-    .upload(videoFilename, videoBlob, { contentType, upsert: false });
-  if (videoError) throw videoError;
+  const videoUrl = await uploadLocalFileToBucket({
+    bucket: "stories",
+    path: videoFilename,
+    uri: localVideoUri,
+    contentType: contentTypeForExtension(fileExtension({ uri: localVideoUri }, "mp4"), "video/mp4"),
+  });
 
   onProgress?.(80);
-
-  const videoUrl = supabase.storage.from("stories").getPublicUrl(videoFilename).data.publicUrl;
 
   const { data, error: insertError } = await withWalletHeader(
     supabase

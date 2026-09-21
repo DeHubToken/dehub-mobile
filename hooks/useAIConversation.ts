@@ -25,6 +25,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { supabase } from '../services/supabase';
 import { withWalletHeader } from '../libs/supabase-wallet-client';
 import { materialise } from '../libs/assistantMedia';
+import { fileExtension, uploadLocalFileToBucket } from '../libs/storage-upload';
 import { createLogger } from '../libs/logger';
 import type { AIChatMessage, AIPostContext } from '../services/ai.service';
 
@@ -196,14 +197,9 @@ async function persistMediaUrl(
   if (!url.startsWith('data:')) return url;
   try {
     const local = await materialise(url, kind);
-    const blob = await (await fetch(local)).blob();
-    const ext = local.split('.').pop() || (kind === 'video' ? 'mp4' : 'png');
+    const ext = fileExtension({ uri: local }, kind === 'video' ? 'mp4' : 'png');
     const path = `assistant/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-    const { error } = await supabase.storage
-      .from('ai-media-uploads')
-      .upload(path, blob, { contentType: blob.type || undefined, upsert: false });
-    if (error) throw error;
-    return supabase.storage.from('ai-media-uploads').getPublicUrl(path).data.publicUrl;
+    return await uploadLocalFileToBucket({ bucket: 'ai-media-uploads', path, uri: local });
   } catch (err) {
     log.error('media upload failed:', err);
     return null;

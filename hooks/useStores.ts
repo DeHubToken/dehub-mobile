@@ -21,6 +21,11 @@ import { useUser } from "../context/AuthContext";
 import { toastError, toastSuccess } from "../libs/toast";
 import { createLogger } from "../libs/logger";
 import env from "../config/env";
+import {
+  contentTypeForExtension,
+  fileExtension,
+  uploadLocalFileToBucket,
+} from "../libs/storage-upload";
 
 const log = createLogger("useStores");
 
@@ -120,24 +125,23 @@ export function useTokenPrices() {
 
 /**
  * Upload a picked local image to the shared `store-media` bucket and return its
- * public URL. Web uploads a `File`; React Native has no File, so the local URI
- * is read into a Blob first — the same approach communities.service.ts uses.
+ * public URL. Web uploads a `File`; here the file is streamed off disk by
+ * libs/storage-upload, the same as every other bucket upload in the app.
  * Path shape matches web's CreateListingDrawer.
  */
 export async function uploadStoreMedia(
   localUri: string,
   folder: "listings" | "stores" = "listings",
 ): Promise<string> {
-  const ext = localUri.split(".").pop()?.split("?")[0] || "jpg";
+  const ext = fileExtension({ uri: localUri }, "jpg");
   const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-  const response = await fetch(localUri);
-  const blob = await response.blob();
-  const { error } = await supabase.storage
-    .from("store-media")
-    .upload(path, blob, { upsert: true, contentType: blob.type || "image/jpeg" });
-  if (error) throw error;
-  const { data } = supabase.storage.from("store-media").getPublicUrl(path);
-  return data.publicUrl;
+  return uploadLocalFileToBucket({
+    bucket: "store-media",
+    path,
+    uri: localUri,
+    contentType: contentTypeForExtension(ext, "image/jpeg"),
+    upsert: true,
+  });
 }
 
 // ── My stores (seller) ──────────────────────────────────────────────────────

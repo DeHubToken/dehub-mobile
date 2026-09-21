@@ -49,6 +49,7 @@ import Icon from "../components/ui/Icon";
 import Avatar from "../components/common/Avatar";
 import { runWithPermissions } from "../libs/permissions.util";
 import { toastWarning } from "../libs/toast";
+import { localFileSize } from "../libs/storage-upload";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
 import { formatCompactNumber } from "../libs";
@@ -75,6 +76,7 @@ import {
   isVideoAttachment,
   MAX_FEATURE_ATTACHMENTS,
   MAX_FEATURE_ATTACHMENT_BYTES,
+  type FeatureAttachment,
   CATEGORY_LABELS,
   STATUS_LABELS,
   type FeatureCategory,
@@ -613,7 +615,7 @@ const SubmitSheet: React.FC<{
     title: string;
     description: string;
     category: FeatureCategory;
-    mediaUris: string[];
+    attachments: FeatureAttachment[];
   }) => void;
   submitting: boolean;
   initialCategory?: FeatureCategory;
@@ -624,7 +626,7 @@ const SubmitSheet: React.FC<{
   const [description, setDescription] = useState("");
   const [device, setDevice] = useState("");
   const [category, setCategory] = useState<FeatureCategory>(initialCategory || "new_feature");
-  const [mediaUris, setMediaUris] = useState<string[]>([]);
+  const [attachments, setAttachments] = useState<FeatureAttachment[]>([]);
 
   // The sheet stays mounted between opens, so the category has to be re-seeded
   // when it opens — otherwise it keeps whatever the last submission chose.
@@ -642,31 +644,35 @@ const SubmitSheet: React.FC<{
         mediaTypes: ["images", "videos"],
         quality: 0.85,
         allowsMultipleSelection: true,
-        selectionLimit: MAX_FEATURE_ATTACHMENTS - mediaUris.length,
+        selectionLimit: MAX_FEATURE_ATTACHMENTS - attachments.length,
       });
       if (pick.canceled) return;
 
       const assets = pick.assets ?? [];
-      // Same per-file ceiling web enforces. An oversized file read into a Blob
-      // for upload is also the fastest way to run the app out of memory.
-      const accepted = assets.filter(
-        (a) => a.uri && (a.fileSize ?? 0) <= MAX_FEATURE_ATTACHMENT_BYTES,
-      );
+      // Same per-file ceiling web enforces. On Android the picker often
+      // reports no fileSize for a content:// asset, so ask the file system
+      // before deciding; a file whose size stays unknown goes through and the
+      // upload is the judge.
+      const accepted: FeatureAttachment[] = [];
+      for (const a of assets) {
+        if (!a.uri) continue;
+        const size = typeof a.fileSize === "number" ? a.fileSize : await localFileSize(a.uri);
+        if (size !== null && size > MAX_FEATURE_ATTACHMENT_BYTES) continue;
+        accepted.push({ uri: a.uri, mimeType: a.mimeType, fileName: a.fileName });
+      }
       if (accepted.length < assets.length) {
         toastWarning(t("features.attachmentTooLarge", "Each file must be under 20MB"));
       }
-      setMediaUris((prev) =>
-        [...prev, ...accepted.map((a) => a.uri)].slice(0, MAX_FEATURE_ATTACHMENTS),
-      );
+      setAttachments((prev) => [...prev, ...accepted].slice(0, MAX_FEATURE_ATTACHMENTS));
     });
-  }, [mediaUris.length, t]);
+  }, [attachments.length, t]);
 
   const reset = useCallback(() => {
     setTitle("");
     setDescription("");
     setDevice("");
     setCategory(initialCategory || "new_feature");
-    setMediaUris([]);
+    setAttachments([]);
   }, [initialCategory]);
 
   const handleClose = useCallback(() => {
@@ -681,9 +687,9 @@ const SubmitSheet: React.FC<{
     const fullDescription = device.trim()
       ? `${description.trim()}\n\n📱 Device & OS: ${device.trim()}`
       : description.trim();
-    onSubmit({ title, description: fullDescription, category, mediaUris });
+    onSubmit({ title, description: fullDescription, category, attachments });
     reset();
-  }, [valid, submitting, device, description, title, category, mediaUris, onSubmit, reset]);
+  }, [valid, submitting, device, description, title, category, attachments, onSubmit, reset]);
 
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={handleClose}>
@@ -776,9 +782,9 @@ const SubmitSheet: React.FC<{
                 </Text>
               </Text>
 
-              {mediaUris.length > 0 && (
+              {attachments.length > 0 && (
                 <View style={styles.pickGrid}>
-                  {mediaUris.map((uri, i) => (
+                  {attachments.map(({ uri }, i) => (
                     <View key={`${uri}-${i}`} style={styles.pickTile}>
                       <Image
                         source={{ uri }}
@@ -787,7 +793,7 @@ const SubmitSheet: React.FC<{
                       />
                       <Pressable
                         style={styles.pickRemove}
-                        onPress={() => setMediaUris((p) => p.filter((_, idx) => idx !== i))}
+                        onPress={() => setAttachments((p) => p.filter((_, idx) => idx !== i))}
                         hitSlop={6}
                         accessibilityRole="button"
                         accessibilityLabel={`Remove attachment ${i + 1}`}
@@ -799,11 +805,11 @@ const SubmitSheet: React.FC<{
                 </View>
               )}
 
-              {mediaUris.length < MAX_FEATURE_ATTACHMENTS && (
+              {attachments.length < MAX_FEATURE_ATTACHMENTS && (
                 <Pressable style={styles.mediaAdd} onPress={pickMedia}>
                   <Icon name="ImagePlus" size={20} color="#808089" />
                   <Text style={styles.mediaAddText}>
-                    {mediaUris.length === 0
+                    {attachments.length === 0
                       ? t("features.clickToUpload", "Tap to upload")
                       : t("features.addAnother", "Add another")}
                   </Text>

@@ -23,6 +23,11 @@ import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { toastError, toastSuccess, toastWarning } from "../libs/toast";
 import { createLogger } from "../libs/logger";
 import { dehubAuthHeaders } from "../services/ai.service";
+import {
+  contentTypeForExtension,
+  fileExtension,
+  uploadLocalFileToBucket,
+} from "../libs/storage-upload";
 
 const log = createLogger("useFeatureRequests");
 
@@ -118,6 +123,14 @@ export const MAX_FEATURE_ATTACHMENTS = 6;
 
 /** Per-file ceiling, same as web's. */
 export const MAX_FEATURE_ATTACHMENT_BYTES = 20 * 1024 * 1024;
+
+/** One picked attachment. Only `uri` is required; the rest name the file. */
+export type FeatureAttachment = {
+  /** `file://` path or, on Android, a picker `content://` URI. */
+  uri: string;
+  mimeType?: string | null;
+  fileName?: string | null;
+};
 
 /**
  * Every attachment on a request, oldest-first. `image_urls` is the authority
@@ -628,26 +641,25 @@ export function useDeleteComment() {
 
 /**
  * Upload a picked local file to the shared `feature-media` bucket and return
- * its public URL. Web uploads a `File` to `${wallet}/${Date.now()}-${i}.${ext}`;
- * React Native has no File, so the local URI is read into a Blob first.
+ * its public URL, at the same `${wallet}/${Date.now()}-${i}.${ext}` path web
+ * writes. Android's picker returns `content://` URIs with no extension in
+ * them, so the extension falls back to the picker's file name or MIME type.
  */
 async function uploadFeatureMedia(
-  localUri: string,
+  attachment: FeatureAttachment,
   wallet: string,
   index: number,
 ): Promise<string> {
-  const ext = localUri.split(".").pop()?.split("?")[0]?.toLowerCase() || "jpg";
+  const ext = fileExtension(attachment, "jpg");
   // The filename is stamped with Date.now(); the index keeps same-extension
   // files picked in the same millisecond from colliding, as on web.
   const path = `${wallet.toLowerCase()}/${Date.now()}-${index}.${ext}`;
-  const response = await fetch(localUri);
-  const blob = await response.blob();
-  const { error } = await supabase.storage
-    .from("feature-media")
-    .upload(path, blob, { contentType: blob.type || "image/jpeg", upsert: false });
-  if (error) throw new Error(`Upload failed: ${error.message}`);
-  const { data } = supabase.storage.from("feature-media").getPublicUrl(path);
-  return data.publicUrl;
+  return uploadLocalFileToBucket({
+    bucket: "feature-media",
+    path,
+    uri: attachment.uri,
+    contentType: contentTypeForExtension(ext, "image/jpeg"),
+  });
 }
 
 /** True when Postgres rejected the payload because the column isn't there yet. */
@@ -666,22 +678,22 @@ export function useSubmitFeatureRequest() {
       title,
       description,
       category,
-      mediaUris,
+      attachments,
     }: {
       title: string;
       description: string;
       category: FeatureCategory;
-      /** Local URIs, oldest-first. Capped at MAX_FEATURE_ATTACHMENTS. */
-      mediaUris?: string[] | null;
+      /** Picked local files, oldest-first. Capped at MAX_FEATURE_ATTACHMENTS. */
+      attachments?: FeatureAttachment[] | null;
     }) => {
       if (!wallet) throw new Error("Not authenticated");
       const addr = wallet.toLowerCase();
 
-      const picked = (mediaUris ?? []).slice(0, MAX_FEATURE_ATTACHMENTS);
+      const picked = (attachments ?? []).slice(0, MAX_FEATURE_ATTACHMENTS);
       const imageUrls: string[] = [];
       // Sequential, not parallel — see the filename note in uploadFeatureMedia.
-      for (const [index, uri] of picked.entries()) {
-        imageUrls.push(await uploadFeatureMedia(uri, addr, index));
+      for (const [index, attachment] of picked.entries()) {
+        imageUrls.push(await uploadFeatureMedia(attachment, addr, index));
       }
 
       const row = {
