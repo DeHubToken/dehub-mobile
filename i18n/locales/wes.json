@@ -4234,5 +4234,48 @@
         "title": "Follow three creators"
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Common Ground",
+      "sectionLabel": "Discussion",
+      "sheetHint": "A small break before your answer. Your answers remain private.",
+      "toggleLabel": "Common Ground mode",
+      "toggleHint": "Before dem first answer, dem ask readers for di strongtin point of di oda side and wetin both sides get in common, den remind dem to avoid thinking say na only two options dey.",
+      "banner": "Dis creator don switch on Common Ground mode. Before you answer, dem go ask you for di strongtin point of di oda side and wetin una share.",
+      "step1Title": "In one sentence, wetin be di strongtin point for di oda side?",
+      "step1Placeholder": "Di best tin dem fit talk be say…",
+      "step2Title": "Wetin you and dem really agree on?",
+      "step2Placeholder": "We both want…",
+      "reminderTitle": "Watch out for thinking say na only two tins dey",
+      "reminderBody": "Most arguments no be choice between two extreme tins. When question feel like na only two options, usually get a third option for middle.",
+      "example1": "A neighbour wey want street wey quiet pass and a neighbour wey want more parking fit both correct about wetin dem need.",
+      "example2": "Two parents fit disagree about screen time and still agree say di pikin suppose sleep well and do fine for school.",
+      "noShouting": "Big issues no dey ever settle by shouting or threats. A calm, specific answer na di one people really read.",
+      "reviewTitle": "One last look at your answer",
+      "privateNote": "Your answers na for you alone and dem no dey post am with your answer.",
+      "continueLabel": "Continue",
+      "back": "Back",
+      "postReply": "Post my reply",
+      "tooShort": "Write at least 10 characters so di reflection go really count.",
+      "saveFailed": "No fit save di Common Ground setting. Please try again."
+    },
+    "coach": {
+      "title": "Conversation coach",
+      "checkTone": "Check my tone",
+      "checking": "Checking di tone of your answer…",
+      "allClear": "Nothing stand out. Your answer read like fair and calm.",
+      "postAnyway": "Post anyway",
+      "dismiss": "Dismiss dis suggestion",
+      "settingLabel": "Show coaching suggestions",
+      "settingHint": "Give quick tone check for long comments and point out common reasoning mistakes before you post. Suggestions only, no fit block.",
+      "kind": {
+        "ad_hominem": "Attack di person",
+        "straw_man": "Misstates their view",
+        "false_dilemma": "Either-or framing",
+        "overgeneralisation": "Sweeping claim",
+        "hostile_tone": "Hostile tone"
+      }
+    }
   }
 }

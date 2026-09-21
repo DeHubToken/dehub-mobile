@@ -4531,5 +4531,49 @@
         "body": "了解提示、徽章和超级能力如何将你在 DeHub 上的付出转化为收益。"
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "共同点",
+      "sectionLabel": "讨论",
+      "sheetHint": "回复前稍作停顿。您的回答将保密。",
+      "toggleLabel": "共同点模式",
+      "toggleHint": "在读者回复之前，会询问对方的最强论点以及双方的共同点，然后提醒避免非此即彼的思维。",
+      "banner": "此创作者已开启共同点模式。在您回复之前，会询问对方的最强论点以及您与对方的共同点。",
+      "stepOf": "第 {{step}} 步，共 {{total}} 步",
+      "step1Title": "用一句话概括，对方的最强论点是什么？",
+      "step1Placeholder": "他们能提出的最佳论点是……",
+      "step2Title": "您和对方实际上同意什么？",
+      "step2Placeholder": "我们都希望……",
+      "reminderTitle": "警惕非此即彼的思维",
+      "reminderBody": "大多数分歧并非在两个极端之间做选择。当一个问题感觉像是“非此即彼”时，通常中间会存在第三种选择。",
+      "example1": "希望街道更安静的邻居和希望有更多停车位的邻居，在他们各自的需求上都可以是对的。",
+      "example2": "两位家长可能在屏幕使用时间上意见不合，但仍然同意孩子应该睡得好并在学校表现良好。",
+      "noShouting": "复杂的问题从不会通过叫喊或威胁来解决。冷静、具体的回复才是人们真正会读的。",
+      "reviewTitle": "最后再看一眼您的回复",
+      "privateNote": "您的回答仅供您自己参考，不会与您的回复一起发布。",
+      "continueLabel": "继续",
+      "back": "返回",
+      "postReply": "发布我的回复",
+      "tooShort": "请至少输入 10 个字符，以便反思计数。",
+      "saveFailed": "无法保存共同点设置。请重试。"
+    },
+    "coach": {
+      "title": "对话教练",
+      "checkTone": "检查我的语气",
+      "checking": "正在检查您的回复语气……",
+      "allClear": "没有发现问题。您的回复显得公平且冷静。",
+      "postAnyway": "仍然发布",
+      "dismiss": "忽略此建议",
+      "settingLabel": "显示教练建议",
+      "settingHint": "提供对长评论的快速语气检查，并在您发布前指出常见的推理失误。仅提供建议，从不阻止。",
+      "kind": {
+        "ad_hominem": "人身攻击",
+        "straw_man": "歪曲其观点",
+        "false_dilemma": "非此即彼的框架",
+        "overgeneralisation": "以偏概全的说法",
+        "hostile_tone": "敌对语气"
+      }
+    }
   }
 }

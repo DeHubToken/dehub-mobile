@@ -4171,5 +4171,28 @@
         "title": "Follow three creators"
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Common Ground",
+      "sectionLabel": "Discussion",
+      "toggleLabel": "Common Ground mode",
+      "step2Placeholder": "We both want…",
+      "continueLabel": "Continue",
+      "back": "Back",
+      "postReply": "Post my reply"
+    },
+    "coach": {
+      "title": "Conversation coach",
+      "checkTone": "Check my tone",
+      "postAnyway": "Post anyway",
+      "settingLabel": "Show coaching suggestions",
+      "kind": {
+        "straw_man": "Misstates their view",
+        "false_dilemma": "Either-or framing",
+        "overgeneralisation": "Sweeping claim",
+        "hostile_tone": "Hostile tone"
+      }
+    }
   }
 }

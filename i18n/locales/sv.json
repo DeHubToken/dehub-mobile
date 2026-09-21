@@ -4536,5 +4536,49 @@
         "body": "Ta reda på hur tips, märken och superkrafter förvandlar det du gör här till något du tjänar på."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Gemensam grund",
+      "sectionLabel": "Diskussion",
+      "sheetHint": "En kort paus innan ditt svar. Dina svar förblir privata.",
+      "toggleLabel": "Gemensam grund-läge",
+      "toggleHint": "Innan deras första svar, ombeds läsarna att ange den andra sidans starkaste argument och vad båda sidor delar, och påminns sedan om att undvika antingen-eller-tänkande.",
+      "banner": "Den här skaparen har aktiverat Gemensam grund-läge. Innan du svarar kommer du att bli ombedd att ange den andra sidans starkaste argument och vad ni delar.",
+      "stepOf": "Steg {{step}} av {{total}}",
+      "step1Title": "I en mening, vad är det starkaste argumentet på den andra sidan?",
+      "step1Placeholder": "Det bästa argumentet de skulle kunna framföra är att…",
+      "step2Title": "Vad håller du och de faktiskt överens om?",
+      "step2Placeholder": "Vi vill båda…",
+      "reminderTitle": "Se upp för antingen-eller-tänkande",
+      "reminderBody": "De flesta oenigheter är inte ett val mellan två ytterligheter. När en fråga känns som antingen-eller, finns det oftast ett tredje alternativ någonstans mittemellan.",
+      "example1": "En granne som vill ha en tystare gata och en granne som vill ha mer parkering kan båda ha rätt i vad de behöver.",
+      "example2": "Två föräldrar kan vara oense om skärmtid och ändå vara överens om att barnet ska sova gott och klara sig bra i skolan.",
+      "noShouting": "Komplexa frågor avgörs aldrig genom skrik eller hot. Ett lugnt, specifikt svar är det som folk faktiskt läser.",
+      "reviewTitle": "En sista titt på ditt svar",
+      "privateNote": "Dina svar är endast för dig och publiceras inte med ditt svar.",
+      "continueLabel": "Fortsätt",
+      "back": "Tillbaka",
+      "postReply": "Publicera mitt svar",
+      "tooShort": "Skriv minst 10 tecken så att reflektionen faktiskt räknas.",
+      "saveFailed": "Kunde inte spara inställningen för Gemensam grund. Försök igen."
+    },
+    "coach": {
+      "title": "Konversationscoach",
+      "checkTone": "Kontrollera min ton",
+      "checking": "Kontrollerar tonen i ditt svar…",
+      "allClear": "Inget stack ut. Ditt svar uppfattas som rättvist och lugnt.",
+      "postAnyway": "Publicera ändå",
+      "dismiss": "Avfärda detta förslag",
+      "settingLabel": "Visa coachningsförslag",
+      "settingHint": "Erbjuder en snabb tonkontroll på längre kommentarer och påpekar vanliga resonemangslappar innan du publicerar. Endast förslag, aldrig ett block.",
+      "kind": {
+        "ad_hominem": "Anfaller personen",
+        "straw_man": "Misstänker sin åsikt",
+        "false_dilemma": "Antingen-eller inramning",
+        "overgeneralisation": "Sopningsanspråk",
+        "hostile_tone": "Fientlig ton"
+      }
+    }
   }
 }

@@ -4533,5 +4533,49 @@
         "body": "Descobreix com els consells, les insígnies i els Superpoders converteixen el que fas aquí en una cosa per la qual guanyes diners."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Terreny Comú",
+      "sectionLabel": "Discussió",
+      "sheetHint": "Una breu pausa abans de la teva resposta. Les teves respostes són privades.",
+      "toggleLabel": "Mode Terreny Comú",
+      "toggleHint": "Abans de la seva primera resposta, es demana als lectors el punt més fort de l'altra part i què comparteixen ambdues parts, i després se'ls recorda que evitin el pensament dicotòmic.",
+      "banner": "Aquest creador ha activat el mode Terreny Comú. Abans de respondre, se't demanarà el punt més fort de l'altra part i què compartiu.",
+      "stepOf": "Pas {{step}} de {{total}}",
+      "step1Title": "En una frase, quin és el punt més fort de l'altra part?",
+      "step1Placeholder": "El millor argument que podrien fer és que…",
+      "step2Title": "En què esteu d'acord tu i ells?",
+      "step2Placeholder": "Tots dos volem…",
+      "reminderTitle": "Compte amb el pensament dicotòmic",
+      "reminderBody": "La majoria dels desacords no són una elecció entre dos extrems. Quan una pregunta se sent com si fos una cosa o l'altra, normalment hi ha una tercera opció en algun lloc al mig.",
+      "example1": "Un veí que vol un carrer més tranquil i un veí que vol més aparcament poden tenir raó sobre el que necessiten.",
+      "example2": "Dos pares poden discrepar sobre el temps d'ús de pantalles i encara estar d'acord que el nen ha de dormir bé i anar bé a l'escola.",
+      "noShouting": "Els problemes complexos mai no es resolen a crits o amenaces. Una resposta calmada i específica és la que la gent realment llegeix.",
+      "reviewTitle": "Una última ullada a la teva resposta",
+      "privateNote": "Les teves respostes són només per a tu i no es publiquen amb la teva resposta.",
+      "continueLabel": "Continuar",
+      "back": "Enrere",
+      "postReply": "Publicar la meva resposta",
+      "tooShort": "Escriu almenys 10 caràcters perquè la reflexió compti realment.",
+      "saveFailed": "No s'ha pogut desar la configuració de Terreny Comú. Torna a provar-ho."
+    },
+    "coach": {
+      "title": "Entrenador de converses",
+      "checkTone": "Comprova el meu to",
+      "checking": "Comprovant el to de la teva resposta…",
+      "allClear": "No ha destacat res. La teva resposta es llegeix com a justa i calmada.",
+      "postAnyway": "Publicar igualment",
+      "dismiss": "Ignorar aquest suggeriment",
+      "settingLabel": "Mostra suggeriments d'entrenament",
+      "settingHint": "Ofereix una comprovació ràpida del to dels comentaris més llargs i assenyala les entrades de raonament habituals abans de publicar. Només suggeriments, mai un bloc.",
+      "kind": {
+        "ad_hominem": "Ataca la persona",
+        "straw_man": "Manifesta erròniament la seva opinió",
+        "false_dilemma": "O bé o bé emmarcar",
+        "overgeneralisation": "Sol·licitud àmplia",
+        "hostile_tone": "To hostil"
+      }
+    }
   }
 }

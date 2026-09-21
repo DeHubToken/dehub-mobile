@@ -4489,5 +4489,49 @@
         "body": "Temokake carane tip, lencana, lan SuperPowers ngowahi apa sing sampeyan lakoni ing kene dadi apa sing sampeyan entuk."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Panggonan Umum",
+      "sectionLabel": "Dhiskusi",
+      "sheetHint": "Sedhela mandheg sadurunge balesanmu. Wangsulanmu tetep pribadi.",
+      "toggleLabel": "Mode Panggonan Umum",
+      "toggleHint": "Sadurunge balesan kapisan, pamaca dijaluk kanggo titik paling kuwat saka sisih liyane lan apa sing padha nuduhake, banjur dielingake supaya ora mikir salah siji-utawa.",
+      "banner": "Kreator iki ngaktifake mode Panggonan Umum. Sadurunge balesan, sampeyan bakal dijaluk titik paling kuwat saka sisih liyane lan apa sing sampeyan nuduhake.",
+      "stepOf": "Langkah {{step}} saka {{total}}",
+      "step1Title": "Ing siji ukara, apa titik paling kuwat ing sisih liyane?",
+      "step1Placeholder": "Kasus paling apik sing bisa digawe yaiku…",
+      "step2Title": "Apa sampeyan lan dheweke pancen setuju?",
+      "step2Placeholder": "Kita loro pengin…",
+      "reminderTitle": "Ati-ati karo mikir kabeh-utawa-ora-ana",
+      "reminderBody": "Umume perselisihan dudu pilihan antarane rong ekstrem. Nalika pitakonan krasa salah siji-utawa, biasane ana pilihan katelu ing tengah.",
+      "example1": "Tangga sing pengin dalan sing luwih tenang lan tangga sing pengin parkir luwih akeh bisa uga bener babagan apa sing dibutuhake.",
+      "example2": "Wong tuwa loro bisa beda pendapat babagan wektu layar lan isih setuju yen bocah kudu turu nyenyak lan apik ing sekolah.",
+      "noShouting": "Masalah rumit ora bakal rampung kanthi bengok-bengok utawa ancaman. Balesan sing tenang lan spesifik yaiku sing diwaca wong.",
+      "reviewTitle": "Sepisan maneh ndeleng balesanmu",
+      "privateNote": "Wangsulanmu mung kanggo sampeyan lan ora dikirim bebarengan karo balesanmu.",
+      "continueLabel": "Terusake",
+      "back": "Bali",
+      "postReply": "Kirim balesanku",
+      "tooShort": "Tulis paling ora 10 karakter supaya refleksi dianggep.",
+      "saveFailed": "Ora bisa nyimpen setelan Panggonan Umum. Coba maneh."
+    },
+    "coach": {
+      "title": "Pelatih obrolan",
+      "checkTone": "Priksa nada saya",
+      "checking": "Mriksa nada balesanmu…",
+      "allClear": "Ora ana sing katon. Balesanmu katon adil lan tenang.",
+      "postAnyway": "Kirim wae",
+      "dismiss": "Tolak saran iki",
+      "settingLabel": "Tampilake saran pelatih",
+      "settingHint": "Nawakake cek nada cepet ing komentar sing luwih dawa lan nuduhake kesalahan penalaran umum sadurunge diposting. Saran mung, ora tau diblokir.",
+      "kind": {
+        "ad_hominem": "Nyemprot wong",
+        "straw_man": "Salah ngandharake pandangane",
+        "false_dilemma": "Bingkai salah siji-utawa",
+        "overgeneralisation": "Klaim gedhe",
+        "hostile_tone": "Nada sengit"
+      }
+    }
   }
 }

@@ -4532,5 +4532,49 @@
         "body": "Lue, miten vinkit, merkit ja SuperPowerit muuttavat täällä tekemäsi asiat joksikin, josta ansaitset."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Yhteinen pohja",
+      "sectionLabel": "Keskustelu",
+      "sheetHint": "Lyhyt tauko ennen vastaustasi. Vastauksesi pysyvät yksityisinä.",
+      "toggleLabel": "Yhteinen pohja -tila",
+      "toggleHint": "Ennen ensimmäistä vastaustaan lukijoilta kysytään toisen osapuolen vahvinta argumenttia ja sitä, mitä molemmat osapuolet jakavat, ja muistutetaan välttämään joko-tai-ajattelua.",
+      "banner": "Tämä sisällöntuottaja on ottanut käyttöön Yhteinen pohja -tilan. Ennen kuin vastaat, sinulta kysytään toisen osapuolen vahvinta argumenttia ja sitä, mitä jaatte.",
+      "stepOf": "Vaihe {{step}} / {{total}}",
+      "step1Title": "Yhdellä lauseella, mikä on toisen osapuolen vahvin argumentti?",
+      "step1Placeholder": "Paras perustelu, jonka he voisivat esittää, on, että…",
+      "step2Title": "Mistä sinä ja he olette todella samaa mieltä?",
+      "step2Placeholder": "Me molemmat haluamme…",
+      "reminderTitle": "Varo joko-tai-ajattelua",
+      "reminderBody": "Useimmat erimielisyydet eivät ole valinta kahden ääripään välillä. Kun kysymys tuntuu joko-tai-kysymykseltä, keskeltä löytyy yleensä kolmas vaihtoehto.",
+      "example1": "Naapuri, joka haluaa hiljaisemman kadun, ja naapuri, joka haluaa lisää pysäköintitilaa, voivat molemmat olla oikeassa tarpeissaan.",
+      "example2": "Kaksi vanhempaa voi olla eri mieltä ruuankäytöstä ja silti olla samaa mieltä siitä, että lapsen tulisi nukkua hyvin ja menestyä koulussa.",
+      "noShouting": "Monimutkaisia kysymyksiä ei koskaan ratkaista huutamalla tai uhkailemalla. Rauhallinen, tarkka vastaus on se, jonka ihmiset todella lukevat.",
+      "reviewTitle": "Viimeinen katsaus vastaukseesi",
+      "privateNote": "Vastauksesi ovat vain sinua varten, eikä niitä julkaista vastauksesi yhteydessä.",
+      "continueLabel": "Jatka",
+      "back": "Takaisin",
+      "postReply": "Lähetä vastaukseni",
+      "tooShort": "Kirjoita vähintään 10 merkkiä, jotta pohdinta lasketaan.",
+      "saveFailed": "Yhteinen pohja -asetusta ei voitu tallentaa. Yritä uudelleen."
+    },
+    "coach": {
+      "title": "Keskusteluavustaja",
+      "checkTone": "Tarkista sävyni",
+      "checking": "Vastauksesi sävyn tarkistus…",
+      "allClear": "Mikään ei pistänyt silmään. Vastauksesi vaikuttaa reilulta ja rauhalliselta.",
+      "postAnyway": "Lähetä joka tapauksessa",
+      "dismiss": "Hylkää tämä ehdotus",
+      "settingLabel": "Näytä valmennusehdotukset",
+      "settingHint": "Tarjoaa nopean sävytarkistuksen pidemmille kommenteille ja huomauttaa yleisistä päättelyvihjeistä ennen julkaisua. Vain ehdotuksia, ei koskaan korttelia.",
+      "kind": {
+        "ad_hominem": "Hyökkää henkilön kimppuun",
+        "straw_man": "Vääristelee näkemystään",
+        "false_dilemma": "Joko tai kehystys",
+        "overgeneralisation": "Pyyhkäisyvaatimus",
+        "hostile_tone": "Vihamielinen sävy"
+      }
+    }
   }
 }

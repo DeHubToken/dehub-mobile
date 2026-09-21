@@ -4514,5 +4514,49 @@
         "body": "İpucları, nişanlar və Super Güclərin burada etdiklərinizi necə qazandığınız bir şeyə çevirdiyini öyrənin."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Ortak Zəmin",
+      "sectionLabel": "Müzakirə",
+      "sheetHint": "Cavabınızdan əvvəl qısa fasilə. Cavablarınız gizli qalır.",
+      "toggleLabel": "Ortak Zəmin rejimi",
+      "toggleHint": "Oxuculardan ilk cavablarından əvvəl qarşı tərəfin ən güclü arqumentini və hər iki tərəfin ortaq cəhətlərini soruşur, sonra isə \"ya-ya\" düşüncə tərzindən çəkinmələri xatırladılır.",
+      "banner": "Bu yaradıcı Ortak Zəmin rejimini aktivləşdirib. Cavab verməzdən əvvəl sizdən qarşı tərəfin ən güclü arqumenti və sizin ortaq cəhətləriniz soruşulacaq.",
+      "stepOf": "{{step}}-ci addım {{total}}-dən",
+      "step1Title": "Bir cümlədə, qarşı tərəfin ən güclü arqumenti nədir?",
+      "step1Placeholder": "Onların ən güclü arqumenti belə ola bilər ki...",
+      "step2Title": "Sizin və onların əslində razılaşdığı məqamlar hansılardır?",
+      "step2Placeholder": "Hər ikimiz istəyirik ki...",
+      "reminderTitle": "\"Ya-ya\" düşüncə tərzindən qaçının",
+      "reminderBody": "Əksər mübahisələr iki ekstremal seçim arasında deyil. Bir sual \"ya-ya\" kimi hiss olunursa, adətən ortada üçüncü bir seçim olur.",
+      "example1": "Daha sakit küçə istəyən qonşu və daha çox park yeri istəyən qonşu öz ehtiyacları barədə haqlı ola bilərlər.",
+      "example2": "İki valideyn uşaqların ekran vaxtı ilə bağlı razılaşmaya bilər, lakin uşağın yaxşı yatması və məktəbdə uğurlu olması barədə razılaşa bilərlər.",
+      "noShouting": "Mürəkkəb məsələlər heç vaxt qışqırıqla və ya təhdidlə həll olunmur. Sakit, konkret cavab insanlar tərəfindən həqiqətən oxunan cavabdır.",
+      "reviewTitle": "Cavabınıza son baxış",
+      "privateNote": "Cavablarınız yalnız sizə aiddir və cavabınızla birlikdə dərc olunmur.",
+      "continueLabel": "Davam et",
+      "back": "Geri",
+      "postReply": "Cavabımı dərc et",
+      "tooShort": "Müşahidənin qeydə alınması üçün ən azı 10 simvol yazın.",
+      "saveFailed": "Ortak Zəmin ayarı yadda saxlanılmadı. Zəhmət olmasa yenidən cəhd edin."
+    },
+    "coach": {
+      "title": "Söhbət məşqçisi",
+      "checkTone": "Tonumu yoxla",
+      "checking": "Cavabınızın tonunu yoxlayırıq...",
+      "allClear": "Heç nə diqqət çəkmədi. Cavabınız ədalətli və sakit səslənir.",
+      "postAnyway": "Yenə də dərc et",
+      "dismiss": "Bu təklifi rədd et",
+      "settingLabel": "Məşq təkliflərini göstər",
+      "settingHint": "Uzunmüddətli şərhlərdə qısa ton yoxlaması təklif edir və paylaşmazdan əvvəl ümumi əsaslı sürüşmələrə işarə edir. Yalnız təkliflər, heç vaxt bloklanmayın.",
+      "kind": {
+        "ad_hominem": "Şəxsə hücum edir",
+        "straw_man": "Onların görünüşünü səhv təsvir edir",
+        "false_dilemma": "Ya da çərçivələmə",
+        "overgeneralisation": "Köklü iddia",
+        "hostile_tone": "Ev sahibliyi tonu"
+      }
+    }
   }
 }

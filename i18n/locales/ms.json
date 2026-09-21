@@ -4795,5 +4795,49 @@
         "body": "Ketahui bagaimana tip, lencana dan SuperPower mengubah apa yang anda lakukan di sini menjadi sesuatu yang anda perolehi."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Common Ground",
+      "sectionLabel": "Perbincangan",
+      "sheetHint": "Jeda sebentar sebelum balasan anda. Jawapan anda kekal peribadi.",
+      "toggleLabel": "Mod Common Ground",
+      "toggleHint": "Sebelum balasan pertama mereka, pembaca diminta untuk menyatakan perkara terkuat pihak lain dan apa yang dikongsi bersama, kemudian diingatkan untuk mengelak pemikiran sama ada-atau.",
+      "banner": "Pencipta ini telah mengaktifkan mod Common Ground. Sebelum anda membalas, anda akan diminta untuk menyatakan perkara terkuat pihak lain dan apa yang anda kongsi bersama.",
+      "stepOf": "Langkah {{step}} daripada {{total}}",
+      "step1Title": "Dalam satu ayat, apakah perkara terkuat di pihak lain?",
+      "step1Placeholder": "Kes terbaik yang boleh mereka buat ialah…",
+      "step2Title": "Apa yang anda dan mereka sebenarnya bersetuju?",
+      "step2Placeholder": "Kita berdua mahu…",
+      "reminderTitle": "Berhati-hati dengan pemikiran semua-atau-tiada",
+      "reminderBody": "Kebanyakan perselisihan bukanlah pilihan antara dua ekstrem. Apabila sesuatu soalan terasa sama ada-atau, biasanya ada pilihan ketiga di tengah-tengah.",
+      "example1": "Jiran yang mahukan jalan yang lebih senyap dan jiran yang mahukan lebih banyak tempat letak kereta boleh betul tentang apa yang mereka perlukan.",
+      "example2": "Dua ibu bapa boleh tidak bersetuju tentang masa skrin dan masih bersetuju bahawa kanak-kanak itu harus tidur nyenyak dan berjaya di sekolah.",
+      "noShouting": "Isu kompleks tidak pernah diselesaikan dengan jeritan atau ugutan. Balasan yang tenang dan spesifik adalah balasan yang sebenarnya dibaca oleh orang ramai.",
+      "reviewTitle": "Satu lagi pandangan terakhir pada balasan anda",
+      "privateNote": "Jawapan anda adalah untuk anda sahaja dan tidak disiarkan bersama balasan anda.",
+      "continueLabel": "Teruskan",
+      "back": "Kembali",
+      "postReply": "Siarkan balasan saya",
+      "tooShort": "Tulis sekurang-kurangnya 10 aksara supaya refleksi itu benar-benar dikira.",
+      "saveFailed": "Gagal menyimpan tetapan Common Ground. Sila cuba lagi."
+    },
+    "coach": {
+      "title": "Jurulatih perbualan",
+      "checkTone": "Semak nada saya",
+      "checking": "Menyemak nada balasan anda…",
+      "allClear": "Tiada apa yang ketara. Balasan anda dibaca sebagai adil dan tenang.",
+      "postAnyway": "Siarkan sahaja",
+      "dismiss": "Abaikan cadangan ini",
+      "settingLabel": "Tunjukkan cadangan jurulatih",
+      "settingHint": "Menawarkan pemeriksaan nada pantas pada komen yang lebih panjang dan menunjukkan slip penalaran biasa sebelum anda menyiarkan. Cadangan sahaja, tidak pernah sekat.",
+      "kind": {
+        "ad_hominem": "Menyerang orang itu",
+        "straw_man": "Salah nyatakan pandangan mereka",
+        "false_dilemma": "Sama ada-atau membingkaikan",
+        "overgeneralisation": "Tuntutan menyapu",
+        "hostile_tone": "Nada bermusuhan"
+      }
+    }
   }
 }

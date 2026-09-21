@@ -178,6 +178,60 @@ export async function enhanceText(
   return enhanced.trim();
 }
 
+export type CoachFlagKind = 'ad_hominem' | 'straw_man' | 'false_dilemma' | 'overgeneralisation' | 'hostile_tone';
+
+export interface CoachFlag {
+  kind: CoachFlagKind;
+  /** The exact words from the draft the flag is about. May be empty. */
+  quote: string;
+  /** One sentence for the writer. */
+  suggestion: string;
+}
+
+export type CoachMode = 'coach' | 'commonGround';
+
+const COACH_KINDS: readonly CoachFlagKind[] = ['ad_hominem', 'straw_man', 'false_dilemma', 'overgeneralisation', 'hostile_tone'];
+/** The function refuses longer drafts with a 400; the composer caps at this too. */
+const COACH_MAX_CHARS = 2000;
+
+/**
+ * Tone check on a comment draft through the same `conversation-coach` edge
+ * function dehubweb's composer uses. Up to three flags come back, each with
+ * the phrase that triggered it and one sentence on how to keep the point
+ * without the slip.
+ *
+ * Resolves to the flags, or null when the coach could not answer. Every
+ * failure is silent by design: this is advice beside a Post button that stays
+ * live, and a coach that cannot be reached must never look like a comment
+ * that cannot be posted. Public (IP rate-limited), so no auth header.
+ */
+export async function checkConversationTone(text: string, mode: CoachMode = 'coach'): Promise<CoachFlag[] | null> {
+  const draft = text.trim().slice(0, COACH_MAX_CHARS);
+  if (!draft) return [];
+  try {
+    const res = await fetch(`${EDGE_BASE}/conversation-coach`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: draft, mode }),
+    });
+    if (!res.ok) return null;
+    const data: any = await res.json().catch(() => null);
+    if (!data || typeof data !== 'object' || !Array.isArray(data.flags)) return null;
+    return (data.flags as unknown[])
+      .filter((f): f is Record<string, unknown> => !!f && typeof f === 'object')
+      .filter((f) => typeof f.kind === 'string' && COACH_KINDS.includes(f.kind as CoachFlagKind))
+      .map((f) => ({
+        kind: f.kind as CoachFlagKind,
+        quote: typeof f.quote === 'string' ? f.quote.trim() : '',
+        suggestion: typeof f.suggestion === 'string' ? f.suggestion.trim() : '',
+      }))
+      .filter((f) => f.suggestion.length > 0)
+      .slice(0, 3);
+  } catch {
+    return null;
+  }
+}
+
 export type AIModel =
   | 'auto'
   | 'gemini-2.5-flash'

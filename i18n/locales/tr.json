@@ -4594,5 +4594,49 @@
         "body": "İpuçlarının, rozetlerin ve Süper Güçlerin burada yaptıklarını nasıl kazandığın bir şeye dönüştürdüğünü öğren."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Ortak Zemin",
+      "sectionLabel": "Tartışma",
+      "sheetHint": "Yanıtınızdan önce kısa bir duraklama. Yanıtlarınız gizli kalır.",
+      "toggleLabel": "Ortak Zemin modu",
+      "toggleHint": "Okuyuculara ilk yanıtlarından önce karşı tarafın en güçlü noktası ve iki tarafın paylaştığı şeyler sorulur, ardından ya hep ya hiç düşüncesinden kaçınılması hatırlatılır.",
+      "banner": "Bu içerik oluşturucu Ortak Zemin modunu açtı. Yanıt vermeden önce karşı tarafın en güçlü noktası ve paylaştığınız şeyler sorulacaktır.",
+      "stepOf": "{{step}} adım {{total}}",
+      "step1Title": "Tek bir cümlede, karşı tarafın en güçlü noktası nedir?",
+      "step1Placeholder": "Yapabilecekleri en iyi savunma şudur:…",
+      "step2Title": "Siz ve onlar aslında ne üzerinde anlaşıyorsunuz?",
+      "step2Placeholder": "İkimiz de… istiyoruz",
+      "reminderTitle": "Ya hep ya hiç düşüncesine dikkat edin",
+      "reminderBody": "Anlaşmazlıkların çoğu iki uç nokta arasında bir seçim değildir. Bir soru ya hep ya hiç gibi hissettiriyorsa, genellikle ortada üçüncü bir seçenek vardır.",
+      "example1": "Daha sessiz bir sokak isteyen bir komşu ve daha fazla park yeri isteyen bir komşu, ihtiyaçları konusunda haklı olabilir.",
+      "example2": "İki ebeveyn, ekran süresi konusunda anlaşamayabilir ve yine de çocuğun iyi uyuması ve okulda başarılı olması gerektiği konusunda hemfikir olabilir.",
+      "noShouting": "Karmaşık konular asla bağırarak veya tehditlerle çözülmez. Sakin, spesifik bir yanıt, insanların gerçekten okuduğu yanıttır.",
+      "reviewTitle": "Yanıtınıza son bir bakış",
+      "privateNote": "Yanıtlarınız yalnızca size aittir ve yanıtınızla birlikte yayınlanmaz.",
+      "continueLabel": "Devam",
+      "back": "Geri",
+      "postReply": "Yanıtımı Gönder",
+      "tooShort": "Yansıtmanın gerçekten sayılması için en az 10 karakter yazın.",
+      "saveFailed": "Ortak Zemin ayarı kaydedilemedi. Lütfen tekrar deneyin."
+    },
+    "coach": {
+      "title": "Sohbet koçu",
+      "checkTone": "Tonumu kontrol et",
+      "checking": "Yanıtınızın tonu kontrol ediliyor…",
+      "allClear": "Dikkat çeken bir şey yok. Yanıtınız adil ve sakin okunuyor.",
+      "postAnyway": "Yine de Gönder",
+      "dismiss": "Bu öneriyi reddet",
+      "settingLabel": "Koçluk önerilerini göster",
+      "settingHint": "Yorumları hızlıca ton açısından kontrol eder ve göndermeden önce yaygın mantık hatalarını belirtir. Sadece öneriler, asla engelleme yok.",
+      "kind": {
+        "ad_hominem": "Kişiye saldırır",
+        "straw_man": "Görüşünü yanlış ifade eder",
+        "false_dilemma": "Ya-ya da çerçevelemesi",
+        "overgeneralisation": "Geniş çaplı iddia",
+        "hostile_tone": "Düşmanca ton"
+      }
+    }
   }
 }

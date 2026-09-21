@@ -4520,5 +4520,49 @@
         "body": "Ṣàwárí bí àwọn ìmọ̀ràn, àmì ẹ̀yẹ àti SuperPowers ṣe yí ohun tí ò ń ṣe níbí padà sí nǹkan tí ò ń rí owó gbà."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Ilẹ̀ Pẹ̀lẹ́",
+      "sectionLabel": "Ìjíròrò",
+      "sheetHint": "Ìfẹ̀sẹ̀wọ̀n díẹ̀ kí o tó dáhùn. Àwọn ìdáhùn rẹ wà ní ìkọ̀kọ̀.",
+      "toggleLabel": "Ìrẹ̀ẹ̀rẹ̀ Pẹ̀lẹ́",
+      "toggleHint": "Kí tó dáhùn ìgbà àkọ́kọ́, wọ́n béèrè ohun tó jẹ́ àṣeyọrí jù lọ láti ọwọ́ ẹlòmíì àti ohun tí ẹ̀yin méjèèjì pín, lẹ́yìn náà ni wọ́n rán un létí láti yẹra fún ìròyìn “tàbí-tàbí”.",
+      "banner": "Olùdárakita yìí ti ṣàgbékalẹ̀ Ìrẹ̀ẹ̀rẹ̀ Pẹ̀lẹ́. Kí o tó dáhùn, wọ́n máa béèrè ohun tó jẹ́ àṣeyọrí jù lọ láti ọwọ́ ẹlòmíì àti ohun tí ẹ̀yin pín.",
+      "stepOf": "Ìpele {{step}} nínú {{total}}",
+      "step1Title": "Ní gbolohùn kan, kí ni àṣeyọrí jù lọ láti ọwọ́ ẹlòmíì?",
+      "step1Placeholder": "Ohun tó dára jù tí wọ́n lè sọ ni pé…",
+      "step2Title": "Kí ni ìwọ àti àwọn pẹ̀lú rẹ gbọ́ ara yín lórí rẹ̀?",
+      "step2Placeholder": "A gbogbo wa fẹ́…",
+      "reminderTitle": "Máa ṣọ́ra fún ìròyìn “gbogbo-táà”",
+      "reminderBody": "Ọ̀pọ̀lọpọ̀ ìfòyà kò jẹ́ ààyè láàárín ohun méjì tí kò ṣeé ṣe. Nígbà tí ìbéèrè bá dà bíi pé “tàbí-tàbí”, ó máa ń wà ní àárín.",
+      "example1": "Aladúgbò kan tó fẹ́ ìlànà tí ó dára jù àti aladúgbò kan tó fẹ́ ààyè síwájú sí i lè jẹ́ olódodo nípa ohun tí wọ́n nílò.",
+      "example2": "Àwọn òbí méjì lè yàtọ̀ nípa àkókò ìfọwọ́ṣe àti ṣíṣe ìwé, ṣùgbọ́n wọ́n lè gbọ́ ara wọn lórí pé ọmọ náà yẹ kí ó sùn dáradára kí ó sì ṣe dáradára ní ilé-ìwé.",
+      "noShouting": "Àwọn ọ̀ràn tó nira kò níí yanjú nípa ìhóhó tàbí ìhalẹ̀. Ìdáhùn tó tọ́, tó sì ṣe kedere ni èyí tí àwọn ènìyàn yóò kà.",
+      "reviewTitle": "Ìwòye kan sí i nípa ìdáhùn rẹ",
+      "privateNote": "Àwọn ìdáhùn rẹ jẹ́ tirẹ̀ nìkan, wọn kò sì níí tẹ̀ jáde pẹ̀lú ìdáhùn rẹ.",
+      "continueLabel": "Tẹ̀siwájú",
+      "back": "Padà",
+      "postReply": "Fi ìdáhùn mi sílẹ̀",
+      "tooShort": "Kọ ìwọn mẹ́wàá (10) tàbí jù bẹ́ẹ̀ lọ kí ìròyìn náà lè jẹ́ ìgbàgbọ́.",
+      "saveFailed": "Kò ṣeé ṣe láti fi ìrẹ̀ẹ̀rẹ̀ Pẹ̀lẹ́ pamọ́. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan sí i."
+    },
+    "coach": {
+      "title": "Olùkọ́ ìjíròrò",
+      "checkTone": "Ṣàyẹ̀wò ọ̀nà mi",
+      "checking": "Ṣíṣàyẹ̀wò ọ̀nà ìdáhùn rẹ…",
+      "allClear": "Kò sí ohun tó yàtọ̀. Ìdáhùn rẹ dà bíi pé ó tọ́, ó sì dára.",
+      "postAnyway": "Fi sílẹ̀ báyìí",
+      "dismiss": "Kọ̀ láti gba ìmọ̀ràn yìí",
+      "settingLabel": "Fi àwọn ìmọ̀ràn ìkọ́ni hàn",
+      "settingHint": "Ó ń ṣe àyẹ̀wò ohùn kíákíá lórí àwọn àlàyé tó gùn, ó sì ń tọ́ka sí àwọn èrò tí ó wọ́pọ̀ kí o tó fi í ránṣẹ́. Ìmọ̀ràn nìkan, kì í ṣe ìdènà.",
+      "kind": {
+        "ad_hominem": "Lógun ẹni náà",
+        "straw_man": "Ṣàṣìṣe èrò wọn",
+        "false_dilemma": "Boya-tabi framing",
+        "overgeneralisation": "Sweeping claim",
+        "hostile_tone": "Ohun orin Hostile"
+      }
+    }
   }
 }

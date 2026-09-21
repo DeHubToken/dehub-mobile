@@ -4799,5 +4799,49 @@
         "body": "Ontdek hoe tips, badges en SuperPowers van wat je hier doet, iets maken waar je aan verdient."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Gemeenschappelijke grond",
+      "sectionLabel": "Discussie",
+      "sheetHint": "Een korte pauze voor je antwoord. Je antwoorden blijven privé.",
+      "toggleLabel": "Modus Gemeenschappelijke grond",
+      "toggleHint": "Voordat lezers hun eerste antwoord geven, wordt hen gevraagd naar het sterkste punt van de andere kant en wat beide kanten delen, en wordt hen vervolgens herinnerd aan het vermijden van 'of-of'-denken.",
+      "banner": "Deze maker heeft de modus Gemeenschappelijke grond ingeschakeld. Voordat je antwoordt, wordt je gevraagd naar het sterkste punt van de andere kant en wat je deelt.",
+      "stepOf": "Stap {{step}} van {{total}}",
+      "step1Title": "Wat is in één zin het sterkste punt van de andere kant?",
+      "step1Placeholder": "Het beste argument dat ze zouden kunnen maken is dat…",
+      "step2Title": "Waar zijn jij en zij het eigenlijk over eens?",
+      "step2Placeholder": "We willen allebei…",
+      "reminderTitle": "Pas op voor 'alles of niets'-denken",
+      "reminderBody": "De meeste meningsverschillen zijn geen keuze tussen twee extremen. Wanneer een vraag aanvoelt als 'of-of', is er meestal ergens een derde optie in het midden.",
+      "example1": "Een buur die een rustigere straat wil en een buur die meer parkeergelegenheid wil, kunnen allebei gelijk hebben in wat ze nodig hebben.",
+      "example2": "Twee ouders kunnen het oneens zijn over schermtijd en het er toch over eens zijn dat het kind goed moet slapen en goed moet presteren op school.",
+      "noShouting": "Complexe kwesties worden nooit opgelost door te schreeuwen of te dreigen. Een kalm, specifiek antwoord is degene die mensen daadwerkelijk lezen.",
+      "reviewTitle": "Nog een laatste blik op je antwoord",
+      "privateNote": "Je antwoorden zijn alleen voor jou en worden niet met je antwoord geplaatst.",
+      "continueLabel": "Doorgaan",
+      "back": "Terug",
+      "postReply": "Mijn antwoord plaatsen",
+      "tooShort": "Schrijf minimaal 10 tekens, zodat de reflectie daadwerkelijk telt.",
+      "saveFailed": "De instelling Gemeenschappelijke grond kon niet worden opgeslagen. Probeer het opnieuw."
+    },
+    "coach": {
+      "title": "Gespreksbegeleider",
+      "checkTone": "Controleer mijn toon",
+      "checking": "De toon van je antwoord controleren…",
+      "allClear": "Niets viel op. Je antwoord leest als eerlijk en kalm.",
+      "postAnyway": "Toch plaatsen",
+      "dismiss": "Deze suggestie negeren",
+      "settingLabel": "Coaching suggesties tonen",
+      "settingHint": "Biedt een snelle tooncontrole op langere opmerkingen en wijst op veelvoorkomende redeneerfragmenten voordat je post. Alleen suggesties, nooit een blok.",
+      "kind": {
+        "ad_hominem": "Valt de persoon aan",
+        "straw_man": "Verkeert hun mening",
+        "false_dilemma": "Ofwel of framing",
+        "overgeneralisation": "Vegen van vordering",
+        "hostile_tone": "Vijandige toon"
+      }
+    }
   }
 }

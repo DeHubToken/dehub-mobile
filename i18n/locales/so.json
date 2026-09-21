@@ -4521,5 +4521,49 @@
         "body": "Ogow sida talooyinka, calaamadaha iyo SuperPowers u beddelaan waxa aad halkan ku samayso wax aad ka kasbato."
       }
     }
+  },
+  "conversation": {
+    "commonGround": {
+      "title": "Wadaad Wadaad",
+      "sectionLabel": "Dood",
+      "sheetHint": "Hakad gaaban ka hor intaadan jawaabin. Jawaabahaagu waa kuwo gaar ah.",
+      "toggleLabel": "Habka Wadaad Wadaad",
+      "toggleHint": "Kahor jawaabtooda ugu horeysa, akhristayaasha waxaa la weydiinayaa qodobka ugu xoogan ee dhinaca kale iyo waxa labada dhinac wadaagaan, ka dibna waxaa loo xusuusinayaa inay ka fogaadaan fekerka \"ama-ama\".",
+      "banner": "Abuurahaani wuxuu shiday habka Wadaad Wadaad. Kahor intaadan jawaabin waxaa lagugu weydiin doonaa qodobka ugu xoogan ee dhinaca kale iyo waxa aad wadaagtaan.",
+      "stepOf": "Tallaabada {{step}} ee {{total}}",
+      "step1Title": "Hal jumlad, waa maxay qodobka ugu xoogan ee dhinaca kale?",
+      "step1Placeholder": "Kiiska ugu wanaagsan ee ay samayn karaan waa in...",
+      "step2Title": "Maxaad adiga iyo iyagu runtii ku heshiiseen?",
+      "step2Placeholder": "Labadeenaba waxaan rabnaa...",
+      "reminderTitle": "Ka digtoonow fekerka dhammaan-ama-midna",
+      "reminderBody": "Inta badan khilaafyada ma aha doorasho u dhaxaysa laba xad. Marka su'aal dareento sida ama-ama, waxaa badanaa jira doorasho saddexaad oo meel dhexe ah.",
+      "example1": "Deris doonaya inuu jidadku aamusnaado iyo deris doonaya baarkin dheeraad ah labaduba waxay xaq u yeelan karaan waxa ay u baahan yihiin.",
+      "example2": "Labadh waalid waxay ku kala-fogaan karaan waqtiga shaashadda waxayna weli ku heshiin karaan in ilmaha uu si fiican u seexdo oo uu si fiican wax ugu qabto dugsiga.",
+      "noShouting": "Arrimaha adag weligood lama xallin karo qaylo ama hanjabaad. Jawaab degan oo gaar ah ayaa ah tan dadku runtii akhriyaan.",
+      "reviewTitle": "Hal muuqaal oo ugu dambeeya ee jawaabtaada",
+      "privateNote": "Jawaabahaagu waa adiga keligaa mana aha kuwa lagu daabaco jawaabtaada.",
+      "continueLabel": "Sii wad",
+      "back": "Dib",
+      "postReply": "Daabac jawaabtayda",
+      "tooShort": "Qor ugu yaraan 10 xaraf si reflection-ka runtii u shaqeeyo.",
+      "saveFailed": "Goyntii Wadaad Wadaad lama kaydin karin. Fadlan mar kale isku day."
+    },
+    "coach": {
+      "title": "Macallinka wada-hadalka",
+      "checkTone": "Hubi codkayga",
+      "checking": "Hubinta codka jawaabtaada…",
+      "allClear": "Waxba ma soo baxin. Jawaabtaadu waxay u muuqataa mid cadaalad ah oo degan.",
+      "postAnyway": "Si kastaba ha ahaatee daabac",
+      "dismiss": "Ka saar taladan",
+      "settingLabel": "Muuji talooyinka tababarka",
+      "settingHint": "Waxay bixisaa hubinta codka degdegga ah ee faallooyinka dheeraadka ah waxayna tilmaameysaa slips sababaha caadiga ah ka hor intaadan soo dirin. Talooyin kaliya, marna block ah.",
+      "kind": {
+        "ad_hominem": "Weeraro qofka",
+        "straw_man": "Qalad ku samee aragtidaada",
+        "false_dilemma": "Ama framing",
+        "overgeneralisation": "Sheegashada dhididka",
+        "hostile_tone": "Qaylo-dhaanta martida"
+      }
+    }
   }
 }
