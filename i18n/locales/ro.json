@@ -4488,5 +4488,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Nou aici? Doriți un tur ghidat scurt?",
+      "body": "Vă putem ghida prin DeHub pas cu pas și vă vom întreba cum a decurs fiecare pas, astfel încât să putem remedia orice este confuz.",
+      "yes": "Da, arată-mi",
+      "no": "Nu, mulțumesc"
+    },
+    "checklist": {
+      "title": "Început",
+      "subtitle": "Câțiva pași scurți pentru a vă configura pe DeHub.",
+      "progress": "{{done}} din {{total}} finalizat",
+      "go": "Du-mă acolo",
+      "done": "Marchează ca finalizat",
+      "skip": "Sari peste acest pas",
+      "dismiss": "Ascunde pașii de început",
+      "reopen": "Deschide ghidul",
+      "finishedTitle": "Acesta este tot — bine făcut.",
+      "finishedBody": "Vă mulțumim că ne-ați spus cum a decurs fiecare pas. Răspunsurile dumneavoastră ajung direct la persoanele care construiesc acest lucru.",
+      "chip": "Început"
+    },
+    "rating": {
+      "question": "A fost ușor?",
+      "easy": "Da, a fost ușor",
+      "hard": "Nu, a fost greu",
+      "thanks": "Mulțumim, ajută."
+    },
+    "steps": {
+      "profile": {
+        "title": "Setează-ți numele de utilizator și poza",
+        "body": "Alege un nume pe care oamenii îl vor recunoaște și adaugă o poză de profil, astfel încât postările tale să pară că au venit de la tine."
+      },
+      "wallet": {
+        "title": "Vezi-ți portofelul și ce este DHB",
+        "body": "Portofelul tău există deja și deține DHB-ul tău. Aruncă o privire la ce este în el și de unde a venit."
+      },
+      "feed": {
+        "title": "Alege ce vrei să vezi",
+        "body": "Răspunde la câteva întrebări rapide și fluxul tău va începe să afișeze genul de postări pe care le dorești cu adevărat."
+      },
+      "first-post": {
+        "title": "Fă-ți prima postare",
+        "body": "Distribuie un gând, o fotografie sau un videoclip. Durează doar un moment și așa te găsesc oamenii."
+      },
+      "follow": {
+        "title": "Urmărește trei creatori",
+        "body": "Fluxul tău devine mult mai bun odată ce urmărești câțiva oameni. Răsfoiește cine este aici și alege trei pentru început."
+      },
+      "comment": {
+        "title": "Lasă un comentariu la o postare",
+        "body": "Răspunde la ceva ce ți-a plăcut în feed. Conversațiile sunt locul în care se întâmplă de fapt cea mai mare parte a DeHub."
+      },
+      "rewards": {
+        "title": "Află cum funcționează câștigurile",
+        "body": "Află cum recompensele, insignele și superputerile transformă ceea ce faci aici în ceva din care câștigi bani."
+      }
+    }
   }
 }

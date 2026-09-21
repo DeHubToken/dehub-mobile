@@ -4561,5 +4561,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Mới đến à? Muốn tham quan ngắn gọn không?",
+      "body": "Chúng tôi có thể hướng dẫn bạn từng bước trên DeHub và hỏi xem mỗi bước diễn ra thế nào để chúng tôi có thể sửa chữa bất cứ điều gì gây khó hiểu.",
+      "yes": "Có, cho tôi xem xung quanh",
+      "no": "Không cảm ơn"
+    },
+    "checklist": {
+      "title": "Bắt đầu",
+      "subtitle": "Một vài bước ngắn để thiết lập tài khoản trên DeHub.",
+      "progress": "{{done}} trong số {{total}} đã hoàn thành",
+      "go": "Đưa tôi đến đó",
+      "done": "Đánh dấu là đã hoàn thành",
+      "skip": "Bỏ qua bước này",
+      "dismiss": "Ẩn các bước bắt đầu",
+      "reopen": "Mở hướng dẫn",
+      "finishedTitle": "Đó là tất cả — làm tốt lắm.",
+      "finishedBody": "Cảm ơn bạn đã cho chúng tôi biết mỗi bước diễn ra thế nào. Câu trả lời của bạn sẽ đến thẳng những người đang xây dựng cái này.",
+      "chip": "Bắt đầu"
+    },
+    "rating": {
+      "question": "Việc này có dễ không?",
+      "easy": "Có, việc này dễ",
+      "hard": "Không, việc này khó",
+      "thanks": "Cảm ơn, điều đó hữu ích."
+    },
+    "steps": {
+      "profile": {
+        "title": "Đặt tên người dùng và ảnh đại diện của bạn",
+        "body": "Chọn một cái tên mà mọi người sẽ nhận ra và thêm ảnh đại diện, để bài đăng của bạn trông như đến từ bạn."
+      },
+      "wallet": {
+        "title": "Xem ví của bạn và DHB là gì",
+        "body": "Ví của bạn đã tồn tại và chứa DHB của bạn. Hãy xem bên trong có gì và nó đến từ đâu."
+      },
+      "feed": {
+        "title": "Chọn những gì bạn muốn xem",
+        "body": "Trả lời một vài câu hỏi nhanh và nguồn cấp dữ liệu của bạn sẽ bắt đầu hiển thị loại bài đăng mà bạn thực sự muốn."
+      },
+      "first-post": {
+        "title": "Tạo bài đăng đầu tiên của bạn",
+        "body": "Chia sẻ một suy nghĩ, một bức ảnh hoặc một video. Chỉ mất một chút thời gian và đó là cách mọi người tìm thấy bạn."
+      },
+      "follow": {
+        "title": "Theo dõi ba người sáng tạo",
+        "body": "Nguồn cấp dữ liệu của bạn sẽ tốt hơn nhiều khi bạn theo dõi một vài người. Duyệt xem ai ở đây và chọn ba người để bắt đầu."
+      },
+      "comment": {
+        "title": "Để lại bình luận về một bài đăng",
+        "body": "Trả lời nội dung bạn thích trên nguồn cấp dữ liệu của mình. Các cuộc trò chuyện là nơi hầu hết DeHub thực sự diễn ra."
+      },
+      "rewards": {
+        "title": "Tìm hiểu cách thức hoạt động của thu nhập",
+        "body": "Tìm hiểu cách các mẹo, huy hiệu và Siêu năng lực biến những gì bạn làm ở đây thành thứ bạn kiếm được từ đó."
+      }
+    }
   }
 }

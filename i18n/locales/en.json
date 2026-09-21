@@ -4656,5 +4656,62 @@
     "withdrawing": "Withdrawing…",
     "withdrawUsdc": "Withdraw USDC",
     "withdrawPosition": "Withdraw position"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "New here? Want a short guided tour?",
+      "body": "We can walk you through DeHub one step at a time, and ask how each step went so we can fix whatever is confusing.",
+      "yes": "Yes, show me around",
+      "no": "No thanks"
+    },
+    "checklist": {
+      "title": "Getting started",
+      "subtitle": "A few short steps to set yourself up on DeHub.",
+      "progress": "{{done}} of {{total}} done",
+      "go": "Take me there",
+      "done": "Mark as done",
+      "skip": "Skip this step",
+      "dismiss": "Hide the getting started steps",
+      "reopen": "Open the guide",
+      "finishedTitle": "That is everything — nicely done.",
+      "finishedBody": "Thank you for telling us how each step went. Your answers go straight to the people building this.",
+      "chip": "Getting started"
+    },
+    "rating": {
+      "question": "Was this easy?",
+      "easy": "Yes, that was easy",
+      "hard": "No, that was hard",
+      "thanks": "Thank you, that helps."
+    },
+    "steps": {
+      "profile": {
+        "title": "Set your username and picture",
+        "body": "Pick a name people will recognise and add a profile picture, so your posts look like they came from you."
+      },
+      "wallet": {
+        "title": "See your wallet and what DHB is",
+        "body": "Your wallet already exists and holds your DHB. Take a look at what is in it and where it came from."
+      },
+      "feed": {
+        "title": "Choose what you want to see",
+        "body": "Answer a couple of quick questions and your feed will start showing the kind of posts you actually want."
+      },
+      "first-post": {
+        "title": "Make your first post",
+        "body": "Share a thought, a photo or a video. It only takes a moment and it is how people find you."
+      },
+      "follow": {
+        "title": "Follow three creators",
+        "body": "Your feed gets much better once you follow a few people. Browse who is here and pick three to start with."
+      },
+      "comment": {
+        "title": "Leave a comment on a post",
+        "body": "Reply to something you liked on your feed. Conversations are where most of DeHub actually happens."
+      },
+      "rewards": {
+        "title": "See how earning works",
+        "body": "Find out how tips, badges and SuperPowers turn what you do here into something you earn from."
+      }
+    }
   }
 }

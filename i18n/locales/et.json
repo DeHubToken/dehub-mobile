@@ -4474,5 +4474,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Uus siin? Soovid lühikest giidiga ekskursiooni?",
+      "body": "Saame sind DeHubis samm-sammult läbi juhendada ja küsida, kuidas iga samm läks, et saaksime parandada kõik, mis on segane.",
+      "yes": "Jah, näita mulle",
+      "no": "Ei aitäh"
+    },
+    "checklist": {
+      "title": "Alustamine",
+      "subtitle": "Mõned lühikesed sammud, et end DeHubis sisse seada.",
+      "progress": "{{done}} / {{total}} tehtud",
+      "go": "Vii mind sinna",
+      "done": "Märgi tehtuks",
+      "skip": "Jäta see samm vahele",
+      "dismiss": "Peida alustamise sammud",
+      "reopen": "Ava juhend",
+      "finishedTitle": "See on kõik – hästi tehtud.",
+      "finishedBody": "Täname, et andsid teada, kuidas iga samm läks. Sinu vastused jõuavad otse neid ehitavate inimesteni.",
+      "chip": "Alustamine"
+    },
+    "rating": {
+      "question": "Kas see oli lihtne?",
+      "easy": "Jah, see oli lihtne",
+      "hard": "Ei, see oli raske",
+      "thanks": "Tänan, see aitab."
+    },
+    "steps": {
+      "profile": {
+        "title": "Määra oma kasutajanimi ja pilt",
+        "body": "Vali nimi, mida inimesed tunnevad, ja lisa profiilipilt, et sinu postitused näeksid välja nagu tuleksid sinult."
+      },
+      "wallet": {
+        "title": "Vaata oma rahakotti ja mis on DHB",
+        "body": "Sinu rahakott juba eksisteerib ja selles on sinu DHB. Vaata, mis seal sees on ja kust see tuli."
+      },
+      "feed": {
+        "title": "Vali, mida soovid näha",
+        "body": "Vasta paarile kiirele küsimusele ja sinu voog hakkab näitama selliseid postitusi, mida sa tegelikult soovid."
+      },
+      "first-post": {
+        "title": "Tee oma esimene postitus",
+        "body": "Jaga mõtet, fotot või videot. See võtab vaid hetke ja nii leiavad inimesed sind."
+      },
+      "follow": {
+        "title": "Jälgi kolme loojat",
+        "body": "Sinu voog muutub palju paremaks, kui hakkad kedagi jälgima. Sirvi, kes siin on, ja vali kolm, kellega alustada."
+      },
+      "comment": {
+        "title": "Jäta kommentaar postitusele",
+        "body": "Vasta voos millelegi, mis sulle meeldis. Vestlused on need, kus enamik DeHubist tegelikult toimub."
+      },
+      "rewards": {
+        "title": "Vaata, kuidas tulu teenimine käib",
+        "body": "Vaata, kuidas nõuanded, märgid ja SuperPowers muudavad selle, mida sa siin teed, millekski, millega sa teenid."
+      }
+    }
   }
 }

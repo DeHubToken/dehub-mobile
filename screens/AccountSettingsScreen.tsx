@@ -56,6 +56,7 @@ import MessagesPanel from "../components/Settings/MessagesPanel";
 import ProfilesSection from "../components/Settings/ProfilesSection";
 import EnsHandleSection from "../components/Settings/EnsHandleSection";
 import StreamKeySection from "../components/Settings/StreamKeySection";
+import GettingStartedRow from "../components/Settings/GettingStartedRow";
 import {
   SettingsSection,
   SettingsLinkRow,
@@ -260,6 +261,8 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           description={t("settings.socialLinksDesc")}
           onPress={() => navigation.navigate(ScreenNames.EditProfile)}
         />
+        <Divider />
+        <GettingStartedRow />
       </SettingsSection>
 
       {/* Under the profile rows, not the wallet ones: a .eth name is an alias

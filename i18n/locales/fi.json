@@ -4475,5 +4475,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Uusi täällä? Haluatko lyhyen opastetun kierroksen?",
+      "body": "Voimme käydä DeHubin läpi askel askeleelta ja kysyä, miten kukin vaihe sujui, jotta voimme korjata kaiken, mikä on hämmentävää.",
+      "yes": "Kyllä, näytä minulle",
+      "no": "Ei kiitos"
+    },
+    "checklist": {
+      "title": "Aloittaminen",
+      "subtitle": "Muutama lyhyt vaihe DeHubiin asettumiseen.",
+      "progress": "{{done}} / {{total}} suoritettu",
+      "go": "Vie minut sinne",
+      "done": "Merkitse suoritetuksi",
+      "skip": "Ohita tämä vaihe",
+      "dismiss": "Piilota aloitusvaiheet",
+      "reopen": "Avaa opas",
+      "finishedTitle": "Siinä kaikki – hyvin tehty.",
+      "finishedBody": "Kiitos, että kerroit meille, miten kukin vaihe sujui. Vastauksesi menevät suoraan niille, jotka rakentavat tätä.",
+      "chip": "Aloittaminen"
+    },
+    "rating": {
+      "question": "Oliko tämä helppoa?",
+      "easy": "Kyllä, se oli helppoa",
+      "hard": "Ei, se oli vaikeaa",
+      "thanks": "Kiitos, se auttaa."
+    },
+    "steps": {
+      "profile": {
+        "title": "Aseta käyttäjänimesi ja kuvasi",
+        "body": "Valitse nimi, jonka ihmiset tunnistavat, ja lisää profiilikuva, jotta julkaisusi näyttävät siltä kuin ne olisivat sinulta."
+      },
+      "wallet": {
+        "title": "Katso lompakkoasi ja mitä DHB on",
+        "body": "Lompakkosi on jo olemassa ja sisältää DHB:si. Katso, mitä siinä on ja mistä se on peräisin."
+      },
+      "feed": {
+        "title": "Valitse, mitä haluat nähdä",
+        "body": "Vastaa muutamaan nopeaan kysymykseen, niin syötteesi alkaa näyttää sellaisia julkaisuja, joita todella haluat."
+      },
+      "first-post": {
+        "title": "Tee ensimmäinen julkaisusi",
+        "body": "Jaa ajatus, valokuva tai video. Se vie vain hetken, ja ihmiset löytävät sinut sitä kautta."
+      },
+      "follow": {
+        "title": "Seuraa kolmea sisällöntuottajaa",
+        "body": "Syötteesi paranee huomattavasti, kun seuraat muutamia ihmisiä. Selaa, ketkä täällä ovat, ja valitse kolme aluksi."
+      },
+      "comment": {
+        "title": "Jätä kommentti julkaisuun",
+        "body": "Vastaa syötteessäsi johonkin, mistä pidit. Keskustelut ovat paikkoja, joissa suurin osa DeHubista todella tapahtuu."
+      },
+      "rewards": {
+        "title": "Katso, miten ansaitseminen toimii",
+        "body": "Lue, miten vinkit, merkit ja SuperPowerit muuttavat täällä tekemäsi asiat joksikin, josta ansaitset."
+      }
+    }
   }
 }

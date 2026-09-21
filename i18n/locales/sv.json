@@ -4479,5 +4479,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Ny här? Vill du ha en kort guidad tur?",
+      "body": "Vi kan guida dig genom DeHub ett steg i taget och fråga hur varje steg gick så att vi kan fixa det som är förvirrande.",
+      "yes": "Ja, visa mig runt",
+      "no": "Nej tack"
+    },
+    "checklist": {
+      "title": "Kom igång",
+      "subtitle": "Några korta steg för att komma igång på DeHub.",
+      "progress": "{{done}} av {{total}} klart",
+      "go": "Ta mig dit",
+      "done": "Markera som klar",
+      "skip": "Hoppa över detta steg",
+      "dismiss": "Dölj kom igång-stegen",
+      "reopen": "Öppna guiden",
+      "finishedTitle": "Det var allt – bra jobbat.",
+      "finishedBody": "Tack för att du berättade hur varje steg gick. Dina svar går direkt till personerna som bygger detta.",
+      "chip": "Kom igång"
+    },
+    "rating": {
+      "question": "Var detta enkelt?",
+      "easy": "Ja, det var enkelt",
+      "hard": "Nej, det var svårt",
+      "thanks": "Tack, det hjälper."
+    },
+    "steps": {
+      "profile": {
+        "title": "Ställ in ditt användarnamn och din bild",
+        "body": "Välj ett namn som folk kommer att känna igen och lägg till en profilbild, så att dina inlägg ser ut att komma från dig."
+      },
+      "wallet": {
+        "title": "Se din plånbok och vad DHB är",
+        "body": "Din plånbok finns redan och innehåller din DHB. Ta en titt på vad som finns i den och var den kommer ifrån."
+      },
+      "feed": {
+        "title": "Välj vad du vill se",
+        "body": "Svara på ett par snabba frågor så kommer ditt flöde att börja visa den typ av inlägg du faktiskt vill ha."
+      },
+      "first-post": {
+        "title": "Gör ditt första inlägg",
+        "body": "Dela en tanke, ett foto eller en video. Det tar bara ett ögonblick och det är så folk hittar dig."
+      },
+      "follow": {
+        "title": "Följ tre skapare",
+        "body": "Ditt flöde blir mycket bättre när du följer några personer. Bläddra bland dem som finns här och välj tre att börja med."
+      },
+      "comment": {
+        "title": "Lämna en kommentar på ett inlägg",
+        "body": "Svara på något du gillade i ditt flöde. Konversationer är där de flesta av DeHub faktiskt sker."
+      },
+      "rewards": {
+        "title": "Se hur intjäning fungerar",
+        "body": "Ta reda på hur tips, märken och superkrafter förvandlar det du gör här till något du tjänar på."
+      }
+    }
   }
 }

@@ -4543,5 +4543,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Nowy tutaj? Chcesz krótką wycieczkę z przewodnikiem?",
+      "body": "Możemy przeprowadzić Cię przez DeHub krok po kroku i zapytać, jak przebiegł każdy krok, abyśmy mogli naprawić wszystko, co jest niejasne.",
+      "yes": "Tak, pokaż mi",
+      "no": "Nie, dziękuję"
+    },
+    "checklist": {
+      "title": "Pierwsze kroki",
+      "subtitle": "Kilka krótkich kroków, aby skonfigurować się w DeHub.",
+      "progress": "{{done}} z {{total}} wykonano",
+      "go": "Zabierz mnie tam",
+      "done": "Oznacz jako wykonane",
+      "skip": "Pomiń ten krok",
+      "dismiss": "Ukryj kroki początkowe",
+      "reopen": "Otwórz przewodnik",
+      "finishedTitle": "To wszystko — dobrze zrobione.",
+      "finishedBody": "Dziękujemy za informację, jak przebiegł każdy krok. Twoje odpowiedzi trafiają bezpośrednio do osób, które to tworzą.",
+      "chip": "Pierwsze kroki"
+    },
+    "rating": {
+      "question": "Czy to było łatwe?",
+      "easy": "Tak, to było łatwe",
+      "hard": "Nie, to było trudne",
+      "thanks": "Dziękujemy, to pomaga."
+    },
+    "steps": {
+      "profile": {
+        "title": "Ustaw swoją nazwę użytkownika i zdjęcie",
+        "body": "Wybierz nazwę, którą ludzie będą rozpoznawać i dodaj zdjęcie profilowe, aby Twoje posty wyglądały tak, jakby pochodziły od Ciebie."
+      },
+      "wallet": {
+        "title": "Zobacz swój portfel i co to jest DHB",
+        "body": "Twój portfel już istnieje i przechowuje Twoje DHB. Przyjrzyj się, co się w nim znajduje i skąd się wzięło."
+      },
+      "feed": {
+        "title": "Wybierz, co chcesz zobaczyć",
+        "body": "Odpowiedz na kilka szybkich pytań, a Twój kanał zacznie pokazywać rodzaj postów, których faktycznie chcesz."
+      },
+      "first-post": {
+        "title": "Zrób swój pierwszy post",
+        "body": "Udostępnij myśl, zdjęcie lub film. Zajmuje to tylko chwilę i dzięki temu ludzie Cię znajdą."
+      },
+      "follow": {
+        "title": "Obserwuj trzech twórców",
+        "body": "Twój kanał staje się znacznie lepszy, gdy obserwujesz kilka osób. Przeglądaj, kto tu jest i wybierz trzech na początek."
+      },
+      "comment": {
+        "title": "Skomentuj post",
+        "body": "Odpowiedz na coś, co Ci się spodobało. Większość rozmów odbywa się w DeHub."
+      },
+      "rewards": {
+        "title": "Zobacz, jak zarabiać",
+        "body": "Dowiedz się, jak wskazówki, odznaki i supermocarstwa zamieniają to, co tutaj robisz, w coś, na czym zarabiasz."
+      }
+    }
   }
 }

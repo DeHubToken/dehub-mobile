@@ -4446,5 +4446,16 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "steps": {
+      "comment": {
+        "body": "তুমার ফিডে যেতা পছন্দ অইসে, হেতার রিপ্লাই দেও। ডিহাবে আসল কাম বেসিভাগ আলাপ-আলোচনাতেই অয়।"
+      },
+      "rewards": {
+        "title": "কিভাবে ইনকাম অয়, দেও",
+        "body": "টিপস, ব্যাজ আর সুপারপাওয়ার কিলা তুমার কামরে ইনকামের জিনিস বানায়, তা বাইর কর।"
+      }
+    }
   }
 }

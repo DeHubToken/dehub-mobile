@@ -4517,5 +4517,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Yangi keldingizmi? Qisqacha yo'l ko'rsatuvni xohlaysizmi?",
+      "body": "Biz sizga DeHub bo'ylab birma-bir o'tishga yordam beramiz va har bir qadam qanday o'tganini so'raymiz, shunda chalkashliklarni tuzatishimiz mumkin.",
+      "yes": "Ha, menga ko'rsating",
+      "no": "Yo'q, rahmat"
+    },
+    "checklist": {
+      "title": "Boshlash",
+      "subtitle": "DeHubda o'zingizni sozlash uchun bir nechta qisqa qadamlar.",
+      "progress": "{{done}} dan {{total}} bajarildi",
+      "go": "Menga olib boring",
+      "done": "Bajarildi deb belgilash",
+      "skip": "Bu qadamni o'tkazib yuborish",
+      "dismiss": "Boshlash qadamlarini yashirish",
+      "reopen": "Yo'riqnomani ochish",
+      "finishedTitle": "Bu hammasi — yaxshi bajarildi.",
+      "finishedBody": "Har bir qadam qanday o'tganini aytganingiz uchun rahmat. Sizning javoblaringiz buni yaratayotgan odamlarga to'g'ridan-to'g'ri boradi.",
+      "chip": "Boshlash"
+    },
+    "rating": {
+      "question": "Bu oson bo'ldimi?",
+      "easy": "Ha, bu oson edi",
+      "hard": "Yo'q, bu qirg'in edi",
+      "thanks": "Rahmat, bu yordam beradi."
+    },
+    "steps": {
+      "profile": {
+        "title": "Foydalanuvchi nomingiz va rasmingizni o'rnating",
+        "body": "Odamlar tanaydigan ismni tanlang va profil rasmini qo'shing, shunda sizning xabarlaringiz sizdan chiqqandek ko'rinadi."
+      },
+      "wallet": {
+        "title": "Hamyoningizni va DHB nima ekanligini ko'ring",
+        "body": "Sizning hamyoningiz allaqachon mavjud va unda DHB saqlanadi. Unda nima borligini va qayerdan kelganini ko'rib chiqing."
+      },
+      "feed": {
+        "title": "Nimalarni ko'rishni xohlaysiz",
+        "body": "Bir nechta tezkor savollarga javob bering va sizning lentangiz siz haqiqatan ham xohlagan xabarlar turini ko'rsata boshlaydi."
+      },
+      "first-post": {
+        "title": "Birinchi xabaringizni yozing",
+        "body": "Fikringizni, fotosuratni yoki videoni baham ko'ring. Bu bir lahza va odamlar sizni topish usuli."
+      },
+      "follow": {
+        "title": "Uchta ijodkorni kuzatib boring",
+        "body": "Bir nechta odamni kuzatib boring, shunda sizning lentangiz yaxshiroq bo'ladi. Kimlar borligini ko'rib chiqing va boshlash uchun uchtasini tanlang."
+      },
+      "comment": {
+        "title": "Xabarga sharh qoldiring",
+        "body": "Tasmangizda yoqtirgan narsangizga javob bering. Suhbatlarning aksariyati DeHubning asl joyidir."
+      },
+      "rewards": {
+        "title": "Daromad qanday ishlashini ko&#39;ring",
+        "body": "Maslahatlar, nishonlar va Super Kuchlar bu yerda qilayotgan ishlaringizni qanday qilib daromad keltiradigan narsaga aylantirishini bilib oling."
+      }
+    }
   }
 }

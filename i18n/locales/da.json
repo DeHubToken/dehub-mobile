@@ -4479,5 +4479,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Ny her? Vil du have en kort guidet tur?",
+      "body": "Vi kan guide dig gennem DeHub trin for trin og spørge, hvordan hvert trin gik, så vi kan rette op på alt, der er forvirrende.",
+      "yes": "Ja, vis mig rundt",
+      "no": "Nej tak"
+    },
+    "checklist": {
+      "title": "Kom godt i gang",
+      "subtitle": "Et par korte trin til at sætte dig op på DeHub.",
+      "progress": "{{done}} ud af {{total}} færdig",
+      "go": "Tag mig dertil",
+      "done": "Marker som færdig",
+      "skip": "Spring dette trin over",
+      "dismiss": "Skjul kom godt i gang-trinene",
+      "reopen": "Åbn guiden",
+      "finishedTitle": "Det var det hele – godt klaret.",
+      "finishedBody": "Tak fordi du fortalte os, hvordan hvert trin gik. Dine svar går direkte til de folk, der bygger dette.",
+      "chip": "Kom godt i gang"
+    },
+    "rating": {
+      "question": "Var dette nemt?",
+      "easy": "Ja, det var nemt",
+      "hard": "Nej, det var svært",
+      "thanks": "Tak, det hjælper."
+    },
+    "steps": {
+      "profile": {
+        "title": "Indstil dit brugernavn og billede",
+        "body": "Vælg et navn, folk vil genkende, og tilføj et profilbillede, så dine opslag ser ud til at komme fra dig."
+      },
+      "wallet": {
+        "title": "Se din tegnebog og hvad DHB er",
+        "body": "Din tegnebog eksisterer allerede og indeholder din DHB. Tag et kig på, hvad der er i den, og hvor den kommer fra."
+      },
+      "feed": {
+        "title": "Vælg, hvad du vil se",
+        "body": "Besvar et par hurtige spørgsmål, og dit feed vil begynde at vise den slags opslag, du rent faktisk ønsker."
+      },
+      "first-post": {
+        "title": "Lav dit første opslag",
+        "body": "Del en tanke, et billede eller en video. Det tager kun et øjeblik, og det er sådan, folk finder dig."
+      },
+      "follow": {
+        "title": "Følg tre skabere",
+        "body": "Dit feed bliver meget bedre, når du følger et par personer. Gennemse, hvem der er her, og vælg tre til at starte med."
+      },
+      "comment": {
+        "title": "Efterlad en kommentar på et opslag",
+        "body": "Svar på noget, du kunne lide i dit feed. Samtaler er der, hvor det meste af DeHub rent faktisk foregår."
+      },
+      "rewards": {
+        "title": "Se, hvordan indtjening fungerer",
+        "body": "Find ud af, hvordan tips, badges og superkræfter forvandler det, du gør her, til noget, du tjener penge på."
+      }
+    }
   }
 }
