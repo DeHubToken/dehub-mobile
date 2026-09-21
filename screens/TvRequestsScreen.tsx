@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   View,
   Text,
   FlatList,
   TouchableOpacity,
   ActivityIndicator,
-} from 'react-native';
+} from 'react-native';
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenHeader from '../components/ScreenHeader';
@@ -13,6 +13,7 @@ import Icon from '../components/ui/Icon';
 import GlassIndicator, { GLASS_SHADOW } from '../components/ui/GlassIndicator';
 import GlassTipSheet from '../components/Tip/GlassTipSheet';
 import { formatCompactNumber, toastError, toastSuccess } from '../libs';
+import { useFocusedInterval } from '../hooks/useFocusedInterval';
 import {
   getPendingTvRequests,
   resolveTvRequest,
@@ -47,7 +48,6 @@ export default function TvRequestsScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [active, setActive] = useState<TvRequest | null>(null);
   const [resolving, setResolving] = useState<string | null>(null);
-  const poll = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const load = useCallback(async () => {
     const rows = await getPendingTvRequests();
@@ -57,23 +57,20 @@ export default function TvRequestsScreen() {
 
   useEffect(() => {
     void load();
-    // Polls only while this screen is mounted. A background poll for something
-    // this rare would cost battery every day to catch an event that happens
-    // once in a while; the push notification is the right answer for that and
-    // is not built yet.
-    poll.current = setInterval(() => void load(), 10_000);
-    return () => {
-      if (poll.current) clearInterval(poll.current);
-    };
   }, [load]);
+  // Polls only while this screen is the one on screen. A background poll for
+  // something this rare would cost battery every day to catch an event that
+  // happens once in a while; the push notification is the right answer for
+  // that and is not built yet. "Mounted" was not enough either: a screen left
+  // in the stack stays mounted, and this kept fetching under Home.
+  useFocusedInterval(() => void load(), 10_000, { catchUp: true });
 
   // Re-render once a second so the countdown actually counts and an expired
-  // card leaves the list rather than sitting there looking answerable.
+  // card leaves the list rather than sitting there looking answerable. Only
+  // while it can be seen — a countdown nobody is looking at can catch up on
+  // the next focus.
   const [, tick] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => tick((n) => n + 1), 1_000);
-    return () => clearInterval(t);
-  }, []);
+  useFocusedInterval(() => tick((n) => n + 1), 1_000, { catchUp: true });
 
   const visible = requests.filter((r) => secondsRemaining(r) > 0);
 

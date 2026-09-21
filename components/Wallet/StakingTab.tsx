@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import { Ionicons } from "@expo/vector-icons";
 import { ethers } from "ethers";
 import { useUser, useProvider, useAuthActions } from "../../context/AuthContext";
+import { useFocusedInterval } from "../../hooks/useFocusedInterval";
 import { getSigningProvider } from "../../libs/provider.registry";
 import { supabase } from "../../services/supabase";
 import { toastError, toastInfo, toastSuccess } from "../../libs/toast";
@@ -343,12 +344,19 @@ const StakingTab: React.FC = () => {
     return () => { cancelled = true; };
   }, [walletAddress]);
 
+  const pendingStakeIsOurs =
+    !!pendingStake && pendingStake.wallet.toLowerCase() === walletAddress?.toLowerCase();
   useEffect(() => {
-    if (!pendingStake || pendingStake.wallet.toLowerCase() !== walletAddress?.toLowerCase()) return;
+    if (!pendingStakeIsOurs || !pendingStake) return;
     void checkPendingStake(pendingStake);
-    const timer = setInterval(() => { void checkPendingStake(pendingStake); }, 15_000);
-    return () => clearInterval(timer);
-  }, [pendingStake, walletAddress]);
+  }, [pendingStake, pendingStakeIsOurs]);
+  // An on-chain read every 15s, but only while the wallet is the screen being
+  // looked at — not for as long as it sits in the stack under Home.
+  useFocusedInterval(
+    () => { if (pendingStake) void checkPendingStake(pendingStake); },
+    pendingStakeIsOurs ? 15_000 : null,
+    { catchUp: true },
+  );
 
   const handleStake = async () => {
     if (sendingStake.current || pendingStake || !pendingLoaded) return;
