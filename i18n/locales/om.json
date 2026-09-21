@@ -1926,7 +1926,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "Tookeniiwwan biroo",
-    "otherTokensDesc": "Kaardii keetiin Base irratti ETH ykn USDC bitadhu"
+    "otherTokensDesc": "Kaardii keetiin Base irratti ETH ykn USDC bitadhu",
+    "shareToFeed": "Share gochuun feed kootti",
+    "sharePostTemplate": "Reefu {{amount}} $DHB gara tuullaa koo DeHub irratti dabaleera. Hawaasa waliin ijaaruu. #DeHub #DHB"
   },
   "agents": {
     "title": "Eejentii AI",
@@ -3974,7 +3976,10 @@
     "redirecting": "Gara kaffaltiitti geeddaramaa jira…",
     "openingCheckout": "Kaffaltii banaa jira…",
     "checkoutUnavailable": "Geessituun kaffaltii hin argamu. Irra deebiʼii yaali.",
-    "acceptTerms": "Ani nan fudha <terms>Haala Tajaajilaa</terms>"
+    "acceptTerms": "Ani nan fudha <terms>Haala Tajaajilaa</terms>",
+    "sentTo": "{{amount}} {{symbol}} gara {{address}} tti ergame.",
+    "tokensSentTo": "Tookiin gara {{address}} tti ergameera.",
+    "goToProfile": "Gara Profile deemaa"
   },
   "musicSheet": {
     "title": "Sirba uumi",

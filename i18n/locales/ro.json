@@ -1853,7 +1853,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "Alte tokenuri",
-    "otherTokensDesc": "Cumpără ETH sau USDC pe Base cu cardul tău"
+    "otherTokensDesc": "Cumpără ETH sau USDC pe Base cu cardul tău",
+    "shareToFeed": "Distribuie în fluxul meu",
+    "sharePostTemplate": "Tocmai am adăugat {{amount}} $DHB la stiva mea de pe DeHub. Construim împreună cu comunitatea. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agents",
@@ -3924,7 +3926,10 @@
     "redirecting": "Se redirecționează către plată…",
     "openingCheckout": "Se deschide plata…",
     "checkoutUnavailable": "Linkul de plată nu este disponibil. Încearcă din nou.",
-    "acceptTerms": "Accept <terms>Termenii serviciului</terms>"
+    "acceptTerms": "Accept <terms>Termenii serviciului</terms>",
+    "sentTo": "{{amount}} {{symbol}} a fost trimis la {{address}}",
+    "tokensSentTo": "Jetoanele au fost trimise la {{address}}",
+    "goToProfile": "Accesează profilul"
   },
   "musicSheet": {
     "title": "Creează o melodie",

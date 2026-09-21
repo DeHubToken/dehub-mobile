@@ -1622,7 +1622,8 @@
     "onrampCreated": "ଅନରାମ୍ପ ସେସନ ତିଆରି ହେଲା",
     "failedOnramp": "ଅନରାମ୍ପ ଆରମ୍ଭ ହୋଇପାରିଲା ନାହିଁ",
     "otherTokens": "ଅନ୍ୟ ଟୋକେନ",
-    "otherTokensDesc": "ଆପଣଙ୍କ କାର୍ଡରେ Base ରେ ETH କିମ୍ବା USDC କିଣନ୍ତୁ"
+    "otherTokensDesc": "ଆପଣଙ୍କ କାର୍ଡରେ Base ରେ ETH କିମ୍ବା USDC କିଣନ୍ତୁ",
+    "shareToFeed": "ମୋ ଫିଡ ରେ ଶେୟାର କରନ୍ତୁ"
   },
   "agents": {
     "title": "AI ଏଜେଣ୍ଟ",
@@ -3881,7 +3882,8 @@
     "redirecting": "ଚେକଆଉଟକୁ ନେଉଛି…",
     "openingCheckout": "ଚେକଆଉଟ ଖୋଲାଯାଉଛି…",
     "checkoutUnavailable": "ଚେକଆଉଟ ଲିଙ୍କ ଉପଲବ୍ଧ ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
-    "acceptTerms": "ମୁଁ ଗ୍ରହଣ କରୁଛି <terms>ସେବା ସର୍ତ୍ତାବଳୀ</terms>"
+    "acceptTerms": "ମୁଁ ଗ୍ରହଣ କରୁଛି <terms>ସେବା ସର୍ତ୍ତାବଳୀ</terms>",
+    "goToProfile": "ରୂପରେଖକୁ ଯାଆନ୍ତୁ"
   },
   "musicSheet": {
     "title": "ଏକ ଗୀତ ତିଆରି କରନ୍ତୁ",

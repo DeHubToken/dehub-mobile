@@ -1649,7 +1649,9 @@
     "onrampCreated": "آن ریمپ سیشن بن گیا",
     "failedOnramp": "آن ریمپ شروع نہیں ہوا",
     "otherTokens": "تۆکنەگەلی تر",
-    "otherTokensDesc": "بە کارتەکەت لەسەر Base ئێتیهەچ یان USDC بکڕە"
+    "otherTokensDesc": "بە کارتەکەت لەسەر Base ئێتیهەچ یان USDC بکڕە",
+    "shareToFeed": "خپل فیډ ته شریک کړئ",
+    "sharePostTemplate": "یوازې په DeHub کې زما په سټیک کې {{amount}} $DHB اضافه کړ. له ټولنې سره جوړول. #DeHub #DHB"
   },
   "agents": {
     "title": "AI ایجنٹ",
@@ -3909,7 +3911,10 @@
     "redirecting": "চেকআউটত নেওয়া হইতেছে…",
     "openingCheckout": "চেকআউট খোলা হইতেছে…",
     "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাছে না। আবার চেষ্টা করেন।",
-    "acceptTerms": "মুই মানি নেছু <terms>সেবার শর্ত</terms>"
+    "acceptTerms": "মুই মানি নেছু <terms>সেবার শর্ত</terms>",
+    "sentTo": "{{amount}} {{symbol}} ke {{address}} bhejel geyl",
+    "tokensSentTo": "Tokens {{address}} ke bhejel geyl",
+    "goToProfile": "Profile ke jao"
   },
   "musicSheet": {
     "title": "گۆرانییەک دروست بکە",

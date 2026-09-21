@@ -1655,7 +1655,9 @@
     "onrampCreated": "ಆನ್‌ರ್ಯಾಂಪ್ ಸೆಷನ್ ರಚಿಸಲಾಗಿದೆ",
     "failedOnramp": "ಆನ್‌ರ್ಯಾಂಪ್ ರಚಿಸಲು ವಿಫಲವಾಗಿದೆ",
     "otherTokens": "ಇತರ ಟೋಕನ್‌ಗಳು",
-    "otherTokensDesc": "ನಿಮ್ಮ ಕಾರ್ಡ್‌ನಿಂದ Base ನಲ್ಲಿ ETH ಅಥವಾ USDC ಖರೀದಿಸಿ"
+    "otherTokensDesc": "ನಿಮ್ಮ ಕಾರ್ಡ್‌ನಿಂದ Base ನಲ್ಲಿ ETH ಅಥವಾ USDC ಖರೀದಿಸಿ",
+    "shareToFeed": "ನನ್ನ ಫೀಡ್‌ಗೆ ಹಂಚಿಕೊಳ್ಳಿ",
+    "sharePostTemplate": "DeHub ನಲ್ಲಿ ನನ್ನ ಸ್ಟ್ಯಾಕ್‌ಗೆ {{amount}} $DHB ಅನ್ನು ಸೇರಿಸಲಾಗಿದೆ. ಸಮುದಾಯದೊಂದಿಗೆ ನಿರ್ಮಿಸುವುದು. #DeHub #DHB"
   },
   "agents": {
     "title": "AI ಏಜೆಂಟ್‌ಗಳು",
@@ -3915,7 +3917,9 @@
     "redirecting": "ಚೆಕ್‌ಔಟ್‌ಗೆ ಕರೆದೊಯ್ಯಲಾಗುತ್ತಿದೆ…",
     "openingCheckout": "ಚೆಕ್‌ಔಟ್ ತೆರೆಯಲಾಗುತ್ತಿದೆ…",
     "checkoutUnavailable": "ಚೆಕ್‌ಔಟ್ ಲಿಂಕ್ ಲಭ್ಯವಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
-    "acceptTerms": "ನಾನು ಒಪ್ಪುತ್ತೇನೆ <terms>ಸೇವಾ ನಿಯಮಗಳು</terms>"
+    "acceptTerms": "ನಾನು ಒಪ್ಪುತ್ತೇನೆ <terms>ಸೇವಾ ನಿಯಮಗಳು</terms>",
+    "tokensSentTo": "ಟೋಕನ್‌ಗಳನ್ನು {{address}} ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ",
+    "goToProfile": "ಪ್ರೊಫೈಲ್‌ಗೆ ಹೋಗಿ"
   },
   "musicSheet": {
     "title": "ಹಾಡು ರಚಿಸಿ",

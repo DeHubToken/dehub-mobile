@@ -1912,7 +1912,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "តូខេនផ្សេងទៀត",
-    "otherTokensDesc": "ទិញ ETH ឬ USDC នៅលើ Base ដោយប្រើកាតរបស់អ្នក"
+    "otherTokensDesc": "ទិញ ETH ឬ USDC នៅលើ Base ដោយប្រើកាតរបស់អ្នក",
+    "shareToFeed": "ចែករំលែកទៅកាន់ព័ត៌មានរបស់អ្នក",
+    "sharePostTemplate": "ទើបតែបានបន្ថែម {{amount}} $DHB ទៅក្នុងកាតរបស់ខ្ញុំនៅលើ DeHub។ កំពុងកសាងជាមួយសហគមន៍។ #DeHub #DHB"
   },
   "agents": {
     "title": "AI ភ្នាក់ងារ",
@@ -3929,7 +3931,10 @@
     "redirecting": "កំពុងបញ្ជូនទៅការទូទាត់…",
     "openingCheckout": "កំពុងបើកការទូទាត់…",
     "checkoutUnavailable": "តំណទូទាត់មិនអាចប្រើបានទេ។ សូមព្យាយាមម្ដងទៀត។",
-    "acceptTerms": "ខ្ញុំយល់ព្រមនឹង <terms>លក្ខខណ្ឌសេវាកម្ម</terms>"
+    "acceptTerms": "ខ្ញុំយល់ព្រមនឹង <terms>លក្ខខណ្ឌសេវាកម្ម</terms>",
+    "sentTo": "{{amount}} {{symbol}} ត្រូវបានផ្ញើទៅ {{address}}",
+    "tokensSentTo": "ថូខឹនត្រូវបានផ្ញើទៅ {{address}}",
+    "goToProfile": "ចូលទៅកាន់ប្រូហ្វាល"
   },
   "musicSheet": {
     "title": "បង្កើតបទចម្រៀង",

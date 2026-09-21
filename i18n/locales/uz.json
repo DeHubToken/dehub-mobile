@@ -1625,7 +1625,9 @@
     "onrampCreated": "Onramp seansi yaratildi",
     "failedOnramp": "Onrampni boshlash amalga oshmadi",
     "otherTokens": "Boshqa tokenlar",
-    "otherTokensDesc": "Kartangiz bilan Base tarmog'ida ETH yoki USDC sotib oling"
+    "otherTokensDesc": "Kartangiz bilan Base tarmog'ida ETH yoki USDC sotib oling",
+    "shareToFeed": "Mening lentamga ulashing",
+    "sharePostTemplate": "Men DeHub'dagi stack'imga {{amount}} $DHB qo'shdim. Hamjamiyat bilan birga qurmoqdamiz. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agent",
@@ -3961,7 +3963,10 @@
     "redirecting": "To‘lov sahifasiga yo‘naltirilmoqda…",
     "openingCheckout": "To‘lov sahifasi ochilmoqda…",
     "checkoutUnavailable": "To‘lov havolasi mavjud emas. Qayta urinib ko‘ring.",
-    "acceptTerms": "Men qabul qilaman <terms>Xizmat shartlari</terms>"
+    "acceptTerms": "Men qabul qilaman <terms>Xizmat shartlari</terms>",
+    "sentTo": "{{amount}} {{symbol}} {{address}} ga yuborildi",
+    "tokensSentTo": "Tokenlar {{address}} ga yuborildi",
+    "goToProfile": "Profilga o&#39;tish"
   },
   "musicSheet": {
     "title": "Qo'shiq yaratish",

@@ -1539,7 +1539,9 @@
     "onrampCreated": "تم إنشاء الجلسة",
     "failedOnramp": "فشل البدء",
     "otherTokens": "عملات أخرى",
-    "otherTokensDesc": "اشترِ ETH أو USDC على Base ببطاقتك"
+    "otherTokensDesc": "اشترِ ETH أو USDC على Base ببطاقتك",
+    "shareToFeed": "المشاركة على خلاصتي",
+    "sharePostTemplate": "لقد أضفت للتو {{amount}} $ إلى مكدسي على. البناء مع المجتمع. #DeHub #DHB"
   },
   "agents": {
     "title": "وكلاء AI",
@@ -3966,7 +3968,10 @@
     "redirecting": "جارٍ التحويل إلى صفحة الدفع…",
     "openingCheckout": "جارٍ فتح صفحة الدفع…",
     "checkoutUnavailable": "رابط الدفع غير متاح. يُرجى المحاولة مرة أخرى.",
-    "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>"
+    "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>",
+    "sentTo": "تم إرسال {{amount}}{{symbol}} إلى {{address}}",
+    "tokensSentTo": "تم إرسال الرموز إلى {{address}}",
+    "goToProfile": "الانتقال إلى الملف الشخصي"
   },
   "musicSheet": {
     "title": "أنشئ أغنية",

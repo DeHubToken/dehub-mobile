@@ -1785,7 +1785,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "Other tokens",
-    "otherTokensDesc": "Buy ETH or USDC on Base with your card"
+    "otherTokensDesc": "Buy ETH or USDC on Base with your card",
+    "shareToFeed": "Share to my feed",
+    "sharePostTemplate": "Just added {{amount}} $DHB to my stack on DeHub. Building with the community. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agents",
@@ -3982,7 +3984,10 @@
     "redirecting": "Redirecting to checkout…",
     "openingCheckout": "Opening checkout…",
     "checkoutUnavailable": "Checkout link unavailable. Please try again.",
-    "acceptTerms": "I accept the <terms>Terms and Service</terms>"
+    "acceptTerms": "I accept the <terms>Terms and Service</terms>",
+    "sentTo": "{{amount}} {{symbol}} was sent to {{address}}",
+    "tokensSentTo": "Tokens were sent to {{address}}",
+    "goToProfile": "Go to Profile"
   },
   "musicSheet": {
     "title": "Create a song",

@@ -1637,7 +1637,9 @@
     "onrampCreated": "Marxaladda onramp-ka waa la sameeyay",
     "failedOnramp": "Bilaawidda onramp-ku wuu fashilmay",
     "otherTokens": "Tokenno kale",
-    "otherTokensDesc": "Kaarkaaga ku iibso ETH ama USDC Base"
+    "otherTokensDesc": "Kaarkaaga ku iibso ETH ama USDC Base",
+    "shareToFeed": "La wadaag quudintayda",
+    "sharePostTemplate": "Just added {{amount}} $DHB in my stack on DeHub. Dhisida bulshada. #DeHub #DHB"
   },
   "agents": {
     "title": "Wakiilada AI",
@@ -3901,7 +3903,9 @@
     "redirecting": "Waa lagu wareejinayaa bixinta…",
     "openingCheckout": "Waa la furayaa bixinta…",
     "checkoutUnavailable": "Linkiga bixinta lama helin. Isku day mar kale.",
-    "acceptTerms": "Waan aqbalayaa <terms>Shuruudaha Adeegga</terms>"
+    "acceptTerms": "Waan aqbalayaa <terms>Shuruudaha Adeegga</terms>",
+    "tokensSentTo": "Calaamadaha waxaa loo diray {{address}}",
+    "goToProfile": "Tag Profile"
   },
   "musicSheet": {
     "title": "Samee hees",

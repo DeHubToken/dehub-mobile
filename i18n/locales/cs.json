@@ -1541,7 +1541,9 @@
     "onrampCreated": "Relace vytvořena",
     "failedOnramp": "Zahájení selhalo",
     "otherTokens": "Další tokeny",
-    "otherTokensDesc": "Kupte ETH nebo USDC na síti Base svou kartou"
+    "otherTokensDesc": "Kupte ETH nebo USDC na síti Base svou kartou",
+    "shareToFeed": "Sdílet na mém kanálu",
+    "sharePostTemplate": "Právě jsem přidal/a {{amount}} $DHB do svého zásobníku na DeHubu. Budování s komunitou. #DeHub #DHB"
   },
   "agents": {
     "title": "AI agenti",
@@ -3915,7 +3917,10 @@
     "redirecting": "Přesměrování k platbě…",
     "openingCheckout": "Otevírá se platba…",
     "checkoutUnavailable": "Odkaz k platbě není dostupný. Zkuste to znovu.",
-    "acceptTerms": "Souhlasím s <terms>Podmínky služby</terms>"
+    "acceptTerms": "Souhlasím s <terms>Podmínky služby</terms>",
+    "sentTo": "{{amount}} {{symbol}} bylo odesláno na {{address}}",
+    "tokensSentTo": "Tokeny byly odeslány na {{address}}",
+    "goToProfile": "Přejít na profil"
   },
   "musicSheet": {
     "title": "Vytvořit píseň",

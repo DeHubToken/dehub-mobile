@@ -1573,7 +1573,8 @@
     "onrampCreated": "Onramp session don create",
     "failedOnramp": "E no fit start onramp",
     "otherTokens": "Oda tokens",
-    "otherTokensDesc": "Use yor card buy ETH or USDC for Base"
+    "otherTokensDesc": "Use yor card buy ETH or USDC for Base",
+    "shareToFeed": "Share to my feed"
   },
   "agents": {
     "title": "AI Agents",
@@ -3695,7 +3696,8 @@
     "redirecting": "Dey take you go checkout…",
     "openingCheckout": "Dey open di checkout…",
     "checkoutUnavailable": "Checkout link no dey. Try again.",
-    "acceptTerms": "I gree wit di <terms>Terms and service</terms>"
+    "acceptTerms": "I gree wit di <terms>Terms and service</terms>",
+    "goToProfile": "Go to Profile"
   },
   "musicSheet": {
     "title": "Make song",

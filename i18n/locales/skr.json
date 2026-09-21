@@ -1598,7 +1598,9 @@
     "onrampCreated": "آن ریمپ سیشن بݨ گیا",
     "failedOnramp": "آن ریمپ شروع کائنی ہوئیا",
     "otherTokens": "ٻئے ٹوکن",
-    "otherTokensDesc": "اپݨے کارڈ نال Base تے ETH یا USDC خریدو"
+    "otherTokensDesc": "اپݨے کارڈ نال Base تے ETH یا USDC خریدو",
+    "shareToFeed": "میرے فیڈ تے شیئر کرو",
+    "sharePostTemplate": "میں حال ہی وچ DeHub تے {{amount}} $DHB اپنے سٹیک وچ شامل کیتا اے۔ کمیونٹی دے نال تعمیر کر رہیا ہاں۔ #DeHub #DHB"
   },
   "agents": {
     "title": "AI ایجنٹ",
@@ -3854,7 +3856,10 @@
     "redirecting": "چیک آؤٹ تے گھلیا ویندا پیا ہے…",
     "openingCheckout": "چیک آؤٹ کھولیا ویندا پیا ہے…",
     "checkoutUnavailable": "چیک آؤٹ لنک دستیاب کائنی۔ ولدا کوشش کرو۔",
-    "acceptTerms": "میں قبول کریندا ہاں <terms>سروس دیاں شرطاں</terms>"
+    "acceptTerms": "میں قبول کریندا ہاں <terms>سروس دیاں شرطاں</terms>",
+    "sentTo": "{{amount}} {{symbol}} نوں {{address}} بھیجیا گیا",
+    "tokensSentTo": "Tokens {{address}} کوں بھیجیا گئیا ہن",
+    "goToProfile": "پروفائل تے ونجو"
   },
   "musicSheet": {
     "title": "گانا بݨاؤ",

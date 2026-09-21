@@ -1625,7 +1625,9 @@
     "onrampCreated": "Rampe-Sitzung erstellt",
     "failedOnramp": "Rampe fehlgeschlagen",
     "otherTokens": "Andere Token",
-    "otherTokensDesc": "ETH oder USDC auf Base mit deiner Karte kaufen"
+    "otherTokensDesc": "ETH oder USDC auf Base mit deiner Karte kaufen",
+    "shareToFeed": "In meinem Feed teilen",
+    "sharePostTemplate": "Habe gerade {{amount}} $DHB zu meinem Stack auf DeHub hinzugefügt. Bauen Sie mit der Gemeinschaft. #DeHub #DHB"
   },
   "agents": {
     "title": "KI-Agenten",
@@ -3980,7 +3982,10 @@
     "redirecting": "Weiterleitung zur Kasse…",
     "openingCheckout": "Kasse wird geöffnet…",
     "checkoutUnavailable": "Zahlungslink nicht verfügbar. Bitte versuche es erneut.",
-    "acceptTerms": "Ich akzeptiere die <terms>Nutzungsbedingungen</terms>"
+    "acceptTerms": "Ich akzeptiere die <terms>Nutzungsbedingungen</terms>",
+    "sentTo": "{{amount}} {{symbol}} wurde an {{address}} gesendet",
+    "tokensSentTo": "Token wurden an {{address}}gesendet",
+    "goToProfile": "Zum Profil"
   },
   "musicSheet": {
     "title": "Song erstellen",

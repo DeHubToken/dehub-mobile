@@ -1564,7 +1564,9 @@
     "onrampCreated": "Latabatra onramp voaforona",
     "failedOnramp": "Tsy nahomby ny fanombohana onramp",
     "otherTokens": "Tokena hafa",
-    "otherTokensDesc": "Mividiana ETH na USDC ao amin'ny Base amin'ny karatrao"
+    "otherTokensDesc": "Mividiana ETH na USDC ao amin'ny Base amin'ny karatrao",
+    "shareToFeed": "Zarao amin'ny fahana aho",
+    "sharePostTemplate": "Vao avy nanampy ny {{amount}} $DHB tao amin'ny kitapoko tao amin'ny DeHub. Miditra sy miaraka amin'ny fokonolona. #DeHub #DHB"
   },
   "agents": {
     "title": "Agent AI",
@@ -3989,7 +3991,10 @@
     "redirecting": "Mamily mankany amin'ny fandoavana…",
     "openingCheckout": "Manokatra ny fandoavana…",
     "checkoutUnavailable": "Tsy misy ny rohy fandoavana. Andramo indray.",
-    "acceptTerms": "Manaiky aho <terms>Fepetra sy Fanompoana</terms>"
+    "acceptTerms": "Manaiky aho <terms>Fepetra sy Fanompoana</terms>",
+    "sentTo": "{{amount}}{{symbol}} nalefa tany {{address}}",
+    "tokensSentTo": "Nisy mari-tsoratra nalefa tany amin'ny {{address}}",
+    "goToProfile": "Ho any amin'ny profil"
   },
   "musicSheet": {
     "title": "Mamorona hira",

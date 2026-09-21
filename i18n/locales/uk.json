@@ -2319,7 +2319,9 @@
     "onrampCreated": "Onramp session created",
     "failedOnramp": "Failed to start onramp",
     "otherTokens": "Інші токени",
-    "otherTokensDesc": "Купіть ETH або USDC у мережі Base своєю карткою"
+    "otherTokensDesc": "Купіть ETH або USDC у мережі Base своєю карткою",
+    "shareToFeed": "Поділитися в моєму каналі",
+    "sharePostTemplate": "Щойно додано {{amount}} $DHB до мого стеку на DeHub. Розбудова спільноти. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agents",
@@ -4386,7 +4388,10 @@
     "redirecting": "Перенаправлення до оплати…",
     "openingCheckout": "Відкриття оплати…",
     "checkoutUnavailable": "Посилання на оплату недоступне. Спробуйте ще раз.",
-    "acceptTerms": "Я приймаю <terms>Умови обслуговування</terms>"
+    "acceptTerms": "Я приймаю <terms>Умови обслуговування</terms>",
+    "sentTo": "{{amount}} {{symbol}} надіслано на {{address}}",
+    "tokensSentTo": "Токени надіслано на {{address}}",
+    "goToProfile": "Перейти до профілю"
   },
   "musicSheet": {
     "title": "Створити пісню",

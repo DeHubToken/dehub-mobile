@@ -1632,7 +1632,9 @@
     "onrampCreated": "অনর‍্যাম্প সেশন তৈরি হয়েছে",
     "failedOnramp": "অনর‍্যাম্প শুরু করতে ব্যর্থ",
     "otherTokens": "অন্যান্য টোকেন",
-    "otherTokensDesc": "আপনার কার্ড দিয়ে Base-এ ETH বা USDC কিনুন"
+    "otherTokensDesc": "আপনার কার্ড দিয়ে Base-এ ETH বা USDC কিনুন",
+    "shareToFeed": "আমার ফিডে শেয়ার করুন",
+    "sharePostTemplate": "এইমাত্র DeHub-এ আমার স্ট্যাকে {{amount}} $DHB যোগ করা হয়েছে । সম্প্রদায়ের সাথে গড়ে তোলা । #ডিহাব #ডিএইচবি"
   },
   "agents": {
     "title": "AI এজেন্ট",
@@ -3895,7 +3897,9 @@
     "redirecting": "চেকআউটে নিয়ে যাওয়া হচ্ছে…",
     "openingCheckout": "চেকআউট খোলা হচ্ছে…",
     "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাচ্ছে না। আবার চেষ্টা করুন।",
-    "acceptTerms": "আমি মেনে নিচ্ছি <terms>পরিষেবার শর্তাবলি</terms>"
+    "acceptTerms": "আমি মেনে নিচ্ছি <terms>পরিষেবার শর্তাবলি</terms>",
+    "tokensSentTo": "টোকেনগুলি {{address}} -এ পাঠানো হয়েছে",
+    "goToProfile": "প্রোফাইলে যান"
   },
   "musicSheet": {
     "title": "গান তৈরি করুন",

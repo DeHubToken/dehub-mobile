@@ -1617,7 +1617,8 @@
     "onrampCreated": "ऑनरैम्प सेशन बन गेल",
     "failedOnramp": "ऑनरैम्प शुरू नइ हो पावल",
     "otherTokens": "दोसर टोकन",
-    "otherTokensDesc": "अपन कार्ड से Base पर ETH या USDC खरीदीं"
+    "otherTokensDesc": "अपन कार्ड से Base पर ETH या USDC खरीदीं",
+    "shareToFeed": "हमरा लगी खाना भेज देवे लगी ।"
   },
   "agents": {
     "title": "AI एजेंट",
@@ -3862,7 +3863,8 @@
     "redirecting": "चेकआउट पर भेजल जा रहल अछि…",
     "openingCheckout": "चेकआउट खुलैत अछि…",
     "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नै। फेर प्रयास करू।",
-    "acceptTerms": "हम स्वीकार करैत छी <terms>सेवा के सर्त</terms>"
+    "acceptTerms": "हम स्वीकार करैत छी <terms>सेवा के सर्त</terms>",
+    "goToProfile": "प्रोफ़ाइल पर जा कर"
   },
   "musicSheet": {
     "title": "गाना बनावऽ",

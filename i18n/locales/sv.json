@@ -1541,7 +1541,9 @@
     "onrampCreated": "Session skapad",
     "failedOnramp": "Kunde inte starta",
     "otherTokens": "Andra tokens",
-    "otherTokensDesc": "Köp ETH eller USDC på Base med ditt kort"
+    "otherTokensDesc": "Köp ETH eller USDC på Base med ditt kort",
+    "shareToFeed": "Dela till mitt flöde",
+    "sharePostTemplate": "Har precis lagt till {{amount}} $DHB till min stack på DeHub. Bygga med samhället. #DeHub #DHB"
   },
   "agents": {
     "title": "AI-agenter",
@@ -3915,7 +3917,10 @@
     "redirecting": "Omdirigerar till kassan…",
     "openingCheckout": "Öppnar kassan…",
     "checkoutUnavailable": "Betalningslänken är inte tillgänglig. Försök igen.",
-    "acceptTerms": "Jag godkänner <terms>Användarvillkor</terms>"
+    "acceptTerms": "Jag godkänner <terms>Användarvillkor</terms>",
+    "sentTo": "{{amount}} {{symbol}} skickades till {{address}}",
+    "tokensSentTo": "Tokens skickades till {{address}}",
+    "goToProfile": "Gå till profil"
   },
   "musicSheet": {
     "title": "Skapa en låt",

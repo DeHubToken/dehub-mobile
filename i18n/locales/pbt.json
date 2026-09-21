@@ -1616,7 +1616,8 @@
     "onrampCreated": "آنریمپ ناسته جوړه شوه",
     "failedOnramp": "آنریمپ نشي پیل کیدلی",
     "otherTokens": "نور ټوکنونه",
-    "otherTokensDesc": "په خپل کارت سره په Base کې ETH یا USDC واخلئ"
+    "otherTokensDesc": "په خپل کارت سره په Base کې ETH یا USDC واخلئ",
+    "shareToFeed": "زما د خوړو سره شریک کړئ"
   },
   "agents": {
     "title": "AI ایجنټونه",
@@ -3860,7 +3861,8 @@
     "redirecting": "تادیې ته لیږل کیږي…",
     "openingCheckout": "تادیه پرانیستل کیږي…",
     "checkoutUnavailable": "د تادیې لینک شتون نلري. بیا هڅه وکړئ.",
-    "acceptTerms": "زه مني <terms>د خدماتو شرایط</terms>"
+    "acceptTerms": "زه مني <terms>د خدماتو شرایط</terms>",
+    "goToProfile": "ته وليږي تر څو د پوښتنې Profile"
   },
   "musicSheet": {
     "title": "سندره جوړه کړئ",

@@ -1593,7 +1593,9 @@
     "onrampCreated": "Ҷаласаи рампа эҷод шуд",
     "failedOnramp": "Оғози рампа ноком шуд",
     "otherTokens": "Токенҳои дигар",
-    "otherTokensDesc": "Бо корти худ дар Base ETH ё USDC харед"
+    "otherTokensDesc": "Бо корти худ дар Base ETH ё USDC харед",
+    "shareToFeed": "Ibahagi sa aking feed",
+    "sharePostTemplate": "{{amount}} $DHB sa aking stack sa DeHub. Бунёд бо ҷомеа. #DeHub #DHB"
   },
   "agents": {
     "title": "Агентҳои зеҳни сунъӣ",
@@ -3888,7 +3890,9 @@
     "redirecting": "Интиқол ба пардохт…",
     "openingCheckout": "Кушодани пардохт…",
     "checkoutUnavailable": "Пайванди пардохт дастрас нест. Дубора кӯшиш кунед.",
-    "acceptTerms": "Ман қабул мекунам <terms>Шартҳои хидматрасонӣ</terms>"
+    "acceptTerms": "Ман қабул мекунам <terms>Шартҳои хидматрасонӣ</terms>",
+    "tokensSentTo": "Нишонаҳо ба {{address}}",
+    "goToProfile": "Гузариш ба профил"
   },
   "musicSheet": {
     "title": "Суруд эҷод кунед",

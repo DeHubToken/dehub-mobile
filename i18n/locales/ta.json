@@ -1529,7 +1529,9 @@
     "onrampCreated": "அமர்வு உருவாக்கப்பட்டது",
     "failedOnramp": "தொடங்க இயலவில்லை",
     "otherTokens": "மற்ற டோக்கன்கள்",
-    "otherTokensDesc": "உங்கள் அட்டையால் Base-இல் ETH அல்லது USDC வாங்குங்கள்"
+    "otherTokensDesc": "உங்கள் அட்டையால் Base-இல் ETH அல்லது USDC வாங்குங்கள்",
+    "shareToFeed": "எனது ஊட்டத்தில் பகிரவும்",
+    "sharePostTemplate": "DeHub இல் எனது ஸ்டேக்கில் {{amount}} $ DHB ஐச் சேர்த்துள்ளேன். சமூகத்துடன் கட்டியெழுப்புதல். #DeHub #DHB"
   },
   "agents": {
     "title": "AI முகவர்",
@@ -3898,7 +3900,10 @@
     "redirecting": "கட்டணப் பக்கத்திற்கு அனுப்பப்படுகிறது…",
     "openingCheckout": "கட்டணப் பக்கம் திறக்கப்படுகிறது…",
     "checkoutUnavailable": "கட்டண இணைப்பு கிடைக்கவில்லை. மீண்டும் முயலவும்.",
-    "acceptTerms": "நான் ஏற்கிறேன் <terms>சேவை விதிமுறைகள்</terms>"
+    "acceptTerms": "நான் ஏற்கிறேன் <terms>சேவை விதிமுறைகள்</terms>",
+    "sentTo": "{{amount}} {{symbol}} {{address}} க்கு அனுப்பப்பட்டது",
+    "tokensSentTo": "டோக்கன்கள் {{address}}க்கு அனுப்பப்பட்டன",
+    "goToProfile": "சுயவிவரத்திற்குச் செல்லவும்"
   },
   "musicSheet": {
     "title": "பாடல் உருவாக்கு",

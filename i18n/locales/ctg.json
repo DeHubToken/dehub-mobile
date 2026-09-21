@@ -3999,7 +3999,10 @@
     "redirecting": "চেকআউটত লই যাওন অর…",
     "openingCheckout": "চেকআউট খুলন অর…",
     "checkoutUnavailable": "চেকআউট লিংক পাওন ন যায়। আবার চেষ্টা গরন।",
-    "acceptTerms": "আঁই মানি লইতাছি <terms>সেবার শর্ত</terms>"
+    "acceptTerms": "আঁই মানি লইতাছি <terms>সেবার শর্ত</terms>",
+    "sentTo": "{{amount}} {{symbol}} {{address}}-এ পাঠানো হইসিল",
+    "tokensSentTo": "টোকেন {{address}}-এ পাঠানো হইসিল",
+    "goToProfile": "প্রোফাইল-এ যাও"
   },
   "musicSheet": {
     "title": "গান বানান",

@@ -1634,7 +1634,9 @@
     "onrampCreated": "Kua hangaia te hōtaka rampa",
     "failedOnramp": "Kāore i taea te tīmata rampa",
     "otherTokens": "Ētahi atu tohu",
-    "otherTokensDesc": "Hokona he ETH, he USDC rānei i Base ki tō kāri"
+    "otherTokensDesc": "Hokona he ETH, he USDC rānei i Base ki tō kāri",
+    "shareToFeed": "Whakauru atu ki taku kai",
+    "sharePostTemplate": "Just tāpiri {{amount}} $DHB ki toku stack i runga i DeHub. Hanga ki te hapori. #DeHub #DHB"
   },
   "agents": {
     "title": "Kaihautū MI",
@@ -3895,7 +3897,9 @@
     "redirecting": "Kei te ahu ki te utu…",
     "openingCheckout": "Kei te whakatuwhera i te utu…",
     "checkoutUnavailable": "Kāore e wātea te hononga utu. Ngana anō.",
-    "acceptTerms": "Ka whakaae au ki <terms>Ngā Tikanga Ratonga</terms>"
+    "acceptTerms": "Ka whakaae au ki <terms>Ngā Tikanga Ratonga</terms>",
+    "tokensSentTo": "I tukuna a Tokens ki {{address}}",
+    "goToProfile": "Haere ki te Pūtea"
   },
   "musicSheet": {
     "title": "Hangaia he waiata",
