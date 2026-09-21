@@ -3458,7 +3458,10 @@
     "newMembers": "Wanachama wapya",
     "membersOverTime": "Wanachama kwa muda",
     "lastDays": "Siku {{count}} zilizopita",
-    "source": "Historia ya akaunti iliyorekodiwa kutoka kituo cha takwimu cha umma cha DeHub. Hakuna thamani za makadirio zinazotumika kwenye chati hii."
+    "source": "Historia ya akaunti iliyorekodiwa kutoka kituo cha takwimu cha umma cha DeHub. Hakuna thamani za makadirio zinazotumika kwenye chati hii.",
+    "community": {
+      "openNewMembers": "Fungua orodha ya wanachama wapya"
+    }
   },
   "solana": {
     "unavailableTitle": "Pochi ya Solana haipatikani",

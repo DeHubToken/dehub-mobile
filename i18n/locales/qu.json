@@ -3490,7 +3490,10 @@
     "newMembers": "Musuq ayllumasikuna",
     "membersOverTime": "Ayllumasikuna pacha kutiypi",
     "lastDays": "Qhipa {{count}} pʼunchaw",
-    "source": "DeHub llapapaq yupay endpointmanta qillqasqa cuenta willakuy. Kay chartpi mana tupuna chaninkuna llamkachikunchu."
+    "source": "DeHub llapapaq yupay endpointmanta qillqasqa cuenta willakuy. Kay chartpi mana tupuna chaninkuna llamkachikunchu.",
+    "community": {
+      "openNewMembers": "Musuq miembronkunapa listanta kichay"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana qullqi waqaychana mana kanchu",

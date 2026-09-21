@@ -3537,7 +3537,10 @@
     "newMembers": "Mpikambana vaovao",
     "membersOverTime": "Mpikambana araka ny fotoana",
     "lastDays": "{{count}} andro farany",
-    "source": "Tantaran'ny kaonty voarakitra avy amin'ny endpoint antontanisa ho an'ny daholobe an'ny DeHub. Tsy misy sanda tombanana ampiasaina amin'ity kisary ity."
+    "source": "Tantaran'ny kaonty voarakitra avy amin'ny endpoint antontanisa ho an'ny daholobe an'ny DeHub. Tsy misy sanda tombanana ampiasaina amin'ity kisary ity.",
+    "community": {
+      "openNewMembers": "Manokatra ny lisitry ny mpikambana vaovao"
+    }
   },
   "solana": {
     "unavailableTitle": "Tsy misy ny poketra Solana",

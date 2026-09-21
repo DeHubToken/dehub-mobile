@@ -3457,7 +3457,10 @@
     "newMembers": "Nauji nariai",
     "membersOverTime": "Nariai laikui bėgant",
     "lastDays": "Paskutinės {{count}} dienos",
-    "source": "Įrašyta paskyrų istorija iš viešo DeHub statistikos galinio taško. Šioje diagramoje nenaudojamos apytikslės reikšmės."
+    "source": "Įrašyta paskyrų istorija iš viešo DeHub statistikos galinio taško. Šioje diagramoje nenaudojamos apytikslės reikšmės.",
+    "community": {
+      "openNewMembers": "Atidaryti naujų narių sąrašą"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana piniginė nepasiekiama",

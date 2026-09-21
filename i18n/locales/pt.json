@@ -3532,7 +3532,10 @@
     "newMembers": "Novos membros",
     "membersOverTime": "Membros ao longo do tempo",
     "lastDays": "Últimos {{count}} dias",
-    "source": "Histórico de contas registrado a partir do endpoint público de estatísticas da DeHub. Nenhum valor estimado é usado neste gráfico."
+    "source": "Histórico de contas registrado a partir do endpoint público de estatísticas da DeHub. Nenhum valor estimado é usado neste gráfico.",
+    "community": {
+      "openNewMembers": "Abrir a lista de novos membros"
+    }
   },
   "solana": {
     "unavailableTitle": "Carteira Solana indisponível",

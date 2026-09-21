@@ -3725,7 +3725,10 @@
     "newMembers": "Nieuwe leden",
     "membersOverTime": "Leden in de tijd",
     "lastDays": "Laatste {{count}} dagen",
-    "source": "Vastgelegde accountgeschiedenis uit het openbare statistiek-endpoint van DeHub. In deze grafiek worden geen geschatte waarden gebruikt."
+    "source": "Vastgelegde accountgeschiedenis uit het openbare statistiek-endpoint van DeHub. In deze grafiek worden geen geschatte waarden gebruikt.",
+    "community": {
+      "openNewMembers": "De lijst met nieuwe leden openen"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana-wallet niet beschikbaar",
