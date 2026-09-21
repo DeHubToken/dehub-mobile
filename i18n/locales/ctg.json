@@ -3665,7 +3665,15 @@
     "leaveTitle": "দল ছাড়িবান?",
     "leaveBody": "{{name}} ছাড়িবান?",
     "leaveAction": "ছাড়ন",
-    "noBadgeYet": "এহনও কোনো ব্যাজ নাই"
+    "noBadgeYet": "এহনও কোনো ব্যাজ নাই",
+    "membersCount": "{{count}}/{{max}} জন",
+    "pooled": "{{amount}} DHB জমা অইছে",
+    "privateBadge": "প্রাইভেট",
+    "members": "সদস্য",
+    "descriptionPlaceholder": "কুন জনর আইলে ভালো অইবো তা লেখো",
+    "descriptionHint": "তোমার দলর কার্ডে দেখাইবো, তাই মানুষ বুঝিবো এইডা তার লাগি নি।",
+    "privateLabel": "প্রাইভেট দল",
+    "privateHint": "যেকোনো জনরে ঢুকাইতা না, বরং আবেদন अप्रूव (approve) করিবা।"
   },
   "addToFolder": {
     "title": "ফোল্ডারত রাখন",
