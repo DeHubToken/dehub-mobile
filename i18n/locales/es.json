@@ -1880,6 +1880,11 @@
     "searchDehubFor": "Buscar «{{query}}» en DeHub"
   },
   "comments": {
+    "reportComment": "Denunciar comentario",
+    "reportCommentTitle": "Denunciar este comentario",
+    "reportCommentDescription": "Dinos qué hay de malo en este comentario y nuestros moderadores lo revisarán.",
+    "reportCommentAlready": "Ya ha denunciado este comentario.",
+    "reportReasonPlaceholder": "Añade cualquier información que nos ayude a revisarla (opcional)",
     "showAll": "Mostrar todos los comentarios",
     "discardTitle": "¿Descartar tu comentario?",
     "discardBody": "Se guardó como borrador, así que estará aquí cuando vuelvas.",

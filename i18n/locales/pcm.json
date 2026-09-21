@@ -1826,6 +1826,7 @@
     "searchDehubFor": "Search \"{{query}}\" for DeHub"
   },
   "comments": {
+    "reportComment": "Report comment",
     "showAll": "Show all di comment dem",
     "discardTitle": "You wan trowey your comment?",
     "discardBody": "We don save am as draft, so e go still dey here when you come back.",

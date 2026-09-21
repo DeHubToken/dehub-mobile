@@ -1884,6 +1884,11 @@
     "searchDehubFor": "Chọọ \"{{query}}\" na DeHub"
   },
   "comments": {
+    "reportComment": "Report okwu",
+    "reportCommentTitle": "Kpesa okwu a",
+    "reportCommentDescription": "Gwa anyị ihe dị njọ n 'okwu a ma ndị nhazi anyị ga-enyocha ya.",
+    "reportCommentAlready": "Ị kọọlarị okwu a.",
+    "reportReasonPlaceholder": "Tinye nkọwa ọ bụla na-enyere anyị aka nyochaa ya (nhọrọ)",
     "showAll": "Gosi nkọwa niile",
     "discardTitle": "Ị chọrọ ịhapụ okwu gị?",
     "discardBody": "E chekwara ya dịka nchịkọta mbụ, ọ ga-adị ebe a mgbe ị lọghachiri.",

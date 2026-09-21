@@ -1895,6 +1895,11 @@
     "searchDehubFor": "DeHub પર \"{{query}}\" શોધો"
   },
   "comments": {
+    "reportComment": "ટિપ્પણીની જાણ કરો",
+    "reportCommentTitle": "આ ટિપ્પણીની જાણ કરો",
+    "reportCommentDescription": "અમને જણાવો કે આ ટિપ્પણીમાં શું ખોટું છે અને અમારા મધ્યસ્થીઓ તેની સમીક્ષા કરશે.",
+    "reportCommentAlready": "તમે પહેલાથી જ આ ટિપ્પણીની જાણ કરી દીધી છે.",
+    "reportReasonPlaceholder": "તેની સમીક્ષા કરવામાં અમને મદદ કરતી કોઈપણ વિગતો ઉમેરો (વૈકલ્પિક)",
     "showAll": "બધી ટિપ્પણીઓ બતાવો",
     "discardTitle": "તમારી ટિપ્પણી કાઢી નાખવી છે?",
     "discardBody": "તે ડ્રાફ્ટ તરીકે સાચવાઈ છે, તમે પાછા આવશો ત્યારે અહીં જ મળશે.",

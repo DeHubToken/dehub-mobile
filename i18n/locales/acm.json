@@ -1858,6 +1858,11 @@
     "searchDehubFor": "دوّر على \"{{query}}\" بـDeHub"
   },
   "comments": {
+    "reportComment": "بلاغ تعليق",
+    "reportCommentTitle": "بلغ عن هذا التعليق",
+    "reportCommentDescription": "أخبرنا ما هو الخطأ في هذا التعليق وسيقوم المشرفون بمراجعته.",
+    "reportCommentAlready": "لقد قمت بالإبلاغ عن هذا التعليق بالفعل.",
+    "reportReasonPlaceholder": "أضف أي تفاصيل تساعدنا في مراجعته (اختياري)",
     "showAll": "بين كل التعليقات",
     "discardTitle": "تريد تترك تعليقك؟",
     "discardBody": "انحفظ كمسودة، وراح يكون هنا لمن ترجع.",

@@ -2079,6 +2079,11 @@
     "failedSubmit": "Failed to submit application. Please try again."
   },
   "comments": {
+    "reportComment": "রিপোর্ট করুন মন্তব্য",
+    "reportCommentTitle": "এই মন্তব্যটি রিপোর্ট করুন",
+    "reportCommentDescription": "এই মন্তব্যে কি ভুল আছে তা আমাদের জানান এবং আমাদের মডারেটররা এটি পর্যালোচনা করবেন।",
+    "reportCommentAlready": "আপনি ইতিমধ্যেই এই মন্তব্যটি রিপোর্ট করেছেন।",
+    "reportReasonPlaceholder": "আমাদের পর্যালোচনা করতে সাহায্য করে এমন কোনো বিবরণ যোগ করুন (ঐচ্ছিক)",
     "showAll": "সব মন্তব্য দেখান",
     "discardTitle": "তোমার মন্তব্য বাদ দিতায় নি?",
     "discardBody": "ইতা খসড়া হিসাবে রাখা অইছে, ফিরিয়া আইলে ইখানোউ পাইবায়।",

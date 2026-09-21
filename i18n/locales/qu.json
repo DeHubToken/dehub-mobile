@@ -1931,6 +1931,11 @@
     "searchDehubFor": "DeHub ukhupi \"{{query}}\" maskay"
   },
   "comments": {
+    "reportComment": "Commentario nisqamanta willakuy",
+    "reportCommentTitle": "Kay rimayta willay",
+    "reportCommentDescription": "Willawayku ima mana allin kasqanmanta kay comentario nisqapi, chaymantataq moderadorniyku qhawarinqaku.",
+    "reportCommentAlready": "Kay rimaytaqa willarqankiñam.",
+    "reportReasonPlaceholder": "Ima detallekunatapas yapay, chaykunam yanapawanchik qawayta (munasqa) .",
     "showAll": "Llapan rimaykunata qawachiy",
     "discardTitle": "Comentarioykita wikch'unkichu?",
     "discardBody": "Borradorpi waqaychasqa kashan, kutimuqtiykiqa kaypim kanqa.",

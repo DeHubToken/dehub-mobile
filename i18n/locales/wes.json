@@ -1841,6 +1841,11 @@
     "searchDehubFor": "Search \"{{query}}\" fo DeHub"
   },
   "comments": {
+    "reportComment": "Report comment",
+    "reportCommentTitle": "Report dis comment",
+    "reportCommentDescription": "Tell us wetin dey wrong wit dis comment and our moderators go check am.",
+    "reportCommentAlready": "You don report dis comment already.",
+    "reportReasonPlaceholder": "Add any detail wey go help us check am (optional)",
     "showAll": "Show all de comment dem",
     "discardTitle": "You wan throway ya comment?",
     "discardBody": "We don keep-am as draft, so e go still dey here when you kam back.",

@@ -1928,6 +1928,11 @@
     "searchDehubFor": "Sesha \"{{query}}\" ku-DeHub"
   },
   "comments": {
+    "reportComment": "Bika ukuphawula",
+    "reportCommentTitle": "Bika lokhu kuphawula",
+    "reportCommentDescription": "Sitshele ukuthi yini engalungile ngalokhu kuphawula futhi abamenenja bethu bazoyibuyekeza.",
+    "reportCommentAlready": "Usuvele ukubikile lokhu kuphawula.",
+    "reportReasonPlaceholder": "Faka noma yimiphi imininingwane esisiza siyibuyekeze (akuphoqelekile)",
     "showAll": "Bonisa wonke amakhomenti",
     "discardTitle": "Ulahla umbono wakho?",
     "discardBody": "Ulondolozwe njengohlaka, ngakho uzoba lapha uma ubuya.",

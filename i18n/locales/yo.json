@@ -1895,6 +1895,11 @@
     "searchDehubFor": "Wá \"{{query}}\" lórí DeHub"
   },
   "comments": {
+    "reportComment": "Iroyin asọye",
+    "reportCommentTitle": "Sọ asọye yii",
+    "reportCommentDescription": "Sọ fún wa ohun tí kò dára pẹ̀lú àlàyé yìí àti pé àwọn olùṣàkóso wa yóò ṣe àgbéyẹ̀wò rẹ̀.",
+    "reportCommentAlready": "O ti sọ àsọyé yìí tẹ́lẹ̀.",
+    "reportReasonPlaceholder": "Ṣafikun eyikeyi alaye ti o ṣe iranlọwọ fun wa lati ṣe atunyẹwo rẹ (aṣayan)",
     "showAll": "gbogbo àwọn èsì",
     "discardTitle": "Ṣé kí a pa ọ̀rọ̀ rẹ rẹ́?",
     "discardBody": "A ti fi pamọ́ gẹ́gẹ́ bí àkọsílẹ̀, yóò wà níbí nígbà tí o bá padà.",

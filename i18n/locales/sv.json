@@ -1903,6 +1903,11 @@
     "searchDehubFor": "Sök efter ”{{query}}” på DeHub"
   },
   "comments": {
+    "reportComment": "Rapportera kommentar",
+    "reportCommentTitle": "Rapportera denna kommentar",
+    "reportCommentDescription": "Berätta vad som är fel med den här kommentaren och våra moderatorer kommer att granska den.",
+    "reportCommentAlready": "Du har redan rapporterat den här kommentaren.",
+    "reportReasonPlaceholder": "Lägg till information som hjälper oss att granska den (valfritt)",
     "showAll": "Visa alla kommentarer",
     "discardTitle": "Kasta kommentaren?",
     "discardBody": "Den är sparad som utkast, så den finns här när du kommer tillbaka.",

@@ -1914,6 +1914,11 @@
     "searchDehubFor": "Cerca «{{query}}» su DeHub"
   },
   "comments": {
+    "reportComment": "Commento report",
+    "reportCommentTitle": "Segnala questo commento",
+    "reportCommentDescription": "Dicci cosa c'è di sbagliato in questo commento e i nostri moderatori lo esamineranno.",
+    "reportCommentAlready": "Hai già segnalato questo commento.",
+    "reportReasonPlaceholder": "Aggiungi tutti i dettagli che ci aiutano a rivederlo (facoltativo)",
     "showAll": "Mostra tutti i commenti",
     "discardTitle": "Vuoi eliminare il commento?",
     "discardBody": "È salvato come bozza, lo ritrovi qui quando torni.",

@@ -1888,6 +1888,11 @@
     "searchDehubFor": "Uf DeHub noch \"{{query}}\" sueche"
   },
   "comments": {
+    "reportComment": "Kommentar melde",
+    "reportCommentTitle": "Melde disä Kommentar",
+    "reportCommentDescription": "Säg üs, was a dim Kommentär falsch isch und üsi Moderatorä lueged druf.",
+    "reportCommentAlready": "Du häsch disä Kommentar scho gmeldet.",
+    "reportReasonPlaceholder": "Füeg Details zue, wo üs helfed, das z'überprüefe (optional)",
     "showAll": "Zeig alli Kommentär",
     "discardTitle": "Kommentar verwärfe?",
     "discardBody": "Er isch als Entwurf gspeicheret und isch no da, wenn du zrugg chunnsch.",

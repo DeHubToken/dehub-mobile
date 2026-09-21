@@ -1899,6 +1899,11 @@
     "searchDehubFor": "Pretraži „{{query}}” na DeHubu"
   },
   "comments": {
+    "reportComment": "Prijavi komentar",
+    "reportCommentTitle": "Prijavi ovaj komentar",
+    "reportCommentDescription": "Recite nam što nije u redu s ovim komentarom i naši će ga moderatori pregledati.",
+    "reportCommentAlready": "Već ste prijavili ovaj komentar.",
+    "reportReasonPlaceholder": "Unesite sve pojedinosti koje će nam pomoći da ga pregledamo (nije obavezno)",
     "showAll": "Komentar:",
     "discardTitle": "Odbaciti komentar?",
     "discardBody": "Spremljen je kao skica pa će biti ovdje kad se vratiš.",

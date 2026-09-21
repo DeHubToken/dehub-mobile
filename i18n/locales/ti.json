@@ -1874,6 +1874,11 @@
     "searchDehubFor": "ኣብ DeHub \"{{query}}\" ድለ"
   },
   "comments": {
+    "reportComment": "ርእይቶታት ኣቕርብ",
+    "reportCommentTitle": "ነዚ ርእይቶ እዚ ኣመልኪቱ",
+    "reportCommentDescription": "ብዛዕባ እዚ ርእይቶ እዚ እንታይ ጌጋ ኸም ዘሎ ንገረና ፣ ኣማሓደርትና ድማ ነዚ ኺግምግሙ እዮም ።",
+    "reportCommentAlready": "ነዚ ሓሳብ እዚ ቀዲምካ ኣዘኻኺርካዮ ኢኻ ።",
+    "reportReasonPlaceholder": "ነዚ ንምግምጋም ዝሕግዘና ዝኾነ ዝርዝር ሓበሬታ ኣክሎ (ምምራጽ)",
     "showAll": "ንዅሉ ርእይቶታት ኣርኢ",
     "discardTitle": "ርእይቶኻ ክትሓድጎ?",
     "discardBody": "ከም ንድፊ ተዓቂቡ ኣሎ፣ ምስ ተመለስካ ኣብዚ ክህሉ እዩ።",

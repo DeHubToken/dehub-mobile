@@ -1890,6 +1890,11 @@
     "searchDehubFor": "Ka raadi \"{{query}}\" DeHub"
   },
   "comments": {
+    "reportComment": "Faallo ka soo sheeg",
+    "reportCommentTitle": "Ka warbixi faalladan",
+    "reportCommentDescription": "Noo sheeg waxa ka qaldan faalladan iyo moderators our dib u eegi doonaa.",
+    "reportCommentAlready": "Horay ayaad uga warbixisay faalladan.",
+    "reportReasonPlaceholder": "Ku dar wixii faahfaahin ah oo naga caawiya inaan dib u eegno (ikhtiyaari)",
     "showAll": "Muuji dhammaan faallooyinka",
     "discardTitle": "Ma tuuraysaa faalladaada?",
     "discardBody": "Waxaa loo kaydiyay qabyo, markaad soo noqotona halkan bay joogi doontaa.",

@@ -2181,6 +2181,11 @@
     "searchDehubFor": "Tìm \"{{query}}\" trên DeHub"
   },
   "comments": {
+    "reportComment": "Báo cáo bình luận",
+    "reportCommentTitle": "Báo cáo nhận xét này",
+    "reportCommentDescription": "Hãy cho chúng tôi biết nhận xét này có vấn đề gì và người kiểm duyệt của chúng tôi sẽ xem xét.",
+    "reportCommentAlready": "Bạn đã báo cáo nhận xét này.",
+    "reportReasonPlaceholder": "Thêm bất kỳ thông tin nào giúp chúng tôi xem xét (không bắt buộc)",
     "showAll": "Hiển thị tất cả <x id=\"1\"/> bình luận",
     "discardTitle": "Bỏ bình luận của bạn?",
     "discardBody": "Đã lưu thành bản nháp, nên nó vẫn ở đây khi bạn quay lại.",

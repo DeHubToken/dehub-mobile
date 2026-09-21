@@ -18,6 +18,7 @@ import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
 import GifPicker from "../components/DM/GifPicker";
 import EmojiSheet from "../components/Upload/EmojiSheet";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
+import ReportModal from "../components/common/ReportModal";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import CommentsSkeleton from "../components/Feed/CommentsSkeleton";
@@ -147,6 +148,8 @@ export default function FeedDetailScreen() {
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
   const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
+  // The comment whose Report row was picked; the sheet is aimed at it.
+  const [reportTarget, setReportTarget] = useState<Comment | null>(null);
 
   // Tip-a-comment state + per-comment totals from tip_records
   const [tipComment, setTipComment] = useState<Comment | null>(null);
@@ -508,6 +511,13 @@ export default function FeedDetailScreen() {
   const handleContextReply = useCallback(() => {
     if (contextComment) handleReplyPress(contextComment);
   }, [contextComment, handleReplyPress]);
+
+  // Context menu action: report somebody else's comment
+  const handleContextReport = useCallback(() => {
+    if (!contextComment || !requireAuth) return;
+    const target = contextComment;
+    requireAuth(() => setReportTarget(target));
+  }, [contextComment, requireAuth]);
 
   /** This thread is the viewer's own post, which is what a pin needs. */
   const isOwnThread = useMemo(() => {
@@ -1349,6 +1359,7 @@ export default function FeedDetailScreen() {
         onReply={contextMeta?.isReply ? undefined : handleContextReply}
         onEdit={contextMeta?.isOwnComment ? handleContextEdit : undefined}
         onDelete={contextMeta?.isOwnComment ? handleContextDelete : undefined}
+        onReport={contextMeta?.isOwnComment || !address ? undefined : handleContextReport}
         onPin={
           // Root comments only — a reply sits in a subtree nothing re-orders,
           // so pinning one would move nothing.
@@ -1359,6 +1370,16 @@ export default function FeedDetailScreen() {
         onShowLikers={
           contextComment ? () => setLikersCommentId(Number(contextComment.id)) : undefined
         }
+        tokenId={tokenId}
+      />
+
+      {/* Report somebody else's comment. One sheet for the whole screen,
+          aimed at whichever comment's Report row was picked. */}
+      <ReportModal
+        visible={reportTarget !== null}
+        onClose={() => setReportTarget(null)}
+        type="comment"
+        commentId={reportTarget?.id}
         tokenId={tokenId}
       />
 

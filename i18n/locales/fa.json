@@ -1927,6 +1927,11 @@
     "searchDehubFor": "جست‌وجوی «{{query}}» در DeHub"
   },
   "comments": {
+    "reportComment": "گزارش دیدگاه",
+    "reportCommentTitle": "گزارش این دیدگاه",
+    "reportCommentDescription": "به ما بگویید که این نظر چه مشکلی دارد و مدیران ما آن را بررسی خواهند کرد.",
+    "reportCommentAlready": "شما این دیدگاه را قبلا گزارش کرده اید.",
+    "reportReasonPlaceholder": "هر جزئیاتی که به ما در بررسی آن کمک می‌کند را اضافه کنید (اختیاری)",
     "showAll": "نمایش همه  %d نظرات",
     "discardTitle": "نظرت را رها می‌کنی؟",
     "discardBody": "به‌صورت پیش‌نویس ذخیره شده و وقتی برگردی همین‌جاست.",

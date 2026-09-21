@@ -1846,6 +1846,11 @@
     "searchDehubFor": "Дар DeHub \"{{query}}\"-ро ҷустуҷӯ кунед"
   },
   "comments": {
+    "reportComment": "Mag-ulat ng komento",
+    "reportCommentTitle": "I-ulat ang komentong ito",
+    "reportCommentDescription": "Ба мо бигӯед, ки дар ин шарҳ чӣ нодуруст аст ва модераторони мо онро баррасӣ хоҳанд кард.",
+    "reportCommentAlready": "Nag-uulat mo na ang komentong ito.",
+    "reportReasonPlaceholder": "Magdagdag ng anumang mga detalye na tumutulong sa amin ito (ops",
     "showAll": "Ipakita ang lahat ng mga",
     "discardTitle": "Шарҳатонро партоед?",
     "discardBody": "Он ҳамчун сиёҳнавис нигоҳ дошта шуд, ҳангоми баргаштан дар ҳамин ҷо мешавад.",

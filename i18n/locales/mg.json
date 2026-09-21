@@ -1817,6 +1817,11 @@
     "searchDehubFor": "Hikaroka \"{{query}}\" ao amin'ny DeHub"
   },
   "comments": {
+    "reportComment": "Tatitra momba ny tatitra",
+    "reportCommentTitle": "Tatitra ity fanehoan-kevitra ity",
+    "reportCommentDescription": "Lazao anay izay tsy mety amin'ity fanehoan-kevitra ity ary handinika izany ny mpandrindra.",
+    "reportCommentAlready": "Efa nampahafantarinao ireo fanehoan-kevitra ireo.",
+    "reportReasonPlaceholder": "Ampio tsipiriany rehetra izay manampy antsika hamerina izany (tsy voatery)",
     "showAll": "Asehoy ny fanehoan-kevitra rehetra",
     "discardTitle": "Hafoy ny hevitrao?",
     "discardBody": "Voatahiry ho volavola izy, ka ho eto ihany rehefa miverina ianao.",

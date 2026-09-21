@@ -1858,6 +1858,11 @@
     "searchDehubFor": "Goleki \"{{query}}\" ing DeHub"
   },
   "comments": {
+    "reportComment": "Laporaen komentar",
+    "reportCommentTitle": "Laporaen komentar iki",
+    "reportCommentDescription": "Caturana apa sing salah saka komentar iki lan para moderator kita bakal mriksa.",
+    "reportCommentAlready": "Sampeyan wis nglaporaen komentar iki.",
+    "reportReasonPlaceholder": "Tambahake rincian apa wae sing mbantu kita mriksa (opsional)",
     "showAll": "Tampilake kabeh komentar",
     "discardTitle": "Mbuwang komentarmu?",
     "discardBody": "Wis disimpen dadi konsep, dadi bakal ana ing kene nalika kowe bali.",

@@ -2274,6 +2274,11 @@
     "searchDehubFor": "Maghanap ng \"{{query}}\" sa DeHub"
   },
   "comments": {
+    "reportComment": "Mag - ulat ng komento",
+    "reportCommentTitle": "Iulat ang komentong ito",
+    "reportCommentDescription": "Sabihin sa amin kung ano ang mali sa komentong ito at susuriin ito ng aming mga moderator.",
+    "reportCommentAlready": "Iniulat mo na ang komentong ito.",
+    "reportReasonPlaceholder": "Magdagdag ng anumang mga detalye na makakatulong sa amin na suriin ito (opsyonal)",
     "showAll": "Ipakita ang lahat ng mga komento",
     "discardTitle": "Itatapon ang komento mo?",
     "discardBody": "Naka-save ito bilang draft, kaya nandito pa rin ito pagbalik mo.",

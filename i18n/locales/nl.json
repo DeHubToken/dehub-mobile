@@ -2364,6 +2364,11 @@
     "searchDehubFor": "Zoek op DeHub naar \"{{query}}\""
   },
   "comments": {
+    "reportComment": "Opmerking melden",
+    "reportCommentTitle": "Deze opmerking melden",
+    "reportCommentDescription": "Vertel ons wat er mis is met deze reactie en onze moderators zullen deze beoordelen.",
+    "reportCommentAlready": "Je hebt deze opmerking al gemeld.",
+    "reportReasonPlaceholder": "Voeg alle details toe die ons helpen om het te beoordelen (optioneel)",
     "showAll": "Toon alle reacties",
     "discardTitle": "Reactie verwijderen?",
     "discardBody": "Hij is opgeslagen als concept, dus hij staat hier nog als je terugkomt.",

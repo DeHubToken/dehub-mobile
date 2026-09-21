@@ -2037,6 +2037,11 @@
     "searchDehubFor": "Search DeHub for \"{{query}}\""
   },
   "comments": {
+    "reportComment": "Report comment",
+    "reportCommentTitle": "Report this comment",
+    "reportCommentDescription": "Tell us what is wrong with this comment and our moderators will review it.",
+    "reportCommentAlready": "You have already reported this comment.",
+    "reportReasonPlaceholder": "Add any details that help us review it (optional)",
     "showAll": "Show all comments",
     "discardTitle": "Discard your comment?",
     "discardBody": "It's saved as a draft, so it will be here when you come back.",

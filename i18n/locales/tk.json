@@ -1845,6 +1845,11 @@
     "searchDehubFor": "DeHub-da \"{{query}}\" gözle"
   },
   "comments": {
+    "reportComment": "Komentary habar beriň",
+    "reportCommentTitle": "Bu barada gürrüň beriň",
+    "reportCommentDescription": "Bu pikirde näme nädogry bolandygyny aýt we biziň moderatorlarymyz ony barlap görerler.",
+    "reportCommentAlready": "Sen bu sözleri öňünden aýtdyň.",
+    "reportReasonPlaceholder": "Bize ony barlamaga kömek edýän maglumatlary goş (oýlanyp görüň)",
     "showAll": "Ähli pikirleri görkez",
     "discardTitle": "Teswiriňizi taşlaýarsyňyzmy?",
     "discardBody": "Ol taslama hökmünde saklandy, gaýdyp geleniňizde şu ýerde bolar.",

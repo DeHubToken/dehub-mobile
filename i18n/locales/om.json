@@ -1964,6 +1964,11 @@
     "searchDehubFor": "DeHub irratti \"{{query}}\" barbaadi"
   },
   "comments": {
+    "reportComment": "Yaada gabaasaa",
+    "reportCommentTitle": "Yaada kana gabaasi",
+    "reportCommentDescription": "Yaada kana irratti maaltu akka dogoggora ta&#39;e nuuf himaa moderators keenyas ni gamaaggamu.",
+    "reportCommentAlready": "Yaada kana duraan gabaaftaniittu.",
+    "reportReasonPlaceholder": "Bal&#39;ina akka ilaallu nu gargaaru kamiyyuu itti dabali (dirqama)",
     "showAll": "Yaada hunda agarsiisi",
     "discardTitle": "Yaada kee gatta?",
     "discardBody": "Akka wixinee ol kaa'ameera, yeroo deebitu asuma jira.",

@@ -1851,6 +1851,11 @@
     "searchDehubFor": "DeHub تے \"{{query}}\" لبھو"
   },
   "comments": {
+    "reportComment": "رپورٹ تبصرہ",
+    "reportCommentTitle": "اے تبصرہ رپورٹ کرو",
+    "reportCommentDescription": "سانوں دسو اے تبصرہ کیہڑے وجہ نال غلط اے تے ساڈے منتظم ایس دا جائزہ لین گن۔",
+    "reportCommentAlready": "تساں اے تبصرہ پہلے ای رپورٹ کر چکے او۔",
+    "reportReasonPlaceholder": "کوئی وی تفصیل شامل کرو جیہڑی سانوں جائزہ لین وچ مدد دیوے (اختیاری)",
     "showAll": "ساریاں گلاں وکھا",
     "discardTitle": "اپݨا تبصرہ چھوڑ ݙیوو؟",
     "discardBody": "ایہ مسودے وچ محفوظ ہے، واپس آوݨ تے ایتھاں ہی ملسی۔",
