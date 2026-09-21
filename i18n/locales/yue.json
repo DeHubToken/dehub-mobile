@@ -3456,7 +3456,10 @@
     "newMembers": "新成員",
     "membersOverTime": "成員隨時間變化",
     "lastDays": "最近 {{count}} 日",
-    "source": "嚟自 DeHub 公開統計接口嘅帳戶歷史記錄。本圖表唔使用任何估算值。"
+    "source": "嚟自 DeHub 公開統計接口嘅帳戶歷史記錄。本圖表唔使用任何估算值。",
+    "community": {
+      "openNewMembers": "打開新成員清單"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana 錢包不可用",

@@ -3458,7 +3458,10 @@
     "newMembers": "Membres nous",
     "membersOverTime": "Membres al llarg del temps",
     "lastDays": "Últims {{count}} dies",
-    "source": "Historial de comptes registrat des de l'endpoint públic d'estadístiques de DeHub. En aquest gràfic no s'utilitzen valors estimats."
+    "source": "Historial de comptes registrat des de l'endpoint públic d'estadístiques de DeHub. En aquest gràfic no s'utilitzen valors estimats.",
+    "community": {
+      "openNewMembers": "Obre la llista de membres nous"
+    }
   },
   "solana": {
     "unavailableTitle": "Cartera de Solana no disponible",

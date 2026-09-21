@@ -3546,7 +3546,10 @@
     "newMembers": "Thành viên mới",
     "membersOverTime": "Thành viên theo thời gian",
     "lastDays": "{{count}} ngày gần nhất",
-    "source": "Lịch sử tài khoản được ghi nhận từ endpoint thống kê công khai của DeHub. Biểu đồ này không dùng giá trị ước tính."
+    "source": "Lịch sử tài khoản được ghi nhận từ endpoint thống kê công khai của DeHub. Biểu đồ này không dùng giá trị ước tính.",
+    "community": {
+      "openNewMembers": "Mở danh sách thành viên mới"
+    }
   },
   "solana": {
     "unavailableTitle": "Không có ví Solana",

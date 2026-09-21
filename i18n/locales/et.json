@@ -3457,7 +3457,10 @@
     "newMembers": "Uued liikmed",
     "membersOverTime": "Liikmed ajas",
     "lastDays": "Viimased {{count}} päeva",
-    "source": "Salvestatud kontode ajalugu DeHubi avalikust statistika lõpp-punktist. Selles graafikus ei kasutata hinnangulisi väärtusi."
+    "source": "Salvestatud kontode ajalugu DeHubi avalikust statistika lõpp-punktist. Selles graafikus ei kasutata hinnangulisi väärtusi.",
+    "community": {
+      "openNewMembers": "Ava uute liikmete nimekiri"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana rahakott pole saadaval",

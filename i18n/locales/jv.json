@@ -3416,7 +3416,10 @@
     "newMembers": "Anggota anyar",
     "membersOverTime": "Anggota saka wektu",
     "lastDays": "{{count}} dina pungkasan",
-    "source": "Riwayat akun sing kacathet saka endpoint statistik umum DeHub. Ora ana nilai prakiraan sing digunakake ing grafik iki."
+    "source": "Riwayat akun sing kacathet saka endpoint statistik umum DeHub. Ora ana nilai prakiraan sing digunakake ing grafik iki.",
+    "community": {
+      "openNewMembers": "Buka dhaptar anggota anyar"
+    }
   },
   "solana": {
     "unavailableTitle": "Dompet Solana ora kasedhiya",

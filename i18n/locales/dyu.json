@@ -3403,7 +3403,10 @@
     "newMembers": "Jɛkulu mɔgɔ kuraw",
     "membersOverTime": "Jɛkulu mɔgɔw waati kɔnɔ",
     "lastDays": "Tile {{count}} tɛmɛnen",
-    "source": "DeHub ka jateden yɔrɔ la jatedenw. Jateminɛ si tɛ kɛ nin ja in kɔnɔ."
+    "source": "DeHub ka jateden yɔrɔ la jatedenw. Jateminɛ si tɛ kɛ nin ja in kɔnɔ.",
+    "community": {
+      "openNewMembers": "N'i ye mɔgɔ kuraw ye, i ka kan ka u tɔgɔw sɛbɛn"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana wari maralan tɛ sɔrɔ",

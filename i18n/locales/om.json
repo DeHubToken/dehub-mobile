@@ -3522,7 +3522,10 @@
     "newMembers": "Miseensota haaraa",
     "membersOverTime": "Miseensota yeroon",
     "lastDays": "Guyyoota {{count}} darban",
-    "source": "Seenaa herregaa kan galmaa'e bakka dhumaa istaatistiksii uummataa DeHub irraa. Gatiiwwan tilmaamaa sarara kana keessatti hin fayyadamne."
+    "source": "Seenaa herregaa kan galmaa'e bakka dhumaa istaatistiksii uummataa DeHub irraa. Gatiiwwan tilmaamaa sarara kana keessatti hin fayyadamne.",
+    "community": {
+      "openNewMembers": "Tarree miseensota haaraa banaa"
+    }
   },
   "solana": {
     "unavailableTitle": "Boorsaan Solana hin argamu",

@@ -3458,7 +3458,10 @@
     "newMembers": "Uudet jäsenet",
     "membersOverTime": "Jäsenet ajan mittaan",
     "lastDays": "Viimeiset {{count}} päivää",
-    "source": "Tallennettu tilihistoria DeHubin julkisesta tilastopäätepisteestä. Tässä kaaviossa ei käytetä arvioituja lukuja."
+    "source": "Tallennettu tilihistoria DeHubin julkisesta tilastopäätepisteestä. Tässä kaaviossa ei käytetä arvioituja lukuja.",
+    "community": {
+      "openNewMembers": "Avaa uusi jäsenluettelo"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana-lompakko ei ole käytettävissä",

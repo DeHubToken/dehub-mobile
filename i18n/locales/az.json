@@ -3442,7 +3442,10 @@
     "newMembers": "Yeni üzvlər",
     "membersOverTime": "Zamanla üzvlər",
     "lastDays": "Son {{count}} gün",
-    "source": "DeHub-un ictimai statistika son nöqtəsindən qeydə alınmış hesab tarixçəsi. Bu qrafikdə təxmini dəyərlər istifadə olunmur."
+    "source": "DeHub-un ictimai statistika son nöqtəsindən qeydə alınmış hesab tarixçəsi. Bu qrafikdə təxmini dəyərlər istifadə olunmur.",
+    "community": {
+      "openNewMembers": "Yeni üzvlərin siyahısını açın"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana cüzdanı əlçatan deyil",

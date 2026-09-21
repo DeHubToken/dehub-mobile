@@ -3449,7 +3449,10 @@
     "newMembers": "Nye medlemmer",
     "membersOverTime": "Medlemmer over tid",
     "lastDays": "Siste {{count}} dager",
-    "source": "Registrert kontohistorikk fra DeHubs offentlige statistikkendepunkt. Ingen estimerte verdier brukes i dette diagrammet."
+    "source": "Registrert kontohistorikk fra DeHubs offentlige statistikkendepunkt. Ingen estimerte verdier brukes i dette diagrammet.",
+    "community": {
+      "openNewMembers": "Åpne listen over nye medlemmer"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana-lommebok utilgjengelig",

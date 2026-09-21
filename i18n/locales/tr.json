@@ -3520,7 +3520,10 @@
     "newMembers": "Yeni üyeler",
     "membersOverTime": "Zaman içinde üyeler",
     "lastDays": "Son {{count}} gün",
-    "source": "DeHub'ın herkese açık istatistik uç noktasından kaydedilen hesap geçmişi. Bu grafikte tahmini değerler kullanılmaz."
+    "source": "DeHub'ın herkese açık istatistik uç noktasından kaydedilen hesap geçmişi. Bu grafikte tahmini değerler kullanılmaz.",
+    "community": {
+      "openNewMembers": "Yeni üye listesini aç"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana cüzdanı kullanılamıyor",

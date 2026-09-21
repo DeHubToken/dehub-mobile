@@ -3525,7 +3525,10 @@
     "newMembers": "新規メンバー",
     "membersOverTime": "メンバー数の推移",
     "lastDays": "直近 {{count}} 日間",
-    "source": "DeHub の公開統計エンドポイントに記録されたアカウント履歴です。このグラフに推計値は使用していません。"
+    "source": "DeHub の公開統計エンドポイントに記録されたアカウント履歴です。このグラフに推計値は使用していません。",
+    "community": {
+      "openNewMembers": "新しいメンバーリストを開く"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana ウォレットを利用できません",

@@ -3575,7 +3575,10 @@
     "newMembers": "Nuwe lede",
     "membersOverTime": "Lede oor tyd",
     "lastDays": "Laaste {{count}} dae",
-    "source": "Aangetekende rekeninggeskiedenis vanaf DeHub se openbare statistiek-eindpunt. Geen geskatte waardes word in hierdie grafiek gebruik nie."
+    "source": "Aangetekende rekeninggeskiedenis vanaf DeHub se openbare statistiek-eindpunt. Geen geskatte waardes word in hierdie grafiek gebruik nie.",
+    "community": {
+      "openNewMembers": "Open die nuwe lidmaatelys"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana-beursie nie beskikbaar nie",
