@@ -2,6 +2,9 @@ export interface BookPosition {
   minPrice: number; maxPrice: number; marketPrice: number; amountDhb: number; amountUsdc: number;
 }
 export interface BookLevel { price: number; dhb: number; usdc: number; cumulativeDhb: number }
+/** Grouping steps offered by the order book, finest first. */
+export const BOOK_INCREMENTS = [0.00000001, 0.0000001, 0.000001, 0.00001] as const;
+export const DEFAULT_INCREMENT = 0.000001;
 
 /** Indicative AMM depth from actual reserves. An in-range LP contributes to both sides.
  * Sample log-price intervals using concentrated-liquidity reserve math, not the indexed deposit amount.
@@ -46,11 +49,52 @@ export function aggregateBook(positions: BookPosition[], increment = 0.00000001)
 export function displayBookLevels(levels: BookLevel[], bid: boolean) {
   return bid ? levels : [...levels].reverse();
 }
+/** The `count` levels closest to the spread, in display order, for surfaces without their own scroll box. */
+export function nearestBookLevels(levels: BookLevel[], bid: boolean, count: number) {
+  const displayed = displayBookLevels(levels, bid);
+  return bid ? displayed.slice(0, count) : displayed.slice(Math.max(0, displayed.length - count));
+}
+/** Decimal places a grouping step needs so neighbouring grouped rows never print as the same price. */
+export function incrementDecimals(increment: number) {
+  if (!Number.isFinite(increment) || increment <= 0) return 8;
+  return Math.min(8, Math.max(0, Math.ceil(-Math.log10(increment) - 1e-9)));
+}
+/** Fixed decimals that follow the grouping step, so rows align and each level stays distinct. */
+export function formatBookPrice(value: number | null | undefined, increment: number) {
+  return value != null && Number.isFinite(value) ? value.toFixed(incrementDecimals(increment)) : '—';
+}
+export function formatIncrement(increment: number) {
+  return increment.toFixed(incrementDecimals(increment));
+}
+/** Five significant digits below 1 keep sub-cent prices apart; whole-number prices keep 2–5 decimals. */
 export function formatPrice(value: number | null | undefined) {
-  return value != null && Number.isFinite(value) ? value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 5 }) : '—';
+  if (value == null || !Number.isFinite(value)) return '—';
+  const magnitude = Math.abs(value);
+  const digits = magnitude > 0 && magnitude < 1 ? Math.min(8, Math.max(2, 4 - Math.floor(Math.log10(magnitude)))) : 5;
+  return value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: digits });
 }
 export function formatSize(value: number) {
   return value.toLocaleString('en-US', { maximumFractionDigits: value < 1 ? 6 : 2 });
+}
+/** Spread as a share of the mid price, in percent. */
+export function spreadPercent(bid: number, ask: number) {
+  const mid = (bid + ask) / 2;
+  return mid > 0 && Number.isFinite(mid) ? Math.abs(ask - bid) / mid * 100 : null;
+}
+/** Seed the ticket one grouping step clear of the pool price, so the default range is single-sided. */
+export function defaultOrderPrice(side: 'buy' | 'sell', marketPrice: number | null | undefined, increment = DEFAULT_INCREMENT) {
+  const step = Number.isFinite(increment) && increment > 0 ? increment : DEFAULT_INCREMENT;
+  if (marketPrice == null || !Number.isFinite(marketPrice) || marketPrice <= 0) return '0.00100000';
+  const price = side === 'sell' ? Math.ceil(marketPrice * 1.0005 / step) * step : Math.floor(marketPrice * 0.9995 / step) * step;
+  return (price > 0 ? price : step).toFixed(8);
+}
+/** Share of a deposit already converted, from where the pool price sits inside the range (sqrt-price liquidity math). */
+export function fillFraction(p: { minPrice: number; maxPrice: number; marketPrice: number; side: 'buy' | 'sell' }) {
+  if (![p.minPrice, p.maxPrice, p.marketPrice].every(Number.isFinite) || p.minPrice <= 0 || p.maxPrice <= p.minPrice) return 0;
+  const rootLo = Math.sqrt(p.minPrice), rootHi = Math.sqrt(p.maxPrice);
+  const root = Math.sqrt(Math.min(p.maxPrice, Math.max(p.minPrice, p.marketPrice)));
+  const fraction = p.side === 'sell' ? (root - rootLo) / (rootHi - rootLo) : (1 / root - 1 / rootHi) / (1 / rootLo - 1 / rootHi);
+  return Math.min(1, Math.max(0, fraction));
 }
 /** Integer arithmetic keeps MAX and percentage buttons within the token balance. */
 export function balanceFraction(balance: string, percent: number, decimals: number): string {
