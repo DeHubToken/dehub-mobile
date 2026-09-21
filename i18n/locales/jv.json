@@ -584,7 +584,10 @@
       "unavailable": "Siaran saka encoder ora kasedhiya ing akunmu saiki.",
       "serverCopied": "Server disalin",
       "keyCopied": "Kunci stream disalin"
-    }
+    },
+    "socialFollowers": "Pangikut ing {{platform}}",
+    "socialFollowersHint": "Ditampilake ing profil sampeyan minangka bagéan saka jangkauan total sampeyan. Lebokake nomer dhewe - kita ora maca saka platform.",
+    "socialFollowersPlaceholder": "tuladha. 12500"
   },
   "common": {
     "mute": "Bisu",
@@ -1562,7 +1565,13 @@
     "noImages": "Durung ana gambar",
     "noImagesSub": "Kiriman gambar bakal katon ing kene",
     "noPlans": "Ora ana paket langganan",
-    "noPlansSub": "Kreator iki durung nggawe paket apa wae"
+    "noPlansSub": "Kreator iki durung nggawe paket apa wae",
+    "reach": {
+      "total": "Jangkauan total",
+      "breakdownTitle": "Saka ngendi jangkauan iki",
+      "dehubFollowers": "Pengikut DeHub",
+      "selfReported": "Jumlah pengikut sosial dilebokake dening kreator."
+    }
   },
   "tv": {
     "title": "TV",

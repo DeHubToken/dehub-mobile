@@ -623,7 +623,10 @@
       "unavailable": "Ukusakaza kusuka ku-encoder akutholakali ku-akhawunti yakho njengamanje.",
       "serverCopied": "Iseva ikopishiwe",
       "keyCopied": "Ukhiye wokusakaza ukopishiwe"
-    }
+    },
+    "socialFollowers": "Abalandeli ku- {{platform}}",
+    "socialFollowersHint": "Kuboniswe kuphrofayili yakho njengengxenye yengqikithi yokufinyelela kwakho. Faka inombolo ngokwakho — asiyifundi enkundleni.",
+    "socialFollowersPlaceholder": "isib. 12500"
   },
   "common": {
     "mute": "Thulisa",
@@ -1602,7 +1605,13 @@
     "noImages": "Azikho izithombe okwamanje",
     "noImagesSub": "Okuthunyelwe okunezithombe kuzovela lapha",
     "noPlans": "Awekho amaphakheji okubhalisa",
-    "noPlansSub": "Lo mdali akakasetheli noma yiluphi uhlelo"
+    "noPlansSub": "Lo mdali akakasetheli noma yiluphi uhlelo",
+    "reach": {
+      "total": "Ingqikithi yokufinyelela",
+      "breakdownTitle": "Loku kufinyelela kuvela kuphi",
+      "dehubFollowers": "Abalandeli be-DeHub",
+      "selfReported": "Izibalo zabalandeli zomphakathi zifakwa umsunguli."
+    }
   },
   "tv": {
     "title": "TV",

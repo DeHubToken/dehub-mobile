@@ -640,7 +640,10 @@
       "unavailable": "Lo streaming da un encoder non è attualmente disponibile sul tuo account.",
       "serverCopied": "Server copiato",
       "keyCopied": "Chiave di flusso copiata"
-    }
+    },
+    "socialFollowers": "Follower su {{platform}}",
+    "socialFollowersHint": "Mostrato sul tuo profilo come parte della tua copertura totale. Inserisci tu stesso il numero — non lo leggiamo dalla piattaforma.",
+    "socialFollowersPlaceholder": "es. 12500"
   },
   "common": {
     "mute": "Disattiva audio",
@@ -1585,7 +1588,13 @@
     "noImages": "Ancora nessuna immagine",
     "noImagesSub": "I post con immagini appariranno qui",
     "noPlans": "Nessun piano di abbonamento",
-    "noPlansSub": "Questo creator non ha ancora creato piani"
+    "noPlansSub": "Questo creator non ha ancora creato piani",
+    "reach": {
+      "total": "Portata totale",
+      "breakdownTitle": "Da dove proviene questa portata",
+      "dehubFollowers": "Follower DeHub",
+      "selfReported": "Il conteggio dei follower social viene inserito dal creator."
+    }
   },
   "messages": {
     "smartRepliesOff": "Risposte suggerite disattivate",

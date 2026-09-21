@@ -614,7 +614,10 @@
       "unavailable": "ካብ ኢንኮደር ምምሕላፍ ኣብ ሂሳብኩም ሕጂ ኣይርከብን እዩ።",
       "serverCopied": "ናይ ኣገልጋሊ ቅዳሕ",
       "keyCopied": "ቁልፍ ቅዳሕ"
-    }
+    },
+    "socialFollowers": "ኣብ {{platform}}",
+    "socialFollowersHint": "ከም ኣካል ናይ ምሉእ ትሕዝቶኻ ኣብ መገለጺኻ ተዓጽዩ ። ነቲ ቁጽሪ ብገዛእ ርእስኻ ኣእቲኻ — ካብ መድረኽ ኣይንበብን ኢና ።",
+    "socialFollowersPlaceholder": "ንኣብነት ፡ 12500"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",
@@ -1578,7 +1581,13 @@
     "noImages": "ክሳብ ሕጂ ስእልታት የለዉን",
     "noImagesSub": "ናይ ስእሊ ጽሑፋት ኣብዚ ክረኣዩ እዮም",
     "noPlans": "ናይ ምዝገባ መደባት የለዉን",
-    "noPlansSub": "እዚ ፈጣሪ ክሳብ ሕጂ ዝኾነ መደብ ኣየዳለወን"
+    "noPlansSub": "እዚ ፈጣሪ ክሳብ ሕጂ ዝኾነ መደብ ኣየዳለወን",
+    "reach": {
+      "total": "ምሉእ ምብጻሕ",
+      "breakdownTitle": "እዚ ምብጻሕ እዚ ካበይ እዩ መጺኡ ፧",
+      "dehubFollowers": "ተኸታተልቲ DeHub",
+      "selfReported": "ማሕበራዊ ተኸታተልቲ ቆጸራታት ብፈጣሪ ይኣትዉ እዮም ።"
+    }
   },
   "tv": {
     "title": "ቲቪ",

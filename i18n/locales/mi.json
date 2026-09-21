@@ -616,7 +616,10 @@
       "unavailable": "Kāore e wātea ana te whakapaoho mai i tētahi kaikōkiri ki tō pūkete i tēnei wā.",
       "serverCopied": "Ka kape te tūmau",
       "keyCopied": "Tīpakohia te kī o te kōpae"
-    }
+    },
+    "socialFollowers": "Ko nga kaiwhaiwhai i runga i {{platform}}",
+    "socialFollowersHint": "Hokona i runga i to koutou pūkete rite te wahi o to koutou REACH katoa. Whakauru i te tau ki a koe ano — e kore matou e pānui i te reira i te papa.",
+    "socialFollowersPlaceholder": "e ai ki te 12500"
   },
   "common": {
     "mute": "Whakangū",
@@ -1591,7 +1594,13 @@
     "noImages": "Kāore anō he whakaahua",
     "noImagesSub": "Ka puta mai ngā pou whakaahua ki konei",
     "noPlans": "Kāore he mahere ohaoha",
-    "noPlansSub": "Kāore anō tēnei kaihanga kia whakarite mahere"
+    "noPlansSub": "Kāore anō tēnei kaihanga kia whakarite mahere",
+    "reach": {
+      "total": "Te whaainga katoa",
+      "breakdownTitle": "Ko te wahi i puta mai ai tenei whaainga",
+      "dehubFollowers": "Ngā kaiwhaiwhai o DeHub",
+      "selfReported": "Ko nga kaute whaiwhai pāpori e whakauruhia ana e te kaihanga."
+    }
   },
   "tv": {
     "title": "TV",

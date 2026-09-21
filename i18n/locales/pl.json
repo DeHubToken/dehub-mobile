@@ -625,7 +625,10 @@
       "unavailable": "Strumieniowanie z enkodera nie jest obecnie dostępne na Twoim koncie.",
       "serverCopied": "Skopiowano serwer",
       "keyCopied": "Skopiowano klucz strumienia"
-    }
+    },
+    "socialFollowers": "Obserwujący na {{platform}}",
+    "socialFollowersHint": "Wyświetlane na Twoim profilu jako część całkowitego zasięgu. Wpisz numer samodzielnie — nie odczytujemy go z platformy.",
+    "socialFollowersPlaceholder": "np. 12500"
   },
   "common": {
     "mute": "Wycisz",
@@ -1865,7 +1868,13 @@
     "noImages": "Brak obrazów",
     "noImagesSub": "Posty ze zdjęciami pojawią się tutaj",
     "noPlans": "Brak planów subskrypcji",
-    "noPlansSub": "Ten twórca nie utworzył jeszcze żadnych planów"
+    "noPlansSub": "Ten twórca nie utworzył jeszcze żadnych planów",
+    "reach": {
+      "total": "Całkowity zasięg",
+      "breakdownTitle": "Skąd się bierze ten zasięg",
+      "dehubFollowers": "Obserwujący DeHub",
+      "selfReported": "Liczby obserwujących społeczności są wprowadzane przez twórcę."
+    }
   },
   "tv": {
     "title": "TV",

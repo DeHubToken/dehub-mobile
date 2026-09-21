@@ -611,7 +611,10 @@
       "unavailable": "I ka ladɛrɛsi tɛ sɔrɔ i ka ladɛrɛsi la sisan.",
       "serverCopied": "Kopiw",
       "keyCopied": "Riviera Maison Key Copy"
-    }
+    },
+    "socialFollowers": "Mɔgɔ minw be tugu u kɔ {{platform}}",
+    "socialFollowersHint": "I ka kunnafoniw yira i ka kunnafoniw kan i ka kunnafoniw bɛɛ kɔnɔ. I yɛrɛ ka nimɔrɔ don — an t'a kalan o kan.",
+    "socialFollowersPlaceholder": "ɲɛyirali fɛ, ɲɛsin ID-12345 ma."
   },
   "common": {
     "mute": "Kan bɔ",
@@ -1581,7 +1584,13 @@
     "noImages": "Ja si tɛ yen fɔlɔ",
     "noImagesSub": "Ja sɛbɛnw bɛna bɔ yan",
     "noPlans": "Bilali labɛn si tɛ yen",
-    "noPlansSub": "Nin dilanbaga ma labɛn si dilan fɔlɔ"
+    "noPlansSub": "Nin dilanbaga ma labɛn si dilan fɔlɔ",
+    "reach": {
+      "total": "Ka se yɔrɔ bɛɛ la",
+      "breakdownTitle": "O koo bɔra min?",
+      "dehubFollowers": "DeHub ka kalandenw",
+      "selfReported": "Mɔgɔ min ye mɔgɔ bila sira ka tugu a kɔ, ale lo ye mɔgɔ bila sira ka tugu a kɔ."
+    }
   },
   "tv": {
     "title": "TV",

@@ -623,7 +623,10 @@
       "unavailable": "שידור ממקודד אינו זמין בחשבונך כרגע.",
       "serverCopied": "השרת הועתק",
       "keyCopied": "מפתח הזרם הועתק"
-    }
+    },
+    "socialFollowers": "עוקבים ב -{{platform}}",
+    "socialFollowersHint": "מוצג בפרופיל שלך כחלק מהישג ידך הכולל. הזן את המספר בעצמך — אנחנו לא קוראים אותו מהפלטפורמה.",
+    "socialFollowersPlaceholder": "לדוגמה, 12500"
   },
   "common": {
     "mute": "השתק",
@@ -1462,7 +1465,13 @@
     "noImages": "עדיין אין תמונות",
     "noImagesSub": "פוסטים עם תמונות יופיעו כאן",
     "noPlans": "אין תוכניות מנוי",
-    "noPlansSub": "היוצר הזה עדיין לא יצר תוכניות"
+    "noPlansSub": "היוצר הזה עדיין לא יצר תוכניות",
+    "reach": {
+      "total": "טווח הגעה כולל",
+      "breakdownTitle": "מאיפה ההגעה הזו מגיעה?",
+      "dehubFollowers": "חסידי DeHub",
+      "selfReported": "מספר העוקבים החברתיים מוזן על ידי היוצר."
+    }
   },
   "messages": {
     "smartRepliesOff": "התשובות המוצעות כובו",

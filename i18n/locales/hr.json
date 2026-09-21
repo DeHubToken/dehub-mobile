@@ -625,7 +625,10 @@
       "unavailable": "Prijenos uživo iz kodiranja trenutno nije dostupan na vašem računu.",
       "serverCopied": "Poslužitelj je kopiran",
       "keyCopied": "Tipka za stream je kopirana"
-    }
+    },
+    "socialFollowers": "Pratitelji na {{platform}}",
+    "socialFollowersHint": "Prikazuje se na tvom profilu kao dio ukupnog dosega. Sami unesite broj — ne čitamo ga s platforme.",
+    "socialFollowersPlaceholder": "npr. 12500"
   },
   "common": {
     "mute": "Isključi zvuk",
@@ -1603,7 +1606,13 @@
     "noImages": "Još nema slika",
     "noImagesSub": "Objave sa slikama pojavit će se ovdje",
     "noPlans": "Nema pretplatničkih planova",
-    "noPlansSub": "Ovaj autor još nije postavio planove"
+    "noPlansSub": "Ovaj autor još nije postavio planove",
+    "reach": {
+      "total": "Ukupan doseg",
+      "breakdownTitle": "Odakle dolazi taj doseg",
+      "dehubFollowers": "Pratitelji na DeHubu",
+      "selfReported": "Kreator unosi broj pratitelja na društvenim mrežama."
+    }
   },
   "tv": {
     "title": "TV",

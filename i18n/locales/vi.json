@@ -982,7 +982,10 @@
       "unavailable": "Hiện tại, bạn không thể phát trực tiếp từ bộ mã hóa trên tài khoản của mình.",
       "serverCopied": "Đã sao chép máy chủ",
       "keyCopied": "Đã sao chép khóa phát trực tuyến"
-    }
+    },
+    "socialFollowers": "Người theo dõi trên {{platform}}",
+    "socialFollowersHint": "Được hiển thị trên hồ sơ của bạn như một phần trong tổng phạm vi tiếp cận của bạn. Tự nhập số điện thoại — chúng tôi không đọc số điện thoại từ nền tảng.",
+    "socialFollowersPlaceholder": "ví dụ: 12500"
   },
   "postOptions": {
     "options": "Tuỳ chọn",
@@ -1885,7 +1888,13 @@
     "noImages": "Chưa có hình ảnh",
     "noImagesSub": "Bài đăng có hình sẽ hiện ở đây",
     "noPlans": "Chưa có gói đăng ký",
-    "noPlansSub": "Nhà sáng tạo này chưa lập gói nào"
+    "noPlansSub": "Nhà sáng tạo này chưa lập gói nào",
+    "reach": {
+      "total": "Tổng phạm vi tiếp cận",
+      "breakdownTitle": "Phạm vi tiếp cận này đến từ đâu",
+      "dehubFollowers": "Người theo dõi DeHub",
+      "selfReported": "Người sáng tạo nhập số lượng người theo dõi trên mạng xã hội."
+    }
   },
   "tv": {
     "title": "TV",

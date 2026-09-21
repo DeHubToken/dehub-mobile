@@ -625,7 +625,10 @@
       "unavailable": "Striimaus kooderista ei ole tällä hetkellä tililläsi käytettävissä.",
       "serverCopied": "Palvelin kopioitu",
       "keyCopied": "Virta-avain kopioitu"
-    }
+    },
+    "socialFollowers": "Seuraajat kohteessa {{platform}}",
+    "socialFollowersHint": "Näkyy profiilissasi osana kokonaiskattavuuttasi. Syötä numero itse — emme lue sitä alustalta.",
+    "socialFollowersPlaceholder": "esim. 12500"
   },
   "common": {
     "mute": "Mykistä",
@@ -1568,7 +1571,13 @@
     "noImages": "Ei vielä kuvia",
     "noImagesSub": "Kuvajulkaisut näkyvät täällä",
     "noPlans": "Ei tilauspaketteja",
-    "noPlansSub": "Tämä tekijä ei ole vielä luonut paketteja"
+    "noPlansSub": "Tämä tekijä ei ole vielä luonut paketteja",
+    "reach": {
+      "total": "Kokonaisulottuvuus",
+      "breakdownTitle": "Mistä tämä REACH-järjestelmä on peräisin",
+      "dehubFollowers": "DeHub-seuraajat",
+      "selfReported": "Tekijä syöttää sosiaalisen seuraajamäärän."
+    }
   },
   "tv": {
     "title": "TV",

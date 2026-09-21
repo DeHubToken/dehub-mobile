@@ -52,6 +52,7 @@ import { translateText, getUserLanguage } from "../../services/translation.servi
 import { TranslateButton } from "../ui/TranslateButton";
 import NewMemberChip from "../common/NewMemberChip";
 import BadgePatronChip from "../common/BadgePatronChip";
+import TotalReachPill from "./TotalReachPill";
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
@@ -539,6 +540,9 @@ const ProfileHeader = () => {
                 <Text className="text-zinc-400"> {t("profile.followers")}</Text>
               </Text>
             </TouchableOpacity>
+            {/* DeHub followers plus the creator's own figures for their linked
+                socials. Absent until a social carries a count. */}
+            <TotalReachPill source={user} followers={followersCount} />
           </View>
         </View>
       </View>

@@ -625,7 +625,10 @@
       "unavailable": "Az enkóderből történő streamelés jelenleg nem elérhető a fiókodban.",
       "serverCopied": "Szerver másolva",
       "keyCopied": "Adatfolyamkulcs másolva"
-    }
+    },
+    "socialFollowers": "Követők a következőn:{{platform}}",
+    "socialFollowersHint": "A teljes elérés részeként jelenik meg a profilodon. Adja meg a számot — nem olvassuk el a platformról.",
+    "socialFollowersPlaceholder": "pl. 12500"
   },
   "common": {
     "mute": "Némítás",
@@ -1465,7 +1468,13 @@
     "noImages": "Még nincsenek képek",
     "noImagesSub": "A képes bejegyzések itt jelennek meg",
     "noPlans": "Nincsenek előfizetési csomagok",
-    "noPlansSub": "Ez az alkotó még nem hozott létre csomagot"
+    "noPlansSub": "Ez az alkotó még nem hozott létre csomagot",
+    "reach": {
+      "total": "Teljes elérés",
+      "breakdownTitle": "Honnan származik ez a hatókör?",
+      "dehubFollowers": "DeHub követők",
+      "selfReported": "A közösségi követők számát az alkotó adja meg."
+    }
   },
   "messages": {
     "smartRepliesOff": "A javasolt válaszok ki vannak kapcsolva",
