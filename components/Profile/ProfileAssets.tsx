@@ -9,6 +9,7 @@ import usdtIcon from "../../assets/tokens/USDT.png";
 import ethIcon from "../../assets/chains/base-icon.png";
 import bnbIcon from "../../assets/chains/bnb-icon.png";
 import { useUser, useAuthState, useProvider } from "../../context/AuthContext";
+import { useFocusedInterval } from "../../hooks/useFocusedInterval";
 import { ChainId } from "../../config/constants";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -48,17 +49,23 @@ const ProfileAssets = () => {
   const [subscriptionEarnings, setSubscriptionEarnings] = useState<SubscriptionEarnings | null>(null);
   const [withdrawingSubscriptions, setWithdrawingSubscriptions] = useState(false);
 
+  const mountedRef = React.useRef(true);
   React.useEffect(() => {
-    let active = true;
-    const refresh = () => {
-      getSubscriptionEarnings()
-        .then((value) => { if (active) setSubscriptionEarnings(value); })
-        .catch(() => { /* the on-chain wallet still renders if this private read is unavailable */ });
-    };
-    refresh();
-    const timer = setInterval(refresh, 30_000);
-    return () => { active = false; clearInterval(timer); };
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
+  const refreshSubscriptionEarnings = useCallback(() => {
+    getSubscriptionEarnings()
+      .then((value) => { if (mountedRef.current) setSubscriptionEarnings(value); })
+      .catch(() => { /* the on-chain wallet still renders if this private read is unavailable */ });
   }, [user?.address, user?.walletAddress]);
+
+  React.useEffect(() => {
+    refreshSubscriptionEarnings();
+  }, [refreshSubscriptionEarnings]);
+  // Every 30s while the host screen is the one on screen — not for as long as
+  // a profile or the wallet sits somewhere in the stack.
+  useFocusedInterval(refreshSubscriptionEarnings, 30_000, { catchUp: true });
 
   const walletBalances =
     (user?.tokenBalances as Record<string, number> | undefined) || {};

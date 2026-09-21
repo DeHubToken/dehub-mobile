@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useRoute, type RouteProp } from "@react-navigation/native";
 import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
+import { useFocusedInterval } from "../hooks/useFocusedInterval";
 import {
   View,
   Text,
@@ -10,7 +11,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import DpayLoader from "../components/Dpay/DpayLoader";
 import Icon, { type IconName } from "../components/ui/Icon";
@@ -136,18 +137,29 @@ const DpayScreen: React.FC = () => {
       }
     }
     bootstrap();
-    const interval = setInterval(async () => {
-      try {
-        const [supplyRes, totalRes] = await Promise.all([
-          getSupply().catch(() => null),
-          getSuccessTotal().catch(() => null),
-        ]);
-        parseSupply(supplyRes);
-        parseTotal(totalRes);
-      } catch {}
-    }, POLL_INTERVAL_MS);
-    return () => { cancelled = true; clearInterval(interval); };
+    return () => { cancelled = true; };
   }, []);
+
+  // Only while this screen is the one on screen. It used to be a bare
+  // setInterval in the effect above, which kept two network calls every ten
+  // seconds running under whatever screen was opened after it, for as long as
+  // this one sat in the stack.
+  useFocusedInterval(
+    () => {
+      void (async () => {
+        try {
+          const [supplyRes, totalRes] = await Promise.all([
+            getSupply().catch(() => null),
+            getSuccessTotal().catch(() => null),
+          ]);
+          parseSupply(supplyRes);
+          parseTotal(totalRes);
+        } catch {}
+      })();
+    },
+    POLL_INTERVAL_MS,
+    { catchUp: true },
+  );
 
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(async () => {

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { isAssistantAddress } from "../libs/assistant";
+import { useFocusedInterval } from "./useFocusedInterval";
 
 /**
  * The gap between tagging @assistant and its answer arriving.
@@ -57,19 +58,22 @@ export function useAssistantPendingReply(
     setArmedAt(Date.now());
   }, []);
 
+  // The give-up clock runs regardless; the reloads only while the thread is
+  // actually on screen. Leaving the thread mid-wait used to keep the comment
+  // list refetching every few seconds under whatever came next.
   useEffect(() => {
     if (armedAt === null) return;
-
-    const poll = setInterval(() => {
-      void reloadRef.current();
-    }, POLL_INTERVAL_MS);
     const stop = setTimeout(() => setArmedAt(null), GIVE_UP_AFTER_MS);
-
-    return () => {
-      clearInterval(poll);
-      clearTimeout(stop);
-    };
+    return () => clearTimeout(stop);
   }, [armedAt]);
+
+  useFocusedInterval(
+    () => {
+      void reloadRef.current();
+    },
+    armedAt === null ? null : POLL_INTERVAL_MS,
+    { catchUp: true },
+  );
 
   // Stop as soon as the answer is on screen.
   useEffect(() => {

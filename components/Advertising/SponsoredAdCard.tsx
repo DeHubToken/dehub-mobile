@@ -14,6 +14,7 @@ import {
   hasTrackedAdEvent,
   trackAdEvent,
 } from "../../hooks/useAdServing";
+import { useFocusedInterval } from "../../hooks/useFocusedInterval";
 
 interface SponsoredAdCardProps {
   ad: ServedAd;
@@ -44,40 +45,47 @@ export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
   const [videoPlaying, setVideoPlaying] = useState(false);
   const { height: viewportHeight } = useWindowDimensions();
 
+  // Whether the impression for this creative is still owed. State rather than
+  // a bare ref so the measuring loop below can stop the moment it is sent.
+  const [impressionOwed, setImpressionOwed] = useState(
+    () => !hasTrackedAdEvent(ad, "impression"),
+  );
   useEffect(() => {
     impressionSentRef.current = hasTrackedAdEvent(ad, "impression");
     visibleSinceRef.current = null;
-    if (impressionSentRef.current) return;
+    setImpressionOwed(!impressionSentRef.current);
+  }, [ad]);
 
-    let interval: ReturnType<typeof setInterval> | undefined;
-    const checkViewability = () => {
-      containerRef.current?.measureInWindow((_x, y, _width, height) => {
-        if (!height || impressionSentRef.current) return;
-        const visibleTop = Math.max(0, y);
-        const visibleBottom = Math.min(viewportHeight, y + height);
-        const visibleRatio = Math.max(0, visibleBottom - visibleTop) / height;
+  const checkViewability = useCallback(() => {
+    containerRef.current?.measureInWindow((_x, y, _width, height) => {
+      if (!height || impressionSentRef.current) return;
+      const visibleTop = Math.max(0, y);
+      const visibleBottom = Math.min(viewportHeight, y + height);
+      const visibleRatio = Math.max(0, visibleBottom - visibleTop) / height;
 
-        if (visibleRatio < 0.5) {
-          visibleSinceRef.current = null;
-          return;
-        }
+      if (visibleRatio < 0.5) {
+        visibleSinceRef.current = null;
+        return;
+      }
 
-        const now = Date.now();
-        visibleSinceRef.current ??= now;
-        if (now - visibleSinceRef.current >= 1000) {
-          impressionSentRef.current = true;
-          if (interval) clearInterval(interval);
-          trackAdEvent(ad, "impression");
-        }
-      });
-    };
-
-    checkViewability();
-    interval = setInterval(checkViewability, 250);
-    return () => {
-      if (interval) clearInterval(interval);
-    };
+      const now = Date.now();
+      visibleSinceRef.current ??= now;
+      if (now - visibleSinceRef.current >= 1000) {
+        impressionSentRef.current = true;
+        setImpressionOwed(false);
+        trackAdEvent(ad, "impression");
+      }
+    });
   }, [ad, viewportHeight]);
+
+  // Four native measurements a second, but only while the impression is still
+  // owed AND the host screen is the one on screen. A card that never reached
+  // half-visible — below the fold, or on a post left in the stack — used to
+  // keep measuring for as long as it was mounted.
+  useEffect(() => {
+    if (impressionOwed) checkViewability();
+  }, [impressionOwed, checkViewability]);
+  useFocusedInterval(checkViewability, impressionOwed ? 250 : null);
 
   const openAdvert = useCallback(() => {
     trackAdEvent(ad, "click");
