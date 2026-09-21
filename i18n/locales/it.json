@@ -643,7 +643,14 @@
     },
     "socialFollowers": "Follower su {{platform}}",
     "socialFollowersHint": "Mostrato sul tuo profilo come parte della tua copertura totale. Inserisci tu stesso il numero — non lo leggiamo dalla piattaforma.",
-    "socialFollowersPlaceholder": "es. 12500"
+    "socialFollowersPlaceholder": "es. 12500",
+    "aiScraping": {
+      "section": "Formazione AI",
+      "label": "Consenti lo scraping AI dei miei contenuti",
+      "hintAllow": "I sistemi di intelligenza artificiale e i crawler che rispettano questo segnale possono allenarsi sul tuo audio, grafica e scrittura.",
+      "hintDeny": "Ai sistemi di intelligenza artificiale e ai crawler che rispettano questo segnale viene chiesto di non allenarsi su audio, grafica e scrittura. I cingoli che ignorano il segnale non vengono bloccati da esso.",
+      "saved": "Preferenze di addestramento AI salvate"
+    }
   },
   "common": {
     "mute": "Disattiva audio",
@@ -1614,7 +1621,11 @@
       "dehubFollowers": "Follower DeHub",
       "selfReported": "Il conteggio dei follower social viene inserito dal creator."
     },
-    "tabPlaylists": "Playlist"
+    "tabPlaylists": "Playlist",
+    "aiScraping": {
+      "allowed": "Questo creator consente la formazione AI su questo contenuto.",
+      "denied": "Questo creator non consente la formazione AI su questo contenuto."
+    }
   },
   "messages": {
     "smartRepliesOff": "Risposte suggerite disattivate",

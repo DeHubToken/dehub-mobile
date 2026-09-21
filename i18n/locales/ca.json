@@ -628,7 +628,14 @@
     },
     "socialFollowers": "Seguidors a {{platform}}",
     "socialFollowersHint": "Es mostra al teu perfil com a part del teu abast total. Introdueix el número tu mateix: no el llegim des de la plataforma.",
-    "socialFollowersPlaceholder": "p. ex. 12500"
+    "socialFollowersPlaceholder": "p. ex. 12500",
+    "aiScraping": {
+      "section": "Formació en IA",
+      "label": "Permet que la IA copiï el meu contingut",
+      "hintAllow": "Els sistemes d'intel·ligència artificial i els rastrejadors que respecten aquest senyal poden entrenar-se amb l'àudio, les obres d'art i l'escriptura.",
+      "hintDeny": "Es demana als sistemes d'intel·ligència artificial i als rastrejadors que respectin aquest senyal que no entrenin en el teu àudio, obres d'art i escriptura. Els rastrejadors que ignoren el senyal no queden bloquejats per aquest.",
+      "saved": "Preferència d'entrenament d'IA desada"
+    }
   },
   "common": {
     "mute": "Silencia",
@@ -1632,7 +1639,11 @@
       "dehubFollowers": "Seguidors de DeHub",
       "selfReported": "El creador introdueix els recomptes de seguidors socials."
     },
-    "tabPlaylists": "Llista de reproducció"
+    "tabPlaylists": "Llista de reproducció",
+    "aiScraping": {
+      "allowed": "Aquest creador permet la formació d'IA sobre aquest contingut.",
+      "denied": "Aquest creador no permet la formació d'IA sobre aquest contingut."
+    }
   },
   "tv": {
     "title": "TV",

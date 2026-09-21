@@ -587,7 +587,14 @@
     },
     "socialFollowers": "Pangikut ing {{platform}}",
     "socialFollowersHint": "Ditampilake ing profil sampeyan minangka bagéan saka jangkauan total sampeyan. Lebokake nomer dhewe - kita ora maca saka platform.",
-    "socialFollowersPlaceholder": "tuladha. 12500"
+    "socialFollowersPlaceholder": "tuladha. 12500",
+    "aiScraping": {
+      "section": "Lelatihan AI",
+      "label": "Ngidini AI nggosok kontenku",
+      "hintAllow": "Sistem lan crawler AI sing ngurmati sinyal iki bisa nglatih audio, karya seni, lan tulisanmu.",
+      "hintDeny": "Sistem lan crawler AI sing ngurmati sinyal iki dijaluk supaya ora nglatih audio, karya seni, lan tulisanmu. Crawler sing nglirwakake sinyal ora diblokir dening iku.",
+      "saved": "Preferensi latihan AI disimpen"
+    }
   },
   "common": {
     "mute": "Bisu",
@@ -1591,7 +1598,11 @@
       "dehubFollowers": "Pengikut DeHub",
       "selfReported": "Jumlah pengikut sosial dilebokake dening kreator."
     },
-    "tabPlaylists": "Dhaptar Puter"
+    "tabPlaylists": "Dhaptar Puter",
+    "aiScraping": {
+      "allowed": "Pencipta iki ngidini AI dilatih nganggo konten iki.",
+      "denied": "Pencipta iki ora ngidini AI dilatih nganggo konten iki."
+    }
   },
   "tv": {
     "title": "TV",

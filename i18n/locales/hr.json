@@ -628,7 +628,14 @@
     },
     "socialFollowers": "Pratitelji na {{platform}}",
     "socialFollowersHint": "Prikazuje se na tvom profilu kao dio ukupnog dosega. Sami unesite broj — ne čitamo ga s platforme.",
-    "socialFollowersPlaceholder": "npr. 12500"
+    "socialFollowersPlaceholder": "npr. 12500",
+    "aiScraping": {
+      "section": "Trening umjetne inteligencije",
+      "label": "Dopusti AI struganje mog sadržaja",
+      "hintAllow": "Sustavi umjetne inteligencije i alati za indeksiranje koji poštuju ovaj signal mogu vježbati na vašem zvuku, umjetničkim djelima i pisanju.",
+      "hintDeny": "Od sustava umjetne inteligencije i indeksirača koji poštuju ovaj signal traži se da ne vježbaju na vašem zvuku, umjetničkim djelima i pisanju. Alati za indeksiranje koji zanemaruju signal nisu njime blokirani.",
+      "saved": "Postavka umjetne inteligencije za obuku je spremljena"
+    }
   },
   "common": {
     "mute": "Isključi zvuk",
@@ -1632,7 +1639,11 @@
       "dehubFollowers": "Pratitelji na DeHubu",
       "selfReported": "Kreator unosi broj pratitelja na društvenim mrežama."
     },
-    "tabPlaylists": "Popisi izvođenja"
+    "tabPlaylists": "Popisi izvođenja",
+    "aiScraping": {
+      "allowed": "Ovaj kreator omogućuje umjetnoj inteligenciji obuku o ovom sadržaju.",
+      "denied": "Ovaj kreator ne dopušta AI obuku o ovom sadržaju."
+    }
   },
   "tv": {
     "title": "TV",

@@ -640,7 +640,14 @@
     },
     "socialFollowers": "{{platform}} 의 팔로워",
     "socialFollowersHint": "전체 도달 범위의 일부로 프로필에 표시됩니다. 번호를 직접 입력하세요. 플랫폼에서 읽지 않습니다.",
-    "socialFollowersPlaceholder": "예: 12500"
+    "socialFollowersPlaceholder": "예: 12500",
+    "aiScraping": {
+      "section": "AI 교육",
+      "label": "내 콘텐츠의 AI 스크랩 허용",
+      "hintAllow": "이 신호를 존중하는 AI 시스템 및 크롤러는 오디오, 아트워크 및 글쓰기를 훈련할 수 있습니다.",
+      "hintDeny": "이 신호를 존중하는 AI 시스템 및 크롤러는 오디오, 아트워크 및 글쓰기에 대한 교육을 받지 않도록 요청받습니다. 신호를 무시하는 크롤러는 신호에 의해 차단되지 않습니다.",
+      "saved": "AI 교육 기본 설정 저장됨"
+    }
   },
   "common": {
     "mute": "음소거",
@@ -1538,7 +1545,11 @@
       "dehubFollowers": "DeHub 팔로워",
       "selfReported": "소셜 팔로워 수는 크리에이터가 입력합니다."
     },
-    "tabPlaylists": "재생 목록"
+    "tabPlaylists": "재생 목록",
+    "aiScraping": {
+      "allowed": "이 크리에이터는 이 콘텐츠에 대한 AI 교육을 허용합니다.",
+      "denied": "이 크리에이터는 이 콘텐츠에 대한 AI 교육을 허용하지 않습니다."
+    }
   },
   "tv": {
     "title": "TV",

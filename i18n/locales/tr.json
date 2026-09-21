@@ -643,7 +643,14 @@
     },
     "socialFollowers": "Takipçiler {{platform}}",
     "socialFollowersHint": "Profilinizde toplam erişiminizin bir parçası olarak gösterilir. Sayıyı kendiniz girin — platformdan okumuyoruz.",
-    "socialFollowersPlaceholder": "ör. 12500"
+    "socialFollowersPlaceholder": "ör. 12500",
+    "aiScraping": {
+      "section": "Yapay zeka eğitimi",
+      "label": "İçeriğimin yapay zeka tarafından kazınmasına izin ver",
+      "hintAllow": "Bu sinyale saygı duyan yapay zeka sistemleri ve tarayıcılar sesiniz, sanat eseriniz ve yazınız üzerinde eğitim alabilir.",
+      "hintDeny": "Bu sinyale saygı duyan yapay zeka sistemleri ve tarayıcılardan ses, sanat eseriniz ve yazınız üzerinde eğitim almamaları istenir. Sinyali görmezden gelen tarayıcılar sinyal tarafından engellenmez.",
+      "saved": "Yapay zeka eğitim tercihi kaydedildi"
+    }
   },
   "common": {
     "mute": "Sesi kapat",
@@ -1612,7 +1619,11 @@
       "dehubFollowers": "DeHub takipçileri",
       "selfReported": "Sosyal takipçi sayıları yaratıcı tarafından girilir."
     },
-    "tabPlaylists": "Oynatma Listeleri"
+    "tabPlaylists": "Oynatma Listeleri",
+    "aiScraping": {
+      "allowed": "Bu yaratıcı, bu içerik üzerinde yapay zeka eğitimine izin verir.",
+      "denied": "Bu yaratıcı, bu içerikle ilgili yapay zeka eğitimine izin vermiyor."
+    }
   },
   "messages": {
     "smartRepliesOff": "Önerilen yanıtlar kapatıldı",

@@ -614,7 +614,14 @@
     },
     "socialFollowers": "Mɔgɔ minw be tugu u kɔ {{platform}}",
     "socialFollowersHint": "I ka kunnafoniw yira i ka kunnafoniw kan i ka kunnafoniw bɛɛ kɔnɔ. I yɛrɛ ka nimɔrɔ don — an t'a kalan o kan.",
-    "socialFollowersPlaceholder": "ɲɛyirali fɛ, ɲɛsin ID-12345 ma."
+    "socialFollowersPlaceholder": "ɲɛyirali fɛ, ɲɛsin ID-12345 ma.",
+    "aiScraping": {
+      "section": "Kalan",
+      "label": "Ne ka kan ka n ka kumaw fɔ",
+      "hintAllow": "AI ka sisitɛmuw ni crawlers minw be bonya la o siginɛ kan, olu be se k'i dɛmɛ k'i ka kumakanw, i ka dɔnkiliw ani i ka sɛbɛri kɛ.",
+      "hintDeny": "O la, aw ka kan ka aw ka kumakanw, aw ka dɔnkiliw ani aw ka sɛbɛri kɛcogow degi. Mɔgɔ minw tɛ sɔn ka kuma, olu tɛ se ka kuma.",
+      "saved": "Kalan min ka di mɔgɔ ye"
+    }
   },
   "common": {
     "mute": "Kan bɔ",
@@ -1610,7 +1617,11 @@
       "dehubFollowers": "DeHub ka kalandenw",
       "selfReported": "Mɔgɔ min ye mɔgɔ bila sira ka tugu a kɔ, ale lo ye mɔgɔ bila sira ka tugu a kɔ."
     },
-    "tabPlaylists": "Dɔnkililabagaw"
+    "tabPlaylists": "Dɔnkililabagaw",
+    "aiScraping": {
+      "allowed": "O danbaga be se ka mɔgɔ kalan o koo la.",
+      "denied": "O danbaga tɛ sɔn ka mɔgɔ kalan o koo la."
+    }
   },
   "tv": {
     "title": "TV",

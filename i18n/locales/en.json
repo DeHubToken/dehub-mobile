@@ -695,6 +695,13 @@
       "unavailable": "Streaming from an encoder is not available on your account right now.",
       "serverCopied": "Server copied",
       "keyCopied": "Stream key copied"
+    },
+    "aiScraping": {
+      "section": "AI training",
+      "label": "Allow AI scraping of my content",
+      "hintAllow": "AI systems and crawlers that respect this signal may train on your audio, artwork and writing.",
+      "hintDeny": "AI systems and crawlers that respect this signal are asked not to train on your audio, artwork and writing. Crawlers that ignore the signal are not blocked by it.",
+      "saved": "AI training preference saved"
     }
   },
   "common": {
@@ -1699,7 +1706,11 @@
     "noImagesSub": "Image posts will appear here",
     "noPlans": "No subscription plans",
     "noPlansSub": "This creator hasn't set up any plans yet",
-    "tabPlaylists": "Playlists"
+    "tabPlaylists": "Playlists",
+    "aiScraping": {
+      "allowed": "This creator allows AI training on this content.",
+      "denied": "This creator does not allow AI training on this content."
+    }
   },
   "tv": {
     "title": "TV",

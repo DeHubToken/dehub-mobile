@@ -34,6 +34,7 @@ import {
 import { getAvatarUrl } from '../libs/misc';
 import { ScreenNames } from '../navigation/ScreenNames';
 import BlockedAccountsModal from '../components/Settings/BlockedAccountsModal';
+import { getAiScrapingPreference, type AiScrapingPreference } from '../libs/ai-scraping';
 import GeoBlockingSection from '../components/Settings/GeoBlockingSection';
 import DataPortabilitySection from '../components/Settings/DataPortabilitySection';
 import {
@@ -95,6 +96,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const [hideBadgeAndBalance, setHideBadgeAndBalance] = useState(false);
   const [followerVisibility, setFollowerVisibility] = useState<FollowerVisibility>('public');
   const [defaultPostVisibility, setDefaultPostVisibility] = useState<PostVisibility>('public');
+  const [aiScraping, setAiScraping] = useState<AiScrapingPreference>('deny');
 
   const [showPublicModal, setShowPublicModal] = useState(false);
   const [publicModalBusy, setPublicModalBusy] = useState(false);
@@ -150,10 +152,11 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     defaultPostVisibility: ((customs.defaultPostVisibility ??
       (user as any)?.defaultPostVisibility ??
       'public') as PostVisibility),
+    aiScraping: getAiScrapingPreference(customs),
   }), [user, customs]);
 
   const userKey = useMemo(() => {
-    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${(user as any)?.hideBadgeAndBalance}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}`;
+    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${(user as any)?.hideBadgeAndBalance}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}|${customs.aiScraping}`;
   }, [user, customs]);
 
   useEffect(() => {
@@ -163,6 +166,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     setHideBadgeAndBalance(initial.hideBadgeAndBalance);
     setFollowerVisibility(initial.followerVisibility);
     setDefaultPostVisibility(initial.defaultPostVisibility);
+    setAiScraping(initial.aiScraping);
     if (user) setLoading(false);
   }, [userKey, saving]);
 
@@ -201,6 +205,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       setHideBadgeAndBalance(initial.hideBadgeAndBalance);
       setFollowerVisibility(initial.followerVisibility);
       setDefaultPostVisibility(initial.defaultPostVisibility);
+      setAiScraping(initial.aiScraping);
     } finally {
       setSaving(false);
     }
@@ -240,6 +245,12 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     setDefaultPostVisibility(vis);
     setShowPostVisModal(false);
     saveSetting({}, { defaultPostVisibility: vis });
+  }, [saveSetting]);
+
+  const handleToggleAiScraping = useCallback((value: boolean) => {
+    const next: AiScrapingPreference = value ? 'allow' : 'deny';
+    setAiScraping(next);
+    saveSetting({}, { aiScraping: next });
   }, [saveSetting]);
 
   const pendingCount = (user as any)?.pendingFollowRequests || 0;
@@ -452,6 +463,31 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                   <Icon name="ChevronRight" size={18} color="#6b7280" />
                 </View>
               </TouchableOpacity>
+            </View>
+          </View>
+        </SettingsAnchor>
+
+        {/* AI Scraping */}
+        <SettingsAnchor id="ai-scraping">
+          <View className="mt-6 mx-4">
+            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
+              {t('settings.aiScraping.section')}
+            </Text>
+            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+              <View className="px-4 py-3.5 flex-row items-center justify-between">
+                <View className="flex-row items-center flex-1 pr-3">
+                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                    <Icon name="Bot" size={18} color="#9ca3af" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-sm font-medium">{t('settings.aiScraping.label')}</Text>
+                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                      {aiScraping === 'allow' ? t('settings.aiScraping.hintAllow') : t('settings.aiScraping.hintDeny')}
+                    </Text>
+                  </View>
+                </View>
+                <CustomSwitch value={aiScraping === 'allow'} onValueChange={handleToggleAiScraping} disabled={saving} />
+              </View>
             </View>
           </View>
         </SettingsAnchor>

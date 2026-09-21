@@ -870,7 +870,14 @@
     },
     "socialFollowers": "Urmăritori pe {{platform}}",
     "socialFollowersHint": "Afișat în profilul tău ca parte a razei tale totale de acțiune. Introduceți singur numărul — nu îl citim de pe platformă.",
-    "socialFollowersPlaceholder": "de ex. 12500"
+    "socialFollowersPlaceholder": "de ex. 12500",
+    "aiScraping": {
+      "section": "Instruire AI",
+      "label": "Permite raclarea AI a conținutului meu",
+      "hintAllow": "Sistemele AI și crawlerele care respectă acest semnal se pot instrui cu privire la audio, grafică și scriere.",
+      "hintDeny": "Sistemele AI și crawlerele care respectă acest semnal sunt rugate să nu se instruiască cu privire la audio, grafică și scriere. Șenilele care ignoră semnalul nu sunt blocate de acesta.",
+      "saved": "Preferința de instruire AI salvată"
+    }
   },
   "common": {
     "mute": "Dezactivează sunetul",
@@ -1839,7 +1846,11 @@
       "dehubFollowers": "Urmăritori DeHub",
       "selfReported": "Numărul de urmăritori sociali este introdus de creator."
     },
-    "tabPlaylists": "Liste de redare"
+    "tabPlaylists": "Liste de redare",
+    "aiScraping": {
+      "allowed": "Acest creator permite instruirea AI cu privire la acest conținut.",
+      "denied": "Acest creator nu permite instruirea IA cu privire la acest conținut."
+    }
   },
   "tv": {
     "title": "TV",

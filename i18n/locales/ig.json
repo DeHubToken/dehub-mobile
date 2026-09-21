@@ -620,7 +620,14 @@
     },
     "socialFollowers": "Ndị na-eso ụzọ na {{platform}}",
     "socialFollowersHint": "Gosiri na profaịlụ gị dị ka akụkụ nke gị ngụkọta iru. Tinye nọmba ahụ n 'onwe gị — anyị anaghị agụ ya site n' elu ikpo okwu.",
-    "socialFollowersPlaceholder": "dịka 12500"
+    "socialFollowersPlaceholder": "dịka 12500",
+    "aiScraping": {
+      "section": "AI ọzụzụ",
+      "label": "Kwe ka AI scraping nke m ọdịnaya",
+      "hintAllow": "Usoro AI na crawlers ndị na-akwanyere mgbaàmà a ùgwù nwere ike ịzụ na ọdịyo gị, ihe osise na ederede.",
+      "hintDeny": "AI usoro na crawlers na-akwanyere mgbaàmà a na-jụrụ ghara ịzụ na gị audio, artwork na ide. A naghị egbochi ndị na-agbagharị agbagharị na-eleghara ihe mgbaàmà ahụ anya.",
+      "saved": "AI ọzụzụ mmasị echekwara"
+    }
   },
   "common": {
     "mute": "Mechie ụda",
@@ -1617,7 +1624,11 @@
       "dehubFollowers": "DeHub na-eso ụzọ",
       "selfReported": "Onye na-emepụta ihe na-abanye ọnụ ọgụgụ ndị na-eso ụzọ ọha."
     },
-    "tabPlaylists": "Ndepụta egwu"
+    "tabPlaylists": "Ndepụta egwu",
+    "aiScraping": {
+      "allowed": "Onye okike a na-enye ohere ọzụzụ AI na ọdịnaya a.",
+      "denied": "Onye mmepụta a anaghị ekwe ka ọzụzụ AI na ọdịnaya a."
+    }
   },
   "tv": {
     "title": "TV",

@@ -985,7 +985,14 @@
     },
     "socialFollowers": "Người theo dõi trên {{platform}}",
     "socialFollowersHint": "Được hiển thị trên hồ sơ của bạn như một phần trong tổng phạm vi tiếp cận của bạn. Tự nhập số điện thoại — chúng tôi không đọc số điện thoại từ nền tảng.",
-    "socialFollowersPlaceholder": "ví dụ: 12500"
+    "socialFollowersPlaceholder": "ví dụ: 12500",
+    "aiScraping": {
+      "section": "Đào tạo AI",
+      "label": "Cho phép AI loại bỏ nội dung của tôi",
+      "hintAllow": "Các hệ thống AI và trình thu thập thông tin tôn trọng tín hiệu này có thể đào tạo về âm thanh, tác phẩm nghệ thuật và văn bản của bạn.",
+      "hintDeny": "Các hệ thống AI và trình thu thập thông tin tôn trọng tín hiệu này được yêu cầu không đào tạo về âm thanh, tác phẩm nghệ thuật và văn bản của bạn. Trình thu thập thông tin bỏ qua tín hiệu không bị chặn bởi nó.",
+      "saved": "Đã lưu tùy chọn đào tạo AI"
+    }
   },
   "postOptions": {
     "options": "Tuỳ chọn",
@@ -1914,7 +1921,11 @@
       "dehubFollowers": "Người theo dõi DeHub",
       "selfReported": "Người sáng tạo nhập số lượng người theo dõi trên mạng xã hội."
     },
-    "tabPlaylists": "Danh sách phát"
+    "tabPlaylists": "Danh sách phát",
+    "aiScraping": {
+      "allowed": "Người sáng tạo này cho phép đào tạo AI về nội dung này.",
+      "denied": "Người sáng tạo này không cho phép đào tạo AI về nội dung này."
+    }
   },
   "tv": {
     "title": "TV",

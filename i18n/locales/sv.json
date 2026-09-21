@@ -628,7 +628,14 @@
     },
     "socialFollowers": "Följare på {{platform}}",
     "socialFollowersHint": "Visas på din profil som en del av din totala räckvidd. Ange numret själv — vi läser det inte från plattformen.",
-    "socialFollowersPlaceholder": "t.ex. 12500"
+    "socialFollowersPlaceholder": "t.ex. 12500",
+    "aiScraping": {
+      "section": "AI-utbildning",
+      "label": "Tillåt AI-skrapning av mitt innehåll",
+      "hintAllow": "AI-system och sökrobotar som respekterar denna signal kan träna på ditt ljud, konstverk och skrivande.",
+      "hintDeny": "AI-system och sökrobotar som respekterar denna signal ombeds att inte träna på ditt ljud, konstverk och skrivande. Crawlers som ignorerar signalen blockeras inte av den.",
+      "saved": "AI-utbildningspreferens sparad"
+    }
   },
   "common": {
     "mute": "Stäng av ljud",
@@ -1494,7 +1501,11 @@
       "dehubFollowers": "DeHub-följare",
       "selfReported": "Antal följare i sociala medier anges av kreatören."
     },
-    "tabPlaylists": "Spellistor"
+    "tabPlaylists": "Spellistor",
+    "aiScraping": {
+      "allowed": "Denna kreatör tillåter AI-utbildning om detta innehåll.",
+      "denied": "Denna kreatör tillåter inte AI-utbildning om detta innehåll."
+    }
   },
   "messages": {
     "smartRepliesOff": "Föreslagna svar avstängda",
