@@ -1524,6 +1524,10 @@
     "importWallet": "Qullqi wayaqata apamuy",
     "privateKeyPlaceholder": "Pakasqa llavikita churay",
     "importExternalWallet": "Hawa qullqi wayaqata apamuy",
+    "migrateAccount": "Kamachiyta pusay",
+    "migrateAccountBody": "¿Ñawpaqta DeHub yupayniyuqchu karqanki? Yaykuy kikin correo electrónico, telefono, Google utaq Apple yaykuywan chaymanta llamk&#39;achisqaykiwan. Sichus huk ñawpaq yupaywan tupan, billetera, username chaymanta saldo kaqninta apamunaykipaq qusqa kanki.",
+    "migrateAccountNote": "Huk kutillapaq yaykuy, mosoq yaykuywan, qanpa qolqeyki kichaytaqa allinta waqaychaykun kay llamk'anapi. Mana chayaykuchu ñuqanchikpa llamk'anankunaman.",
+    "migrateAccountContinue": "Yaykuy hinalla ruway",
     "privateKey": "Pakasqa llavi",
     "pasteFromClipboard": "Clipboard nisqamanta k'askachiy",
     "learnMoreAt": "dehub.io pi astawan yachay",
@@ -4309,6 +4313,7 @@
     "recoverOnWebsite": "dehub.io-pi kutichiy",
     "createNewAnyway": "Mana chay kuentata munanichu — musuqta kamay",
     "couldNotRead": "Mana atirqaykuchu chay kutichisqa kuchu wayaqata ñawinchayta. Mana imapas tikrarqanchu.",
+    "noOldAccountFound": "Kay yaykuypi mana ñawpaq DeHub yupay kanchu, chayrayku mana imapas apamunapaq kanchu. Chaypa rantinpi musuq yupayta churay.",
     "didNotRecoverEither": "Chay yaykuyqa manam kaypi rikuchisqa ima perfiltapas kutichirqanchu. Manam imapas tikrarqanchu. Munasqayki perfilpa ñawpaq yaykuyninta yanapay.",
     "didNotRecoverThis": "Chay yaykuyqa kay perfilpa mana kaq huk kuchu wayaqatam kutichirqan. Manam imapas tikrarqanchu. Ñawpaqta kamaq yaykuyta yanapay.",
     "couldNotRetrieve": "Kay dispusitiwupi mana atirqaykuchu chay mawk'a kuchu wayaqata apamuyta. Uraypi kaq dehub.io-pi kutichiwaqraqmi."

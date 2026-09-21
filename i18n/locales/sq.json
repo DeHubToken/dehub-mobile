@@ -1522,6 +1522,10 @@
     "importWallet": "Importo portofolin",
     "privateKeyPlaceholder": "Fut çelësin tënd privat",
     "importExternalWallet": "Importo portofol të jashtëm",
+    "migrateAccount": "Migro llogarinë",
+    "migrateAccountBody": "A ke pasur llogari në DeHub më parë? Hyr me të njëjtin email, telefon, hyrje në Google ose Apple që ke përdorur atëherë. Nëse përputhet me një llogari të mëparshme, do të të ofrohet të sjellësh portofolin, emrin e përdoruesit dhe balancën e saj.",
+    "migrateAccountNote": "Një hyrje e vetme me hyrjen e vjetër e merr çelësin e portofolit në mënyrë të sigurt në këtë pajisje. Nuk i prek kurrë serverët tanë.",
+    "migrateAccountContinue": "Vazhdo të hysh",
     "privateKey": "Çelësi privat",
     "pasteFromClipboard": "Ngjit nga kujtesa",
     "learnMoreAt": "Mëso më shumë në dehub.io",
@@ -4279,6 +4283,7 @@
     "recoverOnWebsite": "Rikupero në dehub.io",
     "createNewAnyway": "Nuk e dua atë llogari — krijo gjithsesi një të re",
     "couldNotRead": "Nuk e lexuam dot atë portofol të rikuperuar. Asgjë nuk u ndryshua.",
+    "noOldAccountFound": "Nuk ka llogari të mëparshme DeHub në këtë hyrje, kështu që nuk ka asgjë për të sjellë. Konfigurimi i një llogarie të re më mirë.",
     "didNotRecoverEither": "Ajo hyrje nuk rikuperoi asnjë nga profilet e shfaqura këtu. Asgjë nuk ndryshoi. Provo hyrjen fillestare për profilin që dëshiron.",
     "didNotRecoverThis": "Ajo hyrje rikuperoi një portofol tjetër, jo atë të këtij profili. Asgjë nuk ndryshoi. Provo hyrjen që e krijoi fillimisht.",
     "couldNotRetrieve": "Ai portofol i vjetër nuk u mor dot në këtë pajisje. Ende mund ta rikuperosh te dehub.io më poshtë."

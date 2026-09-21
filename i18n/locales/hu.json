@@ -826,6 +826,10 @@
     "importWallet": "Tárca importálása",
     "privateKeyPlaceholder": "Add meg a privát kulcsodat",
     "importExternalWallet": "Külső tárca importálása",
+    "migrateAccount": "Fiók áttelepítése",
+    "migrateAccountBody": "Korábban is volt DeHub-fiókod? Jelentkezzen be ugyanazzal az e-mail-címmel, telefonnal, Google- vagy Apple-bejelentkezéssel, amelyet akkor használt. Ha egyezik egy korábbi fiókkal, felajánljuk, hogy áthozza a pénztárcáját, felhasználónevét és egyenlegét.",
+    "migrateAccountNote": "Egy egyszeri bejelentkezés a régi bejelentkezéssel biztonságosan letölti a pénztárca kulcsát ezen az eszközön. Soha nem érinti a szervereinket.",
+    "migrateAccountContinue": "Bejelentkezés folytatása",
     "privateKey": "Privát kulcs",
     "pasteFromClipboard": "Beillesztés a vágólapról",
     "learnMoreAt": "Tudj meg többet a dehub.io oldalon",
@@ -4285,6 +4289,7 @@
     "recoverOnWebsite": "Visszaállítás a dehub.io oldalon",
     "createNewAnyway": "Nem kérem azt a fiókot — hozz létre mégis újat",
     "couldNotRead": "Nem tudtuk beolvasni a visszaállított tárcát. Semmi nem változott.",
+    "noOldAccountFound": "Ehhez a bejelentkezéshez nincs korábbi DeHub-fiók, így nincs mit átvinni. Hozz létre inkább egy új fiókot.",
     "didNotRecoverEither": "Ez a bejelentkezés egyik itt látható profilt sem állította vissza. Semmi nem változott. Próbáld a kívánt profil eredeti bejelentkezését.",
     "didNotRecoverThis": "Ez a bejelentkezés egy másik tárcát állított vissza, nem ehhez a profilhoz tartozót. Semmi nem változott. Próbáld azt a bejelentkezést, amellyel eredetileg létrejött.",
     "couldNotRetrieve": "Azt a régi tárcát nem sikerült lekérni ezen az eszközön. Alább a dehub.io oldalon még visszaállíthatod."

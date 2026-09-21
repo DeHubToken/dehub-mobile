@@ -1702,6 +1702,10 @@
     "importWallet": "Mag-import ng wallet",
     "privateKeyPlaceholder": "Ilagay ang iyong private key",
     "importExternalWallet": "Mag-import ng external wallet",
+    "migrateAccount": "I - migrate ang account",
+    "migrateAccountBody": "Mayroon ka bang DeHub account dati? Mag - sign in gamit ang parehong email, telepono, Google o Apple login na ginamit mo noon. Kung tumutugma ito sa isang naunang account, bibigyan ka ng alok na dalhin ang wallet, username at balanse nito.",
+    "migrateAccountNote": "Ligtas na kinukuha ng isang beses na pag - sign - in gamit ang lumang pag - login ang iyong wallet key sa device na ito. Hindi ito kailanman hawakan ang aming mga server.",
+    "migrateAccountContinue": "Magpatuloy sa pag - sign in",
     "privateKey": "Private key",
     "pasteFromClipboard": "I-paste mula sa clipboard",
     "learnMoreAt": "Matuto pa sa dehub.io",
@@ -4456,6 +4460,7 @@
     "recoverOnWebsite": "Bawiin sa dehub.io",
     "createNewAnyway": "Ayoko ng account na iyon — gumawa na lang ng bago",
     "couldNotRead": "Hindi namin mabasa ang narekober na wallet. Walang nabago.",
+    "noOldAccountFound": "Walang naunang DeHub account sa pag-login na ito, kaya walang maililipat. Magse-set up na lang ng bagong account.",
     "didNotRecoverEither": "Walang narekober na profile ang login na iyon sa mga ipinapakita rito. Walang nabago. Subukan ang orihinal na sign-in ng profile na gusto mo.",
     "didNotRecoverThis": "Ibang wallet ang narekober ng login na iyon, hindi ang sa profile na ito. Walang nabago. Subukan ang sign-in na orihinal na gumawa nito.",
     "couldNotRetrieve": "Hindi makuha ang lumang wallet na iyon sa device na ito. Puwede mo pa rin itong bawiin sa dehub.io sa ibaba."

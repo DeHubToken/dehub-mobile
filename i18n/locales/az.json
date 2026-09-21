@@ -1510,6 +1510,10 @@
     "importWallet": "Pul kisəsini idxal et",
     "privateKeyPlaceholder": "Şəxsi açarınızı daxil edin",
     "importExternalWallet": "Xarici pul kisəsini idxal et",
+    "migrateAccount": "Hesabı köçürün",
+    "migrateAccountBody": "Əvvəl DeHub hesabı var idi? Daha sonra istifadə etdiyiniz e-poçt, telefon, Google və ya Apple girişi ilə daxil olun. Daha əvvəlki hesaba uyğun gələrsə, sizə onun cüzdanını, istifadəçi adını və balansını gətirmək təklif olunacaq.",
+    "migrateAccountNote": "Köhnə giriş ilə birdəfəlik giriş cüzdan açarınızı bu cihazda təhlükəsiz şəkildə əldə edir. Heç vaxt serverlərimizə toxunmur.",
+    "migrateAccountContinue": "Daxil olmağa davam edin",
     "privateKey": "Şəxsi açar",
     "pasteFromClipboard": "Mübadilə buferindən yapışdır",
     "learnMoreAt": "dehub.io saytında ətraflı öyrənin",
@@ -4263,6 +4267,7 @@
     "recoverOnWebsite": "dehub.io saytında bərpa et",
     "createNewAnyway": "O hesabı istəmirəm — yenə də yeni bir hesab yarat",
     "couldNotRead": "Bərpa olunan cüzdanı oxuya bilmədik. Heç nə dəyişmədi.",
+    "noOldAccountFound": "Bu girişdə daha əvvəlki DeHub hesabı yoxdur, buna görə də davam etmək üçün heç nə yoxdur. Əvəzində yeni hesab təyin etmək.",
     "didNotRecoverEither": "Bu giriş burada göstərilən profillərin heç birini bərpa etmədi. Heç nə dəyişmədi. İstədiyiniz profil üçün ilkin giriş üsulunu sınayın.",
     "didNotRecoverThis": "Bu giriş bu profildən fərqli bir cüzdan bərpa etdi. Heç nə dəyişmədi. Onu ilk yaradan giriş üsulunu sınayın.",
     "couldNotRetrieve": "Həmin köhnə cüzdanı bu cihazda əldə etmək mümkün olmadı. Yenə də onu aşağıdakı dehub.io saytında bərpa edə bilərsiniz."

@@ -1463,6 +1463,10 @@
     "importWallet": "Import wallet",
     "privateKeyPlaceholder": "Enta yua private key",
     "importExternalWallet": "Import outside wallet",
+    "migrateAccount": "Migrate account",
+    "migrateAccountBody": "Had a DeHub account before? Sign in with the same email, phone, Google or Apple login you used back then. If it matches an earlier account, you will be offered to bring over its wallet, username and balance.",
+    "migrateAccountNote": "A one-time sign-in with the old login retrieves your wallet key securely on this device. It never touches our servers.",
+    "migrateAccountContinue": "Continue to sign in",
     "privateKey": "Private key",
     "pasteFromClipboard": "Paste from clipboard",
     "learnMoreAt": "Learn more for dehub.io",
@@ -4047,6 +4051,7 @@
     "recoverOnWebsite": "Recover for dehub.io",
     "createNewAnyway": "I no want dat account - just create new one",
     "couldNotRead": "We no fit read di wallet wey we recover. Nothing change.",
+    "noOldAccountFound": "No DeHub account wey dey for dis login before, so nothing to carry come. We go set up new account.",
     "didNotRecoverEither": "Dat login no recover any of di profiles wey dey here. Nothing change. Try di original sign-in for di profile wey you want.",
     "didNotRecoverThis": "Dat login recover anoda wallet, no be dis profile own. Nothing change. Try di sign-in wey first create am.",
     "couldNotRetrieve": "We no fit get dat old wallet for dis device. You still fit recover am for dehub.io wey dey below."

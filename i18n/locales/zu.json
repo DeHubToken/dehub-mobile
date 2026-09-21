@@ -1521,6 +1521,10 @@
     "importWallet": "Ngenisa isikhwama",
     "privateKeyPlaceholder": "Faka ukhiye wakho oyimfihlo",
     "importExternalWallet": "Ngenisa isikhwama sangaphandle",
+    "migrateAccount": "Fuduka ku-akhawunti",
+    "migrateAccountBody": "Unayo i-akhawunti ye-DeHub ngaphambili? Ngena ngemvume nge-imeyili efanayo, ucingo, i-Google noma i-Apple yokungena ku-akhawunti oyisebenzisile ngaleso sikhathi. Uma ifana ne-akhawunti yangaphambilini, uzonikezwa ukuletha isikhwama sayo semali, igama lomsebenzisi nebhalansi.",
+    "migrateAccountNote": "Ukungena kanye ngemvume ku-akhawunti okudala kuthola ukhiye wakho wesikhwama ngokuphephile kule divayisi. Alilokothi lithinte amaseva ethu.",
+    "migrateAccountContinue": "Qhubeka ungene ngemvume ku-akhawunti",
     "privateKey": "Ukhiye oyimfihlo",
     "pasteFromClipboard": "Namathisela kusuka ebhodini lokukopisha",
     "learnMoreAt": "Funda kabanzi ku-dehub.io",
@@ -4309,6 +4313,7 @@
     "recoverOnWebsite": "Buyisa ku-dehub.io",
     "createNewAnyway": "Angiyifuni leyo akhawunti — vele wenze entsha",
     "couldNotRead": "Asikwazanga ukufunda leso sikhwama esibuyisiwe. Akukho okushintshiwe.",
+    "noOldAccountFound": "Akwenzeki ukuthi ube ne-akhawunti ye-DeHub yangaphambili kulokhu kungena, ngakho-ke akukho lutho ongaludlulisa. Kuzosethwa i-akhawunti entsha esikhundleni salokho.",
     "didNotRecoverEither": "Lokho kungena akubuyisanga noma yiliphi iphrofayela elibonisiwe lapha. Akukho okushintshile. Zama ukungena kwasekuqaleni kwephrofayela olifunayo.",
     "didNotRecoverThis": "Lokho kungena kubuyise isikhwama esehlukile, hhayi esalelo phrofayela. Akukho okushintshile. Zama ukungena okwakulidale ekuqaleni.",
     "couldNotRetrieve": "Asikwazanga ukuthola leso sikhwama esidala kule divayisi. Usengasibuyisa ku-dehub.io ngezansi."

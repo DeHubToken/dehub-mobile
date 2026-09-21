@@ -1511,6 +1511,10 @@
     "importWallet": "ቦርሳ አስገባ",
     "privateKeyPlaceholder": "የግል ቁልፍዎን ያስገቡ",
     "importExternalWallet": "የውጭ ቦርሳ አስገባ",
+    "migrateAccount": "የስደተኞች መለያ",
+    "migrateAccountBody": "ከዚህ በፊት DeHub መለያ ነበረው? በዚያን ጊዜ በተጠቀሙበት ተመሳሳይ ኢሜይል ፣ ስልክ ፣ ጉግል ወይም አፕል መግቢያ ይግቡ ። ከቀድሞ መለያ ጋር የሚዛመድ ከሆነ የኪስ ቦርሳውን ፣ የተጠቃሚ ስሙን እና ሚዛኑን ለማምጣት ይቀርባል ።",
+    "migrateAccountNote": "የድሮ የመግቢያ ጋር አንድ ጊዜ ምዝገባ በዚህ መሣሪያ ላይ ደህንነቱ በተጠበቀ የኪስ ቦርሳ ቁልፍዎን ይመልሳል. አገልጋዮቻችንን በጭራሽ አይነካውም ።",
+    "migrateAccountContinue": "መግባትዎን ይቀጥሉ",
     "privateKey": "የግል ቁልፍ",
     "pasteFromClipboard": "ከቅንጥብ ሰሌዳ ለጥፍ",
     "learnMoreAt": "በ dehub.io ላይ የበለጠ ይወቁ",
@@ -4268,6 +4272,7 @@
     "recoverOnWebsite": "በdehub.io ላይ ይመልሱ",
     "createNewAnyway": "ያንን መለያ አልፈልግም — ለማንኛውም አዲስ ይፍጠሩ",
     "couldNotRead": "የተመለሰውን ቦርሳ ማንበብ አልቻልንም። ምንም አልተቀየረም።",
+    "noOldAccountFound": "በዚህ መግቢያ ላይ ከዚህ በፊት የ DeHub መለያ የለም ፣ ስለሆነም ለማምጣት ምንም ነገር የለም ። በምትኩ አዲስ መለያ ማዘጋጀት.",
     "didNotRecoverEither": "ያ መግቢያ እዚህ ከሚታዩት መገለጫዎች አንዱንም አልመለሰም። ምንም አልተቀየረም። ለሚፈልጉት መገለጫ ዋናውን መግቢያ ይሞክሩ።",
     "didNotRecoverThis": "ያ መግቢያ ከዚህ መገለጫ የተለየ ቦርሳ መልሷል። ምንም አልተቀየረም። መጀመሪያ የፈጠረውን መግቢያ ይሞክሩ።",
     "couldNotRetrieve": "ያንን የቀድሞ ቦርሳ በዚህ መሣሪያ ላይ ማምጣት አልተቻለም። አሁንም ከታች በdehub.io ላይ መመለስ ይችላሉ።"

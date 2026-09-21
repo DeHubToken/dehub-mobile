@@ -1513,6 +1513,10 @@
     "importWallet": "Soo dhoofi boorsada",
     "privateKeyPlaceholder": "Geli furahaaga gaarka ah",
     "importExternalWallet": "Soo dhoofi boorso dibadda ah",
+    "migrateAccount": "Xisaab cusub samee",
+    "migrateAccountBody": "Ma lahayd xisaab DeHub hore? Ku soo gal isla email-ka, taleefanka, Google ama Apple login-ka aad isticmaashay markaas. Haddii ay la mid noqoto xisaab hore, waxaad heli doontaa fursad aad ku soo qaadato boorsadaada, magacaaga isticmaale iyo lacagtaada.",
+    "migrateAccountNote": "Hal mar oo kaliya soo galidda login-ka hore waxay si ammaan ah u soo celinaysaa furaha boorsadaada qalabkan. Marna ma taabato server-yadeena.",
+    "migrateAccountContinue": "Sii wad si aad u soo gasho",
     "privateKey": "Fure gaar ah",
     "pasteFromClipboard": "Ku dhaji clipboard-ka",
     "learnMoreAt": "Wax dheeraad ah ka baro dehub.io",
@@ -4270,6 +4274,7 @@
     "recoverOnWebsite": "Ka soo celi dehub.io",
     "createNewAnyway": "Ma rabo xisaabtaas — si kastaba mid cusub samee",
     "couldNotRead": "Ma aanan akhrin karin boorsadaas la soo celiyay. Waxba isma beddelin.",
+    "noOldAccountFound": "Ma jiro xisaab hore oo DeHub ah oo ku saabsan galitaankan, sidaa darteed ma jiraan wax la soo gudbiyo. Samee akoon cusub halkii.",
     "didNotRecoverEither": "Gelitaankaas midna kama soo celin astaamaha halkan lagu muujiyay. Waxba isma beddelin. Isku day gelitaankii asalka ahaa ee astaanta aad rabto.",
     "didNotRecoverThis": "Gelitaankaas wuxuu soo celiyay boorso ka duwan tan astaantan. Waxba isma beddelin. Isku day gelitaankii asal ahaan abuuray.",
     "couldNotRetrieve": "Boorsadaas hore laguma heli karin qalabkan. Weli waad ka soo celin kartaa dehub.io ee hoose."

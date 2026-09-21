@@ -1522,6 +1522,10 @@
     "importWallet": "Uvezi novčanik",
     "privateKeyPlaceholder": "Unesite svoj privatni ključ",
     "importExternalWallet": "Uvezi vanjski novčanik",
+    "migrateAccount": "Migriraj račun",
+    "migrateAccountBody": "Već ste imali DeHub račun? Prijavite se istom e-poštom, telefonom, Googleom ili Appleovom prijavom koju ste tada koristili. Ako se podudara s ranijim računom, ponudit ćemo vam da donesete njegov novčanik, korisničko ime i saldo.",
+    "migrateAccountNote": "Jednokratna prijava sa starom prijavom sigurno dohvaća vaš ključ novčanika na ovom uređaju. Nikada ne dira naše poslužitelje.",
+    "migrateAccountContinue": "Nastavite s prijavom",
     "privateKey": "Privatni ključ",
     "pasteFromClipboard": "Zalijepi iz međuspremnika",
     "learnMoreAt": "Saznajte više na dehub.io",
@@ -4282,6 +4286,7 @@
     "recoverOnWebsite": "Oporavi na dehub.io",
     "createNewAnyway": "Ne želim taj račun — svejedno stvorite novi",
     "couldNotRead": "Nismo mogli pročitati oporavljeni novčanik. Ništa nije promijenjeno.",
+    "noOldAccountFound": "Nema ranijeg DeHub računa na ovoj prijavi, tako da nema ništa za prenijeti. Umjesto toga kreirajte novi račun.",
     "didNotRecoverEither": "Ta prijava nije oporavila nijedan ovdje prikazani profil. Ništa nije promijenjeno. Pokušajte s izvornom prijavom za profil koji želite.",
     "didNotRecoverThis": "Ta je prijava oporavila novčanik koji nije od ovog profila. Ništa nije promijenjeno. Pokušajte s prijavom kojom je izvorno stvoren.",
     "couldNotRetrieve": "Taj stari novčanik nije bilo moguće dohvatiti na ovom uređaju. I dalje ga možete oporaviti na dehub.io u nastavku."

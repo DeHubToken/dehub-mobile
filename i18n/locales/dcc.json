@@ -1386,6 +1386,10 @@
     "importWallet": "والیٹ امپورٹ کریں",
     "privateKeyPlaceholder": "اپنی پرائیویٹ کی درج کریں",
     "importExternalWallet": "بیرونی والیٹ امپورٹ کریں",
+    "migrateAccount": "Migrate account",
+    "migrateAccountBody": "Had a DeHub account before? Sign in with the same email, phone, Google or Apple login you used back then. If it matches an earlier account, you will be offered to bring over its wallet, username and balance.",
+    "migrateAccountNote": "A one-time sign-in with the old login retrieves your wallet key securely on this device. It never touches our servers.",
+    "migrateAccountContinue": "Continue to sign in",
     "privateKey": "پرائیویٹ کی",
     "pasteFromClipboard": "کلپ بورڈ سے پیسٹ کریں",
     "learnMoreAt": "dehub.io پر مزید جانیں",
@@ -3839,6 +3843,7 @@
     "recoverOnWebsite": "dehub.io پر بحال کرو",
     "createNewAnyway": "مجھے وہ اکاؤنٹ نہیں چاہیے — نیا بنا دو",
     "couldNotRead": "بحال شدہ والٹ پڑھا نہیں جا سکا۔ کچھ نہیں بدلا۔",
+    "noOldAccountFound": "There is no earlier DeHub account on this login, so there is nothing to bring over. Setting up a new account instead.",
     "didNotRecoverEither": "اس لاگ ان سے یہاں دکھایا کوئی پروفائل بحال نہیں ہوا۔ کچھ نہیں بدلا۔ جو پروفائل چاہیے اس کا اصل لاگ ان آزماؤ۔",
     "didNotRecoverThis": "اس لاگ ان سے کوئی اور والٹ بحال ہوا، اس پروفائل کا نہیں۔ کچھ نہیں بدلا۔ جس لاگ ان سے یہ بنا تھا وہ آزماؤ۔",
     "couldNotRetrieve": "اس ڈیوائس پر وہ پرانا والٹ نہیں مل سکا۔ تم پھر بھی نیچے dehub.io پر اسے بحال کر سکتے ہو۔"
