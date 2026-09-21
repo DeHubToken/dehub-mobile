@@ -28,6 +28,18 @@ import { withWalletHeader } from "../libs/supabase-wallet-client";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 
 
+/**
+ * A draft's poll, in the web client's shape — option ids and a duration in
+ * hours. Both clients read the same `metadata.payload` off the server, so a
+ * draft saved on a phone opens on the web with its poll intact.
+ */
+export interface DraftPoll {
+  question: string;
+  options: { id: string; text: string }[];
+  duration: number;
+  isMultipleChoice?: boolean;
+}
+
 export interface Draft {
   id: string;
   bodyText: string;
@@ -47,6 +59,12 @@ export interface Draft {
   thumbnailUri: string | null;
   coverUri: string | null;
   monetization: MonetizationState;
+  /** Absent on drafts saved before polls were kept. */
+  poll?: DraftPoll | null;
+  /** ISO string — a Date does not survive JSON. */
+  scheduledDate?: string | null;
+  isMature?: boolean;
+  isForKids?: boolean;
   createdAt: number; // epoch ms
   /** Row id in post_drafts, once this draft has reached the server. */
   remoteId?: string;
@@ -113,6 +131,12 @@ const fromRow = (row: any): Draft => ({
   thumbnailUri: null,
   coverUri: null,
   monetization: row.metadata?.monetization ?? emptyMonetization(),
+  // `payload` is what the web client writes; a draft from either side reads
+  // back the same poll, schedule and rating.
+  poll: row.metadata?.payload?.poll ?? row.metadata?.poll ?? null,
+  scheduledDate: row.metadata?.payload?.scheduledDate ?? null,
+  isMature: row.metadata?.payload?.isMature ?? false,
+  isForKids: row.metadata?.payload?.isForKids ?? false,
   createdAt: row.created_at ? new Date(row.created_at).getTime() : Date.now(),
   remoteId: row.id,
 });
@@ -170,6 +194,14 @@ const pushRemote = async (draft: Draft, address?: string): Promise<string | null
             monetization: draft.monetization,
             titleText: draft.titleText ?? "",
             articleBody: draft.articleBody ?? "",
+            payload: {
+              titleText: draft.titleText ?? "",
+              selectedCategory: draft.categories[0] ?? "",
+              poll: draft.poll ?? null,
+              scheduledDate: draft.scheduledDate ?? null,
+              isMature: draft.isMature ?? false,
+              isForKids: draft.isForKids ?? false,
+            },
             source: "mobile",
           },
         })
