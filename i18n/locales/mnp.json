@@ -586,7 +586,14 @@
     },
     "socialFollowers": "{{platform}} 上的关注者",
     "socialFollowersHint": "显示在您的个人资料中，作为总覆盖范围的一部分。您自己输入数字——我们不会从平台读取。",
-    "socialFollowersPlaceholder": "例如 12500"
+    "socialFollowersPlaceholder": "例如 12500",
+    "aiScraping": {
+      "section": "AI 訓練",
+      "label": "允許 AI 抓取我的內容",
+      "hintAllow": "遵守此訊號的 AI 系統和爬蟲可能會使用您的音訊、藝術作品和文字進行訓練。",
+      "hintDeny": "要求遵守此訊號的 AI 系統和爬蟲不要使用您的音訊、藝術作品和文字進行訓練。忽略此訊號的爬蟲不會被其阻止。",
+      "saved": "AI 訓練偏好設定已儲存"
+    }
   },
   "common": {
     "mute": "静音",
@@ -1587,7 +1594,11 @@
       "dehubFollowers": "DeHub 追蹤者",
       "selfReported": "社群追蹤者數量由創作者輸入。"
     },
-    "tabPlaylists": "歌單"
+    "tabPlaylists": "歌單",
+    "aiScraping": {
+      "allowed": "此创作者允许AI训练此内容。",
+      "denied": "此创作者不允许AI训练此内容。"
+    }
   },
   "tv": {
     "title": "电视",

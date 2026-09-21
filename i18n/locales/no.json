@@ -625,7 +625,14 @@
     },
     "socialFollowers": "Følgere på {{platform}}",
     "socialFollowersHint": "Vises på profilen din som en del av din totale rekkevidde. Skriv inn tallet selv – vi leser det ikke fra plattformen.",
-    "socialFollowersPlaceholder": "f.eks. 12500"
+    "socialFollowersPlaceholder": "f.eks. 12500",
+    "aiScraping": {
+      "section": "AI-opplæring",
+      "label": "Tillat AI-skraping av innholdet mitt",
+      "hintAllow": "AI-systemer og robotsøkeprogrammer som respekterer dette signalet, kan trene på lyd, grafikk og tekst.",
+      "hintDeny": "AI-systemer og robotsøkere som respekterer dette signalet blir bedt om ikke å trene på lyd, grafikk og tekst. Robotsøkere som ignorerer signalet blokkeres ikke av det.",
+      "saved": "AI-opplæringspreferanser lagret"
+    }
   },
   "common": {
     "mute": "Demp",
@@ -1593,7 +1600,11 @@
       "dehubFollowers": "DeHub-følgere",
       "selfReported": "Antall følgere på sosiale medier legges inn av skaperen."
     },
-    "tabPlaylists": "Spillelister"
+    "tabPlaylists": "Spillelister",
+    "aiScraping": {
+      "allowed": "Denne skaperen tillater AI-trening på dette innholdet.",
+      "denied": "Denne skaperen tillater ikke AI-trening på dette innholdet."
+    }
   },
   "tv": {
     "title": "TV",

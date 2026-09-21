@@ -587,7 +587,14 @@
     },
     "socialFollowers": "Follower uf {{platform}}",
     "socialFollowersHint": "Zeigt uf dim Profil a als Teil vo dim ganzä Reichwiite. Gib d Zahl sälber ii – mir läsed si nöd vo dr Plattform.",
-    "socialFollowersPlaceholder": "z.B. 12500"
+    "socialFollowersPlaceholder": "z.B. 12500",
+    "aiScraping": {
+      "section": "AI-Training",
+      "label": "Erlaube AI-Scraping vo mim Inhaalt",
+      "hintAllow": "AI-System und Crawler, wo das Signal respektiered, chönd uf dim Audio, Kunst und Text trainiere.",
+      "hintDeny": "AI-System und Crawler, wo das Signal respektiered, werded gfroged, nöd uf dim Audio, Kunst und Text z'trainiere. Crawler, wo s'Signal ignoriere, werded nöd druch's blockiert.",
+      "saved": "AI-Training-Präferenz gspeichered"
+    }
   },
   "common": {
     "mute": "Stumm schalte",
@@ -1591,7 +1598,11 @@
       "dehubFollowers": "DeHub Follower",
       "selfReported": "Soziali Follower-Zahle werded vom Creator yygäbe."
     },
-    "tabPlaylists": "Playlistä"
+    "tabPlaylists": "Playlistä",
+    "aiScraping": {
+      "allowed": "Dä Creator erlaubt AI-Training uf dem Inhalt.",
+      "denied": "Dä Creator erlaubt kei AI-Training uf dem Inhalt."
+    }
   },
   "tv": {
     "title": "TV",

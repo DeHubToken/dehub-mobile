@@ -627,7 +627,14 @@
     },
     "socialFollowers": "{{platform}} dagi obunachilar",
     "socialFollowersHint": "Profilingizda umumiy qamrovingizning bir qismi sifatida ko&#39;rsatiladi. Raqamni o&#39;zingiz kiriting — biz uni platformadan o&#39;qimaymiz.",
-    "socialFollowersPlaceholder": "masalan, 12500"
+    "socialFollowersPlaceholder": "masalan, 12500",
+    "aiScraping": {
+      "section": "Sun&#39;iy intellekt bo&#39;yicha trening",
+      "label": "Kontentimni sun&#39;iy intellekt yordamida qirib tashlashga ruxsat bering",
+      "hintAllow": "Ushbu signalga rioya qiladigan sun&#39;iy intellekt tizimlari va sudraluvchilari sizning audio, badiiy asaringiz va yozuvingizni mashq qilishi mumkin.",
+      "hintDeny": "Ushbu signalga rioya qiladigan sun&#39;iy intellekt tizimlari va qidiruv tizimlaridan sizning audio, badiiy asaringiz va yozuvlaringiz ustida mashq qilmaslik so&#39;raladi. Signalni e&#39;tiborsiz qoldiradigan qidiruv tizimlari u tomonidan bloklanmaydi.",
+      "saved": "Sun&#39;iy intellekt bo&#39;yicha o&#39;qitish afzalligi saqlandi"
+    }
   },
   "common": {
     "mute": "Ovozni o‘chirish",
@@ -1596,7 +1603,11 @@
       "dehubFollowers": "DeHub izdoshlari",
       "selfReported": "Ijtimoiy tarmoqlardagi obunachilar soni yaratuvchi tomonidan kiritiladi."
     },
-    "tabPlaylists": "Qoʻshiq roʻyxatlari"
+    "tabPlaylists": "Qoʻshiq roʻyxatlari",
+    "aiScraping": {
+      "allowed": "Ushbu yaratuvchi ushbu kontent bo&#39;yicha AI mashg&#39;ulotlariga ruxsat beradi.",
+      "denied": "Ushbu yaratuvchi ushbu kontent bo&#39;yicha sun&#39;iy intellekt bo&#39;yicha mashg&#39;ulotlarga ruxsat bermaydi."
+    }
   },
   "tv": {
     "title": "Televizor",

@@ -301,7 +301,11 @@
       "dehubFollowers": "DeHub-volgelinge",
       "selfReported": "Sosiale volgelinge tel word deur die skepper ingevoer."
     },
-    "tabPlaylists": "Speellyste"
+    "tabPlaylists": "Speellyste",
+    "aiScraping": {
+      "allowed": "Hierdie skepper laat AI-opleiding op hierdie inhoud toe.",
+      "denied": "Hierdie skepper laat nie AI-opleiding op hierdie inhoud toe nie."
+    }
   },
   "settings": {
     "smartReplies": "Voorgestelde antwoorde",
@@ -847,7 +851,14 @@
     },
     "socialFollowers": "Volgers op {{platform}}",
     "socialFollowersHint": "Wys op jou profiel as deel van jou totale bereik. Voer die nommer self in — ons lees dit nie van die platform af nie.",
-    "socialFollowersPlaceholder": "bv. 12500"
+    "socialFollowersPlaceholder": "bv. 12500",
+    "aiScraping": {
+      "section": "AI opleiding",
+      "label": "Laat AI toe om my inhoud te skraap",
+      "hintAllow": "AI-stelsels en kruipers wat hierdie sein respekteer, kan op jou klank-, kunswerk- en skryfwerk oefen.",
+      "hintDeny": "AI-stelsels en kruipers wat hierdie sein respekteer, word gevra om nie op u klank-, kunswerk- en skryfwerk op te lei nie. Kruipers wat die sein ignoreer, word nie daardeur geblokkeer nie.",
+      "saved": "AI-opleidingsvoorkeur gestoor"
+    }
   },
   "wallet": {
     "connectUnavailable": "Koppel beursie is nie in hierdie weergawe beskikbaar nie — herstel eerder met jou herstelfrase.",

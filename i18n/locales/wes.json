@@ -583,7 +583,11 @@
     },
     "socialFollowers": "Followers for {{platform}}",
     "socialFollowersHint": "Dem show for your profile as part of how many pipo you reach. You go enter the number yourself — we no go read am from the platform.",
-    "socialFollowersPlaceholder": "e.g. 12500"
+    "socialFollowersPlaceholder": "e.g. 12500",
+    "aiScraping": {
+      "section": "AI training",
+      "saved": "AI training preference saved"
+    }
   },
   "common": {
     "mute": "Off di sound",

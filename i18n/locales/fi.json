@@ -628,7 +628,14 @@
     },
     "socialFollowers": "Seuraajat kohteessa {{platform}}",
     "socialFollowersHint": "Näkyy profiilissasi osana kokonaiskattavuuttasi. Syötä numero itse — emme lue sitä alustalta.",
-    "socialFollowersPlaceholder": "esim. 12500"
+    "socialFollowersPlaceholder": "esim. 12500",
+    "aiScraping": {
+      "section": "Tekoälykoulutus",
+      "label": "Salli sisällön tekoälyn raaputus",
+      "hintAllow": "Tekoälyjärjestelmät ja indeksoijat, jotka kunnioittavat tätä signaalia, voivat harjoitella ääntäsi, taidettasi ja kirjoittamistasi.",
+      "hintDeny": "Tekoälyjärjestelmiä ja indeksoijia, jotka kunnioittavat tätä signaalia, pyydetään olemaan harjoittelematta ääni-, taideteos- ja kirjoitustaidettasi. Ryömijät, jotka jättävät signaalin huomiotta, eivät ole sen estämiä.",
+      "saved": "Tekoälykoulutusasetus tallennettu"
+    }
   },
   "common": {
     "mute": "Mykistä",
@@ -1597,7 +1604,11 @@
       "dehubFollowers": "DeHub-seuraajat",
       "selfReported": "Tekijä syöttää sosiaalisen seuraajamäärän."
     },
-    "tabPlaylists": "Soittolistat"
+    "tabPlaylists": "Soittolistat",
+    "aiScraping": {
+      "allowed": "Tämä tekijä sallii tekoälykoulutuksen tässä sisällössä.",
+      "denied": "Tämä tekijä ei salli tekoälykoulutusta tästä sisällöstä."
+    }
   },
   "tv": {
     "title": "TV",

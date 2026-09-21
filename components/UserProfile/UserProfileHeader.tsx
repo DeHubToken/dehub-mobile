@@ -15,6 +15,7 @@ import MutualFollowers from "./MutualFollowers";
 import StreamerLevelCard from "../Live/StreamerLevelCard";
 import BadgePatronChip from "../common/BadgePatronChip";
 import { useTranslation as useI18n } from "react-i18next";
+import { getAiScrapingPreference } from "../../libs/ai-scraping";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import type { FollowListItem } from "../../services/user.service";
 import TotalReachPill from "../Profile/TotalReachPill";
@@ -391,6 +392,12 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
               )}
             </View>
           )}
+
+          <Text className="text-zinc-500 text-xs mt-2">
+            {getAiScrapingPreference((socials as any)?.customs) === 'allow'
+              ? t('profile.aiScraping.allowed')
+              : t('profile.aiScraping.denied')}
+          </Text>
 
           {!!joinedDate && (
             <Text className="text-zinc-400 text-sm mt-3">{t("profile.joined")} {joinedDate}</Text>

@@ -627,7 +627,14 @@
     },
     "socialFollowers": "Jälgijad rakenduses {{platform}}",
     "socialFollowersHint": "Näidatakse Sinu profiilil osana Sinu koguulatusest. Sisesta number ise — me ei loe seda platvormilt.",
-    "socialFollowersPlaceholder": "nt 12500"
+    "socialFollowersPlaceholder": "nt 12500",
+    "aiScraping": {
+      "section": "Tehisintellekti koolitus",
+      "label": "Luba minu sisu tehisintellektiga kraapimine",
+      "hintAllow": "Seda signaali austavad tehisintellektisüsteemid ja roomikud võivad treenida teie heli, kunstiteoseid ja kirjutamist.",
+      "hintDeny": "Seda signaali austavatel tehisintellektisüsteemidel ja roomikutel palutakse mitte treenida teie heli, kunstiteoseid ja kirjutamist. See ei blokeeri signaali eiravaid roomikuid.",
+      "saved": "Tehisintellekti koolituse eelistus on salv"
+    }
   },
   "common": {
     "mute": "Vaigista",
@@ -1631,7 +1638,11 @@
       "dehubFollowers": "DeHubi jälgijad",
       "selfReported": "Sotsiaalsete jälgijate arvu sisestab looja."
     },
-    "tabPlaylists": "Esitusloendid"
+    "tabPlaylists": "Esitusloendid",
+    "aiScraping": {
+      "allowed": "See autor lubab selle sisuga tehisintellekti koolitust.",
+      "denied": "See looja ei luba AI-koolitust selle sisu kohta."
+    }
   },
   "tv": {
     "title": "TV",

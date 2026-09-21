@@ -619,7 +619,14 @@
     },
     "socialFollowers": "Raacayaasha {{platform}}",
     "socialFollowersHint": "Ku shub astaantaada qayb ka mid ah gaaritaankaaga guud. Ku qor lambarka naftaada — ma akhrineyno barxadda.",
-    "socialFollowersPlaceholder": "tusaale ahaan 12500"
+    "socialFollowersPlaceholder": "tusaale ahaan 12500",
+    "aiScraping": {
+      "section": "Tababarka AI",
+      "label": "U oggolow AI xoqida nuxurkayga",
+      "hintAllow": "Nidaamyada AI iyo crawlers ixtiraamaya calaamaddan ayaa laga yaabaa inay ku tababaraan maqalkaaga, farshaxankaaga iyo qoraaga.",
+      "hintDeny": "Nidaamyada AI iyo crawlers ixtiraamaya calaamadan waxaa laga codsanayaa inaysan ku tababarin maqalkaaga, farshaxankaaga iyo qoraaga. Crawlers oo iska indho tiraya calaamadda looma xannibo.",
+      "saved": "Doorbididda tababarka AI ee la badbaadiyay"
+    }
   },
   "common": {
     "mute": "Aamusi",
@@ -1623,7 +1630,11 @@
       "dehubFollowers": "DeHub raacayaasha",
       "selfReported": "Tirooyinka raacayaasha bulshada waxaa soo galaya abuuraha."
     },
-    "tabPlaylists": "Liisaska ciyaarta"
+    "tabPlaylists": "Liisaska ciyaarta",
+    "aiScraping": {
+      "allowed": "Abuurahaani wuxuu u oggolaanayaa tababarka AI ee ku saabsan nuxurkan.",
+      "denied": "Abuurahan ma ogola tababarka AI ee ku saabsan nuxurkan."
+    }
   },
   "tv": {
     "title": "TV",

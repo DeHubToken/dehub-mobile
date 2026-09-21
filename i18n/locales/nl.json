@@ -643,7 +643,14 @@
     },
     "socialFollowers": "Volgers op {{platform}}",
     "socialFollowersHint": "Wordt op je profiel weergegeven als onderdeel van je totale bereik. Voer het nummer zelf in — we lezen het niet van het platform.",
-    "socialFollowersPlaceholder": "bijv. 12500"
+    "socialFollowersPlaceholder": "bijv. 12500",
+    "aiScraping": {
+      "section": "AI-training",
+      "label": "AI-schrapen van mijn inhoud toestaan",
+      "hintAllow": "AI-systemen en crawlers die dit signaal respecteren, kunnen trainen op je audio, artwork en schrijven.",
+      "hintDeny": "AI-systemen en crawlers die dit signaal respecteren, wordt gevraagd om niet te trainen op je audio, artwork en schrijven. Crawlers die het signaal negeren, worden er niet door geblokkeerd.",
+      "saved": "AI-trainingsvoorkeur opgeslagen"
+    }
   },
   "common": {
     "mute": "Dempen",
@@ -2097,7 +2104,11 @@
       "dehubFollowers": "DeHub-volgers",
       "selfReported": "Het aantal sociale volgers wordt ingevoerd door de maker."
     },
-    "tabPlaylists": "Afspeellijsten"
+    "tabPlaylists": "Afspeellijsten",
+    "aiScraping": {
+      "allowed": "Deze maker staat AI-training toe op deze inhoud.",
+      "denied": "Deze maker staat geen AI-training toe voor deze inhoud."
+    }
   },
   "tv": {
     "title": "TV",

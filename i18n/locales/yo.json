@@ -623,7 +623,14 @@
     },
     "socialFollowers": "Àwọn ọmọ-ẹ̀yìn lórí {{platform}}",
     "socialFollowersHint": "Ṣàfihàn lórí àkójọpọ̀ rẹ gẹ́gẹ́ bí apá kan ìfikúnsí rẹ pátápátá. Fún ara rẹ ní nọ́mbà náà — a kò kà á láti orí ìtàgé.",
-    "socialFollowersPlaceholder": "e.g. 12500"
+    "socialFollowersPlaceholder": "e.g. 12500",
+    "aiScraping": {
+      "section": "Ikẹkọ AI",
+      "label": "Gba AI laaye lati yọ akoonu mi kuro.",
+      "hintAllow": "Àwọn ẹ̀rọ-ayárabíàsá àti àwọn aṣàwákiri tí wọ́n bọ̀wọ̀ fún àmì yìí lè kọ́ni lórí ohùn rẹ, iṣẹ́ ọnà àti kíkọ.",
+      "hintDeny": "Wọ́n ní kí àwọn ètò AI àti àwọn aṣàwákiri tí wọ́n bọ̀wọ̀ fún àmì yìí má ṣe kọ́ni lórí ohùn rẹ, iṣẹ́ ọnà àti kíkọ. Àwọn alátakò tí kò gbójú fo àmì náà kò ní dí i lọ́wọ́.",
+      "saved": "Ìfẹ́ ìdálẹ́kọ̀ọ́ AI ti wà ní ìpamọ́"
+    }
   },
   "common": {
     "mute": "Pa ohùn",
@@ -1628,7 +1635,11 @@
       "dehubFollowers": "Àwọn ọmọ-ẹ̀yìn DeHub",
       "selfReported": "Olùṣẹ̀dá ló máa ń tẹ iye àwọn ọmọlẹ́yìn tó ń tẹ̀lé àwùjọ."
     },
-    "tabPlaylists": "Àwọn àtòjọ orin"
+    "tabPlaylists": "Àwọn àtòjọ orin",
+    "aiScraping": {
+      "allowed": "Ẹlẹ́dàá yìí gba ìdánilẹ́kọ̀ọ́ AI lórí àkóónú yìí láyè.",
+      "denied": "Ẹlẹ́dàá yìí kò fàyè gba ìdánilẹ́kọ̀ọ́ AI lórí àkóónú yìí."
+    }
   },
   "tv": {
     "title": "TV",

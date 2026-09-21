@@ -557,7 +557,10 @@
       "serverCopied": "Server copied",
       "keyCopied": "Stream key copied"
     },
-    "socialFollowersPlaceholder": "mînak 12500"
+    "socialFollowersPlaceholder": "mînak 12500",
+    "aiScraping": {
+      "hintAllow": "سیستەمەکان و گەڕۆکەکانی زیرەکی دەستکرد کە ئەم نیشانە ڕێز دەگرن، دەتوانن لەسەر دەنگ، هونەر و نووسینەکانی تۆ مەشق بکەن."
+    }
   },
   "common": {
     "mute": "Bêdeng bike",

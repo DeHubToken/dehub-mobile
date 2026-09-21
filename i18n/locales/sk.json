@@ -172,7 +172,11 @@
       "dehubFollowers": "Sledovatelia DeHubu",
       "selfReported": "Počet sledovateľov na sociálnych sieťach zadáva tvorca."
     },
-    "tabPlaylists": "Playlisty"
+    "tabPlaylists": "Playlisty",
+    "aiScraping": {
+      "allowed": "Tento tvorca umožňuje školenie umelej inteligencie o tomto obsahu.",
+      "denied": "Tento tvorca nepovoľuje školenie umelej inteligencie o tomto obsahu."
+    }
   },
   "settings": {
     "smartReplies": "Navrhované odpovede",
@@ -725,7 +729,14 @@
     },
     "socialFollowers": "Sledujúci {{platform}}",
     "socialFollowersHint": "Zobrazí sa vo vašom profile ako súčasť vášho celkového dosahu. Číslo zadávajte sami — z platformy ho nečítame.",
-    "socialFollowersPlaceholder": "napr. 12500"
+    "socialFollowersPlaceholder": "napr. 12500",
+    "aiScraping": {
+      "section": "Školenie AI",
+      "label": "Povoliť škrabanie môjho obsahu umelou inteligenciou",
+      "hintAllow": "Systémy umelej inteligencie a crawlery, ktoré rešpektujú tento signál, môžu trénovať váš zvuk, umelecké diela a písanie.",
+      "hintDeny": "UI systémy a crawlery, ktoré rešpektujú tento signál, sú požiadané, aby sa netrénovali na vašom audiu, umeleckých dielach a písaní. Crawlery, ktoré ignorujú signál, nie sú blokované.",
+      "saved": "Predvoľba školenia AI uložená"
+    }
   },
   "notifications": {
     "title": "Upozornenia",

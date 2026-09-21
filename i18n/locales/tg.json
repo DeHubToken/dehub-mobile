@@ -615,7 +615,14 @@
     },
     "socialFollowers": "Пайравони {{platform}}",
     "socialFollowersHint": "Ipinapakita sa iyong profile bilang bahagi ng iyong kabuuang pag Рақамро худатон ворид кунед — мо онро аз платформа намехонем.",
-    "socialFollowersPlaceholder": "масалан, 12500"
+    "socialFollowersPlaceholder": "масалан, 12500",
+    "aiScraping": {
+      "section": "Омӯзиши AI",
+      "label": "Pahintulutan ang pagkaka-krap ng AI ng aking nilalaman",
+      "hintAllow": "Системаҳои AI ва crawlers, ки ин сигналро эҳтиром мекунанд, метавонанд дар аудио, санъат ва навиштани шумо омӯзанд.",
+      "hintDeny": "Системаҳои AI ва crawlers, ки ин сигналро эҳтиром мекунанд, хоҳиш карда мешаванд, ки дар аудио, санъат ва навиштани шумо таълим надиҳанд. Crawlers, ки сигналро нодида мегиранд, аз тарафи он баста намешаванд.",
+      "saved": "Бартарии омӯзишии AI захира карда шуд"
+    }
   },
   "common": {
     "mute": "Хомӯш кардани садо",
@@ -1579,7 +1586,11 @@
       "dehubFollowers": "Пайравони DeHub",
       "selfReported": "Ang mga sukatan ng Social Follower ay nagpasok ng lumikha."
     },
-    "tabPlaylists": "Феҳристҳои пахш"
+    "tabPlaylists": "Феҳристҳои пахш",
+    "aiScraping": {
+      "allowed": "Ang creator na ito ay nagbibigay ng pagsasanay sa AI sa n",
+      "denied": "Ang creator na ito ay hindi pinapahintulutan sa AI sa nilalaman na ito"
+    }
   },
   "tv": {
     "title": "TV",

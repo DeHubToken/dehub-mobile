@@ -627,7 +627,14 @@
     },
     "socialFollowers": "Wafuasi kwenye {{platform}}",
     "socialFollowersHint": "Inaonyeshwa kwenye wasifu wako kama sehemu ya jumla ya ufikiaji wako. Weka nambari mwenyewe — hatuisomi kutoka kwenye tovuti.",
-    "socialFollowersPlaceholder": "mfano 12500"
+    "socialFollowersPlaceholder": "mfano 12500",
+    "aiScraping": {
+      "section": "Mafunzo ya AI",
+      "label": "Ruhusu AI kuchakata maudhui yangu",
+      "hintAllow": "Mifumo ya AI na watambaaji wanaoheshimu ishara hii wanaweza kutoa mafunzo kwenye sauti, sanaa na uandishi wako.",
+      "hintDeny": "Mifumo ya AI na watambaaji wanaoheshimu ishara hii wanaombwa kutofundisha juu ya sauti, sanaa na uandishi wako. Matambaa yanayopuuza ishara hayazuiliwi nayo.",
+      "saved": "Upendeleo wa mafunzo ya AI umehifadhiwa"
+    }
   },
   "common": {
     "mute": "Nyamazisha",
@@ -1632,7 +1639,11 @@
       "dehubFollowers": "Wafuasi wa DeHub",
       "selfReported": "Hesabu za wafuasi wa kijamii zimewekwa na muundaji."
     },
-    "tabPlaylists": "Orodha za kucheza"
+    "tabPlaylists": "Orodha za kucheza",
+    "aiScraping": {
+      "allowed": "Mtengenezaji huyu anaruhusu mafunzo ya AI kuhusu maudhui haya.",
+      "denied": "Mtengenezaji huyu haruhusu mafunzo ya AI kuhusu maudhui haya."
+    }
   },
   "tv": {
     "title": "TV",
