@@ -16,10 +16,6 @@ import { copyToClipboard } from "../../libs";
 import { shareProfile } from "../../libs/misc";
 import { useMutualFollowers } from "../../hooks/useMutualFollowers";
 import { WEBSITE_LINK } from "../../config/links";
-import { getStoriesForWallet, type Story } from "../../services/stories.service";
-import { useWatchedStories } from "../../hooks/useWatchedStories";
-import { useStoryViewer } from "../../context/StoryViewerContext";
-import { useAuthState, useUser } from "../../context/AuthContext";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
@@ -105,57 +101,11 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   const [showReportUser, setShowReportUser] = useState(false);
   const [showRemoveFollowerConfirm, setShowRemoveFollowerConfirm] = useState(false);
   const [showTip, setShowTip] = useState(false);
-  const [profileStories, setProfileStories] = useState<Story[]>([]);
-  const { markWatched, isWatched } = useWatchedStories();
-  const { openStories } = useStoryViewer();
 
   const profileAddress =
     profileData?.walletAddress || profileData?.address || data?.address || data?.walletAddress || "";
 
-  const { isSignedIn } = useAuthState();
-  const viewerUser = useUser() as any;
-  const viewerWallet = viewerUser?.walletAddress || viewerUser?.address || "";
   const paymentsHidden = data?.hideBadgeAndBalance === true && !isOwnProfile;
-
-  useEffect(() => {
-    let cancelled = false;
-    if (!profileAddress) {
-      setProfileStories([]);
-      return;
-    }
-    getStoriesForWallet(profileAddress).then((stories) => {
-      if (!cancelled) setProfileStories(stories);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [profileAddress]);
-
-  const hasProfileStories = profileStories.length > 0;
-  const hasUnwatchedProfileStories = profileStories.some((s) => !isWatched(s.id));
-
-  const refreshProfileStories = useCallback(() => {
-    if (!profileAddress) return;
-    getStoriesForWallet(profileAddress).then(setProfileStories);
-  }, [profileAddress]);
-
-  const handleStoryPress = useCallback(() => {
-    if (!hasProfileStories) return;
-    profileStories.forEach((s) => markWatched(s.id));
-    openStories(profileStories, {
-      viewerWalletAddress: isSignedIn ? viewerWallet : undefined,
-      onStoryShown: (story) => markWatched(story.id),
-      onStoriesChanged: refreshProfileStories,
-    });
-  }, [
-    hasProfileStories,
-    profileStories,
-    markWatched,
-    openStories,
-    isSignedIn,
-    viewerWallet,
-    refreshProfileStories,
-  ]);
 
   // Plans drive the header Subscribe CTA. Reading them here (not inside the
   // tabs, which only fetch on the Subs tab being opened) is what lets the
@@ -308,9 +258,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           socials={data}
           mutuals={mutuals}
           mutualsLoading={mutualsLoading}
-          hasStories={hasProfileStories}
-          hasUnwatchedStories={hasUnwatchedProfileStories}
-          onStoryPress={handleStoryPress}
           hasPlans={hasPlans}
           plansLoading={plansLoading}
           onSubscribe={handleSubscribePress}
@@ -383,9 +330,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     canViewContent,
     mutuals,
     mutualsLoading,
-    hasProfileStories,
-    hasUnwatchedProfileStories,
-    handleStoryPress,
     hasPlans,
     plansLoading,
     handleSubscribePress,

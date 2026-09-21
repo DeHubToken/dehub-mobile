@@ -49,7 +49,6 @@ const SECTIONS: GlossarySection[] = [
       { icon: "Image", title: "Image Post", description: "A post containing one or more images. Images are stored on-chain as NFTs with a unique Token ID." },
       { icon: "Video", title: "Video Post", description: "A post containing a video. Videos can be set to public, private, or pay-per-view (PPV)." },
       { icon: "Radio", title: "Live Stream", description: "A real-time broadcast. Viewers can watch, comment, and tip the streamer. Streams use low-latency HLS technology." },
-      { icon: "Clock", title: "Story", description: "Short video content that expires after 24 hours. Tap a user's avatar ring on the home feed to view their story." },
       { icon: "Play", title: "Audio", description: "An audio post with a visual waveform player. Creators can upload music, podcasts, or voice recordings." },
       { icon: "Mic", title: "Audio Space", description: "A live audio room where users can speak, listen, and raise their hand to join the conversation." },
     ],

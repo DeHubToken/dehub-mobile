@@ -44,7 +44,6 @@ import { WebSocketProvider } from "./context/WebSocketContext";
 import { DMProvider } from "./context/DMContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import NewMemberRegistrar from "./components/common/NewMemberRegistrar";
-import { StoryViewerProvider } from "./context/StoryViewerContext";
 import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";
 import { PushNotificationsProvider } from "./services/push";
@@ -179,9 +178,7 @@ export default function App() {
             <AuthProvider>
               <WebSocketProvider>
                 <DMProvider>
-                  <StoryViewerProvider>
-                    <BootGate staged={staged} />
-                  </StoryViewerProvider>
+                  <BootGate staged={staged} />
                 </DMProvider>
               </WebSocketProvider>
               {/* Signing in no longer requires an openable wallet, so the

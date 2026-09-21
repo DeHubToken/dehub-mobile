@@ -23,7 +23,6 @@ import FeedNavBar from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters, PostTypeOption } from "../components/Home/FeedFilterPanel";
-import StoriesBar from "../components/Story/StoriesBar";
 import { getCategoriesCached } from "../services/nft.service";
 import { storage } from "../libs/storage";
 import { promptFeedEvents } from "../libs/eventBus";
@@ -814,7 +813,6 @@ export default function HomeScreen() {
           onBackPress={feedProfileVisible ? hideUserProfile : handleImageFeedBack}
         />
 
-        {!feedProfileVisible && filters.postType === "all" ? <StoriesBar /> : null}
 
         <FeedFilterPanel
           visible={!feedProfileVisible && filterPanelVisible}

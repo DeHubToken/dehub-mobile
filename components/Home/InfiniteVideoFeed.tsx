@@ -1017,10 +1017,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         ListHeaderComponent={listHeader}
         // Anchors the scroll position to the first visible row, so anything that
         // changes size *above* the viewport adjusts contentOffset instead of
-        // shoving the user. Three things in this feed do exactly that:
+        // shoving the user. Two things in this feed do exactly that:
         // SuggestedAccountsSection renders null until its fetch resolves and
-        // then expands inside cell 4; StoriesBar appearing grows the header and
-        // therefore the top spacer; and a card can measure differently once its
+        // then expands inside cell 4, and a card can measure differently once its
         // thumbnail decodes. minIndexForVisible: 1 excludes the header cell, so
         // scroll-to-top and pull-to-refresh still behave normally.
         maintainVisibleContentPosition={MAINTAIN_POSITION}
