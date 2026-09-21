@@ -1746,7 +1746,16 @@
     "password": "비밀번호",
     "sendCode": "코드 보내기",
     "usePasswordInstead": "대신 비밀번호 사용",
-    "useCodeInstead": "대신 이메일로 코드 받기"
+    "useCodeInstead": "대신 이메일로 코드 받기",
+    "continuePasskey": "지문으로 계속하기",
+    "passkeyIntro": "지문 또는 얼굴이 계정입니다. 기억할 것도, 입력할 것도 없습니다.",
+    "passkeySignIn": "지문으로 로그인",
+    "passkeyCreate": "새 계정 만들기",
+    "passkeyUnsupported": "이 기기에서는 지문이나 얼굴로 로그인할 수 없습니다. 다른 옵션을 사용하세요.",
+    "passkeyNotLinked": "해당 지문에 연결된 계정이 아직 없습니다. 대신 새 계정을 만드세요.",
+    "passkeyAlreadyRegistered": "해당 지문에는 이미 계정이 있습니다. 대신 로그인을 사용하세요.",
+    "passkeyFailed": "지문 로그인이 실패했습니다. 다시 시도하세요.",
+    "passkeyBackupHint": "계정은 이 기기의 비밀 키에 저장됩니다. 대부분의 휴대폰에서는 Google 또는 Apple 계정과 동기화되며, 설정에서 비밀번호 백업을 추가할 수 있습니다."
   },
   "careers": {
     "title": "DeHub 채용",

@@ -1730,7 +1730,16 @@
     "password": "Iphasiwedi",
     "sendCode": "Thumela ikhodi",
     "usePasswordInstead": "Sebenzisa iphasiwedi esikhundleni salokho",
-    "useCodeInstead": "Ngithumelele ikhodi nge-imeyili esikhundleni salokho"
+    "useCodeInstead": "Ngithumelele ikhodi nge-imeyili esikhundleni salokho",
+    "continuePasskey": "Qhubeka ngephrinti yeminwe",
+    "passkeyIntro": "Iminwe yakho noma ubuso bakho buyi-akhawunti yakho. Akukho okumele ukukhumbule, akukho okumele ukutayiphe.",
+    "passkeySignIn": "Ngena ngeminwe",
+    "passkeyCreate": "Dala i-akhawunti entsha",
+    "passkeyUnsupported": "Le divayisi ayikwazi ukungena ngeminwe noma ubuso. Sebenzisa enye indlela.",
+    "passkeyNotLinked": "Ayikho i-akhawunti exhunyiwe kuleyo minwe okwamanje. Dala i-akhawunti entsha esikhundleni salokho.",
+    "passkeyAlreadyRegistered": "Leyo minwe isivele inayo i-akhawunti. Sebenzisa ukungena esikhundleni salokho.",
+    "passkeyFailed": "Ukungena ngeminwe kuhlulekile. Sicela uzame futhi.",
+    "passkeyBackupHint": "I-akhawunti yakho ihlala ku-passkey yedivayisi yakho. Kumafoni amaningi ivumelaniswa ne-akhawunti yakho ye-Google noma ye-Apple, futhi ungangeza isipele sephasiwedi kuzilungiselelo."
   },
   "careers": {
     "title": "Imisebenzi ku-DeHub",

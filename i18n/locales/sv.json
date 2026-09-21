@@ -1735,7 +1735,16 @@
     "password": "Lösenord",
     "sendCode": "Skicka kod",
     "usePasswordInstead": "Använd lösenord i stället",
-    "useCodeInstead": "Mejla mig en kod i stället"
+    "useCodeInstead": "Mejla mig en kod i stället",
+    "continuePasskey": "Fortsätt med fingeravtryck",
+    "passkeyIntro": "Ditt fingeravtryck eller ansikte är ditt konto. Inget att komma ihåg, inget att skriva.",
+    "passkeySignIn": "Logga in med fingeravtryck",
+    "passkeyCreate": "Skapa ett nytt konto",
+    "passkeyUnsupported": "Den här enheten kan inte logga in med fingeravtryck eller ansikte. Använd ett annat alternativ.",
+    "passkeyNotLinked": "Inget konto är kopplat till det fingeravtrycket ännu. Skapa ett nytt konto istället.",
+    "passkeyAlreadyRegistered": "Det fingeravtrycket har redan ett konto. Använd Logga in istället.",
+    "passkeyFailed": "Inloggning med fingeravtryck misslyckades. Försök igen.",
+    "passkeyBackupHint": "Ditt konto finns i den här enhetens lösenordsnyckel. På de flesta telefoner synkroniseras den med ditt Google- eller Apple-konto, och du kan lägga till en lösenordsbackup i Inställningar."
   },
   "careers": {
     "title": "Karriär på DeHub",

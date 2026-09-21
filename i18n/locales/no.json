@@ -1692,7 +1692,16 @@
     "password": "Passord",
     "sendCode": "Send kode",
     "usePasswordInstead": "Bruk passord i stedet",
-    "useCodeInstead": "Send meg en kode på e-post i stedet"
+    "useCodeInstead": "Send meg en kode på e-post i stedet",
+    "continuePasskey": "Fortsett med fingeravtrykk",
+    "passkeyIntro": "Fingeravtrykket ditt eller ansiktet ditt er kontoen din. Ingenting å huske, ingenting å skrive.",
+    "passkeySignIn": "Logg inn med fingeravtrykk",
+    "passkeyCreate": "Opprett en ny konto",
+    "passkeyUnsupported": "Denne enheten kan ikke logge inn med fingeravtrykk eller ansikt. Bruk et annet alternativ.",
+    "passkeyNotLinked": "Ingen konto er knyttet til det fingeravtrykket ennå. Opprett en ny konto i stedet.",
+    "passkeyAlreadyRegistered": "Det fingeravtrykket har allerede en konto. Bruk Logg inn i stedet.",
+    "passkeyFailed": "Innlogging med fingeravtrykk mislyktes. Prøv igjen.",
+    "passkeyBackupHint": "Kontoen din ligger i denne enhetens passnøkkel. På de fleste telefoner synkroniseres den med Google- eller Apple-kontoen din, og du kan legge til en passord-sikkerhetskopi i Innstillinger."
   },
   "careers": {
     "title": "Karriere hos DeHub",

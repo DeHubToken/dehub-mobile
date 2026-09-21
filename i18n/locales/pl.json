@@ -1993,7 +1993,16 @@
     "password": "Hasło",
     "sendCode": "Wyślij kod",
     "usePasswordInstead": "Użyj zamiast tego hasła",
-    "useCodeInstead": "Wyślij mi kod e-mailem"
+    "useCodeInstead": "Wyślij mi kod e-mailem",
+    "continuePasskey": "Kontynuuj z odciskiem palca",
+    "passkeyIntro": "Twój odcisk palca lub twarz to Twoje konto. Nic do zapamiętania, nic do wpisania.",
+    "passkeySignIn": "Zaloguj się odciskiem palca",
+    "passkeyCreate": "Utwórz nowe konto",
+    "passkeyUnsupported": "To urządzenie nie może zalogować się odciskiem palca ani twarzą. Użyj innej opcji.",
+    "passkeyNotLinked": "Żadne konto nie jest jeszcze powiązane z tym odciskiem palca. Utwórz nowe konto.",
+    "passkeyAlreadyRegistered": "Ten odcisk palca ma już konto. Zamiast tego użyj opcji Zaloguj się.",
+    "passkeyFailed": "Logowanie odciskiem palca nie powiodło się. Spróbuj ponownie.",
+    "passkeyBackupHint": "Twoje konto znajduje się w kluczu dostępu tego urządzenia. Na większości telefonów synchronizuje się z Twoim kontem Google lub Apple, a kopię zapasową hasła możesz dodać w Ustawieniach."
   },
   "careers": {
     "title": "Kariera w DeHub",

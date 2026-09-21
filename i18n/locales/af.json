@@ -2193,7 +2193,16 @@
     "password": "Wagwoord",
     "sendCode": "Stuur kode",
     "usePasswordInstead": "Gebruik eerder ’n wagwoord",
-    "useCodeInstead": "E-pos eerder vir my ’n kode"
+    "useCodeInstead": "E-pos eerder vir my ’n kode",
+    "continuePasskey": "Gaan voort met vingerafdrukke",
+    "passkeyIntro": "Jou vingerafdruk of gesig is jou rekening. Niks om te onthou nie, niks om te tik nie.",
+    "passkeySignIn": "Teken aan met vingerafdruk",
+    "passkeyCreate": "Skep 'n nuwe rekening",
+    "passkeyUnsupported": "Hierdie toestel kan nie met 'n vingerafdruk of gesig aanmeld nie. Gebruik 'n ander opsie.",
+    "passkeyNotLinked": "Geen rekening is nog aan daardie vingerafdruk gekoppel nie. Skep eerder 'n nuwe rekening.",
+    "passkeyAlreadyRegistered": "Daardie vingerafdruk het reeds 'n rekening. Gebruik Teken aan in plaas daarvan.",
+    "passkeyFailed": "Vingerafdruk-aanmelding het misluk. Probeer asseblief weer.",
+    "passkeyBackupHint": "Jou rekening woon in hierdie toestel se passkey. Op die meeste fone sinkroniseer dit met jou Google- of Apple-rekening, en jy kan 'n wagwoordrugsteun in Instellings byvoeg."
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

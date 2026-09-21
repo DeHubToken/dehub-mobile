@@ -1731,7 +1731,16 @@
     "password": "Fjalëkalimi",
     "sendCode": "Dërgo kodin",
     "usePasswordInstead": "Përdor një fjalëkalim",
-    "useCodeInstead": "Më dërgo një kod me email"
+    "useCodeInstead": "Më dërgo një kod me email",
+    "continuePasskey": "Vazhdo me gjurmët e gishtave",
+    "passkeyIntro": "Gishti juaj ose fytyra juaj është llogaria juaj. Asgjë për të mbajtur mend, asgjë për të shkruar.",
+    "passkeySignIn": "Hyni me gisht",
+    "passkeyCreate": "Krijo një llogari të re",
+    "passkeyUnsupported": "Ky pajisje nuk mund të hyjë me gisht ose fytyrë. Përdorni një opsion tjetër.",
+    "passkeyNotLinked": "Asnjë llogari nuk është lidhur ende me atë gisht. Krijo një llogari të re në vend të kësaj.",
+    "passkeyAlreadyRegistered": "Ai gisht tashmë ka një llogari. Përdorni Hyni në vend të kësaj.",
+    "passkeyFailed": "Hyrja me gisht dështoi. Ju lutem provoni përsëri.",
+    "passkeyBackupHint": "Llogaria juaj jeton në çelësin e kalimit të këtij pajisje. Në shumicën e telefonave, ai sinkronizohet me llogarinë tuaj Google ose Apple, dhe ju mund të shtoni një kopje rezervë të fjalëkalimit në Cilësime."
   },
   "careers": {
     "title": "Karriera në DeHub",

@@ -1696,7 +1696,16 @@
     "password": "Salasana",
     "sendCode": "Lähetä koodi",
     "usePasswordInstead": "Käytä sen sijaan salasanaa",
-    "useCodeInstead": "Lähetä koodi sähköpostiin"
+    "useCodeInstead": "Lähetä koodi sähköpostiin",
+    "continuePasskey": "Jatka sormenjäljellä",
+    "passkeyIntro": "Sormenjälkesi tai kasvosi ovat tilisi. Ei tarvitse muistaa, ei tarvitse kirjoittaa.",
+    "passkeySignIn": "Kirjaudu sisään sormenjäljellä",
+    "passkeyCreate": "Luo uusi tili",
+    "passkeyUnsupported": "Tämä laite ei voi kirjautua sisään sormenjäljellä tai kasvoilla. Käytä toista vaihtoehtoa.",
+    "passkeyNotLinked": "Tuohon sormenjälkeen ei ole vielä liitetty tiliä. Luo uusi tili sen sijaan.",
+    "passkeyAlreadyRegistered": "Tuossa sormenjäljessä on jo tili. Käytä sen sijaan Kirjaudu sisään -toimintoa.",
+    "passkeyFailed": "Sormenjäljellä kirjautuminen epäonnistui. Yritä uudelleen.",
+    "passkeyBackupHint": "Tilisi sijaitsee tämän laitteen salausavaimessa. Useimmissa puhelimissa se synkronoidaan Google- tai Apple-tilisi kanssa, ja voit lisätä salasanavarmuuskopion Asetuksista."
   },
   "careers": {
     "title": "Urat DeHubissa",

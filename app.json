@@ -22,7 +22,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/734211bf-5261-4dce-9e61-2bfc51c339b9"
     },
-    "runtimeVersion": "1.17.0",
+    "runtimeVersion": "1.18.0",
     "ios": {
       "supportsTablet": false,
       "jsEngine": "hermes",
@@ -30,7 +30,8 @@
       "usesAppleSignIn": true,
       "icon": "./assets/AppIcons/appstore.png",
       "associatedDomains": [
-        "applinks:dehub.io"
+        "applinks:dehub.io",
+        "webcredentials:dehub.io"
       ],
       "infoPlist": {
         "LSApplicationQueriesSchemes": [

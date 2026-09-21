@@ -1805,7 +1805,16 @@
     "password": "Jecha icciitii",
     "sendCode": "Koodii ergi",
     "usePasswordInstead": "Kanaa mannaa jecha iccitii fayyadami",
-    "useCodeInstead": "Kanaa mannaa koodii imeeliidhaan naaf ergi"
+    "useCodeInstead": "Kanaa mannaa koodii imeeliidhaan naaf ergi",
+    "continuePasskey": "Ashaaraa qubaa itti fufaa",
+    "passkeyIntro": "Qubee quba kee ykn fuulli kee maallaqa kee ti. Yaadachuuf wanti hin jiru, barreessuuf wanti hin jiru.",
+    "passkeySignIn": "Qubee quba keetiin seeni",
+    "passkeyCreate": "Maallaqa haarawa uumuu",
+    "passkeyUnsupported": "Meeshaan kun qubee quba ykn fuulaan seenuu hin danda'u. Filannoo biraa fayyadami.",
+    "passkeyNotLinked": "Qubee quba sanaaf maallaqni hin walitti makamu. Kana asemitti maallaqa haarawa uumi.",
+    "passkeyAlreadyRegistered": "Qubee quba sana irratti maallaqni jira. Kana asemitti Seenii jedhu fayyadami.",
+    "passkeyFailed": "Qubee quba seenuun ni fiixate. Galatoomi.",
+    "passkeyBackupHint": "Maallaqni kee qubee quba meeshaa kana keessa jira. Bilisummaa kee irratti, isin Google ykn Apple maallaqa kee wajjin walitti makama, fi isin Settings keessatti deeggarsa jecha darbii tokko dabaluu dandeessu."
   },
   "careers": {
     "title": "Hojii DeHub-tti",

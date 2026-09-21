@@ -1485,7 +1485,16 @@
     "password": "পাসওয়ার্ড",
     "sendCode": "কোড পাঠান",
     "usePasswordInstead": "বদলে পাসওয়ার্ড ব্যবহার করুন",
-    "useCodeInstead": "বদলে আমারে ইমেইলে কোড পাঠান"
+    "useCodeInstead": "বদলে আমারে ইমেইলে কোড পাঠান",
+    "continuePasskey": "ফিংগারপ্রিন্ট দিয়ে আগাই",
+    "passkeyIntro": "Your fingerprint or face is your account. Nothing to remember, nothing to type.",
+    "passkeySignIn": "Sign in with fingerprint",
+    "passkeyCreate": "Create a new account",
+    "passkeyUnsupported": "This device can't sign in with a fingerprint or face. Use another option.",
+    "passkeyNotLinked": "No account is linked to that fingerprint yet. Create a new account instead.",
+    "passkeyAlreadyRegistered": "That fingerprint already has an account. Use Sign in instead.",
+    "passkeyFailed": "Fingerprint sign-in failed. Please try again.",
+    "passkeyBackupHint": "Your account lives in this device's passkey. On most phones it syncs with your Google or Apple account, and you can add a password backup in Settings."
   },
   "sidebar": {
     "talkOfTheTown": "শহরর গপ",
