@@ -4479,5 +4479,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Nový/nová tady? Chcete krátkou prohlídku?",
+      "body": "Provedeme vás DeHubem krok za krokem a zeptáme se, jak každý krok proběhl, abychom mohli opravit cokoliv, co je matoucí.",
+      "yes": "Ano, ukažte mi",
+      "no": "Ne, děkuji"
+    },
+    "checklist": {
+      "title": "Začínáme",
+      "subtitle": "Několik krátkých kroků k nastavení na DeHubu.",
+      "progress": "{{done}} z {{total}} hotovo",
+      "go": "Vezměte mě tam",
+      "done": "Označit jako hotovo",
+      "skip": "Přeskočit tento krok",
+      "dismiss": "Skrýt kroky pro začátek",
+      "reopen": "Otevřít průvodce",
+      "finishedTitle": "To je vše — dobře hotovo.",
+      "finishedBody": "Děkujeme, že jste nám řekli, jak každý krok proběhl. Vaše odpovědi jdou přímo lidem, kteří to staví.",
+      "chip": "Začínáme"
+    },
+    "rating": {
+      "question": "Bylo to snadné?",
+      "easy": "Ano, bylo to snadné",
+      "hard": "Ne, bylo to těžké",
+      "thanks": "Děkujeme, pomohlo to."
+    },
+    "steps": {
+      "profile": {
+        "title": "Nastavte si uživatelské jméno a obrázek",
+        "body": "Vyberte si jméno, které si lidé zapamatují, a přidejte profilový obrázek, aby vaše příspěvky vypadaly, že pocházejí od vás."
+      },
+      "wallet": {
+        "title": "Podívejte se na svou peněženku a co je DHB",
+        "body": "Vaše peněženka již existuje a obsahuje vaše DHB. Podívejte se, co v ní je a odkud to pochází."
+      },
+      "feed": {
+        "title": "Vyberte, co chcete vidět",
+        "body": "Odpovězte na pár rychlých otázek a váš feed začne zobrazovat typ příspěvků, které skutečně chcete."
+      },
+      "first-post": {
+        "title": "Vytvořte svůj první příspěvek",
+        "body": "Sdílejte myšlenku, fotku nebo video. Zabere to jen chvilku a tak si vás lidé najdou."
+      },
+      "follow": {
+        "title": "Sledujte tři tvůrce",
+        "body": "Váš feed bude mnohem lepší, jakmile budete sledovat pár lidí. Prohlédněte si, kdo je zde, a vyberte si tři na začátek."
+      },
+      "comment": {
+        "title": "Zanechte komentář u příspěvku",
+        "body": "Odpověz na něco, co se ti ve zdroji líbilo. Konverzace jsou místem, kde se ve skutečnosti odehrává většina DeHubu."
+      },
+      "rewards": {
+        "title": "Podívej se, jak funguje vydělávání",
+        "body": "Zjistěte, jak spropitné, odznaky a SuperPowers mění to, co zde děláte, na něco, z čeho si vyděláte."
+      }
+    }
   }
 }

@@ -4473,5 +4473,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Jauns šeit? Vēlaties īsu ekskursiju?",
+      "body": "Mēs varam jums soli pa solim izskaidrot DeHub un jautāt, kā katrs solis ir noritējis, lai mēs varētu novērst jebkuras neskaidrības.",
+      "yes": "Jā, parādiet man apkārt",
+      "no": "Nē, paldies"
+    },
+    "checklist": {
+      "title": "Sākums",
+      "subtitle": "Daži īsi soļi, lai sevi ieviestu DeHub.",
+      "progress": "{{done}} no {{total}} pabeigts",
+      "go": "Aizvediet mani tur",
+      "done": "Atzīmēt kā pabeigtu",
+      "skip": "Izlaist šo soli",
+      "dismiss": "Paslēpt sākuma soļus",
+      "reopen": "Atvērt ceļvedi",
+      "finishedTitle": "Tas ir viss — labi padarīts.",
+      "finishedBody": "Paldies, ka pastāstījāt, kā noritēja katrs solis. Jūsu atbildes nonāk tieši pie cilvēkiem, kas to veido.",
+      "chip": "Sākums"
+    },
+    "rating": {
+      "question": "Vai tas bija viegli?",
+      "easy": "Jā, tas bija viegli",
+      "hard": "Nē, tas bija grūti",
+      "thanks": "Paldies, tas palīdz."
+    },
+    "steps": {
+      "profile": {
+        "title": "Iestatiet savu lietotājvārdu un attēlu",
+        "body": "Izvēlieties vārdu, ko cilvēki atpazīs, un pievienojiet profila attēlu, lai jūsu ieraksti izskatītos, ka tie ir no jums."
+      },
+      "wallet": {
+        "title": "Apskatiet savu maku un to, kas ir DHB",
+        "body": "Jūsu maks jau pastāv un satur jūsu DHB. Apskatiet, kas tajā ir un no kurienes tas nācis."
+      },
+      "feed": {
+        "title": "Izvēlieties, ko vēlaties redzēt",
+        "body": "Atbildiet uz pāris ātriem jautājumiem, un jūsu plūsmā sāks parādīties tādi ieraksti, kādus jūs patiešām vēlaties."
+      },
+      "first-post": {
+        "title": "Veiciet savu pirmo ierakstu",
+        "body": "Dalieties ar domu, fotoattēlu vai video. Tas aizņem tikai mirkli, un tā cilvēki jūs atrod."
+      },
+      "follow": {
+        "title": "Atskatieties uz trim veidotājiem",
+        "body": "Jūsu plūsma kļūst daudz labāka, kad sekojat dažiem cilvēkiem. Pārlūkojiet, kas šeit ir, un izvēlieties trīs, lai sāktu."
+      },
+      "comment": {
+        "title": "Atstājiet komentāru pie ieraksta",
+        "body": "Atbildiet uz kaut ko, kas jums patika jūsu plūsmā. Sarunas ir vieta, kur faktiski notiek lielākā daļa DeHub."
+      },
+      "rewards": {
+        "title": "Uzziniet, kā notiek pelnīšana",
+        "body": "Uzziniet, kā padomi, nozīmītes un superspējas pārvērš to, ko šeit darāt, par kaut ko, no kā nopelnāt."
+      }
+    }
   }
 }

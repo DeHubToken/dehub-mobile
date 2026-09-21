@@ -4537,5 +4537,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Yeni misiniz? Kısa bir rehberli tur ister misiniz?",
+      "body": "DeHub'da size adım adım rehberlik edebiliriz ve her adımın nasıl gittiğini sorarak kafa karıştırıcı olan her şeyi düzeltebiliriz.",
+      "yes": "Evet, beni gezdir",
+      "no": "Hayır, teşekkürler"
+    },
+    "checklist": {
+      "title": "Başlarken",
+      "subtitle": "DeHub'da kendinizi kurmanız için birkaç kısa adım.",
+      "progress": "{{done}} / {{total}} tamamlandı",
+      "go": "Beni oraya götür",
+      "done": "Tamamlandı olarak işaretle",
+      "skip": "Bu adımı atla",
+      "dismiss": "Başlangıç adımlarını gizle",
+      "reopen": "Rehberi aç",
+      "finishedTitle": "Hepsi bu kadar — harika iş.",
+      "finishedBody": "Her adımın nasıl gittiğini bize bildirdiğiniz için teşekkür ederiz. Yanıtlarınız doğrudan bunu oluşturan kişilere gidiyor.",
+      "chip": "Başlarken"
+    },
+    "rating": {
+      "question": "Bu kolay mıydı?",
+      "easy": "Evet, kolaydı",
+      "hard": "Hayır, zordu",
+      "thanks": "Teşekkürler, bu yardımcı oluyor."
+    },
+    "steps": {
+      "profile": {
+        "title": "Kullanıcı adınızı ve resminizi ayarlayın",
+        "body": "İnsanların tanıyacağı bir isim seçin ve bir profil resmi ekleyin, böylece gönderileriniz size aitmiş gibi görünür."
+      },
+      "wallet": {
+        "title": "Cüzdanınızı ve DHB'nin ne olduğunu görün",
+        "body": "Cüzdanınız zaten var ve DHB'nizi tutuyor. İçindekilere ve nereden geldiğine bir göz atın."
+      },
+      "feed": {
+        "title": "Neler görmek istediğinizi seçin",
+        "body": "Birkaç hızlı soru yanıtlayın ve akışınız gerçekten istediğiniz türden gönderileri göstermeye başlayacaktır."
+      },
+      "first-post": {
+        "title": "İlk gönderinizi yapın",
+        "body": "Bir düşüncenizi, fotoğrafınızı veya videonuzu paylaşın. Sadece bir an sürer ve insanların sizi bulma şekli budur."
+      },
+      "follow": {
+        "title": "Üç içerik üreticisini takip edin",
+        "body": "Birkaç kişiyi takip ettiğinizde akışınız çok daha iyi hale gelir. Burada kimler var göz atın ve başlamak için üçünü seçin."
+      },
+      "comment": {
+        "title": "Bir gönderiye yorum yapın",
+        "body": "Akışınızda beğendiğiniz bir şeyi yanıtlayın. Sohbetler, DeHub'ın çoğunun gerçekleştiği yerdir."
+      },
+      "rewards": {
+        "title": "Kazancın işleyişine göz atın",
+        "body": "İpuçlarının, rozetlerin ve Süper Güçlerin burada yaptıklarını nasıl kazandığın bir şeye dönüştürdüğünü öğren."
+      }
+    }
   }
 }

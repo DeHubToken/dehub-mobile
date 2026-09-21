@@ -4422,5 +4422,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "新来个？想来个简短个导游？",
+      "body": "吾伲可以一步一步带侬走过 DeHub，并且问问每一步侬感觉怎么样，以便吾伲修补任何让侬困惑个地方。",
+      "yes": "是，带我看看",
+      "no": "不用了，谢谢"
+    },
+    "checklist": {
+      "title": "开始上手",
+      "subtitle": "几步简单个路数，帮侬在 DeHub 上安顿下来。",
+      "progress": "已完成 {{done}} 个，共 {{total}} 个",
+      "go": "带我去",
+      "done": "标记为完成",
+      "skip": "跳过此步",
+      "dismiss": "隐藏开始上手个步骤",
+      "reopen": "打开指南",
+      "finishedTitle": "这就全部弄完啦——干得漂亮。",
+      "finishedBody": "谢谢侬告诉吾伲每一步感觉怎么样。侬个回答会直接交给正在开发此功能个团队。",
+      "chip": "开始上手"
+    },
+    "rating": {
+      "question": "这个容易伐？",
+      "easy": "是，这个容易",
+      "hard": "不是，这个难",
+      "thanks": "谢谢侬，这很有帮助。"
+    },
+    "steps": {
+      "profile": {
+        "title": "设置侬个用户名搭头像",
+        "body": "挑个大家能认出来个名字，再加个头像，这样侬个帖子看起来就像是侬自己发个。"
+      },
+      "wallet": {
+        "title": "看看侬个钱包搭 DHB 是啥",
+        "body": "侬个钱包已经存在了，里面装着侬个 DHB。来看看里面有啥，以及是哪儿来个。"
+      },
+      "feed": {
+        "title": "选择侬想看个啥",
+        "body": "回答几个快速个问题，侬个信息流就会开始显示侬真正想看个那种帖子。"
+      },
+      "first-post": {
+        "title": "发侬个第一条帖子",
+        "body": "分享个想法、照片或者视频。只消一小会儿，这也是大家找到侬个方式。"
+      },
+      "follow": {
+        "title": "关注三个创作者",
+        "body": "关注几个人之后，侬个信息流会变得更好。看看这里有谁，选三个开始。"
+      },
+      "comment": {
+        "title": "给一条帖子留个言",
+        "body": "看到你Feed里喜欢的东东。大部分DeHub的交流都在对话里。"
+      },
+      "rewards": {
+        "title": "看看赚钱是怎么回事",
+        "body": "了解一下小费、徽章和超级能力是怎么把你在上面做的事变成收入的。"
+      }
+    }
   }
 }

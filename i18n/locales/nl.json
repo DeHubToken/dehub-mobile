@@ -4742,5 +4742,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Nieuw hier? Wil je een korte rondleiding?",
+      "body": "We kunnen je stap voor stap door DeHub leiden en vragen hoe elke stap ging, zodat we alles wat verwarrend is kunnen oplossen.",
+      "yes": "Ja, laat me rondkijken",
+      "no": "Nee, bedankt"
+    },
+    "checklist": {
+      "title": "Aan de slag",
+      "subtitle": "Een paar korte stappen om jezelf in te stellen op DeHub.",
+      "progress": "{{done}} van {{total}} voltooid",
+      "go": "Breng me ernaartoe",
+      "done": "Markeer als voltooid",
+      "skip": "Sla deze stap over",
+      "dismiss": "Verberg de stappen om aan de slag te gaan",
+      "reopen": "Open de gids",
+      "finishedTitle": "Dat is alles — goed gedaan.",
+      "finishedBody": "Bedankt dat je ons vertelt hoe elke stap ging. Je antwoorden gaan rechtstreeks naar de mensen die dit bouwen.",
+      "chip": "Aan de slag"
+    },
+    "rating": {
+      "question": "Was dit makkelijk?",
+      "easy": "Ja, dat was makkelijk",
+      "hard": "Nee, dat was moeilijk",
+      "thanks": "Bedankt, dat helpt."
+    },
+    "steps": {
+      "profile": {
+        "title": "Stel je gebruikersnaam en profielfoto in",
+        "body": "Kies een naam die mensen zullen herkennen en voeg een profielfoto toe, zodat je berichten van jou lijken te komen."
+      },
+      "wallet": {
+        "title": "Bekijk je portemonnee en wat DHB is",
+        "body": "Je portemonnee bestaat al en bevat je DHB. Bekijk wat erin zit en waar het vandaan komt."
+      },
+      "feed": {
+        "title": "Kies wat je wilt zien",
+        "body": "Beantwoord een paar snelle vragen en je feed zal beginnen met het tonen van het soort berichten dat je echt wilt."
+      },
+      "first-post": {
+        "title": "Maak je eerste bericht",
+        "body": "Deel een gedachte, een foto of een video. Het duurt maar een moment en zo vinden mensen je."
+      },
+      "follow": {
+        "title": "Volg drie makers",
+        "body": "Je feed wordt veel beter als je een paar mensen volgt. Blader door wie hier is en kies er drie om mee te beginnen."
+      },
+      "comment": {
+        "title": "Laat een reactie achter op een bericht",
+        "body": "Reageer op iets dat je leuk vond in je feed. Gesprekken zijn waar het grootste deel van DeHub daadwerkelijk plaatsvindt."
+      },
+      "rewards": {
+        "title": "Bekijk hoe omzet maken werkt",
+        "body": "Ontdek hoe tips, badges en SuperPowers van wat je hier doet, iets maken waar je aan verdient."
+      }
+    }
   }
 }

@@ -4472,5 +4472,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "新嚟？想我哋帶你遊覽吓？",
+      "body": "我哋可以一步一步帶你認識 DeHub，仲會問你每一步嘅感受，以便我哋改善任何令人困惑嘅地方。",
+      "yes": "係，帶我參觀",
+      "no": "唔該，唔需要"
+    },
+    "checklist": {
+      "title": "開始設定",
+      "subtitle": "幾個簡單步驟，即可喺 DeHub 上完成設定。",
+      "progress": "已完成 {{done}} / {{total}}",
+      "go": "帶我去",
+      "done": "標記為已完成",
+      "skip": "跳過此步驟",
+      "dismiss": "隱藏開始設定步驟",
+      "reopen": "開啟指南",
+      "finishedTitle": "全部完成喇，做得好。",
+      "finishedBody": "多謝你話我哋知每一步嘅感受。你嘅回覆會直接交俾開發團隊。",
+      "chip": "開始設定"
+    },
+    "rating": {
+      "question": "呢個係咪好容易？",
+      "easy": "係，好容易",
+      "hard": "唔係，好難",
+      "thanks": "多謝，呢個好有幫助。"
+    },
+    "steps": {
+      "profile": {
+        "title": "設定你嘅用戶名同頭像",
+        "body": "揀一個大家認得嘅名，再加個頭像，等大家知道你嘅帖文係你發出嘅。"
+      },
+      "wallet": {
+        "title": "查看你嘅錢包同 DHB",
+        "body": "你嘅錢包已經存在，裡面有你嘅 DHB。睇吓裡面有啲乜，同埋佢嚟自邊度。"
+      },
+      "feed": {
+        "title": "選擇你想睇嘅內容",
+        "body": "回答幾個簡單問題，你嘅動態消息就會開始顯示你真正想睇嘅帖文。"
+      },
+      "first-post": {
+        "title": "發佈你嘅第一篇帖文",
+        "body": "分享一個諗法、一張相或者一段影片。好快就搞掂，呢個係俾人搵到你嘅方法。"
+      },
+      "follow": {
+        "title": "追蹤三位創作者",
+        "body": "追蹤幾個人之後，你嘅動態消息會變得好唔同。瀏覽一下有邊啲人喺度，揀三個開始。"
+      },
+      "comment": {
+        "title": "喺帖文留言",
+        "body": "喺你嘅資訊提供入面回覆你鍾意嘅嘢。對話係大部分 DeHub 實際發生嘅地方。"
+      },
+      "rewards": {
+        "title": "睇下賺錢係點運作",
+        "body": "睇下貼士、徽章同超級力量點樣將你喺呢度做嘅嘢變成你賺錢嘅嘢。"
+      }
+    }
   }
 }

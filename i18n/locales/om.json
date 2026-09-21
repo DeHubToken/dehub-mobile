@@ -4536,5 +4536,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Bara haaraa? Daawwannaa gabaabaa barbaaddaa?",
+      "body": "DeHub irratti si'a tokko tokkoon si darbuu dandeenya, akkasumas si'a hundumaa maal akka ta'e si gaafanna, waan si hin hubachiifne kamiyyuu sirreessuuf.",
+      "yes": "Eeyyee, na agarsiisi",
+      "no": "Lakkii, galatoomi"
+    },
+    "checklist": {
+      "title": "Eegaluu",
+      "subtitle": "Si'a muraasa si ofii kee DeHub irratti qopheessuuf.",
+      "progress": "{{done}} irraa {{total}} xumurame",
+      "go": "Ana fudhu",
+      "done": "Akkuma xumurame merii godhi",
+      "skip": "Si'a kana dhiisi",
+      "dismiss": "DeHub eegaluu kana dhoksu",
+      "reopen": "Hujii kana bana",
+      "finishedTitle": "Kun hundi xumurameera — gaariidha.",
+      "finishedBody": "Si'a hundumaa maal akka ta'e nuuf himuu kee galatoomi. Deebiin kee nama hojjetaa jiru bira darba.",
+      "chip": "Eegaluu"
+    },
+    "rating": {
+      "question": "Kun salphaa turee?",
+      "easy": "Eeyyee, kun salphaa ture",
+      "hard": "Lakkii, ulfaataa ture",
+      "thanks": "Galatoomi, kun gargaara."
+    },
+    "steps": {
+      "profile": {
+        "title": "Maqaa kee fi suuraa kee qopheessi",
+        "body": "Maqaa namni siif beeku filadhu, suuraa ofii kee dabali, akka hojiin kee si argisiisuuf."
+      },
+      "wallet": {
+        "title": "Banka kee fi DHB maal akka ta'e ilaali",
+        "body": "Banka kee duraanu jira, DHB siif qabate. Maal akka qabatu fi achi irraa eessa akka dhufe ilaali."
+      },
+      "feed": {
+        "title": "Waan argachuu barbaaddu filadhu",
+        "body": "Gaaffii muraasa deebisi, feediin kee waan siif barbaachisu qofa akka siif agarsiisu eegala."
+      },
+      "first-post": {
+        "title": "Hojii duraa barreessi",
+        "body": "Yaada, suuraa, ykn viidiyoo qoodi. Amma si'a tokko qofa fudhata, akkasumas namni si argatuu kana."
+      },
+      "follow": {
+        "title": "Warra uumtu sadii hordofi",
+        "body": "Feediin kee namoota muraasa yoo hordofte baay'ee fooyya'a. Namoota as jiran ilaali, sadii filadhu."
+      },
+      "comment": {
+        "title": "Yaada irratti yaada kenni",
+        "body": "Feed kee irratti waan jaallatteef deebii kenni. Haasaan bakka irra caalaan DeHub qabatamaan itti raawwatamuudha."
+      },
+      "rewards": {
+        "title": "Akkaataa galiin itti hojjetu ilaalaa",
+        "body": "Akkamitti gargaarsi, mallattooleen fi \"SuperPowers\" hojii kee as irratti taasistu gara wantoota irraa argachuu dandeessutti jijjiiruuf gargaaran hubadhu."
+      }
+    }
   }
 }

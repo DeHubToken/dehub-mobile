@@ -4443,5 +4443,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Täze gelenmi? Gysgaça ýolbaşçyly ýol görkezme isleýärsiňizmi?",
+      "body": "Biz sizi DeHub boýunça ädimme-ädim äkidip bileris we her ädimiň nähili geçenini sorarys, şeýlelikde näme düşnüksiz bolsa, ony düzederis.",
+      "yes": "Hawa, meni aýlanyň",
+      "no": "Ýok, sag boluň"
+    },
+    "checklist": {
+      "title": "Başlamak",
+      "subtitle": "DeHub-da özüňizi ýerleşdirmek üçin birnäçe gysga ädim.",
+      "progress": "{{done}} -dan {{total}} tamamlandy",
+      "go": "Meni alyp bar",
+      "done": "Tamamlanan diýip belläň",
+      "skip": "Bu ädimiňizi geçiň",
+      "dismiss": "Başlamak ädimlerini gizle",
+      "reopen": "Görkezmäni aç",
+      "finishedTitle": "Bu hemmesi — gowy tamamlandy.",
+      "finishedBody": "Her ädimiň nähili geçenini bize aýdanyňyz üçin sag boluň. Jogaplaryňyz göni ony gurluşykçylara barýar.",
+      "chip": "Başlamak"
+    },
+    "rating": {
+      "question": "Bu aňsat boldumy?",
+      "easy": "Hawa, bu aňsatdy",
+      "hard": "Ýok, bu kyn boldy",
+      "thanks": "Sag boluň, bu kömek edýär."
+    },
+    "steps": {
+      "profile": {
+        "title": "Ulgam adyňyzy we suratyňyzy belläň",
+        "body": "Adamlar tanaýjak ady saýlaň we profil suraty goşuň, şeýlelikde siziň ýazgylaryňyz siziň adyňyzdan çykan ýaly görünýär."
+      },
+      "wallet": {
+        "title": "Portmoneňizi we DHB näme ekendigini görüň",
+        "body": "Portmoneňiz eýýäm bar we onda DHB saklanýar. Onda näme bar we ol nireden gelendigini görüň."
+      },
+      "feed": {
+        "title": "Näme görmek isleýändigiňizi saýlaň",
+        "body": "Birnäçe çalt soraga jogap beriň we siziň akymyňyz hakykatdanam isleýän ýazgylaryň görnüşini görkezip başlar."
+      },
+      "first-post": {
+        "title": "Ilkinji ýazgyňyzy ediň",
+        "body": "Pikiriňizi, fotosuratyňyzy ýa-da wideony paýlaşyň. Bu bary-ýogy bir minut alýar we adamlar sizi tapýan usuly."
+      },
+      "follow": {
+        "title": "Üç döredijini yzarlaň",
+        "body": "Birnäçe adamy yzarlaňdan soň, siziň akymyňyz has gowy bolar. Kimleriň bardygyny gözden geçiriň we başlamak üçin üçüsini saýlaň."
+      },
+      "comment": {
+        "title": "Ýazgyda teswir goýuň",
+        "body": "Siz iýmitde gowy görýän zadyňyza jogap beriň. DeHub-yň köpüsiniň bolýan ýerinde gürrüňler geçirilýär."
+      },
+      "rewards": {
+        "title": "Garawul diňi we Garawul diňi",
+        "body": "Bu ýerde edýän işleriňizi gazanç edýän zadyňyza öwrüp biljekdigiňizi görüň."
+      }
+    }
   }
 }

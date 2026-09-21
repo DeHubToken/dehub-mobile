@@ -4476,5 +4476,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Nou aquí? Vols una visita guiada ràpida?",
+      "body": "Et podem guiar per DeHub pas a pas, i preguntar-te com ha anat cada pas per poder arreglar qualsevol cosa que sigui confusa.",
+      "yes": "Sí, ensenya'm",
+      "no": "No, gràcies"
+    },
+    "checklist": {
+      "title": "Començant",
+      "subtitle": "Uns pocs passos curts per configurar-te a DeHub.",
+      "progress": "{{done}} de {{total}} fet",
+      "go": "Porta'm allà",
+      "done": "Marca com a fet",
+      "skip": "Omet aquest pas",
+      "dismiss": "Amaga els passos per començar",
+      "reopen": "Obre la guia",
+      "finishedTitle": "Això és tot — ben fet.",
+      "finishedBody": "Gràcies per dir-nos com ha anat cada pas. Les teves respostes van directament a la gent que ho està construint.",
+      "chip": "Començant"
+    },
+    "rating": {
+      "question": "Ha estat fàcil?",
+      "easy": "Sí, ha estat fàcil",
+      "hard": "No, ha estat difícil",
+      "thanks": "Gràcies, això ajuda."
+    },
+    "steps": {
+      "profile": {
+        "title": "Estableix el teu nom d'usuari i imatge",
+        "body": "Tria un nom que la gent reconegui i afegeix una foto de perfil, perquè les teves publicacions semblin que són teves."
+      },
+      "wallet": {
+        "title": "Veure la teva cartera i què és DHB",
+        "body": "La teva cartera ja existeix i conté el teu DHB. Fes una ullada al que hi ha i d'on prové."
+      },
+      "feed": {
+        "title": "Tria què vols veure",
+        "body": "Respon un parell de preguntes ràpides i el teu feed començarà a mostrar el tipus de publicacions que realment vols."
+      },
+      "first-post": {
+        "title": "Fes la teva primera publicació",
+        "body": "Comparteix un pensament, una foto o un vídeo. Només triga un moment i és com la gent et troba."
+      },
+      "follow": {
+        "title": "Segueix tres creadors",
+        "body": "El teu feed millora molt un cop segueixes unes quantes persones. Navega per qui hi ha i tria tres per començar."
+      },
+      "comment": {
+        "title": "Deixa un comentari en una publicació",
+        "body": "Respon a alguna cosa que t'hagi agradat del teu feed. Les converses són on es realitza la major part del DeHub."
+      },
+      "rewards": {
+        "title": "Descobreix com funcionen els ingressos",
+        "body": "Descobreix com els consells, les insígnies i els Superpoders converteixen el que fas aquí en una cosa per la qual guanyes diners."
+      }
+    }
   }
 }

@@ -4411,5 +4411,29 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "yes": "Yes, show me around",
+      "no": "No thanks"
+    },
+    "checklist": {
+      "title": "Getting started",
+      "go": "Take me there",
+      "done": "Mark as done",
+      "chip": "Getting started"
+    },
+    "steps": {
+      "follow": {
+        "title": "Follow three creators"
+      },
+      "comment": {
+        "body": "I ka dumuni koo ka di i ye. O yɔrɔ la, DeHub ka ca."
+      },
+      "rewards": {
+        "title": "A filɛ a be baara kɛ cogo min na",
+        "body": "A filɛ i be min kɛra yan, i be se k'o yɛlɛma cogo min na k'a kɛ i be wari sɔrɔ o la."
+      }
+    }
   }
 }

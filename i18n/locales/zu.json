@@ -4503,5 +4503,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Ushaqala? Ufuna ukuvakasha okufushane okuqondisiwe?",
+      "body": "Singakuhambisa kuDeHub isinyathelo ngesinyathelo, futhi siqale ukuthi isinyathelo ngasinye sihambe kanjani ukuze sikwazi ukulungisa noma yini edidayo.",
+      "yes": "Yebo, ngibonise",
+      "no": "Cha ngiyabonga"
+    },
+    "checklist": {
+      "title": "Ukuqala",
+      "subtitle": "Izinyathelo ezimbalwa ezimfushane ukuze uzilungiselele kuDeHub.",
+      "progress": "{{done}} kwezi-{{total}} kuqediwe",
+      "go": "Ngiyise",
+      "done": "Phawula njengokuqediwe",
+      "skip": "Yeqa lesi sinyathelo",
+      "dismiss": "Fihla izinyathelo zokuqala",
+      "reopen": "Vula umhlahlandlela",
+      "finishedTitle": "Sekuqediwe konke — kuhambe kahle.",
+      "finishedBody": "Siyabonga ngokusiqambela ukuthi isinyathelo ngasinye sihambe kanjani. Izimpendulo zakho ziyaqondisana nabantu abakhela lokhu.",
+      "chip": "Ukuqala"
+    },
+    "rating": {
+      "question": "Bekulula lokhu?",
+      "easy": "Yebo, bekulula",
+      "hard": "Cha, bekunzima",
+      "thanks": "Siyabonga, lokhu kuyasiza."
+    },
+    "steps": {
+      "profile": {
+        "title": "Setha igama lakho lomsebenzisi nesithombe",
+        "body": "Khetha igama abantu abazolibona bese wengeza isithombe sephrofayela, ukuze okuthunyelwe kwakho kubonakale sengathi kuvela kuwena."
+      },
+      "wallet": {
+        "title": "Bona isikhwama sakho nokuthi iyini i-DHB",
+        "body": "Isikhwama sakho sesivele sikhona futhi sinokhiye we-DHB yakho. Bheka ukuthi kukhona ini futhi ivela kuphi."
+      },
+      "feed": {
+        "title": "Khetha ukuthi ufuna ukubona ini",
+        "body": "Phendula imibuzo embalwa esheshayo futhi okuphakelayo kwakho kuzoqala ukukhombisa uhlobo lokuthunyelwe olufuna ngempela."
+      },
+      "first-post": {
+        "title": "Yenza okuthunyelwe kwakho kokuqala",
+        "body": "Yabelana ngomqondo, isithombe noma ividiyo. Kuthatha umzuzwana nje futhi yilapho abantu bakuthola khona."
+      },
+      "follow": {
+        "title": "Landela abaqalayo abathathu",
+        "body": "Okuphakelayo kwakho kuba ngcono kakhulu uma usulandela abantu abambalwa. Dlulisa amehlo kulokho okukhona lapha bese ukhetha abathathu ukuze uqale."
+      },
+      "comment": {
+        "title": "Shintsha isimo okuthunyelwe okuthunyelwe",
+        "body": "Phendula kokuthile okuthandile ku-feed yakho. Izingxoxo yilapho iningi le-DeHub lenzeka khona ngempela."
+      },
+      "rewards": {
+        "title": "Bona ukuthi iholo lisebenza kanjani",
+        "body": "Thola indlela amacebiso, amabheji ne-SuperPower okuguqula ngayo lokho okwenzayo lapha kube yinto oyitholayo."
+      }
+    }
   }
 }

@@ -4463,5 +4463,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Sabo anan? Kuna son yawon buɗe ido mai taƙaitaccen jagora?",
+      "body": "Zamu iya kwashe ku ta DeHub mataki ɗaya bayan ɗaya, kuma mu tambayi yadda kowane mataki ya kasance domin mu gyara duk abin da ke rikitarwa.",
+      "yes": "Eh, nuna min kewaye",
+      "no": "A'a na gode"
+    },
+    "checklist": {
+      "title": "Fara",
+      "subtitle": "'Yan matakai kaɗan don saita kanku akan DeHub.",
+      "progress": "{{done}} daga cikin {{total}} an gama",
+      "go": "Kai ni can",
+      "done": "Alama a matsayin gama",
+      "skip": "Wuce wannan mataki",
+      "dismiss": "Boye matakan fara aiki",
+      "reopen": "Bude jagorar",
+      "finishedTitle": "Wannan shine komai — an gama da kyau.",
+      "finishedBody": "Na gode da gaya mana yadda kowane mataki ya kasance. Amsoshin ku suna zuwa kai tsaye ga mutanen da ke gina wannan.",
+      "chip": "Fara"
+    },
+    "rating": {
+      "question": "Shin wannan yayi sauƙi?",
+      "easy": "Eh, wannan yayi sauƙi",
+      "hard": "A'a, wannan yayi wuya",
+      "thanks": "Na gode, wannan yana taimakawa."
+    },
+    "steps": {
+      "profile": {
+        "title": "Saita sunan mai amfani da hotonka",
+        "body": "Zaɓi suna da mutane zasu gane kuma ƙara hoton bayanan martaba, don haka rubuce-rubucen ku su yi kama da cewa sun fito daga gare ku."
+      },
+      "wallet": {
+        "title": "Duba walat ɗinka da abin da DHB yake",
+        "body": "Walat ɗinka ya riga ya wanzu kuma yana riƙe da DHB ɗinka. Duba abin da ke cikinsa da kuma inda ya fito."
+      },
+      "feed": {
+        "title": "Zaɓi abin da kake son gani",
+        "body": "Amsa wasu tambayoyi kaɗan kuma abincin ku zai fara nuna irin abubuwan da kake so."
+      },
+      "first-post": {
+        "title": "Yi rubutun farko",
+        "body": "Raba tunani, hoto ko bidiyo. Yana ɗaukar lokaci kaɗan kuma haka mutane ke samun ku."
+      },
+      "follow": {
+        "title": "Bi masu kirkira uku",
+        "body": "Abincin ku yana inganta sosai da zarar kun bi wasu mutane. Bincika wanene anan kuma zaɓi uku don farawa."
+      },
+      "comment": {
+        "title": "Bari sharhi akan rubutu",
+        "body": "Amsa zuwa wani abu da kake so a kan abincinka. Tattaunawa shine inda yawancin DeHub ke faruwa a zahiri."
+      },
+      "rewards": {
+        "title": "Dubi yadda samun kudi ke aiki",
+        "body": "Gano yadda tukwici, badges da SuperPowers ke juya abin da kuke yi a nan zuwa wani abu da kuka samu daga."
+      }
+    }
   }
 }

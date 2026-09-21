@@ -4459,5 +4459,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "Kei te hou koe? E hiahia ana koe ki tētahi haerenga ārahi poto?",
+      "body": "Ka taea e mātou te ārahi i a koe i roto i te DeHub i ia taahiraa, ā, ka pātai ki a koe me pēhea te haere o ia taahiraa kia taea ai e mātou te whakatika i ngā mea e raruraru ana.",
+      "yes": "Āe, whakaaturia mai ki ahau",
+      "no": "Kāore, ngā mihi"
+    },
+    "checklist": {
+      "title": "Te tīmatanga",
+      "subtitle": "Ngā taahiraa poto hei whakarite i a koe i runga i te DeHub.",
+      "progress": "{{done}} o {{total}} kua oti",
+      "go": "Kawea ahau ki reira",
+      "done": "Tohu hei mea kua oti",
+      "skip": "Pāhihia tēnei taahiraa",
+      "dismiss": "Hunaia ngā taahiraa tīmatanga",
+      "reopen": "Whakatuwheratia te ārahi",
+      "finishedTitle": "Koia katoa — pai te mahi.",
+      "finishedBody": "Ngā mihi mō tō kōrero mai ki a mātou me pēhea te haere o ia taahiraa. Ka tae tika ngā whakautu ki te hunga e hanga ana i tēnei.",
+      "chip": "Te tīmatanga"
+    },
+    "rating": {
+      "question": "I māmā tēnei?",
+      "easy": "Āe, i māmā tēnei",
+      "hard": "Kāore, i uaua tēnei",
+      "thanks": "Ngā mihi, ka āwhina tēnei."
+    },
+    "steps": {
+      "profile": {
+        "title": "Tautuhia tō ingoa kaiwhakamahi me tō whakaahua",
+        "body": "Kōwhiria he ingoa ka tautōhona e te tangata, ā, tāpirihia he whakaahua pūkete, kia puta ai ō whakairinga mai i a koe."
+      },
+      "wallet": {
+        "title": "Tirohia tō putea me te mea ko te DHB",
+        "body": "Kua noho kē tō putea, ā, kei roto ko tō DHB. Tirohia te mea kei roto, me te wāhi i ahu mai ai."
+      },
+      "feed": {
+        "title": "Kōwhiria te mea e hiahia ana koe kia kitea",
+        "body": "Whakautua ētahi pātai tere, ā, ka tīmata te whakaatu a tō pātaka i ngā momo whakairinga e hiahia ana koe."
+      },
+      "first-post": {
+        "title": "Hangaia tō whakairinga tuatahi",
+        "body": "Tāpirihia he whakaaro, he whakaahua, he ataata rānei. He wā poto noa iho, ā, mā reira koe e kitea ai e te tangata."
+      },
+      "follow": {
+        "title": "Ahiwhi ētahi kaihanga tokotoru",
+        "body": "Ka tino pai ake tō pātaka i te wa e aru ana koe i ētahi tangata. Tirohia te hunga kei konei, ā, kōwhiria tokotoru hei tīmatanga."
+      },
+      "comment": {
+        "title": "Tuhia he kōrero ki tētahi whakairinga",
+        "body": "Whakautu ki tetahi mea e pai ana ki a koe i runga i to kai. Ko nga korerorero te wahi e tupu ana te nuinga o DeHub."
+      },
+      "rewards": {
+        "title": "Tirohia me pehea te mahi o te moni whiwhi",
+        "body": "Tirohia me pehea te huri i nga tohutohu, nga tohu me nga SuperPowers i nga mea e mahi ana koe i konei ki tetahi mea e whiwhi ana koe."
+      }
+    }
   }
 }

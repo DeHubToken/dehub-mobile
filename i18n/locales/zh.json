@@ -4532,5 +4532,62 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "onboarding": {
+    "optIn": {
+      "title": "新来的？想要一个简短的导览吗？",
+      "body": "我们可以一步一步地带您了解 DeHub，并询问每一步的进展情况，以便我们修复任何令人困惑的地方。",
+      "yes": "是的，带我参观",
+      "no": "不用了，谢谢"
+    },
+    "checklist": {
+      "title": "入门",
+      "subtitle": "只需几个简单的步骤即可在 DeHub 上设置好自己。",
+      "progress": "已完成 {{done}} / {{total}}",
+      "go": "带我去",
+      "done": "标记为已完成",
+      "skip": "跳过此步骤",
+      "dismiss": "隐藏入门步骤",
+      "reopen": "打开指南",
+      "finishedTitle": "这就全部完成了——干得漂亮。",
+      "finishedBody": "感谢您告诉我们每一步的进展情况。您的回答将直接反馈给开发人员。",
+      "chip": "入门"
+    },
+    "rating": {
+      "question": "这容易吗？",
+      "easy": "是的，这很容易",
+      "hard": "不，这很难",
+      "thanks": "谢谢，这很有帮助。"
+    },
+    "steps": {
+      "profile": {
+        "title": "设置您的用户名和头像",
+        "body": "选择一个大家都能认出的名字，并添加一个个人资料图片，这样您的帖子看起来就像是您发的。"
+      },
+      "wallet": {
+        "title": "查看您的钱包和 DHB",
+        "body": "您的钱包已经存在，并持有您的 DHB。看看里面有什么以及它们来自哪里。"
+      },
+      "feed": {
+        "title": "选择您想看的内容",
+        "body": "回答几个快速问题，您的动态消息就会开始显示您真正想看的内容。"
+      },
+      "first-post": {
+        "title": "发布您的第一条帖子",
+        "body": "分享一个想法、一张照片或一个视频。这只需要片刻，也是人们找到您的方式。"
+      },
+      "follow": {
+        "title": "关注三位创作者",
+        "body": "关注几个人后，您的动态消息会变得更好。浏览一下这里有哪些人，然后选择三位开始。"
+      },
+      "comment": {
+        "title": "在帖子下留言",
+        "body": "在动态中回复您喜欢的内容。 对话是大多数DeHub实际发生的地方。"
+      },
+      "rewards": {
+        "title": "查看如何赚取收入",
+        "body": "了解小费、徽章和超级大国如何将您在这里所做的工作转化为您从中赚取的收入。"
+      }
+    }
   }
 }
