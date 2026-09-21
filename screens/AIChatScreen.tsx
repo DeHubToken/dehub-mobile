@@ -19,6 +19,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { t } from "i18next";
 import {
+  AppState,
   View,
   Text,
   FlatList,
@@ -28,6 +29,7 @@ import {
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useIsScreenFocused } from '../hooks/useFocusedInterval';
 import AssistantHeader from '../components/Assistant/AssistantHeader';
 import AssistantBubble from '../components/Assistant/AssistantBubble';
 import AssistantInputBar from '../components/Assistant/AssistantInputBar';
@@ -234,6 +236,17 @@ function AIChatScreenInner() {
 
   /** Timers for in-flight polls, cleared on unmount. */
   const pollTimers = useRef<Record<string, ReturnType<typeof setInterval>>>({});
+  // A poll fires only while this tab is the one on screen and the app is in
+  // the foreground. The timers keep running — a job's result is wanted the
+  // moment the tab is back — but a tick while away is a skipped network call,
+  // not one per pending job every five seconds under the home feed.
+  const isScreenFocused = useIsScreenFocused();
+  const isScreenFocusedRef = useRef(isScreenFocused);
+  isScreenFocusedRef.current = isScreenFocused;
+  const canPollNow = useCallback(
+    () => isScreenFocusedRef.current && AppState.currentState !== 'background',
+    [],
+  );
   const streamRef = useRef<{ abort: () => void } | null>(null);
   /** Latest messages, for callbacks that must not close over a stale array. */
   const messagesRef = useRef<AIChatMessage[]>(messages);
@@ -562,6 +575,7 @@ function AIChatScreenInner() {
 
   const pollVideo = useCallback(
     async (pending: PendingVideo) => {
+      if (!canPollNow()) return;
       // The thread holding the placeholder was cleared or another one loaded,
       // so there is nothing left to fill in. An empty thread is not proof of
       // that — on a resumed poll the placeholder is still being re-injected —
@@ -616,7 +630,7 @@ function AIChatScreenInner() {
         log.error('video poll failed:', err);
       }
     },
-    [walletAddress, stopPoll, patchMessage, patchStoredMessage],
+    [walletAddress, stopPoll, patchMessage, patchStoredMessage, canPollNow],
   );
 
   const startVideoPoll = useCallback(
@@ -729,6 +743,7 @@ function AIChatScreenInner() {
 
   const pollTool = useCallback(
     async (pending: PendingTool) => {
+      if (!canPollNow()) return;
       const current = messagesRef.current;
       // Same as pollVideo: a record that knows its thread outlives a thread
       // switch and lands in the stored thread.
@@ -787,7 +802,7 @@ function AIChatScreenInner() {
         log.error('tool poll failed:', err);
       }
     },
-    [walletAddress, stopPoll, patchMessage, patchStoredMessage],
+    [walletAddress, stopPoll, patchMessage, patchStoredMessage, canPollNow],
   );
 
   const startToolPoll = useCallback(

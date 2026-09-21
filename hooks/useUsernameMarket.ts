@@ -26,6 +26,7 @@ import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tansta
 import { ethers } from 'ethers';
 import { useAuthActions, useUser } from '../context/AuthContext';
 import { useERC20Contract, useWeb3Provider } from './use-web3';
+import { useIsScreenFocused } from './useFocusedInterval';
 import { writeContractAA } from '../libs/aa.write';
 import { toastError, toastSuccess } from '../libs/toast';
 import { createLogger } from '../libs/logger';
@@ -67,18 +68,26 @@ export interface BrowseParams {
   maxPriceUsd?: number;
 }
 
-/** Price limits, token contracts and the current rate, refreshed every 30 seconds. */
+/**
+ * Price limits, token contracts and the current rate, refreshed every 30
+ * seconds while the market is the screen being looked at. The three pollers
+ * here used to run for as long as the screen sat anywhere in the stack — the
+ * query client's focus check is wired to AppState, not to navigation, so
+ * being on another tab did not count as away.
+ */
 export function useUsernameMarketConfig() {
+  const focused = useIsScreenFocused();
   return useQuery({
     queryKey: ['username-market-config'],
     queryFn: () => usernameMarketService.config(),
     staleTime: 30 * 1000,
-    refetchInterval: 30 * 1000,
+    refetchInterval: focused ? 30 * 1000 : false,
     gcTime: 24 * 60 * 60 * 1000,
   });
 }
 
 export function useBrowseUsernames(params: BrowseParams) {
+  const focused = useIsScreenFocused();
   return useQuery<BrowseUsernamesResult>({
     queryKey: [
       'username-market-browse',
@@ -92,17 +101,18 @@ export function useBrowseUsernames(params: BrowseParams) {
     // flashing an empty state between keystrokes.
     placeholderData: keepPreviousData,
     staleTime: 30 * 1000,
-    refetchInterval: 30 * 1000,
+    refetchInterval: focused ? 30 * 1000 : false,
   });
 }
 
 export function useMyUsernameMarket(enabled: boolean) {
+  const focused = useIsScreenFocused();
   return useQuery({
     queryKey: ['username-market-mine'],
     queryFn: () => usernameMarketService.mine(),
     enabled,
     staleTime: 30 * 1000,
-    refetchInterval: 30 * 1000,
+    refetchInterval: focused ? 30 * 1000 : false,
   });
 }
 
