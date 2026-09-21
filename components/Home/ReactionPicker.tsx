@@ -13,19 +13,32 @@
  * The tray is dismissed by the host, which also owns `open` — see
  * FeedActionBar's `onReact` / `onPickerOpenChange` pair.
  *
- * WHY IT MEASURES ITSELF
+ * WHY IT MEASURES ITSELF AND SCROLLS
  * Nine emoji plus padding is ~336pt wide — wider than the feed card it hangs
  * off, and ~381pt once the author's info button joins the row, which is wider
  * than a 360pt screen. Anchored to the thumbs-up alone (a card's fifth of seven
  * buttons) that ran the tray off the left edge and cut the first reactions off.
  * So it lays itself out invisibly once, measures where that put it in the
- * window, and only then paints — nudged back inside the screen, and scaled down
- * if it is too wide to fit at all. Every host gets this for free, wherever its
- * button happens to sit.
+ * window, and only then paints: nudged back inside the screen, and no wider
+ * than the screen, with the row of emoji scrolling sideways for whatever that
+ * cuts off. It used to shrink the whole tray to fit instead, which made every
+ * emoji smaller on exactly the narrow phones where they were already hardest
+ * to hit. Every host gets this for free, wherever its button happens to sit.
+ *
+ * The invisible pass has to be a plain row, not the scroller: a horizontal
+ * ScrollView lays its children out on an unbounded axis, so it can report no
+ * natural width of its own and there would be nothing to measure.
  */
 
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { View, Pressable, Text, useWindowDimensions, type ViewStyle } from "react-native";
+import {
+  View,
+  Pressable,
+  ScrollView,
+  Text,
+  useWindowDimensions,
+  type ViewStyle,
+} from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import Icon from "../ui/Icon";
 import {
@@ -41,11 +54,20 @@ const ACTIVE_BG = "#FFFFFF26";    // white @ 15%
 /** How close to the edge of the screen the tray is allowed to sit. */
 const EDGE_MARGIN = 8;
 
+/** The tray's own padding and border, either side of the row it holds. */
+const TRAY_INSET = 6 * 2 + 1 * 2;
+
 interface Placement {
   /** Horizontal nudge, in points, that pulls the tray back on screen. */
   dx: number;
-  /** <1 only when the tray is wider than the screen it has to fit in. */
-  scale: number;
+  /**
+   * How wide the scrolling row is allowed to be. Below its natural width only
+   * when the tray would otherwise be wider than the screen. Always a number:
+   * a horizontal ScrollView with no width of its own collapses inside a tray
+   * that is sized by its content, so the fallback path hands it the widest the
+   * screen allows rather than nothing.
+   */
+  rowWidth: number;
   /** The width the figures were measured against — stale after a rotation. */
   screenWidth: number;
 }
@@ -94,7 +116,11 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
       return;
     }
     const fallback = setTimeout(() => {
-      setPlacement((p) => (p?.screenWidth === screenWidth ? p : { dx: 0, scale: 1, screenWidth }));
+      setPlacement((p) =>
+        p?.screenWidth === screenWidth
+          ? p
+          : { dx: 0, rowWidth: screenWidth - EDGE_MARGIN * 2 - TRAY_INSET, screenWidth },
+      );
     }, 250);
     return () => clearTimeout(fallback);
   }, [open, screenWidth]);
@@ -102,19 +128,23 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
   const measure = useCallback(() => {
     probeRef.current?.measureInWindow((x, _y, width) => {
       if (!width) return;
-      const scale = Math.min(1, (screenWidth - EDGE_MARGIN * 2) / width);
-      // RN scales about a view's centre, so shrinking pulls both edges in.
-      const scaledWidth = width * scale;
-      const left = x + (width - scaledWidth) / 2;
+      // `width` is the row at its natural size. Cap the tray at the screen and
+      // hand the row whatever is left inside it; anything over that scrolls.
+      const maxTray = screenWidth - EDGE_MARGIN * 2;
+      const trayWidth = Math.min(width, maxTray);
+      const rowWidth = trayWidth - TRAY_INSET;
+      // Capping pulls in the edge the tray is not anchored to, so a right-hung
+      // tray keeps its right edge and gains on the left.
+      const left = align === "right" ? x + (width - trayWidth) : x;
       let dx = 0;
       if (left < EDGE_MARGIN) {
         dx = EDGE_MARGIN - left;
-      } else if (left + scaledWidth > screenWidth - EDGE_MARGIN) {
-        dx = screenWidth - EDGE_MARGIN - (left + scaledWidth);
+      } else if (left + trayWidth > screenWidth - EDGE_MARGIN) {
+        dx = screenWidth - EDGE_MARGIN - (left + trayWidth);
       }
-      setPlacement({ dx, scale, screenWidth });
+      setPlacement({ dx, rowWidth, screenWidth });
     });
-  }, [screenWidth]);
+  }, [align, screenWidth]);
 
   if (!open) return null;
 
@@ -222,12 +252,17 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
       exiting={FadeOut.duration(120)}
       accessibilityRole="menu"
       accessibilityLabel={polarity === "negative" ? "Pick a downvote reaction" : "Pick a reaction"}
-      style={[
-        trayStyle,
-        { transform: [{ translateX: placed.dx }, { scale: placed.scale }] },
-      ]}
+      style={[trayStyle, { transform: [{ translateX: placed.dx }] }]}
     >
-      {items}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        keyboardShouldPersistTaps="always"
+        style={{ width: placed.rowWidth }}
+        contentContainerStyle={{ flexDirection: "row", alignItems: "center", gap: 2 }}
+      >
+        {items}
+      </ScrollView>
     </Animated.View>
   );
 };
