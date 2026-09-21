@@ -1440,6 +1440,10 @@
     "importWallet": "Ampidiro ny poketra",
     "privateKeyPlaceholder": "Ampidiro ny lakile manokana anao",
     "importExternalWallet": "Ampidiro ny poketra ivelany",
+    "migrateAccount": "Manilika ny kaonty",
+    "migrateAccountBody": "Efa nisy teo aloha eo amin'ny toerana DeHub? Midira amin'ny mailaka, telefaona, Google na Apple login izay nampiasainao tamin'izany fotoana izany. Raha mifanaraka amin'ny kaonty teo aloha, dia homena anao ny hitondra ny kitapom-batsy, ny anarana famantarana sy ny fifandanjana.",
+    "migrateAccountNote": "Ny indray mandeha sonia-in ny taloha fidirana retrieves ny kitapom-batsy manan-danja tsy manana ahiahy eo amin'ny fitaovana ity. Tsy nosakanana velively ny serveur anay.",
+    "migrateAccountContinue": "Tohizo ny fanoratana",
     "privateKey": "Lakile manokana",
     "pasteFromClipboard": "Apetaho avy amin'ny fanaovan-tsoratra",
     "learnMoreAt": "Fantaro bebe kokoa ao amin'ny dehub.io",
@@ -4356,6 +4360,7 @@
     "recoverOnWebsite": "Avereno ao amin'ny dehub.io",
     "createNewAnyway": "Tsy tiako io kaonty io — mamorona vaovao ihany",
     "couldNotRead": "Tsy voavakinay ilay kitapom-bola voaverina. Tsy nisy niova.",
+    "noOldAccountFound": "Tsy misy kaonty DeHub teo aloha amin'ity fidirana ity, noho izany dia tsy misy zavatra tokony hipoitra. Hamorona kaonty vaovao fa tsy mamorona kaonty vaovao.",
     "didNotRecoverEither": "Tsy namerina izay mombamomba aseho eto io fidirana io. Tsy nisy niova. Andramo ny fidirana tany am-boalohany ho an'ny mombamomba tianao.",
     "didNotRecoverThis": "Namerina kitapom-bola hafa io fidirana io, fa tsy an'ity mombamomba ity. Tsy nisy niova. Andramo ny fidirana namorona azy tany am-boalohany.",
     "couldNotRetrieve": "Tsy azo natsangana teto amin'ity fitaovana ity ilay kitapom-bola taloha. Mbola azonao averina ao amin'ny dehub.io etsy ambany izy."

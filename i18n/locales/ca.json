@@ -1522,6 +1522,10 @@
     "importWallet": "Importa una cartera",
     "privateKeyPlaceholder": "Introdueix la teva clau privada",
     "importExternalWallet": "Importa una cartera externa",
+    "migrateAccount": "Migra el compte",
+    "migrateAccountBody": "Tens un compte de DeHub? Inicia la sessió amb el mateix correu electrònic, telèfon, inici de sessió de Google o Apple que feies servir aleshores. Si coincideix amb un compte anterior, se t'oferirà la possibilitat de portar el seu moneder, nom d'usuari i saldo.",
+    "migrateAccountNote": "Un inici de sessió únic amb l'inici de sessió antic recupera la clau de la cartera de forma segura en aquest dispositiu. Mai toca els nostres servidors.",
+    "migrateAccountContinue": "Continua iniciant la sessió",
     "privateKey": "Clau privada",
     "pasteFromClipboard": "Enganxa del porta-retalls",
     "learnMoreAt": "Més informació a dehub.io",
@@ -4282,6 +4286,7 @@
     "recoverOnWebsite": "Recupera a dehub.io",
     "createNewAnyway": "No vull aquell compte: crea'n un de nou igualment",
     "couldNotRead": "No hem pogut llegir la cartera recuperada. No s'ha canviat res.",
+    "noOldAccountFound": "No hi ha cap compte anterior de DeHub en aquest inici de sessió, de manera que no hi ha res a aportar. En canvi, configura un compte nou.",
     "didNotRecoverEither": "Aquest inici de sessió no ha recuperat cap dels perfils que es mostren aquí. No s'ha canviat res. Prova l'inici de sessió original del perfil que vols.",
     "didNotRecoverThis": "Aquest inici de sessió ha recuperat una cartera diferent de la d'aquest perfil. No s'ha canviat res. Prova l'inici de sessió que el va crear.",
     "couldNotRetrieve": "No s'ha pogut obtenir aquella cartera antiga en aquest dispositiu. Encara la pots recuperar a dehub.io, a sota."

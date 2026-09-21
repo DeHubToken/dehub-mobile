@@ -1276,6 +1276,10 @@
     "importWallet": "Bubata obere akpa",
     "privateKeyPlaceholder": "Tinye igodo nzuzo gị",
     "importExternalWallet": "Bubata obere akpa mpụga",
+    "migrateAccount": "Migrate akaụntụ",
+    "migrateAccountBody": "Wanna mara ebe na otú na-ebipụta ihe ebook? Banye na otu email, ekwentị, Google ma ọ bụ Apple nbanye ị na-eji azụ mgbe ahụ. Ọ bụrụ na o kwekọọ na akaụntụ mbụ, a ga-enye gị ka ị weta obere akpa ya, aha njirimara ya na nguzozi ya.",
+    "migrateAccountNote": "Nbanye otu oge na nbanye ochie na-ewepụta igodo obere akpa gị nke ọma na ngwaọrụ a. Ọ naghị emetụ sava anyị aka.",
+    "migrateAccountContinue": "Gaa n 'ihu banye n' ime",
     "privateKey": "Igodo nzuzo",
     "pasteFromClipboard": "Mapụta site na clipboard",
     "learnMoreAt": "Mụtakwuo na dehub.io",
@@ -4257,6 +4261,7 @@
     "recoverOnWebsite": "Weghachi na dehub.io",
     "createNewAnyway": "Achọghị m akaụntụ ahụ — mepụta nke ọhụrụ",
     "couldNotRead": "Anyị enweghị ike ịgụ obere akpa ahụ e weghachitere. Ọ dịghị ihe gbanwere.",
+    "noOldAccountFound": "Enweghị akaụntụ DeHub mbụ na nbanye a, ya mere ọ nweghị ihe ọ ga-eweta. Ịtọlite akaụntụ ọhụrụ kama.",
     "didNotRecoverEither": "Nbanye ahụ eweghachighị profaịlụ ọ bụla egosiri ebe a. Ọ dịghị ihe gbanwere. Nwaa ụzọ nbanye mbụ maka profaịlụ ị chọrọ.",
     "didNotRecoverThis": "Nbanye ahụ weghachiri obere akpa dị iche na nke profaịlụ a. Ọ dịghị ihe gbanwere. Nwaa nbanye nke mepụtara ya na mbụ.",
     "couldNotRetrieve": "Enweghị ike ịnweta obere akpa ochie ahụ na ngwaọrụ a. Ị ka nwere ike iweghachi ya na dehub.io n'okpuru."

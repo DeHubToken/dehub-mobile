@@ -1246,6 +1246,10 @@
     "importWallet": "Gapjygy import et",
     "privateKeyPlaceholder": "Şahsy açaryňyzy giriziň",
     "importExternalWallet": "Daşarky gapjygy import et",
+    "migrateAccount": "Migrasiýa hasaby",
+    "migrateAccountBody": "Sen öň hiç kime päsgel bermediňmi? Şol wagt ulanýan e-poçt, telefon, Google ýa-da Apple login bilen gir. Eger bu öňki hasabat bilen deňeşdirilse, siz onuň puluny, ulanýan adyny we balansyny getirmegi teklip edersiňiz.",
+    "migrateAccountNote": "Bir gezekli-de köne login bilen girmek bu esbapda pul açaryny aman alýar. Ol biziň serverlerimize hiç haçan el degirmeýär.",
+    "migrateAccountContinue": "Saýlan",
     "privateKey": "Şahsy açar",
     "pasteFromClipboard": "Alyş-çalyş tagtasyndan goý",
     "learnMoreAt": "dehub.io-da has köp öwreniň",
@@ -4249,6 +4253,7 @@
     "recoverOnWebsite": "dehub.io-da dikeldiň",
     "createNewAnyway": "Men ol hasaby islämok — hernäme-de bolsa täzesini dörediň",
     "couldNotRead": "Dikeldilen gapjygy okap bilmedik. Hiç zat üýtgemedi.",
+    "noOldAccountFound": "Bu ýerde öňki DeHub hasaby ýok, şonuň üçin göçüriljek zat ýok. Munuň ýerine täze hasap döredilýär.",
     "didNotRecoverEither": "Ol giriş şu ýerde görkezilen profilleriň hiç birini dikeltmedi. Hiç zat üýtgemedi. Isleýän profiliňiziň asyl giriş usulyny synanyň.",
     "didNotRecoverThis": "Ol giriş bu profiliňkiden başga gapjygy dikeltdi. Hiç zat üýtgemedi. Ony ilkibaşda döreden giriş usulyny synanyň.",
     "couldNotRetrieve": "Ol köne gapjygy şu enjamda alyp bolmady. Aşakdaky dehub.io-da ony henizem dikeldip bilersiňiz."

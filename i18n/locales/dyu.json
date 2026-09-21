@@ -1500,6 +1500,10 @@
     "importWallet": "Wallet don",
     "privateKeyPlaceholder": "I ka kilisi gundo sɛbɛn",
     "importExternalWallet": "Kɛnɛma wallet don",
+    "migrateAccount": "Minw nana kalifa, olu ka jatiminɛ",
+    "migrateAccountBody": "Yala i tun ye koo dɔ kɛ min tun be se ka kɛ i ka ɲɛnamaya kɔnɔ wa? I ye e-mail, telefɔni, Google wala Apple login min kɛ o wagati la, i ka se k'o lo kɛ. N'o be bɛn ni kɔnkɔn dɔ ye, u b'a ɲini i fɛ i k'a ka wari, i tɔgɔ ani i ka wari cɛtigɛ.",
+    "migrateAccountNote": "I ka siginiden kɔrɔman be se k'i ka wari sɔrɔ cogo nɔgɔman na. O tɛ se ka kɛ sababu ye an be baara kɛ ni an ka baaradenw ye.",
+    "migrateAccountContinue": "I ka kan ka siginiden bila",
     "privateKey": "Kilisi gundo",
     "pasteFromClipboard": "A fara ka bɔ marayɔrɔ la",
     "learnMoreAt": "Kunnafoni wɛrɛ sɔrɔ dehub.io kan",
@@ -4218,6 +4222,7 @@
     "recoverOnWebsite": "A segin dehub.io kan",
     "createNewAnyway": "N tɛ o jate fɛ — kura da hali n'o tɛ",
     "couldNotRead": "An ma se ka wari maraso seginnen kalan. Foyi ma yɛlɛma.",
+    "noOldAccountFound": "An kana mɔgɔ si halakinin to, min tun kɔnna ka ladili di. Ka kɔn ka kunnafoni kura dɔ di, ka sɔrɔ ka kɔn ka kunnafoni kura dɔ di.",
     "didNotRecoverEither": "O donni ma jate si segin yan. Foyi ma yɛlɛma. Jate min b'i diya, o donni fɔlɔ lajɛ.",
     "didNotRecoverThis": "O donni ye wari maraso wɛrɛ segin, nin jate ta tɛ. Foyi ma yɛlɛma. Donni min y'a da fɔlɔ, o lajɛ.",
     "couldNotRetrieve": "An ma se ka o wari maraso kɔrɔ sɔrɔ nin minan kan. I bɛ se hali bi k'a segin dehub.io kan duguma."

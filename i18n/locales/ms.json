@@ -1744,6 +1744,10 @@
     "importWallet": "Import dompet",
     "privateKeyPlaceholder": "Masukkan kunci peribadi anda",
     "importExternalWallet": "Import dompet luaran",
+    "migrateAccount": "Migrasi akaun",
+    "migrateAccountBody": "Pernah ada akaun DeHub sebelum ini? Log masuk dengan e-mel, telefon, Google atau log masuk Apple yang sama yang anda gunakan dahulu. Jika ia sepadan dengan akaun terdahulu, anda akan ditawarkan untuk membawa dompet, nama pengguna dan baki anda.",
+    "migrateAccountNote": "Log masuk sekali sahaja dengan log masuk lama akan mengambil kunci dompet anda dengan selamat pada peranti ini. Ia tidak pernah menyentuh pelayan kami.",
+    "migrateAccountContinue": "Teruskan untuk log masuk",
     "privateKey": "Kunci peribadi",
     "pasteFromClipboard": "Tampal dari papan keratan",
     "learnMoreAt": "Ketahui lebih lanjut di dehub.io",
@@ -4544,6 +4548,7 @@
     "recoverOnWebsite": "Pulihkan di dehub.io",
     "createNewAnyway": "Saya tidak mahu akaun itu — cipta yang baharu sahaja",
     "couldNotRead": "Kami tidak dapat membaca dompet yang dipulihkan itu. Tiada apa-apa yang berubah.",
+    "noOldAccountFound": "Tiada akaun DeHub terdahulu pada log masuk ini, jadi tiada apa yang boleh dibawa. Tetapan akaun baharu sebaliknya.",
     "didNotRecoverEither": "Log masuk itu tidak memulihkan mana-mana profil yang ditunjukkan di sini. Tiada apa-apa berubah. Cuba log masuk asal bagi profil yang anda mahu.",
     "didNotRecoverThis": "Log masuk itu memulihkan dompet yang berbeza daripada profil ini. Tiada apa-apa berubah. Cuba log masuk yang asalnya menciptanya.",
     "couldNotRetrieve": "Dompet lama itu tidak dapat diperoleh pada peranti ini. Anda masih boleh memulihkannya di dehub.io di bawah."

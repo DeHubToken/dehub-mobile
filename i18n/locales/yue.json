@@ -1521,6 +1521,10 @@
     "importWallet": "匯入錢包",
     "privateKeyPlaceholder": "輸入你嘅私鑰",
     "importExternalWallet": "匯入外部錢包",
+    "migrateAccount": "轉移帳戶",
+    "migrateAccountBody": "之前有冇 DeHub 戶口？用你當年用嘅電郵、電話、 Google 或者 Apple 登入資料登入。如果佢同之前嘅帳戶相符，你會被提供帶埋佢嘅銀包、用戶名同餘額。",
+    "migrateAccountNote": "用舊登入嘅一次性登入會喺呢部裝置安全噉擷取你嘅錢包密鑰。佢從來都唔會掂到我哋嘅伺服器。",
+    "migrateAccountContinue": "繼續登入",
     "privateKey": "私鑰",
     "pasteFromClipboard": "由剪貼簿貼上",
     "learnMoreAt": "喺 dehub.io 了解更多",
@@ -4278,6 +4282,7 @@
     "recoverOnWebsite": "喺 dehub.io 恢復",
     "createNewAnyway": "我唔要嗰個帳戶 — 照樣開個新嘅",
     "couldNotRead": "我哋讀唔到嗰個恢復咗嘅錢包。冇嘢改變過。",
+    "noOldAccountFound": "呢個登入上面冇早期嘅 DeHub 帳戶，所以冇嘢可以帶過嚟。改為設定新帳戶。",
     "didNotRecoverEither": "嗰個登入方式冇恢復到呢度顯示嘅任何一個檔案。冇嘢改變過。試吓你想要嗰個檔案嘅原本登入方式啦。",
     "didNotRecoverThis": "嗰個登入方式恢復到嘅係另一個錢包，唔係呢個檔案嘅。冇嘢改變過。試吓最初開佢嘅登入方式啦。",
     "couldNotRetrieve": "喺呢部裝置攞唔到嗰個舊錢包。你仲可以喺下面嘅 dehub.io 恢復佢。"

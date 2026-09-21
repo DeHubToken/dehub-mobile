@@ -826,6 +826,10 @@
     "importWallet": "Importera plånbok",
     "privateKeyPlaceholder": "Ange din privata nyckel",
     "importExternalWallet": "Importera extern plånbok",
+    "migrateAccount": "Migrera konto",
+    "migrateAccountBody": "Hade du ett DeHub-konto tidigare? Logga in med samma e-postadress, telefon, Google- eller Apple-inloggning som du använde då. Om det matchar ett tidigare konto kommer du att erbjudas att ta över dess plånbok, användarnamn och saldo.",
+    "migrateAccountNote": "En engångsinloggning med den gamla inloggningen hämtar din plånboksnyckel säkert på den här enheten. Den berör aldrig våra servrar.",
+    "migrateAccountContinue": "Fortsätt att logga in",
     "privateKey": "Privat nyckel",
     "pasteFromClipboard": "Klistra in från urklipp",
     "learnMoreAt": "Läs mer på dehub.io",
@@ -4285,6 +4289,7 @@
     "recoverOnWebsite": "Återställ på dehub.io",
     "createNewAnyway": "Jag vill inte ha det kontot — skapa ett nytt ändå",
     "couldNotRead": "Vi kunde inte läsa den återställda plånboken. Inget ändrades.",
+    "noOldAccountFound": "Det finns inget tidigare DeHub-konto för denna inloggning, så det finns inget att ta med sig. Ställa in ett nytt konto istället.",
     "didNotRecoverEither": "Den inloggningen återställde ingen av profilerna som visas här. Inget ändrades. Prova den ursprungliga inloggningen för profilen du vill ha.",
     "didNotRecoverThis": "Den inloggningen återställde en annan plånbok än den här profilens. Inget ändrades. Prova inloggningen som ursprungligen skapade den.",
     "couldNotRetrieve": "Det gick inte att hämta den gamla plånboken på den här enheten. Du kan fortfarande återställa den på dehub.io nedan."

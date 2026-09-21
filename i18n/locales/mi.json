@@ -1510,6 +1510,10 @@
     "importWallet": "Kawemai pūkoro",
     "privateKeyPlaceholder": "Whakaurua tō kī matatapu",
     "importExternalWallet": "Kawemai pūkoro o waho",
+    "migrateAccount": "He pūkete manene",
+    "migrateAccountBody": "Kua whai pūkete DeHub i mua? Hokona te īmēra, waea, Google, Apple ranei i whakamahia e koe i taua wa. Mena ka rite ki te kaute o mua, ka tukuna atu koe ki te kawe i tana putea, te ingoa kaiwhakamahi me te toenga.",
+    "migrateAccountNote": "He hainatanga kotahi ki te takiuru tawhito whakahoki koutou kī putea haumaru i runga i tenei pūrere. E kore e pā ana ki to tatou tūmau.",
+    "migrateAccountContinue": "Haere tonu ki te takiuru i roto i",
     "privateKey": "Kī matatapu",
     "pasteFromClipboard": "Whakapiri mai i te papatopenga",
     "learnMoreAt": "Akohia atu i dehub.io",
@@ -4265,6 +4269,7 @@
     "recoverOnWebsite": "Whakaora i dehub.io",
     "createNewAnyway": "Kāore au e hiahia ki taua pūkete — hangaia tētahi hou",
     "couldNotRead": "Kāore i taea e mātou te pānui i taua pūkoro i whakaorangia. Kāore he mea i panonitia.",
+    "noOldAccountFound": "Kahore he pūkete DeHub i mua i runga i tenei takiuru, na reira kahore he mea ki te tiki i runga i. Whakatuwherahia he kaute hou hei utu.",
     "didNotRecoverEither": "Kāore taua takiuru i whakaora i tētahi o ngā kōtaha e whakaatuhia ana i konei. Kāore he mea i panoni. Whakamātauria te takiuru taketake mō te kōtaha e hiahiatia ana e koe.",
     "didNotRecoverThis": "I whakaora taua takiuru i tētahi pūkoro rerekē, ehara i tō tēnei kōtaha. Kāore he mea i panoni. Whakamātauria te takiuru i hanga ai i te tuatahi.",
     "couldNotRetrieve": "Kāore i taea te tiki i taua pūkoro tawhito i tēnei pūrere. Ka taea tonu e koe te whakaora i dehub.io i raro nei."

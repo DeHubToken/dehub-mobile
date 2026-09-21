@@ -1512,6 +1512,10 @@
     "importWallet": "Shigo da walat",
     "privateKeyPlaceholder": "Shigar da maɓallin sirrin ka",
     "importExternalWallet": "Shigo da walat na waje",
+    "migrateAccount": "Yi ƙaura da asusun",
+    "migrateAccountBody": "Shin yana da asusun DeHub kafin? Shiga tare da imel ɗaya, waya, Google ko Apple shiga da kuka yi amfani da shi a baya. Idan ya dace da asusun da ya gabata, za a miƙa ku don kawo aljihunsa, sunan mai amfani da ma'auni.",
+    "migrateAccountNote": "A one-time sign-in with the old login retrieves your wallet key securely on this device. It never touches our servers.",
+    "migrateAccountContinue": "Ci gaba da shiga cikin",
     "privateKey": "Maɓallin sirri",
     "pasteFromClipboard": "Manna daga allon rubutu",
     "learnMoreAt": "Ƙara sani a dehub.io",
@@ -4269,6 +4273,7 @@
     "recoverOnWebsite": "Dawo da shi a dehub.io",
     "createNewAnyway": "Ba na son wannan asusun — ka ƙirƙiri sabo duk da haka",
     "couldNotRead": "Ba mu iya karanta walat ɗin da aka dawo da shi ba. Ba a canza komai ba.",
+    "noOldAccountFound": "Babu wani asusun DeHub na baya akan wannan shiga, don haka babu wani abu da za a kawo. Sanya sabon asusun maimakon.",
     "didNotRecoverEither": "Wannan shiga bai dawo da ko ɗaya daga cikin bayanan martaba da aka nuna a nan ba. Babu abin da ya canza. Gwada shigar asali na bayanan martaba da kake so.",
     "didNotRecoverThis": "Wannan shiga ya dawo da walat daban da na wannan bayanan martaba. Babu abin da ya canza. Gwada shigar da ya ƙirƙira shi tun farko.",
     "couldNotRetrieve": "Ba a iya samo wannan tsohon walat a wannan na'urar ba. Har yanzu za ka iya dawo da shi a dehub.io a ƙasa."

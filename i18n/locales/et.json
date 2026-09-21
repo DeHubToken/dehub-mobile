@@ -1521,6 +1521,10 @@
     "importWallet": "Impordi rahakott",
     "privateKeyPlaceholder": "Sisesta oma privaatvõti",
     "importExternalWallet": "Impordi väline rahakott",
+    "migrateAccount": "Kanna konto üle",
+    "migrateAccountBody": "Kas Sul on varem olnud DeHubi konto? Logi sisse sama e-posti aadressi, telefoni, Google 'i või Apple' i sisselogimisnimega, mida sel ajal kasutasid. Kui see ühtib varasema kontoga, pakutakse sulle selle rahakotti, kasutajanime ja saldot.",
+    "migrateAccountNote": "Ühekordne sisselogimine vana sisselogimisnimega toob teie rahakoti võtme turvaliselt sellesse seadmesse. See ei puuduta kunagi meie servereid.",
+    "migrateAccountContinue": "Jätka sisselogimist",
     "privateKey": "Privaatvõti",
     "pasteFromClipboard": "Kleebi lõikelaualt",
     "learnMoreAt": "Loe lähemalt dehub.io-s",
@@ -4280,6 +4284,7 @@
     "recoverOnWebsite": "Taasta saidil dehub.io",
     "createNewAnyway": "Ma ei taha seda kontot — loo ikkagi uus",
     "couldNotRead": "Me ei suutnud taastatud rahakotti lugeda. Midagi ei muudetud.",
+    "noOldAccountFound": "Sellel sisselogimisel pole varasemat DeHubi kontot, seega pole midagi kaasa võtta. Selle asemel uue konto seadistamine.",
     "didNotRecoverEither": "See sisselogimine ei taastanud ühtki siin näidatud profiili. Midagi ei muutunud. Proovi soovitud profiili algset sisselogimist.",
     "didNotRecoverThis": "See sisselogimine taastas teise rahakoti kui selle profiili oma. Midagi ei muutunud. Proovi sisselogimist, millega see algselt loodi.",
     "couldNotRetrieve": "Seda vana rahakotti ei õnnestunud selles seadmes kätte saada. Saad selle siiski taastada allpool saidil dehub.io."

@@ -1474,6 +1474,10 @@
     "importWallet": "والیٹ درآمد کرو",
     "privateKeyPlaceholder": "اپݨی پرائیویٹ کی درج کرو",
     "importExternalWallet": "باہرلا والیٹ درآمد کرو",
+    "migrateAccount": "اکاؤنٹ منتقل کرو",
+    "migrateAccountBody": "پہلے ڈی ہب اکاؤنٹ سی؟ اِسی ای میل، فون، گوگل یا ایپل لاگ ان نال سائن ان کرو جیہڑا اودوں استعمال کیتا سی۔ جے ایہہ پہلے والے اکاؤنٹ نال میل کھاندا اے، تے توانوں اوس دا والٹ، یوزر نیم تے بیلنس واپس لیان دا موقع دِتا ویسی۔",
+    "migrateAccountNote": "پرانے لاگ ان نال اِک واری سائن ان کرن تے توانوں والٹ کی محفوظ طریقے نال اِس ڈیوائس تے مِل ویسی۔ ایہہ ساڈے سرورز نال کدی وی ٹچ نئیں کردی۔",
+    "migrateAccountContinue": "سائن ان جاری رکھو",
     "privateKey": "پرائیویٹ کی",
     "pasteFromClipboard": "کلپ بورڈ کنوں پیسٹ کرو",
     "learnMoreAt": "dehub.io تے ودھیک ڄاݨو",
@@ -4220,6 +4224,7 @@
     "recoverOnWebsite": "dehub.io تے بحال کرو",
     "createNewAnyway": "میکوں او کھاتا کائنی چاہیدا — تاں وی نواں بݨاؤ",
     "couldNotRead": "اساں او بحال تھیا والٹ پڑھ کائنی سگے۔ کجھ وی کائنی بدلیا۔",
+    "noOldAccountFound": "There is no earlier DeHub account on this login, so there is nothing to bring over. Setting up a new account instead.",
     "didNotRecoverEither": "او لاگ ان نال ایتھاں ݙکھائے کوئی وی پروفائل بحال کائنی تھیا۔ کجھ وی کائنی بدلیا۔ جیڑھا پروفائل چاہیدے ایندا اصل سائن ان آزماؤ۔",
     "didNotRecoverThis": "او لاگ ان نال ایں پروفائل دا کائنی، ٻیا والٹ بحال تھیا۔ کجھ وی کائنی بدلیا۔ جیندے سائن ان نال ایہ بݨیا ہائی، او آزماؤ۔",
     "couldNotRetrieve": "ایں ڈیوائس تے او پرانا والٹ کائنی ملیا۔ تُساں ہالاں وی تلے dehub.io تے ایں کوں بحال کر سڳدے او۔"

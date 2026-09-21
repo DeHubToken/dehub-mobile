@@ -1267,6 +1267,10 @@
     "importWallet": "Wallet importieren",
     "privateKeyPlaceholder": "Gib deinen privaten Schlüssel ein",
     "importExternalWallet": "Externe Wallet importieren",
+    "migrateAccount": "Konto migrieren",
+    "migrateAccountBody": "Hatten Sie schon einmal ein DeHub-Konto? Melden Sie sich mit demselben E-Mail-, Telefon-, Google- oder Apple-Login an, das Sie damals verwendet haben. Wenn es mit einem früheren Konto übereinstimmt, wird Ihnen angeboten, das Wallet, den Benutzernamen und das Guthaben mitzubringen.",
+    "migrateAccountNote": "Eine einmalige Anmeldung mit dem alten Login ruft Ihren Wallet-Schlüssel sicher auf diesem Gerät ab. Es berührt nie unsere Server.",
+    "migrateAccountContinue": "Weiter zur Anmeldung",
     "privateKey": "Privater Schlüssel",
     "pasteFromClipboard": "Aus Zwischenablage einfügen",
     "learnMoreAt": "Mehr erfahren auf dehub.io",
@@ -4349,6 +4353,7 @@
     "recoverOnWebsite": "Auf dehub.io wiederherstellen",
     "createNewAnyway": "Ich will das Konto nicht — leg trotzdem ein neues an",
     "couldNotRead": "Die wiederhergestellte Wallet konnte nicht gelesen werden. Es wurde nichts geändert.",
+    "noOldAccountFound": "Es gibt kein früheres DeHub-Konto bei diesem Login, daher gibt es nichts, was Sie mitbringen können. Stattdessen ein neues Konto einrichten.",
     "didNotRecoverEither": "Diese Anmeldung hat keines der hier gezeigten Profile wiederhergestellt. Es wurde nichts geändert. Versuch die ursprüngliche Anmeldung für das gewünschte Profil.",
     "didNotRecoverThis": "Diese Anmeldung hat eine andere Wallet wiederhergestellt als die dieses Profils. Es wurde nichts geändert. Versuch die Anmeldung, mit der es ursprünglich erstellt wurde.",
     "couldNotRetrieve": "Diese alte Wallet konnte auf diesem Gerät nicht abgerufen werden. Du kannst sie unten auf dehub.io trotzdem wiederherstellen."

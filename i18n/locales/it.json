@@ -841,6 +841,10 @@
     "importWallet": "Importa wallet",
     "privateKeyPlaceholder": "Inserisci la tua chiave privata",
     "importExternalWallet": "Importa wallet esterno",
+    "migrateAccount": "Migra account",
+    "migrateAccountBody": "Avevi già un account DeHub? Accedi con la stessa email, telefono, login Google o Apple che hai utilizzato in quel momento. Se corrisponde a un account precedente, ti verrà offerto di portare il suo portafoglio, il nome utente e il saldo.",
+    "migrateAccountNote": "Un accesso una tantum con il vecchio login recupera la chiave del portafoglio in modo sicuro su questo dispositivo. Non tocca mai i nostri server.",
+    "migrateAccountContinue": "Continua per accedere",
     "privateKey": "Chiave privata",
     "pasteFromClipboard": "Incolla dagli appunti",
     "learnMoreAt": "Scopri di più su dehub.io",
@@ -4352,6 +4356,7 @@
     "recoverOnWebsite": "Recupera su dehub.io",
     "createNewAnyway": "Non voglio quell'account: creane uno nuovo lo stesso",
     "couldNotRead": "Non è stato possibile leggere il portafoglio recuperato. Non è stato modificato nulla.",
+    "noOldAccountFound": "Non esiste un account DeHub precedente su questo accesso, quindi non c'è nulla da portare. Impostare invece un nuovo account.",
     "didNotRecoverEither": "Quell'accesso non ha recuperato nessuno dei profili mostrati qui. Non è cambiato nulla. Prova l'accesso originale del profilo che vuoi.",
     "didNotRecoverThis": "Quell'accesso ha recuperato un portafoglio diverso da quello di questo profilo. Non è cambiato nulla. Prova l'accesso che lo ha creato in origine.",
     "couldNotRetrieve": "Non è stato possibile recuperare quel vecchio portafoglio su questo dispositivo. Puoi comunque recuperarlo su dehub.io qui sotto."

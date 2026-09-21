@@ -1521,6 +1521,10 @@
     "importWallet": "Importuoti piniginę",
     "privateKeyPlaceholder": "Įveskite savo privatų raktą",
     "importExternalWallet": "Importuoti išorinę piniginę",
+    "migrateAccount": "Perkelti paskyrą",
+    "migrateAccountBody": "Turėjote DeHub paskyrą anksčiau? Prisijunkite naudodami tą patį el. pašto adresą, telefoną, „Google“ arba „Apple“ prisijungimo vardą, kurį naudojote tuo metu. Jei jis sutampa su ankstesne paskyra, jums bus pasiūlyta atsinešti jos piniginę, naudotojo vardą ir likutį.",
+    "migrateAccountNote": "Vienkartinis prisijungimas su senu prisijungimu saugiai nuskaito jūsų piniginės raktą šiame įrenginyje. Jis niekada nepaliečia mūsų serverių.",
+    "migrateAccountContinue": "Tęsti prisijungimą",
     "privateKey": "Privatus raktas",
     "pasteFromClipboard": "Įklijuoti iš iškarpinės",
     "learnMoreAt": "Sužinokite daugiau dehub.io",
@@ -4279,6 +4283,7 @@
     "recoverOnWebsite": "Atkurti svetainėje dehub.io",
     "createNewAnyway": "Nenoriu tos paskyros — vis tiek sukurkite naują",
     "couldNotRead": "Nepavyko nuskaityti atkurtos piniginės. Niekas nebuvo pakeista.",
+    "noOldAccountFound": "Šiame prisijungime nėra ankstesnės „DeHub“ paskyros, todėl nėra ką perkelti. Vietoj to sukurkite naują paskyrą.",
     "didNotRecoverEither": "Tas prisijungimas neatkūrė nė vieno čia rodomo profilio. Niekas nepasikeitė. Pabandykite norimo profilio pradinį prisijungimą.",
     "didNotRecoverThis": "Tas prisijungimas atkūrė kitą piniginę, ne šio profilio. Niekas nepasikeitė. Pabandykite prisijungimą, kuriuo jis buvo sukurtas.",
     "couldNotRetrieve": "Šiame įrenginyje nepavyko gauti tos senos piniginės. Vis tiek galite ją atkurti svetainėje dehub.io žemiau."
