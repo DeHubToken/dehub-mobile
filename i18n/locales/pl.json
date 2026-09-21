@@ -2155,7 +2155,25 @@
     "active": "Aktywne",
     "noActiveNow": "Obecnie brak aktywnych propozycji",
     "subtitle": "Głosuj nad propozycjami, które kształtują platformę",
-    "loadFailed": "Nie udało się wczytać propozycji"
+    "loadFailed": "Nie udało się wczytać propozycji",
+    "forLabel": "Dla",
+    "againstLabel": "Przeciw",
+    "discussion": {
+      "title": "Dyskusja",
+      "intro": "Przed głosowaniem zadaj pytania uzupełniające lub przedyskutuj propozycję.",
+      "reply": "Odpowiedz",
+      "replyingTo": "Odpowiedź do {{name}}",
+      "writeReply": "Napisz odpowiedź",
+      "edited": "edytowano",
+      "showMoreReplies": "Pokaż {{count}} więcej odpowiedzi",
+      "showMoreReplies_one": "Pokaż {{count}} więcej odpowiedzi",
+      "deleteTitle": "Usunąć ten komentarz?",
+      "deleteDescription": "Spowoduje to usunięcie komentarza i jego odpowiedzi dla wszystkich.",
+      "signInToComment": "Zaloguj się, aby dołączyć do dyskusji",
+      "empty": "Nie ma jeszcze żadnych pytań. Rozpocznij dyskusję.",
+      "joinOnProposal": "Dołącz do dyskusji",
+      "authorChip": "Autor propozycji"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Temat dnia",

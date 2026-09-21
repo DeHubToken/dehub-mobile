@@ -2175,7 +2175,25 @@
     "active": "Đang diễn ra",
     "noActiveNow": "Hiện chưa có đề xuất nào đang diễn ra",
     "subtitle": "Bỏ phiếu cho các đề xuất định hình nền tảng",
-    "loadFailed": "Không tải được đề xuất"
+    "loadFailed": "Không tải được đề xuất",
+    "forLabel": "Cho",
+    "againstLabel": "Chống lại",
+    "discussion": {
+      "title": "Thảo luận",
+      "intro": "Đặt câu hỏi tiếp theo hoặc thảo luận về đề xuất trước khi bỏ phiếu.",
+      "reply": "Trả lời",
+      "replyingTo": "Đang trả lời {{name}}",
+      "writeReply": "Viết câu trả lời",
+      "edited": "đã chỉnh sửa",
+      "showMoreReplies": "Hiển thị thêm {{count}} câu trả lời",
+      "showMoreReplies_one": "Hiển thị thêm {{count}} câu trả lời",
+      "deleteTitle": "Xóa bình luận này?",
+      "deleteDescription": "Thao tác này sẽ xóa nhận xét và trả lời cho tất cả mọi người.",
+      "signInToComment": "Đăng nhập để tham gia thảo luận",
+      "empty": "Chưa có câu hỏi nào. Bắt đầu thảo luận.",
+      "joinOnProposal": "Tham gia thảo luận",
+      "authorChip": "Tác giả đề xuất"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

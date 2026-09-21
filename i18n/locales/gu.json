@@ -1889,7 +1889,25 @@
     "active": "સક્રિય",
     "noActiveNow": "અત્યારે કોઈ સક્રિય દરખાસ્ત નથી",
     "subtitle": "પ્લેટફોર્મને ઘડતી દરખાસ્તો પર મત આપો",
-    "loadFailed": "દરખાસ્તો લોડ થઈ શકી નહીં"
+    "loadFailed": "દરખાસ્તો લોડ થઈ શકી નહીં",
+    "forLabel": "માટે",
+    "againstLabel": "વિરુદ્ધ",
+    "discussion": {
+      "title": "ચર્ચા",
+      "intro": "તમે મત આપો તે પહેલાં ફોલો-અપ પ્રશ્નો પૂછો અથવા દરખાસ્તની ચર્ચા કરો.",
+      "reply": "જવાબ આપો",
+      "replyingTo": "{{name}} ને જવાબ આપી રહ્યા છે",
+      "writeReply": "જવાબ લખો",
+      "edited": "સંપાદિત",
+      "showMoreReplies": "{{count}} વધુ જવાબો બતાવો",
+      "showMoreReplies_one": "{{count}} વધુ જવાબ બતાવો",
+      "deleteTitle": "આ ટિપ્પણી કાઢી નાખો?",
+      "deleteDescription": "આ દરેક માટે ટિપ્પણી અને તેના જવાબોને દૂર કરે છે.",
+      "signInToComment": "ચર્ચામાં જોડાવા માટે સાઇન ઇન કરો",
+      "empty": "હજી સુધી કોઈ પ્રશ્નો નથી. ચર્ચા શરૂ કરો.",
+      "joinOnProposal": "ચર્ચામાં જોડાઓ",
+      "authorChip": "પ્રસ્તાવના લેખક"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "શહેરની ચર્ચા",

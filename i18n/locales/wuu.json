@@ -1850,7 +1850,25 @@
     "active": "进行中",
     "noActiveNow": "当前没有进行中的提案",
     "subtitle": "为塑造平台的提案投票",
-    "loadFailed": "无法加载提案"
+    "loadFailed": "无法加载提案",
+    "forLabel": "为",
+    "againstLabel": "對",
+    "discussion": {
+      "title": "讨论",
+      "intro": "投票前问一些后续问题或者讨论一下这个提议。",
+      "reply": "回复",
+      "replyingTo": "回复 {{name}}",
+      "writeReply": "写回复",
+      "edited": "已编辑",
+      "showMoreReplies": "显示 {{count}} 更多回复",
+      "showMoreReplies_one": "显示 {{count}} 更多回复",
+      "deleteTitle": "删除此评论？",
+      "deleteDescription": "这将移除所有人的评论及其回复。",
+      "signInToComment": "登录以加入讨论",
+      "empty": "还没有问题。开始讨论吧。",
+      "joinOnProposal": "加入讨论",
+      "authorChip": "提议作者"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "城里个热话",

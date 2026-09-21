@@ -1892,7 +1892,25 @@
     "active": "Aktīvie",
     "noActiveNow": "Šobrīd nav aktīvu priekšlikumu",
     "subtitle": "Balso par priekšlikumiem, kas veido platformu",
-    "loadFailed": "Neizdevās ielādēt priekšlikumus"
+    "loadFailed": "Neizdevās ielādēt priekšlikumus",
+    "forLabel": "Paredzēts",
+    "againstLabel": "Balsis “pret”",
+    "discussion": {
+      "title": "Diskusija",
+      "intro": "Pirms balsošanas uzdodiet papildu jautājumus vai apspriediet priekšlikumu.",
+      "reply": "Atbildēt",
+      "replyingTo": "Atbild {{name}}",
+      "writeReply": "Rakstīt atbildi",
+      "edited": "rediģēts",
+      "showMoreReplies": "Rādīt {{count}} vairāk atbilžu",
+      "showMoreReplies_one": "Rādīt {{count}} vēl atbildi",
+      "deleteTitle": "Vai dzēst šo komentāru?",
+      "deleteDescription": "Tādējādi komentārs un tā atbildes tiek noņemtas visiem.",
+      "signInToComment": "Pierakstieties, lai pievienotos diskusijai",
+      "empty": "Vēl nav jautājumu. Sāciet diskusiju.",
+      "joinOnProposal": "Pievienoties diskusijai",
+      "authorChip": "Priekšlikuma autors"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Pilsētas saruna",

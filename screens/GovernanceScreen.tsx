@@ -6,13 +6,15 @@
  * Read-only for now — weighted voting and proposal submission need the DHB
  * balance/badge + contract layer (deferred, matching the web3 bucket).
  */
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, StyleSheet, Pressable, FlatList } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { ScreenNames } from "../navigation/ScreenNames";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import Avatar from "../components/common/Avatar";
@@ -40,7 +42,8 @@ function timeAgo(iso: string): string {
   return `${mo}mo ago`;
 }
 
-const ProposalCard: React.FC<{ proposal: GovernanceProposal }> = ({ proposal }) => {
+const ProposalCard: React.FC<{ proposal: GovernanceProposal; onPress: () => void }> = ({ proposal, onPress }) => {
+  const { t } = useTranslation();
   const forW = proposal.like_count || 0;
   const againstW = proposal.dislike_count || 0;
   const total = forW + againstW;
@@ -49,7 +52,7 @@ const ProposalCard: React.FC<{ proposal: GovernanceProposal }> = ({ proposal }) 
   const username = proposal.author_username || `${proposal.author_wallet_address.slice(0, 6)}…${proposal.author_wallet_address.slice(-4)}`;
 
   return (
-    <View style={styles.card}>
+    <Pressable onPress={onPress} style={styles.card} accessibilityRole="button" accessibilityLabel={proposal.title}>
       <View style={styles.authorRow}>
         <Avatar uri={getAvatarUrl(proposal.author_avatar)} size={28} name={username} />
         <Text style={styles.authorName} numberOfLines={1}>@{username}</Text>
@@ -67,8 +70,8 @@ const ProposalCard: React.FC<{ proposal: GovernanceProposal }> = ({ proposal }) 
         <View style={[styles.barAgainst, { flex: total > 0 ? againstW : 1 }]} />
       </View>
       <View style={styles.pctRow}>
-        <Text style={styles.forText}>{forPct}% For</Text>
-        <Text style={styles.againstText}>{againstPct}% Against</Text>
+        <Text style={styles.forText}>{forPct}% {t("governance.forLabel")}</Text>
+        <Text style={styles.againstText}>{againstPct}% {t("governance.againstLabel")}</Text>
       </View>
 
       <View style={styles.metaRow}>
@@ -85,14 +88,34 @@ const ProposalCard: React.FC<{ proposal: GovernanceProposal }> = ({ proposal }) 
           <Text style={styles.metaText}>{formatCompactNumber(proposal.comment_count || 0)}</Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
 export default function GovernanceScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation<any>();
+  const route = useRoute<any>();
   const [tab, setTab] = useState<GovernanceTab>("active");
+
+  const openProposal = useCallback(
+    (proposalId: string) => navigation.navigate(ScreenNames.GovernanceProposal, { proposalId }),
+    [navigation],
+  );
+
+  // An older notification deep link lands here with the proposal's id. It
+  // used to be read by nothing, so the tap opened the board and stopped; now
+  // it hands on to the proposal once, then clears itself so coming back to
+  // the board does not push it again.
+  const handedOn = useRef<string | null>(null);
+  useEffect(() => {
+    const linked: string | undefined = route.params?.proposalId;
+    if (!linked || handedOn.current === linked) return;
+    handedOn.current = linked;
+    navigation.setParams({ proposalId: undefined });
+    openProposal(linked);
+  }, [route.params?.proposalId, navigation, openProposal]);
 
   const { data: proposals = [], isLoading, isError, refetch, isRefetching } = useQuery({
     queryKey: ["governance-proposals", tab],
@@ -101,8 +124,10 @@ export default function GovernanceScreen() {
 
   const keyExtractor = useCallback((p: GovernanceProposal) => p.id, []);
   const renderItem = useCallback(
-    ({ item }: { item: GovernanceProposal }) => <ProposalCard proposal={item} />,
-    [],
+    ({ item }: { item: GovernanceProposal }) => (
+      <ProposalCard proposal={item} onPress={() => openProposal(item.id)} />
+    ),
+    [openProposal],
   );
 
   const emptyLabel = useMemo(() => {

@@ -1912,7 +1912,25 @@
     "active": "Actives",
     "noActiveNow": "Aucune proposition active pour le moment",
     "subtitle": "Votez sur les propositions qui façonnent la plateforme",
-    "loadFailed": "Impossible de charger les propositions"
+    "loadFailed": "Impossible de charger les propositions",
+    "forLabel": "Pour",
+    "againstLabel": "Contre",
+    "discussion": {
+      "title": "Discussion",
+      "intro": "Posez des questions de suivi ou discutez de la proposition avant de voter.",
+      "reply": "Répondre",
+      "replyingTo": "Répondre à {{name}}",
+      "writeReply": "Écrire une réponse",
+      "edited": "modifié",
+      "showMoreReplies": "Afficher {{count}} autres réponses",
+      "showMoreReplies_one": "Afficher {{count}} plus de réponses",
+      "deleteTitle": "Supprimer ce commentaire ?",
+      "deleteDescription": "Cela supprime le commentaire et ses réponses pour tout le monde.",
+      "signInToComment": "Connectez-vous pour participer à la discussion",
+      "empty": "Pas encore de questions. Commencez la discussion.",
+      "joinOnProposal": "Rejoignez la discussion",
+      "authorChip": "Auteur de la proposition"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Tendances",

@@ -1878,7 +1878,25 @@
     "active": "Na-arụ ọrụ",
     "noActiveNow": "Enweghị atụmatụ na-arụ ọrụ ugbu a",
     "subtitle": "Tụọ vootu na atụmatụ na-akpụzi ikpo okwu ahụ",
-    "loadFailed": "Enweghị ike ibudata atụmatụ"
+    "loadFailed": "Enweghị ike ibudata atụmatụ",
+    "forLabel": "Maka",
+    "againstLabel": "Megide",
+    "discussion": {
+      "title": "Mkparịta ụka",
+      "intro": "Jụọ ajụjụ ndị na-esochi ma ọ bụ tụlee atụmatụ ahụ tupu ị tụọ vootu.",
+      "reply": "Zaghachi",
+      "replyingTo": "Na-aza {{name}}",
+      "writeReply": "Dee azịza",
+      "edited": "ndezi",
+      "showMoreReplies": "Gosi {{count}} azịza ndị ọzọ",
+      "showMoreReplies_one": "Gosi {{count}} ọzọ zaghachi",
+      "deleteTitle": "Hichaa nkọwa a?",
+      "deleteDescription": "Nke a na-ewepụ nkọwa na nzaghachi ya maka onye ọ bụla.",
+      "signInToComment": "Banye na isonyere mkparịtaụka ahụ",
+      "empty": "Enweghị ajụjụ ma. Bido mkparịtaụka ahụ.",
+      "joinOnProposal": "Jikọọ na mkparịta ụka ahụ",
+      "authorChip": "Proposal na-ede akwụkwọ"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Okwu obodo",

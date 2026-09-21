@@ -205,6 +205,10 @@ const composeReferenceContent = (row: CustomNotificationRow, actor: string): str
       return quoted
         ? `${actor} commented on your proposal ${quoted}`
         : `${actor} commented on your proposal`;
+    case "governance_reply":
+      return quoted
+        ? `${actor} replied to you on proposal ${quoted}`
+        : `${actor} replied to your comment on a proposal`;
     case "stage_live":
       return stageLiveSentence(actor, title);
     case "stage_reminder":

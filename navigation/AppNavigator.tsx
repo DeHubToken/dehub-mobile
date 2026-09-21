@@ -151,6 +151,11 @@ function AppNavigatorContent() {
           name={ScreenNames.Governance}
           getComponent={() => require("../screens/GovernanceScreen").default}
         />
+        {/* Public: reading a proposal's discussion is open, replying signs in. */}
+        <Stack.Screen
+          name={ScreenNames.GovernanceProposal}
+          getComponent={() => require("../screens/GovernanceProposalScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.Dao}
           getComponent={() => require("../screens/DaoScreen").default}

@@ -1872,7 +1872,25 @@
     "active": "Aktiv",
     "noActiveNow": "Derzeit keine aktiven Vorschläge",
     "subtitle": "Stimme über Vorschläge ab, die die Plattform prägen",
-    "loadFailed": "Vorschläge konnten nicht geladen werden"
+    "loadFailed": "Vorschläge konnten nicht geladen werden",
+    "forLabel": "Für",
+    "againstLabel": "Gegen",
+    "discussion": {
+      "title": "Diskussion",
+      "intro": "Stellen Sie Folgefragen oder besprechen Sie den Vorschlag, bevor Sie abstimmen.",
+      "reply": "Antworten",
+      "replyingTo": "Antwort auf {{name}}",
+      "writeReply": "Schreibe eine Antwort",
+      "edited": "bearbeitet",
+      "showMoreReplies": "{{count}} weitere Antworten anzeigen",
+      "showMoreReplies_one": "{{count}} weitere Antwort anzeigen",
+      "deleteTitle": "Diesen Kommentar löschen?",
+      "deleteDescription": "Dadurch werden der Kommentar und seine Antworten für alle entfernt.",
+      "signInToComment": "Melden Sie sich an, um an der Diskussion teilzunehmen",
+      "empty": "Noch keine Fragen. Starten Sie die Diskussion.",
+      "joinOnProposal": "Nehmen Sie an der Diskussion teil",
+      "authorChip": "Vorschlagsverfasser"
+    }
   },
   "tip": {
     "title": "Trinkgeld senden",

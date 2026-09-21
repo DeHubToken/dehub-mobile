@@ -66,3 +66,14 @@ export async function getProposals(tab: GovernanceTab): Promise<GovernancePropos
   if (tab === "active") return proposals;
   return proposals.filter((p) => verdictOf(p) === tab);
 }
+
+/** One proposal by id, for the detail screen and a notification's deep link. */
+export async function getProposal(id: string): Promise<GovernanceProposal | null> {
+  const { data, error } = await supabase
+    .from("governance_proposals")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle();
+  if (error) throw error;
+  return (data as GovernanceProposal | null) ?? null;
+}

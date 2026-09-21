@@ -340,6 +340,7 @@ const SUPABASE_ROUTED_TYPES = new Set([
   'feature_request_mention',
   'governance_vote',
   'governance_comment',
+  'governance_reply',
   'stage_live',
   'stage_reminder',
   'fraction_settled',
@@ -1107,10 +1108,18 @@ const NotificationScreen = () => {
         break;
       }
 
+      // Straight to the proposal. The board used to receive the id and read
+      // it for nothing; a comment row also carries the comment it is about,
+      // which the proposal screen opens and lights.
       case 'governance_vote':
-      case 'governance_comment': {
-        const proposalId = (notification as CustomNotificationItem).customReferenceId;
-        if (proposalId) navigation.navigate(ScreenNames.Governance as never, { proposalId } as never);
+      case 'governance_comment':
+      case 'governance_reply': {
+        const custom = notification as CustomNotificationItem;
+        if (!custom.customReferenceId) break;
+        navigation.navigate(ScreenNames.GovernanceProposal as never, {
+          proposalId: custom.customReferenceId,
+          commentId: custom.customCommentId,
+        } as never);
         break;
       }
 

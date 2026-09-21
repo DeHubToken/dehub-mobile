@@ -1767,7 +1767,8 @@
     "active": "Çalak",
     "noActiveNow": "Niha pêşniyarên çalak tune",
     "subtitle": "Li ser pêşniyarên ku platformê şekil didin deng bide",
-    "loadFailed": "Pêşniyar nehatin barkirin"
+    "loadFailed": "Pêşniyar nehatin barkirin",
+    "againstLabel": "دژ - بەرامبەر"
   },
   "sidebar": {
     "talkOfTheTown": "Gotina Bajêr",
