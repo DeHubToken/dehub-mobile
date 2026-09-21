@@ -3528,7 +3528,10 @@
     "newMembers": "Nuovi membri",
     "membersOverTime": "Membri nel tempo",
     "lastDays": "Ultimi {{count}} giorni",
-    "source": "Storico degli account registrato dall'endpoint pubblico delle statistiche di DeHub. In questo grafico non vengono usati valori stimati."
+    "source": "Storico degli account registrato dall'endpoint pubblico delle statistiche di DeHub. In questo grafico non vengono usati valori stimati.",
+    "community": {
+      "openNewMembers": "Apri la nuova lista dei membri"
+    }
   },
   "solana": {
     "unavailableTitle": "Wallet Solana non disponibile",

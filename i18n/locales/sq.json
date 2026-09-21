@@ -3457,7 +3457,10 @@
     "newMembers": "Anëtarë të rinj",
     "membersOverTime": "Anëtarët me kalimin e kohës",
     "lastDays": "{{count}} ditët e fundit",
-    "source": "Historik i regjistruar i llogarive nga pika publike e statistikave e DeHub. Në këtë grafik nuk përdoren vlera të vlerësuara."
+    "source": "Historik i regjistruar i llogarive nga pika publike e statistikave e DeHub. Në këtë grafik nuk përdoren vlera të vlerësuara.",
+    "community": {
+      "openNewMembers": "Hap listën e anëtarëve të rinj"
+    }
   },
   "solana": {
     "unavailableTitle": "Portofoli Solana nuk ofrohet",

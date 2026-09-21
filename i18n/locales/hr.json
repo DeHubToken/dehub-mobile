@@ -3458,7 +3458,10 @@
     "newMembers": "Novi članovi",
     "membersOverTime": "Članovi kroz vrijeme",
     "lastDays": "Zadnjih {{count}} dana",
-    "source": "Zabilježena povijest računa s DeHubovog javnog statističkog endpointa. U ovom se grafikonu ne koriste procijenjene vrijednosti."
+    "source": "Zabilježena povijest računa s DeHubovog javnog statističkog endpointa. U ovom se grafikonu ne koriste procijenjene vrijednosti.",
+    "community": {
+      "openNewMembers": "Otvori popis novih članova"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana novčanik nije dostupan",

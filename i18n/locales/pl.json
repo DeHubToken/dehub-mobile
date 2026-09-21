@@ -3526,7 +3526,10 @@
     "newMembers": "Nowi członkowie",
     "membersOverTime": "Członkowie w czasie",
     "lastDays": "Ostatnie {{count}} dni",
-    "source": "Zarejestrowana historia kont z publicznego punktu statystyk DeHub. W tym wykresie nie używa się wartości szacunkowych."
+    "source": "Zarejestrowana historia kont z publicznego punktu statystyk DeHub. W tym wykresie nie używa się wartości szacunkowych.",
+    "community": {
+      "openNewMembers": "Otwórz listę nowych członków"
+    }
   },
   "solana": {
     "unavailableTitle": "Portfel Solana niedostępny",

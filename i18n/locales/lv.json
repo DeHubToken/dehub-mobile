@@ -3457,7 +3457,10 @@
     "newMembers": "Jauni dalībnieki",
     "membersOverTime": "Dalībnieki laika gaitā",
     "lastDays": "Pēdējās {{count}} dienas",
-    "source": "Reģistrēta kontu vēsture no DeHub publiskā statistikas galapunkta. Šajā diagrammā netiek izmantotas aptuvenas vērtības."
+    "source": "Reģistrēta kontu vēsture no DeHub publiskā statistikas galapunkta. Šajā diagrammā netiek izmantotas aptuvenas vērtības.",
+    "community": {
+      "openNewMembers": "Atvērt jauno dalībnieku sarakstu"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana maks nav pieejams",

@@ -3515,7 +3515,10 @@
     "newMembers": "新成员",
     "membersOverTime": "成员随时间变化",
     "lastDays": "最近 {{count}} 天",
-    "source": "来自 DeHub 公开统计接口的账户历史记录。本图表不使用任何估算值。"
+    "source": "来自 DeHub 公开统计接口的账户历史记录。本图表不使用任何估算值。",
+    "community": {
+      "openNewMembers": "打开新成员列表"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana 钱包不可用",

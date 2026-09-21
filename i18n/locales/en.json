@@ -3527,6 +3527,9 @@
     "livePlatformTotal": "Live platform total",
     "activeUsers": "Active registered users",
     "newMembers": "New members",
+    "community": {
+      "openNewMembers": "Open the new members list"
+    },
     "membersOverTime": "Members over time",
     "lastDays": "Last {{count}} days",
     "source": "Recorded account history from DeHub's public stats endpoint. No estimated values are used in this chart."

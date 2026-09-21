@@ -3462,7 +3462,10 @@
     "newMembers": "Nya medlemmar",
     "membersOverTime": "Medlemmar över tid",
     "lastDays": "Senaste {{count}} dagarna",
-    "source": "Registrerad kontohistorik från DeHubs offentliga statistikslutpunkt. Inga uppskattade värden används i det här diagrammet."
+    "source": "Registrerad kontohistorik från DeHubs offentliga statistikslutpunkt. Inga uppskattade värden används i det här diagrammet.",
+    "community": {
+      "openNewMembers": "Öppna listan över nya medlemmar"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana-plånbok inte tillgänglig",

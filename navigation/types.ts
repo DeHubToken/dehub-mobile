@@ -107,6 +107,8 @@ export type AppStackParamList = {
   };
   [ScreenNames.Search]: {
     query?: string;
+    /** `newMembers` scrolls the idle Explore view to the New members rail. */
+    section?: "newMembers";
   } | undefined;
   [ScreenNames.AccountSettings]: undefined;
   [ScreenNames.ActiveSessions]: undefined;
@@ -238,7 +240,8 @@ export type BottomTabParamList = {
   [ScreenNames.UploadTab]: undefined;
   /** `initialPrompt` seeds the composer — used by the Prompt entry screen. */
   [ScreenNames.AIChat]: { initialPrompt?: string } | undefined;
-  [ScreenNames.Explore]: undefined;
+  /** `section: "newMembers"` is the Live Stats heading's deep link to the rail. */
+  [ScreenNames.Explore]: { section?: "newMembers" } | undefined;
 };
 
 export type BottomTabScreenProps<T extends keyof BottomTabParamList> = CompositeScreenProps<

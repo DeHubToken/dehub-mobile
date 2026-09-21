@@ -3453,7 +3453,10 @@
     "newMembers": "አዲስ አባላት",
     "membersOverTime": "አባላት በጊዜ ሂደት",
     "lastDays": "ያለፉት {{count}} ቀናት",
-    "source": "ከDeHub ይፋዊ የስታቲስቲክስ መዳረሻ የተመዘገበ የመለያ ታሪክ። በዚህ ገበታ ውስጥ የተገመቱ እሴቶች አይጠቀሙም።"
+    "source": "ከDeHub ይፋዊ የስታቲስቲክስ መዳረሻ የተመዘገበ የመለያ ታሪክ። በዚህ ገበታ ውስጥ የተገመቱ እሴቶች አይጠቀሙም።",
+    "community": {
+      "openNewMembers": "አዲሱን የአባላት ዝርዝር ይክፈቱ"
+    }
   },
   "solana": {
     "unavailableTitle": "የሶላና ቦርሳ አይገኝም",

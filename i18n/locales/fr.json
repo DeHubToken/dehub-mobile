@@ -3532,7 +3532,10 @@
     "newMembers": "Nouveaux membres",
     "membersOverTime": "Membres dans le temps",
     "lastDays": "{{count}} derniers jours",
-    "source": "Historique des comptes enregistré depuis le point de terminaison public des statistiques de DeHub. Aucune valeur estimée n'est utilisée dans ce graphique."
+    "source": "Historique des comptes enregistré depuis le point de terminaison public des statistiques de DeHub. Aucune valeur estimée n'est utilisée dans ce graphique.",
+    "community": {
+      "openNewMembers": "Ouvrir la liste des nouveaux membres"
+    }
   },
   "solana": {
     "unavailableTitle": "Portefeuille Solana indisponible",
@@ -4407,7 +4410,11 @@
     "change24": "Variation de référence sur 24 h",
     "refresh": "Actualiser",
     "updating": "Actualisation…",
-    "tab": { "chart": "Graphique", "book": "Carnet d'ordres", "trade": "Acheter / Vendre" },
+    "tab": {
+      "chart": "Graphique",
+      "book": "Carnet d'ordres",
+      "trade": "Acheter / Vendre"
+    },
     "depth": "Profondeur",
     "depthHint": "DHB cumulés · glissez pour explorer",
     "chartHint": "Référence du marché · USD · glissez pour explorer",
@@ -4449,9 +4456,14 @@
     "unlockWallet": "Déverrouillez votre portefeuille pour continuer.",
     "snapshotError": "Échec de l'actualisation. Le dernier état complet est affiché ; les montants peuvent être périmés.",
     "stage": {
-      "quote": "Lecture du pool…", "wallet": "Déverrouillez ou connectez le portefeuille…", "balance": "Vérification des autorisations…",
-      "tokenApproval": "Confirmez l'autorisation du token…", "permitApproval": "Confirmez l'autorisation de la position…",
-      "submit": "Confirmez la position dans le portefeuille…", "confirm": "En attente de confirmation…", "index": "Inscription de la position…"
+      "quote": "Lecture du pool…",
+      "wallet": "Déverrouillez ou connectez le portefeuille…",
+      "balance": "Vérification des autorisations…",
+      "tokenApproval": "Confirmez l'autorisation du token…",
+      "permitApproval": "Confirmez l'autorisation de la position…",
+      "submit": "Confirmez la position dans le portefeuille…",
+      "confirm": "En attente de confirmation…",
+      "index": "Inscription de la position…"
     },
     "title": "DHB / USDC",
     "heading": "DHB / USDC",

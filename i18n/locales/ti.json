@@ -3423,7 +3423,10 @@
     "newMembers": "ሓደስቲ ኣባላት",
     "membersOverTime": "ኣባላት ብግዜ",
     "lastDays": "ዝሓለፉ {{count}} መዓልቲ",
-    "source": "ካብ ህዝባዊ መወዳእታ ነጥቢ ስታቲስቲክስ DeHub ዝተመዝገበ ታሪኽ ሕሳብ። ኣብዚ ግራፍ ዝተገመቱ ዋጋታት ኣይጥቀሙን።"
+    "source": "ካብ ህዝባዊ መወዳእታ ነጥቢ ስታቲስቲክስ DeHub ዝተመዝገበ ታሪኽ ሕሳብ። ኣብዚ ግራፍ ዝተገመቱ ዋጋታት ኣይጥቀሙን።",
+    "community": {
+      "openNewMembers": "ነቲ ሓድሽ ዝርዝር ኣባላት ክፉት ግበር"
+    }
   },
   "solana": {
     "unavailableTitle": "ዋሌት Solana ኣይርከብን",

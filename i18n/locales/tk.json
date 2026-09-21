@@ -3428,7 +3428,10 @@
     "newMembers": "Täze agzalar",
     "membersOverTime": "Wagtyň dowamynda agzalar",
     "lastDays": "Soňky {{count}} gün",
-    "source": "DeHub-yň köpçülik statistika ahyrky nokadyndan ýazylan hasap taryhy. Bu diagrammada çaklama bahalary ulanylmaýar."
+    "source": "DeHub-yň köpçülik statistika ahyrky nokadyndan ýazylan hasap taryhy. Bu diagrammada çaklama bahalary ulanylmaýar.",
+    "community": {
+      "openNewMembers": "Üýşler listesini aç"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana gapjygy elýeterli däl",

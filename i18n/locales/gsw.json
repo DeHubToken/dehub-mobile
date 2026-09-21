@@ -3447,7 +3447,10 @@
     "newMembers": "Neui Mitglider",
     "membersOverTime": "Mitglider über d Ziit",
     "lastDays": "Letschti {{count}} Täg",
-    "source": "Ufzeichnete Kontoverlauf us em öffentliche Statistik-Ändpunkt vo DeHub. In dem Diagramm wärded kei gschätzti Wärt bruucht."
+    "source": "Ufzeichnete Kontoverlauf us em öffentliche Statistik-Ändpunkt vo DeHub. In dem Diagramm wärded kei gschätzti Wärt bruucht.",
+    "community": {
+      "openNewMembers": "Öffne die Lischte vo de neue Mitglieder"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana-Wallet nid verfüegbar",
