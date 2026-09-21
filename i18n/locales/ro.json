@@ -1779,6 +1779,10 @@
     "returnHome": "Return Home"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Această postare nu este disponibilă",
+      "commentUnavailable": "Acest comentariu nu mai este disponibil"
+    },
     "back": "Back",
     "usernameAvailable": "Username available!",
     "signUpToClaim": "Sign up today to claim",

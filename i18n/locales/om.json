@@ -1600,6 +1600,10 @@
     "returnHome": "Manatti deebi'i"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Barreeffamni kun hin argamu",
+      "commentUnavailable": "Yaadni kun kana booda hin jiru"
+    },
     "back": "Duuba",
     "notFound": "Piroofaayiliin hin argamne",
     "unableToLoad": "Piroofaayilii fe'uu hin dandeenye. Booda irra deebi'ii yaali.",

@@ -1431,6 +1431,10 @@
     "attachmentTooLarge": "ہر فائل 20MB سے کم ہونی چاہیے"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "یہ پوسٹ دستیاب نہیں ہے",
+      "commentUnavailable": "یہ تبصرہ اب دستیاب نہیں ہے"
+    },
     "back": "واپس",
     "usernameAvailable": "صارف نام دستیاب ہے!",
     "signUpToClaim": "حاصل کرنے کے لیے سائن اپ کریں",

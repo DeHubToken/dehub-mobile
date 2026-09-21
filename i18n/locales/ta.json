@@ -1422,6 +1422,10 @@
     "attachmentTooLarge": "ஒவ்வொரு கோப்பும் 20MB க்கும் குறைவாக இருக்க வேண்டும்"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "இந்த இடுகை கிடைக்கவில்லை",
+      "commentUnavailable": "இந்த கருத்து இனி கிடைக்காது"
+    },
     "back": "பின்செல்",
     "usernameAvailable": "பயனர்பெயர் கிடைக்கிறது!",
     "signUpToClaim": "பெற பதிவு செய்யுங்கள்",

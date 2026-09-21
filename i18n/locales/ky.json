@@ -1531,6 +1531,10 @@
     "returnHome": "Башкы бетке кайтуу"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Бул пост жеткиликтүү эмес",
+      "commentUnavailable": "Бул комментарий мындан ары жеткиликтүү эмес"
+    },
     "back": "Артка",
     "usernameAvailable": "Колдонуучу аты жеткиликтүү!",
     "signUpToClaim": "Ээлөө үчүн бүгүн каттоодон өтүңүз",

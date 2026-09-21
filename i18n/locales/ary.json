@@ -1570,6 +1570,10 @@
     "returnHome": "رجع للصفحة الرئيسية"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "هذا المنشور غير متاح",
+      "commentUnavailable": "لم يعد هذا التعليق متاحًا"
+    },
     "back": "رجع",
     "usernameAvailable": "اسم المستخدم متاح!",
     "signUpToClaim": "سجل اليوم باش تاخدو",

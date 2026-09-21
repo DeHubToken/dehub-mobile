@@ -1550,6 +1550,10 @@
     "returnHome": "Kɛnɛ kɔ"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "O site t'a yira ko",
+      "commentUnavailable": "O gafe be weele ko: \"Logo ɲumanw\"."
+    },
     "back": "Kɔrɔbɔ",
     "usernameAvailable": "Kɔrɔbɔ",
     "signUpToClaim": "Sɔgɔma kɛ",

@@ -1551,6 +1551,10 @@
     "returnHome": "Zur Startseite"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Dieser Beitrag ist nicht verfügbar",
+      "commentUnavailable": "Dieser Kommentar ist nicht mehr verfügbar"
+    },
     "back": "Zurück",
     "usernameAvailable": "Benutzername verfügbar!",
     "signUpToClaim": "Registriere dich, um ihn zu beanspruchen",

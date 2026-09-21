@@ -1572,6 +1572,10 @@
     "returnHome": "Rudi Nyumbani"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Chapisho hili halipatikani",
+      "commentUnavailable": "Maoni haya hayapatikani tena"
+    },
     "back": "Rudi",
     "usernameAvailable": "Jina la mtumiaji linapatikana!",
     "signUpToClaim": "Jisajili leo kudai",

@@ -1544,6 +1544,10 @@
     "returnHome": "घर वापस जाव"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "ए लेख उपलब्ध नी हवय",
+      "commentUnavailable": "ए टिप्पणी अब उपलब्ध नी हवय"
+    },
     "back": "पाछू",
     "usernameAvailable": "यूजरनेम उपलब्ध हे!",
     "signUpToClaim": "दावा करे बर आज साइन अप करव",

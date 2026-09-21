@@ -1558,6 +1558,10 @@
     "returnHome": "হোমে ফিরুন"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "এই পোস্টটি উপলভ্য নয়",
+      "commentUnavailable": "এই মন্তব্যটি আর উপলভ্য নয়"
+    },
     "back": "ফিরুন",
     "usernameAvailable": "ব্যবহারকারীর নাম উপলব্ধ!",
     "signUpToClaim": "দাবি করতে আজই সাইন আপ করুন",

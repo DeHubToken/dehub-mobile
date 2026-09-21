@@ -1531,6 +1531,10 @@
     "returnHome": "Bali menyang Beranda"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Pos iki ora kasedhiya",
+      "commentUnavailable": "Komentar iki wis ora kasedhiya"
+    },
     "back": "Bali",
     "usernameAvailable": "Jeneng pangguna kasedhiya!",
     "signUpToClaim": "Daftar kanggo njupuk",

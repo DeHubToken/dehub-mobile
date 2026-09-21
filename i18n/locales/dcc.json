@@ -1454,6 +1454,10 @@
     "returnHome": "گھر واپس جاؤ"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "یہ پوسٹ دستیاب نہیں ہے",
+      "commentUnavailable": "یہ تبصرہ اب دستیاب نہیں ہے"
+    },
     "back": "واپس",
     "usernameAvailable": "یوزرنیم دستیاب ہے!",
     "signUpToClaim": "آج سائن اپ کر کے لو",

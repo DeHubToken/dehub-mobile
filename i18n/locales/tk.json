@@ -1518,6 +1518,10 @@
     "returnHome": "Baş sahypa gaýdyp barmak"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Bu makala ýok",
+      "commentUnavailable": "Bu pikir indi ýok"
+    },
     "back": "Yza",
     "usernameAvailable": "Ulanyjy ady boş!",
     "signUpToClaim": "Hasaba duruň we alyň",

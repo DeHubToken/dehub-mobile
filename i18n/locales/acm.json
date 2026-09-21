@@ -1531,6 +1531,10 @@
     "returnHome": "ارجع للبيت"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "هذا المنشور غير متوفر",
+      "commentUnavailable": "هذا التعليق لم يعد متوفرًا"
+    },
     "back": "رجوع",
     "usernameAvailable": "اسم المستخدم متاح!",
     "signUpToClaim": "سجّل اليوم عشان تاخذه",

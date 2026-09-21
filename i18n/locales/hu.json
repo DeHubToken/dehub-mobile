@@ -1434,6 +1434,10 @@
     "attachmentTooLarge": "Minden fájl legyen 20 MB alatt"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Ez a bejegyzés nem érhető el",
+      "commentUnavailable": "Ez a megjegyzés már nem érhető el"
+    },
     "back": "Vissza",
     "usernameAvailable": "Felhasználónév elérhető!",
     "signUpToClaim": "Regisztráljon és foglalja le",

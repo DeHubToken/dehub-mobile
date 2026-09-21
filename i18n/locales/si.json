@@ -1561,6 +1561,10 @@
     "returnHome": "මුල් පිටුවට ආපසු"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "මෙම තනතුර නොපවතී",
+      "commentUnavailable": "මෙම අදහස් දැක්වීම තවදුරටත් නොමැත"
+    },
     "back": "ආපසු",
     "notFound": "පැතිකඩ හමු නොවීය",
     "followers": "අනුගාමිකයන්",

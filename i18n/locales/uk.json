@@ -2245,6 +2245,10 @@
     "returnHome": "Return Home"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Цей допис недоступний",
+      "commentUnavailable": "Цей коментар більше не доступний"
+    },
     "back": "Back",
     "usernameAvailable": "Username available!",
     "signUpToClaim": "Sign up today to claim",

@@ -1554,6 +1554,10 @@
     "attachmentTooLarge": "Ogni file deve essere sotto i 20 MB"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Questo post non è disponibile",
+      "commentUnavailable": "Questo commento non è più disponibile"
+    },
     "back": "Indietro",
     "usernameAvailable": "Nome utente disponibile!",
     "signUpToClaim": "Registrati oggi per richiederlo",

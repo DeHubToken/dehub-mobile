@@ -257,6 +257,10 @@
     }
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "Hierdie pos is nie beskikbaar nie",
+      "commentUnavailable": "Hierdie kommentaar is nie meer beskikbaar nie"
+    },
     "editProfile": "Wysig profiel",
     "profileSettings": "Profielinstellings",
     "accountSettings": "Rekeninginstellings",

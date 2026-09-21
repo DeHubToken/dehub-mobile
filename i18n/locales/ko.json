@@ -1478,6 +1478,10 @@
     "returnHome": "홈으로 돌아가기"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "이 포스트는 이용할 수 없습니다.",
+      "commentUnavailable": "이 댓글은 더 이상 사용할 수 없습니다"
+    },
     "back": "뒤로",
     "usernameAvailable": "사용 가능한 사용자명!",
     "signUpToClaim": "가입하여 획득",

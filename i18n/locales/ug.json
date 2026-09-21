@@ -1529,6 +1529,10 @@
     "returnHome": "باش بەتكە قايتىش"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "بۇ يازما مەۋجۇت ئەمەس",
+      "commentUnavailable": "بۇ ئىنكاس ئەمدى مەۋجۇت ئەمەس"
+    },
     "back": "قايتىش",
     "usernameAvailable": "ئىشلەتكۈچى ئىسمى بوش!",
     "signUpToClaim": "تىزىملىتىپ ئېلىڭ",

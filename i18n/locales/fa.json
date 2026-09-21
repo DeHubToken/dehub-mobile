@@ -1570,6 +1570,10 @@
     "returnHome": "بازگشت به خانه"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "این پست در دسترس نیست",
+      "commentUnavailable": "این نظر دیگر در دسترس نیست"
+    },
     "back": "بازگشت",
     "usernameAvailable": "نام کاربری موجود است!",
     "signUpToClaim": "امروز ثبت‌نام کنید تا",

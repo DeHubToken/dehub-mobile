@@ -1529,6 +1529,10 @@
     "returnHome": "ارجع للبيت"
   },
   "profile": {
+    "replyThread": {
+      "postUnavailable": "البوست ده مش موجود",
+      "commentUnavailable": "الكومنت ده مش موجود تاني"
+    },
     "back": "ارجع",
     "usernameAvailable": "اسم المستخدم متاح!",
     "signUpToClaim": "سجّل النهارده علشان تاخده",
