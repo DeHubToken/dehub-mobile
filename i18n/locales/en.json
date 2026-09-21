@@ -1589,6 +1589,10 @@
     "importWallet": "Import Wallet",
     "privateKeyPlaceholder": "Enter your private key",
     "importExternalWallet": "Import external wallet",
+    "migrateAccount": "Migrate account",
+    "migrateAccountBody": "Had a DeHub account before? Sign in with the same email, phone, Google or Apple login you used back then. If it matches an earlier account, you will be offered to bring over its wallet, username and balance.",
+    "migrateAccountNote": "A one-time sign-in with the old login retrieves your wallet key securely on this device. It never touches our servers.",
+    "migrateAccountContinue": "Continue to sign in",
     "privateKey": "Private key",
     "pasteFromClipboard": "Paste from clipboard",
     "learnMoreAt": "Learn more at dehub.io",
@@ -4346,6 +4350,7 @@
     "recoverOnWebsite": "Recover on dehub.io",
     "createNewAnyway": "I don't want that account - create a new one anyway",
     "couldNotRead": "We could not read that recovered wallet. Nothing was changed.",
+    "noOldAccountFound": "There is no earlier DeHub account on this login, so there is nothing to bring over. Setting up a new account instead.",
     "didNotRecoverEither": "That login did not recover either profile shown here. Nothing changed. Try the original sign-in for the profile you want.",
     "didNotRecoverThis": "That login recovered a different wallet from this profile. Nothing changed. Try the sign-in that originally created it.",
     "couldNotRetrieve": "Could not retrieve that old wallet on this device. You can still recover it on dehub.io below."

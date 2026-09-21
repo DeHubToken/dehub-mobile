@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useState } from "react";
 import { View } from "react-native";
 import ImportWalletModal from "./ImportWalletModal";
+import MigrateAccountModal from "./MigrateAccountModal";
 import { AuthButton, AuthDivider } from "./AuthControls";
 import { useTranslation } from "react-i18next";
 
@@ -16,6 +17,7 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
     const { t } = useTranslation();
     const isDisabled = !!disabled || !!busy;
     const [modalVisible, setModalVisible] = useState(false);
+    const [migrateVisible, setMigrateVisible] = useState(false);
     
     const handlePress = useCallback(() => {
       if (onImport) {
@@ -34,6 +36,15 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
       <View className={className}>
         <AuthDivider label={t("loginModal.or")} />
 
+        {/* Same slot on web (LoginModalBody): two more ways in, both of which
+            still need one of the sign-ins above first. */}
+        <AuthButton
+          icon="download-outline"
+          label={t("auth.migrateAccount")}
+          onPress={() => setMigrateVisible(true)}
+          disabled={isDisabled}
+        />
+
         <AuthButton
           icon="key"
           label={t("auth.importExternalWallet")}
@@ -43,6 +54,7 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
 
         {/* Import Wallet Modal - shown when used outside navigation context */}
         <ImportWalletModal visible={modalVisible} onClose={handleCloseModal} />
+        <MigrateAccountModal visible={migrateVisible} onClose={() => setMigrateVisible(false)} />
       </View>
     );
   }
