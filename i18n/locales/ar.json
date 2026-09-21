@@ -624,7 +624,10 @@
       "unavailable": "البث من المشفر غير متاح حاليًا على حسابك.",
       "serverCopied": "تم نسخ الخادم",
       "keyCopied": "تم نسخ مفتاح الدفق"
-    }
+    },
+    "socialFollowers": "المتابعون على {{platform}}",
+    "socialFollowersHint": "يظهر في ملفك التعريفي كجزء من مدى وصولك الإجمالي. أدخل الرقم بنفسك — نحن لا نقرأه من المنصة.",
+    "socialFollowersPlaceholder": "على سبيل المثال 12500"
   },
   "common": {
     "mute": "كتم الصوت",
@@ -1463,7 +1466,13 @@
     "noImages": "لا توجد صور بعد",
     "noImagesSub": "ستظهر منشورات الصور هنا",
     "noPlans": "لا توجد خطط اشتراك",
-    "noPlansSub": "لم يعدّ هذا المنشئ أي خطة بعد"
+    "noPlansSub": "لم يعدّ هذا المنشئ أي خطة بعد",
+    "reach": {
+      "total": "الوصول الكلي",
+      "breakdownTitle": "من أين يأتي هذا الوصول",
+      "dehubFollowers": "متابعو DeHub",
+      "selfReported": "يتم إدخال عدد المتابعين الاجتماعيين من قبل المنشئ."
+    }
   },
   "messages": {
     "smartRepliesOff": "تم إيقاف الردود المقترحة",

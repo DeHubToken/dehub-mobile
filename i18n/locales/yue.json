@@ -625,7 +625,10 @@
       "unavailable": "你的帳戶目前無法從編碼器進行直播。",
       "serverCopied": "伺服器複製咗",
       "keyCopied": "串流密鑰複製咗"
-    }
+    },
+    "socialFollowers": "追蹤者喺 {{platform}}",
+    "socialFollowersHint": "喺你嘅個人檔案上面顯示，作為你總觸及率嘅一部分。你自己輸入個號碼 — 我哋唔會喺平台度睇。",
+    "socialFollowersPlaceholder": "例如12500"
   },
   "common": {
     "mute": "靜音",
@@ -1602,7 +1605,13 @@
     "noImages": "仲未有圖片",
     "noImagesSub": "圖片帖子會喺呢度顯示",
     "noPlans": "冇訂閱方案",
-    "noPlansSub": "呢位創作者仲未設定方案"
+    "noPlansSub": "呢位創作者仲未設定方案",
+    "reach": {
+      "total": "總觸及率",
+      "breakdownTitle": "呢個觸及範圍嚟自邊度",
+      "dehubFollowers": "DeHub 追蹤者",
+      "selfReported": "社交追蹤者數目係由創作者輸入。"
+    }
   },
   "tv": {
     "title": "電視",

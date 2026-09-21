@@ -680,7 +680,8 @@
       "unavailable": "Streaming from an encoder is not available on your account right now.",
       "serverCopied": "Server copied",
       "keyCopied": "Stream key copied"
-    }
+    },
+    "socialFollowersPlaceholder": "जैसे 12500"
   },
   "notifications": {
     "badgeTierUp": "শুভেচ্ছা! এলা তুই {{tier}} 🎉",

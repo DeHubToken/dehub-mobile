@@ -553,7 +553,8 @@
       "unavailable": "Стримовање са кодера тренутно није доступно на вашем налогу.",
       "serverCopied": "Сервер је копиран",
       "keyCopied": "Кључ за стрим је копиран"
-    }
+    },
+    "socialFollowersPlaceholder": "npr. 12500"
   },
   "common": {
     "mute": "Искључи звук",

@@ -639,7 +639,10 @@
       "unavailable": "現在、アカウントではエンコーダーからのストリーミングは利用できません。",
       "serverCopied": "サーバーがコピーされました",
       "keyCopied": "ストリームキーがコピーされました"
-    }
+    },
+    "socialFollowers": "{{platform}}のフォロワー",
+    "socialFollowersHint": "合計リーチの一部としてプロフィールに表示されます。 ご自身で番号を入力してください。プラットフォームから読み取ることはありません。",
+    "socialFollowersPlaceholder": "例） 12500"
   },
   "common": {
     "mute": "ミュート",
@@ -1615,7 +1618,13 @@
     "noImages": "画像はまだありません",
     "noImagesSub": "画像の投稿はここに表示されます",
     "noPlans": "サブスクプランはありません",
-    "noPlansSub": "このクリエイターはまだプランを設定していません"
+    "noPlansSub": "このクリエイターはまだプランを設定していません",
+    "reach": {
+      "total": "トータルリーチ",
+      "breakdownTitle": "このリーチがどこから来たのか",
+      "dehubFollowers": "DeHubフォロワー",
+      "selfReported": "ソーシャルフォロワー数は、クリエイターが入力します。"
+    }
   },
   "tv": {
     "title": "テレビ",

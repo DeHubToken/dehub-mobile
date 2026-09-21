@@ -615,7 +615,10 @@
       "unavailable": "Watsawa daga encoder ba ta samuwa a asusunka a yanzu.",
       "serverCopied": "An kwafa Server",
       "keyCopied": "Stream key kwafe"
-    }
+    },
+    "socialFollowers": "Mabiya akan {{platform}}",
+    "socialFollowersHint": "Shown a kan profile a matsayin wani ɓangare na your total isa. Shigar da lambar da kanka — ba mu karanta shi daga dandamali ba.",
+    "socialFollowersPlaceholder": "misali 12500"
   },
   "common": {
     "mute": "Kashe sauti",
@@ -1593,7 +1596,13 @@
     "noImages": "Babu hotuna tukuna",
     "noImagesSub": "Saƙonnin hoto za su bayyana a nan",
     "noPlans": "Babu tsare-tsaren biyan kuɗi",
-    "noPlansSub": "Wannan mahaliccin bai kafa wani tsari ba tukuna"
+    "noPlansSub": "Wannan mahaliccin bai kafa wani tsari ba tukuna",
+    "reach": {
+      "total": "Jimlar isa",
+      "breakdownTitle": "Inda wannan isa ya fito daga",
+      "dehubFollowers": "DeHub mabiya",
+      "selfReported": "An shigar da ƙididdigar mabiya zamantakewa ta mahalicci."
+    }
   },
   "tv": {
     "title": "Talabijin",

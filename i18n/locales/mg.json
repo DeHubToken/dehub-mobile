@@ -611,7 +611,10 @@
       "unavailable": "Tsy azo atao amin'ny kaontinao amin'izao fotoana izao ny fampitana avy amin'ny encoder.",
       "serverCopied": "Nadika avy tamin'ny mpizara",
       "keyCopied": "KEY FITEHIRY Nadika"
-    }
+    },
+    "socialFollowers": "Mpanaraka ao amin'ny {{platform}}",
+    "socialFollowersHint": "Hita ao amin'ny mombamomba anao ho toy ny ampahany amin'ny tontolonao. Tsy Maninona Ka — namaha izany fotsiny.",
+    "socialFollowersPlaceholder": "ohatra 12500"
   },
   "common": {
     "mute": "Hampangina",
@@ -1521,7 +1524,13 @@
     "noImages": "Mbola tsy misy sary",
     "noImagesSub": "Hiseho eto ny lahatsoratra misy sary",
     "noPlans": "Tsy misy drafitra fisoratana anarana",
-    "noPlansSub": "Mbola tsy nametraka drafitra ity mpamorona ity"
+    "noPlansSub": "Mbola tsy nametraka drafitra ity mpamorona ity",
+    "reach": {
+      "total": "TONTOLO IREO",
+      "breakdownTitle": "Avy aiza no nihavian'izany",
+      "dehubFollowers": "Mpanara-dia an'i DeHub",
+      "selfReported": "Ny fandrindrana ara-tsosialy dia nampidirina tamin'ny mpamorona."
+    }
   },
   "tv": {
     "title": "TV",

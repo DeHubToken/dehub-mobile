@@ -624,7 +624,10 @@
       "unavailable": "Kodlaydigan qurilmadan efirga uzatish hozirda hisobingizda mavjud emas.",
       "serverCopied": "Server nusxalandi",
       "keyCopied": "Oqim kaliti nusxalandi"
-    }
+    },
+    "socialFollowers": "{{platform}} dagi obunachilar",
+    "socialFollowersHint": "Profilingizda umumiy qamrovingizning bir qismi sifatida ko&#39;rsatiladi. Raqamni o&#39;zingiz kiriting — biz uni platformadan o&#39;qimaymiz.",
+    "socialFollowersPlaceholder": "masalan, 12500"
   },
   "common": {
     "mute": "Ovozni o‘chirish",
@@ -1582,7 +1585,13 @@
     "noImages": "Hali rasm yo'q",
     "noImagesSub": "Rasmli postlar shu yerda paydo bo'ladi",
     "noPlans": "Obuna rejalari yo'q",
-    "noPlansSub": "Bu ijodkor hali reja yaratmagan"
+    "noPlansSub": "Bu ijodkor hali reja yaratmagan",
+    "reach": {
+      "total": "Umumiy qamrov",
+      "breakdownTitle": "Bu imkoniyat qayerdan keladi",
+      "dehubFollowers": "DeHub izdoshlari",
+      "selfReported": "Ijtimoiy tarmoqlardagi obunachilar soni yaratuvchi tomonidan kiritiladi."
+    }
   },
   "tv": {
     "title": "Televizor",

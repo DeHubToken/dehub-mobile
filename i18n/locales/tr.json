@@ -640,7 +640,10 @@
       "unavailable": "Hesabınızda şu anda bir kodlayıcıdan yayın yapmak kullanılamıyor.",
       "serverCopied": "Sunucu kopyalandı",
       "keyCopied": "Akış anahtarı kopyalandı"
-    }
+    },
+    "socialFollowers": "Takipçiler {{platform}}",
+    "socialFollowersHint": "Profilinizde toplam erişiminizin bir parçası olarak gösterilir. Sayıyı kendiniz girin — platformdan okumuyoruz.",
+    "socialFollowersPlaceholder": "ör. 12500"
   },
   "common": {
     "mute": "Sesi kapat",
@@ -1583,7 +1586,13 @@
     "noImages": "Henüz görsel yok",
     "noImagesSub": "Görsel gönderiler burada görünecek",
     "noPlans": "Abonelik planı yok",
-    "noPlansSub": "Bu içerik üreticisi henüz plan oluşturmadı"
+    "noPlansSub": "Bu içerik üreticisi henüz plan oluşturmadı",
+    "reach": {
+      "total": "Toplam erişim",
+      "breakdownTitle": "Bu erişimin nereden geldiği",
+      "dehubFollowers": "DeHub takipçileri",
+      "selfReported": "Sosyal takipçi sayıları yaratıcı tarafından girilir."
+    }
   },
   "messages": {
     "smartRepliesOff": "Önerilen yanıtlar kapatıldı",

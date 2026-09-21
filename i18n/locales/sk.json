@@ -165,7 +165,13 @@
     "noImages": "Zatiaľ žiadne obrázky",
     "noImagesSub": "Príspevky s obrázkami sa objavia tu",
     "noPlans": "Žiadne plány predplatného",
-    "noPlansSub": "Tento tvorca zatiaľ nevytvoril žiadne plány"
+    "noPlansSub": "Tento tvorca zatiaľ nevytvoril žiadne plány",
+    "reach": {
+      "total": "Celkový dosah",
+      "breakdownTitle": "Odkiaľ pochádza tento dosah",
+      "dehubFollowers": "Sledovatelia DeHubu",
+      "selfReported": "Počet sledovateľov na sociálnych sieťach zadáva tvorca."
+    }
   },
   "settings": {
     "smartReplies": "Navrhované odpovede",
@@ -715,7 +721,10 @@
       "unavailable": "Streamovanie z kódovača nie je momentálne na vašom účte dostupné.",
       "serverCopied": "Server skopírovaný",
       "keyCopied": "Kľúč streamu bol skopírovaný"
-    }
+    },
+    "socialFollowers": "Sledujúci {{platform}}",
+    "socialFollowersHint": "Zobrazí sa vo vašom profile ako súčasť vášho celkového dosahu. Číslo zadávajte sami — z platformy ho nečítame.",
+    "socialFollowersPlaceholder": "napr. 12500"
   },
   "notifications": {
     "title": "Upozornenia",

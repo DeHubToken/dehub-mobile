@@ -35,6 +35,14 @@ import { useDebounceCallback } from "../hooks/useDebounceCallback";
 import { validateSocial } from "../libs/links.utils";
 import { isReservedUsername } from "../libs/reserved-usernames";
 import {
+  mergeSocialFollowers,
+  readSocialFollowerInputs,
+  sameSocialFollowerInputs,
+  sanitizeFollowerInput,
+  type SocialFollowerInputs,
+  type SocialPlatform,
+} from "../libs/social-reach";
+import {
   TWITTER_SVG_XML,
   INSTAGRAM_SVG_XML,
   TIKTOK_SVG_XML,
@@ -50,6 +58,8 @@ type SocialField = {
   key: string;
   label: string;
   platform: "x" | "instagram" | "tiktok" | "youtube" | "discord" | "telegram" | "facebook";
+  /** The platform's id in libs/social-reach, which keys its follower count. */
+  reach: SocialPlatform;
   svg: string;
   placeholder: string;
   value: string;
@@ -78,6 +88,15 @@ const EditProfileScreen = () => {
   const [discordLink, setDiscordLink] = useState<string>(user?.discordLink || "");
   const [telegramLink, setTelegramLink] = useState<string>(user?.telegramLink || "");
   const [facebookLink, setFacebookLink] = useState<string>(user?.facebookLink || "");
+  // Self-reported follower counts for the linked socials, feeding the profile's
+  // total reach. They live in `customs`, which the API replaces wholesale, so
+  // a save resends the whole blob around the counts.
+  const [socialFollowers, setSocialFollowers] = useState<SocialFollowerInputs>(() =>
+    readSocialFollowerInputs((user as any)?.customs)
+  );
+  const setFollowerInput = useCallback((platform: SocialPlatform, value: string) => {
+    setSocialFollowers((prev) => ({ ...prev, [platform]: sanitizeFollowerInput(value) }));
+  }, []);
 
   const [localAvatar, setLocalAvatar] = useState<string | null>(null);
   const [localCover, setLocalCover] = useState<string | null>(null);
@@ -111,6 +130,7 @@ const EditProfileScreen = () => {
       discordLink: user?.discordLink || "",
       telegramLink: user?.telegramLink || "",
       facebookLink: user?.facebookLink || "",
+      socialFollowers: readSocialFollowerInputs((user as any)?.customs),
     }),
     [user]
   );
@@ -127,13 +147,14 @@ const EditProfileScreen = () => {
       discordLink.trim() !== initial.discordLink.trim() ||
       telegramLink.trim() !== initial.telegramLink.trim() ||
       facebookLink.trim() !== initial.facebookLink.trim() ||
+      !sameSocialFollowerInputs(socialFollowers, initial.socialFollowers) ||
       !!localAvatar ||
       !!localCover
     );
   }, [
     displayName, username, aboutMe,
     twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink,
-    localAvatar, localCover, initial,
+    socialFollowers, localAvatar, localCover, initial,
   ]);
 
   const runUsernameCheck = useDebounceCallback(async (name: string) => {
@@ -267,7 +288,24 @@ const EditProfileScreen = () => {
         telegramLink: tg.normalized,
         facebookLink: fb.normalized,
       };
+      // Follower counts ride in `customs`, which the API replaces wholesale
+      // and posts as JSON over FormData (see PrivacySettingsScreen). Sent only
+      // when a count changed, so an unrelated save cannot overwrite a blob
+      // another screen has since written.
+      const mergedCustoms = sameSocialFollowerInputs(socialFollowers, initial.socialFollowers)
+        ? undefined
+        : mergeSocialFollowers((user as any)?.customs, socialFollowers, {
+            twitter: tw.normalized,
+            instagram: ig.normalized,
+            tiktok: tk.normalized,
+            youtube: yt.normalized,
+            discord: dc.normalized,
+            telegram: tg.normalized,
+            facebook: fb.normalized,
+          });
+      if (mergedCustoms) payload.customs = JSON.stringify(mergedCustoms);
       await patchUser?.({
+        ...(mergedCustoms ? { customs: mergedCustoms as any } : {}),
         displayName: payload.displayName,
         username: payload.username,
         aboutMe: payload.aboutMe,
@@ -309,18 +347,18 @@ const EditProfileScreen = () => {
   }, [
     displayName, username, aboutMe,
     twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink,
-    localAvatar, localCover, user, patchUser, refreshUser, navigation, initial,
+    socialFollowers, localAvatar, localCover, user, patchUser, refreshUser, navigation, initial,
   ]);
 
   const socialFields: SocialField[] = useMemo(
     () => [
-      { key: "twitterLink", label: "X (Twitter)", platform: "x", svg: TWITTER_SVG_XML, placeholder: "Username", value: twitterLink, setter: setTwitterLink },
-      { key: "instagramLink", label: "Instagram", platform: "instagram", svg: INSTAGRAM_SVG_XML, placeholder: "Username", value: instagramLink, setter: setInstagramLink },
-      { key: "tiktokLink", label: "TikTok", platform: "tiktok", svg: TIKTOK_SVG_XML, placeholder: "Username", value: tiktokLink, setter: setTiktokLink },
-      { key: "youtubeLink", label: "YouTube", platform: "youtube", svg: YOUTUBE_SVG_XML, placeholder: "Channel URL or handle", value: youtubeLink, setter: setYoutubeLink },
-      { key: "discordLink", label: "Discord", platform: "discord", svg: DISCORD_SVG_XML, placeholder: "Invite link", value: discordLink, setter: setDiscordLink },
-      { key: "telegramLink", label: "Telegram", platform: "telegram", svg: TELEGRAM_SVG_XML, placeholder: "Username", value: telegramLink, setter: setTelegramLink },
-      { key: "facebookLink", label: "Facebook", platform: "facebook", svg: FACEBOOK_SVG_XML, placeholder: "Profile URL or username", value: facebookLink, setter: setFacebookLink },
+      { key: "twitterLink", label: "X (Twitter)", platform: "x", reach: "twitter", svg: TWITTER_SVG_XML, placeholder: "Username", value: twitterLink, setter: setTwitterLink },
+      { key: "instagramLink", label: "Instagram", platform: "instagram", reach: "instagram", svg: INSTAGRAM_SVG_XML, placeholder: "Username", value: instagramLink, setter: setInstagramLink },
+      { key: "tiktokLink", label: "TikTok", platform: "tiktok", reach: "tiktok", svg: TIKTOK_SVG_XML, placeholder: "Username", value: tiktokLink, setter: setTiktokLink },
+      { key: "youtubeLink", label: "YouTube", platform: "youtube", reach: "youtube", svg: YOUTUBE_SVG_XML, placeholder: "Channel URL or handle", value: youtubeLink, setter: setYoutubeLink },
+      { key: "discordLink", label: "Discord", platform: "discord", reach: "discord", svg: DISCORD_SVG_XML, placeholder: "Invite link", value: discordLink, setter: setDiscordLink },
+      { key: "telegramLink", label: "Telegram", platform: "telegram", reach: "telegram", svg: TELEGRAM_SVG_XML, placeholder: "Username", value: telegramLink, setter: setTelegramLink },
+      { key: "facebookLink", label: "Facebook", platform: "facebook", reach: "facebook", svg: FACEBOOK_SVG_XML, placeholder: "Profile URL or username", value: facebookLink, setter: setFacebookLink },
     ],
     [twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink]
   );
@@ -487,10 +525,13 @@ const EditProfileScreen = () => {
             </View>
 
             <View className="mt-2">
-              <Text className="text-neutral-400 text-xs font-medium mb-3">Social Links</Text>
+              <Text className="text-neutral-400 text-xs font-medium mb-1.5">{t("settings.socialLinks")}</Text>
+              <Text className="text-neutral-500 text-xs mb-3">{t("settings.socialFollowersHint")}</Text>
               <View className="gap-3">
                 {socialFields.map((field) => {
                   const hasError = !!socialErrors[field.key];
+                  const linked = field.value.trim().length > 0;
+                  const followersLabel = t("settings.socialFollowers", { platform: field.label });
                   return (
                     <View key={field.key}>
                       <View
@@ -513,9 +554,27 @@ const EditProfileScreen = () => {
                           onChangeText={(val) => {
                             field.setter(val);
                             setSocialErrors((prev) => ({ ...prev, [field.key]: undefined }));
+                            // A count only means something next to its link,
+                            // so clearing the link retires the count with it.
+                            if (!val.trim()) setFollowerInput(field.reach, "");
                           }}
                           autoCapitalize="none"
                         />
+                      </View>
+                      <View className={`flex-row items-center mt-2 ${linked ? "" : "opacity-50"}`}>
+                        <TextInput
+                          className="w-36 bg-theme-neutrals-900 text-white text-sm px-3 py-2 rounded-xl border border-theme-neutrals-700"
+                          placeholderTextColor="#6b7280"
+                          placeholder={t("settings.socialFollowersPlaceholder")}
+                          value={linked ? socialFollowers[field.reach] : ""}
+                          editable={linked}
+                          keyboardType="number-pad"
+                          onChangeText={(val) => setFollowerInput(field.reach, val)}
+                          accessibilityLabel={followersLabel}
+                        />
+                        <Text className="flex-1 text-neutral-400 text-xs ml-3" numberOfLines={2}>
+                          {followersLabel}
+                        </Text>
                       </View>
                       {hasError && (
                         <Text className="text-[10px] text-white/80 mt-1 ml-1">

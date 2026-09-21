@@ -625,7 +625,10 @@
       "unavailable": "Streamování z enkodéru není na vašem účtu momentálně k dispozici.",
       "serverCopied": "Server zkopírován",
       "keyCopied": "Klíč streamu zkopírován"
-    }
+    },
+    "socialFollowers": "Sledující: {{platform}}",
+    "socialFollowersHint": "Zobrazí se na vašem profilu jako součást vašeho celkového dosahu. Číslo zadávejte sami — z platformy ho nečteme.",
+    "socialFollowersPlaceholder": "např. 12500"
   },
   "common": {
     "mute": "Ztlumit",
@@ -1465,7 +1468,13 @@
     "noImages": "Zatím žádné obrázky",
     "noImagesSub": "Příspěvky s obrázky se objeví tady",
     "noPlans": "Žádné plány předplatného",
-    "noPlansSub": "Tento tvůrce zatím žádné plány nenastavil"
+    "noPlansSub": "Tento tvůrce zatím žádné plány nenastavil",
+    "reach": {
+      "total": "Celkový dosah",
+      "breakdownTitle": "Odkud tento dosah pochází",
+      "dehubFollowers": "Následovníci DeHubu",
+      "selfReported": "Počet sledujících na sociálních sítích zadává tvůrce."
+    }
   },
   "messages": {
     "smartRepliesOff": "Navrhované odpovědi jsou vypnuté",
