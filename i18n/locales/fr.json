@@ -4592,6 +4592,7 @@
     "balanceAmount": "Available: {{amount}} {{symbol}}"
   },
   "dex": {
+    "totalLiquidity": "Liquidité totale · USD",
     "lowestSell": "Vente la plus basse · USDC",
     "liveChartHint": "Vente la plus basse · USDC · glissez pour examiner",
     "noSellHistory": "Les bougies commencent lorsque des liquidités de vente vérifiées sont disponibles.",
@@ -4621,7 +4622,7 @@
     "referenceNote": "Référence USD pondérée par la liquidité du plus grand pool DHB de chaque réseau. Ce n'est pas une cotation d'exécution.",
     "partialHistory": "Certaines données historiques ne couvrent qu'un réseau.",
     "source": "Source {{name}}",
-    "spread": "Écart · USDC",
+    "spread": "Écart · USD",
     "overlap": "Chevauchement des prix des réseaux",
     "usePrice": "Utiliser le prix {{price}}",
     "maxBuy": "Prix d'achat maximum",
@@ -4662,8 +4663,8 @@
       "confirm": "En attente de confirmation…",
       "index": "Inscription de la position…"
     },
-    "title": "DHB / USDC",
-    "heading": "DHB / USDC",
+    "title": "DHB / USD",
+    "heading": "DHB / USD",
     "intro": "Fixez votre prix d'achat ou de vente dans une position Uniswap v4. Les ordres se remplissent quand le cours traverse la fourchette.",
     "buySell": "Acheter / Vendre",
     "buy": "Acheter des DHB",
@@ -4687,8 +4688,8 @@
     "feeNote": "Frais LP de 0 % · frais de réseau applicables.",
     "newPosition": "Nouvelle position DHB / USDC",
     "amount": "Montant de DHB",
-    "minimum": "USDC minimum par DHB",
-    "maximum": "USDC maximum par DHB",
+    "minimum": "USD minimum par DHB",
+    "maximum": "USD maximum par DHB",
     "balance": "{{chain}} · {{amount}} DHB disponibles",
     "noBalance": "Aucun DHB disponible sur Base ou BNB Chain",
     "reviewDetail": "Vérification : proposer {{amount}} DHB sur {{chain}} entre {{minPrice}} et {{maxPrice}} USDC par DHB. Votre portefeuille demandera les autorisations puis créera la position.",

@@ -4697,5 +4697,8 @@
     "emptyDescription": "投稿を下書きとして保存すると、ここに表示されます。",
     "saveTitle": "下書きを保存",
     "savePrompt": "この投稿を下書きとして保存して、後で投稿しますか？"
+  },
+  "dex": {
+    "totalLiquidity": "流動性合計 · USD"
   }
 }

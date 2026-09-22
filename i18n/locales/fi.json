@@ -4630,5 +4630,8 @@
     "emptyDescription": "Kun tallennat julkaisun luonnoksena, se näkyy tässä.",
     "saveTitle": "Tallenna luonnos",
     "savePrompt": "Tallennetaanko tämä julkaisu luonnoksena, jotta se voidaan viimeistellä ja julkaista myöhemmin?"
+  },
+  "dex": {
+    "totalLiquidity": "Kokonaislikviditeetti · USD"
   }
 }

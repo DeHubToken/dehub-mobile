@@ -4618,5 +4618,8 @@
     "emptyDescription": "Idan ka adana wani sakon a matsayin juzu'i, zai bayyana anan.",
     "saveTitle": "Ajiye Juzu'i",
     "savePrompt": "Ajiye wannan sakon a matsayin juzu'i don kammalawa da bugawa daga baya?"
+  },
+  "dex": {
+    "totalLiquidity": "Jimillar ruwa · USD"
   }
 }

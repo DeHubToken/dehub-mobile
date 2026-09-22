@@ -4698,5 +4698,8 @@
     "emptyDescription": "Gdy zapiszesz post jako wersję roboczą, pojawi się on tutaj.",
     "saveTitle": "Zapisz wersję roboczą",
     "savePrompt": "Zapisać ten post jako wersję roboczą do ukończenia i opublikowania później?"
+  },
+  "dex": {
+    "totalLiquidity": "Łączna płynność · USD"
   }
 }

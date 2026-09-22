@@ -4582,6 +4582,7 @@
     "balanceAmount": "Available: {{amount}} {{symbol}}"
   },
   "dex": {
+    "totalLiquidity": "Total liquidity · USD",
     "lowestSell": "Lowest sell · USDC",
     "liveChartHint": "Lowest sell · USDC · drag to inspect",
     "noSellHistory": "Candles start when verified sell liquidity is available.",
@@ -4611,7 +4612,7 @@
     "referenceNote": "USD reference weighted by liquidity in the largest DHB pool on each network. This is not an execution quote.",
     "partialHistory": "Some history has partial network coverage.",
     "source": "{{name}} source",
-    "spread": "Spread · USDC",
+    "spread": "Spread · USD",
     "overlap": "Network price overlap",
     "usePrice": "Use price {{price}}",
     "maxBuy": "Maximum buy price",
@@ -4652,8 +4653,8 @@
       "confirm": "Waiting for confirmation…",
       "index": "Registering your position…"
     },
-    "title": "DHB / USDC",
-    "heading": "DHB / USDC",
+    "title": "DHB / USD",
+    "heading": "DHB / USD",
     "intro": "Set your buy or sell price with a Uniswap v4 position. Orders fill as trading moves through their range.",
     "buySell": "Buy / Sell",
     "buy": "Buy DHB",
@@ -4677,8 +4678,8 @@
     "feeNote": "0% LP fee · network gas applies.",
     "newPosition": "New DHB / USDC position",
     "amount": "DHB amount",
-    "minimum": "Minimum USDC per DHB",
-    "maximum": "Maximum USDC per DHB",
+    "minimum": "Minimum USD per DHB",
+    "maximum": "Maximum USD per DHB",
     "balance": "{{chain}} · {{amount}} liquid DHB",
     "noBalance": "No liquid DHB on Base or BNB Chain",
     "reviewDetail": "Review: list {{amount}} DHB on {{chain}} at {{minPrice}}–{{maxPrice}} USDC per DHB. Your wallet will ask for approvals and mint the position.",

@@ -4634,5 +4634,8 @@
     "emptyDescription": "Når du gemmer et opslag som kladde, vises det her.",
     "saveTitle": "Gem udkast",
     "savePrompt": "Gem dette opslag som et udkast for at afslutte og slå det op senere?"
+  },
+  "dex": {
+    "totalLiquidity": "Samlet likviditet · USD"
   }
 }

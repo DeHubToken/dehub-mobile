@@ -4532,5 +4532,8 @@
     "emptyDescription": "N'i ye sɛbɛ dɔ mara i ka sɛbɛ kɔnɔ, a bena ye yan.",
     "saveTitle": "K'a to a ka baara la",
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
+  },
+  "dex": {
+    "totalLiquidity": "Wari bɛɛ lajɛlen · USD"
   }
 }

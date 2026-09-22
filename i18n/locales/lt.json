@@ -4628,5 +4628,8 @@
     "emptyDescription": "Kai įrašysite įrašą kaip juodraštį, jis bus rodomas čia.",
     "saveTitle": "Išsaugoti juodraštį",
     "savePrompt": "Išsaugoti šį įrašą kaip juodraštį, kad užbaigtumėte ir paskelbtumėte vėliau?"
+  },
+  "dex": {
+    "totalLiquidity": "Bendras likvidumas · USD"
   }
 }

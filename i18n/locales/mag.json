@@ -4567,5 +4567,8 @@
     "emptyDescription": "पोस्ट को ड्राफ्ट के रूप में save करे तो आपको यहाँ दिखाई देगा ।",
     "saveTitle": "सहेजें, प्रोजेक्ट्स को सहेजें",
     "savePrompt": "Leave a Comment on कुछ देर ठहर जा ऐ जिंदगी..."
+  },
+  "dex": {
+    "totalLiquidity": "कुल तरलता · USD"
   }
 }

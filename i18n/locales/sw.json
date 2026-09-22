@@ -4630,5 +4630,8 @@
     "emptyDescription": "Unapohifadhi chapisho kama rasimu, litaonekana hapa.",
     "saveTitle": "Hifadhi Rasimu",
     "savePrompt": "Hifadhi chapisho hili kama rasimu ya kukamilisha na kuchapisha baadaye?"
+  },
+  "dex": {
+    "totalLiquidity": "Ukwasi wa jumla · USD"
   }
 }

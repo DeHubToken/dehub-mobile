@@ -4748,5 +4748,8 @@
     "emptyDescription": "As jy 'n boodskap as konsep stoor, sal dit hier verskyn.",
     "saveTitle": "Stoor Rofwerk",
     "savePrompt": "Stoor hierdie pos as 'n konsep om later te voltooi en te pos?"
+  },
+  "dex": {
+    "totalLiquidity": "Totale likiditeit · USD"
   }
 }

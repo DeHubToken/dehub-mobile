@@ -4658,5 +4658,8 @@
     "emptyDescription": "Uma ugcina iphosti njengedrafti, izovela lapha.",
     "saveTitle": "Londoloza Idrafti",
     "savePrompt": "Gcina le phosti njengedrafti ukuze uqedele futhi uphoste kamuva?"
+  },
+  "dex": {
+    "totalLiquidity": "Ingqikithi yokugeleza kwemali · USD"
   }
 }

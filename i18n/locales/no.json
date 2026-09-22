@@ -4614,5 +4614,8 @@
     "emptyDescription": "Når du lagrer et innlegg som utkast, vil det vises her.",
     "saveTitle": "Lagre kladd",
     "savePrompt": "Lagre dette innlegget som et utkast for å fullføre og publisere senere?"
+  },
+  "dex": {
+    "totalLiquidity": "Samlet likviditet · USD"
   }
 }
