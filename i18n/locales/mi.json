@@ -4616,6 +4616,9 @@
     "savePrompt": "Whakaorangia tenei pou hei whakatakotoranga hei whakaoti me te tuku i muri mai?"
   },
   "dex": {
+    "lowestPrice": "Utu iti rawa · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Tapeke wairere · USD"
   }
 }

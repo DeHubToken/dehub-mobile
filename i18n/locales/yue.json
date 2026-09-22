@@ -4629,6 +4629,9 @@
     "savePrompt": "將呢個帖子儲存為草稿，等遲啲完成同發佈？"
   },
   "dex": {
+    "lowestPrice": "最低價 · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "總流動性 · USD"
   }
 }

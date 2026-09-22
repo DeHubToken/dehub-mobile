@@ -4899,6 +4899,9 @@
     "savePrompt": "Dit bericht opslaan als een concept om te voltooien en later te plaatsen?"
   },
   "dex": {
+    "lowestPrice": "Laagste prijs · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Totale liquiditeit · USD"
   }
 }

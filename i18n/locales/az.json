@@ -4614,6 +4614,9 @@
     "savePrompt": "Bu postu daha sonra bitirmək və dərc etmək üçün taslak kimi saxlamaq istəyirsiniz?"
   },
   "dex": {
+    "lowestPrice": "Ən aşağı qiymət · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Ümumi likvidlik · USD"
   }
 }

@@ -4544,6 +4544,9 @@
     "savePrompt": "ایں پوسٹ کوں مسودے دے طور تے محفوظ کر کے بعد اچ مکمل کر تے پوسٹ کریسو؟"
   },
   "dex": {
+    "lowestPrice": "سب توں گھٹ قیمت · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "کل لیکویڈیٹی · USD"
   }
 }

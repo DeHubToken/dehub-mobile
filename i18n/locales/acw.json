@@ -4585,6 +4585,9 @@
     "savePrompt": "تبغى تحفظ البوست هذا كمسودة عشان تكمله وتنزلّه بعدين؟"
   },
   "dex": {
+    "lowestPrice": "أدنى سعر · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "إجمالي السيولة · USD"
   }
 }

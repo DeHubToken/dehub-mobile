@@ -4632,6 +4632,9 @@
     "savePrompt": "Tallennetaanko tämä julkaisu luonnoksena, jotta se voidaan viimeistellä ja julkaista myöhemmin?"
   },
   "dex": {
+    "lowestPrice": "Alin hinta · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Kokonaislikviditeetti · USD"
   }
 }

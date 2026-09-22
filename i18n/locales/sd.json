@@ -4602,6 +4602,9 @@
     "savePrompt": "هن پوسٽ کي مسوده جي طور تي محفوظ ڪريو ختم ڪرڻ ۽ بعد ۾ پوسٽ ڪرڻ لاء ؟"
   },
   "dex": {
+    "lowestPrice": "گھٽ ۾ گھٽ قيمت · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "ڪل لیڪویڊیٽي · USD"
   }
 }

@@ -4636,6 +4636,9 @@
     "savePrompt": "Szeretnéd elmenteni ezt a bejegyzést piszkozatként, hogy később befejezd és közzéadd?"
   },
   "dex": {
+    "lowestPrice": "Legalacsonyabb ár · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Teljes likviditás · USD"
   }
 }

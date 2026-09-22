@@ -4598,6 +4598,9 @@
     "savePrompt": "මෙම ලිපිය අවසන් කිරීමට සහ පසුව පළ කිරීමට කෙටුම්පතක් ලෙස සුරකින්න?"
   },
   "dex": {
+    "lowestPrice": "අඩුම මිල · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "මුළු ද්‍රවශීලතාව · USD"
   }
 }

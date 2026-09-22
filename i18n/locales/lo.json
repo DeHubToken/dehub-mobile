@@ -4572,6 +4572,9 @@
     "savePrompt": "ບັນທຶກໂພສນີ້ເປັນຮ່າງເພື່ອໃຫ້ສຳເລັດ ແລະ ໂພສພາຍຫຼັງ?"
   },
   "dex": {
+    "lowestPrice": "ລາຄາຕໍ່າສຸດ · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "ສະພາບຄ່ອງລວມ · USD"
   }
 }

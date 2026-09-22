@@ -4620,6 +4620,9 @@
     "savePrompt": "Möchtsch das Inserat als Entwurf speichere zum spöter fertig mache und poste?"
   },
   "dex": {
+    "lowestPrice": "Tiefschte Priis · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Gsamtliquidität · USD"
   }
 }

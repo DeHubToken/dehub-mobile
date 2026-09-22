@@ -4608,6 +4608,9 @@
     "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
   },
   "dex": {
+    "lowestPrice": "Ọnụahịa kacha ala · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Mkpokọta mmiri ego · USD"
   }
 }
