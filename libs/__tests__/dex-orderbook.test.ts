@@ -1,4 +1,4 @@
-import { BOOK_BAND, aggregateBook, balanceFraction, defaultOrderPrice, displayBookLevels, fillFraction, formatBookPrice, formatIncrement, formatPrice, incrementDecimals, nearestBookLevels, spreadPercent } from '../dex-orderbook';
+import { BOOK_BAND, aggregateBook, balanceFraction, defaultOrderPrice, displayBookLevels, fillFraction, formatBookPrice, formatIncrement, formatPrice, incrementDecimals, nearestBookLevels, spreadPercent, priceDeviation, priceNeedsWarning, seedReference } from '../dex-orderbook';
 
 describe('combined range liquidity', () => {
   const range = { minPrice: .001, maxPrice: .00121 };
@@ -123,5 +123,22 @@ describe('combined range liquidity', () => {
     expect(balanceFraction('9007199254740993.999999999999999999', 100, 18)).toBe('9007199254740993.999999999999999999');
     expect(balanceFraction('1.000001', 25, 6)).toBe('0.25');
     expect(balanceFraction('0.000000000000000001', 50, 18)).toBe('0');
+  });
+});
+
+describe('ticket anchoring against the aggregate market', () => {
+  it('anchors sells on the higher and buys on the lower of pool and market', () => {
+    expect(seedReference('sell', 0.001, 0.0025)).toBe(0.0025);
+    expect(seedReference('buy', 0.001, 0.0025)).toBe(0.001);
+    expect(seedReference('sell', null, 0.0025)).toBe(0.0025);
+    expect(seedReference('buy', null, null)).toBeNull();
+  });
+  it('warns only in the direction that costs the trader', () => {
+    expect(priceDeviation(0.001, 0.0025)).toBeCloseTo(-0.6, 10);
+    expect(priceNeedsWarning('sell', 0.001, 0.0025)).toBe(true);
+    expect(priceNeedsWarning('sell', 0.003, 0.0025)).toBe(false);
+    expect(priceNeedsWarning('buy', 0.003, 0.0025)).toBe(true);
+    expect(priceNeedsWarning('buy', 0.001, 0.0025)).toBe(false);
+    expect(priceNeedsWarning('buy', 0.001, null)).toBe(false);
   });
 });
