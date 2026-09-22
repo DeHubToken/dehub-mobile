@@ -4652,5 +4652,19 @@
         "hostile_tone": "Враждебный тон"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Только что",
+    "minutesAgo": "{{count}}м назад",
+    "hoursAgo": "{{count}}ч назад",
+    "daysAgo": "{{count}}d назад",
+    "typeVideo": "Видео",
+    "typeText": "Текст",
+    "imageCount_one": "Изображение {{count}}",
+    "imageCount_other": "Изображения: {{count}}",
+    "emptyTitle": "Черновиков пока нет",
+    "emptyDescription": "Когда вы сохраните публикацию как черновик, она появится здесь.",
+    "saveTitle": "Сохранить черновик",
+    "savePrompt": "Сохранить эту публикацию как черновик, чтобы завершить и опубликовать позже?"
   }
 }

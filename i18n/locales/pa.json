@@ -4558,5 +4558,19 @@
         "hostile_tone": "ਦੁਸ਼ਮਣੀ ਟੋਨ"
       }
     }
+  },
+  "drafts": {
+    "justNow": "ਹੁਣੇ",
+    "minutesAgo": "{{count}} ਮਿੰਟ ਪਹਿਲਾਂ",
+    "hoursAgo": "{{count}} ਘੰਟੇ ਪਹਿਲਾਂ",
+    "daysAgo": "{{count}} ਦਿਨ ਪਹਿਲਾਂ",
+    "typeVideo": "ਵੀਡੀਓ",
+    "typeText": "ਟੈਕਸਟ",
+    "imageCount_one": "{{count}} ਚਿੱਤਰ",
+    "imageCount_other": "{{count}} ਚਿੱਤਰ",
+    "emptyTitle": "ਕੋਈ ਡਰਾਫਟ ਨਹੀਂ ਹੈ",
+    "emptyDescription": "ਜਦੋਂ ਤੁਸੀਂ ਕੋਈ ਪੋਸਟ ਡਰਾਫਟ ਵਜੋਂ ਸੇਵ ਕਰਦੇ ਹੋ, ਤਾਂ ਇਹ ਇੱਥੇ ਦਿਖਾਈ ਦੇਵੇਗੀ।",
+    "saveTitle": "ਡਰਾਫਟ ਸੇਵ ਕਰੋ",
+    "savePrompt": "ਇਸ ਪੋਸਟ ਨੂੰ ਬਾਅਦ ਵਿੱਚ ਪੂਰਾ ਕਰਨ ਅਤੇ ਪੋਸਟ ਕਰਨ ਲਈ ਡਰਾਫਟ ਵਜੋਂ ਸੇਵ ਕਰੋ?"
   }
 }

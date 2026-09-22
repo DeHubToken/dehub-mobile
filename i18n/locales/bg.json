@@ -4583,5 +4583,19 @@
         "hostile_tone": "Враждебен тон"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Току - що",
+    "minutesAgo": "Преди {{count}}m",
+    "hoursAgo": "Преди {{count}}h",
+    "daysAgo": "Преди {{count}}d",
+    "typeVideo": "Видео",
+    "typeText": "Текст",
+    "imageCount_one": "Изображение {{count}}",
+    "imageCount_other": "{{count}} изображения",
+    "emptyTitle": "Все още няма чернови",
+    "emptyDescription": "Когато запазите публикация като чернова, тя ще се появи тук.",
+    "saveTitle": "Запазване на чернова",
+    "savePrompt": "Запазване на тази публикация като чернова за довършване и публикуване по - късно?"
   }
 }

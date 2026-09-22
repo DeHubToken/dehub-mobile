@@ -4532,5 +4532,19 @@
         "hostile_tone": "ရန်လိုသောအသံ"
       }
     }
+  },
+  "drafts": {
+    "justNow": "အခုပဲ",
+    "minutesAgo": "{{count}} မီမီခင်",
+    "hoursAgo": "{{count}}h လြန္ခဲ့ေသာ",
+    "daysAgo": "{{count}}d လြန္ခဲ့ေသာ",
+    "typeVideo": "ဗီဒီယို",
+    "typeText": "စာသား",
+    "imageCount_one": "{{count}} ပုံရိပ်",
+    "imageCount_other": "{{count}} ပုံများ",
+    "emptyTitle": "မူကြမ်းမရှိသေးပါ",
+    "emptyDescription": "ပရိုဂရမ်အဖြစ် ပို့စ်တစ်ခုကို သိမ်းဆည်းသောအခါ ၊ ဤနေရာတွင် ပေါ်လာလိမ့်မည် ။",
+    "saveTitle": "မူကြမ်းကို သိမ်းဆည်းပါ",
+    "savePrompt": "ဒီ post ကိုအပြီးသတ်ရန်နှင့်နောက်ပိုင်းတွင်တင်ရန်မူကြမ်းအဖြစ်သိမ်းဆည်းပါ?"
   }
 }

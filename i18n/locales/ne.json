@@ -4615,5 +4615,19 @@
         "hostile_tone": "शत्रुतापूर्ण स्वर"
       }
     }
+  },
+  "drafts": {
+    "justNow": "भर्खरै",
+    "minutesAgo": "{{count}}m अगाडि",
+    "hoursAgo": "{{count}}घन्टा अघि",
+    "daysAgo": "{{count}}d पहिले",
+    "typeVideo": "भिडियो",
+    "typeText": "पाठ",
+    "imageCount_one": "{{count}} छवि",
+    "imageCount_other": "{{count}} तस्बिरहरू",
+    "emptyTitle": "अहिलेसम्म कुनै ड्राफ्टहरू छैनन्",
+    "emptyDescription": "जब तपाईं मस्यौदाको रूपमा पोष्ट बचत गर्नुहुन्छ, यो यहाँ देखा पर्नेछ ।",
+    "saveTitle": "ड्राफ्ट बचत गर्नुहोस्",
+    "savePrompt": "यो पोस्टलाई ड्राफ्टको रूपमा बचत गर्नुहोस् र पछि पोस्ट गर्नुहोस्?"
   }
 }

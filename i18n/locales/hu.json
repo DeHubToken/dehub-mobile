@@ -4587,5 +4587,19 @@
         "hostile_tone": "Ellenséges hangnem"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Most",
+    "minutesAgo": "{{count}} perce",
+    "hoursAgo": "{{count}} órája",
+    "daysAgo": "{{count}} napja",
+    "typeVideo": "Videó",
+    "typeText": "Szöveg",
+    "imageCount_one": "{{count}} kép",
+    "imageCount_other": "{{count}} kép",
+    "emptyTitle": "Még nincsenek piszkozatok",
+    "emptyDescription": "Amikor elmentesz egy bejegyzést piszkozatként, itt fog megjelenni.",
+    "saveTitle": "Piszkozat mentése",
+    "savePrompt": "Szeretnéd elmenteni ezt a bejegyzést piszkozatként, hogy később befejezd és közzéadd?"
   }
 }

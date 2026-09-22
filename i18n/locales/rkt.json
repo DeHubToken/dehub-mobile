@@ -4333,5 +4333,19 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "drafts": {
+    "justNow": "এইমাত্র",
+    "minutesAgo": "{{count}} মিনিট আগে",
+    "hoursAgo": "{{count}} ঘণ্টা আগে",
+    "daysAgo": "{{count}} দিন আগে",
+    "typeVideo": "ভিডিও",
+    "typeText": "লেখা",
+    "imageCount_one": "{{count}} ছবি",
+    "imageCount_other": "{{count}} ছবি",
+    "emptyTitle": "অহনও কোনো ড্রাফট নাই",
+    "emptyDescription": "কোনো পোস্ট ড্রাফট হিসাবে সেভ করলে সেইটা এইঠে দেখা যাইব।",
+    "saveTitle": "ড্রাফট সেভ করো",
+    "savePrompt": "এই পোস্টটা ড্রাফট হিসাবে সেভ করবা, পরে শেষ করি পোস্ট করবার লাগি?"
   }
 }

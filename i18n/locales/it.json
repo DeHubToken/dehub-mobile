@@ -4654,5 +4654,19 @@
         "hostile_tone": "Tono ostile"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Proprio ora",
+    "minutesAgo": "{{count}}m fa",
+    "hoursAgo": "{{count}}h fa",
+    "daysAgo": "{{count}}d fa",
+    "typeVideo": "Video",
+    "typeText": "Testo",
+    "imageCount_one": "Immagine {{count}}",
+    "imageCount_other": "{{count}} immagini",
+    "emptyTitle": "Ancora nessuna bozza",
+    "emptyDescription": "Quando salvi un post come bozza, apparirà qui.",
+    "saveTitle": "Salva bozza",
+    "savePrompt": "Salvare questo post come bozza da terminare e pubblicare in seguito?"
   }
 }

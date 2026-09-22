@@ -4581,5 +4581,19 @@
         "hostile_tone": "Priešiškas tonas"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Ką tik",
+    "minutesAgo": "{{count}} prieš m.",
+    "hoursAgo": "{{count}} prieš val.",
+    "daysAgo": "{{count}} prieš d.",
+    "typeVideo": "Vaizdo įrašas",
+    "typeText": "Tekstas",
+    "imageCount_one": "{{count}} vaizdas",
+    "imageCount_other": "{{count}} vaizdai",
+    "emptyTitle": "Juodraščių dar nėra",
+    "emptyDescription": "Kai įrašysite įrašą kaip juodraštį, jis bus rodomas čia.",
+    "saveTitle": "Išsaugoti juodraštį",
+    "savePrompt": "Išsaugoti šį įrašą kaip juodraštį, kad užbaigtumėte ir paskelbtumėte vėliau?"
   }
 }

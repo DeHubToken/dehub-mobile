@@ -4495,5 +4495,19 @@
         "hostile_tone": "دشمنانہ ٹون"
       }
     }
+  },
+  "drafts": {
+    "justNow": "ہنڑ",
+    "minutesAgo": "{{count}}m گز",
+    "hoursAgo": "{{count}}h گز",
+    "daysAgo": "{{count}}d گز",
+    "typeVideo": "وڈیو",
+    "typeText": "لکھت",
+    "imageCount_one": "{{count}} تصویر",
+    "imageCount_other": "{{count}} تصویراں",
+    "emptyTitle": "ہجے کوئی مسودہ کینی",
+    "emptyDescription": "جڈان تساں کوئی پوسٹ مسودے دے طور تے محفوظ کریسو، اوہ اتھاں ظاہر تھیسی۔",
+    "saveTitle": "مسودہ محفوظ کرو",
+    "savePrompt": "ایں پوسٹ کوں مسودے دے طور تے محفوظ کر کے بعد اچ مکمل کر تے پوسٹ کریسو؟"
   }
 }

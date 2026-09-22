@@ -4611,5 +4611,19 @@
         "hostile_tone": "Tono awqa"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Kunanllaraqmi",
+    "minutesAgo": "{{count}}m ñawpaqta",
+    "hoursAgo": "{{count}}h ñawpaqta",
+    "daysAgo": "{{count}}d ñawpaqta",
+    "typeVideo": "Kuyuq rikch'a waqaychana allwiya",
+    "typeText": "Qillqa",
+    "imageCount_one": "{{count}} rikch'ay",
+    "imageCount_other": "{{count}} rikchakuna",
+    "emptyTitle": "Manaraqmi borradorkuna kanchu",
+    "emptyDescription": "Huk qillqasqata borrador hina waqaychaspaykiqa kaypim rikurimunqa.",
+    "saveTitle": "Borradorta waqaychay",
+    "savePrompt": "¿Kay qillqasqata borrador hina waqaychay tukunaykipaq hinaspa qipaman churanaykipaq?"
   }
 }

@@ -3231,10 +3231,10 @@ export default function UploadScreen() {
       >
         <View className="p-5">
           <Text className="text-white text-lg font-bold text-center mb-2">
-            Save Draft
+            {t("drafts.saveTitle")}
           </Text>
           <Text className="text-theme-neutrals-400 text-sm text-center mb-4">
-            Save this post as a draft to finish and post later?
+            {t("drafts.savePrompt")}
           </Text>
           <View className="flex-row">
             <TouchableOpacity

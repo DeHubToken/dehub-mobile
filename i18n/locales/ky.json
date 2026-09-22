@@ -4576,5 +4576,19 @@
         "hostile_tone": "Душмандын үнү"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Азыр",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d мурун",
+    "typeVideo": "Видео",
+    "typeText": "Текст",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} images",
+    "emptyTitle": "Долбоорлор азырынча жок",
+    "emptyDescription": "Постту долбоор катары сактасаңыз, ал ушул жерде пайда болот.",
+    "saveTitle": "Долбоорду сактоо",
+    "savePrompt": "Бул постту кийинчерээк бүтүрүү жана жайгаштыруу үчүн долбоор катары сактоо керекпи?"
   }
 }

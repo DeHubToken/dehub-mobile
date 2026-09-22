@@ -4846,5 +4846,19 @@
         "hostile_tone": "Nada bermusuhan"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Baru saja",
+    "minutesAgo": "{{count}}m yang lalu",
+    "hoursAgo": "{{count}}j yang lalu",
+    "daysAgo": "{{count}}d yang lalu",
+    "typeVideo": "Video",
+    "typeText": "Teks",
+    "imageCount_one": "{{count}} imej",
+    "imageCount_other": "{{count}} imej",
+    "emptyTitle": "Belum ada draf",
+    "emptyDescription": "Apabila anda menyimpan hantaran sebagai draf, ia akan muncul di sini.",
+    "saveTitle": "Simpan Draf",
+    "savePrompt": "Simpan hantaran ini sebagai draf untuk diselesaikan dan disiarkan kemudian?"
   }
 }

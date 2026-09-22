@@ -4539,5 +4539,19 @@
         "hostile_tone": "نبرة عدائية"
       }
     }
+  },
+  "drafts": {
+    "justNow": "هسه",
+    "minutesAgo": "قبل {{count}} دقيقة",
+    "hoursAgo": "قبل {{count}} ساعة",
+    "daysAgo": "قبل {{count}} يوم",
+    "typeVideo": "فيديو",
+    "typeText": "نص",
+    "imageCount_one": "{{count}} صورة",
+    "imageCount_other": "{{count}} صور",
+    "emptyTitle": "مافي مسودات لسه",
+    "emptyDescription": "لما تحفظ بوست كمسودة، حتظهر هنا.",
+    "saveTitle": "حفظ المسودة",
+    "savePrompt": "تحفظ البوست ده كمسودة عشان تكمل وتنشرها بعدين؟"
   }
 }

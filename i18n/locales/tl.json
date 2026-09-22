@@ -4758,5 +4758,19 @@
         "hostile_tone": "Mapusok na tono"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Ngayon lang",
+    "minutesAgo": "{{count}}m ang nakalipas",
+    "hoursAgo": "{{count}}h ang nakalipas",
+    "daysAgo": "{{count}}d ang nakalipas",
+    "typeVideo": "Video",
+    "typeText": "Teksto",
+    "imageCount_one": "{{count}}image",
+    "imageCount_other": "{{count}}images",
+    "emptyTitle": "Wala pang draft",
+    "emptyDescription": "Kapag nag - save ka ng isang post bilang draft, lilitaw ito dito.",
+    "saveTitle": "I - save ang Draft",
+    "savePrompt": "I - save ang post na ito bilang isang draft upang tapusin at i - post sa ibang pagkakataon?"
   }
 }

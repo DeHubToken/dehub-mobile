@@ -4536,5 +4536,19 @@
         "hostile_tone": "نبرة عدائية"
       }
     }
+  },
+  "drafts": {
+    "justNow": "هسه",
+    "minutesAgo": "قبل {{count}} دقيقه",
+    "hoursAgo": "قبل {{count}} ساعه",
+    "daysAgo": "قبل {{count}} يوم",
+    "typeVideo": "فيديو",
+    "typeText": "نص",
+    "imageCount_one": "{{count}} صوره",
+    "imageCount_other": "{{count}} صور",
+    "emptyTitle": "ماكو مسودات بعد",
+    "emptyDescription": "من تحفظ منشور كمسوده، راح يطلع هنا.",
+    "saveTitle": "حفظ المسوده",
+    "savePrompt": "تحفظ هذا المنشور كمسوده حتى تكمله وتنشر وره؟"
   }
 }

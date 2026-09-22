@@ -4649,5 +4649,19 @@
         "hostile_tone": "적대적인 어조"
       }
     }
+  },
+  "drafts": {
+    "justNow": "방금",
+    "minutesAgo": "{{count}} 분 전",
+    "hoursAgo": "{{count}} 시간 전",
+    "daysAgo": "{{count}} 일 전",
+    "typeVideo": "동영상",
+    "typeText": "텍스트",
+    "imageCount_one": "이미지 {{count}}장",
+    "imageCount_other": "{{count}} 이미지",
+    "emptyTitle": "아직 초안 없음",
+    "emptyDescription": "포스트를 임시 저장하면 여기에 표시됩니다.",
+    "saveTitle": "임시 저장",
+    "savePrompt": "이 게시물을 초안으로 저장하여 완료하고 나중에 게시하시겠습니까?"
   }
 }

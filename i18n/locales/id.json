@@ -4633,5 +4633,19 @@
         "hostile_tone": "Nada bermusuhan"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Baru saja",
+    "minutesAgo": "{{count}}m yang lalu",
+    "hoursAgo": "{{count}}jam yang lalu",
+    "daysAgo": "{{count}}d yang lalu",
+    "typeVideo": "Video",
+    "typeText": "Teks",
+    "imageCount_one": "{{count}} gambar",
+    "imageCount_other": "{{count}} gambar",
+    "emptyTitle": "Belum ada draf",
+    "emptyDescription": "Saat Anda menyimpan postingan sebagai draf, postingan tersebut akan muncul di sini.",
+    "saveTitle": "Simpan Draf",
+    "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
   }
 }

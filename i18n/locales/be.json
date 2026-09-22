@@ -4615,5 +4615,19 @@
         "hostile_tone": "Варожы тон"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Толькі што",
+    "minutesAgo": "{{count}} хв таму",
+    "hoursAgo": "{{count}}h назад",
+    "daysAgo": "{{count}} дн таму",
+    "typeVideo": "Відэа",
+    "typeText": "Тэкст",
+    "imageCount_one": "{{count}} малюнак",
+    "imageCount_other": "{{count}} малюнкі",
+    "emptyTitle": "Няма чарнавікоў",
+    "emptyDescription": "Калі вы захаваеце пост у якасці чарнавіка, ён з 'явіцца тут.",
+    "saveTitle": "Захаваць чарнавік",
+    "savePrompt": "Захаваць гэты пост у выглядзе чарнавіка, каб скончыць і адправіць пазней?"
   }
 }

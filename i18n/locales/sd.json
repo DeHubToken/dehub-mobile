@@ -4553,5 +4553,19 @@
         "hostile_tone": "دشمني وارو ٽون"
       }
     }
+  },
+  "drafts": {
+    "justNow": "صرف ھاڻي ئي",
+    "minutesAgo": "{{count}}ايم کان اڳ",
+    "hoursAgo": "{{count}}ايڇ کان اڳ",
+    "daysAgo": "{{count}}ڊي کان اڳ",
+    "typeVideo": "وڊيو",
+    "typeText": "ٽيڪسٽ",
+    "imageCount_one": "{{count}} تصويري جي",
+    "imageCount_other": "{{count}} تصويرون",
+    "emptyTitle": "اڃان تائين ڪو به مسودو ناهي",
+    "emptyDescription": "جڏهن توهان ڊرافٽ جي طور تي هڪ پوسٽ محفوظ ڪريو ٿا، اهو هتي ظاهر ٿيندو.",
+    "saveTitle": "مسودو سانڍيو",
+    "savePrompt": "هن پوسٽ کي مسوده جي طور تي محفوظ ڪريو ختم ڪرڻ ۽ بعد ۾ پوسٽ ڪرڻ لاء ؟"
   }
 }

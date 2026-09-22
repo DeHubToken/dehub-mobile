@@ -4596,5 +4596,19 @@
         "hostile_tone": "Ton ostil"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Chiar acum",
+    "minutesAgo": "{{count}}m în urmă",
+    "hoursAgo": "{{count}}h în urmă",
+    "daysAgo": "{{count}}d în urmă",
+    "typeVideo": "Video",
+    "typeText": "Text",
+    "imageCount_one": "Imagine {{count}}",
+    "imageCount_other": "Imagini {{count}}",
+    "emptyTitle": "Încă nu există ciorne",
+    "emptyDescription": "Când salvezi o postare ca ciornă, aceasta va apărea aici.",
+    "saveTitle": "Salvare ciornă",
+    "savePrompt": "Salvați această postare ca ciornă pentru a o termina și posta mai târziu?"
   }
 }

@@ -4520,5 +4520,19 @@
         "hostile_tone": "د توبې توبې"
       }
     }
+  },
+  "drafts": {
+    "justNow": "یوازې اوس",
+    "minutesAgo": "{{count}} دقیقې وړاندې",
+    "hoursAgo": "{{count}} ساعته وړاندې",
+    "daysAgo": "{{count}} ورځې وړاندې",
+    "typeVideo": "ویدیوګانې",
+    "typeText": "متن په نه په",
+    "imageCount_one": "{{count}} انځور",
+    "imageCount_other": "{{count}} انځورونه",
+    "emptyTitle": "تراوسه پورې کومې پروژې نه دي پلې شوي",
+    "emptyDescription": "کله چې تاسو د پروژې په توګه پوسټ خوندي کړئ، نو دا به دلته څرګند شي.",
+    "saveTitle": "پروژه خوندي کړئ",
+    "savePrompt": "دا پوسټ د بشپړولو او وروسته پوسټ کولو لپاره د یوې پروژې په توګه خوندي کړئ."
   }
 }

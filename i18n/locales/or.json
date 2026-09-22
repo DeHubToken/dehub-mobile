@@ -4544,5 +4544,19 @@
         "hostile_tone": "ଶତୃ ସ୍ୱର"
       }
     }
+  },
+  "drafts": {
+    "justNow": "ଏବେ",
+    "minutesAgo": "{{count}}m ପୂର୍ବରୁ",
+    "hoursAgo": "{{count}}h ପୂର୍ବରୁ",
+    "daysAgo": "{{count}}d ପୂର୍ବରୁ",
+    "typeVideo": "ଭିଡ଼ିଓ",
+    "typeText": "ପାଠ୍ୟ",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} ପ୍ରତିଛବିଗୁଡ଼ିକ",
+    "emptyTitle": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଡ୍ରାଫ୍ଟ ନାହିଁ",
+    "emptyDescription": "ଯେତେବେଳେ ଆପଣ ଏକ ପୋଷ୍ଟକୁ ଡ୍ରାଫ୍ଟ ଭାବରେ ସଂରକ୍ଷଣ କରିବେ, ଏହା ଏଠାରେ ଦେଖାଯିବ ।",
+    "saveTitle": "ଡ୍ରାଫ୍ଟକୁ ସଂରକ୍ଷଣ କରନ୍ତୁ",
+    "savePrompt": "ଏହି ପୋଷ୍ଟକୁ ଡ୍ରାଫ୍ଟ ଭାବରେ ଶେଷ କରିବା ପାଇଁ ଏବଂ ପରେ ପୋଷ୍ଟ କରିବା ପାଇଁ ସଂରକ୍ଷଣ କରନ୍ତୁ ।"
   }
 }

@@ -4583,5 +4583,19 @@
         "hostile_tone": "Vihamielinen sävy"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Juuri nyt",
+    "minutesAgo": "{{count}}m sitten",
+    "hoursAgo": "{{count}}h sitten",
+    "daysAgo": "{{count}}d sitten",
+    "typeVideo": "Video",
+    "typeText": "Teksti",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} kuvaa",
+    "emptyTitle": "Ei vielä luonnoksia",
+    "emptyDescription": "Kun tallennat julkaisun luonnoksena, se näkyy tässä.",
+    "saveTitle": "Tallenna luonnos",
+    "savePrompt": "Tallennetaanko tämä julkaisu luonnoksena, jotta se voidaan viimeistellä ja julkaista myöhemmin?"
   }
 }

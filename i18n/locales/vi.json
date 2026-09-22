@@ -4669,5 +4669,19 @@
         "hostile_tone": "Giọng điệu thù địch"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Ngay bây giờ",
+    "minutesAgo": "{{count}}phút trước",
+    "hoursAgo": "{{count}}giờ trước",
+    "daysAgo": "{{count}}ngày trước",
+    "typeVideo": "Video",
+    "typeText": "Văn bản",
+    "imageCount_one": "Hình ảnh {{count}}",
+    "imageCount_other": "{{count}} hình ảnh",
+    "emptyTitle": "Chưa có bản nháp nào",
+    "emptyDescription": "Khi bạn lưu một bài đăng dưới dạng bản nháp, nó sẽ xuất hiện ở đây.",
+    "saveTitle": "Lưu bản nháp",
+    "savePrompt": "Lưu bài đăng này dưới dạng bản nháp để hoàn tất và đăng sau?"
   }
 }
