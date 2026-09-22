@@ -437,7 +437,12 @@ export function useAwardApplicant() {
     },
     onSuccess: (_d, v) => {
       qc.invalidateQueries({ queryKey: ["work-apps", v.job_id] });
-      qc.invalidateQueries({ queryKey: ["work-job", v.job_id] });
+      // Sweep the whole prefix, not just this uuid. The detail screen always
+      // resolves to a uuid, but an inline bounty card embedded in a post is
+      // cached under the job_number its link carried, so a uuid-keyed
+      // invalidation never reached it and the five minute staleTime left it
+      // showing a pre-award status.
+      qc.invalidateQueries({ queryKey: ["work-job"] });
       // Not "funds escrowed": with no contract deployed this awards the work and
       // nothing else. Money moves when the submission is approved and paid.
       toastSuccess("Awarded — they can start work");
@@ -498,7 +503,7 @@ export function useSubmitProof() {
     },
     onSuccess: (_d, v) => {
       qc.invalidateQueries({ queryKey: ["work-subs", v.job_id] });
-      qc.invalidateQueries({ queryKey: ["work-job", v.job_id] });
+      qc.invalidateQueries({ queryKey: ["work-job"] });
       toastSuccess("Proof submitted");
     },
     onError: (e: any) => {
@@ -703,7 +708,7 @@ export function useApproveSubmission() {
     },
     onSuccess: (result, v) => {
       qc.invalidateQueries({ queryKey: ["work-subs", v.job_id] });
-      qc.invalidateQueries({ queryKey: ["work-job", v.job_id] });
+      qc.invalidateQueries({ queryKey: ["work-job"] });
       toastSuccess(result.paid ? "Approved and paid" : "Approved — not paid yet");
     },
     onError: (e: any) => {
@@ -759,7 +764,7 @@ export function usePaySubmission() {
     },
     onSuccess: (_d, v) => {
       qc.invalidateQueries({ queryKey: ["work-subs", v.job_id] });
-      qc.invalidateQueries({ queryKey: ["work-job", v.job_id] });
+      qc.invalidateQueries({ queryKey: ["work-job"] });
       toastSuccess("Payment sent");
     },
     onError: (e: any) => {
@@ -885,8 +890,8 @@ export function useOpenDispute() {
       );
       if (e2) throw e2;
     },
-    onSuccess: (_d, v) => {
-      qc.invalidateQueries({ queryKey: ["work-job", v.job_id] });
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["work-job"] });
       qc.invalidateQueries({ queryKey: ["work-disputes-admin"] });
       toastSuccess("Dispute opened — admin will review");
     },
@@ -912,8 +917,8 @@ export function useMarkComplete() {
       );
       if (error) throw error;
     },
-    onSuccess: (_d, jobId) => {
-      qc.invalidateQueries({ queryKey: ["work-job", jobId] });
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["work-job"] });
       qc.invalidateQueries({ queryKey: ["work-jobs-browse"] });
       toastSuccess("Job marked complete");
     },
