@@ -710,19 +710,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // state while the source was still being prepared.
     if (isStartingRef.current && !isPlayingRef.current) return;
 
-    // A tap on a playing clip reveals the controls; it does not pause. The
-    // controls only ever drew while the clip was stopped, so the sound and
-    // fullscreen buttons were unreachable without first pausing the video —
-    // which reads as "there are no buttons". Pausing is the centre button's
-    // job, drawn below while the controls are up.
+    // A tap on a playing clip pauses it and brings the controls up, the same
+    // as a tap on the web card. Toggling only the controls here meant the
+    // clip could not be stopped by touch at all: the centre pause button sat
+    // underneath the full-size tap surface, so every tap on it just blinked
+    // the overlay while the video kept going.
     if (isPlayingRef.current) {
-      if (showControlsRef.current) {
-        setShowControls(false);
-        clearHideTimer();
-      } else {
-        setShowControls(true);
-        startHideTimer();
-      }
+      stopPlayback();
+      setShowControls(true);
+      startHideTimer();
       return;
     }
 
@@ -1136,24 +1132,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </Pressable>
       )}
 
-      {!hideControls && !isContentGated && isPlaying && showControls && !isProcessing && !isFailed && (
-        <Pressable
-          onPress={() => {
-            stopPlayback();
-            setShowControls(true);
-            startHideTimer();
-          }}
-          style={styles.playOverlay}
-          accessibilityRole="button"
-          accessibilityLabel={t("audioPost.pause")}
-        >
-          <View style={styles.glassPlayButton}>
-            <View style={styles.glassOverlay} />
-            <Icon name="Pause" size={24} color="#fff" />
-          </View>
-        </Pressable>
-      )}
-
       {!hideControls && (isPlaying || showControls) && (
         <>
           {/* The video tap target is a sibling behind the controls. Nesting the
@@ -1162,6 +1140,27 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           <Pressable {...mediaTap} style={StyleSheet.absoluteFill} />
           {showControls && (
             <View style={styles.controlsContainer} pointerEvents="box-none">
+            {/* The pause button is the size of its glyph and lives above the
+                tap surface. It used to be a full-size layer drawn underneath
+                that surface, so it could be seen but never pressed. */}
+            {isPlaying && !isContentGated && !isProcessing && !isFailed && (
+              <Pressable
+                onPress={() => {
+                  stopPlayback();
+                  setShowControls(true);
+                  startHideTimer();
+                }}
+                style={styles.centreButton}
+                hitSlop={12}
+                accessibilityRole="button"
+                accessibilityLabel={t("audioPost.pause")}
+              >
+                <View style={styles.glassPlayButton}>
+                  <View style={styles.glassOverlay} />
+                  <Icon name="Pause" size={24} color="#fff" />
+                </View>
+              </Pressable>
+            )}
             <View style={styles.topControls}>
               <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
                 <View style={styles.glassOverlay} />
@@ -1402,6 +1401,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(0,0,0,0.2)",
+  },
+  centreButton: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    marginTop: -28,
+    marginLeft: -28,
+    width: 56,
+    height: 56,
   },
   glassPlayButton: {
     width: 56,
