@@ -59,6 +59,8 @@ import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 import { chatBodyText } from "../../libs/chat-gif";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
+import MentionSuggestions from "../common/MentionSuggestions";
+import { useMentions } from "../../hooks/useMentions";
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 const MAX_LEN = 500;
@@ -297,6 +299,10 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   } = useCommunityChat(community.id, { isPrivate: community.is_private });
 
   const [text, setText] = useState("");
+  // @mention typeahead. Handles were already parsed out of sent text for
+  // notifications, but nothing suggested anyone while typing, so a mention
+  // only landed if you already knew the handle exactly.
+  const mentions = useMentions(text, setText);
   const [replyTo, setReplyTo] = useState<CommunityChatMessage | null>(null);
   const [editing, setEditing] = useState<CommunityChatMessage | null>(null);
   const [sending, setSending] = useState(false);
@@ -380,9 +386,11 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
         await editMessage(editing.id, body);
         setEditing(null);
         setText("");
+        mentions.reset();
       } else {
         await sendMessage(body, replyTo?.id);
         setText("");
+        mentions.reset();
         setReplyTo(null);
         atBottomRef.current = true;
         scrollToBottom();
@@ -398,6 +406,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     text,
     sending,
     editing,
+    mentions,
     editMessage,
     sendMessage,
     replyTo,
@@ -650,6 +659,13 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
       {/* No insets.bottom pad here, at rest or otherwise: the root SafeAreaView
           above the navigator already ends this panel above the home indicator,
           and paying it again floated the composer a full band too high. */}
+      <MentionSuggestions
+        visible={mentions.showSuggestions}
+        suggestions={mentions.suggestions}
+        onSelect={mentions.selectMention}
+        loading={mentions.loading}
+      />
+
       <View style={[styles.composer, { paddingBottom: 8 }]}>
         {composerNotice ? (
           <View style={styles.noticeRow}>
@@ -660,7 +676,10 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
           <>
             <TextInput
               value={text}
-              onChangeText={(v) => v.length <= MAX_LEN && setText(v)}
+              onChangeText={(v) => {
+                if (v.length <= MAX_LEN) mentions.handleChangeText(v);
+              }}
+              onSelectionChange={mentions.handleSelectionChange}
               placeholder={t("communities.typeMessage", { defaultValue: "Type a message..." })}
               placeholderTextColor="#8B8D90"
               style={styles.input}
