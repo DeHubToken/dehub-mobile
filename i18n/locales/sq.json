@@ -1613,7 +1613,7 @@
     "unableToLoad": "Nuk mund të ngarkohet profili. Ju lutem provoni përsëri më vonë.",
     "doesNotExist": "Ky përdorues nuk ekziston ose duhet të hyni për të parë profilin tuaj.",
     "makeOffer": "Bëj Ofertë për {{handle}}",
-    "enterOfferAmount": "Shkruani shumën e tokenave DHB që dëshironi të ofroni për të marrë këtë emër përdoruesi.",
+    "enterOfferAmount": "Shkruaj shumën në dollarë që dëshiron të ofrosh për këtë emër përdoruesi.",
     "submitOffer": "Dërgo Ofertën",
     "validOfferAmount": "Ju lutem shkruani një shumë oferte të vlefshme",
     "offerSubmitted": "Oferta e {{amount}} DHB u dërgua për {{handle}}",
@@ -1639,7 +1639,11 @@
       "dehubFollowers": "Ndjekësit e DeHub",
       "selfReported": "Numrat e ndjekësve socialë futen nga krijuesi."
     },
-    "tabPlaylists": "Listat e luajtjes"
+    "tabPlaylists": "Listat e luajtjes",
+    "offerWorthNow": "Rreth {{amount}} DHB me kursin aktual",
+    "offerNotePlaceholder": "Shto një shënim (opsionale)",
+    "offerCommitsNothing": "Të bësh një ofertë nuk kushton asgjë dhe nuk bllokon DHB. Paguan vetëm nëse pronari e pranon.",
+    "offerNeedsHandle": "Kjo llogari nuk ka emër përdoruesi për të cilin të ofrosh."
   },
   "tv": {
     "title": "TV",
@@ -2929,7 +2933,36 @@
     "staleListing": "Ky njoftim është për @{{listed}}, por tani je @{{current}}. Nuk do të shitet derisa ta rilistosh me emrin tënd aktual — përditësimi më sipër e bën pikërisht këtë.",
     "history": "Historiku",
     "sold": "Shitur",
-    "bought": "Blerë"
+    "bought": "Blerë",
+    "makeOfferAction": "Bëj një ofertë",
+    "tabOffers": "Oferta",
+    "signInForOffers": "Hyr për të parë ofertat për emrin tënd të përdoruesit.",
+    "offersForYou": "Oferta për emrin tënd të përdoruesit",
+    "offersYouMade": "Ofertat që ke bërë",
+    "offerHistory": "Oferta të mëparshme",
+    "noIncomingOffers": "Askush nuk ka ofruar ende të blejë emrin tënd të përdoruesit.",
+    "noOutgoingOffers": "Ende nuk ke bërë asnjë ofertë. Hap profilin e dikujt për të bërë një.",
+    "offerExpires": "Skadon {{when}}",
+    "payBefore": "Paguaj {{when}}",
+    "awaitingOwner": "Në pritje të pronarit",
+    "acceptOffer": "Prano",
+    "declineOffer": "Refuzo",
+    "confirmAccept": "Prano ofertën",
+    "cancel": "Anulo",
+    "withdrawOffer": "Tërhiq",
+    "withdrawAcceptance": "Tërhiq pranimin",
+    "payAndClaim": "Paguaj dhe merr",
+    "acceptMovesNothingYet": "Pranimi e mban emrin tënd të përdoruesit për këtë blerës. Asgjë nuk lëviz derisa të paguajë, dhe deri atëherë mund të tërhiqesh.",
+    "acceptedAwaitingPayment": "E pranove këtë ofertë. Emri i përdoruesit është ende i yti dhe bëhesh @{{handle}} vetëm kur ai të paguajë.",
+    "offerAcceptedPayNow": "E pranuar. Emri i përdoruesit mbahet për ty derisa ta paguash.",
+    "offerStatus": {
+      "pending": "Në pritje të përgjigjes",
+      "accepted": "E pranuar, në pritje të pagesës",
+      "declined": "E refuzuar",
+      "withdrawn": "E tërhequr",
+      "completed": "E përfunduar",
+      "expired": "E skaduar"
+    }
   },
   "accounts": {
     "subtitle": "Llogari të plota në shitje, me çmim në DHB",

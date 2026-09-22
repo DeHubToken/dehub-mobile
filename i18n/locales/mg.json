@@ -1531,7 +1531,7 @@
     "unableToLoad": "Tsy afaka nampiditra ny mombamomba. Avereno azafady.",
     "doesNotExist": "Tsy misy io mpampiasa io na mila miditra ianao mba hahita ny mombamombanao.",
     "makeOffer": "Manao tolotra ho an'ny {{handle}}",
-    "enterOfferAmount": "Ampidiro ny habetsaky ny token DHB tianao hatolotra mba hahazoana io anaram-pikambana io.",
+    "enterOfferAmount": "Ampidiro ny vola dolara tianao atolotra ho an’ity anaram-pikambanana ity.",
     "submitOffer": "Alefaso ny tolotra",
     "validOfferAmount": "Azafady ampidiro vola mety",
     "offerSubmitted": "Tolotra {{amount}} DHB nalefa ho an'ny {{handle}}",
@@ -1557,7 +1557,11 @@
       "dehubFollowers": "Mpanara-dia an'i DeHub",
       "selfReported": "Ny fandrindrana ara-tsosialy dia nampidirina tamin'ny mpamorona."
     },
-    "tabPlaylists": "Lisitra filalao"
+    "tabPlaylists": "Lisitra filalao",
+    "offerWorthNow": "Manodidina ny {{amount}} DHB amin’ny tahan’izao",
+    "offerNotePlaceholder": "Ampio naoty (tsy voatery)",
+    "offerCommitsNothing": "Tsy mandany na inona na inona ny fanaovana tolotra ary tsy misy DHB voahidy. Handoa ianao raha toa ka manaiky ny tompony.",
+    "offerNeedsHandle": "Tsy manana anaram-pikambanana hanaovana tolotra ity kaonty ity."
   },
   "tv": {
     "title": "TV",
@@ -3012,7 +3016,36 @@
     "staleListing": "Ity tolotra ity dia ho an'ny @{{listed}}, fa @{{current}} ianao izao. Tsy ho lafo izy raha tsy avoakanao indray amin'ny anaranao ankehitriny — izany no ataon'ny fanavaozana etsy ambony.",
     "history": "Tantara",
     "sold": "Lafo",
-    "bought": "Novidina"
+    "bought": "Novidina",
+    "makeOfferAction": "Manaova tolotra",
+    "tabOffers": "Tolotra",
+    "signInForOffers": "Midira mba hahitanao ny tolotra ho an’ny anaram-pikambananao.",
+    "offersForYou": "Tolotra ho an’ny anaram-pikambananao",
+    "offersYouMade": "Tolotra nataonao",
+    "offerHistory": "Tolotra teo aloha",
+    "noIncomingOffers": "Mbola tsy nisy nanolotra hividy ny anaram-pikambananao.",
+    "noOutgoingOffers": "Mbola tsy nanao tolotra ianao. Sokafy ny mombamomba an’olona iray mba hanaovana iray.",
+    "offerExpires": "Hifarana {{when}}",
+    "payBefore": "Aloavy {{when}}",
+    "awaitingOwner": "Miandry ny tompony",
+    "acceptOffer": "Ekeo",
+    "declineOffer": "Lavo",
+    "confirmAccept": "Ekeo ny tolotra",
+    "cancel": "Aoka ihany",
+    "withdrawOffer": "Esory",
+    "withdrawAcceptance": "Esory ny fanekena",
+    "payAndClaim": "Aloavy dia raiso",
+    "acceptMovesNothingYet": "Ny fanekena dia mitazona ny anaram-pikambananao ho an’ity mpividy ity. Tsy misy miova mandra-pandoavany, ary alohan’izay dia afaka miverina ianao.",
+    "acceptedAwaitingPayment": "Nekenao ity tolotra ity. Mbola anao ny anaram-pikambanana ary ho @{{handle}} ianao rehefa nandoa izy.",
+    "offerAcceptedPayNow": "Nekena. Tazonina ho anao ny anaram-pikambanana mandra-pandoavanao azy.",
+    "offerStatus": {
+      "pending": "Miandry valiny",
+      "accepted": "Nekena, miandry fandoavam-bola",
+      "declined": "Nolavina",
+      "withdrawn": "Nesorina",
+      "completed": "Vita",
+      "expired": "Lany daty"
+    }
   },
   "accounts": {
     "subtitle": "Kaonty manontolo amidy, amin'ny DHB ny vidiny",

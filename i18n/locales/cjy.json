@@ -1570,7 +1570,7 @@
     "unableToLoad": "加载资料失败。请稍后再试。",
     "doesNotExist": "此用户不存在或你需要登录来看你的资料。",
     "makeOffer": "对 {{handle}} 出价",
-    "enterOfferAmount": "输入你想出其DHB代币金额来获取此用户名。",
+    "enterOfferAmount": "填上你想给这个用户名出嘞美元数目。",
     "submitOffer": "提交出价",
     "validOfferAmount": "请输入有效其出价金额",
     "offerSubmitted": "已提交对 {{handle}} 的 {{amount}} DHB 出价",
@@ -1596,7 +1596,11 @@
       "dehubFollowers": "DeHub 关注者",
       "selfReported": "社交关注者数量由创作者输入。"
     },
-    "tabPlaylists": "播放列表"
+    "tabPlaylists": "播放列表",
+    "offerWorthNow": "按眼下嘞汇率大约 {{amount}} DHB",
+    "offerNotePlaceholder": "加条备注（可不填）",
+    "offerCommitsNothing": "出价不花钱，也不锁啥 DHB。对方接受咧你才给钱。",
+    "offerNeedsHandle": "这个账号没有能出价嘞用户名。"
   },
   "tv": {
     "title": "电视",
@@ -2930,7 +2934,36 @@
     "staleListing": "这个挂牌是 @{{listed}} 嘞，可你这会儿是 @{{current}}。得拿你现在嘞用户名重新挂牌才卖得咾 — 在上头更新就成。",
     "history": "历史",
     "sold": "已卖咾",
-    "bought": "已买咾"
+    "bought": "已买咾",
+    "makeOfferAction": "出价",
+    "tabOffers": "出价",
+    "signInForOffers": "登录咾就能看见旁人对你用户名嘞出价。",
+    "offersForYou": "对你用户名嘞出价",
+    "offersYouMade": "你出过嘞价",
+    "offerHistory": "以前嘞出价",
+    "noIncomingOffers": "还没人出价买你嘞用户名。",
+    "noOutgoingOffers": "你还没出过价。打开旁人嘞主页就能出价。",
+    "offerExpires": "{{when}}到期",
+    "payBefore": "{{when}}给钱",
+    "awaitingOwner": "等对方回话",
+    "acceptOffer": "接受",
+    "declineOffer": "拒绝",
+    "confirmAccept": "接受出价",
+    "cancel": "取消",
+    "withdrawOffer": "撤回",
+    "withdrawAcceptance": "撤回接受",
+    "payAndClaim": "给钱领走",
+    "acceptMovesNothingYet": "接受咧以后，你嘞用户名给这个买主留着。对方没给钱之前啥也不变，到那之前你还能反悔。",
+    "acceptedAwaitingPayment": "你接受咧这个出价。用户名还是你嘞，得等对方给咧钱你才变成 @{{handle}}。",
+    "offerAcceptedPayNow": "已接受。你给钱之前，这个用户名给你留着。",
+    "offerStatus": {
+      "pending": "等回话",
+      "accepted": "已接受，等给钱",
+      "declined": "已拒绝",
+      "withdrawn": "已撤回",
+      "completed": "已完成",
+      "expired": "已过期"
+    }
   },
   "accounts": {
     "subtitle": "正卖嘞整个账户，拿 DHB 计价",

@@ -1551,7 +1551,7 @@
     "unableToLoad": "E no fit load profile. Abeg try again later.",
     "doesNotExist": "Dis user no exist or you need log in for see your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Put di amount of DHB tokens wey you want offer for get dis username.",
+    "enterOfferAmount": "Rait di amaunt fo US dollar wei yu wan offa fo dis yusaneim.",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Abeg put valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB don submit for {{handle}}",
@@ -1575,7 +1575,11 @@
       "total": "Total reach",
       "dehubFollowers": "DeHub followers"
     },
-    "tabPlaylists": "Playlists"
+    "tabPlaylists": "Playlists",
+    "offerWorthNow": "Sɔntin lɛk {{amount}} DHB fo di reit nau",
+    "offerNotePlaceholder": "Add smɔl not (if yu want)",
+    "offerCommitsNothing": "Fo mek offa no kost notin an i no go hol eni DHB. Na ɔnli if di ona aksept yu go pei.",
+    "offerNeedsHandle": "Dis akaunt no get yusaneim wei yu fit offa fo am."
   },
   "tv": {
     "title": "TV",
@@ -2824,7 +2828,36 @@
     "staleListing": "Dis listing na fo @{{listed}}, bot yu don bikom @{{current}}. I no go sell til yu list-am agen wit yua current handle — updating fo op di do dat.",
     "history": "History",
     "sold": "Dem don sell-am",
-    "bought": "Dem don buy-am"
+    "bought": "Dem don buy-am",
+    "makeOfferAction": "Mek offa",
+    "tabOffers": "Offa dem",
+    "signInForOffers": "Sign in fo si di offa dem fo yu yusaneim.",
+    "offersForYou": "Offa dem fo yu yusaneim",
+    "offersYouMade": "Offa dem wei yu don mek",
+    "offerHistory": "Ol offa dem",
+    "noIncomingOffers": "Nobodi neva offa fo bai yu yusaneim.",
+    "noOutgoingOffers": "Yu neva mek eni offa. Opin sombodi profail fo mek wan.",
+    "offerExpires": "I go expair {{when}}",
+    "payBefore": "Pei {{when}}",
+    "awaitingOwner": "Dey weit fo di ona",
+    "acceptOffer": "Aksept",
+    "declineOffer": "Rifyus",
+    "confirmAccept": "Aksept di offa",
+    "cancel": "Kansel",
+    "withdrawOffer": "Witdro",
+    "withdrawAcceptance": "Witdro di akseptans",
+    "payAndClaim": "Pei an tek",
+    "acceptMovesNothingYet": "If yu aksept, dem go hol yu yusaneim fo dis baya. Notin go chenj sotee i pei, an bifo den yu fit stil chenj yu maind.",
+    "acceptedAwaitingPayment": "Yu don aksept dis offa. Di yusaneim stil bi fo yu, an na wen i pei yu go bikom @{{handle}}.",
+    "offerAcceptedPayNow": "Dem don aksept am. Dem dey hol di yusaneim fo yu sotee yu pei fo am.",
+    "offerStatus": {
+      "pending": "Dey weit fo ansa",
+      "accepted": "Dem aksept am, dey weit fo pei",
+      "declined": "Dem rifyus am",
+      "withdrawn": "Dem witdro am",
+      "completed": "I don finish",
+      "expired": "I don expair"
+    }
   },
   "accounts": {
     "subtitle": "Full account dem fo sell, price dei fo DHB",

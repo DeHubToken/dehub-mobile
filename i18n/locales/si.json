@@ -1605,7 +1605,7 @@
     "unableToLoad": "Unable to load profile. Please try again later.",
     "doesNotExist": "This user doesn't exist or you need to log in to view your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Enter the amount of DHB tokens you'd like to offer to acquire this username.",
+    "enterOfferAmount": "මෙම පරිශීලක නාමය සඳහා ඔබට ඉදිරිපත් කිරීමට අවශ්‍ය ඩොලර් ප්‍රමාණය ඇතුළු කරන්න.",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Please enter a valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB submitted for {{handle}}",
@@ -1628,7 +1628,11 @@
       "dehubFollowers": "DeHub අනුගාමිකයන්",
       "selfReported": "නිර්මාණකරුවා විසින් සමාජ අනුගාමිකයන් ගණනය කරනු ලැබේ."
     },
-    "tabPlaylists": "වාදන ලැයිස්තුව"
+    "tabPlaylists": "වාදන ලැයිස්තුව",
+    "offerWorthNow": "වත්මන් අනුපාතයෙන් ආසන්න වශයෙන් {{amount}} DHB",
+    "offerNotePlaceholder": "සටහනක් එක් කරන්න (විකල්ප)",
+    "offerCommitsNothing": "ඉදිරිපත් කිරීමකට කිසිදු වියදමක් නැති අතර DHB අගුළු දමන්නේ නැත. හිමිකරු පිළිගත්තොත් පමණක් ඔබ ගෙවයි.",
+    "offerNeedsHandle": "මෙම ගිණුමට ඉදිරිපත් කිරීමක් කළ හැකි පරිශීලක නාමයක් නැත."
   },
   "dao": {
     "title": "DAO භmාව",
@@ -2921,7 +2925,36 @@
     "staleListing": "මෙම දැන්වීම @{{listed}} සඳහාය, නමුත් ඔබ දැන් @{{current}} වේ. ඔබේ වත්මන් නමින් නැවත ලැයිස්තුගත කරන තුරු එය විකිණෙන්නේ නැත — ඉහත යාවත්කාලීන කිරීම එය කරයි.",
     "history": "ඉතිහාසය",
     "sold": "විකුණා ඇත",
-    "bought": "මිලදී ගෙන ඇත"
+    "bought": "මිලදී ගෙන ඇත",
+    "makeOfferAction": "ඉදිරිපත් කරන්න",
+    "tabOffers": "ඉදිරිපත් කිරීම්",
+    "signInForOffers": "ඔබේ පරිශීලක නාමයට ලැබුණු ඉදිරිපත් කිරීම් බැලීමට පිවිසෙන්න.",
+    "offersForYou": "ඔබේ පරිශීලක නාමයට ඉදිරිපත් කිරීම්",
+    "offersYouMade": "ඔබ කළ ඉදිරිපත් කිරීම්",
+    "offerHistory": "පෙර ඉදිරිපත් කිරීම්",
+    "noIncomingOffers": "තවමත් කිසිවෙකු ඔබේ පරිශීලක නාමය මිලදී ගැනීමට ඉදිරිපත් වී නැත.",
+    "noOutgoingOffers": "ඔබ තවම කිසිදු ඉදිරිපත් කිරීමක් කර නැත. කිරීමට යමෙකුගේ පැතිකඩ විවෘත කරන්න.",
+    "offerExpires": "{{when}} කල් ඉකුත් වේ",
+    "payBefore": "{{when}} ගෙවන්න",
+    "awaitingOwner": "හිමිකරු බලාසිටී",
+    "acceptOffer": "පිළිගන්න",
+    "declineOffer": "ප්‍රතික්ෂේප කරන්න",
+    "confirmAccept": "ඉදිරිපත් කිරීම පිළිගන්න",
+    "cancel": "අවලංගු කරන්න",
+    "withdrawOffer": "ඉවත් කරන්න",
+    "withdrawAcceptance": "පිළිගැනීම ඉවත් කරන්න",
+    "payAndClaim": "ගෙවා ලබාගන්න",
+    "acceptMovesNothingYet": "පිළිගැනීමෙන් ඔබේ පරිශීලක නාමය මෙම ගැනුම්කරු වෙනුවෙන් රඳවා ගැනේ. ඔහු ගෙවන තුරු කිසිවක් වෙනස් නොවේ, එතෙක් ඔබට ආපසු හැරිය හැක.",
+    "acceptedAwaitingPayment": "ඔබ මෙම ඉදිරිපත් කිරීම පිළිගත්තා. පරිශීලක නාමය තවමත් ඔබේ වන අතර ඔහු ගෙවූ විට පමණක් ඔබ @{{handle}} බවට පත් වේ.",
+    "offerAcceptedPayNow": "පිළිගත්තා. ඔබ ගෙවන තුරු පරිශීලක නාමය ඔබ වෙනුවෙන් රඳවා තිබේ.",
+    "offerStatus": {
+      "pending": "පිළිතුරක් බලාසිටී",
+      "accepted": "පිළිගත්තා, ගෙවීම බලාසිටී",
+      "declined": "ප්‍රතික්ෂේප විය",
+      "withdrawn": "ඉවත් කළා",
+      "completed": "සම්පූර්ණයි",
+      "expired": "කල් ඉකුත් විය"
+    }
   },
   "accounts": {
     "subtitle": "සම්පූර්ණ ගිණුම් විකිණීමට, DHB වලින් මිල",

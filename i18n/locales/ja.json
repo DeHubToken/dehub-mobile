@@ -1625,7 +1625,7 @@
     "unableToLoad": "読み込めませんでした。後でもう一度お試しください。",
     "doesNotExist": "このユーザーは存在しないか、ログインが必要です。",
     "makeOffer": "{{handle}}にオファーする",
-    "enterOfferAmount": "このユーザー名のオファー金額（DHB）を入力してください。",
+    "enterOfferAmount": "このユーザー名に対して提示したい金額を米ドルで入力してください。",
     "submitOffer": "オファーを送信",
     "validOfferAmount": "有効な金額を入力してください",
     "offerSubmitted": "{{handle}}に{{amount}} DHBのオファーを送信しました",
@@ -1651,7 +1651,11 @@
       "dehubFollowers": "DeHubフォロワー",
       "selfReported": "ソーシャルフォロワー数は、クリエイターが入力します。"
     },
-    "tabPlaylists": "プレイリスト"
+    "tabPlaylists": "プレイリスト",
+    "offerWorthNow": "現在のレートで約 {{amount}} DHB",
+    "offerNotePlaceholder": "メモを追加（任意）",
+    "offerCommitsNothing": "オファーを出しても費用はかからず、DHB がロックされることもありません。相手が承認した場合にのみ支払います。",
+    "offerNeedsHandle": "このアカウントにはオファーできるユーザー名がありません。"
   },
   "tv": {
     "title": "テレビ",
@@ -2949,7 +2953,36 @@
     "fixedDollarPrice": "ドル価格は固定され、トークン数は更新されます。",
     "priceUpdated": "価格が更新されました。金額を確認して、もう一度購入をタップしてください。",
     "tokensPaidToSeller": "売り手に直接支払われます",
-    "priceUsd": "価格（米ドル）"
+    "priceUsd": "価格（米ドル）",
+    "makeOfferAction": "オファーを出す",
+    "tabOffers": "オファー",
+    "signInForOffers": "ユーザー名へのオファーを見るにはサインインしてください。",
+    "offersForYou": "あなたのユーザー名へのオファー",
+    "offersYouMade": "あなたが出したオファー",
+    "offerHistory": "過去のオファー",
+    "noIncomingOffers": "まだ誰もあなたのユーザー名の購入を申し出ていません。",
+    "noOutgoingOffers": "まだオファーを出していません。誰かのプロフィールを開いて出してみてください。",
+    "offerExpires": "{{when}}に期限切れ",
+    "payBefore": "{{when}}までに支払う",
+    "awaitingOwner": "相手の返事待ち",
+    "acceptOffer": "承認",
+    "declineOffer": "辞退",
+    "confirmAccept": "オファーを承認",
+    "cancel": "キャンセル",
+    "withdrawOffer": "取り下げる",
+    "withdrawAcceptance": "承認を取り消す",
+    "payAndClaim": "支払って受け取る",
+    "acceptMovesNothingYet": "承認すると、ユーザー名はこの買い手のために確保されます。相手が支払うまで何も動かず、それまでは取り消せます。",
+    "acceptedAwaitingPayment": "このオファーを承認しました。ユーザー名はまだあなたのもので、相手が支払ったときに初めて @{{handle}} になります。",
+    "offerAcceptedPayNow": "承認されました。支払いが済むまでユーザー名はあなたのために確保されています。",
+    "offerStatus": {
+      "pending": "返事待ち",
+      "accepted": "承認済み、支払い待ち",
+      "declined": "辞退されました",
+      "withdrawn": "取り下げました",
+      "completed": "完了",
+      "expired": "期限切れ"
+    }
   },
   "accounts": {
     "subtitle": "アカウントまるごと売り出し中、DHB建て",

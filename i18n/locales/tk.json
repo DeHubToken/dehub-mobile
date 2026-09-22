@@ -1559,7 +1559,7 @@
     "unableToLoad": "Profili ýükläp bolmady. Soňrak synanyşyň.",
     "doesNotExist": "Bu ulanyjy ýok.",
     "makeOffer": "{{handle}} üçin teklip bermek",
-    "enterOfferAmount": "Bu ulanyjy adyny almak üçin teklip mukdaryny giriziň.",
+    "enterOfferAmount": "Şu ulanyjy ady üçin teklip etmek isleýän dollar mukdaryňy ýaz.",
     "submitOffer": "Teklip ibermek",
     "validOfferAmount": "Dogry mukdary giriziň",
     "offerSubmitted": "{{handle}} üçin {{amount}} DHB teklip iberildi",
@@ -1585,7 +1585,11 @@
       "dehubFollowers": "DeHub diňleýjileri",
       "selfReported": "Işgärleriň sanyna Ýaradyjy girýär."
     },
-    "tabPlaylists": "Çykyşlar"
+    "tabPlaylists": "Çykyşlar",
+    "offerWorthNow": "Häzirki kurs boýunça takmynan {{amount}} DHB",
+    "offerNotePlaceholder": "Bellik goş (hökman däl)",
+    "offerCommitsNothing": "Teklip etmek hiç zada durmaýar we DHB bloklamaýar. Diňe eýesi razy bolsa töleýärsiň.",
+    "offerNeedsHandle": "Bu hasapda teklip ediler ýaly ulanyjy ady ýok."
   },
   "tv": {
     "title": "TV",
@@ -2910,7 +2914,36 @@
     "staleListing": "Bu bildiriş @{{listed}} üçin, ýöne siz indi @{{current}}. Häzirki adyňyz bilen gaýtadan bildiriş bermeýänçäňiz satylmaz — ýokardaky täzelemek şony edýär.",
     "history": "Taryh",
     "sold": "Satyldy",
-    "bought": "Satyn alyndy"
+    "bought": "Satyn alyndy",
+    "makeOfferAction": "Teklip etmek",
+    "tabOffers": "Teklipler",
+    "signInForOffers": "Ulanyjy adyňa gelen teklipleri görmek üçin gir.",
+    "offersForYou": "Ulanyjy adyň üçin teklipler",
+    "offersYouMade": "Seniň eden tekliplerin",
+    "offerHistory": "Öňki teklipler",
+    "noIncomingOffers": "Ulanyjy adyňy satyn almagy heniz hiç kim teklip etmedi.",
+    "noOutgoingOffers": "Heniz teklip etmediň. Teklip etmek üçin biriniň profilini aç.",
+    "offerExpires": "{{when}} gutarýar",
+    "payBefore": "{{when}} töle",
+    "awaitingOwner": "Eýesine garaşylýar",
+    "acceptOffer": "Kabul et",
+    "declineOffer": "Ret et",
+    "confirmAccept": "Teklibi kabul et",
+    "cancel": "Ýatyr",
+    "withdrawOffer": "Yzyna al",
+    "withdrawAcceptance": "Razylygy yzyna al",
+    "payAndClaim": "Tölä-de al",
+    "acceptMovesNothingYet": "Kabul etmek ulanyjy adyňy şu alyjy üçin saklaýar. Ol tölemänkä hiç zat üýtgemeýär, oňa çenli yza gaýdyp bilersiň.",
+    "acceptedAwaitingPayment": "Sen bu teklibi kabul etdiň. Ulanyjy ady entegem seniňki, @{{handle}} bolsa diňe ol tölände bolarsyň.",
+    "offerAcceptedPayNow": "Kabul edildi. Sen töleýänçäň ulanyjy ady seniň üçin saklanýar.",
+    "offerStatus": {
+      "pending": "Jogaba garaşylýar",
+      "accepted": "Kabul edildi, töleg garaşylýar",
+      "declined": "Ret edildi",
+      "withdrawn": "Yzyna alyndy",
+      "completed": "Tamamlandy",
+      "expired": "Möhleti geçdi"
+    }
   },
   "accounts": {
     "subtitle": "Bahasy DHB bilen bolan tutuş hasaplar satlyk",

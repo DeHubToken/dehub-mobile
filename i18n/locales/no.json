@@ -1574,7 +1574,7 @@
     "unableToLoad": "Kunne ikke laste profilen. Prøv igjen senere.",
     "doesNotExist": "Denne brukeren finnes ikke, eller du må logge inn for å se profilen din.",
     "makeOffer": "Gi tilbud på {{handle}}",
-    "enterOfferAmount": "Skriv inn antall DHB-tokens du vil tilby for å skaffe dette brukernavnet.",
+    "enterOfferAmount": "Skriv inn beløpet i dollar du vil by for dette brukernavnet.",
     "submitOffer": "Send tilbud",
     "validOfferAmount": "Skriv inn et gyldig beløp",
     "offerSubmitted": "Tilbud på {{amount}} DHB for {{handle}} sendt",
@@ -1600,7 +1600,11 @@
       "dehubFollowers": "DeHub-følgere",
       "selfReported": "Antall følgere på sosiale medier legges inn av skaperen."
     },
-    "tabPlaylists": "Spillelister"
+    "tabPlaylists": "Spillelister",
+    "offerWorthNow": "Omtrent {{amount}} DHB til dagens kurs",
+    "offerNotePlaceholder": "Legg til et notat (valgfritt)",
+    "offerCommitsNothing": "Å gi et bud koster ingenting og binder ingen DHB. Du betaler bare hvis eieren godtar.",
+    "offerNeedsHandle": "Denne kontoen har ikke noe brukernavn å by på."
   },
   "tv": {
     "title": "TV",
@@ -2924,7 +2928,36 @@
     "staleListing": "Denne annonsen gjelder @{{listed}}, men du er nå @{{current}}. Den blir ikke solgt før du legger den ut på nytt under ditt nåværende brukernavn — å oppdatere ovenfor gjør nettopp det.",
     "history": "Historikk",
     "sold": "Solgt",
-    "bought": "Kjøpt"
+    "bought": "Kjøpt",
+    "makeOfferAction": "Gi et bud",
+    "tabOffers": "Bud",
+    "signInForOffers": "Logg inn for å se bud på brukernavnet ditt.",
+    "offersForYou": "Bud på brukernavnet ditt",
+    "offersYouMade": "Bud du har gitt",
+    "offerHistory": "Tidligere bud",
+    "noIncomingOffers": "Ingen har budt på brukernavnet ditt ennå.",
+    "noOutgoingOffers": "Du har ikke gitt noen bud ennå. Åpne en profil for å gi ett.",
+    "offerExpires": "Utløper {{when}}",
+    "payBefore": "Betal {{when}}",
+    "awaitingOwner": "Venter på eieren",
+    "acceptOffer": "Godta",
+    "declineOffer": "Avslå",
+    "confirmAccept": "Godta bud",
+    "cancel": "Avbryt",
+    "withdrawOffer": "Trekk tilbake",
+    "withdrawAcceptance": "Trekk tilbake godkjenningen",
+    "payAndClaim": "Betal og overta",
+    "acceptMovesNothingYet": "Når du godtar, holdes brukernavnet ditt av for denne kjøperen. Ingenting flyttes før de betaler, og du kan trekke deg før det.",
+    "acceptedAwaitingPayment": "Du godtok dette budet. Du har fortsatt brukernavnet og blir @{{handle}} først når de betaler.",
+    "offerAcceptedPayNow": "Godtatt. Brukernavnet holdes av til deg til du betaler for det.",
+    "offerStatus": {
+      "pending": "Venter på svar",
+      "accepted": "Godtatt, venter på betaling",
+      "declined": "Avslått",
+      "withdrawn": "Trukket tilbake",
+      "completed": "Fullført",
+      "expired": "Utløpt"
+    }
   },
   "accounts": {
     "subtitle": "Hele kontoer til salgs, priset i DHB",

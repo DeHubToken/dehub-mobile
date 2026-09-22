@@ -1988,7 +1988,7 @@
     "unableToLoad": "Unable to load profile. Please try again later.",
     "doesNotExist": "This user doesn't exist or you need to log in to view your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Enter the amount of DHB tokens you'd like to offer to acquire this username.",
+    "enterOfferAmount": "Ilagay ang halaga sa US dollar na gusto mong ialok para sa username na ito.",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Please enter a valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB submitted for {{handle}}",
@@ -2014,7 +2014,11 @@
       "dehubFollowers": "Mga tagasunod ng DeHub",
       "selfReported": "Ang mga bilang ng mga social follower ay ipinasok ng tagalikha."
     },
-    "tabPlaylists": "Mga Playlist"
+    "tabPlaylists": "Mga Playlist",
+    "offerWorthNow": "Mga {{amount}} DHB sa kasalukuyang palitan",
+    "offerNotePlaceholder": "Magdagdag ng paalala (opsyonal)",
+    "offerCommitsNothing": "Walang bayad ang pag-aalok at walang DHB na nakakandado. Magbabayad ka lang kung tatanggapin ng may-ari.",
+    "offerNeedsHandle": "Walang username ang account na ito na puwedeng alukin."
   },
   "tv": {
     "title": "TV",
@@ -3108,7 +3112,36 @@
     "staleListing": "Para sa @{{listed}} ang listing na ito, pero @{{current}} ka na ngayon. Hindi ito mabebenta hangga't hindi mo ito muling inililista sa ilalim ng kasalukuyan mong handle — ginagawa iyon ng pag-update sa itaas.",
     "history": "Kasaysayan",
     "sold": "Nabenta",
-    "bought": "Nabili"
+    "bought": "Nabili",
+    "makeOfferAction": "Mag-alok",
+    "tabOffers": "Mga alok",
+    "signInForOffers": "Mag-sign in para makita ang mga alok para sa username mo.",
+    "offersForYou": "Mga alok para sa username mo",
+    "offersYouMade": "Mga alok na ginawa mo",
+    "offerHistory": "Mga nakaraang alok",
+    "noIncomingOffers": "Wala pang nag-aalok na bilhin ang username mo.",
+    "noOutgoingOffers": "Wala ka pang ginagawang alok. Buksan ang profile ng isang tao para mag-alok.",
+    "offerExpires": "Mag-e-expire {{when}}",
+    "payBefore": "Magbayad {{when}}",
+    "awaitingOwner": "Naghihintay sa may-ari",
+    "acceptOffer": "Tanggapin",
+    "declineOffer": "Tanggihan",
+    "confirmAccept": "Tanggapin ang alok",
+    "cancel": "Kanselahin",
+    "withdrawOffer": "Bawiin",
+    "withdrawAcceptance": "Bawiin ang pagtanggap",
+    "payAndClaim": "Bayaran at kunin",
+    "acceptMovesNothingYet": "Sa pagtanggap, itatabi ang username mo para sa bumibiling ito. Walang magbabago hangga’t hindi siya nagbabayad, at bago iyon ay puwede kang umatras.",
+    "acceptedAwaitingPayment": "Tinanggap mo ang alok na ito. Sa iyo pa rin ang username at magiging @{{handle}} ka lang kapag nagbayad na siya.",
+    "offerAcceptedPayNow": "Tinanggap. Nakatabi sa iyo ang username hangga’t hindi mo ito nababayaran.",
+    "offerStatus": {
+      "pending": "Naghihintay ng sagot",
+      "accepted": "Tinanggap, hinihintay ang bayad",
+      "declined": "Tinanggihan",
+      "withdrawn": "Binawi",
+      "completed": "Tapos na",
+      "expired": "Nag-expire"
+    }
   },
   "accounts": {
     "subtitle": "Buong account na ibinebenta, presyo sa DHB",

@@ -1609,7 +1609,7 @@
     "unableToLoad": "Kò le gbé àkọsílẹ̀. Jọ̀wọ́ gbìyànjú lẹ́yìn náà.",
     "doesNotExist": "Oníṣàmúlò yìí kò sí tàbí o nílò láti wọlé láti wo àkọsílẹ̀ rẹ.",
     "makeOffer": "Ṣe Ìfúnni sí {{handle}}",
-    "enterOfferAmount": "Tẹ iye àwọn tọ́kẹ̀nì DHB tí o fẹ́ fúnni láti gba orúkọ oníṣàmúlò yìí.",
+    "enterOfferAmount": "Tẹ iye owó dọ́là tí o fẹ́ fi lọ̀ fún orúkọ olùmúlò yìí.",
     "submitOffer": "Fi Ìfúnni Ránṣẹ́",
     "validOfferAmount": "Jọ̀wọ́ tẹ iye ìfúnni tó tọ́ sí",
     "offerSubmitted": "Ìfúnni DHB {{amount}} fún {{handle}} ti ránṣẹ́",
@@ -1635,7 +1635,11 @@
       "dehubFollowers": "Àwọn ọmọ-ẹ̀yìn DeHub",
       "selfReported": "Olùṣẹ̀dá ló máa ń tẹ iye àwọn ọmọlẹ́yìn tó ń tẹ̀lé àwùjọ."
     },
-    "tabPlaylists": "Àwọn àtòjọ orin"
+    "tabPlaylists": "Àwọn àtòjọ orin",
+    "offerWorthNow": "Nǹkan bí {{amount}} DHB ní ìdíyelé lọ́wọ́lọ́wọ́",
+    "offerNotePlaceholder": "Fi àkíyèsí kún un (àṣàyàn)",
+    "offerCommitsNothing": "Ṣíṣe ìfilọ̀ kò ná ohunkóhun, kò sì dí DHB kankan. O ó san owó nìkan bí olówó rẹ̀ bá gbà.",
+    "offerNeedsHandle": "Àkáǹtì yìí kò ní orúkọ olùmúlò tí a lè fi ìfilọ̀ sí."
   },
   "tv": {
     "title": "TV",
@@ -2925,7 +2929,36 @@
     "staleListing": "Àkọsílẹ̀ ọjà yìí jẹ́ ti @{{listed}}, ṣùgbọ́n o jẹ́ @{{current}} báyìí. Kò ní tà títí ìwọ yóò fi tún fi sílẹ̀ pẹ̀lú orúkọ rẹ lọ́wọ́lọ́wọ́ — ṣíṣàtúnṣe lókè ń ṣe ìyẹn.",
     "history": "Ìtàn",
     "sold": "Tí a ti tà",
-    "bought": "Tí a ti rà"
+    "bought": "Tí a ti rà",
+    "makeOfferAction": "Ṣe ìfilọ̀",
+    "tabOffers": "Àwọn ìfilọ̀",
+    "signInForOffers": "Wọlé láti rí àwọn ìfilọ̀ fún orúkọ olùmúlò rẹ.",
+    "offersForYou": "Àwọn ìfilọ̀ fún orúkọ olùmúlò rẹ",
+    "offersYouMade": "Àwọn ìfilọ̀ tí o ṣe",
+    "offerHistory": "Àwọn ìfilọ̀ àtẹ̀yìnwá",
+    "noIncomingOffers": "Kò sí ẹni tí ó ti fi hàn pé òun fẹ́ ra orúkọ olùmúlò rẹ.",
+    "noOutgoingOffers": "O kò tíì ṣe ìfilọ̀ kankan. Ṣí profáìlì ẹnìkan láti ṣe ọ̀kan.",
+    "offerExpires": "Yóò parí {{when}}",
+    "payBefore": "San {{when}}",
+    "awaitingOwner": "Ń dúró de olówó rẹ̀",
+    "acceptOffer": "Gbà",
+    "declineOffer": "Kọ̀",
+    "confirmAccept": "Gba ìfilọ̀ náà",
+    "cancel": "Fagilé",
+    "withdrawOffer": "Fà sẹ́yìn",
+    "withdrawAcceptance": "Fa ìgbàgbọ́ sẹ́yìn",
+    "payAndClaim": "San kí o sì gbà",
+    "acceptMovesNothingYet": "Gbígbà yóò dá orúkọ olùmúlò rẹ dúró fún olùrà yìí. Kò sí ohun tí yóò yí padà títí ó fi san, kí ó tó di ìgbà náà o lè yọ ara rẹ kúrò.",
+    "acceptedAwaitingPayment": "O gba ìfilọ̀ yìí. Orúkọ olùmúlò ṣì jẹ́ tìrẹ, o ó sì di @{{handle}} nìkan nígbà tí ó bá san.",
+    "offerAcceptedPayNow": "A gbà á. A dá orúkọ olùmúlò dúró fún ọ títí o fi san owó rẹ̀.",
+    "offerStatus": {
+      "pending": "Ń dúró de ìdáhùn",
+      "accepted": "A gbà á, ń dúró de owó",
+      "declined": "A kọ̀ ọ́",
+      "withdrawn": "A fà á sẹ́yìn",
+      "completed": "Ó ti parí",
+      "expired": "Àkókò rẹ̀ ti parí"
+    }
   },
   "accounts": {
     "subtitle": "Gbogbo àkọọ́lẹ̀ tí a ń tà, iye owó ní DHB",

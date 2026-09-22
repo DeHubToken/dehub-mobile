@@ -1602,7 +1602,7 @@
     "unableToLoad": "መገለጫን መጫን አልተቻለም። እባክህ በኋላ ደግመህ ሞክር።",
     "doesNotExist": "ይህ ተጠቃሚ የለም ወይም መገለጫህን ለማየት መግባት ያስፈልጋል።",
     "makeOffer": "ለ{{handle}} ቅናሽ አቅርብ",
-    "enterOfferAmount": "ይህንን የተጠቃሚ ስም ለማግኘት ለማቅረብ የምትፈልገውን የDHB ቶከኖች መጠን አስገባ።",
+    "enterOfferAmount": "ለዚህ የተጠቃሚ ስም ማቅረብ የምትፈልገውን የዶላር መጠን አስገባ።",
     "submitOffer": "ቅናሽ አቅርብ",
     "validOfferAmount": "እባክህ ትክክለኛ የቅናሽ መጠን አስገባ",
     "offerSubmitted": "ለ{{handle}} {{amount}} DHB ቅናሽ ቀርቧል",
@@ -1628,7 +1628,11 @@
       "dehubFollowers": "DeHub ተከታዮች",
       "selfReported": "የማኅበራዊ መከታተያ ቁጥሮች በፈጣሪ ይካተታሉ ።"
     },
-    "tabPlaylists": "አጫዋች ዝርዝሮች"
+    "tabPlaylists": "አጫዋች ዝርዝሮች",
+    "offerWorthNow": "በአሁኑ ምንዛሪ ወደ {{amount}} DHB ገደማ",
+    "offerNotePlaceholder": "ማስታወሻ ጨምር (አማራጭ)",
+    "offerCommitsNothing": "ቅናሽ ማቅረብ ምንም አያስከፍልም እና DHB አይይዝም። የምትከፍለው ባለቤቱ ከተቀበለ ብቻ ነው።",
+    "offerNeedsHandle": "ይህ መለያ ቅናሽ የሚቀርብበት የተጠቃሚ ስም የለውም።"
   },
   "tv": {
     "title": "ቴሌቪዥን",
@@ -2933,7 +2937,36 @@
     "staleListing": "ይህ ማስታወቂያ ለ@{{listed}} ነው፣ ግን አሁን እርስዎ @{{current}} ነዎት። በአሁኑ መጠሪያዎ እንደገና እስካላቀረቡት ድረስ አይሸጥም — ከላይ ማዘመን ያንን ያደርጋል።",
     "history": "ታሪክ",
     "sold": "ተሸጧል",
-    "bought": "ተገዝቷል"
+    "bought": "ተገዝቷል",
+    "makeOfferAction": "ቅናሽ አቅርብ",
+    "tabOffers": "ቅናሾች",
+    "signInForOffers": "ለተጠቃሚ ስምህ የቀረቡ ቅናሾችን ለማየት ግባ።",
+    "offersForYou": "ለተጠቃሚ ስምህ የቀረቡ ቅናሾች",
+    "offersYouMade": "ያቀረብካቸው ቅናሾች",
+    "offerHistory": "ያለፉ ቅናሾች",
+    "noIncomingOffers": "እስካሁን ማንም የተጠቃሚ ስምህን ለመግዛት አላቀረበም።",
+    "noOutgoingOffers": "እስካሁን ምንም ቅናሽ አላቀረብክም። ለማቅረብ የአንድ ሰው መገለጫ ክፈት።",
+    "offerExpires": "{{when}} ያበቃል",
+    "payBefore": "{{when}} ክፈል",
+    "awaitingOwner": "ባለቤቱን በመጠበቅ ላይ",
+    "acceptOffer": "ተቀበል",
+    "declineOffer": "አትቀበል",
+    "confirmAccept": "ቅናሹን ተቀበል",
+    "cancel": "ሰርዝ",
+    "withdrawOffer": "አንሳ",
+    "withdrawAcceptance": "መቀበልን አንሳ",
+    "payAndClaim": "ክፈልና ውሰድ",
+    "acceptMovesNothingYet": "መቀበል የተጠቃሚ ስምህን ለዚህ ገዢ ይይዛል። እስኪከፍል ድረስ ምንም አይለወጥም፣ እስከዚያም ማንሳት ትችላለህ።",
+    "acceptedAwaitingPayment": "ይህን ቅናሽ ተቀብለሃል። የተጠቃሚ ስሙ አሁንም የአንተ ነው፣ እና @{{handle}} የምትሆነው እሱ ሲከፍል ብቻ ነው።",
+    "offerAcceptedPayNow": "ተቀባይነት አግኝቷል። እስክትከፍል ድረስ የተጠቃሚ ስሙ ለአንተ ተይዟል።",
+    "offerStatus": {
+      "pending": "መልስ በመጠበቅ ላይ",
+      "accepted": "ተቀባይነት አግኝቷል፣ ክፍያ በመጠበቅ ላይ",
+      "declined": "ተቀባይነት አላገኘም",
+      "withdrawn": "ተነስቷል",
+      "completed": "ተጠናቋል",
+      "expired": "ጊዜው አልፏል"
+    }
   },
   "accounts": {
     "subtitle": "ሙሉ መለያዎች ለሽያጭ፣ ዋጋቸው በDHB",

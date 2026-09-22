@@ -1476,7 +1476,7 @@
     "unableToLoad": "Kunne ikke indlæse profil. Prøv senere.",
     "doesNotExist": "Denne bruger eksisterer ikke eller login er påkrævet.",
     "makeOffer": "Byd på {{handle}}",
-    "enterOfferAmount": "Indtast DHB-beløb for dette navn.",
+    "enterOfferAmount": "Indtast det beløb i dollar, du vil byde for dette brugernavn.",
     "submitOffer": "Indsend bud",
     "validOfferAmount": "Indtast et gyldigt beløb",
     "offerSubmitted": "Bud på {{amount}} DHB indsendt for {{handle}}",
@@ -1502,7 +1502,11 @@
       "dehubFollowers": "DeHub-følgere",
       "selfReported": "Antal følgere på sociale medier indtastes af kreatøren."
     },
-    "tabPlaylists": "Spillelister"
+    "tabPlaylists": "Spillelister",
+    "offerWorthNow": "Omkring {{amount}} DHB til den aktuelle kurs",
+    "offerNotePlaceholder": "Tilføj en note (valgfrit)",
+    "offerCommitsNothing": "Det koster intet at byde, og der bindes ingen DHB. Du betaler kun, hvis ejeren accepterer.",
+    "offerNeedsHandle": "Denne konto har intet brugernavn at byde på."
   },
   "messages": {
     "smartRepliesOff": "Foreslåede svar er slået fra",
@@ -2934,7 +2938,36 @@
     "staleListing": "Denne annonce gælder @{{listed}}, men du er nu @{{current}}. Den sælges ikke, før du opretter den igen under dit nuværende brugernavn — opdateringen ovenfor gør netop det.",
     "history": "Historik",
     "sold": "Solgt",
-    "bought": "Købt"
+    "bought": "Købt",
+    "makeOfferAction": "Giv et bud",
+    "tabOffers": "Bud",
+    "signInForOffers": "Log ind for at se bud på dit brugernavn.",
+    "offersForYou": "Bud på dit brugernavn",
+    "offersYouMade": "Bud du har afgivet",
+    "offerHistory": "Tidligere bud",
+    "noIncomingOffers": "Ingen har endnu budt på dit brugernavn.",
+    "noOutgoingOffers": "Du har ikke afgivet nogen bud endnu. Åbn en profil for at give et.",
+    "offerExpires": "Udløber {{when}}",
+    "payBefore": "Betal {{when}}",
+    "awaitingOwner": "Venter på ejeren",
+    "acceptOffer": "Accepter",
+    "declineOffer": "Afvis",
+    "confirmAccept": "Accepter bud",
+    "cancel": "Annuller",
+    "withdrawOffer": "Træk tilbage",
+    "withdrawAcceptance": "Træk accepten tilbage",
+    "payAndClaim": "Betal og overtag",
+    "acceptMovesNothingYet": "Når du accepterer, reserveres dit brugernavn til denne køber. Intet flytter sig, før de betaler, og du kan trække dig inden da.",
+    "acceptedAwaitingPayment": "Du har accepteret dette bud. Du har stadig brugernavnet og bliver først @{{handle}}, når de betaler.",
+    "offerAcceptedPayNow": "Accepteret. Brugernavnet er reserveret til dig, indtil du betaler for det.",
+    "offerStatus": {
+      "pending": "Venter på svar",
+      "accepted": "Accepteret, afventer betaling",
+      "declined": "Afvist",
+      "withdrawn": "Trukket tilbage",
+      "completed": "Gennemført",
+      "expired": "Udløbet"
+    }
   },
   "accounts": {
     "subtitle": "Hele konti til salg, prissat i DHB",

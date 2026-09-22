@@ -1583,7 +1583,7 @@
     "unableToLoad": "प्रोफाइल लोड नइ हो पावल। बाद में फिर कोशिश करो।",
     "doesNotExist": "ई यूजर नइ बा या तोहर प्रोफाइल देखे खातिर लॉग इन करो।",
     "makeOffer": "{{handle}} खातिर ऑफर करो",
-    "enterOfferAmount": "ई यूजरनेम लेवे खातिर कतना DHB टोकन ऑफर करे के बा बताओ।",
+    "enterOfferAmount": "एहि यूजरनेम लेल अहाँ जतेक डॉलर देबय चाहैत छी ओ राशि लिखू।",
     "submitOffer": "ऑफर जमा करो",
     "validOfferAmount": "सही ऑफर राशि दो",
     "offerSubmitted": "{{handle}} खातिर {{amount}} DHB ऑफर जमा हो गेल",
@@ -1609,7 +1609,11 @@
       "dehubFollowers": "देसी अनुयायी हई",
       "selfReported": "रचनाकार द्वारा सामाजिक अनुयायी के गिनती कैल जाई हई ।"
     },
-    "tabPlaylists": "कैलक्यूलेटर"
+    "tabPlaylists": "कैलक्यूलेटर",
+    "offerWorthNow": "वर्तमान दर पर लगभग {{amount}} DHB",
+    "offerNotePlaceholder": "नोट जोड़ू (वैकल्पिक)",
+    "offerCommitsNothing": "ऑफर देबा मे किछु खर्च नहि होइत अछि आ कोनो DHB नहि रुकैत अछि। अहाँ तखने भुगतान करब जखन मालिक स्वीकार करत।",
+    "offerNeedsHandle": "एहि खाताक कोनो यूजरनेम नहि अछि जाहि पर ऑफर देल जा सकय।"
   },
   "tv": {
     "title": "TV",
@@ -2892,7 +2896,36 @@
     "staleListing": "ई सूची @{{listed}} लेल हे, मुदा आब अहाँ @{{current}} छी। जखन तक अहाँ एकरा अपन मौजूदा हैंडल स' दोबारा नै लगेबै, ई नै बिकतै — ऊपर अपडेट कयला स' इएह हो हे।",
     "history": "इतिहास",
     "sold": "बिकि गेल",
-    "bought": "खरीदल गेल"
+    "bought": "खरीदल गेल",
+    "makeOfferAction": "ऑफर दिअ",
+    "tabOffers": "ऑफर",
+    "signInForOffers": "अपन यूजरनेम लेल आयल ऑफर देखे लेल साइन इन करू।",
+    "offersForYou": "अहाँक यूजरनेम लेल ऑफर",
+    "offersYouMade": "अहाँ देल ऑफर",
+    "offerHistory": "पहिलुक ऑफर",
+    "noIncomingOffers": "आबि धरि केओ अहाँक यूजरनेम कीनै के ऑफर नहि देलक।",
+    "noOutgoingOffers": "अहाँ आबि धरि कोनो ऑफर नहि देलहुँ। ऑफर देबाक लेल केकरो प्रोफाइल खोलू।",
+    "offerExpires": "{{when}} खतम",
+    "payBefore": "{{when}} भुगतान करू",
+    "awaitingOwner": "मालिकक प्रतीक्षा",
+    "acceptOffer": "स्वीकार करू",
+    "declineOffer": "अस्वीकार करू",
+    "confirmAccept": "ऑफर स्वीकार करू",
+    "cancel": "रद्द करू",
+    "withdrawOffer": "वापस लिअ",
+    "withdrawAcceptance": "स्वीकृति वापस लिअ",
+    "payAndClaim": "भुगतान क लिअ",
+    "acceptMovesNothingYet": "स्वीकार कयला पर अहाँक यूजरनेम एहि खरीददार लेल रोकल जाइत अछि। जा धरि ओ भुगतान नहि करत किछु नहि बदलत, आ ओहि सँ पहिने अहाँ पाछू हटि सकैत छी।",
+    "acceptedAwaitingPayment": "अहाँ ई ऑफर स्वीकार कयलहुँ। यूजरनेम आब धरि अहींक अछि आ अहाँ @{{handle}} तखने बनब जखन ओ भुगतान करत।",
+    "offerAcceptedPayNow": "स्वीकार भ गेल। जा धरि अहाँ भुगतान नहि करब, यूजरनेम अहाँक लेल रोकल अछि।",
+    "offerStatus": {
+      "pending": "जवाबक प्रतीक्षा",
+      "accepted": "स्वीकृत, भुगतानक प्रतीक्षा",
+      "declined": "अस्वीकृत",
+      "withdrawn": "वापस लेल गेल",
+      "completed": "पूरा भेल",
+      "expired": "समय खतम"
+    }
   },
   "accounts": {
     "subtitle": "पूरा खाता बिक्री लेल, दाम DHB में",

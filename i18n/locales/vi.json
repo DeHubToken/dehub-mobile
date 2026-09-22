@@ -1895,7 +1895,7 @@
     "unableToLoad": "Không tải được hồ sơ. Vui lòng thử lại sau.",
     "doesNotExist": "Người dùng này không tồn tại, hoặc bạn cần đăng nhập để xem hồ sơ của mình.",
     "makeOffer": "Đưa ra đề nghị cho {{handle}}",
-    "enterOfferAmount": "Nhập số token DHB bạn muốn trả để sở hữu tên người dùng này.",
+    "enterOfferAmount": "Nhập số tiền bằng đô la Mỹ bạn muốn đề nghị cho tên người dùng này.",
     "submitOffer": "Gửi đề nghị",
     "validOfferAmount": "Vui lòng nhập số tiền đề nghị hợp lệ",
     "offerSubmitted": "Đã gửi đề nghị {{amount}} DHB cho {{handle}}",
@@ -1921,7 +1921,11 @@
       "dehubFollowers": "Người theo dõi DeHub",
       "selfReported": "Người sáng tạo nhập số lượng người theo dõi trên mạng xã hội."
     },
-    "tabPlaylists": "Danh sách phát"
+    "tabPlaylists": "Danh sách phát",
+    "offerWorthNow": "Khoảng {{amount}} DHB theo tỷ giá hiện tại",
+    "offerNotePlaceholder": "Thêm ghi chú (không bắt buộc)",
+    "offerCommitsNothing": "Gửi đề nghị không tốn gì và không khoá DHB nào. Bạn chỉ trả tiền nếu chủ sở hữu chấp nhận.",
+    "offerNeedsHandle": "Tài khoản này không có tên người dùng để đề nghị mua."
   },
   "tv": {
     "title": "TV",
@@ -3017,7 +3021,36 @@
     "staleListing": "Tin đăng này dành cho @{{listed}}, nhưng giờ bạn là @{{current}}. Nó sẽ không bán được cho đến khi bạn đăng lại với tên hiện tại — cập nhật ở trên sẽ làm điều đó.",
     "history": "Lịch sử",
     "sold": "Đã bán",
-    "bought": "Đã mua"
+    "bought": "Đã mua",
+    "makeOfferAction": "Gửi đề nghị",
+    "tabOffers": "Đề nghị",
+    "signInForOffers": "Đăng nhập để xem các đề nghị mua tên người dùng của bạn.",
+    "offersForYou": "Đề nghị cho tên người dùng của bạn",
+    "offersYouMade": "Đề nghị bạn đã gửi",
+    "offerHistory": "Đề nghị trước đây",
+    "noIncomingOffers": "Chưa ai đề nghị mua tên người dùng của bạn.",
+    "noOutgoingOffers": "Bạn chưa gửi đề nghị nào. Mở trang của ai đó để gửi một đề nghị.",
+    "offerExpires": "Hết hạn {{when}}",
+    "payBefore": "Thanh toán {{when}}",
+    "awaitingOwner": "Đang chờ chủ sở hữu",
+    "acceptOffer": "Chấp nhận",
+    "declineOffer": "Từ chối",
+    "confirmAccept": "Chấp nhận đề nghị",
+    "cancel": "Huỷ",
+    "withdrawOffer": "Rút lại",
+    "withdrawAcceptance": "Rút lại việc chấp nhận",
+    "payAndClaim": "Thanh toán và nhận",
+    "acceptMovesNothingYet": "Chấp nhận sẽ giữ tên người dùng của bạn cho người mua này. Không có gì thay đổi cho đến khi họ thanh toán, và trước đó bạn vẫn có thể rút lại.",
+    "acceptedAwaitingPayment": "Bạn đã chấp nhận đề nghị này. Tên người dùng vẫn là của bạn và bạn chỉ trở thành @{{handle}} khi họ thanh toán.",
+    "offerAcceptedPayNow": "Đã chấp nhận. Tên người dùng được giữ cho bạn cho đến khi bạn thanh toán.",
+    "offerStatus": {
+      "pending": "Đang chờ trả lời",
+      "accepted": "Đã chấp nhận, chờ thanh toán",
+      "declined": "Đã từ chối",
+      "withdrawn": "Đã rút lại",
+      "completed": "Đã hoàn tất",
+      "expired": "Đã hết hạn"
+    }
   },
   "accounts": {
     "subtitle": "Tài khoản trọn vẹn đang rao bán, tính giá bằng DHB",

@@ -1473,7 +1473,7 @@
     "unableToLoad": "تعذر تحميل الملف الشخصي. حاول لاحقاً.",
     "doesNotExist": "هذا المستخدم غير موجود أو تحتاج لتسجيل الدخول.",
     "makeOffer": "تقديم عرض لـ {{handle}}",
-    "enterOfferAmount": "أدخل مبلغ DHB الذي ترغب في عرضه لهذا الاسم.",
+    "enterOfferAmount": "أدخل المبلغ بالدولار الذي تريد تقديمه مقابل اسم المستخدم هذا.",
     "submitOffer": "تقديم العرض",
     "validOfferAmount": "أدخل مبلغاً صالحاً",
     "offerSubmitted": "تم تقديم عرض {{amount}} DHB لـ {{handle}}",
@@ -1499,7 +1499,11 @@
       "dehubFollowers": "متابعو DeHub",
       "selfReported": "يتم إدخال عدد المتابعين الاجتماعيين من قبل المنشئ."
     },
-    "tabPlaylists": "قوائم التشغيل"
+    "tabPlaylists": "قوائم التشغيل",
+    "offerWorthNow": "نحو {{amount}} DHB بالسعر الحالي",
+    "offerNotePlaceholder": "أضف ملاحظة (اختياري)",
+    "offerCommitsNothing": "تقديم عرض لا يكلّف شيئًا ولا يحجز أي DHB. لا تدفع إلا إذا قبل المالك.",
+    "offerNeedsHandle": "هذا الحساب ليس له اسم مستخدم لتقديم عرض عليه."
   },
   "messages": {
     "smartRepliesOff": "تم إيقاف الردود المقترحة",
@@ -2937,7 +2941,36 @@
     "fixedDollarPrice": "يبقى السعر بالدولار ثابتًا وتتحدث كمية الرموز.",
     "priceUpdated": "تم تحديث السعر. راجع المبلغ واضغط على شراء مجددًا.",
     "tokensPaidToSeller": "يُدفع مباشرة إلى البائع",
-    "priceUsd": "السعر (USD)"
+    "priceUsd": "السعر (USD)",
+    "makeOfferAction": "قدّم عرضًا",
+    "tabOffers": "العروض",
+    "signInForOffers": "سجّل الدخول لرؤية العروض المقدَّمة على اسم المستخدم الخاص بك.",
+    "offersForYou": "عروض على اسم المستخدم الخاص بك",
+    "offersYouMade": "العروض التي قدّمتها",
+    "offerHistory": "عروض سابقة",
+    "noIncomingOffers": "لم يعرض أحد بعد شراء اسم المستخدم الخاص بك.",
+    "noOutgoingOffers": "لم تقدّم أي عرض بعد. افتح ملف أحدهم لتقديم عرض.",
+    "offerExpires": "ينتهي {{when}}",
+    "payBefore": "ادفع {{when}}",
+    "awaitingOwner": "في انتظار المالك",
+    "acceptOffer": "قبول",
+    "declineOffer": "رفض",
+    "confirmAccept": "قبول العرض",
+    "cancel": "إلغاء",
+    "withdrawOffer": "سحب",
+    "withdrawAcceptance": "سحب القبول",
+    "payAndClaim": "ادفع واستلم",
+    "acceptMovesNothingYet": "القبول يحجز اسم المستخدم لهذا المشتري. لا شيء يتغيّر حتى يدفع، ويمكنك التراجع قبل ذلك.",
+    "acceptedAwaitingPayment": "لقد قبلت هذا العرض. اسم المستخدم ما زال لك، ولن تصبح @{{handle}} إلا عندما يدفع.",
+    "offerAcceptedPayNow": "تم القبول. اسم المستخدم محجوز لك حتى تدفع ثمنه.",
+    "offerStatus": {
+      "pending": "في انتظار الرد",
+      "accepted": "مقبول، بانتظار الدفع",
+      "declined": "مرفوض",
+      "withdrawn": "مسحوب",
+      "completed": "مكتمل",
+      "expired": "منتهي الصلاحية"
+    }
   },
   "accounts": {
     "subtitle": "حسابات كاملة معروضة للبيع، بسعر بالـ DHB",
