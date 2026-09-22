@@ -1612,7 +1612,7 @@
     "unableToLoad": "Profila ielāde neizdevās. Lūdzu, mēģiniet vēlāk.",
     "doesNotExist": "Šis lietotājs neeksistē vai jums jāpiesakās, lai redzētu savu profilu.",
     "makeOffer": "Izteikt piedāvājumu par {{handle}}",
-    "enterOfferAmount": "Ievadiet DHB žetonu summu, ko vēlaties piedāvāt par šo lietotājvārdu.",
+    "enterOfferAmount": "Ievadi summu dolāros, ko vēlies piedāvāt par šo lietotājvārdu.",
     "submitOffer": "Iesniegt piedāvājumu",
     "validOfferAmount": "Ievadiet derīgu piedāvājuma summu",
     "offerSubmitted": "{{amount}} DHB piedāvājums iesniegts par {{handle}}",
@@ -1638,7 +1638,11 @@
       "dehubFollowers": "DeHub sekotāji",
       "selfReported": "Sociālo sekotāju skaitu ievada veidotājs."
     },
-    "tabPlaylists": "Repertuāri"
+    "tabPlaylists": "Repertuāri",
+    "offerWorthNow": "Aptuveni {{amount}} DHB pēc pašreizējā kursa",
+    "offerNotePlaceholder": "Pievieno piezīmi (nav obligāti)",
+    "offerCommitsNothing": "Piedāvājuma izteikšana neko nemaksā un nerezervē DHB. Maksā tikai tad, ja īpašnieks piekrīt.",
+    "offerNeedsHandle": "Šim kontam nav lietotājvārda, par ko piedāvāt."
   },
   "tv": {
     "title": "TV",
@@ -2928,7 +2932,36 @@
     "staleListing": "Šis sludinājums ir par @{{listed}}, bet tagad tu esi @{{current}}. Tas netiks pārdots, kamēr to neizliksi no jauna ar savu pašreizējo lietotājvārdu — atjaunināšana augšā to izdara.",
     "history": "Vēsture",
     "sold": "Pārdots",
-    "bought": "Nopirkts"
+    "bought": "Nopirkts",
+    "makeOfferAction": "Izteikt piedāvājumu",
+    "tabOffers": "Piedāvājumi",
+    "signInForOffers": "Piesakies, lai redzētu piedāvājumus par savu lietotājvārdu.",
+    "offersForYou": "Piedāvājumi par tavu lietotājvārdu",
+    "offersYouMade": "Tavi piedāvājumi",
+    "offerHistory": "Iepriekšējie piedāvājumi",
+    "noIncomingOffers": "Neviens vēl nav piedāvājis nopirkt tavu lietotājvārdu.",
+    "noOutgoingOffers": "Tu vēl neesi izteicis piedāvājumus. Atver kāda profilu, lai izteiktu.",
+    "offerExpires": "Beidzas {{when}}",
+    "payBefore": "Samaksā {{when}}",
+    "awaitingOwner": "Gaida īpašnieku",
+    "acceptOffer": "Pieņemt",
+    "declineOffer": "Noraidīt",
+    "confirmAccept": "Pieņemt piedāvājumu",
+    "cancel": "Atcelt",
+    "withdrawOffer": "Atsaukt",
+    "withdrawAcceptance": "Atsaukt piekrišanu",
+    "payAndClaim": "Samaksāt un pārņemt",
+    "acceptMovesNothingYet": "Pieņemot, tavs lietotājvārds tiek rezervēts šim pircējam. Nekas nemainās, kamēr viņš nesamaksā, un tu vari atsaukt pirms tam.",
+    "acceptedAwaitingPayment": "Tu pieņēmi šo piedāvājumu. Lietotājvārds joprojām ir tavs, un par @{{handle}} kļūsi tikai tad, kad viņš samaksās.",
+    "offerAcceptedPayNow": "Pieņemts. Lietotājvārds ir rezervēts tev, līdz par to samaksā.",
+    "offerStatus": {
+      "pending": "Gaida atbildi",
+      "accepted": "Pieņemts, gaida maksājumu",
+      "declined": "Noraidīts",
+      "withdrawn": "Atsaukts",
+      "completed": "Pabeigts",
+      "expired": "Beidzies"
+    }
   },
   "accounts": {
     "subtitle": "Pārdodami veseli konti, cena DHB",

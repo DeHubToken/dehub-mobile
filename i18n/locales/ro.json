@@ -1820,7 +1820,7 @@
     "unableToLoad": "Unable to load profile. Please try again later.",
     "doesNotExist": "This user doesn't exist or you need to log in to view your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Enter the amount of DHB tokens you'd like to offer to acquire this username.",
+    "enterOfferAmount": "Introdu suma în dolari pe care vrei să o oferi pentru acest nume de utilizator.",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Please enter a valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB submitted for {{handle}}",
@@ -1846,7 +1846,11 @@
       "dehubFollowers": "Urmăritori DeHub",
       "selfReported": "Numărul de urmăritori sociali este introdus de creator."
     },
-    "tabPlaylists": "Liste de redare"
+    "tabPlaylists": "Liste de redare",
+    "offerWorthNow": "Aproximativ {{amount}} DHB la cursul actual",
+    "offerNotePlaceholder": "Adaugă o notă (opțional)",
+    "offerCommitsNothing": "O ofertă nu costă nimic și nu blochează DHB. Plătești doar dacă proprietarul acceptă.",
+    "offerNeedsHandle": "Acest cont nu are un nume de utilizator pentru care să oferi."
   },
   "tv": {
     "title": "TV",
@@ -2942,7 +2946,36 @@
     "staleListing": "Acest anunț este pentru @{{listed}}, dar acum ești @{{current}}. Nu se va vinde până nu îl republici cu numele tău actual — actualizarea de mai sus face exact asta.",
     "history": "Istoric",
     "sold": "Vândut",
-    "bought": "Cumpărat"
+    "bought": "Cumpărat",
+    "makeOfferAction": "Fă o ofertă",
+    "tabOffers": "Oferte",
+    "signInForOffers": "Conectează-te ca să vezi ofertele pentru numele tău de utilizator.",
+    "offersForYou": "Oferte pentru numele tău de utilizator",
+    "offersYouMade": "Ofertele făcute de tine",
+    "offerHistory": "Oferte anterioare",
+    "noIncomingOffers": "Nimeni nu a oferit încă să îți cumpere numele de utilizator.",
+    "noOutgoingOffers": "Nu ai făcut încă nicio ofertă. Deschide profilul cuiva ca să faci una.",
+    "offerExpires": "Expiră {{when}}",
+    "payBefore": "Plătește {{when}}",
+    "awaitingOwner": "Se așteaptă proprietarul",
+    "acceptOffer": "Acceptă",
+    "declineOffer": "Refuză",
+    "confirmAccept": "Acceptă oferta",
+    "cancel": "Anulează",
+    "withdrawOffer": "Retrage",
+    "withdrawAcceptance": "Retrage acceptarea",
+    "payAndClaim": "Plătește și revendică",
+    "acceptMovesNothingYet": "Acceptarea rezervă numele tău de utilizator pentru acest cumpărător. Nimic nu se mută până nu plătește, iar până atunci te poți retrage.",
+    "acceptedAwaitingPayment": "Ai acceptat această ofertă. Numele de utilizator este încă al tău și vei deveni @{{handle}} abia după ce plătește.",
+    "offerAcceptedPayNow": "Acceptată. Numele de utilizator este rezervat pentru tine până îl plătești.",
+    "offerStatus": {
+      "pending": "Se așteaptă un răspuns",
+      "accepted": "Acceptată, în așteptarea plății",
+      "declined": "Refuzată",
+      "withdrawn": "Retrasă",
+      "completed": "Finalizată",
+      "expired": "Expirată"
+    }
   },
   "accounts": {
     "subtitle": "Conturi întregi de vânzare, cu preț în DHB",

@@ -1572,7 +1572,7 @@
     "unableToLoad": "Profiu cha nid glade wärde. Bitte probier s spöter nomol.",
     "doesNotExist": "Dä Benutzer existiert nid oder du muesch di aamälde zum dis Profiu z gsee.",
     "makeOffer": "Aagebote für {{handle}} mache",
-    "enterOfferAmount": "Gib de Betrag a DHB Token i wo du für dä Benutzername aabiete wetsch.",
+    "enterOfferAmount": "Gib de Dollarbetrag ii, wo du für dä Benutzername bieted wotsch.",
     "submitOffer": "Aagebote iireiche",
     "validOfferAmount": "Bitte gib en gültige Betrag i",
     "offerSubmitted": "Aagebote vo {{amount}} DHB für {{handle}} iigereicht",
@@ -1598,7 +1598,11 @@
       "dehubFollowers": "DeHub Follower",
       "selfReported": "Soziali Follower-Zahle werded vom Creator yygäbe."
     },
-    "tabPlaylists": "Playlistä"
+    "tabPlaylists": "Playlistä",
+    "offerWorthNow": "Öppe {{amount}} DHB zum aktuelle Kurs",
+    "offerNotePlaceholder": "Notiz dezuetue (optional)",
+    "offerCommitsNothing": "Es Aagebot choschtet nüt und bindet kei DHB. Du zahlsch nur, wenn de Bsitzer aanimmt.",
+    "offerNeedsHandle": "Das Konto het kein Benutzername, für wo me chönnt biete."
   },
   "tv": {
     "title": "TV",
@@ -2918,7 +2922,36 @@
     "staleListing": "Das Aagebot gilt für de @{{listed}}, aber du bisch jetzt de @{{current}}. Er wird sich nid verchaufe, bis du en under dim aktuelle Handle nöi ystellsch — d'Aktualisierig obe macht das.",
     "history": "Verlauf",
     "sold": "Verchauft",
-    "bought": "Gchauft"
+    "bought": "Gchauft",
+    "makeOfferAction": "Es Aagebot mache",
+    "tabOffers": "Aagebot",
+    "signInForOffers": "Mäld di aa, für Aagebot für din Benutzername z’gseh.",
+    "offersForYou": "Aagebot für din Benutzername",
+    "offersYouMade": "Dini Aagebot",
+    "offerHistory": "Früechere Aagebot",
+    "noIncomingOffers": "Bis jetz het niemert aagebote, din Benutzername z’chaufe.",
+    "noOutgoingOffers": "Du hesch no kei Aagebot gmacht. Mach es Profil uf, für eis z’mache.",
+    "offerExpires": "Lauft {{when}} ab",
+    "payBefore": "Zahl {{when}}",
+    "awaitingOwner": "Wartet uf de Bsitzer",
+    "acceptOffer": "Aanäh",
+    "declineOffer": "Ablehne",
+    "confirmAccept": "Aagebot aanäh",
+    "cancel": "Abbräche",
+    "withdrawOffer": "Zrugzieh",
+    "withdrawAcceptance": "Aanahm zrugzieh",
+    "payAndClaim": "Zahle und übernäh",
+    "acceptMovesNothingYet": "Mit em Aanäh wird din Benutzername für dä Chöifer reserviert. Es bewegt sich nüt, bis er zahlt, und du chasch vorher no zrugtrete.",
+    "acceptedAwaitingPayment": "Du hesch das Aagebot aagnoh. De Benutzername ghört immer no dir, und du wirsch erscht zu @{{handle}}, wenn zahlt isch.",
+    "offerAcceptedPayNow": "Aagnoh. De Benutzername isch für di reserviert, bis du zahlsch.",
+    "offerStatus": {
+      "pending": "Wartet uf Antwort",
+      "accepted": "Aagnoh, Zahlig usstehend",
+      "declined": "Abglehnt",
+      "withdrawn": "Zrugzoge",
+      "completed": "Abgschlosse",
+      "expired": "Abglaufe"
+    }
   },
   "accounts": {
     "subtitle": "Ganzi Konte zum Verchauf, priset i DHB",

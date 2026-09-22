@@ -1611,7 +1611,7 @@
     "unableToLoad": "ما قدرش يحمل البروفيل. عاود من بعد.",
     "doesNotExist": "هاد المستخدم ما كاينش ولا خاصك تدخل باش تشوف البروفيل ديالك.",
     "makeOffer": "دير عرض لـ {{handle}}",
-    "enterOfferAmount": "دخل كمية توكنز DHB لي بغيتي تعرضها باش تاخد هاد اسم المستخدم.",
+    "enterOfferAmount": "دخّل المبلغ بالدولار اللي بغيتي تعرض على هاد السمية.",
     "submitOffer": "قدم العرض",
     "validOfferAmount": "دخل مبلغ عرض صحيح",
     "offerSubmitted": "عرض ديال {{amount}} DHB تقدم لـ {{handle}}",
@@ -1637,7 +1637,11 @@
       "dehubFollowers": "متابعو DeHub",
       "selfReported": "يتم إدخال عدد المتابعين الاجتماعيين من قبل المنشئ."
     },
-    "tabPlaylists": "قوائم التشغيل"
+    "tabPlaylists": "قوائم التشغيل",
+    "offerWorthNow": "تقريبا {{amount}} DHB بالثمن دابا",
+    "offerNotePlaceholder": "زيد ملاحظة (اختياري)",
+    "offerCommitsNothing": "دير عرض ما كيكلف والو وما كيحجز حتى DHB. ما غادي تخلّص غير إلا قبل المالك.",
+    "offerNeedsHandle": "هاد الحساب ما عندوش سمية باش دير عليها عرض."
   },
   "tv": {
     "title": "التلفزة",
@@ -2957,7 +2961,36 @@
     "staleListing": "هاد الإعلان ديال ‏@{{listed}}، ولكن دابا نتا ‏@{{current}}. ما غاديش تتباع حتى تعاود تديرها بالسمية ديالك الحالية — والتحديث لفوق كيدير هادشي.",
     "history": "السجل",
     "sold": "تباعت",
-    "bought": "تشرات"
+    "bought": "تشرات",
+    "makeOfferAction": "دير عرض",
+    "tabOffers": "العروض",
+    "signInForOffers": "دخل باش تشوف العروض على سمية ديالك.",
+    "offersForYou": "عروض على سمية ديالك",
+    "offersYouMade": "العروض اللي دريتي",
+    "offerHistory": "عروض قديمة",
+    "noIncomingOffers": "حتى واحد مازال ما عرض يشري سمية ديالك.",
+    "noOutgoingOffers": "مازال ما دريتي حتى عرض. حل البروفيل د شي واحد باش دير واحد.",
+    "offerExpires": "كيسالي {{when}}",
+    "payBefore": "خلّص {{when}}",
+    "awaitingOwner": "كيتسنا المالك",
+    "acceptOffer": "قبل",
+    "declineOffer": "رفض",
+    "confirmAccept": "قبل العرض",
+    "cancel": "لغي",
+    "withdrawOffer": "سحب",
+    "withdrawAcceptance": "سحب القبول",
+    "payAndClaim": "خلّص وخود",
+    "acceptMovesNothingYet": "القبول كيحجز السمية ديالك لهاد الشاري. ما غادي يتبدل والو حتى يخلّص، وتقدر ترجع قبل من ذاك الوقت.",
+    "acceptedAwaitingPayment": "قبلتي هاد العرض. السمية مازالة ديالك، وغادي تولي @{{handle}} غير منين يخلّص.",
+    "offerAcceptedPayNow": "تقبل. السمية محجوزة ليك حتى تخلّصها.",
+    "offerStatus": {
+      "pending": "كيتسنا الجواب",
+      "accepted": "مقبول، كيتسنا الخلاص",
+      "declined": "مرفوض",
+      "withdrawn": "متسحب",
+      "completed": "كمل",
+      "expired": "سالا وقتو"
+    }
   },
   "accounts": {
     "subtitle": "حسابات كاملة معروضة للبيع، الثمن بالـ DHB",

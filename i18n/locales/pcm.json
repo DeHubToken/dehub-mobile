@@ -1530,7 +1530,7 @@
     "unableToLoad": "E no fit load profile. Try again later.",
     "doesNotExist": "Dis user no exist or you need log in to see your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Put di number of DHB tokens wey you wan offer to get dis username.",
+    "enterOfferAmount": "Type the amount for US dollar wey you wan offer for this username.",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Abeg put valid offer amount",
     "offerSubmitted": "Don submit {{amount}} DHB offer for {{handle}}",
@@ -1554,7 +1554,11 @@
       "total": "Total reach",
       "dehubFollowers": "DeHub followers"
     },
-    "tabPlaylists": "Playlists"
+    "tabPlaylists": "Playlists",
+    "offerWorthNow": "About {{amount}} DHB for the rate now",
+    "offerNotePlaceholder": "Add small note (if you want)",
+    "offerCommitsNothing": "To make offer no cost anything and e no go hold any DHB. Na only if the owner accept you go pay.",
+    "offerNeedsHandle": "This account no get username wey you fit offer for."
   },
   "tv": {
     "title": "TV",
@@ -2798,7 +2802,36 @@
     "staleListing": "Dis listing na for @{{listed}}, but you don become @{{current}}. E no go sell until you list am again with your current handle — updating for up dey do dat.",
     "history": "History",
     "sold": "Dem don sell am",
-    "bought": "Dem don buy am"
+    "bought": "Dem don buy am",
+    "makeOfferAction": "Make offer",
+    "tabOffers": "Offers",
+    "signInForOffers": "Sign in make you see the offers wey people don put for your username.",
+    "offersForYou": "Offers for your username",
+    "offersYouMade": "Offers wey you don make",
+    "offerHistory": "Old offers",
+    "noIncomingOffers": "Nobody never offer to buy your username.",
+    "noOutgoingOffers": "You never make any offer. Open person profile make you make one.",
+    "offerExpires": "E go expire {{when}}",
+    "payBefore": "Pay {{when}}",
+    "awaitingOwner": "Dey wait for the owner",
+    "acceptOffer": "Accept",
+    "declineOffer": "Refuse",
+    "confirmAccept": "Accept the offer",
+    "cancel": "Cancel",
+    "withdrawOffer": "Withdraw",
+    "withdrawAcceptance": "Withdraw the acceptance",
+    "payAndClaim": "Pay and collect",
+    "acceptMovesNothingYet": "If you accept, dem go hold your username for this buyer. Nothing go change until e pay, and before then you fit still change your mind.",
+    "acceptedAwaitingPayment": "You accept this offer. The username still be your own, and na when e pay you go become @{{handle}}.",
+    "offerAcceptedPayNow": "Dem don accept am. Dem dey hold the username for you until you pay for am.",
+    "offerStatus": {
+      "pending": "Dey wait for answer",
+      "accepted": "Dem accept am, dey wait for payment",
+      "declined": "Dem refuse am",
+      "withdrawn": "Dem withdraw am",
+      "completed": "E don finish",
+      "expired": "E don expire"
+    }
   },
   "accounts": {
     "subtitle": "Whole accounts dey for sale, price dey for DHB",

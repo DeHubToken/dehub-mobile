@@ -1613,7 +1613,7 @@
     "unableToLoad": "No s'ha pogut carregar el perfil. Si us plau, torna-ho a provar més tard.",
     "doesNotExist": "Aquest usuari no existeix o has d'iniciar sessió per veure el teu perfil.",
     "makeOffer": "Fer oferta per {{handle}}",
-    "enterOfferAmount": "Introdueix la quantitat de tokens DHB que t'agradaria oferir per adquirir aquest nom d'usuari.",
+    "enterOfferAmount": "Introdueix la quantitat en dòlars que vols oferir per aquest nom d’usuari.",
     "submitOffer": "Enviar oferta",
     "validOfferAmount": "Si us plau, introdueix una quantitat d'oferta vàlida",
     "offerSubmitted": "Oferta de {{amount}} DHB enviada per {{handle}}",
@@ -1639,7 +1639,11 @@
       "dehubFollowers": "Seguidors de DeHub",
       "selfReported": "El creador introdueix els recomptes de seguidors socials."
     },
-    "tabPlaylists": "Llista de reproducció"
+    "tabPlaylists": "Llista de reproducció",
+    "offerWorthNow": "Uns {{amount}} DHB al canvi actual",
+    "offerNotePlaceholder": "Afegeix una nota (opcional)",
+    "offerCommitsNothing": "Fer una oferta no costa res ni bloqueja DHB. Només pagues si el propietari accepta.",
+    "offerNeedsHandle": "Aquest compte no té cap nom d’usuari pel qual oferir."
   },
   "tv": {
     "title": "TV",
@@ -2929,7 +2933,36 @@
     "staleListing": "Aquest anunci és per a @{{listed}}, però ara ets @{{current}}. No es vendrà fins que el tornis a publicar amb el teu àlies actual — actualitzar-lo a dalt fa això.",
     "history": "Historial",
     "sold": "Venut",
-    "bought": "Comprat"
+    "bought": "Comprat",
+    "makeOfferAction": "Fes una oferta",
+    "tabOffers": "Ofertes",
+    "signInForOffers": "Inicia la sessió per veure ofertes pel teu nom d’usuari.",
+    "offersForYou": "Ofertes pel teu nom d’usuari",
+    "offersYouMade": "Ofertes que has fet",
+    "offerHistory": "Ofertes anteriors",
+    "noIncomingOffers": "Encara ningú no ha ofert comprar el teu nom d’usuari.",
+    "noOutgoingOffers": "Encara no has fet cap oferta. Obre el perfil d’algú per fer-ne una.",
+    "offerExpires": "Caduca {{when}}",
+    "payBefore": "Paga {{when}}",
+    "awaitingOwner": "Esperant el propietari",
+    "acceptOffer": "Accepta",
+    "declineOffer": "Rebutja",
+    "confirmAccept": "Accepta l’oferta",
+    "cancel": "Cancel·la",
+    "withdrawOffer": "Retira",
+    "withdrawAcceptance": "Retira l’acceptació",
+    "payAndClaim": "Paga i reclama",
+    "acceptMovesNothingYet": "En acceptar, el teu nom d’usuari queda reservat per a aquest comprador. No es mou res fins que pagui, i pots retirar-ho abans.",
+    "acceptedAwaitingPayment": "Has acceptat aquesta oferta. Encara tens el nom d’usuari i només passaràs a ser @{{handle}} quan pagui.",
+    "offerAcceptedPayNow": "Acceptada. El nom d’usuari està reservat per a tu fins que el paguis.",
+    "offerStatus": {
+      "pending": "Esperant resposta",
+      "accepted": "Acceptada, pendent de pagament",
+      "declined": "Rebutjada",
+      "withdrawn": "Retirada",
+      "completed": "Completada",
+      "expired": "Caducada"
+    }
   },
   "accounts": {
     "subtitle": "Comptes sencers en venda, amb preu en DHB",

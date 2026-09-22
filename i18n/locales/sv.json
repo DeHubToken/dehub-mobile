@@ -1475,7 +1475,7 @@
     "unableToLoad": "Kunde inte ladda profilen. Försök senare.",
     "doesNotExist": "Denna användare finns inte eller så krävs inloggning.",
     "makeOffer": "Erbjud {{handle}}",
-    "enterOfferAmount": "Ange DHB-belopp för detta namn.",
+    "enterOfferAmount": "Ange beloppet i dollar du vill bjuda för det här användarnamnet.",
     "submitOffer": "Skicka erbjudande",
     "validOfferAmount": "Ange ett giltigt belopp",
     "offerSubmitted": "Erbjudande på {{amount}} DHB skickat till {{handle}}",
@@ -1501,7 +1501,11 @@
       "dehubFollowers": "DeHub-följare",
       "selfReported": "Antal följare i sociala medier anges av kreatören."
     },
-    "tabPlaylists": "Spellistor"
+    "tabPlaylists": "Spellistor",
+    "offerWorthNow": "Ungefär {{amount}} DHB till aktuell kurs",
+    "offerNotePlaceholder": "Lägg till en notering (valfritt)",
+    "offerCommitsNothing": "Att lägga ett bud kostar ingenting och binder inga DHB. Du betalar bara om ägaren accepterar.",
+    "offerNeedsHandle": "Det här kontot har inget användarnamn att buda på."
   },
   "messages": {
     "smartRepliesOff": "Föreslagna svar avstängda",
@@ -2933,7 +2937,36 @@
     "staleListing": "Den här annonsen gäller @{{listed}}, men du är nu @{{current}}. Den säljs inte förrän du lägger ut den på nytt under din nuvarande handle — att uppdatera ovan gör det.",
     "history": "Historik",
     "sold": "Såld",
-    "bought": "Köpt"
+    "bought": "Köpt",
+    "makeOfferAction": "Lägg ett bud",
+    "tabOffers": "Bud",
+    "signInForOffers": "Logga in för att se bud på ditt användarnamn.",
+    "offersForYou": "Bud på ditt användarnamn",
+    "offersYouMade": "Bud du har lagt",
+    "offerHistory": "Tidigare bud",
+    "noIncomingOffers": "Ingen har budit på ditt användarnamn än.",
+    "noOutgoingOffers": "Du har inte lagt några bud än. Öppna någons profil för att lägga ett.",
+    "offerExpires": "Går ut {{when}}",
+    "payBefore": "Betala {{when}}",
+    "awaitingOwner": "Väntar på ägaren",
+    "acceptOffer": "Acceptera",
+    "declineOffer": "Avböj",
+    "confirmAccept": "Acceptera bud",
+    "cancel": "Avbryt",
+    "withdrawOffer": "Dra tillbaka",
+    "withdrawAcceptance": "Dra tillbaka godkännandet",
+    "payAndClaim": "Betala och hämta",
+    "acceptMovesNothingYet": "När du accepterar reserveras ditt användarnamn för den här köparen. Inget flyttas förrän de betalar, och du kan dra dig ur innan dess.",
+    "acceptedAwaitingPayment": "Du accepterade det här budet. Du har kvar användarnamnet och blir @{{handle}} först när de har betalat.",
+    "offerAcceptedPayNow": "Accepterat. Användarnamnet är reserverat åt dig tills du betalar för det.",
+    "offerStatus": {
+      "pending": "Väntar på svar",
+      "accepted": "Accepterat, inväntar betalning",
+      "declined": "Avböjt",
+      "withdrawn": "Tillbakadraget",
+      "completed": "Slutfört",
+      "expired": "Utgånget"
+    }
   },
   "accounts": {
     "subtitle": "Hela konton till salu, prissatta i DHB",

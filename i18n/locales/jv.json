@@ -1572,7 +1572,7 @@
     "unableToLoad": "Ora bisa ngemot profil. Mangga coba maneh mengko.",
     "doesNotExist": "Pangguna iki ora ana utawa kowe kudu mlebu kanggo ndeleng profil.",
     "makeOffer": "Gawe tawaran kanggo {{handle}}",
-    "enterOfferAmount": "Lebokna jumlah token DHB sing arep kowe tawarake kanggo njupuk jeneng pangguna iki.",
+    "enterOfferAmount": "Lebokna jumlah dolar AS sing arep koktawakake kanggo jeneng panganggo iki.",
     "submitOffer": "Kirim Tawaran",
     "validOfferAmount": "Mangga lebokna jumlah tawaran sing valid",
     "offerSubmitted": "Tawaran {{amount}} DHB wis dikirim marang {{handle}}",
@@ -1598,7 +1598,11 @@
       "dehubFollowers": "Pengikut DeHub",
       "selfReported": "Jumlah pengikut sosial dilebokake dening kreator."
     },
-    "tabPlaylists": "Dhaptar Puter"
+    "tabPlaylists": "Dhaptar Puter",
+    "offerWorthNow": "Kira-kira {{amount}} DHB miturut kurs saiki",
+    "offerNotePlaceholder": "Tambahi cathetan (opsional)",
+    "offerCommitsNothing": "Gawe tawaran ora larang lan ora ngunci DHB. Kowe mung mbayar yen sing duwe nampa.",
+    "offerNeedsHandle": "Akun iki ora duwe jeneng panganggo kanggo ditawakake."
   },
   "tv": {
     "title": "TV",
@@ -2888,7 +2892,36 @@
     "staleListing": "Daftar iki kanggo @{{listed}}, nanging saiki sampeyan @{{current}}. Ora bakal payu nganti sampeyan ndaftar maneh nganggo jenengmu saiki — nganyari ing ndhuwur nindakake kuwi.",
     "history": "Riwayat",
     "sold": "Wis payu",
-    "bought": "Wis dituku"
+    "bought": "Wis dituku",
+    "makeOfferAction": "Gawe tawaran",
+    "tabOffers": "Tawaran",
+    "signInForOffers": "Mlebu kanggo ndeleng tawaran kanggo jeneng panganggomu.",
+    "offersForYou": "Tawaran kanggo jeneng panganggomu",
+    "offersYouMade": "Tawaran sing wis kokgawe",
+    "offerHistory": "Tawaran sadurunge",
+    "noIncomingOffers": "Durung ana sing nawakake tuku jeneng panganggomu.",
+    "noOutgoingOffers": "Kowe durung gawe tawaran. Bukak profil wong kanggo nawakake.",
+    "offerExpires": "Entek {{when}}",
+    "payBefore": "Bayar {{when}}",
+    "awaitingOwner": "Ngenteni sing duwe",
+    "acceptOffer": "Tampa",
+    "declineOffer": "Tolak",
+    "confirmAccept": "Tampa tawaran",
+    "cancel": "Batal",
+    "withdrawOffer": "Tarik",
+    "withdrawAcceptance": "Tarik panampan",
+    "payAndClaim": "Bayar lan jupuk",
+    "acceptMovesNothingYet": "Yen ditampa, jeneng panganggomu disimpen kanggo sing tuku iki. Ora ana sing owah nganti dheweke mbayar, lan sadurunge kuwi kowe isih bisa mundur.",
+    "acceptedAwaitingPayment": "Kowe wis nampa tawaran iki. Jeneng panganggo isih duwekmu lan kowe dadi @{{handle}} mung yen dheweke wis mbayar.",
+    "offerAcceptedPayNow": "Ditampa. Jeneng panganggo disimpen kanggo kowe nganti kowe mbayar.",
+    "offerStatus": {
+      "pending": "Ngenteni wangsulan",
+      "accepted": "Ditampa, ngenteni pambayaran",
+      "declined": "Ditolak",
+      "withdrawn": "Ditarik",
+      "completed": "Rampung",
+      "expired": "Kadaluwarsa"
+    }
   },
   "accounts": {
     "subtitle": "Akun lengkap sing didol, regane nganggo DHB",

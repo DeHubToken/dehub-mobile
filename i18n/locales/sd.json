@@ -1598,7 +1598,7 @@
     "unableToLoad": "پروفائيل لوڊ نه ٿي سگهيو. بعد ۾ ٻيهر ڪوشش ڪريو.",
     "doesNotExist": "هي يوزر ناهي، يا پروفائيل ڏسڻ لاءِ لاگ ان ڪريو.",
     "makeOffer": "{{handle}} لاءِ آفر ڏيو",
-    "enterOfferAmount": "هن يوزرنيم لاءِ DHB ٽوڪن رقم داخل ڪريو.",
+    "enterOfferAmount": "اها رقم ڊالرن ۾ لکو جيڪا توهان هن يوزرنيم لاءِ آڇڻ چاهيو ٿا.",
     "submitOffer": "آفر داخل ڪريو",
     "validOfferAmount": "صحيح آفر رقم داخل ڪريو",
     "offerSubmitted": "{{handle}} لاءِ {{amount}} DHB آفر داخل ٿي وئي",
@@ -1624,7 +1624,11 @@
       "dehubFollowers": "DeHub پوئلڳن",
       "selfReported": "تخليقڪار طرفان سماجي پوئلڳن جي ڳڻپ داخل ڪئي وئي آهي."
     },
-    "tabPlaylists": "پلي لسٽون"
+    "tabPlaylists": "پلي لسٽون",
+    "offerWorthNow": "موجوده اگهه تي لڳ ڀڳ {{amount}} DHB",
+    "offerNotePlaceholder": "نوٽ شامل ڪريو (اختياري)",
+    "offerCommitsNothing": "آڇ ڪرڻ تي ڪجهه خرچ نه ٿو ٿئي ۽ ڪو DHB بند نه ٿو ٿئي. توهان تڏهن ادا ڪندؤ جڏهن مالڪ قبول ڪندو.",
+    "offerNeedsHandle": "هن اڪائونٽ وٽ ڪو يوزرنيم ناهي جنهن تي آڇ ڪري سگهجي."
   },
   "tv": {
     "title": "TV",
@@ -2914,7 +2918,36 @@
     "staleListing": "هي لسٽنگ @{{listed}} لاءِ آهي، پر هاڻي توهان @{{current}} آهيو. جيستائين توهان ان کي پنهنجي موجوده نالي سان ٻيهر نه رکندا، اهو نه وڪامندو — مٿي اپڊيٽ ڪرڻ سان اهو ئي ٿئي ٿو.",
     "history": "تاريخ",
     "sold": "وڪامي ويو",
-    "bought": "خريد ڪيو ويو"
+    "bought": "خريد ڪيو ويو",
+    "makeOfferAction": "آڇ ڪريو",
+    "tabOffers": "آڇون",
+    "signInForOffers": "پنهنجي يوزرنيم لاءِ آڇون ڏسڻ لاءِ سائن ان ڪريو.",
+    "offersForYou": "توهان جي يوزرنيم لاءِ آڇون",
+    "offersYouMade": "توهان جون ڪيل آڇون",
+    "offerHistory": "اڳوڻيون آڇون",
+    "noIncomingOffers": "اڃا تائين ڪنهن به توهان جي يوزرنيم خريد ڪرڻ جي آڇ نه ڪئي آهي.",
+    "noOutgoingOffers": "توهان اڃا ڪا آڇ نه ڪئي آهي. آڇ ڪرڻ لاءِ ڪنهن جو پروفائل کوليو.",
+    "offerExpires": "{{when}} ختم ٿئي ٿي",
+    "payBefore": "{{when}} ادا ڪريو",
+    "awaitingOwner": "مالڪ جو انتظار",
+    "acceptOffer": "قبول ڪريو",
+    "declineOffer": "رد ڪريو",
+    "confirmAccept": "آڇ قبول ڪريو",
+    "cancel": "منسوخ ڪريو",
+    "withdrawOffer": "واپس وٺو",
+    "withdrawAcceptance": "قبوليت واپس وٺو",
+    "payAndClaim": "ادا ڪري وٺو",
+    "acceptMovesNothingYet": "قبول ڪرڻ سان توهان جو يوزرنيم هن خريدار لاءِ رکيو وڃي ٿو. جيستائين هو ادا نه ڪري ڪجهه به نٿو بدلجي، ۽ ان کان اڳ توهان واپس وٺي سگهو ٿا.",
+    "acceptedAwaitingPayment": "توهان هيءَ آڇ قبول ڪئي. يوزرنيم اڃا توهان جو آهي ۽ توهان @{{handle}} تڏهن ٿيندؤ جڏهن هو ادا ڪندو.",
+    "offerAcceptedPayNow": "قبول ٿي وئي. جيستائين توهان ادا نه ڪريو يوزرنيم توهان لاءِ رکيل آهي.",
+    "offerStatus": {
+      "pending": "جواب جو انتظار",
+      "accepted": "قبول ٿيل، ادائگي جو انتظار",
+      "declined": "رد ٿيل",
+      "withdrawn": "واپس ورتل",
+      "completed": "مڪمل",
+      "expired": "مدت ختم"
+    }
   },
   "accounts": {
     "subtitle": "پورا کاتا وڪري لاءِ، DHB ۾ قيمت",

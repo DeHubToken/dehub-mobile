@@ -1568,7 +1568,7 @@
     "unableToLoad": "无法加载个人页。晚点再试。",
     "doesNotExist": "此用户不存在或你需要登录来查看你其个人页。",
     "makeOffer": "为 {{handle}} 出价",
-    "enterOfferAmount": "输入你想出价其DHB代币数量来获取此用户名。",
+    "enterOfferAmount": "ई यूजरनेम खातिर आप जतना डॉलर देवे के बा ऊ रकम भरीं।",
     "submitOffer": "提交出价",
     "validOfferAmount": "请输入有效其出价金额",
     "offerSubmitted": "已为 {{handle}} 提交 {{amount}} DHB 其出价",
@@ -1594,7 +1594,11 @@
       "dehubFollowers": "DeHub 追蹤者",
       "selfReported": "社群追蹤者數量由創作者輸入。"
     },
-    "tabPlaylists": "歌單"
+    "tabPlaylists": "歌單",
+    "offerWorthNow": "अबही के दर पर लगभग {{amount}} DHB",
+    "offerNotePlaceholder": "नोट जोड़ीं (वैकल्पिक)",
+    "offerCommitsNothing": "ऑफर देवे में कुछ खरचा नाहीं होला अउर कवनो DHB नाहीं रुकेला। आप तबै भुगतान करबीं जब मालिक मंजूर करिहें।",
+    "offerNeedsHandle": "ई खाता के कवनो यूजरनेम नाहीं बा जेकरा पर ऑफर दिहल जा सकेला।"
   },
   "tv": {
     "title": "电视",
@@ -2927,7 +2931,36 @@
     "staleListing": "只个挂牌是 @{{listed}} 其，毋过汝这站是 @{{current}}。爱用汝这站其用户名重新挂牌正卖会去 — 在顶头更新就会得。",
     "history": "历史",
     "sold": "已经卖去",
-    "bought": "已经买着"
+    "bought": "已经买着",
+    "makeOfferAction": "ऑफर दीं",
+    "tabOffers": "ऑफर",
+    "signInForOffers": "आपन यूजरनेम खातिर आयल ऑफर देखे खातिर साइन इन करीं।",
+    "offersForYou": "आपन यूजरनेम खातिर ऑफर",
+    "offersYouMade": "आप दिहल ऑफर",
+    "offerHistory": "पहिलका ऑफर",
+    "noIncomingOffers": "अबहीं तक कोई आपन यूजरनेम खरीदे के ऑफर नाहीं दिहल।",
+    "noOutgoingOffers": "आप अबहीं तक कवनो ऑफर नाहीं दिहलीं। ऑफर देवे खातिर कोई के प्रोफाइल खोलीं।",
+    "offerExpires": "{{when}} खतम",
+    "payBefore": "{{when}} भुगतान करीं",
+    "awaitingOwner": "मालिक के इंतजार",
+    "acceptOffer": "मंजूर करीं",
+    "declineOffer": "नाहीं करीं",
+    "confirmAccept": "ऑफर मंजूर करीं",
+    "cancel": "रद्द करीं",
+    "withdrawOffer": "वापस लीं",
+    "withdrawAcceptance": "मंजूरी वापस लीं",
+    "payAndClaim": "भुगतान क के लीं",
+    "acceptMovesNothingYet": "मंजूर कइला पर आपन यूजरनेम ई खरीददार खातिर रोक दिहल जाला। जब तक ऊ भुगतान नाहीं करें कुछ नाहीं बदली, अउर ओकरा पहिले आप पीछे हट सकीलें।",
+    "acceptedAwaitingPayment": "आप ई ऑफर मंजूर कइलीं। यूजरनेम अबहीं आपनै बा अउर आप @{{handle}} तबै बनबीं जब ऊ भुगतान करिहें।",
+    "offerAcceptedPayNow": "मंजूर हो गइल। जब तक आप भुगतान नाहीं करबीं, यूजरनेम आपन खातिर रोकल बा।",
+    "offerStatus": {
+      "pending": "जवाब के इंतजार",
+      "accepted": "मंजूर, भुगतान के इंतजार",
+      "declined": "नामंजूर",
+      "withdrawn": "वापस लिहल गइल",
+      "completed": "पूरा भइल",
+      "expired": "समय खतम"
+    }
   },
   "accounts": {
     "subtitle": "整个账号正卖，价钱用 DHB",

@@ -2286,7 +2286,7 @@
     "unableToLoad": "Unable to load profile. Please try again later.",
     "doesNotExist": "This user doesn't exist or you need to log in to view your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Enter the amount of DHB tokens you'd like to offer to acquire this username.",
+    "enterOfferAmount": "Вкажи суму в доларах, яку хочеш запропонувати за це ім’я користувача.",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Please enter a valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB submitted for {{handle}}",
@@ -2312,7 +2312,11 @@
       "dehubFollowers": "Підписники DeHub",
       "selfReported": "Кількість підписників у соціальних мережах вводить автор."
     },
-    "tabPlaylists": "Плейлісти"
+    "tabPlaylists": "Плейлісти",
+    "offerWorthNow": "Близько {{amount}} DHB за поточним курсом",
+    "offerNotePlaceholder": "Додай нотатку (необов’язково)",
+    "offerCommitsNothing": "Пропозиція нічого не коштує і не блокує DHB. Ти платиш, лише якщо власник погодиться.",
+    "offerNeedsHandle": "Цей обліковий запис не має імені користувача, за яке можна запропонувати."
   },
   "tv": {
     "title": "TV",
@@ -3408,7 +3412,36 @@
     "staleListing": "Це оголошення для @{{listed}}, але зараз ви @{{current}}. Воно не продасться, доки ви не розмістите його знову під поточним іменем — оновлення вище робить саме це.",
     "history": "Історія",
     "sold": "Продано",
-    "bought": "Куплено"
+    "bought": "Куплено",
+    "makeOfferAction": "Зробити пропозицію",
+    "tabOffers": "Пропозиції",
+    "signInForOffers": "Увійди, щоб побачити пропозиції щодо свого імені користувача.",
+    "offersForYou": "Пропозиції щодо твого імені користувача",
+    "offersYouMade": "Пропозиції, які ти зробив",
+    "offerHistory": "Попередні пропозиції",
+    "noIncomingOffers": "Поки ніхто не пропонував купити твоє ім’я користувача.",
+    "noOutgoingOffers": "Ти ще не робив пропозицій. Відкрий чийсь профіль, щоб зробити.",
+    "offerExpires": "Спливає {{when}}",
+    "payBefore": "Сплати {{when}}",
+    "awaitingOwner": "Чекає на власника",
+    "acceptOffer": "Прийняти",
+    "declineOffer": "Відхилити",
+    "confirmAccept": "Прийняти пропозицію",
+    "cancel": "Скасувати",
+    "withdrawOffer": "Відкликати",
+    "withdrawAcceptance": "Відкликати згоду",
+    "payAndClaim": "Сплатити та забрати",
+    "acceptMovesNothingYet": "Згода резервує твоє ім’я користувача за цим покупцем. Нічого не зміниться, доки він не заплатить, і до того ти можеш відмовитися.",
+    "acceptedAwaitingPayment": "Ти прийняв цю пропозицію. Ім’я користувача досі твоє, і ти станеш @{{handle}} лише після оплати.",
+    "offerAcceptedPayNow": "Прийнято. Ім’я користувача зарезервовано за тобою, доки ти за нього не заплатиш.",
+    "offerStatus": {
+      "pending": "Чекає на відповідь",
+      "accepted": "Прийнято, очікує оплати",
+      "declined": "Відхилено",
+      "withdrawn": "Відкликано",
+      "completed": "Завершено",
+      "expired": "Спливло"
+    }
   },
   "accounts": {
     "subtitle": "Цілі акаунти на продаж, ціна в DHB",

@@ -1593,7 +1593,7 @@
     "unableToLoad": "Profil yüklenemiyor. Lütfen daha sonra tekrar deneyin.",
     "doesNotExist": "Bu kullanıcı mevcut değil veya profilinizi görmek için giriş yapmanız gerekiyor.",
     "makeOffer": "{{handle}} için teklif ver",
-    "enterOfferAmount": "Bu kullanıcı adını almak için teklif etmek istediğiniz DHB token miktarını girin.",
+    "enterOfferAmount": "Bu kullanıcı adı için vermek istediğin dolar tutarını gir.",
     "submitOffer": "Teklifi Gönder",
     "validOfferAmount": "Lütfen geçerli bir teklif tutarı girin",
     "offerSubmitted": "{{handle}} için {{amount}} DHB teklif gönderildi",
@@ -1619,7 +1619,11 @@
       "dehubFollowers": "DeHub takipçileri",
       "selfReported": "Sosyal takipçi sayıları yaratıcı tarafından girilir."
     },
-    "tabPlaylists": "Oynatma Listeleri"
+    "tabPlaylists": "Oynatma Listeleri",
+    "offerWorthNow": "Güncel kurla yaklaşık {{amount}} DHB",
+    "offerNotePlaceholder": "Bir not ekle (isteğe bağlı)",
+    "offerCommitsNothing": "Teklif vermek hiçbir şeye mal olmaz ve DHB bloke etmez. Yalnızca sahibi kabul ederse ödersin.",
+    "offerNeedsHandle": "Bu hesabın teklif verilecek bir kullanıcı adı yok."
   },
   "messages": {
     "smartRepliesOff": "Önerilen yanıtlar kapatıldı",
@@ -2942,7 +2946,36 @@
     "staleListing": "Bu ilan @{{listed}} için ama artık @{{current}}'sın. Mevcut kullanıcı adınla yeniden ilana çıkarmadan satılmaz — yukarıdan güncellemek bunu yapar.",
     "history": "Geçmiş",
     "sold": "Satıldı",
-    "bought": "Satın alındı"
+    "bought": "Satın alındı",
+    "makeOfferAction": "Teklif ver",
+    "tabOffers": "Teklifler",
+    "signInForOffers": "Kullanıcı adın için gelen teklifleri görmek üzere giriş yap.",
+    "offersForYou": "Kullanıcı adın için teklifler",
+    "offersYouMade": "Yaptığın teklifler",
+    "offerHistory": "Geçmiş teklifler",
+    "noIncomingOffers": "Henüz kimse kullanıcı adını satın almayı teklif etmedi.",
+    "noOutgoingOffers": "Henüz teklif yapmadın. Teklif vermek için birinin profilini aç.",
+    "offerExpires": "{{when}} sona eriyor",
+    "payBefore": "{{when}} öde",
+    "awaitingOwner": "Sahibini bekliyor",
+    "acceptOffer": "Kabul et",
+    "declineOffer": "Reddet",
+    "confirmAccept": "Teklifi kabul et",
+    "cancel": "Vazgeç",
+    "withdrawOffer": "Geri çek",
+    "withdrawAcceptance": "Kabulü geri çek",
+    "payAndClaim": "Öde ve al",
+    "acceptMovesNothingYet": "Kabul etmek kullanıcı adını bu alıcı için tutar. O ödeyene kadar hiçbir şey değişmez ve o zamana kadar vazgeçebilirsin.",
+    "acceptedAwaitingPayment": "Bu teklifi kabul ettin. Kullanıcı adı hâlâ senin ve ancak o ödediğinde @{{handle}} olursun.",
+    "offerAcceptedPayNow": "Kabul edildi. Sen ödeyene kadar kullanıcı adı senin için tutuluyor.",
+    "offerStatus": {
+      "pending": "Yanıt bekleniyor",
+      "accepted": "Kabul edildi, ödeme bekleniyor",
+      "declined": "Reddedildi",
+      "withdrawn": "Geri çekildi",
+      "completed": "Tamamlandı",
+      "expired": "Süresi doldu"
+    }
   },
   "accounts": {
     "subtitle": "Komple hesaplar satılık, DHB cinsinden",

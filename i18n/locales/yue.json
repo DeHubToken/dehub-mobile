@@ -1612,7 +1612,7 @@
     "unableToLoad": "無法載入個人檔案。請遲啲再試。",
     "doesNotExist": "呢個用戶唔存在，或者你需要登入先可以睇個人檔案。",
     "makeOffer": "向 {{handle}} 出價",
-    "enterOfferAmount": "輸入你想出嘅DHB代幣金額嚟攞呢個用戶名。",
+    "enterOfferAmount": "輸入你想為呢個用戶名出嘅美金金額。",
     "submitOffer": "提交報價",
     "validOfferAmount": "請輸入有效嘅報價金額",
     "offerSubmitted": "已向 {{handle}} 提交 {{amount}} DHB 報價",
@@ -1638,7 +1638,11 @@
       "dehubFollowers": "DeHub 追蹤者",
       "selfReported": "社交追蹤者數目係由創作者輸入。"
     },
-    "tabPlaylists": "播放清單"
+    "tabPlaylists": "播放清單",
+    "offerWorthNow": "以而家嘅匯率大約 {{amount}} DHB",
+    "offerNotePlaceholder": "加個備註（可以唔填）",
+    "offerCommitsNothing": "出價唔使錢，亦唔會鎖住任何 DHB。對方接受咗你先要找數。",
+    "offerNeedsHandle": "呢個帳戶冇用戶名可以出價。"
   },
   "tv": {
     "title": "電視",
@@ -2928,7 +2932,36 @@
     "staleListing": "呢個掛牌係 @{{listed}} 嘅，但你而家係 @{{current}}。要用你現時個用戶名重新掛牌先會賣得出 — 喺上面更新就得。",
     "history": "歷史",
     "sold": "已賣出",
-    "bought": "已買入"
+    "bought": "已買入",
+    "makeOfferAction": "出價",
+    "tabOffers": "出價",
+    "signInForOffers": "登入就可以睇到有人出價買你個用戶名。",
+    "offersForYou": "對你用戶名嘅出價",
+    "offersYouMade": "你出過嘅價",
+    "offerHistory": "以往嘅出價",
+    "noIncomingOffers": "仲未有人出價買你個用戶名。",
+    "noOutgoingOffers": "你仲未出過價。開啲人嘅個人檔案就可以出價。",
+    "offerExpires": "{{when}}到期",
+    "payBefore": "{{when}}找數",
+    "awaitingOwner": "等緊對方回覆",
+    "acceptOffer": "接受",
+    "declineOffer": "拒絕",
+    "confirmAccept": "接受出價",
+    "cancel": "取消",
+    "withdrawOffer": "收回",
+    "withdrawAcceptance": "收回接受",
+    "payAndClaim": "找數領取",
+    "acceptMovesNothingYet": "接受咗之後，你個用戶名會幫呢個買家留住。對方未找數之前乜都唔會變，到時之前你仲可以反悔。",
+    "acceptedAwaitingPayment": "你接受咗呢個出價。個用戶名仲係你嘅，要等對方找完數你先會變成 @{{handle}}。",
+    "offerAcceptedPayNow": "已接受。喺你找數之前，呢個用戶名幫你留住。",
+    "offerStatus": {
+      "pending": "等緊回覆",
+      "accepted": "已接受，等緊找數",
+      "declined": "已拒絕",
+      "withdrawn": "已收回",
+      "completed": "已完成",
+      "expired": "已過期"
+    }
   },
   "accounts": {
     "subtitle": "出售緊嘅整個帳戶，用 DHB 計價",

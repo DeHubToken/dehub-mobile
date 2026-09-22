@@ -1475,7 +1475,7 @@
     "unableToLoad": "Profil betöltése sikertelen. Próbálja később.",
     "doesNotExist": "Ez a felhasználó nem létezik vagy bejelentkezés szükséges.",
     "makeOffer": "Ajánlat: {{handle}}",
-    "enterOfferAmount": "Adja meg a DHB összeget ehhez a névhez.",
+    "enterOfferAmount": "Add meg a dollárösszeget, amit ezért a felhasználónévért ajánlanál.",
     "submitOffer": "Ajánlat beküldése",
     "validOfferAmount": "Adjon meg érvényes összeget",
     "offerSubmitted": "{{amount}} DHB ajánlat beküldve: {{handle}}",
@@ -1501,7 +1501,11 @@
       "dehubFollowers": "DeHub követők",
       "selfReported": "A közösségi követők számát az alkotó adja meg."
     },
-    "tabPlaylists": "Játéklisták"
+    "tabPlaylists": "Játéklisták",
+    "offerWorthNow": "Körülbelül {{amount}} DHB a jelenlegi árfolyamon",
+    "offerNotePlaceholder": "Írj egy üzenetet (nem kötelező)",
+    "offerCommitsNothing": "Az ajánlattétel semmibe nem kerül, és nem zárol DHB-t. Csak akkor fizetsz, ha a tulajdonos elfogadja.",
+    "offerNeedsHandle": "Ennek a fióknak nincs felhasználóneve, amire ajánlatot lehetne tenni."
   },
   "messages": {
     "smartRepliesOff": "A javasolt válaszok ki vannak kapcsolva",
@@ -2933,7 +2937,36 @@
     "staleListing": "Ez a hirdetés a @{{listed}} névre szól, de most @{{current}} vagy. Addig nem kel el, amíg újra ki nem hirdeted a jelenlegi felhasználóneveddel — a fenti frissítés pontosan ezt teszi.",
     "history": "Előzmények",
     "sold": "Eladva",
-    "bought": "Megvásárolva"
+    "bought": "Megvásárolva",
+    "makeOfferAction": "Ajánlat tétele",
+    "tabOffers": "Ajánlatok",
+    "signInForOffers": "Jelentkezz be, hogy lásd a felhasználóneveddel kapcsolatos ajánlatokat.",
+    "offersForYou": "Ajánlatok a felhasználónevedre",
+    "offersYouMade": "Az általad tett ajánlatok",
+    "offerHistory": "Korábbi ajánlatok",
+    "noIncomingOffers": "Még senki sem ajánlott a felhasználónevedre.",
+    "noOutgoingOffers": "Még nem tettél ajánlatot. Nyisd meg valakinek a profilját, és tegyél egyet.",
+    "offerExpires": "Lejár {{when}}",
+    "payBefore": "Fizess {{when}}",
+    "awaitingOwner": "A tulajdonosra vár",
+    "acceptOffer": "Elfogadás",
+    "declineOffer": "Elutasítás",
+    "confirmAccept": "Ajánlat elfogadása",
+    "cancel": "Mégse",
+    "withdrawOffer": "Visszavonás",
+    "withdrawAcceptance": "Elfogadás visszavonása",
+    "payAndClaim": "Fizetés és átvétel",
+    "acceptMovesNothingYet": "Az elfogadás lefoglalja a felhasználónevedet ennek a vevőnek. Semmi sem mozdul, amíg nem fizet, és addig visszaléphetsz.",
+    "acceptedAwaitingPayment": "Elfogadtad ezt az ajánlatot. A felhasználónév még mindig a tiéd, és csak akkor leszel @{{handle}}, amikor fizet.",
+    "offerAcceptedPayNow": "Elfogadva. A felhasználónév le van foglalva neked, amíg ki nem fizeted.",
+    "offerStatus": {
+      "pending": "Válaszra vár",
+      "accepted": "Elfogadva, fizetésre vár",
+      "declined": "Elutasítva",
+      "withdrawn": "Visszavonva",
+      "completed": "Befejezve",
+      "expired": "Lejárt"
+    }
   },
   "accounts": {
     "subtitle": "Teljes fiókok eladók, DHB-ben árazva",

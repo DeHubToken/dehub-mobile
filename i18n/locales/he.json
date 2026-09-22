@@ -1472,7 +1472,7 @@
     "unableToLoad": "לא ניתן לטעון את הפרופיל. נסה מאוחר יותר.",
     "doesNotExist": "משתמש זה לא קיים או שנדרשת התחברות.",
     "makeOffer": "הצע ל-{{handle}}",
-    "enterOfferAmount": "הכנס סכום DHB לשם זה.",
+    "enterOfferAmount": "הזן את הסכום בדולרים שברצונך להציע עבור שם המשתמש הזה.",
     "submitOffer": "הגש הצעה",
     "validOfferAmount": "הכנס סכום חוקי",
     "offerSubmitted": "הוגשה הצעת {{amount}} DHB ל-{{handle}}",
@@ -1498,7 +1498,11 @@
       "dehubFollowers": "חסידי DeHub",
       "selfReported": "מספר העוקבים החברתיים מוזן על ידי היוצר."
     },
-    "tabPlaylists": "פלייליסטים"
+    "tabPlaylists": "פלייליסטים",
+    "offerWorthNow": "בערך {{amount}} DHB לפי השער הנוכחי",
+    "offerNotePlaceholder": "הוסף הערה (אופציונלי)",
+    "offerCommitsNothing": "הגשת הצעה לא עולה כלום ולא מקפיאה DHB. תשלם רק אם הבעלים יאשר.",
+    "offerNeedsHandle": "לחשבון הזה אין שם משתמש להציע עליו."
   },
   "messages": {
     "smartRepliesOff": "התשובות המוצעות כובו",
@@ -2917,7 +2921,36 @@
     "staleListing": "המודעה הזו היא עבור ‏@{{listed}}, אבל עכשיו אתם ‏@{{current}}. היא לא תימכר עד שתפרסמו אותה מחדש עם שם המשתמש הנוכחי שלכם — העדכון למעלה עושה בדיוק את זה.",
     "history": "היסטוריה",
     "sold": "נמכר",
-    "bought": "נקנה"
+    "bought": "נקנה",
+    "makeOfferAction": "הגש הצעה",
+    "tabOffers": "הצעות",
+    "signInForOffers": "התחבר כדי לראות הצעות לשם המשתמש שלך.",
+    "offersForYou": "הצעות לשם המשתמש שלך",
+    "offersYouMade": "הצעות שהגשת",
+    "offerHistory": "הצעות קודמות",
+    "noIncomingOffers": "אף אחד עדיין לא הציע לקנות את שם המשתמש שלך.",
+    "noOutgoingOffers": "עדיין לא הגשת הצעות. פתח פרופיל של מישהו כדי להגיש אחת.",
+    "offerExpires": "פג {{when}}",
+    "payBefore": "שלם {{when}}",
+    "awaitingOwner": "ממתין לבעלים",
+    "acceptOffer": "אישור",
+    "declineOffer": "דחייה",
+    "confirmAccept": "אשר הצעה",
+    "cancel": "ביטול",
+    "withdrawOffer": "משיכה",
+    "withdrawAcceptance": "משוך את האישור",
+    "payAndClaim": "שלם וקח",
+    "acceptMovesNothingYet": "אישור שומר את שם המשתמש שלך לקונה הזה. שום דבר לא זז עד שהוא ישלם, ועד אז אפשר לחזור בך.",
+    "acceptedAwaitingPayment": "אישרת את ההצעה הזו. שם המשתמש עדיין שלך, ותהפוך ל-@{{handle}} רק כשהוא ישלם.",
+    "offerAcceptedPayNow": "אושר. שם המשתמש שמור עבורך עד שתשלם עליו.",
+    "offerStatus": {
+      "pending": "ממתין לתשובה",
+      "accepted": "אושר, ממתין לתשלום",
+      "declined": "נדחה",
+      "withdrawn": "נמשך",
+      "completed": "הושלם",
+      "expired": "פג תוקף"
+    }
   },
   "accounts": {
     "subtitle": "חשבונות שלמים למכירה, במחיר ב-DHB",

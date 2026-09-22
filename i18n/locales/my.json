@@ -1617,7 +1617,7 @@
     "unableToLoad": "Unable to load profile. Please try again later.",
     "doesNotExist": "This user doesn't exist or you need to log in to view your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Enter the amount of DHB tokens you'd like to offer to acquire this username.",
+    "enterOfferAmount": "ဤအသုံးပြုသူအမည်အတွက် ကမ်းလှမ်းလိုသော ဒေါ်လာပမာဏကို ထည့်ပါ။",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Please enter a valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB submitted for {{handle}}",
@@ -1640,7 +1640,11 @@
       "dehubFollowers": "DeHub နောက်လိုက်များ",
       "selfReported": "Social follower အရေအတွက်ကိုဖန်တီးသူမှထည့်သွင်းသည် ။"
     },
-    "tabPlaylists": "ဖွင့်စာရင်းများ"
+    "tabPlaylists": "ဖွင့်စာရင်းများ",
+    "offerWorthNow": "လက်ရှိနှုန်းအရ ခန့်မှန်းခြေ {{amount}} DHB",
+    "offerNotePlaceholder": "မှတ်ချက် ထည့်ပါ (မဖြစ်မနေ မဟုတ်)",
+    "offerCommitsNothing": "ကမ်းလှမ်းခြင်းသည် ကုန်ကျစရိတ်မရှိသလို DHB ကိုလည်း ပိတ်မထားပါ။ ပိုင်ရှင်က လက်ခံမှသာ သင် ပေးချေရမည်။",
+    "offerNeedsHandle": "ဤအကောင့်တွင် ကမ်းလှမ်းနိုင်သော အသုံးပြုသူအမည် မရှိပါ။"
   },
   "dao": {
     "title": "DAO ဘဏ္ဍာရေး",
@@ -2944,7 +2948,36 @@
     "staleListing": "ဤကြော်ငြာသည် @{{listed}} အတွက်ဖြစ်သော်လည်း သင်သည် ယခု @{{current}} ဖြစ်နေပါသည်။ သင့်လက်ရှိအမည်ဖြင့် ပြန်တင်သည်အထိ ရောင်းရမည် မဟုတ်ပါ — အထက်တွင် မွမ်းမံခြင်းက ထိုအလုပ်ကို လုပ်ပေးပါသည်။",
     "history": "မှတ်တမ်း",
     "sold": "ရောင်းပြီး",
-    "bought": "ဝယ်ပြီး"
+    "bought": "ဝယ်ပြီး",
+    "makeOfferAction": "ကမ်းလှမ်းမည်",
+    "tabOffers": "ကမ်းလှမ်းချက်များ",
+    "signInForOffers": "သင့်အသုံးပြုသူအမည်အတွက် ကမ်းလှမ်းချက်များကို ကြည့်ရန် ဝင်ရောက်ပါ။",
+    "offersForYou": "သင့်အသုံးပြုသူအမည်အတွက် ကမ်းလှမ်းချက်များ",
+    "offersYouMade": "သင် ကမ်းလှမ်းထားသည်များ",
+    "offerHistory": "ယခင် ကမ်းလှမ်းချက်များ",
+    "noIncomingOffers": "သင့်အသုံးပြုသူအမည်ကို ဝယ်ရန် မည်သူမျှ မကမ်းလှမ်းရသေးပါ။",
+    "noOutgoingOffers": "သင် ကမ်းလှမ်းချက် မပြုလုပ်ရသေးပါ။ ကမ်းလှမ်းရန် တစ်ယောက်ယောက်၏ ပရိုဖိုင်ကို ဖွင့်ပါ။",
+    "offerExpires": "{{when}} သက်တမ်းကုန်မည်",
+    "payBefore": "{{when}} ပေးချေပါ",
+    "awaitingOwner": "ပိုင်ရှင်ကို စောင့်နေသည်",
+    "acceptOffer": "လက်ခံမည်",
+    "declineOffer": "ငြင်းပယ်မည်",
+    "confirmAccept": "ကမ်းလှမ်းချက်ကို လက်ခံမည်",
+    "cancel": "မလုပ်တော့ပါ",
+    "withdrawOffer": "ရုပ်သိမ်းမည်",
+    "withdrawAcceptance": "လက်ခံမှုကို ရုပ်သိမ်းမည်",
+    "payAndClaim": "ပေးချေပြီး ယူမည်",
+    "acceptMovesNothingYet": "လက်ခံလိုက်လျှင် သင့်အသုံးပြုသူအမည်ကို ဤဝယ်သူအတွက် ဖယ်ထားပေးမည်။ သူပေးချေသည်အထိ ဘာမျှ မပြောင်းလဲဘဲ၊ ထိုအချိန်မတိုင်မီ သင် ပြန်လည်ရုပ်သိမ်းနိုင်သည်။",
+    "acceptedAwaitingPayment": "ဤကမ်းလှမ်းချက်ကို လက်ခံခဲ့သည်။ အသုံးပြုသူအမည်မှာ သင့်ဟာသာ ဖြစ်နေဆဲဖြစ်ပြီး သူပေးချေမှသာ @{{handle}} ဖြစ်လာမည်။",
+    "offerAcceptedPayNow": "လက်ခံပြီးပါပြီ။ သင် ပေးချေသည်အထိ အသုံးပြုသူအမည်ကို သင့်အတွက် ဖယ်ထားသည်။",
+    "offerStatus": {
+      "pending": "အဖြေကို စောင့်နေသည်",
+      "accepted": "လက်ခံပြီး၊ ငွေပေးချေမှု စောင့်နေသည်",
+      "declined": "ငြင်းပယ်ခံရသည်",
+      "withdrawn": "ရုပ်သိမ်းပြီး",
+      "completed": "ပြီးဆုံးပြီး",
+      "expired": "သက်တမ်းကုန်ပြီး"
+    }
   },
   "accounts": {
     "subtitle": "အကောင့်များ အပြည့်အစုံ ရောင်းရန်၊ DHB ဖြင့် စျေးနှုန်း",

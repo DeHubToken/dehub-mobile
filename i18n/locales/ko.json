@@ -1519,7 +1519,7 @@
     "unableToLoad": "로드할 수 없습니다. 나중에 다시 시도하세요.",
     "doesNotExist": "이 사용자는 존재하지 않거나 로그인이 필요합니다.",
     "makeOffer": "{{handle}}에 제안하기",
-    "enterOfferAmount": "이 사용자명을 위해 제안할 DHB 금액을 입력하세요.",
+    "enterOfferAmount": "이 사용자 이름에 제안하고 싶은 금액을 미국 달러로 입력하세요.",
     "submitOffer": "제안 제출",
     "validOfferAmount": "유효한 금액을 입력하세요",
     "offerSubmitted": "{{handle}}에 {{amount}} DHB 제안 제출됨",
@@ -1545,7 +1545,11 @@
       "dehubFollowers": "DeHub 팔로워",
       "selfReported": "소셜 팔로워 수는 크리에이터가 입력합니다."
     },
-    "tabPlaylists": "재생 목록"
+    "tabPlaylists": "재생 목록",
+    "offerWorthNow": "현재 시세로 약 {{amount}} DHB",
+    "offerNotePlaceholder": "메모 추가 (선택)",
+    "offerCommitsNothing": "제안에는 비용이 들지 않으며 DHB가 묶이지도 않습니다. 상대가 수락한 경우에만 결제합니다.",
+    "offerNeedsHandle": "이 계정에는 제안할 사용자 이름이 없습니다."
   },
   "tv": {
     "title": "TV",
@@ -2949,7 +2953,36 @@
     "fixedDollarPrice": "달러 가격은 고정되며 토큰 수량은 갱신됩니다.",
     "priceUpdated": "가격이 갱신되었습니다. 금액을 확인하고 구매를 다시 누르세요.",
     "tokensPaidToSeller": "판매자에게 직접 지급",
-    "priceUsd": "가격 (USD)"
+    "priceUsd": "가격 (USD)",
+    "makeOfferAction": "제안하기",
+    "tabOffers": "제안",
+    "signInForOffers": "내 사용자 이름에 들어온 제안을 보려면 로그인하세요.",
+    "offersForYou": "내 사용자 이름에 대한 제안",
+    "offersYouMade": "내가 보낸 제안",
+    "offerHistory": "지난 제안",
+    "noIncomingOffers": "아직 아무도 내 사용자 이름을 사겠다고 제안하지 않았습니다.",
+    "noOutgoingOffers": "아직 제안한 적이 없습니다. 누군가의 프로필을 열어 제안해 보세요.",
+    "offerExpires": "{{when}} 만료",
+    "payBefore": "{{when}} 결제",
+    "awaitingOwner": "상대의 답변 대기 중",
+    "acceptOffer": "수락",
+    "declineOffer": "거절",
+    "confirmAccept": "제안 수락",
+    "cancel": "취소",
+    "withdrawOffer": "철회",
+    "withdrawAcceptance": "수락 철회",
+    "payAndClaim": "결제하고 받기",
+    "acceptMovesNothingYet": "수락하면 사용자 이름이 이 구매자를 위해 확보됩니다. 상대가 결제하기 전까지는 아무것도 바뀌지 않으며, 그 전에는 되돌릴 수 있습니다.",
+    "acceptedAwaitingPayment": "이 제안을 수락했습니다. 사용자 이름은 여전히 내 것이며, 상대가 결제해야만 @{{handle}}가 됩니다.",
+    "offerAcceptedPayNow": "수락되었습니다. 결제하기 전까지 사용자 이름이 나를 위해 확보되어 있습니다.",
+    "offerStatus": {
+      "pending": "답변 대기 중",
+      "accepted": "수락됨, 결제 대기 중",
+      "declined": "거절됨",
+      "withdrawn": "철회됨",
+      "completed": "완료됨",
+      "expired": "만료됨"
+    }
   },
   "accounts": {
     "subtitle": "계정 전체 판매, DHB로 가격 책정",

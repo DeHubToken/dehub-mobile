@@ -1211,6 +1211,14 @@ const NotificationScreen = () => {
 
       // The ladder lives on the staking tab, with the next rung and its price
       // already on it — which settings, where the loans are, does not have.
+      // Answering an offer and paying for an accepted one happen on the same
+      // tab, so all three rows lead to it.
+      case NotificationType.USERNAME_OFFER:
+      case NotificationType.USERNAME_OFFER_ACCEPTED:
+      case NotificationType.USERNAME_OFFER_DECLINED:
+        navigation.navigate(ScreenNames.Usernames as never);
+        break;
+
       case NotificationType.BADGE_TIER_UP:
       case NotificationType.BADGE_TIER_DOWN:
         navigation.navigate(

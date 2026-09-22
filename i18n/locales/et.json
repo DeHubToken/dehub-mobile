@@ -1612,7 +1612,7 @@
     "unableToLoad": "Profiili laadimine ebaõnnestus. Palun proovi hiljem.",
     "doesNotExist": "See kasutaja ei eksisteeri või pead sisse logima, et näha oma profiili.",
     "makeOffer": "Tee pakkumine {{handle}} jaoks",
-    "enterOfferAmount": "Sisesta DHB žetoonide summa, mida soovid selle kasutajanime ostmiseks pakkuda.",
+    "enterOfferAmount": "Sisesta summa dollarites, mida soovid selle kasutajanime eest pakkuda.",
     "submitOffer": "Esita pakkumine",
     "validOfferAmount": "Sisesta kehtiv pakkumise summa",
     "offerSubmitted": "{{amount}} DHB pakkumine esitatud {{handle}} jaoks",
@@ -1638,7 +1638,11 @@
       "dehubFollowers": "DeHubi jälgijad",
       "selfReported": "Sotsiaalsete jälgijate arvu sisestab looja."
     },
-    "tabPlaylists": "Esitusloendid"
+    "tabPlaylists": "Esitusloendid",
+    "offerWorthNow": "Umbes {{amount}} DHB praeguse kursiga",
+    "offerNotePlaceholder": "Lisa märkus (valikuline)",
+    "offerCommitsNothing": "Pakkumise tegemine ei maksa midagi ega broneeri DHB-d. Maksad ainult siis, kui omanik nõustub.",
+    "offerNeedsHandle": "Sellel kontol pole kasutajanime, millele pakkuda."
   },
   "tv": {
     "title": "TV",
@@ -2928,7 +2932,36 @@
     "staleListing": "See kuulutus on kasutajanimele @{{listed}}, aga sa oled nüüd @{{current}}. See ei müü enne, kui paned selle uuesti üles praeguse kasutajanimega — ülal uuendamine teebki seda.",
     "history": "Ajalugu",
     "sold": "Müüdud",
-    "bought": "Ostetud"
+    "bought": "Ostetud",
+    "makeOfferAction": "Tee pakkumine",
+    "tabOffers": "Pakkumised",
+    "signInForOffers": "Logi sisse, et näha oma kasutajanimele tehtud pakkumisi.",
+    "offersForYou": "Pakkumised sinu kasutajanimele",
+    "offersYouMade": "Sinu tehtud pakkumised",
+    "offerHistory": "Varasemad pakkumised",
+    "noIncomingOffers": "Keegi pole veel sinu kasutajanime ostmist pakkunud.",
+    "noOutgoingOffers": "Sa pole veel pakkumisi teinud. Ava kellegi profiil, et pakkumine teha.",
+    "offerExpires": "Aegub {{when}}",
+    "payBefore": "Maksa {{when}}",
+    "awaitingOwner": "Ootab omanikku",
+    "acceptOffer": "Nõustu",
+    "declineOffer": "Keeldu",
+    "confirmAccept": "Nõustu pakkumisega",
+    "cancel": "Tühista",
+    "withdrawOffer": "Võta tagasi",
+    "withdrawAcceptance": "Võta nõusolek tagasi",
+    "payAndClaim": "Maksa ja võta üle",
+    "acceptMovesNothingYet": "Nõustumine hoiab su kasutajanime selle ostja jaoks. Midagi ei liigu enne, kui ta maksab, ja sa võid enne seda taganeda.",
+    "acceptedAwaitingPayment": "Nõustusid selle pakkumisega. Kasutajanimi on endiselt sinu ja sinust saab @{{handle}} alles siis, kui ta maksab.",
+    "offerAcceptedPayNow": "Vastu võetud. Kasutajanimi on sulle hoitud, kuni selle eest maksad.",
+    "offerStatus": {
+      "pending": "Ootab vastust",
+      "accepted": "Vastu võetud, ootab makset",
+      "declined": "Tagasi lükatud",
+      "withdrawn": "Tagasi võetud",
+      "completed": "Lõpetatud",
+      "expired": "Aegunud"
+    }
   },
   "accounts": {
     "subtitle": "Terved kontod müügis, hind DHB-des",

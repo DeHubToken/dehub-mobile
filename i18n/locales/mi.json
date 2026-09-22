@@ -1601,7 +1601,7 @@
     "unableToLoad": "Kāore i taea te uta kōtaha. Ngana anō ā muri.",
     "doesNotExist": "Kāore tēnei kaiwhakamahi e noho ana, me takiuru koe rānei ki te kite i tō kōtaha.",
     "makeOffer": "Tāpae tono mō {{handle}}",
-    "enterOfferAmount": "Tāurua te tapeke tōkena DHB e hiahia ana koe ki te tāpae mō tēnei ingoa kaiwhakamahi.",
+    "enterOfferAmount": "Whakaurua te moni tāra US e hiahia ana koe ki te tāpae mō tēnei ingoa kaiwhakamahi.",
     "submitOffer": "Tukuna tono",
     "validOfferAmount": "Tāurua he tapeke tono tika",
     "offerSubmitted": "{{amount}} DHB tono kua tukuna mō {{handle}}",
@@ -1627,7 +1627,11 @@
       "dehubFollowers": "Ngā kaiwhaiwhai o DeHub",
       "selfReported": "Ko nga kaute whaiwhai pāpori e whakauruhia ana e te kaihanga."
     },
-    "tabPlaylists": "Rārangi purei"
+    "tabPlaylists": "Rārangi purei",
+    "offerWorthNow": "Tata ki te {{amount}} DHB i te utu o nāianei",
+    "offerNotePlaceholder": "Tāpiritia he tuhipoka (kōwhiringa)",
+    "offerCommitsNothing": "Kāore he utu mō te tāpae, kāore hoki he DHB e mau. Ka utu koe mēnā anake ka whakaae te rangatira.",
+    "offerNeedsHandle": "Kāore he ingoa kaiwhakamahi o tēnei pūkete hei tāpae."
   },
   "tv": {
     "title": "TV",
@@ -2917,7 +2921,36 @@
     "staleListing": "Mō @{{listed}} tēnei rārangi, engari ko @{{current}} koe ināianei. E kore e hokona kia rārangi anō koe ki tō ingoa o nāianei — mā te whakahou i runga ake nei e mahi.",
     "history": "Hītori",
     "sold": "Kua hokona",
-    "bought": "Kua hokona mai"
+    "bought": "Kua hokona mai",
+    "makeOfferAction": "Tāpae",
+    "tabOffers": "Ngā tāpaetanga",
+    "signInForOffers": "Takiuru kia kite i ngā tāpaetanga mō tō ingoa kaiwhakamahi.",
+    "offersForYou": "Ngā tāpaetanga mō tō ingoa kaiwhakamahi",
+    "offersYouMade": "Ngā tāpaetanga i tukuna e koe",
+    "offerHistory": "Ngā tāpaetanga o mua",
+    "noIncomingOffers": "Kāore anō tētahi kia tāpae ki te hoko i tō ingoa kaiwhakamahi.",
+    "noOutgoingOffers": "Kāore anō koe kia tāpae. Huakina te kōtaha o tētahi ki te tāpae.",
+    "offerExpires": "Ka pau {{when}}",
+    "payBefore": "Utua {{when}}",
+    "awaitingOwner": "E tatari ana ki te rangatira",
+    "acceptOffer": "Whakaae",
+    "declineOffer": "Whakakāhore",
+    "confirmAccept": "Whakaae ki te tāpaetanga",
+    "cancel": "Whakakore",
+    "withdrawOffer": "Tangohia",
+    "withdrawAcceptance": "Tangohia te whakaaetanga",
+    "payAndClaim": "Utua kia riro",
+    "acceptMovesNothingYet": "Ka pupuri te whakaaetanga i tō ingoa kaiwhakamahi mō tēnei kaihoko. Kāore he aha e neke kia utua rā anō e ia, ā, i mua i tērā ka taea e koe te hoki.",
+    "acceptedAwaitingPayment": "Kua whakaae koe ki tēnei tāpaetanga. Nāu tonu te ingoa kaiwhakamahi, ā, ka noho koe hei @{{handle}} anake ina utu ia.",
+    "offerAcceptedPayNow": "Kua whakaaetia. Ka puritia te ingoa kaiwhakamahi māu kia utua rā anō e koe.",
+    "offerStatus": {
+      "pending": "E tatari ana ki te whakautu",
+      "accepted": "Kua whakaaetia, e tatari ana ki te utu",
+      "declined": "Kua whakakāhoretia",
+      "withdrawn": "Kua tangohia",
+      "completed": "Kua oti",
+      "expired": "Kua pau te wā"
+    }
   },
   "accounts": {
     "subtitle": "Ngā pūkete katoa e hokona ana, he utu ki te DHB",

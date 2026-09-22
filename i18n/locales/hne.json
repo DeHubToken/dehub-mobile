@@ -1584,7 +1584,7 @@
     "unableToLoad": "प्रोफाइल लोड नइ हो सकिस। बाद मा फेर कोशिश करव।",
     "doesNotExist": "ये यूजर नइ हे या तोला अपन प्रोफाइल देखे बर लॉग इन करना परी।",
     "makeOffer": "{{handle}} बर ऑफर देव",
-    "enterOfferAmount": "ये यूजरनेम लेय बर DHB टोकन के राशि डालव।",
+    "enterOfferAmount": "ये यूजरनेम बर तुमन कतका डॉलर देय चाहत हव ओ रकम भरव।",
     "submitOffer": "ऑफर जमा करव",
     "validOfferAmount": "सही ऑफर राशि डालव",
     "offerSubmitted": "{{handle}} बर {{amount}} DHB के ऑफर जमा होगे",
@@ -1610,7 +1610,11 @@
       "dehubFollowers": "DeHub फॉलोअर्स",
       "selfReported": "सामाजिक अनुयायीमन के संख्या रचनाकार द्वारा दर्ज करे जात हवय ।"
     },
-    "tabPlaylists": "गीत- सूची"
+    "tabPlaylists": "गीत- सूची",
+    "offerWorthNow": "अभी के दर म लगभग {{amount}} DHB",
+    "offerNotePlaceholder": "नोट जोड़व (मर्जी के)",
+    "offerCommitsNothing": "ऑफर देय म कुछु खरचा नइ होय अउ कोनो DHB नइ रुकय। तुमन तभे भुगतान करहू जब मालिक मानही।",
+    "offerNeedsHandle": "ये खाता के कोनो यूजरनेम नइहे जेमा ऑफर देय जा सकय।"
   },
   "tv": {
     "title": "टीवी",
@@ -2941,7 +2945,36 @@
     "staleListing": "ये सूची @{{listed}} बर हे, फेर अब तँय @{{current}} हस। जब तक तँय एला अपन अभी के हैंडल ले फेर नइ लगाबे, ये नइ बिकही — ऊपर अपडेट करे ले येही होथे।",
     "history": "इतिहास",
     "sold": "बिक गिस",
-    "bought": "बिसाय गिस"
+    "bought": "बिसाय गिस",
+    "makeOfferAction": "ऑफर देव",
+    "tabOffers": "ऑफर",
+    "signInForOffers": "अपन यूजरनेम बर आय ऑफर ला देखे बर साइन इन करव।",
+    "offersForYou": "तुम्हर यूजरनेम बर ऑफर",
+    "offersYouMade": "तुम्हर दे ऑफर",
+    "offerHistory": "पहिली के ऑफर",
+    "noIncomingOffers": "अभी तक कोनो तुम्हर यूजरनेम बिसाय के ऑफर नइ दे हे।",
+    "noOutgoingOffers": "तुमन अभी तक कोनो ऑफर नइ दे हव। ऑफर देय बर कोनो के प्रोफाइल खोलव।",
+    "offerExpires": "{{when}} सिरा जाही",
+    "payBefore": "{{when}} भुगतान करव",
+    "awaitingOwner": "मालिक के अगोरा",
+    "acceptOffer": "मानव",
+    "declineOffer": "नइ मानव",
+    "confirmAccept": "ऑफर मानव",
+    "cancel": "रद्द करव",
+    "withdrawOffer": "वापस लेव",
+    "withdrawAcceptance": "मंजूरी वापस लेव",
+    "payAndClaim": "भुगतान करके लेव",
+    "acceptMovesNothingYet": "मान लेहे ले तुम्हर यूजरनेम ये बिसइया बर रोक देय जाथे। जब तक ओहा भुगतान नइ करय कुछु नइ बदलय, अउ ओकर पहिली तुमन पाछू हट सकथव।",
+    "acceptedAwaitingPayment": "तुमन ये ऑफर ला मान लेहव। यूजरनेम अभी घलो तुम्हरे हे अउ तुमन @{{handle}} तभे बनहू जब ओहा भुगतान करही।",
+    "offerAcceptedPayNow": "मान लेय गे। जब तक तुमन भुगतान नइ करहू, यूजरनेम तुम्हर बर रोकाय हे।",
+    "offerStatus": {
+      "pending": "जवाब के अगोरा",
+      "accepted": "मान लेय गे, भुगतान के अगोरा",
+      "declined": "नइ माने गे",
+      "withdrawn": "वापस ले गे",
+      "completed": "पूरा होगे",
+      "expired": "समय सिराए"
+    }
   },
   "accounts": {
     "subtitle": "पूरा खाता बिक्री बर, दाम DHB म",

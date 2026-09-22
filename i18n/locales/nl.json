@@ -2078,7 +2078,7 @@
     "unableToLoad": "Kan profiel niet laden. Probeer het later opnieuw.",
     "doesNotExist": "Deze gebruiker bestaat niet of je moet inloggen om je profiel te bekijken.",
     "makeOffer": "Bod uitbrengen op {{handle}}",
-    "enterOfferAmount": "Voer het aantal DHB-tokens in dat je wilt bieden om deze gebruikersnaam te verkrijgen.",
+    "enterOfferAmount": "Voer het bedrag in dollars in dat je voor deze gebruikersnaam wilt bieden.",
     "submitOffer": "Bod indienen",
     "validOfferAmount": "Voer een geldig biedingsbedrag in",
     "offerSubmitted": "Bod van {{amount}} DHB ingediend voor {{handle}}",
@@ -2104,7 +2104,11 @@
       "dehubFollowers": "DeHub-volgers",
       "selfReported": "Het aantal sociale volgers wordt ingevoerd door de maker."
     },
-    "tabPlaylists": "Afspeellijsten"
+    "tabPlaylists": "Afspeellijsten",
+    "offerWorthNow": "Ongeveer {{amount}} DHB tegen de huidige koers",
+    "offerNotePlaceholder": "Voeg een notitie toe (optioneel)",
+    "offerCommitsNothing": "Een bod doen kost niets en zet geen DHB vast. Je betaalt alleen als de eigenaar accepteert.",
+    "offerNeedsHandle": "Dit account heeft geen gebruikersnaam om op te bieden."
   },
   "tv": {
     "title": "TV",
@@ -3196,7 +3200,36 @@
     "staleListing": "Deze advertentie is voor @{{listed}}, maar je bent nu @{{current}}. Hij wordt niet verkocht tot je hem opnieuw plaatst onder je huidige handle — hierboven bijwerken doet dat.",
     "history": "Geschiedenis",
     "sold": "Verkocht",
-    "bought": "Gekocht"
+    "bought": "Gekocht",
+    "makeOfferAction": "Doe een bod",
+    "tabOffers": "Biedingen",
+    "signInForOffers": "Log in om biedingen op je gebruikersnaam te zien.",
+    "offersForYou": "Biedingen op je gebruikersnaam",
+    "offersYouMade": "Biedingen die je hebt gedaan",
+    "offerHistory": "Eerdere biedingen",
+    "noIncomingOffers": "Niemand heeft nog geboden op je gebruikersnaam.",
+    "noOutgoingOffers": "Je hebt nog geen biedingen gedaan. Open iemands profiel om er een te doen.",
+    "offerExpires": "Verloopt {{when}}",
+    "payBefore": "Betaal {{when}}",
+    "awaitingOwner": "Wacht op de eigenaar",
+    "acceptOffer": "Accepteren",
+    "declineOffer": "Afwijzen",
+    "confirmAccept": "Bod accepteren",
+    "cancel": "Annuleren",
+    "withdrawOffer": "Intrekken",
+    "withdrawAcceptance": "Acceptatie intrekken",
+    "payAndClaim": "Betalen en claimen",
+    "acceptMovesNothingYet": "Door te accepteren wordt je gebruikersnaam voor deze koper gereserveerd. Er verandert niets tot hij betaalt, en je kunt er daarvoor op terugkomen.",
+    "acceptedAwaitingPayment": "Je hebt dit bod geaccepteerd. De gebruikersnaam is nog van jou en je wordt pas @{{handle}} zodra er betaald is.",
+    "offerAcceptedPayNow": "Geaccepteerd. De gebruikersnaam is voor jou gereserveerd tot je betaalt.",
+    "offerStatus": {
+      "pending": "Wacht op antwoord",
+      "accepted": "Geaccepteerd, wacht op betaling",
+      "declined": "Afgewezen",
+      "withdrawn": "Ingetrokken",
+      "completed": "Voltooid",
+      "expired": "Verlopen"
+    }
   },
   "accounts": {
     "subtitle": "Hele accounts te koop, geprijsd in DHB",

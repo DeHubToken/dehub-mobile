@@ -1612,7 +1612,7 @@
     "unableToLoad": "无法加载。请稍后重试。",
     "doesNotExist": "此用户不存在或您需要登录。",
     "makeOffer": "为{{handle}}出价",
-    "enterOfferAmount": "输入您想要出价的DHB金额。",
+    "enterOfferAmount": "输入你想为这个用户名出的美元金额。",
     "submitOffer": "提交出价",
     "validOfferAmount": "请输入有效金额",
     "offerSubmitted": "已为{{handle}}提交{{amount}} DHB出价",
@@ -1638,7 +1638,11 @@
       "dehubFollowers": "DeHub关注者",
       "selfReported": "社交关注者数量由创作者输入。"
     },
-    "tabPlaylists": "播放列表"
+    "tabPlaylists": "播放列表",
+    "offerWorthNow": "按当前汇率约 {{amount}} DHB",
+    "offerNotePlaceholder": "添加备注（可选）",
+    "offerCommitsNothing": "出价不花钱，也不会锁定任何 DHB。只有对方接受后你才需要付款。",
+    "offerNeedsHandle": "该账号没有可供出价的用户名。"
   },
   "tv": {
     "title": "电视",
@@ -2938,7 +2942,36 @@
     "fixedDollarPrice": "美元价格保持固定，代币数量随价格更新。",
     "priceUpdated": "价格已更新。请核对金额后再次点击购买。",
     "tokensPaidToSeller": "直接支付给卖家",
-    "priceUsd": "价格（美元）"
+    "priceUsd": "价格（美元）",
+    "makeOfferAction": "出价",
+    "tabOffers": "出价",
+    "signInForOffers": "登录后即可查看对你用户名的出价。",
+    "offersForYou": "对你用户名的出价",
+    "offersYouMade": "你发出的出价",
+    "offerHistory": "历史出价",
+    "noIncomingOffers": "还没有人出价购买你的用户名。",
+    "noOutgoingOffers": "你还没有出过价。打开某人的主页即可出价。",
+    "offerExpires": "{{when}}到期",
+    "payBefore": "{{when}}付款",
+    "awaitingOwner": "等待对方回应",
+    "acceptOffer": "接受",
+    "declineOffer": "拒绝",
+    "confirmAccept": "接受出价",
+    "cancel": "取消",
+    "withdrawOffer": "撤回",
+    "withdrawAcceptance": "撤回接受",
+    "payAndClaim": "付款并领取",
+    "acceptMovesNothingYet": "接受后，你的用户名会为这位买家保留。在对方付款之前什么都不会变，在那之前你可以反悔。",
+    "acceptedAwaitingPayment": "你已接受这笔出价。用户名仍然属于你，只有等对方付款后你才会变成 @{{handle}}。",
+    "offerAcceptedPayNow": "已接受。在你付款之前，该用户名为你保留。",
+    "offerStatus": {
+      "pending": "等待回应",
+      "accepted": "已接受，等待付款",
+      "declined": "已拒绝",
+      "withdrawn": "已撤回",
+      "completed": "已完成",
+      "expired": "已过期"
+    }
   },
   "accounts": {
     "subtitle": "整个账号出售，以 DHB 计价",

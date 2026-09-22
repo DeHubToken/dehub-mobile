@@ -28,6 +28,12 @@ export enum NotificationType {
   FRACTION_OFFER_ACCEPTED = 'fraction_offer_accepted',
   FRACTION_OFFER_REJECTED = 'fraction_offer_rejected',
   FRACTION_PURCHASED = 'fraction_purchased',
+  /** Someone offered to buy the handle you are wearing */
+  USERNAME_OFFER = 'username_offer',
+  /** The owner accepted your offer — the handle is yours to pay for */
+  USERNAME_OFFER_ACCEPTED = 'username_offer_accepted',
+  /** The owner turned your offer down */
+  USERNAME_OFFER_DECLINED = 'username_offer_declined',
   /** Someone lent you their badge tier */
   BADGE_DELEGATED = 'badge_delegated',
   /** A badge loan ended — handed back, taken back, or lapsed */
@@ -171,6 +177,13 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
     case NotificationType.FRACTION_OFFER_ACCEPTED:
     case NotificationType.FRACTION_PURCHASED:
       return { name: 'Store', color: '#F4F4F5' };
+    // Its own glyph rather than the marketplace one: what is being bid for
+    // here is the reader's own name, not a thing on a shelf.
+    case NotificationType.USERNAME_OFFER:
+    case NotificationType.USERNAME_OFFER_ACCEPTED:
+      return { name: 'AtSign', color: '#F4F4F5' };
+    case NotificationType.USERNAME_OFFER_DECLINED:
+      return { name: 'AtSign', color: '#8B8D90' };
     // Supabase-side bounty rows. Matched as strings because they are written by
     // a database trigger and have no entry in NotificationType.
     case 'work_application':

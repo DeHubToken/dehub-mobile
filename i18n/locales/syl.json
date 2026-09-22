@@ -149,7 +149,7 @@
     "unableToLoad": "Unable to load profile. Please try again later.",
     "doesNotExist": "This user doesn't exist or you need to log in to view your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Enter the amount of DHB tokens you'd like to offer to acquire this username.",
+    "enterOfferAmount": "ই ইউজারনেমর লাগি তুমি কত ডলার দিতায় চাও হেই অংকটা লেখো।",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Please enter a valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB submitted for {{handle}}",
@@ -172,7 +172,11 @@
       "dehubFollowers": "DeHub ফলোয়ার",
       "selfReported": "সোশ্যাল ফলোয়ার সংখ্যা ক্রিয়েটর দ্বারা প্রবেশ করানো হয়।"
     },
-    "tabPlaylists": "প্লেলিস্ট"
+    "tabPlaylists": "প্লেলিস্ট",
+    "offerWorthNow": "অখনকার দরে আন্দাজ {{amount}} DHB",
+    "offerNotePlaceholder": "একটা নোট যোগ করো (ইচ্ছা অইলে)",
+    "offerCommitsNothing": "অফার দিতে কোনো খরচ নাই, কোনো DHB-ও আটকায় না। মালিক মানি লইলেই তুমি দিবায়।",
+    "offerNeedsHandle": "ই একাউন্টর এমন কোনো ইউজারনেম নাই যেটার লাগি অফার দেওয়া যায়।"
   },
   "settings": {
     "smartReplies": "ꠙꠞꠣꠝꠞ꠆ꠡ ꠖꠤꠅꠣ ꠎꠛꠣꠛ",
@@ -3079,7 +3083,36 @@
     "staleListing": "এই তালিকা @{{listed}}-র লাগি, কিন্তু আপনে এখন @{{current}}। আপনার এখনকার হ্যান্ডেলে আবার না দিলে ইটা বেচা অইতো নায় — উপরে হালনাগাদ করলেউ অউটা অয়।",
     "history": "ইতিহাস",
     "sold": "বেচা অইছে",
-    "bought": "কিনা অইছে"
+    "bought": "কিনা অইছে",
+    "makeOfferAction": "অফার দেও",
+    "tabOffers": "অফার",
+    "signInForOffers": "তুমার ইউজারনেমর লাগি আইছে অফার দেখতে সাইন ইন করো।",
+    "offersForYou": "তুমার ইউজারনেমর লাগি অফার",
+    "offersYouMade": "তুমি দিছো অফার",
+    "offerHistory": "আগের অফার",
+    "noIncomingOffers": "অখনো কেউ তুমার ইউজারনেম কিনার অফার দেয় নাই।",
+    "noOutgoingOffers": "তুমি অখনো কোনো অফার দেও নাই। অফার দিতে কারো প্রোফাইল খুলো।",
+    "offerExpires": "{{when}} শেষ অইব",
+    "payBefore": "{{when}} দেও",
+    "awaitingOwner": "মালিকর অপেক্ষাত",
+    "acceptOffer": "মানি লও",
+    "declineOffer": "না করো",
+    "confirmAccept": "অফার মানি লও",
+    "cancel": "বাতিল করো",
+    "withdrawOffer": "ফিরাই লও",
+    "withdrawAcceptance": "মানি লওয়া ফিরাই লও",
+    "payAndClaim": "দিয়া লইয়া লও",
+    "acceptMovesNothingYet": "মানি লইলে তুমার ইউজারনেম ইতার লাগি রাখি রাখা অইব। ইতা না দেওয়া পর্যন্ত কিচ্ছু বদলাইত নায়, আর ইতার আগে তুমি ফিরত আইতে পারো।",
+    "acceptedAwaitingPayment": "তুমি ই অফার মানি লইছো। ইউজারনেম অখনো তুমারই, আর ইতা দিলেই তুমি @{{handle}} অইবায়।",
+    "offerAcceptedPayNow": "মানি লওয়া অইছে। তুমি না দেওয়া পর্যন্ত ইউজারনেম তুমার লাগি রাখা আছে।",
+    "offerStatus": {
+      "pending": "জবাবর অপেক্ষাত",
+      "accepted": "মানি লওয়া, টেকার অপেক্ষাত",
+      "declined": "না মানা",
+      "withdrawn": "ফিরাই লওয়া",
+      "completed": "শেষ অইছে",
+      "expired": "সময় শেষ"
+    }
   },
   "accounts": {
     "subtitle": "গোটা একাউন্ট বেচার লাগি, দাম DHB-ও",
