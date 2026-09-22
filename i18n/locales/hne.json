@@ -4625,6 +4625,9 @@
     "savePrompt": "ये पोस्ट ल बाद म पूरा करे अउ पोस्ट करे बर एक मसौदा के रूप म सहेजें ।"
   },
   "dex": {
+    "lowestPrice": "सबले कम दाम · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "कुल तरलता · USD"
   }
 }

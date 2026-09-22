@@ -4660,6 +4660,9 @@
     "savePrompt": "Gcina le phosti njengedrafti ukuze uqedele futhi uphoste kamuva?"
   },
   "dex": {
+    "lowestPrice": "Intengo ephansi kakhulu · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Ingqikithi yokugeleza kwemali · USD"
   }
 }

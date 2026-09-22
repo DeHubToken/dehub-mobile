@@ -4693,6 +4693,9 @@
     "savePrompt": "Barreeffama kana akka wixineetti save gochuun xumurtee booda maxxansuu?"
   },
   "dex": {
+    "lowestPrice": "Gatii gadi aanaa · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Ida galaa maallaqaa · USD"
   }
 }

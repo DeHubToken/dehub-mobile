@@ -4618,6 +4618,9 @@
     "savePrompt": "هل تريد حفظ هذا المنشور كمسودة للإنهاء والنشر لاحقًا ؟"
   },
   "dex": {
+    "lowestPrice": "أرخص ثمن · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "مجموع السيولة · USD"
   }
 }

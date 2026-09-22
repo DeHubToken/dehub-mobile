@@ -4630,6 +4630,9 @@
     "savePrompt": "Vai saglabāt šo ziņu kā melnrakstu, lai pabeigtu un publicētu vēlāk?"
   },
   "dex": {
+    "lowestPrice": "Zemākā cena · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Kopējā likviditāte · USD"
   }
 }

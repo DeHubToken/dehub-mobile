@@ -4645,6 +4645,9 @@
     "savePrompt": "Salvați această postare ca ciornă pentru a o termina și posta mai târziu?"
   },
   "dex": {
+    "lowestPrice": "Cel mai mic preț · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Lichiditate totală · USD"
   }
 }

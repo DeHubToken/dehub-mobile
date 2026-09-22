@@ -4582,6 +4582,9 @@
     "balanceAmount": "Available: {{amount}} {{symbol}}"
   },
   "dex": {
+    "lowestPrice": "Lowest price · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Total liquidity · USD",
     "lowestSell": "Lowest sell · USDC",
     "liveChartHint": "Lowest sell · USDC · drag to inspect",

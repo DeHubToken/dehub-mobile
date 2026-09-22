@@ -4694,6 +4694,9 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "dex": {
+    "lowestPrice": "En düşük fiyat · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Toplam likidite · USD"
   }
 }

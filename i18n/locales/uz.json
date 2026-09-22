@@ -4674,6 +4674,9 @@
     "savePrompt": "Ushbu postni tugatish va keyinroq joylashtirish uchun qoralama sifatida saqlansinmi?"
   },
   "dex": {
+    "lowestPrice": "Eng past narx · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Umumiy likvidlik · USD"
   }
 }

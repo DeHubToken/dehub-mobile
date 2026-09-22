@@ -4382,6 +4382,9 @@
     "savePrompt": "এই পোস্টটা ড্রাফট হিসাবে সেভ করবা, পরে শেষ করি পোস্ট করবার লাগি?"
   },
   "dex": {
+    "lowestPrice": "সবচেয়ে কম দাম · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "মোট তারল্য · USD"
   }
 }

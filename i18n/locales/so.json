@@ -4621,6 +4621,9 @@
     "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
   },
   "dex": {
+    "lowestPrice": "Qiimaha ugu hooseeya · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Wadarta dareeraha · USD"
   }
 }

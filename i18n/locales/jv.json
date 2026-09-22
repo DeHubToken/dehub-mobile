@@ -4589,6 +4589,9 @@
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   },
   "dex": {
+    "lowestPrice": "Rega paling murah · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Total likuiditas · USD"
   }
 }

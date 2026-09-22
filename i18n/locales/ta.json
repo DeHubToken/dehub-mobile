@@ -4616,6 +4616,9 @@
     "savePrompt": "இந்த இடுகையை ஒரு வரைவாகச் சேமித்து பின்னர் இடுகையிடவா?"
   },
   "dex": {
+    "lowestPrice": "மிகக் குறைந்த விலை · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "மொத்த பணப்புழக்கம் · USD"
   }
 }

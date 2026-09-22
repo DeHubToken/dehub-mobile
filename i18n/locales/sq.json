@@ -4630,6 +4630,9 @@
     "savePrompt": "Do ta ruash këtë postim si draft për ta përfunduar dhe për ta postuar më vonë?"
   },
   "dex": {
+    "lowestPrice": "Çmimi më i ulët · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Likuiditeti total · USD"
   }
 }

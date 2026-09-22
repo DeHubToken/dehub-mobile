@@ -4569,6 +4569,9 @@
     "savePrompt": "Leave a Comment on कुछ देर ठहर जा ऐ जिंदगी..."
   },
   "dex": {
+    "lowestPrice": "सबसे कम दाम · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "कुल तरलता · USD"
   }
 }

@@ -12,7 +12,8 @@ export const BOOK_BAND = 2;
 /** Indicative AMM depth from actual reserves. An in-range LP contributes to both sides.
  * Sample log-price intervals using concentrated-liquidity reserve math, not the indexed deposit amount.
  */
-export function aggregateBook(positions: BookPosition[], increment = 0.00000001) {
+export function aggregateBook(positions: BookPosition[], increment = 0.00000001,
+                              externalAsks: { price: number; dhb: number }[] = []) {
   const bids = new Map<number, BookLevel>(), asks = new Map<number, BookLevel>();
   const step = Number.isFinite(increment) && increment > 0 ? increment : 0.00000001;
   const add = (book: Map<number, BookLevel>, price: number, dhb: number, usdc: number, bid: boolean) => {
@@ -44,6 +45,12 @@ export function aggregateBook(positions: BookPosition[], increment = 0.00000001)
         add(bid ? bids : asks, bid ? b : a, dhb, bid ? reserve * fraction : dhb * average, bid);
       }
     }
+  }
+  // Pools outside this book still sell DHB, and a book that hides them tells a trader the
+  // market is thinner than it is. They arrive already priced in dollars and pre-levelled.
+  for (const level of externalAsks) {
+    if (!Number.isFinite(level?.price) || !Number.isFinite(level?.dhb) || level.price <= 0) continue;
+    add(asks, level.price, level.dhb, level.dhb * level.price, false);
   }
   const finish = (book: Map<number, BookLevel>, bid: boolean) => {
     let total = 0;

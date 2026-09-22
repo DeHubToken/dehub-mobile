@@ -4568,6 +4568,9 @@
     "savePrompt": "पोस्ट के अंत में, कुछ भी लिखें और कुछ भी लिखें?"
   },
   "dex": {
+    "lowestPrice": "सबसे कम दाम · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "कुल तरलता · USD"
   }
 }

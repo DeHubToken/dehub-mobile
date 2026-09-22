@@ -4569,6 +4569,9 @@
     "savePrompt": "دا پوسټ د بشپړولو او وروسته پوسټ کولو لپاره د یوې پروژې په توګه خوندي کړئ."
   },
   "dex": {
+    "lowestPrice": "ټیټه بیه · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "ټوله پانګه · USD"
   }
 }

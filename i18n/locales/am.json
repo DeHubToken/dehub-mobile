@@ -4551,6 +4551,9 @@
     "savePrompt": "ይህን ልጥፍ በኋላ ለማጠናቀቅ እና ለመለጠፍ ረቂቅ አድርጎ ያስቀምጡ?"
   },
   "dex": {
+    "lowestPrice": "ዝቅተኛ ዋጋ · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "ጠቅላላ ፈሳሽነት · USD"
   }
 }
