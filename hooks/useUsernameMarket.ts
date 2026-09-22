@@ -116,6 +116,66 @@ export function useMyUsernameMarket(enabled: boolean) {
   });
 }
 
+/**
+ * Every username this account owns — the one it wears plus the vault.
+ *
+ * Separate from `useMyUsernameMarket` even though that carries `held` too: the
+ * Assets screen wants only this, and pulling a seller's whole trade history to
+ * render a list of names would be a waste on a screen most people open to check
+ * one thing.
+ */
+export function useUsernameHoldings(enabled: boolean) {
+  return useQuery({
+    queryKey: ['username-holdings'],
+    queryFn: () => usernameMarketService.holdings(),
+    enabled,
+    staleTime: 30 * 1000,
+  });
+}
+
+/** Wear one of the names you own. Free, and reversible by switching back. */
+export function useActivateUsernameHolding() {
+  const qc = useQueryClient();
+  const { refreshUser } = useAuthActions();
+  return useMutation({
+    mutationFn: usernameMarketService.activateHolding,
+    onSuccess: async (result) => {
+      toastSuccess(`You are now @${result.username}`);
+      // The released case is the one irreversible thing about an otherwise
+      // reversible action, and it only ever happens to the free signup handle.
+      if (result.releasedUsername) {
+        toastSuccess(
+          `@${result.releasedUsername} was not a username you bought, so it is free again.`,
+        );
+      }
+      // The signed-in user's own handle just changed, so everything rendering it
+      // off a cache has to be told or the app keeps showing the old one.
+      await refreshUser().catch(() => {});
+      qc.invalidateQueries({ queryKey: ['username-holdings'] });
+      qc.invalidateQueries({ queryKey: ['username-market-mine'] });
+      qc.invalidateQueries({ queryKey: ['username-market-browse'] });
+      qc.invalidateQueries({ queryKey: ['account'] });
+      qc.invalidateQueries({ queryKey: ['profile'] });
+    },
+    onError: (err) => toastError(err, 'Could not switch to that username'),
+  });
+}
+
+/** Give a held name back to the pool. There is no undo, so ask first. */
+export function useReleaseUsernameHolding() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: usernameMarketService.releaseHolding,
+    onSuccess: (_result, username) => {
+      toastSuccess(`@${username} released`);
+      qc.invalidateQueries({ queryKey: ['username-holdings'] });
+      qc.invalidateQueries({ queryKey: ['username-market-mine'] });
+      qc.invalidateQueries({ queryKey: ['username-market-browse'] });
+    },
+    onError: (err) => toastError(err, 'Could not release that username'),
+  });
+}
+
 export function useCreateUsernameListing() {
   const qc = useQueryClient();
   return useMutation({
@@ -261,6 +321,7 @@ export function useBuyUsername() {
       // it off a cache has to be told, or the profile tab and every rendered
       // @mention of yourself keep showing a name this account no longer owns.
       await refreshUser().catch(() => {});
+      qc.invalidateQueries({ queryKey: ['username-holdings'] });
       qc.invalidateQueries({ queryKey: ['username-market-browse'] });
       qc.invalidateQueries({ queryKey: ['username-market-mine'] });
       qc.invalidateQueries({ queryKey: ['account'] });

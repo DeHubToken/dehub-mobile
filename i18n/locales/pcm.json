@@ -2773,7 +2773,6 @@
     "askingPrice": "Price wey dem dey ask",
     "priceHint": "≈ ${{usd}} · e go straight to di seller, DeHub no dey collect any cut",
     "yourHandleChanges": "Your handle go change",
-    "swapHint": "Dem go release your old handle and anybody fit take am. Your posts, followers and wallet no go change.",
     "payingOn": "Paying with DHB for {{chain}}",
     "wrongChain": "Switch to Base or BNB Chain for Settings before you fit buy handle.",
     "ownListing": "Na your own listing be dis. Manage am from di Sell tab.",
@@ -2831,7 +2830,15 @@
       "withdrawn": "Dem withdraw am",
       "completed": "E don finish",
       "expired": "E don expire"
-    }
+    },
+    "tabMine": "Mine",
+    "vaultInUse": "In use",
+    "vaultBought": "Bought",
+    "vaultFree": "Free username",
+    "vaultSell": "Sell",
+    "vaultEditListing": "Edit listing",
+    "vaultRelease": "Release",
+    "vaultReleaseTitle": "Release @{{handle}}?"
   },
   "accounts": {
     "subtitle": "Whole accounts dey for sale, price dey for DHB",

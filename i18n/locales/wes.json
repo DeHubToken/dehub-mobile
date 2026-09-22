@@ -2799,7 +2799,6 @@
     "askingPrice": "Price weh dem di ask",
     "priceHint": "≈ ${{usd}} · i di go strait go di seller, DeHub no di kolect eni cut",
     "yourHandleChanges": "Yua handle go chenj",
-    "swapHint": "Dem go release yua old handle an eni pesin fit tek-am. Yua post dem, follower dem an wallet no go chenj.",
     "payingOn": "Di pay bi wit DHB fo {{chain}}",
     "wrongChain": "Switch go Base or BNB Chain fo Settings bifo yu fit buy handle.",
     "ownListing": "Na yua own listing bi dis. Manag-am from di Sell tab.",
@@ -2857,7 +2856,15 @@
       "withdrawn": "Dem witdro am",
       "completed": "I don finish",
       "expired": "I don expair"
-    }
+    },
+    "tabMine": "Mine",
+    "vaultInUse": "In use",
+    "vaultBought": "Bought",
+    "vaultFree": "Free username",
+    "vaultSell": "Sell",
+    "vaultEditListing": "Edit listing",
+    "vaultRelease": "Release",
+    "vaultReleaseTitle": "Release @{{handle}}?"
   },
   "accounts": {
     "subtitle": "Full account dem fo sell, price dei fo DHB",
