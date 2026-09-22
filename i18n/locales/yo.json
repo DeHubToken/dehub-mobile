@@ -1635,11 +1635,7 @@
       "dehubFollowers": "Àwọn ọmọ-ẹ̀yìn DeHub",
       "selfReported": "Olùṣẹ̀dá ló máa ń tẹ iye àwọn ọmọlẹ́yìn tó ń tẹ̀lé àwùjọ."
     },
-    "tabPlaylists": "Àwọn àtòjọ orin",
-    "aiScraping": {
-      "allowed": "Ẹlẹ́dàá yìí gba ìdánilẹ́kọ̀ọ́ AI lórí àkóónú yìí láyè.",
-      "denied": "Ẹlẹ́dàá yìí kò fàyè gba ìdánilẹ́kọ̀ọ́ AI lórí àkóónú yìí."
-    }
+    "tabPlaylists": "Àwọn àtòjọ orin"
   },
   "tv": {
     "title": "TV",

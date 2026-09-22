@@ -1603,11 +1603,7 @@
       "dehubFollowers": "DeHub izdoshlari",
       "selfReported": "Ijtimoiy tarmoqlardagi obunachilar soni yaratuvchi tomonidan kiritiladi."
     },
-    "tabPlaylists": "Qoʻshiq roʻyxatlari",
-    "aiScraping": {
-      "allowed": "Ushbu yaratuvchi ushbu kontent bo&#39;yicha AI mashg&#39;ulotlariga ruxsat beradi.",
-      "denied": "Ushbu yaratuvchi ushbu kontent bo&#39;yicha sun&#39;iy intellekt bo&#39;yicha mashg&#39;ulotlarga ruxsat bermaydi."
-    }
+    "tabPlaylists": "Qoʻshiq roʻyxatlari"
   },
   "tv": {
     "title": "Televizor",

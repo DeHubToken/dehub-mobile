@@ -1498,11 +1498,7 @@
       "dehubFollowers": "חסידי DeHub",
       "selfReported": "מספר העוקבים החברתיים מוזן על ידי היוצר."
     },
-    "tabPlaylists": "פלייליסטים",
-    "aiScraping": {
-      "allowed": "יוצר זה מאפשר הדרכת בינה מלאכותית על תוכן זה.",
-      "denied": "יוצר זה אינו מאפשר הדרכת בינה מלאכותית על תוכן זה."
-    }
+    "tabPlaylists": "פלייליסטים"
   },
   "messages": {
     "smartRepliesOff": "התשובות המוצעות כובו",

@@ -7,7 +7,6 @@ import LiquidGlass from "../ui/LiquidGlass";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useTranslation } from "react-i18next";
-import { getAiScrapingPreference } from "../../libs/ai-scraping";
 
 import { copyToClipboard } from "../../libs";
 import { useUser, useAuthActions } from "../../context/AuthContext";
@@ -485,13 +484,6 @@ const ProfileHeader = () => {
               />
             </View>
           )}
-
-          {/* AI training preference */}
-          <Text className="text-zinc-500 text-xs mt-2">
-            {getAiScrapingPreference((user as any)?.customs) === 'allow'
-              ? t('profile.aiScraping.allowed')
-              : t('profile.aiScraping.denied')}
-          </Text>
 
           {/* Joined */}
           {!!createdAtFormatted && (

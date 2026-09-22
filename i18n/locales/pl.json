@@ -1901,11 +1901,7 @@
       "dehubFollowers": "Obserwujący DeHub",
       "selfReported": "Liczby obserwujących społeczności są wprowadzane przez twórcę."
     },
-    "tabPlaylists": "Playlisty",
-    "aiScraping": {
-      "allowed": "Ten twórca zezwala na szkolenie sztucznej inteligencji w zakresie tych treści.",
-      "denied": "Ten twórca nie zezwala na szkolenie sztucznej inteligencji w zakresie tych treści."
-    }
+    "tabPlaylists": "Playlisty"
   },
   "tv": {
     "title": "TV",

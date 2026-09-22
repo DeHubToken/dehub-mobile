@@ -1846,11 +1846,7 @@
       "dehubFollowers": "Urmăritori DeHub",
       "selfReported": "Numărul de urmăritori sociali este introdus de creator."
     },
-    "tabPlaylists": "Liste de redare",
-    "aiScraping": {
-      "allowed": "Acest creator permite instruirea AI cu privire la acest conținut.",
-      "denied": "Acest creator nu permite instruirea IA cu privire la acest conținut."
-    }
+    "tabPlaylists": "Liste de redare"
   },
   "tv": {
     "title": "TV",

@@ -1638,11 +1638,7 @@
       "dehubFollowers": "Abalandeli be-DeHub",
       "selfReported": "Izibalo zabalandeli zomphakathi zifakwa umsunguli."
     },
-    "tabPlaylists": "Uhlu lokudlalwayo",
-    "aiScraping": {
-      "allowed": "Lo msunguli uvumela ukuqeqeshwa kwe-AI kulokhu okuqukethwe.",
-      "denied": "Lo msunguli akakuvumeli ukuqeqeshwa kwe-AI kulokhu okusunguliwe."
-    }
+    "tabPlaylists": "Uhlu lokudlalwayo"
   },
   "tv": {
     "title": "TV",

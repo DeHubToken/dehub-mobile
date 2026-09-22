@@ -1638,11 +1638,7 @@
       "dehubFollowers": "DeHub 追蹤者",
       "selfReported": "社交追蹤者數目係由創作者輸入。"
     },
-    "tabPlaylists": "播放清單",
-    "aiScraping": {
-      "allowed": "呢個創作者允許人工智能喺呢個內容上面進行訓練。",
-      "denied": "呢個創作者唔允許人工智能喺呢個內容上面進行訓練。"
-    }
+    "tabPlaylists": "播放清單"
   },
   "tv": {
     "title": "電視",

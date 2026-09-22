@@ -1639,11 +1639,7 @@
       "dehubFollowers": "Pratitelji na DeHubu",
       "selfReported": "Kreator unosi broj pratitelja na društvenim mrežama."
     },
-    "tabPlaylists": "Popisi izvođenja",
-    "aiScraping": {
-      "allowed": "Ovaj kreator omogućuje umjetnoj inteligenciji obuku o ovom sadržaju.",
-      "denied": "Ovaj kreator ne dopušta AI obuku o ovom sadržaju."
-    }
+    "tabPlaylists": "Popisi izvođenja"
   },
   "tv": {
     "title": "TV",

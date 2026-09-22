@@ -1604,11 +1604,7 @@
       "dehubFollowers": "DeHub-seuraajat",
       "selfReported": "Tekijä syöttää sosiaalisen seuraajamäärän."
     },
-    "tabPlaylists": "Soittolistat",
-    "aiScraping": {
-      "allowed": "Tämä tekijä sallii tekoälykoulutuksen tässä sisällössä.",
-      "denied": "Tämä tekijä ei salli tekoälykoulutusta tästä sisällöstä."
-    }
+    "tabPlaylists": "Soittolistat"
   },
   "tv": {
     "title": "TV",

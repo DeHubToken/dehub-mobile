@@ -1654,11 +1654,7 @@
       "dehubFollowers": "Seguidores do DeHub",
       "selfReported": "As contagens de seguidores nas redes sociais são inseridas pelo criador."
     },
-    "tabPlaylists": "Playlists",
-    "aiScraping": {
-      "allowed": "Este criador permite formação em IA sobre este conteúdo.",
-      "denied": "Este criador não permite formação em IA sobre este conteúdo."
-    }
+    "tabPlaylists": "Playlists"
   },
   "tv": {
     "title": "TV",
