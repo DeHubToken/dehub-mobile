@@ -4628,5 +4628,8 @@
     "emptyDescription": "Kur të ruash një postim si draft, ai do të shfaqet këtu.",
     "saveTitle": "Ruaj draftin",
     "savePrompt": "Do ta ruash këtë postim si draft për ta përfunduar dhe për ta postuar më vonë?"
+  },
+  "dex": {
+    "totalLiquidity": "Likuiditeti total · USD"
   }
 }

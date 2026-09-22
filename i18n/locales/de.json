@@ -4698,5 +4698,8 @@
     "emptyDescription": "Wenn Sie einen Beitrag als Entwurf speichern, wird er hier angezeigt.",
     "saveTitle": "Entwurf speichern",
     "savePrompt": "Diesen Beitrag als Entwurf speichern, um ihn später abzuschließen und zu veröffentlichen?"
+  },
+  "dex": {
+    "totalLiquidity": "Gesamtliquidität · USD"
   }
 }

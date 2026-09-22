@@ -4658,5 +4658,8 @@
     "emptyDescription": "Huk qillqasqata borrador hina waqaychaspaykiqa kaypim rikurimunqa.",
     "saveTitle": "Borradorta waqaychay",
     "savePrompt": "¿Kay qillqasqata borrador hina waqaychay tukunaykipaq hinaspa qipaman churanaykipaq?"
+  },
+  "dex": {
+    "totalLiquidity": "Llapan qullqi · USD"
   }
 }

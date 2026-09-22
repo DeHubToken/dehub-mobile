@@ -4692,5 +4692,8 @@
     "emptyDescription": "Bir gönderiyi taslak olarak kaydettiğinizde, burada görünecektir.",
     "saveTitle": "Taslağı Kaydet",
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
+  },
+  "dex": {
+    "totalLiquidity": "Toplam likidite · USD"
   }
 }

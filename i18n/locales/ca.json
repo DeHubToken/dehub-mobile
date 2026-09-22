@@ -4631,5 +4631,8 @@
     "emptyDescription": "Quan desis una publicació com a esborrany, apareixerà aquí.",
     "saveTitle": "Desa l'esborrany",
     "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
+  },
+  "dex": {
+    "totalLiquidity": "Liquiditat total · USD"
   }
 }

@@ -4605,5 +4605,8 @@
     "emptyDescription": "Вақте ки шумо постро ҳамчун лоиҳа захира мекунед, он дар ин ҷо пайдо мешавад.",
     "saveTitle": "Нигоҳ доштани нақша",
     "savePrompt": "I-save ang post na ito bilang isang project upang matapos at mag-post pa?"
+  },
+  "dex": {
+    "totalLiquidity": "Ликвидноти умумӣ · USD"
   }
 }

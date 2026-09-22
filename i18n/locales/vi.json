@@ -4716,5 +4716,8 @@
     "emptyDescription": "Khi bạn lưu một bài đăng dưới dạng bản nháp, nó sẽ xuất hiện ở đây.",
     "saveTitle": "Lưu bản nháp",
     "savePrompt": "Lưu bài đăng này dưới dạng bản nháp để hoàn tất và đăng sau?"
+  },
+  "dex": {
+    "totalLiquidity": "Tổng thanh khoản · USD"
   }
 }

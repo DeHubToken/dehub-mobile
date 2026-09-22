@@ -4634,5 +4634,8 @@
     "emptyDescription": "När du sparar ett inlägg som utkast visas det här.",
     "saveTitle": "Spara utkast",
     "savePrompt": "Spara det här inlägget som ett utkast för att slutföra och publicera senare?"
+  },
+  "dex": {
+    "totalLiquidity": "Total likviditet · USD"
   }
 }

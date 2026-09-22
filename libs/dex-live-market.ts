@@ -3,6 +3,9 @@ export type CandleInterval = typeof CANDLE_INTERVALS[number];
 export interface Candle { time: number; open: number; high: number; low: number; close: number; observedAt: number }
 export interface SharedMarket<Position = unknown> {
   version: 1; startedAt: number; observedAt: number; price: number | null; change24h: number | null;
+  /** Liquidity-weighted DHB price across every pool, in dollars. Absent on snapshots written
+   *  before the aggregate landed, so every reader treats it as optional. */
+  usdPrice?: number | null; liquidityUsd?: number | null;
   positions: Position[]; candles: Record<CandleInterval, Candle[]>;
 }
 export function parseSharedMarket<Position>(data: unknown): SharedMarket<Position> {
@@ -10,6 +13,8 @@ export function parseSharedMarket<Position>(data: unknown): SharedMarket<Positio
   if (!value || value.version !== 1 || !Number.isFinite(value.startedAt) || !Number.isFinite(value.observedAt) ||
       value.observedAt < value.startedAt || !Array.isArray(value.positions) ||
       (value.price !== null && (!Number.isFinite(value.price) || value.price <= 0)) ||
+      (value.usdPrice != null && (!Number.isFinite(value.usdPrice) || value.usdPrice <= 0)) ||
+      (value.liquidityUsd != null && (!Number.isFinite(value.liquidityUsd) || value.liquidityUsd < 0)) ||
       !CANDLE_INTERVALS.every((interval) => Array.isArray(value.candles?.[interval]) &&
         value.candles[interval].every((c) => [c.time,c.open,c.high,c.low,c.close,c.observedAt].every(Number.isFinite) &&
           c.low > 0 && c.low <= Math.min(c.open,c.close) && c.high >= Math.max(c.open,c.close)))) {

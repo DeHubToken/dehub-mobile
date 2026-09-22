@@ -4612,5 +4612,8 @@
     "emptyDescription": "Postu taslak kimi saxladığınızda, burada görünəcək.",
     "saveTitle": "Taslağı Saxla",
     "savePrompt": "Bu postu daha sonra bitirmək və dərc etmək üçün taslak kimi saxlamaq istəyirsiniz?"
+  },
+  "dex": {
+    "totalLiquidity": "Ümumi likvidlik · USD"
   }
 }
