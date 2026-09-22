@@ -38,6 +38,10 @@ const readSharedMarket = minuteCache(async () => {
   if (error) throw error;
   return parseSharedMarket<CachedPosition>(data);
 });
+/** Sweep the pools for positions opened outside the app now, rather than waiting on the next
+ *  scheduled sweep. The endpoint throttles itself, so a burst of these costs nothing, and a
+ *  failure is silent: the schedule still runs and the snapshot is what the screen actually reads. */
+const primeDiscovery = () => { void Promise.resolve(supabase.functions.invoke('dex-position-scan')).catch(() => {}); };
 type Pending = { input: SellInput; txHash: string; tokenId?: string };
 const BOOK_ROWS = 12;
 const storageKey = (wallet: string) => `dex-pending:${wallet.toLowerCase()}`;
@@ -182,11 +186,22 @@ export default function DexScreen() {
   useEffect(() => {
     if (!focused) return;
     void loadListings();
+    primeDiscovery();
+    // The snapshot is rebuilt once a minute and readSharedMarket caches per clock minute, so
+    // polling on a shorter beat picks up each new snapshot sooner without a second fetch for it.
     const timer = setInterval(() => {
       if (AppState.currentState === 'active') void loadListings();
-    }, 60000);
+    }, 15000);
     const resume = AppState.addEventListener('change', (state) => { if (state === 'active') void loadListings(); });
-    return () => { clearInterval(timer); resume.remove(); };
+    // The server announces each rebuilt snapshot, so the screen follows the write instead of the
+    // poll above, which stays as the fallback for a dropped socket. Only while this screen is up.
+    const channel = supabase.channel('dex-market-tick')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'dex_market_tick' }, () => {
+        readSharedMarket.invalidate();
+        void loadListings();
+      })
+      .subscribe();
+    return () => { clearInterval(timer); resume.remove(); void supabase.removeChannel(channel); };
   }, [loadListings, focused]);
 
   useEffect(() => { setPage((value) => Math.min(value, Math.max(0, Math.ceil(shown.length / PAGE_SIZE) - 1))); }, [shown.length]);
@@ -255,7 +270,7 @@ export default function DexScreen() {
   const book = (levels: BookLevel[], bid: boolean) => <View><Text style={[s.bookLabel, { color: bid ? '#20c997' : '#f05b72' }]}>{t(bid ? 'dex.bids' : 'dex.asks')}</Text>{!levels.length ? <Text style={s.empty}>{t(bid ? 'dex.noBids' : 'dex.noOrders')}</Text> : nearestBookLevels(levels, bid, BOOK_ROWS).map((level) => <TouchableOpacity accessibilityLabel={t('dex.usePrice', { price: formatBookPrice(level.price, increment) })} disabled={locked} key={level.price} onPress={() => { priceTouched.current = true; choosePrice(level.price, bid ? 'buy' : 'sell'); setTab('trade'); }} style={s.bookRow}><View pointerEvents="none" style={[s.depthBar, { width: `${level.cumulativeDhb / (levels.at(-1)?.cumulativeDhb || 1) * 100}%`, backgroundColor: bid ? '#20c997' : '#f05b72' }]} /><Text style={[s.cell, { color: bid ? '#20c997' : '#f05b72' }]}>{formatBookPrice(level.price, increment)}</Text><Text style={[s.cell, s.right]}>{formatSize(level.dhb)}</Text><Text style={[s.cell, s.right]}>{formatSize(level.cumulativeDhb)}</Text></TouchableOpacity>)}</View>;
 
   return <View style={s.root}><ScreenHeader title={t('dex.title')} onBackPress={() => navigation.goBack()} /><ScrollView contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
-    <View style={s.header}><View style={s.poolPicker}><TouchableOpacity accessibilityRole="button" accessibilityLabel={t('dex.title')} accessibilityState={{ expanded: poolMenuOpen }} onPress={() => setPoolMenuOpen((open) => !open)} style={s.pairTrigger}><Text style={s.pair}>{t('dex.title')}</Text><Text style={s.chevron}>⌄</Text></TouchableOpacity><Text style={s.muted}>{t('dex.combined')}</Text>{poolMenuOpen && <View style={s.poolMenu}><TouchableOpacity accessibilityRole="menuitem" accessibilityState={{ selected: true }} onPress={() => setPoolMenuOpen(false)} style={[s.poolOption, s.poolActive]}><View><Text style={s.poolName}>{t('dex.title')}</Text><Text style={s.poolVenue}>{t('dex.combined')}</Text></View></TouchableOpacity>{EXTERNAL_POOLS.map((pool) => <TouchableOpacity accessibilityRole="menuitem" key={pool.pair} onPress={() => { setPoolMenuOpen(false); void Linking.openURL(pool.url); }} style={s.poolOption}><View><Text style={s.poolName}>{pool.pair}</Text><Text style={s.poolVenue}>{pool.venue}</Text></View><Text style={s.poolExternal}>↗</Text></TouchableOpacity>)}</View>}</View><TouchableOpacity disabled={loading || busy} onPress={() => { void loadListings(); setBalanceRevision((n) => n + 1); }}><Text style={s.link}>{t(loading ? 'dex.updating' : 'dex.refresh')}</Text></TouchableOpacity></View>
+    <View style={s.header}><View style={s.poolPicker}><TouchableOpacity accessibilityRole="button" accessibilityLabel={t('dex.title')} accessibilityState={{ expanded: poolMenuOpen }} onPress={() => setPoolMenuOpen((open) => !open)} style={s.pairTrigger}><Text style={s.pair}>{t('dex.title')}</Text><Text style={s.chevron}>⌄</Text></TouchableOpacity><Text style={s.muted}>{t('dex.combined')}</Text>{poolMenuOpen && <View style={s.poolMenu}><TouchableOpacity accessibilityRole="menuitem" accessibilityState={{ selected: true }} onPress={() => setPoolMenuOpen(false)} style={[s.poolOption, s.poolActive]}><View><Text style={s.poolName}>{t('dex.title')}</Text><Text style={s.poolVenue}>{t('dex.combined')}</Text></View></TouchableOpacity>{EXTERNAL_POOLS.map((pool) => <TouchableOpacity accessibilityRole="menuitem" key={pool.pair} onPress={() => { setPoolMenuOpen(false); void Linking.openURL(pool.url); }} style={s.poolOption}><View><Text style={s.poolName}>{pool.pair}</Text><Text style={s.poolVenue}>{pool.venue}</Text></View><Text style={s.poolExternal}>↗</Text></TouchableOpacity>)}</View>}</View><TouchableOpacity disabled={loading || busy} onPress={() => { primeDiscovery(); void loadListings(); setBalanceRevision((n) => n + 1); }}><Text style={s.link}>{t(loading ? 'dex.updating' : 'dex.refresh')}</Text></TouchableOpacity></View>
     <View style={s.stats}><View><Text style={s.muted}>{t('dex.lowestSell', { defaultValue: 'Lowest sell · USDC' })}</Text><Text style={s.price}>{bestAsk != null ? `${formatPrice(bestAsk)} USDC` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.sharedChange24', { defaultValue: '24h change' })}</Text><Text style={[s.statValue, { color: (snapshot?.change24h || 0) >= 0 ? '#20c997' : '#f05b72' }]}>{snapshot?.change24h != null ? `${snapshot.change24h >= 0 ? '+' : ''}${snapshot.change24h.toFixed(2)}%` : '—'}</Text></View></View>
     {listError && <Text style={s.alert}>{t('dex.snapshotError')}</Text>}
     <View style={s.tabs}>{(['chart', 'book', 'trade'] as const).map((value) => <TouchableOpacity key={value} accessibilityRole="tab" accessibilityState={{ selected: tab === value }} onPress={() => setTab(value)} style={[s.tab, tab === value && s.tabActive]}><Text style={tab === value ? s.white : s.muted}>{t(`dex.tab.${value}`)}</Text></TouchableOpacity>)}</View>

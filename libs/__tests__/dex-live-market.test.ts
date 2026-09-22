@@ -31,6 +31,25 @@ describe('shared minute market', () => {
     await read(); now = 65000;
     expect(await read()).toBe(2);
   });
+  it('goes back to the server when a newer snapshot is announced inside the same minute', async () => {
+    let now = 0, calls = 0;
+    const read = minuteCache(async () => ++calls, () => now);
+    expect(await read()).toBe(1);
+    expect(await read()).toBe(1);
+    read.invalidate();
+    expect(await read()).toBe(2);
+    expect(await read()).toBe(2);
+  });
+  it('does not cache a read that was already in flight when the announcement arrived', async () => {
+    let now = 0, calls = 0, release = () => {};
+    const gate = new Promise<void>((resolve) => { release = resolve; });
+    const read = minuteCache(async () => { await gate; return ++calls; }, () => now);
+    const inFlight = read();
+    read.invalidate();
+    release();
+    expect(await inFlight).toBe(1);
+    expect(await read()).toBe(2);
+  });
   it('does not cache errors or fabricate fresh timestamps when reads fail', async () => {
     let calls = 0;
     const read = minuteCache(async () => { if (++calls === 1) throw Error('unavailable'); return snapshot; });
