@@ -33,6 +33,20 @@ export function useDaoTreasury() {
   });
 }
 
+export interface DaoContributeResult {
+  txHash: string;
+  chainId: number;
+  /**
+   * Resolves false only when the chain says the transfer REVERTED.
+   *
+   * Confirming is deliberately not part of sending. The transfer is on its way
+   * the moment it has a hash, and a caller that waits here has to decide what
+   * to tell someone whose receipt never arrives. "Nothing was sent" is the
+   * wrong answer, and it is the one that gets the money sent a second time.
+   */
+  confirmed: Promise<boolean>;
+}
+
 export interface DaoContributeState {
   /** DHB held on the connected chain, or 0 while unknown. */
   walletDhb: number;
@@ -40,7 +54,7 @@ export interface DaoContributeState {
   /** Null when the connected chain is one contributions are counted on. */
   unsupportedChain: string | null;
   isPending: boolean;
-  contribute: (amountDhb: number) => Promise<{ txHash: string; chainId: number }>;
+  contribute: (amountDhb: number) => Promise<DaoContributeResult>;
   refreshBalance: () => void;
 }
 
@@ -87,11 +101,24 @@ export function useContributeToDao(enabled: boolean): DaoContributeState {
       const tx = await writeContractAA(tokenContract, 'transfer', [DAO_TREASURY_ADDRESS, amountWei], {
         context: 'DAO contribution',
       });
+      const hash = tx.hash ? String(tx.hash) : '';
+      if (!hash) {
+        // Nothing reached the network, so waiting here is still honest.
+        const receipt = await tx.wait(1);
+        if (receipt?.status !== 1) throw new Error('The transfer did not go through. Nothing was sent.');
+        return { txHash: String(receipt.transactionHash || ''), chainId, confirmed: Promise.resolve(true) };
+      }
+
       // wait() resolves with status 0 for a REVERTED transaction rather than
-      // throwing, so ignoring the receipt would report a failed transfer as sent.
-      const receipt = await tx.wait(1);
-      if (receipt?.status !== 1) throw new Error('The transfer did not go through. Nothing was sent.');
-      return { txHash: String(receipt.transactionHash || tx.hash), chainId };
+      // throwing, so the receipt still has to be read -- just not before the
+      // caller is told the transfer went out. A receipt that never arrives
+      // resolves true: the transfer is on chain either way, and sending again
+      // is the one thing that must never be invited.
+      const confirmed = tx
+        .wait(1)
+        .then((receipt: any) => !receipt || receipt.status === 1)
+        .catch(() => true);
+      return { txHash: hash, chainId, confirmed };
     },
     onSuccess: () => {
       refreshBalance();
