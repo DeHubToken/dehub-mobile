@@ -7,7 +7,7 @@ import {
   TextInput,
   ActivityIndicator,
   Keyboard,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Ionicons } from "@expo/vector-icons";
@@ -32,6 +32,7 @@ import { getAvatarUrl } from "../libs/misc";
 import { truncate } from "../libs/strings.util";
 import { formatCompactNumber } from "../libs/numbers.util";
 import Avatar from "../components/common/Avatar";
+import SwipeableRow, { type SwipeAction } from "../components/common/SwipeableRow";
 import ScreenHeader from "../components/ScreenHeader";
 import GlassFollowButton from "../components/ui/GlassFollowButton";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
@@ -85,10 +86,12 @@ interface FollowUserRowProps {
   onPress: (address: string) => void;
   onToggleFollow: (item: FollowListItem) => void;
   onLongPress?: (address: string) => void;
+  /** Offer "Unfollow" on the row's left swipe (your own following list). */
+  allowSwipeUnfollow?: boolean;
 }
 
 const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
-  ({ item, relationship, isSelf, busy, showFollowButton, onPress, onToggleFollow, onLongPress }) => {
+  ({ item, relationship, isSelf, busy, showFollowButton, onPress, onToggleFollow, onLongPress, allowSwipeUnfollow }) => {
     const { t } = useTranslation();
     const user = item.user;
     const displayName = user.displayName || user.username || truncate(user.address, 12, "..");
@@ -107,7 +110,40 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
       onToggleFollow(item);
     }, [onToggleFollow, item]);
 
+    /*
+     * Removing a follower and unfollowing someone are the two things people
+     * come to these lists to do, and until now the first one was hidden behind
+     * a long press. The swipe is the discoverable route; the long press stays.
+     */
+    const swipeActions = useMemo<SwipeAction[]>(() => {
+      if (isSelf) return [];
+      if (onLongPress) {
+        return [
+          {
+            key: "remove",
+            label: t("follow.remove"),
+            icon: "person-remove-outline",
+            color: "#DC2626",
+            onPress: () => onLongPress(user.address),
+          },
+        ];
+      }
+      if (allowSwipeUnfollow && relationship?.isFollowing && !busy) {
+        return [
+          {
+            key: "unfollow",
+            label: t("profileOptions.unfollow"),
+            icon: "person-remove-outline",
+            color: "#DC2626",
+            onPress: () => onToggleFollow(item),
+          },
+        ];
+      }
+      return [];
+    }, [isSelf, onLongPress, allowSwipeUnfollow, relationship?.isFollowing, busy, user.address, onToggleFollow, item, t]);
+
     return (
+      <SwipeableRow actions={swipeActions} backgroundClassName="bg-theme-background">
       <TouchableOpacity
         onPress={handlePress}
         onLongPress={onLongPress ? handleLongPress : undefined}
@@ -159,6 +195,7 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
           <Ionicons name="chevron-forward" size={20} color="#A1A1AA" />
         )}
       </TouchableOpacity>
+      </SwipeableRow>
     );
   }
 );
@@ -855,6 +892,7 @@ const FollowListScreen: React.FC = () => {
           onPress={handleUserPress}
           onToggleFollow={handleToggleFollow}
           onLongPress={isOwnFollowersList ? handleRemoveFollower : undefined}
+          allowSwipeUnfollow={isOwner && activeTab === "following"}
         />
       );
     },
@@ -863,6 +901,8 @@ const FollowListScreen: React.FC = () => {
       handleToggleFollow,
       handleRemoveFollower,
       isOwnFollowersList,
+      isOwner,
+      activeTab,
       relationships,
       pendingFollow,
       viewerAddress,

@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   TextInput,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
 import Icon from "../components/ui/Icon";
@@ -150,27 +150,55 @@ const DirectMessagesInner: React.FC = () => {
     });
   }, [ctxConv, ctxUser, navigation]);
 
-  const handleCtxBlock = useCallback(async () => {
-    const addr = ctxUser?.address;
+  /*
+   * Block and delete are reachable two ways now — the long-press menu and the
+   * left swipe on the row — so both take their target as an argument instead of
+   * reading whatever the menu happens to have selected.
+   */
+  const blockConvUser = useCallback(async (user: DmUser | undefined) => {
+    const addr = user?.address;
     if (!addr) return;
     try {
       await blockUser(addr, "Blocked from DM list");
-      toastSuccess(`Blocked ${ctxUser?.displayName || ctxUser?.username || "user"}`);
+      toastSuccess(`Blocked ${user?.displayName || user?.username || "user"}`);
     } catch (e) {
       toastError(e, "Failed to block");
     }
-  }, [ctxUser]);
+  }, []);
 
-  const handleCtxDelete = useCallback(async () => {
-    if (!ctxConv) return;
-    try {
-      await deleteConversation(ctxConv._id, myAddress);
-      dmActions.removeConversation(ctxConv._id);
-      toastSuccess("Conversation deleted");
-    } catch (e) {
-      toastError(e, "Failed to delete conversation");
-    }
-  }, [ctxConv, myAddress]);
+  const deleteConv = useCallback(
+    async (conv: DmConversation | null) => {
+      if (!conv) return;
+      try {
+        await deleteConversation(conv._id, myAddress);
+        dmActions.removeConversation(conv._id);
+        toastSuccess("Conversation deleted");
+      } catch (e) {
+        toastError(e, "Failed to delete conversation");
+      }
+    },
+    [myAddress],
+  );
+
+  const handleCtxBlock = useCallback(
+    () => blockConvUser(ctxUser),
+    [blockConvUser, ctxUser],
+  );
+
+  const handleCtxDelete = useCallback(
+    () => deleteConv(ctxConv),
+    [deleteConv, ctxConv],
+  );
+
+  const handleSwipeBlock = useCallback(
+    (_conv: DmConversation, user: DmUser | undefined) => blockConvUser(user),
+    [blockConvUser],
+  );
+
+  const handleSwipeDelete = useCallback(
+    (conv: DmConversation) => deleteConv(conv),
+    [deleteConv],
+  );
 
   const handleCtxToggleFreeAccess = useCallback(async () => {
     const addr = (ctxUser?.address || "").toLowerCase();
@@ -265,9 +293,19 @@ const DirectMessagesInner: React.FC = () => {
         onPress={handleOpenConversation}
         onLongPress={handleConvLongPress}
         onAvatarPress={handleAvatarPress}
+        onDelete={handleSwipeDelete}
+        onBlock={handleSwipeBlock}
       />
     ),
-    [myUserId, myAddress, handleOpenConversation, handleConvLongPress, handleAvatarPress],
+    [
+      myUserId,
+      myAddress,
+      handleOpenConversation,
+      handleConvLongPress,
+      handleAvatarPress,
+      handleSwipeDelete,
+      handleSwipeBlock,
+    ],
   );
 
   const keyExtractor = useCallback(

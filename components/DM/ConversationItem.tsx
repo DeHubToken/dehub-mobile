@@ -13,6 +13,7 @@ import { dmDraftKey } from "../../libs/draft-cache";
 import { useTranslation } from "react-i18next";
 import { isEncryptedContent } from "../../libs/dm-e2ee/crypto";
 import { useDraftText } from "../../hooks/useDraft";
+import SwipeableRow, { type SwipeAction } from "../common/SwipeableRow";
 
 interface ConversationItemProps {
   conversation: DmConversation;
@@ -21,6 +22,9 @@ interface ConversationItemProps {
   onPress: (conversation: DmConversation, otherUser: DmUser | undefined) => void;
   onLongPress?: (conversation: DmConversation, otherUser: DmUser | undefined) => void;
   onAvatarPress?: (otherUser: DmUser | undefined) => void;
+  /** Revealed by swiping the row left. Omit either one to hide that action. */
+  onDelete?: (conversation: DmConversation, otherUser: DmUser | undefined) => void;
+  onBlock?: (conversation: DmConversation, otherUser: DmUser | undefined) => void;
 }
 
 const ConversationItemComponent: React.FC<ConversationItemProps> = ({
@@ -30,6 +34,8 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   onPress,
   onLongPress,
   onAvatarPress,
+  onDelete,
+  onBlock,
 }) => {
   const { t } = useTranslation();
   const other = useMemo(
@@ -150,8 +156,32 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
     [other, onAvatarPress],
   );
 
+  const swipeActions = useMemo<SwipeAction[]>(() => {
+    const list: SwipeAction[] = [];
+    if (onBlock) {
+      list.push({
+        key: "block",
+        label: t("common.block"),
+        icon: "ban-outline",
+        color: "#3F3F46",
+        onPress: () => onBlock(conversation, other),
+      });
+    }
+    if (onDelete) {
+      list.push({
+        key: "delete",
+        label: t("common.delete"),
+        icon: "trash-outline",
+        color: "#DC2626",
+        onPress: () => onDelete(conversation, other),
+      });
+    }
+    return list;
+  }, [onBlock, onDelete, conversation, other, t]);
+
   return (
     <Animated.View entering={FadeIn.duration(250)}>
+      <SwipeableRow actions={swipeActions}>
       <TouchableOpacity
         onPress={handlePress}
         onLongPress={handleLongPress}
@@ -242,6 +272,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
           </View>
         </View>
       </TouchableOpacity>
+      </SwipeableRow>
     </Animated.View>
   );
 };
