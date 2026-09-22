@@ -6,7 +6,7 @@
  * their vote carries when the DAO decides how the treasury is spent.
  */
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -142,8 +142,15 @@ export default function DaoScreen() {
   const parsed = Math.floor(Number(amount));
   const valid = Number.isFinite(parsed) && parsed > 0;
 
+  // A synchronous latch, not the button's disabled state: `pay.isPending` is
+  // React state, so the second tap of a double tap runs this callback from a
+  // closure that still reads false and sends a second transfer. Same fix as
+  // the live-gift sheet.
+  const sendingRef = useRef(false);
+
   const handleSend = useCallback(async () => {
-    if (!valid) return;
+    if (!valid || sendingRef.current) return;
+    sendingRef.current = true;
     try {
       const result = await pay.contribute(parsed);
       toastSuccess(
@@ -151,9 +158,15 @@ export default function DaoScreen() {
       );
       setAmount("");
       setSheetOpen(false);
-      void result;
+      // The transfer is out; only a revert is still worth saying, and it
+      // arrives long after the sheet has gone.
+      result.confirmed.then((ok) => {
+        if (!ok) toastError(null, t("dao.sendFailed"));
+      });
     } catch (err) {
       toastError(err, t("dao.sendFailed"));
+    } finally {
+      sendingRef.current = false;
     }
   }, [valid, parsed, pay, t]);
 
