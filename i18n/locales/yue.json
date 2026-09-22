@@ -4580,5 +4580,19 @@
         "hostile_tone": "敵對語氣"
       }
     }
+  },
+  "drafts": {
+    "justNow": "啱啱",
+    "minutesAgo": "{{count}}m 前",
+    "hoursAgo": "{{count}}h 前",
+    "daysAgo": "{{count}} 啲之前",
+    "typeVideo": "影片",
+    "typeText": "文字",
+    "imageCount_one": "{{count}} 圖片",
+    "imageCount_other": "{{count}} 圖片",
+    "emptyTitle": "仲未有草稿",
+    "emptyDescription": "當你將帖子儲存為草稿時，它會顯示在這裡。",
+    "saveTitle": "儲存草稿",
+    "savePrompt": "將呢個帖子儲存為草稿，等遲啲完成同發佈？"
   }
 }

@@ -4500,5 +4500,19 @@
       "dismiss": "এই পরামর্শ বাতিল করুন",
       "settingLabel": "কোচিং পরামর্শ দেখান"
     }
+  },
+  "drafts": {
+    "justNow": "এখুনি",
+    "minutesAgo": "{{count}}মিনিট আগে",
+    "hoursAgo": "{{count}}ঘন্টা আগে",
+    "daysAgo": "{{count}}দিন আগে",
+    "typeVideo": "ভিডিও",
+    "typeText": "টেক্সট",
+    "imageCount_one": "{{count}} ছবি",
+    "imageCount_other": "{{count}} ছবি",
+    "emptyTitle": "এখনো কোনো ড্রাফট নাই",
+    "emptyDescription": "যখন কোনো পোস্ট ড্রাফট হিসেবে সেভ করবা, তখন এখানে দেখাবে।",
+    "saveTitle": "ড্রাফট সেভ করুন",
+    "savePrompt": "এই পোস্টটা ড্রাফট হিসেবে সেভ করবা পরে শেষ করে পোস্ট করার জন্য?"
   }
 }

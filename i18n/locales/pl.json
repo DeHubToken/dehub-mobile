@@ -4651,5 +4651,19 @@
         "hostile_tone": "Wrogi ton"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Przed chwilą",
+    "minutesAgo": "{{count}}m temu",
+    "hoursAgo": "{{count}}h temu",
+    "daysAgo": "{{count}}d temu",
+    "typeVideo": "Wideo",
+    "typeText": "Tekst",
+    "imageCount_one": "Obraz {{count}}",
+    "imageCount_other": "Obrazy: {{count}}",
+    "emptyTitle": "Nie ma jeszcze wersji roboczych",
+    "emptyDescription": "Gdy zapiszesz post jako wersję roboczą, pojawi się on tutaj.",
+    "saveTitle": "Zapisz wersję roboczą",
+    "savePrompt": "Zapisać ten post jako wersję roboczą do ukończenia i opublikowania później?"
   }
 }

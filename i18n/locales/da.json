@@ -4587,5 +4587,19 @@
         "hostile_tone": "Fjendtlig tone"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Lige nu",
+    "minutesAgo": "{{count}}m siden",
+    "hoursAgo": "{{count}} h siden",
+    "daysAgo": "{{count}}d siden",
+    "typeVideo": "Video",
+    "typeText": "Tekst",
+    "imageCount_one": "{{count}} billede",
+    "imageCount_other": "{{count}}billeder",
+    "emptyTitle": "Ingen kladder endnu",
+    "emptyDescription": "Når du gemmer et opslag som kladde, vises det her.",
+    "saveTitle": "Gem udkast",
+    "savePrompt": "Gem dette opslag som et udkast for at afslutte og slå det op senere?"
   }
 }

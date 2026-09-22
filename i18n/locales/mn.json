@@ -4555,5 +4555,19 @@
         "hostile_tone": "Хорлонгийн өнгөний өнгө"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Яг одоо",
+    "minutesAgo": "{{count}}m өмнө",
+    "hoursAgo": "{{count}}h өмнө",
+    "daysAgo": "{{count}}d өмнө",
+    "typeVideo": "Видео",
+    "typeText": "Текст",
+    "imageCount_one": "{{count}} зураг",
+    "imageCount_other": "{{count}} зураг",
+    "emptyTitle": "Одоогоор засаагүй",
+    "emptyDescription": "Нийтлэлээ төслийн хэлбэрээр хадгалахдаа энд харагдана.",
+    "saveTitle": "Ноорог хадгал",
+    "savePrompt": "Энэ нийтлэлийг хадгалж дуусгах, дараа нь тусгахаар төлөвлөж байна уу?"
   }
 }

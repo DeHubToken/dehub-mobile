@@ -4587,5 +4587,19 @@
         "hostile_tone": "Nepřátelský tón"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Před chvílí",
+    "minutesAgo": "před {{count}}m",
+    "hoursAgo": "před {{count}}h",
+    "daysAgo": "před {{count}}d",
+    "typeVideo": "Video",
+    "typeText": "Text",
+    "imageCount_one": "{{count}} obrázek",
+    "imageCount_other": "{{count}} obrázky",
+    "emptyTitle": "Žádné koncepty",
+    "emptyDescription": "Když uložíte příspěvek jako koncept, objeví se zde.",
+    "saveTitle": "Uložit koncept",
+    "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   }
 }

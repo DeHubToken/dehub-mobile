@@ -4565,5 +4565,19 @@
         "hostile_tone": "Ev sahibliyi tonu"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Biraz əvvəl",
+    "minutesAgo": "{{count}} dəqiqə əvvəl",
+    "hoursAgo": "{{count}} saat əvvəl",
+    "daysAgo": "{{count}} gün əvvəl",
+    "typeVideo": "Video",
+    "typeText": "Mətn",
+    "imageCount_one": "{{count}} şəkil",
+    "imageCount_other": "{{count}} şəkil",
+    "emptyTitle": "Hələlik taslak yoxdur",
+    "emptyDescription": "Postu taslak kimi saxladığınızda, burada görünəcək.",
+    "saveTitle": "Taslağı Saxla",
+    "savePrompt": "Bu postu daha sonra bitirmək və dərc etmək üçün taslak kimi saxlamaq istəyirsiniz?"
   }
 }

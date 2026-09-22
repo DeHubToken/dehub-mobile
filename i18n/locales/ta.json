@@ -4567,5 +4567,19 @@
         "hostile_tone": "விரோதமான தொனி"
       }
     }
+  },
+  "drafts": {
+    "justNow": "இப்போதே",
+    "minutesAgo": "{{count}}நிமிடம் முன்பு",
+    "hoursAgo": "{{count}}மணி முன்பு",
+    "daysAgo": "{{count}} நாளுக்கு முன்பு",
+    "typeVideo": "வீடியோ",
+    "typeText": "உரை",
+    "imageCount_one": "{{count}} படம்",
+    "imageCount_other": "{{count}} படங்கள்",
+    "emptyTitle": "இதுவரை வரைவுகள் எதுவும் இல்லை",
+    "emptyDescription": "நீங்கள் ஒரு இடுகையை வரைவாகச் சேமிக்கும்போது, அது இங்கே தோன்றும்.",
+    "saveTitle": "வரைவைச் சேமிக்கவும்",
+    "savePrompt": "இந்த இடுகையை ஒரு வரைவாகச் சேமித்து பின்னர் இடுகையிடவா?"
   }
 }

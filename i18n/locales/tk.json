@@ -4551,5 +4551,19 @@
         "hostile_tone": "Duşman sesi"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Häzir",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago",
+    "typeVideo": "Video",
+    "typeText": "Metin",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} images",
+    "emptyTitle": "Hiç bir nusga tapylmady",
+    "emptyDescription": "Eger siz bir posty düýrlenen ýaly saklasaňyz, ol bu ýerde görüner.",
+    "saveTitle": "Drafty Gaýd Et",
+    "savePrompt": "Bu posty soňuna çenli goýup, soňuna çenli goýup bilermisiňiz?"
   }
 }

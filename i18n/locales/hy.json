@@ -4573,5 +4573,19 @@
         "hostile_tone": "Թշնամական տոն"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Հենց հիմա",
+    "minutesAgo": "{{count}} m առաջ",
+    "hoursAgo": "{{count}} h առաջ",
+    "daysAgo": "{{count}} d առաջ",
+    "typeVideo": "Տեսանյութ",
+    "typeText": "Տեքստ",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} պատկերներ",
+    "emptyTitle": "Նախագծեր դեռ չկան",
+    "emptyDescription": "Երբ գրառումը պահեք որպես սևագիր, այն կհայտնվի այստեղ:",
+    "saveTitle": "Պահել սևագիրը",
+    "savePrompt": "Պահե ՞ լ այս գրառումը որպես սևագիր ՝ ավելի ուշ ավարտելու և հրապարակելու համար ։"
   }
 }

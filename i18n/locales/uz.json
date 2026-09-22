@@ -4625,5 +4625,19 @@
         "hostile_tone": "Dushmanona ohang"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Hozirgina",
+    "minutesAgo": "{{count}}m oldin",
+    "hoursAgo": "{{count}} soat oldin",
+    "daysAgo": "{{count}}d oldin",
+    "typeVideo": "Video",
+    "typeText": "Tekst",
+    "imageCount_one": "{{count}} rasm",
+    "imageCount_other": "{{count}} tasvirlar",
+    "emptyTitle": "Hali qoralamalar yo&#39;q",
+    "emptyDescription": "Postni qoralama sifatida saqlaganingizda, u shu yerda ko&#39;rinadi.",
+    "saveTitle": "Qoralama sifatida saqlang",
+    "savePrompt": "Ushbu postni tugatish va keyinroq joylashtirish uchun qoralama sifatida saqlansinmi?"
   }
 }

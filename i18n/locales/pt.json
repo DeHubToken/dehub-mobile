@@ -4657,5 +4657,19 @@
         "hostile_tone": "Tom hostil"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Agora mesmo",
+    "minutesAgo": "Há {{count}}m",
+    "hoursAgo": "Há {{count}}h",
+    "daysAgo": "Há {{count}}d",
+    "typeVideo": "Vídeo",
+    "typeText": "Texto",
+    "imageCount_one": "Imagem {{count}}",
+    "imageCount_other": "{{count}} imagens",
+    "emptyTitle": "Ainda não há rascunhos",
+    "emptyDescription": "Ao salvar um post como rascunho, ele aparecerá aqui.",
+    "saveTitle": "Guardar rascunho",
+    "savePrompt": "Guardar esta publicação como rascunho para terminar e publicar mais tarde?"
   }
 }

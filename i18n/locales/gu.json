@@ -4571,5 +4571,19 @@
         "hostile_tone": "પ્રતિકૂળ સ્વર"
       }
     }
+  },
+  "drafts": {
+    "justNow": "હમણાં જ",
+    "minutesAgo": "{{count}}m પહેલા",
+    "hoursAgo": "{{count}}h પહેલા",
+    "daysAgo": "{{count}}d અગાઉ",
+    "typeVideo": "વિડિઓ",
+    "typeText": "ટેક્સ્ટ",
+    "imageCount_one": "{{count}} છબી",
+    "imageCount_other": "{{count}} છબીઓ",
+    "emptyTitle": "હજી સુધી કોઈ ડ્રાફ્ટ્સ નથી",
+    "emptyDescription": "જ્યારે તમે કોઈ પોસ્ટને ડ્રાફ્ટ તરીકે સાચવો છો, ત્યારે તે અહીં દેખાશે.",
+    "saveTitle": "ડ્રાફ્ટ સાચવો",
+    "savePrompt": "આ પોસ્ટને સમાપ્ત કરવા અને પછી પોસ્ટ કરવા માટે ડ્રાફ્ટ તરીકે સાચવો?"
   }
 }

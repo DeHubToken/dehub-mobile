@@ -4654,5 +4654,19 @@
         "hostile_tone": "Tono hostil"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Ahora mismo",
+    "minutesAgo": "Hace {{count}}m",
+    "hoursAgo": "Hace {{count}}h",
+    "daysAgo": "Hace {{count}}d",
+    "typeVideo": "Vídeo",
+    "typeText": "Texto",
+    "imageCount_one": "{{count}} imagen",
+    "imageCount_other": "{{count}} imágenes",
+    "emptyTitle": "Aún no hay borradores",
+    "emptyDescription": "Cuando guardes una publicación como borrador, aparecerá aquí.",
+    "saveTitle": "Guardar borrador",
+    "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   }
 }

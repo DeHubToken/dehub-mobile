@@ -4522,5 +4522,19 @@
         "hostile_tone": "प्रतिद्वन्द्वी टोन"
       }
     }
+  },
+  "drafts": {
+    "justNow": "अधुना",
+    "minutesAgo": "{{count}} मि. पूर्वम्",
+    "hoursAgo": "{{count}} घ. पूर्वम्",
+    "daysAgo": "{{count}} दि. पूर्वम्",
+    "typeVideo": "चलचित्रम्",
+    "typeText": "लेखः",
+    "imageCount_one": "{{count}} चित्रम्",
+    "imageCount_other": "{{count}} चित्राणि",
+    "emptyTitle": "अद्यापि आलेखः नास्ति",
+    "emptyDescription": "यदा भवान् आलेखं आलेखरूपेण संरक्षति, तदा सः अत्र दृश्यते।",
+    "saveTitle": "आलेखं संरक्षतु",
+    "savePrompt": "पश्चात् पूर्णं प्रेषितुं च इदं आलेखं आलेखरूपेण संरक्षतु?"
   }
 }

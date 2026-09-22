@@ -4587,5 +4587,19 @@
         "hostile_tone": "Fientlig ton"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Just nu",
+    "minutesAgo": "{{count}}m sedan",
+    "hoursAgo": "{{count}}h sedan",
+    "daysAgo": "{{count}}d sedan",
+    "typeVideo": "Video",
+    "typeText": "Text",
+    "imageCount_one": "{{count}} bild",
+    "imageCount_other": "{{count}} bilder",
+    "emptyTitle": "Inga utkast ännu",
+    "emptyDescription": "När du sparar ett inlägg som utkast visas det här.",
+    "saveTitle": "Spara utkast",
+    "savePrompt": "Spara det här inlägget som ett utkast för att slutföra och publicera senare?"
   }
 }

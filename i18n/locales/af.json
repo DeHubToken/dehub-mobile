@@ -4701,5 +4701,19 @@
         "hostile_tone": "Vyandige toon"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Net nou",
+    "minutesAgo": "{{count}}m gelede",
+    "hoursAgo": "{{count}}h gelede",
+    "daysAgo": "{{count}}d gelede",
+    "typeVideo": "Video",
+    "typeText": "Teks",
+    "imageCount_one": "{{count}} beeld",
+    "imageCount_other": "{{count}} beelde",
+    "emptyTitle": "Nog geen konsepte nie",
+    "emptyDescription": "As jy 'n boodskap as konsep stoor, sal dit hier verskyn.",
+    "saveTitle": "Stoor Rofwerk",
+    "savePrompt": "Stoor hierdie pos as 'n konsep om later te voltooi en te pos?"
   }
 }

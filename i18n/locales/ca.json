@@ -4584,5 +4584,19 @@
         "hostile_tone": "To hostil"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Ara mateix",
+    "minutesAgo": "fa {{count}}m",
+    "hoursAgo": "fa {{count}}h",
+    "daysAgo": "fa {{count}}d",
+    "typeVideo": "Vídeo",
+    "typeText": "Text",
+    "imageCount_one": "{{count}} imatge",
+    "imageCount_other": "{{count}} imatges",
+    "emptyTitle": "Encara no hi ha esborranys",
+    "emptyDescription": "Quan desis una publicació com a esborrany, apareixerà aquí.",
+    "saveTitle": "Desa l'esborrany",
+    "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
   }
 }

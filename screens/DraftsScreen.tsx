@@ -18,22 +18,27 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { appLocale } from "../libs/date.util";
 
 
-const formatRelativeDate = (epoch: number): string => {
+/** `t` is passed in: these run outside the component. */
+type Translate = (key: string, opts?: Record<string, unknown>) => string;
+
+const formatRelativeDate = (epoch: number, t: Translate): string => {
   const diff = Date.now() - epoch;
   const mins = Math.floor(diff / 60_000);
-  if (mins < 1) return "Just now";
-  if (mins < 60) return `${mins}m ago`;
+  if (mins < 1) return t("drafts.justNow");
+  if (mins < 60) return t("drafts.minutesAgo", { count: mins });
   const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `${hrs}h ago`;
+  if (hrs < 24) return t("drafts.hoursAgo", { count: hrs });
   const days = Math.floor(hrs / 24);
-  if (days < 7) return `${days}d ago`;
+  if (days < 7) return t("drafts.daysAgo", { count: days });
   return new Date(epoch).toLocaleDateString(appLocale());
 };
 
-const getMediaLabel = (d: Draft): string => {
-  if (d.videoUri) return "Video";
-  if (d.imageUris.length > 0) return `${d.imageUris.length} image${d.imageUris.length > 1 ? "s" : ""}`;
-  return "Text";
+const getMediaLabel = (d: Draft, t: Translate): string => {
+  if (d.videoUri) return t("drafts.typeVideo");
+  // Pluralised by i18next rather than by appending an "s" — most languages do
+  // not form a plural that way, and some have more than two forms.
+  if (d.imageUris.length > 0) return t("drafts.imageCount", { count: d.imageUris.length });
+  return t("drafts.typeText");
 };
 
 
@@ -45,12 +50,13 @@ interface DraftItemProps {
 
 const DraftItem: React.FC<DraftItemProps> = React.memo(
   ({ draft, onPress, onDelete }) => {
+    const { t } = useTranslation();
     const handlePress = useCallback(() => onPress(draft), [draft, onPress]);
     const handleDelete = useCallback(() => onDelete(draft.id), [draft.id, onDelete]);
 
     const preview = draft.bodyText.trim() || draft.titleText?.trim() || "";
-    const mediaLabel = getMediaLabel(draft);
-    const time = formatRelativeDate(draft.createdAt);
+    const mediaLabel = getMediaLabel(draft, t);
+    const time = formatRelativeDate(draft.createdAt, t);
 
     return (
       <TouchableOpacity
@@ -147,14 +153,14 @@ const DraftsScreen: React.FC = () => {
       <View className="flex-1 items-center justify-center px-8 pt-24">
         <Ionicons name="document-text-outline" size={48} color="#6F7174" />
         <Text className="text-theme-neutrals-400 text-base mt-4 text-center">
-          No drafts yet
+          {t("drafts.emptyTitle")}
         </Text>
         <Text className="text-theme-neutrals-500 text-sm mt-1 text-center">
-          When you save a post as draft, it will appear here.
+          {t("drafts.emptyDescription")}
         </Text>
       </View>
     ),
-    [],
+    [t],
   );
 
   return (

@@ -4658,5 +4658,19 @@
         "hostile_tone": "Ny'alotha Allseer"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Vao izao",
+    "minutesAgo": "{{count}}m lasa izay",
+    "hoursAgo": "{{count}}h lasa izay",
+    "daysAgo": "{{count}}d lasa izay",
+    "typeVideo": "Vidéo",
+    "typeText": "Lahatsoratra",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} images",
+    "emptyTitle": "Tsy mbola misy vakiraoka aloha hatreto.",
+    "emptyDescription": "Raha mandidy ny kopia nahaterahana ianao dia ho hita eto izany.",
+    "saveTitle": "Raiketo ilay sarin'ny_afara",
+    "savePrompt": "Na dia izany aza, mbola nahita lahatsoratra sasany izay tokony ho fenoina sy hamarana azy ireo ve ianao?"
   }
 }

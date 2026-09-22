@@ -4651,5 +4651,19 @@
         "hostile_tone": "Feindseliger Ton"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Gerade eben",
+    "minutesAgo": "vor {{count}}m",
+    "hoursAgo": "vor {{count}}h",
+    "daysAgo": "vor {{count}}d",
+    "typeVideo": "Video",
+    "typeText": "Text",
+    "imageCount_one": "{{count}} Bild",
+    "imageCount_other": "{{count}} Bilder",
+    "emptyTitle": "Noch keine Entwürfe",
+    "emptyDescription": "Wenn Sie einen Beitrag als Entwurf speichern, wird er hier angezeigt.",
+    "saveTitle": "Entwurf speichern",
+    "savePrompt": "Diesen Beitrag als Entwurf speichern, um ihn später abzuschließen und zu veröffentlichen?"
   }
 }

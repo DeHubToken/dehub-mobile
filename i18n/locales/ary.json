@@ -4569,5 +4569,19 @@
         "hostile_tone": "نبرة عدائية"
       }
     }
+  },
+  "drafts": {
+    "justNow": "الآن فقط",
+    "minutesAgo": "منذ {{count}}دقيقة",
+    "hoursAgo": "منذ {{count}}ساعة",
+    "daysAgo": "منذ {{count}}يوم",
+    "typeVideo": "فيديو",
+    "typeText": "النص",
+    "imageCount_one": "{{count}} تصويرة",
+    "imageCount_other": "{{count}} صورة",
+    "emptyTitle": "لا توجد مسودات حتى الآن",
+    "emptyDescription": "عند حفظ مقالة كمسودة، ستظهر هنا.",
+    "saveTitle": "احفظ المسودة",
+    "savePrompt": "هل تريد حفظ هذا المنشور كمسودة للإنهاء والنشر لاحقًا ؟"
   }
 }

@@ -4581,5 +4581,19 @@
         "hostile_tone": "Toni armiqësor"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Pikërisht tani",
+    "minutesAgo": "{{count}}m më parë",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago",
+    "typeVideo": "Video",
+    "typeText": "Teksti",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} images",
+    "emptyTitle": "Ende asnjë draft",
+    "emptyDescription": "Kur të ruash një postim si draft, ai do të shfaqet këtu.",
+    "saveTitle": "Ruaj draftin",
+    "savePrompt": "Do ta ruash këtë postim si draft për ta përfunduar dhe për ta postuar më vonë?"
   }
 }

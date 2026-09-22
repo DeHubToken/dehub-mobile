@@ -4571,5 +4571,19 @@
         "hostile_tone": "Ohun orin Hostile"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Ní ìsinsin yìí",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago",
+    "typeVideo": "Fídíò",
+    "typeText": "Text",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} images",
+    "emptyTitle": "Ko si awọn ero sibẹsibẹ",
+    "emptyDescription": "Nígbà tí o bá fi ààyè pamọ́ gẹ́gẹ́ bí àtẹ̀jáde, yóò farahàn níbí.",
+    "saveTitle": "Fi Àdàkọ pamọ́",
+    "savePrompt": "Fipamọ ifiweranṣẹ yii bi agbese lati pari ati firanṣẹ nigbamii?"
   }
 }

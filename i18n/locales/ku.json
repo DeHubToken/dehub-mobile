@@ -4171,5 +4171,19 @@
       "dismiss": "ئه‌م پێشنیاره‌ پشتگوێ بخه‌",
       "settingLabel": "پیشنیاره‌كانی ڕاهێنان پیشان بده‌"
     }
+  },
+  "drafts": {
+    "justNow": "هەرئێستا",
+    "minutesAgo": "{{count}} xulek berê",
+    "hoursAgo": "{{count}} saet berê",
+    "daysAgo": "{{count}} roj berê",
+    "typeVideo": "Vîdyo",
+    "typeText": "Nivîs",
+    "imageCount_one": "{{count}} wêne",
+    "imageCount_other": "{{count}} wêne",
+    "emptyTitle": "Hîna tu reşnivîs tune",
+    "emptyDescription": "Gava tu peyamekê wek reşnivîs tomar bikî, ew ê li vir xuya bibe.",
+    "saveTitle": "ڕەشنووسەکە بپارێزە",
+    "savePrompt": "Vê peyamê wek reşnivîs tomar bikî da ku paşê temam bikî û biweşînî?"
   }
 }

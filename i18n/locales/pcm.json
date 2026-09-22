@@ -4198,5 +4198,19 @@
         "hostile_tone": "Hostile tone"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Just now",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago",
+    "typeVideo": "Video",
+    "typeText": "Text",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} images",
+    "emptyTitle": "No drafts yet",
+    "emptyDescription": "Wen you save post as draft, e go show for here.",
+    "saveTitle": "Save Draft",
+    "savePrompt": "You wan save dis post as draft make you finish am and post later?"
   }
 }

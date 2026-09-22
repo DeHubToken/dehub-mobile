@@ -4571,5 +4571,19 @@
         "hostile_tone": "دۈشمەنلىك ئاۋازى"
       }
     }
+  },
+  "drafts": {
+    "justNow": "ھازىرلا",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago",
+    "typeVideo": "Video",
+    "typeText": "تېكىست",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} images",
+    "emptyTitle": "تېخى لايىھىلەش يوق",
+    "emptyDescription": "سىز بىر يازمىنى لايىھىلەش سۈپىتىدە ساقلىغاندا، ئۇ بۇ يەردە كۆرۈنىدۇ.",
+    "saveTitle": "لايىھەنى ساقلىۋېلىڭ",
+    "savePrompt": "بۇ يازمىنى پۈتتۈرۈش ۋە كېيىنچە يوللاش لايىھەسى سۈپىتىدە ساقلاپ قويامدۇ ؟"
   }
 }

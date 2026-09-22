@@ -4538,5 +4538,19 @@
         "hostile_tone": "敌对的语气"
       }
     }
+  },
+  "drafts": {
+    "justNow": "今早",
+    "minutesAgo": "{{count}}分钟前",
+    "hoursAgo": "{{count}}小时前",
+    "daysAgo": "{{count}}天前",
+    "typeVideo": "视频",
+    "typeText": "文字",
+    "imageCount_one": "{{count}} 张图片",
+    "imageCount_other": "{{count}} 张图片",
+    "emptyTitle": "尚无草稿",
+    "emptyDescription": "您保存的帖子将在此处显示。",
+    "saveTitle": "保存草稿",
+    "savePrompt": "将此帖子保存为草稿，以便稍后完成并发布？"
   }
 }

@@ -4616,5 +4616,19 @@
         "hostile_tone": "Მტრული ტონი"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Ახლახანს",
+    "minutesAgo": "{{count}}m წინ",
+    "hoursAgo": "{{count}}h წინ",
+    "daysAgo": "{{count}}d წინ",
+    "typeVideo": "Ვიდეო",
+    "typeText": "Ტექსტი",
+    "imageCount_one": "{{count}} სურათი",
+    "imageCount_other": "{{count}} სურათები",
+    "emptyTitle": "Მონახაზები ჯერ არ არის",
+    "emptyDescription": "Ჩანაწერის მონახაზის სახით შენახვისას ის გამოჩნდება აქ.",
+    "saveTitle": "Მონახაზის შენახვა",
+    "savePrompt": "Შეინახეთ ეს პოსტი მონახაზის სახით, რათა დაასრულოთ და მოგვიანებით გამოაქვეყნოთ?"
   }
 }

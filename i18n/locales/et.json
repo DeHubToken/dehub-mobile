@@ -4582,5 +4582,19 @@
         "hostile_tone": "Vaenulik toon"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Just praegu",
+    "minutesAgo": "{{count}}m tagasi",
+    "hoursAgo": "{{count}}h tagasi",
+    "daysAgo": "{{count}}d tagasi",
+    "typeVideo": "Video",
+    "typeText": "Tekst",
+    "imageCount_one": "{{count}} pilt",
+    "imageCount_other": "{{count}} pilti",
+    "emptyTitle": "Mustandeid pole veel",
+    "emptyDescription": "Kui salvestad postituse mustandina, kuvatakse see siin.",
+    "saveTitle": "Salvesta mustand",
+    "savePrompt": "Kas salvestada see postitus mustandina, et see hiljem lõpetada ja postitada?"
   }
 }

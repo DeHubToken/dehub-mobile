@@ -4685,5 +4685,19 @@
         "hostile_tone": "বিরূপ টোন"
       }
     }
+  },
+  "drafts": {
+    "justNow": "এইমাত্র",
+    "minutesAgo": "{{count}} মিনিট আগে",
+    "hoursAgo": "{{count}} ঘন্টা আগে",
+    "daysAgo": "{{count}} দিন আগে",
+    "typeVideo": "ভিডিও",
+    "typeText": "লেখা",
+    "imageCount_one": "{{count}} ছবি",
+    "imageCount_other": "{{count}} ছবি",
+    "emptyTitle": "এখনো কোনো খসড়া নেই",
+    "emptyDescription": "যখন আপনি একটি পোস্ট খসড়া হিসেবে সেভ করবেন, এটি এখানে দেখা যাবে।",
+    "saveTitle": "খসড়া সেভ করুন",
+    "savePrompt": "এই পোস্টটি কি খসড়া হিসেবে সেভ করবেন পরে শেষ করে পোস্ট করার জন্য?"
   }
 }

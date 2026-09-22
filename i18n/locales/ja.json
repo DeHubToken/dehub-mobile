@@ -4650,5 +4650,19 @@
         "hostile_tone": "敵対的な口調"
       }
     }
+  },
+  "drafts": {
+    "justNow": "たった今",
+    "minutesAgo": "{{count}}分前",
+    "hoursAgo": "{{count}}時間前",
+    "daysAgo": "{{count}}日前",
+    "typeVideo": "ビデオ",
+    "typeText": "テキスト",
+    "imageCount_one": "{{count}}画像",
+    "imageCount_other": "{{count}}画像",
+    "emptyTitle": "下書きはまだありません",
+    "emptyDescription": "投稿を下書きとして保存すると、ここに表示されます。",
+    "saveTitle": "下書きを保存",
+    "savePrompt": "この投稿を下書きとして保存して、後で投稿しますか？"
   }
 }

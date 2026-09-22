@@ -4644,5 +4644,19 @@
         "hostile_tone": "Sagalee diinummaa"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Amma qofa",
+    "minutesAgo": "{{count}}m dura",
+    "hoursAgo": "{{count}}h dura",
+    "daysAgo": "{{count}}d dura",
+    "typeVideo": "Viidiyoo",
+    "typeText": "Barreeffama,",
+    "imageCount_one": "{{count}} suuraa",
+    "imageCount_other": "{{count}} suuraa",
+    "emptyTitle": "Qubee hin qabne",
+    "emptyDescription": "Yeroo gaafii tokko qabachuuf kuusitu, asirratti mul'ata.",
+    "saveTitle": "Gargaarsa Qabachu",
+    "savePrompt": "Barreeffama kana akka wixineetti save gochuun xumurtee booda maxxansuu?"
   }
 }

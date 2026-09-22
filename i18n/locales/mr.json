@@ -4567,5 +4567,19 @@
         "hostile_tone": "वैमनस्यपूर्ण टोन"
       }
     }
+  },
+  "drafts": {
+    "justNow": "आत्ताच",
+    "minutesAgo": "{{count}}m दिवसांपूर्वी",
+    "hoursAgo": "{{count}} तासांपूर्वी",
+    "daysAgo": "{{count}}d दिवसांपूर्वी",
+    "typeVideo": "व्हिडिओ",
+    "typeText": "मजकूर",
+    "imageCount_one": "{{count}} प्रतिमा",
+    "imageCount_other": "{{count}} प्रतिमा",
+    "emptyTitle": "अद्याप कोणताही मसुदा नाही",
+    "emptyDescription": "जेव्हा आपण एखादे पोस्ट मसुदा म्हणून सेव्ह करता तेव्हा ते येथे दिसून येईल.",
+    "saveTitle": "मसुदा जतन करा",
+    "savePrompt": "हे पोस्ट समाप्त करण्यासाठी आणि नंतर पोस्ट करण्यासाठी मसुदा म्हणून जतन करा?"
   }
 }

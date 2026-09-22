@@ -4519,5 +4519,19 @@
         "hostile_tone": "टाइलें टाइलें"
       }
     }
+  },
+  "drafts": {
+    "justNow": "जइसे अभी-अभी",
+    "minutesAgo": "{{count}} मिनट पहले",
+    "hoursAgo": "{{count}} घंटे पहले",
+    "daysAgo": "{{count}} दिन पहले",
+    "typeVideo": "वीडियो समायोजित करें",
+    "typeText": "पाठ",
+    "imageCount_one": "{{count}} तस्वीर",
+    "imageCount_other": "{{count}} तस्वीरें",
+    "emptyTitle": "अभी तक जारी नइखे भइल राशि",
+    "emptyDescription": "अगर आप इहाँ योगदान कइल चाहत बानी तब लेख के रूप में संपादन करीं ।",
+    "saveTitle": "डिजाइन सहेजें",
+    "savePrompt": "पोस्ट के अंत में, कुछ भी लिखें और कुछ भी लिखें?"
   }
 }

@@ -5058,5 +5058,19 @@
         "hostile_tone": "Ворожий тон"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Щойно",
+    "minutesAgo": "{{count}}м тому",
+    "hoursAgo": "{{count}}год тому",
+    "daysAgo": "{{count}}d тому",
+    "typeVideo": "Відео",
+    "typeText": "Текст",
+    "imageCount_one": "{{count}} зображення",
+    "imageCount_other": "{{count}} зображень",
+    "emptyTitle": "Ще немає чернеток",
+    "emptyDescription": "Коли ви збережете допис як чернетку, він з 'явиться тут.",
+    "saveTitle": "Зберегти чернетку",
+    "savePrompt": "Зберегти цей допис як чернетку, щоб завершити і опублікувати пізніше?"
   }
 }

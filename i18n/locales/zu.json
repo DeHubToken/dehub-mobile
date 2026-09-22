@@ -4611,5 +4611,19 @@
         "hostile_tone": "Isitayela esinobutha"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Njengamanje",
+    "minutesAgo": "{{count}}m edlule",
+    "hoursAgo": "{{count}}h edlule",
+    "daysAgo": "{{count}}d edlule",
+    "typeVideo": "Ividiyo",
+    "typeText": "Umbhalo",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} izithombe",
+    "emptyTitle": "Awekho amadrafti okwamanje",
+    "emptyDescription": "Uma ugcina iphosti njengedrafti, izovela lapha.",
+    "saveTitle": "Londoloza Idrafti",
+    "savePrompt": "Gcina le phosti njengedrafti ukuze uqedele futhi uphoste kamuva?"
   }
 }

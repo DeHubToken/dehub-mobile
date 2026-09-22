@@ -4639,5 +4639,19 @@
         "hostile_tone": "शत्रुतापूर्ण लहजा"
       }
     }
+  },
+  "drafts": {
+    "justNow": "अभी - अभी",
+    "minutesAgo": "{{count}}m पहले",
+    "hoursAgo": "{{count}}h पहले",
+    "daysAgo": "{{count}}दिन पहले",
+    "typeVideo": "वीडियो",
+    "typeText": "मैं तुम ठीक नहीं हूँ",
+    "imageCount_one": "{{count}} इमेज",
+    "imageCount_other": "{{count}} इमेज",
+    "emptyTitle": "अभी तक कोई ड्राफ़्ट नहीं है",
+    "emptyDescription": "जब आप किसी पोस्ट को ड्राफ़्ट के रूप में सेव करेंगे, तो वह यहाँ दिखाई देगी।",
+    "saveTitle": "ड्राफ़्ट सेव करें",
+    "savePrompt": "इस पोस्ट को ड्राफ़्ट के रूप में सेव करें और बाद में पोस्ट करें?"
   }
 }

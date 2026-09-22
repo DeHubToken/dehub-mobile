@@ -4764,5 +4764,19 @@
         "hostile_tone": "Hostile tone"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Just now",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago",
+    "typeVideo": "Video",
+    "typeText": "Text",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} images",
+    "emptyTitle": "No drafts yet",
+    "emptyDescription": "When you save a post as draft, it will appear here.",
+    "saveTitle": "Save Draft",
+    "savePrompt": "Save this post as a draft to finish and post later?"
   }
 }

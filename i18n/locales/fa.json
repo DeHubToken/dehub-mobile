@@ -4595,5 +4595,19 @@
         "hostile_tone": "لحن خصمانه"
       }
     }
+  },
+  "drafts": {
+    "justNow": "همین الان",
+    "minutesAgo": "{{count}}چند ماه پیش",
+    "hoursAgo": "{{count}}ساعت پیش",
+    "daysAgo": "{{count}} روز پیش",
+    "typeVideo": "ویدیو",
+    "typeText": "متن",
+    "imageCount_one": "تصویر {{count}}",
+    "imageCount_other": "تصاویر {{count}}",
+    "emptyTitle": "هنوز پیش‌نویسی وجود ندارد",
+    "emptyDescription": "وقتی پستی را به عنوان پیش‌نویس ذخیره می‌کنید، در اینجا نمایش داده می‌شود.",
+    "saveTitle": "ذخیره پیش نویس",
+    "savePrompt": "این پست را به عنوان پیش‌نویس ذخیره کنید تا بعداً آن را تمام کنید و ارسال کنید؟"
   }
 }

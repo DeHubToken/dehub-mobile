@@ -4581,5 +4581,19 @@
         "hostile_tone": "Naidīgs tonis"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Tikko",
+    "minutesAgo": "pirms {{count}}m",
+    "hoursAgo": "pirms {{count}}h",
+    "daysAgo": "pirms {{count}}d",
+    "typeVideo": "Video",
+    "typeText": "Teksts",
+    "imageCount_one": "{{count}} attēls",
+    "imageCount_other": "{{count}} attēli",
+    "emptyTitle": "Vēl nav melnrakstu",
+    "emptyDescription": "Saglabājot ziņu kā melnrakstu, tā tiks parādīta šeit.",
+    "saveTitle": "Saglabāt melnrakstu",
+    "savePrompt": "Vai saglabāt šo ziņu kā melnrakstu, lai pabeigtu un publicētu vēlāk?"
   }
 }

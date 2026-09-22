@@ -4583,5 +4583,19 @@
         "hostile_tone": "Toni ya chuki"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Sasa hivi",
+    "minutesAgo": "{{count}}m iliyopita",
+    "hoursAgo": "{{count}}h iliyopita",
+    "daysAgo": "{{count}}d iliyopita",
+    "typeVideo": "Video",
+    "typeText": "Maandishi",
+    "imageCount_one": "{{count}} picha",
+    "imageCount_other": "{{count}} picha",
+    "emptyTitle": "Bado hakuna rasimu",
+    "emptyDescription": "Unapohifadhi chapisho kama rasimu, litaonekana hapa.",
+    "saveTitle": "Hifadhi Rasimu",
+    "savePrompt": "Hifadhi chapisho hili kama rasimu ya kukamilisha na kuchapisha baadaye?"
   }
 }

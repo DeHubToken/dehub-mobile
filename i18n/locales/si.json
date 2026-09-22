@@ -4549,5 +4549,19 @@
         "hostile_tone": "සතුරු ස්වරය"
       }
     }
+  },
+  "drafts": {
+    "justNow": "මේ දැන්",
+    "minutesAgo": "මිනිත්තු {{count}}කට පෙර",
+    "hoursAgo": "{{count}} පැයකට පෙර",
+    "daysAgo": "දින {{count}}කට පෙර",
+    "typeVideo": "වීඩියෝ",
+    "typeText": "පෙළ",
+    "imageCount_one": "{{count}} රූපය",
+    "imageCount_other": "{{count}} පින්තූර",
+    "emptyTitle": "තවම කෙටුම්පත් නොමැත",
+    "emptyDescription": "ඔබ ව් ‍ යාපෘතියක් ලෙස පෝස්ටුවක් සුරකින විට, එය මෙහි දිස්වනු ඇත.",
+    "saveTitle": "කෙටුම්පත සුරකින්න",
+    "savePrompt": "මෙම ලිපිය අවසන් කිරීමට සහ පසුව පළ කිරීමට කෙටුම්පතක් ලෙස සුරකින්න?"
   }
 }

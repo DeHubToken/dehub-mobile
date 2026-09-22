@@ -4502,5 +4502,19 @@
         "hostile_tone": "የጠላትነት ቃና"
       }
     }
+  },
+  "drafts": {
+    "justNow": "ልክ አሁን",
+    "minutesAgo": "{{count}}m በፊት",
+    "hoursAgo": "{{count}}h በፊት",
+    "daysAgo": "{{count}}d በፊት",
+    "typeVideo": "ቪዲዮ",
+    "typeText": "ጽሑፍ",
+    "imageCount_one": "{{count}} ምስል",
+    "imageCount_other": "{{count}} ምስሎች",
+    "emptyTitle": "እስካሁን ምንም ስዕሎች የሉም",
+    "emptyDescription": "አንተ ረቂቅ እንደ አንድ ልጥፍ ማስቀመጥ ጊዜ, እዚህ ይታያል.",
+    "saveTitle": "Draft አስቀምጥ",
+    "savePrompt": "ይህን ልጥፍ በኋላ ለማጠናቀቅ እና ለመለጠፍ ረቂቅ አድርጎ ያስቀምጡ?"
   }
 }
