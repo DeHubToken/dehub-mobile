@@ -1,4 +1,4 @@
-import { aggregateBook, balanceFraction, defaultOrderPrice, displayBookLevels, fillFraction, formatBookPrice, formatIncrement, formatPrice, incrementDecimals, nearestBookLevels, spreadPercent } from '../dex-orderbook';
+import { BOOK_BAND, aggregateBook, balanceFraction, defaultOrderPrice, displayBookLevels, fillFraction, formatBookPrice, formatIncrement, formatPrice, incrementDecimals, nearestBookLevels, spreadPercent } from '../dex-orderbook';
 
 describe('combined range liquidity', () => {
   const range = { minPrice: .001, maxPrice: .00121 };
@@ -91,6 +91,29 @@ describe('combined range liquidity', () => {
     expect(fillFraction({ ...buy, marketPrice: .002 })).toBe(0);
     expect(fillFraction({ ...buy, marketPrice: .0005 })).toBe(1);
     expect(fillFraction({ minPrice: 0, maxPrice: 1, marketPrice: .5, side: 'buy' })).toBe(0);
+  });
+  it('keeps a full-range position from inventing levels far off the market', () => {
+    // A real /dex position: full range, 0.3% pool, holding dust. Sampling all 77 orders of
+    // magnitude put bids at 0.000001 and an ask at 0.169 either side of a 0.001 market.
+    const full = { minPrice: 2.9543e-27, maxPrice: 3.3849e50, marketPrice: 9.937337e-4, amountDhb: 8.69, amountUsdc: 0.008637 };
+    const { bids, asks } = aggregateBook([full], .000001);
+    expect(bids.length).toBeGreaterThan(0);
+    expect(asks.length).toBeGreaterThan(0);
+    for (const level of [...bids, ...asks]) {
+      expect(level.price).toBeGreaterThanOrEqual(full.marketPrice / BOOK_BAND);
+      expect(level.price).toBeLessThanOrEqual(full.marketPrice * BOOK_BAND);
+    }
+    // Only the share of each reserve that really sits in the band is shown, never all of it.
+    expect(asks.reduce((sum, p) => sum + p.dhb, 0)).toBeLessThan(full.amountDhb);
+    expect(bids.reduce((sum, p) => sum + p.usdc, 0)).toBeLessThan(full.amountUsdc);
+    expect(bids.reduce((sum, p) => sum + p.usdc, 0)).toBeGreaterThan(0);
+  });
+  it('still shows a narrow position whole, and drops one stranded outside the band', () => {
+    const narrow = { minPrice: .001, maxPrice: .00121, marketPrice: .0011, amountDhb: 450, amountUsdc: .55 };
+    const { asks } = aggregateBook([narrow]);
+    expect(asks.reduce((sum, p) => sum + p.dhb, 0)).toBeCloseTo(450, 8);
+    const stranded = { minPrice: 1, maxPrice: 1.0009, marketPrice: .001, amountDhb: 387.59, amountUsdc: 0 };
+    expect(aggregateBook([stranded])).toEqual({ bids: [], asks: [] });
   });
   it('ignores invalid ranges and withdrawn positions', () => {
     expect(aggregateBook([{ ...range, marketPrice: .0011, amountDhb: 0, amountUsdc: 0 },
