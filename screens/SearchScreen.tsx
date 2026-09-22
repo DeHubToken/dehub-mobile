@@ -21,7 +21,10 @@ import Animated, {
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
 import Icon from "../components/ui/Icon";
+import FeedFilterPanel, { type FeedFilters } from "../components/Home/FeedFilterPanel";
+import { getCategoriesCached } from "../services/nft.service";
 import {
   search,
   fetchSuggestions,
@@ -84,6 +87,25 @@ const PAGE_SIZE = 20;
 
 /** Tabs shown on the default explore screen (no accounts) */
 const EXPLORE_TABS = TABS.filter((t) => t.key !== "accounts");
+
+/**
+ * Search opens newest-first. The API answers in relevance order, which reads
+ * as arbitrary once you are past the first couple of rows — the same reason
+ * the home feed opens on Latest.
+ */
+const DEFAULT_SEARCH_FILTERS: FeedFilters = {
+  sortBy: "createdAt",
+  dateRange: "",
+  postType: "all",
+  contentAccess: [],
+};
+
+const DATE_RANGE_MS: Record<string, number> = {
+  day: 24 * 60 * 60 * 1000,
+  week: 7 * 24 * 60 * 60 * 1000,
+  month: 30 * 24 * 60 * 60 * 1000,
+  year: 365 * 24 * 60 * 60 * 1000,
+};
 
 /** Label for the trending section per tab */
 const TRENDING_LABEL: Record<TabKey, string> = {
@@ -174,6 +196,13 @@ const SearchScreen: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabKey>("all");
   const [hasSearched, setHasSearched] = useState(false);
 
+  // Filters — the same panel the home feed opens, applied to the results in
+  // hand: /api/search takes no sort or category parameter of its own.
+  const [filterPanelVisible, setFilterPanelVisible] = useState(false);
+  const [filters, setFilters] = useState<FeedFilters>(DEFAULT_SEARCH_FILTERS);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [categories, setCategories] = useState<string[]>(["All"]);
+
   // Result buckets
   const [accounts, setAccounts] = useState<SearchAccountResult[]>([]);
   const [content, setContent] = useState<SearchContentResult[]>([]);
@@ -206,6 +235,71 @@ const SearchScreen: React.FC = () => {
   useEffect(() => {
     getHistory(userAddress).then(setSearchHistory);
   }, [userAddress]);
+
+  // Shares the home feed's cached category list, so opening the panel here
+  // after browsing Home costs no request.
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      const list = await getCategoriesCached();
+      if (mounted && list?.length) {
+        setCategories(["All", ...list.filter((c) => c && c.toLowerCase() !== "all")]);
+      }
+    })();
+    return () => { mounted = false; };
+  }, []);
+
+  /**
+   * The filter rows, applied to the pages already pulled in. Sorting a partial
+   * list is the trade the client-side approach makes: "most liked" means the
+   * most liked of what has loaded, and loading more can promote a new row to
+   * the top. Chronological — the default — is the one everybody reads, and it
+   * behaves the same either way.
+   */
+  const visibleContent = useMemo(() => {
+    let items = content;
+
+    if (selectedCategory !== "All") {
+      const wanted = selectedCategory.toLowerCase();
+      items = items.filter((item) => {
+        const cat = (item as { category?: string | string[] }).category;
+        if (!cat) return false;
+        const list = Array.isArray(cat) ? cat : [cat];
+        return list.some((c) => String(c).toLowerCase() === wanted);
+      });
+    }
+
+    const window = DATE_RANGE_MS[filters.dateRange];
+    if (window) {
+      const cutoff = Date.now() - window;
+      items = items.filter((item) => {
+        if (!item.createdAt) return false;
+        return new Date(item.createdAt).getTime() >= cutoff;
+      });
+    }
+
+    const value = (item: SearchContentResult) => {
+      switch (filters.sortBy) {
+        case "likes": return item.totalVotes?.for ?? 0;
+        case "views": return item.views ?? 0;
+        case "comments": return item.commentCount ?? 0;
+        default: return new Date(item.createdAt || 0).getTime();
+      }
+    };
+
+    // "score" and "random" are server rankings over the whole feed and mean
+    // nothing applied to a page of matches — they leave the order alone.
+    if (filters.sortBy === "score" || filters.sortBy === "random" || filters.sortBy === "tips") {
+      return items;
+    }
+
+    return [...items].sort((a, b) => value(b) - value(a));
+  }, [content, selectedCategory, filters.dateRange, filters.sortBy]);
+
+  const handleResetFilters = useCallback(() => {
+    setFilters(DEFAULT_SEARCH_FILTERS);
+    setSelectedCategory("All");
+  }, []);
 
   // Fetch trending content based on active tab
   useEffect(() => {
@@ -685,7 +779,7 @@ const SearchScreen: React.FC = () => {
       }
 
       // "all" or a content tab — horizontal accounts carousel + content list
-      const isEmpty = content.length === 0 && accounts.length === 0;
+      const isEmpty = visibleContent.length === 0 && accounts.length === 0;
 
       if (isEmpty) {
         return (
@@ -706,7 +800,7 @@ const SearchScreen: React.FC = () => {
 
       return (
         <Animated.FlatList
-          data={content}
+          data={visibleContent}
           renderItem={renderContentItem}
           keyExtractor={contentKeyExtractor}
           viewabilityConfig={viewabilityConfig}
@@ -921,6 +1015,21 @@ const SearchScreen: React.FC = () => {
                 </TouchableOpacity>
               )}
               <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityLabel={filterPanelVisible ? "Close filter options" : "Open filter options"}
+                onPress={() => setFilterPanelVisible((v) => !v)}
+                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                className={`w-9 h-9 rounded-xl items-center justify-center mr-2 ${
+                  filterPanelVisible ? "bg-theme-neutrals-100" : "bg-theme-neutrals-700"
+                }`}
+              >
+                <Ionicons
+                  name={filterPanelVisible ? "close" : "options-outline"}
+                  size={18}
+                  color={filterPanelVisible ? "#111827" : "#E5E7EB"}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
                 className="w-9 h-9 rounded-xl bg-theme-neutrals-700 items-center justify-center"
                 onPress={handleSearch}
                 disabled={loading || !searchQuery.trim()}
@@ -932,6 +1041,24 @@ const SearchScreen: React.FC = () => {
                 )}
               </TouchableOpacity>
             </View>
+          </View>
+
+          {/* Sort, category and date, applied to the results below. Post type
+              and content access stay hidden: the tab row underneath already
+              is the post type, and search results carry no access flags. */}
+          <View className="px-4">
+            <FeedFilterPanel
+              visible={filterPanelVisible}
+              filters={filters}
+              onFiltersChange={setFilters}
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onCategoryPress={setSelectedCategory}
+              onResetFilters={handleResetFilters}
+              hidePostType
+              hideContentAccess
+              maxHeight={300}
+            />
           </View>
 
           <View className="px-4 py-2">
