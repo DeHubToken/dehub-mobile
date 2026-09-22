@@ -1586,11 +1586,7 @@
       "dehubFollowers": "Пайравони DeHub",
       "selfReported": "Ang mga sukatan ng Social Follower ay nagpasok ng lumikha."
     },
-    "tabPlaylists": "Феҳристҳои пахш",
-    "aiScraping": {
-      "allowed": "Ang creator na ito ay nagbibigay ng pagsasanay sa AI sa n",
-      "denied": "Ang creator na ito ay hindi pinapahintulutan sa AI sa nilalaman na ito"
-    }
+    "tabPlaylists": "Феҳристҳои пахш"
   },
   "tv": {
     "title": "TV",

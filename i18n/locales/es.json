@@ -1619,11 +1619,7 @@
       "dehubFollowers": "Seguidores de DeHub",
       "selfReported": "El creador introduce el número de seguidores en redes sociales."
     },
-    "tabPlaylists": "Listas de reproducción",
-    "aiScraping": {
-      "allowed": "Este creador permite la capacitación de IA sobre este contenido.",
-      "denied": "Este creador no permite la formación de IA sobre este contenido."
-    }
+    "tabPlaylists": "Listas de reproducción"
   },
   "tv": {
     "title": "TV",

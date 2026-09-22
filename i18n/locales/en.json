@@ -1706,11 +1706,7 @@
     "noImagesSub": "Image posts will appear here",
     "noPlans": "No subscription plans",
     "noPlansSub": "This creator hasn't set up any plans yet",
-    "tabPlaylists": "Playlists",
-    "aiScraping": {
-      "allowed": "This creator allows AI training on this content.",
-      "denied": "This creator does not allow AI training on this content."
-    }
+    "tabPlaylists": "Playlists"
   },
   "tv": {
     "title": "TV",

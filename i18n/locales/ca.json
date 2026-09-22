@@ -1639,11 +1639,7 @@
       "dehubFollowers": "Seguidors de DeHub",
       "selfReported": "El creador introdueix els recomptes de seguidors socials."
     },
-    "tabPlaylists": "Llista de reproducció",
-    "aiScraping": {
-      "allowed": "Aquest creador permet la formació d'IA sobre aquest contingut.",
-      "denied": "Aquest creador no permet la formació d'IA sobre aquest contingut."
-    }
+    "tabPlaylists": "Llista de reproducció"
   },
   "tv": {
     "title": "TV",

@@ -1557,11 +1557,7 @@
       "dehubFollowers": "Mpanara-dia an'i DeHub",
       "selfReported": "Ny fandrindrana ara-tsosialy dia nampidirina tamin'ny mpamorona."
     },
-    "tabPlaylists": "Lisitra filalao",
-    "aiScraping": {
-      "allowed": "Ity mpamorona ity dia mamela ny fampianarana AI amin'ity votoaty ity.",
-      "denied": "Ny mpamorona azy dia tsy mamela ny fampianarana AI amin'ity votoaty ity."
-    }
+    "tabPlaylists": "Lisitra filalao"
   },
   "tv": {
     "title": "TV",

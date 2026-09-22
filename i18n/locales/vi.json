@@ -1921,11 +1921,7 @@
       "dehubFollowers": "Người theo dõi DeHub",
       "selfReported": "Người sáng tạo nhập số lượng người theo dõi trên mạng xã hội."
     },
-    "tabPlaylists": "Danh sách phát",
-    "aiScraping": {
-      "allowed": "Người sáng tạo này cho phép đào tạo AI về nội dung này.",
-      "denied": "Người sáng tạo này không cho phép đào tạo AI về nội dung này."
-    }
+    "tabPlaylists": "Danh sách phát"
   },
   "tv": {
     "title": "TV",

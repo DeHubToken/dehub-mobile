@@ -1600,11 +1600,7 @@
       "dehubFollowers": "DeHub-følgere",
       "selfReported": "Antall følgere på sosiale medier legges inn av skaperen."
     },
-    "tabPlaylists": "Spillelister",
-    "aiScraping": {
-      "allowed": "Denne skaperen tillater AI-trening på dette innholdet.",
-      "denied": "Denne skaperen tillater ikke AI-trening på dette innholdet."
-    }
+    "tabPlaylists": "Spillelister"
   },
   "tv": {
     "title": "TV",

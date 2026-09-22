@@ -7,11 +7,12 @@
  * and resend everything (see `libs/social-reach.ts` for the same
  * read-merge-resend shape). There is no migration and no backfill — an
  * account that has never touched this setting has no key at all, and
- * absence means the safe default: deny.
+ * absence means the platform default: allow.
  *
  * This expresses the creator's wishes to crawlers that choose to honour de
- * facto standards. It cannot enforce anything against a crawler that
- * ignores those standards — nothing can, short of not publishing at all.
+ * facto standards. It is carried in page metadata only — never surfaced
+ * as profile copy — and it cannot enforce anything against a crawler
+ * that ignores those standards; nothing can, short of not publishing at all.
  * Mobile has no crawler surface of its own; this is the same stored
  * preference the web app reads and writes.
  */
@@ -21,15 +22,16 @@ export const AI_SCRAPING_CUSTOMS_KEY = 'aiScraping';
 export type AiScrapingPreference = 'allow' | 'deny';
 
 /**
- * Read the preference out of a `customs` blob. Absent, malformed, or any
- * value other than the literal string `'allow'` all resolve to `'deny'` —
- * deny is the only default that keeps an untouched account's wishes from
- * being misrepresented as consent it never gave.
+ * Read the preference out of a `customs` blob. Only the literal string
+ * `'deny'` opts out — absent, malformed, or any other value resolves to
+ * `'allow'`, so an account that has never opened the setting is treated
+ * the same as every other account rather than carrying a reservation it
+ * never asked for.
  */
 export function getAiScrapingPreference(
   customs: Record<string, unknown> | null | undefined,
 ): AiScrapingPreference {
-  return customs?.[AI_SCRAPING_CUSTOMS_KEY] === 'allow' ? 'allow' : 'deny';
+  return customs?.[AI_SCRAPING_CUSTOMS_KEY] === 'deny' ? 'deny' : 'allow';
 }
 
 /**

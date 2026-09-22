@@ -1501,11 +1501,7 @@
       "dehubFollowers": "DeHub követők",
       "selfReported": "A közösségi követők számát az alkotó adja meg."
     },
-    "tabPlaylists": "Játéklisták",
-    "aiScraping": {
-      "allowed": "Ez az alkotó engedélyezi a mesterséges intelligencia képzését ezen a tartalomon.",
-      "denied": "Ez az alkotó nem engedélyezi a mesterséges intelligencia képzését ezen a tartalomon."
-    }
+    "tabPlaylists": "Játéklisták"
   },
   "messages": {
     "smartRepliesOff": "A javasolt válaszok ki vannak kapcsolva",

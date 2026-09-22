@@ -1621,11 +1621,7 @@
       "dehubFollowers": "Follower DeHub",
       "selfReported": "Il conteggio dei follower social viene inserito dal creator."
     },
-    "tabPlaylists": "Playlist",
-    "aiScraping": {
-      "allowed": "Questo creator consente la formazione AI su questo contenuto.",
-      "denied": "Questo creator non consente la formazione AI su questo contenuto."
-    }
+    "tabPlaylists": "Playlist"
   },
   "messages": {
     "smartRepliesOff": "Risposte suggerite disattivate",

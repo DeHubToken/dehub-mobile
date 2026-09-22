@@ -2014,11 +2014,7 @@
       "dehubFollowers": "Mga tagasunod ng DeHub",
       "selfReported": "Ang mga bilang ng mga social follower ay ipinasok ng tagalikha."
     },
-    "tabPlaylists": "Mga Playlist",
-    "aiScraping": {
-      "allowed": "Pinapayagan ng tagalikha na ito ang pagsasanay sa AI sa nilalamang ito.",
-      "denied": "Hindi pinapayagan ng tagalikha na ito ang pagsasanay sa AI sa nilalamang ito."
-    }
+    "tabPlaylists": "Mga Playlist"
   },
   "tv": {
     "title": "TV",

@@ -1638,11 +1638,7 @@
       "dehubFollowers": "DeHub sekotāji",
       "selfReported": "Sociālo sekotāju skaitu ievada veidotājs."
     },
-    "tabPlaylists": "Repertuāri",
-    "aiScraping": {
-      "allowed": "Šis veidotājs atļauj MI apmācību par šo saturu.",
-      "denied": "Šis veidotājs neatļauj MI apmācību par šo saturu."
-    }
+    "tabPlaylists": "Repertuāri"
   },
   "tv": {
     "title": "TV",

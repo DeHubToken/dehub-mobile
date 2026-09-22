@@ -1614,11 +1614,7 @@
       "dehubFollowers": "ተኸታተልቲ DeHub",
       "selfReported": "ማሕበራዊ ተኸታተልቲ ቆጸራታት ብፈጣሪ ይኣትዉ እዮም ።"
     },
-    "tabPlaylists": "ዝርዝር መጻወቲ",
-    "aiScraping": {
-      "allowed": "እዚ ፈጣሪ እዚ ብዛዕባ እዚ ትሕዝቶ እዚ ናይ AI ስልጠና ይፈቅድ ።",
-      "denied": "እዚ ፈጣሪ እዚ ነዚ ትሕዝቶ እዚ ናይ AI ስልጠና ኣይፈቕድን እዩ ።"
-    }
+    "tabPlaylists": "ዝርዝር መጻወቲ"
   },
   "tv": {
     "title": "ቲቪ",

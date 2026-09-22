@@ -1619,11 +1619,7 @@
       "dehubFollowers": "DeHub takipçileri",
       "selfReported": "Sosyal takipçi sayıları yaratıcı tarafından girilir."
     },
-    "tabPlaylists": "Oynatma Listeleri",
-    "aiScraping": {
-      "allowed": "Bu yaratıcı, bu içerik üzerinde yapay zeka eğitimine izin verir.",
-      "denied": "Bu yaratıcı, bu içerikle ilgili yapay zeka eğitimine izin vermiyor."
-    }
+    "tabPlaylists": "Oynatma Listeleri"
   },
   "messages": {
     "smartRepliesOff": "Önerilen yanıtlar kapatıldı",

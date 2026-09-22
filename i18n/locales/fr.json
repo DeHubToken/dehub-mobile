@@ -1654,11 +1654,7 @@
       "dehubFollowers": "Abonnés DeHub",
       "selfReported": "Les comptes d'abonnés sociaux sont saisis par le créateur."
     },
-    "tabPlaylists": "Playlists",
-    "aiScraping": {
-      "allowed": "Ce créateur permet la formation à l'IA sur ce contenu.",
-      "denied": "Ce créateur n'autorise pas la formation à l'IA sur ce contenu."
-    }
+    "tabPlaylists": "Playlists"
   },
   "tv": {
     "title": "TV",
