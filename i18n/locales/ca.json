@@ -4633,6 +4633,9 @@
     "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
   },
   "dex": {
+    "lowestPrice": "Preu més baix · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Liquiditat total · USD"
   }
 }

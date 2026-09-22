@@ -4699,6 +4699,9 @@
     "savePrompt": "この投稿を下書きとして保存して、後で投稿しますか？"
   },
   "dex": {
+    "lowestPrice": "最安値 · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "流動性合計 · USD"
   }
 }

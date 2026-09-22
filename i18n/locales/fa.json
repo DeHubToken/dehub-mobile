@@ -4644,6 +4644,9 @@
     "savePrompt": "این پست را به عنوان پیش‌نویس ذخیره کنید تا بعداً آن را تمام کنید و ارسال کنید؟"
   },
   "dex": {
+    "lowestPrice": "کمترین قیمت · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "کل نقدینگی · USD"
   }
 }

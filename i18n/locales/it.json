@@ -4703,6 +4703,9 @@
     "savePrompt": "Salvare questo post come bozza da terminare e pubblicare in seguito?"
   },
   "dex": {
+    "lowestPrice": "Prezzo più basso · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Liquidità totale · USD"
   }
 }

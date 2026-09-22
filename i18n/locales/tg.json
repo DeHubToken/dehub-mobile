@@ -4607,6 +4607,9 @@
     "savePrompt": "I-save ang post na ito bilang isang project upang matapos at mag-post pa?"
   },
   "dex": {
+    "lowestPrice": "Нархи пасттарин · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Ликвидноти умумӣ · USD"
   }
 }

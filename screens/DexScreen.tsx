@@ -98,11 +98,15 @@ export default function DexScreen() {
   const token = side === 'buy' ? 'USDC' : 'DHB';
   const locked = busy || !!pending || !!withdrawing;
   const decimals = side === 'sell' ? 18 : chainId ? DEX_CHAINS[chainId].usdcDecimals : 6;
-  const { bids, asks } = useMemo(() => aggregateBook(listings, increment), [listings, increment]);
+  const externalAsks = useMemo(() => snapshot?.externalAsks ?? [], [snapshot]);
+  const { bids, asks } = useMemo(() => aggregateBook(listings, increment, externalAsks),
+    [listings, increment, externalAsks]);
   const bestAsk = snapshot?.price ?? null;
-  // Every DHB pool, weighted by its own dollar liquidity — not just this order book.
+  // The cheapest DHB in any pool. lpDhb is inventory across every pool; liquidityUsd is the
+  // money side, which is the only thing a seller could actually be paid out of.
   const usdPrice = snapshot?.usdPrice ?? null;
   const liquidityUsd = snapshot?.liquidityUsd ?? null;
+  const lpDhb = snapshot?.lpDhb ?? null;
   const ordered = useMemo(() => [...listings].sort((a, b) => listedAt(b) - listedAt(a)), [listings]);
   const shown = useMemo(() => mine ? ordered.filter((item) => item.owner.toLowerCase() === address.toLowerCase()) : ordered, [ordered, mine, address]);
   const visible = shown.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
@@ -261,7 +265,7 @@ export default function DexScreen() {
 
   return <View style={s.root}><ScreenHeader title={t('dex.title')} onBackPress={() => navigation.goBack()} /><ScrollView contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
     <View style={s.header}><View style={s.poolPicker}><Text style={s.pair}>{t('dex.title')}</Text><Text style={s.muted}>{t('dex.combined')}</Text></View><TouchableOpacity disabled={loading || busy} onPress={() => { primeDiscovery(); void loadListings(); setBalanceRevision((n) => n + 1); }}><Text style={s.link}>{t(loading ? 'dex.updating' : 'dex.refresh')}</Text></TouchableOpacity></View>
-    <View style={s.stats}><View><Text style={s.muted}>{t('dex.reference', { defaultValue: 'Market reference · USD' })}</Text><Text style={s.price}>{usdPrice != null ? `$${formatPrice(usdPrice)}` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.sharedChange24', { defaultValue: '24h change' })}</Text><Text style={[s.statValue, { color: (snapshot?.change24h || 0) >= 0 ? '#20c997' : '#f05b72' }]}>{snapshot?.change24h != null ? `${snapshot.change24h >= 0 ? '+' : ''}${snapshot.change24h.toFixed(2)}%` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.totalLiquidity', { defaultValue: 'Total liquidity · USD' })}</Text><Text style={s.statValue}>{liquidityUsd != null ? `$${formatSize(liquidityUsd)}` : '—'}</Text></View></View>
+    <View style={s.stats}><View><Text style={s.muted}>{t('dex.lowestPrice', { defaultValue: 'Lowest price · USD' })}</Text><Text style={s.price}>{usdPrice != null ? `$${formatPrice(usdPrice)}` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.sharedChange24', { defaultValue: '24h change' })}</Text><Text style={[s.statValue, { color: (snapshot?.change24h || 0) >= 0 ? '#20c997' : '#f05b72' }]}>{snapshot?.change24h != null ? `${snapshot.change24h >= 0 ? '+' : ''}${snapshot.change24h.toFixed(2)}%` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.lpDhb', { defaultValue: 'LP · DHB' })}</Text><Text style={s.statValue}>{lpDhb != null ? formatSize(lpDhb) : '—'}</Text></View><View><Text style={s.muted}>{t('dex.lpUsd', { defaultValue: 'LP · USD' })}</Text><Text style={s.statValue}>{liquidityUsd != null ? `$${formatSize(liquidityUsd)}` : '—'}</Text></View></View>
     {listError && <Text style={s.alert}>{t('dex.snapshotError')}</Text>}
     <View style={s.tabs}>{(['chart', 'book', 'trade'] as const).map((value) => <TouchableOpacity key={value} accessibilityRole="tab" accessibilityState={{ selected: tab === value }} onPress={() => setTab(value)} style={[s.tab, tab === value && s.tabActive]}><Text style={tab === value ? s.white : s.muted}>{t(`dex.tab.${value}`)}</Text></TouchableOpacity>)}</View>
     {tab === 'chart' && <View style={s.panel}><View style={s.toolbar}><View style={s.inline}>{[false, true].map((value) => <TouchableOpacity key={String(value)} style={[s.smallTab, depth === value && s.selected]} onPress={() => setDepth(value)}><Text style={s.white}>{t(value ? 'dex.depth' : 'dex.price')}</Text></TouchableOpacity>)}</View>{!depth && <View style={s.inline}>{CANDLE_INTERVALS.map((value) => <TouchableOpacity style={[s.smallTab, period === value && s.selected]} key={value} onPress={() => setPeriod(value)}><Text style={s.white}>{value}</Text></TouchableOpacity>)}</View>}</View>

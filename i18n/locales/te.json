@@ -4622,6 +4622,9 @@
     "savePrompt": "పూర్తి చేయడానికి ఈ పోస్ట్ ‌ ను డ్రాఫ్ట్ ‌ గా సేవ్ చేసి, తర్వాత పోస్ట్ చేయాలా?"
   },
   "dex": {
+    "lowestPrice": "అత్యల్ప ధర · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "మొత్తం ద్రవ్యత · USD"
   }
 }

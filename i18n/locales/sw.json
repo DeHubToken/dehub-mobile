@@ -4632,6 +4632,9 @@
     "savePrompt": "Hifadhi chapisho hili kama rasimu ya kukamilisha na kuchapisha baadaye?"
   },
   "dex": {
+    "lowestPrice": "Bei ya chini kabisa · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Ukwasi wa jumla · USD"
   }
 }

@@ -4630,6 +4630,9 @@
     "savePrompt": "Išsaugoti šį įrašą kaip juodraštį, kad užbaigtumėte ir paskelbtumėte vėliau?"
   },
   "dex": {
+    "lowestPrice": "Mažiausia kaina · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Bendras likvidumas · USD"
   }
 }

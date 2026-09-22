@@ -4664,6 +4664,9 @@
     "savePrompt": "यो पोस्टलाई ड्राफ्टको रूपमा बचत गर्नुहोस् र पछि पोस्ट गर्नुहोस्?"
   },
   "dex": {
+    "lowestPrice": "सबैभन्दा कम मूल्य · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "कुल तरलता · USD"
   }
 }

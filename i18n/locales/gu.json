@@ -4620,6 +4620,9 @@
     "savePrompt": "આ પોસ્ટને સમાપ્ત કરવા અને પછી પોસ્ટ કરવા માટે ડ્રાફ્ટ તરીકે સાચવો?"
   },
   "dex": {
+    "lowestPrice": "સૌથી ઓછી કિંમત · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "કુલ પ્રવાહિતા · USD"
   }
 }

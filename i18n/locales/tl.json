@@ -4807,6 +4807,9 @@
     "savePrompt": "I - save ang post na ito bilang isang draft upang tapusin at i - post sa ibang pagkakataon?"
   },
   "dex": {
+    "lowestPrice": "Pinakamababang presyo · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Kabuuang liquidity · USD"
   }
 }

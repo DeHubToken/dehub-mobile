@@ -4330,6 +4330,9 @@
     "savePrompt": "You wan save dis post as draft so you go finish am and post am afta?"
   },
   "dex": {
+    "lowestPrice": "Lowest price · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Total liquidity · USD"
   }
 }

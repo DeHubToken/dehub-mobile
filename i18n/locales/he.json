@@ -4618,6 +4618,9 @@
     "savePrompt": "לשמור את הפוסט הזה כטיוטה לסיום ולפרסום מאוחר יותר?"
   },
   "dex": {
+    "lowestPrice": "המחיר הנמוך ביותר · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "נזילות כוללת · USD"
   }
 }

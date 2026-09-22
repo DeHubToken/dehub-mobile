@@ -4629,6 +4629,9 @@
     "savePrompt": "اس پوسٹ کو ختم کرنے اور بعد میں پوسٹ کرنے کے لیے بطور ڈرافٹ محفوظ کریں ؟"
   },
   "dex": {
+    "lowestPrice": "سب سے کم قیمت · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "کل لیکویڈیٹی · USD"
   }
 }

@@ -4571,6 +4571,9 @@
     "savePrompt": "पश्चात् पूर्णं प्रेषितुं च इदं आलेखं आलेखरूपेण संरक्षतु?"
   },
   "dex": {
+    "lowestPrice": "न्यूनतममूल्यम् · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "समग्रद्रवता · USD"
   }
 }

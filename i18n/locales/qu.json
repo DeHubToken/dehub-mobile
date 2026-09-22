@@ -4660,6 +4660,9 @@
     "savePrompt": "¿Kay qillqasqata borrador hina waqaychay tukunaykipaq hinaspa qipaman churanaykipaq?"
   },
   "dex": {
+    "lowestPrice": "Aswan pisi chanin · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Llapan qullqi · USD"
   }
 }
