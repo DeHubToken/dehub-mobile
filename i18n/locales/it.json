@@ -4701,5 +4701,8 @@
     "emptyDescription": "Quando salvi un post come bozza, apparirà qui.",
     "saveTitle": "Salva bozza",
     "savePrompt": "Salvare questo post come bozza da terminare e pubblicare in seguito?"
+  },
+  "dex": {
+    "totalLiquidity": "Liquidità totale · USD"
   }
 }

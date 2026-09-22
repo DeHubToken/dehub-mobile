@@ -4643,5 +4643,8 @@
     "emptyDescription": "Când salvezi o postare ca ciornă, aceasta va apărea aici.",
     "saveTitle": "Salvare ciornă",
     "savePrompt": "Salvați această postare ca ciornă pentru a o termina și posta mai târziu?"
+  },
+  "dex": {
+    "totalLiquidity": "Lichiditate totală · USD"
   }
 }

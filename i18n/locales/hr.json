@@ -4631,5 +4631,8 @@
     "emptyDescription": "Kada spremite objavu kao skicu, pojavit će se ovdje.",
     "saveTitle": "Spremi skicu",
     "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
+  },
+  "dex": {
+    "totalLiquidity": "Ukupna likvidnost · USD"
   }
 }

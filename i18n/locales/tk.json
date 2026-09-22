@@ -4598,5 +4598,8 @@
     "emptyDescription": "Eger siz bir posty düýrlenen ýaly saklasaňyz, ol bu ýerde görüner.",
     "saveTitle": "Drafty Gaýd Et",
     "savePrompt": "Bu posty soňuna çenli goýup, soňuna çenli goýup bilermisiňiz?"
+  },
+  "dex": {
+    "totalLiquidity": "Jemi likwidlik · USD"
   }
 }

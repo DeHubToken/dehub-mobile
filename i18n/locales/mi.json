@@ -4614,5 +4614,8 @@
     "emptyDescription": "Ka penapena koe i tetahi pou hei whakatakotoranga, ka puta mai i konei.",
     "saveTitle": "Whakaorangia Draft",
     "savePrompt": "Whakaorangia tenei pou hei whakatakotoranga hei whakaoti me te tuku i muri mai?"
+  },
+  "dex": {
+    "totalLiquidity": "Tapeke wairere · USD"
   }
 }

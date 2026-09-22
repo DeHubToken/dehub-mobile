@@ -4897,5 +4897,8 @@
     "emptyDescription": "Wanneer je een bericht opslaat als concept, wordt het hier weergegeven.",
     "saveTitle": "Concept opslaan",
     "savePrompt": "Dit bericht opslaan als een concept om te voltooien en later te plaatsen?"
+  },
+  "dex": {
+    "totalLiquidity": "Totale liquiditeit · USD"
   }
 }

@@ -4691,5 +4691,8 @@
     "emptyDescription": "Yeroo gaafii tokko qabachuuf kuusitu, asirratti mul'ata.",
     "saveTitle": "Gargaarsa Qabachu",
     "savePrompt": "Barreeffama kana akka wixineetti save gochuun xumurtee booda maxxansuu?"
+  },
+  "dex": {
+    "totalLiquidity": "Ida galaa maallaqaa · USD"
   }
 }

@@ -4795,5 +4795,8 @@
     "emptyDescription": "Keď uložíte príspevok ako koncept, zobrazí sa tu.",
     "saveTitle": "Uložiť koncept",
     "savePrompt": "Uložiť tento príspevok ako koncept na dokončenie a uverejnenie neskôr?"
+  },
+  "dex": {
+    "totalLiquidity": "Celková likvidita · USD"
   }
 }

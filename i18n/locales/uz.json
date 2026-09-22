@@ -4672,5 +4672,8 @@
     "emptyDescription": "Postni qoralama sifatida saqlaganingizda, u shu yerda ko&#39;rinadi.",
     "saveTitle": "Qoralama sifatida saqlang",
     "savePrompt": "Ushbu postni tugatish va keyinroq joylashtirish uchun qoralama sifatida saqlansinmi?"
+  },
+  "dex": {
+    "totalLiquidity": "Umumiy likvidlik · USD"
   }
 }
