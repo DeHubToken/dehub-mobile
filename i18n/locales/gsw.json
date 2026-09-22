@@ -4618,5 +4618,8 @@
     "emptyDescription": "Wenn du en Beitrag als Entwurf speichersch, wird er do gseh.",
     "saveTitle": "Entwurf speichere",
     "savePrompt": "Möchtsch das Inserat als Entwurf speichere zum spöter fertig mache und poste?"
+  },
+  "dex": {
+    "totalLiquidity": "Gsamtliquidität · USD"
   }
 }

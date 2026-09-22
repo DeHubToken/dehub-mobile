@@ -4629,5 +4629,8 @@
     "emptyDescription": "Kui salvestad postituse mustandina, kuvatakse see siin.",
     "saveTitle": "Salvesta mustand",
     "savePrompt": "Kas salvestada see postitus mustandina, et see hiljem lõpetada ja postitada?"
+  },
+  "dex": {
+    "totalLiquidity": "Koguliikviidsus · USD"
   }
 }

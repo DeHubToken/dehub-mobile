@@ -4606,5 +4606,8 @@
     "emptyDescription": "Mgbe ị na-echekwa post dị ka draft, ọ ga-apụta ebe a.",
     "saveTitle": "Chekwaa Draft",
     "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
+  },
+  "dex": {
+    "totalLiquidity": "Mkpokọta mmiri ego · USD"
   }
 }

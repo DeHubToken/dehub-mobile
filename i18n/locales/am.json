@@ -4549,5 +4549,8 @@
     "emptyDescription": "አንተ ረቂቅ እንደ አንድ ልጥፍ ማስቀመጥ ጊዜ, እዚህ ይታያል.",
     "saveTitle": "Draft አስቀምጥ",
     "savePrompt": "ይህን ልጥፍ በኋላ ለማጠናቀቅ እና ለመለጠፍ ረቂቅ አድርጎ ያስቀምጡ?"
+  },
+  "dex": {
+    "totalLiquidity": "ጠቅላላ ፈሳሽነት · USD"
   }
 }

@@ -4893,5 +4893,8 @@
     "emptyDescription": "Apabila anda menyimpan hantaran sebagai draf, ia akan muncul di sini.",
     "saveTitle": "Simpan Draf",
     "savePrompt": "Simpan hantaran ini sebagai draf untuk diselesaikan dan disiarkan kemudian?"
+  },
+  "dex": {
+    "totalLiquidity": "Jumlah kecairan · USD"
   }
 }

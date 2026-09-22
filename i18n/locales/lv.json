@@ -4628,5 +4628,8 @@
     "emptyDescription": "Saglabājot ziņu kā melnrakstu, tā tiks parādīta šeit.",
     "saveTitle": "Saglabāt melnrakstu",
     "savePrompt": "Vai saglabāt šo ziņu kā melnrakstu, lai pabeigtu un publicētu vēlāk?"
+  },
+  "dex": {
+    "totalLiquidity": "Kopējā likviditāte · USD"
   }
 }

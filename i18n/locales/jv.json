@@ -4587,5 +4587,8 @@
     "emptyDescription": "Menawi panjenengan nyimpen kiriman dados draf, kiriman menika badhe medal wonten mriki.",
     "saveTitle": "Simpen Draf",
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
+  },
+  "dex": {
+    "totalLiquidity": "Total likuiditas · USD"
   }
 }

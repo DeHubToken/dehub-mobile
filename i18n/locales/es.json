@@ -4701,5 +4701,8 @@
     "emptyDescription": "Cuando guardes una publicación como borrador, aparecerá aquí.",
     "saveTitle": "Guardar borrador",
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
+  },
+  "dex": {
+    "totalLiquidity": "Liquidez total · USD"
   }
 }

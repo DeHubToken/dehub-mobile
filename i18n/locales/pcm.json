@@ -4245,5 +4245,8 @@
     "emptyDescription": "Wen you save post as draft, e go show for here.",
     "saveTitle": "Save Draft",
     "savePrompt": "You wan save dis post as draft make you finish am and post later?"
+  },
+  "dex": {
+    "totalLiquidity": "Total liquidity · USD"
   }
 }

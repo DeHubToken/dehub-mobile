@@ -4627,5 +4627,8 @@
     "emptyDescription": "當你將帖子儲存為草稿時，它會顯示在這裡。",
     "saveTitle": "儲存草稿",
     "savePrompt": "將呢個帖子儲存為草稿，等遲啲完成同發佈？"
+  },
+  "dex": {
+    "totalLiquidity": "總流動性 · USD"
   }
 }

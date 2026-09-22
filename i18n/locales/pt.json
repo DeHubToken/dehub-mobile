@@ -4704,5 +4704,8 @@
     "emptyDescription": "Ao salvar um post como rascunho, ele aparecerá aqui.",
     "saveTitle": "Guardar rascunho",
     "savePrompt": "Guardar esta publicação como rascunho para terminar e publicar mais tarde?"
+  },
+  "dex": {
+    "totalLiquidity": "Liquidez total · USD"
   }
 }

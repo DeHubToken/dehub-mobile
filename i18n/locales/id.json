@@ -4680,5 +4680,8 @@
     "emptyDescription": "Saat Anda menyimpan postingan sebagai draf, postingan tersebut akan muncul di sini.",
     "saveTitle": "Simpan Draf",
     "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
+  },
+  "dex": {
+    "totalLiquidity": "Total likuiditas · USD"
   }
 }

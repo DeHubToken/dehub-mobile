@@ -4577,5 +4577,8 @@
     "emptyDescription": "您保存的帖子草稿会显示在这里。",
     "saveTitle": "保存草稿",
     "savePrompt": "将此帖子保存为草稿，以便稍后完成并发布？"
+  },
+  "dex": {
+    "totalLiquidity": "总流动性 · USD"
   }
 }

@@ -4634,5 +4634,8 @@
     "emptyDescription": "Amikor elmentesz egy bejegyzést piszkozatként, itt fog megjelenni.",
     "saveTitle": "Piszkozat mentése",
     "savePrompt": "Szeretnéd elmenteni ezt a bejegyzést piszkozatként, hogy később befejezd és közzéadd?"
+  },
+  "dex": {
+    "totalLiquidity": "Teljes likviditás · USD"
   }
 }

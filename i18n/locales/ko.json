@@ -4696,5 +4696,8 @@
     "emptyDescription": "포스트를 임시 저장하면 여기에 표시됩니다.",
     "saveTitle": "임시 저장",
     "savePrompt": "이 게시물을 초안으로 저장하여 완료하고 나중에 게시하시겠습니까?"
+  },
+  "dex": {
+    "totalLiquidity": "총 유동성 · USD"
   }
 }

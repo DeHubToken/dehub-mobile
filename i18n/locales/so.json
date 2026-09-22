@@ -4619,5 +4619,8 @@
     "emptyDescription": "Markaad kaydiso boostada sida qoraalka, halkan ayey ka muuqan doontaa.",
     "saveTitle": "Keydso Farshaxanka",
     "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
+  },
+  "dex": {
+    "totalLiquidity": "Wadarta dareeraha · USD"
   }
 }
