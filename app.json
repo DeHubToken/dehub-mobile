@@ -3,7 +3,7 @@
     "scheme": "dehub",
     "name": "DeHub",
     "slug": "dehubmobile",
-    "version": "1.17.7",
+    "version": "1.18.0",
     "orientation": "portrait",
     "icon": "./assets/AppIcons/playstore.png",
     "notification": {
@@ -55,7 +55,7 @@
       },
       "allowBackup": false,
       "package": "io.dehub.mobile",
-      "versionCode": 45,
+      "versionCode": 46,
       "compileSdkVersion": 35,
       "targetSdkVersion": 35,
       "softwareKeyboardLayoutMode": "resize",
