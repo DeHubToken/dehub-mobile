@@ -1613,7 +1613,7 @@
     "unableToLoad": "Haiwezi kupakia wasifu. Tafadhali jaribu tena baadaye.",
     "doesNotExist": "Mtumiaji huyu hayupo au unahitaji kuingia kuona wasifu wako.",
     "makeOffer": "Toa Ofa kwa {{handle}}",
-    "enterOfferAmount": "Ingiza idadi ya tokeni za DHB unazotaka kutoa kupata jina hili la mtumiaji.",
+    "enterOfferAmount": "Weka kiasi cha dola za Marekani unachotaka kutoa kwa jina hili la mtumiaji.",
     "submitOffer": "Wasilisha Ofa",
     "validOfferAmount": "Tafadhali ingiza kiasi halali cha ofa",
     "offerSubmitted": "Ofa ya DHB {{amount}} kwa {{handle}} imewasilishwa",
@@ -1639,7 +1639,11 @@
       "dehubFollowers": "Wafuasi wa DeHub",
       "selfReported": "Hesabu za wafuasi wa kijamii zimewekwa na muundaji."
     },
-    "tabPlaylists": "Orodha za kucheza"
+    "tabPlaylists": "Orodha za kucheza",
+    "offerWorthNow": "Takriban {{amount}} DHB kwa kiwango cha sasa",
+    "offerNotePlaceholder": "Ongeza ujumbe (si lazima)",
+    "offerCommitsNothing": "Kutoa ofa hakugharimu chochote wala hakufungi DHB. Unalipa tu iwapo mmiliki atakubali.",
+    "offerNeedsHandle": "Akaunti hii haina jina la mtumiaji la kutolea ofa."
   },
   "tv": {
     "title": "TV",
@@ -2929,7 +2933,36 @@
     "staleListing": "Tangazo hili ni la @{{listed}}, lakini sasa wewe ni @{{current}}. Halitauzwa hadi ulitangaze upya kwa kitambulisho chako cha sasa — kusasisha hapo juu kunafanya hivyo.",
     "history": "Historia",
     "sold": "Kimeuzwa",
-    "bought": "Kimenunuliwa"
+    "bought": "Kimenunuliwa",
+    "makeOfferAction": "Toa ofa",
+    "tabOffers": "Ofa",
+    "signInForOffers": "Ingia ili kuona ofa za jina lako la mtumiaji.",
+    "offersForYou": "Ofa za jina lako la mtumiaji",
+    "offersYouMade": "Ofa ulizotoa",
+    "offerHistory": "Ofa za zamani",
+    "noIncomingOffers": "Bado hakuna aliyetoa ofa ya kununua jina lako la mtumiaji.",
+    "noOutgoingOffers": "Bado hujatoa ofa yoyote. Fungua wasifu wa mtu ili kutoa ofa.",
+    "offerExpires": "Inaisha {{when}}",
+    "payBefore": "Lipa {{when}}",
+    "awaitingOwner": "Inasubiri mmiliki",
+    "acceptOffer": "Kubali",
+    "declineOffer": "Kataa",
+    "confirmAccept": "Kubali ofa",
+    "cancel": "Ghairi",
+    "withdrawOffer": "Ondoa",
+    "withdrawAcceptance": "Ondoa kukubali",
+    "payAndClaim": "Lipa na uchukue",
+    "acceptMovesNothingYet": "Kukubali kunahifadhi jina lako la mtumiaji kwa mnunuzi huyu. Hakuna kinachobadilika hadi alipe, na kabla ya hapo unaweza kujiondoa.",
+    "acceptedAwaitingPayment": "Umekubali ofa hii. Jina la mtumiaji bado ni lako na utakuwa @{{handle}} pale tu atakapolipa.",
+    "offerAcceptedPayNow": "Imekubaliwa. Jina la mtumiaji limehifadhiwa kwa ajili yako hadi ulipe.",
+    "offerStatus": {
+      "pending": "Inasubiri jibu",
+      "accepted": "Imekubaliwa, inasubiri malipo",
+      "declined": "Imekataliwa",
+      "withdrawn": "Imeondolewa",
+      "completed": "Imekamilika",
+      "expired": "Muda umeisha"
+    }
   },
   "accounts": {
     "subtitle": "Akaunti kamili zinazouzwa, bei kwa DHB",

@@ -1603,7 +1603,7 @@
     "unableToLoad": "Ba a iya ɗora bayanan kai ba. Da fatan za a sake gwadawa daga baya.",
     "doesNotExist": "Wannan mai amfani bai wanzu ba ko kana buƙatar shiga don ganin bayanan kanka.",
     "makeOffer": "Yi Tayi don {{handle}}",
-    "enterOfferAmount": "Shigar da adadin alamun DHB da kake son bayarwa don samun wannan sunan mai amfani.",
+    "enterOfferAmount": "Shigar da adadin dalar Amurka da kake son bayarwa don wannan sunan mai amfani.",
     "submitOffer": "Miƙa Tayi",
     "validOfferAmount": "Da fatan shigar da adadin tayi mai inganci",
     "offerSubmitted": "An miƙa tayin {{amount}} DHB don {{handle}}",
@@ -1629,7 +1629,11 @@
       "dehubFollowers": "DeHub mabiya",
       "selfReported": "An shigar da ƙididdigar mabiya zamantakewa ta mahalicci."
     },
-    "tabPlaylists": "Jerin-bidiyoyi"
+    "tabPlaylists": "Jerin-bidiyoyi",
+    "offerWorthNow": "Kimanin {{amount}} DHB a farashin yanzu",
+    "offerNotePlaceholder": "Ƙara saƙo (na zaɓi)",
+    "offerCommitsNothing": "Yin tayi ba ya kashe komai kuma ba ya kulle DHB. Sai mai shi ya karɓa kafin ka biya.",
+    "offerNeedsHandle": "Wannan asusun ba shi da sunan mai amfani da za a yi wa tayi."
   },
   "tv": {
     "title": "Talabijin",
@@ -2918,7 +2922,36 @@
     "staleListing": "Wannan tallan na @{{listed}} ne, amma yanzu kai @{{current}} ne. Ba zai sayu ba sai ka sake sanya shi da sunanka na yanzu — sabuntawa a sama tana yin hakan.",
     "history": "Tarihi",
     "sold": "An sayar",
-    "bought": "An siya"
+    "bought": "An siya",
+    "makeOfferAction": "Yi tayi",
+    "tabOffers": "Tayi",
+    "signInForOffers": "Shiga don ganin tayin da aka yi wa sunan mai amfani naka.",
+    "offersForYou": "Tayin sunan mai amfani naka",
+    "offersYouMade": "Tayin da ka yi",
+    "offerHistory": "Tayin baya",
+    "noIncomingOffers": "Har yanzu babu wanda ya ba da tayin sayen sunan mai amfani naka.",
+    "noOutgoingOffers": "Ba ka yi wani tayi ba tukuna. Buɗe bayanan wani don yin tayi.",
+    "offerExpires": "Zai ƙare {{when}}",
+    "payBefore": "Biya {{when}}",
+    "awaitingOwner": "Ana jiran mai shi",
+    "acceptOffer": "Karɓa",
+    "declineOffer": "Ƙi",
+    "confirmAccept": "Karɓi tayin",
+    "cancel": "Soke",
+    "withdrawOffer": "Janye",
+    "withdrawAcceptance": "Janye karɓa",
+    "payAndClaim": "Biya ka karɓa",
+    "acceptMovesNothingYet": "Karɓa yana ajiye sunan mai amfani naka don wannan mai saye. Babu abin da zai canza sai ya biya, kuma kafin nan za ka iya janyewa.",
+    "acceptedAwaitingPayment": "Ka karɓi wannan tayin. Sunan mai amfani har yanzu naka ne, kuma za ka zama @{{handle}} sai ya biya.",
+    "offerAcceptedPayNow": "An karɓa. An ajiye sunan mai amfani gare ka har sai ka biya.",
+    "offerStatus": {
+      "pending": "Ana jiran amsa",
+      "accepted": "An karɓa, ana jiran biya",
+      "declined": "An ƙi",
+      "withdrawn": "An janye",
+      "completed": "An kammala",
+      "expired": "Ya ƙare"
+    }
   },
   "accounts": {
     "subtitle": "Cikakkun asusu don sayarwa, farashi da DHB",

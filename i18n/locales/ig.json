@@ -1598,7 +1598,7 @@
     "unableToLoad": "Enweghị ike ibudata profaịlụ. Biko nwaa ọzọ n'oge.",
     "doesNotExist": "Onye ọrụ a adịghị ma ọ bụ ị ga-abanye iji hụ profaịlụ gị.",
     "makeOffer": "Nye Onyinye maka {{handle}}",
-    "enterOfferAmount": "Tinye ego token DHB ị chọrọ inye iji nweta aha onye ọrụ a.",
+    "enterOfferAmount": "Tinye ego dollar ị chọrọ inye maka aha njirimara a.",
     "submitOffer": "Nyefee Onyinye",
     "validOfferAmount": "Biko tinye ego onyinye ziri ezi",
     "offerSubmitted": "Enyefeela onyinye {{amount}} DHB maka {{handle}}",
@@ -1624,7 +1624,11 @@
       "dehubFollowers": "DeHub na-eso ụzọ",
       "selfReported": "Onye na-emepụta ihe na-abanye ọnụ ọgụgụ ndị na-eso ụzọ ọha."
     },
-    "tabPlaylists": "Ndepụta egwu"
+    "tabPlaylists": "Ndepụta egwu",
+    "offerWorthNow": "Ihe dị ka {{amount}} DHB n’ọnụahịa ugbu a",
+    "offerNotePlaceholder": "Tinye ozi (nhọrọ)",
+    "offerCommitsNothing": "Inye onyinye ọnụahịa adịghị efu ihe ọ bụla, ọ naghịkwa akpọchi DHB. Ị na-akwụ ụgwọ naanị ma onye nwe ya nabata.",
+    "offerNeedsHandle": "Akaụntụ a enweghị aha njirimara a ga-enye onyinye ọnụahịa."
   },
   "tv": {
     "title": "TV",
@@ -2914,7 +2918,36 @@
     "staleListing": "Ndepụta a bụ maka @{{listed}}, mana ị bụzi @{{current}}. Ọ gaghị ere ruo mgbe ị depụtaghachiri ya n'okpuru aha gị ugbu a — imelite n'elu na-eme nke ahụ.",
     "history": "Akụkọ ntolite",
     "sold": "Erere",
-    "bought": "Azụrụ"
+    "bought": "Azụrụ",
+    "makeOfferAction": "Nye onyinye ọnụahịa",
+    "tabOffers": "Onyinye ọnụahịa",
+    "signInForOffers": "Banye ka ị hụ onyinye ọnụahịa maka aha njirimara gị.",
+    "offersForYou": "Onyinye ọnụahịa maka aha njirimara gị",
+    "offersYouMade": "Onyinye ọnụahịa ị nyere",
+    "offerHistory": "Onyinye ọnụahịa gara aga",
+    "noIncomingOffers": "Ọ dịbeghị onye nyere onyinye ọnụahịa ịzụta aha njirimara gị.",
+    "noOutgoingOffers": "Ị nyebeghị onyinye ọnụahịa ọ bụla. Meghee profaịlụ onye ọ bụla ka ị nye.",
+    "offerExpires": "Ọ ga-agwụ {{when}}",
+    "payBefore": "Kwụọ ụgwọ {{when}}",
+    "awaitingOwner": "Na-echere onye nwe ya",
+    "acceptOffer": "Nabata",
+    "declineOffer": "Jụ",
+    "confirmAccept": "Nabata onyinye ọnụahịa",
+    "cancel": "Kagbuo",
+    "withdrawOffer": "Wepụ",
+    "withdrawAcceptance": "Wepụ nnabata",
+    "payAndClaim": "Kwụọ ụgwọ were ya",
+    "acceptMovesNothingYet": "Ịnabata na-edobe aha njirimara gị maka onye ahịa a. Ọ dịghị ihe na-agbanwe tutu ọ kwụọ ụgwọ, tupu mgbe ahụ ị nwere ike ịlaghachi azụ.",
+    "acceptedAwaitingPayment": "Ị nabatara onyinye ọnụahịa a. Aha njirimara ka bụ nke gị, ị ga-abụkwa @{{handle}} naanị mgbe ọ kwụrụ ụgwọ.",
+    "offerAcceptedPayNow": "A nabatala ya. E debere aha njirimara maka gị ruo mgbe ị kwụrụ ụgwọ.",
+    "offerStatus": {
+      "pending": "Na-echere azịza",
+      "accepted": "A nabatala, na-echere ụgwọ",
+      "declined": "A jụrụ ya",
+      "withdrawn": "E wepụrụ ya",
+      "completed": "Emechaala",
+      "expired": "Oge agwụla"
+    }
   },
   "accounts": {
     "subtitle": "Aha ndị a na-ere, ọnụahịa na DHB",

@@ -1570,7 +1570,7 @@
     "unableToLoad": "ما قدرنا نحمّل الملف الشخصي. حاول مرة تانية.",
     "doesNotExist": "هالمستخدم مش موجود أو لازم تسجل دخول عشان تشوف ملفك.",
     "makeOffer": "قدّم عرض لـ {{handle}}",
-    "enterOfferAmount": "ادخل مبلغ توكنات DHB اللي بتحب تعرضه عشان تاخد اسم المستخدم هاد.",
+    "enterOfferAmount": "اكتب المبلغ بالدولار يلي بدك تقدمو مقابل اسم المستخدم هاد.",
     "submitOffer": "قدّم العرض",
     "validOfferAmount": "ادخل مبلغ عرض صحيح",
     "offerSubmitted": "عرض بـ {{amount}} DHB قُدّم لـ {{handle}}",
@@ -1596,7 +1596,11 @@
       "dehubFollowers": "متابعي DeHub",
       "selfReported": "عدد المتابعين الاجتماعيين يدخله المنشئ."
     },
-    "tabPlaylists": "قوائم تشغيل"
+    "tabPlaylists": "قوائم تشغيل",
+    "offerWorthNow": "حوالي {{amount}} DHB بالسعر الحالي",
+    "offerNotePlaceholder": "زيد ملاحظة (اختياري)",
+    "offerCommitsNothing": "تقديم العرض ما بيكلف شي وما بيحجز DHB. ما بتدفع إلا إذا المالك قبل.",
+    "offerNeedsHandle": "هالحساب ما عندو اسم مستخدم تقدم عليه عرض."
   },
   "tv": {
     "title": "تلفزيون",
@@ -2886,7 +2890,36 @@
     "staleListing": "هاد الإعلان لـ‏@{{listed}}، بس انت هلق ‏@{{current}}. ما رح ينباع إلا لما تعرضه كمان مرة باسمك الحالي — والتحديث فوق بيعمل هيك.",
     "history": "السجل",
     "sold": "انباع",
-    "bought": "انشرى"
+    "bought": "انشرى",
+    "makeOfferAction": "قدّم عرض",
+    "tabOffers": "العروض",
+    "signInForOffers": "سجّل دخول لتشوف العروض على اسم المستخدم تبعك.",
+    "offersForYou": "عروض على اسم المستخدم تبعك",
+    "offersYouMade": "العروض يلي قدمتها",
+    "offerHistory": "عروض سابقة",
+    "noIncomingOffers": "لسا محدا عرض يشتري اسم المستخدم تبعك.",
+    "noOutgoingOffers": "لسا ما قدمت أي عرض. افتح بروفايل حدا لتقدم عرض.",
+    "offerExpires": "بينتهي {{when}}",
+    "payBefore": "ادفع {{when}}",
+    "awaitingOwner": "عم يستنى المالك",
+    "acceptOffer": "قبول",
+    "declineOffer": "رفض",
+    "confirmAccept": "اقبل العرض",
+    "cancel": "إلغاء",
+    "withdrawOffer": "سحب",
+    "withdrawAcceptance": "اسحب القبول",
+    "payAndClaim": "ادفع وخود",
+    "acceptMovesNothingYet": "القبول بيحجز اسم المستخدم لهالمشتري. ما في شي بيتغير لحتى يدفع، وفيك ترجع قبل هيك.",
+    "acceptedAwaitingPayment": "إنت قبلت هالعرض. اسم المستخدم لسا إلك، وما بتصير @{{handle}} إلا لما يدفع.",
+    "offerAcceptedPayNow": "انقبل. اسم المستخدم محجوز إلك لحتى تدفع تمنو.",
+    "offerStatus": {
+      "pending": "عم يستنى الرد",
+      "accepted": "مقبول، عم يستنى الدفع",
+      "declined": "مرفوض",
+      "withdrawn": "منسحب",
+      "completed": "مكتمل",
+      "expired": "منتهي"
+    }
   },
   "accounts": {
     "subtitle": "حسابات كاملة معروضة للبيع، بسعر بالـ DHB",

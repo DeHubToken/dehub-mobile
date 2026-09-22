@@ -1875,7 +1875,7 @@
     "unableToLoad": "Nie można załadować profilu. Spróbuj ponownie później.",
     "doesNotExist": "Ten użytkownik nie istnieje lub musisz się zalogować, aby zobaczyć swój profil.",
     "makeOffer": "Złóż ofertę na {{handle}}",
-    "enterOfferAmount": "Wprowadź ilość tokenów DHB, którą chcesz zaoferować za tę nazwę użytkownika.",
+    "enterOfferAmount": "Podaj kwotę w dolarach, którą chcesz zaoferować za tę nazwę użytkownika.",
     "submitOffer": "Złóż ofertę",
     "validOfferAmount": "Wprowadź prawidłową kwotę oferty",
     "offerSubmitted": "Oferta {{amount}} DHB złożona na {{handle}}",
@@ -1901,7 +1901,11 @@
       "dehubFollowers": "Obserwujący DeHub",
       "selfReported": "Liczby obserwujących społeczności są wprowadzane przez twórcę."
     },
-    "tabPlaylists": "Playlisty"
+    "tabPlaylists": "Playlisty",
+    "offerWorthNow": "Około {{amount}} DHB po bieżącym kursie",
+    "offerNotePlaceholder": "Dodaj notatkę (opcjonalnie)",
+    "offerCommitsNothing": "Złożenie oferty nic nie kosztuje i nie blokuje DHB. Płacisz tylko, jeśli właściciel ją przyjmie.",
+    "offerNeedsHandle": "To konto nie ma nazwy użytkownika, na którą można złożyć ofertę."
   },
   "tv": {
     "title": "TV",
@@ -2997,7 +3001,36 @@
     "staleListing": "Ta oferta dotyczy @{{listed}}, ale teraz jesteś @{{current}}. Nie sprzeda się, dopóki nie wystawisz jej ponownie pod obecną nazwą — aktualizacja powyżej to robi.",
     "history": "Historia",
     "sold": "Sprzedane",
-    "bought": "Kupione"
+    "bought": "Kupione",
+    "makeOfferAction": "Złóż ofertę",
+    "tabOffers": "Oferty",
+    "signInForOffers": "Zaloguj się, aby zobaczyć oferty na swoją nazwę użytkownika.",
+    "offersForYou": "Oferty na twoją nazwę użytkownika",
+    "offersYouMade": "Oferty, które złożyłeś",
+    "offerHistory": "Wcześniejsze oferty",
+    "noIncomingOffers": "Nikt jeszcze nie zaproponował kupna twojej nazwy użytkownika.",
+    "noOutgoingOffers": "Nie złożyłeś jeszcze żadnej oferty. Otwórz czyjś profil, aby to zrobić.",
+    "offerExpires": "Wygasa {{when}}",
+    "payBefore": "Zapłać {{when}}",
+    "awaitingOwner": "Czeka na właściciela",
+    "acceptOffer": "Akceptuj",
+    "declineOffer": "Odrzuć",
+    "confirmAccept": "Akceptuj ofertę",
+    "cancel": "Anuluj",
+    "withdrawOffer": "Wycofaj",
+    "withdrawAcceptance": "Wycofaj akceptację",
+    "payAndClaim": "Zapłać i przejmij",
+    "acceptMovesNothingYet": "Akceptacja rezerwuje twoją nazwę użytkownika dla tego kupującego. Nic się nie zmienia, dopóki nie zapłaci, a wcześniej możesz się wycofać.",
+    "acceptedAwaitingPayment": "Zaakceptowałeś tę ofertę. Nazwa użytkownika wciąż należy do ciebie, a @{{handle}} staniesz się dopiero po zapłacie.",
+    "offerAcceptedPayNow": "Zaakceptowano. Nazwa użytkownika jest zarezerwowana dla ciebie, dopóki za nią nie zapłacisz.",
+    "offerStatus": {
+      "pending": "Czeka na odpowiedź",
+      "accepted": "Zaakceptowana, czeka na płatność",
+      "declined": "Odrzucona",
+      "withdrawn": "Wycofana",
+      "completed": "Zakończona",
+      "expired": "Wygasła"
+    }
   },
   "accounts": {
     "subtitle": "Całe konta na sprzedaż, wyceniane w DHB",

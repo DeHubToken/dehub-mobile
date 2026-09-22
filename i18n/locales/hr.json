@@ -1613,7 +1613,7 @@
     "unableToLoad": "Profil se ne može učitati. Pokušajte ponovo kasnije.",
     "doesNotExist": "Ovaj korisnik ne postoji ili se morate prijaviti za pregled profila.",
     "makeOffer": "Ponudi za {{handle}}",
-    "enterOfferAmount": "Unesite iznos DHB tokena koji želite ponuditi za preuzimanje ovog korisničkog imena.",
+    "enterOfferAmount": "Unesi iznos u dolarima koji želiš ponuditi za ovo korisničko ime.",
     "submitOffer": "Pošalji ponudu",
     "validOfferAmount": "Unesite važeći iznos ponude",
     "offerSubmitted": "Ponuda od {{amount}} DHB poslana za {{handle}}",
@@ -1639,7 +1639,11 @@
       "dehubFollowers": "Pratitelji na DeHubu",
       "selfReported": "Kreator unosi broj pratitelja na društvenim mrežama."
     },
-    "tabPlaylists": "Popisi izvođenja"
+    "tabPlaylists": "Popisi izvođenja",
+    "offerWorthNow": "Oko {{amount}} DHB po trenutnom tečaju",
+    "offerNotePlaceholder": "Dodaj poruku (neobavezno)",
+    "offerCommitsNothing": "Davanje ponude ne košta ništa i ne blokira DHB. Plaćaš samo ako vlasnik prihvati.",
+    "offerNeedsHandle": "Ovaj račun nema korisničko ime za koje bi se moglo ponuditi."
   },
   "tv": {
     "title": "TV",
@@ -2929,7 +2933,36 @@
     "staleListing": "Ovaj je oglas za @{{listed}}, ali sada si @{{current}}. Neće se prodati dok ga ponovno ne objaviš pod svojim trenutnim imenom — ažuriranje iznad upravo to radi.",
     "history": "Povijest",
     "sold": "Prodano",
-    "bought": "Kupljeno"
+    "bought": "Kupljeno",
+    "makeOfferAction": "Daj ponudu",
+    "tabOffers": "Ponude",
+    "signInForOffers": "Prijavi se da vidiš ponude za svoje korisničko ime.",
+    "offersForYou": "Ponude za tvoje korisničko ime",
+    "offersYouMade": "Ponude koje si dao",
+    "offerHistory": "Prijašnje ponude",
+    "noIncomingOffers": "Nitko još nije ponudio da kupi tvoje korisničko ime.",
+    "noOutgoingOffers": "Još nisi dao nijednu ponudu. Otvori nečiji profil da je daš.",
+    "offerExpires": "Istječe {{when}}",
+    "payBefore": "Plati {{when}}",
+    "awaitingOwner": "Čeka vlasnika",
+    "acceptOffer": "Prihvati",
+    "declineOffer": "Odbij",
+    "confirmAccept": "Prihvati ponudu",
+    "cancel": "Odustani",
+    "withdrawOffer": "Povuci",
+    "withdrawAcceptance": "Povuci prihvaćanje",
+    "payAndClaim": "Plati i preuzmi",
+    "acceptMovesNothingYet": "Prihvaćanjem se tvoje korisničko ime rezervira za ovog kupca. Ništa se ne pomiče dok ne plati, a do tada se možeš povući.",
+    "acceptedAwaitingPayment": "Prihvatio si ovu ponudu. Korisničko ime je i dalje tvoje, a @{{handle}} postaješ tek kad plati.",
+    "offerAcceptedPayNow": "Prihvaćeno. Korisničko ime je rezervirano za tebe dok ga ne platiš.",
+    "offerStatus": {
+      "pending": "Čeka odgovor",
+      "accepted": "Prihvaćeno, čeka plaćanje",
+      "declined": "Odbijeno",
+      "withdrawn": "Povučeno",
+      "completed": "Dovršeno",
+      "expired": "Isteklo"
+    }
   },
   "accounts": {
     "subtitle": "Cijeli računi na prodaju, cijena u DHB",

@@ -1626,7 +1626,7 @@
     "unableToLoad": "Unable to load profile. Please try again later.",
     "doesNotExist": "This user doesn't exist or you need to log in to view your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Enter the amount of DHB tokens you'd like to offer to acquire this username.",
+    "enterOfferAmount": "यो प्रयोगकर्ता नामका लागि तपाईं कति डलर दिन चाहनुहुन्छ त्यो रकम हाल्नुहोस्।",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Please enter a valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB submitted for {{handle}}",
@@ -1649,7 +1649,11 @@
       "dehubFollowers": "DeHub अनुयायीहरू",
       "selfReported": "सामाजिक अनुयायी गणनाहरू सृष्टिकर्ताद्वारा प्रविष्ट गरिन्छ ।"
     },
-    "tabPlaylists": "प्लेसूची"
+    "tabPlaylists": "प्लेसूची",
+    "offerWorthNow": "हालको दरमा लगभग {{amount}} DHB",
+    "offerNotePlaceholder": "टिप्पणी थप्नुहोस् (वैकल्पिक)",
+    "offerCommitsNothing": "प्रस्ताव गर्दा केही खर्च हुँदैन र कुनै DHB रोकिँदैन। मालिकले स्वीकार गरेमा मात्र तपाईंले भुक्तानी गर्नुहुन्छ।",
+    "offerNeedsHandle": "यो खातामा प्रस्ताव गर्न मिल्ने प्रयोगकर्ता नाम छैन।"
   },
   "dao": {
     "title": "DAO कोष",
@@ -2966,7 +2970,36 @@
     "staleListing": "यो सूची @{{listed}} का लागि हो, तर अहिले तपाईं @{{current}} हुनुहुन्छ। आफ्नो हालको ह्यान्डलमा पुनः सूचीबद्ध नगरेसम्म यो बिक्री हुँदैन — माथि अद्यावधिक गर्दा त्यही हुन्छ।",
     "history": "इतिहास",
     "sold": "बिक्री भयो",
-    "bought": "किनियो"
+    "bought": "किनियो",
+    "makeOfferAction": "प्रस्ताव गर्नुहोस्",
+    "tabOffers": "प्रस्तावहरू",
+    "signInForOffers": "आफ्नो प्रयोगकर्ता नामका प्रस्तावहरू हेर्न साइन इन गर्नुहोस्।",
+    "offersForYou": "तपाईंको प्रयोगकर्ता नामका प्रस्तावहरू",
+    "offersYouMade": "तपाईंले गर्नुभएका प्रस्तावहरू",
+    "offerHistory": "विगतका प्रस्तावहरू",
+    "noIncomingOffers": "अहिलेसम्म कसैले तपाईंको प्रयोगकर्ता नाम किन्ने प्रस्ताव गरेको छैन।",
+    "noOutgoingOffers": "तपाईंले अहिलेसम्म कुनै प्रस्ताव गर्नुभएको छैन। प्रस्ताव गर्न कसैको प्रोफाइल खोल्नुहोस्।",
+    "offerExpires": "{{when}} सकिन्छ",
+    "payBefore": "{{when}} भुक्तानी गर्नुहोस्",
+    "awaitingOwner": "मालिकको पर्खाइमा",
+    "acceptOffer": "स्वीकार गर्नुहोस्",
+    "declineOffer": "अस्वीकार गर्नुहोस्",
+    "confirmAccept": "प्रस्ताव स्वीकार गर्नुहोस्",
+    "cancel": "रद्द गर्नुहोस्",
+    "withdrawOffer": "फिर्ता लिनुहोस्",
+    "withdrawAcceptance": "स्वीकृति फिर्ता लिनुहोस्",
+    "payAndClaim": "भुक्तानी गरेर लिनुहोस्",
+    "acceptMovesNothingYet": "स्वीकार गर्दा तपाईंको प्रयोगकर्ता नाम यो किन्नेका लागि रोकिन्छ। उहाँले भुक्तानी नगरेसम्म केही बदलिँदैन, र त्यसअघि तपाईं पछि हट्न सक्नुहुन्छ।",
+    "acceptedAwaitingPayment": "तपाईंले यो प्रस्ताव स्वीकार गर्नुभयो। प्रयोगकर्ता नाम अझै तपाईंकै हो र उहाँले भुक्तानी गरेपछि मात्र तपाईं @{{handle}} बन्नुहुनेछ।",
+    "offerAcceptedPayNow": "स्वीकार भयो। तपाईंले भुक्तानी नगरेसम्म प्रयोगकर्ता नाम तपाईंका लागि रोकिएको छ।",
+    "offerStatus": {
+      "pending": "जवाफको पर्खाइमा",
+      "accepted": "स्वीकृत, भुक्तानीको पर्खाइमा",
+      "declined": "अस्वीकृत",
+      "withdrawn": "फिर्ता लिइयो",
+      "completed": "सम्पन्न",
+      "expired": "म्याद सकियो"
+    }
   },
   "accounts": {
     "subtitle": "सम्पूर्ण खाताहरू बिक्रीका लागि, मूल्य DHB मा",

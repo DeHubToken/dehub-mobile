@@ -1577,7 +1577,7 @@
     "unableToLoad": "Profilni yuklash imkoni boʻlmadi. Iltimos keyinroq qayta urinib koʻring.",
     "doesNotExist": "Bu foydalanuvchi mavjud emas yoki profilni koʻrish uchun kirishingiz kerak.",
     "makeOffer": "{{handle}} uchun taklif",
-    "enterOfferAmount": "DHB tokenlar sonini kiriting.",
+    "enterOfferAmount": "Ushbu foydalanuvchi nomi uchun taklif qilmoqchi bo‘lgan dollar miqdorini kirit.",
     "submitOffer": "Taklifni yuborish",
     "validOfferAmount": "Iltimos toʻgʻri summani kiriting",
     "offerSubmitted": "{{handle}} uchun {{amount}} DHB taklif yuborildi",
@@ -1603,7 +1603,11 @@
       "dehubFollowers": "DeHub izdoshlari",
       "selfReported": "Ijtimoiy tarmoqlardagi obunachilar soni yaratuvchi tomonidan kiritiladi."
     },
-    "tabPlaylists": "Qoʻshiq roʻyxatlari"
+    "tabPlaylists": "Qoʻshiq roʻyxatlari",
+    "offerWorthNow": "Joriy kurs bo‘yicha taxminan {{amount}} DHB",
+    "offerNotePlaceholder": "Izoh qo‘sh (ixtiyoriy)",
+    "offerCommitsNothing": "Taklif berish hech narsa turmaydi va DHB bloklamaydi. Faqat egasi rozi bo‘lsa to‘laysan.",
+    "offerNeedsHandle": "Bu hisobda taklif beriladigan foydalanuvchi nomi yo‘q."
   },
   "tv": {
     "title": "Televizor",
@@ -2980,7 +2984,36 @@
     "staleListing": "Bu e'lon @{{listed}} uchun, lekin siz endi @{{current}}siz. Joriy taxallusingiz bilan qayta e'lon qilmaguningizcha sotilmaydi — yuqoridagi yangilash aynan shuni qiladi.",
     "history": "Tarix",
     "sold": "Sotildi",
-    "bought": "Sotib olindi"
+    "bought": "Sotib olindi",
+    "makeOfferAction": "Taklif berish",
+    "tabOffers": "Takliflar",
+    "signInForOffers": "Foydalanuvchi nomingga kelgan takliflarni ko‘rish uchun kir.",
+    "offersForYou": "Foydalanuvchi noming uchun takliflar",
+    "offersYouMade": "Sen qilgan takliflar",
+    "offerHistory": "Oldingi takliflar",
+    "noIncomingOffers": "Hozircha hech kim foydalanuvchi nomingni sotib olishni taklif qilmadi.",
+    "noOutgoingOffers": "Hozircha taklif qilmagansan. Taklif berish uchun kimningdir profilini och.",
+    "offerExpires": "{{when}} tugaydi",
+    "payBefore": "{{when}} to‘la",
+    "awaitingOwner": "Egasi kutilmoqda",
+    "acceptOffer": "Qabul qilish",
+    "declineOffer": "Rad etish",
+    "confirmAccept": "Taklifni qabul qilish",
+    "cancel": "Bekor qilish",
+    "withdrawOffer": "Qaytarib olish",
+    "withdrawAcceptance": "Rozilikni qaytarib olish",
+    "payAndClaim": "To‘lab olish",
+    "acceptMovesNothingYet": "Qabul qilish foydalanuvchi nomingni shu xaridor uchun band qiladi. U to‘lamaguncha hech narsa o‘zgarmaydi, undan oldin voz kechishing mumkin.",
+    "acceptedAwaitingPayment": "Sen bu taklifni qabul qilding. Foydalanuvchi nomi hamon seniki va @{{handle}} faqat u to‘laganda bo‘lasan.",
+    "offerAcceptedPayNow": "Qabul qilindi. Sen to‘lamaguningcha foydalanuvchi nomi sen uchun saqlanadi.",
+    "offerStatus": {
+      "pending": "Javob kutilmoqda",
+      "accepted": "Qabul qilindi, to‘lov kutilmoqda",
+      "declined": "Rad etildi",
+      "withdrawn": "Qaytarib olindi",
+      "completed": "Yakunlandi",
+      "expired": "Muddati tugadi"
+    }
   },
   "accounts": {
     "subtitle": "To'liq hisoblar sotuvda, narxi DHB da",

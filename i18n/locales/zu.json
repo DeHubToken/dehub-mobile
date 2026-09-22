@@ -1612,7 +1612,7 @@
     "unableToLoad": "Ayikwazi ukulayisha iphrofayela. Sicela uzame kamuva.",
     "doesNotExist": "Lo msebenzisi akekho noma udinga ukungena ukubona iphrofayela yakho.",
     "makeOffer": "Yenza Isiphakamiso ku-{{handle}}",
-    "enterOfferAmount": "Faka inani lamathokheni e-DHB ofuna ukuwathumela ukuthola leli gama lomsebenzisi.",
+    "enterOfferAmount": "Faka inani lamadola aseMelika ofuna ukulinikela ngaleli gama lomsebenzisi.",
     "submitOffer": "Thumela Isiphakamiso",
     "validOfferAmount": "Sicela ufake inani lesiphakamiso elifanele",
     "offerSubmitted": "Isiphakamiso se-DHB {{amount}} ku-{{handle}} sithunyelwe",
@@ -1638,7 +1638,11 @@
       "dehubFollowers": "Abalandeli be-DeHub",
       "selfReported": "Izibalo zabalandeli zomphakathi zifakwa umsunguli."
     },
-    "tabPlaylists": "Uhlu lokudlalwayo"
+    "tabPlaylists": "Uhlu lokudlalwayo",
+    "offerWorthNow": "Cishe {{amount}} DHB ngesilinganiso samanje",
+    "offerNotePlaceholder": "Engeza inothi (ongakhetha)",
+    "offerCommitsNothing": "Ukwenza isinikelo akubizi lutho futhi akubambi ma-DHB. Ukhokha kuphela uma umnikazi evuma.",
+    "offerNeedsHandle": "Le akhawunti ayinalo igama lomsebenzisi ongenza kulo isinikelo."
   },
   "tv": {
     "title": "TV",
@@ -2958,7 +2962,36 @@
     "staleListing": "Lolu hlu lolika-@{{listed}}, kodwa manje ungu-@{{current}}. Ngeke luthengiswe kuze kube yilapho ulufaka kabusha ngaphansi kwegama lakho lamanje — ukubuyekeza ngenhla kwenza lokho.",
     "history": "Umlando",
     "sold": "Kuthengisiwe",
-    "bought": "Kuthengiwe"
+    "bought": "Kuthengiwe",
+    "makeOfferAction": "Yenza isinikelo",
+    "tabOffers": "Izinikelo",
+    "signInForOffers": "Ngena ukuze ubone izinikelo zegama lakho lomsebenzisi.",
+    "offersForYou": "Izinikelo zegama lakho lomsebenzisi",
+    "offersYouMade": "Izinikelo ozenzile",
+    "offerHistory": "Izinikelo ezedlule",
+    "noIncomingOffers": "Akukho muntu osenikele ngokuthenga igama lakho lomsebenzisi.",
+    "noOutgoingOffers": "Awukenzi noma yiziphi izinikelo. Vula iphrofayela yomuntu ukuze wenze.",
+    "offerExpires": "Iphelelwa yisikhathi {{when}}",
+    "payBefore": "Khokha {{when}}",
+    "awaitingOwner": "Ilindele umnikazi",
+    "acceptOffer": "Yamukela",
+    "declineOffer": "Yenqaba",
+    "confirmAccept": "Yamukela isinikelo",
+    "cancel": "Khansela",
+    "withdrawOffer": "Hoxisa",
+    "withdrawAcceptance": "Hoxisa ukwamukela",
+    "payAndClaim": "Khokha bese uthatha",
+    "acceptMovesNothingYet": "Ukwamukela kubamba igama lakho lomsebenzisi kulo mthengi. Akukho okushintshayo aze akhokhe, futhi ngaphambi kwalokho ungahoxisa.",
+    "acceptedAwaitingPayment": "Wamukele lesi sinikelo. Igama lomsebenzisi lisengelakho futhi uzoba ngu-@{{handle}} kuphela uma esekhokhile.",
+    "offerAcceptedPayNow": "Kwamukelwe. Igama lomsebenzisi libanjelwe wena uze ukhokhe.",
+    "offerStatus": {
+      "pending": "Ilindele impendulo",
+      "accepted": "Kwamukelwe, kulindwe inkokhelo",
+      "declined": "Kwenqatshwe",
+      "withdrawn": "Kuhoxisiwe",
+      "completed": "Kuqediwe",
+      "expired": "Kuphelelwe yisikhathi"
+    }
   },
   "accounts": {
     "subtitle": "Ama-akhawunti aphelele athengiswayo, anentengo nge-DHB",

@@ -1592,7 +1592,7 @@
     "unableToLoad": "Profil konnte nicht geladen werden. Versuche es später.",
     "doesNotExist": "Dieser Benutzer existiert nicht oder du musst dich anmelden.",
     "makeOffer": "Angebot für {{handle}} machen",
-    "enterOfferAmount": "Gib den DHB-Betrag ein, den du für diesen Benutzernamen bieten möchtest.",
+    "enterOfferAmount": "Gib den Dollarbetrag ein, den du für diesen Benutzernamen bieten willst.",
     "submitOffer": "Angebot einreichen",
     "validOfferAmount": "Bitte gib einen gültigen Betrag ein",
     "offerSubmitted": "Angebot von {{amount}} DHB für {{handle}} eingereicht",
@@ -1618,7 +1618,11 @@
       "dehubFollowers": "DeHub-Follower",
       "selfReported": "Die Anzahl der sozialen Follower wird vom Ersteller eingegeben."
     },
-    "tabPlaylists": "Playlisten"
+    "tabPlaylists": "Playlisten",
+    "offerWorthNow": "Rund {{amount}} DHB zum aktuellen Kurs",
+    "offerNotePlaceholder": "Notiz hinzufügen (optional)",
+    "offerCommitsNothing": "Ein Angebot kostet nichts und bindet keine DHB. Du zahlst nur, wenn der Inhaber annimmt.",
+    "offerNeedsHandle": "Dieses Konto hat keinen Benutzernamen, für den man bieten könnte."
   },
   "tv": {
     "title": "TV",
@@ -2949,7 +2953,36 @@
     "fixedDollarPrice": "Der Dollarpreis bleibt fest; die Tokenmenge wird aktualisiert.",
     "priceUpdated": "Preis aktualisiert. Prüfe den Betrag und tippe erneut auf Kaufen.",
     "tokensPaidToSeller": "Direkt an den Verkäufer gezahlt",
-    "priceUsd": "Preis (USD)"
+    "priceUsd": "Preis (USD)",
+    "makeOfferAction": "Angebot machen",
+    "tabOffers": "Angebote",
+    "signInForOffers": "Melde dich an, um Angebote für deinen Benutzernamen zu sehen.",
+    "offersForYou": "Angebote für deinen Benutzernamen",
+    "offersYouMade": "Deine Angebote",
+    "offerHistory": "Frühere Angebote",
+    "noIncomingOffers": "Bisher hat niemand angeboten, deinen Benutzernamen zu kaufen.",
+    "noOutgoingOffers": "Du hast noch keine Angebote gemacht. Öffne ein Profil, um eines abzugeben.",
+    "offerExpires": "Läuft {{when}} ab",
+    "payBefore": "Bezahle {{when}}",
+    "awaitingOwner": "Wartet auf den Inhaber",
+    "acceptOffer": "Annehmen",
+    "declineOffer": "Ablehnen",
+    "confirmAccept": "Angebot annehmen",
+    "cancel": "Abbrechen",
+    "withdrawOffer": "Zurückziehen",
+    "withdrawAcceptance": "Annahme zurückziehen",
+    "payAndClaim": "Bezahlen und übernehmen",
+    "acceptMovesNothingYet": "Mit der Annahme wird dein Benutzername für diesen Käufer reserviert. Es bewegt sich nichts, bis er bezahlt, und du kannst vorher zurücktreten.",
+    "acceptedAwaitingPayment": "Du hast dieses Angebot angenommen. Der Benutzername gehört weiterhin dir, und du wirst erst zu @{{handle}}, wenn bezahlt wurde.",
+    "offerAcceptedPayNow": "Angenommen. Der Benutzername ist für dich reserviert, bis du bezahlst.",
+    "offerStatus": {
+      "pending": "Wartet auf Antwort",
+      "accepted": "Angenommen, Zahlung ausstehend",
+      "declined": "Abgelehnt",
+      "withdrawn": "Zurückgezogen",
+      "completed": "Abgeschlossen",
+      "expired": "Abgelaufen"
+    }
   },
   "accounts": {
     "subtitle": "Ganze Konten zu verkaufen, Preis in DHB",

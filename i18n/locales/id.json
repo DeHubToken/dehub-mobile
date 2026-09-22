@@ -1614,7 +1614,7 @@
     "unableToLoad": "Tidak dapat memuat profil. Silakan coba lagi nanti.",
     "doesNotExist": "Pengguna ini tidak ada atau Anda perlu masuk untuk melihat profil Anda.",
     "makeOffer": "Buat Penawaran untuk {{handle}}",
-    "enterOfferAmount": "Masukkan jumlah token DHB yang ingin Anda tawarkan untuk mendapatkan nama pengguna ini.",
+    "enterOfferAmount": "Masukkan jumlah dalam dolar AS yang ingin kamu tawarkan untuk nama pengguna ini.",
     "submitOffer": "Kirim Penawaran",
     "validOfferAmount": "Silakan masukkan jumlah penawaran yang valid",
     "offerSubmitted": "Penawaran {{amount}} DHB untuk {{handle}} telah dikirim",
@@ -1640,7 +1640,11 @@
       "dehubFollowers": "Pengikut DeHub",
       "selfReported": "Jumlah pengikut sosial dimasukkan oleh kreator."
     },
-    "tabPlaylists": "Daftar Putar"
+    "tabPlaylists": "Daftar Putar",
+    "offerWorthNow": "Sekitar {{amount}} DHB dengan kurs saat ini",
+    "offerNotePlaceholder": "Tambahkan catatan (opsional)",
+    "offerCommitsNothing": "Membuat penawaran tidak memakan biaya dan tidak mengunci DHB. Kamu baru membayar jika pemiliknya menerima.",
+    "offerNeedsHandle": "Akun ini tidak punya nama pengguna untuk ditawar."
   },
   "tv": {
     "title": "TV",
@@ -2930,7 +2934,36 @@
     "staleListing": "Iklan ini untuk @{{listed}}, tetapi sekarang kamu @{{current}}. Iklan tidak akan terjual sampai kamu memasangnya ulang dengan handle saat ini — memperbarui di atas melakukan itu.",
     "history": "Riwayat",
     "sold": "Terjual",
-    "bought": "Dibeli"
+    "bought": "Dibeli",
+    "makeOfferAction": "Buat penawaran",
+    "tabOffers": "Penawaran",
+    "signInForOffers": "Masuk untuk melihat penawaran atas nama penggunamu.",
+    "offersForYou": "Penawaran untuk nama penggunamu",
+    "offersYouMade": "Penawaran yang kamu buat",
+    "offerHistory": "Penawaran sebelumnya",
+    "noIncomingOffers": "Belum ada yang menawar untuk membeli nama penggunamu.",
+    "noOutgoingOffers": "Kamu belum membuat penawaran. Buka profil seseorang untuk menawar.",
+    "offerExpires": "Berakhir {{when}}",
+    "payBefore": "Bayar {{when}}",
+    "awaitingOwner": "Menunggu pemiliknya",
+    "acceptOffer": "Terima",
+    "declineOffer": "Tolak",
+    "confirmAccept": "Terima penawaran",
+    "cancel": "Batal",
+    "withdrawOffer": "Tarik",
+    "withdrawAcceptance": "Tarik persetujuan",
+    "payAndClaim": "Bayar dan ambil",
+    "acceptMovesNothingYet": "Menerima akan menahan nama penggunamu untuk pembeli ini. Tidak ada yang berpindah sampai dia membayar, dan sebelum itu kamu masih bisa menarik diri.",
+    "acceptedAwaitingPayment": "Kamu menerima penawaran ini. Nama pengguna masih milikmu dan kamu baru menjadi @{{handle}} setelah dia membayar.",
+    "offerAcceptedPayNow": "Diterima. Nama pengguna ditahan untukmu sampai kamu membayarnya.",
+    "offerStatus": {
+      "pending": "Menunggu jawaban",
+      "accepted": "Diterima, menunggu pembayaran",
+      "declined": "Ditolak",
+      "withdrawn": "Ditarik",
+      "completed": "Selesai",
+      "expired": "Kedaluwarsa"
+    }
   },
   "accounts": {
     "subtitle": "Akun utuh dijual, dihargai dalam DHB",

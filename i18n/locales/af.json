@@ -275,7 +275,7 @@
     "unableToLoad": "Unable to load profile. Please try again later.",
     "doesNotExist": "This user doesn't exist or you need to log in to view your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Enter the amount of DHB tokens you'd like to offer to acquire this username.",
+    "enterOfferAmount": "Voer die bedrag in dollar in wat jy vir hierdie gebruikersnaam wil bie.",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Please enter a valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB submitted for {{handle}}",
@@ -301,7 +301,11 @@
       "dehubFollowers": "DeHub-volgelinge",
       "selfReported": "Sosiale volgelinge tel word deur die skepper ingevoer."
     },
-    "tabPlaylists": "Speellyste"
+    "tabPlaylists": "Speellyste",
+    "offerWorthNow": "Ongeveer {{amount}} DHB teen die huidige koers",
+    "offerNotePlaceholder": "Voeg ’n nota by (opsioneel)",
+    "offerCommitsNothing": "’n Aanbod maak kos niks en hou geen DHB vas nie. Jy betaal net as die eienaar aanvaar.",
+    "offerNeedsHandle": "Hierdie rekening het geen gebruikersnaam om voor te bie nie."
   },
   "settings": {
     "smartReplies": "Voorgestelde antwoorde",
@@ -3046,7 +3050,36 @@
     "staleListing": "Hierdie advertensie is vir @{{listed}}, maar jy is nou @{{current}}. Dit sal nie verkoop voordat jy dit weer onder jou huidige handle plaas nie — die bywerking hierbo doen presies dit.",
     "history": "Geskiedenis",
     "sold": "Verkoop",
-    "bought": "Gekoop"
+    "bought": "Gekoop",
+    "makeOfferAction": "Maak ’n aanbod",
+    "tabOffers": "Aanbiedinge",
+    "signInForOffers": "Meld aan om aanbiedinge vir jou gebruikersnaam te sien.",
+    "offersForYou": "Aanbiedinge vir jou gebruikersnaam",
+    "offersYouMade": "Aanbiedinge wat jy gemaak het",
+    "offerHistory": "Vorige aanbiedinge",
+    "noIncomingOffers": "Niemand het nog aangebied om jou gebruikersnaam te koop nie.",
+    "noOutgoingOffers": "Jy het nog geen aanbiedinge gemaak nie. Maak iemand se profiel oop om een te maak.",
+    "offerExpires": "Verval {{when}}",
+    "payBefore": "Betaal {{when}}",
+    "awaitingOwner": "Wag op die eienaar",
+    "acceptOffer": "Aanvaar",
+    "declineOffer": "Weier",
+    "confirmAccept": "Aanvaar aanbod",
+    "cancel": "Kanselleer",
+    "withdrawOffer": "Trek terug",
+    "withdrawAcceptance": "Trek aanvaarding terug",
+    "payAndClaim": "Betaal en eis op",
+    "acceptMovesNothingYet": "Deur te aanvaar word jou gebruikersnaam vir hierdie koper gehou. Niks verander tot hulle betaal nie, en jy kan voor dit terugtrek.",
+    "acceptedAwaitingPayment": "Jy het hierdie aanbod aanvaar. Die gebruikersnaam is steeds joune en jy word eers @{{handle}} sodra hulle betaal.",
+    "offerAcceptedPayNow": "Aanvaar. Die gebruikersnaam word vir jou gehou totdat jy daarvoor betaal.",
+    "offerStatus": {
+      "pending": "Wag vir ’n antwoord",
+      "accepted": "Aanvaar, wag vir betaling",
+      "declined": "Geweier",
+      "withdrawn": "Teruggetrek",
+      "completed": "Voltooi",
+      "expired": "Verval"
+    }
   },
   "accounts": {
     "subtitle": "Hele rekeninge te koop, geprys in DHB",

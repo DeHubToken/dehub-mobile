@@ -29,6 +29,8 @@ import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import SellUsernamePanel from "../components/Usernames/SellUsernamePanel";
+import OffersPanel from "../components/Usernames/OffersPanel";
+import MakeOfferSheet from "../components/Usernames/MakeOfferSheet";
 import BuyUsernameSheet from "../components/Usernames/BuyUsernameSheet";
 import Avatar from "../components/common/Avatar";
 import { getAvatarUrl, getBadgeUrlFor } from "../libs/misc";
@@ -158,13 +160,16 @@ export default function UsernamesScreen() {
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
 
-  const [tab, setTab] = useState<"browse" | "sell">("browse");
+  const [tab, setTab] = useState<"browse" | "sell" | "offers">("browse");
   const [sort, setSort] = useState<UsernameSort>("newest");
   // A shared listing link (dehub.io/usernames?handle=x) lands here with the
   // handle already in the box, the same as web's ?handle= param.
   const [search, setSearch] = useState(() => String(route.params?.handle || ""));
   const [band, setBand] = useState<string | null>(null);
   const [selected, setSelected] = useState<UsernameListing | null>(null);
+  // The handle a bid is being made for. Set from the "somebody holds this"
+  // banner, which is the moment the want actually exists.
+  const [offering, setOffering] = useState<string | null>(null);
 
   const activeBand = PRICE_BANDS.find((b) => b.key === band);
   const debouncedSearch = useDebouncedValue(search, 300);
@@ -202,12 +207,13 @@ export default function UsernamesScreen() {
     }
     if (exact.state === "taken") {
       return (
-        <View style={styles.banner}>
+        <Pressable style={styles.banner} onPress={() => setOffering(exact.username)}>
           <Icon name="User" size={15} color="#A1A1AA" />
           <Text style={styles.bannerText}>
             {t("usernames.bannerTaken", { handle: exact.username })}
           </Text>
-        </View>
+          <Text style={styles.bannerAction}>{t("usernames.makeOfferAction")}</Text>
+        </Pressable>
       );
     }
     if (exact.state === "reserved") {
@@ -232,14 +238,18 @@ export default function UsernamesScreen() {
       />
 
       <View style={styles.segment}>
-        {(["browse", "sell"] as const).map((key) => (
+        {(["browse", "sell", "offers"] as const).map((key) => (
           <Pressable
             key={key}
             onPress={() => setTab(key)}
             style={[styles.segmentBtn, tab === key && styles.segmentBtnActive]}
           >
             <Text style={[styles.segmentText, tab === key && styles.segmentTextActive]}>
-              {key === "browse" ? t("usernames.browse") : t("usernames.sell")}
+              {key === "browse"
+                ? t("usernames.browse")
+                : key === "sell"
+                  ? t("usernames.sell")
+                  : t("usernames.tabOffers")}
             </Text>
           </Pressable>
         ))}
@@ -357,6 +367,11 @@ export default function UsernamesScreen() {
             />
           )}
         </>
+      ) : tab === "offers" ? (
+        <OffersPanel
+          isAuthed={isAuthed}
+          onSignIn={() => navigation.navigate(ScreenNames.SignIn)}
+        />
       ) : (
         <SellUsernamePanel
           isAuthed={isAuthed}
@@ -371,6 +386,16 @@ export default function UsernamesScreen() {
         isAuthed={isAuthed}
         onSignIn={() => {
           setSelected(null);
+          navigation.navigate(ScreenNames.SignIn);
+        }}
+      />
+      <MakeOfferSheet
+        username={offering}
+        visible={!!offering}
+        onClose={() => setOffering(null)}
+        isAuthed={isAuthed}
+        onSignIn={() => {
+          setOffering(null);
           navigation.navigate(ScreenNames.SignIn);
         }}
       />
@@ -393,6 +418,7 @@ const styles = StyleSheet.create({
   },
   segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 9, alignItems: "center" },
   segmentBtnActive: { backgroundColor: "rgba(255,255,255,0.15)" },
+  bannerAction: { color: "#F4F4F5", fontSize: 12, fontWeight: "700", flexShrink: 0 },
   segmentText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600", flexShrink: 0 },
   segmentTextActive: { color: "#FFFFFF" },
 

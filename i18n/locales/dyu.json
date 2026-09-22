@@ -1591,7 +1591,7 @@
     "unableToLoad": "Kɔrɔbɔ bɔ",
     "doesNotExist": "Kɔrɔbɔ bɔ",
     "makeOffer": "Kɔrɔbɔ {{handle}}",
-    "enterOfferAmount": "Kɔrɔbɔ DHB",
+    "enterOfferAmount": "Dolari hakɛ sɛbɛn i b’a fɛ ka min di nin tɔgɔ in na.",
     "submitOffer": "Kɔrɔbɔ",
     "validOfferAmount": "Kɔrɔbɔ",
     "offerSubmitted": "Kɔrɔbɔ {{handle}} {{amount}} DHB",
@@ -1617,7 +1617,11 @@
       "dehubFollowers": "DeHub ka kalandenw",
       "selfReported": "Mɔgɔ min ye mɔgɔ bila sira ka tugu a kɔ, ale lo ye mɔgɔ bila sira ka tugu a kɔ."
     },
-    "tabPlaylists": "Dɔnkililabagaw"
+    "tabPlaylists": "Dɔnkililabagaw",
+    "offerWorthNow": "Sisan sɔngɔ la, a bɛ se ka kɛ {{amount}} DHB ye",
+    "offerNotePlaceholder": "Sɛbɛn dɔ fara a kan (i sago)",
+    "offerCommitsNothing": "Fɛɛrɛ kɛli tɛ foyi bɔ i bolo, a tɛ DHB si datugu. I bɛ sara dɔrɔn n’a tigi y’a minɛ.",
+    "offerNeedsHandle": "Nin jatebɔlan in tɛ tɔgɔ si sɔrɔ ka fɛɛrɛ kɛ a kan."
   },
   "tv": {
     "title": "TV",
@@ -2887,7 +2891,36 @@
     "staleListing": "Nin feereta ye @{{listed}} ta ye, nka i ye @{{current}} ye sisan. A tɛna feere fo i ka a bila kokura i ka tɔgɔ sisan na — sanfɛ kura o de bɛ kɛ.",
     "history": "Tariku",
     "sold": "A feerela",
-    "bought": "A sanna"
+    "bought": "A sanna",
+    "makeOfferAction": "Fɛɛrɛ kɛ",
+    "tabOffers": "Sɔrɔli fɛɛrɛw",
+    "signInForOffers": "I ka don walisa ka i tɔgɔ kan sɔrɔli fɛɛrɛw ye.",
+    "offersForYou": "I tɔgɔ kan sɔrɔli fɛɛrɛw",
+    "offersYouMade": "I ye sɔrɔli fɛɛrɛ minnu kɛ",
+    "offerHistory": "Sɔrɔli fɛɛrɛ kɔrɔw",
+    "noIncomingOffers": "Mɔgɔ si ma fɛɛrɛ kɛ fɔlɔ ka i tɔgɔ san.",
+    "noOutgoingOffers": "I ma fɛɛrɛ si kɛ fɔlɔ. Mɔgɔ dɔ ka kunnafoni yɔrɔ da wuli walisa k’a kɛ.",
+    "offerExpires": "A bɛ ban {{when}}",
+    "payBefore": "Sara {{when}}",
+    "awaitingOwner": "A tigi makɔnɔni",
+    "acceptOffer": "A minɛ",
+    "declineOffer": "A ban",
+    "confirmAccept": "Fɛɛrɛ minɛ",
+    "cancel": "A dabila",
+    "withdrawOffer": "A bɔ",
+    "withdrawAcceptance": "Minɛli bɔ",
+    "payAndClaim": "Sara ka ta",
+    "acceptMovesNothingYet": "N’i y’a minɛ, i tɔgɔ bɛ mara nin sannikɛla in ye. Foyi tɛ yɛlɛma fo n’a ye wari sara, o ɲɛ i bɛ se ka segin kɔ.",
+    "acceptedAwaitingPayment": "I ye nin fɛɛrɛ in minɛ. I tɔgɔ bɛ i bolo halisa, i bɛ kɛ @{{handle}} ye dɔrɔn n’a ye wari sara.",
+    "offerAcceptedPayNow": "A minɛna. I tɔgɔ bɛ mara i ye fo n’i ye wari sara.",
+    "offerStatus": {
+      "pending": "Jaabi makɔnɔni",
+      "accepted": "A minɛna, wari makɔnɔni",
+      "declined": "A banna",
+      "withdrawn": "A bɔra",
+      "completed": "A banna ka ɲɛ",
+      "expired": "A waati tɛmɛna"
+    }
   },
   "accounts": {
     "subtitle": "Kunnafonidon bɛɛ bɛ feere, sɔngɔ bɛ DHB la",

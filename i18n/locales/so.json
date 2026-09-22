@@ -1604,7 +1604,7 @@
     "unableToLoad": "Lama soo dejin karin bogga shaqsiga. Fadlan mar kale isku day.",
     "doesNotExist": "Isticmaalahan ma jiro ama waa inaad soo gasho si aad u aragto boggaaga shaqsiga.",
     "makeOffer": "Dalacsii {{handle}}",
-    "enterOfferAmount": "Geli qaddarka tokennadda DHB ee aad rabto inaad u dalacsiso si aad u hesho magacan isticmaalaha.",
+    "enterOfferAmount": "Geli qaddarka doolarka Maraykanka ee aad rabto inaad u bixiso magacan isticmaale.",
     "submitOffer": "Dir Dalacsiinta",
     "validOfferAmount": "Fadlan geli qaddar dalacsiin sax ah",
     "offerSubmitted": "Dalacsiin {{amount}} DHB oo {{handle}} ah waa la diray",
@@ -1630,7 +1630,11 @@
       "dehubFollowers": "DeHub raacayaasha",
       "selfReported": "Tirooyinka raacayaasha bulshada waxaa soo galaya abuuraha."
     },
-    "tabPlaylists": "Liisaska ciyaarta"
+    "tabPlaylists": "Liisaska ciyaarta",
+    "offerWorthNow": "Qiyaastii {{amount}} DHB qiimaha hadda",
+    "offerNotePlaceholder": "Ku dar qoraal (ikhtiyaari)",
+    "offerCommitsNothing": "Dalab samayntu waxba kaama qaadanayso mana xidhayso DHB. Waxaad bixinaysaa haddii uu milkiiluhu aqbalo oo kaliya.",
+    "offerNeedsHandle": "Akoonkan ma laha magac isticmaale oo dalab loo sameeyo."
   },
   "tv": {
     "title": "TV",
@@ -2920,7 +2924,36 @@
     "staleListing": "Liiskani waa mid @{{listed}}, laakiin hadda waxaad tahay @{{current}}. Ma iibsanayo ilaa aad dib ugu liisto magacaaga hadda — cusboonaysiinta kor ku xusan taas ayay samaynaysaa.",
     "history": "Taariikh",
     "sold": "La iibiyay",
-    "bought": "La iibsaday"
+    "bought": "La iibsaday",
+    "makeOfferAction": "Samee dalab",
+    "tabOffers": "Dalabyo",
+    "signInForOffers": "Gal si aad u aragto dalabyada magacaaga isticmaale.",
+    "offersForYou": "Dalabyada magacaaga isticmaale",
+    "offersYouMade": "Dalabyada aad samaysay",
+    "offerHistory": "Dalabyadii hore",
+    "noIncomingOffers": "Weli cidna kuma bixin dalab ah inay iibsato magacaaga isticmaale.",
+    "noOutgoingOffers": "Weli dalab ma aadan samayn. Fur profile-ka qof si aad u samayso.",
+    "offerExpires": "Wuxuu dhacayaa {{when}}",
+    "payBefore": "Bixi {{when}}",
+    "awaitingOwner": "Waxaa la sugayaa milkiilaha",
+    "acceptOffer": "Aqbal",
+    "declineOffer": "Diid",
+    "confirmAccept": "Aqbal dalabka",
+    "cancel": "Jooji",
+    "withdrawOffer": "Ka noqo",
+    "withdrawAcceptance": "Ka noqo aqbalaadda",
+    "payAndClaim": "Bixi oo qaado",
+    "acceptMovesNothingYet": "Aqbalaaddu waxay magacaaga isticmaale u hayneysaa iibsadahan. Waxba isma beddelayaan ilaa uu bixiyo, taas ka hor waad ka noqon kartaa.",
+    "acceptedAwaitingPayment": "Waad aqbashay dalabkan. Magaca isticmaale weli adigaa leh, waxaadna noqon doontaa @{{handle}} marka uu bixiyo oo kaliya.",
+    "offerAcceptedPayNow": "Waa la aqbalay. Magaca isticmaale waa laguu hayaa ilaa aad bixiso.",
+    "offerStatus": {
+      "pending": "Waxaa la sugayaa jawaab",
+      "accepted": "Waa la aqbalay, lacag ayaa la sugayaa",
+      "declined": "Waa la diiday",
+      "withdrawn": "Waa laga noqday",
+      "completed": "Waa la dhammeeyey",
+      "expired": "Wakhtigii wuu dhacay"
+    }
   },
   "accounts": {
     "subtitle": "Akoonno dhammaystiran oo iib ah, qiimahoodu waa DHB",

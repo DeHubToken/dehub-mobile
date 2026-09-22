@@ -1612,7 +1612,7 @@
     "unableToLoad": "Nepavyko įkelti profilio. Bandykite vėliau.",
     "doesNotExist": "Šis naudotojas neegzistuoja arba turite prisijungti, kad matytumėte savo profilį.",
     "makeOffer": "Pateikti pasiūlymą dėl {{handle}}",
-    "enterOfferAmount": "Įveskite DHB žetonų sumą, kurią norėtumėte pasiūlyti šiam naudotojo vardui įsigyti.",
+    "enterOfferAmount": "Įvesk sumą doleriais, kurią nori pasiūlyti už šį naudotojo vardą.",
     "submitOffer": "Pateikti pasiūlymą",
     "validOfferAmount": "Įveskite teisingą pasiūlymo sumą",
     "offerSubmitted": "{{amount}} DHB pasiūlymas pateiktas dėl {{handle}}",
@@ -1638,7 +1638,11 @@
       "dehubFollowers": "„DeHub“ sekėjai",
       "selfReported": "Socialinių sekėjų skaičių įveda kūrėjas."
     },
-    "tabPlaylists": "Grojaraščiai"
+    "tabPlaylists": "Grojaraščiai",
+    "offerWorthNow": "Apie {{amount}} DHB dabartiniu kursu",
+    "offerNotePlaceholder": "Pridėk žinutę (neprivaloma)",
+    "offerCommitsNothing": "Pasiūlymas nieko nekainuoja ir neužšaldo DHB. Sumokėsi tik tada, jei savininkas sutiks.",
+    "offerNeedsHandle": "Ši paskyra neturi naudotojo vardo, dėl kurio būtų galima siūlyti."
   },
   "tv": {
     "title": "TV",
@@ -2928,7 +2932,36 @@
     "staleListing": "Šis skelbimas skirtas @{{listed}}, bet dabar tu esi @{{current}}. Jis nebus parduotas, kol jo neišstatysi iš naujo su dabartiniu vardu — atnaujinimas viršuje kaip tik tai ir padaro.",
     "history": "Istorija",
     "sold": "Parduota",
-    "bought": "Nupirkta"
+    "bought": "Nupirkta",
+    "makeOfferAction": "Pateikti pasiūlymą",
+    "tabOffers": "Pasiūlymai",
+    "signInForOffers": "Prisijunk, kad matytum pasiūlymus dėl savo naudotojo vardo.",
+    "offersForYou": "Pasiūlymai dėl tavo naudotojo vardo",
+    "offersYouMade": "Tavo pateikti pasiūlymai",
+    "offerHistory": "Ankstesni pasiūlymai",
+    "noIncomingOffers": "Kol kas niekas nesiūlė nupirkti tavo naudotojo vardo.",
+    "noOutgoingOffers": "Dar nepateikei jokių pasiūlymų. Atidaryk kieno nors profilį ir pateik.",
+    "offerExpires": "Baigiasi {{when}}",
+    "payBefore": "Sumokėk {{when}}",
+    "awaitingOwner": "Laukiama savininko",
+    "acceptOffer": "Priimti",
+    "declineOffer": "Atmesti",
+    "confirmAccept": "Priimti pasiūlymą",
+    "cancel": "Atšaukti",
+    "withdrawOffer": "Atsiimti",
+    "withdrawAcceptance": "Atsiimti sutikimą",
+    "payAndClaim": "Sumokėti ir perimti",
+    "acceptMovesNothingYet": "Priėmus, tavo naudotojo vardas rezervuojamas šiam pirkėjui. Niekas nejuda, kol jis nesumoka, ir iki tol gali atsiimti.",
+    "acceptedAwaitingPayment": "Priėmei šį pasiūlymą. Naudotojo vardas vis dar tavo, o @{{handle}} tapsi tik tada, kai jis sumokės.",
+    "offerAcceptedPayNow": "Priimta. Naudotojo vardas rezervuotas tau, kol už jį sumokėsi.",
+    "offerStatus": {
+      "pending": "Laukiama atsakymo",
+      "accepted": "Priimta, laukiama mokėjimo",
+      "declined": "Atmesta",
+      "withdrawn": "Atsiimta",
+      "completed": "Užbaigta",
+      "expired": "Nebegalioja"
+    }
   },
   "accounts": {
     "subtitle": "Parduodamos visos paskyros, kaina DHB",

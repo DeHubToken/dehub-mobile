@@ -149,7 +149,7 @@
     "unableToLoad": "Unable to load profile. Please try again later.",
     "doesNotExist": "This user doesn't exist or you need to log in to view your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Enter the amount of DHB tokens you'd like to offer to acquire this username.",
+    "enterOfferAmount": "Zadaj sumu v dolároch, ktorú chceš za toto používateľské meno ponúknuť.",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Please enter a valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB submitted for {{handle}}",
@@ -172,7 +172,11 @@
       "dehubFollowers": "Sledovatelia DeHubu",
       "selfReported": "Počet sledovateľov na sociálnych sieťach zadáva tvorca."
     },
-    "tabPlaylists": "Playlisty"
+    "tabPlaylists": "Playlisty",
+    "offerWorthNow": "Asi {{amount}} DHB pri súčasnom kurze",
+    "offerNotePlaceholder": "Pridaj poznámku (nepovinné)",
+    "offerCommitsNothing": "Podať ponuku nič nestojí a neblokuje žiadne DHB. Platíš, len ak majiteľ prijme.",
+    "offerNeedsHandle": "Tento účet nemá používateľské meno, na ktoré by sa dalo ponúkať."
   },
   "settings": {
     "smartReplies": "Navrhované odpovede",
@@ -3095,7 +3099,36 @@
     "staleListing": "Táto ponuka je pre @{{listed}}, ale teraz si @{{current}}. Nepredá sa, kým ju znova nevystavíš pod svojím súčasným menom — aktualizácia vyššie to urobí.",
     "history": "História",
     "sold": "Predané",
-    "bought": "Kúpené"
+    "bought": "Kúpené",
+    "makeOfferAction": "Podať ponuku",
+    "tabOffers": "Ponuky",
+    "signInForOffers": "Prihlás sa, aby si videl ponuky na svoje používateľské meno.",
+    "offersForYou": "Ponuky na tvoje používateľské meno",
+    "offersYouMade": "Ponuky, ktoré si podal",
+    "offerHistory": "Staršie ponuky",
+    "noIncomingOffers": "Zatiaľ nikto neponúkol, že tvoje používateľské meno kúpi.",
+    "noOutgoingOffers": "Zatiaľ si nepodal žiadnu ponuku. Otvor niečí profil a podaj ju.",
+    "offerExpires": "Vyprší {{when}}",
+    "payBefore": "Zaplať {{when}}",
+    "awaitingOwner": "Čaká na majiteľa",
+    "acceptOffer": "Prijať",
+    "declineOffer": "Odmietnuť",
+    "confirmAccept": "Prijať ponuku",
+    "cancel": "Zrušiť",
+    "withdrawOffer": "Stiahnuť",
+    "withdrawAcceptance": "Stiahnuť prijatie",
+    "payAndClaim": "Zaplatiť a prevziať",
+    "acceptMovesNothingYet": "Prijatím sa tvoje používateľské meno rezervuje pre tohto kupujúceho. Nič sa nepresunie, kým nezaplatí, a dovtedy môžeš cúvnuť.",
+    "acceptedAwaitingPayment": "Túto ponuku si prijal. Používateľské meno je stále tvoje a @{{handle}} sa staneš, až keď zaplatí.",
+    "offerAcceptedPayNow": "Prijaté. Používateľské meno je pre teba držané, kým zaň nezaplatíš.",
+    "offerStatus": {
+      "pending": "Čaká na odpoveď",
+      "accepted": "Prijaté, čaká na platbu",
+      "declined": "Odmietnuté",
+      "withdrawn": "Stiahnuté",
+      "completed": "Dokončené",
+      "expired": "Vypršané"
+    }
   },
   "accounts": {
     "subtitle": "Celé účty na predaj, ocenené v DHB",

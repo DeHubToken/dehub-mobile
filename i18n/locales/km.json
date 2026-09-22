@@ -1640,7 +1640,7 @@
     "unableToLoad": "Unable to load profile. Please try again later.",
     "doesNotExist": "This user doesn't exist or you need to log in to view your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Enter the amount of DHB tokens you'd like to offer to acquire this username.",
+    "enterOfferAmount": "បញ្ចូលចំនួនទឹកប្រាក់ជាដុល្លារដែលអ្នកចង់ស្នើសម្រាប់ឈ្មោះអ្នកប្រើនេះ។",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Please enter a valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB submitted for {{handle}}",
@@ -1663,7 +1663,11 @@
       "dehubFollowers": "អ្នកដើរតាម DeHub",
       "selfReported": "ចំនួនអ្នកតាមដានសង្គមត្រូវបានបញ្ចូលដោយអ្នកបង្កើត ។"
     },
-    "tabPlaylists": "បញ្ជី​ចាក់"
+    "tabPlaylists": "បញ្ជី​ចាក់",
+    "offerWorthNow": "ប្រហែល {{amount}} DHB តាមអត្រាបច្ចុប្បន្ន",
+    "offerNotePlaceholder": "បន្ថែមកំណត់ចំណាំ (ស្រេចចិត្ត)",
+    "offerCommitsNothing": "ការផ្តល់ជូនមិនអស់ថ្លៃ ហើយមិនចាក់សោ DHB ណាមួយទេ។ អ្នកបង់ប្រាក់តែក្នុងករណីម្ចាស់ទទួលយក។",
+    "offerNeedsHandle": "គណនីនេះគ្មានឈ្មោះអ្នកប្រើសម្រាប់ស្នើទិញទេ។"
   },
   "dao": {
     "title": "ឃ្លាំងរបស់ DAO",
@@ -2950,7 +2954,36 @@
     "staleListing": "បញ្ជីលក់នេះសម្រាប់ @{{listed}} ប៉ុន្តែឥឡូវអ្នកគឺ @{{current}}។ វានឹងមិនលក់ទេ រហូតដល់អ្នកដាក់លក់ឡើងវិញក្រោមឈ្មោះបច្ចុប្បន្នរបស់អ្នក — ការធ្វើបច្ចុប្បន្នភាពខាងលើធ្វើដូច្នោះ។",
     "history": "ប្រវត្តិ",
     "sold": "លក់រួច",
-    "bought": "ទិញរួច"
+    "bought": "ទិញរួច",
+    "makeOfferAction": "ស្នើទិញ",
+    "tabOffers": "ការផ្តល់ជូន",
+    "signInForOffers": "ចូលគណនីដើម្បីមើលការផ្តល់ជូនសម្រាប់ឈ្មោះអ្នកប្រើរបស់អ្នក។",
+    "offersForYou": "ការផ្តល់ជូនសម្រាប់ឈ្មោះអ្នកប្រើរបស់អ្នក",
+    "offersYouMade": "ការផ្តល់ជូនដែលអ្នកបានធ្វើ",
+    "offerHistory": "ការផ្តល់ជូនមុនៗ",
+    "noIncomingOffers": "មិនទាន់មាននរណាម្នាក់ស្នើទិញឈ្មោះអ្នកប្រើរបស់អ្នកទេ។",
+    "noOutgoingOffers": "អ្នកមិនទាន់បានធ្វើការផ្តល់ជូនណាមួយទេ។ បើកប្រវត្តិរូបនរណាម្នាក់ដើម្បីធ្វើ។",
+    "offerExpires": "ផុតកំណត់ {{when}}",
+    "payBefore": "បង់ {{when}}",
+    "awaitingOwner": "កំពុងរង់ចាំម្ចាស់",
+    "acceptOffer": "ទទួលយក",
+    "declineOffer": "បដិសេធ",
+    "confirmAccept": "ទទួលយកការផ្តល់ជូន",
+    "cancel": "បោះបង់",
+    "withdrawOffer": "ដកវិញ",
+    "withdrawAcceptance": "ដកការទទួលយកវិញ",
+    "payAndClaim": "បង់ និងទទួលយក",
+    "acceptMovesNothingYet": "ការទទួលយកនឹងរក្សាឈ្មោះអ្នកប្រើរបស់អ្នកសម្រាប់អ្នកទិញនេះ។ គ្មានអ្វីផ្លាស់ប្តូរទេរហូតដល់គេបង់ប្រាក់ ហើយមុននោះអ្នកអាចដកវិញបាន។",
+    "acceptedAwaitingPayment": "អ្នកបានទទួលយកការផ្តល់ជូននេះ។ ឈ្មោះអ្នកប្រើនៅតែជារបស់អ្នក ហើយអ្នកនឹងក្លាយជា @{{handle}} លុះត្រាតែគេបង់ប្រាក់។",
+    "offerAcceptedPayNow": "បានទទួលយក។ ឈ្មោះអ្នកប្រើត្រូវបានរក្សាទុកសម្រាប់អ្នករហូតដល់អ្នកបង់ប្រាក់។",
+    "offerStatus": {
+      "pending": "កំពុងរង់ចាំចម្លើយ",
+      "accepted": "បានទទួលយក កំពុងរង់ចាំការបង់ប្រាក់",
+      "declined": "បានបដិសេធ",
+      "withdrawn": "បានដកវិញ",
+      "completed": "បានបញ្ចប់",
+      "expired": "ផុតកំណត់"
+    }
   },
   "accounts": {
     "subtitle": "គណនីទាំងមូលសម្រាប់លក់ គិតតម្លៃជា DHB",

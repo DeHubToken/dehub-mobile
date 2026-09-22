@@ -1595,7 +1595,7 @@
     "unableToLoad": "Impossibile caricare il profilo. Riprova più tardi.",
     "doesNotExist": "Questo utente non esiste o devi accedere per vedere il profilo.",
     "makeOffer": "Fai un'offerta per {{handle}}",
-    "enterOfferAmount": "Inserisci l'importo in token DHB che vuoi offrire per questo nome utente.",
+    "enterOfferAmount": "Inserisci l’importo in dollari che vuoi offrire per questo nome utente.",
     "submitOffer": "Invia offerta",
     "validOfferAmount": "Inserisci un importo valido",
     "offerSubmitted": "Offerta di {{amount}} DHB inviata per {{handle}}",
@@ -1621,7 +1621,11 @@
       "dehubFollowers": "Follower DeHub",
       "selfReported": "Il conteggio dei follower social viene inserito dal creator."
     },
-    "tabPlaylists": "Playlist"
+    "tabPlaylists": "Playlist",
+    "offerWorthNow": "Circa {{amount}} DHB al cambio attuale",
+    "offerNotePlaceholder": "Aggiungi una nota (facoltativo)",
+    "offerCommitsNothing": "Fare un’offerta non costa nulla e non blocca DHB. Paghi solo se il proprietario accetta.",
+    "offerNeedsHandle": "Questo account non ha un nome utente per cui fare un’offerta."
   },
   "messages": {
     "smartRepliesOff": "Risposte suggerite disattivate",
@@ -2950,7 +2954,36 @@
     "fixedDollarPrice": "Il prezzo in dollari resta fisso; la quantità di token si aggiorna.",
     "priceUpdated": "Prezzo aggiornato. Controlla l’importo e tocca di nuovo Acquista.",
     "tokensPaidToSeller": "Pagato direttamente al venditore",
-    "priceUsd": "Prezzo (USD)"
+    "priceUsd": "Prezzo (USD)",
+    "makeOfferAction": "Fai un’offerta",
+    "tabOffers": "Offerte",
+    "signInForOffers": "Accedi per vedere le offerte per il tuo nome utente.",
+    "offersForYou": "Offerte per il tuo nome utente",
+    "offersYouMade": "Offerte che hai fatto",
+    "offerHistory": "Offerte passate",
+    "noIncomingOffers": "Nessuno ha ancora offerto di comprare il tuo nome utente.",
+    "noOutgoingOffers": "Non hai ancora fatto offerte. Apri il profilo di qualcuno per farne una.",
+    "offerExpires": "Scade {{when}}",
+    "payBefore": "Paga {{when}}",
+    "awaitingOwner": "In attesa del proprietario",
+    "acceptOffer": "Accetta",
+    "declineOffer": "Rifiuta",
+    "confirmAccept": "Accetta offerta",
+    "cancel": "Annulla",
+    "withdrawOffer": "Ritira",
+    "withdrawAcceptance": "Ritira l’accettazione",
+    "payAndClaim": "Paga e reclama",
+    "acceptMovesNothingYet": "Accettando, il tuo nome utente resta riservato a questo acquirente. Non si muove nulla finché non paga, e puoi ritirarti prima.",
+    "acceptedAwaitingPayment": "Hai accettato questa offerta. Il nome utente è ancora tuo e diventerai @{{handle}} solo quando avrà pagato.",
+    "offerAcceptedPayNow": "Accettata. Il nome utente è riservato a te finché non lo paghi.",
+    "offerStatus": {
+      "pending": "In attesa di risposta",
+      "accepted": "Accettata, in attesa di pagamento",
+      "declined": "Rifiutata",
+      "withdrawn": "Ritirata",
+      "completed": "Completata",
+      "expired": "Scaduta"
+    }
   },
   "accounts": {
     "subtitle": "Account interi in vendita, prezzo in DHB",

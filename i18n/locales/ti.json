@@ -1588,7 +1588,7 @@
     "unableToLoad": "ፕሮፋይል ምጽዓን ኣይተዓወተን። ጸኒሕካ ዳግማይ ፈትን።",
     "doesNotExist": "እዚ ተጠቃሚ የለን ወይ ፕሮፋይልካ ንምርኣይ ብዓል ኣለካ።",
     "makeOffer": "ን{{handle}} ቅድመ-ሓሳብ ኣቕርብ",
-    "enterOfferAmount": "ነዚ ስም ተጠቃሚ ንምውናን ክትሰደድ ትደሊ ናይ DHB ቶከናት መጠን ኣእቱ።",
+    "enterOfferAmount": "ነዚ ተጠቃሚ ስም ከተቕርቦ እትደሊ መጠን ዶላር ኣእቱ።",
     "submitOffer": "ቅድመ-ሓሳብ ኣቕርብ",
     "validOfferAmount": "በጃኻ ቅኑዕ መጠን ቅድመ-ሓሳብ ኣእቱ",
     "offerSubmitted": "ን{{handle}} {{amount}} DHB ቅድመ-ሓሳብ ቀሪቡ",
@@ -1614,7 +1614,11 @@
       "dehubFollowers": "ተኸታተልቲ DeHub",
       "selfReported": "ማሕበራዊ ተኸታተልቲ ቆጸራታት ብፈጣሪ ይኣትዉ እዮም ።"
     },
-    "tabPlaylists": "ዝርዝር መጻወቲ"
+    "tabPlaylists": "ዝርዝር መጻወቲ",
+    "offerWorthNow": "ብህሉው ዋጋ ኣስታት {{amount}} DHB",
+    "offerNotePlaceholder": "መዘኻኸሪ ወስኽ (ኣማራጺ)",
+    "offerCommitsNothing": "ቅርቡት ምቕራብ ዋጋ የብሉን DHB ድማ ኣይሕዝን። እትኸፍል ዋናኡ እንተተቐቢሉ ጥራይ እዩ።",
+    "offerNeedsHandle": "እዚ ሕሳብ እዚ ቅርቡት ዝቐርበሉ ተጠቃሚ ስም የብሉን።"
   },
   "tv": {
     "title": "ቲቪ",
@@ -2901,7 +2905,36 @@
     "staleListing": "እዚ ዝርዝር ናይ @{{listed}} እዩ፡ ግን ሕጂ ንስኻ @{{current}} ኢኻ። በቲ ህሉው ስምካ ክሳብ ዘይትዝርዝሮ ኣይሽየጥን — ኣብ ላዕሊ ምሕዳስ ንዕኡ እዩ ዝገብር።",
     "history": "ታሪኽ",
     "sold": "ተሸይጡ",
-    "bought": "ተዓዲጉ"
+    "bought": "ተዓዲጉ",
+    "makeOfferAction": "ቅርቡት ኣቕርብ",
+    "tabOffers": "ቅርቡታት",
+    "signInForOffers": "ንተጠቃሚ ስምካ ዝቐረቡ ቅርቡታት ንምርኣይ እቶ።",
+    "offersForYou": "ንተጠቃሚ ስምካ ዝቐረቡ ቅርቡታት",
+    "offersYouMade": "ዘቕረብካዮም ቅርቡታት",
+    "offerHistory": "ዝሓለፉ ቅርቡታት",
+    "noIncomingOffers": "ክሳብ ሕጂ ተጠቃሚ ስምካ ክገዝእ ዝሓተተ የለን።",
+    "noOutgoingOffers": "ክሳብ ሕጂ ዝኾነ ቅርቡት ኣየቕረብካን። ንምቕራብ ናይ ሓደ ሰብ መገለጺ ክፈት።",
+    "offerExpires": "{{when}} ይውዳእ",
+    "payBefore": "{{when}} ክፈል",
+    "awaitingOwner": "ንዋናኡ ይጽበ",
+    "acceptOffer": "ተቐበል",
+    "declineOffer": "ኣይትቀበል",
+    "confirmAccept": "ነቲ ቅርቡት ተቐበል",
+    "cancel": "ሰርዝ",
+    "withdrawOffer": "ኣልዕል",
+    "withdrawAcceptance": "ምቕባል ኣልዕል",
+    "payAndClaim": "ክፈልን ውሰድን",
+    "acceptMovesNothingYet": "ምቕባል ተጠቃሚ ስምካ ነዚ ገዛኢ ይሕዞ። ክሳብ ዝኸፍል ዝኾነ ነገር ኣይቅየርን፣ ክሳብ ሽዑ ድማ ክትስሕብ ትኽእል።",
+    "acceptedAwaitingPayment": "ነዚ ቅርቡት ተቐቢልካዮ። ተጠቃሚ ስም ገና ናትካ እዩ፣ @{{handle}} እትኸውን ድማ ምስ ከፈለ ጥራይ።",
+    "offerAcceptedPayNow": "ተቐቢሉ። ክሳብ እትኸፍል ተጠቃሚ ስም ንዓኻ ተታሒዙ ኣሎ።",
+    "offerStatus": {
+      "pending": "መልሲ ይጽበ",
+      "accepted": "ተቐቢሉ፣ ክፍሊት ይጽበ",
+      "declined": "ተነጺጉ",
+      "withdrawn": "ተላዒሉ",
+      "completed": "ተዛዚሙ",
+      "expired": "ግዜኡ ሓሊፉ"
+    }
   },
   "accounts": {
     "subtitle": "ብጠቕላላ ንሽያጭ ዝቐረቡ ሕሳባት፡ ዋግኦም ብ DHB",

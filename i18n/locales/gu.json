@@ -1609,7 +1609,7 @@
     "unableToLoad": "પ્રોફાઇલ લોડ કરી શકાઈ નહીં. પછી ફરી પ્રયાસ કરો.",
     "doesNotExist": "આ વપરાશકર્તા અસ્તિત્વમાં નથી, અથવા પ્રોફાઇલ જોવા લૉગ ઇન કરો.",
     "makeOffer": "{{handle}} માટે ઓફર કરો",
-    "enterOfferAmount": "આ યુઝરનેમ માટે DHB ટોકન રકમ દાખલ કરો.",
+    "enterOfferAmount": "આ યુઝરનેમ માટે તમે કેટલા ડૉલર આપવા માગો છો તે રકમ દાખલ કરો.",
     "submitOffer": "ઓફર સબમિટ કરો",
     "validOfferAmount": "માન્ય ઓફર રકમ દાખલ કરો",
     "offerSubmitted": "{{handle}} માટે {{amount}} DHB ઓફર સબમિટ થઈ",
@@ -1635,7 +1635,11 @@
       "dehubFollowers": "DeHub અનુયાયીઓ",
       "selfReported": "સર્જક દ્વારા સામાજિક અનુયાયીઓની ગણતરી દાખલ કરવામાં આવે છે."
     },
-    "tabPlaylists": "પ્લેલીસ્ટો"
+    "tabPlaylists": "પ્લેલીસ્ટો",
+    "offerWorthNow": "હાલના દરે આશરે {{amount}} DHB",
+    "offerNotePlaceholder": "નોંધ ઉમેરો (વૈકલ્પિક)",
+    "offerCommitsNothing": "ઑફર કરવામાં કશો ખર્ચ થતો નથી અને કોઈ DHB રોકાતા નથી. માલિક સ્વીકારે તો જ તમે ચૂકવો છો.",
+    "offerNeedsHandle": "આ ખાતામાં ઑફર કરવા જેવું કોઈ યુઝરનેમ નથી."
   },
   "tv": {
     "title": "TV",
@@ -2925,7 +2929,36 @@
     "staleListing": "આ યાદી @{{listed}} માટે છે, પણ હવે તમે @{{current}} છો. તમારા હાલના હેન્ડલ સાથે ફરી યાદી ન કરો ત્યાં સુધી તે વેચાશે નહીં — ઉપર અપડેટ કરવાથી એ જ થાય છે.",
     "history": "ઇતિહાસ",
     "sold": "વેચાયું",
-    "bought": "ખરીદ્યું"
+    "bought": "ખરીદ્યું",
+    "makeOfferAction": "ઑફર કરો",
+    "tabOffers": "ઑફર",
+    "signInForOffers": "તમારા યુઝરનેમ માટેની ઑફર જોવા સાઇન ઇન કરો.",
+    "offersForYou": "તમારા યુઝરનેમ માટેની ઑફર",
+    "offersYouMade": "તમે કરેલી ઑફર",
+    "offerHistory": "અગાઉની ઑફર",
+    "noIncomingOffers": "હજી કોઈએ તમારું યુઝરનેમ ખરીદવાની ઑફર કરી નથી.",
+    "noOutgoingOffers": "તમે હજી કોઈ ઑફર કરી નથી. ઑફર કરવા કોઈની પ્રોફાઇલ ખોલો.",
+    "offerExpires": "{{when}} સમાપ્ત",
+    "payBefore": "{{when}} ચૂકવો",
+    "awaitingOwner": "માલિકની રાહ",
+    "acceptOffer": "સ્વીકારો",
+    "declineOffer": "નકારો",
+    "confirmAccept": "ઑફર સ્વીકારો",
+    "cancel": "રદ કરો",
+    "withdrawOffer": "પાછી ખેંચો",
+    "withdrawAcceptance": "સ્વીકૃતિ પાછી ખેંચો",
+    "payAndClaim": "ચૂકવીને લો",
+    "acceptMovesNothingYet": "સ્વીકારવાથી તમારું યુઝરનેમ આ ખરીદનાર માટે રાખી મૂકાય છે. તે ચૂકવે નહીં ત્યાં સુધી કશું બદલાતું નથી, અને તે પહેલાં તમે પાછા ફરી શકો છો.",
+    "acceptedAwaitingPayment": "તમે આ ઑફર સ્વીકારી. યુઝરનેમ હજી તમારું જ છે અને તે ચૂકવે ત્યારે જ તમે @{{handle}} બનશો.",
+    "offerAcceptedPayNow": "સ્વીકારાઈ. તમે ચૂકવો નહીં ત્યાં સુધી યુઝરનેમ તમારા માટે રાખેલું છે.",
+    "offerStatus": {
+      "pending": "જવાબની રાહ",
+      "accepted": "સ્વીકારાઈ, ચુકવણીની રાહ",
+      "declined": "નકારાઈ",
+      "withdrawn": "પાછી ખેંચાઈ",
+      "completed": "પૂર્ણ",
+      "expired": "સમય પૂરો"
+    }
   },
   "accounts": {
     "subtitle": "વેચાણ માટેનાં આખાં ખાતાં, કિંમત DHB માં",

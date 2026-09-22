@@ -1626,7 +1626,7 @@
     "unableToLoad": "Unable to load profile. Please try again later.",
     "doesNotExist": "This user doesn't exist or you need to log in to view your profile.",
     "makeOffer": "Make Offer for {{handle}}",
-    "enterOfferAmount": "Enter the amount of DHB tokens you'd like to offer to acquire this username.",
+    "enterOfferAmount": "Увядзі суму ў доларах, якую хочаш прапанаваць за гэтае імя карыстальніка.",
     "submitOffer": "Submit Offer",
     "validOfferAmount": "Please enter a valid offer amount",
     "offerSubmitted": "Offer of {{amount}} DHB submitted for {{handle}}",
@@ -1649,7 +1649,11 @@
       "dehubFollowers": "Падпісчыкі DeHub",
       "selfReported": "Колькасць сацыяльных паслядоўнікаў уводзіцца стваральнікам."
     },
-    "tabPlaylists": "Спісы прайгравання"
+    "tabPlaylists": "Спісы прайгравання",
+    "offerWorthNow": "Прыкладна {{amount}} DHB па бягучым курсе",
+    "offerNotePlaceholder": "Дадай нататку (неабавязкова)",
+    "offerCommitsNothing": "Прапанова нічога не каштуе і не блакуе DHB. Ты плаціш, толькі калі ўладальнік пагодзіцца.",
+    "offerNeedsHandle": "У гэтага акаўнта няма імя карыстальніка, за якое можна прапанаваць."
   },
   "dao": {
     "title": "Казначейства DAO",
@@ -2966,7 +2970,36 @@
     "staleListing": "Гэтая аб'ява для @{{listed}}, але зараз ты @{{current}}. Яна не прададзецца, пакуль ты не размесціш яе зноў пад бягучым імем — абнаўленне вышэй робіць менавіта гэта.",
     "history": "Гісторыя",
     "sold": "Прададзена",
-    "bought": "Куплена"
+    "bought": "Куплена",
+    "makeOfferAction": "Зрабіць прапанову",
+    "tabOffers": "Прапановы",
+    "signInForOffers": "Увайдзі, каб убачыць прапановы па сваім імені карыстальніка.",
+    "offersForYou": "Прапановы па тваім імені карыстальніка",
+    "offersYouMade": "Прапановы, якія ты зрабіў",
+    "offerHistory": "Ранейшыя прапановы",
+    "noIncomingOffers": "Пакуль ніхто не прапанаваў купіць тваё імя карыстальніка.",
+    "noOutgoingOffers": "Ты яшчэ не рабіў прапаноў. Адкрый чый-небудзь профіль, каб зрабіць.",
+    "offerExpires": "Сканчаецца {{when}}",
+    "payBefore": "Заплаці {{when}}",
+    "awaitingOwner": "Чакае ўладальніка",
+    "acceptOffer": "Прыняць",
+    "declineOffer": "Адхіліць",
+    "confirmAccept": "Прыняць прапанову",
+    "cancel": "Скасаваць",
+    "withdrawOffer": "Адклікаць",
+    "withdrawAcceptance": "Адклікаць згоду",
+    "payAndClaim": "Заплаціць і забраць",
+    "acceptMovesNothingYet": "Згода рэзервуе тваё імя карыстальніка за гэтым пакупніком. Нічога не зменіцца, пакуль ён не заплаціць, і да таго ты можаш адмовіцца.",
+    "acceptedAwaitingPayment": "Ты прыняў гэтую прапанову. Імя карыстальніка па-ранейшаму тваё, і ты станеш @{{handle}} толькі пасля аплаты.",
+    "offerAcceptedPayNow": "Прынята. Імя карыстальніка зарэзервавана за табой, пакуль ты за яго не заплаціш.",
+    "offerStatus": {
+      "pending": "Чакае адказу",
+      "accepted": "Прынята, чакае аплаты",
+      "declined": "Адхілена",
+      "withdrawn": "Адклікана",
+      "completed": "Завершана",
+      "expired": "Скончылася"
+    }
   },
   "accounts": {
     "subtitle": "Цэлыя акаўнты на продаж, коштам у DHB",
