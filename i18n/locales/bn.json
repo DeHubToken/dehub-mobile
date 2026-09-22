@@ -4567,5 +4567,19 @@
         "hostile_tone": "প্রতিকূল স্বর"
       }
     }
+  },
+  "drafts": {
+    "justNow": "এইমাত্র",
+    "minutesAgo": "{{count}}m আগে",
+    "hoursAgo": "{{count}}ঘন্টা আগে",
+    "daysAgo": "{{count}}d আগে",
+    "typeVideo": "ভিডিও",
+    "typeText": "টেক্সট",
+    "imageCount_one": "{{count}} ছবি",
+    "imageCount_other": "{{count}} ছবি",
+    "emptyTitle": "এখনও কোনও খসড়া নেই",
+    "emptyDescription": "যখন আপনি একটি পোস্ট খসড়া হিসাবে সংরক্ষণ করেন, তখন এটি এখানে প্রদর্শিত হবে ।",
+    "saveTitle": "খসড়া সংরক্ষণ করুন",
+    "savePrompt": "শেষ করতে এবং পরে পোস্ট করতে একটি খসড়া হিসাবে এই পোস্টটি সংরক্ষণ করবেন?"
   }
 }

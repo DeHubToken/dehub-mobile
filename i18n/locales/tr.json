@@ -4645,5 +4645,19 @@
         "hostile_tone": "Düşmanca ton"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Şimdi",
+    "minutesAgo": "{{count}} dakika önce",
+    "hoursAgo": "{{count}}saat önce",
+    "daysAgo": "{{count}}gün önce",
+    "typeVideo": "Video",
+    "typeText": "Metin",
+    "imageCount_one": "{{count}} resim",
+    "imageCount_other": "{{count}} resim",
+    "emptyTitle": "Henüz taslak yok",
+    "emptyDescription": "Bir gönderiyi taslak olarak kaydettiğinizde, burada görünecektir.",
+    "saveTitle": "Taslağı Kaydet",
+    "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   }
 }

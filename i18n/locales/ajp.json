@@ -4535,5 +4535,19 @@
         "hostile_tone": "نبرة عدائية"
       }
     }
+  },
+  "drafts": {
+    "justNow": "هلأ",
+    "minutesAgo": "منذ {{count}} دقيقة",
+    "hoursAgo": "منذ {{count}} ساعة",
+    "daysAgo": "منذ {{count}} يوم",
+    "typeVideo": "فيديو",
+    "typeText": "نص",
+    "imageCount_one": "{{count}} صورة",
+    "imageCount_other": "{{count}} صور",
+    "emptyTitle": "ما في مسودات بعد",
+    "emptyDescription": "لما تحفظ منشور كمسودة، رح يظهر هون.",
+    "saveTitle": "حفظ المسودة",
+    "savePrompt": "تحفظ هالمشاركة كمسودة لتكملها وتنشرها بعدين؟"
   }
 }

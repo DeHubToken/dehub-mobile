@@ -4850,5 +4850,19 @@
         "hostile_tone": "Vijandige toon"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Zojuist",
+    "minutesAgo": "{{count}}m geleden",
+    "hoursAgo": "{{count}}uur geleden",
+    "daysAgo": "{{count}}d geleden",
+    "typeVideo": "Video",
+    "typeText": "Tekst",
+    "imageCount_one": "{{count}} afbeelding",
+    "imageCount_other": "{{count}} afbeeldingen",
+    "emptyTitle": "Nog geen concepten",
+    "emptyDescription": "Wanneer je een bericht opslaat als concept, wordt het hier weergegeven.",
+    "saveTitle": "Concept opslaan",
+    "savePrompt": "Dit bericht opslaan als een concept om te voltooien en later te plaatsen?"
   }
 }

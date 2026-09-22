@@ -3965,5 +3965,19 @@
     "connectSolana": "Connect Solana wallet",
     "balanceUnknown": "Balance unavailable",
     "balanceAmount": "Available: {{amount}} {{symbol}}"
+  },
+  "drafts": {
+    "justNow": "ابھی ابھی",
+    "minutesAgo": "{{count}} منٹ پہلے",
+    "hoursAgo": "{{count}} گھنٹے پہلے",
+    "daysAgo": "{{count}} دن پہلے",
+    "typeVideo": "ویڈیو",
+    "typeText": "متن",
+    "imageCount_one": "{{count}} تصویر",
+    "imageCount_other": "{{count}} تصویراں",
+    "emptyTitle": "ابھی کوئی ڈرافٹ نئیں",
+    "emptyDescription": "جب تم کوئی پوسٹ ڈرافٹ میں محفوظ کرو گے تو وہ اِدھر دکھے گی۔",
+    "saveTitle": "ڈرافٹ محفوظ کرو",
+    "savePrompt": "اِس پوسٹ کو ڈرافٹ میں محفوظ کرو تاکہ بعد میں پورا کر کے پوسٹ کر سکو؟"
   }
 }

@@ -4567,5 +4567,19 @@
         "hostile_tone": "Fiendtlig tone"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Akkurat nå",
+    "minutesAgo": "for {{count}}m siden",
+    "hoursAgo": "for {{count}}t siden",
+    "daysAgo": "for {{count}}d siden",
+    "typeVideo": "Video",
+    "typeText": "Tekst",
+    "imageCount_one": "{{count}} bilde",
+    "imageCount_other": "{{count}} bilder",
+    "emptyTitle": "Ingen utkast ennå",
+    "emptyDescription": "Når du lagrer et innlegg som utkast, vil det vises her.",
+    "saveTitle": "Lagre kladd",
+    "savePrompt": "Lagre dette innlegget som et utkast for å fullføre og publisere senere?"
   }
 }

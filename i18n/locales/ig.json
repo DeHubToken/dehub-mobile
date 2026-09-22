@@ -4559,5 +4559,19 @@
         "hostile_tone": "Akpọrọ asị ụda"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Dị nnọọ ugbu a",
+    "minutesAgo": "{{count}}m gara aga",
+    "hoursAgo": "{{count}}h gara aga",
+    "daysAgo": "{{count}}d gara aga",
+    "typeVideo": "Video",
+    "typeText": "Ngwe",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} oyiyi",
+    "emptyTitle": "Enweghị drafọ́ọ̀gụ̀ ma",
+    "emptyDescription": "Mgbe ị na-echekwa post dị ka draft, ọ ga-apụta ebe a.",
+    "saveTitle": "Chekwaa Draft",
+    "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
   }
 }

@@ -4586,5 +4586,19 @@
         "hostile_tone": "ಪ್ರತಿಕೂಲ ಟೋನ್"
       }
     }
+  },
+  "drafts": {
+    "justNow": "ಇದೀಗ",
+    "minutesAgo": "{{count}}m ಹಿಂದೆ",
+    "hoursAgo": "{{count}}h ಹಿಂದೆ",
+    "daysAgo": "{{count}}d ಹಿಂದೆ",
+    "typeVideo": "ವೀಡಿಯೊ",
+    "typeText": "ಪಠ್ಯ",
+    "imageCount_one": "{{count}} ಚಿತ್ರ",
+    "imageCount_other": "{{count}} ಚಿತ್ರಗಳು",
+    "emptyTitle": "ಇನ್ನೂ ಯಾವುದೇ ಡ್ರಾಫ್ಟ್‌ಗಳಿಲ್ಲ",
+    "emptyDescription": "ನೀವು ಪೋಸ್ಟ್ ಅನ್ನು ಡ್ರಾಫ್ಟ್ ಆಗಿ ಉಳಿಸಿದಾಗ, ಅದು ಇಲ್ಲಿ ಗೋಚರಿಸುತ್ತದೆ.",
+    "saveTitle": "ಡ್ರಾಫ್ಟ್ ಉಳಿಸಿ",
+    "savePrompt": "ಈ ಪೋಸ್ಟ್ ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಡ್ರಾಫ್ಟ್ ಆಗಿ ಉಳಿಸಿ ಮತ್ತು ನಂತರ ಪೋಸ್ಟ್ ಮಾಡಿ?"
   }
 }

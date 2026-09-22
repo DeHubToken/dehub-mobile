@@ -4536,5 +4536,19 @@
         "hostile_tone": "ብዘይ ምኽንያት ይወቅዕ"
       }
     }
+  },
+  "drafts": {
+    "justNow": "ሕጂ ጥራይ",
+    "minutesAgo": "{{count}}m ቅድሚ ሕጂ",
+    "hoursAgo": "{{count}}h ቅድሚ ሕጂ",
+    "daysAgo": "ቅድሚ {{count}} መዓልቲ",
+    "typeVideo": "ቪድዮ",
+    "typeText": "ጽሑፍ",
+    "imageCount_one": "{{count}} ምስሊ",
+    "imageCount_other": "{{count}} ምስልታት",
+    "emptyTitle": "ገና ንድፊ የለን ።",
+    "emptyDescription": "ሓደ ጽሑፍ ከም ቅጥዒ ምስ እትዕቅብ ፡ ኣብዚ እዩ ዚርአ ።",
+    "saveTitle": "ንድፊ ኣድሕን",
+    "savePrompt": "ነዚ ጽሑፍ እዚ ከም ናይ መወዳእታን ናይ ልኡኽን ረቂቕ ጌርካ ኣድሕንዶ ፧"
   }
 }

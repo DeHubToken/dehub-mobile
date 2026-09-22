@@ -4576,5 +4576,19 @@
         "hostile_tone": "दुश्मन टोन"
       }
     }
+  },
+  "drafts": {
+    "justNow": "अभी",
+    "minutesAgo": "{{count}} मिनट पहिले",
+    "hoursAgo": "{{count}} घंटा पहिले",
+    "daysAgo": "{{count}} दिन पहिले",
+    "typeVideo": "वीडियो",
+    "typeText": "पाठ",
+    "imageCount_one": "{{count}} फोटू",
+    "imageCount_other": "{{count}} फोटू",
+    "emptyTitle": "अभी तक जारी नी करे गए राशि",
+    "emptyDescription": "जब आप एक पोस्ट ल ड्राफ्ट के रूप म सहेजें, तो ए इहां दिखाई दिही ।",
+    "saveTitle": "ड्राफ्ट सहेजव",
+    "savePrompt": "ये पोस्ट ल बाद म पूरा करे अउ पोस्ट करे बर एक मसौदा के रूप म सहेजें ।"
   }
 }

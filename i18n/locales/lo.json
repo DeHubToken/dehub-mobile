@@ -4523,5 +4523,19 @@
         "hostile_tone": "ສຽງທີ່ເປັນສັດຕູ"
       }
     }
+  },
+  "drafts": {
+    "justNow": "ພຽງແຕ່ດຽວນີ້",
+    "minutesAgo": "{{count}}m ກ່ອນຫນ້ານີ້",
+    "hoursAgo": "{{count}}h ກ່ອນຫນ້ານີ້",
+    "daysAgo": "{{count}}d ກ່ອນ ຫນ້າ ນີ້",
+    "typeVideo": "ວິດີໂອ",
+    "typeText": "ຂໍ້ຄວາມ",
+    "imageCount_one": "{{count}} ຮູບ",
+    "imageCount_other": "{{count}} ຮູບພາບ",
+    "emptyTitle": "ຍັງບໍ່ມີຮ່າງ",
+    "emptyDescription": "ເມື່ອທ່ານປະຫຍັດສະຖານທີ່ເປັນຮ່າງ, ມັນຈະປາກົດຢູ່ທີ່ນີ້.",
+    "saveTitle": "ບັນທຶກຮ່າງ",
+    "savePrompt": "ບັນທຶກໂພສນີ້ເປັນຮ່າງເພື່ອໃຫ້ສຳເລັດ ແລະ ໂພສພາຍຫຼັງ?"
   }
 }

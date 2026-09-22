@@ -4592,5 +4592,19 @@
         "hostile_tone": "សម្លេងអរិភាព"
       }
     }
+  },
+  "drafts": {
+    "justNow": "គ្រាន់តែឥឡូវនេះ",
+    "minutesAgo": "{{count}}m មុន",
+    "hoursAgo": "{{count}}ម៉ោង មុន",
+    "daysAgo": "{{count}}d មុន",
+    "typeVideo": "វីដេអូ",
+    "typeText": "អត្ថបទ",
+    "imageCount_one": "{{count}} រូបភាព",
+    "imageCount_other": "{{count}} រូបភាព",
+    "emptyTitle": "មិនទាន់មានសេចក្តីព្រាងនៅឡើយទេ",
+    "emptyDescription": "ពេល ដែល អ្នក រក្សា ទុក សារ ជា សេចក្តី ព្រាង ច្បាប់ នោះ វា នឹង បង្ហាញ នៅ ទី នេះ ។",
+    "saveTitle": "រក្សាទុកសេចក្តីព្រាង",
+    "savePrompt": "រក្សាទុកប្រកាសនេះជាសេចក្តីព្រាងដើម្បីបញ្ចប់ និងបង្ហោះនៅពេលក្រោយ?"
   }
 }

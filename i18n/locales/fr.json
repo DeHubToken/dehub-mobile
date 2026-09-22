@@ -4774,5 +4774,19 @@
         "hostile_tone": "Tonalité hostile"
       }
     }
+  },
+  "drafts": {
+    "justNow": "À l'instant",
+    "minutesAgo": "Il y a {{count}}m",
+    "hoursAgo": "Il y a {{count}}h",
+    "daysAgo": "Il y a {{count}}d",
+    "typeVideo": "Vidéo",
+    "typeText": "Texte",
+    "imageCount_one": "Image {{count}}",
+    "imageCount_other": "{{count}} images",
+    "emptyTitle": "Pas encore de brouillons",
+    "emptyDescription": "Lorsque vous enregistrez une publication en tant que brouillon, elle apparaîtra ici.",
+    "saveTitle": "Enregistrer le brouillon",
+    "savePrompt": "Enregistrer cette publication en tant que brouillon pour la terminer et la publier plus tard ?"
   }
 }

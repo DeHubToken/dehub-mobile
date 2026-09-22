@@ -4571,5 +4571,19 @@
         "hostile_tone": "Sautin mai masaukin baki"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Yanzu-yanzu",
+    "minutesAgo": "{{count}}m da suka wuce",
+    "hoursAgo": "{{count}}h da suka wuce",
+    "daysAgo": "{{count}}d da suka wuce",
+    "typeVideo": "Bidiyo",
+    "typeText": "Rubutu",
+    "imageCount_one": "{{count}} hoto",
+    "imageCount_other": "{{count}} hotuna",
+    "emptyTitle": "Babu juzu'i tukuna",
+    "emptyDescription": "Idan ka adana wani sakon a matsayin juzu'i, zai bayyana anan.",
+    "saveTitle": "Ajiye Juzu'i",
+    "savePrompt": "Ajiye wannan sakon a matsayin juzu'i don kammalawa da bugawa daga baya?"
   }
 }

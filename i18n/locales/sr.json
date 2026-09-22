@@ -4075,5 +4075,19 @@
       "dismiss": "Одбаци овај предлог",
       "settingLabel": "Прикажи предлоге за обуку"
     }
+  },
+  "drafts": {
+    "justNow": "Управо сада",
+    "minutesAgo": "пре {{count}} мин",
+    "hoursAgo": "пре {{count}} ч",
+    "daysAgo": "пре {{count}} д",
+    "typeVideo": "Видео",
+    "typeText": "Текст",
+    "imageCount_one": "{{count}} слика",
+    "imageCount_other": "{{count}} слика",
+    "emptyTitle": "Још нема нацрта",
+    "emptyDescription": "Када сачувате објаву као нацрт, појавиће се овде.",
+    "saveTitle": "Сачувај нацрт",
+    "savePrompt": "Сачувати ову објаву као нацрт да је довршите и објавите касније?"
   }
 }

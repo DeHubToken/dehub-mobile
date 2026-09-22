@@ -4540,5 +4540,19 @@
         "hostile_tone": "Nada sengit"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Sakmenika",
+    "minutesAgo": "{{count}}m kepengker",
+    "hoursAgo": "{{count}}h kepengker",
+    "daysAgo": "{{count}}d kepengker",
+    "typeVideo": "Video",
+    "typeText": "Teks",
+    "imageCount_one": "{{count}} gambar",
+    "imageCount_other": "{{count}} gambar",
+    "emptyTitle": "Dereng wonten draf",
+    "emptyDescription": "Menawi panjenengan nyimpen kiriman dados draf, kiriman menika badhe medal wonten mriki.",
+    "saveTitle": "Simpen Draf",
+    "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   }
 }

@@ -4572,5 +4572,19 @@
         "hostile_tone": "Qaylo-dhaanta martida"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Kaliya hadda",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago",
+    "typeVideo": "Fiidiyowga",
+    "typeText": "Qoraalka",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} images",
+    "emptyTitle": "No drafts badoo",
+    "emptyDescription": "Markaad kaydiso boostada sida qoraalka, halkan ayey ka muuqan doontaa.",
+    "saveTitle": "Keydso Farshaxanka",
+    "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
   }
 }

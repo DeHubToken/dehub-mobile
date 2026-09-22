@@ -4573,5 +4573,19 @@
         "hostile_tone": "శత్రు టోన్"
       }
     }
+  },
+  "drafts": {
+    "justNow": "ఇప్పుడే",
+    "minutesAgo": "{{count}}నిమి క్రితం",
+    "hoursAgo": "{{count}}h క్రితం",
+    "daysAgo": "{{count}}d క్రితం",
+    "typeVideo": "వీడియో",
+    "typeText": "వచనం",
+    "imageCount_one": "{{count}} చిత్రం",
+    "imageCount_other": "{{count}} చిత్రాలు",
+    "emptyTitle": "ఇంకా డ్రాఫ్ట్ ‌ లు లేవు",
+    "emptyDescription": "మీరు ఒక పోస్ట్ ‌ ను డ్రాఫ్ట్ ‌ గా సేవ్ చేసినప్పుడు, అది ఇక్కడ కనిపిస్తుంది.",
+    "saveTitle": "డ్రాఫ్ట్ ‌ ను సేవ్ చేయండి",
+    "savePrompt": "పూర్తి చేయడానికి ఈ పోస్ట్ ‌ ను డ్రాఫ్ట్ ‌ గా సేవ్ చేసి, తర్వాత పోస్ట్ చేయాలా?"
   }
 }

@@ -4580,5 +4580,19 @@
         "hostile_tone": "دشمنی کا لہجہ"
       }
     }
+  },
+  "drafts": {
+    "justNow": "ابھی ابھی",
+    "minutesAgo": "{{count}}m پہلے",
+    "hoursAgo": "{{count}}h پہلے",
+    "daysAgo": "{{count}} دن پہلے",
+    "typeVideo": "ویڈیو",
+    "typeText": "متن",
+    "imageCount_one": "{{count}} تصویر",
+    "imageCount_other": "{{count}} تصاویر",
+    "emptyTitle": "ابھی تک کوئی ڈرافٹ نہیں",
+    "emptyDescription": "جب آپ کسی پوسٹ کو بطور ڈرافٹ محفوظ کریں گے تو وہ یہاں ظاہر ہوگی ۔",
+    "saveTitle": "ڈرافٹ محفوظ کریں",
+    "savePrompt": "اس پوسٹ کو ختم کرنے اور بعد میں پوسٹ کرنے کے لیے بطور ڈرافٹ محفوظ کریں ؟"
   }
 }

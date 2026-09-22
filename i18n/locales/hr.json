@@ -4584,5 +4584,19 @@
         "hostile_tone": "Neprijateljski ton"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Upravo sada",
+    "minutesAgo": "prije {{count}}m",
+    "hoursAgo": "prije {{count}}h",
+    "daysAgo": "Prije {{count}}d",
+    "typeVideo": "Video",
+    "typeText": "Tekst",
+    "imageCount_one": "{{count}} slika",
+    "imageCount_other": "Slike: {{count}}",
+    "emptyTitle": "Još nema skica",
+    "emptyDescription": "Kada spremite objavu kao skicu, pojavit će se ovdje.",
+    "saveTitle": "Spremi skicu",
+    "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
   }
 }

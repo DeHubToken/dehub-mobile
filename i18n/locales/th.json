@@ -4619,5 +4619,19 @@
         "hostile_tone": "โทนเสียงที่ไม่เป็นมิตร"
       }
     }
+  },
+  "drafts": {
+    "justNow": "เมื่อสักครู่นี้",
+    "minutesAgo": "{{count}} นาทีที่ผ่านมา",
+    "hoursAgo": "{{count}} ชั่วโมงที่ผ่านมา",
+    "daysAgo": "{{count}} วันที่ผ่านมา",
+    "typeVideo": "วิดีโอ",
+    "typeText": "ข้อความ",
+    "imageCount_one": "ภาพ {{count}}",
+    "imageCount_other": "{{count}} ภาพ",
+    "emptyTitle": "ยังไม่มีฉบับร่าง",
+    "emptyDescription": "เมื่อคุณบันทึกโพสต์เป็นฉบับร่างโพสต์นั้นจะปรากฏที่นี่",
+    "saveTitle": "บันทึกแบบร่าง",
+    "savePrompt": "บันทึกโพสต์นี้เป็นฉบับร่างเพื่อทำให้เสร็จและโพสต์ในภายหลัง?"
   }
 }

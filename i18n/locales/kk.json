@@ -4636,5 +4636,19 @@
         "hostile_tone": "Дұшпандық реңк"
       }
     }
+  },
+  "drafts": {
+    "justNow": "Дәл қазір",
+    "minutesAgo": "{{count}} мин бұрын",
+    "hoursAgo": "{{count}} сағ бұрын",
+    "daysAgo": "{{count}} күн бұрын",
+    "typeVideo": "Бейне",
+    "typeText": "Мәтін",
+    "imageCount_one": "{{count}} сурет",
+    "imageCount_other": "{{count}} Кескіндер",
+    "emptyTitle": "Әлі жобалар жоқ",
+    "emptyDescription": "Сіз лауазымды жоба ретінде сақтаған кезде, ол осында пайда болады.",
+    "saveTitle": "Жобаны сақтау",
+    "savePrompt": "Бұл лауазымды кейінірек аяқтап, орналастыру үшін жоба ретінде сақтаңыз ба?"
   }
 }
