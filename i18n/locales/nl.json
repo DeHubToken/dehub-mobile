@@ -2104,11 +2104,7 @@
       "dehubFollowers": "DeHub-volgers",
       "selfReported": "Het aantal sociale volgers wordt ingevoerd door de maker."
     },
-    "tabPlaylists": "Afspeellijsten",
-    "aiScraping": {
-      "allowed": "Deze maker staat AI-training toe op deze inhoud.",
-      "denied": "Deze maker staat geen AI-training toe voor deze inhoud."
-    }
+    "tabPlaylists": "Afspeellijsten"
   },
   "tv": {
     "title": "TV",

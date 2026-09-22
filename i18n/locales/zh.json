@@ -1638,11 +1638,7 @@
       "dehubFollowers": "DeHub关注者",
       "selfReported": "社交关注者数量由创作者输入。"
     },
-    "tabPlaylists": "播放列表",
-    "aiScraping": {
-      "allowed": "此创作者允许对此内容进行人工智能培训。",
-      "denied": "此创作者不允许对此内容进行人工智能培训。"
-    }
+    "tabPlaylists": "播放列表"
   },
   "tv": {
     "title": "电视",

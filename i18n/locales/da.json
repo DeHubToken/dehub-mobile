@@ -1502,11 +1502,7 @@
       "dehubFollowers": "DeHub-følgere",
       "selfReported": "Antal følgere på sociale medier indtastes af kreatøren."
     },
-    "tabPlaylists": "Spillelister",
-    "aiScraping": {
-      "allowed": "Denne kreatør tillader AI-træning i dette indhold.",
-      "denied": "Denne kreatør tillader ikke AI-træning i dette indhold."
-    }
+    "tabPlaylists": "Spillelister"
   },
   "messages": {
     "smartRepliesOff": "Foreslåede svar er slået fra",

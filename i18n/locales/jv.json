@@ -1598,11 +1598,7 @@
       "dehubFollowers": "Pengikut DeHub",
       "selfReported": "Jumlah pengikut sosial dilebokake dening kreator."
     },
-    "tabPlaylists": "Dhaptar Puter",
-    "aiScraping": {
-      "allowed": "Pencipta iki ngidini AI dilatih nganggo konten iki.",
-      "denied": "Pencipta iki ora ngidini AI dilatih nganggo konten iki."
-    }
+    "tabPlaylists": "Dhaptar Puter"
   },
   "tv": {
     "title": "TV",

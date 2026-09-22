@@ -1501,11 +1501,7 @@
       "dehubFollowers": "Následovníci DeHubu",
       "selfReported": "Počet sledujících na sociálních sítích zadává tvůrce."
     },
-    "tabPlaylists": "Playlisty",
-    "aiScraping": {
-      "allowed": "Tento tvůrce umožňuje školení AI o tomto obsahu.",
-      "denied": "Tento tvůrce nepovoluje školení AI o tomto obsahu."
-    }
+    "tabPlaylists": "Playlisty"
   },
   "messages": {
     "smartRepliesOff": "Navrhované odpovědi jsou vypnuté",

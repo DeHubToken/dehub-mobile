@@ -1651,11 +1651,7 @@
       "dehubFollowers": "DeHubフォロワー",
       "selfReported": "ソーシャルフォロワー数は、クリエイターが入力します。"
     },
-    "tabPlaylists": "プレイリスト",
-    "aiScraping": {
-      "allowed": "このクリエイターは、このコンテンツに関するAIトレーニングを許可しています。",
-      "denied": "このクリエイターは、このコンテンツに関するAIトレーニングを許可していません。"
-    }
+    "tabPlaylists": "プレイリスト"
   },
   "tv": {
     "title": "テレビ",

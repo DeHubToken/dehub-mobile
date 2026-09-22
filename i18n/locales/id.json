@@ -1640,11 +1640,7 @@
       "dehubFollowers": "Pengikut DeHub",
       "selfReported": "Jumlah pengikut sosial dimasukkan oleh kreator."
     },
-    "tabPlaylists": "Daftar Putar",
-    "aiScraping": {
-      "allowed": "Kreator ini mengizinkan pelatihan AI untuk konten ini.",
-      "denied": "Kreator ini tidak mengizinkan pelatihan AI pada konten ini."
-    }
+    "tabPlaylists": "Daftar Putar"
   },
   "tv": {
     "title": "TV",

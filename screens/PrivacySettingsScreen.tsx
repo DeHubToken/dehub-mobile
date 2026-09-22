@@ -96,7 +96,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const [hideBadgeAndBalance, setHideBadgeAndBalance] = useState(false);
   const [followerVisibility, setFollowerVisibility] = useState<FollowerVisibility>('public');
   const [defaultPostVisibility, setDefaultPostVisibility] = useState<PostVisibility>('public');
-  const [aiScraping, setAiScraping] = useState<AiScrapingPreference>('deny');
+  const [aiScraping, setAiScraping] = useState<AiScrapingPreference>('allow');
 
   const [showPublicModal, setShowPublicModal] = useState(false);
   const [publicModalBusy, setPublicModalBusy] = useState(false);
