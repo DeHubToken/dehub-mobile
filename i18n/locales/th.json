@@ -4668,6 +4668,9 @@
     "savePrompt": "บันทึกโพสต์นี้เป็นฉบับร่างเพื่อทำให้เสร็จและโพสต์ในภายหลัง?"
   },
   "dex": {
+    "lowestPrice": "ราคาต่ำสุด · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "สภาพคล่องรวม · USD"
   }
 }

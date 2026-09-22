@@ -4636,6 +4636,9 @@
     "savePrompt": "Gem dette opslag som et udkast for at afslutte og slå det op senere?"
   },
   "dex": {
+    "lowestPrice": "Laveste pris · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Samlet likviditet · USD"
   }
 }

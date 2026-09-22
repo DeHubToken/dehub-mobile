@@ -4247,6 +4247,9 @@
     "savePrompt": "You wan save dis post as draft make you finish am and post later?"
   },
   "dex": {
+    "lowestPrice": "Lowest price · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Total liquidity · USD"
   }
 }

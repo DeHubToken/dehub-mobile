@@ -4633,6 +4633,9 @@
     "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
   },
   "dex": {
+    "lowestPrice": "Najniža cijena · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Ukupna likvidnost · USD"
   }
 }

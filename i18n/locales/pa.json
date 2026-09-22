@@ -4607,6 +4607,9 @@
     "savePrompt": "ਇਸ ਪੋਸਟ ਨੂੰ ਬਾਅਦ ਵਿੱਚ ਪੂਰਾ ਕਰਨ ਅਤੇ ਪੋਸਟ ਕਰਨ ਲਈ ਡਰਾਫਟ ਵਜੋਂ ਸੇਵ ਕਰੋ?"
   },
   "dex": {
+    "lowestPrice": "ਸਭ ਤੋਂ ਘੱਟ ਕੀਮਤ · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "ਕੁੱਲ ਤਰਲਤਾ · USD"
   }
 }

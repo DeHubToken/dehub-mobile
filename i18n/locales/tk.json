@@ -4600,6 +4600,9 @@
     "savePrompt": "Bu posty soňuna çenli goýup, soňuna çenli goýup bilermisiňiz?"
   },
   "dex": {
+    "lowestPrice": "Iň pes baha · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Jemi likwidlik · USD"
   }
 }

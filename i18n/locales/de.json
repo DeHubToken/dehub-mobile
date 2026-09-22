@@ -4700,6 +4700,9 @@
     "savePrompt": "Diesen Beitrag als Entwurf speichern, um ihn später abzuschließen und zu veröffentlichen?"
   },
   "dex": {
+    "lowestPrice": "Niedrigster Preis · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Gesamtliquidität · USD"
   }
 }

@@ -4698,6 +4698,9 @@
     "savePrompt": "이 게시물을 초안으로 저장하여 완료하고 나중에 게시하시겠습니까?"
   },
   "dex": {
+    "lowestPrice": "최저가 · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "총 유동성 · USD"
   }
 }

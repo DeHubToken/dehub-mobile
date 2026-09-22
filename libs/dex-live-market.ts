@@ -1,11 +1,16 @@
 export const CANDLE_INTERVALS = ['1m', '5m', '15m', '30m', '1h'] as const;
 export type CandleInterval = typeof CANDLE_INTERVALS[number];
 export interface Candle { time: number; open: number; high: number; low: number; close: number; observedAt: number }
+export interface ExternalAsk { price: number; dhb: number }
 export interface SharedMarket<Position = unknown> {
   version: 1; startedAt: number; observedAt: number; price: number | null; change24h: number | null;
-  /** Liquidity-weighted DHB price across every pool, in dollars. Absent on snapshots written
-   *  before the aggregate landed, so every reader treats it as optional. */
-  usdPrice?: number | null; liquidityUsd?: number | null;
+  /** The cheapest DHB in any pool, in dollars — not a blend, so it is a price someone could
+   *  actually pay. liquidityUsd is the quote side only: the money a seller could be paid out
+   *  of. lpDhb is the DHB inventory sitting in every pool, which is a token count, not money.
+   *  All absent on snapshots written before they landed, so readers treat them as optional. */
+  usdPrice?: number | null; liquidityUsd?: number | null; lpDhb?: number | null;
+  /** Ask depth from the DHB pools outside this order book, already priced in dollars. */
+  externalAsks?: ExternalAsk[];
   positions: Position[]; candles: Record<CandleInterval, Candle[]>;
 }
 export function parseSharedMarket<Position>(data: unknown): SharedMarket<Position> {
@@ -15,6 +20,9 @@ export function parseSharedMarket<Position>(data: unknown): SharedMarket<Positio
       (value.price !== null && (!Number.isFinite(value.price) || value.price <= 0)) ||
       (value.usdPrice != null && (!Number.isFinite(value.usdPrice) || value.usdPrice <= 0)) ||
       (value.liquidityUsd != null && (!Number.isFinite(value.liquidityUsd) || value.liquidityUsd < 0)) ||
+      (value.lpDhb != null && (!Number.isFinite(value.lpDhb) || value.lpDhb < 0)) ||
+      (value.externalAsks != null && (!Array.isArray(value.externalAsks) || !value.externalAsks.every((a) =>
+        Number.isFinite(a?.price) && a.price > 0 && Number.isFinite(a?.dhb) && a.dhb >= 0))) ||
       !CANDLE_INTERVALS.every((interval) => Array.isArray(value.candles?.[interval]) &&
         value.candles[interval].every((c) => [c.time,c.open,c.high,c.low,c.close,c.observedAt].every(Number.isFinite) &&
           c.low > 0 && c.low <= Math.min(c.open,c.close) && c.high >= Math.max(c.open,c.close)))) {

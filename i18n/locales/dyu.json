@@ -4534,6 +4534,9 @@
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
   },
   "dex": {
+    "lowestPrice": "Sɔngɔ dɔgɔmannin · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Wari bɛɛ lajɛlen · USD"
   }
 }

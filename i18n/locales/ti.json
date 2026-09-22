@@ -4585,6 +4585,9 @@
     "savePrompt": "ነዚ ጽሑፍ እዚ ከም ናይ መወዳእታን ናይ ልኡኽን ረቂቕ ጌርካ ኣድሕንዶ ፧"
   },
   "dex": {
+    "lowestPrice": "ዝተሓተ ዋጋ · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "ጠቅላላ ፈሳስነት · USD"
   }
 }

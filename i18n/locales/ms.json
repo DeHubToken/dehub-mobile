@@ -4895,6 +4895,9 @@
     "savePrompt": "Simpan hantaran ini sebagai draf untuk diselesaikan dan disiarkan kemudian?"
   },
   "dex": {
+    "lowestPrice": "Harga terendah · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Jumlah kecairan · USD"
   }
 }

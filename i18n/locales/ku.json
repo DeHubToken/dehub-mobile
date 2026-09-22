@@ -4220,6 +4220,9 @@
     "savePrompt": "Vê peyamê wek reşnivîs tomar bikî da ku paşê temam bikî û biweşînî?"
   },
   "dex": {
+    "lowestPrice": "Bihayê herî kêm · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Tevahiya şilbûnê · USD"
   }
 }

@@ -4718,6 +4718,9 @@
     "savePrompt": "Lưu bài đăng này dưới dạng bản nháp để hoàn tất và đăng sau?"
   },
   "dex": {
+    "lowestPrice": "Giá thấp nhất · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Tổng thanh khoản · USD"
   }
 }

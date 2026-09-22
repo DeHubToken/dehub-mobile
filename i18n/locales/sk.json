@@ -4797,6 +4797,9 @@
     "savePrompt": "Uložiť tento príspevok ako koncept na dokončenie a uverejnenie neskôr?"
   },
   "dex": {
+    "lowestPrice": "Najnižšia cena · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Celková likvidita · USD"
   }
 }

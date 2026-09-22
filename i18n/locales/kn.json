@@ -4635,6 +4635,9 @@
     "savePrompt": "ಈ ಪೋಸ್ಟ್ ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಡ್ರಾಫ್ಟ್ ಆಗಿ ಉಳಿಸಿ ಮತ್ತು ನಂತರ ಪೋಸ್ಟ್ ಮಾಡಿ?"
   },
   "dex": {
+    "lowestPrice": "ಅತಿ ಕಡಿಮೆ ಬೆಲೆ · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "ಒಟ್ಟು ದ್ರವ್ಯತೆ · USD"
   }
 }

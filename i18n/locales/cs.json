@@ -4636,6 +4636,9 @@
     "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   },
   "dex": {
+    "lowestPrice": "Nejnižší cena · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Celková likvidita · USD"
   }
 }

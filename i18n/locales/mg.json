@@ -4707,6 +4707,9 @@
     "savePrompt": "Na dia izany aza, mbola nahita lahatsoratra sasany izay tokony ho fenoina sy hamarana azy ireo ve ianao?"
   },
   "dex": {
+    "lowestPrice": "Vidiny ambany indrindra · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Totalin’ny famatsiam-bola · USD"
   }
 }

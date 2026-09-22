@@ -4682,6 +4682,9 @@
     "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
   },
   "dex": {
+    "lowestPrice": "Harga terendah · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Total likuiditas · USD"
   }
 }

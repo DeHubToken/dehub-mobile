@@ -4620,6 +4620,9 @@
     "savePrompt": "Fipamọ ifiweranṣẹ yii bi agbese lati pari ati firanṣẹ nigbamii?"
   },
   "dex": {
+    "lowestPrice": "Iye tó kéré jù · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Àpapọ̀ owó ìṣàn · USD"
   }
 }

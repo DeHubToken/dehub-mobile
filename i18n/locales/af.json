@@ -4750,6 +4750,9 @@
     "savePrompt": "Stoor hierdie pos as 'n konsep om later te voltooi en te pos?"
   },
   "dex": {
+    "lowestPrice": "Laagste prys · USD",
+    "lpDhb": "LP · DHB",
+    "lpUsd": "LP · USD",
     "totalLiquidity": "Totale likiditeit · USD"
   }
 }
