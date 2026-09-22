@@ -19,7 +19,7 @@ import {
   FlatList,
   ScrollView,
   TextInput,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
@@ -29,6 +29,7 @@ import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import SellUsernamePanel from "../components/Usernames/SellUsernamePanel";
+import UsernameVaultPanel from "../components/Usernames/UsernameVaultPanel";
 import OffersPanel from "../components/Usernames/OffersPanel";
 import MakeOfferSheet from "../components/Usernames/MakeOfferSheet";
 import BuyUsernameSheet from "../components/Usernames/BuyUsernameSheet";
@@ -160,7 +161,10 @@ export default function UsernamesScreen() {
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
 
-  const [tab, setTab] = useState<"browse" | "sell" | "offers">("browse");
+  const [tab, setTab] = useState<"browse" | "mine" | "sell" | "offers">("browse");
+  // Which of your names the sell form should open on. The vault hands it over
+  // when you press "sell" on a row.
+  const [sellingUsername, setSellingUsername] = useState<string | null>(null);
   const [sort, setSort] = useState<UsernameSort>("newest");
   // A shared listing link (dehub.io/usernames?handle=x) lands here with the
   // handle already in the box, the same as web's ?handle= param.
@@ -238,7 +242,10 @@ export default function UsernamesScreen() {
       />
 
       <View style={styles.segment}>
-        {(["browse", "sell", "offers"] as const).map((key) => (
+        {/* "Mine" sits next to Browse rather than inside Sell, because owning a
+            handle and selling one stopped being the same thing the moment an
+            account could hold more than one. */}
+        {(["browse", "mine", "sell", "offers"] as const).map((key) => (
           <Pressable
             key={key}
             onPress={() => setTab(key)}
@@ -247,9 +254,11 @@ export default function UsernamesScreen() {
             <Text style={[styles.segmentText, tab === key && styles.segmentTextActive]}>
               {key === "browse"
                 ? t("usernames.browse")
-                : key === "sell"
-                  ? t("usernames.sell")
-                  : t("usernames.tabOffers")}
+                : key === "mine"
+                  ? t("usernames.tabMine")
+                  : key === "sell"
+                    ? t("usernames.sell")
+                    : t("usernames.tabOffers")}
             </Text>
           </Pressable>
         ))}
@@ -372,10 +381,21 @@ export default function UsernamesScreen() {
           isAuthed={isAuthed}
           onSignIn={() => navigation.navigate(ScreenNames.SignIn)}
         />
+      ) : tab === "mine" ? (
+        <UsernameVaultPanel
+          isAuthed={isAuthed}
+          onSignIn={() => navigation.navigate(ScreenNames.SignIn)}
+          onSell={(username) => {
+            setSellingUsername(username);
+            setTab("sell");
+          }}
+        />
       ) : (
         <SellUsernamePanel
           isAuthed={isAuthed}
           onSignIn={() => navigation.navigate(ScreenNames.SignIn)}
+          username={sellingUsername}
+          onUsernameChange={setSellingUsername}
         />
       )}
 

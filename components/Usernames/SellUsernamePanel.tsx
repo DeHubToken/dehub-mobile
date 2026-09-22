@@ -1,17 +1,21 @@
 /**
  * SellUsernamePanel
  * =================
- * List the handle you are wearing, and see what you have traded.
+ * List one of the usernames you own, and see what you have traded.
  *
- * Two things this has to be blunt about, because both are irreversible and
- * neither is guessable from a price field:
+ * Which one you picked changes what this form even asks for, and that is the
+ * whole shape of the panel:
  *
- * - **You are selling the handle you are currently using.** There is no picker;
- *   the form shows your own name and that is what goes on the market.
- * - **You have to say where you are going.** The replacement handle is chosen
- *   here, while you are sitting in front of it, rather than being invented for
- *   you at the moment somebody pays. It is checked against the same rules the
- *   profile editor enforces, so a listing can never promise a swap that fails.
+ * - **Selling the handle you are wearing** means moving out of it, so you have
+ *   to say where you are going. The replacement is chosen here, while you are
+ *   sitting in front of it, rather than being invented for you at the moment
+ *   somebody pays — and it is checked against the same rules the profile editor
+ *   enforces, so a listing can never promise a swap that fails.
+ * - **Selling a name you hold** asks none of that. You are not living in it, so
+ *   a sale never touches your profile; the form drops to a price and a pitch.
+ *
+ * The picker only appears once there is something to pick between. An account
+ * that has never bought a handle owns exactly one.
  */
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useEffect, useState } from "react";
@@ -41,9 +45,17 @@ import type { MyUsernameListing, UsernameSale } from "../../services/username-ma
 interface Props {
   isAuthed: boolean;
   onSignIn: () => void;
+  /** Which owned name to open on. Null means the handle being worn. */
+  username?: string | null;
+  onUsernameChange?: (username: string) => void;
 }
 
-const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
+const SellUsernamePanel: React.FC<Props> = ({
+  isAuthed,
+  onSignIn,
+  username: selectedUsername,
+  onUsernameChange,
+}) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { data: config } = useUsernameMarketConfig();
@@ -55,16 +67,28 @@ const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
   const [replacement, setReplacement] = useState("");
   const [description, setDescription] = useState("");
 
-  const active = mine?.listings.find((l) => l.status === "active");
+  // Which of their names is on the form. The caller's choice wins; otherwise
+  // the handle they are wearing, which is what this panel used to assume was
+  // the only possibility.
+  const held = mine?.held || [];
+  const subject =
+    held.find((h) => h.username === selectedUsername) || held.find((h) => h.active) || null;
+  const sellingUsername = subject?.username || mine?.currentUsername || "";
+  const fromVault = !!subject && !subject.active;
+
+  const active = mine?.listings.find(
+    (l) => l.status === "active" && l.username === sellingUsername,
+  );
   const history = (mine?.listings || []).filter((l) => l.status !== "active");
 
-  // Seed the form from an existing listing so "list" doubles as "edit".
+  // Seed the form from an existing listing so "list" doubles as "edit", and
+  // clear it when switching to a name that has none — otherwise the previous
+  // name's price sits in the box looking like this one's.
   useEffect(() => {
-    if (!active) return;
-    setPriceUsd(String(active.priceUsd));
-    setReplacement(active.replacementUsername);
-    setDescription(active.description || "");
-  }, [active?.id]);
+    setPriceUsd(active ? String(active.priceUsd) : "");
+    setReplacement(active?.replacementUsername || "");
+    setDescription(active?.description || "");
+  }, [active?.id, sellingUsername]);
 
   if (!isAuthed) {
     return (
@@ -98,13 +122,18 @@ const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
   const maxPrice = config?.maxPriceUsd ?? Number.MAX_SAFE_INTEGER;
   const priceNumber = Number(priceUsd);
   const priceValid = Number.isFinite(priceNumber) && Math.abs(priceNumber * 100 - Math.round(priceNumber * 100)) < 0.000001 && priceNumber >= minPrice && priceNumber <= maxPrice;
-  const replacementValid = /^[a-z0-9_-]{1,30}$/.test(replacement.trim().toLowerCase());
+  // A replacement is only part of the deal when the seller is moving out of the
+  // name. Requiring one for a vault sale would be asking them to rename
+  // themselves to complete a trade that has nothing to do with their profile.
+  const replacementValid =
+    fromVault || /^[a-z0-9_-]{1,30}$/.test(replacement.trim().toLowerCase());
   const canSubmit = !!config && config.dhbUsdPeg > 0 && priceValid && replacementValid && !createListing.isPending;
 
   const submit = () => {
     createListing.mutate({
+      username: sellingUsername,
       priceUsd: priceNumber,
-      replacementUsername: replacement.trim().toLowerCase(),
+      replacementUsername: fromVault ? undefined : replacement.trim().toLowerCase(),
       description: description.trim() || undefined,
     });
   };
@@ -127,9 +156,38 @@ const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
             <Text style={styles.fieldLabel}>{t("usernames.youAreSelling")}</Text>
             <Text style={styles.currentHandle}>
               <Text style={styles.at}>@</Text>
-              {mine.currentUsername}
+              {sellingUsername}
+            </Text>
+            <Text style={styles.hint}>
+              {t(fromVault ? "usernames.sellingHeldName" : "usernames.sellingWornName")}
             </Text>
           </View>
+
+          {/* Only worth showing once there is a choice. Most accounts own one
+              name and a picker of one option is furniture. */}
+          {held.length > 1 && (
+            <View style={styles.picker}>
+              {held.map((holding) => (
+                <Pressable
+                  key={holding.username}
+                  onPress={() => onUsernameChange?.(holding.username)}
+                  style={[
+                    styles.pickerChip,
+                    holding.username === sellingUsername && styles.pickerChipActive,
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.pickerChipText,
+                      holding.username === sellingUsername && styles.pickerChipTextActive,
+                    ]}
+                  >
+                    @{holding.username}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          )}
 
           <View style={styles.field}>
             <Text style={styles.fieldLabel}>{t("usernames.askingPriceUsd", "Asking price (USD)")}</Text>
@@ -149,26 +207,30 @@ const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
             </Text>
           </View>
 
-          <View style={styles.field}>
-            <Text style={styles.fieldLabel}>{t("usernames.newHandleLabel")}</Text>
-            <View style={styles.inputRow}>
-              <Text style={styles.inputPrefix}>@</Text>
-              <TextInput
-                value={replacement}
-                onChangeText={(v) => setReplacement(v.replace(/[^A-Za-z0-9_-]/g, "").toLowerCase())}
-                autoCapitalize="none"
-                autoCorrect={false}
-                spellCheck={false}
-                maxLength={config?.usernameMaxLength ?? 30}
-                placeholder={`${mine.currentUsername}_2`.slice(0, 30)}
-                placeholderTextColor="#8B8D90"
-                style={styles.inputInline}
-              />
+          {/* Where the seller lands. Only for the handle they are wearing — a
+              vault sale leaves their profile exactly where it is. */}
+          {!fromVault && (
+            <View style={styles.field}>
+              <Text style={styles.fieldLabel}>{t("usernames.newHandleLabel")}</Text>
+              <View style={styles.inputRow}>
+                <Text style={styles.inputPrefix}>@</Text>
+                <TextInput
+                  value={replacement}
+                  onChangeText={(v) => setReplacement(v.replace(/[^A-Za-z0-9_-]/g, "").toLowerCase())}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  spellCheck={false}
+                  maxLength={config?.usernameMaxLength ?? 30}
+                  placeholder={`${mine.currentUsername}_2`.slice(0, 30)}
+                  placeholderTextColor="#8B8D90"
+                  style={styles.inputInline}
+                />
+              </View>
+              <Text style={styles.hint}>
+                {t("usernames.newHandleHint", { handle: replacement || "…" })}
+              </Text>
             </View>
-            <Text style={styles.hint}>
-              {t("usernames.newHandleHint", { handle: replacement || "…" })}
-            </Text>
-          </View>
+          )}
 
           <View style={styles.field}>
             <Text style={styles.fieldLabel}>{t("usernames.pitchLabel")}</Text>
@@ -185,7 +247,9 @@ const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
 
           <View style={styles.warning}>
             <Icon name="TriangleAlert" size={15} color="#D4D4D8" />
-            <Text style={styles.warningText}>{t("usernames.saleFinal")}</Text>
+            <Text style={styles.warningText}>
+              {t(fromVault ? "usernames.saleFinalHeld" : "usernames.saleFinal")}
+            </Text>
           </View>
 
           <View style={styles.actions}>
@@ -290,6 +354,21 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   field: { gap: 6 },
+  picker: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
+  pickerChip: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 999,
+    backgroundColor: "rgba(255,255,255,0.05)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.10)",
+  },
+  pickerChipActive: {
+    backgroundColor: "rgba(255,255,255,0.15)",
+    borderColor: "rgba(255,255,255,0.30)",
+  },
+  pickerChipText: { color: "#A1A1AA", fontSize: 12 },
+  pickerChipTextActive: { color: "#FFFFFF", fontWeight: "600" },
   fieldLabel: { color: "#808089", fontSize: 11, fontWeight: "600" },
   currentHandle: { color: "#FFFFFF", fontSize: 21, fontWeight: "700", marginTop: 2, flexShrink: 0 },
   at: { color: "#808089" },

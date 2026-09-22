@@ -150,7 +150,11 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
             </Text>
           </View>
 
-          {/* The swap, said out loud. */}
+          {/* The move, said out loud.
+              The old handle is not being given up any more, it is being kept —
+              which is exactly the thing people would not buy into before, so
+              the line that used to say "released" has to say the opposite
+              clearly enough that nobody hesitates over it. */}
           {!!quote && (
             <View style={styles.panel}>
               <Text style={styles.panelLabel}>{t("usernames.yourHandleChanges")}</Text>
@@ -163,7 +167,11 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
                   @{quote.username}
                 </Text>
               </View>
-              <Text style={styles.panelHint}>{t("usernames.swapHint")}</Text>
+              <Text style={styles.panelHint}>
+                {quote.currentUsername
+                  ? t("usernames.swapHintKept", { handle: quote.currentUsername })
+                  : t("usernames.swapHintNoChange")}
+              </Text>
             </View>
           )}
 
@@ -247,7 +255,9 @@ const styles = StyleSheet.create({
   priceUnit: { color: "#808089", fontSize: 14, fontWeight: "500" },
 
   swapRow: { flexDirection: "row", alignItems: "center", gap: 8, marginTop: 2 },
-  swapOld: { color: "#A1A1AA", fontSize: 14, textDecorationLine: "line-through", flexShrink: 1 },
+  // Not struck through: the buyer keeps this name, so crossing it out would
+  // say the one thing about this screen that is no longer true.
+  swapOld: { color: "#A1A1AA", fontSize: 14, flexShrink: 1 },
   swapNew: { color: "#FFFFFF", fontSize: 14, fontWeight: "700", flexShrink: 1 },
 
   networkRow: { flexDirection: "row", alignItems: "center", gap: 7 },
