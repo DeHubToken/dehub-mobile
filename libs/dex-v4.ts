@@ -189,7 +189,7 @@ export async function detectDhbChain(address: string): Promise<{
   };
 }
 
-export async function detectUsdcChain(address: string): Promise<{ chainId: DexChainId | null; balance: string }> {
+export async function detectUsdcChain(address: string): Promise<{ chainId: DexChainId | null; balance: string; base: string; bnb: string }> {
   const [baseRead, bnbRead] = await Promise.allSettled([
     readWithTimeout(new ethers.Contract(DEX_CHAINS[ChainId.BASE_MAINNET].usdc, ERC20, dexProvider(ChainId.BASE_MAINNET)).balanceOf(address) as Promise<ethers.BigNumber>, 'Base balance'),
     readWithTimeout(new ethers.Contract(DEX_CHAINS[ChainId.BSC_MAINNET].usdc, ERC20, dexProvider(ChainId.BSC_MAINNET)).balanceOf(address) as Promise<ethers.BigNumber>, 'BNB balance'),
@@ -200,8 +200,12 @@ export async function detectUsdcChain(address: string): Promise<{ chainId: DexCh
   const base = baseRead.status === 'fulfilled' ? baseRead.value : ethers.constants.Zero;
   const bnb = bnbRead.status === 'fulfilled' ? bnbRead.value : ethers.constants.Zero;
   const chainId: DexChainId | null = base.gt(0) ? ChainId.BASE_MAINNET : bnb.gt(0) ? ChainId.BSC_MAINNET : null;
-  return { chainId, balance: ethers.utils.formatUnits(chainId === ChainId.BASE_MAINNET ? base : bnb,
-    chainId ? DEX_CHAINS[chainId].usdcDecimals : 6) };
+  return {
+    chainId,
+    balance: ethers.utils.formatUnits(chainId === ChainId.BASE_MAINNET ? base : bnb, chainId ? DEX_CHAINS[chainId].usdcDecimals : 6),
+    base: ethers.utils.formatUnits(base, DEX_CHAINS[ChainId.BASE_MAINNET].usdcDecimals),
+    bnb: ethers.utils.formatUnits(bnb, DEX_CHAINS[ChainId.BSC_MAINNET].usdcDecimals),
+  };
 }
 
 function ticks(chainId: DexChainId, floor: number, ceiling: number): [number, number] {
