@@ -21,11 +21,22 @@ export function parseSharedMarket<Position>(data: unknown): SharedMarket<Positio
 export function minuteCache<T>(read: () => Promise<T>, now: () => number = Date.now) {
   let cached: { value: T; at: number } | undefined;
   let pending: Promise<T> | undefined;
-  return () => {
+  let generation = 0;
+  const call = (() => {
     if (cached && Math.floor(now() / 60000) === cached.at) return Promise.resolve(cached.value);
-    if (!pending) pending = read().then((value) => { cached = { value, at: Math.floor(now() / 60000) }; return value; })
-      .finally(() => { pending = undefined; });
+    if (!pending) {
+      const startedAt = generation;
+      pending = read().then((value) => {
+        // A snapshot announced while this read was in flight makes the answer stale on arrival,
+        // and caching it would hold the screen on the old minute until the next one begins.
+        if (generation === startedAt) cached = { value, at: Math.floor(now() / 60000) };
+        return value;
+      }).finally(() => { pending = undefined; });
+    }
     return pending;
-  };
+  }) as (() => Promise<T>) & { invalidate: () => void };
+  /** Drop the cached minute because the server says it has a newer snapshot than this one. */
+  call.invalidate = () => { generation += 1; cached = undefined; };
+  return call;
 }
 
