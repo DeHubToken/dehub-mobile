@@ -5,6 +5,9 @@ export interface BookLevel { price: number; dhb: number; usdc: number; cumulativ
 /** Grouping steps offered by the order book, finest first. */
 export const BOOK_INCREMENTS = [0.00000001, 0.0000001, 0.000001, 0.00001] as const;
 export const DEFAULT_INCREMENT = 0.000001;
+/** Depth is only meaningful near the pool price. A full-range position spans dozens of orders
+ *  of magnitude, and sampling all of it invents book levels a thousand times off the market. */
+export const BOOK_BAND = 2;
 
 /** Indicative AMM depth from actual reserves. An in-range LP contributes to both sides.
  * Sample log-price intervals using concentrated-liquidity reserve math, not the indexed deposit amount.
@@ -28,8 +31,12 @@ export function aggregateBook(positions: BookPosition[], increment = 0.00000001)
       const reserve = bid ? p.amountUsdc : p.amountDhb;
       if (reserve <= 0 || hi <= lo) continue;
       const rootLo = Math.sqrt(lo), rootHi = Math.sqrt(hi);
+      // Sample only the part of the range near the pool price, but keep the reserve share
+      // normalised over the whole range, so what is shown is the depth that band really holds.
+      const bandLo = Math.max(lo, p.marketPrice / BOOK_BAND), bandHi = Math.min(hi, p.marketPrice * BOOK_BAND);
+      if (!(bandHi > bandLo)) continue;
       for (let i = 0; i < 24; i++) {
-        const a = lo * Math.pow(hi / lo, i / 24), b = lo * Math.pow(hi / lo, (i + 1) / 24);
+        const a = bandLo * Math.pow(bandHi / bandLo, i / 24), b = bandLo * Math.pow(bandHi / bandLo, (i + 1) / 24);
         const fraction = bid ? (Math.sqrt(b) - Math.sqrt(a)) / (rootHi - rootLo)
           : (1 / Math.sqrt(a) - 1 / Math.sqrt(b)) / (1 / rootLo - 1 / rootHi);
         const average = Math.sqrt(a * b);

@@ -119,9 +119,11 @@ export default function DexScreen() {
   const spreadShare = bids.length && asks.length ? spreadPercent(bids[0].price, asks[0].price) : null;
   // Each network runs its own pool. A sell must clear the highest price, a buy the lowest, on the
   // funding network once it is known; before that, whichever bound is safe on every network.
+  // Only the 0% pool counts: that is the one the ticket mints into, so a 0.3% position's spot
+  // price must never seed it.
   const poolPrices = useMemo(() => {
     const byChain = new Map<number, number>();
-    for (const item of listings) if (Number.isFinite(item.marketPrice) && item.marketPrice > 0) byChain.set(item.chain_id, item.marketPrice);
+    for (const item of listings) if (item.poolFee === 0 && Number.isFinite(item.marketPrice) && item.marketPrice > 0) byChain.set(item.chain_id, item.marketPrice);
     return byChain;
   }, [listings]);
   const referencePrice = useCallback((next: 'buy' | 'sell') => {
