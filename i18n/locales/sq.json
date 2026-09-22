@@ -1639,11 +1639,7 @@
       "dehubFollowers": "Ndjekësit e DeHub",
       "selfReported": "Numrat e ndjekësve socialë futen nga krijuesi."
     },
-    "tabPlaylists": "Listat e luajtjes",
-    "aiScraping": {
-      "allowed": "Ky krijues lejon trajnimin e IA për këtë përmbajtje.",
-      "denied": "Ky krijues nuk lejon trajnimin e IA për këtë përmbajtje."
-    }
+    "tabPlaylists": "Listat e luajtjes"
   },
   "tv": {
     "title": "TV",

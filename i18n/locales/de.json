@@ -1618,11 +1618,7 @@
       "dehubFollowers": "DeHub-Follower",
       "selfReported": "Die Anzahl der sozialen Follower wird vom Ersteller eingegeben."
     },
-    "tabPlaylists": "Playlisten",
-    "aiScraping": {
-      "allowed": "Dieser Ersteller ermöglicht KI-Schulungen zu diesen Inhalten.",
-      "denied": "Dieser Ersteller erlaubt keine KI-Schulungen zu diesen Inhalten."
-    }
+    "tabPlaylists": "Playlisten"
   },
   "tv": {
     "title": "TV",

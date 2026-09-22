@@ -1629,11 +1629,7 @@
       "dehubFollowers": "DeHub mabiya",
       "selfReported": "An shigar da ƙididdigar mabiya zamantakewa ta mahalicci."
     },
-    "tabPlaylists": "Jerin-bidiyoyi",
-    "aiScraping": {
-      "allowed": "Wannan mahalicci yana ba da damar horar da AI akan wannan abun ciki.",
-      "denied": "Wannan mahalicci ba ya ba da izinin horo na AI akan wannan abun ciki."
-    }
+    "tabPlaylists": "Jerin-bidiyoyi"
   },
   "tv": {
     "title": "Talabijin",

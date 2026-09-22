@@ -1628,11 +1628,7 @@
       "dehubFollowers": "DeHub ተከታዮች",
       "selfReported": "የማኅበራዊ መከታተያ ቁጥሮች በፈጣሪ ይካተታሉ ።"
     },
-    "tabPlaylists": "አጫዋች ዝርዝሮች",
-    "aiScraping": {
-      "allowed": "ይህ ፈጣሪ በዚህ ይዘት ላይ የአይአይ ስልጠናዎችን ይፈቅዳል ።",
-      "denied": "ይህ ፈጣሪ በዚህ ይዘት ላይ የአይአይ ሥልጠና አይፈቅድም ።"
-    }
+    "tabPlaylists": "አጫዋች ዝርዝሮች"
   },
   "tv": {
     "title": "ቴሌቪዥን",

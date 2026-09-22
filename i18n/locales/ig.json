@@ -1624,11 +1624,7 @@
       "dehubFollowers": "DeHub na-eso ụzọ",
       "selfReported": "Onye na-emepụta ihe na-abanye ọnụ ọgụgụ ndị na-eso ụzọ ọha."
     },
-    "tabPlaylists": "Ndepụta egwu",
-    "aiScraping": {
-      "allowed": "Onye okike a na-enye ohere ọzụzụ AI na ọdịnaya a.",
-      "denied": "Onye mmepụta a anaghị ekwe ka ọzụzụ AI na ọdịnaya a."
-    }
+    "tabPlaylists": "Ndepụta egwu"
   },
   "tv": {
     "title": "TV",

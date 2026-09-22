@@ -172,11 +172,7 @@
       "dehubFollowers": "Sledovatelia DeHubu",
       "selfReported": "Počet sledovateľov na sociálnych sieťach zadáva tvorca."
     },
-    "tabPlaylists": "Playlisty",
-    "aiScraping": {
-      "allowed": "Tento tvorca umožňuje školenie umelej inteligencie o tomto obsahu.",
-      "denied": "Tento tvorca nepovoľuje školenie umelej inteligencie o tomto obsahu."
-    }
+    "tabPlaylists": "Playlisty"
   },
   "settings": {
     "smartReplies": "Navrhované odpovede",

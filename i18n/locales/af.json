@@ -301,11 +301,7 @@
       "dehubFollowers": "DeHub-volgelinge",
       "selfReported": "Sosiale volgelinge tel word deur die skepper ingevoer."
     },
-    "tabPlaylists": "Speellyste",
-    "aiScraping": {
-      "allowed": "Hierdie skepper laat AI-opleiding op hierdie inhoud toe.",
-      "denied": "Hierdie skepper laat nie AI-opleiding op hierdie inhoud toe nie."
-    }
+    "tabPlaylists": "Speellyste"
   },
   "settings": {
     "smartReplies": "Voorgestelde antwoorde",

@@ -1667,11 +1667,7 @@
       "dehubFollowers": "Hordoftoota DeHub",
       "selfReported": "Lakkoofsi hordoftoota hawaasummaa uumaan galcha."
     },
-    "tabPlaylists": "Tarreewwan tapha",
-    "aiScraping": {
-      "allowed": "Uumaan kun qabiyyee kana irratti leenjii AI ni hayyama.",
-      "denied": "Uumaan kun qabiyyee kana irratti leenjii AI hin hayyamu."
-    }
+    "tabPlaylists": "Tarreewwan tapha"
   },
   "dao": {
     "title": "Kasaa DAO",

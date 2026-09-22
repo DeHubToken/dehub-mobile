@@ -1545,11 +1545,7 @@
       "dehubFollowers": "DeHub 팔로워",
       "selfReported": "소셜 팔로워 수는 크리에이터가 입력합니다."
     },
-    "tabPlaylists": "재생 목록",
-    "aiScraping": {
-      "allowed": "이 크리에이터는 이 콘텐츠에 대한 AI 교육을 허용합니다.",
-      "denied": "이 크리에이터는 이 콘텐츠에 대한 AI 교육을 허용하지 않습니다."
-    }
+    "tabPlaylists": "재생 목록"
   },
   "tv": {
     "title": "TV",

@@ -1638,11 +1638,7 @@
       "dehubFollowers": "„DeHub“ sekėjai",
       "selfReported": "Socialinių sekėjų skaičių įveda kūrėjas."
     },
-    "tabPlaylists": "Grojaraščiai",
-    "aiScraping": {
-      "allowed": "Šis kūrėjas leidžia DI mokymus apie šį turinį.",
-      "denied": "Šis kūrėjas neleidžia DI mokymų apie šį turinį."
-    }
+    "tabPlaylists": "Grojaraščiai"
   },
   "tv": {
     "title": "TV",

@@ -1639,11 +1639,7 @@
       "dehubFollowers": "Wafuasi wa DeHub",
       "selfReported": "Hesabu za wafuasi wa kijamii zimewekwa na muundaji."
     },
-    "tabPlaylists": "Orodha za kucheza",
-    "aiScraping": {
-      "allowed": "Mtengenezaji huyu anaruhusu mafunzo ya AI kuhusu maudhui haya.",
-      "denied": "Mtengenezaji huyu haruhusu mafunzo ya AI kuhusu maudhui haya."
-    }
+    "tabPlaylists": "Orodha za kucheza"
   },
   "tv": {
     "title": "TV",

@@ -2095,11 +2095,7 @@
       "dehubFollowers": "Pengikut DeHub",
       "selfReported": "Kiraan pengikut sosial dimasukkan oleh pengkarya."
     },
-    "tabPlaylists": "Senarai main",
-    "aiScraping": {
-      "allowed": "Pengkarya ini membenarkan latihan AI pada kandungan ini.",
-      "denied": "Pengkarya ini tidak membenarkan latihan AI pada kandungan ini."
-    }
+    "tabPlaylists": "Senarai main"
   },
   "tv": {
     "title": "TV",

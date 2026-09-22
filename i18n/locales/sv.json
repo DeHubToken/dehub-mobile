@@ -1501,11 +1501,7 @@
       "dehubFollowers": "DeHub-följare",
       "selfReported": "Antal följare i sociala medier anges av kreatören."
     },
-    "tabPlaylists": "Spellistor",
-    "aiScraping": {
-      "allowed": "Denna kreatör tillåter AI-utbildning om detta innehåll.",
-      "denied": "Denna kreatör tillåter inte AI-utbildning om detta innehåll."
-    }
+    "tabPlaylists": "Spellistor"
   },
   "messages": {
     "smartRepliesOff": "Föreslagna svar avstängda",

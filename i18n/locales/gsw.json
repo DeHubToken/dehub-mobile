@@ -1598,11 +1598,7 @@
       "dehubFollowers": "DeHub Follower",
       "selfReported": "Soziali Follower-Zahle werded vom Creator yygäbe."
     },
-    "tabPlaylists": "Playlistä",
-    "aiScraping": {
-      "allowed": "Dä Creator erlaubt AI-Training uf dem Inhalt.",
-      "denied": "Dä Creator erlaubt kei AI-Training uf dem Inhalt."
-    }
+    "tabPlaylists": "Playlistä"
   },
   "tv": {
     "title": "TV",

@@ -1641,11 +1641,7 @@
       "dehubFollowers": "DeHub qatiqninkuna",
       "selfReported": "Social qatiq yupaykunataqa kamaqmi yaykuchin."
     },
-    "tabPlaylists": "Pukllay listakuna",
-    "aiScraping": {
-      "allowed": "Kay kamaqqa kay contenidomanta AI yachachiyta saqin.",
-      "denied": "Kay kamaqqa mana kay contenidomanta AI yachachiyta saqinchu."
-    }
+    "tabPlaylists": "Pukllay listakuna"
   },
   "tv": {
     "title": "TV",
