@@ -4719,7 +4719,16 @@
     "withdrawn": "Position withdrawn to your wallet",
     "withdrawing": "Withdrawing…",
     "withdrawUsdc": "Withdraw USDC",
-    "withdrawPosition": "Withdraw position"
+    "withdrawPosition": "Withdraw position",
+    "venue": "Network",
+    "bookPrice": "{{chain}} book price · USD",
+    "marketPrice": "Market price · USD",
+    "sellBelowMarket": "This sell is {{percent}}% below the market price of ${{price}}. Someone can buy it and resell it elsewhere at once.",
+    "buyAboveMarket": "This buy is {{percent}}% above the market price of ${{price}}. You would pay more than DHB trades for elsewhere.",
+    "useMarket": "Use market price",
+    "noFunding": "No {{token}} available on {{chain}}.",
+    "noListingsChain": "No listings on {{chain}} yet.",
+    "listedDhb": "Listed DHB · {{chain}}"
   },
   "onboarding": {
     "optIn": {

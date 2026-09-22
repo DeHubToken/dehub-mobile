@@ -120,3 +120,34 @@ export function balanceFraction(balance: string, percent: number, decimals: numb
   const tail = (value % scale).toString().padStart(decimals, '0').replace(/0+$/, '');
   return `${value / scale}${tail ? `.${tail}` : ''}`;
 }
+/** Largest deviation from the aggregate market a ticket accepts silently, as a fraction. */
+export const PRICE_WARNING_FRACTION = 0.03;
+/**
+ * The price a fresh ticket should anchor on. The order book's own pool can sit far from
+ * where DHB actually trades elsewhere (the 0% pool once printed $0.0010 while every AMM said
+ * $0.0025), so a seller anchored on the pool alone gives the gap away. Sells anchor on the
+ * higher of the two, buys on the lower: never below fair value for a sell, never above it
+ * for a buy. With only one of the two known, that one is used.
+ */
+export function seedReference(side: 'buy' | 'sell', poolPrice: number | null | undefined, marketPrice: number | null | undefined): number | null {
+  const values = [poolPrice, marketPrice].filter((v): v is number => v != null && Number.isFinite(v) && v > 0);
+  if (!values.length) return null;
+  return side === 'sell' ? Math.max(...values) : Math.min(...values);
+}
+/**
+ * How far a chosen price sits from the aggregate market, signed as a fraction of the market.
+ * Positive is above the market. Null when either side is unusable, so nothing is warned about
+ * before a market price exists.
+ */
+export function priceDeviation(price: number | null | undefined, marketPrice: number | null | undefined): number | null {
+  if (price == null || marketPrice == null || !Number.isFinite(price) || !Number.isFinite(marketPrice) || price <= 0 || marketPrice <= 0) return null;
+  return price / marketPrice - 1;
+}
+/** True when the ticket price is far enough from the aggregate market that the trader should be told. */
+export function priceNeedsWarning(side: 'buy' | 'sell', price: number | null | undefined, marketPrice: number | null | undefined, fraction = PRICE_WARNING_FRACTION) {
+  const deviation = priceDeviation(price, marketPrice);
+  if (deviation == null) return false;
+  // A sell below the market and a buy above it are the costly directions; the other way
+  // is merely patient, and patience is what a limit order is for.
+  return side === 'sell' ? deviation < -fraction : deviation > fraction;
+}
