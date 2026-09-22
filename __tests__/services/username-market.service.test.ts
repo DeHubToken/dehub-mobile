@@ -31,6 +31,9 @@ describe('services/username-market.service', () => {
     await usernameMarketService.mine();
     await usernameMarketService.createListing({ priceUsd: 1, replacementUsername: 'x' });
     await usernameMarketService.cancelListing('abc');
+    await usernameMarketService.holdings();
+    await usernameMarketService.activateHolding('satoshi');
+    await usernameMarketService.releaseHolding('satoshi');
     await usernameMarketService.quote('abc');
     await usernameMarketService.claim({ listingId: 'abc', quoteId: 'quote-1', txHash: '0x1', chainId: 8453 });
 
@@ -59,6 +62,9 @@ describe('services/username-market.service', () => {
     await usernameMarketService.claim({ listingId: 'abc', quoteId: 'quote-1', txHash: '0x1', chainId: 8453 });
     await usernameMarketService.createListing({ priceUsd: 1, replacementUsername: 'x' });
     await usernameMarketService.cancelListing('abc');
+    await usernameMarketService.holdings();
+    await usernameMarketService.activateHolding('satoshi');
+    await usernameMarketService.releaseHolding('satoshi');
 
     for (const call of mockFetch.mock.calls) {
       // Auth is the client's default, so the assertion is that nothing here
@@ -96,7 +102,7 @@ describe('services/username-market.service', () => {
     await expect(usernameMarketService.quote('abc')).resolves.toEqual(quote);
   });
 
-  it('sells the handle you are wearing — it never sends a username to list', async () => {
+  it('sells the handle you are wearing, and asks where the seller lands', async () => {
     mockFetch.mockResolvedValueOnce({ result: { id: '1' } });
 
     await usernameMarketService.createListing({
@@ -108,15 +114,29 @@ describe('services/username-market.service', () => {
     const [path, options] = mockFetch.mock.calls[0];
     expect(path).toBe('/username_market/listings');
     expect(options.method).toBe('POST');
-    // The server reads the seller's handle off their account. A `username` here
-    // would be a claim on a string, which is how you sell something you do not
-    // hold.
+    // No `username`, so the server reads the seller's own handle off their
+    // account — the safe default, and what every caller did before an account
+    // could own more than one name.
     expect(options.body).not.toHaveProperty('username');
     expect(options.body).toEqual({
       priceUsd: 50,
       replacementUsername: 'satoshi_two',
       description: 'The original.',
     });
+  });
+
+  it('sells a name out of the vault without asking where the seller lands', async () => {
+    mockFetch.mockResolvedValueOnce({ result: { id: '2' } });
+
+    await usernameMarketService.createListing({
+      username: 'buyer_old',
+      priceUsd: 30,
+    });
+
+    const [, options] = mockFetch.mock.calls[0];
+    // A held name is named explicitly and carries no replacement: the seller is
+    // not living in it, so the sale never moves their profile.
+    expect(options.body).toEqual({ username: 'buyer_old', priceUsd: 30 });
   });
 
   it('claims against a hash and a chain, so the server can read the transfer back', async () => {
