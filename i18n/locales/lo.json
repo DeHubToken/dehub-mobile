@@ -19,6 +19,7 @@
     "unavailable": "ບໍ່ມີໃນແອັບເວີຊັນນີ້"
   },
   "nav": {
+    "fractions": "ສ່ວນ",
     "home": "ໜ້າຫຼັກ",
     "explore": "ສຳຫຼວດ",
     "notifications": "ການແຈ້ງເຕືອນ",
@@ -56,7 +57,7 @@
     "tv": "ໂທລະທັດສົດ",
     "arcade": "ອາເຄດ",
     "converter": "ລະຫັດ QR",
-    "migrate": "ການຍົກຍ້າຍຖິ່ນຖານທັງຫມົດ"
+    "migrate": "ຍ້າຍທັງໝົດ"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",

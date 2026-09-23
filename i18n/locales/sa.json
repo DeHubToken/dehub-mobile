@@ -19,6 +19,7 @@
     "unavailable": "अस्मिन् अनुप्रयोगसंस्करणे न उपलभ्यते"
   },
   "nav": {
+    "fractions": "अंशाः",
     "home": "गृहम्",
     "explore": "अन्वेषणम्",
     "notifications": "सूचनाः",
@@ -56,7 +57,7 @@
     "tv": "प्रत्यक्षदूरदर्शनम्",
     "arcade": "आर्केड्",
     "converter": "परिवर्तकम्",
-    "migrate": "प्रत्येके स्थलांतरित"
+    "migrate": "सर्वं स्थानान्तरयतु"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",

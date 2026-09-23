@@ -19,6 +19,7 @@
     "unavailable": "ऐप के ई संस्करण में उपलब्ध नइ हे"
   },
   "nav": {
+    "fractions": "फ़्रैक्शन",
     "home": "घर",
     "explore": "खोजो",
     "notifications": "सूचना",
@@ -56,7 +57,7 @@
     "tv": "लाइव टीवी",
     "arcade": "आर्केड",
     "converter": "रूपांतरित करे वाला",
-    "migrate": "सबको गले लगाओ,"
+    "migrate": "सब माइग्रेट करीं"
   },
   "affiliate": {
     "subtitle": "आप जिन्हें बुलाते हैं उन सबसे कमाएँ — हमेशा के लिए",
@@ -2997,8 +2998,8 @@
     "moderators": "मॉडरेटर",
     "bannedUsers": "प्रतिबंधित उपयोगकर्ता",
     "work": "काम",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "यूजरनेम",
+    "accounts": "खाता",
     "stores": "स्टोर",
     "comingSoon": "जल्द आ रहा है",
     "signIn": "साइन इन",

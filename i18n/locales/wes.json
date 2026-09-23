@@ -19,6 +19,7 @@
     "unavailable": "E no dey for dis version of di app"
   },
   "nav": {
+    "fractions": "Fraction dem",
     "home": "Home",
     "explore": "Explore",
     "notifications": "Notification dem",
@@ -2918,8 +2919,8 @@
     "moderators": "Moderators",
     "bannedUsers": "Banned Users",
     "work": "Work",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "Username dem",
+    "accounts": "Account dem",
     "stores": "Stores",
     "comingSoon": "E di kam",
     "signIn": "Sign in",

@@ -19,6 +19,7 @@
     "unavailable": "Di vê guhertoya sepanê de tune ye"
   },
   "nav": {
+    "fractions": "پارچەکان",
     "home": "Mal",
     "explore": "Lêgerîn",
     "notifications": "Agahdarî",
@@ -56,7 +57,7 @@
     "tv": "TV Zindî",
     "arcade": "Arcade",
     "converter": "Converter",
-    "migrate": "Migrate all"
+    "migrate": "Hemûyan bar bike"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",

@@ -61,9 +61,9 @@ const destinations = [
   ['nav.events', 'Events'], ['nav.stages', 'Stages'], ['nav.featureRequests', 'FeatureRequests'],
   ['nav.staking', 'Dpay', false, { initialTab: 'stake' }], ['nav.superpowers', 'SuperPowers'],
   ['nav.governance', 'Governance'], ['nav.dao', 'Dao'], ['screens.work', 'Work'],
-  ['nav.affiliate', 'Affiliate'], ['nav.careers', 'Careers'], ['screens.stores', 'Stores'],
+  ['nav.affiliate', 'Affiliate'], ['nav.careers', 'Careers'], ['screens.stores', 'Stores'], ['screens.usernames', 'Usernames'], ['screens.accounts', 'Accounts'],
   ['nav.ads', 'Ads'], ['nav.tv', 'TV'], ['nav.arcade', 'Arcade'],
-  ['nav.converter', 'Converter'], ['nav.glossary', 'Glossary'], ['nav.guide', 'Guide'],
+  ['nav.converter', 'Converter'], ['nav.migrate', 'Migrate'], ['nav.glossary', 'Glossary'], ['nav.guide', 'Guide'],
 ] as const;
 
 beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; });
@@ -108,8 +108,8 @@ it('routes sign-in through App and hides protected entries when signed out', () 
 it('searches Explore with the menu query and opens documentation links', () => {
   const close = jest.fn();
   const view = render(<AppDrawer visible onClose={close} />);
-  for (const label of ['nav.docs', 'nav.blog']) fireEvent.press(view.getByLabelText(label));
-  expect(mockOpenLink.mock.calls.map(call => call[0])).toEqual([expect.stringMatching(/\/docs$/), expect.stringMatching(/\/docs\/blog$/)]);
+  for (const label of ['nav.docs', 'nav.blog', 'nav.fractions']) fireEvent.press(view.getByLabelText(label));
+  expect(mockOpenLink.mock.calls.map(call => call[0])).toEqual([expect.stringMatching(/\/docs$/), expect.stringMatching(/\/docs\/blog$/), expect.stringMatching(/\/app\/fractions$/)]);
   fireEvent.changeText(view.getByLabelText('sidebar.searchMenu'), 'hello');
   fireEvent(view.getByLabelText('sidebar.searchMenu'), 'submitEditing');
   expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Root', params: {

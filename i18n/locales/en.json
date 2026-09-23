@@ -19,6 +19,7 @@
     "unavailable": "Not available in this version of the app"
   },
   "nav": {
+    "fractions": "Fractions",
     "home": "Home",
     "explore": "Explore",
     "notifications": "Notifications",

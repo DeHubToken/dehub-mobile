@@ -19,6 +19,7 @@
     "unavailable": "በዚህ የመተግበሪያ ስሪት ውስጥ አይገኝም"
   },
   "nav": {
+    "fractions": "ክፍልፋዮች",
     "home": "መነሻ",
     "explore": "አስስ",
     "notifications": "ማሳወቂያዎች",
@@ -56,7 +57,7 @@
     "tv": "ቀጥታ ቲቪ",
     "arcade": "አርኬድ",
     "converter": "Converter",
-    "migrate": "ሁሉንም ስደተኞች"
+    "migrate": "ሁሉንም አዛውር"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",

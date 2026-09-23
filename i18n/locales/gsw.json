@@ -19,6 +19,7 @@
     "unavailable": "I dere Version vo de App nöd verfüegbar"
   },
   "nav": {
+    "fractions": "Aateil",
     "home": "Hei",
     "explore": "Entdecke",
     "notifications": "Nochrichtä",
@@ -3025,8 +3026,8 @@
     "moderators": "Moderatoren",
     "bannedUsers": "Gesperrte Benutzer",
     "work": "Arbeit",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "Benutzernäme",
+    "accounts": "Konte",
     "stores": "Shops",
     "comingSoon": "Demnächst",
     "signIn": "Anmelden",

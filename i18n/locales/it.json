@@ -19,6 +19,7 @@
     "unavailable": "Non disponibile in questa versione dell'app"
   },
   "nav": {
+    "fractions": "Frazioni",
     "home": "Home",
     "explore": "Esplora",
     "notifications": "Notifiche",
@@ -56,7 +57,7 @@
     "tv": "TV in Diretta",
     "arcade": "Arcade",
     "converter": "Convertitore",
-    "migrate": "Esegui migrazione di tutti gli elementi"
+    "migrate": "Migra tutto"
   },
   "affiliate": {
     "subtitle": "Guadagna da tutti quelli che inviti — per sempre",
@@ -3057,8 +3058,8 @@
     "moderators": "Moderatori",
     "bannedUsers": "Utenti bannati",
     "work": "Lavoro",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "Nomi utente",
+    "accounts": "Account",
     "stores": "Negozi",
     "comingSoon": "Prossimamente",
     "signIn": "Accedi",
