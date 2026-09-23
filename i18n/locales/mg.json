@@ -4548,7 +4548,8 @@
     "automaticStage": {
       "tokenApproval": "Fanomezan-dalana ny famantarana ho azy…",
       "permitApproval": "Fanomezan-dalana ny fidirana amin'ny toerana ho azy…",
-      "submit": "Famoronana ny toeranao ho azy…"
+      "submit": "Famoronana ny toeranao ho azy…",
+      "swap": "Famindrana sy famoronana ny toerana misy anao automatique..."
     },
     "combined": "Tsenan'ny mitambatra · Base + BNB",
     "reference": "Fanondroana ny tsena · USD",
@@ -4608,7 +4609,9 @@
       "permitApproval": "Hamafiso ny fankatoavana ny toerana ao amin'ny poketrao…",
       "submit": "Hamafiso ny toerana ao amin'ny poketrao…",
       "confirm": "Miandry ny fanamafisana…",
-      "index": "Mampiditra ny toeranao…"
+      "index": "Mampiditra ny toeranao…",
+      "swap": "Ampitahao ny swap ao amin'ny kitapom-batsy...",
+      "swapConfirm": "Niandry ny swap mba hanamarinana..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4662,7 +4665,13 @@
     "useMarket": "Ampiasao ny vidin'ny tsena",
     "noFunding": "Tsy misy {{token}} azo ao amin'ny {{chain}}.",
     "noListingsChain": "Mbola tsy misy lisitra ao amin'ny {{chain}}.",
-    "listedDhb": "DHB voalohany · {{chain}}"
+    "listedDhb": "DHB voalohany · {{chain}}",
+    "payWith": "Aloavy amin'ny",
+    "noBaseFunds": "Tsy misy ETH, USDC na USDT amin'ny fototra",
+    "reviewSwap": "Ampifamadiho ny {{amountIn}} {{symbol}} for {{usdc}} USDC voalohany. Naverina amin'ny fifampiraharahana mitovy ny {{symbol}}.",
+    "pendingSwapNote": "Ny {{symbol}} anao dia navadika ho USDC. Avereno ny fanovana ny toerana mba tsy hikolokolo indray.",
+    "resumeMint": "Alaviro ny filaharana",
+    "resumeNeedsBalances": "Mbola miraikitra ny fifandanjana sandoka. Miverena ao anatin'ny iray minitra."
   },
   "onboarding": {
     "optIn": {

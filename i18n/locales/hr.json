@@ -4550,7 +4550,8 @@
     "automaticStage": {
       "tokenApproval": "Automatsko odobravanje tokena…",
       "permitApproval": "Automatsko odobravanje pristupa poziciji…",
-      "submit": "Automatsko kreiranje vaše pozicije…"
+      "submit": "Automatsko kreiranje vaše pozicije…",
+      "swap": "Automatska zamjena i kreiranje pozicije..."
     },
     "combined": "Kombinirano tržište · Base + BNB",
     "reference": "Referenca tržišta · USD",
@@ -4610,7 +4611,9 @@
       "permitApproval": "Potvrdite odobrenje pozicije u vašem novčaniku…",
       "submit": "Potvrdite poziciju u vašem novčaniku…",
       "confirm": "Čekanje na potvrdu…",
-      "index": "Registriranje vaše pozicije…"
+      "index": "Registriranje vaše pozicije…",
+      "swap": "Potvrdite zamjenu u novčaniku…",
+      "swapConfirm": "Čeka se potvrda zamjene..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4664,7 +4667,13 @@
     "useMarket": "Koristite tržišnu cijenu",
     "noFunding": "Nema {{token}} dostupno na {{chain}}.",
     "noListingsChain": "Još nema oglasa na {{chain}}.",
-    "listedDhb": "Navedeni DHB · {{chain}}"
+    "listedDhb": "Navedeni DHB · {{chain}}",
+    "payWith": "Za plaćanje upotrijebi",
+    "noBaseFunds": "Bez ETH-a, USDC-a ili USDT-a na bazi",
+    "reviewSwap": "Prvo zamijenite oko {{amountIn}}{{symbol}} za {{usdc}} USDC na bazi. Neiskorišteno {{symbol}} vraća se u istoj transakciji.",
+    "pendingSwapNote": "Vaš {{symbol}} je zamijenjen za USDC. Nastavite kako biste stvorili položaj bez ponovne zamjene.",
+    "resumeMint": "Nastavi narudžbu",
+    "resumeNeedsBalances": "Saldo novčanika i dalje se učitava. Pokušajte ponovno za nekoliko trenutaka."
   },
   "onboarding": {
     "optIn": {

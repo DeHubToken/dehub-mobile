@@ -4577,7 +4577,8 @@
     "automaticStage": {
       "tokenApproval": "Kikinmanta tokenkunata aprobaspa...",
       "permitApproval": "Kikinmanta posiciónman yaykuyta aprobaspa...",
-      "submit": "Kikinmanta posiciónniyki paqarichispa..."
+      "submit": "Kikinmanta posiciónniyki paqarichispa...",
+      "swap": "kikillanmanta posiciónniyki cambiaspa hinaspa ruwaspa..."
     },
     "combined": "Huñusqa qhatu · Base + BNB",
     "reference": "Qhatumanta willakuy · USD",
@@ -4637,7 +4638,9 @@
       "permitApproval": "Billeteraykipi posición aprobacionta takyachiy...",
       "submit": "Billeteraykipi posiciónta takyachiy...",
       "confirm": "Suyaspa confirmacionta...",
-      "index": "Cargoykita registraspa..."
+      "index": "Cargoykita registraspa...",
+      "swap": "Chay intercambio nisqa billeteraykipi takyachiy...",
+      "swapConfirm": "Suyaspa chay intercambio takyachinanpaq..."
     },
     "title": "DHB / USD nisqa",
     "heading": "DHB / USD nisqa",
@@ -4690,7 +4693,13 @@
     "useMarket": "Market priceta llamk'achiy",
     "noFunding": "Mana kanchu {{token}} kaq {{chain}}pi.",
     "noListingsChain": "Mana listakunañachu {{chain}}pi kunan.",
-    "listedDhb": "Listasqa DHB · {{chain}}"
+    "listedDhb": "Listasqa DHB · {{chain}}",
+    "payWith": "Paywan pagay",
+    "noBaseFunds": "Mana ETH, USDC nitaq USDT Base nisqapichu",
+    "reviewSwap": "{{amountIn}} {{symbol}} nisqamanta {{usdc}} USDC nisqawan Base nisqapi ñawpaqta t&#39;inkinakuy. Mana llamk&#39;achisqa {{symbol}} kikin ruwaypi kutichisqa.",
+    "pendingSwapNote": "{{symbol}} nisqaykiqa USDC nisqawanmi cambiasqa karqan. Mana yapamanta t&#39;inkispa posiciónta paqarichiyta qallariy.",
+    "resumeMint": "Ordenta kaqmanta qallariy",
+    "resumeNeedsBalances": "Saldos de billetera nisqakunaqa cargakuchkallanraqmi. Huk ratullapi hukmanta kallpanchakuy."
   },
   "onboarding": {
     "optIn": {

@@ -4549,7 +4549,8 @@
     "automaticStage": {
       "tokenApproval": "Automatyczne zatwierdzanie tokenów…",
       "permitApproval": "Automatyczne zatwierdzanie dostępu do pozycji…",
-      "submit": "Automatyczne tworzenie Twojej pozycji…"
+      "submit": "Automatyczne tworzenie Twojej pozycji…",
+      "swap": "Automatyczne zamienianie i tworzenie Twojej pozycji…"
     },
     "combined": "Połączony rynek · Base + BNB",
     "reference": "Odnośnik rynkowy · USD",
@@ -4609,7 +4610,9 @@
       "permitApproval": "Potwierdź zatwierdzenie pozycji w swoim portfelu…",
       "submit": "Potwierdź pozycję w swoim portfelu…",
       "confirm": "Oczekiwanie na potwierdzenie…",
-      "index": "Rejestrowanie Twojej pozycji…"
+      "index": "Rejestrowanie Twojej pozycji…",
+      "swap": "Potwierdź zamianę w swoim portfelu…",
+      "swapConfirm": "Oczekiwanie na potwierdzenie zamiany…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4658,10 +4661,18 @@
     "venue": "Sieć",
     "bookPrice": "Cena księgowa {{chain}} · USD",
     "marketPrice": "Cena rynkowa · USD",
+    "sellBelowMarket": "Ta sprzedaż jest {{percent}}% poniżej ceny rynkowej ${{price}}. Ktoś może ją kupić i od razu odsprzedać gdzie indziej.",
+    "buyAboveMarket": "Ten zakup jest {{percent}}% powyżej ceny rynkowej ${{price}}. Zapłacisz więcej niż DHB kosztuje gdzie indziej.",
     "useMarket": "Użyj ceny rynkowej",
     "noFunding": "Brak {{token}} dostępnych na {{chain}}.",
     "noListingsChain": "Brak ofert na {{chain}}.",
-    "listedDhb": "Wystawione DHB · {{chain}}"
+    "listedDhb": "Wystawione DHB · {{chain}}",
+    "payWith": "Zapłać za pomocą",
+    "noBaseFunds": "Brak ETH, USDC lub USDT na Base",
+    "reviewSwap": "Najpierw zamień około {{amountIn}} {{symbol}} na {{usdc}} USDC na Base. Niewykorzystane {{symbol}} jest zwracane w tej samej transakcji.",
+    "pendingSwapNote": "Twoje {{symbol}} zostało zamienione na USDC. Wznów, aby utworzyć pozycję bez ponownej zamiany.",
+    "resumeMint": "Wznów zlecenie",
+    "resumeNeedsBalances": "Salda portfela nadal się ładują. Spróbuj ponownie za chwilę."
   },
   "onboarding": {
     "optIn": {

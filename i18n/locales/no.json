@@ -4533,7 +4533,8 @@
     "automaticStage": {
       "tokenApproval": "Godkjenner tokens automatisk…",
       "permitApproval": "Godkjenner posisjonstilgang automatisk…",
-      "submit": "Oppretter din posisjon automatisk…"
+      "submit": "Oppretter din posisjon automatisk…",
+      "swap": "Bytter og oppretter posisjonen din automatisk…"
     },
     "combined": "Kombinert marked · Base + BNB",
     "reference": "Markedsreferanse · USD",
@@ -4593,7 +4594,9 @@
       "permitApproval": "Bekreft posisjonsgodkjenning i lommeboken din…",
       "submit": "Bekreft posisjon i lommeboken din…",
       "confirm": "Venter på bekreftelse…",
-      "index": "Registrerer posisjonen din…"
+      "index": "Registrerer posisjonen din…",
+      "swap": "Bekreft byttet i lommeboken din…",
+      "swapConfirm": "Venter på bekreftelse av byttet…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4647,7 +4650,13 @@
     "useMarket": "Bruk markedspris",
     "noFunding": "Ingen {{token}} tilgjengelig på {{chain}}.",
     "noListingsChain": "Ingen oppføringer på {{chain}} ennå.",
-    "listedDhb": "Listet DHB · {{chain}}"
+    "listedDhb": "Listet DHB · {{chain}}",
+    "payWith": "Betal med",
+    "noBaseFunds": "Ingen ETH, USDC eller USDT på basen",
+    "reviewSwap": "Bytt først omtrent {{amountIn}} {{symbol}} med {{usdc}} USDC på basen. Ubrukte {{symbol}} returneres i samme transaksjon.",
+    "pendingSwapNote": "Din {{symbol}} ble byttet mot USDC. Fortsett for å opprette posisjonen uten å bytte igjen.",
+    "resumeMint": "Fortsett bestilling:",
+    "resumeNeedsBalances": "Wallet-saldoene lastes fortsatt inn. Prøv igjen om et øyeblikk."
   },
   "onboarding": {
     "optIn": {

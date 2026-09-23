@@ -4590,7 +4590,8 @@
     "automaticStage": {
       "tokenApproval": "Awtomatikong pag-apruba ng mga token…",
       "permitApproval": "Awtomatikong pag-apruba ng access sa posisyon…",
-      "submit": "Awtomatikong paglikha ng iyong posisyon…"
+      "submit": "Awtomatikong paglikha ng iyong posisyon…",
+      "swap": "Awtomatikong pagpapalit at paglikha ng iyong posisyon…"
     },
     "combined": "Pinagsamang merkado · Base + BNB",
     "reference": "Sanggunian ng merkado · USD",
@@ -4623,22 +4624,36 @@
     "estimated": "Estimated full conversion",
     "network": "Funding network",
     "automatic": "Automatic",
+    "balanceError": "Nabigo ang pagsusuri ng balanse. Tapikin upang subukang muli.",
+    "initializes": "Ito rin ay nag-i-initialize ng 0% pool.",
+    "pendingNote": "Isinumite ang iyong transaksyon. Ipagpatuloy ang kumpirmasyon o pagpaparehistro ng listahan nang hindi na kailangan ng isa pang deposito. Tapikin upang tingnan ang transaksyon.",
+    "registrationFailed": "Ang iyong posisyon ay nasa onchain. Ipagpatuloy ang pagpaparehistro ng listahan; hindi na ito muling magdedeposito.",
     "resume": "Resume listing",
+    "reversalNote": "Nalalapat ang gas ng network. Ang mga range order ay nagko-convert kapag ang mga swap ay tumawid sa iyong price range. Ang mga na-convert na token ay maaaring bumalik kung ang presyo ay bumaliktad; mag-withdraw upang makumpleto ang iyong trade.",
     "myPositions": "My positions",
     "verifying": "Verifying onchain positions…",
+    "noMyPositions": "Ang iyong mga posisyon ay lilitaw dito pagkatapos ng iyong unang order.",
     "ready": "Ready to withdraw",
     "converting": "Converting",
     "waiting": "Waiting",
+    "withdrawReview": "Mag-withdraw ng {{dhb}} DHB at {{usdc}} USDC sa {{chain}}? Ang mga halaga ay nagre-refresh bago pumirma; ang tolerance sa presyo ay 0.5%.",
     "cancel": "Cancel",
     "onchain": "View on chain",
     "retry": "Retry",
+    "keepOpen": "Panatilihing bukas ang screen na ito hanggang sa marehistro ang iyong listahan. Hindi magagamit ang storage ng device.",
+    "unlockWallet": "I-unlock ang iyong wallet upang magpatuloy.",
+    "snapshotError": "Nabigo ang pag-refresh ng merkado. Ipinapakita ang huling kumpletong snapshot; maaaring hindi napapanahon ang mga halaga.",
     "stage": {
       "quote": "Reading pool…",
+      "wallet": "I-unlock o ikonekta ang iyong wallet…",
       "balance": "Checking token approvals…",
+      "tokenApproval": "Kumpirmahin ang token approval sa iyong wallet…",
       "permitApproval": "Kumpirmahin ang pag-apruba ng posisyon sa iyong wallet…",
       "submit": "Kumpirmahin ang posisyon sa iyong wallet…",
       "confirm": "Naghihintay ng kumpirmasyon…",
-      "index": "Nirerehistro ang iyong posisyon…"
+      "index": "Nirerehistro ang iyong posisyon…",
+      "swap": "Kumpirmahin ang swap sa iyong wallet…",
+      "swapConfirm": "Naghihintay sa kumpirmasyon ng swap…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4692,7 +4707,13 @@
     "useMarket": "Gamitin ang market price",
     "noFunding": "Walang {{token}} na available sa {{chain}}.",
     "noListingsChain": "Wala pang listahan sa {{chain}}.",
-    "listedDhb": "Naka-listang DHB · {{chain}}"
+    "listedDhb": "Naka-listang DHB · {{chain}}",
+    "payWith": "Magbayad gamit ang",
+    "noBaseFunds": "Walang ETH, USDC o USDT sa Base",
+    "reviewSwap": "Magpalit muna ng humigit-kumulang {{amountIn}} {{symbol}} para sa {{usdc}} USDC sa Base. Ang hindi nagamit na {{symbol}} ay ibinabalik sa parehong transaksyon.",
+    "pendingSwapNote": "Ang iyong {{symbol}} ay napalitan ng USDC. Ipagpatuloy upang likhain ang posisyon nang hindi na muling magpapalit.",
+    "resumeMint": "Ipagpatuloy ang order",
+    "resumeNeedsBalances": "Naglo-load pa rin ang mga balanse ng wallet. Subukang muli sa isang sandali."
   },
   "onboarding": {
     "optIn": {

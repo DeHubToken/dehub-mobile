@@ -4537,7 +4537,8 @@
     "automaticStage": {
       "tokenApproval": "Token automatisch genehmige…",
       "permitApproval": "Posizion-Zugang automatisch genehmige…",
-      "submit": "Dini Posizion automatisch aalege…"
+      "submit": "Dini Posizion automatisch aalege…",
+      "swap": "Swappe und erstelle din Position automatisch…"
     },
     "combined": "Kombiniärter Markt · Base + BNB",
     "reference": "Marktreferenz · USD",
@@ -4597,7 +4598,9 @@
       "permitApproval": "Bestätige Positios-Bewilligung i dim Wallet…",
       "submit": "Bestätige Positiu i dim Wallet…",
       "confirm": "Warte uf Bestätigung…",
-      "index": "Registriere dini Positiu…"
+      "index": "Registriere dini Positiu…",
+      "swap": "Bestätige de Swap i dim Wallet…",
+      "swapConfirm": "Warte druf, dass de Swap bestätigt wird…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4651,7 +4654,13 @@
     "useMarket": "Marktpriis bruche",
     "noFunding": "Keini {{token}} verfügbar uf {{chain}}.",
     "noListingsChain": "No kei Uflischtige uf {{chain}}.",
-    "listedDhb": "Uflischteti DHB · {{chain}}"
+    "listedDhb": "Uflischteti DHB · {{chain}}",
+    "payWith": "Bezahle mit",
+    "noBaseFunds": "Kein ETH, USDC oder USDT uf Base",
+    "reviewSwap": "Swappe ca. {{amountIn}} {{symbol}} für {{usdc}} USDC uf Base zerscht. Ung bruuchti {{symbol}} wird i de glich Transaktion zruggzahlt.",
+    "pendingSwapNote": "Din {{symbol}} isch für USDC gswappt worde. Mach wiiter zum de Position erstelle ohni no z'swappe.",
+    "resumeMint": "Bestellig fortsetze",
+    "resumeNeedsBalances": "Wallet-Guthabe läde no. Versuechs glich druf no."
   },
   "onboarding": {
     "optIn": {

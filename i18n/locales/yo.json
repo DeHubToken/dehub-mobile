@@ -4536,7 +4536,8 @@
     "automaticStage": {
       "tokenApproval": "Fífi àwọn àmì tí a fìrílẹ̀ pamọ́ láti ara ẹni…",
       "permitApproval": "Fífi àwọn àmì tí a fìrílẹ̀ pamọ́ láti ara ẹni…",
-      "submit": "Ṣíṣẹ̀dá ipò rẹ láti ara ẹni…"
+      "submit": "Ṣíṣẹ̀dá ipò rẹ láti ara ẹni…",
+      "swap": "Gbigbe ati ṣiṣẹda ipo rẹ laifọwọyi..."
     },
     "combined": "Ìpọ̀ tí a pọ̀ · Base + BNB",
     "reference": "Ìtọ́kasí ọjà · USD",
@@ -4596,7 +4597,9 @@
       "permitApproval": "Jẹ́rìí sí ìfọwọ́sí ipò nínú àpòọ̀ rẹ…",
       "submit": "Jẹ́rìí sí ipò nínú àpòọ̀ rẹ…",
       "confirm": "Ní ń retí ìfọwọ́ sí…",
-      "index": "Ní ń kọ ipò rẹ sílẹ̀…"
+      "index": "Ní ń kọ ipò rẹ sílẹ̀…",
+      "swap": "Jẹ́rìí sí pàṣípààrọ̀ náà nínú àpamọ́ rẹ...",
+      "swapConfirm": "Dúró fún pàṣípààrọ̀ láti fìdí múlẹ̀..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4650,7 +4653,13 @@
     "useMarket": "Lo iye ọja",
     "noFunding": "Ko si {{token}} ti o wa lori {{chain}}.",
     "noListingsChain": "Ko si awọn atokọ lori {{chain}} sibẹsibẹ.",
-    "listedDhb": "DHB ti a ṣe atokọ · {{chain}}"
+    "listedDhb": "DHB ti a ṣe atokọ · {{chain}}",
+    "payWith": "San pẹlu",
+    "noBaseFunds": "Ko si ETH, USDC tabi USDT lori Ipilẹ",
+    "reviewSwap": "Yipada nipa {{amountIn}} {{symbol}} fun {{usdc}} USDC lori Ipilẹ akọkọ. A kò lo {{symbol}} ni a dá padà nínú ìdúnàádúrà kan náà.",
+    "pendingSwapNote": "A pààrọ̀ rẹ {{symbol}} fún USDC. Bẹ̀rẹ̀ láti ṣẹ̀dá ipò náà láì ṣe pàṣípààrọ̀ lẹ́ẹ̀kan síi.",
+    "resumeMint": "Bẹ̀rẹ̀ sí í pàṣẹ",
+    "resumeNeedsBalances": "Ìwọ̀n owó àpamọ́wọ́ ṣì ń gbé ẹrù. Gbiyanju lẹẹkansi ni akoko kan."
   },
   "onboarding": {
     "optIn": {

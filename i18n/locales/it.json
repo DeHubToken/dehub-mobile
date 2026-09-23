@@ -4620,7 +4620,8 @@
     "automaticStage": {
       "tokenApproval": "Approvazione dei token in corso…",
       "permitApproval": "Approvazione dell'accesso alla posizione in corso…",
-      "submit": "Creazione della tua posizione in corso…"
+      "submit": "Creazione della tua posizione in corso…",
+      "swap": "Scambio e creazione automatica della tua posizione..."
     },
     "combined": "Mercato combinato · Base + BNB",
     "reference": "Riferimento di mercato · USD",
@@ -4680,7 +4681,9 @@
       "permitApproval": "Conferma l'approvazione della posizione nel tuo wallet…",
       "submit": "Conferma la posizione nel tuo wallet…",
       "confirm": "In attesa di conferma…",
-      "index": "Registrazione della tua posizione…"
+      "index": "Registrazione della tua posizione…",
+      "swap": "Conferma lo scambio nel tuo portafoglio...",
+      "swapConfirm": "In attesa della conferma dello scambio..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4734,7 +4737,13 @@
     "useMarket": "Usa il prezzo di mercato",
     "noFunding": "Nessun {{token}} disponibile su {{chain}}.",
     "noListingsChain": "Nessuna quotazione su {{chain}} ancora.",
-    "listedDhb": "DHB quotato · {{chain}}"
+    "listedDhb": "DHB quotato · {{chain}}",
+    "payWith": "Paga con",
+    "noBaseFunds": "Nessun ETH, USDC o USDT sulla base",
+    "reviewSwap": "Scambia prima {{amountIn}} {{symbol}} per {{usdc}} USDC su Base. {{symbol}} non utilizzato viene restituito nella stessa transazione.",
+    "pendingSwapNote": "Il tuo {{symbol}} è stato scambiato con USDC. Riprendi per creare la posizione senza scambiare di nuovo.",
+    "resumeMint": "Riprendi ordine",
+    "resumeNeedsBalances": "I saldi del portafoglio sono ancora in caricamento. Riprova tra un momento."
   },
   "onboarding": {
     "optIn": {

@@ -4533,7 +4533,8 @@
     "automaticStage": {
       "tokenApproval": "Kei te whakaaetia ngā tohu...",
       "permitApproval": "Kei te whakaaetia te uru ki te tūranga...",
-      "submit": "Kei te hangaia tō tūranga..."
+      "submit": "Kei te hangaia tō tūranga...",
+      "swap": "Te huri me te hanga i to koutou tūnga aunoa..."
     },
     "combined": "Te maakete whakakotahi · Base + BNB",
     "reference": "Tohutoro maakete · USD",
@@ -4593,7 +4594,9 @@
       "permitApproval": "Whakaūhia te whakaaetanga tūranga i roto i tō putea…",
       "submit": "Whakaūhia te tūranga i roto i tō putea…",
       "confirm": "Kei te tatari kia whakaūhia…",
-      "index": "Kei te rehita tō tūranga…"
+      "index": "Kei te rehita tō tūranga…",
+      "swap": "Whakamātauria te huringa i roto i to koutou putea...",
+      "swapConfirm": "Kei te tatari ahau ki te tohu..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4647,7 +4650,12 @@
     "useMarket": "Whakamahia te utu hokohoko",
     "noFunding": "Kāore he {{token}} e wātea ana i runga i te {{chain}}.",
     "noListingsChain": "Kāore anō kia rārangitia i runga i te {{chain}}.",
-    "listedDhb": "DHB kua whakarārangitia · {{chain}}"
+    "listedDhb": "DHB kua whakarārangitia · {{chain}}",
+    "payWith": "Utu ki",
+    "noBaseFunds": "Kaore he ETH, USDC ranei USDT i runga i te turanga",
+    "pendingSwapNote": "Ko to {{symbol}} kua hurihia mo te USDC. Whakamātauria ki te hanga i te tūnga, me te kore e huri ano.",
+    "resumeMint": "Whakahokia te ota",
+    "resumeNeedsBalances": "Kei te utaina tonu nga toenga putea. Whakamātauria ano i roto i te wa."
   },
   "onboarding": {
     "optIn": {

@@ -4549,7 +4549,8 @@
     "automaticStage": {
       "tokenApproval": "Kuidhinisha tokeni kiotomatiki…",
       "permitApproval": "Kuidhinisha ufikiaji wa nafasi kiotomatiki…",
-      "submit": "Kuunda nafasi yako kiotomatiki…"
+      "submit": "Kuunda nafasi yako kiotomatiki…",
+      "swap": "Kubadilisha na kuunda nafasi yako kiotomatiki..."
     },
     "combined": "Soko la pamoja · Msingi + BNB",
     "reference": "Rejeleo la soko · USD",
@@ -4609,7 +4610,9 @@
       "permitApproval": "Thibitisha uidhinishaji wa nafasi katika pochi yako…",
       "submit": "Thibitisha nafasi katika pochi yako…",
       "confirm": "Kusubiri uthibitisho…",
-      "index": "Kusajili nafasi yako…"
+      "index": "Kusajili nafasi yako…",
+      "swap": "Thibitisha ubadilishaji kwenye pochi yako...",
+      "swapConfirm": "Inasubiri badiliko ili kuthibitisha..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4663,7 +4666,13 @@
     "useMarket": "Tumia bei ya soko",
     "noFunding": "Hakuna {{token}} inayopatikana kwenye {{chain}}.",
     "noListingsChain": "Hakuna orodha kwenye {{chain}} bado.",
-    "listedDhb": "DHB iliyoorodheshwa · {{chain}}"
+    "listedDhb": "DHB iliyoorodheshwa · {{chain}}",
+    "payWith": "Lipa kwa",
+    "noBaseFunds": "Hakuna ETH, USDC au USDT kwenye Msingi",
+    "reviewSwap": "Badilisha kuhusu {{amountIn}} {{symbol}} kwa {{usdc}} USDC kwenye Msingi kwanza. Unused {{symbol}} imerejeshwa katika muamala huo huo.",
+    "pendingSwapNote": "{{symbol}} yako ilibadilishwa kuwa USDC. Endelea kuunda nafasi bila kubadilishana tena.",
+    "resumeMint": "Endelea kuagiza",
+    "resumeNeedsBalances": "Salio la pochi bado linapakia. Jaribu tena baada ya muda mfupi."
   },
   "onboarding": {
     "optIn": {

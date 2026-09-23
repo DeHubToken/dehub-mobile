@@ -4506,7 +4506,8 @@
     "automaticStage": {
       "tokenApproval": "Nyetujoni token kanthi otomatis…",
       "permitApproval": "Nyetujoni akses posisi kanthi otomatis…",
-      "submit": "Nggawe posisi sampeyan kanthi otomatis…"
+      "submit": "Nggawe posisi sampeyan kanthi otomatis…",
+      "swap": "Ngganti lan nggawe posisi sampeyan kanthi otomatis…"
     },
     "combined": "Pasar gabungan · Base + BNB",
     "reference": "Referensi pasar · USD",
@@ -4566,7 +4567,9 @@
       "permitApproval": "Konfirmasi persetujuan posisi ing dompetmu…",
       "submit": "Konfirmasi posisi ing dompetmu…",
       "confirm": "Ngenteni konfirmasi…",
-      "index": "Ndhaptar posisimu…"
+      "index": "Ndhaptar posisimu…",
+      "swap": "Konfirmasi swap ing dompet sampeyan…",
+      "swapConfirm": "Ngenteni swap dikonfirmasi…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4620,7 +4623,13 @@
     "useMarket": "Gunakake regane pasar",
     "noFunding": "Ora ana {{token}} sing kasedhiya ing {{chain}}.",
     "noListingsChain": "Durung ana dhaptar ing {{chain}}.",
-    "listedDhb": "DHB sing kadhaptar · {{chain}}"
+    "listedDhb": "DHB sing kadhaptar · {{chain}}",
+    "payWith": "Bayar nganggo",
+    "noBaseFunds": "Ora ana ETH, USDC utawa USDT ing Base",
+    "reviewSwap": "Swap kira-kira {{amountIn}} {{symbol}} kanggo {{usdc}} USDC ing Base dhisik. {{symbol}} sing ora digunakake bakal dibalekake ing transaksi sing padha.",
+    "pendingSwapNote": "{{symbol}} sampeyan ditukar karo USDC. Nerusake nggawe posisi tanpa ngganti maneh.",
+    "resumeMint": "Nerusake pesenan",
+    "resumeNeedsBalances": "Saldo dompet isih dimuat. Coba maneh sedhela."
   },
   "onboarding": {
     "optIn": {

@@ -4616,7 +4616,8 @@
     "automaticStage": {
       "tokenApproval": "トークンの承認中…",
       "permitApproval": "ポジションアクセスの承認中…",
-      "submit": "ポジションの作成中…"
+      "submit": "ポジションの作成中…",
+      "swap": "ポジションを自動的に入れ替えて作成します…"
     },
     "combined": "統合市場 · Base + BNB",
     "reference": "市場参照 · USD",
@@ -4676,7 +4677,9 @@
       "permitApproval": "ウォレットでポジション承認を確認してください…",
       "submit": "ウォレットでポジションを確認してください…",
       "confirm": "確認を待っています…",
-      "index": "ポジションを登録しています…"
+      "index": "ポジションを登録しています…",
+      "swap": "ウォレットのスワップを確認してください…",
+      "swapConfirm": "スワップの確認を待っています…"
     },
     "intro": "Uniswap v4ポジションで売買価格を設定します。注文は、取引がその範囲を通過すると約定します。",
     "buySell": "購入 / 売却",
@@ -4728,7 +4731,13 @@
     "useMarket": "マーケットプライスを使用",
     "noFunding": "{{chain}} では{{token}} が利用できません。",
     "noListingsChain": "{{chain}} ではまだリストがありません。",
-    "listedDhb": "リストされたDHB · {{chain}}"
+    "listedDhb": "リストされたDHB · {{chain}}",
+    "payWith": "次の方法で支払う",
+    "noBaseFunds": "ベースにETH、USDC、USDTはありません",
+    "reviewSwap": "まず基地で{{amountIn}}{{symbol}}を{{usdc}} USDCと交換してください。 未使用の{{symbol}}は同じトランザクションで返されます。",
+    "pendingSwapNote": "{{symbol}}はUSDCに交換されました。 再開して、再度スワップせずにポジションを作成します。",
+    "resumeMint": "注文を再開する",
+    "resumeNeedsBalances": "ウォレットの残高はまだ読み込まれています。 しばらくしてからもう一度お試しください。"
   },
   "onboarding": {
     "optIn": {

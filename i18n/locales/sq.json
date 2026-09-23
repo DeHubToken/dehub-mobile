@@ -4547,7 +4547,8 @@
     "automaticStage": {
       "tokenApproval": "Miratimi i tokeneve automatikisht…",
       "permitApproval": "Miratimi i qasjes në pozicion automatikisht…",
-      "submit": "Krijimi i pozicionit tuaj automatikisht…"
+      "submit": "Krijimi i pozicionit tuaj automatikisht…",
+      "swap": "Ndërrimi dhe krijimi i pozicionit tënd automatikisht..."
     },
     "combined": "Tregu i kombinuar · Base + BNB",
     "reference": "Referenca e tregut · USD",
@@ -4607,7 +4608,9 @@
       "permitApproval": "Konfirmo miratimin e pozicionit në portofolin tënd…",
       "submit": "Konfirmo pozicionin në portofolin tënd…",
       "confirm": "Në pritje të konfirmimit…",
-      "index": "Regjistrimi i pozicionit tënd…"
+      "index": "Regjistrimi i pozicionit tënd…",
+      "swap": "Konfirmo shkëmbimin në portofolin tënd...",
+      "swapConfirm": "Në pritje të shkëmbimit për të konfirmuar..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4661,7 +4664,12 @@
     "useMarket": "Përdorni çmimin e tregut",
     "noFunding": "Asnjë {{token}} nuk është i disponueshëm në {{chain}}.",
     "noListingsChain": "Asnjë listim akoma në {{chain}}.",
-    "listedDhb": "DHB i listuar · {{chain}}"
+    "listedDhb": "DHB i listuar · {{chain}}",
+    "payWith": "Paguaj me",
+    "noBaseFunds": "Nuk ka ETH, USDC ose USDT në bazë",
+    "pendingSwapNote": "Tuaj {{symbol}} u shkëmbye me USDC. Vazhdo për të krijuar pozicionin pa ndërruar përsëri.",
+    "resumeMint": "Rifillo porosinë",
+    "resumeNeedsBalances": "Bilancet e portofolit janë ende duke u ngarkuar. Provo përsëri pas një çasti."
   },
   "onboarding": {
     "optIn": {

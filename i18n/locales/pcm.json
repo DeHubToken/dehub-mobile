@@ -4280,7 +4280,9 @@
     "bookPrice": "{{chain}} book price · USD",
     "marketPrice": "Market price · USD",
     "useMarket": "Use market price",
-    "listedDhb": "Listed DHB · {{chain}}"
+    "listedDhb": "Listed DHB · {{chain}}",
+    "payWith": "Pay with",
+    "resumeMint": "Resume order"
   },
   "onboarding": {
     "optIn": {

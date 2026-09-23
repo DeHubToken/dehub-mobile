@@ -4577,7 +4577,8 @@
     "automaticStage": {
       "tokenApproval": "Ukuvumela amathokheni ngokuzenzakalelayo…",
       "permitApproval": "Ukuvumela ukufinyelela kwesikhundla ngokuzenzakalelayo…",
-      "submit": "Ukwakha isikhundla sakho ngokuzenzakalelayo…"
+      "submit": "Ukwakha isikhundla sakho ngokuzenzakalelayo…",
+      "swap": "Ukushintsha nokusungula indawo yakho ngokuzenzakalelayo..."
     },
     "combined": "Imakethe ehlanganisiwe · Base + BNB",
     "reference": "Inkomba yemakethe · USD",
@@ -4586,7 +4587,8 @@
     "updating": "Buyekeza…",
     "tab": {
       "chart": "I-Chart",
-      "book": "Incwadi yoku-oda"
+      "book": "Incwadi yoku-oda",
+      "trade": "Thenga / Thengisa"
     },
     "depth": "Ukujula",
     "depthHint": "I-DHB eqongekayo · hudula ukuhlola",
@@ -4636,7 +4638,9 @@
       "permitApproval": "Qinisekisa ukugunyazwa kwesikhundla kusikhwama sakho…",
       "submit": "Qinisekisa isikhundla kusikhwama sakho…",
       "confirm": "Kulindwe ukuqinisekiswa…",
-      "index": "Kubhaliswa isikhundla sakho…"
+      "index": "Kubhaliswa isikhundla sakho…",
+      "swap": "Qinisekisa ukushintshanisa esikhwameni sakho semali...",
+      "swapConfirm": "Ilinde ukushintshwa ukuze iqinisekise..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4690,7 +4694,13 @@
     "useMarket": "Sebenzisa intengo yemakethe",
     "noFunding": "Akukho i-{{token}} etholakalayo ku-{{chain}}.",
     "noListingsChain": "Azikho izinhlupho ku-{{chain}} okwamanje.",
-    "listedDhb": "I-DHB ehlotshisiwe · {{chain}}"
+    "listedDhb": "I-DHB ehlotshisiwe · {{chain}}",
+    "payWith": "Khokha nge-",
+    "noBaseFunds": "Ayikho i-ETH, i-USDC noma i-USDT ku-Base",
+    "reviewSwap": "Shintshanisa mayelana {{amountIn}} {{symbol}} for {{usdc}} USDC ku-Base kuqala. I- {{symbol}} engasetshenziswanga ibuyiselwa kuthengiselana okufanayo.",
+    "pendingSwapNote": "I- {{symbol}} yakho ishintshelwe i-USDC. Qhubeka ukuze usungule indawo ngaphandle kokushintsha futhi.",
+    "resumeMint": "Qhubeka nokuhleleka",
+    "resumeNeedsBalances": "Amabhalansi e-Wallet asalayishwa. Zama futhi ngomzuzwana."
   },
   "onboarding": {
     "optIn": {

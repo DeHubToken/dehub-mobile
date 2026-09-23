@@ -12,7 +12,8 @@ import { useAuthActions, useProvider, useUser } from '../context/AuthContext';
 import { ChainId } from '../config/constants';
 import { DEX_CHAINS, detectDhbChain, detectUsdcChain, mintSell, quoteSell, recoverMint, withdrawSell, type SellInput, type DexChainId, type VerifiedPosition } from '../libs/dex-v4';
 import { BOOK_INCREMENTS, DEFAULT_INCREMENT, aggregateBook, balanceFraction, defaultOrderPrice, fillFraction, formatBookPrice, formatIncrement, formatPrice, formatSize, nearestBookLevels, priceDeviation, priceNeedsWarning, seedReference, spreadPercent, type BookLevel } from '../libs/dex-orderbook';
-import { readWithTimeout, type OrderStage } from '../libs/dex-read-timeout';
+import { readWithTimeout } from '../libs/dex-read-timeout';
+import { FUNDING_CHAIN, defaultFundingAsset, fundAndMint, loadFundingAssets, quoteFunding, usdcAmountFor, type FundingAsset, type FundingQuote, type FundingStage, type FundingSymbol } from '../libs/dex-funding';
 import { getSigningProvider } from '../libs/provider.registry';
 import { prepareWalletForQueuedMint } from '../libs/wallet-signing-preflight';
 import { withWalletHeader } from '../libs/supabase-wallet-client';
@@ -30,7 +31,8 @@ const readSharedMarket = minuteCache(async () => {
  *  scheduled sweep. The endpoint throttles itself, so a burst of these costs nothing, and a
  *  failure is silent: the schedule still runs and the snapshot is what the screen actually reads. */
 const primeDiscovery = () => { void Promise.resolve(supabase.functions.invoke('dex-position-scan')).catch(() => {}); };
-type Pending = { input: SellInput; txHash: string; tokenId?: string };
+/** A submitted order. `txHash` is the mint; a funded order may have swapped but not yet minted. */
+type Pending = { input: SellInput; txHash?: string; tokenId?: string; funding?: { symbol: FundingSymbol; swapTxHash?: string } };
 const BOOK_ROWS = 12;
 const storageKey = (wallet: string) => `dex-pending:${wallet.toLowerCase()}`;
 const decimalInput = (value: string) => value.replace(',', '.').trim();
@@ -79,7 +81,10 @@ export default function DexScreen() {
   const [advanced, setAdvanced] = useState(false);
   const [busy, setBusy] = useState(false);
   const busyRef = useRef(false);
-  const [stage, setStage] = useState<OrderStage | 'index'>('quote');
+  const [stage, setStage] = useState<FundingStage | 'index'>('quote');
+  const [assets, setAssets] = useState<FundingAsset[]>([]);
+  const [fundingSymbol, setFundingSymbol] = useState<FundingSymbol | null>(null);
+  const [fundingQuote, setFundingQuote] = useState<FundingQuote | null>(null);
   const [review, setReview] = useState<Awaited<ReturnType<typeof quoteSell>> | null>(null);
   const [pending, setPending] = useState<Pending | null>(null);
   const [formError, setFormError] = useState('');
@@ -102,6 +107,12 @@ export default function DexScreen() {
   const locked = busy || !!pending || !!withdrawing;
   const decimals = side === 'sell' ? 18 : DEX_CHAINS[venue].usdcDecimals;
   const venueName = DEX_CHAINS[venue].name;
+  // A Base buy is priced in dollars and can be paid from any Base asset with a USDC route.
+  // Everything else (sells, and the BNB book) deposits the pool token directly.
+  const funded = side === 'buy' && venue === FUNDING_CHAIN;
+  const fundingAsset: FundingAsset | null = useMemo(() => funded
+    ? (assets.find((a) => a.symbol === fundingSymbol) ?? defaultFundingAsset(assets, Number(amount) || 0)) : null, [funded, assets, fundingSymbol, amount]);
+  const fundingLabel = fundingAsset && fundingAsset.symbol !== 'USDC' ? `USD · ${fundingAsset.symbol}` : token;
   const venueListings = useMemo(() => listings.filter((item) => item.chain_id === venue), [listings, venue]);
   const externalAsks = useMemo(() => snapshot?.externalAsks ?? [], [snapshot]);
   const { bids, asks } = useMemo(() => aggregateBook(venueListings, increment, externalAsks),
@@ -144,6 +155,15 @@ export default function DexScreen() {
     let active = true; setChainId(null); setBalance('0'); setReview(null); setBalanceError(false);
     if (!address) { setChecking(false); return; }
     setChecking(true);
+    if (funded) {
+      loadFundingAssets(address).then((loaded) => {
+        if (!active) return;
+        setAssets(loaded);
+        const chosen = loaded.find((a) => a.symbol === fundingSymbol) ?? defaultFundingAsset(loaded, Number(amount) || 0);
+        setChainId(chosen && chosen.balance > 0n ? FUNDING_CHAIN : null); setBalance(chosen ? chosen.spendableUsd.toFixed(2) : '0');
+      }).catch(() => { if (active) setBalanceError(true); }).finally(() => { if (active) setChecking(false); });
+      return () => { active = false; };
+    }
     (side === 'sell' ? detectDhbChain : detectUsdcChain)(address).then((choice) => {
       if (!active) return;
       // The venue decides the funding network. A balance on the other chain is not spendable here.
@@ -151,14 +171,18 @@ export default function DexScreen() {
       setChainId(Number(held) > 0 ? venue : null); setBalance(held);
     }).catch(() => { if (active) setBalanceError(true); }).finally(() => { if (active) setChecking(false); });
     return () => { active = false; };
-  }, [address, side, venue, balanceRevision]);
+  }, [address, side, venue, funded, balanceRevision]);
+  useEffect(() => {
+    if (!funded || !fundingAsset) return;
+    setChainId(fundingAsset.balance > 0n ? FUNDING_CHAIN : null); setBalance(fundingAsset.spendableUsd.toFixed(2));
+  }, [funded, fundingAsset]);
 
   useEffect(() => {
     let active = true; setPending(null);
     if (address) void AsyncStorage.getItem(storageKey(address)).then((raw) => {
       const saved = raw ? JSON.parse(raw) as Pending : null;
       if (active && saved?.input.walletAddress.toLowerCase() === address.toLowerCase() &&
-          [56, 8453].includes(saved.input.chainId) && /^0x[0-9a-f]{64}$/i.test(saved.txHash)) { setPending(saved); setVenue(saved.input.chainId); }
+          [56, 8453].includes(saved.input.chainId) && (/^0x[0-9a-f]{64}$/i.test(saved.txHash ?? '') || /^0x[0-9a-f]{64}$/i.test(saved.funding?.swapTxHash ?? ''))) { setPending(saved); setVenue(saved.input.chainId); }
     }).catch(() => {});
     return () => { active = false; };
   }, [address]);
@@ -217,12 +241,13 @@ export default function DexScreen() {
   }, [seedPrice, side, review, pending, amount]);
 
   function choosePrice(price: number, next = side) {
-    if (locked) return; setSide(next); setReview(null); setFormError('');
+    if (locked) return; setSide(next); setReview(null); setFundingQuote(null); setFormError('');
     setMinPrice((next === 'buy' ? price * .999 : price).toFixed(8));
     setMaxPrice((next === 'buy' ? price : price * 1.001).toFixed(8));
   }
   async function register(saved: Pending) {
     setStage('index');
+    if (!saved.txHash) throw new Error(t('dex.registrationFailed'));
     const minted = saved.tokenId ? { tokenId: saved.tokenId, txHash: saved.txHash } : await recoverMint(saved.input, saved.txHash);
     savePending({ ...saved, ...minted }); const input = saved.input;
     const { error } = await readWithTimeout(Promise.resolve(withWalletHeader(supabase.from('dex_sell_positions').upsert({
@@ -231,7 +256,7 @@ export default function DexScreen() {
       min_usdc_per_dhb: Number(input.minPrice), max_usdc_per_dhb: Number(input.maxPrice),
     }, { onConflict: 'chain_id,token_id', ignoreDuplicates: true }), input.walletAddress)), 'Listing registration');
     if (error) throw new Error(t('dex.registrationFailed'));
-    savePending(null); setAmount(''); setReview(null); setMine(true); setPage(0); setBalanceRevision((n) => n + 1); priceTouched.current = false;
+    savePending(null); setAmount(''); setReview(null); setFundingQuote(null); setMine(true); setPage(0); setBalanceRevision((n) => n + 1); priceTouched.current = false;
     toastSuccess(t('dex.created')); await loadListings();
   }
   async function create() {
@@ -240,12 +265,55 @@ export default function DexScreen() {
     if (!chainId && !pending) { setFormError(t('dex.noFunding', { token, chain: venueName })); return; }
     busyRef.current = true; setBusy(true); setFormError(''); setStage('quote');
     try {
-      if (pending) { await register(pending); return; }
+      if (pending) {
+        // A funded order that swapped but never minted resumes at the mint; a minted one registers.
+        if (pending.funding && !pending.txHash) {
+          const asset = assets.find((a) => a.symbol === pending.funding!.symbol);
+          if (!asset) throw new Error(t('dex.resumeNeedsBalances'));
+          const usdc = usdcAmountFor(pending.input.amount);
+          if (!usdc) throw new Error(t('dex.checkAmount'));
+          const quote = await quoteFunding(asset, usdc.units);
+          setStage('wallet');
+          await prepareWalletForQueuedMint(getSigningProvider() || sessionProviderRef.current);
+          if (connectedChain !== pending.input.chainId) await readWithTimeout(Promise.resolve(switchChain(pending.input.chainId)), 'Wallet network', 60000);
+          const provider = getSigningProvider() || sessionProviderRef.current;
+          if (!provider) throw new Error(t('dex.unlockWallet'));
+          const minted = await fundAndMint({ input: pending.input, quote }, provider, {
+            progress: setStage, resume: { swapTxHash: pending.funding.swapTxHash },
+            submitted: (txHash) => savePending({ ...pending, txHash }),
+          });
+          await register({ ...pending, ...minted });
+          return;
+        }
+        await register(pending); return;
+      }
       const toUnits = (value: string) => { try { return ethers.utils.parseUnits(value, decimals); } catch { return null; } };
       const amountUnits = /^\d+(\.\d+)?$/.test(amount) ? toUnits(amount) : null;
       const balanceUnits = toUnits(balance);
       if (!amountUnits || amountUnits.lte(0) || !balanceUnits || amountUnits.gt(balanceUnits)) throw new Error(t('dex.checkAmount'));
       const input: SellInput = { walletAddress: address, chainId: chainId!, side, amount, minPrice, maxPrice };
+      if (funded && fundingAsset) {
+        if (!review || !fundingQuote) {
+          // Price the swap first: a route that cannot cover the order is a cheaper failure than a pool read.
+          const quote = await quoteFunding(fundingAsset, BigInt(amountUnits.toString()));
+          setFundingQuote(quote);
+          setReview(await quoteSell(input));
+          return;
+        }
+        setStage('wallet');
+        await prepareWalletForQueuedMint(getSigningProvider() || sessionProviderRef.current);
+        if (connectedChain !== chainId) await readWithTimeout(Promise.resolve(switchChain(chainId!)), 'Wallet network', 60000);
+        const provider = getSigningProvider() || sessionProviderRef.current;
+        if (!provider) throw new Error(t('dex.unlockWallet'));
+        const funding = { symbol: fundingAsset.symbol };
+        const minted = await fundAndMint({ input, quote: fundingQuote }, provider, {
+          progress: setStage,
+          swapped: (swapTxHash) => savePending({ input, funding: { ...funding, swapTxHash } }),
+          submitted: (txHash) => savePending({ input, txHash, funding }),
+        });
+        await register({ input, funding, ...minted });
+        return;
+      }
       if (!review) { setReview(await quoteSell(input)); return; }
       setStage('wallet');
       await prepareWalletForQueuedMint(getSigningProvider() || sessionProviderRef.current);
@@ -254,7 +322,7 @@ export default function DexScreen() {
       if (!provider) throw new Error(t('dex.unlockWallet'));
       const minted = await mintSell(input, provider, setStage, (txHash) => savePending({ input, txHash }));
       await register({ input, ...minted });
-    } catch (error) { if ((error as { code?: string }).code === 'DEX_REVERTED') { savePending(null); setReview(null); } setFormError(dexActionError(error)); }
+    } catch (error) { if ((error as { code?: string }).code === 'DEX_REVERTED') { savePending(null); setReview(null); setFundingQuote(null); } setFormError(dexActionError(error)); }
     finally { setBusy(false); busyRef.current = false; }
   }
   async function withdraw(item: VerifiedPosition) {
@@ -273,7 +341,7 @@ export default function DexScreen() {
   const book = (levels: BookLevel[], bid: boolean) => <View><Text style={[s.bookLabel, { color: bid ? '#20c997' : '#f05b72' }]}>{t(bid ? 'dex.bids' : 'dex.asks')}</Text>{!levels.length ? <Text style={s.empty}>{t(bid ? 'dex.noBids' : 'dex.noOrders')}</Text> : nearestBookLevels(levels, bid, BOOK_ROWS).map((level) => <TouchableOpacity accessibilityLabel={t('dex.usePrice', { price: formatBookPrice(level.price, increment) })} disabled={locked} key={level.price} onPress={() => { priceTouched.current = true; choosePrice(level.price, bid ? 'buy' : 'sell'); setTab('trade'); }} style={s.bookRow}><View pointerEvents="none" style={[s.depthBar, { width: `${level.cumulativeDhb / (levels.at(-1)?.cumulativeDhb || 1) * 100}%`, backgroundColor: bid ? '#20c997' : '#f05b72' }]} /><Text style={[s.cell, { color: bid ? '#20c997' : '#f05b72' }]}>{formatBookPrice(level.price, increment)}</Text><Text style={[s.cell, s.right]}>{formatSize(level.dhb)}</Text><Text style={[s.cell, s.right]}>{formatSize(level.cumulativeDhb)}</Text></TouchableOpacity>)}</View>;
 
   return <View style={s.root}><ScreenHeader title={t('dex.title')} onBackPress={() => navigation.goBack()} /><ScrollView contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
-    <View style={s.header}><View style={s.poolPicker}><Text style={s.pair}>{t('dex.title')}</Text><View style={s.inline} accessibilityRole="tablist" accessibilityLabel={t('dex.venue')}>{([ChainId.BASE_MAINNET, ChainId.BSC_MAINNET] as DexChainId[]).map((id) => <TouchableOpacity key={id} disabled={locked} accessibilityRole="tab" accessibilityState={{ selected: venue === id }} style={[s.smallTab, venue === id && s.selected]} onPress={() => { if (locked) return; setVenue(id); setAmount(''); setReview(null); setFormError(''); setPage(0); priceTouched.current = false; }}><Text style={venue === id ? s.white : s.muted}>{DEX_CHAINS[id].name}</Text></TouchableOpacity>)}</View></View><TouchableOpacity disabled={loading || busy} onPress={() => { primeDiscovery(); void loadListings(); setBalanceRevision((n) => n + 1); }}><Text style={s.link}>{t(loading ? 'dex.updating' : 'dex.refresh')}</Text></TouchableOpacity></View>
+    <View style={s.header}><View style={s.poolPicker}><Text style={s.pair}>{t('dex.title')}</Text><View style={s.inline} accessibilityRole="tablist" accessibilityLabel={t('dex.venue')}>{([ChainId.BASE_MAINNET, ChainId.BSC_MAINNET] as DexChainId[]).map((id) => <TouchableOpacity key={id} disabled={locked} accessibilityRole="tab" accessibilityState={{ selected: venue === id }} style={[s.smallTab, venue === id && s.selected]} onPress={() => { if (locked) return; setVenue(id); setAmount(''); setReview(null); setFundingQuote(null); setFormError(''); setPage(0); priceTouched.current = false; }}><Text style={venue === id ? s.white : s.muted}>{DEX_CHAINS[id].name}</Text></TouchableOpacity>)}</View></View><TouchableOpacity disabled={loading || busy} onPress={() => { primeDiscovery(); void loadListings(); setBalanceRevision((n) => n + 1); }}><Text style={s.link}>{t(loading ? 'dex.updating' : 'dex.refresh')}</Text></TouchableOpacity></View>
     <View style={s.stats}><View><Text style={s.muted}>{t('dex.marketPrice')}</Text><Text style={s.price}>{usdPrice != null ? `${formatPrice(usdPrice)}` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.bookPrice', { chain: venueName })}</Text><Text style={s.statValue}>{poolPrice != null ? `${formatPrice(poolPrice)}` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.sharedChange24', { defaultValue: '24h change' })}</Text><Text style={[s.statValue, { color: (snapshot?.change24h || 0) >= 0 ? '#20c997' : '#f05b72' }]}>{snapshot?.change24h != null ? `${snapshot.change24h >= 0 ? '+' : ''}${snapshot.change24h.toFixed(2)}%` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.lpDhb', { defaultValue: 'LP · DHB' })}</Text><Text style={s.statValue}>{lpDhb != null ? formatSize(lpDhb) : '—'}</Text></View><View><Text style={s.muted}>{t('dex.lpUsd', { defaultValue: 'LP · USD' })}</Text><Text style={s.statValue}>{liquidityUsd != null ? `$${formatSize(liquidityUsd)}` : '—'}</Text></View></View>
     {listError && <Text style={s.alert}>{t('dex.snapshotError')}</Text>}
     <View style={s.tabs}>{(['chart', 'book', 'trade'] as const).map((value) => <TouchableOpacity key={value} accessibilityRole="tab" accessibilityState={{ selected: tab === value }} onPress={() => setTab(value)} style={[s.tab, tab === value && s.tabActive]}><Text style={tab === value ? s.white : s.muted}>{t(`dex.tab.${value}`)}</Text></TouchableOpacity>)}</View>
@@ -285,14 +353,15 @@ export default function DexScreen() {
     {tab === 'trade' && <View style={[s.panel, s.ticket]}><View style={s.side}>{(['buy', 'sell'] as const).map((value) => <TouchableOpacity disabled={locked} key={value} onPress={() => { setAmount(''); priceTouched.current = false; choosePrice(Number(defaultOrderPrice(value, referencePrice(value))), value); }} style={[s.sideButton, side === value && { backgroundColor: value === 'buy' ? '#20c997' : '#f05b72' }]}><Text style={side === value ? s.darkText : s.muted}>{t(value === 'buy' ? 'dex.buy' : 'dex.sell')}</Text></TouchableOpacity>)}</View>
       {field(t(side === 'buy' ? 'dex.maxBuy' : 'dex.minSell'), side === 'buy' ? maxPrice : minPrice, (raw) => { const value = decimalInput(raw); priceTouched.current = true; if (side === 'buy') { setMaxPrice(value); if (Number(value) > 0) setMinPrice((Number(value) * .999).toFixed(8)); } else { setMinPrice(value); if (Number(value) > 0) setMaxPrice((Number(value) * 1.001).toFixed(8)); } }, 'USD')}
       {!!priceWarning && <View style={s.warning}><Text style={s.warningText}>{priceWarning}</Text><TouchableOpacity disabled={locked} onPress={() => { priceTouched.current = false; if (seedPrice != null) choosePrice(Number(defaultOrderPrice(side, seedPrice))); }}><Text style={s.link}>{t('dex.useMarket')}</Text></TouchableOpacity></View>}
-      {field(t('dex.amountToken', { token }), amount, (raw) => setAmount(decimalInput(raw)), token)}<View style={s.header}><Text style={s.muted}>{t('dex.available')}</Text><Text style={s.white}>{checking ? t('dex.checking') : `${formatSize(Number(balance))} ${token}`}</Text></View><View style={s.fractions}>{[25, 50, 75, 100].map((percent) => <TouchableOpacity disabled={locked || checking || !chainId} style={s.fraction} key={percent} onPress={() => { setAmount(balanceFraction(balance, percent, decimals)); setReview(null); }}><Text style={s.muted}>{percent === 100 ? t('dex.max') : `${percent}%`}</Text></TouchableOpacity>)}</View>
+      {funded && <View style={s.field}><Text style={s.muted}>{t('dex.payWith')}</Text><View style={[s.inline, { marginTop: 8 }]}>{assets.map((asset) => <TouchableOpacity key={asset.symbol} disabled={locked} accessibilityRole="tab" accessibilityState={{ selected: fundingAsset?.symbol === asset.symbol }} style={[s.smallTab, fundingAsset?.symbol === asset.symbol && s.selected]} onPress={() => { setFundingSymbol(asset.symbol); setReview(null); setFundingQuote(null); }}><Text style={fundingAsset?.symbol === asset.symbol ? s.white : s.muted}>{asset.symbol} · ${asset.usd.toLocaleString('en-US', { maximumFractionDigits: 2 })}</Text></TouchableOpacity>)}{!assets.length && !checking && <Text style={s.muted}>{t('dex.noBaseFunds')}</Text>}</View></View>}
+      {field(t('dex.amountToken', { token: funded ? 'USD' : token }), amount, (raw) => { setAmount(decimalInput(raw)); setFundingQuote(null); }, fundingLabel)}<View style={s.header}><Text style={s.muted}>{t('dex.available')}</Text><Text style={s.white}>{checking ? t('dex.checking') : funded ? `${formatSize(Number(balance))}${fundingAsset && fundingAsset.symbol !== 'USDC' ? ` · ${fundingAsset.symbol}` : ''}` : `${formatSize(Number(balance))} ${token}`}</Text></View><View style={s.fractions}>{[25, 50, 75, 100].map((percent) => <TouchableOpacity disabled={locked || checking || !chainId} style={s.fraction} key={percent} onPress={() => { setAmount(balanceFraction(balance, percent, decimals)); setReview(null); setFundingQuote(null); }}><Text style={s.muted}>{percent === 100 ? t('dex.max') : `${percent}%`}</Text></TouchableOpacity>)}</View>
       <TouchableOpacity onPress={() => setAdvanced(!advanced)}><Text style={[s.link, { marginTop: 20 }]}>{t('dex.adjustRange')}</Text></TouchableOpacity>{advanced && <>{field(t('dex.minimum'), minPrice, (raw) => { priceTouched.current = true; setMinPrice(decimalInput(raw)); }, 'USD')}{field(t('dex.maximum'), maxPrice, (raw) => { priceTouched.current = true; setMaxPrice(decimalInput(raw)); }, 'USD')}</>}
       <View style={s.summary}><View style={s.header}><Text style={s.muted}>{t('dex.estimated')}</Text><Text style={s.white}>{formatSize(estimate)} {side === 'buy' ? 'DHB' : 'USDC'}</Text></View><View style={s.header}><Text style={s.muted}>{t('dex.network')}</Text><Text style={s.white}>{venueName}</Text></View><Text style={s.muted}>{t('dex.feeNote')}</Text></View>
       {balanceError && <TouchableOpacity disabled={busy} onPress={() => setBalanceRevision((n) => n + 1)}><Text style={s.alert}>{t('dex.balanceError')}</Text></TouchableOpacity>}
-      {!!review && !pending && <Text style={s.review}>{t('dex.reviewToken', { amount, token, chain: chainId ? DEX_CHAINS[chainId].name : '', minPrice, maxPrice })}{priceWarning ? ` ${priceWarning}` : ''}{review.createPool ? ` ${t('dex.initializes')}` : ''}</Text>}
-      {!!pending && <TouchableOpacity onPress={() => void Linking.openURL(`${explorer(pending.input.chainId)}/tx/${pending.txHash}`)}><Text style={s.review}>{t('dex.pendingNote')}</Text></TouchableOpacity>}
+      {!!review && !pending && <Text style={s.review}>{fundingQuote && fundingQuote.asset.symbol !== 'USDC' ? `${t('dex.reviewSwap', { amountIn: formatSize(Number(ethers.utils.formatUnits(fundingQuote.amountIn.toString(), fundingQuote.asset.decimals))), symbol: fundingQuote.asset.symbol, usdc: amount })} ` : ''}{t('dex.reviewToken', { amount, token, chain: chainId ? DEX_CHAINS[chainId].name : '', minPrice, maxPrice })}{priceWarning ? ` ${priceWarning}` : ''}{review.createPool ? ` ${t('dex.initializes')}` : ''}</Text>}
+      {!!pending && <TouchableOpacity onPress={() => void Linking.openURL(`${explorer(pending.input.chainId)}/tx/${pending.txHash ?? pending.funding?.swapTxHash}`)}><Text style={s.review}>{pending.txHash ? t('dex.pendingNote') : t('dex.pendingSwapNote', { symbol: pending.funding?.symbol ?? '' })}</Text></TouchableOpacity>}
       {!!formError && <Text accessibilityRole="alert" style={s.alert}>{formError}</Text>}
-      <TouchableOpacity disabled={busy || checking || !!withdrawing || (!chainId && !pending)} onPress={() => void create()} style={[s.submit, { backgroundColor: side === 'buy' ? '#20c997' : '#f05b72', opacity: busy || checking || (!chainId && !pending) ? .5 : 1 }]}>{busy && <ActivityIndicator color="#061410" />}<Text style={s.darkText}>{busy ? t(`dex.${authMethod === 'local' && ['tokenApproval', 'permitApproval', 'submit'].includes(stage) ? 'automaticStage' : 'stage'}.${stage}`) : pending ? t('dex.resume') : review ? t('dex.approve') : t('dex.review')}</Text></TouchableOpacity><Text style={s.note}>{t('dex.reversalNote')}</Text>
+      <TouchableOpacity disabled={busy || checking || !!withdrawing || (!chainId && !pending)} onPress={() => void create()} style={[s.submit, { backgroundColor: side === 'buy' ? '#20c997' : '#f05b72', opacity: busy || checking || (!chainId && !pending) ? .5 : 1 }]}>{busy && <ActivityIndicator color="#061410" />}<Text style={s.darkText}>{busy ? t(`dex.${authMethod === 'local' && ['tokenApproval', 'permitApproval', 'submit'].includes(stage) ? 'automaticStage' : 'stage'}.${stage}`) : pending ? t(pending.txHash ? 'dex.resume' : 'dex.resumeMint') : review ? t('dex.approve') : t('dex.review')}</Text></TouchableOpacity><Text style={s.note}>{t('dex.reversalNote')}</Text>
     </View>}
     <View style={[s.panel, { marginTop: 18 }]}><View style={s.toolbar}><View style={s.inline}>{[false, true].map((value) => <TouchableOpacity key={String(value)} style={[s.smallTab, mine === value && s.selected]} onPress={() => { setMine(value); setPage(0); }}><Text style={s.white}>{t(value ? 'dex.myPositions' : 'dex.allListings')}</Text></TouchableOpacity>)}</View><Text style={s.muted}>{shown.length}</Text></View>
       {!shown.length && <Text style={s.empty}>{t(loading ? 'dex.verifying' : mine ? 'dex.noMyPositions' : 'dex.noListingsChain', { chain: venueName })}</Text>}
