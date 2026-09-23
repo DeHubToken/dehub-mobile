@@ -142,7 +142,7 @@ export async function uploadPoolImage(image: PickedImage): Promise<string> {
   if (!isAcceptedPoolImage(image)) throw new Error('Choose a PNG, JPG, WebP or GIF of 5 MB or less.');
   const ext = fileExtension(image, 'png').replace('jpeg', 'jpg');
   return uploadLocalFileToBucket({
-    bucket: 'dex-pool-images', path: `${Crypto.randomUUID()}.${ext}`, uri: image.uri,
+    bucket: 'community-media', path: `dex-pools/${Crypto.randomUUID()}.${ext}`, uri: image.uri,
     contentType: image.mimeType || contentTypeForExtension(ext, 'image/png'),
   });
 }
