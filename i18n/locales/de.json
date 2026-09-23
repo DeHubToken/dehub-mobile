@@ -4740,7 +4740,9 @@
     "reviewSwap": "Tausche zuerst über {{amountIn}}{{symbol}} gegen {{usdc}} USDC auf der Basis. Unbenutztes {{symbol}} wird in derselben Transaktion zurückgegeben.",
     "pendingSwapNote": "Ihr {{symbol}} wurde gegen USDC getauscht. Fahren Sie fort, um die Position zu erstellen, ohne sie erneut zu tauschen.",
     "resumeMint": "Bestellung fortsetzen",
-    "resumeNeedsBalances": "Wallet-Guthaben werden noch geladen. Versuchen Sie es gleich noch einmal."
+    "resumeNeedsBalances": "Wallet-Guthaben werden noch geladen. Versuchen Sie es gleich noch einmal.",
+    "buyWithBnbNote": "Der Handel auf BNB Chain ist geschlossen. Du hast BNB? Kaufe damit DHB auf Base.",
+    "buyWithBnb": "Mit BNB kaufen"
   },
   "onboarding": {
     "optIn": {

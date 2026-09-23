@@ -4264,7 +4264,9 @@
     "useMarket": "نرخی بازاڕ بەکاربهێنە",
     "noFunding": "هیچ {{token}}ێک لەسەر {{chain}} بەردەست نییە.",
     "noListingsChain": "هێشتا هیچ تۆمارێک لەسەر {{chain}} نییە.",
-    "listedDhb": "DHB تۆمارکراو · {{chain}}"
+    "listedDhb": "DHB تۆمارکراو · {{chain}}",
+    "buyWithBnbNote": "Bazirganî li ser BNB Chain girtî ye. BNB-ya te heye? Pê li ser Base DHB bikire.",
+    "buyWithBnb": "Bi BNB bikire"
   },
   "onboarding": {
     "optIn": {

@@ -4683,7 +4683,9 @@
     "reviewSwap": "Hoán đổi khoảng {{amountIn}}{{symbol}} với {{usdc}} USDC trên Cơ sở trước. {{symbol}} không sử dụng được trả lại trong cùng một giao dịch.",
     "pendingSwapNote": "{{symbol}} của bạn đã được đổi lấy USDC. Tiếp tục để tạo vị thế mà không cần hoán đổi lần nữa.",
     "resumeMint": "Tiếp tục đặt hàng",
-    "resumeNeedsBalances": "Số dư ví vẫn đang tải. Hãy thử lại sau ít phút."
+    "resumeNeedsBalances": "Số dư ví vẫn đang tải. Hãy thử lại sau ít phút.",
+    "buyWithBnbNote": "Giao dịch trên BNB Chain đã đóng. Bạn có BNB? Hãy dùng nó để mua DHB trên Base.",
+    "buyWithBnb": "Mua bằng BNB"
   },
   "onboarding": {
     "optIn": {

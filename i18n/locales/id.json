@@ -4722,7 +4722,9 @@
     "reviewSwap": "Tukar sekitar {{amountIn}}{{symbol}} dengan {{usdc}} USDC di Base terlebih dahulu. {{symbol}} yang tidak digunakan dikembalikan dalam transaksi yang sama.",
     "pendingSwapNote": "{{symbol}} Anda ditukar dengan USDC. Lanjutkan untuk membuat posisi tanpa menukar lagi.",
     "resumeMint": "Lanjutkan pesanan",
-    "resumeNeedsBalances": "Saldo dompet masih dimuat. Coba lagi sebentar lagi."
+    "resumeNeedsBalances": "Saldo dompet masih dimuat. Coba lagi sebentar lagi.",
+    "buyWithBnbNote": "Perdagangan di BNB Chain sudah ditutup. Punya BNB? Gunakan untuk membeli DHB di Base.",
+    "buyWithBnb": "Beli dengan BNB"
   },
   "onboarding": {
     "optIn": {

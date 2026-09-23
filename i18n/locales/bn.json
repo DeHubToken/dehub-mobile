@@ -4654,7 +4654,9 @@
     "reviewSwap": "Base-এ প্রথমে {{usdc}} USDC-এর জন্য {{amountIn}} {{symbol}} অদলবদল করুন। অব্যবহৃত {{symbol}} একই লেনদেনে ফেরত দেওয়া হয়।",
     "pendingSwapNote": "আপনার {{symbol}} USDC-এর জন্য অদলবদল করা হয়েছে। আবার অদলবদল না করে অবস্থান তৈরি করতে আবার শুরু করুন।",
     "resumeMint": "অর্ডার পুনরায় শুরু করুন",
-    "resumeNeedsBalances": "ওয়ালেট ব্যালেন্স এখনও লোড হচ্ছে। কিছুক্ষণ পর আবার চেষ্টা করুন।"
+    "resumeNeedsBalances": "ওয়ালেট ব্যালেন্স এখনও লোড হচ্ছে। কিছুক্ষণ পর আবার চেষ্টা করুন।",
+    "buyWithBnbNote": "BNB Chain-এ ট্রেডিং বন্ধ। BNB আছে? এটি দিয়ে Base-এ DHB কিনুন।",
+    "buyWithBnb": "BNB দিয়ে কিনুন"
   },
   "onboarding": {
     "optIn": {

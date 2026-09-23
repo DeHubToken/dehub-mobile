@@ -4654,7 +4654,9 @@
     "reviewSwap": "प्रथम Base वर {{amountIn}} {{symbol}} साठी {{usdc}} USDC स्वॅप करा. न वापरलेले {{symbol}} त्याच व्यवहारात परत केले जाते.",
     "pendingSwapNote": "तुमचे {{symbol}} USDC साठी स्वॅप केले गेले. पुन्हा स्वॅप न करता जागा तयार करण्यासाठी पुढे जा.",
     "resumeMint": "ऑर्डर पुन्हा सुरू करा",
-    "resumeNeedsBalances": "वॉलेट शिल्लक अजून लोड होत आहेत. थोड्या वेळाने पुन्हा प्रयत्न करा."
+    "resumeNeedsBalances": "वॉलेट शिल्लक अजून लोड होत आहेत. थोड्या वेळाने पुन्हा प्रयत्न करा.",
+    "buyWithBnbNote": "BNB Chain वरील ट्रेडिंग बंद झाले आहे. BNB आहे? त्याने Base वर DHB खरेदी करा.",
+    "buyWithBnb": "BNB ने खरेदी करा"
   },
   "onboarding": {
     "optIn": {

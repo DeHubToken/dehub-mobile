@@ -4671,7 +4671,9 @@
     "reviewSwap": "Schimbă mai întâi între {{amountIn}} {{symbol}} pentru {{usdc}} USDC în bază. Neutilizat {{symbol}} este returnat în aceeași tranzacție.",
     "pendingSwapNote": "{{symbol}} a fost schimbat cu USDC. Reluați pentru a crea poziția fără a schimba din nou.",
     "resumeMint": "Reluați comanda",
-    "resumeNeedsBalances": "Soldurile portofelului se încarcă în continuare. Încearcă din nou peste un moment."
+    "resumeNeedsBalances": "Soldurile portofelului se încarcă în continuare. Încearcă din nou peste un moment.",
+    "buyWithBnbNote": "Tranzacționarea pe BNB Chain este închisă. Ai BNB? Folosește-l ca să cumperi DHB pe Base.",
+    "buyWithBnb": "Cumpără cu BNB"
   },
   "onboarding": {
     "optIn": {

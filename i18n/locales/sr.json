@@ -4039,7 +4039,9 @@
     "lowestPrice": "Најнижа цена · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",
-    "totalLiquidity": "Укупна ликвидност · USD"
+    "totalLiquidity": "Укупна ликвидност · USD",
+    "buyWithBnbNote": "Трговање на BNB Chain је затворено. Имате BNB? Искористите га да купите DHB на Base.",
+    "buyWithBnb": "Купи са BNB"
   },
   "onboarding": {
     "optIn": {

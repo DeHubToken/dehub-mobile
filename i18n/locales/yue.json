@@ -4669,7 +4669,9 @@
     "reviewSwap": "先將大約 {{amountIn}} {{symbol}} 換成 {{usdc}} 基地上嘅 USDC 。喺同一個交易入面會返回未用過嘅 {{symbol}} 。",
     "pendingSwapNote": "你個 {{symbol}} 係換咗做 USDC 。繼續建立位置，唔使再交換。",
     "resumeMint": "恢復訂單",
-    "resumeNeedsBalances": "銀包餘額仲係載入緊。一陣再試下。"
+    "resumeNeedsBalances": "銀包餘額仲係載入緊。一陣再試下。",
+    "buyWithBnbNote": "BNB Chain 上面嘅交易已經關咗。有 BNB？用佢喺 Base 買 DHB。",
+    "buyWithBnb": "用 BNB 買"
   },
   "onboarding": {
     "optIn": {

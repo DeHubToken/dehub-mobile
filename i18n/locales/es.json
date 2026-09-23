@@ -4743,7 +4743,9 @@
     "reviewSwap": "Cambia {{amountIn}}{{symbol}} por {{usdc}} USDC en Base First. El {{symbol}} no utilizado se devuelve en la misma transacción.",
     "pendingSwapNote": "Tu {{symbol}} se ha cambiado por USDC. Reanudar para crear la posición sin volver a intercambiar.",
     "resumeMint": "Reanudar pedido",
-    "resumeNeedsBalances": "Los saldos de los monederos aún se están cargando. Inténtalo de nuevo en un momento."
+    "resumeNeedsBalances": "Los saldos de los monederos aún se están cargando. Inténtalo de nuevo en un momento.",
+    "buyWithBnbNote": "El trading en BNB Chain está cerrado. ¿Tienes BNB? Úsalo para comprar DHB en Base.",
+    "buyWithBnb": "Comprar con BNB"
   },
   "onboarding": {
     "optIn": {

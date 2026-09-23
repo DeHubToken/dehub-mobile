@@ -4700,7 +4700,9 @@
     "reviewSwap": "Shintshanisa mayelana {{amountIn}} {{symbol}} for {{usdc}} USDC ku-Base kuqala. I- {{symbol}} engasetshenziswanga ibuyiselwa kuthengiselana okufanayo.",
     "pendingSwapNote": "I- {{symbol}} yakho ishintshelwe i-USDC. Qhubeka ukuze usungule indawo ngaphandle kokushintsha futhi.",
     "resumeMint": "Qhubeka nokuhleleka",
-    "resumeNeedsBalances": "Amabhalansi e-Wallet asalayishwa. Zama futhi ngomzuzwana."
+    "resumeNeedsBalances": "Amabhalansi e-Wallet asalayishwa. Zama futhi ngomzuzwana.",
+    "buyWithBnbNote": "Ukuhweba ku-BNB Chain kuvaliwe. Une-BNB? Yisebenzise ukuthenga i-DHB ku-Base.",
+    "buyWithBnb": "Thenga nge-BNB"
   },
   "onboarding": {
     "optIn": {

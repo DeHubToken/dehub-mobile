@@ -4780,7 +4780,9 @@
     "reviewSwap": "Vymeňte najskôr {{amountIn}} {{symbol}} za {{usdc}} USDC na základni. Nepoužité {{symbol}} sa vráti v tej istej transakcii.",
     "pendingSwapNote": "Váš účet {{symbol}} bol vymenený za USDC. Pokračujte a vytvorte pozíciu bez opätovného vymenenia.",
     "resumeMint": "Obnoviť objednávku",
-    "resumeNeedsBalances": "Zostatky v peňaženke sa stále načítavajú. Skúste to znova o chvíľu."
+    "resumeNeedsBalances": "Zostatky v peňaženke sa stále načítavajú. Skúste to znova o chvíľu.",
+    "buyWithBnbNote": "Obchodovanie na BNB Chain je uzavreté. Máte BNB? Použite ho na nákup DHB na Base.",
+    "buyWithBnb": "Kúpiť za BNB"
   },
   "onboarding": {
     "optIn": {

@@ -4696,7 +4696,9 @@
     "reviewSwap": "Dursa waa&#39;ee {{amountIn}} {{symbol}} {{usdc}} USDC Base irratti jijjiiri. {{symbol}} kan hin fayyadamne daldala walfakkaataa keessatti deebi&#39;a.",
     "pendingSwapNote": "{{symbol}} kee USDC tti jijjiirame. Irra deebi&#39;ee osoo hin jijjiiriin bakka uumuuf deebi&#39;i.",
     "resumeMint": "Ajaja irra deebi&#39;ii jalqabuu",
-    "resumeNeedsBalances": "Hafnaan boorsaa ammallee fe&#39;amaa jira. Yeroo muraasa booda irra deebi&#39;ii yaali."
+    "resumeNeedsBalances": "Hafnaan boorsaa ammallee fe&#39;amaa jira. Yeroo muraasa booda irra deebi&#39;ii yaali.",
+    "buyWithBnbNote": "Daldalli BNB Chain irratti cufameera. BNB qabdaa? Base irratti DHB bitachuuf itti fayyadamaa.",
+    "buyWithBnb": "BNB’n bitadhu"
   },
   "onboarding": {
     "optIn": {

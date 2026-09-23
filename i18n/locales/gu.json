@@ -4657,7 +4657,9 @@
     "noBaseFunds": "આધાર પર કોઈ ETH, USDC અથવા USDT નથી",
     "pendingSwapNote": "તમારા {{symbol}} ને USDC માટે સ્વેપ કરવામાં આવ્યું હતું. ફરીથી સ્વેપ કર્યા વિના સ્થિતિ બનાવવાનું ફરી શરૂ કરો.",
     "resumeMint": "ઓર્ડર ફરી શરૂ કરો",
-    "resumeNeedsBalances": "વૉલેટ બેલેન્સ હજી લોડ થઈ રહ્યું છે. થોડીવારમાં ફરી પ્રયાસ કરો."
+    "resumeNeedsBalances": "વૉલેટ બેલેન્સ હજી લોડ થઈ રહ્યું છે. થોડીવારમાં ફરી પ્રયાસ કરો.",
+    "buyWithBnbNote": "BNB Chain પર ટ્રેડિંગ બંધ છે. BNB છે? તેનાથી Base પર DHB ખરીદો.",
+    "buyWithBnb": "BNBથી ખરીદો"
   },
   "onboarding": {
     "optIn": {

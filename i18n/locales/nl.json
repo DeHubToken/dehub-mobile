@@ -4875,7 +4875,9 @@
     "reviewSwap": "Wissel eerst {{amountIn}} {{symbol}} voor {{usdc}} USDC op Base. Ongebruikte {{symbol}} wordt geretourneerd in dezelfde transactie.",
     "pendingSwapNote": "Je {{symbol}} is geruild voor USDC. Hervatten om de positie te maken zonder opnieuw te wisselen.",
     "resumeMint": "Bestelling hervatten",
-    "resumeNeedsBalances": "Wallet-saldi worden nog geladen. Probeer het zo opnieuw."
+    "resumeNeedsBalances": "Wallet-saldi worden nog geladen. Probeer het zo opnieuw.",
+    "buyWithBnbNote": "Handelen op BNB Chain is gesloten. Heb je BNB? Gebruik het om DHB op Base te kopen.",
+    "buyWithBnb": "Kopen met BNB"
   },
   "onboarding": {
     "optIn": {

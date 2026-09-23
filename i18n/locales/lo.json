@@ -4608,7 +4608,9 @@
     "reviewSwap": "ແລກປ່ຽນປະມານ {{amountIn}} {{symbol}} ເປັນ {{usdc}} USDC ໃນ Base ກ່ອນ. {{symbol}} ທີ່ບໍ່ໄດ້ໃຊ້ຈະຖືກສົ່ງຄືນໃນການເຮັດທຸລະກຳດຽວກັນ.",
     "pendingSwapNote": "{{symbol}} ຂອງທ່ານໄດ້ຖືກແລກປ່ຽນເປັນ USDC. ສືບຕໍ່ເພື່ອສ້າງຕຳແໜ່ງໂດຍບໍ່ຕ້ອງແລກປ່ຽນອີກ.",
     "resumeMint": "ສືບຕໍ່ຄຳສັ່ງ",
-    "resumeNeedsBalances": "ຍອດເງິນໃນກະເປົາເງິນຍັງໂຫຼດຢູ່. ລອງອີກຄັ້ງໃນອີກຄາວໜຶ່ງ."
+    "resumeNeedsBalances": "ຍອດເງິນໃນກະເປົາເງິນຍັງໂຫຼດຢູ່. ລອງອີກຄັ້ງໃນອີກຄາວໜຶ່ງ.",
+    "buyWithBnbNote": "ການຊື້ຂາຍໃນ BNB Chain ປິດແລ້ວ. ມີ BNB ບໍ? ໃຊ້ມັນຊື້ DHB ໃນ Base.",
+    "buyWithBnb": "ຊື້ດ້ວຍ BNB"
   },
   "onboarding": {
     "optIn": {
