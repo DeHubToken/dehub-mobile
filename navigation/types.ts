@@ -35,6 +35,7 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> = Composite
 
 export type AppStackParamList = {
   [ScreenNames.Creator]: undefined;
+  [ScreenNames.MediaEditor]: { projectId?: string } | undefined;
   [ScreenNames.Root]: NavigatorScreenParams<BottomTabParamList> | undefined;
   [ScreenNames.Upload]: {
     tab?: 'feed' | undefined;
@@ -43,6 +44,8 @@ export type AppStackParamList = {
     quotedPost?: Record<string, unknown>;
     /** Body text to open the composer with, e.g. a scheduled stage announcement. */
     initialText?: string;
+    /** Pictures to open the composer with, e.g. an export from the editor. */
+    images?: { uri: string; width: number; height: number; mimeType?: string }[];
   } | undefined;
   [ScreenNames.VideoPlayer]: {
     videoId?: string;

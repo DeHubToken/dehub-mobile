@@ -45,6 +45,7 @@ export enum ScreenNames {
   FullscreenVideo = 'FullscreenVideo',
   AIChat = 'AIChat',
   Creator = 'Creator',
+  MediaEditor = 'MediaEditor',
   Explore = 'Explore',
   UploadQueue = 'UploadQueue',
   ActiveSessions = 'ActiveSessions',
