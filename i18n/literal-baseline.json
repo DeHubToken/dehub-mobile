@@ -159,7 +159,7 @@
   "screens/ArcadeGameScreen.tsx": 9,
   "screens/CareersScreen.tsx": 1,
   "screens/ChatScreen.tsx": 6,
-  "screens/CreatorScreen.tsx": 2,
+  "screens/CreatorScreen.tsx": 0,
   "screens/DirectMessagesScreen.tsx": 8,
   "screens/DraftsScreen.tsx": 2,
   "screens/EditProfileScreen.tsx": 8,

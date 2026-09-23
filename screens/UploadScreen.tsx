@@ -205,6 +205,7 @@ export default function UploadScreen() {
   const incomingQuotedTokenId = route.params?.quotedTokenId;
   const incomingQuotedPost = route.params?.quotedPost as Record<string, any> | undefined;
   const incomingInitialText = route.params?.initialText;
+  const incomingImages = route.params?.images;
   const authUser = useUser();
   const { isBanned: accountBanned } = useBannedAccount();
   const imageLimit = getPostImageLimitForBadge(
@@ -693,6 +694,17 @@ export default function UploadScreen() {
     if (!incomingInitialText) return;
     setBodyText((prev) => (prev ? prev : incomingInitialText));
   }, [incomingInitialText]);
+
+  // Pictures handed over by another surface, e.g. a design finished in the
+  // editor. Same rule as the text above: they only fill an empty composer.
+  useEffect(() => {
+    if (!incomingImages?.length) return;
+    setPickedImages((prev) =>
+      prev.length
+        ? prev
+        : (incomingImages.map((img) => ({ ...img, type: "image", assetId: undefined })) as PickedAsset[]),
+    );
+  }, [incomingImages]);
 
   useEffect(() => {
     if (!incomingDraft) return;

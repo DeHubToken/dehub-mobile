@@ -1,0 +1,696 @@
+/**
+ * Photo editor: layered designs made of pictures and text.
+ *
+ * Projects are the web editor's ProjectSnapshot, saved as-is (see
+ * libs/editor/project.ts), so the same design opens in either app. This first
+ * version edits stills; a design with a timeline shows the frame at
+ * STILL_TIME, and video editing comes later on the same format.
+ */
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  Alert,
+  BackHandler,
+  FlatList,
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  Pressable,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import { useTranslation } from "react-i18next";
+import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import * as ImagePicker from "expo-image-picker";
+import * as MediaLibrary from "expo-media-library";
+import Icon, { type IconName } from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
+import { DeHubLoader } from "../components/DeHubLoader";
+import EditorCanvas, { type EditorCanvasHandle } from "../components/editor/EditorCanvas";
+import {
+  AdjustPanel,
+  ArrangePanel,
+  ASPECTS,
+  AspectPanel,
+  Chip,
+  CornersPanel,
+  CropPanel,
+  FiltersPanel,
+  FitPanel,
+  FontPanel,
+  LabelPanel,
+  OpacityPanel,
+  OutlinePanel,
+  PositionPanel,
+  ShadowPanel,
+  Swatches,
+  TextColourPanel,
+  TextStylePanel,
+  type Patch,
+} from "../components/editor/EditorPanels";
+import {
+  addImage,
+  addText,
+  arrangeClip,
+  duplicateClip,
+  getClip,
+  newProject,
+  removeClip,
+  setAspect,
+  setBackground,
+  STILL_TIME,
+  updateClip,
+  type Arrange,
+} from "../libs/editor/project";
+import {
+  deleteProject,
+  importPicture,
+  listProjects,
+  loadProject,
+  saveProject,
+  writeExport,
+} from "../libs/editor/storage";
+import { fontStylesheet } from "../libs/editor/fonts";
+import { aspectToDims, type AspectPreset, type MediaClip, type ProjectSnapshot, type TextClip } from "../libs/editor/types";
+import { ScreenNames } from "../navigation/ScreenNames";
+import type { AppStackParamList } from "../navigation/types";
+import { toastError, toastSuccess } from "../libs";
+import { appLocale } from "../libs/date.util";
+
+type Nav = NativeStackNavigationProp<AppStackParamList>;
+type Route = RouteProp<AppStackParamList, typeof ScreenNames.MediaEditor>;
+
+const HISTORY_LIMIT = 50;
+
+export default function MediaEditorScreen() {
+  const route = useRoute<Route>();
+  const [openId, setOpenId] = useState<string | null>(route.params?.projectId ?? null);
+  const [draft, setDraft] = useState<ProjectSnapshot | null>(null);
+
+  if (draft || openId) {
+    return <Workspace key={draft?.id ?? openId ?? ""} initial={draft} projectId={openId} onClose={() => { setDraft(null); setOpenId(null); }} />;
+  }
+  return <Home onOpen={setOpenId} onCreate={setDraft} />;
+}
+
+// ── design list ──
+
+function Home({ onOpen, onCreate }: { onOpen: (id: string) => void; onCreate: (p: ProjectSnapshot) => void }) {
+  const { t } = useTranslation();
+  const [projects, setProjects] = useState<ProjectSnapshot[] | null>(null);
+
+  const refresh = useCallback(() => { listProjects().then(setProjects); }, []);
+  useEffect(refresh, [refresh]);
+
+  const confirmDelete = (p: ProjectSnapshot) => {
+    Alert.alert(t("editor.app.deleteTitle"), t("editor.app.deleteBody", { title: p.title || t("creator.untitled") }), [
+      { text: t("common.cancel"), style: "cancel" },
+      { text: t("common.delete"), style: "destructive", onPress: () => { deleteProject(p.id).then(refresh); } },
+    ]);
+  };
+
+  return (
+    <View className="flex-1 bg-theme-neutrals-900">
+      <ScreenHeader title={t("creator.editor")} />
+      <FlatList
+        data={projects ?? []}
+        keyExtractor={(p) => p.id}
+        contentContainerStyle={{ padding: 16, gap: 10 }}
+        ListHeaderComponent={
+          <View style={{ gap: 10 }} className="mb-4">
+            <Text className="text-white text-lg font-semibold">{t("editor.app.newDesign")}</Text>
+            <View className="flex-row flex-wrap" style={{ gap: 10 }}>
+              {ASPECTS.map((a) => {
+                const d = aspectToDims(a.id);
+                const ratio = d.width / d.height;
+                return (
+                  <Pressable
+                    key={a.id}
+                    accessibilityRole="button"
+                    onPress={() => onCreate(newProject(a.id, t("creator.untitled")))}
+                    className="rounded-2xl bg-theme-neutrals-800 border border-white/10 p-3 items-center"
+                    style={{ width: "47%", gap: 8 }}
+                  >
+                    <View style={{ height: 64, justifyContent: "center" }}>
+                      <View style={{ height: ratio >= 1 ? 64 / ratio : 64, aspectRatio: ratio, borderRadius: 6, borderWidth: 2, borderColor: "#fff" }} />
+                    </View>
+                    <Text className="text-white font-semibold">{t(a.key)}</Text>
+                    <Text className="text-theme-neutrals-400 text-xs">{t("editor.app.dimensions", { width: d.width, height: d.height })}</Text>
+                  </Pressable>
+                );
+              })}
+            </View>
+            <Text className="text-white text-lg font-semibold mt-4">{t("editor.app.yourDesigns")}</Text>
+            {projects === null && <DeHubLoader />}
+          </View>
+        }
+        ListEmptyComponent={projects ? <Text className="text-theme-neutrals-400">{t("editor.app.noDesigns")}</Text> : null}
+        renderItem={({ item }) => (
+          <Pressable
+            accessibilityRole="button"
+            onPress={() => onOpen(item.id)}
+            onLongPress={() => confirmDelete(item)}
+            className="flex-row items-center rounded-xl bg-theme-neutrals-800 px-4 py-3"
+          >
+            <View className="w-10 h-10 rounded-xl bg-white/10 items-center justify-center mr-3">
+              <Icon name="Image" size={18} color="#fff" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-white font-medium" numberOfLines={1}>{item.title || t("creator.untitled")}</Text>
+              <Text className="text-theme-neutrals-400 text-xs">
+                {t("editor.app.dimensions", { width: item.settings.width, height: item.settings.height })}
+                {" · "}
+                {new Date(item.updatedAt).toLocaleDateString(appLocale())}
+              </Text>
+            </View>
+            <Pressable onPress={() => confirmDelete(item)} hitSlop={10} accessibilityRole="button" accessibilityLabel={t("common.delete")}>
+              <Icon name="Trash2" size={18} color="#9ca3af" />
+            </Pressable>
+          </Pressable>
+        )}
+      />
+    </View>
+  );
+}
+
+// ── editing ──
+
+type Tool =
+  | "page" | "background"
+  | "filters" | "adjust" | "crop" | "corners" | "fit"
+  | "font" | "colour" | "style" | "label" | "outline"
+  | "shadow" | "opacity" | "position" | "arrange";
+
+interface ToolButton {
+  id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete";
+  icon: IconName;
+  label: string;
+}
+
+function useHistory(initial: ProjectSnapshot | null) {
+  const [project, setProject] = useState<ProjectSnapshot | null>(initial);
+  const past = useRef<ProjectSnapshot[]>([]);
+  const future = useRef<ProjectSnapshot[]>([]);
+  const liveBase = useRef<ProjectSnapshot | null>(null);
+  const current = useRef(project);
+  current.current = project;
+  const [, bump] = useState(0);
+
+  const push = (before: ProjectSnapshot) => {
+    past.current = [...past.current, before].slice(-HISTORY_LIMIT);
+    future.current = [];
+  };
+
+  return {
+    project,
+    canUndo: past.current.length > 0,
+    canRedo: future.current.length > 0,
+    reset: (p: ProjectSnapshot) => { past.current = []; future.current = []; setProject(p); },
+    commit: (next: ProjectSnapshot) => {
+      const before = liveBase.current ?? current.current;
+      liveBase.current = null;
+      if (before) push(before);
+      setProject(next);
+    },
+    live: (next: ProjectSnapshot) => {
+      if (!liveBase.current) liveBase.current = current.current;
+      setProject(next);
+    },
+    settle: () => {
+      if (liveBase.current) { push(liveBase.current); liveBase.current = null; bump((n) => n + 1); }
+    },
+    undo: () => {
+      const prev = past.current[past.current.length - 1];
+      if (!prev || !current.current) return;
+      past.current = past.current.slice(0, -1);
+      future.current = [current.current, ...future.current];
+      setProject(prev);
+    },
+    redo: () => {
+      const next = future.current[0];
+      if (!next || !current.current) return;
+      future.current = future.current.slice(1);
+      past.current = [...past.current, current.current];
+      setProject(next);
+    },
+  };
+}
+
+function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot | null; projectId: string | null; onClose: () => void }) {
+  const { t } = useTranslation();
+  const nav = useNavigation<Nav>();
+  const insets = useSafeAreaInsets();
+  const h = useHistory(initial);
+  const project = h.project;
+  const canvasRef = useRef<EditorCanvasHandle>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [tool, setTool] = useState<Tool | null>(null);
+  const [missing, setMissing] = useState(false);
+  const [editingText, setEditingText] = useState<string | null>(null);
+  const [renaming, setRenaming] = useState(false);
+  const [exportOpen, setExportOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
+
+  // Open an existing design.
+  useEffect(() => {
+    if (initial || !projectId) return;
+    loadProject(projectId).then((p) => {
+      if (p) h.reset(p);
+      else { toastError(t("common.somethingWentWrong")); onClose(); }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [projectId]);
+
+  // Autosave, a moment after the last change.
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const latest = useRef(project);
+  latest.current = project;
+  // A new design is only written once it has something in it, so opening the
+  // editor and backing out does not leave an empty "Untitled" behind.
+  const persisted = useRef(!!projectId);
+  const flush = useCallback(async () => {
+    if (saveTimer.current) { clearTimeout(saveTimer.current); saveTimer.current = null; }
+    const p = latest.current;
+    if (!p || (!p.clips.length && !persisted.current)) return;
+    persisted.current = true;
+    await saveProject({ ...p, updatedAt: Date.now() }).catch(() => {});
+  }, []);
+  useEffect(() => {
+    if (!project) return;
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    saveTimer.current = setTimeout(() => { void flush(); }, 700);
+  }, [project, flush]);
+  useEffect(() => () => { void flush(); }, [flush]);
+
+  const selected = project ? getClip(project, selectedId) : null;
+
+  // Drop a selection whose layer went away (undo, delete).
+  useEffect(() => {
+    if (selectedId && project && !getClip(project, selectedId)) setSelectedId(null);
+  }, [project, selectedId]);
+
+  const select = useCallback((id: string | null) => {
+    setSelectedId(id);
+    setTool(null);
+  }, []);
+
+  const patchSelected = (patch: Patch, mode: "live" | "commit") => {
+    if (!project || !selectedId) return;
+    const next = updateClip(project, selectedId, patch);
+    if (mode === "live") h.live(next);
+    else h.commit(next);
+  };
+
+  const addPhoto = async () => {
+    if (!project) return;
+    const res = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ["images"], quality: 1 });
+    if (res.canceled || !res.assets?.[0]) return;
+    setBusy(true);
+    try {
+      const a = res.assets[0];
+      const meta = await importPicture({ uri: a.uri, width: a.width, height: a.height, mimeType: a.mimeType, fileName: a.fileName });
+      const { project: next, clipId } = addImage(project, meta.id);
+      h.commit(next);
+      select(clipId);
+    } catch {
+      toastError(t("common.somethingWentWrong"));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const addTextLayer = () => {
+    if (!project) return;
+    const { project: next, clipId } = addText(project, t("editor.app.newText"));
+    h.commit(next);
+    select(clipId);
+    setEditingText(clipId);
+  };
+
+  const onArrange = (a: Arrange) => {
+    if (project && selectedId) h.commit(arrangeClip(project, selectedId, a));
+  };
+
+  const onToolPress = (id: ToolButton["id"]) => {
+    if (!project) return;
+    if (id === "photo") { void addPhoto(); return; }
+    if (id === "text") { addTextLayer(); return; }
+    if (id === "edit" && selectedId) { setEditingText(selectedId); return; }
+    if (id === "duplicate" && selectedId) {
+      const r = duplicateClip(project, selectedId);
+      if (r) { h.commit(r.project); select(r.clipId); }
+      return;
+    }
+    if (id === "delete" && selectedId) {
+      h.commit(removeClip(project, selectedId));
+      select(null);
+      return;
+    }
+    setTool((cur) => (cur === id ? null : (id as Tool)));
+  };
+
+  const tools: ToolButton[] = useMemo(() => {
+    if (!selected) {
+      return [
+        { id: "photo", icon: "ImagePlus", label: t("editor.app.photo") },
+        { id: "text", icon: "Type", label: t("editor.menu.addText") },
+        { id: "page", icon: "RectangleVertical", label: t("editor.app.pageSize") },
+        { id: "background", icon: "PaintBucket", label: t("editor.app.background") },
+      ];
+    }
+    const common: ToolButton[] = [
+      { id: "shadow", icon: "Sun", label: t("editor.layer.shadow") },
+      { id: "opacity", icon: "Blend", label: t("editor.app.opacityTool") },
+      { id: "position", icon: "Move", label: t("editor.app.position") },
+      { id: "arrange", icon: "Layers", label: t("editor.app.arrange") },
+      { id: "duplicate", icon: "Copy", label: t("editor.menu.duplicate") },
+      { id: "delete", icon: "Trash2", label: t("editor.menu.delete") },
+    ];
+    if (selected.kind === "text") {
+      return [
+        { id: "edit", icon: "Pencil", label: t("editor.menu.editText") },
+        { id: "font", icon: "Type", label: t("editor.app.font") },
+        { id: "colour", icon: "Palette", label: t("editor.layer.colour") },
+        { id: "style", icon: "Bold", label: t("editor.layer.textStyle") },
+        { id: "label", icon: "RectangleHorizontal", label: t("editor.app.label") },
+        { id: "outline", icon: "PenLine", label: t("editor.app.outline") },
+        ...common,
+      ];
+    }
+    return [
+      { id: "filters", icon: "Sparkles", label: t("editor.app.filters") },
+      { id: "adjust", icon: "SlidersHorizontal", label: t("editor.app.adjust") },
+      { id: "crop", icon: "Crop", label: t("editor.layer.crop") },
+      { id: "corners", icon: "SquareRoundCorner", label: t("editor.app.corners") },
+      { id: "fit", icon: "Expand", label: t("editor.app.fit") },
+      ...common,
+    ];
+  }, [selected, t]);
+
+  const panelProps = {
+    live: (p: Patch) => patchSelected(p, "live"),
+    commit: (p: Patch) => patchSelected(p, "commit"),
+    settle: h.settle,
+  };
+
+  const renderPanel = () => {
+    if (!project || !tool) return null;
+    if (tool === "page") return <AspectPanel value={project.settings.aspectPreset} onPick={(a: Exclude<AspectPreset, "custom">) => h.commit(setAspect(project, a))} />;
+    if (tool === "background") return <Swatches label={t("editor.app.background")} value={project.settings.background} onPick={(c) => h.commit(setBackground(project, c))} />;
+    if (!selected) return null;
+    if (tool === "arrange") return <ArrangePanel onArrange={onArrange} />;
+    if (tool === "shadow") return <ShadowPanel clip={selected as MediaClip | TextClip} {...panelProps} />;
+    if (tool === "opacity") return <OpacityPanel clip={selected as MediaClip | TextClip} {...panelProps} />;
+    if (tool === "position") return <PositionPanel clip={selected as MediaClip | TextClip} {...panelProps} />;
+    if (selected.kind === "text") {
+      if (tool === "font") return <FontPanel clip={selected} {...panelProps} />;
+      if (tool === "colour") return <TextColourPanel clip={selected} {...panelProps} />;
+      if (tool === "style") return <TextStylePanel clip={selected} {...panelProps} />;
+      if (tool === "label") return <LabelPanel clip={selected} {...panelProps} />;
+      if (tool === "outline") return <OutlinePanel clip={selected} {...panelProps} />;
+      return null;
+    }
+    if (tool === "filters") return <FiltersPanel clip={selected} {...panelProps} />;
+    if (tool === "adjust") return <AdjustPanel clip={selected} {...panelProps} />;
+    if (tool === "crop") return <CropPanel clip={selected} {...panelProps} />;
+    if (tool === "corners") return <CornersPanel clip={selected} {...panelProps} />;
+    if (tool === "fit") return <FitPanel clip={selected} {...panelProps} />;
+    return null;
+  };
+
+  // Web fonts the page needs, picked the way the web picks them.
+  const fontCss = useMemo(() => {
+    const set = new Set<string>();
+    project?.clips.forEach((c) => { if (c.kind === "text") { const href = fontStylesheet(c.fontFamily); if (href) set.add(href); } });
+    return [...set];
+  }, [project]);
+
+  const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post") => {
+    if (!project) return;
+    if (!project.clips.length) { toastError(t("editor.export.empty")); return; }
+    setBusy(true);
+    try {
+      if (target === "photos") {
+        const { status } = await MediaLibrary.requestPermissionsAsync();
+        if (status !== "granted") { toastError(t("editor.app.photosPermission")); return; }
+      }
+      const dataUrl = await canvasRef.current!.exportImage(format, 0.92);
+      const uri = await writeExport(dataUrl, format, project.title);
+      setExportOpen(false);
+      if (target === "photos") {
+        await MediaLibrary.saveToLibraryAsync(uri);
+        toastSuccess(t("editor.app.savedToPhotos"));
+      } else {
+        await flush();
+        nav.navigate(ScreenNames.Upload, {
+          images: [{ uri, width: project.settings.width, height: project.settings.height, mimeType: format === "png" ? "image/png" : "image/jpeg" }],
+        });
+      }
+    } catch {
+      toastError(t("editor.app.exportFailed"));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const close = useCallback(async () => {
+    await flush();
+    onClose();
+  }, [flush, onClose]);
+
+  // Hardware back leaves the design for the list, not the editor altogether.
+  useEffect(() => {
+    const sub = BackHandler.addEventListener("hardwareBackPress", () => { void close(); return true; });
+    return () => sub.remove();
+  }, [close]);
+
+  if (!project) {
+    return (
+      <View className="flex-1 bg-theme-neutrals-900 items-center justify-center">
+        <DeHubLoader />
+      </View>
+    );
+  }
+
+  const textClip = editingText ? getClip(project, editingText) : null;
+
+  return (
+    <View className="flex-1 bg-black" style={{ paddingTop: insets.top }}>
+      {/* Top bar */}
+      <View className="flex-row items-center px-2 py-2" style={{ gap: 4 }}>
+        <IconButton icon="ChevronLeft" label={t("common.goBack")} onPress={() => { void close(); }} />
+        <Pressable className="flex-1 px-2" onPress={() => setRenaming(true)} accessibilityRole="button" accessibilityLabel={t("editor.app.rename")}>
+          <Text className="text-white font-semibold" numberOfLines={1}>{project.title || t("creator.untitled")}</Text>
+        </Pressable>
+        <IconButton icon="Undo2" label={t("editor.app.undo")} onPress={h.undo} disabled={!h.canUndo} />
+        <IconButton icon="Redo2" label={t("editor.app.redo")} onPress={h.redo} disabled={!h.canRedo} />
+        <Pressable
+          onPress={() => setExportOpen(true)}
+          accessibilityRole="button"
+          className="ml-1 rounded-xl bg-white px-4 py-2"
+        >
+          <Text className="text-black font-semibold">{t("editor.app.export")}</Text>
+        </Pressable>
+      </View>
+
+      {missing && (
+        <Text className="text-amber-300 text-xs px-4 pb-2">{t("editor.app.missingMedia")}</Text>
+      )}
+
+      {/* Page */}
+      <View className="flex-1 px-3 pb-3">
+        <EditorCanvas
+          ref={canvasRef}
+          project={project}
+          time={STILL_TIME}
+          fontCss={fontCss}
+          selectedId={selectedId}
+          onSelect={select}
+          onLiveChange={h.live}
+          onGestureEnd={h.settle}
+          onEditText={setEditingText}
+          onMissingMedia={(ids) => setMissing(ids.length > 0)}
+        />
+        {project.clips.length === 0 && (
+          <View pointerEvents="none" className="absolute inset-0 items-center justify-center">
+            <Text className="text-white/70 text-sm">{t("editor.app.emptyHint")}</Text>
+          </View>
+        )}
+      </View>
+
+      {/* Tool panel */}
+      {tool && (
+        <View className="bg-theme-neutrals-900 border-t border-white/10 px-4 pt-3 pb-1" style={{ maxHeight: 260 }}>
+          <ScrollView keyboardShouldPersistTaps="handled">{renderPanel()}</ScrollView>
+        </View>
+      )}
+
+      {/* Toolbar */}
+      <View className="bg-theme-neutrals-900 border-t border-white/10" style={{ paddingBottom: insets.bottom }}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 8, paddingVertical: 8, gap: 4 }}>
+          {tools.map((b) => {
+            const on = tool === b.id;
+            return (
+              <Pressable
+                key={b.id}
+                onPress={() => onToolPress(b.id)}
+                accessibilityRole="button"
+                accessibilityState={{ selected: on }}
+                className={`items-center justify-center rounded-xl px-3 py-2 ${on ? "bg-white/15" : ""}`}
+                style={{ minWidth: 64, gap: 4 }}
+              >
+                <Icon name={b.icon} size={20} color={b.id === "delete" ? "#f87171" : "#fff"} />
+                <Text className="text-white text-[11px]" numberOfLines={1}>{b.label}</Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
+      </View>
+
+      {busy && (
+        <View className="absolute inset-0 items-center justify-center bg-black/50">
+          <DeHubLoader />
+        </View>
+      )}
+
+      <TextPrompt
+        visible={!!textClip && textClip.kind === "text"}
+        title={t("editor.menu.editText")}
+        initial={textClip?.kind === "text" ? textClip.text : ""}
+        multiline
+        onCancel={() => setEditingText(null)}
+        onDone={(value) => {
+          if (textClip && value.trim()) h.commit(updateClip(project, textClip.id, { text: value }));
+          setEditingText(null);
+        }}
+      />
+
+      <TextPrompt
+        visible={renaming}
+        title={t("editor.app.rename")}
+        initial={project.title}
+        placeholder={t("creator.untitled")}
+        onCancel={() => setRenaming(false)}
+        onDone={(value) => {
+          h.commit({ ...project, title: value.trim() || t("creator.untitled") });
+          setRenaming(false);
+        }}
+      />
+
+      <ExportSheet
+        visible={exportOpen}
+        width={project.settings.width}
+        height={project.settings.height}
+        busy={busy}
+        onCancel={() => setExportOpen(false)}
+        onExport={exportDesign}
+      />
+    </View>
+  );
+}
+
+function IconButton({ icon, label, onPress, disabled }: { icon: IconName; label: string; onPress: () => void; disabled?: boolean }) {
+  return (
+    <Pressable
+      onPress={onPress}
+      disabled={disabled}
+      hitSlop={6}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityState={{ disabled: !!disabled }}
+      className="w-10 h-10 items-center justify-center rounded-xl"
+      style={{ opacity: disabled ? 0.35 : 1 }}
+    >
+      <Icon name={icon} size={22} color="#fff" />
+    </Pressable>
+  );
+}
+
+function TextPrompt(props: {
+  visible: boolean;
+  title: string;
+  initial: string;
+  placeholder?: string;
+  multiline?: boolean;
+  onCancel: () => void;
+  onDone: (value: string) => void;
+}) {
+  const { t } = useTranslation();
+  const [value, setValue] = useState(props.initial);
+  useEffect(() => { if (props.visible) setValue(props.initial); }, [props.visible, props.initial]);
+  return (
+    <Modal visible={props.visible} transparent animationType="fade" onRequestClose={props.onCancel}>
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} className="flex-1 justify-center bg-black/70 px-6">
+        <View className="rounded-2xl bg-theme-neutrals-800 p-4" style={{ gap: 12 }}>
+          <Text className="text-white text-base font-semibold">{props.title}</Text>
+          <TextInput
+            value={value}
+            onChangeText={setValue}
+            autoFocus
+            multiline={props.multiline}
+            placeholder={props.placeholder}
+            placeholderTextColor="#6b7280"
+            selectTextOnFocus
+            className="rounded-xl bg-black/40 text-white px-3 py-3"
+            style={{ minHeight: props.multiline ? 96 : undefined, textAlignVertical: props.multiline ? "top" : "center" }}
+          />
+          <View className="flex-row justify-end" style={{ gap: 8 }}>
+            <Chip label={t("common.cancel")} onPress={props.onCancel} />
+            <Chip label={t("common.done")} active onPress={() => props.onDone(value)} />
+          </View>
+        </View>
+      </KeyboardAvoidingView>
+    </Modal>
+  );
+}
+
+function ExportSheet(props: {
+  visible: boolean;
+  width: number;
+  height: number;
+  busy: boolean;
+  onCancel: () => void;
+  onExport: (format: "png" | "jpeg", target: "photos" | "post") => void;
+}) {
+  const { t } = useTranslation();
+  const [format, setFormat] = useState<"png" | "jpeg">("png");
+  return (
+    <Modal visible={props.visible} transparent animationType="slide" onRequestClose={props.onCancel}>
+      <Pressable className="flex-1 bg-black/60" onPress={props.onCancel} accessibilityRole="button" accessibilityLabel={t("common.close")} />
+      <View className="rounded-t-3xl bg-theme-neutrals-800 p-5" style={{ gap: 14 }}>
+        <Text className="text-white text-lg font-semibold">{t("editor.app.export")}</Text>
+        <View>
+          <Text className="text-theme-neutrals-300 text-xs mb-2">{t("editor.export.format")}</Text>
+          <View className="flex-row" style={{ gap: 8 }}>
+            <Chip label={t("editor.export.png")} active={format === "png"} onPress={() => setFormat("png")} />
+            <Chip label={t("editor.export.jpg")} active={format === "jpeg"} onPress={() => setFormat("jpeg")} />
+          </View>
+        </View>
+        <Text className="text-theme-neutrals-400 text-xs">{t("editor.export.outputStill", { width: props.width, height: props.height })}</Text>
+        <Pressable
+          disabled={props.busy}
+          onPress={() => props.onExport(format, "photos")}
+          accessibilityRole="button"
+          className="flex-row items-center justify-center rounded-xl bg-white py-3"
+          style={{ gap: 8, opacity: props.busy ? 0.5 : 1 }}
+        >
+          <Icon name="Download" size={18} color="#000" />
+          <Text className="text-black font-semibold">{t("editor.app.saveToPhotos")}</Text>
+        </Pressable>
+        <Pressable
+          disabled={props.busy}
+          onPress={() => props.onExport(format, "post")}
+          accessibilityRole="button"
+          className="flex-row items-center justify-center rounded-xl bg-white/10 border border-white/20 py-3"
+          style={{ gap: 8, opacity: props.busy ? 0.5 : 1 }}
+        >
+          <Icon name="Send" size={18} color="#fff" />
+          <Text className="text-white font-semibold">{t("editor.app.postToDehub")}</Text>
+        </Pressable>
+      </View>
+    </Modal>
+  );
+}
