@@ -4505,8 +4505,10 @@
     "depthNote": "DHB/USDC ka wari hakɛ min be se ka kɛ a ka baara la, o be se ka kɛ a ka baara ye. O cogo kelen na, mɔgɔ kelen kelen bɛɛ ka kan ka kɛ ni diɲɛ fɛɛn bɛɛ ka setigiya ye.",
     "referenceNote": "O ye ka wari sɔrɔ ka tɛmɛ wari hakɛ kan. O tɛ ɲɛyiraliw ye.",
     "partialHistory": "O kama, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka ɲi ka kɛ ni",
+    "source": "{{name}} source",
     "spread": "Ka wari sɔrɔ",
     "overlap": "O kama, an ka ɲi k'an yɛrɛ tanga o ma.",
+    "usePrice": "Use price {{price}}",
     "maxBuy": "Fɛɛn min ka fisa, o ye ka wari sɔrɔ",
     "minSell": "Sanni dɔɔni, u tun be se ka wari caaman sɔrɔ.",
     "available": "Available",
@@ -4572,7 +4574,12 @@
     "useMarket": "Fɛɛn minw be se k'an dɛmɛ ka baara kɛ ni duniɲa",
     "noFunding": "No {{token}} on {{chain}}",
     "noListingsChain": "No Alerts for {{chain}} yet. O ye n ka koo ye.",
-    "listedDhb": "Ddddd {{chain}}"
+    "listedDhb": "Ddddd {{chain}}",
+    "payWith": "O sara ye",
+    "noBaseFunds": "O la, a ka ɲi ka kɛ ni wari ye min be se ka kɛ wari ye.",
+    "pendingSwapNote": "I ka {{symbol}} tun yɛlɛmana ka kɛ USDC ye. I ka segi ka taga a daminɛ na, i kana segi ka taga.",
+    "resumeMint": "Ka segi ka na",
+    "resumeNeedsBalances": "O kɔ, u ye wari caaman di u ma. I be se k'a ɲini tugu miniti damanin kɔnɔ."
   },
   "onboarding": {
     "optIn": {

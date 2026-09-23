@@ -4546,7 +4546,8 @@
     "automaticStage": {
       "tokenApproval": "自動批准代幣…",
       "permitApproval": "自動批准倉位權限…",
-      "submit": "自動創建您的倉位…"
+      "submit": "自動創建您的倉位…",
+      "swap": "自動交換同埋建立你嘅位置 ..."
     },
     "combined": "合併市場 · Base + BNB",
     "reference": "市場參考 · USD",
@@ -4606,8 +4607,12 @@
       "permitApproval": "喺你嘅錢包確認倉位批准…",
       "submit": "喺你嘅錢包確認倉位…",
       "confirm": "等待確認中…",
-      "index": "登記你嘅倉位…"
+      "index": "登記你嘅倉位…",
+      "swap": "確認你銀包入面嘅交換 ...",
+      "swapConfirm": "等緊交換確認 ..."
     },
+    "title": "DHB / 美元",
+    "heading": "DHB / 美元",
     "intro": "用 Uniswap v4 倉位設定你嘅買入或賣出價。訂單會喺交易通過佢哋嘅範圍時填補。",
     "buySell": "買入 / 賣出",
     "buy": "買入 DHB",
@@ -4658,7 +4663,13 @@
     "useMarket": "使用市價",
     "noFunding": "{{chain}} 上沒有 {{token}} 可用。",
     "noListingsChain": "{{chain}} 上尚無列表。",
-    "listedDhb": "已列出 DHB · {{chain}}"
+    "listedDhb": "已列出 DHB · {{chain}}",
+    "payWith": "用嚟畀錢",
+    "noBaseFunds": "冇 ETH 、 USDC 或者 USDT 嘅基礎",
+    "reviewSwap": "先將大約 {{amountIn}} {{symbol}} 換成 {{usdc}} 基地上嘅 USDC 。喺同一個交易入面會返回未用過嘅 {{symbol}} 。",
+    "pendingSwapNote": "你個 {{symbol}} 係換咗做 USDC 。繼續建立位置，唔使再交換。",
+    "resumeMint": "恢復訂單",
+    "resumeNeedsBalances": "銀包餘額仲係載入緊。一陣再試下。"
   },
   "onboarding": {
     "optIn": {

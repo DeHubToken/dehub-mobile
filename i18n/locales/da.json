@@ -4553,7 +4553,8 @@
     "automaticStage": {
       "tokenApproval": "Godkender tokens automatisk…",
       "permitApproval": "Godkender positionadgang automatisk…",
-      "submit": "Opretter din position automatisk…"
+      "submit": "Opretter din position automatisk…",
+      "swap": "Bytter og opretter din position automatisk..."
     },
     "combined": "Kombineret marked · Base + BNB",
     "reference": "Markedsreference · USD",
@@ -4613,7 +4614,9 @@
       "permitApproval": "Bekræft godkendelse af position i din wallet…",
       "submit": "Bekræft position i din wallet…",
       "confirm": "Venter på bekræftelse…",
-      "index": "Registrerer din position…"
+      "index": "Registrerer din position…",
+      "swap": "Bekræft swappen i din tegnebog...",
+      "swapConfirm": "Venter på, at swappen bekræfter..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4667,7 +4670,13 @@
     "useMarket": "Brug markedspris",
     "noFunding": "Ingen {{token}} tilgængelig på {{chain}}.",
     "noListingsChain": "Ingen annonceringer på {{chain}} endnu.",
-    "listedDhb": "Annonceret DHB · {{chain}}"
+    "listedDhb": "Annonceret DHB · {{chain}}",
+    "payWith": "Betal med",
+    "noBaseFunds": "Ingen ETH, USDC eller USDT på basis",
+    "reviewSwap": "Byt først om {{amountIn}}{{symbol}} for {{usdc}}USDC på Base. Ubrugt {{symbol}} returneres i samme transaktion.",
+    "pendingSwapNote": "Din{{symbol}} blev byttet ud med USDC. Genoptag for at oprette positionen uden at bytte igen.",
+    "resumeMint": "Genoptag bestilling",
+    "resumeNeedsBalances": "Tegnebogssaldi indlæses stadig. Prøv igen om et øjeblik."
   },
   "onboarding": {
     "optIn": {

@@ -4553,7 +4553,8 @@
     "automaticStage": {
       "tokenApproval": "Godkänner tokens automatiskt…",
       "permitApproval": "Godkänner positionåtkomst automatiskt…",
-      "submit": "Skapar din position automatiskt…"
+      "submit": "Skapar din position automatiskt…",
+      "swap": "Byta och skapa din position automatiskt..."
     },
     "combined": "Kombinerad marknad · Base + BNB",
     "reference": "Marknadsreferens · USD",
@@ -4613,7 +4614,9 @@
       "permitApproval": "Bekräfta positiongodkännande i din plånbok…",
       "submit": "Bekräfta position i din plånbok…",
       "confirm": "Väntar på bekräftelse…",
-      "index": "Registrerar din position…"
+      "index": "Registrerar din position…",
+      "swap": "Bekräfta bytet i din plånbok...",
+      "swapConfirm": "Väntar på att bytet ska bekräftas..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4667,7 +4670,13 @@
     "useMarket": "Använd marknadspris",
     "noFunding": "Ingen {{token}} tillgänglig på {{chain}}.",
     "noListingsChain": "Inga listningar på {{chain}} ännu.",
-    "listedDhb": "Listad DHB · {{chain}}"
+    "listedDhb": "Listad DHB · {{chain}}",
+    "payWith": "Betala med",
+    "noBaseFunds": "Ingen ETH, USDC eller USDT på basen",
+    "reviewSwap": "Byt ut {{amountIn}} {{symbol}} mot {{usdc}} USDC på Base först. Oanvänd {{symbol}} returneras i samma transaktion.",
+    "pendingSwapNote": "Din {{symbol}} byttes ut mot USDC. Fortsätt för att skapa positionen utan att byta igen.",
+    "resumeMint": "Återuppta beställning",
+    "resumeNeedsBalances": "Plånbokssaldon laddas fortfarande. Försök igen om en stund."
   },
   "onboarding": {
     "optIn": {

@@ -4548,7 +4548,8 @@
     "automaticStage": {
       "tokenApproval": "Tokenite automaatne kinnitamine…",
       "permitApproval": "Positsioonide juurdepääsu automaatne kinnitamine…",
-      "submit": "Teie positsiooni automaatne loomine…"
+      "submit": "Teie positsiooni automaatne loomine…",
+      "swap": "Asukoha automaatne vahetamine ja loomine…"
     },
     "combined": "Kombineeritud turg · Base + BNB",
     "reference": "Turviide · USD",
@@ -4608,7 +4609,9 @@
       "permitApproval": "Kinnita positsiooni heakskiit oma rahakotis…",
       "submit": "Kinnita positsioon oma rahakotis…",
       "confirm": "Ootan kinnitust…",
-      "index": "Positsiooni registreerimine…"
+      "index": "Positsiooni registreerimine…",
+      "swap": "Kinnita vahetus oma rahakotis...",
+      "swapConfirm": "Vahetuse kinnitamise ootamine…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4662,7 +4665,13 @@
     "useMarket": "Kasuta turuhinda",
     "noFunding": "{{token}} pole {{chain}}-s saadaval.",
     "noListingsChain": "{{chain}}-s pole veel pakkumisi.",
-    "listedDhb": "Loetletud DHB · {{chain}}"
+    "listedDhb": "Loetletud DHB · {{chain}}",
+    "payWith": "Makseviis",
+    "noBaseFunds": "Puudub ETH, USDC või USDT baasil",
+    "reviewSwap": "Vaheta esmalt {{amountIn}}{{symbol}} USDC eest {{usdc}} baasil. Kasutamata {{symbol}} tagastatakse sama tehinguga.",
+    "pendingSwapNote": "Sinu {{symbol}} vahetati USA dollari vastu. Jätkake positsiooni loomist ilma uuesti vahetamata.",
+    "resumeMint": "Jätka tellimust",
+    "resumeNeedsBalances": "Rahakoti saldod on alles laadimisel. Proovi mõne hetke pärast uuesti."
   },
   "onboarding": {
     "optIn": {

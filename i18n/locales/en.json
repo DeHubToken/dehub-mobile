@@ -4614,7 +4614,8 @@
     "automaticStage": {
       "tokenApproval": "Approving tokens automatically…",
       "permitApproval": "Approving position access automatically…",
-      "submit": "Creating your position automatically…"
+      "submit": "Creating your position automatically…",
+      "swap": "Swapping and creating your position automatically…"
     },
     "combined": "Combined market · Base + BNB",
     "reference": "Market reference · USD",
@@ -4674,7 +4675,9 @@
       "permitApproval": "Confirm position approval in your wallet…",
       "submit": "Confirm position in your wallet…",
       "confirm": "Waiting for confirmation…",
-      "index": "Registering your position…"
+      "index": "Registering your position…",
+      "swap": "Confirm the swap in your wallet…",
+      "swapConfirm": "Waiting for the swap to confirm…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4728,7 +4731,13 @@
     "useMarket": "Use market price",
     "noFunding": "No {{token}} available on {{chain}}.",
     "noListingsChain": "No listings on {{chain}} yet.",
-    "listedDhb": "Listed DHB · {{chain}}"
+    "listedDhb": "Listed DHB · {{chain}}",
+    "payWith": "Pay with",
+    "noBaseFunds": "No ETH, USDC or USDT on Base",
+    "reviewSwap": "Swap about {{amountIn}} {{symbol}} for {{usdc}} USDC on Base first. Unused {{symbol}} is returned in the same transaction.",
+    "pendingSwapNote": "Your {{symbol}} was swapped for USDC. Resume to create the position without swapping again.",
+    "resumeMint": "Resume order",
+    "resumeNeedsBalances": "Wallet balances are still loading. Try again in a moment."
   },
   "onboarding": {
     "optIn": {

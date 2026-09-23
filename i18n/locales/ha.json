@@ -4537,7 +4537,8 @@
     "automaticStage": {
       "tokenApproval": "Tabbatar da alamun a hankali…",
       "permitApproval": "Tabbatar da damar shiga a hankali…",
-      "submit": "Ƙirƙirar damarka a hankali…"
+      "submit": "Ƙirƙirar damarka a hankali…",
+      "swap": "Swapping da kuma haifar da matsayinka ta atomatik…"
     },
     "combined": "Haɗa kasuwa · Base + BNB",
     "reference": "Manufar kasuwa · USD",
@@ -4597,7 +4598,9 @@
       "permitApproval": "Tabbatar da amincewar matsayi a cikin walat ɗinka…",
       "submit": "Tabbatar da matsayi a cikin walat ɗinka…",
       "confirm": "Jira tabbaci…",
-      "index": "Yin rijistar matsayinka…"
+      "index": "Yin rijistar matsayinka…",
+      "swap": "Tabbatar da sauyawa a cikin walat ɗinku…",
+      "swapConfirm": "Ina jiran swap don tabbatar..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4651,7 +4654,12 @@
     "useMarket": "Yi amfani da farashin kasuwa",
     "noFunding": "Babu {{token}} da ke samuwa a {{chain}}.",
     "noListingsChain": "Babu jeri a {{chain}} tukuna.",
-    "listedDhb": "Jerin DHB · {{chain}}"
+    "listedDhb": "Jerin DHB · {{chain}}",
+    "payWith": "Biya tare da",
+    "noBaseFunds": "Babu ETH, USDC ko USDT akan Base",
+    "pendingSwapNote": "Your {{symbol}} an canza shi don USDC. Sake farawa don ƙirƙirar matsayi ba tare da sake canzawa ba.",
+    "resumeMint": "Sake farawa oda",
+    "resumeNeedsBalances": "Wallet balance ne har yanzu loading. Ka sake gwadawa a cikin wani lokaci."
   },
   "onboarding": {
     "optIn": {

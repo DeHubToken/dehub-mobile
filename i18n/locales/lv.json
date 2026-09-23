@@ -4547,7 +4547,8 @@
     "automaticStage": {
       "tokenApproval": "Tiek automātiski apstiprināti marķieri…",
       "permitApproval": "Tiek automātiski apstiprināta pozīcijas piekļuve…",
-      "submit": "Tiek automātiski izveidota jūsu pozīcija…"
+      "submit": "Tiek automātiski izveidota jūsu pozīcija…",
+      "swap": "Automātiska pozīciju maiņa un izveide..."
     },
     "combined": "Kopējais tirgus · Base + BNB",
     "reference": "Tirgus atsauce · USD",
@@ -4607,7 +4608,9 @@
       "permitApproval": "Apstipriniet pozīcijas apstiprinājumu savā makā…",
       "submit": "Apstipriniet pozīciju savā makā…",
       "confirm": "Gaida apstiprinājumu…",
-      "index": "Reģistrē jūsu pozīciju…"
+      "index": "Reģistrē jūsu pozīciju…",
+      "swap": "Apstiprini maiņu makā...",
+      "swapConfirm": "Gaida maiņas apstiprināšanu..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4661,7 +4664,13 @@
     "useMarket": "Izmantot tirgus cenu",
     "noFunding": "Nav {{token}} pieejams uz {{chain}}.",
     "noListingsChain": "Vēl nav iekļauts {{chain}}.",
-    "listedDhb": "Iekļautais DHB · {{chain}}"
+    "listedDhb": "Iekļautais DHB · {{chain}}",
+    "payWith": "Maksāt ar",
+    "noBaseFunds": "Nav ETH, USDC vai USDT par bāzi",
+    "reviewSwap": "Apmainiet {{amountIn}} {{symbol}} pret {{usdc}} USDC Bāzē vispirms. Neizmantotais {{symbol}} tiek atgriezts tajā pašā darījumā.",
+    "pendingSwapNote": "Jūsu {{symbol}} tika apmainīts pret USDC. Atsāciet, lai izveidotu pozīciju bez atkārtotas maiņas.",
+    "resumeMint": "Atsākt pasūtījumu",
+    "resumeNeedsBalances": "Maka atlikumi joprojām tiek ielādēti. Pēc brīža mēģiniet vēlreiz."
   },
   "onboarding": {
     "optIn": {

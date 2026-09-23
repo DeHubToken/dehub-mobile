@@ -4313,7 +4313,8 @@
     "lowestPrice": "সবচেয়ে কম দাম · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",
-    "totalLiquidity": "মোট তারল্য · USD"
+    "totalLiquidity": "মোট তারল্য · USD",
+    "noBalance": "बेस या বিএনबी चेन पर कोई तरल डीएचबी नहीं"
   },
   "drafts": {
     "justNow": "এইমাত্র",

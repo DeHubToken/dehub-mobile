@@ -4611,7 +4611,8 @@
     "automaticStage": {
       "tokenApproval": "Tokenlar otomatik olarak onaylanıyor…",
       "permitApproval": "Pozisyon erişimi otomatik olarak onaylanıyor…",
-      "submit": "Pozisyonunuz otomatik olarak oluşturuluyor…"
+      "submit": "Pozisyonunuz otomatik olarak oluşturuluyor…",
+      "swap": "Otomatik olarak pozisyonunuzu değiştirme ve oluşturma…"
     },
     "combined": "Birleşik piyasa · Base + BNB",
     "reference": "Piyasa referansı · USD",
@@ -4671,7 +4672,9 @@
       "permitApproval": "Cüzdanınızda pozisyon onayını onayla…",
       "submit": "Cüzdanınızda pozisyonu onayla…",
       "confirm": "Onay bekleniyor…",
-      "index": "Pozisyonunuz kaydediliyor…"
+      "index": "Pozisyonunuz kaydediliyor…",
+      "swap": "Cüzdanınızda takası onaylayın…",
+      "swapConfirm": "Takasın onaylanmasını bekliyor…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4720,10 +4723,18 @@
     "venue": "Ağ",
     "bookPrice": "{{chain}} kitap fiyatı · USD",
     "marketPrice": "Piyasa fiyatı · USD",
+    "sellBelowMarket": "Bu satış, piyasa fiyatı olan ${{price}}'nin {{percent}}% altında. Biri onu alıp hemen başka yerde satabilir.",
+    "buyAboveMarket": "Bu alım, piyasa fiyatı olan ${{price}}'nin {{percent}}% üzerinde. DHB'nin başka yerlerdekinden daha fazlasına alım satım yapmasını ödersiniz.",
     "useMarket": "Piyasa fiyatını kullan",
     "noFunding": "{{chain}}'de {{token}} mevcut değil.",
     "noListingsChain": "Henüz {{chain}}'de listeleme yok.",
-    "listedDhb": "Listelenen DHB · {{chain}}"
+    "listedDhb": "Listelenen DHB · {{chain}}",
+    "payWith": "ile ödeyin",
+    "noBaseFunds": "Base'de ETH, USDC veya USDT yok",
+    "reviewSwap": "Önce Base'de yaklaşık {{amountIn}} {{symbol}}'yi {{usdc}} USDC için takas edin. Kullanılmayan {{symbol}} aynı işlemde iade edilir.",
+    "pendingSwapNote": "{{symbol}}'nız USDC için takas edildi. Tekrar takas etmeden pozisyon oluşturmaya devam edin.",
+    "resumeMint": "Siparişe devam et",
+    "resumeNeedsBalances": "Cüzdan bakiyeleri hala yükleniyor. Bir süre sonra tekrar deneyin."
   },
   "onboarding": {
     "optIn": {

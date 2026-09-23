@@ -4752,7 +4752,8 @@
     "automaticStage": {
       "tokenApproval": "Tokens automatisch goedkeuren…",
       "permitApproval": "Toegang tot posities automatisch goedkeuren…",
-      "submit": "Uw positie automatisch aanmaken…"
+      "submit": "Uw positie automatisch aanmaken…",
+      "swap": "Uw positie automatisch omwisselen en maken..."
     },
     "combined": "Gecombineerde markt · Base + BNB",
     "reference": "Marktreferentie · USD",
@@ -4812,7 +4813,9 @@
       "permitApproval": "Bevestig positiegoedkeuring in je wallet…",
       "submit": "Bevestig positie in je wallet…",
       "confirm": "Wachten op bevestiging…",
-      "index": "Registreren van je positie…"
+      "index": "Registreren van je positie…",
+      "swap": "Bevestig de ruil in je portemonnee...",
+      "swapConfirm": "Wachten op de omwisseling om te bevestigen..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4866,7 +4869,13 @@
     "useMarket": "Marktprijs gebruiken",
     "noFunding": "Geen {{token}} beschikbaar op {{chain}}.",
     "noListingsChain": "Nog geen noteringen op {{chain}}.",
-    "listedDhb": "Genoteerde DHB · {{chain}}"
+    "listedDhb": "Genoteerde DHB · {{chain}}",
+    "payWith": "Betalen met",
+    "noBaseFunds": "Geen ETH, USDC of USDT op basis",
+    "reviewSwap": "Wissel eerst {{amountIn}} {{symbol}} voor {{usdc}} USDC op Base. Ongebruikte {{symbol}} wordt geretourneerd in dezelfde transactie.",
+    "pendingSwapNote": "Je {{symbol}} is geruild voor USDC. Hervatten om de positie te maken zonder opnieuw te wisselen.",
+    "resumeMint": "Bestelling hervatten",
+    "resumeNeedsBalances": "Wallet-saldi worden nog geladen. Probeer het zo opnieuw."
   },
   "onboarding": {
     "optIn": {

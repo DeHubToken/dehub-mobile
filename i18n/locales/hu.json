@@ -4553,7 +4553,8 @@
     "automaticStage": {
       "tokenApproval": "Tokenek jóváhagyása automatikusan…",
       "permitApproval": "Pozícióhozzáférés jóváhagyása automatikusan…",
-      "submit": "A pozíciód létrehozása automatikusan…"
+      "submit": "A pozíciód létrehozása automatikusan…",
+      "swap": "Pozíció automatikus cseréje és létrehozása…"
     },
     "combined": "Kombinált piac · Base + BNB",
     "reference": "Piaci referencia · USD",
@@ -4613,7 +4614,9 @@
       "permitApproval": "Erősítsd meg a pozíció jóváhagyását a tárcádban…",
       "submit": "Erősítsd meg a pozíciót a tárcádban…",
       "confirm": "Várakozás a megerősítésre…",
-      "index": "Regisztrálom a pozíciódat…"
+      "index": "Regisztrálom a pozíciódat…",
+      "swap": "Erősítse meg a cserét a pénztárcájában…",
+      "swapConfirm": "Várakozás a csere megerősítésére…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4667,7 +4670,13 @@
     "useMarket": "Használd a piaci árat",
     "noFunding": "Nincs {{token}} elérhető a(z) {{chain}} hálózaton.",
     "noListingsChain": "Még nincsenek listázások a(z) {{chain}} hálózaton.",
-    "listedDhb": "Listázott DHB · {{chain}}"
+    "listedDhb": "Listázott DHB · {{chain}}",
+    "payWith": "Fizetés ezzel:",
+    "noBaseFunds": "Nincs ETH, USDC vagy USDT a bázison",
+    "reviewSwap": "Először cserélj körülbelül {{amountIn}}{{symbol}} összeget {{usdc}} USDC-re az alapáron. A nem használt {{symbol}} ugyanabban a tranzakcióban kerül visszaküldésre.",
+    "pendingSwapNote": "A (z) {{symbol}} USDC-re lett cserélve. Folytassa a pozíció létrehozását ismételt csere nélkül.",
+    "resumeMint": "Rendelés folytatása",
+    "resumeNeedsBalances": "A pénztárcaegyenlegek betöltése még folyamatban van. Próbálkozz újra egy pillanat múlva."
   },
   "onboarding": {
     "optIn": {

@@ -4538,7 +4538,8 @@
     "automaticStage": {
       "tokenApproval": "Oggolaanshaha calaamadaha si toos ah…",
       "permitApproval": "Oggolaanshaha gelitaanka booska si toos ah…",
-      "submit": "Samaynta booskaaga si toos ah…"
+      "submit": "Samaynta booskaaga si toos ah…",
+      "swap": "Swapping iyo abuurista booskaaga si otomaatig ah…"
     },
     "combined": "Suuq isku dhafan · Base + BNB",
     "reference": "Tixraaca suuqa · USD",
@@ -4598,7 +4599,9 @@
       "permitApproval": "Xaqiiji ogolaanshaha booskaaga jeebkaaga…",
       "submit": "Xaqiiji booskaaga jeebkaaga…",
       "confirm": "Sug sugida…",
-      "index": "Diiwaangelinta booskaaga…"
+      "index": "Diiwaangelinta booskaaga…",
+      "swap": "Xaqiiji iswaafajinta boorsadaada…",
+      "swapConfirm": "Sugitaanka swap si loo xaqiijiyo…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4652,7 +4655,12 @@
     "useMarket": "Isticmaal qiimaha suuqa",
     "noFunding": "Ma jirto {{token}} la heli karo on {{chain}}.",
     "noListingsChain": "Weli ma jiraan liisas on {{chain}}.",
-    "listedDhb": "DHB la qoray · {{chain}}"
+    "listedDhb": "DHB la qoray · {{chain}}",
+    "payWith": "Bixi la",
+    "noBaseFunds": "No ETH, USDC ama USDT on Base",
+    "pendingSwapNote": "{{symbol}} waa loo beddelay USDC. Dib u bilow inaad abuurto booska adigoon mar kale leexan.",
+    "resumeMint": "Dib u bilow amarka",
+    "resumeNeedsBalances": "Miisaaniyada boorsada ayaa weli raraya. Isku day mar kale in daqiiqad ah."
   },
   "onboarding": {
     "optIn": {

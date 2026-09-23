@@ -4517,7 +4517,8 @@
     "automaticStage": {
       "tokenApproval": "Öňki ýaly, ol hem özbaşdak hereket edýär...",
       "permitApproval": "Öňki ýaly, ol hem özbaşdak hereket edýär...",
-      "submit": "Ol öz ornuny otomatik edip ýaratdy..."
+      "submit": "Ol öz ornuny otomatik edip ýaratdy...",
+      "swap": "Öz pozisiýaňyzy awtomatiki alyş-çalşmak we döretmek…"
     },
     "combined": "Birleşen bazar · Bazar + BNB",
     "reference": "Bazar görkezmesi · USD",
@@ -4537,6 +4538,7 @@
     "depthNote": "Iki tarapa hem DHB/USDC-de tassyklanan orunlardan tahmin edilen likviditet. Her bir ýer öz tarapyndadyr.",
     "referenceNote": "ABŞ dollary esasy derejede her bir tarapyndaky iň uly DHB hovuzynda likviditet bilen ölçenilýär. Bu höküm çykaryş däl.",
     "partialHistory": "Käbir taryhyň bir bölek tarapy bar.",
+    "source": "{{name}} çeşme",
     "spread": "ABŞ dollary",
     "overlap": "Şäheriň bahasy üst-üstine düşýär",
     "usePrice": "Baýdan peýdalanyň {{price}}",
@@ -4576,7 +4578,9 @@
       "permitApproval": "Walletiňizde pozisiýany tassyklaň…",
       "submit": "Walletiňizde pozisiýany tassyklaň…",
       "confirm": "Tassyklaýyşyňyzy garaşyp otyrys…",
-      "index": "Pozisiýaňyzy bellige alýarys…"
+      "index": "Pozisiýaňyzy bellige alýarys…",
+      "swap": "Waletdäki alyş-çalşygy tassyklaň…",
+      "swapConfirm": "Alyş-çalşygyň tassyklynmagyny garaşýarys…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4626,10 +4630,17 @@
     "bookPrice": "{{chain}} kitabyň bahasy · USD",
     "marketPrice": "Bazar bahasy · USD",
     "sellBelowMarket": "Bu satyş, ${{price}}-daky bazaryň bahasasyndan {{percent}}% aşakda. Kimdir biri ony alyp, başga ýerde dessine gaýtadan satyp biler.",
+    "buyAboveMarket": "Bu satyn alyş bahasy bazaryň bahasyndan ${{price}} {{percent}}% ýokary. Başga ýerlerde DHB söwdasyndan köp töleg tölersiňiz.",
     "useMarket": "Bazar bahasasyny ulanyň",
     "noFunding": "{{chain}}-de {{token}} ýok.",
     "noListingsChain": "{{chain}}-de heniz sanaw ýok.",
-    "listedDhb": "Sanawly DHB · {{chain}}"
+    "listedDhb": "Sanawly DHB · {{chain}}",
+    "payWith": "Bilýän",
+    "noBaseFunds": "Base-de ETH, USDC ýa-da USDT ýok",
+    "reviewSwap": "Ilki bilen Base-de {{amountIn}} {{symbol}}-i {{usdc}} USDC-ä alyş-çalşyň. Ulanylmadyk {{symbol}} şol bir amalda gaýtarylyp berilýär.",
+    "pendingSwapNote": "Siziň {{symbol}} USDC-e alyş-çalşyldy. Pozisiýa döretmek üçin täzeden alyş-çalşmazdan dowam ediň.",
+    "resumeMint": "Sargytnama dowam et",
+    "resumeNeedsBalances": "Walet balanslary entek ýüklenýär. Bir salymdan täzeden synanyşyň."
   },
   "onboarding": {
     "optIn": {
