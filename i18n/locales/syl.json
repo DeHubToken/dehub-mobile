@@ -4717,7 +4717,25 @@
     "resumeMint": "অর্ডার রিজ্যুম করুন",
     "resumeNeedsBalances": "Wallet ব্যালেন্স লোড হচ্ছে। একটু পরে আবার চেষ্টা করুন।",
     "buyWithBnbNote": "BNB Chain-এ ট্রেডিং বন্ধ অই গেছে। BNB আছে নি? এইটা দিয়া Base-এ DHB কিনউকা।",
-    "buyWithBnb": "BNB দিয়া কিনউকা"
+    "buyWithBnb": "BNB দিয়া কিনউকা",
+    "pools": {
+      "feeDhb": "≈ {{amount}} DHB"
+    },
+    "chart": {
+      "bookStarts": "বইখানির শুরু এখান থাইক্যা",
+      "firstOrder": "লিকুইডিটি যোগ করার লাগি প্রথম অর্ডার দিন।",
+      "waiting": "দামর তথ্যর অপেক্ষা করতাছি",
+      "candlesStart": "এই টোকেন ট্রেড অইলে ক্যান্ডেল দেখা যাইব।",
+      "depthLabel": "USD দাম অনুযায়ী অর্ডার বুক ডেপথ",
+      "priceLabel": "USD রে দামর ক্যান্ডেলস্টিক {{symbol}}",
+      "depthHint": "Cumulative {{symbol}} · inspect করতার লাগি hover করুন",
+      "priceHint": "USD রে দাম · hover করতার লাগি inspect করুন {{symbol}}"
+    },
+    "connectWallet": "ওয়ালেট কানেক্ট করুন",
+    "prepareFailed": "পজিশন তৈরি করা যায়নি",
+    "sellAmount": "বিক্রয় পরিমাণ",
+    "spend": "খরচ",
+    "withdrawFailed": "উইথড্রয়াল ফেইল করেছে"
   },
   "onboarding": {
     "optIn": {
