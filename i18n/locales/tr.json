@@ -4734,7 +4734,9 @@
     "reviewSwap": "Önce Base'de yaklaşık {{amountIn}} {{symbol}}'yi {{usdc}} USDC için takas edin. Kullanılmayan {{symbol}} aynı işlemde iade edilir.",
     "pendingSwapNote": "{{symbol}}'nız USDC için takas edildi. Tekrar takas etmeden pozisyon oluşturmaya devam edin.",
     "resumeMint": "Siparişe devam et",
-    "resumeNeedsBalances": "Cüzdan bakiyeleri hala yükleniyor. Bir süre sonra tekrar deneyin."
+    "resumeNeedsBalances": "Cüzdan bakiyeleri hala yükleniyor. Bir süre sonra tekrar deneyin.",
+    "buyWithBnbNote": "BNB Chain üzerinde işlem kapandı. BNB’niz mi var? Onunla Base üzerinde DHB satın alın.",
+    "buyWithBnb": "BNB ile satın al"
   },
   "onboarding": {
     "optIn": {

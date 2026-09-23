@@ -4661,7 +4661,9 @@
     "noBaseFunds": "Հիմքում չկա ETH, USDC կամ USDT",
     "pendingSwapNote": "Ձեր {{symbol}}-ը փոխանակվել է ԱՄՆ դոլարով ։ Վերսկսեք դիրքը ստեղծել առանց նորից փոխելու:",
     "resumeMint": "Վերսկսել պատվերը",
-    "resumeNeedsBalances": "Դրամապանակի մնացորդները դեռ բեռնվում են: Նորից փորձեք մի պահից ։"
+    "resumeNeedsBalances": "Դրամապանակի մնացորդները դեռ բեռնվում են: Նորից փորձեք մի պահից ։",
+    "buyWithBnbNote": "BNB Chain-ում առևտուրը փակված է։ Ունե՞ք BNB։ Օգտագործեք այն Base-ում DHB գնելու համար։",
+    "buyWithBnb": "Գնել BNB-ով"
   },
   "onboarding": {
     "optIn": {

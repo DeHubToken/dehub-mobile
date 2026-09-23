@@ -4743,7 +4743,9 @@
     "reviewSwap": "Scambia prima {{amountIn}} {{symbol}} per {{usdc}} USDC su Base. {{symbol}} non utilizzato viene restituito nella stessa transazione.",
     "pendingSwapNote": "Il tuo {{symbol}} è stato scambiato con USDC. Riprendi per creare la posizione senza scambiare di nuovo.",
     "resumeMint": "Riprendi ordine",
-    "resumeNeedsBalances": "I saldi del portafoglio sono ancora in caricamento. Riprova tra un momento."
+    "resumeNeedsBalances": "I saldi del portafoglio sono ancora in caricamento. Riprova tra un momento.",
+    "buyWithBnbNote": "Il trading su BNB Chain è chiuso. Hai BNB? Usalo per comprare DHB su Base.",
+    "buyWithBnb": "Compra con BNB"
   },
   "onboarding": {
     "optIn": {

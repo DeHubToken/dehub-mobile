@@ -4737,7 +4737,9 @@
     "reviewSwap": "まず基地で{{amountIn}}{{symbol}}を{{usdc}} USDCと交換してください。 未使用の{{symbol}}は同じトランザクションで返されます。",
     "pendingSwapNote": "{{symbol}}はUSDCに交換されました。 再開して、再度スワップせずにポジションを作成します。",
     "resumeMint": "注文を再開する",
-    "resumeNeedsBalances": "ウォレットの残高はまだ読み込まれています。 しばらくしてからもう一度お試しください。"
+    "resumeNeedsBalances": "ウォレットの残高はまだ読み込まれています。 しばらくしてからもう一度お試しください。",
+    "buyWithBnbNote": "BNB Chain での取引は終了しました。BNB をお持ちですか？それで Base 上の DHB を購入できます。",
+    "buyWithBnb": "BNB で購入"
   },
   "onboarding": {
     "optIn": {

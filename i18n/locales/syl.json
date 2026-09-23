@@ -4715,7 +4715,9 @@
     "reviewSwap": "প্রথমে Base-এ {{amountIn}} {{symbol}} সোয়াপ করে {{usdc}} USDC করুন। অব্যবহৃত {{symbol}} একই ট্রানজেকশনে ফেরত দেওয়া হবে।",
     "pendingSwapNote": "আপনার {{symbol}} USDC-তে সোয়াপ করা হয়েছে। আবার সোয়াপ না করে পজিশন তৈরি করতে রিজ্যুম করুন।",
     "resumeMint": "অর্ডার রিজ্যুম করুন",
-    "resumeNeedsBalances": "Wallet ব্যালেন্স লোড হচ্ছে। একটু পরে আবার চেষ্টা করুন।"
+    "resumeNeedsBalances": "Wallet ব্যালেন্স লোড হচ্ছে। একটু পরে আবার চেষ্টা করুন।",
+    "buyWithBnbNote": "BNB Chain-এ ট্রেডিং বন্ধ অই গেছে। BNB আছে নি? এইটা দিয়া Base-এ DHB কিনউকা।",
+    "buyWithBnb": "BNB দিয়া কিনউকা"
   },
   "onboarding": {
     "optIn": {

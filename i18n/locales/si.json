@@ -4606,7 +4606,9 @@
     "noBaseFunds": "පදනම මත ETH, USDC හෝ USDT නැත",
     "pendingSwapNote": "ඔබගේ {{symbol}} USDC සඳහා මාරු කර ඇත. නැවත කිසිඳු බාධාවකින් තොරව මෙම ක් රමය ක් රියාත්මක කරන්න.",
     "resumeMint": "ඇණවුම නැවත ආරම්භ කරන්න",
-    "resumeNeedsBalances": "පසුම්බියේ ශේෂයන් තවමත් පූරණය වෙමින් පවතී. මඳ වේලාවකින් නැවත උත්සාහ කරන්න."
+    "resumeNeedsBalances": "පසුම්බියේ ශේෂයන් තවමත් පූරණය වෙමින් පවතී. මඳ වේලාවකින් නැවත උත්සාහ කරන්න.",
+    "buyWithBnbNote": "BNB Chain හි වෙළඳාම වසා ඇත. BNB තිබේද? එයින් Base හි DHB මිලදී ගන්න.",
+    "buyWithBnb": "BNB මඟින් මිලදී ගන්න"
   },
   "onboarding": {
     "optIn": {

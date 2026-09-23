@@ -4645,7 +4645,9 @@
     "payWith": "Пардохт бо",
     "noBaseFunds": "Walang ETH, USDC o USDT sa Base",
     "resumeMint": "Идомаи тартибот",
-    "resumeNeedsBalances": "Ang balances ng Wallet ay hindi pa rin nai-load. Subukan muli sa isang minuto."
+    "resumeNeedsBalances": "Ang balances ng Wallet ay hindi pa rin nai-load. Subukan muli sa isang minuto.",
+    "buyWithBnbNote": "Савдо дар BNB Chain баста шуд. BNB доред? Бо он дар Base DHB харед.",
+    "buyWithBnb": "Бо BNB харидан"
   },
   "onboarding": {
     "optIn": {

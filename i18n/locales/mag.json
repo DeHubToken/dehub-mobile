@@ -4605,7 +4605,9 @@
     "payWith": "भुगतान करे के लेल",
     "noBaseFunds": "कोई ETH, कोई USDC या कोई USDT आधार पर",
     "resumeMint": "रेज्यूमे ऑर्डर करे",
-    "resumeNeedsBalances": "बोझा अभी भी उठाता है । कुछ देर बाद दुबारा कोशिश करे"
+    "resumeNeedsBalances": "बोझा अभी भी उठाता है । कुछ देर बाद दुबारा कोशिश करे",
+    "buyWithBnbNote": "BNB Chain पर ट्रेडिंग बंद हो गेल हे। BNB हे? ओकरा से Base पर DHB खरीदऽ।",
+    "buyWithBnb": "BNB से खरीदऽ"
   },
   "onboarding": {
     "optIn": {

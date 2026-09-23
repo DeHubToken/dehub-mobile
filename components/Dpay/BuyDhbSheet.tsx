@@ -5,12 +5,13 @@ import GlassModal from "../ui/GlassModal";
 import DpayTopUpForm from "./DpayTopUpForm";
 import NearIntentBuy from "./NearIntentBuy";
 
-export default function BuyDhbSheet({ visible, onClose, onDelivered }: {
+export default function BuyDhbSheet({ visible, onClose, onDelivered, initialMethod = "card" }: {
   visible: boolean;
   onClose: () => void;
   onDelivered?: () => void;
+  initialMethod?: "card" | "crypto";
 }) {
-  const [method, setMethod] = useState<"card" | "crypto">("card");
+  const [method, setMethod] = useState<"card" | "crypto">(initialMethod);
   const { t } = useTranslation();
   const delivered = () => { onDelivered?.(); onClose(); };
   return (

@@ -4672,7 +4672,9 @@
     "reviewSwap": "Badilisha kuhusu {{amountIn}} {{symbol}} kwa {{usdc}} USDC kwenye Msingi kwanza. Unused {{symbol}} imerejeshwa katika muamala huo huo.",
     "pendingSwapNote": "{{symbol}} yako ilibadilishwa kuwa USDC. Endelea kuunda nafasi bila kubadilishana tena.",
     "resumeMint": "Endelea kuagiza",
-    "resumeNeedsBalances": "Salio la pochi bado linapakia. Jaribu tena baada ya muda mfupi."
+    "resumeNeedsBalances": "Salio la pochi bado linapakia. Jaribu tena baada ya muda mfupi.",
+    "buyWithBnbNote": "Biashara kwenye BNB Chain imefungwa. Una BNB? Itumie kununua DHB kwenye Base.",
+    "buyWithBnb": "Nunua kwa BNB"
   },
   "onboarding": {
     "optIn": {

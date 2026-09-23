@@ -4641,7 +4641,9 @@
     "noBaseFunds": "بيس تي ڪوبه ETH، USDC يا USDT",
     "pendingSwapNote": "توھان جو {{symbol}}USDC لاءِ سوئپ ڪيو ويو. ٻيهر بغير سوئپنگ جي پوزيشن ٺاهڻ لاء ٻيهر شروع ڪريو.",
     "resumeMint": "آرڊر ٻيهر شروع ڪريو",
-    "resumeNeedsBalances": "والٽ بيلنس اڃا تائين لوڊ ٿي رهيو آهي. ٿوري دير کان پوء ٻيهر ڪوشش ڪريو."
+    "resumeNeedsBalances": "والٽ بيلنس اڃا تائين لوڊ ٿي رهيو آهي. ٿوري دير کان پوء ٻيهر ڪوشش ڪريو.",
+    "buyWithBnbNote": "BNB Chain تي واپار بند ٿي ويو آهي. BNB آهي؟ ان سان Base تي DHB خريد ڪريو.",
+    "buyWithBnb": "BNB سان خريد ڪريو"
   },
   "onboarding": {
     "optIn": {

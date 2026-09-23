@@ -4660,7 +4660,9 @@
     "reviewSwap": "Swappe ca. {{amountIn}} {{symbol}} für {{usdc}} USDC uf Base zerscht. Ung bruuchti {{symbol}} wird i de glich Transaktion zruggzahlt.",
     "pendingSwapNote": "Din {{symbol}} isch für USDC gswappt worde. Mach wiiter zum de Position erstelle ohni no z'swappe.",
     "resumeMint": "Bestellig fortsetze",
-    "resumeNeedsBalances": "Wallet-Guthabe läde no. Versuechs glich druf no."
+    "resumeNeedsBalances": "Wallet-Guthabe läde no. Versuechs glich druf no.",
+    "buyWithBnbNote": "Dr Handel uf BNB Chain isch zue. Hesch BNB? Chauf demit DHB uf Base.",
+    "buyWithBnb": "Mit BNB chaufe"
   },
   "onboarding": {
     "optIn": {

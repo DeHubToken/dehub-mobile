@@ -4609,7 +4609,9 @@
     "payWith": "वेतनमानः with",
     "noBaseFunds": "कोई ईटीएच, यूएसडीसी या यूएसडीटी आधार पर",
     "resumeMint": "पुनःपुनः क्रमादेशः",
-    "resumeNeedsBalances": "अद्यापि भारोत्तोलनक्रीडा प्रचलति । एकवारं प्रयत्नं कुर्मः_"
+    "resumeNeedsBalances": "अद्यापि भारोत्तोलनक्रीडा प्रचलति । एकवारं प्रयत्नं कुर्मः_",
+    "buyWithBnbNote": "BNB Chain इत्यत्र व्यापारः पिहितः। BNB अस्ति वा? तेन Base इत्यत्र DHB क्रीणातु।",
+    "buyWithBnb": "BNB द्वारा क्रीणातु"
   },
   "onboarding": {
     "optIn": {

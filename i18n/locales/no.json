@@ -4656,7 +4656,9 @@
     "reviewSwap": "Bytt først omtrent {{amountIn}} {{symbol}} med {{usdc}} USDC på basen. Ubrukte {{symbol}} returneres i samme transaksjon.",
     "pendingSwapNote": "Din {{symbol}} ble byttet mot USDC. Fortsett for å opprette posisjonen uten å bytte igjen.",
     "resumeMint": "Fortsett bestilling:",
-    "resumeNeedsBalances": "Wallet-saldoene lastes fortsatt inn. Prøv igjen om et øyeblikk."
+    "resumeNeedsBalances": "Wallet-saldoene lastes fortsatt inn. Prøv igjen om et øyeblikk.",
+    "buyWithBnbNote": "Handel på BNB Chain er stengt. Har du BNB? Bruk det til å kjøpe DHB på Base.",
+    "buyWithBnb": "Kjøp med BNB"
   },
   "onboarding": {
     "optIn": {
