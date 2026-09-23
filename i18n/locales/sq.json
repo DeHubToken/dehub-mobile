@@ -4669,7 +4669,9 @@
     "noBaseFunds": "Nuk ka ETH, USDC ose USDT në bazë",
     "pendingSwapNote": "Tuaj {{symbol}} u shkëmbye me USDC. Vazhdo për të krijuar pozicionin pa ndërruar përsëri.",
     "resumeMint": "Rifillo porosinë",
-    "resumeNeedsBalances": "Bilancet e portofolit janë ende duke u ngarkuar. Provo përsëri pas një çasti."
+    "resumeNeedsBalances": "Bilancet e portofolit janë ende duke u ngarkuar. Provo përsëri pas një çasti.",
+    "buyWithBnbNote": "Tregtimi në BNB Chain është mbyllur. Keni BNB? Përdoreni për të blerë DHB në Base.",
+    "buyWithBnb": "Bli me BNB"
   },
   "onboarding": {
     "optIn": {

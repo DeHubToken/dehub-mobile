@@ -4665,7 +4665,9 @@
     "noBaseFunds": "Ბაზაზე არ არის ETH, USDC ან USDT",
     "pendingSwapNote": "Თქვენი {{symbol}} გაცვალეს USDC-ზე. Განაგრძეთ პოზიციის შექმნა ხელახლა შეცვლის გარეშე.",
     "resumeMint": "Შეკვეთის გაგრძელება",
-    "resumeNeedsBalances": "Საფულის ნაშთები ჯერ კიდევ იტვირთება. Სცადეთ ხელახლა."
+    "resumeNeedsBalances": "Საფულის ნაშთები ჯერ კიდევ იტვირთება. Სცადეთ ხელახლა.",
+    "buyWithBnbNote": "ვაჭრობა BNB Chain-ზე დახურულია. გაქვთ BNB? გამოიყენეთ ის Base-ზე DHB-ის საყიდლად.",
+    "buyWithBnb": "იყიდე BNB-ით"
   },
   "onboarding": {
     "optIn": {

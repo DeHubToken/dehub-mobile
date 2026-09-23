@@ -4676,7 +4676,9 @@
     "reviewSwap": "Byt ut {{amountIn}} {{symbol}} mot {{usdc}} USDC på Base först. Oanvänd {{symbol}} returneras i samma transaktion.",
     "pendingSwapNote": "Din {{symbol}} byttes ut mot USDC. Fortsätt för att skapa positionen utan att byta igen.",
     "resumeMint": "Återuppta beställning",
-    "resumeNeedsBalances": "Plånbokssaldon laddas fortfarande. Försök igen om en stund."
+    "resumeNeedsBalances": "Plånbokssaldon laddas fortfarande. Försök igen om en stund.",
+    "buyWithBnbNote": "Handeln på BNB Chain är stängd. Har du BNB? Använd det för att köpa DHB på Base.",
+    "buyWithBnb": "Köp med BNB"
   },
   "onboarding": {
     "optIn": {

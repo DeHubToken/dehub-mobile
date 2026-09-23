@@ -4659,7 +4659,9 @@
     "reviewSwap": "Yipada nipa {{amountIn}} {{symbol}} fun {{usdc}} USDC lori Ipilẹ akọkọ. A kò lo {{symbol}} ni a dá padà nínú ìdúnàádúrà kan náà.",
     "pendingSwapNote": "A pààrọ̀ rẹ {{symbol}} fún USDC. Bẹ̀rẹ̀ láti ṣẹ̀dá ipò náà láì ṣe pàṣípààrọ̀ lẹ́ẹ̀kan síi.",
     "resumeMint": "Bẹ̀rẹ̀ sí í pàṣẹ",
-    "resumeNeedsBalances": "Ìwọ̀n owó àpamọ́wọ́ ṣì ń gbé ẹrù. Gbiyanju lẹẹkansi ni akoko kan."
+    "resumeNeedsBalances": "Ìwọ̀n owó àpamọ́wọ́ ṣì ń gbé ẹrù. Gbiyanju lẹẹkansi ni akoko kan.",
+    "buyWithBnbNote": "Ìṣòwò lórí BNB Chain ti tì. Ṣé o ní BNB? Lò ó láti ra DHB lórí Base.",
+    "buyWithBnb": "Ra pẹ̀lú BNB"
   },
   "onboarding": {
     "optIn": {

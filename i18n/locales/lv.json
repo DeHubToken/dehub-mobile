@@ -4670,7 +4670,9 @@
     "reviewSwap": "Apmainiet {{amountIn}} {{symbol}} pret {{usdc}} USDC Bāzē vispirms. Neizmantotais {{symbol}} tiek atgriezts tajā pašā darījumā.",
     "pendingSwapNote": "Jūsu {{symbol}} tika apmainīts pret USDC. Atsāciet, lai izveidotu pozīciju bez atkārtotas maiņas.",
     "resumeMint": "Atsākt pasūtījumu",
-    "resumeNeedsBalances": "Maka atlikumi joprojām tiek ielādēti. Pēc brīža mēģiniet vēlreiz."
+    "resumeNeedsBalances": "Maka atlikumi joprojām tiek ielādēti. Pēc brīža mēģiniet vēlreiz.",
+    "buyWithBnbNote": "Tirdzniecība BNB Chain ir slēgta. Jums ir BNB? Izmantojiet to, lai iegādātos DHB tīklā Base.",
+    "buyWithBnb": "Pirkt ar BNB"
   },
   "onboarding": {
     "optIn": {

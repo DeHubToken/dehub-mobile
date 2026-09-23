@@ -4660,7 +4660,9 @@
     "noBaseFunds": "No ETH, USDC ama USDT on Base",
     "pendingSwapNote": "{{symbol}} waa loo beddelay USDC. Dib u bilow inaad abuurto booska adigoon mar kale leexan.",
     "resumeMint": "Dib u bilow amarka",
-    "resumeNeedsBalances": "Miisaaniyada boorsada ayaa weli raraya. Isku day mar kale in daqiiqad ah."
+    "resumeNeedsBalances": "Miisaaniyada boorsada ayaa weli raraya. Isku day mar kale in daqiiqad ah.",
+    "buyWithBnbNote": "Ganacsiga BNB Chain waa la xiray. BNB ma haysataa? Ku iibso DHB Base-ka.",
+    "buyWithBnb": "Ku iibso BNB"
   },
   "onboarding": {
     "optIn": {

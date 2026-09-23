@@ -4713,7 +4713,9 @@
     "reviewSwap": "Magpalit muna ng humigit-kumulang {{amountIn}} {{symbol}} para sa {{usdc}} USDC sa Base. Ang hindi nagamit na {{symbol}} ay ibinabalik sa parehong transaksyon.",
     "pendingSwapNote": "Ang iyong {{symbol}} ay napalitan ng USDC. Ipagpatuloy upang likhain ang posisyon nang hindi na muling magpapalit.",
     "resumeMint": "Ipagpatuloy ang order",
-    "resumeNeedsBalances": "Naglo-load pa rin ang mga balanse ng wallet. Subukang muli sa isang sandali."
+    "resumeNeedsBalances": "Naglo-load pa rin ang mga balanse ng wallet. Subukang muli sa isang sandali.",
+    "buyWithBnbNote": "Sarado na ang trading sa BNB Chain. May BNB ka? Gamitin ito para bumili ng DHB sa Base.",
+    "buyWithBnb": "Bumili gamit ang BNB"
   },
   "onboarding": {
     "optIn": {

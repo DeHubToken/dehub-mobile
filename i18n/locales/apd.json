@@ -4626,7 +4626,9 @@
     "reviewSwap": "قم بتبديل حوالي {{amountIn}} {{symbol}} مقابل {{usdc}} USDC على Base أولاً. يتم إرجاع {{symbol}} غير المستخدمة في نفس المعاملة.",
     "pendingSwapNote": "تم تبديل {{symbol}} الخاص بك مقابل USDC. استأنف لإنشاء المركز دون تبديل مرة أخرى.",
     "resumeMint": "استئناف الطلب",
-    "resumeNeedsBalances": "أرصدة المحفظة لا تزال قيد التحميل. حاول مرة أخرى بعد لحظة."
+    "resumeNeedsBalances": "أرصدة المحفظة لا تزال قيد التحميل. حاول مرة أخرى بعد لحظة.",
+    "buyWithBnbNote": "التداول في BNB Chain اتقفل. عندك BNB؟ استعملو عشان تشتري DHB في Base.",
+    "buyWithBnb": "اشتري بـ BNB"
   },
   "onboarding": {
     "optIn": {

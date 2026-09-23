@@ -4739,7 +4739,9 @@
     "reviewSwap": "Сначала поменяйте {{amountIn}}{{symbol}} на {{usdc}} USDC на Base. Неиспользованный {{symbol}} возвращается в той же транзакции.",
     "pendingSwapNote": "Ваш {{symbol}} был заменен на USDC. Возобновите, чтобы создать позицию без повторной замены.",
     "resumeMint": "Возобновить заказ",
-    "resumeNeedsBalances": "Балансы кошелька все еще загружаются. Повторите попытку позже."
+    "resumeNeedsBalances": "Балансы кошелька все еще загружаются. Повторите попытку позже.",
+    "buyWithBnbNote": "Торговля в BNB Chain закрыта. Есть BNB? Купите на него DHB в сети Base.",
+    "buyWithBnb": "Купить за BNB"
   },
   "onboarding": {
     "optIn": {

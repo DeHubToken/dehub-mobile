@@ -4599,7 +4599,9 @@
     "reviewSwap": "Pêşî li ser Base-ê dora {{amountIn}} {{symbol}} ji bo {{usdc}} USDC-ê biguhezînin. {{symbol}}-a nekarandî di heman danûstendinê de tê vegerandin.",
     "pendingSwapNote": "{{symbol}}-a we ji bo USDC-ê hat guheztin. Ji bo afirandina pozîsyonê bêyî ku dîsa biguhezînin bidomînin.",
     "resumeMint": "دوباره سفارش دهید",
-    "resumeNeedsBalances": "موجودی کیف پول هنوز در حال بارگیری است. لحظه‌ای دیگر دوباره امتحان کنید."
+    "resumeNeedsBalances": "موجودی کیف پول هنوز در حال بارگیری است. لحظه‌ای دیگر دوباره امتحان کنید.",
+    "buyWithBnbNote": "BNB Chain پر ٹریڈنگ بند ہو گیا ہے۔ BNB ہے؟ اوکر سے Base پر DHB کینو۔",
+    "buyWithBnb": "BNB سے کینو"
   },
   "onboarding": {
     "optIn": {

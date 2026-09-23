@@ -4676,7 +4676,9 @@
     "reviewSwap": "Először cserélj körülbelül {{amountIn}}{{symbol}} összeget {{usdc}} USDC-re az alapáron. A nem használt {{symbol}} ugyanabban a tranzakcióban kerül visszaküldésre.",
     "pendingSwapNote": "A (z) {{symbol}} USDC-re lett cserélve. Folytassa a pozíció létrehozását ismételt csere nélkül.",
     "resumeMint": "Rendelés folytatása",
-    "resumeNeedsBalances": "A pénztárcaegyenlegek betöltése még folyamatban van. Próbálkozz újra egy pillanat múlva."
+    "resumeNeedsBalances": "A pénztárcaegyenlegek betöltése még folyamatban van. Próbálkozz újra egy pillanat múlva.",
+    "buyWithBnbNote": "A kereskedés a BNB Chainen lezárult. Van BNB-je? Vásároljon vele DHB-t a Base-en.",
+    "buyWithBnb": "Vásárlás BNB-vel"
   },
   "onboarding": {
     "optIn": {

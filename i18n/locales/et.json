@@ -4671,7 +4671,9 @@
     "reviewSwap": "Vaheta esmalt {{amountIn}}{{symbol}} USDC eest {{usdc}} baasil. Kasutamata {{symbol}} tagastatakse sama tehinguga.",
     "pendingSwapNote": "Sinu {{symbol}} vahetati USA dollari vastu. Jätkake positsiooni loomist ilma uuesti vahetamata.",
     "resumeMint": "Jätka tellimust",
-    "resumeNeedsBalances": "Rahakoti saldod on alles laadimisel. Proovi mõne hetke pärast uuesti."
+    "resumeNeedsBalances": "Rahakoti saldod on alles laadimisel. Proovi mõne hetke pärast uuesti.",
+    "buyWithBnbNote": "Kauplemine BNB Chainis on suletud. Sul on BNB-d? Kasuta seda, et osta Base’is DHB-d.",
+    "buyWithBnb": "Osta BNB-ga"
   },
   "onboarding": {
     "optIn": {

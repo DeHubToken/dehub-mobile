@@ -4659,7 +4659,9 @@
     "noBaseFunds": "Babu ETH, USDC ko USDT akan Base",
     "pendingSwapNote": "Your {{symbol}} an canza shi don USDC. Sake farawa don ƙirƙirar matsayi ba tare da sake canzawa ba.",
     "resumeMint": "Sake farawa oda",
-    "resumeNeedsBalances": "Wallet balance ne har yanzu loading. Ka sake gwadawa a cikin wani lokaci."
+    "resumeNeedsBalances": "Wallet balance ne har yanzu loading. Ka sake gwadawa a cikin wani lokaci.",
+    "buyWithBnbNote": "An rufe ciniki a BNB Chain. Kuna da BNB? Yi amfani da shi don sayen DHB a Base.",
+    "buyWithBnb": "Saya da BNB"
   },
   "onboarding": {
     "optIn": {

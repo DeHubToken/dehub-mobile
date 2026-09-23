@@ -4698,7 +4698,9 @@
     "reviewSwap": "Ruil oor {{amountIn}} {{symbol}} vir {{usdc}} USDC eerste op die basis. Ongebruikte {{symbol}} word in dieselfde transaksie teruggestuur.",
     "pendingSwapNote": "Jou {{symbol}} is omgeruil vir USDC. Hervat om die posisie te skep sonder om weer te ruil.",
     "resumeMint": "Hervat bestelling",
-    "resumeNeedsBalances": "Portemonnee is nog steeds te laden. Probeer weer in 'n oomblik."
+    "resumeNeedsBalances": "Portemonnee is nog steeds te laden. Probeer weer in 'n oomblik.",
+    "buyWithBnbNote": "Handel op BNB Chain is gesluit. Het jy BNB? Gebruik dit om DHB op Base te koop.",
+    "buyWithBnb": "Koop met BNB"
   },
   "onboarding": {
     "optIn": {

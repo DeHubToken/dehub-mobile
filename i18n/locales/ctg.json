@@ -4440,7 +4440,9 @@
     "noBaseFunds": "Base-এ কোনো ETH, USDC বা USDT নেই",
     "reviewSwap": "প্রথমে Base-এ {{amountIn}} {{symbol}} Swap করে {{usdc}} USDC নাও। অব্যবহৃত {{symbol}} একই লেনদেনে ফেরত দেওয়া হবে।",
     "pendingSwapNote": "তোমার {{symbol}} USDC-এর জন্য Swap করা হয়েছে। আবার Swap না করে Position তৈরি করতে Resume করো।",
-    "resumeNeedsBalances": "Wallet ব্যালেন্স লোড হচ্ছে। একটু পরে আবার চেষ্টা করো।"
+    "resumeNeedsBalances": "Wallet ব্যালেন্স লোড হচ্ছে। একটু পরে আবার চেষ্টা করো।",
+    "buyWithBnbNote": "BNB Chain-ত ট্রেডিং বন্ধ। BNB আছে না? ইয়েন দি Base-ত DHB কিনন।",
+    "buyWithBnb": "BNB দি কিনন"
   },
   "onboarding": {
     "steps": {

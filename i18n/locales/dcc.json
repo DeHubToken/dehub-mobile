@@ -4003,7 +4003,9 @@
     "lowestPrice": "سب سے کم قیمت · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",
-    "totalLiquidity": "کل لیکویڈیٹی · USD"
+    "totalLiquidity": "کل لیکویڈیٹی · USD",
+    "buyWithBnbNote": "BNB Chain پر ٹریڈنگ بند ہوگئی۔ BNB ہے؟ اس سے Base پر DHB خریدو۔",
+    "buyWithBnb": "BNB سے خریدو"
   },
   "drafts": {
     "justNow": "ابھی ابھی",

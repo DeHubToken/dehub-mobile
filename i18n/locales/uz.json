@@ -4675,7 +4675,9 @@
     "reviewSwap": "Bazada avval {{amountIn}} {{symbol}} ni {{usdc}} USDC ga almashtiring. Ishlatilmagan {{symbol}} xuddi shu tranzaksiyada qaytariladi.",
     "pendingSwapNote": "Sizning {{symbol}} koeffitsiyentingiz USDC ga almashtirildi. Qayta almashtirmasdan pozitsiyani yaratish uchun davom eting.",
     "resumeMint": "Buyurtmani davom ettirish",
-    "resumeNeedsBalances": "Hamyon balanslari hali ham yuklanmoqda. Birozdan keyin qayta urinib ko&#39;ring."
+    "resumeNeedsBalances": "Hamyon balanslari hali ham yuklanmoqda. Birozdan keyin qayta urinib ko&#39;ring.",
+    "buyWithBnbNote": "BNB Chain’dagi savdo yopildi. BNB bormi? U bilan Base’da DHB sotib oling.",
+    "buyWithBnb": "BNB bilan sotib olish"
   },
   "onboarding": {
     "optIn": {

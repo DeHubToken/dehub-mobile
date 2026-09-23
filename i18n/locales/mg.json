@@ -4671,7 +4671,9 @@
     "reviewSwap": "Ampifamadiho ny {{amountIn}} {{symbol}} for {{usdc}} USDC voalohany. Naverina amin'ny fifampiraharahana mitovy ny {{symbol}}.",
     "pendingSwapNote": "Ny {{symbol}} anao dia navadika ho USDC. Avereno ny fanovana ny toerana mba tsy hikolokolo indray.",
     "resumeMint": "Alaviro ny filaharana",
-    "resumeNeedsBalances": "Mbola miraikitra ny fifandanjana sandoka. Miverena ao anatin'ny iray minitra."
+    "resumeNeedsBalances": "Mbola miraikitra ny fifandanjana sandoka. Miverena ao anatin'ny iray minitra.",
+    "buyWithBnbNote": "Mihidy ny varotra amin’ny BNB Chain. Manana BNB ve ianao? Ampiasao hividianana DHB amin’ny Base.",
+    "buyWithBnb": "Mividy amin’ny BNB"
   },
   "onboarding": {
     "optIn": {

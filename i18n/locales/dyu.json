@@ -4579,7 +4579,9 @@
     "noBaseFunds": "O la, a ka ɲi ka kɛ ni wari ye min be se ka kɛ wari ye.",
     "pendingSwapNote": "I ka {{symbol}} tun yɛlɛmana ka kɛ USDC ye. I ka segi ka taga a daminɛ na, i kana segi ka taga.",
     "resumeMint": "Ka segi ka na",
-    "resumeNeedsBalances": "O kɔ, u ye wari caaman di u ma. I be se k'a ɲini tugu miniti damanin kɔnɔ."
+    "resumeNeedsBalances": "O kɔ, u ye wari caaman di u ma. I be se k'a ɲini tugu miniti damanin kɔnɔ.",
+    "buyWithBnbNote": "Jago kɛli BNB Chain kan datugulen don. BNB b’i fɛ wa? A kɛ ka DHB san Base kan.",
+    "buyWithBnb": "San ni BNB ye"
   },
   "onboarding": {
     "optIn": {

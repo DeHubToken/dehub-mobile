@@ -4672,7 +4672,9 @@
     "reviewSwap": "Vaihda ensin noin {{amountIn}} {{symbol}} hintaan {{usdc}} USDC. Käyttämätön {{symbol}} palautetaan samassa tapahtumassa.",
     "pendingSwapNote": "Kohteesi {{symbol}} vaihdettiin USDC: hen. Jatka sijainnin luomista vaihtamatta sitä uudelleen.",
     "resumeMint": "Jatka tilausta",
-    "resumeNeedsBalances": "Lompakon saldot latautuvat edelleen. Yritä hetken kuluttua uudelleen."
+    "resumeNeedsBalances": "Lompakon saldot latautuvat edelleen. Yritä hetken kuluttua uudelleen.",
+    "buyWithBnbNote": "Kaupankäynti BNB Chainissa on suljettu. Onko sinulla BNB:tä? Osta sillä DHB:tä Basessa.",
+    "buyWithBnb": "Osta BNB:llä"
   },
   "onboarding": {
     "optIn": {

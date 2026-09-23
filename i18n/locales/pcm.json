@@ -4282,7 +4282,9 @@
     "useMarket": "Use market price",
     "listedDhb": "Listed DHB · {{chain}}",
     "payWith": "Pay with",
-    "resumeMint": "Resume order"
+    "resumeMint": "Resume order",
+    "buyWithBnbNote": "Trading for BNB Chain don close. You get BNB? Use am buy DHB for Base.",
+    "buyWithBnb": "Buy with BNB"
   },
   "onboarding": {
     "optIn": {

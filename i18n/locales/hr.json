@@ -4673,7 +4673,9 @@
     "reviewSwap": "Prvo zamijenite oko {{amountIn}}{{symbol}} za {{usdc}} USDC na bazi. Neiskorišteno {{symbol}} vraća se u istoj transakciji.",
     "pendingSwapNote": "Vaš {{symbol}} je zamijenjen za USDC. Nastavite kako biste stvorili položaj bez ponovne zamjene.",
     "resumeMint": "Nastavi narudžbu",
-    "resumeNeedsBalances": "Saldo novčanika i dalje se učitava. Pokušajte ponovno za nekoliko trenutaka."
+    "resumeNeedsBalances": "Saldo novčanika i dalje se učitava. Pokušajte ponovno za nekoliko trenutaka.",
+    "buyWithBnbNote": "Trgovanje na BNB Chainu je zatvoreno. Imate BNB? Iskoristite ga za kupnju DHB-a na Baseu.",
+    "buyWithBnb": "Kupi s BNB"
   },
   "onboarding": {
     "optIn": {

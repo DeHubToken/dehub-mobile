@@ -4654,7 +4654,9 @@
     "reviewSwap": "Əvvəlcə Base-də təxminən {{amountIn}} {{symbol}}-i {{usdc}} USDC üçün dəyişdirin. İstifadə olunmamış {{symbol}} eyni əməliyyatda geri qaytarılır.",
     "pendingSwapNote": "Sizin {{symbol}} USDC üçün dəyişdirildi. Yenidən dəyişdirmədən mövqe yaratmaq üçün davam edin.",
     "resumeMint": "Sifarişi davam etdirin",
-    "resumeNeedsBalances": "Cüzdan balansları hələ də yüklənir. Bir azdan yenidən cəhd edin."
+    "resumeNeedsBalances": "Cüzdan balansları hələ də yüklənir. Bir azdan yenidən cəhd edin.",
+    "buyWithBnbNote": "BNB Chain üzərində ticarət bağlanıb. BNB-niz var? Ondan Base-də DHB almaq üçün istifadə edin.",
+    "buyWithBnb": "BNB ilə al"
   },
   "onboarding": {
     "optIn": {

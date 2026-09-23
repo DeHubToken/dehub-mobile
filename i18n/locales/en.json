@@ -4737,7 +4737,9 @@
     "reviewSwap": "Swap about {{amountIn}} {{symbol}} for {{usdc}} USDC on Base first. Unused {{symbol}} is returned in the same transaction.",
     "pendingSwapNote": "Your {{symbol}} was swapped for USDC. Resume to create the position without swapping again.",
     "resumeMint": "Resume order",
-    "resumeNeedsBalances": "Wallet balances are still loading. Try again in a moment."
+    "resumeNeedsBalances": "Wallet balances are still loading. Try again in a moment.",
+    "buyWithBnbNote": "BNB Chain trading is closed. Have BNB? Use it to buy DHB on Base.",
+    "buyWithBnb": "Buy with BNB"
   },
   "onboarding": {
     "optIn": {
