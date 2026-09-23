@@ -114,7 +114,8 @@ export default function DexScreen() {
     ? (assets.find((a) => a.symbol === fundingSymbol) ?? defaultFundingAsset(assets, Number(amount) || 0)) : null, [funded, assets, fundingSymbol, amount]);
   const fundingLabel = fundingAsset && fundingAsset.symbol !== 'USDC' ? `USD · ${fundingAsset.symbol}` : token;
   const venueListings = useMemo(() => listings.filter((item) => item.chain_id === venue), [listings, venue]);
-  const externalAsks = useMemo(() => snapshot?.externalAsks ?? [], [snapshot]);
+  // The outside pools the snapshot prices are all on Base, so they belong in the Base book only.
+  const externalAsks = useMemo(() => venue === ChainId.BASE_MAINNET ? snapshot?.externalAsks ?? [] : [], [venue, snapshot]);
   const { bids, asks } = useMemo(() => aggregateBook(venueListings, increment, externalAsks),
     [venueListings, increment, externalAsks]);
   const bestAsk = snapshot?.price ?? null;
