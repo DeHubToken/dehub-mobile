@@ -4627,7 +4627,9 @@
     "reviewSwap": "สลับประมาณ {{amountIn}} {{symbol}} เป็น {{usdc}} USDC บน Base ก่อน {{symbol}} ที่ไม่ได้ใช้จะถูกส่งคืนในธุรกรรมเดียวกัน",
     "pendingSwapNote": "{{symbol}} ของคุณถูกสลับเป็น USDC ดำเนินการต่อเพื่อสร้างตำแหน่งโดยไม่ต้องสลับอีกครั้ง",
     "resumeMint": "ดำเนินการต่อ",
-    "resumeNeedsBalances": "ยอดคงเหลือในกระเป๋าเงินกำลังโหลดอยู่ ลองอีกครั้งในสักครู่"
+    "resumeNeedsBalances": "ยอดคงเหลือในกระเป๋าเงินกำลังโหลดอยู่ ลองอีกครั้งในสักครู่",
+    "buyWithBnbNote": "การซื้อขายเทิง BNB Chain ปิดแล้ว มี BNB บ่? เอามาซื้อ DHB เทิง Base ได้เลย",
+    "buyWithBnb": "ซื้อด้วย BNB"
   },
   "onboarding": {
     "optIn": {

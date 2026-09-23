@@ -4655,7 +4655,9 @@
     "noBaseFunds": "Kaore he ETH, USDC ranei USDT i runga i te turanga",
     "pendingSwapNote": "Ko to {{symbol}} kua hurihia mo te USDC. Whakamātauria ki te hanga i te tūnga, me te kore e huri ano.",
     "resumeMint": "Whakahokia te ota",
-    "resumeNeedsBalances": "Kei te utaina tonu nga toenga putea. Whakamātauria ano i roto i te wa."
+    "resumeNeedsBalances": "Kei te utaina tonu nga toenga putea. Whakamātauria ano i roto i te wa.",
+    "buyWithBnbNote": "Kua katia te hokohoko i BNB Chain. He BNB āu? Whakamahia hei hoko DHB i Base.",
+    "buyWithBnb": "Hokona ki te BNB"
   },
   "onboarding": {
     "optIn": {

@@ -4669,7 +4669,9 @@
     "noBaseFunds": "Nėra ETH, USDC arba USDT už bazinę kainą",
     "pendingSwapNote": "Jūsų {{symbol}} buvo pakeistas į USDC. Tęskite, kad sukurtumėte poziciją, nekeisdami jos dar kartą.",
     "resumeMint": "Tęsti užsakymą",
-    "resumeNeedsBalances": "Piniginės likučiai vis dar įkeliami. Netrukus bandykite dar kartą."
+    "resumeNeedsBalances": "Piniginės likučiai vis dar įkeliami. Netrukus bandykite dar kartą.",
+    "buyWithBnbNote": "Prekyba BNB Chain uždaryta. Turite BNB? Naudokite jį DHB pirkimui Base tinkle.",
+    "buyWithBnb": "Pirkti su BNB"
   },
   "onboarding": {
     "optIn": {

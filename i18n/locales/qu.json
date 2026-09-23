@@ -4699,7 +4699,9 @@
     "reviewSwap": "{{amountIn}} {{symbol}} nisqamanta {{usdc}} USDC nisqawan Base nisqapi ñawpaqta t&#39;inkinakuy. Mana llamk&#39;achisqa {{symbol}} kikin ruwaypi kutichisqa.",
     "pendingSwapNote": "{{symbol}} nisqaykiqa USDC nisqawanmi cambiasqa karqan. Mana yapamanta t&#39;inkispa posiciónta paqarichiyta qallariy.",
     "resumeMint": "Ordenta kaqmanta qallariy",
-    "resumeNeedsBalances": "Saldos de billetera nisqakunaqa cargakuchkallanraqmi. Huk ratullapi hukmanta kallpanchakuy."
+    "resumeNeedsBalances": "Saldos de billetera nisqakunaqa cargakuchkallanraqmi. Huk ratullapi hukmanta kallpanchakuy.",
+    "buyWithBnbNote": "BNB Chain nisqapi rantinakuyqa wichqasqañam. BNB kapusunkichu? Chaywan Base nisqapi DHB rantiy.",
+    "buyWithBnb": "BNB wan rantiy"
   },
   "onboarding": {
     "optIn": {

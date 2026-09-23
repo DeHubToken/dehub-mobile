@@ -4655,7 +4655,9 @@
     "noBaseFunds": "אין ETH, USDC או USDT בבסיס",
     "pendingSwapNote": "המסמך {{symbol}} הוחלף ב - USDC. המשך כדי ליצור את המיקום מבלי להחליף שוב.",
     "resumeMint": "המשך הזמנה",
-    "resumeNeedsBalances": "יתרות הארנק עדיין בטעינה. כדאי לנסות שוב בעוד כמה דקות."
+    "resumeNeedsBalances": "יתרות הארנק עדיין בטעינה. כדאי לנסות שוב בעוד כמה דקות.",
+    "buyWithBnbNote": "המסחר ב-BNB Chain נסגר. יש לך BNB? השתמש בו כדי לקנות DHB ב-Base.",
+    "buyWithBnb": "קנה עם BNB"
   },
   "onboarding": {
     "optIn": {

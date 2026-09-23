@@ -4588,7 +4588,9 @@
     "noBaseFunds": "በመሠረቱ ላይ ምንም ETH ፣ USDC ወይም USDT የለም",
     "pendingSwapNote": "የእርስዎ {{symbol}} ለ USDC ተቀይሯል ። እንደገና ሳይቀይሩ ቦታውን መፍጠርዎን ይቀጥሉ ።",
     "resumeMint": "ቅደም ተከተል ያስጀምሩ",
-    "resumeNeedsBalances": "የኪስ ቦርሳ ሚዛን አሁንም እየተጫነ ነው ። በአንድ ደቂቃ ውስጥ እንደገና ሞክር."
+    "resumeNeedsBalances": "የኪስ ቦርሳ ሚዛን አሁንም እየተጫነ ነው ። በአንድ ደቂቃ ውስጥ እንደገና ሞክር.",
+    "buyWithBnbNote": "በBNB Chain ላይ ግብይት ተዘግቷል። BNB አለዎት? በBase ላይ DHB ለመግዛት ይጠቀሙበት።",
+    "buyWithBnb": "በBNB ግዛ"
   },
   "onboarding": {
     "optIn": {

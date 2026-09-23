@@ -4643,7 +4643,9 @@
     "reviewSwap": "ਪਹਿਲਾਂ Base 'ਤੇ ਲਗਭਗ {{amountIn}} {{symbol}} ਨੂੰ {{usdc}} USDC ਲਈ ਸਵੈਪ ਕਰੋ। ਬੇਵਰਤੋਂ {{symbol}} ਉਸੇ ਟ੍ਰਾਂਜੈਕਸ਼ਨ ਵਿੱਚ ਵਾਪਸ ਕਰ ਦਿੱਤਾ ਜਾਂਦਾ ਹੈ।",
     "pendingSwapNote": "ਤੁਹਾਡਾ {{symbol}} USDC ਲਈ ਸਵੈਪ ਕੀਤਾ ਗਿਆ ਸੀ। ਦੁਬਾਰਾ ਸਵੈਪ ਕੀਤੇ ਬਿਨਾਂ ਪੁਜ਼ੀਸ਼ਨ ਬਣਾਉਣ ਲਈ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ।",
     "resumeMint": "ਆਰਡਰ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ",
-    "resumeNeedsBalances": "ਵਾਲਿਟ ਬੈਲੰਸ ਅਜੇ ਵੀ ਲੋਡ ਹੋ ਰਹੇ ਹਨ। ਥੋੜ੍ਹੀ ਦੇਰ ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+    "resumeNeedsBalances": "ਵਾਲਿਟ ਬੈਲੰਸ ਅਜੇ ਵੀ ਲੋਡ ਹੋ ਰਹੇ ਹਨ। ਥੋੜ੍ਹੀ ਦੇਰ ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
+    "buyWithBnbNote": "BNB Chain ’ਤੇ ਟ੍ਰੇਡਿੰਗ ਬੰਦ ਹੈ। BNB ਹੈ? ਇਸ ਨਾਲ Base ’ਤੇ DHB ਖਰੀਦੋ।",
+    "buyWithBnb": "BNB ਨਾਲ ਖਰੀਦੋ"
   },
   "onboarding": {
     "optIn": {

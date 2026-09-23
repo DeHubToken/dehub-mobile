@@ -4646,7 +4646,9 @@
     "payWith": "Na-akwụ ụgwọ na",
     "noBaseFunds": "Ọ dịghị ETH, USDC ma ọ bụ USDT na Base",
     "resumeMint": "Malite n 'usoro",
-    "resumeNeedsBalances": "Ụgwọ obere akpa ka na-ebugo. Gbalịa ọzọ n 'otu ntabi anya."
+    "resumeNeedsBalances": "Ụgwọ obere akpa ka na-ebugo. Gbalịa ọzọ n 'otu ntabi anya.",
+    "buyWithBnbNote": "Azụmahịa na BNB Chain emechiela. Ị nwere BNB? Jiri ya zụta DHB na Base.",
+    "buyWithBnb": "Jiri BNB zụta"
   },
   "onboarding": {
     "optIn": {

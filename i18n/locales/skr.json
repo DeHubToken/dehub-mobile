@@ -4581,7 +4581,9 @@
     "reviewSwap": "Base تي پهرين {{usdc}} USDC لاءِ {{amountIn}} {{symbol}} جي مٽاسٽا ڪريو. استعمال نه ٿيل {{symbol}} ساڳئي ٽرانزيڪشن ۾ واپس ڪيو ويندو آهي.",
     "pendingSwapNote": "توهان جي {{symbol}} کي USDC لاءِ مٽايو ويو. ٻيهر مٽاسٽا ڪرڻ کان سواءِ پوزيشن ٺاهڻ لاءِ ٻيهر شروع ڪريو.",
     "resumeMint": "آرڊر ٻيهر شروع ڪريو",
-    "resumeNeedsBalances": "والٽ بيلنس اڃا لوڊ ٿي رهيا آهن. ٿوري دير ۾ ٻيهر ڪوشش ڪريو."
+    "resumeNeedsBalances": "والٽ بيلنس اڃا لوڊ ٿي رهيا آهن. ٿوري دير ۾ ٻيهر ڪوشش ڪريو.",
+    "buyWithBnbNote": "BNB Chain تے ٹریڈنگ بند تھی گئی اے۔ BNB ہے؟ ایں نال Base تے DHB خریدو۔",
+    "buyWithBnb": "BNB نال خریدو"
   },
   "onboarding": {
     "optIn": {

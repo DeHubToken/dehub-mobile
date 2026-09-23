@@ -4640,7 +4640,9 @@
     "reviewSwap": "Ilki bilen Base-de {{amountIn}} {{symbol}}-i {{usdc}} USDC-ä alyş-çalşyň. Ulanylmadyk {{symbol}} şol bir amalda gaýtarylyp berilýär.",
     "pendingSwapNote": "Siziň {{symbol}} USDC-e alyş-çalşyldy. Pozisiýa döretmek üçin täzeden alyş-çalşmazdan dowam ediň.",
     "resumeMint": "Sargytnama dowam et",
-    "resumeNeedsBalances": "Walet balanslary entek ýüklenýär. Bir salymdan täzeden synanyşyň."
+    "resumeNeedsBalances": "Walet balanslary entek ýüklenýär. Bir salymdan täzeden synanyşyň.",
+    "buyWithBnbNote": "BNB Chain-de söwda ýapyldy. BNB barmy? Onuň bilen Base-de DHB satyn alyň.",
+    "buyWithBnb": "BNB bilen satyn al"
   },
   "onboarding": {
     "optIn": {

@@ -4607,7 +4607,9 @@
     "payWith": "د پیسو سره پیسې ورکړئ",
     "noBaseFunds": "نه ETH، نه USDC او نه هم USDT په بیس بیس کې",
     "resumeMint": "د امر بیا پیل کول",
-    "resumeNeedsBalances": "د بسته بندۍ ماشینونه لاهم د بار وړلو په حال کې دي. په یوه دقیقه کې بیا هڅه وکړئ."
+    "resumeNeedsBalances": "د بسته بندۍ ماشینونه لاهم د بار وړلو په حال کې دي. په یوه دقیقه کې بیا هڅه وکړئ.",
+    "buyWithBnbNote": "په BNB Chain کې سوداګري بنده شوې. BNB لرئ؟ په هغه په Base کې DHB واخلئ.",
+    "buyWithBnb": "په BNB واخلئ"
   },
   "onboarding": {
     "optIn": {

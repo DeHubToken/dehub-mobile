@@ -10,7 +10,7 @@ import ScreenHeader from '../components/ScreenHeader';
 import DexMarketChart from '../components/DexMarketChart';
 import { useAuthActions, useProvider, useUser } from '../context/AuthContext';
 import { ChainId } from '../config/constants';
-import { DEX_CHAINS, detectDhbChain, detectUsdcChain, mintSell, quoteSell, recoverMint, withdrawSell, type SellInput, type DexChainId, type VerifiedPosition } from '../libs/dex-v4';
+import { DEX_CHAINS, dexProvider, detectDhbChain, detectUsdcChain, mintSell, quoteSell, recoverMint, withdrawSell, type SellInput, type DexChainId, type VerifiedPosition } from '../libs/dex-v4';
 import { BOOK_INCREMENTS, DEFAULT_INCREMENT, aggregateBook, balanceFraction, defaultOrderPrice, fillFraction, formatBookPrice, formatIncrement, formatPrice, formatSize, nearestBookLevels, priceDeviation, priceNeedsWarning, seedReference, spreadPercent, type BookLevel } from '../libs/dex-orderbook';
 import { readWithTimeout } from '../libs/dex-read-timeout';
 import { FUNDING_CHAIN, defaultFundingAsset, fundAndMint, loadFundingAssets, quoteFunding, usdcAmountFor, type FundingAsset, type FundingQuote, type FundingStage, type FundingSymbol } from '../libs/dex-funding';
@@ -19,6 +19,7 @@ import { prepareWalletForQueuedMint } from '../libs/wallet-signing-preflight';
 import { withWalletHeader } from '../libs/supabase-wallet-client';
 import { toastError, toastSuccess } from '../libs';
 import { supabase } from '../services/supabase';
+import BuyDhbSheet from '../components/Dpay/BuyDhbSheet';
 
 const PAGE_SIZE = 15;
 type CachedPosition = Omit<VerifiedPosition, 'liquidity'> & { liquidity: string };
@@ -66,9 +67,11 @@ export default function DexScreen() {
   const address = user?.walletAddress || user?.address || '';
   const [side, setSide] = useState<'buy' | 'sell'>('sell');
   const [tab, setTab] = useState<'chart' | 'book' | 'trade'>('chart');
-  // Each network runs its own pool and its own book. A Base order can never be filled by a BNB
-  // order, so the screen shows one venue at a time rather than a merged book nobody can trade.
-  const [venue, setVenue] = useState<DexChainId>(ChainId.BASE_MAINNET);
+  // Base is the only book. The BNB pool takes no new liquidity; positions already in it can
+  // still be withdrawn by their owners from My positions.
+  const venue: DexChainId = ChainId.BASE_MAINNET;
+  const [bnbHeld, setBnbHeld] = useState(false);
+  const [buyOpen, setBuyOpen] = useState(false);
   const [chainId, setChainId] = useState<DexChainId | null>(null);
   const [balance, setBalance] = useState('0');
   const [checking, setChecking] = useState(false);
@@ -107,15 +110,17 @@ export default function DexScreen() {
   const locked = busy || !!pending || !!withdrawing;
   const decimals = side === 'sell' ? 18 : DEX_CHAINS[venue].usdcDecimals;
   const venueName = DEX_CHAINS[venue].name;
-  // A Base buy is priced in dollars and can be paid from any Base asset with a USDC route.
-  // Everything else (sells, and the BNB book) deposits the pool token directly.
+  // A buy is priced in dollars and can be paid from any Base asset with a USDC route. Sells
+  // deposit DHB directly.
   const funded = side === 'buy' && venue === FUNDING_CHAIN;
   const fundingAsset: FundingAsset | null = useMemo(() => funded
     ? (assets.find((a) => a.symbol === fundingSymbol) ?? defaultFundingAsset(assets, Number(amount) || 0)) : null, [funded, assets, fundingSymbol, amount]);
   const fundingLabel = fundingAsset && fundingAsset.symbol !== 'USDC' ? `USD · ${fundingAsset.symbol}` : token;
-  const venueListings = useMemo(() => listings.filter((item) => item.chain_id === venue), [listings, venue]);
-  // The outside pools the snapshot prices are all on Base, so they belong in the Base book only.
-  const externalAsks = useMemo(() => venue === ChainId.BASE_MAINNET ? snapshot?.externalAsks ?? [] : [], [venue, snapshot]);
+  const venueListings = useMemo(() => listings.filter((item) => item.chain_id === venue), [listings]);
+  // Old BNB positions stay withdrawable, so their owners still see them under My positions.
+  const legacyMine = useMemo(() => listings.filter((item) => item.chain_id === ChainId.BSC_MAINNET && item.owner.toLowerCase() === address.toLowerCase())
+    .sort((a, b) => listedAt(b) - listedAt(a)), [listings, address]);
+  const externalAsks = useMemo(() => snapshot?.externalAsks ?? [], [snapshot]);
   const { bids, asks } = useMemo(() => aggregateBook(venueListings, increment, externalAsks),
     [venueListings, increment, externalAsks]);
   const bestAsk = snapshot?.price ?? null;
@@ -125,7 +130,7 @@ export default function DexScreen() {
   const liquidityUsd = snapshot?.liquidityUsd ?? null;
   const lpDhb = snapshot?.lpDhb ?? null;
   const ordered = useMemo(() => [...venueListings].sort((a, b) => listedAt(b) - listedAt(a)), [venueListings]);
-  const shown = useMemo(() => mine ? ordered.filter((item) => item.owner.toLowerCase() === address.toLowerCase()) : ordered, [ordered, mine, address]);
+  const shown = useMemo(() => mine ? [...ordered.filter((item) => item.owner.toLowerCase() === address.toLowerCase()), ...legacyMine] : ordered, [ordered, mine, address, legacyMine]);
   const visible = shown.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
   const hasMorePages = shown.length > PAGE_SIZE;
   const bidTotal = bids.at(-1)?.cumulativeDhb || 0, askTotal = asks.at(-1)?.cumulativeDhb || 0;
@@ -167,12 +172,17 @@ export default function DexScreen() {
     }
     (side === 'sell' ? detectDhbChain : detectUsdcChain)(address).then((choice) => {
       if (!active) return;
-      // The venue decides the funding network. A balance on the other chain is not spendable here.
-      const held = venue === ChainId.BASE_MAINNET ? choice.base : choice.bnb;
-      setChainId(Number(held) > 0 ? venue : null); setBalance(held);
+      // Only a Base balance is spendable here.
+      setChainId(Number(choice.base) > 0 ? venue : null); setBalance(choice.base);
     }).catch(() => { if (active) setBalanceError(true); }).finally(() => { if (active) setChecking(false); });
     return () => { active = false; };
-  }, [address, side, venue, funded, balanceRevision]);
+  }, [address, side, funded, balanceRevision]);
+  // BNB cannot fund a Base order, so a holder is offered a direct buy that takes BNB instead.
+  useEffect(() => {
+    let active = true; setBnbHeld(false);
+    if (address) void dexProvider(ChainId.BSC_MAINNET).getBalance(address).then((wei) => { if (active) setBnbHeld(wei.gt(0)); }).catch(() => {});
+    return () => { active = false; };
+  }, [address, balanceRevision]);
   useEffect(() => {
     if (!funded || !fundingAsset) return;
     setChainId(fundingAsset.balance > 0n ? FUNDING_CHAIN : null); setBalance(fundingAsset.spendableUsd.toFixed(2));
@@ -183,7 +193,7 @@ export default function DexScreen() {
     if (address) void AsyncStorage.getItem(storageKey(address)).then((raw) => {
       const saved = raw ? JSON.parse(raw) as Pending : null;
       if (active && saved?.input.walletAddress.toLowerCase() === address.toLowerCase() &&
-          [56, 8453].includes(saved.input.chainId) && (/^0x[0-9a-f]{64}$/i.test(saved.txHash ?? '') || /^0x[0-9a-f]{64}$/i.test(saved.funding?.swapTxHash ?? ''))) { setPending(saved); setVenue(saved.input.chainId); }
+          [56, 8453].includes(saved.input.chainId) && (/^0x[0-9a-f]{64}$/i.test(saved.txHash ?? '') || /^0x[0-9a-f]{64}$/i.test(saved.funding?.swapTxHash ?? ''))) setPending(saved);
     }).catch(() => {});
     return () => { active = false; };
   }, [address]);
@@ -342,7 +352,7 @@ export default function DexScreen() {
   const book = (levels: BookLevel[], bid: boolean) => <View><Text style={[s.bookLabel, { color: bid ? '#20c997' : '#f05b72' }]}>{t(bid ? 'dex.bids' : 'dex.asks')}</Text>{!levels.length ? <Text style={s.empty}>{t(bid ? 'dex.noBids' : 'dex.noOrders')}</Text> : nearestBookLevels(levels, bid, BOOK_ROWS).map((level) => <TouchableOpacity accessibilityLabel={t('dex.usePrice', { price: formatBookPrice(level.price, increment) })} disabled={locked} key={level.price} onPress={() => { priceTouched.current = true; choosePrice(level.price, bid ? 'buy' : 'sell'); setTab('trade'); }} style={s.bookRow}><View pointerEvents="none" style={[s.depthBar, { width: `${level.cumulativeDhb / (levels.at(-1)?.cumulativeDhb || 1) * 100}%`, backgroundColor: bid ? '#20c997' : '#f05b72' }]} /><Text style={[s.cell, { color: bid ? '#20c997' : '#f05b72' }]}>{formatBookPrice(level.price, increment)}</Text><Text style={[s.cell, s.right]}>{formatSize(level.dhb)}</Text><Text style={[s.cell, s.right]}>{formatSize(level.cumulativeDhb)}</Text></TouchableOpacity>)}</View>;
 
   return <View style={s.root}><ScreenHeader title={t('dex.title')} onBackPress={() => navigation.goBack()} /><ScrollView contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
-    <View style={s.header}><View style={s.poolPicker}><Text style={s.pair}>{t('dex.title')}</Text><View style={s.inline} accessibilityRole="tablist" accessibilityLabel={t('dex.venue')}>{([ChainId.BASE_MAINNET, ChainId.BSC_MAINNET] as DexChainId[]).map((id) => <TouchableOpacity key={id} disabled={locked} accessibilityRole="tab" accessibilityState={{ selected: venue === id }} style={[s.smallTab, venue === id && s.selected]} onPress={() => { if (locked) return; setVenue(id); setAmount(''); setReview(null); setFundingQuote(null); setFormError(''); setPage(0); priceTouched.current = false; }}><Text style={venue === id ? s.white : s.muted}>{DEX_CHAINS[id].name}</Text></TouchableOpacity>)}</View></View><TouchableOpacity disabled={loading || busy} onPress={() => { primeDiscovery(); void loadListings(); setBalanceRevision((n) => n + 1); }}><Text style={s.link}>{t(loading ? 'dex.updating' : 'dex.refresh')}</Text></TouchableOpacity></View>
+    <View style={s.header}><View style={s.poolPicker}><Text style={s.pair}>{t('dex.title')}</Text></View><TouchableOpacity disabled={loading || busy} onPress={() => { primeDiscovery(); void loadListings(); setBalanceRevision((n) => n + 1); }}><Text style={s.link}>{t(loading ? 'dex.updating' : 'dex.refresh')}</Text></TouchableOpacity></View>
     <View style={s.stats}><View><Text style={s.muted}>{t('dex.marketPrice')}</Text><Text style={s.price}>{usdPrice != null ? `${formatPrice(usdPrice)}` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.bookPrice', { chain: venueName })}</Text><Text style={s.statValue}>{poolPrice != null ? `${formatPrice(poolPrice)}` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.sharedChange24', { defaultValue: '24h change' })}</Text><Text style={[s.statValue, { color: (snapshot?.change24h || 0) >= 0 ? '#20c997' : '#f05b72' }]}>{snapshot?.change24h != null ? `${snapshot.change24h >= 0 ? '+' : ''}${snapshot.change24h.toFixed(2)}%` : '—'}</Text></View><View><Text style={s.muted}>{t('dex.lpDhb', { defaultValue: 'LP · DHB' })}</Text><Text style={s.statValue}>{lpDhb != null ? formatSize(lpDhb) : '—'}</Text></View><View><Text style={s.muted}>{t('dex.lpUsd', { defaultValue: 'LP · USD' })}</Text><Text style={s.statValue}>{liquidityUsd != null ? `$${formatSize(liquidityUsd)}` : '—'}</Text></View></View>
     {listError && <Text style={s.alert}>{t('dex.snapshotError')}</Text>}
     <View style={s.tabs}>{(['chart', 'book', 'trade'] as const).map((value) => <TouchableOpacity key={value} accessibilityRole="tab" accessibilityState={{ selected: tab === value }} onPress={() => setTab(value)} style={[s.tab, tab === value && s.tabActive]}><Text style={tab === value ? s.white : s.muted}>{t(`dex.tab.${value}`)}</Text></TouchableOpacity>)}</View>
@@ -358,6 +368,7 @@ export default function DexScreen() {
       {field(t('dex.amountToken', { token: funded ? 'USD' : token }), amount, (raw) => { setAmount(decimalInput(raw)); setFundingQuote(null); }, fundingLabel)}<View style={s.header}><Text style={s.muted}>{t('dex.available')}</Text><Text style={s.white}>{checking ? t('dex.checking') : funded ? `${formatSize(Number(balance))}${fundingAsset && fundingAsset.symbol !== 'USDC' ? ` · ${fundingAsset.symbol}` : ''}` : `${formatSize(Number(balance))} ${token}`}</Text></View><View style={s.fractions}>{[25, 50, 75, 100].map((percent) => <TouchableOpacity disabled={locked || checking || !chainId} style={s.fraction} key={percent} onPress={() => { setAmount(balanceFraction(balance, percent, decimals)); setReview(null); setFundingQuote(null); }}><Text style={s.muted}>{percent === 100 ? t('dex.max') : `${percent}%`}</Text></TouchableOpacity>)}</View>
       <TouchableOpacity onPress={() => setAdvanced(!advanced)}><Text style={[s.link, { marginTop: 20 }]}>{t('dex.adjustRange')}</Text></TouchableOpacity>{advanced && <>{field(t('dex.minimum'), minPrice, (raw) => { priceTouched.current = true; setMinPrice(decimalInput(raw)); }, 'USD')}{field(t('dex.maximum'), maxPrice, (raw) => { priceTouched.current = true; setMaxPrice(decimalInput(raw)); }, 'USD')}</>}
       <View style={s.summary}><View style={s.header}><Text style={s.muted}>{t('dex.estimated')}</Text><Text style={s.white}>{formatSize(estimate)} {side === 'buy' ? 'DHB' : 'USDC'}</Text></View><View style={s.header}><Text style={s.muted}>{t('dex.network')}</Text><Text style={s.white}>{venueName}</Text></View><Text style={s.muted}>{t('dex.feeNote')}</Text></View>
+      {side === 'buy' && bnbHeld && !pending && <View style={s.field}><Text style={s.muted}>{t('dex.buyWithBnbNote')}</Text><TouchableOpacity disabled={busy} accessibilityRole="button" style={[s.smallTab, s.selected, { marginTop: 8, alignSelf: 'flex-start' }]} onPress={() => setBuyOpen(true)}><Text style={s.white}>{t('dex.buyWithBnb')}</Text></TouchableOpacity></View>}
       {balanceError && <TouchableOpacity disabled={busy} onPress={() => setBalanceRevision((n) => n + 1)}><Text style={s.alert}>{t('dex.balanceError')}</Text></TouchableOpacity>}
       {!!review && !pending && <Text style={s.review}>{fundingQuote && fundingQuote.asset.symbol !== 'USDC' ? `${t('dex.reviewSwap', { amountIn: formatSize(Number(ethers.utils.formatUnits(fundingQuote.amountIn.toString(), fundingQuote.asset.decimals))), symbol: fundingQuote.asset.symbol, usdc: amount })} ` : ''}{t('dex.reviewToken', { amount, token, chain: chainId ? DEX_CHAINS[chainId].name : '', minPrice, maxPrice })}{priceWarning ? ` ${priceWarning}` : ''}{review.createPool ? ` ${t('dex.initializes')}` : ''}</Text>}
       {!!pending && <TouchableOpacity onPress={() => void Linking.openURL(`${explorer(pending.input.chainId)}/tx/${pending.txHash ?? pending.funding?.swapTxHash}`)}><Text style={s.review}>{pending.txHash ? t('dex.pendingNote') : t('dex.pendingSwapNote', { symbol: pending.funding?.symbol ?? '' })}</Text></TouchableOpacity>}
@@ -369,7 +380,9 @@ export default function DexScreen() {
       {visible.map((item) => <View style={s.position} key={`${item.chain_id}:${item.token_id}`}><View style={s.header}><Text style={{ color: item.side === 'buy' ? '#20c997' : '#f05b72', fontWeight: '600' }}>{t(item.side === 'buy' ? 'dex.buy' : 'dex.sell')}</Text><Text style={s.muted}>{DEX_CHAINS[item.chain_id as DexChainId].name}</Text></View><Text style={[s.white, { marginVertical: 8 }]}>${formatPrice(item.minPrice)} – ${formatPrice(item.maxPrice)}</Text><Text style={s.muted}>{formatSize(item.amountDhb)} DHB · {formatSize(item.amountUsdc)} USDC</Text><View style={[s.header, { marginTop: 12 }]}><View style={s.fillWrap}><Text style={s.muted}>{t(item.status === 'Filled' ? 'dex.ready' : item.status === 'In range' ? 'dex.converting' : 'dex.waiting')}{item.status === 'In range' ? ` ${fillFraction(item) * 100 < 1 ? '<1' : Math.round(fillFraction(item) * 100)}%` : ''}</Text>{item.status === 'In range' && <View style={s.fillTrack}><View style={[s.fillBar, { width: `${Math.max(2, fillFraction(item) * 100)}%` }]} /></View>}</View>{address.toLowerCase() === item.owner.toLowerCase() ? <TouchableOpacity disabled={locked} onPress={() => Alert.alert(t('dex.withdrawPosition'), t('dex.withdrawReview', { dhb: formatSize(item.amountDhb), usdc: formatSize(item.amountUsdc), chain: DEX_CHAINS[item.chain_id as DexChainId].name }), [{ text: t('dex.cancel'), style: 'cancel' }, { text: t('dex.withdrawPosition'), onPress: () => void withdraw(item) }])}><Text style={s.link}>{t(withdrawing === `${item.chain_id}:${item.token_id}` ? 'dex.withdrawing' : 'dex.withdrawPosition')}</Text></TouchableOpacity> : <TouchableOpacity onPress={() => void Linking.openURL(`${explorer(item.chain_id)}/tx/${item.mint_tx_hash}`)}><Text style={s.link}>{t('dex.onchain')}</Text></TouchableOpacity>}</View></View>)}
       {hasMorePages && <View style={[s.header, { padding: 14 }]}><TouchableOpacity disabled={!page} onPress={() => setPage(page - 1)}><Text style={s.link}>{t('dex.previous')}</Text></TouchableOpacity><Text style={s.muted}>{page + 1} / {Math.ceil(shown.length / PAGE_SIZE)}</Text><TouchableOpacity disabled={(page + 1) * PAGE_SIZE >= shown.length} onPress={() => setPage(page + 1)}><Text style={s.link}>{t('dex.next')}</Text></TouchableOpacity></View>}
     </View>
-  </ScrollView></View>;
+  </ScrollView>
+  <BuyDhbSheet visible={buyOpen} initialMethod="crypto" onClose={() => { setBuyOpen(false); setBalanceRevision((n) => n + 1); }} />
+  </View>;
 }
 
 const s = StyleSheet.create({

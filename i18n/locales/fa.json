@@ -4684,7 +4684,9 @@
     "reviewSwap": "ابتدا روی Base، حدود {{amountIn}} {{symbol}} را با {{usdc}} USDC سوآپ کنید. {{symbol}} استفاده نشده در همان تراکنش بازگردانده می‌شود.",
     "pendingSwapNote": "{{symbol}} شما با USDC مبادله شد. برای ایجاد موقعیت بدون مبادله مجدد، از سر بگیرید.",
     "resumeMint": "سفارش از سرگیری",
-    "resumeNeedsBalances": "موجودی کیف پول هنوز در حال بارگیری است. چند لحظه دیگر دوباره امتحان کنید."
+    "resumeNeedsBalances": "موجودی کیف پول هنوز در حال بارگیری است. چند لحظه دیگر دوباره امتحان کنید.",
+    "buyWithBnbNote": "معامله در BNB Chain بسته شده است. BNB دارید؟ با آن در Base توکن DHB بخرید.",
+    "buyWithBnb": "خرید با BNB"
   },
   "onboarding": {
     "optIn": {

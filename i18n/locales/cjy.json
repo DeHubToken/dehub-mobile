@@ -4625,7 +4625,9 @@
     "reviewSwap": "先在 Base 上兑换大约 {{amountIn}} {{symbol}} 为 {{usdc}} USDC。未使用的 {{symbol}} 将在同一笔交易中退还。",
     "pendingSwapNote": "您的 {{symbol}} 已兑换为 USDC。继续创建仓位，无需再次兑换。",
     "resumeMint": "继续下单",
-    "resumeNeedsBalances": "钱包余额仍在加载中。请稍后再试。"
+    "resumeNeedsBalances": "钱包余额仍在加载中。请稍后再试。",
+    "buyWithBnbNote": "BNB Chain 上的交易已经关了。有 BNB？用它在 Base 上买 DHB。",
+    "buyWithBnb": "用 BNB 买"
   },
   "onboarding": {
     "optIn": {

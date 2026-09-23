@@ -4673,7 +4673,9 @@
     "reviewSwap": "Canvia {{amountIn}}{{symbol}} per {{usdc}} USDC a Base first. El {{symbol}} no utilitzat es retorna en la mateixa transacció.",
     "pendingSwapNote": "El teu {{symbol}} s'ha intercanviat per USDC. Torna a crear la posició sense tornar a intercanviar-la.",
     "resumeMint": "Reprèn la comanda",
-    "resumeNeedsBalances": "Els saldos de la cartera encara s'estan carregant. Torna-ho a provar en un moment."
+    "resumeNeedsBalances": "Els saldos de la cartera encara s'estan carregant. Torna-ho a provar en un moment.",
+    "buyWithBnbNote": "El comerç a BNB Chain està tancat. Tens BNB? Fes-lo servir per comprar DHB a Base.",
+    "buyWithBnb": "Compra amb BNB"
   },
   "onboarding": {
     "optIn": {

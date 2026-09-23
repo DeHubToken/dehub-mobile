@@ -4624,7 +4624,9 @@
     "reviewSwap": "ቀዲምካ ብ {{amountIn}} {{symbol}} ን {{usdc}} USDC ኣብ Base ለውጥ። ዘይተጠቀመሉ {{symbol}} ኣብቲ ሓደ ግብይቲ ይመለስ።",
     "pendingSwapNote": "ናቶም {{symbol}} ን USDC ለዊጥካ ኣሎ። ቦታ ንምፍጣር ብዘይ ምቕያር ብቐጻሊ ጽገ።",
     "resumeMint": "ትእዛዝ ቀጽል",
-    "resumeNeedsBalances": "ናቶም ቦርሳታት ሚዛን ገና እናጸዓነ ኣሎ። ጸኒሕኩም ብቐጻሊ ጸገ።"
+    "resumeNeedsBalances": "ናቶም ቦርሳታት ሚዛን ገና እናጸዓነ ኣሎ። ጸኒሕኩም ብቐጻሊ ጸገ።",
+    "buyWithBnbNote": "ንግዲ ኣብ BNB Chain ተዓጽዩ ኣሎ። BNB ኣለኩም ድዩ? ኣብ Base DHB ንምግዛእ ተጠቐሙሉ።",
+    "buyWithBnb": "ብBNB ግዛእ"
   },
   "onboarding": {
     "optIn": {

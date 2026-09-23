@@ -4672,7 +4672,9 @@
     "reviewSwap": "Najpierw zamień około {{amountIn}} {{symbol}} na {{usdc}} USDC na Base. Niewykorzystane {{symbol}} jest zwracane w tej samej transakcji.",
     "pendingSwapNote": "Twoje {{symbol}} zostało zamienione na USDC. Wznów, aby utworzyć pozycję bez ponownej zamiany.",
     "resumeMint": "Wznów zlecenie",
-    "resumeNeedsBalances": "Salda portfela nadal się ładują. Spróbuj ponownie za chwilę."
+    "resumeNeedsBalances": "Salda portfela nadal się ładują. Spróbuj ponownie za chwilę.",
+    "buyWithBnbNote": "Handel na BNB Chain jest zamknięty. Masz BNB? Kup za nie DHB w sieci Base.",
+    "buyWithBnb": "Kup za BNB"
   },
   "onboarding": {
     "optIn": {
