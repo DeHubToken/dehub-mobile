@@ -19,6 +19,7 @@
     "unavailable": "غير متاح بهذي النسخة من التطبيق"
   },
   "nav": {
+    "fractions": "الأجزاء",
     "home": "البيت",
     "explore": "استكشف",
     "notifications": "الإشعارات",
@@ -2995,8 +2996,8 @@
     "moderators": "المشرفون",
     "bannedUsers": "المستخدمون المحظورون",
     "work": "العمل",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "أسماء المستخدمين",
+    "accounts": "الحسابات",
     "stores": "المتاجر",
     "comingSoon": "قريبًا",
     "signIn": "تسجيل الدخول",

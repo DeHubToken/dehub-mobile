@@ -19,6 +19,7 @@
     "unavailable": "Laguma heli karo nooca abka ee hadda"
   },
   "nav": {
+    "fractions": "Saamiyo",
     "home": "Guriga",
     "explore": "Sahmi",
     "notifications": "Ogeysiisyo",
@@ -56,7 +57,7 @@
     "tv": "TV Toos ah",
     "arcade": "Arcade",
     "converter": "Converter",
-    "migrate": "U haajiraan dhammaan"
+    "migrate": "Dhammaan u guuri"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",

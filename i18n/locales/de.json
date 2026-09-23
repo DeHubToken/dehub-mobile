@@ -19,6 +19,7 @@
     "unavailable": "In dieser Version der App nicht verfügbar"
   },
   "nav": {
+    "fractions": "Anteile",
     "home": "Startseite",
     "explore": "Entdecken",
     "notifications": "Benachrichtigungen",
@@ -56,7 +57,7 @@
     "tv": "Live-TV",
     "arcade": "Arcade",
     "converter": "Wandler",
-    "migrate": "Alles migriert"
+    "migrate": "Alle migrieren"
   },
   "affiliate": {
     "subtitle": "Verdiene an allen, die du einlädst — für immer",
@@ -3056,8 +3057,8 @@
     "moderators": "Moderatoren",
     "bannedUsers": "Gesperrte Benutzer",
     "work": "Arbeit",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "Benutzernamen",
+    "accounts": "Konten",
     "stores": "Shops",
     "comingSoon": "Demnächst",
     "signIn": "Anmelden",

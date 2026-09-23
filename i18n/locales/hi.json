@@ -19,6 +19,7 @@
     "unavailable": "ऐप के इस संस्करण में उपलब्ध नहीं है"
   },
   "nav": {
+    "fractions": "फ़्रैक्शन",
     "home": "होम",
     "explore": "खोजें",
     "notifications": "सूचनाएँ",
@@ -3046,8 +3047,8 @@
     "moderators": "मॉडरेटर",
     "bannedUsers": "प्रतिबंधित उपयोगकर्ता",
     "work": "काम",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "यूज़रनेम",
+    "accounts": "अकाउंट",
     "stores": "स्टोर",
     "comingSoon": "जल्द आ रहा है",
     "signIn": "साइन इन",

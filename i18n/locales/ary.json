@@ -19,6 +19,7 @@
     "unavailable": "ما كايناش فهاد النسخة ديال التطبيق"
   },
   "nav": {
+    "fractions": "الأجزاء",
     "home": "الصفحة الرئيسية",
     "explore": "استكشف",
     "notifications": "الإشعارات",
@@ -3064,8 +3065,8 @@
     "moderators": "المشرفون",
     "bannedUsers": "المستخدمون المحظورون",
     "work": "العمل",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "أسماء المستخدمين",
+    "accounts": "الحسابات",
     "stores": "المتاجر",
     "comingSoon": "قريبًا",
     "signIn": "تسجيل الدخول",

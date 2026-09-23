@@ -19,6 +19,7 @@
     "unavailable": "บ่มีในแอปเวอร์ชันนี้"
   },
   "nav": {
+    "fractions": "ส่วนแบ่ง",
     "home": "บ้าน",
     "explore": "สำหลวด",
     "notifications": "แจ้งเตือน",
@@ -56,7 +57,7 @@
     "tv": "ทีวีสด",
     "arcade": "อาร์เคด",
     "converter": "Converter",
-    "migrate": "Migrate all"
+    "migrate": "ย้ายทั้งหมด"
   },
   "affiliate": {
     "subtitle": "รับรายได้จากทุกคนที่คุณเชิญ — ตลอดไป",
