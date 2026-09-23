@@ -97,6 +97,8 @@ function AppNavigatorContent() {
 
       <Stack.Group>
         <Stack.Screen name={ScreenNames.Creator} getComponent={() => require('../screens/CreatorScreen').default} />
+        {/* No swipe-back: a horizontal drag on the page moves the selected layer. */}
+        <Stack.Screen name={ScreenNames.MediaEditor} getComponent={() => require('../screens/MediaEditorScreen').default} options={{ gestureEnabled: false }} />
         <Stack.Screen
           name={ScreenNames.Leaderboard}
           getComponent={() => require("../screens/LeaderboardScreen").default}
