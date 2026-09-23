@@ -284,7 +284,7 @@ export async function quoteSell(input: SellInput) {
   return { amountWei, tickLower, tickUpper, createPool, ...call };
 }
 
-async function sendTx(signingProvider: any, chainId: DexChainId, from: string, to: string, data: string, value = '0x0', submitted?: (hash: string) => void) {
+export async function sendTx(signingProvider: any, chainId: DexChainId, from: string, to: string, data: string, value = '0x0', submitted?: (hash: string) => void) {
   const actualChain = await readWithTimeout(signingProvider.request({ method: 'eth_chainId' }) as Promise<string>, 'Wallet network');
   const accounts = await readWithTimeout(signingProvider.request({ method: 'eth_accounts' }) as Promise<string[]>, 'Wallet address');
   if (Number(BigInt(actualChain)) !== chainId || accounts[0]?.toLowerCase() !== from.toLowerCase()) throw new Error('Wallet account or network changed. Review the order again.');

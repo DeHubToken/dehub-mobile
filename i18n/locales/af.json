@@ -4575,7 +4575,8 @@
     "automaticStage": {
       "tokenApproval": "Tokens word outomaties goedgekeur…",
       "permitApproval": "Positietoegang word outomaties goedgekeur…",
-      "submit": "Jou posisie word outomaties geskep…"
+      "submit": "Jou posisie word outomaties geskep…",
+      "swap": "Uitruil en skep jou posisie outomaties..."
     },
     "combined": "Gekombineerde mark · Basis + BNB",
     "reference": "Mark verwysing · USD",
@@ -4635,7 +4636,9 @@
       "permitApproval": "Bevestig posisie-goedkeuring in jou beursie…",
       "submit": "Bevestig posisie in jou beursie…",
       "confirm": "Wag vir bevestiging…",
-      "index": "Registreer jou posisie…"
+      "index": "Registreer jou posisie…",
+      "swap": "Bevestig die ruil in jou beursie...",
+      "swapConfirm": "Wag vir die swap om te bevestig..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4689,7 +4692,13 @@
     "useMarket": "Gebruik markprys",
     "noFunding": "Geen {{token}} beskikbaar op {{chain}} nie.",
     "noListingsChain": "Nog geen aanbiedinge op {{chain}} nie.",
-    "listedDhb": "Gelyste DHB · {{chain}}"
+    "listedDhb": "Gelyste DHB · {{chain}}",
+    "payWith": "Betaal met",
+    "noBaseFunds": "Geen ETH, USDC of USDT op grondvlak nie",
+    "reviewSwap": "Ruil oor {{amountIn}} {{symbol}} vir {{usdc}} USDC eerste op die basis. Ongebruikte {{symbol}} word in dieselfde transaksie teruggestuur.",
+    "pendingSwapNote": "Jou {{symbol}} is omgeruil vir USDC. Hervat om die posisie te skep sonder om weer te ruil.",
+    "resumeMint": "Hervat bestelling",
+    "resumeNeedsBalances": "Portemonnee is nog steeds te laden. Probeer weer in 'n oomblik."
   },
   "onboarding": {
     "optIn": {

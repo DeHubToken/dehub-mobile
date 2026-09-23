@@ -4468,7 +4468,8 @@
     "automaticStage": {
       "tokenApproval": "ቶከኖችን በራስ-ሰር በማጽደቅ…",
       "permitApproval": "የአቀማመጥ መዳረሻን በራስ-ሰር በማጽደቅ…",
-      "submit": "የእርስዎን አቀማመጥ በራስ-ሰር በመፍጠር…"
+      "submit": "የእርስዎን አቀማመጥ በራስ-ሰር በመፍጠር…",
+      "swap": "ቦታዎን በራስ-ሰር ማንሸራተት እና መፍጠር…"
     },
     "combined": "የተጣመረ ገበያ · Base + BNB",
     "reference": "የገበያ ማጣቀሻ · USD",
@@ -4528,7 +4529,9 @@
       "permitApproval": "በኪስ ቦርሳዎ ውስጥ ያለውን የቦታ ማረጋገጫ ያረጋግጡ…",
       "submit": "በኪስ ቦርሳዎ ውስጥ ያለውን ቦታ ያረጋግጡ…",
       "confirm": "ማረጋገጫ እየጠበቀ ነው…",
-      "index": "ቦታዎን እየመዘገበ ነው…"
+      "index": "ቦታዎን እየመዘገበ ነው…",
+      "swap": "በኪስ ቦርሳዎ ውስጥ ያለውን ስዋፕ ያረጋግጡ…",
+      "swapConfirm": "ስዋፕን ለማረጋገጥ በመጠባበቅ ላይ…"
     },
     "intro": "በዩኒስዋፕ v4 ቦታዎ የገዛ ወይም የሸጥ ዋጋዎን ያዘጋጁ። ትዕዛዞች በክልላቸው ውስጥ ሲንቀሳቀሱ ይሞላሉ።",
     "buySell": "ይግዙ / ይሸጡ",
@@ -4580,7 +4583,12 @@
     "useMarket": "የገበያ ዋጋ ይጠቀሙ",
     "noFunding": "በ{{chain}} ላይ {{token}} የለም።",
     "noListingsChain": "በ{{chain}} ላይ ምንም ዝርዝሮች የሉም።",
-    "listedDhb": "የተዘረዘረ DHB · {{chain}}"
+    "listedDhb": "የተዘረዘረ DHB · {{chain}}",
+    "payWith": "ጋር ይክፈሉ",
+    "noBaseFunds": "በመሠረቱ ላይ ምንም ETH ፣ USDC ወይም USDT የለም",
+    "pendingSwapNote": "የእርስዎ {{symbol}} ለ USDC ተቀይሯል ። እንደገና ሳይቀይሩ ቦታውን መፍጠርዎን ይቀጥሉ ።",
+    "resumeMint": "ቅደም ተከተል ያስጀምሩ",
+    "resumeNeedsBalances": "የኪስ ቦርሳ ሚዛን አሁንም እየተጫነ ነው ። በአንድ ደቂቃ ውስጥ እንደገና ሞክር."
   },
   "onboarding": {
     "optIn": {

@@ -4617,7 +4617,8 @@
     "automaticStage": {
       "tokenApproval": "Token werden automatisch genehmigt…",
       "permitApproval": "Zugriff auf Positionen wird automatisch genehmigt…",
-      "submit": "Ihre Position wird automatisch erstellt…"
+      "submit": "Ihre Position wird automatisch erstellt…",
+      "swap": "Tauschen und erstellen Sie Ihre Position automatisch..."
     },
     "combined": "Kombinierter Markt · Base + BNB",
     "reference": "Marktreferenz · USD",
@@ -4677,7 +4678,9 @@
       "permitApproval": "Bestätige die Positionsgenehmigung in deiner Wallet…",
       "submit": "Bestätige die Position in deiner Wallet…",
       "confirm": "Warte auf Bestätigung…",
-      "index": "Registriere deine Position…"
+      "index": "Registriere deine Position…",
+      "swap": "Bestätigen Sie den Tausch in Ihrer Brieftasche...",
+      "swapConfirm": "Warten auf Bestätigung des Swaps..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4731,7 +4734,13 @@
     "useMarket": "Marktpreis verwenden",
     "noFunding": "Kein {{token}} auf {{chain}} verfügbar.",
     "noListingsChain": "Noch keine Angebote auf {{chain}}.",
-    "listedDhb": "Gelistete DHB · {{chain}}"
+    "listedDhb": "Gelistete DHB · {{chain}}",
+    "payWith": "Bezahlen mit",
+    "noBaseFunds": "Keine ETH, USDC oder USDT auf Basis",
+    "reviewSwap": "Tausche zuerst über {{amountIn}}{{symbol}} gegen {{usdc}} USDC auf der Basis. Unbenutztes {{symbol}} wird in derselben Transaktion zurückgegeben.",
+    "pendingSwapNote": "Ihr {{symbol}} wurde gegen USDC getauscht. Fahren Sie fort, um die Position zu erstellen, ohne sie erneut zu tauschen.",
+    "resumeMint": "Bestellung fortsetzen",
+    "resumeNeedsBalances": "Wallet-Guthaben werden noch geladen. Versuchen Sie es gleich noch einmal."
   },
   "onboarding": {
     "optIn": {

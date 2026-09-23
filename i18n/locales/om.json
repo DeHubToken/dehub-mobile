@@ -4573,7 +4573,8 @@
     "automaticStage": {
       "tokenApproval": "Mirkaneessuu maayiiwwanitti…",
       "permitApproval": "Mirkaneessuu seera qabeessummaa harkaa…",
-      "submit": "Harkaa kee uumuu…"
+      "submit": "Harkaa kee uumuu…",
+      "swap": "Jijjiirraa fi ejjennoo kee ofumaan uumuu..."
     },
     "combined": "Suuraa walitti qabame · Bu'uura + BNB",
     "reference": "Bu'uura suuraa · USD",
@@ -4633,7 +4634,9 @@
       "permitApproval": "Gargaarsa kee keessatti mirkanaa'i...",
       "submit": "Gargaarsa kee keessatti mirkanaa'i...",
       "confirm": "Eegaa mirkanaa'uu eegaleera...",
-      "index": "Gargaarsa kee galmeessaa jira..."
+      "index": "Gargaarsa kee galmeessaa jira...",
+      "swap": "Jijjiirraa boorsaa keessan keessa jiru mirkaneessaa...",
+      "swapConfirm": "Jijjiirraan kun akka mirkanaa&#39;u eegaa jirra..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4687,7 +4690,13 @@
     "useMarket": "Hinnii suuqii fayyadami",
     "noFunding": "{{token}} hin jiru {{chain}} irratti.",
     "noListingsChain": "Galmeeleen {{chain}} irratti hin jiran.",
-    "listedDhb": "DHB galmeeffame · {{chain}}"
+    "listedDhb": "DHB galmeeffame · {{chain}}",
+    "payWith": "Waliin kaffalaa",
+    "noBaseFunds": "ETH, USDC ykn USDT Base irratti hin jiru",
+    "reviewSwap": "Dursa waa&#39;ee {{amountIn}} {{symbol}} {{usdc}} USDC Base irratti jijjiiri. {{symbol}} kan hin fayyadamne daldala walfakkaataa keessatti deebi&#39;a.",
+    "pendingSwapNote": "{{symbol}} kee USDC tti jijjiirame. Irra deebi&#39;ee osoo hin jijjiiriin bakka uumuuf deebi&#39;i.",
+    "resumeMint": "Ajaja irra deebi&#39;ii jalqabuu",
+    "resumeNeedsBalances": "Hafnaan boorsaa ammallee fe&#39;amaa jira. Yeroo muraasa booda irra deebi&#39;ii yaali."
   },
   "onboarding": {
     "optIn": {

@@ -4525,7 +4525,8 @@
     "automaticStage": {
       "tokenApproval": "Ikwado token na-akpaghị aka…",
       "permitApproval": "Ikwado ohere ọnọdụ na-akpaghị aka…",
-      "submit": "Ịmepụta ọnọdụ gị na-akpaghị aka…"
+      "submit": "Ịmepụta ọnọdụ gị na-akpaghị aka…",
+      "swap": "Ihe ọzọ bụ na, you can reach all these destinations by train…"
     },
     "combined": "Ahịa jikọtara ọnụ · Base + BNB",
     "reference": "Ntụaka ahịa · USD",
@@ -4585,7 +4586,9 @@
       "permitApproval": "Kwado nkwado ọnọdụ na akpa gị…",
       "submit": "Kwado ọnọdụ na akpa gị…",
       "confirm": "Na-echere nkwado…",
-      "index": "Ndebanye aha ọnọdụ gị…"
+      "index": "Ndebanye aha ọnọdụ gị…",
+      "swap": "Ihe ọzọ bụ na, you can reach all these destinations by train…",
+      "swapConfirm": "Ihe ọzọ bụ na, you can reach all these destinations by train…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4639,7 +4642,11 @@
     "useMarket": "Jiri ahịa ahịa",
     "noFunding": "Enweghị {{token}} dị na {{chain}}.",
     "noListingsChain": "Enweghị ndepụta na {{chain}} ọ bụla.",
-    "listedDhb": "Edepụtara DHB · {{chain}}"
+    "listedDhb": "Edepụtara DHB · {{chain}}",
+    "payWith": "Na-akwụ ụgwọ na",
+    "noBaseFunds": "Ọ dịghị ETH, USDC ma ọ bụ USDT na Base",
+    "resumeMint": "Malite n 'usoro",
+    "resumeNeedsBalances": "Ụgwọ obere akpa ka na-ebugo. Gbalịa ọzọ n 'otu ntabi anya."
   },
   "onboarding": {
     "optIn": {

@@ -4615,7 +4615,8 @@
     "automaticStage": {
       "tokenApproval": "토큰 자동 승인 중…",
       "permitApproval": "포지션 접근 자동 승인 중…",
-      "submit": "포지션 자동 생성 중…"
+      "submit": "포지션 자동 생성 중…",
+      "swap": "위치를 자동으로 바꾸고 생성하는 중..."
     },
     "combined": "통합 시장 · Base + BNB",
     "reference": "시장 참조 · USD",
@@ -4675,7 +4676,9 @@
       "permitApproval": "지갑에서 포지션 승인을 확인하세요…",
       "submit": "지갑에서 포지션을 확인하세요…",
       "confirm": "확인 대기 중…",
-      "index": "포지션 등록 중…"
+      "index": "포지션 등록 중…",
+      "swap": "지갑의 교환을 확인하세요...",
+      "swapConfirm": "교환이 완료되기를 기다리는 중..."
     },
     "intro": "Uniswap v4 포지션으로 매수 또는 매도 가격을 설정하세요. 거래가 범위를 통과하면 주문이 체결됩니다.",
     "buySell": "매수 / 매도",
@@ -4727,7 +4730,13 @@
     "useMarket": "시장 가격 사용",
     "noFunding": "{{chain}}에서 {{token}}을 사용할 수 없습니다.",
     "noListingsChain": "{{chain}}에 아직 상장된 항목이 없습니다.",
-    "listedDhb": "상장된 DHB · {{chain}}"
+    "listedDhb": "상장된 DHB · {{chain}}",
+    "payWith": "결제수단:",
+    "noBaseFunds": "베이스에 ETH, USDC 또는 USDT 없음",
+    "reviewSwap": "먼저 기지에서 {{amountIn}} {{symbol}} 을 (를) {{usdc}} USDC (으) 로 바꿉니다. 사용하지 않은 {{symbol}} 이 (가) 동일한 거래에서 반환됩니다.",
+    "pendingSwapNote": "고객님의 {{symbol}} 이 (가) USDC와 교환되었습니다. 다시 스와핑하지 않고 포지션을 생성하려면 다시 시작하십시오.",
+    "resumeMint": "주문 재개",
+    "resumeNeedsBalances": "지갑 잔액이 아직 로드 중입니다. 잠시 후 다시 시도하세요."
   },
   "onboarding": {
     "optIn": {

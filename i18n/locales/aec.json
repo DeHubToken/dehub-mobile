@@ -4504,7 +4504,8 @@
     "automaticStage": {
       "tokenApproval": "الموافقة على الرموز تلقائيًا…",
       "permitApproval": "الموافقة على الوصول إلى الموضع تلقائيًا…",
-      "submit": "إنشاء موضعك تلقائيًا…"
+      "submit": "إنشاء موضعك تلقائيًا…",
+      "swap": "تبديل وإنشاء مركزك تلقائيًا…"
     },
     "combined": "السوق المدمج · Base + BNB",
     "reference": "مرجع السوق · USD",
@@ -4564,7 +4565,9 @@
       "permitApproval": "أكد الموافقة على المركز في محفظتك…",
       "submit": "أكد المركز في محفظتك…",
       "confirm": "في انتظار التأكيد…",
-      "index": "تسجيل مركزك…"
+      "index": "تسجيل مركزك…",
+      "swap": "أكد التبديل في محفظتك…",
+      "swapConfirm": "في انتظار تأكيد التبديل…"
     },
     "intro": "حدد سعر الشراء أو البيع الخاص بك بمركز Uniswap v4. يتم تنفيذ الطلبات مع تحرك التداول عبر نطاقها.",
     "buySell": "شراء / بيع",
@@ -4614,7 +4617,13 @@
     "useMarket": "استخدم سعر السوق",
     "noFunding": "لا يوجد {{token}} متاح على {{chain}}.",
     "noListingsChain": "لا توجد قوائم على {{chain}} بعد.",
-    "listedDhb": "DHB مدرج · {{chain}}"
+    "listedDhb": "DHB مدرج · {{chain}}",
+    "payWith": "ادفع بـ",
+    "noBaseFunds": "لا يوجد ETH أو USDC أو USDT على Base",
+    "reviewSwap": "قم بتبديل حوالي {{amountIn}} {{symbol}} مقابل {{usdc}} USDC على Base أولاً. يتم إرجاع {{symbol}} غير المستخدمة في نفس المعاملة.",
+    "pendingSwapNote": "تم تبديل {{symbol}} الخاص بك مقابل USDC. استأنف لإنشاء المركز دون تبديل مرة أخرى.",
+    "resumeMint": "استئناف الطلب",
+    "resumeNeedsBalances": "أرصدة المحفظة لا تزال قيد التحميل. حاول مرة أخرى بعد لحظة."
   },
   "onboarding": {
     "optIn": {

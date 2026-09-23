@@ -4553,7 +4553,8 @@
     "automaticStage": {
       "tokenApproval": "Tokenlar avtomatik ravishda tasdiqlanmoqda…",
       "permitApproval": "Joylashuvga kirish avtomatik ravishda tasdiqlanmoqda…",
-      "submit": "Lavozimingizni avtomatik ravishda yaratish…"
+      "submit": "Lavozimingizni avtomatik ravishda yaratish…",
+      "swap": "Lavozimingizni avtomatik ravishda almashtirish va yaratish…"
     },
     "combined": "Birlashtirilgan bozor · Baza + BNB",
     "reference": "Bozor ma&#39;lumotnomasi · AQSh dollari",
@@ -4612,7 +4613,9 @@
       "permitApproval": "Chet elda ham shu kabi holatlar bo'lgan.",
       "submit": "Chet elda ham shu kabi holatlar bo'lgan.",
       "confirm": "Tasdiqlash kutilmoqda…",
-      "index": "Pozitsiyangizni ro'yxatdan o'tkazmoqda…"
+      "index": "Pozitsiyangizni ro'yxatdan o'tkazmoqda…",
+      "swap": "Hamyoningizdagi almashtirishni tasdiqlang…",
+      "swapConfirm": "Almashuv tasdiqlanishi kutilmoqda…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4666,7 +4669,13 @@
     "useMarket": "Bozor narxidan foydalaning",
     "noFunding": "{{chain}} da {{token}} mavjud emas.",
     "noListingsChain": "Hali {{chain}} da ro'yxatlar yo'q.",
-    "listedDhb": "Ro'yxatga olingan DHB · {{chain}}"
+    "listedDhb": "Ro'yxatga olingan DHB · {{chain}}",
+    "payWith": "To'lov qiling",
+    "noBaseFunds": "Bazada ETH, USDC yoki USDT yo&#39;q",
+    "reviewSwap": "Bazada avval {{amountIn}} {{symbol}} ni {{usdc}} USDC ga almashtiring. Ishlatilmagan {{symbol}} xuddi shu tranzaksiyada qaytariladi.",
+    "pendingSwapNote": "Sizning {{symbol}} koeffitsiyentingiz USDC ga almashtirildi. Qayta almashtirmasdan pozitsiyani yaratish uchun davom eting.",
+    "resumeMint": "Buyurtmani davom ettirish",
+    "resumeNeedsBalances": "Hamyon balanslari hali ham yuklanmoqda. Birozdan keyin qayta urinib ko&#39;ring."
   },
   "onboarding": {
     "optIn": {

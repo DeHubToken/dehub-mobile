@@ -4812,7 +4812,8 @@
     "automaticStage": {
       "tokenApproval": "Meluluskan token secara automatik…",
       "permitApproval": "Meluluskan akses kedudukan secara automatik…",
-      "submit": "Mencipta kedudukan anda secara automatik…"
+      "submit": "Mencipta kedudukan anda secara automatik…",
+      "swap": "Menukar dan mencipta kedudukan anda secara automatik..."
     },
     "combined": "Pasaran gabungan · Base + BNB",
     "reference": "Rujukan pasaran · USD",
@@ -4872,7 +4873,9 @@
       "permitApproval": "Sahkan kelulusan kedudukan dalam dompet anda…",
       "submit": "Sahkan kedudukan dalam dompet anda…",
       "confirm": "Menunggu pengesahan…",
-      "index": "Mendaftar kedudukan anda…"
+      "index": "Mendaftar kedudukan anda…",
+      "swap": "Sahkan pertukaran dalam dompet anda...",
+      "swapConfirm": "Menunggu pertukaran untuk mengesahkan..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4926,7 +4929,13 @@
     "useMarket": "Gunakan harga pasaran",
     "noFunding": "Tiada {{token}} tersedia di {{chain}}.",
     "noListingsChain": "Tiada senaraian di {{chain}} lagi.",
-    "listedDhb": "DHB tersenarai · {{chain}}"
+    "listedDhb": "DHB tersenarai · {{chain}}",
+    "payWith": "Bayar dengan",
+    "noBaseFunds": "Tiada ETH, USDC atau USDT pada Asas",
+    "reviewSwap": "Tukar tentang {{amountIn}} {{symbol}} untuk {{usdc}} USDC di Base terlebih dahulu. {{symbol}} yang tidak digunakan dikembalikan dalam transaksi yang sama.",
+    "pendingSwapNote": "{{symbol}} anda telah ditukar dengan USDC. Sambung semula untuk mencipta kedudukan tanpa bertukar lagi.",
+    "resumeMint": "Sambung pesanan",
+    "resumeNeedsBalances": "Baki dompet masih dimuatkan. Cuba lagi sebentar lagi."
   },
   "onboarding": {
     "optIn": {

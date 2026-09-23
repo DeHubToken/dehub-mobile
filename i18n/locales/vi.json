@@ -4560,7 +4560,8 @@
     "automaticStage": {
       "tokenApproval": "Đang phê duyệt token tự động…",
       "permitApproval": "Đang phê duyệt quyền truy cập vị thế tự động…",
-      "submit": "Đang tạo vị thế của bạn tự động…"
+      "submit": "Đang tạo vị thế của bạn tự động…",
+      "swap": "Tự động hoán đổi và tạo vị thế của bạn…"
     },
     "combined": "Thị trường kết hợp · Base + BNB",
     "reference": "Tham chiếu thị trường · USD",
@@ -4620,7 +4621,9 @@
       "permitApproval": "Xác nhận phê duyệt vị thế trong ví của bạn…",
       "submit": "Xác nhận vị thế trong ví của bạn…",
       "confirm": "Đang chờ xác nhận…",
-      "index": "Đang đăng ký vị thế của bạn…"
+      "index": "Đang đăng ký vị thế của bạn…",
+      "swap": "Xác nhận giao dịch hoán đổi trong ví của bạn…",
+      "swapConfirm": "Đang chờ giao dịch hoán đổi để xác nhận…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4674,7 +4677,13 @@
     "useMarket": "Sử dụng giá thị trường",
     "noFunding": "Không có {{token}} khả dụng trên {{chain}}.",
     "noListingsChain": "Chưa có niêm yết nào trên {{chain}}.",
-    "listedDhb": "DHB đã niêm yết · {{chain}}"
+    "listedDhb": "DHB đã niêm yết · {{chain}}",
+    "payWith": "Thanh toán bằng",
+    "noBaseFunds": "Không có ETH, USDC hoặc USDT trên cơ sở",
+    "reviewSwap": "Hoán đổi khoảng {{amountIn}}{{symbol}} với {{usdc}} USDC trên Cơ sở trước. {{symbol}} không sử dụng được trả lại trong cùng một giao dịch.",
+    "pendingSwapNote": "{{symbol}} của bạn đã được đổi lấy USDC. Tiếp tục để tạo vị thế mà không cần hoán đổi lần nữa.",
+    "resumeMint": "Tiếp tục đặt hàng",
+    "resumeNeedsBalances": "Số dư ví vẫn đang tải. Hãy thử lại sau ít phút."
   },
   "onboarding": {
     "optIn": {

@@ -4524,7 +4524,8 @@
     "automaticStage": {
       "tokenApproval": "Тасдиқи токенҳо ба таври худкор…",
       "permitApproval": "Тасдиқи дастрасии мавқеъ ба таври худкор…",
-      "submit": "Эҷоди мавқеъи шумо ба таври худкор…"
+      "submit": "Эҷоди мавқеъи шумо ба таври худкор…",
+      "swap": "Мубодила ва эҷоди мавқеъи шумо ба таври худкор…"
     },
     "combined": "Бозори муштарак · Base + BNB",
     "reference": "Истиноди бозор · USD",
@@ -4584,7 +4585,9 @@
       "permitApproval": "Тасдиқи мавқеъро дар ҳамёни худ тасдиқ кунед…",
       "submit": "Мавқеъро дар ҳамёни худ тасдиқ кунед…",
       "confirm": "Интизори тасдиқ…",
-      "index": "Сабти мавқеи шумо…"
+      "index": "Сабти мавқеи шумо…",
+      "swap": "Тасдиқ кардани мубодила дар ҳамёнатон...",
+      "swapConfirm": "Интизорӣ барои тасдиқи мубодила..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4638,7 +4641,11 @@
     "useMarket": "Нархи бозорро истифода баред",
     "noFunding": "{{token}} дар {{chain}} мавҷуд нест.",
     "noListingsChain": "Ҳанӯз дар {{chain}} рӯйхатҳо мавҷуд нестанд.",
-    "listedDhb": "DHB-и рӯйхатшуда · {{chain}}"
+    "listedDhb": "DHB-и рӯйхатшуда · {{chain}}",
+    "payWith": "Пардохт бо",
+    "noBaseFunds": "Walang ETH, USDC o USDT sa Base",
+    "resumeMint": "Идомаи тартибот",
+    "resumeNeedsBalances": "Ang balances ng Wallet ay hindi pa rin nai-load. Subukan muli sa isang minuto."
   },
   "onboarding": {
     "optIn": {

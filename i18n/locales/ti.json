@@ -4501,7 +4501,8 @@
     "automaticStage": {
       "tokenApproval": "ምፍቃድ ቶክን ብቐጥታ…",
       "permitApproval": "ምፍቃድ ናይ ቦታ መጻርይ ብቐጥታ…",
-      "submit": "ናይ ቦታኻ ብቐጥታ ይፈጥር…"
+      "submit": "ናይ ቦታኻ ብቐጥታ ይፈጥር…",
+      "swap": "ብዘይርጉሕ ምቕያርን ምፍጣርን ናትካ ቦታ..."
     },
     "combined": "ዝተሓሓዘ መዳርግቲ · ባይስ + BNB",
     "reference": "መዳርግቲ መጥቀምታ · USD",
@@ -4533,6 +4534,7 @@
     "adjustRange": "ክልል መምላእ ኣዐርዮ",
     "estimated": "ምሉእ ብምሉእ እተቐየረ",
     "network": "ናይ ገንዘብ መርበብ",
+    "automatic": "ብዘይርጉሕ",
     "balanceError": "ናይ ሚዛን መርመራ ኣይተዓወተን ። ንድሕሪት ምምላስ ጠውቑ ።",
     "initializes": "እዚ ድማ ነቲ 0% ገንዳ ይጅምር ።",
     "pendingNote": "እቲ ግብረ-ግብሪኻ ቀሪቡ እዩ ። ብዘይ ካልእ ኣታዊ ምዝገባ ወይ ምዝገባ ዳግም ምጅማር ። ነቲ ግብረ-ሰናይ ንምርኣይ ጠውቑ ።",
@@ -4544,6 +4546,7 @@
     "noMyPositions": "እቲ ቦታኻ ድሕሪ እቲ ናይ መጀመርታ ትእዛዝካ ኣብዚ ክርአ እዩ ።",
     "ready": "ንምስጓም ተዳልዩ",
     "converting": "ምቕያር",
+    "waiting": "ይጽበ",
     "withdrawReview": "ምስሕሓብ {{dhb}}DHB {{usdc}}USDC ኣብ {{chain}}? ቅድሚ ምዝራቡ መጠን ይሓድሶ ፣ ናይ ዋጋ ተጻዋርነት 0.5% እዩ ።",
     "cancel": "ሰርዝ",
     "onchain": "ኣብ ሰንሰለት ርአ",
@@ -4559,7 +4562,9 @@
       "permitApproval": "ኣብ ቦርሳኻ ኣጽዲቕካ ኣጽዲቕካ...",
       "submit": "ኣብ ቦርሳኻ ዘሎ ቦታ ኣረጋግጽ...",
       "confirm": "ንምእማን ተጸበዩ...",
-      "index": "ቦታኻ ኣመዝጊብካ..."
+      "index": "ቦታኻ ኣመዝጊብካ...",
+      "swap": "ኣብ ናትካ ቦርሳ ምቕያር ኣረጋግጽ...",
+      "swapConfirm": "ይጽበ ንምርግጋጽ ምቕያር..."
     },
     "title": "DHB / ዶላር",
     "heading": "DHB / ዶላር",
@@ -4576,7 +4581,11 @@
     "noOrders": "ትእዛዝ የለን",
     "noBids": "መወከሲ የለን",
     "noDepth": "ቦታታት ኣብ ዝተዘርዘሩሉ እዋን ጥልቀት ይመጽእ ።",
+    "amountToken": "{{token}} ብዝሒ",
+    "balanceToken": "{{chain}} · {{amount}} {{token}} ይርከብ",
+    "noBalanceToken": "ኣብ Base ወይ BNB Chain {{token}} የለን",
     "connectToken": "ኣብ {{token}}",
+    "reviewToken": "ምምርማር፦ {{amount}} {{token}} ኣብ {{chain}} ብ {{minPrice}}–{{maxPrice}} USDC ን DHB ኣስመዝግብ። ናትካ ቦርሳ ፍቓድ ክሓትእ እዩ ከምኡ እውን ቦታ ክፈጥር እዩ።",
     "buyExplanation": "USDC ጥራይ ኣእቲኻ ። እቲ ዝለዓለ ዋጋኻ ዝለዓለ ዋጋ እዩ ፣ እቲ ቦታ DHB ኣብ ውሽጢ እቲ ክልል ከም ዝወድቕ ይመልእ ።",
     "sellExplanation": "DHB ጥራይ ኣእቲኻ ። እቲ ናይ ታሕተዋይ ሕቶኻ እቲ ታሕተዋይ ዋጋ እዩ ፤ እቲ ቦታ DHB ኣብ ውሽጢ እቲ ክልል ከም ዝሸይጥ ይመልእ ።",
     "feeNote": "0% LP fee · ናይ መርበብ ጋዝ ይምልከት ።",
@@ -4586,6 +4595,7 @@
     "maximum": "ዝበዝሐ ብር ብኣሜሪካ ዶላር ንኣንድሓር DHB",
     "balance": "{{chain}} · {{amount}} ፈሳሲ DHB",
     "noBalance": "ኣብ ባይታ ወይ ብ BNB ጸረፍ ፈሳሲ DHB የለን",
+    "reviewDetail": "ምምርማር፦ {{amount}} DHB ኣብ {{chain}} ብ {{minPrice}}–{{maxPrice}} USDC ን DHB ጽሓፍ። ናትካ ቦርሳ ፍቓድ ክሓትእ እዩ ከምኡ እውን ቦታ ክፈጥር እዩ።",
     "approve": "ፍቓድ  ከምኡ ድማ  ፈጥር",
     "review": "ቦታ  ኣይርኣይ",
     "allListings": "ኩሉ  ኣስመዝገብቲ",
@@ -4608,7 +4618,13 @@
     "useMarket": "ዋጋ  ኣህጉራዊ  ተጠቐም",
     "noFunding": "ኣብ  {{chain}}  {{token}}  የለን።",
     "noListingsChain": "ኣብ  {{chain}}  ኣስመዝገብቲ  ገና  የለን።",
-    "listedDhb": "ኣስመዝገበ  DHB · {{chain}}"
+    "listedDhb": "ኣስመዝገበ  DHB · {{chain}}",
+    "payWith": "ከፊል",
+    "noBaseFunds": "ኣብ Base ETH, USDC ወይ USDT የለን",
+    "reviewSwap": "ቀዲምካ ብ {{amountIn}} {{symbol}} ን {{usdc}} USDC ኣብ Base ለውጥ። ዘይተጠቀመሉ {{symbol}} ኣብቲ ሓደ ግብይቲ ይመለስ።",
+    "pendingSwapNote": "ናቶም {{symbol}} ን USDC ለዊጥካ ኣሎ። ቦታ ንምፍጣር ብዘይ ምቕያር ብቐጻሊ ጽገ።",
+    "resumeMint": "ትእዛዝ ቀጽል",
+    "resumeNeedsBalances": "ናቶም ቦርሳታት ሚዛን ገና እናጸዓነ ኣሎ። ጸኒሕኩም ብቐጻሊ ጸገ።"
   },
   "onboarding": {
     "optIn": {

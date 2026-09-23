@@ -4496,7 +4496,8 @@
     "automaticStage": {
       "tokenApproval": "自动批准代币…",
       "permitApproval": "自动批准仓位访问…",
-      "submit": "自动创建您的仓位…"
+      "submit": "自动创建您的仓位…",
+      "swap": "自动兑换并创建您的仓位…"
     },
     "combined": "合并市场 · Base + BNB",
     "reference": "市场参考 · USD",
@@ -4555,7 +4556,9 @@
       "permitApproval": "确认钱包里的仓位批准…",
       "submit": "确认钱包里的仓位…",
       "confirm": "等待确认…",
-      "index": "注册仓位…"
+      "index": "注册仓位…",
+      "swap": "在您的钱包中确认兑换…",
+      "swapConfirm": "等待兑换确认…"
     },
     "title": "DHB / 美元",
     "heading": "DHB / 美元",
@@ -4609,7 +4612,13 @@
     "useMarket": "使用市价",
     "noFunding": "{{chain}} 上没有 {{token}} 可用。",
     "noListingsChain": "{{chain}} 上尚无挂单。",
-    "listedDhb": "已挂单DHB · {{chain}}"
+    "listedDhb": "已挂单DHB · {{chain}}",
+    "payWith": "支付方式",
+    "noBaseFunds": "Base 上没有 ETH、USDC 或 USDT",
+    "reviewSwap": "先在 Base 上兑换大约 {{amountIn}} {{symbol}} 为 {{usdc}} USDC。剩余的 {{symbol}} 会在同一笔交易中退还。",
+    "pendingSwapNote": "您的 {{symbol}} 已兑换为 USDC。继续创建仓位，无需再次兑换。",
+    "resumeMint": "继续下单",
+    "resumeNeedsBalances": "钱包余额仍在加载中。请稍后再试。"
   },
   "onboarding": {
     "optIn": {

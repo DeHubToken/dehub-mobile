@@ -4547,7 +4547,8 @@
     "automaticStage": {
       "tokenApproval": "Žetonų tvirtinimas automatiškai…",
       "permitApproval": "Pozicijos prieigos tvirtinimas automatiškai…",
-      "submit": "Jūsų pozicijos kūrimas automatiškai…"
+      "submit": "Jūsų pozicijos kūrimas automatiškai…",
+      "swap": "Automatinis pozicijos sukeitimas ir sukūrimas..."
     },
     "combined": "Kombinuota rinka · Base + BNB",
     "reference": "Rinkos nuoroda · USD",
@@ -4607,7 +4608,9 @@
       "permitApproval": "Patvirtinkite pozicijos patvirtinimą savo piniginėje…",
       "submit": "Patvirtinkite poziciją savo piniginėje…",
       "confirm": "Laukiama patvirtinimo…",
-      "index": "Registruojama jūsų pozicija…"
+      "index": "Registruojama jūsų pozicija…",
+      "swap": "Patvirtinkite keitimą piniginėje...",
+      "swapConfirm": "Laukiama sukeitimo patvirtinimo..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4661,7 +4664,12 @@
     "useMarket": "Naudoti rinkos kainą",
     "noFunding": "Nėra {{token}} prieinama ant {{chain}}.",
     "noListingsChain": "Dar nėra sąrašų ant {{chain}}.",
-    "listedDhb": "Išvardinti DHB · {{chain}}"
+    "listedDhb": "Išvardinti DHB · {{chain}}",
+    "payWith": "Mokėti naudojant",
+    "noBaseFunds": "Nėra ETH, USDC arba USDT už bazinę kainą",
+    "pendingSwapNote": "Jūsų {{symbol}} buvo pakeistas į USDC. Tęskite, kad sukurtumėte poziciją, nekeisdami jos dar kartą.",
+    "resumeMint": "Tęsti užsakymą",
+    "resumeNeedsBalances": "Piniginės likučiai vis dar įkeliami. Netrukus bandykite dar kartą."
   },
   "onboarding": {
     "optIn": {

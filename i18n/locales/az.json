@@ -4531,7 +4531,8 @@
     "automaticStage": {
       "tokenApproval": "Tokenlərin avtomatik təsdiqlənməsi…",
       "permitApproval": "Mövqe girişinin avtomatik təsdiqlənməsi…",
-      "submit": "Mövqeyinizin avtomatik yaradılması…"
+      "submit": "Mövqeyinizin avtomatik yaradılması…",
+      "swap": "Avtomatik olaraq mövqeyinizi dəyişdirmək və yaratmaq..."
     },
     "combined": "Birləşdirilmiş bazar · Base + BNB",
     "reference": "Bazar istinadı · USD",
@@ -4591,7 +4592,9 @@
       "permitApproval": "Cüzdanınızda mövqenin təsdiqlənməsini təsdiqləyin…",
       "submit": "Cüzdanınızda mövqenin təsdiqlənməsini təsdiqləyin…",
       "confirm": "Təsdiqlənmə gözlənilir…",
-      "index": "Mövqenizi qeyd edirik…"
+      "index": "Mövqenizi qeyd edirik…",
+      "swap": "Cüzdanınızda dəyişdirməni təsdiqləyin...",
+      "swapConfirm": "Dəyişdirmənin təsdiqlənməsini gözləyin..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4622,6 +4625,7 @@
     "maximum": "Maksimum USD DHB üçün",
     "balance": "{{chain}} · {{amount}} maye DHB",
     "noBalance": "Base və ya BNB Chain-də maye DHB yoxdur",
+    "reviewDetail": "Nəzərdən keçirin: {{amount}} DHB-ni {{chain}}-də {{minPrice}}–{{maxPrice}} USDC hər DHB üçün siyahıya alın. Cüzdanınız təsdiqlər istəyəcək və mövqeyi yaradacaq.",
     "approve": "Təsdiqləyin və yaradın",
     "review": "Mövqeyə baxış",
     "allListings": "Bütün siyahılar",
@@ -4644,7 +4648,13 @@
     "useMarket": "Bazar qiymətindən istifadə edin",
     "noFunding": "{{chain}}-də {{token}} mövcud deyil.",
     "noListingsChain": "{{chain}}-də hələ siyahı yoxdur.",
-    "listedDhb": "Siyahıya alınmış DHB · {{chain}}"
+    "listedDhb": "Siyahıya alınmış DHB · {{chain}}",
+    "payWith": "Ödəniş",
+    "noBaseFunds": "Base-də ETH, USDC və ya USDT yoxdur",
+    "reviewSwap": "Əvvəlcə Base-də təxminən {{amountIn}} {{symbol}}-i {{usdc}} USDC üçün dəyişdirin. İstifadə olunmamış {{symbol}} eyni əməliyyatda geri qaytarılır.",
+    "pendingSwapNote": "Sizin {{symbol}} USDC üçün dəyişdirildi. Yenidən dəyişdirmədən mövqe yaratmaq üçün davam edin.",
+    "resumeMint": "Sifarişi davam etdirin",
+    "resumeNeedsBalances": "Cüzdan balansları hələ də yüklənir. Bir azdan yenidən cəhd edin."
   },
   "onboarding": {
     "optIn": {

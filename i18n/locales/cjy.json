@@ -4504,7 +4504,8 @@
     "automaticStage": {
       "tokenApproval": "自动批准代币…",
       "permitApproval": "自动批准仓位访问…",
-      "submit": "自动创建您的仓位…"
+      "submit": "自动创建您的仓位…",
+      "swap": "自动兑换和创建您的仓位…"
     },
     "combined": "综合市场 · Base + BNB",
     "reference": "市场参考 · USD",
@@ -4564,7 +4565,9 @@
       "permitApproval": "在您的钱包中确认仓位批准…",
       "submit": "在您的钱包中确认仓位…",
       "confirm": "等待确认…",
-      "index": "注册您的仓位…"
+      "index": "注册您的仓位…",
+      "swap": "在您的钱包中确认兑换…",
+      "swapConfirm": "等待兑换确认…"
     },
     "intro": "使用 Uniswap v4 仓位设置您的买入或卖出价格。订单会在交易穿过其范围时成交。",
     "buySell": "买入 / 卖出",
@@ -4616,7 +4619,13 @@
     "useMarket": "使用市价",
     "noFunding": "{{chain}} 上没有 {{token}} 可用。",
     "noListingsChain": "{{chain}} 上还没有挂单。",
-    "listedDhb": "已挂单 DHB · {{chain}}"
+    "listedDhb": "已挂单 DHB · {{chain}}",
+    "payWith": "支付方式",
+    "noBaseFunds": "Base 上没有 ETH、USDC 或 USDT",
+    "reviewSwap": "先在 Base 上兑换大约 {{amountIn}} {{symbol}} 为 {{usdc}} USDC。未使用的 {{symbol}} 将在同一笔交易中退还。",
+    "pendingSwapNote": "您的 {{symbol}} 已兑换为 USDC。继续创建仓位，无需再次兑换。",
+    "resumeMint": "继续下单",
+    "resumeNeedsBalances": "钱包余额仍在加载中。请稍后再试。"
   },
   "onboarding": {
     "optIn": {

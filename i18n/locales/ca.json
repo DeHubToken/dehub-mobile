@@ -4550,7 +4550,8 @@
     "automaticStage": {
       "tokenApproval": "Aprovant tokens automàticament…",
       "permitApproval": "Aprovant l'accés a la posició automàticament…",
-      "submit": "Creant la teva posició automàticament…"
+      "submit": "Creant la teva posició automàticament…",
+      "swap": "Intercanviar i crear la teva posició automàticament..."
     },
     "combined": "Mercat combinat · Base + BNB",
     "reference": "Referència de mercat · USD",
@@ -4610,7 +4611,9 @@
       "permitApproval": "Confirma l'aprovació de la posició a la teva cartera…",
       "submit": "Confirma la posició a la teva cartera…",
       "confirm": "Esperant confirmació…",
-      "index": "Registrant la teva posició…"
+      "index": "Registrant la teva posició…",
+      "swap": "Confirma l'intercanvi a la teva cartera...",
+      "swapConfirm": "S'està esperant l'intercanvi per confirmar..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4664,7 +4667,13 @@
     "useMarket": "Utilitza el preu de mercat",
     "noFunding": "No hi ha {{token}} disponibles a {{chain}}.",
     "noListingsChain": "Encara no hi ha llistes a {{chain}}.",
-    "listedDhb": "DHB cotitzat · {{chain}}"
+    "listedDhb": "DHB cotitzat · {{chain}}",
+    "payWith": "Paga amb",
+    "noBaseFunds": "No hi ha ETH, USDC ni USDT a la base",
+    "reviewSwap": "Canvia {{amountIn}}{{symbol}} per {{usdc}} USDC a Base first. El {{symbol}} no utilitzat es retorna en la mateixa transacció.",
+    "pendingSwapNote": "El teu {{symbol}} s'ha intercanviat per USDC. Torna a crear la posició sense tornar a intercanviar-la.",
+    "resumeMint": "Reprèn la comanda",
+    "resumeNeedsBalances": "Els saldos de la cartera encara s'estan carregant. Torna-ho a provar en un moment."
   },
   "onboarding": {
     "optIn": {

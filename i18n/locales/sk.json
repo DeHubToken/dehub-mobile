@@ -4657,7 +4657,8 @@
     "automaticStage": {
       "tokenApproval": "Automatické schvaľovanie tokenov…",
       "permitApproval": "Automatické schvaľovanie prístupu k pozícii…",
-      "submit": "Automatické vytváranie vašej pozície…"
+      "submit": "Automatické vytváranie vašej pozície…",
+      "swap": "Automatická výmena a vytvorenie pozície..."
     },
     "combined": "Kombinovaný trh · Base + BNB",
     "reference": "Referenčný trh · USD",
@@ -4717,7 +4718,9 @@
       "permitApproval": "Potvrďte schválenie pozície vo svojej peňaženke…",
       "submit": "Potvrďte pozíciu vo svojej peňaženke…",
       "confirm": "Čaká sa na potvrdenie…",
-      "index": "Registruje sa vaša pozícia…"
+      "index": "Registruje sa vaša pozícia…",
+      "swap": "Potvrďte výmenu v peňaženke...",
+      "swapConfirm": "Čaká sa na potvrdenie výmeny..."
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4771,7 +4774,13 @@
     "useMarket": "Použiť trhovú cenu",
     "noFunding": "Žiadne {{token}} dostupné na {{chain}}.",
     "noListingsChain": "Zatiaľ žiadne ponuky na {{chain}}.",
-    "listedDhb": "Zaradené DHB · {{chain}}"
+    "listedDhb": "Zaradené DHB · {{chain}}",
+    "payWith": "Zaplatiť cez",
+    "noBaseFunds": "Žiadne ETH, USDC alebo USDT na základni",
+    "reviewSwap": "Vymeňte najskôr {{amountIn}} {{symbol}} za {{usdc}} USDC na základni. Nepoužité {{symbol}} sa vráti v tej istej transakcii.",
+    "pendingSwapNote": "Váš účet {{symbol}} bol vymenený za USDC. Pokračujte a vytvorte pozíciu bez opätovného vymenenia.",
+    "resumeMint": "Obnoviť objednávku",
+    "resumeNeedsBalances": "Zostatky v peňaženke sa stále načítavajú. Skúste to znova o chvíľu."
   },
   "onboarding": {
     "optIn": {
