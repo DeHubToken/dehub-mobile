@@ -4284,7 +4284,53 @@
     "payWith": "Pay with",
     "resumeMint": "Resume order",
     "buyWithBnbNote": "Trading for BNB Chain don close. You get BNB? Use am buy DHB for Base.",
-    "buyWithBnb": "Buy with BNB"
+    "buyWithBnb": "Buy with BNB",
+    "pools": {
+      "title": "Pools",
+      "search": "Search pools",
+      "loading": "Loading pools…",
+      "add": "Add pool",
+      "network": "Network",
+      "contract": "Token contract address",
+      "mintPlaceholder": "Token mint address",
+      "openExisting": "Open it",
+      "feeDhb": "≈ {{amount}} DHB",
+      "uploading": "Uploading image…"
+    },
+    "pool": {
+      "changeImage": "Change image",
+      "imageUpdated": "Pool image updated",
+      "volume24": "24h volume",
+      "size": "Size ({{symbol}})",
+      "total": "Total ({{symbol}})",
+      "buyTotal": "Bids {{amount}} {{symbol}}",
+      "sellTotal": "Asks {{amount}} {{symbol}}",
+      "orderType": "Order type",
+      "limit": "Limit",
+      "instant": "Instant",
+      "instantBuy": "Instant buy",
+      "instantSell": "Instant sell",
+      "confirmInstantBuy": "Confirm instant buy",
+      "confirmInstantSell": "Confirm instant sell",
+      "buyAt": "Buy at price",
+      "sellAt": "Sell at price",
+      "enterPrice": "Enter a price.",
+      "priceImpact": "Price impact",
+      "minimum": "Minimum order",
+      "openOrders": "Open orders",
+      "myOrders": "My orders",
+      "cancel": "Cancel",
+      "cancelled": "Order cancelled",
+      "bought": "Bought {{amount}} {{symbol}}",
+      "sold": "Sold {{amount}} {{symbol}}"
+    },
+    "chart": {
+      "depthLabel": "Order book depth by USD price"
+    },
+    "connectWallet": "Connect wallet",
+    "sellAmount": "Sell amount",
+    "spend": "Spend",
+    "withdrawFailed": "Withdrawal failed"
   },
   "onboarding": {
     "optIn": {

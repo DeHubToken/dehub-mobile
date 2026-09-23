@@ -4005,7 +4005,10 @@
     "lpUsd": "LP · USD",
     "totalLiquidity": "کل لیکویڈیٹی · USD",
     "buyWithBnbNote": "BNB Chain پر ٹریڈنگ بند ہوگئی۔ BNB ہے؟ اس سے Base پر DHB خریدو۔",
-    "buyWithBnb": "BNB سے خریدو"
+    "buyWithBnb": "BNB سے خریدو",
+    "pools": {
+      "feeDhb": "≈ {{amount}} DHB"
+    }
   },
   "drafts": {
     "justNow": "ابھی ابھی",

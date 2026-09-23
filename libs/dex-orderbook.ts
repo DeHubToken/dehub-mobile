@@ -71,7 +71,7 @@ export function nearestBookLevels(levels: BookLevel[], bid: boolean, count: numb
 /** Decimal places a grouping step needs so neighbouring grouped rows never print as the same price. */
 export function incrementDecimals(increment: number) {
   if (!Number.isFinite(increment) || increment <= 0) return 8;
-  return Math.min(8, Math.max(0, Math.ceil(-Math.log10(increment) - 1e-9)));
+  return Math.min(12, Math.max(0, Math.ceil(-Math.log10(increment) - 1e-9)));
 }
 /** Fixed decimals that follow the grouping step, so rows align and each level stays distinct. */
 export function formatBookPrice(value: number | null | undefined, increment: number) {
@@ -84,7 +84,7 @@ export function formatIncrement(increment: number) {
 export function formatPrice(value: number | null | undefined) {
   if (value == null || !Number.isFinite(value)) return '—';
   const magnitude = Math.abs(value);
-  const digits = magnitude > 0 && magnitude < 1 ? Math.min(8, Math.max(2, 4 - Math.floor(Math.log10(magnitude)))) : 5;
+  const digits = magnitude > 0 && magnitude < 1 ? Math.min(12, Math.max(2, 4 - Math.floor(Math.log10(magnitude)))) : 5;
   return value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: digits });
 }
 export function formatSize(value: number) {
@@ -150,4 +150,23 @@ export function priceNeedsWarning(side: 'buy' | 'sell', price: number | null | u
   // A sell below the market and a buy above it are the costly directions; the other way
   // is merely patient, and patience is what a limit order is for.
   return side === 'sell' ? deviation < -fraction : deviation > fraction;
+}
+
+/** A book from plain limit orders (Solana trigger orders): each rests at one price. */
+export function levelBook(orders: { side: 'buy' | 'sell'; price: number; size: number }[], increment: number) {
+  const step = Number.isFinite(increment) && increment > 0 ? increment : 0.00000001;
+  const bids = new Map<number, BookLevel>(), asks = new Map<number, BookLevel>();
+  for (const o of orders) {
+    if (!(o.price > 0) || !(o.size > 0)) continue;
+    const bid = o.side === 'buy';
+    const key = Number(((bid ? Math.floor(o.price / step + 1e-8) : Math.ceil(o.price / step - 1e-8)) * step).toPrecision(12));
+    const book = bid ? bids : asks;
+    const level = book.get(key) || { price: key, dhb: 0, usdc: 0, cumulativeDhb: 0 };
+    level.dhb += o.size; level.usdc += o.size * o.price; book.set(key, level);
+  }
+  const finish = (book: Map<number, BookLevel>, bid: boolean) => {
+    let total = 0;
+    return [...book.values()].sort((a, b) => bid ? b.price - a.price : a.price - b.price).map((level) => ({ ...level, cumulativeDhb: (total += level.dhb) }));
+  };
+  return { bids: finish(bids, true), asks: finish(asks, false) };
 }

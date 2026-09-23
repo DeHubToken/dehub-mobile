@@ -4316,7 +4316,10 @@
     "totalLiquidity": "মোট তারল্য · USD",
     "noBalance": "बेस या বিএনबी चेन पर कोई तरल डीएचबी नहीं",
     "buyWithBnbNote": "BNB Chain-ত ট্রেডিং বন্ধ হয়া গেইছে। BNB আছে? ওটা দিয়া Base-ত DHB কিনেন।",
-    "buyWithBnb": "BNB দিয়া কিনেন"
+    "buyWithBnb": "BNB দিয়া কিনেন",
+    "pools": {
+      "feeDhb": "≈ {{amount}} DHB"
+    }
   },
   "drafts": {
     "justNow": "এইমাত্র",
