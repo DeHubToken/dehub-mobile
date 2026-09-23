@@ -4442,7 +4442,25 @@
     "pendingSwapNote": "তোমার {{symbol}} USDC-এর জন্য Swap করা হয়েছে। আবার Swap না করে Position তৈরি করতে Resume করো।",
     "resumeNeedsBalances": "Wallet ব্যালেন্স লোড হচ্ছে। একটু পরে আবার চেষ্টা করো।",
     "buyWithBnbNote": "BNB Chain-ত ট্রেডিং বন্ধ। BNB আছে না? ইয়েন দি Base-ত DHB কিনন।",
-    "buyWithBnb": "BNB দি কিনন"
+    "buyWithBnb": "BNB দি কিনন",
+    "pools": {
+      "feeDhb": "≈ {{amount}} DHB"
+    },
+    "chart": {
+      "bookStarts": "বইখান এত্তুন শুরু অইয়ে",
+      "firstOrder": "লিকুইডিটি যোগ অইন্য প্রথম অর্ডার দেওন লাগিবো।",
+      "waiting": "প্রাইস ডেটার লাইগ্গুন অপেক্ষা করতাছি",
+      "candlesStart": "এই টোকেন ট্রেড অইলে ক্যান্ডেল দেখা যাইবো।",
+      "depthLabel": "USD প্রাইস অনুযায়ী অর্ডার বুকের ডেপথ",
+      "priceLabel": "USD-এ {{symbol}} প্রাইস ক্যান্ডেলস্টিক",
+      "depthHint": "ক্রমযোজিত {{symbol}} · দেখির লাইগ্গুন হোভার কর",
+      "priceHint": "{{symbol}} প্রাইস · USD · দেখির লাইগ্গুন হোভার কর"
+    },
+    "connectWallet": "ওয়ালেট কানেক্ট করুন",
+    "prepareFailed": "পজিশন তৈরি করা যায়নি",
+    "sellAmount": "বিক্রির পরিমাণ",
+    "spend": "খরচ",
+    "withdrawFailed": "উইথড্রয়াল ফেইল"
   },
   "onboarding": {
     "steps": {

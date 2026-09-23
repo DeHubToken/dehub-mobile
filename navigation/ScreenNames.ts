@@ -31,6 +31,7 @@ export enum ScreenNames {
   EditProfile = 'EditProfile',
   Dpay = 'Dpay',
   Dex = 'Dex',
+  DexPool = 'DexPool',
   FollowList = 'FollowList',
   RepostQuoteList = 'RepostQuoteList',
   PrivacySettings = 'PrivacySettings',

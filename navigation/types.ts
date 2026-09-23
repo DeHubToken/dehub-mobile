@@ -124,6 +124,8 @@ export type AppStackParamList = {
   /** `initialTab` lets the drawer's Staking entry deep-link straight to the stake tab. */
   [ScreenNames.Dpay]: { initialTab?: "buy" | "stake" | "bridge" | "solana" } | undefined;
   [ScreenNames.Dex]: undefined;
+  /** A community pool: `chain` is base | ethereum | robinhood | solana, `address` the token contract or mint. */
+  [ScreenNames.DexPool]: { chain: string; address: string };
   [ScreenNames.PrivacySettings]: undefined;
   [ScreenNames.UploadQueue]: undefined;
   [ScreenNames.Drafts]: undefined;
