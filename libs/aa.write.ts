@@ -1,5 +1,7 @@
 import { ethers } from "ethers";
 import { parseTxError, applyGasMargin } from "./web3.util";
+import { createLogger } from "./logger";
+import { userOperationErrorDetail } from "./user-operation-error";
 
 type Hex = `0x${string}`;
 
@@ -126,6 +128,7 @@ export async function writeBatchAA(
     : provider?.smartAccount;
   if (!bundlerClient || !smartAccount) throw new Error("BATCH_UNSUPPORTED");
 
+  let phase = 'submission';
   try {
     const userOpHash = await bundlerClient.sendUserOperation({
       account: smartAccount,
@@ -138,6 +141,7 @@ export async function writeBatchAA(
       })),
     });
 
+    phase = 'receipt';
     const receipt = await bundlerClient.waitForUserOperationReceipt({ hash: userOpHash });
     if (!receipt?.success) {
       throw new Error(receipt?.reason || "User operation reverted");
@@ -145,10 +149,12 @@ export async function writeBatchAA(
     return { hash: receipt.receipt.transactionHash as string };
   } catch (err: any) {
     if (err?.message === "BATCH_UNSUPPORTED") throw err;
-    if (options?.sponsored === false) {
-      let raw = err instanceof Error ? err.message : String(err);
-      try { raw += ` ${JSON.stringify(err)}`; } catch { /* Best-effort nested error inspection. */ }
-      const lower = raw.toLowerCase();
+    createLogger('AABatch').error('Batched user operation failed', {
+      context: options?.context, sponsored: options?.sponsored !== false,
+      phase, detail: userOperationErrorDetail(err),
+    });
+    if (options?.sponsored === false && phase === 'submission') {
+      const lower = userOperationErrorDetail(err).toLowerCase();
       if (
         lower.includes("aa21") ||
         lower.includes("prefund") ||

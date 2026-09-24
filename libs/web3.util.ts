@@ -4,6 +4,7 @@
 // Falls back to generic context-based messages when no specific match.
 
 import { WALLET_LOCKED_DEFAULT_MESSAGE } from "./wallet-lock";
+import { userOperationErrorDetail, userOperationValidationMessage } from "./user-operation-error";
 
 export type TxContext = "approve" | "send" | string | undefined;
 
@@ -78,6 +79,8 @@ export function parseTxError(err: any, context: TxContext): string {
     return context === "approve" ? "Approval failed" : "Transaction failed";
   const code = err.code || err.error?.code;
   const raw = rawErrorText(err);
+  const validationMessage = userOperationValidationMessage(userOperationErrorDetail(err));
+  if (validationMessage) return validationMessage;
   // The decoded revert reason is appended so the branches below can match on
   // the word itself ("STF") rather than on its hex encoding.
   const msg = (raw + " " + decodeRevertReason(raw)).toLowerCase();
