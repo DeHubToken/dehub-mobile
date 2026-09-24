@@ -31,6 +31,7 @@ import { toastError, toastSuccess } from "../../libs/toast";
 import { parseTxError } from "../../libs/web3.util";
 import { erc20TransferAA } from "../../libs/aa.write";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
+import { sanitizeAmountInput } from "../../libs/amount-input";
 
 export interface TransferModalProps {
   open: boolean;
@@ -311,7 +312,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
             placeholder="0"
             placeholderTextColor="#8B8D90"
             value={amount}
-            onChangeText={setAmount}
+            onChangeText={(v) => setAmount(sanitizeAmountInput(v))}
             className="border border-theme-neutrals-700 rounded-lg px-3 h-12 text-white text-base"
           />
           <View className="flex-row justify-between mt-2">

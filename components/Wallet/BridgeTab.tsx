@@ -17,6 +17,7 @@ import { getSigningProvider } from "../../libs/provider.registry";
 import { supabase } from "../../services/supabase";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { FIELD_TEXT } from "../../theme/inputs";
+import { sanitizeAmountInput } from "../../libs/amount-input";
 
 interface BridgeTransfer {
   txHash: string;
@@ -285,7 +286,7 @@ const BridgeTab: React.FC = () => {
             placeholderTextColor="rgba(255,255,255,0.3)"
             keyboardType="decimal-pad"
             value={amount}
-            onChangeText={setAmount}
+            onChangeText={(v) => setAmount(sanitizeAmountInput(v))}
             style={FIELD_TEXT}
           />
           <TouchableOpacity

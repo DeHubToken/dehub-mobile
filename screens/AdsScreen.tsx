@@ -64,6 +64,7 @@ import {
   type AdCampaign,
   type CampaignStatus,
 } from "../hooks/useAds";
+import { sanitizeAmountInput } from "../libs/amount-input";
 
 /** Same treasury the AI credits / paywalls pay into (see ads-topup edge fn). */
 const ADS_TREASURY = "0xbf3039b0bb672b268e8384e30d81b1e6a8a43b2c";
@@ -217,7 +218,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
               <Text style={styles.label}>{t("ads.dailyBudget")}</Text>
               <TextInput
                 value={daily}
-                onChangeText={setDaily}
+                onChangeText={(v) => setDaily(sanitizeAmountInput(v, 2))}
                 placeholder="25"
                 placeholderTextColor="#8B8D90"
                 keyboardType="decimal-pad"
@@ -227,7 +228,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
               <Text style={styles.label}>{t("ads.totalBudget")}</Text>
               <TextInput
                 value={total}
-                onChangeText={setTotal}
+                onChangeText={(v) => setTotal(sanitizeAmountInput(v, 2))}
                 placeholder="500"
                 placeholderTextColor="#8B8D90"
                 keyboardType="decimal-pad"
