@@ -86,6 +86,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
         editable={!loading && !disabled}
         keyboardType="email-address"
         textContentType="emailAddress"
+        autoComplete="email"
         autoCapitalize="none"
         autoCorrect={false}
         autoFocus
@@ -104,6 +105,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
           editable={!loading && !disabled}
           secureTextEntry
           textContentType="password"
+          autoComplete="current-password"
           autoCapitalize="none"
           autoCorrect={false}
           returnKeyType="go"
