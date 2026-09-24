@@ -3167,6 +3167,16 @@
     "dollarPriceRange": "ໃສ່ $ 1–$ 1,000,000, ມີເຖິງສອງຈຸດ decimal."
   },
   "stores": {
+    "podToggle": "ສິນຄ້າພິມຕາມສັ່ງ",
+    "podHint": "ເຊື່ອມສິນຄ້າຈາກຮ້ານພິມຕາມສັ່ງຂອງທ່ານ. ຜູ້ໃຫ້ບໍລິການພິມ ແລະ ສົ່ງທຸກຄຳສັ່ງ, ບໍ່ຕ້ອງມີສະຕັອກ.",
+    "podUrlLabel": "ລິ້ງສິນຄ້າ",
+    "podProviderLabel": "ຜູ້ໃຫ້ບໍລິການ",
+    "podOther": "ອື່ນໆ",
+    "podInvalidUrl": "ປ້ອນລິ້ງ https:// ທີ່ຖືກຕ້ອງ",
+    "podBadge": "ພິມຕາມສັ່ງ",
+    "podBuyOn": "ຊື້ທີ່ {{provider}}",
+    "podNote": "ພິມ ແລະ ສົ່ງຕາມສັ່ງໂດຍ {{provider}}. ການຈ່າຍເງິນເຮັດຢູ່ເວັບໄຊຂອງເຂົາເຈົ້າ.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "ຄົ້ນພົບຜະລິດຕະພັນຈາກຊຸມຊົນ DeHub",
     "browse": "ເບິ່ງ",
     "myStore": "ຮ້ານຂອງຂ້ອຍ",

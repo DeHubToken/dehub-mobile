@@ -3168,6 +3168,16 @@
     "vaultReleaseTitle": "Tu @{{handle}} silẹ?"
   },
   "stores": {
+    "podToggle": "Ọjà títẹ̀ lórí ìbéèrè",
+    "podHint": "So ọjà kan pọ̀ láti ṣọ́ọ̀bù títẹ̀-lórí-ìbéèrè rẹ. Olùpèsè ń tẹ̀ ó sì ń fi ìbéèrè kọ̀ọ̀kan ránṣẹ́, nítorí náà o kò nílò ọjà ní ìpamọ́.",
+    "podUrlLabel": "Ìsopọ̀ ọjà",
+    "podProviderLabel": "Olùpèsè",
+    "podOther": "Òmíràn",
+    "podInvalidUrl": "Tẹ ìsopọ̀ https:// tó tọ́",
+    "podBadge": "Títẹ̀ lórí ìbéèrè",
+    "podBuyOn": "Rà lórí {{provider}}",
+    "podNote": "{{provider}} ń tẹ̀ ó sì ń fi ránṣẹ́ lórí ìbéèrè. Ìsanwó ń wáyé lórí ojú-òpó wọn.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Ṣàwárí àwọn ọjà láti ọ̀dọ̀ àwùjọ DeHub",
     "browse": "Wò",
     "myStore": "Ilé ìtajà mi",

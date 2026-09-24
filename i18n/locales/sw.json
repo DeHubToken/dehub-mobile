@@ -3168,6 +3168,16 @@
     "priceUsd": "Bei (USD)"
   },
   "stores": {
+    "podToggle": "Bidhaa ya kuchapishwa kwa oda",
+    "podHint": "Unganisha bidhaa kutoka duka lako la kuchapisha kwa oda. Mtoa huduma huchapisha na kutuma kila oda, hivyo huhitaji hisa.",
+    "podUrlLabel": "Kiungo cha bidhaa",
+    "podProviderLabel": "Mtoa huduma",
+    "podOther": "Nyingine",
+    "podInvalidUrl": "Weka kiungo halali cha https://",
+    "podBadge": "Uchapishaji kwa oda",
+    "podBuyOn": "Nunua kwenye {{provider}}",
+    "podNote": "Huchapishwa na kutumwa kwa oda na {{provider}}. Malipo hufanyika kwenye tovuti yao.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Gundua bidhaa kutoka kwa jumuiya ya DeHub",
     "browse": "Vinjari",
     "myStore": "Duka Langu",

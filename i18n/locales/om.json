@@ -3180,6 +3180,16 @@
     "priceUsd": "Gatii (USD) ."
   },
   "stores": {
+    "podToggle": "Meeshaa gaafii irratti maxxanfamu",
+    "podHint": "Oomisha suuqii kee maxxansa gaafii irraa walqabsiisi. Dhiyeessaan ajaja tokkoon tokkoon maxxansee erga, kuusaan hin barbaachisu.",
+    "podUrlLabel": "Hidhaa oomishaa",
+    "podProviderLabel": "Dhiyeessaa",
+    "podOther": "Kan biraa",
+    "podInvalidUrl": "Hidhaa https:// sirrii galchi",
+    "podBadge": "Maxxansa gaafii irratti",
+    "podBuyOn": "{{provider}} irratti bitadhu",
+    "podNote": "{{provider}}n gaafii irratti maxxansee erga. Kaffaltiin marsariitii isaanii irratti.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Oomishaalee hawaasa DeHub irraa argadhu",
     "browse": "Ilaali",
     "myStore": "Suuqii koo",

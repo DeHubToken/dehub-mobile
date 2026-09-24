@@ -3197,6 +3197,16 @@
     "priceUsd": "Priis (USD)"
   },
   "stores": {
+    "podToggle": "Print-on-Demand-Artikel",
+    "podHint": "Verlinke ein Produkt aus deinem Print-on-Demand-Shop. Der Anbieter druckt und versendet jede Bestellung, du brauchst kein Lager.",
+    "podUrlLabel": "Produktlink",
+    "podProviderLabel": "Anbieter",
+    "podOther": "Andere",
+    "podInvalidUrl": "Gib einen gültigen https://-Produktlink ein",
+    "podBadge": "Print on Demand",
+    "podBuyOn": "Bei {{provider}} kaufen",
+    "podNote": "Auf Bestellung gedruckt und versendet von {{provider}}. Bezahlt wird auf deren Website.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Entdeck Produkt us de DeHub-Community",
     "browse": "Duregah",
     "myStore": "Mys Lade",

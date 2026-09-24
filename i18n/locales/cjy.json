@@ -3167,6 +3167,16 @@
     "priceUsd": "价格 (美元)"
   },
   "stores": {
+    "podToggle": "按需印刷商品",
+    "podHint": "链接你的按需印刷店铺中的商品。服务商按单印刷并发货，你无需囤货。",
+    "podUrlLabel": "商品链接",
+    "podProviderLabel": "服务商",
+    "podOther": "其他",
+    "podInvalidUrl": "请输入有效的 https:// 商品链接",
+    "podBadge": "按需印刷",
+    "podBuyOn": "在 {{provider}} 购买",
+    "podNote": "由 {{provider}} 按需印刷并发货，在其网站结账。",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "寻寻 DeHub 社区嘞产品",
     "browse": "浏览",
     "myStore": "我嘞店",

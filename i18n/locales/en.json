@@ -3167,6 +3167,16 @@
     "boughtToVaultToast": "@{{handle}} is now in your usernames"
   },
   "stores": {
+    "podToggle": "Print-on-demand item",
+    "podHint": "Link a product from your print-on-demand shop. The provider prints and ships each order, so you hold no stock.",
+    "podUrlLabel": "Product link",
+    "podProviderLabel": "Provider",
+    "podOther": "Other",
+    "podInvalidUrl": "Enter a valid https:// product link",
+    "podBadge": "Print on demand",
+    "podBuyOn": "Buy on {{provider}}",
+    "podNote": "Printed and shipped on demand by {{provider}}. Checkout happens on their site.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Discover products from the DeHub community",
     "browse": "Browse",
     "myStore": "My Store",

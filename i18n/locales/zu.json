@@ -3198,6 +3198,16 @@
     "priceUsd": "Intengo (USD)"
   },
   "stores": {
+    "podToggle": "Into ephrintwa uma icelwa",
+    "podHint": "Xhuma umkhiqizo ovela esitolo sakho sokuphrinta uma kucelwa. Umhlinzeki uphrinta futhi athumele i-oda ngalinye, ngakho awudingi isitoko.",
+    "podUrlLabel": "Isixhumanisi somkhiqizo",
+    "podProviderLabel": "Umhlinzeki",
+    "podOther": "Okunye",
+    "podInvalidUrl": "Faka isixhumanisi esivumelekile se-https://",
+    "podBadge": "Ukuphrinta uma kucelwa",
+    "podBuyOn": "Thenga ku-{{provider}}",
+    "podNote": "Kuphrintwa futhi kuthunyelwe uma kucelwa ngu-{{provider}}. Ukukhokha kwenzeka kusayithi yabo.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Thola imikhiqizo emphakathini we-DeHub",
     "browse": "Bheka",
     "myStore": "Isitolo sami",

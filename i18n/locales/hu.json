@@ -3171,6 +3171,16 @@
     "priceUsd": "Ár (USD)"
   },
   "stores": {
+    "podToggle": "Igény szerinti nyomtatású termék",
+    "podHint": "Kapcsolj össze egy terméket az igény szerinti nyomtatási boltodból. A szolgáltató minden rendelést kinyomtat és elküld, így nem kell készlet.",
+    "podUrlLabel": "Termék linkje",
+    "podProviderLabel": "Szolgáltató",
+    "podOther": "Egyéb",
+    "podInvalidUrl": "Adj meg érvényes https:// termékhivatkozást",
+    "podBadge": "Igény szerinti nyomtatás",
+    "podBuyOn": "Vásárlás itt: {{provider}}",
+    "podNote": "Igény szerint nyomtatja és szállítja: {{provider}}. A fizetés az ő oldalukon történik.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Fedezd fel a DeHub-közösség termékeit",
     "browse": "Böngészés",
     "myStore": "Boltom",

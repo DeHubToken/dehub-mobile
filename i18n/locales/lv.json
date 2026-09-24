@@ -3167,6 +3167,16 @@
     "priceUsd": "Cena (USD)"
   },
   "stores": {
+    "podToggle": "Druka pēc pieprasījuma prece",
+    "podHint": "Piesaisti preci no sava drukas pēc pieprasījuma veikala. Piegādātājs izdrukā un nosūta katru pasūtījumu, krājumi nav vajadzīgi.",
+    "podUrlLabel": "Preces saite",
+    "podProviderLabel": "Piegādātājs",
+    "podOther": "Cits",
+    "podInvalidUrl": "Ievadi derīgu https:// saiti",
+    "podBadge": "Druka pēc pieprasījuma",
+    "podBuyOn": "Pirkt {{provider}}",
+    "podNote": "Drukā un nosūta pēc pieprasījuma {{provider}}. Apmaksa notiek viņu vietnē.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Atklāj DeHub kopienas produktus",
     "browse": "Pārlūkot",
     "myStore": "Mans veikals",

@@ -3180,6 +3180,16 @@
     "priceUsd": "Giá (USD)"
   },
   "stores": {
+    "podToggle": "Sản phẩm in theo yêu cầu",
+    "podHint": "Liên kết sản phẩm từ cửa hàng in theo yêu cầu của bạn. Nhà cung cấp in và giao từng đơn, nên bạn không cần tồn kho.",
+    "podUrlLabel": "Liên kết sản phẩm",
+    "podProviderLabel": "Nhà cung cấp",
+    "podOther": "Khác",
+    "podInvalidUrl": "Nhập liên kết https:// hợp lệ",
+    "podBadge": "In theo yêu cầu",
+    "podBuyOn": "Mua trên {{provider}}",
+    "podNote": "Được in và giao theo yêu cầu bởi {{provider}}. Thanh toán trên trang của họ.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Khám phá sản phẩm từ cộng đồng DeHub",
     "browse": "Duyệt",
     "myStore": "Cửa hàng của tôi",

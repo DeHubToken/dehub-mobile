@@ -3171,6 +3171,16 @@
     "boughtToVaultToast": "@{{handle}} أصبح الآن ضمن أسماء المستخدمين لديك"
   },
   "stores": {
+    "podToggle": "منتج طباعة عند الطلب",
+    "podHint": "اربط منتجًا من متجر الطباعة عند الطلب الخاص بك. يطبع المزوّد كل طلب ويشحنه، فلا تحتاج إلى مخزون.",
+    "podUrlLabel": "رابط المنتج",
+    "podProviderLabel": "المزوّد",
+    "podOther": "أخرى",
+    "podInvalidUrl": "أدخل رابط منتج صالحًا يبدأ بـ https://",
+    "podBadge": "طباعة عند الطلب",
+    "podBuyOn": "اشترِ من {{provider}}",
+    "podNote": "يُطبع ويُشحن عند الطلب بواسطة {{provider}}. يتم الدفع على موقعهم.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "اكتشف منتجات مجتمع DeHub",
     "browse": "تصفّح",
     "myStore": "متجري",

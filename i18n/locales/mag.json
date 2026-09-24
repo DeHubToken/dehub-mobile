@@ -3167,6 +3167,16 @@
     "vaultReleaseTitle": "{{handle}} को जारी करें?"
   },
   "stores": {
+    "podToggle": "प्रिंट-ऑन-डिमांड आइटम",
+    "podHint": "अपनी प्रिंट-ऑन-डिमांड दुकान से कोई उत्पाद लिंक करें। प्रदाता हर ऑर्डर छापकर भेजता है, इसलिए आपको स्टॉक नहीं रखना पड़ता।",
+    "podUrlLabel": "उत्पाद लिंक",
+    "podProviderLabel": "प्रदाता",
+    "podOther": "अन्य",
+    "podInvalidUrl": "एक मान्य https:// उत्पाद लिंक दर्ज करें",
+    "podBadge": "प्रिंट ऑन डिमांड",
+    "podBuyOn": "{{provider}} पर खरीदें",
+    "podNote": "{{provider}} द्वारा मांग पर छापा और भेजा जाता है। भुगतान उनकी साइट पर होता है।",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub समुदाय के उत्पाद खोजूँ",
     "browse": "देखूँ",
     "myStore": "हमर दुकान",

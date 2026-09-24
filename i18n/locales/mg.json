@@ -3190,6 +3190,16 @@
     "priceUsd": "Vidiny (USD)"
   },
   "stores": {
+    "podToggle": "Entana atonta rehefa angatahina",
+    "podHint": "Ampifandraiso vokatra avy amin'ny fivarotanao manonta rehefa angatahina. Ny mpamatsy no manonta sy mandefa ny kaomandy tsirairay, tsy mila tahiry ianao.",
+    "podUrlLabel": "Rohy vokatra",
+    "podProviderLabel": "Mpamatsy",
+    "podOther": "Hafa",
+    "podInvalidUrl": "Ampidiro rohy https:// manan-kery",
+    "podBadge": "Fanontana rehefa angatahina",
+    "podBuyOn": "Vidio ao amin'ny {{provider}}",
+    "podNote": "Atonta sy alefan'ny {{provider}} rehefa angatahina. Ao amin'ny tranonkalany no andoavana.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Hitady vokatra avy amin'ny vondrom-piarahamonina DeHub",
     "browse": "Hijery",
     "myStore": "Ny fivarotako",
