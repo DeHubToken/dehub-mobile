@@ -2031,6 +2031,26 @@ export default function UploadScreen() {
 
   return (
     <View className="flex-1 bg-theme-background">{/* don't add top inset */}
+      {!isQuoteMode && <View className="flex-row items-center justify-center px-4 pt-5 pb-2" style={{ gap: 12 }}>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !articleMode }}
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setShowTitle(false); }}>
+          <Text className={!isLiveMode && !articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("screens.post")}</Text>
+        </TouchableOpacity>
+        <Text className="text-white/25 text-xs">|</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isLiveMode }}
+          onPress={() => { setArticleMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
+          <Text className={isLiveMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.livestream")}</Text>
+        </TouchableOpacity>
+        <Text className="text-white/25 text-xs">|</Text>
+        <TouchableOpacity accessibilityRole="button" onPress={() => openStages("create")}>
+          <Text className="text-white/55 text-xs font-medium">{t("nav.stages")}</Text>
+        </TouchableOpacity>
+        <Text className="text-white/25 text-xs">|</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: articleMode }}
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(true); setShowTitle(true); setMonetization(emptyMonetization()); }}>
+          <Text className={articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.label")}</Text>
+        </TouchableOpacity>
+      </View>}
       <ScrollView
         className="flex-1"
         keyboardShouldPersistTaps="handled"
@@ -2040,26 +2060,6 @@ export default function UploadScreen() {
       >
         <Pressable className="flex-1" onPress={Keyboard.dismiss} accessible={false}>
         <View className="px-4 pt-4">
-          {!isQuoteMode && <View className="flex-row items-center justify-center mb-3" style={{ gap: 12 }}>
-            <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !articleMode }}
-              onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setShowTitle(false); }}>
-              <Text className={!isLiveMode && !articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("comments.post")}</Text>
-            </TouchableOpacity>
-            <Text className="text-white/25 text-xs">|</Text>
-            <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isLiveMode }}
-              onPress={() => { setArticleMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
-              <Text className={isLiveMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.livestream")}</Text>
-            </TouchableOpacity>
-            <Text className="text-white/25 text-xs">|</Text>
-            <TouchableOpacity accessibilityRole="button" onPress={() => openStages("create")}>
-              <Text className="text-white/55 text-xs font-medium">{t("nav.stages")}</Text>
-            </TouchableOpacity>
-            <Text className="text-white/25 text-xs">|</Text>
-            <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: articleMode }}
-              onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(true); setShowTitle(true); setMonetization(emptyMonetization()); }}>
-              <Text className={articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.label")}</Text>
-            </TouchableOpacity>
-          </View>}
           {/* Match web's composer header exactly: identity on the left, then
               chain, schedule and drafts on the right. The editor starts below
               this row and owns the full width. */}
@@ -2715,226 +2715,238 @@ export default function UploadScreen() {
               </View>
             )}
 
-            {/* One list of post options, in web's order: Mint, Title, Category,
-                Community, the access/monetization switches, then mature content
-                last of all. Every switch applies to every post type, as it does
-                on web — a text or image post can be gated or sold just like a
-                video. Rendered whatever the draft holds, so the options are on
-                screen from first open. */}
-            <View className="mt-4">
-              {/* Mint sits in the list rather than in a card of its own, as
-                  web's first PostAccessToggles row. Off by default, so a first
-                  post needs no wallet at all. */}
-              {!isQuoteMode && (
-                <View className="flex-row items-center justify-between py-3">
-                  <View className="flex-row items-center flex-1 mr-3">
-                    <Icon name="Coins" size={18} color="#fff" />
-                    <Text className="text-white text-sm ml-3">{t("upload.mintPost")}</Text>
-                    {/* Web can afford a separate span for each of these; a phone
-                        row cannot, so they share one line when both apply. */}
-                    {mintRequired || (effectiveShouldMint && mintFeeLabel) ? (
-                      <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
-                        ({[mintRequired ? "required for bounty" : null, effectiveShouldMint ? mintFeeLabel : null]
-                          .filter(Boolean)
-                          .join(" · ")})
-                      </Text>
-                    ) : null}
-                  </View>
-                  <CustomSwitch
-                    value={effectiveShouldMint}
-                    onValueChange={handleSetShouldMint}
-                    disabled={mintRequired}
-                  />
-                </View>
-              )}
-
-              {/* Title is forced on for video/audio/live, toggleable for the
-                  rest — same rule as web's PostAccessToggles. Non-video
-                  quotes can't carry a title, so the switch hides there. */}
-              {!isQuoteMode && !isLiveMode && !hasVideoOrAudio && (
-                <View className="flex-row items-center justify-between py-3">
-                  <View className="flex-row items-center">
-                    <Icon name="Type" size={18} color="#fff" />
-                    <Text className="text-white text-sm ml-3">{t("features.titleLabel")}</Text>
-                  </View>
-                  <CustomSwitch
-                    value={showTitle}
-                    onValueChange={handleToggleTitle}
-                  />
-                </View>
-              )}
-
-              <View className="py-3">
-                {plainCategories.length > 0 && (
-                  <View className="flex-row flex-wrap gap-2 mb-2">
-                    {plainCategories.map((c) => (
-                      <View
-                        key={c}
-                        className="flex-row items-center px-2 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700"
-                      >
-                        <Text className="text-white text-xs">{c.charAt(0).toUpperCase() + c.slice(1)}</Text>
-                        <TouchableOpacity
-                          onPress={() => removeCategory(c)}
-                          className="ml-1"
-                        >
-                          <Icon name="CircleX" size={14} color="#6F7174" />
-                        </TouchableOpacity>
-                      </View>
-                    ))}
-                  </View>
-                )}
-
-                {categories.length < CATEGORIES_MAX && (
-                  <TouchableOpacity
-                    onPress={openCategoryDrawer}
-                    activeOpacity={0.7}
-                    className="flex-row items-center"
-                  >
-                    <Icon name="Tag" size={18} color="#fff" />
-                    <Text className="text-white text-sm ml-3">{t("upload.addCategories")}</Text>
-                  </TouchableOpacity>
-                )}
-
-              </View>
-
-              {/* Community — only for the ones this account belongs to, the
-                  same condition web puts on its Community switch. Filing a
-                  post means carrying the slug as a category. */}
-              {userCommunities.length > 0 && (
-                <View className="py-3">
-                  <View className="flex-row items-center justify-between">
-                    <TouchableOpacity
-                      onPress={() => setCommunityOpen(true)}
-                      activeOpacity={0.7}
-                      className="flex-row items-center flex-1"
-                    >
-                      <Icon name="Users" size={18} color="#fff" />
-                      <Text className="text-white text-sm ml-3">{t("upload.community")}</Text>
-                    </TouchableOpacity>
-                    <CustomSwitch
-                      value={!!selectedCommunity}
-                      onValueChange={(v) =>
-                        v ? setCommunityOpen(true) : handleClearCommunity()
-                      }
-                    />
-                  </View>
-                  {selectedCommunity && (
-                    <View className="flex-row flex-wrap gap-2 mt-2">
-                      <View className="flex-row items-center px-2 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700">
-                        <Icon name="Users" size={12} color="#6F7174" />
-                        <Text className="text-white text-xs ml-1">
-                          {selectedCommunity.name}
-                        </Text>
-                        <TouchableOpacity onPress={handleClearCommunity} className="ml-1">
-                          <Icon name="CircleX" size={14} color="#6F7174" />
-                        </TouchableOpacity>
-                      </View>
-                    </View>
-                  )}
-                </View>
-              )}
-
-              {/* Made for kids — directly under Category and Community, as on
-                  web, because that is what it behaves like: in Kids Mode the
-                  category chips are derived from the categories kids posts
-                  actually carry, so this is what puts a post behind any of them.
-
-                  Far from the Mature switch at the bottom, and that distance is
-                  the point. Mature is last because a mis-tap there cost a
-                  creator the public feed; this one has the same problem
-                  pointing the other way, so it confirms before it arms.
-                  Turning it back off is free. */}
-              <TouchableOpacity
-                onPress={() => (isForKids ? setIsForKids(false) : setForKidsConfirmOpen(true))}
-                activeOpacity={0.7}
-                className="flex-row items-center justify-between py-3"
-              >
-                <View className="flex-row items-center flex-1 mr-3">
-                  <Icon name="Baby" size={18} color="#fff" />
-                  <Text className="text-white text-sm ml-3">{t("upload.madeForKids")}</Text>
-                  {isForKids ? (
-                    <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
-                      ({t("upload.madeForKidsHint")})
-                    </Text>
-                  ) : null}
-                </View>
-                <CustomSwitch
-                  value={isForKids}
-                  onValueChange={(v) => (v ? setForKidsConfirmOpen(true) : setIsForKids(false))}
-                />
-              </TouchableOpacity>
-
-              {!isQuoteMode && !articleMode && (
-                <MonetizationPanel
-                  state={monetization}
-                  onChange={handleMonetizationChange}
-                  postChainId={effectivePostChainId}
-                  onCreatePlan={() => setShowPlanForm(true)}
-                />
-              )}
-
-              {/* Shop — the creator's affiliate / shop link board. Tapping the
-                  row anywhere opens the editor, including when it is already
-                  on, so "add another link" is one tap rather than off-then-on. */}
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  onPress={() => setShopSheetVisible(true)}
-                  className="flex-row items-center justify-between py-3"
-                >
-                  <View className="flex-row items-center flex-1 mr-3">
-                    <Icon name="ShoppingBag" size={18} color="#fff" />
-                    <Text className="text-white text-sm ml-3">{t("upload.shop")}</Text>
-                    {shopRows ? (
-                      <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
-                        ({shopRows} of {shopAllowance.allowance})
-                      </Text>
-                    ) : null}
-                  </View>
-                  <CustomSwitch
-                    value={shopRows > 0}
-                    /* Turning it on opens the editor rather than writing an
-                       empty board — a switch that goes green and does nothing
-                       reads as a bug. Off clears the board; there is no flag to
-                       park it behind, and a post carrying an invisible board is
-                       worse than picking three things again. */
-                    onValueChange={(next: boolean) => {
-                      if (next) {
-                        setShopSheetVisible(true);
-                        return;
-                      }
-                      setShopLinks([]);
-                      setShopListingIds([]);
-                    }}
-                  />
-                </TouchableOpacity>
-
-              {/* Mature content — the creator's own declaration. Marking it
-                  keeps the post off the public feeds; it still reaches
-                  followers, the profile and anyone with the link.
-
-                  Last row, as on web. It is the only switch here that costs a
-                  creator reach on a post they believe is fine, so it sits past
-                  the options they came to set rather than second, under the
-                  thumb, where a stray tap goes unnoticed. */}
-                {MATURE_CONTENT_ENABLED && (
-                <View className="flex-row items-center justify-between py-3">
-                  <View className="flex-row items-center flex-1 mr-3">
-                    <Icon name="EyeOff" size={18} color="#fff" />
-                    <Text className="text-white text-sm ml-3">{t("upload.matureContent")}</Text>
-                    {isMature ? (
-                      <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
-                        (not shown on the public feed)
-                      </Text>
-                    ) : null}
-                  </View>
-                  <CustomSwitch value={isMature} onValueChange={setIsMature} />
-                </View>
-                )}
-            </View>
           </View>
         </View>
         </Pressable>
       </ScrollView>
+      {/* Options scroll in their own short box, as on web: the tabs and the
+          editor stay put while the switches scroll underneath them. */}
+      <View className="border-t border-white/10">
+        <ScrollView
+          style={{ maxHeight: 180 }}
+          contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 4 }}
+          nestedScrollEnabled
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
+          {/* One list of post options, in web's order: Mint, Title, Category,
+              Community, the access/monetization switches, then mature content
+              last of all. Every switch applies to every post type, as it does
+              on web — a text or image post can be gated or sold just like a
+              video. Rendered whatever the draft holds, so the options are on
+              screen from first open. */}
+          <View>
+            {/* Mint sits in the list rather than in a card of its own, as
+                web's first PostAccessToggles row. Off by default, so a first
+                post needs no wallet at all. */}
+            {!isQuoteMode && (
+              <View className="flex-row items-center justify-between py-3">
+                <View className="flex-row items-center flex-1 mr-3">
+                  <Icon name="Coins" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("upload.mintPost")}</Text>
+                  {/* Web can afford a separate span for each of these; a phone
+                      row cannot, so they share one line when both apply. */}
+                  {mintRequired || (effectiveShouldMint && mintFeeLabel) ? (
+                    <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
+                      ({[mintRequired ? "required for bounty" : null, effectiveShouldMint ? mintFeeLabel : null]
+                        .filter(Boolean)
+                        .join(" · ")})
+                    </Text>
+                  ) : null}
+                </View>
+                <CustomSwitch
+                  value={effectiveShouldMint}
+                  onValueChange={handleSetShouldMint}
+                  disabled={mintRequired}
+                />
+              </View>
+            )}
+
+            {/* Title is forced on for video/audio/live, toggleable for the
+                rest — same rule as web's PostAccessToggles. Non-video
+                quotes can't carry a title, so the switch hides there. */}
+            {!isQuoteMode && !isLiveMode && !hasVideoOrAudio && (
+              <View className="flex-row items-center justify-between py-3">
+                <View className="flex-row items-center">
+                  <Icon name="Type" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("features.titleLabel")}</Text>
+                </View>
+                <CustomSwitch
+                  value={showTitle}
+                  onValueChange={handleToggleTitle}
+                />
+              </View>
+            )}
+
+            <View className="py-3">
+              {plainCategories.length > 0 && (
+                <View className="flex-row flex-wrap gap-2 mb-2">
+                  {plainCategories.map((c) => (
+                    <View
+                      key={c}
+                      className="flex-row items-center px-2 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700"
+                    >
+                      <Text className="text-white text-xs">{c.charAt(0).toUpperCase() + c.slice(1)}</Text>
+                      <TouchableOpacity
+                        onPress={() => removeCategory(c)}
+                        className="ml-1"
+                      >
+                        <Icon name="CircleX" size={14} color="#6F7174" />
+                      </TouchableOpacity>
+                    </View>
+                  ))}
+                </View>
+              )}
+
+              {categories.length < CATEGORIES_MAX && (
+                <TouchableOpacity
+                  onPress={openCategoryDrawer}
+                  activeOpacity={0.7}
+                  className="flex-row items-center"
+                >
+                  <Icon name="Tag" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("upload.addCategories")}</Text>
+                </TouchableOpacity>
+              )}
+
+            </View>
+
+            {/* Community — only for the ones this account belongs to, the
+                same condition web puts on its Community switch. Filing a
+                post means carrying the slug as a category. */}
+            {userCommunities.length > 0 && (
+              <View className="py-3">
+                <View className="flex-row items-center justify-between">
+                  <TouchableOpacity
+                    onPress={() => setCommunityOpen(true)}
+                    activeOpacity={0.7}
+                    className="flex-row items-center flex-1"
+                  >
+                    <Icon name="Users" size={18} color="#fff" />
+                    <Text className="text-white text-sm ml-3">{t("upload.community")}</Text>
+                  </TouchableOpacity>
+                  <CustomSwitch
+                    value={!!selectedCommunity}
+                    onValueChange={(v) =>
+                      v ? setCommunityOpen(true) : handleClearCommunity()
+                    }
+                  />
+                </View>
+                {selectedCommunity && (
+                  <View className="flex-row flex-wrap gap-2 mt-2">
+                    <View className="flex-row items-center px-2 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700">
+                      <Icon name="Users" size={12} color="#6F7174" />
+                      <Text className="text-white text-xs ml-1">
+                        {selectedCommunity.name}
+                      </Text>
+                      <TouchableOpacity onPress={handleClearCommunity} className="ml-1">
+                        <Icon name="CircleX" size={14} color="#6F7174" />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                )}
+              </View>
+            )}
+
+            {/* Made for kids — directly under Category and Community, as on
+                web, because that is what it behaves like: in Kids Mode the
+                category chips are derived from the categories kids posts
+                actually carry, so this is what puts a post behind any of them.
+
+                Far from the Mature switch at the bottom, and that distance is
+                the point. Mature is last because a mis-tap there cost a
+                creator the public feed; this one has the same problem
+                pointing the other way, so it confirms before it arms.
+                Turning it back off is free. */}
+            <TouchableOpacity
+              onPress={() => (isForKids ? setIsForKids(false) : setForKidsConfirmOpen(true))}
+              activeOpacity={0.7}
+              className="flex-row items-center justify-between py-3"
+            >
+              <View className="flex-row items-center flex-1 mr-3">
+                <Icon name="Baby" size={18} color="#fff" />
+                <Text className="text-white text-sm ml-3">{t("upload.madeForKids")}</Text>
+                {isForKids ? (
+                  <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
+                    ({t("upload.madeForKidsHint")})
+                  </Text>
+                ) : null}
+              </View>
+              <CustomSwitch
+                value={isForKids}
+                onValueChange={(v) => (v ? setForKidsConfirmOpen(true) : setIsForKids(false))}
+              />
+            </TouchableOpacity>
+
+            {!isQuoteMode && !articleMode && (
+              <MonetizationPanel
+                state={monetization}
+                onChange={handleMonetizationChange}
+                postChainId={effectivePostChainId}
+                onCreatePlan={() => setShowPlanForm(true)}
+              />
+            )}
+
+            {/* Shop — the creator's affiliate / shop link board. Tapping the
+                row anywhere opens the editor, including when it is already
+                on, so "add another link" is one tap rather than off-then-on. */}
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => setShopSheetVisible(true)}
+                className="flex-row items-center justify-between py-3"
+              >
+                <View className="flex-row items-center flex-1 mr-3">
+                  <Icon name="ShoppingBag" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("upload.shop")}</Text>
+                  {shopRows ? (
+                    <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
+                      ({shopRows} of {shopAllowance.allowance})
+                    </Text>
+                  ) : null}
+                </View>
+                <CustomSwitch
+                  value={shopRows > 0}
+                  /* Turning it on opens the editor rather than writing an
+                     empty board — a switch that goes green and does nothing
+                     reads as a bug. Off clears the board; there is no flag to
+                     park it behind, and a post carrying an invisible board is
+                     worse than picking three things again. */
+                  onValueChange={(next: boolean) => {
+                    if (next) {
+                      setShopSheetVisible(true);
+                      return;
+                    }
+                    setShopLinks([]);
+                    setShopListingIds([]);
+                  }}
+                />
+              </TouchableOpacity>
+
+            {/* Mature content — the creator's own declaration. Marking it
+                keeps the post off the public feeds; it still reaches
+                followers, the profile and anyone with the link.
+
+                Last row, as on web. It is the only switch here that costs a
+                creator reach on a post they believe is fine, so it sits past
+                the options they came to set rather than second, under the
+                thumb, where a stray tap goes unnoticed. */}
+              {MATURE_CONTENT_ENABLED && (
+              <View className="flex-row items-center justify-between py-3">
+                <View className="flex-row items-center flex-1 mr-3">
+                  <Icon name="EyeOff" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("upload.matureContent")}</Text>
+                  {isMature ? (
+                    <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
+                      (not shown on the public feed)
+                    </Text>
+                  ) : null}
+                </View>
+                <CustomSwitch value={isMature} onValueChange={setIsMature} />
+              </View>
+              )}
+          </View>
+        </ScrollView>
+      </View>
 
       {isLiveMode && (
         <Animated.View style={liveSettingsAnimStyle}>
