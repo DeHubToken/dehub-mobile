@@ -4926,7 +4926,10 @@
       "padding": "Vidinė paraštė {{value}}",
       "thickness": "Storis {{value}}",
       "drawHint": "Braukite per puslapį, kad pieštumėte. Kiekvienas brūkšnys yra atskiras sluoksnis, kurį galite perkelti, keisti jo dydį ar ištrinti. Baigę bakstelėkite „Baigti piešti“.",
-      "layersHint": "Sąrašo viršus yra priekis. Rodyklėmis pakeiskite tvarką. Užrakintus ir paslėptus sluoksnius galima pasirinkti tik čia."
+      "layersHint": "Sąrašo viršus yra priekis. Rodyklėmis pakeiskite tvarką. Užrakintus ir paslėptus sluoksnius galima pasirinkti tik čia.",
+      "agentWebOnly": "Dalis to kol kas veikia tik žiniatinklio redaktoriuje.",
+      "brandLogoHint": "Pasirinkite paveikslėlį puslapyje ir naudokite jį kaip savo logotipą.",
+      "useAsLogo": "Naudoti pasirinktą paveikslėlį"
     },
     "filters": {
       "none": "Originalas",
@@ -5020,7 +5023,8 @@
     },
     "rail": {
       "elements": "Elementai",
-      "layers": "Sluoksniai"
+      "layers": "Sluoksniai",
+      "agent": "DI"
     },
     "blend": {
       "normal": "Normalus",
@@ -5056,6 +5060,89 @@
       "outlineOn": "Kontūras",
       "outlineWidth": "Kontūro storis {{value}}",
       "path": "Piešinys"
+    },
+    "agent": {
+      "changes": "Atlikta pakeitimų: {{count}}",
+      "clear": "Išvalyti pokalbį",
+      "done": "Atlikta.",
+      "failed": "DI dabar negalėjo to atlikti. Bandykite dar kartą po akimirkos.",
+      "introBody": "Apibūdinkite dizainą ar pakeitimą savais žodžiais. Jis keičia puslapio dydį, rašo ir formatuoja tekstą, randa nemokamų nuotraukų, vaizdo įrašų ir muzikos, taiko filtrus, išdėsto sluoksnius ir juos animuoja. Kiekvieną užklausą galima atšaukti vienu veiksmu.",
+      "introTitle": "Pasakykite DI, ko norite",
+      "noStock": "Nerasta nemokamo turinio pagal „{{query}}“.",
+      "nothingToDo": "Neradau, ką tam pakeisti. Pabandykite apibūdinti norimą pakeitimą.",
+      "placeholder": "Apibūdinkite, ko norite…",
+      "rateLimited": "Išsiuntėte daug užklausų. Bandykite dar kartą po kelių minučių.",
+      "send": "Siųsti",
+      "suggestFilter": "Padaryk nuotrauką šiltesnę ir šiek tiek šviesesnę",
+      "suggestPoster": "Sukurk kvadratinį Instagram įrašą vasaros išpardavimui su paplūdimio nuotrauka ir ryškia antrašte",
+      "suggestStory": "Paversk tai 9:16 istorija ir užpildyk puslapį nuotrauka",
+      "suggestTitle": "Pridėk didelę paryškintą antraštę viršuje ir mažesnę paantraštę po ja",
+      "undo": "Anuliuoti",
+      "working": "Dirbama…"
+    },
+    "brand": {
+      "addColor": "Pridėti prekės ženklo spalvą",
+      "addLogo": "Pridėti logotipą",
+      "applied": "Prekės ženklas pritaikytas sluoksniams: {{count}}.",
+      "apply": "Taikyti prekės ženklą",
+      "bodyFont": "Teksto šriftas",
+      "colors": "Prekės ženklo spalvos",
+      "heading": "Prekės ženklo rinkinys",
+      "headingFont": "Antraščių šriftas",
+      "logo": "Logotipas",
+      "noLogo": "Logotipo nėra",
+      "removeColor": "Pašalinti {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Jau netrukus",
+        "title": "Artėja didelės naujienos"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Su gimtadieniu"
+      },
+      "crypto": {
+        "change": "+42 % per savaitę",
+        "title": "Kainos naujiena"
+      },
+      "event": {
+        "date": "Penktadienį 20 val.",
+        "place": "The Warehouse, centre",
+        "title": "Gyvos muzikos vakaras"
+      },
+      "heading": "Šablonai",
+      "meme": {
+        "bottom": "Iš pirmo karto",
+        "top": "Kai kodas veikia",
+        "title": "Memas"
+      },
+      "podcast": {
+        "episode": "12 epizodas · Jau klausyk",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Paprasta, bet prasminga.",
+        "title": "Citatos kortelė"
+      },
+      "sale": {
+        "subtitle": "Iki -50 % · Tik šį savaitgalį",
+        "title": "Vasaros išpardavimas"
+      },
+      "story": {
+        "cta": "Braukite aukštyn ir pirkite",
+        "title": "Naujiena"
+      },
+      "thumbnail": {
+        "badge": "Nauja",
+        "title": "Nepatikėsi"
+      },
+      "hint": "Pasirink vieną ir pradėk. Kiekvieną žodį, spalvą ir nuotrauką gali pakeisti arba paprašyti DI tai padaryti.",
+      "use": "Naudoti šabloną {{name}}",
+      "replaceConfirm": "Pakeisti dabartinį dizainą šiuo šablonu? Galėsi atšaukti.",
+      "replaceTitle": "Pakeisti jūsų dizainą?",
+      "replace": "Pakeisti"
     }
   },
   "creator": {

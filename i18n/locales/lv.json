@@ -4927,7 +4927,10 @@
       "padding": "Iekšējā atkāpe {{value}}",
       "thickness": "Biezums {{value}}",
       "drawHint": "Velciet pa lapu, lai zīmētu. Katrs vilciens ir atsevišķs slānis, ko varat pārvietot, mainīt izmēru vai dzēst. Kad esat pabeidzis, pieskarieties Beigt zīmēt.",
-      "layersHint": "Saraksta augšā ir priekšplāns. Izmantojiet bultiņas, lai mainītu secību. Bloķētos un paslēptos slāņus var atlasīt tikai šeit."
+      "layersHint": "Saraksta augšā ir priekšplāns. Izmantojiet bultiņas, lai mainītu secību. Bloķētos un paslēptos slāņus var atlasīt tikai šeit.",
+      "agentWebOnly": "Daļa no tā pagaidām darbojas tikai tīmekļa redaktorā.",
+      "brandLogoHint": "Atlasiet attēlu lapā un izmantojiet to kā savu logotipu.",
+      "useAsLogo": "Izmantot atlasīto attēlu"
     },
     "filters": {
       "none": "Oriģināls",
@@ -5021,7 +5024,8 @@
     },
     "rail": {
       "elements": "Elementi",
-      "layers": "Slāņi"
+      "layers": "Slāņi",
+      "agent": "MI"
     },
     "blend": {
       "normal": "Normāls",
@@ -5057,6 +5061,89 @@
       "outlineOn": "Kontūra",
       "outlineWidth": "Kontūras platums {{value}}",
       "path": "Zīmējums"
+    },
+    "agent": {
+      "changes": "Veiktās izmaiņas: {{count}}",
+      "clear": "Notīrīt tērzēšanu",
+      "done": "Gatavs.",
+      "failed": "MI šobrīd to nevarēja izdarīt. Mēģiniet vēlreiz pēc brīža.",
+      "introBody": "Aprakstiet dizainu vai izmaiņas saviem vārdiem. Tas maina lapas izmēru, raksta un noformē tekstu, atrod bezmaksas fotoattēlus, video un mūziku, lieto filtrus, sakārto slāņus un tos animē. Katru pieprasījumu var atsaukt vienā solī.",
+      "introTitle": "Pastāstiet MI, ko vēlaties",
+      "noStock": "Neviens bezmaksas materiāls neatbilst “{{query}}”.",
+      "nothingToDo": "Neatradu neko, ko mainīt. Mēģiniet aprakstīt vēlamo labojumu.",
+      "placeholder": "Aprakstiet, ko vēlaties…",
+      "rateLimited": "Jūs nosūtījāt daudz pieprasījumu. Mēģiniet vēlreiz pēc dažām minūtēm.",
+      "send": "Sūtīt",
+      "suggestFilter": "Padari foto siltāku un nedaudz gaišāku",
+      "suggestPoster": "Izveido kvadrātveida Instagram ierakstu vasaras izpārdošanai ar pludmales foto un treknu virsrakstu",
+      "suggestStory": "Pārveido šo par 9:16 stāstu un aizpildi lapu ar foto",
+      "suggestTitle": "Pievieno lielu treknu virsrakstu augšā un mazāku apakšvirsrakstu zem tā",
+      "undo": "Atsaukt",
+      "working": "Strādāju pie tā…"
+    },
+    "brand": {
+      "addColor": "Pievienot zīmola krāsu",
+      "addLogo": "Pievienot logotipu",
+      "applied": "Zīmols lietots {{count}} slāņiem.",
+      "apply": "Lietot zīmolu",
+      "bodyFont": "Pamatteksta fonts",
+      "colors": "Zīmola krāsas",
+      "heading": "Zīmola komplekts",
+      "headingFont": "Virsrakstu fonts",
+      "logo": "Logotips",
+      "noLogo": "Nav logotipa",
+      "removeColor": "Noņemt {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Drīzumā",
+        "title": "Tuvojas lielas ziņas"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Daudz laimes dzimšanas dienā"
+      },
+      "crypto": {
+        "change": "+42% šonedēļ",
+        "title": "Cenu jaunumi"
+      },
+      "event": {
+        "date": "Piektdien 20:00",
+        "place": "The Warehouse, centrā",
+        "title": "Dzīvās mūzikas vakars"
+      },
+      "heading": "Veidnes",
+      "meme": {
+        "bottom": "No pirmās reizes",
+        "top": "Kad kods strādā",
+        "title": "Mēms"
+      },
+      "podcast": {
+        "episode": "12. epizode · Jau klāt",
+        "title": "Radītāju šovs"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Vienkārši, bet nozīmīgi.",
+        "title": "Citāta kartīte"
+      },
+      "sale": {
+        "subtitle": "Līdz -50% · Tikai šajā nedēļas nogalē",
+        "title": "Vasaras izpārdošana"
+      },
+      "story": {
+        "cta": "Velc augšup, lai iepirktos",
+        "title": "Jaunumi"
+      },
+      "thumbnail": {
+        "badge": "Jauns",
+        "title": "Tu tam neticēsi"
+      },
+      "hint": "Izvēlies vienu, lai sāktu. Katru vārdu, krāsu un foto var mainīt, vai palūdz, lai AI to izdara tavā vietā.",
+      "use": "Izmantot veidni {{name}}",
+      "replaceConfirm": "Aizstāt pašreizējo dizainu ar šo veidni? To var atsaukt.",
+      "replaceTitle": "Aizstāt jūsu dizainu?",
+      "replace": "Aizstāt"
     }
   },
   "creator": {

@@ -4997,7 +4997,10 @@
       "padding": "Margines wewnętrzny {{value}}",
       "thickness": "Grubość {{value}}",
       "drawHint": "Przeciągnij po stronie, aby rysować. Każde pociągnięcie to osobna warstwa, którą możesz przesunąć, zmienić jej rozmiar lub usunąć. Gdy skończysz, dotknij Przestań rysować.",
-      "layersHint": "Góra listy to pierwszy plan. Użyj strzałek, aby zmienić kolejność. Zablokowane i ukryte warstwy można wybrać tylko tutaj."
+      "layersHint": "Góra listy to pierwszy plan. Użyj strzałek, aby zmienić kolejność. Zablokowane i ukryte warstwy można wybrać tylko tutaj.",
+      "agentWebOnly": "Część z tego działa na razie tylko w edytorze internetowym.",
+      "brandLogoHint": "Zaznacz obraz na stronie, a następnie użyj go jako logo.",
+      "useAsLogo": "Użyj zaznaczonego obrazu"
     },
     "filters": {
       "none": "Oryginał",
@@ -5091,7 +5094,8 @@
     },
     "rail": {
       "elements": "Elementy",
-      "layers": "Warstwy"
+      "layers": "Warstwy",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Zwykły",
@@ -5127,6 +5131,89 @@
       "outlineOn": "Obrys",
       "outlineWidth": "Grubość obrysu {{value}}",
       "path": "Rysunek"
+    },
+    "agent": {
+      "changes": "Wprowadzone zmiany: {{count}}",
+      "clear": "Wyczyść czat",
+      "done": "Gotowe.",
+      "failed": "AI nie może tego teraz zrobić. Spróbuj ponownie za chwilę.",
+      "introBody": "Opisz projekt lub zmianę własnymi słowami. AI zmienia rozmiar strony, pisze i formatuje tekst, znajduje darmowe zdjęcia, filmy i muzykę, nakłada filtry, układa warstwy i je animuje. Każde polecenie cofniesz jednym krokiem.",
+      "introTitle": "Powiedz AI, czego chcesz",
+      "noStock": "Brak darmowych materiałów pasujących do „{{query}}”.",
+      "nothingToDo": "Nie znalazłem nic do zmiany. Spróbuj opisać edycję, której chcesz.",
+      "placeholder": "Opisz, czego chcesz…",
+      "rateLimited": "Wysłano dużo próśb. Spróbuj ponownie za kilka minut.",
+      "send": "Wyślij",
+      "suggestFilter": "Zrób zdjęcie cieplejsze i trochę jaśniejsze",
+      "suggestPoster": "Zrób kwadratowy post na Instagram o letniej wyprzedaży ze zdjęciem plaży i pogrubionym tytułem",
+      "suggestStory": "Zamień to na relację 9:16 i wypełnij stronę zdjęciem",
+      "suggestTitle": "Dodaj duży pogrubiony tytuł na górze i mniejszy podtytuł pod nim",
+      "undo": "Cofnij",
+      "working": "Pracuję nad tym…"
+    },
+    "brand": {
+      "addColor": "Dodaj kolor marki",
+      "addLogo": "Dodaj logo",
+      "applied": "Zastosowano markę do warstw: {{count}}.",
+      "apply": "Zastosuj markę",
+      "bodyFont": "Czcionka tekstu",
+      "colors": "Kolory marki",
+      "heading": "Zestaw marki",
+      "headingFont": "Czcionka nagłówków",
+      "logo": "Logo",
+      "noLogo": "Brak logo",
+      "removeColor": "Usuń {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Już wkrótce",
+        "title": "Nadchodzą wielkie wieści"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Wszystkiego najlepszego"
+      },
+      "crypto": {
+        "change": "+42% w tym tygodniu",
+        "title": "Aktualizacja ceny"
+      },
+      "event": {
+        "date": "Piątek, 20:00",
+        "place": "The Warehouse, centrum",
+        "title": "Wieczór muzyki na żywo"
+      },
+      "heading": "Szablony",
+      "meme": {
+        "bottom": "Za pierwszym razem",
+        "top": "Kiedy kod działa",
+        "title": "Mem"
+      },
+      "podcast": {
+        "episode": "Odcinek 12 · Już jest",
+        "title": "Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Prosto, ale z przekazem.",
+        "title": "Karta z cytatem"
+      },
+      "sale": {
+        "subtitle": "Do -50% · Tylko w ten weekend",
+        "title": "Letnia wyprzedaż"
+      },
+      "story": {
+        "cta": "Przesuń w górę, by kupić",
+        "title": "Nowa kolekcja"
+      },
+      "thumbnail": {
+        "badge": "Nowość",
+        "title": "Nie uwierzysz"
+      },
+      "hint": "Wybierz jeden, aby zacząć. Każde słowo, kolor i zdjęcie można zmienić albo poprosić AI, by zrobiła to za ciebie.",
+      "use": "Użyj szablonu {{name}}",
+      "replaceConfirm": "Zastąpić obecny projekt tym szablonem? Możesz to cofnąć.",
+      "replaceTitle": "Zastąpić projekt?",
+      "replace": "Zastąp"
     }
   },
   "creator": {

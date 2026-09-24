@@ -4929,7 +4929,10 @@
       "padding": "Täyte {{value}}",
       "thickness": "Paksuus {{value}}",
       "drawHint": "Piirrä vetämällä sivulla. Jokainen veto on oma tasonsa, jota voit siirtää, muuttaa kokoa tai poistaa. Napauta ”Lopeta piirtäminen”, kun olet valmis.",
-      "layersHint": "Luettelon ylin on edimmäisenä. Järjestä uudelleen nuolilla. Lukittuja ja piilotettuja tasoja voi valita vain täältä."
+      "layersHint": "Luettelon ylin on edimmäisenä. Järjestä uudelleen nuolilla. Lukittuja ja piilotettuja tasoja voi valita vain täältä.",
+      "agentWebOnly": "Osa tästä toimii toistaiseksi vain verkkoeditorissa.",
+      "brandLogoHint": "Valitse sivulta kuva ja käytä sitä logonasi.",
+      "useAsLogo": "Käytä valittua kuvaa"
     },
     "filters": {
       "none": "Alkuperäinen",
@@ -5023,7 +5026,8 @@
     },
     "rail": {
       "elements": "Elementit",
-      "layers": "Tasot"
+      "layers": "Tasot",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normaali",
@@ -5059,6 +5063,89 @@
       "outlineOn": "Ääriviiva",
       "outlineWidth": "Ääriviivan paksuus {{value}}",
       "path": "Piirros"
+    },
+    "agent": {
+      "changes": "Muutoksia: {{count}}",
+      "clear": "Tyhjennä keskustelu",
+      "done": "Valmis.",
+      "failed": "AI ei pystynyt tekemään sitä juuri nyt. Yritä hetken päästä uudelleen.",
+      "introBody": "Kuvaile suunnitelma tai muutos omin sanoin. Se muuttaa sivun kokoa, kirjoittaa ja muotoilee tekstiä, etsii ilmaisia kuvia, videoita ja musiikkia, lisää suodattimia, järjestää tasoja ja animoi niitä. Jokaisen pyynnön voi kumota yhdellä kertaa.",
+      "introTitle": "Kerro AI:lle, mitä haluat",
+      "noStock": "Ilmaista sisältöä ei löytynyt haulle “{{query}}”.",
+      "nothingToDo": "En löytänyt tähän mitään muutettavaa. Kuvaile haluamasi muokkaus.",
+      "placeholder": "Kuvaile, mitä haluat…",
+      "rateLimited": "Olet lähettänyt paljon pyyntöjä. Yritä uudelleen muutaman minuutin päästä.",
+      "send": "Lähetä",
+      "suggestFilter": "Tee kuvasta lämpimämpi ja vähän kirkkaampi",
+      "suggestPoster": "Tee neliönmuotoinen Instagram-julkaisu kesäalesta, jossa on rantakuva ja lihavoitu otsikko",
+      "suggestStory": "Muuta tämä 9:16-tarinaksi ja täytä sivu kuvalla",
+      "suggestTitle": "Lisää ylös iso lihavoitu otsikko ja sen alle pienempi alaotsikko",
+      "undo": "Kumoa",
+      "working": "Työn alla…"
+    },
+    "brand": {
+      "addColor": "Lisää brändiväri",
+      "addLogo": "Lisää logo",
+      "applied": "Brändi käytetty {{count}} tasoon.",
+      "apply": "Käytä brändiä",
+      "bodyFont": "Leipätekstin fontti",
+      "colors": "Brändivärit",
+      "heading": "Brändipaketti",
+      "headingFont": "Otsikkofontti",
+      "logo": "Logo",
+      "noLogo": "Ei logoa",
+      "removeColor": "Poista {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Tulossa pian",
+        "title": "Isoja uutisia tulossa"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Hyvää syntymäpäivää"
+      },
+      "crypto": {
+        "change": "+42 % tällä viikolla",
+        "title": "Hintapäivitys"
+      },
+      "event": {
+        "date": "Perjantai klo 20",
+        "place": "The Warehouse, keskusta",
+        "title": "Livemusiikki-ilta"
+      },
+      "heading": "Mallit",
+      "meme": {
+        "bottom": "Ekalla yrityksellä",
+        "top": "Kun koodi toimii",
+        "title": "Meemi"
+      },
+      "podcast": {
+        "episode": "Jakso 12 · Nyt ulkona",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Tee siitä yksinkertainen, mutta merkityksellinen.",
+        "title": "Sitaattikortti"
+      },
+      "sale": {
+        "subtitle": "Jopa -50 % · Vain tänä viikonloppuna",
+        "title": "Kesäale"
+      },
+      "story": {
+        "cta": "Pyyhkäise ylös ja shoppaile",
+        "title": "Uutuudet"
+      },
+      "thumbnail": {
+        "badge": "Uusi",
+        "title": "Et usko tätä"
+      },
+      "hint": "Valitse yksi aloittaaksesi. Voit muuttaa jokaisen sanan, värin ja kuvan – tai pyytää tekoälyä tekemään sen.",
+      "use": "Käytä mallia {{name}}",
+      "replaceConfirm": "Korvataanko nykyinen suunnitelma tällä mallilla? Voit kumota sen.",
+      "replaceTitle": "Korvataanko suunnitelmasi?",
+      "replace": "Korvaa"
     }
   },
   "creator": {

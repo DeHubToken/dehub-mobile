@@ -4916,7 +4916,10 @@
       "padding": "Àlàfo inú {{value}}",
       "thickness": "Ìnípọn {{value}}",
       "drawHint": "Fà á lórí ojú-ìwé láti yà. Ìlà kọ̀ọ̀kan jẹ́ ìpele tirẹ̀ tí o lè gbé, yí ìwọ̀n rẹ̀ padà tàbí pa rẹ́. Tẹ Dá yíyà dúró nígbà tí o bá parí.",
-      "layersHint": "Òkè àtòkọ ni iwájú. Lo àwọn ọfà láti tún ètò ṣe. Àwọn ìpele tí a tì pa àti èyí tí a fi pamọ́ ṣeé yàn níbí nìkan."
+      "layersHint": "Òkè àtòkọ ni iwájú. Lo àwọn ọfà láti tún ètò ṣe. Àwọn ìpele tí a tì pa àti èyí tí a fi pamọ́ ṣeé yàn níbí nìkan.",
+      "agentWebOnly": "Díẹ̀ nínú ìyẹn ń ṣiṣẹ́ nínú olóòtú wẹ́ẹ̀bù nìkan fún báyìí.",
+      "brandLogoHint": "Yan àwòrán kan lórí ojú-ìwé, lẹ́yìn náà lò ó gẹ́gẹ́ bí àmì rẹ.",
+      "useAsLogo": "Lo àwòrán tí a yàn"
     },
     "filters": {
       "none": "Ojúlówó",
@@ -5010,7 +5013,8 @@
     },
     "rail": {
       "elements": "Àwọn èròjà",
-      "layers": "Àwọn ìpele"
+      "layers": "Àwọn ìpele",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Déédé",
@@ -5046,6 +5050,89 @@
       "outlineOn": "Ìlà ìta",
       "outlineWidth": "Fífẹ̀ ìlà ìta {{value}}",
       "path": "Àwòrán yíyà"
+    },
+    "agent": {
+      "changes": "Àwọn àtúnṣe tí a ṣe: {{count}}",
+      "clear": "Pa ìjíròrò rẹ́",
+      "done": "Ó ti parí.",
+      "failed": "AI kò lè ṣe ìyẹn báyìí. Gbìyànjú lẹ́ẹ̀kan sí i láìpẹ́.",
+      "introBody": "Ṣàpèjúwe àpẹrẹ tàbí àyípadà náà ní ọ̀rọ̀ ara rẹ. Ó ń yí ìwọ̀n ojú-ìwé padà, ó ń kọ ọ̀rọ̀ ó sì ń ṣe é lọ́ṣọ̀ọ́, ó ń wá fọ́tò, fídíò àti orin ọ̀fẹ́, ó ń lo àlẹ̀mọ́, ó ń to àwọn ìpele ó sì ń mú wọn rìn. Ìbéèrè kọ̀ọ̀kan ni a lè dá padà pẹ̀lú ìdápadà kan.",
+      "introTitle": "Sọ ohun tí o fẹ́ fún AI",
+      "noStock": "Kò sí ohun ọ̀fẹ́ tó bá “{{query}}” mu.",
+      "nothingToDo": "Mi ò rí nǹkan kan láti yí padà fún ìyẹn. Gbìyànjú láti ṣàpèjúwe àtúnṣe tí o fẹ́.",
+      "placeholder": "Ṣàpèjúwe ohun tí o fẹ́…",
+      "rateLimited": "O ti fi ìbéèrè púpọ̀ ránṣẹ́. Gbìyànjú lẹ́ẹ̀kan sí i lẹ́yìn ìṣẹ́jú díẹ̀.",
+      "send": "Fi ránṣẹ́",
+      "suggestFilter": "Jẹ́ kí fọ́tò náà gbóná sí i kí ó sì mọ́lẹ̀ díẹ̀",
+      "suggestPoster": "Ṣe ìfiránṣẹ́ Instagram onígun mẹ́rin fún ọjà ẹ̀dínwó ìgbà ooru pẹ̀lú fọ́tò etíkun àti àkọlé tó nípọn",
+      "suggestStory": "Sọ èyí di story 9:16 kí o sì fi fọ́tò kún ojú-ìwé náà",
+      "suggestTitle": "Fi àkọlé ńlá tó nípọn sí òkè àti àkọlé kékeré sí ìsàlẹ̀ rẹ̀",
+      "undo": "Dá padà",
+      "working": "Ó ń ṣiṣẹ́ lórí rẹ̀…"
+    },
+    "brand": {
+      "addColor": "Ṣàfikún àwọ̀ àmì-ìdámọ̀",
+      "addLogo": "Ṣàfikún àmì",
+      "applied": "A ti lo àmì-ìdámọ̀ sí ìpele {{count}}.",
+      "apply": "Lo àmì-ìdámọ̀",
+      "bodyFont": "Fọ́ǹtì ọ̀rọ̀",
+      "colors": "Àwọ̀ àmì-ìdámọ̀",
+      "heading": "Ohun èlò àmì-ìdámọ̀",
+      "headingFont": "Fọ́ǹtì àkọlé",
+      "logo": "Àmì",
+      "noLogo": "Kò sí àmì",
+      "removeColor": "Yọ {{color}} kúrò"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Ó ń bọ̀ láìpẹ́",
+        "title": "Ìròyìn ńlá ń bọ̀"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Ẹ kú ọjọ́ ìbí"
+      },
+      "crypto": {
+        "change": "+42% ní ọ̀sẹ̀ yìí",
+        "title": "Ìmúdójúìwọ̀n iye owó"
+      },
+      "event": {
+        "date": "Ẹtì 8 alẹ́",
+        "place": "The Warehouse, àárín ìlú",
+        "title": "Alẹ́ orin láàyè"
+      },
+      "heading": "Àwọn àwòṣe",
+      "meme": {
+        "bottom": "Ní ìgbìyànjú àkọ́kọ́",
+        "top": "Nígbà tí kóòdù bá ṣiṣẹ́",
+        "title": "Mímù"
+      },
+      "podcast": {
+        "episode": "Ìṣẹ̀lẹ̀ 12 · Ó ti jáde",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Ṣe é ní ṣókí, ṣùgbọ́n kó nítumọ̀.",
+        "title": "Káàdì ọ̀rọ̀ àyọlò"
+      },
+      "sale": {
+        "subtitle": "Ẹ̀dínwó títí dé 50% · Òpin ọ̀sẹ̀ yìí nìkan",
+        "title": "Ìtajà Ẹ̀rùn"
+      },
+      "story": {
+        "cta": "Fà sókè láti rajà",
+        "title": "Ọjà tuntun dé"
+      },
+      "thumbnail": {
+        "badge": "Tuntun",
+        "title": "O ò ní gbà á gbọ́"
+      },
+      "hint": "Yan ọ̀kan láti bẹ̀rẹ̀. O lè yí gbogbo ọ̀rọ̀, àwọ̀ àti fọ́tò padà, tàbí kí o ní kí AI yí i padà fún ọ.",
+      "use": "Lo àwòṣe {{name}}",
+      "replaceConfirm": "Fi àwòṣe yìí rọ́pò àpẹrẹ lọ́wọ́lọ́wọ́? O lè dá a padà.",
+      "replaceTitle": "Ṣé o fẹ́ rọ́pò àwòrán rẹ?",
+      "replace": "Rọ́pò"
     }
   },
   "creator": {

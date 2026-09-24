@@ -4796,7 +4796,10 @@
       "padding": "Kɔnɔna yɔrɔ {{value}}",
       "thickness": "Bonya {{value}}",
       "drawHint": "I bolo sama sɛbɛ kan walasa ka ja ci. Sira kelen kelen bɛɛ ye kɔrɔ ye a yɛrɛ ma, i bɛ se k’a lamaga, k’a bonya caman wala k’a jɔsi. Ni i banna, i ka «Ja ci jɔ» digi.",
-      "layersHint": "Lisi sanfɛ ta de bɛ ɲɛfɛ. Sɛgɛnw labaara walasa ka u sigicogo yɛlɛma. Kɔrɔ minw datugulen don wala minw dogolen don, olu bɛ se ka sugandi yan dɔrɔn."
+      "layersHint": "Lisi sanfɛ ta de bɛ ɲɛfɛ. Sɛgɛnw labaara walasa ka u sigicogo yɛlɛma. Kɔrɔ minw datugulen don wala minw dogolen don, olu bɛ se ka sugandi yan dɔrɔn.",
+      "agentWebOnly": "O dɔw bɛ baara web editɛri dɔrɔn na sisan.",
+      "brandLogoHint": "Ja dɔ sugandi paji kan, o kɔ k'a kɛ i ka logo ye.",
+      "useAsLogo": "Ja sugandilen ta"
     },
     "filters": {
       "none": "A cogo fɔlɔ",
@@ -4890,7 +4893,8 @@
     },
     "rail": {
       "elements": "Fɛnw",
-      "layers": "Kɔrɔw"
+      "layers": "Kɔrɔw",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -4926,6 +4930,89 @@
       "outlineOn": "Dan sira",
       "outlineWidth": "Dan sira bonya {{value}}",
       "path": "Jiraliwaleya"
+    },
+    "agent": {
+      "changes": "Yɛlɛma minnu kɛra: {{count}}",
+      "clear": "Baro jɔsi",
+      "done": "A banna.",
+      "failed": "AI ma se k'o kɛ sisan. Segin a kan dɔɔnin kɔfɛ.",
+      "introBody": "Desɛn walima yɛlɛma min b'i fɛ, o ɲɛfɔ i yɛrɛ ka kumaw la. A bɛ se ka ɲɛ hakɛ yɛlɛma, ka sɛbɛn sɛbɛn ani k'a cɛɲa, ka foto, videyo ani donkili fu sɔrɔ, ka filitiri kɛ, ka layɛrew labɛn ani k'u lamaga. Ɲininkali kelen o kelen bɛ se ka segin kɔ siɲɛ kelen.",
+      "introTitle": "I b'a fɛ min, o fɔ AI ye",
+      "noStock": "Minɛn fu si ma bɛn “{{query}}” ma.",
+      "nothingToDo": "N ma foyi sɔrɔ ka yɛlɛma o la. Labɛnni min b'i fɛ, o ɲɛfɔ.",
+      "placeholder": "Min b'i fɛ, o ɲɛfɔ…",
+      "rateLimited": "I ye ɲininkali caman ci. Segin a kan miniti damadɔ kɔfɛ.",
+      "send": "A ci",
+      "suggestFilter": "Foto kɛ a ka funteni dɔɔnin ani a ka yeelen dɔɔnin",
+      "suggestPoster": "Instagram post kare dɔ dilan sumaya feerewaati kama, ni kɔgɔjida foto ye ani kuncɛ barikama",
+      "suggestStory": "Nin kɛ 9:16 story ye ani ka ɲɛ fa ni foto ye",
+      "suggestTitle": "Kuncɛ belebele barikama dɔ fara sanfɛ, ani kuncɛ dɔgɔman dɔ a jukɔrɔ",
+      "undo": "Segin kɔ",
+      "working": "N bɛ baara la a kan…"
+    },
+    "brand": {
+      "addColor": "Taamasiyɛn ɲɛ fara a kan",
+      "addLogo": "Logo fara a kan",
+      "applied": "Taamasiyɛn waleyara kɔrɔ {{count}} kan.",
+      "apply": "Taamasiyɛn waleya",
+      "bodyFont": "Sɛbɛn sɛbɛnsen",
+      "colors": "Taamasiyɛn ɲɛw",
+      "heading": "Taamasiyɛn minɛnw",
+      "headingFont": "Kunkanko sɛbɛnsen",
+      "logo": "Logo",
+      "noLogo": "Logo tɛ",
+      "removeColor": "{{color}} bɔ"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "A bɛ na sɔɔni",
+        "title": "Kibaru ba bɛ na"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "I ka bɔnda san diya"
+      },
+      "crypto": {
+        "change": "+42% nin dɔgɔkun",
+        "title": "Sɔngɔ kura"
+      },
+      "event": {
+        "date": "Juma, su 8",
+        "place": "The Warehouse, dugu cɛma",
+        "title": "Fɔli su"
+      },
+      "heading": "Modɛliw",
+      "meme": {
+        "bottom": "Fɔlɔ fɔlɔ la",
+        "top": "Ni kode ye baara kɛ",
+        "title": "Mɛmu"
+      },
+      "podcast": {
+        "episode": "Tila 12 · A bɔra",
+        "title": "Dabɔbaga Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "A kɛ nɔgɔya la, nka a ka kɔrɔ sɔrɔ.",
+        "title": "Kuma kɔrɔ karti"
+      },
+      "sale": {
+        "subtitle": "Fo 50% dɔgɔyali · Nin dɔgɔkun laban dɔrɔn",
+        "title": "Tilema sanni"
+      },
+      "story": {
+        "cta": "A yɛlɛn sanfɛ ka san",
+        "title": "Fɛn kura sera"
+      },
+      "thumbnail": {
+        "badge": "Kura",
+        "title": "I tɛna nin da"
+      },
+      "hint": "Kelen sugandi ka daminɛ. Kuma, kulɛri ani foto bɛɛ bɛ se ka yɛlɛma, walima a fɔ AI ye a ka a yɛlɛma i ye.",
+      "use": "{{name}} modɛli ta",
+      "replaceConfirm": "I ka desɛn sisan bila ka nin modɛli bila a nɔ na? I bɛ se ka a segin.",
+      "replaceTitle": "I ka dizayini falen wa?",
+      "replace": "A falen"
     }
   },
   "creator": {

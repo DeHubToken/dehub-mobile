@@ -4928,7 +4928,10 @@
       "padding": "Sisevahe {{value}}",
       "thickness": "Paksus {{value}}",
       "drawHint": "Joonistamiseks lohista lehel. Iga joon on eraldi kiht, mida saad liigutada, suurust muuta või kustutada. Kui oled valmis, puuduta nuppu Lõpeta joonistamine.",
-      "layersHint": "Loendi ülemine on kõige ees. Järjekorra muutmiseks kasuta nooli. Lukustatud ja peidetud kihte saab valida ainult siin."
+      "layersHint": "Loendi ülemine on kõige ees. Järjekorra muutmiseks kasuta nooli. Lukustatud ja peidetud kihte saab valida ainult siin.",
+      "agentWebOnly": "Osa sellest töötab praegu ainult veebiredaktoris.",
+      "brandLogoHint": "Vali lehel pilt ja kasuta seda oma logona.",
+      "useAsLogo": "Kasuta valitud pilti"
     },
     "filters": {
       "none": "Originaal",
@@ -5022,7 +5025,8 @@
     },
     "rail": {
       "elements": "Elemendid",
-      "layers": "Kihid"
+      "layers": "Kihid",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Tavaline",
@@ -5058,6 +5062,89 @@
       "outlineOn": "Kontuur",
       "outlineWidth": "Kontuuri laius {{value}}",
       "path": "Joonistus"
+    },
+    "agent": {
+      "changes": "Tehtud muudatusi: {{count}}",
+      "clear": "Tühjenda vestlus",
+      "done": "Valmis.",
+      "failed": "AI ei saanud seda praegu teha. Proovi hetke pärast uuesti.",
+      "introBody": "Kirjelda kujundust või muudatust oma sõnadega. See muudab lehe suurust, kirjutab ja vormindab teksti, leiab tasuta fotosid, videoid ja muusikat, lisab filtreid, korraldab kihte ja animeerib neid. Iga päringu saab ühe sammuga tagasi võtta.",
+      "introTitle": "Ütle AI-le, mida soovid",
+      "noStock": "Päringule „{{query}}“ ei leitud tasuta materjali.",
+      "nothingToDo": "Ma ei leidnud selle põhjal midagi muuta. Proovi kirjeldada muudatust, mida soovid.",
+      "placeholder": "Kirjelda, mida soovid…",
+      "rateLimited": "Oled saatnud palju päringuid. Proovi mõne minuti pärast uuesti.",
+      "send": "Saada",
+      "suggestFilter": "Tee foto soojemaks ja veidi heledamaks",
+      "suggestPoster": "Tee suvise allahindluse jaoks ruudukujuline Instagrami postitus rannapildi ja jämeda pealkirjaga",
+      "suggestStory": "Tee sellest 9:16 story ja täida leht fotoga",
+      "suggestTitle": "Lisa üles suur jäme pealkiri ja selle alla väiksem alapealkiri",
+      "undo": "Võta tagasi",
+      "working": "Töötan selle kallal…"
+    },
+    "brand": {
+      "addColor": "Lisa brändi värv",
+      "addLogo": "Lisa logo",
+      "applied": "Bränd rakendati {{count}} kihile.",
+      "apply": "Rakenda bränd",
+      "bodyFont": "Sisuteksti font",
+      "colors": "Brändi värvid",
+      "heading": "Brändikomplekt",
+      "headingFont": "Pealkirja font",
+      "logo": "Logo",
+      "noLogo": "Logo puudub",
+      "removeColor": "Eemalda {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Varsti tulekul",
+        "title": "Suured uudised tulekul"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Palju õnne sünnipäevaks"
+      },
+      "crypto": {
+        "change": "+42% sel nädalal",
+        "title": "Hinnauuendus"
+      },
+      "event": {
+        "date": "Reede kell 20",
+        "place": "The Warehouse, kesklinn",
+        "title": "Live-muusika õhtu"
+      },
+      "heading": "Mallid",
+      "meme": {
+        "bottom": "Esimesel katsel",
+        "top": "Kui kood töötab",
+        "title": "Meem"
+      },
+      "podcast": {
+        "episode": "Osa 12 · Nüüd väljas",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Tee see lihtsaks, aga tähendusrikkaks.",
+        "title": "Tsitaadikaart"
+      },
+      "sale": {
+        "subtitle": "Kuni -50% · Ainult sel nädalavahetusel",
+        "title": "Suvine allahindlus"
+      },
+      "story": {
+        "cta": "Libista üles ja osta",
+        "title": "Värske kollektsioon"
+      },
+      "thumbnail": {
+        "badge": "Uus",
+        "title": "Sa ei usu seda"
+      },
+      "hint": "Vali üks ja alusta. Iga sõna, värvi ja fotot saab muuta või palu tehisintellektil seda sinu eest teha.",
+      "use": "Kasuta malli {{name}}",
+      "replaceConfirm": "Kas asendada praegune kujundus selle malliga? Saad selle tagasi võtta.",
+      "replaceTitle": "Kas asendada sinu kujundus?",
+      "replace": "Asenda"
     }
   },
   "creator": {

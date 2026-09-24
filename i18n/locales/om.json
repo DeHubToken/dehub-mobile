@@ -4990,7 +4990,10 @@
       "padding": "Iddoo keessaa {{value}}",
       "thickness": "Furdina {{value}}",
       "drawHint": "Kaasuuf fuula irratti harkisi. Sararri hundi leeyarii mataa isaati, kan socho'suu, guddina jijjiiruu ykn haquu dandeessu. Yeroo xumurtu Kaasuu dhaabi tuqi.",
-      "layersHint": "Gubbaan tarreeffamaa fuula duraati. Tartiiba jijjiiruuf xiyya fayyadami. Leeyariiwwan cufamanii fi dhokataniin as qofatti filatamu."
+      "layersHint": "Gubbaan tarreeffamaa fuula duraati. Tartiiba jijjiiruuf xiyya fayyadami. Leeyariiwwan cufamanii fi dhokataniin as qofatti filatamu.",
+      "agentWebOnly": "Kanneen keessaa tokko tokko amma gulaalaa weebii qofa irratti hojjeta.",
+      "brandLogoHint": "Fuula irratti suuraa tokko filadhu, achiis akka loogoo keetiitti fayyadami.",
+      "useAsLogo": "Suuraa filatame fayyadami"
     },
     "filters": {
       "none": "Kan jalqabaa",
@@ -5084,7 +5087,8 @@
     },
     "rail": {
       "elements": "Elementoota",
-      "layers": "Leeyarii"
+      "layers": "Leeyarii",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Idilee",
@@ -5120,6 +5124,89 @@
       "outlineOn": "Daangaa",
       "outlineWidth": "Bal'ina daangaa {{value}}",
       "path": "Fakkii"
+    },
+    "agent": {
+      "changes": "Gulaallii hojjetaman: {{count}}",
+      "clear": "Haasaa haqi",
+      "done": "Xumurame.",
+      "failed": "AI'n amma kana gochuu hin dandeenye. Yeroo muraasa booda irra deebi'ii yaali.",
+      "introBody": "Dizaayinii ykn jijjiirama jechoota keetiin ibsi. Hamma fuulaa jijjiira, barreeffama barreessee miidhagsa, suuraa, viidiyoo fi muuziqaa bilisaa barbaada, filtara fayyadama, sadarkaalee qindeessee sochoosa. Gaaffiin hundi tarkaanfii deebii tokkoon deebi'a.",
+      "introTitle": "Waan barbaaddu AI'tti himi",
+      "noStock": "Meeshaan bilisaa “{{query}}” wajjin walsimu hin jiru.",
+      "nothingToDo": "Kanaaf wanti jijjiiramu hin argamne. Gulaallii barbaaddu ibsuu yaali.",
+      "placeholder": "Waan barbaaddu ibsi…",
+      "rateLimited": "Gaaffii baay'ee ergiteetta. Daqiiqaa muraasa booda irra deebi'ii yaali.",
+      "send": "Ergi",
+      "suggestFilter": "Suuraa sana ho'aa fi xiqqoo ifaa taasisi",
+      "suggestPoster": "Gurgurtaa gannaatiif suuraa qarqara galaanaa fi mata duree cimaa qabu, maxxansa Instagram golboo afurii hojjedhu",
+      "suggestStory": "Kana gara storii 9:16 jijjiiriitii fuula suuraan guuti",
+      "suggestTitle": "Gubbaatti mata duree guddaa cimaa, jalatti immoo mata duree xiqqaa dabali",
+      "undo": "Deebisi",
+      "working": "Irratti hojjechaa jira…"
+    },
+    "brand": {
+      "addColor": "Halluu birandii dabaluu",
+      "addLogo": "Loogoo dabali",
+      "applied": "Birandiin leeyarii {{count}} irratti hojii irra oole.",
+      "apply": "Birandii hojii irra oolchi",
+      "bodyFont": "Qubee barreeffamaa",
+      "colors": "Halluuwwan birandii",
+      "heading": "Kiitii birandii",
+      "headingFont": "Qubee mata-dureewwanii",
+      "logo": "Loogoo",
+      "noLogo": "Loogoon hin jiru",
+      "removeColor": "{{color}} haqi"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Dhiyootti",
+        "title": "Oduun guddaan dhufaa jira"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Guyyaa dhalootaa gammadi"
+      },
+      "crypto": {
+        "change": "+42% torban kana",
+        "title": "Haaromsa gatii"
+      },
+      "event": {
+        "date": "Jimaata 8 galgala",
+        "place": "Mana Kuusaa, gidduu magaalaa",
+        "title": "Halkan muuziqaa kallattii"
+      },
+      "heading": "Tempileetii",
+      "meme": {
+        "bottom": "Yaalii jalqabaatiin",
+        "top": "Yeroo koodiin hojjetu",
+        "title": "Miim"
+      },
+      "podcast": {
+        "episode": "Kutaa 12 · Amma ba'eera",
+        "title": "Agarsiisa Uumtootaa"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Salphaa godhi, garuu barbaachisaa.",
+        "title": "Kaardii jechaa"
+      },
+      "sale": {
+        "subtitle": "Hanga 50% hir'ina · Dhuma torbanii kana qofa",
+        "title": "Gurgurtaa Bonaa"
+      },
+      "story": {
+        "cta": "Bittaaf ol harkisi",
+        "title": "Haaraan dhufe"
+      },
+      "thumbnail": {
+        "badge": "Haaraa",
+        "title": "Hin amantu!"
+      },
+      "hint": "Jalqabuuf tokko filadhu. Jechi, halluun fi suuraan hundi jijjiiramuu danda'u, yookaan AI akka siif jijjiiru gaafadhu.",
+      "use": "Tempileetii {{name}} fayyadami",
+      "replaceConfirm": "Dizaayinii ammaa tempileetii kanaan bakka buusi? Deebisuu dandeessa.",
+      "replaceTitle": "Dizaayinii kee bakka buusi?",
+      "replace": "Bakka buusi"
     }
   },
   "creator": {

@@ -4933,7 +4933,10 @@
       "padding": "Belső margó {{value}}",
       "thickness": "Vastagság {{value}}",
       "drawHint": "Rajzoláshoz húzd az ujjad az oldalon. Minden vonás külön réteg, amelyet áthelyezhetsz, átméretezhetsz vagy törölhetsz. Ha végeztél, koppints a „Rajzolás leállítása” gombra.",
-      "layersHint": "A lista teteje van legelöl. A nyilakkal rendezheted át a sorrendet. A zárolt és rejtett rétegek csak itt jelölhetők ki."
+      "layersHint": "A lista teteje van legelöl. A nyilakkal rendezheted át a sorrendet. A zárolt és rejtett rétegek csak itt jelölhetők ki.",
+      "agentWebOnly": "Ennek egy része egyelőre csak a webes szerkesztőben működik.",
+      "brandLogoHint": "Jelölj ki egy képet az oldalon, majd használd logóként.",
+      "useAsLogo": "Kijelölt kép használata"
     },
     "filters": {
       "none": "Eredeti",
@@ -5027,7 +5030,8 @@
     },
     "rail": {
       "elements": "Elemek",
-      "layers": "Rétegek"
+      "layers": "Rétegek",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normál",
@@ -5063,6 +5067,89 @@
       "outlineOn": "Körvonal",
       "outlineWidth": "Körvonal vastagsága {{value}}",
       "path": "Rajz"
+    },
+    "agent": {
+      "changes": "Elvégzett módosítások: {{count}}",
+      "clear": "Csevegés törlése",
+      "done": "Kész.",
+      "failed": "Az AI most nem tudta ezt megcsinálni. Próbáld újra egy kicsit később.",
+      "introBody": "Írd le a saját szavaiddal a tervet vagy a változtatást. Átméretezi az oldalt, szöveget ír és formáz, ingyenes fotókat, videókat és zenét keres, szűrőket alkalmaz, elrendezi és animálja a rétegeket. Minden kérés egyetlen visszavonással visszaállítható.",
+      "introTitle": "Mondd el az AI-nak, mit szeretnél",
+      "noStock": "Nincs a(z) „{{query}}” kifejezésnek megfelelő ingyenes tartalom.",
+      "nothingToDo": "Nem találtam semmit, amit ehhez módosítani lehetne. Próbáld leírni a kívánt szerkesztést.",
+      "placeholder": "Írd le, mit szeretnél…",
+      "rateLimited": "Sok kérést küldtél. Próbáld újra néhány perc múlva.",
+      "send": "Küldés",
+      "suggestFilter": "Legyen a fotó melegebb és egy kicsit világosabb",
+      "suggestPoster": "Készíts egy négyzetes Instagram-posztot nyári akcióhoz egy strandfotóval és egy félkövér címmel",
+      "suggestStory": "Alakítsd ezt 9:16-os történetté, és töltsd ki az oldalt a fotóval",
+      "suggestTitle": "Tegyél fel felülre egy nagy, félkövér címet, alá pedig egy kisebb alcímet",
+      "undo": "Visszavonás",
+      "working": "Dolgozom rajta…"
+    },
+    "brand": {
+      "addColor": "Márkaszín hozzáadása",
+      "addLogo": "Logó hozzáadása",
+      "applied": "Márka alkalmazva {{count}} rétegre.",
+      "apply": "Márka alkalmazása",
+      "bodyFont": "Szövegtörzs betűtípusa",
+      "colors": "Márkaszínek",
+      "heading": "Márkakészlet",
+      "headingFont": "Címsor betűtípusa",
+      "logo": "Logó",
+      "noLogo": "Nincs logó",
+      "removeColor": "{{color}} eltávolítása"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Hamarosan",
+        "title": "Nagy hír érkezik"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Boldog szülinapot"
+      },
+      "crypto": {
+        "change": "+42% a héten",
+        "title": "Árfolyam"
+      },
+      "event": {
+        "date": "Péntek 20:00",
+        "place": "The Warehouse, belváros",
+        "title": "Élőzenés este"
+      },
+      "heading": "Sablonok",
+      "meme": {
+        "bottom": "Elsőre",
+        "top": "Amikor a kód működik",
+        "title": "Mém"
+      },
+      "podcast": {
+        "episode": "12. epizód · Már elérhető",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Legyen egyszerű, de jelentős.",
+        "title": "Idézetkártya"
+      },
+      "sale": {
+        "subtitle": "Akár 50% kedvezmény · Csak ezen a hétvégén",
+        "title": "Nyári akció"
+      },
+      "story": {
+        "cta": "Húzd fel a vásárláshoz",
+        "title": "Friss kollekció"
+      },
+      "thumbnail": {
+        "badge": "Új",
+        "title": "Ezt nem fogod elhinni"
+      },
+      "hint": "Válassz egyet a kezdéshez. Minden szó, szín és fotó módosítható, vagy kérd meg az MI-t, hogy megtegye helyetted.",
+      "use": "A(z) {{name}} sablon használata",
+      "replaceConfirm": "Lecseréled a jelenlegi tervet erre a sablonra? Visszavonhatod.",
+      "replaceTitle": "Lecseréled a tervedet?",
+      "replace": "Csere"
     }
   },
   "creator": {

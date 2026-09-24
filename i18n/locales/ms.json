@@ -5192,7 +5192,10 @@
       "padding": "Pelapik {{value}}",
       "thickness": "Ketebalan {{value}}",
       "drawHint": "Seret pada halaman untuk melukis. Setiap lakaran ialah lapisan tersendiri yang boleh anda alihkan, ubah saiz atau padam. Ketik “Berhenti melukis” apabila selesai.",
-      "layersHint": "Bahagian atas senarai ialah bahagian hadapan. Gunakan anak panah untuk menyusun semula. Lapisan yang dikunci dan disembunyikan hanya boleh dipilih di sini."
+      "layersHint": "Bahagian atas senarai ialah bahagian hadapan. Gunakan anak panah untuk menyusun semula. Lapisan yang dikunci dan disembunyikan hanya boleh dipilih di sini.",
+      "agentWebOnly": "Sebahagian daripadanya hanya berfungsi dalam editor web buat masa ini.",
+      "brandLogoHint": "Pilih gambar pada halaman, kemudian gunakannya sebagai logo anda.",
+      "useAsLogo": "Guna gambar yang dipilih"
     },
     "filters": {
       "none": "Asal",
@@ -5286,7 +5289,8 @@
     },
     "rail": {
       "elements": "Elemen",
-      "layers": "Lapisan"
+      "layers": "Lapisan",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Biasa",
@@ -5322,6 +5326,89 @@
       "outlineOn": "Garis luar",
       "outlineWidth": "Lebar garis luar {{value}}",
       "path": "Lukisan"
+    },
+    "agent": {
+      "changes": "Suntingan dibuat: {{count}}",
+      "clear": "Kosongkan sembang",
+      "done": "Selesai.",
+      "failed": "AI tidak dapat melakukannya sekarang. Cuba lagi sebentar lagi.",
+      "introBody": "Terangkan reka bentuk atau perubahan dengan kata-kata anda sendiri. Ia mengubah saiz halaman, menulis dan menggayakan teks, mencari foto, video dan muzik percuma, menggunakan penapis, menyusun lapisan dan menganimasikannya. Setiap permintaan boleh dibuat asal sekali gus.",
+      "introTitle": "Beritahu AI apa yang anda mahu",
+      "noStock": "Tiada stok percuma yang sepadan dengan “{{query}}”.",
+      "nothingToDo": "Saya tidak menemui apa-apa untuk diubah bagi permintaan itu. Cuba terangkan suntingan yang anda mahu.",
+      "placeholder": "Terangkan apa yang anda mahu…",
+      "rateLimited": "Anda telah menghantar banyak permintaan. Cuba lagi dalam beberapa minit.",
+      "send": "Hantar",
+      "suggestFilter": "Jadikan foto lebih hangat dan sedikit lebih cerah",
+      "suggestPoster": "Buat hantaran Instagram segi empat sama untuk jualan musim panas dengan foto pantai dan tajuk tebal",
+      "suggestStory": "Tukar ini kepada story 9:16 dan penuhkan halaman dengan foto",
+      "suggestTitle": "Tambah tajuk besar dan tebal di atas dan subtajuk yang lebih kecil di bawahnya",
+      "undo": "Buat asal",
+      "working": "Sedang diusahakan…"
+    },
+    "brand": {
+      "addColor": "Tambah warna jenama",
+      "addLogo": "Tambah logo",
+      "applied": "Jenama digunakan pada {{count}} lapisan.",
+      "apply": "Guna jenama",
+      "bodyFont": "Fon badan",
+      "colors": "Warna jenama",
+      "heading": "Kit jenama",
+      "headingFont": "Fon tajuk",
+      "logo": "Logo",
+      "noLogo": "Tiada logo",
+      "removeColor": "Buang {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Akan datang",
+        "title": "Berita besar akan tiba"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Selamat Hari Jadi"
+      },
+      "crypto": {
+        "change": "+42% minggu ini",
+        "title": "Kemas kini harga"
+      },
+      "event": {
+        "date": "Jumaat 8 malam",
+        "place": "The Warehouse, pusat bandar",
+        "title": "Malam muzik langsung"
+      },
+      "heading": "Templat",
+      "meme": {
+        "bottom": "Pada cubaan pertama",
+        "top": "Bila kod berfungsi",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episod 12 · Kini keluar",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Buat ringkas, tapi bermakna.",
+        "title": "Kad petikan"
+      },
+      "sale": {
+        "subtitle": "Diskaun sehingga 50% · Hujung minggu ini sahaja",
+        "title": "Jualan Musim Panas"
+      },
+      "story": {
+        "cta": "Leret ke atas untuk membeli",
+        "title": "Koleksi baharu"
+      },
+      "thumbnail": {
+        "badge": "Baharu",
+        "title": "Anda takkan percaya"
+      },
+      "hint": "Pilih satu untuk bermula. Setiap perkataan, warna dan foto boleh ditukar, atau minta AI menukarnya untuk anda.",
+      "use": "Guna templat {{name}}",
+      "replaceConfirm": "Gantikan reka bentuk semasa dengan templat ini? Anda boleh membuat asal.",
+      "replaceTitle": "Gantikan reka bentuk anda?",
+      "replace": "Gantikan"
     }
   },
   "creator": {

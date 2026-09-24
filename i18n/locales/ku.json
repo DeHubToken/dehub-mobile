@@ -4488,7 +4488,10 @@
       "padding": "Valahiya hundir {{value}}",
       "thickness": "Stûrî {{value}}",
       "drawHint": "Ji bo xêzkirinê li ser rûpelê bikişîne. Her xêz qatek serbixwe ye ku tu dikarî bilivînî, mezinahiya wê biguherînî an jê bibî. Dema ku te qedand, li “کێشان ڕابگرە” bitikîne.",
-      "layersHint": "Serê lîsteyê pêş e. Ji bo rêzkirina ji nû ve tîran bi kar bîne. Qatên kilîtkirî û veşartî tenê ji vir dikarin werin hilbijartin."
+      "layersHint": "Serê lîsteyê pêş e. Ji bo rêzkirina ji nû ve tîran bi kar bîne. Qatên kilîtkirî û veşartî tenê ji vir dikarin werin hilbijartin.",
+      "agentWebOnly": "Hin ji wê niha tenê di edîtora webê de dixebite.",
+      "brandLogoHint": "Wêneyekî li ser rûpelê hilbijêre, paşê wê wekî logoya xwe bi kar bîne.",
+      "useAsLogo": "Wêneyê hilbijartî bi kar bîne"
     },
     "filters": {
       "none": "Orîjînal",
@@ -4582,7 +4585,8 @@
     },
     "rail": {
       "elements": "توخمەکان",
-      "layers": "چینەکان"
+      "layers": "چینەکان",
+      "agent": "AI"
     },
     "blend": {
       "normal": "ئاسایی",
@@ -4618,6 +4622,89 @@
       "outlineOn": "لێوار",
       "outlineWidth": "پانی لێوار {{value}}",
       "path": "وێنەکێشان"
+    },
+    "agent": {
+      "changes": "دەستکارییە کراوەکان: {{count}}",
+      "clear": "سڕینەوەی چات",
+      "done": "تەواو بوو.",
+      "failed": "AI ئێستا نەیتوانی ئەوە بکات. دوای کەمێک دووبارە هەوڵ بدەرەوە.",
+      "introBody": "دیزاینەکە یان گۆڕانکارییەکە بە وشەکانی خۆت باس بکە. قەبارەی پەڕە دەگۆڕێت، دەق دەنووسێت و ڕێکی دەخات، وێنە و ڤیدیۆ و مۆسیقای بەخۆڕایی دەدۆزێتەوە، فلتەر جێبەجێ دەکات، چینەکان ڕێک دەخات و جووڵەیان پێ دەدات. هەر داواکارییەک بە یەک پاشگەزبوونەوە دەگەڕێتەوە.",
+      "introTitle": "بە AI بڵێ چیت دەوێت",
+      "noStock": "هیچ کەرەستەیەکی بەخۆڕایی لەگەڵ “{{query}}” یەک ناگرێتەوە.",
+      "nothingToDo": "هیچ شتێکم نەدۆزییەوە بۆ گۆڕین. هەوڵ بدە ئەو دەستکارییە باس بکەیت کە دەتەوێت.",
+      "placeholder": "باسی ئەوە بکە کە دەتەوێت…",
+      "rateLimited": "داواکارییەکی زۆرت ناردووە. دوای چەند خولەکێک دووبارە هەوڵ بدەرەوە.",
+      "send": "ناردن",
+      "suggestFilter": "وێنەکە گەرمتر و کەمێک ڕووناکتر بکە",
+      "suggestPoster": "پۆستێکی چوارگۆشەی ئینستاگرام بۆ داشکاندنی هاوین دروست بکە لەگەڵ وێنەیەکی کەنار دەریا و ناونیشانێکی ئەستوور",
+      "suggestStory": "ئەمە بکە بە ستۆرییەکی 9:16 و پەڕەکە بە وێنەکە پڕ بکەرەوە",
+      "suggestTitle": "ناونیشانێکی گەورەی ئەستوور لە سەرەوە و ژێرناونیشانێکی بچووکتر لە ژێریدا زیاد بکە",
+      "undo": "پاشگەزبوونەوە",
+      "working": "خەریکی کارکردنم…"
+    },
+    "brand": {
+      "addColor": "ڕەنگێکی براند زیاد بکە",
+      "addLogo": "لۆگۆ زیاد بکە",
+      "applied": "براند لەسەر {{count}} چین جێبەجێ کرا.",
+      "apply": "براند جێبەجێ بکە",
+      "bodyFont": "فۆنتی دەق",
+      "colors": "ڕەنگەکانی براند",
+      "heading": "کیتی براند",
+      "headingFont": "فۆنتی سەردێڕ",
+      "logo": "لۆگۆ",
+      "noLogo": "لۆگۆ نییە",
+      "removeColor": "{{color}} لابە"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "بەم زووانە",
+        "title": "هەواڵێکی گەورە دێت"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "ڕۆژی لەدایکبوونت پیرۆز"
+      },
+      "crypto": {
+        "change": "+42% ئەم هەفتەیە",
+        "title": "نوێکردنەوەی نرخ"
+      },
+      "event": {
+        "date": "هەینی کاتژمێر 8ی ئێوارە",
+        "place": "The Warehouse، ناوەندی شار",
+        "title": "شەوی مۆسیقای ڕاستەوخۆ"
+      },
+      "heading": "ڕووکارەکان",
+      "meme": {
+        "bottom": "لە یەکەم هەوڵدا",
+        "top": "کاتێک کۆدەکە کار دەکات",
+        "title": "میم"
+      },
+      "podcast": {
+        "episode": "ئەڵقەی 12 · ئێستا بڵاوبووەوە",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "سادەی بکە، بەڵام بەمانا.",
+        "title": "کارتی وتە"
+      },
+      "sale": {
+        "subtitle": "تا 50% داشکاندن · تەنها ئەم کۆتایی هەفتەیە",
+        "title": "داشکاندنی هاوین"
+      },
+      "story": {
+        "cta": "بۆ کڕین بەرەو سەرەوە ڕابکێشە",
+        "title": "بەرهەمی نوێ"
+      },
+      "thumbnail": {
+        "badge": "نوێ",
+        "title": "باوەڕ ناکەیت"
+      },
+      "hint": "یەکێک هەڵبژێرە بۆ دەستپێکردن. هەموو وشە و ڕەنگ و وێنەیەک دەگۆڕدرێت، یان داوا لە AI بکە بۆت بگۆڕێت.",
+      "use": "ڕووکاری {{name}} بەکاربهێنە",
+      "replaceConfirm": "دیزاینی ئێستا بەم ڕووکارە بگۆڕدرێت؟ دەتوانیت پاشگەزی بکەیتەوە.",
+      "replaceTitle": "دیزاینەکەت بگۆڕیت؟",
+      "replace": "گۆڕین"
     }
   },
   "creator": {

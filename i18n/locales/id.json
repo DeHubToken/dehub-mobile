@@ -4979,7 +4979,10 @@
       "padding": "Padding {{value}}",
       "thickness": "Ketebalan {{value}}",
       "drawHint": "Seret di halaman untuk menggambar. Setiap goresan adalah lapisan tersendiri yang bisa dipindah, diubah ukurannya, atau dihapus. Ketuk Berhenti menggambar jika sudah selesai.",
-      "layersHint": "Bagian atas daftar adalah yang paling depan. Gunakan panah untuk mengubah urutan. Lapisan yang dikunci dan disembunyikan hanya bisa dipilih di sini."
+      "layersHint": "Bagian atas daftar adalah yang paling depan. Gunakan panah untuk mengubah urutan. Lapisan yang dikunci dan disembunyikan hanya bisa dipilih di sini.",
+      "agentWebOnly": "Sebagian dari itu untuk saat ini hanya berfungsi di editor web.",
+      "brandLogoHint": "Pilih gambar di halaman, lalu gunakan sebagai logo Anda.",
+      "useAsLogo": "Gunakan gambar terpilih"
     },
     "filters": {
       "none": "Asli",
@@ -5073,7 +5076,8 @@
     },
     "rail": {
       "elements": "Elemen",
-      "layers": "Lapisan"
+      "layers": "Lapisan",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5109,6 +5113,89 @@
       "outlineOn": "Garis tepi",
       "outlineWidth": "Lebar garis tepi {{value}}",
       "path": "Gambar"
+    },
+    "agent": {
+      "changes": "Edit dilakukan: {{count}}",
+      "clear": "Hapus obrolan",
+      "done": "Selesai.",
+      "failed": "AI tidak bisa melakukannya sekarang. Coba lagi sebentar lagi.",
+      "introBody": "Jelaskan desain atau perubahannya dengan kata-kata Anda sendiri. AI mengubah ukuran halaman, menulis dan menata teks, mencari foto, video, dan musik gratis, menerapkan filter, menyusun lapisan, dan menganimasikannya. Setiap permintaan bisa dibatalkan dengan satu kali urungkan.",
+      "introTitle": "Beri tahu AI apa yang Anda inginkan",
+      "noStock": "Tidak ada stok gratis yang cocok dengan “{{query}}”.",
+      "nothingToDo": "Saya tidak menemukan apa pun untuk diubah. Coba jelaskan edit yang Anda inginkan.",
+      "placeholder": "Jelaskan yang Anda inginkan…",
+      "rateLimited": "Anda telah mengirim banyak permintaan. Coba lagi dalam beberapa menit.",
+      "send": "Kirim",
+      "suggestFilter": "Buat fotonya lebih hangat dan sedikit lebih terang",
+      "suggestPoster": "Buat postingan Instagram persegi untuk diskon musim panas dengan foto pantai dan judul tebal",
+      "suggestStory": "Ubah ini menjadi story 9:16 dan penuhi halaman dengan foto",
+      "suggestTitle": "Tambahkan judul besar dan tebal di atas dan subjudul lebih kecil di bawahnya",
+      "undo": "Urungkan",
+      "working": "Sedang dikerjakan…"
+    },
+    "brand": {
+      "addColor": "Tambah warna merek",
+      "addLogo": "Tambah logo",
+      "applied": "Merek diterapkan ke {{count}} lapisan.",
+      "apply": "Terapkan merek",
+      "bodyFont": "Font isi",
+      "colors": "Warna merek",
+      "heading": "Kit merek",
+      "headingFont": "Font judul",
+      "logo": "Logo",
+      "noLogo": "Tidak ada logo",
+      "removeColor": "Hapus {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Segera hadir",
+        "title": "Kabar besar segera datang"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Selamat Ulang Tahun"
+      },
+      "crypto": {
+        "change": "+42% minggu ini",
+        "title": "Update harga"
+      },
+      "event": {
+        "date": "Jumat 20.00",
+        "place": "The Warehouse, pusat kota",
+        "title": "Malam musik live"
+      },
+      "heading": "Template",
+      "meme": {
+        "bottom": "Di percobaan pertama",
+        "top": "Saat kodenya jalan",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episode 12 · Tayang sekarang",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Buat sederhana, tapi bermakna.",
+        "title": "Kartu kutipan"
+      },
+      "sale": {
+        "subtitle": "Diskon hingga 50% · Khusus akhir pekan ini",
+        "title": "Diskon Musim Panas"
+      },
+      "story": {
+        "cta": "Geser ke atas untuk belanja",
+        "title": "Koleksi baru"
+      },
+      "thumbnail": {
+        "badge": "Baru",
+        "title": "Kamu nggak bakal percaya"
+      },
+      "hint": "Pilih satu untuk mulai. Setiap kata, warna, dan foto bisa diubah, atau minta AI mengubahnya untukmu.",
+      "use": "Pakai template {{name}}",
+      "replaceConfirm": "Ganti desain saat ini dengan template ini? Kamu bisa membatalkannya.",
+      "replaceTitle": "Ganti desain Anda?",
+      "replace": "Ganti"
     }
   },
   "creator": {

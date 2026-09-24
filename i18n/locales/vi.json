@@ -5014,7 +5014,10 @@
       "padding": "Khoảng đệm {{value}}",
       "thickness": "Độ dày {{value}}",
       "drawHint": "Kéo trên trang để vẽ. Mỗi nét là một lớp riêng mà bạn có thể di chuyển, đổi kích thước hoặc xóa. Nhấn Dừng vẽ khi xong.",
-      "layersHint": "Đầu danh sách là lớp trên cùng. Dùng mũi tên để sắp xếp lại. Lớp bị khóa và bị ẩn chỉ chọn được ở đây."
+      "layersHint": "Đầu danh sách là lớp trên cùng. Dùng mũi tên để sắp xếp lại. Lớp bị khóa và bị ẩn chỉ chọn được ở đây.",
+      "agentWebOnly": "Một phần trong đó hiện chỉ hoạt động trong trình chỉnh sửa web.",
+      "brandLogoHint": "Chọn một hình ảnh trên trang, rồi dùng nó làm logo của bạn.",
+      "useAsLogo": "Dùng hình ảnh đã chọn"
     },
     "filters": {
       "none": "Gốc",
@@ -5108,7 +5111,8 @@
     },
     "rail": {
       "elements": "Thành phần",
-      "layers": "Lớp"
+      "layers": "Lớp",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Bình thường",
@@ -5144,6 +5148,89 @@
       "outlineOn": "Viền",
       "outlineWidth": "Độ dày viền {{value}}",
       "path": "Hình vẽ"
+    },
+    "agent": {
+      "changes": "Số chỉnh sửa đã thực hiện: {{count}}",
+      "clear": "Xóa cuộc trò chuyện",
+      "done": "Xong.",
+      "failed": "AI hiện không thể làm việc này. Hãy thử lại sau một lát.",
+      "introBody": "Mô tả thiết kế hoặc thay đổi bằng lời của bạn. AI sẽ đổi kích thước trang, viết và định dạng chữ, tìm ảnh, video và nhạc miễn phí, áp dụng bộ lọc, sắp xếp các lớp và tạo hiệu ứng cho chúng. Mỗi yêu cầu chỉ cần một lần hoàn tác.",
+      "introTitle": "Nói với AI điều bạn muốn",
+      "noStock": "Không có tư liệu miễn phí nào khớp với “{{query}}”.",
+      "nothingToDo": "Mình không tìm thấy gì để thay đổi. Hãy thử mô tả chỉnh sửa bạn muốn.",
+      "placeholder": "Mô tả điều bạn muốn…",
+      "rateLimited": "Bạn đã gửi quá nhiều yêu cầu. Hãy thử lại sau vài phút.",
+      "send": "Gửi",
+      "suggestFilter": "Làm ảnh ấm hơn và sáng hơn một chút",
+      "suggestPoster": "Tạo một bài đăng Instagram vuông cho đợt giảm giá mùa hè với ảnh bãi biển và tiêu đề nổi bật",
+      "suggestStory": "Chuyển cái này thành story 9:16 và lấp đầy trang bằng ảnh",
+      "suggestTitle": "Thêm một tiêu đề to đậm ở trên cùng và một phụ đề nhỏ hơn bên dưới",
+      "undo": "Hoàn tác",
+      "working": "Đang xử lý…"
+    },
+    "brand": {
+      "addColor": "Thêm màu thương hiệu",
+      "addLogo": "Thêm logo",
+      "applied": "Đã áp dụng thương hiệu cho {{count}} lớp.",
+      "apply": "Áp dụng thương hiệu",
+      "bodyFont": "Phông nội dung",
+      "colors": "Màu thương hiệu",
+      "heading": "Bộ thương hiệu",
+      "headingFont": "Phông tiêu đề",
+      "logo": "Logo",
+      "noLogo": "Chưa có logo",
+      "removeColor": "Xóa {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Sắp ra mắt",
+        "title": "Tin lớn sắp đến"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Chúc mừng sinh nhật"
+      },
+      "crypto": {
+        "change": "+42% tuần này",
+        "title": "Cập nhật giá"
+      },
+      "event": {
+        "date": "Thứ Sáu 20h",
+        "place": "The Warehouse, trung tâm",
+        "title": "Đêm nhạc sống"
+      },
+      "heading": "Mẫu",
+      "meme": {
+        "bottom": "Ngay lần đầu tiên",
+        "top": "Khi code chạy được",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Tập 12 · Đã lên sóng",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Đơn giản, nhưng ý nghĩa.",
+        "title": "Thẻ trích dẫn"
+      },
+      "sale": {
+        "subtitle": "Giảm đến 50% · Chỉ cuối tuần này",
+        "title": "Sale Hè"
+      },
+      "story": {
+        "cta": "Vuốt lên để mua",
+        "title": "Hàng mới về"
+      },
+      "thumbnail": {
+        "badge": "Mới",
+        "title": "Không thể tin nổi!"
+      },
+      "hint": "Chọn một mẫu để bắt đầu. Mọi chữ, màu và ảnh đều có thể đổi, hoặc nhờ AI đổi giúp bạn.",
+      "use": "Dùng mẫu {{name}}",
+      "replaceConfirm": "Thay thiết kế hiện tại bằng mẫu này? Bạn có thể hoàn tác.",
+      "replaceTitle": "Thay thế thiết kế của bạn?",
+      "replace": "Thay thế"
     }
   },
   "creator": {

@@ -4925,7 +4925,10 @@
       "padding": "Mbushja {{value}}",
       "thickness": "Trashësia {{value}}",
       "drawHint": "Tërhiqni në faqe për të vizatuar. Çdo vijë është shtresë më vete që mund ta lëvizni, t'i ndryshoni madhësinë ose ta fshini. Prekni Ndalo vizatimin kur të mbaroni.",
-      "layersHint": "Maja e listës është përpara. Përdorni shigjetat për të ndryshuar radhën. Shtresat e kyçura dhe të fshehura mund të zgjidhen vetëm këtu."
+      "layersHint": "Maja e listës është përpara. Përdorni shigjetat për të ndryshuar radhën. Shtresat e kyçura dhe të fshehura mund të zgjidhen vetëm këtu.",
+      "agentWebOnly": "Disa prej tyre për momentin funksionojnë vetëm në redaktuesin e uebit.",
+      "brandLogoHint": "Zgjidh një figurë në faqe, pastaj përdore si logon tënde.",
+      "useAsLogo": "Përdor figurën e zgjedhur"
     },
     "filters": {
       "none": "Origjinal",
@@ -5019,7 +5022,8 @@
     },
     "rail": {
       "elements": "Elementet",
-      "layers": "Shtresat"
+      "layers": "Shtresat",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5055,6 +5059,89 @@
       "outlineOn": "Kontur",
       "outlineWidth": "Trashësia e konturit {{value}}",
       "path": "Vizatim"
+    },
+    "agent": {
+      "changes": "Ndryshime të bëra: {{count}}",
+      "clear": "Pastro bisedën",
+      "done": "U krye.",
+      "failed": "AI nuk mundi ta bëjë këtë tani. Provo përsëri pas pak.",
+      "introBody": "Përshkruaj dizajnin ose ndryshimin me fjalët e tua. Ndryshon madhësinë e faqes, shkruan dhe stilon tekstin, gjen foto, video dhe muzikë falas, aplikon filtra, rregullon shtresat dhe i animon ato. Çdo kërkesë zhbëhet me një hap.",
+      "introTitle": "Tregoji AI-së çfarë dëshiron",
+      "noStock": "Asnjë material falas nuk përputhet me „{{query}}“.",
+      "nothingToDo": "Nuk gjeta asgjë për të ndryshuar. Provo të përshkruash ndryshimin që dëshiron.",
+      "placeholder": "Përshkruaj çfarë dëshiron…",
+      "rateLimited": "Ke dërguar shumë kërkesa. Provo përsëri pas disa minutash.",
+      "send": "Dërgo",
+      "suggestFilter": "Bëje foton më të ngrohtë dhe pak më të ndritshme",
+      "suggestPoster": "Bëj një postim katror për Instagram për uljet e verës me një foto plazhi dhe një titull të theksuar",
+      "suggestStory": "Ktheje këtë në një story 9:16 dhe mbushe faqen me foton",
+      "suggestTitle": "Shto një titull të madh e të trashë lart dhe një nëntitull më të vogël poshtë tij",
+      "undo": "Zhbëj",
+      "working": "Po punoj…"
+    },
+    "brand": {
+      "addColor": "Shto një ngjyrë marke",
+      "addLogo": "Shto logo",
+      "applied": "Marka u aplikua në {{count}} shtresa.",
+      "apply": "Apliko markën",
+      "bodyFont": "Fonti i tekstit",
+      "colors": "Ngjyrat e markës",
+      "heading": "Kompleti i markës",
+      "headingFont": "Fonti i titujve",
+      "logo": "Logoja",
+      "noLogo": "Pa logo",
+      "removeColor": "Hiq {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Së shpejti",
+        "title": "Po vijnë lajme të mëdha"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Gëzuar ditëlindjen"
+      },
+      "crypto": {
+        "change": "+42% këtë javë",
+        "title": "Përditësim çmimi"
+      },
+      "event": {
+        "date": "E premte, ora 20:00",
+        "place": "Magazina, në qendër",
+        "title": "Mbrëmje me muzikë live"
+      },
+      "heading": "Shabllonet",
+      "meme": {
+        "bottom": "Që në provën e parë",
+        "top": "Kur kodi punon",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episodi 12 · Tani në dispozicion",
+        "title": "Shou i Krijuesve"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Bëje të thjeshtë, por domethënëse.",
+        "title": "Kartë citati"
+      },
+      "sale": {
+        "subtitle": "Deri në 50% zbritje · Vetëm këtë fundjavë",
+        "title": "Ulje Vere"
+      },
+      "story": {
+        "cta": "Rrëshqit lart për të blerë",
+        "title": "Koleksion i ri"
+      },
+      "thumbnail": {
+        "badge": "E re",
+        "title": "Nuk do ta besosh!"
+      },
+      "hint": "Zgjidh një për të filluar. Çdo fjalë, ngjyrë dhe foto mund të ndryshohet, ose kërkoji AI-së ta bëjë për ty.",
+      "use": "Përdor shabllonin {{name}}",
+      "replaceConfirm": "Të zëvendësohet dizajni aktual me këtë shabllon? Mund ta zhbësh.",
+      "replaceTitle": "Ta zëvendësosh dizajnin?",
+      "replace": "Zëvendëso"
     }
   },
   "creator": {
