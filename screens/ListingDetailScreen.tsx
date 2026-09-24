@@ -22,7 +22,9 @@ import {
   useWindowDimensions,
   KeyboardAvoidingView,
   Alert,
-} from "react-native";
+  Linking,
+} from "react-native";
+import { podProviderLabel, parsePodUrl } from "../libs/pod-providers";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
@@ -149,6 +151,8 @@ export default function ListingDetailScreen() {
   const sellerAddress = (listing?.wallet_address || listing?.stores?.wallet_address || "").toLowerCase();
   const isSelf = !!myWallet && myWallet === sellerAddress;
   const soldOut = listing?.stock_quantity === 0;
+  // Print-on-demand listings are bought on the provider's site, never through DHB checkout.
+  const podUrl = listing?.external_url ? parsePodUrl(listing.external_url) : null;
   const { avg, count } = averageRating(reviews.data);
 
   const purchase = useCallback(async () => {
@@ -452,7 +456,25 @@ export default function ListingDetailScreen() {
           )}
 
           {/* Buy */}
-          {isSelf ? (
+          {podUrl ? (
+            <>
+              <View style={styles.infoBox}>
+                <Icon name="Package" size={14} color="#A1A1AA" />
+                <Text style={styles.infoText}>
+                  {t("stores.podNote", { provider: podProviderLabel(listing.pod_provider) ?? podUrl.hostname })}
+                </Text>
+              </View>
+              <Pressable
+                onPress={() => Linking.openURL(podUrl.href).catch(() => undefined)}
+                style={styles.buyBtn}
+              >
+                <Icon name="ExternalLink" size={17} color="#000000" />
+                <Text style={styles.buyBtnText}>
+                  {t("stores.podBuyOn", { provider: podProviderLabel(listing.pod_provider) ?? podUrl.hostname })}
+                </Text>
+              </Pressable>
+            </>
+          ) : isSelf ? (
             <View style={styles.noteBox}>
               <Text style={styles.noteText}>{t("stores.detail.ownListing")}</Text>
             </View>

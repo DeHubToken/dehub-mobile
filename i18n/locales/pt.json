@@ -3171,6 +3171,16 @@
     "boughtToVaultToast": "@{{handle}} agora está nos seus nomes de usuário"
   },
   "stores": {
+    "podToggle": "Item de impressão sob demanda",
+    "podHint": "Vincule um produto da sua loja de impressão sob demanda. O fornecedor imprime e envia cada pedido, então você não precisa de estoque.",
+    "podUrlLabel": "Link do produto",
+    "podProviderLabel": "Fornecedor",
+    "podOther": "Outro",
+    "podInvalidUrl": "Insira um link https:// válido",
+    "podBadge": "Impressão sob demanda",
+    "podBuyOn": "Comprar na {{provider}}",
+    "podNote": "Impresso e enviado sob demanda pela {{provider}}. O pagamento é feito no site deles.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Descubra produtos da comunidade DeHub",
     "browse": "Explorar",
     "myStore": "A minha loja",

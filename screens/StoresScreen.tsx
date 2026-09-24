@@ -23,6 +23,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
+import { podProviderLabel } from "../libs/pod-providers";
 import ScreenHeader from "../components/ScreenHeader";
 import MyStoreTab from "../components/Stores/MyStoreTab";
 import { theme } from "../theme";
@@ -82,6 +83,13 @@ const ListingCard: React.FC<{ listing: StoreListing; width: number; onPress: () 
         {listing.is_digital && (
           <View style={styles.digitalPill}>
             <Text style={styles.digitalText}>{t("stores.digital")}</Text>
+          </View>
+        )}
+        {!!listing.external_url && (
+          <View style={styles.podPill}>
+            <Text style={styles.podText} numberOfLines={1}>
+              {podProviderLabel(listing.pod_provider) ?? t("stores.podBadge")}
+            </Text>
           </View>
         )}
         {soldOut && (
@@ -354,6 +362,17 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.65)",
   },
   digitalText: { color: "#E4E4E7", fontSize: 12, fontWeight: "700" },
+  podPill: {
+    position: "absolute",
+    top: 7,
+    right: 7,
+    maxWidth: "70%",
+    paddingHorizontal: 7,
+    paddingVertical: 2,
+    borderRadius: 999,
+    backgroundColor: "rgba(0,0,0,0.65)",
+  },
+  podText: { color: "#E4E4E7", fontSize: 12, fontWeight: "700" },
   soldOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0,0,0,0.6)",

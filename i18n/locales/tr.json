@@ -3167,6 +3167,16 @@
     "priceUsd": "Fiyat (USD)"
   },
   "stores": {
+    "podToggle": "İsteğe bağlı baskı ürünü",
+    "podHint": "İsteğe bağlı baskı mağazanızdan bir ürün bağlayın. Sağlayıcı her siparişi basar ve gönderir, stok tutmanız gerekmez.",
+    "podUrlLabel": "Ürün bağlantısı",
+    "podProviderLabel": "Sağlayıcı",
+    "podOther": "Diğer",
+    "podInvalidUrl": "Geçerli bir https:// bağlantısı girin",
+    "podBadge": "İsteğe bağlı baskı",
+    "podBuyOn": "{{provider}} üzerinden satın al",
+    "podNote": "{{provider}} tarafından isteğe bağlı basılır ve gönderilir. Ödeme onların sitesinde yapılır.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub topluluğundaki ürünleri keşfedin",
     "browse": "Keşfet",
     "myStore": "Mağazam",

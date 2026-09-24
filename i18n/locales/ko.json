@@ -3171,6 +3171,16 @@
     "boughtToVaultToast": "@{{handle}}이(가) 내 사용자 이름에 추가되었습니다"
   },
   "stores": {
+    "podToggle": "주문형 인쇄 상품",
+    "podHint": "주문형 인쇄 샵의 상품을 연결하세요. 제공업체가 주문마다 인쇄하고 배송하므로 재고가 필요 없습니다.",
+    "podUrlLabel": "상품 링크",
+    "podProviderLabel": "제공업체",
+    "podOther": "기타",
+    "podInvalidUrl": "올바른 https:// 상품 링크를 입력하세요",
+    "podBadge": "주문형 인쇄",
+    "podBuyOn": "{{provider}}에서 구매",
+    "podNote": "{{provider}}에서 주문 시 인쇄하고 배송합니다. 결제는 해당 사이트에서 진행됩니다.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub 커뮤니티의 상품을 둘러보세요",
     "browse": "둘러보기",
     "myStore": "내 스토어",

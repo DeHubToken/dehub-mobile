@@ -3167,6 +3167,16 @@
     "priceUsd": "Biha (USD)"
   },
   "stores": {
+    "podToggle": "Berhema çapkirinê li gorî daxwazê",
+    "podHint": "Berhemekê ji dikana xwe ya çapkirinê li gorî daxwazê girêde. Peydaker her fermanê çap dike û dişîne, ji ber vê yekê stok ne pêwîst e.",
+    "podUrlLabel": "Girêdana berhemê",
+    "podProviderLabel": "Peydaker",
+    "podOther": "Yên din",
+    "podInvalidUrl": "Girêdanek https:// ya derbasdar binivîse",
+    "podBadge": "Çapkirin li gorî daxwazê",
+    "podBuyOn": "Li {{provider}} bikire",
+    "podNote": "Ji aliyê {{provider}} ve li gorî daxwazê tê çapkirin û şandin. Dayîn li ser malpera wan e.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Berhemên civaka DeHub keşf bike",
     "browse": "Bigere",
     "myStore": "Dikana min",

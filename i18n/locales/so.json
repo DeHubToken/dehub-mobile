@@ -3167,6 +3167,16 @@
     "priceUsd": "Qiimaha (USD)"
   },
   "stores": {
+    "podToggle": "Shay la daabaco marka la dalbado",
+    "podHint": "Ku xir alaab ka timid dukaankaaga daabacaadda dalabka. Bixiyuhu wuxuu daabacaa oo diraa dalab kasta, markaa kayd uma baahnid.",
+    "podUrlLabel": "Xiriirka alaabta",
+    "podProviderLabel": "Bixiye",
+    "podOther": "Kale",
+    "podInvalidUrl": "Geli xiriir https:// sax ah",
+    "podBadge": "Daabacaad dalab",
+    "podBuyOn": "Ka iibso {{provider}}",
+    "podNote": "{{provider}} ayaa daabaca oo dira marka la dalbado. Lacag bixintu waxay ka dhacdaa boggooda.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Hel badeecadaha bulshada DeHub",
     "browse": "Fiiri",
     "myStore": "Dukaankayga",

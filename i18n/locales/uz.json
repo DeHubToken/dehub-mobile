@@ -3185,6 +3185,16 @@
     "vaultReleaseTitle": "@{{handle}} ni qo'yib yuboringmi?"
   },
   "stores": {
+    "podToggle": "Buyurtma asosida chop etiladigan mahsulot",
+    "podHint": "Buyurtma asosida chop etish do'koningizdan mahsulotni bog'lang. Ta'minotchi har bir buyurtmani chop etib yuboradi, zaxira kerak emas.",
+    "podUrlLabel": "Mahsulot havolasi",
+    "podProviderLabel": "Ta'minotchi",
+    "podOther": "Boshqa",
+    "podInvalidUrl": "To'g'ri https:// havolasini kiriting",
+    "podBadge": "Buyurtma asosida chop",
+    "podBuyOn": "{{provider}} saytida sotib oling",
+    "podNote": "{{provider}} buyurtma asosida chop etib yuboradi. To'lov ularning saytida.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub hamjamiyati mahsulotlarini kashf eting",
     "browse": "Ko'rib chiqish",
     "myStore": "Mening do'konim",

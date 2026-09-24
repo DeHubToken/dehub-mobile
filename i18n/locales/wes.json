@@ -3167,6 +3167,16 @@
     "dollarPriceRange": "Type $1–$1,000,000, with up to two numbers after the point."
   },
   "stores": {
+    "podToggle": "Print-on-demand item",
+    "podHint": "Link one product from your print-on-demand shop. Di provider go print and ship every order, so you no need keep stock.",
+    "podUrlLabel": "Product link",
+    "podProviderLabel": "Provider",
+    "podOther": "Oda",
+    "podInvalidUrl": "Put correct https:// product link",
+    "podBadge": "Print on demand",
+    "podBuyOn": "Buy for {{provider}}",
+    "podNote": "{{provider}} dey print and ship am when person order. Payment dey happen for their site.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Discover product dem from di DeHub community",
     "browse": "Luk",
     "myStore": "Ma store",

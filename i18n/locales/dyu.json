@@ -3167,6 +3167,16 @@
     "priceUpdated": "I ka wari lajɛ ani i ka segi k'a san."
   },
   "stores": {
+    "podToggle": "Article en impression à la demande",
+    "podHint": "Liez un produit de votre boutique d'impression à la demande. Le prestataire imprime et expédie chaque commande, sans stock de votre côté.",
+    "podUrlLabel": "Lien du produit",
+    "podProviderLabel": "Prestataire",
+    "podOther": "Autre",
+    "podInvalidUrl": "Saisissez un lien https:// valide",
+    "podBadge": "Impression à la demande",
+    "podBuyOn": "Acheter sur {{provider}}",
+    "podNote": "Imprimé et expédié à la demande par {{provider}}. Le paiement se fait sur leur site.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub jɛkulu ka fɛnw ɲini",
     "browse": "Filɛ",
     "myStore": "Ne ka butiki",

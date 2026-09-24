@@ -3167,6 +3167,16 @@
     "priceUsd": "قیمت (USD)"
   },
   "stores": {
+    "podToggle": "د غوښتنې پر بنسټ چاپ شوی توکی",
+    "podHint": "د خپل غوښتنې پر بنسټ چاپ هټۍ څخه یو محصول وتړئ. برابروونکی هر فرمایش چاپوي او لیږي، نو ذخیرې ته اړتیا نشته.",
+    "podUrlLabel": "د محصول لینک",
+    "podProviderLabel": "برابروونکی",
+    "podOther": "نور",
+    "podInvalidUrl": "یو سم https:// لینک ولیکئ",
+    "podBadge": "د غوښتنې پر بنسټ چاپ",
+    "podBuyOn": "په {{provider}} کې یې واخلئ",
+    "podNote": "د {{provider}} لخوا د غوښتنې پر بنسټ چاپ او لیږل کیږي. تادیه د دوی په سایټ کې کیږي.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "د DeHub ټولنې محصولات ومومئ",
     "browse": "وګورئ",
     "myStore": "زما پلورنځی",

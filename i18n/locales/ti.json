@@ -3167,6 +3167,16 @@
     "vaultReleaseTitle": "@{{handle}} ይለቀቕ?"
   },
   "stores": {
+    "podToggle": "ብጠለብ ዝሕተም ኣቕሓ",
+    "podHint": "ካብ ብጠለብ ዝሕትም ድኳንካ ፍርያት ኣተኣሳስር። ኣቕራቢ ነፍሲ ወከፍ ትእዛዝ ሓቲሙ ይሰድድ፣ ስለዚ ክምችት ኣየድልየካን።",
+    "podUrlLabel": "መላግቦ ፍርያት",
+    "podProviderLabel": "ኣቕራቢ",
+    "podOther": "ካልእ",
+    "podInvalidUrl": "ቅኑዕ https:// መላግቦ ኣእቱ",
+    "podBadge": "ብጠለብ ምሕታም",
+    "podBuyOn": "ኣብ {{provider}} ግዛእ",
+    "podNote": "ብ{{provider}} ብጠለብ ተሓቲሙ ይለኣኽ። ክፍሊት ኣብ መርበቦም ይፍጸም።",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "ካብ ማሕበረሰብ DeHub ፍርያት ርኸብ",
     "browse": "ርአ",
     "myStore": "ድኳነይ",

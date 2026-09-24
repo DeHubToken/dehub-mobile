@@ -3167,6 +3167,16 @@
     "priceUsd": "Kaina (USD)"
   },
   "stores": {
+    "podToggle": "Spausdinimo pagal užsakymą prekė",
+    "podHint": "Susiekite prekę iš savo spausdinimo pagal užsakymą parduotuvės. Tiekėjas atspausdina ir išsiunčia kiekvieną užsakymą, atsargų nereikia.",
+    "podUrlLabel": "Prekės nuoroda",
+    "podProviderLabel": "Tiekėjas",
+    "podOther": "Kita",
+    "podInvalidUrl": "Įveskite tinkamą https:// nuorodą",
+    "podBadge": "Spausdinimas pagal užsakymą",
+    "podBuyOn": "Pirkti {{provider}}",
+    "podNote": "Spausdina ir siunčia pagal užsakymą {{provider}}. Apmokama jų svetainėje.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Atraskite DeHub bendruomenės produktus",
     "browse": "Naršyti",
     "myStore": "Mano parduotuvė",

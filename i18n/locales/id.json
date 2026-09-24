@@ -3167,6 +3167,16 @@
     "priceUsd": "Harga (USD)"
   },
   "stores": {
+    "podToggle": "Item cetak sesuai pesanan",
+    "podHint": "Tautkan produk dari toko cetak sesuai pesanan Anda. Penyedia mencetak dan mengirim setiap pesanan, jadi Anda tidak perlu stok.",
+    "podUrlLabel": "Tautan produk",
+    "podProviderLabel": "Penyedia",
+    "podOther": "Lainnya",
+    "podInvalidUrl": "Masukkan tautan https:// yang valid",
+    "podBadge": "Cetak sesuai pesanan",
+    "podBuyOn": "Beli di {{provider}}",
+    "podNote": "Dicetak dan dikirim sesuai pesanan oleh {{provider}}. Pembayaran dilakukan di situs mereka.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Temukan produk dari komunitas DeHub",
     "browse": "Jelajah",
     "myStore": "Toko Saya",

@@ -3167,6 +3167,16 @@
     "priceUsd": "Cena (USD)"
   },
   "stores": {
+    "podToggle": "Produkt drukowany na żądanie",
+    "podHint": "Połącz produkt ze swojego sklepu z drukiem na żądanie. Dostawca drukuje i wysyła każde zamówienie, więc nie potrzebujesz zapasów.",
+    "podUrlLabel": "Link do produktu",
+    "podProviderLabel": "Dostawca",
+    "podOther": "Inne",
+    "podInvalidUrl": "Wpisz prawidłowy link https://",
+    "podBadge": "Druk na żądanie",
+    "podBuyOn": "Kup w {{provider}}",
+    "podNote": "Drukowane i wysyłane na żądanie przez {{provider}}. Płatność odbywa się na ich stronie.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Odkrywaj produkty od społeczności DeHub",
     "browse": "Przeglądaj",
     "myStore": "Mój sklep",

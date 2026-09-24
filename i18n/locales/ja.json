@@ -3169,6 +3169,16 @@
     "boughtToVaultToast": "@{{handle}} がユーザー名に追加されました"
   },
   "stores": {
+    "podToggle": "オンデマンド印刷商品",
+    "podHint": "オンデマンド印刷ショップの商品をリンクします。注文ごとにプロバイダーが印刷・発送するため、在庫は不要です。",
+    "podUrlLabel": "商品リンク",
+    "podProviderLabel": "プロバイダー",
+    "podOther": "その他",
+    "podInvalidUrl": "有効な https:// の商品リンクを入力してください",
+    "podBadge": "オンデマンド印刷",
+    "podBuyOn": "{{provider}}で購入",
+    "podNote": "{{provider}}が注文ごとに印刷・発送します。決済は相手のサイトで行われます。",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub コミュニティの商品を見つけよう",
     "browse": "見る",
     "myStore": "マイストア",
