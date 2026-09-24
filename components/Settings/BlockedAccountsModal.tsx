@@ -24,6 +24,9 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
+  // First page failed. Without it the list reads "No blocked users", which
+  // is exactly the wrong thing to tell someone who has blocked people.
+  const [loadError, setLoadError] = useState(false);
 
   // Unblock confirmation. The confirm is a second native Modal; on iOS it is
   // refused if presented while the list sheet is still up, so the list hides
@@ -45,9 +48,11 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
       }
       setHasMore(pageNum < (res?.pages || 1));
       setPage(pageNum);
+      if (pageNum === 1) setLoadError(false);
     } catch (e) {
       console.error('[BlockedAccountsModal] fetch error', e);
-      toastError(t('settings.failedLoadBlocked'));
+      if (pageNum === 1) setLoadError(true);
+      else toastError(t('settings.failedLoadBlocked'));
     } finally {
       setLoading(false);
       setLoadingMore(false);
@@ -62,6 +67,7 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
       setItems([]);
       setPage(1);
       setHasMore(false);
+      setLoadError(false);
     }
   }, [visible, fetchBlocked]);
 
@@ -144,6 +150,18 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
             {loading ? (
               <View className="px-4 py-8 items-center justify-center">
                 <ActivityIndicator size="small" color="#F4F4F5" />
+              </View>
+            ) : loadError && items.length === 0 ? (
+              <View className="px-4 py-8 items-center justify-center">
+                <Icon name="WifiOff" size={32} color="#4b5563" />
+                <Text className="text-theme-neutrals-400 text-sm mt-2 text-center">{t('settings.failedLoadBlocked')}</Text>
+                <TouchableOpacity
+                  onPress={() => fetchBlocked(1)}
+                  accessibilityRole="button"
+                  className="mt-3 px-5 py-2 rounded-xl bg-theme-neutrals-800"
+                >
+                  <Text className="text-theme-neutrals-100 text-sm font-medium">{t('common.tryAgain')}</Text>
+                </TouchableOpacity>
               </View>
             ) : items.length === 0 ? (
               <View className="px-4 py-8 items-center justify-center">

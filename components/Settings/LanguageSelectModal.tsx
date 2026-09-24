@@ -6,6 +6,7 @@ import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import i18n, { SUPPORTED_LANGUAGES, loadLanguage, applyLayoutDirection } from "../../i18n";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { toastError } from "../../libs/toast";
 
 const STORAGE_KEY = "user-preferred-language";
 
@@ -44,12 +45,15 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
       }
       let needsReload = false;
       try {
-        await AsyncStorage.setItem(STORAGE_KEY, code);
+        // Load before persisting: a locale that fails to load must not be
+        // saved as the preference, or every launch comes up in English.
         const loaded = await loadLanguage(code);
+        if (!loaded) throw new Error(`locale ${code} failed to load`);
+        await AsyncStorage.setItem(STORAGE_KEY, code);
         await i18n.changeLanguage(code);
-        needsReload = loaded && applyLayoutDirection(code);
+        needsReload = applyLayoutDirection(code);
       } catch {
-        // silently fall back
+        toastError(t("settings.languageLoadFailed"));
       } finally {
         onClose();
       }
@@ -60,7 +64,7 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
         Updates.reloadAsync().catch(() => DevSettings.reload());
       }
     },
-    [currentLang, onClose]
+    [currentLang, onClose, t]
   );
 
   return (

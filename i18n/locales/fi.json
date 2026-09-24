@@ -727,7 +727,8 @@
     "usernameAvailable": "Käyttäjänimi on saatavilla",
     "hideBadgeAndBalance": "Piilota merkki ja saldo",
     "hideBadgeAndBalanceDesc": "Piilottaa taloudelliset tiedot ja poistaa käytöstä lähetykset ja vinkit sinulle.",
-    "onChainPublicWarning": "Lohkoketjutapahtumat ovat julkisia. Tokenien tai vinkkien lähettäminen voi paljastaa lompakkosi osoitteen, mukaan lukien tapahtumat, jotka tehtiin ennen yksityisen saldon tilan käyttöönottoa."
+    "onChainPublicWarning": "Lohkoketjutapahtumat ovat julkisia. Tokenien tai vinkkien lähettäminen voi paljastaa lompakkosi osoitteen, mukaan lukien tapahtumat, jotka tehtiin ennen yksityisen saldon tilan käyttöönottoa.",
+    "languageLoadFailed": "Kieltä ei voitu vaihtaa. Yritä uudelleen."
   },
   "common": {
     "mute": "Mykistä",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Ei verkkoyhteyttä",
     "noInternetHint": "Varmista, että Wi-Fi tai mobiilidata on päällä, ja napauta sitten \"{{action}}\"",
     "saving": "Tallennetaan…",
-    "offlineStatus": "Offline - Ei verkkoyhteyttä"
+    "offlineStatus": "Offline - Ei verkkoyhteyttä",
+    "postNotFound": "Emme löytäneet kyseistä julkaisua"
   },
   "tip": {
     "title": "Send Tip",
@@ -2869,7 +2871,8 @@
         "forever": "Ikuisesti"
       }
     },
-    "chooseAvatar": "Valitse avatar"
+    "chooseAvatar": "Valitse avatar",
+    "loadFailed": "Yhteisöjä ei voitu ladata"
   },
   "work": {
     "title": "Palkkiot",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Lähetetty jo ({{ref}}). Älä maksa uudelleen — avaa työ hetken kuluttua uudelleen, sen pitäisi näkyä maksettuna."
-    }
+    },
+    "loadFailed": "Palkkioita ei voitu ladata",
+    "jobLoadFailed": "Tätä palkkiota ei voitu ladata"
   },
   "usernames": {
     "subtitle": "Myytäviä käyttäjätunnuksia, hinnat USD:nä",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Et näe heidän julkaisujaan tai voi olla vuorovaikutuksessa heidän kanssaan. Poista esto palauttaaksesi pääsyn.",
     "restrictedBody": "Tämä käyttäjä on rajoittanut vuorovaikutusta tilisi kanssa.",
     "requestPendingBody": "Seuraamispyyntösi on lähetetty. Näet heidän julkaisunsa, kun he hyväksyvät pyyntösi.",
-    "followToSeePosts": "Seuraa tätä tiliä nähdäksesi heidän julkaisunsa."
+    "followToSeePosts": "Seuraa tätä tiliä nähdäksesi heidän julkaisunsa.",
+    "loadFailed": "Tätä luetteloa ei voitu ladata"
   },
   "reactionInfo": {
     "title": "Reaktiot",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Edelleenlähetysviesti",
     "pollSubmitVote": "Lähetä äänestys",
     "doNotDisturb": "Do not disturb.",
-    "doNotDisturbOn": "Älä häiritse"
+    "doNotDisturbOn": "Älä häiritse",
+    "deleteConversationTitle": "Poistetaanko keskustelu?",
+    "deleteConversationBody": "Tämä keskustelu poistetaan postilaatikostasi."
   },
   "editPost": {
     "mediaPermission": "Mediakirjaston käyttöoikeus vaaditaan",

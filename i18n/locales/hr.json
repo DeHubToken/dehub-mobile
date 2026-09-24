@@ -727,7 +727,8 @@
     "usernameAvailable": "Korisničko ime je dostupno",
     "hideBadgeAndBalance": "Sakrij značku i stanje",
     "hideBadgeAndBalanceDesc": "Skriva financijske detalje i onemogućuje slanje i napojnice vama.",
-    "onChainPublicWarning": "Transakcije na lancu su javne. Slanje tokena ili napojnica može otkriti vašu adresu novčanika, uključujući transakcije napravljene prije omogućavanja načina privatnog stanja."
+    "onChainPublicWarning": "Transakcije na lancu su javne. Slanje tokena ili napojnica može otkriti vašu adresu novčanika, uključujući transakcije napravljene prije omogućavanja načina privatnog stanja.",
+    "languageLoadFailed": "Promjena jezika nije uspjela. Pokušajte ponovno."
   },
   "common": {
     "mute": "Isključi zvuk",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Izvan mreže - Nema mrežne veze",
     "noInternetHint": "Provjerite je li Wi-Fi ili mobilni podaci uključeni, a zatim dodirnite \"{{action}}\"",
     "saving": "Spremanje…",
-    "offlineStatus": "Izvan mreže - Nema mrežne veze"
+    "offlineStatus": "Izvan mreže - Nema mrežne veze",
+    "postNotFound": "Nismo mogli pronaći tu objavu"
   },
   "tip": {
     "title": "Pošalji napojnicu",
@@ -2869,7 +2871,8 @@
         "forever": "Zauvijek"
       }
     },
-    "chooseAvatar": "Odaberi avatar"
+    "chooseAvatar": "Odaberi avatar",
+    "loadFailed": "Učitavanje zajednica nije uspjelo"
   },
   "work": {
     "title": "Nagrade",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Već je poslano ({{ref}}). Nemojte platiti ponovno — otvorite posao za koji trenutak i trebao bi biti označen kao plaćen."
-    }
+    },
+    "loadFailed": "Učitavanje nagrada nije uspjelo",
+    "jobLoadFailed": "Učitavanje ove nagrade nije uspjelo"
   },
   "usernames": {
     "subtitle": "Imena na prodaju, cijena u USD",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Nećete vidjeti njihove objave niti moći komunicirati s njima. Deblokirajte kako biste vratili pristup.",
     "restrictedBody": "Ovaj korisnik je ograničio interakcije s vašim računom.",
     "requestPendingBody": "Vaš zahtjev za praćenje je poslan. Moći ćete vidjeti njihove objave nakon što odobre vaš zahtjev.",
-    "followToSeePosts": "Pratite ovaj račun da biste vidjeli njihove objave."
+    "followToSeePosts": "Pratite ovaj račun da biste vidjeli njihove objave.",
+    "loadFailed": "Učitavanje ovog popisa nije uspjelo"
   },
   "reactionInfo": {
     "title": "Reakcije",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Proslijedi poruku",
     "pollSubmitVote": "Pošalji glas",
     "doNotDisturb": "Zabrana ometanja",
-    "doNotDisturbOn": "_Ne uznemiravaj"
+    "doNotDisturbOn": "_Ne uznemiravaj",
+    "deleteConversationTitle": "Želite li izbrisati razgovor?",
+    "deleteConversationBody": "Ovaj će razgovor biti uklonjen iz vaše dolazne pošte."
   },
   "editPost": {
     "mediaPermission": "Potrebno je dopuštenje za medijsku knjižnicu",

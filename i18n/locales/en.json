@@ -727,7 +727,8 @@
     "usernameAvailable": "Username is available",
     "hideBadgeAndBalance": "Hide badge and balance",
     "hideBadgeAndBalanceDesc": "Hides financial details and disables sends and tips to you.",
-    "onChainPublicWarning": "On-chain transactions are public. Sending tokens or tips can reveal your wallet address, including transactions made before private balance mode was enabled."
+    "onChainPublicWarning": "On-chain transactions are public. Sending tokens or tips can reveal your wallet address, including transactions made before private balance mode was enabled.",
+    "languageLoadFailed": "Couldn't switch language. Try again."
   },
   "common": {
     "mute": "Mute",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - No network connection",
     "noInternetHint": "Make sure Wi-Fi or mobile data is turned on, then tap \"{{action}}\"",
     "saving": "Saving…",
-    "offlineStatus": "Offline - No network connection"
+    "offlineStatus": "Offline - No network connection",
+    "postNotFound": "We couldn't find that post"
   },
   "tip": {
     "title": "Send Tip",
@@ -2869,7 +2871,8 @@
         "forever": "Forever"
       }
     },
-    "chooseAvatar": "Choose avatar"
+    "chooseAvatar": "Choose avatar",
+    "loadFailed": "Couldn't load communities"
   },
   "work": {
     "title": "Bounties",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Payment already sent ({{ref}}). Do not pay again — reopen the job shortly and it should show as paid."
-    }
+    },
+    "loadFailed": "Couldn't load bounties",
+    "jobLoadFailed": "Couldn't load this bounty"
   },
   "usernames": {
     "subtitle": "Handles for sale, priced in USD",
@@ -3809,7 +3814,8 @@
     "youBlockedBody": "You won't see their posts or be able to interact with them. Unblock to restore access.",
     "restrictedBody": "This user has restricted interactions with your account.",
     "requestPendingBody": "Your follow request has been sent. You'll be able to see their posts once they approve your request.",
-    "followToSeePosts": "Follow this account to see their posts."
+    "followToSeePosts": "Follow this account to see their posts.",
+    "loadFailed": "Couldn't load this list"
   },
   "reactionInfo": {
     "title": "Reactions",
@@ -4915,7 +4921,9 @@
     "forwardMessage": "Forward message",
     "pollSubmitVote": "Submit vote",
     "doNotDisturb": "Do not disturb",
-    "doNotDisturbOn": "Do not disturb: On"
+    "doNotDisturbOn": "Do not disturb: On",
+    "deleteConversationTitle": "Delete conversation?",
+    "deleteConversationBody": "This conversation will be removed from your inbox."
   },
   "editPost": {
     "mediaPermission": "Media library permission is required",

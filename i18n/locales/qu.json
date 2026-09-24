@@ -727,7 +727,8 @@
     "usernameAvailable": "Usuario sutiqa kanmi",
     "hideBadgeAndBalance": "Pakay insignia hinaspa balanza",
     "hideBadgeAndBalanceDesc": "Qullqimanta willakuykunata pakan chaymanta mana llamk'achinchu apachiykunata chaymanta yuyaychaykunata qamman.",
-    "onChainPublicWarning": "Cadena nisqapi ruwaykunaqa llapa runapaqmi. Tokenkuna utaq yuyaychaykunata apachiyqa billetera direccionniyki riqsichinman, chaymanta ruwanakuna ruwasqa manaraq sapalla saldo modo atichisqa kachkaptin."
+    "onChainPublicWarning": "Cadena nisqapi ruwaykunaqa llapa runapaqmi. Tokenkuna utaq yuyaychaykunata apachiyqa billetera direccionniyki riqsichinman, chaymanta ruwanakuna ruwasqa manaraq sapalla saldo modo atichisqa kachkaptin.",
+    "languageLoadFailed": "Mana simita tikrayta atirqanchu. Hukmanta kallpachakuy."
   },
   "common": {
     "mute": "Upallachiy",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Mana Internetnin kanchu - Mana Networknin kanchu",
     "noInternetHint": "Wi-Fi utaq celular datosnin kaqta hap'iy, chaymanta \"{{action}}\" hap'iy",
     "saving": "Waqaychay...",
-    "offlineStatus": "Mana tinkisqa - Mana llika tinkiynin"
+    "offlineStatus": "Mana tinkisqa - Mana llika tinkiynin",
+    "postNotFound": "Chay qillqasqata manam tarirqaykuchu"
   },
   "tip": {
     "title": "Propina apachiy",
@@ -2900,7 +2902,8 @@
         "forever": "Mana tukukuq"
       }
     },
-    "chooseAvatar": "Awicha akllay"
+    "chooseAvatar": "Awicha akllay",
+    "loadFailed": "Mana ayllukunata cargayta atirqanchu"
   },
   "work": {
     "title": "Chaninchaykuna",
@@ -3024,7 +3027,9 @@
     },
     "payout": {
       "alreadySent": "Ñam apachisqaña ({{ref}}). Ama huk kutita qullqichaychu — pisi pachamanta llamk'ayta kutichiy kichay, qullqichasqa rikurinqa."
-    }
+    },
+    "loadFailed": "Mana recompensakunata cargayta atirqanchu",
+    "jobLoadFailed": "Mana kay recompensata cargayta atirqanchu"
   },
   "usernames": {
     "subtitle": "Qatunapaq sutikuna, USD-wan chaninchasqa",
@@ -3791,7 +3796,8 @@
     "youBlockedBody": "Mana rikunkichu paypa kaqnin, mana llamk'aykunkichu. Hark'ayta pakayta qhawayta alliyachiy.",
     "restrictedBody": "Kay runaqa hark'asqataqmi imaynachus llamk'achisunki.",
     "requestPendingBody": "Kamachisqaykiqa kachasqañam. Paykuna allinyachiptinkumanta rikunkichu paypa kaqnin.",
-    "followToSeePosts": "Kamachiy kay p'anqata rikuy imanta kaqnin."
+    "followToSeePosts": "Kamachiy kay p'anqata rikuy imanta kaqnin.",
+    "loadFailed": "Kay listataqa manam kargayta atirqanchu"
   },
   "reactionInfo": {
     "title": "Reacciones nisqakuna",
@@ -4895,7 +4901,9 @@
     "forwardMessage": "Willakuyta ñawpaqman apachiy",
     "pollSubmitVote": "Votota apachiy",
     "doNotDisturb": "Ama llakichiychu",
-    "doNotDisturbOn": "Ama llakichiychu: On"
+    "doNotDisturbOn": "Ama llakichiychu: On",
+    "deleteConversationTitle": "¿Rimayta chinkachiy?",
+    "deleteConversationBody": "Kay rimanakuyqa bandeja de entrada nisqaykimanta hurqusqam kanqa."
   },
   "editPost": {
     "mediaPermission": "Media ñawinchana wasiman yaykuy saqiy necesitakun",

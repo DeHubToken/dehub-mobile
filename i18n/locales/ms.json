@@ -727,7 +727,8 @@
     "usernameAvailable": "Nama pengguna tersedia",
     "hideBadgeAndBalance": "Sembunyikan lencana dan baki",
     "hideBadgeAndBalanceDesc": "Menyembunyikan butiran kewangan dan melumpuhkan penghantaran dan petua kepada anda.",
-    "onChainPublicWarning": "Urus niaga atas rantaian adalah awam. Menghantar token atau petua boleh mendedahkan alamat dompet anda, termasuk urus niaga yang dibuat sebelum mod baki peribadi didayakan."
+    "onChainPublicWarning": "Urus niaga atas rantaian adalah awam. Menghantar token atau petua boleh mendedahkan alamat dompet anda, termasuk urus niaga yang dibuat sebelum mod baki peribadi didayakan.",
+    "languageLoadFailed": "Tidak dapat menukar bahasa. Cuba lagi."
   },
   "common": {
     "mute": "Bisukan",
@@ -1042,7 +1043,8 @@
     "noInternetStatus": "Luar Talian - Tiada sambungan rangkaian",
     "noInternetHint": "Pastikan Wi-Fi atau data mudah alih dihidupkan, kemudian ketik \"{{action}}\"",
     "saving": "Menyimpan…",
-    "offlineStatus": "Luar Talian - Tiada sambungan rangkaian"
+    "offlineStatus": "Luar Talian - Tiada sambungan rangkaian",
+    "postNotFound": "Kami tidak menemui hantaran itu"
   },
   "tip": {
     "title": "Send Tip",
@@ -3132,7 +3134,8 @@
         "forever": "Selamanya"
       }
     },
-    "chooseAvatar": "Pilih avatar"
+    "chooseAvatar": "Pilih avatar",
+    "loadFailed": "Tidak dapat memuatkan komuniti"
   },
   "work": {
     "title": "Ganjaran",
@@ -3256,7 +3259,9 @@
     },
     "payout": {
       "alreadySent": "Sudah dihantar ({{ref}}). Jangan bayar lagi — buka semula kerja itu sebentar lagi dan ia sepatutnya dipaparkan sebagai dibayar."
-    }
+    },
+    "loadFailed": "Tidak dapat memuatkan ganjaran",
+    "jobLoadFailed": "Tidak dapat memuatkan ganjaran ini"
   },
   "usernames": {
     "subtitle": "Nama pengguna untuk dijual, berharga dalam USD",
@@ -4023,7 +4028,8 @@
     "youBlockedBody": "Anda tidak akan melihat siaran mereka atau dapat berinteraksi dengan mereka. Buka sekatan untuk memulihkan akses.",
     "restrictedBody": "Pengguna ini telah mengehadkan interaksi dengan akaun anda.",
     "requestPendingBody": "Permintaan ikut anda telah dihantar. Anda akan dapat melihat siaran mereka setelah mereka meluluskan permintaan anda.",
-    "followToSeePosts": "Ikuti akaun ini untuk melihat siaran mereka."
+    "followToSeePosts": "Ikuti akaun ini untuk melihat siaran mereka.",
+    "loadFailed": "Tidak dapat memuatkan senarai ini"
   },
   "reactionInfo": {
     "title": "Tindak balas",
@@ -5129,7 +5135,9 @@
     "forwardMessage": "Majukan mesej",
     "pollSubmitVote": "Hantar undian",
     "doNotDisturb": "Jangan Ganggu",
-    "doNotDisturbOn": "Jangan Ganggu"
+    "doNotDisturbOn": "Jangan Ganggu",
+    "deleteConversationTitle": "Hapuskan perbualan?",
+    "deleteConversationBody": "Perbualan ini akan dibuang daripada peti masuk anda."
   },
   "editPost": {
     "mediaPermission": "Kebenaran pustaka media diperlukan",

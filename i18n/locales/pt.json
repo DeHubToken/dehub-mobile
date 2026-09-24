@@ -727,7 +727,8 @@
     "usernameAvailable": "Nome de utilizador disponível",
     "hideBadgeAndBalance": "Ocultar distintivo e saldo",
     "hideBadgeAndBalanceDesc": "Oculta detalhes financeiros e desativa envios e gorjetas para si.",
-    "onChainPublicWarning": "As transações na cadeia são públicas. Enviar tokens ou gorjetas pode revelar o endereço da sua carteira, incluindo transações feitas antes de o modo de saldo privado ser ativado."
+    "onChainPublicWarning": "As transações na cadeia são públicas. Enviar tokens ou gorjetas pode revelar o endereço da sua carteira, incluindo transações feitas antes de o modo de saldo privado ser ativado.",
+    "languageLoadFailed": "Não foi possível mudar o idioma. Tente novamente."
   },
   "common": {
     "mute": "Silenciar",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Sem conexão de rede",
     "noInternetHint": "Certifique-se de que o Wi-Fi ou os dados móveis estejam ativados e, em seguida, toque em \"{{action}}\"",
     "saving": "A guardar…",
-    "offlineStatus": "Offline - Sem ligação de rede"
+    "offlineStatus": "Offline - Sem ligação de rede",
+    "postNotFound": "Não conseguimos encontrar esse post"
   },
   "tip": {
     "title": "Enviar gorjeta",
@@ -2873,7 +2875,8 @@
         "forever": "Para sempre"
       }
     },
-    "chooseAvatar": "Escolher avatar"
+    "chooseAvatar": "Escolher avatar",
+    "loadFailed": "Não foi possível carregar as comunidades"
   },
   "work": {
     "title": "Recompensas",
@@ -2997,7 +3000,9 @@
     },
     "payout": {
       "alreadySent": "Já foi enviado ({{ref}}). Não pague novamente — reabra o trabalho daqui a pouco e ele deverá aparecer como pago."
-    }
+    },
+    "loadFailed": "Não foi possível carregar recompensas",
+    "jobLoadFailed": "Não foi possível carregar esta recompensa"
   },
   "usernames": {
     "subtitle": "Nomes à venda, com preço em USD",
@@ -3813,7 +3818,8 @@
     "youBlockedBody": "Você não verá as postagens deles nem poderá interagir com eles. Desbloquear para restaurar o acesso.",
     "restrictedBody": "Este usuário restringiu as interações com sua conta.",
     "requestPendingBody": "Sua solicitação de seguir foi enviada. Você poderá ver as postagens deles assim que eles aprovarem sua solicitação.",
-    "followToSeePosts": "Siga esta conta para ver as postagens dela."
+    "followToSeePosts": "Siga esta conta para ver as postagens dela.",
+    "loadFailed": "Não foi possível carregar esta lista"
   },
   "reactionInfo": {
     "title": "Reacções",
@@ -4919,7 +4925,9 @@
     "forwardMessage": "Encaminhar mensagem",
     "pollSubmitVote": "Enviar voto",
     "doNotDisturb": "Não perturbe",
-    "doNotDisturbOn": "Não incomodar:"
+    "doNotDisturbOn": "Não incomodar:",
+    "deleteConversationTitle": "Eliminar conversa?",
+    "deleteConversationBody": "Esta conversa será removida da sua caixa de entrada."
   },
   "editPost": {
     "mediaPermission": "É necessária permissão para a biblioteca multimédia",

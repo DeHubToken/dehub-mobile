@@ -727,7 +727,8 @@
     "usernameAvailable": "Uživatelské jméno je k dispozici",
     "hideBadgeAndBalance": "Skrýt odznak a zůstatek",
     "hideBadgeAndBalanceDesc": "Skryje finanční údaje a zakáže odesílání a tipy vám.",
-    "onChainPublicWarning": "On-chain transakce jsou veřejné. Odesílání tokenů nebo tipů může odhalit vaši adresu peněženky, včetně transakcí provedených před povolením režimu soukromého zůstatku."
+    "onChainPublicWarning": "On-chain transakce jsou veřejné. Odesílání tokenů nebo tipů může odhalit vaši adresu peněženky, včetně transakcí provedených před povolením režimu soukromého zůstatku.",
+    "languageLoadFailed": "Nelze přepnout jazyk. Zkuste to znovu."
   },
   "common": {
     "mute": "Ztlumit",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Žádné síťové připojení",
     "noInternetHint": "Ujistěte se, že je zapnutá Wi-Fi nebo mobilní data, a poté klepněte na \"{{action}}\"",
     "saving": "Ukládání…",
-    "offlineStatus": "Offline – žádné síťové připojení"
+    "offlineStatus": "Offline – žádné síťové připojení",
+    "postNotFound": "Příspěvek se nám nepodařilo najít"
   },
   "tip": {
     "title": "Poslat spropitné",
@@ -2873,7 +2875,8 @@
         "forever": "Navždy"
       }
     },
-    "chooseAvatar": "Vybrat avatara"
+    "chooseAvatar": "Vybrat avatara",
+    "loadFailed": "Nelze načíst komunity"
   },
   "work": {
     "title": "Odměny",
@@ -2997,7 +3000,9 @@
     },
     "payout": {
       "alreadySent": "Již odesláno ({{ref}}). Neplaťte znovu — za chvíli zakázku znovu otevřete a měla by být označena jako zaplacená."
-    }
+    },
+    "loadFailed": "Nelze načíst odměny",
+    "jobLoadFailed": "Tuto odměnu se nepodařilo načíst"
   },
   "usernames": {
     "subtitle": "Jména na prodej, oceněná v USD",
@@ -3764,7 +3769,8 @@
     "youBlockedBody": "Nebudete vidět jejich příspěvky ani s nimi interagovat. Odblokováním obnovíte přístup.",
     "restrictedBody": "Tento uživatel omezil interakce s vaším účtem.",
     "requestPendingBody": "Vaše žádost o sledování byla odeslána. Jejich příspěvky budete moci vidět, jakmile vaši žádost schválí.",
-    "followToSeePosts": "Sledujte tento účet a uvidíte jeho příspěvky."
+    "followToSeePosts": "Sledujte tento účet a uvidíte jeho příspěvky.",
+    "loadFailed": "Tento seznam se nepodařilo načíst"
   },
   "reactionInfo": {
     "title": "Reakce",
@@ -4870,7 +4876,9 @@
     "forwardMessage": "Přeposlat zprávu",
     "pollSubmitVote": "Odeslat hlas",
     "doNotDisturb": "Nerušit",
-    "doNotDisturbOn": "Nerušit"
+    "doNotDisturbOn": "Nerušit",
+    "deleteConversationTitle": "Smazat konverzaci?",
+    "deleteConversationBody": "Tato konverzace bude odstraněna z tvých doručených zpráv."
   },
   "editPost": {
     "mediaPermission": "Je vyžadováno oprávnění k mediální knihovně",

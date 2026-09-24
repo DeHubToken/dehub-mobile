@@ -727,7 +727,8 @@
     "usernameAvailable": "Igama lomsebenzisi liyatholakala",
     "hideBadgeAndBalance": "Fihla ibheji nebhalansi",
     "hideBadgeAndBalanceDesc": "Ifihla imininingwane yezezimali futhi ivimela ukuthumela nokunikeza amathiphu kuwe.",
-    "onChainPublicWarning": "Imisebenzi ye-On-chain iyimfihlo. Ukuthumela amathokheni noma amathiphu kungaveza ikheli lakho le-wallet, okuhlanganisa nemisebenzi eyenziwe ngaphambi kokuthi imodi yebhalansi eyimfihlo yenziwe yasebenza."
+    "onChainPublicWarning": "Imisebenzi ye-On-chain iyimfihlo. Ukuthumela amathokheni noma amathiphu kungaveza ikheli lakho le-wallet, okuhlanganisa nemisebenzi eyenziwe ngaphambi kokuthi imodi yebhalansi eyimfihlo yenziwe yasebenza.",
+    "languageLoadFailed": "Ayikwazanga ukushintsha ulimi. Zama futhi."
   },
   "common": {
     "mute": "Thulisa",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Ayixhunyiwe - Ayikho uxhumano lwenethiwekhi",
     "noInternetHint": "Qiniseka ukuthi i-Wi-Fi noma idatha yeselula ivuliwe, bese uthepha ku-\"{{action}}\"",
     "saving": "Kugcinwa…",
-    "offlineStatus": "Ungaxhunyiwe ku-inthanethi - Ayikho uxhumano lwenethiwekhi"
+    "offlineStatus": "Ungaxhunyiwe ku-inthanethi - Ayikho uxhumano lwenethiwekhi",
+    "postNotFound": "Asikwazanga ukuthola leyo phosti"
   },
   "tip": {
     "title": "Thumela Ithiphu",
@@ -2900,7 +2902,8 @@
         "forever": "Phakade"
       }
     },
-    "chooseAvatar": "Khetha i-avatar"
+    "chooseAvatar": "Khetha i-avatar",
+    "loadFailed": "Ayikwazanga ukufaka imiphakathi"
   },
   "work": {
     "title": "Imiklomelo",
@@ -3024,7 +3027,9 @@
     },
     "payout": {
       "alreadySent": "Sekuthunyeliwe ({{ref}}). Ungaphindi ukhokhe — vula umsebenzi futhi emizuzwaneni, kufanele ubonise ukuthi kukhokhiwe."
-    }
+    },
+    "loadFailed": "Ayikwazanga ukulayisha imivuzo",
+    "jobLoadFailed": "Ayikwazanga ukufaka le mali"
   },
   "usernames": {
     "subtitle": "Amagama athengiswayo, anentengo nge-USD",
@@ -3791,7 +3796,8 @@
     "youBlockedBody": "Ngeke ukwazi ukubona okuthunyelwe kwabo noma ukuxhumana nabo. Vula ukuze ubuyisele ukufinyelela.",
     "restrictedBody": "Lo msebenzisi uvinjelwe ukuxhumana ne-akhawunti yakho.",
     "requestPendingBody": "Isicelo sakho sokulandela sithunyelwe. Uzokwazi ukubona okuthunyelwe kwabo uma sebeqinisekisa isicelo sakho.",
-    "followToSeePosts": "Landela le akhawunti ukuze ubone okuthunyelwe kwayo."
+    "followToSeePosts": "Landela le akhawunti ukuze ubone okuthunyelwe kwayo.",
+    "loadFailed": "Ayikwazanga ukufaka lolu hlu"
   },
   "reactionInfo": {
     "title": "Ukusabela",
@@ -4897,7 +4903,9 @@
     "forwardMessage": "Dlulisa umyalezo",
     "pollSubmitVote": "Thumela ivoti",
     "doNotDisturb": "Ungaphazamisi",
-    "doNotDisturbOn": "Ungaphazamisi: Kuvuliwe"
+    "doNotDisturbOn": "Ungaphazamisi: Kuvuliwe",
+    "deleteConversationTitle": "Susa ingxoxo?",
+    "deleteConversationBody": "Le ngxoxo izosuswa ku-inbox yakho."
   },
   "editPost": {
     "mediaPermission": "Kudingeka imvume yomtapo wolwazi wemidiya",

@@ -725,7 +725,8 @@
     "usernameAvailable": "사용자 이름을 사용할 수 있습니다.",
     "hideBadgeAndBalance": "배지와 잔액 숨기기",
     "hideBadgeAndBalanceDesc": "재정 정보를 숨기고 보내기 및 팁을 비활성화합니다.",
-    "onChainPublicWarning": "온체인 거래는 공개됩니다. 토큰 또는 팁을 보내면 비공개 잔액 모드가 활성화되기 전에 이루어진 거래를 포함하여 지갑 주소가 공개될 수 있습니다."
+    "onChainPublicWarning": "온체인 거래는 공개됩니다. 토큰 또는 팁을 보내면 비공개 잔액 모드가 활성화되기 전에 이루어진 거래를 포함하여 지갑 주소가 공개될 수 있습니다.",
+    "languageLoadFailed": "언어를 변경할 수 없습니다. 다시 시도하세요."
   },
   "common": {
     "mute": "음소거",
@@ -777,7 +778,8 @@
     "noInternetStatus": "오프라인 - 네트워크 연결 없음",
     "noInternetHint": "Wi-Fi 또는 모바일 데이터가 켜져 있는지 확인한 후 \"{{action}}\"을 탭하세요.",
     "saving": "저장 중…",
-    "offlineStatus": "오프라인 - 네트워크 연결 없음"
+    "offlineStatus": "오프라인 - 네트워크 연결 없음",
+    "postNotFound": "해당 게시물을 찾을 수 없습니다"
   },
   "tip": {
     "title": "팁 보내기",
@@ -2869,7 +2871,8 @@
         "forever": "영원히"
       }
     },
-    "chooseAvatar": "아바타 선택"
+    "chooseAvatar": "아바타 선택",
+    "loadFailed": "커뮤니티를 로드할 수 없습니다"
   },
   "work": {
     "title": "바운티",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "이미 전송되었습니다({{ref}}). 다시 지급하지 마세요. 잠시 후 작업을 다시 열면 지급 완료로 표시됩니다."
-    }
+    },
+    "loadFailed": "현상금을 불러올 수 없습니다",
+    "jobLoadFailed": "이 현상금을 로드할 수 없습니다"
   },
   "usernames": {
     "subtitle": "USD로 가격이 매겨진 판매 중인 핸들",
@@ -3807,7 +3812,8 @@
     "youBlockedBody": "해당 사용자의 게시물을 볼 수 없으며 상호 작용할 수 없습니다. 차단을 해제하면 액세스가 복원됩니다.",
     "restrictedBody": "이 사용자는 귀하의 계정과의 상호 작용을 제한했습니다.",
     "requestPendingBody": "팔로우 요청이 전송되었습니다. 해당 사용자가 요청을 승인하면 게시물을 볼 수 있습니다.",
-    "followToSeePosts": "이 계정을 팔로우하여 게시물을 확인하세요."
+    "followToSeePosts": "이 계정을 팔로우하여 게시물을 확인하세요.",
+    "loadFailed": "이 목록을 로드할 수 없습니다"
   },
   "reactionInfo": {
     "title": "반응",
@@ -4912,7 +4918,9 @@
     "forwardMessage": "메시지 전달",
     "pollSubmitVote": "투표 제출",
     "doNotDisturb": "방해 금지",
-    "doNotDisturbOn": "방해 금지"
+    "doNotDisturbOn": "방해 금지",
+    "deleteConversationTitle": "대화를 삭제하시겠어요?",
+    "deleteConversationBody": "이 대화는 메시지함에서 삭제됩니다."
   },
   "editPost": {
     "mediaPermission": "미디어 라이브러리 권한이 필요합니다",

@@ -727,7 +727,8 @@
     "hideBadgeAndBalance": "Singitake lencana lan imbangan",
     "hideBadgeAndBalanceDesc": "Ndelikake rincian finansial lan mateni kiriman lan tips kanggo sampeyan.",
     "onChainPublicWarning": "Transaksi ing rantai iku umum. Ngirim token utawa tip bisa mbukak alamat dompetmu, kalebu transaksi sing dilakoni sadurunge mode saldo pribadi diaktifake.",
-    "channelUrlOrHandle": "URL utawa gagang Channel"
+    "channelUrlOrHandle": "URL utawa gagang Channel",
+    "languageLoadFailed": "Ora bisa ganti basa. Coba maneh."
   },
   "common": {
     "mute": "Bisu",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Ora ana sambungan jaringan",
     "noInternetHint": "Priksa manawa Wi-Fi utawa data seluler wis urip, banjur tutul \"{{action}}\"",
     "saving": "Nyimpen…",
-    "offlineStatus": "Ora sambung - Ora ana sambungan jaringan"
+    "offlineStatus": "Ora sambung - Ora ana sambungan jaringan",
+    "postNotFound": "Ora bisa nemokake kiriman kasebut"
   },
   "tip": {
     "title": "Kirim Hadiah",
@@ -2869,7 +2871,8 @@
         "forever": "Selawase"
       }
     },
-    "chooseAvatar": "Pilih avatar"
+    "chooseAvatar": "Pilih avatar",
+    "loadFailed": "Ora bisa mbukak komunitas"
   },
   "work": {
     "title": "Hadiah",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Wis dikirim ({{ref}}). Aja mbayar maneh — bukak maneh gaweyane sedhela maneh, mesthine ketok wis dibayar."
-    }
+    },
+    "loadFailed": "Ora bisa mbukak bounty",
+    "jobLoadFailed": "Ora bisa mbukak bounty iki"
   },
   "usernames": {
     "subtitle": "Jeneng sing didol, regane nganggo USD",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Sampeyan ora bakal weruh kiriman utawa bisa sesambungan karo dheweke. Batalake blokir kanggo mulihake akses.",
     "restrictedBody": "Pangguna iki wis mbatesi interaksi karo akun sampeyan.",
     "requestPendingBody": "Panjaluk tindakake wis dikirim. Sampeyan bakal bisa ndeleng kirimane sawise dheweke nyetujoni panjaluk sampeyan.",
-    "followToSeePosts": "Tindakake akun iki kanggo ndeleng kirimane."
+    "followToSeePosts": "Tindakake akun iki kanggo ndeleng kirimane.",
+    "loadFailed": "Ora bisa mbukak dhaptar iki"
   },
   "reactionInfo": {
     "title": "Reaksi",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Terusake pesen",
     "pollSubmitVote": "Kirim swara",
     "doNotDisturb": "Aja ngganggu",
-    "doNotDisturbOn": "Aja ngganggu: Urip"
+    "doNotDisturbOn": "Aja ngganggu: Urip",
+    "deleteConversationTitle": "Busak obrolan?",
+    "deleteConversationBody": "Obrolan iki bakal dibusak saka kothak mlebu sampeyan."
   },
   "editPost": {
     "mediaPermission": "Butuh idin pustaka media",

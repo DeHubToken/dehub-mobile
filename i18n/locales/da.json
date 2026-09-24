@@ -727,7 +727,8 @@
     "usernameAvailable": "Brugernavn er ledigt",
     "hideBadgeAndBalance": "Skjul badge og saldo",
     "hideBadgeAndBalanceDesc": "Skjuler finansielle detaljer og deaktiverer afsendelse og drikkepenge til dig.",
-    "onChainPublicWarning": "On-chain transaktioner er offentlige. Afsendelse af tokens eller drikkepenge kan afsløre din wallet-adresse, inklusive transaktioner foretaget før privat saldotilstand blev aktiveret."
+    "onChainPublicWarning": "On-chain transaktioner er offentlige. Afsendelse af tokens eller drikkepenge kan afsløre din wallet-adresse, inklusive transaktioner foretaget før privat saldotilstand blev aktiveret.",
+    "languageLoadFailed": "Kunne ikke skifte sprog. Prøv igen."
   },
   "common": {
     "mute": "Slå lyd fra",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Ingen netværksforbindelse",
     "noInternetHint": "Sørg for, at Wi-Fi eller mobildata er slået til, og tryk derefter på \"{{action}}\"",
     "saving": "Gemmer…",
-    "offlineStatus": "Offline - Ingen netværksforbindelse"
+    "offlineStatus": "Offline - Ingen netværksforbindelse",
+    "postNotFound": "Vi kunne ikke finde det opslag"
   },
   "tip": {
     "title": "Send drikkepenge",
@@ -2873,7 +2875,8 @@
         "forever": "For evigt"
       }
     },
-    "chooseAvatar": "Vælg avatar"
+    "chooseAvatar": "Vælg avatar",
+    "loadFailed": "Kunne ikke indlæse fællesskaber"
   },
   "work": {
     "title": "Bounties",
@@ -2997,7 +3000,9 @@
     },
     "payout": {
       "alreadySent": "Allerede sendt ({{ref}}). Betal ikke igen — åbn opgaven igen om lidt, så bør den stå som betalt."
-    }
+    },
+    "loadFailed": "Kunne ikke indlæse dusører",
+    "jobLoadFailed": "Kunne ikke indlæse denne dusør"
   },
   "usernames": {
     "subtitle": "Brugernavne til salg, prissat i USD",
@@ -3764,7 +3769,8 @@
     "youBlockedBody": "Du vil ikke se deres opslag eller kunne interagere med dem. Fjern blokering for at genoprette adgang.",
     "restrictedBody": "Denne bruger har begrænset interaktion med din konto.",
     "requestPendingBody": "Din følges anmodning er sendt. Du vil kunne se deres opslag, når de godkender din anmodning.",
-    "followToSeePosts": "Følg denne konto for at se deres opslag."
+    "followToSeePosts": "Følg denne konto for at se deres opslag.",
+    "loadFailed": "Kunne ikke indlæse denne liste"
   },
   "reactionInfo": {
     "title": "Reaktioner",
@@ -4870,7 +4876,9 @@
     "forwardMessage": "Videresend besked",
     "pollSubmitVote": "Indsend stemme",
     "doNotDisturb": "Forstyr mig ikke",
-    "doNotDisturbOn": "Forstyr mig ikke"
+    "doNotDisturbOn": "Forstyr mig ikke",
+    "deleteConversationTitle": "Vil du slette samtalen?",
+    "deleteConversationBody": "Denne samtale fjernes fra din indbakke."
   },
   "editPost": {
     "mediaPermission": "Der kræves tilladelse til mediebiblioteket",

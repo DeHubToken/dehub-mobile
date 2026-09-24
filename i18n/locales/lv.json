@@ -727,7 +727,8 @@
     "usernameAvailable": "Lietotājvārds ir pieejams",
     "hideBadgeAndBalance": "Slēpt emblēmu un atlikumu",
     "hideBadgeAndBalanceDesc": "Slēpj finanšu datus un atspējo sūtījumus un padomus jums.",
-    "onChainPublicWarning": "Darījumi ķēdē ir publiski. Žetonu vai padomu sūtīšana var atklāt jūsu maka adresi, ieskaitot darījumus, kas veikti pirms privātā atlikuma režīma iespējošanas."
+    "onChainPublicWarning": "Darījumi ķēdē ir publiski. Žetonu vai padomu sūtīšana var atklāt jūsu maka adresi, ieskaitot darījumus, kas veikti pirms privātā atlikuma režīma iespējošanas.",
+    "languageLoadFailed": "Nevarēja pārslēgt valodu. Mēģiniet vēlreiz."
   },
   "common": {
     "mute": "Izslēgt skaņu",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Bezsaistē - Nav tīkla savienojuma",
     "noInternetHint": "Pārliecinieties, ka Wi-Fi vai mobilie dati ir ieslēgti, pēc tam nospiediet \"{{action}}\"",
     "saving": "Saglabāšana…",
-    "offlineStatus": "Bezsaistē - nav tīkla savienojuma"
+    "offlineStatus": "Bezsaistē - nav tīkla savienojuma",
+    "postNotFound": "Mēs nevarējām atrast šo ziņu"
   },
   "tip": {
     "title": "Sūtīt dzeramnaudu",
@@ -2869,7 +2871,8 @@
         "forever": "Mūžīgi"
       }
     },
-    "chooseAvatar": "Izvēlēties iemiesojumu"
+    "chooseAvatar": "Izvēlēties iemiesojumu",
+    "loadFailed": "Nevarēja ielādēt kopienas"
   },
   "work": {
     "title": "Atlīdzības",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Jau nosūtīts ({{ref}}). Nemaksājiet vēlreiz — pēc brīža atveriet darbu vēlreiz, tam vajadzētu būt atzīmētam kā samaksātam."
-    }
+    },
+    "loadFailed": "Nevarēja ielādēt balvas",
+    "jobLoadFailed": "Nevarēja ielādēt šo balvu"
   },
   "usernames": {
     "subtitle": "Pārdodamie lietotājvārdi, cena USD",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Jūs neredzēsit viņu ziņas un nevarēsit ar viņiem sazināties. Atbloķējiet, lai atjaunotu piekļuvi.",
     "restrictedBody": "Šis lietotājs ir ierobežojis mijiedarbību ar jūsu kontu.",
     "requestPendingBody": "Jūsu sekošanas pieprasījums ir nosūtīts. Jūs varēsit redzēt viņu ziņas, kad viņi apstiprinās jūsu pieprasījumu.",
-    "followToSeePosts": "Seko šim kontam, lai redzētu viņu ziņas."
+    "followToSeePosts": "Seko šim kontam, lai redzētu viņu ziņas.",
+    "loadFailed": "Nevarēja ielādēt šo sarakstu"
   },
   "reactionInfo": {
     "title": "Reakcijas",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Pārsūtīt ziņojumu",
     "pollSubmitVote": "Iesniegt balsojumu",
     "doNotDisturb": "Netrauciniet",
-    "doNotDisturbOn": "Do not Disturb"
+    "doNotDisturbOn": "Do not Disturb",
+    "deleteConversationTitle": "Vai dzēst sarunu?",
+    "deleteConversationBody": "Šī saruna tiks noņemta no jūsu iesūtnes."
   },
   "editPost": {
     "mediaPermission": "Nepieciešama medijbibliotēkas atļauja",

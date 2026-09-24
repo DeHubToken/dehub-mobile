@@ -15,6 +15,7 @@ import {
   SettingsScrollView,
 } from '../components/Settings/SettingsAnchor';
 import Icon from '../components/ui/Icon';
+import LoadErrorState from '../components/ui/LoadErrorState';
 import CustomSwitch from '../components/ui/CustomSwitch';
 import GlassModal from '../components/ui/GlassModal';
 import AccentButtonGradient from '../components/ui/AccentButtonGradient';
@@ -62,7 +63,7 @@ interface FollowRequest {
 
 const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const user = useUser();
-  const { patchUser } = useAuthActions();
+  const { patchUser, refreshUser } = useAuthActions();
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
@@ -89,6 +90,10 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   );
 
   const [loading, setLoading] = useState(true);
+  // Loading only ends once a profile is in hand. If it never arrives the
+  // screen used to spin forever; after a while it offers a retry instead.
+  const [loadTimedOut, setLoadTimedOut] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const [saving, setSaving] = useState(false);
 
   const [hideFollowers, setHideFollowers] = useState(false);
@@ -169,6 +174,18 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     setAiScraping(initial.aiScraping);
     if (user) setLoading(false);
   }, [userKey, saving]);
+
+  useEffect(() => {
+    if (!loading) return;
+    const id = setTimeout(() => setLoadTimedOut(true), 10000);
+    return () => clearTimeout(id);
+  }, [loading, loadAttempt]);
+
+  const retryLoad = useCallback(() => {
+    setLoadTimedOut(false);
+    setLoadAttempt((n) => n + 1);
+    refreshUser().catch(() => {});
+  }, [refreshUser]);
 
   const optimisticPatch = useCallback(
     (updates: Record<string, any>) => {
@@ -343,9 +360,13 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
         {!embedded && <ScreenHeader title={t('settings.accountPrivacy')} canGoBack />}
-        <View className="flex-1 items-center justify-center">
-          <DeHubLoader size={56} />
-        </View>
+        {loadTimedOut ? (
+          <LoadErrorState message={t('settings.failedLoadProfile')} onRetry={retryLoad} />
+        ) : (
+          <View className="flex-1 items-center justify-center">
+            <DeHubLoader size={56} />
+          </View>
+        )}
       </View>
     );
   }

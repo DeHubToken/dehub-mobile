@@ -727,7 +727,8 @@
     "usernameAvailable": "Misy ny anarana mpampiasa",
     "hideBadgeAndBalance": "Aza aseho ny mari-pahaizana sy ny fifandanjana",
     "hideBadgeAndBalanceDesc": "Manasongadina ny antsipiriany ara-bola sy manakana ny fandefasana ary torohevitra ho anao.",
-    "onChainPublicWarning": "Ny fifanakalozana amin'ny rojo dia ampahibemaso. Ny fandefasana famantarana na torohevitra dia mety hampiseho ny adiresin'ny poketrao, ao anatin'izany ny fifanakalozana natao talohan'ny nampidirana ny fomba fifandanjana manokana."
+    "onChainPublicWarning": "Ny fifanakalozana amin'ny rojo dia ampahibemaso. Ny fandefasana famantarana na torohevitra dia mety hampiseho ny adiresin'ny poketrao, ao anatin'izany ny fifanakalozana natao talohan'ny nampidirana ny fomba fifandanjana manokana.",
+    "languageLoadFailed": "Tsy afaka mifamadika ny fiteny. Andramo indray."
   },
   "common": {
     "mute": "Hampangina",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Tsy misy Internet - Tsy misy fifandraisana amin'ny tambajotra",
     "noInternetHint": "Azafady mba ataovy azo antoka fa tafiditra ny Wi-Fi na ny finday data, ary tsindrio ny \"{{action}}\"",
     "saving": "Mitehiry…",
-    "offlineStatus": "Tsy mifandray - Tsy misy fifandraisana tambajotra"
+    "offlineStatus": "Tsy mifandray - Tsy misy fifandraisana tambajotra",
+    "postNotFound": "Isika tsy afaka hamaha ny olana toy izany."
   },
   "tip": {
     "title": "Handefa fanomezana",
@@ -2892,7 +2894,8 @@
         "forever": "Mandrakizay"
       }
     },
-    "chooseAvatar": "Mifidiana avatar"
+    "chooseAvatar": "Mifidiana avatar",
+    "loadFailed": "Tsy afaka nampakatra ireo vondrom-piarahamonina"
   },
   "work": {
     "title": "Loka",
@@ -3016,7 +3019,9 @@
     },
     "payout": {
       "alreadySent": "Efa nalefa ({{ref}}). Aza mandoa indray — sokafy indray ny asa afaka kelikely, tokony hiseho hoe voaloa izy."
-    }
+    },
+    "loadFailed": "Tsy afaka naka nyounties",
+    "jobLoadFailed": "Tsy afaka naka ny adiresy \"%s\""
   },
   "usernames": {
     "subtitle": "Anarana amidy, mividy amin'ny USD",
@@ -3782,7 +3787,8 @@
     "youBlockedBody": "Tsy ho hitanao ny zavatra nosoratany na tsy afaka hifandray amin'izy ireo ianao. Hofoanana ny fanakanana mba hamerenana ny fidirana.",
     "restrictedBody": "Voafetra ny fifandraisana amin'ny kaontinao ity mpampiasa ity.",
     "requestPendingBody": "Voalefa ny fangatahanao fanarahana. Ho afaka hahita ny zavatra nosoratany ianao rehefa ankatoaviny ny fangatahanao.",
-    "followToSeePosts": "Araho ity kaonty ity mba hahitana ny zavatra nosoratany."
+    "followToSeePosts": "Araho ity kaonty ity mba hahitana ny zavatra nosoratany.",
+    "loadFailed": "Tsy afaka naka ny rakitra “%s”: %s"
   },
   "reactionInfo": {
     "title": "Fanehoan-kevitra",
@@ -4888,7 +4894,9 @@
     "pollSubmitVote": "Alefaso ny vatom-pifidianana",
     "poweredBy": "Nohazonin'ny {{name}}",
     "doNotDisturb": "Aza manakorontana",
-    "doNotDisturbOn": "Aza manakorontana: On"
+    "doNotDisturbOn": "Aza manakorontana: On",
+    "deleteConversationTitle": "Hamafa ny resaka?",
+    "deleteConversationBody": "Hesorina ao amin'ny efitranonao ity resaka ity."
   },
   "editPost": {
     "mediaPermission": "Ilaina ny fahazoan-dàlana amin'ny tranomboky media",

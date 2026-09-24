@@ -727,7 +727,8 @@
     "usernameAvailable": "Nama pengguna tersedia",
     "hideBadgeAndBalance": "Sembunyikan lencana dan saldo",
     "hideBadgeAndBalanceDesc": "Menyembunyikan detail keuangan dan menonaktifkan pengiriman serta tip kepada Anda.",
-    "onChainPublicWarning": "Transaksi on-chain bersifat publik. Mengirim token atau tip dapat mengungkapkan alamat dompet Anda, termasuk transaksi yang dilakukan sebelum mode saldo pribadi diaktifkan."
+    "onChainPublicWarning": "Transaksi on-chain bersifat publik. Mengirim token atau tip dapat mengungkapkan alamat dompet Anda, termasuk transaksi yang dilakukan sebelum mode saldo pribadi diaktifkan.",
+    "languageLoadFailed": "Tidak dapat beralih bahasa. Coba lagi."
   },
   "common": {
     "mute": "Bisukan",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Tidak ada koneksi jaringan",
     "noInternetHint": "Pastikan Wi-Fi atau data seluler aktif, lalu ketuk \"{{action}}\"",
     "saving": "Menyimpan…",
-    "offlineStatus": "Offline - Tidak ada koneksi jaringan"
+    "offlineStatus": "Offline - Tidak ada koneksi jaringan",
+    "postNotFound": "Kami tidak dapat menemukan postingan itu"
   },
   "tip": {
     "title": "Kirim Tip",
@@ -2869,7 +2871,8 @@
         "forever": "Selamanya"
       }
     },
-    "chooseAvatar": "Pilih avatar"
+    "chooseAvatar": "Pilih avatar",
+    "loadFailed": "Tidak dapat memuat komunitas"
   },
   "work": {
     "title": "Bounty",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Sudah dikirim ({{ref}}). Jangan bayar lagi — buka kembali pekerjaannya sebentar lagi dan seharusnya tampil sebagai dibayar."
-    }
+    },
+    "loadFailed": "Tidak dapat memuat hadiah",
+    "jobLoadFailed": "Tidak dapat memuat hadiah ini"
   },
   "usernames": {
     "subtitle": "Handle yang dijual, dihargai dalam USD",
@@ -3809,7 +3814,8 @@
     "youBlockedBody": "Anda tidak akan melihat postingan mereka atau dapat berinteraksi dengan mereka. Buka blokir untuk memulihkan akses.",
     "restrictedBody": "Pengguna ini telah membatasi interaksi dengan akun Anda.",
     "requestPendingBody": "Permintaan ikuti Anda telah dikirim. Anda akan dapat melihat postingan mereka setelah mereka menyetujui permintaan Anda.",
-    "followToSeePosts": "Ikuti akun ini untuk melihat postingan mereka."
+    "followToSeePosts": "Ikuti akun ini untuk melihat postingan mereka.",
+    "loadFailed": "Tidak dapat memuat daftar ini"
   },
   "reactionInfo": {
     "title": "Reaksi",
@@ -4915,7 +4921,9 @@
     "forwardMessage": "Teruskan pesan",
     "pollSubmitVote": "Kirim suara",
     "doNotDisturb": "Jangan ganggu",
-    "doNotDisturbOn": "Jangan ganggu"
+    "doNotDisturbOn": "Jangan ganggu",
+    "deleteConversationTitle": "Hapus percakapan?",
+    "deleteConversationBody": "Percakapan ini akan dihapus dari kotak masuk Anda."
   },
   "editPost": {
     "mediaPermission": "Izin pustaka media diperlukan",

@@ -727,7 +727,8 @@
     "usernameAvailable": "Orukọ aṣàmúlò wà",
     "hideBadgeAndBalance": "Fi badge pamọ́ àti ìdúróṣánṣán",
     "hideBadgeAndBalanceDesc": "Fi àwọn kúlẹ̀kúlẹ̀ nípa owó pamọ́, kí ó sì dáwọ́ dúró láti fi ránṣẹ́ àti láti fún ọ ní ìmọ̀ràn.",
-    "onChainPublicWarning": "Àwọn ìdúnàádúrà lórí pq jẹ́ ti gbogbo ènìyàn. Fífi àfihàn tàbí ìmọ̀ràn ránṣẹ́ lè ṣí àdírẹ́sì àpamọ́wọ́ rẹ payá, títí kan àwọn ìṣòwò tí a ṣe kí wọ́n tó mú ipò ìdúróṣánṣán ara ẹni ṣiṣẹ́."
+    "onChainPublicWarning": "Àwọn ìdúnàádúrà lórí pq jẹ́ ti gbogbo ènìyàn. Fífi àfihàn tàbí ìmọ̀ràn ránṣẹ́ lè ṣí àdírẹ́sì àpamọ́wọ́ rẹ payá, títí kan àwọn ìṣòwò tí a ṣe kí wọ́n tó mú ipò ìdúróṣánṣán ara ẹni ṣiṣẹ́.",
+    "languageLoadFailed": "Mi ò lè yí èdè padà. Gbìyànjú lẹ́ẹ̀kan síi."
   },
   "common": {
     "mute": "Pa ohùn",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Kò sí ìsopọ̀ - Kò sí ìsopọ̀ àwọn ohun èlò",
     "noInternetHint": "Ríi dájú pé Wi-Fi tàbí adàbọ̀ àwọn ohun èlò ti tan, kí o sì tẹ \"{{action}}\"",
     "saving": "Ńfipamọ́...",
-    "offlineStatus": "OFFINE - Kò sí ìsopọ̀ nẹ́tìwọ̀n"
+    "offlineStatus": "OFFINE - Kò sí ìsopọ̀ nẹ́tìwọ̀n",
+    "postNotFound": "A kò rí iṣẹ́ yẹn."
   },
   "tip": {
     "title": "Fi Ẹ̀bùn Ránṣẹ́",
@@ -2870,7 +2872,8 @@
         "forever": "Titi lai"
       }
     },
-    "chooseAvatar": "Yan avatar"
+    "chooseAvatar": "Yan avatar",
+    "loadFailed": "Kò lè gba àwọn àwùjọ lọ́wọ́."
   },
   "work": {
     "title": "Àwọn ẹ̀bùn",
@@ -2994,7 +2997,9 @@
     },
     "payout": {
       "alreadySent": "A ti fi ranṣẹ tẹlẹ ({{ref}}). Máṣe san lẹẹkansi — ṣí iṣẹ́ náà padà ní ìṣẹ́jú díẹ̀, yóò fi hàn pé a ti san."
-    }
+    },
+    "loadFailed": "N kò lè gba owó orí lọ́wọ́.",
+    "jobLoadFailed": "N kò lè ṣe àkójọpọ̀ àkójọpọ̀ yìí."
   },
   "usernames": {
     "subtitle": "Àwọn orúkọ tí a ń tà, iye owó ní USD",
@@ -3761,7 +3766,8 @@
     "youBlockedBody": "Iwọ kii yoo rii awọn ifiweranṣẹ wọn tabi ni anfani lati ṣe ajọṣepọ pẹlu wọn. Ṣii lati mu iraye si pada.",
     "restrictedBody": "Olumulo yii ti ṣe ihamọ awọn ajọṣepọ pẹlu akọọlẹ rẹ.",
     "requestPendingBody": "Ibeere atẹle rẹ ti firanṣẹ. Iwọ yoo ni anfani lati wo awọn ifiweranṣẹ wọn ni kete ti wọn ba fọwọsi ibeere rẹ.",
-    "followToSeePosts": "Tẹle akọọlẹ yii lati wo awọn ifiweranṣẹ wọn."
+    "followToSeePosts": "Tẹle akọọlẹ yii lati wo awọn ifiweranṣẹ wọn.",
+    "loadFailed": "N kò lè gba àtòjọ yìí."
   },
   "reactionInfo": {
     "title": "Ìdáhùn",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Ifiranṣẹ siwaju",
     "pollSubmitVote": "Fi ìbò sílẹ̀",
     "doNotDisturb": "Má ṣe díi lọ́wọ́",
-    "doNotDisturbOn": "Má Ṣe Dààmú mí wà ní títàn"
+    "doNotDisturbOn": "Má Ṣe Dààmú mí wà ní títàn",
+    "deleteConversationTitle": "Pa ìtàkurọ̀sọ náà rẹ́?",
+    "deleteConversationBody": "A ó mú ọ̀rọ̀ yìí kúrò nínú àpótí ìfìwéránṣẹ́ rẹ."
   },
   "editPost": {
     "mediaPermission": "A nílò àṣẹ ilé-ìkàwé àwòrán",

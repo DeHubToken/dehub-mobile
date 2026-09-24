@@ -727,7 +727,8 @@
     "usernameAvailable": "Kei te wātea te ingoa kaiwhakamahi",
     "hideBadgeAndBalance": "Whakaerihia te tohu me te toenga",
     "hideBadgeAndBalanceDesc": "Ka huna i ngā taipitopito pūtea, ā, ka whakakore i ngā tuku me ngā tohutohu ki a koe.",
-    "onChainPublicWarning": "He tūmatanui ngā whakawhitiwhiti i runga mekameka. Ko te tuku tohu, tohutohu rānei ka whakaatu i tō wāhitau putea, tae atu ki ngā whakawhitiwhiti i mahia i mua i te whakahoahoatanga o te aratau toenga motuhake."
+    "onChainPublicWarning": "He tūmatanui ngā whakawhitiwhiti i runga mekameka. Ko te tuku tohu, tohutohu rānei ka whakaatu i tō wāhitau putea, tae atu ki ngā whakawhitiwhiti i mahia i mua i te whakahoahoatanga o te aratau toenga motuhake.",
+    "languageLoadFailed": "E kore e taea e ahau te huri i te reo. tamata ano."
   },
   "common": {
     "mute": "Whakangū",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Tūmau - Kāore he hononga whatunga",
     "noInternetHint": "Me whakarite kia whakakā te Wi-Fi, te raraunga pūkoro rānei, kātahi ka pēhi i te \"{{action}}\"",
     "saving": "E tiaki ana…",
-    "offlineStatus": "Tūmau - Kāore he hononga whatunga"
+    "offlineStatus": "Tūmau - Kāore he hononga whatunga",
+    "postNotFound": "E kore e taea e tatou te tiki i taua pou"
   },
   "tip": {
     "title": "Tukuna koha",
@@ -2869,7 +2871,8 @@
         "forever": "Mō ake tonu atu"
       }
     },
-    "chooseAvatar": "Tīpakohia te avatar"
+    "chooseAvatar": "Tīpakohia te avatar",
+    "loadFailed": "Kaore e taea te whakauru i nga hapori"
   },
   "work": {
     "title": "Ngā utu whakawhiwhi",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Kua tukuna kētia ({{ref}}). Kaua e utu anō — whakatuwherahia anō te mahi ā tōna wā, ka kitea kua utua."
-    }
+    },
+    "loadFailed": "E kore e taea e ahau te tiki i te pounties",
+    "jobLoadFailed": "Kaore e taea e au te tuku i tenei putea"
   },
   "usernames": {
     "subtitle": "Ngā ingoa e hokona ana, he utu ki te USD",
@@ -3759,7 +3764,8 @@
     "youBlockedBody": "Kāore koe e kite i ā rātou whakairinga, kāore hoki e taea e koe te taunekeneke ki a rātou. Whakakorehia te poraka kia whakahokia mai te uru.",
     "restrictedBody": "Kua herea e tēnei kaiwhakamahi ngā taunekeneke ki tō pūkete.",
     "requestPendingBody": "Kua tukuna tō tono whai. Ka taea e koe te kite i ā rātou whakairinga i te wā e whakaae ai rātou ki tō tono.",
-    "followToSeePosts": "Whai i tēnei pūkete kia kite i ā rātou whakairinga."
+    "followToSeePosts": "Whai i tēnei pūkete kia kite i ā rātou whakairinga.",
+    "loadFailed": "Kaore e taea te whakauru i tenei raarangi"
   },
   "reactionInfo": {
     "title": "Ngā urupare",
@@ -4864,7 +4870,9 @@
     "forwardMessage": "He karere whakamua",
     "pollSubmitVote": "Whakatuwherahia te pooti",
     "doNotDisturb": "Kaua e whakapohehe",
-    "doNotDisturbOn": "Kaua e whakahawea: I runga i"
+    "doNotDisturbOn": "Kaua e whakahawea: I runga i",
+    "deleteConversationTitle": "Te whakakore i te korerorero?",
+    "deleteConversationBody": "Ka tangohia tēnei kōrero i tō pouaka īmēra."
   },
   "editPost": {
     "mediaPermission": "Me whai whakaaetanga whare pukapuka pāpāho",

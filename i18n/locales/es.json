@@ -727,7 +727,8 @@
     "usernameAvailable": "Nombre de usuario disponible",
     "hideBadgeAndBalance": "Ocultar insignia y saldo",
     "hideBadgeAndBalanceDesc": "Oculta los detalles financieros y deshabilita los envíos y propinas hacia ti.",
-    "onChainPublicWarning": "Las transacciones en cadena son públicas. Enviar tokens o propinas puede revelar tu dirección de billetera, incluidas las transacciones realizadas antes de que se habilitara el modo de saldo privado."
+    "onChainPublicWarning": "Las transacciones en cadena son públicas. Enviar tokens o propinas puede revelar tu dirección de billetera, incluidas las transacciones realizadas antes de que se habilitara el modo de saldo privado.",
+    "languageLoadFailed": "No se ha podido cambiar el idioma. Inténtalo de nuevo."
   },
   "common": {
     "mute": "Silenciar",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Sin conexión - Sin conexión de red",
     "noInternetHint": "Asegúrate de que Wi-Fi o datos móviles estén activados, luego toca \"{{action}}\"",
     "saving": "Guardando…",
-    "offlineStatus": "Sin conexión - Sin conexión de red"
+    "offlineStatus": "Sin conexión - Sin conexión de red",
+    "postNotFound": "No hemos podido encontrar esa publicación"
   },
   "tip": {
     "title": "Enviar propina",
@@ -2869,7 +2871,8 @@
         "forever": "Para siempre"
       }
     },
-    "chooseAvatar": "Elegir avatar"
+    "chooseAvatar": "Elegir avatar",
+    "loadFailed": "No se han podido cargar las comunidades"
   },
   "work": {
     "title": "Recompensas",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Ya se envió ({{ref}}). No vuelvas a pagar: abre el trabajo dentro de un momento y debería aparecer como pagado."
-    }
+    },
+    "loadFailed": "No se han podido cargar las recompensas",
+    "jobLoadFailed": "No se ha podido cargar esta recompensa"
   },
   "usernames": {
     "subtitle": "Alias en venta, con precio en USD",
@@ -3809,7 +3814,8 @@
     "youBlockedBody": "No verás sus publicaciones ni podrás interactuar con ellos. Desbloquear para restaurar el acceso.",
     "restrictedBody": "Este usuario ha restringido las interacciones con tu cuenta.",
     "requestPendingBody": "Se ha enviado tu solicitud de seguimiento. Podrás ver sus publicaciones una vez que aprueben tu solicitud.",
-    "followToSeePosts": "Sigue esta cuenta para ver sus publicaciones."
+    "followToSeePosts": "Sigue esta cuenta para ver sus publicaciones.",
+    "loadFailed": "No se ha podido cargar esta lista"
   },
   "reactionInfo": {
     "title": "Reacciones",
@@ -4915,7 +4921,9 @@
     "forwardMessage": "Reenviar mensaje",
     "pollSubmitVote": "Enviar voto",
     "doNotDisturb": "No molestar",
-    "doNotDisturbOn": "No molestar activado"
+    "doNotDisturbOn": "No molestar activado",
+    "deleteConversationTitle": "¿Eliminar conversación?",
+    "deleteConversationBody": "Esta conversación se eliminará de tu bandeja de entrada."
   },
   "editPost": {
     "mediaPermission": "Se necesita permiso para la biblioteca multimedia",

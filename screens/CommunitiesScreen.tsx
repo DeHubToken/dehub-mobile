@@ -16,6 +16,7 @@ import { useCollapsibleScreen } from "../hooks/useCollapsibleScreen";
 import CommunityCard from "../components/Communities/CommunityCard";
 import CreateCommunitySheet from "../components/Communities/CreateCommunitySheet";
 import Icon from "../components/ui/Icon";
+import LoadErrorState from "../components/ui/LoadErrorState";
 import { theme } from "../theme";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import {
@@ -43,6 +44,7 @@ const CommunitiesScreen: React.FC = () => {
   const [allCommunities, setAllCommunities] = useState<Community[]>([]);
   const [activityScores, setActivityScores] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [createOpen, setCreateOpen] = useState(false);
 
@@ -56,8 +58,10 @@ const CommunitiesScreen: React.FC = () => {
       setAllCommunities(discover);
       setActivityScores(scores);
       setUserRows(mine);
+      setLoadError(false);
     } catch {
-      // keep previous data
+      // Keep previous data; the flag only surfaces when there is none to show.
+      setLoadError(true);
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -215,9 +219,19 @@ const CommunitiesScreen: React.FC = () => {
           />
         }
         ListEmptyComponent={
-          <Text className="text-zinc-400 text-center py-8">
-            {t("communities.noCommunities")}
-          </Text>
+          loadError ? (
+            <LoadErrorState
+              message={t("communities.loadFailed")}
+              onRetry={() => {
+                setLoading(true);
+                load();
+              }}
+            />
+          ) : (
+            <Text className="text-zinc-400 text-center py-8">
+              {t("communities.noCommunities")}
+            </Text>
+          )
         }
         renderItem={({ item, index }) => {
           const showSection =

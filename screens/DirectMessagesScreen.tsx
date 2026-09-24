@@ -8,10 +8,12 @@ import {
   KeyboardAvoidingView,
   Platform,
   TextInput,
+  Alert,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
 import Icon from "../components/ui/Icon";
+import LoadErrorState from "../components/ui/LoadErrorState";
 import GlassIndicator, { GLASS_SHADOW } from "../components/ui/GlassIndicator";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -51,7 +53,7 @@ const DirectMessagesInner: React.FC = () => {
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
 
-  const { contactsLoading, refreshContacts } = useDMContext();
+  const { contactsLoading, contactsError, refreshContacts } = useDMContext();
   const conversations = useDmContacts();
   const { showUserProfile } = useUserProfileSheet();
   // The KeyboardAvoidingView below is this screen's outermost element, so the
@@ -162,29 +164,50 @@ const DirectMessagesInner: React.FC = () => {
    * left swipe on the row — so both take their target as an argument instead of
    * reading whatever the menu happens to have selected.
    */
-  const blockConvUser = useCallback(async (user: DmUser | undefined) => {
+  // Both are one swipe away and neither can be taken back from here, so each
+  // asks first.
+  const blockConvUser = useCallback((user: DmUser | undefined) => {
     const addr = user?.address;
     if (!addr) return;
-    try {
-      await blockUser(addr, "Blocked from DM list");
-      toastSuccess(t("postOptions.blockedUser", { name: user?.displayName || user?.username || t("dm.userFallback") }));
-    } catch (e) {
-      toastError(e, t("dm.failedToBlock"));
-    }
-  }, []);
+    const name = user?.displayName || user?.username || t("dm.userFallback");
+    Alert.alert(t("common.blockUserTitle"), t("common.blockUserDesc", { name }), [
+      { text: t("common.cancel"), style: "cancel" },
+      {
+        text: t("common.block"),
+        style: "destructive",
+        onPress: async () => {
+          try {
+            await blockUser(addr, "Blocked from DM list");
+            toastSuccess(t("postOptions.blockedUser", { name }));
+          } catch (e) {
+            toastError(e, t("dm.failedToBlock"));
+          }
+        },
+      },
+    ]);
+  }, [t]);
 
   const deleteConv = useCallback(
-    async (conv: DmConversation | null) => {
+    (conv: DmConversation | null) => {
       if (!conv) return;
-      try {
-        await deleteConversation(conv._id, myAddress);
-        dmActions.removeConversation(conv._id);
-        toastSuccess(t("toasts.conversation_deleted"));
-      } catch (e) {
-        toastError(e, t("dm.failedToDeleteConversation"));
-      }
+      Alert.alert(t("dm.deleteConversationTitle"), t("dm.deleteConversationBody"), [
+        { text: t("common.cancel"), style: "cancel" },
+        {
+          text: t("common.delete"),
+          style: "destructive",
+          onPress: async () => {
+            try {
+              await deleteConversation(conv._id, myAddress);
+              dmActions.removeConversation(conv._id);
+              toastSuccess(t("toasts.conversation_deleted"));
+            } catch (e) {
+              toastError(e, t("dm.failedToDeleteConversation"));
+            }
+          },
+        },
+      ]);
     },
-    [myAddress],
+    [myAddress, t],
   );
 
   const handleCtxBlock = useCallback(
@@ -452,7 +475,21 @@ const DirectMessagesInner: React.FC = () => {
               <View className="items-center mt-10">
                 <Text className="text-theme-neutrals-400">{t("dm.noConversationsFound")}</Text>
               </View>
-            ) : null
+            ) : contactsError ? (
+              <LoadErrorState message={t("messages.failedToLoad")} onRetry={refreshContacts} />
+            ) : contactsLoading ? null : (
+              <View className="items-center mt-16 px-8">
+                <View className="w-16 h-16 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4">
+                  <Icon name="MessageCircle" size={32} color="#A1A1AA" />
+                </View>
+                <Text className="text-theme-neutrals-400 text-base font-medium mb-1">
+                  {t("dm.noConversationsYet")}
+                </Text>
+                <TouchableOpacity onPress={openNewDM} accessibilityRole="button" className="mt-3 px-5 py-2 rounded-xl bg-theme-neutrals-800">
+                  <Text className="text-theme-neutrals-100 text-sm font-medium">{t("dm.newDm")}</Text>
+                </TouchableOpacity>
+              </View>
+            )
           }
           ItemSeparatorComponent={itemSeparator}
         />

@@ -727,7 +727,8 @@
     "usernameAvailable": "Nome utente disponibile",
     "hideBadgeAndBalance": "Nascondi badge e saldo",
     "hideBadgeAndBalanceDesc": "Nasconde i dettagli finanziari e disabilita invii e mance a te.",
-    "onChainPublicWarning": "Le transazioni on-chain sono pubbliche. L'invio di token o mance può rivelare il tuo indirizzo del wallet, comprese le transazioni effettuate prima che la modalità saldo privato fosse abilitata."
+    "onChainPublicWarning": "Le transazioni on-chain sono pubbliche. L'invio di token o mance può rivelare il tuo indirizzo del wallet, comprese le transazioni effettuate prima che la modalità saldo privato fosse abilitata.",
+    "languageLoadFailed": "Impossibile cambiare lingua. Riprova."
   },
   "common": {
     "mute": "Disattiva audio",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Nessuna connessione di rete",
     "noInternetHint": "Assicurati che il Wi-Fi o i dati mobili siano attivi, quindi tocca \"{{action}}\"",
     "saving": "Salvataggio…",
-    "offlineStatus": "Offline - Nessuna connessione di rete"
+    "offlineStatus": "Offline - Nessuna connessione di rete",
+    "postNotFound": "Non siamo riusciti a trovare quel post"
   },
   "tip": {
     "title": "Invia mancia",
@@ -2869,7 +2871,8 @@
         "forever": "Per sempre"
       }
     },
-    "chooseAvatar": "Scegli avatar"
+    "chooseAvatar": "Scegli avatar",
+    "loadFailed": "Impossibile caricare le comunità"
   },
   "work": {
     "title": "Taglie",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Già inviato ({{ref}}). Non pagare di nuovo: riapri il lavoro tra poco e dovrebbe risultare pagato."
-    }
+    },
+    "loadFailed": "Impossibile caricare le ricompense",
+    "jobLoadFailed": "Impossibile caricare questa taglia"
   },
   "usernames": {
     "subtitle": "Handle in vendita, prezzo in USD",
@@ -3809,7 +3814,8 @@
     "youBlockedBody": "Non vedrai i loro post né potrai interagire con loro. Sblocca per ripristinare l'accesso.",
     "restrictedBody": "Questo utente ha limitato le interazioni con il tuo account.",
     "requestPendingBody": "La tua richiesta di follow è stata inviata. Potrai vedere i loro post una volta approvata la tua richiesta.",
-    "followToSeePosts": "Segui questo account per vedere i loro post."
+    "followToSeePosts": "Segui questo account per vedere i loro post.",
+    "loadFailed": "Impossibile caricare questo elenco"
   },
   "reactionInfo": {
     "title": "Reazioni",
@@ -4915,7 +4921,9 @@
     "forwardMessage": "Inoltra messaggio",
     "pollSubmitVote": "Invia voto",
     "doNotDisturb": "Non disturbare",
-    "doNotDisturbOn": "Non disturbare"
+    "doNotDisturbOn": "Non disturbare",
+    "deleteConversationTitle": "Eliminare la conversazione?",
+    "deleteConversationBody": "Questa conversazione verrà rimossa dalla tua casella di posta."
   },
   "editPost": {
     "mediaPermission": "È richiesta l'autorizzazione alla libreria multimediale",

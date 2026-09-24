@@ -727,7 +727,8 @@
     "usernameAvailable": "Kullanıcı adı mevcut",
     "hideBadgeAndBalance": "Rozeti ve bakiyeyi gizle",
     "hideBadgeAndBalanceDesc": "Finansal ayrıntıları gizler ve size gönderi ve bahşiş göndermeyi devre dışı bırakır.",
-    "onChainPublicWarning": "Zincir üstü işlemler herkese açıktır. Token göndermek veya bahşiş vermek, özel bakiye moduna geçilmeden önce yapılan işlemler de dahil olmak üzere cüzdan adresinizi ortaya çıkarabilir."
+    "onChainPublicWarning": "Zincir üstü işlemler herkese açıktır. Token göndermek veya bahşiş vermek, özel bakiye moduna geçilmeden önce yapılan işlemler de dahil olmak üzere cüzdan adresinizi ortaya çıkarabilir.",
+    "languageLoadFailed": "Dil değiştirilemedi. Tekrar deneyin."
   },
   "common": {
     "mute": "Sesi kapat",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Çevrimdışı - Ağ bağlantısı yok",
     "noInternetHint": "Wi-Fi veya mobil verinin açık olduğundan emin olun, ardından \"{{action}}\" seçeneğine dokunun",
     "saving": "Kaydediliyor…",
-    "offlineStatus": "Çevrimdışı - Ağ bağlantısı yok"
+    "offlineStatus": "Çevrimdışı - Ağ bağlantısı yok",
+    "postNotFound": "Bu gönderiyi bulamadık"
   },
   "tip": {
     "title": "Bahşiş Gönder",
@@ -2869,7 +2871,8 @@
         "forever": "Sonsuza dek"
       }
     },
-    "chooseAvatar": "Avatar seçin"
+    "chooseAvatar": "Avatar seçin",
+    "loadFailed": "Topluluklar yüklenemedi"
   },
   "work": {
     "title": "Ödüllü İşler",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Zaten gönderildi ({{ref}}). Tekrar ödeme yapmayın — birazdan işi yeniden açın, ödenmiş olarak görünecektir."
-    }
+    },
+    "loadFailed": "İkramiyeler yüklenemedi",
+    "jobLoadFailed": "Bu ödül yüklenemedi"
   },
   "usernames": {
     "subtitle": "Satılık kullanıcı adları, USD cinsinden",
@@ -3809,7 +3814,8 @@
     "youBlockedBody": "Gönderilerini göremez veya onlarla etkileşim kuramazsınız. Erişimi geri yüklemek için engeli kaldırın.",
     "restrictedBody": "Bu kullanıcı hesabınızla etkileşimleri kısıtladı.",
     "requestPendingBody": "Takip isteğiniz gönderildi. İsteğinizi onayladıklarında gönderilerini görebileceksiniz.",
-    "followToSeePosts": "Gönderilerini görmek için bu hesabı takip edin."
+    "followToSeePosts": "Gönderilerini görmek için bu hesabı takip edin.",
+    "loadFailed": "Bu liste yüklenemedi"
   },
   "reactionInfo": {
     "title": "Tepkiler",
@@ -4915,7 +4921,9 @@
     "forwardMessage": "İleti ilet",
     "pollSubmitVote": "Oy gönder",
     "doNotDisturb": "Rahatsız etmeyin",
-    "doNotDisturbOn": "Rahatsız etmeyin"
+    "doNotDisturbOn": "Rahatsız etmeyin",
+    "deleteConversationTitle": "Sohbet silinsin mi?",
+    "deleteConversationBody": "Bu konuşma gelen kutunuzdan kaldırılacak."
   },
   "editPost": {
     "mediaPermission": "Medya kitaplığı izni gerekiyor",

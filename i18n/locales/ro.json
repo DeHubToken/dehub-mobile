@@ -727,7 +727,8 @@
     "usernameAvailable": "Numele de utilizator este disponibil",
     "hideBadgeAndBalance": "Ascunde insigna și soldul",
     "hideBadgeAndBalanceDesc": "Ascunde detaliile financiare și dezactivează trimiterile și sfaturile către tine.",
-    "onChainPublicWarning": "Tranzacțiile on-chain sunt publice. Trimiterea de tokenuri sau sfaturi poate dezvălui adresa portofelului tău, inclusiv tranzacțiile efectuate înainte ca modul de sold privat să fie activat."
+    "onChainPublicWarning": "Tranzacțiile on-chain sunt publice. Trimiterea de tokenuri sau sfaturi poate dezvălui adresa portofelului tău, inclusiv tranzacțiile efectuate înainte ca modul de sold privat să fie activat.",
+    "languageLoadFailed": "Nu s-a putut schimba limba. Încearcă din nou."
   },
   "common": {
     "mute": "Dezactivează sunetul",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Fără conexiune la rețea",
     "noInternetHint": "Asigură-te că Wi-Fi sau datele mobile sunt activate, apoi atinge \"{{action}}\"",
     "saving": "Se salvează…",
-    "offlineStatus": "Offline - Fără conexiune la rețea"
+    "offlineStatus": "Offline - Fără conexiune la rețea",
+    "postNotFound": "Nu am putut găsi acea postare"
   },
   "tip": {
     "title": "Send Tip",
@@ -2869,7 +2871,8 @@
         "forever": "Pentru totdeauna"
       }
     },
-    "chooseAvatar": "Alege avatar"
+    "chooseAvatar": "Alege avatar",
+    "loadFailed": "Nu s-au putut încărca comunitățile"
   },
   "work": {
     "title": "Recompense",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Deja trimis ({{ref}}). Nu plăti din nou — redeschide lucrarea peste puțin timp și ar trebui să apară ca plătită."
-    }
+    },
+    "loadFailed": "Nu s-au putut încărca recompensele",
+    "jobLoadFailed": "Nu s-a putut încărca această recompensă"
   },
   "usernames": {
     "subtitle": "Nume de utilizator de vânzare, cu preț în USD",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Nu vei vedea postările lor și nu vei putea interacționa cu ei. Deblochează pentru a restabili accesul.",
     "restrictedBody": "Acest utilizator a restricționat interacțiunile cu contul tău.",
     "requestPendingBody": "Cererea ta de urmărire a fost trimisă. Vei putea vedea postările lor odată ce aceștia îți aprobă cererea.",
-    "followToSeePosts": "Urmărește acest cont pentru a vedea postările sale."
+    "followToSeePosts": "Urmărește acest cont pentru a vedea postările sale.",
+    "loadFailed": "Nu s-a putut încărca această listă"
   },
   "reactionInfo": {
     "title": "Reacții",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Redirecționează mesajul",
     "pollSubmitVote": "Trimite vot",
     "doNotDisturb": "Nu Deranjaţi.",
-    "doNotDisturbOn": "Nu deranjați este pornit"
+    "doNotDisturbOn": "Nu deranjați este pornit",
+    "deleteConversationTitle": "Ștergeți conversația?",
+    "deleteConversationBody": "Această conversație va fi eliminată din inbox."
   },
   "editPost": {
     "mediaPermission": "Este necesară permisiunea pentru biblioteca media",

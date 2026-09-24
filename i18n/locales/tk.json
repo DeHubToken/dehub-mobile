@@ -727,7 +727,8 @@
     "usernameAvailable": "Ulanyjy ady elýeterli",
     "hideBadgeAndBalance": "Nyşany we balansi gizle",
     "hideBadgeAndBalanceDesc": "Bu maliýe maglumatlaryny gizleýär we size iberilenleri we maslahatlary öçürýär.",
-    "onChainPublicWarning": "Zynjyrdaky amallar köpçülikleýin. Tokenlary ýa-da maslahatlary ibermek, hususy balans tertibi işjeňleşdirilmezden ozal edilen amallar bilen birlikde, siziň hamyň salgyňyzy açyp biler."
+    "onChainPublicWarning": "Zynjyrdaky amallar köpçülikleýin. Tokenlary ýa-da maslahatlary ibermek, hususy balans tertibi işjeňleşdirilmezden ozal edilen amallar bilen birlikde, siziň hamyň salgyňyzy açyp biler.",
+    "languageLoadFailed": "Dilini üýtgetmek mümkin däl, ýene synanyň."
   },
   "common": {
     "mute": "Sesi öçür",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Ofllaýn - Tor birikmesi ýok",
     "noInternetHint": "Wi-Fi ýa-da mobil maglumatlaryňyzyň ýakylygyny üpjün ediň, soňra \"{{action}}\" düwmesine basyň",
     "saving": "Ýazylýar…",
-    "offlineStatus": "Offline - Tor baglanyşygy ýok"
+    "offlineStatus": "Offline - Tor baglanyşygy ýok",
+    "postNotFound": "Men bu posty tapyp bilmedim"
   },
   "tip": {
     "title": "Send Tip",
@@ -2867,7 +2869,8 @@
         "forever": "Ebedilik"
       }
     },
-    "chooseAvatar": "Awatary saýlaň"
+    "chooseAvatar": "Awatary saýlaň",
+    "loadFailed": "Jemagatlary ýükläp bilmeýär"
   },
   "work": {
     "title": "Baýraklar",
@@ -2991,7 +2994,9 @@
     },
     "payout": {
       "alreadySent": "Eýýäm iberildi ({{ref}}). Gaýtadan tölemäň — biraz wagtdan işi gaýtadan açyň, ol tölenen diýlip görkeziler."
-    }
+    },
+    "loadFailed": "Çykyşlary ýükläp bilmedim",
+    "jobLoadFailed": "Men bu çüýçäni ýükläp bilmedim"
   },
   "usernames": {
     "subtitle": "Satlyk atlar, bahasy USD bilen",
@@ -3758,7 +3763,8 @@
     "youBlockedBody": "Olaryň postlaryny görmersiňiz we olar bilen özara täsirleşip bilmersiňiz. Täzeden açmak bilen elýeterliligi dikelderiň.",
     "restrictedBody": "Bu ulanyjy siziň hasabyňyz bilen özara täsir etmegi çäklendirdi.",
     "requestPendingBody": "Siziň abuna ýazylmak haýyşyňyz ugradyldy. Olaryň postlaryny olaryň haýyşyňyzy tassyklandan soň görüp bilersiňiz.",
-    "followToSeePosts": "Olaryň postlaryny görmek üçin bu hasaba abuna ýazylyň."
+    "followToSeePosts": "Olaryň postlaryny görmek üçin bu hasaba abuna ýazylyň.",
+    "loadFailed": "Bu listany gaýd edip bolmady"
   },
   "reactionInfo": {
     "title": "Reaksiýalar",
@@ -4863,7 +4869,9 @@
     "forwardMessage": "Öňki habar",
     "pollSubmitVote": "Saýlanlary iber",
     "doNotDisturb": "Gorkmaň",
-    "doNotDisturbOn": "Gorkmaň: On"
+    "doNotDisturbOn": "Gorkmaň: On",
+    "deleteConversationTitle": "Siz gürrüňdeşligi dowam edýärsiňizmi?",
+    "deleteConversationBody": "Bu gürrüňdeşlik siziň geljekki gapyňyzdan çykarylar."
   },
   "editPost": {
     "mediaPermission": "Media kitaphanasyna rugsat gerek",

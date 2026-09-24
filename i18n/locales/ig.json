@@ -727,7 +727,8 @@
     "usernameAvailable": "Aha njirimara dị",
     "hideBadgeAndBalance": "Zoo akara na nguzozi",
     "hideBadgeAndBalanceDesc": "Na-ezobe nkọwa ego ma na-eme ka izipu na ndụmọdụ nye gị ghara ịrụ ọrụ.",
-    "onChainPublicWarning": "Azụmahịa dị na-agbụ na-apụta ìhè. Izipu akara ma ọ bụ ndụmọdụ nwere ike ikpughe adreesị akpa gị, gụnyere azụmahịa emere tupu ọnọdụ nguzozi nzuzo agbanye."
+    "onChainPublicWarning": "Azụmahịa dị na-agbụ na-apụta ìhè. Izipu akara ma ọ bụ ndụmọdụ nwere ike ikpughe adreesị akpa gị, gụnyere azụmahịa emere tupu ọnọdụ nguzozi nzuzo agbanye.",
+    "languageLoadFailed": "Agbanwenwughị asụsụ. Gbalịa ọzọ."
   },
   "common": {
     "mute": "Mechie ụda",
@@ -779,7 +780,8 @@
     "noInternetStatus": "N'ịntanetị - Enweghị njikọ netwọkụ",
     "noInternetHint": "Jide n'aka na Wi-Fi ma ọ bụ data mkpanaka gbanyere, wee pịa \"{{action}}\"",
     "saving": "Na-echekwa…",
-    "offlineStatus": "Na-anọghị n'ịntanetị - Enweghị njikọ netwọkụ"
+    "offlineStatus": "Na-anọghị n'ịntanetị - Enweghị njikọ netwọkụ",
+    "postNotFound": "Anyị enweghị ike ịhụ ọkwa ahụ"
   },
   "tip": {
     "title": "Ziga Onyinye",
@@ -2869,7 +2871,8 @@
         "forever": "Ruo mgbe ebighị ebi"
       }
     },
-    "chooseAvatar": "Họrọ avatar"
+    "chooseAvatar": "Họrọ avatar",
+    "loadFailed": "Agaghị ebubata ógbè"
   },
   "work": {
     "title": "Onyinye ọrụ",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Ezitegoro ya ({{ref}}). Akwụla ụgwọ ọzọ — meghee ọrụ ahụ ọzọ obere oge, ọ ga-egosi na akwụọla ya."
-    }
+    },
+    "loadFailed": "Agaghị ebubatagharị ego ndị ahụ",
+    "jobLoadFailed": "Agaghị ebubataghi mmesapụ aka a"
   },
   "usernames": {
     "subtitle": "Aha ndị a na-ere, ọnụahịa na USD",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Agaghị ahụ posts ha ma ọ bụ nwee ike ịmekọrịta ha. Meghee ka ịweghachi ohere.",
     "restrictedBody": "Onye ọrụ a egbochila mmekọrịta na akaụntụ gị.",
     "requestPendingBody": "E zigara arịrịọ ịgbaso gị. Ị ga-enwe ike ịhụ posts ha ozugbo ha kwadoro arịrịọ gị.",
-    "followToSeePosts": "Soro akaụntụ a ka ịhụ posts ha."
+    "followToSeePosts": "Soro akaụntụ a ka ịhụ posts ha.",
+    "loadFailed": "Agaghị ebubatagharị ndesịta a"
   },
   "reactionInfo": {
     "title": "Mmetụta",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Ịga n 'ihu ozi",
     "pollSubmitVote": "Nyefee votu",
     "doNotDisturb": "Adịghị enye nsogbu",
-    "doNotDisturbOn": "Ejila nsogbu: On"
+    "doNotDisturbOn": "Ejila nsogbu: On",
+    "deleteConversationTitle": "Hichapụ mkparịta ụka?",
+    "deleteConversationBody": "A ga-ewepụ mkparịta ụka a na igbe mbata gị."
   },
   "editPost": {
     "mediaPermission": "Achọrọ ikike ọbá ihe ọkiri",

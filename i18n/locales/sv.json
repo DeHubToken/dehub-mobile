@@ -727,7 +727,8 @@
     "usernameAvailable": "Användarnamn är tillgängligt",
     "hideBadgeAndBalance": "Dölj badge och saldo",
     "hideBadgeAndBalanceDesc": "Döljer finansiella detaljer och inaktiverar skickningar och dricks till dig.",
-    "onChainPublicWarning": "Transaktioner på kedjan är offentliga. Att skicka tokens eller dricks kan avslöja din plånboksadress, inklusive transaktioner som gjorts innan privat saldoläge aktiverades."
+    "onChainPublicWarning": "Transaktioner på kedjan är offentliga. Att skicka tokens eller dricks kan avslöja din plånboksadress, inklusive transaktioner som gjorts innan privat saldoläge aktiverades.",
+    "languageLoadFailed": "Det gick inte att byta språk. Försök igen."
   },
   "common": {
     "mute": "Stäng av ljud",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Ingen nätverksanslutning",
     "noInternetHint": "Se till att Wi-Fi eller mobildata är påslaget och tryck sedan på \"{{action}}\"",
     "saving": "Sparar…",
-    "offlineStatus": "Offline - Ingen nätverksanslutning"
+    "offlineStatus": "Offline - Ingen nätverksanslutning",
+    "postNotFound": "Vi kunde inte hitta det inlägget"
   },
   "tip": {
     "title": "Skicka dricks",
@@ -2873,7 +2875,8 @@
         "forever": "För evigt"
       }
     },
-    "chooseAvatar": "Välj avatar"
+    "chooseAvatar": "Välj avatar",
+    "loadFailed": "Det gick inte att läsa in grupper"
   },
   "work": {
     "title": "Bounties",
@@ -2997,7 +3000,9 @@
     },
     "payout": {
       "alreadySent": "Redan skickat ({{ref}}). Betala inte igen — öppna uppdraget om en stund, då bör det visas som betalt."
-    }
+    },
+    "loadFailed": "Det gick inte att läsa in belöningar",
+    "jobLoadFailed": "Kunde inte ladda denna bounty"
   },
   "usernames": {
     "subtitle": "Handles till salu, prissatta i USD",
@@ -3764,7 +3769,8 @@
     "youBlockedBody": "Du kommer inte att se deras inlägg eller kunna interagera med dem. Avblockera för att återställa åtkomst.",
     "restrictedBody": "Den här användaren har begränsat interaktioner med ditt konto.",
     "requestPendingBody": "Din följningsbegäran har skickats. Du kommer att kunna se deras inlägg när de godkänner din begäran.",
-    "followToSeePosts": "Följ detta konto för att se deras inlägg."
+    "followToSeePosts": "Följ detta konto för att se deras inlägg.",
+    "loadFailed": "Det gick inte att ladda den här listan"
   },
   "reactionInfo": {
     "title": "Reaktioner",
@@ -4870,7 +4876,9 @@
     "forwardMessage": "Vidarebefordra meddelande",
     "pollSubmitVote": "Skicka in omröstning",
     "doNotDisturb": "Stör inte",
-    "doNotDisturbOn": "Stör inte"
+    "doNotDisturbOn": "Stör inte",
+    "deleteConversationTitle": "Radera konversation?",
+    "deleteConversationBody": "Denna konversation kommer att tas bort från din inkorg."
   },
   "editPost": {
     "mediaPermission": "Behörighet till mediebiblioteket krävs",
