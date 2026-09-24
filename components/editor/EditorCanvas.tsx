@@ -14,7 +14,7 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Svg, { Polyline } from "react-native-svg";
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 import { getClip, getTransform, mediaIds, placementPatch, updateClip } from "../../libs/editor/project";
-import { getMedia, mediaDataUrl } from "../../libs/editor/storage";
+import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../libs/editor/storage";
 import type { ProjectSnapshot, TextClip } from "../../libs/editor/types";
 
 export interface LayerBox {
@@ -37,6 +37,11 @@ export interface EditorCanvasHandle {
    * onProgress gets the model download progress (0..1), then 1 while it runs.
    */
   removeBackground: (mediaId: string, onProgress?: (fraction: number) => void) => Promise<{ dataUrl: string; width: number; height: number } | null>;
+  /**
+   * Render the timeline to a video file (MP4 where the phone can, see
+   * canvasHtml exportVideo). Resolves with the file's uri.
+   */
+  exportVideo: (opts: { width: number; height: number; bitrate: number; title: string }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
 }
 
 interface Props {
@@ -56,7 +61,19 @@ interface Props {
   pen?: { color: string; width: number } | null;
   /** A finished stroke, in page pixels. */
   onStroke?: (points: [number, number][]) => void;
+  /** Playing the timeline; the page runs the clock and reports it in onTime. */
+  playing?: boolean;
+  onTime?: (time: number) => void;
+  /** Playback reached the end of the timeline. */
+  onEnded?: (time: number) => void;
+  /** A video or sound finished loading in the page, with what it measured. */
+  onMediaReady?: (id: string, info: { duration?: number; width?: number; height?: number }) => void;
+  /** Videos and sounds still on their way into the page. */
+  onMediaLoading?: (count: number) => void;
 }
+
+/** Raw bytes per piece when handing a video to the page (base64 grows it by a third). */
+const MEDIA_CHUNK = 1024 * 1024;
 
 /** Distance in screen points inside which a layer snaps to the page centre. */
 const SNAP_PT = 8;
@@ -107,6 +124,15 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
   type Cutout = { dataUrl: string; width: number; height: number } | null;
   const cutoutReqs = useRef(new Map<string, { done: (v: Cutout) => void; progress?: (f: number) => void }>());
+  const mediaAcks = useRef(new Map<string, () => void>());
+  type VideoReq = {
+    resolve: (v: { uri: string; ext: string }) => void;
+    reject: (e: Error) => void;
+    progress?: (f: number) => void;
+    title: string;
+    out: ReturnType<typeof openVideoExport> | null;
+  };
+  const videoReqs = useRef(new Map<string, VideoReq>());
 
   const W = project.settings.width;
   const H = project.settings.height;
@@ -124,12 +150,31 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     webRef.current?.postMessage(JSON.stringify(msg));
   }, []);
 
-  // Draw on every change.
+  // Draw on every change. Time alone only moves the playhead (seek), and
+  // while playing the page keeps its own clock.
+  const timeRef = useRef(time);
+  timeRef.current = time;
+  const playing = !!props.playing;
   useEffect(() => {
-    if (ready) post({ type: "render", snapshot: project, time, fontCss });
-  }, [ready, project, time, fontCss, post]);
+    if (ready) post({ type: "render", snapshot: project, time: timeRef.current, fontCss });
+  }, [ready, project, fontCss, post]);
+  useEffect(() => {
+    if (ready && !playing) post({ type: "seek", time });
+  }, [ready, time, playing, post]);
+  useEffect(() => {
+    if (!ready) return;
+    post(playing ? { type: "play", time: timeRef.current } : { type: "pause" });
+  }, [ready, playing, post]);
 
-  // Hand the page each picture once.
+  const loading = useRef(0);
+  const sendAndWait = (id: string, msg: unknown) =>
+    new Promise<void>((resolve, reject) => {
+      const timer = setTimeout(() => { mediaAcks.current.delete(id); reject(new Error("media timeout")); }, 30000);
+      mediaAcks.current.set(id, () => { clearTimeout(timer); resolve(); });
+      post(msg);
+    });
+
+  // Hand the page each picture, video and sound once.
   const ids = useMemo(() => mediaIds(project).join("|"), [project]);
   useEffect(() => {
     if (!ready) return;
@@ -139,6 +184,32 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       for (const id of ids ? ids.split("|") : []) {
         if (sentMedia.current.has(id)) continue;
         const meta = await getMedia(id);
+        if (cancelled) return;
+        if (meta && (meta.kind === "video" || meta.kind === "audio")) {
+          // Big files go over in pieces, each acknowledged before the next,
+          // so the bridge never holds more than one piece.
+          sentMedia.current.add(id);
+          loading.current += 1;
+          props.onMediaLoading?.(loading.current);
+          try {
+            await sendAndWait(id, { type: "mediaBegin", id, kind: meta.kind, mime: meta.mimeType });
+            for (let pos = 0; ; pos += MEDIA_CHUNK) {
+              const b64 = await readMediaChunk(meta, pos, MEDIA_CHUNK);
+              if (!b64) break;
+              await sendAndWait(id, { type: "mediaChunk", id, b64 });
+              // A short piece is the last one.
+              if (b64.length < Math.ceil(MEDIA_CHUNK / 3) * 4) break;
+            }
+            post({ type: "mediaEnd", id });
+          } catch {
+            sentMedia.current.delete(id);
+            missing.push(id);
+          } finally {
+            loading.current -= 1;
+            props.onMediaLoading?.(loading.current);
+          }
+          continue;
+        }
         const src = meta ? await mediaDataUrl(meta) : null;
         if (cancelled) return;
         if (!src) { missing.push(id); continue; }
@@ -159,6 +230,52 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         sentMedia.current.clear();
         setReady(true);
         break;
+      case "mediaAck": {
+        const done = mediaAcks.current.get(msg.id);
+        mediaAcks.current.delete(msg.id);
+        done?.();
+        break;
+      }
+      case "mediaReady":
+        live.current.props.onMediaReady?.(msg.id, { duration: msg.duration, width: msg.width, height: msg.height });
+        break;
+      case "time":
+        if (typeof msg.time === "number") live.current.props.onTime?.(msg.time);
+        break;
+      case "ended":
+        live.current.props.onEnded?.(typeof msg.time === "number" ? msg.time : 0);
+        break;
+      case "videoProgress":
+        videoReqs.current.get(msg.reqId)?.progress?.(Math.min(0.97, Number(msg.progress) || 0));
+        break;
+      case "videoChunk": {
+        const r = videoReqs.current.get(msg.reqId);
+        if (!r) break;
+        try {
+          if (!r.out) r.out = openVideoExport(r.title, msg.ext === "webm" ? "webm" : "mp4");
+          r.out.append(msg.b64);
+          if (msg.total) r.progress?.(0.97 + 0.03 * (Number(msg.done) / Number(msg.total)));
+          if (msg.last) {
+            r.out.close();
+            videoReqs.current.delete(msg.reqId);
+            r.resolve({ uri: r.out.uri, ext: msg.ext === "webm" ? "webm" : "mp4" });
+          } else {
+            post({ type: "videoAck", reqId: msg.reqId });
+          }
+        } catch (err) {
+          r.out?.discard();
+          videoReqs.current.delete(msg.reqId);
+          r.reject(err instanceof Error ? err : new Error("write failed"));
+        }
+        break;
+      }
+      case "videoFailed": {
+        const r = videoReqs.current.get(msg.reqId);
+        videoReqs.current.delete(msg.reqId);
+        r?.out?.discard();
+        r?.reject(new Error(msg.error || "video export failed"));
+        break;
+      }
       case "frame":
         setLayers(Array.isArray(msg.layers) ? msg.layers : []);
         break;
@@ -199,6 +316,10 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const restart = useCallback(() => {
     for (const r of cutoutReqs.current.values()) r.done(null);
     cutoutReqs.current.clear();
+    for (const r of videoReqs.current.values()) { r.out?.discard(); r.reject(new Error("canvas restarted")); }
+    videoReqs.current.clear();
+    for (const done of mediaAcks.current.values()) done();
+    mediaAcks.current.clear();
     setReady(false);
     setWebKey((n) => n + 1);
   }, []);
@@ -234,6 +355,33 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         setTimeout(() => {
           if (cutoutReqs.current.has(reqId)) { cutoutReqs.current.delete(reqId); resolve(null); }
         }, 180000);
+      }),
+    exportVideo: ({ width, height, bitrate, title }, onProgress) =>
+      new Promise((resolve, reject) => {
+        const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        // A phone that pauses the page (app in the background) stalls the
+        // encoder; give up after a while without progress rather than hang.
+        let last = Date.now();
+        const watchdog = setInterval(() => {
+          const r = videoReqs.current.get(reqId);
+          if (!r) { clearInterval(watchdog); return; }
+          if (Date.now() - last > 45000) {
+            clearInterval(watchdog);
+            videoReqs.current.delete(reqId);
+            r.out?.discard();
+            post({ type: "exportAbort" });
+            reject(new Error("video export stalled"));
+          }
+        }, 5000);
+        const tick = (p: number) => { last = Date.now(); onProgress?.(p); };
+        videoReqs.current.set(reqId, {
+          resolve: (v) => { clearInterval(watchdog); resolve(v); },
+          reject: (e) => { clearInterval(watchdog); reject(e); },
+          progress: tick,
+          title,
+          out: null,
+        });
+        post({ type: "exportVideo", reqId, width, height, bitrate });
       }),
   }), [post]);
 
@@ -446,6 +594,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                 setSupportMultipleWindows={false}
                 showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}
+                mediaPlaybackRequiresUserAction={false}
+                allowsInlineMediaPlayback
                 onRenderProcessGone={restart}
                 onContentProcessDidTerminate={restart}
                 style={styles.web}

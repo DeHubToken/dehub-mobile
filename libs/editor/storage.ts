@@ -6,21 +6,31 @@
  * clips point at pictures by `mediaId`, the same as on the web.
  *
  *   editor/projects/<projectId>.json
- *   editor/media/<mediaId>.<jpg|png>   the picture
+ *   editor/media/<mediaId>.<jpg|png>   a picture
+ *   editor/media/<mediaId>.<mp4|mov|…> a video or sound, copied as picked
+ *   editor/media/<mediaId>.thumb.jpg   a video's first frame, for the timeline
  *   editor/media/<mediaId>.json        its MediaMeta
  */
 import * as FileSystem from "expo-file-system/legacy";
 import * as ImageManipulator from "expo-image-manipulator";
+import * as VideoThumbnails from "expo-video-thumbnails";
+import { File as FsFile, Paths } from "expo-file-system";
 import type { ProjectSnapshot } from "./types";
 import { mediaIds, newId, parseProject } from "./project";
 
 export interface MediaMeta {
   id: string;
   name: string;
-  kind: "image";
-  mimeType: "image/jpeg" | "image/png";
+  kind: "image" | "video" | "audio";
+  mimeType: string;
   width: number;
   height: number;
+  /** Seconds; videos and sounds only. */
+  duration?: number;
+  /** Bytes on disk; videos and sounds only. */
+  size?: number;
+  /** A video's first frame (file name inside editor/media), for the timeline. */
+  thumb?: string;
   /** File name inside editor/media. */
   file: string;
   createdAt: number;
@@ -84,7 +94,7 @@ export async function deleteProject(id: string): Promise<void> {
     const files = await FileSystem.readDirectoryAsync(mediaDir());
     await Promise.all(
       files
-        .filter((f) => !inUse.has(f.slice(0, f.lastIndexOf("."))))
+        .filter((f) => !inUse.has(f.slice(0, f.indexOf("."))))
         .map((f) => FileSystem.deleteAsync(`${mediaDir()}${f}`, { idempotent: true })),
     );
   } catch { /* nothing to tidy */ }
@@ -170,6 +180,158 @@ export async function saveCutout(dataUrl: string, width: number, height: number,
   };
   await FileSystem.writeAsStringAsync(`${mediaDir()}${id}.json`, JSON.stringify(meta));
   return meta;
+}
+
+// ── videos and sounds ──
+
+/**
+ * Largest video or sound the editor takes. The whole file is handed to the
+ * canvas page and decoded there for export, so it has to fit in memory.
+ */
+export const MAX_MEDIA_BYTES = 400 * 1024 * 1024;
+
+export interface PickedClip {
+  uri: string;
+  kind: "video" | "audio";
+  mimeType?: string | null;
+  fileName?: string | null;
+  width?: number;
+  height?: number;
+  /** Seconds. */
+  duration?: number | null;
+}
+
+function extFor(p: PickedClip): string {
+  const fromName = /\.([a-z0-9]{2,4})$/i.exec(p.fileName ?? p.uri)?.[1]?.toLowerCase();
+  if (fromName) return fromName;
+  const mime = p.mimeType ?? "";
+  if (/quicktime/.test(mime)) return "mov";
+  if (/webm/.test(mime)) return "webm";
+  if (/mpeg/.test(mime)) return "mp3";
+  if (/aac|m4a|mp4a/.test(mime)) return "m4a";
+  if (/wav/.test(mime)) return "wav";
+  return p.kind === "video" ? "mp4" : "m4a";
+}
+
+function mimeFor(ext: string, kind: "video" | "audio"): string {
+  const map: Record<string, string> = {
+    mp4: "video/mp4", m4v: "video/mp4", mov: "video/quicktime", webm: kind === "video" ? "video/webm" : "audio/webm",
+    "3gp": "video/3gpp", mkv: "video/x-matroska",
+    mp3: "audio/mpeg", m4a: "audio/mp4", aac: "audio/aac", wav: "audio/wav", ogg: "audio/ogg", oga: "audio/ogg", opus: "audio/ogg", flac: "audio/flac",
+  };
+  return map[ext] ?? (kind === "video" ? "video/mp4" : "audio/mpeg");
+}
+
+export class MediaTooLargeError extends Error {}
+
+/** Copy a picked video or sound into editor storage, as it is. */
+export async function importClipFile(picked: PickedClip): Promise<MediaMeta> {
+  await ensureDir(mediaDir());
+  const info = await FileSystem.getInfoAsync(picked.uri);
+  const size = info.exists && "size" in info ? info.size : 0;
+  if (size > MAX_MEDIA_BYTES) throw new MediaTooLargeError("too large");
+  const id = newId(10);
+  const ext = extFor(picked);
+  const file = `${id}.${ext}`;
+  await FileSystem.copyAsync({ from: picked.uri, to: `${mediaDir()}${file}` });
+  let thumb: string | undefined;
+  if (picked.kind === "video") {
+    try {
+      const shot = await VideoThumbnails.getThumbnailAsync(`${mediaDir()}${file}`, { time: 0, quality: 0.5 });
+      const small = await ImageManipulator.manipulateAsync(shot.uri, [{ resize: { height: 120 } }], { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG });
+      thumb = `${id}.thumb.jpg`;
+      await FileSystem.moveAsync({ from: small.uri, to: `${mediaDir()}${thumb}` });
+    } catch { /* the timeline shows a plain block instead */ }
+  }
+  const duration = picked.duration ?? 0;
+  const meta: MediaMeta = {
+    id,
+    name: picked.fileName || file,
+    kind: picked.kind,
+    mimeType: mimeFor(ext, picked.kind),
+    width: picked.width ?? 0,
+    height: picked.height ?? 0,
+    duration: duration > 0 ? duration : undefined,
+    size,
+    thumb,
+    file,
+    createdAt: Date.now(),
+  };
+  await FileSystem.writeAsStringAsync(`${mediaDir()}${id}.json`, JSON.stringify(meta));
+  return meta;
+}
+
+/** Fill in what the canvas measured (duration, size) when the picker did not say. */
+export async function updateMediaMeta(id: string, patch: Partial<Pick<MediaMeta, "duration" | "width" | "height">>): Promise<void> {
+  const meta = await getMedia(id);
+  if (!meta) return;
+  await FileSystem.writeAsStringAsync(`${mediaDir()}${id}.json`, JSON.stringify({ ...meta, ...patch }));
+}
+
+export function mediaFileUri(meta: MediaMeta): string {
+  return `${mediaDir()}${meta.file}`;
+}
+
+export function mediaThumbUri(meta: MediaMeta): string | null {
+  return meta.thumb ? `${mediaDir()}${meta.thumb}` : null;
+}
+
+/** A slice of a video or sound as base64, for handing it to the canvas page in pieces. */
+export async function readMediaChunk(meta: MediaMeta, position: number, length: number): Promise<string> {
+  return FileSystem.readAsStringAsync(mediaFileUri(meta), {
+    encoding: FileSystem.EncodingType.Base64,
+    position,
+    length,
+  });
+}
+
+/**
+ * A file the exported video is written into piece by piece, as the canvas
+ * page hands it over, so the whole video never sits in memory here.
+ */
+export function openVideoExport(title: string, ext: string) {
+  const safe = title.replace(/[\\/:*?"<>|\s.]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "video";
+  const file = new FsFile(Paths.cache, `${safe}-${Date.now()}.${ext}`);
+  file.create({ overwrite: true });
+  const handle = file.open();
+  return {
+    uri: file.uri,
+    append(b64: string) {
+      handle.writeBytes(base64ToBytes(b64));
+    },
+    close() {
+      try { handle.close(); } catch { /* already closed */ }
+    },
+    discard() {
+      try { handle.close(); } catch { /* already closed */ }
+      try { file.delete(); } catch { /* never written */ }
+    },
+  };
+}
+
+const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const B64_INDEX = (() => {
+  const t = new Uint8Array(128);
+  for (let i = 0; i < B64.length; i++) t[B64.charCodeAt(i)] = i;
+  return t;
+})();
+
+export function base64ToBytes(b64: string): Uint8Array {
+  const clean = b64.replace(/[^A-Za-z0-9+/]/g, "");
+  const len = Math.floor((clean.length * 3) / 4);
+  const out = new Uint8Array(len);
+  let o = 0;
+  for (let i = 0; i < clean.length; i += 4) {
+    const a = B64_INDEX[clean.charCodeAt(i)];
+    const b = B64_INDEX[clean.charCodeAt(i + 1)];
+    const c = i + 2 < clean.length ? B64_INDEX[clean.charCodeAt(i + 2)] : 0;
+    const d = i + 3 < clean.length ? B64_INDEX[clean.charCodeAt(i + 3)] : 0;
+    const n = (a << 18) | (b << 12) | (c << 6) | d;
+    if (o < len) out[o++] = (n >> 16) & 255;
+    if (o < len) out[o++] = (n >> 8) & 255;
+    if (o < len) out[o++] = n & 255;
+  }
+  return out;
 }
 
 // ── exports ──

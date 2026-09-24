@@ -207,6 +207,7 @@ export default function UploadScreen() {
   const incomingQuotedPost = route.params?.quotedPost as Record<string, any> | undefined;
   const incomingInitialText = route.params?.initialText;
   const incomingImages = route.params?.images;
+  const incomingVideo = route.params?.video;
   const authUser = useUser();
   const { isBanned: accountBanned } = useBannedAccount();
   const imageLimit = getPostImageLimitForBadge(
@@ -1501,6 +1502,15 @@ export default function UploadScreen() {
     },
     [generateThumbnail, movePendingBodyToTitle, mediaUploadLimitBytes, mediaUploadLimitLabel, postQuota?.tier],
   );
+
+  // A video handed over by another surface, e.g. one finished in the editor.
+  // Like pictures, it only fills an empty composer.
+  useEffect(() => {
+    if (!incomingVideo) return;
+    if (pickedVideo || pickedImages.length) return;
+    void adoptVideoAsset({ ...incomingVideo, type: "video", assetId: undefined } as unknown as PickedAsset);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [incomingVideo]);
 
   /** Size-filters image assets and appends them up to the creator's badge cap. */
   const adoptImageAssets = useCallback(async (assets: PickedAsset[]) => {

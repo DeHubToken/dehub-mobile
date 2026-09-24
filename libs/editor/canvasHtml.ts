@@ -15,7 +15,7 @@
  *
  * Messages in (JSON):  render {snapshot, time, fontCss} · seek {time} · play {time} · pause
  *                      media {id, src} (pictures) · mediaBegin {id, kind, mime} · mediaChunk {id, b64} · mediaEnd {id}
- *                      export {reqId, format, quality} · exportVideo {reqId, width, height, bitrate} · videoAck {reqId}
+ *                      export {reqId, format, quality} · exportVideo {reqId, width, height, bitrate} · videoAck {reqId} · exportAbort
  *                      stats {reqId, mediaId} · cutout {reqId, mediaId}
  * Messages out (JSON): ready · frame {layers, missing} · exported {reqId, dataUrl} · exportFailed {reqId, error}
  *                      time {time} (while playing) · ended {time} · mediaAck {id} · mediaReady {id, duration, width, height}
@@ -699,6 +699,7 @@ canvas{display:block;width:100%;height:100%;}
   var lastTimePost = 0;
   var lastLayersPost = 0;
   var exporting = false;
+  var exportAborted = false;
   function currentTime() {
     if (playing && playStart) return playStart.time + (performance.now() - playStart.wall) / 1000;
     return state ? state.time : 0;
@@ -822,6 +823,7 @@ canvas{display:block;width:100%;height:100%;}
       var f = 0;
       function step() {
         if (failure) return Promise.reject(failure);
+        if (exportAborted) return Promise.reject(new Error("aborted"));
         if (f >= total) return Promise.resolve();
         var t = f / fps;
         var ops = computeRenderOps(snap, t, W, false);
@@ -909,7 +911,7 @@ canvas{display:block;width:100%;height:100%;}
         var wall0 = performance.now();
         var tick = function () {
           var t = (performance.now() - wall0) / 1000;
-          if (t >= duration) { rec.stop(); return; }
+          if (t >= duration || exportAborted) { rec.stop(); return; }
           var ops = computeRenderOps(snap, t, W, false);
           syncMedia(snap, t, true, ops, true);
           g.setTransform(1, 0, 0, 1, 0, 0);
@@ -954,6 +956,7 @@ canvas{display:block;width:100%;height:100%;}
     if (!state || exporting) { post({ type: "videoFailed", reqId: m.reqId, error: "busy" }); return; }
     stopPlaying();
     exporting = true;
+    exportAborted = false;
     var snap = state.snapshot;
     var fps = snap.settings.fps || 30;
     var W = Math.max(2, Math.round(m.width) & ~1);
@@ -1170,6 +1173,11 @@ canvas{display:block;width:100%;height:100%;}
       finishMedia(m.id);
     } else if (m.type === "exportVideo") {
       exportVideo(m);
+    } else if (m.type === "exportAbort") {
+      exportAborted = true;
+      exporting = false;
+      outgoing.clear();
+      schedule();
     } else if (m.type === "videoAck") {
       sendNextChunk(m.reqId);
     } else if (m.type === "media") {
