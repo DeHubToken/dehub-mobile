@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   FlatList,
@@ -61,6 +62,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   onScrollBegin,
   onRefresh: onRefreshProp,
 }) => {
+  const { t } = useTranslation();
   const [refreshing, setRefreshing] = useState(false);
   const { isMinimal } = useAppTheme();
   const listRef = useRef<FlatList>(null);
@@ -276,7 +278,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
           // Minimal: outline only, no fill.
           style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
         >
-          <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
+          <Text className="text-theme-neutrals-50 font-medium">{t("common.retry")}</Text>
         </Pressable>
       </View>
     );
@@ -330,7 +332,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
             </View>
           ) : endReached && items.length > 0 ? (
             <View className="py-6 items-center">
-              <Text className="text-theme-neutrals-400 text-xs">No more shorts</Text>
+              <Text className="text-theme-neutrals-400 text-xs">{t("feed.noMoreShorts")}</Text>
             </View>
           ) : null
         }
@@ -338,7 +340,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
           !initialLoading ? (
             <View className="flex-1 items-center justify-center py-20">
               <Icon name="Film" size={48} color="#555" />
-              <Text className="text-theme-neutrals-400 text-sm mt-4">No shorts found</Text>
+              <Text className="text-theme-neutrals-400 text-sm mt-4">{t("feed.noShortsFound")}</Text>
             </View>
           ) : null
         }

@@ -426,7 +426,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     return (
       <View style={{ paddingVertical: 12, paddingLeft: 42 }}>
         <Text style={{ color: "#A6A9AC", fontSize: 13, fontStyle: "italic" }}>
-          Comment not found
+          {t("comments.notFound")}
         </Text>
       </View>
     );
@@ -497,7 +497,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 }}
               >
                 <Text style={{ fontSize: 10, fontWeight: "600", color: "rgba(255,255,255,0.75)" }}>
-                  Creator
+                  {t("postInfo.creator")}
                 </Text>
               </View>
             )}
@@ -542,7 +542,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 }}
               >
                 <Text style={{ fontSize: 10, fontWeight: "600", color: "#F4F4F5" }}>
-                  Not the creator
+                  {t("comments.notCreatorBadge")}
                 </Text>
               </View>
             )}

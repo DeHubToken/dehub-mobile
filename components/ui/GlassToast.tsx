@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -47,6 +48,7 @@ const GlassToast: React.FC<GlassToastProps> = ({
   actionIcon,
   onActionPress,
 }) => {
+  const { t } = useTranslation();
   if (!title) return null;
 
   return (
@@ -106,7 +108,7 @@ const GlassToast: React.FC<GlassToastProps> = ({
         {onClose && (
           <TouchableOpacity
             className="self-start"
-            accessibilityLabel="Close"
+            accessibilityLabel={t("common.close")}
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             onPress={onClose}

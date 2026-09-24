@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -34,6 +35,7 @@ export default function ScheduleSheet({
   scheduledDate,
   onSchedule,
 }: ScheduleSheetProps) {
+  const { t } = useTranslation();
   const today = startOfToday();
 
   const [currentMonth, setCurrentMonth] = useState(scheduledDate ?? today);
@@ -120,7 +122,7 @@ export default function ScheduleSheet({
     >
       {/* Header */}
       <View className="flex-row items-center justify-between px-4 pt-4 pb-3 border-b border-white/10">
-        <Text className="text-white font-semibold text-base">Schedule Post</Text>
+        <Text className="text-white font-semibold text-base">{t("upload.schedulePostTitle")}</Text>
 
         <TouchableOpacity
           onPress={onClose}
@@ -214,7 +216,7 @@ export default function ScheduleSheet({
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center">
               <Icon name="Clock" size={16} color="#A1A1AA" />
-              <Text className="text-white text-sm ml-2">Time</Text>
+              <Text className="text-white text-sm ml-2">{t("upload.scheduleTime")}</Text>
             </View>
 
             {Platform.OS === "ios" ? (
@@ -262,7 +264,7 @@ export default function ScheduleSheet({
             className="text-sm font-semibold"
             style={{ color: selectedDate ? "#09090B" : "#808089" }}
           >
-            Confirm
+            {t("common.confirm")}
           </Text>
         </TouchableOpacity>
 
@@ -273,7 +275,7 @@ export default function ScheduleSheet({
             activeOpacity={0.7}
             className="mx-4 mt-4 py-3 rounded-xl border border-white/20 items-center"
           >
-            <Text className="text-white/80 text-sm font-medium">Remove Schedule</Text>
+            <Text className="text-white/80 text-sm font-medium">{t("upload.removeSchedule")}</Text>
           </TouchableOpacity>
         )}
       </ScrollView>

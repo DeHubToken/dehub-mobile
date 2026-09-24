@@ -229,11 +229,11 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
           if (power.key === "signal_flare" || power.key === "harpoon") {
             const label = power.key === "harpoon" ? "Harpoon" : "Signal Flare";
             void toastPromise(waitForSignalFlareReceipt(booking.id), {
-              loading: "Counting notifications...",
+              loading: t("superpowers.countingNotifications"),
               success: recipients =>
                 recipients === null
-                  ? `${label} sent. The final count will appear in Past usage.`
-                  : `${label} notified ${recipients} ${recipients === 1 ? "person" : "people"}`,
+                  ? t("superpowers.flareSentPending", { label })
+                  : t("superpowers.flareNotified", { label, count: recipients }),
             });
           } else {
             toastSuccess(
@@ -272,7 +272,7 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
             {power ? <SuperPowerIcon power={power.key} style={{ width: 32, height: 32 }} /> : null}
             <Text className="text-lg font-semibold text-white">{power?.label}</Text>
           </View>
-          <Pressable onPress={onClose} hitSlop={10} accessibilityLabel="Close">
+          <Pressable onPress={onClose} hitSlop={10} accessibilityLabel={t("common.close")}>
             <Icon name="X" size={18} color="#A1A1AA" />
           </Pressable>
         </View>

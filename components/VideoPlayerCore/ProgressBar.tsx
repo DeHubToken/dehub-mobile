@@ -1,5 +1,6 @@
 import React, { memo, useMemo } from 'react';
 import { View, Text, Pressable } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { formatTime, getProgressRatio } from './utils';
@@ -25,6 +26,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   liveMode = false,
   isSeeking = false,
 }) => {
+  const { t } = useTranslation();
   const progressRatio = useMemo(
     () => getProgressRatio(position, duration),
     [position, duration]
@@ -95,7 +97,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
         </Text>
         <Text
           className="text-white/70 text-xs font-medium"
-          accessibilityLabel={`Duration: ${formattedDuration}`}
+          accessibilityLabel={t('player.durationLabel', { time: formattedDuration })}
         >
           {liveMode ? '' : `-${remainingTime}`}
         </Text>
@@ -111,8 +113,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
         onPress={(e) => !liveMode && onPressBar(e.nativeEvent.locationX)}
         className="h-8 justify-center"
         accessibilityRole="adjustable"
-        accessibilityLabel={`Video progress: ${Math.round(progressRatio * 100)}%`}
-        accessibilityHint="Tap to seek to a specific position"
+        accessibilityLabel={t('player.progressPercent', { percent: Math.round(progressRatio * 100) })}
+        accessibilityHint={t('player.seekHint')}
       >
         {progressBarContent}
 

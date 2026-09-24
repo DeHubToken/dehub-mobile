@@ -23,6 +23,7 @@
  * by tier — what is bought is a window plus a share of voice inside it.
  */
 import React, { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Text, Pressable, ActivityIndicator, Image, TextInput, ScrollView } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import GlassModal from "../ui/GlassModal";
@@ -63,6 +64,7 @@ export default function BoostSheet({
   postTitle,
   isOwnPost,
 }: BoostSheetProps) {
+  const { t } = useTranslation();
   const { data: status, isLoading, isError } = useSuperpowers();
   const { data: ladder } = useSuperpowerLadder();
   const bookBoost = useBookBoost();
@@ -133,21 +135,21 @@ export default function BoostSheet({
           if (chosen === "signal_flare" || chosen === "harpoon") {
             const label = chosen === "harpoon" ? "Harpoon" : "Signal Flare";
             void toastPromise(waitForSignalFlareReceipt(booking.id), {
-              loading: "Counting notifications...",
+              loading: t("superpowers.countingNotifications"),
               success: recipients =>
                 recipients === null
-                  ? `${label} sent. The final count will appear in Past usage.`
-                  : `${label} notified ${recipients} ${recipients === 1 ? "person" : "people"}`,
+                  ? t("superpowers.flareSentPending", { label })
+                  : t("superpowers.flareNotified", { label, count: recipients }),
             });
           } else {
-            toastSuccess(`${active?.label} running for ${booking.minutes} minutes`);
+            toastSuccess(t("superpowers.spentFor", { power: active?.label, minutes: booking.minutes }));
           }
           onClose();
         },
         // The server writes these sentences for a person to read — "That
         // account is private and cannot be targeted", "You have used all 2 of
         // your boosts this cycle". Show its words rather than a generic failure.
-        onError: (error: any) => toastError(error?.message || "Could not boost that post"),
+        onError: (error: any) => toastError(error?.message || t("superpowers.boostPostFailed")),
       },
     );
   };
@@ -158,7 +160,7 @@ export default function BoostSheet({
       <View className="px-5 pb-8 pt-4" style={{ flexShrink: 1 }}>
         <View className="mb-4 flex-row items-center gap-2">
           <Icon name="Zap" size={20} color="#fff" />
-          <Text className="text-lg font-semibold text-white">SuperPowers</Text>
+          <Text className="text-lg font-semibold text-white">{t("superpowers.screenTitle")}</Text>
         </View>
 
         {isLoading ? (
@@ -170,7 +172,7 @@ export default function BoostSheet({
           // go and stake because the API blipped is worse than saying nothing.
           <View className="items-center gap-3 py-8">
             <Text className="text-center text-sm text-white">
-              Could not load your SuperPowers just now. Try again in a moment.
+              {t("superpowers.loadFailed")}
             </Text>
           </View>
         ) : !status?.tier ? (
@@ -179,13 +181,13 @@ export default function BoostSheet({
           <View className="items-center gap-4 py-4">
             <Icon name="Lock" size={28} color="#808089" />
             <Text className="text-center text-sm text-white">
-              Any badge holder gets SuperPowers. Buy DHB to unlock a badge — staking is not required.
+              {t("superpowers.anyBadgeHolder")}
             </Text>
             <Pressable
               onPress={() => setBuyOpen(true)}
               className="rounded-xl border border-white/20 px-5 py-3"
             >
-              <Text className="text-sm text-white">Buy DHB</Text>
+              <Text className="text-sm text-white">{t("superpowers.getDhb")}</Text>
             </Pressable>
           </View>
         ) : (
@@ -207,16 +209,16 @@ export default function BoostSheet({
                     so one figure covering both tells an Octopus who has spent
                     their boosts that they have no flares either. */}
                 <Text className="text-xs text-zinc-400">
-                  {status.boostsLeft} of {status.boostsPerCycle} boosts left
+                  {t("superpowers.boostsLeftOf", { left: status.boostsLeft, total: status.boostsPerCycle })}
                   {status.signalsLeft !== undefined
-                    ? ` · ${status.signalsLeft} flares`
+                    ? ` · ${t("superpowers.flaresCount", { count: status.signalsLeft })}`
                     : ""}
-                  {refillsOn ? ` · refills ${refillsOn}` : ""}
+                  {refillsOn ? ` · ${t("superpowers.refillsShort", { date: refillsOn })}` : ""}
                 </Text>
               </View>
               <View className="items-end">
                 <Text className="text-lg font-semibold text-white">{status.minutesPerBoost}</Text>
-                <Text className="text-[10px] uppercase tracking-wider text-zinc-500">minutes</Text>
+                <Text className="text-[10px] uppercase tracking-wider text-zinc-500">{t("superpowers.minutesUnit")}</Text>
               </View>
             </View>
 
@@ -253,11 +255,11 @@ export default function BoostSheet({
 
             {active?.targeting === "account" && (
               <View className="gap-1.5">
-                <Text className="text-xs text-zinc-400">Whose followers should see it?</Text>
+                <Text className="text-xs text-zinc-400">{t("superpowers.aimAtAccount")}</Text>
                 <TextInput
                   value={targetAccount}
                   onChangeText={setTargetAccount}
-                  placeholder="Username or wallet address"
+                  placeholder={t("superpowers.aimPlaceholder")}
                   placeholderTextColor="#52525B"
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -268,7 +270,7 @@ export default function BoostSheet({
 
             {active?.targeting === "tiers" && (
               <View className="gap-1.5">
-                <Text className="text-xs text-zinc-400">Which badge tiers should see it?</Text>
+                <Text className="text-xs text-zinc-400">{t("superpowers.aimAtTiers")}</Text>
                 <View className="flex-row flex-wrap gap-1.5">
                   {tierNames.map(name => {
                     const picked = targetTiers.includes(name);
@@ -277,7 +279,7 @@ export default function BoostSheet({
                         key={name}
                         onPress={() =>
                           setTargetTiers(prev =>
-                            prev.includes(name) ? prev.filter(t => t !== name) : [...prev, name],
+                            prev.includes(name) ? prev.filter(tier => tier !== name) : [...prev, name],
                           )
                         }
                         className={`rounded-lg border px-3 py-1 ${
@@ -299,9 +301,7 @@ export default function BoostSheet({
                 — never sole possession of the top of the feed. */}
             {chosen !== "signal_flare" && (
               <Text className="text-xs text-zinc-500">
-                The boost slot rotates. When several boosts are running, viewers are dealt one
-                weighted by badge tier — a higher tier is shown more often, and everybody gets the
-                window they were granted.
+                {t("superpowers.rotationNote")}
               </Text>
             )}
 
@@ -321,8 +321,8 @@ export default function BoostSheet({
                   {!active?.enabled && active?.blockedReason
                     ? active.blockedReason
                     : chosen === "signal_flare"
-                      ? "Send Signal Flare"
-                      : `${active?.label ?? "Spend"} for ${status.minutesPerBoost} minutes`}
+                      ? t("superpowers.sendSignalFlare")
+                      : t("superpowers.spendFor", { power: active?.label ?? t("superpowers.spend"), minutes: status.minutesPerBoost })}
                 </Text>
               )}
             </Pressable>

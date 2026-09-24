@@ -13,6 +13,7 @@
  */
 import React, { useCallback, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 import { useMatureContent } from '../../hooks/useMatureContent';
 import { MATURE_CONTENT_ENABLED } from '../../config/storefront';
@@ -52,8 +53,10 @@ const MatureContentGate: React.FC<{
 }> = ({
   onReveal,
   canReveal = MATURE_CONTENT_ENABLED,
-  description = 'The creator marked this post as adult or graphic.',
-}) => (
+  description,
+}) => {
+  const { t } = useTranslation();
+  return (
   <View
     className="items-center justify-center rounded-xl mt-2"
     style={{
@@ -76,8 +79,8 @@ const MatureContentGate: React.FC<{
     >
       <Icon name="EyeOff" size={24} color="#fff" />
     </View>
-    <Text className="text-white text-sm font-semibold mb-1">Mature content</Text>
-    <Text className="text-theme-neutrals-400 text-xs text-center mb-3">{description}</Text>
+    <Text className="text-white text-sm font-semibold mb-1">{t('upload.matureContent')}</Text>
+    <Text className="text-theme-neutrals-400 text-xs text-center mb-3">{description ?? t('feedCard.matureDescription')}</Text>
     {canReveal && (
     <TouchableOpacity
       onPress={onReveal}
@@ -91,10 +94,11 @@ const MatureContentGate: React.FC<{
         borderColor: 'rgba(255,255,255,0.20)',
       }}
     >
-      <Text className="text-white text-xs font-medium">View anyway</Text>
+      <Text className="text-white text-xs font-medium">{t('feedCard.viewAnyway')}</Text>
     </TouchableOpacity>
     )}
   </View>
-);
+  );
+};
 
 export default MatureContentGate;

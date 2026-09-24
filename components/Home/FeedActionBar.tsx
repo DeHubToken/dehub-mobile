@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Pressable, Text } from "react-native";
 import Animated, {
   useSharedValue,
@@ -173,6 +174,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   onReact,
   onShowReactionInfo,
 }) => {
+  const { t } = useTranslation();
   // One tray per thumb: every positive face on the thumbs-up, the downvote on
   // the thumbs-down — which no longer opens a tray at all, holding one option.
   // Only ever one open either way: they sit inches apart on the same row, and
@@ -210,7 +212,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
       {onTip ? (
         <AnimatedActionButton
           onPress={onTip}
-          accessibilityLabel="Tip"
+          accessibilityLabel={t("comments.tip")}
           iconName="Gem"
           count={tipCount}
           formatCount
@@ -251,7 +253,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
       {/* Share — carries reposts + link copies; bolder + larger once reposted. */}
       <AnimatedActionButton
         onPress={onShare}
-        accessibilityLabel="Share and repost"
+        accessibilityLabel={t("feedCard.shareAndRepost")}
         iconName="Share2"
         active={reposted}
         activeColor={ICON_ACTIVE}
@@ -263,7 +265,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
       />
       <AnimatedActionButton
         onPress={onComment}
-        accessibilityLabel="Comments"
+        accessibilityLabel={t("postInfo.comments")}
         iconName="MessageSquare"
         count={commentCount}
         formatCount
@@ -307,7 +309,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
       </View>
       <AnimatedActionButton
         onPress={onSave}
-        accessibilityLabel="Save to library"
+        accessibilityLabel={t("feedCard.saveToLibrary")}
         iconName="Bookmark"
         active={saved}
         activeColor="#D4D4D8"
@@ -316,7 +318,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
       />
       <AnimatedActionButton
         onPress={onInfo}
-        accessibilityLabel="Post details"
+        accessibilityLabel={t("feedCard.postDetails")}
         iconName="Info"
         inactiveColor={ICON_MUTED}
       />

@@ -152,11 +152,11 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
 
     const confirmed = await new Promise<boolean>((resolve) => {
       Alert.alert(
-        "Replace this video?",
-        "The post keeps its link, views and comments. The file behind it is overwritten, and that cannot be undone.",
+        t("editPost.replaceVideoTitle"),
+        t("editPost.replaceVideoBody"),
         [
-          { text: "Cancel", style: "cancel", onPress: () => resolve(false) },
-          { text: "Replace", style: "destructive", onPress: () => resolve(true) },
+          { text: t("common.cancel"), style: "cancel", onPress: () => resolve(false) },
+          { text: t("editPost.replace"), style: "destructive", onPress: () => resolve(true) },
         ],
         { cancelable: true, onDismiss: () => resolve(false) },
       );
@@ -177,7 +177,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       );
       toastSuccess(t("editPost.fileSwapping"));
     } catch (e: any) {
-      toastError(e?.message || "Could not replace that file");
+      toastError(e?.message || t("editPost.replaceFileFailed"));
     } finally {
       setReplacing(false);
       setReplaceProgress(0);
@@ -330,7 +330,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       onClose();
     } catch (e: any) {
       console.error("[EditPostModal] save error", e);
-      toastError(e?.message || "Failed to update post");
+      toastError(e?.message || t("editPost.updateFailed"));
     } finally {
       setSaving(false);
     }
@@ -420,7 +420,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         {initialTitle ? (
           <>
             <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
-              Title
+              {t("work.fields.title")}
             </Text>
             <TextInput
               value={title}
@@ -454,7 +454,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         {initialDescription ? (
           <>
             <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
-              Description
+              {t("work.fields.description")}
             </Text>
             <TextInput
               value={description}
@@ -511,7 +511,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               >
                 <Ionicons name="pricetag-outline" size={18} color="#6F7174" />
                 <Text className="text-theme-neutrals-400 text-sm ml-1.5">
-                  Add categories
+                  {t("upload.addCategories")}
                 </Text>
               </TouchableOpacity>
             )}
@@ -527,12 +527,11 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             <View className="flex-1 mr-3">
               <Text className="text-white text-sm font-semibold">
                 {shopLinks.length + listingIds.length
-                  ? `${shopLinks.length + listingIds.length} on the Shop board`
-                  : "Add to the Shop board"}
+                  ? t("editPost.onShopBoard", { count: shopLinks.length + listingIds.length })
+                  : t("editPost.addToShopBoard")}
               </Text>
               <Text className="text-theme-neutrals-400 text-xs mt-0.5">
-                Your shop listings and affiliate links, opened from the Shop button. You can add{" "}
-                {shopAllowance.allowance}.
+                {t("editPost.shopBoardHint", { allowance: shopAllowance.allowance })}
               </Text>
             </View>
             <Ionicons name="bag-outline" size={18} color="#6F7174" />
@@ -577,12 +576,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
           >
             <View className="flex-1 mr-3">
               <Text className="text-white text-sm font-semibold">
-                {commentsDisabled ? "Comments are off" : "Allow comments"}
+                {commentsDisabled ? t("editPost.commentsOff") : t("editPost.allowComments")}
               </Text>
               <Text className="text-theme-neutrals-400 text-xs mt-0.5">
                 {commentsDisabled
-                  ? "Replies already posted stay visible — turning this back on restores them."
-                  : "Anyone who can see this post can reply to it."}
+                  ? t("editPost.commentsOffHint")
+                  : t("editPost.allowCommentsHint")}
               </Text>
             </View>
             <View
@@ -667,12 +666,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
           >
             <View className="flex-1 mr-3">
               <Text className="text-white text-sm font-semibold">
-                {isMature ? "Marked mature" : "Mark as mature"}
+                {isMature ? t("editPost.markedMature") : t("editPost.markMature")}
               </Text>
               <Text className="text-theme-neutrals-400 text-xs mt-0.5">
                 {isMature
-                  ? "Kept off the public feed. Followers, your profile and the link still work."
-                  : "For adult or graphic posts. Turning this on takes it off the public feed."}
+                  ? t("editPost.markedMatureHint")
+                  : t("editPost.markMatureHint")}
               </Text>
             </View>
             <View
@@ -708,7 +707,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         {canReplaceVideo && (
           <View className="mt-4">
             <Text className="text-theme-neutrals-300 text-xs font-medium mb-2">
-              Video file
+              {t("editPost.videoFile")}
             </Text>
             <TouchableOpacity
               onPress={handleReplaceVideo}
@@ -720,12 +719,11 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               <View className="flex-1 mr-3">
                 <Text className="text-white text-sm font-medium">
                   {replacing
-                    ? `Uploading… ${replaceProgress}%`
-                    : "Replace video file"}
+                    ? t("editPost.uploadingPercent", { percent: replaceProgress })
+                    : t("editPost.replaceVideoFile")}
                 </Text>
                 <Text className="text-theme-neutrals-400 text-xs mt-0.5">
-                  Keeps this post's link, views and comments. The old file plays
-                  until the new one finishes processing.
+                  {t("editPost.replaceVideoHint")}
                 </Text>
               </View>
               {replacing ? (
@@ -746,7 +744,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             activeOpacity={0.8}
           >
             <Text className="text-theme-neutrals-300 text-sm font-medium">
-              Cancel
+              {t("common.cancel")}
             </Text>
           </TouchableOpacity>
           <View className="flex-1">

@@ -211,7 +211,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         await followUser(viewer, target);
       } catch (e) {
         setIsFollowing(false);
-        toastError("Failed to follow user");
+        toastError(t("toasts.failed_to_follow_user"));
       } finally {
         setFollowLoading(false);
       }
@@ -235,7 +235,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         await unfollowUser(viewer, target);
       } catch (e) {
         setIsFollowing(true);
-        toastError("Failed to unfollow user");
+        toastError(t("toasts.failedToUnfollowUser"));
       } finally {
         setFollowLoading(false);
       }

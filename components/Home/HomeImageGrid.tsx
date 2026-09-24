@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   FlatList,
@@ -242,6 +243,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   onRefresh: onRefreshProp,
   onOpenImageFeed,
 }) => {
+  const { t } = useTranslation();
   const [refreshing, setRefreshing] = useState(false);
   const { isMinimal } = useAppTheme();
   const listRef = useRef<FlatList>(null);
@@ -390,7 +392,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
           // Minimal: outline only, no fill.
           style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
         >
-          <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
+          <Text className="text-theme-neutrals-50 font-medium">{t("common.retry")}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -436,7 +438,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
             </View>
           ) : endReached && items.length > 0 ? (
             <View className="py-6 items-center">
-              <Text className="text-theme-neutrals-400 text-xs">No more images</Text>
+              <Text className="text-theme-neutrals-400 text-xs">{t("feed.noMoreImages")}</Text>
             </View>
           ) : null
         }
@@ -444,7 +446,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
           !initialLoading ? (
             <View className="flex-1 items-center justify-center py-20">
               <Icon name="Image" size={48} color="#555" />
-              <Text className="text-theme-neutrals-400 text-sm mt-4">No images found</Text>
+              <Text className="text-theme-neutrals-400 text-sm mt-4">{t("feed.noImagesFound")}</Text>
             </View>
           ) : null
         }

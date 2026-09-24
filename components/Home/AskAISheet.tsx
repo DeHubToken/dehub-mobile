@@ -7,6 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -198,6 +199,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
   postId,
   postContext,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const user = useUser();
   const navigation = useNavigation<any>();
@@ -426,7 +428,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
             setMessages((prev) => [...prev, fallbackMsg]);
           }
         } catch (imgErr) {
-          toastError("Image generation failed — try again");
+          toastError(t("aiChat.imageFailed"));
         } finally {
           setIsGeneratingImage(false);
         }
@@ -451,7 +453,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
     } catch (err) {
       if (err instanceof AIServiceError) {
         if (err.errorCode === "RATE_LIMIT") {
-          toastError("Too many requests — try again shortly");
+          toastError(t("aiChat.rateLimited"));
         } else if (err.safetyBlocked) {
           toastError(err.message);
           if (err.clearHistory) {
@@ -459,10 +461,10 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
             saveChatToStorage(userAddress, cacheKey, [], postContext);
           }
         } else {
-          toastError(err.message || "AI request failed");
+          toastError(err.message || t("aiChat.requestFailed"));
         }
       } else {
-        toastError("Something went wrong");
+        toastError(t("common.somethingWentWrong"));
       }
     } finally {
       setIsLoading(false);
@@ -545,7 +547,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
                 <View style={styles.header}>
                   <View style={styles.headerLeft}>
                     <Image source={AI_AVATAR} style={styles.headerAvatar} />
-                    <Text style={styles.headerTitle}>Assistant</Text>
+                    <Text style={styles.headerTitle}>{t("nav.assistant")}</Text>
                   </View>
                   <View style={styles.headerActions}>
                     <TouchableOpacity
@@ -590,7 +592,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
                 </TouchableOpacity>
                 <TextInput
                   style={styles.textInput}
-                  placeholder="Ask about this post..."
+                  placeholder={t("aiChat.askAboutPost")}
                   placeholderTextColor="#6F7174"
                   value={inputText}
                   onChangeText={setInputText}

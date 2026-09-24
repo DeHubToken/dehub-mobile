@@ -14,6 +14,7 @@ import SheetDismissHandle from "../ui/SheetDismissHandle";
  */
 
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
@@ -46,6 +47,7 @@ const CaptionFixSheet: React.FC<CaptionFixSheetProps> = ({
   segmentIndex,
   originalText,
 }) => {
+  const { t } = useTranslation();
   const [text, setText] = useState(originalText);
   const { submit } = useCorrectionActions(transcriptId);
 
@@ -81,21 +83,21 @@ const CaptionFixSheet: React.FC<CaptionFixSheetProps> = ({
         <View style={styles.sheet}>
           <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ gap: 10 }}>
           <SheetDismissHandle onClose={onClose} style={styles.header}>
-            <Text style={styles.title}>Fix this line</Text>
-            <Pressable onPress={onClose} hitSlop={10} accessibilityLabel="Close">
+            <Text style={styles.title}>{t("transcript.fixThisLine")}</Text>
+            <Pressable onPress={onClose} hitSlop={10} accessibilityLabel={t("common.close")}>
               <Ionicons name="close" size={20} color="#a1a1aa" />
             </Pressable>
           </SheetDismissHandle>
 
           <Text style={styles.hint}>
             {segmentIndex == null
-              ? "Play to the line you want to fix, then open this again."
-              : "One other viewer agreeing puts your version live for everyone."}
+              ? t("transcript.fixPlayToLine")
+              : t("transcript.fixAgreeHint")}
           </Text>
 
           {segmentIndex != null && (
             <>
-              <Text style={styles.originalLabel}>Now reads</Text>
+              <Text style={styles.originalLabel}>{t("transcript.fixNowReads")}</Text>
               <Text style={styles.original}>{originalText}</Text>
 
               <TextInput
@@ -103,7 +105,7 @@ const CaptionFixSheet: React.FC<CaptionFixSheetProps> = ({
                 onChangeText={setText}
                 multiline
                 maxLength={MAX_TEXT}
-                placeholder="What it should say"
+                placeholder={t("transcript.fixPlaceholder")}
                 placeholderTextColor="#52525b"
                 style={styles.input}
               />
@@ -117,7 +119,7 @@ const CaptionFixSheet: React.FC<CaptionFixSheetProps> = ({
                   <ActivityIndicator color="#09090B" />
                 ) : (
                   <Text style={[styles.buttonText, !canSubmit && styles.buttonTextOff]}>
-                    Suggest fix
+                    {t("transcript.fixSubmit")}
                   </Text>
                 )}
               </Pressable>
