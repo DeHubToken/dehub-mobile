@@ -18,6 +18,7 @@ import { useAuthActions, useProvider } from "../../context/AuthContext";
 import { copyToClipboard, toastError, toastInfo, apiClient } from "../../libs";
 import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
 import Icon from "../ui/Icon";
+import { useSecureScreen } from "../../hooks/useSecureScreen";
 
 type ExportPrivateKeyModalProps = {
   visible: boolean;
@@ -51,6 +52,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
   const [privateKey, setPrivateKey] = useState<string | null>(null);
   const [masked, setMasked] = useState<boolean>(true);
   const [copied, setCopied] = useState<boolean>(false);
+  useSecureScreen(visible, "export-private-key");
   const copyTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const canContinue = useMemo(
@@ -277,7 +279,8 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
               <Text
                 selectable
                 className="text-theme-neutrals-200 text-xs flex-1"
-                numberOfLines={1}
+                // All 64 characters have to be readable to be written down.
+                numberOfLines={masked ? 1 : undefined}
               >
                 {masked ? maskedPk : privateKey}
               </Text>
