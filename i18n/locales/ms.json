@@ -3924,7 +3924,8 @@
     "unpinTitle": "Batalkan Pin Mesej",
     "unpinConfirm": "Buang mesej yang disematkan ini?",
     "pinMessage": "Pin mesej",
-    "unpinMessage": "Batalkan pin mesej"
+    "unpinMessage": "Batalkan pin mesej",
+    "jumpToLatest": "Lompat ke mesej terkini"
   },
   "promptFeed": {
     "headline": "Apa yang anda mahu lihat?",
@@ -5738,7 +5739,8 @@
     "streamPausedReconnecting": "Strim anda dijeda. Menyambung semula...",
     "streamWillEnd": "Strim akan berakhir jika tidak disambungkan semula",
     "endStreamConfirmTitle": "Tamatkan Strim?",
-    "endStreamConfirmBody": "Penutupan sekarang akan menamatkan strim langsung anda untuk semua penonton. Anda boleh meneruskan penstriman atau menamatkannya secara kekal."
+    "endStreamConfirmBody": "Penutupan sekarang akan menamatkan strim langsung anda untuk semua penonton. Anda boleh meneruskan penstriman atau menamatkannya secara kekal.",
+    "cameraReconnecting": "Selamat kembali — kamera anda disambungkan semula"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

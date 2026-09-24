@@ -3710,7 +3710,8 @@
     "unpinTitle": "메시지 고정 해제",
     "unpinConfirm": "고정된 메시지를 삭제하시겠어요?",
     "pinMessage": "PIN 메시지",
-    "unpinMessage": "메시지 고정 해제"
+    "unpinMessage": "메시지 고정 해제",
+    "jumpToLatest": "최신 메시지로 이동"
   },
   "promptFeed": {
     "headline": "무엇을 보고 싶으신가요?",
@@ -5519,7 +5520,8 @@
     "streamPausedReconnecting": "스트림이 일시 중지되었습니다. 다시 연결하는 중...",
     "streamWillEnd": "다시 연결되지 않으면 스트림이 종료됩니다",
     "endStreamConfirmTitle": "스트림을 종료하시겠습니까?",
-    "endStreamConfirmBody": "지금 종료하면 모든 시청자의 라이브 스트림이 종료됩니다. 스트리밍을 계속하거나 영구적으로 종료할 수 있습니다."
+    "endStreamConfirmBody": "지금 종료하면 모든 시청자의 라이브 스트림이 종료됩니다. 스트리밍을 계속하거나 영구적으로 종료할 수 있습니다.",
+    "cameraReconnecting": "다시 오신 것을 환영합니다. 카메라가 다시 연결 중입니다."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -3716,7 +3716,8 @@
     "unpinTitle": "Desafixar mensagem",
     "unpinConfirm": "Remover esta mensagem fixada?",
     "pinMessage": "Mensagem de PIN",
-    "unpinMessage": "Desafixar mensagem"
+    "unpinMessage": "Desafixar mensagem",
+    "jumpToLatest": "Ir para as mensagens mais recentes"
   },
   "promptFeed": {
     "headline": "O que você quer ver?",
@@ -5530,7 +5531,8 @@
     "streamPausedReconnecting": "O seu stream está pausado. A voltar a ligar...",
     "streamWillEnd": "A transmissão terminará se não for reconectada",
     "endStreamConfirmTitle": "Finalizar transmissão?",
-    "endStreamConfirmBody": "Fechar agora encerrará sua transmissão ao vivo para todos os espectadores. Você pode continuar a transmitir ou encerrá-la permanentemente."
+    "endStreamConfirmBody": "Fechar agora encerrará sua transmissão ao vivo para todos os espectadores. Você pode continuar a transmitir ou encerrá-la permanentemente.",
+    "cameraReconnecting": "Bem-vindo (a) de volta — a sua câmara está a voltar a ligar"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

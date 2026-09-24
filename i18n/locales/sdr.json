@@ -3677,7 +3677,8 @@
     "voiceUploadFailed": "فشل تحميل الرسالة الصوتية",
     "unpinConfirm": "إزالة هذه الرسالة المثبتة؟",
     "pinMessage": "تثبيت الرسالة",
-    "unpinMessage": "إلغاء تثبيت الرسالة"
+    "unpinMessage": "إلغاء تثبيت الرسالة",
+    "jumpToLatest": "Latest message me jump kara"
   },
   "promptFeed": {
     "headline": "তুমি কি দেখিবা চাও?",
@@ -5490,7 +5491,8 @@
     "streamWillEnd": "سينتهي البث إذا لم يتم إعادة الاتصال",
     "endStreamConfirmTitle": "إنهاء البث؟",
     "endStreamConfirmBody": "سيؤدي الإغلاق الآن إلى إنهاء بثك المباشر لجميع المشاهدين. يمكنك متابعة البث أو إنهائه بشكل دائم.",
-    "failedToUpdateSettings": "شکستی هێنا لە نوێکردنەوەی ڕێکخستنەکان"
+    "failedToUpdateSettings": "شکستی هێنا لە نوێکردنەوەی ڕێکخستنەکان",
+    "cameraReconnecting": "خوش آمدید — دوربین شما دوباره وصل می‌شود"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

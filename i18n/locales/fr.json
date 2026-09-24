@@ -3716,7 +3716,8 @@
     "unpinTitle": "Désépingler le message",
     "unpinConfirm": "Supprimer ce message épinglé ?",
     "pinMessage": "Message pin",
-    "unpinMessage": "Désépingler le message"
+    "unpinMessage": "Désépingler le message",
+    "jumpToLatest": "Aller aux derniers messages"
   },
   "promptFeed": {
     "headline": "Que voulez-vous voir ?",
@@ -5530,7 +5531,8 @@
     "streamPausedReconnecting": "Votre flux est en pause. Reconnexion en cours...",
     "streamWillEnd": "Le flux se terminera s'il n'est pas reconnecté",
     "endStreamConfirmTitle": "End Stream ?",
-    "endStreamConfirmBody": "Fermer maintenant mettra fin à votre diffusion en direct pour tous les téléspectateurs. Vous pouvez continuer la diffusion en continu ou y mettre fin définitivement."
+    "endStreamConfirmBody": "Fermer maintenant mettra fin à votre diffusion en direct pour tous les téléspectateurs. Vous pouvez continuer la diffusion en continu ou y mettre fin définitivement.",
+    "cameraReconnecting": "Heureux de vous revoir — votre appareil photo est en train de se reconnecter"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

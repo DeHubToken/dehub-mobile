@@ -3663,7 +3663,8 @@
     "unpinTitle": "Batal Semat Pesen",
     "unpinConfirm": "Mbusak pesen sematan iki?",
     "pinMessage": "Semat pesen",
-    "unpinMessage": "Copot semat pesen"
+    "unpinMessage": "Copot semat pesen",
+    "jumpToLatest": "Luncurna pesen paling anyar"
   },
   "promptFeed": {
     "headline": "Sampeyan pengin ndeleng apa?",
@@ -5476,7 +5477,8 @@
     "streamPausedReconnecting": "Siaranmu dijeda. Nyambungake maneh...",
     "streamWillEnd": "Siaran bakal rampung yen ora disambungake maneh",
     "endStreamConfirmTitle": "Mungkasi Siaran?",
-    "endStreamConfirmBody": "Nutup saiki bakal mungkasi siaran langsungmu kanggo kabeh pamirso. Sampeyan bisa nerusake siaran utawa mungkasi kanthi permanen."
+    "endStreamConfirmBody": "Nutup saiki bakal mungkasi siaran langsungmu kanggo kabeh pamirso. Sampeyan bisa nerusake siaran utawa mungkasi kanthi permanen.",
+    "cameraReconnecting": "Sugeng rawuh malih — kamera panjenengan nyambung malih"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

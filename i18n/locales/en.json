@@ -3712,7 +3712,8 @@
     "unpinTitle": "Unpin Message",
     "unpinConfirm": "Remove this pinned message?",
     "pinMessage": "Pin message",
-    "unpinMessage": "Unpin message"
+    "unpinMessage": "Unpin message",
+    "jumpToLatest": "Jump to latest messages"
   },
   "promptFeed": {
     "headline": "What do you want to see?",
@@ -5519,7 +5520,8 @@
     "streamPausedReconnecting": "Your stream is paused. Reconnecting...",
     "streamWillEnd": "Stream will end if not reconnected",
     "endStreamConfirmTitle": "End Stream?",
-    "endStreamConfirmBody": "Closing now will end your live stream for all viewers. You can continue streaming or end it permanently."
+    "endStreamConfirmBody": "Closing now will end your live stream for all viewers. You can continue streaming or end it permanently.",
+    "cameraReconnecting": "Welcome back — your camera is reconnecting"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

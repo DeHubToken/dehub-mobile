@@ -3659,7 +3659,8 @@
     "unpinTitle": "取消置顶消息",
     "unpinConfirm": "移除此置顶消息？",
     "pinMessage": "置顶消息",
-    "unpinMessage": "取消置顶消息"
+    "unpinMessage": "取消置顶消息",
+    "jumpToLatest": "跳至最新消息"
   },
   "promptFeed": {
     "headline": "你想看什么？",
@@ -5471,7 +5472,8 @@
     "streamPausedReconnecting": "您的直播已暂停。正在重新连接...",
     "streamWillEnd": "如果未重新连接，直播将结束",
     "endStreamConfirmTitle": "结束直播？",
-    "endStreamConfirmBody": "立即关闭将结束您对所有观众的直播。您可以继续直播或永久结束。"
+    "endStreamConfirmBody": "立即关闭将结束您对所有观众的直播。您可以继续直播或永久结束。",
+    "cameraReconnecting": "欢迎回来 — 您的摄像头正在重新连接"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

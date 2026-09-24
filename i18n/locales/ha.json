@@ -3663,7 +3663,8 @@
     "unpinTitle": "Unpin Message",
     "unpinConfirm": "Cire wannan pinned sakon?",
     "pinMessage": "Pin sakon",
-    "unpinMessage": "Unpin sakon"
+    "unpinMessage": "Unpin sakon",
+    "jumpToLatest": "Tsallake zuwa sabbin sakonni"
   },
   "promptFeed": {
     "headline": "Me kake son gani?",
@@ -5475,7 +5476,8 @@
     "streamPausedReconnecting": "An dakatar da rafi naka. Sake tantancewa...",
     "streamWillEnd": "Stream zai ƙare idan ba a sake haɗuwa ba",
     "endStreamConfirmTitle": "Karshen Stream?",
-    "endStreamConfirmBody": "Rufe yanzu zai kawo ƙarshen rafi naka kai tsaye ga duk masu kallo. Kuna iya ci gaba da yawo ko ƙare shi har abada."
+    "endStreamConfirmBody": "Rufe yanzu zai kawo ƙarshen rafi naka kai tsaye ga duk masu kallo. Kuna iya ci gaba da yawo ko ƙare shi har abada.",
+    "cameraReconnecting": "Barka da dawowa — kyamararka tana sake haɗuwa"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

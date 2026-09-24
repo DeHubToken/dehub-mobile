@@ -3676,7 +3676,8 @@
     "unpinTitle": "Bỏ ghim tin nhắn",
     "unpinConfirm": "Xóa tin nhắn đã ghim này?",
     "pinMessage": "Tin nhắn ghim",
-    "unpinMessage": "Bỏ ghim tin nhắn"
+    "unpinMessage": "Bỏ ghim tin nhắn",
+    "jumpToLatest": "Chuyển đến tin nhắn mới nhất"
   },
   "promptFeed": {
     "headline": "Bạn muốn xem gì?",
@@ -5487,7 +5488,8 @@
     "streamPausedReconnecting": "Phát trực tuyến của bạn đang tạm dừng. Đang kết nối lại...",
     "streamWillEnd": "Luồng sẽ kết thúc nếu không được kết nối lại",
     "endStreamConfirmTitle": "Kết thúc luồng?",
-    "endStreamConfirmBody": "Đóng ngay bây giờ sẽ kết thúc phát trực tuyến của bạn cho tất cả người xem. Bạn có thể tiếp tục phát trực tuyến hoặc kết thúc vĩnh viễn."
+    "endStreamConfirmBody": "Đóng ngay bây giờ sẽ kết thúc phát trực tuyến của bạn cho tất cả người xem. Bạn có thể tiếp tục phát trực tuyến hoặc kết thúc vĩnh viễn.",
+    "cameraReconnecting": "Chào mừng bạn trở lại — máy ảnh của bạn đang kết nối lại"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

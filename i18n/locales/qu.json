@@ -3694,7 +3694,8 @@
     "unpinConfirm": "Kay wiqchuykamachiyta wikchuykuchiychu?",
     "photo": "Foto",
     "pinMessage": "Pin willakuy",
-    "unpinMessage": "Unpin willakuy"
+    "unpinMessage": "Unpin willakuy",
+    "jumpToLatest": "Qhipa willakuykunaman saltay"
   },
   "promptFeed": {
     "headline": "Imatataq rikuyta munanki?",
@@ -5504,7 +5505,8 @@
     "streamWillEnd": "Mayu tukukunqa mana wakmanta tinkisqa kaptin",
     "endStreamConfirmTitle": "¿Tukukuy Mayu?",
     "endStreamConfirmBody": "Kunan wichq'ayqa kawsaq purichiyniyki tukunqa llapa qhawaqkunapaq. Stream nisqapi purichiyta atinki utaq wiñaypaq tukuchiyta atinki.",
-    "failedToUpdateSettings": "Mana atirqanchu churanakunata musuqyachiyta"
+    "failedToUpdateSettings": "Mana atirqanchu churanakunata musuqyachiyta",
+    "cameraReconnecting": "Allin hamusqayki — cámaraykiqa wakmanta tinkuchkan"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

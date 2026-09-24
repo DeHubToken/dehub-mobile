@@ -3712,7 +3712,8 @@
     "unpinTitle": "Sblocca messaggio",
     "unpinConfirm": "Rimuovere questo messaggio bloccato?",
     "pinMessage": "Messaggio pin",
-    "unpinMessage": "Sblocca messaggio"
+    "unpinMessage": "Sblocca messaggio",
+    "jumpToLatest": "Passa agli ultimi messaggi"
   },
   "promptFeed": {
     "headline": "Cosa vuoi vedere?",
@@ -5526,7 +5527,8 @@
     "streamPausedReconnecting": "Il tuo streaming è in pausa. Riconnessione in corso...",
     "streamWillEnd": "Lo streaming terminerà se non viene riconnesso",
     "endStreamConfirmTitle": "Terminare lo streaming?",
-    "endStreamConfirmBody": "Chiudendo ora terminerai il tuo live streaming per tutti gli spettatori. Puoi continuare lo streaming o terminarlo definitivamente."
+    "endStreamConfirmBody": "Chiudendo ora terminerai il tuo live streaming per tutti gli spettatori. Puoi continuare lo streaming o terminarlo definitivamente.",
+    "cameraReconnecting": "Bentornato: la fotocamera si sta riconnettendo"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

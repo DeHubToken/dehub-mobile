@@ -3649,7 +3649,8 @@
     "unpinConfirm": "Yala i be se ka kuma dɔ fɔ o koo la wa?",
     "pinnedMessageN": "Pinned Message #{{n}}",
     "pinMessage": "Pin message",
-    "unpinMessage": "Unpin message"
+    "unpinMessage": "Unpin message",
+    "jumpToLatest": "Taa bataki kura laban ma"
   },
   "promptFeed": {
     "headline": "I b'a fɛ ka mun ye?",
@@ -5443,7 +5444,8 @@
     "streamWillEnd": "Ni mɔgɔ tɛ se ka segi ka na, a tɛ se ka segi ka na.",
     "endStreamConfirmTitle": "A laban, mun lo kɛra?",
     "endStreamConfirmBody": "O la, i bena to ka to ka to ka to ka to ka to ka filɛli kɛ. I be se ka to ka to ka filɛli kɛ wala ka ban o la kudayi.",
-    "failedToUpdateSettings": "Fɛɛn minw be se ka sigi sen kan, u ka kan ka sigi sen kan"
+    "failedToUpdateSettings": "Fɛɛn minw be se ka sigi sen kan, u ka kan ka sigi sen kan",
+    "cameraReconnecting": "I ni segin — i ka kamera bɛ ka siri kokura"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -3667,7 +3667,8 @@
     "unpinTitle": "Fjern fastgørelse af besked",
     "unpinConfirm": "Vil du fjerne denne fastgjorte besked?",
     "pinMessage": "Fastgør besked",
-    "unpinMessage": "Fjern fastgørelse af besked"
+    "unpinMessage": "Fjern fastgørelse af besked",
+    "jumpToLatest": "Gå til de seneste beskeder"
   },
   "promptFeed": {
     "headline": "Hvad vil du se?",
@@ -5481,7 +5482,8 @@
     "streamPausedReconnecting": "Din stream er sat på pause. Genopretter forbindelse...",
     "streamWillEnd": "Stream afsluttes, hvis den ikke tilsluttes igen",
     "endStreamConfirmTitle": "Afslut stream?",
-    "endStreamConfirmBody": "Hvis du lukker nu, afsluttes din livestream for alle seere. Du kan fortsætte med at streame eller afslutte det permanent."
+    "endStreamConfirmBody": "Hvis du lukker nu, afsluttes din livestream for alle seere. Du kan fortsætte med at streame eller afslutte det permanent.",
+    "cameraReconnecting": "Velkommen tilbage — dit kamera opretter forbindelse igen"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -3678,7 +3678,8 @@
     "unpinConfirm": "Бұл бекітілген хабарламаны алып тастау керек пе?",
     "pinMessage": "PIN-хабарлама",
     "unpinMessage": "Хабарламаны өшіру",
-    "pinnedMessageN": "№{{n}} түймешігін басқан хабарлама"
+    "pinnedMessageN": "№{{n}} түймешігін басқан хабарлама",
+    "jumpToLatest": "Соңғы хабарларға секіру"
   },
   "promptFeed": {
     "headline": "Не көргіңіз келеді?",
@@ -5488,7 +5489,8 @@
     "streamPausedReconnecting": "Ағыныңыз тоқтап қалды. Қайта қосылу...",
     "streamWillEnd": "Ағын қайта қосылмаса, аяқталады",
     "endStreamConfirmBody": "Қазір жабу барлық көрермендер үшін тікелей ағынды аяқтайды. Ағынды жалғастыруға немесе оны біржола аяқтауға болады.",
-    "endStreamConfirmTitle": "Ағынды аяқтау?"
+    "endStreamConfirmTitle": "Ағынды аяқтау?",
+    "cameraReconnecting": "Қош келдіңіз — камераңыз қайта қосылуда"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -3694,7 +3694,8 @@
     "unpinTitle": "Khipha Umlayezo",
     "unpinConfirm": "Susa lo mlayezo ophiniwe?",
     "pinMessage": "Umlayezo we-PIN",
-    "unpinMessage": "Khipha umlayezo"
+    "unpinMessage": "Khipha umlayezo",
+    "jumpToLatest": "Yeqela emiyalezweni yakamuva"
   },
   "promptFeed": {
     "headline": "Ufuna ukubona ini?",
@@ -5507,7 +5508,8 @@
     "streamPausedReconnecting": "Ukusakazwa kwakho kumisiwe okwesikhashana. Ixhuma kabusha...",
     "streamWillEnd": "Ukusakaza kuzophela uma kungaxhunyiwe kabusha",
     "endStreamConfirmTitle": "Qeda Ukusakaza?",
-    "endStreamConfirmBody": "Ukuvala manje kuzoqeda ukusakaza kwakho bukhoma kubo bonke ababukeli. Ungaqhubeka usakaza noma uyiqede unomphela."
+    "endStreamConfirmBody": "Ukuvala manje kuzoqeda ukusakaza kwakho bukhoma kubo bonke ababukeli. Ungaqhubeka usakaza noma uyiqede unomphela.",
+    "cameraReconnecting": "Siyakwamukela futhi — ikhamera yakho iyaxhuma futhi"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

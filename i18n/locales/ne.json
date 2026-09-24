@@ -3671,7 +3671,8 @@
     "pinnedMessageN": "पिन गरिएको सन्देश #{{n}}",
     "unpinTitle": "सन्देश अनपिन गर्नुहोस्",
     "pinMessage": "पिन सन्देश",
-    "unpinMessage": "सन्देश अनपिन गर्नुहोस्"
+    "unpinMessage": "सन्देश अनपिन गर्नुहोस्",
+    "jumpToLatest": "भर्खरका सन्देशहरूमा जानुहोस्"
   },
   "promptFeed": {
     "headline": "तपाईं के हेर्न चाहनुहुन्छ?",
@@ -5453,7 +5454,8 @@
     "streamWillEnd": "पुन: जडान नभएमा स्ट्रिम समाप्त हुनेछ",
     "endStreamConfirmTitle": "स्ट्रिम अन्त्य गर्नुहुन्छ?",
     "endStreamConfirmBody": "अहिले बन्द गर्नाले सबै दर्शकहरूको लागि तपाईंको लाइभ स्ट्रिम समाप्त हुनेछ । तपाईं स्ट्रिमिङ जारी राख्न वा यसलाई स्थायी रूपमा समाप्त गर्न सक्नुहुन्छ ।",
-    "scheduledAt": "{{date}} मा {{time}}"
+    "scheduledAt": "{{date}} मा {{time}}",
+    "cameraReconnecting": "फेरि स्वागत छ — तपाईंको क्यामेरा पुनः जडान हुँदैछ"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

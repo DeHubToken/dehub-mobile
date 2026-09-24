@@ -3662,7 +3662,8 @@
     "unpinTitle": "He karere kore-whakaputa",
     "unpinConfirm": "He aha te take o tēnei karere?",
     "pinMessage": "PIN karere",
-    "unpinMessage": "Karere Unpin"
+    "unpinMessage": "Karere Unpin",
+    "jumpToLatest": "Haere ki ngā karere hou"
   },
   "promptFeed": {
     "headline": "He aha tāu e hiahia ana kia kite?",
@@ -5474,7 +5475,8 @@
     "streamPausedReconnecting": "Kua pahemo to rerenga. Whakahoutia...",
     "streamWillEnd": "Ka mutu te rere ki te kore e hono",
     "endStreamConfirmTitle": "Te mutunga o te rere?",
-    "endStreamConfirmBody": "Ko te kati inaianei ka mutu to rere ora mo nga kaitirotiro katoa. Ka taea e koe te haere tonu ki te rere, ki te whakamutu ranei i te reira tonu."
+    "endStreamConfirmBody": "Ko te kati inaianei ka mutu to rere ora mo nga kaitirotiro katoa. Ka taea e koe te haere tonu ki te rere, ki te whakamutu ranei i te reira tonu.",
+    "cameraReconnecting": "Nau mai hoki — kei te hono anō tō kāmera"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",
