@@ -3632,7 +3632,11 @@
     "total": "Isamba",
     "pricing": "Ibala intengo…",
     "payWithDhb": "Khokha nge-DHB",
-    "yourDhb": "I-DHB yakho"
+    "yourDhb": "I-DHB yakho",
+    "generateFree_one": "Khiqiza mahhala · {{count}} left",
+    "generateFree_other": "Khiqiza mahhala · {{count}} left",
+    "freeImagesLeft_one": "Une- {{count}} isithombe samahhala esisele. Ayikho inkokhelo edingekayo.",
+    "freeImagesLeft_other": "Unezithombe zamahhala ze- {{count}} ezisele. Ayikho inkokhelo edingekayo."
   },
   "digest": {
     "andOthers_one": "{{names}} no {{count}} okunye",

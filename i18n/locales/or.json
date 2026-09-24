@@ -3601,7 +3601,11 @@
     "total": "ମୋଟ",
     "pricing": "ମୂଲ୍ୟ ଗଣନା ହେଉଛି…",
     "payWithDhb": "DHB ରେ ପେମେଣ୍ଟ କରନ୍ତୁ",
-    "yourDhb": "ଆପଣଙ୍କ DHB"
+    "yourDhb": "ଆପଣଙ୍କ DHB",
+    "generateFree_one": "ମୁକ୍ତ ସୃଷ୍ଟି କରନ୍ତୁ {{count}} left",
+    "generateFree_other": "ମୁକ୍ତ ସୃଷ୍ଟି କରନ୍ତୁ {{count}} left",
+    "freeImagesLeft_one": "ଆପଣଙ୍କ ପାଖରେ {{count}}ଟି ମାଗଣା ଛବି ବାକି ଅଛି। ଦେୟ ଆବଶ୍ୟକ ନାହିଁ।",
+    "freeImagesLeft_other": "ଆପଣଙ୍କ ପାଖରେ {{count}}ଟି ମାଗଣା ଛବି ବାକି ଅଛି। ଦେୟ ଆବଶ୍ୟକ ନାହିଁ।"
   },
   "digest": {
     "andOthers_one": "{{names}} ଏବଂ {{count}} ଅନ୍ୟ",

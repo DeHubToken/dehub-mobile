@@ -3614,7 +3614,11 @@
     "total": "Tổng",
     "pricing": "Đang tính giá…",
     "payWithDhb": "Thanh toán bằng DHB",
-    "yourDhb": "DHB của bạn"
+    "yourDhb": "DHB của bạn",
+    "generateFree_one": "Tạo miễn phí · {{count}} còn lại",
+    "generateFree_other": "Tạo miễn phí · {{count}} còn lại",
+    "freeImagesLeft_one": "Bạn còn {{count}} hình ảnh miễn phí. Không cần thanh toán.",
+    "freeImagesLeft_other": "Bạn còn {{count}} hình ảnh miễn phí. Không cần thanh toán."
   },
   "digest": {
     "andOthers_one": "{{names}} và {{count}} khác",

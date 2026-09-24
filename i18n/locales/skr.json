@@ -3601,7 +3601,11 @@
     "total": "کل",
     "pricing": "قیمت کڈھی ونڄدی پئی ہے…",
     "payWithDhb": "DHB نال ادائیگی کرو",
-    "yourDhb": "تہاڈا DHB"
+    "yourDhb": "تہاڈا DHB",
+    "generateFree_one": "مفت بناؤ · {{count}} باقی",
+    "generateFree_other": "مفت بناؤ · {{count}} باقی",
+    "freeImagesLeft_one": "تہاڈے کول {{count}} مفت تصویر باقی اے۔ کوئی ادائیگی دی لوڑ نئیں اے۔",
+    "freeImagesLeft_other": "تہاڈے کول {{count}} مفت تصویریں باقی نیں۔ کوئی ادائیگی دی لوڑ نئیں اے۔"
   },
   "digest": {
     "andOthers_one": "{{names}} ۽ {{count}} ٻيا",

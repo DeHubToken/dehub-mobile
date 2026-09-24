@@ -3601,7 +3601,11 @@
     "total": "કુલ",
     "pricing": "કિંમત ગણાઈ રહી છે…",
     "payWithDhb": "DHB થી ચૂકવો",
-    "yourDhb": "તમારું DHB"
+    "yourDhb": "તમારું DHB",
+    "generateFree_one": "મફત પેદા કરો · {{count}} બાકી",
+    "generateFree_other": "મફત પેદા કરો · {{count}} બાકી",
+    "freeImagesLeft_one": "તમારી પાસે {{count}} મફત છબી બાકી છે. કોઈ ચુકવણીની જરૂર નથી.",
+    "freeImagesLeft_other": "તમારી પાસે {{count}} મફત છબીઓ બાકી છે. કોઈ ચુકવણીની જરૂર નથી."
   },
   "digest": {
     "andOthers_one": "{{names}} અને {{count}}@ અન્ય",

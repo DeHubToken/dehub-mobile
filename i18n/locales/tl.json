@@ -3648,7 +3648,11 @@
     "total": "Kabuuan",
     "pricing": "Kinakalkula ang presyo…",
     "payWithDhb": "Magbayad gamit ang DHB",
-    "yourDhb": "Iyong DHB"
+    "yourDhb": "Iyong DHB",
+    "generateFree_one": "Bumuo ng libre ·{{count}} pakaliwa",
+    "generateFree_other": "Bumuo ng libre ·{{count}} pakaliwa",
+    "freeImagesLeft_one": "Mayroon kang natitirang {{count}} libreng larawan. Walang kinakailangang pagbabayad.",
+    "freeImagesLeft_other": "Mayroon kang natitirang {{count}} na mga libreng larawan. Walang kinakailangang pagbabayad."
   },
   "digest": {
     "andOthers_one": "{{names}} at {{count}} iba pa",

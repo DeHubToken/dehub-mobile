@@ -3650,7 +3650,11 @@
     "total": "Toplam",
     "pricing": "Fiyat hesaplanıyor…",
     "payWithDhb": "DHB ile öde",
-    "yourDhb": "DHB bakiyeniz"
+    "yourDhb": "DHB bakiyeniz",
+    "generateFree_one": "Ücretsiz oluştur ·{{count}} kaldı",
+    "generateFree_other": "Ücretsiz oluştur ·{{count}} kaldı",
+    "freeImagesLeft_one": "{{count}} ücretsiz görseliniz kaldı. Ödeme gerekmez.",
+    "freeImagesLeft_other": "{{count}} ücretsiz görseliniz kaldı. Ödeme gerekmez."
   },
   "digest": {
     "andOthers_one": "{{names}} ve {{count}} diğer",

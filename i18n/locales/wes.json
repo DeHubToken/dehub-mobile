@@ -3601,7 +3601,11 @@
     "total": "Total",
     "pricing": "Dey calculate price…",
     "payWithDhb": "Pe wit DHB",
-    "yourDhb": "Ya DHB"
+    "yourDhb": "Ya DHB",
+    "generateFree_one": "Generate free · {{count}} left",
+    "generateFree_other": "Generate free · {{count}} left",
+    "freeImagesLeft_one": "You still get {{count}} free picture. You no need pay.",
+    "freeImagesLeft_other": "You still get {{count}} free pictures. You no need pay."
   },
   "digest": {
     "andOthers_one": "{{names}} and {{count}} oda",

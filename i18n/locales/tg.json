@@ -3601,7 +3601,11 @@
     "total": "Ҳамагӣ",
     "pricing": "Нарх ҳисоб мешавад…",
     "payWithDhb": "Пардохт бо DHB",
-    "yourDhb": "DHB-и шумо"
+    "yourDhb": "DHB-и шумо",
+    "freeImagesLeft_one": "{{count}} free image left. Пардохт лозим нест.",
+    "freeImagesLeft_other": "{{count}} free images left. Пардохт лозим нест.",
+    "generateFree_one": "Ройгон эҷод кунед · {{count}} боқӣ",
+    "generateFree_other": "Ройгон эҷод кунед · {{count}} боқӣ"
   },
   "digest": {
     "andOthers_one": "{{names}} ва {{count}} дигар",

@@ -3601,7 +3601,11 @@
     "total": "योगः",
     "pricing": "मूल्यं गण्यते…",
     "payWithDhb": "DHB द्वारा ददातु",
-    "yourDhb": "भवतः DHB"
+    "yourDhb": "भवतः DHB",
+    "generateFree_one": "मुक्तः {{count}} left",
+    "generateFree_other": "मुक्तः {{count}} left",
+    "freeImagesLeft_one": "भवतः समीपे {{count}} निःशुल्कं चित्रम् अवशिष्टम्। शुल्कं नावश्यकम्।",
+    "freeImagesLeft_other": "भवतः समीपे {{count}} निःशुल्कानि चित्राणि अवशिष्टानि। शुल्कं नावश्यकम्।"
   },
   "digest": {
     "someone": "कश्चित्",

@@ -3602,7 +3602,11 @@
     "total": "Àpapọ̀",
     "pricing": "Ń ṣírò owó…",
     "payWithDhb": "Sanwó pẹ̀lú DHB",
-    "yourDhb": "DHB rẹ"
+    "yourDhb": "DHB rẹ",
+    "generateFree_one": "Ṣẹ̀dá ọ̀fẹ́ · {{count}} òsì",
+    "generateFree_other": "Ṣẹ̀dá ọ̀fẹ́ · {{count}} òsì",
+    "freeImagesLeft_one": "O ní {{count}} àwòrán ọ̀fẹ́ sí òsì. Kò sí owó tí a nílò.",
+    "freeImagesLeft_other": "O ní {{count}} àwòrán ọ̀fẹ́ tó kù. Kò sí owó tí a nílò."
   },
   "digest": {
     "andOthers_one": "{{names}} àti {{count}} elomiran",

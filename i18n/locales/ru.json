@@ -3654,7 +3654,11 @@
     "total": "Итого",
     "pricing": "Считаем стоимость…",
     "payWithDhb": "Оплатить в DHB",
-    "yourDhb": "Ваш DHB"
+    "yourDhb": "Ваш DHB",
+    "generateFree_one": "Сгенерировать бесплатно · {{count}} слева",
+    "generateFree_other": "Сгенерировать бесплатно · {{count}} слева",
+    "freeImagesLeft_one": "У вас осталось {{count}} бесплатного изображения. Оплата не требуется.",
+    "freeImagesLeft_other": "У вас осталось {{count}} бесплатных изображений. Оплата не требуется."
   },
   "digest": {
     "andOthers_one": "{{names}} и {{count}} другое",

@@ -3601,7 +3601,11 @@
     "total": "ጠቕላላ",
     "pricing": "ዋጋ ይሕሰብ ኣሎ…",
     "payWithDhb": "ብ DHB ክፈል",
-    "yourDhb": "DHB ናትካ"
+    "yourDhb": "DHB ናትካ",
+    "generateFree_one": "ብነጻ ኣማዕብል {{count}} left",
+    "generateFree_other": "ብነጻ ኣማዕብል {{count}} left",
+    "freeImagesLeft_one": "{{count}} ነጻ ስእሊ ተሪፉ ኣሎ ። ዝኾነ ክፍሊት ኣየድልዮን እዩ ።",
+    "freeImagesLeft_other": "{{count}} ነጻ ስእልታት ተሪፎም ኣለዉ ። ዝኾነ ክፍሊት ኣየድልዮን እዩ ።"
   },
   "digest": {
     "andOthers_one": "{{names}} and {{count}} ካልኦት",

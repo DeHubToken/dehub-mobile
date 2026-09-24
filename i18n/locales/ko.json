@@ -3654,7 +3654,11 @@
     "total": "합계",
     "pricing": "요금 계산 중…",
     "payWithDhb": "DHB로 결제",
-    "yourDhb": "내 DHB"
+    "yourDhb": "내 DHB",
+    "generateFree_one": "무료 생성 · {{count}} 왼쪽",
+    "generateFree_other": "무료 생성 · {{count}} 왼쪽",
+    "freeImagesLeft_one": "{{count}} 개의 무료 이미지가 남아 있습니다. 결제가 필요하지 않습니다.",
+    "freeImagesLeft_other": "{{count}} 개의 무료 이미지가 남아 있습니다. 결제가 필요하지 않습니다."
   },
   "digest": {
     "andOthers_one": "{{names}} 외 {{count}} 명",

@@ -3601,7 +3601,11 @@
     "total": "Iš viso",
     "pricing": "Skaičiuojama kaina…",
     "payWithDhb": "Mokėti DHB",
-    "yourDhb": "Jūsų DHB"
+    "yourDhb": "Jūsų DHB",
+    "generateFree_one": "Generuoti nemokamai · {{count}} kairėje",
+    "generateFree_other": "Generuoti nemokamai · {{count}} kairėje",
+    "freeImagesLeft_one": "Jums liko {{count}} laisva nuotrauka. Mokėti nereikia.",
+    "freeImagesLeft_other": "Jums liko {{count}} laisvų vaizdų. Mokėti nereikia."
   },
   "digest": {
     "andOthers_one": "{{names}} ir {{count}} kita",

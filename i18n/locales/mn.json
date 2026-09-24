@@ -3601,7 +3601,11 @@
     "total": "Нийт",
     "pricing": "Үнийг тооцоолж байна…",
     "payWithDhb": "DHB-ээр төлөх",
-    "yourDhb": "Таны DHB"
+    "yourDhb": "Таны DHB",
+    "generateFree_one": "ҮНЭГҮЙ үүсэх · {{count}} left",
+    "generateFree_other": "ҮНЭГҮЙ үүсэх · {{count}} left",
+    "freeImagesLeft_one": "Танд {{count}} үнэгүй зураг үлдсэн байна. Төлбөр хийх шаардлагагүй.",
+    "freeImagesLeft_other": "Танд {{count}} үнэгүй зургууд үлдсэн. Төлбөр хийх шаардлагагүй."
   },
   "digest": {
     "andOthers_one": "{{names}} ба {{count}} бусад",

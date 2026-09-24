@@ -25,6 +25,7 @@ import { writeContractAA } from '../libs/aa.write';
 import { DHB_ADDRESSESS, ChainId } from '../config/constants';
 import {
   quoteAiJob,
+  getFreeImages,
   recordAiPayment,
   listUnspentAiPayments,
   type AiQuoteRequest,
@@ -46,6 +47,23 @@ const CHAIN_LABELS: Record<number, string> = {
   [ChainId.BASE_MAINNET]: 'Base',
   [ChainId.BSC_MAINNET]: 'BNB Chain',
 };
+
+/**
+ * Free starter images the wallet has left. Read when a paywall opens; a failed
+ * read just means no free option is shown.
+ */
+export function useFreeImages(enabled: boolean) {
+  const [state, setState] = useState<{ remaining: number; models: string[] }>({ remaining: 0, models: [] });
+  useEffect(() => {
+    if (!enabled) return;
+    let cancelled = false;
+    getFreeImages()
+      .then((res) => { if (!cancelled) setState({ remaining: res.remaining ?? 0, models: res.models ?? [] }); })
+      .catch(() => { if (!cancelled) setState({ remaining: 0, models: [] }); });
+    return () => { cancelled = true; };
+  }, [enabled]);
+  return state;
+}
 
 /**
  * Server quote for a job, re-run whenever anything that moves the price
