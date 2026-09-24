@@ -19,6 +19,7 @@ import { canSendPayment, estimateMinutes, formatPaymentAmount, paymentChainName,
 import { useCryptoPurchase } from '../../hooks/useCryptoPurchase';
 import Icon from '../ui/Icon';
 import dhbLogo from '../../assets/tokens/DHB.png';
+import { sanitizeAmountInput } from "../../libs/amount-input";
 
 const tokenLogos: Record<string, number> = {
   ETH: require('../../assets/tokens/ETH.png'), USDC: require('../../assets/tokens/USDC.png'),
@@ -33,13 +34,13 @@ function PaymentPair({ payAmount, paySymbol, payChain, receiveAmount, editable =
       <View className="flex-row justify-between"><Text className="text-theme-neutrals-400 text-xs">{t('buyCoins.youPay')}</Text><Text className="text-theme-neutrals-400 text-xs">{payChain ? paymentChainName(payChain) : ''}</Text></View>
       <View className="flex-row items-center mt-2">
         {paySymbol && tokenLogos[paySymbol] ? <Image source={tokenLogos[paySymbol]} className="w-9 h-9 rounded-full mr-3" resizeMode="contain" /> : <View className="w-9 h-9 rounded-full bg-white/10 mr-3" />}
-        {editable ? <TextInput value={payAmount || ''} onChangeText={onPayChange} keyboardType="decimal-pad" accessibilityLabel={t('buyCoins.youPay')} className="flex-1 text-white text-xl font-semibold p-0" /> : <Text numberOfLines={1} className="flex-1 text-white text-xl font-semibold">{payAmount ? `≈${formatPaymentAmount(payAmount)}` : '—'}</Text>}<Text className="text-white text-sm font-semibold ml-2">{paySymbol || '—'}</Text>
+        {editable ? <TextInput value={payAmount || ''} onChangeText={(v) => onPayChange?.(sanitizeAmountInput(v))} keyboardType="decimal-pad" accessibilityLabel={t('buyCoins.youPay')} className="flex-1 text-white text-xl font-semibold p-0" /> : <Text numberOfLines={1} className="flex-1 text-white text-xl font-semibold">{payAmount ? `≈${formatPaymentAmount(payAmount)}` : '—'}</Text>}<Text className="text-white text-sm font-semibold ml-2">{paySymbol || '—'}</Text>
       </View>
     </View>
     <View className="items-center -my-3 z-10"><View className="w-9 h-9 items-center justify-center rounded-xl border border-white/15 bg-theme-neutrals-900"><Icon name="ArrowDown" size={16} color="#ffffff" /></View></View>
     <View className="rounded-2xl border border-white/15 bg-white/[0.07] px-4 py-3.5">
       <View className="flex-row justify-between"><Text className="text-theme-neutrals-400 text-xs">{t('buyCoins.youReceive')}</Text><Text className="text-theme-neutrals-400 text-xs">{paymentChainName('base')}</Text></View>
-      <View className="flex-row items-center mt-2"><Image source={dhbLogo} className="w-9 h-9 rounded-full mr-3" resizeMode="contain" />{editable ? <TextInput value={receiveAmount > 0 ? String(receiveAmount) : ''} onChangeText={onReceiveChange} keyboardType="numeric" accessibilityLabel={t('buyCoins.youReceive')} className="flex-1 text-white text-xl font-semibold p-0" /> : <Text numberOfLines={1} className="flex-1 text-white text-xl font-semibold">{receiveAmount > 0 ? receiveAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '—'}</Text>}<Text className="text-white text-sm font-semibold ml-2">DHB</Text></View>
+      <View className="flex-row items-center mt-2"><Image source={dhbLogo} className="w-9 h-9 rounded-full mr-3" resizeMode="contain" />{editable ? <TextInput value={receiveAmount > 0 ? String(receiveAmount) : ''} onChangeText={(v) => onReceiveChange?.(sanitizeAmountInput(v))} keyboardType="decimal-pad" accessibilityLabel={t('buyCoins.youReceive')} className="flex-1 text-white text-xl font-semibold p-0" /> : <Text numberOfLines={1} className="flex-1 text-white text-xl font-semibold">{receiveAmount > 0 ? receiveAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '—'}</Text>}<Text className="text-white text-sm font-semibold ml-2">DHB</Text></View>
     </View>
   </View>;
 }
@@ -173,7 +174,7 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
       <Action label={t('nearBuy.startAnother')} onPress={() => { flow.setPurchase(null); setAgreed(false); }} />
     </View> : <>
       <Text className="text-theme-neutrals-400 text-xs mb-1">{t('nearBuy.dhbAmount')}</Text>
-      <TextInput value={amountText} onChangeText={setAmountText} editable={busy !== 'create'} keyboardType="numeric" accessibilityLabel={t('nearBuy.dhbAmount')} className={field} />
+      <TextInput value={amountText} onChangeText={(v) => setAmountText(sanitizeAmountInput(v))} editable={busy !== 'create'} keyboardType="decimal-pad" accessibilityLabel={t('nearBuy.dhbAmount')} className={field} />
       <View className="flex-row flex-wrap gap-2 mb-3">{picker.currencies.map(symbol => <TouchableOpacity key={symbol} accessibilityRole="button" accessibilityState={{ selected: !picker.other && picker.currency === symbol }} disabled={!!busy} onPress={() => { picker.chooseCurrency(symbol); setAgreed(false); }} className={`rounded-xl px-3 py-2 ${!picker.other && picker.currency === symbol ? 'bg-white/20' : 'bg-theme-neutrals-900'}`}><Text className="text-white">{symbol}</Text></TouchableOpacity>)}</View>
       <Text className="text-theme-neutrals-400 text-xs mb-2">{t(picker.loading ? 'nearBuy.checkingBalances' : picker.hasFunds ? 'nearBuy.walletBalances' : 'nearBuy.noWalletFunds')}</Text>
       <Action label={t('nearBuy.otherCurrencies')} onPress={() => { picker.showOther(); setSearch(''); }} />

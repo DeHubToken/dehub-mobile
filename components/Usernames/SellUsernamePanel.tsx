@@ -41,6 +41,7 @@ import {
   useUsernameMarketConfig,
 } from "../../hooks/useUsernameMarket";
 import type { MyUsernameListing, UsernameSale } from "../../services/username-market.service";
+import { sanitizeAmountInput } from "../../libs/amount-input";
 
 interface Props {
   isAuthed: boolean;
@@ -193,7 +194,7 @@ const SellUsernamePanel: React.FC<Props> = ({
             <Text style={styles.fieldLabel}>{t("usernames.askingPriceUsd", "Asking price (USD)")}</Text>
             <TextInput
               value={priceUsd}
-              onChangeText={(v) => setPriceUsd(v.replace(/[^0-9.]/g, ""))}
+              onChangeText={(v) => setPriceUsd(sanitizeAmountInput(v, 2))}
               keyboardType="decimal-pad"
               placeholder={String(minPrice)}
               placeholderTextColor="#8B8D90"

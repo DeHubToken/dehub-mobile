@@ -34,6 +34,7 @@ const recordStakeEvent = (message: string, attempt: StakeAttempt, outcome?: stri
 };
 import { FIELD_TEXT } from "../../theme/inputs";
 import { appLocale } from "../../libs/date.util";
+import { sanitizeAmountInput } from "../../libs/amount-input";
 
 const DHB_BASE = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
 // Unified transfer-based staking target (same address on Base + BNB)
@@ -667,7 +668,7 @@ const StakingTab: React.FC = () => {
             placeholderTextColor="rgba(255,255,255,0.5)"
             keyboardType="decimal-pad"
             value={amount}
-            onChangeText={setAmount}
+            onChangeText={(v) => setAmount(sanitizeAmountInput(v))}
             style={FIELD_TEXT}
           />
           <TouchableOpacity

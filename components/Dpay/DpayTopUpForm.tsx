@@ -22,6 +22,7 @@ import DpayCheckoutStatus from "./DpayCheckoutStatus";
 import { WebView } from "react-native-webview";
 import env from "../../config/env";
 import { FIELD_TEXT } from "../../theme/inputs";
+import { sanitizeAmountInput } from "../../libs/amount-input";
 // Auth signing not required here; apiClient handles auth via isAuthRequired
 
 type DpayTopUpFormProps = {
@@ -167,9 +168,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   }, [parsedAmount, computedPrice, supplyOnChain, netTokens, tokenSymbol, t]);
 
   const onChangeAmount = React.useCallback((txt: string) => {
-    // allow only numbers and decimal
-    const clean = txt.replace(/[^0-9.]/g, "");
-    setAmountUsd(clean);
+    setAmountUsd(sanitizeAmountInput(txt, 2));
   }, []);
 
   const onChangeCurrency = React.useCallback((val: string) => {

@@ -35,6 +35,7 @@ import Icon from "../ui/Icon";
 import { DhbCoin } from "../common/DhbCoin";
 import { useUsernameMarketConfig } from "../../hooks/useUsernameMarket";
 import { useCreateUsernameOffer } from "../../hooks/useUsernameOffers";
+import { sanitizeAmountInput } from "../../libs/amount-input";
 
 interface Props {
   /** The handle being bid for, without the @. */
@@ -106,7 +107,7 @@ const MakeOfferSheet: React.FC<Props> = ({ username, visible, onClose, isAuthed,
             <Text style={styles.inputPrefix}>$</Text>
             <TextInput
               value={amount}
-              onChangeText={(v) => setAmount(v.replace(/[^0-9.]/g, ""))}
+              onChangeText={(v) => setAmount(sanitizeAmountInput(v, 2))}
               placeholder="0"
               placeholderTextColor="#8B8D90"
               keyboardType="decimal-pad"

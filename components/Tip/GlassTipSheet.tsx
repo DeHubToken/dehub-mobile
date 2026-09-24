@@ -17,6 +17,7 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { useTranslation } from "react-i18next";
@@ -73,6 +74,7 @@ import { supabase } from "../../services/supabase";
 import { withWalletHeader } from "../../libs/supabase-wallet-client";
 import { ButtonLoader } from "../DeHubLoader";
 import { getAccount } from "../../services/user.service";
+import { sanitizeAmountInput } from "../../libs/amount-input";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -249,6 +251,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   const [lastAmount, setLastAmount] = useState<number | null>(null);
   const [recipientPrivate, setRecipientPrivate] = useState(false);
   const [privacyChecking, setPrivacyChecking] = useState(false);
+  const sendInFlight = useRef(false);
 
   useEffect(() => {
     if (!visible || !toAddress) return;
@@ -321,16 +324,29 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     if (isLocked) return;
     // Allow decimals for SOL tips; integer-only for DHB.
     const cleaned = isSolanaTip
-      ? val.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, "$1")
-      : val.replace(/[^0-9]/g, "");
+      ? sanitizeAmountInput(val, 9)
+      : sanitizeAmountInput(val, 0);
     setAmount(cleaned);
     setSelectedPreset(null);
   }, [isSolanaTip, isLocked]);
 
   // ── Send tip (on-chain) ──────────────────────────────────────────────────
   const handleSend = useCallback(() => {
+    // The privacy lookup below is awaited before `phase` moves off "idle", so
+    // a second tap in that window would send a second tip. Lock synchronously.
     requireAuth(async () => {
+      if (sendInFlight.current) return;
+      sendInFlight.current = true;
       try {
+        await sendTipNow();
+      } finally {
+        sendInFlight.current = false;
+        setPrivacyChecking(false);
+      }
+    });
+    async function sendTipNow() {
+      try {
+        setPrivacyChecking(true);
         const res: any = await getAccount(toAddress);
         const profile = res?.data?.result || res?.result || res;
         if (profile?.hideBadgeAndBalance) {
@@ -352,6 +368,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
         );
         return;
       }
+      setPrivacyChecking(false);
       if (disableSend || (phase !== "idle" && phase !== "error")) return;
       setTipError(null);
 
@@ -500,7 +517,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
         setPhase("error");
         setTipError(parseTxError(e, "send"));
       }
-    });
+    }
   }, [
     requireAuth,
     disableSend,

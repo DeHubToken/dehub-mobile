@@ -35,6 +35,7 @@ import { MAX_TTS_CHARS } from "../../libs/tipTts";
 import { toastError, toastSuccess } from "../../libs/toast";
 import DpayTopUpForm from "../Dpay/DpayTopUpForm";
 import NearIntentBuy from "../Dpay/NearIntentBuy";
+import { sanitizeAmountInput } from "../../libs/amount-input";
 
 export interface GiftModalProps {
   open: boolean;
@@ -415,7 +416,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                 <Ionicons name="cash-outline" size={16} color="#fff" />
                 <TextInput
                   value={amount}
-                  onChangeText={setAmount}
+                  onChangeText={(v) => setAmount(sanitizeAmountInput(v))}
                   keyboardType="numeric"
                   placeholder={`Min: ${minTip}`}
                   placeholderTextColor="#8a8a8a"
