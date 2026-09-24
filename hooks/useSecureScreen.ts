@@ -1,5 +1,12 @@
 import { useEffect } from "react";
-import { allowScreenCaptureAsync, preventScreenCaptureAsync } from "expo-screen-capture";
+import { optionalNativePackage } from "../libs/optionalNative";
+
+// Optional: an APK built before expo-screen-capture was added has no native
+// module, and importing the package directly crashed it at launch.
+const ScreenCapture = optionalNativePackage(
+  "ExpoScreenCapture",
+  () => require("expo-screen-capture") as typeof import("expo-screen-capture"),
+);
 
 /**
  * Blocks screenshots, screen recording and the recent-apps thumbnail while
@@ -9,10 +16,10 @@ import { allowScreenCaptureAsync, preventScreenCaptureAsync } from "expo-screen-
  */
 export function useSecureScreen(active: boolean, key: string): void {
   useEffect(() => {
-    if (!active) return;
-    preventScreenCaptureAsync(key).catch(() => {});
+    if (!active || !ScreenCapture) return;
+    ScreenCapture.preventScreenCaptureAsync(key).catch(() => {});
     return () => {
-      allowScreenCaptureAsync(key).catch(() => {});
+      ScreenCapture.allowScreenCaptureAsync(key).catch(() => {});
     };
   }, [active, key]);
 }
