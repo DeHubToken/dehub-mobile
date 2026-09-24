@@ -60,7 +60,7 @@ describe("mobile navigation translations", () => {
 
     expect(nav).toMatchObject({
       communities: "Topluluklar",
-      stages: "Sahneler",
+      stages: "Sesli odalar",
       affiliate: "Satış Ortaklığı",
       ads: "Reklamlar",
       prompt: "Yapay Zekâ",
