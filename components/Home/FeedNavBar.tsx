@@ -14,6 +14,8 @@ import Reanimated, {
 import Icon, { type IconName } from "../ui/Icon";
 import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 import type { PostTypeOption } from "./FeedFilterPanel";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_TAB_LINE } from "../../theme/colors";
 
 interface NavItem {
   icon: IconName;
@@ -69,7 +71,8 @@ const NavButton = memo<{
   label: string;
   active: boolean;
   onPress: () => void;
-}>(({ icon, label, active, onPress }) => (
+  minimal?: boolean;
+}>(({ icon, label, active, onPress, minimal = false }) => (
   // These six are the most-used control in the app and were icon-only with no
   // label, so a screen reader announced all of them identically as "button".
   // NAV_ITEMS already carries the right words in `tooltip`; `selected` is what
@@ -86,7 +89,7 @@ const NavButton = memo<{
         <Icon
           name={icon}
           size={16}
-          color={active ? "#FFFFFF" : "#808089"}
+          color={active ? "#FFFFFF" : minimal ? "#A1A1AA" : "#808089"}
           strokeWidth={active ? 2 : 1.8}
         />
       </View>
@@ -104,6 +107,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   backMode = false,
   onBackPress,
 }) => {
+  const { isMinimal } = useAppTheme();
   const [containerWidth, setContainerWidth] = useState(0);
   const buttonCount = NAV_ITEMS.length + 1; // +1 for the leading filter/back slot
   const buttonWidth = containerWidth > 0 ? containerWidth / buttonCount : 60;
@@ -181,6 +185,55 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
 
   return (
     <GestureDetector gesture={panGesture}>
+      {isMinimal ? (
+        // Web's minimal feed nav is an OS file-tab strip: one baseline runs
+        // the full width, and the active tab lifts off it with a top and side
+        // outline, its black fill breaking the line underneath. Edge to edge,
+        // no glass, no pill. Same slide as the glass indicator.
+        <View
+          style={styles.minimalBar}
+          onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
+        >
+          <View style={styles.minimalBaseline} pointerEvents="none" />
+          <Reanimated.View
+            style={[styles.minimalTab, indicatorStyle]}
+            pointerEvents="none"
+          />
+          <View style={styles.navRow}>
+            <Pressable
+              onPress={backMode ? onBackPress : onFilterPress}
+              style={styles.minimalButton}
+              accessibilityRole="button"
+              accessibilityLabel={backMode ? "Back to grid" : "Feed filters"}
+            >
+              {({ pressed }) => {
+                const filterActive = !backMode && (isFilterOpen || hasActiveFilters);
+                return (
+                  <View style={{ opacity: pressed ? 0.6 : 1 }}>
+                    <Icon
+                      name={backMode ? "ArrowLeft" : isFilterOpen ? "X" : "Settings2"}
+                      size={16}
+                      color={filterActive || backMode ? "#FFFFFF" : "#A1A1AA"}
+                      strokeWidth={filterActive || backMode ? 2 : 1.8}
+                    />
+                  </View>
+                );
+              }}
+            </Pressable>
+            {NAV_ITEMS.map((item, index) => (
+              <View key={item.postType} style={styles.minimalCell}>
+                <NavButton
+                  icon={item.icon}
+                  label={item.tooltip}
+                  active={index === activeIndex}
+                  onPress={() => handleNavPress(item.postType)}
+                  minimal
+                />
+              </View>
+            ))}
+          </View>
+        </View>
+      ) : (
       <View style={styles.outerWrap}>
         <View
           style={styles.container}
@@ -252,6 +305,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           </View>
         </View>
       </View>
+      )}
     </GestureDetector>
   );
 };
@@ -292,6 +346,44 @@ const styles = StyleSheet.create({
   navRow: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  minimalBar: {
+    backgroundColor: "#000",
+    position: "relative",
+  },
+  minimalBaseline: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 1,
+    backgroundColor: MINIMAL_TAB_LINE,
+  },
+  // Drawn under the row: black fill hides the baseline beneath the active
+  // tab, and the outline is on three sides only so the tab opens into the page.
+  minimalTab: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    backgroundColor: "#000",
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: MINIMAL_TAB_LINE,
+  },
+  minimalButton: {
+    flex: 1,
+    // 44pt: the smallest comfortable tap target on either platform.
+    minHeight: 44,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  // Holds a NavButton, which brings its own centring and fills this cell.
+  minimalCell: {
+    flex: 1,
+    minHeight: 44,
+    justifyContent: "center",
   },
   navButton: {
     flex: 1,

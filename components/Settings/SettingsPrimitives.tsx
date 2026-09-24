@@ -19,6 +19,7 @@ import GlassModal from '../ui/GlassModal';
 import { SettingsAnchor } from './SettingsAnchor';
 import { toastInfo } from '../../libs';
 import { useAppTheme } from '../../context/ThemeContext';
+import { MINIMAL_HAIRLINE } from '../../theme/colors';
 
 export const SectionLabel: React.FC<{ label: string; icon?: IconName }> = ({ label, icon }) => {
   const { colors } = useAppTheme();
@@ -34,11 +35,23 @@ export const SectionLabel: React.FC<{ label: string; icon?: IconName }> = ({ lab
   );
 };
 
-export const SectionCard: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-    {children}
-  </View>
-);
+export const SectionCard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isMinimal } = useAppTheme();
+  // Minimal dissolves page bentos into the canvas (web [data-page-bento]):
+  // no fill, no box, just a hairline above and below the group.
+  if (isMinimal) {
+    return (
+      <View style={{ borderTopWidth: 1, borderBottomWidth: 1, borderColor: MINIMAL_HAIRLINE }}>
+        {children}
+      </View>
+    );
+  }
+  return (
+    <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+      {children}
+    </View>
+  );
+};
 
 export const Divider = () => <View className="h-px bg-theme-neutrals-700 ml-16" />;
 
