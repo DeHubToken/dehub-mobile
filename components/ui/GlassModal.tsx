@@ -74,33 +74,19 @@ const GlassModal: React.FC<GlassModalProps> = ({
     if (input) scrollRef.current?.scrollResponderScrollNativeHandleToKeyboard(input, 24, true);
   };
   const startedAtTop = useRef(true);
-  const startedInHandle = useRef(false);
-  // Window y of the panel's top edge, so a touch can be placed in the handle
-  // zone without an overlay view sitting on top of the sheet's own buttons.
-  const panelRef = useRef<View>(null);
-  const panelTop = useRef<number | null>(null);
-  const measurePanel = () => {
-    panelRef.current?.measureInWindow((_x, y) => { panelTop.current = y; });
-  };
   useEffect(() => {
     translateY.setValue(0);
     scrollY.current = 0;
   }, [visible, translateY]);
-  // One responder on the whole panel, capture phase only: taps still reach
-  // the sheet's inputs and buttons, and only a clear downward drag is taken —
-  // from the top 28dp across the full width, or anywhere in a scrollable
-  // sheet that is already scrolled to the top.
-  const panelResponder = useMemo(() => PanResponder.create({
-    onStartShouldSetPanResponderCapture: (evt) => {
+  const makePanResponder = (fromHandle: boolean) => PanResponder.create({
+    onStartShouldSetPanResponderCapture: () => {
       startedAtTop.current = scrollY.current <= 1;
-      startedInHandle.current = panelTop.current != null &&
-        evt.nativeEvent.pageY - panelTop.current <= HANDLE_ZONE;
       return false;
     },
     onMoveShouldSetPanResponderCapture: (_, gesture) => {
       return isBottom && dismissible && gesture.dy > 10 &&
         gesture.dy > Math.abs(gesture.dx) * 1.5 &&
-        (startedInHandle.current || (scrollable && startedAtTop.current && scrollY.current <= 1));
+        (fromHandle || (scrollable && startedAtTop.current && scrollY.current <= 1));
     },
     onPanResponderMove: (_, gesture) => translateY.setValue(Math.max(0, gesture.dy)),
     onPanResponderRelease: (_, gesture) => {
@@ -112,7 +98,9 @@ const GlassModal: React.FC<GlassModalProps> = ({
     onPanResponderTerminate: () => {
       Animated.spring(translateY, { toValue: 0, useNativeDriver: true }).start();
     },
-  }), [dismissible, isBottom, onClose, scrollable, translateY]);
+  });
+  const handleResponder = useMemo(() => makePanResponder(true),
+    [dismissible, isBottom, onClose, scrollable, translateY]);
 
   // While the keyboard is up, KeyboardAvoidingView already lifts the panel
   // clear of it, and the bottom inset it would otherwise reserve is under the
@@ -227,9 +215,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
           >
             {wrapPanel ? (
               <Animated.View
-                ref={panelRef}
-                onLayout={measurePanel}
-                {...(isBottom && dismissible ? panelResponder.panHandlers : null)}
                 style={[
                   styles.panel,
                   isBottom ? styles.panelDrawer : styles.panelCard,
@@ -257,6 +242,12 @@ const GlassModal: React.FC<GlassModalProps> = ({
                     {children}
                   </ScrollView>
                 ) : children}
+                {isBottom && dismissible && (
+                  <View
+                    {...handleResponder.panHandlers}
+                    style={{ position: "absolute", top: 0, left: "35%", right: "35%", height: 28 }}
+                  />
+                )}
               </Animated.View>
             ) : (
               children
@@ -267,8 +258,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
     </Modal>
   );
 };
-
-const HANDLE_ZONE = 28;
 
 const styles = StyleSheet.create({
   container: {
