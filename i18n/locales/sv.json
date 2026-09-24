@@ -2838,7 +2838,11 @@
     "vaultReleaseTitle": "Släpp @{{handle}}?",
     "vaultReleaseBody": "Det går tillbaka i poolen och vem som helst kan ta det. Det finns ingen ångra-funktion, och att köpa tillbaka det skulle kosta vad den nya ägaren begär.",
     "swapHintKept": "Du behåller @{{handle}} – det flyttas till dina användarnamn, och du kan använda det igen eller sälja det senare. Inlägg, följare och din plånbok påverkas inte.",
-    "swapHintNoChange": "Inlägg, följare och din plånbok påverkas inte."
+    "swapHintNoChange": "Inlägg, följare och din plånbok påverkas inte.",
+    "addedToYourUsernames": "Läggs till bland dina användarnamn",
+    "boughtNameGoesToVault": "Du förblir @{{current}}. @{{handle}} hamnar bland dina användarnamn och du kan byta till det när du vill.",
+    "youAreNow": "Du är nu @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} finns nu bland dina användarnamn"
   },
   "stores": {
     "subtitle": "Upptäck produkter från DeHub-communityn",

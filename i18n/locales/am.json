@@ -2838,7 +2838,11 @@
     "vaultReleaseTitle": "መልቀቅ @{{handle}}?",
     "vaultReleaseBody": "ወደ ገንዳው ይመለሳል እና ማንም ሊወስደው ይችላል ። ምንም ተቀማጭ ገንዘብ የለም ፣ እና እንደገና መግዛት አዲሱ ባለቤት የሚጠይቀውን ሁሉ ያስከፍላል ።",
     "swapHintKept": "{{handle}}ን ይዘው ይቆያሉ — ወደ ተጠቃሚ ስሞችዎ ይገባል፣ እና በኋላ ላይ መልበስ ወይም መሸጥ ይችላሉ። ልጥፎች፣ ተከታዮች እና የኪስ ቦርሳዎ ሳይነኩ ይቀራሉ።",
-    "swapHintNoChange": "ልጥፎች፣ ተከታዮች እና የኪስ ቦርሳዎ ሳይነኩ ይቀራሉ።"
+    "swapHintNoChange": "ልጥፎች፣ ተከታዮች እና የኪስ ቦርሳዎ ሳይነኩ ይቀራሉ።",
+    "addedToYourUsernames": "ወደ የተጠቃሚ ስሞችዎ ይታከላል",
+    "boughtNameGoesToVault": "@{{current}} ሆነው ይቀጥላሉ። @{{handle}} ወደ የተጠቃሚ ስሞችዎ ይገባል፣ በፈለጉት ጊዜ ወደ እሱ መቀየር ይችላሉ።",
+    "youAreNow": "አሁን @{{handle}} ነዎት",
+    "boughtToVaultToast": "@{{handle}} አሁን በተጠቃሚ ስሞችዎ ውስጥ ነው"
   },
   "stores": {
     "subtitle": "ከDeHub ማህበረሰብ ምርቶችን ያግኙ",

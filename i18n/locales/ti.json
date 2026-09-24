@@ -2805,7 +2805,11 @@
     "vaultListedCannotWear": "ነዚ ስም እዚ ቅድሚ ምጥቃምካ ነቲ ዝርዝር ኣወጽእ ።",
     "vaultReleaseBody": "ናብ ገንዳ ተመሊሱ ፡ ዝኾነ ሰብ ክወስዶ ይኽእል እዩ ። እቲ ሓድሽ ገዛኢ ዚሓትት ዘበለ ኺዕድግ እዩ ዚኸፍል ።",
     "swapHintKept": "{{handle}} — ናብ ስም ተጠቃሚኻ ይንቀሳቐስ ፣ እንደገና ክትለብስ ወይ ጸኒሕካ ክትሸጦ ትኽእል ኢኻ ። ልኡኻት ፡ ሰዓብትን ቦርሳኻን ኣይጠፍኡን እዮም ።",
-    "swapHintNoChange": "ጽሑፋትኩም፡ ተከታተልቲኩምን ኪስኩምን ኣይነ kun ኔሩ።"
+    "swapHintNoChange": "ጽሑፋትኩም፡ ተከታተልቲኩምን ኪስኩምን ኣይነ kun ኔሩ።",
+    "addedToYourUsernames": "ናብ ናይ ተጠቃሚ ስማትካ ይውሰኽ",
+    "boughtNameGoesToVault": "@{{current}} ኮይንካ ትቕጽል። @{{handle}} ናብ ናይ ተጠቃሚ ስማትካ ይኣቱ፣ ኣብ ዝደለኻዮ እዋን ናብኡ ክትቕይር ትኽእል።",
+    "youAreNow": "ሕጂ @{{handle}} ኢኻ",
+    "boughtToVaultToast": "@{{handle}} ሕጂ ኣብ ናይ ተጠቃሚ ስማትካ ኣሎ"
   },
   "stores": {
     "subtitle": "ካብ ማሕበረሰብ DeHub ፍርያት ርኸብ",

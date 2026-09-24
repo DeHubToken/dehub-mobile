@@ -2834,7 +2834,11 @@
     "vaultReleaseTitle": "Oslobodi @{{handle}}?",
     "vaultReleaseBody": "Vraća se u bazu i svatko ga može preuzeti. Nema povratka, a ponovna kupnja bi koštala koliko god novi vlasnik zatraži.",
     "swapHintKept": "Zadržavate @{{handle}} — premješta se u vaše korisničke nadimke, a možete ga ponovno koristiti ili prodati kasnije. Postovi, pratitelji i vaš novčanik ostaju netaknuti.",
-    "swapHintNoChange": "Postovi, pratitelji i vaš novčanik ostaju netaknuti."
+    "swapHintNoChange": "Postovi, pratitelji i vaš novčanik ostaju netaknuti.",
+    "addedToYourUsernames": "Dodaje se vašim korisničkim imenima",
+    "boughtNameGoesToVault": "Ostajete @{{current}}. @{{handle}} ide među vaša korisnička imena i možete se prebaciti na njega kad god želite.",
+    "youAreNow": "Sada ste @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} je sada među vašim korisničkim imenima"
   },
   "stores": {
     "subtitle": "Otkrij proizvode zajednice DeHub",

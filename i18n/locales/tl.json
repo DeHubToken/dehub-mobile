@@ -2879,7 +2879,11 @@
     "vaultReleaseTitle": "Bitawan @{{handle}}?",
     "vaultReleaseBody": "Ito ay babalik sa pool at maaaring kunin ng sinuman. Walang undo, at ang pagbili nito pabalik ay magkakahalaga ng anumang hihingin ng bagong may-ari.",
     "swapHintKept": "Mapapanatili mo ang @{{handle}} — lilipat ito sa iyong mga username, at maaari mo itong gamitin muli o ibenta sa ibang pagkakataon. Ang mga post, tagasubaybay, at ang iyong wallet ay hindi maaapektuhan.",
-    "swapHintNoChange": "Ang mga post, tagasubaybay, at ang iyong wallet ay hindi maaapektuhan."
+    "swapHintNoChange": "Ang mga post, tagasubaybay, at ang iyong wallet ay hindi maaapektuhan.",
+    "addedToYourUsernames": "Idinadagdag sa iyong mga username",
+    "boughtNameGoesToVault": "Mananatili kang @{{current}}. Mapupunta ang @{{handle}} sa iyong mga username, at puwede kang lumipat dito kahit kailan.",
+    "youAreNow": "Ikaw na ngayon si @{{handle}}",
+    "boughtToVaultToast": "Nasa iyong mga username na ang @{{handle}}"
   },
   "stores": {
     "subtitle": "Tumuklas ng produkto mula sa komunidad ng DeHub",

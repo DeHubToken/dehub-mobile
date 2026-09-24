@@ -2841,7 +2841,11 @@
     "vaultReleaseTitle": "Avoaka @{{handle}}?",
     "vaultReleaseBody": "Miverina ao anaty dobo izy ary azon'iza na iza raisina. Tsy misy fanafoanana, ary ny fividianana azy indray dia hitentina izay angatahin'ny tompony vaovao.",
     "swapHintKept": "Mitahiry an'i @{{handle}} ianao — mifindra any amin'ny anaran'mpampiasanao izy io, ary azonao ampiasaina indray na amidy any aoriana. Tsy voakitika ny lahatsoratrao, ny mpanaraka ary ny poketrafidiram-bolanao.",
-    "swapHintNoChange": "Tsy voakitika ny lahatsoratrao, ny mpanaraka ary ny poketrafidiram-bolanao."
+    "swapHintNoChange": "Tsy voakitika ny lahatsoratrao, ny mpanaraka ary ny poketrafidiram-bolanao.",
+    "addedToYourUsernames": "Ampiana amin'ny anaranao mpampiasa",
+    "boughtNameGoesToVault": "Mijanona ho @{{current}} ianao. Miditra ao amin'ny anaranao mpampiasa i @{{handle}}, ary afaka mifindra aminy ianao amin'izay tianao.",
+    "youAreNow": "Ianao izao dia @{{handle}}",
+    "boughtToVaultToast": "Ao amin'ny anaranao mpampiasa izao i @{{handle}}"
   },
   "stores": {
     "subtitle": "Hitady vokatra avy amin'ny vondrom-piarahamonina DeHub",

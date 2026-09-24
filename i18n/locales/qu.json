@@ -2866,7 +2866,11 @@
     "vaultReleaseTitle": "{{handle}} saqeruyta?",
     "vaultReleaseBody": "Chayqa hunt'ayman kutimunqa, mayqanpas hap'iyta atinqa. Mana kutiyta atinchu, chaytañataq rantiykuyqa chay musuq kamachiq munayninmanmi.",
     "swapHintKept": "Qanqa {{handle}} hap'inki — payqa sutiynikikunaman haykun, chayta atiknkiñataq kutimuyta llamk'achiyta utaq qhipaman rantikuyta. Qillqasqayki, qatiqniyki, qanpa qolqiykiqa mana imapas t'ikrakunñachu.",
-    "swapHintNoChange": "Qillqasqayki, qatiqniyki, qanpa qolqiykiqa mana imapas t'ikrakunñachu."
+    "swapHintNoChange": "Qillqasqayki, qatiqniyki, qanpa qolqiykiqa mana imapas t'ikrakunñachu.",
+    "addedToYourUsernames": "Ruraqpa sutiykiman yapakun",
+    "boughtNameGoesToVault": "@{{current}} kasqallaykim. @{{handle}} ruraqpa sutiykiman yaykun, munasqaykipi paymanmi tikrakuyta atinki.",
+    "youAreNow": "Kunanqa @{{handle}} kanki",
+    "boughtToVaultToast": "@{{handle}} kunanqa ruraqpa sutiykikunapim kachkan"
   },
   "stores": {
     "subtitle": "DeHub ayllumanta rantikunata tariy",

@@ -2822,7 +2822,11 @@
     "vaultReleaseTitle": "@{{handle}}? buraxın",
     "vaultReleaseBody": "Bu, hovuza geri qayıdır və hər kəs onu götürə bilər. Geri qaytarmaq mümkün deyil və onu geri almaq yeni sahibin istədiyi məbləğə başa gələcək.",
     "swapHintKept": "Siz @{{handle}} saxlayırsınız — o, sizin istifadəçi adlarınıza daxil olur və siz onu yenidən istifadə edə və ya daha sonra sata bilərsiniz. Yazılar, izləyicilər və pul kisəniz toxunulmaz qalır.",
-    "swapHintNoChange": "Yazılar, izləyicilər və pul kisəniz toxunulmaz qalır."
+    "swapHintNoChange": "Yazılar, izləyicilər və pul kisəniz toxunulmaz qalır.",
+    "addedToYourUsernames": "İstifadəçi adlarınıza əlavə olunur",
+    "boughtNameGoesToVault": "Siz @{{current}} olaraq qalırsınız. @{{handle}} istifadəçi adlarınıza əlavə olunur və istədiyiniz vaxt ona keçə bilərsiniz.",
+    "youAreNow": "Siz indi @{{handle}}-siniz",
+    "boughtToVaultToast": "@{{handle}} artıq istifadəçi adlarınızdadır"
   },
   "stores": {
     "subtitle": "DeHub icmasının məhsullarını kəşf et",

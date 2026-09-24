@@ -2798,7 +2798,11 @@
     "vaultReleaseTitle": "{{handle}} सोडून देऊ?",
     "vaultReleaseBody": "ते पूलमध्ये परत जाईल आणि कोणीही ते घेऊ शकेल. याला कोणताही उपाय नाही आणि ते परत विकत घेण्यासाठी नवीन मालकाने विचारलेली किंमत द्यावी लागेल.",
     "swapHintKept": "Tum @{{handle}} ko rakhte ho — yeh tumhare usernames mein chala jayega, aur tum ise dobara pehen sakte ho ya baad mein bech sakte ho. Posts, followers aur tumhara wallet untouched rahenge.",
-    "swapHintNoChange": "Posts, followers aur tumhara wallet untouched rahenge."
+    "swapHintNoChange": "Posts, followers aur tumhara wallet untouched rahenge.",
+    "addedToYourUsernames": "তোমার ইউজারনেমে যোগ হইব",
+    "boughtNameGoesToVault": "তুমি @{{current}} থাকবা। @{{handle}} তোমার ইউজারনেমে যাইব, আর যখন খুশি ওইটাতে বদলাইতে পারবা।",
+    "youAreNow": "তুমি অখন @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} অখন তোমার ইউজারনেমে আছে"
   },
   "stores": {
     "subtitle": "DeHub سماج کے سامان کھوجو",

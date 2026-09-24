@@ -3096,7 +3096,11 @@
     "vaultReleaseTitle": "Lepaskan @{{handle}}?",
     "vaultReleaseBody": "Ia akan dikembalikan ke dalam kumpulan dan sesiapa sahaja boleh mengambilnya. Tiada pemulihan, dan membelinya semula akan menelan kos berapa pun yang diminta oleh pemilik baharu.",
     "swapHintKept": "Anda menyimpan @{{handle}} — ia akan masuk ke dalam nama pengguna anda, dan anda boleh menggunakannya semula atau menjualnya kemudian. Catatan, pengikut dan dompet anda tidak terusik.",
-    "swapHintNoChange": "Catatan, pengikut dan dompet anda tidak terusik."
+    "swapHintNoChange": "Catatan, pengikut dan dompet anda tidak terusik.",
+    "addedToYourUsernames": "Ditambah ke nama pengguna anda",
+    "boughtNameGoesToVault": "Anda kekal @{{current}}. @{{handle}} masuk ke nama pengguna anda, dan anda boleh bertukar kepadanya bila-bila masa.",
+    "youAreNow": "Anda kini @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} kini dalam nama pengguna anda"
   },
   "stores": {
     "subtitle": "Temui produk daripada komuniti DeHub",

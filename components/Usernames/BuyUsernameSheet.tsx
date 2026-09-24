@@ -150,17 +150,27 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
             </Text>
           </View>
 
-          {/* The move, said out loud.
-              The old handle is not being given up any more, it is being kept —
-              which is exactly the thing people would not buy into before, so
-              the line that used to say "released" has to say the opposite
-              clearly enough that nobody hesitates over it. */}
-          {!!quote && (
+          {/* Where the name goes, said out loud.
+              Buying does not rename you: the name lands in your usernames and
+              you keep wearing the one you have until you switch. Only an
+              account with no handle at all is moved onto it. */}
+          {!!quote && !!quote.currentUsername && (
+            <View style={styles.panel}>
+              <Text style={styles.panelLabel}>{t("usernames.addedToYourUsernames")}</Text>
+              <Text style={styles.swapNew} numberOfLines={1}>
+                @{quote.username}
+              </Text>
+              <Text style={styles.panelHint}>
+                {t("usernames.boughtNameGoesToVault", { handle: quote.username, current: quote.currentUsername })}
+              </Text>
+            </View>
+          )}
+          {!!quote && !quote.currentUsername && (
             <View style={styles.panel}>
               <Text style={styles.panelLabel}>{t("usernames.yourHandleChanges")}</Text>
               <View style={styles.swapRow}>
                 <Text style={styles.swapOld} numberOfLines={1}>
-                  @{quote.currentUsername || "—"}
+                  @—
                 </Text>
                 <Icon name="ArrowRight" size={14} color="#52525B" />
                 <Text style={styles.swapNew} numberOfLines={1}>
@@ -168,9 +178,7 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
                 </Text>
               </View>
               <Text style={styles.panelHint}>
-                {quote.currentUsername
-                  ? t("usernames.swapHintKept", { handle: quote.currentUsername })
-                  : t("usernames.swapHintNoChange")}
+                {t("usernames.swapHintNoChange")}
               </Text>
             </View>
           )}

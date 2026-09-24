@@ -2847,7 +2847,11 @@
     "vaultReleaseTitle": "Giải phóng @{{handle}}?",
     "vaultReleaseBody": "Nó sẽ quay trở lại nhóm và bất kỳ ai cũng có thể lấy nó. Không thể hoàn tác, và việc mua lại nó sẽ tốn chi phí mà chủ sở hữu mới yêu cầu.",
     "swapHintKept": "Bạn giữ @{{handle}} — nó sẽ chuyển vào danh sách tên người dùng của bạn, và bạn có thể sử dụng lại hoặc bán nó sau. Bài đăng, người theo dõi và ví của bạn không bị ảnh hưởng.",
-    "swapHintNoChange": "Bài đăng, người theo dõi và ví của bạn không bị ảnh hưởng."
+    "swapHintNoChange": "Bài đăng, người theo dõi và ví của bạn không bị ảnh hưởng.",
+    "addedToYourUsernames": "Được thêm vào tên người dùng của bạn",
+    "boughtNameGoesToVault": "Bạn vẫn là @{{current}}. @{{handle}} được thêm vào tên người dùng của bạn và bạn có thể chuyển sang bất cứ lúc nào.",
+    "youAreNow": "Bây giờ bạn là @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} giờ đã nằm trong tên người dùng của bạn"
   },
   "stores": {
     "subtitle": "Khám phá sản phẩm từ cộng đồng DeHub",

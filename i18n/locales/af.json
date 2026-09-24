@@ -2859,7 +2859,11 @@
     "vaultReleaseTitle": "Vrystel @{{handle}}?",
     "vaultReleaseBody": "Dit gaan terug in die poel en enigiemand kan dit neem. Daar is geen ongedaanmaak nie, en om dit terug te koop sal kos wat ook al die nuwe eienaar vra.",
     "swapHintKept": "Jy behou @{{handle}} — dit skuif na jou gebruikersname, en jy kan dit weer dra of later verkoop. Plasings, volgelinge en jou beursie bly onaangeraak.",
-    "swapHintNoChange": "Plasings, volgelinge en jou beursie bly onaangeraak."
+    "swapHintNoChange": "Plasings, volgelinge en jou beursie bly onaangeraak.",
+    "addedToYourUsernames": "Word by jou gebruikersname gevoeg",
+    "boughtNameGoesToVault": "Jy bly @{{current}}. @{{handle}} gaan na jou gebruikersname, en jy kan enige tyd daarna oorskakel.",
+    "youAreNow": "Jy is nou @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} is nou in jou gebruikersname"
   },
   "stores": {
     "subtitle": "Ontdek produkte van die DeHub-gemeenskap",

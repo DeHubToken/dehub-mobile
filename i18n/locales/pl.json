@@ -2834,7 +2834,11 @@
     "vaultReleaseTitle": "Zrezygnuj z @{{handle}}?",
     "vaultReleaseBody": "Wraca do puli i każdy może ją przejąć. Nie można tego cofnąć, a ponowny zakup będzie kosztował tyle, ile zażąda nowy właściciel.",
     "swapHintKept": "Zachowujesz @ {{handle}} — przenosi się do Twoich nazw użytkowników i możesz go ponownie założyć lub sprzedać później. Posty, obserwujący i Twój portfel są nietknięte.",
-    "swapHintNoChange": "Posty, obserwujący i Twój portfel są nietknięte."
+    "swapHintNoChange": "Posty, obserwujący i Twój portfel są nietknięte.",
+    "addedToYourUsernames": "Trafia do Twoich nazw użytkownika",
+    "boughtNameGoesToVault": "Zostajesz @{{current}}. @{{handle}} trafia do Twoich nazw użytkownika i możesz się na nią przełączyć, kiedy chcesz.",
+    "youAreNow": "Jesteś teraz @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} jest teraz w Twoich nazwach użytkownika"
   },
   "stores": {
     "subtitle": "Odkrywaj produkty od społeczności DeHub",

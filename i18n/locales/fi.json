@@ -2834,7 +2834,11 @@
     "vaultReleaseTitle": "Vapauta @{{handle}}?",
     "vaultReleaseBody": "Se palaa jonoon ja kuka tahansa voi ottaa sen. Peruutusta ei ole, ja sen takaisin ostaminen maksaisi mitä tahansa uusi omistaja pyytää.",
     "swapHintKept": "Pidät @{{handle}} – se siirtyy käyttäjätunnuksiisi, ja voit käyttää sitä uudelleen tai myydä sen myöhemmin. Julkaisut, seuraajat ja lompakkosi pysyvät koskemattomina.",
-    "swapHintNoChange": "Julkaisut, seuraajat ja lompakkosi pysyvät koskemattomina."
+    "swapHintNoChange": "Julkaisut, seuraajat ja lompakkosi pysyvät koskemattomina.",
+    "addedToYourUsernames": "Lisätään käyttäjänimiisi",
+    "boughtNameGoesToVault": "Pysyt nimellä @{{current}}. @{{handle}} lisätään käyttäjänimiisi, ja voit vaihtaa siihen milloin haluat.",
+    "youAreNow": "Olet nyt @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} on nyt käyttäjänimissäsi"
   },
   "stores": {
     "subtitle": "Löydä tuotteita DeHub-yhteisöltä",

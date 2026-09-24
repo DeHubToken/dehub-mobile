@@ -2816,7 +2816,11 @@
       "withdrawn": "ফিরি নেওয়া",
       "completed": "শেষ হইছে",
       "expired": "সময় শেষ"
-    }
+    },
+    "addedToYourUsernames": "আপনার ইউজারনেমোত যোগ হইবে",
+    "boughtNameGoesToVault": "আপনি @{{current}} থাকমেন। @{{handle}} আপনার ইউজারনেমোত যাইবে, আর যখন মন চায় ওইটাত বদলাবার পারমেন।",
+    "youAreNow": "আপনি এলা @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} এলা আপনার ইউজারনেমোত আছে"
   },
   "stores": {
     "subtitle": "DeHub সম্প্রদায়ের পণ্য খোঁজেন",

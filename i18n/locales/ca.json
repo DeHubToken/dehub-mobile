@@ -2834,7 +2834,11 @@
     "vaultReleaseTitle": "Allibera @{{handle}}?",
     "vaultReleaseBody": "Torna a la borsa i qualsevol persona el podrà agafar. No hi ha marxa enrere, i tornar a comprar-lo costaria el que demani el nou propietari.",
     "swapHintKept": "Conserves @{{handle}} — es mou als teus noms d'usuari, i pots tornar-lo a utilitzar o vendre'l més tard. Les publicacions, els seguidors i la teva cartera no es toquen.",
-    "swapHintNoChange": "Les publicacions, els seguidors i la teva cartera no es toquen."
+    "swapHintNoChange": "Les publicacions, els seguidors i la teva cartera no es toquen.",
+    "addedToYourUsernames": "S'afegeix als teus noms d'usuari",
+    "boughtNameGoesToVault": "Continues sent @{{current}}. @{{handle}} va als teus noms d'usuari i pots canviar-hi quan vulguis.",
+    "youAreNow": "Ara ets @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} ja és als teus noms d'usuari"
   },
   "stores": {
     "subtitle": "Descobreix productes de la comunitat DeHub",

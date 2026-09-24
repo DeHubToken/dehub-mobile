@@ -2856,7 +2856,11 @@
     "vaultReleaseTitle": "Liberar @{{handle}}?",
     "vaultReleaseBody": "Vuelve al grupo y cualquiera puede tomarlo. No hay vuelta atrás, y recuperarlo costaría lo que pida el nuevo propietario.",
     "swapHintKept": "Te quedas con @{{handle}}: pasa a tus nombres de usuario y puedes volver a usarlo o venderlo más tarde. Las publicaciones, los seguidores y tu monedero permanecen intactos.",
-    "swapHintNoChange": "Las publicaciones, los seguidores y tu monedero permanecen intactos."
+    "swapHintNoChange": "Las publicaciones, los seguidores y tu monedero permanecen intactos.",
+    "addedToYourUsernames": "Se añade a tus nombres de usuario",
+    "boughtNameGoesToVault": "Sigues siendo @{{current}}. @{{handle}} pasa a tus nombres de usuario y puedes cambiarte a él cuando quieras.",
+    "youAreNow": "Ahora eres @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} ya está en tus nombres de usuario"
   },
   "stores": {
     "subtitle": "Descubre productos de la comunidad DeHub",

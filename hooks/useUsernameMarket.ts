@@ -22,6 +22,7 @@
  */
 
 import { useCallback, useState } from 'react';
+import i18n from 'i18next';
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ethers } from 'ethers';
 import { useAuthActions, useUser } from '../context/AuthContext';
@@ -140,7 +141,7 @@ export function useActivateUsernameHolding() {
   return useMutation({
     mutationFn: usernameMarketService.activateHolding,
     onSuccess: async (result) => {
-      toastSuccess(`You are now @${result.username}`);
+      toastSuccess(i18n.t('usernames.youAreNow', { handle: result.username }));
       // The released case is the one irreversible thing about an otherwise
       // reversible action, and it only ever happens to the free signup handle.
       if (result.releasedUsername) {
@@ -315,13 +316,20 @@ export function useBuyUsername() {
       setStage('idle');
       if (result.pending) return;
 
-      toastSuccess(`You are now @${result.username}`);
+      // A buyer who already had a handle keeps it; the new one is in the vault.
+      const wearing = result.activeUsername ?? result.username;
+      toastSuccess(
+        wearing === result.username
+          ? i18n.t('usernames.youAreNow', { handle: result.username })
+          : i18n.t('usernames.boughtToVaultToast', { handle: result.username }),
+      );
 
-      // The signed-in user's own handle just changed. Everything that renders
-      // it off a cache has to be told, or the profile tab and every rendered
-      // @mention of yourself keep showing a name this account no longer owns.
+      // The handle may have changed (a buyer who had none), and the vault and
+      // the offer that was just paid for certainly did. A stale offers list is
+      // what left "Pay and claim" on screen after paying.
       await refreshUser().catch(() => {});
       qc.invalidateQueries({ queryKey: ['username-holdings'] });
+      qc.invalidateQueries({ queryKey: ['username-offers-mine'] });
       qc.invalidateQueries({ queryKey: ['username-market-browse'] });
       qc.invalidateQueries({ queryKey: ['username-market-mine'] });
       qc.invalidateQueries({ queryKey: ['account'] });
