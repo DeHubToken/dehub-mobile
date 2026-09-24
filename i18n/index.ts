@@ -9,6 +9,34 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as Localization from 'expo-localization';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { I18nManager } from 'react-native';
+
+/**
+ * Locales written right to left. Arabic and its regional forms, Persian, Urdu
+ * and the other Arabic-script languages this app ships, plus Hebrew.
+ */
+const RTL_LANGUAGES = new Set([
+  'ar', 'acm', 'acw', 'aec', 'ajp', 'apd', 'ary', 'arz', 'ayn',
+  'dcc', 'fa', 'he', 'pbt', 'ps', 'sd', 'skr', 'ug', 'ur',
+]);
+
+export const isRtlLanguage = (lang: string): boolean => RTL_LANGUAGES.has(lang);
+
+/**
+ * Point the native layout direction at the app language, not the phone's.
+ *
+ * React Native only reads the direction at startup, so a change takes effect
+ * on the next launch; returns true when it changed so the caller can reload.
+ * Without this, choosing Arabic in the app left every screen laid out left to
+ * right, and an English choice on an Arabic phone came out mirrored.
+ */
+export function applyLayoutDirection(lang: string): boolean {
+  const rtl = isRtlLanguage(lang);
+  if (I18nManager.isRTL === rtl) return false;
+  I18nManager.allowRTL(rtl);
+  I18nManager.forceRTL(rtl);
+  return true;
+}
 
 import en from './locales/en.json';
 import { fillMissingPluralForms } from './plural-fallback';
@@ -298,12 +326,17 @@ fillMissingPluralForms(i18n, 'en');
   try {
     const saved = await AsyncStorage.getItem(STORAGE_KEY);
     const target = saved || detectLanguage();
+    let active = 'en';
     if (target && target !== 'en') {
       const ok = await loadLanguage(target);
       if (ok) {
         await i18n.changeLanguage(target);
+        active = target;
       }
     }
+    // No reload here: at boot that could loop. The next launch picks it up,
+    // and the language picker reloads straight away.
+    applyLayoutDirection(active);
   } catch {
     // Silently fall back to English
   }
