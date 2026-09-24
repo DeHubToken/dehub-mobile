@@ -538,14 +538,16 @@ export default function TeamUpSheet({
 }
 
 const styles = StyleSheet.create({
-  sheet: { width: '100%', maxHeight: '82%', paddingHorizontal: 16, paddingBottom: 16 },
+  // Shrink to the panel's cap rather than a % max-height, which resolves
+  // against nothing, and a fixed 560 list, which outgrew small phones.
+  sheet: { width: '100%', flexShrink: 1, paddingHorizontal: 16, paddingBottom: 16 },
   header: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, paddingVertical: 14 },
   headerText: { flex: 1, minWidth: 0 },
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   powerIcon: { width: 32, height: 32 },
   title: { color: '#FFFFFF', fontSize: 18, fontWeight: '700' },
   subtitle: { color: '#A1A1AA', fontSize: 12, lineHeight: 17, marginTop: 4 },
-  scroll: { maxHeight: 560 },
+  scroll: { flexShrink: 1 },
   scrollContent: { gap: 12, paddingBottom: 8 },
   panel: { backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: 14, padding: 14, gap: 9 },
   panelTitle: { color: '#FFFFFF', fontSize: 14, fontWeight: '600' },
