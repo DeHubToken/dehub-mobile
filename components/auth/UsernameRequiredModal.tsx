@@ -16,8 +16,8 @@ interface Props {
   visible: boolean;
   provisionalUser: any; // includes authSignature
   onComplete: (finalUser: User) => void;
-  // The only way out of this step: without it back and the backdrop did
-  // nothing, and someone who did not want this account was stuck.
+  // The only way out of this step: without it someone who did not want this
+  // account was stuck.
   onSignOut: () => void;
 }
 
@@ -91,7 +91,9 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
   return (
     <GlassModal
       visible={visible}
-      onClose={() => { if (!submitting) onSignOut(); }}
+      // Deliberately not wired to sign-out: a stray tap on the backdrop would
+      // throw away a half-finished sign-up. The button below is the exit.
+      onClose={() => {}}
       presentation="center"
       blurIntensity={50}
     >
