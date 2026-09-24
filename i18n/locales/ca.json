@@ -3663,7 +3663,8 @@
     "unpinTitle": "Desenllaça el missatge",
     "unpinConfirm": "Vols eliminar aquest missatge fixat?",
     "pinMessage": "Enllaça el missatge",
-    "unpinMessage": "Desenllaça el missatge"
+    "unpinMessage": "Desenllaça el missatge",
+    "jumpToLatest": "Ves als últims missatges"
   },
   "promptFeed": {
     "headline": "Què vols veure?",
@@ -5477,7 +5478,8 @@
     "streamPausedReconnecting": "El teu flux està en pausa. Tornant a connectar...",
     "streamWillEnd": "El flux finalitzarà si no es torna a connectar",
     "endStreamConfirmTitle": "Vols finalitzar el flux?",
-    "endStreamConfirmBody": "Si tanques ara, la transmissió en directe acabarà per a tots els espectadors. Pots continuar la transmissió o acabar-la definitivament."
+    "endStreamConfirmBody": "Si tanques ara, la transmissió en directe acabarà per a tots els espectadors. Pots continuar la transmissió o acabar-la definitivament.",
+    "cameraReconnecting": "Et donem la benvinguda de nou: la càmera es torna a connectar"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

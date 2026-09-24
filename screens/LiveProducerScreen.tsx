@@ -6,6 +6,8 @@ import {
   Pressable,
   InteractionManager,
   StatusBar,
+  AppState,
+  Linking,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import NetInfo from "@react-native-community/netinfo";
@@ -114,7 +116,7 @@ const LiveProducerScreen: React.FC = () => {
   const [cameraFacing, setCameraFacing] = useState<"front" | "back">("front");
   const [videoLook, setVideoLook] = useState<VideoLookId>("none");
   const [looksOpen, setLooksOpen] = useState(false);
-  const [permission, requestPermission] = useCameraPermissions();
+  const [permission, requestPermission, getPermission] = useCameraPermissions();
   const {
     streamEntity,
     streamLoading,
@@ -805,8 +807,21 @@ const LiveProducerScreen: React.FC = () => {
 
   useEffect(() => {
     if (!permission) return;
-    if (!permission.granted) requestPermission();
-  }, [permission, requestPermission]);
+    if (!permission.granted && permission.canAskAgain) requestPermission();
+    // Keyed on the values, not the object: the re-read below hands back a new
+    // object with the same answer, which must not raise a second prompt.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [permission?.status, permission?.canAskAgain, requestPermission]);
+
+  // The hook only reads the permission on mount, so a grant made in system
+  // settings would stay invisible until the screen was reopened.
+  useEffect(() => {
+    if (permission?.granted) return;
+    const sub = AppState.addEventListener("change", (state) => {
+      if (state === "active") getPermission();
+    });
+    return () => sub.remove();
+  }, [permission?.granted, getPermission]);
 
   const toggleMic = useCallback(() => setMicMuted((m) => !m), []);
   const toggleCamera = useCallback(() => setCameraOff((c) => !c), []);
@@ -1127,6 +1142,32 @@ const LiveProducerScreen: React.FC = () => {
     return () => unsub();
   }, [stage]);
 
+  // Switching apps mid-broadcast costs the camera on Android. The publisher
+  // re-acquires it on return; this only tells the creator why the picture
+  // blinks, so they don't end the stream thinking it froze.
+  const liveOnCameraRef = useRef(false);
+  liveOnCameraRef.current = stage === "live" && !externalMode;
+  useEffect(() => {
+    let wasLiveInBackground = false;
+    const sub = AppState.addEventListener("change", (state) => {
+      if (state === "background") {
+        wasLiveInBackground = liveOnCameraRef.current;
+      } else if (state === "active" && wasLiveInBackground) {
+        wasLiveInBackground = false;
+        toastInfo(t("goLive.cameraReconnecting"));
+      }
+    });
+    return () => sub.remove();
+  }, [t]);
+
+  // Once the camera prompt is permanently denied, asking again is a no-op;
+  // the only way back is the system settings page.
+  const cameraCanAskAgain = permission?.canAskAgain !== false;
+  const onGrantPermission = useCallback(() => {
+    if (cameraCanAskAgain) requestPermission();
+    else Linking.openSettings().catch(() => {});
+  }, [cameraCanAskAgain, requestPermission]);
+
   const onGlobalPress = useCallback(() => {
     bumpUiTimer();
   }, [bumpUiTimer]);
@@ -1194,12 +1235,14 @@ const LiveProducerScreen: React.FC = () => {
               {t("goLive.cameraPermissionRequired")}
             </Text>
             <TouchableOpacity
-              onPress={requestPermission}
+              onPress={onGrantPermission}
               className="px-5 py-2.5 rounded-xl bg-white/10"
               activeOpacity={0.8}
             >
               <Text className="text-white text-xs font-medium">
-                {t("goLive.grantPermission")}
+                {cameraCanAskAgain
+                  ? t("goLive.grantPermission")
+                  : t("player.openSettings")}
               </Text>
             </TouchableOpacity>
           </View>

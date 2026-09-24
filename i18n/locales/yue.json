@@ -3659,7 +3659,8 @@
     "unpinTitle": "取消固定訊息",
     "unpinConfirm": "移除呢個固定訊息？",
     "pinMessage": "固定訊息",
-    "unpinMessage": "取消固定訊息"
+    "unpinMessage": "取消固定訊息",
+    "jumpToLatest": "跳到最新嘅訊息"
   },
   "promptFeed": {
     "headline": "你想睇啲咩？",
@@ -5471,7 +5472,8 @@
     "streamPausedReconnecting": "你嘅串流暫停咗。重新連接緊 ...",
     "streamWillEnd": "如果唔重新連線，串流就會結束",
     "endStreamConfirmTitle": "結束流？",
-    "endStreamConfirmBody": "而家閂咗就會結束你所有觀眾嘅直播。你可以繼續串流或者永久結束。"
+    "endStreamConfirmBody": "而家閂咗就會結束你所有觀眾嘅直播。你可以繼續串流或者永久結束。",
+    "cameraReconnecting": "歡迎返嚟 — 你部相機重新連接緊"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

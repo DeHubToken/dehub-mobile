@@ -3636,7 +3636,8 @@
     "unpinTitle": "መልእኽቲ ኣወግድ",
     "unpinConfirm": "ነዚ መልእኽቲ እዚ ኣወግዶ ።",
     "pinMessage": "መልእኽቲ ፒን",
-    "unpinMessage": "መልእኽቲ ኣወግድ"
+    "unpinMessage": "መልእኽቲ ኣወግድ",
+    "jumpToLatest": "ናብ ናይ መወዳእታ መልእኽትታት ጠውቑ"
   },
   "promptFeed": {
     "headline": "እንታይ ክትርኢ ትደሊ?",
@@ -5432,7 +5433,8 @@
     "streamPausedReconnecting": "እቲ ዥረትካ ተቛሪጹ ኣሎ ።",
     "streamWillEnd": "እቲ ዥረት እንተ ዘይተኣታተወ ፡ ኪዛዘም እዩ ።",
     "endStreamConfirmTitle": "መወዳእታ ዥረት?",
-    "endStreamConfirmBody": "ሕጂ ምዕጻው ንኹሉ ተዓዘብቲ ብቀጥታ ስርሒትካ ክዛዘም እዩ ። ብቐጻሊ ክትዝርጋሕ ወይ ከኣ ንሓዋሩ ክትዛዘም ትኽእል ኢኻ ።"
+    "endStreamConfirmBody": "ሕጂ ምዕጻው ንኹሉ ተዓዘብቲ ብቀጥታ ስርሒትካ ክዛዘም እዩ ። ብቐጻሊ ክትዝርጋሕ ወይ ከኣ ንሓዋሩ ክትዛዘም ትኽእል ኢኻ ።",
+    "cameraReconnecting": "ብኽብሪ ተመሊስካ - ካሜራኻ እንደገና ተጸምቢሩ ኣሎ"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

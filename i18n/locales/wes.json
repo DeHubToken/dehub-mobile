@@ -3663,7 +3663,8 @@
     "pinMessage": "Pin message",
     "unpinMessage": "Unpin message",
     "voiceUploadFailed": "We no fit upload di voice message",
-    "unpinConfirm": "Remove dis pinned message?"
+    "unpinConfirm": "Remove dis pinned message?",
+    "jumpToLatest": "Go for the last messages dem"
   },
   "promptFeed": {
     "headline": "Wetin you wan see?",
@@ -5455,7 +5456,8 @@
     "pressGoLiveWhenReady": "Press Go Live when you ready for start",
     "streamPausedReconnecting": "Ya stream don pause. E di reconnect...",
     "streamWillEnd": "Stream go end if e no reconnect",
-    "endStreamConfirmBody": "If you close am now, ya live stream go end for all viewers. You fit continue di stream or end am finish."
+    "endStreamConfirmBody": "If you close am now, ya live stream go end for all viewers. You fit continue di stream or end am finish.",
+    "cameraReconnecting": "Welcome back — your camera di connect again"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

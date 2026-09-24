@@ -3663,7 +3663,8 @@
     "unpinTitle": "Tühista sõnumi kinnitamine",
     "unpinConfirm": "Kas eemaldada see kinnitatud sõnum?",
     "pinMessage": "PIN-koodi teade",
-    "unpinMessage": "Tühista sõnumi kinnitamine"
+    "unpinMessage": "Tühista sõnumi kinnitamine",
+    "jumpToLatest": "Hüppa uusimate sõnumite juurde"
   },
   "promptFeed": {
     "headline": "Mida sa näha tahad?",
@@ -5476,7 +5477,8 @@
     "streamPausedReconnecting": "Sinu voog on peatatud. Ühenduse taastamine...",
     "streamWillEnd": "Voog lõpeb, kui seda ei ühendata uuesti",
     "endStreamConfirmTitle": "Kas lõpetada voogedastus?",
-    "endStreamConfirmBody": "Sulgemine lõpetab otseülekande kõigile vaatajatele. Saad voogesitust jätkata või selle jäädavalt lõpetada."
+    "endStreamConfirmBody": "Sulgemine lõpetab otseülekande kõigile vaatajatele. Saad voogesitust jätkata või selle jäädavalt lõpetada.",
+    "cameraReconnecting": "Tere tulemast tagasi — kaamera ühendub uuesti"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

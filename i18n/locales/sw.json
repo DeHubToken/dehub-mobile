@@ -3664,7 +3664,8 @@
     "unpinTitle": "Ondoa Ujumbe",
     "unpinConfirm": "Ondoa ujumbe huu uliopachikwa?",
     "pinMessage": "Ujumbe wa PIN",
-    "unpinMessage": "Ondoa ujumbe"
+    "unpinMessage": "Ondoa ujumbe",
+    "jumpToLatest": "Nenda kwenye ujumbe wa hivi karibuni"
   },
   "promptFeed": {
     "headline": "Unataka kuona nini?",
@@ -5477,7 +5478,8 @@
     "streamPausedReconnecting": "Mtiririko wako umesimamishwa kwa muda. Kuunganisha tena...",
     "streamWillEnd": "Mtiririko utakwisha ikiwa haujaunganishwa tena",
     "endStreamConfirmTitle": "Ungependa kumaliza mkondo?",
-    "endStreamConfirmBody": "Kufunga sasa kutamaliza mkondo wako wa moja kwa moja kwa watazamaji wote. Unaweza kuendelea kutiririsha au kuimaliza kabisa."
+    "endStreamConfirmBody": "Kufunga sasa kutamaliza mkondo wako wa moja kwa moja kwa watazamaji wote. Unaweza kuendelea kutiririsha au kuimaliza kabisa.",
+    "cameraReconnecting": "Karibu tena — kamera yako inaunganishwa tena"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

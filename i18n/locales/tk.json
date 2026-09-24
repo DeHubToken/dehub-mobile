@@ -3660,7 +3660,8 @@
     "unpinTitle": "Unpin habar",
     "unpinConfirm": "Bu habaryň ýaýramagyny isleýärmisiňiz?",
     "pinMessage": "Pin habar",
-    "unpinMessage": "Unpin habar"
+    "unpinMessage": "Unpin habar",
+    "jumpToLatest": "Soňky habarlara seret"
   },
   "promptFeed": {
     "headline": "Näme görmek isleýärsiňiz?",
@@ -5472,7 +5473,8 @@
     "streamPausedReconnecting": "Ýaýlymyňyz togtadyldy. Täzeden birikdirilýär...",
     "streamWillEnd": "Täzeden birikdirilmeýän bolsa, ýaýlym gutarar",
     "endStreamConfirmTitle": "Ýaýlymy bes etmekmi?",
-    "endStreamConfirmBody": "Indi ýapmak ähli tomaşaçylar üçin göni ýaýlymyňyzy gutarar. Ýaýlymy dowam etdirip ýa-da hemişelik bes edip bilersiňiz."
+    "endStreamConfirmBody": "Indi ýapmak ähli tomaşaçylar üçin göni ýaýlymyňyzy gutarar. Ýaýlymy dowam etdirip ýa-da hemişelik bes edip bilersiňiz.",
+    "cameraReconnecting": "Hoşgeldin — kameraňyz ýene-de ulanýar"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

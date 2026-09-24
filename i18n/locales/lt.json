@@ -3663,7 +3663,8 @@
     "unpinTitle": "Atsegti žinutę",
     "unpinConfirm": "Pašalinti šią prisegtą žinutę?",
     "pinMessage": "Prisegti žinutę",
-    "unpinMessage": "Atsegti žinutę"
+    "unpinMessage": "Atsegti žinutę",
+    "jumpToLatest": "Pereiti prie naujausių žinučių"
   },
   "promptFeed": {
     "headline": "Ką norite matyti?",
@@ -5476,7 +5477,8 @@
     "streamPausedReconnecting": "Jūsų srautas pristabdytas. Jungiamasi iš naujo...",
     "streamWillEnd": "Jei srautas nebus prijungtas iš naujo, jis bus nutrauktas",
     "endStreamConfirmTitle": "Baigti transliaciją?",
-    "endStreamConfirmBody": "Uždarius dabar, tiesioginė transliacija bus nutraukta visiems žiūrovams. Galite tęsti transliaciją arba visam laikui ją nutraukti."
+    "endStreamConfirmBody": "Uždarius dabar, tiesioginė transliacija bus nutraukta visiems žiūrovams. Galite tęsti transliaciją arba visam laikui ją nutraukti.",
+    "cameraReconnecting": "Sveiki sugrįžę — fotoaparatas vėl prisijungia"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

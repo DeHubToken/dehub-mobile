@@ -3663,7 +3663,8 @@
     "unpinTitle": "Dezfixează mesajul",
     "unpinConfirm": "Elimini acest mesaj fixat?",
     "pinMessage": "Fixează mesajul",
-    "unpinMessage": "Dezlipește mesajul"
+    "unpinMessage": "Dezlipește mesajul",
+    "jumpToLatest": "Accesează cele mai recente mesaje"
   },
   "promptFeed": {
     "headline": "Ce vrei să vezi?",
@@ -5475,7 +5476,8 @@
     "streamPausedReconnecting": "Fluxul tău este întrerupt. Se reconectează...",
     "streamWillEnd": "Fluxul se va încheia dacă nu este reconectat",
     "endStreamConfirmTitle": "Închei fluxul?",
-    "endStreamConfirmBody": "Închiderea acum va încheia fluxul live pentru toți spectatorii. Poți continua redarea în flux sau o poți încheia definitiv."
+    "endStreamConfirmBody": "Închiderea acum va încheia fluxul live pentru toți spectatorii. Poți continua redarea în flux sau o poți încheia definitiv.",
+    "cameraReconnecting": "Bine ai revenit — camera ta se reconectează"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

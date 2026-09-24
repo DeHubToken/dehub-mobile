@@ -3663,7 +3663,8 @@
     "unpinTitle": "Poista viestin kiinnitys",
     "unpinConfirm": "Poistetaanko tämä kiinnitetty viesti?",
     "pinMessage": "Kiinnitä viesti",
-    "unpinMessage": "Poista viestin kiinnitys"
+    "unpinMessage": "Poista viestin kiinnitys",
+    "jumpToLatest": "Siirry uusimpiin viesteihin"
   },
   "promptFeed": {
     "headline": "Mitä haluat nähdä?",
@@ -5476,7 +5477,8 @@
     "streamPausedReconnecting": "Suoratoistosi on keskeytetty. Yhdistetään uudelleen...",
     "streamWillEnd": "Virta päättyy, jos sitä ei yhdistetä uudelleen",
     "endStreamConfirmTitle": "Lopetetaanko suoratoisto?",
-    "endStreamConfirmBody": "Sulkeminen nyt lopettaa live-suoratoistosi kaikille katsojille. Voit jatkaa suoratoistoa tai lopettaa sen pysyvästi."
+    "endStreamConfirmBody": "Sulkeminen nyt lopettaa live-suoratoistosi kaikille katsojille. Voit jatkaa suoratoistoa tai lopettaa sen pysyvästi.",
+    "cameraReconnecting": "Tervetuloa takaisin — kamerasi yhdistyy uudelleen"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -3710,7 +3710,8 @@
     "unpinTitle": "メッセージのピン留めを解除",
     "unpinConfirm": "このピン留めされたメッセージを削除しますか？",
     "pinMessage": "メッセージをピン留めする",
-    "unpinMessage": "メッセージのピンを外す"
+    "unpinMessage": "メッセージのピンを外す",
+    "jumpToLatest": "最新のメッセージにジャンプ"
   },
   "promptFeed": {
     "headline": "何を見たいですか？",
@@ -5520,7 +5521,8 @@
     "streamPausedReconnecting": "ストリームが一時停止しています。再接続しています...",
     "streamWillEnd": "再接続されていない場合、ストリームは終了します",
     "endStreamConfirmTitle": "ストリームを終了しますか？",
-    "endStreamConfirmBody": "今閉じると、すべての視聴者のライブストリームが終了します。 ストリーミングを続行するか、完全に終了することができます。"
+    "endStreamConfirmBody": "今閉じると、すべての視聴者のライブストリームが終了します。 ストリーミングを続行するか、完全に終了することができます。",
+    "cameraReconnecting": "おかえりなさい。カメラが再接続しています"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

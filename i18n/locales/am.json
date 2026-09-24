@@ -3691,7 +3691,8 @@
     "unpinTitle": "ያልተገደበ መልእክት",
     "unpinConfirm": "ይህንን የተንሸራታች መልእክት ያስወግዱ?",
     "pinMessage": "PIN መልዕክት",
-    "unpinMessage": "Unpin መልዕክት"
+    "unpinMessage": "Unpin መልዕክት",
+    "jumpToLatest": "ወደ የቅርብ ጊዜ መልዕክቶች ዝለል"
   },
   "promptFeed": {
     "headline": "ምን ማየት ይፈልጋሉ?",
@@ -5502,7 +5503,8 @@
     "streamPausedReconnecting": "የእርስዎ ዥረት ታግዷል. Reconnecting...",
     "streamWillEnd": "ዥረት እንደገና ካልተገናኘ ያበቃል",
     "endStreamConfirmTitle": "መጨረሻ ዥረት?",
-    "endStreamConfirmBody": "አሁን መዝጋት ለሁሉም ተመልካቾች የቀጥታ ዥረትዎን ያበቃል ። ዥረት መቀጠል ወይም በቋሚነት ማቆም ይችላሉ."
+    "endStreamConfirmBody": "አሁን መዝጋት ለሁሉም ተመልካቾች የቀጥታ ዥረትዎን ያበቃል ። ዥረት መቀጠል ወይም በቋሚነት ማቆም ይችላሉ.",
+    "cameraReconnecting": "እንኳን ደህና መጡ — ካሜራዎ እንደገና ይገናኛል"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

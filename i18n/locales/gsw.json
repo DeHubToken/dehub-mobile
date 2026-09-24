@@ -3693,7 +3693,8 @@
     "unpinTitle": "Nouti entpinne",
     "unpinConfirm": "Die angepinnti Nouti lösche?",
     "pinMessage": "Nadel Nachricht",
-    "unpinMessage": "Nadel Nachricht usnäh"
+    "unpinMessage": "Nadel Nachricht usnäh",
+    "jumpToLatest": "Spring zu de letschte Nöie"
   },
   "promptFeed": {
     "headline": "Was wotsch gseh?",
@@ -5506,7 +5507,8 @@
     "streamPausedReconnecting": "Dini Über­tra­gung isch pausi­ert. Ver­su­ch, d Ver­bin­dig neu z'stelle...",
     "streamWillEnd": "Über­tra­gung wird be­en­det, wänn kei Ver­bin­dig meh",
     "endStreamConfirmTitle": "Über­tra­gung be­en­de?",
-    "endStreamConfirmBody": "Wenn du jetz schlies­sch, wird din Live-Stream für alli Zu­schaue be­en­det. Du chasch wi­ter­über­tra­ge oder sie für immer be­en­de."
+    "endStreamConfirmBody": "Wenn du jetz schlies­sch, wird din Live-Stream für alli Zu­schaue be­en­det. Du chasch wi­ter­über­tra­ge oder sie für immer be­en­de.",
+    "cameraReconnecting": "Willkomme zrugg — din Kamera verbindet sich neu"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

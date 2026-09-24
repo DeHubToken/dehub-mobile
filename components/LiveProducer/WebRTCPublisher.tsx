@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { View, Platform, Text } from "react-native";
+import { AppState, View, Platform, Text } from "react-native";
 import { useTranslation } from "react-i18next";
 import { mediaDevices, RTCPeerConnection, RTCView } from "react-native-webrtc";
 import { runWithPermissions, type PermissionKind } from "../../libs/permissions.util";
@@ -189,6 +189,11 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
   const [connected, setConnected] = useState(false);
   const [reconnecting, setReconnecting] = useState(false);
   const acquiringRef = useRef(false);
+  // Read from the AppState listener, which is registered once for the mount.
+  const cameraOffRef = useRef(cameraOff);
+  cameraOffRef.current = cameraOff;
+  const localReadyRef = useRef(localReady);
+  localReadyRef.current = localReady;
 
   // Derived config with defaults — match the backend grace period (90s) so we don't
   // escalate a disconnect as fatal before the server has had a chance to resume.
@@ -862,6 +867,73 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
       cancelled = true;
     };
   }, [facing, localReady, onError]);
+
+  /*
+   * Re-acquire the camera after the app comes back from the background.
+   *
+   * Android hands the camera to whichever app is in front, and the capture
+   * session it evicts does not come back on its own: the track stays "live",
+   * the peer stays connected, and viewers get a frozen frame for the rest of
+   * the broadcast. So on return the old capture is stopped first (the same
+   * camera cannot be opened twice) and a fresh track is swapped into the
+   * sender in place; the stream, the peer and the audio leg are untouched.
+   */
+  useEffect(() => {
+    let wentBackground = false;
+    let cancelled = false;
+    const reacquireCamera = async () => {
+      const local: any = streamRef.current;
+      if (!local || replacingTrackRef.current) return;
+      replacingTrackRef.current = true;
+      try {
+        const old: any = local.getVideoTracks?.()[0];
+        if (old) {
+          try { local.removeTrack(old); } catch {}
+          try { old.stop(); } catch {}
+        }
+        const wanted = currentFacingRef.current;
+        const s: any = await mediaDevices.getUserMedia({
+          video: { facingMode: wanted === "front" ? "user" : "environment" } as any,
+        });
+        const newTrack = s.getVideoTracks?.()[0];
+        if (!newTrack) return;
+        if (cancelled || streamRef.current !== local) {
+          try { newTrack.stop(); } catch {}
+          return;
+        }
+        try { local.addTrack(newTrack); } catch {}
+        currentVideoTrackRef.current = newTrack;
+        try { newTrack.enabled = !cameraOffRef.current; } catch {}
+        const sender: any = videoSenderRef.current;
+        if (sender) {
+          try { await sender.replaceTrack(newTrack); } catch {}
+        }
+        // A brand new track carries no look; the look effect re-applies it.
+        setVideoTrackEpoch((e) => e + 1);
+        const url = computeStreamURL(local);
+        if (url) setLocalURL(url);
+        dbg('camera re-acquired after background', { facing: wanted });
+      } catch (e) {
+        dbe('camera re-acquire after background failed', e);
+      } finally {
+        replacingTrackRef.current = false;
+      }
+    };
+    const sub = AppState.addEventListener("change", (state) => {
+      if (state === "background") {
+        // Only a preview that was already running counts: the permission
+        // prompt at start-up backgrounds the activity on Android too.
+        wentBackground = !!streamRef.current && localReadyRef.current;
+      } else if (state === "active" && wentBackground) {
+        wentBackground = false;
+        void reacquireCamera();
+      }
+    });
+    return () => {
+      cancelled = true;
+      sub.remove();
+    };
+  }, []);
 
   // Cleanup on unmount
   useEffect(() => {

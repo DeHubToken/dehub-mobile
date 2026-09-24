@@ -3712,7 +3712,8 @@
     "unpinTitle": "Batalkan Sematkan Pesan",
     "unpinConfirm": "Hapus pesan yang disematkan ini?",
     "pinMessage": "Pesan PIN",
-    "unpinMessage": "Batalkan sematan pesan"
+    "unpinMessage": "Batalkan sematan pesan",
+    "jumpToLatest": "Langsung ke pesan terbaru"
   },
   "promptFeed": {
     "headline": "Apa yang ingin kamu lihat?",
@@ -5525,7 +5526,8 @@
     "streamPausedReconnecting": "Streaming Anda dijeda. Menghubungkan kembali...",
     "streamWillEnd": "Streaming akan berakhir jika tidak tersambung kembali",
     "endStreamConfirmTitle": "Akhiri Streaming?",
-    "endStreamConfirmBody": "Penutupan sekarang akan mengakhiri streaming langsung Anda untuk semua pemirsa. Anda dapat melanjutkan streaming atau mengakhirinya secara permanen."
+    "endStreamConfirmBody": "Penutupan sekarang akan mengakhiri streaming langsung Anda untuk semua pemirsa. Anda dapat melanjutkan streaming atau mengakhirinya secara permanen.",
+    "cameraReconnecting": "Selamat datang kembali — kamera Anda terhubung kembali"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -3676,7 +3676,8 @@
     "unpinTitle": "Ergaa Unpin",
     "unpinConfirm": "Ergaa pinned ta&#39;e kana haqi?",
     "pinMessage": "Ergaa pin",
-    "unpinMessage": "Ergaa unpin"
+    "unpinMessage": "Ergaa unpin",
+    "jumpToLatest": "Gara ergaawwan haaraatti utaali"
   },
   "promptFeed": {
     "headline": "Maal ilaaluu barbaadda?",
@@ -5486,7 +5487,8 @@
     "streamPausedReconnecting": "Sulula kee dhaabbateera. Irra deebiin wal qunnamsiisuu...",
     "streamWillEnd": "Stream yoo deebi'ee hin walqabsiifamne ni xumurama",
     "endStreamConfirmTitle": "Dhangala'aa Xumuraa?",
-    "endStreamConfirmBody": "Amma cufuun daawwattoota hundaaf live stream keessan xumura. Stream gochuu itti fufuu ykn dhaabbataadhaan xumuruu dandeessa."
+    "endStreamConfirmBody": "Amma cufuun daawwattoota hundaaf live stream keessan xumura. Stream gochuu itti fufuu ykn dhaabbataadhaan xumuruu dandeessa.",
+    "cameraReconnecting": "Baga nagaan dhuftan — kaameraan keessan deebi&#39;ee wal qunnamsiisaa jira"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

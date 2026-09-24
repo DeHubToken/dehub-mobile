@@ -3667,7 +3667,8 @@
     "unpinTitle": "Avfäst meddelande",
     "unpinConfirm": "Ta bort detta fästa meddelande?",
     "pinMessage": "PIN-meddelande",
-    "unpinMessage": "Ta bort fäste för meddelande"
+    "unpinMessage": "Ta bort fäste för meddelande",
+    "jumpToLatest": "Gå till de senaste meddelandena"
   },
   "promptFeed": {
     "headline": "Vad vill du se?",
@@ -5478,7 +5479,8 @@
     "streamPausedReconnecting": "Din ström är pausad. Återansluter...",
     "streamWillEnd": "Strömmen kommer att avslutas om den inte återansluts",
     "endStreamConfirmTitle": "Avsluta ström?",
-    "endStreamConfirmBody": "Om du stänger nu avslutas din livestream för alla tittare. Du kan fortsätta strömma eller avsluta det permanent."
+    "endStreamConfirmBody": "Om du stänger nu avslutas din livestream för alla tittare. Du kan fortsätta strömma eller avsluta det permanent.",
+    "cameraReconnecting": "Välkommen tillbaka — din kamera ansluts igen"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

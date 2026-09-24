@@ -3662,7 +3662,8 @@
     "unpinTitle": "إلغاء تثبيت الرسالة",
     "unpinConfirm": "هل تريد إزالة هذه الرسالة المثبتة؟",
     "pinMessage": "تثبيت الرسالة",
-    "unpinMessage": "إلغاء تثبيت الرسالة"
+    "unpinMessage": "إلغاء تثبيت الرسالة",
+    "jumpToLatest": "ارجع لآخر الرسائل"
   },
   "promptFeed": {
     "headline": "شتريد تشوف؟",
@@ -5475,7 +5476,8 @@
     "streamPausedReconnecting": "تم إيقاف بثك مؤقتًا. جارٍ إعادة الاتصال...",
     "streamWillEnd": "سينتهي البث إذا لم تتم إعادة الاتصال",
     "endStreamConfirmTitle": "إنهاء البث؟",
-    "endStreamConfirmBody": "سيؤدي الإغلاق الآن إلى إنهاء بثك المباشر لجميع المشاهدين. يمكنك متابعة البث أو إنهائه بشكل دائم."
+    "endStreamConfirmBody": "سيؤدي الإغلاق الآن إلى إنهاء بثك المباشر لجميع المشاهدين. يمكنك متابعة البث أو إنهائه بشكل دائم.",
+    "cameraReconnecting": "أهلاً بعودتك — كاميرتك جاي تتصل مرة ثانية"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

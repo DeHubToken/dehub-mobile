@@ -3664,7 +3664,8 @@
     "unpinTitle": "בטל הצמדה של הודעה",
     "unpinConfirm": "להסיר את ההודעה המוצמדת הזו?",
     "pinMessage": "הודעת קוד PIN",
-    "unpinMessage": "בטל הצמדה של הודעה"
+    "unpinMessage": "בטל הצמדה של הודעה",
+    "jumpToLatest": "מעבר להודעות האחרונות"
   },
   "promptFeed": {
     "headline": "מה תרצה לראות?",
@@ -5477,7 +5478,8 @@
     "streamPausedReconnecting": "הזרם שלך מושהה. מתחבר מחדש...",
     "streamWillEnd": "הסטרימינג יסתיים אם לא יתחבר מחדש",
     "endStreamConfirmTitle": "לסיים את הסטרימינג?",
-    "endStreamConfirmBody": "הסגירה תסיים את השידור החי שלכם לכל הצופים. אפשר להמשיך בסטרימינג או לסיים אותו לצמיתות."
+    "endStreamConfirmBody": "הסגירה תסיים את השידור החי שלכם לכל הצופים. אפשר להמשיך בסטרימינג או לסיים אותו לצמיתות.",
+    "cameraReconnecting": "ברוכים השבים — המצלמה מתחברת מחדש"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

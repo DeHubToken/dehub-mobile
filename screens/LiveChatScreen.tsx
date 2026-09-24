@@ -161,6 +161,9 @@ const LiveChatScreen: React.FC = () => {
   }>({ visible: false, title: "", confirmText: "", confirmKind: "primary", onConfirm: () => {} });
   const flatListRef = useRef<FlatList>(null);
   const isAtBottomRef = useRef(true);
+  // Mirrors isAtBottomRef for the jump-to-latest button: a ref alone never
+  // re-renders, so scrolling up did not show the button until something else did.
+  const [atBottom, setAtBottom] = useState(true);
   const prevMessageCountRef = useRef(0);
   const messagesRef = useRef<LiveChatMessageData[]>([]);
   messagesRef.current = messages;
@@ -251,7 +254,10 @@ const LiveChatScreen: React.FC = () => {
       const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
       scrollOffsetRef.current = contentOffset.y;
       const distanceFromBottom = contentSize.height - layoutMeasurement.height - contentOffset.y;
-      isAtBottomRef.current = distanceFromBottom < 120;
+      const nextAtBottom = distanceFromBottom < 120;
+      // Same-value sets bail out in React, so this re-renders only on a flip.
+      setAtBottom(nextAtBottom);
+      isAtBottomRef.current = nextAtBottom;
 
       // Load more when scrolled near top (not during initial setup)
       if (hasInitialScrolledRef.current && contentOffset.y < 100 && hasMore && !loadingMore) {
@@ -793,9 +799,11 @@ const LiveChatScreen: React.FC = () => {
           }}
         />
 
-        {!isAtBottomRef.current && messages.length > 10 && (
+        {!atBottom && messages.length > 10 && (
           <TouchableOpacity
             onPress={() => scrollToBottom()}
+            accessibilityRole="button"
+            accessibilityLabel={t("liveChat.jumpToLatest")}
             className="absolute right-4"
             style={{ bottom: composerHeight + inputLift + 12 }}
             activeOpacity={0.7}

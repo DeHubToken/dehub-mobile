@@ -3663,7 +3663,8 @@
     "unpinTitle": "Çaktivizo mesazhin",
     "unpinConfirm": "Do ta heqësh këtë mesazh të mbërthyer?",
     "pinMessage": "Mesazhi PIN",
-    "unpinMessage": "Çaktivizo mesazhin"
+    "unpinMessage": "Çaktivizo mesazhin",
+    "jumpToLatest": "Kalo te mesazhet e fundit"
   },
   "promptFeed": {
     "headline": "Çfarë do të shohësh?",
@@ -5476,7 +5477,8 @@
     "streamPausedReconnecting": "Rrjedha jote është ndërprerë. Po rilidhet...",
     "streamWillEnd": "Rrjedha do të përfundojë nëse nuk rilidhet",
     "endStreamConfirmTitle": "End Stream?",
-    "endStreamConfirmBody": "Mbyllja tani do të përfundojë transmetimin direkt për të gjithë shikuesit. Mund të vazhdosh transmetimin ose ta përfundosh përgjithmonë."
+    "endStreamConfirmBody": "Mbyllja tani do të përfundojë transmetimin direkt për të gjithë shikuesit. Mund të vazhdosh transmetimin ose ta përfundosh përgjithmonë.",
+    "cameraReconnecting": "Mirë se u ktheve — kamera jote po rilidhet"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

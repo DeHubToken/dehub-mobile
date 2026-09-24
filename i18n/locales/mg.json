@@ -3685,7 +3685,8 @@
     "unpinTitle": "Hafatra tsy voafaritra",
     "unpinConfirm": "Hametra-panontaniana mikasika izany hafatra izany ve aho?",
     "pinMessage": "Hafatra PIN",
-    "unpinMessage": "Filazana tsy misy dikany"
+    "unpinMessage": "Filazana tsy misy dikany",
+    "jumpToLatest": "Handeha any amin'ny hafatra farany"
   },
   "promptFeed": {
     "headline": "Inona no tianao hojerena?",
@@ -5498,7 +5499,8 @@
     "streamPausedReconnecting": "Miato ny rindrinao. Averina mifandray...",
     "streamWillEnd": "Hifarana ny fandefasana raha tsy tafapetraka",
     "endStreamConfirmTitle": "Tapitra ny riaka?",
-    "endStreamConfirmBody": "Ny fikatonanao izao dia hamarana ny fitohizanao mivantana ho an'ny mpijery rehetra. Azonao atao ny manohy mandefa ny rindrankajy na mamarana azy tanteraka."
+    "endStreamConfirmBody": "Ny fikatonanao izao dia hamarana ny fitohizanao mivantana ho an'ny mpijery rehetra. Azonao atao ny manohy mandefa ny rindrankajy na mamarana azy tanteraka.",
+    "cameraReconnecting": "Tonga soa indray — ny fakan-tsary dia reonnecting"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -3662,7 +3662,8 @@
     "unpinTitle": "إلغاء تثبيت الرسالة",
     "unpinConfirm": "إزالة هذه الرسالة المثبتة؟",
     "pinMessage": "تثبيت الرسالة",
-    "unpinMessage": "إلغاء تثبيت الرسالة"
+    "unpinMessage": "إلغاء تثبيت الرسالة",
+    "jumpToLatest": "ارجع لآخر رسالة"
   },
   "promptFeed": {
     "headline": "داير تشوف شنو؟",
@@ -5475,7 +5476,8 @@
     "streamPausedReconnecting": "تم إيقاف البث مؤقتًا. جاري إعادة الاتصال...",
     "streamWillEnd": "سينتهي البث إذا لم تتم إعادة الاتصال",
     "endStreamConfirmTitle": "إنهاء البث؟",
-    "endStreamConfirmBody": "الإغلاق الآن سينهي بثك المباشر لجميع المشاهدين. يمكنك متابعة البث أو إنهائه بشكل دائم."
+    "endStreamConfirmBody": "الإغلاق الآن سينهي بثك المباشر لجميع المشاهدين. يمكنك متابعة البث أو إنهائه بشكل دائم.",
+    "cameraReconnecting": "مرحباً بعودتك — الكاميرا بتاعتك بتعيد الاتصال"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

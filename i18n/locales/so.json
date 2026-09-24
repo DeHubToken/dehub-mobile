@@ -3662,7 +3662,8 @@
     "unpinTitle": "Farriinta Unpin",
     "unpinConfirm": "Ka saar fariintan qaawan?",
     "pinMessage": "Fariin PIN ah",
-    "unpinMessage": "Fariin Unpin ah"
+    "unpinMessage": "Fariin Unpin ah",
+    "jumpToLatest": "Ku bood fariimaha ugu dambeeyay"
   },
   "promptFeed": {
     "headline": "Maxaad rabtaa inaad aragto?",
@@ -5474,7 +5475,8 @@
     "streamPausedReconnecting": "Durdurkaaga waa la joojiyay dib u soo celinta...",
     "streamWillEnd": "Daadku wuu dhammaan doonaa haddii aan dib loo xirin",
     "endStreamConfirmTitle": "Dhammaadka Stream?",
-    "endStreamConfirmBody": "Xiritaanka hadda waxay soo afjari doontaa qulqulka tooska ah ee dhammaan daawadayaasha. Waad sii wadi kartaa qulqulka ama si joogto ah ayaad u joojin kartaa."
+    "endStreamConfirmBody": "Xiritaanka hadda waxay soo afjari doontaa qulqulka tooska ah ee dhammaan daawadayaasha. Waad sii wadi kartaa qulqulka ama si joogto ah ayaad u joojin kartaa.",
+    "cameraReconnecting": "Ku soo dhawow dib — kamaraddaada ayaa dib u xiraysa"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

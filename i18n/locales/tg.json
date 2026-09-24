@@ -3661,7 +3661,8 @@
     "unpinTitle": "Ахбороти Бекоркунӣ",
     "unpinConfirm": "Нест кардани ин иттилооти пинҳонӣ?",
     "pinMessage": "Иттилооти PIN",
-    "unpinMessage": "Undo-type"
+    "unpinMessage": "Undo-type",
+    "jumpToLatest": "Гузаштан ба иттилооти охирин"
   },
   "promptFeed": {
     "headline": "Шумо чиро дидан мехоҳед?",
@@ -5473,7 +5474,8 @@
     "streamPausedReconnecting": "Ҷараёни шумо боздошта шуд. Аз нав пайвастшавӣ...",
     "streamWillEnd": "Агар пайваст нашуда бошад, ҷараён ба итмом мерасад",
     "endStreamConfirmTitle": "Хотимаи ҷараён?",
-    "endStreamConfirmBody": "Ipinapabukas ngayon ang iyong live stream para sa lahat ng mga tingnan. Шумо метавонед ҷараёнро идома диҳед ё онро ба таври доимӣ ба итмом расонед."
+    "endStreamConfirmBody": "Ipinapabukas ngayon ang iyong live stream para sa lahat ng mga tingnan. Шумо метавонед ҷараёнро идома диҳед ё онро ба таври доимӣ ба итмом расонед.",
+    "cameraReconnecting": "Welcome back — ang iyong camera ay muling pag-uugnay"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",
