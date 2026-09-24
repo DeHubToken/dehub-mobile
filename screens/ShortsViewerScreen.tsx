@@ -61,6 +61,7 @@ import PictureInPictureButton from "../components/common/PictureInPictureButton"
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../libs/audioSession";
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { useScrubGesture } from "../hooks/useScrubGesture";
+import { useDataSaver } from "../hooks/useDataSaver";
 import { feedVolumeResponder } from "../libs/feed-volume-responder";
 import { getVolume, setVolume as persistVolume } from "../libs/video-preferences";
 import { LinearGradient } from "expo-linear-gradient";
@@ -533,7 +534,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   const isActiveRef = useRef(isActive);
   isActiveRef.current = isActive;
 
-  const player = useVideoPlayer(videoUrl || null, (p) => {
+  // The list keeps a neighbour either side mounted, and each one's player
+  // starts buffering as soon as it has a source. Under data saver only the
+  // short being watched gets one, so swiping past costs nothing extra.
+  const { liteMode } = useDataSaver();
+  const playerSource = liteMode && !isActive ? null : videoUrl || null;
+
+  const player = useVideoPlayer(playerSource, (p) => {
     p.staysActiveInBackground = isActive;
     p.showNowPlayingNotification = isActive;
     p.loop = true;
@@ -2289,9 +2296,10 @@ const styles = StyleSheet.create({
     zIndex: 8,
   },
   scrubHitArea: {
-    // The line is 2pt; the finger gets 24. The top 8 of those sit under the
-    // bottom stack, which is rendered after this and so takes them back.
-    height: 24,
+    // The line is 2pt; the finger gets 28. The bottom stack starts 16 up, so
+    // the top 12 overlap the action cells — exactly the empty padding under
+    // their 20pt icons in a 44pt cell. Any taller and it eats the buttons.
+    height: 28,
     justifyContent: "flex-end",
     paddingHorizontal: EDGE,
     paddingBottom: 6,

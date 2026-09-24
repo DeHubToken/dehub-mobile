@@ -303,6 +303,19 @@ const FullscreenVideoScreen = () => {
       }
     });
 
+  // Drag-to-scrub on the progress track. The track lives in the controls
+  // overlay, outside the swipe-to-dismiss detector, so the two never compete;
+  // failOffsetY lets a vertical swipe that starts on the track fall through.
+  const scrubGesture = Gesture.Pan()
+    .activeOffsetX([-6, 6])
+    .failOffsetY([-15, 15])
+    .onStart((e) => {
+      runOnJS(handleSeek)(e.x);
+    })
+    .onUpdate((e) => {
+      runOnJS(handleSeek)(e.x);
+    });
+
   const animContainer = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
   }));
@@ -410,8 +423,10 @@ const FullscreenVideoScreen = () => {
             {videoDuration > 0 && (
               <View style={styles.progressRow}>
                 <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
+                <GestureDetector gesture={scrubGesture}>
+                <Animated.View style={styles.progressTrack}>
                 <Pressable
-                  style={styles.progressTrack}
+                  style={styles.progressTrackPress}
                   onPress={(e) => handleSeek(e.nativeEvent.locationX)}
                   onLayout={(e) => { progressTrackWidthRef.current = e.nativeEvent.layout.width; }}
                   accessibilityRole="adjustable"
@@ -423,6 +438,8 @@ const FullscreenVideoScreen = () => {
                     <View style={[styles.progressThumb, { left: `${progressPercent}%`, marginLeft: -8 }]} />
                   </View>
                 </Pressable>
+                </Animated.View>
+                </GestureDetector>
                 <Text style={styles.timeText}>{formatTime(videoDuration)}</Text>
               </View>
             )}
@@ -508,7 +525,11 @@ const styles = StyleSheet.create({
   },
   progressTrack: {
     flex: 1,
-    height: 24,
+    height: 32,
+    justifyContent: "center",
+  },
+  progressTrackPress: {
+    height: 32,
     justifyContent: "center",
   },
   progressTrackInner: {
