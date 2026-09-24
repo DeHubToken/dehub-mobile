@@ -4530,7 +4530,10 @@
     "shopAffiliateHint": "I be se ka taga yɔrɔ o yɔrɔ, i be se ka taga yɔrɔ o yɔrɔ.",
     "shopInvalidUrl": "O tɛ komi web site dɔ.",
     "pillFailedRetry": "O kɔ, a ye n' ka soow lɔ.",
-    "pillFailedNoRetries": "Fanga t'a la: Fanga t'a la"
+    "pillFailedNoRetries": "Fanga t'a la: Fanga t'a la",
+    "uploadInProgressStay": "I ka baara be to ka taga. Aw ka to ka filɛli kɛ fɔɔ a ka ban.",
+    "removeUploadTitle": "Yala i be se ka o yɛlɛkow bɛɛ bɔ yen wa?",
+    "removeQueuedBody": "Nka, a ka sɛbɛri ma bɔ fɔlɔ. O kama, a tun man kan ka to ka to ka baara kɛ."
   },
   "bounty": {
     "claimed": "A tara",

@@ -4549,7 +4549,10 @@
     "pillDefaultTitle": "Učitaj",
     "pillA11yFailed": "Učitavanje nije uspjelo, proširi status učitavanja",
     "pillA11yProgress": "Učitavanje {{percent}}%, proširi status učitavanja",
-    "pillMinimize": "Minimiziraj status učitavanja"
+    "pillMinimize": "Minimiziraj status učitavanja",
+    "uploadInProgressStay": "Prijenos je i dalje u tijeku. Ostanite na ovom zaslonu dok ne završi.",
+    "removeUploadTitle": "Želite li ukloniti ovaj prijenos?",
+    "removeQueuedBody": "Još nije objavljen. Uklanjanjem se objava poništava."
   },
   "bounty": {
     "claimed": "Preuzeto",

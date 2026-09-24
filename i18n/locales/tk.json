@@ -4546,7 +4546,10 @@
     "pillDefaultTitle": "Ýüklemek",
     "pillA11yFailed": "Ýüklemek başa bar/−dy, ýüklemek ýagdaýyny giňeltmek",
     "pillA11yProgress": "Ýüklemek {{percent}}% tamamlandy, ýüklemek ýagdaýyny giňeltmek",
-    "pillMinimize": "Ýüklemek ýagdaýyny kiçeltmek"
+    "pillMinimize": "Ýüklemek ýagdaýyny kiçeltmek",
+    "uploadInProgressStay": "Siziň ýüküňiz henizem dowam edýär. Ol tamamlanýança, bu ekranda gal.",
+    "removeUploadTitle": "Bu ýüküni aýyrmak üçin näme etmeli?",
+    "removeQueuedBody": "Emma heniz çap edilmedi. Men bu posty ýitirip bilerin."
   },
   "bounty": {
     "claimed": "Alyndy",

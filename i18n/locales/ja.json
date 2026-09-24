@@ -4595,7 +4595,10 @@
     "pillDefaultTitle": "アップロード",
     "pillA11yFailed": "アップロードに失敗しました。アップロード状況を展開してください。",
     "pillA11yProgress": "アップロード {{percent}}% 完了。アップロード状況を展開してください。",
-    "pillMinimize": "アップロード状況を最小化"
+    "pillMinimize": "アップロード状況を最小化",
+    "uploadInProgressStay": "アップロードはまだ完了していません。 終了するまでこの画面にとどまります。",
+    "removeUploadTitle": "このアップロードを削除しますか？",
+    "removeQueuedBody": "まだ投稿されていません。 削除すると、投稿はキャンセルされます。"
   },
   "bounty": {
     "claimed": "受け取り済み",

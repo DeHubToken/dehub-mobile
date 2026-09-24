@@ -306,21 +306,23 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
         style={{ flex: 1 }}
       >
       <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose} />
-      <Animated.View
-        style={[styles.sheet, { height: sheetHeight }]}
-        {...responder.panHandlers}
-      >
-        {/* Handle bar */}
-        <View style={styles.handleBar}>
-          <View style={styles.handle} />
-        </View>
+      <Animated.View style={[styles.sheet, { height: sheetHeight }]}>
+        {/* Only the handle + header drag the sheet; on the whole sheet the
+            responder claimed every vertical move, so scrolling the results
+            resized or closed it. */}
+        <View {...responder.panHandlers}>
+          {/* Handle bar */}
+          <View style={styles.handleBar}>
+            <View style={styles.handle} />
+          </View>
 
-        {/* Header */}
-        <View style={styles.header}>
-          <Text style={styles.title}>{t("upload.addSound")}</Text>
-          <TouchableOpacity onPress={onClose} hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}>
-            <Ionicons name="close" size={24} color="#fff" />
-          </TouchableOpacity>
+          {/* Header */}
+          <View style={styles.header}>
+            <Text style={styles.title}>{t("upload.addSound")}</Text>
+            <TouchableOpacity onPress={onClose} hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}>
+              <Ionicons name="close" size={24} color="#fff" />
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* Search */}

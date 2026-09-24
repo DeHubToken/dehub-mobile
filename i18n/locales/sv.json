@@ -4553,7 +4553,10 @@
     "pillDefaultTitle": "Ladda upp",
     "pillA11yFailed": "Uppladdning misslyckades, expandera uppladdningsstatus",
     "pillA11yProgress": "Ladda upp {{percent}}% klar, expandera uppladdningsstatus",
-    "pillMinimize": "Minimera uppladdningsstatus"
+    "pillMinimize": "Minimera uppladdningsstatus",
+    "uploadInProgressStay": "Din uppladdning pågår fortfarande. Stanna på den här skärmen tills den är klar.",
+    "removeUploadTitle": "Ta bort denna uppladdning?",
+    "removeQueuedBody": "Den har inte publicerats ännu. Om du tar bort den avbryts inlägget."
   },
   "bounty": {
     "claimed": "Uttagen",

@@ -4530,7 +4530,10 @@
     "shopInvalidUrl": "Dat one no resemble web address.",
     "shopAllowanceUsed": "{{allowance}} for {{allowance}} don use. Stake more DHB mek you get higher badge and another slot.",
     "pillFailedRetry": "E fail · Tap mek you try again",
-    "pillFailedNoRetries": "E fail · No retry remain"
+    "pillFailedNoRetries": "E fail · No retry remain",
+    "uploadInProgressStay": "Your upload still dey go. Stay for this screen make e finish.",
+    "removeQueuedBody": "E no post yet. If you remove am, the post go cancel.",
+    "removeUploadTitle": "Remove dis upload?"
   },
   "bounty": {
     "claimed": "Don claim",

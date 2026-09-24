@@ -4549,7 +4549,10 @@
     "pillA11yFailed": "Ìfipamọ́ àwòrán kò ṣe é ṣe, ṣí sí i láti rí ipò ìfipamọ́",
     "pillA11yProgress": "Ìfipamọ́ {{percent}}% parí, ṣí sí i láti rí ipò ìfipamọ́",
     "pillMinimize": "Sọ ipò ìfipamọ́ di kékeré",
-    "createCategory": "Ṣẹ̀dá \"{{name}}\""
+    "createCategory": "Ṣẹ̀dá \"{{name}}\"",
+    "uploadInProgressStay": "Ìgbóhùn rẹ ṣì ń lọ. Dúró lórí mànàárà yìí títí yóò fi parí.",
+    "removeUploadTitle": "Yọ àkójọpọ̀ yìí kúrò?",
+    "removeQueuedBody": "A kò tí ì gbé e jáde. Yíyọ kúrò yóò fagilé ìfiránṣẹ́ náà."
   },
   "bounty": {
     "claimed": "Ti gbà",

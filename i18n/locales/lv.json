@@ -4549,7 +4549,10 @@
     "pillDefaultTitle": "Augšupielādēt",
     "pillA11yFailed": "Augšupielāde neizdevās, izvērst augšupielādes statusu",
     "pillA11yProgress": "Augšupielāde {{percent}}% pabeigta, izvērst augšupielādes statusu",
-    "pillMinimize": "Minimizēt augšupielādes statusu"
+    "pillMinimize": "Minimizēt augšupielādes statusu",
+    "uploadInProgressStay": "Augšupielāde joprojām tiek veikta. Palieciet šajā ekrānā, līdz tas ir pabeigts.",
+    "removeUploadTitle": "Vai noņemt šo augšupielādi?",
+    "removeQueuedBody": "Tas vēl nav publicēts. Noņemot ziņu, tā tiek atcelta."
   },
   "bounty": {
     "claimed": "Saņemts",

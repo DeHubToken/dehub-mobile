@@ -4553,7 +4553,10 @@
     "pillDefaultTitle": "Feltöltés",
     "pillA11yFailed": "Feltöltés sikertelen, bontsd ki a feltöltési állapotot",
     "pillA11yProgress": "Feltöltés {{percent}}%-a kész, bontsd ki a feltöltési állapotot",
-    "pillMinimize": "Feltöltési állapot minimalizálása"
+    "pillMinimize": "Feltöltési állapot minimalizálása",
+    "uploadInProgressStay": "A feltöltés még folyamatban van. Maradj ezen a képernyőn, amíg be nem fejeződik.",
+    "removeUploadTitle": "Eltávolítod ezt a feltöltést?",
+    "removeQueuedBody": "Még nincs közzétéve. Az eltávolítás törli a bejegyzést."
   },
   "bounty": {
     "claimed": "Igényelve",

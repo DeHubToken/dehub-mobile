@@ -4602,7 +4602,10 @@
     "pillDefaultTitle": "Télécharger",
     "pillA11yFailed": "Échec du téléchargement, développer le statut du téléchargement",
     "pillA11yProgress": "Téléchargement {{percent}}% terminé, développer le statut du téléchargement",
-    "pillMinimize": "Réduire le statut du téléchargement"
+    "pillMinimize": "Réduire le statut du téléchargement",
+    "uploadInProgressStay": "Votre téléchargement est toujours en cours. Restez sur cet écran jusqu'à ce qu'il se termine.",
+    "removeUploadTitle": "Supprimer ce téléversement ?",
+    "removeQueuedBody": "Il n'a pas encore été publié. Si vous le supprimez, la publication est annulée."
   },
   "bounty": {
     "claimed": "Réclamé",

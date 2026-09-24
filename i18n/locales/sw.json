@@ -4550,7 +4550,10 @@
     "pillDefaultTitle": "Pakia",
     "pillA11yFailed": "Upakiaji umeshindwa, panua hali ya upakiaji",
     "pillA11yProgress": "Pakia {{percent}}% imekamilika, panua hali ya upakiaji",
-    "pillMinimize": "Punguza hali ya upakiaji"
+    "pillMinimize": "Punguza hali ya upakiaji",
+    "uploadInProgressStay": "Upakiaji wako bado unaendelea. Kaa kwenye skrini hii hadi itakapomaliza.",
+    "removeUploadTitle": "Ondoa upakiaji huu?",
+    "removeQueuedBody": "Bado haijachapishwa. Kuiondoa inaghairi chapisho."
   },
   "bounty": {
     "claimed": "Imedaiwa",

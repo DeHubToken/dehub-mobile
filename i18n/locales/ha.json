@@ -4549,7 +4549,10 @@
     "pillDefaultTitle": "Loda",
     "pillA11yFailed": "An kasa loda shi, faɗaɗa matsayin loda",
     "pillA11yProgress": "Loda {{percent}}% cikakke, faɗaɗa matsayin loda",
-    "pillMinimize": "Ƙananan matsayin loda"
+    "pillMinimize": "Ƙananan matsayin loda",
+    "uploadInProgressStay": "Your upload ne har yanzu tafi. Tsaya a kan wannan allon har sai ya gama.",
+    "removeUploadTitle": "Cire wannan loda?",
+    "removeQueuedBody": "Ba a sanya shi ba tukuna. Cire shi soke post."
   },
   "bounty": {
     "claimed": "An karɓa",

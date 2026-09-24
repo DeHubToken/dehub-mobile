@@ -4578,7 +4578,10 @@
     "pillDefaultTitle": "Kargay",
     "pillA11yFailed": "Kargayqa manam atirqanchu, kargaypa kayninta mast&#39;ariy",
     "pillA11yProgress": "{{percent}}% hunt&#39;asqata apachiy, kargasqa kayninta mast&#39;ariy",
-    "pillMinimize": "Kargasqa kayninta pisiyachiy"
+    "pillMinimize": "Kargasqa kayninta pisiyachiy",
+    "uploadInProgressStay": "Cargasqaykiqa purichkanraqmi. Kay pantallapi qhipakuy tukunankama.",
+    "removeUploadTitle": "¿Kay kargata hurquy?",
+    "removeQueuedBody": "Manaraqmi churasqachu. Chayta hurquspaqa chay qillqasqata chinkachin."
   },
   "bounty": {
     "claimed": "Chaskisqa",

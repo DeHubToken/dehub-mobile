@@ -4433,7 +4433,10 @@
     "pillDefaultTitle": "بارکردن",
     "pillA11yFailed": "بارکردن شکستی هێنا، بارکردنەکە فراوان بکە",
     "pillA11yProgress": "بارکردن {{percent}}% تەواو بوو، بارکردنەکە فراوان بکە",
-    "pillMinimize": "کەمکردنەوەی بارکردن"
+    "pillMinimize": "کەمکردنەوەی بارکردن",
+    "uploadInProgressStay": "Barkirina te hîn didome. Heta ku biqede li ser vê ekranê bimîne.",
+    "removeUploadTitle": "Vê barkirinê rake?",
+    "removeQueuedBody": "Hîn nehatiye weşandin. Rakirina wê weşanê betal dike."
   },
   "bounty": {
     "claimed": "Hate wergirtin",

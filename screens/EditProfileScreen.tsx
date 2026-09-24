@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState, useEffect } from "react";
+import React, { useCallback, useMemo, useRef, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useGateToHome } from "../hooks/useGateToHome";
 import {
@@ -29,6 +29,7 @@ import { AuthService } from "../services/auth.service";
 import { toastError, toastSuccess } from "../libs/toast";
 import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
+import { useScrollFieldIntoView } from "../hooks/useScrollFieldIntoView";
 import { useDebounceCallback } from "../hooks/useDebounceCallback";
 import { validateSocial } from "../libs/links.utils";
 import { isReservedUsername } from "../libs/reserved-usernames";
@@ -69,6 +70,11 @@ const EditProfileScreen = () => {
   // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
   // root SafeAreaView already spent.
   const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  // The social-link rows are the last thing on a long form; focusing one
+  // raised the keyboard straight over it. Each row (link + follower count) is
+  // scrolled clear of the keyboard when either of its inputs takes focus.
+  const { scrollViewProps, scrollIntoView } = useScrollFieldIntoView();
+  const socialRowRefs = useRef<Record<string, View | null>>({});
   const navigation = useNavigation<any>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -399,8 +405,8 @@ const EditProfileScreen = () => {
         style={{ flex: 1 }}
       >
         <ScrollView
+          {...scrollViewProps}
           contentContainerStyle={{ paddingBottom: 40 }}
-          keyboardShouldPersistTaps="handled"
           keyboardDismissMode="on-drag"
         >
           <View className="px-4">
@@ -533,7 +539,10 @@ const EditProfileScreen = () => {
                   const linked = field.value.trim().length > 0;
                   const followersLabel = t("settings.socialFollowers", { platform: field.label });
                   return (
-                    <View key={field.key}>
+                    <View
+                      key={field.key}
+                      ref={(node) => { socialRowRefs.current[field.key] = node; }}
+                    >
                       <View
                         className={`flex-row items-center bg-theme-neutrals-900 rounded-xl border ${
                           hasError ? "border-white/20" : "border-theme-neutrals-700"
@@ -558,6 +567,7 @@ const EditProfileScreen = () => {
                             // so clearing the link retires the count with it.
                             if (!val.trim()) setFollowerInput(field.reach, "");
                           }}
+                          onFocus={() => scrollIntoView(socialRowRefs.current[field.key] ?? null)}
                           autoCapitalize="none"
                         />
                       </View>
@@ -570,6 +580,7 @@ const EditProfileScreen = () => {
                           editable={linked}
                           keyboardType="number-pad"
                           onChangeText={(val) => setFollowerInput(field.reach, val)}
+                          onFocus={() => scrollIntoView(socialRowRefs.current[field.key] ?? null)}
                           accessibilityLabel={followersLabel}
                         />
                         <Text className="flex-1 text-neutral-400 text-xs ml-3" numberOfLines={2}>

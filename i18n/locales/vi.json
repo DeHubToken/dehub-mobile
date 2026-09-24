@@ -4562,7 +4562,10 @@
     "pillDefaultTitle": "Tải lên",
     "pillA11yFailed": "Tải lên thất bại, mở rộng trạng thái tải lên",
     "pillA11yProgress": "Tải lên {{percent}}% hoàn thành, mở rộng trạng thái tải lên",
-    "pillMinimize": "Thu nhỏ trạng thái tải lên"
+    "pillMinimize": "Thu nhỏ trạng thái tải lên",
+    "uploadInProgressStay": "Quá trình tải lên của bạn vẫn đang diễn ra. Ở lại trên màn hình này cho đến khi màn hình kết thúc.",
+    "removeUploadTitle": "Xóa nội dung tải lên này?",
+    "removeQueuedBody": "Nó chưa được đăng. Xóa bài đăng sẽ hủy bài đăng."
   },
   "bounty": {
     "claimed": "Đã nhận",

@@ -45,7 +45,7 @@ import { isShortOfMintFee } from "../services/mint.service";
 import { getPostQuota, quotePostCharge } from "../services/post-quota.service";
 import type { PostQuotaStatus } from "../services/post-quota.service";
 import { defaultChainId } from "../config/constants";
-import { toastError, toastSuccess, toastWithAction } from "../libs/toast";
+import { toastError, toastInfo, toastSuccess, toastWithAction } from "../libs/toast";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { useUser, useAuthActions, useProvider } from "../context/AuthContext";
 import { useBannedAccount } from "../hooks/useBannedAccount";
@@ -959,7 +959,12 @@ export default function UploadScreen() {
   // Intercept Android back button (uses activeIsUploading, i.e. live mode only)
   useEffect(() => {
     const sub = BackHandler.addEventListener("hardwareBackPress", () => {
-      if (activeIsUploading) return true; // prevent closing during upload
+      // Leaving would drop the live upload; say why back did nothing instead
+      // of swallowing the press silently.
+      if (activeIsUploading) {
+        toastInfo(t("upload.uploadInProgressStay"));
+        return true;
+      }
       if (formHasContent) {
         setShowDiscardModal(true);
         return true;

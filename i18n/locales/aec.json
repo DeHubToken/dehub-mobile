@@ -4547,7 +4547,10 @@
     "pillDefaultTitle": "رفع",
     "pillA11yFailed": "فشل الرفع، وسّع حالة الرفع",
     "pillA11yProgress": "رفع {{percent}}% مكتمل، وسّع حالة الرفع",
-    "pillMinimize": "صغّر حالة الرفع"
+    "pillMinimize": "صغّر حالة الرفع",
+    "uploadInProgressStay": "التحميل بتاعك لسه شغال. خليك على الشاشة دي لحد ما يخلص.",
+    "removeUploadTitle": "تمسح التحميل ده؟",
+    "removeQueuedBody": "لسه ما اتنشرش. مسحه بيلغي النشر."
   },
   "bounty": {
     "claimed": "اتسلم",

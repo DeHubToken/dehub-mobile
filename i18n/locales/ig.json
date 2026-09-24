@@ -4549,7 +4549,10 @@
     "pillDefaultTitle": "Budata",
     "pillA11yFailed": "Nbudata dara, gbasaa ọkwa nbudata",
     "pillA11yProgress": "Budata {{percent}}%, mezue, gbasaa ọkwa nbudata",
-    "pillMinimize": "Belata ọkwa nbudata"
+    "pillMinimize": "Belata ọkwa nbudata",
+    "uploadInProgressStay": "Mbugo gị ka na-aga. Nọrọ na ihuenyo a ruo mgbe ọ gwụchara.",
+    "removeUploadTitle": "Wepụ ebugo a?",
+    "removeQueuedBody": "E bipụtabeghị ya. Iwepụ ya kagburu post ahụ."
   },
   "bounty": {
     "claimed": "Anatala",

@@ -4548,7 +4548,10 @@
     "pillDefaultTitle": "Tukuake",
     "pillA11yFailed": "Kua rahua te tuku, whakawhānuitia te tūnga tukuake",
     "pillA11yProgress": "Tukuake {{percent}}% kua oti, whakawhānuitia te tūnga tukuake",
-    "pillMinimize": "Whakaitihia te tūnga tukuake"
+    "pillMinimize": "Whakaitihia te tūnga tukuake",
+    "uploadInProgressStay": "Kei te haere tonu to tuku. Kia mau ki runga ki tenei mata kia mutu ra ano.",
+    "removeUploadTitle": "Tangohia tenei tuku?",
+    "removeQueuedBody": "Kaore ano kia whakaputaina. Ka whakakorea e ia te pou."
   },
   "bounty": {
     "claimed": "Kua tonoa",

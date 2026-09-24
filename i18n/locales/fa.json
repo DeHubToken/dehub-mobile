@@ -4577,7 +4577,10 @@
     "pillDefaultTitle": "آپلود",
     "pillA11yFailed": "آپلود ناموفق بود، وضعیت آپلود را گسترش دهید",
     "pillA11yProgress": "آپلود {{percent}}% کامل شد، وضعیت آپلود را گسترش دهید",
-    "pillMinimize": "حداقل کردن وضعیت آپلود"
+    "pillMinimize": "حداقل کردن وضعیت آپلود",
+    "uploadInProgressStay": "آپلود شما هنوز ادامه دارد. تا پایان، در این صفحه بمانید.",
+    "removeUploadTitle": "این آپلود را حذف کنید؟",
+    "removeQueuedBody": "هنوز پست نشده است. حذف آن، پست را لغو می‌کند."
   },
   "bounty": {
     "claimed": "دریافت‌شده",

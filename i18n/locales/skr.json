@@ -4517,7 +4517,10 @@
     "pillDefaultTitle": "اپلوڈ",
     "pillA11yFailed": "اپلوڈ ناکام، اپلوڈ دی حالت کھولھو",
     "pillA11yProgress": "اپلوڈ {{percent}}% مکمل، اپلوڈ دی حالت کھولھو",
-    "pillMinimize": "اپلوڈ دی حالت گھٹ کرو"
+    "pillMinimize": "اپلوڈ دی حالت گھٹ کرو",
+    "uploadInProgressStay": "تہاݙا اپ لوڈ ہݨ وی جاری ہے۔ مکمل تھیوݨ تئیں ایں سکرین تے راہوو۔",
+    "removeUploadTitle": "ایہ اپ لوڈ ہٹاوو؟",
+    "removeQueuedBody": "ایہ ہݨ تئیں پوسٹ کائنی تھیا۔ ایکوں ہٹاوݨ نال پوسٹ منسوخ تھی ویسی۔"
   },
   "bounty": {
     "claimed": "حاصل تھی ڳیا",

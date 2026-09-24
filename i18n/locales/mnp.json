@@ -4463,7 +4463,10 @@
     "pillDefaultTitle": "上传",
     "pillA11yFailed": "上传失败，展开上传状态",
     "pillA11yProgress": "上传 {{percent}}% 完成，展开上传状态",
-    "pillMinimize": "最小化上传状态"
+    "pillMinimize": "最小化上传状态",
+    "uploadInProgressStay": "汝个上传犹在进行中。保持在此画面，直到完成。",
+    "removeUploadTitle": "删去此个上传？",
+    "removeQueuedBody": "此个帖子犹未发布。删去就会取消发布。"
   },
   "bounty": {
     "claimed": "已领取",

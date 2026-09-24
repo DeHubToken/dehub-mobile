@@ -4598,7 +4598,10 @@
     "pillDefaultTitle": "Hochladen",
     "pillA11yFailed": "Upload fehlgeschlagen, Upload-Status erweitern",
     "pillA11yProgress": "Upload {{percent}} % abgeschlossen, Upload-Status erweitern",
-    "pillMinimize": "Upload-Status minimieren"
+    "pillMinimize": "Upload-Status minimieren",
+    "uploadInProgressStay": "Ihr Upload läuft noch. Bleiben Sie auf diesem Bildschirm, bis er fertig ist.",
+    "removeUploadTitle": "Diesen Upload entfernen?",
+    "removeQueuedBody": "Es wurde noch nicht veröffentlicht. Wenn du ihn entfernst, wird der Beitrag storniert."
   },
   "bounty": {
     "claimed": "Eingelöst",

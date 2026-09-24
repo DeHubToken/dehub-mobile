@@ -4597,7 +4597,10 @@
     "pillDefaultTitle": "Mag-upload",
     "pillA11yFailed": "Nabigo ang pag-upload, palawakin ang status ng pag-upload",
     "pillA11yProgress": "{{percent}}% kumpleto na ang pag-upload, palawakin ang status ng pag-upload",
-    "pillMinimize": "I-minimize ang status ng pag-upload"
+    "pillMinimize": "I-minimize ang status ng pag-upload",
+    "uploadInProgressStay": "Patuloy pa rin ang iyong pag - upload. Manatili sa screen na ito hanggang sa matapos ito.",
+    "removeUploadTitle": "Alisin ang upload na ito?",
+    "removeQueuedBody": "Hindi pa ito nai - post. Ang pag - aalis nito ay nagkansela ng post."
   },
   "bounty": {
     "claimed": "Nakuha na",

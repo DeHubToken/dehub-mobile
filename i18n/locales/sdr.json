@@ -4563,7 +4563,10 @@
     "pillMinimize": "अपलोड स्थिति कम करें",
     "noAudioPosts": "ابھی تک کوئی آڈیو پوسٹ نہیں",
     "categorySearchPlaceholder": "زمرہ تلاش کریں یا بنائیں",
-    "joinCommunityToPost": "کسی کمیونٹی میں پوسٹ کرنے کے لیے اس میں شامل ہوں۔"
+    "joinCommunityToPost": "کسی کمیونٹی میں پوسٹ کرنے کے لیے اس میں شامل ہوں۔",
+    "uploadInProgressStay": "तोहर अपलोड अभी चलत हे। खतम होवे तक ई स्क्रीन में रहा।",
+    "removeUploadTitle": "ई अपलोड के हटाबा?",
+    "removeQueuedBody": "ई अभी तक पोस्ट नि होय हे। हटाले पोस्ट रद्द होय जाई।"
   },
   "bounty": {
     "claimed": "নেওয়া হইছে",

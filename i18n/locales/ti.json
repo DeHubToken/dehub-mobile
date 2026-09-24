@@ -4512,7 +4512,10 @@
     "pillMinimize": "ናይ ምዕቃብ ኩነታት ንምጥቃቕ",
     "categoryMaxReached": "ዝለዓለ ምብጻሕ",
     "joinCommunityToPost": "ኣብ ሓደ ቦታ ክትጽሕፍ ምስ ማሕበረሰብ ተጸምቢርካ ።",
-    "pillFailedRetry": "ዘይተዓወተ · ንድሕሪት ምምላስ"
+    "pillFailedRetry": "ዘይተዓወተ · ንድሕሪት ምምላስ",
+    "uploadInProgressStay": "እቲ ናይ ምስዋእ ግዜኻ ገና ይቕጽል ኣሎ ። ክሳዕ ዚዛዘም ፡ ኣብዛ ገጽ እዚኣ ተዓጽዩ ።",
+    "removeUploadTitle": "ነዚ መእተዊ እዚ ኣወግዶ ።",
+    "removeQueuedBody": "እቲ ክሲ ኣብ ጽሑፍካ ኣይተቐመጠን ። ነቲ ልኡኽ ኣወግዶ ።"
   },
   "bounty": {
     "claimed": "ተወሲዱ",

@@ -4561,7 +4561,10 @@
     "pillDefaultTitle": "Ol ka'uu",
     "pillA11yFailed": "Ol ka'uu dadhabe, ol ka'uu isaa banuu",
     "pillA11yProgress": "Ol ka'uu {{percent}}% xumurame, ol ka'uu isaa banuu",
-    "pillMinimize": "Ol ka'uu isaa xumuruu"
+    "pillMinimize": "Ol ka'uu isaa xumuruu",
+    "uploadInProgressStay": "Upload keessan ammallee itti fufee jira. Hanga xumuramutti iskiriinii kanarra turaa.",
+    "removeUploadTitle": "Olkaa&#39;uu kana haqi?",
+    "removeQueuedBody": "Hanga ammaatti hin maxxanfamne. Isa balleessuun maxxansa sana haqa."
   },
   "bounty": {
     "claimed": "Fudhatame",

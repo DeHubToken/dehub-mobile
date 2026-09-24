@@ -4810,7 +4810,10 @@
     "pillDefaultTitle": "Muat Naik",
     "pillA11yFailed": "Muat naik gagal, kembangkan status muat naik",
     "pillA11yProgress": "Muat naik {{percent}}% selesai, kembangkan status muat naik",
-    "pillMinimize": "Minimakan status muat naik"
+    "pillMinimize": "Minimakan status muat naik",
+    "uploadInProgressStay": "Muat naik anda masih berjalan. Kekal di skrin ini sehingga ia selesai.",
+    "removeUploadTitle": "Buang muat naik ini?",
+    "removeQueuedBody": "Ia belum disiarkan lagi. Membuangnya membatalkan hantaran."
   },
   "bounty": {
     "claimed": "Telah dituntut",

@@ -4549,7 +4549,10 @@
     "pillDefaultTitle": "Lataa",
     "pillA11yFailed": "Lataus epäonnistui, laajenna latauksen tila",
     "pillA11yProgress": "Lataus {{percent}}% valmis, laajenna latauksen tila",
-    "pillMinimize": "Minimoi latauksen tila"
+    "pillMinimize": "Minimoi latauksen tila",
+    "uploadInProgressStay": "Latauksesi on edelleen käynnissä. Pysy tällä näytöllä, kunnes se on valmis.",
+    "removeUploadTitle": "Poistetaanko tämä lataus?",
+    "removeQueuedBody": "Sitä ei ole vielä julkaistu. Sen poistaminen peruuttaa julkaisun."
   },
   "bounty": {
     "claimed": "Lunastettu",

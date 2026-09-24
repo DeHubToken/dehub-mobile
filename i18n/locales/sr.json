@@ -4512,7 +4512,10 @@
     "stageFinalizing": "Завршавање…",
     "chooseStyle": "Изабери стил",
     "enhance": "Побољшај",
-    "spellCheck": "Провера правописа"
+    "spellCheck": "Провера правописа",
+    "uploadInProgressStay": "Ваше отпремање је још у току. Останите на овом екрану док се не заврши.",
+    "removeUploadTitle": "Уклонити ово отпремање?",
+    "removeQueuedBody": "Још није објављено. Уклањањем ћете отказати објаву."
   },
   "bounty": {
     "claimed": "Преузето",

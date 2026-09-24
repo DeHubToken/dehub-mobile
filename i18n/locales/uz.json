@@ -4559,7 +4559,10 @@
     "pillDefaultTitle": "Yuklash",
     "pillA11yFailed": "Yuklash muvaffaqiyatsiz tugadi, yuklash holatini kengaytiring",
     "pillA11yProgress": "Yuklash {{percent}}% tugallandi, yuklash holatini kengaytiring",
-    "pillMinimize": "Yuklash holatini minimallashtirish"
+    "pillMinimize": "Yuklash holatini minimallashtirish",
+    "uploadInProgressStay": "Yuklash hali ham davom etmoqda. U tugaguncha shu ekranda qoling.",
+    "removeUploadTitle": "Ushbu yuklama olib tashlansinmi?",
+    "removeQueuedBody": "U hali joylashtirilmagan. Uni olib tashlash postni bekor qiladi."
   },
   "bounty": {
     "claimed": "Olindi",

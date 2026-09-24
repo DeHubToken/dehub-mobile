@@ -33,8 +33,6 @@ import {
   ScrollView,
   TextInput,
   ActivityIndicator,
-  Modal,
-  KeyboardAvoidingView,
   Alert,
   Share,
   useWindowDimensions,
@@ -47,6 +45,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
 import Avatar from "../components/common/Avatar";
+import GlassModal from "../components/ui/GlassModal";
 import { runWithPermissions } from "../libs/permissions.util";
 import { toastWarning } from "../libs/toast";
 import { localFileSize } from "../libs/storage-upload";
@@ -631,7 +630,6 @@ const SubmitSheet: React.FC<{
   initialCategory?: FeatureCategory;
 }> = ({ visible, onClose, onSubmit, submitting, initialCategory }) => {
   const { t } = useTranslation();
-  const insets = useSafeAreaInsets();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [device, setDevice] = useState("");
@@ -702,149 +700,144 @@ const SubmitSheet: React.FC<{
   }, [valid, submitting, device, description, title, category, attachments, onSubmit, reset]);
 
   return (
-    <Modal visible={visible} animationType="slide" transparent onRequestClose={handleClose}>
-      <View style={styles.modalBackdrop}>
-        <KeyboardAvoidingView
-          behavior="padding"
-          style={{ width: "100%" }}
-        >
-          <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
-            <View style={styles.sheetHeader}>
-              <Text style={styles.sheetTitle}>{t("features.submitDrawerTitle")}</Text>
-              <Pressable
-                onPress={handleClose}
-                hitSlop={10}
-                style={styles.sheetClose}
-                accessibilityRole="button"
-                accessibilityLabel={t("common.close")}
-              >
-                <Icon name="X" size={16} color="#A1A1AA" />
-              </Pressable>
-            </View>
+    // On the shared drawer so it swipes down to close, closes on a backdrop
+    // tap, and gets the same keyboard handling as every other sheet.
+    <GlassModal visible={visible} onClose={handleClose} presentation="bottom">
+      <View style={styles.sheet}>
+        <View style={styles.sheetHeader}>
+          <Text style={styles.sheetTitle}>{t("features.submitDrawerTitle")}</Text>
+          <Pressable
+            onPress={handleClose}
+            hitSlop={10}
+            style={styles.sheetClose}
+            accessibilityRole="button"
+            accessibilityLabel={t("common.close")}
+          >
+            <Icon name="X" size={16} color="#A1A1AA" />
+          </Pressable>
+        </View>
 
-            <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-              <Text style={styles.fieldLabel}>{t("features.titleLabel")}</Text>
-              <TextInput
-                value={title}
-                onChangeText={(v) => setTitle(v.slice(0, TITLE_MAX))}
-                placeholder={t("features.titlePlaceholder")}
-                placeholderTextColor="#52525B"
-                style={styles.input}
-              />
-              <Text style={styles.counter}>
-                {title.length}/{TITLE_MAX}
-              </Text>
+        <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+          <Text style={styles.fieldLabel}>{t("features.titleLabel")}</Text>
+          <TextInput
+            value={title}
+            onChangeText={(v) => setTitle(v.slice(0, TITLE_MAX))}
+            placeholder={t("features.titlePlaceholder")}
+            placeholderTextColor="#52525B"
+            style={styles.input}
+          />
+          <Text style={styles.counter}>
+            {title.length}/{TITLE_MAX}
+          </Text>
 
-              <Text style={styles.fieldLabel}>{t("features.descriptionLabel")}</Text>
-              <TextInput
-                value={description}
-                onChangeText={(v) => setDescription(v.slice(0, DESC_MAX))}
-                placeholder={t("features.descriptionPlaceholder")}
-                placeholderTextColor="#52525B"
-                multiline
-                style={[styles.input, styles.textarea]}
-              />
-              <Text style={styles.counter}>
-                {description.length}/{DESC_MAX}
-              </Text>
+          <Text style={styles.fieldLabel}>{t("features.descriptionLabel")}</Text>
+          <TextInput
+            value={description}
+            onChangeText={(v) => setDescription(v.slice(0, DESC_MAX))}
+            placeholder={t("features.descriptionPlaceholder")}
+            placeholderTextColor="#52525B"
+            multiline
+            style={[styles.input, styles.textarea]}
+          />
+          <Text style={styles.counter}>
+            {description.length}/{DESC_MAX}
+          </Text>
 
-              <Text style={styles.fieldLabel}>
-                {t("features.deviceLabel", "Device & OS Details (optional)")}
-              </Text>
-              <TextInput
-                value={device}
-                onChangeText={(v) => setDevice(v.slice(0, DEVICE_MAX))}
-                placeholder={t(
-                  "features.devicePlaceholder",
-                  "e.g. iPhone 15 Pro, iOS 18.2 / Samsung S24, Android 15…",
-                )}
-                placeholderTextColor="#52525B"
-                multiline
-                style={[styles.input, styles.textareaSm]}
-              />
-              <Text style={styles.counter}>
-                {device.length}/{DEVICE_MAX}
-              </Text>
+          <Text style={styles.fieldLabel}>
+            {t("features.deviceLabel", "Device & OS Details (optional)")}
+          </Text>
+          <TextInput
+            value={device}
+            onChangeText={(v) => setDevice(v.slice(0, DEVICE_MAX))}
+            placeholder={t(
+              "features.devicePlaceholder",
+              "e.g. iPhone 15 Pro, iOS 18.2 / Samsung S24, Android 15…",
+            )}
+            placeholderTextColor="#52525B"
+            multiline
+            style={[styles.input, styles.textareaSm]}
+          />
+          <Text style={styles.counter}>
+            {device.length}/{DEVICE_MAX}
+          </Text>
 
-              <Text style={styles.fieldLabel}>{t("features.categoryLabel")}</Text>
-              <View style={styles.catWrap}>
-                {CATEGORY_KEYS.map((key) => {
-                  const active = category === key;
-                  return (
-                    <Pressable
-                      key={key}
-                      onPress={() => setCategory(key)}
-                      style={[styles.sheetChip, active && styles.sheetChipActive]}
-                    >
-                      <Text style={[styles.sheetChipText, active && styles.sheetChipTextActive]}>
-                        {t(CATEGORY_I18N[key])}
-                      </Text>
-                    </Pressable>
-                  );
-                })}
-              </View>
-
-              <Text style={styles.fieldLabel}>
-                {t("features.attachLabel", "Attach Images or Videos (optional)")}
-                <Text style={styles.fieldLabelMuted}>
-                  {" "}
-                  — {t("features.upTo", "up to {{max}}", { max: MAX_FEATURE_ATTACHMENTS })}
-                </Text>
-              </Text>
-
-              {attachments.length > 0 && (
-                <View style={styles.pickGrid}>
-                  {attachments.map(({ uri }, i) => (
-                    <View key={`${uri}-${i}`} style={styles.pickTile}>
-                      <Image
-                        source={{ uri }}
-                        style={StyleSheet.absoluteFill}
-                        contentFit="cover"
-                      />
-                      <Pressable
-                        style={styles.pickRemove}
-                        onPress={() => setAttachments((p) => p.filter((_, idx) => idx !== i))}
-                        hitSlop={6}
-                        accessibilityRole="button"
-                        accessibilityLabel={`Remove attachment ${i + 1}`}
-                      >
-                        <Icon name="X" size={12} color="#FFFFFF" />
-                      </Pressable>
-                    </View>
-                  ))}
-                </View>
-              )}
-
-              {attachments.length < MAX_FEATURE_ATTACHMENTS && (
-                <Pressable style={styles.mediaAdd} onPress={pickMedia}>
-                  <Icon name="ImagePlus" size={20} color="#808089" />
-                  <Text style={styles.mediaAddText}>
-                    {attachments.length === 0
-                      ? t("features.clickToUpload", "Tap to upload")
-                      : t("features.addAnother", "Add another")}
+          <Text style={styles.fieldLabel}>{t("features.categoryLabel")}</Text>
+          <View style={styles.catWrap}>
+            {CATEGORY_KEYS.map((key) => {
+              const active = category === key;
+              return (
+                <Pressable
+                  key={key}
+                  onPress={() => setCategory(key)}
+                  style={[styles.sheetChip, active && styles.sheetChipActive]}
+                >
+                  <Text style={[styles.sheetChipText, active && styles.sheetChipTextActive]}>
+                    {t(CATEGORY_I18N[key])}
                   </Text>
                 </Pressable>
-              )}
-            </ScrollView>
-
-            <Pressable
-              onPress={handleSubmit}
-              style={[styles.glassBtn, (!valid || submitting) && styles.disabled]}
-              disabled={!valid || submitting}
-            >
-              {submitting ? (
-                <ActivityIndicator color="#FFFFFF" />
-              ) : (
-                <>
-                  <Icon name="Sparkles" size={16} color="#FFFFFF" />
-                  <Text style={styles.glassBtnText}>{t("features.submitRequest")}</Text>
-                </>
-              )}
-            </Pressable>
+              );
+            })}
           </View>
-        </KeyboardAvoidingView>
+
+          <Text style={styles.fieldLabel}>
+            {t("features.attachLabel", "Attach Images or Videos (optional)")}
+            <Text style={styles.fieldLabelMuted}>
+              {" "}
+              — {t("features.upTo", "up to {{max}}", { max: MAX_FEATURE_ATTACHMENTS })}
+            </Text>
+          </Text>
+
+          {attachments.length > 0 && (
+            <View style={styles.pickGrid}>
+              {attachments.map(({ uri }, i) => (
+                <View key={`${uri}-${i}`} style={styles.pickTile}>
+                  <Image
+                    source={{ uri }}
+                    style={StyleSheet.absoluteFill}
+                    contentFit="cover"
+                  />
+                  <Pressable
+                    style={styles.pickRemove}
+                    onPress={() => setAttachments((p) => p.filter((_, idx) => idx !== i))}
+                    hitSlop={6}
+                    accessibilityRole="button"
+                    accessibilityLabel={`Remove attachment ${i + 1}`}
+                  >
+                    <Icon name="X" size={12} color="#FFFFFF" />
+                  </Pressable>
+                </View>
+              ))}
+            </View>
+          )}
+
+          {attachments.length < MAX_FEATURE_ATTACHMENTS && (
+            <Pressable style={styles.mediaAdd} onPress={pickMedia}>
+              <Icon name="ImagePlus" size={20} color="#808089" />
+              <Text style={styles.mediaAddText}>
+                {attachments.length === 0
+                  ? t("features.clickToUpload", "Tap to upload")
+                  : t("features.addAnother", "Add another")}
+              </Text>
+            </Pressable>
+          )}
+        </ScrollView>
+
+        <Pressable
+          onPress={handleSubmit}
+          style={[styles.glassBtn, (!valid || submitting) && styles.disabled]}
+          disabled={!valid || submitting}
+        >
+          {submitting ? (
+            <ActivityIndicator color="#FFFFFF" />
+          ) : (
+            <>
+              <Icon name="Sparkles" size={16} color="#FFFFFF" />
+              <Text style={styles.glassBtnText}>{t("features.submitRequest")}</Text>
+            </>
+          )}
+        </Pressable>
       </View>
-    </Modal>
+    </GlassModal>
   );
 };
 
@@ -1570,16 +1563,13 @@ const styles = StyleSheet.create({
   disabled: { opacity: 0.4 },
 
   // Submit sheet.
-  modalBackdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
+  // GlassModal draws the panel and caps its height; this only pads it and
+  // lets the form's ScrollView shrink inside that cap.
   sheet: {
-    backgroundColor: "#0A0A0B",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
+    flexShrink: 1,
     paddingHorizontal: 16,
     paddingTop: 16,
-    maxHeight: "88%",
+    paddingBottom: 16,
   },
   sheetHeader: {
     flexDirection: "row",

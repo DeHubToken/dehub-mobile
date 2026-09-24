@@ -4550,7 +4550,10 @@
     "pillDefaultTitle": "העלאה",
     "pillA11yFailed": "העלאה נכשלה, הרחב סטטוס העלאה",
     "pillA11yProgress": "העלאה {{percent}}% הושלמה, הרחב סטטוס העלאה",
-    "pillMinimize": "מזער סטטוס העלאה"
+    "pillMinimize": "מזער סטטוס העלאה",
+    "uploadInProgressStay": "ההעלאה עדיין מתבצעת. הישארו על המסך הזה עד שהוא יסתיים.",
+    "removeUploadTitle": "להסיר את ההעלאה הזו?",
+    "removeQueuedBody": "הוא עדיין לא פורסם. הסרתו מבטלת את הפוסט."
   },
   "bounty": {
     "claimed": "נאסף",

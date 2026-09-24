@@ -4542,7 +4542,10 @@
     "pillDefaultTitle": "अपलोड",
     "pillA11yFailed": "अपलोड फेल भईल, अपलोड स्टेटस के विस्तार करीं",
     "pillA11yProgress": "अपलोड {{percent}}% पूरा भईल, अपलोड स्टेटस के विस्तार करीं",
-    "pillMinimize": "अपलोड स्टेटस छोटा करीं"
+    "pillMinimize": "अपलोड स्टेटस छोटा करीं",
+    "uploadInProgressStay": "तेरे लई इह बोझ संगीन होया । आगे बढ़ो और fullyLoaded विशेषता true पर सेट करें ।",
+    "removeUploadTitle": "उठाई गई उठाई गई?",
+    "removeQueuedBody": "अभी तक तो ई बात के पता नयँ चललइ । ई पोस्ट के एगो हिस्सा ह ।"
   },
   "bounty": {
     "claimed": "भेट गेल",

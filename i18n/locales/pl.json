@@ -4549,7 +4549,10 @@
     "pillDefaultTitle": "Prześlij",
     "pillA11yFailed": "Nie udało się przesłać, rozwiń status przesyłania",
     "pillA11yProgress": "Przesyłanie {{percent}}% ukończone, rozwiń status przesyłania",
-    "pillMinimize": "Zminimalizuj status przesyłania"
+    "pillMinimize": "Zminimalizuj status przesyłania",
+    "uploadInProgressStay": "Trwa przesyłanie. Pozostań na tym ekranie, aż do jego zakończenia.",
+    "removeUploadTitle": "Usunąć to przesłanie?",
+    "removeQueuedBody": "Nie został jeszcze opublikowany. Usunięcie go anuluje post."
   },
   "bounty": {
     "claimed": "Odebrano",

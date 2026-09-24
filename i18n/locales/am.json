@@ -4577,7 +4577,10 @@
     "pillDefaultTitle": "ስቀል",
     "pillA11yFailed": "መስቀል አልተሳካም፣ የመስቀል ሁኔታን አስፋ",
     "pillA11yProgress": "መስቀል {{percent}}% ተጠናቀቀ፣ የመስቀል ሁኔታን አስፋ",
-    "pillMinimize": "የመስቀል ሁኔታን አሳንስ"
+    "pillMinimize": "የመስቀል ሁኔታን አሳንስ",
+    "uploadInProgressStay": "የእርስዎ ሰቀላ አሁንም እየሄደ ነው. እስኪጨርስ ድረስ በዚህ ማያ ገጽ ላይ ይቆዩ.",
+    "removeUploadTitle": "ይህን ሰቀላ አስወግድ?",
+    "removeQueuedBody": "እስካሁን አልተለጠፈም ። ማስወገድ ልጥፉን ይሰርዛል ።"
   },
   "bounty": {
     "claimed": "ተወስዷል",

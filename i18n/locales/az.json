@@ -4548,7 +4548,10 @@
     "pillDefaultTitle": "Yükle",
     "pillA11yFailed": "Yükləmə uğursuz oldu, yükləmə statusunu genişləndirin",
     "pillA11yProgress": "Yükləmə {{percent}}% tamamlandı, yükləmə statusunu genişləndirin",
-    "pillMinimize": "Yükləmə statusunu kiçilt"
+    "pillMinimize": "Yükləmə statusunu kiçilt",
+    "uploadInProgressStay": "Yükləməniz hələ də davam edir. Tamamlanana qədər bu ekranda qalın.",
+    "removeUploadTitle": "Bu yüklənmə silinsin?",
+    "removeQueuedBody": "Hələ dərc edilməyib. Onu silmək yazını ləğv edir."
   },
   "bounty": {
     "claimed": "Alınıb",
