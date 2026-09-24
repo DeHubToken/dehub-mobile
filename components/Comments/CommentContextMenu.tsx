@@ -13,7 +13,7 @@ import {
   Modal,
   Pressable,
   Platform,
-  Dimensions,
+  useWindowDimensions,
   Share,
   Image,
 } from "react-native";
@@ -87,8 +87,6 @@ interface CommentContextMenuProps {
   canDelete?: boolean;
 }
 
-
-const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
 
 /** Resolve a media path: local file URIs / full URLs pass through, relative paths go through CDN. */
 const resolveMediaUrl = (path: string): string => {
@@ -286,6 +284,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { height: SCREEN_HEIGHT } = useWindowDimensions();
 
 
   const handleReply = useCallback(() => {
@@ -362,7 +361,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
     }
 
     return { commentTop: cTop, actionsTop: cTop + commentH + gap };
-  }, [layout, insets]);
+  }, [layout, insets, SCREEN_HEIGHT]);
 
   if (!visible || !comment) return null;
 

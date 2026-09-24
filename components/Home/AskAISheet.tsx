@@ -14,7 +14,7 @@ import {
   TextInput,
   TouchableOpacity,
   Modal,
-  Dimensions,
+  useWindowDimensions,
   StyleSheet,
   ActivityIndicator,
   Image,
@@ -58,8 +58,6 @@ import { toastError } from "../../libs";
 import { ScreenNames } from "../../navigation/ScreenNames";
 
 const AI_AVATAR = require("../../assets/web-icons/profile-icon.png");
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
-const SHEET_HEIGHT = SCREEN_HEIGHT * 0.85;
 
 const STORAGE_PREFIX = "ai_chat_";
 const storageKey = (userId: string, postId: string) =>
@@ -127,14 +125,13 @@ function stripImageMarkdown(text: string): string {
   return cleaned.replace(/\n{3,}/g, "\n\n").trim();
 }
 
-const IMAGE_WIDTH = Dimensions.get("window").width * 0.55;
-
 interface ChatBubbleProps {
   message: AIChatMessage;
   onImagePress: (url: string, allUrls: string[]) => void;
 }
 
 const ChatBubble = memo<ChatBubbleProps>(({ message, onImagePress }) => {
+  const imageWidth = useWindowDimensions().width * 0.55;
   const isUser = message.role === "user";
 
   const imageUrls = useMemo(() => {
@@ -182,7 +179,7 @@ const ChatBubble = memo<ChatBubbleProps>(({ message, onImagePress }) => {
             >
               <Image
                 source={{ uri: url }}
-                style={styles.bubbleImage}
+                style={[styles.bubbleImage, { width: imageWidth, height: imageWidth * 0.75 }]}
                 resizeMode="cover"
               />
             </Pressable>
@@ -201,6 +198,8 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { height: screenHeight } = useWindowDimensions();
+  const SHEET_HEIGHT = screenHeight * 0.85;
   const user = useUser();
   const navigation = useNavigation<any>();
   const flatListRef = useRef<FlatList<AIChatMessage>>(null);
@@ -361,7 +360,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
       () => runOnJS(onClose)(),
     );
     backdropOpacity.value = withTiming(0, { duration: 180 });
-  }, [onClose]);
+  }, [onClose, SHEET_HEIGHT]);
 
   const panGesture = Gesture.Pan()
     .onUpdate((e) => {
@@ -738,8 +737,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   bubbleImage: {
-    width: IMAGE_WIDTH,
-    height: IMAGE_WIDTH * 0.75,
     borderRadius: 12,
   },
   typingRow: {

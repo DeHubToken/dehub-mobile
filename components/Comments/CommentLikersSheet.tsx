@@ -23,7 +23,7 @@ import {
   FlatList,
   ActivityIndicator,
   Image,
-  Dimensions,
+  useWindowDimensions,
   StyleSheet,
 } from "react-native";
 import Animated, {
@@ -43,7 +43,6 @@ import { getAvatarUrl, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/m
 import { truncate } from "../../libs/strings.util";
 import { useTranslation } from "react-i18next";
 
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const SHEET_FRACTION = 0.6;
 const PAGE_LIMIT = 50;
 
@@ -98,7 +97,8 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { showUserProfile } = useUserProfileSheet();
-  const SHEET_HEIGHT = SCREEN_HEIGHT * SHEET_FRACTION;
+  const { height: screenHeight } = useWindowDimensions();
+  const SHEET_HEIGHT = screenHeight * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
@@ -154,8 +154,10 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
       backdropOpacity.value = withTiming(0, { duration: 180 });
     }
     // fetchPage is stable per commentId; re-running on every render would
-    // refetch the list underneath the reader.
-  }, [visible, translateY, backdropOpacity, SHEET_HEIGHT, fetchPage]);
+    // refetch the list underneath the reader. SHEET_HEIGHT stays out for the
+    // same reason: a split-screen or fold resize must not refetch an open sheet.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible, translateY, backdropOpacity, fetchPage]);
 
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(

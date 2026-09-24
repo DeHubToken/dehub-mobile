@@ -6,7 +6,7 @@ import {
   Pressable,
   TouchableOpacity,
   StyleSheet,
-  Dimensions,
+  useWindowDimensions,
 } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { VideoView, useVideoPlayer } from 'expo-video';
@@ -20,8 +20,9 @@ import type { AIChatMessage } from '../../services/ai.service';
 import { useTranslation } from 'react-i18next';
 
 const AI_AVATAR = require('../../assets/web-icons/ai-assistant-avatar.png');
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const MEDIA_WIDTH = SCREEN_WIDTH - 32 - 36; // padding + avatar gutter
+// Screen width minus padding + avatar gutter. Read per render so it follows
+// split-screen and fold changes.
+const useMediaWidth = () => useWindowDimensions().width - 32 - 36;
 
 const MD_IMAGE_RE = /!\[[^\]]*\]\((https?:\/\/[^)]+)\)/g;
 const BARE_IMAGE_RE =
@@ -83,6 +84,7 @@ const GeneratedVideo: React.FC<{
   onSave?: () => void;
   onPost?: () => void;
 }> = ({ url, onSave, onPost }) => {
+  const mediaWidth = useMediaWidth();
   // Muted + looping autoplay, as web's <video> does. Sound would be a surprise
   // in a chat thread; the controls unmute it.
   const player = useVideoPlayer(url, (p) => {
@@ -101,7 +103,7 @@ const GeneratedVideo: React.FC<{
     <View style={s.mediaWrap}>
       <VideoView
         player={player}
-        style={[s.media, { height: (MEDIA_WIDTH * 9) / 16 }]}
+        style={[s.media, { height: (mediaWidth * 9) / 16 }]}
         contentFit="cover"
         nativeControls
         allowsFullscreen
@@ -122,6 +124,7 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
   onRetry,
 }) => {
   const { t } = useTranslation();
+  const mediaWidth = useMediaWidth();
   const isUser = message.role === 'user';
 
   const imageUrls = useMemo(() => {
@@ -216,7 +219,7 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
             <Pressable onPress={() => handlePress(url)}>
               <Image
                 source={{ uri: url }}
-                style={[s.media, { height: MEDIA_WIDTH }]}
+                style={[s.media, { height: mediaWidth }]}
                 resizeMode="cover"
               />
             </Pressable>

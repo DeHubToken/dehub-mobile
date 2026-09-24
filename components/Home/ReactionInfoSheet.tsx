@@ -30,7 +30,7 @@ import {
   Pressable,
   SectionList,
   ActivityIndicator,
-  Dimensions,
+  useWindowDimensions,
   StyleSheet,
 } from "react-native";
 import Animated, {
@@ -53,7 +53,6 @@ import { NEGATIVE_REACTIONS, REACTION_LIST, type PostReaction } from "../../libs
 import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const SHEET_FRACTION = 0.7;
 const PAGE_LIMIT = 50;
 
@@ -117,7 +116,8 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
   const [sheetHidden, setSheetHidden] = useState(false);
   const insets = useSafeAreaInsets();
   const { showUserProfile } = useUserProfileSheet();
-  const SHEET_HEIGHT = SCREEN_HEIGHT * SHEET_FRACTION;
+  const { height: screenHeight } = useWindowDimensions();
+  const SHEET_HEIGHT = screenHeight * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
@@ -175,8 +175,10 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
       backdropOpacity.value = withTiming(0, { duration: 180 });
     }
     // fetchPage is stable per tokenId; re-running on every render would refetch
-    // the list underneath the reader.
-  }, [visible, translateY, backdropOpacity, SHEET_HEIGHT, fetchPage]);
+    // the list underneath the reader. SHEET_HEIGHT stays out for the same
+    // reason: a split-screen or fold resize must not refetch an open sheet.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible, translateY, backdropOpacity, fetchPage]);
 
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(

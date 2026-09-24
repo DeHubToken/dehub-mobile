@@ -18,7 +18,7 @@ import SheetDismissHandle from "../ui/SheetDismissHandle";
 import { useTranslation } from "react-i18next";
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  Dimensions,
+  useWindowDimensions,
   KeyboardAvoidingView,
   Modal,
   ScrollView,
@@ -39,8 +39,6 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '../ui/Icon';
 
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
-const SHEET_HEIGHT = SCREEN_HEIGHT * 0.9;
 
 export type LogoVariant = 'primary' | 'icon' | 'both';
 
@@ -308,6 +306,8 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { height: screenHeight } = useWindowDimensions();
+  const sheetHeight = screenHeight * 0.9;
   const [dimension, setDimension] = useState<PosterConfig['dimension']>('portrait');
   const [style, setStyle] = useState('dehub-template');
   const [features, setFeatures] = useState<string[]>([]);
@@ -319,7 +319,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
   const [expandedGroup, setExpandedGroup] = useState<string | null>(null);
   const [styleListOpen, setStyleListOpen] = useState(false);
 
-  const translateY = useSharedValue(SHEET_HEIGHT);
+  const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
 
@@ -344,7 +344,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
       backdropOpacity.value = withTiming(1, { duration: 200 });
     } else {
       translateY.value = withTiming(
-        SHEET_HEIGHT,
+        sheetHeight,
         { duration: 220, easing: Easing.in(Easing.cubic) },
         () => runOnJS(setIsFullyClosed)(true),
       );
@@ -355,12 +355,12 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
 
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(
-      SHEET_HEIGHT,
+      sheetHeight,
       { duration: 220, easing: Easing.in(Easing.cubic) },
       () => runOnJS(onClose)(),
     );
     backdropOpacity.value = withTiming(0, { duration: 180 });
-  }, [onClose, translateY, backdropOpacity]);
+  }, [onClose, translateY, backdropOpacity, sheetHeight]);
 
   const sheetStyle = useAnimatedStyle(() => ({ transform: [{ translateY: translateY.value }] }));
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropOpacity.value }));
@@ -422,7 +422,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
         style={s.keyboardWrap}
         pointerEvents="box-none"
       >
-        <Animated.View style={[s.sheet, { paddingBottom: insets.bottom + 12 }, sheetStyle]}>
+        <Animated.View style={[s.sheet, { maxHeight: sheetHeight, paddingBottom: insets.bottom + 12 }, sheetStyle]}>
           <View style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <SheetDismissHandle onClose={closeSheet} style={s.handleWrap}>
@@ -616,7 +616,6 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
 const s = StyleSheet.create({
   keyboardWrap: { flex: 1, justifyContent: 'flex-end' },
   sheet: {
-    maxHeight: SHEET_HEIGHT,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: 'hidden',

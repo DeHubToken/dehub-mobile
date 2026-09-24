@@ -11,13 +11,13 @@
 
 import React, { memo, useEffect, useState } from 'react';
 import {
-  Dimensions,
   Modal,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  useWindowDimensions,
 } from 'react-native';
 import Animated, {
   Easing,
@@ -31,9 +31,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '../ui/Icon';
 import { AI_ASSISTANT_STYLE_OPTIONS } from '../../config/ai-styles.constants';
 import { useTranslation } from 'react-i18next';
-
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
-const SHEET_HEIGHT = SCREEN_HEIGHT * 0.7;
 
 interface AssistantStyleSheetProps {
   visible: boolean;
@@ -50,7 +47,9 @@ const AssistantStyleSheetComponent: React.FC<AssistantStyleSheetProps> = ({
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const translateY = useSharedValue(SHEET_HEIGHT);
+  const { height: screenHeight } = useWindowDimensions();
+  const sheetHeight = screenHeight * 0.7;
+  const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
 
@@ -61,7 +60,7 @@ const AssistantStyleSheetComponent: React.FC<AssistantStyleSheetProps> = ({
       backdropOpacity.value = withTiming(1, { duration: 200 });
     } else {
       translateY.value = withTiming(
-        SHEET_HEIGHT,
+        sheetHeight,
         { duration: 220, easing: Easing.in(Easing.cubic) },
         () => runOnJS(setIsFullyClosed)(true),
       );
@@ -72,7 +71,7 @@ const AssistantStyleSheetComponent: React.FC<AssistantStyleSheetProps> = ({
 
   const closeSheet = () => {
     translateY.value = withTiming(
-      SHEET_HEIGHT,
+      sheetHeight,
       { duration: 220, easing: Easing.in(Easing.cubic) },
       () => runOnJS(onClose)(),
     );
@@ -111,7 +110,7 @@ const AssistantStyleSheetComponent: React.FC<AssistantStyleSheetProps> = ({
           <TouchableOpacity style={StyleSheet.absoluteFill} activeOpacity={1} onPress={closeSheet} />
         </Animated.View>
 
-        <Animated.View style={[s.sheet, { paddingBottom: insets.bottom }, sheetStyle]}>
+        <Animated.View style={[s.sheet, { height: sheetHeight, paddingBottom: insets.bottom }, sheetStyle]}>
           <View style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <GestureDetector gesture={panGesture}>
@@ -165,7 +164,6 @@ const s = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: SHEET_HEIGHT,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: 'hidden',

@@ -18,7 +18,7 @@
 
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, useWindowDimensions } from 'react-native';
 import { Image } from 'expo-image';
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
@@ -615,6 +615,7 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
   inBubble = false,
   onLongPress,
 }) => {
+  const { width: windowWidth } = useWindowDimensions();
   const openLink = useOpenDehubLink();
   const open = useCallback(() => openLink(link), [openLink, link]);
 
@@ -680,16 +681,20 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
       card = fallback;
   }
 
-  return inBubble ? <View style={styles.bubbleWrap}>{card}</View> : card;
+  return inBubble ? (
+    <View style={[styles.bubbleWrap, { width: bubbleCardWidth(windowWidth) }]}>{card}</View>
+  ) : (
+    card
+  );
 };
 
-// Matches SharedPostPreview's CARD_WIDTH: the bubble caps at 75% of the row,
+// Matches SharedPostPreview's card width: the bubble caps at 75% of the row,
 // and the card plus its margins has to stay inside that or the bubble's
 // overflow-hidden clips its right edge on narrow screens.
-const BUBBLE_CARD_WIDTH = Math.min(240, Math.round(Dimensions.get('window').width * 0.75) - 40);
+const bubbleCardWidth = (windowWidth: number) => Math.min(240, Math.round(windowWidth * 0.75) - 40);
 
 const styles = StyleSheet.create({
-  bubbleWrap: { width: BUBBLE_CARD_WIDTH, paddingHorizontal: 8, paddingBottom: 2 },
+  bubbleWrap: { paddingHorizontal: 8, paddingBottom: 2 },
   card: {
     marginTop: 8,
     borderRadius: 14,

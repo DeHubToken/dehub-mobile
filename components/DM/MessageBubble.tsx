@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Pressable,
   ActivityIndicator,
-  Dimensions,
+  useWindowDimensions,
   Linking,
 } from "react-native";
 import Animated, {
@@ -41,7 +41,7 @@ import LinkPreviewCard from "../common/LinkPreviewCard";
 import { findDehubLink, stripDehubLinkMatches } from "../../libs/dehub-links";
 import {
   AssetRefCards,
-  BUBBLE_ASSET_CARD_WIDTH,
+  bubbleAssetCardWidth,
   MAX_ASSET_CARDS_PER_MESSAGE,
 } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
@@ -77,9 +77,8 @@ const isVideoMime = (mime?: string): boolean =>
   !!mime && (mime.startsWith("video/") || /mp4|mov|quicktime|webm/i.test(mime));
 
 
-const SCREEN_WIDTH = Dimensions.get("window").width;
 /** Max bubble is ~75% screen. Allow image to fill that minus padding. */
-const MAX_IMAGE_WIDTH = Math.round(SCREEN_WIDTH * 0.75 - 24);
+const maxImageWidth = (windowWidth: number) => Math.round(windowWidth * 0.75 - 24);
 const MIN_IMAGE_WIDTH = 160;
 const MAX_IMAGE_HEIGHT = 320;
 const DEFAULT_ASPECT = 4 / 3;
@@ -93,11 +92,12 @@ interface AutoImageProps {
 
 /**
  * Renders an image that sizes itself to its natural aspect ratio,
- * constrained within MAX_IMAGE_WIDTH × MAX_IMAGE_HEIGHT.
+ * constrained within maxImageWidth × MAX_IMAGE_HEIGHT.
  * Shows skeleton while loading, fallback icon on error.
  */
 const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongPress }) => {
   const { t } = useTranslation();
+  const { width: windowWidth } = useWindowDimensions();
   const [aspect, setAspect] = useState<number>(DEFAULT_ASPECT);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -122,7 +122,7 @@ const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongP
   }, [uri]);
 
   // Calculate display dimensions
-  let displayW = MAX_IMAGE_WIDTH;
+  let displayW = maxImageWidth(windowWidth);
   let displayH = displayW / aspect;
   if (displayH > MAX_IMAGE_HEIGHT) {
     displayH = MAX_IMAGE_HEIGHT;
@@ -279,6 +279,9 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
 }) => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const { width: windowWidth } = useWindowDimensions();
+  const MAX_IMAGE_WIDTH = maxImageWidth(windowWidth);
+  const BUBBLE_ASSET_CARD_WIDTH = bubbleAssetCardWidth(windowWidth);
   const containerRef = useRef<View>(null);
 
   const isTipMsg = (message.msgType as DmMsgType) === "tip";

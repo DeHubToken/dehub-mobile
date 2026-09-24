@@ -28,7 +28,7 @@ import {
   TouchableOpacity,
   Modal,
   Pressable,
-  Dimensions,
+  useWindowDimensions,
   StyleSheet,
   Platform,
   Image,
@@ -80,10 +80,6 @@ import { haptic } from "../../libs/haptics";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
-
-// ── Layout ───────────────────────────────────────────────────────────────────
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
-const SHEET_MAX_HEIGHT = SCREEN_HEIGHT * 0.62;
 
 // ── Quick-amount presets ─────────────────────────────────────────────────────
 const QUICK_AMOUNTS = [500, 1_000, 5_000, 10_000, 25_000, 50_000, 100_000, 1_000_000] as const;
@@ -180,6 +176,8 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   onSuccess,
 }) => {
   const insets = useSafeAreaInsets();
+  const { height: screenHeight } = useWindowDimensions();
+  const SHEET_MAX_HEIGHT = screenHeight * 0.62;
   const user = useUser();
   const { requireAuth, patchUser } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
@@ -215,7 +213,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
       () => runOnJS(onClose)(),
     );
     backdropOpacity.value = withTiming(0, { duration: 180 });
-  }, [onClose]);
+  }, [onClose, SHEET_MAX_HEIGHT]);
 
   const panGesture = Gesture.Pan()
     .onUpdate((e) => {

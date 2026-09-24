@@ -6,7 +6,6 @@ import {
   Modal,
   Pressable,
   Platform,
-  Dimensions,
 } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
@@ -17,8 +16,6 @@ import Avatar from "../common/Avatar";
 import { getAvatarUrl } from "../../libs/misc";
 import { formatRelativeFromNow } from "../../libs/date.util";
 import type { DmConversation, DmMessage, DmUser } from "../../services/dm/dm.types";
-
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 
 interface ConversationContextMenuProps {

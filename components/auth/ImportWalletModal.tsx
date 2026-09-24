@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { View, Text, ScrollView, Dimensions, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, useWindowDimensions } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import {
   AuthButton,
@@ -34,11 +34,11 @@ export interface ImportWalletModalProps {
 }
 
 const TARGET_CHAIN_ID = ChainId.BASE_MAINNET;
-const LIST_MAX_HEIGHT = Math.round(Dimensions.get("window").height * 0.45);
 
 const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
   ({ visible, onClose }) => {
     const { t } = useTranslation();
+    const LIST_MAX_HEIGHT = Math.round(useWindowDimensions().height * 0.45);
     const { isLoading: authLoading, needsUsername } = useAuthState();
     const { signInWithWallet } = useAuthActions();
     const [privateKey, setPrivateKey] = useState<string>("");

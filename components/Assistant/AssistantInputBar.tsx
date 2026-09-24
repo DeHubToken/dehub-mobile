@@ -6,14 +6,12 @@ import {
   StyleSheet,
   ActivityIndicator,
   Image,
-  Dimensions,
+  useWindowDimensions,
   type NativeSyntheticEvent,
   type TextInputSelectionChangeEventData,
 } from 'react-native';
 import Icon from '../ui/Icon';
 import { useTranslation } from 'react-i18next';
-
-const MAX_INPUT_HEIGHT = Dimensions.get('window').height * 0.3;
 
 interface AssistantInputBarProps {
   value: string;
@@ -39,6 +37,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   loading,
 }) => {
   const { t } = useTranslation();
+  const maxInputHeight = useWindowDimensions().height * 0.3;
   // Grow with the text, as web's auto-expanding textarea does. A single-line
   // input made every multi-paragraph prompt — which is most image prompts —
   // impossible to read back before sending.
@@ -69,7 +68,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
       )}
       <View style={s.inputRow}>
         <TextInput
-          style={[s.input, { height: Math.min(Math.max(20, height), MAX_INPUT_HEIGHT) }]}
+          style={[s.input, { height: Math.min(Math.max(20, height), maxInputHeight) }]}
           placeholder={attachedImage ? 'Describe your edits…' : 'Ask me anything...'}
           placeholderTextColor="#8B8D90"
           value={value}

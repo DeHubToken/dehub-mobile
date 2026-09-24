@@ -8,7 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
-  Dimensions,
+  useWindowDimensions,
   GestureResponderEvent,
   PanResponder,
   Animated,
@@ -62,17 +62,30 @@ import {
   TAP_REACTION_RESOLUTION_MS,
 } from "../../libs/tap-gesture";
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
-
 /** Card content width — mirrors FeedCard, which lays this player out. */
-const CARD_WIDTH = SCREEN_WIDTH - 40;
+const cardWidthFor = (screenWidth: number) => screenWidth - 40;
 
 /**
  * Tallest the media may get. A portrait clip stops growing here and narrows
  * its own width instead, so a vertical video takes about a screen rather than
  * scrolling for three.
  */
-const MAX_MEDIA_HEIGHT = Math.round(Math.min(600, SCREEN_HEIGHT * 0.6));
+const maxMediaHeightFor = (screenHeight: number) => Math.round(Math.min(600, screenHeight * 0.6));
+
+/**
+ * Width of the media box. Takes the live window size (useWindowDimensions) so
+ * split-screen and unfolding resize the player instead of keeping the size
+ * the app started with.
+ */
+const mediaBoxWidth = (
+  win: { width: number; height: number },
+  isMinimal: boolean,
+  mediaAspect: number,
+) =>
+  Math.min(
+    isMinimal ? win.width : cardWidthFor(win.width),
+    Math.round(maxMediaHeightFor(win.height) * mediaAspect),
+  );
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
@@ -436,6 +449,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // extracted from the video itself; 16:9 until that resolves.
   const mediaAspect = useMediaAspect(thumbnail);
   const { isMinimal } = useAppTheme();
+  const windowSize = useWindowDimensions();
 
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -998,8 +1012,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         {
           aspectRatio: mediaAspect,
           // Fills the card when the clip is wide enough; a portrait clip caps
-          // at MAX_MEDIA_HEIGHT and shrinks its own width, hugged to the left.
-          width: Math.min(isMinimal ? SCREEN_WIDTH : CARD_WIDTH, Math.round(MAX_MEDIA_HEIGHT * mediaAspect)),
+          // at the max media height and shrinks its own width, hugged to the left.
+          width: mediaBoxWidth(windowSize, isMinimal, mediaAspect),
           maxWidth: "100%",
           alignSelf: isMinimal ? "center" : "flex-start",
         },
@@ -1647,6 +1661,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "thumbnail" | "durati
   ({ thumbnail, duration, hideControls, onPress }) => {
     const mediaAspect = useMediaAspect(thumbnail);
     const { isMinimal } = useAppTheme();
+    const windowSize = useWindowDimensions();
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
       <View
@@ -1654,7 +1669,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "thumbnail" | "durati
           styles.container,
           {
             aspectRatio: mediaAspect,
-            width: Math.min(isMinimal ? SCREEN_WIDTH : CARD_WIDTH, Math.round(MAX_MEDIA_HEIGHT * mediaAspect)),
+            width: mediaBoxWidth(windowSize, isMinimal, mediaAspect),
             maxWidth: "100%",
             alignSelf: isMinimal ? "center" : "flex-start",
           },

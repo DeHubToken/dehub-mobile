@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  Dimensions,
+  useWindowDimensions,
   BackHandler,
   Keyboard,
   I18nManager,
@@ -34,16 +34,12 @@ import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_INSET, minimalFlat } from "../../theme/minimal";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
-const DRAWER_WIDTH = SCREEN_WIDTH * 0.82;
-
 // Under a right-to-left locale React Native mirrors `left: 0` to the right
 // edge, so the drawer lives on the right and has to leave the screen to the
 // RIGHT. Hiding it with -DRAWER_WIDTH pushed it left instead and left the
 // last 18% of it painted down the left edge of every screen while closed: an
 // icon rail nobody designed. The drag that closes it flips with it.
 const IS_RTL = I18nManager.isRTL;
-const CLOSED_X = IS_RTL ? DRAWER_WIDTH : -DRAWER_WIDTH;
 // Multiplies a horizontal delta so that "toward the drawer's own edge" is
 // always negative: left in LTR, right in RTL.
 const TOWARD_EDGE = IS_RTL ? -1 : 1;
@@ -52,7 +48,8 @@ const OPEN_TIMING = { duration: 280, easing: Easing.bezier(0.25, 0.1, 0.25, 1) }
 const CLOSE_TIMING = { duration: 220, easing: Easing.bezier(0.25, 0.1, 0.25, 1) };
 
 const VELOCITY_THRESHOLD = 500;
-const POSITION_THRESHOLD = DRAWER_WIDTH * 0.4;
+// Fraction of the drawer width a release has to cover to count as a close.
+const POSITION_THRESHOLD = 0.4;
 
 interface DrawerItem {
   icon: IconName;
@@ -211,6 +208,11 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const { isMinimal } = useAppTheme();
   const [menuQuery, setMenuQuery] = useState("");
   const [isSigningOut, setIsSigningOut] = useState(false);
+  // Live width, so split-screen and unfolding resize the drawer and its
+  // off-screen position instead of keeping the size from app start.
+  const { width: screenWidth } = useWindowDimensions();
+  const DRAWER_WIDTH = screenWidth * 0.82;
+  const CLOSED_X = IS_RTL ? DRAWER_WIDTH : -DRAWER_WIDTH;
 
   // Current route name, so the matching drawer item highlights like the web
   // sidebar. Tab screens live nested under Root — descend into it to find them.
@@ -262,7 +264,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
       const velocity = TOWARD_EDGE * e.velocityX;
       const shouldClose =
         velocity < -VELOCITY_THRESHOLD ||
-        (velocity <= VELOCITY_THRESHOLD && progress.value < 1 - POSITION_THRESHOLD / DRAWER_WIDTH);
+        (velocity <= VELOCITY_THRESHOLD && progress.value < 1 - POSITION_THRESHOLD);
 
       if (shouldClose) {
         progress.value = withTiming(0, CLOSE_TIMING);
