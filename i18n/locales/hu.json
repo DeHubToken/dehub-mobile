@@ -4928,7 +4928,9 @@
       "hue": "Színárnyalat {{value}}°",
       "fontSize": "Betűméret {{value}}",
       "padding": "Belső margó {{value}}",
-      "thickness": "Vastagság {{value}}"
+      "thickness": "Vastagság {{value}}",
+      "drawHint": "Rajzoláshoz húzd az ujjad az oldalon. Minden vonás külön réteg, amelyet áthelyezhetsz, átméretezhetsz vagy törölhetsz. Ha végeztél, koppints a „Rajzolás leállítása” gombra.",
+      "layersHint": "A lista teteje van legelöl. A nyilakkal rendezheted át a sorrendet. A zárolt és rejtett rétegek csak itt jelölhetők ki."
     },
     "filters": {
       "none": "Eredeti",
@@ -4972,7 +4974,8 @@
       "alignCentre": "Középre igazítás",
       "alignRight": "Jobbra igazítás",
       "resetPosition": "Pozíció visszaállítása",
-      "rotation": "Forgatás {{value}}°"
+      "rotation": "Forgatás {{value}}°",
+      "blend": "Keverés"
     },
     "menu": {
       "addText": "Szöveg hozzáadása",
@@ -4995,6 +4998,68 @@
       "jpg": "JPG kép",
       "outputStill": "Kimenet: {{width}}×{{height}}",
       "empty": "Előbb adj hozzá valamit a tervedhez."
+    },
+    "adjust": {
+      "auto": "Automatikus javítás",
+      "autoFailed": "Nem sikerült elemezni ezt a képet.",
+      "tint": "Színárnyalat {{value}}",
+      "vignette": "Vignetta {{value}}%",
+      "warmth": "Melegség {{value}}"
+    },
+    "draw": {
+      "colour": "Toll színe",
+      "heading": "Rajzolás",
+      "start": "Rajzolás indítása",
+      "stop": "Rajzolás leállítása",
+      "width": "Tollméret {{value}}"
+    },
+    "layers": {
+      "empty": "A lejátszófejnél még nincs semmi az oldalon.",
+      "hide": "Elrejtés",
+      "lock": "Zárolás",
+      "media": "Média",
+      "show": "Megjelenítés",
+      "text": "Szöveg",
+      "unlock": "Feloldás"
+    },
+    "rail": {
+      "elements": "Elemek",
+      "layers": "Rétegek"
+    },
+    "blend": {
+      "normal": "Normál",
+      "multiply": "Szorzás",
+      "screen": "Szita",
+      "overlay": "Átfedés",
+      "darken": "Sötétítés",
+      "lighten": "Világosítás",
+      "colorDodge": "Színfakítás",
+      "colorBurn": "Színégetés",
+      "hardLight": "Kemény fény",
+      "softLight": "Lágy fény",
+      "difference": "Különbség",
+      "exclusion": "Kizárás",
+      "hue": "Színárnyalat",
+      "saturation": "Telítettség",
+      "color": "Szín",
+      "luminosity": "Fényerő"
+    },
+    "shape": {
+      "rect": "Téglalap",
+      "ellipse": "Kör",
+      "triangle": "Háromszög",
+      "star": "Csillag",
+      "heart": "Szív",
+      "hexagon": "Hatszög",
+      "line": "Vonal",
+      "arrow": "Nyíl",
+      "style": "Alakzat stílusa",
+      "fill": "Kitöltés",
+      "fillOn": "Kitöltés",
+      "outline": "Körvonal",
+      "outlineOn": "Körvonal",
+      "outlineWidth": "Körvonal vastagsága {{value}}",
+      "path": "Rajz"
     }
   },
   "creator": {

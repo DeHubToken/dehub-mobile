@@ -4890,7 +4890,9 @@
       "hue": "Öwüşgin {{value}}°",
       "fontSize": "Şrift ölçegi {{value}}",
       "padding": "Içki boşluk {{value}}",
-      "thickness": "Galyňlyk {{value}}"
+      "thickness": "Galyňlyk {{value}}",
+      "drawHint": "Çyzmak üçin sahypanyň üstünde süýşüriň. Her çyzyk öz aýratyn gatlagy bolup, ony süýşürip, ölçegini üýtgedip ýa-da pozup bilersiňiz. Gutaranyňyzda “Çyzmagy bes et” düwmesine basyň.",
+      "layersHint": "Sanawyň ýokarsy iň öňdäki bolýar. Tertibini üýtgetmek üçin oklary ulanyň. Gulplanan we gizlenen gatlaklary diňe şu ýerden saýlap bolýar."
     },
     "filters": {
       "none": "Asyl",
@@ -4934,7 +4936,8 @@
       "alignCentre": "Merkeze laýykla",
       "alignRight": "Sag tarapa laýykla",
       "resetPosition": "Pozitsiýany täzeden düz",
-      "rotation": "Aýlanma {{value}}°"
+      "rotation": "Aýlanma {{value}}°",
+      "blend": "Garyşdyrma"
     },
     "menu": {
       "addText": "Tekst goş",
@@ -4957,6 +4960,68 @@
       "jpg": "JPG suraty",
       "outputStill": "Çykýan: {{width}}×{{height}}",
       "empty": "Ilki bilen dizaýniňize bir zat goşuň."
+    },
+    "adjust": {
+      "auto": "Awtomatik gowulandyrmak",
+      "autoFailed": "Bu suraty seljerip bolmady.",
+      "tint": "Öwüşgin {{value}}",
+      "vignette": "Winýetka {{value}}%",
+      "warmth": "Ýylylyk {{value}}"
+    },
+    "draw": {
+      "colour": "Galamyň reňki",
+      "heading": "Çyz",
+      "start": "Çyzmaga başla",
+      "stop": "Çyzmagy bes et",
+      "width": "Galamyň ölçegi {{value}}"
+    },
+    "layers": {
+      "empty": "Oýnatma nokadynda sahypada entek hiç zat ýok.",
+      "hide": "Gizle",
+      "lock": "Gulpla",
+      "media": "Media",
+      "show": "Görkez",
+      "text": "Tekst",
+      "unlock": "Gulpy aç"
+    },
+    "rail": {
+      "elements": "Elementler",
+      "layers": "Gatlar"
+    },
+    "blend": {
+      "normal": "Adaty",
+      "multiply": "Köpeltmek",
+      "screen": "Ekran",
+      "overlay": "Örtük",
+      "darken": "Garaltmak",
+      "lighten": "Ýagtyltmak",
+      "colorDodge": "Reňki ýagtyltmak",
+      "colorBurn": "Reňki ýakmak",
+      "hardLight": "Güýçli yşyk",
+      "softLight": "Ýumşak yşyk",
+      "difference": "Tapawut",
+      "exclusion": "Aýyrmak",
+      "hue": "Öwüşgin",
+      "saturation": "Doýgunlyk",
+      "color": "Reňk",
+      "luminosity": "Ýagtylyk"
+    },
+    "shape": {
+      "rect": "Gönüburçluk",
+      "ellipse": "Tegelek",
+      "triangle": "Üçburçluk",
+      "star": "Ýyldyz",
+      "heart": "Ýürek",
+      "hexagon": "Altyburçluk",
+      "line": "Çyzyk",
+      "arrow": "Ok",
+      "style": "Şekil stili",
+      "fill": "Doldurma",
+      "fillOn": "Doldurma",
+      "outline": "Gyra çyzyk",
+      "outlineOn": "Gyra çyzyk",
+      "outlineWidth": "Gyra çyzygyň galyňlygy {{value}}",
+      "path": "Surat"
     }
   },
   "creator": {

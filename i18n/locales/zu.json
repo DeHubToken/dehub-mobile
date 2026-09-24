@@ -4952,7 +4952,9 @@
       "hue": "Ithoni yombala {{value}}°",
       "fontSize": "Usayizi wefonti {{value}}",
       "padding": "Isikhala sangaphakathi {{value}}",
-      "thickness": "Ubukhulu {{value}}"
+      "thickness": "Ubukhulu {{value}}",
+      "drawHint": "Hudula ekhasini ukuze udwebe. Umugqa ngamunye uyisendlalelo sawo ongasihambisa, usishintshe usayizi noma usisuse. Thepha u-Yeka ukudweba uma usuqedile.",
+      "layersHint": "Phezulu ohlwini kungaphambili. Sebenzisa imicibisholo ukuhlela kabusha. Izendlalelo ezikhiyiwe nezifihliwe zingakhethwa lapha kuphela."
     },
     "filters": {
       "none": "Okwangempela",
@@ -4996,7 +4998,8 @@
       "alignCentre": "Qondanisa maphakathi",
       "alignRight": "Qondanisa kwesokudla",
       "resetPosition": "Setha kabusha isikhundla",
-      "rotation": "Ukujikeleza {{value}}°"
+      "rotation": "Ukujikeleza {{value}}°",
+      "blend": "Hlanganisa"
     },
     "menu": {
       "addText": "Faka umbhalo",
@@ -5019,6 +5022,68 @@
       "jpg": "Isithombe se-JPG",
       "outputStill": "Okukhiphayo: {{width}}×{{height}}",
       "empty": "Engeza okuthile kumklamo wakho kuqala."
+    },
+    "adjust": {
+      "auto": "Thuthukisa ngokuzenzakalela",
+      "autoFailed": "Asikwazanga ukuhlaziya lesi sithombe.",
+      "tint": "Umbala {{value}}",
+      "vignette": "I-vignette {{value}}%",
+      "warmth": "Ukufudumala {{value}}"
+    },
+    "draw": {
+      "colour": "Umbala wepeni",
+      "heading": "Dweba",
+      "start": "Qala ukudweba",
+      "stop": "Yeka ukudweba",
+      "width": "Usayizi wepeni {{value}}"
+    },
+    "layers": {
+      "empty": "Akukho lutho okwamanje ekhasini lapho kukhona i-playhead.",
+      "hide": "Fihla",
+      "lock": "Khiya",
+      "media": "Imidiya",
+      "show": "Bonisa",
+      "text": "Umbhalo",
+      "unlock": "Vula"
+    },
+    "rail": {
+      "elements": "Izakhi",
+      "layers": "Izendlalelo"
+    },
+    "blend": {
+      "normal": "Okujwayelekile",
+      "multiply": "Phindaphinda",
+      "screen": "Isikrini",
+      "overlay": "Ukwembeza",
+      "darken": "Yenza kube mnyama",
+      "lighten": "Khanyisa",
+      "colorDodge": "Ukukhanyisa umbala",
+      "colorBurn": "Ukushisa umbala",
+      "hardLight": "Ukukhanya okuqinile",
+      "softLight": "Ukukhanya okuthambile",
+      "difference": "Umehluko",
+      "exclusion": "Ukukhipha",
+      "hue": "Ithoni yombala",
+      "saturation": "Ukugcwala",
+      "color": "Umbala",
+      "luminosity": "Ukukhanya"
+    },
+    "shape": {
+      "rect": "Unxande",
+      "ellipse": "Indilinga",
+      "triangle": "Unxantathu",
+      "star": "Inkanyezi",
+      "heart": "Inhliziyo",
+      "hexagon": "I-heksagoni",
+      "line": "Umugqa",
+      "arrow": "Umcibisholo",
+      "style": "Isitayela sesimo",
+      "fill": "Gcwalisa",
+      "fillOn": "Gcwalisa",
+      "outline": "Umugqa wangaphandle",
+      "outlineOn": "Umugqa wangaphandle",
+      "outlineWidth": "Ububanzi bomugqa wangaphandle {{value}}",
+      "path": "Umdwebo"
     }
   },
   "creator": {

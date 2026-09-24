@@ -4937,7 +4937,9 @@
       "hue": "Nuanță {{value}}°",
       "fontSize": "Mărime font {{value}}",
       "padding": "Spațiere interioară {{value}}",
-      "thickness": "Grosime {{value}}"
+      "thickness": "Grosime {{value}}",
+      "drawHint": "Trage pe pagină ca să desenezi. Fiecare linie e un strat separat pe care îl poți muta, redimensiona sau șterge. Atinge Oprește desenul când ai terminat.",
+      "layersHint": "Partea de sus a listei este în față. Folosește săgețile pentru a reordona. Straturile blocate și ascunse pot fi selectate doar de aici."
     },
     "filters": {
       "none": "Original",
@@ -4981,7 +4983,8 @@
       "alignCentre": "Centrare",
       "alignRight": "Aliniere la dreapta",
       "resetPosition": "Resetare poziție",
-      "rotation": "Rotație {{value}}°"
+      "rotation": "Rotație {{value}}°",
+      "blend": "Amestecare"
     },
     "menu": {
       "addText": "Adaugă text",
@@ -5004,6 +5007,68 @@
       "jpg": "Imagine JPG",
       "outputStill": "Ieșire: {{width}}×{{height}}",
       "empty": "Adaugă mai întâi ceva în designul tău."
+    },
+    "adjust": {
+      "auto": "Îmbunătățire automată",
+      "autoFailed": "Nu am putut analiza această imagine.",
+      "tint": "Nuanță {{value}}",
+      "vignette": "Vignetă {{value}}%",
+      "warmth": "Căldură {{value}}"
+    },
+    "draw": {
+      "colour": "Culoarea stiloului",
+      "heading": "Desenează",
+      "start": "Începe desenul",
+      "stop": "Oprește desenul",
+      "width": "Mărimea stiloului {{value}}"
+    },
+    "layers": {
+      "empty": "Deocamdată nu e nimic pe pagină în dreptul cursorului de redare.",
+      "hide": "Ascunde",
+      "lock": "Blochează",
+      "media": "Media",
+      "show": "Afișează",
+      "text": "Text",
+      "unlock": "Deblochează"
+    },
+    "rail": {
+      "elements": "Elemente",
+      "layers": "Straturi"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Multiplicare",
+      "screen": "Ecran",
+      "overlay": "Suprapunere",
+      "darken": "Întunecare",
+      "lighten": "Luminare",
+      "colorDodge": "Evitare culoare",
+      "colorBurn": "Ardere culoare",
+      "hardLight": "Lumină puternică",
+      "softLight": "Lumină difuză",
+      "difference": "Diferență",
+      "exclusion": "Excludere",
+      "hue": "Nuanță",
+      "saturation": "Saturație",
+      "color": "Culoare",
+      "luminosity": "Luminozitate"
+    },
+    "shape": {
+      "rect": "Dreptunghi",
+      "ellipse": "Cerc",
+      "triangle": "Triunghi",
+      "star": "Stea",
+      "heart": "Inimă",
+      "hexagon": "Hexagon",
+      "line": "Linie",
+      "arrow": "Săgeată",
+      "style": "Stil formă",
+      "fill": "Umplere",
+      "fillOn": "Umplere",
+      "outline": "Contur",
+      "outlineOn": "Contur",
+      "outlineWidth": "Grosime contur {{value}}",
+      "path": "Desen"
     }
   },
   "creator": {

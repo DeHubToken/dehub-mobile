@@ -4872,7 +4872,9 @@
       "hue": "ሕብሪ {{value}}°",
       "fontSize": "ዓቐን ፊደል {{value}}",
       "padding": "ውሽጣዊ ቦታ {{value}}",
-      "thickness": "ርጉድነት {{value}}"
+      "thickness": "ርጉድነት {{value}}",
+      "drawHint": "ንምስኣል ኣብ ገጽ ስሓቡ። ነፍሲ ወከፍ መስመር ከተንቀሳቕሶ፡ መጠኑ ክትቕይሮ ወይ ክትድምስሶ እትኽእል ናይ ገዛእ ርእሱ ደርቢ እዩ። ምስ ወዳእኩም ምስኣል ደው ኣብል ጠውቑ።",
+      "layersHint": "ላዕለዋይ ናይ ዝርዝር ኣብ ቅድሚት እዩ። ስርዓት ንምቕያር ምልክታት ተጠቐሙ። ዝተዓጸዉን ዝተሓብኡን ደርብታት ኣብዚ ጥራይ እዮም ዝሕረዩ።"
     },
     "filters": {
       "none": "መበቆላዊ",
@@ -4916,7 +4918,8 @@
       "alignCentre": "ኣብ ማእከል ኣሰላልፍ",
       "alignRight": "ናብ የማን ኣሰላልፍ",
       "resetPosition": "ቦታ ዳግም ኣቐምጥ",
-      "rotation": "ምዝዋር {{value}}°"
+      "rotation": "ምዝዋር {{value}}°",
+      "blend": "ምሕዋስ"
     },
     "menu": {
       "addText": "ጽሑፍ ወስኽ",
@@ -4939,6 +4942,68 @@
       "jpg": "JPG ስእሊ",
       "outputStill": "ውጽኢት: {{width}}×{{height}}",
       "empty": "ቅድም ኣብ ንድፍካ ሓደ ነገር ወስኽ።"
+    },
+    "adjust": {
+      "auto": "ብኣውቶማቲክ ኣመሓይሽ",
+      "autoFailed": "ነዚ ስእሊ ክንትንትኖ ኣይከኣልናን።",
+      "tint": "ሕብሪ {{value}}",
+      "vignette": "ቪኘት {{value}}%",
+      "warmth": "ሙቐት {{value}}"
+    },
+    "draw": {
+      "colour": "ሕብሪ ብርዒ",
+      "heading": "ሳእል",
+      "start": "ምስኣል ጀምር",
+      "stop": "ምስኣል ደው ኣብል",
+      "width": "ዓቐን ብርዒ {{value}}"
+    },
+    "layers": {
+      "empty": "ኣብ ቦታ መጻወቲ ርእሲ ክሳብ ሕጂ ኣብ ገጽ ዝኾነ ነገር የለን።",
+      "hide": "ደብቕ",
+      "lock": "ቆልፍ",
+      "media": "ሚድያ",
+      "show": "ኣርእዮ",
+      "text": "ጽሑፍ",
+      "unlock": "ክፈት"
+    },
+    "rail": {
+      "elements": "ኣካላት",
+      "layers": "ደርብታት"
+    },
+    "blend": {
+      "normal": "ንቡር",
+      "multiply": "ምርባሕ",
+      "screen": "ስክሪን",
+      "overlay": "ምድራብ",
+      "darken": "ኣጸልምት",
+      "lighten": "ኣብርህ",
+      "colorDodge": "ሕብሪ ምብራህ",
+      "colorBurn": "ሕብሪ ምንዳድ",
+      "hardLight": "ተሪር ብርሃን",
+      "softLight": "ልስሉስ ብርሃን",
+      "difference": "ፍልልይ",
+      "exclusion": "ምግላል",
+      "hue": "ዓይነት ሕብሪ",
+      "saturation": "ጽግበት",
+      "color": "ሕብሪ",
+      "luminosity": "ብሩህነት"
+    },
+    "shape": {
+      "rect": "ኣርባዕተ ኩርናዕ",
+      "ellipse": "ክቢ",
+      "triangle": "ሰለስተ ኩርናዕ",
+      "star": "ኮኾብ",
+      "heart": "ልቢ",
+      "hexagon": "ሽዱሽተ ኩርናዕ",
+      "line": "መስመር",
+      "arrow": "ፍላጻ",
+      "style": "ቅዲ ቅርጺ",
+      "fill": "ምምላእ",
+      "fillOn": "ምምላእ",
+      "outline": "ወሰን መስመር",
+      "outlineOn": "ወሰን መስመር",
+      "outlineWidth": "ስፍሓት ወሰን መስመር {{value}}",
+      "path": "ስእሊ"
     }
   },
   "creator": {

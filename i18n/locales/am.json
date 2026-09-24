@@ -4840,7 +4840,9 @@
       "hue": "የቀለም ዓይነት {{value}}°",
       "fontSize": "የፊደል መጠን {{value}}",
       "padding": "ውስጣዊ ክፍተት {{value}}",
-      "thickness": "ውፍረት {{value}}"
+      "thickness": "ውፍረት {{value}}",
+      "drawHint": "ለመሳል በገጹ ላይ ይጎትቱ። እያንዳንዱ መስመር ማንቀሳቀስ፣ መጠኑን መቀየር ወይም መሰረዝ የሚችሉት የራሱ ንብርብር ነው። ሲጨርሱ «መሳል አቁም» ን ይንኩ።",
+      "layersHint": "የዝርዝሩ ላይኛው ፊት ለፊት ያለው ነው። ቅደም ተከተሉን ለመቀየር ቀስቶቹን ይጠቀሙ። የተቆለፉ እና የተደበቁ ንብርብሮች እዚህ ብቻ ሊመረጡ ይችላሉ።"
     },
     "filters": {
       "none": "የመጀመሪያው",
@@ -4884,7 +4886,8 @@
       "alignCentre": "መሃል አስማር",
       "alignRight": "ወደ ቀኝ አስማር",
       "resetPosition": "አቀማመጥን ዳግም አስጀምር",
-      "rotation": "ማሽከርከር {{value}}°"
+      "rotation": "ማሽከርከር {{value}}°",
+      "blend": "ቅልቅል"
     },
     "menu": {
       "addText": "ጽሑፍ ያክሉ",
@@ -4907,6 +4910,68 @@
       "jpg": "JPG ምስል",
       "outputStill": "ውጤት፦ {{width}}×{{height}}",
       "empty": "በመጀመሪያ በንድፍዎ ላይ የሆነ ነገር ያክሉ።"
+    },
+    "adjust": {
+      "auto": "ራስ-ሰር ማሻሻያ",
+      "autoFailed": "ይህን ምስል መተንተን አልተቻለም።",
+      "tint": "ቅልም {{value}}",
+      "vignette": "ቪኜት {{value}}%",
+      "warmth": "ሙቀት {{value}}"
+    },
+    "draw": {
+      "colour": "የብዕር ቀለም",
+      "heading": "ሳል",
+      "start": "መሳል ጀምር",
+      "stop": "መሳል አቁም",
+      "width": "የብዕር መጠን {{value}}"
+    },
+    "layers": {
+      "empty": "በማጫወቻው ቦታ ገጹ ላይ እስካሁን ምንም የለም።",
+      "hide": "ደብቅ",
+      "lock": "ቆልፍ",
+      "media": "ሚዲያ",
+      "show": "አሳይ",
+      "text": "ጽሑፍ",
+      "unlock": "ክፈት"
+    },
+    "rail": {
+      "elements": "ክፍሎች",
+      "layers": "ንብርብሮች"
+    },
+    "blend": {
+      "normal": "መደበኛ",
+      "multiply": "ማባዛት",
+      "screen": "ስክሪን",
+      "overlay": "ተደራቢ",
+      "darken": "ማጨለም",
+      "lighten": "ማቅለል",
+      "colorDodge": "የቀለም ማድመቅ",
+      "colorBurn": "የቀለም ማቃጠል",
+      "hardLight": "ጠንካራ ብርሃን",
+      "softLight": "ለስላሳ ብርሃን",
+      "difference": "ልዩነት",
+      "exclusion": "ማግለል",
+      "hue": "ሕብር",
+      "saturation": "ሙሌትነት",
+      "color": "ቀለም",
+      "luminosity": "ብሩህነት"
+    },
+    "shape": {
+      "rect": "አራት ማዕዘን",
+      "ellipse": "ክብ",
+      "triangle": "ሦስት ማዕዘን",
+      "star": "ኮከብ",
+      "heart": "ልብ",
+      "hexagon": "ስድስት ማዕዘን",
+      "line": "መስመር",
+      "arrow": "ቀስት",
+      "style": "የቅርጽ ዘይቤ",
+      "fill": "ሙሌት",
+      "fillOn": "ሙሌት",
+      "outline": "ዝርዝር መስመር",
+      "outlineOn": "ዝርዝር መስመር",
+      "outlineWidth": "የዝርዝር መስመር ስፋት {{value}}",
+      "path": "ስዕል"
     }
   },
   "creator": {

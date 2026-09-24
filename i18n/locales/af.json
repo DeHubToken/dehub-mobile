@@ -5042,7 +5042,9 @@
       "hue": "Tint {{value}}°",
       "fontSize": "Lettergrootte {{value}}",
       "padding": "Opvulling {{value}}",
-      "thickness": "Dikte {{value}}"
+      "thickness": "Dikte {{value}}",
+      "drawHint": "Sleep op die bladsy om te teken. Elke haal is sy eie laag wat jy kan skuif, se grootte verander of uitvee. Tik op Stop teken as jy klaar is.",
+      "layersHint": "Die bokant van die lys is voor. Gebruik die pyltjies om die lae te herrangskik. Geslote en versteekte lae kan net hier gekies word."
     },
     "filters": {
       "none": "Oorspronklik",
@@ -5086,7 +5088,8 @@
       "alignCentre": "Belyn middel",
       "alignRight": "Belyn regs",
       "resetPosition": "Stel posisie terug",
-      "rotation": "Rotasie {{value}}°"
+      "rotation": "Rotasie {{value}}°",
+      "blend": "Meng"
     },
     "menu": {
       "addText": "Voeg teks by",
@@ -5109,6 +5112,68 @@
       "jpg": "JPG-beeld",
       "outputStill": "Uitvoer: {{width}}×{{height}}",
       "empty": "Voeg eers iets by jou ontwerp."
+    },
+    "adjust": {
+      "auto": "Outo-verbeter",
+      "autoFailed": "Kon nie hierdie foto ontleed nie.",
+      "tint": "Tint {{value}}",
+      "vignette": "Vignet {{value}}%",
+      "warmth": "Warmte {{value}}"
+    },
+    "draw": {
+      "colour": "Penkleur",
+      "heading": "Teken",
+      "start": "Begin teken",
+      "stop": "Stop teken",
+      "width": "Pengrootte {{value}}"
+    },
+    "layers": {
+      "empty": "Nog niks op die bladsy by die speelkop nie.",
+      "hide": "Versteek",
+      "lock": "Sluit",
+      "media": "Media",
+      "show": "Wys",
+      "text": "Teks",
+      "unlock": "Ontsluit"
+    },
+    "rail": {
+      "elements": "Elemente",
+      "layers": "Lae"
+    },
+    "blend": {
+      "normal": "Normaal",
+      "multiply": "Vermenigvuldig",
+      "screen": "Skerm",
+      "overlay": "Oorleg",
+      "darken": "Verdonker",
+      "lighten": "Verhelder",
+      "colorDodge": "Kleurontwyking",
+      "colorBurn": "Kleurbrand",
+      "hardLight": "Harde lig",
+      "softLight": "Sagte lig",
+      "difference": "Verskil",
+      "exclusion": "Uitsluiting",
+      "hue": "Tint",
+      "saturation": "Versadiging",
+      "color": "Kleur",
+      "luminosity": "Helderheid"
+    },
+    "shape": {
+      "rect": "Reghoek",
+      "ellipse": "Sirkel",
+      "triangle": "Driehoek",
+      "star": "Ster",
+      "heart": "Hart",
+      "hexagon": "Seshoek",
+      "line": "Lyn",
+      "arrow": "Pyl",
+      "style": "Vormstyl",
+      "fill": "Vul",
+      "fillOn": "Vul",
+      "outline": "Buitelyn",
+      "outlineOn": "Buitelyn",
+      "outlineWidth": "Buitelynwydte {{value}}",
+      "path": "Tekening"
     }
   },
   "creator": {

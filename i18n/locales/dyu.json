@@ -4791,7 +4791,9 @@
       "hue": "Kulɛri suguya {{value}}°",
       "fontSize": "Sɛbɛn hakɛ {{value}}",
       "padding": "Kɔnɔna yɔrɔ {{value}}",
-      "thickness": "Bonya {{value}}"
+      "thickness": "Bonya {{value}}",
+      "drawHint": "I bolo sama sɛbɛ kan walasa ka ja ci. Sira kelen kelen bɛɛ ye kɔrɔ ye a yɛrɛ ma, i bɛ se k’a lamaga, k’a bonya caman wala k’a jɔsi. Ni i banna, i ka «Ja ci jɔ» digi.",
+      "layersHint": "Lisi sanfɛ ta de bɛ ɲɛfɛ. Sɛgɛnw labaara walasa ka u sigicogo yɛlɛma. Kɔrɔ minw datugulen don wala minw dogolen don, olu bɛ se ka sugandi yan dɔrɔn."
     },
     "filters": {
       "none": "A cogo fɔlɔ",
@@ -4835,7 +4837,8 @@
       "alignCentre": "A tilen cɛmancɛ la",
       "alignRight": "A tilen kininbolo fɛ",
       "resetPosition": "Yɔrɔ segin a cogo fɔlɔ la",
-      "rotation": "Munumununi {{value}}°"
+      "rotation": "Munumununi {{value}}°",
+      "blend": "Ɲagami"
     },
     "menu": {
       "addText": "Sɛbɛn fara a kan",
@@ -4858,6 +4861,68 @@
       "jpg": "JPG ja",
       "outputStill": "Bɔli: {{width}}×{{height}}",
       "empty": "Fɛn dɔ fara i ka desɛn kan fɔlɔ."
+    },
+    "adjust": {
+      "auto": "A ɲɛ ka ɲɛ a yɛrɛ ma",
+      "autoFailed": "Ja in ma se ka sɛgɛsɛgɛ.",
+      "tint": "Kulɛri {{value}}",
+      "vignette": "Dafɛw dibi {{value}}%",
+      "warmth": "Funteni {{value}}"
+    },
+    "draw": {
+      "colour": "Kalamu kulɛri",
+      "heading": "Ja ci",
+      "start": "Ja ci daminɛ",
+      "stop": "Ja ci jɔ",
+      "width": "Kalamu bonya {{value}}"
+    },
+    "layers": {
+      "empty": "Foyi tɛ sɛbɛnbu kan fɔli yɔrɔ la fɔlɔ.",
+      "hide": "A dogo",
+      "lock": "A datugu",
+      "media": "Mediya",
+      "show": "A jira",
+      "text": "Sɛbɛn",
+      "unlock": "A dayɛlɛ"
+    },
+    "rail": {
+      "elements": "Fɛnw",
+      "layers": "Kɔrɔw"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Caya",
+      "screen": "Ekaran",
+      "overlay": "Sanfɛla",
+      "darken": "Dibiya",
+      "lighten": "Yeelenya",
+      "colorDodge": "Kulɛri yeelenya",
+      "colorBurn": "Kulɛri jeni",
+      "hardLight": "Yeelen barika",
+      "softLight": "Yeelen nɔgɔn",
+      "difference": "Danfara",
+      "exclusion": "Bɔli",
+      "hue": "Kulɛri suguya",
+      "saturation": "Kulɛri barika",
+      "color": "Kulɛri",
+      "luminosity": "Yeelen hakɛ"
+    },
+    "shape": {
+      "rect": "Kɛrɛnaani janyalen",
+      "ellipse": "Kori",
+      "triangle": "Kɛrɛsaba",
+      "star": "Dolo",
+      "heart": "Dusukun",
+      "hexagon": "Kɛrɛwɔɔrɔ",
+      "line": "Sira",
+      "arrow": "Bìnɛ",
+      "style": "Cogoya jogo",
+      "fill": "Fa",
+      "fillOn": "Fa",
+      "outline": "Dan sira",
+      "outlineOn": "Dan sira",
+      "outlineWidth": "Dan sira bonya {{value}}",
+      "path": "Jiraliwaleya"
     }
   },
   "creator": {

@@ -14,10 +14,15 @@ import type {
   ClipTransform,
   MediaClip,
   ProjectSnapshot,
+  ShapeClip,
+  ShapeKindAll,
   TextClip,
   Track,
   TrackKind,
 } from "./types";
+
+/** A partial update to any kind of clip. */
+export type ClipPatch = Partial<MediaClip> | Partial<TextClip> | Partial<ShapeClip>;
 import { aspectToDims, DEFAULT_SETTINGS } from "./types";
 
 /** Seconds a new layer lasts, matching an image dropped on the web timeline. */
@@ -149,11 +154,72 @@ export function addText(p: ProjectSnapshot, text: string): { project: ProjectSna
   return { project: { ...p, tracks, clips: [...p.clips, clip] }, clipId: clip.id };
 }
 
+/**
+ * Add a vector shape (or, with shape "path", a freehand stroke) as a new top
+ * layer. Same defaults as the web's addShapeClip: a square 30% of the page
+ * wide, violet fill; lines and arrows are white strokes.
+ */
+export function addShape(
+  p: ProjectSnapshot,
+  shape: ShapeKindAll,
+  patch: Partial<ShapeClip> = {},
+): { project: ProjectSnapshot; clipId: string } {
+  const { tracks, trackId } = topTrack(p, "video");
+  const line = shape === "line" || shape === "arrow";
+  const aspect = p.settings.width / p.settings.height;
+  const size = 0.3;
+  const clip: ShapeClip = {
+    id: newId(10),
+    trackId,
+    kind: "shape",
+    shape,
+    start: 0,
+    duration: layerDuration(p),
+    trimIn: 0,
+    w: size,
+    h: line ? 0.02 : size * aspect,
+    fill: line ? "#ffffff" : "#7c5cff",
+    stroke: line ? { color: "#ffffff", width: 8 } : null,
+    ...patch,
+  };
+  return { project: { ...p, tracks, clips: [...p.clips, clip] }, clipId: clip.id };
+}
+
+/**
+ * Turn a finished finger stroke (page pixels) into a freehand path layer,
+ * the same shape the web's Draw tool makes.
+ */
+export function addStroke(
+  p: ProjectSnapshot,
+  pts: [number, number][],
+  pen: { color: string; width: number },
+): { project: ProjectSnapshot; clipId: string } | null {
+  if (!pts.length) return null;
+  const W = p.settings.width;
+  const H = p.settings.height;
+  const xs = pts.map((q) => q[0]);
+  const ys = pts.map((q) => q[1]);
+  const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+  // A straight or tiny stroke still needs a real box so its points stay finite.
+  const w = Math.max(maxX - minX, 4);
+  const h = Math.max(maxY - minY, 4);
+  const cx = (minX + maxX) / 2;
+  const cy = (minY + maxY) / 2;
+  return addShape(p, "path", {
+    fill: null,
+    stroke: { color: pen.color, width: pen.width },
+    w: w / W,
+    h: h / H,
+    points: pts.map(([x, y]) => [(x - cx) / w, (y - cy) / h] as [number, number]),
+    transform: { x: cx / W, y: cy / H, scale: 1, rotation: 0 },
+  });
+}
+
 export function getClip(p: ProjectSnapshot, id: string | null): Clip | null {
   return id ? p.clips.find((c) => c.id === id) ?? null : null;
 }
 
-export function updateClip(p: ProjectSnapshot, id: string, patch: Partial<MediaClip> | Partial<TextClip>): ProjectSnapshot {
+export function updateClip(p: ProjectSnapshot, id: string, patch: ClipPatch): ProjectSnapshot {
   return { ...p, clips: p.clips.map((c) => (c.id === id ? ({ ...c, ...patch } as Clip) : c)) };
 }
 
@@ -168,8 +234,8 @@ export function getTransform(clip: Clip): ClipTransform {
   return t;
 }
 
-/** Same split as the web's placementPatch: text keeps x/y, media keeps transform. */
-export function placementPatch(clip: Clip, patch: Partial<ClipTransform>): Partial<MediaClip> | Partial<TextClip> {
+/** Same split as the web's placementPatch: text keeps x/y, media and shapes keep transform. */
+export function placementPatch(clip: Clip, patch: Partial<ClipTransform>): ClipPatch {
   const next = { ...getTransform(clip), ...patch };
   if (clip.kind === "text") {
     const out: Partial<TextClip> = { transform: next };
@@ -222,14 +288,14 @@ export function visibleLayers(p: ProjectSnapshot, t: number): Clip[] {
   const hidden = new Set(p.tracks.filter((tr) => tr.hidden).map((tr) => tr.id));
   const z = (trackId: string) => p.tracks.findIndex((tr) => tr.id === trackId);
   return p.clips
-    .filter((c) => c.kind !== "audio" && !hidden.has(c.trackId) && t >= c.start && t <= c.start + c.duration)
+    .filter((c) => c.kind !== "audio" && !c.hidden && !hidden.has(c.trackId) && t >= c.start && t <= c.start + c.duration)
     .sort((a, b) => z(a.trackId) - z(b.trackId));
 }
 
 /** Media ids the project points at, for loading and for spotting missing files. */
 export function mediaIds(p: ProjectSnapshot): string[] {
   const ids = new Set<string>();
-  for (const c of p.clips) if (c.kind !== "text") ids.add(c.mediaId);
+  for (const c of p.clips) if ("mediaId" in c) ids.add(c.mediaId);
   return [...ids];
 }
 
@@ -243,4 +309,13 @@ export function parseProject(raw: string): ProjectSnapshot | null {
   } catch {
     return null;
   }
+}
+
+/**
+ * Every visible-kind layer, front first, including hidden ones (the Layers
+ * panel is how you get a hidden or locked layer back).
+ */
+export function layerList(p: ProjectSnapshot): Clip[] {
+  const z = (trackId: string) => p.tracks.findIndex((tr) => tr.id === trackId);
+  return p.clips.filter((c) => c.kind !== "audio").sort((a, b) => z(b.trackId) - z(a.trackId));
 }

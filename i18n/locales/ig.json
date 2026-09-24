@@ -4898,7 +4898,9 @@
       "hue": "Ụdị ụcha {{value}}°",
       "fontSize": "Nha mkpụrụedemede {{value}}",
       "padding": "Oghere ime {{value}}",
-      "thickness": "Ọkpụrụkpụ {{value}}"
+      "thickness": "Ọkpụrụkpụ {{value}}",
+      "drawHint": "Dọrọ n'elu peeji ka ị see ihe. Ahịrị ọ bụla ị sere bụ ọkwa nke ya, ị nwere ike ibugharị ya, gbanwee nha ya ma ọ bụ hichapụ ya. Pịa “Kwụsị ise ihe” mgbe ị mechara.",
+      "layersHint": "Nke dị n'elu ndepụta bụ nke dị n'ihu. Jiri akụ gbanwee usoro ha. Ọkwa ndị a kpọchiri na ndị ezoro ezo ka a pụrụ ịhọrọ naanị ebe a."
     },
     "filters": {
       "none": "Nke mbụ",
@@ -4942,7 +4944,8 @@
       "alignCentre": "Kwekọọ n'etiti",
       "alignRight": "Kwekọọ n'aka nri",
       "resetPosition": "Tọgharia ọnọdụ",
-      "rotation": "Ntughari {{value}}°"
+      "rotation": "Ntughari {{value}}°",
+      "blend": "Ngwakọta"
     },
     "menu": {
       "addText": "Tinye ederede",
@@ -4965,6 +4968,68 @@
       "jpg": "JPG onyonyo",
       "outputStill": "Mpụta: {{width}}×{{height}}",
       "empty": "Tinye ihe na nhazi gị na mbụ."
+    },
+    "adjust": {
+      "auto": "Mma akpaaka",
+      "autoFailed": "Anyị enweghị ike inyocha foto a.",
+      "tint": "Ntụpọ agba {{value}}",
+      "vignette": "Ọchịchịrị nsọtụ {{value}}%",
+      "warmth": "Okpomọkụ agba {{value}}"
+    },
+    "draw": {
+      "colour": "Agba pen",
+      "heading": "See ihe",
+      "start": "Bido ise ihe",
+      "stop": "Kwụsị ise ihe",
+      "width": "Nha pen {{value}}"
+    },
+    "layers": {
+      "empty": "Ọ nweghị ihe dị na peeji ebe a na-akpọ ugbu a.",
+      "hide": "Zobe",
+      "lock": "Kpọchie",
+      "media": "Mgbasa ozi",
+      "show": "Gosi",
+      "text": "Ederede",
+      "unlock": "Meghee"
+    },
+    "rail": {
+      "elements": "Ihe ndị ọzọ",
+      "layers": "Ọkwa"
+    },
+    "blend": {
+      "normal": "Nkịtị",
+      "multiply": "Mụbaa",
+      "screen": "Ihuenyo",
+      "overlay": "Kpuchie",
+      "darken": "Mee ka ọ gbaa ọchịchịrị",
+      "lighten": "Mee ka ọ dị ìhè",
+      "colorDodge": "Mbelata agba",
+      "colorBurn": "Ọkụ agba",
+      "hardLight": "Ìhè siri ike",
+      "softLight": "Ìhè dị nro",
+      "difference": "Ọdịiche",
+      "exclusion": "Mwepụ",
+      "hue": "Ụcha",
+      "saturation": "Njupụta agba",
+      "color": "Agba",
+      "luminosity": "Nchapụta"
+    },
+    "shape": {
+      "rect": "Akụkụ anọ",
+      "ellipse": "Okirikiri",
+      "triangle": "Triangulu",
+      "star": "Kpakpando",
+      "heart": "Obi",
+      "hexagon": "Akụkụ isii",
+      "line": "Ahịrị",
+      "arrow": "Akụ",
+      "style": "Ụdị ọdịdị",
+      "fill": "Mejupụta",
+      "fillOn": "Mejupụta",
+      "outline": "Ọnụ gburugburu",
+      "outlineOn": "Ọnụ gburugburu",
+      "outlineWidth": "Obosara ọnụ gburugburu {{value}}",
+      "path": "Ihe esere"
     }
   },
   "creator": {

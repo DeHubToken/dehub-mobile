@@ -11,6 +11,7 @@ import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo
 import { StyleSheet, View } from "react-native";
 import { WebView, type WebViewMessageEvent } from "react-native-webview";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import Svg, { Polyline } from "react-native-svg";
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 import { getClip, getTransform, mediaIds, placementPatch, updateClip } from "../../libs/editor/project";
 import { getMedia, mediaDataUrl } from "../../libs/editor/storage";
@@ -28,6 +29,8 @@ export interface LayerBox {
 export interface EditorCanvasHandle {
   /** Render the page at full size and return it as a data URL. */
   exportImage: (format: "png" | "jpeg", quality?: number) => Promise<string>;
+  /** Brightness, spread and colourfulness of a picture, for Auto enhance. Null when it is not loaded. */
+  pictureStats: (mediaId: string) => Promise<{ mean: number; std: number; sat: number } | null>;
 }
 
 interface Props {
@@ -43,6 +46,10 @@ interface Props {
   onGestureEnd: () => void;
   onEditText: (id: string) => void;
   onMissingMedia?: (ids: string[]) => void;
+  /** Freehand pen; while set, one finger draws instead of moving layers. */
+  pen?: { color: string; width: number } | null;
+  /** A finished stroke, in page pixels. */
+  onStroke?: (points: [number, number][]) => void;
 }
 
 /** Distance in screen points inside which a layer snaps to the page centre. */
@@ -86,8 +93,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const [area, setArea] = useState({ w: 0, h: 0 });
   const [layers, setLayers] = useState<LayerBox[]>([]);
   const [guides, setGuides] = useState({ v: false, h: false });
+  // Stroke being drawn, in page pixels (preview only; committed on release).
+  const [stroke, setStroke] = useState<[number, number][] | null>(null);
+  const strokeRef = useRef<[number, number][] | null>(null);
   const sentMedia = useRef(new Set<string>());
   const exports = useRef(new Map<string, { resolve: (v: string) => void; reject: (e: Error) => void }>());
+  const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
 
   const W = project.settings.width;
   const H = project.settings.height;
@@ -147,6 +158,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         exports.current.get(msg.reqId)?.resolve(msg.dataUrl);
         exports.current.delete(msg.reqId);
         break;
+      case "stats": {
+        const done = statsReqs.current.get(msg.reqId);
+        statsReqs.current.delete(msg.reqId);
+        done?.(typeof msg.mean === "number" ? { mean: msg.mean, std: msg.std, sat: msg.sat } : null);
+        break;
+      }
       case "exportFailed":
         exports.current.get(msg.reqId)?.reject(new Error(msg.error || "export failed"));
         exports.current.delete(msg.reqId);
@@ -173,6 +190,15 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           }
         }, 30000);
       }),
+    pictureStats: (mediaId) =>
+      new Promise((resolve) => {
+        const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        statsReqs.current.set(reqId, resolve);
+        post({ type: "stats", reqId, mediaId });
+        setTimeout(() => {
+          if (statsReqs.current.has(reqId)) { statsReqs.current.delete(reqId); resolve(null); }
+        }, 5000);
+      }),
   }), [post]);
 
   // ── gestures ──
@@ -183,7 +209,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const px = x / scale;
     const py = y / scale;
     const slop = HIT_SLOP_PT / scale;
-    for (let i = ls.length - 1; i >= 0; i--) if (pointInBox(ls[i], px, py, slop)) return ls[i];
+    const project = live.current.props.project;
+    for (let i = ls.length - 1; i >= 0; i--) {
+      // Locked layers are not pickable on the page; the Layers panel reaches them.
+      if (getClip(project, ls[i].id)?.locked) continue;
+      if (pointInBox(ls[i], px, py, slop)) return ls[i];
+    }
     return null;
   };
 
@@ -265,9 +296,15 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       .maxPointers(2)
       .onStart((e) => {
         const { props: p } = live.current;
+        if (p.pen) {
+          const kk = live.current.k || 1;
+          strokeRef.current = [[(e.x - e.translationX) / kk, (e.y - e.translationY) / kk], [e.x / kk, e.y / kk]];
+          setStroke(strokeRef.current);
+          return;
+        }
         const x = e.x - e.translationX;
         const y = e.y - e.translationY;
-        const current = boxOf(p.selectedId);
+        const current = getClip(p.project, p.selectedId)?.locked ? null : boxOf(p.selectedId);
         let target = current && pointInBox(current, x / live.current.k, y / live.current.k, HIT_SLOP_PT / live.current.k)
           ? current
           : hitTest(x, y);
@@ -278,16 +315,36 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         join("pan", target.id);
       })
       .onUpdate((e) => {
+        if (strokeRef.current) {
+          const kk = live.current.k || 1;
+          const pt: [number, number] = [e.x / kk, e.y / kk];
+          const last = strokeRef.current[strokeRef.current.length - 1];
+          // Skip samples closer than 2 page px: smoother curve, smaller layer.
+          if (Math.hypot(pt[0] - last[0], pt[1] - last[1]) >= 2) {
+            strokeRef.current = [...strokeRef.current, pt];
+            setStroke(strokeRef.current);
+          }
+          return;
+        }
         if (!drag.current) return;
         drag.current.dx = e.translationX;
         drag.current.dy = e.translationY;
         applyDrag();
       })
-      .onFinalize(() => leave("pan"));
+      .onFinalize(() => {
+        if (strokeRef.current) {
+          const pts = strokeRef.current;
+          strokeRef.current = null;
+          setStroke(null);
+          live.current.props.onStroke?.(pts);
+          return;
+        }
+        leave("pan");
+      });
 
     const pinch = Gesture.Pinch()
       .runOnJS(true)
-      .onStart(() => join("pinch", live.current.props.selectedId))
+      .onStart(() => { if (!live.current.props.pen) join("pinch", live.current.props.selectedId); })
       .onUpdate((e) => {
         if (!drag.current) return;
         drag.current.scale = e.scale;
@@ -297,7 +354,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
     const rotate = Gesture.Rotation()
       .runOnJS(true)
-      .onStart(() => join("rotate", live.current.props.selectedId))
+      .onStart(() => { if (!live.current.props.pen) join("rotate", live.current.props.selectedId); })
       .onUpdate((e) => {
         if (!drag.current) return;
         drag.current.rotation = (e.rotation * 180) / Math.PI;
@@ -308,6 +365,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const tap = Gesture.Tap()
       .runOnJS(true)
       .onEnd((e) => {
+        if (live.current.props.pen) return;
         const hit = hitTest(e.x, e.y);
         live.current.props.onSelect(hit ? hit.id : null);
       });
@@ -327,7 +385,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const sel = selectedId ? layers.find((l) => l.id === selectedId) : null;
+  const selClip = selectedId ? getClip(project, selectedId) : null;
+  const sel = selectedId && !selClip?.locked && !props.pen ? layers.find((l) => l.id === selectedId) : null;
 
   return (
     <View
@@ -356,6 +415,18 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                 style={styles.web}
               />
             </View>
+            {stroke && props.pen && (
+              <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width={viewW} height={viewH}>
+                <Polyline
+                  points={stroke.map(([x, y]) => `${x * k},${y * k}`).join(" ")}
+                  fill="none"
+                  stroke={props.pen.color}
+                  strokeWidth={Math.max(1, (props.pen.width / 1080) * H * k)}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </Svg>
+            )}
             {guides.v && <View pointerEvents="none" style={[styles.guideV, { left: viewW / 2 - 0.5 }]} />}
             {guides.h && <View pointerEvents="none" style={[styles.guideH, { top: viewH / 2 - 0.5 }]} />}
             {sel && (

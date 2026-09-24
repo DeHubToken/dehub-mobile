@@ -4881,7 +4881,9 @@
       "hue": "Rona {{value}}°",
       "fontSize": "Ukuran aksara {{value}}",
       "padding": "Jarak njero {{value}}",
-      "thickness": "Kekandelan {{value}}"
+      "thickness": "Kekandelan {{value}}",
+      "drawHint": "Geser ing kaca kanggo nggambar. Saben goresan iku lapisan dhewe sing bisa dipindhah, diowahi ukurane utawa dibusak. Tutul “Mandheg nggambar” yen wis rampung.",
+      "layersHint": "Sing paling dhuwur ing dhaftar iku sing paling ngarep. Gunakake panah kanggo ngurutake maneh. Lapisan sing dikunci lan didhelikake mung bisa dipilih ing kene."
     },
     "filters": {
       "none": "Asli",
@@ -4925,7 +4927,8 @@
       "alignCentre": "Sejajarke tengah",
       "alignRight": "Sejajarke tengen",
       "resetPosition": "Reset posisi",
-      "rotation": "Rotasi {{value}}°"
+      "rotation": "Rotasi {{value}}°",
+      "blend": "Campuran"
     },
     "menu": {
       "addText": "Tambah teks",
@@ -4948,6 +4951,68 @@
       "jpg": "Gambar JPG",
       "outputStill": "Metu: {{width}}×{{height}}",
       "empty": "Tambahi dhisik samubarang ing desainmu."
+    },
+    "adjust": {
+      "auto": "Paningkatan otomatis",
+      "autoFailed": "Foto iki ora bisa dianalisis.",
+      "tint": "Tint {{value}}",
+      "vignette": "Vignette {{value}}%",
+      "warmth": "Kehangatan {{value}}"
+    },
+    "draw": {
+      "colour": "Warna pulpen",
+      "heading": "Nggambar",
+      "start": "Wiwit nggambar",
+      "stop": "Mandheg nggambar",
+      "width": "Ukuran pulpen {{value}}"
+    },
+    "layers": {
+      "empty": "Durung ana apa-apa ing kaca ing playhead.",
+      "hide": "Umpetake",
+      "lock": "Kunci",
+      "media": "Media",
+      "show": "Tampilake",
+      "text": "Teks",
+      "unlock": "Bukak kunci"
+    },
+    "rail": {
+      "elements": "Elemen",
+      "layers": "Lapisan"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Tikel",
+      "screen": "Layar",
+      "overlay": "Tumpang",
+      "darken": "Petengi",
+      "lighten": "Padhangi",
+      "colorDodge": "Dodge werna",
+      "colorBurn": "Burn werna",
+      "hardLight": "Cahya atos",
+      "softLight": "Cahya alus",
+      "difference": "Bedane",
+      "exclusion": "Pengecualian",
+      "hue": "Rona",
+      "saturation": "Kajenuhan",
+      "color": "Werna",
+      "luminosity": "Luminositas"
+    },
+    "shape": {
+      "rect": "Persegi dawa",
+      "ellipse": "Bunderan",
+      "triangle": "Segitiga",
+      "star": "Lintang",
+      "heart": "Ati",
+      "hexagon": "Segi enem",
+      "line": "Garis",
+      "arrow": "Panah",
+      "style": "Gaya wangun",
+      "fill": "Isi",
+      "fillOn": "Isi",
+      "outline": "Garis pinggir",
+      "outlineOn": "Garis pinggir",
+      "outlineWidth": "Kandel garis pinggir {{value}}",
+      "path": "Gambar"
     }
   },
   "creator": {

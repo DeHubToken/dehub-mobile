@@ -4992,7 +4992,9 @@
       "hue": "Farbton {{value}}°",
       "fontSize": "Schriftgröße {{value}}",
       "padding": "Innenabstand {{value}}",
-      "thickness": "Stärke {{value}}"
+      "thickness": "Stärke {{value}}",
+      "drawHint": "Zum Zeichnen über die Seite ziehen. Jeder Strich ist eine eigene Ebene, die du verschieben, skalieren oder löschen kannst. Tippe auf „Zeichnen beenden“, wenn du fertig bist.",
+      "layersHint": "Oben in der Liste ist vorne. Mit den Pfeilen änderst du die Reihenfolge. Gesperrte und ausgeblendete Ebenen lassen sich nur hier auswählen."
     },
     "filters": {
       "none": "Original",
@@ -5036,7 +5038,8 @@
       "alignCentre": "Mitte ausrichten",
       "alignRight": "Rechts ausrichten",
       "resetPosition": "Position zurücksetzen",
-      "rotation": "Drehung {{value}}°"
+      "rotation": "Drehung {{value}}°",
+      "blend": "Füllmethode"
     },
     "menu": {
       "addText": "Text hinzufügen",
@@ -5059,6 +5062,68 @@
       "jpg": "JPG-Bild",
       "outputStill": "Ausgabe: {{width}}×{{height}}",
       "empty": "Füge zuerst etwas zu deinem Design hinzu."
+    },
+    "adjust": {
+      "auto": "Automatisch verbessern",
+      "autoFailed": "Dieses Bild konnte nicht analysiert werden.",
+      "tint": "Tönung {{value}}",
+      "vignette": "Vignette {{value}} %",
+      "warmth": "Wärme {{value}}"
+    },
+    "draw": {
+      "colour": "Stiftfarbe",
+      "heading": "Zeichnen",
+      "start": "Zeichnen starten",
+      "stop": "Zeichnen beenden",
+      "width": "Stiftgröße {{value}}"
+    },
+    "layers": {
+      "empty": "An der Abspielposition ist noch nichts auf der Seite.",
+      "hide": "Ausblenden",
+      "lock": "Sperren",
+      "media": "Medien",
+      "show": "Einblenden",
+      "text": "Text",
+      "unlock": "Entsperren"
+    },
+    "rail": {
+      "elements": "Elemente",
+      "layers": "Ebenen"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Multiplizieren",
+      "screen": "Negativ multiplizieren",
+      "overlay": "Ineinanderkopieren",
+      "darken": "Abdunkeln",
+      "lighten": "Aufhellen",
+      "colorDodge": "Farbig abwedeln",
+      "colorBurn": "Farbig nachbelichten",
+      "hardLight": "Hartes Licht",
+      "softLight": "Weiches Licht",
+      "difference": "Differenz",
+      "exclusion": "Ausschluss",
+      "hue": "Farbton",
+      "saturation": "Sättigung",
+      "color": "Farbe",
+      "luminosity": "Luminanz"
+    },
+    "shape": {
+      "rect": "Rechteck",
+      "ellipse": "Kreis",
+      "triangle": "Dreieck",
+      "star": "Stern",
+      "heart": "Herz",
+      "hexagon": "Sechseck",
+      "line": "Linie",
+      "arrow": "Pfeil",
+      "style": "Formstil",
+      "fill": "Füllung",
+      "fillOn": "Füllung",
+      "outline": "Kontur",
+      "outlineOn": "Kontur",
+      "outlineWidth": "Konturstärke {{value}}",
+      "path": "Zeichnung"
     }
   },
   "creator": {

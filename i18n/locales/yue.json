@@ -4921,7 +4921,9 @@
       "hue": "色相 {{value}}°",
       "fontSize": "字體大小 {{value}}",
       "padding": "內距 {{value}}",
-      "thickness": "粗幼 {{value}}"
+      "thickness": "粗幼 {{value}}",
+      "drawHint": "喺頁面上拖動嚟畫。每一筆都係獨立嘅圖層，可以移動、調整大小或者刪除。畫完之後撳「停止繪畫」。",
+      "layersHint": "列表最頂嘅係最前面。用箭嘴重新排次序。鎖定咗同隱藏咗嘅圖層只可以喺呢度揀。"
     },
     "filters": {
       "none": "原圖",
@@ -4965,7 +4967,8 @@
       "alignCentre": "置中對齊",
       "alignRight": "靠右對齊",
       "resetPosition": "重設位置",
-      "rotation": "旋轉 {{value}}°"
+      "rotation": "旋轉 {{value}}°",
+      "blend": "混合"
     },
     "menu": {
       "addText": "加文字",
@@ -4988,6 +4991,68 @@
       "jpg": "JPG 圖片",
       "outputStill": "輸出：{{width}}×{{height}}",
       "empty": "請先在畫布上加入內容。"
+    },
+    "adjust": {
+      "auto": "自動增強",
+      "autoFailed": "分析唔到呢張相。",
+      "tint": "色調 {{value}}",
+      "vignette": "暗角 {{value}}%",
+      "warmth": "暖度 {{value}}"
+    },
+    "draw": {
+      "colour": "畫筆顏色",
+      "heading": "繪畫",
+      "start": "開始繪畫",
+      "stop": "停止繪畫",
+      "width": "畫筆大小 {{value}}"
+    },
+    "layers": {
+      "empty": "播放位置暫時未有任何內容。",
+      "hide": "隱藏",
+      "lock": "鎖定",
+      "media": "媒體",
+      "show": "顯示",
+      "text": "文字",
+      "unlock": "解除鎖定"
+    },
+    "rail": {
+      "elements": "元素",
+      "layers": "圖層"
+    },
+    "blend": {
+      "normal": "正常",
+      "multiply": "色彩增值",
+      "screen": "濾色",
+      "overlay": "覆蓋",
+      "darken": "變暗",
+      "lighten": "變亮",
+      "colorDodge": "加亮顏色",
+      "colorBurn": "加深顏色",
+      "hardLight": "實光",
+      "softLight": "柔光",
+      "difference": "差異化",
+      "exclusion": "排除",
+      "hue": "色相",
+      "saturation": "飽和度",
+      "color": "顏色",
+      "luminosity": "明度"
+    },
+    "shape": {
+      "rect": "長方形",
+      "ellipse": "圓形",
+      "triangle": "三角形",
+      "star": "星形",
+      "heart": "心形",
+      "hexagon": "六邊形",
+      "line": "線條",
+      "arrow": "箭嘴",
+      "style": "形狀樣式",
+      "fill": "填色",
+      "fillOn": "填色",
+      "outline": "外框",
+      "outlineOn": "外框",
+      "outlineWidth": "外框闊度 {{value}}",
+      "path": "繪圖"
     }
   },
   "creator": {

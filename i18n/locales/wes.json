@@ -4514,7 +4514,9 @@
       "hue": "Hue {{value}}°",
       "fontSize": "Font size {{value}}",
       "padding": "Padding {{value}}",
-      "thickness": "Thickness {{value}}"
+      "thickness": "Thickness {{value}}",
+      "drawHint": "Drag for di page for draw. Every line wey you draw na ih own layer wey you fit move, resize or delete. Tap “Stop draw” when you don finish.",
+      "layersHint": "Di one for top of di list na di one for front. Use di arrows for arrange dem again. Na only for here you fit pick layers wey you lock or hide."
     },
     "filters": {
       "none": "Original",
@@ -4558,7 +4560,8 @@
       "alignCentre": "Align centre",
       "alignRight": "Align right",
       "resetPosition": "Reset position",
-      "rotation": "Rotation {{value}}°"
+      "rotation": "Rotation {{value}}°",
+      "blend": "Blend"
     },
     "menu": {
       "addText": "Add text",
@@ -4581,6 +4584,68 @@
       "jpg": "JPG image",
       "outputStill": "Output: {{width}}×{{height}}",
       "empty": "Put something for yua design first."
+    },
+    "adjust": {
+      "auto": "Auto enhance",
+      "autoFailed": "We no fit check dis picture.",
+      "tint": "Tint {{value}}",
+      "vignette": "Vignette {{value}}%",
+      "warmth": "Warmth {{value}}"
+    },
+    "draw": {
+      "colour": "Pen colour",
+      "heading": "Draw",
+      "start": "Start for draw",
+      "stop": "Stop draw",
+      "width": "Pen size {{value}}"
+    },
+    "layers": {
+      "empty": "Nothing dey for page for playhead yet.",
+      "hide": "Hide",
+      "lock": "Lock",
+      "media": "Media",
+      "show": "Show",
+      "text": "Text",
+      "unlock": "Unlock"
+    },
+    "rail": {
+      "elements": "Elements",
+      "layers": "Layers"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Multiply",
+      "screen": "Screen",
+      "overlay": "Overlay",
+      "darken": "Darken",
+      "lighten": "Lighten",
+      "colorDodge": "Color dodge",
+      "colorBurn": "Color burn",
+      "hardLight": "Hard light",
+      "softLight": "Soft light",
+      "difference": "Difference",
+      "exclusion": "Exclusion",
+      "hue": "Hue",
+      "saturation": "Saturation",
+      "color": "Color",
+      "luminosity": "Luminosity"
+    },
+    "shape": {
+      "rect": "Rectangle",
+      "ellipse": "Circle",
+      "triangle": "Triangle",
+      "star": "Star",
+      "heart": "Heart",
+      "hexagon": "Hexagon",
+      "line": "Line",
+      "arrow": "Arrow",
+      "style": "Shape style",
+      "fill": "Fill",
+      "fillOn": "Fill",
+      "outline": "Outline",
+      "outlineOn": "Outline",
+      "outlineWidth": "Outline width {{value}}",
+      "path": "Drawing"
     }
   },
   "creator": {

@@ -4911,7 +4911,9 @@
       "hue": "Ìrísí àwọ̀ {{value}}°",
       "fontSize": "Ìwọ̀n fọ́ǹtì {{value}}",
       "padding": "Àlàfo inú {{value}}",
-      "thickness": "Ìnípọn {{value}}"
+      "thickness": "Ìnípọn {{value}}",
+      "drawHint": "Fà á lórí ojú-ìwé láti yà. Ìlà kọ̀ọ̀kan jẹ́ ìpele tirẹ̀ tí o lè gbé, yí ìwọ̀n rẹ̀ padà tàbí pa rẹ́. Tẹ Dá yíyà dúró nígbà tí o bá parí.",
+      "layersHint": "Òkè àtòkọ ni iwájú. Lo àwọn ọfà láti tún ètò ṣe. Àwọn ìpele tí a tì pa àti èyí tí a fi pamọ́ ṣeé yàn níbí nìkan."
     },
     "filters": {
       "none": "Ojúlówó",
@@ -4955,7 +4957,8 @@
       "alignCentre": "Ṣe deede si aarin",
       "alignRight": "Ṣe deede si apa ọtun",
       "resetPosition": "Tun ipo pada",
-      "rotation": "Iyipo {{value}}°"
+      "rotation": "Iyipo {{value}}°",
+      "blend": "Ìdàpọ̀"
     },
     "menu": {
       "addText": "Ṣafikun ọrọ",
@@ -4978,6 +4981,68 @@
       "jpg": "JPG àwòrán",
       "outputStill": "Ìjade: {{width}}×{{height}}",
       "empty": "Ṣafikun nkan si apẹrẹ rẹ ni akọkọ."
+    },
+    "adjust": {
+      "auto": "Àtúnṣe aládàáṣe",
+      "autoFailed": "A kò lè ṣàyẹ̀wò àwòrán yìí.",
+      "tint": "Àwọ̀ díẹ̀ {{value}}",
+      "vignette": "Òkùnkùn etí {{value}}%",
+      "warmth": "Ìgbóná {{value}}"
+    },
+    "draw": {
+      "colour": "Àwọ̀ gègé",
+      "heading": "Yà",
+      "start": "Bẹ̀rẹ̀ sí yà",
+      "stop": "Dá yíyà dúró",
+      "width": "Ìwọ̀n gègé {{value}}"
+    },
+    "layers": {
+      "empty": "Kò sí nǹkan kan lórí ojú-ìwé níbi orí-ìṣeré síbẹ̀.",
+      "hide": "Fi pamọ́",
+      "lock": "Tì",
+      "media": "Mídíà",
+      "show": "Fihàn",
+      "text": "Ọ̀rọ̀",
+      "unlock": "Ṣí"
+    },
+    "rail": {
+      "elements": "Àwọn èròjà",
+      "layers": "Àwọn ìpele"
+    },
+    "blend": {
+      "normal": "Déédé",
+      "multiply": "Sọdipúpọ̀",
+      "screen": "Ìbòjú",
+      "overlay": "Àbòbò",
+      "darken": "Ṣókùnkùn",
+      "lighten": "Tànmọ́lẹ̀",
+      "colorDodge": "Àwọ̀ dídán",
+      "colorBurn": "Àwọ̀ jíjó",
+      "hardLight": "Ìmọ́lẹ̀ líle",
+      "softLight": "Ìmọ́lẹ̀ rírọ̀",
+      "difference": "Ìyàtọ̀",
+      "exclusion": "Àyọkúrò",
+      "hue": "Ìró àwọ̀",
+      "saturation": "Ìkún àwọ̀",
+      "color": "Àwọ̀",
+      "luminosity": "Ìmọ́lẹ̀"
+    },
+    "shape": {
+      "rect": "Onígun mẹ́rin gígùn",
+      "ellipse": "Àyíká",
+      "triangle": "Onígun mẹ́ta",
+      "star": "Ìràwọ̀",
+      "heart": "Ọkàn",
+      "hexagon": "Onígun mẹ́fà",
+      "line": "Ìlà",
+      "arrow": "Ọfà",
+      "style": "Ara ìrísí",
+      "fill": "Kún",
+      "fillOn": "Kún",
+      "outline": "Ìlà ìta",
+      "outlineOn": "Ìlà ìta",
+      "outlineWidth": "Fífẹ̀ ìlà ìta {{value}}",
+      "path": "Àwòrán yíyà"
     }
   },
   "creator": {

@@ -4989,7 +4989,9 @@
       "hue": "色相 {{value}}°",
       "fontSize": "フォントサイズ {{value}}",
       "padding": "余白 {{value}}",
-      "thickness": "太さ {{value}}"
+      "thickness": "太さ {{value}}",
+      "drawHint": "ページ上をドラッグして描きます。ストロークごとに独立したレイヤーになり、移動・サイズ変更・削除ができます。終わったら「描画を終了」をタップします。",
+      "layersHint": "リストの一番上が最前面です。矢印で重ね順を変更できます。ロック中や非表示のレイヤーはここでのみ選択できます。"
     },
     "filters": {
       "none": "オリジナル",
@@ -5033,7 +5035,8 @@
       "alignCentre": "左右中央揃え",
       "alignRight": "右揃え",
       "resetPosition": "位置をリセット",
-      "rotation": "回転 {{value}}°"
+      "rotation": "回転 {{value}}°",
+      "blend": "描画モード"
     },
     "menu": {
       "addText": "テキストを追加",
@@ -5056,6 +5059,68 @@
       "jpg": "JPG画像",
       "outputStill": "出力: {{width}}×{{height}}",
       "empty": "まずデザインに何かを追加してください。"
+    },
+    "adjust": {
+      "auto": "自動補正",
+      "autoFailed": "この画像を解析できませんでした。",
+      "tint": "色かぶり補正 {{value}}",
+      "vignette": "周辺減光 {{value}}%",
+      "warmth": "暖かみ {{value}}"
+    },
+    "draw": {
+      "colour": "ペンの色",
+      "heading": "描画",
+      "start": "描画を開始",
+      "stop": "描画を終了",
+      "width": "ペンのサイズ {{value}}"
+    },
+    "layers": {
+      "empty": "再生ヘッドの位置にはまだ何もありません。",
+      "hide": "非表示",
+      "lock": "ロック",
+      "media": "メディア",
+      "show": "表示",
+      "text": "テキスト",
+      "unlock": "ロック解除"
+    },
+    "rail": {
+      "elements": "要素",
+      "layers": "レイヤー"
+    },
+    "blend": {
+      "normal": "通常",
+      "multiply": "乗算",
+      "screen": "スクリーン",
+      "overlay": "オーバーレイ",
+      "darken": "比較（暗）",
+      "lighten": "比較（明）",
+      "colorDodge": "覆い焼きカラー",
+      "colorBurn": "焼き込みカラー",
+      "hardLight": "ハードライト",
+      "softLight": "ソフトライト",
+      "difference": "差の絶対値",
+      "exclusion": "除外",
+      "hue": "色相",
+      "saturation": "彩度",
+      "color": "カラー",
+      "luminosity": "輝度"
+    },
+    "shape": {
+      "rect": "長方形",
+      "ellipse": "円",
+      "triangle": "三角形",
+      "star": "星",
+      "heart": "ハート",
+      "hexagon": "六角形",
+      "line": "線",
+      "arrow": "矢印",
+      "style": "シェイプのスタイル",
+      "fill": "塗り",
+      "fillOn": "塗り",
+      "outline": "アウトライン",
+      "outlineOn": "アウトライン",
+      "outlineWidth": "アウトラインの太さ {{value}}",
+      "path": "描画"
     }
   },
   "creator": {

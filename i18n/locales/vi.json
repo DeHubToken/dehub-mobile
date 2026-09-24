@@ -5009,7 +5009,9 @@
       "hue": "Sắc độ {{value}}°",
       "fontSize": "Cỡ chữ {{value}}",
       "padding": "Khoảng đệm {{value}}",
-      "thickness": "Độ dày {{value}}"
+      "thickness": "Độ dày {{value}}",
+      "drawHint": "Kéo trên trang để vẽ. Mỗi nét là một lớp riêng mà bạn có thể di chuyển, đổi kích thước hoặc xóa. Nhấn Dừng vẽ khi xong.",
+      "layersHint": "Đầu danh sách là lớp trên cùng. Dùng mũi tên để sắp xếp lại. Lớp bị khóa và bị ẩn chỉ chọn được ở đây."
     },
     "filters": {
       "none": "Gốc",
@@ -5053,7 +5055,8 @@
       "alignCentre": "Căn giữa",
       "alignRight": "Căn phải",
       "resetPosition": "Đặt lại vị trí",
-      "rotation": "Xoay {{value}}°"
+      "rotation": "Xoay {{value}}°",
+      "blend": "Hòa trộn"
     },
     "menu": {
       "addText": "Thêm văn bản",
@@ -5076,6 +5079,68 @@
       "jpg": "Ảnh JPG",
       "outputStill": "Đầu ra: {{width}}×{{height}}",
       "empty": "Trước tiên, hãy thêm một thứ gì đó vào thiết kế của bạn."
+    },
+    "adjust": {
+      "auto": "Tự động nâng cao",
+      "autoFailed": "Không thể phân tích ảnh này.",
+      "tint": "Sắc thái {{value}}",
+      "vignette": "Làm tối góc {{value}}%",
+      "warmth": "Độ ấm {{value}}"
+    },
+    "draw": {
+      "colour": "Màu bút",
+      "heading": "Vẽ",
+      "start": "Bắt đầu vẽ",
+      "stop": "Dừng vẽ",
+      "width": "Cỡ bút {{value}}"
+    },
+    "layers": {
+      "empty": "Chưa có gì trên trang tại đầu phát.",
+      "hide": "Ẩn",
+      "lock": "Khóa",
+      "media": "Phương tiện",
+      "show": "Hiện",
+      "text": "Văn bản",
+      "unlock": "Mở khóa"
+    },
+    "rail": {
+      "elements": "Thành phần",
+      "layers": "Lớp"
+    },
+    "blend": {
+      "normal": "Bình thường",
+      "multiply": "Nhân",
+      "screen": "Màn hình",
+      "overlay": "Lớp phủ",
+      "darken": "Làm tối",
+      "lighten": "Làm sáng",
+      "colorDodge": "Làm sáng màu",
+      "colorBurn": "Làm tối màu",
+      "hardLight": "Ánh sáng mạnh",
+      "softLight": "Ánh sáng dịu",
+      "difference": "Khác biệt",
+      "exclusion": "Loại trừ",
+      "hue": "Sắc độ",
+      "saturation": "Độ bão hòa",
+      "color": "Màu",
+      "luminosity": "Độ sáng"
+    },
+    "shape": {
+      "rect": "Hình chữ nhật",
+      "ellipse": "Hình tròn",
+      "triangle": "Hình tam giác",
+      "star": "Ngôi sao",
+      "heart": "Trái tim",
+      "hexagon": "Hình lục giác",
+      "line": "Đường thẳng",
+      "arrow": "Mũi tên",
+      "style": "Kiểu hình dạng",
+      "fill": "Tô màu",
+      "fillOn": "Tô màu",
+      "outline": "Viền",
+      "outlineOn": "Viền",
+      "outlineWidth": "Độ dày viền {{value}}",
+      "path": "Hình vẽ"
     }
   },
   "creator": {

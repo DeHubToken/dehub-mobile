@@ -4911,7 +4911,9 @@
       "hue": "रंगत {{value}}°",
       "fontSize": "फॉन्ट आकार {{value}}",
       "padding": "पैडिंग {{value}}",
-      "thickness": "मोटाई {{value}}"
+      "thickness": "मोटाई {{value}}",
+      "drawHint": "बनाए बर पेज म खींचव। हर लकीर अपन अलग लेयर आय, जेला तुमन खसका सकथव, आकार बदल सकथव या मिटा सकथव। होगे त «बनाए बर बंद करव» दबावव।",
+      "layersHint": "सूची के ऊपर वाला सबले आगू होथे। क्रम बदले बर तीर ल बउरव। लॉक अउ लुकाए लेयर ल इहें ले छांटे जा सकथे।"
     },
     "filters": {
       "none": "ओरिजिनल",
@@ -4955,7 +4957,8 @@
       "alignCentre": "मध्य संरेखित करव",
       "alignRight": "दाएं संरेखित करव",
       "resetPosition": "स्थिति रीसेट करव",
-      "rotation": "घुमाव {{value}}°"
+      "rotation": "घुमाव {{value}}°",
+      "blend": "मिलाव"
     },
     "menu": {
       "addText": "पाठ जोड़व",
@@ -4978,6 +4981,68 @@
       "jpg": "JPG इमेज",
       "outputStill": "आउटपुट: {{width}}×{{height}}",
       "empty": "पहिले अपन डिजाइन म कोनो चीज जोड़व।"
+    },
+    "adjust": {
+      "auto": "ऑटो सुधार",
+      "autoFailed": "ए फोटो के विश्लेषण नइ हो सकिस।",
+      "tint": "टिंट {{value}}",
+      "vignette": "विनेट {{value}}%",
+      "warmth": "गरमाहट {{value}}"
+    },
+    "draw": {
+      "colour": "कलम के रंग",
+      "heading": "बनाव",
+      "start": "बनाए बर सुरू करव",
+      "stop": "बनाए बर बंद करव",
+      "width": "कलम के आकार {{value}}"
+    },
+    "layers": {
+      "empty": "प्लेहेड म पेज म अभी कुछु नइ हे।",
+      "hide": "छिपाव",
+      "lock": "ताला लगाव",
+      "media": "मीडिया",
+      "show": "दिखाव",
+      "text": "पाठ",
+      "unlock": "ताला खोलव"
+    },
+    "rail": {
+      "elements": "तत्व",
+      "layers": "लेयर"
+    },
+    "blend": {
+      "normal": "सामान्य",
+      "multiply": "गुणा",
+      "screen": "स्क्रीन",
+      "overlay": "ओवरले",
+      "darken": "गहरा",
+      "lighten": "हल्का",
+      "colorDodge": "कलर डॉज",
+      "colorBurn": "कलर बर्न",
+      "hardLight": "हार्ड लाइट",
+      "softLight": "सॉफ्ट लाइट",
+      "difference": "अंतर",
+      "exclusion": "बहिष्करण",
+      "hue": "रंगत",
+      "saturation": "संतृप्ति",
+      "color": "रंग",
+      "luminosity": "चमक"
+    },
+    "shape": {
+      "rect": "आयत",
+      "ellipse": "गोला",
+      "triangle": "त्रिभुज",
+      "star": "तारा",
+      "heart": "दिल",
+      "hexagon": "षट्भुज",
+      "line": "लकीर",
+      "arrow": "तीर",
+      "style": "आकार के स्टाइल",
+      "fill": "भरव",
+      "fillOn": "भरव",
+      "outline": "आउटलाइन",
+      "outlineOn": "आउटलाइन",
+      "outlineWidth": "आउटलाइन चौड़ई {{value}}",
+      "path": "चित्र"
     }
   },
   "creator": {

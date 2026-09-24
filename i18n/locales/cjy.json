@@ -4921,7 +4921,9 @@
       "hue": "色相 {{value}}°",
       "fontSize": "字号 {{value}}",
       "padding": "内边距 {{value}}",
-      "thickness": "粗细 {{value}}"
+      "thickness": "粗细 {{value}}",
+      "drawHint": "在页面上拖动来绘制。每一笔都是单独的图层，可以移动、调整大小或删除。画完后点「停止绘制」。",
+      "layersHint": "列表最上面的在最前面。用箭头调整顺序。锁定和隐藏的图层只能在这里选中。"
     },
     "filters": {
       "none": "原图",
@@ -4965,7 +4967,8 @@
       "alignCentre": "居中对齐",
       "alignRight": "右对齐",
       "resetPosition": "重置位置",
-      "rotation": "旋转 {{value}}°"
+      "rotation": "旋转 {{value}}°",
+      "blend": "混合模式"
     },
     "menu": {
       "addText": "添加文本",
@@ -4988,6 +4991,68 @@
       "jpg": "JPG 图像",
       "outputStill": "输出：{{width}}×{{height}}",
       "empty": "请先在设计中添加内容。"
+    },
+    "adjust": {
+      "auto": "自动增强",
+      "autoFailed": "无法分析这张图片。",
+      "tint": "色调 {{value}}",
+      "vignette": "暗角 {{value}}%",
+      "warmth": "色温 {{value}}"
+    },
+    "draw": {
+      "colour": "画笔颜色",
+      "heading": "绘制",
+      "start": "开始绘制",
+      "stop": "停止绘制",
+      "width": "画笔大小 {{value}}"
+    },
+    "layers": {
+      "empty": "播放头这儿页面上还啥也没有。",
+      "hide": "隐藏",
+      "lock": "锁定",
+      "media": "媒体",
+      "show": "显示",
+      "text": "文字",
+      "unlock": "解锁"
+    },
+    "rail": {
+      "elements": "元素",
+      "layers": "图层"
+    },
+    "blend": {
+      "normal": "正常",
+      "multiply": "正片叠底",
+      "screen": "滤色",
+      "overlay": "叠加",
+      "darken": "变暗",
+      "lighten": "变亮",
+      "colorDodge": "颜色减淡",
+      "colorBurn": "颜色加深",
+      "hardLight": "强光",
+      "softLight": "柔光",
+      "difference": "差值",
+      "exclusion": "排除",
+      "hue": "色相",
+      "saturation": "饱和度",
+      "color": "颜色",
+      "luminosity": "明度"
+    },
+    "shape": {
+      "rect": "矩形",
+      "ellipse": "圆形",
+      "triangle": "三角形",
+      "star": "星形",
+      "heart": "心形",
+      "hexagon": "六边形",
+      "line": "直线",
+      "arrow": "箭头",
+      "style": "形状样式",
+      "fill": "填充",
+      "fillOn": "填充",
+      "outline": "描边",
+      "outlineOn": "描边",
+      "outlineWidth": "描边宽度 {{value}}",
+      "path": "绘图"
     }
   },
   "creator": {

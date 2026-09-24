@@ -4909,7 +4909,9 @@
       "hue": "Launi {{value}}°",
       "fontSize": "Girman rubutu {{value}}",
       "padding": "Tazara {{value}}",
-      "thickness": "Kauri {{value}}"
+      "thickness": "Kauri {{value}}",
+      "drawHint": "Ja a kan shafin don yin zane. Kowane layi yadudduka ne na kansa da za ka iya motsawa, canza girmansa ko goge shi. Taɓa Dakatar da zane idan ka gama.",
+      "layersHint": "Saman jerin shi ne gaba. Yi amfani da kibiyoyi don sake tsara su. Yadudduka da aka kulle ko aka ɓoye za a iya zaɓar su nan kawai."
     },
     "filters": {
       "none": "Na asali",
@@ -4953,7 +4955,8 @@
       "alignCentre": "Daidaita tsakiya",
       "alignRight": "Daidaita dama",
       "resetPosition": "Sake saita wuri",
-      "rotation": "Juyawa {{value}}°"
+      "rotation": "Juyawa {{value}}°",
+      "blend": "Haɗawa"
     },
     "menu": {
       "addText": "Ƙara rubutu",
@@ -4976,6 +4979,68 @@
       "jpg": "Hoto na JPG",
       "outputStill": "Fitowa: {{width}}×{{height}}",
       "empty": "Da farko ƙara wani abu a zane naka."
+    },
+    "adjust": {
+      "auto": "Inganta kai tsaye",
+      "autoFailed": "Ba a iya nazarin wannan hoton ba.",
+      "tint": "Launi {{value}}",
+      "vignette": "Duhun gefe {{value}}%",
+      "warmth": "Ɗumi {{value}}"
+    },
+    "draw": {
+      "colour": "Launin alƙalami",
+      "heading": "Zana",
+      "start": "Fara zane",
+      "stop": "Dakatar da zane",
+      "width": "Girman alƙalami {{value}}"
+    },
+    "layers": {
+      "empty": "Babu komai a shafin a wurin kunnawa tukuna.",
+      "hide": "Ɓoye",
+      "lock": "Kulle",
+      "media": "Kafofin watsa labarai",
+      "show": "Nuna",
+      "text": "Rubutu",
+      "unlock": "Buɗe kulle"
+    },
+    "rail": {
+      "elements": "Abubuwa",
+      "layers": "Yadudduka"
+    },
+    "blend": {
+      "normal": "Na al'ada",
+      "multiply": "Ninkawa",
+      "screen": "Allo",
+      "overlay": "Ɗorawa",
+      "darken": "Duhunta",
+      "lighten": "Haskaka",
+      "colorDodge": "Haskaka launi",
+      "colorBurn": "Ƙona launi",
+      "hardLight": "Haske mai ƙarfi",
+      "softLight": "Haske mai laushi",
+      "difference": "Bambanci",
+      "exclusion": "Keɓewa",
+      "hue": "Nau'in launi",
+      "saturation": "Zurfin launi",
+      "color": "Launi",
+      "luminosity": "Haske"
+    },
+    "shape": {
+      "rect": "Murabba'i mai tsayi",
+      "ellipse": "Da'ira",
+      "triangle": "Alwatika",
+      "star": "Tauraro",
+      "heart": "Zuciya",
+      "hexagon": "Mai kusurwa shida",
+      "line": "Layi",
+      "arrow": "Kibiya",
+      "style": "Salon siffa",
+      "fill": "Cikawa",
+      "fillOn": "Cikawa",
+      "outline": "Iyaka",
+      "outlineOn": "Iyaka",
+      "outlineWidth": "Faɗin iyaka {{value}}",
+      "path": "Zane"
     }
   },
   "creator": {

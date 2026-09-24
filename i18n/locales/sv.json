@@ -4928,7 +4928,9 @@
       "hue": "Nyans {{value}}°",
       "fontSize": "Teckenstorlek {{value}}",
       "padding": "Utfyllnad {{value}}",
-      "thickness": "Tjocklek {{value}}"
+      "thickness": "Tjocklek {{value}}",
+      "drawHint": "Dra på sidan för att rita. Varje streck är ett eget lager som du kan flytta, ändra storlek på eller ta bort. Tryck på Sluta rita när du är klar.",
+      "layersHint": "Överst i listan är längst fram. Använd pilarna för att ändra ordningen. Låsta och dolda lager kan bara väljas här."
     },
     "filters": {
       "none": "Original",
@@ -4972,7 +4974,8 @@
       "alignCentre": "Justera mitten",
       "alignRight": "Justera höger",
       "resetPosition": "Återställ position",
-      "rotation": "Rotation {{value}}°"
+      "rotation": "Rotation {{value}}°",
+      "blend": "Blandning"
     },
     "menu": {
       "addText": "Lägg till text",
@@ -4995,6 +4998,68 @@
       "jpg": "JPG-bild",
       "outputStill": "Utdata: {{width}}×{{height}}",
       "empty": "Lägg till något i din design först."
+    },
+    "adjust": {
+      "auto": "Autoförbättra",
+      "autoFailed": "Kunde inte analysera den här bilden.",
+      "tint": "Färgton {{value}}",
+      "vignette": "Vinjett {{value}} %",
+      "warmth": "Värme {{value}}"
+    },
+    "draw": {
+      "colour": "Pennfärg",
+      "heading": "Rita",
+      "start": "Börja rita",
+      "stop": "Sluta rita",
+      "width": "Pennstorlek {{value}}"
+    },
+    "layers": {
+      "empty": "Inget på sidan vid uppspelningshuvudet än.",
+      "hide": "Dölj",
+      "lock": "Lås",
+      "media": "Media",
+      "show": "Visa",
+      "text": "Text",
+      "unlock": "Lås upp"
+    },
+    "rail": {
+      "elements": "Element",
+      "layers": "Lager"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Multiplicera",
+      "screen": "Raster",
+      "overlay": "Täcka över",
+      "darken": "Mörkare",
+      "lighten": "Ljusare",
+      "colorDodge": "Färgskugga",
+      "colorBurn": "Efterbränn färg",
+      "hardLight": "Hårt ljus",
+      "softLight": "Mjukt ljus",
+      "difference": "Differens",
+      "exclusion": "Uteslutning",
+      "hue": "Nyans",
+      "saturation": "Mättnad",
+      "color": "Färg",
+      "luminosity": "Luminiscens"
+    },
+    "shape": {
+      "rect": "Rektangel",
+      "ellipse": "Cirkel",
+      "triangle": "Triangel",
+      "star": "Stjärna",
+      "heart": "Hjärta",
+      "hexagon": "Hexagon",
+      "line": "Linje",
+      "arrow": "Pil",
+      "style": "Formstil",
+      "fill": "Fyllning",
+      "fillOn": "Fyllning",
+      "outline": "Kontur",
+      "outlineOn": "Kontur",
+      "outlineWidth": "Konturbredd {{value}}",
+      "path": "Teckning"
     }
   },
   "creator": {

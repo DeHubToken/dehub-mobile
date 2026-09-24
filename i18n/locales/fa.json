@@ -4936,7 +4936,9 @@
       "hue": "رنگ‌مایه {{value}}°",
       "fontSize": "اندازه فونت {{value}}",
       "padding": "فاصله داخلی {{value}}",
-      "thickness": "ضخامت {{value}}"
+      "thickness": "ضخامت {{value}}",
+      "drawHint": "برای کشیدن، روی صفحه بکشید. هر خط یک لایه جداست که می‌توانید جابه‌جا کنید، اندازه‌اش را تغییر دهید یا حذفش کنید. وقتی تمام شد، روی «توقف کشیدن» بزنید.",
+      "layersHint": "بالای فهرست جلوتر از همه است. با پیکان‌ها ترتیب را عوض کنید. لایه‌های قفل‌شده و پنهان فقط از اینجا انتخاب می‌شوند."
     },
     "filters": {
       "none": "اصلی",
@@ -4980,7 +4982,8 @@
       "alignCentre": "تراز وسط",
       "alignRight": "تراز راست",
       "resetPosition": "بازنشانی موقعیت",
-      "rotation": "چرخش {{value}}°"
+      "rotation": "چرخش {{value}}°",
+      "blend": "ترکیب"
     },
     "menu": {
       "addText": "متن را اضافه کنید",
@@ -5003,6 +5006,68 @@
       "jpg": "تصویر JPG",
       "outputStill": "خروجی: {{width}}×{{height}}",
       "empty": "ابتدا چیزی به طرح خود اضافه کنید."
+    },
+    "adjust": {
+      "auto": "بهبود خودکار",
+      "autoFailed": "تحلیل این تصویر ممکن نشد.",
+      "tint": "ته‌رنگ {{value}}",
+      "vignette": "وینیت {{value}}%",
+      "warmth": "گرما {{value}}"
+    },
+    "draw": {
+      "colour": "رنگ قلم",
+      "heading": "کشیدن",
+      "start": "شروع کشیدن",
+      "stop": "توقف کشیدن",
+      "width": "اندازه قلم {{value}}"
+    },
+    "layers": {
+      "empty": "هنوز در محل نشانگر پخش چیزی روی صفحه نیست.",
+      "hide": "پنهان کردن",
+      "lock": "قفل",
+      "media": "رسانه",
+      "show": "نمایش",
+      "text": "متن",
+      "unlock": "باز کردن قفل"
+    },
+    "rail": {
+      "elements": "عناصر",
+      "layers": "لایه‌ها"
+    },
+    "blend": {
+      "normal": "عادی",
+      "multiply": "ضرب",
+      "screen": "صفحه",
+      "overlay": "پوشش",
+      "darken": "تیره‌تر",
+      "lighten": "روشن‌تر",
+      "colorDodge": "گریز رنگ",
+      "colorBurn": "سوختن رنگ",
+      "hardLight": "نور سخت",
+      "softLight": "نور نرم",
+      "difference": "تفاوت",
+      "exclusion": "حذف",
+      "hue": "فام",
+      "saturation": "اشباع",
+      "color": "رنگ",
+      "luminosity": "درخشندگی"
+    },
+    "shape": {
+      "rect": "مستطیل",
+      "ellipse": "دایره",
+      "triangle": "مثلث",
+      "star": "ستاره",
+      "heart": "قلب",
+      "hexagon": "شش‌ضلعی",
+      "line": "خط",
+      "arrow": "فلش",
+      "style": "سبک شکل",
+      "fill": "پرکردن",
+      "fillOn": "پرکردن",
+      "outline": "خط دور",
+      "outlineOn": "خط دور",
+      "outlineWidth": "ضخامت خط دور {{value}}",
+      "path": "نقاشی"
     }
   },
   "creator": {

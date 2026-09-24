@@ -4988,7 +4988,9 @@
       "hue": "색조 {{value}}°",
       "fontSize": "글꼴 크기 {{value}}",
       "padding": "여백 {{value}}",
-      "thickness": "두께 {{value}}"
+      "thickness": "두께 {{value}}",
+      "drawHint": "페이지를 드래그해서 그리세요. 각 획은 이동, 크기 조절, 삭제가 가능한 별도의 레이어가 됩니다. 다 그리면 그리기 중지를 탭하세요.",
+      "layersHint": "목록의 맨 위가 가장 앞입니다. 화살표로 순서를 바꾸세요. 잠겼거나 숨겨진 레이어는 여기에서만 선택할 수 있습니다."
     },
     "filters": {
       "none": "원본",
@@ -5032,7 +5034,8 @@
       "alignCentre": "가운데 맞춤",
       "alignRight": "오른쪽 맞춤",
       "resetPosition": "위치 재설정",
-      "rotation": "회전 {{value}}°"
+      "rotation": "회전 {{value}}°",
+      "blend": "혼합 모드"
     },
     "menu": {
       "addText": "텍스트 추가",
@@ -5055,6 +5058,68 @@
       "jpg": "JPG 이미지",
       "outputStill": "출력: {{width}}×{{height}}",
       "empty": "먼저 디자인에 무언가를 추가하세요."
+    },
+    "adjust": {
+      "auto": "자동 보정",
+      "autoFailed": "이 사진을 분석할 수 없습니다.",
+      "tint": "색조 {{value}}",
+      "vignette": "비네트 {{value}}%",
+      "warmth": "따뜻함 {{value}}"
+    },
+    "draw": {
+      "colour": "펜 색상",
+      "heading": "그리기",
+      "start": "그리기 시작",
+      "stop": "그리기 중지",
+      "width": "펜 크기 {{value}}"
+    },
+    "layers": {
+      "empty": "재생 헤드 위치에 아직 아무것도 없습니다.",
+      "hide": "숨기기",
+      "lock": "잠금",
+      "media": "미디어",
+      "show": "표시",
+      "text": "텍스트",
+      "unlock": "잠금 해제"
+    },
+    "rail": {
+      "elements": "요소",
+      "layers": "레이어"
+    },
+    "blend": {
+      "normal": "표준",
+      "multiply": "곱하기",
+      "screen": "스크린",
+      "overlay": "오버레이",
+      "darken": "어둡게 하기",
+      "lighten": "밝게 하기",
+      "colorDodge": "색상 닷지",
+      "colorBurn": "색상 번",
+      "hardLight": "하드 라이트",
+      "softLight": "소프트 라이트",
+      "difference": "차이",
+      "exclusion": "제외",
+      "hue": "색조",
+      "saturation": "채도",
+      "color": "색상",
+      "luminosity": "광도"
+    },
+    "shape": {
+      "rect": "직사각형",
+      "ellipse": "원",
+      "triangle": "삼각형",
+      "star": "별",
+      "heart": "하트",
+      "hexagon": "육각형",
+      "line": "선",
+      "arrow": "화살표",
+      "style": "도형 스타일",
+      "fill": "채우기",
+      "fillOn": "채우기",
+      "outline": "윤곽선",
+      "outlineOn": "윤곽선",
+      "outlineWidth": "윤곽선 두께 {{value}}",
+      "path": "그림"
     }
   },
   "creator": {

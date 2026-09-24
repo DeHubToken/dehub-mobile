@@ -4951,7 +4951,9 @@
       "hue": "Llimphi laya {{value}}°",
       "fontSize": "Qillqap sayaynin {{value}}",
       "padding": "Ukhu chawpi {{value}}",
-      "thickness": "Rakhu kay {{value}}"
+      "thickness": "Rakhu kay {{value}}",
+      "drawHint": "Raphipi aysay siq'inaykipaq. Sapa siq'iqa kikin pataqmi, kuyuchiyta, sayayninta tikrayta utaq pichayta atinki. Tukuspaqa “Siq'iyta sayachiy” nisqata ñit'iy.",
+      "layersHint": "Listapa hawanmi ñawpaqpi kachkan. Wach'ichakunawan huk kutita churay. Wichqasqa, pakasqa pataqkunataqa kaypillam akllayta atikun."
     },
     "filters": {
       "none": "Qallariy kaq",
@@ -4995,7 +4997,8 @@
       "alignCentre": "Chawpiman churay",
       "alignRight": "Pañaman churay",
       "resetPosition": "Ñawpaqta kaqman kutiriy",
-      "rotation": "Muyuy {{value}}°"
+      "rotation": "Muyuy {{value}}°",
+      "blend": "Chaqruy"
     },
     "menu": {
       "addText": "Qillqata yapay",
@@ -5018,6 +5021,68 @@
       "jpg": "JPG siq'i",
       "outputStill": "Lluqsisqa: {{width}}×{{height}}",
       "empty": "Ñawpaqta imatapas diseñoykiman yapay."
+    },
+    "adjust": {
+      "auto": "Kikillanmanta allinchay",
+      "autoFailed": "Manam kay siq'ita t'aqwiyta atikurqanchu.",
+      "tint": "Llimp'i tinti {{value}}",
+      "vignette": "Patakuna tutayachiy {{value}}%",
+      "warmth": "Q'uñi kay {{value}}"
+    },
+    "draw": {
+      "colour": "Qillqanapa llimpin",
+      "heading": "Siq'iy",
+      "start": "Siq'iyta qallariy",
+      "stop": "Siq'iyta sayachiy",
+      "width": "Qillqanapa tamañon {{value}}"
+    },
+    "layers": {
+      "empty": "Manaraq imapas kanchu p'anqapi kay pachapi.",
+      "hide": "Pakay",
+      "lock": "Wichq'ay",
+      "media": "Media",
+      "show": "Rikuchiy",
+      "text": "Qillqa",
+      "unlock": "Kichay"
+    },
+    "rail": {
+      "elements": "Imakuna",
+      "layers": "Pataqkuna"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Mirachiy",
+      "screen": "Pantalla",
+      "overlay": "Hawanpi churay",
+      "darken": "Tutayachiy",
+      "lighten": "K'anchachiy",
+      "colorDodge": "Llimp'i k'anchachiy",
+      "colorBurn": "Llimp'i ruphachiy",
+      "hardLight": "Sinchi k'anchay",
+      "softLight": "Llampu k'anchay",
+      "difference": "Hukniray",
+      "exclusion": "Hawaman qarquy",
+      "hue": "Llimp'i rikch'ay",
+      "saturation": "Llimp'i sinchi kay",
+      "color": "Llimp'i",
+      "luminosity": "K'anchariy"
+    },
+    "shape": {
+      "rect": "Suni tawak'uchu",
+      "ellipse": "Muyu",
+      "triangle": "Kimsak'uchu",
+      "star": "Quyllur",
+      "heart": "Sunqu",
+      "hexagon": "Suqtak'uchu",
+      "line": "Siqi",
+      "arrow": "Wach'i",
+      "style": "Rikch'aypa laya",
+      "fill": "Hunt'achiy",
+      "fillOn": "Hunt'achiy",
+      "outline": "Muyuq siqi",
+      "outlineOn": "Muyuq siqi",
+      "outlineWidth": "Muyuq siqipa rakhu kaynin {{value}}",
+      "path": "Siq'isqa"
     }
   },
   "creator": {

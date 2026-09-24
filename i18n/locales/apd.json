@@ -4878,7 +4878,9 @@
       "hue": "درجة اللون {{value}}°",
       "fontSize": "حجم الخط {{value}}",
       "padding": "الحشوة {{value}}",
-      "thickness": "السُمك {{value}}"
+      "thickness": "السُمك {{value}}",
+      "drawHint": "اسحب على الصفحة عشان ترسم. كل خط طبقة براها تقدر تحركها أو تغيّر حجمها أو تمسحها. اضغط «وقّف الرسم» لمن تكمّل.",
+      "layersHint": "أول القائمة هو القدّام. استعمل الأسهم عشان ترتّب الطبقات. الطبقات المقفولة والمخفية بتنختار من هنا بس."
     },
     "filters": {
       "none": "الأصلي",
@@ -4922,7 +4924,8 @@
       "alignCentre": "محاذاة للوسط",
       "alignRight": "محاذاة لليمين",
       "resetPosition": "إعادة تعيين الموضع",
-      "rotation": "الدوران {{value}}°"
+      "rotation": "الدوران {{value}}°",
+      "blend": "المزج"
     },
     "menu": {
       "addText": "إضافة نص",
@@ -4945,6 +4948,68 @@
       "jpg": "صورة JPG",
       "outputStill": "الإخراج: {{width}} × {{height}}",
       "empty": "أضف شيئاً لتصميمك أولاً."
+    },
+    "adjust": {
+      "auto": "تحسين تلقائي",
+      "autoFailed": "ما قدرنا نحلل الصورة دي.",
+      "tint": "الصبغة {{value}}",
+      "vignette": "التظليل {{value}}%",
+      "warmth": "الدفء {{value}}"
+    },
+    "draw": {
+      "colour": "لون القلم",
+      "heading": "أرسم",
+      "start": "ابدأ الرسم",
+      "stop": "وقّف الرسم",
+      "width": "حجم القلم {{value}}"
+    },
+    "layers": {
+      "empty": "ما في حاجة في الصفحة عند مؤشر التشغيل لسه.",
+      "hide": "إخفاء",
+      "lock": "قفل",
+      "media": "وسائط",
+      "show": "إظهار",
+      "text": "نص",
+      "unlock": "فتح القفل"
+    },
+    "rail": {
+      "elements": "العناصر",
+      "layers": "الطبقات"
+    },
+    "blend": {
+      "normal": "عادي",
+      "multiply": "ضرب",
+      "screen": "شاشة",
+      "overlay": "تراكب",
+      "darken": "تغميق",
+      "lighten": "تفتيح",
+      "colorDodge": "تفتيح اللون",
+      "colorBurn": "حرق اللون",
+      "hardLight": "ضوء ساطع",
+      "softLight": "ضوء خافت",
+      "difference": "اختلاف",
+      "exclusion": "استبعاد",
+      "hue": "تدرج اللون",
+      "saturation": "التشبع",
+      "color": "اللون",
+      "luminosity": "السطوع"
+    },
+    "shape": {
+      "rect": "مستطيل",
+      "ellipse": "دائرة",
+      "triangle": "مثلث",
+      "star": "نجمة",
+      "heart": "قلب",
+      "hexagon": "سداسي",
+      "line": "خط",
+      "arrow": "سهم",
+      "style": "نمط الشكل",
+      "fill": "تعبئة",
+      "fillOn": "تعبئة",
+      "outline": "حدود",
+      "outlineOn": "حدود",
+      "outlineWidth": "عرض الحدود {{value}}",
+      "path": "رسمة"
     }
   },
   "creator": {

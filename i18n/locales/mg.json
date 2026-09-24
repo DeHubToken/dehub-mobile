@@ -4998,7 +4998,9 @@
       "hue": "Lokony {{value}}°",
       "fontSize": "Haben'ny soratra {{value}}",
       "padding": "Elanelana anatiny {{value}}",
-      "thickness": "Hateviny {{value}}"
+      "thickness": "Hateviny {{value}}",
+      "drawHint": "Sintony eo amin'ny pejy mba hanaovana sary. Sosona manokana ny tsipika tsirairay, azonao afindra, ovaina habe na fafana. Tsindrio ny “Hampiato ny sary” rehefa vita.",
+      "layersHint": "Ny eo an-tampon'ny lisitra no eo aloha indrindra. Ampiasao ny zana-tsipìka hanovana ny filaharana. Eto ihany no ahafahana misafidy ireo sosona voahidy sy miafina."
     },
     "filters": {
       "none": "Tany am-boalohany",
@@ -5042,7 +5044,8 @@
       "alignCentre": "Alaharo eo afovoany",
       "alignRight": "Alaharo ankavanana",
       "resetPosition": "Averina ny toerana",
-      "rotation": "Fihodinana {{value}}°"
+      "rotation": "Fihodinana {{value}}°",
+      "blend": "Fampifangaroana"
     },
     "menu": {
       "addText": "Hanampy lahabolana",
@@ -5065,6 +5068,68 @@
       "jpg": "Sary JPG",
       "outputStill": "Fivoahana: {{width}}×{{height}}",
       "empty": "Manampia zavatra amin'ny famolavolanao aloha."
+    },
+    "adjust": {
+      "auto": "Fanatsarana ho azy",
+      "autoFailed": "Tsy voadinika ity sary ity.",
+      "tint": "Loko manjavozavo {{value}}",
+      "vignette": "Maizina amin'ny sisiny {{value}}%",
+      "warmth": "Hafanana {{value}}"
+    },
+    "draw": {
+      "colour": "Loko penina",
+      "heading": "Hanao sary",
+      "start": "Manomboka manao sary",
+      "stop": "Hampiato ny sary",
+      "width": "Haben'ny penina {{value}}"
+    },
+    "layers": {
+      "empty": "Mbola tsy misy na inona na inona eo amin'ny pejy amin'ity fotoana ity.",
+      "hide": "Afeno",
+      "lock": "Hidio",
+      "media": "Media",
+      "show": "Aseho",
+      "text": "Lahatsoratra",
+      "unlock": "Sokafy"
+    },
+    "rail": {
+      "elements": "Singa",
+      "layers": "Sosona"
+    },
+    "blend": {
+      "normal": "Mahazatra",
+      "multiply": "Ampitomboina",
+      "screen": "Efijery",
+      "overlay": "Mifanindry",
+      "darken": "Manamaizina",
+      "lighten": "Manazava",
+      "colorDodge": "Manazava loko",
+      "colorBurn": "Mandoro loko",
+      "hardLight": "Hazavana mafy",
+      "softLight": "Hazavana malefaka",
+      "difference": "Fahasamihafana",
+      "exclusion": "Fanilihana",
+      "hue": "Lokony",
+      "saturation": "Hamafin'ny loko",
+      "color": "Loko",
+      "luminosity": "Famirapiratana"
+    },
+    "shape": {
+      "rect": "Efamira lava",
+      "ellipse": "Faribolana",
+      "triangle": "Telozoro",
+      "star": "Kintana",
+      "heart": "Fo",
+      "hexagon": "Enina zoro",
+      "line": "Tsipika",
+      "arrow": "Zana-tsipìka",
+      "style": "Endriky ny bika",
+      "fill": "Famenoana",
+      "fillOn": "Famenoana",
+      "outline": "Sisiny",
+      "outlineOn": "Sisiny",
+      "outlineWidth": "Hatevin'ny sisiny {{value}}",
+      "path": "Sary vita"
     }
   },
   "creator": {

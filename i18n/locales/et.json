@@ -4923,7 +4923,9 @@
       "hue": "Toon {{value}}°",
       "fontSize": "Fondi suurus {{value}}",
       "padding": "Sisevahe {{value}}",
-      "thickness": "Paksus {{value}}"
+      "thickness": "Paksus {{value}}",
+      "drawHint": "Joonistamiseks lohista lehel. Iga joon on eraldi kiht, mida saad liigutada, suurust muuta või kustutada. Kui oled valmis, puuduta nuppu Lõpeta joonistamine.",
+      "layersHint": "Loendi ülemine on kõige ees. Järjekorra muutmiseks kasuta nooli. Lukustatud ja peidetud kihte saab valida ainult siin."
     },
     "filters": {
       "none": "Originaal",
@@ -4967,7 +4969,8 @@
       "alignCentre": "Joonda keskele",
       "alignRight": "Joonda paremale",
       "resetPosition": "Lähtesta asend",
-      "rotation": "Pööramine {{value}}°"
+      "rotation": "Pööramine {{value}}°",
+      "blend": "Segamine"
     },
     "menu": {
       "addText": "Lisa tekst",
@@ -4990,6 +4993,68 @@
       "jpg": "JPG pilt",
       "outputStill": "Väljund: {{width}}×{{height}}",
       "empty": "Lisage esmalt oma kujundusse midagi."
+    },
+    "adjust": {
+      "auto": "Automaatne täiustamine",
+      "autoFailed": "Seda pilti ei õnnestunud analüüsida.",
+      "tint": "Toon {{value}}",
+      "vignette": "Vinjett {{value}}%",
+      "warmth": "Soojus {{value}}"
+    },
+    "draw": {
+      "colour": "Pliiatsi värv",
+      "heading": "Joonista",
+      "start": "Alusta joonistamist",
+      "stop": "Lõpeta joonistamine",
+      "width": "Pliiatsi suurus {{value}}"
+    },
+    "layers": {
+      "empty": "Esituspea kohal pole lehel veel midagi.",
+      "hide": "Peida",
+      "lock": "Lukusta",
+      "media": "Meedia",
+      "show": "Näita",
+      "text": "Tekst",
+      "unlock": "Ava lukk"
+    },
+    "rail": {
+      "elements": "Elemendid",
+      "layers": "Kihid"
+    },
+    "blend": {
+      "normal": "Tavaline",
+      "multiply": "Korruta",
+      "screen": "Ekraan",
+      "overlay": "Ülekate",
+      "darken": "Tumedam",
+      "lighten": "Heledam",
+      "colorDodge": "Värvi helestus",
+      "colorBurn": "Värvi põletus",
+      "hardLight": "Kõva valgus",
+      "softLight": "Pehme valgus",
+      "difference": "Erinevus",
+      "exclusion": "Välistus",
+      "hue": "Toon",
+      "saturation": "Küllastus",
+      "color": "Värv",
+      "luminosity": "Heledus"
+    },
+    "shape": {
+      "rect": "Ristkülik",
+      "ellipse": "Ring",
+      "triangle": "Kolmnurk",
+      "star": "Täht",
+      "heart": "Süda",
+      "hexagon": "Kuusnurk",
+      "line": "Joon",
+      "arrow": "Nool",
+      "style": "Kujundi stiil",
+      "fill": "Täide",
+      "fillOn": "Täide",
+      "outline": "Kontuur",
+      "outlineOn": "Kontuur",
+      "outlineWidth": "Kontuuri laius {{value}}",
+      "path": "Joonistus"
     }
   },
   "creator": {

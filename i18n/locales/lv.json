@@ -4922,7 +4922,9 @@
       "hue": "Nokrāsa {{value}}°",
       "fontSize": "Fonta izmērs {{value}}",
       "padding": "Iekšējā atkāpe {{value}}",
-      "thickness": "Biezums {{value}}"
+      "thickness": "Biezums {{value}}",
+      "drawHint": "Velciet pa lapu, lai zīmētu. Katrs vilciens ir atsevišķs slānis, ko varat pārvietot, mainīt izmēru vai dzēst. Kad esat pabeidzis, pieskarieties Beigt zīmēt.",
+      "layersHint": "Saraksta augšā ir priekšplāns. Izmantojiet bultiņas, lai mainītu secību. Bloķētos un paslēptos slāņus var atlasīt tikai šeit."
     },
     "filters": {
       "none": "Oriģināls",
@@ -4966,7 +4968,8 @@
       "alignCentre": "Līdzināt pa centru",
       "alignRight": "Līdzināt pa labi",
       "resetPosition": "Atiestatīt pozīciju",
-      "rotation": "Rotācija {{value}}°"
+      "rotation": "Rotācija {{value}}°",
+      "blend": "Sajaukšana"
     },
     "menu": {
       "addText": "Pievienot tekstu",
@@ -4989,6 +4992,68 @@
       "jpg": "JPG attēls",
       "outputStill": "Izvade: {{width}}×{{height}}",
       "empty": "Vispirms pievienojiet kaut ko savam dizainam."
+    },
+    "adjust": {
+      "auto": "Automātiska uzlabošana",
+      "autoFailed": "Neizdevās analizēt šo attēlu.",
+      "tint": "Tonis {{value}}",
+      "vignette": "Vinjete {{value}}%",
+      "warmth": "Siltums {{value}}"
+    },
+    "draw": {
+      "colour": "Pildspalvas krāsa",
+      "heading": "Zīmēt",
+      "start": "Sākt zīmēt",
+      "stop": "Beigt zīmēt",
+      "width": "Pildspalvas izmērs {{value}}"
+    },
+    "layers": {
+      "empty": "Atskaņošanas galviņas vietā lapā vēl nav nekā.",
+      "hide": "Paslēpt",
+      "lock": "Bloķēt",
+      "media": "Multivide",
+      "show": "Rādīt",
+      "text": "Teksts",
+      "unlock": "Atbloķēt"
+    },
+    "rail": {
+      "elements": "Elementi",
+      "layers": "Slāņi"
+    },
+    "blend": {
+      "normal": "Normāls",
+      "multiply": "Reizināt",
+      "screen": "Ekrāns",
+      "overlay": "Pārklājums",
+      "darken": "Tumšāks",
+      "lighten": "Gaišāks",
+      "colorDodge": "Krāsu izgaismošana",
+      "colorBurn": "Krāsu apdedzināšana",
+      "hardLight": "Cietā gaisma",
+      "softLight": "Mīkstā gaisma",
+      "difference": "Starpība",
+      "exclusion": "Izslēgšana",
+      "hue": "Nokrāsa",
+      "saturation": "Piesātinājums",
+      "color": "Krāsa",
+      "luminosity": "Spilgtums"
+    },
+    "shape": {
+      "rect": "Taisnstūris",
+      "ellipse": "Aplis",
+      "triangle": "Trijstūris",
+      "star": "Zvaigzne",
+      "heart": "Sirds",
+      "hexagon": "Sešstūris",
+      "line": "Līnija",
+      "arrow": "Bultiņa",
+      "style": "Formas stils",
+      "fill": "Aizpildījums",
+      "fillOn": "Aizpildījums",
+      "outline": "Kontūra",
+      "outlineOn": "Kontūra",
+      "outlineWidth": "Kontūras platums {{value}}",
+      "path": "Zīmējums"
     }
   },
   "creator": {

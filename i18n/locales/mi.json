@@ -4906,7 +4906,9 @@
       "hue": "Kano {{value}}°",
       "fontSize": "Rahi momotuhi {{value}}",
       "padding": "Whakakī {{value}}",
-      "thickness": "Mātotoru {{value}}"
+      "thickness": "Mātotoru {{value}}",
+      "drawHint": "Tōia i runga i te whārangi hei tuhi. He paparanga motuhake ia rārangi, ka taea e koe te neke, te panoni rahi, te muku rānei. Pātōtia Kāti te tuhi ina oti koe.",
+      "layersHint": "Ko te runga o te rārangi te mua. Whakamahia ngā pere hei whakaraupapa anō. Ko ngā paparanga kua rakaina, kua hunaia rānei, ka taea anake te kōwhiri i konei."
     },
     "filters": {
       "none": "Taketake",
@@ -4950,7 +4952,8 @@
       "alignCentre": "Whakararau ki te pokapū",
       "alignRight": "Whakararau ki te taha matau",
       "resetPosition": "Tautuhi anō i te tūranga",
-      "rotation": "Tāhuri {{value}}°"
+      "rotation": "Tāhuri {{value}}°",
+      "blend": "Whakaranu"
     },
     "menu": {
       "addText": "Tāpirihia te kuputuhi",
@@ -4973,6 +4976,68 @@
       "jpg": "Pikitia JPG",
       "outputStill": "Putanga: {{width}}×{{height}}",
       "empty": "Me tāpiri tētahi mea ki tō hoahoa i te tuatahi."
+    },
+    "adjust": {
+      "auto": "Whakapai aunoa",
+      "autoFailed": "Kāore i taea te tātari i tēnei pikitia.",
+      "tint": "Tae {{value}}",
+      "vignette": "Pouri tapa {{value}}%",
+      "warmth": "Mahana {{value}}"
+    },
+    "draw": {
+      "colour": "Tae o te pene",
+      "heading": "Tuhi",
+      "start": "Tīmata ki te tuhi",
+      "stop": "Kāti te tuhi",
+      "width": "Rahi o te pene {{value}}"
+    },
+    "layers": {
+      "empty": "Kāore anō he mea i te whārangi i te pūpānga pūrei.",
+      "hide": "Huna",
+      "lock": "Raka",
+      "media": "Pāpāho",
+      "show": "Whakaatu",
+      "text": "Kuputuhi",
+      "unlock": "Wetewete"
+    },
+    "rail": {
+      "elements": "Huānga",
+      "layers": "Paparanga"
+    },
+    "blend": {
+      "normal": "Noa",
+      "multiply": "Whakarea",
+      "screen": "Mata",
+      "overlay": "Tāpaki",
+      "darken": "Whakapōuri",
+      "lighten": "Whakamārama",
+      "colorDodge": "Karo tae",
+      "colorBurn": "Tahu tae",
+      "hardLight": "Rama mārō",
+      "softLight": "Rama ngohengohe",
+      "difference": "Rerekētanga",
+      "exclusion": "Whakakorenga",
+      "hue": "Kano",
+      "saturation": "Kukū",
+      "color": "Tae",
+      "luminosity": "Pīataata"
+    },
+    "shape": {
+      "rect": "Tapawhā hāngai",
+      "ellipse": "Porowhita",
+      "triangle": "Tapatoru",
+      "star": "Whetū",
+      "heart": "Manawa",
+      "hexagon": "Tapaono",
+      "line": "Rārangi",
+      "arrow": "Pere",
+      "style": "Āhua o te hanga",
+      "fill": "Whakakī",
+      "fillOn": "Whakakī",
+      "outline": "Tapa",
+      "outlineOn": "Tapa",
+      "outlineWidth": "Whānui o te tapa {{value}}",
+      "path": "Tuhinga"
     }
   },
   "creator": {

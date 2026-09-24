@@ -4907,7 +4907,9 @@
       "hue": "גוון {{value}}°",
       "fontSize": "גודל גופן {{value}}",
       "padding": "ריפוד {{value}}",
-      "thickness": "עובי {{value}}"
+      "thickness": "עובי {{value}}",
+      "drawHint": "גררו על הדף כדי לצייר. כל קו הוא שכבה נפרדת שאפשר להזיז, לשנות את גודלה או למחוק. הקישו על ״הפסק לצייר״ כשתסיימו.",
+      "layersHint": "ראש הרשימה הוא החזית. השתמשו בחצים כדי לשנות את הסדר. שכבות נעולות ומוסתרות אפשר לבחור רק כאן."
     },
     "filters": {
       "none": "מקורי",
@@ -4951,7 +4953,8 @@
       "alignCentre": "ישר למרכז",
       "alignRight": "ישר לימין",
       "resetPosition": "אפס מיקום",
-      "rotation": "סיבוב {{value}}°"
+      "rotation": "סיבוב {{value}}°",
+      "blend": "מיזוג"
     },
     "menu": {
       "addText": "הוספת טקסט",
@@ -4974,6 +4977,68 @@
       "jpg": "תמונת JPG",
       "outputStill": "פלט: {{width}}×{{height}}",
       "empty": "הוסף תחילה משהו לעיצוב שלך."
+    },
+    "adjust": {
+      "auto": "שיפור אוטומטי",
+      "autoFailed": "לא ניתן היה לנתח את התמונה הזו.",
+      "tint": "גוון {{value}}",
+      "vignette": "הצללת שוליים {{value}}%",
+      "warmth": "חמימות {{value}}"
+    },
+    "draw": {
+      "colour": "צבע העט",
+      "heading": "ציור",
+      "start": "התחל לצייר",
+      "stop": "הפסק לצייר",
+      "width": "גודל העט {{value}}"
+    },
+    "layers": {
+      "empty": "עדיין אין כלום בדף במיקום סמן ההפעלה.",
+      "hide": "הסתר",
+      "lock": "נעל",
+      "media": "מדיה",
+      "show": "הצג",
+      "text": "טקסט",
+      "unlock": "בטל נעילה"
+    },
+    "rail": {
+      "elements": "אלמנטים",
+      "layers": "שכבות"
+    },
+    "blend": {
+      "normal": "רגיל",
+      "multiply": "הכפלה",
+      "screen": "מסך",
+      "overlay": "שכבת-על",
+      "darken": "הכהה",
+      "lighten": "הבהר",
+      "colorDodge": "הבהרת צבע",
+      "colorBurn": "צריבת צבע",
+      "hardLight": "אור חזק",
+      "softLight": "אור רך",
+      "difference": "הפרש",
+      "exclusion": "החרגה",
+      "hue": "גוון",
+      "saturation": "רוויה",
+      "color": "צבע",
+      "luminosity": "בהירות"
+    },
+    "shape": {
+      "rect": "מלבן",
+      "ellipse": "עיגול",
+      "triangle": "משולש",
+      "star": "כוכב",
+      "heart": "לב",
+      "hexagon": "משושה",
+      "line": "קו",
+      "arrow": "חץ",
+      "style": "סגנון צורה",
+      "fill": "מילוי",
+      "fillOn": "מילוי",
+      "outline": "קו מתאר",
+      "outlineOn": "קו מתאר",
+      "outlineWidth": "עובי קו מתאר {{value}}",
+      "path": "ציור"
     }
   },
   "creator": {

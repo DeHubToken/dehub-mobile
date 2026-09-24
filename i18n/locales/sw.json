@@ -4924,7 +4924,9 @@
       "hue": "Kivuli cha rangi {{value}}°",
       "fontSize": "Ukubwa wa fonti {{value}}",
       "padding": "Nafasi ya ndani {{value}}",
-      "thickness": "Unene {{value}}"
+      "thickness": "Unene {{value}}",
+      "drawHint": "Buruta kwenye ukurasa ili kuchora. Kila mstari ni tabaka lake unaloweza kusogeza, kubadilisha ukubwa au kufuta. Gusa Acha kuchora ukimaliza.",
+      "layersHint": "Juu ya orodha ndiyo mbele. Tumia mishale kupanga upya. Tabaka zilizofungwa na zilizofichwa zinaweza kuchaguliwa hapa tu."
     },
     "filters": {
       "none": "Asili",
@@ -4968,7 +4970,8 @@
       "alignCentre": "Linga katikati",
       "alignRight": "Linga kulia",
       "resetPosition": "Weka upya nafasi",
-      "rotation": "Mzunguko {{value}}°"
+      "rotation": "Mzunguko {{value}}°",
+      "blend": "Changanya"
     },
     "menu": {
       "addText": "Weka maandishi",
@@ -4991,6 +4994,68 @@
       "jpg": "Picha ya JPG",
       "outputStill": "Towe: {{width}}×{{height}}",
       "empty": "Ongeza kitu kwenye muundo wako kwanza."
+    },
+    "adjust": {
+      "auto": "Boresha kiotomatiki",
+      "autoFailed": "Haikuweza kuchanganua picha hii.",
+      "tint": "Rangi-ndogo {{value}}",
+      "vignette": "Vinyeti {{value}}%",
+      "warmth": "Joto {{value}}"
+    },
+    "draw": {
+      "colour": "Rangi ya kalamu",
+      "heading": "Chora",
+      "start": "Anza kuchora",
+      "stop": "Acha kuchora",
+      "width": "Ukubwa wa kalamu {{value}}"
+    },
+    "layers": {
+      "empty": "Bado hakuna kitu kwenye ukurasa katika kichwa cha kucheza.",
+      "hide": "Ficha",
+      "lock": "Funga",
+      "media": "Midia",
+      "show": "Onyesha",
+      "text": "Maandishi",
+      "unlock": "Fungua"
+    },
+    "rail": {
+      "elements": "Vipengele",
+      "layers": "Tabaka"
+    },
+    "blend": {
+      "normal": "Kawaida",
+      "multiply": "Zidisha",
+      "screen": "Skrini",
+      "overlay": "Funika",
+      "darken": "Fanya giza",
+      "lighten": "Fanya angavu",
+      "colorDodge": "Ng'arisha rangi",
+      "colorBurn": "Choma rangi",
+      "hardLight": "Mwanga mkali",
+      "softLight": "Mwanga laini",
+      "difference": "Tofauti",
+      "exclusion": "Utengaji",
+      "hue": "Toni ya rangi",
+      "saturation": "Ukolevu",
+      "color": "Rangi",
+      "luminosity": "Mng'ao"
+    },
+    "shape": {
+      "rect": "Mstatili",
+      "ellipse": "Duara",
+      "triangle": "Pembetatu",
+      "star": "Nyota",
+      "heart": "Moyo",
+      "hexagon": "Heksagoni",
+      "line": "Mstari",
+      "arrow": "Mshale",
+      "style": "Mtindo wa umbo",
+      "fill": "Jaza",
+      "fillOn": "Jaza",
+      "outline": "Mstari wa nje",
+      "outlineOn": "Mstari wa nje",
+      "outlineWidth": "Upana wa mstari wa nje {{value}}",
+      "path": "Mchoro"
     }
   },
   "creator": {

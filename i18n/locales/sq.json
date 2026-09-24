@@ -4920,7 +4920,9 @@
       "hue": "Nuanca {{value}}°",
       "fontSize": "Madhësia e shkronjave {{value}}",
       "padding": "Mbushja {{value}}",
-      "thickness": "Trashësia {{value}}"
+      "thickness": "Trashësia {{value}}",
+      "drawHint": "Tërhiqni në faqe për të vizatuar. Çdo vijë është shtresë më vete që mund ta lëvizni, t'i ndryshoni madhësinë ose ta fshini. Prekni Ndalo vizatimin kur të mbaroni.",
+      "layersHint": "Maja e listës është përpara. Përdorni shigjetat për të ndryshuar radhën. Shtresat e kyçura dhe të fshehura mund të zgjidhen vetëm këtu."
     },
     "filters": {
       "none": "Origjinal",
@@ -4964,7 +4966,8 @@
       "alignCentre": "Rreshto në qendër",
       "alignRight": "Rreshto djathtas",
       "resetPosition": "Rivendos pozicionin",
-      "rotation": "Rrotullimi {{value}}°"
+      "rotation": "Rrotullimi {{value}}°",
+      "blend": "Përzierja"
     },
     "menu": {
       "addText": "Shto tekst",
@@ -4987,6 +4990,68 @@
       "jpg": "Imazh JPG",
       "outputStill": "Dalja: {{width}}×{{height}}",
       "empty": "Së pari shtoni diçka në dizajnin tuaj."
+    },
+    "adjust": {
+      "auto": "Përmirësim automatik",
+      "autoFailed": "Nuk mund ta analizonim këtë foto.",
+      "tint": "Nuanca {{value}}",
+      "vignette": "Vinjeta {{value}}%",
+      "warmth": "Ngrohtësia {{value}}"
+    },
+    "draw": {
+      "colour": "Ngjyra e lapsit",
+      "heading": "Vizato",
+      "start": "Fillo vizatimin",
+      "stop": "Ndalo vizatimin",
+      "width": "Madhësia e lapsit {{value}}"
+    },
+    "layers": {
+      "empty": "Ende nuk ka asgjë në faqe te koka e luajtjes.",
+      "hide": "Fshih",
+      "lock": "Kyç",
+      "media": "Media",
+      "show": "Shfaq",
+      "text": "Tekst",
+      "unlock": "Shkyç"
+    },
+    "rail": {
+      "elements": "Elementet",
+      "layers": "Shtresat"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Shumëzim",
+      "screen": "Ekran",
+      "overlay": "Mbivendosje",
+      "darken": "Errëso",
+      "lighten": "Ndriço",
+      "colorDodge": "Shmangie ngjyre",
+      "colorBurn": "Djegie ngjyre",
+      "hardLight": "Dritë e fortë",
+      "softLight": "Dritë e butë",
+      "difference": "Diferencë",
+      "exclusion": "Përjashtim",
+      "hue": "Nuancë",
+      "saturation": "Ngopje",
+      "color": "Ngjyrë",
+      "luminosity": "Ndriçim"
+    },
+    "shape": {
+      "rect": "Drejtkëndësh",
+      "ellipse": "Rreth",
+      "triangle": "Trekëndësh",
+      "star": "Yll",
+      "heart": "Zemër",
+      "hexagon": "Gjashtëkëndësh",
+      "line": "Vijë",
+      "arrow": "Shigjetë",
+      "style": "Stili i formës",
+      "fill": "Mbushje",
+      "fillOn": "Mbushje",
+      "outline": "Kontur",
+      "outlineOn": "Kontur",
+      "outlineWidth": "Trashësia e konturit {{value}}",
+      "path": "Vizatim"
     }
   },
   "creator": {

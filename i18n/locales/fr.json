@@ -4999,7 +4999,9 @@
       "hue": "Teinte {{value}}°",
       "fontSize": "Taille de police {{value}}",
       "padding": "Marge interne {{value}}",
-      "thickness": "Épaisseur {{value}}"
+      "thickness": "Épaisseur {{value}}",
+      "drawHint": "Faites glisser sur la page pour dessiner. Chaque trait est un calque distinct que vous pouvez déplacer, redimensionner ou supprimer. Touchez Arrêter de dessiner quand vous avez terminé.",
+      "layersHint": "Le haut de la liste correspond au premier plan. Utilisez les flèches pour réorganiser. Les calques verrouillés et masqués ne peuvent être sélectionnés qu’ici."
     },
     "filters": {
       "none": "Original",
@@ -5043,7 +5045,8 @@
       "alignCentre": "Centrer",
       "alignRight": "Aligner à droite",
       "resetPosition": "Réinitialiser la position",
-      "rotation": "Rotation {{value}}°"
+      "rotation": "Rotation {{value}}°",
+      "blend": "Fusion"
     },
     "menu": {
       "addText": "Ajouter du texte",
@@ -5066,6 +5069,68 @@
       "jpg": "Image JPG",
       "outputStill": "Sortie : {{width}}×{{height}}",
       "empty": "Ajoutez d'abord quelque chose à votre design."
+    },
+    "adjust": {
+      "auto": "Amélioration auto",
+      "autoFailed": "Impossible d'analyser cette image.",
+      "tint": "Teinte {{value}}",
+      "vignette": "Vignetage {{value}} %",
+      "warmth": "Chaleur {{value}}"
+    },
+    "draw": {
+      "colour": "Couleur du stylo",
+      "heading": "Dessiner",
+      "start": "Commencer à dessiner",
+      "stop": "Arrêter de dessiner",
+      "width": "Taille du stylo {{value}}"
+    },
+    "layers": {
+      "empty": "Rien sur la page à la tête de lecture pour l'instant.",
+      "hide": "Masquer",
+      "lock": "Verrouiller",
+      "media": "Médias",
+      "show": "Afficher",
+      "text": "Texte",
+      "unlock": "Déverrouiller"
+    },
+    "rail": {
+      "elements": "Éléments",
+      "layers": "Calques"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Produit",
+      "screen": "Écran",
+      "overlay": "Incrustation",
+      "darken": "Obscurcir",
+      "lighten": "Éclaircir",
+      "colorDodge": "Densité couleur -",
+      "colorBurn": "Densité couleur +",
+      "hardLight": "Lumière crue",
+      "softLight": "Lumière tamisée",
+      "difference": "Différence",
+      "exclusion": "Exclusion",
+      "hue": "Teinte",
+      "saturation": "Saturation",
+      "color": "Couleur",
+      "luminosity": "Luminosité"
+    },
+    "shape": {
+      "rect": "Rectangle",
+      "ellipse": "Cercle",
+      "triangle": "Triangle",
+      "star": "Étoile",
+      "heart": "Cœur",
+      "hexagon": "Hexagone",
+      "line": "Ligne",
+      "arrow": "Flèche",
+      "style": "Style de forme",
+      "fill": "Remplissage",
+      "fillOn": "Remplissage",
+      "outline": "Contour",
+      "outlineOn": "Contour",
+      "outlineWidth": "Épaisseur du contour {{value}}",
+      "path": "Dessin"
     }
   },
   "creator": {
