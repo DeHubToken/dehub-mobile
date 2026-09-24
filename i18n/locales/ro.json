@@ -4942,7 +4942,10 @@
       "padding": "Spațiere interioară {{value}}",
       "thickness": "Grosime {{value}}",
       "drawHint": "Trage pe pagină ca să desenezi. Fiecare linie e un strat separat pe care îl poți muta, redimensiona sau șterge. Atinge Oprește desenul când ai terminat.",
-      "layersHint": "Partea de sus a listei este în față. Folosește săgețile pentru a reordona. Straturile blocate și ascunse pot fi selectate doar de aici."
+      "layersHint": "Partea de sus a listei este în față. Folosește săgețile pentru a reordona. Straturile blocate și ascunse pot fi selectate doar de aici.",
+      "agentWebOnly": "O parte din asta funcționează deocamdată doar în editorul web.",
+      "brandLogoHint": "Selectează o imagine de pe pagină, apoi folosește-o ca logo.",
+      "useAsLogo": "Folosește imaginea selectată"
     },
     "filters": {
       "none": "Original",
@@ -5036,7 +5039,8 @@
     },
     "rail": {
       "elements": "Elemente",
-      "layers": "Straturi"
+      "layers": "Straturi",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5072,6 +5076,89 @@
       "outlineOn": "Contur",
       "outlineWidth": "Grosime contur {{value}}",
       "path": "Desen"
+    },
+    "agent": {
+      "changes": "Editări făcute: {{count}}",
+      "clear": "Șterge conversația",
+      "done": "Gata.",
+      "failed": "AI-ul nu a putut face asta acum. Încearcă din nou în câteva momente.",
+      "introBody": "Descrie designul sau modificarea în cuvintele tale. Redimensionează pagina, scrie și stilizează text, găsește fotografii, videoclipuri și muzică gratuite, aplică filtre, aranjează straturile și le animă. Fiecare cerere se anulează dintr-o singură Anulare.",
+      "introTitle": "Spune-i AI-ului ce vrei",
+      "noStock": "Niciun conținut gratuit nu se potrivește cu „{{query}}”.",
+      "nothingToDo": "N-am găsit nimic de schimbat pentru asta. Încearcă să descrii editarea pe care o vrei.",
+      "placeholder": "Descrie ce vrei…",
+      "rateLimited": "Ai trimis multe cereri. Încearcă din nou peste câteva minute.",
+      "send": "Trimite",
+      "suggestFilter": "Fă fotografia mai caldă și puțin mai luminoasă",
+      "suggestPoster": "Fă o postare pătrată de Instagram pentru o reducere de vară, cu o fotografie de plajă și un titlu îngroșat",
+      "suggestStory": "Transformă asta într-un story 9:16 și umple pagina cu fotografia",
+      "suggestTitle": "Adaugă un titlu mare și îngroșat sus și un subtitlu mai mic sub el",
+      "undo": "Anulare",
+      "working": "Lucrez la asta…"
+    },
+    "brand": {
+      "addColor": "Adaugă o culoare de brand",
+      "addLogo": "Adaugă logo",
+      "applied": "Brand aplicat pe {{count}} straturi.",
+      "apply": "Aplică brandul",
+      "bodyFont": "Font pentru text",
+      "colors": "Culorile brandului",
+      "heading": "Kit de brand",
+      "headingFont": "Font pentru titluri",
+      "logo": "Logo",
+      "noLogo": "Fără logo",
+      "removeColor": "Elimină {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "În curând",
+        "title": "Vin vești mari"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "La mulți ani"
+      },
+      "crypto": {
+        "change": "+42% săptămâna asta",
+        "title": "Actualizare preț"
+      },
+      "event": {
+        "date": "Vineri, ora 20",
+        "place": "The Warehouse, centru",
+        "title": "Seară de muzică live"
+      },
+      "heading": "Șabloane",
+      "meme": {
+        "bottom": "Din prima încercare",
+        "top": "Când codul merge",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episodul 12 · Disponibil acum",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Fă-o simplu, dar semnificativ.",
+        "title": "Card cu citat"
+      },
+      "sale": {
+        "subtitle": "Până la 50% reducere · Doar weekendul acesta",
+        "title": "Reduceri de vară"
+      },
+      "story": {
+        "cta": "Glisează în sus pentru cumpărături",
+        "title": "Colecție nouă"
+      },
+      "thumbnail": {
+        "badge": "Nou",
+        "title": "Nu-ți vine să crezi"
+      },
+      "hint": "Alege unul ca să începi. Fiecare cuvânt, culoare și fotografie se poate schimba, sau cere-i AI-ului să o facă pentru tine.",
+      "use": "Folosește șablonul {{name}}",
+      "replaceConfirm": "Înlocuiești designul actual cu acest șablon? Poți anula.",
+      "replaceTitle": "Înlocuiești designul?",
+      "replace": "Înlocuiește"
     }
   },
   "creator": {

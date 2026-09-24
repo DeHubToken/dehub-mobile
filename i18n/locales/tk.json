@@ -4895,7 +4895,10 @@
       "padding": "Içki boşluk {{value}}",
       "thickness": "Galyňlyk {{value}}",
       "drawHint": "Çyzmak üçin sahypanyň üstünde süýşüriň. Her çyzyk öz aýratyn gatlagy bolup, ony süýşürip, ölçegini üýtgedip ýa-da pozup bilersiňiz. Gutaranyňyzda “Çyzmagy bes et” düwmesine basyň.",
-      "layersHint": "Sanawyň ýokarsy iň öňdäki bolýar. Tertibini üýtgetmek üçin oklary ulanyň. Gulplanan we gizlenen gatlaklary diňe şu ýerden saýlap bolýar."
+      "layersHint": "Sanawyň ýokarsy iň öňdäki bolýar. Tertibini üýtgetmek üçin oklary ulanyň. Gulplanan we gizlenen gatlaklary diňe şu ýerden saýlap bolýar.",
+      "agentWebOnly": "Onuň käbiri häzirlikçe diňe web redaktorynda işleýär.",
+      "brandLogoHint": "Sahypada bir surat saýlaň, soňra ony logotipiňiz hökmünde ulanyň.",
+      "useAsLogo": "Saýlanan suraty ulan"
     },
     "filters": {
       "none": "Asyl",
@@ -4989,7 +4992,8 @@
     },
     "rail": {
       "elements": "Elementler",
-      "layers": "Gatlar"
+      "layers": "Gatlar",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Adaty",
@@ -5025,6 +5029,89 @@
       "outlineOn": "Gyra çyzyk",
       "outlineWidth": "Gyra çyzygyň galyňlygy {{value}}",
       "path": "Surat"
+    },
+    "agent": {
+      "changes": "Edilen üýtgeşmeler: {{count}}",
+      "clear": "Söhbetdeşligi arassala",
+      "done": "Taýýar.",
+      "failed": "AI häzir muny edip bilmedi. Biraz soň gaýtadan synanyşyň.",
+      "introBody": "Dizaýny ýa-da üýtgeşmäni öz sözleriňiz bilen düşündiriň. Ol sahypanyň ölçegini üýtgedýär, tekst ýazýar we bezeýär, mugt suratlary, wideolary we sazy tapýar, süzgüçleri ulanýar, gatlaklary tertipleýär we olary hereketlendirýär. Her haýyş bir ädimde yzyna gaýtarylýar.",
+      "introTitle": "AI-a näme isleýändigiňizi aýdyň",
+      "noStock": "“{{query}}” boýunça mugt material tapylmady.",
+      "nothingToDo": "Munuň üçin üýtgetjek zat tapmadym. Isleýän üýtgeşmäňizi düşündirip görüň.",
+      "placeholder": "Näme isleýändigiňizi ýazyň…",
+      "rateLimited": "Siz köp haýyş iberdiňiz. Birnäçe minutdan soň gaýtadan synanyşyň.",
+      "send": "Iber",
+      "suggestFilter": "Suraty has ýyly we birneme ýagtyrak et",
+      "suggestPoster": "Kenar suraty we galyň sözbaşy bilen tomusky arzanladyş üçin inedördül Instagram posty döret",
+      "suggestStory": "Muny 9:16 story et we sahypany surat bilen doldur",
+      "suggestTitle": "Ýokarda uly galyň sözbaşy, onuň aşagynda kiçiräk kiçi sözbaşy goş",
+      "undo": "Yzyna al",
+      "working": "Işlenýär…"
+    },
+    "brand": {
+      "addColor": "Brend reňkini goş",
+      "addLogo": "Logotip goş",
+      "applied": "Brend {{count}} gata ulanyldy.",
+      "apply": "Brendi ulan",
+      "bodyFont": "Tekst şrifti",
+      "colors": "Brend reňkleri",
+      "heading": "Brend toplumy",
+      "headingFont": "Sözbaşy şrifti",
+      "logo": "Logotip",
+      "noLogo": "Logotip ýok",
+      "removeColor": "{{color}} aýyr"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Ýakyn wagtda",
+        "title": "Uly habar geler"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Doglan günüň gutly bolsun"
+      },
+      "crypto": {
+        "change": "Şu hepde +42%",
+        "title": "Baha täzeligi"
+      },
+      "event": {
+        "date": "Anna 20:00",
+        "place": "The Warehouse, şäher merkezi",
+        "title": "Janly saz agşamy"
+      },
+      "heading": "Şablonlar",
+      "meme": {
+        "bottom": "Ilkinji synanyşykda",
+        "top": "Kod işlände",
+        "title": "Mem"
+      },
+      "podcast": {
+        "episode": "12-nji bölüm · Indi çykdy",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Ýönekeý, ýöne manyly bolsun.",
+        "title": "Sitata kartoçkasy"
+      },
+      "sale": {
+        "subtitle": "50%-e çenli arzan · Diňe şu dynç günleri",
+        "title": "Tomus arzanladyşy"
+      },
+      "story": {
+        "cta": "Satyn almak üçin ýokary süýşüriň",
+        "title": "Täze gelenler"
+      },
+      "thumbnail": {
+        "badge": "Täze",
+        "title": "Muňa ynanmarsyňyz"
+      },
+      "hint": "Başlamak üçin birini saýlaň. Her sözi, reňki we suraty üýtgedip bilersiňiz ýa-da AI-dan üýtgetmegini haýyş ediň.",
+      "use": "{{name}} şablonyny ulan",
+      "replaceConfirm": "Häzirki dizaýny bu şablon bilen çalyşmalymy? Yzyna gaýtaryp bilersiňiz.",
+      "replaceTitle": "Dizaýnyňyzy çalyşmalymy?",
+      "replace": "Çalyş"
     }
   },
   "creator": {

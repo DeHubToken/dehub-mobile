@@ -5000,7 +5000,10 @@
       "padding": "Margen interno {{value}}",
       "thickness": "Grosor {{value}}",
       "drawHint": "Arrastra sobre la página para dibujar. Cada trazo es su propia capa que puedes mover, cambiar de tamaño o eliminar. Toca «Dejar de dibujar» cuando termines.",
-      "layersHint": "La parte superior de la lista es el frente. Usa las flechas para reordenar. Las capas bloqueadas y ocultas solo se pueden seleccionar aquí."
+      "layersHint": "La parte superior de la lista es el frente. Usa las flechas para reordenar. Las capas bloqueadas y ocultas solo se pueden seleccionar aquí.",
+      "agentWebOnly": "Parte de eso solo funciona en el editor web por ahora.",
+      "brandLogoHint": "Selecciona una imagen de la página y úsala como tu logotipo.",
+      "useAsLogo": "Usar imagen seleccionada"
     },
     "filters": {
       "none": "Original",
@@ -5094,7 +5097,8 @@
     },
     "rail": {
       "elements": "Elementos",
-      "layers": "Capas"
+      "layers": "Capas",
+      "agent": "IA"
     },
     "blend": {
       "normal": "Normal",
@@ -5130,6 +5134,89 @@
       "outlineOn": "Contorno",
       "outlineWidth": "Grosor del contorno {{value}}",
       "path": "Dibujo"
+    },
+    "agent": {
+      "changes": "Cambios realizados: {{count}}",
+      "clear": "Borrar chat",
+      "done": "Listo.",
+      "failed": "La IA no ha podido hacerlo ahora. Vuelve a intentarlo en un momento.",
+      "introBody": "Describe el diseño o el cambio con tus propias palabras. Cambia el tamaño de la página, escribe y da estilo al texto, busca fotos, vídeos y música gratis, aplica filtros, organiza las capas y las anima. Cada petición se deshace de una vez.",
+      "introTitle": "Dile a la IA lo que quieres",
+      "noStock": "No hay contenido gratuito que coincida con «{{query}}».",
+      "nothingToDo": "No encontré nada que cambiar con eso. Prueba a describir la edición que quieres.",
+      "placeholder": "Describe lo que quieres…",
+      "rateLimited": "Has enviado muchas peticiones. Vuelve a intentarlo en unos minutos.",
+      "send": "Enviar",
+      "suggestFilter": "Haz la foto más cálida y un poco más luminosa",
+      "suggestPoster": "Haz una publicación cuadrada de Instagram para unas rebajas de verano con una foto de playa y un título en negrita",
+      "suggestStory": "Convierte esto en una historia 9:16 y llena la página con la foto",
+      "suggestTitle": "Añade un título grande en negrita arriba y un subtítulo más pequeño debajo",
+      "undo": "Deshacer",
+      "working": "Trabajando en ello…"
+    },
+    "brand": {
+      "addColor": "Añadir un color de marca",
+      "addLogo": "Añadir logotipo",
+      "applied": "Marca aplicada a {{count}} capas.",
+      "apply": "Aplicar marca",
+      "bodyFont": "Fuente del cuerpo",
+      "colors": "Colores de marca",
+      "heading": "Kit de marca",
+      "headingFont": "Fuente de títulos",
+      "logo": "Logotipo",
+      "noLogo": "Sin logotipo",
+      "removeColor": "Quitar {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Muy pronto",
+        "title": "Se vienen grandes noticias"
+      },
+      "birthday": {
+        "name": "¡Sam!",
+        "title": "Feliz cumpleaños"
+      },
+      "crypto": {
+        "change": "+42% esta semana",
+        "title": "Precio actualizado"
+      },
+      "event": {
+        "date": "Viernes 20:00",
+        "place": "The Warehouse, centro",
+        "title": "Noche de música en vivo"
+      },
+      "heading": "Plantillas",
+      "meme": {
+        "bottom": "A la primera",
+        "top": "Cuando el código funciona",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episodio 12 · Ya disponible",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Hazlo simple, pero significativo.",
+        "title": "Tarjeta de cita"
+      },
+      "sale": {
+        "subtitle": "Hasta 50% de descuento · Solo este finde",
+        "title": "Rebajas de verano"
+      },
+      "story": {
+        "cta": "Desliza para comprar",
+        "title": "Nueva colección"
+      },
+      "thumbnail": {
+        "badge": "Nuevo",
+        "title": "No te lo vas a creer"
+      },
+      "hint": "Elige una para empezar. Puedes cambiar cada palabra, color y foto, o pedirle a la IA que lo haga por ti.",
+      "use": "Usar la plantilla {{name}}",
+      "replaceConfirm": "¿Reemplazar el diseño actual con esta plantilla? Puedes deshacerlo.",
+      "replaceTitle": "¿Reemplazar tu diseño?",
+      "replace": "Reemplazar"
     }
   },
   "creator": {

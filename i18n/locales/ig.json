@@ -4903,7 +4903,10 @@
       "padding": "Oghere ime {{value}}",
       "thickness": "Ọkpụrụkpụ {{value}}",
       "drawHint": "Dọrọ n'elu peeji ka ị see ihe. Ahịrị ọ bụla ị sere bụ ọkwa nke ya, ị nwere ike ibugharị ya, gbanwee nha ya ma ọ bụ hichapụ ya. Pịa “Kwụsị ise ihe” mgbe ị mechara.",
-      "layersHint": "Nke dị n'elu ndepụta bụ nke dị n'ihu. Jiri akụ gbanwee usoro ha. Ọkwa ndị a kpọchiri na ndị ezoro ezo ka a pụrụ ịhọrọ naanị ebe a."
+      "layersHint": "Nke dị n'elu ndepụta bụ nke dị n'ihu. Jiri akụ gbanwee usoro ha. Ọkwa ndị a kpọchiri na ndị ezoro ezo ka a pụrụ ịhọrọ naanị ebe a.",
+      "agentWebOnly": "Ụfọdụ n'ime ya na-arụ ọrụ naanị na ndezi weebụ ugbu a.",
+      "brandLogoHint": "Họrọ foto dị na peeji, wee jiri ya mee akara ngosi gị.",
+      "useAsLogo": "Jiri foto ahọpụtara"
     },
     "filters": {
       "none": "Nke mbụ",
@@ -4997,7 +5000,8 @@
     },
     "rail": {
       "elements": "Ihe ndị ọzọ",
-      "layers": "Ọkwa"
+      "layers": "Ọkwa",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Nkịtị",
@@ -5033,6 +5037,89 @@
       "outlineOn": "Ọnụ gburugburu",
       "outlineWidth": "Obosara ọnụ gburugburu {{value}}",
       "path": "Ihe esere"
+    },
+    "agent": {
+      "changes": "Mgbanwe emere: {{count}}",
+      "clear": "Hichapụ nkata",
+      "done": "Emechaala.",
+      "failed": "AI enweghị ike ime nke ahụ ugbu a. Nwaa ọzọ n'oge na-adịghị anya.",
+      "introBody": "Kọwaa imewe ma ọ bụ mgbanwe ahụ n'okwu gị. Ọ na-agbanwe nha peeji, dee ma chọọ ederede mma, chọta foto, vidiyo na egwu n'efu, tinye nzacha, hazie ọkwa ma mee ka ha na-emegharị. Arịrịọ ọ bụla bụ otu nkagharị.",
+      "introTitle": "Gwa AI ihe ị chọrọ",
+      "noStock": "Enweghị ihe n'efu dabara na “{{query}}”.",
+      "nothingToDo": "Ahụghị m ihe m ga-agbanwe maka nke ahụ. Gbalịa kọwaa mgbanwe ị chọrọ.",
+      "placeholder": "Kọwaa ihe ị chọrọ…",
+      "rateLimited": "I zitela ọtụtụ arịrịọ. Nwaa ọzọ n'ime nkeji ole na ole.",
+      "send": "Zipu",
+      "suggestFilter": "Mee ka foto ahụ kpoo ọkụ ma dọkwuo ntakịrị",
+      "suggestPoster": "Mee post Instagram nwere akụkụ anọ maka ire ahịa oge okpomọkụ nwere foto ụsọ osimiri na aha buru ibu",
+      "suggestStory": "Gbanwee nke a ka ọ bụrụ akụkọ 9:16 ma jupụta peeji ahụ na foto ahụ",
+      "suggestTitle": "Tinye aha buru ibu n'elu na obere aha n'okpuru ya",
+      "undo": "Kagharịa",
+      "working": "Ọ na-arụ ọrụ…"
+    },
+    "brand": {
+      "addColor": "Tinye agba akara",
+      "addLogo": "Tinye akara ngosi",
+      "applied": "Etinyere akara na ọkwa {{count}}.",
+      "apply": "Tinye akara",
+      "bodyFont": "Mkpụrụ edemede ederede",
+      "colors": "Agba akara",
+      "heading": "Ngwugwu akara",
+      "headingFont": "Mkpụrụ edemede isiokwu",
+      "logo": "Akara ngosi",
+      "noLogo": "Enweghị akara ngosi",
+      "removeColor": "Wepụ {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Na-abịa n'oge na-adịghị anya",
+        "title": "Nnukwu akụkọ na-abịa"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Ụbọchị ọmụmụ ọma"
+      },
+      "crypto": {
+        "change": "+42% n'izu a",
+        "title": "Mmelite ọnụahịa"
+      },
+      "event": {
+        "date": "Fraịde 8 abalị",
+        "place": "The Warehouse, n'obodo",
+        "title": "Abalị egwu ndụ"
+      },
+      "heading": "Ndebiri",
+      "meme": {
+        "bottom": "Na mbọ mbụ",
+        "top": "Mgbe koodu rụrụ ọrụ",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Ihe omume 12 · Ọ pụtala",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Mee ya dị mfe, mana ka o nwee isi.",
+        "title": "Kaadị okwu"
+      },
+      "sale": {
+        "subtitle": "Ruo 50% mbelata · Naanị izu ụka a",
+        "title": "Ire Ọkọchị"
+      },
+      "story": {
+        "cta": "Swaipu elu ka ị zụta",
+        "title": "Ihe ọhụrụ abịala"
+      },
+      "thumbnail": {
+        "badge": "Ọhụrụ",
+        "title": "Ị gaghị ekwere nke a"
+      },
+      "hint": "Họrọ otu iji malite. Ị nwere ike ịgbanwe okwu ọ bụla, agba na foto, ma ọ bụ gwa AI ka o mee ya maka gị.",
+      "use": "Jiri ndebiri {{name}}",
+      "replaceConfirm": "Dochie imewe dị ugbu a na ndebiri a? Ị nwere ike ịtụgharị ya.",
+      "replaceTitle": "Dochie imewe gị?",
+      "replace": "Dochie"
     }
   },
   "creator": {

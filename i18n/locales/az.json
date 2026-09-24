@@ -4911,7 +4911,10 @@
       "padding": "Daxili boşluq {{value}}",
       "thickness": "Qalınlıq {{value}}",
       "drawHint": "Çəkmək üçün səhifədə sürüşdürün. Hər xətt ayrıca qatdır, onu köçürə, ölçüsünü dəyişə və ya silə bilərsiniz. Bitirəndə «Çəkməni dayandır» düyməsinə toxunun.",
-      "layersHint": "Siyahının yuxarısı öndədir. Sıralamanı dəyişmək üçün oxlardan istifadə edin. Kilidli və gizli qatları yalnız burada seçmək olar."
+      "layersHint": "Siyahının yuxarısı öndədir. Sıralamanı dəyişmək üçün oxlardan istifadə edin. Kilidli və gizli qatları yalnız burada seçmək olar.",
+      "agentWebOnly": "Bunun bir hissəsi hələlik yalnız veb redaktorda işləyir.",
+      "brandLogoHint": "Səhifədə şəkil seçin, sonra onu loqonuz kimi istifadə edin.",
+      "useAsLogo": "Seçilmiş şəkli istifadə et"
     },
     "filters": {
       "none": "Orijinal",
@@ -5005,7 +5008,8 @@
     },
     "rail": {
       "elements": "Elementlər",
-      "layers": "Qatlar"
+      "layers": "Qatlar",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5041,6 +5045,89 @@
       "outlineOn": "Kontur",
       "outlineWidth": "Kontur qalınlığı {{value}}",
       "path": "Rəsm"
+    },
+    "agent": {
+      "changes": "Edilən dəyişikliklər: {{count}}",
+      "clear": "Söhbəti təmizlə",
+      "done": "Hazırdır.",
+      "failed": "AI bunu hazırda edə bilmədi. Bir az sonra yenidən cəhd edin.",
+      "introBody": "Dizaynı və ya dəyişikliyi öz sözlərinizlə təsvir edin. O, səhifənin ölçüsünü dəyişir, mətn yazır və tərtib edir, pulsuz foto, video və musiqi tapır, filtrlər tətbiq edir, qatları düzür və onları animasiya edir. Hər sorğu bir addımda geri qaytarılır.",
+      "introTitle": "AI-a nə istədiyinizi deyin",
+      "noStock": "“{{query}}” ilə uyğun pulsuz material tapılmadı.",
+      "nothingToDo": "Bunun üçün dəyişdiriləcək heç nə tapmadım. İstədiyiniz redaktəni təsvir etməyə çalışın.",
+      "placeholder": "Nə istədiyinizi təsvir edin…",
+      "rateLimited": "Çox sorğu göndərmisiniz. Bir neçə dəqiqədən sonra yenidən cəhd edin.",
+      "send": "Göndər",
+      "suggestFilter": "Fotonu daha isti və bir az daha parlaq et",
+      "suggestPoster": "Yay endirimi üçün çimərlik fotosu və qalın başlıqla kvadrat Instagram postu hazırla",
+      "suggestStory": "Bunu 9:16 hekayəyə çevir və səhifəni fotoyla doldur",
+      "suggestTitle": "Yuxarıya böyük qalın başlıq, altına isə kiçik alt başlıq əlavə et",
+      "undo": "Geri qaytar",
+      "working": "Üzərində işləyirəm…"
+    },
+    "brand": {
+      "addColor": "Brend rəngi əlavə et",
+      "addLogo": "Loqo əlavə et",
+      "applied": "Brend {{count}} qata tətbiq olundu.",
+      "apply": "Brendi tətbiq et",
+      "bodyFont": "Mətn şrifti",
+      "colors": "Brend rəngləri",
+      "heading": "Brend dəsti",
+      "headingFont": "Başlıq şrifti",
+      "logo": "Loqo",
+      "noLogo": "Loqo yoxdur",
+      "removeColor": "{{color}} sil"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Tezliklə",
+        "title": "Böyük xəbər gəlir"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Ad günün mübarək"
+      },
+      "crypto": {
+        "change": "Bu həftə +42%",
+        "title": "Qiymət yeniləməsi"
+      },
+      "event": {
+        "date": "Cümə, 20:00",
+        "place": "The Warehouse, şəhər mərkəzi",
+        "title": "Canlı musiqi gecəsi"
+      },
+      "heading": "Şablonlar",
+      "meme": {
+        "bottom": "İlk cəhddən",
+        "top": "Kod işləyəndə",
+        "title": "Mem"
+      },
+      "podcast": {
+        "episode": "Epizod 12 · Artıq yayında",
+        "title": "Yaradıcı Şou"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Sadə et, amma mənalı.",
+        "title": "Sitat kartı"
+      },
+      "sale": {
+        "subtitle": "50%-dək endirim · Yalnız bu həftəsonu",
+        "title": "Yay endirimi"
+      },
+      "story": {
+        "cta": "Almaq üçün yuxarı sürüşdürün",
+        "title": "Yeni kolleksiya"
+      },
+      "thumbnail": {
+        "badge": "Yeni",
+        "title": "Buna inanmayacaqsınız"
+      },
+      "hint": "Başlamaq üçün birini seçin. Hər söz, rəng və foto dəyişdirilə bilər, ya da AI-dan sizin üçün dəyişməsini istəyin.",
+      "use": "{{name}} şablonundan istifadə et",
+      "replaceConfirm": "Cari dizayn bu şablonla əvəz edilsin? Geri qaytara bilərsiniz.",
+      "replaceTitle": "Dizaynınız əvəz edilsin?",
+      "replace": "Əvəz et"
     }
   },
   "creator": {

@@ -4917,7 +4917,10 @@
       "padding": "Buuxinta {{value}}",
       "thickness": "Dhumucda {{value}}",
       "drawHint": "Ku jiid bogga si aad u sawirto. Xariiq kasta waa lakab gaar ah oo aad dhaqaajin karto, cabbirkiisa beddeli karto ama tirtiri karto. Taabo Jooji sawirka markaad dhammayso.",
-      "layersHint": "Korka liisku waa hore. Isticmaal fallaadhaha si aad dib ugu habayso. Lakabyada xiran iyo kuwa qarsoon halkan oo keliya ayaa laga dooran karaa."
+      "layersHint": "Korka liisku waa hore. Isticmaal fallaadhaha si aad dib ugu habayso. Lakabyada xiran iyo kuwa qarsoon halkan oo keliya ayaa laga dooran karaa.",
+      "agentWebOnly": "Qaar ka mid ah taas waxay hadda ka shaqeeyaan tafatiraha webka oo keliya.",
+      "brandLogoHint": "Dooro sawir bogga ku yaal, kadibna u isticmaal astaantaada.",
+      "useAsLogo": "Isticmaal sawirka la doortay"
     },
     "filters": {
       "none": "Asal",
@@ -5011,7 +5014,8 @@
     },
     "rail": {
       "elements": "Walxaha",
-      "layers": "Lakabyada"
+      "layers": "Lakabyada",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Caadi",
@@ -5047,6 +5051,89 @@
       "outlineOn": "Xuduud",
       "outlineWidth": "Ballaca xuduudda {{value}}",
       "path": "Sawir gacmeed"
+    },
+    "agent": {
+      "changes": "Isbeddellada la sameeyay: {{count}}",
+      "clear": "Nadiifi sheekada",
+      "done": "Waa la dhammeeyay.",
+      "failed": "AI-ga hadda ma samayn karo taas. Isku day mar kale wax yar kadib.",
+      "introBody": "Ku sharax naqshadda ama isbeddelka ereyadaada. Wuxuu beddelaa cabbirka bogga, qoraa oo qurxiyaa qoraalka, helaa sawirro, muuqaallo iyo muusig bilaash ah, adeegsadaa shaandheyaal, habeeyaa lakabyada oo dhaqdhaqaajiyaa. Codsi kasta hal mar ayaa laga noqon karaa.",
+      "introTitle": "U sheeg AI-ga waxaad rabto",
+      "noStock": "Ma jiro agab bilaash ah oo la mid ah “{{query}}”.",
+      "nothingToDo": "Wax aan beddelo kuma helin taas. Isku day inaad sharaxdo wax-ka-beddelka aad rabto.",
+      "placeholder": "Sharax waxaad rabto…",
+      "rateLimited": "Codsiyo badan ayaad dirtay. Isku day mar kale dhowr daqiiqo kadib.",
+      "send": "Dir",
+      "suggestFilter": "Sawirka ka dhig mid diiran oo xoogaa iftiin badan",
+      "suggestPoster": "Ii samee boostada Instagram oo labajibbaaran oo iibka xagaaga ah, leh sawir xeeb iyo cinwaan adag",
+      "suggestStory": "Tan u beddel sheeko 9:16 ah oo bogga ku buuxi sawirka",
+      "suggestTitle": "Ku dar cinwaan weyn oo adag xagga sare iyo cinwaan hoose oo yar hoostiisa",
+      "undo": "Ka noqo",
+      "working": "Waan ka shaqaynayaa…"
+    },
+    "brand": {
+      "addColor": "Ku dar midab summadeed",
+      "addLogo": "Ku dar astaan",
+      "applied": "Summadda waxaa lagu dabaqay {{count}} lakab.",
+      "apply": "Dabaq summadda",
+      "bodyFont": "Farta qoraalka",
+      "colors": "Midabada summadda",
+      "heading": "Xirmada summadda",
+      "headingFont": "Farta cinwaanka",
+      "logo": "Astaanta",
+      "noLogo": "Astaan ma jirto",
+      "removeColor": "Ka saar {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Dhawaan",
+        "title": "War weyn ayaa imanaya"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Dhalasho wanaagsan"
+      },
+      "crypto": {
+        "change": "+42% usbuucan",
+        "title": "Cusboonaysiin qiimo"
+      },
+      "event": {
+        "date": "Jimce 8 fiidnimo",
+        "place": "The Warehouse, bartamaha magaalada",
+        "title": "Habeen muusig toos ah"
+      },
+      "heading": "Qaababka",
+      "meme": {
+        "bottom": "Isku daygii ugu horreeyay",
+        "top": "Marka koodku shaqeeyo",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Qaybta 12 · Hadda waa diyaar",
+        "title": "Bandhigga Abuuraha"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Ka dhig mid fudud, laakiin macno leh.",
+        "title": "Kaarka xigasho"
+      },
+      "sale": {
+        "subtitle": "Ilaa 50% dhimis · Usbuucan dhammaadkiisa oo keliya",
+        "title": "Iibka Xagaaga"
+      },
+      "story": {
+        "cta": "Kor u rog si aad u iibsato",
+        "title": "Alaab cusub"
+      },
+      "thumbnail": {
+        "badge": "Cusub",
+        "title": "Ma rumaysan doontid"
+      },
+      "hint": "Mid dooro si aad u bilowdo. Eray kasta, midab kasta iyo sawir kasta waa la beddeli karaa, ama AI-ga ka codso inuu kuu beddelo.",
+      "use": "Isticmaal qaabka {{name}}",
+      "replaceConfirm": "Naqshadda hadda ku beddel qaabkan? Waad ka noqon kartaa.",
+      "replaceTitle": "Ma beddeshaa naqshaddaada?",
+      "replace": "Beddel"
     }
   },
   "creator": {

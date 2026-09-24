@@ -4969,7 +4969,10 @@
       "padding": "Ichki bo‘shliq {{value}}",
       "thickness": "Qalinlik {{value}}",
       "drawHint": "Chizish uchun sahifa ustida suring. Har bir chiziq alohida qatlam bo'lib, uni ko'chirish, o'lchamini o'zgartirish yoki o'chirish mumkin. Tugatgach, «Chizishni to'xtatish» tugmasini bosing.",
-      "layersHint": "Ro'yxatning yuqorisi eng old tomon. Tartibni o'zgartirish uchun strelkalardan foydalaning. Qulflangan va yashirilgan qatlamlarni faqat shu yerda tanlash mumkin."
+      "layersHint": "Ro'yxatning yuqorisi eng old tomon. Tartibni o'zgartirish uchun strelkalardan foydalaning. Qulflangan va yashirilgan qatlamlarni faqat shu yerda tanlash mumkin.",
+      "agentWebOnly": "Buning bir qismi hozircha faqat veb muharrirda ishlaydi.",
+      "brandLogoHint": "Sahifada rasmni tanlang, soʻng uni logotipingiz sifatida ishlating.",
+      "useAsLogo": "Tanlangan rasmni ishlatish"
     },
     "filters": {
       "none": "Asl",
@@ -5063,7 +5066,8 @@
     },
     "rail": {
       "elements": "Elementlar",
-      "layers": "Qatlamlar"
+      "layers": "Qatlamlar",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Oddiy",
@@ -5099,6 +5103,89 @@
       "outlineOn": "Kontur",
       "outlineWidth": "Kontur qalinligi {{value}}",
       "path": "Chizma"
+    },
+    "agent": {
+      "changes": "Kiritilgan o'zgarishlar: {{count}}",
+      "clear": "Chatni tozalash",
+      "done": "Tayyor.",
+      "failed": "AI hozir buni bajara olmadi. Birozdan so'ng qayta urinib ko'ring.",
+      "introBody": "Dizayn yoki o'zgarishni o'z so'zlaringiz bilan tasvirlang. U sahifa o'lchamini o'zgartiradi, matn yozadi va bezaydi, bepul foto, video va musiqa topadi, filtrlar qo'llaydi, qatlamlarni tartiblaydi va ularni animatsiya qiladi. Har bir so'rov bir qadamda bekor qilinadi.",
+      "introTitle": "AI'ga nima xohlayotganingizni ayting",
+      "noStock": "“{{query}}” ga mos bepul material topilmadi.",
+      "nothingToDo": "Buning uchun o'zgartiradigan hech narsa topmadim. Kerakli tahrirni tasvirlab ko'ring.",
+      "placeholder": "Nima xohlayotganingizni tasvirlang…",
+      "rateLimited": "Siz juda ko'p so'rov yubordingiz. Bir necha daqiqadan so'ng qayta urinib ko'ring.",
+      "send": "Yuborish",
+      "suggestFilter": "Suratni iliqroq va biroz yorqinroq qil",
+      "suggestPoster": "Yozgi chegirma uchun plyaj surati va qalin sarlavhali kvadrat Instagram post tayyorla",
+      "suggestStory": "Buni 9:16 hikoyaga aylantir va sahifani surat bilan to'ldir",
+      "suggestTitle": "Tepaga katta qalin sarlavha va uning ostiga kichikroq kichik sarlavha qo'sh",
+      "undo": "Bekor qilish",
+      "working": "Ustida ishlayapman…"
+    },
+    "brand": {
+      "addColor": "Brend rangini qo‘shish",
+      "addLogo": "Logotip qo‘shish",
+      "applied": "Brend {{count}} ta qatlamga qo‘llandi.",
+      "apply": "Brendni qo‘llash",
+      "bodyFont": "Matn shrifti",
+      "colors": "Brend ranglari",
+      "heading": "Brend to‘plami",
+      "headingFont": "Sarlavha shrifti",
+      "logo": "Logotip",
+      "noLogo": "Logotip yo‘q",
+      "removeColor": "{{color}} ni olib tashlash"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Tez orada",
+        "title": "Katta yangilik kelmoqda"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Tug'ilgan kuning muborak"
+      },
+      "crypto": {
+        "change": "Bu hafta +42%",
+        "title": "Narx yangiligi"
+      },
+      "event": {
+        "date": "Juma, 20:00",
+        "place": "The Warehouse, shahar markazi",
+        "title": "Jonli musiqa kechasi"
+      },
+      "heading": "Shablonlar",
+      "meme": {
+        "bottom": "Birinchi urinishdayoq",
+        "top": "Kod ishlaganda",
+        "title": "Mem"
+      },
+      "podcast": {
+        "episode": "12-qism · Allaqachon efirda",
+        "title": "Ijodkorlar shousi"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Oddiy qiling, lekin mazmunli.",
+        "title": "Iqtibos kartasi"
+      },
+      "sale": {
+        "subtitle": "50% gacha chegirma · Faqat shu dam olish kunlari",
+        "title": "Yozgi chegirma"
+      },
+      "story": {
+        "cta": "Xarid uchun yuqoriga suring",
+        "title": "Yangi kolleksiya"
+      },
+      "thumbnail": {
+        "badge": "Yangi",
+        "title": "Bunga ishonmaysiz"
+      },
+      "hint": "Boshlash uchun birini tanlang. Har bir so'z, rang va rasmni o'zgartirish mumkin yoki AI'dan siz uchun o'zgartirishni so'rang.",
+      "use": "{{name}} shablonidan foydalanish",
+      "replaceConfirm": "Joriy dizayn ushbu shablon bilan almashtirilsinmi? Bekor qilishingiz mumkin.",
+      "replaceTitle": "Dizayningiz almashtirilsinmi?",
+      "replace": "Almashtirish"
     }
   },
   "creator": {

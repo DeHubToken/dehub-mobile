@@ -4929,7 +4929,10 @@
       "padding": "Nafasi ya ndani {{value}}",
       "thickness": "Unene {{value}}",
       "drawHint": "Buruta kwenye ukurasa ili kuchora. Kila mstari ni tabaka lake unaloweza kusogeza, kubadilisha ukubwa au kufuta. Gusa Acha kuchora ukimaliza.",
-      "layersHint": "Juu ya orodha ndiyo mbele. Tumia mishale kupanga upya. Tabaka zilizofungwa na zilizofichwa zinaweza kuchaguliwa hapa tu."
+      "layersHint": "Juu ya orodha ndiyo mbele. Tumia mishale kupanga upya. Tabaka zilizofungwa na zilizofichwa zinaweza kuchaguliwa hapa tu.",
+      "agentWebOnly": "Baadhi ya hayo kwa sasa yanafanya kazi kwenye kihariri cha wavuti pekee.",
+      "brandLogoHint": "Chagua picha kwenye ukurasa, kisha uitumie kama nembo yako.",
+      "useAsLogo": "Tumia picha iliyochaguliwa"
     },
     "filters": {
       "none": "Asili",
@@ -5023,7 +5026,8 @@
     },
     "rail": {
       "elements": "Vipengele",
-      "layers": "Tabaka"
+      "layers": "Tabaka",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Kawaida",
@@ -5059,6 +5063,89 @@
       "outlineOn": "Mstari wa nje",
       "outlineWidth": "Upana wa mstari wa nje {{value}}",
       "path": "Mchoro"
+    },
+    "agent": {
+      "changes": "Mabadiliko yaliyofanywa: {{count}}",
+      "clear": "Futa gumzo",
+      "done": "Imekamilika.",
+      "failed": "AI haikuweza kufanya hivyo sasa hivi. Jaribu tena baada ya muda mfupi.",
+      "introBody": "Eleza muundo au mabadiliko kwa maneno yako mwenyewe. Hubadilisha ukubwa wa ukurasa, huandika na kupamba maandishi, hutafuta picha, video na muziki wa bure, huweka vichujio, hupanga tabaka na kuzihuisha. Kila ombi hurudishwa kwa kutendua mara moja.",
+      "introTitle": "Iambie AI unachotaka",
+      "noStock": "Hakuna maudhui ya bure yaliyolingana na “{{query}}”.",
+      "nothingToDo": "Sikupata chochote cha kubadilisha kwa hilo. Jaribu kueleza uhariri unaotaka.",
+      "placeholder": "Eleza unachotaka…",
+      "rateLimited": "Umetuma maombi mengi. Jaribu tena baada ya dakika chache.",
+      "send": "Tuma",
+      "suggestFilter": "Fanya picha iwe na joto zaidi na angavu kidogo",
+      "suggestPoster": "Tengeneza chapisho la mraba la Instagram kwa ofa ya kiangazi lenye picha ya ufukweni na kichwa kikubwa",
+      "suggestStory": "Geuza hii iwe story ya 9:16 na ujaze ukurasa kwa picha",
+      "suggestTitle": "Ongeza kichwa kikubwa kilichokolezwa juu na kichwa kidogo chini yake",
+      "undo": "Tendua",
+      "working": "Ninashughulikia…"
+    },
+    "brand": {
+      "addColor": "Ongeza rangi ya chapa",
+      "addLogo": "Ongeza nembo",
+      "applied": "Chapa imetumika kwenye tabaka {{count}}.",
+      "apply": "Tumia chapa",
+      "bodyFont": "Fonti ya maandishi",
+      "colors": "Rangi za chapa",
+      "heading": "Kifurushi cha chapa",
+      "headingFont": "Fonti ya kichwa",
+      "logo": "Nembo",
+      "noLogo": "Hakuna nembo",
+      "removeColor": "Ondoa {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Inakuja hivi karibuni",
+        "title": "Habari kubwa inakuja"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Heri ya Siku ya Kuzaliwa"
+      },
+      "crypto": {
+        "change": "+42% wiki hii",
+        "title": "Taarifa ya bei"
+      },
+      "event": {
+        "date": "Ijumaa saa 2 usiku",
+        "place": "The Warehouse, katikati ya mji",
+        "title": "Usiku wa muziki mubashara"
+      },
+      "heading": "Violezo",
+      "meme": {
+        "bottom": "Kwa jaribio la kwanza",
+        "top": "Code ikifanya kazi",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Kipindi cha 12 · Kimetoka",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Ifanye rahisi, lakini yenye maana.",
+        "title": "Kadi ya nukuu"
+      },
+      "sale": {
+        "subtitle": "Punguzo hadi 50% · Wikendi hii tu",
+        "title": "Ofa za Kiangazi"
+      },
+      "story": {
+        "cta": "Telezesha juu kununua",
+        "title": "Mzigo mpya"
+      },
+      "thumbnail": {
+        "badge": "Mpya",
+        "title": "Hutaamini hili"
+      },
+      "hint": "Chagua kimoja kuanza. Kila neno, rangi na picha vinaweza kubadilishwa, au omba AI ikubadilishie.",
+      "use": "Tumia kiolezo cha {{name}}",
+      "replaceConfirm": "Badilisha muundo wa sasa kwa kiolezo hiki? Unaweza kutendua.",
+      "replaceTitle": "Badilisha muundo wako?",
+      "replace": "Badilisha"
     }
   },
   "creator": {

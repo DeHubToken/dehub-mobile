@@ -4957,7 +4957,10 @@
       "padding": "Isikhala sangaphakathi {{value}}",
       "thickness": "Ubukhulu {{value}}",
       "drawHint": "Hudula ekhasini ukuze udwebe. Umugqa ngamunye uyisendlalelo sawo ongasihambisa, usishintshe usayizi noma usisuse. Thepha u-Yeka ukudweba uma usuqedile.",
-      "layersHint": "Phezulu ohlwini kungaphambili. Sebenzisa imicibisholo ukuhlela kabusha. Izendlalelo ezikhiyiwe nezifihliwe zingakhethwa lapha kuphela."
+      "layersHint": "Phezulu ohlwini kungaphambili. Sebenzisa imicibisholo ukuhlela kabusha. Izendlalelo ezikhiyiwe nezifihliwe zingakhethwa lapha kuphela.",
+      "agentWebOnly": "Okunye kwalokho kusebenza kuphela kusihleli sewebhu okwamanje.",
+      "brandLogoHint": "Khetha isithombe ekhasini, bese usisebenzisa njengelogo yakho.",
+      "useAsLogo": "Sebenzisa isithombe esikhethiwe"
     },
     "filters": {
       "none": "Okwangempela",
@@ -5051,7 +5054,8 @@
     },
     "rail": {
       "elements": "Izakhi",
-      "layers": "Izendlalelo"
+      "layers": "Izendlalelo",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Okujwayelekile",
@@ -5087,6 +5091,89 @@
       "outlineOn": "Umugqa wangaphandle",
       "outlineWidth": "Ububanzi bomugqa wangaphandle {{value}}",
       "path": "Umdwebo"
+    },
+    "agent": {
+      "changes": "Okuhleliwe: {{count}}",
+      "clear": "Sula ingxoxo",
+      "done": "Kwenziwe.",
+      "failed": "I-AI ayikwazanga ukukwenza lokho manje. Zama futhi ngemuva kwesikhashana.",
+      "introBody": "Chaza umklamo noma ushintsho ngamazwi akho. Ishintsha usayizi wekhasi, ibhale futhi ihlobise umbhalo, ithola izithombe, amavidiyo nomculo wamahhala, isebenzisa izihlungi, ihlele izendlalelo futhi izenze zinyakaze. Isicelo ngasinye sihlehliswa ngesinyathelo esisodwa.",
+      "introTitle": "Tshela i-AI ukuthi ufunani",
+      "noStock": "Akukho okwamahhala okufana no-“{{query}}”.",
+      "nothingToDo": "Angitholanga lutho lokushintsha. Zama ukuchaza ukuhlela okufunayo.",
+      "placeholder": "Chaza ukuthi ufunani…",
+      "rateLimited": "Uthumele izicelo eziningi. Zama futhi emizuzwini embalwa.",
+      "send": "Thumela",
+      "suggestFilter": "Yenza isithombe sifudumale futhi sikhanye kancane",
+      "suggestPoster": "Yenza okuthunyelwe kwe-Instagram okuyisikwele kokudayiswa kwasehlobo nesithombe solwandle nesihloko esigqamile",
+      "suggestStory": "Shintsha lokhu kube yi-story ye-9:16 bese ugcwalisa ikhasi ngesithombe",
+      "suggestTitle": "Engeza isihloko esikhulu esigqamile phezulu nesihlokwana esincane ngaphansi kwaso",
+      "undo": "Hlehlisa",
+      "working": "Ngiyasebenza kukho…"
+    },
+    "brand": {
+      "addColor": "Engeza umbala womkhiqizo",
+      "addLogo": "Engeza ilogo",
+      "applied": "Umkhiqizo usetshenziswe ezendlalelweni ezingu-{{count}}.",
+      "apply": "Sebenzisa umkhiqizo",
+      "bodyFont": "Ifonti yombhalo",
+      "colors": "Imibala yomkhiqizo",
+      "heading": "Ikhithi yomkhiqizo",
+      "headingFont": "Ifonti yezihloko",
+      "logo": "Ilogo",
+      "noLogo": "Ayikho ilogo",
+      "removeColor": "Susa {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Kuyeza maduze",
+        "title": "Kuza izindaba ezinkulu"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Usuku lokuzalwa oluhle"
+      },
+      "crypto": {
+        "change": "+42% kuleli sonto",
+        "title": "Isibuyekezo sentengo"
+      },
+      "event": {
+        "date": "NgoLwesihlanu 8 ebusuku",
+        "place": "I-Warehouse, edolobheni",
+        "title": "Ubusuku bomculo obukhoma"
+      },
+      "heading": "Izifanekiso",
+      "meme": {
+        "bottom": "Ngomzamo wokuqala",
+        "top": "Uma ikhodi isebenza",
+        "title": "I-Meme"
+      },
+      "podcast": {
+        "episode": "Isiqephu 12 · Sesiphumile",
+        "title": "I-Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Kwenze kube lula, kodwa kube nomthelela.",
+        "title": "Ikhadi lesicaphuno"
+      },
+      "sale": {
+        "subtitle": "Kuze kube ngu-50% phansi · Ngale mpelasonto kuphela",
+        "title": "Intengiso Yehlobo"
+      },
+      "story": {
+        "cta": "Swayipha phezulu uthenge",
+        "title": "Okusha kufikile"
+      },
+      "thumbnail": {
+        "badge": "Okusha",
+        "title": "Ngeke ukukholwe!"
+      },
+      "hint": "Khetha esisodwa ukuze uqale. Wonke amagama, imibala nezithombe kungashintshwa, noma ucele i-AI ikushintshele.",
+      "use": "Sebenzisa isifanekiso se-{{name}}",
+      "replaceConfirm": "Faka lesi sifanekiso esikhundleni sedizayini yamanje? Ungakuhlehlisa.",
+      "replaceTitle": "Shintsha umklamo wakho?",
+      "replace": "Shintsha"
     }
   },
   "creator": {

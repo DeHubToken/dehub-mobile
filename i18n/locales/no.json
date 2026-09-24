@@ -4913,7 +4913,10 @@
       "padding": "Utfylling {{value}}",
       "thickness": "Tykkelse {{value}}",
       "drawHint": "Dra over siden for å tegne. Hvert strøk er et eget lag som du kan flytte, endre størrelse på eller slette. Trykk på Slutt å tegne når du er ferdig.",
-      "layersHint": "Øverst i listen er fremst. Bruk pilene til å endre rekkefølgen. Låste og skjulte lag kan bare velges her."
+      "layersHint": "Øverst i listen er fremst. Bruk pilene til å endre rekkefølgen. Låste og skjulte lag kan bare velges her.",
+      "agentWebOnly": "Noe av dette fungerer foreløpig bare i nettredigeringsprogrammet.",
+      "brandLogoHint": "Velg et bilde på siden, og bruk det som logoen din.",
+      "useAsLogo": "Bruk valgt bilde"
     },
     "filters": {
       "none": "Original",
@@ -5007,7 +5010,8 @@
     },
     "rail": {
       "elements": "Elementer",
-      "layers": "Lag"
+      "layers": "Lag",
+      "agent": "KI"
     },
     "blend": {
       "normal": "Normal",
@@ -5043,6 +5047,89 @@
       "outlineOn": "Omriss",
       "outlineWidth": "Omrissbredde {{value}}",
       "path": "Tegning"
+    },
+    "agent": {
+      "changes": "Endringer gjort: {{count}}",
+      "clear": "Tøm chatten",
+      "done": "Ferdig.",
+      "failed": "KI-en kunne ikke gjøre det akkurat nå. Prøv igjen om litt.",
+      "introBody": "Beskriv designet eller endringen med dine egne ord. Den endrer størrelse på siden, skriver og formaterer tekst, finner gratis bilder, videoer og musikk, legger på filtre, ordner lag og animerer dem. Hver forespørsel kan angres i ett steg.",
+      "introTitle": "Fortell KI-en hva du vil ha",
+      "noStock": "Ingen gratis materiale samsvarte med «{{query}}».",
+      "nothingToDo": "Fant ingenting å endre for det. Prøv å beskrive endringen du vil ha.",
+      "placeholder": "Beskriv hva du vil ha…",
+      "rateLimited": "Du har sendt mange forespørsler. Prøv igjen om noen minutter.",
+      "send": "Send",
+      "suggestFilter": "Gjør bildet varmere og litt lysere",
+      "suggestPoster": "Lag et kvadratisk Instagram-innlegg for sommersalg med et strandbilde og en fet tittel",
+      "suggestStory": "Gjør dette om til en 9:16-story og fyll siden med bildet",
+      "suggestTitle": "Legg til en stor fet tittel øverst og en mindre undertittel under",
+      "undo": "Angre",
+      "working": "Jobber med det…"
+    },
+    "brand": {
+      "addColor": "Legg til en merkevarefarge",
+      "addLogo": "Legg til logo",
+      "applied": "Merkevaren er brukt på {{count}} lag.",
+      "apply": "Bruk merkevare",
+      "bodyFont": "Skrift for brødtekst",
+      "colors": "Merkevarefarger",
+      "heading": "Merkevaresett",
+      "headingFont": "Skrift for overskrifter",
+      "logo": "Logo",
+      "noLogo": "Ingen logo",
+      "removeColor": "Fjern {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Kommer snart",
+        "title": "Store nyheter på vei"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Gratulerer med dagen"
+      },
+      "crypto": {
+        "change": "+42 % denne uken",
+        "title": "Prisoppdatering"
+      },
+      "event": {
+        "date": "Fredag kl. 20",
+        "place": "The Warehouse, sentrum",
+        "title": "Livemusikkveld"
+      },
+      "heading": "Maler",
+      "meme": {
+        "bottom": "På første forsøk",
+        "top": "Når koden virker",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episode 12 · Ute nå",
+        "title": "Skaperpraten"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Gjør det enkelt, men betydningsfullt.",
+        "title": "Sitatkort"
+      },
+      "sale": {
+        "subtitle": "Opptil 50 % rabatt · Kun denne helgen",
+        "title": "Sommersalg"
+      },
+      "story": {
+        "cta": "Sveip opp for å handle",
+        "title": "Nyheter"
+      },
+      "thumbnail": {
+        "badge": "Ny",
+        "title": "Dette tror du ikke"
+      },
+      "hint": "Velg en for å starte. Alle ord, farger og bilder kan endres, eller be AI-en endre det for deg.",
+      "use": "Bruk malen {{name}}",
+      "replaceConfirm": "Erstatte gjeldende design med denne malen? Du kan angre.",
+      "replaceTitle": "Erstatte designet ditt?",
+      "replace": "Erstatt"
     }
   },
   "creator": {
