@@ -23,8 +23,8 @@ export const REPLAY_WRAP_TOLERANCE_MS = 1500;
 /**
  * Floor between two counted views of the same post from one recorder.
  *
- * Matches the API's per-viewer-per-post rate limit, so a looping short clip
- * stops submitting what the server would reject anyway.
+ * Stops a looping short clip submitting on every wrap. The API's own 30-minute
+ * per-viewer-per-post cooldown decides which of these actually count.
  */
 export const MIN_MS_BETWEEN_VIEWS = 30_000;
 

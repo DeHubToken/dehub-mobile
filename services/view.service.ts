@@ -18,9 +18,11 @@ const BATCH_MAX_SIZE = 50; // Max tokens per batch request
 const BATCH_FLUSH_INTERVAL_MS = 5000; // Flush batch every 5 seconds
 const BATCH_FLUSH_ON_COUNT = 20; // Flush when batch reaches this size
 
-// Rate limiting (server enforces 30s per token, we track 24h for unique views)
+// One counted view per viewer per post per 30 minutes — the API's cooldown.
+// After that, seeing the post again is another view, the way X counts
+// impressions.
 const VIEW_COOLDOWN_PREFIX = "dhb_view_cooldowns";
-const VIEW_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 hours
+const VIEW_COOLDOWN_MS = 30 * 60 * 1000; // 30 minutes
 
 // Active account for scoped cooldown storage
 let activeViewAccount: string | null = null;
@@ -166,10 +168,9 @@ function keyFor(tokenId: TokenId): string {
  * Record a video view via GET /record-view/{tokenId} when eligibility is met.
  * - Once per WATCH, not once per post: the in-memory guard closes the current
  *   watch so a progress tick storm submits once, and `resetRecordedView`
- *   re-arms it for a replay or a reopen. The 24-hour cooldown deliberately does
- *   NOT apply here — it made the second watch of a video invisible, which is
- *   not how a video's view count works anywhere. The API's 30-second
- *   per-viewer-per-post rate limit is the backstop.
+ *   re-arms it for a replay or a reopen. The feed cooldown deliberately does
+ *   NOT apply here. The API's 30-minute per-viewer-per-post cooldown is the
+ *   backstop.
  * - Threshold: 10% of duration OR 3 seconds, whichever is first.
  * - Signed-out viewers count too: their views go to the `anon-views` edge
  *   function, since the DeHub API rejects unauthenticated view calls.
@@ -196,8 +197,8 @@ export async function recordViewIfEligible(opts: RecordViewOptions): Promise<boo
       const result = await recordAnonViews([id]);
       if (!result?.success) return false;
     }
-    // No setCooldown: that store is the FEED's 24-hour impression dedup, and a
-    // video that counts every watch must not write itself into it.
+    // No setCooldown: that store is the FEED's impression dedup, and a video
+    // that counts every watch must not write itself into it.
     recordedViews.add(id);
     return true;
   } catch (e) {
@@ -309,8 +310,9 @@ export async function queuePostView(tokenId: TokenId, isSignedIn: boolean): Prom
 
   const id = keyFor(tokenId);
 
-  // Skip if already recorded this session or on cooldown
-  if (recordedViews.has(id)) return;
+  // Skip if already queued or still on cooldown. Once the cooldown lapses the
+  // post counts again.
+  if (pendingBatchTokenIds.has(id) || pendingAnonBatchTokenIds.has(id)) return;
   if (isOnCooldown(tokenId)) return;
 
   // Add to the pending batch for whichever backend this viewer belongs to
@@ -319,7 +321,6 @@ export async function queuePostView(tokenId: TokenId, isSignedIn: boolean): Prom
   } else {
     pendingAnonBatchTokenIds.add(id);
   }
-  recordedViews.add(id); // Mark as recorded to prevent duplicates
 
   // Schedule flush if not already scheduled
   if (!batchFlushTimer) {
@@ -450,9 +451,18 @@ export function createPostViewTracker(tokenId: TokenId, isSignedIn: boolean) {
      * @param visiblePercent - Fraction of the item visible (0-1)
      */
     onVisibilityChange(visiblePercent: number): void {
-      if (hasRecorded) return;
-      
       const isVisible = visiblePercent >= POST_VISIBILITY_PERCENT;
+
+      // Scrolled away after counting: re-arm, so coming back to it can count
+      // again. queuePostView's cooldown decides whether it actually does.
+      if (hasRecorded) {
+        if (!isVisible) {
+          hasRecorded = false;
+          visibleStartTime = null;
+          cleanup();
+        }
+        return;
+      }
       
       if (isVisible && !visibleStartTime) {
         // Just became visible enough - start timer
