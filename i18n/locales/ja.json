@@ -793,7 +793,8 @@
     "attachDescription": "メッセージにDHBトークンをチップとして添付",
     "minAmount": "最小 {{amount}} DHB。",
     "attachAmount": "{{amount}} DHB を添付",
-    "removeTip": "チップを削除"
+    "removeTip": "チップを削除",
+    "toContent": "チップの内容"
   },
   "postOptions": {
     "options": "オプション",
@@ -1875,7 +1876,8 @@
     "otherTokens": "その他のトークン",
     "otherTokensDesc": "カードで Base 上の ETH または USDC を購入",
     "shareToFeed": "フィードにシェアする",
-    "sharePostTemplate": "DeHubのスタックに{{amount}} $ DHBを追加しました。 コミュニティと一緒に構築しましょう。# DeHub # DHB"
+    "sharePostTemplate": "DeHubのスタックに{{amount}} $ DHBを追加しました。 コミュニティと一緒に構築しましょう。# DeHub # DHB",
+    "minDhbPurchase": "DHBの最低購入額は$ 0.50です"
   },
   "agents": {
     "title": "AIエージェント",

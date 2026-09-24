@@ -617,7 +617,8 @@
     "smsBand": {
       "europe": "Euroopa",
       "global": "teised riigid",
-      "premium": "Kõikjal mujal"
+      "premium": "Kõikjal mujal",
+      "domestic": "Ühendkuningriik"
     },
     "smsDepositAction": "Saada {{dhb}} DHB",
     "smsDepositPaying": "Kinnita oma rahakotis…",
@@ -694,7 +695,22 @@
     "chainIdLabel": "Ahela ID: {{id}}",
     "exportPkConfirmPhrase": "MA MÕISTAN",
     "exportPkCopy": "Kopeeri privaatvõti",
-    "e2eAutomatic": "Automaatne"
+    "e2eAutomatic": "Automaatne",
+    "smsScopeLabel": "Mida saata",
+    "smsScopeDesc": "Tekstsõnumid maksavad, seega piira neid sellega, mis on katkestamist väärt",
+    "smsScope": {
+      "all": "Kõik, mis mul on sisse lülitatud",
+      "tips": "Ainult saadud näpunäited",
+      "subscriptions": "Ainult uued tellijad",
+      "sales": "Ainult minu sisu müük",
+      "bounties": "Ainult preemiad",
+      "fractions": "Ainult murdosapakkumised ja müük",
+      "messages": "Ainult otsesõnumid",
+      "mentions": "Ainult minu mainimised",
+      "replies": "Ainult minu kommentaaridele vastused",
+      "account": "Ainult teated minu konto kohta"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Vaigista",
@@ -1862,7 +1878,8 @@
     "otherTokens": "Muud tokenid",
     "otherTokensDesc": "Osta ETH või USDC Base'is oma kaardiga",
     "shareToFeed": "Jaga minu voos",
-    "sharePostTemplate": "Lisasin just {{amount}} $DHB oma DeHubi pinusse. Ehitamine koos kogukonnaga. #DeHub #DHB"
+    "sharePostTemplate": "Lisasin just {{amount}} $DHB oma DeHubi pinusse. Ehitamine koos kogukonnaga. #DeHub #DHB",
+    "minDhbPurchase": "Minimaalne DHB ost on 0,50 $"
   },
   "agents": {
     "title": "AI agendid",
@@ -3006,7 +3023,13 @@
     "addedToYourUsernames": "Lisatakse sinu kasutajanimede hulka",
     "boughtNameGoesToVault": "Jääd @{{current}}. @{{handle}} lisandub sinu kasutajanimedele ja saad sellele igal ajal ümber lülituda.",
     "youAreNow": "Sa oled nüüd @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} on nüüd sinu kasutajanimede hulgas"
+    "boughtToVaultToast": "@{{handle}} on nüüd sinu kasutajanimede hulgas",
+    "askingPriceUsd": "Küsi hinda (USD)",
+    "dollarPriceRange": "Sisesta 1–1 000 000 $, kuni kahe komakohaga.",
+    "fixedDollarPrice": "Dollari hind jääb fikseerituks; toodete hulk uueneb.",
+    "priceUpdated": "Hind on uuendatud. Vaata üle summa ja puuduta uuesti Osta.",
+    "tokensPaidToSeller": "Makstud otse müüjale",
+    "priceUsd": "Hind (USD)"
   },
   "stores": {
     "subtitle": "Avasta DeHubi kogukonna tooteid",
@@ -5627,5 +5650,53 @@
     "appealRef": "Viide {{ref}}",
     "appealSubtitleSubject": "Isik loeb seda ja vaatab uuesti aadressil {{subject}}.",
     "appealMore": "Vaja on veel märke: {{count}}"
+  },
+  "support": {
+    "title": "Tugi",
+    "subtitle": "Sinu piletid ja nende olek. Ei mingit tehisintellekti, ei mingit tasu.",
+    "newTicket": "Uus pilet",
+    "newTicketHint": "Räägi meile, mis juhtus ja mida sa oleksid oodanud.",
+    "backToTickets": "Tagasi piletite juurde",
+    "openHeading": "Avatud ({{n}})",
+    "closedHeading": "Suletud ({{n}})",
+    "noTickets": "Sa pole veel ühtegi tugipiletit esitanud.",
+    "loadFailed": "Sinu pileteid ei õnnestunud laadida. Palun proovi uuesti.",
+    "categoryLabel": "Liik",
+    "severityLabel": "Prioriteet",
+    "subjectLabel": "Teema",
+    "subjectPlaceholder": "Üks rida probleemi kirjeldamiseks",
+    "descriptionLabel": "Mis juhtus",
+    "descriptionPlaceholder": "Mida sa tegid, mida ootasid ja mis selle asemel juhtus.",
+    "stepsLabel": "Paljundamise sammud (valikuline)",
+    "submit": "Saada pilet",
+    "submitting": "Saatmine...",
+    "filed": "Pilet {{ref}} on meeskonnaga.",
+    "filedNotEmailed": "Pilet {{ref}} on salvestatud. Hoidke viide alles.",
+    "alreadyOpen": "Sul on see juba avatud kui {{ref}}.",
+    "filingFailed": "Seda piletit ei saanud esitada. Proovi uuesti.",
+    "status": {
+      "open": "Ava",
+      "in_progress": "Pooleli",
+      "resolved": "Lahendatud",
+      "closed": "Suletud"
+    },
+    "severity": {
+      "low": "Madal",
+      "normal": "Tavaline",
+      "high": "Kõrge",
+      "urgent": "Kiireloomuline"
+    },
+    "category": {
+      "account_access": "Juurdepääs kontole",
+      "wallet_or_transactions": "Rahakott või tehingud",
+      "posting_or_uploads": "Postitamine või üleslaadimine",
+      "payments_or_subscriptions": "Maksed või paketid",
+      "live_streaming": "Otseülekanne",
+      "content_or_moderation": "Sisu või modereerimine",
+      "bug": "Viga",
+      "feature_request": "Funktsioonipäring",
+      "other": "Muu"
+    },
+    "filedOn": "Esitatud {{date}}"
   }
 }

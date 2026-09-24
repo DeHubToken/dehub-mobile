@@ -695,7 +695,21 @@
     "chainIdLabel": "鏈 ID：{{id}}",
     "exportPkConfirmPhrase": "我明白",
     "exportPkCopy": "複製私鑰",
-    "e2eAutomatic": "自動"
+    "e2eAutomatic": "自動",
+    "smsScopeLabel": "點樣發送訊息",
+    "smsScopeDesc": "訊息會收費，所以請將訊息限制為值得打擾的內容",
+    "smsScope": {
+      "all": "我所有開啟的項目",
+      "tips": "我收到的所有提示",
+      "subscriptions": "所有新訂閱者",
+      "sales": "我所有內容的銷售",
+      "bounties": "所有獎勵",
+      "fractions": "所有分數優惠及銷售",
+      "messages": "所有直接訊息",
+      "mentions": "所有提及我的訊息",
+      "replies": "我所有留言的回覆",
+      "account": "我帳戶的所有通知"
+    }
   },
   "common": {
     "mute": "靜音",
@@ -1862,7 +1876,8 @@
     "otherTokens": "其他代幣",
     "otherTokensDesc": "用你張卡喺 Base 上面買 ETH 或者 USDC",
     "shareToFeed": "分享去我嘅資訊提供",
-    "sharePostTemplate": "啱啱喺 DeHub 上面加咗 {{amount}} $ DHB 去我個堆栈。同社區一齊建立。 # 德胡布 # DHB"
+    "sharePostTemplate": "啱啱喺 DeHub 上面加咗 {{amount}} $ DHB 去我個堆栈。同社區一齊建立。 # 德胡布 # DHB",
+    "minDhbPurchase": "最低 DHB 購買額為 $0.50"
   },
   "agents": {
     "title": "AI代理",
@@ -3006,7 +3021,13 @@
     "addedToYourUsernames": "加入你嘅用戶名",
     "boughtNameGoesToVault": "你仍然係 @{{current}}。@{{handle}} 會加入你嘅用戶名，你想幾時轉都得。",
     "youAreNow": "你而家係 @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} 已經喺你嘅用戶名入面"
+    "boughtToVaultToast": "@{{handle}} 已經喺你嘅用戶名入面",
+    "askingPriceUsd": "詢價 (美元)",
+    "dollarPriceRange": "輸入 $1–$1,000,000，最多可保留兩位小數。",
+    "fixedDollarPrice": "美元價格固定；代幣數量會更新。",
+    "priceUpdated": "價格已更新。請檢查金額並再次點擊購買。",
+    "tokensPaidToSeller": "直接支付給賣家",
+    "priceUsd": "價格 (美元)"
   },
   "stores": {
     "subtitle": "發掘 DeHub 社群嘅產品",
@@ -4103,7 +4124,8 @@
     "madeForKidsOffDesc": "將呢個帖文顯示畀使用孩子模式嘅小朋友，同埋喺普通動態消息中移除佢。",
     "madeForKidsBlockedByMature": "標記為成人嘅帖文唔可以同時為小朋友發佈。",
     "encoderTitle": "OBS / 編碼器",
-    "encoderHint": "取得 RTMP 詳情"
+    "encoderHint": "取得 RTMP 詳情",
+    "markMadeForKids": "標記為為小朋友而設"
   },
   "bounty": {
     "claimed": "已領取",
@@ -4551,7 +4573,8 @@
     "videosCount": "{{videos}} 影片",
     "viewFeed": "睇下你嘅資訊提供",
     "yourChannel": "你嘅頻道",
-    "yourChannelHint": "貼上你嘅頻道地址 — 手柄本身都可以。"
+    "yourChannelHint": "貼上你嘅頻道地址 — 手柄本身都可以。",
+    "placeholder": "你，你，你，你，我，你，你，你，你，你，你，你，你，你，你，你，你，你，你，你，你。"
   },
   "calls": {
     "voiceCall": "DeHub 語音通話",
@@ -5625,5 +5648,54 @@
     "appealRef": "參考 {{ref}}",
     "appealSubtitleSubject": "一個人會睇完呢篇之後再睇 {{subject}} 。",
     "appealMore": "仲需要嘅角色： {{count}}"
+  },
+  "support": {
+    "title": "支援",
+    "subtitle": "您的工單及其狀態。無 AI，無費用。",
+    "newTicket": "新工單",
+    "newTicketHint": "告訴我們發生了什麼事，以及您期望的結果。",
+    "backToTickets": "返回工單",
+    "openHeading": "開啟中 ({{n}})",
+    "closedHeading": "已關閉 ({{n}})",
+    "noTickets": "您尚未提交任何支援工單。",
+    "loadFailed": "無法載入您的工單。請再試一次。",
+    "categoryLabel": "類別",
+    "severityLabel": "優先",
+    "subjectLabel": "主題",
+    "subjectPlaceholder": "一行描述問題",
+    "descriptionLabel": "發生咗咩",
+    "descriptionPlaceholder": "你做咗啲咩，你期望啲咩，同埋發生咗啲咩。",
+    "stepsLabel": "複製步驟（可選）",
+    "stepsPlaceholder": "1. 打開資訊提供&#10;2. 撳一下上載&#10;3....",
+    "submit": "寄飛",
+    "submitting": "傳送 ...",
+    "filed": "飛 {{ref}} 係同隊一齊。",
+    "filedNotEmailed": "飛 {{ref}} 錄咗。保留參考資料。",
+    "alreadyOpen": "你已經將呢個開咗做 {{ref}} 。",
+    "filingFailed": "申請唔到嗰張飛。唔該再試多次。",
+    "status": {
+      "open": "打開",
+      "in_progress": "進行中",
+      "resolved": "解決咗",
+      "closed": "閂咗"
+    },
+    "severity": {
+      "low": "低",
+      "normal": "正常",
+      "high": "高",
+      "urgent": "緊急"
+    },
+    "category": {
+      "account_access": "帳戶存取權",
+      "wallet_or_transactions": "錢包或者交易",
+      "posting_or_uploads": "發佈或者上載",
+      "payments_or_subscriptions": "付款或者訂閱",
+      "live_streaming": "直播",
+      "content_or_moderation": "內容或者審核",
+      "bug": "蟲",
+      "feature_request": "功能要求",
+      "other": "其他"
+    },
+    "filedOn": "已提交 {{date}}"
   }
 }

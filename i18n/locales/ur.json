@@ -694,7 +694,22 @@
     "chainIdLabel": "چین آئی ڈی: {{id}}",
     "exportPkConfirmPhrase": "میں سمجھتا ہوں",
     "exportPkCopy": "پرائیویٹ کی کاپی کریں",
-    "e2eAutomatic": "خودکار"
+    "e2eAutomatic": "خودکار",
+    "smsScopeLabel": "کیا ٹیکسٹ کریں",
+    "smsScopeDesc": "ٹیکسٹ مہنگے ہوتے ہیں، اس لیے ان کو ان چیزوں تک محدود کریں جو خلل ڈالنے کے قابل ہوں۔",
+    "smsScope": {
+      "all": "سب کچھ جو میں نے آن کیا ہے۔",
+      "tips": "صرف ٹپس جو مجھے ملتی ہیں۔",
+      "subscriptions": "صرف نئے سبسکرائبرز",
+      "sales": "صرف میرے مواد کی فروخت",
+      "bounties": "صرف باؤنٹی",
+      "fractions": "صرف فریکشن آفرز اور فروخت",
+      "messages": "صرف براہ راست پیغامات",
+      "mentions": "صرف میری ذکر",
+      "replies": "صرف میری تبصروں کے جواب",
+      "account": "صرف میرے اکاؤنٹ کے بارے میں نوٹس"
+    },
+    "smsDepositAction": "{{dhb}} DHB بھیجیں۔"
   },
   "common": {
     "mute": "آواز بند کریں",
@@ -778,7 +793,8 @@
     "attachDescription": "اپنے پیغام میں ٹپ کے طور پر DHB ٹوکنز منسلک کریں",
     "minAmount": "کم از کم {{amount}} DHB ۔",
     "attachAmount": "{{amount}} DHB منسلک کریں",
-    "removeTip": "ٹپ ہٹائیں"
+    "removeTip": "ٹپ ہٹائیں",
+    "max": "زیادہ سے زیادہ: {{amount}}"
   },
   "postOptions": {
     "options": "اختیارات",
@@ -1288,7 +1304,8 @@
     "evmAddressCopied": "ای وی ایم پتہ کاپی ہو گیا",
     "solanaAddressLabel": "سولانا",
     "solanaAddressHint": "صرف SOL اور SPL ٹوکنز",
-    "solanaAddressCopied": "سولانا کا پتہ کاپی ہو گیا"
+    "solanaAddressCopied": "سولانا کا پتہ کاپی ہو گیا",
+    "evmAddressLabel": "ای وی ایم"
   },
   "bookmarks": {
     "title": "بُک مارکس",
@@ -1860,7 +1877,8 @@
     "otherTokens": "دیگر ٹوکن",
     "otherTokensDesc": "اپنے کارڈ سے Base پر ETH یا USDC خریدیں",
     "shareToFeed": "میری فیڈ میں شیئر کریں",
-    "sharePostTemplate": "ابھی DeHub پر میرے اسٹیک میں {{amount}} $ DHB شامل کیا ہے ۔ کمیونٹی کے ساتھ مل کر کام کرنا ۔ #DeHub #DHB"
+    "sharePostTemplate": "ابھی DeHub پر میرے اسٹیک میں {{amount}} $ DHB شامل کیا ہے ۔ کمیونٹی کے ساتھ مل کر کام کرنا ۔ #DeHub #DHB",
+    "minDhbPurchase": "کم از کم DHB خرید $0.50 ہے۔"
   },
   "agents": {
     "title": "AI ایجنٹس",
@@ -3008,7 +3026,13 @@
     "addedToYourUsernames": "آپ کے یوزرنیمز میں شامل ہو جائے گا",
     "boughtNameGoesToVault": "آپ @{{current}} ہی رہیں گے۔ @{{handle}} آپ کے یوزرنیمز میں چلا جائے گا، اور آپ جب چاہیں اس پر سوئچ کر سکتے ہیں۔",
     "youAreNow": "اب آپ @{{handle}} ہیں",
-    "boughtToVaultToast": "@{{handle}} اب آپ کے یوزرنیمز میں ہے"
+    "boughtToVaultToast": "@{{handle}} اب آپ کے یوزرنیمز میں ہے",
+    "askingPriceUsd": "پوچھی گئی قیمت (USD)",
+    "dollarPriceRange": "$1–$1,000,000 درج کریں، دو اعشار اعشاریہ تک۔",
+    "fixedDollarPrice": "ڈالر کی قیمت مقرر رہتی ہے؛ ٹوکن کی رقم اپ ڈیٹ ہوتی ہے۔",
+    "priceUpdated": "قیمت اپ ڈیٹ ہو گئی۔ رقم کا جائزہ لیں اور دوبارہ خریدیں پر ٹیپ کریں۔",
+    "tokensPaidToSeller": "براہ راست بیچنے والے کو ادا کیا گیا۔",
+    "priceUsd": "قیمت (USD)"
   },
   "stores": {
     "subtitle": "DeHub کمیونٹی کی مصنوعات دریافت کریں",
@@ -3513,7 +3537,9 @@
       "hundred": "100",
       "sad": "اداس",
       "cry": "رونا",
-      "dislike": "ناپسند کریں"
+      "dislike": "ناپسند کریں",
+      "lol": "ہاہا",
+      "poo": "پو"
     },
     "mediaSource": "ذرائع ابلاغ کا انتخاب کریں",
     "photoLibrary": "تصویری لائبریری",
@@ -4103,7 +4129,8 @@
     "madeForKidsOffDesc": "یہ پوسٹ بچوں کی موڈ استعمال کرنے والے بچوں کو دکھاتا ہے، اور اسے عام فیڈز سے نکال دیتا ہے۔",
     "madeForKidsBlockedByMature": "بالغوں کے لیے نشان زد کی گئی پوسٹ کو بچوں کے لیے بھی شائع نہیں کیا جا سکتا۔",
     "encoderTitle": "OBS / انکوڈر",
-    "encoderHint": "RTMP تفصیلات حاصل کریں"
+    "encoderHint": "RTMP تفصیلات حاصل کریں",
+    "markMadeForKids": "بچوں کے لئے تیار کردہ کے طور پر نشان زد کریں"
   },
   "bounty": {
     "claimed": "وصول ہو گیا",
@@ -5623,5 +5650,53 @@
     "appealRef": "حوالہ {{ref}}",
     "appealSubtitleSubject": "ایک شخص اسے پڑھے گا اور {{subject}} پر دوبارہ دیکھے گا ۔",
     "appealMore": "حروف کی اب بھی ضرورت ہے: {{count}}"
+  },
+  "support": {
+    "title": "سپورٹ",
+    "subtitle": "آپ کے ٹکٹ اور ان کی حیثیت۔ کوئی AI نہیں، کوئی فیس نہیں۔",
+    "newTicket": "نیا ٹکٹ",
+    "newTicketHint": "ہمیں بتائیں کہ کیا ہوا اور آپ نے اس کے بجائے کیا توقع کی تھی۔",
+    "backToTickets": "ٹکٹوں پر واپس جائیں",
+    "openHeading": "کھلے ({{n}})",
+    "closedHeading": "بند ({{n}})",
+    "noTickets": "آپ نے ابھی تک کوئی سپورٹ ٹکٹ فائل نہیں کیا ہے ۔",
+    "loadFailed": "آپ کے ٹکٹس لوڈ نہیں ہو سکے ۔ براہ کرم دوبارہ کوشش کریں ۔",
+    "categoryLabel": "کیٹیگری",
+    "severityLabel": "ترجیح",
+    "subjectLabel": "مضمون",
+    "subjectPlaceholder": "مسئلہ کی وضاحت کرنے والی ایک سطر",
+    "descriptionLabel": "کیا ہوا؟",
+    "descriptionPlaceholder": "آپ نے کیا کیا، آپ نے کیا توقع کی، اور اس کے بجائے کیا ہوا ۔",
+    "stepsLabel": "دوبارہ پیدا کرنے کے مراحل (آپشنل)",
+    "submit": "ٹکٹ بھیجیں",
+    "submitting": "بھیجا جا رہا ہے...",
+    "filed": "ٹکٹ {{ref}} ٹیم کے پاس ہے ۔",
+    "filedNotEmailed": "ٹکٹ {{ref}} ریکارڈ کیا گیا ۔ حوالہ برقرار رکھیں ۔",
+    "alreadyOpen": "آپ پہلے ہی اسے {{ref}} کے طور پر کھول چکے ہیں ۔",
+    "filingFailed": "وہ ٹکٹ فائل نہیں ہو سکا ۔ براہ کرم دوبارہ کوشش کریں ۔",
+    "status": {
+      "open": "کھولیں",
+      "in_progress": "جاری ہے",
+      "resolved": "حل شدہ",
+      "closed": "بند ہے"
+    },
+    "severity": {
+      "low": "کم",
+      "normal": "عام",
+      "high": "بہت زیادہ",
+      "urgent": "فوری"
+    },
+    "category": {
+      "account_access": "اکاؤنٹ تک رسائی",
+      "wallet_or_transactions": "والٹ یا ٹرانزیکشنز",
+      "posting_or_uploads": "پوسٹنگ یا اپ لوڈز",
+      "payments_or_subscriptions": "ادائیگیاں یا سبسکرپشنز",
+      "live_streaming": "براہ راست سلسلہ بندی",
+      "content_or_moderation": "مواد یا اعتدال پسندی",
+      "bug": "بگ",
+      "feature_request": "خصوصیت کی درخواست",
+      "other": "دیگر"
+    },
+    "filedOn": "{{date}} کو فائل کیا گیا"
   }
 }

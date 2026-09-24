@@ -694,7 +694,22 @@
     "chainIdLabel": "चेन आईडी: {{id}}",
     "exportPkConfirmPhrase": "मैं समझता हूँ",
     "exportPkCopy": "निजी कुंजी कॉपी करें",
-    "e2eAutomatic": "स्वचालित"
+    "e2eAutomatic": "स्वचालित",
+    "smsScopeLabel": "क्या टेक्स्ट करें",
+    "smsScopeDesc": "टेक्स्ट का पैसा लगता है, इसलिए उन्हें उन चीज़ों तक सीमित करें जो रुकावट के लायक हैं",
+    "smsScope": {
+      "all": "सब कुछ जो मैंने चालू किया है",
+      "tips": "केवल मुझे मिलने वाली टिप्स",
+      "subscriptions": "केवल नए ग्राहक",
+      "sales": "केवल मेरी सामग्री की बिक्री",
+      "bounties": "केवल बाउंटी",
+      "fractions": "केवल फ्रैक्शन ऑफर और बिक्री",
+      "messages": "केवल सीधे संदेश",
+      "mentions": "केवल मेरा उल्लेख",
+      "replies": "केवल मेरी टिप्पणियों का जवाब",
+      "account": "केवल मेरे खाते के बारे में सूचनाएं"
+    },
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) क्रेडिट के साथ अनलॉक करें"
   },
   "common": {
     "mute": "म्यूट करें",
@@ -778,7 +793,8 @@
     "attachDescription": "अपने संदेश में DHB टोकन को टिप के रूप में संलग्न करें",
     "minAmount": "न्यूनतम {{amount}} DHB।",
     "attachAmount": "{{amount}} DHB संलग्न करें",
-    "removeTip": "टिप हटाएं"
+    "removeTip": "टिप हटाएं",
+    "toContent": "सामग्री को टिप दें"
   },
   "postOptions": {
     "options": "विकल्प",
@@ -1867,7 +1883,8 @@
     "otherTokens": "अन्य टोकन",
     "otherTokensDesc": "अपने कार्ड से Base पर ETH या USDC खरीदें",
     "shareToFeed": "मेरी फ़ीड में शेयर करें",
-    "sharePostTemplate": "अभी - अभी DeHub पर मेरे स्टैक में {{amount}} $DHB जोड़ा गया है। समुदाय के साथ मिलकर काम करना। #DeHub #DHB"
+    "sharePostTemplate": "अभी - अभी DeHub पर मेरे स्टैक में {{amount}} $DHB जोड़ा गया है। समुदाय के साथ मिलकर काम करना। #DeHub #DHB",
+    "minDhbPurchase": "न्यूनतम DHB खरीद $0.50 है"
   },
   "agents": {
     "title": "AI एजेंट",
@@ -3390,7 +3407,8 @@
     "title": "सार्वजनिक चैट",
     "mentionTitle": "सार्वजनिक चैट में उल्लेख किया गया",
     "voiceMessage": "वॉइस मैसेज",
-    "image": "एक इमेज भेजी"
+    "image": "एक इमेज भेजी",
+    "digest": "{{count}} नए संदेश {{who}} से: {{message}}"
   },
   "liveChat": {
     "attach": "फ़ोटो, GIF या इमोजी जोड़ें",

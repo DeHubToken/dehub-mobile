@@ -617,7 +617,8 @@
     "smsBand": {
       "europe": "Eropah",
       "global": "costa_ rica. kgm",
-      "premium": "Di tempat lain"
+      "premium": "Di tempat lain",
+      "domestic": "United Kingdom"
     },
     "smsDepositAction": "Hantar {{dhb}} DHB",
     "smsDepositPaying": "Sahkan dalam dompet anda...",
@@ -694,7 +695,22 @@
     "chainIdLabel": "ID Rantaian: {{id}}",
     "exportPkConfirmPhrase": "SAYA FAHAM",
     "exportPkCopy": "Salin kunci peribadi",
-    "e2eAutomatic": "Automatik"
+    "e2eAutomatic": "Automatik",
+    "smsScopeLabel": "Apa yang perlu dihantar teks",
+    "smsScopeDesc": "Teks dikenakan bayaran, jadi hadkan kepada apa yang berbaloi untuk gangguan",
+    "smsScope": {
+      "all": "Semua yang saya hidupkan",
+      "tips": "Hanya petua yang saya terima",
+      "subscriptions": "Hanya pelanggan baharu",
+      "sales": "Hanya jualan kandungan saya",
+      "bounties": "Hanya ganjaran",
+      "fractions": "Hanya tawaran dan jualan pecahan",
+      "messages": "Hanya mesej langsung",
+      "mentions": "Hanya sebutan tentang saya",
+      "replies": "Hanya balasan kepada komen saya",
+      "account": "Hanya notis tentang akaun saya"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Bisukan",
@@ -2125,7 +2141,8 @@
     "otherTokens": "Token lain",
     "otherTokensDesc": "Beli ETH atau USDC di Base dengan kad anda",
     "shareToFeed": "Kongsi ke suapan saya",
-    "sharePostTemplate": "Baru sahaja menambah {{amount}} $DHB ke tindanan saya di DeHub. Membina bersama komuniti. #DeHub #DHB"
+    "sharePostTemplate": "Baru sahaja menambah {{amount}} $DHB ke tindanan saya di DeHub. Membina bersama komuniti. #DeHub #DHB",
+    "minDhbPurchase": "Pembelian DHB minimum ialah $0.50"
   },
   "agents": {
     "title": "AI Agents",
@@ -3269,7 +3286,13 @@
     "addedToYourUsernames": "Ditambah ke nama pengguna anda",
     "boughtNameGoesToVault": "Anda kekal @{{current}}. @{{handle}} masuk ke nama pengguna anda, dan anda boleh bertukar kepadanya bila-bila masa.",
     "youAreNow": "Anda kini @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} kini dalam nama pengguna anda"
+    "boughtToVaultToast": "@{{handle}} kini dalam nama pengguna anda",
+    "askingPriceUsd": "Harga jualan (USD)",
+    "dollarPriceRange": "Masukkan $1–$1,000,000, dengan sehingga dua tempat perpuluhan.",
+    "fixedDollarPrice": "Harga dolar kekal tetap; jumlah token dikemas kini.",
+    "priceUpdated": "Harga dikemas kini. Semak jumlah dan ketik Beli sekali lagi.",
+    "tokensPaidToSeller": "Dibayar terus kepada penjual",
+    "priceUsd": "Harga (USD)"
   },
   "stores": {
     "subtitle": "Temui produk daripada komuniti DeHub",
@@ -5891,5 +5914,53 @@
     "appealRef": "Rujukan {{ref}}",
     "appealSubtitleSubject": "Seseorang akan membaca ini dan melihat semula di {{subject}}.",
     "appealMore": "Aksara masih diperlukan: {{count}}"
+  },
+  "support": {
+    "title": "Sokongan",
+    "subtitle": "Tiket anda dan statusnya. Tiada AI, tiada yuran.",
+    "newTicket": "Tiket baharu",
+    "newTicketHint": "Beritahu kami apa yang berlaku dan apa yang anda jangkakan sebaliknya.",
+    "backToTickets": "Kembali ke tiket",
+    "openHeading": "Dibuka ({{n}})",
+    "closedHeading": "Ditutup ({{n}})",
+    "noTickets": "Anda belum memfailkan sebarang tiket sokongan lagi.",
+    "loadFailed": "Tidak dapat memuatkan tiket anda. Sila cuba lagi.",
+    "categoryLabel": "Kategori",
+    "severityLabel": "Keutamaan",
+    "subjectLabel": "Mata Pelajaran",
+    "subjectPlaceholder": "Satu baris menerangkan masalah",
+    "descriptionLabel": "Good morning",
+    "descriptionPlaceholder": "Apa yang anda lakukan, apa yang anda jangkakan, dan apa yang berlaku sebaliknya.",
+    "stepsLabel": "Langkah-langkah untuk menghasilkan semula (pilihan)",
+    "submit": "Hantar tiket",
+    "submitting": "Menghantar...",
+    "filed": "Tiket {{ref}} ada bersama pasukan.",
+    "filedNotEmailed": "Tiket {{ref}} direkodkan. Simpan perakuan.",
+    "alreadyOpen": "Anda sudah membuka ini sebagai {{ref}}.",
+    "filingFailed": "Tidak dapat memfailkan tiket tersebut. Sila cuba lagi.",
+    "status": {
+      "open": "Buka",
+      "in_progress": "Masih berlangsung",
+      "resolved": "Keluarkan",
+      "closed": "Tertutup"
+    },
+    "severity": {
+      "low": "Rendah",
+      "normal": "Biasa",
+      "high": "Tinggi",
+      "urgent": "Segera"
+    },
+    "category": {
+      "account_access": "AKSES AKAUN",
+      "wallet_or_transactions": "Dompet atau transaksi",
+      "posting_or_uploads": "Menyiarkan atau memuat naik",
+      "payments_or_subscriptions": "Bayaran atau langganan",
+      "live_streaming": "Strim langsung",
+      "content_or_moderation": "Kandungan atau kesederhanaan",
+      "bug": "Pepijat",
+      "feature_request": "Permintaan ciri",
+      "other": "Lain-lain"
+    },
+    "filedOn": "Difailkan {{date}}"
   }
 }

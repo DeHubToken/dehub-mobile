@@ -695,7 +695,22 @@
     "chainIdLabel": "ID lanț: {{id}}",
     "exportPkConfirmPhrase": "AM ÎNȚELES",
     "exportPkCopy": "Copiază cheia privată",
-    "e2eAutomatic": "Automat"
+    "e2eAutomatic": "Automat",
+    "smsScopeLabel": "Ce să trimiți prin SMS",
+    "smsScopeDesc": "Mesajele SMS costă bani, așa că limitează-le la ceea ce merită o întrerupere",
+    "smsScope": {
+      "all": "Tot ce am activat",
+      "tips": "Doar sfaturile pe care le primesc",
+      "subscriptions": "Doar abonați noi",
+      "sales": "Doar vânzări ale conținutului meu",
+      "bounties": "Doar recompense",
+      "fractions": "Doar oferte și vânzări de fracțiuni",
+      "messages": "Doar mesaje directe",
+      "mentions": "Doar mențiuni despre mine",
+      "replies": "Doar răspunsuri la comentariile mele",
+      "account": "Doar notificări despre contul meu"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Dezactivează sunetul",
@@ -1863,7 +1878,8 @@
     "otherTokens": "Alte tokenuri",
     "otherTokensDesc": "Cumpără ETH sau USDC pe Base cu cardul tău",
     "shareToFeed": "Distribuie în fluxul meu",
-    "sharePostTemplate": "Tocmai am adăugat {{amount}} $DHB la stiva mea de pe DeHub. Construim împreună cu comunitatea. #DeHub #DHB"
+    "sharePostTemplate": "Tocmai am adăugat {{amount}} $DHB la stiva mea de pe DeHub. Construim împreună cu comunitatea. #DeHub #DHB",
+    "minDhbPurchase": "Achiziția minimă de DHB este de 0,50 USD"
   },
   "agents": {
     "title": "AI Agents",
@@ -2456,7 +2472,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_untiered": "Imaginea este prea mare — imaginile sunt stocate până la {{limit}} MB",
-    "rate_limited": "Limită atinsă, mai încet"
+    "rate_limited": "Limită atinsă, mai încet",
+    "image_too_large_tier": "Imaginea este prea mare — nivelul tău {{tier}} stochează imagini de până la {{limit}} MB"
   },
   "staking": {
     "title": "Staking",
@@ -3006,7 +3023,13 @@
     "addedToYourUsernames": "Se adaugă la numele tale de utilizator",
     "boughtNameGoesToVault": "Rămâi @{{current}}. @{{handle}} intră în numele tale de utilizator și poți trece pe el oricând vrei.",
     "youAreNow": "Acum ești @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} este acum în numele tale de utilizator"
+    "boughtToVaultToast": "@{{handle}} este acum în numele tale de utilizator",
+    "askingPriceUsd": "Preț cerut (USD)",
+    "dollarPriceRange": "Introduceți 1–1.000.000 USD, cu până la două zecimale.",
+    "fixedDollarPrice": "Prețul în dolari rămâne fix; cantitatea de tokeni se actualizează.",
+    "priceUpdated": "Prețul a fost actualizat. Revizuiți suma și atingeți din nou Cumpărare.",
+    "tokensPaidToSeller": "Plătit direct vânzătorului",
+    "priceUsd": "Preț (USD)"
   },
   "stores": {
     "subtitle": "Descoperă produse de la comunitatea DeHub",
@@ -5641,5 +5664,53 @@
     "appealRef": "Referință {{ref}}",
     "appealSubtitleSubject": "O persoană va citi acest lucru și se va uita din nou la {{subject}}.",
     "appealMore": "Caractere încă necesare: {{count}}"
+  },
+  "support": {
+    "title": "Suport",
+    "subtitle": "Biletele tale și starea lor. Fără AI, fără comision.",
+    "newTicket": "Bilet nou",
+    "newTicketHint": "Spune-ne ce s-a întâmplat și ce te așteptai în schimb.",
+    "backToTickets": "Înapoi la bilete",
+    "openHeading": "Deschis ({{n}})",
+    "closedHeading": "Închis ({{n}})",
+    "noTickets": "Nu ai depus încă niciun bilet de suport.",
+    "loadFailed": "Nu am putut încărca biletele tale. Te rugăm să încerci din nou.",
+    "categoryLabel": "Categorie",
+    "severityLabel": "Prioritate",
+    "subjectLabel": "Disciplină școlară",
+    "subjectPlaceholder": "Un rând care descrie problema",
+    "descriptionLabel": "Ce s-a întâmplat?",
+    "descriptionPlaceholder": "Ce ai făcut, ce te așteptai și ce s-a întâmplat în schimb.",
+    "stepsLabel": "Pași pentru reproducere (opțional)",
+    "submit": "Trimite tichet",
+    "submitting": "Se trimite…",
+    "filed": "Biletul {{ref}} este cu echipa.",
+    "filedNotEmailed": "Biletul {{ref}} înregistrat. Păstrați referința.",
+    "alreadyOpen": "Aveți deja această opțiune deschisă ca {{ref}}.",
+    "filingFailed": "Nu s-a putut depune acel tichet. Te rugăm să încerci din nou.",
+    "status": {
+      "open": "Deschis",
+      "in_progress": "In curs",
+      "resolved": "A fost soluționate",
+      "closed": "Închis"
+    },
+    "severity": {
+      "low": "redusă",
+      "normal": "Normal",
+      "high": "Ridicată",
+      "urgent": "Urgent"
+    },
+    "category": {
+      "account_access": "Acces la cont",
+      "wallet_or_transactions": "Portofel sau tranzacții",
+      "posting_or_uploads": "Postări sau încărcări",
+      "payments_or_subscriptions": "Plăți sau abonamente",
+      "live_streaming": "Transmisiune Live",
+      "content_or_moderation": "Conținut sau moderare",
+      "bug": "Sarma",
+      "feature_request": "Cerere trimisă",
+      "other": "Altele"
+    },
+    "filedOn": "Depus la{{date}}"
   }
 }

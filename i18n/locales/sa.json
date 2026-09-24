@@ -682,7 +682,35 @@
     "chainIdLabel": "चेन आईडी: {{id}}",
     "exportPkConfirmPhrase": "मी समजतो",
     "exportPkCopy": "खाजगी की कॉपी करा",
-    "e2eAutomatic": "स्वयंचलित"
+    "e2eAutomatic": "स्वयंचलित",
+    "socialFollowers": "अनुयायिनः {{platform}} वर",
+    "publicChatAlertsRateOption": "{{count}} एक घण्टा",
+    "smsScopeLabel": "कथं सन्देशं प्रेषयेयम्",
+    "smsScopeDesc": "सन्देशाः मूल्यं गृह्णन्ति, अतः व्यवधानस्य योग्यं किम् इति सङ्कुचयन्तु",
+    "smsScope": {
+      "all": "मया सर्वं प्रज्वलितं",
+      "tips": "केवलम् उपायाः ये मया प्राप्ताः",
+      "subscriptions": "केवलम् नूतनग्राहकाः",
+      "sales": "केवलम् मम सामग्रीयाः विक्री",
+      "bounties": "केवलम् पुरस्काराः",
+      "fractions": "केवलम् अंशविक्रयः विक्री च",
+      "messages": "केवलम् प्रत्यक्षसन्देशाः",
+      "mentions": "केवलम् मम उल्लेखः",
+      "replies": "केवलम् मम टिप्पणीनां प्रत्युत्तराणि",
+      "account": "केवलम् मम खातविषयकाः सूचनाः"
+    },
+    "smsNotificationsDescReady": "{{phone}} - {{dhb}} DHB प्रति, प्रायः {{count}} अवशिष्टम्",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) इत्यनेन उद्घाटयतु",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) सन्देशान् उद्घाटयति भवत्प्रथमः शेषः भवति।",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositAction": "{{dhb}} DHB प्रेषयतु",
+    "smsDepositSlow": "भवत् हस्तान्तरणम् अद्यापि शृङ्खलायां न दृश्यते। सुरक्षितम् अस्ति — इदं पुनरुद्घाटयतु, तत् जमा भविष्यति। सन्दर्भः: {{hash}}",
+    "smsBalance": "{{dhb}} DHB अवशिष्टम् (${{usd}})",
+    "smsBalanceMessages": "प्रायः {{count}} अधिकं सन्देशाः",
+    "smsTopUp": "{{dhb}} DHB पूरयतु",
+    "smsCodeSent": "कूटः प्रेषितः। तत् {{price}} DHB व्ययम् अकरोत्।",
+    "smsCodeLabel": "कूटः यः वयम् {{phone}} इत्यस्मै प्रेषितवन्तः",
+    "badgeDelegationLendsAny": "प्रत्येकं भवता उद्घाटितं कस्यापि पदस्य कोऽपि बैजः ददाति, भवत्स्वस्य {{tier}} यावत्। लघुतरः बैजः अपि एकं सम्पूर्णं स्थानं गृह्णाति।"
   },
   "common": {
     "mute": "ध्वनिं निरुध्यताम्",
@@ -1396,7 +1424,23 @@
     "payments": "भुगतानानि",
     "claimBounty": "स्वपुरस्कारं गृह्णातु",
     "noneForFilter": "अद्यापि {{filter}} सूचना नास्ति।",
-    "andNOthers": "अन्ये {{count}} च"
+    "andNOthers": "अन्ये {{count}} च",
+    "badgeLent": "{{name}} स्वस्य {{tier}} बैजः भवते दत्तवान्",
+    "badgeTakenBack": "{{name}} स्वस्य {{tier}} बैजः भवते दातुं स्थगितवान्",
+    "badgeHandedBack": "{{name}} भवते दत्तं स्वस्य {{tier}} बैजः प्रत्यर्पितवान्",
+    "badgeLoanLapsed": "{{name}} स्वस्य {{tier}} बैजः भवते दातुं न शक्नोति",
+    "badgeLoanDropped": "त्वं साम्प्रतं स्वस्य {{tier}} पदं {{name}} इत्यस्मै दातुं न शक्नोषि",
+    "badgeLoanRetiered": "{{name}} इदानीं तव कृते {{tier}} पदं ददाति",
+    "community": {
+      "joined": "{{name}} तव समुदाये सम्मिलितः",
+      "joinedNamed": "{{name}} “{{community}}” इत्यत्र सम्मिलितः",
+      "requested": "{{name}} तव समुदायं प्रवेष्टुं प्रार्थितवान्",
+      "requestedNamed": "{{name}} “{{community}}” इत्यत्र प्रवेष्टुं प्रार्थितवान्",
+      "mentioned": "{{name}} समुदायं त्वयि उल्लिखितवान्",
+      "mentionedNamed": "{{name}} “{{community}}” इत्यत्र त्वयि उल्लिखितवान्",
+      "here": "{{name}} समुदाये सर्वेभ्यः सन्देशं प्रेषितवान्",
+      "hereNamed": "{{name}} “{{community}}” इत्यत्र सर्वेभ्यः सन्देशं प्रेषितवान्"
+    }
   },
   "leaderboard": {
     "title": "श्रेष्ठतासूची",
@@ -1833,7 +1877,9 @@
     "failedOnramp": "आनरैम्प्-आरम्भयितुं विफलम्",
     "otherTokens": "अन्ये टोकनाः",
     "otherTokensDesc": "भवतः कार्डेन Base इत्यत्र ETH अथवा USDC क्रीणातु",
-    "shareToFeed": "मेरे भोजन के प्रति निवर्त्यता"
+    "shareToFeed": "मेरे भोजन के प्रति निवर्त्यता",
+    "minDhbPurchase": "न्यूनतमं DHB क्रयणं $0.50 अस्ति",
+    "sharePostTemplate": "अद्य DeHub-इत्यत्र मम सञ्चये {{amount}} $DHB योजितानि। समुदायस्य सह निर्माणं कुर्वन्। #DeHub #DHB"
   },
   "agents": {
     "title": "AI एजेण्ट्",
@@ -2094,7 +2140,8 @@
       "signInToComment": "भाषण में शामिल हों",
       "empty": "अध्यक्ष महोदय -- आप अभी भाषण मत दीजिए.",
       "joinOnProposal": "भाषण में शामिल हों",
-      "authorChip": "प्रस्तावाधिकारिणः"
+      "authorChip": "प्रस्तावाधिकारिणः",
+      "replyingTo": "{{name}} इत्यस्य उत्तरं ददत्"
     }
   },
   "sidebar": {
@@ -2976,7 +3023,13 @@
     "addedToYourUsernames": "भवतः उपयोक्तृनामसु योज्यते",
     "boughtNameGoesToVault": "भवान् @{{current}} एव तिष्ठति। @{{handle}} भवतः उपयोक्तृनामसु गच्छति, यदा इच्छति तदा तत्र परिवर्तयितुं शक्नोति।",
     "youAreNow": "इदानीं भवान् @{{handle}} अस्ति",
-    "boughtToVaultToast": "@{{handle}} इदानीं भवतः उपयोक्तृनामसु अस्ति"
+    "boughtToVaultToast": "@{{handle}} इदानीं भवतः उपयोक्तृनामसु अस्ति",
+    "askingPriceUsd": "मूल्यं (USD)",
+    "dollarPriceRange": "$1–$1,000,000 प्रविशतु, द्वयोः दशमलवाधिकयोः स्थानानि यावत्।",
+    "fixedDollarPrice": "मूल्यं स्थिरं तिष्ठति; टोकनस्य राशिः अद्यतनीकृतः।",
+    "priceUpdated": "मूल्यं अद्यतनीकृतम्। राशिं पुनर्विलोकयतु पुनः क्रीणातु इति स्पृशतु।",
+    "tokensPaidToSeller": "विक्रेत्रे प्रत्यक्षं दत्तम्",
+    "priceUsd": "मूल्यं (USD)"
   },
   "stores": {
     "subtitle": "DeHub समुदायस्य उत्पादानि अन्विष्यतु",
@@ -3292,13 +3345,16 @@
     "yourDhb": "भवतः DHB"
   },
   "digest": {
-    "someone": "कश्चित्"
+    "someone": "कश्चित्",
+    "andOthers_one": "{{names}} च {{count}} अन्य",
+    "andOthers_other": "{{names}} च {{count}} अन्ये"
   },
   "publicChatAlerts": {
     "title": "सार्वजनिकसम्भाषणम्",
     "mentionTitle": "सार्वजनिक चॅट मध्ये उल्लेखित",
     "voiceMessage": "ध्वनि संदेश",
-    "image": "चित्रं प्रेष्यताम्"
+    "image": "चित्रं प्रेष्यताम्",
+    "digest": "{{count}} कडून नवीन संदेश: {{who}}: {{message}}"
   },
   "liveChat": {
     "attach": "तस्विरः जिफ, इमोजी",
@@ -3485,7 +3541,16 @@
     "mediaSource": "सञ्चारमाध्यमस्य स्रोतान् निवसतु",
     "photoLibrary": "छायाचित्रं ग्रन्थालयं",
     "videoFiles": "\"फलकम्ःFile\" सम्बद्धानि पृष्ठानि",
-    "fileError": "जालकपृष्ठे पञ्जीकर्तुम् अहं न शक्नोमि । महोदय, शेष संचिकानां link प्रेषयतु ।"
+    "fileError": "जालकपृष्ठे पञ्जीकर्तुम् अहं न शक्नोमि । महोदय, शेष संचिकानां link प्रेषयतु ।",
+    "anonymous": "{{count}} अनामिक बॅज धारकांकडून लाईक्स",
+    "reactedPost": "{{name}} ने तुमच्या पोस्टवर प्रतिक्रिया दिली",
+    "repostedPost": "{{name}} ने तुमची पोस्ट पुन्हा पोस्ट केली",
+    "quotedPost": "{{name}} ने तुमच्या पोस्टचा उल्लेख केला",
+    "mentionedYou": "{{name}} ने तुमचा उल्लेख केला",
+    "followRequest": "{{name}} ने तुम्हाला फॉलो करण्याची विनंती केली",
+    "followAccepted": "{{name}} ने तुमची फॉलो विनंती स्वीकारली",
+    "signalFlare": "{{name}} ने सिग्नल फ्लेअर पाठवला",
+    "newMessage": "{{name}} ने तुम्हाला संदेश पाठवला"
   },
   "audioPost": {
     "popOut": "श्रूयते - श्रूयते - श्रूयते",
@@ -3495,7 +3560,9 @@
     "untitled": "श्रव्यस्थानम्",
     "creator": "DEHUB सृष्टिकर्ता",
     "play": "वाद्यताम्",
-    "pause": "विरामः"
+    "pause": "विरामः",
+    "listens_one": "{{count}} ऐका",
+    "listens_other": "{{count}} ऐकतो"
   },
   "transfer": {
     "title": "टोकनान् प्रेषयतु",
@@ -3562,7 +3629,9 @@
     "reviewDescriptionPlaceholder": "कोई कहे कोई कहे कोई कहे (कविता)",
     "reviewLiveWarning": "एष लिङ्कः सजीवप्रवाहः अस्ति । प्रतीक्षां समापयेत्सर्वं नित्यं समापयेत् ॥",
     "reviewCancel": "रद्दम्",
-    "reviewConfirm": "आयात्यताम्"
+    "reviewConfirm": "आयात्यताम्",
+    "toastImported": "{{source}} कडून आयात केले!",
+    "errorUnsupported": "आम्ही त्या लिंकवरून आयात करू शकत नाही. यापैकी एक वापरून पहा: {{sources}}"
   },
   "earnings": {
     "filter24h": "24घ",
@@ -4058,7 +4127,8 @@
     "madeForKidsOffDesc": "इदं पोस्टं बालकानां मोडं उपयुञ्जन्तः बालकेभ्यः प्रदर्शयति, साधारणफीडेभ्यः च निष्कासयति।",
     "madeForKidsBlockedByMature": "परिपक्वतया चिह्नितः पोस्टः बालकानां कृते प्रकाशितः न भवितुं शक्नोति।",
     "encoderTitle": "OBS / एनकोडर",
-    "encoderHint": "RTMP विवरणं प्राप्नु"
+    "encoderHint": "RTMP विवरणं प्राप्नु",
+    "markMadeForKids": "मुलांसाठी बनवलेले म्हणून चिन्हांकित करा"
   },
   "bounty": {
     "claimed": "प्राप्तम्",
@@ -4300,7 +4370,9 @@
     "topUpSubtitle": "कार्ड का उपयोग करके $DHB खरीदें और तुरंत उपयोग के लिए मुफ्त गैस प्राप्त करें",
     "noTxHash": "लेन-देन हैश नहीं मिला",
     "latestTransactions": "नवीनतम लेनदेन",
-    "showAll": "सभी दिखाएं"
+    "showAll": "सभी दिखाएं",
+    "sentTo": "{{amount}} {{symbol}} ला {{address}} पाठवले गेले",
+    "tokensSentTo": "टोकन {{address}} ला पाठवले गेले"
   },
   "musicSheet": {
     "title": "गीतं रचयतु",
@@ -4495,7 +4567,16 @@
     "videoCountOne": "MSS{{n}} 1अभिप्रायः",
     "viewFeed": "अपना अपना भोजन लिखे",
     "yourChannel": "भवतः च्यानलम्",
-    "yourChannelHint": "सम्भाषणम्ःस्वयं सम्भाषणम्ःस्वयं सम्भाषणम्"
+    "yourChannelHint": "सम्भाषणम्ःस्वयं सम्भाषणम्ःस्वयं सम्भाषणम्",
+    "costsIntro": "प्रत्येक व्हिडिओ मागील व्हिडिओपेक्षा स्वस्त आहे — जसा बॅच वाढतो तसा दर कमी होतो, म्हणून खालील किंमत म्हणजे तितक्या व्हिडिओंसाठी एकूण किंमत आहे.",
+    "doneAllMany": "{{n}} व्हिडिओ स्थलांतरित केले!",
+    "doneAllOne": "{{n}} व्हिडिओ स्थलांतरित केला!",
+    "doneWithFailuresMany": "{{n}} व्हिडिओ स्थलांतरित केले — {{failed}} आयात करू शकले नाहीत आणि ते तुमच्या पुढील स्थलांतरासाठी जमा केले गेले.",
+    "doneWithFailuresOne": "{{n}} व्हिडिओ स्थलांतरित केला — {{failed}} आयात करू शकले नाहीत आणि ते तुमच्या पुढील स्थलांतरासाठी जमा केले गेले.",
+    "pickCount": "{{selected}} पैकी {{total}} निवडले. तुमच्या प्रोफाइलवर आधीपासून असलेले काहीही वगळले जाते आणि कधीही दोनदा शुल्क आकारले जात नाही.",
+    "progressDoneWithFailures": "{{imported}} आयात केले, {{failed}} आयात करू शकले नाहीत.",
+    "videoCountMany": "{{n}} व्हिडिओ",
+    "videosCount": "{{videos}} व्हिडिओ"
   },
   "calls": {
     "voiceCall": "DEHUB आवाज़ आवाज़ आवाज़",
@@ -4548,7 +4629,8 @@
     "topTier": "शीर्ष स्तर",
     "toNextTier": "{{amount}} DHB से {{tier}}",
     "everyTierUnlocked": "हर स्तर अनलॉक किया गया",
-    "holdNote": "एक बार बैज अनलॉक हो जाने के बाद, यह आपके पास तब तक रहेगा जब तक आप अपना DHB रखते हैं। नए बैज को अनलॉक करने के लिए आवश्यक टोकन की संख्या टोकन मूल्य के साथ बदल सकती है।"
+    "holdNote": "एक बार बैज अनलॉक हो जाने के बाद, यह आपके पास तब तक रहेगा जब तक आप अपना DHB रखते हैं। नए बैज को अनलॉक करने के लिए आवश्यक टोकन की संख्या टोकन मूल्य के साथ बदल सकती है।",
+    "yourBalance": "तुमचे शिल्लक · {{amount}} DHB"
   },
   "passwordStrength": {
     "veryWeak": "अतीव दुर्बलम्",
@@ -5560,5 +5642,50 @@
     "appealRef": "सन्दर्भः {{ref}}",
     "appealSubtitleSubject": "कश्चन जनः एतत् पठिष्यति {{subject}} च पुनः द्रक्ष्यति।",
     "appealMore": "अद्यापि आवश्यकानि अक्षराणि: {{count}}"
+  },
+  "support": {
+    "title": "समर्थनम्",
+    "subtitle": "तव प्रवेशिकाः तेषां च स्थितिः। कृत्रिमबुद्धिः नास्ति, शुल्कं नास्ति।",
+    "newTicket": "नवीनं प्रवेशिका",
+    "newTicketHint": "यत् अभवत् यत् च त्वं अपेक्षितवान् इति वदतु।",
+    "backToTickets": "प्रवेशिकाः प्रति प्रत्यागमः",
+    "openHeading": "उद्घाटितम् ({{n}})",
+    "closedHeading": "बन्धितम् ({{n}})",
+    "noTickets": "त्वं साम्प्रतं काश्चन समर्थन-प्रवेशिकाः न लिखिताः।",
+    "loadFailed": "तव प्रवेशिकाः न लोडयितुं शक्यन्ते। कृपया पुनः प्रयत्नं कुरु।",
+    "categoryLabel": "श्रेणी",
+    "severityLabel": "प्राथमिकता",
+    "subjectLabel": "विषयः",
+    "subjectPlaceholder": "१ समस्यायां वर्णनं",
+    "descriptionLabel": "किं अभवत्?",
+    "descriptionPlaceholder": "प्रतीक्षां करिष्यसे, न वा - इति त्वया व्यवसायः कार्यः ।",
+    "stepsLabel": "पुनरुत्पादन (वैकल्पिक)",
+    "submit": "तिकीटं प्रेष्यताम्",
+    "submitting": "प्रेषयति -",
+    "filedNotEmailed": "Ticket {{ref}} रेकार्ड करे रेकार्ड करे ।",
+    "filingFailed": "अहम् तया तिकीटं प्राप्तुं न शक्नोमि । कृपया पुनः प्रयच्छतु ।",
+    "status": {
+      "open": "उद्घाट्यताम्",
+      "in_progress": "प्रगतम्",
+      "resolved": "निराकृतम्",
+      "closed": "बंद"
+    },
+    "severity": {
+      "low": "निम्नम्",
+      "normal": "सामान्यम्",
+      "high": "उच्चम्",
+      "urgent": "अत्यावश्यकम्"
+    },
+    "category": {
+      "account_access": "खाता अभिगम्यता",
+      "wallet_or_transactions": "वस्तूनि वा व्यवहारे",
+      "posting_or_uploads": "पदोन्नति/पदोन्नति",
+      "payments_or_subscriptions": "वेतनमान/अभिदान",
+      "live_streaming": "जीवित प्रसारण",
+      "content_or_moderation": "विषयवस्तु/विषयवस्तु",
+      "bug": "बगः",
+      "feature_request": "वैशिष्ट्य निवेदन",
+      "other": "अन्यः"
+    }
   }
 }

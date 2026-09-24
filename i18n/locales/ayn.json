@@ -654,7 +654,63 @@
     "chainIdLabel": "معرف السلسلة: {{id}}",
     "exportPkConfirmPhrase": "أنا أفهم",
     "exportPkCopy": "انسخ المفتاح الخاص",
-    "e2eAutomatic": "تلقائي"
+    "e2eAutomatic": "تلقائي",
+    "smsNotifications": "إشعارات الرسائل النصية",
+    "smsScopeLabel": "ماذا ترسل",
+    "smsScopeDesc": "الرسائل النصية تكلف مالاً، لذا قللها إلى ما يستحق المقاطعة",
+    "smsScope": {
+      "all": "كل ما قمت بتفعيله",
+      "tips": "فقط النصائح التي أتلقاها",
+      "subscriptions": "فقط المشتركون الجدد",
+      "sales": "فقط مبيعات المحتوى الخاص بي",
+      "bounties": "فقط المكافآت",
+      "fractions": "فقط عروض و مبيعات الكسور",
+      "messages": "فقط الرسائل المباشرة",
+      "mentions": "فقط الإشارات لي",
+      "replies": "فقط الردود على تعليقاتي",
+      "account": "فقط الإشعارات حول حسابي"
+    },
+    "smsNotificationsDesc": "احصل على ما يهم كرسالة نصية",
+    "smsNotificationsDescReady": "مرسلة إلى {{phone}} — {{dhb}} درهم إماراتي لكل منها، حوالي {{count}} متبقية",
+    "smsNotificationsLocked": "افتح باستخدام {{dhb}} درهم إماراتي (${{usd}}) من الرصيد",
+    "smsNotificationsNeedsNumber": "أضف رقم هاتف وتحقق منه للبدء",
+    "smsNotificationsEmpty": "نفد الرصيد — قم بالشحن للاستمرار في تلقي الرسائل النصية",
+    "smsUnavailable": "الإشعارات النصية غير متاحة حاليًا",
+    "smsDialogIntro": "تتكلف الرسائل النصية مالاً لإرسالها، لذا تعمل هذه القناة بالرصيد الذي تقوم بشحنه بالدرهم الإماراتي.",
+    "smsUnlockPrice": "{{dhb}} درهم إماراتي (${{usd}}) يفتح الرسائل النصية ويصبح رصيدك الأول.",
+    "smsUnlockExplainer": "لا شيء ينتهي صلاحيته. يتم إنفاق الرصيد رسالة واحدة في كل مرة، وفقط على الإشعارات التي قمت بتفعيلها بالفعل.",
+    "smsPricesHeading": "ما تكلفه الرسالة",
+    "smsPricePerMessage": "{{dhb}} درهم إماراتي (${{usd}})",
+    "smsBand": {
+      "domestic": "المملكة المتحدة",
+      "europe": "أوروبا",
+      "global": "معظم البلدان الأخرى",
+      "premium": "كل مكان آخر"
+    },
+    "smsDepositAction": "أرسل {{dhb}} درهم إماراتي",
+    "smsDepositPaying": "تأكيد في محفظتك…",
+    "smsDepositConfirming": "بانتظار السلسلة…",
+    "smsDepositNotSent": "لم يتم إرسال التحويل.",
+    "smsDepositSlow": "لم يظهر تحويلك على السلسلة بعد. إنه آمن — أعد فتح هذا وسيتم إضافته. المرجع: {{hash}}",
+    "smsChainUnsupported": "قم بالتبديل إلى Base أو BNB Chain في الإعدادات لتعبئة رصيد النص الخاص بك.",
+    "smsWalletNotReady": "محفظتك ليست جاهزة بعد — حاول مرة أخرى بعد لحظة.",
+    "smsNeedDhb": "تحتاج إلى {{dhb}} DHB لفتح إشعارات النص.",
+    "smsUnlocked": "تم فتح إشعارات النص",
+    "smsBalance": "تبقى {{dhb}} DHB (${{usd}})",
+    "smsBalanceMessages": "حوالي {{count}} رسالة أخرى",
+    "smsTopUp": "اشحن {{dhb}} DHB",
+    "smsNumberLabel": "رقم الهاتف",
+    "smsSendCode": "أرسل لي رمزًا",
+    "smsCodeSent": "تم إرسال الرمز. كلف ذلك {{price}} DHB.",
+    "smsCodeFailed": "لم نتمكن من إرسال هذا الرمز.",
+    "smsCodeLabel": "الرمز الذي أرسلناه إلى {{phone}}",
+    "smsVerify": "تأكيد الرمز",
+    "smsVerifyFailed": "لم نتمكن من تأكيد هذا الرمز.",
+    "smsNumberVerified": "تم التحقق من الرقم",
+    "smsRemoveNumber": "إزالة هذا الرقم",
+    "smsRemoveFailed": "لم نتمكن من إزالة هذا الرقم.",
+    "smsNumberRemoved": "تمت إزالة الرقم",
+    "smsCountryBlocked": "لا يمكننا إرسال نصوص إلى هذا البلد بعد."
   },
   "common": {
     "mute": "اكتم الصوت",
@@ -1821,7 +1877,8 @@
     "otherTokens": "عملات ثانية",
     "otherTokensDesc": "اشتري ETH أو USDC على Base بالبطاقة حقك",
     "shareToFeed": "شارك في صفحتي",
-    "sharePostTemplate": "أضفت للتو {{amount}} $DHB إلى مخزوني على DeHub. أبني مع المجتمع. #DeHub #DHB"
+    "sharePostTemplate": "أضفت للتو {{amount}} $DHB إلى مخزوني على DeHub. أبني مع المجتمع. #DeHub #DHB",
+    "minDhbPurchase": "الحد الأدنى لشراء DHB هو 0.50 دولار"
   },
   "agents": {
     "title": "وكلاء الذكاء الاصطناعي",
@@ -2965,7 +3022,13 @@
     "addedToYourUsernames": "يُضاف إلى أسماء المستخدمين حقك",
     "boughtNameGoesToVault": "تبقى @{{current}}. @{{handle}} يُضاف إلى أسماء المستخدمين حقك، وتقدر تبدّل له متى ما تشتي.",
     "youAreNow": "أنت الحين @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} صار ضمن أسماء المستخدمين حقك"
+    "boughtToVaultToast": "@{{handle}} صار ضمن أسماء المستخدمين حقك",
+    "askingPriceUsd": "السعر المطلوب (بالدولار الأمريكي)",
+    "dollarPriceRange": "أدخل 1 دولار - 1,000,000 دولار، مع ما يصل إلى منزلتين عشريتين.",
+    "fixedDollarPrice": "يبقى سعر الدولار ثابتًا؛ يتم تحديث مبلغ الرمز.",
+    "priceUpdated": "تم تحديث السعر. راجع المبلغ وانقر على شراء مرة أخرى.",
+    "tokensPaidToSeller": "تم الدفع مباشرة للبائع",
+    "priceUsd": "السعر (بالدولار الأمريكي)"
   },
   "stores": {
     "subtitle": "اكتشف منتجات من مجتمع DeHub",
@@ -4062,7 +4125,8 @@
     "madeForKidsOffDesc": "يعرض هالبوست للأطفال اللي يستخدمون وضع الأطفال، ويطلعه من التغذيات العادية.",
     "madeForKidsBlockedByMature": "البوست اللي معلم بأنه للبالغين ما يقدر يكون منشور للأطفال كمان.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "احصل على تفاصيل RTMP"
+    "encoderHint": "احصل على تفاصيل RTMP",
+    "markMadeForKids": "وضع علامة \"صنع للأطفال\""
   },
   "bounty": {
     "claimed": "متسلّم",
@@ -4506,7 +4570,11 @@
     "videosCount": "{{videos}} فيديوهات",
     "viewFeed": "شوف فيدك",
     "yourChannel": "قناتك",
-    "yourChannelHint": "الصق عنوان قناتك — الهاندل وحده يشتغل كمان."
+    "yourChannelHint": "الصق عنوان قناتك — الهاندل وحده يشتغل كمان.",
+    "paste": "لصق",
+    "pay": "ادفع",
+    "progressDone": "{{imported}} مستورد.",
+    "selectAll": "تحديد الكل"
   },
   "calls": {
     "voiceCall": "مكالمة صوتية DeHub",
@@ -5578,5 +5646,53 @@
     "appealRef": "المرجع {{ref}}",
     "appealSubtitleSubject": "سيقرأ شخص ما هذا وينظر مرة أخرى في {{subject}}.",
     "appealMore": "الأحرف المتبقية: {{count}}"
+  },
+  "support": {
+    "title": "دعم",
+    "subtitle": "تذاكرك وحالتها. لا ذكاء اصطناعي، لا رسوم.",
+    "newTicket": "تذكرة جديدة",
+    "newTicketHint": "قل لنا ايش حصل وايش كنت تتوقع بدل.",
+    "backToTickets": "رجعت للتذاكر",
+    "openHeading": "افتح ({{n}})",
+    "closedHeading": "مغلق ({{n}})",
+    "noTickets": "ما قدمت أي تذاكر دعم بعد.",
+    "loadFailed": "ما قدرنا نحمل تذاكرك. جرب مرة ثانية.",
+    "categoryLabel": "تصنيف",
+    "severityLabel": "أولوية",
+    "subjectLabel": "موضوع",
+    "subjectPlaceholder": "سطر واحد يصف المشكلة",
+    "descriptionLabel": "ايش حصل",
+    "descriptionPlaceholder": "اللي سويته، واللي كنت تتوقعه، واللي صار بدل عنه.",
+    "stepsLabel": "خطوات إعادة الإنتاج (اختياري)",
+    "submit": "أرسل تذكرة",
+    "submitting": "جاري الإرسال...",
+    "filed": "التذكرة {{ref}} مع الفريق.",
+    "filedNotEmailed": "تم تسجيل التذكرة {{ref}}. احتفظ بالمرجع.",
+    "alreadyOpen": "معاك مفتوح كـ {{ref}}.",
+    "filingFailed": "ما قدرنا نسجل التذكرة. جرب مرة ثانية.",
+    "status": {
+      "open": "افتح",
+      "in_progress": "قيد التنفيذ",
+      "resolved": "تم الحل",
+      "closed": "مغلق"
+    },
+    "severity": {
+      "low": "واطي",
+      "normal": "عادي",
+      "high": "عالي",
+      "urgent": "عاجل"
+    },
+    "category": {
+      "account_access": "الدخول للحساب",
+      "wallet_or_transactions": "المحفظة أو المعاملات",
+      "posting_or_uploads": "النشر أو التحميل",
+      "payments_or_subscriptions": "المدفوعات أو الاشتراكات",
+      "live_streaming": "البث المباشر",
+      "content_or_moderation": "المحتوى أو الإشراف",
+      "bug": "خلل",
+      "feature_request": "طلب ميزة",
+      "other": "أخرى"
+    },
+    "filedOn": "مقدم {{date}}"
   }
 }

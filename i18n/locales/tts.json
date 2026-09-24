@@ -654,7 +654,63 @@
     "chainIdLabel": "ลูกโซ่ไอดี: {{id}}",
     "exportPkConfirmPhrase": "ข่อยเข้าใจ",
     "exportPkCopy": "คัดลอกกุญแจส่วนตัว",
-    "e2eAutomatic": "อัตโนมัติ"
+    "e2eAutomatic": "อัตโนมัติ",
+    "smsNotifications": "การแจ้งเตือนทางข้อความ",
+    "smsScopeLabel": "จะให้ข้อความแบบไหน",
+    "smsScopeDesc": "ข้อความมีค่าใช้จ่าย ดังนั้น ให้จำกัดเฉพาะสิ่งที่คุ้มค่ากับการแจ้งเตือน",
+    "smsScope": {
+      "all": "ทุกอย่างที่ฉันเปิดไว้",
+      "tips": "เฉพาะทิปที่ฉันได้รับ",
+      "subscriptions": "เฉพาะสมาชิกใหม่",
+      "sales": "เฉพาะการขายเนื้อหาของฉัน",
+      "bounties": "เฉพาะรางวัล",
+      "fractions": "เฉพาะข้อเสนอและยอดขายเศษส่วน",
+      "messages": "เฉพาะข้อความโดยตรง",
+      "mentions": "เฉพาะการกล่าวถึงฉัน",
+      "replies": "เฉพาะการตอบกลับความคิดเห็นของฉัน",
+      "account": "เฉพาะการแจ้งเตือนเกี่ยวกับบัญชีของฉัน"
+    },
+    "smsNotificationsDesc": "รับข้อความที่สำคัญเป็นการแจ้งเตือนทางข้อความ",
+    "smsNotificationsDescReady": "ส่งไปที่ {{phone}} — {{dhb}} DHB ต่อข้อความ ประมาณ {{count}} เหลือ",
+    "smsNotificationsLocked": "ปลดล็อกด้วยเครดิต {{dhb}} DHB (${{usd}})",
+    "smsNotificationsNeedsNumber": "เพิ่มและยืนยันหมายเลขโทรศัพท์เพื่อเริ่มต้น",
+    "smsNotificationsEmpty": "เครดิตหมด — เติมเงินเพื่อรับข้อความต่อไป",
+    "smsUnavailable": "การแจ้งเตือนทางข้อความไม่พร้อมใช้งานในขณะนี้",
+    "smsDialogIntro": "การส่งข้อความมีค่าใช้จ่าย ดังนั้นช่องทางนี้จะใช้เครดิตที่คุณเติมเงินเป็น DHB",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) ปลดล็อกข้อความและจะกลายเป็นยอดคงเหลือแรกของคุณ",
+    "smsUnlockExplainer": "ไม่มีอะไรหมดอายุ เครดิตจะถูกใช้ทีละข้อความ และเฉพาะการแจ้งเตือนที่คุณเปิดไว้เท่านั้น",
+    "smsPricesHeading": "ข้อความหนึ่งข้อความมีค่าเท่าไหร่",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsBand": {
+      "domestic": "สหราชอาณาจักร",
+      "europe": "ยุโรป",
+      "global": "ประเทศอื่นๆ ส่วนใหญ่",
+      "premium": "ที่อื่นๆ ทั้งหมด"
+    },
+    "smsDepositAction": "ส่ง {{dhb}} DHB",
+    "smsDepositPaying": "ยืนยันในกระเป๋าเงินของคุณ…",
+    "smsDepositConfirming": "รอคิวอยู่...",
+    "smsDepositNotSent": "การโอนเงินยังไม่สำเร็จ",
+    "smsDepositSlow": "การโอนเงินของคุณยังไม่ปรากฏบนบล็อกเชน ปลอดภัยดี — เปิดใหม่แล้วจะได้รับเครดิต อ้างอิง: {{hash}}",
+    "smsChainUnsupported": "เปลี่ยนไปใช้ Base หรือ BNB Chain ในการตั้งค่าเพื่อเติมเครดิตข้อความของคุณ",
+    "smsWalletNotReady": "กระเป๋าเงินของคุณยังไม่พร้อม — ลองอีกครั้งในอีกสักครู่",
+    "smsNeedDhb": "คุณต้องใช้ DHB {{dhb}} เพื่อปลดล็อกการแจ้งเตือนข้อความ",
+    "smsUnlocked": "ปลดล็อกการแจ้งเตือนข้อความแล้ว",
+    "smsBalance": "เหลือ DHB {{dhb}} (${{usd}})",
+    "smsBalanceMessages": "ข้อความอีกประมาณ {{count}} ข้อความ",
+    "smsTopUp": "เติม DHB {{dhb}}",
+    "smsNumberLabel": "เบอร์โทรศัพท์",
+    "smsSendCode": "ส่งรหัสมาให้ฉันทางข้อความ",
+    "smsCodeSent": "ส่งรหัสแล้ว เสียค่าใช้จ่าย DHB {{price}}",
+    "smsCodeFailed": "เราไม่สามารถส่งรหัสได้",
+    "smsCodeLabel": "รหัสที่เราส่งไปที่ {{phone}}",
+    "smsVerify": "ยืนยันรหัส",
+    "smsVerifyFailed": "เราไม่สามารถยืนยันรหัสได้",
+    "smsNumberVerified": "ยืนยันเบอร์แล้ว",
+    "smsRemoveNumber": "ลบเบอร์นี้",
+    "smsRemoveFailed": "เราไม่สามารถลบเบอร์นี้ได้",
+    "smsNumberRemoved": "ลบเบอร์แล้ว",
+    "smsCountryBlocked": "เรายังไม่สามารถส่งข้อความไปยังประเทศนั้นได้"
   },
   "common": {
     "mute": "ปิดเสียง",
@@ -1822,7 +1878,8 @@
     "otherTokens": "โทเคนอื่น",
     "otherTokensDesc": "ซื้อ ETH หรือ USDC เทิง Base นำบัตรของเจ้า",
     "shareToFeed": "แชร์ไปยังฟีดของฉัน",
-    "sharePostTemplate": "เพิ่งเพิ่ม {{amount}} $DHB เข้าในสแต็กของฉันบน DeHub สร้างร่วมกับชุมชน #DeHub #DHB"
+    "sharePostTemplate": "เพิ่งเพิ่ม {{amount}} $DHB เข้าในสแต็กของฉันบน DeHub สร้างร่วมกับชุมชน #DeHub #DHB",
+    "minDhbPurchase": "การซื้อ DHB ขั้นต่ำคือ $0.50"
   },
   "agents": {
     "title": "AI Agent",
@@ -2966,7 +3023,13 @@
     "addedToYourUsernames": "เพิ่มใส่ชื่อผู้ใช้ของเจ้า",
     "boughtNameGoesToVault": "เจ้ายังเป็น @{{current}} คือเก่า @{{handle}} สิเข้าไปอยู่ในชื่อผู้ใช้ของเจ้า แล้วเจ้าสลับไปใช้ได้ตอนใดกะได้",
     "youAreNow": "ตอนนี้เจ้าเป็น @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} อยู่ในชื่อผู้ใช้ของเจ้าแล้ว"
+    "boughtToVaultToast": "@{{handle}} อยู่ในชื่อผู้ใช้ของเจ้าแล้ว",
+    "askingPriceUsd": "ราคาที่ต้องการ (USD)",
+    "dollarPriceRange": "กรอก $1–$1,000,000 โดยมีทศนิยมไม่เกินสองตำแหน่ง",
+    "fixedDollarPrice": "ราคาดอลลาร์คงที่ จำนวนโทเค็นจะอัปเดต",
+    "priceUpdated": "ราคาอัปเดตแล้ว ตรวจสอบจำนวนและแตะ ซื้อ อีกครั้ง",
+    "tokensPaidToSeller": "จ่ายโดยตรงให้กับผู้ขาย",
+    "priceUsd": "ราคา (USD)"
   },
   "stores": {
     "subtitle": "ค้นพบสินค้าจากซุมซน DeHub",
@@ -4064,7 +4127,8 @@
     "madeForKidsOffDesc": "แสดงโพสต์นี้ให้เด็กที่ใช้โหมดเด็กเห็น และนำออกจากฟีดธรรมชาติ",
     "madeForKidsBlockedByMature": "โพสต์ที่ทำเครื่องหมายว่าเป็นผู้ใหญ่ไม่สามารถเผยแพร่สำหรับเด็กได้เช่นกัน",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "รับรายละเอียด RTMP"
+    "encoderHint": "รับรายละเอียด RTMP",
+    "markMadeForKids": "ทำเครื่องหมายว่าสร้างมาสำหรับเด็ก"
   },
   "bounty": {
     "claimed": "ฮับแล้ว",
@@ -4511,7 +4575,8 @@
     "videosCount": "{{videos}} วิดีโอ",
     "viewFeed": "ดูฟีดของคุณ",
     "yourChannel": "ช่องของคุณ",
-    "yourChannelHint": "วางที่อยู่ช่องของคุณ — แฮนเดิลของมันเองก็ใช้ได้เหมือนกัน"
+    "yourChannelHint": "วางที่อยู่ช่องของคุณ — แฮนเดิลของมันเองก็ใช้ได้เหมือนกัน",
+    "howTitle": "วิธีการทำงาน"
   },
   "calls": {
     "voiceCall": "DeHub voice call",
@@ -4564,7 +4629,9 @@
     "topTier": "ระดับสูงสุด",
     "toNextTier": "{{amount}} DHB ถึง {{tier}}",
     "everyTierUnlocked": "ปลดล็อกทุกระดับ",
-    "holdNote": "เมื่อปลดล็อกป้ายแล้ว ป้ายนั้นจะเป็นของคุณตราบเท่าที่คุณถือ DHB จำนวนโทเคนที่จะปลดล็อกป้ายใหม่สามารถเปลี่ยนแปลงได้ตามราคาโทเคน"
+    "holdNote": "เมื่อปลดล็อกป้ายแล้ว ป้ายนั้นจะเป็นของคุณตราบเท่าที่คุณถือ DHB จำนวนโทเคนที่จะปลดล็อกป้ายใหม่สามารถเปลี่ยนแปลงได้ตามราคาโทเคน",
+    "reached": "คุณถึง {{tier}} แล้ว",
+    "yourBalance": "ยอดคงเหลือของคุณ · {{amount}} DHB"
   },
   "passwordStrength": {
     "veryWeak": "อ่อนขนาด",
@@ -5583,5 +5650,52 @@
     "appealRef": "หมายเลขอ้างอิง {{ref}}",
     "appealSubtitleSubject": "จะมีคนอ่านและพิจารณา {{subject}} อีกครั้ง",
     "appealMore": "ตัวอักษรที่ยังต้องการ: {{count}}"
+  },
+  "support": {
+    "title": "สนับสนุน",
+    "subtitle": "ตั๋วของคุณและสถานะ. ไม่มี AI, ไม่มีค่าธรรมเนียม.",
+    "newTicket": "ตั๋วใหม่",
+    "newTicketHint": "บอกมาแน่ว่ามันเป็นจั่งได๋ แล้วกะคาดหวังให้มันเป็นจั่งซั่น",
+    "backToTickets": "กลับไปที่ตั๋ว",
+    "openHeading": "เปิด ({{n}})",
+    "closedHeading": "ปิด ({{n}})",
+    "noTickets": "เจ้าของยังบ่ได้ส่งเทือกคำร้องใดๆ เลย",
+    "categoryLabel": "หมวดหมู่",
+    "severityLabel": "ความสำคัญ",
+    "subjectLabel": "หัวข้อ",
+    "subjectPlaceholder": "ปัญหาหนึ่งบรรทัด",
+    "descriptionLabel": "เป็นหยัง",
+    "descriptionPlaceholder": "เจ้าเฮ็ดหยัง เจ้าคาดหวังหยัง แล้วมันเป็นจั่งได๋แทน",
+    "stepsLabel": "ขั้นตอนการทำซ้ำ (ถ้ามี)",
+    "submit": "ส่งตั๋ว",
+    "submitting": "ส่ง...",
+    "filed": "ตั๋ว {{ref}} อยู่กับทีมแล้ว",
+    "filedNotEmailed": "บันทึกตั๋ว {{ref}} แล้ว เก็บข้อมูลอ้างอิงไว้เด้อ",
+    "alreadyOpen": "เจ้ามีอันนี้เปิดอยู่แล้วเป็น {{ref}}.",
+    "filingFailed": "บ่ได้ส่งตั๋วนี้เด้อ ลองใหม่เด้อ",
+    "status": {
+      "open": "เปิด",
+      "in_progress": "กำลังดำเนินการ",
+      "resolved": "แก้ไขแล้ว",
+      "closed": "ปิด"
+    },
+    "severity": {
+      "low": "ต่ำ",
+      "normal": "ธรรมดา",
+      "high": "สูง",
+      "urgent": "ด่วน"
+    },
+    "category": {
+      "account_access": "การเข้าถึงบัญชี",
+      "wallet_or_transactions": "กระเป๋าเงินหรือธุรกรรม",
+      "posting_or_uploads": "การโพสต์หรืออัปโหลด",
+      "payments_or_subscriptions": "การชำระเงินหรือการสมัครสมาชิก",
+      "live_streaming": "การถ่ายทอดสด",
+      "content_or_moderation": "เนื้อหาหรือการกลั่นกรอง",
+      "bug": "ข้อผิดพลาด",
+      "feature_request": "คำขอคุณสมบัติ",
+      "other": "อื่นๆ"
+    },
+    "filedOn": "ยื่นเรื่อง {{date}}"
   }
 }

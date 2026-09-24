@@ -694,7 +694,21 @@
     "chainIdLabel": "รหัสลูกโซ่: {{id}}",
     "exportPkConfirmPhrase": "ฉันเข้าใจแล้ว",
     "exportPkCopy": "คัดลอกคีย์ส่วนตัว",
-    "e2eAutomatic": "อัตโนมัติ"
+    "e2eAutomatic": "อัตโนมัติ",
+    "smsScopeLabel": "สิ่งที่ควรส่งข้อความ",
+    "smsScopeDesc": "ข้อความมีค่าใช้จ่ายดังนั้นจำกัดให้แคบลงเพื่อสิ่งที่ควรค่าแก่การขัดจังหวะ",
+    "smsScope": {
+      "all": "ทุกอย่างที่ฉันเปิดไว้",
+      "tips": "เฉพาะทิปที่ฉันได้รับ",
+      "subscriptions": "เฉพาะผู้สมัครรับข่าวสารใหม่เท่านั้น",
+      "sales": "ยอดขายเฉพาะคอนเทนต์ของฉันเท่านั้น",
+      "bounties": "เฉพาะค่าหัว",
+      "fractions": "ข้อเสนอและการขายเพียงเศษส่วนเท่านั้น",
+      "messages": "ข้อความส่วนตัว:",
+      "mentions": "มีเพียงการกล่าวถึงฉันเท่านั้น",
+      "replies": "ตอบกลับเฉพาะความคิดเห็นของฉันเท่านั้น",
+      "account": "เฉพาะประกาศเกี่ยวกับบัญชีของฉันเท่านั้น"
+    }
   },
   "common": {
     "mute": "ปิดเสียง",
@@ -1312,7 +1326,8 @@
     "evmAddressHint": "Base, BNB และ Ethereum",
     "evmAddressCopied": "คัดลอกที่อยู่ EVM แล้ว",
     "solanaAddressHint": "เฉพาะโทเค็น SOL และ SPL",
-    "solanaAddressCopied": "คัดลอกที่อยู่ Solana แล้ว"
+    "solanaAddressCopied": "คัดลอกที่อยู่ Solana แล้ว",
+    "solanaAddressLabel": "โซลานา"
   },
   "bookmarks": {
     "title": "รายการที่คุณบันทึกไว้",
@@ -1884,7 +1899,8 @@
     "otherTokens": "โทเคนอื่น ๆ",
     "otherTokensDesc": "ซื้อ ETH หรือ USDC บน Base ด้วยบัตรของคุณ",
     "shareToFeed": "แชร์ไปยังฟีดของฉัน",
-    "sharePostTemplate": "เพิ่งเพิ่ม {{amount}} $ DHB ในสแต็กของฉันบน DeHub ร่วมสร้างกับชุมชน # DeHub # DHB"
+    "sharePostTemplate": "เพิ่งเพิ่ม {{amount}} $ DHB ในสแต็กของฉันบน DeHub ร่วมสร้างกับชุมชน # DeHub # DHB",
+    "minDhbPurchase": "การซื้อ DHB ขั้นต่ำคือ $ 0.50"
   },
   "agents": {
     "title": "AI Agent",
@@ -3028,7 +3044,13 @@
     "addedToYourUsernames": "เพิ่มลงในชื่อผู้ใช้ของคุณ",
     "boughtNameGoesToVault": "คุณยังคงเป็น @{{current}} @{{handle}} จะเข้าไปอยู่ในชื่อผู้ใช้ของคุณ และคุณสลับไปใช้ได้ทุกเมื่อ",
     "youAreNow": "ตอนนี้คุณคือ @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} อยู่ในชื่อผู้ใช้ของคุณแล้ว"
+    "boughtToVaultToast": "@{{handle}} อยู่ในชื่อผู้ใช้ของคุณแล้ว",
+    "askingPriceUsd": "ราคาเสนอขาย (USD)",
+    "dollarPriceRange": "ป้อน $ 1 - $ 1,000,000 โดยมีทศนิยมสูงสุดสองตำแหน่ง",
+    "fixedDollarPrice": "ราคาดอลลาร์คงที่การอัปเดตจำนวนโทเค็น",
+    "priceUpdated": "อัพเดทราคาแล้วตรวจสอบจำนวนเงินแล้วแตะซื้ออีกครั้ง",
+    "tokensPaidToSeller": "จ่ายให้กับผู้ขายโดยตรง",
+    "priceUsd": "ราคา (USD)"
   },
   "stores": {
     "subtitle": "ค้นพบสินค้าจากชุมชน DeHub",
@@ -3533,7 +3555,8 @@
       "hundred": "100",
       "sad": "เศร้า",
       "cry": "ร้องไห้",
-      "dislike": "ไม่ชอบ"
+      "dislike": "ไม่ชอบ",
+      "poo": "อึ"
     },
     "mediaSource": "เลือกแหล่งที่มาของสื่อ",
     "photoLibrary": "ไลบรารีรูปภาพ",
@@ -4123,7 +4146,8 @@
     "madeForKidsOffDesc": "แสดงโพสต์นี้ให้เด็กๆเห็นโดยใช้โหมดเด็กและถอดออกจากฟีดธรรมดา",
     "madeForKidsBlockedByMature": "โพสต์ที่ทำเครื่องหมายว่าโตเต็มที่แล้วจะไม่สามารถเผยแพร่สำหรับเด็กได้เช่นกัน",
     "encoderTitle": "OBS/ตัวเข้ารหัส",
-    "encoderHint": "รับรายละเอียด RTMP"
+    "encoderHint": "รับรายละเอียด RTMP",
+    "markMadeForKids": "ทำเครื่องหมายว่าทำขึ้นสำหรับเด็ก"
   },
   "bounty": {
     "claimed": "รับแล้ว",
@@ -5661,5 +5685,51 @@
     "appealRef": "หมายเลขอ้างอิง {{ref}}",
     "appealSubtitleSubject": "คนจะอ่านข้อความนี้และดูอีกครั้งที่ {{subject}}",
     "appealMore": "ยังต้องใช้ตัวอักษร: {{count}}"
+  },
+  "support": {
+    "title": "ฝ่ายสนับสนุน",
+    "subtitle": "ตั๋วของคุณและสถานะของพวกเขาไม่มี AI ไม่มีค่าธรรมเนียม",
+    "newTicket": "การแจ้งใหม่",
+    "newTicketHint": "บอกเราว่าเกิดอะไรขึ้นและคุณคาดหวังอะไรแทน",
+    "backToTickets": "กลับไปที่ Ticket",
+    "noTickets": "คุณยังไม่ได้ยื่นตั๋วสนับสนุนใดๆ",
+    "loadFailed": "โหลดตั๋วของคุณไม่ได้โปรดลองอีกครั้ง",
+    "categoryLabel": "หมวด",
+    "severityLabel": "ความสำคัญ",
+    "subjectLabel": "หัวเรื่อง",
+    "subjectPlaceholder": "หนึ่งบรรทัดที่อธิบายปัญหา",
+    "descriptionLabel": "เกิดอะไรขึ้น?",
+    "descriptionPlaceholder": "สิ่งที่คุณทำสิ่งที่คุณคาดหวังและสิ่งที่เกิดขึ้นแทน",
+    "stepsLabel": "ขั้นตอนในการสืบพันธุ์ (ไม่บังคับ)",
+    "submit": "ส่งตั๋ว",
+    "submitting": "กำลังส่ง...",
+    "filed": "ตั๋ว {{ref}} อยู่กับทีม",
+    "filedNotEmailed": "บันทึก Ticket {{ref}} แล้วเก็บข้อมูลอ้างอิงไว้",
+    "alreadyOpen": "คุณเปิดเป็น {{ref}} อยู่แล้ว",
+    "filingFailed": "ไม่สามารถยื่นตั๋วนั้นได้โปรดลองอีกครั้ง",
+    "status": {
+      "open": "เปิด",
+      "in_progress": "กำลังดำเนินการ",
+      "resolved": "แก้ปัญหาแล้ว",
+      "closed": "ปิดแล้ว"
+    },
+    "severity": {
+      "low": "ต่ำ",
+      "normal": "ปกติ",
+      "high": "สูง",
+      "urgent": "ด่วน"
+    },
+    "category": {
+      "account_access": "การเข้าถึงบัญชี",
+      "wallet_or_transactions": "กระเป๋าเงินหรือธุรกรรม",
+      "posting_or_uploads": "การโพสต์หรืออัพโหลด",
+      "payments_or_subscriptions": "การชำระเงินหรือการสมัครสมาชิก",
+      "live_streaming": "ไลฟ์สตรีมมิ่ง",
+      "content_or_moderation": "เนื้อหาหรือการกลั่นกรอง",
+      "bug": "แมลง",
+      "feature_request": "คำขอฟีเจอร์",
+      "other": "อื่นๆ"
+    },
+    "filedOn": "ยื่นแล้ว {{date}}"
   }
 }

@@ -653,7 +653,23 @@
     "chainIdLabel": "鏈ID：{{id}}",
     "exportPkConfirmPhrase": "我明白",
     "exportPkCopy": "複製私鑰",
-    "e2eAutomatic": "自動"
+    "e2eAutomatic": "自動",
+    "smsDepositAction": "送 {{dhb}} DHB",
+    "smsDepositConfirming": "等緊條鏈…",
+    "smsDepositNotSent": "个转账呒有提交。",
+    "smsDepositSlow": "汝个转账犹未出现链上。安全个——重开此，即会入账。参考：{{hash}}",
+    "smsChainUnsupported": "在设置里切换到Base或者BNB Chain来充值你的文本额度。",
+    "smsWalletNotReady": "汝个钱包犹未准备好——稍后再试。",
+    "smsNeedDhb": "汝須{{dhb}} DHB 啟用文字訊息通知。",
+    "smsUnlocked": "通知已解锁",
+    "smsBalance": "{{dhb}} DHB 離開 (${{usd}})",
+    "smsBalanceMessages": "{{count}} 猶多訊息",
+    "smsTopUp": "加值 {{dhb}} DHB",
+    "smsNumberLabel": "電話號碼",
+    "smsSendCode": "倷发个码给我",
+    "smsVerify": "確證碼",
+    "smsNumberVerified": "號碼已驗證",
+    "smsNumberRemoved": "數字移除"
   },
   "common": {
     "mute": "静音",
@@ -1818,7 +1834,8 @@
     "otherTokens": "其他代币",
     "otherTokensDesc": "用汝其卡佇 Base 買 ETH 抑 USDC",
     "shareToFeed": "分享到我的動態",
-    "sharePostTemplate": "我剛在 DeHub 上添加了 {{amount}} $DHB 到我的堆疊。與社群一起建構。#DeHub #DHB"
+    "sharePostTemplate": "我剛在 DeHub 上添加了 {{amount}} $DHB 到我的堆疊。與社群一起建構。#DeHub #DHB",
+    "minDhbPurchase": "DHB 最低購買額係 $0.50"
   },
   "agents": {
     "title": "AI 代理",
@@ -2961,7 +2978,13 @@
     "addedToYourUsernames": "加到汝其用户名底",
     "boughtNameGoesToVault": "汝还是 @{{current}}。@{{handle}} 放进汝其用户名底，想换随时换。",
     "youAreNow": "汝今旦是 @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} 已经在汝其用户名底了"
+    "boughtToVaultToast": "@{{handle}} 已经在汝其用户名底了",
+    "askingPriceUsd": "價錢 (美元)",
+    "dollarPriceRange": "輸入 $1–$1,000,000，最多兩位小數。",
+    "fixedDollarPrice": "Dollar 價錢固定；token 數量變動。",
+    "priceUpdated": "价钱更新了。检查金额，再按购买。",
+    "tokensPaidToSeller": "付予賣家",
+    "priceUsd": "價錢 (美元)"
   },
   "stores": {
     "subtitle": "寻寻看 DeHub 社区其产品",
@@ -3448,7 +3471,8 @@
     "youBlockedBody": "您将看不到他们的帖子，也无法与他们互动。取消阻止以恢复访问。",
     "restrictedBody": "此用户已限制与您帐户的互动。",
     "requestPendingBody": "您的关注请求已发送。一旦他们批准您的请求，您就可以看到他们的帖子。",
-    "followToSeePosts": "关注此帐户以查看他们的帖子。"
+    "followToSeePosts": "关注此帐户以查看他们的帖子。",
+    "thisUser": "此用戶"
   },
   "reactionInfo": {
     "title": "反应",
@@ -4057,7 +4081,8 @@
     "madeForKidsOffDesc": "将此帖子显示给使用孩子模式的儿童，并将其从普通信息流中移除。",
     "madeForKidsBlockedByMature": "标记为成人内容的帖子不能同时为儿童发布。",
     "encoderTitle": "OBS / 编码器",
-    "encoderHint": "获取 RTMP 详情"
+    "encoderHint": "获取 RTMP 详情",
+    "markMadeForKids": "標記為兒童內容"
   },
   "bounty": {
     "claimed": "已领取",
@@ -4394,7 +4419,9 @@
     "processingFailed": "影片處理失敗",
     "retryHint": "嘸物仔共你共，汝个文件我共汝留。",
     "retry": "再试一次",
-    "retrying": "重试中…"
+    "retrying": "重试中…",
+    "retryQueued": "重新處理",
+    "retryFailed": "無法重試該貼文"
   },
   "liveViewer": {
     "loadingStream": "正在加载直播……",
@@ -4497,7 +4524,13 @@
     "videosCount": "{{videos}} 视频",
     "viewFeed": "查看你的信息流",
     "yourChannel": "你的频道",
-    "yourChannelHint": "粘贴你的频道地址——单独的用户名也可以。"
+    "yourChannelHint": "粘贴你的频道地址——单独的用户名也可以。",
+    "importedBadge": "已匯入",
+    "paste": "貼上",
+    "pay": "支付",
+    "progressDone": "{{imported}} 已匯入。",
+    "selectAll": "全選",
+    "statusImported": "已匯入"
   },
   "calls": {
     "voiceCall": "DeHub 声音通话",
@@ -5031,7 +5064,34 @@
         "false_dilemma": "非此即彼的框架",
         "overgeneralisation": "以偏概全的说法",
         "hostile_tone": "敌对的语气"
-      }
+      },
+      "title": "會話教練",
+      "checkTone": "查我个调",
+      "checking": "查查汝回话个声气…",
+      "allClear": "無物出眾。汝回覆讀來公平且平靜。",
+      "postAnyway": "發啦",
+      "dismiss": "敆此建議",
+      "settingLabel": "展示指導建議"
+    },
+    "commonGround": {
+      "title": "共同點",
+      "sheetHint": "暫停一下，再回覆。你的回覆會保密。",
+      "toggleHint": "在回复之前，读者被要求说出对方最强的论点以及双方的共同点，然后提醒他们避免非此即彼的思维。",
+      "stepOf": "{{step}} 步 {{total}}",
+      "step1Title": "对方最强的一点是什么？",
+      "step1Placeholder": "伊輩儂最會講介講，係…",
+      "step2Title": "汝伓伊伓共識啥物？",
+      "step2Placeholder": "咱俩都想…",
+      "reminderTitle": "當心「全有或全無」的思維",
+      "reminderBody": "大部分个争执勿是两种极端个选择。当一个问题感觉像非此即彼，通常中间有第三个选择。",
+      "example1": "邻居想让街上安静点，邻居想多点停车位，两边都对。",
+      "noShouting": "复杂个事，勿会用吼叫或威胁来解决。冷静、具体个回复，才是人会真正去看个。",
+      "reviewTitle": "汝最後一眼看汝回覆",
+      "privateNote": "汝个回答只为汝自家，毋会随汝个回复发布。",
+      "continueLabel": "繼續",
+      "back": "後",
+      "postReply": "發我回覆",
+      "tooShort": "寫至少十個字，讓反思算數。"
     }
   },
   "drafts": {
@@ -5581,5 +5641,46 @@
     "appealRef": "参考号 {{ref}}",
     "appealSubtitleSubject": "将有人阅读此项并重新审视 {{subject}}。",
     "appealMore": "仍需字符：{{count}}"
+  },
+  "support": {
+    "title": "支持",
+    "newTicket": "新票",
+    "newTicketHint": "告我发生啥事，汝想欲啥。",
+    "backToTickets": "回票",
+    "openHeading": "開 ({{n}})",
+    "closedHeading": "閉 ({{n}})",
+    "noTickets": "汝猶無開過任何支援單。",
+    "loadFailed": "哦哦，你的票券載入失敗。請再試一次。",
+    "categoryLabel": "類別",
+    "subjectPlaceholder": "一句话描述问题",
+    "descriptionLabel": "啥事",
+    "descriptionPlaceholder": "汝做个啥，汝想个啥，结果却发生个啥。",
+    "stepsLabel": "做个样（可选）",
+    "submit": "送票",
+    "filed": "Ticket {{ref}} 徕 队 囸。",
+    "filedNotEmailed": "Ticket {{ref}} 記住。留住參考。",
+    "status": {
+      "open": "開",
+      "resolved": "了",
+      "closed": "關閉"
+    },
+    "severity": {
+      "low": "低",
+      "normal": "正常",
+      "high": "高",
+      "urgent": "緊急"
+    },
+    "category": {
+      "account_access": "帳號存取",
+      "wallet_or_transactions": "錢包或交易",
+      "posting_or_uploads": "發布或上傳",
+      "payments_or_subscriptions": "付款或訂閱",
+      "live_streaming": "直播",
+      "content_or_moderation": "內容或審核",
+      "bug": "錯誤",
+      "feature_request": "功能請求",
+      "other": "其他"
+    },
+    "filedOn": "已提交 {{date}}"
   }
 }

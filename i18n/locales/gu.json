@@ -695,7 +695,21 @@
     "chainIdLabel": "ચેઇન ID: {{id}}",
     "exportPkConfirmPhrase": "હું સમજું છું",
     "exportPkCopy": "ખાનગી કી કોપી કરો",
-    "e2eAutomatic": "સ્વચાલિત"
+    "e2eAutomatic": "સ્વચાલિત",
+    "smsScopeLabel": "શું ટેક્સ્ટ કરવું",
+    "smsScopeDesc": "ટેક્સ્ટ મોંઘા હોય છે, તેથી તેમને વિક્ષેપ માટે યોગ્ય હોય તેટલા સુધી મર્યાદિત કરો",
+    "smsScope": {
+      "all": "મેં ચાલુ કરેલી બધી વસ્તુઓ",
+      "tips": "મને મળતી ફક્ત ટિપ્સ",
+      "subscriptions": "ફક્ત નવા સબ્સ્ક્રાઇબર્સ",
+      "sales": "મારી સામગ્રીનું ફક્ત વેચાણ",
+      "bounties": "ફક્ત બાઉન્ટીઝ",
+      "fractions": "ફક્ત ફ્રેક્શન ઓફર અને વેચાણ",
+      "messages": "ફક્ત સીધા સંદેશાઓ",
+      "mentions": "મારો ફક્ત ઉલ્લેખ",
+      "replies": "મારી ટિપ્પણીઓના ફક્ત જવાબો",
+      "account": "મારા એકાઉન્ટ વિશે ફક્ત સૂચનાઓ"
+    }
   },
   "common": {
     "mute": "મ્યૂટ કરો",
@@ -778,7 +792,9 @@
     "attachDescription": "તમારા સંદેશમાં ટીપ તરીકે DHB ટોકન્સ જોડો",
     "minAmount": "ન્યૂનતમ {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB જોડો",
-    "removeTip": "ટીપ દૂર કરો"
+    "removeTip": "ટીપ દૂર કરો",
+    "amountRequested": "વિનંતી કરેલી રકમ",
+    "balanceAmount": "બેલેન્સ: {{amount}}"
   },
   "postOptions": {
     "options": "વિકલ્પો",
@@ -1288,7 +1304,8 @@
     "evmAddressCopied": "EVM સરનામું કૉપિ કરેલું",
     "solanaAddressLabel": "સોલાના",
     "solanaAddressHint": "ફક્ત SOL અને SPL ટોકન્સ",
-    "solanaAddressCopied": "સોલાના સરનામાની નકલ કરવામાં આવી"
+    "solanaAddressCopied": "સોલાના સરનામાની નકલ કરવામાં આવી",
+    "evmAddressLabel": "ઈવીએમ"
   },
   "bookmarks": {
     "title": "તમારા બુકમાર્ક્સ",
@@ -1421,7 +1438,8 @@
       "mentionedNamed": "{{name}} એ \"{{community}}\" માં તમારો ઉલ્લેખ કર્યો છે",
       "here": "{{name}} @ એ સમુદાયમાં દરેકને મેસેજ કર્યો",
       "hereNamed": "{{name}} એ \"{{community}}\" માં દરેકને મેસેજ કર્યો"
-    }
+    },
+    "badgeLoanDropped": "તમે હવે તમારો {{tier}} બેજ {{name}} ને ઉધાર આપી શકશો નહીં"
   },
   "leaderboard": {
     "title": "લીડરબોર્ડ",
@@ -1859,7 +1877,8 @@
     "otherTokens": "અન્ય ટોકન",
     "otherTokensDesc": "તમારા કાર્ડથી Base પર ETH અથવા USDC ખરીદો",
     "shareToFeed": "મારા ફીડ પર શેર કરો",
-    "sharePostTemplate": "હમણાં જ DeHub પર મારા સ્ટેકમાં {{amount}} $DHB ઉમેર્યું. સમુદાય સાથે બિલ્ડિંગ. #DeHub #DHB"
+    "sharePostTemplate": "હમણાં જ DeHub પર મારા સ્ટેકમાં {{amount}} $DHB ઉમેર્યું. સમુદાય સાથે બિલ્ડિંગ. #DeHub #DHB",
+    "minDhbPurchase": "ન્યૂનતમ DHB ખરીદી $0.50 છે"
   },
   "agents": {
     "title": "AI એજન્ટ્સ",
@@ -3003,7 +3022,13 @@
     "addedToYourUsernames": "તમારા યુઝરનેમમાં ઉમેરાશે",
     "boughtNameGoesToVault": "તમે @{{current}} જ રહેશો. @{{handle}} તમારા યુઝરનેમમાં જશે, અને તમે ઇચ્છો ત્યારે તેના પર સ્વિચ કરી શકો છો.",
     "youAreNow": "હવે તમે @{{handle}} છો",
-    "boughtToVaultToast": "@{{handle}} હવે તમારા યુઝરનેમમાં છે"
+    "boughtToVaultToast": "@{{handle}} હવે તમારા યુઝરનેમમાં છે",
+    "askingPriceUsd": "પૂછવાની કિંમત (USD)",
+    "dollarPriceRange": "$1–$1,000,000 દાખલ કરો, બે દશાંશ સ્થાન સુધી.",
+    "fixedDollarPrice": "ડોલરની કિંમત સ્થિર રહે છે; ટોકન રકમ અપડેટ થાય છે.",
+    "priceUpdated": "કિંમત અપડેટ થઈ. રકમની સમીક્ષા કરો અને ફરીથી ખરીદો પર ટેપ કરો.",
+    "tokensPaidToSeller": "સીધા વિક્રેતાને ચૂકવણી",
+    "priceUsd": "કિંમત (USD)"
   },
   "stores": {
     "subtitle": "DeHub સમુદાયના ઉત્પાદનો શોધો",
@@ -3327,7 +3352,8 @@
     "title": "સાર્વજનિક ચેટ",
     "mentionTitle": "સાર્વજનિક ચેટમાં ઉલ્લેખિત",
     "voiceMessage": "વૉઇસ સંદેશ",
-    "image": "એક ચિત્ર મોકલ્યું"
+    "image": "એક ચિત્ર મોકલ્યું",
+    "digest": "{{who}} તરફથી {{count}} નવા સંદેશા: {{message}}"
   },
   "liveChat": {
     "attach": "ફોટો, GIF અથવા ઇમોજી ઉમેરો",
@@ -3532,7 +3558,8 @@
     "creator": "DeHub ક્રિએટર",
     "play": "રમો",
     "pause": "થોભો",
-    "listens_one": "{{count}} સાંભળો"
+    "listens_one": "{{count}} સાંભળો",
+    "listens_other": "{{count}} સાંભળે છે"
   },
   "transfer": {
     "title": "ટોકન ટ્રાન્સફર કરો",
@@ -4097,7 +4124,8 @@
     "madeForKidsOffDesc": "કિડ્સ મોડનો ઉપયોગ કરતા બાળકોને આ પોસ્ટ બતાવે છે, અને તેને સામાન્ય ફીડ્સમાંથી દૂર કરે છે.",
     "madeForKidsBlockedByMature": "પરિપક્વ તરીકે ચિહ્નિત પોસ્ટ બાળકો માટે પણ પ્રકાશિત કરી શકાતો નથી.",
     "encoderTitle": "ઓબીએસ / એન્કોડર",
-    "encoderHint": "RTMP વિગતો મેળવો"
+    "encoderHint": "RTMP વિગતો મેળવો",
+    "markMadeForKids": "બાળકો માટે બનાવેલ તરીકે માર્ક કરો"
   },
   "bounty": {
     "claimed": "મેળવ્યું",
@@ -4542,7 +4570,10 @@
     "videoCountOne": "{{n}} વિડિઓ",
     "viewFeed": "તમારી ફીડ જુઓ",
     "yourChannel": "તમારી ચેનલ",
-    "yourChannelHint": "તમારું ચેનલ સરનામું પેસ્ટ કરો — હેન્ડલ તેના પોતાના કાર્યો પર પણ."
+    "yourChannelHint": "તમારું ચેનલ સરનામું પેસ્ટ કરો — હેન્ડલ તેના પોતાના કાર્યો પર પણ.",
+    "costsNote": "DHB માં ચૂકવણી, એકવાર, બેચ શરૂ થાય તે પહેલાં. બેજ ધારકો ઓછું ચૂકવે છે — તમારી ડિસ્કાઉન્ટ ક્વોટ પર લાગુ થાય છે. જો કોઈ વિડિઓ આયાત કરી શકાતો નથી, તો તેનો શેર તમારા આગામી સ્થળાંતર તરફ પાછો જમા થાય છે.",
+    "videoCountMany": "{{n}} વીડિયો",
+    "videosCount": "{{videos}} વીડિયો"
   },
   "calls": {
     "voiceCall": "DeHub વૉઇસ કોલ",
@@ -5006,7 +5037,8 @@
     "prepareFailed": "સ્થિતિ તૈયાર કરી શકાઈ નથી",
     "sellAmount": "વેચાણ રકમ",
     "spend": "ખર્ચ",
-    "withdrawFailed": "ઉપાડ નિષ્ફળ"
+    "withdrawFailed": "ઉપાડ નિષ્ફળ",
+    "reviewSwap": "પહેલા Base પર {{amountIn}} {{symbol}} ને {{usdc}} USDC માટે સ્વેપ કરો. ન વપરાયેલ {{symbol}} તે જ ટ્રાન્ઝેક્શનમાં પાછો ફરે છે."
   },
   "onboarding": {
     "optIn": {
@@ -5613,5 +5645,52 @@
     "appealRef": "સંદર્ભ {{ref}}",
     "appealSubtitleSubject": "એક વ્યક્તિ આ વાંચશે અને {{subject}} પર ફરીથી જોશે.",
     "appealMore": "હજુ પણ જરૂરી અક્ષરો: {{count}}"
+  },
+  "support": {
+    "title": "સપોર્ટ",
+    "subtitle": "તમારી ટિકિટો અને તેમની સ્થિતિ. કોઈ AI નહીં, કોઈ ફી નહીં.",
+    "newTicket": "નવી ટિકિટ",
+    "newTicketHint": "મને જણાવો કે શું થયું અને તમે તેના બદલે શું અપેક્ષા રાખી હતી.",
+    "backToTickets": "ટિકિટો પર પાછા",
+    "openHeading": "ખુલ્લું ({{n}})",
+    "noTickets": "તમે હજી સુધી કોઈ સપોર્ટ ટિકિટ ફાઇલ કરી નથી.",
+    "loadFailed": "તમારી ટિકિટો લોડ કરી શકાઈ નથી. કૃપા કરીને ફરીથી પ્રયાસ કરો.",
+    "categoryLabel": "કેટેગરી",
+    "severityLabel": "ઉચ્ચતા",
+    "subjectLabel": "વિષય",
+    "subjectPlaceholder": "સમસ્યાનું વર્ણન કરતી એક લાઇન",
+    "descriptionLabel": "શું હું તમારો વોટ્સએપ નંબર મેળવી શકું છું?",
+    "descriptionPlaceholder": "તમે શું કર્યું, તમે શું અપેક્ષા રાખી હતી, અને તેના બદલે શું થયું.",
+    "stepsLabel": "પ્રજનન માટેના પગલાં (વૈકલ્પિક)",
+    "submit": "ટિકિટ મોકલો",
+    "submitting": "મોકલી રહ્યા છીએ...",
+    "filed": "ટિકિટ {{ref}} ટીમ સાથે છે.",
+    "filedNotEmailed": "ટિકિટ {{ref}} નોંધાયેલ છે. સંદર્ભ રાખો.",
+    "alreadyOpen": "તમારી પાસે પહેલેથી જ {{ref}} તરીકે આ ખુલ્લું છે.",
+    "filingFailed": "તે ટિકિટ ફાઇલ કરી શકાતી નથી. કૃપા કરીને ફરીથી પ્રયાસ કરો.",
+    "status": {
+      "open": "ઓપન",
+      "in_progress": "પ્રગતિમાં છે",
+      "resolved": "ઉકેલાઈ ગયેલ છે",
+      "closed": "ક્લોઝ થયેલ"
+    },
+    "severity": {
+      "low": "નીચલી",
+      "normal": "સામાન્ય",
+      "high": "વધુ",
+      "urgent": "તાત્કાલિક"
+    },
+    "category": {
+      "account_access": "એકાઉન્ટ એક્સેસ",
+      "wallet_or_transactions": "વૉલેટ અથવા વ્યવહારો",
+      "posting_or_uploads": "પોસ્ટિંગ અથવા અપલોડ્સ",
+      "payments_or_subscriptions": "ચુકવણીઓ અથવા સબ્સ્ક્રિપ્શન્સ",
+      "live_streaming": "લાઇવ સ્ટ્રીમિંગ",
+      "content_or_moderation": "સામગ્રી અથવા મધ્યસ્થતા",
+      "bug": "બગ",
+      "feature_request": "સુવિધા વિનંતી",
+      "other": "અન્ય"
+    },
+    "filedOn": "{{date}} માં ફાઇલ કરેલ"
   }
 }

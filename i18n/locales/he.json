@@ -693,7 +693,23 @@
     "chainIdLabel": "מזהה שרשרת: {{id}}",
     "exportPkConfirmPhrase": "אני מבין",
     "exportPkCopy": "העתק מפתח פרטי",
-    "e2eAutomatic": "אוטומטי"
+    "e2eAutomatic": "אוטומטי",
+    "smsScopeLabel": "מה לשלוח בהודעות טקסט",
+    "smsScopeDesc": "הודעות טקסט עולות כסף, אז צמצמו אותן למה ששווה הפרעה",
+    "smsScope": {
+      "all": "כל מה שהפעלתי",
+      "tips": "רק טיפים שאני מקבל",
+      "subscriptions": "רק מנויים חדשים",
+      "sales": "רק מכירות של התוכן שלי",
+      "bounties": "רק פרסים",
+      "fractions": "רק הצעות ומכירות חלקיות",
+      "messages": "רק הודעות ישירות",
+      "mentions": "רק אזכורים שלי",
+      "replies": "רק תגובות להערות שלי",
+      "account": "רק הודעות על החשבון שלי"
+    },
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) פותח הודעות טקסט והופך ליתרה הראשונה שלך.",
+    "smsBalance": "נותרו {{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "השתק",
@@ -1860,7 +1876,8 @@
     "otherTokens": "טוקנים אחרים",
     "otherTokensDesc": "קנה ETH או USDC ב-Base עם הכרטיס שלך",
     "shareToFeed": "שתף בפיד שלי",
-    "sharePostTemplate": "בדיוק הוספתי {{amount}} $DHB לערימה שלי ב - DeHub. בונים יחד עם הקהילה. #DeHub #DHB"
+    "sharePostTemplate": "בדיוק הוספתי {{amount}} $DHB לערימה שלי ב - DeHub. בונים יחד עם הקהילה. #DeHub #DHB",
+    "minDhbPurchase": "רכישת DHB מינימלית היא $0.50"
   },
   "agents": {
     "title": "סוכני AI",
@@ -2544,7 +2561,20 @@
     "enterValidUnstakeAmount": "הזן סכום תקף למשיכה.",
     "walletNotConnected": "ארנק לא מחובר.",
     "walletNotReady": "ארנק לא מוכן. אנא נסה שוב.",
-    "insufficientOnBase": "יתרת DHB לא מספיקה ב-Base."
+    "insufficientOnBase": "יתרת DHB לא מספיקה ב-Base.",
+    "switchBaseFailed": "נכשל המעבר לרשת Base.",
+    "switchBnbFailed": "נכשל המעבר ל-BNB Chain.",
+    "stakeSubmitted": "הופקד. בודק אישור — אל תשלח שוב.",
+    "txCancelledInWallet": "העסקה בוטלה בארנק שלך.",
+    "txCancelled": "העסקה בוטלה.",
+    "stakeUnconfirmed": "לא ניתן היה לאשר את ההפקדה. בדוק את פעילות הארנק שלך לפני שתנסה שוב.",
+    "onlyThisMuchStaked": "יש לך רק {{amount}} DHB שהופקדו.",
+    "onlyLegacyWithdrawable": "רק {{amount}} DHB ניתנים למשיכה כעת — השאר נמצא בבריכת Base, שאין לה עדיין חוזה משיכה.",
+    "poolHasNoWithdrawal": "ה-DHB שלך נמצא בבריכת Base, שאין לה עדיין חוזה משיכה. צור קשר עם התמיכה כדי למשוך.",
+    "lockedEarlyFee": "נעול עד {{date}}. משיכה כעת מחזירה 88% — עמלה של 12%, בערך {{fee}} DHB. לחץ שוב כדי לאשר.",
+    "unstakeReverted": "המשיכה נכשלה בשרשרת.",
+    "unstakeSent": "משכתי {{amount}} DHB! TX: {{hash}}…",
+    "unstakeFailed": "המשיכה נכשלה."
   },
   "communities": {
     "title": "Communities",
@@ -2995,7 +3025,13 @@
     "addedToYourUsernames": "נוסף לשמות המשתמש שלך",
     "boughtNameGoesToVault": "נשארים @{{current}}. @{{handle}} נכנס לשמות המשתמש שלך, ואפשר לעבור אליו מתי שרוצים.",
     "youAreNow": "עכשיו אתה @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} נמצא עכשיו בשמות המשתמש שלך"
+    "boughtToVaultToast": "@{{handle}} נמצא עכשיו בשמות המשתמש שלך",
+    "askingPriceUsd": "מחיר מבוקש (USD)",
+    "dollarPriceRange": "יש להזין $ 1-$ 1,000,000, עם עד שני מקומות עשרוניים.",
+    "fixedDollarPrice": "מחיר הדולר נשאר קבוע; עדכוני סכום אסימון.",
+    "priceUpdated": "המחיר עודכן. בודקים את הסכום ומקישים שוב על קנייה.",
+    "tokensPaidToSeller": "שולם ישירות למוכר",
+    "priceUsd": "המחיר (בדולרים)"
   },
   "stores": {
     "subtitle": "גלו מוצרים מקהילת DeHub",
@@ -3341,7 +3377,8 @@
     "someone": "מישהו",
     "oneTyping": "{{name}} מקליד…",
     "fewTyping": "{{names}} מקלידים…",
-    "manyTyping": "{{count}} אנשים מקלידים…"
+    "manyTyping": "{{count}} אנשים מקלידים…",
+    "attachGif": "יצירת GIF"
   },
   "promptFeed": {
     "headline": "מה תרצה לראות?",
@@ -4092,7 +4129,8 @@
     "madeForKidsOffDesc": "מציג את הפוסט הזה לילדים המשתמשים במצב ילדים, ומסיר אותו מהפידים הרגילים.",
     "madeForKidsBlockedByMature": "לא ניתן לפרסם פוסט המסומן כבוגר גם לילדים.",
     "encoderTitle": "OBS / מקודד",
-    "encoderHint": "לקבלת פרטי RTMP"
+    "encoderHint": "לקבלת פרטי RTMP",
+    "markMadeForKids": "סמן כמיועד לילדים"
   },
   "bounty": {
     "claimed": "נאסף",
@@ -5004,7 +5042,9 @@
     "prepareFailed": "לא ניתן היה להכין את הפוזיציה",
     "sellAmount": "כמות מכירה",
     "spend": "הוצאה",
-    "withdrawFailed": "משיכה נכשלה"
+    "withdrawFailed": "משיכה נכשלה",
+    "title": "DHB / דולר אמריקאי",
+    "heading": "DHB / דולר אמריקאי"
   },
   "onboarding": {
     "optIn": {
@@ -5611,5 +5651,51 @@
     "appealRef": "המלצה {{ref}}",
     "appealSubtitleSubject": "מישהו יקרא את זה ויסתכל שוב על {{subject}}.",
     "appealMore": "עדיין דרושים תווים: {{count}}"
+  },
+  "support": {
+    "title": "תמיכה",
+    "subtitle": "הכרטיסים שלך והסטטוס שלהם. ללא בינה מלאכותית, ללא עמלה.",
+    "newTicket": "פניה חדשה",
+    "newTicketHint": "ספרו לנו מה קרה ולמה ציפיתם במקום זאת.",
+    "backToTickets": "חזרה לכרטיסים",
+    "noTickets": "עדיין לא הגשת כרטיסי תמיכה.",
+    "loadFailed": "לא ניתן לטעון את הכרטיסים שלך. צריך לנסות שוב.",
+    "categoryLabel": "קטגוריה",
+    "severityLabel": "דחיפות",
+    "subjectLabel": "נושא",
+    "subjectPlaceholder": "שורה אחת המתארת את הבעיה",
+    "descriptionLabel": "מה קרה?",
+    "descriptionPlaceholder": "מה עשית, מה ציפית, ומה קרה במקום.",
+    "stepsLabel": "שלבים לשכפול (אופציונלי)",
+    "submit": "שליחת כרטיס",
+    "submitting": "שולח…",
+    "filed": "כרטיס {{ref}} נמצא עם הצוות.",
+    "filedNotEmailed": "הכרטיס {{ref}} נרשם. יש לשמור את ההפניה.",
+    "alreadyOpen": "זה כבר פתוח בתור {{ref}}.",
+    "filingFailed": "לא ניתן להגיש את הכרטיס. צריך לנסות שוב.",
+    "status": {
+      "open": "פתיחה",
+      "in_progress": "בתהליך",
+      "resolved": "נפתר",
+      "closed": "סגור"
+    },
+    "severity": {
+      "low": "נמוכה",
+      "normal": "רגיל",
+      "high": "גבוה",
+      "urgent": "דחוף"
+    },
+    "category": {
+      "account_access": "גישה לחשבון",
+      "wallet_or_transactions": "ארנק או עסקאות",
+      "posting_or_uploads": "פרסום או העלאות",
+      "payments_or_subscriptions": "תשלומים או מינויים",
+      "live_streaming": "סטרימינג בשידור חי",
+      "content_or_moderation": "תוכן או פיקוח",
+      "bug": "באג",
+      "feature_request": "בקשת תכונה",
+      "other": "אחר"
+    },
+    "filedOn": "הוגש {{date}}"
   }
 }

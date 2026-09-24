@@ -694,7 +694,22 @@
     "chainIdLabel": "Ідэнтыфікатар ланцуга: {{id}}",
     "exportPkConfirmPhrase": "Я РАЗУМЕЮ",
     "exportPkCopy": "Скапіяваць прыватны ключ",
-    "e2eAutomatic": "Аўтаматычна"
+    "e2eAutomatic": "Аўтаматычна",
+    "smsScopeLabel": "Што адправіць",
+    "smsScopeDesc": "Тэкставыя паведамленні каштуюць грошай, таму абмяжуйце іх тым, што варта перапынку",
+    "smsScope": {
+      "all": "Усё, што я ўключыў",
+      "tips": "Толькі атрыманыя парады",
+      "subscriptions": "Толькі новыя падпісчыкі",
+      "sales": "Толькі продажы майго кантэнту",
+      "bounties": "Толькі ўзнагароды",
+      "fractions": "Толькі прапановы і продажы дробных частак",
+      "messages": "Толькі прамыя паведамленні",
+      "mentions": "Толькі згадкі пра мяне",
+      "replies": "Толькі адказы на мае каментары",
+      "account": "Толькі апавяшчэнні пра мой уліковы запіс"
+    },
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) разблакуе тэкставыя паведамленні і стане вашым першым балансам."
   },
   "common": {
     "mute": "Выключыць гук",
@@ -1435,7 +1450,8 @@
       "mentionedNamed": "{{name}} згадваецца ў «{{community}}»",
       "here": "{{name}} паведамляў усім у супольнасці",
       "hereNamed": "{{name}} паведамляў усім у «{{community}}»"
-    }
+    },
+    "badgeLoanDropped": "Вы больш не можаце пазычаць свой значок {{tier}} для {{name}}"
   },
   "leaderboard": {
     "title": "Табліца лідараў",
@@ -1873,7 +1889,8 @@
     "otherTokens": "Іншыя токены",
     "otherTokensDesc": "Купіце ETH ці USDC у сетцы Base сваёй картай",
     "shareToFeed": "Падзяліцца на маю стужку",
-    "sharePostTemplate": "Толькі што дадаў {{amount}} $DHB у мой стэк на DeHub. Будаўніцтва з супольнасцю. #DeHub #DHB"
+    "sharePostTemplate": "Толькі што дадаў {{amount}} $DHB у мой стэк на DeHub. Будаўніцтва з супольнасцю. #DeHub #DHB",
+    "minDhbPurchase": "Мінімальная купля DHB складае $0,50"
   },
   "agents": {
     "title": "AI-агенты",
@@ -3017,7 +3034,13 @@
     "addedToYourUsernames": "Дадаецца ў вашы імёны карыстальніка",
     "boughtNameGoesToVault": "Вы застаяцеся @{{current}}. @{{handle}} трапляе ў вашы імёны карыстальніка, і вы можаце пераключыцца на яго ў любы час.",
     "youAreNow": "Цяпер вы @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} цяпер у вашых імёнах карыстальніка"
+    "boughtToVaultToast": "@{{handle}} цяпер у вашых імёнах карыстальніка",
+    "askingPriceUsd": "Запытаная цана (USD)",
+    "dollarPriceRange": "Увядзіце ад $1 да $1 000 000 з двума знакамі пасля коскі.",
+    "fixedDollarPrice": "Кошт у доларах застаецца фіксаваным; колькасць токенаў абнаўляецца.",
+    "priceUpdated": "Кошт абноўлены. Праглядзіце суму і націсніце \"Купіць\" яшчэ раз.",
+    "tokensPaidToSeller": "Аплачана непасрэдна прадаўцу",
+    "priceUsd": "Кошт (USD)"
   },
   "stores": {
     "subtitle": "Адкрыйце тавары супольнасці DeHub",
@@ -3535,7 +3558,8 @@
     "followRequest": "{{name}} папрасіў ісці за вамі",
     "followAccepted": "{{name}} прыняў ваш запыт",
     "signalFlare": "{{name}} даслала выбліск сігналу",
-    "newMessage": "{{name}} даслала вам паведамленне"
+    "newMessage": "{{name}} даслала вам паведамленне",
+    "repostedPost": "{{name}} перапублікаваў ваш пост"
   },
   "audioPost": {
     "popOut": "Выйдзіце - працягвайце слухаць, пакуль вы праглядаеце",
@@ -3546,7 +3570,8 @@
     "creator": "Стваральнік DeHub",
     "play": "Прайграць",
     "pause": "Паўза",
-    "listens_one": "{{count}} слухаць"
+    "listens_one": "{{count}} слухаць",
+    "listens_other": "{{count}} слухае"
   },
   "transfer": {
     "title": "Перадаць токены",
@@ -5658,5 +5683,53 @@
     "appealRef": "Спасылка {{ref}}",
     "appealSubtitleSubject": "Чалавек прачытае гэта і зноў паглядзіць на {{subject}}.",
     "appealMore": "Патрэбныя яшчэ сімвалы: {{count}}"
+  },
+  "support": {
+    "title": "Падтрымка",
+    "subtitle": "Вашы білеты і іх статус. Без AI, без платы.",
+    "newTicket": "Новы білет",
+    "newTicketHint": "Раскажыце, што адбылося і чаго вы чакалі замест гэтага.",
+    "backToTickets": "Назад да білетаў",
+    "openHeading": "Адкрыты ({{n}})",
+    "closedHeading": "Закрыты ({{n}})",
+    "noTickets": "Вы яшчэ не падалі ніякіх квіткоў на падтрымку.",
+    "loadFailed": "Немагчыма загрузіць квіткі. Паўтарыце спробу.",
+    "categoryLabel": "Катэгорыя",
+    "severityLabel": "Прыярытэт",
+    "subjectLabel": "Тэма",
+    "subjectPlaceholder": "Адзін радок, які апісвае праблему",
+    "descriptionLabel": "Што адбылося?",
+    "descriptionPlaceholder": "Што ты зрабіў, чаго чакаў, і што здарылася замест гэтага.",
+    "stepsLabel": "Крокі да прайгравання (неабавязкова)",
+    "submit": "Адправіць білет",
+    "submitting": "Дасылаю ...",
+    "filed": "Білет {{ref}} знаходзіцца з камандай.",
+    "filedNotEmailed": "Квіток {{ref}} запісаны. Захоўвайце спасылку.",
+    "alreadyOpen": "У вас ужо ёсць гэта адкрыта як {{ref}}.",
+    "filingFailed": "Немагчыма падаць гэты білет. Паўтарыце спробу.",
+    "status": {
+      "open": "Адкрыты",
+      "in_progress": "У працэсе",
+      "resolved": "Вырашанае",
+      "closed": "Зачынены"
+    },
+    "severity": {
+      "low": "Нізкая",
+      "normal": "Звычайная",
+      "high": "Высокая",
+      "urgent": "Тэрмінова"
+    },
+    "category": {
+      "account_access": "Доступ да ўліковага запісу",
+      "wallet_or_transactions": "Кашалёк або транзакцыі",
+      "posting_or_uploads": "Паведамленні або загрузкі",
+      "payments_or_subscriptions": "Плацяжы або падпіскі",
+      "live_streaming": "патокавае вяшчанне",
+      "content_or_moderation": "Змест або ўмеранасць",
+      "bug": "Памылка",
+      "feature_request": "Запыт на функцыю",
+      "other": "Іншае"
+    },
+    "filedOn": "Здымак {{date}}"
   }
 }

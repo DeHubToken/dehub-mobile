@@ -695,7 +695,21 @@
     "chainIdLabel": "链 ID：{{id}}",
     "exportPkConfirmPhrase": "我明白了",
     "exportPkCopy": "复制私钥",
-    "e2eAutomatic": "自动"
+    "e2eAutomatic": "自动",
+    "smsScopeLabel": "要发短信的内容",
+    "smsScopeDesc": "短信需要花钱，因此请将其缩小到值得中断的内容",
+    "smsScope": {
+      "all": "我打开的一切",
+      "tips": "仅我收到的小费",
+      "subscriptions": "仅限新订阅者",
+      "sales": "仅销售我的内容",
+      "bounties": "仅奖励",
+      "fractions": "仅部分优惠和销售",
+      "messages": "仅限直接消息",
+      "mentions": "只提及我",
+      "replies": "仅回复我的评论",
+      "account": "仅关于我的账号的通知"
+    }
   },
   "common": {
     "mute": "静音",
@@ -1862,7 +1876,8 @@
     "otherTokens": "其他代币",
     "otherTokensDesc": "用你的银行卡在 Base 上购买 ETH 或 USDC",
     "shareToFeed": "分享到我的订阅源",
-    "sharePostTemplate": "刚刚在DeHub上向我的堆栈添加了{{amount}} $ DHB。 与社区共同建设。# DeHub # DHB"
+    "sharePostTemplate": "刚刚在DeHub上向我的堆栈添加了{{amount}} $ DHB。 与社区共同建设。# DeHub # DHB",
+    "minDhbPurchase": "最低DHB购买量为$ 0.50"
   },
   "agents": {
     "title": "AI代理",

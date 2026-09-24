@@ -651,7 +651,66 @@
     "chainIdLabel": "چین آئی ڈی: {{id}}",
     "exportPkConfirmPhrase": "مانا درکم کرد",
     "exportPkCopy": "کلید خصوصی را کپی کنید",
-    "e2eAutomatic": "خودکار"
+    "e2eAutomatic": "خودکار",
+    "pushNotRegistered": "دا وسیله د پش لپاره نه ده راجستر شوې",
+    "pushNotRegisteredDesc": "اطلاعات نشي کولی تاسو ته ورسیږي کله چې اپلیکیشن بند وي: دا نصب هیڅکله د پش وسیله نه ده راجستر کړې. دا معمولا پدې معنی لري چې جوړښت د خبرتیا ترتیب نلري ، کوم چې د dehub.io/apk څخه وروستی جوړښت نصب کول بدلوي.",
+    "emailNotificationsNoAddressMobile": "د دې فعالولو لپاره په ویب پاڼه کې د بریښنالیک پته اضافه کړئ.",
+    "smsNotifications": "د متن خبرتیاوې",
+    "smsScopeLabel": "څه باید متن شي",
+    "smsScopeDesc": "متنونه پیسې لګوي، نو هغه څه ته یې محدود کړئ چې د وقفې ارزښت لري",
+    "smsScope": {
+      "all": "هرڅه چې ما فعال کړي",
+      "tips": "یوازې هغه لارښوونې چې زه ترلاسه کوم",
+      "subscriptions": "یوازې نوي پیرودونکي",
+      "sales": "یوازې زما د مینځپانګې پلور",
+      "bounties": "یوازې بونټي",
+      "fractions": "یوازې جزوي وړاندیزونه او پلور",
+      "messages": "یوازې مستقیم پیغامونه",
+      "mentions": "یوازې زما یادونه",
+      "replies": "یوازې زما تبصرو ته ځوابونه",
+      "account": "یوازې زما حساب په اړه خبرتیاوې"
+    },
+    "smsNotificationsDesc": "هغه ترلاسه کړئ چې د متن پیغام په توګه مهم دي",
+    "smsNotificationsDescReady": "{{phone}} — {{dhb}} DHB ته لیږل شوی، شاوخوا {{count}} پاتې دي",
+    "smsNotificationsLocked": "د {{dhb}} DHB (${{usd}}) کریډیټ سره خلاص کړئ",
+    "smsNotificationsNeedsNumber": "د پیل کولو لپاره د تلیفون شمیره اضافه او تایید کړئ",
+    "smsNotificationsEmpty": "له کریډیټ څخه بهر — د متنونو ترلاسه کولو لپاره ډک کړئ",
+    "smsUnavailable": "د متن خبرتیاوې اوس مهال شتون نلري",
+    "smsDialogIntro": "متنونه لیږل پیسې لګوي، نو دا چینل په هغه کریډیټ باندې چلیږي چې تاسو په DHB کې ډک کوئ.",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) متنونه خلاصوي او ستاسو لومړنی توازن کیږي.",
+    "smsUnlockExplainer": "هیڅ پای ته نه رسیږي. کریډیټ په یو وخت کې یو پیغام مصرف کیږي، او یوازې په هغه خبرتیاوې چې تاسو دمخه فعال کړي دي.",
+    "smsPricesHeading": "یو پیغام څومره لګښت لري",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsBand": {
+      "domestic": "انګلستان",
+      "europe": "اروپا",
+      "global": "ډیری نور هیوادونه",
+      "premium": "هر جای دیگر"
+    },
+    "smsDepositAction": "{{dhb}} DHB بفرست",
+    "smsDepositPaying": "در کیف پول خود تأیید کنید…",
+    "smsDepositConfirming": "در انتظار زنجیره…",
+    "smsDepositNotSent": "انتقال ارسال نشد.",
+    "smsDepositSlow": "انتقال شما هنوز در زنجیره ظاهر نشده است. امن است — این را دوباره باز کنید و اعتبار به شما تعلق می‌گیرد. مرجع: {{hash}}",
+    "smsChainUnsupported": "برای شارژ اعتبار متنی خود، در تنظیمات به Base یا BNB Chain تغییر دهید.",
+    "smsWalletNotReady": "کیف پول شما هنوز آماده نیست — لحظه‌ای دیگر دوباره امتحان کنید.",
+    "smsNeedDhb": "برای فعال کردن اعلان‌های متنی به {{dhb}} DHB نیاز دارید.",
+    "smsUnlocked": "اعلان‌های متنی فعال شدند",
+    "smsBalance": "{{dhb}} DHB باقی مانده (${{usd}})",
+    "smsBalanceMessages": "حدود {{count}} پیام دیگر",
+    "smsTopUp": "{{dhb}} DHB شارژ کنید",
+    "smsNumberLabel": "شماره تلفن",
+    "smsSendCode": "یک کد برای من پیامک کن",
+    "smsCodeSent": "کد ارسال شد. هزینه آن {{price}} DHB بود.",
+    "smsCodeFailed": "نتوانستیم آن کد را ارسال کنیم.",
+    "smsCodeLabel": "کدی که به {{phone}} پیامک کردیم",
+    "smsVerify": "کد را تأیید کنید",
+    "smsVerifyFailed": "نتوانستیم آن کد را تأیید کنیم.",
+    "smsNumberVerified": "شماره تأیید شد",
+    "smsRemoveNumber": "این شماره را حذف کنید",
+    "smsRemoveFailed": "نتوانستیم این شماره را حذف کنیم.",
+    "smsNumberRemoved": "شماره حذف شد",
+    "smsCountryBlocked": "ما هنوز نمی‌توانیم پیامک به آن کشور ارسال کنیم."
   },
   "common": {
     "mute": "आवाज बंद करा",
@@ -810,7 +869,10 @@
     "boostPostDesc": "بیخەرە سەرەوەی فیدی سەرەکی",
     "mintPostDesc": "ئەم پۆستە لەسەر زنجیرە بڵاو بکەرەوە",
     "giftBoost": "بووستێک دیاری بکە",
-    "giftBoostDesc": "یەکێک لە هی خۆت لەسەر ئەم پۆستە خەرج بکە"
+    "giftBoostDesc": "یەکێک لە هی خۆت لەسەر ئەم پۆستە خەرج بکە",
+    "pinPost": "به پروفایل خود پین کنید",
+    "unpinPost": "از پروفایل خود جدا کنید",
+    "postUnpinned": "از پروفایل جدا شد"
   },
   "filters": {
     "sort": "ترتیب",
@@ -1242,7 +1304,9 @@
     "evmAddressLabel": "EVM",
     "evmAddressCopied": "EVM address copied",
     "solanaAddressLabel": "Solana",
-    "solanaAddressCopied": "Solana address copied"
+    "solanaAddressCopied": "Solana address copied",
+    "evmAddressHint": "Base، BNB و Ethereum",
+    "solanaAddressHint": "فقط توکن‌های SOL و SPL"
   },
   "bookmarks": {
     "title": "تمہاری نشانیاں",
@@ -1828,7 +1892,8 @@
     "otherTokens": "تۆکنەگەلی تر",
     "otherTokensDesc": "بە کارتەکەت لەسەر Base ئێتیهەچ یان USDC بکڕە",
     "shareToFeed": "خپل فیډ ته شریک کړئ",
-    "sharePostTemplate": "یوازې په DeHub کې زما په سټیک کې {{amount}} $DHB اضافه کړ. له ټولنې سره جوړول. #DeHub #DHB"
+    "sharePostTemplate": "یوازې په DeHub کې زما په سټیک کې {{amount}} $DHB اضافه کړ. له ټولنې سره جوړول. #DeHub #DHB",
+    "minDhbPurchase": "د لږ تر لږه DHB پیرود $0.50 دی"
   },
   "agents": {
     "title": "AI ایجنٹ",
@@ -2090,7 +2155,8 @@
       "empty": "لا توجد أسئلة بعد. ابدأ المناقشة.",
       "joinOnProposal": "انضم إلى المناقشة",
       "authorChip": "مؤلف الاقتراح"
-    }
+    },
+    "againstLabel": "বিরুদ্ধে"
   },
   "sidebar": {
     "talkOfTheTown": "شہر کی چرچا",
@@ -2971,7 +3037,13 @@
     "addedToYourUsernames": "তোমার ইউজারনেমে যোগ হইব",
     "boughtNameGoesToVault": "তুমি @{{current}} থাকবা। @{{handle}} তোমার ইউজারনেমে যাইব, আর যখন খুশি ওইটাতে বদলাইতে পারবা।",
     "youAreNow": "তুমি অখন @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} অখন তোমার ইউজারনেমে আছে"
+    "boughtToVaultToast": "@{{handle}} অখন তোমার ইউজারনেমে আছে",
+    "askingPriceUsd": "نرخ درخواستی (دالر امریکایی)",
+    "dollarPriceRange": "داخل کړئ $1–$1,000,000، د دوه اعشاریه ځایونو پورې.",
+    "fixedDollarPrice": "نرخ دلار ثابت می‌ماند؛ مقدار توکن به‌روز می‌شود.",
+    "priceUpdated": "Dam badal gelay. Rakam pah ani parat kharedi kara.",
+    "tokensPaidToSeller": "Plaćeno izravno prodavatelju",
+    "priceUsd": "نرخ (دالر امریکایی)"
   },
   "stores": {
     "subtitle": "DeHub سماج کے سامان کھوجو",
@@ -3315,7 +3387,10 @@
     "someone": "কায়ও",
     "oneTyping": "{{name}} লেখেছে…",
     "fewTyping": "{{names}} লেখেছে…",
-    "manyTyping": "{{count}} জন লেখেছে…"
+    "manyTyping": "{{count}} জন লেখেছে…",
+    "attach": "عکس، گیف یا ایموجی اضافه کنید",
+    "attachTitle": "به پیام خود اضافه کنید",
+    "attachFailed": "نتوانستیم آن عکس را ارسال کنیم."
   },
   "promptFeed": {
     "headline": "তুমি কি দেখিবা চাও?",
@@ -3397,7 +3472,27 @@
     "boostCancelledRefunded": "بووست هەڵوەشێنرایەوە و گەڕایەوە بۆ بەشەکەت",
     "boostCancelledSpent": "بووست هەڵوەشێنرایەوە. پێشتر دەستی پێکردبوو، بۆیە وەک خەرجکراو دەمێنێتەوە.",
     "cancelFailed": "نەتوانرا ئەو بووستە هەڵوەشێنرێتەوە",
-    "screenTitle": "SuperPowers"
+    "screenTitle": "SuperPowers",
+    "actsPost": "روی یکی از پست های شما عمل می کند. برای انتخاب ضربه بزنید.",
+    "actsStage": "روی استیج شما که میزبان آن هستید عمل می کند. برای انتخاب ضربه بزنید.",
+    "actsCategory": "روی یکی از دسته بندی های شما عمل می کند. برای انتخاب ضربه بزنید.",
+    "actsAccount": "روی کل حساب شما عمل می کند. برای شروع ضربه بزنید.",
+    "actsOnAccount": "این یکی روی کل حساب شما عمل می کند - چیزی برای انتخاب وجود ندارد.",
+    "findMyPost": "پست های خود را جستجو کنید، یا یک لینک بچسبانید",
+    "findTheirPost": "لینک پست آنها را بچسبانید، یا جستجو کنید",
+    "searchToGift": "پستی را جستجو کنید، یا لینکی به آن بچسبانید.",
+    "noRecentPosts": "هیچ‌کدام در این هفته از هفته گذشته وجود ندارد. هر چیزی قدیمی‌تر، یک \"نفس تازه\" می‌گیرد.",
+    "noOlderPosts": "هیچ‌کدام قدیمی‌تر از یک هفته در اینجا وجود ندارد. هر چیزی جدیدتر، یک \"تقویت\" می‌گیرد.",
+    "noComments": "شما هنوز نظری نداده‌اید.",
+    "noStages": "هیچ مرحله‌ای از شما در حال حاضر زنده یا برنامه‌ریزی شده نیست.",
+    "aimAtAccount": "دنبال‌کنندگان چه کسی باید آن را ببینند؟",
+    "aimPlaceholder": "نام کاربری یا آدرس کیف پول",
+    "aimAtTiers": "کدام سطوح نشان باید آن را ببینند؟",
+    "noBoostsLeft": "تقویتی برای این چرخه باقی نمانده است",
+    "noFlaresLeft": "هیچ \"فشفشه سیگنال\"ی برای این چرخه باقی نمانده است",
+    "boostFailed": "امکان خرج کردن آن وجود نداشت",
+    "spendFor": "{{power}} برای {{minutes}} دقیقه",
+    "spentFor": "{{power}} در حال اجرا برای {{minutes}} دقیقه"
   },
   "follow": {
     "followers": "فالوورز",
@@ -4046,7 +4141,8 @@
     "madeForKidsOffDesc": "यह पोस्ट किड्स मोड का उपयोग करने वाले बच्चों को दिखाता है, और इसे साधारण फीड से हटा देता है।",
     "madeForKidsBlockedByMature": "परिपक्व के रूप में चिह्नित एक पोस्ट को बच्चों के लिए भी प्रकाशित नहीं किया जा सकता है।",
     "encoderTitle": "OBS / एनकोडर",
-    "encoderHint": "RTMP विवरण प्राप्त करो"
+    "encoderHint": "RTMP विवरण प्राप्त करो",
+    "markMadeForKids": "به عنوان ساخته شده برای کودکان علامت بزنید"
   },
   "bounty": {
     "claimed": "নেওয়া হইছে",
@@ -4622,7 +4718,20 @@
     "sendAGift": "गिफ्ट भेजें",
     "minPlaceholder": "न्यूनतम: {{amount}}",
     "minGift": "न्यूनतम गिफ्ट {{amount}} है",
-    "sendGift": "गिफ्ट भेजें"
+    "sendGift": "गिफ्ट भेजें",
+    "plays": "{{tier}} را در استریم پخش می‌کند",
+    "tierDesc": {
+      "heart": "قلب‌ها به گوشه استریم شناور می‌شوند.",
+      "chocolate": "یک جعبه شکلات به سمت صفحه می‌افتد.",
+      "bouquet": "یک دسته گل در گوشه باز می‌شود.",
+      "crown": "یک تاج بالای استریم بالا می‌رود و می‌درخشد.",
+      "magicRing": "یک حلقه در وسط فرود می‌آید و با درخشش زنگ می‌زند.",
+      "spartans": "یک دیوار سپری در استریم رژه می‌رود.",
+      "party": "کنفتی پرواز می‌کند و یک توپ دیسکو پایین می‌آید.",
+      "gold3": "صفحه طلایی می‌شود و سکه‌ها به مدت 3 ثانیه می‌بارند.",
+      "gold10": "صفحه طلایی می‌شود و سکه‌ها به مدت 10 ثانیه می‌بارند.",
+      "ultimate": "هر جشن در یک زمان - طلا، کنفتی، سکه و یک جام."
+    }
   },
   "goLive": {
     "streamKey": "स्ट्रीम की",
@@ -4872,7 +4981,26 @@
       "openExisting": "Open it",
       "feeDhb": "≈ {{amount}} DHB",
       "uploading": "Uploading image…",
-      "createFailed": "Pool kholal naikhel."
+      "createFailed": "Pool kholal naikhel.",
+      "noMatch": "هیچ استخر مطابقتی با این جستجو وجود ندارد.",
+      "addTitle": "یک استخر جدید باز کنید",
+      "addDescription": "هر توکنی را در Base، Ethereum، Robinhood Chain یا Solana با دفتر سفارش خود لیست کنید. باز کردن یک استخر 100 دلار هزینه دارد که در DHB پرداخت می‌شود.",
+      "lookingUp": "در حال جستجوی توکن…",
+      "lookupFailed": "امکان جستجوی آن توکن وجود نداشت.",
+      "exists": "{{symbol}} ke paase paani ke talao hae.",
+      "setImage": "درياچه عکس تنظيم کړئ",
+      "imageHint": "دایرې ته لاس ورکړئ ترڅو د حوض عکس وټاکئ.",
+      "imageRules": "د انځور غوره کړئ چې د PNG، JPG، WebP یا GIF بڼه ولري او د 5 MB څخه کم وي.",
+      "priceUnavailable": "نرخ DHB در حال حاضر در دسترس نیست. لطفاً یک دقیقه دیگر دوباره امتحان کنید.",
+      "alreadyPaid": "تەقسیمی تۆ پێشتر کراوە. تەواو بکە کردنەوەی حەوزەکە.",
+      "finish": "تەواو بکە کردنەوەی حەوزەکە",
+      "notEnough": "نه د پیسو توازن د $100 فیس لپاره",
+      "payAndOpen": "${{amount}} दे और पूल खोलें",
+      "discardPaid": "दुसरे टोकन से शुरू करें",
+      "quoting": "قیمت‌گذاری هزینه…",
+      "paying": "دفع الرسوم…",
+      "opening": "دەروازەی حەوزەکە کراوەتەوە…",
+      "created": "{{symbol}} पोखरा खुला छ"
     },
     "pool": {
       "missingTitle": "Pool naikhel milal — DeHub DEX",
@@ -5591,5 +5719,51 @@
     "appealRef": "ڕێفرانس {{ref}}",
     "appealSubtitleSubject": "کەسێک ئەمە دەخوێنێتەوە و جارێکی تر سەیری {{subject}} دەکاتەوە.",
     "appealMore": "کەسایەتییە پێویستەکان: {{count}}"
+  },
+  "support": {
+    "title": "ملتزم",
+    "newTicket": "نوی ټکټ",
+    "newTicketHint": "Bata'a ka'a'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'i'",
+    "backToTickets": "Back to tickets",
+    "openHeading": "Open ({{n}})",
+    "closedHeading": "बंद ({{n}})",
+    "noTickets": "تاسو تر اوسه کومې مرستې ته غوښتنلیک نه دی سپارلی.",
+    "loadFailed": "نەتوانرا بلیتەکانت باربکرێت. تکایە دووبارە هەوڵ بدەوە.",
+    "categoryLabel": "Category",
+    "severityLabel": "प्राथमिकता",
+    "subjectLabel": "موضوع",
+    "subjectPlaceholder": "Yek linija ke masla bayaan kare",
+    "descriptionLabel": "چی شد",
+    "descriptionPlaceholder": "چی کار کردی، چی انتظار داشتی، و چی به جاش اتفاق افتاد.",
+    "stepsLabel": "دريا د گامونه (اختیاري)",
+    "submitting": "Sending...",
+    "filed": "ٹکٹ {{ref}} ٹیم کے ساتھ ہے۔",
+    "filedNotEmailed": "Ticket {{ref}} darj koral gelak. Reference-ke rakha.",
+    "alreadyOpen": "Tu l'as déjà ouvert comme {{ref}}.",
+    "filingFailed": "نتوانستیم آن تیکت را ثبت کنیم. لطفا دوباره امتحان کنید.",
+    "status": {
+      "open": "باز",
+      "in_progress": "در حال انجام",
+      "resolved": "حل شده",
+      "closed": "بسته شده"
+    },
+    "severity": {
+      "low": "کم",
+      "normal": "عادی",
+      "high": "زیاد",
+      "urgent": "فوری"
+    },
+    "category": {
+      "account_access": "دسترسی به حساب",
+      "wallet_or_transactions": "کیف پول یا تراکنش ها",
+      "posting_or_uploads": "پست کردن یا آپلود کردن",
+      "payments_or_subscriptions": "پرداخت ها یا اشتراک ها",
+      "live_streaming": "پخش زنده",
+      "content_or_moderation": "محتوا یا نظارت",
+      "bug": "اشکال",
+      "feature_request": "درخواست ویژگی",
+      "other": "دیگر"
+    },
+    "filedOn": "ثبت شد {{date}}"
   }
 }

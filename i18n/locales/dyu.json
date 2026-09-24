@@ -681,7 +681,36 @@
     "chainIdLabel": "ID de chaîne : {{id}}",
     "exportPkConfirmPhrase": "JE COMPRENDS",
     "exportPkCopy": "Copier la clé privée",
-    "e2eAutomatic": "Automatique"
+    "e2eAutomatic": "Automatique",
+    "publicChatAlertsRateOption": "{{count}} an hour",
+    "smsScopeLabel": "What to text",
+    "smsScope": {
+      "tips": "Only tips I receive",
+      "bounties": "Only bounties",
+      "messages": "Only direct messages",
+      "mentions": "Only mentions of me",
+      "account": "Only notices about my account",
+      "all": "Todo lo que he activado",
+      "subscriptions": "Solo suscriptores nuevos",
+      "sales": "Solo ventas de mi contenido",
+      "fractions": "Solo ofertas y ventas fraccionadas",
+      "replies": "Solo respuestas a mis comentarios"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositAction": "Send {{dhb}} DHB",
+    "smsBalance": "{{dhb}} DHB left (${{usd}})",
+    "emailNotificationsNoAddressMobile": "Añade una dirección de correo electrónico en el sitio web para activarlos.",
+    "smsScopeDesc": "Los mensajes de texto cuestan dinero, así que limítalos a lo que vale la pena una interrupción.",
+    "smsNotificationsDescReady": "Enviado a {{phone}} — {{dhb}} DHB cada uno, quedan unos {{count}}",
+    "smsNotificationsLocked": "Desbloquea con {{dhb}} DHB (${{usd}}) de crédito",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) desbloquea mensajes de texto y se convierte en tu primer saldo.",
+    "smsDepositSlow": "Tu transferencia aún no ha aparecido en la cadena. Es seguro: vuelve a abrir esto y se acreditará. Referencia: {{hash}}",
+    "smsNeedDhb": "Necesitas {{dhb}} DHB para desbloquear las notificaciones de texto.",
+    "smsBalanceMessages": "Aproximadamente {{count}} mensajes más",
+    "smsTopUp": "Recarga {{dhb}} DHB",
+    "smsCodeSent": "Código enviado. Eso costó {{price}} DHB.",
+    "smsCodeLabel": "Código que enviamos por SMS a {{phone}}",
+    "badgeDelegationLendsAny": "Cada uno presta a otra cuenta cualquier insignia que hayas desbloqueado, hasta tu propio {{tier}}. Una insignia más pequeña todavía usa una ranura completa."
   },
   "common": {
     "mute": "Kan bɔ",
@@ -1402,8 +1431,16 @@
       "joinedNamed": "{{name}} joined {{community}}",
       "requested": "{{name}} ka don i ka sigida la",
       "here": "{{name}} Messaging all in the community",
-      "hereNamed": "{{name}} Messaging everyone in {{community}}"
-    }
+      "hereNamed": "{{name}} Messaging everyone in {{community}}",
+      "joined": "{{name}} se unió a tu comunidad",
+      "requestedNamed": "{{name}} pidió unirse a \"{{community}}\"",
+      "mentioned": "{{name}} te mencionó en una comunidad",
+      "mentionedNamed": "{{name}} te mencionó en \"{{community}}\""
+    },
+    "badgeLent": "{{name}} te prestó su insignia {{tier}}",
+    "badgeTakenBack": "{{name}} dejó de prestarte su insignia {{tier}}",
+    "badgeLoanDropped": "Ya no puedes prestar tu insignia {{tier}} a {{name}}",
+    "badgeLoanRetiered": "{{name}} ahora te está prestando una insignia {{tier}}"
   },
   "leaderboard": {
     "title": "Kɛlɛya",
@@ -1840,7 +1877,9 @@
     "failedOnramp": "Kɔrɔbɔ bɔ",
     "otherTokens": "Token wɛrɛw",
     "otherTokensDesc": "I ka karti ye ETH walima USDC san Base kan",
-    "shareToFeed": "Ne ka dumuni di ne ma"
+    "shareToFeed": "Ne ka dumuni di ne ma",
+    "minDhbPurchase": "La compra mínima de DHB es $0.50",
+    "sharePostTemplate": "Acabo de añadir {{amount}} $DHB a mi pila en DeHub. Construyendo con la comunidad. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Kɔrɔbɔ",
@@ -2514,7 +2553,22 @@
     "lockedEarlyFee": "{{date}} kɔ jɔkɔrɔ tɛ. Sɛbɛn kɔnɔ 88% ka ɲɛ — 12% jɔkɔrɔ, {{fee}} DHB bɛ. Fɔ kɔ sɛbɛn ka ɲɛ.",
     "unstakeReverted": "Sɛbɛn on-chain la sɛbɛn tɛ.",
     "unstakeSent": "{{amount}} DHB sɛbɛn tɛ! TX: {{hash}}…",
-    "unstakeFailed": "Sɛbɛn tɛ."
+    "unstakeFailed": "Sɛbɛn tɛ.",
+    "claimOnWeb": "Reclamar en la aplicación web",
+    "stakeOnBaseDesc": "Deposita DHB en Base para ganar recompensas del protocolo.",
+    "unstakeFromBnbDesc": "Retirar del contrato de BNB Chain. DHB en el pool de Base aún no tiene contrato de retiro.",
+    "orSendDirectly": "Wala i ka DHB ci ka taga a bila a ka banki la:",
+    "checkForNewStake": "N'i ye mɔgɔ dɔ weele ka na i ka soo, i ka kan ka taga",
+    "pendingSubmitted": "{{amount}} DHB submitted. Confirmation be to ka sɛgɛsɛgɛ. N'i ma siran, o be yɛlɛma ka kɛ ten.",
+    "refreshFailed": "O kama, a tun man nɔgɔ ka wari caaman sɔrɔ. I be se k'a ɲini tugu miniti damanin kɔnɔ.",
+    "foundNewStake": "Found {{amount}} DHB. i ka wari be yɛlɛla.",
+    "noNewTransfers": "O kama, a ma fɔ ko mɔgɔ si tɛna se ka sinsin o filimu la.",
+    "stakeReverted": "O la, a tun be se ka kɛ ko a tun be baara kɛ ni mɔgɔ wɛrɛw ye.",
+    "enterValidStakeAmount": "I ka wari min ka kan ka kɛ i ka wari ye, i ka o don.",
+    "enterValidUnstakeAmount": "I ka wari min ka kan ka bɔ, i ka o don.",
+    "walletNotConnected": "O tɛ se ka kɛ sababu ye mɔgɔ tɛ se ka wari sɔrɔ.",
+    "walletNotReady": "N'i ma siran, o be yɛlɛma ka kɛ ten.",
+    "insufficientOnBase": "DHB ka suma min tɛ se ka kɛ a la, o tɛ se ka kɛ a la."
   },
   "communities": {
     "title": "Communities",
@@ -2965,7 +3019,13 @@
     "addedToYourUsernames": "A bɛ fara i tɔgɔw kan",
     "boughtNameGoesToVault": "I bɛ to @{{current}} ye. @{{handle}} bɛ don i tɔgɔw la, i b'a sɔrɔ ka yɛlɛma ka taa a ma waati o waati.",
     "youAreNow": "I ye @{{handle}} ye sisan",
-    "boughtToVaultToast": "@{{handle}} bɛ i tɔgɔw la sisan"
+    "boughtToVaultToast": "@{{handle}} bɛ i tɔgɔw la sisan",
+    "askingPriceUsd": "Asking price (USD)",
+    "fixedDollarPrice": "Dollar price stays fixed; token amount updates.",
+    "tokensPaidToSeller": "Ka wari di feerebaga ma",
+    "priceUsd": "O wari be se ka kɛ wari ye min be se ka kɛ wari",
+    "dollarPriceRange": "I ka kan ka wari dɔ don min be se ka kɛ wari ye.",
+    "priceUpdated": "I ka wari lajɛ ani i ka segi k'a san."
   },
   "stores": {
     "subtitle": "DeHub jɛkulu ka fɛnw ɲini",
@@ -3281,13 +3341,16 @@
     "yourDhb": "I ka DHB"
   },
   "digest": {
-    "someone": "Mɔgɔ dɔ"
+    "someone": "Mɔgɔ dɔ",
+    "andOthers_one": "{{names}} ɛŋ {{count}} oɔtɛɛ",
+    "andOthers_other": "{{names}} ɛŋ {{count}} oɔtɛɛs"
   },
   "publicChatAlerts": {
     "title": "Jama ka baro",
     "mentionTitle": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
     "voiceMessage": "N'i ye n ka kuma lamɛn,",
-    "image": "I ka jaa dɔ ta"
+    "image": "I ka jaa dɔ ta",
+    "digest": "{{count}} niw mesɛjɛs frɔm {{who}}: {{message}}"
   },
   "liveChat": {
     "attach": "I be se ka fotow, fotow ani videwow bila ɲɔgɔn na cogo di?",
@@ -3410,7 +3473,8 @@
     "boostCancelledRefunded": "Boost bɔra ani a seginna i ka hakɛ kɔnɔ",
     "boostCancelledSpent": "Boost bɔra. A tun daminɛna ka ban, o de la a bɛ to a musaka la.",
     "cancelFailed": "O boost tun tɛ se ka bɔ",
-    "screenTitle": "SuperPowers"
+    "screenTitle": "SuperPowers",
+    "spentFor": "{{power}} rɔniŋ fɔɔ {{minutes}} mɛniŋs"
   },
   "follow": {
     "followers": "O kɔ, u ye tugu u kɔ.",
@@ -3480,13 +3544,21 @@
     "followRequest": "{{name}} ka tugu i kɔ",
     "followAccepted": "{{name}} Ka sɔn i ka fɔta ma",
     "signalFlare": "{{name}} send a signal flare",
-    "newMessage": "{{name}} send you a message"
+    "newMessage": "{{name}} send you a message",
+    "repostedPost": "{{name}} riipɔɔsɛd jɔɔ pɔɔsɛ",
+    "mentionedYou": "{{name}} meŋŝɛŋ jɔɔ"
   },
   "audioPost": {
     "popOut": "Aw ye to ka mɛnni kɛ, aw ye to ka mɛnni kɛ",
     "cornerPlayer": "# Dɔgɔtɔrɔ tɛ siginidenw ka kan ka min fɔ",
     "stopAndClose": "I ka kan ka taga ni a ye yɔrɔ dɔ la min ka ɲi ka kɛ",
-    "untitled": "# Fɛɛn min be mɔgɔ lasun ka kuma"
+    "untitled": "# Fɛɛn min be mɔgɔ lasun ka kuma",
+    "closeCornerPlayer": "Klɔɔz dɛ kɔɔnɛɛ plɛɛɛ",
+    "creator": "Dɛhɛɛb kriiɛtɔɔ",
+    "play": "Plɛɛ",
+    "pause": "Pɔɔz",
+    "listens_one": "{{count}} lisɛŋ",
+    "listens_other": "{{count}} lisɛŋs"
   },
   "transfer": {
     "title": "Tokenw ci",
@@ -3553,7 +3625,9 @@
     "reviewDescriptionPlaceholder": "1) A fɔlɔ, i ka App Find kɛ (o ye Step TV ye)",
     "reviewLiveWarning": "O ye sababu ye mɔgɔ be se ka ɲɛnamaya kɛ cogo nɔgɔman na. Aw ye kɔnɔni kɛ fɔɔ a ka ban ani aw ka sɛbɛ nin don a kɔnɔ.",
     "reviewCancel": "Kanali",
-    "reviewConfirm": "Fɛɛn minw be se ka kɛ jamana"
+    "reviewConfirm": "Fɛɛn minw be se ka kɛ jamana",
+    "statusDownloadingPercent": "Dɔɔniŋ {{percent}}%",
+    "errorUnsupported": "Wi kɛnɔɔt impɔɔt frɔm dɛɛt liŋk. Tɛɛi wɛŋ: {{sources}}"
   },
   "earnings": {
     "filter24h": "24l",
@@ -3762,7 +3836,8 @@
     "title": "I ka wari man kan ka kɛ",
     "body": "I be se ka don, ka dumuni kalan, ka i ka lɛtɛrɛw yɛlɛ ani ka koo bɛɛ ye i ka ɔriganisasiyɔn ka ɔriganisasiyɔn ka ɔriganisasiyɔn kɔnɔ. U dɔw tɛna se ka kuma, wala lasɔmini ci aw ma, wala k'a filɛ u ye min sɛbɛ.",
     "line": "U dɔw tɛna se ka kuma, wala lasɔmini ci aw ma, wala k'a filɛ u ye min sɛbɛ.",
-    "deleteAccount": "Ka kunnafoniw ni kunnafoniw bɔ"
+    "deleteAccount": "Ka kunnafoniw ni kunnafoniw bɔ",
+    "reason": "Riiʒɔɔ: {{reason}}"
   },
   "teamUp": {
     "title": "Jɛkulu dilan",
@@ -3819,7 +3894,8 @@
     "approveFailed": "A yɛbɛbɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔkɔɔ kɔ",
     "declineFailed": "Nka, u ma sɔn o ma.",
     "updated": "Team updated",
-    "updateFailed": "I tɛ se ka o fɔ tugun"
+    "updateFailed": "I tɛ se ka o fɔ tugun",
+    "teamMeta": "{{count}}/{{max}} mɛmɛɛs, {{tier}}, {{amount}} DHB"
   },
   "addToFolder": {
     "title": "A mara dosiye kɔnɔ",
@@ -4047,7 +4123,8 @@
     "madeForKidsOffDesc": "A bɛ sɔrɔ i post ye den ye ka gara Kids Mode la, ani a bɛ kɔ ka sɔrɔ ka jɔ ka sɔrɔ ka don ka.",
     "madeForKidsBlockedByMature": "Post ye ka jɔ ka sɔrɔ ka don ka tɛ ɲɔgɔn ka jɔ ka sɔrɔ ka don ka den ye ka gara.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Get RTMP details"
+    "encoderHint": "Get RTMP details",
+    "markMadeForKids": "Mɛɛk ɛz mɛɛd fɔɔ kiidɛs"
   },
   "bounty": {
     "claimed": "A tara",
@@ -4490,7 +4567,10 @@
     "videosCount": "{{videos}} vedio",
     "viewFeed": "Adamadenw, aw ka dumuniw lajɛ.",
     "yourChannel": "Ka kɛ sababu ye",
-    "yourChannelHint": "I ka kan ka tɛmɛ o kan ka tɛmɛ o kan."
+    "yourChannelHint": "I ka kan ka tɛmɛ o kan ka tɛmɛ o kan.",
+    "doneAllMany": "Migrated {{n}} videos!",
+    "doneAllOne": "Migrated {{n}} video!",
+    "firstFree": "First {{n}} videos"
   },
   "calls": {
     "voiceCall": "O ye kumakanw ye.",
@@ -4744,7 +4824,8 @@
     "automaticStage": {
       "tokenApproval": "O ye baara kɛcogo dɔ ye min be se ka kɛ baara ye.",
       "permitApproval": "O kama, n' tun b'a fɛ ka baara kɛ n'o ye, n' tun b'a fɛ ka",
-      "submit": "Ka baara kɛ n'i ka site web ye i yɛrɛ ma..."
+      "submit": "Ka baara kɛ n'i ka site web ye i yɛrɛ ma...",
+      "swap": "A yɛnɛɛ kɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ nɛɛɛ"
     },
     "combined": "Fɛɛn min be se k'a to a be se ka baara kɛ ni fanga ye, o ye ka baara kɛ ni fanga ye",
     "reference": "O ye wari min ye, o ye wari min ye.",
@@ -4909,7 +4990,9 @@
       "myOrders": "Ne ka ciiw",
       "noMyOrders": "I tɛ se ka fɛɛn minw ɲini, i tɛ se k'o sɔrɔ.",
       "cancel": "Kanali",
-      "cancelled": "Ka koo dɔ latigɛ"
+      "cancelled": "Ka koo dɔ latigɛ",
+      "bought": "Bought {{amount}} {{symbol}}",
+      "sold": "Sold {{amount}} {{symbol}}"
     },
     "chart": {
       "bookStarts": "O koo be daminɛ yan.",
@@ -4922,7 +5005,11 @@
     "prepareFailed": "A tun tɛ se ka lɔyɔrɔ labɛn",
     "sellAmount": "Sell amount",
     "spend": "Spend",
-    "withdrawFailed": "Fanga min be sɔrɔ a ka baara la"
+    "withdrawFailed": "Fanga min be sɔrɔ a ka baara la",
+    "balanceError": "O la, a tun be se ka kɛ ko a tun ye mɔgɔ dɔ ye min tun ye mɔgɔ dɔ ye.",
+    "initializes": "O fana be se ka kɛ ni 0% ye.",
+    "pendingNote": "I ka baara kɛra. N'i ye mɔgɔ dɔ weele ka na i ka soo, i ka kan k'a fɔ ko i ye mɔgɔ dɔ weele ka na i ka soo I ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a filɛ.",
+    "registrationFailed": "A ka lɔyɔrɔ be sɔrɔ a ka jɔrɔkɔ kan. N'i ye mɔgɔ dɔ weele ka na i ka soo, i ka kan k'a weele ka na i ka soo."
   },
   "onboarding": {
     "optIn": {
@@ -4937,14 +5024,20 @@
     },
     "steps": {
       "follow": {
-        "title": "Follow three creators"
+        "title": "Follow three creators",
+        "body": "N'i ye mɔgɔ damanin ye, i ka dumuni bena fisaya. I ka ɲi ka mɔgɔ saba sugandi fɔlɔ."
       },
       "comment": {
-        "body": "I ka dumuni koo ka di i ye. O yɔrɔ la, DeHub ka ca."
+        "body": "I ka dumuni koo ka di i ye. O yɔrɔ la, DeHub ka ca.",
+        "title": "A to i ka kuma dɔ fɔ"
       },
       "rewards": {
         "title": "A filɛ a be baara kɛ cogo min na",
         "body": "A filɛ i be min kɛra yan, i be se k'o yɛlɛma cogo min na k'a kɛ i be wari sɔrɔ o la."
+      },
+      "first-post": {
+        "title": "I ka baara fɔlɔ kɛ",
+        "body": "N'a sɔrɔ i be se ka fɛɛn dɔ yira, ka fɛɛn dɔ yira wala ka fɛɛn dɔ yira. O be wagati ta ani mɔgɔw be se k'i ye cogo min na, o lo ye nin ye."
       }
     },
     "swipeToStart": "Aw ka banba ka baara daminɛ"
@@ -5495,5 +5588,50 @@
     "appealRef": "Référence {{ref}}",
     "appealSubtitleSubject": "Mɔgɔ dɔ bena o kalan ani a bena a filɛ tugun {{subject}}.",
     "appealMore": "Personnages encore nécessaires : {{count}}"
+  },
+  "support": {
+    "title": "Dɛmɛ ɲini",
+    "subtitle": "I ka wari ni i ka lɔyɔrɔ. O tɛ wari ye, o tɛ wari ye.",
+    "newTicket": "O wari tun ka kan ka bɔ",
+    "newTicketHint": "I ye min kɛ ani i tun be min kɔnɔna, i k'o fɔ an ye.",
+    "backToTickets": "An ka segi an ka ladɛrɛsiw kan",
+    "noTickets": "O kama, u ma se ka marifakɛlɛ kɛ.",
+    "loadFailed": "I tɛ se ka i ka wari sɔrɔ N'i b'a fɛ ka dɔ fara a kan, i ka segi k'a ɲini.",
+    "categoryLabel": "Yɔrɔ dɔw",
+    "severityLabel": "Fɛɛn minw kɔrɔtanin lo ka tɛmɛ",
+    "subjectLabel": "Koo dɔw",
+    "subjectPlaceholder": "O kama, a ka ɲi ka kuma ni mɔgɔ dɔ ye min be koo dɔ",
+    "descriptionLabel": "Koo min kɛra",
+    "descriptionPlaceholder": "I ye min kɛ, i tun b'a miiri ko min bena kɛ, o bena kɛ.",
+    "stepsLabel": "Kalanfaw (manfa ye)",
+    "submit": "Ka wari ci",
+    "submitting": "A ci dɔ ma A ci dɔ ma...",
+    "filed": "Ticket {{ref}} be ni jɛnkulu ye.",
+    "alreadyOpen": "Aw ye nin yɛlɛ ka ban i n'a fɔ {{ref}}.",
+    "filingFailed": "O wari tun tɛ se ka bɔ. N'i b'a fɛ ka dɔ fara a kan, i ka segi k'a ɲini.",
+    "status": {
+      "open": "Ka yɛlɛ",
+      "in_progress": "Ka ɲɛtaga kɛ",
+      "resolved": "K'a latigɛ",
+      "closed": "Ka to ka kuma"
+    },
+    "severity": {
+      "low": "O ye n' ka miiriya ye.",
+      "normal": "Nɔrɔmal",
+      "high": "Hɔɔ",
+      "urgent": "Urgent"
+    },
+    "category": {
+      "account_access": "Akaunti aksɛsi",
+      "wallet_or_transactions": "Waleɛt poɔ tɔɔ tɛɛ",
+      "posting_or_uploads": "Pɔɔsɛŋ poɔ ŋɔɔ",
+      "payments_or_subscriptions": "Pɛɛmeŋ poɔ tɔɔ tɛɛ",
+      "live_streaming": "Laivi striimiŋ",
+      "content_or_moderation": "Kɔɔteŋ poɔ tɔɔ tɛɛ",
+      "bug": "Bɛɛg",
+      "feature_request": "Fiiĉa rikwɛɛsɛ",
+      "other": "Oɔtɛɛ"
+    },
+    "filedOn": "Fɛɛlɛd {{date}}"
   }
 }

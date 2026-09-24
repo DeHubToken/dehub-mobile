@@ -699,7 +699,22 @@
     "chainIdLabel": "Reťazec ID: {{id}}",
     "exportPkConfirmPhrase": "ROZUMIEM",
     "exportPkCopy": "Kopírovať súkromný kľúč",
-    "e2eAutomatic": "Automaticky"
+    "e2eAutomatic": "Automaticky",
+    "smsScopeLabel": "Čo poslať ako SMS",
+    "smsScopeDesc": "SMS správy stoja peniaze, takže ich obmedzte na to, čo stojí za prerušenie",
+    "smsScope": {
+      "all": "Všetko, čo mám zapnuté",
+      "tips": "Len prijaté tipy",
+      "subscriptions": "Len noví odberatelia",
+      "sales": "Len predaje môjho obsahu",
+      "bounties": "Len odmeny",
+      "fractions": "Len ponuky a predaje zlomkov",
+      "messages": "Len priame správy",
+      "mentions": "Len zmienky o mne",
+      "replies": "Len odpovede na moje komentáre",
+      "account": "Len upozornenia o mojom účte"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Stlmiť",
@@ -1946,7 +1961,8 @@
     "otherTokens": "Ďalšie tokeny",
     "otherTokensDesc": "Kúpte ETH alebo USDC v sieti Base svojou kartou",
     "shareToFeed": "Zdieľať v mojom informačnom kanáli",
-    "sharePostTemplate": "Práve som pridal {{amount}} $DHB do môjho zásobníka na DeHub. Budovanie s komunitou. #DeHub #DHB"
+    "sharePostTemplate": "Práve som pridal {{amount}} $DHB do môjho zásobníka na DeHub. Budovanie s komunitou. #DeHub #DHB",
+    "minDhbPurchase": "Minimálny nákup DHB je 0,50 $"
   },
   "agents": {
     "title": "AI Agents",
@@ -3116,7 +3132,13 @@
     "addedToYourUsernames": "Pridá sa k vašim používateľským menám",
     "boughtNameGoesToVault": "Zostávate @{{current}}. @{{handle}} pribudne k vašim používateľským menám a môžete naň kedykoľvek prepnúť.",
     "youAreNow": "Teraz ste @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} je teraz medzi vašimi používateľskými menami"
+    "boughtToVaultToast": "@{{handle}} je teraz medzi vašimi používateľskými menami",
+    "askingPriceUsd": "Predajná cena (USD)",
+    "dollarPriceRange": "Zadajte 1–1 000 000 $, s maximálne dvoma desatinnými miestami.",
+    "fixedDollarPrice": "Cena v dolároch zostáva pevná; množstvo tokenov sa aktualizuje.",
+    "priceUpdated": "Cena aktualizovaná. Skontrolujte sumu a znova klepnite na Kúpiť.",
+    "tokensPaidToSeller": "Platené priamo predajcovi",
+    "priceUsd": "Cena (USD)"
   },
   "stores": {
     "subtitle": "Objav produkty od komunity DeHub",
@@ -4214,7 +4236,8 @@
     "madeForKidsOffDesc": "Zobrazuje tento príspevok deťom používajúcim detský režim a odstraňuje ho z bežných kanálov.",
     "madeForKidsBlockedByMature": "Príspevok označený ako zrelý nie je možné publikovať ani pre deti.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Získajte podrobnosti RTMP"
+    "encoderHint": "Získajte podrobnosti RTMP",
+    "markMadeForKids": "Označiť ako vyrobené pre deti"
   },
   "bounty": {
     "claimed": "Vyzdvihnuté",
@@ -4662,7 +4685,8 @@
     "videosCount": "Videá ({{videos}})",
     "viewFeed": "Zobraziť váš informačný kanál",
     "yourChannel": "Váš kanál",
-    "yourChannelHint": "Prilepte adresu svojho kanála — rukoväť funguje aj sama o sebe."
+    "yourChannelHint": "Prilepte adresu svojho kanála — rukoväť funguje aj sama o sebe.",
+    "progressDone": "{{imported}} importované."
   },
   "calls": {
     "voiceCall": "Hlasový hovor DeHub",
@@ -5793,5 +5817,53 @@
     "appealRef": "Referencia {{ref}}",
     "appealSubtitleSubject": "Osoba si to prečíta a znova sa pozrie na {{subject}}.",
     "appealMore": "Potrebné znaky: {{count}}"
+  },
+  "support": {
+    "title": "Podpora",
+    "subtitle": "Vaše tikety a ich stav. Žiadna umelá inteligencia, žiadny poplatok.",
+    "newTicket": "Nový tiket",
+    "newTicketHint": "Povedzte nám, čo sa stalo a čo ste očakávali namiesto toho.",
+    "backToTickets": "Späť na tikety",
+    "openHeading": "Otvorené ({{n}})",
+    "closedHeading": "Zatvorené ({{n}})",
+    "noTickets": "Zatiaľ ste nepodali žiadne tikety podpory.",
+    "loadFailed": "Nepodarilo sa načítať vaše tikety. Skúste to znova.",
+    "categoryLabel": "Kategória",
+    "severityLabel": "Priorita",
+    "subjectLabel": "Predmet",
+    "subjectPlaceholder": "Jeden riadok opisujúci problém",
+    "descriptionLabel": "Čo sa stalo",
+    "descriptionPlaceholder": "Čo ste urobili, čo ste očakávali a čo sa namiesto toho stalo.",
+    "stepsLabel": "Kroky na reprodukciu (voliteľné)",
+    "submit": "Odoslať lístok",
+    "submitting": "Prebieha odosielanie...",
+    "filed": "Vstupenka {{ref}} je s tímom.",
+    "filedNotEmailed": "Vstupenka {{ref}} zaznamenaná. Referenciu si ponechajte.",
+    "alreadyOpen": "Už to máte otvorené ako {{ref}}.",
+    "filingFailed": "Tiket sa nepodarilo podať. Skúste to znova.",
+    "status": {
+      "open": "Otvorené",
+      "in_progress": "Prebieha",
+      "resolved": "Vyriešené",
+      "closed": "Uzavreté"
+    },
+    "severity": {
+      "low": "Nízka",
+      "normal": "Normálne",
+      "high": "Vysoká",
+      "urgent": "Naliehavý"
+    },
+    "category": {
+      "account_access": "Prístup k účtu",
+      "wallet_or_transactions": "Peňaženka alebo transakcie",
+      "posting_or_uploads": "Uverejňovanie alebo nahrávanie",
+      "payments_or_subscriptions": "Platby alebo predplatné",
+      "live_streaming": "Živé vysielanie",
+      "content_or_moderation": "Obsah alebo moderovanie",
+      "bug": "Chyba",
+      "feature_request": "Žiadosť o funkciu",
+      "other": "Iné"
+    },
+    "filedOn": "Podané {{date}}"
   }
 }

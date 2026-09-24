@@ -683,7 +683,33 @@
     "chainIdLabel": "ଚେନ୍ ID: {{id}}",
     "exportPkConfirmPhrase": "ମୁଁ ବୁଝିଛି",
     "exportPkCopy": "ପ୍ରାଇଭେଟ କି କପି କରନ୍ତୁ",
-    "e2eAutomatic": "ସ୍ୱୟଂଚାଳିତ"
+    "e2eAutomatic": "ସ୍ୱୟଂଚାଳିତ",
+    "socialFollowers": "{{platform}} ରେ ଅନୁସରଣକାରୀ",
+    "publicChatAlertsRateOption": "{{count}} ଘଣ୍ଟାଏ",
+    "smsScopeLabel": "କଣ ଲେଖିବେ",
+    "smsScopeDesc": "ଟେକ୍ସଟ୍ ମହଙ୍ଗା, ତେଣୁ ଯାହା ବାଧା ପାଇଁ ଯୋଗ୍ୟ ସେଥିରେ ସୀମିତ କରନ୍ତୁ",
+    "smsScope": {
+      "all": "ମୁଁ ସବୁକିଛି ଚାଲୁ କରିଛି",
+      "tips": "ମୁଁ ଗ୍ରହଣ କରୁଥିବା କେବଳ ଟିପ୍ସ",
+      "subscriptions": "କେବଳ ନୂଆ ସବସ୍କ୍ରାଇବର୍",
+      "sales": "କେବଳ ମୋ କଣ୍ଟେଣ୍ଟର ବିକ୍ରି",
+      "bounties": "କେବଳ ବାଉଣ୍ଟି",
+      "fractions": "କେବଳ ଫ୍ରାକ୍ସନ ଅଫର୍ ଏବଂ ବିକ୍ରି",
+      "messages": "କେବଳ ସିଧା ମେସେଜ୍",
+      "mentions": "କେବଳ ମୋର ଉଲ୍ଲେଖ",
+      "replies": "କେବଳ ମୋ ମନ୍ତବ୍ୟର ଉତ୍ତର",
+      "account": "କେବଳ ମୋ ଆକାଉଣ୍ଟ ବିଷୟରେ ସୂଚନା"
+    },
+    "smsNotificationsDescReady": "{{phone}} କୁ ପଠାଯାଇଛି — {{dhb}} DHB ପ୍ରତ୍ୟେକ, ପ୍ରାୟ {{count}} ବାକି ଅଛି",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) ରେ ଅନଲକ୍ କରନ୍ତୁ",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) ଟେକ୍ସଟ୍ ଅନଲକ୍ କରେ ଏବଂ ଆପଣଙ୍କର ପ୍ରଥମ ବାଲାନ୍ସ ହୋଇଯାଏ |",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositAction": "{{dhb}} DHB ପଠାନ୍ତୁ",
+    "smsNeedDhb": "ଟେକ୍ସଟ୍ ନୋଟିଫିକେସନ୍ ଅନଲକ୍ କରିବା ପାଇଁ ଆପଣଙ୍କୁ {{dhb}} DHB ଦରକାର |",
+    "smsBalance": "{{dhb}} DHB ବାକି ଅଛି (${{usd}})",
+    "smsTopUp": "{{dhb}} DHB ଟପ୍ ଅପ୍ କରନ୍ତୁ",
+    "smsCodeSent": "କୋଡ୍ ପଠାଯାଇଛି | ଏଥିରେ {{price}} DHB ଖର୍ଚ୍ଚ ହୋଇଛି |",
+    "smsCodeLabel": "ଆମେ {{phone}} କୁ ଯେଉଁ କୋଡ୍ ଟେକ୍ସଟ୍ କରିଛୁ"
   },
   "common": {
     "mute": "ମ୍ୟୁଟ୍ କରନ୍ତୁ",
@@ -1399,8 +1425,21 @@
     "noneForFilter": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି {{filter}} ବିଜ୍ଞପ୍ତି ନାହିଁ।",
     "andNOthers": "ଏବଂ ଅନ୍ୟ {{count}}",
     "community": {
-      "joinedNamed": "{{name}} ଯୋଡିହେଲା “{{community}}”"
-    }
+      "joinedNamed": "{{name}} ଯୋଡିହେଲା “{{community}}”",
+      "joined": "{{name}} ଆପଣଙ୍କ କମ୍ୟୁନିଟିରେ ଯୋଗ ଦେଇଛନ୍ତି",
+      "requested": "{{name}} ଆପଣଙ୍କ କମ୍ୟୁନିଟିରେ ଯୋଗ ଦେବାକୁ ଅନୁରୋଧ କରିଛନ୍ତି",
+      "requestedNamed": "{{name}} “{{community}}” ରେ ଯୋଗ ଦେବାକୁ ଅନୁରୋଧ କରିଛନ୍ତି",
+      "mentioned": "{{name}} ଆପଣଙ୍କୁ ଏକ କମ୍ୟୁନିଟିରେ ଉଲ୍ଲେଖ କରିଛନ୍ତି",
+      "mentionedNamed": "{{name}} ଆପଣଙ୍କୁ “{{community}}” ରେ ଉଲ୍ଲେଖ କରିଛନ୍ତି",
+      "here": "{{name}} କମ୍ୟୁନିଟିର ସମସ୍ତଙ୍କୁ ମେସେଜ କରିଛନ୍ତି",
+      "hereNamed": "{{name}} “{{community}}” ର ସମସ୍ତଙ୍କୁ ମେସେଜ କରିଛନ୍ତି"
+    },
+    "badgeLent": "{{name}} ଆପଣଙ୍କୁ ସେମାନଙ୍କର {{tier}} ବ୍ୟାଜ୍ ଋଣ ଦେଇଛି",
+    "badgeTakenBack": "{{name}} ଆପଣଙ୍କୁ ସେମାନଙ୍କର {{tier}} ବ୍ୟାଜ୍ ଋଣ ଦେବା ବନ୍ଦ କରିଦେଇଛି",
+    "badgeHandedBack": "{{name}} ଆପଣଙ୍କୁ ଋଣ ଦେଇଥିବା {{tier}} ବ୍ୟାଜ୍ ଫେରାଇ ଦେଇଛି",
+    "badgeLoanLapsed": "{{name}} ଆଉ ଆପଣଙ୍କୁ ସେମାନଙ୍କର {{tier}} ବ୍ୟାଜ୍ ଋଣ ଦେଇପାରିବେ ନାହିଁ",
+    "badgeLoanDropped": "ଆପଣ ଆଉ ଆପଣଙ୍କର {{tier}} ବ୍ୟାଜ୍ {{name}} କୁ ଋଣ ଦେଇପାରିବେ ନାହିଁ",
+    "badgeLoanRetiered": "{{name}} ଏବେ ଆପଣଙ୍କୁ ଏକ {{tier}} ବ୍ୟାଜ୍ ୰ଦେଉଛି"
   },
   "leaderboard": {
     "title": "ଲିଡରବୋର୍ଡ",
@@ -1837,7 +1876,9 @@
     "failedOnramp": "ଅନରାମ୍ପ ଆରମ୍ଭ ହୋଇପାରିଲା ନାହିଁ",
     "otherTokens": "ଅନ୍ୟ ଟୋକେନ",
     "otherTokensDesc": "ଆପଣଙ୍କ କାର୍ଡରେ Base ରେ ETH କିମ୍ବା USDC କିଣନ୍ତୁ",
-    "shareToFeed": "ମୋ ଫିଡ ରେ ଶେୟାର କରନ୍ତୁ"
+    "shareToFeed": "ମୋ ଫିଡ ରେ ଶେୟାର କରନ୍ତୁ",
+    "minDhbPurchase": "ଅତି କମରେ DHB କ୍ରୟ $0.50",
+    "sharePostTemplate": "ଏବେ DeHub ରେ ମୋ ଷ୍ଟାକରେ {{amount}} $DHB ଯୋଡିଛି। କମ୍ୟୁନିଟି ସହିତ ନିର୍ମାଣ କରୁଛି। #DeHub #DHB"
   },
   "agents": {
     "title": "AI ଏଜେଣ୍ଟ",
@@ -2980,7 +3021,13 @@
     "addedToYourUsernames": "ଆପଣଙ୍କ ୟୁଜରନେମରେ ଯୋଡ଼ାଯିବ",
     "boughtNameGoesToVault": "ଆପଣ @{{current}} ହିଁ ରହିବେ। @{{handle}} ଆପଣଙ୍କ ୟୁଜରନେମରେ ଯିବ, ଏବଂ ଯେତେବେଳେ ଇଚ୍ଛା ସେଥିକୁ ବଦଳାଇ ପାରିବେ।",
     "youAreNow": "ଏବେ ଆପଣ @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} ଏବେ ଆପଣଙ୍କ ୟୁଜରନେମରେ ଅଛି"
+    "boughtToVaultToast": "@{{handle}} ଏବେ ଆପଣଙ୍କ ୟୁଜରନେମରେ ଅଛି",
+    "askingPriceUsd": "ମୂଲ୍ୟ (USD)",
+    "dollarPriceRange": "$1–$1,000,000 ମଧ୍ୟରେ ପ୍ରବେଶ କରନ୍ତୁ, ଦୁଇ ଦଶମିକ ସ୍ଥାନ ପର୍ଯ୍ୟନ୍ତ।",
+    "fixedDollarPrice": "ଡଲାର ମୂଲ୍ୟ ସ୍ଥିର ରହିବ; ଟୋକେନ୍ ପରିମାଣ ଅପଡେଟ୍ ହେବ।",
+    "priceUpdated": "ମୂଲ୍ୟ ଅପଡେଟ୍ ହୋଇଛି। ପରିମାଣ ସମୀକ୍ଷା କରନ୍ତୁ ଏବଂ ପୁଣି ଥରେ କିଣନ୍ତୁ ଟାପ୍ କରନ୍ତୁ।",
+    "tokensPaidToSeller": "ସିଧାସଳଖ ବିକ୍ରେତାଙ୍କୁ ଦିଆଯିବ",
+    "priceUsd": "ମୂଲ୍ୟ (USD)"
   },
   "stores": {
     "subtitle": "DeHub ସମ୍ପ୍ରଦାୟର ଉତ୍ପାଦ ଆବିଷ୍କାର କରନ୍ତୁ",
@@ -3510,7 +3557,8 @@
     "creator": "DeHub ସୃଷ୍ଟିକର୍ତ୍ତା",
     "play": "ଚଲାନ୍ତୁ",
     "pause": "ବିରତି",
-    "listens_one": "{{count}} ଶୁଣନ୍ତୁ"
+    "listens_one": "{{count}} ଶୁଣନ୍ତୁ",
+    "listens_other": "{{count}} ଶୁଣୁଛି"
   },
   "transfer": {
     "title": "ଟୋକେନ୍ ପଠାନ୍ତୁ",
@@ -3578,7 +3626,8 @@
     "reviewDescriptionPlaceholder": "ଏହି ପୋଷ୍ଟ ବିଷୟରେ କିଛି କୁହନ୍ତୁ (optional)",
     "reviewLiveWarning": "ଏହି ଲିଙ୍କଟି ଏକ ଲାଇଭ ଷ୍ଟ୍ରିମ୍ । ଏହା ସମାପ୍ତ ହେବା ପର୍ଯ୍ୟନ୍ତ ଅପେକ୍ଷା କରନ୍ତୁ ଏବଂ ତା 'ପରିବର୍ତ୍ତେ ରେକର୍ଡିଂକୁ ଆମଦାନୀ କରନ୍ତୁ ।",
     "reviewCancel": "ବାତିଲ କରନ୍ତୁ",
-    "reviewConfirm": "ଆମଦାନୀ କରନ୍ତୁ"
+    "reviewConfirm": "ଆମଦାନୀ କରନ୍ତୁ",
+    "queueRunning": "{{n}} ଧାଡ଼ିରେ ଅଛି — ଏହି ଟ୍ୟାବ୍ ବନ୍ଦ କରିବା ନିରାପଦ, ସେମାନେ ଜାରି ରଖିବେ।"
   },
   "earnings": {
     "filter24h": "24ଘ",
@@ -4074,7 +4123,8 @@
     "madeForKidsOffDesc": "ଏହି ପୋଷ୍ଟକୁ ବାଚ୍ଚାମାନଙ୍କ ମୋଡ ବ୍ୟବହାର କରୁଥିବା ବାଚ୍ଚାମାନଙ୍କୁ ଦେଖାଏ, ଏବଂ ଏହାକୁ ସାଧାରଣ ଫିଡ ଠାରୁ ଅଲଗା କରେ।",
     "madeForKidsBlockedByMature": "ଏକ ପୋଷ୍ଟ ଯାହା ପରିପକ୍ବ ଭାବରେ ଚିହ୍ନିତ ତାହା ବାଚ୍ଚାମାନଙ୍କ ପାଇଁ ମଧ୍ୟ ପ୍ରକାଶ କରାଯାଇ ପାରେ ନାହିଁ।",
     "encoderTitle": "OBS / ଏନକୋଡର୍",
-    "encoderHint": "RTMP ବିବରଣୀ ପାଆନ୍ତୁ"
+    "encoderHint": "RTMP ବିବରଣୀ ପାଆନ୍ତୁ",
+    "markMadeForKids": "ପିଲାମାନଙ୍କ ପାଇଁ ତିଆରି କରାଯାଇଛି ବୋଲି ଚିହ୍ନିତ କରନ୍ତୁ"
   },
   "bounty": {
     "claimed": "ଗ୍ରହଣ କରାଯାଇଛି",
@@ -4316,7 +4366,9 @@
     "topUpSubtitle": "କାର୍ଡ ବ୍ୟବହାର କରି $DHB କିଣନ୍ତୁ ଏବଂ ତତ୍କାଳ ବ୍ୟବହାର ପାଇଁ ମାଗଣା ଗ୍ୟାସ୍ ପାଆନ୍ତୁ",
     "noTxHash": "ଟ୍ରାଞ୍ଜାକ୍ସନ୍ ହାସ୍ ମିଳିଲା ନାହିଁ",
     "latestTransactions": "ନୂତନ ଟ୍ରାଞ୍ଜାକ୍ସନ୍",
-    "showAll": "ସବୁ ଦେଖାନ୍ତୁ"
+    "showAll": "ସବୁ ଦେଖାନ୍ତୁ",
+    "sentTo": "{{amount}} {{symbol}} କୁ {{address}} ପଠାଯାଇଥିଲା",
+    "tokensSentTo": "ଟୋକେନ୍ ଗୁଡ଼ିକ {{address}} କୁ ପଠାଯାଇଥିଲା"
   },
   "musicSheet": {
     "title": "ଏକ ଗୀତ ତିଆରି କରନ୍ତୁ",
@@ -4516,7 +4568,11 @@
     "videosCount": "{{videos}} videos",
     "viewFeed": "ଆପଣଙ୍କ ଫିଡକୁ ଦେଖନ୍ତୁ",
     "yourChannel": "ଆପଣଙ୍କର ଚ୍ୟାନେଲ",
-    "yourChannelHint": "ଆପଣଙ୍କର ଚ୍ୟାନେଲ ଠିକଣାକୁ ପେଷ୍ଟ କରନ୍ତୁ — ନିଜ କାର୍ଯ୍ୟ ଉପରେ ମଧ୍ୟ ହ୍ୟାଣ୍ଡେଲ ।"
+    "yourChannelHint": "ଆପଣଙ୍କର ଚ୍ୟାନେଲ ଠିକଣାକୁ ପେଷ୍ଟ କରନ୍ତୁ — ନିଜ କାର୍ଯ୍ୟ ଉପରେ ମଧ୍ୟ ହ୍ୟାଣ୍ଡେଲ ।",
+    "costsIntro": "ପ୍ରତ୍ୟେକ ଭିଡିଓ ପୂର୍ବରୁ ଥିବା ଭିଡିଓ ଠାରୁ ଶସ୍ତା — ବ୍ୟାଚ୍ ବଢ଼ିବା ସହିତ ହାର କମିଯାଏ, ତେଣୁ ତଳେ ଦିଆଯାଇଥିବା ମୂଲ୍ୟ ସେହି ସଂଖ୍ୟକ ଭିଡିଓର ମୋଟ୍ ମୂଲ୍ୟ ଅଟେ।",
+    "costsIntroShort": "ପ୍ରତ୍ୟେକ ଭିଡିଓ ପୂର୍ବରୁ ଥିବା ଭିଡିଓ ଠାରୁ ଶସ୍ତା — ବ୍ୟାଚ୍ ବଢ଼ିବା ସହିତ ହାର କମିଯାଏ। ଦେୟ ଦେବା ପୂର୍ବରୁ ସଠିକ୍ ମୂଲ୍ୟ ଦେଖାଯାଏ।",
+    "costsNote": "DHB ରେ ଦେୟ, ଥରେ, ବ୍ୟାଚ୍ ଆରମ୍ଭ ହେବା ପୂର୍ବରୁ। ବ୍ୟାଜ୍ ଧାରକମାନେ କମ୍ ଦେୟ ଦିଅନ୍ତି — ଆପଣଙ୍କ ରିହାତି କୋଟ୍ ରେ ଲାଗୁ କରାଯାଏ। ଯଦି ଏକ ଭିଡିଓ ଆମଦାନୀ କରାଯାଇପାରିବ ନାହିଁ, ତେବେ ଏହାର ଅଂଶ ଆପଣଙ୍କ ପରବର୍ତ୍ତୀ ମାଇଗ୍ରେସନ୍ ପାଇଁ କ୍ରେଡିଟ୍ କରାଯିବ।",
+    "errClipboard": "କ୍ଲିପ୍‌ବୋର୍ଡ ପଢ଼ିବାକୁ ଅସମର୍ଥ — ବଦଳରେ ହାତରେ ପେଷ୍ଟ କରନ୍ତୁ"
   },
   "calls": {
     "voiceCall": "DeHub ସ୍ୱର କଲ",
@@ -4963,7 +5019,10 @@
       "myOrders": "ମୋର ଆଦେଶ",
       "noMyOrders": "ଏହି ପୁଷ୍କରିଣୀରେ ଆପଣଙ୍କର କୌଣସି ଖୋଲା ଆଦେଶ ନାହିଁ ।",
       "cancel": "ବାତିଲ କରନ୍ତୁ",
-      "cancelled": "ଆଦେଶ ବାତିଲ"
+      "cancelled": "ଆଦେଶ ବାତିଲ",
+      "noOrders": "{{symbol}} ପାଇଁ ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଖୋଲା ଅର୍ଡର ନାହିଁ। ପ୍ରଥମଟି ଦିଅନ୍ତୁ।",
+      "bought": "{{amount}} {{symbol}} କିଣାଯାଇଛି",
+      "sold": "{{amount}} {{symbol}} ବିକ୍ରି କରାଯାଇଛି"
     },
     "chart": {
       "bookStarts": "ଏହି ପୁସ୍ତକଟି ଏଠାରେ ଆରମ୍ଭ ହୋଇଛି ।",
@@ -4971,7 +5030,9 @@
       "waiting": "ମୂଲ୍ୟ ତଥ୍ୟ ଅପେକ୍ଷାରେ",
       "candlesStart": "ଏହି ଟୋକନ କାରବାର ହୋଇସାରିବା ପରେ ଦୀପ୍ତିମାନ ଦେଖାଯାଏ ।",
       "depthLabel": "USD ମୂଲ୍ୟ ଅନୁଯାୟୀ ବହିର ଗଭୀରତା ଅର୍ଡର କରନ୍ତୁ",
-      "priceLabel": "{{symbol}} ମୂଲ୍ୟ ଦୀପାବଳି USD ରେ"
+      "priceLabel": "{{symbol}} ମୂଲ୍ୟ ଦୀପାବଳି USD ରେ",
+      "depthHint": "ସଞ୍ଚିତ {{symbol}} · ପରୀକ୍ଷା କରିବାକୁ ହୋଭର କରନ୍ତୁ",
+      "priceHint": "{{symbol}} ମୂଲ୍ୟ · USD · ପରୀକ୍ଷା କରିବାକୁ ହୋଭର କରନ୍ତୁ"
     },
     "connectWallet": "ୱାଲେଟ୍ ସଂଯୋଗ କରନ୍ତୁ",
     "prepareFailed": "ପୋଜିସନ ପ୍ରସ୍ତୁତ କରିପାରିଲାନାହିଁ",
@@ -5584,5 +5645,50 @@
     "appealRef": "ସନ୍ଦର୍ଭ {{ref}}",
     "appealSubtitleSubject": "ଜଣେ ବ୍ୟକ୍ତି ଏହା ପଢ଼ିବେ ଏବଂ {{subject}}କୁ ପୁନର୍ବାର ଦେଖିବେ ।",
     "appealMore": "ଅକ୍ଷରଗୁଡ଼ିକ ଏପର୍ଯ୍ୟନ୍ତ ଆବଶ୍ୟକ: {{count}}"
+  },
+  "support": {
+    "title": "ସହଯୋଗ",
+    "subtitle": "ଆପଣଙ୍କ ଟିକେଟ୍ ଏବଂ ସେମାନଙ୍କ ସ୍ଥିତି। କୌଣସି AI ନାହିଁ, କୌଣସି ଫି ନାହିଁ।",
+    "newTicket": "ନୂଆ ଟିକେଟ୍",
+    "newTicketHint": "କଣ ଘଟିଲା ଏବଂ ଆପଣ କଣ ଆଶା କରୁଥିଲେ ତାହା ଆମକୁ କୁହନ୍ତୁ।",
+    "backToTickets": "ଟିକେଟ୍ ରେ ଫେରିଯାଅ",
+    "openHeading": "ଖୋଲା ({{n}})",
+    "closedHeading": "ବନ୍ଦ ({{n}})",
+    "noTickets": "ଆପଣ ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ସହଯୋଗ ଟିକେଟ୍ ଦାଖଲ କରିନାହାଁନ୍ତି।",
+    "loadFailed": "ଆପଣଙ୍କ ଟିକେଟ୍ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ। ଦୟାକରି ପୁଣି ଥରେ ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "categoryLabel": "ବର୍ଗ",
+    "severityLabel": "ପ୍ରାଧାନ୍ୟ",
+    "subjectLabel": "ବିଷୟ",
+    "subjectPlaceholder": "ସମସ୍ୟାର ଏକ ଲାଇନ ବର୍ଣ୍ଣନା",
+    "descriptionLabel": "କ 'ଣ ହେଲା ।",
+    "descriptionPlaceholder": "ଆପଣ କ 'ଣ କରିଛନ୍ତି, କ' ଣ ଆଶା କରିଛନ୍ତି ଏବଂ ଏହା ପରିବର୍ତ୍ତେ କ 'ଣ ହୋଇଛି ।",
+    "stepsLabel": "ପୁନଃପ୍ରଜନନ କରିବା ପାଇଁ ପଦକ୍ଷେପ (ବିକଳ୍ପ)",
+    "submit": "ଟିକେଟ ପଠାନ୍ତୁ",
+    "submitting": "ପଠାଯାଉଛି...",
+    "filed": "ଟିକେଟ {{ref}} ଟିମ ସହିତ ଅଛି ।",
+    "filingFailed": "ସେହି ଟିକେଟ ଦାଖଲ କରିପାରିନଥିଲେ । ଦୟାକରି ଆଉଥରେ ଚେଷ୍ଟା କରନ୍ତୁ ।",
+    "status": {
+      "open": "ଖୋଲନ୍ତୁ",
+      "in_progress": "ପ୍ରଗତି ପଥରେ",
+      "resolved": "ସମାଧାନ ହୋଇଛି",
+      "closed": "ବନ୍ଦ"
+    },
+    "severity": {
+      "low": "ନିମ୍ନ",
+      "normal": "ସାଧାରଣ",
+      "high": "ଉଚ୍ଚ",
+      "urgent": "ଜରୁରୀ"
+    },
+    "category": {
+      "account_access": "ଖାତା ଅଭିଗମ୍ୟତା",
+      "wallet_or_transactions": "ୱାଲେଟ୍ କିମ୍ବା କାରବାର",
+      "posting_or_uploads": "ପୋଷ୍ଟ କରିବା କିମ୍ବା ଅପଲୋଡ କରିବା",
+      "payments_or_subscriptions": "ଦେୟ କିମ୍ବା ସବସ୍କ୍ରିପସନ",
+      "live_streaming": "ଲାଇଭ ଷ୍ଟ୍ରିମିଂ",
+      "content_or_moderation": "ବିଷୟବସ୍ତୁ କିମ୍ବା ସଂଯୋଜନ",
+      "feature_request": "ବୈଶିଷ୍ଟ୍ୟ ଅନୁରୋଧ",
+      "other": "ଅନ୍ଯାନ୍ଯ"
+    },
+    "filedOn": "{{date}}"
   }
 }

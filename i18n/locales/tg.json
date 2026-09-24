@@ -682,7 +682,35 @@
     "chainIdLabel": "ID-и занҷир: {{id}}",
     "exportPkConfirmPhrase": "МАН МЕФАҲМАМ",
     "exportPkCopy": "Ключи хусусиро нусхабардорӣ кунед",
-    "e2eAutomatic": "Автоматӣ"
+    "e2eAutomatic": "Автоматӣ",
+    "publicChatAlertsRateOption": "{{count}} дар як соат",
+    "smsScopeLabel": "Чӣ нависем",
+    "smsScopeDesc": "Пайёмҳо пул талаб мекунанд, аз ин рӯ онҳоро ба он чизе, ки арзандаи таваҷҷӯҳ аст, маҳдуд кунед",
+    "smsScope": {
+      "all": "Ҳама чизе, ки ман фурӯзон кардам",
+      "tips": "Танҳо маслиҳатҳое, ки ман мегирам",
+      "subscriptions": "Танҳо муштариёни нав",
+      "sales": "Танҳо фурӯши мундариҷаи ман",
+      "bounties": "Танҳо мукофотпулиҳо",
+      "fractions": "Танҳо пешниҳодҳо ва фурӯши қисман",
+      "messages": "Танҳо паёмҳои мустақим",
+      "mentions": "Танҳо зикри ман",
+      "replies": "Танҳо ҷавобҳо ба шарҳҳои ман",
+      "account": "Танҳо огоҳиҳо дар бораи ҳисоби ман"
+    },
+    "smsNotificationsDescReady": "Ба {{phone}} фиристода шуд — {{dhb}} DHB ҳар кадоме, тақрибан {{count}} мондааст",
+    "smsNotificationsLocked": "Бо {{dhb}} DHB (${{usd}}) кредитӣ кушоед",
+    "smsNotificationsEmpty": "Кредит тамом шуд — барои гирифтани паёмҳо пур кунед",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) паёмҳоро мекушояд ва баланси аввалини шумо мегардад.",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositAction": "{{dhb}} DHB фиристед",
+    "smsDepositSlow": "Трансфери шумо ҳанӯз дар блокчейн пайдо нашудааст. Он бехатар аст — инро аз нав кушоед ва он кредит дода мешавад. Истинод: {{hash}}",
+    "smsNeedDhb": "Барои кушодани огоҳиҳои матнӣ ба шумо {{dhb}} DHB лозим аст.",
+    "smsBalance": "{{dhb}} DHB мондааст (${{usd}})",
+    "smsBalanceMessages": "Тақрибан {{count}} паёмҳои дигар",
+    "smsTopUp": "{{dhb}} DHB пур кунед",
+    "smsCodeSent": "Рамз фиристода шуд. Ин {{price}} DHB арзиш дошт.",
+    "smsCodeLabel": "Рамзе, ки мо ба {{phone}} паём додем"
   },
   "common": {
     "mute": "Хомӯш кардани садо",
@@ -1407,7 +1435,11 @@
       "mentionedNamed": "{{name}} {{community}}",
       "here": "{{name}}info: whatsthis",
       "hereNamed": "{{name}} mesaged all in “{{community}}”"
-    }
+    },
+    "badgeLent": "{{name}} ба шумо тамғаи {{tier}}-и худро қарз дод",
+    "badgeTakenBack": "{{name}} дигар ба шумо тамғаи {{tier}}-и худро қарз намедиҳад",
+    "badgeHandedBack": "{{name}} тамғаи {{tier}}-и шуморо, ки шумо ба онҳо қарз дода будед, баргардонид",
+    "badgeLoanLapsed": "{{name}} дигар наметавонад ба шумо тамғаи {{tier}}-и худро қарз диҳад"
   },
   "leaderboard": {
     "title": "Рейтинг",
@@ -1845,7 +1877,8 @@
     "otherTokens": "Токенҳои дигар",
     "otherTokensDesc": "Бо корти худ дар Base ETH ё USDC харед",
     "shareToFeed": "Ibahagi sa aking feed",
-    "sharePostTemplate": "{{amount}} $DHB sa aking stack sa DeHub. Бунёд бо ҷомеа. #DeHub #DHB"
+    "sharePostTemplate": "{{amount}} $DHB sa aking stack sa DeHub. Бунёд бо ҷомеа. #DeHub #DHB",
+    "minDhbPurchase": "Хариди ҳадди ақали DHB $ 0.50 аст"
   },
   "agents": {
     "title": "Агентҳои зеҳни сунъӣ",
@@ -2988,7 +3021,13 @@
     "addedToYourUsernames": "Ба номҳои корбарии шумо илова мешавад",
     "boughtNameGoesToVault": "Шумо @{{current}} мемонед. @{{handle}} ба номҳои корбарии шумо ворид мешавад ва шумо метавонед ҳар вақт ба он гузаред.",
     "youAreNow": "Акнун шумо @{{handle}} ҳастед",
-    "boughtToVaultToast": "@{{handle}} акнун дар номҳои корбарии шумост"
+    "boughtToVaultToast": "@{{handle}} акнун дар номҳои корбарии шумост",
+    "askingPriceUsd": "Дархости нарх (USD)",
+    "dollarPriceRange": "Ворид $ 1–$ 1,000,000, бо то ду ҷойҳои даҳӣ.",
+    "fixedDollarPrice": "Нарх доллари собит мемонад; Навсозии маблағи нишона.",
+    "priceUpdated": "Нарх нав карда шуд. Маблағро дида бароед ва бори дигар харид кунед.",
+    "tokensPaidToSeller": "Пардохт бевосита ба фурӯшанда",
+    "priceUsd": "Нарх (USD)"
   },
   "stores": {
     "subtitle": "Маҳсулоти ҷамъияти DeHub-ро кашф кунед",
@@ -3312,7 +3351,8 @@
     "title": "Pampublikong chat",
     "mentionTitle": "Дар сӯҳбати оммавӣ зикр шудааст",
     "voiceMessage": "Паёми овозӣ",
-    "image": "Тасвир фиристода шуд"
+    "image": "Тасвир фиристода шуд",
+    "digest": "{{count}} паёми нав аз {{who}}: {{message}}"
   },
   "liveChat": {
     "attach": "Magdagdag ng larawan, GIF o emoji",
@@ -3507,7 +3547,8 @@
     "followRequest": "{{name}} request to follow you",
     "followAccepted": "{{name}} tanggap ang iyong sumusunod na kahilingan",
     "signalFlare": "{{name}}info: whatsthis",
-    "newMessage": "{{name}}info: whatsthis"
+    "newMessage": "{{name}}info: whatsthis",
+    "anonymous": "{{count}} лайк аз дорандагони нишони беном"
   },
   "audioPost": {
     "popOut": "Поп- берун — гӯширо нигоҳ доред, дар ҳоле ки шумо аз назар мегузаронед",
@@ -3517,7 +3558,9 @@
     "untitled": "Почтаи аудиоӣ",
     "creator": "Офаринандаи DeHub",
     "play": "Бозикунӣ",
-    "pause": "Таваққуф"
+    "pause": "Таваққуф",
+    "listens_one": "{{count}} гӯш кунед",
+    "listens_other": "{{count}} гӯш мекунанд"
   },
   "transfer": {
     "title": "Интиқоли токенҳо",
@@ -4082,7 +4125,8 @@
     "madeForKidsOffDesc": "Ин постро ба кудаконе, ки режими Kids Mode-ро истифода мебаранд, нишон медиҳад ва онро аз ленти оддӣ хориҷ мекунад.",
     "madeForKidsBlockedByMature": "Постеро, ки ҳамчун бузургсолона нишон дода шудааст, наметавонад барои кудакон нашр шавад.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Тафсилоти RTMP-ро гиред"
+    "encoderHint": "Тафсилоти RTMP-ро гиред",
+    "markMadeForKids": "Ҳамчун барои кӯдакон сохташуда қайд кунед"
   },
   "bounty": {
     "claimed": "Гирифта шуд",
@@ -4325,7 +4369,8 @@
     "topUpSubtitle": "$DHB-ро бо корти худ харед ва гази ройгон гиред, то фавран истифода баред",
     "noTxHash": "Хэши транзаксия ёфт нашуд",
     "latestTransactions": "Нусхаҳои охирин",
-    "showAll": "Ҳамаро нишон диҳед"
+    "showAll": "Ҳамаро нишон диҳед",
+    "sentTo": "{{amount}} {{symbol}} ба {{address}} фиристода шуд"
   },
   "musicSheet": {
     "title": "Суруд эҷод кунед",
@@ -4529,7 +4574,8 @@
     "videosCount": "{{videos}} видео",
     "viewFeed": "Tingnan ang iyong feed",
     "yourChannel": "Канали шумо",
-    "yourChannelHint": "Ilagay ang iyong address sa kanala — ang handle sa sariling mga kasalukuyang ito."
+    "yourChannelHint": "Ilagay ang iyong address sa kanala — ang handle sa sariling mga kasalukuyang ito.",
+    "pickCount": "{{selected}} аз {{total}} интихоб шуд. Ҳар чизе, ки аллакай дар профили шумост, гузаронида мешавад ва ҳеҷ гоҳ ду маротиба пардохт намешавад."
   },
   "calls": {
     "voiceCall": "Занги овози DeHub",
@@ -4976,7 +5022,8 @@
       "noOrders": "Не удалось открыть портал для{{symbol}} tajik. Ҷойгир кардани аввалин.",
       "noMyOrders": "Шумо дар ин ҳавз ягон фармоиш надоред.",
       "cancel": "Бекор кардан",
-      "cancelled": "Kinansela ang order"
+      "cancelled": "Kinansela ang order",
+      "bought": "{{amount}} {{symbol}} харидорӣ шуд"
     },
     "chart": {
       "bookStarts": "Китоб дар ин ҷо оғоз меёбад",
@@ -4991,7 +5038,9 @@
     "prepareFailed": "Тайёр кардани мавқеъ имконнопазир аст",
     "sellAmount": "Миқдори фурӯш",
     "spend": "Сарф кунед",
-    "withdrawFailed": "Баровардан ноком шуд"
+    "withdrawFailed": "Баровардан ноком шуд",
+    "reviewSwap": "Аввал {{amountIn}} {{symbol}}-ро барои {{usdc}} USDC дар Base иваз кунед. Истифоданашудаи {{symbol}} дар ҳамон транзаксия баргардонида мешавад.",
+    "pendingSwapNote": "{{symbol}}-и шумо барои USDC иваз карда шуд. Барои эҷод кардани мавқеъ бидуни иваз кардани дубора идома диҳед."
   },
   "onboarding": {
     "optIn": {
@@ -5598,5 +5647,50 @@
     "appealRef": "Истинод {{ref}}",
     "appealSubtitleSubject": "{{subject}}info: whatsthis",
     "appealMore": "Аломатҳо то ҳол лозиманд: {{count}}"
+  },
+  "support": {
+    "title": "QShortcut",
+    "subtitle": "Ang iyong mga ticket at katayuan ng kanilang. На АИ, на ҳаққи.",
+    "newTicket": "Билети нав",
+    "newTicketHint": "Ба мо бигӯед, ки чӣ рӯй дод ва шумо ба ҷои он чӣ интизорӣ доштед.",
+    "backToTickets": "Bumalik sa mga ticket",
+    "openHeading": "Кушодан ({{n}})",
+    "noTickets": "Hindi ka pa pa rin ang anumang mga bilang suporta.",
+    "loadFailed": "Hindi mai-load ang iyong mga bilang. Mangyaring subukan muli.",
+    "categoryLabel": "~Категория",
+    "severityLabel": "Аввалият:",
+    "subjectLabel": "& Мавзӯъ:",
+    "subjectPlaceholder": "Як сатр, ки мушкилотро тасвир мекунад",
+    "descriptionLabel": "Чӣ шуд",
+    "descriptionPlaceholder": "Шумо чӣ кор кардед, чиро интизор будед ва ба ҷои он чӣ рӯй дод.",
+    "stepsLabel": "Mga hakbang upang muli (opsyonal)",
+    "submit": "Фиристодани чипта",
+    "submitting": "Ирсол шуда истодааст",
+    "alreadyOpen": "Шумо аллакай инро ҳамчун {{ref}} кушодаед.",
+    "filingFailed": "Натавонистем ин дархостро сабт кунем. Лутфан боз кӯшиш кунед.",
+    "status": {
+      "open": "Кушодан",
+      "in_progress": "Дар ҷараён",
+      "resolved": "Ҳалшуда",
+      "closed": "Пӯшида"
+    },
+    "severity": {
+      "low": "Паст",
+      "normal": "Муқаррарӣ",
+      "high": "Баланд",
+      "urgent": "Спешл"
+    },
+    "category": {
+      "account_access": "Дастрасӣ ба суратҳисоб",
+      "wallet_or_transactions": "Сармоя ё транзаксияҳо",
+      "posting_or_uploads": "Боркунӣ ё боргузорӣ",
+      "payments_or_subscriptions": "Пардохтҳо ё обунаҳо",
+      "live_streaming": "Зиндагӣ",
+      "content_or_moderation": "Мундариҷа ё назорат",
+      "bug": "Хатогӣ",
+      "feature_request": "Дархости хусусият",
+      "other": "Дигар"
+    },
+    "filedOn": "Сабт шуд {{date}}"
   }
 }

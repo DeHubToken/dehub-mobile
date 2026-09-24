@@ -695,7 +695,22 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "TÔI HIỂU",
     "exportPkCopy": "Sao chép khóa riêng tư",
-    "e2eAutomatic": "Tự động"
+    "e2eAutomatic": "Tự động",
+    "smsScopeLabel": "Nội dung tin nhắn",
+    "smsScopeDesc": "Tin nhắn tốn tiền, vì vậy hãy giới hạn những gì đáng để làm phiền",
+    "smsScope": {
+      "all": "Mọi thứ tôi đã bật",
+      "tips": "Chỉ các mẹo tôi nhận được",
+      "subscriptions": "Chỉ người đăng ký mới",
+      "sales": "Chỉ các giao dịch bán nội dung của tôi",
+      "bounties": "Chỉ các phần thưởng",
+      "fractions": "Chỉ các ưu đãi và giao dịch bán phân số",
+      "messages": "Chỉ tin nhắn trực tiếp",
+      "mentions": "Chỉ đề cập đến tôi",
+      "replies": "Chỉ trả lời bình luận của tôi",
+      "account": "Chỉ thông báo về tài khoản của tôi"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Tắt tiếng",
@@ -1876,7 +1891,8 @@
     "otherTokens": "Token khác",
     "otherTokensDesc": "Mua ETH hoặc USDC trên Base bằng thẻ của bạn",
     "shareToFeed": "Chia sẻ với nguồn cấp dữ liệu của tôi",
-    "sharePostTemplate": "Vừa thêm {{amount}} $DHB vào ngăn xếp của tôi trên DeHub. Xây dựng với cộng đồng. #DeHub #DHB"
+    "sharePostTemplate": "Vừa thêm {{amount}} $DHB vào ngăn xếp của tôi trên DeHub. Xây dựng với cộng đồng. #DeHub #DHB",
+    "minDhbPurchase": "Số tiền DHB tối thiểu là $0,50"
   },
   "agents": {
     "title": "AI Agent",
@@ -3020,7 +3036,13 @@
     "addedToYourUsernames": "Được thêm vào tên người dùng của bạn",
     "boughtNameGoesToVault": "Bạn vẫn là @{{current}}. @{{handle}} được thêm vào tên người dùng của bạn và bạn có thể chuyển sang bất cứ lúc nào.",
     "youAreNow": "Bây giờ bạn là @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} giờ đã nằm trong tên người dùng của bạn"
+    "boughtToVaultToast": "@{{handle}} giờ đã nằm trong tên người dùng của bạn",
+    "askingPriceUsd": "Giá chào bán (USD)",
+    "dollarPriceRange": "Nhập từ $1–$1.000.000, với tối đa hai chữ số thập phân.",
+    "fixedDollarPrice": "Giá đô la không đổi; số lượng token sẽ cập nhật.",
+    "priceUpdated": "Đã cập nhật giá. Xem lại số tiền và nhấn Mua một lần nữa.",
+    "tokensPaidToSeller": "Được thanh toán trực tiếp cho người bán",
+    "priceUsd": "Giá (USD)"
   },
   "stores": {
     "subtitle": "Khám phá sản phẩm từ cộng đồng DeHub",
@@ -4118,7 +4140,8 @@
     "madeForKidsOffDesc": "Hiển thị bài đăng này cho trẻ em sử dụng Chế độ Trẻ em, và loại bỏ nó khỏi các bảng feed thông thường.",
     "madeForKidsBlockedByMature": "Bài đăng được đánh dấu là dành cho người lớn không thể được xuất bản cho trẻ em.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Lấy chi tiết RTMP"
+    "encoderHint": "Lấy chi tiết RTMP",
+    "markMadeForKids": "Đánh dấu là sản phẩm dành cho trẻ em"
   },
   "bounty": {
     "claimed": "Đã nhận",
@@ -5713,5 +5736,53 @@
     "appealRef": "Tham chiếu {{ref}}",
     "appealSubtitleSubject": "Một người sẽ đọc bài viết này và xem lại {{subject}}.",
     "appealMore": "Vẫn cần ký tự: {{count}}"
+  },
+  "support": {
+    "title": "Hỗ trợ",
+    "subtitle": "Các vé của bạn và trạng thái của chúng. Không có AI, không tính phí.",
+    "newTicket": "Vé mới",
+    "newTicketHint": "Hãy cho chúng tôi biết điều gì đã xảy ra và bạn mong đợi điều gì khác.",
+    "backToTickets": "Quay lại vé",
+    "openHeading": "Đã mở ({{n}})",
+    "closedHeading": "Đã đóng ({{n}})",
+    "noTickets": "Bạn chưa nộp bất kỳ vé hỗ trợ nào.",
+    "loadFailed": "Không thể tải vé của bạn. Vui lòng thử lại.",
+    "categoryLabel": "Danh mục",
+    "severityLabel": "Mức ưu tiên",
+    "subjectLabel": "Chủ đề",
+    "subjectPlaceholder": "Một dòng mô tả vấn đề",
+    "descriptionLabel": "Chấp nhận yêu cầu của tôi",
+    "descriptionPlaceholder": "Những gì bạn đã làm, những gì bạn mong đợi và những gì đã xảy ra thay vào đó.",
+    "stepsLabel": "Các bước để sao chép (không bắt buộc)",
+    "submit": "Gửi vé",
+    "submitting": "Đang gửi...",
+    "filed": "Ticket {{ref}} thuộc về nhóm.",
+    "filedNotEmailed": "Ticket {{ref}} đã được ghi lại. Hãy giữ tài liệu tham khảo.",
+    "alreadyOpen": "Bạn đã mở tài khoản này vào {{ref}}.",
+    "filingFailed": "Không thể gửi phiếu yêu cầu hỗ trợ đó. Vui lòng thử lại.",
+    "status": {
+      "open": "Mở",
+      "in_progress": "Đang thực hiện",
+      "resolved": "Đã giải quyết",
+      "closed": "Đã đóng"
+    },
+    "severity": {
+      "low": "Thấp",
+      "normal": "Nhóm chứng chuẩn",
+      "high": "Cao",
+      "urgent": "Khẩn cấp"
+    },
+    "category": {
+      "account_access": "Truy cập Tài khoản",
+      "wallet_or_transactions": "Ví hoặc giao dịch",
+      "posting_or_uploads": "Đăng hoặc tải lên",
+      "payments_or_subscriptions": "Thanh toán hoặc đăng ký",
+      "live_streaming": "Đang phát trực tuyến",
+      "content_or_moderation": "Nội dung hoặc kiểm duyệt",
+      "bug": "Lỗi",
+      "feature_request": "Yêu cầu tính năng",
+      "other": "Khác"
+    },
+    "filedOn": "Đã nộp {{date}}"
   }
 }

@@ -654,7 +654,63 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "ICH VERSTAHND",
     "exportPkCopy": "Privates Schlüssel kopiere",
-    "e2eAutomatic": "Automatisch"
+    "e2eAutomatic": "Automatisch",
+    "smsNotifications": "Text-Notifikatione",
+    "smsScopeLabel": "Was per SMS schicke",
+    "smsScopeDesc": "SMS koschte Geld, drum beschränke dich uf das, wo es Unterbruch wert isch",
+    "smsScope": {
+      "all": "Alles, wo ich ahghabt han",
+      "tips": "Nur Tipps, wo ich übercho",
+      "subscriptions": "Nur nöii Abonnente",
+      "sales": "Nur Verchauf vo minere Inhalts",
+      "bounties": "Nur Belohnige",
+      "fractions": "Nur Bruchteil-Aageboti und Verchauf",
+      "messages": "Nur direkti Nöchrichte",
+      "mentions": "Nur Erwähnige vo mir",
+      "replies": "Nur Antworte uf mini Kommentär",
+      "account": "Nur Meldige über mini Account"
+    },
+    "smsNotificationsDesc": "Hol der die, wo wichtig sind, als SMS",
+    "smsNotificationsDescReady": "Gschickt a {{phone}} — {{dhb}} DHB pro Stück, ca. {{count}} übrig",
+    "smsNotificationsLocked": "Freischalte mit {{dhb}} DHB (${{usd}}) Guthabe",
+    "smsNotificationsNeedsNumber": "Telefonnummer dezue füege und bestätige zum aafange",
+    "smsNotificationsEmpty": "Keis Guthabe meh — auflade zum witer SMS becho",
+    "smsUnavailable": "Text-Notifikatione sind grad nöd verfügbar",
+    "smsDialogIntro": "SMS schicke koschtet Geld, drum lauft das Kanal uf Guthabe, wo du i DHB auflasch.",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) schaltet SMS frei und wird din erscht Balance.",
+    "smsUnlockExplainer": "Nüt verfällt. Guthabe wird pro Nöchricht verchauft, und nur für die Notifikatione, wo du scho ahghabt hesch.",
+    "smsPricesHeading": "Was es Nöchricht koschtet",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsBand": {
+      "domestic": "Vereinigts Königreich",
+      "europe": "Europa",
+      "global": "Meisti ander Länder",
+      "premium": "Sösch überall"
+    },
+    "smsDepositAction": "{{dhb}} DHB schicke",
+    "smsDepositPaying": "In din Wallet bestätige…",
+    "smsDepositConfirming": "Warte uf d'Chätte...",
+    "smsDepositNotSent": "D'Überwiisig isch nöd igä.",
+    "smsDepositSlow": "Dini Überwiisig isch no nöd uf dr Chätte erschiine. S'isch sicher – mach das wider uf, und s'wird der guetgschriebe. Referenz: {{hash}}",
+    "smsChainUnsupported": "Wächsle zu Base oder BNB Chain i de Yystellige, zum dini Text-Gutschrifte ufzuelle.",
+    "smsWalletNotReady": "Dini Wallet isch no nöd parat – probier's gliich no mal.",
+    "smsNeedDhb": "Du bruchsch {{dhb}} DHB, zum Text-Notifikazioone freizschalte.",
+    "smsUnlocked": "Text-Notifikazioone freigschalte",
+    "smsBalance": "{{dhb}} DHB übrig (${{usd}})",
+    "smsBalanceMessages": "No öbbe {{count}} meh Nöcher",
+    "smsTopUp": "{{dhb}} DHB ufuelle",
+    "smsNumberLabel": "Telefonnummer",
+    "smsSendCode": "Schick mer en Code per Text",
+    "smsCodeSent": "Code gschickt. Das het {{price}} DHB koschtet.",
+    "smsCodeFailed": "Mir chönd de Code nöd schicke.",
+    "smsCodeLabel": "Code, wo mir per Text a {{phone}} gschickt hend",
+    "smsVerify": "Code bestätige",
+    "smsVerifyFailed": "Mir chönd de Code nöd bestätige.",
+    "smsNumberVerified": "Nummer verifiziere",
+    "smsRemoveNumber": "Die Nummer entferne",
+    "smsRemoveFailed": "Mir chönd die Nummer nöd entferne.",
+    "smsNumberRemoved": "Nummer entfernt",
+    "smsCountryBlocked": "Mir chönd Nöcher i das Land no nöd schicke."
   },
   "common": {
     "mute": "Stumm schalte",
@@ -1822,7 +1878,8 @@
     "otherTokens": "Anderi Token",
     "otherTokensDesc": "Chauf ETH oder USDC uf Base mit dinere Charte",
     "shareToFeed": "Teile uf min Feed",
-    "sharePostTemplate": "Grad {{amount}} $DHB zu minere Stäcke uf DeHub dezue tue. Baue mit de Community. #DeHub #DHB"
+    "sharePostTemplate": "Grad {{amount}} $DHB zu minere Stäcke uf DeHub dezue tue. Baue mit de Community. #DeHub #DHB",
+    "minDhbPurchase": "Minimale DHB-Chauf isch $0.50"
   },
   "agents": {
     "title": "KI-Agente",
@@ -2996,7 +3053,13 @@
     "addedToYourUsernames": "Wird zu dine Benutzernäme hinzuegfüegt",
     "boughtNameGoesToVault": "Du bliibsch @{{current}}. @{{handle}} chunnt zu dine Benutzernäme, und du chasch jederziit druf wächsle.",
     "youAreNow": "Du bisch jetzt @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} isch jetzt bi dine Benutzernäme"
+    "boughtToVaultToast": "@{{handle}} isch jetzt bi dine Benutzernäme",
+    "askingPriceUsd": "Verchaufspreis (USD)",
+    "dollarPriceRange": "Gib $1–$1,000,000 y, mit bis zu zwei Dezimalstellene.",
+    "fixedDollarPrice": "Dr Dollar-Priis blibt fix; d'Token-Menge passt sich a.",
+    "priceUpdated": "Priis aagpasst. Überprüef d'Menge und tippe no mal uf Chauf.",
+    "tokensPaidToSeller": "Direkt a dr Verchäufer bezahlt",
+    "priceUsd": "Priis (USD)"
   },
   "stores": {
     "subtitle": "Entdeck Produkt us de DeHub-Community",
@@ -4094,7 +4157,8 @@
     "madeForKidsOffDesc": "Zeigt dä Poscht Chind wo de Chind-Modus bruche, und nimmt en us de normale Feeds ewäg.",
     "madeForKidsBlockedByMature": "E Poscht wo als reif markiert isch, chan nid au für Chind veröffentlicht wärde.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Hole RTMP-Details"
+    "encoderHint": "Hole RTMP-Details",
+    "markMadeForKids": "Als für Chind gmacht markiere"
   },
   "bounty": {
     "claimed": "Iiglöst",
@@ -5616,5 +5680,53 @@
     "appealRef": "Referenz {{ref}}",
     "appealSubtitleSubject": "E Person wird das läse und {{subject}} no einisch aaluege.",
     "appealMore": "Zeiche, wo no bruucht werdet: {{count}}"
+  },
+  "support": {
+    "title": "Support",
+    "subtitle": "Dini Tickets und ihri Status. Kei KI, kei Gebühr.",
+    "newTicket": "Neui Ticket",
+    "newTicketHint": "Erzöued eus, was passiert isch und was Ihne starcht hätt.",
+    "backToTickets": "Zrugg zu de Tickets",
+    "openHeading": "Uuf ({{n}})",
+    "closedHeading": "Gschlosse ({{n}})",
+    "noTickets": "Du hesch no kei Support-Tickets igläit.",
+    "loadFailed": "Din Ticket chönd nöd glade werde. Bitte probiersch nomal.",
+    "categoryLabel": "Kategorie",
+    "severityLabel": "Priorität",
+    "subjectLabel": "Betreff",
+    "subjectPlaceholder": "Eini Zeile, wo s Problem beschribt",
+    "descriptionLabel": "Was isch passiert",
+    "descriptionPlaceholder": "Was du gmacht hesch, was du erwartet hesch und was stattdesse passiert isch.",
+    "stepsLabel": "Schritt zum Nachmachä (optional)",
+    "submit": "Schick Ticket",
+    "submitting": "Sende...",
+    "filed": "Ticket {{ref}} isch bi de Team.",
+    "filedNotEmailed": "Ticket {{ref}} ufgno. Behaltet d Referenz.",
+    "alreadyOpen": "Du hesch das scho offe als {{ref}}.",
+    "filingFailed": "Han das Ticket nöd chönne igä. Bitte probiers no emol.",
+    "status": {
+      "open": "Offe",
+      "in_progress": "Am laufe",
+      "resolved": "Erledigt",
+      "closed": "Gschlosse"
+    },
+    "severity": {
+      "low": "Lu",
+      "normal": "Normal",
+      "high": "Hoi",
+      "urgent": "Dringend"
+    },
+    "category": {
+      "account_access": "Account Zugrif",
+      "wallet_or_transactions": "Wallet oder Transaktione",
+      "posting_or_uploads": "Poste oder Uploade",
+      "payments_or_subscriptions": "Bezahlige oder Abos",
+      "live_streaming": "Live-Streming",
+      "content_or_moderation": "Inhalt oder Moderation",
+      "bug": "Bug",
+      "feature_request": "Feature-Wunsch",
+      "other": "Andere"
+    },
+    "filedOn": "Eigereicht {{date}}"
   }
 }

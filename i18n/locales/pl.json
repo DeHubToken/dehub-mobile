@@ -695,7 +695,22 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "ROZUMIEM",
     "exportPkCopy": "Kopiuj klucz prywatny",
-    "e2eAutomatic": "Automatyczne"
+    "e2eAutomatic": "Automatyczne",
+    "smsScopeLabel": "Co wysłać",
+    "smsScopeDesc": "Wiadomości tekstowe kosztują, więc ogranicz je do tego, co jest warte przerwania",
+    "smsScope": {
+      "all": "Wszystko, co mam włączone",
+      "tips": "Tylko otrzymane wskazówki",
+      "subscriptions": "Tylko nowi subskrybenci",
+      "sales": "Tylko sprzedaż moich treści",
+      "bounties": "Tylko nagrody",
+      "fractions": "Tylko oferty i sprzedaż ułamkowe",
+      "messages": "Tylko wiadomości bezpośrednie",
+      "mentions": "Tylko wzmianki o mnie",
+      "replies": "Tylko odpowiedzi na moje komentarze",
+      "account": "Tylko powiadomienia o moim koncie"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Wycisz",
@@ -1863,7 +1878,8 @@
     "otherTokens": "Inne tokeny",
     "otherTokensDesc": "Kup ETH lub USDC w sieci Base swoją kartą",
     "shareToFeed": "Udostępnij w moim kanale",
-    "sharePostTemplate": "Właśnie dodano {{amount}} $DHB do mojego stosu na DeHub. Budowanie ze społecznością. #DeHub #DHB"
+    "sharePostTemplate": "Właśnie dodano {{amount}} $DHB do mojego stosu na DeHub. Budowanie ze społecznością. #DeHub #DHB",
+    "minDhbPurchase": "Minimalny zakup DHB to 0,50 USD"
   },
   "agents": {
     "title": "Agenci AI",
@@ -3007,7 +3023,13 @@
     "addedToYourUsernames": "Trafia do Twoich nazw użytkownika",
     "boughtNameGoesToVault": "Zostajesz @{{current}}. @{{handle}} trafia do Twoich nazw użytkownika i możesz się na nią przełączyć, kiedy chcesz.",
     "youAreNow": "Jesteś teraz @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} jest teraz w Twoich nazwach użytkownika"
+    "boughtToVaultToast": "@{{handle}} jest teraz w Twoich nazwach użytkownika",
+    "askingPriceUsd": "Cena wywoławcza (USD)",
+    "dollarPriceRange": "Wprowadź od 1 do 1 000 000 USD, z maksymalnie dwoma miejscami po przecinku.",
+    "fixedDollarPrice": "Cena w dolarach pozostaje stała; ilość tokenów się aktualizuje.",
+    "priceUpdated": "Cena zaktualizowana. Sprawdź kwotę i dotknij Kup ponownie.",
+    "tokensPaidToSeller": "Zapłacono bezpośrednio sprzedającemu",
+    "priceUsd": "Cena (USD)"
   },
   "stores": {
     "subtitle": "Odkrywaj produkty od społeczności DeHub",
@@ -5696,5 +5718,53 @@
     "appealRef": "Odniesienie {{ref}}",
     "appealSubtitleSubject": "Osoba to przeczyta i ponownie spojrzy na {{subject}}.",
     "appealMore": "Nadal potrzebne znaki: {{count}}"
+  },
+  "support": {
+    "title": "Wsparcie",
+    "subtitle": "Twoje zgłoszenia i ich status. Bez AI, bez opłat.",
+    "newTicket": "Nowe zgłoszenie",
+    "newTicketHint": "Opisz, co się stało i czego oczekiwałeś zamiast tego.",
+    "backToTickets": "Powrót do zgłoszeń",
+    "openHeading": "Otwarte ({{n}})",
+    "closedHeading": "Zamknięte ({{n}})",
+    "noTickets": "Nie złożyłeś jeszcze żadnych zgłoszeń do pomocy technicznej.",
+    "loadFailed": "Nie udało się załadować Twoich zgłoszeń. Spróbuj ponownie.",
+    "categoryLabel": "Kategoria",
+    "severityLabel": "Priorytet",
+    "subjectLabel": "Temat",
+    "subjectPlaceholder": "Jeden wiersz opisujący problem",
+    "descriptionLabel": "Co się stało",
+    "descriptionPlaceholder": "To, co zrobiłeś, czego się spodziewałeś i co się stało.",
+    "stepsLabel": "Kroki do odtworzenia (opcjonalnie)",
+    "submit": "Wyślij bilet",
+    "submitting": "Wysyłanie...",
+    "filed": "Bilet {{ref}} jest w zespole.",
+    "filedNotEmailed": "Zgłoszenie {{ref}} zostało zarejestrowane. Zachowaj numer referencyjny.",
+    "alreadyOpen": "Masz już to otwarte jako {{ref}}.",
+    "filingFailed": "Nie można przesłać tego zgłoszenia. Spróbuj ponownie.",
+    "status": {
+      "open": "Otwarty",
+      "in_progress": "Weryfikacja w toku",
+      "resolved": "Rozwiązano",
+      "closed": "Zamknięte"
+    },
+    "severity": {
+      "low": "Mały",
+      "normal": "Prawidłowo",
+      "high": "Wysoka",
+      "urgent": "Pilne"
+    },
+    "category": {
+      "account_access": "Dostęp do konta",
+      "wallet_or_transactions": "Portfel lub transakcje",
+      "posting_or_uploads": "Publikowanie lub przesyłanie",
+      "payments_or_subscriptions": "Płatności lub subskrypcje",
+      "live_streaming": "Przekaz na żywo",
+      "content_or_moderation": "Treść lub moderacja",
+      "bug": "Kazimierz",
+      "feature_request": "Prośba o funkcję",
+      "other": "Inne"
+    },
+    "filedOn": "Złożono {{date}}"
   }
 }

@@ -683,7 +683,33 @@
     "chainIdLabel": "چين ID: {{id}}",
     "exportPkConfirmPhrase": "مان سمجهان ٿو",
     "exportPkCopy": "نجي ڪيئي ڪاپي ڪريو",
-    "e2eAutomatic": "خودڪار"
+    "e2eAutomatic": "خودڪار",
+    "publicChatAlertsRateOption": "{{count}} ڪلاڪ",
+    "smsScopeLabel": "ڇا لکجي",
+    "smsScopeDesc": "پيغامن تي خرچ اچي ٿو، تنهنڪري انهن کي انهن شين تائين محدود ڪريو جن لاءِ مداخلت ڪرڻ لائق هجي",
+    "smsScope": {
+      "all": "مون وٽ جيڪي به شيون آن آهن",
+      "tips": "مون کي صرف ملندڙ ٽوٽڪا",
+      "subscriptions": "صرف نوان سبسڪرائبر",
+      "sales": "منهنجي مواد جي صرف وڪري",
+      "bounties": "صرف انعام",
+      "fractions": "صرف حصص جون آڇون ۽ وڪري",
+      "messages": "صرف سڌا پيغام",
+      "mentions": "منهنجي صرف ذڪر",
+      "replies": "منهنجي تبصرن جا صرف جواب",
+      "account": "منهنجي اڪائونٽ بابت صرف نوٽيس"
+    },
+    "smsNotificationsDescReady": "{{phone}} ڏانهن موڪليو ويو — {{dhb}} DHB هر هڪ، اٽڪل {{count}} بچيل",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) سان انلاڪ ڪريو",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) پيغامن کي انلاڪ ڪري ٿو ۽ توهان جو پهريون بيلنس بڻجي ٿو.",
+    "smsDepositAction": "{{dhb}} DHB موڪليو",
+    "smsDepositSlow": "توهان جي منتقلي اڃا تائين چين تي ظاهر نه ٿي آهي. اها محفوظ آهي — هن کي ٻيهر کوليو ۽ اها ڪريڊٽ ڪئي ويندي. حوالو: {{hash}}",
+    "smsNeedDhb": "پيغام جي نوٽيفڪيشن کي انلاڪ ڪرڻ لاءِ توهان کي {{dhb}} DHB جي ضرورت آهي.",
+    "smsBalance": "{{dhb}} DHB بچيل (${{usd}})",
+    "smsBalanceMessages": "اٽڪل {{count}} وڌيڪ پيغام",
+    "smsTopUp": "{{dhb}} DHB ٽاپ اپ ڪريو",
+    "smsCodeSent": "ڪوڊ موڪليو ويو. ان تي {{price}} DHB خرچ آيو.",
+    "smsCodeLabel": "ڪوڊ جيڪو اسان {{phone}} ڏانهن موڪليو"
   },
   "common": {
     "mute": "آواز بند ڪريو",
@@ -767,7 +793,8 @@
     "attachDescription": "پنهنجي پيغام ۾ DHB ٽوڪن ٽپ جي طور تي منسلک ڪريو",
     "minAmount": "گهٽ {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB منسلک ڪريو",
-    "removeTip": "ٽپ ختم ڪريو"
+    "removeTip": "ٽپ ختم ڪريو",
+    "toContent": "مواد کي ٽپ ڏيو"
   },
   "postOptions": {
     "options": "اختيار",
@@ -1277,7 +1304,8 @@
     "evmAddressCopied": "EVM ايڊريس ڪاپي ڪئي وئي",
     "solanaAddressLabel": "سولنگي",
     "solanaAddressHint": "SOL ۽ SPL ٽوڪن صرف",
-    "solanaAddressCopied": "Solana ايڊريس نقل ڪئي وئي"
+    "solanaAddressCopied": "Solana ايڊريس نقل ڪئي وئي",
+    "evmAddressLabel": "اي وي ايم"
   },
   "bookmarks": {
     "title": "توهان جا بڪ مارڪ",
@@ -1409,7 +1437,8 @@
       "requestedNamed": "{{name}} شامل ٿيڻ لاءِ چيو “{{community}}",
       "mentioned": "{{name}} هڪ ڪميونٽي ۾ توهان جو ذڪر ڪيو",
       "mentionedNamed": "{{name}} ۾ توهان جو ذڪر ڪيو “{{community}}",
-      "here": "{{name}} برادري ۾ سڀني کي پيغام موڪليو"
+      "here": "{{name}} برادري ۾ سڀني کي پيغام موڪليو",
+      "hereNamed": "{{name}} \"{{community}}\" ۾ سڀني کي پيغام موڪليو"
     }
   },
   "leaderboard": {
@@ -1848,7 +1877,8 @@
     "otherTokens": "ٻيا ٽوڪن",
     "otherTokensDesc": "پنھنجي ڪارڊ سان Base تي ETH يا USDC خريد ڪريو",
     "shareToFeed": "منهنجي فيڊ ۾ حصيداري ڪريو",
-    "sharePostTemplate": "بس {{amount}} $ DHB کي DeHub تي منهنجي اسٽيڪ ۾ شامل ڪيو. برادري سان تعاون ڪريو. # DeHub# ڊي ايڇ بي"
+    "sharePostTemplate": "بس {{amount}} $ DHB کي DeHub تي منهنجي اسٽيڪ ۾ شامل ڪيو. برادري سان تعاون ڪريو. # DeHub# ڊي ايڇ بي",
+    "minDhbPurchase": "گھٽ ۾ گھٽ DHB خريداري $0.50 آهي"
   },
   "agents": {
     "title": "AI ايجنٽ",
@@ -2992,7 +3022,13 @@
     "addedToYourUsernames": "توهان جي يوزرنيمز ۾ شامل ٿيندو",
     "boughtNameGoesToVault": "توهان @{{current}} ئي رهندا. @{{handle}} توهان جي يوزرنيمز ۾ ويندو، ۽ توهان جڏهن چاهيو ان تي مٽائي سگهو ٿا.",
     "youAreNow": "هاڻي توهان @{{handle}} آهيو",
-    "boughtToVaultToast": "@{{handle}} هاڻي توهان جي يوزرنيمز ۾ آهي"
+    "boughtToVaultToast": "@{{handle}} هاڻي توهان جي يوزرنيمز ۾ آهي",
+    "askingPriceUsd": "گهرج جي قيمت (USD)",
+    "dollarPriceRange": "داخل ڪريو $ 1 -$ 1,000,000، XNUMX، XNUMX ٻن اعشاري جڳهن تائين.",
+    "fixedDollarPrice": "ڊالر جي قيمت مقرر رهي ٿو ؛ ٽوڪن جي رقم تازه ڪاري.",
+    "priceUpdated": "قيمت تازه ڪاري. رقم جو جائزو وٺو ۽ ٻيهر خريد ڪريو ٽيپ ڪريو.",
+    "tokensPaidToSeller": "فروش کي سڌي طرح ادا ڪيو",
+    "priceUsd": "قيمت (يو ايس ڊي)"
   },
   "stores": {
     "subtitle": "DeHub ڪميونٽي جون پراڊڪٽس دريافت ڪريو",
@@ -4088,7 +4124,8 @@
     "madeForKidsOffDesc": "اهو پوسٽ ٻارن جي موڊ استعمال ڪندڙ ٻارن کي ڏيکاري ٿو، ۽ اسان کي عام فيڊز مان نڪاري ٿو.",
     "madeForKidsBlockedByMature": "پختو نشان زد پوسٽ ٻارن لاءِ شايع نٿو ڪري سگهجي.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "RTMP تفصيلات حاصل ڪريو"
+    "encoderHint": "RTMP تفصيلات حاصل ڪريو",
+    "markMadeForKids": "ٻارن لاءِ ٺاهيل طور نشان لڳايو"
   },
   "bounty": {
     "claimed": "حاصل ٿيو",
@@ -4221,31 +4258,44 @@
       "noStreams": "XP حاصل ڪرڻ شروع ڪرڻ لاءِ لائيو وڃو.",
       "card": {
         "first-light": {
-          "hint": "پنهنجي پهرين اسٽريم کي مڪمل ڪريو جيڪا ڳڻجي ٿي."
+          "hint": "پنهنجي پهرين اسٽريم کي مڪمل ڪريو جيڪا ڳڻجي ٿي.",
+          "name": "پهرين روشني"
         },
         "marathon": {
-          "hint": "هڪ سيشن ۾ ٻه ڪلاڪ اسٽريم ڪريو."
+          "hint": "هڪ سيشن ۾ ٻه ڪلاڪ اسٽريم ڪريو.",
+          "name": "ميراٿون"
         },
         "night-owl": {
-          "hint": "اڌ رات ۽ صبح پنجن جي وچ ۾ اسٽريم ختم ڪريو."
+          "hint": "اڌ رات ۽ صبح پنجن جي وچ ۾ اسٽريم ختم ڪريو.",
+          "name": "رات جي اونداهي"
         },
         "regular": {
-          "hint": "لڳاتار چار هفتن ۾ اسٽريم ڪريو."
+          "hint": "لڳاتار چار هفتن ۾ اسٽريم ڪريو.",
+          "name": "باقاعده"
         },
         "iron-streak": {
-          "hint": "لڳاتار ٻارهن هفتن ۾ اسٽريم ڪريو."
+          "hint": "لڳاتار ٻارهن هفتن ۾ اسٽريم ڪريو.",
+          "name": "آئرن اسٽرئڪ"
         },
         "crowd": {
-          "hint": "هڪ ئي وقت ڏهن ماڻهن کي ڏسندي رکو."
+          "hint": "هڪ ئي وقت ڏهن ماڻهن کي ڏسندي رکو.",
+          "name": "هجوم"
         },
         "century": {
-          "hint": "هوا تي سئو (100) قابليت جا ڪلاڪ مڪمل ڪريو."
+          "hint": "هوا تي سئو (100) قابليت جا ڪلاڪ مڪمل ڪريو.",
+          "name": "صدي"
         },
         "legend": {
           "name": "ليجنڊ",
           "hint": "سطح ڏهن (10) تي پهچو."
         }
-      }
+      },
+      "viewCards": "ڪارڊ ڏسو",
+      "cardsTitle": "گڏ ڪرڻ لائق ڪارڊ",
+      "locked": "بند ٿيل",
+      "earnedOn": "ڪمايو {{date}}",
+      "recentTitle": "تازا وهڪرو",
+      "notCounted": "شمار نه ڪيو ويو"
     }
   },
   "liveShop": {
@@ -5597,5 +5647,52 @@
     "appealRef": "حوالو {{ref}}",
     "appealSubtitleSubject": "هڪ ماڻهو هن کي پڙهندو ۽ ٻيهر ڏسندو {{subject}}.",
     "appealMore": "اڃا تائين ڪردارن جي ضرورت آهي: {{count}}"
+  },
+  "support": {
+    "title": "تعاون",
+    "subtitle": "توهان جي ٽڪيٽن ۽ انهن جي حيثيت. نه اي آءِ، نه فيس.",
+    "newTicket": "نئون ٽڪيٽ",
+    "newTicketHint": "اسان کي ٻڌايو ته ڇا ٿيو ۽ توهان بدران ڇا توقع ڪئي.",
+    "backToTickets": "ٽڪيٽن ڏانهن واپس",
+    "closedHeading": "بند ٿيل ({{n}})",
+    "noTickets": "توھان اڃا تائين ڪابه سپورٽ ٽڪيٽ داخل نه ڪئي آھي.",
+    "loadFailed": "توهان جا ٽڪيٽ لوڊ نه ڪري سگهيا. مهرباني ڪري ٻيهر ڪوشش ڪريو.",
+    "categoryLabel": "ڪيٽيگري",
+    "severityLabel": "ترجيح",
+    "subjectLabel": "موضوع",
+    "subjectPlaceholder": "1 - بيان مساله تحقيق",
+    "descriptionLabel": "ڇا ٿيو آهي",
+    "descriptionPlaceholder": "توهان ڇا ڪيو، توهان ڇا توقع ڪئي، ۽ بدران ڇا ٿيو.",
+    "stepsLabel": "نقل ڪرڻ جا قدم (اختياري)",
+    "submit": "ٽڪيٽ موڪليو",
+    "submitting": "موڪلي رهيو آهي...",
+    "filed": "ٽڪيٽ {{ref}} ٽيم سان گڏ آهي.",
+    "filedNotEmailed": "ٽڪيٽ {{ref}} رڪارڊ ڪيو. حوالو رکو.",
+    "alreadyOpen": "توھان وٽ اڳ ۾ ئي ھي کليل آھي {{ref}}.",
+    "filingFailed": "اھو ٽڪيٽ فائل نه ڪري سگھيو. مهرباني ڪري ٻيهر ڪوشش ڪريو.",
+    "status": {
+      "open": "کوليو",
+      "in_progress": "جاري آهي",
+      "resolved": "حل ڪيو ويو",
+      "closed": "بند"
+    },
+    "severity": {
+      "low": "گھٽ",
+      "normal": "عام",
+      "high": "بلند",
+      "urgent": "تڪڙي"
+    },
+    "category": {
+      "account_access": "کاتي جي رسائي",
+      "wallet_or_transactions": "پرس يا ٽرانزيڪشن",
+      "posting_or_uploads": "تحرير يا اپلوڊ",
+      "payments_or_subscriptions": "ادائگي يا سبسڪرپشن",
+      "live_streaming": "لائيو اسٽريمنگ",
+      "content_or_moderation": "مواد يا اعتدال پسند",
+      "bug": "بگ",
+      "feature_request": "خصوصيت جي درخواست",
+      "other": "ٻيو"
+    },
+    "filedOn": "داخل ٿيل {{date}}"
   }
 }

@@ -695,7 +695,22 @@
     "chainIdLabel": "Lánc azonosító: {{id}}",
     "exportPkConfirmPhrase": "ÉRTEM",
     "exportPkCopy": "Magánkulcs másolása",
-    "e2eAutomatic": "Automatikus"
+    "e2eAutomatic": "Automatikus",
+    "smsScopeLabel": "Mit küldjek SMS-ben",
+    "smsScopeDesc": "Az SMS-ek pénzbe kerülnek, ezért szűkítsd le azokra, ami megér egy megszakítást",
+    "smsScope": {
+      "all": "Minden, amit bekapcsoltam",
+      "tips": "Csak a kapott tippek",
+      "subscriptions": "Csak az új előfizetők",
+      "sales": "Csak a tartalmaim eladásai",
+      "bounties": "Csak a jutalmak",
+      "fractions": "Csak a töredékajánlatok és eladások",
+      "messages": "Csak a közvetlen üzenetek",
+      "mentions": "Csak az említéseim",
+      "replies": "Csak a hozzászólásaimra adott válaszok",
+      "account": "Csak az értesítések a fiókomról"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Némítás",
@@ -1863,7 +1878,8 @@
     "otherTokens": "Egyéb tokenek",
     "otherTokensDesc": "Vásárolj ETH-t vagy USDC-t a Base hálózaton a kártyáddal",
     "shareToFeed": "Megosztás a feedemben",
-    "sharePostTemplate": "Most adtam hozzá {{amount}} $DHB-t a DeHubon lévő stackemhez. Építkezés a közösséggel. #DeHub #DHB"
+    "sharePostTemplate": "Most adtam hozzá {{amount}} $DHB-t a DeHubon lévő stackemhez. Építkezés a közösséggel. #DeHub #DHB",
+    "minDhbPurchase": "A minimális DHB vásárlás 0,50 dollár"
   },
   "agents": {
     "title": "AI ügynökök",
@@ -3011,7 +3027,13 @@
     "addedToYourUsernames": "Bekerül a felhasználóneveid közé",
     "boughtNameGoesToVault": "Maradsz @{{current}}. A(z) @{{handle}} bekerül a felhasználóneveid közé, és bármikor átválthatsz rá.",
     "youAreNow": "Mostantól @{{handle}} vagy",
-    "boughtToVaultToast": "A(z) @{{handle}} most már a felhasználóneveid között van"
+    "boughtToVaultToast": "A(z) @{{handle}} most már a felhasználóneveid között van",
+    "askingPriceUsd": "Kérési ár (USD)",
+    "dollarPriceRange": "Adjon meg 1–1 000 000 dollárt, legfeljebb két tizedesjeggyel.",
+    "fixedDollarPrice": "A dollárár fix marad; a token mennyisége frissül.",
+    "priceUpdated": "Az ár frissült. Ellenőrizze az összeget, és koppintson újra a Vásárlás gombra.",
+    "tokensPaidToSeller": "Közvetlenül az eladónak fizetve",
+    "priceUsd": "Ár (USD)"
   },
   "stores": {
     "subtitle": "Fedezd fel a DeHub-közösség termékeit",
@@ -5632,5 +5654,53 @@
     "appealRef": "Referencia {{ref}}",
     "appealSubtitleSubject": "Ezt valaki elolvassa, és újra megnézi a {{subject}}címen.",
     "appealMore": "Még szükséges karakterek: {{count}}"
+  },
+  "support": {
+    "title": "Támogatás",
+    "subtitle": "Jegyek és azok állapota. Nincs AI, nincs díj.",
+    "newTicket": "Új jegy",
+    "newTicketHint": "Mondja el, mi történt, és mit várt volna helyette.",
+    "backToTickets": "Vissza a jegyekhez",
+    "openHeading": "Nyitott ({{n}})",
+    "closedHeading": "Lezárt ({{n}})",
+    "noTickets": "Még nem nyújtott be támogatási jegyet.",
+    "loadFailed": "Nem sikerült betölteni a jegyeit. Kérjük, próbálja újra.",
+    "categoryLabel": "Kategória",
+    "severityLabel": "Prioritás",
+    "subjectLabel": "Tantárgy",
+    "subjectPlaceholder": "Egy sor, amely leírja a problémát",
+    "descriptionLabel": "Mi történt?",
+    "descriptionPlaceholder": "Mit tettél, mire számítottál, és mi történt helyette.",
+    "stepsLabel": "A reprodukálás lépései (nem kötelező)",
+    "submit": "Jegy elküldése",
+    "submitting": "Küldés...",
+    "filed": "{{ref}} a csapatnál van.",
+    "filedNotEmailed": "{{ref}} jegy rögzítve. Őrizze meg a referenciát.",
+    "alreadyOpen": "Ez már meg van nyitva {{ref}}néven.",
+    "filingFailed": "Nem sikerült iktatni a jegyet. Próbálkozz újra.",
+    "status": {
+      "open": "Nyitva",
+      "in_progress": "Folyamatban",
+      "resolved": "Megoldva",
+      "closed": "Zárva"
+    },
+    "severity": {
+      "low": "Alacsony",
+      "normal": "Normál",
+      "high": "Magas",
+      "urgent": "Sürgős"
+    },
+    "category": {
+      "account_access": "Fiókhozzáférés",
+      "wallet_or_transactions": "Pénztárca vagy tranzakciók",
+      "posting_or_uploads": "Közzététel vagy feltöltés",
+      "payments_or_subscriptions": "Fizetések vagy előfizetések",
+      "live_streaming": "Élő Streaming",
+      "content_or_moderation": "Tartalom vagy moderálás",
+      "bug": "Hiba",
+      "feature_request": "Fontos kérés",
+      "other": "Egyéb"
+    },
+    "filedOn": "Iktatva {{date}}"
   }
 }

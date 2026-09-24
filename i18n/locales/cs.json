@@ -695,7 +695,22 @@
     "chainIdLabel": "ID řetězce: {{id}}",
     "exportPkConfirmPhrase": "ROZUMÍM",
     "exportPkCopy": "Kopírovat soukromý klíč",
-    "e2eAutomatic": "Automaticky"
+    "e2eAutomatic": "Automaticky",
+    "smsScopeLabel": "Co poslat SMS",
+    "smsScopeDesc": "SMS stojí peníze, takže je omezte na to, co stojí za přerušení",
+    "smsScope": {
+      "all": "Vše, co mám zapnuté",
+      "tips": "Pouze tipy, které dostanu",
+      "subscriptions": "Pouze noví odběratelé",
+      "sales": "Pouze prodeje mého obsahu",
+      "bounties": "Pouze odměny",
+      "fractions": "Pouze nabídky a prodeje zlomků",
+      "messages": "Pouze přímé zprávy",
+      "mentions": "Pouze zmínky o mně",
+      "replies": "Pouze odpovědi na mé komentáře",
+      "account": "Pouze oznámení o mém účtu"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Ztlumit",
@@ -1863,7 +1878,8 @@
     "otherTokens": "Další tokeny",
     "otherTokensDesc": "Kupte ETH nebo USDC na síti Base svou kartou",
     "shareToFeed": "Sdílet na mém kanálu",
-    "sharePostTemplate": "Právě jsem přidal/a {{amount}} $DHB do svého zásobníku na DeHubu. Budování s komunitou. #DeHub #DHB"
+    "sharePostTemplate": "Právě jsem přidal/a {{amount}} $DHB do svého zásobníku na DeHubu. Budování s komunitou. #DeHub #DHB",
+    "minDhbPurchase": "Minimální nákup DHB je 0,50 $"
   },
   "agents": {
     "title": "AI agenti",
@@ -3011,7 +3027,13 @@
     "addedToYourUsernames": "Přidá se k vašim uživatelským jménům",
     "boughtNameGoesToVault": "Zůstáváte @{{current}}. @{{handle}} přibude k vašim uživatelským jménům a můžete na něj kdykoli přepnout.",
     "youAreNow": "Nyní jste @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} je nyní mezi vašimi uživatelskými jmény"
+    "boughtToVaultToast": "@{{handle}} je nyní mezi vašimi uživatelskými jmény",
+    "askingPriceUsd": "Prodejní cena (USD)",
+    "dollarPriceRange": "Zadejte 1–1 000 000 $ s až dvěma desetinnými místy.",
+    "fixedDollarPrice": "Cena v dolarech zůstává pevná; množství tokenů se aktualizuje.",
+    "priceUpdated": "Cena aktualizována. Zkontrolujte částku a znovu klepněte na Koupit.",
+    "tokensPaidToSeller": "Placeno přímo prodejci",
+    "priceUsd": "Cena (USD)"
   },
   "stores": {
     "subtitle": "Objev produkty od komunity DeHub",
@@ -5632,5 +5654,53 @@
     "appealRef": "Reference {{ref}}",
     "appealSubtitleSubject": "Osoba si to přečte a znovu se podívá na {{subject}}.",
     "appealMore": "Potřebné znaky: {{count}}"
+  },
+  "support": {
+    "title": "Podpora",
+    "subtitle": "Vaše tikety a jejich stav. Žádná AI, žádný poplatek.",
+    "newTicket": "Nový tiket",
+    "newTicketHint": "Řekněte nám, co se stalo a co jste místo toho očekávali.",
+    "backToTickets": "Zpět na tikety",
+    "openHeading": "Otevřené ({{n}})",
+    "closedHeading": "Uzavřené ({{n}})",
+    "noTickets": "Zatím jste nepodali žádné tikety podpory.",
+    "loadFailed": "Nepodařilo se načíst vaše tikety. Zkuste to znovu.",
+    "categoryLabel": "Kategorie",
+    "severityLabel": "Priorita",
+    "subjectLabel": "Předmět",
+    "subjectPlaceholder": "Jeden řádek popisující problém",
+    "descriptionLabel": "Co se stalo?",
+    "descriptionPlaceholder": "Co jsi udělal/a, co jsi očekával/a a co se stalo místo toho.",
+    "stepsLabel": "Kroky k reprodukci (volitelné)",
+    "submit": "Poslat lístek",
+    "submitting": "Odesílám...",
+    "filed": "Vstupenka {{ref}} je s týmem.",
+    "filedNotEmailed": "Vstupenka {{ref}} zaznamenána. Ponechte odkaz.",
+    "alreadyOpen": "Tuto možnost již máte otevřenou jako {{ref}}.",
+    "filingFailed": "Tiket se nepodařilo zaevidovat. Zkuste to prosím znovu.",
+    "status": {
+      "open": "Otevřít",
+      "in_progress": "Probíhající",
+      "resolved": "Vyřešeno",
+      "closed": "Zavřeno"
+    },
+    "severity": {
+      "low": "Nízká",
+      "normal": "standard",
+      "high": "Vysoká",
+      "urgent": "Naléhavé"
+    },
+    "category": {
+      "account_access": "User account access",
+      "wallet_or_transactions": "Peněženka nebo transakce",
+      "posting_or_uploads": "Zveřejňování nebo nahrávání",
+      "payments_or_subscriptions": "Platby nebo předplatné",
+      "live_streaming": "Živé vysílání",
+      "content_or_moderation": "Obsah nebo moderování",
+      "bug": "Chyba",
+      "feature_request": "Žádost o funkci",
+      "other": "Jiný zdroj"
+    },
+    "filedOn": "Podáno {{date}}"
   }
 }

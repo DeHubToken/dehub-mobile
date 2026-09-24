@@ -694,7 +694,23 @@
     "chainIdLabel": "Grandininis ID: {{id}}",
     "exportPkConfirmPhrase": "AŠ SUPRANTU",
     "exportPkCopy": "Kopijuoti privatų raktą",
-    "e2eAutomatic": "Automatinis"
+    "e2eAutomatic": "Automatinis",
+    "smsScopeLabel": "Ką rašyti",
+    "smsScopeDesc": "Žinutės kainuoja, todėl apribokite jas iki to, kas verta pertraukimo",
+    "smsScope": {
+      "all": "Viskas, ką įjungiau",
+      "tips": "Tik gauti patarimai",
+      "subscriptions": "Tik nauji prenumeratoriai",
+      "sales": "Tik mano turinio pardavimai",
+      "bounties": "Tik premijos",
+      "fractions": "Tik trupmeninių pasiūlymų ir pardavimų",
+      "messages": "Tik tiesioginės žinutės",
+      "mentions": "Tik mano paminėjimai",
+      "replies": "Tik atsakymai į mano komentarus",
+      "account": "Tik pranešimai apie mano paskyrą"
+    },
+    "smsNotificationsLocked": "Atrakinti su {{dhb}} DHB (${{usd}}) kredito",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Nutildyti",
@@ -1862,7 +1878,8 @@
     "otherTokens": "Kiti tokenai",
     "otherTokensDesc": "Pirkite ETH arba USDC „Base“ tinkle savo kortele",
     "shareToFeed": "Dalytis mano sklaidos kanale",
-    "sharePostTemplate": "Ką tik pridėjau {{amount}} $DHB prie mano „DeHub“ rietuvės. Kuriame kartu su bendruomene. #DeHub #DHB"
+    "sharePostTemplate": "Ką tik pridėjau {{amount}} $DHB prie mano „DeHub“ rietuvės. Kuriame kartu su bendruomene. #DeHub #DHB",
+    "minDhbPurchase": "Minimalus DHB pirkinys yra 0,50 USD"
   },
   "agents": {
     "title": "DI agentai",
@@ -3006,7 +3023,13 @@
     "addedToYourUsernames": "Pridedamas prie jūsų naudotojo vardų",
     "boughtNameGoesToVault": "Liekate @{{current}}. @{{handle}} patenka į jūsų naudotojo vardus, ir galite į jį persijungti bet kada.",
     "youAreNow": "Dabar esate @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} dabar yra tarp jūsų naudotojo vardų"
+    "boughtToVaultToast": "@{{handle}} dabar yra tarp jūsų naudotojo vardų",
+    "askingPriceUsd": "Klausiama kaina (USD)",
+    "dollarPriceRange": "Įveskite 1–1 000 000 USD, su ne daugiau kaip dviem skaičiais po kablelio.",
+    "fixedDollarPrice": "Dolerių kaina išlieka fiksuota; žetonų kiekis atnaujinamas.",
+    "priceUpdated": "Kaina atnaujinta. Peržiūrėkite sumą ir dar kartą palieskite Pirkti.",
+    "tokensPaidToSeller": "Mokama tiesiogiai pardavėjui",
+    "priceUsd": "Kaina (USD)"
   },
   "stores": {
     "subtitle": "Atraskite DeHub bendruomenės produktus",
@@ -4104,7 +4127,8 @@
     "madeForKidsOffDesc": "Rodo šį įrašą vaikams, naudojantiems vaikų režimą, ir išima jį iš įprastų srautų.",
     "madeForKidsBlockedByMature": "Įrašas, pažymėtas kaip suaugusiųjų, negali būti publikuojamas ir vaikams.",
     "encoderTitle": "OBS / Koduoklis",
-    "encoderHint": "Gaukite RTMP išsamią informaciją"
+    "encoderHint": "Gaukite RTMP išsamią informaciją",
+    "markMadeForKids": "Pažymėti kaip sukurtą vaikams"
   },
   "bounty": {
     "claimed": "Atsiimta",
@@ -5625,5 +5649,53 @@
     "appealRef": "Nuoroda {{ref}}",
     "appealSubtitleSubject": "Asmuo tai perskaitys ir dar kartą pažvelgs į {{subject}}.",
     "appealMore": "Simbolių vis dar reikia: {{count}}"
+  },
+  "support": {
+    "title": "Pagalba",
+    "subtitle": "Jūsų bilietai ir jų būsena. Jokių dirbtinio intelekto, jokių mokesčių.",
+    "newTicket": "Naujas bilietas",
+    "newTicketHint": "Papasakokite, kas nutiko ir ko tikėjotės.",
+    "backToTickets": "Atgal prie bilietų",
+    "openHeading": "Atidaryti ({{n}})",
+    "closedHeading": "Uždaryti ({{n}})",
+    "noTickets": "Dar nepateikėte jokių pagalbos bilietų.",
+    "loadFailed": "Nepavyko įkelti jūsų bilietų. Bandykite dar kartą.",
+    "categoryLabel": "Kategorija",
+    "severityLabel": "Pirmumas",
+    "subjectLabel": "Tema",
+    "subjectPlaceholder": "Viena eilutė, apibūdinanti problemą",
+    "descriptionLabel": "Kas atsitiko",
+    "descriptionPlaceholder": "Ką padarėte, ko tikėjotės ir kas nutiko.",
+    "stepsLabel": "Atkūrimo veiksmai (pasirinktinai)",
+    "submit": "Siųsti savo bilietą",
+    "submitting": "Siunčiama...",
+    "filed": "Bilietas {{ref}} yra su komanda.",
+    "filedNotEmailed": "Bilietas {{ref}} įrašytas. Išsaugokite nuorodą.",
+    "alreadyOpen": "Jūs jau turite tai atidaryti kaip {{ref}}.",
+    "filingFailed": "Nepavyko pateikti šio bilieto. Bandykite dar kartą.",
+    "status": {
+      "open": "Atvi-",
+      "in_progress": "Vykdoma",
+      "resolved": "NustatytaThe role of the transaction, in past tense",
+      "closed": "Uždara"
+    },
+    "severity": {
+      "low": "Mažas",
+      "normal": "Normalė",
+      "high": "Aukštas",
+      "urgent": "Skubu"
+    },
+    "category": {
+      "account_access": "Prieiga prie paskyros",
+      "wallet_or_transactions": "Piniginė arba operacijos",
+      "posting_or_uploads": "Skelbimai arba įkėlimai",
+      "payments_or_subscriptions": "Mokėjimai arba prenumeratos",
+      "live_streaming": "\"Tiesioginis srautinis perdavimas\"",
+      "content_or_moderation": "Turinys arba moderavimas",
+      "bug": "Description",
+      "feature_request": "Siųsti funkcijos užklausą",
+      "other": "Kita"
+    },
+    "filedOn": "Filed {{date}}"
   }
 }

@@ -694,7 +694,23 @@
     "chainIdLabel": "Ķēdes ID: {{id}}",
     "exportPkConfirmPhrase": "ES SAPROTU",
     "exportPkCopy": "Kopēt privāto atslēgu",
-    "e2eAutomatic": "Automātiski"
+    "e2eAutomatic": "Automātiski",
+    "smsScopeLabel": "Ko rakstīt",
+    "smsScopeDesc": "Īsziņas maksā naudu, tāpēc ierobežojiet tās līdz tam, kas ir vērts pārtraukumu",
+    "smsScope": {
+      "all": "Viss, ko esmu ieslēdzis",
+      "tips": "Tikai saņemtie padomi",
+      "subscriptions": "Tikai jauni abonenti",
+      "sales": "Tikai mana satura pārdošana",
+      "bounties": "Tikai prēmijas",
+      "fractions": "Tikai daļēji piedāvājumi un pārdošana",
+      "messages": "Tikai tiešās ziņas",
+      "mentions": "Tikai manas pieminēšanas",
+      "replies": "Tikai atbildes uz maniem komentāriem",
+      "account": "Tikai paziņojumi par manu kontu"
+    },
+    "smsNotificationsLocked": "Atbloķēt ar {{dhb}} DHB (${{usd}}) kredīta",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Izslēgt skaņu",
@@ -1862,7 +1878,8 @@
     "otherTokens": "Citi tokeni",
     "otherTokensDesc": "Pērciet ETH vai USDC tīklā Base ar savu karti",
     "shareToFeed": "Kopīgot manā plūsmā",
-    "sharePostTemplate": "Tikko pievienoju {{amount}} $DHB savam DeHub salikumam. Veidošana kopā ar kopienu. #DeHub #DHB"
+    "sharePostTemplate": "Tikko pievienoju {{amount}} $DHB savam DeHub salikumam. Veidošana kopā ar kopienu. #DeHub #DHB",
+    "minDhbPurchase": "Minimālais DHB pirkums ir 0,50 USD"
   },
   "agents": {
     "title": "MI aģenti",
@@ -3006,7 +3023,13 @@
     "addedToYourUsernames": "Tiek pievienots jūsu lietotājvārdiem",
     "boughtNameGoesToVault": "Jūs paliekat @{{current}}. @{{handle}} nonāk jūsu lietotājvārdos, un jūs varat pārslēgties uz to jebkurā laikā.",
     "youAreNow": "Tagad jūs esat @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} tagad ir jūsu lietotājvārdos"
+    "boughtToVaultToast": "@{{handle}} tagad ir jūsu lietotājvārdos",
+    "askingPriceUsd": "Pieprasītā cena (USD)",
+    "dollarPriceRange": "Ievadiet 1–1 000 000 USD, ar līdz divām aiz komata esošām vietām.",
+    "fixedDollarPrice": "Dolāra cena paliek nemainīga; žetonu skaits tiek atjaunināts.",
+    "priceUpdated": "Cena atjaunināta. Pārskatiet summu un vēlreiz nospiediet Pirkt.",
+    "tokensPaidToSeller": "Maksāts tieši pārdevējam",
+    "priceUsd": "Cena (USD)"
   },
   "stores": {
     "subtitle": "Atklāj DeHub kopienas produktus",
@@ -4104,7 +4127,8 @@
     "madeForKidsOffDesc": "Parāda šo ierakstu bērniem, kuri izmanto bērnu režīmu, un noņem to no parastajiem plūsmām.",
     "madeForKidsBlockedByMature": "Ieraksts, kas atzīmēts kā pieaugušiem paredzēts, nevar tikt publicēts arī bērniem.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Iegūstiet RTMP detaļas"
+    "encoderHint": "Iegūstiet RTMP detaļas",
+    "markMadeForKids": "Atzīmēt kā izgatavotu bērniem"
   },
   "bounty": {
     "claimed": "Saņemts",
@@ -5626,5 +5650,53 @@
     "appealRef": "Atsauce {{ref}}",
     "appealSubtitleSubject": "Persona to izlasīs un vēlreiz apskatīs {{subject}}.",
     "appealMore": "Vēl nepieciešamas rakstzīmes: {{count}}"
+  },
+  "support": {
+    "title": "Atbalsts",
+    "subtitle": "Jūsu biļetes un to statuss. Nav mākslīgā intelekta, nav maksas.",
+    "newTicket": "Jauna biļete",
+    "newTicketHint": "Pastāstiet mums, kas notika un ko jūs gaidījāt.",
+    "backToTickets": "Atpakaļ uz biļetēm",
+    "openHeading": "Atvērtas ({{n}})",
+    "closedHeading": "Aizvērtas ({{n}})",
+    "noTickets": "Jūs vēl neesat iesniedzis nevienu atbalsta biļeti.",
+    "loadFailed": "Nevarēja ielādēt jūsu biļetes. Lūdzu, mēģiniet vēlreiz.",
+    "categoryLabel": "Kategorija",
+    "severityLabel": "Prioritāte",
+    "subjectLabel": "Mācību priekšmets",
+    "subjectPlaceholder": "Viena rindiņa, kas apraksta problēmu",
+    "descriptionLabel": "Notikumi",
+    "descriptionPlaceholder": "Ko jūs darījāt, ko gaidījāt un kas tā vietā notika.",
+    "stepsLabel": "Atveidošanas darbības (neobligāti)",
+    "submit": "Sūtīt biļeti",
+    "submitting": "Tiek sūtīts...",
+    "filed": "Biļete {{ref}} ir kopā ar komandu.",
+    "filedNotEmailed": "Biļete {{ref}} ierakstīta. Saglabājiet atsauci.",
+    "alreadyOpen": "Jums tas jau ir atvērts kā {{ref}}.",
+    "filingFailed": "Nevarēja iesniegt šo biļeti. Lūdzu, mēģiniet vēlreiz.",
+    "status": {
+      "open": "Atvērti",
+      "in_progress": "Procesā",
+      "resolved": "Atrisināts",
+      "closed": "Aizvērts"
+    },
+    "severity": {
+      "low": "Zems",
+      "normal": "Parasts",
+      "high": "Augsts",
+      "urgent": "Kritiska"
+    },
+    "category": {
+      "account_access": "Piekļuve kontam",
+      "wallet_or_transactions": "Maks vai darījumi",
+      "posting_or_uploads": "Publicēšana vai augšupielāde",
+      "payments_or_subscriptions": "Maksājumi vai abonementi",
+      "live_streaming": "Straumēšana reāllaikā",
+      "content_or_moderation": "Saturs vai moderācija",
+      "bug": "Atrasta Kļūda",
+      "feature_request": "Funkciju pieprasījums",
+      "other": "Cits"
+    },
+    "filedOn": "Filed {{date}}"
   }
 }

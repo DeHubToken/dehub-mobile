@@ -1891,7 +1891,8 @@
     "otherTokens": "Tookeniiwwan biroo",
     "otherTokensDesc": "Kaardii keetiin Base irratti ETH ykn USDC bitadhu",
     "shareToFeed": "Share gochuun feed kootti",
-    "sharePostTemplate": "Reefu {{amount}} $DHB gara tuullaa koo DeHub irratti dabaleera. Hawaasa waliin ijaaruu. #DeHub #DHB"
+    "sharePostTemplate": "Reefu {{amount}} $DHB gara tuullaa koo DeHub irratti dabaleera. Hawaasa waliin ijaaruu. #DeHub #DHB",
+    "minDhbPurchase": "Bittaa DHB xiqqaan $0.50 dha"
   },
   "agents": {
     "title": "Eejentii AI",
@@ -3035,7 +3036,13 @@
     "addedToYourUsernames": "Maqaa fayyadamtootaa kee irratti dabalama",
     "boughtNameGoesToVault": "Ati @{{current}} taatee turta. @{{handle}} maqaa fayyadamtootaa kee keessa gala, yeroo barbaadde gara isaatti jijjiiruu dandeessa.",
     "youAreNow": "Amma ati @{{handle}} dha",
-    "boughtToVaultToast": "@{{handle}} amma maqaa fayyadamtootaa kee keessa jira"
+    "boughtToVaultToast": "@{{handle}} amma maqaa fayyadamtootaa kee keessa jira",
+    "askingPriceUsd": "Gatii gaafatame (USD) .",
+    "dollarPriceRange": "$1–$1,000,000 galchi, hanga bakka kurnyee lamaa.",
+    "fixedDollarPrice": "Gatiin doolaaraa dhaabbataa ta’ee hafa; haaromsa hamma mallattoo.",
+    "priceUpdated": "Gatiin haaromfame. Hanga sana ilaaliitii irra deebi&#39;ii Bitadhu tuqi.",
+    "tokensPaidToSeller": "Kallattiin gurguraaf kan kaffalame",
+    "priceUsd": "Gatii (USD) ."
   },
   "stores": {
     "subtitle": "Oomishaalee hawaasa DeHub irraa argadhu",
@@ -4132,7 +4139,8 @@
     "madeForKidsOffDesc": "Poost kana ijoollee Haala Ijoollee fayyadamuu keessatti mul'isa, fi feed idileetti keessaa baata.",
     "madeForKidsBlockedByMature": "Poost uumamaa ta'e ijoolleef dabarsuun hin danda'amu.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "RTMP details argachuu"
+    "encoderHint": "RTMP details argachuu",
+    "markMadeForKids": "Ijoolleef taasifame"
   },
   "bounty": {
     "claimed": "Fudhatame",
@@ -5689,5 +5697,54 @@
     "appealRef": "Wabii {{ref}}",
     "appealSubtitleSubject": "Namni tokko kana dubbisee irra deebi&#39;ee {{subject}} ilaala.",
     "appealMore": "Arfiileen ammallee barbaachisan: {{count}}"
+  },
+  "support": {
+    "title": "deeggarsa.",
+    "subtitle": "Tikeetii keessanii fi haala isaanii. AI hin qabu, kaffaltii hin qabu.",
+    "newTicket": "Tikeetii haaraa",
+    "newTicketHint": "Bakka isaa maaltu ta&#39;ee fi maal akka eegdan nuuf himaa.",
+    "backToTickets": "Gara tikkeettii deebi&#39;aa",
+    "openHeading": "Banaa ({{n}})",
+    "closedHeading": "Cufaadha ({{n}})",
+    "noTickets": "Hanga ammaatti tikkeettii deeggarsa tokkollee hin galchine.",
+    "loadFailed": "Tikeetii keessan fe&#39;uu hin dandeenye. Mee irra deebi&#39;ii yaalaa.",
+    "categoryLabel": "Ramaddii",
+    "severityLabel": "Dursa",
+    "subjectLabel": "Mata duree",
+    "subjectPlaceholder": "Sarara tokko kan rakkoo ibsu",
+    "descriptionLabel": "Waan ta&#39;e",
+    "descriptionPlaceholder": "Waan goote, waan eegde, bakka isaa maaltu ta&#39;e.",
+    "stepsLabel": "Tarkaanfiiwwan baay’isuu (dirqama) .",
+    "stepsPlaceholder": "1. Nyaata banaa&#10; 2. Upload tuqi&#10; 3. ...",
+    "submit": "Tikeetii ergaa",
+    "submitting": "Ergaa...",
+    "filed": "Tikeetiin {{ref}} garee waliin jira.",
+    "filedNotEmailed": "Tikeetii {{ref}} waraabame. Wabii sana qabadhu.",
+    "alreadyOpen": "Kana duraanuu akka {{ref}} banaa qabdu.",
+    "filingFailed": "Tikeetii sana galmeessuu hin dandeenye. Mee irra deebi&#39;ii yaalaa.",
+    "status": {
+      "open": "Banaa",
+      "in_progress": "Adeemsa irra jira",
+      "resolved": "Furmaata argateera",
+      "closed": "Cufameera"
+    },
+    "severity": {
+      "low": "Gadi bu'aa",
+      "normal": "Baratamaa",
+      "high": "Ol aanaa",
+      "urgent": "atattama"
+    },
+    "category": {
+      "account_access": "Akkaawuntii argachuu",
+      "wallet_or_transactions": "Wallet ykn daldala",
+      "posting_or_uploads": "Maxxansuu ykn olkaa&#39;uu",
+      "payments_or_subscriptions": "Kaffaltii ykn maallaqa galchuu",
+      "live_streaming": "Tamsaasa kallattiin",
+      "content_or_moderation": "Qabiyyee ykn jiddugaleessa",
+      "bug": "Geergoo",
+      "feature_request": "Gaaffii amala",
+      "other": "kan biraa!\""
+    },
+    "filedOn": "{{date}} irratti galmaa&#39;e."
   }
 }

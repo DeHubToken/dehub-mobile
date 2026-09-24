@@ -695,7 +695,22 @@
     "chainIdLabel": "Cadena ID: {{id}}",
     "exportPkConfirmPhrase": "ENTENC",
     "exportPkCopy": "Copia la clau privada",
-    "e2eAutomatic": "Automàtic"
+    "e2eAutomatic": "Automàtic",
+    "smsScopeLabel": "Què enviar per SMS",
+    "smsScopeDesc": "Els SMS costen diners, així que limita'ls al que val la pena interrompre",
+    "smsScope": {
+      "all": "Tot el que tinc activat",
+      "tips": "Només les propines que rebo",
+      "subscriptions": "Només nous subscriptors",
+      "sales": "Només vendes del meu contingut",
+      "bounties": "Només recompenses",
+      "fractions": "Només ofertes i vendes de fraccions",
+      "messages": "Només missatges directes",
+      "mentions": "Només mencions meves",
+      "replies": "Només respostes als meus comentaris",
+      "account": "Només avisos sobre el meu compte"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Silencia",
@@ -1863,7 +1878,8 @@
     "otherTokens": "Altres tokens",
     "otherTokensDesc": "Compra ETH o USDC a Base amb la teva targeta",
     "shareToFeed": "Comparteix al meu canal",
-    "sharePostTemplate": "Acabo d'afegir {{amount}} $DHB a la meva pila a DeHub. Construir amb la comunitat. #DeHub #DHB"
+    "sharePostTemplate": "Acabo d'afegir {{amount}} $DHB a la meva pila a DeHub. Construir amb la comunitat. #DeHub #DHB",
+    "minDhbPurchase": "La compra mínima de DHB és de 0,50 $"
   },
   "agents": {
     "title": "Agents IA",
@@ -3007,7 +3023,13 @@
     "addedToYourUsernames": "S'afegeix als teus noms d'usuari",
     "boughtNameGoesToVault": "Continues sent @{{current}}. @{{handle}} va als teus noms d'usuari i pots canviar-hi quan vulguis.",
     "youAreNow": "Ara ets @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} ja és als teus noms d'usuari"
+    "boughtToVaultToast": "@{{handle}} ja és als teus noms d'usuari",
+    "askingPriceUsd": "Preu de venda (USD)",
+    "dollarPriceRange": "Introdueix entre 1 $ i 1.000.000 $, amb fins a dos decimals.",
+    "fixedDollarPrice": "El preu en dòlars es manté fix; la quantitat de fitxes s'actualitza.",
+    "priceUpdated": "Preu actualitzat. Revisa la quantitat i toca Comprar de nou.",
+    "tokensPaidToSeller": "Pagat directament al venedor",
+    "priceUsd": "Preu (USD)"
   },
   "stores": {
     "subtitle": "Descobreix productes de la comunitat DeHub",
@@ -5629,5 +5651,53 @@
     "appealRef": "Referència {{ref}}",
     "appealSubtitleSubject": "Una persona ho llegirà i tornarà a mirar {{subject}}.",
     "appealMore": "Encara calen caràcters: {{count}}"
+  },
+  "support": {
+    "title": "Suport",
+    "subtitle": "Els teus tickets i el seu estat. Sense IA, sense comissions.",
+    "newTicket": "Nou ticket",
+    "newTicketHint": "Explica'ns què ha passat i què esperaves en canvi.",
+    "backToTickets": "Tornar als tickets",
+    "openHeading": "Obert ({{n}})",
+    "closedHeading": "Tancat ({{n}})",
+    "noTickets": "Encara no has presentat cap ticket de suport.",
+    "loadFailed": "No s'han pogut carregar els teus tickets. Torna a provar-ho.",
+    "categoryLabel": "Categoria",
+    "severityLabel": "Prioritat",
+    "subjectLabel": "Tema",
+    "subjectPlaceholder": "Una línia que descriu el problema",
+    "descriptionLabel": "Què va passar",
+    "descriptionPlaceholder": "El que vas fer, el que esperaves i el que va passar.",
+    "stepsLabel": "Passos per reproduir-lo (opcional)",
+    "submit": "Enviar tiquet",
+    "submitting": "Enviant...",
+    "filed": "El tiquet {{ref}} és amb l'equip.",
+    "filedNotEmailed": "Tiquet {{ref}} enregistrat. Conserva la referència.",
+    "alreadyOpen": "Ja ho tens obert com a {{ref}}.",
+    "filingFailed": "No s'ha pogut presentar aquest tiquet. Torna-ho a provar.",
+    "status": {
+      "open": "Obre",
+      "in_progress": "En curs",
+      "resolved": "Resolt",
+      "closed": "Tancades"
+    },
+    "severity": {
+      "low": "Baix",
+      "normal": "Normal",
+      "high": "Alt",
+      "urgent": "Urgents"
+    },
+    "category": {
+      "account_access": "Accés al compte",
+      "wallet_or_transactions": "Moneder o transaccions",
+      "posting_or_uploads": "Publicació o càrregues",
+      "payments_or_subscriptions": "Pagaments o subscripcions",
+      "live_streaming": "reproducció en temps real",
+      "content_or_moderation": "Contingut o moderació",
+      "bug": "Error",
+      "feature_request": "Sol·licitud de funcions",
+      "other": "Altres"
+    },
+    "filedOn": "Presentat {{date}}"
   }
 }

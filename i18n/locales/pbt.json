@@ -681,7 +681,35 @@
     "chainIdLabel": "د چین ID: {{id}}",
     "exportPkConfirmPhrase": "زه پوهیږم",
     "exportPkCopy": "شخصي کیلي کاپي کړئ",
-    "e2eAutomatic": "اتوماتیک"
+    "e2eAutomatic": "اتوماتیک",
+    "socialFollowers": "پیروان په {{platform}}",
+    "publicChatAlertsRateOption": "{{count}} په یوه ساعت",
+    "smsScopeLabel": "څه باید ولیکئ",
+    "smsScopeDesc": "ټولونه پیسې لګښت لري، نو هغه محدود کړئ چې د مداخلې ارزښت لري",
+    "smsScope": {
+      "all": "هرڅه چې ما فعال کړي",
+      "tips": "یوازې هغه لارښوونې چې زه ترلاسه کوم",
+      "subscriptions": "یوازې نوي پیرودونکي",
+      "sales": "یوازې زما د مینځپانګې پلور",
+      "bounties": "یوازې انعامونه",
+      "fractions": "یوازې د برخې وړاندیزونه او پلور",
+      "messages": "یوازې مستقیم پیغامونه",
+      "mentions": "یوازې زما یادونه",
+      "replies": "یوازې زما تبصرو ته ځوابونه",
+      "account": "یوازې زما حساب په اړه خبرتیاوې"
+    },
+    "smsNotificationsDescReady": "{{phone}} ته لیږل شوی — {{dhb}} DHB هر یو، شاوخوا {{count}} پاتې دي",
+    "smsNotificationsLocked": "د {{dhb}} DHB (${{usd}}) کریډیټ سره خلاص کړئ",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) ټیلیفونونه خلاصوي او ستاسو لومړنی بیلانس کیږي.",
+    "smsDepositAction": "{{dhb}} DHB واستوئ",
+    "smsDepositSlow": "ستاسو لیږد لاهم په زنځیر کې نه دی ښکاره شوی. دا خوندي دی — دا بیا خلاص کړئ او دا به اعتبار شي. حواله: {{hash}}",
+    "smsNeedDhb": "تاسو د متن خبرتیاوې خلاصولو لپاره {{dhb}} DHB ته اړتیا لرئ.",
+    "smsBalance": "{{dhb}} DHB پاتې دي (${{usd}})",
+    "smsBalanceMessages": "شاوخوا {{count}} نور پیغامونه",
+    "smsTopUp": "{{dhb}} DHB پورته کړئ",
+    "smsCodeSent": "کوډ لیږل شوی. دا {{price}} DHB لګښت درلود.",
+    "smsCodeLabel": "کوډ چې موږ {{phone}} ته واستوو",
+    "badgeDelegationLendsAny": "هر یو بل حساب ته هر هغه بیرج پور ورکوي چې تاسو یې خلاص کړی وي، تر خپل {{tier}} پورې. یو کوچنی بیرج لاهم یو بشپړ سلاټ کاروي."
   },
   "common": {
     "mute": "غږ بند کړئ",
@@ -765,7 +793,8 @@
     "attachDescription": "DHB ټوکنونه د ټپ په توګه خپل پیغام سره ضمیمه کړئ",
     "minAmount": "کم {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB ضمیمه کړئ",
-    "removeTip": "ټپ ړنګ کړئ"
+    "removeTip": "ټپ ړنګ کړئ",
+    "toContent": "مینځپانګه لارښوونه کړئ"
   },
   "postOptions": {
     "options": "اختیارونه",
@@ -1394,7 +1423,23 @@
     "payments": "تادیات",
     "claimBounty": "خپل انعام واخلئ",
     "noneForFilter": "تر اوسه د {{filter}} خبرتیا نشته.",
-    "andNOthers": "او {{count}} نور"
+    "andNOthers": "او {{count}} نور",
+    "badgeLent": "{{name}} تاسو ته د دوی {{tier}} بیرج پور درکړ",
+    "badgeTakenBack": "{{name}} له تاسو څخه د دوی {{tier}} بیرج پور ورکول بند کړل",
+    "badgeHandedBack": "{{name}} ستاسو {{tier}} بیرج بیرته راګرځولې چې تاسو ورته پور کړی و",
+    "badgeLoanLapsed": "{{name}} نور نشي کولی خپل {{tier}} بیرج تاسو ته پور کړي",
+    "badgeLoanDropped": "تاسو نور نشئ کولی خپل {{tier}} بیرج {{name}} ته پور کړئ",
+    "badgeLoanRetiered": "{{name}} اوس تاسو ته {{tier}} بیرج پور کوي",
+    "community": {
+      "joined": "{{name}} ستاسو ټولنې سره یوځای شو",
+      "joinedNamed": "{{name}} \"{{community}}\" سره یوځای شو",
+      "requested": "{{name}} ستاسو ټولنې سره یوځای کیدو غوښتنه وکړه",
+      "requestedNamed": "{{name}} \"{{community}}\" سره یوځای کیدو غوښتنه وکړه",
+      "mentioned": "{{name}} تاسو په ټولنه کې یاد کړ",
+      "mentionedNamed": "{{name}} تاسو په \"{{community}}\" کې یاد کړ",
+      "here": "{{name}} په ټولنه کې هر چا ته پیغام واستوه",
+      "hereNamed": "{{name}} په \"{{community}}\" کې هر چا ته پیغام واستوه"
+    }
   },
   "leaderboard": {
     "title": "لیډربورډونه",
@@ -1831,7 +1876,9 @@
     "failedOnramp": "آنریمپ نشي پیل کیدلی",
     "otherTokens": "نور ټوکنونه",
     "otherTokensDesc": "په خپل کارت سره په Base کې ETH یا USDC واخلئ",
-    "shareToFeed": "زما د خوړو سره شریک کړئ"
+    "shareToFeed": "زما د خوړو سره شریک کړئ",
+    "minDhbPurchase": "لږترلږه DHB پیرود $0.50 دی",
+    "sharePostTemplate": "یوازې زما په DeHub سټیک کې {{amount}} $DHB اضافه کړ. له ټولنې سره جوړول. #DeHub #DHB"
   },
   "agents": {
     "title": "AI ایجنټونه",
@@ -2090,7 +2137,10 @@
       "signInToComment": "په مناظره کې د ګډون لپاره لاندې لېنک کېکاږئ",
       "empty": "په دې اړه نور جزیات نه دي ورکړل شوي، خبرې اترې پیل کړئ.",
       "joinOnProposal": "په بحث کې ګډون وکړئ",
-      "authorChip": "د پلورونکي وړاندیز"
+      "authorChip": "د پلورونکي وړاندیز",
+      "replyingTo": "{{name}} ته ځواب ورکول",
+      "showMoreReplies": "{{count}} نور ځوابونه وښایاست",
+      "showMoreReplies_one": "{{count}} نور ځواب وښایاست"
     }
   },
   "sidebar": {
@@ -2420,7 +2470,9 @@
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
-    "rate_limited": "د بریدو حد، ورو ورو"
+    "rate_limited": "د بریدو حد، ورو ورو",
+    "image_too_large_tier": "انځور ډیر لوی دی - ستاسو {{tier}} کچه تر {{limit}} MB پورې انځورونه ذخیره کوي",
+    "image_too_large_untiered": "انځور ډیر لوی دی - انځورونه تر {{limit}} MB پورې ذخیره کیږي"
   },
   "staking": {
     "title": "Staking",
@@ -2518,7 +2570,8 @@
     "lockedEarlyFee": "تر {{date}} پورې بند. اوس نیول 88% بیرته راګرځوي — 12% فیس، تقریباً {{fee}} DHB. د منظوری لپاره دوبارہ ټپ کړئ.",
     "unstakeReverted": "نیول په زنجیر کې بیرته شو.",
     "unstakeSent": "{{amount}} DHB نیول شو! TX: {{hash}}…",
-    "unstakeFailed": "نیول ناکام شو."
+    "unstakeFailed": "نیول ناکام شو.",
+    "lockedUntilWithFee": "تر {{date}} پورې بند دی، له هغه مخکې 12٪ فیس"
   },
   "communities": {
     "title": "Communities",
@@ -2969,7 +3022,13 @@
     "addedToYourUsernames": "ستاسو کارن نومونو ته ورزیاتیږي",
     "boughtNameGoesToVault": "تاسو @{{current}} پاتې کېږئ. @{{handle}} ستاسو کارن نومونو ته ځي، او هر وخت چې وغواړئ ورته اوښتلی شئ.",
     "youAreNow": "اوس تاسو @{{handle}} یاست",
-    "boughtToVaultToast": "@{{handle}} اوس ستاسو په کارن نومونو کې دی"
+    "boughtToVaultToast": "@{{handle}} اوس ستاسو په کارن نومونو کې دی",
+    "askingPriceUsd": "د غوښتنې قیمت (USD)",
+    "dollarPriceRange": "$1–$1,000,000 دننه کړئ، تر دوه اعشاریه پورې.",
+    "fixedDollarPrice": "د ډالر قیمت ثابت پاتې کیږي؛ د توکون مقدار تازه کیږي.",
+    "priceUpdated": "قیمت تازه شو. مقدار بیاکتنه وکړئ او بیا پیرود باندې ټایپ وکړئ.",
+    "tokensPaidToSeller": "مستقیماً پلورونکي ته تادیه کیږي",
+    "priceUsd": "قیمت (USD)"
   },
   "stores": {
     "subtitle": "د DeHub ټولنې محصولات ومومئ",
@@ -3285,13 +3344,16 @@
     "yourDhb": "ستاسو DHB"
   },
   "digest": {
-    "someone": "څوک په"
+    "someone": "څوک په",
+    "andOthers_one": "{{names}} او {{count}} نور",
+    "andOthers_other": "{{names}} او {{count}} نور"
   },
   "publicChatAlerts": {
     "title": "د عامه خبرې اترې",
     "mentionTitle": "په عامه خبرو اترو کې برخه واخلئ",
     "voiceMessage": "د غږ پيغام",
-    "image": "یو انځور ته لاړ شئ"
+    "image": "یو انځور ته لاړ شئ",
+    "digest": "{{count}} نوي پیغامونه له {{who}} څخه: {{message}}"
   },
   "liveChat": {
     "attach": "یو عکس، GIF یا emoji اضافه کړئ",
@@ -3478,7 +3540,16 @@
     "mediaSource": "د رسنیو سرچینې غوره کړئ",
     "photoLibrary": "د انځورونو کتابتون",
     "videoFiles": "د فایلونو څخه ویډیو ډاونلوډ کړئ",
-    "fileError": "زه نشم کولی دا ویډیو ډاونلوډ کړم. خواهش مي کنم يکي ديگه رو امتحان کني"
+    "fileError": "زه نشم کولی دا ویډیو ډاونلوډ کړم. خواهش مي کنم يکي ديگه رو امتحان کني",
+    "anonymous": "{{count}} خوښونه له نامعلومو کاروونکو څخه",
+    "reactedPost": "{{name}} ستاسو پوسټ ته یې غبرګون ښودلی",
+    "repostedPost": "{{name}} ستاسو پوسټ یې بیا خپور کړ",
+    "quotedPost": "{{name}} ستاسو پوسټ یې نقل کړ",
+    "mentionedYou": "{{name}} تاسو ته یې یادونه کړې",
+    "followRequest": "{{name}} ستاسو د تعقیب غوښتنه یې وکړه",
+    "followAccepted": "{{name}} ستاسو د تعقیب غوښتنه یې ومنله",
+    "signalFlare": "{{name}} د سیګنال فلیر واستول",
+    "newMessage": "{{name}} تاسو ته یې پیغام واستوه"
   },
   "audioPost": {
     "popOut": "کور/هراړخیز/په داسې حال کې چې ستاسو غږ اورېدل کېږی، خپل غږ پورته کړئ",
@@ -3488,7 +3559,9 @@
     "untitled": "د ویډیو پوسته",
     "creator": "د DeHub جوړونکی",
     "play": "لوبې وکړئ",
-    "pause": "په وقفه کې"
+    "pause": "په وقفه کې",
+    "listens_one": "{{count}} اوري",
+    "listens_other": "{{count}} اوري"
   },
   "transfer": {
     "title": "ټوکنونه ولېږدوئ",
@@ -3555,7 +3628,9 @@
     "reviewDescriptionPlaceholder": "د دې پوسټ په اړه یو څه ووایاست (اختیاري)",
     "reviewLiveWarning": "دغه لانديني مخونه د live سره تړنې لري: انتظار وکړئ تر هغه چې دا پای ته ورسیږي او پرځای یې ریکارډ وارد کړئ.",
     "reviewCancel": "لغوه کول",
-    "reviewConfirm": "د وارداتو په اړه"
+    "reviewConfirm": "د وارداتو په اړه",
+    "toastImported": "له {{source}} څخه وارد شو!",
+    "errorUnsupported": "موږ نشو کولی له دې لینک څخه وارد کړو. یو له دې هڅه وکړئ: {{sources}}"
   },
   "earnings": {
     "filter24h": "24س",
@@ -3764,7 +3839,8 @@
     "title": "ستاسو حساب بند شوی دی",
     "body": "تاسو لاهم کولی شئ ننوتل، خپل فیډ ولولئ، خپل پیغامونه خلاص کړئ او هرڅه په خپل حساب کې وګورئ. تاسو نشئ کولی پیغامونه پوسټ، تبصره، عکس العمل، تعقیب یا واستوئ.",
     "line": "ستاسو حساب منع دی، نو تاسو نشئ کولی پیغامونه پوسټ کړئ، تبصره وکړئ یا واستوئ.",
-    "deleteAccount": "خپل حساب او ډاټا حذف کړئ"
+    "deleteAccount": "خپل حساب او ډاټا حذف کړئ",
+    "reason": "دلیل: {{reason}}"
   },
   "teamUp": {
     "title": "ټیم جوړ کړئ",
@@ -4050,7 +4126,8 @@
     "madeForKidsOffDesc": "دا پوسٹ د ماشومانو موډ استعمال کوونکي ماشومانو ته ښودي، او دا عام فیډز څخه بهر کوي.",
     "madeForKidsBlockedByMature": "یو پوسٹ چې بالغ نشان شوی وي نه کولی شي د ماشومانو لپاره هم خپاره شي.",
     "encoderTitle": "د OBS /انکوډر په اړه",
-    "encoderHint": "RTMP تفصیلات ترلاش کړئ"
+    "encoderHint": "RTMP تفصیلات ترلاش کړئ",
+    "markMadeForKids": "د ماشومانو لپاره جوړ شوی په نښه کړئ"
   },
   "bounty": {
     "claimed": "ترلاسه شو",
@@ -4292,7 +4369,9 @@
     "topUpSubtitle": "$DHB د کارت په واسطه وپیرئ او د فوري کارونې لپاره وړیا ګاز ترلاسه کړئ",
     "noTxHash": "د معاملې هش ونه موندل شو",
     "latestTransactions": "وروستي لیږدونه",
-    "showAll": "ټول وښایاست"
+    "showAll": "ټول وښایاست",
+    "sentTo": "{{amount}} {{symbol}} ته {{address}} واستول شو",
+    "tokensSentTo": "ټوکن {{address}} ته واستول شول"
   },
   "musicSheet": {
     "title": "سندره جوړه کړئ",
@@ -4494,7 +4573,10 @@
     "title": "هجرت په هر چا باندې فرض دی",
     "viewFeed": "خپل غذايي رژيم ته پاملرنه وکړئ",
     "yourChannel": "ستاسو د کانال په اړه",
-    "yourChannelHint": "خپل کارن- نوم په خپله خوښه وټاکئ، خپل کارن- نوم هم په خپله خوښه وټاکئ."
+    "yourChannelHint": "خپل کارن- نوم په خپله خوښه وټاکئ، خپل کارن- نوم هم په خپله خوښه وټاکئ.",
+    "videoCountMany": "{{n}} ویډیوګانې",
+    "videoCountOne": "{{n}} ویډیو",
+    "videosCount": "{{videos}} ویډیوګانې"
   },
   "calls": {
     "voiceCall": "د DHHUB غږیز غږیز غږونه",
@@ -5557,5 +5639,48 @@
     "appealRef": "حواله {{ref}}",
     "appealSubtitleSubject": "یو سړی به دا ولولي او بیا به {{subject}} ته وګوري.",
     "appealMore": "اوس هم اړین کرکټرونه: {{count}}"
+  },
+  "support": {
+    "title": "ملاتړ",
+    "subtitle": "ستاسو ټیکټونه او د دوی وضعیت. هیڅ AI نشته، هیڅ فیس نشته.",
+    "newTicket": "نوی ټیکټ",
+    "newTicketHint": "راځئ چې ووایو څه پیښ شوي او تاسو د څه تمه درلوده.",
+    "backToTickets": "د ټیکټونو لپاره بیرته راستنیدنه",
+    "noTickets": "تر اوسه د حملې ذمه واري چا نه ده منلې.",
+    "loadFailed": "زه نشم کولی ستاسو د ټیکټونو بارولو ته دوام ورکړم. مهرباني وکړئ بیا هڅه وکړئ.",
+    "categoryLabel": "دسته بندي",
+    "severityLabel": "لومړيتوبونه",
+    "subjectLabel": "د موضوع په اړه",
+    "subjectPlaceholder": "د ستونزې بیانولو لپاره یو لینک جوړ کړئ",
+    "descriptionLabel": "څه پیښ شوي",
+    "descriptionPlaceholder": "هغه څه چې تاسو یې کوئ، هغه څه چې تاسو یې په لټه کې یاست، او هغه څه چې تاسو یې په لټه کې یاست.",
+    "stepsLabel": "د بیا رغونې لپاره ګامونه (اختیاري)",
+    "submit": "د ټیکټ لیږلو لپاره",
+    "submitting": "د لیږلو لپاره...",
+    "filingFailed": "ما نه شو کولای چې دا ټکټ واخلم. مهرباني وکړئ بیا هڅه وکړئ.",
+    "status": {
+      "open": "د پرانیستې",
+      "in_progress": "د پرمختګ په حال کې",
+      "resolved": "حل شوی",
+      "closed": "تړل شوی"
+    },
+    "severity": {
+      "low": "د ټیټو ټیټو",
+      "normal": "په نورمال ډول",
+      "high": "په لوړه کچه",
+      "urgent": "په فوري توګه"
+    },
+    "category": {
+      "account_access": "د حساب لاسرسی",
+      "wallet_or_transactions": "پیسې یا معاملې",
+      "posting_or_uploads": "پورته کول یا پورته کول",
+      "payments_or_subscriptions": "پیسې یا ګډونونه",
+      "live_streaming": "ژوندی خپرونه",
+      "content_or_moderation": "محتوا یا سمون",
+      "bug": "بګ",
+      "feature_request": "د بڼې غوښتنه",
+      "other": "نور"
+    },
+    "filedOn": "{{date}} ثبت شو"
   }
 }

@@ -1876,7 +1876,8 @@
     "otherTokens": "Другие токены",
     "otherTokensDesc": "Купите ETH или USDC в сети Base своей картой",
     "shareToFeed": "Поделиться в ленте",
-    "sharePostTemplate": "Только что добавил {{amount}} $DHB в свой стек на DeHub. Построение с сообществом. #DeHub #DHB"
+    "sharePostTemplate": "Только что добавил {{amount}} $DHB в свой стек на DeHub. Построение с сообществом. #DeHub #DHB",
+    "minDhbPurchase": "Минимальная покупка DHB составляет $ 0,50"
   },
   "agents": {
     "title": "AI Агенты",

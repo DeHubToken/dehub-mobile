@@ -696,7 +696,21 @@
     "chainIdLabel": "Kæde ID: {{id}}",
     "exportPkConfirmPhrase": "JEG FORSTÅR",
     "exportPkCopy": "Kopier privat nøgle",
-    "e2eAutomatic": "Automatisk"
+    "e2eAutomatic": "Automatisk",
+    "smsScopeLabel": "Hvad skal jeg sende",
+    "smsScopeDesc": "SMS'er koster penge, så begræns dem til det, der er værd at afbryde for",
+    "smsScope": {
+      "all": "Alt, hvad jeg har tændt",
+      "tips": "Kun tips, jeg modtager",
+      "subscriptions": "Kun nye abonnenter",
+      "sales": "Kun salg af mit indhold",
+      "bounties": "Kun dusører",
+      "fractions": "Kun brøkudbud og salg",
+      "messages": "Kun direkte beskeder",
+      "mentions": "Kun omtale af mig",
+      "replies": "Kun svar på mine kommentarer",
+      "account": "Kun meddelelser om min konto"
+    }
   },
   "common": {
     "mute": "Slå lyd fra",
@@ -1864,7 +1878,8 @@
     "otherTokens": "Andre tokens",
     "otherTokensDesc": "Køb ETH eller USDC på Base med dit kort",
     "shareToFeed": "Del i mit feed",
-    "sharePostTemplate": "Har lige føjet {{amount}}$DHB til min stak på DeHub. Bygger sammen med netværket. #DeHub #DHB"
+    "sharePostTemplate": "Har lige føjet {{amount}}$DHB til min stak på DeHub. Bygger sammen med netværket. #DeHub #DHB",
+    "minDhbPurchase": "Minimum DHB-køb er $0,50"
   },
   "agents": {
     "title": "AI-agenter",
@@ -3012,7 +3027,13 @@
     "addedToYourUsernames": "Føjes til dine brugernavne",
     "boughtNameGoesToVault": "Du forbliver @{{current}}. @{{handle}} kommer ind under dine brugernavne, og du kan skifte til det når som helst.",
     "youAreNow": "Du er nu @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} er nu blandt dine brugernavne"
+    "boughtToVaultToast": "@{{handle}} er nu blandt dine brugernavne",
+    "askingPriceUsd": "Anmodet pris (USD)",
+    "dollarPriceRange": "Indtast $1–$1.000.000 med op til to decimaler.",
+    "fixedDollarPrice": "Dollarprisen forbliver fast; token-beløbet opdateres.",
+    "priceUpdated": "Pris opdateret. Gennemgå beløbet, og tryk på Køb igen.",
+    "tokensPaidToSeller": "Betales direkte til sælgeren",
+    "priceUsd": "Pris (USD)"
   },
   "stores": {
     "subtitle": "Opdag produkter fra DeHub-fællesskabet",
@@ -3544,7 +3565,8 @@
     "creator": "DeHub-kreatør",
     "play": "Spil",
     "pause": "Sæt på pause",
-    "listens_one": "{{count}} lyt"
+    "listens_one": "{{count}} lyt",
+    "listens_other": "{{count}} listens"
   },
   "transfer": {
     "title": "Overfør tokens",
@@ -4558,7 +4580,8 @@
     "videosCount": "{{videos}} videoer",
     "viewFeed": "Se dit feed",
     "yourChannel": "Din kanal",
-    "yourChannelHint": "Indsæt din kanaladresse — håndtaget på sine egne værker også."
+    "yourChannelHint": "Indsæt din kanaladresse — håndtaget på sine egne værker også.",
+    "progressDone": "{{imported}} importeret."
   },
   "calls": {
     "voiceCall": "DeHub-taleopkald",
@@ -5632,5 +5655,52 @@
     "appealRef": "Reference{{ref}}",
     "appealSubtitleSubject": "En person læser dette og kigger igen på {{subject}}.",
     "appealMore": "Der er stadig brug for tegn:{{count}}"
+  },
+  "support": {
+    "title": "Support",
+    "subtitle": "Dine billetter og deres status. Ingen AI, ingen gebyr.",
+    "newTicket": "Ny billet",
+    "newTicketHint": "Fortæl os, hvad der skete, og hvad du forventede i stedet.",
+    "backToTickets": "Tilbage til billetter",
+    "openHeading": "Åben ({{n}})",
+    "closedHeading": "Lukket ({{n}})",
+    "noTickets": "Du har endnu ikke indsendt nogen supportbilletter.",
+    "loadFailed": "Kunne ikke indlæse dine billetter. Prøv igen.",
+    "categoryLabel": "Kategori",
+    "severityLabel": "Prioritet",
+    "subjectLabel": "Emne",
+    "subjectPlaceholder": "Én linje, der beskriver problemet",
+    "descriptionLabel": "Hvad er der sket",
+    "descriptionPlaceholder": "Hvad du gjorde, hvad du forventede, og hvad der skete i stedet.",
+    "stepsLabel": "Skridt til at gengive (valgfrit)",
+    "submit": "Send din supportsag",
+    "submitting": "Sender...",
+    "filed": "Billet {{ref}} er hos teamet.",
+    "filedNotEmailed": "Billet {{ref}} optaget. Behold referencen.",
+    "alreadyOpen": "Du har allerede dette åbent som {{ref}}.",
+    "filingFailed": "Kunne ikke indgive denne billet. Prøv igen.",
+    "status": {
+      "open": "Åbn",
+      "in_progress": "Igangværende",
+      "resolved": "Løst",
+      "closed": "Lukket"
+    },
+    "severity": {
+      "low": "Lav",
+      "normal": "Normal",
+      "high": "Høj",
+      "urgent": "Presserende"
+    },
+    "category": {
+      "account_access": "Adgang til konto",
+      "wallet_or_transactions": "Tegnebog eller transaktioner",
+      "posting_or_uploads": "Opslag eller uploads",
+      "payments_or_subscriptions": "Betalinger eller abonnementer",
+      "live_streaming": "Live streaming",
+      "content_or_moderation": "Indhold eller moderation",
+      "bug": "Fejl",
+      "feature_request": "Fremtidig forespørgsel",
+      "other": "Andre"
+    }
   }
 }

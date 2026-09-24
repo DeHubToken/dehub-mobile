@@ -694,7 +694,22 @@
     "chainIdLabel": "Zanjir ID: {{id}}",
     "exportPkConfirmPhrase": "MEN TUSHUNDIM",
     "exportPkCopy": "Maxfiy kalitni nusxalash",
-    "e2eAutomatic": "Avtomatik"
+    "e2eAutomatic": "Avtomatik",
+    "smsScopeLabel": "Nima SMS yuborish kerak",
+    "smsScopeDesc": "SMS xabarlar pul talab qiladi, shuning uchun ularni uzilishga arziydigan darajada qisqartiring",
+    "smsScope": {
+      "all": "Men yoqgan barcha narsalar",
+      "tips": "Faqat menga beriladigan maslahatlar",
+      "subscriptions": "Faqat yangi obunachilar",
+      "sales": "Faqat mening kontentim savdosi",
+      "bounties": "Faqat mukofotlar",
+      "fractions": "Faqat kasrli takliflar va savdolar",
+      "messages": "Faqat to&#39;g&#39;ridan-to&#39;g&#39;ri xabarlar",
+      "mentions": "Faqat men haqimda eslatib o&#39;tilgan",
+      "replies": "Faqat mening sharhlarimga javoblar",
+      "account": "Faqat mening hisobim haqidagi bildirishnomalar"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Ovozni o‘chirish",
@@ -1879,7 +1894,8 @@
     "otherTokens": "Boshqa tokenlar",
     "otherTokensDesc": "Kartangiz bilan Base tarmog'ida ETH yoki USDC sotib oling",
     "shareToFeed": "Mening lentamga ulashing",
-    "sharePostTemplate": "Men DeHub'dagi stack'imga {{amount}} $DHB qo'shdim. Hamjamiyat bilan birga qurmoqdamiz. #DeHub #DHB"
+    "sharePostTemplate": "Men DeHub'dagi stack'imga {{amount}} $DHB qo'shdim. Hamjamiyat bilan birga qurmoqdamiz. #DeHub #DHB",
+    "minDhbPurchase": "Minimal DHB xaridi $0.50"
   },
   "agents": {
     "title": "AI Agent",
@@ -3020,7 +3036,13 @@
     "addedToYourUsernames": "Foydalanuvchi nomlaringizga qo‘shiladi",
     "boughtNameGoesToVault": "Siz @{{current}} bo‘lib qolasiz. @{{handle}} foydalanuvchi nomlaringizga qo‘shiladi va xohlagan vaqtda unga o‘tishingiz mumkin.",
     "youAreNow": "Endi siz @{{handle}}siz",
-    "boughtToVaultToast": "@{{handle}} endi foydalanuvchi nomlaringizda"
+    "boughtToVaultToast": "@{{handle}} endi foydalanuvchi nomlaringizda",
+    "askingPriceUsd": "So&#39;ralgan narx (AQSh dollari)",
+    "dollarPriceRange": "$1–$1,000,000 sonlarini ikkita kasrgacha bo&#39;lgan belgilar bilan kiriting.",
+    "fixedDollarPrice": "Dollar narxi o&#39;zgarmas bo&#39;lib qolmoqda; token miqdori yangilanmoqda.",
+    "priceUpdated": "Narx yangilandi. Miqdorni ko&#39;rib chiqing va yana &quot;Sotib olish&quot; tugmasini bosing.",
+    "tokensPaidToSeller": "To&#39;g&#39;ridan-to&#39;g&#39;ri sotuvchiga to&#39;langan",
+    "priceUsd": "Narxi (AQSh dollari)"
   },
   "stores": {
     "subtitle": "DeHub hamjamiyati mahsulotlarini kashf eting",
@@ -3551,7 +3573,8 @@
     "creator": "DeHub yaratuvchisi",
     "play": "Oʻynash",
     "pause": "Pausekeyboard label",
-    "listens_other": "{{count}} tinglaydi"
+    "listens_other": "{{count}} tinglaydi",
+    "untitled": "Audio post"
   },
   "transfer": {
     "title": "Tokenlarni o‘tkazish",
@@ -4115,7 +4138,8 @@
     "madeForKidsOffDesc": "Ushbu postni Bolalar rejimini ishlatayotgan bolalarga ko'rsatadi va uni oddiy tasmalardan olib tashlaydi.",
     "madeForKidsBlockedByMature": "Yetuk deb belgilangan post ham bolalar uchun nashr qilinishi mumkin emas.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "RTMP tafsilotlarini oling"
+    "encoderHint": "RTMP tafsilotlarini oling",
+    "markMadeForKids": "Bolalar uchun yaratilgan deb belgilash"
   },
   "bounty": {
     "claimed": "Olindi",
@@ -5668,5 +5692,52 @@
     "appealRef": "Havola {{ref}}",
     "appealSubtitleSubject": "Bir kishi buni o&#39;qib, yana {{subject}} ga qaraydi.",
     "appealMore": "Hali ham kerak bo&#39;lgan belgilar: {{count}}"
+  },
+  "support": {
+    "title": "Qo'llab-quvvatlash",
+    "subtitle": "Chiptalaringiz va ularning holati. Sun&#39;iy intellekt yo&#39;q, to&#39;lov yo&#39;q.",
+    "newTicket": "Yangi chipta",
+    "newTicketHint": "Nima bo&#39;lganini va buning o&#39;rniga nimani kutganingizni ayting.",
+    "backToTickets": "Chipta-ga qaytish",
+    "openHeading": "Ochiq ({{n}})",
+    "noTickets": "Siz hali hech qanday qo&#39;llab-quvvatlash chiptalarini topshirmadingiz.",
+    "loadFailed": "Chiptalaringizni yuklab bo&#39;lmadi. Qaytadan urinib ko&#39;ring.",
+    "categoryLabel": "Katalog",
+    "severityLabel": "Ustuvorlik",
+    "subjectLabel": "Mavzu",
+    "subjectPlaceholder": "Muammoni tavsiflovchi bitta qator",
+    "descriptionLabel": "Nima gap?",
+    "descriptionPlaceholder": "Siz nima qildingiz, nimani kutdingiz va buning o&#39;rniga nima bo&#39;ldi.",
+    "stepsLabel": "Ko&#39;paytirish bosqichlari (ixtiyoriy)",
+    "stepsPlaceholder": "1. Tasmani oching&#10; 2. Yuklash tugmasini bosing&#10; 3. ...",
+    "submit": "Chipta yuborish",
+    "filed": "{{ref}} chiptasi jamoada.",
+    "filedNotEmailed": "{{ref}} chiptasi yozib olindi. Malumotnomani saqlang.",
+    "alreadyOpen": "Siz buni allaqachon {{ref}} sifatida ochiqsiz.",
+    "filingFailed": "Chiptani topshirib bo&#39;lmadi. Qaytadan urinib ko&#39;ring.",
+    "status": {
+      "open": "Ochiq",
+      "in_progress": "jarayonda",
+      "resolved": "Hal qilindi",
+      "closed": "Yopiq"
+    },
+    "severity": {
+      "low": "Past",
+      "normal": "Oddiy",
+      "high": "Yuqori",
+      "urgent": "Tezlik"
+    },
+    "category": {
+      "account_access": "Hisobga kirish",
+      "wallet_or_transactions": "Hamyon yoki operatsiyalar",
+      "posting_or_uploads": "Joylashtirish yoki yuklash",
+      "payments_or_subscriptions": "To&#39;lovlar yoki obunalar",
+      "live_streaming": "Jonli translatsiya",
+      "content_or_moderation": "Kontent yoki moderatsiya",
+      "bug": "Description",
+      "feature_request": "Xususiyat so&#39;rovi",
+      "other": "Boshqa"
+    },
+    "filedOn": "{{date}} fayli"
   }
 }

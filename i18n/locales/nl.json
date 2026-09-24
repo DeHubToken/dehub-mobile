@@ -2065,7 +2065,8 @@
     "otherTokens": "Andere tokens",
     "otherTokensDesc": "Koop ETH of USDC op Base met je kaart",
     "shareToFeed": "Deel met mijn feed",
-    "sharePostTemplate": "Ik heb zojuist {{amount}} $DHB toegevoegd aan mijn stapel op DeHub. Bouwen met de community. #DeHub #DHB"
+    "sharePostTemplate": "Ik heb zojuist {{amount}} $DHB toegevoegd aan mijn stapel op DeHub. Bouwen met de community. #DeHub #DHB",
+    "minDhbPurchase": "Minimale DHB-aankoop is $ 0,50"
   },
   "agents": {
     "title": "AI Agenten",
@@ -3209,7 +3210,13 @@
     "addedToYourUsernames": "Wordt toegevoegd aan je gebruikersnamen",
     "boughtNameGoesToVault": "Je blijft @{{current}}. @{{handle}} komt bij je gebruikersnamen en je kunt er altijd naar overstappen.",
     "youAreNow": "Je bent nu @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} staat nu bij je gebruikersnamen"
+    "boughtToVaultToast": "@{{handle}} staat nu bij je gebruikersnamen",
+    "askingPriceUsd": "Vraagprijs (USD)",
+    "dollarPriceRange": "Voer $ 1–$ 1.000.000 in, met maximaal twee decimalen.",
+    "fixedDollarPrice": "De prijs van de dollar blijft vast; het tokenbedrag wordt bijgewerkt.",
+    "priceUpdated": "Prijs bijgewerkt. Controleer het bedrag en tik op Opnieuw kopen.",
+    "tokensPaidToSeller": "Rechtstreeks betaald aan de verkoper",
+    "priceUsd": "Prijs (USD)"
   },
   "stores": {
     "subtitle": "Ontdek producten van de DeHub-community",
@@ -4756,7 +4763,8 @@
     "videosCount": "{{videos}} video's",
     "viewFeed": "Je feed bekijken",
     "yourChannel": "Je kanaal",
-    "yourChannelHint": "Plak je kanaaladres — de greep op zijn eigen werkt ook."
+    "yourChannelHint": "Plak je kanaaladres — de greep op zijn eigen werkt ook.",
+    "progressDone": "{{imported}} geïmporteerd."
   },
   "calls": {
     "voiceCall": "DeHub-spraakoproep",
@@ -5894,5 +5902,51 @@
     "appealRef": "Kenmerk {{ref}}",
     "appealSubtitleSubject": "Een persoon zal dit lezen en opnieuw kijken op {{subject}}.",
     "appealMore": "Tekens nog nodig: {{count}}"
+  },
+  "support": {
+    "title": "Ondersteuning",
+    "subtitle": "Je tickets en hun status. Geen AI, geen kosten.",
+    "newTicket": "Nieuw ticket",
+    "newTicketHint": "Vertel ons wat er is gebeurd en wat je in plaats daarvan had verwacht.",
+    "backToTickets": "Terug naar tickets",
+    "noTickets": "Je hebt nog geen supporttickets ingediend.",
+    "loadFailed": "Kon je tickets niet laden. Probeer het opnieuw.",
+    "categoryLabel": "Categorie",
+    "severityLabel": "Prioriteit",
+    "subjectLabel": "Vak",
+    "subjectPlaceholder": "Eén regel die het probleem beschrijft",
+    "descriptionLabel": "Wat er is gebeurd",
+    "descriptionPlaceholder": "Wat je deed, wat je verwachtte en wat er in plaats daarvan gebeurde.",
+    "stepsLabel": "Stappen om te reproduceren (optioneel)",
+    "submit": "Ticket verzenden",
+    "submitting": "Wordt verzonden...",
+    "filed": "Ticket {{ref}} is bij het team.",
+    "filedNotEmailed": "Ticket {{ref}} geregistreerd. Bewaar de referentie.",
+    "alreadyOpen": "Je hebt dit al open als {{ref}}.",
+    "filingFailed": "Kon dat ticket niet opslaan. Probeer het opnieuw.",
+    "status": {
+      "open": "Open",
+      "in_progress": "In behandeling",
+      "resolved": "Opgelost",
+      "closed": "Gesloten"
+    },
+    "severity": {
+      "low": "Laag",
+      "normal": "Normaal",
+      "high": "Hoog",
+      "urgent": "Dringend"
+    },
+    "category": {
+      "account_access": "Toegang tot account",
+      "wallet_or_transactions": "Portemonnee of transacties",
+      "posting_or_uploads": "Plaatsen of uploaden",
+      "payments_or_subscriptions": "Betalingen of abonnementen",
+      "live_streaming": "Live streaming",
+      "content_or_moderation": "Inhoud of moderatie",
+      "bug": "Bug",
+      "feature_request": "Functieverzoek",
+      "other": "Anders"
+    },
+    "filedOn": "Ingediend {{date}}"
   }
 }

@@ -1878,7 +1878,8 @@
     "otherTokens": "Altri token",
     "otherTokensDesc": "Acquista ETH o USDC su Base con la tua carta",
     "shareToFeed": "Condividi sul mio feed",
-    "sharePostTemplate": "Ho appena aggiunto {{amount}} $DHB al mio stack su DeHub. Costruire con la comunità. #DeHub #DHB"
+    "sharePostTemplate": "Ho appena aggiunto {{amount}} $DHB al mio stack su DeHub. Costruire con la comunità. #DeHub #DHB",
+    "minDhbPurchase": "L'acquisto minimo di DHB è di $0,50"
   },
   "agents": {
     "title": "Agenti AI",

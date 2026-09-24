@@ -695,7 +695,22 @@
     "chainIdLabel": "ID zinxhiri: {{id}}",
     "exportPkConfirmPhrase": "UNË E KUPOJ",
     "exportPkCopy": "Kopjo çelësin privat",
-    "e2eAutomatic": "Automatike"
+    "e2eAutomatic": "Automatike",
+    "smsScopeLabel": "Çfarë të dërgoni me tekst",
+    "smsScopeDesc": "Tekstet kushtojnë, prandaj kufizojini ato në atë që ia vlen të ndërpritet",
+    "smsScope": {
+      "all": "Gjithçka që kam ndezur",
+      "tips": "Vetëm këshillat që marr",
+      "subscriptions": "Vetëm abonentë të rinj",
+      "sales": "Vetëm shitje të përmbajtjes sime",
+      "bounties": "Vetëm shpërblime",
+      "fractions": "Vetëm oferta dhe shitje me fraksione",
+      "messages": "Vetëm mesazhe direkte",
+      "mentions": "Vetëm përmendje të mia",
+      "replies": "Vetëm përgjigje ndaj komenteve të mia",
+      "account": "Vetëm njoftime rreth llogarisë sime"
+    },
+    "smsTopUp": "Plotëso {{dhb}} DHB"
   },
   "common": {
     "mute": "Hiq zërin",
@@ -1863,7 +1878,8 @@
     "otherTokens": "Token të tjerë",
     "otherTokensDesc": "Blej ETH ose USDC në Base me kartën tënde",
     "shareToFeed": "Shpërndaje në burimin tim",
-    "sharePostTemplate": "Sapo shtova {{amount}} $DHB në rafte në DeHub. Ndërtimi me komunitetin. #DeHub #DHB"
+    "sharePostTemplate": "Sapo shtova {{amount}} $DHB në rafte në DeHub. Ndërtimi me komunitetin. #DeHub #DHB",
+    "minDhbPurchase": "Blerja minimale e DHB është 0.50 dollarë"
   },
   "agents": {
     "title": "Agjentët AI",
@@ -3007,7 +3023,13 @@
     "addedToYourUsernames": "Shtohet te emrat e tu të përdoruesit",
     "boughtNameGoesToVault": "Mbetesh @{{current}}. @{{handle}} shkon te emrat e tu të përdoruesit dhe mund të kalosh tek ai kur të duash.",
     "youAreNow": "Tani je @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} tani është te emrat e tu të përdoruesit"
+    "boughtToVaultToast": "@{{handle}} tani është te emrat e tu të përdoruesit",
+    "askingPriceUsd": "Çmimi i kërkuar (USD)",
+    "dollarPriceRange": "Vendosni 1–1,000,000 dollarë, me deri në dy vende dhjetore.",
+    "fixedDollarPrice": "Çmimi në dollarë mbetet fiks; sasia e tokenit përditësohet.",
+    "priceUpdated": "Çmimi u përditësua. Rishikoni shumën dhe shtypni përsëri Bli.",
+    "tokensPaidToSeller": "Paguar drejtpërdrejt shitësit",
+    "priceUsd": "Çmimi (USD)"
   },
   "stores": {
     "subtitle": "Zbulo produkte nga komuniteti DeHub",
@@ -3539,7 +3561,8 @@
     "creator": "Krijuesi i DeHub",
     "play": "Luaj",
     "pause": "Ndalo",
-    "listens_one": "{{count}} dëgjo"
+    "listens_one": "{{count}} dëgjo",
+    "listens_other": "{{count}} listens"
   },
   "transfer": {
     "title": "Transfero tokena",
@@ -4104,7 +4127,8 @@
     "madeForKidsOffDesc": "Këtë postim ua tregon fëmijëve që përdorin modalitetin Kids dhe e heq nga burimet e zakonshme.",
     "madeForKidsBlockedByMature": "Një postim i shënuar si i pjekur nuk mund të publikohet edhe për fëmijët.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Merrni detajet RTMP"
+    "encoderHint": "Merrni detajet RTMP",
+    "markMadeForKids": "Shëno si të bërë për fëmijë"
   },
   "bounty": {
     "claimed": "E marrë",
@@ -5624,5 +5648,53 @@
     "appealRef": "Referenca {{ref}}",
     "appealSubtitleSubject": "Një person do ta lexojë këtë dhe do të shikojë përsëri {{subject}}.",
     "appealMore": "Duhen ende karaktere: {{count}}"
+  },
+  "support": {
+    "title": "Mbështetje",
+    "subtitle": "Tiketat tuaja dhe statusi i tyre. Pa AI, pa tarifë.",
+    "newTicket": "Ticket i ri",
+    "newTicketHint": "Na tregoni se çfarë ndodhi dhe çfarë prisnit në vend të kësaj.",
+    "backToTickets": "Kthehu te tiket",
+    "openHeading": "Hapur ({{n}})",
+    "closedHeading": "Mbyllur ({{n}})",
+    "noTickets": "Nuk keni dërguar ende asnjë biletë mbështetëse.",
+    "loadFailed": "Nuk u ngarkuan dot tiket tuaja. Ju lutemi provoni përsëri.",
+    "categoryLabel": "Kategoria",
+    "severityLabel": "Prioriteti",
+    "subjectLabel": "Subjekti",
+    "subjectPlaceholder": "Një rresht që përshkruan problemin",
+    "descriptionLabel": "Çfarë ndodhi?",
+    "descriptionPlaceholder": "Çfarë bëre, çfarë prisje dhe çfarë ndodhi në vend të kësaj.",
+    "stepsLabel": "Hapat për të riprodhuar (me zgjedhje)",
+    "submit": "Dërgo biletën",
+    "submitting": "Po dërgohet...",
+    "filed": "Bileta {{ref}} është me ekipin.",
+    "filedNotEmailed": "Bileta {{ref}} e regjistruar. Mbaj referencën.",
+    "alreadyOpen": "E ke tashmë këtë të hapur si {{ref}}.",
+    "filingFailed": "Nuk mund ta paraqisja atë biletë. Provo përsëri.",
+    "status": {
+      "open": "E hapur",
+      "in_progress": "Në vazhdim",
+      "resolved": "Zgjidhur",
+      "closed": "Mbyllur"
+    },
+    "severity": {
+      "low": "I ulët",
+      "normal": "Normale",
+      "high": "I lartë",
+      "urgent": "Urgjente"
+    },
+    "category": {
+      "account_access": "Aksesi i llogarisë",
+      "wallet_or_transactions": "Portofoli ose transaksionet",
+      "posting_or_uploads": "Postimi ose ngarkimet",
+      "payments_or_subscriptions": "Pagesat ose abonimet",
+      "live_streaming": "Transmetim i drejtpërdrejtë",
+      "content_or_moderation": "Përmbajtja ose moderimi",
+      "bug": "Bug",
+      "feature_request": "Kërkesa për veçori",
+      "other": "Tjetër"
+    },
+    "filedOn": "Filed {{date}}"
   }
 }

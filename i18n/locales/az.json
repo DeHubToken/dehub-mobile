@@ -684,7 +684,33 @@
     "chainIdLabel": "Zəncir ID: {{id}}",
     "exportPkConfirmPhrase": "BAŞA DÜŞDÜM",
     "exportPkCopy": "Şəxsi açarı köçür",
-    "e2eAutomatic": "Avtomatik"
+    "e2eAutomatic": "Avtomatik",
+    "publicChatAlertsRateOption": "{{count}} saat",
+    "smsScopeLabel": "Nə yazmaq",
+    "smsScopeDesc": "Mətnlər pulsuzdur, ona görə də onları kəsilməyə dəyən şeylərlə məhdudlaşdırın",
+    "smsScope": {
+      "all": "Hər şeyin açıqdır",
+      "tips": "Yalnız aldığım məsləhətlər",
+      "subscriptions": "Yalnız yeni abunəçilər",
+      "sales": "Yalnız məzmunumun satışları",
+      "bounties": "Yalnız mükafatlar",
+      "fractions": "Yalnız fraksiya təklifləri və satışları",
+      "messages": "Yalnız birbaşa mesajlar",
+      "mentions": "Yalnız mənim haqqımda qeydlər",
+      "replies": "Yalnız şərhlərimə cavablar",
+      "account": "Yalnız hesabım haqqında bildirişlər"
+    },
+    "smsNotificationsDescReady": "{{phone}} - {{dhb}} DHB hər biri, təxminən {{count}} qalıb",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) ilə kilidi açın",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) mətnləri kilidini açır və sizin ilk balansınız olur.",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositSlow": "Köçürməniz hələ zəncirdə görünməyib. Təhlükəsizdir — bunu yenidən açın və kreditləşdiriləcək. İstinad: {{hash}}",
+    "smsBalance": "{{dhb}} DHB qalıb (${{usd}})",
+    "smsBalanceMessages": "Təxminən {{count}} daha çox mesaj",
+    "smsTopUp": "{{dhb}} DHB əlavə et",
+    "smsCodeSent": "Kod göndərildi. Bu {{price}} DHB başa gəldi.",
+    "smsCodeLabel": "{{phone}} -ə göndərdiyimiz kod",
+    "badgeDelegationLendsAny": "Hər biri sizin açdığınız istənilən nişanı başqa bir hesaba verir, özünüzünkü qədər {{tier}}. Daha kiçik nişan belə bir tam yuva istifadə edir."
   },
   "common": {
     "mute": "Səssiz et",
@@ -1413,7 +1439,8 @@
       "mentionedNamed": "{{name}} sizi “{{community}}” -da qeyd edib",
       "here": "{{name}} icmadakı hər kəsə mesaj yazdı",
       "hereNamed": "{{name}} “{{community}}” -da hər kəs mesajlaşdı"
-    }
+    },
+    "badgeLent": "{{name}} sizə {{tier}} nişanını verdi"
   },
   "leaderboard": {
     "title": "Lider Lövhəsi",
@@ -1851,7 +1878,8 @@
     "otherTokens": "Digər tokenlər",
     "otherTokensDesc": "Kartınızla Base şəbəkəsində ETH və ya USDC alın",
     "shareToFeed": "Yemimlə paylaşın",
-    "sharePostTemplate": "İndicə {{amount}} $ DHB-ni DeHub-dakı stekimə əlavə etdim. İcma ilə qurmaq. #DeHub #DHB"
+    "sharePostTemplate": "İndicə {{amount}} $ DHB-ni DeHub-dakı stekimə əlavə etdim. İcma ilə qurmaq. #DeHub #DHB",
+    "minDhbPurchase": "Minimum DHB alış $0.50-dir"
   },
   "agents": {
     "title": "AI Agentləri",
@@ -2995,7 +3023,13 @@
     "addedToYourUsernames": "İstifadəçi adlarınıza əlavə olunur",
     "boughtNameGoesToVault": "Siz @{{current}} olaraq qalırsınız. @{{handle}} istifadəçi adlarınıza əlavə olunur və istədiyiniz vaxt ona keçə bilərsiniz.",
     "youAreNow": "Siz indi @{{handle}}-siniz",
-    "boughtToVaultToast": "@{{handle}} artıq istifadəçi adlarınızdadır"
+    "boughtToVaultToast": "@{{handle}} artıq istifadəçi adlarınızdadır",
+    "askingPriceUsd": "Sorğu qiyməti (USD)",
+    "dollarPriceRange": "İki onluq yerə qədər $1–$1,000,000 daxil edin.",
+    "fixedDollarPrice": "Dollar qiyməti sabit qalır; token miqdarı yenilənir.",
+    "priceUpdated": "Qiymət yeniləndi. Məbləği nəzərdən keçirin və yenidən Al düyməsini basın.",
+    "tokensPaidToSeller": "Birbaşa satıcıya ödənilib",
+    "priceUsd": "Qiymət (ABŞ dolları)"
   },
   "stores": {
     "subtitle": "DeHub icmasının məhsullarını kəşf et",
@@ -3525,7 +3559,10 @@
     "untitled": "Səs yazısı",
     "pause": "Fasilə ver",
     "listens_one": "{{count}} dinlə",
-    "listens_other": "{{count}} dinləyir"
+    "listens_other": "{{count}} dinləyir",
+    "closeCornerPlayer": "Künc oyunçusunu bağlayın",
+    "creator": "DeHub yaradıcısı",
+    "play": "Oxut"
   },
   "transfer": {
     "title": "Tokenləri köçür",
@@ -5610,5 +5647,52 @@
     "appealRef": "İstinad {{ref}}",
     "appealSubtitleSubject": "Bir nəfər bunu oxuyacaq və {{subject}} səhifəsinə yenidən baxacaq.",
     "appealMore": "Simvollar hələ də lazımdır: {{count}}"
+  },
+  "support": {
+    "title": "Dəstək",
+    "subtitle": "Biletləriniz və onların statusu. Mənzil yoxdur, haqq yoxdur.",
+    "newTicket": "Yeni bilet",
+    "newTicketHint": "Əvəzində nə baş verdiyini və nə gözlədiyinizi bizə bildirin.",
+    "backToTickets": "Biletlərə qayıt",
+    "openHeading": "Aç ({{n}})",
+    "noTickets": "Hələ heç bir dəstək bileti təqdim etməmisiniz.",
+    "loadFailed": "Biletlərinizi yükləmək mümkün olmadı. Yenidən cəhd edin.",
+    "categoryLabel": "Kateqoriya",
+    "severityLabel": "Öncəlik",
+    "subjectLabel": "Mövzu",
+    "subjectPlaceholder": "Problemi təsvir edən bir sətir",
+    "descriptionLabel": "Baş verənlər",
+    "descriptionPlaceholder": "Əvəzində nə etdiniz, nə gözlədiniz və nə baş verdi?",
+    "stepsLabel": "Çoxalmaq üçün addımlar (qeyri-məcburi)",
+    "submit": "Bilet göndər",
+    "submitting": "Göndərilir",
+    "filed": "Bilet {{ref}} komanda ilədir.",
+    "filedNotEmailed": "Bilet {{ref}} qeyd olunub. İstinad edin.",
+    "alreadyOpen": "Bunu artıq {{ref}} kimi aça bilərsiniz.",
+    "filingFailed": "Həmin bileti təqdim etmək mümkün olmadı. Yenidən cəhd edin.",
+    "status": {
+      "open": "Açıqdır",
+      "in_progress": "Yerinə yetirildi",
+      "resolved": "Həll oldu",
+      "closed": "Bağlandı"
+    },
+    "severity": {
+      "low": "Aşağı",
+      "normal": "Normal",
+      "high": "Yüksək",
+      "urgent": "Təcili"
+    },
+    "category": {
+      "account_access": "Hesaba giriş",
+      "wallet_or_transactions": "Pul kisəsi və ya əməliyyatlar",
+      "posting_or_uploads": "Göndərmək və ya yükləmək",
+      "payments_or_subscriptions": "Ödənişlər və ya abunəliklər",
+      "live_streaming": "Canlı yayım",
+      "content_or_moderation": "Məzmun və ya moderatorluq",
+      "bug": "Baqa",
+      "feature_request": "Xüsusiyyət sorğusu",
+      "other": "Digər"
+    },
+    "filedOn": "{{date}}"
   }
 }

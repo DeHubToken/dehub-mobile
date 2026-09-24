@@ -793,7 +793,9 @@
     "attachDescription": "DHB tokenlerini mesajınıza ipucu olarak ekleyin",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB ekle",
-    "removeTip": "İpucunu Kaldır"
+    "removeTip": "İpucunu Kaldır",
+    "amountIn": "Tutar ({{currency}})",
+    "balanceAmount": "Bakiye: {{amount}}"
   },
   "postOptions": {
     "options": "Seçenekler",
@@ -1876,7 +1878,8 @@
     "otherTokens": "Diğer tokenlar",
     "otherTokensDesc": "Kartınızla Base ağında ETH veya USDC satın alın",
     "shareToFeed": "Akışımda paylaş",
-    "sharePostTemplate": "Az önce DeHub'daki yığınıma {{amount}} $DHB'yi ekledim. Toplulukla birlikte inşa etmek. #DeHub #DHB"
+    "sharePostTemplate": "Az önce DeHub'daki yığınıma {{amount}} $DHB'yi ekledim. Toplulukla birlikte inşa etmek. #DeHub #DHB",
+    "minDhbPurchase": "Minimum DHB alımı 0,50 $"
   },
   "agents": {
     "title": "AI Ajanları",
@@ -3020,7 +3023,13 @@
     "addedToYourUsernames": "Kullanıcı adlarına eklenir",
     "boughtNameGoesToVault": "@{{current}} olarak kalırsın. @{{handle}} kullanıcı adlarına eklenir ve istediğin zaman ona geçebilirsin.",
     "youAreNow": "Artık @{{handle}} oldun",
-    "boughtToVaultToast": "@{{handle}} artık kullanıcı adlarında"
+    "boughtToVaultToast": "@{{handle}} artık kullanıcı adlarında",
+    "askingPriceUsd": "Satış fiyatı (USD)",
+    "dollarPriceRange": "En fazla iki ondalık basamak olacak şekilde 1.000.000 $ girin.",
+    "fixedDollarPrice": "Dolar fiyatı sabit kalır; token tutarı güncellenir.",
+    "priceUpdated": "Fiyat güncellendi. Tutarı gözden geçirin ve tekrar Satın Al'a dokunun.",
+    "tokensPaidToSeller": "Doğrudan satıcıya ödenir",
+    "priceUsd": "Fiyat (USD)"
   },
   "stores": {
     "subtitle": "DeHub topluluğundaki ürünleri keşfedin",

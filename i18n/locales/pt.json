@@ -1878,7 +1878,8 @@
     "otherTokens": "Outros tokens",
     "otherTokensDesc": "Compre ETH ou USDC na Base com o seu cartão",
     "shareToFeed": "Partilhar no meu feed",
-    "sharePostTemplate": "Acabei de adicionar {{amount}} $DHB à minha pilha no DeHub. Construir com a comunidade. #DeHub #DHB"
+    "sharePostTemplate": "Acabei de adicionar {{amount}} $DHB à minha pilha no DeHub. Construir com a comunidade. #DeHub #DHB",
+    "minDhbPurchase": "A compra mínima de DHB é de $ 0,50"
   },
   "agents": {
     "title": "Agentes IA",
@@ -4628,7 +4629,8 @@
     "videosCount": "Vídeos de {{videos}}",
     "viewFeed": "Ver o seu feed",
     "yourChannel": "O seu canal",
-    "yourChannelHint": "Cole o endereço do seu canal — o identificador também funciona."
+    "yourChannelHint": "Cole o endereço do seu canal — o identificador também funciona.",
+    "progressDone": "{{imported}} importado."
   },
   "calls": {
     "voiceCall": "Chamada de voz DeHub",
