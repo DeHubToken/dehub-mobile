@@ -1,22 +1,21 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import type { TFunction } from "i18next";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import { usePoll, useVoteOnPoll, useRemovePollVote, useClosePoll } from "../../hooks/usePolls";
 import { useUser } from "../../context/AuthContext";
 
-function formatRelativeTime(iso: string): string {
+function formatRelativeTime(iso: string, t: TFunction): string {
   const diffMs = new Date(iso).getTime() - Date.now();
   const abs = Math.abs(diffMs);
   const mins = Math.floor(abs / 60000);
   const hrs = Math.floor(mins / 60);
   const days = Math.floor(hrs / 24);
-  const prefix = diffMs > 0 ? "" : "";
-  const suffix = diffMs < 0 ? " ago" : "";
-  if (mins < 1) return "just now";
-  if (mins < 60) return `${prefix}${mins}m${suffix}`;
-  if (hrs < 24) return `${prefix}${hrs}h${suffix}`;
-  return `${prefix}${days}d${suffix}`;
+  const short = mins < 60 ? `${mins}m` : hrs < 24 ? `${hrs}h` : `${days}d`;
+  if (mins < 1) return t("dm.justNow");
+  return diffMs < 0 ? t("dm.timeAgo", { time: short }) : short;
 }
 
 interface PollCardProps {
@@ -25,6 +24,7 @@ interface PollCardProps {
 }
 
 const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
+  const { t } = useTranslation();
   const { poll, loading } = usePoll(tokenId);
   const { vote, loading: voting } = useVoteOnPoll();
   const { removeVote, loading: removing } = useRemovePollVote();
@@ -130,8 +130,8 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
 
   const expiresLabel = poll.expiresAt
     ? poll.isActive
-      ? `Ends ${formatRelativeTime(poll.expiresAt)}`
-      : `Ended ${formatRelativeTime(poll.expiresAt)}`
+      ? t("dm.pollEnds", { time: formatRelativeTime(poll.expiresAt, t) })
+      : t("dm.pollEnded", { time: formatRelativeTime(poll.expiresAt, t) })
     : null;
 
   return (
@@ -141,7 +141,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
         <Text className="text-white font-medium text-sm flex-1 mr-2">
           {poll.question}
           {!poll.isActive && (
-            <Text className="text-zinc-500 text-xs"> (Closed)</Text>
+            <Text className="text-zinc-500 text-xs"> {t("dm.pollClosed")}</Text>
           )}
         </Text>
         {isOwner && poll.isActive && (
@@ -151,7 +151,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
             hitSlop={10}
             className="px-2 py-1.5 rounded-lg bg-white/10"
           >
-            <Text className="text-zinc-400 text-[12px]">Close</Text>
+            <Text className="text-zinc-400 text-[12px]">{t("common.close")}</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -232,7 +232,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
           {voting ? (
             <ActivityIndicator size="small" color="#F4F4F5" />
           ) : (
-            <Text className="text-white text-sm font-medium">Vote</Text>
+            <Text className="text-white text-sm font-medium">{t("dm.pollSubmitVote")}</Text>
           )}
         </TouchableOpacity>
       )}
@@ -240,7 +240,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
       {/* Footer */}
       <View className="flex-row items-center justify-between mt-2">
         <Text className="text-zinc-400 text-[12px]">
-          {totalVotes} {totalVotes === 1 ? "vote" : "votes"}
+          {t("dm.pollVotes", { count: totalVotes })}
         </Text>
         <View className="flex-row items-center gap-2">
           {expiresLabel && (
@@ -254,7 +254,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
               className="flex-row items-center gap-0.5 py-1.5"
             >
               <Icon name="X" size={12} color="#A6A9AC" />
-              <Text className="text-zinc-400 text-[12px]">Remove</Text>
+              <Text className="text-zinc-400 text-[12px]">{t("follow.remove")}</Text>
             </TouchableOpacity>
           )}
         </View>

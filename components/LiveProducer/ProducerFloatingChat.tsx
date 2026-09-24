@@ -1,5 +1,6 @@
 import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -115,6 +116,7 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
   onToggleChatEnabled,
   settingsUpdating,
 }) => {
+  const { t } = useTranslation();
   const [message, setMessage] = useState("");
   const listRef = useRef<FlatList<ProducerChatActivity> | null>(null);
   const { showUserProfile } = useUserProfileSheet();
@@ -181,7 +183,7 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
               size={12}
             />
             <Text className="text-white/70 text-[10px] ml-1 font-medium">
-              {chatEnabled ? "Chat on" : "Chat off"}
+              {chatEnabled ? t("live.chatOn") : t("live.chatOff")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -226,7 +228,7 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
           value={message}
           onChangeText={setMessage}
           placeholder={
-            isLive && canSend ? "Say something..." : "Chat unavailable"
+            isLive && canSend ? t("live.saySomething") : t("live.chatUnavailable")
           }
           placeholderTextColor="#8B8D90"
           className="flex-1 text-white text-[12px] leading-5"
@@ -253,6 +255,7 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
 /** Individual chat bubble */
 const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: string) => void }> = memo(
   ({ item, onUserPress }) => {
+    const { t } = useTranslation();
     const displayName = resolveDisplayName(item);
     const avatarUrl = resolveAvatarUrl(item);
     const profileId = resolveProfileId(item);
@@ -301,7 +304,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
               {displayName}
             </Text>
             <Text className="text-white/70 text-[11px] ml-1">
-              tipped {item.meta?.amount} <DhbCoin />
+              {t("live.tippedAmount", { amount: item.meta?.amount })} <DhbCoin />
             </Text>
           </View>
         );
@@ -310,7 +313,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
         return (
           <View className="mb-1.5 self-start">
             <Text className="text-white/50 text-[10px]" style={onVideo}>
-              Stream started
+              {t("live.streamStarted")}
             </Text>
           </View>
         );
@@ -318,7 +321,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
         return (
           <View className="mb-1.5 self-start">
             <Text className="text-white/50 text-[10px]" style={onVideo}>
-              Stream ended
+              {t("live.streamEnded")}
             </Text>
           </View>
         );

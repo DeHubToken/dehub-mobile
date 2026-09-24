@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, TouchableOpacity, View, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 export type DMSettingsMenuProps = {
   visible: boolean;
@@ -20,6 +21,7 @@ const DMSettingsMenu: React.FC<DMSettingsMenuProps> = ({
   dnd,
   onToggleDnd,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   if (!visible) return null;
   return (
@@ -39,7 +41,7 @@ const DMSettingsMenu: React.FC<DMSettingsMenuProps> = ({
             accessibilityRole="button"
           >
             <Ionicons name="chatbox-ellipses-outline" size={18} color="#E5E7EB" />
-            <Text className="ml-2 text-theme-neutrals-100 text-sm">New DM</Text>
+            <Text className="ml-2 text-theme-neutrals-100 text-sm">{t('dm.newDm')}</Text>
           </TouchableOpacity>
           <View className="h-[1px] bg-theme-neutrals-700/60" />
           <TouchableOpacity
@@ -48,7 +50,7 @@ const DMSettingsMenu: React.FC<DMSettingsMenuProps> = ({
             accessibilityRole="button"
           >
             <Ionicons name="options-outline" size={18} color="#E5E7EB" />
-            <Text className="ml-2 text-theme-neutrals-100 text-sm">DM settings</Text>
+            <Text className="ml-2 text-theme-neutrals-100 text-sm">{t('dm.dmSettings')}</Text>
           </TouchableOpacity>
           <View className="h-[1px] bg-theme-neutrals-700/60" />
           <TouchableOpacity
@@ -57,7 +59,7 @@ const DMSettingsMenu: React.FC<DMSettingsMenuProps> = ({
             accessibilityRole="button"
           >
             <Ionicons name={dnd ? 'moon' : 'moon-outline'} size={18} color={dnd ? '#D4D4D8' : '#E5E7EB'} />
-            <Text className="ml-2 text-theme-neutrals-100 text-sm">{dnd ? 'DND: On' : 'DND'}</Text>
+            <Text className="ml-2 text-theme-neutrals-100 text-sm">{dnd ? t('dm.doNotDisturbOn') : t('dm.doNotDisturb')}</Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>

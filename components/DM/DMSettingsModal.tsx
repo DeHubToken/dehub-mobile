@@ -92,13 +92,13 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
 
   const submit = useCallback(async (opts?: { desired?: { action: DmAction; status: DmDisableStatus }; spinner?: 'toggle' | 'fee' }) => {
     if (!user?.walletAddress && !(user as any)?.address) {
-      toastWarning('You must be signed in');
+      toastWarning(t('settings.mustBeSignedIn'));
       return;
     }
     const address = ((user as any)?.walletAddress || (user as any)?.address || '').toLowerCase();
     const parsedFee = Number(fee);
     if (!Number.isFinite(parsedFee) || parsedFee < 0) {
-      toastWarning('Per-message fee must be a non-negative number');
+      toastWarning(t('dm.feeMustBeNonNegative'));
       return;
     }
     const desired = opts?.desired || computeDesired();
@@ -133,12 +133,12 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
     } catch (e) {
       // Revert on failure
       patchUser(() => ({ dmSettings: { address, disables: prev.disables, perMessageFee: prev.fee } }) as any).catch(() => {});
-      toastError(e, 'Failed to update DM preferences');
+      toastError(e, t('dm.updatePrefsFailed'));
     } finally {
       if (opts?.spinner === 'fee') setFeeSubmitting(false);
       else setSubmitting(false);
     }
-  }, [user, fee, dmsEnabled, allowNew, computeDesired, optimisticPatch, patchUser]);
+  }, [user, fee, dmsEnabled, allowNew, computeDesired, optimisticPatch, patchUser, t]);
 
   const onToggleDmsEnabled = useCallback((val: boolean) => {
     setDmsEnabled(val);
@@ -206,7 +206,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
             <Text className="text-theme-neutrals-100 text-[17px] font-semibold">{t("dm.preferences")}</Text>
           </View>
           <Text className="text-theme-neutrals-400 text-[12px] mt-2">
-            Control who can message you and charge a per-message fee in DHB.
+            {t("dm.prefsIntro")}
           </Text>
         </View>
 

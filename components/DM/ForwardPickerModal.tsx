@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, TextInput, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import GlassModal from "../ui/GlassModal";
 import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
@@ -24,6 +25,7 @@ const ForwardPickerModalComponent: React.FC<ForwardPickerModalProps> = ({
   myUserId,
   myAddress,
 }) => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
 
   const filtered = useMemo(() => {
@@ -49,7 +51,7 @@ const ForwardPickerModalComponent: React.FC<ForwardPickerModalProps> = ({
   const renderItem = useCallback(
     ({ item }: { item: DmConversation }) => {
       const other = getOtherParticipant(item, myUserId, myAddress);
-      const name = other?.displayName || other?.username || "Unknown";
+      const name = other?.displayName || other?.username || t("settings.unknown");
       const avatar = getAvatarUrl(other?.avatarImageUrl);
       const badgeImg = getBadgeUrlFor(other as any);
       return (
@@ -79,7 +81,7 @@ const ForwardPickerModalComponent: React.FC<ForwardPickerModalProps> = ({
         </TouchableOpacity>
       );
     },
-    [myUserId, myAddress, handleSelect],
+    [myUserId, myAddress, handleSelect, t],
   );
 
   return (
@@ -87,12 +89,12 @@ const ForwardPickerModalComponent: React.FC<ForwardPickerModalProps> = ({
       <View className="pb-6">
         {/* Header */}
         <View className="flex-row items-center justify-between px-4 pt-1 pb-3">
-          <Text className="text-lg font-semibold text-white">Forward to</Text>
+          <Text className="text-lg font-semibold text-white">{t("dm.forwardTo")}</Text>
           <TouchableOpacity
             onPress={onClose}
             className="w-11 h-11 items-center justify-center -mr-2"
             accessibilityRole="button"
-            accessibilityLabel="Close"
+            accessibilityLabel={t("common.close")}
           >
             <Ionicons name="close" size={22} color="#A6A9AC" />
           </TouchableOpacity>
@@ -104,7 +106,7 @@ const ForwardPickerModalComponent: React.FC<ForwardPickerModalProps> = ({
           <TextInput
             value={search}
             onChangeText={setSearch}
-            placeholder="Search conversations…"
+            placeholder={t("messages.searchConversations")}
             placeholderTextColor="#8B8D90"
             className="flex-1 text-white text-sm p-0 m-0"
           />
@@ -118,7 +120,7 @@ const ForwardPickerModalComponent: React.FC<ForwardPickerModalProps> = ({
           style={{ maxHeight: 400 }}
           ListEmptyComponent={
             <Text className="text-theme-neutrals-500 text-center py-8 text-sm">
-              No conversations
+              {t("dm.noConversations")}
             </Text>
           }
         />

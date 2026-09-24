@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { useTranslation } from "react-i18next";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -75,6 +76,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
   onRequestClose,
   onRequestEndConfirmation,
 }) => {
+  const { t } = useTranslation();
   const [, forceUpdate] = useState(0);
 
   const isLive = stage === "live";
@@ -115,13 +117,13 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
   }, [isLive, isStarting, isEnding, onRequestClose, onRequestEndConfirmation]);
 
   const statusLabel = isLive
-    ? "LIVE"
+    ? t("live.statusLive")
     : isStarting
-    ? "SETTING UP"
+    ? t("live.statusSettingUp")
     : isEnding
-    ? "ENDING"
+    ? t("live.statusEnding")
     : stage === "ready"
-    ? "READY"
+    ? t("live.statusReady")
     : "";
 
   /**
@@ -146,7 +148,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
           hitSlop={8}
           className="w-10 h-10 rounded-xl items-center justify-center bg-zinc-900/60"
           accessibilityRole="button"
-          accessibilityLabel="Close"
+          accessibilityLabel={t("common.close")}
         >
           <ChevronDown color="#fff" size={18} />
         </TouchableOpacity>
@@ -213,12 +215,12 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
         <View className="flex-row items-center mt-1 ml-12 gap-3">
           {peakViewers > 0 ? (
             <Text className="text-white/40 text-[10px]">
-              Peak {peakViewers}
+              {t("live.peak", { count: peakViewers })}
             </Text>
           ) : null}
           {likes > 0 ? (
             <Text className="text-white/40 text-[10px]">
-              {likes} {likes === 1 ? "like" : "likes"}
+              {t("live.likes", { count: likes })}
             </Text>
           ) : null}
           {bitrateKbps > 0 ? (
@@ -244,9 +246,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
         <View className="flex-row items-start mt-1.5 ml-12 mr-3 gap-1.5 rounded-lg bg-amber-500/10 px-2.5 py-1.5">
           <SignalLow color="#fff" size={12} />
           <Text className="flex-1 text-amber-200 text-[10px] leading-[14px]">
-            Your upload has dropped — viewers are seeing a frozen picture even
-            though your preview looks fine. Moving closer to the router or
-            switching networks will help.
+            {t("live.uploadStarved")}
           </Text>
         </View>
       ) : null}

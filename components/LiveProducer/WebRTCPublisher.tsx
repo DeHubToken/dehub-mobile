@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { View, Platform, Text } from "react-native";
+import { useTranslation } from "react-i18next";
 import { mediaDevices, RTCPeerConnection, RTCView } from "react-native-webrtc";
 import { runWithPermissions, type PermissionKind } from "../../libs/permissions.util";
 import {
@@ -140,6 +141,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
 }) => {
   const dbg = (...args: any[]) => { if (debug) console.log('[WebRTCPublisher]', ...args); };
   const dbe = (...args: any[]) => { console.log('[WebRTCPublisher][ERROR]', ...args); };
+  const { t } = useTranslation();
   // Refs and state
   const pcRef = useRef<RTCPeerConnection | null>(null);
   const pcGenerationRef = useRef<number>(0);
@@ -904,7 +906,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         >
           <View className="bg-zinc-900/60 px-4 py-2 rounded-xl">
             <Text className="text-white text-xs font-semibold">
-              Preparing camera…
+              {t("live.preparingCamera")}
             </Text>
           </View>
         </View>
@@ -917,7 +919,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         >
           <View className="bg-zinc-900/60 px-4 py-2 rounded-xl">
             <Text className="text-white text-xs font-semibold">
-              Camera off
+              {t("calls.cameraOff")}
             </Text>
           </View>
         </View>
@@ -930,7 +932,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         >
           <View className="bg-zinc-900/60 px-4 py-2 rounded-xl">
             <Text className="text-white text-xs font-semibold">
-              {reconnecting ? 'Reconnecting…' : 'Connecting…'}
+              {reconnecting ? t('live.reconnecting') : t('live.connecting')}
             </Text>
           </View>
         </View>

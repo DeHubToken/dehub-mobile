@@ -166,7 +166,7 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
             />
           )}
           {/* GIPHY's attribution mark — a brand string, kept in English on web too. */}
-          <Text className="text-[10px] text-theme-neutrals-500 text-center pt-2">Powered by GIPHY</Text>
+          <Text className="text-[10px] text-theme-neutrals-500 text-center pt-2">{t("dm.poweredBy", { name: "GIPHY" })}</Text>
         </View>
       </KeyboardAvoidingView>
     </Modal>

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import type { DmMessage } from "../../services/dm/dm.types";
 
@@ -15,15 +16,16 @@ const PinnedMessageBanner: React.FC<PinnedMessageBannerProps> = ({
   onPress,
   onUnpin,
 }) => {
+  const { t } = useTranslation();
   const preview =
     pinnedMessage.content?.trim() ||
     (pinnedMessage.msgType === "media"
-      ? "📷 Media"
+      ? t("dm.pinnedMedia")
       : pinnedMessage.msgType === "gif"
         ? "🎞️ GIF"
         : pinnedMessage.msgType === "voice"
-          ? "🎤 Voice note"
-          : "📎 Message");
+          ? t("dm.voiceNoteEmoji")
+          : t("dm.pinnedMessageFallback"));
 
   return (
     <Animated.View entering={FadeIn.duration(200)} exiting={FadeOut.duration(150)}>
@@ -35,7 +37,7 @@ const PinnedMessageBanner: React.FC<PinnedMessageBannerProps> = ({
         <Icon name="Pin" size={14} color="#D4D4D8" />
         <View className="flex-1 ml-2 min-w-0">
           <Text className="text-blue-400 text-[11px] font-semibold uppercase">
-            Pinned Message
+            {t("dm.pinnedMessage")}
           </Text>
           <Text className="text-blue-100/70 text-xs mt-0.5" numberOfLines={1}>
             {preview}
@@ -46,7 +48,7 @@ const PinnedMessageBanner: React.FC<PinnedMessageBannerProps> = ({
           hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           className="ml-2 p-1"
           accessibilityRole="button"
-          accessibilityLabel="Unpin message"
+          accessibilityLabel={t("dm.unpinMessage")}
         >
           <Icon name="X" size={14} color="#A6A9AC" />
         </TouchableOpacity>

@@ -25,10 +25,11 @@ interface CreatePollSheetProps {
   tokenId?: number;
 }
 
+// Labels are i18n keys, resolved at render time.
 const DURATIONS = [
-  { label: "1 day", hours: 24 },
-  { label: "3 days", hours: 72 },
-  { label: "7 days", hours: 168 },
+  { label: "dm.poll1Day", hours: 24 },
+  { label: "dm.poll3Days", hours: 72 },
+  { label: "dm.poll7Days", hours: 168 },
 ];
 
 const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
@@ -139,7 +140,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
                     canCreate ? "text-black" : "text-white"
                   }`}
                 >
-                  Create
+                  {t("dm.pollCreate")}
                 </Text>
               )}
             </TouchableOpacity>
@@ -152,7 +153,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
           >
             {/* Question */}
             <Text className="text-zinc-400 text-xs font-medium mb-1.5">
-              Question
+              {t("dm.pollQuestion")}
             </Text>
             <TextInput
               value={question}
@@ -165,7 +166,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
 
             {/* Options */}
             <Text className="text-zinc-400 text-xs font-medium mb-1.5">
-              Options
+              {t("dm.pollOptions")}
             </Text>
             {options.map((opt, idx) => (
               <View
@@ -229,13 +230,13 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
                 )}
               </View>
               <Text className="text-zinc-300 text-sm">
-                Allow multiple answers
+                {t("dm.allowMultiple")}
               </Text>
             </TouchableOpacity>
 
             {/* Duration */}
             <Text className="text-zinc-400 text-xs font-medium mb-1.5">
-              Duration
+              {t("dm.pollDuration")}
             </Text>
             <View className="flex-row gap-2 mb-4">
               {DURATIONS.map((d) => (
@@ -255,7 +256,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
                         : "text-zinc-400"
                     }`}
                   >
-                    {d.label}
+                    {t(d.label)}
                   </Text>
                 </TouchableOpacity>
               ))}

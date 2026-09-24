@@ -16,6 +16,7 @@
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
+import { useTranslation } from "react-i18next";
 
 import Icon from "../ui/Icon";
 import { useStages } from "../../context/StageContext";
@@ -23,6 +24,7 @@ import { stopRadio, toggleRadioStation, useRadioPlayer } from "../../libs/radio-
 import { getCountryFlag, getPrimaryTags } from "../../libs/radio-browser";
 
 const RadioMiniPlayer: React.FC = () => {
+  const { t } = useTranslation();
   const { station, isPlaying, isLoading } = useRadioPlayer();
   const { currentSpace, isConnected } = useStages();
 
@@ -43,7 +45,7 @@ const RadioMiniPlayer: React.FC = () => {
 
       <View style={styles.info}>
         <Text style={styles.name} numberOfLines={1}>
-          {station.name?.trim() || "Radio"}
+          {station.name?.trim() || t("music.radio")}
         </Text>
         <Text style={styles.sub} numberOfLines={1}>
           {getCountryFlag(station.countrycode)}
@@ -56,7 +58,7 @@ const RadioMiniPlayer: React.FC = () => {
         style={styles.playBtn}
         hitSlop={6}
         accessibilityRole="button"
-        accessibilityLabel={isPlaying ? "Pause the station" : "Resume the station"}
+        accessibilityLabel={isPlaying ? t("music.pauseStation") : t("music.resumeStation")}
       >
         {isLoading ? (
           <ActivityIndicator size="small" color="#FFFFFF" />
@@ -70,7 +72,7 @@ const RadioMiniPlayer: React.FC = () => {
         style={styles.closeBtn}
         hitSlop={8}
         accessibilityRole="button"
-        accessibilityLabel="Stop the radio"
+        accessibilityLabel={t("music.stopRadio")}
       >
         <Icon name="X" size={15} color="rgba(255,255,255,0.5)" />
       </TouchableOpacity>

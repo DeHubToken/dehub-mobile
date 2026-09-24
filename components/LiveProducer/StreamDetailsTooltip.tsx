@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useState } from 'react';
 import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import GlassModal from '../ui/GlassModal';
 import { LiveStreamEntity } from '../../services/live.service';
 import { truncate } from '../../libs/strings.util';
@@ -32,6 +33,7 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
   const tooltipWidth = Math.min(screenWidth - 64, 360);
   const [copiedKey, setCopiedKey] = useState(false);
   const [copiedServer, setCopiedServer] = useState(false);
+  const { t } = useTranslation();
 
   const onCopy = useCallback((type: 'key' | 'server', value: string) => () => {
     copyToClipboard(value);
@@ -72,7 +74,7 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
                 hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                 className="absolute top-2 right-2 p-1 rounded-lg bg-white/10"
                 accessibilityRole="button"
-                accessibilityLabel="Close"
+                accessibilityLabel={t('common.close')}
               >
                 <X size={14} color="#ffffff" />
               </TouchableOpacity>
@@ -86,18 +88,18 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
               ) : null}
               <View className="mt-3">
                 <Text className="text-white/50 text-[11px]">
-                  Status: <Text className="text-white/70">{streamEntity.status || 'unknown'}</Text>
+                  {t('live.detailsStatus')} <Text className="text-white/70">{streamEntity.status || t('live.detailsUnknown')}</Text>
                 </Text>
                 {streamEntity.playbackId && (
                   <Text className="text-white/50 text-[11px] mt-1">
-                    Playback ID: <Text className="text-white/70">{truncate(streamEntity.playbackId, 28)}</Text>
+                    {t('live.detailsPlaybackId')} <Text className="text-white/70">{truncate(streamEntity.playbackId, 28)}</Text>
                   </Text>
                 )}
                 <View className="mt-1">
                   <View className="flex-row items-center">
-                    <Text className="text-white/50 text-[11px] mr-1">Key:</Text>
+                    <Text className="text-white/50 text-[11px] mr-1">{t('live.detailsKey')}</Text>
                     {streamKeyLoading ? (
-                      <Text className="text-white/40 text-[11px]">Loading…</Text>
+                      <Text className="text-white/40 text-[11px]">{t('live.detailsLoading')}</Text>
                     ) : streamKeyError ? (
                       <Text className="text-white/70 text-[11px]" numberOfLines={1}>{truncate(streamKeyError, 32)}</Text>
                     ) : streamKeyValue ? (
@@ -107,18 +109,18 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
                         hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                       >
                         <Text className="text-white/70 text-[11px]" numberOfLines={1}>
-                          {copiedKey ? 'Copied!' : truncate(streamKeyValue, 36)}
+                          {copiedKey ? t('toasts.copied') : truncate(streamKeyValue, 36)}
                         </Text>
                       </TouchableOpacity>
                     ) : (
-                      <Text className="text-white/40 text-[11px]">Unavailable</Text>
+                      <Text className="text-white/40 text-[11px]">{t('live.detailsUnavailable')}</Text>
                     )}
                     {!copiedKey && !streamKeyLoading && streamKeyValue && <Copy size={14} color="white" />}
                   </View>
                 </View>
                 {streamEntity.livepeerId && (
                   <Text className="text-white/50 text-[11px] mt-1">
-                    Livepeer ID: <Text className="text-white/70">{truncate(streamEntity.livepeerId, 28)}</Text>
+                    {t('live.detailsLivepeerId')} <Text className="text-white/70">{truncate(streamEntity.livepeerId, 28)}</Text>
                   </Text>
                 )}
                 <View className="mt-2 flex-row items-center">
@@ -129,7 +131,7 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
                     hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                   >
                     <Text className="text-white/70 text-[11px]" numberOfLines={1}>
-                      {copiedServer ? 'Copied!' : truncate(LIVEPEER_RTMP_SERVER, 40)}
+                      {copiedServer ? t('toasts.copied') : truncate(LIVEPEER_RTMP_SERVER, 40)}
                     </Text>
                   </TouchableOpacity>
                   {!copiedServer && <Copy size={14} color="white" />}
