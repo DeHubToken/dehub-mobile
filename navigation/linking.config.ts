@@ -172,6 +172,10 @@ export const DeepLinkPaths = {
   // onto. `?handle=` on a shared listing link seeds the search box.
   ACCOUNTS: 'accounts',
 
+  // Fraction marketplace — dehub.io/app/fractions. Web answers the bare
+  // /fractions too; the /app rewrite below maps it here.
+  FRACTIONS: 'app/fractions',
+
   // Events — dehub.io/app/events/:eventNumber. There is no per-event screen
   // yet, so this lands on the list; a link that opens the right part of the
   // app beats one that opens the website in a browser.
@@ -265,6 +269,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.Accounts]: DeepLinkPaths.ACCOUNTS,
 
+          [ScreenNames.Fractions]: DeepLinkPaths.FRACTIONS,
+
           [ScreenNames.Events]: DeepLinkPaths.EVENT,
 
           [ScreenNames.ArcadeGame]: {
@@ -324,7 +330,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // and the link opened the website instead of the app.
     const APP_PREFIXED = new Set([
       'post', 'notifications', 'leaderboard', 'messages', 'communities',
-      'stores', 'events',
+      'stores', 'events', 'fractions',
     ]);
     if (segments.length > 0 && APP_PREFIXED.has(segments[0])) {
       const newPath = `/app/${segments.join('/')}${queryString ? `?${queryString}` : ''}`;
@@ -520,6 +526,8 @@ export const ShareLinks = {
    */
   accountListing: (handle: string) =>
     `${SHARE_BASE}/accounts?handle=${encodeURIComponent(handle)}`,
+  /** Fraction marketplace — dehub.io/app/fractions */
+  fractions: () => `${SHARE_BASE}/app/fractions`,
   /** Event — dehub.io/app/events/:eventNumber */
   event: (eventNumber: string | number) =>
     `${SHARE_BASE}/app/events/${encodeURIComponent(String(eventNumber))}`,
@@ -602,6 +610,11 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
       return qp.listing
         ? { type: 'listing', params: { storeId: appParts[1], ...qp } }
         : { type: 'store', params: { storeId: appParts[1], ...qp } };
+    }
+
+    // /app/fractions
+    if (appParts[0] === 'fractions') {
+      return { type: 'fractions', params: qp };
     }
 
     // /app/events/:eventNumber

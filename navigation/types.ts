@@ -203,6 +203,7 @@ export type AppStackParamList = {
   [ScreenNames.Usernames]: { handle?: string } | undefined;
   /** `handle` is the shared-listing deep link (`dehub.io/accounts?handle=x`). */
   [ScreenNames.Accounts]: { handle?: string } | undefined;
+  [ScreenNames.Fractions]: undefined;
   [ScreenNames.Stores]: undefined;
   /** `listing` is the shared-item deep link (`/app/stores/<id>?listing=<id>`). */
   [ScreenNames.StoreDetail]: { storeId: string; listing?: string };

@@ -187,6 +187,11 @@ function AppNavigatorContent() {
           name={ScreenNames.Usernames}
           getComponent={() => require("../screens/UsernamesScreen").default}
         />
+        {/* Fraction marketplace — same posture: browse signed-out, trading signs in. */}
+        <Stack.Screen
+          name={ScreenNames.Fractions}
+          getComponent={() => require("../screens/FractionsScreen").default}
+        />
         {/* Account marketplace — whole accounts, same posture. */}
         <Stack.Screen
           name={ScreenNames.Accounts}

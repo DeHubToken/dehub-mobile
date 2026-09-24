@@ -1,28 +1,27 @@
+/**
+ * The Fractions tab on a profile.
+ *
+ * Reads the same on-chain portfolio as the Fractions screen's Portfolio tab.
+ * It used to sum bought minus sold over trade rows, which showed a creator
+ * none of the 1000 fractions they were minted and kept showing a position
+ * after it had moved on-chain. On your own profile every tile is a shortcut
+ * into selling it, and the empty state points at the market.
+ */
 import Animated from "react-native-reanimated";
-import React, { useCallback, useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
-} from "react-native";
+import React, { useCallback, useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
-import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import ProfileEmptyState from "./ProfileEmptyState";
-import { supabase } from "../../services/supabase";
+import { PositionTile } from "../Fractions/FractionPositionGrid";
+import SellFractionsSheet, { type SellTarget } from "../Fractions/SellFractionsSheet";
+import { padGrid } from "../Fractions/fractionFormat";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { appLocale } from "../../libs/date.util";
-
-interface FractionHolding {
-  token_id: string;
-  quantity: number;
-  last_trade_at: string;
-}
+import { useFractionPortfolio, type PortfolioPosition } from "../../hooks/useFractionPortfolio";
 
 interface FractionsRouteProps {
   address?: string;
@@ -32,54 +31,6 @@ interface FractionsRouteProps {
   onScroll?: any;
 }
 
-async function fetchHoldings(address: string): Promise<FractionHolding[]> {
-  const addr = address.toLowerCase();
-
-  const [{ data: bought, error: buyErr }, { data: sold, error: sellErr }] =
-    await Promise.all([
-      supabase
-        .from("fraction_trades")
-        .select("token_id, quantity, created_at")
-        .eq("buyer_address", addr),
-      supabase
-        .from("fraction_trades")
-        .select("token_id, quantity, created_at")
-        .eq("seller_address", addr),
-    ]);
-
-  if (buyErr || sellErr) throw buyErr || sellErr;
-
-  const map = new Map<string, { qty: number; last: string }>();
-
-  (bought || []).forEach((t: any) => {
-    const cur = map.get(t.token_id) ?? { qty: 0, last: t.created_at };
-    map.set(t.token_id, {
-      qty: cur.qty + t.quantity,
-      last: t.created_at > cur.last ? t.created_at : cur.last,
-    });
-  });
-  (sold || []).forEach((t: any) => {
-    const cur = map.get(t.token_id) ?? { qty: 0, last: t.created_at };
-    map.set(t.token_id, {
-      qty: cur.qty - t.quantity,
-      last: t.created_at > cur.last ? t.created_at : cur.last,
-    });
-  });
-
-  return Array.from(map.entries())
-    .filter(([, v]) => v.qty > 0)
-    .map(([token_id, v]) => ({
-      token_id,
-      quantity: v.qty,
-      last_trade_at: v.last,
-    }))
-    .sort(
-      (a, b) =>
-        new Date(b.last_trade_at).getTime() -
-        new Date(a.last_trade_at).getTime(),
-    );
-}
-
 const FractionsRoute: React.FC<FractionsRouteProps> = ({
   address,
   listRef,
@@ -87,68 +38,34 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
   listHeader,
   onScroll,
 }) => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
-  const [holdings, setHoldings] = useState<FractionHolding[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [selling, setSelling] = useState<SellTarget | null>(null);
+  const { data: positions = [], isLoading, isError, refetch, isRefetching } = useFractionPortfolio(address);
 
-  const load = useCallback(
-    async (silent = false) => {
-      if (!address) { setLoading(false); return; }
-      if (!silent) setLoading(true);
-      setError(null);
-      try {
-        const data = await fetchHoldings(address);
-        setHoldings(data);
-      } catch {
-        setError("Failed to load fraction holdings");
-      } finally {
-        setLoading(false);
-        setRefreshing(false);
-      }
+  const openPost = useCallback(
+    (tokenId: string) => {
+      hideUserProfile();
+      navigation.navigate(ScreenNames.FeedDetail as never, { postId: tokenId } as never);
     },
-    [address],
-  );
-
-  useEffect(() => { load(); }, [load]);
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    load(true);
-  }, [load]);
-
-  const renderItem = useCallback(
-    ({ item }: { item: FractionHolding }) => (
-      <TouchableOpacity
-        onPress={() => {
-          hideUserProfile();
-          navigation.navigate(ScreenNames.FeedDetail as never, {
-            postId: item.token_id,
-          } as never);
-        }}
-        style={styles.card}
-        activeOpacity={0.75}
-      >
-        <View style={styles.iconBox}>
-          <Icon name="ChartPie" size={22} color="#FFFFFF" />
-        </View>
-        <Text style={styles.tokenId} numberOfLines={1}>
-          Post #{item.token_id}
-        </Text>
-        <Text style={styles.quantity}>
-          {item.quantity} fraction{item.quantity !== 1 ? "s" : ""}
-        </Text>
-        <Text style={styles.date}>
-          {new Date(item.last_trade_at).toLocaleDateString(appLocale())}
-        </Text>
-      </TouchableOpacity>
-    ),
     [navigation, hideUserProfile],
   );
 
-  if (loading) {
+  const openMarket = useCallback(() => {
+    hideUserProfile();
+    navigation.navigate(ScreenNames.Fractions as never);
+  }, [navigation, hideUserProfile]);
+
+  const sell = useCallback((p: PortfolioPosition) => {
+    setSelling({
+      tokenId: p.tokenId,
+      chainId: p.chainId,
+      post: { title: p.title || undefined, imageUrl: p.imageUrl || undefined, type: p.postType || undefined },
+    });
+  }, []);
+
+  if (isLoading) {
     return (
       <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
@@ -159,95 +76,88 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
         <View style={styles.center}>
           <Icon name="CircleAlert" size={40} color="#4B5563" />
-          <Text style={styles.errorText}>{error}</Text>
-          <TouchableOpacity onPress={() => load()} style={styles.retryBtn}>
-            <Text style={styles.retryText}>Retry</Text>
+          <Text style={styles.errorText}>{t("fractions.loadFailed")}</Text>
+          <TouchableOpacity onPress={() => refetch()} style={styles.retryBtn}>
+            <Text style={styles.retryText}>{t("common.retry")}</Text>
           </TouchableOpacity>
         </View>
       </Animated.ScrollView>
     );
   }
 
-  if (!address || holdings.length === 0) {
+  if (!address || positions.length === 0) {
     return (
       <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
         <ProfileEmptyState
           kind="fractions"
-          title="No fractions yet"
-          subtitle={
-            isOwnProfile
-              ? "Buy fractions of posts to support creators"
-              : "This user holds no post fractions yet"
-          }
+          title={t("fractions.noFractionsYet")}
+          subtitle={t(isOwnProfile ? "fractions.profileEmptyOwn" : "fractions.profileEmptyOther")}
         />
+        {isOwnProfile && (
+          <TouchableOpacity onPress={openMarket} style={styles.marketBtn}>
+            <Text style={styles.retryText}>{t("fractions.browseTheMarket")}</Text>
+          </TouchableOpacity>
+        )}
       </Animated.ScrollView>
     );
   }
 
+  const totalHeld = positions.reduce((sum, p) => sum + p.balance, 0);
+
   return (
     <View style={{ flex: 1 }}>
       <Animated.FlatList
-      ref={listRef}
-      onScroll={onScroll}
-      scrollEventThrottle={16}
-      data={holdings}
-      keyExtractor={(h) => h.token_id}
-      renderItem={renderItem}
-      numColumns={2}
-      columnWrapperStyle={styles.row}
-      contentContainerStyle={styles.grid}
-      ListHeaderComponent={
-        <>
-          {listHeader}
-          <Text style={styles.count}>
-            {holdings.length} post{holdings.length !== 1 ? "s" : ""} held
-          </Text>
-        </>
-      }
-      refreshControl={
-        <DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#fff" />
-      }
+        ref={listRef}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
+        data={padGrid(positions)}
+        keyExtractor={(p, i) => (p ? `${p.chainId}-${p.tokenId}` : `spacer-${i}`)}
+        renderItem={({ item }) => (
+          <PositionTile position={item} onOpen={openPost} onSell={isOwnProfile ? sell : undefined} />
+        )}
+        numColumns={2}
+        columnWrapperStyle={styles.row}
+        contentContainerStyle={styles.grid}
+        ListHeaderComponent={
+          <>
+            {listHeader}
+            <Text style={styles.count}>
+              {t("fractions.fractionCount", { count: totalHeld })}{" "}
+              {t("fractions.acrossPosts", { count: positions.length })}
+            </Text>
+          </>
+        }
+        refreshControl={<DeHubRefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor="#fff" />}
       />
-      <DeHubRefreshMark refreshing={refreshing} />
+      <DeHubRefreshMark refreshing={isRefetching} />
+      {isOwnProfile && <SellFractionsSheet target={selling} onClose={() => setSelling(null)} />}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 32, gap: 12 },
-  grid: { padding: 16, paddingBottom: 80 },
-  row: { justifyContent: "space-between" },
+  grid: { padding: 16, paddingBottom: 80, gap: 12 },
+  row: { gap: 12 },
   count: { color: "#A6A9AC", fontSize: 12, marginBottom: 12 },
-  card: {
-    width: "48%",
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.07)",
-    borderRadius: 12,
-    padding: 14,
-    marginBottom: 12,
-  },
-  iconBox: {
-    width: 40,
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: "rgba(255,255,255,0.1)",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 10,
-  },
-  tokenId: { color: "#F9FBFF", fontSize: 13, fontWeight: "600" },
-  quantity: { color: "#D4D4D8", fontSize: 12, fontWeight: "600", marginTop: 3 },
-  date: { color: "#A6A9AC", fontSize: 12, marginTop: 4 },
   errorText: { color: "#8B8D90", fontSize: 14, textAlign: "center" },
   retryBtn: { backgroundColor: "rgba(255,255,255,0.10)", borderRadius: 10, paddingHorizontal: 20, paddingVertical: 10 },
+  marketBtn: {
+    alignSelf: "center",
+    backgroundColor: "rgba(255,255,255,0.10)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.18)",
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
   retryText: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
 });
 
