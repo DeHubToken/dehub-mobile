@@ -119,7 +119,12 @@
     "music": "گانا",
     "live": "لائیو",
     "newPosts_one": "{{count}} نیا پوسٹ",
-    "newPosts_other": "{{count}} نیا پوسٹ"
+    "newPosts_other": "{{count}} نیا پوسٹ",
+    "privateContent": "Private Content",
+    "noMoreContent": "No more content",
+    "noPostsYet": "No posts yet.",
+    "privateContentBody": "Da li je ovo sa privatnog naloga. Prati kreatora da bi video njegove objave.",
+    "pullToRefresh": "Povuci za osvežavanje ili pokušaj ponovo kasnije."
   },
   "explore": {
     "all": "سب",
@@ -710,7 +715,19 @@
     "smsRemoveNumber": "این شماره را حذف کنید",
     "smsRemoveFailed": "نتوانستیم این شماره را حذف کنیم.",
     "smsNumberRemoved": "شماره حذف شد",
-    "smsCountryBlocked": "ما هنوز نمی‌توانیم پیامک به آن کشور ارسال کنیم."
+    "smsCountryBlocked": "ما هنوز نمی‌توانیم پیامک به آن کشور ارسال کنیم.",
+    "avatarUpdateFailed": "Avatar update failed",
+    "coverUpdateFailed": "Cover update failed",
+    "updateFailed": "Update failed",
+    "inviteLinkPlaceholder": "Invite link",
+    "usernameAvailable": "Username is available",
+    "fixInvalidSocialLinks": "Molimo popravi nevažeće društvene veze",
+    "channelUrlOrHandle": "URL kanala ili korisničko ime",
+    "profileUrlOrUsername": "URL profila ili korisničko ime",
+    "yourDisplayName": "Tvoje prikazano ime",
+    "hideBadgeAndBalance": "Sakrij bedž i stanje",
+    "hideBadgeAndBalanceDesc": "Sakriva finansijske detalje i onemogućava slanje i savete tebi.",
+    "onChainPublicWarning": "On-chain transakcije su javne. Slanje tokena ili saveta može otkriti tvoju adresu novčanika, uključujući transakcije napravljene pre nego što je omogućen režim privatnog stanja."
   },
   "common": {
     "mute": "आवाज बंद करा",
@@ -760,7 +777,9 @@
     "noInternetTitle": "عدم اتصال به اینترنت",
     "noInternetBody": "لطفاً اتصال اینترنت خود را بررسی کرده و دوباره امتحان کنید. برای استفاده از DeHub باید به اینترنت متصل باشید.",
     "noInternetStatus": "آفلاین - عدم اتصال به شبکه",
-    "noInternetHint": "مطمئن شوید Wi-Fi یا داده تلفن همراه روشن است، سپس روی \"{{action}}\" ضربه بزنید"
+    "noInternetHint": "مطمئن شوید Wi-Fi یا داده تلفن همراه روشن است، سپس روی \"{{action}}\" ضربه بزنید",
+    "saving": "Saving…",
+    "offlineStatus": "Van mreže - Nema mrežne veze"
   },
   "tip": {
     "title": "ٹِپ بھیجو",
@@ -1094,7 +1113,17 @@
     "post": "پوسٹ",
     "officialLogo": "یہ رہا DeHub کا سرکاری لوگو! 🎨",
     "editedImage": "یہ رہی تمہاری ایڈٹ شدہ تصویر!",
-    "generatedImage": "یہ رہی تمہاری بنائی ہوئی تصویر!"
+    "generatedImage": "یہ رہی تمہاری بنائی ہوئی تصویر!",
+    "toolCompleted": "{{name}} completed",
+    "aiTool": "AI tool",
+    "generateImage": "تصویر بساز",
+    "generateVideo": "د ویډیو جوړول",
+    "cannotAnimateImage": "{{model}} ne može animirati priloženu sliku. Odaberi drugi video model.",
+    "needsImageToAnimate": "{{model}} treba sliku za animiranje. Priloži jednu ili odaberi drugi model.",
+    "couldNotReadImage": "Nije moguće pročitati tu sliku",
+    "logoLoadFailed": "Nije moguće učitati DeHub logo — generisanje bez njega",
+    "imageAttachedDescribe": "Slika priložena — opiši svoje izmene",
+    "couldNotPreparePost": "Nije moguće pripremiti to za objavljivanje"
   },
   "commandCentre": {
     "title": "کمانڈ سینٹر",
@@ -1606,7 +1635,10 @@
     "edit": "بدلو",
     "deleteRequestTitle": "ای درخواست مٹائے کے ہے؟",
     "deleteRequestDescription": "ای واپس نہیں ہوئی۔",
-    "attachmentTooLarge": "ہر ٹھو فائل 20MB سے کم رہے کے چاہی"
+    "attachmentTooLarge": "ہر ٹھو فائل 20MB سے کم رہے کے چاہی",
+    "deleteCommentA11y": "Delete comment",
+    "sendCommentA11y": "Send comment",
+    "requestOptions": "د سرچينو انتخابونه"
   },
   "auth": {
     "loginRequired": "لاگ ان ضروری ہے",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "کد ارسال نشد. لطفاً دوباره امتحان کنید.",
     "invalidCodeRetry": "کد نامعتبر است. لطفاً دوباره امتحان کنید.",
     "invalidEmailOrPassword": "ایمیل یا رمز عبور نامعتبر است.",
-    "welcomeToDehub": "به DeHub خوش آمدید"
+    "welcomeToDehub": "به DeHub خوش آمدید",
+    "importWalletOptional": "Import Wallet (Optional)",
+    "couldNotSendCodeRetry": "Code send kora gelo na. Please abar chesta korun.",
+    "continueExploring": "Aage dekha",
+    "exploreWithoutSignInA11y": "DeHub بې له لاسلیکه وپلټئ",
+    "continueExploringA11y": "دامه استكشاف DeHub",
+    "importWalletRecommended": "Preporučuju se društvene prijave.",
+    "importWalletPurpose": "Ovaj alat je za uvoz postojećih naloga sa DeHub.io.",
+    "exploreWithoutSignIn": "Istraži bez prijavljivanja"
   },
   "messages": {
     "smartRepliesOff": "تجویز کیل جواب بند ہو گیل",
@@ -1784,7 +1824,29 @@
     "reportedAutomatically": "اوکر اپنے آپ خبر ہو گیل۔",
     "loadFailed": "چینل نہیں لگ پائل",
     "noSearchResults": "تہار کھوج سے ملے والا کوئی چینل نہیں ہے",
-    "noChannels": "کوئی چینل نہیں ملے ہے"
+    "noChannels": "کوئی چینل نہیں ملے ہے",
+    "pairCodeExpired": "دا کوډ ختم شو. د ټلویزیون څخه یو نوی غوښتنه وکړئ.",
+    "signedInOnTv": "دڵنیابوونه‌وه له‌وه‌ی که‌ له‌سه‌ر ته‌له‌فزیۆنه‌که‌تدا چوویتەژوورەوە",
+    "pairRefused": "ردّ",
+    "pairIntro": "Aapke television mein DeHub kholiye aur jo code dikhata hai woh yahan type kijiye.",
+    "pairNotFound": "Televizyonu o kodda beklemeyin. Süresi dolmuş olabilir — televizyondan yenisini isteyin.",
+    "wantsToSignIn": "دہو وِچ سائن اِن کرڻ چاہندا آھن",
+    "pairWarning": "فقط در صورتی این را تأیید کنید که در حال حاضر تلویزیون را تماشا می‌کنید. تأیید این کد به این معنی است که هر کسی که این کد را در اختیار دارد به حساب شما وارد می‌شود. او قادر به تماشا کردن، لایک کردن و دنبال کردن خواهد بود — نمی‌تواند پول خرج کند و شما می‌توانید هر زمان که بخواهید از جلسات فعال خارج شوید.",
+    "pairApprove": "ها، سجل دخول في هذا التلفزيون",
+    "pairDeny": "نه، دا نه وو چې ما غوښتنه کړې وه",
+    "pairDoneTitle": "ستێری تی ڤیەکەت واژۆ کراوە",
+    "pairDoneBody": "باید اکانت شما را نشان دهد. هر زمان که خواستید از تنظیمات → حریم خصوصی → جلسات فعال خارج شوید.",
+    "closePlayer": "بازیکن نزدیک",
+    "declineFailed": "نەکرێت ڕەت بکرێتەوە — لەوانەیە بەسەرچووبێت.",
+    "tipSentTvNotTold": "Tip shpërndarë, por TV-ja nuk mund të njoftohej. Do të skadojë.",
+    "sentAmount": "Sent {{amount}} DHB",
+    "nothingWaiting": "Nothing waiting",
+    "yourTelevision": "Your television",
+    "tipTo": "to {{name}}",
+    "tipForPost": "for “{{title}}”",
+    "nothingWaitingBody": "Kada pošalješ savet sa DeHub-a na svom televizoru, on se pojavljuje ovde da bi ga odobrio. Tvoj TV nikada ne drži tvoj novčanik.",
+    "wantsToTip": "želi da pošalje savet · {{time}} je ostavio",
+    "reviewAndApprove": "Pregledaj i odobri"
   },
   "top100": {
     "title": "اوپر کے 100",
@@ -2056,7 +2118,8 @@
     "submitApplication": "درخواست جمع کراؤ",
     "nameEmailRequired": "نام اور ای میل ضروری ہیں",
     "applicationSuccess": "درخواست کامیابی سے جمع ہو گئی! ہم رابطے میں رہیں گے۔",
-    "applicationFailed": "جمع نہیں ہوئی۔ دوبارہ کوشش کرو۔"
+    "applicationFailed": "جمع نہیں ہوئی۔ دوبارہ کوشش کرو۔",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO خزانہ",
@@ -2216,7 +2279,8 @@
     "pinnedToast": "ای پوسٹ کے سب سے اوپر پن کر دیل گیل",
     "unpinnedToast": "پن ہٹا دیل گیل",
     "pinFailed": "او ٹپنی پن نہ ہو سکل",
-    "kidsOnlyThread": "ई पोस्ट बच्चन के लिए छै। सिर्फ किड्स मोड ई पर कमेंट कर सकत छै।"
+    "kidsOnlyThread": "ई पोस्ट बच्चन के लिए छै। सिर्फ किड्स मोड ई पर कमेंट कर सकत छै।",
+    "editFailed": "Uređivanje komentara nije uspelo"
   },
   "postInfo": {
     "title": "پوسٹ کی معلومات",
@@ -3257,14 +3321,40 @@
     "comingSoon": "بەم زووانە",
     "signIn": "چوونەژوورەوە",
     "tapToGetStarted": "بۆ دەستپێکردن دەست لێبدە",
-    "soon": "بەم زووانە"
+    "soon": "بەم زووانە",
+    "searchGlossary": "Search glossary...",
+    "repostsTab": "Reposts",
+    "quotesTab": "Quotes",
+    "noMoreReposts": "No more reposts",
+    "noMoreQuotes": "No more quotes",
+    "noRepostsYet": "No reposts yet",
+    "noQuotesYet": "No quotes yet",
+    "glossarySubtitle": "Saznaj šta svaki ikon i funkcija znači",
+    "noResultsFor": "Nema rezultata za \"{{query}}\"",
+    "guideSubtitle": "Korak po korak uputstvo za svaku funkciju",
+    "searchGuide": "دۆزینەوەی ڕێبەر..."
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "کھیل جے یہیں ایپ میں چلے ہے۔ لگائے کے کچھ نہیں ہے، خریدے کے کچھ نہیں ہے — کھلل سورس، اور DeHub خود دیئے ہے۔"
+    "intro": "کھیل جے یہیں ایپ میں چلے ہے۔ لگائے کے کچھ نہیں ہے، خریدے کے کچھ نہیں ہے — کھلل سورس، اور DeHub خود دیئے ہے۔",
+    "openPrivacySettings": "Open privacy settings",
+    "loadingGame": "Loading {{title}}",
+    "hideThis": "Hide this",
+    "noGameCalled": "هیچ یارییەک بە ناوی <slug>{{slug}}</slug> لە ئارکەیددا نییە.",
+    "seeWhatIsHere": "ببینە چی لێرەدایە",
+    "locationNotGranted": "ڕێپێدانی شوێن نەدراوە.",
+    "signInToPlaceOnGlobe": "بۆ دانانی خۆت لەسەر جیهان، بچووەژوورەوە.",
+    "couldNotPlaceOnGlobe": "نەتوانرا تۆ لەسەر جیهان دابنرێت.",
+    "onTheGlobe": "تۆ لەسەر جیهان دانیشتووی — لە ناوچەیەکی نزیکەی ٢٥ کیلۆمەتریدا نیشان دەدرێت.",
+    "couldNotReach": "نەتوانرا بگاتە ئارکەید",
+    "didNotLoad": "{{title}} بار نەکرا",
+    "needsConnection": "یارییەکە لە dehub.io ەوە خزمەتگوزاری دەکرێت و کاتێک دەکەیتەوە دادەبەزێت، بۆیە جارێکی یەکەم پێویستی بە پەیوەندییەکی کارا هەیە. پشکنینی بکە و دووبارە هەوڵ بدە.",
+    "backToArcade": "گەڕانەوە بۆ ئارکەید",
+    "privacyWarning": "ئەگەر بڕێکی زۆر توکن هەڵدەگریت یان لە ناوچەیەکی نائاسایشدا دەژیت، پێش بەکارهێنانی ئەم تایبەتمەندییە، نیشانە و باڵانسەکەت بشارەوە. گواستنەوەکانی سەر زنجیر هێشتا ناونیشانی تۆ ئاشکرا دەکەن. ڕێکخستنەکان بکەرەوە.",
+    "leaveGame": "جێهێشتنی یارییەکە"
   },
   "videoLooks": {
     "button": "دیمەنەکانی کامێرا",
@@ -3390,7 +3480,22 @@
     "manyTyping": "{{count}} জন লেখেছে…",
     "attach": "عکس، گیف یا ایموجی اضافه کنید",
     "attachTitle": "به پیام خود اضافه کنید",
-    "attachFailed": "نتوانستیم آن عکس را ارسال کنیم."
+    "attachFailed": "نتوانستیم آن عکس را ارسال کنیم.",
+    "modBadge": "MOD",
+    "thisUser": "this user",
+    "unban": "Unban",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} user",
+    "usersCount_other": "{{count}} users",
+    "totalMessages": "Total Messages",
+    "slowMode": "Slow Mode",
+    "cooldownSeconds": "{{seconds}}s cooldown",
+    "minStakeRequired": "Min Stake Required",
+    "noParticipants": "No participants yet",
+    "noModerators": "No moderators",
+    "noBannedUsers": "No banned users",
+    "unbanConfirm": "دڵنیایت دەتەوێت {{name}} لە لیستی قەدەغەکراوان دەربکەیت؟",
+    "unbanFailed": "شکستی هێنا لە دەرهێنانی بەکارهێنەر لە لیستی قەدەغەکراوان"
   },
   "promptFeed": {
     "headline": "তুমি কি দেখিবা চাও?",
@@ -4142,7 +4247,26 @@
     "madeForKidsBlockedByMature": "परिपक्व के रूप में चिह्नित एक पोस्ट को बच्चों के लिए भी प्रकाशित नहीं किया जा सकता है।",
     "encoderTitle": "OBS / एनकोडर",
     "encoderHint": "RTMP विवरण प्राप्त करो",
-    "markMadeForKids": "به عنوان ساخته شده برای کودکان علامت بزنید"
+    "markMadeForKids": "به عنوان ساخته شده برای کودکان علامت بزنید",
+    "queueWaiting": "Waiting…",
+    "queueUploading": "Uploading",
+    "queueProcessing": "Processing…",
+    "queueMinting": "Minting…",
+    "queuePosted": "Posted",
+    "queueFailed": "Failed",
+    "noRetriesLeft": "(no retries left)",
+    "noUploads": "No uploads",
+    "imagesTotalLimit": "تصاویر در یک آپلود باید در مجموع ۱۰۰ مگابایت یا کمتر باشند",
+    "chooseDatabase": "انتخاب پایگاه داده غیرمتمرکز",
+    "livestreamMode": "Livestream Mode",
+    "addThumbnail": "थंबनेल जोड़ें",
+    "showCover": "Cover dekha",
+    "max60s": "Max 60s",
+    "confirmLivestream": "تأكيد البث المباشر",
+    "liveFeaturesTitle": "Live Features",
+    "discardPostTitle": "دیسکارد پوست؟",
+    "discardPostBody": "Tohor post khoy jabe. Draft ke tor bhal lagbe?",
+    "uploadsAppearHere": "بارکردنەکانی تۆ لێرە دەردەکەون"
   },
   "bounty": {
     "claimed": "নেওয়া হইছে",
@@ -4459,7 +4583,25 @@
     "allowNewDmsOff": "بۆ ڕێگەدان بە نامەی نوێ، DM چالاک بکە.",
     "perMessageFee": "کرێی هەر نامەیەک (DHB)",
     "perMessageFeeSub": "بۆ هەر نامەیەک پارە وەربگرە. بۆ DM ی بێبەرامبەر 0 دابنێ. دەتوانیت دەستگەیشتنی خۆڕایی بە بەکارهێنەرانی دیاریکراو بدەیت.",
-    "allDisabled": "لە ئێستادا هەموو DM ـەکان کوژاونەتەوە. DM ی نوێ بە بنەڕەت ڕێگری لێدەکرێت."
+    "allDisabled": "لە ئێستادا هەموو DM ـەکان کوژاونەتەوە. DM ی نوێ بە بنەڕەت ڕێگری لێدەکرێت.",
+    "failedToEdit": "د خپرونې سمونه ونه شوه",
+    "messageDeleted": "پیام حذف شد",
+    "cantForwardFromDevice": "دا پېغام د دې وسيلې څخه نه شي لېږدول کېدی",
+    "messageForwarded": "پیام فوروارد شد",
+    "clearMessages": "صاف پیغام",
+    "messagesCleared": "संदेश साफ़ कर दिया गया",
+    "failedToClearMessages": "دېکېنه د پېغامونو پاکولو کې پاتې راغلم",
+    "removedFreeAccess": "دسترسی رایگان برای {{name}} حذف شد",
+    "grantedFreeAccess": "دسترسی رایگان به {{name}} اعطا شد",
+    "failedToUpdateFreeAccess": "دسترسی رایگان به‌روزرسانی نشد",
+    "searchComingSoon": "د لټون راتلونکی دی",
+    "tapToUnblock": "Tap to unblock",
+    "userFallback": "user",
+    "failedToBlock": "Blocked failed",
+    "failedToDeleteConversation": "دېلټا نشو کولی خبرې اترې حذف کړي",
+    "noConversationsFound": "هیچ مکالمه‌ای یافت نشد",
+    "clearMessagesConfirm": "سڕینەوەی هەموو نامەکان لەم گفتوگۆیەدا؟ ئەمە ناگەڕێتەوە.",
+    "newDm": "نامەی ڕاستەوخۆی نوێ"
   },
   "editPost": {
     "mediaPermission": "مۆڵەتی کتێبخانەی مێدیا پێویستە",
@@ -4481,7 +4623,17 @@
     "retry": "دوباره امتحان کنید",
     "retrying": "دوباره امتحان می‌کنم…",
     "retryQueued": "دوباره پردازش می‌شود",
-    "retryFailed": "نتوانستیم آن پست را دوباره امتحان کنیم"
+    "retryFailed": "نتوانستیم آن پست را دوباره امتحان کنیم",
+    "closeVideo": "Video band koro",
+    "rotateOrientation": "دوران سمت",
+    "videoProgress": "Video progress: {{percent}}%",
+    "downloadImage": "Download image",
+    "goToImage": "Go to image {{index}}",
+    "tapToSeek": "لێبدە بۆ گەڕان بۆ شوێنێکی دیاریکراو",
+    "photoAccessToSaveImages": "ڕێگە بدە بۆ کتێبخانەی وێنە بۆ پاراستنی وێنەکان",
+    "failedToSaveImage": "شکستی هێنا لە پاراستنی وێنە",
+    "allCaughtUp": "تەواو بوویت",
+    "checkBackForShorts": "دواتر بگەڕێوە بۆ زانیاری زیاتر"
   },
   "liveViewer": {
     "loadingStream": "پەخش بار دەکرێت...",
@@ -4491,7 +4643,22 @@
   },
   "search": {
     "endOfResults": "کۆتایی ئەنجامەکان",
-    "searchDehub": "لە DeHub بگەڕێ"
+    "searchDehub": "لە DeHub بگەڕێ",
+    "tabVoice": "Voice",
+    "trendingPosts": "Trending Posts",
+    "trendingImages": "Trending Images",
+    "trendingVideos": "Trending Videos",
+    "trendingVoicePosts": "Trending Voice Posts",
+    "trendingLive": "Trending Live",
+    "seeAll": "See All",
+    "noAccountsFound": "No accounts found",
+    "noContentResults": "No content results",
+    "recentSearches": "Recent Searches",
+    "closeFilterOptions": "Close filter options",
+    "openFilterOptions": "Open filter options",
+    "trendingThisWeek": "باوترین ئەم هەفتەیە",
+    "tryDifferentKeywords": "هەوڵ بدە وشەی جیاواز بەکاربهێنیت یان ڕێنووسی خۆت بپشکنە",
+    "noTrendingThisWeek": "هیچ ناوەڕۆکی باو ئەم هەفتەیە نییە"
   },
   "notifPrompt": {
     "stayInLoop": "ئاگادار بە",
@@ -4741,7 +4908,26 @@
     "externalTitle": "External Streaming Mode",
     "externalLiveHint": "Apanar stream external software se live hae. In-app camera disable hae.",
     "externalHint": "Niche dewa detail use kar ke apanar streaming software connect kara, tab broadcasting start kara.",
-    "useInAppCamera": "In-App Camera Use Kara"
+    "useInAppCamera": "In-App Camera Use Kara",
+    "livestreamEnded": "Livestream ended",
+    "chatEnabled": "Chat enabled",
+    "chatDisabled": "Chat disabled",
+    "networkLostReconnecting": "Network lost — stream paused. Reconnecting…",
+    "openingViewer": "Opening viewer...",
+    "cameraPermissionRequired": "Camera permission required",
+    "grantPermission": "دخول",
+    "waitingForLivepeer": "منتظر Livepeer...",
+    "waitingForExternalSource": "منتظر مصدر خارجي...",
+    "settingUpPublisher": "إعداد الناشر...",
+    "scheduledStream": "بث مجدول",
+    "scheduledAt": "{{date}} في {{time}}",
+    "pressGoLiveWhenReady": "اضغط على \"بدء البث\" عندما تكون جاهزًا",
+    "connectionInterrupted": "تم قطع الاتصال",
+    "streamPausedReconnecting": "تم إيقاف البث مؤقتًا. جارٍ إعادة الاتصال...",
+    "streamWillEnd": "سينتهي البث إذا لم يتم إعادة الاتصال",
+    "endStreamConfirmTitle": "إنهاء البث؟",
+    "endStreamConfirmBody": "سيؤدي الإغلاق الآن إلى إنهاء بثك المباشر لجميع المشاهدين. يمكنك متابعة البث أو إنهائه بشكل دائم.",
+    "failedToUpdateSettings": "شکستی هێنا لە نوێکردنەوەی ڕێکخستنەکان"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

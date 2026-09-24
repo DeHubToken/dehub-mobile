@@ -1095,14 +1095,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 editedAt: target.editedAt || new Date().toISOString(),
                 author: "me",
               });
-              toastError("Failed to edit");
+              toastError(t("dm.failedToEdit"));
             };
             pendingEditsRef.current.set(
               target._id,
               setTimeout(revert, EDIT_CONFIRM_TIMEOUT_MS),
             );
           } catch (e) {
-            toastError(e, "Failed to edit");
+            toastError(e, t("dm.failedToEdit"));
           }
         })();
         return;
@@ -1252,7 +1252,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       messageId: contextMessage._id,
     });
     dmActions.removeMessage({ dmId: currentConvId, messageId: contextMessage._id });
-    toastSuccess("Message deleted");
+    toastSuccess(t("dm.messageDeleted"));
     closeContextMenu();
   }, [contextMessage, currentConvId, ws, closeContextMenu]);
 
@@ -1270,7 +1270,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         // encrypted line is re-sent from here: plaintext from the store,
         // encrypted again for the target's peer, citing the original.
         if (forwardMessage.undecryptable) {
-          toastWarning("This message can't be forwarded from this device");
+          toastWarning(t("dm.cantForwardFromDevice"));
           return;
         }
         dmSendQueue.sendText({
@@ -1286,7 +1286,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           targetDmId: targetConvId,
         });
       }
-      toastSuccess("Message forwarded");
+      toastSuccess(t("dm.messageForwarded"));
       setForwardVisible(false);
       setForwardMessage(null);
     },
@@ -1366,12 +1366,12 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     closeMenu();
     if (!currentConvId || !address) return;
     Alert.alert(
-      "Clear messages",
-      "Delete all messages in this conversation? This can't be undone.",
+      t("dm.clearMessages"),
+      t("dm.clearMessagesConfirm"),
       [
-        { text: "Cancel", style: "cancel" },
+        { text: t("common.cancel"), style: "cancel" },
         {
-          text: "Clear",
+          text: t("library.clear"),
           style: "destructive",
           onPress: async () => {
             try {
@@ -1385,9 +1385,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               if (optimistic?.length) {
                 for (const m of optimistic) dmActions.removeOptimistic(currentConvId, m._tempId);
               }
-              toastSuccess("Messages cleared");
+              toastSuccess(t("dm.messagesCleared"));
             } catch (e) {
-              toastError(e, "Failed to clear messages");
+              toastError(e, t("dm.failedToClearMessages"));
             }
           },
         },
@@ -1408,22 +1408,22 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         setMyDmStatus((prev) =>
           prev ? { ...prev, freeAccessUsers: (prev.freeAccessUsers || []).filter((a) => a.toLowerCase() !== addr) } : prev,
         );
-        toastSuccess(`Removed free access for ${peerLabel}`);
+        toastSuccess(t("dm.removedFreeAccess", { name: peerLabel }));
       } else {
         await addFreeAccess(addr);
         setMyDmStatus((prev) =>
           prev ? { ...prev, freeAccessUsers: [...(prev.freeAccessUsers || []), addr] } : prev,
         );
-        toastSuccess(`Granted free access to ${peerLabel}`);
+        toastSuccess(t("dm.grantedFreeAccess", { name: peerLabel }));
       }
     } catch (e) {
-      toastError(e, "Failed to update free access");
+      toastError(e, t("dm.failedToUpdateFreeAccess"));
     }
   }, [peer.address, myDmStatus, peerLabel, closeMenu]);
 
   const onSearchChat = useCallback(() => {
     closeMenu();
-    toastInfo("Search coming soon");
+    toastInfo(t("dm.searchComingSoon"));
   }, [closeMenu]);
 
   const onConfirmBlock = useCallback(async () => {
@@ -1436,13 +1436,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         setDmReason("You've blocked this user.");
         await blockUser(addr, "Blocked from chat");
         setTarget((prev: any) => prev ? { ...prev, youBlocked: true } : prev);
-        toastSuccess(`Blocked ${peerLabel}`);
+        toastSuccess(t("postOptions.blockedUser", { name: peerLabel }));
       } else {
         setDmDisabled(false);
         setDmReason(null);
         await unblockUser(addr);
         setTarget((prev: any) => prev ? { ...prev, youBlocked: false } : prev);
-        toastSuccess(`Unblocked ${peerLabel}`);
+        toastSuccess(t("postOptions.unblockedUser", { name: peerLabel }));
       }
     } catch (e) {
       const rollback = computeBlockDmState(target);
@@ -1699,7 +1699,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                     className="mt-1"
                   >
                     <Text className="text-theme-blue-300 text-xs font-medium">
-                      Tap to unblock
+                      {t("dm.tapToUnblock")}
                     </Text>
                   </TouchableOpacity>
                 )}

@@ -119,7 +119,12 @@
     "music": "Music",
     "live": "Live",
     "newPosts_one": "{{count}} bài đăng mới",
-    "newPosts_other": "{{count}} bài đăng mới"
+    "newPosts_other": "{{count}} bài đăng mới",
+    "privateContent": "Nội dung riêng tư",
+    "privateContentBody": "Nội dung này đến từ một tài khoản riêng tư. Theo dõi người sáng tạo để xem bài đăng của họ.",
+    "noMoreContent": "Không còn nội dung",
+    "noPostsYet": "Chưa có bài đăng nào.",
+    "pullToRefresh": "Kéo để làm mới hoặc thử lại sau."
   },
   "explore": {
     "all": "All",
@@ -710,7 +715,19 @@
       "replies": "Chỉ trả lời bình luận của tôi",
       "account": "Chỉ thông báo về tài khoản của tôi"
     },
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Cập nhật ảnh đại diện thất bại",
+    "coverUpdateFailed": "Cập nhật ảnh bìa thất bại",
+    "fixInvalidSocialLinks": "Vui lòng sửa các liên kết xã hội không hợp lệ",
+    "updateFailed": "Cập nhật thất bại",
+    "channelUrlOrHandle": "URL hoặc tên người dùng kênh",
+    "inviteLinkPlaceholder": "Liên kết mời",
+    "profileUrlOrUsername": "URL hồ sơ hoặc tên người dùng",
+    "yourDisplayName": "Tên hiển thị của bạn",
+    "usernameAvailable": "Tên người dùng khả dụng",
+    "hideBadgeAndBalance": "Ẩn huy hiệu và số dư",
+    "hideBadgeAndBalanceDesc": "Ẩn thông tin tài chính và vô hiệu hóa việc gửi và mẹo cho bạn.",
+    "onChainPublicWarning": "Các giao dịch trên chuỗi là công khai. Gửi token hoặc mẹo có thể tiết lộ địa chỉ ví của bạn, bao gồm cả các giao dịch được thực hiện trước khi bật chế độ số dư riêng tư."
   },
   "common": {
     "mute": "Tắt tiếng",
@@ -773,7 +790,9 @@
     "noInternetTitle": "Không có kết nối Internet",
     "noInternetBody": "Vui lòng kiểm tra kết nối internet của bạn và thử lại. Bạn cần kết nối internet để sử dụng DeHub.",
     "noInternetStatus": "Ngoại tuyến - Không có kết nối mạng",
-    "noInternetHint": "Đảm bảo Wi-Fi hoặc dữ liệu di động đã bật, sau đó nhấn \"{{action}}\""
+    "noInternetHint": "Đảm bảo Wi-Fi hoặc dữ liệu di động đã bật, sau đó nhấn \"{{action}}\"",
+    "saving": "Đang lưu…",
+    "offlineStatus": "Ngoại tuyến - Không có kết nối mạng"
   },
   "tip": {
     "title": "Gửi tiền thưởng",
@@ -1107,7 +1126,17 @@
     "post": "Bài viết",
     "officialLogo": "Đây là logo chính thức của DeHub! 🎨",
     "editedImage": "Đây là ảnh đã chỉnh sửa của bạn!",
-    "generatedImage": "Đây là ảnh vừa tạo cho bạn!"
+    "generatedImage": "Đây là ảnh vừa tạo cho bạn!",
+    "toolCompleted": "{{name}} đã hoàn thành",
+    "aiTool": "Công cụ AI",
+    "cannotAnimateImage": "{{model}} không thể hoạt ảnh hóa hình ảnh đính kèm. Chọn một mô hình video khác.",
+    "needsImageToAnimate": "{{model}} cần một hình ảnh để hoạt ảnh hóa. Đính kèm một hình ảnh hoặc chọn một mô hình khác.",
+    "couldNotReadImage": "Không thể đọc hình ảnh đó",
+    "logoLoadFailed": "Không thể tải logo DeHub — đang tạo mà không có nó",
+    "imageAttachedDescribe": "Đã đính kèm hình ảnh — mô tả các chỉnh sửa của bạn",
+    "couldNotPreparePost": "Không thể chuẩn bị cho việc đăng",
+    "generateImage": "Tạo hình ảnh.",
+    "generateVideo": "Tạo Video"
   },
   "commandCentre": {
     "title": "Trung tâm điều khiển",
@@ -1619,7 +1648,10 @@
     "edit": "Sửa",
     "deleteRequestTitle": "Xóa yêu cầu này?",
     "deleteRequestDescription": "Không thể hoàn tác.",
-    "attachmentTooLarge": "Mỗi tệp phải nhỏ hơn 20MB"
+    "attachmentTooLarge": "Mỗi tệp phải nhỏ hơn 20MB",
+    "deleteCommentA11y": "Xóa nhận xét",
+    "sendCommentA11y": "Gửi bình luận",
+    "requestOptions": "Tùy chọn yêu cầu"
   },
   "auth": {
     "loginRequired": "Log in required",
@@ -1668,7 +1700,15 @@
     "sendCodeFailedRetry": "Không thể gửi mã. Vui lòng thử lại.",
     "invalidCodeRetry": "Mã không hợp lệ. Vui lòng thử lại.",
     "invalidEmailOrPassword": "Email hoặc mật khẩu không hợp lệ.",
-    "welcomeToDehub": "Chào mừng bạn đến với DeHub"
+    "welcomeToDehub": "Chào mừng bạn đến với DeHub",
+    "importWalletOptional": "Nhập Ví (Không bắt buộc)",
+    "couldNotSendCodeRetry": "Không thể gửi mã. Vui lòng thử lại.",
+    "exploreWithoutSignIn": "Khám phá mà không cần đăng nhập",
+    "continueExploring": "Tiếp tục khám phá",
+    "exploreWithoutSignInA11y": "Khám phá DeHub mà không cần đăng nhập",
+    "continueExploringA11y": "Tiếp tục khám phá DeHub",
+    "importWalletRecommended": "Bạn nên đăng nhập mạng xã hội.",
+    "importWalletPurpose": "Công cụ này dùng để nhập các tài khoản hiện có từ DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Đã tắt câu trả lời gợi ý",
@@ -1783,7 +1823,29 @@
     "reportedAutomatically": "Việc này đã được báo cáo tự động.",
     "loadFailed": "Không tải được các kênh",
     "noSearchResults": "Không có kênh nào khớp với tìm kiếm của bạn",
-    "noChannels": "Không có kênh nào khả dụng"
+    "noChannels": "Không có kênh nào khả dụng",
+    "pairCodeExpired": "Mã đó đã hết hạn. Yêu cầu TV cho một cái mới.",
+    "signedInOnTv": "Đã đăng nhập trên TV của bạn",
+    "pairRefused": "Đã từ chối",
+    "pairIntro": "Mở DeHub trên TV của bạn và nhập mã hiển thị ở đây.",
+    "pairNotFound": "Không có truyền hình nào đang chờ trên mã đó. Nó có thể đã hết hạn — hãy yêu cầu TV cho một cái mới.",
+    "wantsToSignIn": "muốn đăng nhập với tư cách là bạn",
+    "pairWarning": "Chỉ chấp thuận điều này nếu đó là một chiếc tivi bạn đang xem ngay bây giờ. Phê duyệt các dấu hiệu cho thấy bất cứ ai đang giữ mã đó vào tài khoản của bạn. Nó sẽ có thể xem, thích và theo dõi — nó không thể chi tiêu và bạn có thể đăng xuất bất cứ lúc nào từ các phiên Hoạt động.",
+    "pairApprove": "Có, đăng nhập vào TV này",
+    "pairDeny": "Không, tôi không yêu cầu điều này",
+    "pairDoneTitle": "TV của bạn đã được đăng nhập",
+    "pairDoneBody": "Nó sẽ hiển thị tài khoản của bạn. Đăng xuất bất cứ lúc nào từ Cài đặt → Quyền riêng tư Phiên → hoạt động.",
+    "closePlayer": "Đóng người chơi",
+    "declineFailed": "Không thể từ chối — có thể đã hết hạn.",
+    "tipSentTvNotTold": "Đã gửi tiền boa, nhưng không thể nói với TV. Nó sẽ hết thời gian.",
+    "sentAmount": "Đã gửi {{amount}} DHB",
+    "nothingWaiting": "Không có gì đang chờ xử lý",
+    "nothingWaitingBody": "Khi bạn gửi tiền boa từ DeHub trên TV, nó sẽ hiển thị ở đây để bạn phê duyệt. TV của bạn không bao giờ giữ ví của bạn.",
+    "yourTelevision": "TV của bạn",
+    "wantsToTip": "muốn gửi tiền boa · {{time}} đã để lại",
+    "tipTo": "cho {{name}}",
+    "tipForPost": "cho “{{title}}”",
+    "reviewAndApprove": "Xem lại và phê duyệt"
   },
   "top100": {
     "title": "Top 100",
@@ -2055,7 +2117,8 @@
     "submitApplication": "Gửi hồ sơ",
     "nameEmailRequired": "Cần có họ tên và email",
     "applicationSuccess": "Đã gửi hồ sơ thành công! Chúng tôi sẽ liên hệ với bạn.",
-    "applicationFailed": "Gửi không thành công. Vui lòng thử lại."
+    "applicationFailed": "Gửi không thành công. Vui lòng thử lại.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Kho bạc DAO",
@@ -2215,7 +2278,8 @@
     "pinnedToast": "Đã ghim lên đầu bài đăng này",
     "unpinnedToast": "Đã bỏ ghim",
     "pinFailed": "Không ghim được bình luận đó",
-    "kidsOnlyThread": "Bài đăng này dành cho trẻ em. Chỉ Chế độ trẻ em mới có thể bình luận về nó."
+    "kidsOnlyThread": "Bài đăng này dành cho trẻ em. Chỉ Chế độ trẻ em mới có thể bình luận về nó.",
+    "editFailed": "Không thể chỉnh sửa bình luận"
   },
   "postInfo": {
     "title": "Thông tin bài viết",
@@ -3256,14 +3320,40 @@
     "comingSoon": "Sắp ra mắt",
     "signIn": "Đăng nhập",
     "tapToGetStarted": "Chạm để bắt đầu",
-    "soon": "Sắp có"
+    "soon": "Sắp có",
+    "glossarySubtitle": "Tìm hiểu ý nghĩa của từng biểu tượng và tính năng",
+    "searchGlossary": "Tìm kiếm thuật ngữ...",
+    "noResultsFor": "Không có kết quả nào cho \"{{query}}\"",
+    "guideSubtitle": "Hướng dẫn từng bước về mọi tính năng",
+    "searchGuide": "Tìm kiếm hướng dẫn...",
+    "repostsTab": "Đăng lại",
+    "quotesTab": "Trích dẫn",
+    "noMoreReposts": "Không còn bài đăng lại",
+    "noMoreQuotes": "Không còn trích dẫn",
+    "noRepostsYet": "Chưa có bài đăng lại",
+    "noQuotesYet": "Chưa có trích dẫn"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Những trò chơi chạy ngay trong ứng dụng. Không cần cài, không cần mua — mã nguồn mở và do chính DeHub phục vụ."
+    "intro": "Những trò chơi chạy ngay trong ứng dụng. Không cần cài, không cần mua — mã nguồn mở và do chính DeHub phục vụ.",
+    "noGameCalled": "Không có trò chơi nào có tên <slug>{{slug}}</slug> trong khu vui chơi.",
+    "seeWhatIsHere": "Xem những gì có ở đây",
+    "locationNotGranted": "Quyền truy cập vị trí chưa được cấp.",
+    "signInToPlaceOnGlobe": "Đăng nhập để đặt bạn trên bản đồ.",
+    "couldNotPlaceOnGlobe": "Không thể đặt bạn trên bản đồ.",
+    "onTheGlobe": "Bạn đang ở trên bản đồ — hiển thị trong khu vực khoảng 25 km.",
+    "couldNotReach": "KHÔNG THỂ TRUY CẬP KHU VUI CHƠI",
+    "didNotLoad": "{{title}} không tải được",
+    "needsConnection": "Trò chơi được phục vụ từ dehub.io và được tải xuống khi bạn mở nó, vì vậy nó cần kết nối hoạt động lần đầu tiên. Kiểm tra kết nối của bạn và thử lại.",
+    "backToArcade": "Quay lại arcade",
+    "openPrivacySettings": "Mở cài đặt quyền riêng tư",
+    "privacyWarning": "Nếu bạn giữ một lượng lớn token hoặc sống ở khu vực không an toàn, hãy ẩn huy hiệu và số dư của bạn trước khi sử dụng tính năng này. Giao dịch trên chuỗi vẫn tiết lộ địa chỉ của bạn. Mở cài đặt.",
+    "leaveGame": "Rời khỏi trò chơi",
+    "loadingGame": "Đang tải {{title}}",
+    "hideThis": "Ẩn cái này"
   },
   "videoLooks": {
     "button": "Kiểu camera",
@@ -3389,7 +3479,22 @@
     "someone": "Ai đó",
     "oneTyping": "{{name}} đang nhập…",
     "fewTyping": "{{names}} đang nhập…",
-    "manyTyping": "{{count}} người đang nhập…"
+    "manyTyping": "{{count}} người đang nhập…",
+    "modBadge": "MOD",
+    "thisUser": "người dùng này",
+    "unbanConfirm": "Bạn có chắc chắn muốn bỏ cấm {{name}} không?",
+    "unban": "Bỏ cấm",
+    "unbanFailed": "Không thể bỏ cấm người dùng",
+    "onlineLabel": "Trực tuyến",
+    "usersCount_one": "{{count}} người dùng",
+    "usersCount_other": "{{count}} người dùng",
+    "totalMessages": "Tổng số tin nhắn",
+    "slowMode": "Chế độ chậm",
+    "cooldownSeconds": "{{seconds}}s thời gian chờ",
+    "minStakeRequired": "Cược tối thiểu yêu cầu",
+    "noParticipants": "Chưa có người tham gia",
+    "noModerators": "Không có người kiểm duyệt",
+    "noBannedUsers": "Không có người dùng bị cấm"
   },
   "promptFeed": {
     "headline": "Bạn muốn xem gì?",
@@ -4141,7 +4246,26 @@
     "madeForKidsBlockedByMature": "Bài đăng được đánh dấu là dành cho người lớn không thể được xuất bản cho trẻ em.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Lấy chi tiết RTMP",
-    "markMadeForKids": "Đánh dấu là sản phẩm dành cho trẻ em"
+    "markMadeForKids": "Đánh dấu là sản phẩm dành cho trẻ em",
+    "queueWaiting": "Đang chờ…",
+    "queueUploading": "Đang tải lên",
+    "queueProcessing": "Đang xử lý…",
+    "queueMinting": "Đang đúc…",
+    "queuePosted": "Đã đăng",
+    "queueFailed": "Thất bại",
+    "noRetriesLeft": "(không còn lần thử lại)",
+    "noUploads": "Không có tải lên",
+    "uploadsAppearHere": "Tệp tải lên của bạn sẽ xuất hiện ở đây",
+    "imagesTotalLimit": "Hình ảnh trong một lần tải lên phải có tổng dung lượng từ 100 MB trở xuống",
+    "chooseDatabase": "Chọn cơ sở dữ liệu phi tập trung",
+    "livestreamMode": "Chế độ phát trực tiếp",
+    "addThumbnail": "Thêm hình ảnh thu nhỏ",
+    "showCover": "Hiển thị bao gồm?",
+    "max60s": "Tối đa 60 giây",
+    "confirmLivestream": "Xác nhận phát trực tuyến",
+    "liveFeaturesTitle": "Tính năng trực tiếp",
+    "discardPostTitle": "Hủy bài đăng?",
+    "discardPostBody": "Bài đăng của bạn sẽ bị mất. Thay vào đó, bạn có muốn lưu nó dưới dạng bản nháp không?"
   },
   "bounty": {
     "claimed": "Đã nhận",
@@ -4457,7 +4581,25 @@
     "allowNewDmsOff": "Bật tin nhắn riêng để cho phép tin nhắn mới.",
     "perMessageFee": "Phí mỗi tin nhắn (DHB)",
     "perMessageFeeSub": "Thu phí mỗi tin nhắn. Đặt 0 để nhắn miễn phí. Bạn có thể cấp quyền miễn phí cho một số người dùng.",
-    "allDisabled": "Hiện tất cả tin nhắn riêng đang tắt. Tin nhắn mới bị chặn mặc định."
+    "allDisabled": "Hiện tất cả tin nhắn riêng đang tắt. Tin nhắn mới bị chặn mặc định.",
+    "failedToEdit": "Không thể chỉnh sửa",
+    "messageDeleted": "Đã xóa tin nhắn",
+    "cantForwardFromDevice": "Không thể chuyển tiếp tin nhắn này từ thiết bị này",
+    "messageForwarded": "Đã chuyển tiếp tin nhắn",
+    "clearMessages": "Xóa các thông điệp nhật ký",
+    "clearMessagesConfirm": "Xóa tất cả tin nhắn trong cuộc trò chuyện này? Không thể hoàn tác thao tác này.",
+    "messagesCleared": "Đã xóa tin nhắn",
+    "failedToClearMessages": "Không thể xóa tin nhắn",
+    "removedFreeAccess": "Đã xóa quyền truy cập miễn phí cho {{name}}",
+    "failedToUpdateFreeAccess": "Không thể cập nhật quyền truy cập miễn phí",
+    "searchComingSoon": "Tìm kiếm sắp ra mắt",
+    "tapToUnblock": "Nhấn để bỏ chặn",
+    "userFallback": "người dùng",
+    "failedToBlock": "Không thể chặn",
+    "failedToDeleteConversation": "Không thể xóa cuộc trò chuyện",
+    "newDm": "Tin nhắn trực tiếp mới",
+    "noConversationsFound": "Không tim thấy cuộc đàm thoại nào",
+    "grantedFreeAccess": "Được cấp quyền truy cập miễn phí vào {{name}}"
   },
   "editPost": {
     "mediaPermission": "Cần quyền truy cập thư viện phương tiện",
@@ -4479,7 +4621,17 @@
     "retry": "Thử lại",
     "retrying": "Đang thử lại...",
     "retryQueued": "Đang xử lý lại",
-    "retryFailed": "Không thể thử lại bài đăng đó"
+    "retryFailed": "Không thể thử lại bài đăng đó",
+    "closeVideo": "Đóng video",
+    "rotateOrientation": "Xoay hướng",
+    "videoProgress": "Tiến độ video: {{percent}}%",
+    "tapToSeek": "Nhấn để tua đến vị trí cụ thể",
+    "photoAccessToSaveImages": "Cho phép truy cập thư viện ảnh để lưu ảnh",
+    "failedToSaveImage": "Không thể lưu ảnh",
+    "downloadImage": "Tải ảnh xuống",
+    "goToImage": "Đi tới ảnh {{index}}",
+    "allCaughtUp": "Bạn đã xem hết",
+    "checkBackForShorts": "Kiểm tra lại sau để xem thêm video ngắn"
   },
   "liveViewer": {
     "loadingStream": "Đang tải luồng phát...",
@@ -4489,7 +4641,22 @@
   },
   "search": {
     "endOfResults": "Hết kết quả",
-    "searchDehub": "Tìm trên DeHub"
+    "searchDehub": "Tìm trên DeHub",
+    "tabVoice": "Giọng nói",
+    "trendingThisWeek": "Xu hướng Tuần này",
+    "trendingPosts": "Bài đăng thịnh hành",
+    "trendingImages": "Ảnh thịnh hành",
+    "trendingVideos": "Video thịnh hành",
+    "trendingVoicePosts": "Bài đăng giọng nói thịnh hành",
+    "trendingLive": "Trực tiếp thịnh hành",
+    "seeAll": "Xem tất cả",
+    "noAccountsFound": "Không tìm thấy tài khoản nào",
+    "tryDifferentKeywords": "Thử các từ khóa khác hoặc kiểm tra chính tả của bạn",
+    "noContentResults": "Không có kết quả nội dung",
+    "recentSearches": "Tìm kiếm gần đây",
+    "noTrendingThisWeek": "Không có nội dung thịnh hành trong tuần này",
+    "closeFilterOptions": "Đóng tùy chọn bộ lọc",
+    "openFilterOptions": "Mở tùy chọn bộ lọc"
   },
   "notifPrompt": {
     "stayInLoop": "Không bỏ lỡ tin tức",
@@ -4739,7 +4906,26 @@
     "externalTitle": "Chế độ phát trực tuyến bên ngoài",
     "externalLiveHint": "Phát trực tuyến của bạn đang phát trực tuyến qua phần mềm bên ngoài. Camera trong ứng dụng đã bị tắt.",
     "externalHint": "Kết nối phần mềm phát trực tuyến của bạn bằng cách sử dụng các chi tiết bên dưới, sau đó bắt đầu phát sóng.",
-    "useInAppCamera": "Thay vào đó, hãy sử dụng máy ảnh trong ứng dụng"
+    "useInAppCamera": "Thay vào đó, hãy sử dụng máy ảnh trong ứng dụng",
+    "livestreamEnded": "Livestream đã kết thúc",
+    "chatEnabled": "Trò chuyện đã bật",
+    "chatDisabled": "Trò chuyện đã tắt",
+    "failedToUpdateSettings": "Không thể cập nhật cài đặt",
+    "networkLostReconnecting": "Mất mạng — luồng tạm dừng. Đang kết nối lại…",
+    "openingViewer": "Đang mở trình xem...",
+    "cameraPermissionRequired": "Cần quyền truy cập máy ảnh",
+    "grantPermission": "Cấp quyền",
+    "waitingForLivepeer": "Đang chờ Livepeer...",
+    "waitingForExternalSource": "Đang chờ nguồn bên ngoài...",
+    "settingUpPublisher": "Đang thiết lập nhà xuất bản...",
+    "scheduledStream": "Luồng đã lên lịch",
+    "scheduledAt": "{{date}} lúc {{time}}",
+    "pressGoLiveWhenReady": "Nhấn Phát trực tuyến khi đã sẵn sàng để bắt đầu",
+    "connectionInterrupted": "Kết nối bị gián đoạn",
+    "streamPausedReconnecting": "Phát trực tuyến của bạn đang tạm dừng. Đang kết nối lại...",
+    "streamWillEnd": "Luồng sẽ kết thúc nếu không được kết nối lại",
+    "endStreamConfirmTitle": "Kết thúc luồng?",
+    "endStreamConfirmBody": "Đóng ngay bây giờ sẽ kết thúc phát trực tuyến của bạn cho tất cả người xem. Bạn có thể tiếp tục phát trực tuyến hoặc kết thúc vĩnh viễn."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

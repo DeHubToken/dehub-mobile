@@ -37,9 +37,9 @@ type RouteParams = {
 
 type TabKey = "reposts" | "quotes";
 
-const TAB_OPTIONS: { key: TabKey; label: string }[] = [
-  { key: "reposts", label: "Reposts" },
-  { key: "quotes", label: "Quotes" },
+const TAB_OPTIONS: { key: TabKey; labelKey: string }[] = [
+  { key: "reposts", labelKey: "screens.repostsTab" },
+  { key: "quotes", labelKey: "screens.quotesTab" },
 ];
 
 const PAGE_LIMIT = 20;
@@ -269,12 +269,12 @@ const RepostQuoteListScreen: React.FC = () => {
     if (!repostHasMore && repostUsers.length > 0) {
       return (
         <View className="py-6 items-center">
-          <Text className="text-theme-neutrals-400 text-sm">No more reposts</Text>
+          <Text className="text-theme-neutrals-400 text-sm">{t("screens.noMoreReposts")}</Text>
         </View>
       );
     }
     return <View className="h-6" />;
-  }, [repostLoadingMore, repostHasMore, repostUsers.length]);
+  }, [repostLoadingMore, repostHasMore, repostUsers.length, t]);
 
   const quoteFooter = useMemo(() => {
     if (quoteLoadingMore) {
@@ -287,12 +287,12 @@ const RepostQuoteListScreen: React.FC = () => {
     if (!quoteHasMore && quotePosts.length > 0) {
       return (
         <View className="py-6 items-center">
-          <Text className="text-theme-neutrals-400 text-sm">No more quotes</Text>
+          <Text className="text-theme-neutrals-400 text-sm">{t("screens.noMoreQuotes")}</Text>
         </View>
       );
     }
     return <View className="h-6" />;
-  }, [quoteLoadingMore, quoteHasMore, quotePosts.length]);
+  }, [quoteLoadingMore, quoteHasMore, quotePosts.length, t]);
 
   const repostEmpty = useMemo(() => {
     if (repostLoading) return null;
@@ -302,11 +302,11 @@ const RepostQuoteListScreen: React.FC = () => {
           <Ionicons name="git-compare-outline" size={40} color="#A1A1AA" />
         </View>
         <Text className="text-gray-400 text-base text-center px-8">
-          No reposts yet
+          {t("screens.noRepostsYet")}
         </Text>
       </View>
     );
-  }, [repostLoading]);
+  }, [repostLoading, t]);
 
   const quoteEmpty = useMemo(() => {
     if (quoteLoading) return null;
@@ -316,11 +316,11 @@ const RepostQuoteListScreen: React.FC = () => {
           <Ionicons name="chatbubble-ellipses-outline" size={40} color="#A1A1AA" />
         </View>
         <Text className="text-gray-400 text-base text-center px-8">
-          No quotes yet
+          {t("screens.noQuotesYet")}
         </Text>
       </View>
     );
-  }, [quoteLoading]);
+  }, [quoteLoading, t]);
 
   const isLoading = activeTab === "reposts" ? repostLoading : quoteLoading;
   const isRefreshing = activeTab === "reposts" ? repostRefreshing : quoteRefreshing;
@@ -347,7 +347,7 @@ const RepostQuoteListScreen: React.FC = () => {
                     isActive ? "text-white" : "text-theme-neutrals-400"
                   }`}
                 >
-                  {tab.label}
+                  {t(tab.labelKey)}
                 </Text>
                 {count > 0 && (
                   <Text

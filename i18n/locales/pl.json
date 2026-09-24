@@ -119,7 +119,12 @@
     "music": "Muzyka",
     "live": "Na żywo",
     "newPosts_one": "{{count}} nowy post",
-    "newPosts_other": "{{count}} nowych postów"
+    "newPosts_other": "{{count}} nowych postów",
+    "privateContent": "Prywatna treść",
+    "privateContentBody": "Ta treść pochodzi z prywatnego konta. Obserwuj twórcę, aby zobaczyć jego posty.",
+    "noMoreContent": "Brak dalszych treści",
+    "noPostsYet": "Brak postów.",
+    "pullToRefresh": "Pociągnij, aby odświeżyć lub spróbuj ponownie później."
   },
   "explore": {
     "all": "Wszystko",
@@ -710,7 +715,19 @@
       "replies": "Tylko odpowiedzi na moje komentarze",
       "account": "Tylko powiadomienia o moim koncie"
     },
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Nie udało się zaktualizować awatara",
+    "coverUpdateFailed": "Nie udało się zaktualizować okładki",
+    "fixInvalidSocialLinks": "Popraw nieprawidłowe linki społecznościowe",
+    "updateFailed": "Aktualizacja nie powiodła się",
+    "channelUrlOrHandle": "Adres URL kanału lub nazwa użytkownika",
+    "inviteLinkPlaceholder": "Link do zaproszenia",
+    "profileUrlOrUsername": "Adres URL profilu lub nazwa użytkownika",
+    "yourDisplayName": "Twoja nazwa wyświetlana",
+    "usernameAvailable": "Nazwa użytkownika jest dostępna",
+    "hideBadgeAndBalance": "Ukryj odznakę i saldo",
+    "hideBadgeAndBalanceDesc": "Ukrywa dane finansowe i wyłącza wysyłanie oraz napiwki do Ciebie.",
+    "onChainPublicWarning": "Transakcje on-chain są publiczne. Wysyłanie tokenów lub napiwków może ujawnić adres Twojego portfela, w tym transakcje dokonane przed włączeniem trybu prywatnego salda."
   },
   "common": {
     "mute": "Wycisz",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Brak połączenia z Internetem",
     "noInternetBody": "Sprawdź swoje połączenie internetowe i spróbuj ponownie. Aby korzystać z DeHub, musisz mieć połączenie z Internetem.",
     "noInternetStatus": "Offline - Brak połączenia sieciowego",
-    "noInternetHint": "Upewnij się, że Wi-Fi lub dane mobilne są włączone, a następnie dotknij \"{{action}}\""
+    "noInternetHint": "Upewnij się, że Wi-Fi lub dane mobilne są włączone, a następnie dotknij \"{{action}}\"",
+    "saving": "Zapisywanie…",
+    "offlineStatus": "Offline - Brak połączenia sieciowego"
   },
   "tip": {
     "title": "Wyślij napiwek",
@@ -1094,7 +1113,17 @@
     "post": "Opublikuj",
     "officialLogo": "Oto oficjalne logo DeHub! 🎨",
     "editedImage": "Oto Twój edytowany obraz!",
-    "generatedImage": "Oto Twój wygenerowany obraz!"
+    "generatedImage": "Oto Twój wygenerowany obraz!",
+    "toolCompleted": "{{name}} zakończono",
+    "aiTool": "Narzędzie AI",
+    "cannotAnimateImage": "{{model}} nie może animować dołączonego obrazu. Wybierz inny model wideo.",
+    "needsImageToAnimate": "{{model}} potrzebuje obrazu do animacji. Dołącz jeden lub wybierz inny model.",
+    "couldNotReadImage": "Nie można odczytać tego obrazu",
+    "logoLoadFailed": "Nie można załadować logo DeHub — generowanie bez niego",
+    "imageAttachedDescribe": "Obraz dołączony — opisz swoje zmiany",
+    "couldNotPreparePost": "Nie można tego przygotować do publikacji",
+    "generateImage": "Wygeneruj obraz",
+    "generateVideo": "Wygeneruj film"
   },
   "commandCentre": {
     "title": "Centrum Dowodzenia",
@@ -1606,7 +1635,10 @@
     "edit": "Edytuj",
     "deleteRequestTitle": "Usunąć to zgłoszenie?",
     "deleteRequestDescription": "Tego nie da się cofnąć.",
-    "attachmentTooLarge": "Każdy plik musi mieć poniżej 20 MB"
+    "attachmentTooLarge": "Każdy plik musi mieć poniżej 20 MB",
+    "deleteCommentA11y": "Usuń komentarz",
+    "sendCommentA11y": "Wyślij komentarz",
+    "requestOptions": "Opcje żądania"
   },
   "auth": {
     "loginRequired": "Wymagane logowanie",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Nie można wysłać kodu. Spróbuj ponownie.",
     "invalidCodeRetry": "Nieprawidłowy kod. Spróbuj ponownie.",
     "invalidEmailOrPassword": "Nieprawidłowy adres e-mail lub hasło.",
-    "welcomeToDehub": "Witamy w DeHub"
+    "welcomeToDehub": "Witamy w DeHub",
+    "importWalletOptional": "Importuj portfel (opcjonalnie)",
+    "couldNotSendCodeRetry": "Nie można wysłać kodu. Spróbuj ponownie.",
+    "exploreWithoutSignIn": "Odkrywaj bez logowania",
+    "continueExploring": "Odkrywaj dalej",
+    "exploreWithoutSignInA11y": "Przeglądaj DeHub bez logowania",
+    "continueExploringA11y": "Kontynuuj odkrywanie DeHub",
+    "importWalletRecommended": "Zalecane są loginy społecznościowe.",
+    "importWalletPurpose": "To narzędzie służy do importowania istniejących kont z DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Sugerowane odpowiedzi wyłączone",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Zostało to zgłoszone automatycznie.",
     "loadFailed": "Nie udało się wczytać kanałów",
     "noSearchResults": "Żaden kanał nie pasuje do wyszukiwania",
-    "noChannels": "Brak dostępnych kanałów"
+    "noChannels": "Brak dostępnych kanałów",
+    "pairCodeExpired": "Ten kod wygasł. Poproś telewizor o nowy.",
+    "signedInOnTv": "Zalogowano na telewizorze",
+    "pairRefused": "Odrzucone",
+    "pairIntro": "Otwórz DeHub w telewizorze i wpisz wyświetlany tutaj kod.",
+    "pairNotFound": "Żadna telewizja nie czeka na ten kod. Być może wygasł — poproś telewizor o nowy.",
+    "wantsToSignIn": "chce się zalogować jako Ty",
+    "pairWarning": "Zatwierdź to tylko wtedy, gdy oglądasz telewizję. Zatwierdzenie oznacza, kto przechowuje ten kod na Twoim koncie. Będzie mógł oglądać, lubić i śledzić — nie może wydawać, a Ty możesz go wylogować w dowolnym momencie z Aktywnych sesji.",
+    "pairApprove": "Tak, zaloguj się do tego telewizora",
+    "pairDeny": "Nie, nie prosiłem o to",
+    "pairDoneTitle": "Twój telewizor jest zalogowany",
+    "pairDoneBody": "Twoje konto powinno być już widoczne. Wyloguj się w dowolnym momencie z sekcji Ustawienia → Prywatność → Aktywne sesje.",
+    "closePlayer": "Zamknij gracza",
+    "declineFailed": "Nie mogliśmy tego odrzucić — mogło już wygasnąć.",
+    "tipSentTvNotTold": "Napiwek został wysłany, ale telewizor nie mógł zostać odczytany. Upłynie limit czasu.",
+    "sentAmount": "Wysłano {{amount}} DHB",
+    "nothingWaiting": "Nic nie czeka",
+    "nothingWaitingBody": "Kiedy wysyłasz napiwek z DeHub na telewizorze, pojawia się on tutaj do zatwierdzenia. Twój telewizor nigdy nie przechowuje Twojego portfela.",
+    "yourTelevision": "Twój telewizor",
+    "wantsToTip": "chce wysłać napiwek · {{time}} zostawił",
+    "tipTo": "do {{name}}",
+    "tipForPost": "za „{{title}}”",
+    "reviewAndApprove": "Przejrzyj i zatwierdź"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Złóż zgłoszenie",
     "nameEmailRequired": "Imię i e-mail są wymagane",
     "applicationSuccess": "Zgłoszenie wysłane pomyślnie! Skontaktujemy się.",
-    "applicationFailed": "Nie udało się wysłać. Spróbuj ponownie."
+    "applicationFailed": "Nie udało się wysłać. Spróbuj ponownie.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Skarbiec DAO",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Przypięto na górze tego posta",
     "unpinnedToast": "Przypięcie usunięte",
     "pinFailed": "Nie udało się przypiąć tego komentarza",
-    "kidsOnlyThread": "Ten post jest dla dzieci. Tylko tryb dziecięcy może to komentować."
+    "kidsOnlyThread": "Ten post jest dla dzieci. Tylko tryb dziecięcy może to komentować.",
+    "editFailed": "Nie udało się edytować komentarza"
   },
   "postInfo": {
     "title": "Informacje o poście",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Wkrótce",
     "signIn": "Zaloguj się",
     "tapToGetStarted": "Dotknij, aby zacząć",
-    "soon": "Wkrótce"
+    "soon": "Wkrótce",
+    "glossarySubtitle": "Dowiedz się, co oznacza każda ikona i funkcja",
+    "searchGlossary": "Szukaj w słowniku...",
+    "noResultsFor": "Brak wyników dla „{{query}}”",
+    "guideSubtitle": "Instrukcja krok po kroku dla każdej funkcji",
+    "searchGuide": "Szukaj w przewodniku...",
+    "repostsTab": "Reposty",
+    "quotesTab": "Cytaty",
+    "noMoreReposts": "Koniec z repostami",
+    "noMoreQuotes": "Koniec z cytatami",
+    "noRepostsYet": "Brak repostów",
+    "noQuotesYet": "Brak cytatów"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Gry, które działają wprost w aplikacji. Nic do instalowania, nic do kupienia — otwarty kod, serwowany przez samo DeHub."
+    "intro": "Gry, które działają wprost w aplikacji. Nic do instalowania, nic do kupienia — otwarty kod, serwowany przez samo DeHub.",
+    "noGameCalled": "W salonie gier nie ma gry o nazwie <slug>{{slug}}</slug>.",
+    "seeWhatIsHere": "Zobacz, co tu jest",
+    "locationNotGranted": "Nie udzielono zgody na lokalizację.",
+    "signInToPlaceOnGlobe": "Zaloguj się, aby umieścić się na kuli ziemskiej.",
+    "couldNotPlaceOnGlobe": "Nie udało się umieścić Cię na kuli ziemskiej.",
+    "onTheGlobe": "Jesteś na kuli ziemskiej — pokazany w przybliżonym obszarze 25 km.",
+    "couldNotReach": "NIE MOŻNA POŁĄCZYĆ SIĘ Z SALONEM GIER",
+    "didNotLoad": "{{title}} nie załadował się",
+    "needsConnection": "Gra jest serwowana z dehub.io i jest pobierana po jej otwarciu, więc za pierwszym razem potrzebne jest działające połączenie. Sprawdź swoje i spróbuj ponownie.",
+    "backToArcade": "Powrót do salonu gier",
+    "openPrivacySettings": "Otwórz ustawienia prywatności",
+    "privacyWarning": "Jeśli posiadasz dużą liczbę tokenów lub mieszkasz na niebezpiecznym obszarze, ukryj swój odznakę i saldo przed skorzystaniem z tej funkcji. Transakcje on-chain nadal ujawniają Twój adres. Otwórz ustawienia.",
+    "leaveGame": "Opuść grę",
+    "loadingGame": "Ładowanie {{title}}",
+    "hideThis": "Ukryj to"
   },
   "videoLooks": {
     "button": "Wyglądy kamery",
@@ -3376,7 +3466,22 @@
     "someone": "Ktoś",
     "oneTyping": "{{name}} pisze…",
     "fewTyping": "{{names}} piszą…",
-    "manyTyping": "{{count}} osób pisze…"
+    "manyTyping": "{{count}} osób pisze…",
+    "modBadge": "MOD",
+    "thisUser": "ten użytkownik",
+    "unbanConfirm": "Czy na pewno chcesz cofnąć bana {{name}}?",
+    "unban": "Cofnij bana",
+    "unbanFailed": "Nie udało się cofnąć bana użytkownikowi",
+    "onlineLabel": "Online",
+    "usersCount_one": "użytkownik {{count}}",
+    "usersCount_other": "użytkownicy {{count}}",
+    "totalMessages": "Łączna liczba wiadomości",
+    "slowMode": "Tryb spowolnienia",
+    "cooldownSeconds": "cooldown {{seconds}}s",
+    "minStakeRequired": "Minimalny wymagany zakład",
+    "noParticipants": "Brak uczestników",
+    "noModerators": "Brak moderatorów",
+    "noBannedUsers": "Brak zbanowanych użytkowników"
   },
   "promptFeed": {
     "headline": "Co chcesz oglądać?",
@@ -4128,7 +4233,26 @@
     "madeForKidsOffDesc": "Pokazuje ten post dzieciom korzystającym z trybu dziecięcego i usuwa go ze zwykłych kanałów.",
     "madeForKidsBlockedByMature": "Post oznaczony jako dojrzały nie może być również publikowany dla dzieci.",
     "encoderTitle": "OBS / Koder",
-    "encoderHint": "Uzyskaj szczegóły RTMP"
+    "encoderHint": "Uzyskaj szczegóły RTMP",
+    "queueWaiting": "Czekam…",
+    "queueUploading": "Przesyłanie",
+    "queueProcessing": "Przetwarzanie…",
+    "queueMinting": "Tworzenie…",
+    "queuePosted": "Opublikowano",
+    "queueFailed": "Nie udało się",
+    "noRetriesLeft": "(nie pozostały próby)",
+    "noUploads": "Brak przesłanych plików",
+    "uploadsAppearHere": "Twoje przesłane pliki pojawią się tutaj",
+    "imagesTotalLimit": "Obrazy w jednym przesłanym pliku muszą mieć maksymalnie 100 MB",
+    "chooseDatabase": "Wybierz zdecentralizowaną bazę danych",
+    "livestreamMode": "Tryb transmisji na żywo",
+    "addThumbnail": "Źródło miniatury",
+    "showCover": "Pokaż okładkę",
+    "max60s": "Maks. 60s",
+    "confirmLivestream": "Potwierdź transmisję na żywo",
+    "liveFeaturesTitle": "Funkcje na żywo",
+    "discardPostTitle": "Odrzucić post?",
+    "discardPostBody": "Twój post zostanie utracony. Czy zamiast tego chcesz zapisać go jako wersję roboczą?"
   },
   "bounty": {
     "claimed": "Odebrano",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Włącz wiadomości, aby zezwolić na nowe.",
     "perMessageFee": "Opłata za wiadomość (DHB)",
     "perMessageFeeSub": "Pobieraj opłatę za wiadomość. Ustaw 0 dla darmowych wiadomości. Wybranym użytkownikom możesz dać darmowy dostęp.",
-    "allDisabled": "Wszystkie wiadomości są teraz wyłączone. Nowe są domyślnie blokowane."
+    "allDisabled": "Wszystkie wiadomości są teraz wyłączone. Nowe są domyślnie blokowane.",
+    "failedToEdit": "Nie udało się",
+    "messageDeleted": "Wiadomość usunięta.",
+    "cantForwardFromDevice": "Nie można przekazać tej wiadomości z tego urządzenia",
+    "messageForwarded": "Wiadomość przekazana dalej",
+    "clearMessages": "Czytelne przesłanie",
+    "clearMessagesConfirm": "Usunąć wszystkie wiadomości w tej rozmowie? Tego nie można cofnąć.",
+    "messagesCleared": "Wiadomości wyczyszczone",
+    "failedToClearMessages": "Nie udało się wyczyścić wiadomości",
+    "removedFreeAccess": "Usunięto bezpłatny dostęp dla {{name}}",
+    "grantedFreeAccess": "Przyznano bezpłatny dostęp do {{name}}",
+    "failedToUpdateFreeAccess": "Nie udało się zaktualizować bezpłatnego dostępu",
+    "searchComingSoon": "Wyszukaj już wkrótce",
+    "tapToUnblock": "Dotknij, aby odblokować",
+    "userFallback": "użytkownik",
+    "failedToBlock": "Nie można zablokować użytkownika",
+    "failedToDeleteConversation": "Nie udało się usunąć konwersacji",
+    "newDm": "Bezpośrednia wiadomość",
+    "noConversationsFound": "Nie znaleziono konwersacji"
   },
   "editPost": {
     "mediaPermission": "Wymagane jest uprawnienie do biblioteki multimediów",
@@ -4467,7 +4609,17 @@
     "retry": "Spróbuj ponownie",
     "retrying": "Ponawianie próby…",
     "retryQueued": "Przetwarzanie ponownie",
-    "retryFailed": "Nie można ponowić próby opublikowania tego posta"
+    "retryFailed": "Nie można ponowić próby opublikowania tego posta",
+    "closeVideo": "Zamknij wideo",
+    "rotateOrientation": "Obróć orientację",
+    "videoProgress": "Postęp wideo: {{percent}}%",
+    "tapToSeek": "Stuknij, aby przejść do określonej pozycji",
+    "photoAccessToSaveImages": "Zezwól na dostęp do biblioteki zdjęć, aby zapisywać obrazy",
+    "failedToSaveImage": "Nie udało się zapisać obrazu",
+    "downloadImage": "Pobierz obraz",
+    "goToImage": "Przejdź do obrazu {{index}}",
+    "allCaughtUp": "Jesteś na bieżąco",
+    "checkBackForShorts": "Sprawdź później, czy pojawiły się nowe krótkie filmy"
   },
   "liveViewer": {
     "loadingStream": "Wczytywanie transmisji...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Koniec wyników",
-    "searchDehub": "Szukaj w DeHub"
+    "searchDehub": "Szukaj w DeHub",
+    "tabVoice": "Głos",
+    "trendingThisWeek": "Popularne w tym tygodniu",
+    "trendingPosts": "Popularne posty",
+    "trendingImages": "Popularne obrazy",
+    "trendingVideos": "Popularne filmy",
+    "trendingVoicePosts": "Popularne posty głosowe",
+    "trendingLive": "Popularne transmisje na żywo",
+    "seeAll": "Zobacz wszystko",
+    "noAccountsFound": "Nie znaleziono kont",
+    "tryDifferentKeywords": "Spróbuj użyć innych słów kluczowych lub sprawdź pisownię",
+    "noContentResults": "Brak wyników treści",
+    "recentSearches": "Ostatnie wyszukiwania",
+    "noTrendingThisWeek": "Brak popularnych treści w tym tygodniu",
+    "closeFilterOptions": "Zamknij opcje filtrowania",
+    "openFilterOptions": "Otwórz opcje filtrowania"
   },
   "notifPrompt": {
     "stayInLoop": "Bądź na bieżąco",
@@ -4727,7 +4894,26 @@
     "externalTitle": "Zewnętrzny tryb przesyłania strumieniowego",
     "externalLiveHint": "Twoja transmisja jest transmitowana na żywo za pośrednictwem zewnętrznego oprogramowania. Kamera w aplikacji jest wyłączona.",
     "externalHint": "Podłącz oprogramowanie do przesyłania strumieniowego, korzystając z poniższych szczegółów, a następnie rozpocznij transmisję.",
-    "useInAppCamera": "Zamiast tego użyj aparatu w aplikacji"
+    "useInAppCamera": "Zamiast tego użyj aparatu w aplikacji",
+    "livestreamEnded": "Transmisja na żywo zakończona",
+    "chatEnabled": "Czat włączony",
+    "chatDisabled": "Czat wyłączony",
+    "failedToUpdateSettings": "Nie udało się zaktualizować ustawień",
+    "networkLostReconnecting": "Utrata sieci — strumień wstrzymany. Ponowne łączenie…",
+    "openingViewer": "Otwieranie podglądu...",
+    "cameraPermissionRequired": "Wymagane uprawnienia aparatu",
+    "grantPermission": "Przyznaj uprawnienie",
+    "waitingForLivepeer": "Oczekiwanie na Livepeer...",
+    "waitingForExternalSource": "Oczekiwanie na źródło zewnętrzne...",
+    "settingUpPublisher": "Konfigurowanie wydawcy...",
+    "scheduledStream": "Zaplanowany strumień",
+    "scheduledAt": "{{date}} at {{time}}",
+    "pressGoLiveWhenReady": "Naciśnij Uruchomienie, gdy wszystko będzie gotowe do uruchomienia",
+    "connectionInterrupted": "Połączenie przerwane",
+    "streamPausedReconnecting": "Strumień został wstrzymany. Trwa ponowne łączenie...",
+    "streamWillEnd": "Strumień zakończy się, jeśli nie zostanie ponownie połączony",
+    "endStreamConfirmTitle": "Zakończyć strumień?",
+    "endStreamConfirmBody": "Zamknięcie teraz zakończy transmisję na żywo dla wszystkich widzów. Możesz kontynuować przesyłanie strumieniowe lub zakończyć je na stałe."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -392,9 +392,9 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                     <Icon name="EyeOff" size={18} color="#9ca3af" />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">Hide badge and balance</Text>
+                    <Text className="text-white text-sm font-medium">{t('settings.hideBadgeAndBalance')}</Text>
                     <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                      Hides financial details and disables sends and tips to you.
+                      {t('settings.hideBadgeAndBalanceDesc')}
                     </Text>
                   </View>
                 </View>
@@ -430,7 +430,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             </Text>
             <View className="mt-3 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3">
               <Text className="text-amber-100/80 text-xs leading-5">
-                On-chain transactions are public. Sending tokens or tips can reveal your wallet address, including transactions made before private balance mode was enabled.
+                {t('settings.onChainPublicWarning')}
               </Text>
             </View>
           </View>

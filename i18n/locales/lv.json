@@ -119,7 +119,12 @@
     "music": "Mūzika",
     "live": "Tiešraide",
     "newPosts_one": "{{count}} jauns ieraksts",
-    "newPosts_other": "{{count}} jauni ieraksti"
+    "newPosts_other": "{{count}} jauni ieraksti",
+    "privateContent": "Privāts saturs",
+    "privateContentBody": "Šis saturs ir no privāta konta. Sekojiet autoram, lai skatītu viņa ierakstus.",
+    "noMoreContent": "Vairs nav satura",
+    "noPostsYet": "Vēl nav ierakstu.",
+    "pullToRefresh": "Velciet, lai atsvaidzinātu, vai mēģiniet vēlāk."
   },
   "explore": {
     "all": "Visi",
@@ -710,7 +715,19 @@
       "account": "Tikai paziņojumi par manu kontu"
     },
     "smsNotificationsLocked": "Atbloķēt ar {{dhb}} DHB (${{usd}}) kredīta",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Avatara atjaunināšana neizdevās",
+    "coverUpdateFailed": "Vāka atjaunināšana neizdevās",
+    "fixInvalidSocialLinks": "Lūdzu, labojiet nepareizās sociālo saišu saites",
+    "updateFailed": "Atjaunināšana neizdevās",
+    "channelUrlOrHandle": "Kanāla URL vai rokturis",
+    "inviteLinkPlaceholder": "Uzaicinājuma saite",
+    "profileUrlOrUsername": "Profila URL vai lietotājvārds",
+    "yourDisplayName": "Jūsu vārds",
+    "usernameAvailable": "Lietotājvārds ir pieejams",
+    "hideBadgeAndBalance": "Slēpt emblēmu un atlikumu",
+    "hideBadgeAndBalanceDesc": "Slēpj finanšu datus un atspējo sūtījumus un padomus jums.",
+    "onChainPublicWarning": "Darījumi ķēdē ir publiski. Žetonu vai padomu sūtīšana var atklāt jūsu maka adresi, ieskaitot darījumus, kas veikti pirms privātā atlikuma režīma iespējošanas."
   },
   "common": {
     "mute": "Izslēgt skaņu",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Nav interneta savienojuma",
     "noInternetBody": "Lūdzu, pārbaudiet interneta savienojumu un mēģiniet vēlreiz. Lai izmantotu DeHub, jums ir jābūt savienotam ar internetu.",
     "noInternetStatus": "Bezsaistē - Nav tīkla savienojuma",
-    "noInternetHint": "Pārliecinieties, ka Wi-Fi vai mobilie dati ir ieslēgti, pēc tam nospiediet \"{{action}}\""
+    "noInternetHint": "Pārliecinieties, ka Wi-Fi vai mobilie dati ir ieslēgti, pēc tam nospiediet \"{{action}}\"",
+    "saving": "Saglabāšana…",
+    "offlineStatus": "Bezsaistē - nav tīkla savienojuma"
   },
   "tip": {
     "title": "Sūtīt dzeramnaudu",
@@ -1094,7 +1113,17 @@
     "post": "Ieraksts",
     "officialLogo": "Lūk, oficiālais DeHub logo! 🎨",
     "editedImage": "Lūk, jūsu rediģētais attēls!",
-    "generatedImage": "Lūk, jūsu ģenerētais attēls!"
+    "generatedImage": "Lūk, jūsu ģenerētais attēls!",
+    "toolCompleted": "{{name}} pabeigts",
+    "aiTool": "AI rīks",
+    "cannotAnimateImage": "{{model}} nevar animēt pievienoto attēlu. Izvēlieties citu video modeli.",
+    "needsImageToAnimate": "{{model}} nepieciešams attēls, ko animēt. Pievienojiet to vai izvēlieties citu modeli.",
+    "couldNotReadImage": "Nevarēja nolasīt šo attēlu",
+    "logoLoadFailed": "Nevarēja ielādēt DeHub logotipu — ģenerēšana bez tā",
+    "imageAttachedDescribe": "Attēls pievienots — aprakstiet savus labojumus",
+    "couldNotPreparePost": "Nevarēja sagatavot publicēšanai",
+    "generateImage": "Ģenerēt attēlu",
+    "generateVideo": "Ģenerēt video"
   },
   "commandCentre": {
     "title": "Vadības centrs",
@@ -1606,7 +1635,10 @@
     "edit": "Rediģēt",
     "deleteRequestTitle": "Vai dzēst šo pieprasījumu?",
     "deleteRequestDescription": "To nevar atsaukt.",
-    "attachmentTooLarge": "Katram failam jābūt mazākam par 20 MB"
+    "attachmentTooLarge": "Katram failam jābūt mazākam par 20 MB",
+    "deleteCommentA11y": "Dzēst Komentāru",
+    "sendCommentA11y": "Nosūtīt komentāru",
+    "requestOptions": "Pieprasījuma iespējas"
   },
   "auth": {
     "loginRequired": "Nepieciešama pieteikšanās",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Nevarēja nosūtīt kodu. Lūdzu, mēģiniet vēlreiz.",
     "invalidCodeRetry": "Nederīgs kods. Lūdzu, mēģiniet vēlreiz.",
     "invalidEmailOrPassword": "Nederīgs e-pasts vai parole.",
-    "welcomeToDehub": "Laipni lūdzam DeHub"
+    "welcomeToDehub": "Laipni lūdzam DeHub",
+    "importWalletOptional": "Importēt maku (neobligāti)",
+    "couldNotSendCodeRetry": "Nevarēja nosūtīt kodu. Lūdzu, mēģiniet vēlreiz.",
+    "exploreWithoutSignIn": "Izpētīt bez pierakstīšanās",
+    "continueExploring": "Turpināt izpēti",
+    "exploreWithoutSignInA11y": "Izpētiet DeHub bez pierakstīšanās",
+    "continueExploringA11y": "Turpināt DeHub izpēti",
+    "importWalletRecommended": "Ieteicams pierakstīties sociālajos tīklos.",
+    "importWalletPurpose": "Šis rīks ir paredzēts esošu kontu importēšanai no DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Ieteiktās atbildes izslēgtas",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Par to ir ziņots automātiski.",
     "loadFailed": "Neizdevās ielādēt kanālus",
     "noSearchResults": "Neviens kanāls neatbilst tavai meklēšanai",
-    "noChannels": "Nav pieejamu kanālu"
+    "noChannels": "Nav pieejamu kanālu",
+    "pairCodeExpired": "Šī koda derīguma termiņš ir beidzies. Palūdziet televizoram jaunu.",
+    "signedInOnTv": "Pierakstījies televizorā",
+    "pairRefused": "atteikta",
+    "pairIntro": "Atveriet DeHub savā televizorā un ierakstiet šeit parādīto kodu.",
+    "pairNotFound": "Neviens televizors negaida šo kodu. Iespējams, ir beidzies derīguma termiņš — palūdziet televizoram jaunu.",
+    "wantsToSignIn": "vēlas pierakstīties kā jūs",
+    "pairWarning": "Apstipriniet to tikai tad, ja tas ir televizors, kuru pašlaik skatāties. Apstiprina zīmes, kas norāda šo kodu jūsu kontā. Tas varēs skatīties, patīk un sekot — tas nevar tērēt, un jūs to varat izrakstīt jebkurā laikā no Aktīvajām sesijām.",
+    "pairApprove": "Jā, pierakstīties šajā televizorā",
+    "pairDeny": "Nē, es to neprasīju",
+    "pairDoneTitle": "Jūsu TV ir pierakstījies",
+    "pairDoneBody": "Tam jau vajadzētu būt redzamam jūsu kontā. Izrakstieties jebkurā laikā sadaļā Iestatījumi → Privātums → Aktīvās sesijas.",
+    "closePlayer": "Aizvērt spēlētāju",
+    "declineFailed": "Nevarēja to noraidīt — iespējams, tam jau ir beidzies derīguma termiņš.",
+    "tipSentTvNotTold": "Dzeramnauda ir nosūtīta, bet TV nevarēja pateikt. Tiks pārtraukts taimauts.",
+    "sentAmount": "Nosūtīts {{amount}} DHB",
+    "nothingWaiting": "Nav nekā, kas gaidītu",
+    "nothingWaitingBody": "Kad jūs nosūtāt dzeramnaudu no DeHub savā televizorā, tā šeit parādās, lai jūs varētu apstiprināt. Jūsu televizors nekad netur jūsu maku.",
+    "yourTelevision": "Jūsu televizors",
+    "wantsToTip": "vēlas nosūtīt dzeramnaudu · {{time}} atstāja",
+    "tipTo": "uz {{name}}",
+    "tipForPost": "par “{{title}}”",
+    "reviewAndApprove": "Pārskatīt un apstiprināt"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Iesniegt pieteikumu",
     "nameEmailRequired": "Vārds un e-pasts ir obligāti",
     "applicationSuccess": "Pieteikums veiksmīgi iesniegts! Sazināsimies ar jums.",
-    "applicationFailed": "Iesniegšana neizdevās. Lūdzu, mēģiniet vēlreiz."
+    "applicationFailed": "Iesniegšana neizdevās. Lūdzu, mēģiniet vēlreiz.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO kase",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Piesprausts šī ieraksta augšpusē",
     "unpinnedToast": "Piespraudums noņemts",
     "pinFailed": "Neizdevās piespraust šo komentāru",
-    "kidsOnlyThread": "Šī ziņa ir paredzēta bērniem. To var komentēt tikai bērnu režīms."
+    "kidsOnlyThread": "Šī ziņa ir paredzēta bērniem. To var komentēt tikai bērnu režīms.",
+    "editFailed": "Neizdevās rediģēt komentāru"
   },
   "postInfo": {
     "title": "Ieraksta informācija",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Drīzumā",
     "signIn": "Pieteikties",
     "tapToGetStarted": "Pieskaries, lai sāktu",
-    "soon": "Drīz"
+    "soon": "Drīz",
+    "glossarySubtitle": "Uzziniet, ko nozīmē katona ikona un funkcija",
+    "searchGlossary": "Meklēt glosārijā...",
+    "noResultsFor": "Nav rezultātu priekš “{{query}}”",
+    "guideSubtitle": "Detalizēta pamācība par katru funkciju",
+    "searchGuide": "Meklēt ceļvedī...",
+    "repostsTab": "Reposti",
+    "quotesTab": "Citāti",
+    "noMoreReposts": "Vairs nekādu repostu",
+    "noMoreQuotes": "Vairs nekādu citātu",
+    "noRepostsYet": "Vēl nav repostu",
+    "noQuotesYet": "Vēl nav citātu"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Spēles, kas darbojas tepat lietotnē. Nekas nav jāinstalē, nekas nav jāpērk — atklātā koda un pasniegtas no paša DeHub."
+    "intro": "Spēles, kas darbojas tepat lietotnē. Nekas nav jāinstalē, nekas nav jāpērk — atklātā koda un pasniegtas no paša DeHub.",
+    "noGameCalled": "Arkādē nav spēles ar nosaukumu <slug>{{slug}}</slug>.",
+    "seeWhatIsHere": "Skatīt, kas ir šeit",
+    "locationNotGranted": "Atļauja atrašanās vietai netika piešķirta.",
+    "signInToPlaceOnGlobe": "Pierakstieties, lai sevi novietotu uz globusa.",
+    "couldNotPlaceOnGlobe": "Nevarēja jūs novietot uz globusa.",
+    "onTheGlobe": "Jūs atrodaties uz globusa — parādīts aptuveni 25 km rādiusā.",
+    "couldNotReach": "NEVARĒJA SASNIEGT ARKĀDI",
+    "didNotLoad": "{{title}} neielādējās",
+    "needsConnection": "Spēle tiek nodrošināta no dehub.io un tiek lejupielādēta, kad to atverat, tāpēc pirmo reizi ir nepieciešams darboties savienojums. Pārbaudiet savu un mēģiniet vēlreiz.",
+    "backToArcade": "Atpakaļ uz arkādi",
+    "openPrivacySettings": "Atvērt konfidencialitātes iestatījumus",
+    "privacyWarning": "Ja jums ir liels daudzums žetonu vai dzīvojat nedrošā apkaimē, pirms šīs funkcijas izmantošanas paslēpiet savu emblēmu un atlikumu. Darījumi ķēdē joprojām atklāj jūsu adresi. Atvērt iestatījumus.",
+    "leaveGame": "Pamest spēli",
+    "loadingGame": "Ielādē {{title}}",
+    "hideThis": "Paslēpt šo"
   },
   "videoLooks": {
     "button": "Kameras izskati",
@@ -3376,7 +3466,22 @@
     "someone": "Kāds",
     "oneTyping": "{{name}} raksta…",
     "fewTyping": "{{names}} raksta…",
-    "manyTyping": "{{count}} cilvēki raksta…"
+    "manyTyping": "{{count}} cilvēki raksta…",
+    "modBadge": "MOD",
+    "thisUser": "šis lietotājs",
+    "unbanConfirm": "Vai tiešām vēlaties atbloķēt {{name}}?",
+    "unban": "Atbloķēt",
+    "unbanFailed": "Lietotāja atbloķēšana neizdevās",
+    "onlineLabel": "Tiešsaistē",
+    "usersCount_one": "{{count}} lietotājs",
+    "usersCount_other": "{{count}} lietotāji",
+    "totalMessages": "Kopā ziņojumu",
+    "slowMode": "Lēnais režīms",
+    "cooldownSeconds": "{{seconds}}s atdzišanas laiks",
+    "minStakeRequired": "Min. nepieciešamā likme",
+    "noParticipants": "Vēl nav dalībnieku",
+    "noModerators": "Nav moderatoru",
+    "noBannedUsers": "Nav bloķētu lietotāju"
   },
   "promptFeed": {
     "headline": "Ko tu vēlies redzēt?",
@@ -4128,7 +4233,26 @@
     "madeForKidsBlockedByMature": "Ieraksts, kas atzīmēts kā pieaugušiem paredzēts, nevar tikt publicēts arī bērniem.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Iegūstiet RTMP detaļas",
-    "markMadeForKids": "Atzīmēt kā izgatavotu bērniem"
+    "markMadeForKids": "Atzīmēt kā izgatavotu bērniem",
+    "queueWaiting": "Gaida…",
+    "queueUploading": "Augšupielāde",
+    "queueProcessing": "Apstrāde…",
+    "queueMinting": "Kalšana…",
+    "queuePosted": "Ievietots",
+    "queueFailed": "Neizdevās",
+    "noRetriesLeft": "(nav atlikušo mēģinājumu)",
+    "noUploads": "Nav augšupielāžu",
+    "uploadsAppearHere": "Jūsu augšupielādes parādīsies šeit",
+    "imagesTotalLimit": "Attēlu kopskaitam vienā augšupielādē jābūt 100 MB vai mazākam",
+    "chooseDatabase": "Izvēlēties decentralizēto datu bāzi",
+    "livestreamMode": "Tiešraides režīms",
+    "addThumbnail": "Pievienot sīktēlu",
+    "showCover": "Rādīt vāku",
+    "max60s": "Maks. 60 s",
+    "confirmLivestream": "Apstiprināt tiešraidi",
+    "liveFeaturesTitle": "Iespējas reāllaikā",
+    "discardPostTitle": "Vai atmest ziņu?",
+    "discardPostBody": "Jūsu ieraksts tiks zaudēts. Vai tā vietā vēlaties to saglabāt kā melnrakstu?"
   },
   "bounty": {
     "claimed": "Saņemts",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Ieslēdziet ziņas, lai atļautu jaunas.",
     "perMessageFee": "Maksa par ziņu (DHB)",
     "perMessageFeeSub": "Iekasējiet maksu par ziņu. Iestatiet 0 bezmaksas ziņām. Atsevišķiem lietotājiem varat piešķirt bezmaksas piekļuvi.",
-    "allDisabled": "Pašlaik visas ziņas ir izslēgtas. Jaunās pēc noklusējuma tiek bloķētas."
+    "allDisabled": "Pašlaik visas ziņas ir izslēgtas. Jaunās pēc noklusējuma tiek bloķētas.",
+    "failedToEdit": "Neizdevās rediģēt",
+    "messageDeleted": "Ziņa izdzēsta",
+    "cantForwardFromDevice": "Šo ziņojumu nevar pārsūtīt no šīs ierīces",
+    "messageForwarded": "Ziņojums pārsūtīts",
+    "clearMessages": "Skaidri vēstījumi",
+    "clearMessagesConfirm": "Vai dzēst visus šīs sarunas ziņojumus? Šo darbību nevar atsaukt.",
+    "messagesCleared": "Ziņojumi nodzēsti",
+    "failedToClearMessages": "Neizdevās notīrīt ziņojumus",
+    "removedFreeAccess": "Noņemta {{name}} bezmaksas piekļuve",
+    "grantedFreeAccess": "Piešķirta bezmaksas piekļuve {{name}}",
+    "failedToUpdateFreeAccess": "Neizdevās atjaunināt bezmaksas piekļuvi",
+    "searchComingSoon": "Drīzumā gaidāma meklēšana",
+    "tapToUnblock": "Pieskarieties, lai atbloķētu",
+    "userFallback": "lietotājs",
+    "failedToBlock": "Neizdevās bloķēt",
+    "failedToDeleteConversation": "Neizdevās dzēst sarunu",
+    "newDm": "Jauns tiešais ziņojums",
+    "noConversationsFound": "Sarunas nav atrastas"
   },
   "editPost": {
     "mediaPermission": "Nepieciešama medijbibliotēkas atļauja",
@@ -4467,7 +4609,17 @@
     "retry": "Mēģināt vēlreiz",
     "retrying": "Mēģina vēlreiz...",
     "retryQueued": "Apstrādā vēlreiz",
-    "retryFailed": "Nevarēja mēģināt vēlreiz publicēt šo ziņu"
+    "retryFailed": "Nevarēja mēģināt vēlreiz publicēt šo ziņu",
+    "closeVideo": "Aizvērt video",
+    "rotateOrientation": "Pagriezt orientāciju",
+    "videoProgress": "Video progress: {{percent}}%",
+    "tapToSeek": "Pieskaries, lai pārietu uz konkrētu pozīciju",
+    "photoAccessToSaveImages": "Atļaut piekļuvi fotoattēlu bibliotēkai, lai saglabātu attēlus",
+    "failedToSaveImage": "Neizdevās saglabāt attēlu",
+    "downloadImage": "Lejupielādēt attēlu",
+    "goToImage": "Doties uz attēlu {{index}}",
+    "allCaughtUp": "Jūs esat nokavējis",
+    "checkBackForShorts": "Pārbaudiet vēlāk, lai iegūtu vairāk īsu video"
   },
   "liveViewer": {
     "loadingStream": "Ielādē straumi...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Rezultātu beigas",
-    "searchDehub": "Meklēt DeHub"
+    "searchDehub": "Meklēt DeHub",
+    "tabVoice": "Balss",
+    "trendingThisWeek": "Šonedēļ populāri",
+    "trendingPosts": "Populāri ieraksti",
+    "trendingImages": "Populāri attēli",
+    "trendingVideos": "Populāri video",
+    "trendingVoicePosts": "Populāri balss ieraksti",
+    "trendingLive": "Populāri tiešraides",
+    "seeAll": "Skatīt visu",
+    "noAccountsFound": "Nav atrasti konti",
+    "tryDifferentKeywords": "Mēģiniet izmantot citus atslēgvārdus vai pārbaudiet pareizrakstību",
+    "noContentResults": "Nav satura rezultātu",
+    "recentSearches": "Nesenie meklējumi",
+    "noTrendingThisWeek": "Šonedēļ nav populāra satura",
+    "closeFilterOptions": "Aizvērt filtrēšanas opcijas",
+    "openFilterOptions": "Atvērt filtrēšanas opcijas"
   },
   "notifPrompt": {
     "stayInLoop": "Esiet lietas kursā",
@@ -4727,7 +4894,26 @@
     "externalTitle": "Ārējās straumēšanas režīms",
     "externalLiveHint": "Jūsu straume ir tiešraidē, izmantojot ārēju programmatūru. Kamera lietotnē ir atspējota.",
     "externalHint": "Pievienojiet straumēšanas programmatūru, izmantojot tālāk norādīto informāciju, un pēc tam sāciet apraidi.",
-    "useInAppCamera": "Tā vietā izmantot lietotnes kameru"
+    "useInAppCamera": "Tā vietā izmantot lietotnes kameru",
+    "livestreamEnded": "Tiešraide beigusies",
+    "chatEnabled": "Tērzēšana iespējota",
+    "chatDisabled": "Tērzēšana atspējota",
+    "failedToUpdateSettings": "Neizdevās atjaunināt iestatījumus",
+    "networkLostReconnecting": "Zaudēts tīkls — straume apturēta. Tiek atkārtoti savienots…",
+    "openingViewer": "Atveras skatītājs...",
+    "cameraPermissionRequired": "Nepieciešama kameras atļauja",
+    "grantPermission": "Piešķirt atļauju",
+    "waitingForLivepeer": "Gaida Livepeer...",
+    "waitingForExternalSource": "Gaida ārēju avotu...",
+    "settingUpPublisher": "Notiek izdevēja iestatīšana...",
+    "scheduledStream": "Ieplānotā straume",
+    "scheduledAt": "{{date}} {{time}}",
+    "pressGoLiveWhenReady": "Kad esat gatavs sākt, nospiediet Pāriet tiešraidē",
+    "connectionInterrupted": "Savienojums pārtraukts",
+    "streamPausedReconnecting": "Jūsu straume ir apturēta. Notiek atkārtota savienojuma izveide...",
+    "streamWillEnd": "Ja netiks izveidots atkārtots savienojums, straume tiks pārtraukta",
+    "endStreamConfirmTitle": "Vai beigt straumēšanu?",
+    "endStreamConfirmBody": "Slēgšana tūlīt pārtrauks jūsu tiešraidi visiem skatītājiem. Varat turpināt straumēšanu vai pārtraukt to neatgriezeniski."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

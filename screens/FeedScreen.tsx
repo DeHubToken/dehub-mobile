@@ -668,15 +668,15 @@ const FeedScreen = () => {
                 </View>
               ) : !feedHasMore && feedData.length > 0 ? (
                 <View className="px-4 py-6 items-center">
-                  <Text className="text-theme-neutrals-400 text-xs">No more content</Text>
+                  <Text className="text-theme-neutrals-400 text-xs">{t("feed.noMoreContent")}</Text>
                 </View>
               ) : null
             }
             ListEmptyComponent={
               !feedLoading ? (
                 <View className="items-center py-10">
-                  <Text className="text-theme-neutrals-400 text-sm mb-1">No posts yet.</Text>
-                  <Text className="text-theme-neutrals-500 text-xs mb-2">Pull to refresh or try again later.</Text>
+                  <Text className="text-theme-neutrals-400 text-sm mb-1">{t("feed.noPostsYet")}</Text>
+                  <Text className="text-theme-neutrals-500 text-xs mb-2">{t("feed.pullToRefresh")}</Text>
                 </View>
               ) : null
             }
@@ -716,7 +716,7 @@ const FeedScreen = () => {
               <GridSkeleton />
             ) : (
               <View className="items-center py-10">
-                <Text className="text-theme-neutrals-400 text-sm mb-1">No posts yet.</Text>
+                <Text className="text-theme-neutrals-400 text-sm mb-1">{t("feed.noPostsYet")}</Text>
               </View>
             )
           }

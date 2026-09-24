@@ -74,20 +74,21 @@ type TabKey = "all" | "accounts" | "posts" | "images" | "videos" | "voice" | "li
 
 interface Tab {
   key: TabKey;
-  label: string;
+  /** i18n key, resolved at render so the tabs follow the app language. */
+  labelKey: string;
   icon: React.ComponentProps<typeof Icon>["name"];
   postType?: SearchPostType;
   searchType?: "accounts" | "content";
 }
 
 const TABS: Tab[] = [
-  { key: "all", label: "All", icon: "Search" },
-  { key: "accounts", label: "Accounts", icon: "Users", searchType: "accounts" },
-  { key: "posts", label: "Posts", icon: "FileText", postType: "feed-simple" },
-  { key: "images", label: "Images", icon: "Image", postType: "feed-images" },
-  { key: "videos", label: "Videos", icon: "Play", postType: "video" },
-  { key: "voice", label: "Voice", icon: "Mic", postType: "feed-audio" },
-  { key: "live", label: "Live", icon: "Radio", postType: "live" },
+  { key: "all", labelKey: "explore.all", icon: "Search" },
+  { key: "accounts", labelKey: "screens.accounts", icon: "Users", searchType: "accounts" },
+  { key: "posts", labelKey: "explore.posts", icon: "FileText", postType: "feed-simple" },
+  { key: "images", labelKey: "explore.images", icon: "Image", postType: "feed-images" },
+  { key: "videos", labelKey: "explore.videos", icon: "Play", postType: "video" },
+  { key: "voice", labelKey: "search.tabVoice", icon: "Mic", postType: "feed-audio" },
+  { key: "live", labelKey: "explore.live", icon: "Radio", postType: "live" },
 ];
 
 const TAB_H = 36;
@@ -117,15 +118,15 @@ const DATE_RANGE_MS: Record<string, number> = {
   year: 365 * 24 * 60 * 60 * 1000,
 };
 
-/** Label for the trending section per tab */
+/** i18n key for the trending section label per tab */
 const TRENDING_LABEL: Record<TabKey, string> = {
-  all: "Trending This Week",
+  all: "search.trendingThisWeek",
   accounts: "",
-  posts: "Trending Posts",
-  images: "Trending Images",
-  videos: "Trending Videos",
-  voice: "Trending Voice Posts",
-  live: "Trending Live",
+  posts: "search.trendingPosts",
+  images: "search.trendingImages",
+  videos: "search.trendingVideos",
+  voice: "search.trendingVoicePosts",
+  live: "search.trendingLive",
 };
 
 /** Map a SearchContentResult → UnifiedFeedItem for card components */
@@ -676,14 +677,14 @@ const SearchScreen: React.FC = () => {
       <View className="mb-2">
         <View className="flex-row items-center justify-between px-4 mb-2">
           <Text className="text-theme-neutrals-400 text-xs font-semibold">
-            Accounts
+            {t("screens.accounts")}
           </Text>
           <TouchableOpacity
             onPress={() => handleTabChange("accounts")}
             activeOpacity={0.7}
           >
             <Text className="text-theme-accent text-xs font-semibold">
-              See All
+              {t("search.seeAll")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -762,10 +763,10 @@ const SearchScreen: React.FC = () => {
             >
               <Icon name="Users" size={48} color="#6B7280" />
               <Text className="text-theme-neutrals-300 font-semibold text-base mt-4">
-                No accounts found
+                {t("search.noAccountsFound")}
               </Text>
               <Text className="text-theme-neutrals-500 text-sm text-center mt-2">
-                Try different keywords or check your spelling
+                {t("search.tryDifferentKeywords")}
               </Text>
             </View>
           );
@@ -811,10 +812,10 @@ const SearchScreen: React.FC = () => {
           >
             <Icon name="Search" size={48} color="#6B7280" />
             <Text className="text-theme-neutrals-300 font-semibold text-base mt-4">
-              No results found
+              {t("explorePage.noResults")}
             </Text>
             <Text className="text-theme-neutrals-500 text-sm text-center mt-2">
-              Try different keywords or check your spelling
+              {t("search.tryDifferentKeywords")}
             </Text>
           </View>
         );
@@ -835,7 +836,7 @@ const SearchScreen: React.FC = () => {
             accounts.length > 0 ? (
               <View className="py-6">
                 <Text className="text-center text-theme-neutrals-500 text-xs">
-                  No content results
+                  {t("search.noContentResults")}
                 </Text>
               </View>
             ) : null
@@ -868,7 +869,7 @@ const SearchScreen: React.FC = () => {
         // its own hairline, and only the text keeps the 16pt inset.
         <View className={isMinimal ? undefined : "px-4"} style={{ paddingTop: headerHeight + 12 }}>
           <Text className={`text-theme-neutrals-400 text-xs font-semibold mb-2 ${isMinimal ? "px-4" : "px-1"}`}>
-            Recent Searches
+            {t("search.recentSearches")}
           </Text>
           <View className={isMinimal ? undefined : "rounded-xl overflow-hidden bg-theme-neutrals-800"}>
             {topHistorySubset(searchHistory, 5).map((item, index) => (
@@ -963,7 +964,7 @@ const SearchScreen: React.FC = () => {
           <View>
             <View className="px-4 pt-3 pb-2">
               <Text className="text-white text-base font-bold">
-                {TRENDING_LABEL[activeTab] || "Trending This Week"}
+                {t(TRENDING_LABEL[activeTab] || "search.trendingThisWeek")}
               </Text>
             </View>
             {trendingVideos.map((item, index) => (
@@ -978,7 +979,7 @@ const SearchScreen: React.FC = () => {
           <View className="flex-1 items-center justify-center px-6 pt-20">
             <Icon name="TrendingUp" size={48} color="#6B7280" />
             <Text className="text-theme-neutrals-400 text-sm text-center mt-4">
-              No trending content this week
+              {t("search.noTrendingThisWeek")}
             </Text>
           </View>
         )}
@@ -1047,7 +1048,7 @@ const SearchScreen: React.FC = () => {
               )}
               <TouchableOpacity
                 accessibilityRole="button"
-                accessibilityLabel={filterPanelVisible ? "Close filter options" : "Open filter options"}
+                accessibilityLabel={filterPanelVisible ? t("search.closeFilterOptions") : t("search.openFilterOptions")}
                 onPress={() => setFilterPanelVisible((v) => !v)}
                 hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                 className={`w-9 h-9 rounded-xl items-center justify-center mr-2 ${
@@ -1147,7 +1148,7 @@ const SearchScreen: React.FC = () => {
                         isMinimal && isActive && styles.minimalTabLabelActive,
                       ]}
                     >
-                      {tab.label}
+                      {t(tab.labelKey)}
                     </Text>
                   </TouchableOpacity>
                 );

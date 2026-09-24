@@ -119,7 +119,12 @@
     "music": "Music",
     "live": "Live",
     "newPosts_one": "{{count}} новий допис",
-    "newPosts_other": "{{count}} нових дописів"
+    "newPosts_other": "{{count}} нових дописів",
+    "privateContent": "Приватний контент",
+    "privateContentBody": "Цей контент з приватного облікового запису. Підпишіться на автора, щоб переглядати його дописи.",
+    "noMoreContent": "Більше контенту немає",
+    "noPostsYet": "Ще немає дописів.",
+    "pullToRefresh": "Потягніть, щоб оновити, або спробуйте пізніше."
   },
   "explore": {
     "all": "All",
@@ -709,7 +714,19 @@
       "mentions": "Лише згадки про мене",
       "replies": "Лише відповіді на мої коментарі",
       "account": "Лише сповіщення про мій обліковий запис"
-    }
+    },
+    "avatarUpdateFailed": "Не вдалося оновити аватар",
+    "coverUpdateFailed": "Не вдалося оновити обкладинку",
+    "fixInvalidSocialLinks": "Будь ласка, виправте недійсні соціальні посилання",
+    "updateFailed": "Оновлення не вдалося",
+    "channelUrlOrHandle": "URL або дескриптор каналу",
+    "inviteLinkPlaceholder": "Посилання для запрошення",
+    "profileUrlOrUsername": "URL профілю або ім'я користувача",
+    "yourDisplayName": "Ваше відображуване ім'я",
+    "usernameAvailable": "Ім'я користувача доступне",
+    "hideBadgeAndBalance": "Приховати значок і баланс",
+    "hideBadgeAndBalanceDesc": "Приховує фінансові дані та вимикає надсилання та чайові вам.",
+    "onChainPublicWarning": "Транзакції в блокчейні є публічними. Надсилання токенів або чайових може розкрити вашу адресу гаманця, включаючи транзакції, зроблені до увімкнення режиму приватного балансу."
   },
   "common": {
     "mute": "Вимкнути звук",
@@ -1118,7 +1135,8 @@
     "noInternetTitle": "Немає підключення до Інтернету",
     "noInternetBody": "Будь ласка, перевірте ваше інтернет-з'єднання та спробуйте ще раз. Вам потрібно бути підключеним до Інтернету, щоб користуватися DeHub.",
     "noInternetStatus": "Офлайн - Немає мережевого з'єднання",
-    "noInternetHint": "Переконайтеся, що Wi-Fi або мобільні дані увімкнені, а потім натисніть \"{{action}}\""
+    "noInternetHint": "Переконайтеся, що Wi-Fi або мобільні дані увімкнені, а потім натисніть \"{{action}}\"",
+    "offlineStatus": "Офлайн - Немає мережевого підключення"
   },
   "tip": {
     "title": "Send Tip",
@@ -1452,7 +1470,17 @@
     "post": "Post",
     "officialLogo": "Here's the official DeHub logo! 🎨",
     "editedImage": "Here's your edited image!",
-    "generatedImage": "Here's your generated image!"
+    "generatedImage": "Here's your generated image!",
+    "toolCompleted": "{{name}} завершено",
+    "aiTool": "AI інструмент",
+    "cannotAnimateImage": "{{model}} не може анімувати прикріплене зображення. Виберіть іншу відеомодель.",
+    "needsImageToAnimate": "{{model}} потребує зображення для анімації. Прикріпіть його або виберіть іншу модель.",
+    "couldNotReadImage": "Не вдалося прочитати це зображення",
+    "logoLoadFailed": "Не вдалося завантажити логотип DeHub — генеруємо без нього",
+    "imageAttachedDescribe": "Зображення прикріплено — опишіть свої зміни",
+    "couldNotPreparePost": "Не вдалося підготувати це для публікації",
+    "generateImage": "Згенерувати зображення",
+    "generateVideo": "Згенерувати відео"
   },
   "commandCentre": {
     "title": "Command Center",
@@ -1963,7 +1991,10 @@
     "edit": "Редагувати",
     "deleteRequestTitle": "Видалити цю заявку?",
     "deleteRequestDescription": "Це не можна скасувати.",
-    "attachmentTooLarge": "Кожен файл має бути менший за 20 МБ"
+    "attachmentTooLarge": "Кожен файл має бути менший за 20 МБ",
+    "deleteCommentA11y": "Видалити коментар",
+    "sendCommentA11y": "Надіслати коментар",
+    "requestOptions": "Параметри запиту"
   },
   "auth": {
     "loginRequired": "Log in required",
@@ -2012,7 +2043,15 @@
     "sendCodeFailedRetry": "Не вдалося надіслати код. Будь ласка, спробуйте ще раз.",
     "invalidCodeRetry": "Неправильний код. Будь ласка, спробуйте ще раз.",
     "invalidEmailOrPassword": "Неправильна електронна пошта або пароль.",
-    "welcomeToDehub": "Ласкаво просимо до DeHub"
+    "welcomeToDehub": "Ласкаво просимо до DeHub",
+    "importWalletOptional": "Імпортувати гаманець (необов 'язково)",
+    "couldNotSendCodeRetry": "Не вдалося надіслати код. Спробуйте ще раз.",
+    "exploreWithoutSignIn": "Шукати без входу",
+    "continueExploring": "Продовжуйте досліджувати",
+    "exploreWithoutSignInA11y": "Переглядайте DeHub без входу",
+    "continueExploringA11y": "Продовжуйте досліджувати DeHub",
+    "importWalletRecommended": "Рекомендується вхід через соціальні мережі.",
+    "importWalletPurpose": "Цей інструмент призначений для імпорту існуючих облікових записів з DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Запропоновані відповіді вимкнено",
@@ -2127,7 +2166,29 @@
     "reportedAutomatically": "Про це повідомлено автоматично.",
     "loadFailed": "Не вдалося завантажити канали",
     "noSearchResults": "Жоден канал не відповідає вашому запиту",
-    "noChannels": "Немає доступних каналів"
+    "noChannels": "Немає доступних каналів",
+    "pairCodeExpired": "Термін дії цього коду закінчився. Попросіть телевізор купити новий.",
+    "signedInOnTv": "Увійдіть у свій обліковий запис на телевізорі",
+    "pairRefused": "Відмовилась",
+    "pairIntro": "Відкрийте DeHub на телевізорі та введіть код, який він показує тут.",
+    "pairNotFound": "Жоден телевізор не чекає на цей код. Можливо, термін його дії закінчився — попросіть телевізор про новий.",
+    "wantsToSignIn": "хоче увійти як ви",
+    "pairWarning": "Схвалюйте це лише в тому випадку, якщо це телевізор, на який ви зараз дивитеся. Схвалення знаків тих, хто зберігає цей код у вашому обліковому записі. Він зможе дивитися, ставити лайки та стежити — він не може витрачатися, і ви можете вийти з нього в будь-який час з Активних сесій.",
+    "pairApprove": "Так, увійдіть у цей телевізор",
+    "pairDeny": "Ні, я цього не просив",
+    "pairDoneTitle": "Ваш телевізор увійшов у систему",
+    "pairDoneBody": "У ньому вже має відображатися ваш обліковий запис. Вийдіть у будь-який час із налаштувань → Конфіденційність → Активні сесії.",
+    "closePlayer": "Закрити програвач",
+    "declineFailed": "Не вдалося відхилити — можливо, термін його дії вже минув.",
+    "tipSentTvNotTold": "Чайові надіслали, але телевізор не зміг передати. Час закінчиться.",
+    "sentAmount": "Надіслано {{amount}} DHB",
+    "nothingWaiting": "Нічого не чекає",
+    "nothingWaitingBody": "Коли ви надсилаєте чайові з DeHub на своєму телевізорі, вони з'являються тут для вашого схвалення. Ваш телевізор ніколи не зберігає ваш гаманець.",
+    "yourTelevision": "Ваш телевізор",
+    "wantsToTip": "хоче надіслати чайові · {{time}} залишив",
+    "tipTo": "до {{name}}",
+    "tipForPost": "за “{{title}}”",
+    "reviewAndApprove": "Переглянути та схвалити"
   },
   "top100": {
     "title": "Топ-100",
@@ -2399,7 +2460,8 @@
     "submitApplication": "Submit Application",
     "nameEmailRequired": "Name and email are required",
     "applicationSuccess": "Application submitted successfully! We'll be in touch.",
-    "applicationFailed": "Failed to submit. Please try again."
+    "applicationFailed": "Failed to submit. Please try again.",
+    "namePlaceholder": "Джейн Сміт"
   },
   "dao": {
     "title": "Скарбниця DAO",
@@ -2559,7 +2621,8 @@
     "pinnedToast": "Закріплено вгорі цього допису",
     "unpinnedToast": "Закріплення знято",
     "pinFailed": "Не вдалося закріпити цей коментар",
-    "kidsOnlyThread": "Цей допис призначений для дітей. Тільки дитячий режим може коментувати це."
+    "kidsOnlyThread": "Цей допис призначений для дітей. Тільки дитячий режим може коментувати це.",
+    "editFailed": "Не вдалося редагувати коментар"
   },
   "postInfo": {
     "title": "Post Info",
@@ -3600,14 +3663,40 @@
     "comingSoon": "Незабаром",
     "signIn": "Увійти",
     "tapToGetStarted": "Торкніться, щоб почати",
-    "soon": "Незабаром"
+    "soon": "Незабаром",
+    "glossarySubtitle": "Дізнайтеся, що означає кожен значок та функція",
+    "searchGlossary": "Пошук у глосарії...",
+    "noResultsFor": "Немає результатів для \"{{query}}\"",
+    "guideSubtitle": "Покроковий посібник з кожної функції",
+    "searchGuide": "Пошук у посібнику...",
+    "repostsTab": "Репости",
+    "quotesTab": "Цитати",
+    "noMoreReposts": "Більше жодних репостів",
+    "noMoreQuotes": "Більше жодних цитат",
+    "noRepostsYet": "Ще немає репостів",
+    "noQuotesYet": "Ще немає цитат"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Ігри, що працюють просто в застосунку. Нічого не треба встановлювати чи купувати — відкритий код, роздаються самим DeHub."
+    "intro": "Ігри, що працюють просто в застосунку. Нічого не треба встановлювати чи купувати — відкритий код, роздаються самим DeHub.",
+    "noGameCalled": "У аркаді немає гри під назвою <slug>{{slug}}</slug>.",
+    "seeWhatIsHere": "Дивіться, що тут є",
+    "locationNotGranted": "Дозвіл на доступ до місцезнаходження не було надано.",
+    "signInToPlaceOnGlobe": "Увійдіть, щоб розмістити себе на глобусі.",
+    "couldNotPlaceOnGlobe": "Не вдалося розмістити вас на глобусі.",
+    "onTheGlobe": "Ви знаходитесь на глобусі — показані в межах приблизно 25 км.",
+    "couldNotReach": "НЕ ВДАЛОСЯ ДОСТУПАТИСЯ ДО АРКАДИ",
+    "didNotLoad": "{{title}} не завантажився",
+    "needsConnection": "Гра надходить з dehub.io і завантажується при її відкритті, тому вперше потрібне робоче з'єднання. Перевірте своє та спробуйте ще раз.",
+    "backToArcade": "Назад до аркади",
+    "openPrivacySettings": "Відкрити налаштування конфіденційності",
+    "privacyWarning": "Якщо у вас велика кількість токенів або ви живете в незахищеному районі, приховайте свій значок та баланс перед використанням цієї функції. Транзакції в блокчейні все ще розкривають вашу адресу. Відкрити налаштування.",
+    "leaveGame": "Вийти з гри",
+    "loadingGame": "Завантаження {{title}}",
+    "hideThis": "Приховати це"
   },
   "videoLooks": {
     "button": "Стилі камери",
@@ -3732,7 +3821,22 @@
     "someone": "Хтось",
     "oneTyping": "{{name}} пише…",
     "fewTyping": "{{names}} пишуть…",
-    "manyTyping": "{{count}} осіб пишуть…"
+    "manyTyping": "{{count}} осіб пишуть…",
+    "modBadge": "МОДЕРАТОР",
+    "thisUser": "цього користувача",
+    "unbanConfirm": "Ви впевнені, що хочете розбанити {{name}}?",
+    "unban": "Розбанити",
+    "unbanFailed": "Не вдалося розбанити користувача",
+    "onlineLabel": "Онлайн",
+    "usersCount_one": "{{count}} користувач",
+    "usersCount_other": "{{count}} користувачів",
+    "totalMessages": "Загальна кількість повідомлень",
+    "slowMode": "Повільний режим",
+    "cooldownSeconds": "{{seconds}} сек. перезарядка",
+    "minStakeRequired": "Мінімальна необхідна ставка",
+    "noParticipants": "Ще немає учасників",
+    "noModerators": "Немає модераторів",
+    "noBannedUsers": "Немає заблокованих користувачів"
   },
   "promptFeed": {
     "headline": "Що ви хочете бачити?",
@@ -4484,7 +4588,26 @@
     "madeForKidsBlockedByMature": "Допис із позначкою \"зрілий\" також не може бути опублікований для дітей.",
     "encoderTitle": "OBS / кодер",
     "encoderHint": "Отримайте деталі RTMP",
-    "markMadeForKids": "Позначити як зроблене для дітей"
+    "markMadeForKids": "Позначити як зроблене для дітей",
+    "queueWaiting": "Очікування…",
+    "queueUploading": "Завантаження",
+    "queueProcessing": "Обробка…",
+    "queueMinting": "Карбування…",
+    "queuePosted": "Опубліковано",
+    "queueFailed": "Не вдалося",
+    "noRetriesLeft": "(немає спроб, що залишилися)",
+    "noUploads": "Немає завантажень",
+    "uploadsAppearHere": "Ваші завантаження з'являться тут",
+    "imagesTotalLimit": "Загальний розмір зображень в одному завантаженні не повинен перевищувати 100 МБ",
+    "chooseDatabase": "Виберіть децентралізовану базу даних",
+    "livestreamMode": "Режим прямого ефіру",
+    "addThumbnail": "Додати ескіз",
+    "showCover": "Показувати обкладинку",
+    "max60s": "Макс. 60 с",
+    "confirmLivestream": "Підтвердити пряму трансляцію",
+    "liveFeaturesTitle": "Функції Live",
+    "discardPostTitle": "Відхилити допис?",
+    "discardPostBody": "Ваш допис буде втрачено. Натомість зберегти його як чернетку?"
   },
   "bounty": {
     "claimed": "Отримано",
@@ -4801,7 +4924,25 @@
     "allowNewDmsOff": "Увімкніть особисті повідомлення, щоб дозволити нові.",
     "perMessageFee": "Плата за повідомлення (DHB)",
     "perMessageFeeSub": "Беріть плату за кожне повідомлення. Поставте 0 для безкоштовних повідомлень. Окремим користувачам можна дати безкоштовний доступ.",
-    "allDisabled": "Наразі всі особисті повідомлення вимкнено. Нові блокуються за замовчуванням."
+    "allDisabled": "Наразі всі особисті повідомлення вимкнено. Нові блокуються за замовчуванням.",
+    "failedToEdit": "Не вдалося змінити",
+    "messageDeleted": "Це повідомлення видалено.",
+    "cantForwardFromDevice": "Це повідомлення не можна переслати з цього пристрою",
+    "messageForwarded": "Повідомлення переслано",
+    "clearMessagesConfirm": "Видалити всі повідомлення в цій розмові? Цю дію не можна скасувати.",
+    "messagesCleared": "Повідомлення очищено",
+    "failedToClearMessages": "Не вдалося очистити повідомлення",
+    "removedFreeAccess": "Вилучено безкоштовний доступ для {{name}}",
+    "grantedFreeAccess": "Надано безкоштовний доступ до {{name}}",
+    "failedToUpdateFreeAccess": "Не вдалося оновити вільний доступ",
+    "searchComingSoon": "Пошук незабаром",
+    "tapToUnblock": "Натисніть, щоб розблокувати",
+    "userFallback": "користувач",
+    "failedToBlock": "Не вдалося заблокувати",
+    "failedToDeleteConversation": "Не вдалося видалити розмову",
+    "newDm": "Безпосередній зв'язок",
+    "noConversationsFound": "Розмов не знайдено",
+    "clearMessages": "Очистити повідомлення"
   },
   "editPost": {
     "mediaPermission": "Потрібен дозвіл на медіатеку",
@@ -4823,7 +4964,17 @@
     "retry": "Спробувати ще раз",
     "retrying": "Повторна спроба…",
     "retryQueued": "Знову обробляється",
-    "retryFailed": "Не вдалося повторити цей допис"
+    "retryFailed": "Не вдалося повторити цей допис",
+    "closeVideo": "Закрити відео",
+    "rotateOrientation": "Орієнтація обертання",
+    "videoProgress": "Прогрес відео: {{percent}}%",
+    "tapToSeek": "Натисніть, щоб перейти до певної позиції",
+    "photoAccessToSaveImages": "Дозволити доступ до фотогалереї для збереження зображень",
+    "failedToSaveImage": "Не вдалося зберегти зображення",
+    "downloadImage": "Завантажити зображення",
+    "goToImage": "Перейти до зображення {{index}}",
+    "allCaughtUp": "Ви все переглянули",
+    "checkBackForShorts": "Поверніться пізніше, щоб побачити більше коротких відео"
   },
   "liveViewer": {
     "loadingStream": "Завантаження трансляції...",
@@ -4833,7 +4984,22 @@
   },
   "search": {
     "endOfResults": "Кінець результатів",
-    "searchDehub": "Пошук у DeHub"
+    "searchDehub": "Пошук у DeHub",
+    "tabVoice": "Голос",
+    "trendingThisWeek": "Популярне цього тижня",
+    "trendingPosts": "Популярні дописи",
+    "trendingImages": "Популярні зображення",
+    "trendingVideos": "Популярні відео",
+    "trendingVoicePosts": "Популярні голосові дописи",
+    "trendingLive": "Популярні трансляції",
+    "seeAll": "Переглянути все",
+    "noAccountsFound": "Облікові записи не знайдено",
+    "tryDifferentKeywords": "Спробуйте інші ключові слова або перевірте написання",
+    "noContentResults": "Немає результатів контенту",
+    "recentSearches": "Нещодавні пошуки",
+    "noTrendingThisWeek": "Немає популярного контенту цього тижня",
+    "closeFilterOptions": "Закрити параметри фільтра",
+    "openFilterOptions": "Відкрити параметри фільтра"
   },
   "notifPrompt": {
     "stayInLoop": "Будьте в курсі",
@@ -5084,7 +5250,26 @@
     "externalTitle": "Режим зовнішньої потокової передачі",
     "externalLiveHint": "Ваш потік транслюється за допомогою зовнішнього програмного забезпечення. Камера в додатку вимкнена.",
     "externalHint": "Підключіть програмне забезпечення для потокової передачі, використовуючи наведені нижче відомості, а потім почніть трансляцію.",
-    "useInAppCamera": "Замість цього використовуйте камеру в додатку"
+    "useInAppCamera": "Замість цього використовуйте камеру в додатку",
+    "livestreamEnded": "Трансляцію завершено",
+    "chatEnabled": "Чат увімкнено",
+    "chatDisabled": "Чат вимкнено",
+    "failedToUpdateSettings": "Не вдалося оновити налаштування",
+    "networkLostReconnecting": "Втрачено мережу — трансляцію призупинено. Перепідключення…",
+    "openingViewer": "Відкриття переглядача...",
+    "cameraPermissionRequired": "Потрібен дозвіл камери",
+    "grantPermission": "Надати дозвіл",
+    "waitingForLivepeer": "Очікування Livepeer...",
+    "waitingForExternalSource": "Очікування зовнішнього джерела...",
+    "settingUpPublisher": "Налаштування видавця...",
+    "scheduledStream": "Запланований потік",
+    "scheduledAt": "{{date}} о {{time}}",
+    "pressGoLiveWhenReady": "Натисніть Go Live, коли будете готові до запуску",
+    "connectionInterrupted": "З 'єднання перервано",
+    "streamPausedReconnecting": "Ваш потік призупинено. Повторне підключення...",
+    "streamWillEnd": "Потік завершиться, якщо його не підключити повторно",
+    "endStreamConfirmTitle": "Завершити потік?",
+    "endStreamConfirmBody": "Закриття зараз призведе до завершення прямої трансляції для всіх глядачів. Ви можете продовжити трансляцію або припинити її назавжди."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

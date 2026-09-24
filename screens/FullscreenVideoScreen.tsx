@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import { VideoView, useVideoPlayer } from "expo-video";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
 import { FULLSCREEN_BUFFER_OPTIONS } from "../libs/videoBuffering";
@@ -51,6 +52,7 @@ const formatTime = (seconds: number) => {
 };
 
 const FullscreenVideoScreen = () => {
+  const { t } = useTranslation();
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
 
@@ -374,7 +376,7 @@ const FullscreenVideoScreen = () => {
               style={styles.glassButton}
               hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
               accessibilityRole="button"
-              accessibilityLabel="Close video"
+              accessibilityLabel={t("player.closeVideo")}
             >
               <View style={styles.glassOverlay} />
               <Icon name="X" size={20} color="#fff" />
@@ -389,7 +391,7 @@ const FullscreenVideoScreen = () => {
                 style={styles.glassButton}
                 hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                 accessibilityRole="button"
-                accessibilityLabel={isMuted ? "Unmute" : "Mute"}
+                accessibilityLabel={isMuted ? t("common.unmute") : t("common.mute")}
               >
                 <View style={styles.glassOverlay} />
                 <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
@@ -399,7 +401,7 @@ const FullscreenVideoScreen = () => {
                 style={styles.glassButton}
                 hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                 accessibilityRole="button"
-                accessibilityLabel="Rotate orientation"
+                accessibilityLabel={t("player.rotateOrientation")}
               >
                 <View style={styles.glassOverlay} />
                 <Icon name={isLandscape ? "Minimize2" : "RotateCcw"} size={20} color="#fff" />
@@ -430,8 +432,8 @@ const FullscreenVideoScreen = () => {
                   onPress={(e) => handleSeek(e.nativeEvent.locationX)}
                   onLayout={(e) => { progressTrackWidthRef.current = e.nativeEvent.layout.width; }}
                   accessibilityRole="adjustable"
-                  accessibilityLabel={`Video progress: ${Math.round(progressPercent)}%`}
-                  accessibilityHint="Tap to seek to a specific position"
+                  accessibilityLabel={t("player.videoProgress", { percent: Math.round(progressPercent) })}
+                  accessibilityHint={t("player.tapToSeek")}
                 >
                   <View style={styles.progressTrackInner}>
                     <View style={[styles.progressFill, { width: `${progressPercent}%` }]} />

@@ -119,7 +119,12 @@
     "music": "Takiy",
     "live": "Kawsaq",
     "newPosts_one": "{{count}} musuq willay",
-    "newPosts_other": "{{count}} musuq willay"
+    "newPosts_other": "{{count}} musuq willay",
+    "privateContent": "Contenido privado nisqa",
+    "privateContentBody": "Kay willakuyqa sapanchasqa yupaymantam. Kamaqta qatipay qillqasqankuta qawanaykipaq.",
+    "noMoreContent": "Manaña contenidochu",
+    "noPostsYet": "Manaraqmi qillqasqakuna kanchu.",
+    "pullToRefresh": "Aysay musuqyachinaykipaq utaq qhipaman yapamanta kallpachakunaykipaq."
   },
   "explore": {
     "all": "Llapan",
@@ -710,7 +715,19 @@
       "mentions": "Ñuqamanta willakuykuna",
       "replies": "Ñuqap qillqasqayman kutichiykuna",
       "account": "Ñuqap kontumanta willakuykuna"
-    }
+    },
+    "avatarUpdateFailed": "Avatar musuqyachiyqa manam atirqanchu",
+    "coverUpdateFailed": "Tapa musuqyachiyqa manam atikurqachu",
+    "fixInvalidSocialLinks": "Ama hina kaspa, mana allin social links nisqakunata allichay",
+    "updateFailed": "Kunanchayqa manam atisqachu",
+    "channelUrlOrHandle": "Kanal URL utaq hapina",
+    "inviteLinkPlaceholder": "Invite link nisqa",
+    "profileUrlOrUsername": "Perfil URL utaq username",
+    "yourDisplayName": "Qhawachinaykipaq sutiyki",
+    "usernameAvailable": "Usuario sutiqa kanmi",
+    "hideBadgeAndBalance": "Pakay insignia hinaspa balanza",
+    "hideBadgeAndBalanceDesc": "Qullqimanta willakuykunata pakan chaymanta mana llamk'achinchu apachiykunata chaymanta yuyaychaykunata qamman.",
+    "onChainPublicWarning": "Cadena nisqapi ruwaykunaqa llapa runapaqmi. Tokenkuna utaq yuyaychaykunata apachiyqa billetera direccionniyki riqsichinman, chaymanta ruwanakuna ruwasqa manaraq sapalla saldo modo atichisqa kachkaptin."
   },
   "common": {
     "mute": "Upallachiy",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Mana Internetnin kanchu",
     "noInternetBody": "Internetniyki kaqta qhawariy ima yapayta munanki chayta. DeHubta llamk'achinaykipaq internetnin kaqta necesitanki.",
     "noInternetStatus": "Mana Internetnin kanchu - Mana Networknin kanchu",
-    "noInternetHint": "Wi-Fi utaq celular datosnin kaqta hap'iy, chaymanta \"{{action}}\" hap'iy"
+    "noInternetHint": "Wi-Fi utaq celular datosnin kaqta hap'iy, chaymanta \"{{action}}\" hap'iy",
+    "saving": "Waqaychay...",
+    "offlineStatus": "Mana tinkisqa - Mana llika tinkiynin"
   },
   "tip": {
     "title": "Propina apachiy",
@@ -1094,7 +1113,17 @@
     "post": "Churasqa",
     "officialLogo": "Kayqa DeHub logo nisqa! 🎨",
     "editedImage": "Kayqa tikrachisqa siqiyki!",
-    "generatedImage": "Kayqa kamarisqa siqiyki!"
+    "generatedImage": "Kayqa kamarisqa siqiyki!",
+    "toolCompleted": "{{name}} tukusqa",
+    "aiTool": "AI nisqa yanapakuy",
+    "cannotAnimateImage": "{{model}} mana huk k'askasqa siq'ita kawsachiyta atinchu. Huk video modelota akllay.",
+    "needsImageToAnimate": "{{model}} kawsachinapaq huk rikch'ayta necesitan. Hukninta k’askachiy otaq huk modelota akllay.",
+    "couldNotReadImage": "Chay rikchayta mana ñawinchayta atirqanichu",
+    "logoLoadFailed": "DeHub logotipo nisqataqa manam kargayta atirqanchu — mana chaywan paqarichispa",
+    "imageAttachedDescribe": "Rikch'a k'askasqa — llamk'apuyniykikunata willay",
+    "couldNotPreparePost": "Mana chayta wakichiyta atirqanchu churanapaq",
+    "generateImage": "Imahinata paqarichiy",
+    "generateVideo": "Videota paqarichiy"
   },
   "commandCentre": {
     "title": "Kamachiy Chawpi",
@@ -1607,7 +1636,10 @@
     "edit": "Allichay",
     "deleteRequestTitle": "¿Kay mañakuyta pichanki?",
     "deleteRequestDescription": "Kayqa mana kutichiy atinchu.",
-    "attachmentTooLarge": "Sapa qillqa 20MB-manta pisi kanan"
+    "attachmentTooLarge": "Sapa qillqa 20MB-manta pisi kanan",
+    "deleteCommentA11y": "Comentariota chinkachiy",
+    "sendCommentA11y": "Comentariota apachiy",
+    "requestOptions": "Akllanakunata mañakuy"
   },
   "auth": {
     "loginRequired": "Yaykuy munakun",
@@ -1656,7 +1688,15 @@
     "sendCodeFailedRetry": "Mana atisqachu k'utuyta. Kutita saqey.",
     "invalidCodeRetry": "Mana allin k'utu. Kutita saqey.",
     "invalidEmailOrPassword": "Mana allin imayna utaq imayna.",
-    "welcomeToDehub": "DeHubman jamuy"
+    "welcomeToDehub": "DeHubman jamuy",
+    "importWalletOptional": "Billetera de Importación (Akllasqa) .",
+    "couldNotSendCodeRetry": "Mana atirqanchu codigo apachiyta. Ama hina kaspa, hukmanta kallpachakuy.",
+    "exploreWithoutSignIn": "Mana yaykuchkaspa maskay",
+    "continueExploring": "T’aqwispallapuni puriy",
+    "exploreWithoutSignInA11y": "DeHub nisqapi maskay mana yaykuchkaspa",
+    "continueExploringA11y": "DeHub nisqapi maskaspallapuni puriy",
+    "importWalletRecommended": "Social yaykuykunaqa allinmi.",
+    "importWalletPurpose": "Kay yanapakuyqa DeHub.io kaqmanta kunan kaq yupaykunata apamunapaqmi."
   },
   "messages": {
     "smartRepliesOff": "Ñisqa kutichiykunaqa wañuchisqa",
@@ -1771,7 +1811,29 @@
     "reportedAutomatically": "Kikinmanta willasqa.",
     "loadFailed": "Hallch'akuna mana chaskiy atirqanchu",
     "noSearchResults": "Mana hallch'a maskasqaykiwan tinkinchu",
-    "noChannels": "Mana hallch'akuna kanchu"
+    "noChannels": "Mana hallch'akuna kanchu",
+    "pairCodeExpired": "Chay códigoqa tukusqañan. Televisormanta mañakuy musuq kaqta.",
+    "signedInOnTv": "Televisorniykipi yaykusqa",
+    "pairRefused": "Kutichipuy",
+    "pairIntro": "DeHub nisqa televisión nisqapi kichay hinaspa kaypi qawachisqan código nisqa qillqay.",
+    "pairNotFound": "Chay código nisqapiqa manan mayqen televisionpas suyashanchu. Ichapas tukusqaña — TVmanta musuq kaqta mañakuy.",
+    "wantsToSignIn": "qam hina yaykuyta munan",
+    "pairWarning": "Kaytaqa kunan qhawasqayki television kaqtinllan aprobay. Aprobacionqa pichus chay códigota cuentaykiman hap’ishan chayta señalan. Qhawayta, gustayta chaymanta qatiyta atinqa — mana gastayta atinchu, chaymanta mayk'aqllapas Active sesiones kaqmanta firmayta atikunki.",
+    "pairApprove": "Arí, kay televisionpi yaykuy",
+    "pairDeny": "Manan, manan kaytaqa mañakurqanichu",
+    "pairDoneTitle": "Televisorniykiqa yaykusqañam kachkan",
+    "pairDoneBody": "Chayqa cuentaykita qawachichkanñam. Chayta mayk'aqllapas lluqsiy Ajustes → Sapanchasqa → Sesiones activos kaqmanta.",
+    "closePlayer": "Tiyanaqnin harkay",
+    "declineFailed": "Mana chayta mana chaskiyta atirqanchu — ichapas tukusqaña.",
+    "tipSentTvNotTold": "Tip apachisqa, ichaqa manan televisorman willayta atirqankuchu. Tiempowanmi tukukunqa.",
+    "sentAmount": "Kachkan {{amount}} DHB",
+    "nothingWaiting": "Mana imapas suyachkanchu",
+    "nothingWaitingBody": "DeHubmanta telewiyuniyukmanta qoruykaptiykiqa, kaypi rikhurimun imayna allin kasqanta qhawana. Telewiyunkiqa manam hark'aykullanchu qolqeyki.",
+    "yourTelevision": "Telewiyunki",
+    "wantsToTip": "Quyta munayta muna, {{time}} waqtaq",
+    "tipTo": "kayman {{name}}",
+    "tipForPost": "\"{{title}}\"rayku",
+    "reviewAndApprove": "Qhawariy allinchanaykipaq"
   },
   "top100": {
     "title": "Hanaq 100",
@@ -2043,7 +2105,8 @@
     "submitApplication": "Mañakuyta apachiy",
     "nameEmailRequired": "Suti email munasqa",
     "applicationSuccess": "Mañakuy allinta apachisqa! Rimanakusunchis.",
-    "applicationFailed": "Mana apachisqachu. Musuqmanta ruwaway."
+    "applicationFailed": "Mana apachisqachu. Musuqmanta ruwaway.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO Qullqa",
@@ -2233,7 +2296,8 @@
     "pinnedToast": "Kay willakuypa hanaqninman takyachisqa",
     "unpinnedToast": "Takyachiy qichusqa",
     "pinFailed": "Chay rimariyta mana takyachiyta atinchu",
-    "kidsOnlyThread": "Kay qillqasqaqa wawakunapaqmi. Modo Niños nisqalla chaymanta rimayta atin."
+    "kidsOnlyThread": "Kay qillqasqaqa wawakunapaqmi. Modo Niños nisqalla chaymanta rimayta atin.",
+    "editFailed": "Mana allinñataqmi kachkan comente"
   },
   "postInfo": {
     "title": "Post willay",
@@ -3274,14 +3338,40 @@
     "comingSoon": "Ñaqalla hamunqa",
     "signIn": "Yaykuy",
     "tapToGetStarted": "Qallarinaykipaq llamiy",
-    "soon": "Ñaqalla"
+    "soon": "Ñaqalla",
+    "glossarySubtitle": "Yachay imayna tukuy imayna kasqanta",
+    "searchGlossary": "Tukuy imaynata maskay...",
+    "noResultsFor": "Mana tarisqachu \"{{query}}\"",
+    "guideSubtitle": "Imayna tukuy imaynata ruwana",
+    "searchGuide": "Tukuy imaynata maskay...",
+    "repostsTab": "Reposteokuna",
+    "quotesTab": "Qotukuna",
+    "noMoreReposts": "Manañapas repostekunachu",
+    "noMoreQuotes": "Manañapas qotukunachu",
+    "noRepostsYet": "Manañapas repostekunachu",
+    "noQuotesYet": "Manañapas qotukunachu"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Kay app ukhupi pukllaykuna. Mana imapas churanapaq, mana imapas rantinapaq — kichasqa pukyu, DeHub kikin quwanchik."
+    "intro": "Kay app ukhupi pukllaykuna. Mana imapas churanapaq, mana imapas rantinapaq — kichasqa pukyu, DeHub kikin quwanchik.",
+    "noGameCalled": "Mana kanchu pukllay \"<slug>\"{{slug}}</slug> arcadepi.",
+    "seeWhatIsHere": "Riqiy imayna kachkan",
+    "locationNotGranted": "Mana chaskisqachu kachkariy permit.",
+    "signInToPlaceOnGlobe": "Yaykuy kachkariy tiqrayta kachkan.",
+    "couldNotPlaceOnGlobe": "Mana atirqachu kachkariy tiqrayta.",
+    "onTheGlobe": "Kachkariy tiqraypi kachkanki — chawpi 25 km radiuspi.",
+    "couldNotReach": "MANA ATIRQAÑCHU ARCADE MANTAPAQ",
+    "didNotLoad": "{{title}} mana lloqsimunñachu",
+    "needsConnection": "Pukllayqa dehub.io mantam hamun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi lloqsimun chaynataqmi",
+    "backToArcade": "Arcade-manata kutimuy",
+    "openPrivacySettings": "Privacy-ta allinchanapaq maskay",
+    "privacyWarning": "Ashkha token-ninta hap'iq kanki chayri mana allin kawsayniyuq kanki chayqa, kay ruwanata llamk'achiyta qallariptiykiqa, qhawanayki hark'ayta hinaspa qullqiykita pakay. On-chain ruwaykunaqa kachkanmi maypi tiyaskiykita rikuchin. Allinchanapaq maskayta kichariy.",
+    "leaveGame": "Loq'oyta saqiy",
+    "loadingGame": "Kachkallanmi {{title}}",
+    "hideThis": "Kayta pakay"
   },
   "videoLooks": {
     "button": "Kamara rikchaykuna",
@@ -3407,7 +3497,22 @@
     "someone": "Pipas",
     "oneTyping": "{{name}} qillqachkan…",
     "fewTyping": "{{names}} qillqachkanku…",
-    "manyTyping": "{{count}} runakuna qillqachkanku…"
+    "manyTyping": "{{count}} runakuna qillqachkanku…",
+    "modBadge": "MOD",
+    "thisUser": "Kay llamk'aq",
+    "unbanConfirm": "Aswan kanki chayri {{name}}-ta hark'ayta pakiyta munankichu?",
+    "unban": "Hark'ayta pakiy",
+    "unbanFailed": "Mana hark'ayta pakiyta atirqanchu llamk'aqta",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} llamk'aq",
+    "usersCount_other": "{{count}} llamk'aqkuna",
+    "totalMessages": "Tukuy qillqasqakuna",
+    "slowMode": "Pisi kallpawan ruway",
+    "cooldownSeconds": "{{seconds}}s p'itina",
+    "minStakeRequired": "Chawpi hark'ayta hap'iyta munay",
+    "noParticipants": "Mana hayk'aqpas yaykuchu",
+    "noModerators": "Mana hayk'aqpas kamachiq",
+    "noBannedUsers": "Mana hayk'aqpas hark'asqa"
   },
   "promptFeed": {
     "headline": "Imatataq rikuyta munanki?",
@@ -4157,7 +4262,26 @@
     "madeForKidsBlockedByMature": "Mature nisqa post-ta wawakuna para publishasqa mana atisunchu.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "RTMP detalleskunata apay",
-    "markMadeForKids": "Wawakunapaq ruwasqa hina marcay"
+    "markMadeForKids": "Wawakunapaq ruwasqa hina marcay",
+    "queueWaiting": "Kachkallan…",
+    "queueUploading": "Challchiy",
+    "queueProcessing": "Tukuyta ruwachkan…",
+    "queueMinting": "Rurachkan…",
+    "queuePosted": "Ch'aqchiy",
+    "queueFailed": "Mana atirqanchu",
+    "noRetriesLeft": "(mana kutimuy atisqachu)",
+    "noUploads": "Mana hayk'aqpas challchiy",
+    "uploadsAppearHere": "Kaypi rikchiyta atiyki",
+    "imagesTotalLimit": "Huk kargapi siq'ikunaqa llapanpi 100 MB utaq pisi kanan tiyan",
+    "chooseDatabase": "Descentralizado nisqa willakuypa tiyananta akllay",
+    "livestreamMode": "Modo Livestream nisqa",
+    "addThumbnail": "Huch’uy siq’ita yapay",
+    "showCover": "Tapa rikuchiy",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Livestream nisqapi takyachiy",
+    "liveFeaturesTitle": "Kawsaq Ruwaykuna",
+    "discardPostTitle": "¿Posteta wikch'uychu?",
+    "discardPostBody": "Qillqasqaykiqa chinkapunqam. ¿Munawaqchu chaypa rantinpi borrador hina waqaychayta?"
   },
   "bounty": {
     "claimed": "Chaskisqa",
@@ -4474,7 +4598,25 @@
     "allowNewDmsOff": "Musuq willakuyta chaskinaykipaq DM kichariy.",
     "perMessageFee": "Sapa willakuy chanin (DHB)",
     "perMessageFeeSub": "Sapa willakuymanta chaninchay. Qullqi mana kananpaq 0 churay. Wakin runakunaman qasilla yaykuyta qunki.",
-    "allDisabled": "Kunanqa llapan DM wañusqam. Musuq DM harkasqam kachkan."
+    "allDisabled": "Kunanqa llapan DM wañusqam. Musuq DM harkasqam kachkan.",
+    "failedToEdit": "Mana llamk'apuyta atirqanchu",
+    "messageDeleted": "Willakuy qullusqa",
+    "cantForwardFromDevice": "Kay willayta mana kay dispositivomanta kachayta atikunmanchu",
+    "messageForwarded": "Willakuy apachisqa",
+    "clearMessages": "Ch’uya willakuykunata",
+    "clearMessagesConfirm": "¿Kay rimanakuypi llapa willakuykunata chinkachiy? Kayqa manam kutichiyta atikunmanchu.",
+    "messagesCleared": "Willakuykuna chuyanchasqa",
+    "failedToClearMessages": "Willakuykunata mana chuyanchayta atirqanchu",
+    "removedFreeAccess": "{{name}} nisqapaq mana qullqiyuq yaykuyta hurqusqa.",
+    "grantedFreeAccess": "{{name}} nisqaman mana qullqillapaq yaykuy qusqa.",
+    "failedToUpdateFreeAccess": "Mana qullqiyuq yaykuyta musuqyachiyta atirqanchu",
+    "searchComingSoon": "Maskay chayamuchkanña",
+    "tapToUnblock": "Desbloqueanaykipaq ñit’iy",
+    "userFallback": "Usuario",
+    "failedToBlock": "Mana harkayta atisqachu",
+    "failedToDeleteConversation": "Rimanakuyta mana chinkachiyta atirqanchu",
+    "newDm": "Musuq chiqan willakuy",
+    "noConversationsFound": "Mana rimanakuykuna tarisqachu"
   },
   "editPost": {
     "mediaPermission": "Media ñawinchana wasiman yaykuy saqiy necesitakun",
@@ -4496,7 +4638,17 @@
     "retry": "Hukmanta kallpachakuy",
     "retrying": "Wakmanta kallpachakuspa...",
     "retryQueued": "Yapamanta procesamiento",
-    "retryFailed": "Mana chay qillqasqata wakmanta ruwayta atirqanichu"
+    "retryFailed": "Mana chay qillqasqata wakmanta ruwayta atirqanichu",
+    "closeVideo": "Videota wichqay",
+    "rotateOrientation": "Orientacionta muyuchiy",
+    "videoProgress": "Video progress: {{percent}}%",
+    "downloadImage": "Download image",
+    "goToImage": "Go to image {{index}}",
+    "tapToSeek": "Huk posiciónta maskhanaykipaq ñit’iy",
+    "photoAccessToSaveImages": "Fotokuna bibliotecaman yaykuyta saqiy siq&#39;ikunata waqaychaypaq",
+    "failedToSaveImage": "Imahinata mana waqaychayta atirqanchu",
+    "allCaughtUp": "Llapaykichismi hap&#39;isqa kashankichis",
+    "checkBackForShorts": "Aswan cortocircuitos nisqapaq qhipaman kutimuy"
   },
   "liveViewer": {
     "loadingStream": "Chayachiy chaskichkan...",
@@ -4506,7 +4658,22 @@
   },
   "search": {
     "endOfResults": "Tarisqakuna tukuy",
-    "searchDehub": "DeHub ukhupi maskay"
+    "searchDehub": "DeHub ukhupi maskay",
+    "tabVoice": "Voice",
+    "trendingPosts": "Trending Posts",
+    "trendingImages": "Trending Images",
+    "trendingVideos": "Trending Videos",
+    "trendingVoicePosts": "Trending Voice Posts",
+    "trendingLive": "Trending Live",
+    "seeAll": "See All",
+    "noAccountsFound": "No accounts found",
+    "noContentResults": "No content results",
+    "recentSearches": "Recent Searches",
+    "closeFilterOptions": "Close filter options",
+    "openFilterOptions": "Open filter options",
+    "trendingThisWeek": "Kay Simanapi Tendencia",
+    "tryDifferentKeywords": "Huk niraq simikunata pruebay otaq ortografiaykita qhaway",
+    "noTrendingThisWeek": "Mana kay semanapi contenido tendenciayuqchu"
   },
   "notifPrompt": {
     "stayInLoop": "Yachaq kay",
@@ -4755,7 +4922,26 @@
     "externalTitle": "Modo de Streaming Exterior nisqamanta",
     "externalLiveHint": "Mayuykiqa hawa software kaqnintakama kawsachkan. App ukhupi kaq cámara mana llamk&#39;achisqa kachkan.",
     "externalHint": "Kaypi kaqta hap'iqkuy mayninniykiwan, chaymanta kachariy kachariyta.",
-    "useInAppCamera": "Chaypa rantinpi In-App Camera nisqawan yanapachikuy"
+    "useInAppCamera": "Chaypa rantinpi In-App Camera nisqawan yanapachikuy",
+    "livestreamEnded": "Livestream ended",
+    "chatEnabled": "Chat enabled",
+    "chatDisabled": "Chat disabled",
+    "networkLostReconnecting": "Network lost — stream paused. Reconnecting…",
+    "openingViewer": "Opening viewer...",
+    "cameraPermissionRequired": "Camera permission required",
+    "grantPermission": "Permisota qoy",
+    "waitingForLivepeer": "Livepeer nisqamanta suyaspa...",
+    "waitingForExternalSource": "Hawamanta pukyuta suyaspa...",
+    "settingUpPublisher": "Publicadorta churaspa...",
+    "scheduledStream": "Corriente Programada nisqa",
+    "scheduledAt": "{{date}} {{time}} nisqapi.",
+    "pressGoLiveWhenReady": "Qallarinaykipaq listoña kashaspaqa Go Live nisqapi ñit’iy",
+    "connectionInterrupted": "T’inkinakuy Interrumpido",
+    "streamPausedReconnecting": "Mayuykiqa sayasqañam kachkan. Wakmanta tinkuchispa...",
+    "streamWillEnd": "Mayu tukukunqa mana wakmanta tinkisqa kaptin",
+    "endStreamConfirmTitle": "¿Tukukuy Mayu?",
+    "endStreamConfirmBody": "Kunan wichq'ayqa kawsaq purichiyniyki tukunqa llapa qhawaqkunapaq. Stream nisqapi purichiyta atinki utaq wiñaypaq tukuchiyta atinki.",
+    "failedToUpdateSettings": "Mana atirqanchu churanakunata musuqyachiyta"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -119,7 +119,12 @@
     "music": "Mozika",
     "live": "Mivantana",
     "newPosts_one": "Lahatsoratra vaovao {{count}}",
-    "newPosts_other": "Lahatsoratra vaovao {{count}}"
+    "newPosts_other": "Lahatsoratra vaovao {{count}}",
+    "privateContent": "T content manokana",
+    "privateContentBody": "Ity atiny ity dia avy amin'ny kaonty manokana. Araho ny mpamorona mba hahitana ny zavatra navoakany.",
+    "noMoreContent": "Tsy misy atiny intsony",
+    "noPostsYet": "Tsy misy zavatra navoaka mbola.",
+    "pullToRefresh": "Sintomy mba hamerenana na manandrama indray any aoriana."
   },
   "explore": {
     "all": "Rehetra",
@@ -710,7 +715,19 @@
     "smsBalanceMessages": "Hafatra {{count}} eo ho eo",
     "smsTopUp": "Ampidiro {{dhb}} DHB",
     "smsCodeSent": "Nisy kaody nalefa. Nahalany {{price}} DHB izany.",
-    "smsCodeLabel": "Kaody nampandrenesina tamin'ny {{phone}}"
+    "smsCodeLabel": "Kaody nampandrenesina tamin'ny {{phone}}",
+    "avatarUpdateFailed": "Tsy nahomby ny fanavaozana ny avatar",
+    "coverUpdateFailed": "Tsy nahomby ny fanavaozana ny sarony",
+    "fixInvalidSocialLinks": "Azafady mba amboary ny rohy sosialy tsy manan-kery",
+    "updateFailed": "Tsy nahomby ny fanavaozana",
+    "channelUrlOrHandle": "URL na anarana fantsona",
+    "inviteLinkPlaceholder": "Rohy fanasana",
+    "profileUrlOrUsername": "URL na anarana mpampiasa momba ny tena",
+    "yourDisplayName": "Ny anaranao aseho",
+    "usernameAvailable": "Misy ny anarana mpampiasa",
+    "hideBadgeAndBalance": "Aza aseho ny mari-pahaizana sy ny fifandanjana",
+    "hideBadgeAndBalanceDesc": "Manasongadina ny antsipiriany ara-bola sy manakana ny fandefasana ary torohevitra ho anao.",
+    "onChainPublicWarning": "Ny fifanakalozana amin'ny rojo dia ampahibemaso. Ny fandefasana famantarana na torohevitra dia mety hampiseho ny adiresin'ny poketrao, ao anatin'izany ny fifanakalozana natao talohan'ny nampidirana ny fomba fifandanjana manokana."
   },
   "common": {
     "mute": "Hampangina",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Tsy misy fifandraisana amin'ny Internet",
     "noInternetBody": "Azafady jereo ny fifandraisanao amin'ny Internet ary manandrama indray. Mila mifandray amin'ny Internet ianao mba hampiasana ny DeHub.",
     "noInternetStatus": "Tsy misy Internet - Tsy misy fifandraisana amin'ny tambajotra",
-    "noInternetHint": "Azafady mba ataovy azo antoka fa tafiditra ny Wi-Fi na ny finday data, ary tsindrio ny \"{{action}}\""
+    "noInternetHint": "Azafady mba ataovy azo antoka fa tafiditra ny Wi-Fi na ny finday data, ary tsindrio ny \"{{action}}\"",
+    "saving": "Mitehiry…",
+    "offlineStatus": "Tsy mifandray - Tsy misy fifandraisana tambajotra"
   },
   "tip": {
     "title": "Handefa fanomezana",
@@ -1117,7 +1136,17 @@
     "post": "Post",
     "officialLogo": "Here's the official DeHub logo! 🎨",
     "editedImage": "Here's your edited image!",
-    "generatedImage": "Here's your generated image!"
+    "generatedImage": "Here's your generated image!",
+    "toolCompleted": "Vita ny {{name}}",
+    "aiTool": "Fitaovana AI",
+    "cannotAnimateImage": "Tsy afaka mampifindra sary miraikitra ny {{model}}. Mifidiana modely video hafa.",
+    "needsImageToAnimate": "Mila sary hampihetsiketsehana ny {{model}}. Ampidiro izany na mifidiana modely hafa.",
+    "couldNotReadImage": "Tsy afaka namaky io sary io",
+    "logoLoadFailed": "Tsy nahavita nampiditra ny logo DeHub — mamorona tsy misy izany",
+    "imageAttachedDescribe": "Sary miraikitra — farito ny fanovana nataonao",
+    "couldNotPreparePost": "Tsy nahavita nanomana izany ho an'ny fandefasana",
+    "generateImage": "Mamorona rohy ho an'ny sary",
+    "generateVideo": "Lahatsarin'ny Taranaka"
   },
   "commandCentre": {
     "title": "Command Center",
@@ -1629,7 +1658,10 @@
     "edit": "Hanova",
     "deleteRequestTitle": "Hofafana ity fangatahana ity?",
     "deleteRequestDescription": "Tsy azo averina intsony ity.",
-    "attachmentTooLarge": "Tsy maintsy latsaky ny 20MB ny rakitra tsirairay"
+    "attachmentTooLarge": "Tsy maintsy latsaky ny 20MB ny rakitra tsirairay",
+    "deleteCommentA11y": "Fafao ilay fanamarihana",
+    "sendCommentA11y": "Handefa fanehoan-kevitra",
+    "requestOptions": "Safidin'ny Fangatahana"
   },
   "auth": {
     "loginRequired": "Ilaina ny fidirana",
@@ -1678,7 +1710,15 @@
     "sendCodeFailedRetry": "Tsy nahavita nandefa kaody. Azafady manandrama indray.",
     "invalidCodeRetry": "Kaody tsy manan-kery. Azafady manandrama indray.",
     "invalidEmailOrPassword": "Tsy manan-kery ny mailaka na ny tenimiafina.",
-    "welcomeToDehub": "Tongasoa eto amin'ny DeHub"
+    "welcomeToDehub": "Tongasoa eto amin'ny DeHub",
+    "importWalletOptional": "Import Wallet (tsy voatery)",
+    "couldNotSendCodeRetry": "Tsy afaka nandefa ilay kaody. Andramo indray azafady.",
+    "exploreWithoutSignIn": "Hitady tsy hiditra",
+    "continueExploring": "Tohizo ny fikarohana",
+    "exploreWithoutSignInA11y": "Fantaro ny DeHub tsy miditra",
+    "continueExploringA11y": "Tohizo ny fikarohana DeHub",
+    "importWalletRecommended": "Amporisihina ny fidirana ara-tsosialy.",
+    "importWalletPurpose": "Ity fitaovana ity dia manafatra ny kaonty efa misy ao amin'ny DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Novonoina ny valiny atolotra",
@@ -1793,7 +1833,29 @@
     "reportedAutomatically": "Voatatitra ho azy izany.",
     "loadFailed": "Tsy afaka nampiditra ny fantsona",
     "noSearchResults": "Tsy misy fantsona mifanaraka amin'ny fikarohanao",
-    "noChannels": "Tsy misy fantsona azo"
+    "noChannels": "Tsy misy fantsona azo",
+    "pairCodeExpired": "Tapitra ny fe-potoana. Anontanio ny TV hahazoana iray vaovao.",
+    "signedInOnTv": "Miditra ao amin'ny fahitalavitra",
+    "pairRefused": "Nolavina",
+    "pairIntro": "Sokafy DeHub amin'ny fahitalavitra ary tadiavo ny kaody asehony eto.",
+    "pairNotFound": "Tsy toy ny televiziona ny mpanara-maso ny ordinatera. Ary mety ho efa lany andro ilay izy — anontanio TV iray hafa.",
+    "wantsToSignIn": "te hiditra ho tahaka ny anao",
+    "pairWarning": "Alefaso azafady ny fahitalavitra. Fankatoavana famantarana na iza na iza mitana izany kaody ao amin'ny kaonty. Ho afaka hijery, toy ny sy manaraka — tsy afaka mandany, ary afaka sonia izany avy amin'ny fotoam-pivoriana Active fotoana rehetra.",
+    "pairApprove": "Eny, midira ao amin'ny fahitalavitra",
+    "pairDeny": "Tsy nangataka izany aho.",
+    "pairDoneTitle": "Hiditra ny TV",
+    "pairDoneBody": "Amin'ity tranga ity, mila mamoha ny kaonty ianao. Sonia izany avy amin'ny fotoana rehetra ny Fikirakirana ny → fiainana manokana → ny fotoam-pivoriana.",
+    "closePlayer": "Mpilalao akaiky",
+    "declineFailed": "Azonao atao fotsiny ny manao izany — vokatr'izany",
+    "tipSentTvNotTold": "Tsy afaka mivoaka ny fahitalavitra, noho izany dia toa tsy azo atao ny fahitalavitra. Mandeha ny fotoana.",
+    "sentAmount": "Mandefa {{amount}} DHB",
+    "nothingWaiting": "Tsy misy miandry",
+    "nothingWaitingBody": "Rehefa mandefa sosoa avy amin'ny DeHub amin'ny fahitalavitrao ianao, dia miseho eto izany mba hohamarininao. Tsy mitazona ny poketrao mihitsy ny fahitalavitrao.",
+    "yourTelevision": "Ny fahitalavitrao",
+    "wantsToTip": "dia te handefa sosoa · {{time}} navela",
+    "tipTo": "ho an'ny {{name}}",
+    "tipForPost": "ho an'ny “{{title}}”",
+    "reviewAndApprove": "Jereo sy ankatoavy"
   },
   "top100": {
     "title": "Ambony 100",
@@ -2065,7 +2127,8 @@
     "submitApplication": "Alefaso ny fangatahana",
     "nameEmailRequired": "Ilaina ny anarana sy ny mailaka",
     "applicationSuccess": "Fangatahana nalefa soa aman-tsara! Hifandray aminao izahay.",
-    "applicationFailed": "Tsy nahomby ny fandefasana. Azafady avereno."
+    "applicationFailed": "Tsy nahomby ny fandefasana. Azafady avereno.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO Treasury",
@@ -2225,7 +2288,8 @@
     "pinnedToast": "Napetaka teo an-tampon'ity lahatsoratra ity",
     "unpinnedToast": "Voaesotra ny fametahana",
     "pinFailed": "Tsy afaka napetaka io hevitra io",
-    "kidsOnlyThread": "Ity boky ity dia ho an'ny ankizy. Ireo mpihaza mpihaza irery ihany no afaka maneho hevitra momba izany."
+    "kidsOnlyThread": "Ity boky ity dia ho an'ny ankizy. Ireo mpihaza mpihaza irery ihany no afaka maneho hevitra momba izany.",
+    "editFailed": "Tsy nahomby ny fanovana ny fanehoan-kevitra"
   },
   "postInfo": {
     "title": "Fampahalalana momba ny lahatsoratra",
@@ -3266,14 +3330,40 @@
     "comingSoon": "Ho avy tsy ho ela",
     "signIn": "Hiditra",
     "tapToGetStarted": "Tsindrio hanombohana",
-    "soon": "Tsy ho ela"
+    "soon": "Tsy ho ela",
+    "glossarySubtitle": "Fantaro ny dikan'ny kisary sy ny endri-javatra rehetra",
+    "searchGlossary": "Mitady rakibolana...",
+    "noResultsFor": "Tsy misy valiny ho an'ny \"{{query}}\"",
+    "guideSubtitle": "Torolalana tsikelikely momba ny endri-javatra tsirairay",
+    "searchGuide": "Mitady boky torolalana...",
+    "repostsTab": "Fametrahana indray",
+    "quotesTab": "Teny nalaina",
+    "noMoreReposts": "Tsy misy fametrahana indray intsony",
+    "noMoreQuotes": "Tsy misy teny nalaina intsony",
+    "noRepostsYet": "Mbola tsy misy fametrahana indray",
+    "noQuotesYet": "Mbola tsy misy teny nalaina"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Lalao mandeha eto amin'ny fampiharana ihany. Tsy misy apetraka, tsy misy vidina — loharano misokatra, ary avy amin'ny DeHub mivantana."
+    "intro": "Lalao mandeha eto amin'ny fampiharana ihany. Tsy misy apetraka, tsy misy vidina — loharano misokatra, ary avy amin'ny DeHub mivantana.",
+    "noGameCalled": "Tsy misy lalao atao hoe <slug>{{slug}}</slug> ao amin'ny toeram-pilalaovana.",
+    "seeWhatIsHere": "Jereo izay eto",
+    "locationNotGranted": "Tsy nomena alalana ny toerana.",
+    "signInToPlaceOnGlobe": "Midira mba hametrahana ny tenanao eo amin'ny globe.",
+    "couldNotPlaceOnGlobe": "Tsy nahavita nametraka anao teo amin'ny globe.",
+    "onTheGlobe": "Eo amin'ny globe ianao — aseho ao anatin'ny faritra manodidina ny 25 km.",
+    "couldNotReach": "Tsy nahatratra ny toeram-pilalaovana",
+    "didNotLoad": "Tsy nahomby ny {{title}}",
+    "needsConnection": "Ny lalao dia avy amin'ny dehub.io ary alaina rehefa sokafanao izany, ka mila fifandraisana mandeha tsara amin'ny voalohany. Zahao ny anao ary miezaha indray.",
+    "backToArcade": "Miverina amin'ny arcade",
+    "openPrivacySettings": "Sokafy ny firafitry ny fiainana manokana",
+    "privacyWarning": "Raha manana tokeny betsaka ianao na mipetraka any amin'ny faritra tsy azo antoka, afeno ny mari-pahaizana sy ny fifandanjanao alohan'ny hampiasana ity endri-javatra ity. Ny fifanakalozana amin'ny rojo mbola mampiseho ny adiresinao. Sokafy ny firafitra.",
+    "leaveGame": "Miala amin'ny lalao",
+    "loadingGame": "Mampiditra {{title}}",
+    "hideThis": "Afeno ity"
   },
   "videoLooks": {
     "button": "Endrik ny fakan-tsary",
@@ -3399,7 +3489,22 @@
     "someone": "Olona iray",
     "oneTyping": "Manoratra i {{name}}…",
     "fewTyping": "Manoratra i {{names}}…",
-    "manyTyping": "Olona {{count}} no manoratra…"
+    "manyTyping": "Olona {{count}} no manoratra…",
+    "modBadge": "MOD",
+    "thisUser": "ity mpampiasa ity",
+    "unbanConfirm": "Tena azonao antoka ve fa esorina amin'ny fandrarana an'i {{name}}?",
+    "unban": "Esory amin'ny fandrarana",
+    "unbanFailed": "Tsy nahomby ny famoahana mpampiasa",
+    "onlineLabel": "Mifandray",
+    "usersCount_one": "mpampiasa {{count}}",
+    "usersCount_other": "mpampiasa {{count}}",
+    "totalMessages": "Hafatra rehetra",
+    "slowMode": "Fomba miadana",
+    "cooldownSeconds": "{{seconds}}s cooldown",
+    "minStakeRequired": "Fanampiana kely indrindra takiana",
+    "noParticipants": "Mbola tsy misy mpandray anjara",
+    "noModerators": "Tsy misy moderatera",
+    "noBannedUsers": "Tsy misy mpampiasa voarara"
   },
   "promptFeed": {
     "headline": "Inona no tianao hojerena?",
@@ -4151,7 +4256,26 @@
     "madeForKidsBlockedByMature": "Ny postina nisy marika ho \"mature\" dia tsy afaka hamoaka ho an'ny ankizy.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Avy amin'ny RTMP details",
-    "markMadeForKids": "Mariho toy ny natao ho an'ny ankizy"
+    "markMadeForKids": "Mariho toy ny natao ho an'ny ankizy",
+    "queueWaiting": "Miandry…",
+    "queueUploading": "Mampiditra",
+    "queueProcessing": "Manamboatra…",
+    "queueMinting": "Mametaka…",
+    "queuePosted": "Nampidirina",
+    "queueFailed": "Tsy nahomby",
+    "noRetriesLeft": "(tsy misy fanandramana intsony)",
+    "noUploads": "Tsy misy fampidirana",
+    "uploadsAppearHere": "Hivoaka eto ny fampidiranao",
+    "imagesTotalLimit": "Ny sary ao amin'ny iray dia tsy maintsy feno 100 MB na latsaka",
+    "chooseDatabase": "Misafidiana soratra fototra",
+    "livestreamMode": "Fomba Livestream",
+    "addThumbnail": "Hanampy sary madinika",
+    "showCover": "Asehoy ny fonony",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Hamafiso ny Livestream",
+    "liveFeaturesTitle": "Live Endri-javatra",
+    "discardPostTitle": "Foanana ny Paositra?",
+    "discardPostBody": "Ny solosainao dia ho very. Tianao andramana ve ity fitaovana ity?"
   },
   "bounty": {
     "claimed": "Voaray",
@@ -4468,7 +4592,25 @@
     "allowNewDmsOff": "Alefaso ny DM raha te handray hafatra vaovao.",
     "perMessageFee": "Sara isaky ny hafatra (DHB)",
     "perMessageFeeSub": "Mangataha sara isaky ny hafatra. Ataovy 0 raha maimaim-poana. Afaka manome fidirana maimaim-poana amin'ny mpampiasa sasany ianao.",
-    "allDisabled": "Vonoina ny DM rehetra amin'izao. Voasakana ho azy ny DM vaovao."
+    "allDisabled": "Vonoina ny DM rehetra amin'izao. Voasakana ho azy ny DM vaovao.",
+    "failedToEdit": "Tsy azo ny fanovana",
+    "messageDeleted": "Hafatra voafafa",
+    "cantForwardFromDevice": "Tsy mety afindra avy amin'ity periferika ity io hafatra io",
+    "messageForwarded": "Ny hafatra ampitaiko",
+    "clearMessages": "Hamafa ny hafatra",
+    "clearMessagesConfirm": "Mamafa ny hafatra rehetra amin'ity resadresaka ity? Voavaha io taratasin-tadidy io.",
+    "messagesCleared": "Hafatra mazava",
+    "failedToClearMessages": "Tsy nahavita namafa ny hafatra",
+    "removedFreeAccess": "Nesorina maimaim-poana ny fidirana amin'ny {{name}}",
+    "grantedFreeAccess": "Marina maimaim-poana ny fidirana amin'ny {{name}}",
+    "failedToUpdateFreeAccess": "Tsy afaka namorona ny rakitra “%s”: %s",
+    "searchComingSoon": "Hiverina hividy indray tsy ho ela aho.",
+    "tapToUnblock": "Tapao mba hamaha",
+    "userFallback": "Mpampiasa",
+    "failedToBlock": "Tsy nahavita nanakana",
+    "failedToDeleteConversation": "Tsy nahavita namafa ny resaka",
+    "newDm": "Hafatra mivantana vaovao",
+    "noConversationsFound": "Tsy misy resaka hita"
   },
   "editPost": {
     "mediaPermission": "Ilaina ny fahazoan-dàlana amin'ny tranomboky media",
@@ -4490,7 +4632,17 @@
     "retry": "Andramo indray",
     "retrying": "Miezaha indray...",
     "retryQueued": "Asa atao indray",
-    "retryFailed": "Tsy afaka nanandrana intsony io lahatsoratra io"
+    "retryFailed": "Tsy afaka nanandrana intsony io lahatsoratra io",
+    "closeVideo": "Hidio ny horonantsary",
+    "rotateOrientation": "Fitodiky ny kitondro",
+    "videoProgress": "Fandrosoan'ny video: {{percent}}%",
+    "tapToSeek": "Tsindrio mba hitsidihana toerana manokana",
+    "photoAccessToSaveImages": "Avelao ny fahazoan-dalana amin'ny tranomboky sary mba hitahiry sary",
+    "failedToSaveImage": "Tsy nahavita nitahiry sary",
+    "downloadImage": "Sintomy ny sary",
+    "goToImage": "Mandehana amin'ny sary {{index}}",
+    "allCaughtUp": "Vita daholo izao",
+    "checkBackForShorts": "Miverena hijery indray any aoriana mba hahazoana shorts bebe kokoa"
   },
   "liveViewer": {
     "loadingStream": "Mampiditra ny fandefasana...",
@@ -4500,7 +4652,22 @@
   },
   "search": {
     "endOfResults": "Faran'ny valiny",
-    "searchDehub": "Karohy ao amin'ny DeHub"
+    "searchDehub": "Karohy ao amin'ny DeHub",
+    "tabVoice": "Feo",
+    "trendingThisWeek": "Malaza Amin'ity Herinandro ity",
+    "trendingPosts": "Lahatsoratra Malaza",
+    "trendingImages": "Sary Malaza",
+    "trendingVideos": "Video Malaza",
+    "trendingVoicePosts": "Feo Malaza",
+    "trendingLive": "Live Malaza",
+    "seeAll": "Jereo Daholo",
+    "noAccountsFound": "Tsy nahita kaonty",
+    "tryDifferentKeywords": "Mba manandrama teny hafa na jereo ny fanononanao",
+    "noContentResults": "Tsy misy vokatra votoaty",
+    "recentSearches": "Fikarohana Vao Haingana",
+    "noTrendingThisWeek": "Tsy misy votoaty malaza amin'ity herinandro ity",
+    "closeFilterOptions": "Akana ny safidy sivana",
+    "openFilterOptions": "Sokafy ny safidy sivana"
   },
   "notifPrompt": {
     "stayInLoop": "Mahafantatra hatrany",
@@ -4750,7 +4917,26 @@
     "externalTitle": "Fomban'ny mirohotra ivelany",
     "externalLiveHint": "Fitsipika tsara toy ny miasa amin'ny rindrambaiko. Ny fàfana misy ao anaty app dia natsahatra.",
     "externalHint": "Mampifandray ny rindrambaiko mivantana amin'ny fampiasana ny antsipiriany etsy ambany, ary manomboka mandefa fandaharana.",
-    "useInAppCamera": "Ampiasao ny fakantsary amin'nypp fa tsy"
+    "useInAppCamera": "Ampiasao ny fakantsary amin'nypp fa tsy",
+    "livestreamEnded": "Tapitra ny Livestream",
+    "chatEnabled": "Nampandeha ny Chat",
+    "chatDisabled": "Nofoanan'ny Chat",
+    "failedToUpdateSettings": "Tsy nahavita nanova ny toe-javatra",
+    "networkLostReconnecting": "Very ny tambajotra — nijanona ny stream. Miverina mifandray…",
+    "openingViewer": "Manokatra ny mpijery...",
+    "cameraPermissionRequired": "Mila fahazoan-dalana amin'ny fakantsary",
+    "grantPermission": "Fanomezana alalana",
+    "waitingForLivepeer": "Miandrandra ny ahy mba mialoha ny RISE...",
+    "waitingForExternalSource": "Mikatsaka loharanom-baovao ivelany...",
+    "settingUpPublisher": "Ny fanamboarana Tanàna vaovao...",
+    "scheduledStream": "Nalamina Stream",
+    "scheduledAt": "{{date}} at {{time}}",
+    "pressGoLiveWhenReady": "Press Go Live rehefa vonona ny hanomboka",
+    "connectionInterrupted": "Najanona ny fifandraisana",
+    "streamPausedReconnecting": "Miato ny rindrinao. Averina mifandray...",
+    "streamWillEnd": "Hifarana ny fandefasana raha tsy tafapetraka",
+    "endStreamConfirmTitle": "Tapitra ny riaka?",
+    "endStreamConfirmBody": "Ny fikatonanao izao dia hamarana ny fitohizanao mivantana ho an'ny mpijery rehetra. Azonao atao ny manohy mandefa ny rindrankajy na mamarana azy tanteraka."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

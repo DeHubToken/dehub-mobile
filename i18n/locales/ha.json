@@ -119,7 +119,12 @@
     "music": "Kiɗa",
     "live": "Kai tsaye",
     "newPosts_one": "Sabuwar wallafa {{count}}",
-    "newPosts_other": "Sabbin wallafe-wallafe {{count}}"
+    "newPosts_other": "Sabbin wallafe-wallafe {{count}}",
+    "privateContent": "Abun Ciki na Sirri",
+    "privateContentBody": "Wannan abun ciki daga asusu ne na sirri. Bi mai kirkirar don ganin sakonninsa.",
+    "noMoreContent": "Babu ƙarin abun ciki",
+    "noPostsYet": "Babu sakonni tukuna.",
+    "pullToRefresh": "Ja don sabuntawa ko gwada sake nan gaba."
   },
   "explore": {
     "all": "Duka",
@@ -710,7 +715,19 @@
     "smsBalanceMessages": "Kusan saƙonni {{count}}",
     "smsTopUp": "Ƙara {{dhb}} DHB",
     "smsCodeSent": "An aika lambar. Wannan ya ci {{price}} DHB.",
-    "kidsMode": "Yanayin Yara"
+    "kidsMode": "Yanayin Yara",
+    "avatarUpdateFailed": "An kasa sabunta avatar",
+    "coverUpdateFailed": "An kasa sabunta murfin",
+    "fixInvalidSocialLinks": "Da fatan za a gyara hanyoyin sada zumunta marasa inganci",
+    "updateFailed": "An kasa sabuntawa",
+    "channelUrlOrHandle": "URL na tashar ko sunan mai amfani",
+    "inviteLinkPlaceholder": "Hanyar gayyata",
+    "profileUrlOrUsername": "URL na bayanin martaba ko sunan mai amfani",
+    "yourDisplayName": "Sunan da kake nuna wa",
+    "usernameAvailable": "Sunan mai amfani yana nan",
+    "hideBadgeAndBalance": "Boye alamar da ma'auni",
+    "hideBadgeAndBalanceDesc": "Yana boye bayanan kuɗi kuma yana hana aika sako da bayar da kuɗi gare ka.",
+    "onChainPublicWarning": "Ayyukan kan-rantar jama'a ne. Aiko da kuɗi ko bayarwa na iya bayyana adireshin walat ɗinka, gami da ayyukan da aka yi kafin a kunna yanayin ma'auni na sirri."
   },
   "common": {
     "mute": "Kashe sauti",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Babu Haɗin Intanet",
     "noInternetBody": "Da fatan za a duba haɗin intanet ɗin ku kuma a sake gwadawa. Kuna buƙatar haɗawa da intanet don amfani da DeHub.",
     "noInternetStatus": "Ba a layi - Babu haɗin cibiyar sadarwa",
-    "noInternetHint": "Tabbatar da cewa Wi-Fi ko bayanan hannu an kunna su, sannan danna \"{{action}}\""
+    "noInternetHint": "Tabbatar da cewa Wi-Fi ko bayanan hannu an kunna su, sannan danna \"{{action}}\"",
+    "saving": "Ajiye…",
+    "offlineStatus": "Ba A layi - Babu Haɗin Cibiyar Sadarwa"
   },
   "tip": {
     "title": "Aika Kyauta",
@@ -1094,7 +1113,17 @@
     "post": "Buga",
     "officialLogo": "Ga tambarin hukuma na DeHub! 🎨",
     "editedImage": "Ga hoton ka da aka gyara!",
-    "generatedImage": "Ga hoton ka da aka ƙirƙira!"
+    "generatedImage": "Ga hoton ka da aka ƙirƙira!",
+    "toolCompleted": "{{name}} ya kammala",
+    "aiTool": "AI tool",
+    "cannotAnimateImage": "{{model}} ba zai iya motsa hoto da aka haɗa ba. Zaɓi wani samfurin bidiyo.",
+    "needsImageToAnimate": "{{model}} yana buƙatar hoto don motsawa. Haɗa ɗaya ko zaɓi wani samfurin.",
+    "couldNotReadImage": "An kasa karanta wannan hoto",
+    "logoLoadFailed": "An kasa loda tambarin DeHub — ana samarwa ba tare da shi ba",
+    "imageAttachedDescribe": "An haɗa hoto — bayyana gyare-gyarenka",
+    "couldNotPreparePost": "An kasa shirya wannan don sakawa",
+    "generateImage": "Samar da Hoto",
+    "generateVideo": "Tsara Bidiyo"
   },
   "commandCentre": {
     "title": "Cibiyar Umarni",
@@ -1606,7 +1635,10 @@
     "edit": "Gyara",
     "deleteRequestTitle": "A goge wannan buƙatar?",
     "deleteRequestDescription": "Ba za a iya juyar da wannan ba.",
-    "attachmentTooLarge": "Kowane fayil ya zama ƙasa da 20MB"
+    "attachmentTooLarge": "Kowane fayil ya zama ƙasa da 20MB",
+    "deleteCommentA11y": "Share sharhi",
+    "sendCommentA11y": "Aika da sharhi",
+    "requestOptions": "Neman zaɓuɓɓuka"
   },
   "auth": {
     "loginRequired": "Ana buƙatar shiga",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "An kasa aika lambar. Da fatan za a sake gwadawa.",
     "invalidCodeRetry": "Lambar ba ta da inganci. Da fatan za a sake gwadawa.",
     "invalidEmailOrPassword": "Imel ko kalmar sirri ba ta da inganci.",
-    "welcomeToDehub": "Barka da zuwa DeHub"
+    "welcomeToDehub": "Barka da zuwa DeHub",
+    "importWalletOptional": "Shigo da Wallet (Zabi)",
+    "couldNotSendCodeRetry": "Ba za a iya aika code. Don Allah koma.",
+    "exploreWithoutSignIn": "Bincika ba tare da sanya hannu ba a cikin",
+    "continueExploring": "Ci gaba da bincike",
+    "exploreWithoutSignInA11y": "Bincika DeHub ba tare da sanya hannu a",
+    "continueExploringA11y": "Ci gaba da bincike DeHub",
+    "importWalletRecommended": "Ana bada shawara ga logins na zamantakewa.",
+    "importWalletPurpose": "Wannan kayan aiki ne don shigo da data kasance asusun daga DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "An kashe amsoshin da aka ba da shawara",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "An bayar da rahoto kai tsaye.",
     "loadFailed": "An kasa loda tashoshi",
     "noSearchResults": "Babu tashoshi da suka dace da binciken ka",
-    "noChannels": "Babu tashoshi da ake da su"
+    "noChannels": "Babu tashoshi da ake da su",
+    "pairCodeExpired": "Wannan lambar ta ƙare. Tambayi TV don sabon.",
+    "signedInOnTv": "Sa hannu a cikin talabijin ɗinka",
+    "pairRefused": "An ƙi",
+    "pairIntro": "Bude DeHub akan talabijin ɗinku kuma rubuta lambar da yake nunawa anan.",
+    "pairNotFound": "Babu talabijin da ke jiran wannan lambar. Wataƙila ya ƙare — tambayi TV don sabon.",
+    "wantsToSignIn": "son shiga kamar yadda ka",
+    "pairWarning": "Kawai yarda da wannan idan talabijin ne da kake kallo a yanzu. Yarda da alamu duk wanda ke riƙe da wannan lambar a cikin asusunka. Zai iya kallo, kamar da bi — ba zai iya ciyarwa ba, kuma zaka iya sa hannu a kowane lokaci daga zaman aiki.",
+    "pairApprove": "Haka ne, shiga cikin wannan talabijin",
+    "pairDeny": "A'a, ban nemi wannan ba",
+    "pairDoneTitle": "An sanya hannu a cikin talabijin ɗinku",
+    "pairDoneBody": "Ya kamata ya nuna asusunka tuni. Sa hannu da shi a kowane lokaci daga Saituna → Privacy → Active zaman.",
+    "closePlayer": "Kusa player",
+    "declineFailed": "Ba zai iya raguwa ba — watakila ya riga ya ƙare.",
+    "tipSentTvNotTold": "Tip ya aika, amma ba za a iya gaya wa talabijin ba. Zai fita lokaci.",
+    "sentAmount": "Aika {{amount}} DHB",
+    "nothingWaiting": "Babu abin da ke jira",
+    "nothingWaitingBody": "Idan ka aika kuɗi daga DeHub a talabijin ɗinka, yana bayyana anan don ka amincewa. Talabijin ɗinka ba ta riƙe walat ɗinka ba.",
+    "yourTelevision": "Talabijin ɗinka",
+    "wantsToTip": "yana son aika kuɗi · {{time}} ya rage",
+    "tipTo": "zuwa {{name}}",
+    "tipForPost": "don “{{title}}”",
+    "reviewAndApprove": "Bita kuma ka amince"
   },
   "top100": {
     "title": "Na sama 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Tura takarda",
     "nameEmailRequired": "Suna da imel suna da muhimmanci",
     "applicationSuccess": "An tura takarda cikin nasara! Za mu tuntube ka.",
-    "applicationFailed": "Turawa bai yi nasara ba. Don Allah sake gwadawa."
+    "applicationFailed": "Turawa bai yi nasara ba. Don Allah sake gwadawa.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Gidan Kuɗi na DAO",
@@ -2202,7 +2265,8 @@
     "unpinnedToast": "An cire liƙau",
     "pinFailed": "Ba a iya liƙa wannan sharhin ba",
     "kidsOnlyThread": "Wannan post ne ga yara. Sai kawai Kids Mode iya sharhi a kan shi.",
-    "reportReasonPlaceholder": "Ƙara kowane cikakkun bayanai da ke taimaka mana mu duba shi (na zaɓi)"
+    "reportReasonPlaceholder": "Ƙara kowane cikakkun bayanai da ke taimaka mana mu duba shi (na zaɓi)",
+    "editFailed": "An kasa gyara sharhi"
   },
   "postInfo": {
     "title": "Bayanan bugu",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Nan ba da jimawa ba",
     "signIn": "Shiga",
     "tapToGetStarted": "Danna don farawa",
-    "soon": "Nan gaba"
+    "soon": "Nan gaba",
+    "glossarySubtitle": "Koyi abin da kowane tambari da fasali ke nufi",
+    "searchGlossary": "Nemo kalmomi...",
+    "noResultsFor": "Babu sakamako ga \"{{query}}\"",
+    "guideSubtitle": "Mataki-mataki ta kowane fasali",
+    "searchGuide": "Nemo jagorar...",
+    "repostsTab": "Sake bugawa",
+    "quotesTab": "Zance",
+    "noMoreReposts": "Babu ƙarin sake bugawa",
+    "noMoreQuotes": "Babu ƙarin zance",
+    "noRepostsYet": "Babu sake bugawa tukuna",
+    "noQuotesYet": "Babu zance tukuna"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Wasanni da ke gudana a nan cikin manhajar. Babu abin shigarwa, babu abin siya — buɗaɗɗen tushe, kuma DeHub kanta ke bayarwa."
+    "intro": "Wasanni da ke gudana a nan cikin manhajar. Babu abin shigarwa, babu abin siya — buɗaɗɗen tushe, kuma DeHub kanta ke bayarwa.",
+    "noGameCalled": "Babu wasan da ake kira <slug>{{slug}}</slug> a wurin wasan.",
+    "seeWhatIsHere": "Gani abin da ke nan",
+    "locationNotGranted": "An ƙi ba da izinin wuri.",
+    "signInToPlaceOnGlobe": "Shiga don sanya kanka a duniya.",
+    "couldNotPlaceOnGlobe": "An kasa sanya ka a duniya.",
+    "onTheGlobe": "Kuna kan duniya — ana nuna ku a cikin kewayon kimanin kilomita 25.",
+    "couldNotReach": "AN KASA SAMUN wurin wasan",
+    "didNotLoad": "{{title}} bai yi lodi ba",
+    "needsConnection": "Ana hidimar wasan daga dehub.io kuma ana sauke shi lokacin da ka buɗe shi, don haka yana buƙatar haɗin gwiwa mai aiki a karon farko. Duba naku kuma gwada sake.",
+    "backToArcade": "Komawa zuwa arcade",
+    "openPrivacySettings": "Bude saitunan sirri",
+    "privacyWarning": "Idan kana da adadi mai yawa na tsabar kudi ko kuma kana zaune a wani yanki marar tsaro, boye lambar yabo da ma'auni kafin amfani da wannan fasalin. Mu'amalar kan-rantar har yanzu tana bayyana adireshin ka. Bude saituna.",
+    "leaveGame": "Fita daga wasan",
+    "loadingGame": "Loading {{title}}",
+    "hideThis": "Boye wannan"
   },
   "videoLooks": {
     "button": "Kamannin kamara",
@@ -3376,7 +3466,22 @@
     "someone": "Wani",
     "oneTyping": "{{name}} yana rubutu…",
     "fewTyping": "{{names}} suna rubutu…",
-    "manyTyping": "Mutane {{count}} suna rubutu…"
+    "manyTyping": "Mutane {{count}} suna rubutu…",
+    "modBadge": "MOD",
+    "thisUser": "wannan mai amfani",
+    "unbanConfirm": "Kuna tabbatar da cewa kuna son cire {{name}} daga haramtawa?",
+    "unban": "Cire daga haramtawa",
+    "unbanFailed": "An kasa cire mai amfani daga haramtawa",
+    "onlineLabel": "Online",
+    "usersCount_one": "mai amfani {{count}}",
+    "usersCount_other": "masu amfani {{count}}",
+    "totalMessages": "Jimillar Saƙonni",
+    "slowMode": "Yanayin Jinkiri",
+    "cooldownSeconds": "{{seconds}}s cooldown",
+    "minStakeRequired": "Mafi Ƙarancin Stake Da ake Buƙata",
+    "noParticipants": "Babu mahalarta tukuna",
+    "noModerators": "Babu masu gudanarwa",
+    "noBannedUsers": "Babu masu amfani da aka haramta"
   },
   "promptFeed": {
     "headline": "Me kake son gani?",
@@ -4128,7 +4233,26 @@
     "madeForKidsBlockedByMature": "Ba za a iya buga post da aka yi wa balagu tare da buga shi don yara ba.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Sami RTMP details",
-    "markMadeForKids": "Mark kamar yadda aka yi wa yara"
+    "markMadeForKids": "Mark kamar yadda aka yi wa yara",
+    "queueWaiting": "Jira…",
+    "queueUploading": "Ana loda",
+    "queueProcessing": "Ana sarrafawa…",
+    "queueMinting": "Ana yin minti…",
+    "queuePosted": "An buga",
+    "queueFailed": "An kasa",
+    "noRetriesLeft": "(babu sake gwadawa da ya rage)",
+    "noUploads": "Babu loda",
+    "uploadsAppearHere": "Loda ku za su bayyana anan",
+    "imagesTotalLimit": "Hotuna a cikin loda ɗaya dole ne jimlar 100 MB ko žasa",
+    "chooseDatabase": "Zabi Decentralized Database",
+    "livestreamMode": "Yanayin Livestream",
+    "addThumbnail": "Ƙara Thumbnail",
+    "showCover": "Nuna murfin",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Tabbatar da Livestream",
+    "liveFeaturesTitle": "Siffofin Rayuwa",
+    "discardPostTitle": "Bari Post?",
+    "discardPostBody": "Your post za a rasa. Kuna so ku ajiye shi a matsayin tsari a maimakon haka?"
   },
   "bounty": {
     "claimed": "An karɓa",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Kunna DM don ba da damar sabbin saƙonni.",
     "perMessageFee": "Kuɗin kowane saƙo (DHB)",
     "perMessageFeeSub": "Ka caji kowane saƙo. Sa 0 don DM kyauta. Za ka iya ba wasu masu amfani damar kyauta.",
-    "allDisabled": "Duk DM a kashe suke yanzu. Sabbin DM an toshe su ta tsohuwar hanya."
+    "allDisabled": "Duk DM a kashe suke yanzu. Sabbin DM an toshe su ta tsohuwar hanya.",
+    "failedToEdit": "An kasa gyarawa",
+    "messageDeleted": "Sakon da aka goge",
+    "cantForwardFromDevice": "Ba za a iya tura wannan sakon daga wannan na'urar ba",
+    "messageForwarded": "Saƙon da aka aika",
+    "clearMessages": "Saƙonni bayyanannu",
+    "clearMessagesConfirm": "Share duk saƙonni a cikin wannan tattaunawa? Ba za a iya cire wannan ba.",
+    "messagesCleared": "Saƙonnin da aka share",
+    "failedToClearMessages": "An kasa share saƙonni",
+    "removedFreeAccess": "An cire damar shiga kyauta don {{name}}",
+    "grantedFreeAccess": "An ba da damar shiga kyauta zuwa {{name}}",
+    "failedToUpdateFreeAccess": "An kasa sabunta damar shiga kyauta",
+    "searchComingSoon": "Search Yo gabba gabba",
+    "tapToUnblock": "Tap to buše",
+    "userFallback": "mai amfani",
+    "failedToBlock": "An kasa toshewa",
+    "failedToDeleteConversation": "An kasa share tattaunawar",
+    "newDm": "Sabbin sakon kai tsaye",
+    "noConversationsFound": "Babu tattaunawar da aka samu"
   },
   "editPost": {
     "mediaPermission": "Ana buƙatar izinin ɗakin karatu na kafofin watsa labarai",
@@ -4467,7 +4609,17 @@
     "retry": "Gwada kuma",
     "retrying": "Komawa...",
     "retryQueued": "Processing kuma",
-    "retryFailed": "Ba za a iya dawo da wannan post ɗin ba"
+    "retryFailed": "Ba za a iya dawo da wannan post ɗin ba",
+    "closeVideo": "Kusa video",
+    "rotateOrientation": "Madaidaiciya matsayin cewa.",
+    "videoProgress": "Ci gaban bidiyo: {{percent}}%",
+    "tapToSeek": "Danna don zuwa wani wuri na musamman",
+    "photoAccessToSaveImages": "Bada damar shiga ɗakin ajiya na hoto don adana hotuna",
+    "failedToSaveImage": "An kasa adana hoto",
+    "downloadImage": "Zazzage hoto",
+    "goToImage": "Je zuwa hoto {{index}}",
+    "allCaughtUp": "Kun gama komai",
+    "checkBackForShorts": "Duba nan gaba don ƙarin gajerun shirye-shirye"
   },
   "liveViewer": {
     "loadingStream": "Ana loda yaɗawa...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Ƙarshen sakamako",
-    "searchDehub": "Bincika DeHub"
+    "searchDehub": "Bincika DeHub",
+    "tabVoice": "Murya",
+    "trendingThisWeek": "Abubuwan Da Suke Juyawa A Wannan Makon",
+    "trendingPosts": "Posts masu Juyawa",
+    "trendingImages": "Hotuna masu Juyawa",
+    "trendingVideos": "Bidiyo masu Juyawa",
+    "trendingVoicePosts": "Posts Murya masu Juyawa",
+    "trendingLive": "Live masu Juyawa",
+    "seeAll": "Duba Duk",
+    "noAccountsFound": "Babu asusun da aka samu",
+    "tryDifferentKeywords": "Gwada kalmomi daban-daban ko duba rubutunka",
+    "noContentResults": "Babu sakamakon abun ciki",
+    "recentSearches": "Binciken Kwanan nan",
+    "noTrendingThisWeek": "Babu abun ciki mai juyawa a wannan makon",
+    "closeFilterOptions": "Rufe zaɓuɓɓukan tace",
+    "openFilterOptions": "Bude zaɓuɓɓukan tace"
   },
   "notifPrompt": {
     "stayInLoop": "Ka kasance da labari",
@@ -4728,7 +4895,24 @@
     "externalTitle": "Yanayin Streaming na waje",
     "externalLiveHint": "Your rafi ne live via waje software. A ciki-app kamara ne nakasa.",
     "externalHint": "Haša ka streaming software ta yin amfani da cikakken bayani a kasa, sa'an nan kuma fara watsa shirye-shirye.",
-    "useInAppCamera": "Yi amfani da In-App Kamara Maimakon"
+    "useInAppCamera": "Yi amfani da In-App Kamara Maimakon",
+    "livestreamEnded": "An rufe watsawa kai tsaye",
+    "chatEnabled": "An kunna Chat",
+    "chatDisabled": "An kashe Chat",
+    "failedToUpdateSettings": "An kasa sabunta saituna",
+    "networkLostReconnecting": "An rasa hanyar sadarwa — an dakatar da watsawa. Sake haɗawa…",
+    "openingViewer": "Bude mai kallo...",
+    "cameraPermissionRequired": "Ana buƙatar izinin kyamara",
+    "waitingForLivepeer": "Watashi ga Livepeer...",
+    "waitingForExternalSource": "Jiran tushen waje...",
+    "settingUpPublisher": "Kafa mai wallafa...",
+    "scheduledAt": "{{date}} a {{time}}",
+    "pressGoLiveWhenReady": "Latsa Go Live lokacin da shirye don farawa",
+    "connectionInterrupted": "Haɗin da aka katse",
+    "streamPausedReconnecting": "An dakatar da rafi naka. Sake tantancewa...",
+    "streamWillEnd": "Stream zai ƙare idan ba a sake haɗuwa ba",
+    "endStreamConfirmTitle": "Karshen Stream?",
+    "endStreamConfirmBody": "Rufe yanzu zai kawo ƙarshen rafi naka kai tsaye ga duk masu kallo. Kuna iya ci gaba da yawo ko ƙare shi har abada."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

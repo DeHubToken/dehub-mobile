@@ -119,7 +119,12 @@
     "music": "गाना",
     "live": "लाइव",
     "newPosts_one": "{{count}} नया पोस्ट",
-    "newPosts_other": "{{count}} नया पोस्ट"
+    "newPosts_other": "{{count}} नया पोस्ट",
+    "privateContent": "निजी सामग्री",
+    "privateContentBody": "यह सामग्री एक निजी खाते से है। उनकी पोस्ट देखने के लिए निर्माता को फ़ॉलो करें।",
+    "noMoreContent": "और सामग्री नहीं",
+    "noPostsYet": "अभी कोई पोस्ट नहीं है।",
+    "pullToRefresh": "रिफ्रेश करने के लिए नीचे खींचें या बाद में पुनः प्रयास करें।"
   },
   "explore": {
     "all": "सभे",
@@ -709,7 +714,19 @@
     "smsTopUp": "{{dhb}} DHB टॉप अप करें",
     "smsCodeSent": "कोड भेजा गया। इसमें {{price}} DHB लगे।",
     "smsCodeLabel": "कोड जो हमने {{phone}} को टेक्स्ट किया था",
-    "badgeDelegationLendsAny": "प्रत्येक एक और अकाउंट को आपके द्वारा अनलॉक किया गया कोई भी बैज उधार देता है, आपके अपने {{tier}} तक। एक छोटा बैज अभी भी एक पूरा स्लॉट लेता है।"
+    "badgeDelegationLendsAny": "प्रत्येक एक और अकाउंट को आपके द्वारा अनलॉक किया गया कोई भी बैज उधार देता है, आपके अपने {{tier}} तक। एक छोटा बैज अभी भी एक पूरा स्लॉट लेता है।",
+    "avatarUpdateFailed": "अवतार अपडेट विफल",
+    "coverUpdateFailed": "कवर अपडेट विफल",
+    "fixInvalidSocialLinks": "कृपया अमान्य सामाजिक लिंक ठीक करें",
+    "updateFailed": "अपडेट विफल",
+    "channelUrlOrHandle": "चैनल यूआरएल या हैंडल",
+    "inviteLinkPlaceholder": "आमंत्रण लिंक",
+    "profileUrlOrUsername": "प्रोफ़ाइल यूआरएल या उपयोगकर्ता नाम",
+    "yourDisplayName": "आपका प्रदर्शन नाम",
+    "usernameAvailable": "उपयोगकर्ता नाम उपलब्ध है",
+    "hideBadgeAndBalance": "बैज और शेष राशि छिपाएँ",
+    "hideBadgeAndBalanceDesc": "वित्तीय विवरण छिपाता है और आपको भेजने और सुझाव देने को अक्षम करता है।",
+    "onChainPublicWarning": "ऑन-चेन लेनदेन सार्वजनिक हैं। टोकन या सुझाव भेजने से आपका वॉलेट पता प्रकट हो सकता है, जिसमें निजी शेष राशि मोड सक्षम होने से पहले किए गए लेनदेन भी शामिल हैं।"
   },
   "common": {
     "mute": "आवाज़ बंद करीं",
@@ -759,7 +776,9 @@
     "noInternetTitle": "कोई इंटरनेट कनेक्शन नहीं",
     "noInternetBody": "कृपया अपना इंटरनेट कनेक्शन जांचें और पुनः प्रयास करें। DeHub का उपयोग करने के लिए आपको इंटरनेट से कनेक्ट होना होगा।",
     "noInternetStatus": "ऑफ़लाइन - कोई नेटवर्क कनेक्शन नहीं",
-    "noInternetHint": "सुनिश्चित करें कि वाई-फाई या मोबाइल डेटा चालू है, फिर \"{{action}}\" पर टैप करें"
+    "noInternetHint": "सुनिश्चित करें कि वाई-फाई या मोबाइल डेटा चालू है, फिर \"{{action}}\" पर टैप करें",
+    "saving": "सहेज रहा है…",
+    "offlineStatus": "ऑफ़लाइन - कोई नेटवर्क कनेक्शन नहीं"
   },
   "tip": {
     "title": "उपहार भेजीं",
@@ -1093,7 +1112,17 @@
     "post": "पोस्ट",
     "officialLogo": "ई DeHub के आधिकारिक लोगो बा! 🎨",
     "editedImage": "ई रहल रउआ संपादित तस्वीर!",
-    "generatedImage": "ई रहल रउआ बनइल तस्वीर!"
+    "generatedImage": "ई रहल रउआ बनइल तस्वीर!",
+    "toolCompleted": "{{name}} पूरा हुआ",
+    "aiTool": "एआई टूल",
+    "cannotAnimateImage": "{{model}} संलग्न छवि को एनिमेट नहीं कर सकता। कोई अन्य वीडियो मॉडल चुनें।",
+    "needsImageToAnimate": "{{model}} को एनिमेट करने के लिए एक छवि की आवश्यकता है। एक संलग्न करें या कोई अन्य मॉडल चुनें।",
+    "couldNotReadImage": "वह छवि नहीं पढ़ सका",
+    "logoLoadFailed": "DeHub लोगो लोड नहीं हो सका - इसके बिना जनरेट हो रहा है",
+    "imageAttachedDescribe": "छवि संलग्न है — अपने संपादन का वर्णन करें",
+    "couldNotPreparePost": "पोस्ट करने के लिए तैयार नहीं हो सका",
+    "generateImage": "चित्र समायोजित करें",
+    "generateVideo": "वीडियो समायोजित करें"
   },
   "commandCentre": {
     "title": "कमांड सेंटर",
@@ -1605,7 +1634,10 @@
     "edit": "संपादित करीं",
     "deleteRequestTitle": "ई अनुरोध मिटावल जाव?",
     "deleteRequestDescription": "ई वापस ना हो सकी।",
-    "attachmentTooLarge": "हर फाइल 20MB से कम होखे के चाहीं"
+    "attachmentTooLarge": "हर फाइल 20MB से कम होखे के चाहीं",
+    "deleteCommentA11y": "टिप्पणी हटावल गइल",
+    "sendCommentA11y": "आपन टिप्पणी भेजीं",
+    "requestOptions": "संसोधन के विकल्प"
   },
   "auth": {
     "loginRequired": "लॉगिन जरूरी बा",
@@ -1654,7 +1686,15 @@
     "sendCodeFailedRetry": "कोड नहीं भेजा जा सका। कृपया पुनः प्रयास करें।",
     "invalidCodeRetry": "अमान्य कोड। कृपया पुनः प्रयास करें।",
     "invalidEmailOrPassword": "अमान्य ईमेल या पासवर्ड।",
-    "welcomeToDehub": "DeHub में आपका स्वागत है"
+    "welcomeToDehub": "DeHub में आपका स्वागत है",
+    "importWalletOptional": "फ़ाइलें आयात करें (वैकल्पिक)",
+    "couldNotSendCodeRetry": "अज्ञात प्रारूप में फ़ाइल देखी नहीं जा सकती, कृपया फिर से लिखें.",
+    "exploreWithoutSignIn": "बिना साइन इन करे सब्सक्राइब करे",
+    "continueExploring": "खोज-खोज जारी रहे",
+    "exploreWithoutSignInA11y": "बिना साइन इन करे Dehub पर क्लिक करे",
+    "continueExploringA11y": "चल रहे डिस्पोजेबल",
+    "importWalletRecommended": "सामाजिक सरोकारन के सुझाव दिहल गइल बा ।",
+    "importWalletPurpose": "DeHub.io से मौजूदा खाते आयात करें ।"
   },
   "messages": {
     "smartRepliesOff": "सुझावल जवाब बंद हो गइल",
@@ -1769,7 +1809,28 @@
     "reportedAutomatically": "एकर अपने आप रिपोर्ट हो गइल बा।",
     "loadFailed": "चैनल लोड ना हो पावल",
     "noSearchResults": "रउरा खोज से मेल खाए वाला कवनो चैनल नइखे",
-    "noChannels": "कवनो चैनल उपलब्ध नइखे"
+    "noChannels": "कवनो चैनल उपलब्ध नइखे",
+    "pairCodeExpired": "\"मीटिंग जल्दी खत्म हो गईल बा । सर दुसरी अपील कहां करे",
+    "signedInOnTv": "तुझे देखने टी. वी. पे आवें,",
+    "pairRefused": "अस्वीकार कइल गइल",
+    "pairIntro": "4. अपने टेलीविजन पर DeHub खोलें और यहां दिख रहे कोड टाइप करें ।",
+    "pairNotFound": "भुला ना पावल होई उ घटना, जे ओहिजा गइल भा टीवी प देखले होई । पुराने के साथ भ्रमित न करें, वास्तव में, अलग-अलग चीजें लें",
+    "wantsToSignIn": "lyrics meaning: शायद आप देखने कि संभावना",
+    "pairWarning": "याद रखीं, इ एगो झलक भर हवे । उ पचे उ वाचा क तोड़ देइहीं जउन उ पचे किहेन ह । आप एकरा के देख सकत बानी, देख सकत बानी, देख सकत बानी, देख सकत बानी, देख सकत बानी, देख सकत बानी, देख सकत बानी अउर देख सकत बानी कि आप इहाँ योगदान कइसे कर सकत बानी ।",
+    "pairApprove": "TV पर समाचार चल रहल बा ।",
+    "pairDeny": "ना ना ना ना ना, एसे पूछीं ।",
+    "pairDoneTitle": "तुझे देखने टी. वी. पे आवें,",
+    "pairDoneBody": "हाँ, चाहे, कॉर्पोरेट खाता के साथे. → प्राइवेसी सेलेक्शन से कभी भी साइन आउट → करें.",
+    "closePlayer": "खेलें सब संग, होली है",
+    "declineFailed": "होइ सकत ह जदि तू पाछे अइसा सोचा, \"मइँ उ प्रतिग्या नाहीं करत ।",
+    "tipSentTvNotTold": "ऊ ना त अखबार पढ़ेली, ना टीवी देखेली । समय होखेला ।",
+    "nothingWaiting": "काेई इंतज़ार नहीं कर रहा है",
+    "nothingWaitingBody": "जब आप अपने टेलीविज़न पर DeHub से टिप करते हैं, तो यह आपके अप्रूव करने के लिए यहाँ दिखाई देता है। आपका टीवी कभी भी आपका वॉलेट नहीं रखता है।",
+    "yourTelevision": "आपका टेलीविज़न",
+    "wantsToTip": "एक टिप भेजना चाहता है · {{time}} ने छोड़ा",
+    "tipTo": "{{name}} को",
+    "tipForPost": "“{{title}}” के लिए",
+    "reviewAndApprove": "समीक्षा करें और अप्रूव करें"
   },
   "top100": {
     "title": "शीर्ष 100",
@@ -2041,7 +2102,8 @@
     "submitApplication": "आवेदन दर्ज करीं",
     "nameEmailRequired": "नाम आ ईमेल जरूरी बा",
     "applicationSuccess": "आवेदन सफलतापूर्वक दर्ज भइल! हमनी रउआ से संपर्क करब।",
-    "applicationFailed": "दर्ज करे में विफल। कृपया फिर से कोशिश करीं।"
+    "applicationFailed": "दर्ज करे में विफल। कृपया फिर से कोशिश करीं।",
+    "namePlaceholder": "जेन स्मिथ"
   },
   "dao": {
     "title": "डीएओ ट्रेजरी",
@@ -2201,7 +2263,8 @@
     "pinnedToast": "ई पोस्ट के सबसे ऊपर पिन कइल गइल",
     "unpinnedToast": "पिन हटा दिहल गइल",
     "pinFailed": "ऊ टिप्पणी पिन ना हो सकल",
-    "kidsOnlyThread": "इ लेख एगो हिस्सा ह बच्चा खातिर । केवल समस्या के खोज करे वाला व्यक्ति एह बारे में कुछ ना कुछ लिख सकेला."
+    "kidsOnlyThread": "इ लेख एगो हिस्सा ह बच्चा खातिर । केवल समस्या के खोज करे वाला व्यक्ति एह बारे में कुछ ना कुछ लिख सकेला.",
+    "editFailed": "टिप्पणी संपादित करने में विफल"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",
@@ -3242,14 +3305,40 @@
     "comingSoon": "जल्द आ रहा है",
     "signIn": "साइन इन",
     "tapToGetStarted": "शुरू करने के लिए टैप करें",
-    "soon": "जल्द"
+    "soon": "जल्द",
+    "glossarySubtitle": "हर आइकन और सुविधा का मतलब जानें",
+    "searchGlossary": "शब्दावली खोजें...",
+    "noResultsFor": "\"{{query}}\" के लिए कोई परिणाम नहीं",
+    "guideSubtitle": "हर सुविधा का चरण-दर-चरण वॉकथ्रू",
+    "searchGuide": "गाइड खोजें...",
+    "repostsTab": "रीपोस्ट",
+    "quotesTab": "कोट्स",
+    "noMoreReposts": "और रीपोस्ट नहीं",
+    "noMoreQuotes": "और कोट्स नहीं",
+    "noRepostsYet": "अभी तक कोई रीपोस्ट नहीं",
+    "noQuotesYet": "अभी तक कोई कोट्स नहीं"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "खेल जे एहीं ऐप में चलेला। इंस्टॉल करे के कुछ नइखे, खरीदे के कुछ नइखे — ओपन सोर्स, आ DeHub खुदे देला।"
+    "intro": "खेल जे एहीं ऐप में चलेला। इंस्टॉल करे के कुछ नइखे, खरीदे के कुछ नइखे — ओपन सोर्स, आ DeHub खुदे देला।",
+    "noGameCalled": "आर्केड में <slug>{{slug}}</slug> नाम का कोई गेम नहीं है।",
+    "seeWhatIsHere": "देखें यहाँ क्या है",
+    "locationNotGranted": "स्थान अनुमति नहीं दी गई थी।",
+    "signInToPlaceOnGlobe": "खुद को ग्लोब पर रखने के लिए साइन इन करें।",
+    "couldNotPlaceOnGlobe": "आपको ग्लोब पर नहीं रखा जा सका।",
+    "onTheGlobe": "आप ग्लोब पर हैं — लगभग 25 किमी के क्षेत्र में दिखाए गए हैं।",
+    "couldNotReach": "आर्केड तक नहीं पहुँच सका",
+    "didNotLoad": "{{title}} लोड नहीं हुआ",
+    "needsConnection": "गेम dehub.io से सर्व किया जाता है और जब आप इसे खोलते हैं तो डाउनलोड होता है, इसलिए पहली बार में इसे एक वर्किंग कनेक्शन की आवश्यकता होती है। अपना कनेक्शन जांचें और फिर से प्रयास करें।",
+    "backToArcade": "आर्केड में वापस",
+    "openPrivacySettings": "गोपनीयता सेटिंग्स खोलें",
+    "privacyWarning": "यदि आपके पास बड़ी मात्रा में टोकन हैं या आप असुरक्षित क्षेत्र में रहते हैं, तो इस सुविधा का उपयोग करने से पहले अपना बैज और शेष राशि छिपाएँ। ऑन-चेन लेनदेन अभी भी आपका पता प्रकट करते हैं। सेटिंग्स खोलें।",
+    "leaveGame": "खेल छोड़ें",
+    "loadingGame": "लोड हो रहा है {{title}}",
+    "hideThis": "इसे छिपाएँ"
   },
   "videoLooks": {
     "button": "कैमरा लुक",
@@ -3375,7 +3464,22 @@
     "someone": "केहू",
     "oneTyping": "{{name}} लिख रहल बा…",
     "fewTyping": "{{names}} लिख रहल बाड़न…",
-    "manyTyping": "{{count}} लोग लिख रहल बाड़न…"
+    "manyTyping": "{{count}} लोग लिख रहल बाड़न…",
+    "modBadge": "एमओडी",
+    "thisUser": "यह उपयोगकर्ता",
+    "unbanConfirm": "क्या आप निश्चित हैं कि आप {{name}} को अनबैन करना चाहते हैं?",
+    "unban": "अनबैन करें",
+    "unbanFailed": "उपयोगकर्ता को अनबैन करने में विफल",
+    "onlineLabel": "ऑनलाइन",
+    "usersCount_one": "{{count}} उपयोगकर्ता",
+    "usersCount_other": "{{count}} उपयोगकर्ता",
+    "totalMessages": "कुल संदेश",
+    "slowMode": "धीमा मोड",
+    "cooldownSeconds": "{{seconds}}s कूलडाउन",
+    "minStakeRequired": "न्यूनतम हिस्सेदारी आवश्यक",
+    "noParticipants": "अभी तक कोई प्रतिभागी नहीं",
+    "noModerators": "कोई मॉडरेटर नहीं",
+    "noBannedUsers": "कोई प्रतिबंधित उपयोगकर्ता नहीं"
   },
   "promptFeed": {
     "headline": "रउआ का देखल चाहत बानी?",
@@ -4127,7 +4231,26 @@
     "madeForKidsBlockedByMature": "परिपक्व के रूप में चिह्नित पोस्ट को बच्चों के लिए भी प्रकाशित नहीं किया जा सकता।",
     "encoderTitle": "OBS / एनकोडर",
     "encoderHint": "RTMP विवरण पाव",
-    "markMadeForKids": "बच्चों के लिए बनाया गया के रूप में चिह्नित करें"
+    "markMadeForKids": "बच्चों के लिए बनाया गया के रूप में चिह्नित करें",
+    "queueWaiting": "प्रतीक्षा कर रहा है…",
+    "queueUploading": "अपलोड हो रहा है",
+    "queueProcessing": "प्रसंस्करण…",
+    "queueMinting": "मिंटिंग…",
+    "queuePosted": "पोस्ट किया गया",
+    "queueFailed": "विफल",
+    "noRetriesLeft": "(कोई पुनः प्रयास शेष नहीं)",
+    "noUploads": "कोई अपलोड नहीं",
+    "uploadsAppearHere": "आपके अपलोड यहाँ दिखाई देंगे",
+    "imagesTotalLimit": "एक पोस्ट में कुल 100 एमबी या उससे कम फोटो जरूर डालें",
+    "chooseDatabase": "विकेन्द्रीकृत फ़ाइलें चुनें",
+    "livestreamMode": "लाइव स्ट्रीमिंग मोड समायोजित करें",
+    "addThumbnail": "टेम्पलेट जोड़ल गइल",
+    "showCover": "दिखावे के आवरण",
+    "max60s": "बिल्कुल नया camisa 10",
+    "confirmLivestream": "लाइवस्ट्रीम समायोजित करें",
+    "liveFeaturesTitle": "लाइव विवरण समायोजित करें",
+    "discardPostTitle": "पोस्ट कर रहे हो?",
+    "discardPostBody": "तोहार लेख खो गइल बा । क्या आप ऐसे डाक्टर से उम्मीद करेन्गे कि यह सेवा भावना से काम करेन्गे?"
   },
   "bounty": {
     "claimed": "मिल गइल",
@@ -4444,7 +4567,23 @@
     "allowNewDmsOff": "नया संदेश के अनुमति देवे खातिर DM चालू करीं।",
     "perMessageFee": "हर संदेश के फीस (DHB)",
     "perMessageFeeSub": "हर संदेश पर शुल्क लीं। मुफ्त DM खातिर 0 राखीं। कुछ खास लोगन के मुफ्त पहुँच दे सकीलें।",
-    "allDisabled": "अबहीं सब DM बंद बा। नया DM डिफॉल्ट से रोकल बा।"
+    "allDisabled": "अबहीं सब DM बंद बा। नया DM डिफॉल्ट से रोकल बा।",
+    "failedToEdit": "संपादन करे में असफल भइल",
+    "messageDeleted": "संदेश हटावल गइल",
+    "cantForwardFromDevice": "मशीन के साथ, निश्चित रूप से, कुछ भी नहीं आएगा ।",
+    "messageForwarded": "भेजे जा रहे सन्देश",
+    "clearMessages": "साफ़ करें सन्देश बाटे",
+    "clearMessagesConfirm": "क्या आप ऐसे डाक्टर से उम्मीद करेन्गे कि यह सेवा भावना से काम करेन्गे? ई न हो सकेला ।",
+    "messagesCleared": "सन्देश साफ कइल गइल",
+    "failedToClearMessages": "नहीं मिल रहे कई सन्देश",
+    "failedToUpdateFreeAccess": "अज्ञात प्रारूप में फ़ाइल देखी नहीं जा सकती",
+    "searchComingSoon": "बहुत जल्द आ रहल बा आप लोग के बीच ।",
+    "tapToUnblock": "Unblock पे क्लिक करे",
+    "userFallback": "उपयोगकर्ता के अनुकूल",
+    "failedToBlock": "ब्लॉक करे में असफल रहे",
+    "failedToDeleteConversation": "बातचीत हटावल ना गइल",
+    "newDm": "बिल्कुल नया na वेब कैमरा",
+    "noConversationsFound": "ना मिल रहे आवाज़ें"
   },
   "editPost": {
     "mediaPermission": "मीडिया लाइब्रेरी के अनुमति चाहीं",
@@ -4466,7 +4605,17 @@
     "retry": "कृपया उ के सक्षम करीं आ फिर से",
     "retrying": "फर्केर आऊ र सोध ।",
     "retryQueued": "फिर से प्रोसेसिंग करे",
-    "retryFailed": "बैठक सूचना भेजने में असमर्थ, बैठक मौजूद नहीं"
+    "retryFailed": "बैठक सूचना भेजने में असमर्थ, बैठक मौजूद नहीं",
+    "closeVideo": "वीडियो समायोजित करें",
+    "rotateOrientation": "घुमावदार दिशा बदलें",
+    "videoProgress": "वीडियो प्रगति: {{percent}}%",
+    "tapToSeek": "किसी खास जगह पर जाने के लिए टैप करें",
+    "photoAccessToSaveImages": "तस्वीरें सेव करने के लिए फोटो लाइब्रेरी एक्सेस की अनुमति दें",
+    "failedToSaveImage": "तस्वीर सेव नहीं हो सकी",
+    "downloadImage": "तस्वीर डाउनलोड करें",
+    "goToImage": "तस्वीर {{index}} पर जाएं",
+    "allCaughtUp": "आप सब देख चुके हैं",
+    "checkBackForShorts": "और शॉर्ट्स के लिए बाद में फिर से देखें"
   },
   "liveViewer": {
     "loadingStream": "स्ट्रीम लोड हो रहल बा...",
@@ -4476,7 +4625,22 @@
   },
   "search": {
     "endOfResults": "नतीजा के अंत",
-    "searchDehub": "DeHub में खोजीं"
+    "searchDehub": "DeHub में खोजीं",
+    "tabVoice": "आवाज़",
+    "trendingThisWeek": "इस हफ़्ते का ट्रेंडिंग",
+    "trendingPosts": "ट्रेंडिंग पोस्ट",
+    "trendingImages": "ट्रेंडिंग तस्वीरें",
+    "trendingVideos": "ट्रेंडिंग वीडियो",
+    "trendingVoicePosts": "ट्रेंडिंग आवाज़ पोस्ट",
+    "trendingLive": "ट्रेंडिंग लाइव",
+    "seeAll": "सब देखें",
+    "noAccountsFound": "कोई अकाउंट नहीं मिला",
+    "tryDifferentKeywords": "दूसरे कीवर्ड आज़माएँ या अपनी स्पेलिंग जाँचें",
+    "noContentResults": "कोई कंटेंट नहीं मिला",
+    "recentSearches": "हाल की खोजें",
+    "noTrendingThisWeek": "इस हफ़्ते कोई ट्रेंडिंग कंटेंट नहीं",
+    "closeFilterOptions": "फ़िल्टर विकल्प बंद करें",
+    "openFilterOptions": "फ़िल्टर विकल्प खोलें"
   },
   "notifPrompt": {
     "stayInLoop": "अपडेट रहीं",
@@ -4723,7 +4887,25 @@
     "externalTitle": "बाहरी टाइलें",
     "externalLiveHint": "हालांकि एकर मतलब इ नईखे कि गूगल आपके फोन खोज के आपके जेब में ध दिही । 'इन-ऑफ' के शूटिंग पूरा हो गइल बा.",
     "externalHint": "नीचे दिहल गइल विवरण के उपयोग करके अपने स्ट्रीमिंग सॉफ़्टवेयर से जुड़ें, फिर प्रसारण शुरू करें ।",
-    "useInAppCamera": "के बदले में इन-एप कैमरा उपयोग करें"
+    "useInAppCamera": "के बदले में इन-एप कैमरा उपयोग करें",
+    "livestreamEnded": "लाइवस्ट्रीम समाप्त हो गया",
+    "chatEnabled": "चैट सक्षम",
+    "chatDisabled": "चैट अक्षम",
+    "failedToUpdateSettings": "सेटिंग्स अपडेट नहीं हो सकीं",
+    "networkLostReconnecting": "नेटवर्क चला गया — स्ट्रीम रुक गया। फिर से कनेक्ट हो रहा है…",
+    "openingViewer": "व्यूअर खोल रहा है...",
+    "cameraPermissionRequired": "कैमरा अनुमति आवश्यक है",
+    "grantPermission": "अनुमति देने वाला प्राधिकार",
+    "waitingForLivepeer": "ज़िन्दगी रहे ना रहे इंतज़ार रहे,",
+    "waitingForExternalSource": "बाहरी सूत्र देखने के लिए, मंजिलें देखें-",
+    "settingUpPublisher": "एगो पत्रकार भाई सर...",
+    "scheduledStream": "नियोजित धारा, नियोजित धारा",
+    "pressGoLiveWhenReady": "Get Started पे क्लिक करे, जब तक आप अभी तक तैयार ना हो तब तक",
+    "connectionInterrupted": "कनेक्शन बाधित भइल",
+    "streamPausedReconnecting": "आपके फोन रिचार्ज हो गइल बा... अब रिचार्ज हो गइल बा.",
+    "streamWillEnd": "अनुमति नहीं, फिर भी सिखा रहे ड्राइविंग",
+    "endStreamConfirmTitle": "सन्नाटे कि तालाबंदी?",
+    "endStreamConfirmBody": "अब आपन लाइव स्ट्रीमिंग सब्सक्राइबर सब्सक्राइब करीं । आप एकरा के बंद क सकत बानी या फिर एकरा के स्थायी रूप से बंद क सकत बानी ।"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

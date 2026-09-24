@@ -119,7 +119,12 @@
     "music": "Muzikë",
     "live": "Live",
     "newPosts_one": "{{count}} postim i ri",
-    "newPosts_other": "{{count}} postime të reja"
+    "newPosts_other": "{{count}} postime të reja",
+    "privateContent": "Përmbajtje Private",
+    "privateContentBody": "Ky përmbajtje është nga një llogari private. Ndiqni krijuesin për të parë postimet e tij.",
+    "noMoreContent": "Nuk ka më përmbajtje",
+    "noPostsYet": "Asnjë postim akoma.",
+    "pullToRefresh": "Tërhiqni për të rifreskuar ose provoni përsëri më vonë."
   },
   "explore": {
     "all": "Të gjitha",
@@ -710,7 +715,19 @@
       "replies": "Vetëm përgjigje ndaj komenteve të mia",
       "account": "Vetëm njoftime rreth llogarisë sime"
     },
-    "smsTopUp": "Plotëso {{dhb}} DHB"
+    "smsTopUp": "Plotëso {{dhb}} DHB",
+    "avatarUpdateFailed": "Përditësimi i avatarit dështoi",
+    "coverUpdateFailed": "Përditësimi i kopertinës dështoi",
+    "fixInvalidSocialLinks": "Ju lutemi rregulloni lidhjet sociale të pavlefshme",
+    "updateFailed": "Përditësimi dështoi",
+    "channelUrlOrHandle": "URL ose emri i kanalit",
+    "inviteLinkPlaceholder": "Lidhje ftese",
+    "profileUrlOrUsername": "URL ose emri i përdoruesit të profilit",
+    "yourDisplayName": "Emri juaj i shfaqur",
+    "usernameAvailable": "Emri i përdoruesit është i disponueshëm",
+    "hideBadgeAndBalance": "Fshihni shenjën dhe bilancin",
+    "hideBadgeAndBalanceDesc": "Fsheh detajet financiare dhe çaktivizon dërgimet dhe këshillat drejtuar jush.",
+    "onChainPublicWarning": "Transaksionet në zinxhir janë publike. Dërgimi i tokeneve ose këshillave mund të zbulojë adresën tuaj të portofolit, duke përfshirë transaksionet e bëra para se të aktivizohej modaliteti i bilancit privat."
   },
   "common": {
     "mute": "Hiq zërin",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Nuk ka lidhje interneti",
     "noInternetBody": "Ju lutemi kontrolloni lidhjen tuaj me internetin dhe provoni përsëri. Ju duhet të jeni të lidhur me internetin për të përdorur DeHub.",
     "noInternetStatus": "Offline - Nuk ka lidhje rrjeti",
-    "noInternetHint": "Sigurohuni që Wi-Fi ose të dhënat mobile të jenë të aktivizuara, pastaj shtypni \"{{action}}\""
+    "noInternetHint": "Sigurohuni që Wi-Fi ose të dhënat mobile të jenë të aktivizuara, pastaj shtypni \"{{action}}\"",
+    "saving": "Duke ruajtur…",
+    "offlineStatus": "Offline - Nuk ka lidhje rrjeti"
   },
   "tip": {
     "title": "Dërgo Bakshish",
@@ -1094,7 +1113,17 @@
     "post": "Posto",
     "officialLogo": "Ja logoja zyrtare e DeHub! 🎨",
     "editedImage": "Ja imazhi juaj i redaktuar!",
-    "generatedImage": "Ja imazhi juaj i gjeneruar!"
+    "generatedImage": "Ja imazhi juaj i gjeneruar!",
+    "toolCompleted": "{{name}} u përfundua",
+    "aiTool": "Mjet AI",
+    "cannotAnimateImage": "{{model}} nuk mund të animojë një imazh të bashkangjitur. Zgjidhni një model tjetër video.",
+    "needsImageToAnimate": "{{model}} ka nevojë për një imazh për të animuar. Bashkangjitni një ose zgjidhni një model tjetër.",
+    "couldNotReadImage": "Nuk mund ta lexoj atë imazh",
+    "logoLoadFailed": "Nuk mund të ngarkojë logon DeHub — duke e gjeneruar pa të",
+    "imageAttachedDescribe": "Imazhi i bashkangjitur — përshkruani modifikimet tuaja",
+    "couldNotPreparePost": "Nuk mund ta përgatisë atë për publikim",
+    "generateImage": "Gjenero imazhin",
+    "generateVideo": "Gjenero videon"
   },
   "commandCentre": {
     "title": "Qendra e Komandës",
@@ -1606,7 +1635,10 @@
     "edit": "Redakto",
     "deleteRequestTitle": "Të fshihet kjo kërkesë?",
     "deleteRequestDescription": "Kjo nuk mund të zhbëhet.",
-    "attachmentTooLarge": "Çdo skedar duhet të jetë nën 20 MB"
+    "attachmentTooLarge": "Çdo skedar duhet të jetë nën 20 MB",
+    "deleteCommentA11y": "Fshi komentin",
+    "sendCommentA11y": "Dergo",
+    "requestOptions": "Alternativat e kërkesës"
   },
   "auth": {
     "loginRequired": "Kërkohet hyrja",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Nuk mund të dërgohej kodi. Ju lutemi provoni përsëri.",
     "invalidCodeRetry": "Kodi i pavlefshëm. Ju lutemi provoni përsëri.",
     "invalidEmailOrPassword": "Email ose fjalëkalim i pavlefshëm.",
-    "welcomeToDehub": "Mirë se erdhët në DeHub"
+    "welcomeToDehub": "Mirë se erdhët në DeHub",
+    "importWalletOptional": "Importo portofolin (opsional)",
+    "couldNotSendCodeRetry": "Kodi nuk u dërgua dot. Provo përsëri.",
+    "exploreWithoutSignIn": "Eksploro pa u identifikuar",
+    "continueExploring": "Vazhdo të eksplorosh",
+    "exploreWithoutSignInA11y": "Eksploro DeHub pa hyrë",
+    "continueExploringA11y": "Vazhdo të eksplorosh DeHub",
+    "importWalletRecommended": "Rekomandohen hyrje sociale.",
+    "importWalletPurpose": "Ky mjet është për importimin e llogarive ekzistuese nga DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Përgjigjet e sugjeruara u çaktivizuan",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Është raportuar automatikisht.",
     "loadFailed": "Kanalet nuk u ngarkuan dot",
     "noSearchResults": "Asnjë kanal nuk përputhet me kërkimin tënd",
-    "noChannels": "Nuk ka kanale të disponueshme"
+    "noChannels": "Nuk ka kanale të disponueshme",
+    "pairCodeExpired": "Ky kod ka skaduar. Kërkoji televizorit një të ri.",
+    "signedInOnTv": "Regjistrohu në televizorin tënd",
+    "pairRefused": "Refuzuar",
+    "pairIntro": "Hap DeHub në televizorin tënd dhe shkruaj kodin që tregon këtu.",
+    "pairNotFound": "Nuk ka televizion që pret në atë kod. Mund të ketë skaduar. Kërkojini televizorit një të ri.",
+    "wantsToSignIn": "dëshiron të regjistrohet si ti",
+    "pairWarning": "Miratoje këtë vetëm nëse është një televizor që po shikon tani. Miratimi i shenjave për këdo që e mban atë kod në llogarinë tënde. Do të jetë në gjendje të shikojë, të pëlqejë dhe të ndjekë — nuk mund të shpenzojë dhe ju mund ta nënshkruani atë në çdo kohë nga seancat aktive.",
+    "pairApprove": "Po, regjistrohu në këtë televizor",
+    "pairDeny": "Jo, nuk e kërkova këtë",
+    "pairDoneTitle": "Televizori yt është i kyçur",
+    "pairDoneBody": "Duhet të jetë duke e shfaqur tashmë llogarinë tënde. Dil në çdo kohë nga seancat → aktive të → Privatësisë së Cilësimeve.",
+    "closePlayer": "Mbyll lojtarin",
+    "declineFailed": "Nuk mund ta refuzonte atë — mund të ketë skaduar tashmë.",
+    "tipSentTvNotTold": "Këshillë u dërgua, por televizori nuk mund të tregohej. Do të mbarojë.",
+    "sentAmount": "Dërguar {{amount}} DHB",
+    "nothingWaiting": "Asgjë nuk është në pritje",
+    "nothingWaitingBody": "Kur jepni një majë nga DeHub në televizorin tuaj, ajo shfaqet këtu për t'u miratuar. TV-ja juaj nuk e mban kurrë kuletën tuaj.",
+    "yourTelevision": "Televizori juaj",
+    "wantsToTip": "dëshiron të dërgojë një majë · {{time}} la",
+    "tipTo": "te {{name}}",
+    "tipForPost": "për “{{title}}”",
+    "reviewAndApprove": "Rishiko dhe mirato"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Dërgo Aplikimin",
     "nameEmailRequired": "Emri dhe emaili janë të nevojshëm",
     "applicationSuccess": "Aplikimi u dërgua me sukses! Do t'ju kontaktojmë.",
-    "applicationFailed": "Dështoi dërgimi. Ju lutem provoni përsëri."
+    "applicationFailed": "Dështoi dërgimi. Ju lutem provoni përsëri.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Thesari i DAO",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "U fiksua në krye të këtij postimi",
     "unpinnedToast": "Fiksimi u hoq",
     "pinFailed": "Ky koment nuk u fiksua dot",
-    "kidsOnlyThread": "Ky postim është për fëmijë. Vetëm modaliteti Kids mund ta komentojë atë."
+    "kidsOnlyThread": "Ky postim është për fëmijë. Vetëm modaliteti Kids mund ta komentojë atë.",
+    "editFailed": "Dështoi redaktimi i komentit"
   },
   "postInfo": {
     "title": "Informacione për postimin",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Së shpejti",
     "signIn": "Hyr",
     "tapToGetStarted": "Prekni për të filluar",
-    "soon": "Së shpejti"
+    "soon": "Së shpejti",
+    "glossarySubtitle": "Mësoni çfarë do të thotë çdo ikonë dhe veçori",
+    "searchGlossary": "Kërko fjalorin...",
+    "noResultsFor": "Asnjë rezultat për \"{{query}}\"",
+    "guideSubtitle": "Udhëzues hap pas hapi për çdo veçori",
+    "searchGuide": "Kërko udhëzuesin...",
+    "repostsTab": "Ripostimet",
+    "quotesTab": "Citatet",
+    "noMoreReposts": "Jo më ripërshtatje",
+    "noMoreQuotes": "Jo më citate",
+    "noRepostsYet": "Asnjë ripërshtatje akoma",
+    "noQuotesYet": "Asnjë citat akoma"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Lojëra që ekzekutohen pikërisht këtu në aplikacion. Asgjë për të instaluar, asgjë për të blerë — me burim të hapur dhe të shërbyera nga vetë DeHub."
+    "intro": "Lojëra që ekzekutohen pikërisht këtu në aplikacion. Asgjë për të instaluar, asgjë për të blerë — me burim të hapur dhe të shërbyera nga vetë DeHub.",
+    "noGameCalled": "Nuk ka lojë të quajtur <slug>{{slug}}</slug> në lojëra elektronike.",
+    "seeWhatIsHere": "Shihni se çfarë është këtu",
+    "locationNotGranted": "Leja e vendndodhjes nuk u dha.",
+    "signInToPlaceOnGlobe": "Hyni për t'u vendosur në globin.",
+    "couldNotPlaceOnGlobe": "Nuk mund të vendoseshit në globin.",
+    "onTheGlobe": "Ju jeni në globin — treguar brenda një zone rrethore prej 25 km.",
+    "couldNotReach": "NUK MUND TË ARRIHET LOJËRATRONIKA",
+    "didNotLoad": "{{title}} nuk u ngarkua",
+    "needsConnection": "Loja shërbehet nga dehub.io dhe shkarkohet kur e hapni, kështu që i nevojitet një lidhje funksionale herën e parë. Kontrollojeni tuajën dhe provoni përsëri.",
+    "backToArcade": "Kthehu në lojë",
+    "openPrivacySettings": "Hap cilësimet e privatësisë",
+    "privacyWarning": "Nëse posedoni një sasi të madhe të shenjave ose jetoni në një zonë jo të sigurt, fshihni shenjën dhe bilancin tuaj para se të përdorni këtë funksion. Transaksionet në zinxhir ende zbulojnë adresën tuaj. Hapni cilësimet.",
+    "leaveGame": "Largoje lojën",
+    "loadingGame": "Duke ngarkuar {{title}}",
+    "hideThis": "Fshije këtë"
   },
   "videoLooks": {
     "button": "Pamjet e kamerës",
@@ -3376,7 +3466,22 @@
     "someone": "Dikush",
     "oneTyping": "{{name}} po shkruan…",
     "fewTyping": "{{names}} po shkruajnë…",
-    "manyTyping": "{{count}} persona po shkruajnë…"
+    "manyTyping": "{{count}} persona po shkruajnë…",
+    "modBadge": "MOD",
+    "thisUser": "ky përdorues",
+    "unbanConfirm": "Jeni të sigurt se dëshironi të zhbllokoni {{name}}?",
+    "unban": "Zhblloko",
+    "unbanFailed": "Dështoi zhbllokimi i përdoruesit",
+    "onlineLabel": "Online",
+    "usersCount_one": "përdorues {{count}}",
+    "usersCount_other": "përdorues {{count}}",
+    "totalMessages": "Mesazhe Totale",
+    "slowMode": "Modaliteti i ngadaltë",
+    "cooldownSeconds": "frymëzimi {{seconds}}s",
+    "minStakeRequired": "Kërkohet Min Stake",
+    "noParticipants": "Nuk ka ende pjesëmarrës",
+    "noModerators": "Asnjë moderator",
+    "noBannedUsers": "Asnjë përdorues i bllokuar"
   },
   "promptFeed": {
     "headline": "Çfarë do të shohësh?",
@@ -4128,7 +4233,26 @@
     "madeForKidsBlockedByMature": "Një postim i shënuar si i pjekur nuk mund të publikohet edhe për fëmijët.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Merrni detajet RTMP",
-    "markMadeForKids": "Shëno si të bërë për fëmijë"
+    "markMadeForKids": "Shëno si të bërë për fëmijë",
+    "queueWaiting": "Duke pritur…",
+    "queueUploading": "Duke ngarkuar",
+    "queueProcessing": "Duke përpunuar…",
+    "queueMinting": "Duke krijuar…",
+    "queuePosted": "Postuar",
+    "queueFailed": "Dështoi",
+    "noRetriesLeft": "(nuk ka më përpjekje)",
+    "noUploads": "Asnjë ngarkim",
+    "uploadsAppearHere": "Ngarkimet tuaja do të shfaqen këtu",
+    "imagesTotalLimit": "Imazhet në një ngarkim duhet të arrijnë 100 MB ose më pak",
+    "chooseDatabase": "Zgjidh bazën e të dhënave të decentralizuara",
+    "livestreamMode": "Modaliteti i transmetimit të drejtpërdrejtë",
+    "addThumbnail": "Shto miniaturë",
+    "showCover": "Shfaq kopertinën",
+    "max60s": "Maksimumi 60 sekonda",
+    "confirmLivestream": "Konfirmo transmetimin e drejtpërdrejtë",
+    "liveFeaturesTitle": "Karakteristikat e drejtpërdrejta",
+    "discardPostTitle": "Do ta hedhësh poshtë postimin?",
+    "discardPostBody": "Postimi yt do të humbasë. Dëshiron ta ruash më mirë si draft?"
   },
   "bounty": {
     "claimed": "E marrë",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Aktivizo mesazhet për të lejuar mesazhe të reja.",
     "perMessageFee": "Tarifa për mesazh (DHB)",
     "perMessageFeeSub": "Tarifo për çdo mesazh. Vendos 0 për mesazhe falas. Mund t'u japësh qasje falas përdoruesve të caktuar.",
-    "allDisabled": "Të gjitha DM-të janë aktualisht të fikura. Të rejat bllokohen sipas parazgjedhjes."
+    "allDisabled": "Të gjitha DM-të janë aktualisht të fikura. Të rejat bllokohen sipas parazgjedhjes.",
+    "failedToEdit": "Modifikimi dështoi",
+    "messageDeleted": "Mesazhi u fshi.",
+    "cantForwardFromDevice": "Ky mesazh nuk mund të përcillet nga kjo pajisje",
+    "messageForwarded": "Mesazhi u përcoll",
+    "clearMessages": "Pastro mesazhet",
+    "clearMessagesConfirm": "Do t 'i fshish të gjitha mesazhet në këtë bisedë? Kjo nuk mund të zhbëhet.",
+    "messagesCleared": "Mesazhet u pastruan",
+    "failedToClearMessages": "Fshirja e mesazheve dështoi",
+    "removedFreeAccess": "U hoq qasja falas për {{name}}",
+    "grantedFreeAccess": "Qasje falas në {{name}}",
+    "failedToUpdateFreeAccess": "Përditësimi i qasjes falas dështoi",
+    "searchComingSoon": "Kërko së shpejti",
+    "tapToUnblock": "Shtyp për të zhbllokuar",
+    "userFallback": "përdoruesi",
+    "failedToBlock": "Bllokimi dështoi",
+    "failedToDeleteConversation": "Fshirja e bisedës dështoi",
+    "newDm": "Mesazh i ri i drejtpërdrejtë",
+    "noConversationsFound": "Nuk u gjet asnjë bisedë"
   },
   "editPost": {
     "mediaPermission": "Kërkohet leja për bibliotekën e medias",
@@ -4467,7 +4609,17 @@
     "retry": "Provo përsëri",
     "retrying": "Po provon përsëri...",
     "retryQueued": "Po përpunohet përsëri",
-    "retryFailed": "Nuk mund ta riprovoj atë postim"
+    "retryFailed": "Nuk mund ta riprovoj atë postim",
+    "closeVideo": "Mbyll videon",
+    "rotateOrientation": "Orientimi i rrotullimit",
+    "videoProgress": "Përparimi i videos: {{percent}}%",
+    "tapToSeek": "Trokitni për të kërkuar në një pozicion specifik",
+    "photoAccessToSaveImages": "Lejoni aksesin në librarinë e fotove për të ruajtur imazhet",
+    "failedToSaveImage": "Dështoi ruajtja e imazhit",
+    "downloadImage": "Shkarkoni imazhin",
+    "goToImage": "Shkoni te imazhi {{index}}",
+    "allCaughtUp": "Jeni përditësuar plotësisht",
+    "checkBackForShorts": "Kontrolloni më vonë për më shumë klipe"
   },
   "liveViewer": {
     "loadingStream": "Po ngarkohet transmetimi...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Fundi i rezultateve",
-    "searchDehub": "Kërko në DeHub"
+    "searchDehub": "Kërko në DeHub",
+    "tabVoice": "Zëri",
+    "trendingThisWeek": "Të Popullarizuara Këtë Javë",
+    "trendingPosts": "Postimet më të Popullarizuara",
+    "trendingImages": "Imazhet më të Popullarizuara",
+    "trendingVideos": "Video më të Popullarizuara",
+    "trendingVoicePosts": "Postimet e Zërit më të Popullarizuara",
+    "trendingLive": "Live më të Popullarizuara",
+    "seeAll": "Shihni Të Gjitha",
+    "noAccountsFound": "Asnjë llogari nuk u gjet",
+    "tryDifferentKeywords": "Provoni fjalë kyçe të ndryshme ose kontrolloni drejtshkrimin tuaj",
+    "noContentResults": "Asnjë rezultat për përmbajtje",
+    "recentSearches": "Kërkime të Fundit",
+    "noTrendingThisWeek": "Asnjë përmbajtje e popullarizuar këtë javë",
+    "closeFilterOptions": "Mbyllni opsionet e filtrit",
+    "openFilterOptions": "Hapni opsionet e filtrit"
   },
   "notifPrompt": {
     "stayInLoop": "Qëndro i informuar",
@@ -4727,7 +4894,26 @@
     "externalTitle": "Modaliteti i transmetimit të jashtëm",
     "externalLiveHint": "Transmetimi yt është i drejtpërdrejtë përmes softuerit të jashtëm. Kamera brenda aplikacionit është çaktivizuar.",
     "externalHint": "Lidhni softuerin tuaj të transmetimit duke përdorur detajet e mëposhtme, pastaj filloni transmetimin.",
-    "useInAppCamera": "Përdor më mirë kamerën brenda aplikacionit"
+    "useInAppCamera": "Përdor më mirë kamerën brenda aplikacionit",
+    "livestreamEnded": "Transmetimi i drejtpërdrejtë përfundoi",
+    "chatEnabled": "Biseda aktivizuar",
+    "chatDisabled": "Biseda çaktivizuar",
+    "failedToUpdateSettings": "Dështoi përditësimi i cilësimeve",
+    "networkLostReconnecting": "Rrjeti humbur — transmetimi u ndal. Rikontektohet…",
+    "openingViewer": "Po hapet shikuesi...",
+    "cameraPermissionRequired": "Kërkohet leja e kamerës",
+    "grantPermission": "Leja e grantit",
+    "waitingForLivepeer": "Në pritje të Livepeer...",
+    "waitingForExternalSource": "Në pritje të burimit të jashtëm...",
+    "settingUpPublisher": "Konfigurimi i botuesit...",
+    "scheduledStream": "Rrjedha e programuar",
+    "scheduledAt": "{{date}} at {{time}}",
+    "pressGoLiveWhenReady": "Shtyp Go Live kur të jesh gati për të filluar",
+    "connectionInterrupted": "Lidhja u ndërpre",
+    "streamPausedReconnecting": "Rrjedha jote është ndërprerë. Po rilidhet...",
+    "streamWillEnd": "Rrjedha do të përfundojë nëse nuk rilidhet",
+    "endStreamConfirmTitle": "End Stream?",
+    "endStreamConfirmBody": "Mbyllja tani do të përfundojë transmetimin direkt për të gjithë shikuesit. Mund të vazhdosh transmetimin ose ta përfundosh përgjithmonë."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

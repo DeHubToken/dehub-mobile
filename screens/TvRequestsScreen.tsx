@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import ScreenHeader from '../components/ScreenHeader';
 import Icon from '../components/ui/Icon';
 import GlassIndicator, { GLASS_SHADOW } from '../components/ui/GlassIndicator';
@@ -42,6 +43,7 @@ import {
  * and get a confusing failure instead of an obvious "too late".
  */
 export default function TvRequestsScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [requests, setRequests] = useState<TvRequest[]>([]);
   const [loading, setLoading] = useState(true);
@@ -82,11 +84,11 @@ export default function TvRequestsScreen() {
       if (ok) {
         setRequests((prev) => prev.filter((r) => r.requestId !== request.requestId));
       } else {
-        toastError('Could not decline that — it may have already expired.');
+        toastError(t('tv.declineFailed'));
         void load();
       }
     },
-    [load],
+    [load, t],
   );
 
   /**
@@ -101,21 +103,21 @@ export default function TvRequestsScreen() {
     async (request: TvRequest, amount: number, txHash?: string) => {
       setActive(null);
       if (!txHash) {
-        toastError('Tip sent, but the TV could not be told. It will time out.');
+        toastError(t('tv.tipSentTvNotTold'));
         void load();
         return;
       }
       const ok = await resolveTvRequest(request.requestId, { status: 'approved', txHash });
       setRequests((prev) => prev.filter((r) => r.requestId !== request.requestId));
-      if (ok) toastSuccess(`Sent ${formatCompactNumber(amount)} DHB`);
-      else toastError('Tip sent, but the TV could not be told. It will time out.');
+      if (ok) toastSuccess(t('tv.sentAmount', { amount: formatCompactNumber(amount) }));
+      else toastError(t('tv.tipSentTvNotTold'));
     },
-    [load],
+    [load, t],
   );
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title="TV requests" />
+      <ScreenHeader title={t('settings.tvRequests')} />
 
       <FlatList
         data={visible}
@@ -144,10 +146,9 @@ export default function TvRequestsScreen() {
           ) : (
             <View className="flex-1 items-center justify-center py-24 px-8">
               <Icon name="Tv" size={40} color="#383A3D" />
-              <Text className="text-white text-base font-semibold mt-4">Nothing waiting</Text>
+              <Text className="text-white text-base font-semibold mt-4">{t('tv.nothingWaiting')}</Text>
               <Text className="text-theme-neutrals-500 text-sm mt-2 text-center">
-                When you tip from DeHub on your television, it appears here for you to
-                approve. Your TV never holds your wallet.
+                {t('tv.nothingWaitingBody')}
               </Text>
             </View>
           )
@@ -193,6 +194,7 @@ const RequestCard = React.memo<{
   onApprove: () => void;
   onDecline: () => void;
 }>(({ request, busy, onApprove, onDecline }) => {
+  const { t } = useTranslation();
   const left = secondsRemaining(request);
   const amount = Number(request.payload.amount ?? 0);
   const to = (request.payload.recipientName as string) || shorten(String(request.payload.recipient ?? ''));
@@ -206,10 +208,10 @@ const RequestCard = React.memo<{
           </View>
           <View className="flex-1">
             <Text className="text-white text-sm font-semibold">
-              {request.deviceName || 'Your television'}
+              {request.deviceName || t('tv.yourTelevision')}
             </Text>
             <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-              wants to send a tip · {formatCountdown(left)} left
+              {t('tv.wantsToTip', { time: formatCountdown(left) })}
             </Text>
           </View>
         </View>
@@ -218,10 +220,10 @@ const RequestCard = React.memo<{
           <Text className="text-white text-lg font-bold">
             {formatCompactNumber(amount)} DHB
           </Text>
-          <Text className="text-theme-neutrals-300 text-sm mt-0.5">to {to}</Text>
+          <Text className="text-theme-neutrals-300 text-sm mt-0.5">{t('tv.tipTo', { name: to })}</Text>
           {!!request.payload.postTitle && (
             <Text className="text-theme-neutrals-500 text-xs mt-1" numberOfLines={1}>
-              for “{String(request.payload.postTitle)}”
+              {t('tv.tipForPost', { title: String(request.payload.postTitle) })}
             </Text>
           )}
         </View>
@@ -237,7 +239,7 @@ const RequestCard = React.memo<{
           >
             <View className="px-4 py-3 rounded-xl items-center overflow-hidden" style={GLASS_SHADOW}>
               <GlassIndicator borderRadius={12} />
-              <Text className="text-white text-sm font-semibold">Review and approve</Text>
+              <Text className="text-white text-sm font-semibold">{t('tv.reviewAndApprove')}</Text>
             </View>
           </TouchableOpacity>
 
@@ -252,7 +254,7 @@ const RequestCard = React.memo<{
             {busy ? (
               <ActivityIndicator size="small" color="#F4F4F5" />
             ) : (
-              <Text className="text-theme-neutrals-300 text-sm font-semibold">Decline</Text>
+              <Text className="text-theme-neutrals-300 text-sm font-semibold">{t('settings.decline')}</Text>
             )}
           </TouchableOpacity>
         </View>

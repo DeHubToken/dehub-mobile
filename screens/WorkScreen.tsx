@@ -257,7 +257,7 @@ export default function WorkScreen() {
             onPress={() => setSearch("")}
             hitSlop={14}
             accessibilityRole="button"
-            accessibilityLabel="Clear search"
+            accessibilityLabel={t("sidebar.clearSearch")}
           >
             <Icon name="X" size={15} color="#808089" />
           </Pressable>

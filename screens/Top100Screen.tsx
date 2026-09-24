@@ -165,7 +165,7 @@ export default function Top100Screen() {
             onPress={() => setSearch("")}
             hitSlop={8}
             accessibilityRole="button"
-            accessibilityLabel="Clear search"
+            accessibilityLabel={t("sidebar.clearSearch")}
           >
             <Icon name="X" size={15} color="#808089" />
           </Pressable>

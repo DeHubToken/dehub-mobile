@@ -119,7 +119,12 @@
     "music": "Мусиқӣ",
     "live": "Зинда",
     "newPosts_one": "{{count}} паёми нав",
-    "newPosts_other": "{{count}} паёми нав"
+    "newPosts_other": "{{count}} паёми нав",
+    "privateContent": "Мундариҷаи хусусӣ",
+    "privateContentBody": "Ин мундариҷа аз ҳисоби хусусӣ аст. Барои дидани паёмҳои ӯ, эҷодкунандаро пайгирӣ кунед.",
+    "noMoreContent": "Дигар мундариҷа нест",
+    "noPostsYet": "Ҳанӯз паёмҳо нест.",
+    "pullToRefresh": "Барои навсозӣ кашед ё баъдтар кӯшиш кунед."
   },
   "explore": {
     "all": "Ҳама",
@@ -710,7 +715,19 @@
     "smsBalanceMessages": "Тақрибан {{count}} паёмҳои дигар",
     "smsTopUp": "{{dhb}} DHB пур кунед",
     "smsCodeSent": "Рамз фиристода шуд. Ин {{price}} DHB арзиш дошт.",
-    "smsCodeLabel": "Рамзе, ки мо ба {{phone}} паём додем"
+    "smsCodeLabel": "Рамзе, ки мо ба {{phone}} паём додем",
+    "avatarUpdateFailed": "Навсозии аватар ноком шуд",
+    "coverUpdateFailed": "Навсозии сарпӯш ноком шуд",
+    "fixInvalidSocialLinks": "Лутфан истинодҳои иҷтимоии нодурустро ислоҳ кунед",
+    "updateFailed": "Навсозӣ ноком шуд",
+    "channelUrlOrHandle": "URL ё номи канал",
+    "inviteLinkPlaceholder": "Истиноди даъватнома",
+    "profileUrlOrUsername": "URL ё номи корбарӣ",
+    "yourDisplayName": "Номи намоишии шумо",
+    "usernameAvailable": "Номи корбарӣ дастрас аст",
+    "hideBadgeAndBalance": "Нишон ва тавозунро пинҳон кунед",
+    "hideBadgeAndBalanceDesc": "Пинҳон кардани тафсилоти молиявӣ ва ғайрифаъол кардани фиристодан ва маслиҳатҳо ба шумо.",
+    "onChainPublicWarning": "Транзаксияҳои дар блокчейн ба қайд гирифташуда оммавӣ мебошанд. Фиристодани токенҳо ё маслиҳатҳо метавонад суроғаи ҳамёни шуморо ошкор кунад, аз ҷумла транзаксияҳои пеш аз фаъол кардани режими тавозуни хусусӣ анҷом додашуда."
   },
   "common": {
     "mute": "Хомӯш кардани садо",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Ҳеҷ пайвасти интернет вуҷуд надорад",
     "noInternetBody": "Лутфан, пайвасти интернети худро тафтиш кунед ва дубора кӯшиш кунед. Шумо бояд ба интернет пайваст бошед, то DeHub-ро истифода баред.",
     "noInternetStatus": "Офлайн - Пайвасти шабака вуҷуд надорад",
-    "noInternetHint": "Боварӣ ҳосил кунед, ки Wi-Fi ё маълумоти мобилӣ фаъол аст, пас \"{{action}}\" -ро пахш кунед"
+    "noInternetHint": "Боварӣ ҳосил кунед, ки Wi-Fi ё маълумоти мобилӣ фаъол аст, пас \"{{action}}\" -ро пахш кунед",
+    "saving": "Захира карда мешавад…",
+    "offlineStatus": "Офлайн - Пайвасти шабака мавҷуд нест"
   },
   "tip": {
     "title": "Send Tip",
@@ -1094,7 +1113,17 @@
     "post": "Нашр",
     "officialLogo": "Ана логои расмии DeHub! 🎨",
     "editedImage": "Ана тасвири таҳриршудаи шумо!",
-    "generatedImage": "Ана тасвири тавлидшудаи шумо!"
+    "generatedImage": "Ана тасвири тавлидшудаи шумо!",
+    "toolCompleted": "{{name}} анҷом ёфт",
+    "aiTool": "Асбоби AI",
+    "cannotAnimateImage": "{{model}} наметавонад тасвири замимашударо аниматсия кунад. Модели дигари видеоро интихоб кунед.",
+    "needsImageToAnimate": "{{model}} ба тасвир барои аниматсия ниёз дорад. Якеро замима кунед ё модели дигареро интихоб кунед.",
+    "couldNotReadImage": "Хондани он тасвир мумкин набуд",
+    "logoLoadFailed": "Логотипи DeHub бор карда нашуд — бе он тавлид мешавад",
+    "imageAttachedDescribe": "Тасвир замима карда шуд — таҳрирҳои худро тавсиф кунед",
+    "couldNotPreparePost": "Омода кардани он барои нашр мумкин набуд",
+    "generateImage": "Эҷод кардани тасвир",
+    "generateVideo": "Эҷод кардани видео"
   },
   "commandCentre": {
     "title": "Маркази фармон",
@@ -1605,7 +1634,10 @@
     "edit": "Таҳрир кардан",
     "deleteRequestTitle": "Ин дархост нест карда шавад?",
     "deleteRequestDescription": "Инро баргардонидан мумкин нест.",
-    "attachmentTooLarge": "Ҳар як файл бояд аз 20MB камтар бошад"
+    "attachmentTooLarge": "Ҳар як файл бояд аз 20MB камтар бошад",
+    "deleteCommentA11y": "Tanggalin ang komento",
+    "sendCommentA11y": "Фиристодани шарҳ",
+    "requestOptions": "Имконоти дархост"
   },
   "auth": {
     "loginRequired": "Воридшавӣ лозим аст",
@@ -1654,7 +1686,15 @@
     "sendCodeFailedRetry": "Кодро фиристодан мумкин набуд. Лутфан, дубора кӯшиш кунед.",
     "invalidCodeRetry": "Коди нодуруст. Лутфан, дубора кӯшиш кунед.",
     "invalidEmailOrPassword": "Суроғаи почтаи электронӣ ё пароли нодуруст.",
-    "welcomeToDehub": "Хуш омадед ба DeHub"
+    "welcomeToDehub": "Хуш омадед ба DeHub",
+    "importWalletOptional": "Ҳамёни Воридот (Ихтиёрӣ)",
+    "couldNotSendCodeRetry": "Hindi maipadala ang code. Mangyaring subukan.",
+    "exploreWithoutSignIn": "Ҷустуҷӯ бе имзогузорӣ",
+    "continueExploring": "Magpatuloy sa paghahanap",
+    "exploreWithoutSignInA11y": "Ҷустуҷӯи DeHub бе воридшавӣ",
+    "continueExploringA11y": "Таҳқиқоти DeHub-ро идома диҳед",
+    "importWalletRecommended": "Логинҳои иҷтимоӣ тавсия дода мешаванд.",
+    "importWalletPurpose": "Ang tool na ito ay para sa pag-import ng umiiral na mga account mula sa DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Ҷавобҳои пешниҳодшуда хомӯш карда шуданд",
@@ -1769,7 +1809,29 @@
     "reportedAutomatically": "Он ба таври худкор гузориш дода шуд.",
     "loadFailed": "Шабакаҳо бор карда нашуданд",
     "noSearchResults": "Ҳеҷ шабакае ба ҷустуҷӯи шумо мувофиқ нест",
-    "noChannels": "Ҳеҷ шабака дастрас нест"
+    "noChannels": "Ҳеҷ шабака дастрас нест",
+    "pairCodeExpired": "Ang code na ito ay natapos na. Телевизорро барои як нав пурсед.",
+    "signedInOnTv": "Mag-sign in sa iyong TV",
+    "pairRefused": "Рад карда шуд",
+    "pairIntro": "Кушодани DeHub дар телевизори худ ва рамзеро, ки дар ин ҷо нишон медиҳад, чоп кунед.",
+    "pairNotFound": "Walang telepono ay naghintay sa code na ito. Мумкин аст ба охир расида бошад — телевизорро барои як нав пурсед.",
+    "wantsToSignIn": "nais na mag-sign in bilang iyo",
+    "pairWarning": "Танҳо онро тасдиқ кунед, агар он телевизоре бошад, ки шумо ҳоло ба он менигаред. Тасдиқ кардани аломатҳое, ки ин рамзро дар ҳисоби шумо нигоҳ медоранд. Ito ay maaaring makita, gusto at sundin — hindi ito maaaring gastos, at maaari mong mag-sign out ng anumang oras mula sa Active session.",
+    "pairApprove": "Oo, mag-sign sa TV na ito",
+    "pairDeny": "Не, ман инро напурсидам",
+    "pairDoneTitle": "Ang iyong TV ay naka-sign in",
+    "pairDoneBody": "Dapat na ipinapakita nito ang iyong account. I-sign out it anumang oras mula sa Mga Setting → Privacy → Active session.",
+    "closePlayer": "Плеерро пӯшед",
+    "declineFailed": "Наметавонам инро рад кунам — он аллакай ба охир расида буд.",
+    "tipSentTvNotTold": "Маслиҳат фиристода шуд, аммо телевизор гуфта нашуд. Он вақт тамом мешавад.",
+    "sentAmount": "Фиристода шуд {{amount}} DHB",
+    "nothingWaiting": "Ҳеҷ чиз интизор нест",
+    "nothingWaitingBody": "Вақте ки шумо аз DeHub дар телевизиони худ пул мефиристед, он дар ин ҷо барои тасдиқи шумо пайдо мешавад. Телевизиони шумо ҳеҷ гоҳ ҳамёни шуморо нигоҳ намедорад.",
+    "yourTelevision": "Телевизиони шумо",
+    "wantsToTip": "мехоҳад пул фиристад · {{time}} гузоштааст",
+    "tipTo": "ба {{name}}",
+    "tipForPost": "барои \"{{title}}\"",
+    "reviewAndApprove": "Баррасӣ ва тасдиқ кунед"
   },
   "top100": {
     "title": "Беҳтарин 100",
@@ -2041,7 +2103,8 @@
     "submitApplication": "Фиристодани дархост",
     "nameEmailRequired": "Ном ва почта ҳатмӣ аст",
     "applicationSuccess": "Дархост бомуваффақият фиристода шуд! Мо тамос мегирем.",
-    "applicationFailed": "Фиристодан ноком шуд. Дубора кӯшиш кунед."
+    "applicationFailed": "Фиристодан ноком шуд. Дубора кӯшиш кунед.",
+    "namePlaceholder": "Ҷейн Смит"
   },
   "dao": {
     "title": "Хазинаи DAO",
@@ -2200,7 +2263,8 @@
     "pinnedToast": "Ба болои ин паём санҷоқ шуд",
     "unpinnedToast": "Санҷоқ бардошта шуд",
     "pinFailed": "Он шарҳро санҷоқ карда нашуд",
-    "kidsOnlyThread": "Ин мансаби аст, ки барои кудакон. Танҳо Ҳолати Кудакон метавонад дар бораи он шарҳ диҳад."
+    "kidsOnlyThread": "Ин мансаби аст, ки барои кудакон. Танҳо Ҳолати Кудакон метавонад дар бораи он шарҳ диҳад.",
+    "editFailed": "Натавонист шарҳро таҳрир кунад"
   },
   "postInfo": {
     "title": "Маълумоти пост",
@@ -3241,14 +3305,40 @@
     "comingSoon": "Ба зудӣ",
     "signIn": "Ворид шудан",
     "tapToGetStarted": "Барои оғоз пахш кунед",
-    "soon": "Ба зудӣ"
+    "soon": "Ба зудӣ",
+    "glossarySubtitle": "Бифаҳмед, ки ҳар як нишона ва хусусият чӣ маъно дорад",
+    "searchGlossary": "Луғатро ҷустуҷӯ кунед...",
+    "noResultsFor": "Натиҷаҳо барои \"{{query}}\" ёфт нашуданд",
+    "guideSubtitle": "Роҳнамои қадам ба қадам барои ҳар як хусусият",
+    "searchGuide": "Роҳнаморо ҷустуҷӯ кунед...",
+    "repostsTab": "Такрориҳо",
+    "quotesTab": "Иқтибосҳо",
+    "noMoreReposts": "Дигар такрориҳо нест",
+    "noMoreQuotes": "Дигар иқтибосҳо нест",
+    "noRepostsYet": "Ҳанӯз такрориҳо нест",
+    "noQuotesYet": "Ҳанӯз иқтибосҳо нест"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Бозиҳое, ки маҳз дар ҳамин барнома кор мекунанд. Чизе барои насб кардан нест, чизе барои харидан нест — манбаи кушода ва аз ҷониби худи DeHub пешниҳод мешавад."
+    "intro": "Бозиҳое, ки маҳз дар ҳамин барнома кор мекунанд. Чизе барои насб кардан нест, чизе барои харидан нест — манбаи кушода ва аз ҷониби худи DeHub пешниҳод мешавад.",
+    "noGameCalled": "Дар аркада бозии бо номи <slug>{{slug}}</slug> вуҷуд надорад.",
+    "seeWhatIsHere": "Бубинед, ки чӣ дар ин ҷост",
+    "locationNotGranted": "Иҷозати ҷойгиршавӣ дода нашудааст.",
+    "signInToPlaceOnGlobe": "Барои ҷойгир кардани худ дар ҷаҳон ворид шавед.",
+    "couldNotPlaceOnGlobe": "Натавонист шуморо дар ҷаҳон ҷойгир кунад.",
+    "onTheGlobe": "Шумо дар ҷаҳон ҳастед — дар масофати тақрибан 25 км нишон дода шудаед.",
+    "couldNotReach": "НАКӮТАҲИ АРКАДАРО ДАСТРАСӢ КАРДА НАМЕТАВОНАД",
+    "didNotLoad": "{{title}} бор накард",
+    "needsConnection": "Бозӣ аз dehub.io хидмат мерасонад ва ҳангоми кушодани он зеркашӣ мешавад, аз ин рӯ он бори аввал пайвасти корӣ талаб мекунад. Пайвасти худро тафтиш кунед ва дубора кӯшиш кунед.",
+    "backToArcade": "Бозгашт ба аркада",
+    "openPrivacySettings": "Танзимоти махфиятиро кушоед",
+    "privacyWarning": "Агар шумо миқдори зиёди токенҳо дошта бошед ё дар минтақаи ноамн зиндагӣ кунед, пеш аз истифодаи ин хусусият нишона ва тавозуни худро пинҳон кунед. Транзаксияҳои дар занҷир то ҳол суроғаи шуморо ошкор мекунанд. Танзимотро кушоед.",
+    "leaveGame": "Бозӣро тарк кунед",
+    "loadingGame": "Боркунӣ {{title}}",
+    "hideThis": "Инро пинҳон кунед"
   },
   "videoLooks": {
     "button": "Намудҳои камера",
@@ -3374,7 +3464,22 @@
     "someone": "Касе",
     "oneTyping": "{{name}} менависад…",
     "fewTyping": "{{names}} менависанд…",
-    "manyTyping": "{{count}} нафар менависанд…"
+    "manyTyping": "{{count}} нафар менависанд…",
+    "modBadge": "MOD",
+    "thisUser": "ин корбар",
+    "unbanConfirm": "Оё шумо боварӣ доред, ки {{name}}-ро аз манъ хориҷ мекунед?",
+    "unban": "Аз манъ хориҷ кардан",
+    "unbanFailed": "Корбарро аз манъ хориҷ кардан ноком шуд",
+    "onlineLabel": "Онлайн",
+    "usersCount_one": "Корбари {{count}}",
+    "usersCount_other": "Корбарони {{count}}",
+    "totalMessages": "Умумии паёмҳо",
+    "slowMode": "Ҳолати суст",
+    "cooldownSeconds": "Таъхири {{seconds}}",
+    "minStakeRequired": "Камтарин саҳмияи талабшуда",
+    "noParticipants": "Ҳанӯз иштирокчӣ нест",
+    "noModerators": "Модератор нест",
+    "noBannedUsers": "Корбарони мамнӯъшуда нест"
   },
   "promptFeed": {
     "headline": "Шумо чиро дидан мехоҳед?",
@@ -4126,7 +4231,26 @@
     "madeForKidsBlockedByMature": "Постеро, ки ҳамчун бузургсолона нишон дода шудааст, наметавонад барои кудакон нашр шавад.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Тафсилоти RTMP-ро гиред",
-    "markMadeForKids": "Ҳамчун барои кӯдакон сохташуда қайд кунед"
+    "markMadeForKids": "Ҳамчун барои кӯдакон сохташуда қайд кунед",
+    "queueWaiting": "Интизорӣ…",
+    "queueUploading": "Боргузорӣ",
+    "queueProcessing": "Коркард…",
+    "queueMinting": "Минтинг…",
+    "queuePosted": "Нашр шуд",
+    "queueFailed": "Ноком шуд",
+    "noRetriesLeft": "(дигар кӯшишҳо боқӣ намондаанд)",
+    "noUploads": "Боргузорӣ нест",
+    "uploadsAppearHere": "Боргузориҳои шумо дар ин ҷо пайдо мешаванд",
+    "imagesTotalLimit": "Тасвирҳо дар як боргузорӣ бояд дар маҷмӯъ 100 МБ ё камтар бошанд",
+    "chooseDatabase": "Ба пойгоҳи додаҳои ҷудошударо интихоб кунед",
+    "livestreamMode": "Ҳолати мустақим",
+    "addThumbnail": "Миниатюраро илова кунед",
+    "showCover": "Пӯшишро нишон диҳед",
+    "max60s": "Максимум 60с",
+    "confirmLivestream": "Мустақимиро тасдиқ кунед",
+    "liveFeaturesTitle": "Хусусиятҳои мустақим",
+    "discardPostTitle": "Построро партофтанӣ?",
+    "discardPostBody": "Пости шумо гум мешавад. Оё мехоҳед онро ба ҷои он ҳамчун лоиҳа захира кунед?"
   },
   "bounty": {
     "claimed": "Гирифта шуд",
@@ -4443,7 +4567,25 @@
     "allowNewDmsOff": "Барои иҷозати паёмҳои нав DM-ро фаъол кунед.",
     "perMessageFee": "Ҳаққи ҳар паём (DHB)",
     "perMessageFeeSub": "Барои ҳар паём ҳақ гиред. Барои паёмҳои ройгон 0 гузоред. Ба баъзе корбарон дастрасии ройгон дода метавонед.",
-    "allDisabled": "Ҳоло ҳамаи паёмҳо хомӯшанд. Паёмҳои нав пешфарз манъ мешаванд."
+    "allDisabled": "Ҳоло ҳамаи паёмҳо хомӯшанд. Паёмҳои нав пешфарз манъ мешаванд.",
+    "failedToEdit": "Таҳрир кардан муяссар нашуд",
+    "messageDeleted": "Паём нест карда шуд",
+    "cantForwardFromDevice": "Ин паёмро аз ин дастгоҳ фиристодан мумкин нест",
+    "messageForwarded": "Паём фиристода шуд",
+    "clearMessages": "Паёмҳоро тоза кунед",
+    "clearMessagesConfirm": "Ҳамаи паёмҳоро дар ин сӯҳбат нест кунед? Ин корро бекор кардан мумкин нест.",
+    "messagesCleared": "Паёмҳо тоза карда шуданд",
+    "failedToClearMessages": "Тоза кардани паёмҳо муяссар нашуд",
+    "removedFreeAccess": "Дастрасии ройгонро барои {{name}} хориҷ кард",
+    "grantedFreeAccess": "Дастрасии ройгонро ба {{name}} дод",
+    "failedToUpdateFreeAccess": "Навсозии дастрасии ройгон муяссар нашуд",
+    "searchComingSoon": "Ҷустуҷӯ ба зудӣ меояд",
+    "tapToUnblock": "Барои кушодан ламс кунед",
+    "userFallback": "user",
+    "failedToBlock": "Блок кардан муяссар нашуд",
+    "failedToDeleteConversation": "Нест кардани сӯҳбатро муяссар нашуд",
+    "newDm": "Паёми нави мустақим",
+    "noConversationsFound": "Сӯҳбатҳо ёфт нашуд"
   },
   "editPost": {
     "mediaPermission": "Иҷозати китобхонаи медиа лозим аст",
@@ -4465,7 +4607,17 @@
     "retry": "Бори дигар кӯшиш кунед",
     "retrying": "Аз нав кӯшиш кардан...",
     "retryQueued": "Коркарди дубора",
-    "retryFailed": "Hindi muling subukan ang post na ito"
+    "retryFailed": "Hindi muling subukan ang post na ito",
+    "closeVideo": "Видеоро пӯшед",
+    "rotateOrientation": "Гардиши самтро гардонед",
+    "videoProgress": "Пешравии видео: {{percent}}%",
+    "tapToSeek": "Ламс кунед, то ба мавқеи мушаххас ҷаҳед",
+    "photoAccessToSaveImages": "Барои захираи тасвирҳо ба китобхонаи аксҳо иҷозат диҳед",
+    "failedToSaveImage": "Захираи тасвир ноком шуд",
+    "downloadImage": "Тасвирро зеркашӣ кунед",
+    "goToImage": "Ба тасвири {{index}} равед",
+    "allCaughtUp": "Шумо ҳама чизро дидаед",
+    "checkBackForShorts": "Барои дидани шортҳои бештар баъдтар бозбинӣ кунед"
   },
   "liveViewer": {
     "loadingStream": "Пахш бор мешавад...",
@@ -4475,7 +4627,22 @@
   },
   "search": {
     "endOfResults": "Охири натиҷаҳо",
-    "searchDehub": "Дар DeHub ҷустуҷӯ кунед"
+    "searchDehub": "Дар DeHub ҷустуҷӯ кунед",
+    "tabVoice": "Овоз",
+    "trendingThisWeek": "Машҳур дар ин ҳафта",
+    "trendingPosts": "Постҳои машҳур",
+    "trendingImages": "Тасвирҳои машҳур",
+    "trendingVideos": "Видеоҳои машҳур",
+    "trendingVoicePosts": "Постҳои овозии машҳур",
+    "trendingLive": "Лайвҳои машҳур",
+    "seeAll": "Ҳамаро бубинед",
+    "noAccountsFound": "Ҳеҷ ҳисоб ёфт нашуд",
+    "tryDifferentKeywords": "Кӯшиш кунед, ки калимаҳои калидии дигарро истифода баред ё имлои худро тафтиш кунед",
+    "noContentResults": "Натиҷаҳои мундариҷа мавҷуд нестанд",
+    "recentSearches": "Ҷустуҷӯҳои охирин",
+    "noTrendingThisWeek": "Ин ҳафта мундариҷаи машҳур мавҷуд нест",
+    "closeFilterOptions": "Пардаи филтрро пӯшед",
+    "openFilterOptions": "Пардаи филтрро кушоед"
   },
   "notifPrompt": {
     "stayInLoop": "Огоҳ бошед",
@@ -4726,7 +4893,25 @@
     "externalTitle": "Усули ҷараёнҳои берунӣ",
     "externalLiveHint": "Ang iyong stream ay live sa pamamagitan ng panlabas na Камера дар дохили барнома ғайрифаъол аст.",
     "externalHint": "I-ugnay ang iyong software ng streaming gamit ang mga detalye sa ibaba, pagkatapos ay",
-    "useInAppCamera": "Ба ҷои он камераи дарунсохтро истифода баред"
+    "useInAppCamera": "Ба ҷои он камераи дарунсохтро истифода баред",
+    "livestreamEnded": "Лайвстрим ба охир расид",
+    "chatEnabled": "Чат фаъол аст",
+    "chatDisabled": "Чат ғайрифаъол аст",
+    "failedToUpdateSettings": "Навсозии танзимот ноком шуд",
+    "networkLostReconnecting": "Шабака гум шуд — ҷараён қатъ шуд. Дубора пайвастшавӣ...",
+    "openingViewer": "Зумингро кушодан...",
+    "cameraPermissionRequired": "Иҷозати камера лозим аст",
+    "grantPermission": "Иҷозати грант",
+    "waitingForLivepeer": "Интизори Livepeer...",
+    "waitingForExternalSource": "Интизори манбаъи беруна...",
+    "settingUpPublisher": "Танзими нашркунанда...",
+    "scheduledStream": "Ҷараёни банақшагирифташуда",
+    "pressGoLiveWhenReady": "Pindutin Go LIVE kapag taong magsimula",
+    "connectionInterrupted": "Пайвастшавӣ қатъ карда шуд",
+    "streamPausedReconnecting": "Ҷараёни шумо боздошта шуд. Аз нав пайвастшавӣ...",
+    "streamWillEnd": "Агар пайваст нашуда бошад, ҷараён ба итмом мерасад",
+    "endStreamConfirmTitle": "Хотимаи ҷараён?",
+    "endStreamConfirmBody": "Ipinapabukas ngayon ang iyong live stream para sa lahat ng mga tingnan. Шумо метавонед ҷараёнро идома диҳед ё онро ба таври доимӣ ба итмом расонед."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

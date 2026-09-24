@@ -119,7 +119,12 @@
     "music": "Orin",
     "live": "Lásìkò",
     "newPosts_one": "Ìfìwéránṣẹ́ tuntun {{count}}",
-    "newPosts_other": "Àwọn ìfìwéránṣẹ́ tuntun {{count}}"
+    "newPosts_other": "Àwọn ìfìwéránṣẹ́ tuntun {{count}}",
+    "privateContent": "Akoonu ikọkọ",
+    "privateContentBody": "Àkóónú yìí wá láti inú àkáǹtì ìkọ̀kọ̀. Tẹ̀lé olùṣẹ̀dá láti wo àwọn iṣẹ́ wọn.",
+    "noMoreContent": "Ko si akoonu diẹ sii",
+    "noPostsYet": "Kò sí àwọn ìfìwéránṣẹ́ síbẹ̀.",
+    "pullToRefresh": "Fa lati ṣe atunṣe tabi gbiyanju lẹẹkansi nigbamii."
   },
   "explore": {
     "all": "Gbogbo",
@@ -710,7 +715,19 @@
     },
     "smsNotificationsLocked": "Ṣii pẹlu {{dhb}} DHB (${{usd}}) ti kirẹditi",
     "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
-    "smsTopUp": "Ṣafikun {{dhb}} DHB"
+    "smsTopUp": "Ṣafikun {{dhb}} DHB",
+    "avatarUpdateFailed": "Àtúnṣe Avatar kùnà",
+    "coverUpdateFailed": "Ìmúdójú-ìwọ̀n ìbòjú kùnà",
+    "fixInvalidSocialLinks": "Jọ̀wọ́ ṣàtúnṣe àwọn ìjápọ àwùjọ tí kò wúlò.",
+    "updateFailed": "Ìmúdójúìwọ̀n kùnà.",
+    "channelUrlOrHandle": "URL ikanni tabi mu",
+    "inviteLinkPlaceholder": "Pe ìjápọ",
+    "profileUrlOrUsername": "Àkọsílẹ̀ URL tàbí orúkọ aṣàmúlò",
+    "yourDisplayName": "Orúkọ àfihàn rẹ",
+    "usernameAvailable": "Orukọ aṣàmúlò wà",
+    "hideBadgeAndBalance": "Fi badge pamọ́ àti ìdúróṣánṣán",
+    "hideBadgeAndBalanceDesc": "Fi àwọn kúlẹ̀kúlẹ̀ nípa owó pamọ́, kí ó sì dáwọ́ dúró láti fi ránṣẹ́ àti láti fún ọ ní ìmọ̀ràn.",
+    "onChainPublicWarning": "Àwọn ìdúnàádúrà lórí pq jẹ́ ti gbogbo ènìyàn. Fífi àfihàn tàbí ìmọ̀ràn ránṣẹ́ lè ṣí àdírẹ́sì àpamọ́wọ́ rẹ payá, títí kan àwọn ìṣòwò tí a ṣe kí wọ́n tó mú ipò ìdúróṣánṣán ara ẹni ṣiṣẹ́."
   },
   "common": {
     "mute": "Pa ohùn",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Kò sí Ìsopọ̀ Ayelujara",
     "noInternetBody": "Jọ̀wọ́ ṣàyẹ̀wò ìsopọ̀ ayelujara rẹ kí o sì tún yẹ̀wò. O ní láti sopọ̀ mọ́ ayelujara láti lo DeHub.",
     "noInternetStatus": "Kò sí ìsopọ̀ - Kò sí ìsopọ̀ àwọn ohun èlò",
-    "noInternetHint": "Ríi dájú pé Wi-Fi tàbí adàbọ̀ àwọn ohun èlò ti tan, kí o sì tẹ \"{{action}}\""
+    "noInternetHint": "Ríi dájú pé Wi-Fi tàbí adàbọ̀ àwọn ohun èlò ti tan, kí o sì tẹ \"{{action}}\"",
+    "saving": "Ńfipamọ́...",
+    "offlineStatus": "OFFINE - Kò sí ìsopọ̀ nẹ́tìwọ̀n"
   },
   "tip": {
     "title": "Fi Ẹ̀bùn Ránṣẹ́",
@@ -1094,7 +1113,17 @@
     "post": "Firánṣẹ́",
     "officialLogo": "Àmì ìdánimọ̀ DeHub tí ó jẹ́ ti ìjọba nìyí! 🎨",
     "editedImage": "Àwòrán rẹ tí a ṣàtúnṣe nìyí!",
-    "generatedImage": "Àwòrán rẹ tí a ṣẹ̀dá nìyí!"
+    "generatedImage": "Àwòrán rẹ tí a ṣẹ̀dá nìyí!",
+    "aiTool": "Ohun-èlò AI",
+    "cannotAnimateImage": "{{model}} kò lè gbé àwòrán tí ó so mọ́lẹ̀ mọ́lẹ̀. Yan àwòṣe fídíò mìíràn.",
+    "needsImageToAnimate": "{{model}} nílò àwòrán láti ṣe àmúyẹ fun gbígbọ́ orin ko le ṣiṣẹ lori ẹ̀rọ rẹ. So ọ̀kan mọ́ra tàbí kó o yan àwòṣe mìíràn.",
+    "couldNotReadImage": "Mi ò lè ka àwòrán yẹn",
+    "logoLoadFailed": "Kò lè gbé èdìdì DeHub — tí ó ń dá jáde láì sí i.",
+    "imageAttachedDescribe": "Aworan ti a so mọ — ṣe apejuwe awọn atunṣe rẹ",
+    "couldNotPreparePost": "Kò lè pèsè ìyẹn fún ìfiránṣẹ́.",
+    "generateImage": "Ṣẹda Aworan",
+    "generateVideo": "Ṣẹ̀dá Fídíò",
+    "toolCompleted": "{{name}} pari"
   },
   "commandCentre": {
     "title": "Ilé-iṣẹ́ Àṣẹ",
@@ -1607,7 +1636,10 @@
     "edit": "Ṣàtúnṣe",
     "deleteRequestTitle": "Pa ìbéèrè yìí rẹ́?",
     "deleteRequestDescription": "A kò lè yí èyí padà.",
-    "attachmentTooLarge": "Fáìlì kọ̀ọ̀kan gbọ́dọ̀ kéré sí 20MB"
+    "attachmentTooLarge": "Fáìlì kọ̀ọ̀kan gbọ́dọ̀ kéré sí 20MB",
+    "deleteCommentA11y": "Pa àlàyé yìí rẹ́?",
+    "sendCommentA11y": "Fi ọrọìwòye ranṣẹ",
+    "requestOptions": "Beere awọn aṣayan"
   },
   "auth": {
     "loginRequired": "Wíwọlé ni a nílò",
@@ -1656,7 +1688,15 @@
     "sendCodeFailedRetry": "Kò lè rán koodu. Jọ̀wọ́ tún yẹ̀wò.",
     "invalidCodeRetry": "Koodu tí kò tọ́. Jọ̀wọ́ tún yẹ̀wò.",
     "invalidEmailOrPassword": "Ìwọ̀fà tàbí ọ̀rọ̀ ìfàṣẹ́wọ̀ tí kò tọ́.",
-    "welcomeToDehub": "Ì kàbọ̀ sí DeHub"
+    "welcomeToDehub": "Ì kàbọ̀ sí DeHub",
+    "importWalletOptional": "Wole apamọwọ (Àyànfẹ́)",
+    "couldNotSendCodeRetry": "Mi ò lè fi kọ́ọ̀ṣì ránṣẹ́. Jọ̀wọ́ ṣe àtúnyẹ̀wò.",
+    "exploreWithoutSignIn": "Ṣàwárí láìṣe ìforúkọsílẹ̀",
+    "continueExploring": "Tesiwaju lati ṣawari",
+    "exploreWithoutSignInA11y": "Ṣàwárí DeHub láìṣe ìforúkọsílẹ̀",
+    "continueExploringA11y": "Tesiwaju lati ṣawari DeHub",
+    "importWalletRecommended": "A ròyìn ìforúkọsílẹ̀ àwùjọ.",
+    "importWalletPurpose": "Ọpa yìí jẹ́ fún gbígbé àkáǹtì tí ó wà láti DeHub.io wọlé."
   },
   "messages": {
     "smartRepliesOff": "A ti pa àwọn èsì tí a dábàá",
@@ -1771,7 +1811,29 @@
     "reportedAutomatically": "A ti ròyìn rẹ̀ fúnra rẹ̀.",
     "loadFailed": "Kò lè gbé àwọn ọ̀nà",
     "noSearchResults": "Kò sí ọ̀nà tí ó bá àwárí rẹ mu",
-    "noChannels": "Kò sí ọ̀nà tí ó wà"
+    "noChannels": "Kò sí ọ̀nà tí ó wà",
+    "pairCodeExpired": "Kóòdù yẹn ti dópin. Béèrè fún ẹ̀rọ amóhùnmáwòrán náà fún tuntun.",
+    "signedInOnTv": "Wọlé sí orí ẹ̀rọ amóhùnmáwòrán rẹ",
+    "pairRefused": "Kọ̀",
+    "pairIntro": "Ṣí DeHub lórí ẹ̀rọ amóhùnmáwòrán rẹ kí o sì tẹ kọ́ọ̀dì tí ó fi hàn níbí.",
+    "pairNotFound": "Kò sí ẹ̀rọ amóhùnmáwòrán tó ń dúró lórí kọ́ọ̀ṣì yẹn. Ó lè ti di ìgbà pípẹ́ — béèrè fún ẹ̀rọ amóhùnmáwòrán fún tuntun.",
+    "wantsToSignIn": "ó fẹ́ wọlé bí ìwọ",
+    "pairWarning": "Fún èyí lásán bí ó bá jẹ́ ẹ̀rọ amóhùnmáwòrán tí ò ń wò báyìí. Fọwọsi àmì ẹnikẹ́ni tí ó bá ń fi kọ́ọ̀dì yẹn sínú àkáǹtì rẹ. Yóò lè wo, fẹ́ràn àti tẹ̀lé e — kò lè náwó, o sì lè fọwọ́ sí i nígbàkigbà láti inú àwọn àsìkò tó ń ṣiṣẹ́.",
+    "pairApprove": "Bẹ́ẹ̀ni, wọlé sí orí ẹ̀rọ amóhùnmáwòrán yìí",
+    "pairDeny": "Rárá, mi ò bèèrè èyí.",
+    "pairDoneTitle": "Wọ́n fọwọ́ sí ẹ̀rọ amóhùnmáwòrán rẹ.",
+    "pairDoneBody": "Ó yẹ kí ó ti ń ṣe àfihàn àkọsílẹ̀ rẹ. Fọwọsi rẹ nigbakugba lati Eto → Asiri ti → nṣiṣe lọwọ awọn akoko.",
+    "closePlayer": "Ẹrọ orin tí ó súnmọ́",
+    "declineFailed": "Kò lè sẹ́ ìyẹn — ó lè ti di ìgbà pípẹ́.",
+    "tipSentTvNotTold": "Ìmọ̀ràn ránṣẹ́, ṣùgbọ́n a kò lè sọ fún ẹ̀rọ amóhùnmáwòrán náà. Yóò jáde ní àsìkò.",
+    "sentAmount": "Firanṣẹ {{amount}} DHB",
+    "nothingWaiting": "Ko si ohun ti n duro",
+    "nothingWaitingBody": "Nigbati o ba fi ẹbun ranṣẹ lati DeHub lori tẹlifisiọnu rẹ, o farahan nibi fun ọ lati fọwọsi. Tẹlifisiọnu rẹ ko ni dimu apamọwọ rẹ.",
+    "yourTelevision": "Tẹlifisiọnu rẹ",
+    "wantsToTip": "fẹ lati fi ẹbun ranṣẹ · {{time}} fi silẹ",
+    "tipTo": "si {{name}}",
+    "tipForPost": "fun “{{title}}”",
+    "reviewAndApprove": "Ṣe atunyẹwo ati fọwọsi"
   },
   "top100": {
     "title": "Òkè 100",
@@ -2043,7 +2105,8 @@
     "submitApplication": "Fi ohun elo ránṣẹ́",
     "nameEmailRequired": "Orúkọ àti ímeèlì jẹ́ dandan",
     "applicationSuccess": "A ti fi ohun elo ránṣẹ́ dáadáa! A óò kàn sí ẹ.",
-    "applicationFailed": "Fífi ránṣẹ́ kùnà. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kansi."
+    "applicationFailed": "Fífi ránṣẹ́ kùnà. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kansi.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Ìṣúra DAO",
@@ -2203,7 +2266,8 @@
     "pinnedToast": "A ti pin sí òkè ìfìwéránṣẹ́ yìí",
     "unpinnedToast": "A ti yọ pin kúrò",
     "pinFailed": "A kò lè pin ọ̀rọ̀ yẹn",
-    "kidsOnlyThread": "Iṣẹ́ yìí jẹ́ fún àwọn ọmọdé. Ìlànà Àwọn Ọmọdé nìkan ni ó lè sọ̀rọ̀ lórí rẹ̀."
+    "kidsOnlyThread": "Iṣẹ́ yìí jẹ́ fún àwọn ọmọdé. Ìlànà Àwọn Ọmọdé nìkan ni ó lè sọ̀rọ̀ lórí rẹ̀.",
+    "editFailed": "Ikuna lati ṣatunkọ asọye"
   },
   "postInfo": {
     "title": "Ìwífún nípa àkọsílẹ̀",
@@ -3244,14 +3308,40 @@
     "comingSoon": "Ó ń bọ̀",
     "signIn": "Wọlé",
     "tapToGetStarted": "Tẹ̀ láti bẹ̀rẹ̀",
-    "soon": "Láìpẹ́"
+    "soon": "Láìpẹ́",
+    "glossarySubtitle": "Kọ ẹkọ kini aami ati ẹya kọọkan tumọ si",
+    "searchGlossary": "Wa atokọ ọrọ...",
+    "noResultsFor": "Ko si awọn abajade fun \"{{query}}\"",
+    "guideSubtitle": "Itọsọna igbesẹ-ni-igbesẹ ti ẹya kọọkan",
+    "searchGuide": "Wa itọsọna naa...",
+    "repostsTab": "Atunṣe",
+    "quotesTab": "Awọn agbasọ",
+    "noMoreReposts": "Ko si atunṣe siwaju sii",
+    "noMoreQuotes": "Ko si agbasọ siwaju sii",
+    "noRepostsYet": "Ko si atunṣe sibẹsibẹ",
+    "noQuotesYet": "Ko si agbasọ sibẹsibẹ"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Àwọn eré tí ń ṣiṣẹ́ níbí nínú áàpù. Kò sí ohun tí a ó fi sórí ẹ̀rọ, kò sí ohun tí a ó rà — orísun ṣíṣí, DeHub fúnrarẹ̀ ni ó ń pèsè."
+    "intro": "Àwọn eré tí ń ṣiṣẹ́ níbí nínú áàpù. Kò sí ohun tí a ó fi sórí ẹ̀rọ, kò sí ohun tí a ó rà — orísun ṣíṣí, DeHub fúnrarẹ̀ ni ó ń pèsè.",
+    "noGameCalled": "Ko si ere ti a pe ni <slug>{{slug}}</slug> ni ere-idaraya.",
+    "seeWhatIsHere": "Wo ohun ti o wa nibi",
+    "locationNotGranted": "A ko fun ni aṣẹ ipo.",
+    "signInToPlaceOnGlobe": "Wọle lati fi ararẹ si aye.",
+    "couldNotPlaceOnGlobe": "Ko le fi ọ si aye.",
+    "onTheGlobe": "O wa lori aye — ti o fihan laarin agbegbe ti o fẹrẹ to 25 km.",
+    "couldNotReach": "KO LE DE ERE-IDARAYA",
+    "didNotLoad": "{{title}} ko ṣiṣẹ",
+    "needsConnection": "A ti fi ere naa ranṣẹ lati dehub.io ati pe o ti gba dọwọlọwọ nigbati o ṣii, nitorinaa o nilo asopọ ti o ṣiṣẹ ni akoko akọkọ. Ṣayẹwo tirẹ ki o gbiyanju lẹẹkansi.",
+    "backToArcade": "Pada si ere-idaraya",
+    "openPrivacySettings": "Ṣii awọn eto asiri",
+    "privacyWarning": "Ti o ba ni ọpọlọpọ awọn ami-ami tabi ngbe ni agbegbe ti ko ni aabo, tọju aami ati iwọntunwọnsi rẹ ṣaaju lilo ẹya yii. Awọn iṣowo lori-chain tun ṣafihan adirẹsi rẹ. Ṣii awọn eto.",
+    "leaveGame": "Fi ere silẹ",
+    "loadingGame": "Ngbaradi {{title}}",
+    "hideThis": "Fọwọsi yi"
   },
   "videoLooks": {
     "button": "Àwọn ìrísí kámẹ́rà",
@@ -3377,7 +3467,22 @@
     "someone": "Ẹnìkan",
     "oneTyping": "{{name}} ń kọ…",
     "fewTyping": "{{names}} ń kọ…",
-    "manyTyping": "Àwọn ènìyàn {{count}} ń kọ…"
+    "manyTyping": "Àwọn ènìyàn {{count}} ń kọ…",
+    "modBadge": "MOD",
+    "thisUser": "olumulo yi",
+    "unbanConfirm": "Ṣe o da ọ loju pe o fẹ yọ {{name}} kuro?",
+    "unban": "Yọ kuro",
+    "unbanFailed": "Ikuna lati yọ olumulo kuro",
+    "onlineLabel": "Lori ayelujara",
+    "usersCount_one": "olumulo {{count}}",
+    "usersCount_other": "awọn olumulo {{count}}",
+    "totalMessages": "Awọn Ifiranṣẹ Lapapọ",
+    "slowMode": "Ipo ti o lọra",
+    "cooldownSeconds": "{{seconds}}s itutu",
+    "minStakeRequired": "O kere ju Iṣowo Ti Beere",
+    "noParticipants": "Ko si awọn olukopa sibẹsibẹ",
+    "noModerators": "Ko si awọn alatunṣe",
+    "noBannedUsers": "Ko si awọn olumulo ti a gbesele"
   },
   "promptFeed": {
     "headline": "Kí ni o fẹ́ rí?",
@@ -4129,7 +4234,26 @@
     "madeForKidsBlockedByMature": "Ọ̀rọ̀ ti a ṣe ami gidi ko le tun ṣe atẹ̀jáde fun awọn ọmọ.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Gba awọn alaye RTMP",
-    "markMadeForKids": "Àmì bí a ṣe ṣe fún àwọn ọmọdé"
+    "markMadeForKids": "Àmì bí a ṣe ṣe fún àwọn ọmọdé",
+    "queueWaiting": "N duro…",
+    "queueUploading": "Ngbaradi",
+    "queueProcessing": "Ngbaradi…",
+    "queueMinting": "Ngbaradi…",
+    "queuePosted": "Ti firanṣẹ",
+    "queueFailed": "Ikuna",
+    "noRetriesLeft": "(ko si awọn igbiyanju ti o ku)",
+    "noUploads": "Ko si awọn igbasilẹ",
+    "uploadsAppearHere": "Awọn igbasilẹ rẹ yoo han nibi",
+    "imagesTotalLimit": "Àwọn àwòrán nínú ìkòkò kan gbọ́dọ̀ ní àpapọ̀ 100 MB tàbí kí ó kéré jù bẹ́ẹ̀ lọ.",
+    "chooseDatabase": "Yan ibi ìpamọ́ ìpamọ́ ìpamọ́",
+    "livestreamMode": "Ipo Liestream",
+    "addThumbnail": "Ṣafikun eekanna atanpako",
+    "showCover": "Fi ìbòjú hàn",
+    "max60s": "Max iṣẹju 60",
+    "confirmLivestream": "Jẹrisi Livestream",
+    "liveFeaturesTitle": "Gbe Awọn ẹya ara ẹrọ",
+    "discardPostTitle": "Jabọ Ifiweranṣẹ?",
+    "discardPostBody": "Iṣẹ́ rẹ yóò sọnù. Ṣé o máa fẹ́ láti fi pamọ́ gẹ́gẹ́ bí agbègbè dípò?"
   },
   "bounty": {
     "claimed": "Ti gbà",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Mú DM ṣiṣẹ́ kí ìfiránṣẹ́ tuntun lè wọlé.",
     "perMessageFee": "Owó fún ìfiránṣẹ́ kọ̀ọ̀kan (DHB)",
     "perMessageFeeSub": "Gba owó fún ìfiránṣẹ́ kọ̀ọ̀kan. Fi 0 sí i kí DM lè jẹ́ ọ̀fẹ́. O lè fún àwọn olùlò kan ní ààyè ọ̀fẹ́.",
-    "allDisabled": "Gbogbo DM ti pa lọ́wọ́lọ́wọ́. A ń dí DM tuntun lọ́nà gẹ́gẹ́ bí àbí."
+    "allDisabled": "Gbogbo DM ti pa lọ́wọ́lọ́wọ́. A ń dí DM tuntun lọ́nà gẹ́gẹ́ bí àbí.",
+    "failedToEdit": "Ó kùnà láti ṣàtúnṣe",
+    "messageDeleted": "Àtẹ̀jíṣẹ́ ti parẹ́.",
+    "cantForwardFromDevice": "A kò lè fi àtẹ̀jíṣẹ́ yìí ránṣẹ́ láti inú ẹ̀rọ yìí.",
+    "messageForwarded": "A taari àtẹ̀jísẹ́ sí .",
+    "clearMessages": "Awọn ifiranṣẹ ti o han gbangba",
+    "clearMessagesConfirm": "Pa gbogbo àwọn àtẹ̀jíṣẹ́ tó wà nínú ìjíròrò yìí rẹ́? Èyí kò lè ṣe àtúnṣe.",
+    "messagesCleared": "Awọn ifiranṣẹ ti a paarẹ",
+    "failedToClearMessages": "Ó kùnà sí àwọn àtẹ̀jísẹ́ tí ó ṣe kedere",
+    "removedFreeAccess": "Yọ iraye si ọfẹ fun {{name}}",
+    "grantedFreeAccess": "Àfikún àfikún sí {{name}}",
+    "failedToUpdateFreeAccess": "Ko le ṣe imudojuiwọn iraye si ọfẹ",
+    "searchComingSoon": "Àwárí ń bọ̀ láìpẹ́",
+    "tapToUnblock": "Tẹ lati unblock",
+    "userFallback": "Olumulo",
+    "failedToBlock": "Ó kùnà láti dènà",
+    "failedToDeleteConversation": "Ó kùnà láti pa ìtàkurọ̀sọ náà",
+    "newDm": "Àtẹ̀jíṣẹ́ tààrà",
+    "noConversationsFound": "Ko si awọn ibaraẹnisọrọ ti a ri"
   },
   "editPost": {
     "mediaPermission": "A nílò àṣẹ ilé-ìkàwé àwòrán",
@@ -4467,7 +4609,17 @@
     "retry": "Gbiyanju lẹẹkansi",
     "retrying": "Ṣíṣe ìfẹ̀yìntì...",
     "retryQueued": "Ìgbésẹ̀ lẹ́ẹ̀kan síi",
-    "retryFailed": "Kò lè ṣe àtúnyẹ̀wò àtẹ̀jíṣẹ́ yẹn"
+    "retryFailed": "Kò lè ṣe àtúnyẹ̀wò àtẹ̀jíṣẹ́ yẹn",
+    "closeVideo": "Fidio pa",
+    "rotateOrientation": "Yí ìdarí padà",
+    "videoProgress": "Ilọsiwaju fidio: {{percent}}%",
+    "tapToSeek": "Fọwọkan lati lọ si ipo kan pato",
+    "photoAccessToSaveImages": "Gba laaye iraye si ile-ikawe fọto lati ṣafipamọ awọn aworan",
+    "failedToSaveImage": "Ikuna lati ṣafipamọ aworan",
+    "downloadImage": "Ṣe igbasilẹ aworan",
+    "goToImage": "Lọ si aworan {{index}}",
+    "allCaughtUp": "O ti pari gbogbo rẹ",
+    "checkBackForShorts": "Ṣayẹwo lẹẹkansi nigbamii fun awọn kukuru diẹ sii"
   },
   "liveViewer": {
     "loadingStream": "Ń ṣe ìkójọpọ̀ ìtànkálẹ̀...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Òpin àwọn èsì",
-    "searchDehub": "Wá nínú DeHub"
+    "searchDehub": "Wá nínú DeHub",
+    "tabVoice": "Ohùn",
+    "trendingThisWeek": "Gbajumọ Ni Ọsẹ Yii",
+    "trendingPosts": "Awọn Ifiweranṣẹ Gbajumọ",
+    "trendingImages": "Awọn aworan Gbajumọ",
+    "trendingVideos": "Awọn fidio Gbajumọ",
+    "trendingVoicePosts": "Awọn ifiweranṣẹ ohùn Gbajumọ",
+    "trendingLive": "Live Gbajumọ",
+    "seeAll": "Wo Gbogbo",
+    "noAccountsFound": "Ko si awọn iroyin ti a ri",
+    "tryDifferentKeywords": "Gbiyanju awọn ọrọ-ìmọ̀ mìíràn tàbí ṣàyẹ̀wò ọ̀rọ̀ àlàyé rẹ",
+    "noContentResults": "Ko si awọn abajade akoonu",
+    "recentSearches": "Awọn wiwa laipẹ",
+    "noTrendingThisWeek": "Ko si akoonu gbajumọ ni ọsẹ yii",
+    "closeFilterOptions": "Pa awọn aṣayan àlẹmọ",
+    "openFilterOptions": "Ṣii awọn aṣayan àlẹmọ"
   },
   "notifPrompt": {
     "stayInLoop": "Máa gbọ́ ìròyìn",
@@ -4727,7 +4894,26 @@
     "externalTitle": "Ipo Sisanwọle Ita",
     "externalLiveHint": "Sisanwọle rẹ wà láàyè nípasẹ̀ sọfitiwia ìta. Kámẹ́rà inú ohun-èlò náà ti di aláìlẹ́gbẹ́.",
     "externalHint": "So ẹ̀rọ-ayárabíàsá rẹ pọ̀ pẹ̀lú lílo àwọn àlàyé tó wà nísàlẹ̀ yìí, kí o sì bẹ̀rẹ̀ sí í ṣe àtẹ̀jíṣẹ́.",
-    "useInAppCamera": "Lo In-App Camera dípò"
+    "useInAppCamera": "Lo In-App Camera dípò",
+    "livestreamEnded": "Ayẹyẹ laaye ti pari",
+    "chatEnabled": "Ìjíròrò ti ṣiṣẹ",
+    "chatDisabled": "Ìjíròrò ti dènà",
+    "failedToUpdateSettings": "Ikuna lati mu awọn eto ṣiṣẹ",
+    "networkLostReconnecting": "Aṣiṣe nẹtiwọọki — ṣiṣan ti duro. Nsopọmọde…",
+    "openingViewer": "Ṣiṣi oluwoye...",
+    "cameraPermissionRequired": "Ẹ̀tọ̀ àṣẹ camera gbọdọ̀",
+    "grantPermission": "Àṣẹ Ìfẹ̀yìntì",
+    "waitingForLivepeer": "Dúró fún Livepeer...",
+    "waitingForExternalSource": "Dúró fún orísun ìta...",
+    "settingUpPublisher": "Ṣíṣe olùtẹ̀jáde...",
+    "scheduledStream": "Ṣètò Stream",
+    "scheduledAt": "{{date}} ni {{time}}",
+    "pressGoLiveWhenReady": "Tẹ Lọ Gbe nigbati o ba ṣetan lati bẹrẹ",
+    "connectionInterrupted": "Ìsopọ̀ tí a dáwọ́ dúró",
+    "streamPausedReconnecting": "Odò rẹ ti dá dúró. Ìsopọ̀ padà...",
+    "streamWillEnd": "Sisan yoo pari ti a ko ba tun sopọ mọ",
+    "endStreamConfirmTitle": "End Stream?",
+    "endStreamConfirmBody": "Titi di pipade bayi yoo pari ṣiṣan ifiwe rẹ fun gbogbo awọn oluwo. O lè tẹ̀síwájú síi lórí ẹ̀rọ ayélujára tàbí kí o fòpin sí i títí láéláé."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

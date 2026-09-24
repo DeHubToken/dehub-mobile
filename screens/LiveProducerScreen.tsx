@@ -674,7 +674,7 @@ const LiveProducerScreen: React.FC = () => {
     // Mark ended so the stage-transition effect doesn't also toast + goBack
     endedRef.current = true;
     discardDeadLaunchRef.current();
-    toastSuccess("Livestream ended");
+    toastSuccess(t("goLive.livestreamEnded"));
     navigation.goBack();
   }, [end, navigation, stage, streamId, socketEmitAuthed]);
 
@@ -689,7 +689,7 @@ const LiveProducerScreen: React.FC = () => {
       }
       end().catch(() => {});
       endedRef.current = true;
-      toastSuccess("Livestream ended");
+      toastSuccess(t("goLive.livestreamEnded"));
     }
     discardDeadLaunchRef.current();
     navigation.goBack();
@@ -706,11 +706,11 @@ const LiveProducerScreen: React.FC = () => {
     setLiveChatEnabled(newVal);
     try {
       await updateStreamSettings(sid, { chat: { enabled: newVal } });
-      toastInfo(newVal ? 'Chat enabled' : 'Chat disabled');
+      toastInfo(newVal ? t("goLive.chatEnabled") : t("goLive.chatDisabled"));
     } catch (e: any) {
       // Revert
       setLiveChatEnabled(!newVal);
-      toastError(e?.message || 'Failed to update settings');
+      toastError(e?.message || t("goLive.failedToUpdateSettings"));
     } finally {
       setSettingsUpdating(false);
     }
@@ -915,7 +915,7 @@ const LiveProducerScreen: React.FC = () => {
     if (stage === "ended" && !endedRef.current) {
       endedRef.current = true;
       discardDeadLaunchRef.current();
-      toastSuccess("Livestream ended");
+      toastSuccess(t("goLive.livestreamEnded"));
       navigation.goBack();
     }
   }, [stage]);
@@ -1120,7 +1120,7 @@ const LiveProducerScreen: React.FC = () => {
           console.log(
             "[LiveProducer] network offline detected -> stream will be paused by backend grace period"
           );
-          toastInfo("Network lost — stream paused. Reconnecting…");
+          toastInfo(t("goLive.networkLostReconnecting"));
         }
       }
     });
@@ -1149,7 +1149,7 @@ const LiveProducerScreen: React.FC = () => {
         <View className="absolute inset-0">
           {redirecting ? (
             <View className="flex-1 items-center justify-center">
-              <Text className="text-white/70 text-xs">Opening viewer...</Text>
+              <Text className="text-white/70 text-xs">{t("goLive.openingViewer")}</Text>
             </View>
           ) : mountPublisher ? (
             <WebRTCPublisher
@@ -1191,7 +1191,7 @@ const LiveProducerScreen: React.FC = () => {
         {!permission?.granted ? (
           <View className="absolute inset-0 dark-surface bg-black/80 items-center justify-center z-20">
             <Text className="text-zinc-400 mb-3 text-sm">
-              Camera permission required
+              {t("goLive.cameraPermissionRequired")}
             </Text>
             <TouchableOpacity
               onPress={requestPermission}
@@ -1199,7 +1199,7 @@ const LiveProducerScreen: React.FC = () => {
               activeOpacity={0.8}
             >
               <Text className="text-white text-xs font-medium">
-                Grant Permission
+                {t("goLive.grantPermission")}
               </Text>
             </TouchableOpacity>
           </View>
@@ -1265,10 +1265,10 @@ const LiveProducerScreen: React.FC = () => {
                   startingHint={
                     stage === "starting"
                       ? publisherConnected
-                        ? "Waiting for Livepeer..."
+                        ? t("goLive.waitingForLivepeer")
                         : externalMode
-                        ? "Waiting for external source..."
-                        : "Setting up publisher..."
+                        ? t("goLive.waitingForExternalSource")
+                        : t("goLive.settingUpPublisher")
                       : undefined
                   }
                   onRequestClose={requestClose}
@@ -1287,19 +1287,21 @@ const LiveProducerScreen: React.FC = () => {
                 >
                   <View className="bg-indigo-600/70 rounded-xl px-4 py-2.5 items-center border border-indigo-400/20">
                     <Text className="text-white font-semibold text-xs">
-                      {"Scheduled Stream"}
+                      {t("goLive.scheduledStream")}
                     </Text>
                     {scheduledForDate ? (
                       <Text className="text-white/80 text-[10px] mt-0.5">
-                        {scheduledForDate.toLocaleDateString(appLocale())} at{" "}
-                        {scheduledForDate.toLocaleTimeString(appLocale(), {
-                          hour: "2-digit",
-                          minute: "2-digit",
+                        {t("goLive.scheduledAt", {
+                          date: scheduledForDate.toLocaleDateString(appLocale()),
+                          time: scheduledForDate.toLocaleTimeString(appLocale(), {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          }),
                         })}
                       </Text>
                     ) : null}
                     <Text className="text-white/60 text-[10px] mt-0.5">
-                      Press Go Live when ready to start
+                      {t("goLive.pressGoLiveWhenReady")}
                     </Text>
                   </View>
                 </View>
@@ -1426,10 +1428,10 @@ const LiveProducerScreen: React.FC = () => {
               <View className="dark-surface bg-black/80 rounded-xl px-6 py-5 items-center border border-white/10 mx-8">
                 <Text className="text-yellow-400 text-2xl mb-2">{"⏸"}</Text>
                 <Text className="text-white font-semibold text-sm">
-                  Connection Interrupted
+                  {t("goLive.connectionInterrupted")}
                 </Text>
                 <Text className="text-white/70 text-xs mt-1 text-center">
-                  {"Your stream is paused. Reconnecting..."}
+                  {t("goLive.streamPausedReconnecting")}
                 </Text>
                 {graceCountdown > 0 ? (
                   <View className="mt-3 items-center">
@@ -1438,7 +1440,7 @@ const LiveProducerScreen: React.FC = () => {
                       {String(graceCountdown % 60).padStart(2, "0")}
                     </Text>
                     <Text className="text-white/50 text-[10px] mt-1">
-                      Stream will end if not reconnected
+                      {t("goLive.streamWillEnd")}
                     </Text>
                   </View>
                 ) : null}
@@ -1467,11 +1469,10 @@ const LiveProducerScreen: React.FC = () => {
         >
           <View className="mx-8 p-6">
             <Text className="text-white font-semibold text-base mb-2">
-              End Stream?
+              {t("goLive.endStreamConfirmTitle")}
             </Text>
             <Text className="text-white/70 text-xs leading-5 mb-5">
-              Closing now will end your live stream for all viewers. You can
-              continue streaming or end it permanently.
+              {t("goLive.endStreamConfirmBody")}
             </Text>
             <View className="flex-row justify-end">
               <TouchableOpacity
@@ -1480,7 +1481,7 @@ const LiveProducerScreen: React.FC = () => {
                 activeOpacity={0.85}
               >
                 <Text className="text-white text-xs font-semibold">
-                  Continue
+                  {t("common.continue")}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -1489,7 +1490,7 @@ const LiveProducerScreen: React.FC = () => {
                 activeOpacity={0.9}
               >
                 <Text className="text-white text-xs font-semibold">
-                  End Stream
+                  {t("postOptions.endStream")}
                 </Text>
               </TouchableOpacity>
             </View>

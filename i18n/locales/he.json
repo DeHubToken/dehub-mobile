@@ -119,7 +119,12 @@
     "music": "מוזיקה",
     "live": "שידור חי",
     "newPosts_one": "פוסט חדש {{count}}",
-    "newPosts_other": "{{count}} פוסטים חדשים"
+    "newPosts_other": "{{count}} פוסטים חדשים",
+    "privateContent": "תוכן פרטי",
+    "privateContentBody": "התוכן הזה מחשבון פרטי. עקוב אחר היוצר כדי לראות את הפוסטים שלו.",
+    "noMoreContent": "אין עוד תוכן",
+    "noPostsYet": "אין פוסטים עדיין.",
+    "pullToRefresh": "משוך לרענון או נסה שוב מאוחר יותר."
   },
   "explore": {
     "all": "הכל",
@@ -709,7 +714,19 @@
       "account": "רק הודעות על החשבון שלי"
     },
     "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) פותח הודעות טקסט והופך ליתרה הראשונה שלך.",
-    "smsBalance": "נותרו {{dhb}} DHB (${{usd}})"
+    "smsBalance": "נותרו {{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "עדכון אווטאר נכשל",
+    "coverUpdateFailed": "עדכון תמונה ראשית נכשל",
+    "fixInvalidSocialLinks": "אנא תקן קישורים חברתיים לא תקינים",
+    "updateFailed": "עדכון נכשל",
+    "channelUrlOrHandle": "כתובת ערוץ או שם משתמש",
+    "inviteLinkPlaceholder": "קישור הזמנה",
+    "profileUrlOrUsername": "כתובת פרופיל או שם משתמש",
+    "yourDisplayName": "שם התצוגה שלך",
+    "usernameAvailable": "שם המשתמש זמין",
+    "hideBadgeAndBalance": "הסתר תג ויתרה",
+    "hideBadgeAndBalanceDesc": "מסתיר פרטים פיננסיים ומשבית שליחות וטיפים אליך.",
+    "onChainPublicWarning": "עסקאות על הבלוקצ'יין הן ציבוריות. שליחת אסימונים או טיפים יכולה לחשוף את כתובת הארנק שלך, כולל עסקאות שבוצעו לפני הפעלת מצב יתרה פרטית."
   },
   "common": {
     "mute": "השתק",
@@ -759,7 +776,9 @@
     "noInternetTitle": "אין חיבור לאינטרנט",
     "noInternetBody": "אנא בדוק את חיבור האינטרנט שלך ונסה שוב. עליך להיות מחובר לאינטרנט כדי להשתמש ב-DeHub.",
     "noInternetStatus": "לא מקוון - אין חיבור רשת",
-    "noInternetHint": "ודא ש-Wi-Fi או נתונים סלולריים מופעלים, ואז הקש \"{{action}}\""
+    "noInternetHint": "ודא ש-Wi-Fi או נתונים סלולריים מופעלים, ואז הקש \"{{action}}\"",
+    "saving": "שומר…",
+    "offlineStatus": "לא מקוון - אין חיבור רשת"
   },
   "tip": {
     "title": "שלח טיפ",
@@ -1093,7 +1112,17 @@
     "post": "פוסט",
     "officialLogo": "זהו הלוגו הרשמי של DeHub! 🎨",
     "editedImage": "זו התמונה הערוכה שלך!",
-    "generatedImage": "זו התמונה שנוצרה!"
+    "generatedImage": "זו התמונה שנוצרה!",
+    "toolCompleted": "{{name}} הושלם",
+    "aiTool": "כלי AI",
+    "cannotAnimateImage": "{{model}} אינו יכול להנפיש תמונה מצורפת. בחר מודל וידאו אחר.",
+    "needsImageToAnimate": "{{model}} זקוק לתמונה כדי להנפיש. צרף אחת או בחר מודל אחר.",
+    "couldNotReadImage": "לא ניתן לקרוא את התמונה הזו",
+    "logoLoadFailed": "לא ניתן לטעון את הלוגו של DeHub — נוצר בלעדיו",
+    "imageAttachedDescribe": "תמונה מצורפת — תאר את השינויים שלך",
+    "couldNotPreparePost": "לא ניתן להכין זאת לפרסום",
+    "generateImage": "יצירת תמונה",
+    "generateVideo": "צור וידאו"
   },
   "commandCentre": {
     "title": "מרכז פיקוד",
@@ -1604,7 +1633,10 @@
     "edit": "עריכה",
     "deleteRequestTitle": "למחוק את הבקשה הזו?",
     "deleteRequestDescription": "אי אפשר לבטל את זה.",
-    "attachmentTooLarge": "כל קובץ חייב להיות מתחת ל-20MB"
+    "attachmentTooLarge": "כל קובץ חייב להיות מתחת ל-20MB",
+    "deleteCommentA11y": "מחק הערה",
+    "sendCommentA11y": "שלח תגובה",
+    "requestOptions": "אפשרויות בקשה"
   },
   "auth": {
     "loginRequired": "נדרשת התחברות",
@@ -1653,7 +1685,15 @@
     "sendCodeFailedRetry": "לא ניתן לשלוח קוד. אנא נסה שוב.",
     "invalidCodeRetry": "קוד לא תקין. אנא נסה שוב.",
     "invalidEmailOrPassword": "דוא\"ל או סיסמה לא תקינים.",
-    "welcomeToDehub": "ברוכים הבאים ל-DeHub"
+    "welcomeToDehub": "ברוכים הבאים ל-DeHub",
+    "importWalletOptional": "ייבוא ארנק (אופציונלי)",
+    "couldNotSendCodeRetry": "לא הצלחנו לשלוח את הקוד. צריך לנסות שוב.",
+    "exploreWithoutSignIn": "לסייר בלי להיכנס לחשבון",
+    "continueExploring": "להמשיך לחפש",
+    "exploreWithoutSignInA11y": "גלה את DeHub מבלי להיכנס",
+    "continueExploringA11y": "המשך לגלות את DeHub",
+    "importWalletRecommended": "מומלץ להתחבר לרשתות החברתיות.",
+    "importWalletPurpose": "כלי זה מיועד לייבוא חשבונות קיימים מ - DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "התשובות המוצעות כובו",
@@ -1768,7 +1808,29 @@
     "reportedAutomatically": "זה דווח אוטומטית.",
     "loadFailed": "לא ניתן היה לטעון ערוצים",
     "noSearchResults": "אין ערוצים שתואמים לחיפוש שלכם",
-    "noChannels": "אין ערוצים זמינים"
+    "noChannels": "אין ערוצים זמינים",
+    "pairCodeExpired": "תוקף הקוד פג. בקש מהטלוויזיה טלוויזיה חדשה.",
+    "signedInOnTv": "התחברתם באמצעות הטלוויזיה שלכם",
+    "pairRefused": "ריפיוזד",
+    "pairIntro": "יש לפתוח את DeHub בטלוויזיה ולהקליד את הקוד שמוצג כאן.",
+    "pairNotFound": "אף טלוויזיה לא מחכה לקוד הזה. ייתכן שפג תוקפה — בקשו מהטלוויזיה טלוויזיה חדשה.",
+    "wantsToSignIn": "רוצה להיכנס בתור",
+    "pairWarning": "אשר זאת רק אם מדובר בטלוויזיה שאתה צופה בה כרגע. אישור סימנים מי שמחזיק בקוד זה בחשבונך. הוא יוכל לצפות, לעשות לייק ולעקוב — הוא לא יכול לבזבז, ותוכלו להוציא אותו בכל עת מפגישות פעילות.",
+    "pairApprove": "כן, היכנס לטלוויזיה זו",
+    "pairDeny": "לא, לא ביקשתי את זה",
+    "pairDoneTitle": "הטלוויזיה שלך מחוברת",
+    "pairDoneBody": "החשבון שלך אמור להופיע כבר. אפשר להתנתק מתי שרוצים מהפעלות של 'הגדרות → פרטיות → פעילה '.",
+    "closePlayer": "סגור נגן",
+    "declineFailed": "לא ניתן לדחות זאת — ייתכן שפג תוקפו.",
+    "tipSentTvNotTold": "הטיפ נשלח, אבל לא ניתן היה לומר לטלוויזיה. זה יפסק.",
+    "sentAmount": "נשלח {{amount}} DHB",
+    "nothingWaiting": "אין משהו שמחכה",
+    "nothingWaitingBody": "כאשר אתה שולח טיפ מ-DeHub בטלוויזיה שלך, הוא מופיע כאן כדי שתאשר. הטלוויזיה שלך לעולם לא מחזיקה את הארנק שלך.",
+    "yourTelevision": "הטלוויזיה שלך",
+    "wantsToTip": "רוצה לשלוח טיפ · {{time}} השאיר",
+    "tipTo": "ל-{{name}}",
+    "tipForPost": "עבור “{{title}}”",
+    "reviewAndApprove": "בדוק ואשר"
   },
   "top100": {
     "title": "100 המובילים",
@@ -2044,7 +2106,8 @@
     "submitApplication": "הגש מועמדות",
     "nameEmailRequired": "נדרשים שם ואימייל",
     "applicationSuccess": "המועמדות הוגשה בהצלחה! ניצור קשר.",
-    "applicationFailed": "ההגשה נכשלה. נסה שוב."
+    "applicationFailed": "ההגשה נכשלה. נסה שוב.",
+    "namePlaceholder": "ג'יין סמית"
   },
   "dao": {
     "title": "אוצר ה-DAO",
@@ -2204,7 +2267,8 @@
     "pinnedToast": "הוצמד לראש הפוסט הזה",
     "unpinnedToast": "ההצמדה הוסרה",
     "pinFailed": "לא ניתן היה להצמיד את התגובה",
-    "kidsOnlyThread": "הפוסט הזה מיועד לילדים. רק 'מצב ילדים' יכול להגיב על זה."
+    "kidsOnlyThread": "הפוסט הזה מיועד לילדים. רק 'מצב ילדים' יכול להגיב על זה.",
+    "editFailed": "נכשל בעריכת תגובה"
   },
   "postInfo": {
     "title": "מידע על הפוסט",
@@ -3245,14 +3309,40 @@
     "comingSoon": "בקרוב",
     "signIn": "התחברות",
     "tapToGetStarted": "הקישו כדי להתחיל",
-    "soon": "בקרוב"
+    "soon": "בקרוב",
+    "glossarySubtitle": "למד מה כל אייקון ותכונה אומרים",
+    "searchGlossary": "חפש במילון מונחים...",
+    "noResultsFor": "אין תוצאות עבור \"{{query}}\"",
+    "guideSubtitle": "הדרכה שלב אחר שלב לכל תכונה",
+    "searchGuide": "חפש במדריך...",
+    "repostsTab": "פוסטים מחדש",
+    "quotesTab": "ציטוטים",
+    "noMoreReposts": "אין יותר פוסטים מחדש",
+    "noMoreQuotes": "אין יותר ציטוטים",
+    "noRepostsYet": "עדיין אין פוסטים מחדש",
+    "noQuotesYet": "עדיין אין ציטוטים"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "משחקים שרצים כאן ממש באפליקציה. אין מה להתקין, אין מה לקנות — קוד פתוח, ומוגשים מ-DeHub עצמה."
+    "intro": "משחקים שרצים כאן ממש באפליקציה. אין מה להתקין, אין מה לקנות — קוד פתוח, ומוגשים מ-DeHub עצמה.",
+    "noGameCalled": "אין משחק בשם <slug>{{slug}}</slug> בארקייד.",
+    "seeWhatIsHere": "ראה מה יש כאן",
+    "locationNotGranted": "הרשאת מיקום לא ניתנה.",
+    "signInToPlaceOnGlobe": "התחבר כדי למקם את עצמך על הגלובוס.",
+    "couldNotPlaceOnGlobe": "לא ניתן היה למקם אותך על הגלובוס.",
+    "onTheGlobe": "אתה על הגלובוס — מוצג בטווח של כ-25 ק\"מ.",
+    "couldNotReach": "לא ניתן היה להגיע לארקייד",
+    "didNotLoad": "{{title}} לא נטען",
+    "needsConnection": "המשחק מוגש מ-dehub.io והוא מורד כאשר אתה פותח אותו, לכן הוא זקוק לחיבור תקין בפעם הראשונה. בדוק את שלך ונסה שוב.",
+    "backToArcade": "חזרה לארקייד",
+    "openPrivacySettings": "פתח הגדרות פרטיות",
+    "privacyWarning": "אם אתה מחזיק בכמות גדולה של אסימונים או גר באזור לא בטוח, הסתר את התג והיתרה שלך לפני השימוש בתכונה זו. עסקאות On-chain עדיין חושפות את הכתובת שלך. פתח הגדרות.",
+    "leaveGame": "עזוב את המשחק",
+    "loadingGame": "טוען {{title}}",
+    "hideThis": "הסתר זאת"
   },
   "videoLooks": {
     "button": "מראות מצלמה",
@@ -3378,7 +3468,21 @@
     "oneTyping": "{{name}} מקליד…",
     "fewTyping": "{{names}} מקלידים…",
     "manyTyping": "{{count}} אנשים מקלידים…",
-    "attachGif": "יצירת GIF"
+    "attachGif": "יצירת GIF",
+    "thisUser": "משתמש זה",
+    "unbanConfirm": "האם אתה בטוח שברצונך לבטל את החסימה של {{name}}?",
+    "unban": "בטל חסימה",
+    "unbanFailed": "נכשל ביטול חסימת משתמש",
+    "onlineLabel": "מחובר",
+    "usersCount_one": "משתמש {{count}}",
+    "usersCount_other": "{{count}} משתמשים",
+    "totalMessages": "סה\"כ הודעות",
+    "slowMode": "מצב איטי",
+    "cooldownSeconds": "השהיה של {{seconds}} שניות",
+    "minStakeRequired": "מינימום הימור נדרש",
+    "noParticipants": "אין משתתפים עדיין",
+    "noModerators": "אין מודרטורים",
+    "noBannedUsers": "אין משתמשים חסומים"
   },
   "promptFeed": {
     "headline": "מה תרצה לראות?",
@@ -4130,7 +4234,26 @@
     "madeForKidsBlockedByMature": "לא ניתן לפרסם פוסט המסומן כבוגר גם לילדים.",
     "encoderTitle": "OBS / מקודד",
     "encoderHint": "לקבלת פרטי RTMP",
-    "markMadeForKids": "סמן כמיועד לילדים"
+    "markMadeForKids": "סמן כמיועד לילדים",
+    "queueWaiting": "ממתין…",
+    "queueUploading": "מעלה",
+    "queueProcessing": "מעבד…",
+    "queueMinting": "יוצר…",
+    "queuePosted": "פורסם",
+    "queueFailed": "נכשל",
+    "noRetriesLeft": "(לא נותרו ניסיונות חוזרים)",
+    "noUploads": "אין העלאות",
+    "uploadsAppearHere": "ההעלאות שלך יופיעו כאן",
+    "imagesTotalLimit": "תמונות בהעלאה אחת חייבות להסתכם ב -100MB או פחות",
+    "chooseDatabase": "בחר מסד נתונים מבוזר",
+    "livestreamMode": "מצב זרם חי",
+    "addThumbnail": "להוסיף תמונה ממוזערת",
+    "showCover": "הראה שנים",
+    "max60s": "מקסימום 60 שניות",
+    "confirmLivestream": "אשר זרם חי",
+    "liveFeaturesTitle": "תכונות בשידור חי",
+    "discardPostTitle": "למחוק את הפוסט?",
+    "discardPostBody": "הפוסט שלך יאבד. האם ברצונך לשמור אותו כטיוטה במקום זאת?"
   },
   "bounty": {
     "claimed": "נאסף",
@@ -4447,7 +4570,25 @@
     "allowNewDmsOff": "הפעל הודעות כדי לאפשר הודעות חדשות.",
     "perMessageFee": "עמלה לכל הודעה (DHB)",
     "perMessageFeeSub": "גבו תשלום לכל הודעה. הגדירו 0 להודעות חינם. אפשר להעניק גישה חינם למשתמשים מסוימים.",
-    "allDisabled": "כל ההודעות מושבתות כרגע. הודעות חדשות נחסמות כברירת מחדל."
+    "allDisabled": "כל ההודעות מושבתות כרגע. הודעות חדשות נחסמות כברירת מחדל.",
+    "failedToEdit": "העריכה נכשלה",
+    "messageDeleted": ". ההודעה נמחקה.",
+    "cantForwardFromDevice": "לא ניתן להעביר הודעה זו ממכשיר זה",
+    "messageForwarded": "ההודעה הועברה",
+    "clearMessages": "ניקוי הודעות",
+    "clearMessagesConfirm": "למחוק את כל ההודעות בשיחה זו? לא ניתן לבטל את הפעולה.",
+    "messagesCleared": "ההודעות נמחקו",
+    "failedToClearMessages": "מחיקת ההודעות נכשלה",
+    "removedFreeAccess": "הגישה החופשית אל {{name}} הוסרה",
+    "grantedFreeAccess": "ניתנה גישה חופשית אל {{name}}",
+    "failedToUpdateFreeAccess": "עדכון הגישה החינמית נכשל",
+    "searchComingSoon": "החיפוש יתבצע בקרוב",
+    "tapToUnblock": "יש להקיש כדי לבטל את החסימה",
+    "userFallback": "משתמש",
+    "failedToBlock": "החסימה נכשלה",
+    "failedToDeleteConversation": "מחיקת השיחה נכשלה",
+    "newDm": "הודעה ישירה חדשה",
+    "noConversationsFound": "לא נמצאו שיחות"
   },
   "editPost": {
     "mediaPermission": "נדרשת הרשאה לספריית המדיה",
@@ -4469,7 +4610,17 @@
     "retry": "ניסיון חוזר",
     "retrying": "מנסה שוב…",
     "retryQueued": "מעבד שוב",
-    "retryFailed": "לא ניתן לנסות שוב את הפוסט הזה"
+    "retryFailed": "לא ניתן לנסות שוב את הפוסט הזה",
+    "closeVideo": "סגור סרטון",
+    "rotateOrientation": "סובב כיוון",
+    "videoProgress": "התקדמות וידאו: {{percent}}%",
+    "tapToSeek": "הקש כדי לדפדף למיקום ספציפי",
+    "photoAccessToSaveImages": "אפשר גישה לספריית התמונות כדי לשמור תמונות",
+    "failedToSaveImage": "נכשל בשמירת תמונה",
+    "downloadImage": "הורד תמונה",
+    "goToImage": "עבור לתמונה {{index}}",
+    "allCaughtUp": "סיימת לצפות",
+    "checkBackForShorts": "בדוק שוב מאוחר יותר לעוד סרטונים קצרים"
   },
   "liveViewer": {
     "loadingStream": "טוען שידור...",
@@ -4479,7 +4630,22 @@
   },
   "search": {
     "endOfResults": "סוף התוצאות",
-    "searchDehub": "חפש ב-DeHub"
+    "searchDehub": "חפש ב-DeHub",
+    "tabVoice": "קול",
+    "trendingThisWeek": "פופולרי השבוע",
+    "trendingPosts": "פוסטים פופולריים",
+    "trendingImages": "תמונות פופולריות",
+    "trendingVideos": "סרטונים פופולריים",
+    "trendingVoicePosts": "פוסטים קוליים פופולריים",
+    "trendingLive": "שידור חי פופולרי",
+    "seeAll": "הצג הכל",
+    "noAccountsFound": "לא נמצאו חשבונות",
+    "tryDifferentKeywords": "נסה מילות מפתח אחרות או בדוק את האיות שלך",
+    "noContentResults": "לא נמצאו תוצאות תוכן",
+    "recentSearches": "חיפושים אחרונים",
+    "noTrendingThisWeek": "אין תוכן פופולרי השבוע",
+    "closeFilterOptions": "סגור אפשרויות סינון",
+    "openFilterOptions": "פתח אפשרויות סינון"
   },
   "notifPrompt": {
     "stayInLoop": "הישארו מעודכנים",
@@ -4729,7 +4895,26 @@
     "externalTitle": "מצב הזרמה חיצוני",
     "externalLiveHint": "הזרם שלך פעיל באמצעות תוכנה חיצונית. המצלמה המובנית באפליקציה מושבתת.",
     "externalHint": "יש לחבר את תוכנת הסטרימינג באמצעות הפרטים שבהמשך ולאחר מכן להתחיל לשדר.",
-    "useInAppCamera": "השתמש במקום זאת במצלמה בתוך האפליקציה"
+    "useInAppCamera": "השתמש במקום זאת במצלמה בתוך האפליקציה",
+    "livestreamEnded": "השידור החי הסתיים",
+    "chatEnabled": "צ'אט מופעל",
+    "chatDisabled": "צ'אט מושבת",
+    "failedToUpdateSettings": "נכשל בעדכון הגדרות",
+    "networkLostReconnecting": "אבד קשר — הזרם הופסק. מתחבר מחדש...",
+    "openingViewer": "פותח צופה...",
+    "cameraPermissionRequired": "נדרשת הרשאת מצלמה",
+    "grantPermission": "הענקת הרשאה",
+    "waitingForLivepeer": "ממתין ל - Livepeer...",
+    "waitingForExternalSource": "ממתין למקור חיצוני...",
+    "settingUpPublisher": "מגדיר מפרסם...",
+    "scheduledStream": "הזרמה מתוזמנת",
+    "scheduledAt": "{{date}} בשעה {{time}}",
+    "pressGoLiveWhenReady": "לחץ על Go Live כאשר אתה מוכן להתחיל",
+    "connectionInterrupted": "החיבור נותק",
+    "streamPausedReconnecting": "הזרם שלך מושהה. מתחבר מחדש...",
+    "streamWillEnd": "הסטרימינג יסתיים אם לא יתחבר מחדש",
+    "endStreamConfirmTitle": "לסיים את הסטרימינג?",
+    "endStreamConfirmBody": "הסגירה תסיים את השידור החי שלכם לכל הצופים. אפשר להמשיך בסטרימינג או לסיים אותו לצמיתות."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

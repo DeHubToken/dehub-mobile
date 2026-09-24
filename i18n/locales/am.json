@@ -119,7 +119,12 @@
     "music": "ሙዚቃ",
     "live": "ቀጥታ",
     "newPosts_one": "{{count}} አዲስ ልጥፍ",
-    "newPosts_other": "{{count}} አዲስ ልጥፎች"
+    "newPosts_other": "{{count}} አዲስ ልጥፎች",
+    "privateContent": "ይዘት በግል",
+    "privateContentBody": "ይህ ይዘት የመጣው ከግል አካውንት ነው። ጽሑፎቹን ለማየት ፈጣሪውን ይከተሉ።",
+    "noMoreContent": "ተጨማሪ ይዘት የለም",
+    "noPostsYet": "ምንም ጽሑፍ የለም።",
+    "pullToRefresh": "ለመጎተት ያድሱ ወይም በኋላ ይሞክሩ።"
   },
   "explore": {
     "all": "ሁሉም",
@@ -709,7 +714,19 @@
     "smsBalance": "{{dhb}} DHB ቀርቷል (${{usd}})",
     "smsBalanceMessages": "ወደ {{count}} የሚጠጉ መልዕክቶች",
     "smsTopUp": "{{dhb}} DHB ይሙሉ",
-    "smsCodeSent": "ኮድ ተልኳል። ይህ {{price}} DHB አስከፍሏል።"
+    "smsCodeSent": "ኮድ ተልኳል። ይህ {{price}} DHB አስከፍሏል።",
+    "avatarUpdateFailed": "የአቫታር ዝማኔ አልተሳካም።",
+    "coverUpdateFailed": "የሽፋን ዝማኔ አልተሳካም።",
+    "fixInvalidSocialLinks": "እባክዎ ልክ ያልሆኑ ማህበራዊ አገናኞችን ያስተካክሉ።",
+    "updateFailed": "ዝማኔ አልተሳካም።",
+    "channelUrlOrHandle": "የቻናል ዩአርኤል ወይም እጀታ",
+    "inviteLinkPlaceholder": "የግብዣ አገናኝ",
+    "profileUrlOrUsername": "የመገለጫ ዩአርኤል ወይም የተጠቃሚ ስም",
+    "yourDisplayName": "የእርስዎ ማሳያ ስም",
+    "usernameAvailable": "የተጠቃሚ ስም አለ",
+    "hideBadgeAndBalance": "ባጅ እና ቀሪ ሂሳብ ደብቅ",
+    "hideBadgeAndBalanceDesc": "የገንዘብ ዝርዝሮችን ይደብቃል እና ወደ እርስዎ መላክ እና ምክሮችን ያሰናክላል።",
+    "onChainPublicWarning": "በሰንሰለት ላይ ያሉ ግብይቶች ይፋዊ ናቸው። ቶከኖችን ወይም ምክሮችን መላክ የኪስ ቦርሳዎን አድራሻ ሊገልጥ ይችላል፣ የግል ቀሪ ሂሳብ ሁነታ ከመጀመሩ በፊት የተደረጉ ግብይቶችን ጨምሮ።"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",
@@ -759,7 +776,9 @@
     "noInternetTitle": "የበይነመረብ ግንኙነት የለም",
     "noInternetBody": "እባክዎ የበይነመረብ ግንኙነትዎን ያረጋግጡ እና እንደገና ይሞክሩ። DeHub ለመጠቀም ከበይነመረቡ ጋር መገናኘት ያስፈልግዎታል።",
     "noInternetStatus": "ከመስመር ውጭ - ምንም የአውታረ መረብ ግንኙነት የለም",
-    "noInternetHint": "Wi-Fi ወይም የሞባይል ዳታ መብራቱን ያረጋግጡ፣ ከዚያ \"{{action}}\" ን ይንኩ።"
+    "noInternetHint": "Wi-Fi ወይም የሞባይል ዳታ መብራቱን ያረጋግጡ፣ ከዚያ \"{{action}}\" ን ይንኩ።",
+    "saving": "እየተቀመጠ ነው…",
+    "offlineStatus": "ከመስመር ውጭ - ምንም የአውታረ መረብ ግንኙነት የለም"
   },
   "tip": {
     "title": "ጥቆማ ላክ",
@@ -1093,7 +1112,17 @@
     "post": "ልጥፍ",
     "officialLogo": "ይኸው ኦፊሴላዊ የDeHub ሎጎ! 🎨",
     "editedImage": "ይኸው የተስተካከለ ምስልህ!",
-    "generatedImage": "ይኸው የተመነጨ ምስልህ!"
+    "generatedImage": "ይኸው የተመነጨ ምስልህ!",
+    "toolCompleted": "{{name}} ተጠናቀቀ",
+    "aiTool": "AI መሣሪያ",
+    "cannotAnimateImage": "{{model}} የተያያዘ ምስልን ሊያንቀሳቅስ አይችልም። ሌላ የቪዲዮ ሞዴል ይምረጡ።",
+    "needsImageToAnimate": "{{model}} ለማንቀሳቀስ ምስል ይፈልጋል። አንዱን ያያይዙ ወይም ሌላ ሞዴል ይምረጡ።",
+    "couldNotReadImage": "ያንን ምስል ማንበብ አልተቻለም",
+    "logoLoadFailed": "የDeHub አርማ መጫን አልተቻለም — ያለሱ እየተፈጠረ ነው።",
+    "imageAttachedDescribe": "ምስል ተያይዟል — ያደረጓቸውን ማሻሻያዎች ይግለጹ",
+    "couldNotPreparePost": "ለማተም ማዘጋጀት አልተቻለም",
+    "generateImage": "ምስል ያመነጩ",
+    "generateVideo": "ቪዲዮ ይፍጠሩ"
   },
   "commandCentre": {
     "title": "ቁጥጥር ማዕከል",
@@ -1605,7 +1634,10 @@
     "edit": "አርትዕ",
     "deleteRequestTitle": "ይህን ጥያቄ መሰረዝ?",
     "deleteRequestDescription": "ይህ መቀልበስ አይችልም።",
-    "attachmentTooLarge": "እያንዳንዱ ፋይል ከ20MB በታች መሆን አለበት"
+    "attachmentTooLarge": "እያንዳንዱ ፋይል ከ20MB በታች መሆን አለበት",
+    "deleteCommentA11y": "አስተያየት ሰርዝ",
+    "sendCommentA11y": "አስተያየት ይላኩ",
+    "requestOptions": "የጥያቄ አማራጮች"
   },
   "auth": {
     "loginRequired": "መግባት ያስፈልጋል",
@@ -1654,7 +1686,15 @@
     "sendCodeFailedRetry": "ኮድ መላክ አልተቻለም። እባክዎ እንደገና ይሞክሩ።",
     "invalidCodeRetry": "የማይሰራ ኮድ። እባክዎ እንደገና ይሞክሩ።",
     "invalidEmailOrPassword": "የማይሰራ ኢሜል ወይም የይለፍ ቃል.",
-    "welcomeToDehub": "ወደ DeHub እንኳን በደህና መጡ"
+    "welcomeToDehub": "ወደ DeHub እንኳን በደህና መጡ",
+    "importWalletOptional": "ማስመጣት ቦርሳ (አማራጭ)",
+    "couldNotSendCodeRetry": "ኮድ መላክ አልተቻለም. እባክዎ እንደገና ይመልሱ.",
+    "exploreWithoutSignIn": "ውስጥ ሳይፈርሙ ያስሱ",
+    "continueExploring": "ማሰስዎን ይቀጥሉ",
+    "exploreWithoutSignInA11y": "DeHub ን ሳይፈርሙ ያስሱ",
+    "continueExploringA11y": "DeHub ን ማሰስዎን ይቀጥሉ",
+    "importWalletRecommended": "ማህበራዊ መግቢያዎች ይመከራሉ።",
+    "importWalletPurpose": "ይህ መሳሪያ ከDeHub.io ነባር አካውንቶችን ለማስመጣት ነው።"
   },
   "messages": {
     "smartRepliesOff": "የተጠቆሙ ምላሾች ጠፍተዋል",
@@ -1769,7 +1809,29 @@
     "reportedAutomatically": "በራስ-ሰር ተዘግቧል።",
     "loadFailed": "ቻናሎችን መጫን አልተቻለም",
     "noSearchResults": "ከፍለጋዎ ጋር የሚዛመዱ ቻናሎች የሉም",
-    "noChannels": "ምንም ቻናሎች የሉም"
+    "noChannels": "ምንም ቻናሎች የሉም",
+    "pairCodeExpired": "ያ ኮድ አብቅቷል ። ቴሌቪዥኑን አዲስ ይጠይቁ ።",
+    "signedInOnTv": "በቴሌቪዥንዎ ላይ ተፈርሟል",
+    "pairRefused": "አልተቀበለም",
+    "pairIntro": "በቴሌቪዥንዎ ላይ DeHub ን ይክፈቱ እና እዚህ የሚያሳይውን ኮድ ይተይቡ ።",
+    "pairNotFound": "ያንን ኮድ የሚጠብቅ ቴሌቪዥን የለም ። ምናልባት ጊዜው አልፏል — ቴሌቪዥኑን አዲስ ይጠይቁ ።",
+    "wantsToSignIn": "እንደ እርስዎ ለመግባት ይፈልጋል",
+    "pairWarning": "እርስዎ አሁን የሚመለከቱት ቴሌቪዥን ከሆነ ብቻ ይህንን ያፀድቁ ። ያንን ኮድ በመለያዎ ውስጥ የሚይዝ ማንኛውም ሰው ምልክቶችን ማጽደቅ ። ለመመልከት ፣ ለመምሰል እና ለመከተል ይችላል — ሊያጠፋው አይችልም ፣ እና ከግብይት ክፍለ ጊዜዎች በማንኛውም ጊዜ መፈረም ይችላሉ ።",
+    "pairApprove": "አዎ ፣ በዚህ ቲቪ ውስጥ ይግቡ",
+    "pairDeny": "አይ ፣ ይህንን አልጠየቅኩም",
+    "pairDoneTitle": "የእርስዎ ቴሌቪዥን በ ውስጥ ተፈርሟል",
+    "pairDoneBody": "መለያዎን ቀድሞውኑ ማሳየት አለበት ። ከቅንብሮች → ግላዊነት → ንቁ ክፍለ ጊዜዎች በማንኛውም ጊዜ ይፈርሙ ።",
+    "closePlayer": "አጫዋች ይዝጉ",
+    "declineFailed": "ያንን መቀነስ አልተቻለም — ቀድሞውኑ ጊዜው ያለፈበት ሊሆን ይችላል ።",
+    "tipSentTvNotTold": "ቲቪው ተልኳል ፤ ቴሌቪዥኑ ግን ሊነግረው አልቻለም ። ጊዜ ይወጣል ።",
+    "sentAmount": "{{amount}} DHB ተልኳል።",
+    "nothingWaiting": "ምንም እየጠበቀ አይደለም",
+    "nothingWaitingBody": "ከDeHub በቴሌቪዥንዎ ላይ ሲጠቁሙ፣ ለማጽደቅ እዚህ ይታያል። የእርስዎ ቲቪ የኪስ ቦርሳዎን በጭራሽ አይይዝም።",
+    "yourTelevision": "የእርስዎ ቴሌቪዥን",
+    "wantsToTip": "ጠቃሚ ምክር ለመላክ ይፈልጋል · {{time}} ቀርቷል",
+    "tipTo": "ወደ {{name}}",
+    "tipForPost": "ለ\"{{title}}\"",
+    "reviewAndApprove": "ገምግመው ያጽድቁ"
   },
   "top100": {
     "title": "ከፍተኛ 100",
@@ -2041,7 +2103,8 @@
     "submitApplication": "ማመልከቻ ያቅርቡ",
     "nameEmailRequired": "ስም እና ኢሜል ያስፈልጋሉ",
     "applicationSuccess": "ማመልከቻ በተሳካ ሁኔታ ቀረበ!",
-    "applicationFailed": "ማቅረብ አልተሳካም። እባክዎ እንደገና ይሞክሩ።"
+    "applicationFailed": "ማቅረብ አልተሳካም። እባክዎ እንደገና ይሞክሩ።",
+    "namePlaceholder": "ጄን ስሚዝ"
   },
   "dao": {
     "title": "የ DAO ግምጃ ቤት",
@@ -2231,7 +2294,8 @@
     "pinnedToast": "በዚህ ልጥፍ ላይ ተሰክቷል",
     "unpinnedToast": "ሰኩ ተወግዷል",
     "pinFailed": "ያንን አስተያየት መሰካት አልተቻለም",
-    "kidsOnlyThread": "ይህ ልጥፍ ለልጆች ነው ። በዚህ ጉዳይ ላይ አስተያየት መስጠት የሚችሉት የልጆች ሁነታ ብቻ ነው ።"
+    "kidsOnlyThread": "ይህ ልጥፍ ለልጆች ነው ። በዚህ ጉዳይ ላይ አስተያየት መስጠት የሚችሉት የልጆች ሁነታ ብቻ ነው ።",
+    "editFailed": "አስተያየት ማርትዕ አልተሳካም።"
   },
   "postInfo": {
     "title": "የልጥፍ መረጃ",
@@ -3272,14 +3336,40 @@
     "comingSoon": "በቅርቡ ይመጣል",
     "signIn": "ግባ",
     "tapToGetStarted": "ለመጀመር ይንኩ",
-    "soon": "በቅርቡ"
+    "soon": "በቅርቡ",
+    "glossarySubtitle": "እያንዳንዱ አዶ እና ባህሪ ምን ማለት እንደሆነ ይወቁ",
+    "searchGlossary": "መዝገበ ቃላትን ይፈልጉ...",
+    "noResultsFor": "ለ\"{{query}}\" ምንም ውጤቶች የሉም",
+    "guideSubtitle": "የእያንዳንዱን ባህሪ ደረጃ በደረጃ መራመጃ",
+    "searchGuide": "መመሪያውን ይፈልጉ...",
+    "repostsTab": "እንደገና መለጠፍ",
+    "quotesTab": "ጥቀሶች",
+    "noMoreReposts": "ተጨማሪ እንደገና መለጠፍ የለም",
+    "noMoreQuotes": "ተጨማሪ ጥቅሶች የለም",
+    "noRepostsYet": "ገና ምንም እንደገና መለጠፍ የለም",
+    "noQuotesYet": "ገና ምንም ጥቅሶች የለም"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "እዚሁ በመተግበሪያው ውስጥ የሚሠሩ ጨዋታዎች። የሚጫን ነገር የለም፣ የሚገዛ ነገር የለም — ክፍት ምንጭ፣ እና ከDeHub ራሱ የሚቀርብ።"
+    "intro": "እዚሁ በመተግበሪያው ውስጥ የሚሠሩ ጨዋታዎች። የሚጫን ነገር የለም፣ የሚገዛ ነገር የለም — ክፍት ምንጭ፣ እና ከDeHub ራሱ የሚቀርብ።",
+    "backToArcade": "ወደ አርኬድ ተመለስ",
+    "openPrivacySettings": "የግላዊነት ቅንብሮችን ክፈት",
+    "privacyWarning": "ብዙ ቶከኖችን ከያዙ ወይም ደህንነቱ ባልተጠበቀ አካባቢ የሚኖሩ ከሆነ፣ ይህንን ባህሪ ከመጠቀምዎ በፊት ባጅዎን እና ቀሪ ሒሳብዎን ይደብቁ። በሰንሰለት ላይ የሚደረጉ ግብይቶች አሁንም አድራሻዎን ያሳያሉ። ቅንብሮችን ክፈት።",
+    "leaveGame": "ጨዋታውን ውጣ",
+    "loadingGame": "{{title}} እየጫነ ነው",
+    "hideThis": "ይህን ደብቅ",
+    "noGameCalled": "በመዝናኛ ማዕከሉ ውስጥ <slug>{{slug}}</slug> የሚባል ጨዋታ የለም።",
+    "seeWhatIsHere": "ምን እንዳለ ይመልከቱ",
+    "locationNotGranted": "የቦታ ፈቃድ አልተሰጠም።",
+    "signInToPlaceOnGlobe": "በግሎብ ላይ እራስዎን ለማስቀመጥ ይግቡ።",
+    "couldNotPlaceOnGlobe": "በግሎብ ላይ ማስቀመጥ አልተቻለም።",
+    "onTheGlobe": "በግሎብ ላይ ነዎት — በግምት በ25 ኪሜ አካባቢ ይታያሉ።",
+    "couldNotReach": "መዝናኛ ማዕከሉን ማግኘት አልተቻለም",
+    "didNotLoad": "{{title}} አልተጫነም",
+    "needsConnection": "ጨዋታው ከ dehub.io ያገለግላል እና በሚከፍቱበት ጊዜ ይወርዳል ፣ ስለሆነም ለመጀመሪያ ጊዜ የሥራ ግንኙነት ይፈልጋል ። የእርስዎ ይመልከቱ እና እንደገና ይሞክሩ."
   },
   "videoLooks": {
     "button": "የካሜራ መልኮች",
@@ -3404,7 +3494,22 @@
     "someone": "አንድ ሰው",
     "oneTyping": "{{name}} እየጻፈ ነው…",
     "fewTyping": "{{names}} እየጻፉ ናቸው…",
-    "manyTyping": "{{count}} ሰዎች እየጻፉ ናቸው…"
+    "manyTyping": "{{count}} ሰዎች እየጻፉ ናቸው…",
+    "thisUser": "ይህ ተጠቃሚ",
+    "unbanConfirm": "{{name}}ን ከማገድዎ በፊት እርግጠኛ ነዎት?",
+    "unban": "አግድ",
+    "unbanFailed": "ተጠቃሚውን ማገድ አልተቻለም",
+    "onlineLabel": "በመስመር ላይ",
+    "usersCount_one": "{{count}} ተጠቃሚ",
+    "usersCount_other": "{{count}} ተጠቃሚዎች",
+    "totalMessages": "ጠቅላላ መልዕክቶች",
+    "slowMode": "ቀስ በቀስ ሁነታ",
+    "cooldownSeconds": "{{seconds}}ዎች መዘግየት",
+    "minStakeRequired": "አነስተኛው የውርርድ መጠን ያስፈልጋል",
+    "noParticipants": "ተሳታፊዎች የሉም",
+    "noModerators": "አስተባባሪዎች የሉም",
+    "noBannedUsers": "የተከለከሉ ተጠቃሚዎች የሉም",
+    "modBadge": "ሞድ"
   },
   "promptFeed": {
     "headline": "ምን ማየት ይፈልጋሉ?",
@@ -4156,7 +4261,26 @@
     "madeForKidsBlockedByMature": "ብሩህ ተብሎ የተሰየመ ልጥፍ ለልጆች ሊታተም አይችልም።",
     "encoderTitle": "OBS / ኢንኮደር",
     "encoderHint": "RTMP ዝርዝሮችን ያግኙ",
-    "markMadeForKids": "ለህፃናት የተሰራ ምልክት ያድርጉ"
+    "markMadeForKids": "ለህፃናት የተሰራ ምልክት ያድርጉ",
+    "queueWaiting": "በመጠበቅ ላይ…",
+    "queueUploading": "በመጫን ላይ",
+    "queueProcessing": "በማስኬድ ላይ…",
+    "queueMinting": "በመፍጠር ላይ…",
+    "queuePosted": "ተለጠፈ",
+    "queueFailed": "አልተሳካም።",
+    "noRetriesLeft": "(እንደገና የመሞከር እድል የለም)",
+    "noUploads": "ምንም ሰቀላዎች የሉም",
+    "uploadsAppearHere": "የእርስዎ ሰቀላዎች እዚህ ይታያሉ",
+    "imagesTotalLimit": "ምስሎች በአንድ ሰቀላ ከ100MB መብለጥ የለባቸውም",
+    "chooseDatabase": "የተማከለ ያልሆነ የውሂብ ጎታ ይምረጡ",
+    "livestreamMode": "የቀጥታ ስርጭት ሁነታ",
+    "addThumbnail": "ማሳያ ምስል ያክሉ",
+    "showCover": "ሽፋን አሳይ",
+    "max60s": "ከፍተኛው 60 ሰከንድ",
+    "confirmLivestream": "የቀጥታ ስርጭት ያረጋግጡ",
+    "liveFeaturesTitle": "የቀጥታ ስርጭት ባህሪያት",
+    "discardPostTitle": "መለጠፍን ይጣሉ?",
+    "discardPostBody": "መለጠፍዎ ይጠፋል። ይልቁንስ እንደ ረቂቅ ማስቀመጥ ይፈልጋሉ?"
   },
   "bounty": {
     "claimed": "ተወስዷል",
@@ -4473,7 +4597,25 @@
     "allowNewDmsOff": "አዲስ መልእክቶችን ለመፍቀድ DM ያብሩ።",
     "perMessageFee": "በአንድ መልእክት ክፍያ (DHB)",
     "perMessageFeeSub": "ለእያንዳንዱ መልእክት ክፍያ ያስከፍሉ። ለነጻ DM 0 ያድርጉ። ለተወሰኑ ተጠቃሚዎች ነጻ መዳረሻ መስጠት ይችላሉ።",
-    "allDisabled": "ሁሉም DM አሁን ጠፍተዋል። አዲስ DM በነባሪ ታግደዋል።"
+    "allDisabled": "ሁሉም DM አሁን ጠፍተዋል። አዲስ DM በነባሪ ታግደዋል።",
+    "failedToEdit": "ማረም አልተሳካም።",
+    "messageDeleted": "መልዕክት ተሰርዟል።",
+    "cantForwardFromDevice": "ይህ መልዕክት ከዚህ መሳሪያ ሊተላለፍ አይችልም።",
+    "messageForwarded": "መልዕክት ተላልፏል።",
+    "clearMessages": "መልዕክቶችን አጽዳ",
+    "clearMessagesConfirm": "በዚህ ውይይት ውስጥ ያሉትን ሁሉንም መልዕክቶች ይሰርዛሉ? ይህ ሊቀለበስ አይችልም።",
+    "messagesCleared": "መልዕክቶች ተጠርገዋል።",
+    "failedToClearMessages": "መልዕክቶችን ማጽዳት አልተሳካም።",
+    "removedFreeAccess": "ለ {{name}} ነፃ መዳረሻ ተወግዷል",
+    "grantedFreeAccess": "ለ {{name}} ነፃ መዳረሻ ተሰጥቷል",
+    "failedToUpdateFreeAccess": "የነፃ መዳረሻ ማዘመን አልተሳካም።",
+    "searchComingSoon": "ፍለጋ በቅርቡ ይመጣል",
+    "tapToUnblock": "ማገድን ለመንካት",
+    "userFallback": "ተጠቃሚ",
+    "failedToBlock": "ማገድ አልተሳካም።",
+    "failedToDeleteConversation": "ውይይት መሰረዝ አልተሳካም።",
+    "newDm": "አዲስ ቀጥታ መልዕክት",
+    "noConversationsFound": "ውይይቶች አልተገኙም።"
   },
   "editPost": {
     "mediaPermission": "የሚዲያ ቤተ-መጻሕፍት ፈቃድ ያስፈልጋል",
@@ -4495,7 +4637,17 @@
     "retry": "እንደገና ሞክር",
     "retrying": "ወደ ኋላ መመለስ...",
     "retryQueued": "እንደገና ማቀነባበር",
-    "retryFailed": "ያንን ልጥፍ መመለስ አልተቻለም"
+    "retryFailed": "ያንን ልጥፍ መመለስ አልተቻለም",
+    "closeVideo": "ቪዲዮ ዝጋ",
+    "rotateOrientation": "አቅጣጫ አሽከርክር",
+    "videoProgress": "የቪዲዮ እድገት፡ {{percent}}%",
+    "tapToSeek": "ወደ አንድ የተወሰነ ቦታ ለመሄድ ይንኩ።",
+    "photoAccessToSaveImages": "ፎቶዎችን ለማስቀመጥ የፎቶ ቤተ-መጽሐፍት መዳረሻ ይፍቀዱ።",
+    "failedToSaveImage": "ፎቶ ማስቀመጥ አልተቻለም።",
+    "downloadImage": "ፎቶ አውርድ",
+    "goToImage": "ወደ ፎቶ {{index}} ሂድ",
+    "allCaughtUp": "ሁሉንም ተመልክተዋል",
+    "checkBackForShorts": "ለተጨማሪ አጫጭር ቪዲዮዎች ቆይተው ይመልከቱ።"
   },
   "liveViewer": {
     "loadingStream": "ስርጭቱ እየተጫነ ነው...",
@@ -4505,7 +4657,22 @@
   },
   "search": {
     "endOfResults": "የውጤቶቹ መጨረሻ",
-    "searchDehub": "DeHub ይፈልጉ"
+    "searchDehub": "DeHub ይፈልጉ",
+    "tabVoice": "ድምጽ",
+    "trendingThisWeek": "በዚህ ሳምንት ተወዳጅ",
+    "trendingPosts": "ተወዳጅ ልጥፎች",
+    "trendingImages": "ተወዳጅ ምስሎች",
+    "trendingVideos": "ተወዳጅ ቪዲዮዎች",
+    "trendingVoicePosts": "ተወዳጅ የድምጽ ልጥፎች",
+    "trendingLive": "ተወዳጅ የቀጥታ ስርጭት",
+    "seeAll": "ሁሉንም ይመልከቱ",
+    "noAccountsFound": "መለያዎች አልተገኙም።",
+    "tryDifferentKeywords": "የተለያዩ ቃላትን ይሞክሩ ወይም የፊደል አጻጻፍዎን ያረጋግጡ።",
+    "noContentResults": "የይዘት ውጤቶች የሉም",
+    "recentSearches": "የቅርብ ጊዜ ፍለጋዎች",
+    "noTrendingThisWeek": "በዚህ ሳምንት ምንም ተወዳጅ ይዘት የለም።",
+    "closeFilterOptions": "የማጣሪያ አማራጮችን ዝጋ",
+    "openFilterOptions": "የማጣሪያ አማራጮችን ክፈት"
   },
   "notifPrompt": {
     "stayInLoop": "መረጃ ይከታተሉ",
@@ -4754,7 +4921,25 @@
     "externalTitle": "ውጫዊ ዥረት ሁነታ",
     "externalLiveHint": "የእርስዎ ዥረት ውጫዊ ሶፍትዌር በኩል በቀጥታ ነው. የውስጠ-መተግበሪያ ካሜራ ተሰናክሏል.",
     "externalHint": "ከዚህ በታች ያሉትን ዝርዝሮች በመጠቀም የዥረት ሶፍትዌርዎን ያገናኙ ፣ ከዚያ ስርጭትን ይጀምሩ ።",
-    "useInAppCamera": "ይልቅ የውስጠ-መተግበሪያ ካሜራ ይጠቀሙ"
+    "useInAppCamera": "ይልቅ የውስጠ-መተግበሪያ ካሜራ ይጠቀሙ",
+    "livestreamEnded": "የቀጥታ ስርጭት ተጠናቀቀ።",
+    "chatEnabled": "ውይይት ነቅቷል።",
+    "chatDisabled": "ውይይት ተሰናክሏል።",
+    "failedToUpdateSettings": "ቅንብሮችን ማዘመን አልተቻለም።",
+    "networkLostReconnecting": "አውታረ መረብ ጠፋ — ዥረት ለአፍታ ቆሟል። እንደገና እየተገናኘ ነው…",
+    "openingViewer": "ተመልካቹን በመክፈት ላይ...",
+    "cameraPermissionRequired": "የካሜራ ፈቃድ ያስፈልጋል።",
+    "grantPermission": "የስጦታ ፈቃድ",
+    "waitingForLivepeer": "የቀጥታ ስርጭት በመጠባበቅ ላይ...",
+    "waitingForExternalSource": "የውጭ ምንጮችን በመጠባበቅ ላይ...",
+    "settingUpPublisher": "አሳታሚዎችን ማዋቀር...",
+    "scheduledStream": "የጊዜ ሰሌዳ ዥረት",
+    "pressGoLiveWhenReady": "ለመጀመር ዝግጁ በሚሆንበት ጊዜ በቀጥታ ይሂዱ",
+    "connectionInterrupted": "ግንኙነት ተቋርጧል",
+    "streamPausedReconnecting": "የእርስዎ ዥረት ታግዷል. Reconnecting...",
+    "streamWillEnd": "ዥረት እንደገና ካልተገናኘ ያበቃል",
+    "endStreamConfirmTitle": "መጨረሻ ዥረት?",
+    "endStreamConfirmBody": "አሁን መዝጋት ለሁሉም ተመልካቾች የቀጥታ ዥረትዎን ያበቃል ። ዥረት መቀጠል ወይም በቋሚነት ማቆም ይችላሉ."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -119,7 +119,12 @@
     "music": "音楽",
     "live": "ライブ",
     "newPosts_one": "新着投稿 {{count}} 件",
-    "newPosts_other": "新着投稿 {{count}} 件"
+    "newPosts_other": "新着投稿 {{count}} 件",
+    "privateContent": "プライベートコンテンツ",
+    "privateContentBody": "このコンテンツはプライベートアカウントからのものです。投稿を表示するにはクリエイターをフォローしてください。",
+    "noMoreContent": "これ以上のコンテンツはありません",
+    "noPostsYet": "投稿はありません。",
+    "pullToRefresh": "プルして更新するか、後でもう一度お試しください。"
   },
   "explore": {
     "all": "すべて",
@@ -709,7 +714,19 @@
     "chainIdLabel": "チェーンID: {{id}}",
     "exportPkConfirmPhrase": "理解しました",
     "exportPkCopy": "秘密鍵をコピー",
-    "e2eAutomatic": "自動"
+    "e2eAutomatic": "自動",
+    "avatarUpdateFailed": "アバターの更新に失敗しました",
+    "coverUpdateFailed": "カバーの更新に失敗しました",
+    "fixInvalidSocialLinks": "無効なソーシャルリンクを修正してください",
+    "updateFailed": "更新に失敗しました",
+    "channelUrlOrHandle": "チャンネルURLまたはハンドル",
+    "inviteLinkPlaceholder": "招待リンク",
+    "profileUrlOrUsername": "プロフィールURLまたはユーザー名",
+    "yourDisplayName": "表示名",
+    "usernameAvailable": "ユーザー名は利用可能です",
+    "hideBadgeAndBalance": "バッジと残高を非表示にする",
+    "hideBadgeAndBalanceDesc": "財務情報が非表示になり、あなたへの送信とヒントが無効になります。",
+    "onChainPublicWarning": "オンチェーントランザクションは公開されます。トークンまたはヒントを送信すると、プライベート残高モードが有効になる前に作成されたトランザクションを含め、ウォレットアドレスが公開される可能性があります。"
   },
   "common": {
     "mute": "ミュート",
@@ -759,7 +776,9 @@
     "noInternetTitle": "インターネット接続がありません",
     "noInternetBody": "インターネット接続を確認して、もう一度お試しください。DeHubを使用するにはインターネットに接続する必要があります。",
     "noInternetStatus": "オフライン - ネットワーク接続がありません",
-    "noInternetHint": "Wi-Fiまたはモバイルデータ通信がオンになっていることを確認してから、「{{action}}」をタップしてください。"
+    "noInternetHint": "Wi-Fiまたはモバイルデータ通信がオンになっていることを確認してから、「{{action}}」をタップしてください。",
+    "saving": "保存中…",
+    "offlineStatus": "オフライン - ネットワーク接続がありません"
   },
   "tip": {
     "title": "チップを送る",
@@ -1093,7 +1112,17 @@
     "post": "投稿",
     "officialLogo": "DeHubの公式ロゴです！🎨",
     "editedImage": "編集された画像です！",
-    "generatedImage": "生成された画像です！"
+    "generatedImage": "生成された画像です！",
+    "toolCompleted": "{{name}} が完了しました",
+    "aiTool": "AIツール",
+    "cannotAnimateImage": "{{model}} は添付画像をアニメーション化できません。別のビデオモデルを選択してください。",
+    "needsImageToAnimate": "{{model}} はアニメーション化する画像が必要です。画像を添付するか、別のモデルを選択してください。",
+    "couldNotReadImage": "画像を読み取れませんでした",
+    "logoLoadFailed": "DeHubロゴを読み込めませんでした — ロゴなしで生成します",
+    "imageAttachedDescribe": "画像が添付されました — 編集内容を説明してください",
+    "couldNotPreparePost": "投稿の準備ができませんでした",
+    "generateImage": "画像の再生成",
+    "generateVideo": "ビデオを生成"
   },
   "commandCentre": {
     "title": "コマンドセンター",
@@ -1604,7 +1633,10 @@
     "edit": "編集",
     "deleteRequestTitle": "このリクエストを削除しますか？",
     "deleteRequestDescription": "これは取り消せません。",
-    "attachmentTooLarge": "1ファイルあたり 20MB 未満にしてください"
+    "attachmentTooLarge": "1ファイルあたり 20MB 未満にしてください",
+    "deleteCommentA11y": "コメントの削除",
+    "sendCommentA11y": "コメントを送信",
+    "requestOptions": "リクエストオプション"
   },
   "auth": {
     "loginRequired": "ログインが必要です",
@@ -1653,7 +1685,15 @@
     "sendCodeFailedRetry": "コードを送信できませんでした。もう一度お試しください。",
     "invalidCodeRetry": "コードが無効です。もう一度お試しください。",
     "invalidEmailOrPassword": "メールアドレスまたはパスワードが無効です。",
-    "welcomeToDehub": "DeHubへようこそ"
+    "welcomeToDehub": "DeHubへようこそ",
+    "importWalletOptional": "ウォレットをインポート（オプション）",
+    "couldNotSendCodeRetry": "コードを送信できませんでした。もう一度お試しください。",
+    "exploreWithoutSignIn": "サインインせずに探索する",
+    "continueExploring": "検索を続ける",
+    "exploreWithoutSignInA11y": "サインインせずにDeHubを探索する",
+    "continueExploringA11y": "DeHubの探索を続ける",
+    "importWalletRecommended": "ソーシャルログインをお勧めします。",
+    "importWalletPurpose": "このツールは、DeHub.ioから既存のアカウントをインポートするためのものです。"
   },
   "messages": {
     "smartRepliesOff": "返信の候補をオフにしました",
@@ -1768,7 +1808,29 @@
     "reportedAutomatically": "自動的に報告されました。",
     "loadFailed": "チャンネルを読み込めませんでした",
     "noSearchResults": "検索に一致するチャンネルはありません",
-    "noChannels": "利用できるチャンネルがありません"
+    "noChannels": "利用できるチャンネルがありません",
+    "pairCodeExpired": "コードの有効期限が切れています。テレビに新しいのを頼んでください。",
+    "signedInOnTv": "テレビにサインインしました",
+    "pairRefused": "拒否",
+    "pairIntro": "テレビでDeHubを開き、ここに表示されるコードを入力します。",
+    "pairNotFound": "そのコードを待っているテレビはありません。有効期限が切れている可能性があります。テレビに新しいものを依頼してください。",
+    "wantsToSignIn": "さんがあなたとしてサインインを希望しています",
+    "pairWarning": "今見ているテレビである場合にのみ、これを承認してください。そのコードをアカウントに保持している人が誰であるかを承認します。視聴、いいね、フォローすることができます。使用することはできません。アクティブなセッションからいつでもサインアウトできます。",
+    "pairApprove": "はい、このテレビにサインインします",
+    "pairDeny": "いいえ、頼んだわけではありません",
+    "pairDoneTitle": "テレビがサインインしています",
+    "pairDoneBody": "すでにアカウントが表示されているはずです。[設定] [→プライバシー] [→アクティブなセッション]からいつでもサインアウトできます。",
+    "closePlayer": "プレーヤーを閉じる",
+    "declineFailed": "これを却下できませんでした。すでに有効期限が切れている可能性があります。",
+    "tipSentTvNotTold": "チップが送信されましたが、テレビに伝えることができませんでした。時間切れになります。",
+    "sentAmount": "DHBを{{amount}}件送信しました",
+    "nothingWaiting": "保留中のものはありません",
+    "nothingWaitingBody": "テレビでDeHubからチップを送信すると、承認のためにここに表示されます。テレビがウォレットを保持することはありません。",
+    "yourTelevision": "あなたのテレビ",
+    "wantsToTip": "チップを送信したい · {{time}}さんが",
+    "tipTo": "{{name}}へ",
+    "tipForPost": "「{{title}}」のために",
+    "reviewAndApprove": "レビューして承認する"
   },
   "top100": {
     "title": "トップ 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "応募を送信",
     "nameEmailRequired": "名前とメールアドレスは必須です",
     "applicationSuccess": "応募が正常に送信されました！ご連絡いたします。",
-    "applicationFailed": "送信に失敗しました。もう一度お試しください。"
+    "applicationFailed": "送信に失敗しました。もう一度お試しください。",
+    "namePlaceholder": "ジェーン・スミス"
   },
   "dao": {
     "title": "DAOトレジャリー",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "この投稿の一番上に固定しました",
     "unpinnedToast": "固定を解除しました",
     "pinFailed": "そのコメントを固定できませんでした",
-    "kidsOnlyThread": "この投稿はお子様向けです。キッズモードのみがコメントできます。"
+    "kidsOnlyThread": "この投稿はお子様向けです。キッズモードのみがコメントできます。",
+    "editFailed": "コメントの編集に失敗しました"
   },
   "postInfo": {
     "title": "投稿情報",
@@ -3243,14 +3307,40 @@
     "comingSoon": "近日公開",
     "signIn": "サインイン",
     "tapToGetStarted": "タップして開始",
-    "soon": "近日"
+    "soon": "近日",
+    "glossarySubtitle": "すべてのアイコンと機能の意味を学ぶ",
+    "searchGlossary": "用語集を検索...",
+    "noResultsFor": "「{{query}}」の結果はありません",
+    "guideSubtitle": "すべての機能のステップバイステップガイド",
+    "searchGuide": "ガイドを検索...",
+    "repostsTab": "再投稿",
+    "quotesTab": "引用",
+    "noMoreReposts": "再投稿はもうありません",
+    "noMoreQuotes": "引用はもうありません",
+    "noRepostsYet": "まだ再投稿はありません",
+    "noQuotesYet": "まだ引用はありません"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "アプリ内でそのまま動くゲーム。インストールも購入も不要 — オープンソースで、DeHub 自身から配信しています。"
+    "intro": "アプリ内でそのまま動くゲーム。インストールも購入も不要 — オープンソースで、DeHub 自身から配信しています。",
+    "noGameCalled": "アーケードに「<slug>{{slug}}</slug>」というゲームはありません。",
+    "seeWhatIsHere": "こちらをご覧ください",
+    "locationNotGranted": "位置情報へのアクセス許可が得られませんでした。",
+    "signInToPlaceOnGlobe": "サインインしてグローブ上に表示してください。",
+    "couldNotPlaceOnGlobe": "グローブ上に表示できませんでした。",
+    "onTheGlobe": "グローブ上に表示されています — 約25kmの範囲で表示されます。",
+    "couldNotReach": "アーケードに接続できませんでした",
+    "didNotLoad": "{{title}}を読み込めませんでした",
+    "needsConnection": "ゲームはdehub.ioから提供され、開いたときにダウンロードされるため、初回は正常な接続が必要です。接続を確認して、もう一度お試しください。",
+    "backToArcade": "アーケードに戻る",
+    "openPrivacySettings": "プライバシー設定を開く",
+    "privacyWarning": "大量のトークンを保有している場合や、安全でない地域にお住まいの場合は、この機能を使用する前にバッジと残高を非表示にしてください。オンチェーン取引では、引き続きアドレスが公開されます。設定を開く。",
+    "leaveGame": "ゲームを終了",
+    "loadingGame": "{{title}} を読み込み中",
+    "hideThis": "これを非表示にする"
   },
   "videoLooks": {
     "button": "カメラエフェクト",
@@ -3424,7 +3514,21 @@
     "someone": "誰か",
     "oneTyping": "{{name}} が入力中…",
     "fewTyping": "{{names}} が入力中…",
-    "manyTyping": "{{count}} 人が入力中…"
+    "manyTyping": "{{count}} 人が入力中…",
+    "thisUser": "このユーザー",
+    "unbanConfirm": "{{name}} の禁止を解除しますか？",
+    "unban": "禁止解除",
+    "unbanFailed": "ユーザーの禁止解除に失敗しました",
+    "onlineLabel": "オンライン",
+    "usersCount_one": "{{count}} ユーザー",
+    "usersCount_other": "{{count}} ユーザー",
+    "totalMessages": "合計メッセージ数",
+    "slowMode": "スローモード",
+    "cooldownSeconds": "{{seconds}} 秒クールダウン",
+    "minStakeRequired": "最低ステーク額",
+    "noParticipants": "参加者はいません",
+    "noModerators": "モデレーターはいません",
+    "noBannedUsers": "禁止ユーザーはいません"
   },
   "promptFeed": {
     "headline": "何を見たいですか？",
@@ -4175,7 +4279,26 @@
     "madeForKidsOffDesc": "このポストを子ども向けモードを使用して子どもたちに表示し、通常のフィードから削除します。",
     "madeForKidsBlockedByMature": "成人とマークされた投稿は、お子様にも公開できません。",
     "encoderTitle": "OBS / エンコーダー",
-    "encoderHint": "RTMPの詳細を取得"
+    "encoderHint": "RTMPの詳細を取得",
+    "queueWaiting": "待機中…",
+    "queueUploading": "アップロード中",
+    "queueProcessing": "処理中…",
+    "queueMinting": "ミント中…",
+    "queuePosted": "投稿済み",
+    "queueFailed": "失敗しました",
+    "noRetriesLeft": "（リトライ回数なし）",
+    "noUploads": "アップロードなし",
+    "uploadsAppearHere": "アップロードはここに表示されます",
+    "imagesTotalLimit": "アップロードする画像は合計100MB以下にしてください",
+    "chooseDatabase": "分散型データベースを選択",
+    "livestreamMode": "ライブストリームモード",
+    "addThumbnail": "サムネイルを追加",
+    "showCover": "カバーを表示",
+    "max60s": "最大60秒",
+    "confirmLivestream": "ライブストリームを確定",
+    "liveFeaturesTitle": "ライブ機能",
+    "discardPostTitle": "投稿を破棄しますか？",
+    "discardPostBody": "投稿は失われます。代わりに下書きとして保存しますか？"
   },
   "bounty": {
     "claimed": "受け取り済み",
@@ -4492,7 +4615,25 @@
     "allowNewDmsOff": "新しいメッセージを受け取るには DM をオンにしてください。",
     "perMessageFee": "メッセージごとの料金 (DHB)",
     "perMessageFeeSub": "メッセージごとに課金します。無料にするには 0 にしてください。特定のユーザーには無料アクセスを付与できます。",
-    "allDisabled": "現在すべての DM が無効です。新しい DM は既定でブロックされます。"
+    "allDisabled": "現在すべての DM が無効です。新しい DM は既定でブロックされます。",
+    "failedToEdit": "編集に失敗しました",
+    "messageDeleted": "メッセージを削除しました",
+    "cantForwardFromDevice": "このデバイスからこのメッセージを転送することはできません",
+    "messageForwarded": "メッセージを転送しました",
+    "clearMessages": "メッセージをクリア",
+    "clearMessagesConfirm": "この会話のすべてのメッセージを削除しますか？元に戻すことはできません。",
+    "messagesCleared": "メッセージをクリアしました",
+    "failedToClearMessages": "メッセージのクリアに失敗しました",
+    "removedFreeAccess": "{{name}} の無料アクセスを削除しました",
+    "grantedFreeAccess": "{{name}} に無料アクセスを付与しました",
+    "failedToUpdateFreeAccess": "無料アクセスの更新に失敗しました",
+    "searchComingSoon": "検索機能は近日公開",
+    "tapToUnblock": "タップしてブロック解除",
+    "userFallback": "ユーザー",
+    "failedToBlock": "ブロックに失敗しました",
+    "failedToDeleteConversation": "会話の削除に失敗しました",
+    "newDm": "新しいダイレクトメッセージ",
+    "noConversationsFound": "会話が見つかりませんでした"
   },
   "editPost": {
     "mediaPermission": "メディアライブラリへのアクセス許可が必要です",
@@ -4514,7 +4655,17 @@
     "retry": "もう一度お試しください",
     "retrying": "再試行しています…",
     "retryQueued": "再度処理しています",
-    "retryFailed": "その投稿を再試行できませんでした"
+    "retryFailed": "その投稿を再試行できませんでした",
+    "closeVideo": "ビデオを閉じる",
+    "rotateOrientation": "画面の向きを回転",
+    "videoProgress": "動画の進捗: {{percent}}%",
+    "tapToSeek": "タップして特定の位置にシークします",
+    "photoAccessToSaveImages": "画像を保存するには、フォトライブラリへのアクセスを許可してください",
+    "failedToSaveImage": "画像の保存に失敗しました",
+    "downloadImage": "画像をダウンロード",
+    "goToImage": "画像 {{index}} に移動",
+    "allCaughtUp": "すべて表示しました",
+    "checkBackForShorts": "後でもう一度確認してください"
   },
   "liveViewer": {
     "loadingStream": "配信を読み込み中…",
@@ -4524,7 +4675,22 @@
   },
   "search": {
     "endOfResults": "結果はここまで",
-    "searchDehub": "DeHub を検索"
+    "searchDehub": "DeHub を検索",
+    "tabVoice": "ボイス",
+    "trendingThisWeek": "今週の人気",
+    "trendingPosts": "人気の投稿",
+    "trendingImages": "人気の画像",
+    "trendingVideos": "人気の動画",
+    "trendingVoicePosts": "人気のボイス投稿",
+    "trendingLive": "人気のライブ",
+    "seeAll": "すべて表示",
+    "noAccountsFound": "アカウントが見つかりませんでした",
+    "tryDifferentKeywords": "別のキーワードを試すか、スペルを確認してください",
+    "noContentResults": "コンテンツが見つかりませんでした",
+    "recentSearches": "最近の検索",
+    "noTrendingThisWeek": "今週の人気コンテンツはありません",
+    "closeFilterOptions": "フィルターオプションを閉じる",
+    "openFilterOptions": "フィルターオプションを開く"
   },
   "notifPrompt": {
     "stayInLoop": "最新情報を受け取る",
@@ -4774,7 +4940,26 @@
     "externalTitle": "外部ストリーミングモード",
     "externalLiveHint": "ストリームは外部ソフトウェアを介してライブ配信されます。 アプリ内カメラが無効になっています。",
     "externalHint": "以下の詳細を使用してストリーミングソフトウェアを接続し、ブロードキャストを開始します。",
-    "useInAppCamera": "代わりにアプリ内カメラを使用する"
+    "useInAppCamera": "代わりにアプリ内カメラを使用する",
+    "livestreamEnded": "ライブ配信が終了しました",
+    "chatEnabled": "チャットを有効にしました",
+    "chatDisabled": "チャットを無効にしました",
+    "failedToUpdateSettings": "設定の更新に失敗しました",
+    "networkLostReconnecting": "ネットワーク接続が失われました — ストリームが一時停止しました。再接続中…",
+    "openingViewer": "ビューアーを開いています...",
+    "cameraPermissionRequired": "カメラの許可が必要です",
+    "grantPermission": "権限を付与する",
+    "waitingForLivepeer": "Livepeerを待っています...",
+    "waitingForExternalSource": "外部ソースを待っています...",
+    "settingUpPublisher": "パブリッシャーを設定しています...",
+    "scheduledStream": "スケジュールされたストリーム",
+    "scheduledAt": "{{time}}の{{date}}",
+    "pressGoLiveWhenReady": "開始する準備ができたら、[Go Live]を押します",
+    "connectionInterrupted": "接続が中断されました",
+    "streamPausedReconnecting": "ストリームが一時停止しています。再接続しています...",
+    "streamWillEnd": "再接続されていない場合、ストリームは終了します",
+    "endStreamConfirmTitle": "ストリームを終了しますか？",
+    "endStreamConfirmBody": "今閉じると、すべての視聴者のライブストリームが終了します。 ストリーミングを続行するか、完全に終了することができます。"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

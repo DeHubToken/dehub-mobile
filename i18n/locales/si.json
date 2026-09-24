@@ -119,7 +119,12 @@
     "music": "සංගීතය",
     "live": "සජීවී",
     "newPosts_one": "නව පළ කිරීම් {{count}}",
-    "newPosts_other": "නව පළ කිරීම් {{count}}"
+    "newPosts_other": "නව පළ කිරීම් {{count}}",
+    "privateContent": "පුද්ගලික අන්තර්ගතය",
+    "privateContentBody": "මෙම අන්තර්ගතය පුද්ගලික ගිණුමකින්. ඔවුන්ගේ පළ කිරීම් බැලීමට නිර්මාපකයා අනුගමනය කරන්න.",
+    "noMoreContent": "තවත් අන්තර්ගතයක් නැත",
+    "noPostsYet": "තව පළ කිරීම් නැත.",
+    "pullToRefresh": "යාවත්කාලීන කිරීමට අදින්න හෝ පසුව නැවත උත්සාහ කරන්න."
   },
   "explore": {
     "all": "සියල්ල",
@@ -709,7 +714,19 @@
     "smsNeedDhb": "පණිවිඩ දැනුම්දීම් අගුළු හැරීමට ඔබට {{dhb}} DHB අවශ්‍ය වේ.",
     "smsBalance": "{{dhb}} DHB ඉතිරිව ඇත (${{usd}})",
     "smsBalanceMessages": "තවත් {{count}} පණිවිඩ පමණ",
-    "smsCodeLabel": "අපි {{phone}} වෙත යැවූ කේතය"
+    "smsCodeLabel": "අපි {{phone}} වෙත යැවූ කේතය",
+    "avatarUpdateFailed": "අවතාර් යාවත්කාලීන කිරීම අසාර්ථක විය",
+    "coverUpdateFailed": "ආවරණ යාවත්කාලීන කිරීම අසාර්ථක විය",
+    "fixInvalidSocialLinks": "කරුණාකර අinvalid සමාජ සබැඳි නිවැරදි කරන්න",
+    "updateFailed": "යාවත්කාලීන කිරීම අසාර්ථක විය",
+    "channelUrlOrHandle": "චැනල් URL හෝ හසුරුව",
+    "inviteLinkPlaceholder": "ආරාධනා සබැඳිය",
+    "profileUrlOrUsername": "පතික URL හෝ පරිශීලක නාමය",
+    "yourDisplayName": "ඔබේ සංදර්ශක නාමය",
+    "usernameAvailable": "පරිශීලක නාමය තිබේ",
+    "hideBadgeAndBalance": "බැජ් සහ ශේෂය සඟවන්න",
+    "hideBadgeAndBalanceDesc": "මූල්‍ය විස්තර සඟවන අතර ඔබට යැවීම් සහ ඉඟි අබල කරයි.",
+    "onChainPublicWarning": "On-chain ගනුදෙනු පොදු වේ. ටෝකන යැවීම හෝ ඉඟි කිරීම ඔබේ පසුම්බි ලිපිනය හෙළි කළ හැකිය, පුද්ගලික ශේෂ මාදිවිය සක්‍රිය කිරීමට පෙර කරන ලද ගනුදෙනු ඇතුළුව."
   },
   "common": {
     "mute": "නිහඬ කරන්න",
@@ -759,7 +776,9 @@
     "noInternetTitle": "අන්තර්ජාල සම්බන්ධතාවක් නැත",
     "noInternetBody": "කරුණාකර ඔබේ අන්තර්ජාල සම්බන්ධතාව පරීක්ෂා කර නැවත උත්සාහ කරන්න. DeHub භාවිතා කිරීමට ඔබට අන්තර්ජාලයට සම්බන්ධ වීමට අවශ්‍ය වේ.",
     "noInternetStatus": "නොබැඳි - ජාල සම්බන්ධතාවක් නැත",
-    "noInternetHint": "Wi-Fi හෝ ජංගම දත්ත ක්‍රියාත්මක කර ඇති බවට වග බලා ගන්න, ඉන්පසු \"{{action}}\" තට්ටු කරන්න"
+    "noInternetHint": "Wi-Fi හෝ ජංගම දත්ත ක්‍රියාත්මක කර ඇති බවට වග බලා ගන්න, ඉන්පසු \"{{action}}\" තට්ටු කරන්න",
+    "saving": "සුරැකීම…",
+    "offlineStatus": "ඔෆ්ලයින් - ජාල සම්බන්ධතාවයක් නැත"
   },
   "tip": {
     "title": "ටිප් එවන්න",
@@ -1093,7 +1112,17 @@
     "post": "පළකිරීම",
     "officialLogo": "Here's the official DeHub logo! 🎨",
     "editedImage": "Here's your edited image!",
-    "generatedImage": "Here's your generated image!"
+    "generatedImage": "Here's your generated image!",
+    "toolCompleted": "{{name}} සම්පූර්ණ විය",
+    "aiTool": "AI මෙවලම",
+    "cannotAnimateImage": "{{model}} අමුණා ඇති රූපයක් සජීවිකරණය කළ නොහැක. වෙනත් වීඩියෝ ආකෘතියක් තෝරන්න.",
+    "needsImageToAnimate": "{{model}} සජීවිකරණය කිරීමට රූපයක් අවශ්‍ය වේ. එකක් අමුණන්න හෝ වෙනත් ආකෘතියක් තෝරන්න.",
+    "couldNotReadImage": "එම රූපය කියවීමට නොහැකි විය",
+    "logoLoadFailed": "DeHub ලාංඡනය පූරණය කිරීමට නොහැකි විය — එය නොමැතිව ජනනය වෙමින් පවතී",
+    "imageAttachedDescribe": "රූපය අමුණා ඇත — ඔබේ සංස්කරණ විස්තර කරන්න",
+    "couldNotPreparePost": "පළ කිරීම සඳහා එය සකස් කිරීමට නොහැකි විය",
+    "generateImage": "රූපය සාදන්න",
+    "generateVideo": "වීඩියෝවක් සාදන්න"
   },
   "commandCentre": {
     "title": "විධාන මධ්‍යස්ථානය",
@@ -1618,7 +1647,10 @@
     "edit": "සංස්කරණය",
     "deleteRequestTitle": "මෙම ඉල්ලීම මකන්නද?",
     "deleteRequestDescription": "මෙය ආපසු හැරවිය නොහැක.",
-    "attachmentTooLarge": "එක් ගොනුවක් 20MB ට අඩු විය යුතුය"
+    "attachmentTooLarge": "එක් ගොනුවක් 20MB ට අඩු විය යුතුය",
+    "deleteCommentA11y": "අදහස මකන්න",
+    "sendCommentA11y": "පණිවිඩයක් යවන්න",
+    "requestOptions": "විකල්ප ඉල්ලන්න"
   },
   "auth": {
     "loginRequired": "පිවිසීම අවශ්‍යයි",
@@ -1667,7 +1699,15 @@
     "sendCodeFailedRetry": "කේතය යැවීමට නොහැකි විය. කරුණාකර නැවත උත්සාහ කරන්න.",
     "invalidCodeRetry": "කේතය වැරදියි. කරුණාකර නැවත උත්සාහ කරන්න.",
     "invalidEmailOrPassword": "වැරදි ඊමේල් හෝ මුරපදය.",
-    "welcomeToDehub": "DeHub වෙත සාදරයෙන් පිළිගනිමු"
+    "welcomeToDehub": "DeHub වෙත සාදරයෙන් පිළිගනිමු",
+    "importWalletOptional": "පසුම්බිය ආයාත කරන්න (අත් ‍ යවශ් ‍ ය නොවේ)",
+    "couldNotSendCodeRetry": "කේතය යැවීමට නොහැකි විය. කරුණාකර නැවත උත්සාහ කරන්න.",
+    "exploreWithoutSignIn": "නිවසින් බැහැර නොයා Uber Eats සමඟින් ආහාර සොයන්න.",
+    "continueExploring": "දිගටම ගවේෂණය කරන්න",
+    "exploreWithoutSignInA11y": "පිවිසුමක් නොමැතිව DeHub ගවේෂණය කරන්න",
+    "continueExploringA11y": "DeHub ගවේෂණය කිරීම දිගටම කරගෙන යන්න",
+    "importWalletRecommended": "DeHub.io වෙතින් පවතින ගිණුම් ආනයනය කිරීමට මෙම මෙවලම භාවිතා කරයි.",
+    "importWalletPurpose": "සමාජ පිවිසුම් නිර්දේශ කෙරේ."
   },
   "messages": {
     "smartRepliesOff": "යෝජිත පිළිතුරු අක්‍රිය කෙරිණි",
@@ -1782,7 +1822,29 @@
     "reportedAutomatically": "එය ස්වයංක්‍රීයව වාර්තා කර ඇත.",
     "loadFailed": "නාලිකා පූරණය කළ නොහැකි විය",
     "noSearchResults": "ඔබේ සෙවීමට ගැළපෙන නාලිකා නැත",
-    "noChannels": "නාලිකා නොමැත"
+    "noChannels": "නාලිකා නොමැත",
+    "pairCodeExpired": "එම කේතය කල් ඉකුත් වී ඇත. අලුත් එකක් ගන්න කියලා ටීවී එක ඉල්ලනවා.",
+    "signedInOnTv": "ඔබේ රූපවාහිනියේ ලියාපදිංචි වී ඇත",
+    "pairRefused": "ප් ‍ රතික්ෂේපිතයි",
+    "pairIntro": "ඔබේ රූපවාහිනියේ DeHub විවෘත කර එය මෙහි පෙන්වන කේතය ටයිප් කරන්න.",
+    "pairNotFound": "කිසිම ටීවී සීරීස් එකක් බලන්නෙ නෑ මේ සීරීස් එක එනකම්. ඒක කල් ඉකුත් වෙලා තියෙන්න පුළුවන් — අලුත් එකක් සඳහා රූපවාහිනිය ඉල්ලන්න.",
+    "wantsToSignIn": "ඔබට මෙන් පිවිසීමට අවශ් ‍ යයි",
+    "pairWarning": "මෙය ඔබ දැනට නරඹන රූපවාහිනිය නම් පමණක් අනුමත කරන්න. ඔබේ ගිණුමේ එම කේතය තබාගෙන සිටින ඕනෑම කෙනෙකුට සං signs ා අනුමත කිරීම. එය නැරඹීමට හැකි වනු ඇත, කැමති සහ අනුගමනය — එය වියදම් කළ නොහැකි අතර, ඔබට එය සක් රීය සැසි වලින් ඕනෑම වේලාවක අත්සන් කළ හැකිය.",
+    "pairApprove": "ඔව්, මෙම රූපවාහිනියේ ලියාපදිංචි වන්න",
+    "pairDeny": "නෑ, මම මේක ඉල්ලුවේ නෑ.",
+    "pairDoneTitle": "ඔබේ රූපවාහිනිය පුරනය වී ඇත",
+    "pairDoneBody": "එය දැනටමත් ඔබගේ ගිණුම පෙන්විය යුතුය. සැකසීම් → රහස් → ‍ යතා ක් ‍ රියාකාරී සැසි වලින් ඕනෑම වේලාවක එය ලියාපදිංචි වන්න.",
+    "closePlayer": "ක් ‍ රීඩකයා වසන්න",
+    "declineFailed": "එය ප් ‍ රතික්ෂේප කළ නොහැක — එය දැනටමත් කල් ඉකුත් වී තිබිය හැක.",
+    "tipSentTvNotTold": "සන්තෝසම් එව්වා, ඒත් රූපවාහිනිය කියන්න බෑ. ඒක කල් ඉකුත්වෙයි.",
+    "sentAmount": "{{amount}} DHB යවන ලදි",
+    "nothingWaiting": "කිසිවක් බලා නොසිටී",
+    "nothingWaitingBody": "ඔබ ඔබේ රූපවාහිනියේ DeHub වෙතින් ඉඟි කරන විට, එය අනුමත කිරීම සඳහා මෙහි දිස්වේ. ඔබේ රූපවාහිනිය කිසි විටෙකත් ඔබේ මුදල් පසුම්බිය තබා නොගනී.",
+    "yourTelevision": "ඔබේ රූපවාහිනිය",
+    "wantsToTip": "ඉඟියක් යැවීමට කැමතියි · {{time}} ඉතිරිව ඇත",
+    "tipTo": "{{name}} වෙත",
+    "tipForPost": "“{{title}}” සඳහා",
+    "reviewAndApprove": "සලකා බලා අනුමත කරන්න"
   },
   "top100": {
     "title": "ඉහළම 100",
@@ -2054,7 +2116,8 @@
     "submitApplication": "අයදුම්පත ඉදිරිපත් කරන්න",
     "nameEmailRequired": "Name and email are required",
     "applicationSuccess": "Application submitted successfully! We'll be in touch.",
-    "applicationFailed": "Failed to submit. Please try again."
+    "applicationFailed": "Failed to submit. Please try again.",
+    "namePlaceholder": "ජේන් ස්මිත්"
   },
   "dao": {
     "title": "DAO භmාව",
@@ -2214,7 +2277,8 @@
     "pinnedToast": "මෙම පළකිරීමේ ඉහළින්ම අමුණන ලදී",
     "unpinnedToast": "අමුණුම ඉවත් කළා",
     "pinFailed": "එම අදහස අමුණන්න බැරි විය",
-    "kidsOnlyThread": "මේ පෝස්ටුව ළමයින්ටයි. ඒ ගැන කතා කරන්න පුළුවන් ළමයින්ට විතරයි."
+    "kidsOnlyThread": "මේ පෝස්ටුව ළමයින්ටයි. ඒ ගැන කතා කරන්න පුළුවන් ළමයින්ට විතරයි.",
+    "editFailed": "පරිකථනය සංස්කරණය කිරීමට අසමත් විය"
   },
   "postInfo": {
     "title": "පළ කිරීමේ තොරතුරු",
@@ -3254,14 +3318,40 @@
     "comingSoon": "ඉක්මනින්",
     "signIn": "පිවිසෙන්න",
     "tapToGetStarted": "ආරම්භ කිරීමට තට්ටු කරන්න",
-    "soon": "ඉක්මනින්"
+    "soon": "ඉක්මනින්",
+    "glossarySubtitle": "සෑම අයිකනයක් සහ අංගයක්ම අදහස් කරන්නේ කුමක්දැයි දැනගන්න",
+    "searchGlossary": "පාරිභාෂික ශබ්දකෝෂය සොයන්න...",
+    "noResultsFor": "\"{{query}}\" සඳහා ප්‍රතිඵල නැත",
+    "guideSubtitle": "සෑම අංගයක්ම පියවරෙන් පියවර මාර්ගෝපදේශය",
+    "searchGuide": "මාර්ගෝපදේශය සොයන්න...",
+    "repostsTab": "නැවත පළ කිරීම්",
+    "quotesTab": "උපුටා ගැනීම්",
+    "noMoreReposts": "තවත් නැවත පළ කිරීම් නැත",
+    "noMoreQuotes": "තවත් උපුටා ගැනීම් නැත",
+    "noRepostsYet": "තවම නැවත පළ කිරීම් නැත",
+    "noQuotesYet": "තවම උපුටා ගැනීම් නැත"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "මෙම යෙදුම තුළම ධාවනය වන ක්‍රීඩා. ස්ථාපනය කිරීමට කිසිවක් නැත, මිලදී ගැනීමට කිසිවක් නැත — විවෘත මූලාශ්‍ර, DeHub විසින්ම සපයනු ලැබේ."
+    "intro": "මෙම යෙදුම තුළම ධාවනය වන ක්‍රීඩා. ස්ථාපනය කිරීමට කිසිවක් නැත, මිලදී ගැනීමට කිසිවක් නැත — විවෘත මූලාශ්‍ර, DeHub විසින්ම සපයනු ලැබේ.",
+    "backToArcade": "ආකේඩ් එකට ආපහු යන්න",
+    "openPrivacySettings": "පෞද්ගලිකත්ව සැකසුම් විවෘත කරන්න",
+    "privacyWarning": "ඔබ සතුව විශාල ටෝකන් ප්‍රමාණයක් තිබේ නම් හෝ අනාරක්ෂිත ප්‍රදේශයක ජීවත් වන්නේ නම්, මෙම විශේෂාංගය භාවිතා කිරීමට පෙර ඔබේ බෑජ් සහ ශේෂය සඟවන්න. ඔන්-චේන් ගනුදෙනු තවමත් ඔබේ ලිපිනය හෙළි කරයි. සැකසුම් විවෘත කරන්න.",
+    "leaveGame": "ක්‍රීඩාවෙන් ඉවත් වන්න",
+    "loadingGame": "{{title}} පටවනවා",
+    "hideThis": "මෙය සඟවන්න",
+    "noGameCalled": "ආර්කේඩ් එකේ <slug>{{slug}}</slug> නමින් ක්‍රීඩාවක් නැත.",
+    "seeWhatIsHere": "මෙහි ඇත්තේ කුමක්දැයි බලන්න",
+    "locationNotGranted": "ස්ථාන අවසරය ලබා දී නැත.",
+    "signInToPlaceOnGlobe": "ලෝක ගෝලයේ ඔබව තැබීමට පිවිසෙන්න.",
+    "couldNotPlaceOnGlobe": "ඔබව ලෝක ගෝලයේ තැබීමට නොහැකි විය.",
+    "onTheGlobe": "ඔබ ලෝක ගෝලයේ සිටී — ආසන්න වශයෙන් 25 km ප්‍රදේශයක පෙන්වනු ලැබේ.",
+    "couldNotReach": "ආර්කේඩ් එකට ළඟා වීමට නොහැකි විය",
+    "didNotLoad": "{{title}} පූරණය නොවීය",
+    "needsConnection": "Dehub.io වෙතින් ක් රීඩාව පිරිනමනු ලබන අතර ඔබ එය විවෘත කරන විට එය බාගත වේ, එබැවින් එයට පළමු වරට වැඩ කරන සම්බන්ධතාවයක් අවශ් ය වේ. ඔබේ ඒවා පරීක් ‍ ෂා කර නැවත උත්සාහ කරන්න."
   },
   "videoLooks": {
     "button": "කැමරා පෙනුම්",
@@ -3384,7 +3474,21 @@
     "someone": "යමෙක්",
     "oneTyping": "{{name}} ලියමින් සිටී…",
     "fewTyping": "{{names}} ලියමින් සිටිති…",
-    "manyTyping": "{{count}} දෙනෙක් ලියමින් සිටිති…"
+    "manyTyping": "{{count}} දෙනෙක් ලියමින් සිටිති…",
+    "thisUser": "මෙම පරිශීලකයා",
+    "unbanConfirm": "{{name}} ට තහනම් කිරීම ඉවත් කිරීමට ඔබ නිසැකද?",
+    "unban": "තහනම් කිරීම ඉවත් කරන්න",
+    "unbanFailed": "පරිශීලකයාට තහනම් කිරීම ඉවත් කිරීමට අසමත් විය",
+    "onlineLabel": "සබැඳි",
+    "usersCount_one": "{{count}} පරිශීලකයා",
+    "usersCount_other": "{{count}} පරිශීලකයින්",
+    "totalMessages": "මුළු පණිවිඩ",
+    "slowMode": "මන්දගාමී මාදිලිය",
+    "cooldownSeconds": "{{seconds}}s සිසිලනය",
+    "minStakeRequired": "අවම කොටස් අවශ්‍යයි",
+    "noParticipants": "තව සහභාගිවන්නන් නැත",
+    "noModerators": "මධ්‍යස්ථ කරන්නන් නැත",
+    "noBannedUsers": "තහනම් කරන ලද පරිශීලකයින් නැත"
   },
   "promptFeed": {
     "headline": "ඔබට බලන්න ඕනෑ මොනවාද?",
@@ -4131,7 +4235,26 @@
     "markMadeForKids": "ළමුන් සඳහා සාදන ලද ලෙස සලකුණු කරන්න",
     "madeForKidsOnDesc": "ළමා ප්‍රකාරයේ ළමයින්ට පෙන්වයි, සහ සාමාන්‍ය සංග්‍රහවලින් ඉවත් කරයි.",
     "madeForKidsOffDesc": "ළමා ප්‍රකාරයේ ළමයින්ට මෙම පළ කිරීම පෙන්වයි, සහ සාමාන්‍ය සංග්‍රහවලින් එය ඉවත් කරයි.",
-    "madeForKidsBlockedByMature": "වැඩිහිටි සලකුණු කළ පළ කිරීමක් ළමුන් සඳහා ප්‍රකාශයට පත් කළ නොහැක."
+    "madeForKidsBlockedByMature": "වැඩිහිටි සලකුණු කළ පළ කිරීමක් ළමුන් සඳහා ප්‍රකාශයට පත් කළ නොහැක.",
+    "queueWaiting": "බලා සිටිනවා…",
+    "queueUploading": "පූරණය කරනවා",
+    "queueProcessing": "ප්‍රොසෙස් කරනවා…",
+    "queuePosted": "පළ කරන ලදි",
+    "queueFailed": "අසමත් විය",
+    "noRetriesLeft": "(තව උත්සාහයන් ඉතිරි නැත)",
+    "noUploads": "බාගැනීම් නැත",
+    "uploadsAppearHere": "ඔබේ බාගැනීම් මෙහි දිස්වනු ඇත",
+    "imagesTotalLimit": "එක් උඩුගත කිරීමක ඇති පින්තූර 100 MB හෝ ඊට අඩු විය යුතුය",
+    "chooseDatabase": "විමධ්යගත දත්ත සමුදාය තෝරන්න",
+    "livestreamMode": "සජීවී ප් ‍ රවාහ ප් ‍ රකාරය",
+    "addThumbnail": "සිඟිති රූ එක් කරන්න",
+    "showCover": "ආවරණය පෙන්වන්න",
+    "max60s": "මැක්ස් 60s",
+    "confirmLivestream": "සජීවී ප් ‍ රවාහය තහවුරු කරන්න",
+    "liveFeaturesTitle": "සජීවී විශේෂාංග",
+    "discardPostTitle": "තනතුර ඉවත දමන්නද?",
+    "discardPostBody": "ඔබේ තනතුර අහිමි වනු ඇත. ඒ වෙනුවට ඔබ එය ව් යාපෘතියක් ලෙස සුරැකීමට කැමතිද?",
+    "queueMinting": "ව් ‍ යාජ..."
   },
   "bounty": {
     "claimed": "ලබාගෙන ඇත",
@@ -4447,7 +4570,25 @@
     "allowNewDmsOff": "නව පණිවිඩ සඳහා ඉඩ දීමට DM සක්‍රීය කරන්න.",
     "perMessageFee": "පණිවිඩයකට ගාස්තුව (DHB)",
     "perMessageFeeSub": "පණිවිඩයකට ගාස්තුවක් අය කරන්න. නොමිලේ DM සඳහා 0 ලෙස තබන්න. නිශ්චිත පරිශීලකයන්ට නොමිලේ ප්‍රවේශය දිය හැක.",
-    "allDisabled": "දැනට සියලු DM අක්‍රීයයි. නව DM පෙරනිමියෙන් අවහිර වේ."
+    "allDisabled": "දැනට සියලු DM අක්‍රීයයි. නව DM පෙරනිමියෙන් අවහිර වේ.",
+    "failedToEdit": "සංස්කරණය අසමත් විය",
+    "messageDeleted": "පණිවිඩය මකා දමන ලදි",
+    "cantForwardFromDevice": "මෙම පණිවිඩය මෙම උපාංගයෙන් යොමු කළ නොහැක",
+    "messageForwarded": "පණිවිඩය යොමු කරන ලදි",
+    "clearMessages": "පණිවිඩ හිස් කරන්න",
+    "clearMessagesConfirm": "මෙම සංවාදයේ සියලුම පණිවිඩ මකන්නද? මේක අහෝසි කරන්න බෑ.",
+    "messagesCleared": "පණිවිඩ ඉවත් කරන ලදි",
+    "failedToClearMessages": "පණිවිඩ ඉවත් කිරීමට අසමත් විය",
+    "removedFreeAccess": "{{name}} සඳහා නොමිලේ ප් ‍ රවේශය ඉවත් කරන ලදී",
+    "grantedFreeAccess": "{{name}} වෙත නොමිලේ ප් ‍ රවේශය ලබා දී ඇත",
+    "failedToUpdateFreeAccess": "නොමිලේ ප් ‍ රවේශය යාවත්කාලීන කිරීමට අසමත් විය",
+    "searchComingSoon": "සෙවීම ඉක්මනින් පැමිණේ",
+    "tapToUnblock": "අවහිර කිරීමට ටැප් කරන්න",
+    "userFallback": "ශ්‍රී ලංකාවේ රබර් වගාව",
+    "failedToBlock": "අවහිර කිරීමට අසමත් විය",
+    "failedToDeleteConversation": "සංවාදය මැකීමට අසමත් විය",
+    "newDm": "නව සෘජු පණිවුඩය",
+    "noConversationsFound": "සංවාද කිසිවක් හමු නොවීය"
   },
   "editPost": {
     "mediaPermission": "මාධ්‍ය පුස්තකාල අවසරය අවශ්‍යයි",
@@ -4469,7 +4610,17 @@
     "retry": "නැවත උත්සාහ කරන්න",
     "retrying": "නැවත උත්සාහ කරමින්...",
     "retryQueued": "නැවත සැකසෙමින් පවතී",
-    "retryFailed": "එම තනතුර නැවත උත්සාහ කළ නොහැකි විය"
+    "retryFailed": "එම තනතුර නැවත උත්සාහ කළ නොහැකි විය",
+    "closeVideo": "වීඩියෝව වසන්න",
+    "rotateOrientation": "දිශානතිය භ් ‍ රමණය කරන්න",
+    "videoProgress": "වීඩියෝ ප්‍රගතිය: {{percent}}%",
+    "tapToSeek": "නිශ්චිත ස්ථානයකට යාමට තට්ටු කරන්න",
+    "photoAccessToSaveImages": "රූප සුරැකීමට ඡායාරූප පුස්තකාලයට ප්‍රවේශය ඉඩ දෙන්න",
+    "failedToSaveImage": "රූපය සුරැකීමට අසමත් විය",
+    "downloadImage": "රූපය බාගන්න",
+    "goToImage": "රූපයට යන්න {{index}}",
+    "allCaughtUp": "ඔබ සියල්ලම යාවත්කාලීන කර ඇත",
+    "checkBackForShorts": "තවත් කෙටි වීඩියෝ සඳහා පසුව නැවත පරීක්ෂා කරන්න"
   },
   "liveViewer": {
     "loadingStream": "ප්‍රවාහය පූරණය වෙමින්...",
@@ -4479,7 +4630,22 @@
   },
   "search": {
     "endOfResults": "ප්‍රතිඵල අවසන්",
-    "searchDehub": "DeHub හි සොයන්න"
+    "searchDehub": "DeHub හි සොයන්න",
+    "tabVoice": "හඬ",
+    "trendingThisWeek": "මෙම සතියේ ජනප්‍රිය",
+    "trendingPosts": "ජනප්‍රිය පළ කිරීම්",
+    "trendingImages": "ජනප්‍රිය රූප",
+    "trendingVideos": "ජනප්‍රිය වීඩියෝ",
+    "trendingVoicePosts": "ජනප්‍රිය හඬ පළ කිරීම්",
+    "trendingLive": "ජනප්‍රිය සජීවී",
+    "seeAll": "සියල්ල බලන්න",
+    "noAccountsFound": "ගිණුම් සොයාගත නොහැකි විය",
+    "tryDifferentKeywords": "වෙනත් මූල පද උත්සාහ කරන්න හෝ ඔබේ අක්ෂර වින්‍යාසය පරීක්ෂා කරන්න",
+    "noContentResults": "අන්තර්ගත ප්‍රතිඵල නැත",
+    "recentSearches": "මෑතකදී කළ සෙවුම්",
+    "noTrendingThisWeek": "මෙම සතියේ ජනප්‍රිය අන්තර්ගතයක් නැත",
+    "closeFilterOptions": "පෙරහන් විකල්ප වසන්න",
+    "openFilterOptions": "පෙරහන් විකල්ප විවෘත කරන්න"
   },
   "notifPrompt": {
     "stayInLoop": "දැනුවත්ව සිටින්න",
@@ -4729,7 +4895,25 @@
     "externalTitle": "බාහිර ප් ‍ රවාහ ප් ‍ රකාරය",
     "externalLiveHint": "ඔබේ පරිගණකය බාහිර දෘඩාංග හරහා සජීවීව ක් රියාත්මක වේ. In-app කැමරාව අක් ‍ රීය කර ඇත.",
     "externalHint": "පහත විස්තර භාවිතා කරමින් ඔබේ ප් ‍ රවාහ මෘදුකාංගය සම්බන්ධ කරන්න, ඉන්පසු විකාශනය ආරම්භ කරන්න.",
-    "useInAppCamera": "ඒ වෙනුවට යෙදුම තුළ කැමරාව භාවිත කරන්න"
+    "useInAppCamera": "ඒ වෙනුවට යෙදුම තුළ කැමරාව භාවිත කරන්න",
+    "livestreamEnded": "සජීවී විකාශය අවසන් විය",
+    "chatEnabled": "චැට් සබල කර ඇත",
+    "chatDisabled": "චැට් අබල කර ඇත",
+    "failedToUpdateSettings": "සැකසුම් යාවත්කාලීන කිරීමට අසමත් විය",
+    "networkLostReconnecting": "ජාලය අහිමි විය — විකාශය විරාම කරන ලදී. නැවත සම්බන්ධ වෙමින්...",
+    "openingViewer": "බලන්නා විවෘත වෙමින්...",
+    "cameraPermissionRequired": "කැමරා අවසරය අවශ්‍යයි",
+    "grantPermission": "අවසර පත් ‍ රය",
+    "waitingForLivepeer": "LIVEPER එනකම් බලන් ඉන්නවා...",
+    "waitingForExternalSource": "විදේශීය මූලාශ් ර සඳහා බලා සිටී...",
+    "settingUpPublisher": "ප් රකාශකයෙකු පිහිටුවමින්...",
+    "scheduledStream": "උපලේඛනගත ප් ‍ රවාහය",
+    "pressGoLiveWhenReady": "ආරම්භ කිරීමට සූදානම් වූ විට සජීවීව යන්න ඔබන්න",
+    "connectionInterrupted": "සබඳතාවට බාධා විය",
+    "streamPausedReconnecting": "ඔබේ ප් ‍ රවාහය විරාම කර ඇත. නැවත සම්බන්ධ වෙමින්...",
+    "streamWillEnd": "නැවත සම්බන්ධ නොකළහොත් ප් ‍ රවාහය අවසන් වේ",
+    "endStreamConfirmTitle": "ප් ‍ රවාහය අවසන් කරන්නද?",
+    "endStreamConfirmBody": "දැන් වසා දැමීම සියලු ප් ‍ රේක්ෂකයින් සඳහා ඔබේ සජීවී ප් ‍ රවාහය අවසන් කරනු ඇත. ඔබට ප් ‍ රවාහය දිගටම කරගෙන යාමට හෝ එය ස්ථිරවම අවසන් කිරීමට හැකිය."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

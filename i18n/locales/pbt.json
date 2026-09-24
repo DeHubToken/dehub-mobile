@@ -119,7 +119,12 @@
     "music": "موسیقي",
     "live": "ژوندی",
     "newPosts_one": "{{count}} نوې لیکنه",
-    "newPosts_other": "{{count}} نوې لیکنې"
+    "newPosts_other": "{{count}} نوې لیکنې",
+    "privateContent": "خصوصي محتوا",
+    "privateContentBody": "دا محتوا د خصوصي حساب څخه دی. د هغه پوسټونو لیدلو لپاره د خالق تعقیب کړئ.",
+    "noMoreContent": "نور محتوا نشته",
+    "noPostsYet": "تر اوسه پوسټونه نشته.",
+    "pullToRefresh": "تازه کولو لپاره راوباسئ یا وروسته بیا هڅه وکړئ."
   },
   "explore": {
     "all": "ټول",
@@ -709,7 +714,19 @@
     "smsTopUp": "{{dhb}} DHB پورته کړئ",
     "smsCodeSent": "کوډ لیږل شوی. دا {{price}} DHB لګښت درلود.",
     "smsCodeLabel": "کوډ چې موږ {{phone}} ته واستوو",
-    "badgeDelegationLendsAny": "هر یو بل حساب ته هر هغه بیرج پور ورکوي چې تاسو یې خلاص کړی وي، تر خپل {{tier}} پورې. یو کوچنی بیرج لاهم یو بشپړ سلاټ کاروي."
+    "badgeDelegationLendsAny": "هر یو بل حساب ته هر هغه بیرج پور ورکوي چې تاسو یې خلاص کړی وي، تر خپل {{tier}} پورې. یو کوچنی بیرج لاهم یو بشپړ سلاټ کاروي.",
+    "avatarUpdateFailed": "اوتار تازه کول ناکام شول",
+    "coverUpdateFailed": "پوښ تازه کول ناکام شول",
+    "fixInvalidSocialLinks": "مهرباني وکړئInvalid ټولنیز لینکونه سم کړئ",
+    "updateFailed": "تازه کول ناکام شول",
+    "channelUrlOrHandle": "چینل URL یا لاسي",
+    "inviteLinkPlaceholder": "بلنې لینک",
+    "profileUrlOrUsername": "پروفایل URL یا کارن نوم",
+    "yourDisplayName": "ستاسو ښودل شوی نوم",
+    "usernameAvailable": "کارن نوم شته",
+    "hideBadgeAndBalance": "بیج او بیلانس پټ کړئ",
+    "hideBadgeAndBalanceDesc": "مالي توضیحات پټوي او تاسو ته لیږل او لارښوونې غیر فعالوي.",
+    "onChainPublicWarning": "آن-چین لیږدونه عام دي. ټوکن یا لارښوونې لیږل ستاسو د والټ پته ښکاره کولی شي، پشمول د خصوصي بیلانس حالت فعالولو دمخه شوي لیږدونه."
   },
   "common": {
     "mute": "غږ بند کړئ",
@@ -759,7 +776,9 @@
     "noInternetTitle": "د انټرنیټ اتصال نشته",
     "noInternetBody": "مهرباني وکړئ خپل د انټرنیټ اتصال وګورئ او بیا هڅه وکړئ. د DeHub کارولو لپاره تاسو باید انټرنیټ سره وصل شئ.",
     "noInternetStatus": "آفلاین - د شبکې اتصال نشته",
-    "noInternetHint": "ډاډ ترلاسه کړئ چې وای فای یا ګرځنده ډیټا فعال دی، بیا \"{{action}}\" ټایپ کړئ"
+    "noInternetHint": "ډاډ ترلاسه کړئ چې وای فای یا ګرځنده ډیټا فعال دی، بیا \"{{action}}\" ټایپ کړئ",
+    "saving": "ژغورل...",
+    "offlineStatus": "آفلاین - د شبکې اتصال نشته"
   },
   "tip": {
     "title": "ټپ ولیږئ",
@@ -1093,7 +1112,17 @@
     "post": "پوسټ",
     "officialLogo": "دا دی رسمي DeHub لوګو! 🎨",
     "editedImage": "دا ستاسو سم شوی انځور دی!",
-    "generatedImage": "دا ستاسو جوړ شوی انځور دی!"
+    "generatedImage": "دا ستاسو جوړ شوی انځور دی!",
+    "toolCompleted": "{{name}} بشپړ شو",
+    "aiTool": "AI وسیله",
+    "cannotAnimateImage": "{{model}} نشي کولی ضمیمه شوي عکس متحرک کړي. بل ویډیو ماډل غوره کړئ.",
+    "needsImageToAnimate": "{{model}} متحرک کولو لپاره عکس ته اړتیا لري. یو ضمیمه کړئ یا بل ماډل غوره کړئ.",
+    "couldNotReadImage": "هغه عکس نشو لوستلی",
+    "logoLoadFailed": "د DeHub لوګو نشو بار کولی — پرته له دې تولید کیږي",
+    "imageAttachedDescribe": "عکس ضمیمه شوی — خپله ترمیمونه تشریح کړئ",
+    "couldNotPreparePost": "د پوسټ کولو لپاره چمتو نشو",
+    "generateImage": "انځور جوړ کړئ",
+    "generateVideo": "ویډیوګانې جوړ کړئ"
   },
   "commandCentre": {
     "title": "کمانډ مرکز",
@@ -1605,7 +1634,10 @@
     "edit": "سمول",
     "deleteRequestTitle": "دا غوښتنه ړنګه کړئ؟",
     "deleteRequestDescription": "دا بیرته نشي کیدای.",
-    "attachmentTooLarge": "هره فایل باید له 20MB څخه کم وي"
+    "attachmentTooLarge": "هره فایل باید له 20MB څخه کم وي",
+    "deleteCommentA11y": "د نظرونو لرې کول",
+    "sendCommentA11y": "نظرات ياداشت په نه په",
+    "requestOptions": "د غوښتنې انتخابونه"
   },
   "auth": {
     "loginRequired": "ننوتل اړین دي",
@@ -1654,7 +1686,15 @@
     "sendCodeFailedRetry": "کوډ نشو لیږلی. مهرباني وکړئ بیا هڅه وکړئ.",
     "invalidCodeRetry": "ناسم کوډ. مهرباني وکړئ بیا هڅه وکړئ.",
     "invalidEmailOrPassword": "ناسم بریښنالیک یا پټنوم.",
-    "welcomeToDehub": "DeHub ته ښه راغلاست"
+    "welcomeToDehub": "DeHub ته ښه راغلاست",
+    "importWalletOptional": "د وارداتو جیب (اختیاري)",
+    "couldNotSendCodeRetry": "د کوډ لیږلو توان نلري، مهرباني وکړئ بیا هڅه وکړئ.",
+    "exploreWithoutSignIn": "په انسټاګرام کې د ننوتلو پرته لټون وکړئ",
+    "continueExploring": "سپړنې ته دوام ورکړئ",
+    "exploreWithoutSignInA11y": "په انسټاګرام کې د ننوتلو پرته د انسټاګرام کیسې ډاونلوډ کړئ",
+    "continueExploringA11y": "د DeHub کشف کولو ته دوام ورکړئ",
+    "importWalletRecommended": "ټولنیز ننوتل سپارښتنه کیږي.",
+    "importWalletPurpose": "دا وسیله د DeHub.io څخه د موجودو حسابونو واردولو لپاره ده."
   },
   "messages": {
     "smartRepliesOff": "وړاندیز شوي ځوابونه بند شول",
@@ -1769,7 +1809,29 @@
     "reportedAutomatically": "دا پخپله راپور شوی دی.",
     "loadFailed": "چینلونه لوډ نه شول",
     "noSearchResults": "ستاسو د لټون سره سمون لرونکي چینلونه نشته",
-    "noChannels": "هیڅ چینل شتون نلري"
+    "noChannels": "هیڅ چینل شتون نلري",
+    "pairCodeExpired": "دا کوډ ختم شوی دی. تلویزون ته زنګ ووهئ، د نوي لپاره زنګ ووهئ.",
+    "signedInOnTv": "ستاسو په تلویزون کې ثبت شوی",
+    "pairRefused": "د رد شوي",
+    "pairIntro": "په خپل تلویزیون کې DeHub خلاص کړئ او هغه کوډ ولیکئ چې دلته یې ښیې.",
+    "pairNotFound": "هیڅ تلویزیون د دې کوډ په تمه نه دی. دا ممکن پای ته رسیدلی وي — د نوي لپاره د تلویزیون غوښتنه وکړئ.",
+    "wantsToSignIn": "تاسو غواړئ چې ستاسو په څیر لاسلیک وکړئ",
+    "pairWarning": "یوازې دا تایید کړئ که دا یو تلویزیون وي چې تاسو یې اوس مهال ګورئ. د هر هغه چا لپاره لاسلیک وکړئ څوک چې ستاسو په حساب کې دا کوډ ساتي. دا به وکولی شي وګورئ، خوښ او تعقیب کړي — دا مصرف نشي کولی، او تاسو کولی شئ دا د فعال غونډو څخه هر وخت لاسلیک کړئ.",
+    "pairApprove": "په دې ټلويزيون کې د ويډيو ثبتول",
+    "pairDeny": "نه، ما د دې لپاره غوښتنه نه ده کړې",
+    "pairDoneTitle": "ستاسو ټلویزیون په ټلویزیون کې ثبت شوی",
+    "pairDoneBody": "دا باید دمخه ستاسو په حساب کې څرګند شي. د → محرمیت د → فعالو غونډو څخه هر وخت لاسلیک کړئ.",
+    "closePlayer": "د لوبې نږدې لوبغاړی",
+    "declineFailed": "له دې څخه انکار نشي کولی — دا ممکن دمخه پای ته رسیدلی وي.",
+    "tipSentTvNotTold": "ټلویزیون ته یې زنګ وواهه، خو ټلویزیون ته یې غوږ نه شو نیولی. دا به د وخت څخه بهر شي.",
+    "sentAmount": "د {{amount}} DHB واستولئ",
+    "nothingWaiting": "څه نه په تمه دي",
+    "nothingWaitingBody": "کله چې تاسو له DeHub څخه په خپل تلویزیون کې ټیپ کوئ، دا ستاسو د تصویب لپاره دلته ښکاري. ستاسو تلویزیون هیڅکله ستاسو والټ نه ساتي.",
+    "yourTelevision": "ستاسو تلویزیون",
+    "wantsToTip": "غواړي یو ټیپ واستوي · {{time}} پاتې شو",
+    "tipTo": "ته {{name}}",
+    "tipForPost": "د \"{{title}}\" لپاره",
+    "reviewAndApprove": "کتنه او تصویب کړئ"
   },
   "top100": {
     "title": "لوړ 100",
@@ -2041,7 +2103,8 @@
     "submitApplication": "غوښتنلیک وسپارئ",
     "nameEmailRequired": "نوم او ایمیل اړین دي",
     "applicationSuccess": "غوښتنلیک په بریالیتوب سره وسپارل شو! موږ به اړیکه ونیسو.",
-    "applicationFailed": "سپارل ناکام شول. بیا هڅه وکړئ."
+    "applicationFailed": "سپارل ناکام شول. بیا هڅه وکړئ.",
+    "namePlaceholder": "جین سمیټ"
   },
   "dao": {
     "title": "د DAO خزانه",
@@ -2201,7 +2264,8 @@
     "pinnedToast": "د دې پوسټ په سر کې ونښلول شو",
     "unpinnedToast": "نښلون لرې شو",
     "pinFailed": "هغه تبصره ونه نښلول شوه",
-    "kidsOnlyThread": "دا لیکنه د ماشومانو لپاره ده. یوازې ماشومان کولی شي پدې اړه تبصره وکړي."
+    "kidsOnlyThread": "دا لیکنه د ماشومانو لپاره ده. یوازې ماشومان کولی شي پدې اړه تبصره وکړي.",
+    "editFailed": "د نظر سمولو کې پاتې راغی"
   },
   "postInfo": {
     "title": "د پوسټ معلومات",
@@ -3242,14 +3306,40 @@
     "comingSoon": "ژر راځي",
     "signIn": "ننوتل",
     "tapToGetStarted": "د پیل لپاره ټک ووهئ",
-    "soon": "ژر"
+    "soon": "ژر",
+    "glossarySubtitle": "پوه شئ چې هر آئیکون او ځانګړتیا څه معنی لري",
+    "searchGlossary": "لغت لټون کړئ...",
+    "noResultsFor": "د \"{{query}}\" لپاره هیڅ پایله نشته",
+    "guideSubtitle": "د هرې ځانګړتیا ګام په ګام لارښود",
+    "searchGuide": "لارښود لټون کړئ...",
+    "repostsTab": "بیا پوسټونه",
+    "quotesTab": "اقتباسونه",
+    "noMoreReposts": "نور بیا پوسټونه نشته",
+    "noMoreQuotes": "نور اقتباسونه نشته",
+    "noRepostsYet": "اوس مهال هیڅ بیا پوسټ نشته",
+    "noQuotesYet": "اوس مهال هیڅ اقتباس نشته"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "هغه لوبې چې همدلته په اپلیکیشن کې چلیږي. د نصبولو لپاره څه نشته، د پیرودلو لپاره څه نشته — خلاص سرچینه، او DeHub پخپله یې وړاندې کوي."
+    "intro": "هغه لوبې چې همدلته په اپلیکیشن کې چلیږي. د نصبولو لپاره څه نشته، د پیرودلو لپاره څه نشته — خلاص سرچینه، او DeHub پخپله یې وړاندې کوي.",
+    "noGameCalled": "په آرکیډ کې د <slug>{{slug}}</slug> په نوم هیڅ لوبه نشته.",
+    "seeWhatIsHere": "وګورئ چې دلته څه دي",
+    "locationNotGranted": "د موقعیت اجازه ورنکړل شوه.",
+    "signInToPlaceOnGlobe": "په نړۍ کې د خپل ځان د ځای پرځای کولو لپاره لاسلیک وکړئ.",
+    "couldNotPlaceOnGlobe": "ونشوای کولای تاسو په نړۍ کې ځای پرځای کړم.",
+    "onTheGlobe": "تاسو په نړۍ کې یاست — په یوه نږدې 25 کیلومتره ساحه کې ښودل شوي.",
+    "couldNotReach": "آرکیډ ته نشو رسیدلی",
+    "didNotLoad": "{{title}} ونه شو لود",
+    "needsConnection": "لوبه له dehub.io څخه خدمت کیږي او کله چې تاسو یې خلاص کړئ ډاونلوډ کیږي، نو دا لومړی ځل لپاره کاري اړیکه ته اړتیا لري. خپل وګورئ او بیا هڅه وکړئ.",
+    "backToArcade": "آرکیډ ته بیرته",
+    "openPrivacySettings": "د محرمیت ترتیبات خلاص کړئ",
+    "privacyWarning": "که تاسو ډیری ټوکنونه لرئ یا په ناامنه سیمه کې ژوند کوئ، د دې فیچر کارولو دمخه خپل بیج او بیلانس پټ کړئ. د آن چین لیږدونه لاهم ستاسو پته ښکاره کوي. ترتیبات خلاص کړئ.",
+    "leaveGame": "له لوبې څخه ووځئ",
+    "loadingGame": "{{title}} پورته کیږي",
+    "hideThis": "دا پټ کړئ"
   },
   "videoLooks": {
     "button": "د کامرې بڼې",
@@ -3375,7 +3465,22 @@
     "someone": "څوک",
     "oneTyping": "{{name}} لیکي…",
     "fewTyping": "{{names}} لیکي…",
-    "manyTyping": "{{count}} کسان لیکي…"
+    "manyTyping": "{{count}} کسان لیکي…",
+    "modBadge": "موډ",
+    "thisUser": "دا کارن",
+    "unbanConfirm": "ایا تاسو ډاډه یاست چې غواړئ {{name}} له بندیز څخه خلاص کړئ؟",
+    "unban": "له بندیز څخه خلاص کړئ",
+    "unbanFailed": "کارن له بندیز څخه خلاص نه شو",
+    "onlineLabel": "آنلاین",
+    "usersCount_one": "{{count}} کارن",
+    "usersCount_other": "{{count}} کارنان",
+    "totalMessages": "ټول پیغامونه",
+    "slowMode": "ورو موډ",
+    "cooldownSeconds": "{{seconds}}s سړه",
+    "minStakeRequired": "لږترلږه سټیک ته اړتیا ده",
+    "noParticipants": "اوس مهال هیڅ ګډونوال نشته",
+    "noModerators": "هیڅ موډریټر نشته",
+    "noBannedUsers": "هیڅ بند شوي کارنان نشته"
   },
   "promptFeed": {
     "headline": "څه لیدل غواړئ؟",
@@ -4127,7 +4232,26 @@
     "madeForKidsBlockedByMature": "یو پوسٹ چې بالغ نشان شوی وي نه کولی شي د ماشومانو لپاره هم خپاره شي.",
     "encoderTitle": "د OBS /انکوډر په اړه",
     "encoderHint": "RTMP تفصیلات ترلاش کړئ",
-    "markMadeForKids": "د ماشومانو لپاره جوړ شوی په نښه کړئ"
+    "markMadeForKids": "د ماشومانو لپاره جوړ شوی په نښه کړئ",
+    "imagesTotalLimit": "په یو اپلوډ کې عکسونه باید 100 MB یا لږ وي",
+    "chooseDatabase": "د غیرمتمرکز ډیټابیس غوره کړئ",
+    "livestreamMode": "د ژوند کولو طریقه",
+    "addThumbnail": "د ټیټو ټیټو سره اضافه کړئ",
+    "showCover": "د پوښښ ښودنه",
+    "max60s": "مکس دهه شصتی ها",
+    "confirmLivestream": "د ژوندۍ ویډیو ډاونلوډ کړئ",
+    "liveFeaturesTitle": "د ژوند ځانګړنې",
+    "discardPostTitle": "له دندې ګوښه شو ؟",
+    "discardPostBody": "ستاسو پوسټ به له لاسه ورکړل شي. ایا تاسو غواړئ دا د پروژې په توګه خوندي کړئ ؟",
+    "queueWaiting": "په تمه…",
+    "queueUploading": "پورته کیږي",
+    "queueProcessing": "پروسس کیږي…",
+    "queueMinting": "مینټ کیږي…",
+    "queuePosted": "خپور شو",
+    "queueFailed": "ناکام",
+    "noRetriesLeft": "(نور بیا هڅه نشته)",
+    "noUploads": "د پورته کولو لپاره هیڅ نشته",
+    "uploadsAppearHere": "ستاسو پوسټونه به دلته څرګند شي"
   },
   "bounty": {
     "claimed": "ترلاسه شو",
@@ -4444,7 +4568,23 @@
     "allowNewDmsOff": "د نویو پیغامونو د اجازې لپاره DM فعال کړئ.",
     "perMessageFee": "د هر پیغام فیس (DHB)",
     "perMessageFeeSub": "د هر پیغام لپاره فیس واخلئ. وړیا DM لپاره یې 0 کړئ. تاسو ځینو کاروونکو ته وړیا لاسرسی ورکولی شئ.",
-    "allDisabled": "اوس مهال ټول DM بند دي. نوي DM په اصل کې بند دي."
+    "allDisabled": "اوس مهال ټول DM بند دي. نوي DM په اصل کې بند دي.",
+    "failedToEdit": "په خوراک کولو کې پاتې راتلل",
+    "messageDeleted": "د پیغام لغوه کول",
+    "cantForwardFromDevice": "دا پیغام د دې وسیلې څخه نشي لیږل کیدی",
+    "messageForwarded": "پيغامونه لېږل شوي",
+    "clearMessages": "واضح پيغامونه",
+    "clearMessagesConfirm": "ایا تاسو پدې خبرو اترو کې ټول پیغامونه حذف کوئ ؟ دا له پامه غورځول کیدی نشي.",
+    "messagesCleared": "پیغامونه پاک شوي",
+    "failedToClearMessages": "د پیغامونو په روښانه کولو کې پاتې راتلل",
+    "failedToUpdateFreeAccess": "د وړیا لاسرسي تازه کولو کې پاتې راغلی",
+    "searchComingSoon": "ژر تر ژره د لټون لټون پیل کړئ",
+    "tapToUnblock": "د بلاک کولو لپاره کلیک وکړئ",
+    "userFallback": "د کاروونکي په اړه",
+    "failedToBlock": "په بلاک کولو کې پاتې راغلی",
+    "failedToDeleteConversation": "د خبرو اترو له منځه وړلو کې پاتې راتلل",
+    "newDm": "په مستقیم ډول نوي پیغامونه",
+    "noConversationsFound": "هیڅ خبرې اترې ونه موندل شوې"
   },
   "editPost": {
     "mediaPermission": "د رسنیو کتابتون اجازه اړینه ده",
@@ -4466,7 +4606,17 @@
     "retry": "یو ځل بیا هڅه وکړئ",
     "retrying": "د بیرته راستنیدو لپاره...",
     "retryQueued": "یو ځل بیا د سولې پروسه",
-    "retryFailed": "د دې پوسټ په اړه نور معلومات ترلاسه نکړئ"
+    "retryFailed": "د دې پوسټ په اړه نور معلومات ترلاسه نکړئ",
+    "closeVideo": "ویدیو ته نږدې کیدل",
+    "rotateOrientation": "د لارښوونو په لور حرکت کول",
+    "videoProgress": "د ویډیو پرمختګ: {{percent}}%",
+    "tapToSeek": "د ځانګړي موقعیت ته د تلو لپاره ټایپ کړئ",
+    "photoAccessToSaveImages": "د عکسونو خوندي کولو لپاره د عکس کتابتون ته لاسرسی اجازه ورکړئ",
+    "failedToSaveImage": "عکس خوندي نه شو",
+    "downloadImage": "عکس ډاونلوډ کړئ",
+    "goToImage": "{{index}} عکس ته لاړ شئ",
+    "allCaughtUp": "تاسو ټول نیولي یاست",
+    "checkBackForShorts": "د نورو لنډیزونو لپاره وروسته بیا وګورئ"
   },
   "liveViewer": {
     "loadingStream": "خپرونه لوډیږي...",
@@ -4476,7 +4626,22 @@
   },
   "search": {
     "endOfResults": "د پایلو پای",
-    "searchDehub": "په DeHub کې ولټوئ"
+    "searchDehub": "په DeHub کې ولټوئ",
+    "tabVoice": "غږ",
+    "trendingThisWeek": "پدې اونۍ کې خورا مشهور",
+    "trendingPosts": "خورا مشهور پوسټونه",
+    "trendingImages": "خورا مشهور عکسونه",
+    "trendingVideos": "خورا مشهور ویډیوګانې",
+    "trendingVoicePosts": "خورا مشهور غږیز پوسټونه",
+    "trendingLive": "خورا مشهور مستقیم",
+    "seeAll": "ټول وګورئ",
+    "noAccountsFound": "حسابونه ونه موندل شول",
+    "tryDifferentKeywords": "مختلف کلیدي ټکي هڅه وکړئ یا خپل املا وګورئ",
+    "noContentResults": "د مینځپانګې پایلې ونه موندل شوې",
+    "recentSearches": "وروستي لټونونه",
+    "noTrendingThisWeek": "پدې اونۍ کې هیڅ خورا مشهور مینځپانګه نشته",
+    "closeFilterOptions": "د فلټر اختیارونه بند کړئ",
+    "openFilterOptions": "د فلټر اختیارونه خلاص کړئ"
   },
   "notifPrompt": {
     "stayInLoop": "باخبره اوسئ",
@@ -4724,7 +4889,25 @@
     "externalTitle": "د بهرني سټریم حالت",
     "externalLiveHint": "ستاسو سټریم د بهرني سافټویر له لارې ژوندی دی. په اپلیکیشن کې کیمره غیر فعاله شوې ده.",
     "externalHint": "د لاندې توضیحاتو په کارولو سره خپل سټریمینګ سافټویر سره وصل شئ ، بیا خپرونه پیل کړئ.",
-    "useInAppCamera": "پرځای یې په اپلیکیشن کې کیمره وکاروئ"
+    "useInAppCamera": "پرځای یې په اپلیکیشن کې کیمره وکاروئ",
+    "livestreamEnded": "ژوندی خپرونه پای ته ورسیده",
+    "chatEnabled": "چیټ فعال شو",
+    "chatDisabled": "چیټ غیر فعال شو",
+    "failedToUpdateSettings": "تنظیمات نه شي تازه کیدلی",
+    "networkLostReconnecting": "شبکه له لاسه ورکړه - خپرونه ودرول شوه. بیا نښلوي…",
+    "openingViewer": "لیدونکی خلاصوي...",
+    "cameraPermissionRequired": "د کیمرې اجازه اړینه ده",
+    "grantPermission": "د جواز ترلاسه کول",
+    "waitingForLivepeer": "د ژوندي پاتې کیدو لپاره انتظار وکړئ...",
+    "waitingForExternalSource": "د بهرنیو ځواکونو د وتلو په اړه د...",
+    "settingUpPublisher": "د خپرونکي نصبولو لپاره...",
+    "scheduledStream": "د سټراټیژیک سټراټیټ سټراټیټ",
+    "pressGoLiveWhenReady": "د پیل کولو لپاره چمتو اوسئ",
+    "connectionInterrupted": "اړیکه ټینګه شوه",
+    "streamPausedReconnecting": "ستاسو د دوتنې د ړنګېدنې، ستاسو د دوتنې د ړنګېدنې...",
+    "streamWillEnd": "د رېل پټلۍ به پای ته ورسیږي که چیرې د رېل پټلۍ نه وي",
+    "endStreamConfirmTitle": "د سټراټیټ پای ؟",
+    "endStreamConfirmBody": "اوس تړل به د ټولو لیدونکو لپاره ستاسو ژوندی جریان پای ته ورسوي. تاسو کولی شئ دوام ورکړئ یا دا په دوامداره توګه بند کړئ."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -1535,7 +1535,7 @@ export default function UploadScreen() {
           continue;
         }
         if (size && requestImageBytes + size > MAX_REQUEST_IMAGE_BYTES) {
-          toastError('Images in one upload must total 100 MB or less');
+          toastError(t("upload.imagesTotalLimit"));
           continue;
         }
         requestImageBytes += size ?? 0;
@@ -2097,7 +2097,7 @@ export default function UploadScreen() {
                 onChange={handleMintChainChange}
                 variant="icon"
                 disabled={activeIsUploading || isSwitchingChain}
-                title="Choose Decentralized Database"
+                title={t("upload.chooseDatabase")}
                 includeSolana
                 allowedChainIds={postChainIds}
               />
@@ -2171,7 +2171,7 @@ export default function UploadScreen() {
                 ref={titleRef}
                 value={titleText}
                 onChangeText={setTitleText}
-                placeholder="Title"
+                placeholder={t("features.titleLabel")}
                 placeholderTextColor="#6F7174"
                 maxLength={TITLE_MAX}
                 blurOnSubmit={false}
@@ -2280,7 +2280,7 @@ export default function UploadScreen() {
               <View className="mt-2 flex-row items-center">
                 <View className="w-2.5 h-2.5 rounded-full bg-white mr-2" />
                 <Text className="text-white/80 text-xs font-semibold uppercase tracking-wide">
-                  Livestream Mode
+                  {t("upload.livestreamMode")}
                 </Text>
               </View>
             )}
@@ -2324,7 +2324,7 @@ export default function UploadScreen() {
                   >
                     <Icon name="Image" size={28} color="#A1A1AA" />
                     <Text className="text-theme-neutrals-400 text-xs mt-2">
-                      Add Thumbnail <Text className="text-white/80">*</Text>
+                      {t("upload.addThumbnail")} <Text className="text-white/80">*</Text>
                     </Text>
                   </TouchableOpacity>
                 )}
@@ -2402,7 +2402,7 @@ export default function UploadScreen() {
                     >
                       <Icon name="Plus" size={28} color="#6F7174" />
                       <Text className="text-theme-neutrals-500 text-xs mt-1">
-                        Add more
+                        {t("dao.addMore")}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -2519,7 +2519,7 @@ export default function UploadScreen() {
               >
                 <Icon name="Eye" size={14} color="#6F7174" />
                 <Text className="text-theme-neutrals-400 text-xs ml-1">
-                  Show cover
+                  {t("upload.showCover")}
                 </Text>
               </TouchableOpacity>
             )}
@@ -2535,7 +2535,7 @@ export default function UploadScreen() {
                     {fmtRecordTime(audioRecordingElapsed)}
                   </Text>
                   <Text className="text-theme-neutrals-500 text-xs mr-1">
-                    Max 60s
+                    {t("upload.max60s")}
                   </Text>
 
                   <TouchableOpacity
@@ -3265,7 +3265,7 @@ export default function UploadScreen() {
         onConfirm={handleConfirmGoLive}
         confirmText={confirmText}
         stage={activeUploadStage}
-        title="Confirm Livestream"
+        title={t("upload.confirmLivestream")}
       />
 
       <GlassModal
@@ -3383,7 +3383,7 @@ export default function UploadScreen() {
       >
         <View className="p-5">
           <Text className="text-white text-base font-semibold text-center mb-4">
-            Live Features
+            {t("upload.liveFeaturesTitle")}
           </Text>
 
           <TouchableOpacity
@@ -3474,10 +3474,10 @@ export default function UploadScreen() {
       >
         <View className="p-5">
           <Text className="text-white text-lg font-bold text-center mb-2">
-            Discard Post?
+            {t("upload.discardPostTitle")}
           </Text>
           <Text className="text-theme-neutrals-400 text-sm text-center mb-4">
-            Your post will be lost. Would you like to save it as a draft instead?
+            {t("upload.discardPostBody")}
           </Text>
           <View className="gap-3">
             <TouchableOpacity

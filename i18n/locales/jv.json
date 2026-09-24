@@ -119,7 +119,12 @@
     "music": "Musik",
     "live": "Langsung",
     "newPosts_one": "{{count}} kiriman anyar",
-    "newPosts_other": "{{count}} kiriman anyar"
+    "newPosts_other": "{{count}} kiriman anyar",
+    "privateContent": "Konten Pribadi",
+    "privateContentBody": "Konten iki saka akun pribadi. Tututi kreator kanggo ndeleng kirimane.",
+    "noMoreContent": "Ora ana konten maneh",
+    "noPostsYet": "Durung ana kiriman.",
+    "pullToRefresh": "Tarik kanggo muat ulang utawa coba maneh mengko."
   },
   "explore": {
     "all": "Kabeh",
@@ -710,7 +715,19 @@
     "smsRemoveNumber": "Copot nomer iki",
     "smsRemoveFailed": "Nomer iki ora bisa dicopot.",
     "smsNumberRemoved": "Nomer wis dicopot",
-    "smsCountryBlocked": "Teks durung bisa dikirim menyang negara kasebut."
+    "smsCountryBlocked": "Teks durung bisa dikirim menyang negara kasebut.",
+    "avatarUpdateFailed": "Pembaruan avatar gagal",
+    "coverUpdateFailed": "Gagal nganyari sampul",
+    "fixInvalidSocialLinks": "Mangga aturi beneraken tautan sosial ingkang mboten sah",
+    "updateFailed": "Pembaruan gagal",
+    "inviteLinkPlaceholder": "Link undhangan",
+    "profileUrlOrUsername": "URL utawa jeneng panganggo profil",
+    "yourDisplayName": "Jeneng tampilanmu",
+    "usernameAvailable": "Jeneng panganggo cumepak",
+    "hideBadgeAndBalance": "Singitake lencana lan imbangan",
+    "hideBadgeAndBalanceDesc": "Ndelikake rincian finansial lan mateni kiriman lan tips kanggo sampeyan.",
+    "onChainPublicWarning": "Transaksi ing rantai iku umum. Ngirim token utawa tip bisa mbukak alamat dompetmu, kalebu transaksi sing dilakoni sadurunge mode saldo pribadi diaktifake.",
+    "channelUrlOrHandle": "URL utawa gagang Channel"
   },
   "common": {
     "mute": "Bisu",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Ora Ana Sambungan Internet",
     "noInternetBody": "Mangga priksa sambungan internet sampeyan lan coba maneh. Sampeyan kudu nyambung menyang internet kanggo nggunakake DeHub.",
     "noInternetStatus": "Offline - Ora ana sambungan jaringan",
-    "noInternetHint": "Priksa manawa Wi-Fi utawa data seluler wis urip, banjur tutul \"{{action}}\""
+    "noInternetHint": "Priksa manawa Wi-Fi utawa data seluler wis urip, banjur tutul \"{{action}}\"",
+    "saving": "Nyimpen…",
+    "offlineStatus": "Ora sambung - Ora ana sambungan jaringan"
   },
   "tip": {
     "title": "Kirim Hadiah",
@@ -1094,7 +1113,17 @@
     "post": "Kirim",
     "officialLogo": "Iki logo resmi DeHub! 🎨",
     "editedImage": "Iki gambar sing wis disunting!",
-    "generatedImage": "Iki gambar sing wis digawe!"
+    "generatedImage": "Iki gambar sing wis digawe!",
+    "toolCompleted": "{{name}} rampung",
+    "aiTool": "Piranti AI",
+    "cannotAnimateImage": "{{model}} ora bisa nguripake gambar sing dilampirake. Pilih model video liyane.",
+    "needsImageToAnimate": "{{model}} mbutuhake gambar kanggo dianimasikake. Tempelake siji utawa pilih model liyane.",
+    "couldNotReadImage": "Ora bisa maca gambar kuwi",
+    "logoLoadFailed": "Ora bisa mbukak logo DeHub — nggawe tanpa iku",
+    "imageAttachedDescribe": "Gambar dilampirake — jlentrehna owah-owahanmu",
+    "couldNotPreparePost": "Ora bisa nyiapake iku kanggo diposake",
+    "generateImage": "Gawe Gambar",
+    "generateVideo": "Gawe Video"
   },
   "commandCentre": {
     "title": "Pusat Komando",
@@ -1606,7 +1635,10 @@
     "edit": "Owahi",
     "deleteRequestTitle": "Busak panjaluk iki?",
     "deleteRequestDescription": "Iki ora bisa dibatalake.",
-    "attachmentTooLarge": "Saben berkas kudu kurang saka 20MB"
+    "attachmentTooLarge": "Saben berkas kudu kurang saka 20MB",
+    "deleteCommentA11y": "Busak komentar",
+    "sendCommentA11y": "Kirim komentar",
+    "requestOptions": "Pilihan panjaluk"
   },
   "auth": {
     "loginRequired": "Kudu Mlebu",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Ora bisa ngirim kode. Coba maneh.",
     "invalidCodeRetry": "Kode ora valid. Coba maneh.",
     "invalidEmailOrPassword": "Email utawa sandhi ora valid.",
-    "welcomeToDehub": "Sugeng rawuh ing DeHub"
+    "welcomeToDehub": "Sugeng rawuh ing DeHub",
+    "importWalletOptional": "Impor Dompet (Opsional)",
+    "couldNotSendCodeRetry": "Ora bisa ngirim kode. Coba maneh.",
+    "exploreWithoutSignIn": "Jelajahi tanpa mlebu",
+    "continueExploring": "Terus njelajah",
+    "exploreWithoutSignInA11y": "Jelajahi DeHub tanpa mlebu",
+    "continueExploringA11y": "Terus jelajahi DeHub",
+    "importWalletRecommended": "Login sosial disaranake.",
+    "importWalletPurpose": "Piranti iki kanggo ngimpor akun sing wis ana saka DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Wangsulan sing disaranake dipateni",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Wis dilaporake kanthi otomatis.",
     "loadFailed": "Ora bisa ngemot saluran",
     "noSearchResults": "Ora ana saluran sing cocog karo panggolekan sampeyan",
-    "noChannels": "Ora ana saluran kasedhiya"
+    "noChannels": "Ora ana saluran kasedhiya",
+    "pairCodeExpired": "Kode kuwi wis kadaluwarsa. Takon TV kanggo sing anyar.",
+    "signedInOnTv": "Teken ing TV-mu",
+    "pairRefused": "Nolak",
+    "pairIntro": "Buka DeHub ing télévisi sampeyan banjur ketik kode sing ditampilake ing kene.",
+    "pairNotFound": "Ora ana televisi sing ngenteni kode kasebut. Bisa uga wis kadaluwarsa — takon TV kanggo sing anyar.",
+    "wantsToSignIn": "pengin mlebu minangka sampeyan",
+    "pairWarning": "Mung setujui iki yen sing ditonton saiki iku televisi. Nyetujoni bakal nggandhengake sapa wae sing nyekel kode iki menyang akunmu. Dheweke bisa nonton, seneng, lan ngetutake — ora bisa ngentekake dhuwit, lan kowe bisa metu kapan wae saka Sesi Aktif.",
+    "pairApprove": "Inggih, mlebet ing TV menika",
+    "pairDeny": "Ora, aku ora njaluk iki",
+    "pairDoneTitle": "TV sampeyan wis mlebu",
+    "pairDoneBody": "Seharusnya akunmu wis katon. Kowe bisa metu kapan wae saka Setelan → Privasi → Sesi aktif.",
+    "closePlayer": "Tutup pemain",
+    "declineFailed": "Ora bisa ditolak — bisa uga wis kadaluwarsa.",
+    "tipSentTvNotTold": "Tip wis dikirim, nanging TV ora bisa dikandhani. Bakal entek wektu.",
+    "sentAmount": "Dikirim {{amount}} DHB",
+    "nothingWaiting": "Ora ana sing ditunggu",
+    "nothingWaitingBody": "Nalika sampeyan menehi tip saka DeHub ing televisi, katon ing kene kanggo disetujoni. TV sampeyan ora nate nyimpen dompet sampeyan.",
+    "yourTelevision": "Televisi sampeyan",
+    "wantsToTip": "pengin ngirim tip · {{time}} ditinggalake",
+    "tipTo": "menyang {{name}}",
+    "tipForPost": "kanggo “{{title}}”",
+    "reviewAndApprove": "Tinjau lan setujoni"
   },
   "top100": {
     "title": "Ndhuwur 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Kirim Lamaran",
     "nameEmailRequired": "Jeneng lan email dibutuhake",
     "applicationSuccess": "Lamaran kasil dikirim! Kita bakal hubungi kowe.",
-    "applicationFailed": "Gagal ngirim. Mangga coba maneh."
+    "applicationFailed": "Gagal ngirim. Mangga coba maneh.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Perbendaharaan DAO",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Dipasang ing ndhuwur dhéwé postingan iki",
     "unpinnedToast": "Pasangan dicopot",
     "pinFailed": "Komentar kuwi ora bisa dipasang",
-    "kidsOnlyThread": "Kiriman iki kanggo bocah-bocah. Mung Kids Mode sing bisa nglasani."
+    "kidsOnlyThread": "Kiriman iki kanggo bocah-bocah. Mung Kids Mode sing bisa nglasani.",
+    "editFailed": "Gagal ngowahi komentar"
   },
   "postInfo": {
     "title": "Info Postingan",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Bakal teka",
     "signIn": "Mlebu",
     "tapToGetStarted": "Tutul kanggo miwiti",
-    "soon": "Enggal"
+    "soon": "Enggal",
+    "glossarySubtitle": "Sinau apa tegese saben ikon lan fitur",
+    "searchGlossary": "Goleki glosarium...",
+    "noResultsFor": "Ora ana asil kanggo \"{{query}}\"",
+    "guideSubtitle": "Pandhuan langkah demi langkah kanggo saben fitur",
+    "searchGuide": "Goleki pandhuan...",
+    "repostsTab": "Repost",
+    "quotesTab": "Kutipan",
+    "noMoreReposts": "Ora ana maneh repost",
+    "noMoreQuotes": "Ora ana maneh kutipan",
+    "noRepostsYet": "Durung ana repost",
+    "noQuotesYet": "Durung ana kutipan"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Game sing mlaku langsung ing aplikasi iki. Ora ana sing kudu diinstal, ora ana sing kudu dituku — sumber terbuka, lan disedhiyakake dening DeHub dhewe."
+    "intro": "Game sing mlaku langsung ing aplikasi iki. Ora ana sing kudu diinstal, ora ana sing kudu dituku — sumber terbuka, lan disedhiyakake dening DeHub dhewe.",
+    "noGameCalled": "Ora ana game sing diarani <slug>{{slug}}</slug> ing arkade.",
+    "seeWhatIsHere": "Delengen apa sing ana ing kene",
+    "locationNotGranted": "Izin lokasi ora diwenehake.",
+    "signInToPlaceOnGlobe": "Mlebu kanggo nyelehake awake dhewe ing globe.",
+    "couldNotPlaceOnGlobe": "Ora bisa nyelehake sampeyan ing globe.",
+    "onTheGlobe": "Sampeyan ana ing globe — ditampilake ing area kira-kira 25 km.",
+    "couldNotReach": "ORA BISA TEKAN ARKADE",
+    "didNotLoad": "{{title}} ora dimuat",
+    "needsConnection": "Game kasebut dilayani saka dehub.io lan diundhuh nalika sampeyan mbukak, mula butuh sambungan sing bisa digunakake nalika pisanan. Priksa sampeyan lan coba maneh.",
+    "backToArcade": "Bali menyang arkade",
+    "openPrivacySettings": "Buka setelan privasi",
+    "privacyWarning": "Yen sampeyan nyimpen akeh token utawa manggon ing wilayah sing ora aman, ndhelikake lencana lan saldo sadurunge nggunakake fitur iki. Transaksi on-chain isih mbukak alamat sampeyan. Bukak setelan.",
+    "leaveGame": "Ninggalake game",
+    "loadingGame": "Ngunggahake {{title}}",
+    "hideThis": "Singkirake iki"
   },
   "videoLooks": {
     "button": "Tampilan kamera",
@@ -3376,7 +3466,22 @@
     "someone": "Sapa wae",
     "oneTyping": "{{name}} lagi ngetik…",
     "fewTyping": "{{names}} lagi ngetik…",
-    "manyTyping": "{{count}} wong lagi ngetik…"
+    "manyTyping": "{{count}} wong lagi ngetik…",
+    "modBadge": "MOD",
+    "thisUser": "pangguna iki",
+    "unbanConfirm": "Apa sampeyan yakin arep mbukak blokir {{name}}?",
+    "unban": "Mbukak blokir",
+    "unbanFailed": "Gagal mbukak blokir pangguna",
+    "onlineLabel": "Online",
+    "usersCount_one": "pangguna {{count}}",
+    "usersCount_other": "pangguna {{count}}",
+    "totalMessages": "Total Pesen",
+    "slowMode": "Mode Alon",
+    "cooldownSeconds": "{{seconds}}s cooldown",
+    "minStakeRequired": "Stake Minimal Dibutuhake",
+    "noParticipants": "Durung ana peserta",
+    "noModerators": "Ora ana moderator",
+    "noBannedUsers": "Ora ana pangguna sing diblokir"
   },
   "promptFeed": {
     "headline": "Sampeyan pengin ndeleng apa?",
@@ -4128,7 +4233,26 @@
     "madeForKidsBlockedByMature": "Posting sing ditandai dewasa ora bisa uga dinerbitake kanggo bocah.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Njaluk rincian RTMP",
-    "markMadeForKids": "Tandhani minangka digawe kanggo bocah"
+    "markMadeForKids": "Tandhani minangka digawe kanggo bocah",
+    "queueWaiting": "Ngenteni…",
+    "queueUploading": "Ngunggahake",
+    "queueProcessing": "Ngolah…",
+    "queueMinting": "Nggawe…",
+    "queuePosted": "Dikirim",
+    "queueFailed": "Gagal",
+    "noRetriesLeft": "(ora ana upaya maneh)",
+    "noUploads": "Ora ana unggahan",
+    "uploadsAppearHere": "Unggahan sampeyan bakal katon ing kene",
+    "imagesTotalLimit": "Gambar ing siji unggahan kudu total 100 MB utawa kurang",
+    "chooseDatabase": "Pilih Basis Data Terdesentralisasi",
+    "livestreamMode": "Mode Siaran Langsung",
+    "addThumbnail": "Tambah Gambar Miniatur",
+    "showCover": "Tampilake sampul",
+    "max60s": "Maks 60s",
+    "confirmLivestream": "Konfirmasi Livestream",
+    "liveFeaturesTitle": "Fitur Langsung",
+    "discardPostTitle": "Buang Kiriman?",
+    "discardPostBody": "Sugestimu bakal ilang. Apa kowe arep nyimpen minangka draf?"
   },
   "bounty": {
     "claimed": "Wis diklaim",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Uripake DM supaya bisa nampa pesen anyar.",
     "perMessageFee": "Ragad saben pesen (DHB)",
     "perMessageFeeSub": "Narik ragad saben pesen. Setel 0 kanggo DM gratis. Sampeyan bisa menehi akses gratis kanggo pangguna tartamtu.",
-    "allDisabled": "Kabeh DM saiki dipateni. DM anyar diblokir kanthi standar."
+    "allDisabled": "Kabeh DM saiki dipateni. DM anyar diblokir kanthi standar.",
+    "failedToEdit": "Gagal nyunting",
+    "messageDeleted": "Pesan dihapus",
+    "cantForwardFromDevice": "Pesan iki ora bisa diterusake saka piranti iki",
+    "messageForwarded": "Pasan dikirim",
+    "clearMessages": "Pesan sing cetha",
+    "clearMessagesConfirm": "Busak kabeh pesen ing obrolan iki? Iki ora bisa dibalekake.",
+    "messagesCleared": "Pesen diresiki",
+    "failedToClearMessages": "Gagal mbusak pesen",
+    "removedFreeAccess": "Dibusak akses gratis kanggo {{name}}",
+    "grantedFreeAccess": "Diparengake akses gratis menyang {{name}}",
+    "failedToUpdateFreeAccess": "Gagal nganyari akses gratis",
+    "searchComingSoon": "Panggolekan enggal rawuh",
+    "tapToUnblock": "Tutul kanggo mbukak blokir",
+    "userFallback": "panganggo",
+    "failedToBlock": "Gagal diblokir",
+    "failedToDeleteConversation": "Gagal mbusak obrolan",
+    "newDm": "Pesen langsung anyar",
+    "noConversationsFound": "Ora ana obrolan sing ditemokake"
   },
   "editPost": {
     "mediaPermission": "Butuh idin pustaka media",
@@ -4467,7 +4609,17 @@
     "retry": "Coba maneh",
     "retrying": "Ngulang maneh…",
     "retryQueued": "Diproses maneh",
-    "retryFailed": "Ora bisa ngulang kiriman kuwi"
+    "retryFailed": "Ora bisa ngulang kiriman kuwi",
+    "closeVideo": "Tutup video",
+    "rotateOrientation": "Putere orientasi",
+    "videoProgress": "Progres video: {{percent}}%",
+    "tapToSeek": "Tutul kanggo pindhah menyang posisi tartamtu",
+    "photoAccessToSaveImages": "Wenehana akses menyang pustaka foto kanggo nyimpen gambar",
+    "failedToSaveImage": "Gagal nyimpen gambar",
+    "downloadImage": "Undhuh gambar",
+    "goToImage": "Menyang gambar {{index}}",
+    "allCaughtUp": "Sampeyan wis rampung",
+    "checkBackForShorts": "Priksa maneh mengko kanggo luwih akeh video cekak"
   },
   "liveViewer": {
     "loadingStream": "Ngunggah siaran...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Pungkasan asil",
-    "searchDehub": "Golek ing DeHub"
+    "searchDehub": "Golek ing DeHub",
+    "tabVoice": "Swara",
+    "trendingThisWeek": "Populer Minggu Iki",
+    "trendingPosts": "Kiriman Populer",
+    "trendingImages": "Gambar Populer",
+    "trendingVideos": "Video Populer",
+    "trendingVoicePosts": "Kiriman Swara Populer",
+    "trendingLive": "Langsung Populer",
+    "seeAll": "Deleng Kabeh",
+    "noAccountsFound": "Ora ana akun sing ditemokake",
+    "tryDifferentKeywords": "Coba tembung kunci liyane utawa priksa ejaan sampeyan",
+    "noContentResults": "Ora ana asil konten",
+    "recentSearches": "Panggolekan Paling Anyar",
+    "noTrendingThisWeek": "Ora ana konten populer minggu iki",
+    "closeFilterOptions": "Tutup pilihan filter",
+    "openFilterOptions": "Buka pilihan filter"
   },
   "notifPrompt": {
     "stayInLoop": "Tetep ngerti kabar",
@@ -4727,7 +4894,26 @@
     "externalTitle": "Mode Streaming Eksternal",
     "externalLiveHint": "Siaranmu wis urip liwat piranti lunak eksternal. Kamera ing aplikasi wis dipateni.",
     "externalHint": "Sambungake piranti lunak streamingmu nganggo katrangan ing ngisor iki, banjur wiwiti siaran.",
-    "useInAppCamera": "Gunakake Kamera Ing Aplikasi Gantine"
+    "useInAppCamera": "Gunakake Kamera Ing Aplikasi Gantine",
+    "livestreamEnded": "Livestream rampung",
+    "chatEnabled": "Obrolan diaktifake",
+    "chatDisabled": "Obrolan dipateni",
+    "failedToUpdateSettings": "Gagal nganyari setelan",
+    "networkLostReconnecting": "Koneksi jaringan ilang — stream dijeda. Nyambungake maneh…",
+    "openingViewer": "Mbukak penampil...",
+    "cameraPermissionRequired": "Izin kamera dibutuhake",
+    "grantPermission": "Wenehi Idin",
+    "waitingForLivepeer": "Ngenteni Livepeer...",
+    "waitingForExternalSource": "Ngenteni sumber njaba...",
+    "settingUpPublisher": "Nyiapake penerbit...",
+    "scheduledStream": "Jadwalake Siaran",
+    "scheduledAt": "{{date}} ing {{time}}",
+    "pressGoLiveWhenReady": "Tekan Go Live yen wis siyap diwiwiti",
+    "connectionInterrupted": "Sambungan Pedhot",
+    "streamPausedReconnecting": "Siaranmu dijeda. Nyambungake maneh...",
+    "streamWillEnd": "Siaran bakal rampung yen ora disambungake maneh",
+    "endStreamConfirmTitle": "Mungkasi Siaran?",
+    "endStreamConfirmBody": "Nutup saiki bakal mungkasi siaran langsungmu kanggo kabeh pamirso. Sampeyan bisa nerusake siaran utawa mungkasi kanthi permanen."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",
