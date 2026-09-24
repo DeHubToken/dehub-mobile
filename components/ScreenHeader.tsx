@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { colors } from '../theme/colors';
 import AppTopBar, { APP_TOP_BAR_HEIGHT } from './AppTopBar';
+import { useAppTheme } from '../context/ThemeContext';
+import { MINIMAL_HAIRLINE } from '../theme/minimal';
 
 /**
  * Height of this header in points. Exported because any screen that puts a
@@ -43,6 +45,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const { isMinimal } = useAppTheme();
   const showBack = canGoBack && (onBackPress || (navigation as any).canGoBack?.());
   const backLockRef = useRef(false);
   const backTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -92,13 +95,16 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
 
   return (
     <View className="bg-theme-neutrals-900">
-    <AppTopBar />
+    {/* Minimal: one hairline under the whole header, not one per bar. */}
+    <AppTopBar hairline={false} />
     <View
       className="flex-row items-center justify-between px-4 bg-theme-neutrals-900"
       style={{
         height: SCREEN_HEADER_TITLE_HEIGHT,
         paddingTop: 0,
         ...(Platform.OS === 'android' ? { elevation: 0 } : {}),
+        // Inside the fixed height, so SCREEN_HEADER_HEIGHT is unchanged.
+        ...(isMinimal ? { borderBottomWidth: 1, borderBottomColor: MINIMAL_HAIRLINE } : {}),
       }}
     >
       <View className="flex-row items-center flex-1">

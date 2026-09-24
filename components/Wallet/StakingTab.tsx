@@ -35,6 +35,8 @@ const recordStakeEvent = (message: string, attempt: StakeAttempt, outcome?: stri
 import { FIELD_TEXT } from "../../theme/inputs";
 import { appLocale } from "../../libs/date.util";
 import { sanitizeAmountInput } from "../../libs/amount-input";
+import { useAppTheme } from "../../context/ThemeContext";
+import { minimalFlat, minimalRow } from "../../theme/minimal";
 
 const DHB_BASE = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
 // Unified transfer-based staking target (same address on Base + BNB)
@@ -86,6 +88,11 @@ function fmt(val: number): string {
 
 const StakingTab: React.FC = () => {
   const { t } = useTranslation();
+  // Minimal: the section cards dissolve into hairline-separated rows; the
+  // mode toggle, amount field and buttons keep their fill.
+  const { isMinimal } = useAppTheme();
+  const mRow = isMinimal ? minimalRow : undefined;
+  const mFlat = isMinimal ? minimalFlat : undefined;
   const user = useUser() as any;
   // Held in a ref so the fetch below can fall back to the session's own copy of
   // the account without re-running every time anything else on the user (an
@@ -557,7 +564,7 @@ const StakingTab: React.FC = () => {
   return (
     <View className="flex-1">
       {pendingStake && pendingStake.wallet.toLowerCase() === walletAddress?.toLowerCase() && (
-        <View accessibilityRole="summary" className="mb-4 rounded-xl border border-white/20 p-3">
+        <View accessibilityRole="summary" className="mb-4 rounded-xl border border-white/20 p-3" style={mRow}>
           <Text className="text-white">{pendingStake.confirmed
             ? t("staking.pendingConfirmed", { amount: pendingStake.amount })
             : t("staking.pendingSubmitted", { amount: pendingStake.amount })}</Text>
@@ -570,8 +577,8 @@ const StakingTab: React.FC = () => {
         </View>
       )}
       {/* Stats row */}
-      <View className="flex-row gap-3 mb-5">
-        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
+      <View className="flex-row gap-3 mb-5" style={mRow}>
+        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4" style={mFlat}>
           <View className="flex-row items-center justify-between mb-1">
             <Text className="text-white/50 text-xs uppercase tracking-wider">
               {t("staking.yourStaked")}
@@ -603,7 +610,7 @@ const StakingTab: React.FC = () => {
               : ""}
           </Text>
         </View>
-        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
+        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4" style={mFlat}>
           <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">
             {t("staking.walletBalance")}
           </Text>
@@ -618,7 +625,7 @@ const StakingTab: React.FC = () => {
 
       {/* Pending rewards (BNB legacy contract) */}
       {earned > 0 && (
-        <View className="flex-row items-center justify-between bg-white/10 border border-white/20 rounded-xl p-4 mb-4">
+        <View className="flex-row items-center justify-between bg-white/10 border border-white/20 rounded-xl p-4 mb-4" style={mRow}>
           <View>
             <Text className="text-white/80 font-semibold text-sm">{t("staking.pendingRewards")}</Text>
             <Text className="text-white text-lg font-bold mt-0.5">{fmt(earned)} <DhbCoin size={16} /></Text>
@@ -630,7 +637,7 @@ const StakingTab: React.FC = () => {
       )}
 
       {/* Stake / Unstake card */}
-      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
+      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
         {/* Mode toggle */}
         <View className="flex-row bg-white/[0.04] rounded-xl p-1 mb-4">
           {(["stake", "unstake"] as const).map((m) => (
@@ -727,7 +734,7 @@ const StakingTab: React.FC = () => {
       </View>
 
       {/* Protocol stats */}
-      <View className="flex-row items-center justify-between bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4">
+      <View className="flex-row items-center justify-between bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
         <Text className="text-white/50 text-xs">{t("staking.totalStakedProtocol")}</Text>
         <Text className="text-white font-semibold text-sm">
           {loading ? "…" : `${fmt(protocolTotal ?? 0)} DHB`}
@@ -735,7 +742,7 @@ const StakingTab: React.FC = () => {
       </View>
 
       {/* Manual staking address */}
-      <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
+      <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4" style={mFlat}>
         <Text className="text-white/50 text-xs mb-2">
           {t("staking.orSendDirectly")}
         </Text>

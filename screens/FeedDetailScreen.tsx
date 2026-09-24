@@ -40,6 +40,11 @@ import { formatCompactNumber } from "../libs/numbers.util";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { PostReaction } from "../libs/reactions";
 import PostDetailContinuation from "../components/Advertising/PostDetailContinuation";
+import { useAppTheme } from "../context/ThemeContext";
+import { MINIMAL_HAIRLINE, MINIMAL_INSET } from "../theme/minimal";
+
+// Minimal composer field: still reads as an input, but by outline alone.
+const MINIMAL_INPUT_LINE = "rgba(255,255,255,0.10)";
 
 /** A comment plus how deep it sits in the thread (0 = top-level, 1 = direct reply, …). */
 type ThreadedComment = Comment & { depth: number };
@@ -60,6 +65,7 @@ const threadLineStyles = StyleSheet.create({
 
 export default function FeedDetailScreen() {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   
@@ -803,9 +809,10 @@ export default function FeedDetailScreen() {
       <TouchableOpacity
         onPress={() => setShowAllThreads(true)}
         activeOpacity={0.7}
-        className="self-start rounded-xl bg-theme-neutrals-800/60 px-4 py-2"
+        // Minimal: a plain text link, not a filled chip.
+        className={isMinimal ? "self-start py-2" : "self-start rounded-xl bg-theme-neutrals-800/60 px-4 py-2"}
       >
-        <Text className="text-theme-neutrals-300 text-xs">{t("comments.showAll")}</Text>
+        <Text className={isMinimal ? "text-white text-xs underline" : "text-theme-neutrals-300 text-xs"}>{t("comments.showAll")}</Text>
       </TouchableOpacity>
     </View>
   ) : null;
@@ -1060,13 +1067,18 @@ export default function FeedDetailScreen() {
               <View className="w-16 h-2.5 bg-theme-neutrals-800 rounded mt-1.5" />
             </View>
           </View>
-          <View className="mt-3 h-48 bg-theme-neutrals-800 rounded-xl" />
+          {/* Minimal: the media block bleeds past the inset to both screen edges. */}
+          <View
+            className="mt-3 h-48 bg-theme-neutrals-800 rounded-xl"
+            style={isMinimal ? { marginHorizontal: -MINIMAL_INSET, backgroundColor: "rgba(255,255,255,0.04)" } : undefined}
+          />
           <View className="mt-3 w-3/4 h-3.5 bg-theme-neutrals-800 rounded" />
           <View className="mt-2 w-1/2 h-3 bg-theme-neutrals-800 rounded" />
         </View>
       ) : privateError ? (
         <View className="items-center justify-center px-6 py-16">
-          <View className="bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5">
+          {/* Minimal: the icon alone, without the slab behind it. */}
+          <View className={isMinimal ? "mb-5" : "bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5"}>
             <Ionicons name="lock-closed" size={40} color="#666" />
           </View>
           <Text className="text-white text-lg font-bold text-center mb-2">
@@ -1126,7 +1138,7 @@ export default function FeedDetailScreen() {
         </Text>
       </View>
     </View>
-  ), [item, loading, privateError, navigation, comments.length, focusCommentInput]);
+  ), [item, loading, privateError, navigation, comments.length, focusCommentInput, isMinimal]);
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
@@ -1164,12 +1176,15 @@ export default function FeedDetailScreen() {
       />
       <View
         className="absolute left-0 right-0 bottom-0 border-t border-theme-neutrals-800 bg-theme-neutrals-900"
-        style={{ marginBottom: inputLift }}
+        // Minimal: a black bar under one full-width hairline.
+        style={isMinimal
+          ? { marginBottom: inputLift, backgroundColor: "#000", borderTopColor: MINIMAL_HAIRLINE }
+          : { marginBottom: inputLift }}
       >
         {/* Replying / Editing indicator */}
         {(replyTo || editingComment) && !recorder.isRecording && (
           <View
-            className="flex-row items-center py-2 bg-theme-neutrals-800/50"
+            className={isMinimal ? "flex-row items-center py-2" : "flex-row items-center py-2 bg-theme-neutrals-800/50"}
             style={{ paddingHorizontal: COMPOSER.gutter }}
           >
             <Text className="flex-1 text-xs text-theme-neutrals-400">
@@ -1221,8 +1236,9 @@ export default function FeedDetailScreen() {
               style={{ marginBottom: (COMPOSER.control - 32) / 2 }}
             />
             <View
-              className="flex-1 flex-row bg-theme-neutrals-800/60 border border-theme-neutrals-700"
+              className={isMinimal ? "flex-1 flex-row border" : "flex-1 flex-row bg-theme-neutrals-800/60 border border-theme-neutrals-700"}
               style={{
+                ...(isMinimal ? { borderColor: MINIMAL_INPUT_LINE } : null),
                 // `center`, not `flex-end`: one line of 14px text is ~18 tall in a
                 // 40 box. Once the text wraps, the box grows and this is moot.
                 alignItems: "center",

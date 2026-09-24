@@ -21,7 +21,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -35,6 +35,8 @@ import { openInApp } from "../libs/links.utils";
 import { toastError } from "../libs/toast";
 import { useUser } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
+import { useAppTheme } from "../context/ThemeContext";
+import { minimalFlat, minimalRow } from "../theme/minimal";
 import WorkUser from "../components/Work/WorkUser";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
@@ -103,6 +105,11 @@ const Stars: React.FC<{ value: number; size?: number; onPick?: (n: number) => vo
 
 export default function WorkJobDetailScreen() {
   const { t } = useTranslation();
+  // Minimal: a 16pt gutter, and the header card plus application/submission/
+  // review cards become edge-to-edge hairline rows. Inputs, pills and buttons
+  // keep their fill.
+  const { isMinimal } = useAppTheme();
+  const rowStyle = [styles.row, isMinimal && styles.minimalRow];
   const insets = useSafeAreaInsets();
   // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
   // root SafeAreaView already spent.
@@ -241,7 +248,7 @@ export default function WorkJobDetailScreen() {
         keyboardVerticalOffset={keyboardOffset}
       >
         <ScrollView
-          contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 32 }}
+          contentContainerStyle={{ paddingHorizontal: isMinimal ? 16 : 12, paddingBottom: insets.bottom + 32 }}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           refreshControl={
@@ -253,7 +260,7 @@ export default function WorkJobDetailScreen() {
           }
         >
           {/* Header card */}
-          <View style={styles.card}>
+          <View style={[styles.card, isMinimal && styles.minimalCard]}>
             <View style={styles.badgeRow}>
               <View style={styles.badge}>
                 <Icon name="Briefcase" size={11} color="#D4D4D8" />
@@ -335,7 +342,7 @@ export default function WorkJobDetailScreen() {
                 <Text style={styles.dim}>{t("work.detail.noApplicants")}</Text>
               ) : (
                 applications.map((a) => (
-                  <View key={a.id} style={styles.row}>
+                  <View key={a.id} style={rowStyle}>
                     <View style={styles.rowHead}>
                       <WorkUser address={a.applicant_address} />
                       <View
@@ -456,7 +463,7 @@ export default function WorkJobDetailScreen() {
                   // only an unpaid row is blocked once the budget is spent.
                   const budgetSpent = !s.payout_amount && remaining <= 0;
                   return (
-                    <View key={s.id} style={styles.row}>
+                    <View key={s.id} style={rowStyle}>
                       <View style={styles.rowHead}>
                         {/* Address under the name: this is the wallet the
                             transfer goes to, so the poster can check it. */}
@@ -664,7 +671,7 @@ export default function WorkJobDetailScreen() {
               <Text style={styles.dim}>{t("work.detail.noReviews")}</Text>
             ) : (
               reviews.map((r) => (
-                <View key={r.id} style={styles.row}>
+                <View key={r.id} style={rowStyle}>
                   <View style={styles.rowHead}>
                     <WorkUser address={r.reviewer_address} />
                     <Stars value={r.rating} size={13} />
@@ -693,7 +700,7 @@ export default function WorkJobDetailScreen() {
           </View>
 
           {showDispute && (
-            <View style={styles.disputeBox}>
+            <View style={[styles.disputeBox, isMinimal && styles.minimalFlatBox]}>
               <TextInput
                 value={disputeReason}
                 onChangeText={setDisputeReason}
@@ -789,6 +796,11 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 14,
   },
+  // -16 cancels the gutter so the hairline runs edge to edge; the 16pt padding
+  // puts the text back where the gutter had it.
+  minimalRow: { ...minimalRow, marginHorizontal: -16, paddingHorizontal: 16, marginBottom: 0 },
+  minimalCard: { ...minimalRow, marginHorizontal: -16, paddingHorizontal: 16, marginBottom: 16 },
+  minimalFlatBox:{ ...minimalFlat, paddingHorizontal: 0 },
   badgeRow: { flexDirection: "row", flexWrap: "wrap", gap: 6, marginBottom: 10 },
   badge: {
     flexDirection: "row",

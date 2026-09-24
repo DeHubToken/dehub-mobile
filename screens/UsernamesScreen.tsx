@@ -37,6 +37,15 @@ import Avatar from "../components/common/Avatar";
 import { getAvatarUrl, getBadgeUrlFor } from "../libs/misc";
 import { theme } from "../theme";
 import { useAuthState } from "../context/AuthContext";
+import { useAppTheme } from "../context/ThemeContext";
+import {
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  minimalRow,
+  minimalTab,
+  minimalTabActive,
+  minimalTabStrip,
+} from "../theme/minimal";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import { useDebouncedValue } from "../hooks/useDebouncedValue";
@@ -83,6 +92,7 @@ const UsernameCard: React.FC<{
   onPress: () => void;
 }> = ({ listing, onPress }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const seller = listing.seller;
   // `getBadgeUrlFor` rather than getBadgeUrl(resolveBadgeBalance(…)): it reads
   // the balance AND the grandfathered lock together, so a holder does not wear
@@ -90,7 +100,7 @@ const UsernameCard: React.FC<{
   const badgeImg = getBadgeUrlFor(seller as any);
 
   return (
-    <Pressable style={styles.card} onPress={onPress}>
+    <Pressable style={[styles.card, isMinimal && styles.minimalCard]} onPress={onPress}>
       {/* Left. `minWidth: 0` is what lets this shrink so the price stays on the
           row — without it the flex child keeps its intrinsic width and pushes
           the price off the right edge. */}
@@ -155,6 +165,9 @@ function shortAddress(address: string): string {
 
 export default function UsernamesScreen() {
   const { t } = useTranslation();
+  // Minimal: the tab pill becomes file tabs and listings edge-to-edge hairline
+  // rows. Search, chips and the match banners keep their fill.
+  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Usernames>>();
@@ -241,7 +254,7 @@ export default function UsernamesScreen() {
         rightContent={<Icon name="AtSign" size={22} color={theme.colors.accent} />}
       />
 
-      <View style={styles.segment}>
+      <View style={[styles.segment, isMinimal && styles.minimalSegment]}>
         {/* "Mine" sits next to Browse rather than inside Sell, because owning a
             handle and selling one stopped being the same thing the moment an
             account could hold more than one. */}
@@ -249,9 +262,19 @@ export default function UsernamesScreen() {
           <Pressable
             key={key}
             onPress={() => setTab(key)}
-            style={[styles.segmentBtn, tab === key && styles.segmentBtnActive]}
+            style={[
+              styles.segmentBtn,
+              tab === key && styles.segmentBtnActive,
+              isMinimal && (tab === key ? minimalTabActive : minimalTab),
+            ]}
           >
-            <Text style={[styles.segmentText, tab === key && styles.segmentTextActive]}>
+            <Text
+              style={[
+                styles.segmentText,
+                tab === key && styles.segmentTextActive,
+                isMinimal && { color: tab === key ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
+              ]}
+            >
               {key === "browse"
                 ? t("usernames.browse")
                 : key === "mine"
@@ -351,11 +374,15 @@ export default function UsernamesScreen() {
               renderItem={({ item }) => (
                 <UsernameCard listing={item} onPress={() => openListing(item)} />
               )}
-              ListHeaderComponent={banner}
+              // Minimal drops the list gutter for edge-to-edge rows; the banner
+              // keeps it.
+              ListHeaderComponent={
+                banner && isMinimal ? <View style={styles.minimalBannerWrap}>{banner}</View> : banner
+              }
               contentContainerStyle={{
-                paddingHorizontal: H_PADDING,
+                paddingHorizontal: isMinimal ? 0 : H_PADDING,
                 paddingBottom: insets.bottom + 96,
-                gap: ROW_GAP,
+                gap: isMinimal ? 0 : ROW_GAP,
               }}
               showsVerticalScrollIndicator={false}
               refreshControl={
@@ -436,6 +463,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 3,
   },
+  minimalSegment: { ...minimalTabStrip, marginHorizontal: 0, padding: 0, gap: 0 },
   segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 9, alignItems: "center" },
   segmentBtnActive: { backgroundColor: "rgba(255,255,255,0.15)" },
   bannerAction: { color: "#F4F4F5", fontSize: 12, fontWeight: "700", flexShrink: 0 },
@@ -507,6 +535,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",
   },
+  minimalCard: { ...minimalRow, paddingHorizontal: H_PADDING },
+  minimalBannerWrap: { paddingHorizontal: H_PADDING },
   // minWidth: 0 lets this shrink so the price stays on the row. Without it the
   // flex child keeps its intrinsic width and pushes the price off the edge.
   cardMain: { flex: 1, minWidth: 0, gap: 6 },

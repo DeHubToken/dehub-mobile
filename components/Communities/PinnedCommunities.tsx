@@ -25,6 +25,8 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { ButtonLoader } from "../DeHubLoader";
+import { useAppTheme } from "../../context/ThemeContext";
+import { minimalRow } from "../../theme/minimal";
 
 const MAX_PINS = 3;
 
@@ -41,6 +43,7 @@ interface Props {
 
 const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNavigate }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const navigation = useNavigation<any>();
   const currentUser = useUser() as any;
   const ownWallet = currentUser?.address || currentUser?.walletAddress || "";
@@ -84,11 +87,11 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
   if (pinned.length === 0 && !isOwnProfile) return null;
 
   return (
-    <View style={styles.wrap}>
+    <View style={[styles.wrap, isMinimal && styles.minimalWrap]}>
       {pinned.map((community) => (
         <TouchableOpacity
           key={community.pinId}
-          style={styles.pinCard}
+          style={[styles.pinCard, isMinimal && minimalRow]}
           activeOpacity={0.8}
           onPress={() => openCommunity(community.slug)}
         >
@@ -135,7 +138,7 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
         </TouchableOpacity>
       ))}
       {isOwnProfile && pinned.length < MAX_PINS && (
-        <TouchableOpacity style={styles.addPin} onPress={() => setPickerOpen(true)} activeOpacity={0.7}>
+        <TouchableOpacity style={[styles.addPin, isMinimal && { marginTop: 8 }]} onPress={() => setPickerOpen(true)} activeOpacity={0.7}>
           <Icon name="Plus" size={14} color="#808089" />
           <Text style={styles.addPinText}>{t("communities.pinCommunity")}</Text>
         </TouchableOpacity>
@@ -267,6 +270,8 @@ function PinPickerModal({
 
 const styles = StyleSheet.create({
   wrap: { marginTop: 12, gap: 8 },
+  // Minimal: pins stack as hairline-separated rows, so no gap between them.
+  minimalWrap: { gap: 0 },
   pinCard: {
     flexDirection: "row",
     alignItems: "center",

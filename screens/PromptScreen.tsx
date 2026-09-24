@@ -43,6 +43,8 @@ import { scorePromptAgainstCategories, CategoryWeight } from "../libs/promptFeed
 import { promptFeedEvents } from "../libs/eventBus";
 import { storage } from "../libs/storage";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
+import { useAppTheme } from "../context/ThemeContext";
+import { MINIMAL_HAIRLINE, minimalRow } from "../theme/minimal";
 
 /** 8pt + 32pt back button + 8pt — see styles.header / styles.backBtn. */
 const PROMPT_HEADER_HEIGHT = 48;
@@ -126,6 +128,9 @@ export default function PromptScreen() {
   // This screen draws its own header rather than a ScreenHeader: a 32pt back
   // button over 8pt of bottom padding.
   const keyboardOffset = useKeyboardOffset(PROMPT_HEADER_HEIGHT);
+  // Minimal: the suggestion cards become a hairline-ruled list; the composer
+  // and buttons keep their fill.
+  const { isMinimal } = useAppTheme();
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
 
@@ -272,11 +277,15 @@ export default function PromptScreen() {
                 </Pressable>
               </View>
 
-              <View style={styles.suggestions}>
+              <View style={[styles.suggestions, isMinimal && styles.minimalSuggestions]}>
                 {SUGGESTION_KEYS.map((k) => {
                   const label = t(k);
                   return (
-                    <Pressable key={k} style={styles.suggestion} onPress={() => submit(label)}>
+                    <Pressable
+                      key={k}
+                      style={[styles.suggestion, isMinimal && minimalRow]}
+                      onPress={() => submit(label)}
+                    >
                       <Icon name="Sparkles" size={13} color="#A1A1AA" />
                       <Text style={styles.suggestionText}>{label}</Text>
                     </Pressable>
@@ -422,6 +431,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
   },
+  // Rows butt up; a top rule closes the list above the first one.
+  minimalSuggestions: { gap: 0, borderTopWidth: 1, borderTopColor: MINIMAL_HAIRLINE },
   suggestionText: { color: "#D4D4D8", fontSize: 13, flex: 1, lineHeight: 18 },
   skip: { marginTop: 24, paddingVertical: 8 },
   skipText: { color: "rgba(255,255,255,0.4)", fontSize: 12 },

@@ -8,6 +8,14 @@ import {
 } from "react-native";
 import Icon, { type IconName } from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
+import { useAppTheme } from "../../context/ThemeContext";
+import {
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  minimalTab,
+  minimalTabActive,
+  minimalTabStrip,
+} from "../../theme/minimal";
 
 export interface ProfileTabItem<Key extends string = string> {
   key: Key;
@@ -29,6 +37,7 @@ function ProfileTabBarInner<Key extends string>({
   activeKey,
   onChange,
 }: ProfileTabBarProps<Key>) {
+  const { isMinimal } = useAppTheme();
   const activeIndex = Math.max(0, items.findIndex((item) => item.key === activeKey));
 
   const panResponder = useMemo(
@@ -51,12 +60,15 @@ function ProfileTabBarInner<Key extends string>({
   );
 
   return (
-    <View style={styles.outerWrap}>
+    <View style={[styles.outerWrap, isMinimal && styles.minimalOuterWrap]}>
       {/* Plain flex row, no ScrollView: the web profile page gives every tab
           flex-1 so the whole set spreads evenly across the pill. A horizontal
           ScrollView here refused to stretch its content container to the full
           width, which left all tabs bunched at the left edge. */}
-      <View style={styles.container}>
+      {/* Minimal: an edge-to-edge file-tab strip. One baseline across the
+          width; the active tab is outlined on three sides and dropped 1pt so
+          its black fill breaks the line. flex-end seats tabs on the baseline. */}
+      <View style={[styles.container, isMinimal && styles.minimalContainer]}>
         {items.map((item) => {
           const focused = item.key === activeKey;
           return (
@@ -71,17 +83,27 @@ function ProfileTabBarInner<Key extends string>({
               style={[
                 styles.tab,
                 focused && styles.tabActive,
+                isMinimal && minimalTab,
+                isMinimal && focused && minimalTabActive,
               ]}
             >
               <Icon
                 name={item.icon}
                 size={18}
-                color={focused ? "#FFFFFF" : "#808089"}
+                color={
+                  focused
+                    ? isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : "#FFFFFF"
+                    : isMinimal ? MINIMAL_TAB_TEXT : "#808089"
+                }
                 strokeWidth={2}
               />
               <Text
                 numberOfLines={1}
-                style={[styles.count, focused && styles.countActive]}
+                style={[
+                  styles.count,
+                  isMinimal && styles.minimalCount,
+                  focused && styles.countActive,
+                ]}
               >
                 {typeof item.count === "number"
                   ? formatCompactNumber(item.count)
@@ -136,6 +158,17 @@ const styles = StyleSheet.create({
   },
   countActive: {
     color: "#FFFFFF",
+  },
+  minimalOuterWrap: {
+    paddingHorizontal: 0,
+  },
+  minimalContainer: {
+    ...minimalTabStrip,
+    paddingVertical: 0,
+    alignItems: "flex-end",
+  },
+  minimalCount: {
+    color: MINIMAL_TAB_TEXT,
   },
 });
 

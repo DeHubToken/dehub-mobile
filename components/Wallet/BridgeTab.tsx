@@ -18,6 +18,8 @@ import { supabase } from "../../services/supabase";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { FIELD_TEXT } from "../../theme/inputs";
 import { sanitizeAmountInput } from "../../libs/amount-input";
+import { useAppTheme } from "../../context/ThemeContext";
+import { minimalFlat, minimalRow } from "../../theme/minimal";
 
 interface BridgeTransfer {
   txHash: string;
@@ -65,6 +67,11 @@ function formatDHB(raw: ethers.BigNumber | null): string {
 
 const BridgeTab: React.FC = () => {
   const { t } = useTranslation();
+  // Minimal: section cards and transfer rows dissolve into hairline rows; the
+  // chain chips, swap button, amount field and bridge button keep their fill.
+  const { isMinimal } = useAppTheme();
+  const mRow = isMinimal ? minimalRow : undefined;
+  const mFlat = isMinimal ? minimalFlat : undefined;
   const user = useUser() as any;
   const walletAddress: string | undefined =
     user?.walletAddress || user?.address;
@@ -210,8 +217,8 @@ const BridgeTab: React.FC = () => {
   return (
     <View className="flex-1">
       {/* Balance stats */}
-      <View className="flex-row gap-3 mb-5">
-        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
+      <View className="flex-row gap-3 mb-5" style={mRow}>
+        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4" style={mFlat}>
           <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">
             Base
           </Text>
@@ -222,7 +229,7 @@ const BridgeTab: React.FC = () => {
           )}
           <DhbCoin size={12} style={{ marginTop: 2 }} />
         </View>
-        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
+        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4" style={mFlat}>
           <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">
             BNB Chain
           </Text>
@@ -236,7 +243,7 @@ const BridgeTab: React.FC = () => {
       </View>
 
       {/* Bridge card */}
-      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
+      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
         <Text className="text-white font-semibold text-base mb-4">{t("bridge.title")}</Text>
 
         {/* Direction display */}
@@ -323,7 +330,7 @@ const BridgeTab: React.FC = () => {
       </View>
 
       {/* Info note */}
-      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
+      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
         <View className="flex-row items-center gap-2 mb-2">
           <Ionicons name="information-circle-outline" size={16} color="#D4D4D8" />
           <Text className="text-white font-semibold text-sm">{t("affiliate.howItWorks")}</Text>
@@ -334,7 +341,7 @@ const BridgeTab: React.FC = () => {
       </View>
 
       {/* Recent bridges */}
-      <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4">
+      <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
         <Text className="text-white/50 text-xs uppercase tracking-wider mb-3">
           {t("bridge.recent")}
         </Text>
@@ -353,6 +360,7 @@ const BridgeTab: React.FC = () => {
                 key={`${t.txHash}-${t.from}`}
                 onPress={() => t.explorerUrl && Linking.openURL(t.explorerUrl)}
                 className="flex-row items-center gap-3 bg-white/[0.03] border border-white/5 rounded-xl px-3 py-2.5"
+                style={mRow}
               >
                 <View className="w-8 h-8 rounded-lg items-center justify-center bg-white/10 border border-white/20">
                   <Text className="text-xs font-bold text-white">
@@ -378,7 +386,7 @@ const BridgeTab: React.FC = () => {
       </View>
 
       {/* Manual bridge address */}
-      <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
+      <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4" style={mFlat}>
         <Text className="text-white/50 text-xs mb-2">
           {t("bridge.relayAddress")}
         </Text>

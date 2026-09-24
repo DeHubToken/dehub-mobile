@@ -23,6 +23,8 @@ import { WebView } from "react-native-webview";
 import env from "../../config/env";
 import { FIELD_TEXT } from "../../theme/inputs";
 import { sanitizeAmountInput } from "../../libs/amount-input";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE, minimalFlat } from "../../theme/minimal";
 // Auth signing not required here; apiClient handles auth via isAuthRequired
 
 type DpayTopUpFormProps = {
@@ -49,6 +51,10 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   initialUsdAmount = "10",
   onDelivered,
 }) => {
+  // Minimal: the form's card dissolves (fields and buttons keep their fill)
+  // and the confirm sheet's grey dividers become the white hairline.
+  const { isMinimal } = useAppTheme();
+  const mLine = isMinimal ? { borderColor: MINIMAL_HAIRLINE } : undefined;
   const user = useUser() as any;
   const address: string | undefined = (user?.walletAddress || user?.address) as
     | string
@@ -406,7 +412,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   }, [checkoutSecret]);
 
   return (
-    <View className="bg-theme-neutrals-800 rounded-xl p-5 border border-theme-neutrals-700/60">
+    <View className="bg-theme-neutrals-800 rounded-xl p-5 border border-theme-neutrals-700/60" style={isMinimal ? minimalFlat : undefined}>
       <Text className="text-white text-xl font-semibold mb-1">{t("dpay.topUp")}</Text>
       <Text className="text-gray-300 text-[11px] mb-4">
         {t("dpay.topUpSubtitle")}
@@ -522,8 +528,8 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                 {t("dpay.confirmPurchase")}
               </Text>
 
-              <View className="border-t border-theme-neutrals-700/60">
-                <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60">
+              <View className="border-t border-theme-neutrals-700/60" style={mLine}>
+                <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60" style={mLine}>
                   <Text className="text-gray-300 text-sm">
                     {t("dpay.amountIn", { currency: currency.toUpperCase() })}
                   </Text>
@@ -532,7 +538,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                     {currency.toUpperCase()}]
                   </Text>
                 </View>
-                <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60">
+                <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60" style={mLine}>
                   <Text className="text-gray-300 text-sm">
                     {t("dpay.approxReceive", { symbol: tokenSymbol })}
                   </Text>
@@ -540,7 +546,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                     {approxReceive}
                   </Text>
                 </View>
-                <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60">
+                <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60" style={mLine}>
                   <Text className="text-gray-300 text-sm">{t("dpay.walletAddress")}</Text>
                   <Text className="text-white text-sm font-semibold">
                     {miniAddress(address || "")}

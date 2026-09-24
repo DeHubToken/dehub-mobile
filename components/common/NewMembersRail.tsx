@@ -22,6 +22,7 @@ import {
   useNewMembers,
   type NewMember,
 } from "../../hooks/useNewMembers";
+import { useAppTheme } from "../../context/ThemeContext";
 
 /** How much of the roster to hold, so followed members can leave the rail. */
 const ROSTER_SIZE = 40;
@@ -37,6 +38,7 @@ type FollowState = {
 
 const NewMembersRail: FC = () => {
   const { showUserProfile } = useUserProfileSheet();
+  const { isMinimal } = useAppTheme();
   const { requireAuth } = useAuth();
   const authUser = useUser() as { address?: string; walletAddress?: string } | null;
   const viewerAddress = authUser?.address ?? authUser?.walletAddress;
@@ -174,7 +176,8 @@ const NewMembersRail: FC = () => {
           return (
             <View
               key={member.address}
-              className="w-28 items-center rounded-2xl bg-theme-neutrals-800 px-2 py-3"
+              // Minimal: no card fill — avatar, name and Follow stand on the black.
+              className={isMinimal ? "w-28 items-center px-2 py-3" : "w-28 items-center rounded-2xl bg-theme-neutrals-800 px-2 py-3"}
             >
               <TouchableOpacity activeOpacity={0.8} onPress={() => openProfile(member)}>
                 <Avatar uri={member.avatarUrl} size={56} name={member.displayName} />

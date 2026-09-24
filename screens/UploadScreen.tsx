@@ -101,6 +101,8 @@ import PlanFormSheet from "../components/Subscription/PlanFormSheet";
 import { useQueryClient } from "@tanstack/react-query";
 import { POST_TITLE_MAX, splitTitleFromText } from "../libs/post-title-split";
 import { haptic } from "../libs/haptics";
+import { useAppTheme } from "../context/ThemeContext";
+import { minimalFlat } from "../theme/minimal";
 
 /** Same key web writes to localStorage — see hooks/useAppPrefs.ts on naming. */
 const SHOULD_MINT_KEY = "post_should_mint";
@@ -199,6 +201,9 @@ const isVideoAsset = (asset: PickedAsset): boolean =>
   asset.type === "video" || !!asset.mimeType?.startsWith("video/");
 
 export default function UploadScreen() {
+  // Minimal: the recorder, audio and poll panels dissolve into the page
+  // (padding kept); media frames, pickers and menus stay as they are.
+  const { isMinimal } = useAppTheme();
   const queryClient = useQueryClient();
   const nav = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, typeof ScreenNames.Upload>>();
@@ -2520,7 +2525,7 @@ export default function UploadScreen() {
             )}
 
             {isAudioRecording && (
-              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4">
+              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4" style={isMinimal ? minimalFlat : undefined}>
                 <View className="flex-row items-center">
                   <View className="w-2.5 h-2.5 rounded-full bg-white mr-2" />
                   <Text
@@ -2585,7 +2590,7 @@ export default function UploadScreen() {
             )}
 
             {!isLiveMode && mediaMode === "audio" && pickedAudio && !isAudioRecording && (
-              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4">
+              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4" style={isMinimal ? minimalFlat : undefined}>
                 <View className="flex-row items-center">
                   <TouchableOpacity
                     onPress={handleToggleAudioPreview}
@@ -2640,7 +2645,7 @@ export default function UploadScreen() {
             )}
 
             {pollEnabled && (
-              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4">
+              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4" style={isMinimal ? minimalFlat : undefined}>
                 <View className="flex-row items-center justify-between mb-3">
                   <Text className="text-white font-semibold text-sm">{t("publicChat.poll")}</Text>
                   <TouchableOpacity onPress={handleTogglePoll} hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}>

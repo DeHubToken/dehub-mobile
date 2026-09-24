@@ -15,6 +15,8 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   moduleNameMapper: {
     '^@env$': '<rootDir>/__mocks__/@env.ts',
+    // babel.config.js's jsxImportSource; a folder here, not a package.
+    '^dehub-jsx/(.*)$': '<rootDir>/libs/jsx/$1',
     '\\.(png|jpg|jpeg|gif|svg|wav|mp3|m4a)$': '<rootDir>/__mocks__/fileMock.js',
     '\\.css$': '<rootDir>/__mocks__/styleMock.js',
   },

@@ -14,6 +14,8 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 
 export interface GlassModalProps {
   visible: boolean;
@@ -62,6 +64,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
   scrollable = false,
 }) => {
   const insets = useSafeAreaInsets();
+  const { isMinimal } = useAppTheme();
   const isBottom = presentation === "bottom";
   const translateY = useRef(new Animated.Value(0)).current;
   const scrollY = useRef(0);
@@ -140,7 +143,19 @@ const GlassModal: React.FC<GlassModalProps> = ({
           instead of stopping short of both. */}
       <View style={styles.container}>
         {/* Default: non-blurred dim backdrop; no full-screen blur */}
-        {backdropScope === "full" ? (
+        {backdropScope === "full" && isMinimal ? (
+          // Minimal has no glass: the full-screen blur becomes a flat, heavier
+          // dim so the panel still separates from whatever is behind it.
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => {
+              if (dismissible) onClose();
+            }}
+            style={StyleSheet.absoluteFill}
+          >
+            <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.6)" }} />
+          </TouchableOpacity>
+        ) : backdropScope === "full" ? (
           <TouchableOpacity
             activeOpacity={1}
             onPress={() => {
@@ -203,6 +218,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
                 style={[
                   styles.panel,
                   isBottom ? styles.panelDrawer : styles.panelCard,
+                  isMinimal && (isBottom ? styles.minimalPanelDrawer : styles.minimalPanelCard),
                   {
                     maxHeight: maxHeight as any,
                     height: panelHeight as any,
@@ -272,6 +288,22 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderTopWidth: 1,
+  },
+  // Minimal: pure black panel, one hairline where it meets the page — all
+  // four sides on a floating card, the top edge only on a drawer.
+  minimalPanelCard: {
+    backgroundColor: "#000",
+    borderColor: MINIMAL_HAIRLINE,
+    borderWidth: 1,
+    shadowOpacity: 0,
+    elevation: 0,
+  },
+  minimalPanelDrawer: {
+    backgroundColor: "#000",
+    borderColor: MINIMAL_HAIRLINE,
+    borderTopWidth: 1,
+    shadowOpacity: 0,
+    elevation: 0,
   },
 });
 

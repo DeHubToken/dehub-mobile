@@ -15,6 +15,15 @@ import CommentSection from "./CommentSection";
 import RepostTab from "./RepostTab";
 import QuoteTab from "./QuoteTab";
 import type { PostCreator } from "../../libs/impersonation";
+import { useAppTheme } from "../../context/ThemeContext";
+import {
+  MINIMAL_HAIRLINE,
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  minimalTab,
+  minimalTabActive,
+  minimalTabStrip,
+} from "../../theme/minimal";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const SHEET_FRACTION = 0.82;
@@ -60,6 +69,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const inline = inlineHeight !== undefined;
   const SHEET_HEIGHT = inlineHeight ?? SCREEN_HEIGHT * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
@@ -197,7 +207,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
           {/* Opaque by design: the sheet opens over playing video, and a
               translucent body let the frame bleed through every row of text.
               The blur/frost layers died with the translucency. */}
-          <View style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
+          <View style={[StyleSheet.absoluteFill, glassStyles.overlay, isMinimal && glassStyles.minimalOverlay]} />
 
           <GestureDetector gesture={gesture}>
             <Animated.View style={{ height: inline ? 44 : 24, alignItems: "center", justifyContent: "center" }}>
@@ -205,14 +215,20 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
             </Animated.View>
           </GestureDetector>
 
-          <View style={glassStyles.tabBar}>
+          {/* Minimal turns this into a file-tab strip: one baseline across the
+              sheet, the active tab outlined on three sides and breaking it. */}
+          <View style={[glassStyles.tabBar, isMinimal && glassStyles.minimalTabBar]}>
             {TAB_CONFIG.map((tab) => {
               const isActive = activeTab === tab.key;
               return (
                 <Pressable
                   key={tab.key}
                   onPress={() => setActiveTab(tab.key)}
-                  style={[glassStyles.tab, isActive && glassStyles.tabActive]}
+                  style={[
+                    glassStyles.tab,
+                    isActive && glassStyles.tabActive,
+                    isMinimal && (isActive ? minimalTabActive : minimalTab),
+                  ]}
                   hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
                   accessibilityRole="tab"
                   accessibilityLabel={tab.label}
@@ -221,7 +237,11 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
                   <Icon
                     name={tab.icon}
                     size={18}
-                    color={isActive ? "#F9FBFF" : "#6F7174"}
+                    color={
+                      isMinimal
+                        ? isActive ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
+                        : isActive ? "#F9FBFF" : "#6F7174"
+                    }
                     strokeWidth={isActive ? 2.2 : 1.8}
                   />
                 </Pressable>
@@ -360,6 +380,20 @@ const glassStyles = StyleSheet.create({
   },
   tabActive: {
     backgroundColor: "rgba(255,255,255,0.08)",
+  },
+  // Minimal: pure black body, a single hairline along the top edge.
+  minimalOverlay: {
+    backgroundColor: "#000",
+    borderTopWidth: 1,
+    borderColor: MINIMAL_HAIRLINE,
+  },
+  // No bottom padding and bottom-aligned (the inline close chevron is taller
+  // than a tab), so the active tab's -1 margin lands on the baseline.
+  minimalTabBar: {
+    ...minimalTabStrip,
+    alignItems: "flex-end",
+    paddingHorizontal: 12,
+    paddingBottom: 0,
   },
 });
 

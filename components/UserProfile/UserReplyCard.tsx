@@ -30,6 +30,8 @@ import {
   resolveReplyPostBody,
   resolveReplyPostThumbnail,
 } from "../../libs/replyPostDisplay";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_INSET, minimalRow } from "../../theme/minimal";
 
 // A reply is shown as the thread it belongs to, the way the comments section
 // draws one: the post on top, the comment being answered when there is one,
@@ -239,6 +241,7 @@ const ThreadPostRow: React.FC<{ post: UserReplyPost; tokenId: number; onUserPres
     },
     post.minter,
   );
+  const { isMinimal } = useAppTheme();
   const { title, body } = resolveReplyPostBody(post);
   const thumbnail = resolveReplyPostThumbnail(post, tokenId);
   const isVideo = post.postType === "video" || post.postType === "short";
@@ -257,7 +260,8 @@ const ThreadPostRow: React.FC<{ post: UserReplyPost; tokenId: number; onUserPres
           </Text>
         ) : null}
         {thumbnail ? (
-          <View style={{ marginTop: 8, borderRadius: 12, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.05)" }}>
+          // Minimal: no tinted frame behind the media while it loads.
+          <View style={{ marginTop: 8, borderRadius: 12, overflow: "hidden", backgroundColor: isMinimal ? "transparent" : "rgba(255,255,255,0.05)" }}>
             <Image source={{ uri: thumbnail }} style={{ width: "100%", height: 170 }} resizeMode="cover" />
             {isVideo && (
               <View
@@ -340,6 +344,7 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
   onLongPress,
 }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const { showUserProfile } = useUserProfileSheet();
   const [liked, setLiked] = useState(item.isLiked);
   const [likeCount, setLikeCount] = useState(item.likeCount ?? 0);
@@ -431,14 +436,19 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
       onLongPress={handleLongPress}
       activeOpacity={0.75}
       delayLongPress={350}
-      style={{
-        borderWidth: 1,
-        borderColor: "rgba(255,255,255,0.08)",
-        borderRadius: 12,
-        overflow: "hidden",
-        marginVertical: 4,
-        padding: 12,
-      }}
+      style={[
+        {
+          borderWidth: 1,
+          borderColor: "rgba(255,255,255,0.08)",
+          borderRadius: 12,
+          overflow: "hidden",
+          marginVertical: 4,
+          padding: 12,
+        },
+        // Minimal: the card dissolves into a full-width row — no outline or
+        // gap, one hairline underneath, text inset from the screen edge.
+        isMinimal && { ...minimalRow, marginVertical: 0, paddingHorizontal: MINIMAL_INSET },
+      ]}
     >
       {/* The post — the top of every thread. */}
       {tokenId ? (

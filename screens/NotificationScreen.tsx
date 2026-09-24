@@ -68,6 +68,15 @@ import {
   BADGE_DELEGATION_TYPES,
   BADGE_LADDER_TYPES,
 } from "../services/enums/notification.enums";
+import { useAppTheme } from "../context/ThemeContext";
+import {
+  MINIMAL_HAIRLINE,
+  MINIMAL_TAB_LINE,
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  MINIMAL_WASH,
+  minimalTab,
+} from "../theme/minimal";
 
 type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'communities' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
 
@@ -158,6 +167,33 @@ function apiTypesForFilter(filter: NotificationTypeFilter): string[] | undefined
 const TAB_SLIDE = { duration: 400, easing: Easing.bezier(0.16, 1, 0.3, 1) };
 const TAB_HEIGHT = 44;
 
+// Minimal file-tab strip parts (see TypeTabs): the full-width baseline, and
+// the sliding tab — outlined on three sides, its black fill covering the
+// baseline beneath it because it spans the strip's full height.
+const MINIMAL_STRIP_BASELINE = {
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  bottom: 0,
+  height: 1,
+  backgroundColor: MINIMAL_TAB_LINE,
+} as const;
+const MINIMAL_TAB_INDICATOR = {
+  backgroundColor: '#000',
+  borderWidth: 0,
+  borderTopWidth: 1,
+  borderLeftWidth: 1,
+  borderRightWidth: 1,
+  borderColor: MINIMAL_TAB_LINE,
+} as const;
+// Minimal swaps every filled chip and small button in a row for a 1px
+// outline, so the only fill left on a row is the unread wash.
+const MINIMAL_OUTLINE = {
+  backgroundColor: 'transparent',
+  borderWidth: 1,
+  borderColor: MINIMAL_HAIRLINE,
+} as const;
+
 interface TypeTabsProps {
   selected: NotificationTypeFilter;
   onSelect: (filter: NotificationTypeFilter) => void;
@@ -167,6 +203,7 @@ interface TypeTabsProps {
 
 const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, counts, activityCounts }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const tabWidths = useRef<Record<string, number>>({});
   const tabPositions = useRef<Record<string, number>>({});
   const indicatorX = useSharedValue(0);
@@ -210,13 +247,21 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, coun
   }, [selected, moveIndicator]);
 
   return (
-    <View className="border-b border-zinc-800/50" style={{ paddingVertical: 8 }}>
+    // Minimal: a file-tab strip. The baseline is its own view under the
+    // ScrollView rather than a border on it, because a ScrollView clips its
+    // children — the sliding tab could never reach down over a border. Drawn
+    // underneath instead, the tab's black fill simply paints over it.
+    <View
+      className={isMinimal ? undefined : "border-b border-zinc-800/50"}
+      style={isMinimal ? { backgroundColor: '#000' } : { paddingVertical: 8 }}
+    >
+      {isMinimal && <View style={MINIMAL_STRIP_BASELINE} pointerEvents="none" />}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 12 }}
+        contentContainerStyle={{ paddingHorizontal: isMinimal ? 0 : 12 }}
       >
-        <View style={{ flexDirection: 'row', gap: 8, position: 'relative' }}>
+        <View style={{ flexDirection: 'row', gap: isMinimal ? 0 : 8, position: 'relative' }}>
           <Animated.View
             style={[
               indicatorStyle,
@@ -229,6 +274,7 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, coun
                 borderWidth: 1,
                 borderColor: 'rgba(255,255,255,0.4)',
               },
+              isMinimal && MINIMAL_TAB_INDICATOR,
             ]}
           />
 
@@ -259,12 +305,13 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, coun
                     gap: 4,
                   },
                   !isActive && { backgroundColor: '#27272a' },
+                  isMinimal && minimalTab,
                 ]}
               >
                 <Icon
                   name={tab.icon as any}
                   size={14}
-                  color={isActive ? '#fff' : '#a1a1aa'}
+                  color={isActive ? (isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : '#fff') : (isMinimal ? MINIMAL_TAB_TEXT : '#a1a1aa')}
                 />
                 {count > 0 && (
                   // A flat white/20 fill sits on top of the glass tab pill, so
@@ -273,8 +320,10 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, coun
                   // Android has no working blur, so it takes an opaque fill.
                   <View
                     style={{
-                      backgroundColor:
-                        Platform.OS === 'ios' ? 'rgba(24,24,27,0.55)' : '#52525b',
+                      // Minimal: no glass bead — a small flat fill.
+                      backgroundColor: isMinimal
+                        ? '#27272a'
+                        : Platform.OS === 'ios' ? 'rgba(24,24,27,0.55)' : '#52525b',
                       borderRadius: 9,
                       minWidth: 18,
                       height: 18,
@@ -284,7 +333,7 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, coun
                       overflow: 'hidden',
                     }}
                   >
-                    {Platform.OS === 'ios' && (
+                    {Platform.OS === 'ios' && !isMinimal && (
                       <GlassIndicator borderRadius={9} blurIntensity={30} />
                     )}
                     <Text style={{ color: '#fff', fontSize: 12, fontWeight: '700' }}>
@@ -505,6 +554,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
   onRejectFollowRequest,
 }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const icon = getMonoIconConfig(item.type);
   // Every positive reaction arrives as a `like`; show which one it was.
   // Absent on legacy rows and on aggregated rows whose actors disagreed —
@@ -636,8 +686,12 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           alignItems: 'flex-start',
           padding: 16,
           borderBottomWidth: 1,
-          borderBottomColor: '#1D1F21',
-          backgroundColor: !item.read ? 'rgba(255,255,255,0.08)' : 'transparent',
+          // Minimal: read rows sit flat on black, unread ones take the faint
+          // wash, and the separator is the shared full-width hairline.
+          borderBottomColor: isMinimal ? MINIMAL_HAIRLINE : '#1D1F21',
+          backgroundColor: !item.read
+            ? isMinimal ? MINIMAL_WASH : 'rgba(255,255,255,0.08)'
+            : 'transparent',
         }}
       >
         {/* Avatar or Icon — tap to open profile */}
@@ -726,7 +780,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             item.type === NotificationType.BOUNTY_CLAIMED ||
             item.type === NotificationType.PPV_PURCHASE) && item.amount && (
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
-              <View style={{ backgroundColor: 'rgba(255,255,255,0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
+              <View style={[{ backgroundColor: 'rgba(255,255,255,0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }, isMinimal && MINIMAL_OUTLINE]}>
                 <Text style={{ color: '#F4F4F5', fontSize: 12, fontWeight: '600' }}>
                   +{item.amount} {item.currency || 'DHB'}
                 </Text>
@@ -737,7 +791,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           {/* Bounty available badge */}
           {item.type === NotificationType.BOUNTY_AVAILABLE && (
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
-              <View style={{ backgroundColor: 'rgba(255,255,255, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
+              <View style={[{ backgroundColor: 'rgba(255,255,255, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }, isMinimal && MINIMAL_OUTLINE]}>
                 <Text style={{ color: '#D4D4D8', fontSize: 12, fontWeight: '600' }}>
                   {t('notifications.claimBounty')}
                 </Text>
@@ -751,7 +805,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           {isModerationDecision && (
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10, gap: 8 }}>
               {appealRef ? (
-                <View style={{ backgroundColor: '#27272a', paddingHorizontal: 10, paddingVertical: 5, borderRadius: 8 }}>
+                <View style={[{ backgroundColor: '#27272a', paddingHorizontal: 10, paddingVertical: 5, borderRadius: 8 }, isMinimal && MINIMAL_OUTLINE]}>
                   <Text style={{ color: '#a1a1aa', fontSize: 12, fontWeight: '500' }}>
                     {t('moderation.appealSentRef', { defaultValue: 'Appeal sent · {{ref}}', ref: appealRef })}
                   </Text>
@@ -760,15 +814,18 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
                 <TouchableOpacity
                   onPress={() => setAppealOpen(true)}
                   activeOpacity={0.85}
-                  style={{
-                    backgroundColor: '#27272a',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 6,
-                    paddingHorizontal: 14,
-                    paddingVertical: 7,
-                    borderRadius: 8,
-                  }}
+                  style={[
+                    {
+                      backgroundColor: '#27272a',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: 6,
+                      paddingHorizontal: 14,
+                      paddingVertical: 7,
+                      borderRadius: 8,
+                    },
+                    isMinimal && MINIMAL_OUTLINE,
+                  ]}
                 >
                   <Icon name="Scale" size={13} color="#fff" />
                   <Text style={{ color: '#fff', fontSize: 13, fontWeight: '600' }}>
@@ -803,12 +860,15 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
                 onPress={() => onRejectFollowRequest(item)}
                 activeOpacity={0.85}
                 hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-                style={{
-                  backgroundColor: '#27272a',
-                  paddingHorizontal: 16,
-                  paddingVertical: 7,
-                  borderRadius: 8,
-                }}
+                style={[
+                  {
+                    backgroundColor: '#27272a',
+                    paddingHorizontal: 16,
+                    paddingVertical: 7,
+                    borderRadius: 8,
+                  },
+                  isMinimal && MINIMAL_OUTLINE,
+                ]}
               >
                 <Text style={{ color: '#A6A9AC', fontSize: 13, fontWeight: '600' }}>
                   {t('settings.decline')}
@@ -850,7 +910,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
                 hitSlop={MARK_HIT_SLOP}
                 accessibilityRole="button"
                 accessibilityLabel={t('notifications.markAsRead')}
-                style={actionButtonStyle}
+                style={[actionButtonStyle, isMinimal && MINIMAL_OUTLINE]}
               >
                 <Animated.View style={markIconStyle}>
                   <Icon name={marking ? 'Mail' : 'MailOpen'} size={15} color="#A1A1AA" />
@@ -867,7 +927,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             hitSlop={item.read ? { ...CLEAR_HIT_SLOP, top: 10 } : CLEAR_HIT_SLOP}
             accessibilityRole="button"
             accessibilityLabel={t('notifications.clearNotification')}
-            style={actionButtonStyle}
+            style={[actionButtonStyle, isMinimal && MINIMAL_OUTLINE]}
           >
             <Animated.View style={clearIconStyle}>
               <Icon name="X" size={15} color="#A1A1AA" />
@@ -908,6 +968,7 @@ let lastPainted: {
 
 const NotificationScreen = () => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const { patchUser } = useAuthActions();
   const user = useUser();
@@ -1649,7 +1710,11 @@ const NotificationScreen = () => {
   
   const renderSkeleton = useCallback(
     () => (
-      <View className="flex-row items-start p-4 border-b border-theme-neutrals-800">
+      // Same full-width hairline the real rows use in minimal.
+      <View
+        className="flex-row items-start p-4 border-b border-theme-neutrals-800"
+        style={isMinimal ? { borderBottomColor: MINIMAL_HAIRLINE } : undefined}
+      >
         {/* Avatar with badge overlay */}
         <View className="relative">
           <View className="w-11 h-11 rounded-md bg-theme-neutrals-800" />
@@ -1671,7 +1736,7 @@ const NotificationScreen = () => {
         </View>
       </View>
     ),
-    []
+    [isMinimal]
   );
 
   // Footer for load more
@@ -1684,11 +1749,15 @@ const NotificationScreen = () => {
     );
   }, [loadingMore]);
 
+  // Minimal: the empty-state icon sits bare on black, no tile behind it.
+  const emptyIconTile = isMinimal
+    ? "w-16 h-16 items-center justify-center mb-4"
+    : "w-16 h-16 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4";
   const ListEmpty = useMemo(() => {
     if (loadError) {
       return (
         <View className="flex-1 items-center justify-center py-20">
-          <View className="w-16 h-16 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4">
+          <View className={emptyIconTile}>
             <Icon name="BellOff" size={32} color="#A1A1AA" />
           </View>
           <Text className="text-theme-neutrals-400 text-base font-medium mb-1">
@@ -1719,7 +1788,7 @@ const NotificationScreen = () => {
         </Text>
       </View>
     );
-  }, [loadError, selectedFilter, onRefresh, t]);
+  }, [loadError, selectedFilter, onRefresh, t, emptyIconTile]);
 
   // Header with mark all read button
   const hasUnread = filteredNotifications.some((n) => !n.read);
