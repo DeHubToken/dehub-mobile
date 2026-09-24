@@ -5098,7 +5098,9 @@
       "hue": "Kulay {{value}}°",
       "fontSize": "Laki ng font {{value}}",
       "padding": "Padding {{value}}",
-      "thickness": "Kapal {{value}}"
+      "thickness": "Kapal {{value}}",
+      "drawHint": "I-drag sa pahina para gumuhit. Bawat guhit ay sariling layer na puwede mong ilipat, baguhin ang laki o burahin. I-tap ang Itigil ang pagguhit kapag tapos ka na.",
+      "layersHint": "Ang itaas ng listahan ang nasa harap. Gamitin ang mga arrow para ayusin ulit ang pagkakasunod. Dito lang mapipili ang mga naka-lock at nakatagong layer."
     },
     "filters": {
       "none": "Orihinal",
@@ -5142,7 +5144,8 @@
       "alignCentre": "I-align sa gitna",
       "alignRight": "I-align sa kanan",
       "resetPosition": "I-reset ang posisyon",
-      "rotation": "Pag-ikot {{value}}°"
+      "rotation": "Pag-ikot {{value}}°",
+      "blend": "Blend"
     },
     "menu": {
       "addText": "Magdagdag ng teksto",
@@ -5165,6 +5168,68 @@
       "jpg": "JPG na imahe",
       "outputStill": "Output: {{width}}×{{height}}",
       "empty": "Magdagdag muna ng isang bagay sa iyong disenyo."
+    },
+    "adjust": {
+      "auto": "Auto enhance",
+      "autoFailed": "Hindi ma-analyze ang larawang ito.",
+      "tint": "Tint {{value}}",
+      "vignette": "Vignette {{value}}%",
+      "warmth": "Warmth {{value}}"
+    },
+    "draw": {
+      "colour": "Kulay ng panulat",
+      "heading": "Gumuhit",
+      "start": "Simulan ang pagguhit",
+      "stop": "Itigil ang pagguhit",
+      "width": "Laki ng panulat {{value}}"
+    },
+    "layers": {
+      "empty": "Wala pang laman ang page sa playhead.",
+      "hide": "Itago",
+      "lock": "I-lock",
+      "media": "Media",
+      "show": "Ipakita",
+      "text": "Teksto",
+      "unlock": "I-unlock"
+    },
+    "rail": {
+      "elements": "Mga elemento",
+      "layers": "Mga layer"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Multiply",
+      "screen": "Screen",
+      "overlay": "Overlay",
+      "darken": "Darken",
+      "lighten": "Lighten",
+      "colorDodge": "Color dodge",
+      "colorBurn": "Color burn",
+      "hardLight": "Hard light",
+      "softLight": "Soft light",
+      "difference": "Difference",
+      "exclusion": "Exclusion",
+      "hue": "Hue",
+      "saturation": "Saturation",
+      "color": "Kulay",
+      "luminosity": "Luminosity"
+    },
+    "shape": {
+      "rect": "Parihaba",
+      "ellipse": "Bilog",
+      "triangle": "Tatsulok",
+      "star": "Bituin",
+      "heart": "Puso",
+      "hexagon": "Heksagono",
+      "line": "Linya",
+      "arrow": "Arrow",
+      "style": "Estilo ng hugis",
+      "fill": "Fill",
+      "fillOn": "Fill",
+      "outline": "Outline",
+      "outlineOn": "Outline",
+      "outlineWidth": "Kapal ng outline {{value}}",
+      "path": "Drawing"
     }
   },
   "creator": {

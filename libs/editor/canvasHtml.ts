@@ -14,7 +14,9 @@
  * editor draws with, so the pixels match.
  *
  * Messages in (JSON):  render {snapshot, time, fontCss} · media {id, src} · export {reqId, format, quality}
+ *                      stats {reqId, mediaId}
  * Messages out (JSON): ready · frame {layers, missing} · exported {reqId, dataUrl} · exportFailed {reqId, error}
+ *                      stats {reqId, mean, std, sat} (Auto enhance; null fields when the picture is missing)
  *
  * Written as plain ES2017 inside String.raw: no backticks and no "${" below.
  */
@@ -93,14 +95,13 @@ canvas{display:block;width:100%;height:100%;}
 
   // ── render.ts ──
   var DEFAULT_TRANSFORM = { x: 0.5, y: 0.5, scale: 1, rotation: 0 };
-  var TEXT_FADE = 0.3;
 
   function getTransform(clip) {
     var t = assign(DEFAULT_TRANSFORM, clip.transform || {});
     if (clip.kind === "text") { t.x = clip.x; t.y = clip.y; t.scale = 1; }
     return t;
   }
-  function isVisualClip(clip) { return clip.kind === "video" || clip.kind === "image" || clip.kind === "text"; }
+  function isVisualClip(clip) { return clip.kind === "video" || clip.kind === "image" || clip.kind === "text" || clip.kind === "shape"; }
   function mediaSource(clip) {
     if (clip.kind !== "image") return null; // video arrives with the video editor
     var img = images.get(clip.mediaId);
@@ -138,6 +139,9 @@ canvas{display:block;width:100%;height:100%;}
       var ax = clip.x * W;
       var cx = clip.align === "centre" ? ax : clip.align === "left" ? ax + l.maxW / 2 : ax - l.maxW / 2;
       return { cx: cx, cy: clip.y * H, w: w, h: h, rotation: tr.rotation };
+    }
+    if (clip.kind === "shape") {
+      return { cx: tr.x * W, cy: tr.y * H, w: Math.max(1, clip.w * W * tr.scale), h: Math.max(1, clip.h * H * tr.scale), rotation: tr.rotation };
     }
     var m = mediaSource(clip);
     if (!m || !m.w || !m.h) return null;
@@ -195,7 +199,7 @@ canvas{display:block;width:100%;height:100%;}
   }
 
   function drawClip(c, W, H, clip, t) {
-    if (!isVisualClip(clip)) return;
+    if (!isVisualClip(clip) || clip.hidden) return;
     var box = clipBox(c, clip, W, H);
     if (!box) return;
     var tr = getTransform(clip);
@@ -208,16 +212,13 @@ canvas{display:block;width:100%;height:100%;}
     c.translate(box.cx, box.cy);
     if (tr.rotation) c.rotate((tr.rotation * Math.PI) / 180);
     if (tr.flipH || tr.flipV) c.scale(tr.flipH ? -1 : 1, tr.flipV ? -1 : 1);
-    var alpha = baseAlpha * anim.alpha * (tr.opacity == null ? 1 : tr.opacity);
-    if (clip.kind === "text" && !clip.animateIn && !clip.animateOut) {
-      var into = t - clip.start;
-      var outof = clip.start + clip.duration - t;
-      alpha *= Math.max(0, Math.min(1, into / TEXT_FADE, outof / TEXT_FADE, 1));
-    }
-    c.globalAlpha = alpha;
+    // Text no longer fades in by default (web render.ts): a fade is an explicit animation.
+    c.globalAlpha = baseAlpha * anim.alpha * (tr.opacity == null ? 1 : tr.opacity);
     var filter = cssFilterFor(clip, anim.blurPx);
     if (SUPPORTS_FILTER) c.filter = filter;
+    if (clip.blend && clip.blend !== "normal") c.globalCompositeOperation = clip.blend;
     if (clip.kind === "text") drawText(c, clip, box, H);
+    else if (clip.kind === "shape") drawShape(c, clip, box, H);
     else drawMedia(c, clip, box, H);
     c.restore();
   }
@@ -233,6 +234,10 @@ canvas{display:block;width:100%;height:100%;}
       // Engines without ctx.filter get the same colour maths done by hand.
       el = filteredCrop(clip, m, sx, sy, sw, sh);
       sx = 0; sy = 0; sw = el.width; sh = el.height;
+    }
+    if (needsGrade(clip.effects)) {
+      var graded = grade(el, sx, sy, sw, sh, Math.abs(box.w), Math.abs(box.h), clip.effects);
+      if (graded) { el = graded.el; sx = 0; sy = 0; sw = graded.w; sh = graded.h; }
     }
     var x = -box.w / 2, y = -box.h / 2;
     var r = ((clip.radius || 0) / 1080) * H;
@@ -255,6 +260,114 @@ canvas{display:block;width:100%;height:100%;}
       c.drawImage(el, sx, sy, sw, sh, x, y, box.w, box.h);
       clearShadow(c);
     }
+  }
+
+  // ── colour grading: warmth, tint, vignette (web render.ts grade) ──
+  var scratch = null;
+  function needsGrade(e) { return !!e && (!!e.warmth || !!e.tint || !!e.vignette); }
+  function grade(el, sx, sy, sw, sh, w, h, e) {
+    var k = Math.min(1, 1600 / Math.max(w, h));
+    var cw = Math.max(1, Math.round(w * k));
+    var ch = Math.max(1, Math.round(h * k));
+    if (!scratch) scratch = document.createElement("canvas");
+    if (scratch.width !== cw) scratch.width = cw;
+    if (scratch.height !== ch) scratch.height = ch;
+    var g = scratch.getContext("2d");
+    if (!g) return null;
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    g.globalAlpha = 1;
+    if (SUPPORTS_FILTER) g.filter = "none";
+    g.globalCompositeOperation = "copy";
+    g.drawImage(el, sx, sy, sw, sh, 0, 0, cw, ch);
+    function fillBlend(colour, alpha, mode) {
+      g.globalCompositeOperation = mode;
+      g.globalAlpha = alpha;
+      g.fillStyle = colour;
+      g.fillRect(0, 0, cw, ch);
+    }
+    var warmth = Math.max(-1, Math.min(1, e.warmth || 0));
+    if (warmth) fillBlend(warmth > 0 ? "#ff9a2e" : "#2e7bff", Math.abs(warmth) * 0.35, "soft-light");
+    var tint = Math.max(-1, Math.min(1, e.tint || 0));
+    if (tint) fillBlend(tint > 0 ? "#ff3ec8" : "#3eff6a", Math.abs(tint) * 0.3, "soft-light");
+    var vignette = Math.max(0, Math.min(1, e.vignette || 0));
+    if (vignette) {
+      var grad = g.createRadialGradient(cw / 2, ch / 2, Math.min(cw, ch) * 0.25, cw / 2, ch / 2, Math.hypot(cw, ch) / 2);
+      grad.addColorStop(0, "rgba(0,0,0,0)");
+      grad.addColorStop(1, "rgba(0,0,0," + (0.85 * vignette) + ")");
+      g.globalCompositeOperation = "source-over";
+      g.globalAlpha = 1;
+      g.fillStyle = grad;
+      g.fillRect(0, 0, cw, ch);
+    }
+    // Put the source's own transparency back, so a cut-out never tints what is under it.
+    g.globalCompositeOperation = "destination-in";
+    g.globalAlpha = 1;
+    g.drawImage(el, sx, sy, sw, sh, 0, 0, cw, ch);
+    g.globalCompositeOperation = "source-over";
+    return { el: scratch, w: cw, h: ch };
+  }
+
+  // ── shapes (web render.ts shapePath / drawShape) ──
+  function shapePath(c, shape, w, h, radius, points) {
+    var hw = w / 2, hh = h / 2, i, a, x, y;
+    c.beginPath();
+    switch (shape) {
+      case "path": {
+        // Midpoint quadratic smoothing through the stroke's samples.
+        var p = points || [];
+        if (!p.length) return;
+        var X = function (n) { return p[n][0] * w; };
+        var Y = function (n) { return p[n][1] * h; };
+        c.moveTo(X(0), Y(0));
+        if (p.length === 1) { c.lineTo(X(0) + 0.01, Y(0)); return; }
+        for (i = 1; i < p.length - 1; i++) c.quadraticCurveTo(X(i), Y(i), (X(i) + X(i + 1)) / 2, (Y(i) + Y(i + 1)) / 2);
+        c.lineTo(X(p.length - 1), Y(p.length - 1));
+        return;
+      }
+      case "rect": roundRectPath(c, -hw, -hh, w, h, radius); return;
+      case "ellipse": c.ellipse(0, 0, hw, hh, 0, 0, Math.PI * 2); break;
+      case "triangle": c.moveTo(0, -hh); c.lineTo(hw, hh); c.lineTo(-hw, hh); break;
+      case "hexagon":
+        for (i = 0; i < 6; i++) { a = (Math.PI / 3) * i; x = Math.cos(a) * hw; y = Math.sin(a) * hh; if (i === 0) c.moveTo(x, y); else c.lineTo(x, y); }
+        break;
+      case "star":
+        for (i = 0; i < 10; i++) {
+          a = -Math.PI / 2 + (Math.PI / 5) * i;
+          var r = i % 2 === 0 ? 1 : 0.42;
+          x = Math.cos(a) * hw * r; y = Math.sin(a) * hh * r;
+          if (i === 0) c.moveTo(x, y); else c.lineTo(x, y);
+        }
+        break;
+      case "heart":
+        c.moveTo(0, hh);
+        c.bezierCurveTo(-hw * 1.1, hh * 0.1, -hw * 0.9, -hh * 1.1, 0, -hh * 0.45);
+        c.bezierCurveTo(hw * 0.9, -hh * 1.1, hw * 1.1, hh * 0.1, 0, hh);
+        break;
+      case "line": c.moveTo(-hw, 0); c.lineTo(hw, 0); return;
+      case "arrow": {
+        var head = Math.min(w * 0.3, Math.max(h * 1.5, 12));
+        c.moveTo(-hw, 0); c.lineTo(hw, 0);
+        c.moveTo(hw - head, -head * 0.6); c.lineTo(hw, 0); c.lineTo(hw - head, head * 0.6);
+        return;
+      }
+    }
+    c.closePath();
+  }
+  function drawShape(c, clip, box, H) {
+    var k = H / 1080;
+    var open = clip.shape === "line" || clip.shape === "arrow" || clip.shape === "path";
+    shapePath(c, clip.shape, box.w, box.h, (clip.radius || 0) * k, clip.points);
+    applyShadow(c, clip, H);
+    if (!open && clip.fill) { c.fillStyle = clip.fill; c.fill(); clearShadow(c); }
+    var stroke = clip.stroke || (open ? { color: clip.fill || "#ffffff", width: 8 } : null);
+    if (stroke && stroke.width > 0) {
+      c.lineWidth = stroke.width * k;
+      c.strokeStyle = stroke.color;
+      c.lineJoin = "round";
+      c.lineCap = "round";
+      c.stroke();
+    }
+    clearShadow(c);
   }
 
   function drawText(c, text, box, H) {
@@ -396,7 +509,7 @@ canvas{display:block;width:100%;height:100%;}
     var order = new Map(snap.tracks.map(function (tr, i) { return [tr.id, i]; }));
     var z = function (id) { return order.has(id) ? order.get(id) : -1; };
     var visible = snap.clips.filter(function (c) {
-      return isVisualClip(c) && !hidden.has(c.trackId) && t >= c.start && t <= c.start + c.duration;
+      return isVisualClip(c) && !c.hidden && !hidden.has(c.trackId) && t >= c.start && t <= c.start + c.duration;
     }).sort(function (a, b) { return z(a.trackId) - z(b.trackId); });
     var layers = [];
     var missing = [];
@@ -407,7 +520,7 @@ canvas{display:block;width:100%;height:100%;}
       ctx.restore();
       var box = clipBox(ctx, clip, W, H);
       if (box) layers.push({ id: clip.id, cx: box.cx, cy: box.cy, w: box.w, h: box.h, rotation: box.rotation });
-      else if (clip.kind !== "text" && !images.has(clip.mediaId)) missing.push(clip.mediaId);
+      else if (clip.mediaId && !images.has(clip.mediaId)) missing.push(clip.mediaId);
     });
     var frame = JSON.stringify({ type: "frame", layers: layers, missing: missing });
     if (frame !== lastFrame) { lastFrame = frame; post(JSON.parse(frame)); }
@@ -436,6 +549,28 @@ canvas{display:block;width:100%;height:100%;}
       img.onload = function () { images.set(m.id, img); filterCache.clear(); schedule(); };
       img.onerror = function () { post({ type: "mediaFailed", id: m.id }); };
       img.src = m.src;
+    } else if (m.type === "stats") {
+      // Picture statistics for Auto enhance, from a 64x64 sample (web autoEnhance.ts).
+      var src = images.get(m.mediaId);
+      var none = { type: "stats", reqId: m.reqId, mean: null, std: null, sat: null };
+      if (!src) { post(none); return; }
+      var S = 64;
+      var sc = document.createElement("canvas");
+      sc.width = S; sc.height = S;
+      var sg = sc.getContext("2d");
+      sg.drawImage(src, 0, 0, S, S);
+      var px = sg.getImageData(0, 0, S, S).data;
+      var sum = 0, sumSq = 0, sat = 0, n = 0;
+      for (var q = 0; q < px.length; q += 4) {
+        if (px[q + 3] < 16) continue; // skip transparent cut-out areas
+        var R = px[q] / 255, G = px[q + 1] / 255, B = px[q + 2] / 255;
+        var L = 0.2126 * R + 0.7152 * G + 0.0722 * B;
+        var mx = Math.max(R, G, B), mn = Math.min(R, G, B);
+        sum += L; sumSq += L * L; sat += mx === 0 ? 0 : (mx - mn) / mx; n++;
+      }
+      if (!n) { post(none); return; }
+      var mean = sum / n;
+      post({ type: "stats", reqId: m.reqId, mean: mean, std: Math.sqrt(Math.max(0, sumSq / n - mean * mean)), sat: sat / n });
     } else if (m.type === "export") {
       var done = function () {
         try {

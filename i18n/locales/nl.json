@@ -5191,7 +5191,9 @@
       "hue": "Tint {{value}}°",
       "fontSize": "Tekstgrootte {{value}}",
       "padding": "Opvulling {{value}}",
-      "thickness": "Dikte {{value}}"
+      "thickness": "Dikte {{value}}",
+      "drawHint": "Sleep over de pagina om te tekenen. Elke streek is een eigen laag die je kunt verplaatsen, van formaat kunt veranderen of verwijderen. Tik op ‘Stop met tekenen’ als je klaar bent.",
+      "layersHint": "Bovenaan de lijst is vooraan. Gebruik de pijlen om de volgorde te wijzigen. Vergrendelde en verborgen lagen kun je alleen hier selecteren."
     },
     "filters": {
       "none": "Origineel",
@@ -5235,7 +5237,8 @@
       "alignCentre": "Centreren",
       "alignRight": "Rechts uitlijnen",
       "resetPosition": "Positie resetten",
-      "rotation": "Rotatie {{value}}°"
+      "rotation": "Rotatie {{value}}°",
+      "blend": "Overvloeien"
     },
     "menu": {
       "addText": "Tekst toevoegen",
@@ -5258,6 +5261,68 @@
       "jpg": "JPG-afbeelding",
       "outputStill": "Uitvoer: {{width}}×{{height}}",
       "empty": "Voeg eerst iets toe aan je ontwerp."
+    },
+    "adjust": {
+      "auto": "Automatisch verbeteren",
+      "autoFailed": "Deze foto kon niet worden geanalyseerd.",
+      "tint": "Tint {{value}}",
+      "vignette": "Vignet {{value}}%",
+      "warmth": "Warmte {{value}}"
+    },
+    "draw": {
+      "colour": "Penkleur",
+      "heading": "Tekenen",
+      "start": "Begin met tekenen",
+      "stop": "Stop met tekenen",
+      "width": "Pengrootte {{value}}"
+    },
+    "layers": {
+      "empty": "Er staat nog niets op de pagina bij de afspeelkop.",
+      "hide": "Verbergen",
+      "lock": "Vergrendelen",
+      "media": "Media",
+      "show": "Tonen",
+      "text": "Tekst",
+      "unlock": "Ontgrendelen"
+    },
+    "rail": {
+      "elements": "Elementen",
+      "layers": "Lagen"
+    },
+    "blend": {
+      "normal": "Normaal",
+      "multiply": "Vermenigvuldigen",
+      "screen": "Bleken",
+      "overlay": "Bedekken",
+      "darken": "Donkerder",
+      "lighten": "Lichter",
+      "colorDodge": "Kleur tegenhouden",
+      "colorBurn": "Kleur doordrukken",
+      "hardLight": "Fel licht",
+      "softLight": "Zacht licht",
+      "difference": "Verschil",
+      "exclusion": "Uitsluiting",
+      "hue": "Kleurtoon",
+      "saturation": "Verzadiging",
+      "color": "Kleur",
+      "luminosity": "Lichtsterkte"
+    },
+    "shape": {
+      "rect": "Rechthoek",
+      "ellipse": "Cirkel",
+      "triangle": "Driehoek",
+      "star": "Ster",
+      "heart": "Hart",
+      "hexagon": "Zeshoek",
+      "line": "Lijn",
+      "arrow": "Pijl",
+      "style": "Vormstijl",
+      "fill": "Vulling",
+      "fillOn": "Vulling",
+      "outline": "Omtrek",
+      "outlineOn": "Omtrek",
+      "outlineWidth": "Omtrekdikte {{value}}",
+      "path": "Tekening"
     }
   },
   "creator": {

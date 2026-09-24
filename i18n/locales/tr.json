@@ -4986,7 +4986,9 @@
       "hue": "Ton {{value}}°",
       "fontSize": "Yazı boyutu {{value}}",
       "padding": "Dolgu {{value}}",
-      "thickness": "Kalınlık {{value}}"
+      "thickness": "Kalınlık {{value}}",
+      "drawHint": "Çizmek için sayfada sürükleyin. Her çizgi taşıyabileceğiniz, boyutunu değiştirebileceğiniz veya silebileceğiniz ayrı bir katmandır. Bitirdiğinizde Çizmeyi bırak'a dokunun.",
+      "layersHint": "Listenin en üstü en öndedir. Sıralamayı değiştirmek için okları kullanın. Kilitli ve gizli katmanlar yalnızca buradan seçilebilir."
     },
     "filters": {
       "none": "Orijinal",
@@ -5030,7 +5032,8 @@
       "alignCentre": "Ortaya hizala",
       "alignRight": "Sağa hizala",
       "resetPosition": "Konumu sıfırla",
-      "rotation": "Döndürme {{value}}°"
+      "rotation": "Döndürme {{value}}°",
+      "blend": "Karışım"
     },
     "menu": {
       "addText": "Metin ekle",
@@ -5053,6 +5056,68 @@
       "jpg": "JPG resmi",
       "outputStill": "Çıktı: {{width}}×{{height}}",
       "empty": "Önce tasarımınıza bir şey ekleyin."
+    },
+    "adjust": {
+      "auto": "Otomatik iyileştir",
+      "autoFailed": "Bu fotoğraf analiz edilemedi.",
+      "tint": "Renk tonu {{value}}",
+      "vignette": "Vinyet {{value}}%",
+      "warmth": "Sıcaklık {{value}}"
+    },
+    "draw": {
+      "colour": "Kalem rengi",
+      "heading": "Çiz",
+      "start": "Çizmeye başla",
+      "stop": "Çizmeyi bırak",
+      "width": "Kalem boyutu {{value}}"
+    },
+    "layers": {
+      "empty": "Oynatma kafasının olduğu yerde sayfada henüz bir şey yok.",
+      "hide": "Gizle",
+      "lock": "Kilitle",
+      "media": "Medya",
+      "show": "Göster",
+      "text": "Metin",
+      "unlock": "Kilidi aç"
+    },
+    "rail": {
+      "elements": "Öğeler",
+      "layers": "Katmanlar"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Çoğalt",
+      "screen": "Ekran",
+      "overlay": "Kaplama",
+      "darken": "Koyulaştır",
+      "lighten": "Açıklaştır",
+      "colorDodge": "Renk Soldurma",
+      "colorBurn": "Renk Yanması",
+      "hardLight": "Sert Işık",
+      "softLight": "Yumuşak Işık",
+      "difference": "Fark",
+      "exclusion": "Dışlama",
+      "hue": "Ton",
+      "saturation": "Doygunluk",
+      "color": "Renk",
+      "luminosity": "Parlaklık"
+    },
+    "shape": {
+      "rect": "Dikdörtgen",
+      "ellipse": "Daire",
+      "triangle": "Üçgen",
+      "star": "Yıldız",
+      "heart": "Kalp",
+      "hexagon": "Altıgen",
+      "line": "Çizgi",
+      "arrow": "Ok",
+      "style": "Şekil stili",
+      "fill": "Dolgu",
+      "fillOn": "Dolgu",
+      "outline": "Kontur",
+      "outlineOn": "Kontur",
+      "outlineWidth": "Kontur kalınlığı {{value}}",
+      "path": "Çizim"
     }
   },
   "creator": {

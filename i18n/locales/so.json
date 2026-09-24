@@ -4912,7 +4912,9 @@
       "hue": "Midab-saar {{value}}°",
       "fontSize": "Cabbirka farta {{value}}",
       "padding": "Buuxinta {{value}}",
-      "thickness": "Dhumucda {{value}}"
+      "thickness": "Dhumucda {{value}}",
+      "drawHint": "Ku jiid bogga si aad u sawirto. Xariiq kasta waa lakab gaar ah oo aad dhaqaajin karto, cabbirkiisa beddeli karto ama tirtiri karto. Taabo Jooji sawirka markaad dhammayso.",
+      "layersHint": "Korka liisku waa hore. Isticmaal fallaadhaha si aad dib ugu habayso. Lakabyada xiran iyo kuwa qarsoon halkan oo keliya ayaa laga dooran karaa."
     },
     "filters": {
       "none": "Asal",
@@ -4956,7 +4958,8 @@
       "alignCentre": "U dhig bartamaha",
       "alignRight": "U dhig midig",
       "resetPosition": "Dib u dejiso booska",
-      "rotation": "Wareeg {{value}}°"
+      "rotation": "Wareeg {{value}}°",
+      "blend": "Isku-dar"
     },
     "menu": {
       "addText": "Ku dar qoraalka",
@@ -4979,6 +4982,68 @@
       "jpg": "Sawirka JPG",
       "outputStill": "Soo saarista: {{width}}×{{height}}",
       "empty": "Marka hore wax ku dar naqshaddaada."
+    },
+    "adjust": {
+      "auto": "Hagaajin toos ah",
+      "autoFailed": "Sawirkan lama falanqayn karin.",
+      "tint": "Midab-dhex {{value}}",
+      "vignette": "Madoobaynta geesaha {{value}}%",
+      "warmth": "Diirimaad {{value}}"
+    },
+    "draw": {
+      "colour": "Midabka qalinka",
+      "heading": "Sawir",
+      "start": "Bilow sawirka",
+      "stop": "Jooji sawirka",
+      "width": "Cabbirka qalinka {{value}}"
+    },
+    "layers": {
+      "empty": "Weli waxba ma saarna bogga meesha ciyaaruhu joogo.",
+      "hide": "Qari",
+      "lock": "Xir",
+      "media": "Warbaahin",
+      "show": "Muuji",
+      "text": "Qoraal",
+      "unlock": "Fur"
+    },
+    "rail": {
+      "elements": "Walxaha",
+      "layers": "Lakabyada"
+    },
+    "blend": {
+      "normal": "Caadi",
+      "multiply": "Isku dhufasho",
+      "screen": "Shaashad",
+      "overlay": "Dul-saar",
+      "darken": "Madoobeyn",
+      "lighten": "Iftiimin",
+      "colorDodge": "Iftiiminta midabka",
+      "colorBurn": "Gubidda midabka",
+      "hardLight": "Iftiin adag",
+      "softLight": "Iftiin jilicsan",
+      "difference": "Farqi",
+      "exclusion": "Ka-reebid",
+      "hue": "Nooca midabka",
+      "saturation": "Buuxnaanta",
+      "color": "Midab",
+      "luminosity": "Iftiinka"
+    },
+    "shape": {
+      "rect": "Leydi",
+      "ellipse": "Goobo",
+      "triangle": "Saddexagal",
+      "star": "Xiddig",
+      "heart": "Wadne",
+      "hexagon": "Lixagal",
+      "line": "Xarriiq",
+      "arrow": "Fallaar",
+      "style": "Qaabka sawirka",
+      "fill": "Buuxin",
+      "fillOn": "Buuxin",
+      "outline": "Xuduud",
+      "outlineOn": "Xuduud",
+      "outlineWidth": "Ballaca xuduudda {{value}}",
+      "path": "Sawir gacmeed"
     }
   },
   "creator": {

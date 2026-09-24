@@ -4995,7 +4995,9 @@
       "hue": "Tonalità {{value}}°",
       "fontSize": "Dimensione carattere {{value}}",
       "padding": "Spaziatura interna {{value}}",
-      "thickness": "Spessore {{value}}"
+      "thickness": "Spessore {{value}}",
+      "drawHint": "Trascina sulla pagina per disegnare. Ogni tratto è un livello a sé che puoi spostare, ridimensionare o eliminare. Tocca Smetti di disegnare quando hai finito.",
+      "layersHint": "La parte alta dell’elenco è in primo piano. Usa le frecce per riordinare. I livelli bloccati e nascosti si possono selezionare solo qui."
     },
     "filters": {
       "none": "Originale",
@@ -5039,7 +5041,8 @@
       "alignCentre": "Allinea al centro",
       "alignRight": "Allinea a destra",
       "resetPosition": "Ripristina posizione",
-      "rotation": "Rotazione {{value}}°"
+      "rotation": "Rotazione {{value}}°",
+      "blend": "Fusione"
     },
     "menu": {
       "addText": "Aggiungi testo",
@@ -5062,6 +5065,68 @@
       "jpg": "Immagine JPG",
       "outputStill": "Output: {{width}}×{{height}}",
       "empty": "Aggiungi prima qualcosa al tuo progetto."
+    },
+    "adjust": {
+      "auto": "Miglioramento automatico",
+      "autoFailed": "Impossibile analizzare questa immagine.",
+      "tint": "Tinta {{value}}",
+      "vignette": "Vignettatura {{value}}%",
+      "warmth": "Calore {{value}}"
+    },
+    "draw": {
+      "colour": "Colore penna",
+      "heading": "Disegna",
+      "start": "Inizia a disegnare",
+      "stop": "Smetti di disegnare",
+      "width": "Dimensione penna {{value}}"
+    },
+    "layers": {
+      "empty": "Ancora niente sulla pagina alla testina di riproduzione.",
+      "hide": "Nascondi",
+      "lock": "Blocca",
+      "media": "Media",
+      "show": "Mostra",
+      "text": "Testo",
+      "unlock": "Sblocca"
+    },
+    "rail": {
+      "elements": "Elementi",
+      "layers": "Livelli"
+    },
+    "blend": {
+      "normal": "Normale",
+      "multiply": "Moltiplica",
+      "screen": "Scolora",
+      "overlay": "Sovrapponi",
+      "darken": "Scurisci",
+      "lighten": "Schiarisci",
+      "colorDodge": "Scherma colore",
+      "colorBurn": "Brucia colore",
+      "hardLight": "Luce intensa",
+      "softLight": "Luce soffusa",
+      "difference": "Differenza",
+      "exclusion": "Esclusione",
+      "hue": "Tonalità",
+      "saturation": "Saturazione",
+      "color": "Colore",
+      "luminosity": "Luminosità"
+    },
+    "shape": {
+      "rect": "Rettangolo",
+      "ellipse": "Cerchio",
+      "triangle": "Triangolo",
+      "star": "Stella",
+      "heart": "Cuore",
+      "hexagon": "Esagono",
+      "line": "Linea",
+      "arrow": "Freccia",
+      "style": "Stile forma",
+      "fill": "Riempimento",
+      "fillOn": "Riempimento",
+      "outline": "Contorno",
+      "outlineOn": "Contorno",
+      "outlineWidth": "Spessore contorno {{value}}",
+      "path": "Disegno"
     }
   },
   "creator": {

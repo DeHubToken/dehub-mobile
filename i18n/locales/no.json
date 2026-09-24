@@ -4908,7 +4908,9 @@
       "hue": "Fargetone {{value}}°",
       "fontSize": "Skriftstørrelse {{value}}",
       "padding": "Utfylling {{value}}",
-      "thickness": "Tykkelse {{value}}"
+      "thickness": "Tykkelse {{value}}",
+      "drawHint": "Dra over siden for å tegne. Hvert strøk er et eget lag som du kan flytte, endre størrelse på eller slette. Trykk på Slutt å tegne når du er ferdig.",
+      "layersHint": "Øverst i listen er fremst. Bruk pilene til å endre rekkefølgen. Låste og skjulte lag kan bare velges her."
     },
     "filters": {
       "none": "Original",
@@ -4952,7 +4954,8 @@
       "alignCentre": "Juster til midten",
       "alignRight": "Juster til høyre",
       "resetPosition": "Tilbakestill posisjon",
-      "rotation": "Rotasjon {{value}}°"
+      "rotation": "Rotasjon {{value}}°",
+      "blend": "Blanding"
     },
     "menu": {
       "addText": "Legg til tekst",
@@ -4975,6 +4978,68 @@
       "jpg": "JPG-bilde",
       "outputStill": "Utdata: {{width}}×{{height}}",
       "empty": "Legg til noe i designet ditt først."
+    },
+    "adjust": {
+      "auto": "Autoforbedring",
+      "autoFailed": "Kunne ikke analysere dette bildet.",
+      "tint": "Fargetone {{value}}",
+      "vignette": "Vignett {{value}} %",
+      "warmth": "Varme {{value}}"
+    },
+    "draw": {
+      "colour": "Pennefarge",
+      "heading": "Tegn",
+      "start": "Begynn å tegne",
+      "stop": "Slutt å tegne",
+      "width": "Pennestørrelse {{value}}"
+    },
+    "layers": {
+      "empty": "Ingenting på siden ved avspillingshodet ennå.",
+      "hide": "Skjul",
+      "lock": "Lås",
+      "media": "Medier",
+      "show": "Vis",
+      "text": "Tekst",
+      "unlock": "Lås opp"
+    },
+    "rail": {
+      "elements": "Elementer",
+      "layers": "Lag"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Multipliser",
+      "screen": "Skjerm",
+      "overlay": "Overlegg",
+      "darken": "Mørkere",
+      "lighten": "Lysere",
+      "colorDodge": "Fargeunnvikelse",
+      "colorBurn": "Fargebrenning",
+      "hardLight": "Hardt lys",
+      "softLight": "Mykt lys",
+      "difference": "Differanse",
+      "exclusion": "Utelukkelse",
+      "hue": "Fargetone",
+      "saturation": "Metning",
+      "color": "Farge",
+      "luminosity": "Luminans"
+    },
+    "shape": {
+      "rect": "Rektangel",
+      "ellipse": "Sirkel",
+      "triangle": "Trekant",
+      "star": "Stjerne",
+      "heart": "Hjerte",
+      "hexagon": "Sekskant",
+      "line": "Linje",
+      "arrow": "Pil",
+      "style": "Formstil",
+      "fill": "Fyll",
+      "fillOn": "Fyll",
+      "outline": "Omriss",
+      "outlineOn": "Omriss",
+      "outlineWidth": "Omrissbredde {{value}}",
+      "path": "Tegning"
     }
   },
   "creator": {

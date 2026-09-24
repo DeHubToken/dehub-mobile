@@ -4928,7 +4928,9 @@
       "hue": "Odstín {{value}} °",
       "fontSize": "Velikost písma {{value}}",
       "padding": "Odsazení {{value}}",
-      "thickness": "Tloušťka {{value}}"
+      "thickness": "Tloušťka {{value}}",
+      "drawHint": "Kreslete tažením po stránce. Každý tah je samostatná vrstva, kterou můžete přesunout, změnit její velikost nebo smazat. Až budete hotovi, klepněte na Přestat kreslit.",
+      "layersHint": "Horní položka seznamu je vpředu. Pořadí změníte šipkami. Zamčené a skryté vrstvy lze vybrat jen tady."
     },
     "filters": {
       "none": "Originál",
@@ -4972,7 +4974,8 @@
       "alignCentre": "Zarovnat na střed",
       "alignRight": "Zarovnat vpravo",
       "resetPosition": "Resetovat pozici",
-      "rotation": "Rotace {{value}} °"
+      "rotation": "Rotace {{value}} °",
+      "blend": "Prolnutí"
     },
     "menu": {
       "addText": "Přidat text",
@@ -4995,6 +4998,68 @@
       "jpg": "JPG obrázek",
       "outputStill": "Výstup: {{width}}×{{height}}",
       "empty": "Nejprve přidejte do návrhu něco."
+    },
+    "adjust": {
+      "auto": "Automatické vylepšení",
+      "autoFailed": "Tento snímek se nepodařilo analyzovat.",
+      "tint": "Odstín {{value}}",
+      "vignette": "Viněta {{value}}%",
+      "warmth": "Teplota {{value}}"
+    },
+    "draw": {
+      "colour": "Barva pera",
+      "heading": "Kreslit",
+      "start": "Začít kreslit",
+      "stop": "Přestat kreslit",
+      "width": "Velikost pera {{value}}"
+    },
+    "layers": {
+      "empty": "Na pozici přehrávací hlavy zatím na stránce nic není.",
+      "hide": "Skrýt",
+      "lock": "Zamknout",
+      "media": "Média",
+      "show": "Zobrazit",
+      "text": "Text",
+      "unlock": "Odemknout"
+    },
+    "rail": {
+      "elements": "Prvky",
+      "layers": "Vrstvy"
+    },
+    "blend": {
+      "normal": "Normální",
+      "multiply": "Násobit",
+      "screen": "Závoj",
+      "overlay": "Překrýt",
+      "darken": "Ztmavit",
+      "lighten": "Zesvětlit",
+      "colorDodge": "Zesvětlit barvy",
+      "colorBurn": "Ztmavit barvy",
+      "hardLight": "Tvrdé světlo",
+      "softLight": "Měkké světlo",
+      "difference": "Rozdíl",
+      "exclusion": "Vyloučit",
+      "hue": "Odstín",
+      "saturation": "Sytost",
+      "color": "Barva",
+      "luminosity": "Světlost"
+    },
+    "shape": {
+      "rect": "Obdélník",
+      "ellipse": "Kruh",
+      "triangle": "Trojúhelník",
+      "star": "Hvězda",
+      "heart": "Srdce",
+      "hexagon": "Šestiúhelník",
+      "line": "Čára",
+      "arrow": "Šipka",
+      "style": "Styl tvaru",
+      "fill": "Výplň",
+      "fillOn": "Výplň",
+      "outline": "Obrys",
+      "outlineOn": "Obrys",
+      "outlineWidth": "Šířka obrysu {{value}}",
+      "path": "Kresba"
     }
   },
   "creator": {

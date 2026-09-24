@@ -4924,7 +4924,9 @@
       "hue": "Sävy {{value}}°",
       "fontSize": "Fonttikoko {{value}}",
       "padding": "Täyte {{value}}",
-      "thickness": "Paksuus {{value}}"
+      "thickness": "Paksuus {{value}}",
+      "drawHint": "Piirrä vetämällä sivulla. Jokainen veto on oma tasonsa, jota voit siirtää, muuttaa kokoa tai poistaa. Napauta ”Lopeta piirtäminen”, kun olet valmis.",
+      "layersHint": "Luettelon ylin on edimmäisenä. Järjestä uudelleen nuolilla. Lukittuja ja piilotettuja tasoja voi valita vain täältä."
     },
     "filters": {
       "none": "Alkuperäinen",
@@ -4968,7 +4970,8 @@
       "alignCentre": "Keskitä",
       "alignRight": "Tasaa oikealle",
       "resetPosition": "Nollaa sijainti",
-      "rotation": "Kierto {{value}}°"
+      "rotation": "Kierto {{value}}°",
+      "blend": "Sekoitus"
     },
     "menu": {
       "addText": "Lisää teksti",
@@ -4991,6 +4994,68 @@
       "jpg": "JPG-kuva",
       "outputStill": "Tulos: {{width}}×{{height}}",
       "empty": "Lisää ensin jotain suunnitteluusi."
+    },
+    "adjust": {
+      "auto": "Automaattinen parannus",
+      "autoFailed": "Kuvaa ei voitu analysoida.",
+      "tint": "Sävy {{value}}",
+      "vignette": "Vinjetti {{value}} %",
+      "warmth": "Lämpö {{value}}"
+    },
+    "draw": {
+      "colour": "Kynän väri",
+      "heading": "Piirrä",
+      "start": "Aloita piirtäminen",
+      "stop": "Lopeta piirtäminen",
+      "width": "Kynän koko {{value}}"
+    },
+    "layers": {
+      "empty": "Toistokohdassa ei ole vielä mitään sivulla.",
+      "hide": "Piilota",
+      "lock": "Lukitse",
+      "media": "Media",
+      "show": "Näytä",
+      "text": "Teksti",
+      "unlock": "Avaa lukitus"
+    },
+    "rail": {
+      "elements": "Elementit",
+      "layers": "Tasot"
+    },
+    "blend": {
+      "normal": "Normaali",
+      "multiply": "Kerro",
+      "screen": "Rasteri",
+      "overlay": "Sulauta",
+      "darken": "Tummenna",
+      "lighten": "Vaalenna",
+      "colorDodge": "Värilisävalotus",
+      "colorBurn": "Värivarjostus",
+      "hardLight": "Kova valo",
+      "softLight": "Pehmeä valo",
+      "difference": "Erotus",
+      "exclusion": "Poisto",
+      "hue": "Sävy",
+      "saturation": "Kylläisyys",
+      "color": "Väri",
+      "luminosity": "Kirkkaus"
+    },
+    "shape": {
+      "rect": "Suorakulmio",
+      "ellipse": "Ympyrä",
+      "triangle": "Kolmio",
+      "star": "Tähti",
+      "heart": "Sydän",
+      "hexagon": "Kuusikulmio",
+      "line": "Viiva",
+      "arrow": "Nuoli",
+      "style": "Muodon tyyli",
+      "fill": "Täyttö",
+      "fillOn": "Täyttö",
+      "outline": "Ääriviiva",
+      "outlineOn": "Ääriviiva",
+      "outlineWidth": "Ääriviivan paksuus {{value}}",
+      "path": "Piirros"
     }
   },
   "creator": {

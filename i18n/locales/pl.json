@@ -4992,7 +4992,9 @@
       "hue": "Odcień {{value}}°",
       "fontSize": "Rozmiar czcionki {{value}}",
       "padding": "Margines wewnętrzny {{value}}",
-      "thickness": "Grubość {{value}}"
+      "thickness": "Grubość {{value}}",
+      "drawHint": "Przeciągnij po stronie, aby rysować. Każde pociągnięcie to osobna warstwa, którą możesz przesunąć, zmienić jej rozmiar lub usunąć. Gdy skończysz, dotknij Przestań rysować.",
+      "layersHint": "Góra listy to pierwszy plan. Użyj strzałek, aby zmienić kolejność. Zablokowane i ukryte warstwy można wybrać tylko tutaj."
     },
     "filters": {
       "none": "Oryginał",
@@ -5036,7 +5038,8 @@
       "alignCentre": "Wyrównaj do środka",
       "alignRight": "Wyrównaj do prawej",
       "resetPosition": "Resetuj pozycję",
-      "rotation": "Obrót {{value}}°"
+      "rotation": "Obrót {{value}}°",
+      "blend": "Mieszanie"
     },
     "menu": {
       "addText": "Dodaj tekst",
@@ -5059,6 +5062,68 @@
       "jpg": "Obraz JPG",
       "outputStill": "Wyjście: {{width}}×{{height}}",
       "empty": "Najpierw dodaj coś do swojego projektu."
+    },
+    "adjust": {
+      "auto": "Automatyczne ulepszanie",
+      "autoFailed": "Nie udało się przeanalizować tego zdjęcia.",
+      "tint": "Odcień {{value}}",
+      "vignette": "Winieta {{value}}%",
+      "warmth": "Ciepło {{value}}"
+    },
+    "draw": {
+      "colour": "Kolor pióra",
+      "heading": "Rysuj",
+      "start": "Zacznij rysować",
+      "stop": "Przestań rysować",
+      "width": "Rozmiar pióra {{value}}"
+    },
+    "layers": {
+      "empty": "Na stronie w miejscu głowicy nie ma jeszcze nic.",
+      "hide": "Ukryj",
+      "lock": "Zablokuj",
+      "media": "Multimedia",
+      "show": "Pokaż",
+      "text": "Tekst",
+      "unlock": "Odblokuj"
+    },
+    "rail": {
+      "elements": "Elementy",
+      "layers": "Warstwy"
+    },
+    "blend": {
+      "normal": "Zwykły",
+      "multiply": "Mnożenie",
+      "screen": "Mnożenie odwrotności",
+      "overlay": "Nakładka",
+      "darken": "Ciemniej",
+      "lighten": "Jaśniej",
+      "colorDodge": "Rozjaśnianie koloru",
+      "colorBurn": "Ściemnianie koloru",
+      "hardLight": "Ostre światło",
+      "softLight": "Łagodne światło",
+      "difference": "Różnica",
+      "exclusion": "Wykluczenie",
+      "hue": "Barwa",
+      "saturation": "Nasycenie",
+      "color": "Kolor",
+      "luminosity": "Jasność"
+    },
+    "shape": {
+      "rect": "Prostokąt",
+      "ellipse": "Koło",
+      "triangle": "Trójkąt",
+      "star": "Gwiazda",
+      "heart": "Serce",
+      "hexagon": "Sześciokąt",
+      "line": "Linia",
+      "arrow": "Strzałka",
+      "style": "Styl kształtu",
+      "fill": "Wypełnienie",
+      "fillOn": "Wypełnienie",
+      "outline": "Obrys",
+      "outlineOn": "Obrys",
+      "outlineWidth": "Grubość obrysu {{value}}",
+      "path": "Rysunek"
     }
   },
   "creator": {

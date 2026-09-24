@@ -4925,7 +4925,9 @@
       "hue": "Nijansa {{value}}°",
       "fontSize": "Veličina fonta {{value}}",
       "padding": "Unutarnji razmak {{value}}",
-      "thickness": "Debljina {{value}}"
+      "thickness": "Debljina {{value}}",
+      "drawHint": "Povlačite po stranici za crtanje. Svaki potez zaseban je sloj koji možete pomaknuti, promijeniti mu veličinu ili izbrisati. Kad završite, dodirnite Prestani crtati.",
+      "layersHint": "Vrh popisa je sprijeda. Strelicama mijenjate redoslijed. Zaključani i skriveni slojevi mogu se odabrati samo ovdje."
     },
     "filters": {
       "none": "Original",
@@ -4969,7 +4971,8 @@
       "alignCentre": "Poravnaj u sredinu",
       "alignRight": "Poravnaj desno",
       "resetPosition": "Vrati položaj",
-      "rotation": "Rotacija {{value}}°"
+      "rotation": "Rotacija {{value}}°",
+      "blend": "Stapanje"
     },
     "menu": {
       "addText": "Dodajte tekst",
@@ -4992,6 +4995,68 @@
       "jpg": "JPG slika",
       "outputStill": "Izlaz: {{width}}×{{height}}",
       "empty": "Prvo dodajte nešto u svoj dizajn."
+    },
+    "adjust": {
+      "auto": "Automatsko poboljšanje",
+      "autoFailed": "Nije moguće analizirati ovu sliku.",
+      "tint": "Nijansa {{value}}",
+      "vignette": "Vinjeta {{value}}%",
+      "warmth": "Toplina {{value}}"
+    },
+    "draw": {
+      "colour": "Boja olovke",
+      "heading": "Crtanje",
+      "start": "Počni crtati",
+      "stop": "Prestani crtati",
+      "width": "Veličina olovke {{value}}"
+    },
+    "layers": {
+      "empty": "Na mjestu glave za reprodukciju na stranici još nema ničega.",
+      "hide": "Sakrij",
+      "lock": "Zaključaj",
+      "media": "Mediji",
+      "show": "Prikaži",
+      "text": "Tekst",
+      "unlock": "Otključaj"
+    },
+    "rail": {
+      "elements": "Elementi",
+      "layers": "Slojevi"
+    },
+    "blend": {
+      "normal": "Normalno",
+      "multiply": "Množenje",
+      "screen": "Zaslon",
+      "overlay": "Preklapanje",
+      "darken": "Potamni",
+      "lighten": "Posvijetli",
+      "colorDodge": "Posvjetljivanje boje",
+      "colorBurn": "Paljenje boje",
+      "hardLight": "Jako svjetlo",
+      "softLight": "Meko svjetlo",
+      "difference": "Razlika",
+      "exclusion": "Isključivanje",
+      "hue": "Nijansa",
+      "saturation": "Zasićenje",
+      "color": "Boja",
+      "luminosity": "Svjetlina"
+    },
+    "shape": {
+      "rect": "Pravokutnik",
+      "ellipse": "Krug",
+      "triangle": "Trokut",
+      "star": "Zvijezda",
+      "heart": "Srce",
+      "hexagon": "Šesterokut",
+      "line": "Linija",
+      "arrow": "Strelica",
+      "style": "Stil oblika",
+      "fill": "Ispuna",
+      "fillOn": "Ispuna",
+      "outline": "Obrub",
+      "outlineOn": "Obrub",
+      "outlineWidth": "Debljina obruba {{value}}",
+      "path": "Crtež"
     }
   },
   "creator": {

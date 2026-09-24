@@ -4887,7 +4887,9 @@
       "hue": "رنگت {{value}}°",
       "fontSize": "فونٹ سائز {{value}}",
       "padding": "پیڈنگ {{value}}",
-      "thickness": "موٹائی {{value}}"
+      "thickness": "موٹائی {{value}}",
+      "drawHint": "بناوے کھاتر پیج اوپر کھینچو۔ ہر لکیر آپن الگ لیئر ہے جے کے تو کھسکائے، چھوٹا بڑا کرے یا مٹائے سکیلا۔ ہوئے گیلا تو “بناوے بند کرو” دباؤ۔",
+      "layersHint": "لسٹ کے سب سے اوپر والا سب سے آگے رہیلا۔ آگے پیچھے کرے کھاتر تیر کے کام میں لاؤ۔ لاک آؤر چھپل لیئر خالی اہاں سے چونل جائے سکیلا۔"
     },
     "filters": {
       "none": "اصلی",
@@ -4931,7 +4933,8 @@
       "alignCentre": "بیچ میں سیدھ کرو",
       "alignRight": "دائیں سیدھ کرو",
       "resetPosition": "جگہ ری سیٹ کرو",
-      "rotation": "گھماؤ {{value}}°"
+      "rotation": "گھماؤ {{value}}°",
+      "blend": "بلینڈ"
     },
     "menu": {
       "addText": "ٹیکسٹ جوڑو",
@@ -4954,6 +4957,68 @@
       "jpg": "JPG تصویر",
       "outputStill": "آؤٹ پٹ: {{width}}×{{height}}",
       "empty": "پہلے اپنا ڈیزائن میں کچھ جوڑو۔"
+    },
+    "adjust": {
+      "auto": "آٹو بہتر کرو",
+      "autoFailed": "ای تصویر کے جانچ نہیں ہوئے سکلک۔",
+      "tint": "ٹنٹ {{value}}",
+      "vignette": "وِگنیٹ {{value}}%",
+      "warmth": "گرماہٹ {{value}}"
+    },
+    "draw": {
+      "colour": "قلم کے رنگ",
+      "heading": "بناؤ",
+      "start": "بناوے شروع کرو",
+      "stop": "بناوے بند کرو",
+      "width": "قلم کے ناپ {{value}}"
+    },
+    "layers": {
+      "empty": "پلے ہیڈ پر پنّا میں ابھی کچھو نہیں ہے۔",
+      "hide": "چھپاؤ",
+      "lock": "لاک",
+      "media": "میڈیا",
+      "show": "دکھاؤ",
+      "text": "ٹیکسٹ",
+      "unlock": "ان لاک"
+    },
+    "rail": {
+      "elements": "عنصر",
+      "layers": "لیئر"
+    },
+    "blend": {
+      "normal": "نارمل",
+      "multiply": "ملٹی پلائی",
+      "screen": "اسکرین",
+      "overlay": "اوورلے",
+      "darken": "گہرا",
+      "lighten": "ہلکا",
+      "colorDodge": "کلر ڈاج",
+      "colorBurn": "کلر برن",
+      "hardLight": "ہارڈ لائٹ",
+      "softLight": "سافٹ لائٹ",
+      "difference": "فرق",
+      "exclusion": "ایکسکلوژن",
+      "hue": "رنگت",
+      "saturation": "سیچوریشن",
+      "color": "رنگ",
+      "luminosity": "چمک"
+    },
+    "shape": {
+      "rect": "آیت",
+      "ellipse": "گول",
+      "triangle": "تکون",
+      "star": "تارا",
+      "heart": "دل",
+      "hexagon": "چھ کونا",
+      "line": "لکیر",
+      "arrow": "تیر",
+      "style": "شکل کے انداز",
+      "fill": "بھراؤ",
+      "fillOn": "بھراؤ",
+      "outline": "کنارہ",
+      "outlineOn": "کنارہ",
+      "outlineWidth": "کنارہ کے موٹائی {{value}}",
+      "path": "چتر"
     }
   },
   "creator": {

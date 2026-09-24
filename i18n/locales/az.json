@@ -4906,7 +4906,9 @@
       "hue": "Çalar {{value}}°",
       "fontSize": "Şrift ölçüsü {{value}}",
       "padding": "Daxili boşluq {{value}}",
-      "thickness": "Qalınlıq {{value}}"
+      "thickness": "Qalınlıq {{value}}",
+      "drawHint": "Çəkmək üçün səhifədə sürüşdürün. Hər xətt ayrıca qatdır, onu köçürə, ölçüsünü dəyişə və ya silə bilərsiniz. Bitirəndə «Çəkməni dayandır» düyməsinə toxunun.",
+      "layersHint": "Siyahının yuxarısı öndədir. Sıralamanı dəyişmək üçün oxlardan istifadə edin. Kilidli və gizli qatları yalnız burada seçmək olar."
     },
     "filters": {
       "none": "Orijinal",
@@ -4950,7 +4952,8 @@
       "alignCentre": "Mərkəzə uyğunlaşdır",
       "alignRight": "Sağa uyğunlaşdır",
       "resetPosition": "Mövqeyi sıfırla",
-      "rotation": "Fırlanma {{value}}°"
+      "rotation": "Fırlanma {{value}}°",
+      "blend": "Qarışdırma"
     },
     "menu": {
       "addText": "Mətn əlavə edin",
@@ -4973,6 +4976,68 @@
       "jpg": "JPG şəkil",
       "outputStill": "Çıxış: {{width}}×{{height}}",
       "empty": "Əvvəlcə dizaynınıza nəsə əlavə edin."
+    },
+    "adjust": {
+      "auto": "Avtomatik təkmilləşdirmə",
+      "autoFailed": "Bu şəkli təhlil etmək mümkün olmadı.",
+      "tint": "Çalar {{value}}",
+      "vignette": "Vinyet {{value}}%",
+      "warmth": "İstilik {{value}}"
+    },
+    "draw": {
+      "colour": "Qələm rəngi",
+      "heading": "Çək",
+      "start": "Çəkməyə başla",
+      "stop": "Çəkməni dayandır",
+      "width": "Qələm ölçüsü {{value}}"
+    },
+    "layers": {
+      "empty": "Oynatma başlığında səhifədə hələ heç nə yoxdur.",
+      "hide": "Gizlə",
+      "lock": "Kilidlə",
+      "media": "Media",
+      "show": "Göstər",
+      "text": "Mətn",
+      "unlock": "Kilidi aç"
+    },
+    "rail": {
+      "elements": "Elementlər",
+      "layers": "Qatlar"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Vurma",
+      "screen": "Ekran",
+      "overlay": "Örtük",
+      "darken": "Tündləşdirmə",
+      "lighten": "Açıqlaşdırma",
+      "colorDodge": "Rəngi açıqlaşdırma",
+      "colorBurn": "Rəngi tündləşdirmə",
+      "hardLight": "Sərt işıq",
+      "softLight": "Yumşaq işıq",
+      "difference": "Fərq",
+      "exclusion": "İstisna",
+      "hue": "Çalar",
+      "saturation": "Doyğunluq",
+      "color": "Rəng",
+      "luminosity": "Parlaqlıq"
+    },
+    "shape": {
+      "rect": "Düzbucaqlı",
+      "ellipse": "Dairə",
+      "triangle": "Üçbucaq",
+      "star": "Ulduz",
+      "heart": "Ürək",
+      "hexagon": "Altıbucaqlı",
+      "line": "Xətt",
+      "arrow": "Ox",
+      "style": "Fiqur üslubu",
+      "fill": "Doldurma",
+      "fillOn": "Doldurma",
+      "outline": "Kontur",
+      "outlineOn": "Kontur",
+      "outlineWidth": "Kontur qalınlığı {{value}}",
+      "path": "Rəsm"
     }
   },
   "creator": {

@@ -4964,7 +4964,9 @@
       "hue": "Tus {{value}}°",
       "fontSize": "Shrift o‘lchami {{value}}",
       "padding": "Ichki bo‘shliq {{value}}",
-      "thickness": "Qalinlik {{value}}"
+      "thickness": "Qalinlik {{value}}",
+      "drawHint": "Chizish uchun sahifa ustida suring. Har bir chiziq alohida qatlam bo'lib, uni ko'chirish, o'lchamini o'zgartirish yoki o'chirish mumkin. Tugatgach, «Chizishni to'xtatish» tugmasini bosing.",
+      "layersHint": "Ro'yxatning yuqorisi eng old tomon. Tartibni o'zgartirish uchun strelkalardan foydalaning. Qulflangan va yashirilgan qatlamlarni faqat shu yerda tanlash mumkin."
     },
     "filters": {
       "none": "Asl",
@@ -5008,7 +5010,8 @@
       "alignCentre": "Markazga tekislash",
       "alignRight": "O'ngga tekislash",
       "resetPosition": "Pozitsiyani tiklash",
-      "rotation": "Aylanish {{value}}°"
+      "rotation": "Aylanish {{value}}°",
+      "blend": "Aralashtirish"
     },
     "menu": {
       "addText": "Matn qo'shish",
@@ -5031,6 +5034,68 @@
       "jpg": "JPG tasviri",
       "outputStill": "Chiqarish: {{width}}×{{height}}",
       "empty": "Avval dizayningizga biror narsa qo'shing."
+    },
+    "adjust": {
+      "auto": "Avtomatik yaxshilash",
+      "autoFailed": "Bu rasmni tahlil qilib bo'lmadi.",
+      "tint": "Tus {{value}}",
+      "vignette": "Vinyetka {{value}}%",
+      "warmth": "Iliqlik {{value}}"
+    },
+    "draw": {
+      "colour": "Qalam rangi",
+      "heading": "Chizish",
+      "start": "Chizishni boshlash",
+      "stop": "Chizishni to'xtatish",
+      "width": "Qalam o'lchami {{value}}"
+    },
+    "layers": {
+      "empty": "Ijro kursorida sahifada hali hech narsa yo'q.",
+      "hide": "Yashirish",
+      "lock": "Qulflash",
+      "media": "Media",
+      "show": "Ko'rsatish",
+      "text": "Matn",
+      "unlock": "Qulfdan chiqarish"
+    },
+    "rail": {
+      "elements": "Elementlar",
+      "layers": "Qatlamlar"
+    },
+    "blend": {
+      "normal": "Oddiy",
+      "multiply": "Ko'paytirish",
+      "screen": "Ekran",
+      "overlay": "Ustma-ust",
+      "darken": "Qoraytirish",
+      "lighten": "Yorqinlashtirish",
+      "colorDodge": "Rangni ochlashtirish",
+      "colorBurn": "Rangni kuydirish",
+      "hardLight": "Qattiq yorug'lik",
+      "softLight": "Yumshoq yorug'lik",
+      "difference": "Farq",
+      "exclusion": "Istisno",
+      "hue": "Tus",
+      "saturation": "To'yinganlik",
+      "color": "Rang",
+      "luminosity": "Yorqinlik"
+    },
+    "shape": {
+      "rect": "To'rtburchak",
+      "ellipse": "Doira",
+      "triangle": "Uchburchak",
+      "star": "Yulduz",
+      "heart": "Yurak",
+      "hexagon": "Oltiburchak",
+      "line": "Chiziq",
+      "arrow": "Strelka",
+      "style": "Shakl uslubi",
+      "fill": "To'ldirish",
+      "fillOn": "To'ldirish",
+      "outline": "Kontur",
+      "outlineOn": "Kontur",
+      "outlineWidth": "Kontur qalinligi {{value}}",
+      "path": "Chizma"
     }
   },
   "creator": {
