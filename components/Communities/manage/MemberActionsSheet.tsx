@@ -1,4 +1,3 @@
-import SheetDismissHandle from "../../ui/SheetDismissHandle";
 /**
  * MemberActionsSheet
  * ==================
@@ -18,14 +17,12 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Modal,
-  Pressable,
   ActivityIndicator,
-  ScrollView,
   StyleSheet,
   Alert,
 } from "react-native";
 import { useTranslation } from "react-i18next";
+import GlassModal from "../../ui/GlassModal";
 import Icon from "../../ui/Icon";
 import type { IconName } from "../../ui/Icon";
 import { RestrictionSheet } from "./RestrictionSheet";
@@ -227,10 +224,10 @@ export function MemberActionsSheet({
 
   return (
     <>
-      <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-        <Pressable style={styles.overlay} onPress={onClose}>
-          <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
-            <SheetDismissHandle onClose={onClose} style={styles.header}>
+      {/* Scrollable and capped, so a long action list never grows off the top. */}
+      <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="88%" scrollable>
+          <View style={styles.sheet}>
+            <View style={styles.header}>
               <View className="flex-1">
                 <Text className="text-white text-sm font-mono">{name}</Text>
                 <Text className="text-zinc-400 text-xs mt-0.5">
@@ -251,10 +248,8 @@ export function MemberActionsSheet({
               >
                 <Icon name="X" size={20} color="#808089" />
               </TouchableOpacity>
-            </SheetDismissHandle>
+            </View>
 
-            {/* Scrolls so the sheet can be capped — see styles.sheet. */}
-            <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
             {canPromote && (
               <ActionRow
                 icon={member.role === "admin" ? "ShieldCheck" : "Shield"}
@@ -345,10 +340,8 @@ export function MemberActionsSheet({
                 })}
               </Text>
             )}
-            </ScrollView>
-          </Pressable>
-        </Pressable>
-      </Modal>
+          </View>
+      </GlassModal>
 
       <RestrictionSheet
         community={community}
@@ -363,19 +356,10 @@ export function MemberActionsSheet({
 }
 
 const styles = StyleSheet.create({
-  overlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "rgba(12,12,14,0.96)",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(255,255,255,0.1)",
     paddingHorizontal: 20,
     paddingTop: 20,
-    paddingBottom: 32,
-    // Bottom-pinned sheet: a long action list grows off the TOP of the screen.
-    // Cap it; the body scrolls.
-    maxHeight: "88%",
+    paddingBottom: 12,
   },
   header: {
     flexDirection: "row",

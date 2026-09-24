@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Image, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import GlassModal from './ui/GlassModal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
 import { useQueryClient } from '@tanstack/react-query';
@@ -138,11 +139,9 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
   const locked = !!busy || !!paid;
   const disabled = !!busy || !check?.token || !!check?.exists || (!!walletAddress && !paid && !covers);
 
-  return <Modal visible={visible} transparent animationType="slide" onRequestClose={() => { if (!busy) onClose(); }}>
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={s.flex}>
-      <Pressable style={s.backdrop} onPress={() => { if (!busy) onClose(); }}>
-        <Pressable style={s.sheet} onPress={() => {}}>
-          <ScrollView keyboardShouldPersistTaps="handled">
+  // Closing mid-payment would hide a fee transfer that is still in flight.
+  return <GlassModal visible={visible} onClose={() => { if (!busy) onClose(); }} dismissible={!busy} presentation="bottom" maxHeight="92%" scrollable>
+          <View style={s.sheet}>
             <Text style={s.title}>{t('dex.pools.addTitle')}</Text>
             <Text style={s.muted}>{t('dex.pools.addDescription')}</Text>
             <Text style={[s.muted, s.label]}>{t('dex.pools.network')}</Text>
@@ -181,17 +180,13 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
               <Text style={s.darkText}>{busy ? busyLabel : !walletAddress ? t('dex.connectWallet') : paid ? t('dex.pools.finish') : !covers && check?.token ? t('dex.pools.notEnough') : t('dex.pools.payAndOpen', { amount: POOL_FEE_USD })}</Text>
             </TouchableOpacity>
             {paid && !busy && <TouchableOpacity onPress={() => { writePaid(null); setAddress(''); onClose(); }}><Text style={[s.link, { textAlign: 'center', marginTop: 12 }]}>{t('dex.pools.discardPaid')}</Text></TouchableOpacity>}
-          </ScrollView>
-        </Pressable>
-      </Pressable>
-    </KeyboardAvoidingView>
-  </Modal>;
+          </View>
+  </GlassModal>;
 }
 
 const s = StyleSheet.create({
   flex: { flex: 1 },
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'flex-end' },
-  sheet: { backgroundColor: '#11151b', borderTopLeftRadius: 14, borderTopRightRadius: 14, borderColor: '#252b34', borderWidth: 1, padding: 16, paddingBottom: 32, maxHeight: '92%' },
+  sheet: { backgroundColor: '#11151b', padding: 16 },
   title: { color: '#edf1f6', fontSize: 18, fontWeight: '600', marginBottom: 6 },
   muted: { color: '#919ca9', fontSize: 11, lineHeight: 16 },
   white: { color: '#e9edf2', fontSize: 12, fontWeight: '600' },
