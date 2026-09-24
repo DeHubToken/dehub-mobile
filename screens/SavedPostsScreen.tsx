@@ -15,6 +15,8 @@ import {
   Platform,
 } from "react-native";
 import { DeHubLoader } from "../components/DeHubLoader";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
+import LoadErrorState from "../components/ui/LoadErrorState";
 import ScreenHeader from "../components/ScreenHeader";
 import PostsInfiniteList from "../components/Profile/PostsInfiniteList";
 import { useAuthState } from "../context/AuthContext";
@@ -56,6 +58,9 @@ const SavedPostsScreen: React.FC = () => {
   // Folders list state
   const [folders, setFolders] = useState<BookmarkFolder[]>([]);
   const [loadingFolders, setLoadingFolders] = useState(false);
+  const [refreshingFolders, setRefreshingFolders] = useState(false);
+  // Failed fetch — rendered in place of "No collections", which would be a lie.
+  const [foldersError, setFoldersError] = useState(false);
 
   // Folder CRUD Modals
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -78,13 +83,22 @@ const SavedPostsScreen: React.FC = () => {
     try {
       const res = await getFolders();
       setFolders(res.result || []);
+      setFoldersError(false);
     } catch (err) {
       console.warn("[SavedPostsScreen] Error fetching folders:", err);
-      toastError(t("savedPosts.fetchFoldersFailed"));
+      setFoldersError(true);
+      // A silent refetch keeps the grid on screen, so the error needs a toast.
+      if (silent) toastError(t("savedPosts.fetchFoldersFailed"));
     } finally {
       if (!silent) setLoadingFolders(false);
     }
-  }, []);
+  }, [t]);
+
+  const refreshFolders = useCallback(async () => {
+    setRefreshingFolders(true);
+    await fetchFoldersList(true);
+    setRefreshingFolders(false);
+  }, [fetchFoldersList]);
 
   useEffect(() => {
     if (activeTab === "folders" && !selectedFolder) {
@@ -460,14 +474,25 @@ const SavedPostsScreen: React.FC = () => {
                   <Text style={styles.createCardText}>{t("savedPosts.newCollection")}</Text>
                 </TouchableOpacity>
               }
+              refreshControl={
+                <DeHubRefreshControl refreshing={refreshingFolders} onRefresh={refreshFolders} />
+              }
               ListEmptyComponent={
-                <View style={styles.emptyGrid}>
-                  <Icon name="Folder" size={48} color="#A1A1AA" />
-                  <Text style={styles.emptyGridText}>{t("savedPosts.noCollections")}</Text>
-                </View>
+                foldersError ? (
+                  <LoadErrorState
+                    message={t("savedPosts.fetchFoldersFailed")}
+                    onRetry={() => fetchFoldersList()}
+                  />
+                ) : (
+                  <View style={styles.emptyGrid}>
+                    <Icon name="Folder" size={48} color="#A1A1AA" />
+                    <Text style={styles.emptyGridText}>{t("savedPosts.noCollections")}</Text>
+                  </View>
+                )
               }
             />
           )}
+          <DeHubRefreshMark refreshing={refreshingFolders} />
         </View>
       )}
 

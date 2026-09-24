@@ -727,7 +727,8 @@
     "usernameAvailable": "Emri i përdoruesit është i disponueshëm",
     "hideBadgeAndBalance": "Fshihni shenjën dhe bilancin",
     "hideBadgeAndBalanceDesc": "Fsheh detajet financiare dhe çaktivizon dërgimet dhe këshillat drejtuar jush.",
-    "onChainPublicWarning": "Transaksionet në zinxhir janë publike. Dërgimi i tokeneve ose këshillave mund të zbulojë adresën tuaj të portofolit, duke përfshirë transaksionet e bëra para se të aktivizohej modaliteti i bilancit privat."
+    "onChainPublicWarning": "Transaksionet në zinxhir janë publike. Dërgimi i tokeneve ose këshillave mund të zbulojë adresën tuaj të portofolit, duke përfshirë transaksionet e bëra para se të aktivizohej modaliteti i bilancit privat.",
+    "languageLoadFailed": "Nuk mund ta ndërroja gjuhën. Provo përsëri."
   },
   "common": {
     "mute": "Hiq zërin",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Nuk ka lidhje rrjeti",
     "noInternetHint": "Sigurohuni që Wi-Fi ose të dhënat mobile të jenë të aktivizuara, pastaj shtypni \"{{action}}\"",
     "saving": "Duke ruajtur…",
-    "offlineStatus": "Offline - Nuk ka lidhje rrjeti"
+    "offlineStatus": "Offline - Nuk ka lidhje rrjeti",
+    "postNotFound": "Nuk mundëm ta gjenim atë postim"
   },
   "tip": {
     "title": "Dërgo Bakshish",
@@ -2869,7 +2871,8 @@
         "forever": "Përgjithmonë"
       }
     },
-    "chooseAvatar": "Zgjidh avatar"
+    "chooseAvatar": "Zgjidh avatar",
+    "loadFailed": "Komunitetet nuk mund të ngarkoheshin"
   },
   "work": {
     "title": "Shpërblime",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Tashmë është dërguar ({{ref}}). Mos paguaj sërish — hape punën sërish pas pak dhe duhet të shfaqet si e paguar."
-    }
+    },
+    "loadFailed": "Ngarkimi i ofertave nuk ishte i mundur",
+    "jobLoadFailed": "Nuk mund ta ngarkoja këtë shpërblim"
   },
   "usernames": {
     "subtitle": "Emra në shitje, me çmim në USD",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Nuk do t'i shihni postimet e tyre ose nuk do të mund të bashkëveproni me ta. Zhbllokoni për të rivendosur aksesin.",
     "restrictedBody": "Ky përdorues ka kufizuar bashkëveprimet me llogarinë tuaj.",
     "requestPendingBody": "Kërkesa juaj për ndjekje është dërguar. Do të mund t'i shihni postimet e tyre pasi ata të miratojnë kërkesën tuaj.",
-    "followToSeePosts": "Ndiqni këtë llogari për të parë postimet e tyre."
+    "followToSeePosts": "Ndiqni këtë llogari për të parë postimet e tyre.",
+    "loadFailed": "E pamundur ngarkimi i kësaj liste"
   },
   "reactionInfo": {
     "title": "Reagimet",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Përcill mesazhin",
     "pollSubmitVote": "Dërgo votën",
     "doNotDisturb": "Mos shqetësoni",
-    "doNotDisturbOn": "mos shqetësoni"
+    "doNotDisturbOn": "mos shqetësoni",
+    "deleteConversationTitle": "Dëshiron ta fshish bisedën?",
+    "deleteConversationBody": "Kjo bisedë do të hiqet nga kutia jote e mesazheve."
   },
   "editPost": {
     "mediaPermission": "Kërkohet leja për bibliotekën e medias",

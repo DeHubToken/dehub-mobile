@@ -727,7 +727,8 @@
     "usernameAvailable": "Kasutajanimi on saadaval",
     "hideBadgeAndBalance": "Peida märge ja saldo",
     "hideBadgeAndBalanceDesc": "Peidab finantsandmed ning keelab sulle saatmise ja jootraha andmise.",
-    "onChainPublicWarning": "Ahelasisesed tehingud on avalikud. Tokenite või jootraha saatmine võib paljastada sinu rahakoti aadressi, sealhulgas tehingud, mis tehti enne privaatse saldomoodi lubamist."
+    "onChainPublicWarning": "Ahelasisesed tehingud on avalikud. Tokenite või jootraha saatmine võib paljastada sinu rahakoti aadressi, sealhulgas tehingud, mis tehti enne privaatse saldomoodi lubamist.",
+    "languageLoadFailed": "Keelt ei saanud vahetada. Proovige uuesti."
   },
   "common": {
     "mute": "Vaigista",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Võrguühenduseta – võrguühendust pole",
     "noInternetHint": "Veenduge, et Wi-Fi või mobiilne andmeside on sisse lülitatud, seejärel puudutage \"{{action}}\"",
     "saving": "Salvestan…",
-    "offlineStatus": "Võrguühenduseta – pole võrguühendust"
+    "offlineStatus": "Võrguühenduseta – pole võrguühendust",
+    "postNotFound": "Me ei leidnud seda postitust"
   },
   "tip": {
     "title": "Saada jootraha",
@@ -2869,7 +2871,8 @@
         "forever": "Igavesti"
       }
     },
-    "chooseAvatar": "Vali avatar"
+    "chooseAvatar": "Vali avatar",
+    "loadFailed": "Kogukondi ei saanud laadida"
   },
   "work": {
     "title": "Preemiad",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Juba saadetud ({{ref}}). Ära maksa uuesti — ava töö hetke pärast uuesti ja see peaks olema märgitud makstuks."
-    }
+    },
+    "loadFailed": "Pearahasid ei saanud laadida",
+    "jobLoadFailed": "Seda pearaha ei saanud laadida"
   },
   "usernames": {
     "subtitle": "Müügis olevad kasutajanimed, hind USD-des",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Sa ei näe nende postitusi ega saa nendega suhelda. Taastage juurdepääs, kui blokeering tühistate.",
     "restrictedBody": "See kasutaja on piiranud interaktsioone teie kontoga.",
     "requestPendingBody": "Teie jälgimistaotlus on saadetud. Saate nende postitusi näha, kui nad teie taotluse heaks kiidavad.",
-    "followToSeePosts": "Jälgi seda kontot, et näha nende postitusi."
+    "followToSeePosts": "Jälgi seda kontot, et näha nende postitusi.",
+    "loadFailed": "Seda loendit ei saanud laadida"
   },
   "reactionInfo": {
     "title": "Reaktsioonid",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Edasta sõnum",
     "pollSubmitVote": "Esita hääl",
     "doNotDisturb": "Mitte segada@ action: inmenu",
-    "doNotDisturbOn": "Mitte segada"
+    "doNotDisturbOn": "Mitte segada",
+    "deleteConversationTitle": "Kas kustutada vestlus?",
+    "deleteConversationBody": "See vestlus eemaldatakse sinu postkastist."
   },
   "editPost": {
     "mediaPermission": "Meediakogu luba on nõutav",

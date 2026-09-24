@@ -40,6 +40,7 @@ import GlassModal from "../components/ui/GlassModal";
 import { FIELD_TEXT } from "../theme/inputs";
 import { useAppTheme } from "../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../theme/minimal";
+import LoadErrorState from "../components/ui/LoadErrorState";
 
 type RouteParams = {
   FollowList: {
@@ -318,6 +319,8 @@ const FollowListScreen: React.FC = () => {
 
   const [data, setData] = useState<FollowListItem[]>([]);
   const [loading, setLoading] = useState(true);
+  // First-page fetch failed — shown instead of the "no followers" empty state.
+  const [loadError, setLoadError] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [page, setPage] = useState(1);
@@ -486,6 +489,7 @@ const FollowListScreen: React.FC = () => {
         };
 
         const response: FollowListResponse = await getFollowList(params);
+        if (pageNum === 1) setLoadError(false);
 
         if (response.result?.items) {
           const items = response.result.items;
@@ -511,6 +515,7 @@ const FollowListScreen: React.FC = () => {
         }
       } catch (error) {
         console.error("[FollowListScreen] fetchData error:", error);
+        if (pageNum === 1) setLoadError(true);
       } finally {
         setLoading(false);
         setRefreshing(false);
@@ -958,6 +963,9 @@ const FollowListScreen: React.FC = () => {
 
   const ListEmptyComponent = useMemo(() => {
     if (loading) return null;
+    if (loadError) {
+      return <LoadErrorState message={t("follow.loadFailed")} onRetry={() => fetchData(1)} />;
+    }
     const message = debouncedSearch
       ? t("follow.noMatches", { query: debouncedSearch })
       : activeTab === "followers"
@@ -971,7 +979,7 @@ const FollowListScreen: React.FC = () => {
         <Text className="text-gray-400 text-base text-center px-8">{message}</Text>
       </View>
     );
-  }, [loading, debouncedSearch, activeTab, t]);
+  }, [loading, loadError, fetchData, debouncedSearch, activeTab, t]);
 
   const headerTitle = username ? `@${username}` : truncate(address, 12, "..");
   const hasVisibleFollowBacks = data.some((item) => {

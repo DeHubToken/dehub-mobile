@@ -727,7 +727,8 @@
     "usernameAvailable": "Nazwa użytkownika jest dostępna",
     "hideBadgeAndBalance": "Ukryj odznakę i saldo",
     "hideBadgeAndBalanceDesc": "Ukrywa dane finansowe i wyłącza wysyłanie oraz napiwki do Ciebie.",
-    "onChainPublicWarning": "Transakcje on-chain są publiczne. Wysyłanie tokenów lub napiwków może ujawnić adres Twojego portfela, w tym transakcje dokonane przed włączeniem trybu prywatnego salda."
+    "onChainPublicWarning": "Transakcje on-chain są publiczne. Wysyłanie tokenów lub napiwków może ujawnić adres Twojego portfela, w tym transakcje dokonane przed włączeniem trybu prywatnego salda.",
+    "languageLoadFailed": "Nie można zmienić języka. Spróbuj ponownie."
   },
   "common": {
     "mute": "Wycisz",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Brak połączenia sieciowego",
     "noInternetHint": "Upewnij się, że Wi-Fi lub dane mobilne są włączone, a następnie dotknij \"{{action}}\"",
     "saving": "Zapisywanie…",
-    "offlineStatus": "Offline - Brak połączenia sieciowego"
+    "offlineStatus": "Offline - Brak połączenia sieciowego",
+    "postNotFound": "Nie mogliśmy znaleźć tego posta"
   },
   "tip": {
     "title": "Wyślij napiwek",
@@ -2869,7 +2871,8 @@
         "forever": "Na zawsze"
       }
     },
-    "chooseAvatar": "Wybierz awatar"
+    "chooseAvatar": "Wybierz awatar",
+    "loadFailed": "Nie można załadować społeczności"
   },
   "work": {
     "title": "Zlecenia",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Już wysłano ({{ref}}). Nie płać ponownie — otwórz zlecenie za chwilę, powinno być oznaczone jako opłacone."
-    }
+    },
+    "loadFailed": "Nie można załadować nagród",
+    "jobLoadFailed": "Nie można załadować tej nagrody"
   },
   "usernames": {
     "subtitle": "Nazwy na sprzedaż, wyceniane w USD",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Nie będziesz widzieć ich postów ani nie będziesz mógł z nimi wchodzić w interakcje. Odblokuj, aby przywrócić dostęp.",
     "restrictedBody": "Ten użytkownik ograniczył interakcje z Twoim kontem.",
     "requestPendingBody": "Twoja prośba o obserwowanie została wysłana. Będziesz mógł zobaczyć ich posty, gdy zatwierdzą Twoją prośbę.",
-    "followToSeePosts": "Obserwuj to konto, aby zobaczyć ich posty."
+    "followToSeePosts": "Obserwuj to konto, aby zobaczyć ich posty.",
+    "loadFailed": "Nie można załadować tej listy"
   },
   "reactionInfo": {
     "title": "Reakcje",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Przekaż wiadomość",
     "pollSubmitVote": "Prześlij głos",
     "doNotDisturb": "Nie przeszkadzać",
-    "doNotDisturbOn": "Nie przeszkadzać"
+    "doNotDisturbOn": "Nie przeszkadzać",
+    "deleteConversationTitle": "Usunąć rozmowę?",
+    "deleteConversationBody": "Ta rozmowa zostanie usunięta ze skrzynki odbiorczej."
   },
   "editPost": {
     "mediaPermission": "Wymagane jest uprawnienie do biblioteki multimediów",

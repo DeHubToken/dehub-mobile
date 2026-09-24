@@ -727,7 +727,8 @@
     "usernameAvailable": "Brukernavn er tilgjengelig",
     "hideBadgeAndBalance": "Skjul merke og saldo",
     "hideBadgeAndBalanceDesc": "Skjuler økonomiske detaljer og deaktiverer sendinger og tips til deg.",
-    "onChainPublicWarning": "Transaksjoner på kjeden er offentlige. Sending av tokens eller tips kan avsløre lommebokadressen din, inkludert transaksjoner gjort før privat balansemodus ble aktivert."
+    "onChainPublicWarning": "Transaksjoner på kjeden er offentlige. Sending av tokens eller tips kan avsløre lommebokadressen din, inkludert transaksjoner gjort før privat balansemodus ble aktivert.",
+    "languageLoadFailed": "Kunne ikke bytte språk. Prøv på nytt."
   },
   "common": {
     "mute": "Demp",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Frakoblet - Ingen nettverksforbindelse",
     "noInternetHint": "Sørg for at Wi-Fi eller mobildata er slått på, og trykk deretter på \"{{action}}\"",
     "saving": "Lagrer…",
-    "offlineStatus": "Frakoblet - Ingen nettverkstilkobling"
+    "offlineStatus": "Frakoblet - Ingen nettverkstilkobling",
+    "postNotFound": "Vi fant ikke det innlegget"
   },
   "tip": {
     "title": "Send Tip",
@@ -2869,7 +2871,8 @@
         "forever": "For alltid"
       }
     },
-    "chooseAvatar": "Velg avatar"
+    "chooseAvatar": "Velg avatar",
+    "loadFailed": "Kunne ikke laste inn fellesskapene"
   },
   "work": {
     "title": "Bounties",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Allerede sendt ({{ref}}). Ikke betal på nytt — åpne oppdraget igjen om litt, så skal det stå som betalt."
-    }
+    },
+    "loadFailed": "Kunne ikke laste inn dusører",
+    "jobLoadFailed": "Kunne ikke laste inn denne dusøren"
   },
   "usernames": {
     "subtitle": "Brukernavn til salgs, priset i USD",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Du vil ikke se innleggene deres eller kunne samhandle med dem. Fjern blokkering for å gjenopprette tilgang.",
     "restrictedBody": "Denne brukeren har begrenset samhandling med kontoen din.",
     "requestPendingBody": "Følgespørringen din er sendt. Du vil kunne se innleggene deres når de godkjenner forespørselen din.",
-    "followToSeePosts": "Følg denne kontoen for å se innleggene deres."
+    "followToSeePosts": "Følg denne kontoen for å se innleggene deres.",
+    "loadFailed": "Kunne ikke laste inn denne listen"
   },
   "reactionInfo": {
     "title": "Reaksjon",
@@ -4861,7 +4867,9 @@
     "pollVotes_one": "{{count}} stemmer",
     "pollVotes_other": "{{count}} stemmer",
     "doNotDisturb": "Må ikke forstyrres",
-    "doNotDisturbOn": "Ikke forstyrr"
+    "doNotDisturbOn": "Ikke forstyrr",
+    "deleteConversationTitle": "Slett samtale",
+    "deleteConversationBody": "Denne samtalen vil bli fjernet fra innboksen din."
   },
   "editPost": {
     "mediaPermission": "Tillatelse til mediebiblioteket kreves",

@@ -727,7 +727,8 @@
     "usernameAvailable": "Magaca isticmaalaha waa la heli karaa",
     "hideBadgeAndBalance": "Qari calaamada iyo dheelitirka",
     "hideBadgeAndBalanceDesc": "Waxay qarinaysaa faahfaahinta maaliyadeed waxayna joojinaysaa dirida iyo talooyinka adiga.",
-    "onChainPublicWarning": "Qoraalada on-chain waa kuwo dadweyne. Dirida calaamadaha ama talooyinka waxay kashifaysaa ciwaanka jeebkaaga, oo ay ku jiraan qoraalada la sameeyay ka hor inta aan la hawlgelin habka dheelitirka gaarka ah."
+    "onChainPublicWarning": "Qoraalada on-chain waa kuwo dadweyne. Dirida calaamadaha ama talooyinka waxay kashifaysaa ciwaanka jeebkaaga, oo ay ku jiraan qoraalada la sameeyay ka hor inta aan la hawlgelin habka dheelitirka gaarka ah.",
+    "languageLoadFailed": "Ma bedeli karo luqad. isku day mar kale."
   },
   "common": {
     "mute": "Aamusi",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Ma jirto xiriir shabakad",
     "noInternetHint": "Hubi in Wi-Fi ama xogta mobaylka ay shidan tahay, ka dibna taabo \"{{action}}\"",
     "saving": "Kaydinaya…",
-    "offlineStatus": "Offline - Ma Jirto Xiriir Shabakad"
+    "offlineStatus": "Offline - Ma Jirto Xiriir Shabakad",
+    "postNotFound": "Ma heli karno qoraalkaas."
   },
   "tip": {
     "title": "Dir Bakhshiish",
@@ -2869,7 +2871,8 @@
         "forever": "Weligeed"
       }
     },
-    "chooseAvatar": "Dooro avatar"
+    "chooseAvatar": "Dooro avatar",
+    "loadFailed": "Uma dulqaadan karo bulshooyinka"
   },
   "work": {
     "title": "Abaalmarino",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Horey ayaa loo diray ({{ref}}). Mar labaad ha bixin — dib u fur shaqada wax yar ka dib, waxay muujin doontaa in la bixiyay."
-    }
+    },
+    "loadFailed": "Ma awoodo in ay soo saaraan buundooyinka.",
+    "jobLoadFailed": "Ma awoodo in ay ku shubto this nimcada"
   },
   "usernames": {
     "subtitle": "Magacyo iib ah, qiimahoodu waa USD",
@@ -3759,7 +3764,8 @@
     "youBlockedBody": "Ma arki doontid qoraaladooda ama ma awoodi doontid inaad la falgasho. Furitaanka si aad u soo celiso marin.",
     "restrictedBody": "Isticmaalahani waxa uu xaddiday isdhexgalka koontadaada.",
     "requestPendingBody": "Codsigaaga raacida waa la soo diray. Waxaad awoodi doontaa inaad aragto qoraaladooda marka ay ansixiyaan codsigaaga.",
-    "followToSeePosts": "Raac koontadan si aad u aragto qoraaladooda."
+    "followToSeePosts": "Raac koontadan si aad u aragto qoraaladooda.",
+    "loadFailed": "Ma buuxin karo liiskan"
   },
   "reactionInfo": {
     "title": "Falcelinta",
@@ -4864,7 +4870,9 @@
     "forwardMessage": "Fariin hore",
     "pollSubmitVote": "Gudbi codka",
     "doNotDisturb": "Ha dhibin",
-    "doNotDisturbOn": "Ha dhibin: On"
+    "doNotDisturbOn": "Ha dhibin: On",
+    "deleteConversationTitle": "Tirtir wadahadalka?",
+    "deleteConversationBody": "Wadahadalkan waxaa laga saari doonaa sanduuqaaga boostada."
   },
   "editPost": {
     "mediaPermission": "Waxaa loo baahan yahay ogolaanshaha maktabadda warbaahinta",

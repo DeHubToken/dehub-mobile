@@ -731,7 +731,8 @@
     "usernameAvailable": "Používateľské meno je k dispozícii",
     "hideBadgeAndBalance": "Skryť odznak a zostatok",
     "hideBadgeAndBalanceDesc": "Skryje finančné údaje a zakáže odosielanie a tipy vám.",
-    "onChainPublicWarning": "Transakcie na reťazci sú verejné. Odosielanie tokenov alebo tipov môže odhaliť vašu adresu peňaženky vrátane transakcií uskutočnených pred povolením režimu súkromného zostatku."
+    "onChainPublicWarning": "Transakcie na reťazci sú verejné. Odosielanie tokenov alebo tipov môže odhaliť vašu adresu peňaženky vrátane transakcií uskutočnených pred povolením režimu súkromného zostatku.",
+    "languageLoadFailed": "Nepodarilo sa zmeniť jazyk. Skúste to znova."
   },
   "common": {
     "mute": "Stlmiť",
@@ -802,7 +803,8 @@
     "noInternetStatus": "Offline - Žiadne sieťové pripojenie",
     "noInternetHint": "Uistite sa, že máte zapnutú Wi-Fi alebo mobilné dáta, potom klepnite na \"{{action}}\"",
     "saving": "Ukladá sa…",
-    "offlineStatus": "Offline - Žiadne sieťové pripojenie"
+    "offlineStatus": "Offline - Žiadne sieťové pripojenie",
+    "postNotFound": "Nepodarilo sa nám nájsť tento príspevok"
   },
   "tip": {
     "title": "Send Tip",
@@ -2978,7 +2980,8 @@
         "forever": "Navždy"
       }
     },
-    "chooseAvatar": "Vybrať avatara"
+    "chooseAvatar": "Vybrať avatara",
+    "loadFailed": "Komunity sa nepodarilo načítať"
   },
   "work": {
     "title": "Odmeny",
@@ -3102,7 +3105,9 @@
     },
     "payout": {
       "alreadySent": "Už odoslané ({{ref}}). Neplaťte znova — o chvíľu zákazku znova otvorte a mala by byť označená ako zaplatená."
-    }
+    },
+    "loadFailed": "Nepodarilo sa načítať odmeny",
+    "jobLoadFailed": "Túto odmenu sa nepodarilo načítať"
   },
   "usernames": {
     "subtitle": "Mená na predaj, ocenené v USD",
@@ -3869,7 +3874,8 @@
     "youBlockedBody": "Nebudete vidieť ich príspevky ani s nimi interagovať. Zrušte blokovanie na obnovenie prístupu.",
     "restrictedBody": "Tento používateľ obmedzil interakcie s vaším účtom.",
     "requestPendingBody": "Vaša žiadosť o sledovanie bola odoslaná. Ich príspevky budete môcť vidieť, keď schvália vašu žiadosť.",
-    "followToSeePosts": "Sledujte tento účet, aby ste videli jeho príspevky."
+    "followToSeePosts": "Sledujte tento účet, aby ste videli jeho príspevky.",
+    "loadFailed": "Tento zoznam sa nepodarilo načítať"
   },
   "reactionInfo": {
     "title": "Reakcie",
@@ -4975,7 +4981,9 @@
     "forwardMessage": "Preposlať správu",
     "pollSubmitVote": "Odoslať hlas",
     "doNotDisturb": "Nerušiť",
-    "doNotDisturbOn": "Nerušiť"
+    "doNotDisturbOn": "Nerušiť",
+    "deleteConversationTitle": "Odstrániť konverzáciu?",
+    "deleteConversationBody": "Táto konverzácia bude odstránená z vašich doručených správ."
   },
   "editPost": {
     "mediaPermission": "Vyžaduje sa povolenie k mediálnej knižnici",

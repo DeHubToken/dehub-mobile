@@ -726,7 +726,8 @@
     "usernameAvailable": "የተጠቃሚ ስም አለ",
     "hideBadgeAndBalance": "ባጅ እና ቀሪ ሂሳብ ደብቅ",
     "hideBadgeAndBalanceDesc": "የገንዘብ ዝርዝሮችን ይደብቃል እና ወደ እርስዎ መላክ እና ምክሮችን ያሰናክላል።",
-    "onChainPublicWarning": "በሰንሰለት ላይ ያሉ ግብይቶች ይፋዊ ናቸው። ቶከኖችን ወይም ምክሮችን መላክ የኪስ ቦርሳዎን አድራሻ ሊገልጥ ይችላል፣ የግል ቀሪ ሂሳብ ሁነታ ከመጀመሩ በፊት የተደረጉ ግብይቶችን ጨምሮ።"
+    "onChainPublicWarning": "በሰንሰለት ላይ ያሉ ግብይቶች ይፋዊ ናቸው። ቶከኖችን ወይም ምክሮችን መላክ የኪስ ቦርሳዎን አድራሻ ሊገልጥ ይችላል፣ የግል ቀሪ ሂሳብ ሁነታ ከመጀመሩ በፊት የተደረጉ ግብይቶችን ጨምሮ።",
+    "languageLoadFailed": "ቋንቋ መቀየር አልተቻለም ፡ ፡ እንደገና ሞክር ፡ ፡"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",
@@ -778,7 +779,8 @@
     "noInternetStatus": "ከመስመር ውጭ - ምንም የአውታረ መረብ ግንኙነት የለም",
     "noInternetHint": "Wi-Fi ወይም የሞባይል ዳታ መብራቱን ያረጋግጡ፣ ከዚያ \"{{action}}\" ን ይንኩ።",
     "saving": "እየተቀመጠ ነው…",
-    "offlineStatus": "ከመስመር ውጭ - ምንም የአውታረ መረብ ግንኙነት የለም"
+    "offlineStatus": "ከመስመር ውጭ - ምንም የአውታረ መረብ ግንኙነት የለም",
+    "postNotFound": "ያንን ልጥፍ ማግኘት አልቻልንም"
   },
   "tip": {
     "title": "ጥቆማ ላክ",
@@ -2898,7 +2900,8 @@
         "forever": "ለዘላለም"
       }
     },
-    "chooseAvatar": "አቫታር ይምረጡ"
+    "chooseAvatar": "አቫታር ይምረጡ",
+    "loadFailed": "ማህበረሰቦችን መጫን አልተቻለም"
   },
   "work": {
     "title": "ሽልማቶች",
@@ -3022,7 +3025,9 @@
     },
     "payout": {
       "alreadySent": "አስቀድሞ ተልኳል ({{ref}})። እንደገና አይክፈሉ — ስራውን ትንሽ ቆይተው ይክፈቱት፣ እንደተከፈለ ይታያል።"
-    }
+    },
+    "loadFailed": "ሻንጣዎችን መጫን አልተቻለም",
+    "jobLoadFailed": "ይህንን ችሮታ መጫን አልተቻለም"
   },
   "usernames": {
     "subtitle": "ለሽያጭ የቀረቡ መጠሪያዎች፣ ዋጋቸው በUSD",
@@ -3788,7 +3793,8 @@
     "youBlockedBody": "ምርቶቻቸውን አያዩም ወይም ከእነሱ ጋር መስተጋብር መፍጠር አይችሉም። መዳረሻን ለመመለስ አግድ።",
     "restrictedBody": "ይህ ተጠቃሚ ከእርስዎ መለያ ጋር ያለውን መስተጋብር ገድቧል።",
     "requestPendingBody": "የመከተል ጥያቄዎ ተልኳል። ጥያቄያቸውን ከፀደቁ በኋላ ምርቶቻቸውን ማየት ይችላሉ።",
-    "followToSeePosts": "ምርቶቻቸውን ለማየት ይህን መለያ ይከተሉ።"
+    "followToSeePosts": "ምርቶቻቸውን ለማየት ይህን መለያ ይከተሉ።",
+    "loadFailed": "ይህንን ዝርዝር መጫን አልተቻለም"
   },
   "reactionInfo": {
     "title": "ምላሾች",
@@ -4894,7 +4900,9 @@
     "forwardMessage": "ወደፊት መልእክት",
     "pollSubmitVote": "ድምጽ ያስገቡ",
     "doNotDisturb": "አትረበሽ",
-    "doNotDisturbOn": "አትረብሽ: ላይ"
+    "doNotDisturbOn": "አትረብሽ: ላይ",
+    "deleteConversationTitle": "ውይይትን ይሰርዙ?",
+    "deleteConversationBody": "ይህ ውይይት ከገቢ መልዕክት ሳጥንዎ ይወገዳል ።"
   },
   "editPost": {
     "mediaPermission": "የሚዲያ ቤተ-መጻሕፍት ፈቃድ ያስፈልጋል",

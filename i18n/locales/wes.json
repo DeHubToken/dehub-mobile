@@ -727,7 +727,8 @@
     "yourDisplayName": "Di name weh pipol go see",
     "hideBadgeAndBalance": "Hide badge and balance",
     "hideBadgeAndBalanceDesc": "E go hide ya money palava and block pipol for send or tip you.",
-    "onChainPublicWarning": "On-chain transactions na public. If you send tokens or tips, pipol fit see ya wallet address, plus di transactions weh you bin do before you on private balance mode."
+    "onChainPublicWarning": "On-chain transactions na public. If you send tokens or tips, pipol fit see ya wallet address, plus di transactions weh you bin do before you on private balance mode.",
+    "languageLoadFailed": "No fit change language. Try again."
   },
   "common": {
     "mute": "Off di sound",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Network no dey",
     "noInternetHint": "Make sure say Wi-Fi or mobile data dey on, then tap \"{{action}}\"",
     "saving": "Saving…",
-    "offlineStatus": "Offline - Network no dey"
+    "offlineStatus": "Offline - Network no dey",
+    "postNotFound": "We no fit find dat post"
   },
   "tip": {
     "title": "Send Tip",
@@ -2869,7 +2871,8 @@
         "forever": "Forever and ever"
       }
     },
-    "chooseAvatar": "Pick avatar"
+    "chooseAvatar": "Pick avatar",
+    "loadFailed": "No fit load communities"
   },
   "work": {
     "title": "Bounty dem",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Dem don send am already ({{ref}}). No pay again — open di work small time, e go show say dem don pay am."
-    }
+    },
+    "loadFailed": "No fit load bounties",
+    "jobLoadFailed": "No fit load dis bounty"
   },
   "usernames": {
     "subtitle": "Handle dem weh dem di sell, price dei fo USD",
@@ -3760,7 +3765,8 @@
     "privateBodyGeneric": "This user don choose to hide their followers and following list.",
     "noRequests": "No follow request di wait",
     "removeFollowerBody": "We no go tell {{name}} sey you don remove dem from your followers.",
-    "removeFollowerHint": "Press and hold follower to remove am."
+    "removeFollowerHint": "Press and hold follower to remove am.",
+    "loadFailed": "No fit load dis list"
   },
   "reactionInfo": {
     "title": "Reactions",
@@ -4847,7 +4853,9 @@
     "doNotDisturbOn": "No disturb: On",
     "updatePrefsFailed": "We no fit update DM settings",
     "prefsIntro": "Control who fit message you and charge fee for each message for DHB.",
-    "startDmToShare": "Start DM mek you fit share posts."
+    "startDmToShare": "Start DM mek you fit share posts.",
+    "deleteConversationTitle": "You wan delete dis conversation?",
+    "deleteConversationBody": "Dis conversation go disappear from your inbox."
   },
   "editPost": {
     "mediaPermission": "You need media library permission",

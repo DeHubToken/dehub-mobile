@@ -695,7 +695,8 @@
     "usernameAvailable": "ناوی به‌کارهێنه‌ر به‌رده‌سته‌",
     "hideBadgeAndBalance": "نیشان و باڵانس بشارێره‌وه‌",
     "hideBadgeAndBalanceDesc": "وردەکارییە داراییەکان دەشارێتەوە و ناردن و ڕاوێژەکان بۆ تۆ ناچالاک دەکات.",
-    "onChainPublicWarning": "مامەڵە لەسەر زنجیرە گشتییەکان. ناردنی توکن یان ڕاوێژ دەتوانێت ناونیشانی خەزێنەکەت ئاشکرا بکات، لەوانە مامەڵەکانی پێش ئەوەی بارودۆخی باڵانسی تایبەت چالاک بکرێت."
+    "onChainPublicWarning": "مامەڵە لەسەر زنجیرە گشتییەکان. ناردنی توکن یان ڕاوێژ دەتوانێت ناونیشانی خەزێنەکەت ئاشکرا بکات، لەوانە مامەڵەکانی پێش ئەوەی بارودۆخی باڵانسی تایبەت چالاک بکرێت.",
+    "languageLoadFailed": "نەتوانرا زمان بگۆڕدرێت. دووبارە هەوڵ بدەرەوە."
   },
   "common": {
     "mute": "Bêdeng bike",
@@ -747,7 +748,8 @@
     "noInternetHint": "دڵنیابە Wi-Fi یان داتای مۆبایل کراوەیە، پاشان لێبدە \"{{action}}\"",
     "continue": "بەردەوام بوون",
     "saving": "پاشەکەوتکردن…",
-    "offlineStatus": "له‌ ده‌ره‌وه‌ی هێڵ - په‌یوه‌ندیی تۆڕ نییه‌"
+    "offlineStatus": "له‌ ده‌ره‌وه‌ی هێڵ - په‌یوه‌ندیی تۆڕ نییه‌",
+    "postNotFound": "نەمانتوانی ئەو پۆستە بدۆزینەوە"
   },
   "tip": {
     "title": "Bexşîş Bişîne",
@@ -2835,7 +2837,8 @@
         "forever": "هەتاهەتاییە"
       }
     },
-    "chooseAvatar": "وێنەی سەرەکی هەڵبژێرە"
+    "chooseAvatar": "وێنەی سەرەکی هەڵبژێرە",
+    "loadFailed": "نەتوانرا کۆمەڵگاکان باربکرێن"
   },
   "work": {
     "title": "Xelat",
@@ -2959,7 +2962,9 @@
     },
     "payout": {
       "alreadySent": "Berê hate şandin ({{ref}}). Careke din nede — piştî demekê karî dîsa veke, wê wekî hatiye dayîn xuya bike."
-    }
+    },
+    "loadFailed": "نەتوانرا خەڵاتەکان باربکرێن",
+    "jobLoadFailed": "نەتوانرا ئەم خەڵاتە باربکرێت"
   },
   "usernames": {
     "subtitle": "Navên ji bo firotinê, bi USD bihabûyî",
@@ -3651,7 +3656,8 @@
     "restrictedBody": "ئەم بەکارهێنەرە مامەڵەکان لەگەڵ هەژمارەکەت سنووردار کردووە.",
     "requestPendingBody": "داواکاریی شوێنکەوتنت نێردرا. دوای پەسەندکردنی داواکارییەکەت دەتوانیت پۆستەکانی ببینیت.",
     "followToSeePosts": "ئەم هەژمارە شوێن بکەوە بۆ بینینی پۆستەکانی.",
-    "thisUser": "ئەم بەکارهێنەرە"
+    "thisUser": "ئەم بەکارهێنەرە",
+    "loadFailed": "نەتوانرا ئەم لیستە باربکرێت"
   },
   "reactionInfo": {
     "labels": {
@@ -4725,7 +4731,9 @@
     "noMatchingConversations": "هیچ گفتوگۆیەک ناگونجێت",
     "pinMessage": "نامە بکەرە سەرەوە",
     "forwardMessage": "نامە بنێرە",
-    "pollSubmitVote": "دەنگدانەکە بنێرە"
+    "pollSubmitVote": "دەنگدانەکە بنێرە",
+    "deleteConversationTitle": "گفتوگۆکە بسڕدرێتەوە؟",
+    "deleteConversationBody": "ئەم گفتوگۆیە لە سندوقی نامەکانت لادەبرێت."
   },
   "editPost": {
     "mediaPermission": "Destûra pirtûkxaneya medyayê pêwîst e",

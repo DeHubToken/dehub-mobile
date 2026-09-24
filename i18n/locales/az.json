@@ -727,7 +727,8 @@
     "usernameAvailable": "İstifadəçi adı mövcuddur",
     "hideBadgeAndBalance": "Nişanı və balansı gizləyin",
     "hideBadgeAndBalanceDesc": "Maliyyə məlumatlarını gizlədir və sizə göndərişləri və məsləhətləri deaktiv edir.",
-    "onChainPublicWarning": "Zəncirdəki əməliyyatlar ictimaiyyətdir. Token göndərmək və ya məsləhətlər vermək, şəxsi balans rejimi aktiv edilməzdən əvvəl edilən əməliyyatlar daxil olmaqla, sizin pul kisəsi ünvanınızı aşkar edə bilər."
+    "onChainPublicWarning": "Zəncirdəki əməliyyatlar ictimaiyyətdir. Token göndərmək və ya məsləhətlər vermək, şəxsi balans rejimi aktiv edilməzdən əvvəl edilən əməliyyatlar daxil olmaqla, sizin pul kisəsi ünvanınızı aşkar edə bilər.",
+    "languageLoadFailed": "Dili dəyişmək mümkün olmadı. Yenidən cəhd edin."
   },
   "common": {
     "mute": "Səssiz et",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Şəbəkə bağlantısı yoxdur",
     "noInternetHint": "Wi-Fi və ya mobil məlumatın açıq olduğundan əmin olun, sonra \"{{action}}\" düyməsini basın",
     "saving": "Saxlanılır…",
-    "offlineStatus": "Offline - Şəbəkə bağlantısı yoxdur"
+    "offlineStatus": "Offline - Şəbəkə bağlantısı yoxdur",
+    "postNotFound": "Bu yazını tapa bilmədik"
   },
   "tip": {
     "title": "Bəxşiş Göndər",
@@ -2869,7 +2871,8 @@
         "forever": "Əbədi"
       }
     },
-    "chooseAvatar": "Avatar seçin"
+    "chooseAvatar": "Avatar seçin",
+    "loadFailed": "İcmaları yükləmək mümkün olmadı"
   },
   "work": {
     "title": "Mükafatlar",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Artıq göndərilib ({{ref}}). Yenidən ödəməyin — bir azdan işi yenidən açın, ödənilmiş kimi görünəcək."
-    }
+    },
+    "loadFailed": "Lütfləri yükləmək mümkün olmadı",
+    "jobLoadFailed": "Bu lütfü yükləmək mümkün olmadı"
   },
   "usernames": {
     "subtitle": "Satışda olan istifadəçi adları, qiyməti USD ilə",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Onun yazılarını görməyəcək və onlarla qarşılıqlı əlaqə qura bilməyəcəksiniz. Yenidən əlaqə qurmaq üçün blokdan çıxarın.",
     "restrictedBody": "Bu istifadəçi hesabınızla qarşılıqlı əlaqələri məhdudlaşdırıb.",
     "requestPendingBody": "İzləmə tələbiniz göndərildi. Tələbinizi təsdiqlədikdən sonra onun yazılarını görə biləcəksiniz.",
-    "followToSeePosts": "Onun yazılarını görmək üçün bu hesaba abunə olun."
+    "followToSeePosts": "Onun yazılarını görmək üçün bu hesaba abunə olun.",
+    "loadFailed": "Bu siyahını yükləmək mümkün olmadı"
   },
   "reactionInfo": {
     "title": "Reaksiyalar",
@@ -4864,7 +4870,9 @@
     "forwardMessage": "Mesajı yönləndir",
     "pollSubmitVote": "Səsverməni təqdim et",
     "doNotDisturb": "Narahat etməyin",
-    "doNotDisturbOn": "Narahat olmayın: Aktiv"
+    "doNotDisturbOn": "Narahat olmayın: Aktiv",
+    "deleteConversationTitle": "Söhbət silinsin?",
+    "deleteConversationBody": "Bu söhbət gələnlər qutunuzdan silinəcək."
   },
   "editPost": {
     "mediaPermission": "Media kitabxanasına icazə tələb olunur",

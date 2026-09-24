@@ -726,7 +726,8 @@
     "usernameAvailable": "Foydalanuvchi nomi mavjud",
     "hideBadgeAndBalance": "Belgi va balansni yashirish",
     "hideBadgeAndBalanceDesc": "Moliya ma'lumotlarini yashiradi va sizga yuborish va maslahatlar berishni o'chiradi.",
-    "onChainPublicWarning": "On-chain (blokcheyn) operatsiyalari ommaviy hisoblanadi. Tokenlar yoki maslahatlar yuborish sizning hamyon manzilingizni oshkor qilishi mumkin, shu jumladan maxfiy balans rejimi yoqilishidan oldin amalga oshirilgan operatsiyalar ham."
+    "onChainPublicWarning": "On-chain (blokcheyn) operatsiyalari ommaviy hisoblanadi. Tokenlar yoki maslahatlar yuborish sizning hamyon manzilingizni oshkor qilishi mumkin, shu jumladan maxfiy balans rejimi yoqilishidan oldin amalga oshirilgan operatsiyalar ham.",
+    "languageLoadFailed": "Tilni almashtirib bo&#39;lmadi. Qaytadan urinib ko&#39;ring."
   },
   "common": {
     "mute": "Ovozni o‘chirish",
@@ -778,7 +779,8 @@
     "noInternetStatus": "Chiqarilgan - Tarmoq ulanishi yo'q",
     "noInternetHint": "Wi-Fi yoki mobil ma'lumotlar yoqilganligiga ishonch hosil qiling, so'ng \"{{action}}\" tugmasini bosing",
     "saving": "Saqlanmoqda…",
-    "offlineStatus": "Offline - Tarmoq ulanishi yo'q"
+    "offlineStatus": "Offline - Tarmoq ulanishi yo'q",
+    "postNotFound": "Biz o&#39;sha postni topa olmadik"
   },
   "tip": {
     "title": "Tip yuborish",
@@ -2883,7 +2885,8 @@
         "forever": "Abadiy"
       }
     },
-    "chooseAvatar": "Rasmni tanlang"
+    "chooseAvatar": "Rasmni tanlang",
+    "loadFailed": "Hamjamiyatlarni yuklab bo&#39;lmadi"
   },
   "work": {
     "title": "Mukofotlar",
@@ -3007,7 +3010,9 @@
     },
     "payout": {
       "alreadySent": "Allaqachon yuborilgan ({{ref}}). Qayta to‘lamang — biroz vaqtdan so‘ng ishni qayta oching, u to‘langan deb ko‘rsatiladi."
-    }
+    },
+    "loadFailed": "Bonuslarni yuklab bo&#39;lmadi",
+    "jobLoadFailed": "Bu mukofotni yuklab bo&#39;lmadi"
   },
   "usernames": {
     "subtitle": "Sotuvdagi taxalluslar, narxi USD da",
@@ -3773,7 +3778,8 @@
     "youBlockedBody": "Uning postlarini koʻrmaysiz va ular bilan oʻzaro aloqada boʻla olmaysiz. Kirishni tiklash uchun blokdan chiqarish.",
     "restrictedBody": "Ushbu foydalanuvchi sizning profilingiz bilan oʻzaro aloqalarni cheklab qoʻygan.",
     "requestPendingBody": "Sizning kuzatuv soʻrovingiz yuborildi. Ular soʻrovingizni tasdiqlagandan soʻng siz ularning postlarini koʻra olasiz.",
-    "followToSeePosts": "Uning postlarini koʻrish uchun ushbu akkauntga obuna boʻling."
+    "followToSeePosts": "Uning postlarini koʻrish uchun ushbu akkauntga obuna boʻling.",
+    "loadFailed": "Bu ro&#39;yxatni yuklab bo&#39;lmadi"
   },
   "reactionInfo": {
     "title": "Reaksiyalar",
@@ -4877,7 +4883,9 @@
     "pollVotes_one": "{{count}} ovoz",
     "pollVotes_other": "{{count}} ta ovoz",
     "doNotDisturb": "Bezovta qilmang",
-    "doNotDisturbOn": "Bezovta qilmang: Yoniq"
+    "doNotDisturbOn": "Bezovta qilmang: Yoniq",
+    "deleteConversationTitle": "Suhbatni o'chirish.",
+    "deleteConversationBody": "Bu suhbat elektron pochtangizdan olib tashlanadi."
   },
   "editPost": {
     "mediaPermission": "Media kutubxonasiga ruxsat kerak",

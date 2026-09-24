@@ -728,7 +728,8 @@
     "usernameAvailable": "Gebruikersnaam is beskikbaar",
     "hideBadgeAndBalance": "Versteek kenteken en balans",
     "hideBadgeAndBalanceDesc": "Versteek finansiële besonderhede en skakel versendings en wenke na jou toe uit.",
-    "onChainPublicWarning": "On-chain transaksies is publiek. Die versending van tokens of wenke kan jou beursie-adres openbaar, insluitend transaksies wat gemaak is voordat privaat balansmodus geaktiveer is."
+    "onChainPublicWarning": "On-chain transaksies is publiek. Die versending van tokens of wenke kan jou beursie-adres openbaar, insluitend transaksies wat gemaak is voordat privaat balansmodus geaktiveer is.",
+    "languageLoadFailed": "Kon nie taal verander nie. Probeer weer."
   },
   "common": {
     "mute": "Demp",
@@ -780,7 +781,8 @@
     "noInternetStatus": "Vanlyn - Geen netwerkverbinding nie",
     "noInternetHint": "Maak seker Wi-Fi of mobiele data is aangeskakel, tik dan op \"{{action}}\"",
     "saving": "Besig om te stoor…",
-    "offlineStatus": "Vanlyn - Geen netwerkverbinding nie"
+    "offlineStatus": "Vanlyn - Geen netwerkverbinding nie",
+    "postNotFound": "Ons kon nie die poste vind nie."
   },
   "tip": {
     "title": "Send Tip",
@@ -2902,7 +2904,8 @@
         "forever": "Vir ewig"
       }
     },
-    "chooseAvatar": "Kies avatar"
+    "chooseAvatar": "Kies avatar",
+    "loadFailed": "Kon nie gemeenskappe laai nie"
   },
   "work": {
     "title": "Belonings",
@@ -3026,7 +3029,9 @@
     },
     "payout": {
       "alreadySent": "Reeds gestuur ({{ref}}). Moenie weer betaal nie — maak die werk netnou weer oop en dit behoort as betaal te wys."
-    }
+    },
+    "loadFailed": "Kon nie oorbetalings laai nie",
+    "jobLoadFailed": "Kon nie hierdie oorvloed laai nie"
   },
   "usernames": {
     "subtitle": "Handles te koop, geprys in USD",
@@ -3793,7 +3798,8 @@
     "youBlockedBody": "Jy sal nie hul plasings sien of met hulle kan interaksie hê nie. Ontblokkeer om toegang te herstel.",
     "restrictedBody": "Hierdie gebruiker het interaksies met jou rekening beperk.",
     "requestPendingBody": "Jou volgversoek is gestuur. Jy sal hul plasings kan sien sodra hulle jou versoek goedkeur.",
-    "followToSeePosts": "Volg hierdie rekening om hul plasings te sien."
+    "followToSeePosts": "Volg hierdie rekening om hul plasings te sien.",
+    "loadFailed": "Kon nie hierdie lys laai nie"
   },
   "reactionInfo": {
     "title": "Reaksies",
@@ -4899,7 +4905,9 @@
     "forwardMessage": "Stuur boodskap aan",
     "pollSubmitVote": "VOORBLADOND",
     "doNotDisturb": "Moenie steur nie",
-    "doNotDisturbOn": "Moenie steur nie: On"
+    "doNotDisturbOn": "Moenie steur nie: On",
+    "deleteConversationTitle": "Skrap gesprek?",
+    "deleteConversationBody": "Hierdie gesprek sal uit u inkassie verwyder word."
   },
   "editPost": {
     "mediaPermission": "Toestemming vir die medialibrary word vereis",

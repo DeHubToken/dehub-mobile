@@ -727,7 +727,8 @@
     "usernameAvailable": "Gebruikersnaam is beschikbaar",
     "hideBadgeAndBalance": "Badge en saldo verbergen",
     "hideBadgeAndBalanceDesc": "Verbergt financiële details en schakelt verzendingen en fooien naar jou uit.",
-    "onChainPublicWarning": "On-chain transacties zijn openbaar. Het verzenden van tokens of fooien kan je portemonneeadres onthullen, inclusief transacties die zijn gedaan voordat de privébalansmodus werd ingeschakeld."
+    "onChainPublicWarning": "On-chain transacties zijn openbaar. Het verzenden van tokens of fooien kan je portemonneeadres onthullen, inclusief transacties die zijn gedaan voordat de privébalansmodus werd ingeschakeld.",
+    "languageLoadFailed": "Kan niet van taal wisselen. Probeer het opnieuw."
   },
   "common": {
     "mute": "Dempen",
@@ -970,7 +971,8 @@
     "noInternetStatus": "Offline - Geen netwerkverbinding",
     "noInternetHint": "Zorg ervoor dat Wi-Fi of mobiele data is ingeschakeld en tik vervolgens op \"{{action}}\"",
     "saving": "Opslaan…",
-    "offlineStatus": "Offline - Geen netwerkverbinding"
+    "offlineStatus": "Offline - Geen netwerkverbinding",
+    "postNotFound": "We konden dat bericht niet vinden"
   },
   "tip": {
     "title": "Fooi sturen",
@@ -3056,7 +3058,8 @@
         "forever": "Voor altijd"
       }
     },
-    "chooseAvatar": "Avatar kiezen"
+    "chooseAvatar": "Avatar kiezen",
+    "loadFailed": "Kan community's niet laden"
   },
   "work": {
     "title": "Bounties",
@@ -3180,7 +3183,9 @@
     },
     "payout": {
       "alreadySent": "Al verstuurd ({{ref}}). Betaal niet nog een keer — open de klus zo meteen opnieuw, dan zou hij als betaald moeten staan."
-    }
+    },
+    "loadFailed": "Kon bounties niet laden",
+    "jobLoadFailed": "Kan deze bounty niet laden"
   },
   "usernames": {
     "subtitle": "Handles te koop, geprijsd in USD",
@@ -3947,7 +3952,8 @@
     "youBlockedBody": "Je ziet hun berichten niet en kunt niet met hen interageren. Deblokkeer om de toegang te herstellen.",
     "restrictedBody": "Deze gebruiker heeft interacties met je account beperkt.",
     "requestPendingBody": "Je volgverzoek is verzonden. Je kunt hun berichten zien zodra ze je verzoek goedkeuren.",
-    "followToSeePosts": "Volg dit account om hun berichten te zien."
+    "followToSeePosts": "Volg dit account om hun berichten te zien.",
+    "loadFailed": "Kan deze lijst niet laden"
   },
   "reactionInfo": {
     "title": "Reacties",
@@ -5053,7 +5059,9 @@
     "forwardMessage": "Bericht doorsturen",
     "pollSubmitVote": "Stem indienen",
     "doNotDisturb": "Niet storen",
-    "doNotDisturbOn": "Niet storen"
+    "doNotDisturbOn": "Niet storen",
+    "deleteConversationTitle": "Gesprek verwijderen?",
+    "deleteConversationBody": "Dit gesprek wordt uit je inbox verwijderd."
   },
   "editPost": {
     "mediaPermission": "Toestemming voor de mediabibliotheek is vereist",

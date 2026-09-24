@@ -727,7 +727,8 @@
     "usernameAvailable": "Jina la mtumiaji linapatikana",
     "hideBadgeAndBalance": "Ficha beji na salio",
     "hideBadgeAndBalanceDesc": "Inaficha maelezo ya kifedha na kuzima utumaji na vidokezo kwako.",
-    "onChainPublicWarning": "Miamala kwenye mnyororo ni ya umma. Kutuma tokeni au vidokezo kunaweza kufichua anwani yako ya pochi, ikijumuisha miamala iliyofanywa kabla ya hali ya salio la kibinafsi kuwezeshwa."
+    "onChainPublicWarning": "Miamala kwenye mnyororo ni ya umma. Kutuma tokeni au vidokezo kunaweza kufichua anwani yako ya pochi, ikijumuisha miamala iliyofanywa kabla ya hali ya salio la kibinafsi kuwezeshwa.",
+    "languageLoadFailed": "Imeshindwa kubadilisha lugha. Jaribu tena."
   },
   "common": {
     "mute": "Nyamazisha",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Nje ya Mtandao - Hakuna muunganisho wa mtandao",
     "noInternetHint": "Hakikisha Wi-Fi au data ya simu imewashwa, kisha gusa \"{{action}}\"",
     "saving": "Inahifadhi…",
-    "offlineStatus": "Nje ya Mtandao - Hakuna muunganisho wa mtandao"
+    "offlineStatus": "Nje ya Mtandao - Hakuna muunganisho wa mtandao",
+    "postNotFound": "Hatukuweza kupata chapisho hilo"
   },
   "tip": {
     "title": "Tuma Kidokezo",
@@ -2870,7 +2872,8 @@
         "forever": "Milele"
       }
     },
-    "chooseAvatar": "Chagua avatar"
+    "chooseAvatar": "Chagua avatar",
+    "loadFailed": "Imeshindwa kupakia jumuiya"
   },
   "work": {
     "title": "Zawadi",
@@ -2994,7 +2997,9 @@
     },
     "payout": {
       "alreadySent": "Tayari imetumwa ({{ref}}). Usilipe tena — fungua kazi tena baada ya muda mfupi, itaonyesha imelipwa."
-    }
+    },
+    "loadFailed": "Imeshindwa kupakia zawadi",
+    "jobLoadFailed": "Imeshindwa kupakia fadhila hii"
   },
   "usernames": {
     "subtitle": "Vitambulisho vinavyouzwa, bei kwa USD",
@@ -3761,7 +3766,8 @@
     "youBlockedBody": "Hutawaona machapisho yao wala kuingiliana nao. Fungua ili urejeshe ufikiaji.",
     "restrictedBody": "Mtumiaji huyu amezuia mwingiliano na akaunti yako.",
     "requestPendingBody": "Ombi lako la kumfuata limetumwa. Utaweza kuona machapisho yao mara tu watakapokubali ombi lako.",
-    "followToSeePosts": "Mfuatilie akaunti hii ili uone machapisho yao."
+    "followToSeePosts": "Mfuatilie akaunti hii ili uone machapisho yao.",
+    "loadFailed": "Imeshindwa kupakia orodha hii"
   },
   "reactionInfo": {
     "title": "Miitikio",
@@ -4867,7 +4873,9 @@
     "forwardMessage": "Tuma ujumbe",
     "pollSubmitVote": "Wasilisha kura",
     "doNotDisturb": "usisumbue",
-    "doNotDisturbOn": "usisumbue"
+    "doNotDisturbOn": "usisumbue",
+    "deleteConversationTitle": "Ungependa kufuta mazungumzo?",
+    "deleteConversationBody": "Mazungumzo haya yataondolewa kwenye kikasha chako."
   },
   "editPost": {
     "mediaPermission": "Ruhusa ya maktaba ya midia inahitajika",

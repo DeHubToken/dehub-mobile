@@ -727,7 +727,8 @@
     "usernameAvailable": "Benutzername isch verfügbar",
     "hideBadgeAndBalance": "Abzeiche und Saldo verstecke",
     "hideBadgeAndBalanceDesc": "Versteckt finanzielli Details und schaltet Sende und Trinkgeld a dich us.",
-    "onChainPublicWarning": "On-chain Transaktione sind öffentlich. Token oder Trinkgeld z'sende chan dini Wallet-Adress zeige, inklusiv Transaktione wo gmacht worde sind, bevor de private Saldo-Modus aktiviert worde isch."
+    "onChainPublicWarning": "On-chain Transaktione sind öffentlich. Token oder Trinkgeld z'sende chan dini Wallet-Adress zeige, inklusiv Transaktione wo gmacht worde sind, bevor de private Saldo-Modus aktiviert worde isch.",
+    "languageLoadFailed": "Han d'Sproch nöd chönne wächsle. Versuechs no einisch."
   },
   "common": {
     "mute": "Stumm schalte",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Kei Netzwerkverbindig",
     "noInternetHint": "Stell sicher, dass Wi-Fi oder mobile Date agschalte sind, und tippe denn uf \"{{action}}\"",
     "saving": "Speichere...",
-    "offlineStatus": "Offline - Kei Netzwerkverbindig"
+    "offlineStatus": "Offline - Kei Netzwerkverbindig",
+    "postNotFound": "Mir hend das Post nöd chönne finde"
   },
   "tip": {
     "title": "Trinkgäld schicke",
@@ -2899,7 +2901,8 @@
         "forever": "Für immer"
       }
     },
-    "chooseAvatar": "Avatar wähle"
+    "chooseAvatar": "Avatar wähle",
+    "loadFailed": "Communities hend nöd chönne glade werde"
   },
   "work": {
     "title": "Prämie",
@@ -3023,7 +3026,9 @@
     },
     "payout": {
       "alreadySent": "Scho gschickt ({{ref}}). Nid nomol zahle — mach de Uftrag glii nomol uf, denn sött er als bezahlt aazeigt wärde."
-    }
+    },
+    "loadFailed": "Bounties hend nöd chönne glade werde",
+    "jobLoadFailed": "Das Bounty hend nöd chönne glade werde"
   },
   "usernames": {
     "subtitle": "Handles zum Verchaufe, i USD priset",
@@ -3790,7 +3795,8 @@
     "youBlockedBody": "Du wirsch ihre Posts nöd gseh und chasch nöd mit ihne interagiere. Entsperre zum Zugriff wiederherstelle.",
     "restrictedBody": "Dä User hät Interaktione mit dim Account igschränkt.",
     "requestPendingBody": "Dini Folge-Uufdrag isch gschickt worde. Du chasch ihre Posts gseh, sobald sie din Uufdrag bestätige.",
-    "followToSeePosts": "Folge däm Account zum ihre Posts gseh."
+    "followToSeePosts": "Folge däm Account zum ihre Posts gseh.",
+    "loadFailed": "Die List hend nöd chönne glade werde"
   },
   "reactionInfo": {
     "title": "Reaktione",
@@ -4896,7 +4902,9 @@
     "forwardMessage": "Nachricht wiiterleite",
     "pollSubmitVote": "Abstimmig abgä",
     "doNotDisturb": "Nöd störe",
-    "doNotDisturbOn": "Nicht störe: Aalaut"
+    "doNotDisturbOn": "Nicht störe: Aalaut",
+    "deleteConversationTitle": "Unterhaltig lösche?",
+    "deleteConversationBody": "Die Unterhaltig wird us dim Postfach entfernt."
   },
   "editPost": {
     "mediaPermission": "Berächtigung für d Mediathek nötig",
