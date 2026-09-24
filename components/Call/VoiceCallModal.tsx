@@ -18,6 +18,8 @@ const VoiceCallModal: React.FC = () => {
     toggleMute,
     toggleSpeaker,
     peerAddress,
+    isMinimized,
+    setMinimized,
   } = useCall();
 
   const { t } = useTranslation();
@@ -27,7 +29,7 @@ const VoiceCallModal: React.FC = () => {
   const isAudioCall = currentCall?.call_type === "audio";
   const isVisible = (isCallActive || isConnecting) && isAudioCall && !!currentCall;
 
-  if (!isVisible) return null;
+  if (!isVisible || isMinimized) return null;
 
   const statusText = isConnecting
     ? t("calls.connecting")
@@ -36,7 +38,7 @@ const VoiceCallModal: React.FC = () => {
       : t("calls.connected");
 
   return (
-    <CallScreen onRequestClose={endCall}>
+    <CallScreen onRequestClose={() => setMinimized(true)}>
       <View style={[styles.body, { paddingTop: insets.top + 56 }]}>
         <CallIdentity
           kindIcon="Phone"

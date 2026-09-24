@@ -22,6 +22,8 @@ const VideoCallModal: React.FC = () => {
     callDuration,
     remoteUid,
     peerAddress,
+    isMinimized,
+    setMinimized,
     endCall,
     toggleMute,
     toggleSpeaker,
@@ -36,7 +38,7 @@ const VideoCallModal: React.FC = () => {
   const isVideoCall = currentCall?.call_type === "video";
   const isVisible = (isCallActive || isConnecting) && isVideoCall && !!currentCall;
 
-  if (!isVisible) return null;
+  if (!isVisible || isMinimized) return null;
 
   const statusText = isConnecting
     ? t("calls.connecting")
@@ -47,7 +49,7 @@ const VideoCallModal: React.FC = () => {
   return (
     <Modal
       visible
-      onRequestClose={endCall}
+      onRequestClose={() => setMinimized(true)}
       statusBarTranslucent
       animationType="fade"
       transparent={false}
