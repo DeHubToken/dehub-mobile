@@ -683,7 +683,33 @@
     "chainIdLabel": "চেইন আইডি: {{id}}",
     "exportPkConfirmPhrase": "আমি বুঝতে পারছি",
     "exportPkCopy": "প্রাইভেট কী কপি করুন",
-    "e2eAutomatic": "স্বয়ংক্রিয়"
+    "e2eAutomatic": "স্বয়ংক্রিয়",
+    "publicChatAlertsRateOption": "{{count}} প্রতি ঘন্টা",
+    "smsScopeLabel": "কী টেক্সট করবেন",
+    "smsScopeDesc": "টেক্সট করতে টাকা লাগে, তাই এমন কিছুতে সীমাবদ্ধ রাখুন যা একটি বিরতির যোগ্য",
+    "smsScope": {
+      "all": "আমার যা কিছু চালু আছে",
+      "tips": "আমি যে টিপসগুলি পাই",
+      "subscriptions": "শুধুমাত্র নতুন গ্রাহক",
+      "sales": "আমার কন্টেন্টের শুধুমাত্র বিক্রয়",
+      "bounties": "শুধুমাত্র বাউন্টি",
+      "fractions": "শুধুমাত্র ভগ্নাংশ অফার এবং বিক্রয়",
+      "messages": "শুধুমাত্র সরাসরি বার্তা",
+      "mentions": "শুধুমাত্র আমার উল্লেখ",
+      "replies": "আমার মন্তব্যের শুধুমাত্র উত্তর",
+      "account": "শুধুমাত্র আমার অ্যাকাউন্ট সম্পর্কিত বিজ্ঞপ্তি"
+    },
+    "smsNotificationsDescReady": "{{phone}} কে পাঠানো হয়েছে — {{dhb}} DHB প্রতি, প্রায় {{count}} বাকি আছে",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) ক্রেডিট দিয়ে আনলক করুন",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) টেক্সট আনলক করে এবং আপনার প্রথম ব্যালেন্স হয়ে যায়।",
+    "smsDepositAction": "{{dhb}} DHB পাঠান",
+    "smsDepositSlow": "আপনার ট্রান্সফার এখনও চেইনে দেখা যায়নি। এটি নিরাপদ — এটি আবার খুলুন এবং এটি জমা হয়ে যাবে। রেফারেন্স: {{hash}}",
+    "smsNeedDhb": "টেক্সট বিজ্ঞপ্তি আনলক করতে আপনার {{dhb}} DHB প্রয়োজন।",
+    "smsBalance": "{{dhb}} DHB বাকি (${{usd}})",
+    "smsBalanceMessages": "আরও {{count}} বার্তা",
+    "smsTopUp": "{{dhb}} DHB টপ আপ করুন",
+    "smsCodeSent": "কোড পাঠানো হয়েছে। এটি {{price}} DHB খরচ করেছে।",
+    "smsCodeLabel": "আমরা {{phone}} কে যে কোড টেক্সট করেছি"
   },
   "common": {
     "mute": "মিউট করুন",
@@ -766,7 +792,9 @@
     "attachDescription": "আপনার বার্তার বকশিস হিসাবে DHB টোকেন সংযুক্ত করুন",
     "minAmount": "ন্যূনতম {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB সংযুক্ত করুন",
-    "removeTip": "বকশিস সরান"
+    "removeTip": "বকশিস সরান",
+    "balanceAmount": "ব্যালেন্স: {{amount}}",
+    "max": "সর্বোচ্চ: {{amount}}"
   },
   "postOptions": {
     "options": "বিকল্প",
@@ -1849,7 +1877,8 @@
     "otherTokens": "অন্যান্য টোকেন",
     "otherTokensDesc": "আপনার কার্ড দিয়ে Base-এ ETH বা USDC কিনুন",
     "shareToFeed": "আমার ফিডে শেয়ার করুন",
-    "sharePostTemplate": "এইমাত্র DeHub-এ আমার স্ট্যাকে {{amount}} $DHB যোগ করা হয়েছে । সম্প্রদায়ের সাথে গড়ে তোলা । #ডিহাব #ডিএইচবি"
+    "sharePostTemplate": "এইমাত্র DeHub-এ আমার স্ট্যাকে {{amount}} $DHB যোগ করা হয়েছে । সম্প্রদায়ের সাথে গড়ে তোলা । #ডিহাব #ডিএইচবি",
+    "minDhbPurchase": "ন্যূনতম DHB ক্রয় হল $0.50"
   },
   "agents": {
     "title": "AI এজেন্ট",
@@ -2993,7 +3022,13 @@
     "addedToYourUsernames": "আপনার ইউজারনেমে যোগ হবে",
     "boughtNameGoesToVault": "আপনি @{{current}} থাকবেন। @{{handle}} আপনার ইউজারনেমে যোগ হবে, আর যখন খুশি সেটিতে বদলাতে পারবেন।",
     "youAreNow": "আপনি এখন @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} এখন আপনার ইউজারনেমে আছে"
+    "boughtToVaultToast": "@{{handle}} এখন আপনার ইউজারনেমে আছে",
+    "askingPriceUsd": "জিজ্ঞাসিত মূল্য (USD)",
+    "dollarPriceRange": "$1–$1,000,000 লিখুন, দুই দশমিক স্থান পর্যন্ত।",
+    "fixedDollarPrice": "ডলার মূল্য স্থির থাকে; টোকেন পরিমাণ আপডেট ।",
+    "priceUpdated": "মূল্য আপডেট করা হয়েছে । পরিমাণটি পর্যালোচনা করুন এবং আবার কিনুন -এ ট্যাপ করুন ।",
+    "tokensPaidToSeller": "সরাসরি বিক্রেতাকে অর্থ প্রদান করা হয়েছে",
+    "priceUsd": "প্রাইস (USD)"
   },
   "stores": {
     "subtitle": "DeHub কমিউনিটির পণ্য আবিষ্কার করুন",
@@ -3339,7 +3374,8 @@
     "someone": "কেউ",
     "oneTyping": "{{name}} লিখছেন…",
     "fewTyping": "{{names}} লিখছেন…",
-    "manyTyping": "{{count}} জন লিখছেন…"
+    "manyTyping": "{{count}} জন লিখছেন…",
+    "attachGif": "জি- আই- এফName"
   },
   "promptFeed": {
     "headline": "আপনি কী দেখতে চান?",
@@ -5610,5 +5646,52 @@
     "appealRef": "রেফারেন্স {{ref}}",
     "appealSubtitleSubject": "একজন ব্যক্তি এটি পড়বেন এবং {{subject}} -এ আবার দেখবেন ।",
     "appealMore": "অক্ষরের এখনও প্রয়োজন: {{count}}"
+  },
+  "support": {
+    "title": "সহায়তা",
+    "subtitle": "আপনার টিকিট এবং তাদের স্ট্যাটাস । কোনও AI নেই, কোনও ফি নেই ।",
+    "newTicket": "নতুন টিকিট",
+    "newTicketHint": "পরিবর্তে কী ঘটেছিল এবং আপনি কী আশা করেছিলেন তা আমাদের জানান ।",
+    "backToTickets": "টিকিটে ফিরে যান",
+    "openHeading": "খুলুন ({{n}})",
+    "noTickets": "আপনি এখনও কোনও সহায়তা টিকিট জমা দেননি ।",
+    "loadFailed": "আপনার টিকিট লোড করা যায়নি । অনুগ্রহ করে আবার চেষ্টা করুন ।",
+    "categoryLabel": "বিভাগ",
+    "severityLabel": "অগ্রগণ্য",
+    "subjectLabel": "বিষয়",
+    "subjectPlaceholder": "সমস্যা বর্ণনা করে একটি লাইন",
+    "descriptionLabel": "জলদি ক্রো",
+    "descriptionPlaceholder": "আপনি কী করেছেন, আপনি কী আশা করেছিলেন এবং এর পরিবর্তে কী ঘটেছিল ।",
+    "stepsLabel": "পুনরুত্পাদন করার ধাপ (ঐচ্ছিক)",
+    "submit": "টিকিট পাঠান",
+    "submitting": "পাঠানো হচ্ছে ...",
+    "filed": "টিকেট {{ref}} টিমের সাথে আছে ।",
+    "filedNotEmailed": "টিকিট {{ref}} রেকর্ড করা হয়েছে । রেফারেন্সটি রাখুন ।",
+    "alreadyOpen": "আপনার কাছে ইতিমধ্যে {{ref}} হিসাবে এটি খোলা আছে ।",
+    "filingFailed": "সেই টিকিটটি ফাইল করা যায়নি । অনুগ্রহ করে আবার চেষ্টা করুন ।",
+    "status": {
+      "open": "খুলুন",
+      "in_progress": "চলমান",
+      "resolved": "সমাধান করা হয়ে গেছে",
+      "closed": "বন্ধ"
+    },
+    "severity": {
+      "low": "কম",
+      "normal": "স্বাভাবিক",
+      "high": "উচ্চ",
+      "urgent": "জরুরি"
+    },
+    "category": {
+      "account_access": "অ্যাকাউন্ট অ্যাক্সেস",
+      "wallet_or_transactions": "ওয়ালেট বা লেনদেন",
+      "posting_or_uploads": "পোস্টিং বা আপলোড",
+      "payments_or_subscriptions": "পেমেন্ট বা সাবস্ক্রিপশন",
+      "live_streaming": "লাইভ স্ট্রিমিং",
+      "content_or_moderation": "বিষয়বস্তু বা সংযম",
+      "bug": "বাগ",
+      "feature_request": "ফিচার অনুরোধ",
+      "other": "অন্যান্য"
+    },
+    "filedOn": "ফাইল করা হয়েছে {{date}}"
   }
 }

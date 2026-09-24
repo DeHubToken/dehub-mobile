@@ -108,7 +108,8 @@
     "livePreview": "Live preview",
     "publishChanges": "Publish di changes",
     "pagePublished": "Invite page don publish",
-    "pageSaveFailed": "We no fit save di invite page"
+    "pageSaveFailed": "We no fit save di invite page",
+    "selfVisitsExcluded": "We no dey count the times wey you visit your own link."
   },
   "feed": {
     "home": "Home",
@@ -637,12 +638,79 @@
     },
     "aiScraping": {
       "section": "AI training",
-      "saved": "AI training preference saved"
+      "saved": "AI training preference saved",
+      "label": "Allow AI to scrape my content",
+      "hintAllow": "AI systems and crawlers wey respect this signal fit use your audio, artwork and writing train themselves.",
+      "hintDeny": "We go tell AI systems and crawlers wey respect this signal make dem no use your audio, artwork and writing train themselves. Crawlers wey no respect the signal, this one no go block dem."
     },
     "chainIdLabel": "Chain ID na {{id}}",
     "exportPkConfirmPhrase": "I DON UNDERSTAND",
     "exportPkCopy": "Copy di private key",
-    "e2eAutomatic": "E dey do am by itself"
+    "e2eAutomatic": "E dey do am by itself",
+    "smsScopeLabel": "What to text",
+    "smsScope": {
+      "tips": "Only tips I receive",
+      "bounties": "Only bounties",
+      "messages": "Only direct messages",
+      "mentions": "Only mentions of me",
+      "account": "Only notices about my account",
+      "all": "Everything wey I don on",
+      "subscriptions": "Only new subscribers",
+      "sales": "Only when dem buy my content",
+      "fractions": "Only fraction offers and sales",
+      "replies": "Only replies to my comments"
+    },
+    "socialFollowersHint": "E go show for your profile as part of your total reach. Na you go type the number yourself — we no dey collect am from the platform.",
+    "pushNotRegistered": "This device never register for push",
+    "pushNotRegisteredDesc": "Notification no fit reach you when the app close: this install never register push device. Most times na say the build no get im notification setup, and if you install the latest build from dehub.io/apk e go fix am.",
+    "publicChatAlertsDesc": "Make we tell you when people dey talk for public chat while you dey another place",
+    "publicChatAlertsRateHint": "Nothing go loss if the room busy pass this — we go keep the messages and dem go land together for the next alert.",
+    "badgeDelegationAcceptHint": "Off this one if you no want make person borrow you badge. Any badge wey you dey wear now go return to the owner.",
+    "badgeDelegationAcceptOn": "Person fit borrow you badge again",
+    "badgeDelegationAcceptOff": "Nobody go fit borrow you badge",
+    "badgeDelegationAcceptOffEnded": "Badge don return. Nobody go borrow you another one.",
+    "badgeDelegationAcceptFailed": "We no fit save that setting",
+    "emailNotificationsNoAddressMobile": "Add email address for the website to on these ones.",
+    "smsScopeDesc": "Text message dey cost money, so reduce am to only the ones wey worth to disturb you",
+    "smsNotificationsDesc": "Collect the important ones as text message",
+    "smsNotificationsDescReady": "We dey send am to {{phone}} — {{dhb}} DHB for each one, about {{count}} remain",
+    "smsNotificationsLocked": "Unlock am with {{dhb}} DHB (${{usd}}) credit",
+    "smsNotificationsNeedsNumber": "Add phone number and verify am to start",
+    "smsNotificationsEmpty": "Credit don finish — top up make text message continue to dey come",
+    "smsUnavailable": "Text notification no dey available now",
+    "smsDialogIntro": "To send text message dey cost money, so this channel dey run on credit wey you top up with DHB.",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) go unlock text message and e go be your first balance.",
+    "smsUnlockExplainer": "Nothing dey expire. We dey spend the credit one message at a time, and only for the notifications wey you don already on.",
+    "smsPricesHeading": "How much one message cost",
+    "smsDepositPaying": "Confirm am for your wallet…",
+    "smsDepositConfirming": "We dey wait for the chain…",
+    "smsDepositNotSent": "The transfer no submit.",
+    "smsDepositSlow": "Your transfer never show for chain yet. E dey safe — open this one again and we go credit you. Reference: {{hash}}",
+    "smsChainUnsupported": "Change to Base or BNB Chain for Settings to top up your text credit.",
+    "smsWalletNotReady": "Your wallet never ready — try again small time.",
+    "smsNeedDhb": "You need {{dhb}} DHB to unlock text notification.",
+    "smsBalanceMessages": "About {{count}} more messages",
+    "smsTopUp": "Top up {{dhb}} DHB",
+    "smsCodeSent": "Code don go. E cost {{price}} DHB.",
+    "smsCodeFailed": "We no fit send that code.",
+    "smsCodeLabel": "The code wey we text to {{phone}}",
+    "smsVerifyFailed": "We no fit confirm that code.",
+    "smsRemoveNumber": "Remove this number",
+    "smsRemoveFailed": "We no fit remove that number.",
+    "smsCountryBlocked": "We never fit send text to that country yet.",
+    "badgeDelegationNoteAny": "One slot go borrow another account one of the badges wey you don unlock. Collect am back anytime wey you like — the slot go free one day after.",
+    "badgeDelegationRaisesOnlyTier": "The badge wey you borrow dem must high pass the one wey dem don already earn.",
+    "badgeDelegationLendsAny": "Each one go borrow another account any badge wey you don unlock, reach your own {{tier}}. Even small badge go still use one full slot.",
+    "kidsModeDesc": "E go show only posts wey dem publish for pikin dem, everywhere. PIN go off am back.",
+    "kidsModeSetPinHelp": "4 to 8 numbers. You go need am to off Kids Mode again.",
+    "kidsModeConfirmPinHelp": "So you go sure say you fit type am again.",
+    "kidsModeEnterPin": "Type your PIN",
+    "kidsModeEnterPinHelp": "This one go off Kids Mode for this device.",
+    "kidsModeTurnOn": "On Kids Mode",
+    "kidsModeTurnOff": "Off Kids Mode",
+    "kidsModePinMismatch": "The two PINs no be the same. Start again.",
+    "kidsModeFailed": "E no work. Try again.",
+    "kidsModeForgotPin": "You don forget am? Sign in with your wallet for another device to off Kids Mode."
   },
   "common": {
     "mute": "Off di sound",
@@ -721,7 +789,13 @@
     "addTip": "Add a Tip",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Attach {{amount}} DHB",
-    "removeTip": "Remove Tip"
+    "removeTip": "Remove Tip",
+    "privateBalanceNotice": "This account on private balance mode, so DeHub no fit send token or tip give am.",
+    "privateBalanceError": "This account don off tips while private balance mode dey on.",
+    "privacyCheckFailed": "We no fit check the privacy setting of the person wey go receive am. We no send any tip.",
+    "paidInSol": "Dem pay am with SOL for Solana",
+    "cannotTipSelf": "You no fit tip yourself",
+    "attachDescription": "Add DHB tokens as tip for your message"
   },
   "postOptions": {
     "options": "Options",
@@ -793,7 +867,12 @@
     "boostPostDesc": "Put am for top of di home feed",
     "mintPostDesc": "Publish dis post on-chain",
     "giftBoost": "Gift one boost",
-    "giftBoostDesc": "Spend one of yours on dis post"
+    "giftBoostDesc": "Spend one of yours on dis post",
+    "pinPost": "Pin am for your profile",
+    "unpinPost": "Unpin am from your profile",
+    "postPinned": "E don pin for your profile",
+    "postUnpinned": "E don unpin from your profile",
+    "pinFailed": "We no fit pin or unpin this post"
   },
   "filters": {
     "sort": "Sort",
@@ -1226,7 +1305,9 @@
     "evmAddressLabel": "EVM",
     "evmAddressCopied": "EVM address copied",
     "solanaAddressLabel": "Solana",
-    "solanaAddressCopied": "Solana address copied"
+    "solanaAddressCopied": "Solana address copied",
+    "evmAddressHint": "Base, BNB and Ethereum",
+    "solanaAddressHint": "Na only SOL and SPL tokens"
   },
   "bookmarks": {
     "title": "Bookmarks",
@@ -1272,7 +1353,13 @@
       "linkCopied": "Playlist link copied",
       "itemsCount": "{{count}} posts",
       "openBookmarks": "Open my bookmarks",
-      "back": "All playlists"
+      "back": "All playlists",
+      "makePublicHint": "Everybody fit see this folder for your profile.",
+      "emptyOwnerHint": "Make one bookmark folder public make e show here.",
+      "emptyVisitor": "This profile never get any public playlist.",
+      "noPosts": "This playlist never get any post.",
+      "unavailable": "This playlist no dey available again.",
+      "loadMore": "Show more posts"
     }
   },
   "notifications": {
@@ -1340,8 +1427,21 @@
     "noneForFilter": "No {{filter}} notification yet.",
     "andNOthers": "and {{count}} others",
     "community": {
-      "joinedNamed": "{{name}} joined “{{community}}”"
-    }
+      "joinedNamed": "{{name}} joined “{{community}}”",
+      "joined": "{{name}} don join your community",
+      "requested": "{{name}} wan join your community",
+      "requestedNamed": "{{name}} wan join “{{community}}”",
+      "mentioned": "{{name}} mention you for one community",
+      "mentionedNamed": "{{name}} mention you for “{{community}}”",
+      "here": "{{name}} send message to everybody for the community",
+      "hereNamed": "{{name}} send message to everybody for “{{community}}”"
+    },
+    "badgeLent": "{{name}} borrow you their {{tier}} badge",
+    "badgeTakenBack": "{{name}} don stop to borrow you their {{tier}} badge",
+    "badgeHandedBack": "{{name}} don return the {{tier}} badge wey you borrow dem",
+    "badgeLoanLapsed": "{{name}} no fit borrow you their {{tier}} badge again",
+    "badgeLoanDropped": "You no fit borrow {{name}} your {{tier}} badge again",
+    "badgeLoanRetiered": "{{name}} dey borrow you {{tier}} badge now"
   },
   "leaderboard": {
     "title": "Leaderboard",
@@ -1617,7 +1717,9 @@
     "joined": "Joined",
     "reach": {
       "total": "Total reach",
-      "dehubFollowers": "DeHub followers"
+      "dehubFollowers": "DeHub followers",
+      "breakdownTitle": "Where this reach come from",
+      "selfReported": "Na the creator type the social follower numbers."
     },
     "loginDescription": "Log in make you fit see and manage your profile.",
     "ensUrlCopied": "ENS profile link don copy",
@@ -1776,7 +1878,9 @@
     "failedOnramp": "E no fit start onramp",
     "otherTokens": "Oda tokens",
     "otherTokensDesc": "Use yor card buy ETH or USDC for Base",
-    "shareToFeed": "Share to my feed"
+    "shareToFeed": "Share to my feed",
+    "minDhbPurchase": "The smallest DHB wey you fit buy na $0.50",
+    "sharePostTemplate": "I just add {{amount}} $DHB to my stack for DeHub. We dey build with the community. #DeHub #DHB"
   },
   "agents": {
     "title": "AI Agents",
@@ -2030,7 +2134,15 @@
       "replyingTo": "Replying to {{name}}",
       "writeReply": "Write a reply",
       "edited": "edited",
-      "authorChip": "Proposal author"
+      "authorChip": "Proposal author",
+      "intro": "Ask more questions or talk about the proposal before you vote.",
+      "showMoreReplies": "Show {{count}} more replies",
+      "showMoreReplies_one": "Show {{count}} more reply",
+      "deleteTitle": "Delete this comment?",
+      "deleteDescription": "This one go remove the comment and im replies for everybody.",
+      "signInToComment": "Sign in to join the talk",
+      "empty": "No question yet. Start the talk.",
+      "joinOnProposal": "Join the talk"
     }
   },
   "sidebar": {
@@ -2086,7 +2198,12 @@
     "unpinAction": "Comot di pin",
     "pinnedToast": "Dem don pin am for di top of dis post",
     "unpinnedToast": "Dem don comot di pin",
-    "pinFailed": "We no fit pin dat comment"
+    "pinFailed": "We no fit pin dat comment",
+    "reportCommentTitle": "Report this comment",
+    "reportCommentDescription": "Tell us wetin wrong with this comment and our moderators go check am.",
+    "reportCommentAlready": "You don already report this comment.",
+    "reportReasonPlaceholder": "Add any details wey go help us check am (e no compulsory)",
+    "kidsOnlyThread": "This post na for pikin dem. Na only Kids Mode fit comment on top."
   },
   "postInfo": {
     "title": "Post Info",
@@ -2355,7 +2472,9 @@
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
-    "rate_limited": "You dey too fast, slow down"
+    "rate_limited": "You dey too fast, slow down",
+    "image_too_large_tier": "The image too big — your {{tier}} tier dey keep images reach {{limit}} MB",
+    "image_too_large_untiered": "The image too big — we dey keep images reach {{limit}} MB"
   },
   "staking": {
     "title": "Staking",
@@ -2425,7 +2544,36 @@
     "checkAgain": "Check again",
     "txCancelled": "Transaction cancelled.",
     "unstakeSent": "Withdrew {{amount}} DHB! TX: {{hash}}…",
-    "unstakeFailed": "Withdrawal failed."
+    "unstakeFailed": "Withdrawal failed.",
+    "claimOnWeb": "Claim am for web app",
+    "stakeOnBaseDesc": "Deposit DHB for Base to earn protocol rewards.",
+    "unstakeFromBnbDesc": "Withdraw from the BNB Chain contract. DHB wey dey the Base pool never get withdrawal contract.",
+    "withdrawableOnBnb": "Wetin you fit withdraw: {{amount}} DHB for BNB Chain",
+    "restInBasePool": "{{amount}} dey the Base pool",
+    "orSendDirectly": "Or send DHB straight to the deposit address for Base:",
+    "checkForNewStake": "Check for new deposit",
+    "pendingConfirmed": "{{amount}} DHB don confirm. We dey update your deposit history. No send am again.",
+    "pendingSubmitted": "{{amount}} DHB don submit. We still dey check the confirmation. No send am again.",
+    "refreshFailed": "We no fit check for new deposits. Try again small time.",
+    "foundNewStake": "We see {{amount}} DHB. Your deposit don dey up to date.",
+    "noNewTransfers": "We never see any new transfer.",
+    "stakeConfirmedOnBase": "{{amount}} DHB don confirm for Base.",
+    "stakeReverted": "The blockchain confirm say this transaction revert.",
+    "enterValidStakeAmount": "Type correct amount to deposit.",
+    "enterValidUnstakeAmount": "Type correct amount to withdraw.",
+    "walletNotConnected": "Wallet never connect.",
+    "walletNotReady": "Wallet never ready. Abeg try again.",
+    "insufficientOnBase": "Your DHB balance for Base no reach.",
+    "switchBaseFailed": "We no fit change to Base network.",
+    "switchBnbFailed": "We no fit change to BNB Chain.",
+    "stakeSubmitted": "Deposit don submit. We dey check the confirmation — no send am again.",
+    "txCancelledInWallet": "You cancel the transaction for your wallet.",
+    "stakeUnconfirmed": "We no fit confirm the deposit. Check your wallet activity before you try again.",
+    "onlyThisMuchStaked": "Na only {{amount}} DHB you deposit.",
+    "onlyLegacyWithdrawable": "Na only {{amount}} DHB you fit withdraw now — the rest dey the Base pool, and e never get withdrawal contract.",
+    "poolHasNoWithdrawal": "Your DHB dey the Base pool, and e never get withdrawal contract. Contact support to withdraw.",
+    "lockedEarlyFee": "E lock reach {{date}}. If you withdraw now you go collect 88% — 12% fee, about {{fee}} DHB. Tap am again to agree.",
+    "unstakeReverted": "The withdrawal revert on-chain."
   },
   "communities": {
     "title": "Communities",
@@ -2863,7 +3011,26 @@
     "addedToYourUsernames": "E go enter your usernames",
     "boughtNameGoesToVault": "You go still be @{{current}}. @{{handle}} go enter your usernames, and you fit switch to am anytime wey you want.",
     "youAreNow": "You don be @{{handle}} now",
-    "boughtToVaultToast": "@{{handle}} don dey your usernames now"
+    "boughtToVaultToast": "@{{handle}} don dey your usernames now",
+    "askingPriceUsd": "Asking price (USD)",
+    "fixedDollarPrice": "Dollar price stays fixed; token amount updates.",
+    "tokensPaidToSeller": "Dem pay am direct to the seller",
+    "priceUsd": "Price (USD)",
+    "sellingWornName": "Dis na di handle your profile dey use. If you sell am, you go change to another name.",
+    "sellingHeldName": "You get dis name but you no dey use am. If you sell am, your profile no go change.",
+    "saleFinalHeld": "Sale na final and e dey happen instant. Your own handle and everytin for your profile remain as dem be — only dis name go change hand.",
+    "signInToSeeVault": "Sign in to see the usernames wey you get.",
+    "vaultExplainer": "Usernames wey you buy remain yours. You fit wear am, sell am, or leave am.",
+    "vaultExplainerEmpty": "You get one username. Buy another one and you still keep dis one.",
+    "vaultKept": "Dem keep am from earlier purchase",
+    "vaultFreeWarning": "You no pay for dis one, so if you change to another name, you go lose am and anybody fit collect am.",
+    "vaultUseThis": "Use dis one",
+    "vaultListedCannotWear": "Withdraw the listing before you use dis name.",
+    "vaultReleaseBody": "E go return to the pool and anybody fit collect am. You no fit change am back, and if you wan buy am back, e go cost wetin new owner ask.",
+    "swapHintKept": "You go keep @{{handle}} — e go enter your usernames, and you fit wear am again or sell am later. Posts, followers and your wallet no go change.",
+    "swapHintNoChange": "Posts, followers and your wallet no go change.",
+    "dollarPriceRange": "Type $1–$1,000,000, with up to two numbers after the point.",
+    "priceUpdated": "Price don change. Check the amount and tap Buy again."
   },
   "stores": {
     "subtitle": "Discover products from di DeHub community",
@@ -3179,12 +3346,16 @@
     "yourDhb": "Your DHB"
   },
   "digest": {
-    "someone": "Someone"
+    "someone": "Someone",
+    "andOthers_one": "{{names}} and {{count}} other person",
+    "andOthers_other": "{{names}} and {{count}} other people"
   },
   "publicChatAlerts": {
     "title": "Public chat",
     "voiceMessage": "Voice message",
-    "image": "Sent an image"
+    "image": "Sent an image",
+    "mentionTitle": "Dem mention you for public chat",
+    "digest": "{{count}} new messages from {{who}}: {{message}}"
   },
   "liveChat": {
     "attachPhoto": "Photo",
@@ -3203,7 +3374,10 @@
     "someone": "Somebody",
     "oneTyping": "{{name}} dey type…",
     "fewTyping": "{{names}} dey type…",
-    "manyTyping": "{{count}} people dey type…"
+    "manyTyping": "{{count}} people dey type…",
+    "attach": "Add photo, GIF or emoji",
+    "attachTitle": "Add am to your message",
+    "attachFailed": "We no fit send that photo."
   },
   "promptFeed": {
     "headline": "Wetin you wan see?",
@@ -3277,7 +3451,35 @@
     "boostCancelledRefunded": "Boost don cancel and e don return to your allowance",
     "boostCancelledSpent": "Boost don cancel. E don already start, so e still count as spent.",
     "cancelFailed": "We no fit cancel that boost",
-    "screenTitle": "SuperPowers"
+    "screenTitle": "SuperPowers",
+    "homePost": "Spend am from one of your own posts — the options sheet, then Boost.",
+    "homeGift": "Spend am on another person post — the options sheet, then Boost.",
+    "homeComment": "Spend am on your own comment, for another person thread.",
+    "homeStage": "Spend am from Stage wey you dey host.",
+    "homePage": "Spend am here, for the top of this screen.",
+    "actsPost": "E dey work on one of your posts. Tap to choose one.",
+    "actsGift": "Na gift — e go land on another person post. Tap to choose one.",
+    "actsComment": "E dey work on your comment for another person thread. Tap to choose one.",
+    "actsStage": "E dey work on Stage wey you host. Tap to choose one.",
+    "actsCategory": "E dey work on one of your categories. Tap to choose one.",
+    "actsAccount": "E dey work on your whole account. Tap to start am.",
+    "actsOnAccount": "This one dey work on your whole account — nothing dey to choose.",
+    "findMyPost": "Search your posts, or paste link",
+    "findTheirPost": "Paste their post link, or search",
+    "searchToGift": "Search for post, or paste link to one.",
+    "noRecentPosts": "Nothing dey here from last week. Anything wey old pass dat one go need Second Wind.",
+    "noOlderPosts": "Nothing dey here wey old pass one week. Anything wey new pass dat one go need Boost.",
+    "anchorNeedsTheirThread": "Anchor dey hold your comment for the top of another person thread — for your own post, pin already dey free.",
+    "noComments": "You never comment yet.",
+    "noStages": "You no get any Stage wey dey live or wey dem schedule now.",
+    "aimAtAccount": "Which person followers suppose see am?",
+    "aimPlaceholder": "Username or wallet address",
+    "aimAtTiers": "Which badge tiers suppose see am?",
+    "noBoostsLeft": "Boost don finish for this cycle",
+    "noFlaresLeft": "Signal Flare don finish for this cycle",
+    "boostFailed": "We no fit spend am",
+    "spendFor": "{{power}} for {{minutes}} minutes",
+    "spentFor": "{{power}} dey run for {{minutes}} minutes"
   },
   "follow": {
     "followers": "Followers",
@@ -3309,7 +3511,15 @@
     "youBlockedBody": "You no go see dia posts and you no fit interact with dem. Unblock dem make you get access again.",
     "restrictedBody": "Dis user don limit how your account fit interact with dem.",
     "requestPendingBody": "Your follow request don go. You go fit see dia posts once dem approve your request.",
-    "followToSeePosts": "Follow dis account make you see dia posts."
+    "followToSeePosts": "Follow dis account make you see dia posts.",
+    "notFollowingAnyone": "No dey follow anybody",
+    "noMatches": "Nothing match \"{{query}}\"",
+    "privateTitle": "This account na private",
+    "privateBody": "{{name}} don choose to hide their followers and following list.",
+    "privateBodyGeneric": "This user don choose to hide their followers and following list.",
+    "noRequests": "No follow request dey wait",
+    "removeFollowerBody": "We no go tell {{name}} say you don remove dem from your followers.",
+    "removeFollowerHint": "Press and hold follower to remove am."
   },
   "reactionInfo": {
     "title": "Reactions",
@@ -3327,7 +3537,21 @@
       "dislike": "Dislike"
     },
     "mediaSource": "Choose media source",
-    "photoLibrary": "Photo library"
+    "photoLibrary": "Photo library",
+    "privateTitle": "Reactions na private",
+    "privateDescription": "Na only the person wey post am fit see this list.",
+    "emptyDescription": "Reactions to this post go show here.",
+    "anonymous": "{{count}} likes from badge holders wey hide their name",
+    "videoFiles": "Video from Files",
+    "fileError": "We no fit open this video. Abeg try another file.",
+    "reactedPost": "{{name}} react to your post",
+    "repostedPost": "{{name}} repost your post",
+    "quotedPost": "{{name}} quote your post",
+    "mentionedYou": "{{name}} mention you",
+    "followRequest": "{{name}} wan follow you",
+    "followAccepted": "{{name}} don accept your follow request",
+    "signalFlare": "{{name}} send Signal Flare",
+    "newMessage": "{{name}} send you message"
   },
   "transfer": {
     "title": "Transfer tokens",
@@ -3380,7 +3604,23 @@
     "reviewDescriptionPlaceholder": "Say something about this post (optional)",
     "reviewLiveWarning": "That link is a live stream. Wait until it ends and import the recording instead.",
     "reviewCancel": "Cancel",
-    "reviewConfirm": "Import"
+    "reviewConfirm": "Import",
+    "subtitle": "Paste link to video wey be your own and we go publish am as post for your profile. Queue as many as you want — dem go run one after the other for background.",
+    "placeholder": "Paste video link",
+    "ownership": "Na me get this content, or the person wey get the rights don allow me publish am for DeHub.",
+    "queueRunning": "{{n}} dey the queue — you fit close this tab, dem go continue.",
+    "detailFailed": "We no fit import that video.",
+    "detailRateLimited": "{{source}} dey slow us down. E go run again by imself — you no need paste anything again.",
+    "detailDuplicate": "That video don already dey your profile.",
+    "toastQueued": "E don enter queue — e go publish for your profile when e finish.",
+    "toastRateLimited": "Dem slow us down, but your upload dey queue and we go process am quick quick. You no need try the same link again, but you fit queue more as you like",
+    "toastImported": "E don import from {{source}}!",
+    "toastDuplicate": "That video don already import.",
+    "toastFailed": "That import no work.",
+    "errorUnsupported": "We no fit import from that link. Try one of these: {{sources}}",
+    "errorNeedRights": "Abeg confirm say you get the rights to this content",
+    "errorClipboard": "We no fit read the clipboard — paste am yourself",
+    "errorQueueFailed": "We no fit queue that import"
   },
   "earnings": {
     "filter24h": "24h",
@@ -3543,7 +3783,10 @@
     "newMembers": "New members",
     "membersOverTime": "Members over time",
     "lastDays": "Last {{count}} days",
-    "source": "Account history wey dem record from DeHub public stats endpoint. Dem no use any estimate for dis chart."
+    "source": "Account history wey dem record from DeHub public stats endpoint. Dem no use any estimate for dis chart.",
+    "community": {
+      "openNewMembers": "Open the new members list"
+    }
   },
   "solana": {
     "unavailableTitle": "Solana wallet no dey available",
@@ -3626,7 +3869,19 @@
     "approve": "Approve",
     "decline": "Decline",
     "declined": "Request declined",
-    "updated": "Team updated"
+    "updated": "Team updated",
+    "descriptionHint": "E go show for your team card, so people go know if e fit dem.",
+    "privateHint": "Approve join requests instead of to allow anybody enter.",
+    "privateCardHint": "Private. Na the owner dey approve who go join.",
+    "requestMessagePlaceholder": "Tell the owner why you fit am (e no compulsory)",
+    "requestSent": "Request don go. The owner go check am.",
+    "requestFailed": "We no fit send that request",
+    "cancelRequestFailed": "We no fit withdraw that request",
+    "noRequests": "Nobody dey wait to join.",
+    "approved": "{{name}} don join the team",
+    "approveFailed": "We no fit approve that request",
+    "declineFailed": "We no fit decline that request",
+    "updateFailed": "We no fit update that team"
   },
   "addToFolder": {
     "title": "Save to folder",
@@ -3844,7 +4099,18 @@
     "whatsHappening": "Wetin dey happen?",
     "quotaShortfall": "Dis post cost {{cost}} DHB and you get {{held}}.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Get RTMP details"
+    "encoderHint": "Get RTMP details",
+    "madeForKids": "Na for pikin dem",
+    "madeForKidsHint": "e go show for Kids Mode",
+    "madeForKidsConfirmTitle": "Publish this one for pikin dem?",
+    "madeForKidsConfirmAudience": "Pikin dem wey dey use Kids Mode go see this post. Nothing else for DeHub go reach dem.",
+    "madeForKidsConfirmReach": "E go also comot from the normal feeds — people fit still find am for your profile, for search and through link wey you share.",
+    "madeForKidsConfirmComments": "Na only Kids Mode fit comment on top. You fit still reply dem yourself.",
+    "madeForKidsConfirmYes": "Yes, na for pikin dem",
+    "markMadeForKids": "Mark am as something for pikin dem",
+    "madeForKidsOnDesc": "E go show to pikin dem for Kids Mode, and e go comot from the normal feeds. Na only Kids Mode fit comment.",
+    "madeForKidsOffDesc": "E go show this post to pikin dem wey dey use Kids Mode, and e go comot am from the normal feeds.",
+    "madeForKidsBlockedByMature": "Post wey dem mark as mature no fit also publish for pikin dem."
   },
   "bounty": {
     "claimed": "Don claim",
@@ -3979,31 +4245,42 @@
       "recentTitle": "Recent streams",
       "card": {
         "first-light": {
-          "name": "First light"
+          "name": "First light",
+          "hint": "Finish your first stream wey count."
         },
         "marathon": {
-          "name": "Marathon"
+          "name": "Marathon",
+          "hint": "Stream for two hours for one session."
         },
         "night-owl": {
-          "name": "Night owl"
+          "name": "Night owl",
+          "hint": "End stream between midnight and five o'clock for morning."
         },
         "regular": {
-          "name": "Regular"
+          "name": "Regular",
+          "hint": "Stream for four weeks one after the other."
         },
         "iron-streak": {
-          "name": "Iron streak"
+          "name": "Iron streak",
+          "hint": "Stream for twelve weeks one after the other."
         },
         "crowd": {
-          "name": "Crowd"
+          "name": "Crowd",
+          "hint": "Make ten people dey watch at the same time."
         },
         "century": {
-          "name": "Century"
+          "name": "Century",
+          "hint": "Reach one hundred hours on air wey count."
         },
         "legend": {
           "name": "Legend",
           "hint": "Reach level ten."
         }
-      }
+      },
+      "toNext": "{{minutes}} more minutes wey count before you reach level {{level}}",
+      "rule": "Na only streams wey run ten minutes or pass, with at least one person dey watch, go count for your level.",
+      "notCounted": "E no count",
+      "noStreams": "Go live to start to earn XP."
     }
   },
   "liveShop": {
@@ -4075,7 +4352,9 @@
     "topUpSubtitle": "Buy $DHB with card and get free gas wey you fit use sharp sharp",
     "noTxHash": "We no see di transaction hash",
     "latestTransactions": "Di latest transactions",
-    "showAll": "Show all of dem"
+    "showAll": "Show all of dem",
+    "sentTo": "{{amount}} {{symbol}} don go to {{address}}",
+    "tokensSentTo": "Tokens don go to {{address}}"
   },
   "musicSheet": {
     "title": "Make song",
@@ -4168,7 +4447,9 @@
     "processingFailed": "Video processing failed",
     "retry": "Try again",
     "retrying": "Retrying…",
-    "retryQueued": "Processing again"
+    "retryQueued": "Processing again",
+    "retryHint": "You no need upload again — we keep your file.",
+    "retryFailed": "We no fit try that post again"
   },
   "liveViewer": {
     "loadingStream": "Stream dey load...",
@@ -4247,7 +4528,38 @@
     "videoCountMany": "{{n}} videos",
     "videoCountOne": "{{n}} video",
     "videosCount": "{{videos}} videos",
-    "yourChannel": "Your channel"
+    "yourChannel": "Your channel",
+    "costsIntro": "Every video dey cheap pass the one before am — the rate dey go down as the batch dey grow, so the price below na wetin all those videos go cost together.",
+    "costsIntroShort": "Every video dey cheap pass the one before am — the rate dey go down as the batch dey grow. We go show you the exact price before you pay.",
+    "costsNote": "You go pay with DHB, one time, before the batch start. Badge holders dey pay less — we don put your discount inside the quote. If we no fit import one video, we go credit im share back for your next migration.",
+    "doneWithFailuresMany": "We don move {{n}} videos — {{failed}} no fit import and we don credit dem for your next migration.",
+    "doneWithFailuresOne": "We don move {{n}} video — {{failed}} no fit import and we don credit dem for your next migration.",
+    "editThis": "Edit title and description",
+    "errClipboard": "We no fit read the clipboard — paste am yourself",
+    "errNoOwnership": "Abeg confirm say this na your channel",
+    "errNoPayments": "Payment no dey set up now.",
+    "errNoUrl": "Paste your channel address first",
+    "errPrice": "We no fit price this migration",
+    "errReadChannel": "We no fit read that channel",
+    "errRetry": "We no fit try the videos wey fail again",
+    "errSelectOne": "Choose at least one video",
+    "getPriceMany": "Get price for {{n}} videos",
+    "getPriceOne": "Get price for {{n}} video",
+    "how1": "Sign in, paste your channel address, and confirm say the videos na your own. DeHub go read the channel public uploads list.",
+    "how2": "Choose wetin you wan bring come and pay one time for the whole batch. Anything wey don already import, we go skip am and we no go charge you two times.",
+    "how3": "We go download dem and publish dem for your profile for background. Close the tab — you go get notification when e finish.",
+    "howNote": "Videos go publish as normal posts without minting, because batch no fit stop to ask your wallet make e sign each one.",
+    "noUploadsBody": "This channel no get any video wey fit move.",
+    "ownership": "This na my channel, or the person wey get the rights don allow me publish im videos for DeHub.",
+    "pickCount": "{{selected}} out of {{total}} don select. Anything wey don already dey your profile, we go skip am and we no go charge you two times.",
+    "pickTitle": "Choose wetin you wan bring come",
+    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
+    "progressRunning": "E dey move — e dey run for background, you fit close this tab. We go tell you when e finish.",
+    "reading": "We dey read your channel…",
+    "signInToShow": "Sign in to show my videos",
+    "subtitle": "Paste channel or profile, edit wetin you like, pay one time.",
+    "viewFeed": "See your feed",
+    "yourChannelHint": "Paste your channel address — only the handle go work too."
   },
   "calls": {
     "voiceCall": "DeHub voice call",
@@ -4271,12 +4583,24 @@
     "failedTitle": "Call failed",
     "close": "Close",
     "callbackRequest": "Callback request",
-    "tryAgain": "Try again"
+    "tryAgain": "Try again",
+    "tapToEnableAudio": "Tap to on audio"
   },
   "badgeAscension": {
     "lines": {
       "lobster": "Keep swimming",
-      "octopus": "Eight arms, every pot"
+      "octopus": "Eight arms, every pot",
+      "crab": "You dey go far",
+      "piranha": "E small, but e dey bite",
+      "tortoise": "Softly softly na im bring you reach here",
+      "cobra": "People dey comot for road for you now",
+      "crocodile": "Nothing dey cross this river",
+      "dolphin": "You don be big fish now",
+      "tigerShark": "The water don quiet small",
+      "greatWhiteShark": "Everybody sabi that fin",
+      "killerWhale": "You dey top of the food chain, and you dey hunt with your people",
+      "blueWhale": "The biggest thing wey don ever live. Na you be that.",
+      "megalodon": "See your crown — you don be app royalty now"
     },
     "continue": "Back to DeHub",
     "none": "Nothing",
@@ -4285,7 +4609,9 @@
     "topTier": "Di highest level",
     "toNextTier": "{{amount}} DHB remain to reach {{tier}}",
     "everyTierUnlocked": "You don unlock every level",
-    "holdNote": "Once you don unlock badge, e be your own as long as you still hold your DHB. Di number of tokens wey you need to unlock new badge fit change with di token price."
+    "holdNote": "Once you don unlock badge, e be your own as long as you still hold your DHB. Di number of tokens wey you need to unlock new badge fit change with di token price.",
+    "reached": "You don reach {{tier}}",
+    "yourBalance": "Your balance · {{amount}} DHB"
   },
   "passwordStrength": {
     "veryWeak": "Very weak",
@@ -4358,7 +4684,20 @@
     "sendAGift": "Send gift",
     "minPlaceholder": "Di smallest: {{amount}}",
     "minGift": "Di smallest gift na {{amount}}",
-    "sendGift": "Send di gift"
+    "sendGift": "Send di gift",
+    "plays": "E go play {{tier}} for the stream",
+    "tierDesc": {
+      "heart": "Hearts go float go up for the corner of the stream.",
+      "chocolate": "One box of chocolate go roll go up the screen.",
+      "bouquet": "One bouquet go burst open for the corner.",
+      "crown": "One crown go rise for top of the stream and shine.",
+      "magicRing": "One ring go land for the middle and scatter sparkles.",
+      "spartans": "One wall of shields go march cross the stream.",
+      "party": "Confetti go fly and disco ball go drop enter.",
+      "gold3": "The screen go turn gold and coins go rain for 3 seconds.",
+      "gold10": "The screen go turn gold and coins go rain for 10 seconds.",
+      "ultimate": "Every celebration at once — gold, confetti, coins and trophy."
+    }
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4467,7 +4806,9 @@
     "sharedChange24": "24h change",
     "automaticStage": {
       "tokenApproval": "Approving tokens automatically…",
-      "permitApproval": "Approving position access automatically…"
+      "permitApproval": "Approving position access automatically…",
+      "submit": "We dey create your position by imself…",
+      "swap": "We dey swap and create your position by imself…"
     },
     "combined": "Combined market · Base + BNB",
     "reference": "Market reference · USD",
@@ -4504,7 +4845,15 @@
     "retry": "Retry",
     "stage": {
       "quote": "Reading pool…",
-      "balance": "Checking token approvals…"
+      "balance": "Checking token approvals…",
+      "wallet": "Unlock or connect your wallet…",
+      "tokenApproval": "Confirm token approval for your wallet…",
+      "permitApproval": "Confirm position approval for your wallet…",
+      "submit": "Confirm position for your wallet…",
+      "confirm": "We dey wait for confirmation…",
+      "index": "We dey register your position…",
+      "swap": "Confirm the swap for your wallet…",
+      "swapConfirm": "We dey wait make the swap confirm…"
     },
     "title": "DHB / USD",
     "heading": "DHB / USD",
@@ -4554,7 +4903,28 @@
       "mintPlaceholder": "Token mint address",
       "openExisting": "Open it",
       "feeDhb": "≈ {{amount}} DHB",
-      "uploading": "Uploading image…"
+      "uploading": "Uploading image…",
+      "noMatch": "No pool match that search.",
+      "addTitle": "Open new pool",
+      "addDescription": "List any token for Base, Ethereum, Robinhood Chain or Solana with im own order book. To open pool cost $100, wey you go pay with DHB.",
+      "lookingUp": "We dey find the token…",
+      "lookupFailed": "We no fit find that token.",
+      "exists": "{{symbol}} don already get pool.",
+      "setImage": "Set the pool image",
+      "imageHint": "Tap the circle to set the pool image.",
+      "imageRules": "Choose PNG, JPG, WebP or GIF wey no pass 5 MB.",
+      "priceUnavailable": "DHB price no dey available now. Try again after one minute.",
+      "swapNote": "We go swap your {{symbol}} to DHB for the fee inside the same transaction. Anything wey remain go stay for your wallet.",
+      "alreadyPaid": "You don already pay your fee. Finish to open the pool.",
+      "finish": "Finish to open the pool",
+      "notEnough": "Balance no reach for the $100 fee",
+      "payAndOpen": "Pay ${{amount}} and open pool",
+      "discardPaid": "Start again with another token",
+      "quoting": "We dey price the fee…",
+      "paying": "We dey pay the fee…",
+      "opening": "We dey open the pool…",
+      "created": "{{symbol}} pool don open",
+      "createFailed": "We no fit open the pool."
     },
     "pool": {
       "changeImage": "Change image",
@@ -4581,33 +4951,137 @@
       "cancel": "Cancel",
       "cancelled": "Order cancelled",
       "bought": "Bought {{amount}} {{symbol}}",
-      "sold": "Sold {{amount}} {{symbol}}"
+      "sold": "Sold {{amount}} {{symbol}}",
+      "missingTitle": "Pool no dey — DeHub DEX",
+      "missing": "No pool dey for this token yet. Open one to start im order book.",
+      "seoTitle": "{{symbol}}/USD — trade {{name}} for {{chain}} | DeHub DEX",
+      "seoDescription": "Trade {{name}} ({{symbol}}) for {{chain}}: live order book, limit orders and instant buy and sell for DeHub DEX.",
+      "imageFailed": "We no fit update the image.",
+      "placeBuy": "Place buy order for {{symbol}}",
+      "placeSell": "Place sell order for {{symbol}}",
+      "youReceive": "You go collect about",
+      "instantNote": "Instant trades dey fill sharp sharp for the best price across every exchange for this network, with up to 1% slippage.",
+      "solanaLimitNote": "Your tokens go stay inside on-chain order until e fill for your price or you cancel am.",
+      "evmLimitNote": "Your tokens dey inside one-sided Uniswap range for your price and dem go convert as the market dey trade pass am. Withdraw anytime.",
+      "noOrders": "No open order for {{symbol}} yet. Place the first one.",
+      "noMyOrders": "You no get any open order for this pool."
     },
     "chart": {
-      "depthLabel": "Order book depth by USD price"
+      "depthLabel": "Order book depth by USD price",
+      "bookStarts": "The book start from here",
+      "firstOrder": "Place the first order to add liquidity.",
+      "waiting": "We dey wait for price data",
+      "candlesStart": "Candles go show once people don trade this token.",
+      "priceLabel": "{{symbol}} price candlesticks for USD",
+      "depthHint": "Cumulative {{symbol}} · hover to check",
+      "priceHint": "{{symbol}} price · USD · hover to check"
     },
     "connectWallet": "Connect wallet",
     "sellAmount": "Sell amount",
     "spend": "Spend",
-    "withdrawFailed": "Withdrawal failed"
+    "withdrawFailed": "Withdrawal failed",
+    "liveChartHint": "Lowest sell · USDC · drag to check",
+    "noSellHistory": "Candles go start when verified sell liquidity dey.",
+    "sharedCandleNote": "Shared lowest sell price · USDC · we dey check am once every minute. Everybody dey see the same history; time wey nobody check go remain empty.",
+    "depthHint": "Cumulative DHB · drag to check",
+    "chartHint": "Market reference · USD · drag to check",
+    "noHistory": "No trade for this window. Choose longer timeframe.",
+    "chartError": "Reference chart no dey available. The order book and order form still dey.",
+    "depthNote": "Liquidity wey we estimate from verified DHB/USDC positions for both networks. Each position dey settle for im own network.",
+    "referenceNote": "USD reference wey we weigh by liquidity for the biggest DHB pool for each network. This one no be execution quote.",
+    "partialHistory": "Some history no get full network coverage.",
+    "balanceError": "Balance check no work. Tap to try again.",
+    "initializes": "This one go also start the 0% pool.",
+    "pendingNote": "Your transaction don submit. Continue the confirmation or listing registration without another deposit. Tap to see the transaction.",
+    "registrationFailed": "Your position don dey onchain. Continue listing registration; e no go deposit again.",
+    "reversalNote": "Network gas dey. Range orders dey convert as swaps dey cross your price range. Tokens wey don convert fit change back if price turn back; withdraw to finish your trade.",
+    "noMyPositions": "Your positions go show here after your first order.",
+    "withdrawReview": "Withdraw {{dhb}} DHB and {{usdc}} USDC for {{chain}}? Amounts go refresh before you sign; price tolerance na 0.5%.",
+    "keepOpen": "Leave this screen open until your listing register. Device storage no dey available.",
+    "unlockWallet": "Unlock your wallet to continue.",
+    "snapshotError": "Market refresh no work. We dey show the last complete snapshot; amounts fit don old.",
+    "intro": "Set your buy or sell price with Uniswap v4 position. Orders go fill as trading dey pass through their range.",
+    "noDepth": "Depth go show when positions don list.",
+    "noBalanceToken": "No {{token}} for Base or BNB Chain",
+    "connectToken": "Connect wallet wey get {{token}}",
+    "reviewToken": "Check am: deposit {{amount}} {{token}} for {{chain}} at {{minPrice}}–{{maxPrice}} USDC per DHB. Your wallet go ask for approvals and create the position.",
+    "buyExplanation": "Deposit only USDC. Your maximum bid na the upper price; the position go fill as DHB price dey go down through the range.",
+    "sellExplanation": "Deposit only DHB. Your minimum ask na the lower price; the position go fill as DHB price dey go up through the range.",
+    "newPosition": "New DHB / USDC position",
+    "noBalance": "No liquid DHB for Base or BNB Chain",
+    "reviewDetail": "Check am: list {{amount}} DHB for {{chain}} at {{minPrice}}–{{maxPrice}} USDC per DHB. Your wallet go ask for approvals and mint the position.",
+    "approve": "Approve and create",
+    "listError": "Listings no dey available now.",
+    "connectDhb": "Connect wallet wey get liquid DHB",
+    "checkAmount": "Check the amount",
+    "withdrawn": "Position don withdraw enter your wallet",
+    "sellBelowMarket": "This sell dey {{percent}}% below the market price of ${{price}}. Person fit buy am and sell am for another place sharp sharp.",
+    "buyAboveMarket": "This buy dey {{percent}}% above the market price of ${{price}}. You go pay pass wetin DHB dey sell for another place.",
+    "noFunding": "No {{token}} dey available for {{chain}}.",
+    "noListingsChain": "No listing for {{chain}} yet.",
+    "noBaseFunds": "No ETH, USDC or USDT for Base",
+    "reviewSwap": "First swap about {{amountIn}} {{symbol}} for {{usdc}} USDC for Base. {{symbol}} wey you no use go return inside the same transaction.",
+    "pendingSwapNote": "Your {{symbol}} don swap to USDC. Continue to create the position without to swap again.",
+    "resumeNeedsBalances": "Wallet balances still dey load. Try again small time.",
+    "prepareFailed": "We no fit prepare the position"
   },
   "onboarding": {
     "optIn": {
       "yes": "Yes, show me around",
-      "no": "No thanks"
+      "no": "No thanks",
+      "title": "You new here? You want short tour wey go show you road?",
+      "body": "We fit carry you go through DeHub one step at a time, and ask how each step go so we fit fix anything wey dey confuse."
     },
     "checklist": {
       "title": "Getting started",
       "go": "Take me there",
       "done": "Mark as done",
-      "chip": "Getting started"
+      "chip": "Getting started",
+      "subtitle": "Small small steps to set yourself up for DeHub.",
+      "progress": "{{done}} out of {{total}} don finish",
+      "skip": "Skip this step",
+      "dismiss": "Hide the getting started steps",
+      "reopen": "Open the guide",
+      "finishedTitle": "Na everything be that — you do well.",
+      "finishedBody": "Thank you say you tell us how each step go. Your answers dey go straight to the people wey dey build this thing."
     },
     "steps": {
       "follow": {
-        "title": "Follow three creators"
+        "title": "Follow three creators",
+        "body": "Your feed go better well well once you follow some people. Check who dey here and choose three to start."
+      },
+      "profile": {
+        "title": "Set your username and picture",
+        "body": "Choose name wey people go recognise and add profile picture, so your posts go look like say na you post dem."
+      },
+      "wallet": {
+        "title": "See your wallet and wetin DHB be",
+        "body": "Your wallet don already dey and e dey hold your DHB. Look wetin dey inside and where e come from."
+      },
+      "feed": {
+        "title": "Choose wetin you wan see",
+        "body": "Answer two quick questions and your feed go start to show the kind posts wey you really want."
+      },
+      "first-post": {
+        "title": "Make your first post",
+        "body": "Share one thought, photo or video. E no go take time and na so people dey find you."
+      },
+      "comment": {
+        "title": "Drop comment for one post",
+        "body": "Reply something wey you like for your feed. Na for conversations most of DeHub dey really happen."
+      },
+      "rewards": {
+        "title": "See how earning dey work",
+        "body": "Find out how tips, badges and SuperPowers dey turn wetin you dey do here to something wey you fit earn from."
       }
     },
-    "swipeToStart": "Swipe make you start"
+    "swipeToStart": "Swipe make you start",
+    "rating": {
+      "question": "E easy?",
+      "easy": "Yes, e easy",
+      "hard": "No, e hard",
+      "thanks": "Thank you, e help."
+    }
   },
   "conversation": {
     "commonGround": {
@@ -4617,7 +5091,23 @@
       "step2Placeholder": "We both want…",
       "continueLabel": "Continue",
       "back": "Back",
-      "postReply": "Post my reply"
+      "postReply": "Post my reply",
+      "sheetHint": "Small pause before your reply. Your answers go stay private.",
+      "toggleHint": "Before their first reply, we go ask readers for the strongest point for the other side and wetin both sides agree on, then we go remind dem make dem no do either-or thinking.",
+      "banner": "This creator don on Common Ground mode. Before you reply, we go ask you for the strongest point for the other side and wetin una agree on.",
+      "stepOf": "Step {{step}} out of {{total}}",
+      "step1Title": "For one sentence, wetin be the strongest point for the other side?",
+      "step1Placeholder": "The best thing wey dem fit talk na say…",
+      "step2Title": "Wetin you and dem really agree on?",
+      "reminderTitle": "Shine your eye for all-or-nothing thinking",
+      "reminderBody": "Most quarrels no be choice between two extreme sides. When question be like either-or, most times third option dey somewhere for the middle.",
+      "example1": "Neighbour wey want quiet street and neighbour wey want more parking fit both dey right about wetin dem need.",
+      "example2": "Two parents fit disagree about screen time and still agree say the pikin suppose sleep well and do well for school.",
+      "noShouting": "Shouting or threat no dey ever settle hard matter. Calm reply wey clear na the one people dey really read.",
+      "reviewTitle": "Look your reply one last time",
+      "privateNote": "Your answers na for you alone and we no go post dem with your reply.",
+      "tooShort": "Write at least 10 characters so the reflection go really count.",
+      "saveFailed": "We no fit save the Common Ground setting. Abeg try again."
     },
     "coach": {
       "title": "Conversation coach",
@@ -4628,8 +5118,13 @@
         "straw_man": "Misstates their view",
         "false_dilemma": "Either-or framing",
         "overgeneralisation": "Sweeping claim",
-        "hostile_tone": "Hostile tone"
-      }
+        "hostile_tone": "Hostile tone",
+        "ad_hominem": "E dey attack the person"
+      },
+      "checking": "We dey check the tone of your reply…",
+      "allClear": "Nothing stand out. Your reply fair and calm.",
+      "dismiss": "Remove this suggestion",
+      "settingHint": "E dey do quick tone check for long comments and e dey show common reasoning mistakes before you post. Na only suggestion, e no go ever block you."
     }
   },
   "drafts": {
@@ -5135,5 +5630,73 @@
     "appealRef": "Reference number {{ref}}",
     "appealSubtitleSubject": "Person go read dis one and look {{subject}} again.",
     "appealMore": "Letters wey remain: {{count}}"
+  },
+  "support": {
+    "title": "Support",
+    "subtitle": "Your tickets and wetin dey happen to dem. No AI, no fee.",
+    "newTicket": "New ticket",
+    "newTicketHint": "Tell us wetin happen and wetin you expect instead.",
+    "backToTickets": "Back to tickets",
+    "openHeading": "Open ({{n}})",
+    "closedHeading": "Closed ({{n}})",
+    "noTickets": "You never file any support tickets yet.",
+    "loadFailed": "We no fit load your tickets. Try again.",
+    "categoryLabel": "Category",
+    "severityLabel": "Priority",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "One line wey describe the problem",
+    "descriptionLabel": "Wetin happen",
+    "descriptionPlaceholder": "Wetin you do, wetin you expect, and wetin happen instead.",
+    "submit": "Send ticket",
+    "submitting": "Sending...",
+    "status": {
+      "open": "Open",
+      "in_progress": "In progress",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "severity": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "category": {
+      "account_access": "Account access",
+      "wallet_or_transactions": "Wallet or transactions",
+      "posting_or_uploads": "Posting or uploads",
+      "payments_or_subscriptions": "Payments or subscriptions",
+      "live_streaming": "Live streaming",
+      "content_or_moderation": "Content or moderation",
+      "bug": "Bug",
+      "feature_request": "Feature request",
+      "other": "Other"
+    },
+    "filedOn": "Filed {{date}}",
+    "stepsLabel": "How we fit make am happen again (e no compulsory)",
+    "stepsPlaceholder": "1. Open the feed\n2. Tap upload\n3. ...",
+    "filed": "Ticket {{ref}} don reach the team.",
+    "filedNotEmailed": "We don record ticket {{ref}}. Keep the reference.",
+    "alreadyOpen": "You don already open this one as {{ref}}.",
+    "filingFailed": "We no fit file that ticket. Abeg try again."
+  },
+  "audioPost": {
+    "cornerPlayer": "Audio post playback",
+    "untitled": "Audio post",
+    "creator": "DeHub creator",
+    "play": "Play",
+    "pause": "Pause",
+    "listens_one": "{{count}} listen",
+    "listens_other": "{{count}} listens",
+    "popOut": "Pop am out — continue to listen while you dey browse",
+    "closeCornerPlayer": "Close the corner player",
+    "stopAndClose": "Stop am and close the player"
+  },
+  "banned": {
+    "reason": "Reason: {{reason}}",
+    "title": "Dem don ban your account",
+    "body": "You fit still sign in, read your feed, open your messages and see everything for your account. But you no fit post, comment, react, follow or send message.",
+    "line": "Dem don ban your account, so you no fit post, comment or send message.",
+    "deleteAccount": "Delete your account and data"
   }
 }

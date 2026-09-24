@@ -695,7 +695,22 @@
     "chainIdLabel": "Kedje-ID: {{id}}",
     "exportPkConfirmPhrase": "JAG FÖRSTÅR",
     "exportPkCopy": "Kopiera privat nyckel",
-    "e2eAutomatic": "Automatisk"
+    "e2eAutomatic": "Automatisk",
+    "smsScopeLabel": "Vad du ska SMS:a",
+    "smsScopeDesc": "SMS kostar pengar, så begränsa dem till det som är värt en avbrott",
+    "smsScope": {
+      "all": "Allt jag har påslaget",
+      "tips": "Endast tips jag får",
+      "subscriptions": "Endast nya prenumeranter",
+      "sales": "Endast försäljning av mitt innehåll",
+      "bounties": "Endast belöningar",
+      "fractions": "Endast bråkdelserbjudanden och försäljning",
+      "messages": "Endast direktmeddelanden",
+      "mentions": "Endast omnämnanden av mig",
+      "replies": "Endast svar på mina kommentarer",
+      "account": "Endast meddelanden om mitt konto"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Stäng av ljud",
@@ -1863,7 +1878,8 @@
     "otherTokens": "Andra tokens",
     "otherTokensDesc": "Köp ETH eller USDC på Base med ditt kort",
     "shareToFeed": "Dela till mitt flöde",
-    "sharePostTemplate": "Har precis lagt till {{amount}} $DHB till min stack på DeHub. Bygga med samhället. #DeHub #DHB"
+    "sharePostTemplate": "Har precis lagt till {{amount}} $DHB till min stack på DeHub. Bygga med samhället. #DeHub #DHB",
+    "minDhbPurchase": "Minsta DHB-köp är $0.50"
   },
   "agents": {
     "title": "AI-agenter",
@@ -3011,7 +3027,13 @@
     "addedToYourUsernames": "Läggs till bland dina användarnamn",
     "boughtNameGoesToVault": "Du förblir @{{current}}. @{{handle}} hamnar bland dina användarnamn och du kan byta till det när du vill.",
     "youAreNow": "Du är nu @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} finns nu bland dina användarnamn"
+    "boughtToVaultToast": "@{{handle}} finns nu bland dina användarnamn",
+    "askingPriceUsd": "Begärt pris (USD)",
+    "dollarPriceRange": "Ange $1–$1 000 000, med upp till två decimaler.",
+    "fixedDollarPrice": "Dollarkursen förblir fast; tokenbeloppet uppdateras.",
+    "priceUpdated": "Priset har uppdaterats. Granska beloppet och tryck på Köp igen.",
+    "tokensPaidToSeller": "Betalas direkt till säljaren",
+    "priceUsd": "Pris (USD)"
   },
   "stores": {
     "subtitle": "Upptäck produkter från DeHub-communityn",
@@ -5632,5 +5654,53 @@
     "appealRef": "Referens {{ref}}",
     "appealSubtitleSubject": "En person kommer att läsa detta och titta igen på {{subject}}.",
     "appealMore": "Tecken som fortfarande behövs: {{count}}"
+  },
+  "support": {
+    "title": "Support",
+    "subtitle": "Dina ärenden och deras status. Ingen AI, ingen avgift.",
+    "newTicket": "Nytt ärende",
+    "newTicketHint": "Berätta vad som hände och vad du förväntade dig istället.",
+    "backToTickets": "Tillbaka till ärenden",
+    "openHeading": "Öppna ({{n}})",
+    "closedHeading": "Stängda ({{n}})",
+    "noTickets": "Du har inte skickat in några supportärenden än.",
+    "loadFailed": "Kunde inte ladda dina ärenden. Försök igen.",
+    "categoryLabel": "Kategori",
+    "severityLabel": "Prioritet",
+    "subjectLabel": "Ämne",
+    "subjectPlaceholder": "En rad som beskriver problemet",
+    "descriptionLabel": "Vad som har hänt",
+    "descriptionPlaceholder": "Vad du gjorde, vad du förväntade dig och vad som hände istället.",
+    "stepsLabel": "Steg för att reproducera (valfritt)",
+    "submit": "Skicka biljett",
+    "submitting": "Skickar...",
+    "filed": "Ticket {{ref}} är med teamet.",
+    "filedNotEmailed": "Ärende {{ref}} registrerat. Behåll referensen.",
+    "alreadyOpen": "Du har redan detta öppet som {{ref}}.",
+    "filingFailed": "Det gick inte att arkivera ärendet. Vänligen försök igen.",
+    "status": {
+      "open": "Öppen",
+      "in_progress": "Påbörjat",
+      "resolved": "Löst",
+      "closed": "Stängd"
+    },
+    "severity": {
+      "low": "Lägst",
+      "normal": "Normal",
+      "high": "Högst",
+      "urgent": "Populär"
+    },
+    "category": {
+      "account_access": "Kontoåtkomst",
+      "wallet_or_transactions": "Plånbok eller transaktioner",
+      "posting_or_uploads": "Publicera eller ladda upp",
+      "payments_or_subscriptions": "Betalningar eller abonnemang",
+      "live_streaming": "Streaming",
+      "content_or_moderation": "Innehåll eller moderering",
+      "bug": "Bugg",
+      "feature_request": "Begäran om funktion",
+      "other": "Övriga"
+    },
+    "filedOn": "Inlämnad {{date}}"
   }
 }

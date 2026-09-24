@@ -614,7 +614,9 @@
     "smsPricesHeading": "Owó wo ni àtẹ̀jíṣẹ́ máa ná",
     "smsBand": {
       "global": "Ọ̀pọ̀lọpọ̀ àwọn orílẹ̀-èdè mìíràn",
-      "premium": "Nibikibi"
+      "premium": "Nibikibi",
+      "domestic": "United Kingdom",
+      "europe": "Europe"
     },
     "smsDepositAction": "Fi {{dhb}}DHB ránṣẹ́",
     "smsDepositPaying": "Jẹrisi ninu apamọwọ rẹ...",
@@ -690,7 +692,25 @@
     "chainIdLabel": "ID Ẹ̀kàn: {{id}}",
     "exportPkConfirmPhrase": "MO LỌ́GBỌ́N",
     "exportPkCopy": "Ẹ̀dà àṣírí àwọn ohun ìkọ̀kọ̀",
-    "e2eAutomatic": "Láìṣe àfojúsùn"
+    "e2eAutomatic": "Láìṣe àfojúsùn",
+    "publicChatAlertsRateOption": "{{count}} ni wakati",
+    "smsScopeLabel": "Kini lati fi ọrọ ranṣẹ",
+    "smsScopeDesc": "Awọn ifiranṣẹ jẹ owo, nitorinaa dín wọn si ohun ti o tọ si idalọwọduro",
+    "smsScope": {
+      "all": "Ohun gbogbo ti Mo ti tan",
+      "tips": "Awọn imọran nikan ti Mo gba",
+      "subscriptions": "Awọn alabapin tuntun nikan",
+      "sales": "Awọn tita nikan ti akoonu mi",
+      "bounties": "Awọn ẹbun nikan",
+      "fractions": "Awọn ipese ati awọn tita ipin nikan",
+      "messages": "Awọn ifiranṣẹ taara nikan",
+      "mentions": "Awọn mẹnuba nikan ti emi",
+      "replies": "Awọn idahun nikan si awọn asọye mi",
+      "account": "Awọn iwifunni nikan nipa akọọlẹ mi"
+    },
+    "smsNotificationsLocked": "Ṣii pẹlu {{dhb}} DHB (${{usd}}) ti kirẹditi",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsTopUp": "Ṣafikun {{dhb}} DHB"
   },
   "common": {
     "mute": "Pa ohùn",
@@ -1859,7 +1879,8 @@
     "otherTokens": "Àwọn tóòkẹ̀nì mìíràn",
     "otherTokensDesc": "Fi káàdì rẹ ra ETH tàbí USDC lórí Base",
     "shareToFeed": "Pin si ifunni mi",
-    "sharePostTemplate": "Kàn fi {{amount}} $DHB kún àkójọpọ̀ mi lórí DeHub. Ilé pẹ̀lú àwùjọ. #DeHub #DHB"
+    "sharePostTemplate": "Kàn fi {{amount}} $DHB kún àkójọpọ̀ mi lórí DeHub. Ilé pẹ̀lú àwùjọ. #DeHub #DHB",
+    "minDhbPurchase": "Iye owo DHB ti o kere julọ jẹ $0.50"
   },
   "agents": {
     "title": "Àwọn Aṣojú AI",
@@ -3002,7 +3023,14 @@
     "addedToYourUsernames": "A ó fi kún àwọn orúkọ olùmúlò rẹ",
     "boughtNameGoesToVault": "O ṣì jẹ́ @{{current}}. @{{handle}} yóò wọ inú àwọn orúkọ olùmúlò rẹ, o sì lè yí padà sí i nígbàkúùgbà tí o bá fẹ́.",
     "youAreNow": "O ti di @{{handle}} báyìí",
-    "boughtToVaultToast": "@{{handle}} ti wà nínú àwọn orúkọ olùmúlò rẹ báyìí"
+    "boughtToVaultToast": "@{{handle}} ti wà nínú àwọn orúkọ olùmúlò rẹ báyìí",
+    "askingPriceUsd": "Iye ibeere (USD)",
+    "dollarPriceRange": "Tẹ $1–$1,000,000 sii, pẹlu awọn aaye decimal meji.",
+    "fixedDollarPrice": "Iye dọla duro ṣinṣin; iye token nṣe imudojuiwọn.",
+    "priceUpdated": "Iye ti ni imudojuiwọn. Ṣayẹwo iye naa ki o tẹ Ra lẹẹkansi.",
+    "tokensPaidToSeller": "San taara si olutaja",
+    "priceUsd": "Iye (USD)",
+    "vaultReleaseTitle": "Tu @{{handle}} silẹ?"
   },
   "stores": {
     "subtitle": "Ṣàwárí àwọn ọjà láti ọ̀dọ̀ àwùjọ DeHub",
@@ -3529,7 +3557,13 @@
     "popOut": "Tú jáde — máa fetí sílẹ̀ nígbà tí o bá ń lọ kiri",
     "closeCornerPlayer": "Pa agbábọ́ọ̀lù igun náà",
     "creator": "Ẹlẹ́dàá DeHub",
-    "listens_other": "{{count}} tẹ́tí sí"
+    "listens_other": "{{count}} tẹ́tí sí",
+    "cornerPlayer": "Audio post playback",
+    "stopAndClose": "Dúró kí o sì pa òṣèré náà.",
+    "untitled": "Ifiweranṣẹ ohun",
+    "play": "Play",
+    "pause": "Duro",
+    "listens_one": "{{count}} gbọ"
   },
   "transfer": {
     "title": "Gbé àwọn tọ́kìn",
@@ -4094,7 +4128,8 @@
     "madeForKidsOffDesc": "Ṣe atẹ̀jáde post yii si awọn ọmọ ti nlo Kids Mode, ati gbe e jade ninu awọn iwe-ìròyìn ti o wọpọ.",
     "madeForKidsBlockedByMature": "Ọ̀rọ̀ ti a ṣe ami gidi ko le tun ṣe atẹ̀jáde fun awọn ọmọ.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Gba awọn alaye RTMP"
+    "encoderHint": "Gba awọn alaye RTMP",
+    "markMadeForKids": "Àmì bí a ṣe ṣe fún àwọn ọmọdé"
   },
   "bounty": {
     "claimed": "Ti gbà",
@@ -5615,5 +5650,51 @@
     "appealRef": "Itọkasi {{ref}}",
     "appealSubtitleSubject": "Ènìyàn kan yóò ka èyí yóò sì tún wo {{subject}}.",
     "appealMore": "Àwọn lẹ́tà tí a ṣì nílò: {{count}}"
+  },
+  "support": {
+    "title": "Atilẹyin",
+    "subtitle": "Awọn tikẹti rẹ ati ipo wọn. Ko si AI, ko si idiyele.",
+    "newTicket": "Tikẹti tuntun",
+    "newTicketHint": "Sọ fun wa ohun ti o ṣẹlẹ ati ohun ti o nireti dipo.",
+    "backToTickets": "Pada si awọn tiketi",
+    "noTickets": "O kò tí ì fi ìwé ìtìlẹyìn kankan sílẹ̀.",
+    "loadFailed": "Mi ò lè gbé àwọn tikẹ́tì rẹ. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan síi.",
+    "categoryLabel": "Ìṣọ̀rí",
+    "severityLabel": "Pàtàkì jùlọ",
+    "subjectLabel": "Kókó",
+    "subjectPlaceholder": "Òpó kan tó ń ṣàpèjúwe ìṣòro náà",
+    "descriptionLabel": "Kí ló ṣẹlẹ̀",
+    "descriptionPlaceholder": "Ohun tí o ṣe, ohun tí o retí, àti ohun tí ó ṣẹlẹ̀ dípò ìyẹn.",
+    "stepsLabel": "Ìgbésẹ̀ láti ṣe àtúnse (bí ó bá wù ú)",
+    "submit": "Fi tikẹti ranṣẹ",
+    "submitting": "N fi ránṣẹ́",
+    "filed": "Tiketi {{ref}} wà pẹ̀lú ẹgbẹ́ náà.",
+    "filedNotEmailed": "Tiketi {{ref}} ti a gba silẹ. Tọju itọkasi naa.",
+    "alreadyOpen": "O ti ṣí èyí bí {{ref}}.",
+    "filingFailed": "Mi ò lè fi tikẹ́tì yẹn sílẹ̀. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan síi.",
+    "status": {
+      "open": "Sí",
+      "in_progress": "Ó ń lọ lọ́wọ́",
+      "resolved": "Ti yanju",
+      "closed": "A ti pádé."
+    },
+    "severity": {
+      "low": "O lọlẹ̀",
+      "normal": "Ó ṣe dééde",
+      "high": "Ó ga",
+      "urgent": "Turiwára"
+    },
+    "category": {
+      "account_access": "Wíwọlé sí àkántì",
+      "wallet_or_transactions": "Apamọwọ tabi awọn idunadura",
+      "posting_or_uploads": "Fifiweranṣẹ tabi gbe soke",
+      "payments_or_subscriptions": "Àwọn ìsanwó tàbí ìforúkọsílẹ̀",
+      "live_streaming": "Gbigbasilẹ laaye",
+      "content_or_moderation": "Akoonu tabi iwọntunwọnsi",
+      "bug": "Bug",
+      "feature_request": "Ìbéèrè àkópamọ́",
+      "other": "Àwọn míràn"
+    },
+    "filedOn": "Fi {{date}}"
   }
 }

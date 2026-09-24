@@ -688,7 +688,30 @@
     "chainIdLabel": "Ketting ID: {{id}}",
     "exportPkConfirmPhrase": "EK VERSTAAN",
     "exportPkCopy": "Kopieer privaat sleutel",
-    "e2eAutomatic": "Outomaties"
+    "e2eAutomatic": "Outomaties",
+    "publicChatAlertsRateOption": "{{count}} per uur",
+    "smsScopeLabel": "Wat om te SMS",
+    "smsScopeDesc": "SMS'e kos geld, so beperk dit tot wat die moeite werd is om te onderbreek",
+    "smsScope": {
+      "all": "Alles wat ek aangeskakel het",
+      "tips": "Slegs wenke wat ek ontvang",
+      "subscriptions": "Slegs nuwe intekenare",
+      "sales": "Slegs verkope van my inhoud",
+      "bounties": "Slegs belonings",
+      "fractions": "Slegs fraksie-aanbiedinge en verkope",
+      "messages": "Slegs direkte boodskappe",
+      "mentions": "Slegs vermelding van my",
+      "replies": "Slegs antwoorde op my kommentaar",
+      "account": "Slegs kennisgewings oor my rekening"
+    },
+    "smsNotificationsDescReady": "Gestuur na {{phone}} — {{dhb}} DHB elk, ongeveer {{count}} oor",
+    "smsNotificationsLocked": "Ontsluit met {{dhb}} DHB (${{usd}}) se krediet",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) ontsluit SMS'e en word jou eerste balans.",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositSlow": "Jou oordrag het nog nie op die ketting verskyn nie. Dit is veilig — maak hierdie weer oop en dit sal gekrediteer word. Verwysing: {{hash}}",
+    "smsBalance": "{{dhb}} DHB oor (${{usd}})",
+    "smsCodeSent": "Kode gestuur. Dit het {{price}} DHB gekos.",
+    "smsCodeLabel": "Kode wat ons na {{phone}} gestuur het"
   },
   "common": {
     "mute": "Demp",
@@ -1884,7 +1907,8 @@
     "otherTokens": "Ander tokens",
     "otherTokensDesc": "Koop ETH of USDC op Base met jou kaart",
     "shareToFeed": "Deel met my voer",
-    "sharePostTemplate": "Net bygevoeg {{amount}} $DHB na my stapel op DeHub. Bou met die gemeenskap. #DeHub #DHB"
+    "sharePostTemplate": "Net bygevoeg {{amount}} $DHB na my stapel op DeHub. Bou met die gemeenskap. #DeHub #DHB",
+    "minDhbPurchase": "Minimum DHB-aankoop is $0.50"
   },
   "agents": {
     "title": "AI Agents",
@@ -3032,7 +3056,13 @@
     "addedToYourUsernames": "Word by jou gebruikersname gevoeg",
     "boughtNameGoesToVault": "Jy bly @{{current}}. @{{handle}} gaan na jou gebruikersname, en jy kan enige tyd daarna oorskakel.",
     "youAreNow": "Jy is nou @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} is nou in jou gebruikersname"
+    "boughtToVaultToast": "@{{handle}} is nou in jou gebruikersname",
+    "askingPriceUsd": "Vraagprys (USD)",
+    "dollarPriceRange": "Voer $1–$1,000,000 in, met tot twee desimale plekke.",
+    "fixedDollarPrice": "Dollarprys bly vas; tokenbedrag word opgedateer.",
+    "priceUpdated": "Prys opgedateer. Gaan die bedrag na en tik weer Koop.",
+    "tokensPaidToSeller": "Direk aan die verkoper betaal",
+    "priceUsd": "Prys (USD)"
   },
   "stores": {
     "subtitle": "Ontdek produkte van die DeHub-gemeenskap",
@@ -5746,5 +5776,52 @@
     "appealRef": "Verwysing {{ref}}",
     "appealSubtitleSubject": "'n Persoon sal dit lees en weer na {{subject}} kyk.",
     "appealMore": "Karakters benodig: {{count}}"
+  },
+  "support": {
+    "title": "Ondersteuning",
+    "subtitle": "Jou kaartjies en hul status. Geen KI, geen fooi nie.",
+    "newTicket": "Nuwe kaartjie",
+    "newTicketHint": "Vertel ons wat gebeur het en wat jy verwag het.",
+    "backToTickets": "Terug na kaartjies",
+    "openHeading": "Open ({{n}})",
+    "noTickets": "Jy het nog geen ondersteuningskaartjies ingedien nie.",
+    "loadFailed": "Kon nie jou kaartjies laai nie. Probeer asseblief weer.",
+    "categoryLabel": "Kategorie",
+    "severityLabel": "Prioriteit",
+    "subjectLabel": "Onderwerp",
+    "subjectPlaceholder": "Een lyn wat die probleem beskryf",
+    "descriptionLabel": "- Ek het geen toestemming om in te loggen.",
+    "descriptionPlaceholder": "Wat jy gedoen het, wat jy verwag het, en wat in plaas daarvan gebeur het.",
+    "stepsLabel": "Stappe om te reproduseer (opsioneel)",
+    "submit": "Stuur kaartjie",
+    "submitting": "word gestuur …",
+    "filed": "Kaartjie {{ref}} is saam met die span.",
+    "filedNotEmailed": "Kaartjie {{ref}} aangeteken. Hou die verwysing.",
+    "alreadyOpen": "Jy het reeds hierdie oop as {{ref}}.",
+    "filingFailed": "Kon nie die kaartjie aflaai nie. Probeer asseblief weer.",
+    "status": {
+      "open": "Oop",
+      "in_progress": "Besig met proses",
+      "resolved": "Opgelos",
+      "closed": "Toe"
+    },
+    "severity": {
+      "low": "Laag",
+      "normal": "Normaal",
+      "high": "Hoog",
+      "urgent": "Dringend"
+    },
+    "category": {
+      "account_access": "Rekeningtoegang",
+      "wallet_or_transactions": "Beursie of transaksies",
+      "posting_or_uploads": "Plasing of oplaai",
+      "payments_or_subscriptions": "Betalings of intekeninge",
+      "live_streaming": "Regstreekse streaming",
+      "content_or_moderation": "Inhoud of moderering",
+      "bug": "Fout",
+      "feature_request": "Funksieversoek",
+      "other": "Ander"
+    },
+    "filedOn": "Geliasseer {{date}}"
   }
 }

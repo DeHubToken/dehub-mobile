@@ -686,7 +686,30 @@
     "chainIdLabel": "የሰንሰለት መታወቂያ፡ {{id}}",
     "exportPkConfirmPhrase": "ተረድቻለሁ",
     "exportPkCopy": "የግል ቁልፍን ቅዳ",
-    "e2eAutomatic": "በራስ-ሰር"
+    "e2eAutomatic": "በራስ-ሰር",
+    "publicChatAlertsRateOption": "በሰዓት {{count}}",
+    "smsScopeLabel": "ምን ልላክ",
+    "smsScopeDesc": "መልዕክቶች ገንዘብ ያስወጣሉ፣ ስለዚህ የሚያስቆጭ ነገር ላይ ብቻ ይገድቧቸው",
+    "smsScope": {
+      "all": "ያበራሁት ሁሉ",
+      "tips": "የምቀበላቸው ምክሮች ብቻ",
+      "subscriptions": "አዲስ ተመዝጋቢዎች ብቻ",
+      "sales": "የእኔ ይዘት ሽያጭ ብቻ",
+      "bounties": "ጥያቄዎች ብቻ",
+      "fractions": "የክፍል ቅናሾች እና ሽያጭ ብቻ",
+      "messages": "ቀጥታ መልዕክቶች ብቻ",
+      "mentions": "ስለ እኔ የተጠቀሱት ብቻ",
+      "replies": "ለአስተያየቶቼ ምላሾች ብቻ",
+      "account": "ስለ አካውንቴ ማሳወቂያዎች ብቻ"
+    },
+    "smsNotificationsLocked": "በ{{dhb}} DHB (${{usd}}) ክሬዲት ይክፈቱ",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) መልዕክቶችን ይከፍታል እና የመጀመሪያ ቀሪ ሂሳብዎ ይሆናል።",
+    "smsDepositAction": "{{dhb}} DHB ላክ",
+    "smsNeedDhb": "የመልዕክት ማሳወቂያዎችን ለመክፈት {{dhb}} DHB ያስፈልግዎታል።",
+    "smsBalance": "{{dhb}} DHB ቀርቷል (${{usd}})",
+    "smsBalanceMessages": "ወደ {{count}} የሚጠጉ መልዕክቶች",
+    "smsTopUp": "{{dhb}} DHB ይሙሉ",
+    "smsCodeSent": "ኮድ ተልኳል። ይህ {{price}} DHB አስከፍሏል።"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",
@@ -770,7 +793,8 @@
     "attachDescription": "DHB 토큰ወደ መልእክትህ ጠቃሚ ምክር ያያይዝ",
     "minAmount": "ዝቅተኛ {{amount}} DHB።",
     "attachAmount": "{{amount}} DHB ያያይዝ",
-    "removeTip": "ጠቃሚ ምክር ያስወግዱ"
+    "removeTip": "ጠቃሚ ምክር ያስወግዱ",
+    "toContent": "ይዘትን ይስጡ"
   },
   "postOptions": {
     "options": "አማራጮች",
@@ -1280,7 +1304,8 @@
     "evmAddressCopied": "EVM አድራሻ ተገለበጠ",
     "solanaAddressLabel": "ሶላና",
     "solanaAddressHint": "ሶል እና SPL ምልክቶች ብቻ",
-    "solanaAddressCopied": "የሶላና አድራሻ ተገለበጠ"
+    "solanaAddressCopied": "የሶላና አድራሻ ተገለበጠ",
+    "evmAddressLabel": "ኢቪኤም"
   },
   "bookmarks": {
     "title": "ዕልባቶችህ",
@@ -1850,7 +1875,10 @@
     "onrampCreated": "የኦንራምፕ ክፍለ ጊዜ ተፈጥሯል",
     "failedOnramp": "ኦንራምፕን መጀመር አልተሳካም",
     "otherTokens": "ሌሎች ቶከኖች",
-    "otherTokensDesc": "በካርድዎ በBase ላይ ETH ወይም USDC ይግዙ"
+    "otherTokensDesc": "በካርድዎ በBase ላይ ETH ወይም USDC ይግዙ",
+    "minDhbPurchase": "ዝቅተኛው የDHB ግዢ $0.50 ነው።",
+    "shareToFeed": "ወደ ፊዴዬ አጋራ",
+    "sharePostTemplate": "በDeHub ላይ {{amount}} $DHB ወደ ክምርዬ ጨምሬያለሁ። ከማህበረሰቡ ጋር እየገነባሁ ነው። #DeHub #DHB"
   },
   "agents": {
     "title": "AI ወኪሎች",
@@ -2560,7 +2588,20 @@
     "enterValidUnstakeAmount": "ለመውጣት ትክክለኛ መጠን ያስገቡ።",
     "walletNotConnected": "ዋሌት ተገናኝቷል አይደለም።",
     "walletNotReady": "ዋሌት ዝግጁ አይደለም። እባክዎ ይሞክሩ።",
-    "insufficientOnBase": "በ Base ላይ በቂ DHB ሚዛን የለም።"
+    "insufficientOnBase": "በ Base ላይ በቂ DHB ሚዛን የለም።",
+    "switchBaseFailed": "ወደ Base network ለመቀየር አልተሳካም።",
+    "switchBnbFailed": "ወደ BNB Chain ለመቀየር አልተሳካም።",
+    "stakeSubmitted": "ተቀማጭ ተልኳል። ማረጋገጫ እየተጣራ ነው — እንደገና አይላኩት።",
+    "txCancelledInWallet": "በኪስ ቦርሳዎ ውስጥ ግብይት ተሰርዟል።",
+    "txCancelled": "ግብይት ተሰርዟል።",
+    "stakeUnconfirmed": "ክፍያውን ማረጋገጥ አልተቻለም። እንደገና ከመሞከርዎ በፊት የኪስ ቦርሳዎን እንቅስቃሴ ይፈትሹ።",
+    "onlyThisMuchStaked": "{{amount}} DHB ብቻ ነው የተቀመጠው።",
+    "onlyLegacyWithdrawable": "አሁን {{amount}} DHB ብቻ ነው ማውጣት የሚችሉት — የተቀረው በBase pool ውስጥ ነው፣ ይህም እስካሁን የመውጣት ውል የለውም።",
+    "poolHasNoWithdrawal": "የእርስዎ DHB በBase pool ውስጥ ነው፣ ይህም እስካሁን የመውጣት ውል የለውም። ለማውጣት ድጋፍን ያነጋግሩ።",
+    "lockedEarlyFee": "እስከ {{date}} ድረስ ተቆልፏል። አሁን ማውጣት 88% ይመልሳል — 12% ክፍያ፣ ወደ {{fee}} DHB አካባቢ። ለመቀበል እንደገና መታ ያድርጉ።",
+    "unstakeReverted": "ማውጣት በሰንሰለት ላይ ተመልሷል።",
+    "unstakeSent": "{{amount}} DHB አውጥተዋል! TX: {{hash}}…",
+    "unstakeFailed": "ማውጣት አልተሳካም።"
   },
   "communities": {
     "title": "Communities",
@@ -3011,7 +3052,13 @@
     "addedToYourUsernames": "ወደ የተጠቃሚ ስሞችዎ ይታከላል",
     "boughtNameGoesToVault": "@{{current}} ሆነው ይቀጥላሉ። @{{handle}} ወደ የተጠቃሚ ስሞችዎ ይገባል፣ በፈለጉት ጊዜ ወደ እሱ መቀየር ይችላሉ።",
     "youAreNow": "አሁን @{{handle}} ነዎት",
-    "boughtToVaultToast": "@{{handle}} አሁን በተጠቃሚ ስሞችዎ ውስጥ ነው"
+    "boughtToVaultToast": "@{{handle}} አሁን በተጠቃሚ ስሞችዎ ውስጥ ነው",
+    "askingPriceUsd": "የመጠየቅ ዋጋ (USD)",
+    "dollarPriceRange": "በ$1–$1,000,000 መካከል ያስገቡ፣ እስከ ሁለት የአስርዮሽ ቦታዎች።",
+    "fixedDollarPrice": "የዶላር ዋጋ ቋሚ ሆኖ ይቆያል፤ የቶከን መጠን ይዘምናል።",
+    "priceUpdated": "ዋጋው ተዘምኗል። መጠኑን ይገምግሙ እና እንደገና ለመግዛት መታ ያድርጉ።",
+    "tokensPaidToSeller": "ለሻጩ በቀጥታ ተከፍሏል።",
+    "priceUsd": "ዋጋ (USD)"
   },
   "stores": {
     "subtitle": "ከDeHub ማህበረሰብ ምርቶችን ያግኙ",
@@ -3602,7 +3649,17 @@
     "reviewDescriptionPlaceholder": "በዚህ ልጥፍ ላይ አንድ ነገር ይናገሩ (አማራጭ)",
     "reviewLiveWarning": "ያ አገናኝ የቀጥታ ዥረት ነው ። እስኪጨርስ ድረስ ይጠብቁ እና በምትኩ ቀረጻ ማስመጣት.",
     "reviewCancel": "ሰርዝ",
-    "reviewConfirm": "አስመጣ"
+    "reviewConfirm": "አስመጣ",
+    "title": "ቪዲዮ አስመጣ",
+    "subtitle": "ቀደም ሲል ባለቤትዎ ወደሆነው ቪዲዮ አገናኝ ይለጥፉ እና በመገለጫዎ ላይ እንደ ልጥፍ እናተምበታለን ። እርስዎ የሚወዱትን ያህል — በጀርባው ውስጥ እርስ በእርስ ይሮጣሉ ።",
+    "placeholder": "ቪዲዮ አገናኝ አስገባ",
+    "paste": "አስገባ",
+    "import": "አስመጣ",
+    "queueHeading": "አስመጪዎችዎ",
+    "queueRunning": "{{n}} በመጠባበቅ ላይ — ይህንን ትር መዝጋት ደህና ነው፣ ይቀጥላሉ።",
+    "statusImported": "አስመጣ",
+    "detailFailed": "ያንን ቪዲዮ ማስገባት አልተቻለም።",
+    "detailRateLimited": "{{source}} ገደብ እያደረገብን ነው። ይህ በራሱ እንደገና ይጀምራል — ምንም ነገር እንደገና መለጠፍ የለብዎትም።"
   },
   "earnings": {
     "filter24h": "24ሰ",
@@ -4098,7 +4155,8 @@
     "madeForKidsOffDesc": "ይህን ልጥፍ ልጆች ሞድ የሚጠቀሙ ልጆች ላይ ያሳያል፣ እና ከተለመደው ምግብ ውስጥ ይወጣል።",
     "madeForKidsBlockedByMature": "ብሩህ ተብሎ የተሰየመ ልጥፍ ለልጆች ሊታተም አይችልም።",
     "encoderTitle": "OBS / ኢንኮደር",
-    "encoderHint": "RTMP ዝርዝሮችን ያግኙ"
+    "encoderHint": "RTMP ዝርዝሮችን ያግኙ",
+    "markMadeForKids": "ለህፃናት የተሰራ ምልክት ያድርጉ"
   },
   "bounty": {
     "claimed": "ተወስዷል",
@@ -4221,13 +4279,54 @@
       "xp": "{{xp}} XP",
       "card": {
         "century": {
-          "hint": "በአየር ላይ አንድ መቶ የብቃት ሰዓቶች ይድረሱ."
+          "hint": "በአየር ላይ አንድ መቶ የብቃት ሰዓቶች ይድረሱ.",
+          "name": "ክፍለ ዘመን"
         },
         "legend": {
           "name": "አፈ ታሪክ",
           "hint": "ደረጃ አስር ይድረሱ."
+        },
+        "first-light": {
+          "name": "የመጀመሪያ ብርሃን",
+          "hint": "የሚቆጠር የመጀመሪያ ዥረትዎን ያጠናቅቁ።"
+        },
+        "marathon": {
+          "name": "ማራቶን",
+          "hint": "በአንድ ክፍለ ጊዜ ለሁለት ሰዓታት ይልቀቁ።"
+        },
+        "night-owl": {
+          "name": "ሌሊት ወፍ",
+          "hint": "በእኩለ ሌሊት እና በማለዳ አምስት ሰዓት መካከል ዥረት ይጨርስ።"
+        },
+        "regular": {
+          "name": "መደበኛ",
+          "hint": "በአራት ተከታታይ ሳምንታት ዥረት ይልቀቁ።"
+        },
+        "iron-streak": {
+          "name": "የብረት ጅረት",
+          "hint": "በአስራ ሁለት ተከታታይ ሳምንታት ዥረት ይልቀቁ።"
+        },
+        "crowd": {
+          "name": "ሕዝብ",
+          "hint": "በአንድ ጊዜ አስር ሰዎች ሲመለከቱ ይኑርዎት።"
         }
-      }
+      },
+      "title": "የዥረት ተጫዋች ደረጃ",
+      "level": "ደረጃ {{level}}",
+      "toNext": "ወደ {{level}} ደረጃ ለመድረስ {{minutes}} ተጨማሪ ብቁ የሆኑ ደቂቃዎች",
+      "rule": "አስር ደቂቃዎች ወይም ከዚያ በላይ የሚሄዱ ዥረቶች ቢያንስ ከአንድ ተመልካች ጋር ወደ ደረጃዎ ይቆጠራሉ።",
+      "streak": "{{count}} ሳምንት ተከታታይ",
+      "bestStreak": "ምርጥ ተከታታይ {{count}} ሳምንታት",
+      "hours": "{{hours}} ብቁ ሰዓታት",
+      "minutes": "{{count}} ደቂቃዎች",
+      "viewers": "{{count}} ተመልካቾች",
+      "viewCards": "የእይታ ካርዶች",
+      "cardsTitle": "የሚሰበሰቡ ካርዶች",
+      "locked": "ተቆልፏል",
+      "earnedOn": "{{date}} አግኝቷል",
+      "recentTitle": "የቅርብ ጊዜ ዥረቶች",
+      "notCounted": "አልተቆጠረም።",
+      "noStreams": "XP ማግኘት ለመጀመር በቀጥታ ይሂዱ።"
     }
   },
   "liveShop": {
@@ -4504,7 +4603,8 @@
     "videosCount": "{{videos}} ቪዲዮዎች",
     "viewFeed": "ምግብዎን ይመልከቱ",
     "yourChannel": "የእርስዎ ሰርጥ",
-    "yourChannelHint": "የሰርጥ አድራሻዎን ይለጥፉ — እጀታው በራሱ ሥራዎች ላይም እንዲሁ ።"
+    "yourChannelHint": "የሰርጥ አድራሻዎን ይለጥፉ — እጀታው በራሱ ሥራዎች ላይም እንዲሁ ።",
+    "pickCount": "{{selected}} በ{{total}} ተመርጧል። በገለጻዎ ላይ ያለው ማንኛውም ነገር ይዘለላል እና በፍፁም ሁለት ጊዜ አይከፍልም።"
   },
   "calls": {
     "voiceCall": "DeHub የድምፅ ጥሪ",
@@ -4528,7 +4628,10 @@
     "failedDesc": "ጥሪው ሊጠናቀቅ አልቻለም ። የእርስዎን ግንኙነት ያረጋግጡ እና እንደገና ይሞክሩ.",
     "close": "ዝጋ",
     "callbackRequest": "የጥሪ ተመላሽ ጥያቄ",
-    "tryAgain": "እንደገና ሞክር"
+    "tryAgain": "እንደገና ሞክር",
+    "mute": "አትድፈፍ",
+    "muted": "ተደፍኗል",
+    "speaker": "ድምጽ ማጉያ"
   },
   "badgeAscension": {
     "reached": "እርስዎ ደርሰዋል {{tier}}",
@@ -4614,7 +4717,34 @@
     "sendAGift": "ስጦታ ላክ",
     "minPlaceholder": "ዝቅተኛው: {{amount}}",
     "minGift": "ዝቅተኛው ስጦታ {{amount}} ነው።",
-    "sendGift": "ስጦታ ላክ"
+    "sendGift": "ስጦታ ላክ",
+    "plays": "በዥረቱ ላይ {{tier}} ይጫወታል።",
+    "you": "አንተ",
+    "tier": {
+      "heart": "የፍቅር ልብ",
+      "chocolate": "የቸኮሌት ሳጥን",
+      "bouquet": "የአበባ እቅፍ",
+      "crown": "አክሊል",
+      "magicRing": "የአስማት ቀለበት",
+      "spartans": "የስፓርታውያን ጦር",
+      "party": "የፓርቲ ክብረ በዓል",
+      "gold3": "የወርቅ ስክሪን (3s)",
+      "gold10": "የወርቅ ስክሪን (10s)",
+      "ultimate": "የመጨረሻው ክብረ በዓል"
+    },
+    "tierDesc": {
+      "heart": "ልቦች ከዥረቱ ጥግ ይነሳሉ።",
+      "chocolate": "የቸኮሌት ሳጥን ከስክሪኑ ላይ ይወድቃል።",
+      "bouquet": "የአበባ እቅፍ ጥግ ላይ ይፈነዳል።",
+      "crown": "አክሊል በዥረቱ ላይ ይነሳና ያበራል።",
+      "magicRing": "አንድ ቀለበት መሃል ላይ ይወርዳል እና በተንጣለለ ቀለበት ይጮኻል ።",
+      "spartans": "ጋሻ ግድግዳ በወንዙ ላይ ይጓዛል ።",
+      "party": "ኮንፌቲ ይበርራል እና የዲስኮ ኳስ ወደ ውስጥ ይወርዳል ።",
+      "gold3": "ማያ ገጹ ወርቃማ እና ሳንቲሞች ለ 3 ሰከንዶች ዝናብ ያዘንባሉ ።",
+      "gold10": "ማያ ገጹ ወርቃማ እና ሳንቲሞች ለ 10 ሰከንዶች ዝናብ ያዘንባሉ ።",
+      "ultimate": "እያንዳንዱ ክብረ በዓላት በአንድ ጊዜ — ወርቅ ፣ ኮንፌቲ ፣ ሳንቲሞች እና አንድ ዋንጫ ።"
+    },
+    "pickTier": "ክብረ በዓል ይምረጡ"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -5544,5 +5674,51 @@
     "appealRef": "ማጣቀሻ {{ref}}",
     "appealSubtitleSubject": "አንድ ሰው ይህንን ያነባል እና እንደገና ይመለከታል {{subject}}.",
     "appealMore": "ቁምፊዎች አሁንም ያስፈልጋሉ: {{count}}"
+  },
+  "support": {
+    "title": "ድጋፍ",
+    "subtitle": "የእርስዎ ትኬቶች እና ሁኔታቸው። ምንም AI የለም፣ ምንም ክፍያ የለም።",
+    "newTicket": "አዲስ ትኬት",
+    "newTicketHint": "ምን እንደተፈጠረ እና ምትክ ምን እንደጠበቁ ይንገሩን።",
+    "backToTickets": "ወደ ትኬቶች ተመለስ",
+    "openHeading": "ክፍት ({{n}})",
+    "closedHeading": "ተዘግቷል ({{n}})",
+    "noTickets": "እስካሁን ምንም የድጋፍ ትኬቶች አልፋይሉም።",
+    "loadFailed": "ትኬቶችዎን መጫን አልተቻለም። እባክዎ እንደገና ይሞክሩ።",
+    "categoryLabel": "ምድብ",
+    "severityLabel": "አስፈላጊነት",
+    "subjectLabel": "ርዕሰ ጉዳይ",
+    "subjectPlaceholder": "ችግሩን የሚገልጽ አንድ መስመር",
+    "descriptionLabel": "ምን ተፈጠረ",
+    "descriptionPlaceholder": "ምን እንዳደረግክ ፣ ምን እንደጠበቅክ እና በምትኩ ምን እንደ ሆነ ።",
+    "stepsLabel": "ለማባዛት እርምጃዎች (አማራጭ)",
+    "submit": "ትኬት ላክ",
+    "submitting": "ሴኔጋል",
+    "filed": "ቲኬት {{ref}} ከቡድኑ ጋር ነው ።",
+    "filedNotEmailed": "ቲኬት {{ref}} የተመዘገበ. ማጣቀሻውን ይጠብቁ.",
+    "alreadyOpen": "ይህ ቀድሞውኑ ክፍት ነው {{ref}}.",
+    "filingFailed": "ያንን ትኬት ማስገባት አልተቻለም ። እባክዎ እንደገና ይሞክሩ ።",
+    "status": {
+      "open": "ክፈት",
+      "in_progress": "በሂደት ላይ",
+      "closed": "ተዘግቷል"
+    },
+    "severity": {
+      "low": "ዝቅተኛ",
+      "normal": "የተለመደ",
+      "high": "ከፍተኛ",
+      "urgent": "አስቸኳይ"
+    },
+    "category": {
+      "account_access": "የመለያ መዳረሻ",
+      "wallet_or_transactions": "ቦርሳ ወይም ግብይቶች",
+      "posting_or_uploads": "መለጠፍ ወይም መስቀል",
+      "payments_or_subscriptions": "ክፍያዎች ወይም ምዝገባዎች",
+      "live_streaming": "የቀጥታ ዥረት",
+      "content_or_moderation": "ይዘት ወይም መጠነኛነት",
+      "bug": "ቡግ",
+      "feature_request": "የባህሪ ጥያቄ",
+      "other": "ሌላ"
+    }
   }
 }

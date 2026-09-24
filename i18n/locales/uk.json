@@ -695,7 +695,21 @@
     "chainIdLabel": "ID ланцюга: {{id}}",
     "exportPkConfirmPhrase": "Я РОЗУМІЮ",
     "exportPkCopy": "Копіювати приватний ключ",
-    "e2eAutomatic": "Автоматично"
+    "e2eAutomatic": "Автоматично",
+    "smsScopeLabel": "Що надсилати",
+    "smsScopeDesc": "Повідомлення коштують грошей, тому обмежте їх тим, що варте переривання",
+    "smsScope": {
+      "all": "Усе, що я ввімкнув",
+      "tips": "Лише отримані поради",
+      "subscriptions": "Лише нові підписники",
+      "sales": "Лише продажі мого контенту",
+      "bounties": "Лише винагороди",
+      "fractions": "Лише пропозиції та продажі часток",
+      "messages": "Лише прямі повідомлення",
+      "mentions": "Лише згадки про мене",
+      "replies": "Лише відповіді на мої коментарі",
+      "account": "Лише сповіщення про мій обліковий запис"
+    }
   },
   "common": {
     "mute": "Вимкнути звук",
@@ -2008,7 +2022,11 @@
     "title": "Messages",
     "searchConversations": "Search conversations...",
     "failedToLoad": "Failed to load conversations",
-    "tryAgain": "Try Again"
+    "tryAgain": "Try Again",
+    "encrypted": "Наскрізне шифрування",
+    "encryptionOff": "Шифрування на цьому пристрої вимкнено",
+    "encryptionTurnOn": "Увімкнути",
+    "cannotDecrypt": "Зашифроване повідомлення — не можна відкрити на цьому пристрої"
   },
   "music": {
     "all": "All",
@@ -2217,7 +2235,8 @@
     "otherTokens": "Інші токени",
     "otherTokensDesc": "Купіть ETH або USDC у мережі Base своєю карткою",
     "shareToFeed": "Поділитися в моєму каналі",
-    "sharePostTemplate": "Щойно додано {{amount}} $DHB до мого стеку на DeHub. Розбудова спільноти. #DeHub #DHB"
+    "sharePostTemplate": "Щойно додано {{amount}} $DHB до мого стеку на DeHub. Розбудова спільноти. #DeHub #DHB",
+    "minDhbPurchase": "Мінімальна покупка DHB становить $0.50"
   },
   "agents": {
     "title": "AI Agents",
@@ -3361,7 +3380,13 @@
     "addedToYourUsernames": "Додається до ваших імен користувача",
     "boughtNameGoesToVault": "Ви залишаєтеся @{{current}}. @{{handle}} потрапляє до ваших імен користувача, і ви можете перейти на нього будь-коли.",
     "youAreNow": "Тепер ви @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} тепер серед ваших імен користувача"
+    "boughtToVaultToast": "@{{handle}} тепер серед ваших імен користувача",
+    "askingPriceUsd": "Запитувана ціна (USD)",
+    "dollarPriceRange": "Введіть від $1 до $1 000 000 з двома десятковими знаками.",
+    "fixedDollarPrice": "Ціна в доларах залишається фіксованою; кількість токенів оновлюється.",
+    "priceUpdated": "Ціну оновлено. Перегляньте суму та натисніть \"Купити\" ще раз.",
+    "tokensPaidToSeller": "Сплачено безпосередньо продавцю",
+    "priceUsd": "Ціна (USD)"
   },
   "stores": {
     "subtitle": "Товари від спільноти DeHub",
@@ -3866,7 +3891,9 @@
       "hundred": "100",
       "sad": "Сумно",
       "cry": "Плач",
-      "dislike": "Не подобається"
+      "dislike": "Не подобається",
+      "lol": "ЛОЛ",
+      "poo": "Пой"
     },
     "mediaSource": "Виберіть джерело медіа",
     "photoLibrary": "Бібліотека фотографій",
@@ -4456,7 +4483,8 @@
     "madeForKidsOffDesc": "Показує цей допис дітям, які використовують дитячий режим, і знімає його зі звичайних каналів.",
     "madeForKidsBlockedByMature": "Допис із позначкою \"зрілий\" також не може бути опублікований для дітей.",
     "encoderTitle": "OBS / кодер",
-    "encoderHint": "Отримайте деталі RTMP"
+    "encoderHint": "Отримайте деталі RTMP",
+    "markMadeForKids": "Позначити як зроблене для дітей"
   },
   "bounty": {
     "claimed": "Отримано",
@@ -4904,7 +4932,8 @@
     "videosCount": "{{videos}} відео",
     "viewFeed": "Переглянути стрічку",
     "yourChannel": "Ваш канал",
-    "yourChannelHint": "Вставте адресу свого каналу — дескриптор сам по собі теж працює."
+    "yourChannelHint": "Вставте адресу свого каналу — дескриптор сам по собі теж працює.",
+    "progressDone": "{{imported}} імпортовано."
   },
   "calls": {
     "voiceCall": "Голосовий виклик DeHub",
@@ -6101,5 +6130,51 @@
     "appealRef": "Рекомендація {{ref}}",
     "appealSubtitleSubject": "Людина прочитає це та ще раз подивиться на {{subject}}.",
     "appealMore": "Потрібні символи: {{count}}"
+  },
+  "support": {
+    "title": "Підтримка",
+    "subtitle": "Ваші заявки та їхній статус. Без ШІ, без комісії.",
+    "newTicket": "Нова заявка",
+    "newTicketHint": "Розкажіть, що сталося, і що ви очікували натомість.",
+    "backToTickets": "Назад до заявок",
+    "noTickets": "Ви ще не подали жодного запиту до служби підтримки.",
+    "loadFailed": "Не вдалося завантажити квитки. Спробуйте ще раз.",
+    "categoryLabel": "Категорія",
+    "severityLabel": "Пріоритетний",
+    "subjectLabel": "Предмет",
+    "subjectPlaceholder": "Один рядок, що описує проблему",
+    "descriptionLabel": "Що сталося",
+    "descriptionPlaceholder": "Що ви зробили, чого очікували і що сталося натомість.",
+    "stepsLabel": "Кроки для відтворення (необов 'язково)",
+    "submit": "Надіслати тікет",
+    "submitting": "Відправлення...",
+    "filed": "Квиток {{ref}} з командою.",
+    "filedNotEmailed": "Квиток {{ref}} записано. Збережіть посилання.",
+    "alreadyOpen": "Цю функцію вже відкрито як {{ref}}.",
+    "filingFailed": "Не вдалося подати цей запит. Спробуйте ще раз.",
+    "status": {
+      "open": "Відкрити",
+      "in_progress": "В процесі",
+      "resolved": "Виконано",
+      "closed": "Закрито"
+    },
+    "severity": {
+      "low": "Низька",
+      "normal": "Звичайна",
+      "high": "Висока",
+      "urgent": "Терміново"
+    },
+    "category": {
+      "account_access": "Доступ до облікового запису",
+      "wallet_or_transactions": "Гаманець або транзакції",
+      "posting_or_uploads": "Публікація або завантаження",
+      "payments_or_subscriptions": "Платежі або підписки",
+      "live_streaming": "Пряма трансляція",
+      "content_or_moderation": "Контент або модерація",
+      "bug": "Помилка",
+      "feature_request": "Запит функції",
+      "other": "Інше"
+    },
+    "filedOn": "Подано {{date}}"
   }
 }

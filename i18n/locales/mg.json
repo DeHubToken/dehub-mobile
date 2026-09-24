@@ -611,7 +611,8 @@
     "smsBand": {
       "domestic": "Angletera",
       "global": "Firenena hafa maro",
-      "premium": "Na aiza na aiza"
+      "premium": "Na aiza na aiza",
+      "europe": "Eropa"
     },
     "smsDepositPaying": "Hamarino ao anaty kitaponao...",
     "smsDepositConfirming": "Miandry ny tohiny...",
@@ -681,7 +682,35 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "AZAHO KOA",
     "exportPkCopy": "Kopia ny lakilasy manokana",
-    "e2eAutomatic": "Mandrakaraka"
+    "e2eAutomatic": "Mandrakaraka",
+    "publicChatAlertsRateOption": "{{count}} isaky ny ora",
+    "emailNotificationsDescLinked": "Nampandrenesina ny {{email}}",
+    "emailNotificationsNoAddressMobile": "Manampia adiresy mailaka ao amin'ny tranokala mba hampandehanana ireo.",
+    "smsScopeLabel": "Inona no halefa",
+    "smsScopeDesc": "Mandoa vola ny SMS, koa ferana ho amin'izay mendrika hisy fiatoana",
+    "smsScope": {
+      "all": "Ny zavatra rehetra nampandehaniko",
+      "tips": "Ny torohevitra raisiko ihany",
+      "subscriptions": "Vao misoratra anarana ihany",
+      "sales": "Ny varotra momba ny votoatiko ihany",
+      "bounties": "Ny valisoa ihany",
+      "fractions": "Ny tolotra sy varotra ampahany ihany",
+      "messages": "Hafatra mivantana ihany",
+      "mentions": "Ny fanononana ahy ihany",
+      "replies": "Ny valin-teniko amin'ny fanehoan-kevitra ihany",
+      "account": "Fampandrenesana momba ny kaontiko ihany"
+    },
+    "smsNotificationsDescReady": "Nampandrenesina ny {{phone}} — {{dhb}} DHB isaky ny iray, sisa {{count}} eo ho eo",
+    "smsNotificationsLocked": "Sokafy amin'ny {{dhb}} DHB (${{usd}}) amin'ny trosa",
+    "smsUnlockPrice": "Ny {{dhb}} DHB (${{usd}}) dia manokatra ny SMS ary lasa trosa voalohany.",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositAction": "Alefaso ny {{dhb}} DHB",
+    "smsNeedDhb": "Mila {{dhb}} DHB ianao mba hanokafana ny fampandrenesana SMS.",
+    "smsBalance": "Sisa {{dhb}} DHB (${{usd}})",
+    "smsBalanceMessages": "Hafatra {{count}} eo ho eo",
+    "smsTopUp": "Ampidiro {{dhb}} DHB",
+    "smsCodeSent": "Nisy kaody nalefa. Nahalany {{price}} DHB izany.",
+    "smsCodeLabel": "Kaody nampandrenesina tamin'ny {{phone}}"
   },
   "common": {
     "mute": "Hampangina",
@@ -1433,7 +1462,8 @@
       "mentionedNamed": "{{name}} nanonona anao tao amin'ny “{{community}}”",
       "here": "{{name}} messaged ny tsirairay tao anatin'ilay vondrom-piarahamonina",
       "hereNamed": "{{name}} messaged ny rehetra {{community}} \""
-    }
+    },
+    "badgeLoanLapsed": "Tsy afaka mampindrana ny mari-pahaizana {{tier}} anao intsony ny {{name}}"
   },
   "leaderboard": {
     "title": "Lisitry ny tsara indrindra",
@@ -1871,7 +1901,8 @@
     "otherTokens": "Tokena hafa",
     "otherTokensDesc": "Mividiana ETH na USDC ao amin'ny Base amin'ny karatrao",
     "shareToFeed": "Zarao amin'ny fahana aho",
-    "sharePostTemplate": "Vao avy nanampy ny {{amount}} $DHB tao amin'ny kitapoko tao amin'ny DeHub. Miditra sy miaraka amin'ny fokonolona. #DeHub #DHB"
+    "sharePostTemplate": "Vao avy nanampy ny {{amount}} $DHB tao amin'ny kitapoko tao amin'ny DeHub. Miditra sy miaraka amin'ny fokonolona. #DeHub #DHB",
+    "minDhbPurchase": "Ny vidin'ny DHB kely indrindra dia $0.50"
   },
   "agents": {
     "title": "Agent AI",
@@ -2132,7 +2163,8 @@
       "signInToComment": "Midira hanatevin-daharana ny fifanakalozan-kevitra",
       "empty": "Tsy mbola misy fanontaniana. Atombohy ny fifanakalozan-kevitra.",
       "joinOnProposal": "Hiditra amin'ny firesahana amin'ny",
-      "authorChip": "Mpanoratra ohabolana"
+      "authorChip": "Mpanoratra ohabolana",
+      "showMoreReplies_one": "Asehoy ny valiny {{count}} fanampiny"
     }
   },
   "sidebar": {
@@ -3014,7 +3046,13 @@
     "addedToYourUsernames": "Ampiana amin'ny anaranao mpampiasa",
     "boughtNameGoesToVault": "Mijanona ho @{{current}} ianao. Miditra ao amin'ny anaranao mpampiasa i @{{handle}}, ary afaka mifindra aminy ianao amin'izay tianao.",
     "youAreNow": "Ianao izao dia @{{handle}}",
-    "boughtToVaultToast": "Ao amin'ny anaranao mpampiasa izao i @{{handle}}"
+    "boughtToVaultToast": "Ao amin'ny anaranao mpampiasa izao i @{{handle}}",
+    "askingPriceUsd": "Vidim-panontana (USD)",
+    "dollarPriceRange": "Ampidiro $ 1–$ 1,000,000, amin'ny toerana decimal roa.",
+    "fixedDollarPrice": "Dollar Price mitoetra raikitra; famantarana vola fanavaozam-baovao.",
+    "priceUpdated": "Price nohavaozina. Avereno jerena ny vola ary tap Buy indray.",
+    "tokensPaidToSeller": "Vidim-bola mivantana amin'ny mpivarotra",
+    "priceUsd": "Vidiny (USD)"
   },
   "stores": {
     "subtitle": "Hitady vokatra avy amin'ny vondrom-piarahamonina DeHub",
@@ -3330,7 +3368,9 @@
     "yourDhb": "Ny DHB-nao"
   },
   "digest": {
-    "someone": "Olona iray"
+    "someone": "Olona iray",
+    "andOthers_one": "{{names}} sy {{count}} hafa",
+    "andOthers_other": "{{names}} sy {{count}} hafa"
   },
   "publicChatAlerts": {
     "title": "Tamy_ts's chat",
@@ -3532,7 +3572,8 @@
     "mentionedYou": "{{name}} voaozona anao",
     "followRequest": "{{name}} niangavy ny hanaraka anao aho",
     "followAccepted": "{{name}} manaiky ny fangatahanao manaraka",
-    "signalFlare": "{{name}} nandefa firohotana famantarana"
+    "signalFlare": "{{name}} nandefa firohotana famantarana",
+    "newMessage": "{{name}} nandefa hafatra ho anao"
   },
   "audioPost": {
     "popOut": "Pop avy — mihaino hatrany rehefa mijery ianao",
@@ -3543,7 +3584,8 @@
     "creator": "DeHub mpamorona",
     "play": "Mamaky",
     "pause": "Miato",
-    "listens_other": "{{count}} сонсens"
+    "listens_other": "{{count}} сонсens",
+    "listens_one": "{{count}} mihaino"
   },
   "transfer": {
     "title": "Mamindra tokens",
@@ -3611,7 +3653,8 @@
     "reviewDescriptionPlaceholder": "Lazao zavatra momba ity lahatsoratra ity (tsy voatery)",
     "reviewLiveWarning": "Mivantana izany ny serasera. Andraso mandra-pahatapitry ny naoty.",
     "reviewCancel": "Ajanona",
-    "reviewConfirm": "Hampiditra"
+    "reviewConfirm": "Hampiditra",
+    "toastImported": "Nampidirina avy amin'ny {{source}}!"
   },
   "earnings": {
     "filter24h": "24o",
@@ -4107,7 +4150,8 @@
     "madeForKidsOffDesc": "Asehina ity postina ity amin'ny ankizy mampiasa Kids Mode, ary esorina amin'ny feed mahazatra.",
     "madeForKidsBlockedByMature": "Ny postina nisy marika ho \"mature\" dia tsy afaka hamoaka ho an'ny ankizy.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Avy amin'ny RTMP details"
+    "encoderHint": "Avy amin'ny RTMP details",
+    "markMadeForKids": "Mariho toy ny natao ho an'ny ankizy"
   },
   "bounty": {
     "claimed": "Voaray",
@@ -4553,7 +4597,9 @@
     "videosCount": "{{videos}} horonan-tsary",
     "viewFeed": "Hijery ny fahana",
     "yourChannel": "Ny foibe hira",
-    "yourChannelHint": "Apetaho ny adiresin'ny fantsona — ny famolahana amin'ny asa manokana ihany koa."
+    "yourChannelHint": "Apetaho ny adiresin'ny fantsona — ny famolahana amin'ny asa manokana ihany koa.",
+    "costsIntro": "Ny horonan-tsary tsirairay dia mora kokoa noho ny teo alohany — mihena ny tahan'ny rehefa mitombo ny andiany, ka ny vidiny etsy ambany dia izay azon'io horonan-tsary maro io amin'ny ankapobeny.",
+    "costsIntroShort": "Ny horonan-tsary tsirairay dia mora kokoa noho ny teo alohany — mihena ny tahan'ny rehefa mitombo ny andiany. Ny vidiny marina dia aseho alohan'ny handoavanao."
   },
   "calls": {
     "voiceCall": "Antso an-tariby DeHub",
@@ -5702,5 +5748,52 @@
     "appealRef": "Laharana {{ref}}",
     "appealSubtitleSubject": "Hisy olona hamaky izany ary hijery indray {{subject}}.",
     "appealMore": "Mbola ilaina ireo karazana ireo: {{count}}"
+  },
+  "support": {
+    "title": "MANAMPY",
+    "subtitle": "Ny laharam-pehintaniny ary ny. Tsia, tsy misy karama.",
+    "newTicket": "Tapakila vaovao",
+    "newTicketHint": "Milaza aminay izay nitranga sy izay noeritreretinao.",
+    "backToTickets": "Miverina amin'ny tapakila",
+    "openHeading": "Hanomboka ({{n}})",
+    "noTickets": "Hatramin'izao aloha dia TSY misy fikambanana manohana anay.",
+    "loadFailed": "Tsy afaka nanaisotra ny kiraronao aho. Avereno andramana azafady.",
+    "categoryLabel": "Fandrindrana tsotra",
+    "severityLabel": "Laoniny",
+    "subjectLabel": "Anton-dresaka:",
+    "subjectPlaceholder": "Manamarina izany ny Testamenta Taloha: Loharanon'ny fahamarinana",
+    "descriptionLabel": "Inona no nitranga ?",
+    "descriptionPlaceholder": "Izay rehetra nolazainy fa hitranga dia nitranga tokoa.",
+    "stepsLabel": "Dingana miteraka (tsy voatery)",
+    "submit": "Mandefa tapakila",
+    "submitting": "Mandefa...",
+    "filed": "{{ref}}0 Miaraka amin'ny ekipa ny tapakila.",
+    "filedNotEmailed": "Tapakila {{ref}} 0 voarakitra. Tohizo ny fijerena.",
+    "alreadyOpen": "Efa manana izany misokatra {{ref}}.",
+    "filingFailed": "Tsy afaka nandamina io tapakila io. Avereno andramana azafady.",
+    "status": {
+      "open": "Hafaingana",
+      "in_progress": "Eo am-panatanterahana",
+      "resolved": "Voavaha",
+      "closed": "Nofoanana"
+    },
+    "severity": {
+      "low": "Ambany",
+      "normal": "Normaly",
+      "high": "Avo",
+      "urgent": "Maika"
+    },
+    "category": {
+      "account_access": "Fidirana amin'ny kaonty",
+      "wallet_or_transactions": "Tombokavola na fifanakalozana",
+      "posting_or_uploads": "Fandefasana na fametrahana",
+      "payments_or_subscriptions": "Fandoavam-bola na famandrihana",
+      "live_streaming": "Fampitana mivantana",
+      "content_or_moderation": "Votoaty na fanaraha-maso",
+      "bug": "Bug",
+      "feature_request": "Fangatahana endri-javatra",
+      "other": "Hafa"
+    },
+    "filedOn": "Nolalaovina {{date}}"
   }
 }

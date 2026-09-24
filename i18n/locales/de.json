@@ -709,7 +709,8 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "ICH VERSTEHE",
     "exportPkCopy": "Privaten Schlüssel kopieren",
-    "e2eAutomatic": "Automatisch"
+    "e2eAutomatic": "Automatisch",
+    "smsNotificationsDescReady": "Gesendet an {{phone}} — {{dhb}} DHB pro Stück, ca. {{count}} übrig"
   },
   "common": {
     "mute": "Stumm schalten",
@@ -1877,7 +1878,8 @@
     "otherTokens": "Andere Token",
     "otherTokensDesc": "ETH oder USDC auf Base mit deiner Karte kaufen",
     "shareToFeed": "In meinem Feed teilen",
-    "sharePostTemplate": "Habe gerade {{amount}} $DHB zu meinem Stack auf DeHub hinzugefügt. Bauen Sie mit der Gemeinschaft. #DeHub #DHB"
+    "sharePostTemplate": "Habe gerade {{amount}} $DHB zu meinem Stack auf DeHub hinzugefügt. Bauen Sie mit der Gemeinschaft. #DeHub #DHB",
+    "minDhbPurchase": "Der Mindestkauf von DHB beträgt 0,50 $"
   },
   "agents": {
     "title": "KI-Agenten",
@@ -4622,7 +4624,8 @@
     "videoCountOne": "{{n}} Video",
     "videosCount": "{{videos}} Videos",
     "viewFeed": "Ihren Feed anzeigen",
-    "yourChannel": "Dein Kanal"
+    "yourChannel": "Dein Kanal",
+    "yourChannelHint": "Füge deine Kanaladresse ein – der Handle allein funktioniert auch."
   },
   "calls": {
     "voiceCall": "DeHub-Sprachanruf",

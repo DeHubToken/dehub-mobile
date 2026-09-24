@@ -672,7 +672,63 @@
     "chainIdLabel": "চেইন আইডি: {{id}}",
     "exportPkConfirmPhrase": "আমি বুঝি",
     "exportPkCopy": "প্রাইভেট কী কপি করুন",
-    "e2eAutomatic": "স্বয়ংক্রিয়"
+    "e2eAutomatic": "স্বয়ংক্রিয়",
+    "smsNotifications": "টেক্সট নোটিফিকেশন",
+    "smsScopeLabel": "কি টেক্সট করবো",
+    "smsScopeDesc": "টেক্সট পাঠাতে টাকা লাগে, তাই যেগুলি জরুরি সেগুলিই টেক্সট করুন",
+    "smsScope": {
+      "all": "আমার সব চালু করা জিনিস",
+      "tips": "শুধু টিপস যা আমি পাই",
+      "subscriptions": "শুধু নতুন সাবস্ক্রাইবার",
+      "sales": "শুধু আমার কন্টেন্ট বিক্রি",
+      "bounties": "শুধু বাউন্টি",
+      "fractions": "শুধু ফ্র্যাকশন অফার এবং বিক্রি",
+      "messages": "শুধু সরাসরি মেসেজ",
+      "mentions": "শুধু আমাকে মেনশন করা",
+      "replies": "আমার কমেন্টের রিপ্লাই",
+      "account": "আমার অ্যাকাউন্ট সংক্রান্ত নোটিশ"
+    },
+    "smsNotificationsDesc": "যেগুলি জরুরি সেগুলি টেক্সট মেসেজ হিসাবে পান",
+    "smsNotificationsDescReady": "{{phone}} — {{dhb}} DHB প্রতি, প্রায় {{count}} বাকি",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) ক্রেডিট দিয়ে আনলক করুন",
+    "smsNotificationsNeedsNumber": "শুরু করতে একটি ফোন নম্বর যোগ করুন এবং ভেরিফাই করুন",
+    "smsNotificationsEmpty": "ক্রেডিট শেষ — টেক্সট পেতে টপ আপ করুন",
+    "smsUnavailable": "টেক্সট নোটিফিকেশন এই মুহূর্তে উপলব্ধ নয়",
+    "smsDialogIntro": "টেক্সট পাঠাতে টাকা লাগে, তাই এই চ্যানেলটি আপনার DHB-তে টপ আপ করা ক্রেডিটের উপর চলে।",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) টেক্সট আনলক করবে এবং আপনার প্রথম ব্যালেন্স হবে।",
+    "smsUnlockExplainer": "কিছুই এক্সপায়ার হয় না। ক্রেডিট একবারে একটি মেসেজের জন্য খরচ হয়, এবং শুধুমাত্র সেই নোটিফিকেশনগুলির জন্য যা আপনি চালু রেখেছেন।",
+    "smsPricesHeading": "একটি মেসেজের দাম কত",
+    "smsBand": {
+      "domestic": "যুক্তরাজ্য",
+      "europe": "ইউরোপ",
+      "global": "বেশিরভাগ অন্যান্য দেশ",
+      "premium": "অন্যান্য সব জায়গা"
+    },
+    "smsDepositAction": "{{dhb}} DHB পাঠান",
+    "smsDepositPaying": "আপনার ওয়ালেটে কনফার্ম করুন…",
+    "smsDepositConfirming": "Chain-এর অপেক্ষা...",
+    "smsDepositNotSent": "Transfer submit করা হয়নি।",
+    "smsDepositSlow": "আপনার transfer এখনও chain-এ দেখা যাচ্ছে না। এটি নিরাপদ — এটি আবার খুলুন এবং এটি credit হয়ে যাবে। Reference: {{hash}}",
+    "smsChainUnsupported": "আপনার text credit top up করার জন্য Settings-এ Base বা BNB Chain-এ switch করুন।",
+    "smsWalletNotReady": "আপনার wallet এখনও ready হয়নি — একটু পরে আবার চেষ্টা করুন।",
+    "smsNeedDhb": "text notification unlock করার জন্য আপনার {{dhb}} DHB প্রয়োজন।",
+    "smsUnlocked": "Text notification unlock করা হয়েছে",
+    "smsBalance": "{{dhb}} DHB বাকি (${{usd}})",
+    "smsBalanceMessages": "আরও {{count}} message",
+    "smsTopUp": "{{dhb}} DHB top up করুন",
+    "smsSendCode": "আমাকে একটি code text করুন",
+    "smsCodeSent": "Code পাঠানো হয়েছে। এটি {{price}} DHB খরচ হয়েছে।",
+    "smsCodeFailed": "আমরা সেই code পাঠাতে পারিনি।",
+    "smsCodeLabel": "Code যা আমরা {{phone}}-এ text করেছি",
+    "smsVerify": "Code confirm করুন",
+    "smsVerifyFailed": "আমরা সেই code confirm করতে পারিনি।",
+    "smsRemoveNumber": "এই number remove করুন",
+    "smsRemoveFailed": "আমরা এই number remove করতে পারিনি।",
+    "smsCountryBlocked": "আমরা এখনও সেই দেশে text deliver করতে পারি না।",
+    "smsNumberLabel": "ফোন নম্বর",
+    "smsNumberVerified": "নম্বর যাচাই করা হয়েছে",
+    "smsNumberRemoved": "নম্বর সরানো হয়েছে",
+    "smsPricePerMessage": "{{dhb}} ডিএইচবি (${{usd}})"
   },
   "common": {
     "mute": "আওয়াজ বন্ধ খরউকা",
@@ -782,7 +838,8 @@
     "processing": "প্রসেস অইতাসে...",
     "success": "টিপ পাঠানো অইসে!",
     "failed": "টিপ পাঠানো ব্যর্থ",
-    "confirmTip": "টিপ নিশ্চিত করো"
+    "confirmTip": "টিপ নিশ্চিত করো",
+    "toContent": "বকশিশের বিষয়বস্তু"
   },
   "postOptions": {
     "options": "Options",
@@ -1321,7 +1378,13 @@
     "connected": "কানেক্ট করা আসে",
     "notConnected": "কানেক্ট না",
     "transactions": "লেনদেন",
-    "noTransactions": "এহনো কোনো লেনদেন নাই"
+    "noTransactions": "এহনো কোনো লেনদেন নাই",
+    "evmAddressHint": "Base, BNB এবং Ethereum",
+    "evmAddressCopied": "EVM address copy করা হয়েছে",
+    "solanaAddressHint": "শুধুমাত্র SOL এবং SPL tokens",
+    "solanaAddressCopied": "Solana address copy করা হয়েছে",
+    "evmAddressLabel": "ইভিএম",
+    "solanaAddressLabel": "সোলানা"
   },
   "bookmarks": {
     "title": "বুকমার্ক",
@@ -1965,7 +2028,8 @@
     "amount": "পরিমাণ",
     "price": "দাম",
     "success": "কেনা অইসে!",
-    "failed": "কেনা ব্যর্থ"
+    "failed": "কেনা ব্যর্থ",
+    "minDhbPurchase": "Minimum DHB purchase হল $0.50"
   },
   "agents": {
     "title": "AI এজেন্ট",
@@ -2649,7 +2713,37 @@
     "lockedEarlyFee": "{{date}} পর্যন্ত লক করা। এখন উত্তোলন করলে 88% ফেরত পাবেন — 12% ফি, প্রায় {{fee}} DHB। গ্রহণ করতে আবার ট্যাপ করুন।",
     "unstakeReverted": "অন-চেইনে উত্তোলন প্রত্যাহার করা হয়েছে।",
     "unstakeSent": "{{amount}} DHB উত্তোলন করা হয়েছে! TX: {{hash}}…",
-    "unstakeFailed": "উত্তোলন ব্যর্থ।"
+    "unstakeFailed": "উত্তোলন ব্যর্থ।",
+    "walletBalance": "ওয়ালেট ব্যালেন্স",
+    "dhbOnBase": "বেসে DHB",
+    "amountUnstaking": "{{amount}} উত্তোলন করছে",
+    "pendingRewards": "পেন্ডিং রিওয়ার্ডস",
+    "claimOnWeb": "ওয়েব অ্যাপে দাবি করুন",
+    "stakeOnBaseDesc": "প্রোটোকল রিওয়ার্ড অর্জনের জন্য বেসে DHB জমা করুন।",
+    "unstakeFromBnbDesc": "BNB চেইন কন্ট্র্যাক্ট থেকে উত্তোলন করুন। বেস পুলে DHB এর এখনও কোনো উত্তোলন চুক্তি নেই।",
+    "availableToStake": "উপলব্ধ: {{amount}} DHB",
+    "withdrawableOnBnb": "উত্তোলনযোগ্য: BNB চেইনে {{amount}} DHB",
+    "restInBasePool": "বেস পুলে {{amount}}",
+    "lockedUntilWithFee": "{{date}} পর্যন্ত লক করা, তার আগে 12% ফি",
+    "totalStakedProtocol": "মোট জমা করা (প্রোটোকল)",
+    "orSendDirectly": "অথবা বেসে জমা ঠিকানায় সরাসরি DHB পাঠান:",
+    "refreshBalances": "ব্যালেন্স রিফ্রেশ করুন",
+    "addressCopied": "জমা ঠিকানা কপি করা হয়েছে!",
+    "checkForNewStake": "নতুন জমার জন্য পরীক্ষা করুন",
+    "viewTransaction": "লেনদেন দেখুন",
+    "checkAgain": "আবার পরীক্ষা করুন",
+    "pendingConfirmed": "{{amount}} DHB নিশ্চিত করা হয়েছে। আপনার জমা ইতিহাস আপডেট করা হচ্ছে। এটি আবার পাঠাবেন না।",
+    "pendingSubmitted": "{{amount}} DHB জমা করা হয়েছে। নিশ্চিতকরণ এখনও পরীক্ষা করা হচ্ছে। এটি আবার পাঠাবেন না।",
+    "refreshFailed": "নতুন জমার জন্য পরীক্ষা করতে পারেনি। একটু পরে আবার চেষ্টা করুন।",
+    "foundNewStake": "{{amount}} DHB পাওয়া গেছে। আপনার জমা আপডেট।",
+    "noNewTransfers": "এখনও কোনো নতুন ট্রান্সফার পাওয়া যায়নি।",
+    "stakeConfirmedOnBase": "বেসে {{amount}} DHB নিশ্চিত করা হয়েছে।",
+    "stakeReverted": "ব্লকচেইন এই লেনদেনটি রিভার্ট হয়েছে বলে নিশ্চিত করেছে।",
+    "enterValidStakeAmount": "জমা করার জন্য একটি বৈধ পরিমাণ প্রবেশ করুন।",
+    "enterValidUnstakeAmount": "উত্তোলনের জন্য একটি বৈধ পরিমাণ প্রবেশ করুন।",
+    "walletNotConnected": "ওয়ালেট সংযুক্ত নয়।",
+    "walletNotReady": "ওয়ালেট প্রস্তুত নয়। অনুগ্রহ করে আবার চেষ্টা করুন।",
+    "insufficientOnBase": "বেসে DHB ব্যালেন্স অপর্যাপ্ত।"
   },
   "communities": {
     "title": "কমিউনিটি",
@@ -3100,7 +3194,13 @@
     "addedToYourUsernames": "আফনার ইউজারনেমো যোগ অইবো",
     "boughtNameGoesToVault": "আফনে @{{current}} থাকবা। @{{handle}} আফনার ইউজারনেমো যাইবো, আর যেবলা মন চায় অউটাত বদলাইতায় পারবা।",
     "youAreNow": "আফনে অখন @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} অখন আফনার ইউজারনেমো আছে"
+    "boughtToVaultToast": "@{{handle}} অখন আফনার ইউজারনেমো আছে",
+    "askingPriceUsd": "জিজ্ঞাসিত মূল্য (USD)",
+    "dollarPriceRange": "$১–$১,০০০,০০০, দুই দশমিক স্থান পর্যন্ত।",
+    "fixedDollarPrice": "টাকার দাম স্থির থাকে; টোকেনের পরিমাণ আপডেট হয়।",
+    "priceUpdated": "দাম আপডেট করা হইছে। পরিমাণটা দেইখা আবার বাই (Buy) চাপুন।",
+    "tokensPaidToSeller": "সরাসরি বিক্রেতার কাছে পরিশোধ",
+    "priceUsd": "দাম (USD)"
   },
   "stores": {
     "subtitle": "DeHub সম্প্রদায়র পণ্য খুঁজউক্কা",
@@ -3543,7 +3643,12 @@
     "boostCancelledRefunded": "বুস্ট বাতিল অইছে আর তুমার কোটাত ফিরত গেছে",
     "boostCancelledSpent": "বুস্ট বাতিল অইছে। ইতা আগেউ শুরু অইছিল, তাই খরচ অইছে বলিয়াউ থাকব।",
     "cancelFailed": "ওই বুস্ট বাতিল করা গেল না",
-    "screenTitle": "SuperPowers"
+    "screenTitle": "SuperPowers",
+    "homePost": "আপনার নিজের পোস্ট থেকে এটি ব্যবহার করুন — অপশন শিট, তারপর বুস্ট।",
+    "homeGift": "অন্য কারো পোস্টে এটি ব্যবহার করুন — অপশন শিট, তারপর বুস্ট।",
+    "homeComment": "অন্য কারো থ্রেডে আপনার নিজের মন্তব্যে এটি ব্যবহার করুন।",
+    "homeStage": "আপনি হোস্ট করছেন এমন একটি স্টেজ থেকে এটি ব্যবহার করুন।",
+    "homePage": "এখানে, এই স্ক্রিনের উপরে এটি ব্যবহার করুন।"
   },
   "follow": {
     "followers": "فলোয়ার্স",
@@ -4192,7 +4297,8 @@
     "madeForKidsOffDesc": "এই পোস্টটি বাচ্চাদের মোড ব্যবহার করা শিশুদের দেখায়, এবং এটি সাধারণ ফিডের বাইরে নিয়ে যায়।",
     "madeForKidsBlockedByMature": "একটি পরিপক্ক চিহ্নিত পোস্ট বাচ্চাদের জন্যও প্রকাশ করা যায় না।",
     "encoderTitle": "OBS / এনকোডার",
-    "encoderHint": "RTMP বিস্তারিত পাও"
+    "encoderHint": "RTMP বিস্তারিত পাও",
+    "markMadeForKids": "শিশুদের জন্য তৈরি হিসাবে চিহ্নিত করুন"
   },
   "bounty": {
     "claimed": "লইলিছে",
@@ -4324,31 +4430,45 @@
       "noStreams": "XP অর্জন শুরু করতে লাইভ যান।",
       "card": {
         "first-light": {
-          "hint": "আপনার প্রথম কোয়ালিফাইং স্ট্রিম সম্পন্ন করুন।"
+          "hint": "আপনার প্রথম কোয়ালিফাইং স্ট্রিম সম্পন্ন করুন।",
+          "name": "প্রথম আলো"
         },
         "marathon": {
-          "hint": "এক সেশনে দুই ঘন্টা স্ট্রিম করুন।"
+          "hint": "এক সেশনে দুই ঘন্টা স্ট্রিম করুন।",
+          "name": "ম্যারাথন"
         },
         "night-owl": {
-          "hint": "মধ্যরাত থেকে সকাল পাঁচটার মধ্যে একটি স্ট্রিম শেষ করুন।"
+          "hint": "মধ্যরাত থেকে সকাল পাঁচটার মধ্যে একটি স্ট্রিম শেষ করুন।",
+          "name": "নাইট আউল"
         },
         "regular": {
-          "hint": "পরপর চার সপ্তাহে স্ট্রিম করুন।"
+          "hint": "পরপর চার সপ্তাহে স্ট্রিম করুন।",
+          "name": "নিয়মিত"
         },
         "iron-streak": {
-          "hint": "পরপর বারো সপ্তাহে স্ট্রিম করুন।"
+          "hint": "পরপর বারো সপ্তাহে স্ট্রিম করুন।",
+          "name": "আয়রন স্ট্রিক"
         },
         "crowd": {
-          "hint": "একই সময়ে দশজন দর্শক রাখুন।"
+          "hint": "একই সময়ে দশজন দর্শক রাখুন।",
+          "name": "জনসমাগম"
         },
         "century": {
-          "hint": "একশত কোয়ালিফাইং ঘন্টা অন এয়ার সম্পন্ন করুন।"
+          "hint": "একশত কোয়ালিফাইং ঘন্টা অন এয়ার সম্পন্ন করুন।",
+          "name": "সেঞ্চুরি"
         },
         "legend": {
           "name": "লেজেন্ড",
           "hint": "লেভেল দশ এ পৌঁছান।"
         }
-      }
+      },
+      "title": "স্ট্রিমার লেভেল",
+      "level": "লেভেল {{level}}",
+      "viewCards": "ভিউ কার্ড",
+      "cardsTitle": "সংগ্রহযোগ্য কার্ড",
+      "locked": "লক করা",
+      "earnedOn": "অর্জিত {{date}}",
+      "recentTitle": "সাম্প্রতিক স্ট্রিম"
     }
   },
   "liveShop": {
@@ -4626,7 +4746,8 @@
     "videosCount": "{{videos}} ভিডিও",
     "viewFeed": "আপনার ফিড দেখুন",
     "yourChannel": "আপনার চ্যানেল",
-    "yourChannelHint": "আপনার চ্যানেল অ্যাড্রেস পেস্ট করুন — হ্যান্ডেল নিজেই কাজ করে।"
+    "yourChannelHint": "আপনার চ্যানেল অ্যাড্রেস পেস্ট করুন — হ্যান্ডেল নিজেই কাজ করে।",
+    "placeholder": "youtube.com/@আপনি, tiktok.com/@আপনি, vimeo.com/you…"
   },
   "calls": {
     "voiceCall": "DeHub ভয়েস কল",
@@ -4740,7 +4861,34 @@
     "sendAGift": "উপহার পাঠান",
     "minPlaceholder": "ন্যূনতম: {{amount}}",
     "minGift": "ন্যূনতম উপহার {{amount}}",
-    "sendGift": "উপহার পাঠান"
+    "sendGift": "উপহার পাঠান",
+    "tierDesc": {
+      "gold10": "স্ক্রীন সোনালী হয়ে যায় এবং ১০ সেকেন্ডের জন্য কয়েন বৃষ্টি হয়।",
+      "ultimate": "একসাথে সব উদযাপন — সোনা, কনফেটি, কয়েন এবং একটি ট্রফি।",
+      "heart": "হৃদয়গুলো স্ট্রিমের কোণে ভেসে ওঠে।",
+      "chocolate": "একটি চকোলেটের বাক্স স্ক্রিনের উপর দিয়ে গড়িয়ে যায়।",
+      "bouquet": "একটি ফুলের তোড়া কোণে ফেটে যায়।",
+      "crown": "একটি মুকুট স্ট্রিমের উপর উঠে আসে এবং ঝলমল করে।",
+      "magicRing": "একটি আংটি মাঝখানে পড়ে এবং স্ফুলিঙ্গের মধ্যে বেজে ওঠে।",
+      "spartans": "একটি ঢালের দেয়াল স্ট্রিমের উপর দিয়ে মার্চ করে।",
+      "party": "কনফেটি উড়ে যায় এবং একটি ডিস্কো বল নেমে আসে।",
+      "gold3": "স্ক্রিন সোনালী হয়ে যায় এবং ৩ সেকেন্ড ধরে কয়েন বৃষ্টি হয়।"
+    },
+    "pickTier": "একটি উদযাপন বেছে নিন",
+    "plays": "স্ট্রিমে {{tier}} বাজান",
+    "you": "আপনি",
+    "tier": {
+      "heart": "ভালোবাসার হৃদয়",
+      "chocolate": "চকোলেটের বাক্স",
+      "bouquet": "ফুলের তোড়া",
+      "crown": "মুকুট",
+      "magicRing": "জাদুর আংটি",
+      "spartans": "স্পার্টানস আর্মি",
+      "party": "পার্টি উদযাপন",
+      "gold3": "গোল্ডেন স্ক্রিন (৩ সেকেন্ড)",
+      "gold10": "গোল্ডেন স্ক্রিন (১০ সেকেন্ড)",
+      "ultimate": "আল্টিমেট সেলিব্রেশন"
+    }
   },
   "goLive": {
     "streamKey": "স্ট্রিম কী",
@@ -4978,7 +5126,37 @@
     "buyWithBnbNote": "BNB Chain-এ ট্রেডিং বন্ধ অই গেছে। BNB আছে নি? এইটা দিয়া Base-এ DHB কিনউকা।",
     "buyWithBnb": "BNB দিয়া কিনউকা",
     "pools": {
-      "feeDhb": "≈ {{amount}} DHB"
+      "feeDhb": "≈ {{amount}} DHB",
+      "title": "পুল",
+      "search": "পুল খুঁজুন",
+      "loading": "পুল লোড হচ্ছে…",
+      "noMatch": "এই অনুসন্ধানের সাথে কোনো পুল মিলছে না।",
+      "add": "পুল যোগ করুন",
+      "addTitle": "একটি নতুন পুল খুলুন",
+      "addDescription": "Base, Ethereum, Robinhood Chain বা Solana-তে যেকোনো টোকেন তার নিজস্ব অর্ডার বুক সহ তালিকাভুক্ত করুন। একটি পুল খুলতে $100 খরচ হবে, যা DHB-তে পরিশোধ করতে হবে।",
+      "network": "নেটওয়ার্ক",
+      "contract": "টোকেন কন্ট্রাক্ট অ্যাড্রেস",
+      "mintPlaceholder": "টোকেন মিন্ট অ্যাড্রেস",
+      "lookingUp": "টোকেনটি খোঁজা হচ্ছে…",
+      "lookupFailed": "এই টোকেনটি খুঁজে পাওয়া যায়নি।",
+      "exists": "{{symbol}}-এর ইতিমধ্যে একটি পুল আছে।",
+      "openExisting": "এটি খুলুন",
+      "setImage": "পুল ইমেজ সেট করুন",
+      "imageHint": "পুলের ছবি সেট করতে বৃত্তটিতে ট্যাপ করুন।",
+      "imageRules": "5 MB বা তার কম আকারের একটি PNG, JPG, WebP বা GIF বেছে নিন।",
+      "priceUnavailable": "DHB-এর দাম এই মুহূর্তে অনুপলব্ধ। এক মিনিট পর আবার চেষ্টা করুন।",
+      "swapNote": "আপনার {{symbol}} একই লেনদেনে ফির জন্য DHB-তে সোয়াপ করা হবে। যা অবশিষ্ট থাকবে তা আপনার ওয়ালেটে থাকবে।",
+      "alreadyPaid": "আপনার ফি ইতিমধ্যে পরিশোধ করা হয়েছে। পুল খোলা শেষ করুন।",
+      "finish": "পুল খোলা শেষ করুন",
+      "notEnough": "$100 ফির জন্য পর্যাপ্ত ব্যালেন্স নেই",
+      "payAndOpen": "${{amount}} পরিশোধ করুন এবং পুল খুলুন",
+      "discardPaid": "অন্য টোকেন দিয়ে আবার শুরু করুন",
+      "uploading": "ইমেজ আপলোড হচ্ছে…",
+      "quoting": "ফি নির্ধারণ করা হচ্ছে…",
+      "paying": "Fee अदा করা হচ্ছে…",
+      "opening": "Pool খোলা হচ্ছে…",
+      "created": "{{symbol}} pool খোলা হয়েছে",
+      "createFailed": "Pool খোলা যায়নি।"
     },
     "chart": {
       "bookStarts": "বইখানির শুরু এখান থাইক্যা",
@@ -4994,7 +5172,47 @@
     "prepareFailed": "পজিশন তৈরি করা যায়নি",
     "sellAmount": "বিক্রয় পরিমাণ",
     "spend": "খরচ",
-    "withdrawFailed": "উইথড্রয়াল ফেইল করেছে"
+    "withdrawFailed": "উইথড্রয়াল ফেইল করেছে",
+    "pool": {
+      "missingTitle": "Pool খুঁজে পাওয়া যায়নি — DeHub DEX",
+      "missing": "এই টোকেনের জন্য এখনো কোনো pool নেই। অর্ডার বুক শুরু করতে একটি খুলুন।",
+      "seoTitle": "{{symbol}}/USD — {{chain}}-এ {{name}} ট্রেড করুন | DeHub DEX",
+      "seoDescription": "{{chain}}-এ {{name}} ({{symbol}}) ট্রেড করুন: DeHub DEX-এ লাইভ অর্ডার বুক, লিমিট অর্ডার এবং ইনস্ট্যান্ট কেনা-বেচা।",
+      "changeImage": "ছবি পরিবর্তন করুন",
+      "imageUpdated": "Pool-এর ছবি আপডেট করা হয়েছে",
+      "imageFailed": "ছবি আপডেট করা যায়নি।",
+      "volume24": "২৪ ঘণ্টার ভলিউম",
+      "size": "সাইজ ({{symbol}})",
+      "total": "মোট ({{symbol}})",
+      "buyTotal": "বিড {{amount}} {{symbol}}",
+      "sellTotal": "আস্ক {{amount}} {{symbol}}",
+      "orderType": "অর্ডারের ধরন",
+      "limit": "লিমিট",
+      "instant": "ইনস্ট্যান্ট",
+      "instantBuy": "ইনস্ট্যান্ট বাই",
+      "instantSell": "ইনস্ট্যান্ট সেল",
+      "confirmInstantBuy": "ইনস্ট্যান্ট বাই কনফার্ম করুন",
+      "confirmInstantSell": "ইনস্ট্যান্ট সেল কনফার্ম করুন",
+      "placeBuy": "{{symbol}} কেনার অর্ডার দিন",
+      "placeSell": "{{symbol}} বিক্রি করার অর্ডার দিন",
+      "buyAt": "এই দামে কিনুন",
+      "sellAt": "এই দামে বিক্রি করুন",
+      "enterPrice": "একটি দাম লিখুন।",
+      "youReceive": "আপনি প্রায় পাবেন",
+      "priceImpact": "প্রাইস ইমপ্যাক্ট",
+      "minimum": "কমপক্ষে অর্ডার",
+      "instantNote": "এই নেটওয়ার্কের প্রতিটি এক্সচেঞ্জে সেরা দামে তাৎক্ষণিক ট্রেড পূরণ করা হয়, ১% পর্যন্ত স্লিপেজ সহ।",
+      "solanaLimitNote": "আপনার টোকেনগুলো একটি অন-চেইন অর্ডারে থাকবে যতক্ষণ না এটি আপনার দামে পূরণ হয় বা আপনি এটি বাতিল করেন।",
+      "evmLimitNote": "আপনার টোকেনগুলো আপনার দামে একটি একতরফা ইউনিসওয়াপ রেঞ্জে থাকবে এবং মার্কেট ট্রেড করার সাথে সাথে রূপান্তরিত হবে। যেকোনো সময় প্রত্যাহার করুন।",
+      "openOrders": "খোলা অর্ডার",
+      "myOrders": "আমার অর্ডার",
+      "noOrders": "{{symbol}} এর জন্য এখনো কোনো খোলা অর্ডার নেই। প্রথমটি দিন।",
+      "noMyOrders": "এই পুলে আপনার কোনো খোলা অর্ডার নেই।",
+      "cancel": "বাতিল করুন",
+      "cancelled": "অর্ডার বাতিল করা হয়েছে",
+      "bought": "{{amount}} {{symbol}} কেনা হয়েছে",
+      "sold": "{{amount}} {{symbol}} বিক্রি করা হয়েছে"
+    }
   },
   "onboarding": {
     "optIn": {
@@ -5658,5 +5876,53 @@
     "appealRef": "রেফারেন্স {{ref}}",
     "appealSubtitleSubject": "একজন ব্যক্তি এটি পড়বেন এবং {{subject}} -এ আবার দেখবেন ।",
     "appealMore": "অক্ষরের এখনও প্রয়োজন: {{count}}"
+  },
+  "support": {
+    "title": "সহায়তা",
+    "newTicket": "নতুন টিকেট",
+    "newTicketHint": "কি অইছে আর কি আশা করতাছিলা।",
+    "backToTickets": "টিকিটর দিকে ফিরা",
+    "openHeading": "খোল ({{n}})",
+    "closedHeading": "বন্ধ ({{n}})",
+    "noTickets": "আপনে এখনো কোনো সাপোর্ট টিকেট ফাইল করন নি।",
+    "loadFailed": "আপনার টিকেট লোড করা যায়নি। দয়া করে আবার চেষ্টা করুন।",
+    "categoryLabel": "ক্যাটাগরি",
+    "severityLabel": "প্ৰায়োরিটি",
+    "subjectPlaceholder": "এক লাইনে সমস্যাটির বর্ণনা",
+    "descriptionPlaceholder": "তুমি কি করলে, তুমি কি আশা করেছিলে, আর কি হলো তার বদলে।",
+    "stepsLabel": "কিভাবে পুনরুৎপাদন করা যায় (ঐচ্ছিক)",
+    "submit": "টিকিট পাঠান",
+    "submitting": "পাঠাইতাছি...",
+    "filed": "টিকিট {{ref}} টিমের কাছে আছে।",
+    "filedNotEmailed": "টিকিট {{ref}} রেকর্ড করা হইসে। রেফারেন্সটা রাখবা।",
+    "status": {
+      "open": "খোল",
+      "in_progress": "চলমান",
+      "resolved": "সমাধান করা হয়ে গেছে",
+      "closed": "বন্ধ"
+    },
+    "subtitle": "আপনার টিকিট এবং তাদের স্ট্যাটাস । কোনও AI নেই, কোনও ফি নেই ।",
+    "subjectLabel": "বিষয়",
+    "descriptionLabel": "জলদি ক্রো",
+    "alreadyOpen": "আপনার কাছে ইতিমধ্যে {{ref}} হিসাবে এটি খোলা আছে ।",
+    "filingFailed": "সেই টিকিটটি ফাইল করা যায়নি । অনুগ্রহ করে আবার চেষ্টা করুন ।",
+    "severity": {
+      "low": "কম",
+      "normal": "স্বাভাবিক",
+      "high": "উচ্চ",
+      "urgent": "জরুরি"
+    },
+    "category": {
+      "account_access": "অ্যাকাউন্ট অ্যাক্সেস",
+      "wallet_or_transactions": "ওয়ালেট বা লেনদেন",
+      "posting_or_uploads": "পোস্টিং বা আপলোড",
+      "payments_or_subscriptions": "পেমেন্ট বা সাবস্ক্রিপশন",
+      "live_streaming": "লাইভ স্ট্রিমিং",
+      "content_or_moderation": "বিষয়বস্তু বা সংযম",
+      "bug": "বাগ",
+      "feature_request": "ফিচার অনুরোধ",
+      "other": "অন্যান্য"
+    },
+    "filedOn": "ফাইল করা হয়েছে {{date}}"
   }
 }

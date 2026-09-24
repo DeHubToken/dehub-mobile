@@ -613,7 +613,9 @@
     "smsPricePerMessage": "{{dhb}} DHB (${{usd}}@)",
     "smsBand": {
       "global": "Ọtụtụ mba ndị ọzọ",
-      "premium": "N 'ebe ọ bụla ọzọ"
+      "premium": "N 'ebe ọ bụla ọzọ",
+      "domestic": "United Kingdom",
+      "europe": "Europe"
     },
     "smsDepositAction": "Ziga {{dhb}} DHB",
     "smsDepositPaying": "Gosi na obere akpa gị...",
@@ -687,7 +689,28 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "AGBALAM",
     "exportPkCopy": "Detuo igodo nzuzo",
-    "e2eAutomatic": "Akwụkwọ"
+    "e2eAutomatic": "Akwụkwọ",
+    "publicChatAlertsRateOption": "{{count}} kwa elekere",
+    "smsScopeLabel": "Ihe ị ga-ede",
+    "smsScopeDesc": "Ederede na-eri ego, yabụ belata ya na ihe bara uru ịkwụsị",
+    "smsScope": {
+      "all": "Ihe niile m gbanyere",
+      "tips": "Naanị ndụmọdụ m natara",
+      "subscriptions": "Ndị debanyere aha ọhụrụ naanị",
+      "sales": "Naanị ahịa ọdịnaya m",
+      "bounties": "Naanị onyinye",
+      "fractions": "Naanị onyinye na ahịa",
+      "messages": "Naanị ozi ozugbo",
+      "mentions": "Naanị okwu gbasara m",
+      "replies": "Naanị nzaghachi na nkọwa m",
+      "account": "Naanị ihe gbasara akaụntụ m"
+    },
+    "smsNotificationsDescReady": "Ezitere {{phone}} — {{dhb}} DHB nke ọ bụla, ihe dị ka {{count}} fọdụrụ",
+    "smsNotificationsLocked": "Meghee na {{dhb}} DHB (${{usd}}) nke kredit",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) na-eme ka ederede mepee ma bụrụ ng balance mbụ gị.",
+    "smsNeedDhb": "Ị chọrọ {{dhb}} DHB iji mepee ngosi ederede.",
+    "smsBalance": "{{dhb}} DHB fọdụrụ (${{usd}})",
+    "smsBalanceMessages": "Ihe dị ka {{count}} ozi ndị ọzọ"
   },
   "common": {
     "mute": "Mechie ụda",
@@ -1409,8 +1432,15 @@
       "joined": "{{name}} sonyeere obodo gị",
       "requested": "{{name}} jụrụ isonyere obodo gị",
       "requestedNamed": "{{name}} jụrụ isonyere \"{{community}}\"",
-      "hereNamed": "{{name}} ozi onye ọ bụla na \"{{community}}\""
-    }
+      "hereNamed": "{{name}} ozi onye ọ bụla na \"{{community}}\"",
+      "joinedNamed": "{{name}} sonyeere “{{community}}”",
+      "mentioned": "{{name}} kwuru gị na obodo",
+      "mentionedNamed": "{{name}} kwuru gị na “{{community}}”",
+      "here": "{{name}} zitere mmadụ niile ozi na obodo"
+    },
+    "badgeLent": "{{name}} nyere gị {{tier}} badge ha",
+    "badgeHandedBack": "{{name}} weghachiri {{tier}} badge ị nyere ha",
+    "badgeLoanLapsed": "{{name}} enweghị ike inye gị {{tier}} badge ha ọzọ"
   },
   "leaderboard": {
     "title": "Ndepụta Ọkwa",
@@ -1848,7 +1878,8 @@
     "otherTokens": "Token ndị ọzọ",
     "otherTokensDesc": "Jiri kaadị gị zụta ETH ma ọ bụ USDC na Base",
     "shareToFeed": "Kekọrịta na ndepụta m",
-    "sharePostTemplate": "Naanị tinye {{amount}} $DHB na nchịkọta m na DeHub. Iwulite na obodo. #DeHub #DHB"
+    "sharePostTemplate": "Naanị tinye {{amount}} $DHB na nchịkọta m na DeHub. Iwulite na obodo. #DeHub #DHB",
+    "minDhbPurchase": "Ịzụta DHB kacha nta bụ $0.50"
   },
   "agents": {
     "title": "Ndị Ọrụ AI",
@@ -2992,7 +3023,13 @@
     "addedToYourUsernames": "A ga-agbakwunye ya na aha njirimara gị",
     "boughtNameGoesToVault": "Ị ka bụ @{{current}}. @{{handle}} na-abanye n'aha njirimara gị, ị nwere ike ịgbanwee gaa na ya mgbe ọ bụla ịchọrọ.",
     "youAreNow": "Ị bụ @{{handle}} ugbu a",
-    "boughtToVaultToast": "@{{handle}} dị ugbu a n'aha njirimara gị"
+    "boughtToVaultToast": "@{{handle}} dị ugbu a n'aha njirimara gị",
+    "askingPriceUsd": "Ọnụ ahịa a jụrụ (USD)",
+    "dollarPriceRange": "Tinye $ 1–$ 1,000,000, na ruo abụọ decimal ebe.",
+    "fixedDollarPrice": "Dollar price anọgide ofu; token ego mmelite.",
+    "priceUpdated": "Ọnụahịa emelitere. Nyochaa ego ahụ wee pịa Zụta ọzọ.",
+    "tokensPaidToSeller": "A kwụrụ ụgwọ ozugbo na onye na-ere ahịa",
+    "priceUsd": "Ahịa (USD)"
   },
   "stores": {
     "subtitle": "Chọpụta ngwaahịa sitere n'obodo DeHub",
@@ -3508,7 +3545,12 @@
     "fileError": "Agaghị emenwu ihe onyonyo a. Biko nwaa faịlụ ọzọ.",
     "followRequest": "{{name}} rịọrọ ka ị soro gị",
     "followAccepted": "{{name}} nabatara arịrịọ na-eso gị",
-    "newMessage": "{{name}} zitere gị ozi"
+    "newMessage": "{{name}} zitere gị ozi",
+    "reactedPost": "{{name}} meghachi omume na post gị",
+    "repostedPost": "{{name}} weghachiri post gị",
+    "quotedPost": "{{name}} kwuru post gị",
+    "mentionedYou": "{{name}} kpọrọ gị aha",
+    "signalFlare": "{{name}} zitere ọkụ ọkụ"
   },
   "audioPost": {
     "popOut": "Pop si — nọgide na-ege ntị mgbe ị na-agagharị",
@@ -3518,7 +3560,9 @@
     "play": "Gwuo",
     "pause": "Kwụsị",
     "listens_one": "{{count}} gee ntị",
-    "listens_other": "{{count}} na-ege ntị"
+    "listens_other": "{{count}} na-ege ntị",
+    "cornerPlayer": "Nkpọghachi egwu post",
+    "untitled": "Post egwu"
   },
   "transfer": {
     "title": "Nyefee tokens",
@@ -4083,7 +4127,8 @@
     "madeForKidsOffDesc": "Egosi post a nye ụmụaka na-eji Kids Mode, ma wepụ ya na feed ọ bụla.",
     "madeForKidsBlockedByMature": "A post akọwapụtara na-adịghị mma agaghị ebipụtakwa maka ụmụaka.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Nweta RTMP ihe nddetail"
+    "encoderHint": "Nweta RTMP ihe nddetail",
+    "markMadeForKids": "Mark dị ka emere maka ụmụaka"
   },
   "bounty": {
     "claimed": "Anatala",
@@ -4326,7 +4371,8 @@
     "topUpSubtitle": "Zụta $DHB na kaadị ma nweta gas efu iji jiri ozugbo",
     "noTxHash": "Achọtaghị hash nke azụmahịa",
     "latestTransactions": "Azụmahịa kacha ọhụrụ",
-    "showAll": "Gosi ihe niile"
+    "showAll": "Gosi ihe niile",
+    "sentTo": "E zigara {{amount}} {{symbol}} na {{address}}"
   },
   "musicSheet": {
     "title": "Mepụta abụ",
@@ -4995,7 +5041,9 @@
     "prepareFailed": "E nweghị ike ịkwado ọnọdụ ahụ",
     "sellAmount": "Oke ire ere",
     "spend": "Mee ka ego ghọọ",
-    "withdrawFailed": "Mwepụ adabaghị"
+    "withdrawFailed": "Mwepụ adabaghị",
+    "reviewSwap": "Mgbanwe gbasara {{amountIn}} {{symbol}} maka {{usdc}} USDC na Base na mbụ. A na-eweghachi {{symbol}} ejighi ya na otu azụmahịa ahụ.",
+    "pendingSwapNote": "E jiri USDC gbanwee {{symbol}} gị. Nọgide iji mepụta ọnọdụ ahụ na-enweghị mgbanwe ọzọ."
   },
   "onboarding": {
     "optIn": {
@@ -5602,5 +5650,52 @@
     "appealRef": "Reference {{ref}}",
     "appealSubtitleSubject": "Mmadụ ga-agụ ihe a ma lee anya ọzọ na {{subject}}.",
     "appealMore": "Ihe odide ka dị mkpa: {{count}}"
+  },
+  "support": {
+    "title": "Nkwado",
+    "subtitle": "Tiketi gị na ọnọdụ ha. Ọ dịghị AI, ọ dịghị ụgwọ.",
+    "newTicket": "New tiketi",
+    "newTicketHint": "Gwa anyị ihe merenụ na ihe ị tụrụ anya kama.",
+    "backToTickets": "Ihe bụ ihe ọzọ, get rewarded bonuses on deposits",
+    "openHeading": "Mepee ({{n}})",
+    "closedHeading": "Emechiela ({{n}})",
+    "noTickets": "Ị tinyebeghị tiketi nkwado ọbụla.",
+    "loadFailed": "Enweghi ike ibugo tiketi gị. Biko nwaa ọzọ.",
+    "categoryLabel": "Udi",
+    "severityLabel": "Ihe kacha mkpa",
+    "subjectLabel": "Isiokwu",
+    "subjectPlaceholder": "Otu akara na-akọwa nsogbu ahụ",
+    "descriptionLabel": "Gịnị mere",
+    "descriptionPlaceholder": "Ihe ị mere, ihe ị tụrụ anya ya, na ihe mere kama.",
+    "stepsLabel": "Nzọụkwụ iji mụta nwa (nhọrọ)",
+    "submit": "Ziga tiketi",
+    "submitting": "Na-eziga...",
+    "filed": "Tiketi {{ref}} bụ na otu.",
+    "filedNotEmailed": "Tiketi {{ref}} e dekọrọ. Debe ntụaka ahụ.",
+    "filingFailed": "Agaghị etinyenwu tikeeti ahụ. Biko nwaa ọzọ.",
+    "status": {
+      "open": "Mepee",
+      "in_progress": "Na-aga n 'ihu",
+      "resolved": "E doziiri",
+      "closed": "E mechiri"
+    },
+    "severity": {
+      "low": "Obere",
+      "normal": "Nkịtị",
+      "high": "Dị elu",
+      "urgent": "Mkpa"
+    },
+    "category": {
+      "account_access": "Nnweta akaụntụ",
+      "wallet_or_transactions": "Akpa ego ma ọ bụ azụmahịa",
+      "posting_or_uploads": "Ntinye ma ọ bụ nbudata",
+      "payments_or_subscriptions": "Ịkwụ ụgwọ ma ọ bụ ndenye aha",
+      "live_streaming": "Nkwanye ndụ",
+      "content_or_moderation": "Ọdịnaya ma ọ bụ nlekọta",
+      "bug": "Mmejọ",
+      "feature_request": "Arịrịọ atụmatụ",
+      "other": "Ndị ọzọ"
+    },
+    "filedOn": "E tinyere {{date}}"
   }
 }

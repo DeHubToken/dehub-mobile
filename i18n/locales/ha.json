@@ -685,7 +685,32 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "NAYI Imani",
     "exportPkCopy": "Kwafin maɓalli na sirri",
-    "e2eAutomatic": "Ta atomatik"
+    "e2eAutomatic": "Ta atomatik",
+    "smsScopeLabel": "Abin da za a aika ta saƙo",
+    "smsScopeDesc": "Saƙonni suna cin kuɗi, don haka ku rage su zuwa abin da ya cancanci katsewa",
+    "smsScope": {
+      "all": "Duk abin da na kunna",
+      "tips": "Sarrafa kawai da nake samu",
+      "subscriptions": "Sabbin masu biyan kuɗi kawai",
+      "sales": "Siyar da abin da na ƙirƙira kawai",
+      "bounties": "Kyaututtuka kawai",
+      "fractions": "Rarraba tayi da sayarwa kawai",
+      "messages": "Saƙonni kai tsaye kawai",
+      "mentions": "Saurara ta kawai",
+      "replies": "Amsawa ga bayanan da na yi",
+      "account": "Sanarwa game da asusuna kawai"
+    },
+    "smsNotificationsDescReady": "An aika zuwa {{phone}} — {{dhb}} DHB kowanne, saura {{count}}",
+    "smsNotificationsLocked": "Buɗe da {{dhb}} DHB (${{usd}}) na kuɗi",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) yana buɗe saƙonni kuma ya zama kuɗin farko.",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositAction": "Aika {{dhb}} DHB",
+    "smsNeedDhb": "Kuna buƙatar {{dhb}} DHB don buɗe sanarwar saƙo.",
+    "smsBalance": "{{dhb}} DHB saura (${{usd}})",
+    "smsBalanceMessages": "Kusan saƙonni {{count}}",
+    "smsTopUp": "Ƙara {{dhb}} DHB",
+    "smsCodeSent": "An aika lambar. Wannan ya ci {{price}} DHB.",
+    "kidsMode": "Yanayin Yara"
   },
   "common": {
     "mute": "Kashe sauti",
@@ -1853,7 +1878,8 @@
     "otherTokens": "Sauran tokens",
     "otherTokensDesc": "Sayi ETH ko USDC a Base da katinka",
     "shareToFeed": "Raba zuwa ciyarwata",
-    "sharePostTemplate": "Kawai ƙara {{amount}} $DHB zuwa stack na akan DeHub. Gina tare da al'umma. #DeHub #DHB"
+    "sharePostTemplate": "Kawai ƙara {{amount}} $DHB zuwa stack na akan DeHub. Gina tare da al'umma. #DeHub #DHB",
+    "minDhbPurchase": "Mafi ƙarancin siyan DHB shine $0.50"
   },
   "agents": {
     "title": "Wakilan AI",
@@ -2175,7 +2201,8 @@
     "pinnedToast": "An liƙa a saman wannan saƙon",
     "unpinnedToast": "An cire liƙau",
     "pinFailed": "Ba a iya liƙa wannan sharhin ba",
-    "kidsOnlyThread": "Wannan post ne ga yara. Sai kawai Kids Mode iya sharhi a kan shi."
+    "kidsOnlyThread": "Wannan post ne ga yara. Sai kawai Kids Mode iya sharhi a kan shi.",
+    "reportReasonPlaceholder": "Ƙara kowane cikakkun bayanai da ke taimaka mana mu duba shi (na zaɓi)"
   },
   "postInfo": {
     "title": "Bayanan bugu",
@@ -2996,7 +3023,13 @@
     "addedToYourUsernames": "Za a ƙara shi cikin sunayen masu amfani naka",
     "boughtNameGoesToVault": "Za ka ci gaba da zama @{{current}}. @{{handle}} zai shiga sunayen masu amfani naka, kuma za ka iya komawa gare shi duk lokacin da kake so.",
     "youAreNow": "Yanzu kai ne @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} yanzu yana cikin sunayen masu amfani naka"
+    "boughtToVaultToast": "@{{handle}} yanzu yana cikin sunayen masu amfani naka",
+    "askingPriceUsd": "Farashin nema (USD)",
+    "dollarPriceRange": "Shigar da $1–$1,000,000, tare da har zuwa lambobi biyu bayan alamar.",
+    "fixedDollarPrice": "Farashin Dala ya kasance, adadin token yana sabuntawa.",
+    "priceUpdated": "An sabunta farashin. Duba adadin kuma danna Siyarwa kuma.",
+    "tokensPaidToSeller": "An biya kai tsaye ga mai siyarwa",
+    "priceUsd": "Farashin (USD)"
   },
   "stores": {
     "subtitle": "Gano kayayyaki daga al'ummar DeHub",
@@ -3528,7 +3561,8 @@
     "play": "Yi wasa",
     "pause": "Dakatar da",
     "listens_one": "{{count}} saurare",
-    "listens_other": "{{count}} sauraro"
+    "listens_other": "{{count}} sauraro",
+    "untitled": "Audio post"
   },
   "transfer": {
     "title": "Tura tokens",
@@ -4093,7 +4127,8 @@
     "madeForKidsOffDesc": "Yana nuna wannan post ga yara da ke amfani da Kids Mode, kuma yana cire shi daga jerin abubuwa na yau da kullun.",
     "madeForKidsBlockedByMature": "Ba za a iya buga post da aka yi wa balagu tare da buga shi don yara ba.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Sami RTMP details"
+    "encoderHint": "Sami RTMP details",
+    "markMadeForKids": "Mark kamar yadda aka yi wa yara"
   },
   "bounty": {
     "claimed": "An karɓa",
@@ -5613,5 +5648,50 @@
     "appealRef": "Nunawa {{ref}}",
     "appealSubtitleSubject": "Mutum zai karanta wannan kuma ya sake duba {{subject}}.",
     "appealMore": "Har yanzu ana buƙatar halaye: {{count}}"
+  },
+  "support": {
+    "title": "QShortcut",
+    "newTicket": "Sabon tikitin",
+    "newTicketHint": "Faɗa mana abin da ya faru da abin da kuke tsammani a maimakon haka.",
+    "backToTickets": "Komawa zuwa tikiti",
+    "closedHeading": "An rufe ({{n}})",
+    "noTickets": "Ba ku shigar da tikitin tallafi ba tukuna.",
+    "loadFailed": "Ba za a iya ɗora tikitin ku ba. Don Allah a sake gwadawa.",
+    "categoryLabel": "Kategorien",
+    "severityLabel": "Fifiko",
+    "subjectLabel": "maudu'i",
+    "subjectPlaceholder": "Ɗaya daga cikin layi yana bayyana matsalar",
+    "descriptionLabel": "Me ya faru",
+    "descriptionPlaceholder": "Abin da kuka yi, abin da kuka sa ran, da abin da ya faru a maimakon haka.",
+    "stepsLabel": "Matakai don haifuwa (zaɓi)",
+    "submit": "Aika tikitin",
+    "submitting": "Aika...",
+    "filed": "Ticket {{ref}} yana tare da tawagar.",
+    "filedNotEmailed": "Ticket {{ref}} an rubuta. Ci gaba da ambaton.",
+    "alreadyOpen": "Kun riga kun sami wannan bude kamar {{ref}}.",
+    "filingFailed": "Ba za a iya shigar da wannan tikitin ba. Don Allah a sake gwadawa.",
+    "status": {
+      "in_progress": "A ci gaba",
+      "resolved": "An warware",
+      "closed": "An rufe"
+    },
+    "severity": {
+      "low": "Ƙananan",
+      "normal": "QFontDatabase",
+      "high": "Maɗaukaki",
+      "urgent": "Gaggawa"
+    },
+    "category": {
+      "account_access": "Samun dama ga asusu",
+      "wallet_or_transactions": "Wallet ko ma'amaloli",
+      "posting_or_uploads": "Posting ko uploads",
+      "payments_or_subscriptions": "Biyan kuɗi ko biyan kuɗi",
+      "live_streaming": "LIVE streaming",
+      "content_or_moderation": "Abun ciki ko matsakaici",
+      "bug": "Bug",
+      "feature_request": "Bukatar fasali",
+      "other": "Sauran"
+    },
+    "filedOn": "Fayil {{date}}"
   }
 }

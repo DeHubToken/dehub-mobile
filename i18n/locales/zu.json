@@ -693,7 +693,24 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "NGIYAVUMA",
     "exportPkCopy": "Kopisha isihluthulelo sangasese",
-    "e2eAutomatic": "Okuzenzakalelayo"
+    "e2eAutomatic": "Okuzenzakalelayo",
+    "smsScopeLabel": "Izinto ongazibhala nge-SMS",
+    "smsScopeDesc": "Ama-SMS abiza imali, ngakho-ke anciphise abe yizinto ezibalulekile ezifanele ukuphazamiseka",
+    "smsScope": {
+      "all": "Konke engikuvulile",
+      "tips": "Amathiphu engiwatholayo kuphela",
+      "subscriptions": "Ababhalisile abasha kuphela",
+      "sales": "Ukudayiswa kokuqukethwe kwami kuphela",
+      "bounties": "Imiklomelo kuphela",
+      "fractions": "Izinketho zokuthengiswa kwezingxenye kanye nokudayiswa kuphela",
+      "messages": "Imilayezo eqondile kuphela",
+      "mentions": "Ukubizwa kwami kuphela",
+      "replies": "Izimpendulo kuma-comment ami kuphela",
+      "account": "Izaziso mayelana ne-akhawunti yami kuphela"
+    },
+    "smsNotificationsDescReady": "Kuthunyelwe ku-{{phone}} — {{dhb}} DHB ngayinye, kusele cishe {{count}}",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsBalance": "Kusele {{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Thulisa",
@@ -1862,7 +1879,8 @@
     "otherTokens": "Amanye amathokheni",
     "otherTokensDesc": "Thenga i-ETH noma i-USDC ku-Base ngekhadi lakho",
     "shareToFeed": "Yabelana ku-feed yami",
-    "sharePostTemplate": "Ngisanda kufaka i-{{amount}} $DHB esitaki sami ku-DeHub. Ukwakha nomphakathi. #DeHub #DHB"
+    "sharePostTemplate": "Ngisanda kufaka i-{{amount}} $DHB esitaki sami ku-DeHub. Ukwakha nomphakathi. #DeHub #DHB",
+    "minDhbPurchase": "Ukuthengwa okuncane kwe-DHB kungu-$0.50"
   },
   "agents": {
     "title": "Ejensi ye-AI",
@@ -3036,7 +3054,13 @@
     "addedToYourUsernames": "Kwengezwa kumagama akho omsebenzisi",
     "boughtNameGoesToVault": "Uhlala ungu-@{{current}}. U-@{{handle}} ungena kumagama akho omsebenzisi, futhi ungashintshela kuye noma nini lapho ufuna.",
     "youAreNow": "Manje ungu-@{{handle}}",
-    "boughtToVaultToast": "U-@{{handle}} manje usemagameni akho omsebenzisi"
+    "boughtToVaultToast": "U-@{{handle}} manje usemagameni akho omsebenzisi",
+    "askingPriceUsd": "Intengo eceliwe (USD)",
+    "dollarPriceRange": "Faka u-$1–$1,000,000, kunezimbili izindawo zamadesimali.",
+    "fixedDollarPrice": "Intengo yedola ihlala ingashintshi; inani lamathokheni liyabuyekezwa.",
+    "priceUpdated": "Intengo ibuyekezwe. Buyekeza inani bese uthepha ku-Thenga futhi.",
+    "tokensPaidToSeller": "Kukhokhelwa ngqo kumthengisi",
+    "priceUsd": "Intengo (USD)"
   },
   "stores": {
     "subtitle": "Thola imikhiqizo emphakathini we-DeHub",
@@ -4134,7 +4158,8 @@
     "madeForKidsOffDesc": "Ikhombisa lesi sikhwama abantwaneni abasebenzisa i-Kids Mode, futhi siyisuse kumafeedi ajwayelekile.",
     "madeForKidsBlockedByMature": "Ikhwama elimakwe njengokukhanya kabantu abadala alikwazi futhi likupapashwe ngabantwana.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Thola imininingwane ye-RTMP"
+    "encoderHint": "Thola imininingwane ye-RTMP",
+    "markMadeForKids": "Phawula ukuthi yenzelwe izingane"
   },
   "bounty": {
     "claimed": "Kuthathiwe",
@@ -5656,5 +5681,53 @@
     "appealRef": "Ireferensi {{ref}}",
     "appealSubtitleSubject": "Umuntu uzofunda lokhu bese ebheka futhi ku- {{subject}}.",
     "appealMore": "Izinhlamvu ezisadingeka: {{count}}"
+  },
+  "support": {
+    "title": "Ukusekelwa",
+    "subtitle": "Amathikithi akho nesimo sawo. Akukho AI, akukho mali.",
+    "newTicket": "Ithikithi elisha",
+    "newTicketHint": "Sitshele ukuthi kwenzekani nokuthi ubuyelaphi ubuyekezwe.",
+    "backToTickets": "Buyela kumathikithi",
+    "openHeading": "Vuliwe ({{n}})",
+    "closedHeading": "Kuvuliwe ({{n}})",
+    "noTickets": "Awukafaki amathikithi okusekelwa.",
+    "loadFailed": "Ayikwazanga ukulayisha amathikithi akho. Sicela uzame futhi.",
+    "categoryLabel": "Isigaba",
+    "severityLabel": "uthayiphe umusho ngokugcwele langage yakho",
+    "subjectLabel": "mboxImp",
+    "subjectPlaceholder": "Umugqa owodwa ochaza inkinga",
+    "descriptionLabel": "kanti",
+    "descriptionPlaceholder": "Okwenzile, lokho obukulindele, nalokho okwenzekile esikhundleni salokho.",
+    "stepsLabel": "Izinyathelo zokukhiqiza kabusha (akuphoqelekile)",
+    "submit": "Thumela ithikithi",
+    "submitting": "Iyathumela...",
+    "filed": "Ithikithi {{ref}} likhona eqenjini.",
+    "filedNotEmailed": "Ithikithi {{ref}} liqoshiwe. Gcina ireferensi.",
+    "alreadyOpen": "Usuvele ukuvule lokhu njengo- {{ref}}.",
+    "filingFailed": "Ayikwazanga ukufaka lelo thikithi. Sicela uzame futhi.",
+    "status": {
+      "open": "Ijubane",
+      "in_progress": "Igridi Iyaqhubeka",
+      "resolved": "Ixazululiwe",
+      "closed": "Kuvaliwe"
+    },
+    "severity": {
+      "low": "Priority",
+      "normal": "Okujwayelekile",
+      "high": "Priority",
+      "urgent": "Kuyaphuthuma"
+    },
+    "category": {
+      "account_access": "Ukungena ku-akhawunti",
+      "wallet_or_transactions": "Isikhwama semali noma ukuthengiselana",
+      "posting_or_uploads": "Ukuphosta noma ukulayisha",
+      "payments_or_subscriptions": "Izinkokhelo noma okubhaliselwe",
+      "live_streaming": "Ukusakaza bukhoma",
+      "content_or_moderation": "Okuqukethwe noma ukulinganisela",
+      "bug": "Isinambuzane",
+      "feature_request": "Isicelo sesici",
+      "other": "Okunye"
+    },
+    "filedOn": "Ifakiwe {{date}}"
   }
 }

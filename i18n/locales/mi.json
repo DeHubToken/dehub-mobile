@@ -686,7 +686,31 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "KA MARAMA AHau",
     "exportPkCopy": "Kōkopi matua matua",
-    "e2eAutomatic": "Aunoa"
+    "e2eAutomatic": "Aunoa",
+    "smsScopeLabel": "Me pēhea te tuku karere",
+    "smsScopeDesc": "He utu ngā karere, nā reira kia iti ki ngā mea e tika ana kia pokanoa",
+    "smsScope": {
+      "all": "Ngā mea katoa kua tahuri ahau",
+      "tips": "Ngā tohutohu anake e whiwhi ana ahau",
+      "subscriptions": "Ngā kaiohauru hou anake",
+      "sales": "Ngā hokonga o taku ihirangi anake",
+      "bounties": "Ngā taonga anake",
+      "fractions": "Ngā tuku hautau me ngā hokonga anake",
+      "messages": "Ngā karere tika anake",
+      "mentions": "Ngā whakahuatanga mōku anake",
+      "replies": "Ngā whakautu ki aku kōrero anake",
+      "account": "Ngā whakamōhiotanga mō taku pūkete anake"
+    },
+    "smsNotificationsDescReady": "Tukua ki {{phone}} — {{dhb}} DHB ia, tata ki {{count}} i toe",
+    "smsNotificationsLocked": "Wewete mā te {{dhb}} DHB (${{usd}}) o te nama",
+    "smsUnlockPrice": "Ko te {{dhb}} DHB (${{usd}}) ka wewete i ngā karere, ka noho hei nama tuatahi māu.",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositAction": "Tukua te {{dhb}} DHB",
+    "smsBalance": "{{dhb}} DHB i toe (${{usd}})",
+    "smsTopUp": "Whakakiia te {{dhb}} DHB",
+    "smsCodeSent": "Kua tukua te waehere. He {{price}} DHB te utu.",
+    "smsCodeLabel": "Te waehere i tukua e mātou ki {{phone}}",
+    "badgeDelegationLendsAny": "Ka hoatu e ia tangata he tohu kua wewetehia e koe ki tētahi atu pūkete, tae atu ki tō ake {{tier}}. Ka noho tonu te tohu iti ki te whakamahi i tētahi mokamoka katoa."
   },
   "common": {
     "mute": "Whakangū",
@@ -1412,8 +1436,11 @@
       "requested": "{{name}} ka tono kia uru atu ki to hapori",
       "mentioned": "{{name}} korero ki a koe i roto i te hapori",
       "here": "{{name}} karere katoa i roto i te hapori",
-      "hereNamed": "{{name}} karere katoa i roto i {{community}}"
-    }
+      "hereNamed": "{{name}} karere katoa i roto i {{community}}",
+      "requestedNamed": "I tono a {{name}} kia uru ki te “{{community}}”",
+      "mentionedNamed": "I whakahuatia koe e {{name}} i roto i te “{{community}}”"
+    },
+    "badgeLoanDropped": "Kāore koe e taea te hoatu tō tohu {{tier}} ki te {{name}}"
   },
   "leaderboard": {
     "title": "Rārangi Rangatira",
@@ -1851,7 +1878,8 @@
     "otherTokens": "Ētahi atu tohu",
     "otherTokensDesc": "Hokona he ETH, he USDC rānei i Base ki tō kāri",
     "shareToFeed": "Whakauru atu ki taku kai",
-    "sharePostTemplate": "Just tāpiri {{amount}} $DHB ki toku stack i runga i DeHub. Hanga ki te hapori. #DeHub #DHB"
+    "sharePostTemplate": "Just tāpiri {{amount}} $DHB ki toku stack i runga i DeHub. Hanga ki te hapori. #DeHub #DHB",
+    "minDhbPurchase": "Ko te iti rawa o te hoko DHB ko $0.50"
   },
   "agents": {
     "title": "Kaihautū MI",
@@ -2995,7 +3023,13 @@
     "addedToYourUsernames": "Ka tāpirihia ki ō ingoa kaiwhakamahi",
     "boughtNameGoesToVault": "Ka noho tonu koe hei @{{current}}. Ka uru a @{{handle}} ki ō ingoa kaiwhakamahi, ā, ka taea e koe te huri ki a ia ahakoa āhea.",
     "youAreNow": "Ko @{{handle}} koe ināianei",
-    "boughtToVaultToast": "Kei ō ingoa kaiwhakamahi a @{{handle}} ināianei"
+    "boughtToVaultToast": "Kei ō ingoa kaiwhakamahi a @{{handle}} ināianei",
+    "askingPriceUsd": "Utu tono (USD)",
+    "dollarPriceRange": "Whakauruhia te $1–$1,000,000, tae atu ki ngā wahi rua tekau.",
+    "fixedDollarPrice": "Ka noho tonu te utu taara; ka whakahouhia te nui o te tohu.",
+    "priceUpdated": "Kua whakahoutia te utu. Arotakehia te nui ka pēhi anō i te Hokona.",
+    "tokensPaidToSeller": "Utu tika ki te kaihoko",
+    "priceUsd": "Utu (USD)"
   },
   "stores": {
     "subtitle": "Kimihia ngā hua mai i te hapori DeHub",
@@ -3525,7 +3559,9 @@
     "untitled": "Tuhinga oro",
     "creator": "Te Kaihanga o DeHub",
     "listens_one": "{{count}} whakarongo",
-    "listens_other": "{{count}} whakarongo"
+    "listens_other": "{{count}} whakarongo",
+    "play": "Play",
+    "pause": "Pause"
   },
   "transfer": {
     "title": "Whakawhiti tohu",
@@ -4090,7 +4126,8 @@
     "madeForKidsOffDesc": "Whakaatuhia tēnei pōtae ki ngā tamariki e whakamahi ana i Kids Mode, me te tango i ngā kaupapa noa.",
     "madeForKidsBlockedByMature": "Kaore e taea te whakapuaki i tētahi pōtae kua tohua hei pakeke mō ngā tamariki.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Tīkina ngā taipitopito RTMP"
+    "encoderHint": "Tīkina ngā taipitopito RTMP",
+    "markMadeForKids": "He mea hanga mo nga tamariki"
   },
   "bounty": {
     "claimed": "Kua tonoa",
@@ -5610,5 +5647,51 @@
     "appealRef": "Whakaaturanga {{ref}}",
     "appealSubtitleSubject": "Ka pānuitia tēnei e tētahi tangata, ā, ka tirohia anōtia a {{subject}}.",
     "appealMore": "Kei te hiahiatia tonu nga tohu: {{count}}"
+  },
+  "support": {
+    "title": "Tautoko",
+    "subtitle": "To koutou tīkiti me to ratou tūnga. Kaore he utu, kaore he utu.",
+    "newTicket": "Tīkiti hou",
+    "newTicketHint": "Korero mai ki a matou he aha te mea i tupu, me te aha i tumanakohia e koe.",
+    "backToTickets": "Hoki ki ngā tīkiti",
+    "closedHeading": "Kua kati ({{n}})",
+    "noTickets": "Kahore ano koe i tuku i tetahi tīkiti tautoko.",
+    "loadFailed": "E kore e taea e koe te tiki i to koutou tīkiti. Tena koa tamata ano.",
+    "categoryLabel": "Kāwai",
+    "severityLabel": "Te kaupapa matua",
+    "subjectLabel": "Kaupapa",
+    "subjectPlaceholder": "Kotahi raina e whakaahua ana i te raruraru",
+    "descriptionLabel": "ka taea e koe",
+    "descriptionPlaceholder": "Ko te mea i mahia e koe, ko te mea i tumanakohia e koe, me te mea i tupu.",
+    "stepsLabel": "Hipanga ki te whakaputa (kōwhiringa)",
+    "submit": "Tukuna te tīkiti",
+    "submitting": "Tukua...",
+    "filed": "Tiket {{ref}} kei te taha o te kapa.",
+    "filedNotEmailed": "Tikiti {{ref}} tuhi. Kia mau ki te tohutoro.",
+    "filingFailed": "Kaore e taea e au te tuku i taua tīkiti. Tena koa tamata ano.",
+    "status": {
+      "open": "Huaki",
+      "in_progress": "I roto i te ahunga whakamua",
+      "resolved": "Whakatau",
+      "closed": "Kua kati"
+    },
+    "severity": {
+      "low": "Iti",
+      "normal": "He mea noa",
+      "high": "Teitei",
+      "urgent": "He tere"
+    },
+    "category": {
+      "account_access": "Te uru atu ki te kaute",
+      "wallet_or_transactions": "Wallet ranei whakawhitinga",
+      "posting_or_uploads": "Te tuku, te tuku ranei",
+      "payments_or_subscriptions": "Ngā utu, ngā ohaurunga rānei",
+      "live_streaming": "Te rere ora",
+      "content_or_moderation": "Te ihirangi, te whakaiti ranei",
+      "bug": "Bug",
+      "feature_request": "Tono āhuatanga",
+      "other": "Ētahi atu"
+    },
+    "filedOn": "Kōnae {{date}}"
   }
 }

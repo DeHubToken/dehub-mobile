@@ -108,7 +108,8 @@
     "livePreview": "Pêşdîtina zindî",
     "publishChanges": "Guhertinan biweşîne",
     "pagePublished": "Rûpela vexwendinê hate weşandin",
-    "pageSaveFailed": "Rûpela vexwendinê nehat tomarkirin"
+    "pageSaveFailed": "Rûpela vexwendinê nehat tomarkirin",
+    "selfVisitsExcluded": "سه‌ردانه‌کانی خۆت بۆ لینکه‌که‌ت هه‌ژمار ناکرێت."
   },
   "feed": {
     "home": "Mal",
@@ -614,12 +615,70 @@
       "keyCopied": "Stream key copied"
     },
     "aiScraping": {
-      "hintAllow": "سیستەمەکان و گەڕۆکەکانی زیرەکی دەستکرد کە ئەم نیشانە ڕێز دەگرن، دەتوانن لەسەر دەنگ، هونەر و نووسینەکانی تۆ مەشق بکەن."
+      "hintAllow": "سیستەمەکان و گەڕۆکەکانی زیرەکی دەستکرد کە ئەم نیشانە ڕێز دەگرن، دەتوانن لەسەر دەنگ، هونەر و نووسینەکانی تۆ مەشق بکەن.",
+      "section": "ڕاهێنانی زیرەکی دەستکرد",
+      "label": "ڕێگە بدە زیرەکی دەستکرد ناوەڕۆکەکەم بخوێنێتەوە",
+      "hintDeny": "سیستەم و خولگەکانی زیرەکی دەستکرد کە ئەم ئاماژەیە ڕێز دەگرن داوا دەکرێن کە لەسەر دەنگ، هونەر و نووسینەکەت ڕاهێنان نەکەن. خولگەکانی کە ئاماژەکە پشتگوێ دەخەن لەلایەنەوە ناگیرێن.",
+      "saved": "پێشینەی ڕاهێنانی زیرەکی دەستکرد پارێزرا"
     },
     "chainIdLabel": "زنجیرە ID: {{id}}",
     "exportPkConfirmPhrase": "تێدەگەم",
     "exportPkCopy": "کلیلە تایبەتەکە کۆپی بکە",
-    "e2eAutomatic": "خۆکارانە"
+    "e2eAutomatic": "خۆکارانە",
+    "socialFollowers": "شوێنکه‌وتووان له‌سه‌ر {{platform}}",
+    "socialFollowersHint": "له‌سه‌ر پرۆفایله‌که‌ت وه‌ک به‌شێک له‌ گه‌یشتنی گشتی نیشان ده‌درێت. خۆت ژماره‌که‌ داخڵ بکه‌ - ئێمه‌ له‌ پلاتفۆرمه‌که‌وه‌ ناخوێنینه‌وه‌.",
+    "publicChatAlerts": "چاتی گشتی",
+    "publicChatAlertsDesc": "کاتێک چاتی گشتی قسه‌ ده‌کات ئاگادار به‌ره‌ کاتێک له‌ شوێنێکی ترت",
+    "publicChatAlertsOnDesc": "کورتە ماوەی قەرەباڵە وەک ئاگادارکردنەوەیەکی یەکگرتوو دێت",
+    "publicChatAlertsRate": "لە زۆرترین",
+    "publicChatAlertsRateOption": "{{count}} لە کاتژمێرێکدا",
+    "publicChatAlertsRateHint": "هیچ شتێک لەدەست نادات کاتێک ژوورەکە لەمە قەرەباڵەتر بێت - نامەکان هەڵدەگیرێن و پێکەوە لە ئاگادارکردنەوەی داهاتوودا ده‌گه‌ن.",
+    "badgeDelegationAccept": "ڕێ بدە بە کەسانی تر کە نیشانم پێ بدەن",
+    "badgeDelegationAcceptHint": "ئەمە بکوژێنەوە بۆ ڕەتکردنەوەی نیشانە وەرگیراوەکان. هەر نیشانەیەک کە ئێستا لەبەردایە دەگەڕێندرێتەوە.",
+    "badgeDelegationAcceptOn": "دەتوانیت نیشانەت پێ بدرێتەوە",
+    "badgeDelegationAcceptOff": "نیشانەت پێ نادرێت",
+    "badgeDelegationAcceptOffEnded": "نیشانە گەڕێندرایەوە. نیشانەیەکی ترت پێ نادرێت.",
+    "badgeDelegationAcceptFailed": "نه‌توانرا ئه‌و ڕێکخستنه‌ بپارێزرێت",
+    "smsNotifications": "ئاگادارکردنەوەی دەقی",
+    "smsScopeLabel": "چی بنووسرێت",
+    "smsScopeDesc": "نامەکان پارەیان هەیە، بۆیە بیانکەیتە ئەوەی شایستەی پچڕاندن بێت",
+    "smsScope": {
+      "all": "هەموو ئەوانەی کە من پێم کردووە",
+      "tips": "تەنها سوودەکانم وەردەگرم",
+      "subscriptions": "تەنها بەشداربووانی نوێ",
+      "sales": "تەنها فرۆشتنی ناوەڕۆکەکەم",
+      "bounties": "تەنها خەڵاتەکان",
+      "fractions": "تەنها پێشکەشکردن و فرۆشتنی کەرەستەکان",
+      "messages": "تەنها نامەی ڕاستەوخۆ",
+      "mentions": "تەنها ئاماژە پێکردنەکانم",
+      "replies": "تەنها وەڵامەکان بۆ کۆمێنتەکانم",
+      "account": "تەنها ئاگادارکردنەوەکان لەسەر هەژمارەکەم"
+    },
+    "smsNotificationsDesc": "ئەوانەی گرنگن وەک نامەی دەقی وەربگرە",
+    "smsNotificationsDescReady": "نێردراو بۆ {{phone}} — {{dhb}} DHB، نزیکەی {{count}} ماوە",
+    "smsVerifyFailed": "نەمانتوانی ئەو کۆدەکە بسەلمێنین.",
+    "smsNumberVerified": "ژمارە پشتڕاست کرایەوە",
+    "smsRemoveNumber": "ئەم ژمارەیە بسڕەوە",
+    "smsRemoveFailed": "نەمانتوانی ئەو ژمارەیە بسڕینەوە.",
+    "smsNumberRemoved": "ژمارە سڕایەوە",
+    "smsCountryBlocked": "هێشتا ناتوانین نامە بۆ ئەو وڵاتە بنێرین.",
+    "badgeDelegationNoteAny": "یەک دانە شوێن یەکێک لە نیشانە قفڵ نەکراوەکانی تۆ دەداتە ئەکاونتێکی تر. هەر کاتێک ویستت بیگەڕێنەوە - شوێنەکە ڕۆژێک دواتر ئازاد دەبێت.",
+    "badgeDelegationRaisesOnlyTier": "نیشانەیەک کە دەیدەیت دەبێت لەو نیشانەیەی کە ئەوان پێشتر بەدەستیان هێناوە بەرزتر بێت.",
+    "badgeDelegationPickTier": "نیشانە بۆ دان",
+    "badgeDelegationLendsAny": "هەریەکەیان هەر نیشانەیەک کە تۆ قفڵت کردووە، تاوەکوو {{tier}}ی خۆت، دەداتە ئەکاونتێکی تر. نیشانەیەکی بچووکتر هێشتا شوێنێکی تەواو بەکاردەبات.",
+    "kidsMode": "ڕەفتاری منداڵان",
+    "kidsModeDesc": "تەنها بڵاوکراوەکانی تایبەت بە منداڵان، لە هەموو شوێنێکدا، پیشان دەدات. PINێک دای ئەکاتەوە.",
+    "kidsModeSetPin": "PINێک هەڵبژێرە",
+    "kidsModeSetPinHelp": "٤ بۆ ٨ ژمارە. پێویستت پێیەتی بۆ ئەوەی ڕەفتاری منداڵان دابگیرسێنیتەوە.",
+    "kidsModeConfirmPin": "دوبارەی بکەرەوە",
+    "kidsModeConfirmPinHelp": "بۆ ئەوەی بزانیت دەتوانیت دوبارەی بکەیتەوە.",
+    "kidsModeEnterPin": "PINەکەت داخڵ بکە",
+    "kidsModeEnterPinHelp": "ئەمە ڕەفتاری منداڵان لەم ئامێرەدا دادەگیرسێنێتەوە.",
+    "kidsModeTurnOn": "ڕەفتاری منداڵان بخەرە کار",
+    "kidsModeTurnOff": "ڕەفتاری منداڵان بکوژێنەرەوە",
+    "kidsModePinMismatch": "ئەم PINانە جیاوازن. دەستپێبکەرەوە.",
+    "kidsModeFailed": "ئەمە کارینەکرد. دوبارە هەوڵ بدە.",
+    "kidsModeForgotPin": "لەبیرت کردووە؟ لەگەڵ سۆمەکەت لە ئامێرێکی تردا بچۆژوژە بۆ ئەوەی ڕەفتاری منداڵان دابگیرسێنیتەوە."
   },
   "common": {
     "mute": "Bêdeng bike",
@@ -668,7 +727,8 @@
     "noInternetTitle": "نییە پەیوەندی ئینتەرنێت",
     "noInternetBody": "تکایە پەیوەندی ئینتەرنێتەکەت بزانە و دووبارە هەوڵ بدە. پێویستت بە پەیوەندی ئینتەرنێت هەیە بۆ بەکارهێنانی DeHub.",
     "noInternetStatus": "لە دەرەوەی هێڵ - نییە پەیوەندی تۆڕ",
-    "noInternetHint": "دڵنیابە Wi-Fi یان داتای مۆبایل کراوەیە، پاشان لێبدە \"{{action}}\""
+    "noInternetHint": "دڵنیابە Wi-Fi یان داتای مۆبایل کراوەیە، پاشان لێبدە \"{{action}}\"",
+    "continue": "بەردەوام بوون"
   },
   "tip": {
     "title": "Bexşîş Bişîne",
@@ -676,7 +736,33 @@
     "quickAmounts": "Mîqdarên bilez",
     "customAmount": "An jî mîqdar binivîsin",
     "sending": "Tê şandin...",
-    "sendAmount": "{{amount}} DHB bişîne"
+    "sendAmount": "{{amount}} DHB bişîne",
+    "toContent": "ناوەرۆکی سەرنج",
+    "privateBalanceNotice": "ئەم ئەکاونتە بارودۆخی پارەی تایبەتی چالاکە، بۆیە DeHub ناتوانێت توکن یان سەرنجی بۆ بنێرێت.",
+    "privacyCheckFailed": "نەتوانرا ڕێکخستنی تایبەتی وەرگرتنی پارە پشتڕاست بکرێتەوە. هیچ پارەیەک نەنێردرا.",
+    "solanaFailed": "ناردنی پارە بۆ سۆلانا شکستی هێنا",
+    "missingWeb3": "بۆتەی وێب٣ بوونی نییە",
+    "amountRequested": "بڕی داواکراو",
+    "amountIn": "بڕ ({{currency}})",
+    "enterAmount": "بڕ داخڵ بکە",
+    "paidInSol": "نێردرا بە SOL لەسەر سۆلانا",
+    "balance": "بالانس: {{amount}} DHB",
+    "balanceAmount": "بالانس: {{amount}}",
+    "max": "زۆرترین: {{amount}}",
+    "insufficientBalance": "بالانسی پێویست نییە",
+    "insufficientShort": "کەمە",
+    "insufficientDhb": "کەمی DHB",
+    "cannotTipSelf": "ناتوانیت پارە بۆ خۆت بنێریت",
+    "approving": "پەسەندکردن...",
+    "send": "ناردن",
+    "sent": "پارە نێردرا!",
+    "toRecipient": "بۆ {{name}}",
+    "sendAgain": "دووبارە بنێرە",
+    "addTip": "زیادکردنی پارە",
+    "attachDescription": "Tokensی DHB وەک پارە بەسەر نامەکەتدا زیاد بکە",
+    "minAmount": "کەمترین {{amount}} DHB.",
+    "attachAmount": "{{amount}} DHB زیاد بکە",
+    "removeTip": "لابردنی پارە"
   },
   "postOptions": {
     "options": "Vebijêrk",
@@ -746,7 +832,14 @@
     "boostPostDesc": "Wê li serê feeda malê deyne",
     "mintPostDesc": "Vê postê li ser zincîrê biweşîne",
     "giftBoost": "Boostekê diyarî bike",
-    "giftBoostDesc": "Yekê ji yên xwe li ser vê postê xerc bike"
+    "giftBoostDesc": "Yekê ji yên xwe li ser vê postê xerc bike",
+    "bookmark": "نیشانە بکە",
+    "removeBookmark": "لابردنی نیشانە",
+    "pinPost": "لە پڕۆفایلەکەتدا بچەسپێنە",
+    "unpinPost": "لابردنی لە پڕۆفایلەکەت",
+    "postPinned": "لە پڕۆفایلەکەتدا چەسپێنراوە",
+    "postUnpinned": "لابردرا لە پڕۆفایلەکەت",
+    "pinFailed": "نەتوانرا ئەم پۆستە ببەسترێت یان لاببردرێت"
   },
   "filters": {
     "sort": "Rêzkirin",
@@ -1174,7 +1267,12 @@
     "cashOut": "Dravê Derxe",
     "stakeComingSoon": "Staking zû tê!",
     "cashOutComingSoon": "Derxistina dravê zû tê!",
-    "solanaAddressLabel": "سۆلانا"
+    "solanaAddressLabel": "سۆلانا",
+    "chooseAddressNetwork": "کام تۆڕ؟",
+    "evmAddressHint": "Base، BNB و Ethereum",
+    "evmAddressCopied": "ئادرێسی EVM کۆپی کرا",
+    "solanaAddressHint": "تەنها توکنی SOL و SPL",
+    "solanaAddressCopied": "ئادرێسی Solana کۆپی کرا"
   },
   "bookmarks": {
     "title": "Nîşankirinên Te",
@@ -1214,7 +1312,19 @@
     "reachedEnd": "We xala dawî ya nîşankirinên xwe gîhand",
     "loginDescription": "Ji bo dîtin û birêvebirina nîşankirinên xwe yên tomarkirî têkevin.",
     "playlist": {
-      "unavailable": "ئەم پلەیلیستە ئیتر بەردەست نییە."
+      "unavailable": "ئەم پلەیلیستە ئیتر بەردەست نییە.",
+      "makePublic": "پلیستی گشتی",
+      "makePublicHint": "هەر کەسێک دەتوانێت ئەم فۆڵدەرە لە پڕۆفایلەکەتدا ببینێت.",
+      "publicBadge": "گشتی",
+      "copyLink": "لینکى پلیستەکە کۆپی بکە",
+      "linkCopied": "لینکى پلیستەکە کۆپی کرا",
+      "itemsCount": "{{count}} پۆست",
+      "emptyOwnerHint": "فۆڵدەرێکی بووکمارک بکە بە گشتی بۆ ئەوەی لێرە نیشان بدرێت.",
+      "emptyVisitor": "ئەم پڕۆفایلە هێشتا هیچ پلەیلیستی گشتی نییە.",
+      "openBookmarks": "بووکمارکەکانم بکەرەوە",
+      "back": "هەموو پلەیلیستەکان",
+      "noPosts": "ئەم پلەیلیستە هێشتا هیچ پۆستێکی نییە.",
+      "loadMore": "زیاتر پۆست نیشان بدە"
     }
   },
   "notifications": {
@@ -1280,7 +1390,23 @@
     "payments": "Dayîn",
     "claimBounty": "Xelata xwe bistîne",
     "noneForFilter": "Hîn agahdariyên {{filter}} tune ne.",
-    "andNOthers": "û {{count}} kesên din"
+    "andNOthers": "û {{count}} kesên din",
+    "badgeLent": "{{name}} خاڵتی {{tier}} ی پێبەخشیوی",
+    "badgeTakenBack": "{{name}} وازی لە پێبەخشینی خاڵتی {{tier}} هێناوە",
+    "badgeHandedBack": "{{name}} خاڵتی {{tier}} ی کە تۆ پێتبەخشی بوویت، گەڕاندەوە",
+    "badgeLoanLapsed": "{{name}} ئیتر ناتوانێت خاڵتی {{tier}} ی پێبەخشی تۆ بکات",
+    "badgeLoanDropped": "تۆ ئیتر ناتوانیت خاڵتی {{tier}} ی خۆت بە {{name}} ببەخشی",
+    "badgeLoanRetiered": "{{name}} ئێستا خاڵتی {{tier}} ی پێدەبەخشیت",
+    "community": {
+      "joined": "{{name}} پەیوەندی بە کۆمەڵگاکەتەوە کرد",
+      "joinedNamed": "{{name}} پەیوەندی بە \"{{community}}\" کرد",
+      "requested": "{{name}} داوای کرد بچێتە کۆمەڵگاکەتەوە",
+      "requestedNamed": "{{name}} داوای کرد بچێتە \"{{community}}\"",
+      "mentioned": "{{name}} ناوی تۆی هێناوە لە کۆمەڵگەیەکدا",
+      "mentionedNamed": "{{name}} ناوی تۆی هێناوە لە “{{community}}”",
+      "here": "{{name}} نامەی بۆ هەموو کەسێک نارد لە کۆمەڵگەیەکدا",
+      "hereNamed": "{{name}} نامەی بۆ هەموو کەسێک نارد لە “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "Pêşengtî",
@@ -1591,7 +1717,14 @@
     "refreshFailed": "شکستی هێنا لە نوێکردنەوە",
     "noRepliesYet": "هێشتا وەڵام نییە",
     "noRepliesYetSub": "کاتێک ئەم بەکارهێنەرە وەڵامی پۆستەکان دەداتەوە، لێرە دەردەکەون.",
-    "noMoreReplies": "هیچ وەڵامێکی تر نییە"
+    "noMoreReplies": "هیچ وەڵامێکی تر نییە",
+    "reach": {
+      "total": "کۆی گەیشتن",
+      "breakdownTitle": "ئەم گەیشتنە لە کوێوە دێت",
+      "dehubFollowers": "شوێنکەوتووانی DeHub",
+      "selfReported": "ژمارەی شوێنکەوتووانی سۆشیال لەلایەن دروستکەرەوە داخڵ کراوە."
+    },
+    "tabPlaylists": "پلیستەکان"
   },
   "tv": {
     "title": "TV",
@@ -1711,7 +1844,8 @@
     "otherTokens": "Tokenên din",
     "otherTokensDesc": "Bi karta xwe li ser Base ETH an USDC bikire",
     "shareToFeed": "هاوبەشی بکە لەگەڵ فیدەکەم",
-    "sharePostTemplate": "تازە {{amount}} $DHB بۆ کۆکراوەکەم لە DeHub زیاد کرد. دروستکردن لەگەڵ کۆمەڵگە. #DeHub #DHB"
+    "sharePostTemplate": "تازە {{amount}} $DHB بۆ کۆکراوەکەم لە DeHub زیاد کرد. دروستکردن لەگەڵ کۆمەڵگە. #DeHub #DHB",
+    "minDhbPurchase": "کەمترین کڕینی DHB بریتییە لە ٠.٥٠ دۆلار"
   },
   "agents": {
     "title": "Ajanên AI",
@@ -1957,7 +2091,24 @@
     "noActiveNow": "Niha pêşniyarên çalak tune",
     "subtitle": "Li ser pêşniyarên ku platformê şekil didin deng bide",
     "loadFailed": "Pêşniyar nehatin barkirin",
-    "againstLabel": "دژ - بەرامبەر"
+    "againstLabel": "دژ - بەرامبەر",
+    "forLabel": "بۆ",
+    "discussion": {
+      "title": "گفتوگۆ",
+      "intro": "پرسیاری زیاتر بکە یان گفتوگۆ لەسەر پێشنیارەکە بکە پێش ئەوەی دەنگ بدەیت.",
+      "reply": "وەڵامدانەوە",
+      "replyingTo": "وەڵامدانەوە بۆ {{name}}",
+      "writeReply": "وەڵامێک بنووسە",
+      "edited": "دەستکاری کرا",
+      "showMoreReplies": "زیاتر {{count}} وەڵام نیشان بدە",
+      "showMoreReplies_one": "زیاتر {{count}} وەڵام نیشان بدە",
+      "deleteTitle": "سڕینەوەی ئەم کۆمێنتە؟",
+      "deleteDescription": "ئەمە کۆمێنتەکە و وەڵامەکانی بۆ هەمووان لادەبات.",
+      "signInToComment": "بچووەژوورەوە بۆ بەشداریکردن لە گفتوگۆکەدا",
+      "empty": "هێشتا هیچ پرسیارێک نییە. گفتوگۆ دەست پێ بکە.",
+      "joinOnProposal": "بەشداریکردن لە گفتوگۆکەدا",
+      "authorChip": "نووسەری پێشنیار"
+    }
   },
   "sidebar": {
     "talkOfTheTown": "Gotina Bajêr",
@@ -2011,7 +2162,13 @@
     "unpinAction": "Pêvekê rake",
     "pinnedToast": "Li serê vê şandiyê hate pêvekirin",
     "unpinnedToast": "Pêvek hate rakirin",
-    "pinFailed": "Ew şîrove nehat pêvekirin"
+    "pinFailed": "Ew şîrove nehat pêvekirin",
+    "reportComment": "ڕاپۆرتکردنی کۆمێنت",
+    "reportCommentTitle": "ڕاپۆرتکردنی ئەم کۆمێنتە",
+    "reportCommentDescription": "پێمان بڵێ چی لەم کۆمێنتە هەڵەیە و دادوەرەکانمان لێی ورد دەبنەوە.",
+    "reportCommentAlready": "تۆ پێشتر ئەم کۆمێنتەت ڕاپۆرت کردووە.",
+    "reportReasonPlaceholder": "هەر وردەکارییەک زیاد بکە کە یارمەتیمان بدات لێی ورد ببینەوە (ئارەزوومەندە)",
+    "kidsOnlyThread": "ئەم پۆستە بۆ منداڵانە. تەنها \"ڕەفتاری منداڵانە\" دەتوانێت کۆمێنت لەسەر ئەم پۆستە بنووسێت."
   },
   "postInfo": {
     "title": "Agahiya postê",
@@ -2280,7 +2437,9 @@
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
-    "rate_limited": "سنووری داواکاری، هێواشتر"
+    "rate_limited": "سنووری داواکاری، هێواشتر",
+    "image_too_large_tier": "وێنەکە زۆر گەورەیە - پلەی {{tier}}ی تۆ وێنە تا {{limit}} مێگابایت هەڵدەگرێت",
+    "image_too_large_untiered": "وێنەکە زۆر گەورەیە - وێنەکان تا {{limit}} مێگابایت هەڵدەگیرێن"
   },
   "staking": {
     "title": "Staking",
@@ -2336,7 +2495,50 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "cancelUnstake": "Cancel withdrawal"
+    "cancelUnstake": "Cancel withdrawal",
+    "walletBalance": "بایلانس کیف",
+    "dhbOnBase": "DHB لەسەر Base",
+    "amountUnstaking": "{{amount}} کشانەوە",
+    "pendingRewards": "پاداشە چاوەڕوانکراوەکان",
+    "claimOnWeb": "لە وێب ئەپ داوا بکە",
+    "stakeOnBaseDesc": "DHB لەسەر Base دابنێ بۆ بەدەستهێنانی پاداشەکانی پڕۆتۆکۆل.",
+    "unstakeFromBnbDesc": "لە گرێبەستی BNB Chain بکشێرەوە. DHB لە پۆلی Base هێشتا گرێبەستی کشانەوەی نییە.",
+    "availableToStake": "بەردەست: {{amount}} DHB",
+    "withdrawableOnBnb": "کشانەوە: {{amount}} DHB لەسەر BNB Chain",
+    "restInBasePool": "{{amount}} لە پۆلی Base",
+    "lockedUntilWithFee": "تا {{date}} دانراوە، ١٢٪ قوربانی پێش ئەوە",
+    "totalStakedProtocol": "کۆی دانراو (پڕۆتۆکۆل)",
+    "orSendDirectly": "یان DHB ڕاستەوخۆ بنێرە بۆ ناونیشانی دانان لەسەر Base:",
+    "refreshBalances": "بایلانسەکان نوێ بکەرەوە",
+    "addressCopied": "ناونیشانی دانان کۆپی کرا!",
+    "checkForNewStake": "بۆ دانانێکی نوێ بگەڕێ",
+    "viewTransaction": "گواستنەوە ببینە",
+    "checkAgain": "دووبارە بگەڕێ",
+    "pendingConfirmed": "{{amount}} DHB پشتڕاست کرایەوە. مێژووی دانانەکەت نوێ دەکەینەوە. دووبارە مەنێرە.",
+    "pendingSubmitted": "{{amount}} DHB نێردرا. پشتڕاستکردنەوە هێشتا لەژێر پشکنیندایە. دووبارە مەنێرە.",
+    "refreshFailed": "نەتوانرا بۆ دانانی نوێ بگەڕێین. دوای چرکەیەک هەوڵ بدەرەوە.",
+    "foundNewStake": "{{amount}} DHB دۆزرایەوە. دانانەکەت نوێیە.",
+    "noNewTransfers": "هێشتا هیچ گواستنەوەیەکی نوێ نەدۆزراوەتەوە.",
+    "stakeConfirmedOnBase": "{{amount}} DHB لەسەر Base پشتڕاست کرایەوە.",
+    "stakeReverted": "بلاکچەین پشتڕاستی کردەوە کە ئەم گواستنەوەیە گەڕایەوە.",
+    "enterValidStakeAmount": "بڕێکی دروست بۆ دانان بنووسە.",
+    "enterValidUnstakeAmount": "بڕێکی دروست بۆ کشانەوە بنووسە.",
+    "walletNotConnected": "نەبوونی پەیوەندیی سۆڵت.",
+    "walletNotReady": "سۆڵت ئامادە نییە. تکایە دووبارە هەوڵ بدە.",
+    "insufficientOnBase": "بڕی پێویست DHB لەسەر Base نییە.",
+    "switchBaseFailed": "شکستی هێنا لە گۆڕینی تۆڕ بۆ Base.",
+    "switchBnbFailed": "شکستی هێنا لە گۆڕینی تۆڕ بۆ BNB Chain.",
+    "stakeSubmitted": "دانراوەکە نێردرا. چاوەڕێی پشتڕاستکردنەوە دەکەین — دووبارە مەنێرە.",
+    "txCancelledInWallet": "مامەڵەکە لە سۆڵتەکەتدا هەڵوەشایەوە.",
+    "txCancelled": "مامەڵەکە هەڵوەشایەوە.",
+    "stakeUnconfirmed": "نەتوانرا دانراوەکە پشتڕاست بکرێتەوە. چالاکی سۆڵتەکەت بزانە پێش ئەوەی دووبارە هەوڵ بدەیت.",
+    "onlyThisMuchStaked": "تۆ تەنها {{amount}} DHB دانراوەتە.",
+    "onlyLegacyWithdrawable": "تەنها {{amount}} DHB ئێستا دەتوانرێت بکێشرێتەوە — ئەوەی دیکە لە پۆڵی Base دایە، کە هێشتا گرێبەستی کشانەوەی نییە.",
+    "poolHasNoWithdrawal": "DHBـەکەت لە پۆڵی Base دایە، کە هێشتا گرێبەستی کشانەوەی نییە. پەیوەندی بە پشتیوانی بکە بۆ کشانەوە.",
+    "lockedEarlyFee": "داخراوە تا {{date}}. کشانەوەی ئێستا 88%ـت دەگەڕێنێتەوە — 12%ـی کرێ، نزیکەی {{fee}} DHB. دووبارە دابگرە بۆ قبوڵکردن.",
+    "unstakeReverted": "کشانەوەکە لەسەر زنجیرەکە گەڕایەوە.",
+    "unstakeSent": "{{amount}} DHBـت کشانەوە! TX: {{hash}}…",
+    "unstakeFailed": "کشانەوەکە شکستی هێنا."
   },
   "communities": {
     "title": "Communities",
@@ -2787,7 +2989,13 @@
     "addedToYourUsernames": "Li navên bikarhêner ên te tê zêdekirin",
     "boughtNameGoesToVault": "Tu @{{current}} dimînî. @{{handle}} dikeve nav navên bikarhêner ên te, û tu dikarî kengî bixwazî derbasî wê bibî.",
     "youAreNow": "Tu niha @{{handle}} î",
-    "boughtToVaultToast": "@{{handle}} niha di navên bikarhêner ên te de ye"
+    "boughtToVaultToast": "@{{handle}} niha di navên bikarhêner ên te de ye",
+    "askingPriceUsd": "نرخی داواکراو (USD)",
+    "dollarPriceRange": "$1–$1,000,000 بنووسە، لەگەڵ دوو ژمارەی دوای خاڵ.",
+    "fixedDollarPrice": "نرخی دۆلار جێگیر دەمێنێتەوە؛ بڕی توکن نوێ دەبێتەوە.",
+    "priceUpdated": "نرخ نوێ بووەوە. بڕەکە بخوێنەوە و دووبارە دابگرە بۆ کڕین.",
+    "tokensPaidToSeller": "ڕاستەوخۆ دراوە بە فرۆشیار",
+    "priceUsd": "نرخ (USD)"
   },
   "stores": {
     "subtitle": "Berhemên civaka DeHub keşf bike",
@@ -3103,7 +3311,9 @@
     "yourDhb": "DHB-ya te"
   },
   "digest": {
-    "someone": "کەسێک، یەکێک، کەسی"
+    "someone": "کەسێک، یەکێک، کەسی",
+    "andOthers_one": "{{names}} و {{count}} ی تر",
+    "andOthers_other": "{{names}} و {{count}} ی تر"
   },
   "liveChat": {
     "deleteMessage": "Peyamê jê bibe",
@@ -3118,7 +3328,13 @@
     "someone": "Kesek",
     "oneTyping": "{{name}} dinivîse…",
     "fewTyping": "{{names}} dinivîsin…",
-    "manyTyping": "{{count}} kes dinivîsin…"
+    "manyTyping": "{{count}} kes dinivîsin…",
+    "attach": "وێنە، GIF یان ئیمۆجی زیاد بکە",
+    "attachTitle": "بۆ پەیامەکەت زیاد بکە",
+    "attachPhoto": "وێنە",
+    "attachEmoji": "ئیمۆجی",
+    "removeAttachment": "پاشکۆ لابە",
+    "attachFailed": "نەتوانرا ئەو وێنەیە بنێردرێت."
   },
   "promptFeed": {
     "headline": "Tu dixwazî çi bibînî?",
@@ -3259,7 +3475,8 @@
     "youBlockedBody": "ناتوانیت پۆستەکانی ببینیت یان مامەڵەیان لەگەڵ بکەیت. لابردنی بلۆکەکە دەبێتە هۆی گەڕانەوەی دەستگەیشتن.",
     "restrictedBody": "ئەم بەکارهێنەرە مامەڵەکان لەگەڵ هەژمارەکەت سنووردار کردووە.",
     "requestPendingBody": "داواکاریی شوێنکەوتنت نێردرا. دوای پەسەندکردنی داواکارییەکەت دەتوانیت پۆستەکانی ببینیت.",
-    "followToSeePosts": "ئەم هەژمارە شوێن بکەوە بۆ بینینی پۆستەکانی."
+    "followToSeePosts": "ئەم هەژمارە شوێن بکەوە بۆ بینینی پۆستەکانی.",
+    "thisUser": "ئەم بەکارهێنەرە"
   },
   "reactionInfo": {
     "labels": {
@@ -3267,8 +3484,31 @@
       "hundred": "100",
       "lol": "یاری",
       "cry": "ھاوارکردن، دەگری، پێویستی بەبایەخدانە، گریان، دەگرێی، گریاو، ھەراکردن",
-      "dislike": "قینی لێ یەتی، قین، حەزلێ نەکردن، قین لێبوونەوە، قینیلێیەتی، ڕق، قین لێ بوونەوە، ڕق لێبوونەوە، خۆشنەویستن، حەزنەکردن، قێزبوونەوە، بێزبوونەوە، ھەڵاتن، دوورکەوتنەوە، قێز، بێز، ڕق لێبوون"
-    }
+      "dislike": "قینی لێ یەتی، قین، حەزلێ نەکردن، قین لێبوونەوە، قینیلێیەتی، ڕق، قین لێ بوونەوە، ڕق لێبوونەوە، خۆشنەویستن، حەزنەکردن، قێزبوونەوە، بێزبوونەوە، ھەڵاتن، دوورکەوتنەوە، قێز، بێز، ڕق لێبوون",
+      "like": "لایک",
+      "love": "خۆشەویستی",
+      "hot": "گەرم",
+      "sad": "دڵتەنگ",
+      "poo": "ڕیخۆڵە"
+    },
+    "title": "کارلێکەکان",
+    "privateTitle": "کارلێکەکان تایبەتن",
+    "privateDescription": "تەنها نووسەری بابەتەکە دەتوانێت ئەم لیستە ببینێت.",
+    "empty": "هێشتا هیچ کارلێکێک نییە",
+    "emptyDescription": "کارلێکەکان بۆ ئەم بابەتە لێرە دەردەکەون.",
+    "anonymous": "{{count}} لایک لە خاوەنانی نیشانی بێناز",
+    "mediaSource": "سەرچاوەی میدیا هەڵبژێرە",
+    "photoLibrary": "کتێبخانەی وێنە",
+    "videoFiles": "ڤیدیۆ لە فایلەکان",
+    "fileError": "نەتوانرا ئەم ڤیدیۆیە بکرێتەوە. تکایە هەوڵ بدە فایلێکی تر.",
+    "reactedPost": "{{name}} وەڵامی پۆستەکەی تۆی دایەوە",
+    "repostedPost": "{{name}} پۆستەکەی تۆی دووبارە بڵاوکردەوە",
+    "quotedPost": "{{name}} پۆستەکەی تۆی بە وتەی خۆی بڵاوکردەوە",
+    "mentionedYou": "{{name}} ئاماژەی بە تۆ کرد",
+    "followRequest": "{{name}} داوای کرد تۆ بکات بە شوێنکەوتووی خۆی",
+    "followAccepted": "{{name}} داواکاری شوێنکەوتنی تۆی قبوڵ کرد",
+    "signalFlare": "{{name}} گڕی سیگناڵی نارد",
+    "newMessage": "{{name}} نامەیەکی بۆ ناردیت"
   },
   "audioPost": {
     "popOut": "Derkeve derve - dema ku hûn digerînin guhdarî bikin",
@@ -3279,7 +3519,8 @@
     "creator": "Afirînerê DeHub",
     "play": "Bilîze",
     "pause": "Navber",
-    "listens_other": "{{count}} guhdarî dike"
+    "listens_other": "{{count}} guhdarî dike",
+    "listens_one": "{{count}} گوێ بگرە"
   },
   "transfer": {
     "title": "Tokenan veguhezîne",
@@ -3314,7 +3555,41 @@
     "reviewDescriptionPlaceholder": "Tiştekî li ser vê postê bêje (vebijarkî)",
     "reviewLiveWarning": "Ew lînk weşana zindî ye. Li bendê bin heta ku biqede û li şûna wê tomarê import bikin.",
     "reviewCancel": "Betal bike",
-    "reviewConfirm": "Anîn"
+    "reviewConfirm": "Anîn",
+    "title": "ڤیدیۆیەک هاوردە بکە",
+    "subtitle": "لینکێک بۆ ڤیدیۆیەک کە خۆت خاوەنیەتی دابنێ و ئێمە بڵاوی دەکەینەوە وەک پۆستێک لەسەر پروفایلی تۆ. چەند دانەیەکت دەوێت دایبنێ - یەک لە دوای یەک لە پاشبنەمادا کاردەکەن.",
+    "placeholder": "لینکێکی ڤیدیۆ دابنێ",
+    "paste": "دابنێ",
+    "ownership": "من خاوەنی ئەم ناوەڕۆکەم، یان مۆڵەتی خاوەن مافەکەم هەیە بۆ بڵاوکردنەوەی لەسەر DeHub.",
+    "import": "هاوردە کردن",
+    "addToQueue": "بۆ ریزەکە زیاد بکە",
+    "queueHeading": "هاوردەکانی تۆ",
+    "queueRunning": "{{n}} لە ریزەکەدایە — دەتوانی ئەم پەڕەیە دابخەیت، بەردەوام دەبن.",
+    "queueIdle": "هیچ شتێک کار ناکات.",
+    "untitled": "ڤیدیۆ",
+    "thatSource": "ئەو پلاتفۆرمە",
+    "dismiss": "ڕەت کردنەوە",
+    "viewPost": "سەیرکردنی پۆست",
+    "statusAlreadyHere": "لێرە هەیە",
+    "statusRateLimited": "سنووردار کراوە",
+    "statusProcessing": "پرۆسێس کردن",
+    "statusPublishing": "بڵاوکردنەوە",
+    "statusDownloading": "داگرتن",
+    "statusDownloadingPercent": "داگرتن {{percent}}%",
+    "statusQueued": "لە ڕیزدا",
+    "detailFailed": "نەتوانرا ئەو ڤیدیۆیە هاوردە بکرێت.",
+    "detailRateLimited": "{{source}} سنووردارمان دەکات. ئەمە بە خۆکارانە دووبارە کاردەکاتەوە — هیچ شتێک نییە دوبارە لەبەربکرێت.",
+    "detailDuplicate": "ئەو ڤیدیۆیە لە پڕۆفایلەکەتدا بوو.",
+    "detailWaiting": "چاوەڕێی نۆرەی خۆی دەکات.",
+    "toastQueued": "لە ڕیزدا — کاتێک تەواو بوو بڵاودەکرێتەوە بۆ پڕۆفایلەکەت.",
+    "toastRateLimited": "سنووردار کراوە، بارکردنەکەت لە ڕیزدایە و لە زووترین کاتدا دەستکاری دەکرێت، پێویست ناکات هەمان لینکەکە دووبارە تاقیبکەیتەوە بەڵام ئازادیت زیاتر لە ڕیزدا دابنێیت وەک چۆن دەتەوێت",
+    "toastImported": "هاوردە کراوە لە {{source}}!",
+    "toastDuplicate": "ئەو ڤیدیۆیە پێشتر هاوردە کرابوو.",
+    "toastFailed": "ئەو هاوردەکردنە شکستی هێنا.",
+    "errorUnsupported": "نەمانتوانیوە لەو لینکەوە هاوردە بکەین. یەکێک لەمانە تاقیبکەرەوە: {{sources}}",
+    "errorNeedRights": "تکایە بسەلمێنە مافی ئەم ناوەڕۆکەت هەیە",
+    "errorClipboard": "نەتوانرا کلیپبۆرد بخوێنرێتەوە — لەبری ئەوە بە دەستی لەبەربکە",
+    "errorQueueFailed": "نەتوانرا ئەو هاوردەکردنە لە ڕیزدا دابنرێت"
   },
   "earnings": {
     "filter24h": "24s",
@@ -3477,7 +3752,10 @@
     "newMembers": "Endamên nû",
     "membersOverTime": "Endam di dema de",
     "lastDays": "{{count}} rojên dawî",
-    "source": "Dîroka hesaban a tomarkirî ji xala dawî ya statîstîkên giştî yên DeHub. Di vê xêzeyê de tu nirxên texmînî nayên bikaranîn."
+    "source": "Dîroka hesaban a tomarkirî ji xala dawî ya statîstîkên giştî yên DeHub. Di vê xêzeyê de tu nirxên texmînî nayên bikaranîn.",
+    "community": {
+      "openNewMembers": "لیستی ئەندامە نوێکان بکەرەوە"
+    }
   },
   "solana": {
     "unavailableTitle": "Berîka Solana ne berdest e",
@@ -3800,7 +4078,8 @@
     "madeForKidsOffDesc": "ئەم پۆستە بۆ منداڵانی بەکارهێنەری Kids Mode نیشان دەدات، و لە فیدەکانی ئاسایی دەریدەخات.",
     "madeForKidsBlockedByMature": "پۆستێک کە بە بالغ نیشان دراوە ناتوانێت هەروەها بۆ منداڵان بڵاو بکرێت.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Get RTMP details"
+    "encoderHint": "Get RTMP details",
+    "markMadeForKids": "وەک بۆ منداڵان دروستکراو دیاری بکە"
   },
   "bounty": {
     "claimed": "Hate wergirtin",
@@ -3963,10 +4242,12 @@
           "hint": "دە کەس لە یەک کاتدا سەیری بکەن."
         },
         "century": {
-          "name": "سەدەیی"
+          "name": "سەدەیی",
+          "hint": "سەد کاتژمێر گونجاو لەسەر هێڵ بگەیەنە."
         },
         "legend": {
-          "hint": "گەیشتنە ئاستی دە."
+          "hint": "گەیشتنە ئاستی دە.",
+          "name": "ئەفسانە"
         }
       }
     }
@@ -4039,7 +4320,10 @@
     "topUpSubtitle": "$DHB بە کارت بکڕە و گازی بێبەرامبەر وەرگرە بۆ بەکارهێنانی خێرا",
     "noTxHash": "هەشدی گواستنەوە نەدۆزرایەوە",
     "latestTransactions": "دوایین گواستنەوەکان",
-    "showAll": "هەموویان نیشان بدە"
+    "showAll": "هەموویان نیشان بدە",
+    "sentTo": "{{amount}} {{symbol}} نێردرا بۆ {{address}}",
+    "tokensSentTo": "تۆکنەکان نێردرا بۆ {{address}}",
+    "goToProfile": "بڕۆ بۆ پڕۆفایل"
   },
   "musicSheet": {
     "title": "Stranek çêke",
@@ -4128,7 +4412,13 @@
     "viewPlans": "Planan bibîne",
     "playbackSpeed": "Leza lêdanê",
     "moreOptions": "Vebijarkên din",
-    "retry": "هەوڵێ دوبارە"
+    "retry": "هەوڵێ دوبارە",
+    "processing": "ڤیدیۆکە دەستکاریدەکرێت…",
+    "processingFailed": "ڤیدیۆکە شکستی هێنا لە دەستکاریکردن",
+    "retryHint": "هیچ شتێک بۆ بارکردنەوە نییە - فایلەکەت پارێزراوە.",
+    "retrying": "دوبارە هەوڵدەینەوە…",
+    "retryQueued": "جارێکی تر پرۆسە دەکەین",
+    "retryFailed": "نەمانتوانی ئەو پۆستە دوبارە تاقیبکەینەوە"
   },
   "liveViewer": {
     "loadingStream": "Weşan tê barkirin...",
@@ -4199,11 +4489,39 @@
     "startMigration": "گواستنەوە دەست پێ بکە",
     "statusFailed": "شکستی هێنا",
     "statusImported": "هاتبوو",
-    "statusImporting": "هاتنە ناو"
+    "statusImporting": "هاتنە ناو",
+    "clearAll": "هەموو بسڕەوە",
+    "costsIntro": "هەر ڤیدیۆیەک لە ڤیدیۆی پێشوو هەرزانترە - نرخەکە دادەبەزێت کاتێک کۆمەڵەکە گەورەتر دەبێت، بۆیە نرخی خوارەوە بریتییە لە کۆی ئەو ژمارە ڤیدیۆیە.",
+    "costsIntroShort": "هەر ڤیدیۆیەک لە ڤیدیۆی پێشوو هەرزانترە - نرخەکە دادەبەزێت کاتێک کۆمەڵەکە گەورەتر دەبێت. نرخی ورد پێش ئەوەی پارە بدەیت پیشان دەدرێت.",
+    "costsNote": "بە DHB پارەدراوە، جارێک، پێش ئەوەی کۆمەڵەکە دەستپێبکات. خاوەن باجەکان کەمتر پارە دەدەن - داشکاندنەکەت بۆ کوتەکی تۆ جێبەجێ دەکرێت. ئەگەر ڤیدیۆیەک نەتوانرێت هاوردە بکرێت، بەشەکەی بۆ کۆچی دوایی داهاتووت دەگەڕێندرێتەوە.",
+    "costsTitle": "نرخی چییە",
+    "creditApplied": "قەرز جێبەجێ کرا",
+    "doneAllMany": "{{n}} ڤیدیۆ کۆچیان کرد!",
+    "doneAllOne": "{{n}} ڤیدیۆ کۆچی کرد!",
+    "doneWithFailuresMany": "{{n}} ڤیدیۆ کۆچیان کرد - {{failed}} نەتوانرا هاوردە بکرێت و بۆ کۆچی داهاتووت گەڕێندرایەوە.",
+    "doneWithFailuresOne": "{{n}} ڤیدیۆ کۆچی کرد - {{failed}} نەتوانرا هاوردە بکرێت و بۆ کۆچی داهاتووت گەڕێندرایەوە.",
+    "editDescription": "وەسف",
+    "editDescriptionPlaceholder": "وەسف (ئارەزوومەندە)",
+    "editDone": "کرا",
+    "editThis": "ناونیشان و وەسفەکە دەستکاریکە",
+    "editTitle": "ناونیشان",
+    "edited": "دەستکاریکرا",
+    "errClipboard": "نەمانتوانی کلیپبۆردەکە بخوێنینەوە - لەبری ئەوە بە دەستی بنووسە",
+    "errNoOwnership": "تکایە بسەلمێنە کە ئەمە کەناڵەکەتە",
+    "errNoPayments": "لە ئێستادا پارەدان ڕێک نەخراوە.",
+    "errNoUrl": "سەرەتا ناونیشانی کەناڵەکەت لە جێگەیەک دابنێ",
+    "errPayment": "پارەدان شکستی هێنا",
+    "errPrice": "نەمانتوانی نرخی ئەم کۆچە دیاری بکەین",
+    "errReadChannel": "نەمانتوانی ئەو کەناڵە بخوێنینەوە",
+    "errRetry": "نەمانتوانی ڤیدیۆ شکستهێنراوەکان دوبارە تاقیبکەینەوە",
+    "errSelectOne": "لانی کەم یەک ڤیدیۆ هەڵبژێرە",
+    "firstFree": "یەکەم {{n}} ڤیدیۆ",
+    "free": "بەلاش"
   },
   "calls": {
     "calling": "بانگ کردن - کار - پیشە",
-    "tryAgain": "هەوڵێ دوبارە"
+    "tryAgain": "هەوڵێ دوبارە",
+    "tapToEnableAudio": "لێبدە بۆ چالاککردنی دەنگ"
   },
   "passwordStrength": {
     "veryWeak": "Pir lawaz",
@@ -4402,7 +4720,8 @@
     "automaticStage": {
       "tokenApproval": "پەسەندکردنی توکنەکان بە شێوەیەکی خۆکارانە…",
       "permitApproval": "پەسەندکردنی دەستگەیشتنی پۆستەکان بە شێوەیەکی خۆکارانە…",
-      "submit": "دروستکردنی پۆستەکەت بە شێوەیەکی خۆکارانە…"
+      "submit": "دروستکردنی پۆستەکەت بە شێوەیەکی خۆکارانە…",
+      "swap": "گۆڕین و دروستکردنی پۆستەکەت بە شێوەیەکی خۆکارانە…"
     },
     "combined": "بازاڕی تێکەڵاو · Base + BNB",
     "reference": "سەرچاوەی بازاڕ · USD",
@@ -4462,7 +4781,9 @@
       "permitApproval": "پشتگیریکردنی پۆزیشنت لەناو ئامرازەکەتدا پشتڕاست بکەرەوە…",
       "submit": "پۆزیشنت لەناو ئامرازەکەتدا پشتڕاست بکەرەوە…",
       "confirm": "چاوەڕوانی پشتڕاستکردنەوە…",
-      "index": "تۆمارکردنی پۆزیشنت…"
+      "index": "تۆمارکردنی پۆزیشنت…",
+      "swap": "گۆڕینەکە لە والێتەکەتدا پشتڕاست بکەرەوە…",
+      "swapConfirm": "چاوەڕوانی پشتڕاستکردنەوەی گۆڕینەکە…"
     },
     "title": "DHB / دۆلاری ئەمریکی",
     "heading": "DHB / دۆلاری ئەمریکی",
@@ -4549,7 +4870,8 @@
       "opening": "کردنەوەی پاوڵەکە…",
       "created": "پاوڵی {{symbol}} کراوەتەوە",
       "createFailed": "نەتوانرا حەوزەکە بکرێتەوە.",
-      "feeDhb": "≈ {{amount}} DHB"
+      "feeDhb": "≈ {{amount}} DHB",
+      "payAndOpen": "${{amount}} بدە و پۆل بکەوە"
     },
     "pool": {
       "missingTitle": "حەوز نەدۆزرایەوە — DeHub DEX",
@@ -4580,13 +4902,38 @@
       "priceImpact": "کاریگەری نرخ",
       "minimum": "کەمترین فەرمان",
       "instantNote": "بازرگانییە خێراکانی بێ دواکەوتن لە باشترین نرخدا لە هەموو بۆرسەکانی ئەم تۆڕەدا پڕ دەبنەوە، بە پشکی تا 1% شلۆقی.",
-      "solanaLimitNote": "تۆکنەکانت لە فەرمانێکی ناو زنجیرەدا دەمێننەوە تا کاتێک بە نرخی تۆ پڕ دەبنەوە یان تۆ هەڵی دەوەشێنیتەوە."
+      "solanaLimitNote": "تۆکنەکانت لە فەرمانێکی ناو زنجیرەدا دەمێننەوە تا کاتێک بە نرخی تۆ پڕ دەبنەوە یان تۆ هەڵی دەوەشێنیتەوە.",
+      "evmLimitNote": "تۆکنەکانت لە یەک لایەنی Uniswap لە نرخی تۆدا دادەنیشێت و کاتێک بازاڕ بەسەریدا تێدەپەڕێت دەگۆڕێت. لە ھەر کاتێکدا دەتوانێت بکێشیتەوە.",
+      "openOrders": "داواکارییە کراوەکان",
+      "myOrders": "داواکارییەکانی من",
+      "noOrders": "هێشتا هیچ داوکاری کراوەیەک بۆ {{symbol}} نییە. یەکەمینی دابنێ.",
+      "noMyOrders": "هیچ داوکاری کراوەیەک لەم پۆلەدا نییە.",
+      "cancel": "هەڵوەشاندنەوە",
+      "cancelled": "داوکاری هەڵوەشایەوە",
+      "bought": "کڕدرا {{amount}} {{symbol}}",
+      "sold": "فرۆشرا {{amount}} {{symbol}}"
     },
     "connectWallet": "وێبگەرەکەت ببەستە",
     "prepareFailed": "نەتوانرا پۆزیشینەکە ئامادە بکرێت",
     "sellAmount": "بڕی فرۆشتن",
     "spend": "خەرجکردن",
-    "withdrawFailed": "کشانەوە شکستی هێنا"
+    "withdrawFailed": "کشانەوە شکستی هێنا",
+    "payWith": "بەم بدە",
+    "noBaseFunds": "ھیچ ETH، USDC یان USDT لەسەر Base نییە",
+    "reviewSwap": "سەرەتا نزیکەی {{amountIn}} {{symbol}} بگۆڕەوە بۆ {{usdc}} USDC لەسەر Base. {{symbol}} بەکارنەھاتوو لە ھەمان بازرگانیدا دەگەڕێتەوە.",
+    "pendingSwapNote": "{{symbol}} ی تۆ بۆ USDC گۆڕدرا. بۆ دروستکردنی پۆستەکە بەردەوام بە بێ ئەوەی دووبارە بگۆڕیتەوە.",
+    "resumeMint": "داواکاری بەردەوام بکە",
+    "resumeNeedsBalances": "بەرھەمەکانی والێت ھێشتا باردەکرێن. دوای چرکەیەک جارێکی تر ھەوڵ بدە.",
+    "chart": {
+      "bookStarts": "کتێبەکە لەمێژە دەستی پێکردووە",
+      "firstOrder": "یەکەم داوکاری دابنێ بۆ زیادکردنی شلۆقی.",
+      "waiting": "چاوەڕوانی بۆ زانیاری نرخی",
+      "candlesStart": "مۆمەکان دوای بازرگانیکردن بەم توکنە دەردەکەون.",
+      "depthLabel": "قوڵی کتێبی داوکاری بە نرخی دۆلار",
+      "priceLabel": "مۆمی نرخی {{symbol}} بە دۆلار",
+      "depthHint": "کۆکراوەی {{symbol}} · بمێنەرەوە بۆ وردبینی",
+      "priceHint": "نرخی {{symbol}} · دۆلار · بمێنەرەوە بۆ وردبینی"
+    }
   },
   "onboarding": {
     "optIn": {
@@ -4636,7 +4983,12 @@
         "body": "فییدەکەت زۆر باشتر دەبێت کاتێک چەند کەسێک شوێن بکەیت. سەیری ئەوە بکە کێ لێرەیە و سێ کەس هەڵبژێرە بۆ دەستپێکردن."
       },
       "comment": {
-        "title": "کۆمێنتێک لەسەر پۆستێک بنووسە"
+        "title": "کۆمێنتێک لەسەر پۆستێک بنووسە",
+        "body": "وەڵامدانەوە بۆ شتێک کە لە فییدەکەت پێی ڕازیت. گفتوگۆکان شوێنێکن کە زۆربەی DeHub لە ڕاستیدا ڕوو دەدات."
+      },
+      "rewards": {
+        "title": "بزانە چۆن قازانج کاردەکات",
+        "body": "بزانە چۆن سەرنج، نازناو و سوپەرپاوەرەکان ئەوەی لێرە دەکەیت دەگۆڕن بۆ شتێک کە لێی قازانج دەکەیت."
       }
     },
     "swipeToStart": "بۆ دەستپێکردن بسوورە"
@@ -4674,7 +5026,15 @@
       "allClear": "هیچ شتێك ده‌رنه‌كه‌وت. وه‌ڵامه‌كه‌ت وه‌ك وه‌ڵامێكی دادپه‌روه‌رانه‌ و هێمن ده‌رده‌كه‌وێت.",
       "postAnyway": "هه‌ر وه‌ك ئێستا بڵاوی بكه‌ره‌وه‌",
       "dismiss": "ئه‌م پێشنیاره‌ پشتگوێ بخه‌",
-      "settingLabel": "پیشنیاره‌كانی ڕاهێنان پیشان بده‌"
+      "settingLabel": "پیشنیاره‌كانی ڕاهێنان پیشان بده‌",
+      "settingHint": "پشکنینی خێرای ڕەگێکی دەنگی بۆ کۆمێنتی درێژتر دەکات و کەم و کوڕی بیرکردنەوەی باو ئاماژە پێدەدات پێش ئەوەی بڵاوی بکەیتەوە. تەنها پێشنیارە، هەرگیز ڕێگر نابێت.",
+      "kind": {
+        "ad_hominem": "هێرش دەکاتە سەر کەسەکە",
+        "straw_man": "بۆچوونی ئەوی بە هەڵە دەگێڕێتەوە",
+        "false_dilemma": "ڕێگای یان-یان",
+        "overgeneralisation": "بانگەشەی فراوان",
+        "hostile_tone": "ڕەگێکی دوژمنکارانە"
+      }
     }
   },
   "drafts": {
@@ -5188,6 +5548,64 @@
     "topTier": "پلەی باڵا",
     "toNextTier": "{{amount}} DHB بۆ {{tier}}",
     "everyTierUnlocked": "هەموو پلەیەک کرایەوە",
-    "holdNote": "کاتێک نیشانەیەک کرایەوە، تا کاتێک DHBـەکەت هەبێت، هی تۆیە. ژمارەی تۆکنە پێویستەکان بۆ کردنەوەی نیشانەیەکی نوێ دەتوانێت لەگەڵ نرخی تۆکنەکەدا بگۆڕێت."
+    "holdNote": "کاتێک نیشانەیەک کرایەوە، تا کاتێک DHBـەکەت هەبێت، هی تۆیە. ژمارەی تۆکنە پێویستەکان بۆ کردنەوەی نیشانەیەکی نوێ دەتوانێت لەگەڵ نرخی تۆکنەکەدا بگۆڕێت.",
+    "reached": "تۆ گەیشتیتە {{tier}}",
+    "yourBalance": "بەرھەمەکەت · {{amount}} DHB",
+    "lines": {
+      "crab": "ئەتوانیت بچیتە شوێنەکان",
+      "lobster": "بەردەوام بکوڵە",
+      "piranha": "بچووکە، بەڵام گەستە",
+      "tortoise": "ھێواش و جێگیر تۆی گەیاندە ئێرە",
+      "cobra": "خەڵک ئێستا لە ڕێگاکە دەردەچن",
+      "octopus": "ھەشت قۆڵ، ھەموو قازان",
+      "crocodile": "ھیچ شتێک بەم ڕووبارەدا ناڕوات",
+      "dolphin": "ئێستا تۆ ماسییەکی گەورەی",
+      "tigerShark": "ئاوەکە بێدەنگتر بوو",
+      "greatWhiteShark": "ھەمووان ئەو باڵە دەناسن",
+      "killerWhale": "سەرەوەی زنجیرەی خۆراک، و تۆ لە گرووپدا ڕاو دەکەیت",
+      "blueWhale": "گەورەترین شت کە ھەرگیز ژیاوە. ئەوە تۆیت.",
+      "megalodon": "ئەم تاجە بۆ تۆیە - ئێستا پاشای ئەپیت"
+    },
+    "continue": "گەڕانەوە بۆ DeHub"
+  },
+  "support": {
+    "title": "پشتیوانی",
+    "subtitle": "بلیتەکانت و بارودۆخیان. بێ AI، بێ کرێ.",
+    "newTicket": "بلیتێکی نوێ",
+    "newTicketHint": "بۆمان باس بکە چی ڕوویدا و چی چاوەڕوانت دەکرد.",
+    "backToTickets": "گەڕانەوە بۆ بلیتەکان",
+    "openHeading": "کراوە ({{n}})",
+    "closedHeading": "داخراو ({{n}})",
+    "noTickets": "هێشتا هیچ بلیتێکی پشتیوانیت تۆمار نەکردووە.",
+    "loadFailed": "نەتوانرا بلیتەکانت باربکرێت. تکایە دووبارە هەوڵ بدە.",
+    "descriptionLabel": "چ رویدا؟",
+    "submitting": "دەینێرێت...",
+    "status": {
+      "resolved": "سوورە لەسەری، بڕیاردراو، بڕاوە، چارەکراو، کراو، تەواوکراو",
+      "closed": "داخراوە"
+    },
+    "severity": {
+      "urgent": "پێویست، گورج، دەم و دەست، بەپەلە، خێرا، پەلە، پەلەیی"
+    },
+    "category": {
+      "bug": "مێشولە",
+      "feature_request": "داواکاری تایبەتمەندی",
+      "other": "ئەوانی تر"
+    },
+    "filedOn": "تۆمارکراوە {{date}}"
+  },
+  "publicChatAlerts": {
+    "title": "چاتی گشتی",
+    "mentionTitle": "باسکراوە لە چاتی گشتی",
+    "digest": "{{count}} پەیامی نوێ لە {{who}}: {{message}}",
+    "voiceMessage": "پەیامی دەنگی",
+    "image": "وێنەیەکی نارد"
+  },
+  "banned": {
+    "title": "هەژمارەکەت قەدەغە کراوە",
+    "body": "هێشتا دەتوانیت بچیتە ژوورەوە، فیدەکەت بخوێنیتەوە، نامەکانت بکەیتەوە و هەموو شتێک لە هەژمارەکەت ببینیت. ناتوانیت بڵاوبکەیتەوە، کۆمێنت بنووسیت، وەڵام بدەیتەوە، شوێن بکەویت یان نامە بنێریت.",
+    "line": "هەژمارەکەت قەدەغە کراوە، بۆیە ناتوانیت بڵاوبکەیتەوە، کۆمێنت بنووسیت یان نامە بنێریت.",
+    "reason": "هۆکار: {{reason}}",
+    "deleteAccount": "هەژمار و داتاكەت بسڕەوە"
   }
 }

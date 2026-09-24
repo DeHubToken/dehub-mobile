@@ -686,7 +686,31 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "Waan fahamay",
     "exportPkCopy": "Furaha gaarka ah nuqul ka samee",
-    "e2eAutomatic": "Si toos ah"
+    "e2eAutomatic": "Si toos ah",
+    "smsScopeLabel": "Maxaa la qoraa",
+    "smsScopeDesc": "Qoraallada waa qaali, markaa u soo koob waxa mudan in la joojiyo",
+    "smsScope": {
+      "all": "Wax walba oo aan shiday",
+      "tips": "Talooyinka kaliya ee aan helo",
+      "subscriptions": "Kuwii cusbaa ee is-qoray",
+      "sales": "Iibka kaliya ee waxyaabaha aan sameeyo",
+      "bounties": "Abwaannada kaliya",
+      "fractions": "Dalabyada iyo iibka qaybaha kaliya",
+      "messages": "Fariimaha tooska ah kaliya",
+      "mentions": "Xusitaanka kaliya ee aniga",
+      "replies": "Ka jawaabista kaliya ee faallooyinkayga",
+      "account": "Ogeysiisyada kaliya ee ku saabsan koontadayda"
+    },
+    "smsNotificationsDescReady": "Waxaa loo diray {{phone}} — {{dhb}} DHB midkiiba, ku dhawaad {{count}} ayaa haray",
+    "smsNotificationsLocked": "Furitaanka {{dhb}} DHB (${{usd}}) oo ah dheelitirka",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) wuxuu furaa qoraallada wuxuuna noqdaa dheelitirkaaga koowaad.",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositAction": "U dir {{dhb}} DHB",
+    "smsNeedDhb": "Waxaad u baahan tahay {{dhb}} DHB si aad u furto ogeysiisyada qoraalka.",
+    "smsBalance": "{{dhb}} DHB ayaa haray (${{usd}})",
+    "smsBalanceMessages": "Ku dhawaad {{count}} fariimood oo dheeraad ah",
+    "smsTopUp": "Ku soo shub {{dhb}} DHB",
+    "smsCodeSent": "Koodh ayaa la diray. Tani waxay ku kacday {{price}} DHB."
   },
   "common": {
     "mute": "Aamusi",
@@ -1854,7 +1878,8 @@
     "otherTokens": "Tokenno kale",
     "otherTokensDesc": "Kaarkaaga ku iibso ETH ama USDC Base",
     "shareToFeed": "La wadaag quudintayda",
-    "sharePostTemplate": "Just added {{amount}} $DHB in my stack on DeHub. Dhisida bulshada. #DeHub #DHB"
+    "sharePostTemplate": "Just added {{amount}} $DHB in my stack on DeHub. Dhisida bulshada. #DeHub #DHB",
+    "minDhbPurchase": "Iibsiga ugu yar ee DHB waa $0.50"
   },
   "agents": {
     "title": "Wakiilada AI",
@@ -2998,7 +3023,13 @@
     "addedToYourUsernames": "Waxaa lagu darayaa magacyadaada isticmaale",
     "boughtNameGoesToVault": "Waxaad ahaan doontaa @{{current}}. @{{handle}} wuxuu galayaa magacyadaada isticmaale, waadna u beddeli kartaa wakhti kasta oo aad rabto.",
     "youAreNow": "Hadda waxaad tahay @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} hadda wuxuu ku jiraa magacyadaada isticmaale"
+    "boughtToVaultToast": "@{{handle}} hadda wuxuu ku jiraa magacyadaada isticmaale",
+    "askingPriceUsd": "Qiimaha codsiga (USD)",
+    "dollarPriceRange": "Geli $1–$1,000,000, ilaa laba meelood oo tobanle ah.",
+    "fixedDollarPrice": "Qiimaha doolarka wuu sii ahaadaa, qadarka token-ka wuu cusboonaysaa.",
+    "priceUpdated": "Qiimaha waa la cusboonaysiiyay. Dib u eeg qadarka oo taabo mar kale Iibso.",
+    "tokensPaidToSeller": "Si toos ah ayaa loo bixiyay iibiyaha",
+    "priceUsd": "Qiimaha (USD)"
   },
   "stores": {
     "subtitle": "Hel badeecadaha bulshada DeHub",
@@ -4096,7 +4127,8 @@
     "madeForKidsOffDesc": "Waxaa post-kan lagu tusi doonaa carruurta isticmaala Kids Mode, iyo waxaa laga saari doonaa alaabta caadiga ah.",
     "madeForKidsBlockedByMature": "Post-ka lagu calaamadeeya inuu ballaaran yahay ma alaabta carruurta ah oo keliya.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Hel RTMP details"
+    "encoderHint": "Hel RTMP details",
+    "markMadeForKids": "Calaamadee sida loogu talagalay carruurta"
   },
   "bounty": {
     "claimed": "La qaatay",
@@ -5616,5 +5648,51 @@
     "appealRef": "Tixraaca {{ref}}",
     "appealSubtitleSubject": "Qof ayaa tan akhrin doona oo mar kale eegi doona {{subject}}.",
     "appealMore": "Astaamaha weli loo baahan yahay: {{count}}"
+  },
+  "support": {
+    "title": "Taageer",
+    "subtitle": "Tigidhadahaaga iyo xaaladdooda. ah ah ah ah, no fee.",
+    "newTicket": "Tigidh cusub",
+    "newTicketHint": "Noo sheeg waxa dhacay iyo waxa aad filaysay halkii.",
+    "backToTickets": "Ku noqo tikidhada",
+    "noTickets": "Weli ma aadan xareynin tigidhada taageerada.",
+    "loadFailed": "Ma rari karo tigidhadahaaga. Fadlan isku day mar kale.",
+    "categoryLabel": "Qaybta",
+    "severityLabel": "Mudnaanta",
+    "subjectLabel": "Maadada",
+    "subjectPlaceholder": "Hal xaraf oo qeexaya dhibaatada",
+    "descriptionLabel": "Maxaa dhacay",
+    "descriptionPlaceholder": "Wixii aad samaysay, wixii aad filaysay, iyo wixii halkii ka dhacay.",
+    "stepsLabel": "Tallaabooyinka la raaci karo (ikhtiyaari)",
+    "submit": "Dir tigidhada",
+    "submitting": "Diraya",
+    "filed": "Ticket {{ref}} waa la kooxda.",
+    "filedNotEmailed": "Ticket {{ref}} la duubay. Ku hay tixraaca.",
+    "alreadyOpen": "Waxaad horeyba u haysataa tan furan sida {{ref}}.",
+    "filingFailed": "Ma xareysan karo tigidhkaas. Fadlan isku day mar kale.",
+    "status": {
+      "open": "Furan",
+      "in_progress": "Waa lagu guda jiraa.",
+      "resolved": "La xaliyay",
+      "closed": "Xidhan"
+    },
+    "severity": {
+      "low": "Hooseeya",
+      "normal": "Waa caadi",
+      "high": "Sare",
+      "urgent": "degdeg ah"
+    },
+    "category": {
+      "account_access": "Helitaanka koontada",
+      "wallet_or_transactions": "Jeebka ama xawaaladaha",
+      "posting_or_uploads": "Ku dhajinta ama soo gelinta",
+      "payments_or_subscriptions": "Bixinta ama isdiiwaangelinta",
+      "live_streaming": "Toos u qulqulaya",
+      "content_or_moderation": "Nuxurka ama dhexdhexaadinta",
+      "bug": "Bug",
+      "feature_request": "Codsiga Feature",
+      "other": "Wax kale"
+    },
+    "filedOn": "Filed {{date}}"
   }
 }

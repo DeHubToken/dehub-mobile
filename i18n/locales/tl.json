@@ -618,7 +618,8 @@
     "smsBand": {
       "europe": "Europa",
       "global": "Ibang Mga Bansa",
-      "premium": "Kahit saan pa"
+      "premium": "Kahit saan pa",
+      "domestic": "United Kingdom"
     },
     "smsDepositAction": "Ipadala ang {{dhb}} DHB",
     "smsDepositPaying": "Kumpirmahin sa iyong wallet...",
@@ -695,7 +696,21 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "NAUNAWAAN KO",
     "exportPkCopy": "Kopyahin ang pribadong susi",
-    "e2eAutomatic": "Awtomatiko"
+    "e2eAutomatic": "Awtomatiko",
+    "smsScopeLabel": "Ano ang ise-send na text",
+    "smsScopeDesc": "Nagkakapera ang mga text, kaya limitahan sa mga bagay na sulit ang abala",
+    "smsScope": {
+      "all": "Lahat ng naka-on sa akin",
+      "tips": "Mga tip lang na natatanggap ko",
+      "subscriptions": "Mga bagong subscriber lang",
+      "sales": "Mga benta lang ng content ko",
+      "bounties": "Mga bounty lang",
+      "fractions": "Mga alok at benta ng fraction lang",
+      "messages": "Mga direct message lang",
+      "mentions": "Mga pagbanggit lang sa akin",
+      "replies": "Mga reply lang sa mga comment ko",
+      "account": "Mga abiso lang tungkol sa account ko"
+    }
   },
   "common": {
     "mute": "I-mute",
@@ -822,7 +837,8 @@
     "attachDescription": "Mag-attach ng DHB tokens bilang tip sa iyong mensahe",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Attach {{amount}} DHB",
-    "removeTip": "Remove Tip"
+    "removeTip": "Remove Tip",
+    "paidInSol": "Binayaran sa SOL sa Solana"
   },
   "postOptions": {
     "options": "Options",
@@ -1466,7 +1482,8 @@
       "mentionedNamed": "Binanggit ka ni {{name}} sa “{{community}}”",
       "here": "Nagpadala ng mensahe si {{name}} sa lahat ng tao sa komunidad",
       "hereNamed": "Nagpadala ang {{name}} ng mensahe sa lahat sa “{{community}}”"
-    }
+    },
+    "badgeLoanLapsed": "Hindi ka na maaaring magpahiram ng iyong {{tier}} badge kay {{name}}"
   },
   "leaderboard": {
     "title": "Leaderboard",
@@ -1909,7 +1926,8 @@
     "otherTokens": "Ibang token",
     "otherTokensDesc": "Bumili ng ETH o USDC sa Base gamit ang iyong card",
     "shareToFeed": "Ibahagi sa aking feed",
-    "sharePostTemplate": "Idinagdag lang ang {{amount}} $DHB sa aking stack sa DeHub. Pagbuo kasama ang komunidad. #DeHub #DHB"
+    "sharePostTemplate": "Idinagdag lang ang {{amount}} $DHB sa aking stack sa DeHub. Pagbuo kasama ang komunidad. #DeHub #DHB",
+    "minDhbPurchase": "Ang pinakamababang pagbili ng DHB ay $0.50"
   },
   "agents": {
     "title": "AI Agents",
@@ -2601,7 +2619,8 @@
     "lockedEarlyFee": "Nakalock hanggang {{date}}. Ang pag-withdraw ngayon ay nagbabalik ng 88% — isang 12% na bayad, humigit-kumulang {{fee}} DHB. Mag-tap ulit upang tanggapin.",
     "unstakeReverted": "Nabalik ang withdrawal on-chain.",
     "unstakeSent": "Nakatanggap ng {{amount}} DHB! TX: {{hash}}…",
-    "unstakeFailed": "Nabigong mag-withdraw."
+    "unstakeFailed": "Nabigong mag-withdraw.",
+    "walletNotConnected": "Hindi konektado ang wallet."
   },
   "communities": {
     "title": "Mga Komunidad",
@@ -3052,7 +3071,13 @@
     "addedToYourUsernames": "Idinadagdag sa iyong mga username",
     "boughtNameGoesToVault": "Mananatili kang @{{current}}. Mapupunta ang @{{handle}} sa iyong mga username, at puwede kang lumipat dito kahit kailan.",
     "youAreNow": "Ikaw na ngayon si @{{handle}}",
-    "boughtToVaultToast": "Nasa iyong mga username na ang @{{handle}}"
+    "boughtToVaultToast": "Nasa iyong mga username na ang @{{handle}}",
+    "askingPriceUsd": "Presyo ng paghingi (USD)",
+    "dollarPriceRange": "Maglagay ng $1–$1,000,000, na may hanggang dalawang decimal place.",
+    "fixedDollarPrice": "Nananatiling nakapirmi ang presyo ng dolyar; nagbabago ang halaga ng token.",
+    "priceUpdated": "Na-update ang presyo. Suriin ang halaga at i-tap muli ang Buy.",
+    "tokensPaidToSeller": "Direktang binayaran sa nagbebenta",
+    "priceUsd": "Presyo (USD)"
   },
   "stores": {
     "subtitle": "Tumuklas ng produkto mula sa komunidad ng DeHub",
@@ -3584,7 +3609,8 @@
     "creator": "Tagapaglikha ng DeHub",
     "play": "Maglaro",
     "pause": "I - pause",
-    "listens_one": "{{count}} pakinggan"
+    "listens_one": "{{count}} pakinggan",
+    "listens_other": "{{count}} listens"
   },
   "transfer": {
     "title": "Maglipat ng token",
@@ -4149,7 +4175,8 @@
     "madeForKidsOffDesc": "Ipapakita ang post na ito sa mga bata na gumagamit ng Kids Mode, at aalis ito sa ordinaryong feeds.",
     "madeForKidsBlockedByMature": "Ang post na minarkahan bilang mature ay hindi maaaring ilathala din para sa mga bata.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Kunin ang RTMP details"
+    "encoderHint": "Kunin ang RTMP details",
+    "markMadeForKids": "Markahan bilang ginawa para sa mga bata"
   },
   "bounty": {
     "claimed": "Nakuha na",
@@ -5802,5 +5829,53 @@
     "appealRef": "Sanggunian {{ref}}",
     "appealSubtitleSubject": "Babasahin ito ng isang tao at titingnan ulit sa {{subject}}.",
     "appealMore": "Kailangan pa rin ng mga character:{{count}}"
+  },
+  "support": {
+    "title": "Suporta",
+    "subtitle": "Ang iyong mga ticket at ang kanilang status. Walang AI, walang bayad.",
+    "newTicket": "Bagong ticket",
+    "newTicketHint": "Sabihin sa amin kung ano ang nangyari at kung ano ang inaasahan mo sa halip.",
+    "backToTickets": "Bumalik sa mga ticket",
+    "openHeading": "Bukas ({{n}})",
+    "closedHeading": "Sarado ({{n}})",
+    "noTickets": "Hindi ka pa naghahain ng anumang tiket ng suporta.",
+    "loadFailed": "Hindi ma - load ang iyong mga tiket. Pakisubukan muli.",
+    "categoryLabel": "Kategorya",
+    "severityLabel": "Prayoridad",
+    "subjectLabel": "Paksa",
+    "subjectPlaceholder": "Isang linya na naglalarawan sa problema",
+    "descriptionLabel": "Magpadala ng hubad na larawan at hubad na tawag sa viedo para sa pera ok",
+    "descriptionPlaceholder": "Kung ano ang ginawa mo, kung ano ang inaasahan mo, at kung ano ang nangyari sa halip.",
+    "stepsLabel": "Mga hakbang sa pagpaparami (opsyonal)",
+    "submit": "Ipadala ang tiket",
+    "submitting": "Nagpapadala",
+    "filed": "Kasama ng team ang ticket na {{ref}}.",
+    "filedNotEmailed": "Naitala ang tiket {{ref}}. Panatilihin ang sanggunian.",
+    "alreadyOpen": "Bukas na ito bilang {{ref}}.",
+    "filingFailed": "Hindi ma - file ang tiket na iyon. Pakisubukan muli.",
+    "status": {
+      "open": "Bukas",
+      "in_progress": "Ginagawa pa",
+      "resolved": "Nalutas na",
+      "closed": "Sarado"
+    },
+    "severity": {
+      "low": "mababa",
+      "normal": "Normal",
+      "high": "Mataas",
+      "urgent": "Mahalaga"
+    },
+    "category": {
+      "account_access": "PAMM Account Access",
+      "wallet_or_transactions": "Wallet o mga transaksyon",
+      "posting_or_uploads": "Pag - post o pag - upload",
+      "payments_or_subscriptions": "Mga pagbabayad o subscription",
+      "live_streaming": "Live streaming",
+      "content_or_moderation": "Nilalaman o pagmo - moderate",
+      "bug": "Bug",
+      "feature_request": "Kahilingan sa tampok",
+      "other": "Iba pa"
+    },
+    "filedOn": "Na - file na {{date}}"
   }
 }

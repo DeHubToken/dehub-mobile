@@ -613,7 +613,8 @@
     "smsBand": {
       "domestic": "එක්සත් රාජධානිය",
       "europe": "යුරෝපය",
-      "premium": "වෙනත් සෑම තැනකම"
+      "premium": "වෙනත් සෑම තැනකම",
+      "global": "වෙනත් බොහෝ රටවල්"
     },
     "smsDepositPaying": "ඔබේ පසුම්බියේ තහවුරු කරන්න...",
     "smsDepositConfirming": "දම්වැල එනකම්...",
@@ -685,7 +686,30 @@
     "chainIdLabel": "චේන් ID: {{id}}",
     "exportPkConfirmPhrase": "මට තේරෙනවා",
     "exportPkCopy": "පුද්ගලික යතුර පිටපත් කරන්න",
-    "e2eAutomatic": "ස්වයංක්‍රීය"
+    "e2eAutomatic": "ස්වයංක්‍රීය",
+    "publicChatAlertsRateOption": "{{count}} පැයකට",
+    "smsScopeLabel": "යැවිය යුතු දේ",
+    "smsScopeDesc": "පණිවිඩවලට මුදල් වැය වේ, එබැවින් බාධා කිරීම වටිනා දේවලට සීමා කරන්න",
+    "smsScope": {
+      "all": "මා විසින් ක්‍රියාත්මක කරන ලද සියල්ල",
+      "tips": "මා විසින් ලැබෙන ඉඟි පමණි",
+      "subscriptions": "නව දායකයින් පමණි",
+      "sales": "මාගේ අන්තර්ගතයේ විකුණුම් පමණි",
+      "bounties": "බ Uties පමණි",
+      "fractions": "භාග පිරිනැමීම් සහ විකුණුම් පමණි",
+      "messages": "සෘජු පණිවිඩ පමණි",
+      "mentions": "මා ගැන සඳහන් කිරීම් පමණි",
+      "replies": "මාගේ අදහස්වලට ප්‍රතිචාර පමණි",
+      "account": "මාගේ ගිණුම පිළිබඳ දැනුම්දීම් පමණි"
+    },
+    "smsNotificationsDescReady": "යවා ඇත්තේ {{phone}} — {{dhb}} DHB බැගින්, {{count}} පමණ ඉතිරිව ඇත",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) සමඟ අගුළු හරින්න",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) මඟින් පණිවිඩ අගුළු හරින අතර එය ඔබගේ පළමු ශේෂය බවට පත්වේ.",
+    "smsDepositAction": "යවන්න {{dhb}} DHB",
+    "smsNeedDhb": "පණිවිඩ දැනුම්දීම් අගුළු හැරීමට ඔබට {{dhb}} DHB අවශ්‍ය වේ.",
+    "smsBalance": "{{dhb}} DHB ඉතිරිව ඇත (${{usd}})",
+    "smsBalanceMessages": "තවත් {{count}} පණිවිඩ පමණ",
+    "smsCodeLabel": "අපි {{phone}} වෙත යැවූ කේතය"
   },
   "common": {
     "mute": "නිහඬ කරන්න",
@@ -764,7 +788,13 @@
     "addTip": "Tip එකතු කරන්න",
     "attachDescription": "ඔබේ বার্তාවට DHB ටෝකන් ඉඟි ලෙස සংযුක්ත කරන්න",
     "attachAmount": "{{amount}} DHB සংයුක්ත කරන්න",
-    "removeTip": "Tip ඉවත් කරන්න"
+    "removeTip": "Tip ඉවත් කරන්න",
+    "toContent": "අන්තර්ගතයට ඉඟි කරන්න",
+    "insufficientBalance": "ශේෂය ප්‍රමාණවත් නැත",
+    "insufficientShort": "ප්‍රමාණවත් නැත",
+    "insufficientDhb": "DHB ප්‍රමාණවත් නැත",
+    "sent": "ඉඟිය යවන ලදී!",
+    "minAmount": "අවම {{amount}} DHB."
   },
   "postOptions": {
     "options": "විකල්ප",
@@ -1287,7 +1317,8 @@
     "to": "වෙත",
     "selectToken": "ටෝකනය තෝරන්න",
     "connectWallet": "මුදල් පසුම්බිය සම්බන්ධ කරන්න",
-    "loginDescription": "මුදල් පසුම්බියට ප්‍රවේශ වීමට පිවිසෙන්න."
+    "loginDescription": "මුදල් පසුම්බියට ප්‍රවේශ වීමට පිවිසෙන්න.",
+    "evmAddressLabel": "ඊවීඑම්"
   },
   "bookmarks": {
     "title": "ඔබේ පිටු සලකුණු",
@@ -1413,8 +1444,15 @@
     "andNOthers": "සහ තවත් {{count}}",
     "community": {
       "joined": "{{name}} ඔබේ ප් ‍ රජාවට එක් විය",
-      "mentioned": "{{name}} ඔබ ගැන සඳහන් කර ඇත්තේ ප් ‍ රජාවක ය"
-    }
+      "mentioned": "{{name}} ඔබ ගැන සඳහන් කර ඇත්තේ ප් ‍ රජාවක ය",
+      "joinedNamed": "{{name}} “{{community}}” හා එක්විය",
+      "requested": "{{name}} ඔබේ ප්‍රජාවට සම්බන්ධ වීමට ඉල්ලුම් කළේය",
+      "requestedNamed": "{{name}} “{{community}}” හා එක්වීමට ඉල්ලුම් කළේය",
+      "mentionedNamed": "{{name}} “{{community}}” හි ඔබව සඳහන් කළේය",
+      "here": "{{name}} ප්‍රජාවේ සියලු දෙනාට පණිවිඩයක් යැවීය",
+      "hereNamed": "{{name}} “{{community}}” හි සියලු දෙනාට පණිවිඩයක් යැවීය"
+    },
+    "badgeLent": "{{name}} ඔබට {{tier}} බැජ් එකක් ලබා දුන්නේය"
   },
   "leaderboard": {
     "title": "ශ්‍රේණිගත කිරීම",
@@ -1852,7 +1890,8 @@
     "otherTokens": "වෙනත් ටෝකන",
     "otherTokensDesc": "ඔබේ කාඩ්පතින් Base මත ETH හෝ USDC මිලදී ගන්න",
     "shareToFeed": "මගේ ෆීඩ් එකට ශෙයා කරන්න",
-    "sharePostTemplate": "මම දැන් DeHub හි මගේ ස්ටැක් එකට {{amount}} $DHB එකතු කර ඇත. ප්‍රජාව සමඟ ගොඩනඟමි. #DeHub #DHB"
+    "sharePostTemplate": "මම දැන් DeHub හි මගේ ස්ටැක් එකට {{amount}} $DHB එකතු කර ඇත. ප්‍රජාව සමඟ ගොඩනඟමි. #DeHub #DHB",
+    "minDhbPurchase": "අවම DHB මිලදී ගැනීම $0.50 කි"
   },
   "agents": {
     "title": "AI නියෝජිත",
@@ -2114,7 +2153,8 @@
       "empty": "තවම ප් ‍ රශ්න නෑ. සාකච්ඡාව පටන් ගන්න.",
       "joinOnProposal": "සාකච්ඡාවට එක්වන්න",
       "authorChip": "යෝජනා කතුවරයා"
-    }
+    },
+    "againstLabel": "විරුද්ධව"
   },
   "sidebar": {
     "talkOfTheTown": "නගරයේ කතාව",
@@ -2444,7 +2484,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_untiered": "පිංතූරය විශාල වැඩියි — පිංතූර {{limit}} MB දක්වා ගබඩා කර ඇත",
-    "rate_limited": "සීමාව පසු කළා, හෙමින් කරන්න"
+    "rate_limited": "සීමාව පසු කළා, හෙමින් කරන්න",
+    "image_too_large_tier": "රූපය ඉතා විශාලයි — ඔබේ {{tier}} ස්ථරය {{limit}} MB දක්වා රූප ගබඩා කරයි"
   },
   "staking": {
     "title": "Staking",
@@ -2521,7 +2562,28 @@
     "enterValidUnstakeAmount": "ඉවතට ගැනීමට වලංගු ප්‍රමාණයක් ඇතුළු කරන්න.",
     "walletNotConnected": "Wallet සংযුක්ත නොවේ.",
     "walletNotReady": "Wallet සූදානම් නොවේ. කරුණාකර නැවත උත්සාහ කරන්න.",
-    "insufficientOnBase": "Base මත insufficient DHB balance."
+    "insufficientOnBase": "Base මත insufficient DHB balance.",
+    "walletBalance": "මුදල් පසුම්බි ශේෂය",
+    "pendingRewards": "තහවුරු නොකළ ත්‍යාග",
+    "availableToStake": "ලබා ගත හැකි: {{amount}} DHB",
+    "withdrawableOnBnb": "ආපසු ලබා ගත හැකි: {{amount}} DHB BNB Chain හි",
+    "totalStakedProtocol": "මුළු තැන්පතු (ප්‍රොටෝකෝලය)",
+    "refreshBalances": "ශේෂ නැවුම් කරන්න",
+    "addressCopied": "තැන්පතු ලිපිනය පිටපත් කරන ලදී!",
+    "viewTransaction": "ගනුදෙනුව බලන්න",
+    "stakeConfirmedOnBase": "{{amount}} DHB Base හි තහවුරු විය.",
+    "switchBaseFailed": "Base ජාලයට මාරු වීමට අසමත් විය.",
+    "switchBnbFailed": "BNB Chain වෙත මාරු වීමට අසමත් විය.",
+    "stakeSubmitted": "තැන්පතුව ඉදිරිපත් කරන ලදී. තහවුරු කිරීම පරීක්ෂා කරමින් — නැවත යවන්න එපා.",
+    "txCancelledInWallet": "ඔබේ මුදල් පසුම්බියේ ගනුදෙනුව අවලංගු කරන ලදී.",
+    "txCancelled": "ගනුදෙනුව අවලංගු කරන ලදී.",
+    "stakeUnconfirmed": "තැන්පතුව තහවුරු කිරීමට නොහැකි විය. නැවත උත්සාහ කිරීමට පෙර ඔබේ මුදල් පසුම්බියේ ක්‍රියාකාරකම් පරීක්ෂා කරන්න.",
+    "onlyThisMuchStaked": "ඔබට {{amount}} DHB පමණක් තැන්පත් කර ඇත.",
+    "onlyLegacyWithdrawable": "දැන් {{amount}} DHB පමණක් ආපසු ලබා ගත හැකිය — ඉතිරිය Base pool හි ඇත, එයට ආපසු ගැනීමේ කොන්ත්‍රාත්තුවක් නොමැත.",
+    "poolHasNoWithdrawal": "ඔබේ DHB Base pool හි ඇත, එයට ආපසු ගැනීමේ කොන්ත්‍රාත්තුවක් නොමැත. ආපසු ගැනීමට සහාය අමතන්න.",
+    "lockedEarlyFee": "{{date}} දක්වා අගුලු දමා ඇත. දැන් ආපසු ගැනීම 88% ලබා දෙයි — 12% ගාස්තුවක්, ආසන්න වශයෙන් {{fee}} DHB. පිළිගැනීමට නැවත තට්ටු කරන්න.",
+    "unstakeReverted": "ආපසු ගැනීම on-chain හි ප්‍රතික්ෂේප විය.",
+    "unstakeFailed": "ආපසු ගැනීම අසාර්ථක විය."
   },
   "communities": {
     "title": "Communities",
@@ -2972,7 +3034,13 @@
     "addedToYourUsernames": "ඔබේ පරිශීලක නාම වලට එකතු වේ",
     "boughtNameGoesToVault": "ඔබ @{{current}} ලෙසම සිටියි. @{{handle}} ඔබේ පරිශීලක නාම වලට එකතු වන අතර ඔබට ඕනෑම වේලාවක එයට මාරු විය හැක.",
     "youAreNow": "ඔබ දැන් @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} දැන් ඔබේ පරිශීලක නාම වල ඇත"
+    "boughtToVaultToast": "@{{handle}} දැන් ඔබේ පරිශීලක නාම වල ඇත",
+    "askingPriceUsd": "ඉල්ලුම් මිල (USD)",
+    "dollarPriceRange": "දශම ස්ථාන දෙකක් දක්වා $ 1–$ 1,000,000 ඇතුළත් කරන්න.",
+    "fixedDollarPrice": "ඩොලරය මිල ස්ථාවර රැඳී; සංකේත ප්රමාණය යාවත්කාලීන.",
+    "priceUpdated": "මිල යාවත්කාලීන කරන ලදි. ප් ‍ රමාණය සමාලෝචනය කර නැවත මිල දී ගන්න ටැප් කරන්න.",
+    "tokensPaidToSeller": "විකුණුම්කරුට සෘජුවම ගෙවන ලදී",
+    "priceUsd": "මිල (USD)"
   },
   "stores": {
     "subtitle": "DeHub ප්‍රජාවේ නිෂ්පාදන සොයා ගන්න",
@@ -3563,7 +3631,10 @@
     "reviewDescriptionPlaceholder": "මෙම ලිපිය ගැන යමක් කියන්න (අත් ‍ යවශ් ‍ ය නොවේ)",
     "reviewLiveWarning": "මෙම සබැඳිය සජීවී විකාශනයකි. එය අවසන් වන තෙක් රැඳී සිටින්න සහ ඒ වෙනුවට පටිගත කිරීම ආයාත කරන්න.",
     "reviewCancel": "අවලංගු කරන්න",
-    "reviewConfirm": "ආයාත කරන්න"
+    "reviewConfirm": "ආයාත කරන්න",
+    "ownership": "මට මෙම අන්තර්ගතය තිබේ, නැතහොත් එය ඩෙහබ් හි ප් රකාශයට පත් කිරීමට අයිතිකරුගේ අවසරය ඇත.",
+    "statusFailed": "අසමත් විය",
+    "statusRateLimited": "සීමිත අගයන්න"
   },
   "earnings": {
     "filter24h": "24පැ",
@@ -4049,7 +4120,18 @@
     "whatsHappening": "මොකද වෙන්නේ?",
     "quotaShortfall": "මෙම පළකිරීමට {{cost}} DHB අවශ්‍යයි, ඔබ සතුව {{held}} ඇත.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "RTMP විස්තර ලබා ගන්න"
+    "encoderHint": "RTMP විස්තර ලබා ගන්න",
+    "madeForKids": "ළමුන් සඳහා සාදන ලදී",
+    "madeForKidsHint": "ළමා ප්‍රකාරයේ පෙන්වයි",
+    "madeForKidsConfirmTitle": "මෙය ළමුන් සඳහා ප්‍රකාශයට පත් කරන්නේද?",
+    "madeForKidsConfirmAudience": "ළමා ප්‍රකාරය භාවිතා කරන ළමයින්ට මෙම පළ කිරීම පෙන්වනු ඇත. DeHub හි වෙනත් කිසිවක් ඔවුන් වෙත ළඟා නොවේ.",
+    "madeForKidsConfirmReach": "එය සාමාන්‍ය සංග්‍රහවලින් ද ඉවත් වේ — මිනිසුන්ට තවමත් එය ඔබගේ පැතිකඩෙහි, සෙවුම්වල සහ ඔබ බෙදා ගන්නා සබැඳියක් හරහා සොයාගත හැකිය.",
+    "madeForKidsConfirmComments": "ළමා ප්‍රකාරයට පමණක් ඒ පිළිබඳව අදහස් දැක්විය හැකිය. ඔබට තවමත් ඔවුන්ට පිළිතුරු දිය හැකිය.",
+    "madeForKidsConfirmYes": "ඔව්, එය ළමුන් සඳහා ය",
+    "markMadeForKids": "ළමුන් සඳහා සාදන ලද ලෙස සලකුණු කරන්න",
+    "madeForKidsOnDesc": "ළමා ප්‍රකාරයේ ළමයින්ට පෙන්වයි, සහ සාමාන්‍ය සංග්‍රහවලින් ඉවත් කරයි.",
+    "madeForKidsOffDesc": "ළමා ප්‍රකාරයේ ළමයින්ට මෙම පළ කිරීම පෙන්වයි, සහ සාමාන්‍ය සංග්‍රහවලින් එය ඉවත් කරයි.",
+    "madeForKidsBlockedByMature": "වැඩිහිටි සලකුණු කළ පළ කිරීමක් ළමුන් සඳහා ප්‍රකාශයට පත් කළ නොහැක."
   },
   "bounty": {
     "claimed": "ලබාගෙන ඇත",
@@ -4494,7 +4576,10 @@
     "videosCount": "{{videos}} විඩියෝස්",
     "viewFeed": "ඔබේ සංග් ‍ රහය බලන්න",
     "yourChannel": "ඔබේ නාලිකාව",
-    "yourChannelHint": "ඔබේ නාලිකා ලිපිනය අලවන්න — එහිම වැඩවල හසුරුව ද."
+    "yourChannelHint": "ඔබේ නාලිකා ලිපිනය අලවන්න — එහිම වැඩවල හසුරුව ද.",
+    "progressDone": "{{imported}} ආනයනය කරන ලදී.",
+    "progressDoneWithFailures": "{{imported}} ආනයනය කරන ලදී, {{failed}} ආනයනය කිරීමට නොහැකි විය.",
+    "videoCountOne": "{{n}} වීඩියෝ"
   },
   "calls": {
     "voiceCall": "DeHub හඬ ඇමතුම",
@@ -4955,7 +5040,10 @@
     "prepareFailed": "පිහිටීම සකස් කළ නොහැකි විය",
     "sellAmount": "විකුණුම් ප්‍රමාණය",
     "spend": "වියදම් කරන්න",
-    "withdrawFailed": "මුදල් ආපසු ගැනීම අසාර්ථක විය"
+    "withdrawFailed": "මුදල් ආපසු ගැනීම අසාර්ථක විය",
+    "buyAboveMarket": "මෙම මිලදී ගැනීම වෙළඳපල මිල වන ${{price}} ට වඩා {{percent}}% ඉහළින් ඇත. ඔබ වෙනත් තැන්වල DHB වෙළඳාම් කරනවාට වඩා වැඩිපුර ගෙවනු ඇත.",
+    "noListingsChain": "{{chain}} හි තවමත් ලැයිස්තුගත කිරීම් නොමැත.",
+    "reviewSwap": "පළමුව Base හි {{usdc}} USDC සඳහා {{amountIn}} {{symbol}} මාරු කරන්න. භාවිතා නොකළ {{symbol}} එකම ගනුදෙනුවේදී ආපසු ලබා දෙනු ලැබේ."
   },
   "onboarding": {
     "optIn": {
@@ -5589,5 +5677,47 @@
     "appealRef": "යොමු {{ref}}",
     "appealSubtitleSubject": "කවුරුහරි මේක කියවලා {{subject}} ට ආයෙත් බලයි.",
     "appealMore": "අක්ෂර තවමත් අවශ් ‍ යයි: {{count}}"
+  },
+  "support": {
+    "title": "සහාය",
+    "subtitle": "ඔබේ ටිකට්පත් සහ ඔබේ තත්වය. නැහැ, කිසිම ගාස්තුවක් නැහැ.",
+    "newTicket": "නව ටිකට්පත",
+    "newTicketHint": "සිදුවූයේ කුමක්ද සහ ඒ වෙනුවට ඔබ අපේක්ෂා කළ දේ අපට කියන්න.",
+    "backToTickets": "ටිකට්පත් වෙත ආපසු යන්න",
+    "noTickets": "ඔබ තවමත් කිසිදු ආධාරක ප් ‍ රවේශ පත් ‍ රයක් ගොනු කර නැත.",
+    "loadFailed": "ඔබේ ටිකට්පත් පූරණය කළ නොහැකි විය. නැවත උත්සාහ කරන්න.",
+    "categoryLabel": "ප්‍රවර්ගය",
+    "severityLabel": "ප්‍රමුකත්වය",
+    "subjectPlaceholder": "ගැටළුව විස්තර කරන රේඛාවක්",
+    "descriptionLabel": "- ඇයි? මොකද වුණේ?",
+    "descriptionPlaceholder": "ඔබ කළ දේ, ඔබ බලාපොරොත්තු වූ දේ සහ ඒ වෙනුවට සිදු වූ දේ.",
+    "stepsLabel": "ප් ‍ රතිනිෂ්පාදනය කිරීමේ පියවර (අත් ‍ යවශ් ‍ ය නොවේ)",
+    "submit": "ටිකට්පත යවන්න",
+    "submitting": "යවමින්...",
+    "filedNotEmailed": "ප් ‍ රවේශ පත් ‍ රය {{ref}} පටිගත කර ඇත. යොමු කිරීම තබා ගන්න.",
+    "alreadyOpen": "ඔබ දැනටමත් {{ref}} ලෙස මෙය විවෘත කර ඇත.",
+    "filingFailed": "එම ප් ‍ රවේශ පත් ‍ රය ගොනු කළ නොහැකි විය. නැවත උත්සාහ කරන්න.",
+    "status": {
+      "open": "විවෘත කරන්න",
+      "in_progress": "සැකසෙමින් පවතී",
+      "resolved": "විසඳා ඇත",
+      "closed": "වසා ඇත"
+    },
+    "severity": {
+      "low": "අවම",
+      "normal": "සාමාන්‍ය",
+      "high": "වැඩි",
+      "urgent": "හදිසි"
+    },
+    "category": {
+      "account_access": "ගිණුම් ප් ‍ රවේශය",
+      "wallet_or_transactions": "පසුම්බිය හෝ ගනුදෙනු",
+      "posting_or_uploads": "තැපැල් කිරීම හෝ උඩුගත කිරීම",
+      "payments_or_subscriptions": "ගෙවීම් හෝ දායකත්වයන්",
+      "live_streaming": "සජීවී ප් ‍ රවාහය",
+      "content_or_moderation": "අන්තර්ගතය හෝ මධ් ‍ යස්ථතාවය",
+      "feature_request": "විශේෂාංග ඉල්ලීම",
+      "other": "වෙනත්"
+    }
   }
 }

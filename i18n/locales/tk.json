@@ -688,7 +688,29 @@
     "chainIdLabel": "Zynjyr ID: {{id}}",
     "exportPkConfirmPhrase": "DÜŞÜNÝÄRIN",
     "exportPkCopy": "Hususy açary göçüriň",
-    "e2eAutomatic": "Awtomatiki"
+    "e2eAutomatic": "Awtomatiki",
+    "publicChatAlertsRateOption": "{{count}} sagatda",
+    "smsScopeLabel": "Näme ýazmaly",
+    "smsScopeDesc": "Ýazgylar pul, şonuň üçin gysgaça aýdyň, ýöne ünsi sowujy zatlara degişli ediň",
+    "smsScope": {
+      "all": "Işimde näme bar",
+      "tips": "Diňe alýan maslahatlarym",
+      "subscriptions": "Diňe täze abonentler",
+      "sales": "Diňe içerik satyşlarym",
+      "bounties": "Diňe baýraklar",
+      "fractions": "Diňe paýly teklipler we satyşlar",
+      "messages": "Diňe göni ýazgylar",
+      "mentions": "Diňe meniň agzalanym",
+      "replies": "Diňe meniň teswirlerime jogaplar",
+      "account": "Diňe hasabym barada bildirişler"
+    },
+    "smsNotificationsDescReady": "{{phone}} iberildi — her biri {{dhb}} DHB, takmynan {{count}} galdy",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) bilen açyň",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) ýazgylary açýar we ilkinji balansiňiz bolýar.",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositAction": "{{dhb}} DHB iberiň",
+    "smsBalance": "{{dhb}} DHB galdy (${{usd}})",
+    "smsBalanceMessages": "Takmynan {{count}} goşmaça habar"
   },
   "common": {
     "mute": "Sesi öçür",
@@ -1405,8 +1427,18 @@
     "noneForFilter": "Häzirlikçe {{filter}} habarnamasy ýok.",
     "andNOthers": "we ýene {{count}}",
     "community": {
-      "joinedNamed": "{{name}} \"{{community}}\" bilen birleşdi"
-    }
+      "joinedNamed": "{{name}} \"{{community}}\" bilen birleşdi",
+      "joined": "{{name}} siziň jemgyýetiňize goşuldy",
+      "requested": "{{name}} siziň jemgyýetiňize goşulmagy sorady",
+      "requestedNamed": "{{name}} “{{community}}” jemgyýetine goşulmagy sorady",
+      "mentioned": "{{name}} sizi jemgyýetde agzady",
+      "mentionedNamed": "{{name}} sizi “{{community}}” jemgyýetinde agzady"
+    },
+    "badgeLent": "{{name}} size {{tier}} nyşanyny berdi",
+    "badgeTakenBack": "{{name}} size {{tier}} nyşanyny bermegi bes etdi",
+    "badgeHandedBack": "{{name}} size beren {{tier}} nyşanyňyzy yzyna gaýtardy",
+    "badgeLoanLapsed": "{{name}} indi size {{tier}} nyşanyny berip bilmez",
+    "badgeLoanRetiered": "{{name}} indi size {{tier}} nyşanyny berýär"
   },
   "leaderboard": {
     "title": "Reýting",
@@ -1844,7 +1876,8 @@
     "otherTokens": "Beýleki tokenler",
     "otherTokensDesc": "Kartyňyz bilen Base-de ETH ýa-da USDC satyn alyň",
     "shareToFeed": "Meniň iýmitimi paýlaň",
-    "sharePostTemplate": "Men diňe {{amount}} $ DHB-i DeHub-da ýerleşýän ýerime goşdum. Halkara ynsan hukuk jemgyýeti bilen baglanyşykly. #Güýçli #Güýçli"
+    "sharePostTemplate": "Men diňe {{amount}} $ DHB-i DeHub-da ýerleşýän ýerime goşdum. Halkara ynsan hukuk jemgyýeti bilen baglanyşykly. #Güýçli #Güýçli",
+    "minDhbPurchase": "DHB-iň iň az satyn alyşy $ 0.50"
   },
   "agents": {
     "title": "Emeli aň agentleri",
@@ -2988,7 +3021,13 @@
     "addedToYourUsernames": "Ulanyjy atlaryňyza goşulýar",
     "boughtNameGoesToVault": "Siz @{{current}} bolup galýarsyňyz. @{{handle}} ulanyjy atlaryňyza goşulýar we islän wagtyňyz oňa geçip bilersiňiz.",
     "youAreNow": "Indi siz @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} indi ulanyjy atlaryňyzda"
+    "boughtToVaultToast": "@{{handle}} indi ulanyjy atlaryňyzda",
+    "askingPriceUsd": "ABŞ dollary (USD)",
+    "dollarPriceRange": "$ 1–$ 1,000,000 gir, iki sany onlukly ýer bilen.",
+    "fixedDollarPrice": "Dollar bahasy berk durýar; token möçberde täzelenmeler.",
+    "priceUpdated": "Baý täzelendi. Mülkiýetini barlaň we ýene-de satyn alyň.",
+    "tokensPaidToSeller": "Dürli satyjylara pul tölenýär",
+    "priceUsd": "ABŞ dollary (ABŞ dollary)"
   },
   "stores": {
     "subtitle": "DeHub jemgyýetiniň önümlerini tapyň",
@@ -3312,7 +3351,8 @@
     "title": "Halkara gürrüňdeşlik",
     "mentionTitle": "Jemagat gürrüňdeşliginde agzalýar",
     "voiceMessage": "Sesli habar",
-    "image": "Resimi iber"
+    "image": "Resimi iber",
+    "digest": "{{count}} täze habarlar {{who}}-dan: {{message}}"
   },
   "liveChat": {
     "attach": "Foto, GIF ýa-da emojileri goş",
@@ -3499,7 +3539,16 @@
     "mediaSource": "Medianyň gözbaşyny saýla",
     "photoLibrary": "Foto kitaphanasy",
     "videoFiles": "Faýllaryň videolary",
-    "fileError": "Ol videony bilmeýärdi. Lütfen başga bir faýly synap görüň."
+    "fileError": "Ol videony bilmeýärdi. Lütfen başga bir faýly synap görüň.",
+    "anonymous": "Anonim nyşanly ulanyjylardan {{count}} halanlar",
+    "reactedPost": "Siziň posdyňyzy {{name}} reaksiýa bildirdi",
+    "repostedPost": "Siziň posdyňyzy {{name}} täzeden paýlaşdy",
+    "quotedPost": "Siziň posdyňyzy {{name}} sitirledi",
+    "mentionedYou": "Sizi {{name}} agzady",
+    "followRequest": "Siziň yz ýanyňyza düşmek üçin {{name}} haýyş etdi",
+    "followAccepted": "Siziň yz ýanyňyza düşmek haýyşyňyzy {{name}} kabul etdi",
+    "signalFlare": "{{name}} Signal Flare iberdi",
+    "newMessage": "{{name}} size habar iberdi"
   },
   "audioPost": {
     "popOut": "Pop out — diňleýänçäňiz diňläň",
@@ -3510,7 +3559,8 @@
     "creator": "DeHub Ýaradyjy",
     "play": "Oynat",
     "pause": "Galanlar",
-    "listens_one": "{{count}} gulak asyň"
+    "listens_one": "{{count}} gulak asyň",
+    "listens_other": "{{count}} listens"
   },
   "transfer": {
     "title": "Tokenleri geçir",
@@ -4075,7 +4125,8 @@
     "madeForKidsOffDesc": "Bu postu Kids Mode-ny ulanýan çagalara görkezýär we adaty feed-lerden çykyp gidýär.",
     "madeForKidsBlockedByMature": "Ýetginjek hökmünde bellenen post çagalar üçin hem neşir edilip bilmeýär.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "RTMP detallary alıň"
+    "encoderHint": "RTMP detallary alıň",
+    "markMadeForKids": "Çagalar üçin ýasalan marka"
   },
   "bounty": {
     "claimed": "Alyndy",
@@ -5594,5 +5645,52 @@
     "appealRef": "Referans {{ref}}",
     "appealSubtitleSubject": "Bir adam muny okap, ýene-de {{subject}}sereder.",
     "appealMore": "Häzirem gerekli karakterler: {{count}}"
+  },
+  "support": {
+    "title": "Destek",
+    "subtitle": "Biletleriňiz we olaryň statusy. Ýok, hiç hili tölegi ýok, hiç hili tölegi ýok.",
+    "newTicket": "Täze bilet",
+    "newTicketHint": "Bize näme bolandygyny we näme garaşýandygyňyzy aýt.",
+    "backToTickets": "Biletlere dolanmak",
+    "closedHeading": "Gapyldy ({{n}})",
+    "noTickets": "Siz henizem kömek biletlerini bermediňiz.",
+    "loadFailed": "Biletleri gaýd edip bilmedim. Gaýtalaň",
+    "categoryLabel": "Kategoriýa",
+    "severityLabel": "Öňürti",
+    "subjectLabel": "Tema",
+    "subjectPlaceholder": "Bu soragyň jogabyny düşündiriň",
+    "descriptionLabel": "Näme boldy",
+    "descriptionPlaceholder": "Sen näme etdiň, näme garaşdyň we näme boldy?",
+    "stepsLabel": "Kalkülýotaryň kalkülýotary (optional)",
+    "submit": "Bilet iber",
+    "submitting": "Ýolbaşçylyk maslahatynyň (Ýolbaşçylyk",
+    "filed": "Ticket {{ref}} topar bilen.",
+    "filedNotEmailed": "Bilet {{ref}} Ýazgylary sakla.",
+    "alreadyOpen": "Bu ýerde eýýäm {{ref}} açyk.",
+    "filingFailed": "Bu tiketi ýapmak başa barmady. Gaýtadan synanyşyň.",
+    "status": {
+      "open": "Açyk",
+      "in_progress": "Işlenýär",
+      "resolved": "Çözüldi",
+      "closed": "Ýapyldy"
+    },
+    "severity": {
+      "low": "Pes",
+      "normal": "Normal",
+      "high": "Ýokary",
+      "urgent": "Dürli"
+    },
+    "category": {
+      "account_access": "Hasap elýeterliligi",
+      "wallet_or_transactions": "Portmone ýa-da amallar",
+      "posting_or_uploads": "Ýüklemek ýa-da goýmak",
+      "payments_or_subscriptions": "Tölegler ýa-da abuna ýazylmalar",
+      "live_streaming": "Göni ýaýlym",
+      "content_or_moderation": "Mazmun ýa-da moderasiýa",
+      "bug": "Ýalňyşlyk",
+      "feature_request": "Aýratynlyk islegi",
+      "other": "Beýleki"
+    },
+    "filedOn": "Ýapdy {{date}}"
   }
 }
