@@ -85,7 +85,6 @@
   "components/PPV/PPVModal.tsx": 7,
   "components/Post/SoundPickerSheet.tsx": 2,
   "components/Profile/FeedRoute.tsx": 2,
-  "components/Profile/FractionsRoute.tsx": 2,
   "components/Profile/ImagesRoute.tsx": 3,
   "components/Profile/PinnedRoute.tsx": 3,
   "components/Profile/PostsInfiniteList.tsx": 2,
