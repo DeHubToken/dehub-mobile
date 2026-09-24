@@ -84,6 +84,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
             <TouchableOpacity
               onPress={onAttach}
               style={s.actionBtn}
+              hitSlop={ACTION_SLOP}
               disabled={disabled || loading}
               accessibilityRole="button"
               accessibilityLabel={t('dm.attachImage')}
@@ -99,6 +100,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
           <TouchableOpacity
             onPress={handleSubmit}
             style={s.actionBtn}
+            hitSlop={ACTION_SLOP}
             disabled={!canSend}
             accessibilityRole="button"
             accessibilityLabel={t('dm.sendMessage')}
@@ -119,6 +121,10 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
     </View>
   );
 };
+
+// The 32pt buttons sit 12pt apart inside the input pill; 6pt of slop each way
+// reaches 44pt without the two targets overlapping.
+const ACTION_SLOP = { top: 6, bottom: 6, left: 6, right: 6 };
 
 const s = StyleSheet.create({
   container: {

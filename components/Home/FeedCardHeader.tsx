@@ -156,6 +156,8 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         {onAiPress && (
           <Pressable
             onPress={onAiPress}
+            accessibilityRole="button"
+            accessibilityLabel={t("nav.assistant")}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: HEADER_ICON_PAD }}
           >
@@ -165,6 +167,8 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         {onMenuPress && (
           <Pressable
             onPress={onMenuPress}
+            accessibilityRole="button"
+            accessibilityLabel={t("player.moreOptions")}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: HEADER_ICON_PAD }}
           >

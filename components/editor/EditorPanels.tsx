@@ -85,10 +85,21 @@ export function Range(props: {
   );
 }
 
+const SWATCH_SLOP_Y = 7;
+
 export function Swatches({ value, onPick, label }: { value: string; onPick: (c: string) => void; label: string }) {
   return (
     <Labeled label={label}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10 }}>
+      {/* The scroller clips touches to its own bounds, so the 30pt dots'
+          slop only counts if the scroller is taller than they are. The
+          padding and the matching negative margin grow it to 44pt without
+          moving anything on screen. */}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{ marginVertical: -SWATCH_SLOP_Y }}
+        contentContainerStyle={{ gap: 10, paddingVertical: SWATCH_SLOP_Y }}
+      >
         {SWATCHES.map((c) => {
           const on = c.toLowerCase() === value.toLowerCase();
           return (
@@ -98,6 +109,7 @@ export function Swatches({ value, onPick, label }: { value: string; onPick: (c: 
               accessibilityRole="button"
               accessibilityState={{ selected: on }}
               accessibilityLabel={`${label} ${c}`}
+              hitSlop={{ top: SWATCH_SLOP_Y, bottom: SWATCH_SLOP_Y, left: 5, right: 5 }}
               style={{
                 width: 30,
                 height: 30,

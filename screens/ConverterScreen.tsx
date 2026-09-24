@@ -505,8 +505,11 @@ export default function ConverterScreen() {
           <Pressable
             onPress={handlePaste}
             disabled={submitting}
-            hitSlop={6}
+            // Fills the 44pt field vertically; the left side stays short so a
+            // tap at the end of the typed link still lands in the input.
+            hitSlop={{ top: 10, bottom: 10, left: 4, right: 10 }}
             className="flex-row items-center rounded-lg px-2 py-1"
+            accessibilityRole="button"
           >
             <Icon name="Clipboard" size={13} color="#d4d4d8" />
             <Text className="text-theme-neutrals-300 text-xs ml-1">{t('converter.paste')}</Text>

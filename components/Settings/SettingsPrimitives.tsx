@@ -164,20 +164,33 @@ export const SettingsToggleRow: React.FC<
   }
 > = ({ value, onValueChange, comingSoon, ...rest }) => {
   const { t } = useTranslation();
+  const handleChange = comingSoon
+    ? () => toastInfo(t('settings.comingSoon'))
+    : onValueChange ?? (() => {});
+  // The whole row flips the switch, as a native settings list does — the
+  // label is the obvious thing to tap and used to do nothing. The row itself
+  // stays out of the accessibility tree so the switch, named after the row,
+  // is the one control a screen reader lands on.
   return (
-    <RowShell
-      {...rest}
-      disabled={rest.disabled || comingSoon}
-      right={
-        <CustomSwitch
-          value={value}
-          onValueChange={
-            comingSoon ? () => toastInfo(t('settings.comingSoon')) : onValueChange ?? (() => {})
-          }
-          disabled={rest.disabled}
-        />
-      }
-    />
+    <TouchableOpacity
+      onPress={() => handleChange(!value)}
+      disabled={rest.disabled}
+      activeOpacity={0.7}
+      accessible={false}
+    >
+      <RowShell
+        {...rest}
+        disabled={rest.disabled || comingSoon}
+        right={
+          <CustomSwitch
+            value={value}
+            onValueChange={handleChange}
+            disabled={rest.disabled}
+            accessibilityLabel={rest.label}
+          />
+        }
+      />
+    </TouchableOpacity>
   );
 };
 
