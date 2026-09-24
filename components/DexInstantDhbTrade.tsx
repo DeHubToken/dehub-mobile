@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 import { ethers } from 'ethers';
 import { ChainId } from '../config/constants';
 import { useDexSigner } from '../hooks/useDexSigner';
-import { toastSuccess } from '../libs';
+import { toastInfo, toastSuccess } from '../libs';
 import { dexActionError } from '../libs/dex-action-error';
 import { formatSize } from '../libs/dex-orderbook';
 import { NATIVE, evmProvider, quoteSwap, runSwap, type SwapCall } from '../libs/dex-evm-swap';
@@ -27,6 +28,17 @@ export default function DexInstantDhbTrade({ address, disabled, onDone }: { addr
   const [balances, setBalances] = useState<{ usdc: number; eth: number; dhb: number } | null>(null);
   const [revision, setRevision] = useState(0);
   useEffect(() => { setQuote(null); setError(''); }, [side, pay, amount]);
+  // With a quote in hand, busy means the swap itself is out: leaving then
+  // hides whether it landed. Hold the screen until the wallet answers.
+  const navigation = useNavigation<any>();
+  const swapping = busy && !!quote;
+  useEffect(() => {
+    if (!swapping) return;
+    return navigation.addListener('beforeRemove', (e: any) => {
+      e.preventDefault();
+      toastInfo(t('toasts.waiting_for_confirmation'));
+    });
+  }, [swapping, navigation, t]);
 
   useEffect(() => {
     let live = true; setBalances(null);

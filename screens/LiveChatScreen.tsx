@@ -96,7 +96,11 @@ const LiveChatScreen: React.FC = () => {
   // has already given up — the raw height runs to the physical bottom of the
   // screen, so using it whole leaves a home-indicator gap under the composer.
   const { lift: inputLift } = useKeyboardLift();
-  const listBottomPadding = 88 + inputLift;
+  // The composer grows with a reply strip, an attachment preview or multiline
+  // text, so the list pads by its measured height rather than a fixed guess
+  // that let the newest messages slide under it.
+  const [composerHeight, setComposerHeight] = useState(80);
+  const listBottomPadding = composerHeight + 8 + inputLift;
 
   // Tell the alert engine the room is on screen. It drops its own connection
   // while this is true: there is nothing to announce to someone already
@@ -793,7 +797,7 @@ const LiveChatScreen: React.FC = () => {
           <TouchableOpacity
             onPress={() => scrollToBottom()}
             className="absolute right-4"
-            style={{ bottom: inputLift + 100 }}
+            style={{ bottom: composerHeight + inputLift + 12 }}
             activeOpacity={0.7}
           >
             <View className="bg-white/10 rounded-xl w-10 h-10 items-center justify-center">
@@ -805,6 +809,7 @@ const LiveChatScreen: React.FC = () => {
         <View
           className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
           style={{ marginBottom: inputLift }}
+          onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
         >
           {typingText && (
             <View className="px-4 py-1.5 border-b border-white/5">

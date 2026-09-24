@@ -5,8 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
-  KeyboardAvoidingView,
-  useWindowDimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
@@ -36,11 +34,8 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
   onRemove,
   type,
 }) => {
-  const { height: screenHeight } = useWindowDimensions();
   const inputRef = useRef<TextInput>(null);
   const [query, setQuery] = useState("");
-
-  const drawerHeight = Math.round(screenHeight * 0.65);
 
   useEffect(() => {
     if (visible) {
@@ -119,12 +114,10 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
       maxHeight="70%"
       blurIntensity={40}
     >
-      <KeyboardAvoidingView
-        behavior="padding"
-        style={{ height: drawerHeight }}
-        keyboardVerticalOffset={0}
-      >
-        <View style={{ flex: 1 }}>
+      {/* GlassModal already lifts the panel over the keyboard and caps it at
+          maxHeight; a second avoiding view with a fixed height here pushed the
+          list off the top once the keyboard opened. Let the list shrink instead. */}
+      <View style={{ flexShrink: 1 }}>
           <View className="flex-row items-center justify-between px-4 pt-4 pb-2">
             <Text className="text-white text-lg font-bold">Categories</Text>
             <View className="flex-row items-center">
@@ -204,6 +197,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
           )}
 
           <FlatList
+            style={{ flexShrink: 1 }}
             data={filtered}
             renderItem={renderItem}
             keyExtractor={keyExtractor}
@@ -222,8 +216,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
               ) : null
             }
           />
-        </View>
-      </KeyboardAvoidingView>
+      </View>
     </GlassModal>
   );
 };
