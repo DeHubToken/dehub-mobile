@@ -26,6 +26,7 @@
  */
 
 import React, { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -85,6 +86,7 @@ export default function ShopSheet({
   allowance,
   tier,
 }: ShopSheetProps) {
+  const { t } = useTranslation();
   const [rows, setRows] = useState<ShopLink[]>(value.links);
   const [listingIds, setListingIds] = useState<string[]>(value.listingIds);
 
@@ -129,7 +131,7 @@ export default function ShopSheet({
       <View className="flex-row items-center justify-between px-4 pt-4 pb-2">
         <View className="flex-row items-center">
           <Icon name="Store" size={18} color="#fff" />
-          <Text className="text-white text-base font-semibold ml-2">Shop</Text>
+          <Text className="text-white text-base font-semibold ml-2">{t("upload.shop")}</Text>
         </View>
         <TouchableOpacity onPress={onClose} activeOpacity={0.7} hitSlop={10}>
           <Icon name="X" size={18} color="#A1A1AA" />
@@ -140,24 +142,23 @@ export default function ShopSheet({
         <View className="flex-row p-3 rounded-xl bg-white/[0.04] border border-white/10 mb-3">
           <Icon name="Info" size={14} color="#808089" />
           <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1 leading-4">
-            Put your own listings or affiliate links on this post — viewers open them from the
-            Shop button.{" "}
+            {t("upload.shopIntro")}{" "}
             {tier
-              ? `Your ${tier} badge gives you ${allowance} in total.`
-              : `You get ${allowance} in total. Every badge tier adds one more.`}
+              ? t("upload.shopAllowanceTier", { tier, allowance })
+              : t("upload.shopAllowanceBase", { allowance })}
           </Text>
         </View>
 
         {/* Own listings first: they check out in-app and the money is the
             creator's, which is worth more to both sides than a referral. */}
-        <Text className="text-white/70 text-sm mb-2">From your shop</Text>
+        <Text className="text-white/70 text-sm mb-2">{t("upload.shopFromYours")}</Text>
         {listingsLoading ? (
           <View className="py-4 items-center">
             <ActivityIndicator color="#808089" />
           </View>
         ) : sellable.length === 0 ? (
           <Text className="text-theme-neutrals-500 text-xs mb-3">
-            Nothing on sale in your shop yet. Anything you list there can go on a post.
+            {t("upload.shopNothingOnSale")}
           </Text>
         ) : (
           sellable.map((listing: any) => {
@@ -202,9 +203,9 @@ export default function ShopSheet({
           })
         )}
 
-        <Text className="text-white/70 text-sm mt-3 mb-1">Links</Text>
+        <Text className="text-white/70 text-sm mt-3 mb-1">{t("upload.shopLinks")}</Text>
         <Text className="text-theme-neutrals-500 text-xs mb-2">
-          Affiliate links are welcome — Amazon Associates, referral links, anywhere you sell.
+          {t("upload.shopAffiliateHint")}
         </Text>
 
         {rows.map((row, index) => {
@@ -215,7 +216,7 @@ export default function ShopSheet({
               className="p-3 rounded-xl border border-white/10 bg-white/[0.02] mb-2"
             >
               <View className="flex-row items-center justify-between mb-2">
-                <Text className="text-theme-neutrals-500 text-xs">Link {index + 1}</Text>
+                <Text className="text-theme-neutrals-500 text-xs">{t("upload.shopLinkN", { n: index + 1 })}</Text>
                 <TouchableOpacity onPress={() => remove(index)} activeOpacity={0.7} hitSlop={10}>
                   <Icon name="Trash2" size={15} color="#808089" />
                 </TouchableOpacity>
@@ -223,7 +224,7 @@ export default function ShopSheet({
               <TextInput
                 value={row.label}
                 onChangeText={(text) => update(index, { label: text.slice(0, LABEL_MAX) })}
-                placeholder="What it is — e.g. My mic"
+                placeholder={t("upload.shopLabelPlaceholder")}
                 placeholderTextColor="#52525B"
                 /* 16px or iOS zooms the whole screen on focus. */
                 className="text-white text-base px-3 py-3 rounded-xl bg-white/[0.06] border border-white/10 mb-2"
@@ -241,7 +242,7 @@ export default function ShopSheet({
               />
               {invalid ? (
                 <Text className="text-white/80 text-xs mt-1">
-                  That does not look like a web address.
+                  {t("upload.shopInvalidUrl")}
                 </Text>
               ) : null}
             </View>
@@ -255,11 +256,11 @@ export default function ShopSheet({
             className="py-3 rounded-xl border border-dashed border-white/20 items-center flex-row justify-center"
           >
             <Icon name="Plus" size={15} color="#A1A1AA" />
-            <Text className="text-theme-neutrals-400 text-sm ml-2">Add a link</Text>
+            <Text className="text-theme-neutrals-400 text-sm ml-2">{t("upload.shopAddLink")}</Text>
           </TouchableOpacity>
         ) : (
           <Text className="text-theme-neutrals-500 text-xs text-center py-2">
-            {allowance} of {allowance} used. Stake more DHB for a higher badge and another slot.
+            {t("upload.shopAllowanceUsed", { allowance })}
           </Text>
         )}
 
@@ -274,7 +275,7 @@ export default function ShopSheet({
           style={{ backgroundColor: canSave ? "#fff" : "rgba(255,255,255,0.1)" }}
         >
           <Text className="text-sm font-semibold" style={{ color: canSave ? "#09090B" : "#808089" }}>
-            Save
+            {t("common.save")}
           </Text>
         </TouchableOpacity>
       </ScrollView>

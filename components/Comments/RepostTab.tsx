@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useState, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -88,6 +89,7 @@ interface RepostTabProps {
 }
 
 const RepostTabComponent: React.FC<RepostTabProps> = ({ tokenId }) => {
+  const { t } = useTranslation();
   const { showUserProfile } = useUserProfileSheet();
 
   const [users, setUsers] = useState<RepostUser[]>([]);
@@ -206,7 +208,7 @@ const RepostTabComponent: React.FC<RepostTabProps> = ({ tokenId }) => {
       ListFooterComponent={footer}
       ListEmptyComponent={
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 }}>
-          <Text style={{ color: "#8B8D90", fontSize: 14 }}>No reposts yet.</Text>
+          <Text style={{ color: "#8B8D90", fontSize: 14 }}>{t("comments.noRepostsYet")}</Text>
         </View>
       }
       showsVerticalScrollIndicator={false}

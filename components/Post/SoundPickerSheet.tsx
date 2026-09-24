@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -50,6 +51,7 @@ const resolveTrackTitle = (item: UnifiedFeedItem): string => {
 };
 
 const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, currentSound }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [searchText, setSearchText] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -271,7 +273,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
               {resolveTrackTitle(item)}
             </Text>
             <Text style={styles.trackCreator} numberOfLines={1}>
-              {item.minterDisplayName || item.minterUsername || item.minter || "Unknown"}
+              {item.minterDisplayName || item.minterUsername || item.minter || t("settings.unknown")}
             </Text>
           </View>
           <TouchableOpacity
@@ -281,13 +283,13 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           >
             <Text style={[styles.selectBtnText, isSelected && styles.selectBtnTextActive]}>
-              {isSelected ? "Selected" : "Add"}
+              {isSelected ? t("upload.soundSelected") : t("upload.soundAdd")}
             </Text>
           </TouchableOpacity>
         </TouchableOpacity>
       );
     },
-    [playingId, currentSound, togglePreview, handleSelect],
+    [playingId, currentSound, togglePreview, handleSelect, t],
   );
 
   if (!visible) return null;
@@ -315,7 +317,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
 
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Add Sound</Text>
+          <Text style={styles.title}>{t("upload.addSound")}</Text>
           <TouchableOpacity onPress={onClose} hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}>
             <Ionicons name="close" size={24} color="#fff" />
           </TouchableOpacity>
@@ -326,7 +328,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
           <Ionicons name="search" size={18} color="#6F7174" />
           <TextInput
             style={styles.searchInput}
-            placeholder="Search sounds..."
+            placeholder={t("upload.searchSoundsPlaceholder")}
             placeholderTextColor="#6F7174"
             value={searchText}
             onChangeText={setSearchText}
@@ -352,7 +354,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
               <ActivityIndicator style={{ marginTop: 40 }} color="#A1A1AA" />
             ) : (
               <Text style={styles.emptyText}>
-                {debouncedSearch ? "No sounds found" : "No audio posts yet"}
+                {debouncedSearch ? t("upload.noSoundsFound") : t("upload.noAudioPosts")}
               </Text>
             )
           }

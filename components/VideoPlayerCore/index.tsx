@@ -33,7 +33,7 @@ import { FULLSCREEN_BUFFER_OPTIONS, LIVE_BUFFER_OPTIONS } from "../../libs/video
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from '../../libs/video-preferences';
 import { useAppPrefs } from '../../hooks/useAppPrefs';
 import { useVideoSegments, segmentAt } from '../../hooks/useVideoSegments';
-import { SEGMENT_LABELS } from '../../services/video-segments.service';
+import { useTranslation } from 'react-i18next';
 import { toastInfo } from '../../libs';
 import {
   configureForBackgroundPlayback,
@@ -126,6 +126,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   onClose,
   onError,
 }) => {
+  const { t } = useTranslation();
   // Refs
   const viewRef = useRef<VideoView | null>(null);
   const navigation = useNavigation<any>();
@@ -303,15 +304,15 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
       // of the sponsor read rather than at zero.
       const resumeAt = seconds;
       player.currentTime = segment.end_seconds;
-      toastInfo(`${SEGMENT_LABELS[segment.category]} skipped`, {
-        actionLabel: 'Undo',
+      toastInfo(t(`player.segmentSkipped.${segment.category}`), {
+        actionLabel: t('player.undo'),
         onActionPress: () => {
           player.currentTime = resumeAt;
         },
         duration: 4000,
       });
     },
-    [player],
+    [player, t],
   );
 
   // Subscribe to player events
@@ -828,21 +829,21 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         <Pressable
           style={styles.centerTapArea}
           onPress={showAndScheduleHide}
-          accessibilityLabel="Tap to show controls"
+          accessibilityLabel={t('player.tapShowControls')}
         />
 
         {/* Left double-tap zone for seeking backward */}
         <Pressable
           style={styles.leftTapZone}
           onPress={() => handleSurfaceTouch('left')}
-          accessibilityLabel="Double tap to rewind"
+          accessibilityLabel={t('player.doubleTapRewind')}
         />
 
         {/* Right double-tap zone for seeking forward */}
         <Pressable
           style={styles.rightTapZone}
           onPress={() => handleSurfaceTouch('right')}
-          accessibilityLabel="Double tap to skip forward"
+          accessibilityLabel={t('player.doubleTapForward')}
         />
       </View>}
 

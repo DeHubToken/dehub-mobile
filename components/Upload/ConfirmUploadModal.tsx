@@ -1,4 +1,6 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import GlassIndicator from "../ui/GlassIndicator";
 import GlassModal from "../ui/GlassModal";
@@ -21,20 +23,20 @@ type Props = {
   title?: string;
 };
 
-const stageLabel = (stage: UploadStage) => {
+const stageLabel = (stage: UploadStage, t: TFunction) => {
   switch (stage) {
     case "uploading":
-      return "Uploading…";
+      return t("upload.stageUploading");
     case "processing":
-      return "Uploading…";
+      return t("upload.stageUploading");
     case "awaiting-wallet":
-      return "Confirming…";
+      return t("upload.stageConfirming");
     case "minting":
-      return "Minting…";
+      return t("upload.stageMinting");
     case "finalizing":
-      return "Finalizing…";
+      return t("upload.stageFinalizing");
     default:
-      return "Processing…";
+      return t("commandCentre.processingDeposit");
   }
 };
 
@@ -44,8 +46,9 @@ const ConfirmUploadModal: React.FC<Props> = ({
   onConfirm,
   confirmText,
   stage,
-  title = "Confirm",
+  title,
 }) => {
+  const { t } = useTranslation();
   const busy = stage !== "idle" && stage !== "done";
   return (
     <GlassModal
@@ -58,7 +61,7 @@ const ConfirmUploadModal: React.FC<Props> = ({
       blurIntensity={30}
     >
       <View className="p-4">
-        <Text className="text-white font-bold text-lg mb-2">{title}</Text>
+        <Text className="text-white font-bold text-lg mb-2">{title ?? t("common.confirm")}</Text>
         <Text className="text-theme-neutrals-300 text-sm">{confirmText}</Text>
         <View className="flex-row justify-end mt-4">
           <TouchableOpacity
@@ -68,7 +71,7 @@ const ConfirmUploadModal: React.FC<Props> = ({
               busy ? "opacity-50" : ""
             }`}
           >
-            <Text className="text-white">Cancel</Text>
+            <Text className="text-white">{t("common.cancel")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
               disabled={busy}
@@ -82,11 +85,11 @@ const ConfirmUploadModal: React.FC<Props> = ({
                 <View className="flex-row items-center">
                   <ActivityIndicator color="#FFFFFF" size="small" />
                   <Text className="text-white font-semibold ml-2">
-                    {stageLabel(stage)}
+                    {stageLabel(stage, t)}
                   </Text>
                 </View>
               ) : (
-                <Text className="text-white font-semibold">Continue</Text>
+                <Text className="text-white font-semibold">{t("common.continue")}</Text>
               )}
             </TouchableOpacity>
         </View>

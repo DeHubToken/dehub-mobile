@@ -1,4 +1,5 @@
 import React, { memo, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -71,12 +72,14 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
   onChange,
   variant = "compact",
   disabled = false,
-  title = "Choose network",
+  title: titleProp,
   includeSolana = false,
   allowedChainIds,
   options,
   unavailableChainIds = [],
 }) => {
+  const { t } = useTranslation();
+  const title = titleProp ?? t("wallet.chooseNetwork");
   const insets = useSafeAreaInsets();
   const [open, setOpen] = useState(false);
   const chains = useMemo(() => {
@@ -170,7 +173,7 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
                     <Text style={styles.rowName}>{chain.name}</Text>
                   </View>
                   {isUnavailable ? (
-                    <Text style={styles.soonText}>Soon</Text>
+                    <Text style={styles.soonText}>{t("screens.soon")}</Text>
                   ) : (
                     active && <Icon name="Check" size={18} color="#F9FBFF" />
                   )}

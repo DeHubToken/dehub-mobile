@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { View, TouchableOpacity, ViewStyle } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../theme/colors";
@@ -34,6 +35,7 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
   hitSlop = { top: 8, bottom: 8, left: 8, right: 8 },
   style,
 }) => {
+  const { t } = useTranslation();
   return (
     <>
       <TouchableOpacity
@@ -42,7 +44,7 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
         className={triggerClassName}
         style={style}
         accessibilityRole="button"
-        accessibilityLabel="More info"
+        accessibilityLabel={t("common.moreInfo")}
       >
         <Ionicons name={iconName} size={iconSize} color={iconColor} />
       </TouchableOpacity>

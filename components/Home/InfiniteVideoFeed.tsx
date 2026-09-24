@@ -923,7 +923,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         {loadingMore ? (
           <DeHubLoader size={32} />
         ) : endReached && feedItems.length > 0 ? (
-          <Text className="text-theme-neutrals-400 text-xs">No more content</Text>
+          <Text className="text-theme-neutrals-400 text-xs">{t("feed.noMoreContent")}</Text>
         ) : null}
       </View>
     ),
@@ -985,7 +985,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           className={isMinimal ? "px-5 py-2 border active:opacity-80" : "px-5 py-2 rounded-xl bg-theme-neutrals-700 active:opacity-80"}
           style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
         >
-          <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
+          <Text className="text-theme-neutrals-50 font-medium">{t("common.retry")}</Text>
         </Pressable>
       </View>
     );

@@ -12,6 +12,7 @@
  */
 
 import React, { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Share } from 'react-native';
 import Icon from '../ui/Icon';
 
@@ -24,6 +25,7 @@ interface Props {
 }
 
 const ShareLinkButton: React.FC<Props> = ({ url, title, size = 20, color = '#E4E4E7' }) => {
+  const { t } = useTranslation();
   const onPress = useCallback(() => {
     // iOS puts `url` in its own field and ignores it inside `message`; Android
     // only reads `message`. Sending both is how one call covers the two.
@@ -41,7 +43,7 @@ const ShareLinkButton: React.FC<Props> = ({ url, title, size = 20, color = '#E4E
       size={size}
       color={color}
       onPress={onPress}
-      accessibilityLabel="Share"
+      accessibilityLabel={t('postOptions.share')}
     />
   );
 };

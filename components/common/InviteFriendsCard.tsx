@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -30,6 +31,7 @@ interface Props {
  * the native share sheet. Used on the Earnings and Profile screens.
  */
 const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
+  const { t } = useTranslation();
   const [code, setCode] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [sharing, setSharing] = useState(false);
@@ -61,18 +63,18 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
     try {
       const c = code || (await resolveInviteCode(addr, shareName));
       if (!c) {
-        toastError("Could not load your invite link. Try again.");
+        toastError(t("affiliate.inviteLinkLoadFailed"));
         return;
       }
       if (!code) setCode(c);
       const l = buildInviteLink(c);
       await shareProfile(l, buildInviteMessage(c, l));
     } catch (e) {
-      toastError(e, "Share failed");
+      toastError(e, t("affiliate.shareFailed"));
     } finally {
       setSharing(false);
     }
-  }, [addr, code, shareName]);
+  }, [addr, code, shareName, t]);
 
   if (!addr) return null;
 
@@ -83,9 +85,9 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
           <Icon name="Gift" size={18} color="#D4D4D8" />
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Invite friends & earn {AFFILIATE_COMMISSION_PCT}%</Text>
+          <Text style={styles.title}>{t("affiliate.inviteCardTitle", { pct: AFFILIATE_COMMISSION_PCT })}</Text>
           <Text style={styles.subtitle}>
-            Share your link — earn {AFFILIATE_COMMISSION_PCT}% commission when they join and trade.
+            {t("affiliate.inviteCardSubtitle", { pct: AFFILIATE_COMMISSION_PCT })}
           </Text>
         </View>
       </View>
@@ -96,14 +98,14 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
           activeOpacity={0.7}
           disabled={!link}
           onPress={() => link && copyToClipboard(link)}
-          accessibilityLabel="Copy invite link"
+          accessibilityLabel={t("affiliate.copyInviteLink")}
         >
           {loading ? (
             <ActivityIndicator size="small" color="#8B8D90" />
           ) : (
             <>
               <Text style={styles.codeText} numberOfLines={1}>
-                {code ? `dehub.io/r/${code}` : "Tap share to get your link"}
+                {code ? `dehub.io/r/${code}` : t("affiliate.tapShareForLink")}
               </Text>
               {!!code && <Icon name="Copy" size={13} color="#8B8D90" />}
             </>
@@ -115,14 +117,14 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
           activeOpacity={0.85}
           onPress={onShare}
           disabled={sharing}
-          accessibilityLabel="Share invite link"
+          accessibilityLabel={t("affiliate.shareInviteLink")}
         >
           {sharing ? (
             <ActivityIndicator size="small" color="#09090B" />
           ) : (
             <>
               <Icon name="Share2" size={15} color="#09090B" />
-              <Text style={styles.shareText}>Share</Text>
+              <Text style={styles.shareText}>{t("affiliate.share")}</Text>
             </>
           )}
         </TouchableOpacity>

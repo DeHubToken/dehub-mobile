@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -25,6 +26,7 @@ const MentionSuggestions: React.FC<MentionSuggestionsProps> = ({
   onSelect,
   loading,
 }) => {
+  const { t } = useTranslation();
   // Android can resize the sheet as soon as the focused input loses its
   // keyboard. Select on touch-down, before that resize can move this row out
   // from under the finger, while retaining onPress for accessibility and the
@@ -107,13 +109,13 @@ const MentionSuggestions: React.FC<MentionSuggestionsProps> = ({
           </View>
           {item.isFollowing && (
             <Text className="text-theme-neutrals-500 text-xs">
-              Following
+              {t("follow.following")}
             </Text>
           )}
         </Pressable>
       );
     },
-    [selectOnPress, selectOnTouchStart],
+    [selectOnPress, selectOnTouchStart, t],
   );
 
   if (!visible) return null;

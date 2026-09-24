@@ -1156,9 +1156,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 <Icon name="Lock" size={24} color="#fff" />
               </View>
             </View>
-            <Text className="text-white font-semibold text-sm mb-1">Pay-Per-View Content</Text>
+            <Text className="text-white font-semibold text-sm mb-1">{t("ppv.title")}</Text>
             <Text className="text-white/70 text-xs">
-              Unlock for {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol} + hold {formatCompactNumber(lockContentAmount)} {lockContentTokenSymbol}
+              {t("feedCard.unlockForAndHold", { price: formatCompactNumber(payPerViewAmount), symbol: payPerViewTokenSymbol, hold: formatCompactNumber(lockContentAmount), holdSymbol: lockContentTokenSymbol })}
             </Text>
           </View>
         </Pressable>
@@ -1190,9 +1190,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <View className="w-16 h-16 rounded-xl dark-surface bg-black/40 border border-white/10 items-center justify-center mb-3">
               <Icon name="Ticket" size={28} color="#fff" />
             </View>
-            <Text className="text-white font-semibold text-sm mb-1">Pay-Per-View Content</Text>
+            <Text className="text-white font-semibold text-sm mb-1">{t("ppv.title")}</Text>
             <Text className="text-white/70 text-xs">
-              Unlock for {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol}
+              {t("feedCard.unlockFor", { price: formatCompactNumber(payPerViewAmount), symbol: payPerViewTokenSymbol })}
             </Text>
           </View>
         </Pressable>
@@ -1219,8 +1219,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <View className="w-14 h-14 rounded-2xl dark-surface bg-black/50 items-center justify-center mb-2">
               <Icon name="Star" size={24} color="#fff" />
             </View>
-            <Text className="text-white text-sm font-semibold">Subscribers only</Text>
-            <Text className="text-white/70 text-xs mt-0.5">Subscribe to {username || "this creator"}</Text>
+            <Text className="text-white text-sm font-semibold">{t("feedCard.subscribersOnly")}</Text>
+            <Text className="text-white/70 text-xs mt-0.5">{username ? t("feedCard.subscribeTo", { name: username }) : t("feedCard.subscribeToCreator")}</Text>
           </View>
         </Pressable>
       );
@@ -1251,9 +1251,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <View className="w-16 h-16 rounded-xl dark-surface bg-black/40 border border-white/10 items-center justify-center mb-3">
               <Icon name="Lock" size={28} color="#fff" />
             </View>
-            <Text className="text-white font-semibold text-sm mb-1">Holdings Required</Text>
+            <Text className="text-white font-semibold text-sm mb-1">{t("feedCard.holdingsRequired")}</Text>
             <Text className="text-white/70 text-xs">
-              Must be holding {formatCompactNumber(lockContentAmount)} {lockContentTokenSymbol}
+              {t("feedCard.mustHold", { amount: formatCompactNumber(lockContentAmount), symbol: lockContentTokenSymbol })}
             </Text>
           </View>
         </Pressable>
@@ -1413,7 +1413,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       {isHidden && (
         <View className="absolute top-2 right-2 flex-row items-center dark-surface bg-black/60 rounded-full px-2 py-1 z-20">
           <Icon name="EyeOff" size={12} color="#6F7174" />
-          <Text style={{ color: "#8B8D90", fontSize: 10, marginLeft: 4 }}>Hidden</Text>
+          <Text style={{ color: "#8B8D90", fontSize: 10, marginLeft: 4 }}>{t("settings.hiddenOption")}</Text>
         </View>
       )}
       {isBounty && (
@@ -1567,7 +1567,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       {showRepostLabel && (
         <View className="flex-row items-center gap-1.5 mb-2">
           <Icon name="Repeat2" size={14} color="#9CA3AF" />
-          <Text className="text-xs text-theme-neutrals-400">Reposted</Text>
+          <Text className="text-xs text-theme-neutrals-400">{t("feedCard.reposted")}</Text>
         </View>
       )}
       {/*
@@ -1588,7 +1588,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           >
             <Icon name="Rocket" size={14} color="#9CA3AF" />
             <Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">
-              Boosted
+              {t("work.boosted")}
             </Text>
           </TouchableOpacity>
         </View>

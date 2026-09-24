@@ -17,6 +17,7 @@
  */
 
 import React, { memo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Image } from 'expo-image';
 import { useNavigation } from '@react-navigation/native';
@@ -148,6 +149,7 @@ const CommunityCardEmbed: React.FC<{ slug: string; onOpen: () => void; fallback:
   onOpen,
   fallback,
 }) => {
+  const { t } = useTranslation();
   const { data, isLoading, isError } = useQuery({
     queryKey: ['dehub-link', 'community', slug],
     queryFn: () => getCommunityBySlug(slug),
@@ -159,10 +161,10 @@ const CommunityCardEmbed: React.FC<{ slug: string; onOpen: () => void; fallback:
 
   return (
     <RowCard
-      eyebrow="Community"
+      eyebrow={t("upload.community")}
       title={data.name}
       subtitle={data.description || undefined}
-      meta={`${formatCompactNumber(data.member_count ?? 0)} members`}
+      meta={t("linkCard.members", { compact: formatCompactNumber(data.member_count ?? 0) })}
       imageUri={data.avatar_url}
       bannerUri={data.banner_url}
       fallbackIcon="Users"
@@ -176,6 +178,7 @@ const InviteCardEmbed: React.FC<{ code: string; onOpen: () => void; fallback: Re
   onOpen,
   fallback,
 }) => {
+  const { t } = useTranslation();
   const { data, isLoading, isError } = useQuery({
     queryKey: ['dehub-link', 'invite', code],
     queryFn: () => previewCommunityInvite(code),
@@ -189,18 +192,18 @@ const InviteCardEmbed: React.FC<{ code: string; onOpen: () => void; fallback: Re
   // An invite that has been revoked, has expired or has hit its cap looks
   // identical to a live one until it is tapped. Say so on the card instead.
   const invalidCopy: Record<string, string> = {
-    revoked: 'Invite revoked',
-    expired: 'Invite expired',
-    exhausted: 'Invite fully used',
-    not_found: 'Invite not found',
+    revoked: t('linkCard.inviteRevoked'),
+    expired: t('linkCard.inviteExpired'),
+    exhausted: t('linkCard.inviteExhausted'),
+    not_found: t('linkCard.inviteNotFound'),
   };
 
   if (!data.is_valid) {
     return (
       <RowCard
         dimmed
-        eyebrow={invalidCopy[data.reason ?? 'not_found'] ?? 'Invite unavailable'}
-        title="This invite cannot be used"
+        eyebrow={invalidCopy[data.reason ?? 'not_found'] ?? t('linkCard.inviteUnavailable')}
+        title={t('linkCard.inviteCannotBeUsed')}
         fallbackIcon="Ticket"
         onPress={onOpen}
       />
@@ -209,12 +212,12 @@ const InviteCardEmbed: React.FC<{ code: string; onOpen: () => void; fallback: Re
 
   return (
     <RowCard
-      eyebrow="Community invite"
-      title={data.name || 'a community'}
+      eyebrow={t('linkCard.communityInvite')}
+      title={data.name || t('linkCard.aCommunity')}
       subtitle={data.description || undefined}
       meta={[
-        typeof data.member_count === 'number' ? `${formatCompactNumber(data.member_count)} members` : null,
-        data.requires_approval ? 'Approval needed' : null,
+        typeof data.member_count === 'number' ? t('linkCard.members', { compact: formatCompactNumber(data.member_count) }) : null,
+        data.requires_approval ? t('linkCard.approvalNeeded') : null,
       ]
         .filter(Boolean)
         .join(' · ')}
@@ -231,6 +234,7 @@ const StoreCardEmbed: React.FC<{ storeId: string; onOpen: () => void; fallback: 
   onOpen,
   fallback,
 }) => {
+  const { t } = useTranslation();
   const { data, isLoading, isError } = useStoreById(storeId);
 
   if (isLoading) return <SkeletonCard />;
@@ -238,8 +242,8 @@ const StoreCardEmbed: React.FC<{ storeId: string; onOpen: () => void; fallback: 
 
   return (
     <RowCard
-      eyebrow="Store"
-      title={data.name || 'Store'}
+      eyebrow={t('stores.store')}
+      title={data.name || t('stores.store')}
       subtitle={data.description || undefined}
       imageUri={data.avatar_url}
       bannerUri={data.banner_url}
@@ -254,6 +258,7 @@ const ListingCardEmbed: React.FC<{ listingId: string; onOpen: () => void; fallba
   onOpen,
   fallback,
 }) => {
+  const { t } = useTranslation();
   const { data, isLoading, isError } = useStoreListing(listingId);
 
   if (isLoading) return <SkeletonCard />;
@@ -265,9 +270,9 @@ const ListingCardEmbed: React.FC<{ listingId: string; onOpen: () => void; fallba
 
   return (
     <RowCard
-      eyebrow={data.stores?.name || 'Item'}
+      eyebrow={data.stores?.name || t('linkCard.item')}
       title={data.title}
-      subtitle={`$${price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}${soldOut ? ' · sold out' : ''}`}
+      subtitle={`$${price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}${soldOut ? ` · ${t('linkCard.soldOut')}` : ''}`}
       imageUri={images[0]}
       fallbackIcon="Image"
       dimmed={soldOut}
@@ -281,6 +286,7 @@ const EventCardEmbed: React.FC<{ eventNumber: string; onOpen: () => void; fallba
   onOpen,
   fallback,
 }) => {
+  const { t } = useTranslation();
   const { data, isLoading, isError } = useQuery({
     queryKey: ['dehub-link', 'event', eventNumber],
     queryFn: async () => {
@@ -308,11 +314,11 @@ const EventCardEmbed: React.FC<{ eventNumber: string; onOpen: () => void; fallba
 
   return (
     <RowCard
-      eyebrow={data.is_private ? 'Private event' : 'Event'}
+      eyebrow={data.is_private ? t('linkCard.privateEvent') : t('linkCard.event')}
       title={data.title}
       subtitle={[when, time].filter(Boolean).join(' · ') || undefined}
       meta={[
-        `${Number(data.going_count) || 0} going`,
+        t('events.goingCount', { count: Number(data.going_count) || 0 }),
         data.location ? String(data.location) : null,
       ]
         .filter(Boolean)
@@ -333,6 +339,7 @@ const StageCardEmbed: React.FC<{
   onOpen: () => void;
   fallback: React.ReactElement;
 }> = ({ stageId, stageShortId, onOpen, fallback }) => {
+  const { t } = useTranslation();
   const { data, isLoading, isError } = useQuery({
     queryKey: ['dehub-link', 'stage', stageId ?? `short:${stageShortId}`],
     enabled: !!stageId || !!stageShortId,
@@ -368,14 +375,14 @@ const StageCardEmbed: React.FC<{
   // A live stage has already answered "when", and an ended one has nothing to
   // answer — so the subtitle only carries a date while the stage is upcoming.
   const subtitle = isLive
-    ? `${Math.max(1, (data.speaker_count || 1) + (data.listener_count || 0))} listening`
+    ? t('linkCard.listening', { count: Math.max(1, (data.speaker_count || 1) + (data.listener_count || 0)) })
     : isEnded
-      ? 'Ended'
+      ? t('linkCard.ended')
       : [when, time].filter(Boolean).join(' · ') || undefined;
 
   return (
     <RowCard
-      eyebrow={isLive ? 'Live now' : isEnded ? 'Stage' : isOverdue ? 'Starting soon' : 'Upcoming stage'}
+      eyebrow={isLive ? t('stages.liveNow') : isEnded ? t('linkCard.stage') : isOverdue ? t('stages.startingSoon') : t('linkCard.upcomingStage')}
       title={data.title}
       subtitle={subtitle}
       meta={`@${data.host_username || String(data.host_wallet_address || '').slice(0, 6)}`}
@@ -454,6 +461,7 @@ const ProfileCardEmbed: React.FC<{ username: string; onOpen: () => void; fallbac
   onOpen,
   fallback,
 }) => {
+  const { t } = useTranslation();
   const { data, isLoading, isError } = useQuery({
     queryKey: ['dehub-link', 'profile', username.toLowerCase()],
     queryFn: () => getAccount(username),
@@ -479,10 +487,10 @@ const ProfileCardEmbed: React.FC<{ username: string; onOpen: () => void; fallbac
 
   return (
     <RowCard
-      eyebrow="Profile"
+      eyebrow={t("nav.profile")}
       title={user.displayName || user.display_name || handle}
       subtitle={`@${handle}`}
-      meta={`${formatCompactNumber(followers)} followers`}
+      meta={t("follow.followerCount", { compact: formatCompactNumber(followers) })}
       imageUri={avatar ? getAvatarUrl(avatar) : null}
       fallbackIcon="User"
       onPress={onOpen}

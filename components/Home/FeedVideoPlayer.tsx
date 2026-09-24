@@ -50,7 +50,6 @@ import { useAppPrefs } from "../../hooks/useAppPrefs";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
 import { useMediaAspect } from "../../hooks/useMediaAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
-import { SEGMENT_LABELS } from "../../services/video-segments.service";
 import { toastInfo } from "../../libs";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { retryTranscode } from "../../services/nft.service";
@@ -420,8 +419,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       // of the sponsor read rather than at zero.
       const resumeAt = time;
       playerRef.current.currentTime = segment.end_seconds;
-      toastInfo(`${SEGMENT_LABELS[segment.category]} skipped`, {
-        actionLabel: "Undo",
+      toastInfo(t(`player.segmentSkipped.${segment.category}`), {
+        actionLabel: t("player.undo"),
         onActionPress: () => {
           if (playerRef.current) playerRef.current.currentTime = resumeAt;
         },
@@ -1101,7 +1100,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       {isBounty && (
         <TouchableOpacity
           accessibilityRole="button"
-          accessibilityLabel="Watch2Earn bounty details"
+          accessibilityLabel={t("bounty.detailsLabel")}
           onPress={onBountyPress}
           activeOpacity={0.75}
           style={[styles.bountyPill, isMinimal && { left: MINIMAL_EDGE }]}
@@ -1213,7 +1212,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     onLayout={onSeekTrackLayout}
                     {...seekTouchGuard}
                     accessibilityRole="adjustable"
-                    accessibilityLabel="Video progress"
+                    accessibilityLabel={t("player.progress")}
                   >
                     <View style={styles.progressTrackInner}>
                       <View style={[styles.progressFill, { width: `${progressPercent}%` }]} />

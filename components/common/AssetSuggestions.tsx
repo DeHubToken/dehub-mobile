@@ -8,6 +8,7 @@
  */
 
 import React, { memo, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -40,6 +41,7 @@ const AssetSuggestionsComponent: React.FC<AssetSuggestionsProps> = ({
   onSelect,
   loading,
 }) => {
+  const { t } = useTranslation();
   const renderItem = useCallback(
     ({ item }: { item: AssetSuggestion }) => {
       const price = formatPrice(item.price);
@@ -119,7 +121,7 @@ const AssetSuggestionsComponent: React.FC<AssetSuggestionsProps> = ({
     >
       <View className="flex-row items-center justify-between px-4 pt-2.5 pb-1">
         <Text className="text-white/40 text-[10px] font-semibold uppercase tracking-wider">
-          Tokens & stocks
+          {t("assets.tokensAndStocks")}
         </Text>
         {loading && <ActivityIndicator size="small" color="rgba(255,255,255,0.4)" />}
       </View>

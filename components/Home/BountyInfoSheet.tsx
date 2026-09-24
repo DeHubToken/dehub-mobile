@@ -399,7 +399,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
           )}
 
           <Text style={styles.footerText}>
-            Watch and engage to earn rewards! 🎁
+            {t("drawers.bountyDescription")}
           </Text>
         </>
       )}
@@ -433,7 +433,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
       </View>
 
       <Text style={styles.confirmHint}>
-        This will initiate an on-chain transaction. Gas fees may apply.
+        {t("bounty.gasHint")}
       </Text>
 
       <View style={styles.buttonRow}>

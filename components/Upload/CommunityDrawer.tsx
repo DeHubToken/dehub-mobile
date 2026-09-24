@@ -7,6 +7,7 @@
  * pick is written straight into the composer's category list.
  */
 import React, { memo, useCallback, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -38,6 +39,7 @@ const CommunityDrawer: React.FC<CommunityDrawerProps> = ({
   onSelect,
   onClear,
 }) => {
+  const { t } = useTranslation();
   const { height: screenHeight } = useWindowDimensions();
 
   const drawerHeight = Math.round(screenHeight * 0.6);
@@ -110,7 +112,7 @@ const CommunityDrawer: React.FC<CommunityDrawerProps> = ({
     >
       <View style={{ height: drawerHeight }}>
         <View className="flex-row items-center justify-between px-4 pt-4 pb-2">
-          <Text className="text-white text-lg font-bold">Community</Text>
+          <Text className="text-white text-lg font-bold">{t("upload.community")}</Text>
           <TouchableOpacity onPress={onClose} hitSlop={14}>
             <Ionicons name="close" size={22} color="#9CA3AF" />
           </TouchableOpacity>
@@ -125,7 +127,7 @@ const CommunityDrawer: React.FC<CommunityDrawerProps> = ({
           ListEmptyComponent={
             <View className="items-center px-8 py-10">
               <Text className="text-theme-neutrals-500 text-sm text-center">
-                Join a community to post in one.
+                {t("upload.joinCommunityToPost")}
               </Text>
             </View>
           }

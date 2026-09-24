@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, View, TouchableOpacity, Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { VideoView, useVideoPlayer, type VideoPlayer } from 'expo-video';
@@ -16,6 +17,7 @@ export type FullScreenVideoPlayerProps = {
 };
 
 const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, uri, onClose }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const sourceUrl = useMemo(() => (uri ? String(uri) : null), [uri]);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
@@ -163,7 +165,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
           <TouchableOpacity
             onPress={handleClose}
             className="bg-zinc-900/60 p-2.5 rounded-xl"
-            accessibilityLabel="Close video"
+            accessibilityLabel={t('player.closeVideo')}
             activeOpacity={0.8}
           >
             <Ionicons name="close" size={22} color="#fff" />
@@ -184,7 +186,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
           />
         ) : (
           <View className="flex-1 items-center justify-center">
-            <Text className="text-white">No video</Text>
+            <Text className="text-white">{t('player.noVideo')}</Text>
           </View>
         )}
 
@@ -213,7 +215,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
                 onPress={handlePlayPause}
                 className="self-center bg-white/15 p-3 rounded-2xl"
                 activeOpacity={0.9}
-                accessibilityLabel={isPlaying ? 'Pause' : 'Play'}
+                accessibilityLabel={isPlaying ? t('audioPost.pause') : t('audioPost.play')}
               >
                 <Ionicons name={isPlaying ? 'pause' : 'play'} size={24} color="#fff" />
               </TouchableOpacity>
@@ -221,7 +223,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
                 onPress={handleRotate}
                 className="self-center bg-white/15 p-2.5 rounded-xl"
                 activeOpacity={0.9}
-                accessibilityLabel="Rotate"
+                accessibilityLabel={t('player.rotate')}
               >
                 <Ionicons name={'refresh'} size={22} color="#fff" />
               </TouchableOpacity>

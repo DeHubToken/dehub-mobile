@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
@@ -25,6 +26,7 @@ export default function EnhanceSheet({
   onEnhance,
   onGenerateContent,
 }: EnhanceSheetProps) {
+  const { t } = useTranslation();
   const [styleView, setStyleView] = useState(false);
 
   // Always reopen on the root menu, matching web's handleCloseEnhance reset.
@@ -57,16 +59,16 @@ export default function EnhanceSheet({
               activeOpacity={0.7}
               className="flex-row items-center mb-2"
               accessibilityRole="button"
-              accessibilityLabel="Back"
+              accessibilityLabel={t("profile.back")}
             >
               <Icon name="ChevronLeft" size={16} color="#A1A1AA" />
-              <Text className="text-theme-neutrals-400 text-sm ml-1">Back</Text>
+              <Text className="text-theme-neutrals-400 text-sm ml-1">{t("profile.back")}</Text>
             </TouchableOpacity>
           )}
           <View className="flex-row items-center">
             <Icon name="Sparkles" size={20} color="#fff" />
             <Text className="text-white text-base font-semibold ml-2">
-              {styleView ? "Choose Style" : "Enhance"}
+              {styleView ? t("upload.chooseStyle") : t("upload.enhance")}
             </Text>
           </View>
         </View>
@@ -95,7 +97,7 @@ export default function EnhanceSheet({
                 className="flex-row items-center px-4 py-3"
               >
                 <Icon name="SpellCheck" size={20} color="#fff" />
-                <Text className="text-white text-sm ml-3">Spell Check</Text>
+                <Text className="text-white text-sm ml-3">{t("upload.spellCheck")}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -104,7 +106,7 @@ export default function EnhanceSheet({
                 className="flex-row items-center px-4 py-3"
               >
                 <Icon name="Type" size={20} color="#fff" />
-                <Text className="text-white text-sm ml-3">Fix Grammar</Text>
+                <Text className="text-white text-sm ml-3">{t("upload.fixGrammar")}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -114,7 +116,7 @@ export default function EnhanceSheet({
               >
                 <View className="flex-row items-center">
                   <Icon name="Palette" size={20} color="#fff" />
-                  <Text className="text-white text-sm ml-3">Change Style</Text>
+                  <Text className="text-white text-sm ml-3">{t("upload.changeStyle")}</Text>
                 </View>
                 <Icon name="ChevronRight" size={16} color="#6F7174" />
               </TouchableOpacity>
@@ -129,7 +131,7 @@ export default function EnhanceSheet({
                 className="flex-row items-center px-4 py-3"
               >
                 <Icon name="MessageSquare" size={20} color="#fff" />
-                <Text className="text-white text-sm ml-3">Generate Content</Text>
+                <Text className="text-white text-sm ml-3">{t("upload.generateContent")}</Text>
               </TouchableOpacity>
             </>
           )}

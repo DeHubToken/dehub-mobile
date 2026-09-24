@@ -41,6 +41,7 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { getCommentLikers, type CommentLiker } from "../../services/nft.service";
 import { getAvatarUrl, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
+import { useTranslation } from "react-i18next";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const SHEET_FRACTION = 0.6;
@@ -94,6 +95,7 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
   onClose,
   commentId,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { showUserProfile } = useUserProfileSheet();
   const SHEET_HEIGHT = SCREEN_HEIGHT * SHEET_FRACTION;
@@ -220,12 +222,12 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
           ) : !canView ? (
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingHorizontal: 32 }}>
               <Text style={{ color: "#6F7174", fontSize: 14, textAlign: "center" }}>
-                Only the author can see who liked a comment.
+                {t("comments.likersAuthorOnly")}
               </Text>
             </View>
           ) : people.length === 0 && anonymousCount === 0 ? (
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-              <Text style={{ color: "#6F7174", fontSize: 14 }}>No likes yet.</Text>
+              <Text style={{ color: "#6F7174", fontSize: 14 }}>{t("comments.noLikesYet")}</Text>
             </View>
           ) : (
             <FlatList

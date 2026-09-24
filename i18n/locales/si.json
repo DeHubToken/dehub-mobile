@@ -109,7 +109,14 @@
     "publishChanges": "වෙනස්කම් ප්‍රකාශ කරන්න",
     "pagePublished": "ආරාධනා පිටුව ප්‍රකාශ කළා",
     "pageSaveFailed": "ආරාධනා පිටුව සුරැකීම අසාර්ථකයි",
-    "selfVisitsExcluded": "ඔබේ සබැඳියට ඔබේම සංචාරයන් ගණන් නොගනී."
+    "selfVisitsExcluded": "ඔබේ සබැඳියට ඔබේම සංචාරයන් ගණන් නොගනී.",
+    "inviteLinkLoadFailed": "ඔබගේ ආරාධනා සබැඳිය පූරණය කිරීමට නොහැකි විය. නැවත උත්සාහ කරන්න.",
+    "shareFailed": "හුවමාරුව අසාර්ථක විය",
+    "inviteCardTitle": "මිතුරන්ට ආරාධනා කර {{pct}}%ක් උපයා ගන්න",
+    "inviteCardSubtitle": "ඔබේ සබැඳිය බෙදා ගන්න — ඔවුන් එක් වී වෙළඳාම් කරන විට {{pct}}% කොමිස් මුදලක් උපයා ගන්න.",
+    "copyInviteLink": "ආරාධනා සබැඳිය පිටපත් කරන්න",
+    "tapShareForLink": "ඔබේ සබැඳිය ලබා ගැනීමට බෙදාගන්න තට්ටු කරන්න",
+    "shareInviteLink": "ආරාධනා සබැඳිය බෙදා ගන්න"
   },
   "feed": {
     "home": "මුල් පිටුව",
@@ -124,7 +131,15 @@
     "privateContentBody": "මෙම අන්තර්ගතය පුද්ගලික ගිණුමකින්. ඔවුන්ගේ පළ කිරීම් බැලීමට නිර්මාපකයා අනුගමනය කරන්න.",
     "noMoreContent": "තවත් අන්තර්ගතයක් නැත",
     "noPostsYet": "තව පළ කිරීම් නැත.",
-    "pullToRefresh": "යාවත්කාලීන කිරීමට අදින්න හෝ පසුව නැවත උත්සාහ කරන්න."
+    "pullToRefresh": "යාවත්කාලීන කිරීමට අදින්න හෝ පසුව නැවත උත්සාහ කරන්න.",
+    "noMorePosts": "තවත් පළ කිරීම් නැත",
+    "noMoreImages": "තවත් රූප නැත",
+    "noImagesFound": "රූප හමු නොවීය",
+    "allCaughtUp": "ඔබ සියල්ල නරඹා ඇත",
+    "closeImages": "රූප වසන්න",
+    "noMoreShorts": "තවත් කෙටි වීඩියෝ නැත",
+    "noShortsFound": "කෙටි වීඩියෝ හමු නොවීය",
+    "newMembersHint": "දැන්ම එක් විය — සුබ පැතුම්"
   },
   "explore": {
     "all": "සියල්ල",
@@ -133,7 +148,11 @@
     "images": "පින්තූර",
     "videos": "වීඩියෝ",
     "music": "සංගීතය",
-    "live": "සජීවී"
+    "live": "සජීවී",
+    "trendingTopics": "ප්‍රවණතා මාතෘකා",
+    "nothingTrending": "මෙම කවුළුව තුළ තවමත් කිසිවක් ප්‍රවණතාවක් නොමැත.",
+    "postCount_one": "{{count}} පළ කිරීම",
+    "postCount_other": "{{count}} පළ කිරීම්"
   },
   "settings": {
     "smartReplies": "යෝජිත පිළිතුරු",
@@ -780,7 +799,11 @@
     "noInternetHint": "Wi-Fi හෝ ජංගම දත්ත ක්‍රියාත්මක කර ඇති බවට වග බලා ගන්න, ඉන්පසු \"{{action}}\" තට්ටු කරන්න",
     "saving": "සුරැකීම…",
     "offlineStatus": "ඔෆ්ලයින් - ජාල සම්බන්ධතාවයක් නැත",
-    "postNotFound": "අපිට ඒ පෝස්ට් එක හොයාගන්න බැරි උනා."
+    "postNotFound": "අපිට ඒ පෝස්ට් එක හොයාගන්න බැරි උනා.",
+    "select": "තෝරන්න",
+    "noResults": "ප්‍රතිඵල නැත",
+    "moreInfo": "වැඩි විස්තර",
+    "translate": "පරිවර්තනය කරන්න"
   },
   "tip": {
     "title": "ටිප් එවන්න",
@@ -1124,7 +1147,10 @@
     "imageAttachedDescribe": "රූපය අමුණා ඇත — ඔබේ සංස්කරණ විස්තර කරන්න",
     "couldNotPreparePost": "පළ කිරීම සඳහා එය සකස් කිරීමට නොහැකි විය",
     "generateImage": "රූපය සාදන්න",
-    "generateVideo": "වීඩියෝවක් සාදන්න"
+    "generateVideo": "වීඩියෝවක් සාදන්න",
+    "imageFailed": "රූප උත්පාදනය අසාර්ථක විය — නැවත උත්සාහ කරන්න",
+    "rateLimited": "ඉල්ලීම් අධිකයි — ටික වේලාවකින් නැවත උත්සාහ කරන්න",
+    "requestFailed": "AI ඉල්ලීම අසාර්ථක විය"
   },
   "commandCentre": {
     "title": "විධාන මධ්‍යස්ථානය",
@@ -1349,7 +1375,8 @@
     "selectToken": "ටෝකනය තෝරන්න",
     "connectWallet": "මුදල් පසුම්බිය සම්බන්ධ කරන්න",
     "loginDescription": "මුදල් පසුම්බියට ප්‍රවේශ වීමට පිවිසෙන්න.",
-    "evmAddressLabel": "ඊවීඑම්"
+    "evmAddressLabel": "ඊවීඑම්",
+    "chooseNetwork": "ජාලය තෝරන්න"
   },
   "bookmarks": {
     "title": "ඔබේ පිටු සලකුණු",
@@ -2302,7 +2329,19 @@
     "unpinnedToast": "අමුණුම ඉවත් කළා",
     "pinFailed": "එම අදහස අමුණන්න බැරි විය",
     "kidsOnlyThread": "මේ පෝස්ටුව ළමයින්ටයි. ඒ ගැන කතා කරන්න පුළුවන් ළමයින්ට විතරයි.",
-    "editFailed": "පරිකථනය සංස්කරණය කිරීමට අසමත් විය"
+    "editFailed": "පරිකථනය සංස්කරණය කිරීමට අසමත් විය",
+    "notFound": "පරිකථනය හමු නොවීය",
+    "notCreatorBadge": "කර්තෘ නොවේ",
+    "likersAuthorOnly": "පළ කළ තැනැත්තාට පමණක් අදහස් වලට කැමති වූ අය දැකගත හැකිය.",
+    "noLikesYet": "තවම කැමති නැත.",
+    "anchoredFor_one": "{{count}} මිනිත්තුවක් සඳහා ඉහළින් සවි කර ඇත",
+    "anchoredFor_other": "{{count}} මිනිත්තු සඳහා ඉහළින් සවි කර ඇත",
+    "anchorFailed": "ඒ අදහස සවි කිරීමට නොහැකි විය",
+    "assistantReplying": "DeHub සහායක ප්‍රතිචාර දක්වයි…",
+    "noneYetBeFirst": "තවම අදහස් නැත. පළමුවැන්නා වන්න!",
+    "turnedOff": "මෙම සටහන සඳහා අදහස් අක්‍රිය කර ඇත",
+    "noQuotesYet": "තවම උපුටා ගැනීම් නැත.",
+    "noRepostsYet": "තවම නැවත පළ කිරීම් නැත."
   },
   "postInfo": {
     "title": "පළ කිරීමේ තොරතුරු",
@@ -2573,7 +2612,8 @@
     "error": "Error",
     "image_too_large_untiered": "පිංතූරය විශාල වැඩියි — පිංතූර {{limit}} MB දක්වා ගබඩා කර ඇත",
     "rate_limited": "සීමාව පසු කළා, හෙමින් කරන්න",
-    "image_too_large_tier": "රූපය ඉතා විශාලයි — ඔබේ {{tier}} ස්ථරය {{limit}} MB දක්වා රූප ගබඩා කරයි"
+    "image_too_large_tier": "රූපය ඉතා විශාලයි — ඔබේ {{tier}} ස්ථරය {{limit}} MB දක්වා රූප ගබඩා කරයි",
+    "failedToUnfollowUser": "පරිශීලකයා unfollow කිරීමට අසමත් විය"
   },
   "staking": {
     "title": "Staking",
@@ -3731,7 +3771,21 @@
     "boostCancelledRefunded": "බූස්ට් අවලංගු කර ඔබේ කෝටාවට නැවත එක් කළා",
     "boostCancelledSpent": "බූස්ට් අවලංගු කළා. එය දැනටමත් ආරම්භ වී තිබූ නිසා භාවිතා කළ ලෙසම පවතී.",
     "cancelFailed": "එම බූස්ට් අවලංගු කළ නොහැකි විය",
-    "screenTitle": "SuperPowers"
+    "screenTitle": "SuperPowers",
+    "countingNotifications": "දැනුම්දීම් ගණන් කරමින්...",
+    "flareSentPending": "{{label}} යවා ඇත. අවසාන ගණන පසු භාවිතයේ දිස්වනු ඇත.",
+    "flareNotified_one": "{{label}} {{count}} පුද්ගලයෙකුට දැනුම් දුන්නේය",
+    "flareNotified_other": "{{label}} {{count}} පුද්ගලයන්ට දැනුම් දුන්නේය",
+    "boostPostFailed": "ඒ සටහන boost කිරීමට නොහැකි විය.",
+    "loadFailed": "දැන්ම ඔබේ SuperPowers පූරණය කිරීමට නොහැකි විය. මොහොතකින් නැවත උත්සාහ කරන්න.",
+    "anyBadgeHolder": "ඕනෑම ලාංඡන හිමිකරුවෙකුට SuperPowers ලැබේ. ලාංඡනයක් විවෘත කිරීමට DHB මිලදී ගන්න — staking අවශ්‍ය නොවේ.",
+    "boostsLeftOf": "{{left}} න් {{total}} boost ඉතිරිව ඇත",
+    "refillsShort": "{{date}} නැවත පුරවයි",
+    "sendSignalFlare": "Signal Flare යවන්න",
+    "spend": "වියදම් කරන්න",
+    "flaresCount_one": "{{count}} දැල්වීම",
+    "flaresCount_other": "{{count}} දැල්වීම්",
+    "minutesUnit": "විනාඩි"
   },
   "follow": {
     "followers": "අනුගාමීන්",
@@ -4194,7 +4248,15 @@
     "preparingWallet": "ඔබේ පසුම්බිය සූදානම් වෙමින් — මොහොතකින් නැවත උත්සාහ කරන්න.",
     "swapSettling": "ඔබේ හුවමාරුව තවමත් සිදුවෙමින් තිබිය හැක. නැවත උත්සාහ කිරීමට පෙර DHB ශේෂය බලන්න — දෙවරක් හුවමාරු නොකරන්න.",
     "notEnoughBase": "Base හි ඔබේ පසුම්බියේ මෙය ආවරණය කිරීමට ප්‍රමාණවත් නැත. මුදල් එක් කරන්න, අගුළු හැරීම ඔබ එනතුරු රැඳී සිටී.",
-    "otherChain": "මෙම පළකිරීම වෙනත් දාමයක් මත පියවේ, එබැවින් එහි ඔබේ පසුම්බියේ DHB අවශ්‍යයි."
+    "otherChain": "මෙම පළකිරීම වෙනත් දාමයක් මත පියවේ, එබැවින් එහි ඔබේ පසුම්බියේ DHB අවශ්‍යයි.",
+    "unlockVideo": "වීඩියෝව අගුළු හරින්න",
+    "recipient": "ලැබෙන්නා: {{address}}",
+    "aboutToSpend": "මෙම වීඩියෝව අගුළු හැරීමට ඔබ <accent>{{amount}} {{symbol}}</accent> වියදම් කිරීමට යනවා.",
+    "lowTopUp": "{{symbol}} අඩුද? අගුළු හැරීමට පෙර අපි එය පුරවන්නෙමු.",
+    "btnSwapping": "මාරු කරමින්...",
+    "payAndTip": "ගෙවන්න & ඉඟි කරන්න",
+    "unlockedSuccess": "සාර්ථකව අගුළු හරවා ඇත",
+    "tokenBalance": "ටෝකන් ශේෂය"
   },
   "walletSetup": {
     "tryBiometricsHint": "ඔබ මෙම පසුම්බිය මෙම දුරකථනයේම සකසා ඇත්නම් සහ යතුර දැනටමත් මෙහි තිබිය යුතු නම් මෙය භාවිතා කරන්න",
@@ -4330,7 +4392,13 @@
     "renameHint": "මෙම සම්පූර්ණ පිටපත පුරා කථික ලේබලය වෙනස් කරන්න.",
     "searchPlaceholder": "පිටපතේ සොයන්න…",
     "speakerPlaceholder": "කථිකයාගේ නම හෝ හැඳුනුම ඇතුළත් කරන්න",
-    "detectedLanguage": "හඳුනාගත් භාෂාව: {{lang}}"
+    "detectedLanguage": "හඳුනාගත් භාෂාව: {{lang}}",
+    "fixThisLine": "මෙම රේඛාව සකස් කරන්න",
+    "fixPlayToLine": "ඔබට සකස් කිරීමට අවශ්‍ය රේඛාව දක්වා ධාවනය කර, පසුව මෙය නැවත විවෘත කරන්න.",
+    "fixAgreeHint": "තවත් නරඹන්නෙකු එකඟ වීමෙන් ඔබේ අනුවාදය සැමට සජීවී වේ.",
+    "fixNowReads": "දැන් කියවයි",
+    "fixPlaceholder": "එය පැවසිය යුතු දේ",
+    "fixSubmit": "සංශෝධනයක් යෝජනා කරන්න"
   },
   "upload": {
     "solanaUnavailable": "Solana පසුම්බිය නොමැත — මෙම උපාංගයේ ඔබේ යතුර නැත. නැවත ලබාගැනීමට යළි පිවිසෙන්න.",
@@ -4431,7 +4499,57 @@
     "liveFeaturesTitle": "සජීවී විශේෂාංග",
     "discardPostTitle": "තනතුර ඉවත දමන්නද?",
     "discardPostBody": "ඔබේ තනතුර අහිමි වනු ඇත. ඒ වෙනුවට ඔබ එය ව් යාපෘතියක් ලෙස සුරැකීමට කැමතිද?",
-    "queueMinting": "ව් ‍ යාජ..."
+    "queueMinting": "ව් ‍ යාජ...",
+    "soundSelected": "තෝරා ඇත",
+    "soundAdd": "එකතු කරන්න",
+    "addSound": "ශබ්දය එක් කරන්න",
+    "searchSoundsPlaceholder": "ශබ්ද සොයන්න...",
+    "noSoundsFound": "ශබ්ද සොයාගත නොහැකි විය",
+    "noAudioPosts": "තවම ශ්‍රව්‍ය පළ කිරීම් නොමැත",
+    "categories": "ප්‍රවර්ග",
+    "categoryMaxReached": "උපරිමය ළඟා විය",
+    "categorySearchPlaceholder": "ප්‍රවර්ගයක් සොයන්න හෝ සාදන්න",
+    "createCategory": "\"{{name}}\" සාදන්න",
+    "noMatchingCategories": "ගැලපෙන ප්‍රවර්ග නොමැත",
+    "noCategories": "ප්‍රවර්ග නොමැත",
+    "joinCommunityToPost": "එකක පළ කිරීමට ප්‍රජාවකට එක්වන්න.",
+    "stageUploading": "පූරණය වෙමින්…",
+    "stageConfirming": "තහවුරු කරමින්…",
+    "stageMinting": "මුද්‍රණය කරමින්…",
+    "stageFinalizing": "අවසන් කරමින්…",
+    "chooseStyle": "Style තෝරන්න",
+    "enhance": "වැඩි දියුණු කරන්න",
+    "fixGrammar": "ව්‍යාකරණ නිවැරදි කරන්න",
+    "changeStyle": "ශෛලිය වෙනස් කරන්න",
+    "generateContent": "අන්තර්ගතය උත්පාදනය කරන්න",
+    "scheduleLivestream": "සජීවී විකාශනයක් උපලේඛනගත කරන්න",
+    "scheduleMin30": "දැන් සිට අවම වශයෙන් මිනිත්තු 30 ක් විය යුතුය",
+    "minTipAmount": "අවම ඉඟි මුදල",
+    "schedulePostTitle": "පෝස්ට් එකක් උපලේඛනගත කරන්න",
+    "scheduleTime": "කාලය",
+    "removeSchedule": "උපලේඛනය ඉවත් කරන්න",
+    "shopIntro": "මෙම පෝස්ට් එකේ ඔබේම ලැයිස්තුගත කිරීම් හෝ අනුබද්ධ සබැඳි දමන්න — නරඹන්නන් ඒවා සාප්පු බොත්තමෙන් විවෘත කරයි.",
+    "shopAllowanceTier": "ඔබේ {{tier}} ලාංඡනය ඔබට මුළු {{allowance}} ලබා දෙයි.",
+    "shopAllowanceBase": "ඔබට මුළු {{allowance}} ලැබේ. සෑම ලාංඡන ස්ථරයක්ම තවත් එකක් එක් කරයි.",
+    "shopFromYours": "ඔබේ සාප්පුවෙන්",
+    "shopNothingOnSale": "තවම ඔබේ සාප්පුවේ කිසිවක් විකිණීමට නැත. ඔබ එහි ලැයිස්තුගත කරන ඕනෑම දෙයක් පෝස්ට් එකකට දැමිය හැකිය.",
+    "shopLinks": "සබැඳි",
+    "shopAffiliateHint": "අනුබද්ධ සබැඳි සාදරයෙන් පිළිගනිමු — Amazon Associates, යොමු කිරීමේ සබැඳි, ඔබ අලෙවි කරන ඕනෑම තැනක.",
+    "shopLinkN": "සබැඳිය {{n}}",
+    "shopLabelPlaceholder": "එය කුමක්ද — උදා. මගේ මයික්‍රෆෝනය",
+    "shopInvalidUrl": "මෙය වෙබ් ලිපිනයක් මෙන් පෙනෙන්නේ නැත.",
+    "shopAddLink": "සබැඳියක් එක් කරන්න",
+    "shopAllowanceUsed": "{{allowance}} න් {{allowance}} භාවිතා කර ඇත. ඉහළ ලාංඡනයක් සහ තවත් ස්ලට් එකක් සඳහා වැඩි DHB කොටස් කරන්න.",
+    "pillPosted": "පළ කරන ලදී!",
+    "pillFailedRetry": "අසාර්ථක විය · නැවත උත්සාහ කිරීමට තට්ටු කරන්න",
+    "pillFailedNoRetries": "අසාර්ථක විය · නැවත උත්සාහ කිරීම් ඉතිරි නැත",
+    "pillUploadsFailed_one": "{{count}} උඩුගත කිරීම අසාර්ථක විය",
+    "pillUploadsFailed_other": "{{count}} උඩුගත කිරීම් අසාර්ථක විය",
+    "pillDefaultTitle": "උඩුගත කරන්න",
+    "pillA11yFailed": "උඩුගත කිරීම අසාර්ථක විය, උඩුගත කිරීමේ තත්ත්වය පුළුල් කරන්න",
+    "pillA11yProgress": "උඩුගත කිරීම {{percent}}% සම්පූර්ණයි, උඩුගත කිරීමේ තත්ත්වය පුළුල් කරන්න",
+    "pillMinimize": "උඩුගත කිරීමේ තත්ත්වය අවම කරන්න",
+    "spellCheck": "අක්ෂර වින්‍යාසය පරීක්ෂා කරන්න"
   },
   "bounty": {
     "claimed": "ලබාගෙන ඇත",
@@ -4461,7 +4579,9 @@
     "eligibilityFailed": "සුදුසුකම් පරීක්ෂා කළ නොහැකි විය",
     "switchFirst": "ලබාගැනීමට පෙර ත්‍යාග ජාලයට මාරු වන්න",
     "missingSignature": "ත්‍යාග ලබාගැනීමේ අත්සන නොමැත",
-    "txReverted": "ගනුදෙනුව දාමය මත ආපසු හැරවිණි"
+    "txReverted": "ගනුදෙනුව දාමය මත ආපසු හැරවිණි",
+    "gasHint": "මෙය ඔන්-චේන් ගනුදෙනුවක් ආරම්භ කරනු ඇත. ගෑස් ගාස්තු අදාළ විය හැක.",
+    "detailsLabel": "Watch2Earn බවුන්ටි විස්තර"
   },
   "poster": {
     "format": "ආකෘතිය",
@@ -4663,7 +4783,9 @@
     "buyNow": "දැන් මිලදී ගන්න",
     "transfersPaused": "DHB මාරු කිරීම් විරාම කර ඇත",
     "buyingUnavailable": "වෙළඳාම නැවත ආරම්භ වන තෙක් මිලදී ගැනීම් නොමැත. කිසිවක් අය කර නැත.",
-    "dontClose": "මෙය වසා දමන්න එපා — Base හි මාරු කිරීම තහවුරු වූ පසු ඇණවුම ලියනු ලැබේ."
+    "dontClose": "මෙය වසා දමන්න එපා — Base හි මාරු කිරීම තහවුරු වූ පසු ඇණවුම ලියනු ලැබේ.",
+    "affiliateDisclosure": "අනුබද්ධ සබැඳි — ඔබ මිලදී ගන්නා ඕනෑම දෙයකට නිර්මාතෘට කොමිස් මුදලක් ලැබිය හැකිය. ඔබට මිල සමාන වේ.",
+    "nothingOnSale": "දැන් මෙහි විකිණීමට කිසිවක් නැත."
   },
   "dpay": {
     "success": "සාර්ථකයි",
@@ -4755,7 +4877,8 @@
     "withdrawing": "ලබා ගනිමින්…",
     "usdtSent": "{{amount}} USDT යවා ඇත",
     "withdrawableSoon": "දායක ගාස්තු ළඟදීම ලබා ගත හැකි වේ",
-    "dpayBaseOnly": "Dpay ලබා ගත හැක්කේ Base හි පමණි."
+    "dpayBaseOnly": "Dpay ලබා ගත හැක්කේ Base හි පමණි.",
+    "tokensAndStocks": "ටෝකන සහ කොටස්"
   },
   "feedCard": {
     "reactionFailed": "ප්‍රතිචාරය යාවත්කාලීන කිරීම අසාර්ථකයි",
@@ -4766,7 +4889,34 @@
     "mint": "මින්ට්",
     "stream": "ප්‍රවාහය",
     "boostPost": "පළකිරීම බූස්ට් කරන්න",
-    "openSuperPowers": "SuperPowers විවෘත කරන්න"
+    "openSuperPowers": "SuperPowers විවෘත කරන්න",
+    "subsOnly": "SUBS පමණි",
+    "shareAndRepost": "බෙදාගෙන නැවත පළ කරන්න",
+    "saveToLibrary": "පුස්තකාලයට සුරකින්න",
+    "postDetails": "පෝස්ට් විස්තර",
+    "unlockForAndHold": "{{price}} {{symbol}} + {{hold}} {{holdSymbol}} තබා ගැනීම සඳහා අගුළු හරින්න",
+    "unlockFor": "{{price}} {{symbol}} සඳහා අගුළු හරින්න",
+    "subscribersOnly": "දායකයින්ට පමණි",
+    "subscribeTo": "{{name}} වෙත දායක වන්න",
+    "subscribeToCreator": "මෙම නිර්මාතෘ වෙත දායක වන්න",
+    "holdingsRequired": "අවශ්‍ය හිමිකම්",
+    "mustHold": "{{amount}} {{symbol}} හිමිකරගෙන තිබිය යුතුය",
+    "reposted": "නැවත පළ කරන ලදී",
+    "matureDescription": "නිර්මාතෘ මෙම පෝස්ට් එක වැඩිහිටි හෝ ග්‍රැෆික් ලෙස සලකුණු කර ඇත.",
+    "viewAnyway": "කෙසේ වෙතත් බලන්න",
+    "seeWhoReacted": "ප්‍රතිචාර දැක්වූයේ කවුදැයි බලන්න",
+    "sendInMessage": "පණිවිඩයක යවන්න",
+    "undoRepost": "නැවත පළ කිරීම අවලංගු කරන්න",
+    "repost": "නැවත පළ කරන්න",
+    "capturing": "ග්‍රහණය කරමින්…",
+    "shareAsImage": "රූපයක් ලෙස බෙදා ගන්න",
+    "loadingQuoted": "උපුටා දැක්වූ පෝස්ට් එක පූරණය වෙමින්…",
+    "dehubCreator": "DeHub නිර්මාතෘ",
+    "imageTranslation": "රූප පරිවර්තනය",
+    "imageTranslating": "පෙළ උපුටා ගැනීම සහ පරිවර්තනය කිරීම…",
+    "imageNoText": "මෙම රූපයේ පෙළක් හමු නොවීය",
+    "translatedFrom": "{{lang}} සිට පරිවර්තනය කරන ලදී",
+    "originalText": "මුල් පාඨය"
   },
   "dm": {
     "attachFailed": "එම ගොනුව අමුණන්න බැරි විය.",
@@ -4918,7 +5068,45 @@
     "descTooShort": "විස්තරය අවම වශයෙන් අක්ෂර 3ක් විය යුතුය",
     "updated": "පළකිරීම යාවත්කාලීන කළා",
     "titlePlaceholder": "පළකිරීමේ ශීර්ෂය",
-    "descPlaceholder": "පළකිරීමේ විස්තරය"
+    "descPlaceholder": "පළකිරීමේ විස්තරය",
+    "imageTooLarge": "රූපය 42.069 MB හෝ ඊට අඩු විය යුතුය",
+    "imageReplaced": "රූපය ප්‍රතිස්ථාපනය කරන ලදී",
+    "replaceImageFailed": "එම රූපය ප්‍රතිස්ථාපනය කිරීමට නොහැකි විය",
+    "imageLimitTier_one": "ඔබේ බැජ් ස්ථරය පෝස්ට් එකකට {{count}} රූපයක් දක්වා ඉඩ දෙයි",
+    "imageLimitTier_other": "ඔබේ බැජ් ස්ථරය පෝස්ට් එකකට {{count}} රූප දක්වා ඉඩ දෙයි",
+    "imagesTooLarge": "රූප 42.069 MB හෝ ඊට අඩු විය යුතුය",
+    "imagesTotalTooLarge": "එක් උඩුගත කිරීමක රූප මුළුමනින්ම 100 MB හෝ ඊට අඩුවෙන් විය යුතුය",
+    "imagesAdded": "රූප එකතු කරන ලදී",
+    "addImagesFailed": "එම රූප එකතු කිරීමට නොහැකි විය",
+    "loadingImages": "පෝස්ට් රූප පූරණය වෙමින් පවතී…",
+    "loadImagesFailed": "පෝස්ට් රූප පූරණය කිරීමට නොහැකි විය. නැවත උත්සාහ කරන්න",
+    "imagesHint": "රූප එකතු කිරීම හෝ ප්‍රතිස්ථාපනය කිරීම වහාම සුරැකේ. ඔබේ පෝස්ට් එක එහි සබැඳිය, නැරඹුම් සහ අදහස් රඳවා ගනී.",
+    "allowanceUnavailable": "රූප දීමනාව නොමැත. නැවත උත්සාහ කරන්න",
+    "imagesCount": "{{count}} / {{limit}} රූප · ඔබේ බැජ් ස්ථරය මත පදනම්ව",
+    "addingImages": "රූප එකතු කරමින්…",
+    "imageLimitReached": "බැජ් රූප සීමාව ළඟා විය",
+    "addImages": "රූප එකතු කරන්න",
+    "replaceImageN": "රූපය ප්‍රතිස්ථාපනය කරන්න {{n}}",
+    "replaceVideoTitle": "මෙම වීඩියෝව ප්‍රතිස්ථාපනය කරන්නද?",
+    "replaceVideoBody": "පෝස්ට් එක එහි සබැඳිය, නැරඹුම් සහ අදහස් රඳවා ගනී. එය පිටුපස ඇති ගොනුව නැවත ලියනු ලැබේ, එය ආපසු හැරවිය නොහැක.",
+    "replace": "ප්‍රතිස්ථාපනය කරන්න",
+    "replaceFileFailed": "එම ගොනුව ප්‍රතිස්ථාපනය කිරීමට නොහැකි විය",
+    "updateFailed": "පෝස්ට් යාවත්කාලීන කිරීමට අසමත් විය",
+    "onShopBoard": "Shop පුවරුවේ {{count}}",
+    "addToShopBoard": "Shop පුවරුවට එකතු කරන්න",
+    "shopBoardHint": "ඔබේ සාප්පු ලැයිස්තු සහ අනුබද්ධ සබැඳි, සාප්පු බොත්තමෙන් විවෘත වේ. ඔබට {{allowance}} එකතු කළ හැකිය.",
+    "commentsOff": "අදහස් අක්‍රියයි",
+    "allowComments": "අදහස් වලට ඉඩ දෙන්න",
+    "commentsOffHint": "පළ කරන ලද ප්‍රතිචාර දැනටමත් පෙනෙනවා — මෙය නැවත ක්‍රියාත්මක කිරීමෙන් ඒවා යථා තත්වයට පත් වේ.",
+    "allowCommentsHint": "මෙම සටහන දැකීමට හැකි ඕනෑම කෙනෙකුට එයට ප්‍රතිචාර දැක්විය හැකිය.",
+    "markedMature": "වැඩිහිටි ලෙස සලකුණු කර ඇත",
+    "markMature": "වැඩිහිටි ලෙස සලකුණු කරන්න",
+    "markedMatureHint": "ප්‍රසිද්ධ සංග්‍රහයෙන් ඉවත් කරන ලදී. අනුගාමිකයින්, ඔබේ පැතිකඩ සහ සබැඳිය තවමත් ක්‍රියා කරයි.",
+    "markMatureHint": "වැඩිහිටි හෝ ග්‍රැෆික් සටහන් සඳහා. මෙය ක්‍රියාත්මක කිරීමෙන් එය ප්‍රසිද්ධ සංග්‍රහයෙන් ඉවත් වේ.",
+    "videoFile": "වීඩියෝ ගොනුව",
+    "uploadingPercent": "පූරණය වෙමින් පවතී… {{percent}}%",
+    "replaceVideoFile": "වීඩියෝ ගොනුව ප්‍රතිස්ථාපනය කරන්න",
+    "replaceVideoHint": "මෙම සටහනේ සබැඳිය, නැරඹුම් සහ අදහස් තබා ගනී. නව ගොනුව සැකසීම අවසන් වන තෙක් පැරණි ගොනුව ධාවනය වේ."
   },
   "player": {
     "openSettings": "සැකසුම් විවෘත කරන්න",
@@ -4941,7 +5129,28 @@
     "downloadImage": "රූපය බාගන්න",
     "goToImage": "රූපයට යන්න {{index}}",
     "allCaughtUp": "ඔබ සියල්ලම යාවත්කාලීන කර ඇත",
-    "checkBackForShorts": "තවත් කෙටි වීඩියෝ සඳහා පසුව නැවත පරීක්ෂා කරන්න"
+    "checkBackForShorts": "තවත් කෙටි වීඩියෝ සඳහා පසුව නැවත පරීක්ෂා කරන්න",
+    "undo": "අහෝසි කරන්න",
+    "progress": "වීඩියෝ ප්‍රගතිය",
+    "signInToViewLive": "මෙය නැරඹීමට පිවිසෙන්න.",
+    "signInToUnlock": "මෙය අගුළු හැරීමට සහ නැරඹීමට පිවිසෙන්න.",
+    "holdAtLeast": "අගුළු හැරීමට අවම වශයෙන් {{amount}} {{symbol}} තබා ගන්න.",
+    "yourDhbBalance": "ඔබේ DHB ශේෂය: {{amount}}",
+    "networkUnavailable": "මෙම අන්තර්ගතයට තවදුරටත් නොමැති ජාලයක් අවශ්‍ය වේ.",
+    "ppvUnsupportedNetwork": "PPV මෙම වීඩියෝව සඳහා සහාය නොදක්වන ජාල වින්‍යාසය හේතුවෙන් නොමැත.",
+    "wrongNetwork": "ඔබ වැරදි ජාලයක සිටී.",
+    "ppvRequiresChain": "මෙම අන්තර්ගතයට {{chain}} මත PPV අවශ්‍ය වේ. ගෙවීමට අවශ්‍ය ජාලයට මාරු වීමට සැකසීම් වෙත යන්න.",
+    "ppvRequiresOtherChain": "මෙම අන්තර්ගතයට වෙනත් ජාලයක PPV අවශ්‍ය වේ. ගෙවීමට අවශ්‍ය ජාලයට මාරු වීමට සැකසීම් වෙත යන්න.",
+    "unlockPpvWith": "{{amount}} {{symbol}} සමඟ PPV ප්‍රවාහය අගුළු හරින්න",
+    "resolveFailed": "ටෝකනය විසඳීමට අසමත් විය",
+    "segmentSkipped": {
+      "sponsor": "Sponsor මඟ හැරියේය",
+      "intro": "Intro මඟ හැරියේය",
+      "outro": "Outro මඟ හැරියේය",
+      "selfpromo": "Self promo මඟ හැරියේය",
+      "interaction": "Like & subscribe මඟ හැරියේය",
+      "filler": "Filler මඟ හැරියේය"
+    }
   },
   "liveViewer": {
     "loadingStream": "ප්‍රවාහය පූරණය වෙමින්...",
@@ -6239,5 +6448,66 @@
       "feature_request": "විශේෂාංග ඉල්ලීම",
       "other": "වෙනත්"
     }
+  },
+  "linkCard": {
+    "inviteUnavailable": "ආරාධනා නොමැත",
+    "inviteCannotBeUsed": "මෙම ආරාධනාව භාවිතා කළ නොහැක",
+    "communityInvite": "සමාජ ආරාධනය",
+    "aCommunity": "සමාජයක්",
+    "approvalNeeded": "අනුමැතිය අවශ්‍යයි",
+    "item": "ද්‍රව්‍ය",
+    "soldOut": "අලෙවි වී ඇත",
+    "privateEvent": "පුද්ගලික සිදුවීම",
+    "event": "සිදුවීම",
+    "listening_one": "{{count}} අසමින්",
+    "listening_other": "{{count}} අසමින්",
+    "ended": "අවසන්",
+    "stage": "වේදිකාව",
+    "upcomingStage": "ඉදිරි වේදිකාව",
+    "members": "{{compact}} සාමාජිකයින්",
+    "inviteRevoked": "ආරාධනය අවලංගු කරන ලදි",
+    "inviteExpired": "ආරාධනය කල් ඉකුත් වී ඇත",
+    "inviteExhausted": "ආරාධනය සම්පූර්ණයෙන් භාවිත කර ඇත",
+    "inviteNotFound": "ආරාධනය හමු නොවීය"
+  },
+  "report": {
+    "whyVideo": "මෙම වීඩියෝව වාර්තා කරන්නේ ඇයි?",
+    "whyName": "{{name}} වාර්තා කරන්නේ ඇයි?",
+    "whyUser": "මෙම පරිශීලකයා වාර්තා කරන්නේ ඇයි?",
+    "submitFailed": "වාර්තාව ඉදිරිපත් කිරීමට අසමත් විය",
+    "alreadyReported": "ඔබ දැනටමත් මෙය වාර්තා කර ඇත. අපි එය සමාලෝචනය කරමින් සිටිමු.",
+    "additionalDetails": "අමතර විස්තර (විකල්ප)",
+    "contextPlaceholder": "වැඩි සන්දර්භයක් සපයන්න…",
+    "submit": "වාර්තාව ඉදිරිපත් කරන්න",
+    "reasons": {
+      "sexual_content": "ලිංගික අන්තර්ගතය",
+      "violent_content": "ප්‍රචණ්ඩ හෝ ග්‍රැෆික් අන්තර්ගතය",
+      "hateful_content": "වෛරී අන්තර්ගතය",
+      "harmful_dangerous": "හානිකර හෝ භයානක ක්‍රියා",
+      "misinformation": "වැරදි තොරතුරු",
+      "child_abuse": "ළමා අපචාර",
+      "spam_misleading": "අයාචිත තැපැල් හෝ නොමඟ යවන",
+      "scam_fraud": "වංචාව හෝ වංචාව",
+      "infringes_rights": "මගේ අයිතිවාසිකම් උල්ලංඝනය කරයි",
+      "other": "වෙනත්",
+      "impersonation": "ව් ‍ යුහගත කිරීම",
+      "hateful_behavior": "පිළිකුල් සහගත හැසිරීම",
+      "spam": "අයාචිත තැපැල්",
+      "underage": "බාල වයස්කාර පරිශීලකයා",
+      "inappropriate_profile": "නුසුදුසු පැතිකඩ",
+      "harassment": "හිරිහැර කිරීම",
+      "hate_speech": "වෛරය ප් ‍ රකාශ කිරීම",
+      "violence": "ප් ‍ රචණ්ඩත්වය",
+      "scam_or_fraud": "වංචාව හෝ වංචාව",
+      "harassment_bullying": "හිරිහැර කිරීම හෝ හිරිහැර කිරීම"
+    }
+  },
+  "cashtag": {
+    "fetching": "මිල දත්ත ලබා ගනිමින්...",
+    "marketCap": "වෙළඳපොළ Cap",
+    "volume24h": "24h වෙළුම",
+    "liquidity": "ද් ‍ රවශීලතාවය",
+    "change1h": "1h වෙනස් කිරීම",
+    "viewOnDexScreener": "විස්තර: DEXSCREENER"
   }
 }

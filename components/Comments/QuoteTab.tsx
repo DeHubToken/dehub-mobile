@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useState, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -17,6 +18,7 @@ interface QuoteTabProps {
 }
 
 const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId }) => {
+  const { t } = useTranslation();
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -119,7 +121,7 @@ const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId }) => {
       ListFooterComponent={footer}
       ListEmptyComponent={
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 }}>
-          <Text style={{ color: "#8B8D90", fontSize: 14 }}>No quotes yet.</Text>
+          <Text style={{ color: "#8B8D90", fontSize: 14 }}>{t("comments.noQuotesYet")}</Text>
         </View>
       }
       showsVerticalScrollIndicator={false}

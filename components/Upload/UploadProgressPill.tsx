@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Pressable,
   StyleSheet,
@@ -29,6 +30,7 @@ const BADGE_RADIUS = (BADGE_SIZE - BADGE_STROKE) / 2;
 const BADGE_CIRCUMFERENCE = 2 * Math.PI * BADGE_RADIUS;
 
 const UploadProgressPill: React.FC = () => {
+  const { t } = useTranslation();
   const snap = useSnapshot(uploadState);
   const insets = useSafeAreaInsets();
   const [minimized, setMinimized] = useState(false);
@@ -100,21 +102,21 @@ const UploadProgressPill: React.FC = () => {
 
   let statusText = "";
   if (isDone) {
-    statusText = "Posted!";
+    statusText = t("upload.pillPosted");
   } else if (isFailed) {
     const retriable = failedJobs.filter((j) => j.retryCount < MAX_RETRIES);
     if (failedJobs.length === 1) {
       statusText = retriable.length > 0
-        ? "Failed · Tap to retry"
-        : "Failed · No retries left";
+        ? t("upload.pillFailedRetry")
+        : t("upload.pillFailedNoRetries");
     } else {
-      statusText = `${failedJobs.length} uploads failed`;
+      statusText = t("upload.pillUploadsFailed", { count: failedJobs.length });
     }
   } else if (currentJob) {
     statusText = `${progressPercent}%`;
   }
 
-  const title = currentJob?.title || failedJobs[0]?.title || recentlyDone?.title || "Upload";
+  const title = currentJob?.title || failedJobs[0]?.title || recentlyDone?.title || t("upload.pillDefaultTitle");
   const truncatedTitle = title.length > 26 ? title.slice(0, 26) + "…" : title;
   const iconName = isDone ? "CircleCheck" : isFailed ? "CircleAlert" : "Upload";
 
@@ -134,8 +136,8 @@ const UploadProgressPill: React.FC = () => {
           accessibilityRole="button"
           accessibilityLabel={
             isFailed
-              ? "Upload failed, expand upload status"
-              : `Upload ${progressPercent}% complete, expand upload status`
+              ? t("upload.pillA11yFailed")
+              : t("upload.pillA11yProgress", { percent: progressPercent })
           }
         >
           <View style={styles.badgeCircle}>
@@ -211,7 +213,7 @@ const UploadProgressPill: React.FC = () => {
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               style={styles.minimizeBtn}
               accessibilityRole="button"
-              accessibilityLabel="Minimize upload status"
+              accessibilityLabel={t("upload.pillMinimize")}
             >
               <Icon name="Minus" size={14} color="rgba(255,255,255,0.5)" />
             </Pressable>

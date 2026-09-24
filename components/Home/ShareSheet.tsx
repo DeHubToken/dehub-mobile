@@ -6,6 +6,7 @@
  * Share-as-Image (replacing the old inline repost button + RepostPopover).
  */
 import React, { memo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
@@ -66,6 +67,7 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
   onSendToDm,
   onShareAsImage,
 }) => {
+  const { t } = useTranslation();
   const [sharingImage, setSharingImage] = useState(false);
 
   const handleShareAsImage = async () => {
@@ -96,14 +98,14 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
       </View>
 
       <Text className="text-white/90 font-semibold text-base px-5 pt-2 pb-1">
-        Share
+        {t("postOptions.share")}
       </Text>
 
       <View className="pb-6 pt-1">
         {!!onSendToDm && (
           <ShareRow
             icon="Send"
-            label="Send in a message"
+            label={t("feedCard.sendInMessage")}
             onPress={() => {
               onClose();
               setTimeout(() => onSendToDm(), 300);
@@ -114,7 +116,7 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
         {isReposted ? (
           <ShareRow
             icon="Repeat2"
-            label="Undo Repost"
+            label={t("feedCard.undoRepost")}
             color="#F4F4F5"
             onPress={() => {
               onUndoRepost();
@@ -124,7 +126,7 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
         ) : (
           <ShareRow
             icon="Repeat2"
-            label="Repost"
+            label={t("feedCard.repost")}
             onPress={() => {
               onRepost();
               onClose();
@@ -134,7 +136,7 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
 
         <ShareRow
           icon="Quote"
-          label="Quote"
+          label={t("transcript.quote")}
           onPress={() => {
             onClose();
             setTimeout(() => onQuote(), 300);
@@ -143,7 +145,7 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
 
         <ShareRow
           icon="Link"
-          label="Copy Link"
+          label={t("postOptions.copyLink")}
           onPress={() => {
             onCopyLink();
             onClose();
@@ -153,7 +155,7 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
         {!!onShareAsImage && (
           <ShareRow
             icon="ImageDown"
-            label={sharingImage ? "Capturing…" : "Share as Image"}
+            label={sharingImage ? t("feedCard.capturing") : t("feedCard.shareAsImage")}
             loading={sharingImage}
             onPress={handleShareAsImage}
           />

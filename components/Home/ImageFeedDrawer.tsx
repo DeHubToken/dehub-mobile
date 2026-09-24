@@ -9,6 +9,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import {
   BackHandler,
   Dimensions,
@@ -156,6 +157,7 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
   showCloseButton = true,
   onClose,
 }, ref) => {
+  const { t } = useTranslation();
   const [items, setItems] = useState<UnifiedFeedItem[]>(initialItems);
   // Which card is in view lives in a store, not React state: as `useState` it
   // re-rendered this whole sheet — gesture, animation and list — on every
@@ -413,10 +415,10 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
     return (
       <View style={styles.footer}>
         <Icon name="Image" size={44} color={colors.neutrals[700]} />
-        <Text style={styles.footerText}>You're all caught up</Text>
+        <Text style={styles.footerText}>{t("feed.allCaughtUp")}</Text>
       </View>
     );
-  }, [noMore]);
+  }, [noMore, t]);
 
   return (
     <View style={styles.clip} pointerEvents="box-none">
@@ -471,7 +473,7 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
                 onPress={close}
                 hitSlop={14}
                 accessibilityRole="button"
-                accessibilityLabel="Close images"
+                accessibilityLabel={t("feed.closeImages")}
                 style={styles.closeBtn}
               >
                 <Icon name="X" size={18} color={colors.neutrals[400]} />

@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, TextInput, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "./GlassModal";
@@ -20,10 +21,11 @@ const Dropdown: React.FC<Props> = ({
   options,
   value,
   onChange,
-  placeholder = "Select",
+  placeholder,
   searchable = false,
   disabled = false,
 }) => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
 
@@ -54,7 +56,7 @@ const Dropdown: React.FC<Props> = ({
         }`}
       >
         <Text className={selected ? "text-white" : "text-theme-neutrals-400"}>
-          {selected ? selected.label : placeholder}
+          {selected ? selected.label : placeholder ?? t("common.select")}
         </Text>
         <Ionicons name="chevron-down" size={16} color={colors.neutrals[400]} />
       </TouchableOpacity>
@@ -67,7 +69,7 @@ const Dropdown: React.FC<Props> = ({
                 <Ionicons name="search" size={16} color={colors.neutrals[400]} />
                 <TextInput
                   className="flex-1 ml-2 text-white"
-                  placeholder="Search"
+                  placeholder={t("common.search")}
                   placeholderTextColor={colors.neutrals[500]}
                   value={query}
                   onChangeText={setQuery}
@@ -80,7 +82,7 @@ const Dropdown: React.FC<Props> = ({
 
           {filtered.length === 0 ? (
             <View className="py-8 items-center">
-              <Text className="text-theme-neutrals-400">No results</Text>
+              <Text className="text-theme-neutrals-400">{t("common.noResults")}</Text>
             </View>
           ) : (
             <FlatList

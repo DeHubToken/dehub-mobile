@@ -70,7 +70,7 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
       hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
       style={style}
       accessibilityRole="button"
-      accessibilityLabel="Translate"
+      accessibilityLabel={t('common.translate')}
     >
       <Icon name="Languages" size={16} color={colors.neutrals[600]} />
       {/* Back on the original after "show original": name the language it is

@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -115,6 +116,7 @@ function StatRow({ label, value }: { label: string; value: string }) {
 
 // ── Main component ────────────────────────────────────────────────────────────
 const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, onClose }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
@@ -135,16 +137,16 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
     setCandles([]);
     try {
       const p = await searchDexScreener(clean);
-      if (!p) { setError(`No data found for $${clean}`); return; }
+      if (!p) { setError(t("cashtag.noData", { symbol: clean })); return; }
       setPair(p);
       const c = await fetchPairOhlcv(p.chainId, p.pairAddress, "hour", 24);
       setCandles(c);
     } catch {
-      setError("Failed to load token data");
+      setError(t("cashtag.loadFailed"));
     } finally {
       setLoading(false);
     }
-  }, [clean]);
+  }, [clean, t]);
 
   useEffect(() => {
     if (visible) {
@@ -215,14 +217,14 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
           {loading ? (
             <View style={styles.center}>
               <DeHubLoader size={56} />
-              <Text style={styles.loadingText}>Fetching price data…</Text>
+              <Text style={styles.loadingText}>{t("cashtag.fetching")}</Text>
             </View>
           ) : error ? (
             <View style={styles.center}>
               <Icon name="CircleAlert" size={40} color="#4B5563" />
               <Text style={styles.errorText}>{error}</Text>
               <TouchableOpacity onPress={load} style={styles.retryBtn}>
-                <Text style={styles.retryText}>Retry</Text>
+                <Text style={styles.retryText}>{t("common.retry")}</Text>
               </TouchableOpacity>
             </View>
           ) : pair ? (
@@ -250,12 +252,12 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
 
               {/* Stats */}
               <View style={styles.statsContainer}>
-                <StatRow label="Market Cap" value={formatCompact(pair.marketCap ?? pair.fdv)} />
-                <StatRow label="24h Volume" value={formatCompact(pair.volume?.h24)} />
-                <StatRow label="Liquidity" value={formatCompact(pair.liquidity?.usd)} />
+                <StatRow label={t("cashtag.marketCap")} value={formatCompact(pair.marketCap ?? pair.fdv)} />
+                <StatRow label={t("cashtag.volume24h")} value={formatCompact(pair.volume?.h24)} />
+                <StatRow label={t("cashtag.liquidity")} value={formatCompact(pair.liquidity?.usd)} />
                 {pair.priceChange?.h1 != null && (
                   <StatRow
-                    label="1h Change"
+                    label={t("cashtag.change1h")}
                     value={`${pair.priceChange.h1 >= 0 ? "+" : ""}${pair.priceChange.h1.toFixed(2)}%`}
                   />
                 )}
@@ -268,7 +270,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
                 activeOpacity={0.8}
               >
                 <Icon name="ExternalLink" size={14} color="#D4D4D8" />
-                <Text style={styles.dexLinkText}>View on DexScreener</Text>
+                <Text style={styles.dexLinkText}>{t("cashtag.viewOnDexScreener")}</Text>
               </TouchableOpacity>
             </ScrollView>
           ) : null}

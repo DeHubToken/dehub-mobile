@@ -31,6 +31,7 @@
  */
 
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Pressable,
@@ -101,6 +102,7 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
   onShowInfo,
   polarity = "positive",
 }) => {
+  const { t } = useTranslation();
   const reactions = polarity === "negative" ? NEGATIVE_REACTION_LIST : POSITIVE_REACTION_LIST;
   const { width: screenWidth } = useWindowDimensions();
   const [placement, setPlacement] = useState<Placement | null>(null);
@@ -209,7 +211,7 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
           />
           <Pressable
             accessibilityRole="menuitem"
-            accessibilityLabel="See who reacted"
+            accessibilityLabel={t("feedCard.seeWhoReacted")}
             onPress={onShowInfo}
             hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }}
             style={{

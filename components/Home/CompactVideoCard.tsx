@@ -1,5 +1,6 @@
 import { isHoldGated, isSubscriberGated } from "../../libs/content-gate";
 import React, { memo, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import StatusBadge from "./StatusBadge";
@@ -41,6 +42,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   showCreator = true,
   onBeforeNavigate,
 }) => {
+  const { t } = useTranslation();
   const streamInfo = nft.streamInfo || (nft as any).stream?.streamInfo;
   const tokenId = nft.tokenId || (nft as any).stream?.tokenId;
   const status: string | undefined = (nft as any).status;
@@ -317,7 +319,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               {isSubGated && (
                 <View className={chipClass}>
                   <Text className={chipTextClass}>
-                    SUBS ONLY
+                    {t("feedCard.subsOnly")}
                   </Text>
                 </View>
               )}

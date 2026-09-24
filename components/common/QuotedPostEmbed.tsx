@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -27,6 +28,7 @@ interface QuotedPostEmbedProps {
 
 const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
   (props) => {
+    const { t } = useTranslation();
     const navigation = useNavigation<any>();
     const { hideUserProfile } = useUserProfileSheet();
     const { isMinimal } = useAppTheme();
@@ -89,7 +91,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
         >
           <View className="flex-row items-center gap-2">
             <ActivityIndicator size="small" color="#666" />
-            <Text className="text-theme-neutrals-500 text-sm">Loading quoted post…</Text>
+            <Text className="text-theme-neutrals-500 text-sm">{t("feedCard.loadingQuoted")}</Text>
           </View>
         </View>
       );
@@ -104,7 +106,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
           <View className="flex-row items-center gap-2">
             <Ionicons name="alert-circle-outline" size={16} color="#6F7174" />
             <Text className="text-theme-neutrals-500 text-sm">
-              This post is unavailable
+              {t("profile.replyThread.postUnavailable")}
             </Text>
           </View>
         </View>
@@ -169,8 +171,8 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
               audioUrl={getAudioUrl(quotedPost.audioUrl)}
               duration={quotedPost.audioDuration || 0}
               tokenId={quotedPost.tokenId || quotedPost.id || quotedTokenId || 0}
-              title={quotedPost.name || quotedPost.title || "Audio post"}
-              artist={displayName || "DeHub creator"}
+              title={quotedPost.name || quotedPost.title || t("audioPost.untitled")}
+              artist={displayName || t("feedCard.dehubCreator")}
               artworkUrl={avatarUrl || undefined}
               compact
             />

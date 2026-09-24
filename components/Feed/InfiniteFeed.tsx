@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
@@ -125,6 +126,7 @@ const InfiniteFeedBase: React.FC<
   loadingComponent,
   trackFeedCardVisibility = true,
 }) => {
+  const { t } = useTranslation();
   const {
     viewabilityConfig: feedCardViewabilityConfig,
     onViewableItemsChanged: onFeedCardViewableItemsChanged,
@@ -377,7 +379,7 @@ const InfiniteFeedBase: React.FC<
           <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
           <View className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
             <Text onPress={retry} className="text-theme-neutrals-50 font-medium">
-              Retry
+              {t("common.retry")}
             </Text>
           </View>
         </View>,
@@ -386,7 +388,7 @@ const InfiniteFeedBase: React.FC<
       sections.push(
         <View key="feed-empty" className="items-center justify-center px-6 py-10">
           {emptyComponent ?? (
-            <Text className="text-theme-neutrals-400 text-sm">No posts yet.</Text>
+            <Text className="text-theme-neutrals-400 text-sm">{t("feed.noPostsYet")}</Text>
           )}
         </View>,
       );
@@ -402,6 +404,7 @@ const InfiniteFeedBase: React.FC<
     loadingComponent,
     emptyComponent,
     retry,
+    t,
   ]);
 
   return (
@@ -457,7 +460,7 @@ const InfiniteFeedBase: React.FC<
               {loadingMore ? (
                 <DeHubLoader size={32} />
               ) : endReached && items.length > 0 ? (
-                <Text className="text-theme-neutrals-400 text-xs">No more posts</Text>
+                <Text className="text-theme-neutrals-400 text-xs">{t("feed.noMorePosts")}</Text>
               ) : null}
             </View>
         }
@@ -466,7 +469,7 @@ const InfiniteFeedBase: React.FC<
         <Pressable
           onPress={scrollToTop}
           accessibilityRole="button"
-          accessibilityLabel="Back to top"
+          accessibilityLabel={t("profile.backToTop")}
           className="absolute bottom-6 right-5 bg-theme-neutrals-800/80 rounded-xl p-3 active:opacity-80"
         >
           <Ionicons

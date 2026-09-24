@@ -223,10 +223,10 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
       >
         <View className="pb-3">
           <Text className="text-white font-semibold text-sm mb-2">
-            Schedule Livestream
+            {t("upload.scheduleLivestream")}
           </Text>
           <Text className="text-theme-neutrals-400 text-xs mb-3">
-            Must be at least 30 minutes from now
+            {t("upload.scheduleMin30")}
           </Text>
 
           <View className="flex-row items-center mb-3">
@@ -321,10 +321,10 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
       >
         <View className="pb-3">
           <Text className="text-white font-semibold text-sm mb-2">
-            Minimum Tip Amount
+            {t("upload.minTipAmount")}
           </Text>
           <Text className="text-theme-neutrals-400 text-xs mb-1.5">
-            Amount (DHB)
+            {t("dao.amountLabel")}
           </Text>
           <TextInput
             value={tipDraft}

@@ -20,6 +20,7 @@
  * mis-tap waiting to happen.
  */
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Text, Pressable, ActivityIndicator } from "react-native";
 import Icon from "../ui/Icon";
 import {
@@ -33,7 +34,7 @@ const PERIODS: { value: TopicPeriod; label: string }[] = [
   { value: "1w", label: "1W" },
   { value: "1m", label: "1M" },
   { value: "1y", label: "1Y" },
-  { value: "all", label: "All" },
+  { value: "all", label: "" },
 ];
 
 const TOP_LIMIT = 10;
@@ -48,6 +49,7 @@ export default function TrendingTopicsList({
   onTopicPress,
   defaultPeriod = "1w",
 }: TrendingTopicsListProps) {
+  const { t } = useTranslation();
   const [period, setPeriod] = useState<TopicPeriod>(defaultPeriod);
   const { data: categories, isLoading } = useTrendingCategories(period);
 
@@ -56,7 +58,7 @@ export default function TrendingTopicsList({
   return (
     <View className="px-4 pt-3 pb-1">
       <View className="flex-row items-center justify-between mb-2">
-        <Text className="text-white text-base font-bold">Trending Topics</Text>
+        <Text className="text-white text-base font-bold">{t("explore.trendingTopics")}</Text>
       </View>
 
       <View className="flex-row mb-2">
@@ -73,7 +75,7 @@ export default function TrendingTopicsList({
                   : "text-theme-neutrals-500 text-xs font-semibold"
               }
             >
-              {p.label}
+              {p.value === "all" ? t("filters.all") : p.label}
             </Text>
           </Pressable>
         ))}
@@ -85,7 +87,7 @@ export default function TrendingTopicsList({
         </View>
       ) : visible.length === 0 ? (
         <Text className="text-theme-neutrals-400 text-xs py-4 text-center">
-          Nothing trending in this window yet.
+          {t("explore.nothingTrending")}
         </Text>
       ) : (
         <View className="gap-1">
@@ -104,7 +106,7 @@ export default function TrendingTopicsList({
                 {cat.boosted && <Icon name="Rocket" size={12} color="#808089" />}
               </View>
               <Text className="text-theme-neutrals-500 text-[11px] ml-2">
-                {cat.post_count} {cat.post_count === 1 ? "post" : "posts"}
+                {t("explore.postCount", { count: cat.post_count })}
               </Text>
             </Pressable>
           ))}
