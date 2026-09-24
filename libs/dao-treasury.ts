@@ -65,6 +65,7 @@ export interface DaoTreasurySnapshot {
 }
 
 type RpcLog = {
+  address?: string;
   transactionHash: string;
   blockNumber: string;
   blockTimestamp?: string;
@@ -200,6 +201,55 @@ async function readIncoming(chainId: number): Promise<DaoContribution[]> {
     .filter((c) => c.amount > 0 && c.from !== DAO_TREASURY_ADDRESS);
 }
 
+/**
+ * Contributions that left the app but never reached the treasury. Mobile
+ * builds from 6 to 19 Sep 2026 carried a wrong treasury address, so a DAO
+ * contribution made in the app in that window landed in that wallet instead.
+ * The sender did everything right, so each verified transfer is credited as a
+ * contribution here. Every entry is re-checked against its on-chain receipt:
+ * it only counts if the DHB Transfer really went from `from` to the old
+ * address, so a typo here can never mint a share.
+ */
+export const LEGACY_MOBILE_TREASURY_ADDRESS = '0x1759ceb6255dbebfe2c0c51edbcd29ad7efb9229';
+export const MISROUTED_CONTRIBUTIONS: ReadonlyArray<{ chainId: number; txHash: string; from: string }> = [
+  {
+    chainId: ChainId.BASE_MAINNET,
+    txHash: '0x4758f16df3be363c2e085a67f01ce4240ba13fb0db47d2fe0518485d67eff50f',
+    from: '0xaec3da6834780dc14a32ffe09bfbeb4723d0ef49',
+  },
+];
+
+async function readMisrouted(entry: (typeof MISROUTED_CONTRIBUTIONS)[number]): Promise<DaoContribution[]> {
+  const token = DHB_ADDRESSESS[entry.chainId];
+  if (!token) return [];
+  const url = await rpcUrlFor(entry.chainId);
+  const receipt = await rpc<{ status: string; blockNumber: string; logs: RpcLog[] } | null>(
+    url,
+    'eth_getTransactionReceipt',
+    [entry.txHash],
+  );
+  if (!receipt || receipt.status !== '0x1') return [];
+  const log = receipt.logs.find(
+    l =>
+      l.topics?.length === 3 &&
+      l.topics[0] === TRANSFER_TOPIC &&
+      l.address?.toLowerCase() === token.toLowerCase() &&
+      topicToAddress(l.topics[1]) === entry.from.toLowerCase() &&
+      topicToAddress(l.topics[2]) === LEGACY_MOBILE_TREASURY_ADDRESS,
+  );
+  if (!log) return [];
+  const block = await rpc<{ timestamp: string }>(url, 'eth_getBlockByNumber', [receipt.blockNumber, false]);
+  return [
+    {
+      txHash: entry.txHash,
+      chainId: entry.chainId,
+      from: entry.from.toLowerCase(),
+      amount: fromWei(log.data),
+      timestamp: parseInt(block.timestamp, 16),
+    },
+  ];
+}
+
 export function rankContributors(transfers: DaoContribution[]): DaoContributor[] {
   const byAddress = new Map<string, DaoContributor>();
   for (const t of transfers) {
@@ -226,7 +276,10 @@ export function rankContributors(transfers: DaoContribution[]): DaoContributor[]
 export async function fetchDaoTreasury(): Promise<DaoTreasurySnapshot> {
   const [balances, incoming] = await Promise.all([
     Promise.all(DAO_BALANCE_CHAINS.map(readBalance)),
-    Promise.all(DAO_CONTRIBUTION_CHAINS.map((id) => readIncoming(id).catch(() => [] as DaoContribution[]))),
+    Promise.all([
+      ...DAO_CONTRIBUTION_CHAINS.map((id) => readIncoming(id).catch(() => [] as DaoContribution[])),
+      ...MISROUTED_CONTRIBUTIONS.map((e) => readMisrouted(e).catch(() => [] as DaoContribution[])),
+    ]),
   ]);
   const transfers = incoming.flat().sort((a, b) => b.timestamp - a.timestamp);
   const contributors = rankContributors(transfers);
