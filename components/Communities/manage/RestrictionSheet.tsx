@@ -1,4 +1,3 @@
-import SheetDismissHandle from "../../ui/SheetDismissHandle";
 /**
  * RestrictionSheet
  * ================
@@ -17,14 +16,11 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Modal,
-  Pressable,
   ActivityIndicator,
-  ScrollView,
   StyleSheet,
-  KeyboardAvoidingView,
 } from "react-native";
 import { useTranslation } from "react-i18next";
+import GlassModal from "../../ui/GlassModal";
 import Icon from "../../ui/Icon";
 import CustomSwitch from "../../ui/CustomSwitch";
 import {
@@ -129,11 +125,11 @@ export function RestrictionSheet({
   };
 
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-        <Pressable style={styles.overlay} onPress={onClose}>
-          <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
-            <SheetDismissHandle onClose={onClose} style={styles.header}>
+    // Capped and scrollable: the keyboard (the ban reason) is what would
+    // otherwise push a bottom-pinned sheet off the top of the screen.
+    <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="88%" scrollable>
+          <View style={styles.sheet}>
+            <View style={styles.header}>
               <Icon name={isMute ? "VolumeX" : "Ban"} size={18} color={isMute ? "#D4D4D8" : "#F4F4F5"} />
               <Text style={styles.title} numberOfLines={1}>
                 {title}
@@ -146,14 +142,8 @@ export function RestrictionSheet({
               >
                 <Icon name="X" size={20} color="#808089" />
               </TouchableOpacity>
-            </SheetDismissHandle>
+            </View>
 
-            {/* Scrolls so the sheet can be capped — see styles.sheet. */}
-            <ScrollView
-              bounces={false}
-              keyboardShouldPersistTaps="handled"
-              showsVerticalScrollIndicator={false}
-            >
             <Text className="text-zinc-400 text-xs mb-2">
               {t("communities.manage.durationLabel", { defaultValue: "Duration" })}
             </Text>
@@ -234,27 +224,15 @@ export function RestrictionSheet({
                 </Text>
               )}
             </TouchableOpacity>
-            </ScrollView>
-          </Pressable>
-        </Pressable>
-      </KeyboardAvoidingView>
-    </Modal>
+          </View>
+    </GlassModal>
   );
 }
 
 const styles = StyleSheet.create({
-  overlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "rgba(12,12,14,0.96)",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(255,255,255,0.1)",
     padding: 20,
-    paddingBottom: 32,
-    // Bottom-pinned sheet: extra height grows off the TOP of the screen, and
-    // the keyboard is what pushes it there. Cap it; the body scrolls.
-    maxHeight: "88%",
+    paddingBottom: 12,
   },
   header: { flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 16 },
   title: { flex: 1, color: "#fff", fontSize: 16, fontWeight: "600" },

@@ -21,16 +21,13 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  Modal,
   StyleSheet,
   Pressable,
   TextInput,
   ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
+import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import { DhbCoin } from "../common/DhbCoin";
 import { useUsernameMarketConfig } from "../../hooks/useUsernameMarket";
@@ -48,7 +45,6 @@ interface Props {
 
 const MakeOfferSheet: React.FC<Props> = ({ username, visible, onClose, isAuthed, onSignIn }) => {
   const { t } = useTranslation();
-  const insets = useSafeAreaInsets();
   const { data: config } = useUsernameMarketConfig();
   const createOffer = useCreateUsernameOffer();
 
@@ -83,13 +79,10 @@ const MakeOfferSheet: React.FC<Props> = ({ username, visible, onClose, isAuthed,
   };
 
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <Pressable style={styles.backdrop} onPress={onClose} />
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-        style={styles.sheetWrap}
-      >
-        <View style={[styles.sheet, { paddingBottom: insets.bottom + 18 }]}>
+    // GlassModal lifts the sheet over the keyboard on Android too (the old
+    // KeyboardAvoidingView only did so on iOS) and lets it be swiped away.
+    <GlassModal visible={visible} onClose={onClose} presentation="bottom" scrollable>
+        <View style={styles.sheet}>
           <View style={styles.grabber} />
 
           <View style={styles.head}>
@@ -156,23 +149,16 @@ const MakeOfferSheet: React.FC<Props> = ({ username, visible, onClose, isAuthed,
             </Pressable>
           )}
         </View>
-      </KeyboardAvoidingView>
-    </Modal>
+    </GlassModal>
   );
 };
 
 const styles = StyleSheet.create({
-  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.60)" },
-  sheetWrap: { flex: 1, justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "#0B0D10",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
     paddingHorizontal: 16,
     paddingTop: 10,
+    paddingBottom: 18,
     gap: 12,
-    borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
   },
   grabber: {
     alignSelf: "center",
