@@ -45,6 +45,7 @@ import {
   MAX_ASSET_CARDS_PER_MESSAGE,
 } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
+import { haptic } from "../../libs/haptics";
 
 
 const resolveUrl = (path: string): string => {
@@ -309,6 +310,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   const translateX = useSharedValue(0);
 
   const fireSwipeReply = useCallback(() => {
+    haptic.select();
     onSwipeToReply?.(message);
   }, [message, onSwipeToReply]);
 
