@@ -925,6 +925,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                     completeUsername(finalUser);
                     // Modal will close automatically when needsUsername becomes false
                   }}
+                  onSignOut={() => { signOut().catch(() => {}); }}
                 />
               )}
             </AuthContext.Provider>

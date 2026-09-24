@@ -16,9 +16,12 @@ interface Props {
   visible: boolean;
   provisionalUser: any; // includes authSignature
   onComplete: (finalUser: User) => void;
+  // The only way out of this step: without it back and the backdrop did
+  // nothing, and someone who did not want this account was stuck.
+  onSignOut: () => void;
 }
 
-export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUser, onComplete }) => {
+export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUser, onComplete, onSignOut }) => {
   const { t } = useTranslation();
   const [username, setUsername] = useState('');
   const [displayName, setDisplayName] = useState('');
@@ -86,7 +89,12 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
   };
 
   return (
-    <GlassModal visible={visible} onClose={() => {}} presentation="center" blurIntensity={50}>
+    <GlassModal
+      visible={visible}
+      onClose={() => { if (!submitting) onSignOut(); }}
+      presentation="center"
+      blurIntensity={50}
+    >
       <View style={{ padding: 24 }}>
         <Text style={authText.modalTitle}>{t("setProfile.title")}</Text>
         <Text style={[authText.body, { marginTop: 8, marginBottom: 20 }]}>
@@ -160,6 +168,14 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
           disabled={disabled}
           loading={submitting}
           style={{ marginTop: 16 }}
+        />
+        <AuthButton
+          variant="ghost"
+          size="compact"
+          label={t("setProfile.cancelSignOut")}
+          onPress={onSignOut}
+          disabled={submitting}
+          style={{ marginTop: 8, alignSelf: "center" }}
         />
       </View>
     </GlassModal>

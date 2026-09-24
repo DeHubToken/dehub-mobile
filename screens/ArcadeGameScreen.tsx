@@ -35,7 +35,8 @@
  * otherwise be the only exit, and a hidden only-exit is a trap.
  */
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, Pressable, StatusBar, AppState } from "react-native";
+import { View, Text, StyleSheet, Pressable, StatusBar, AppState, Alert } from "react-native";
+import { useTranslation } from "react-i18next";
 import { WebView } from "react-native-webview";
 import { Image } from "expo-image";
 import type { WebViewMessageEvent, WebViewNavigation } from "react-native-webview";
@@ -190,6 +191,7 @@ const NotInTheArcade = ({ slug, onBack }: { slug?: string; onBack: () => void })
 );
 
 const ArcadeGameScreen = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const slug: string | undefined = route.params?.slug;
@@ -215,6 +217,14 @@ const ArcadeGameScreen = () => {
    * taking the game away from someone who can still play it.
    */
   const [fault, setFault] = useState("");
+  // Bumped by Retry to remount the WebView from scratch.
+  const [attempt, setAttempt] = useState(0);
+  const retry = useCallback(() => {
+    setFailed(false);
+    setReady(false);
+    setFault("");
+    setAttempt((n) => n + 1);
+  }, []);
   const { pct, showBoot, dismiss } = useBootProgress(ready || failed, game?.bootTauMs ?? 8000);
 
   // react-native-webview never pauses the Android WebView on host pause, so a
@@ -240,6 +250,21 @@ const ArcadeGameScreen = () => {
     if (navigation.canGoBack()) navigation.goBack();
     else navigation.replace(ScreenNames.Arcade);
   }, [navigation]);
+
+  // Once the game is up, one stray back press or a tap on the corner exit threw
+  // away a match in progress. Every way out (hardware back, the exit button,
+  // the edge swipe) removes this screen, so the check sits on beforeRemove.
+  const gameTitle = game?.title;
+  useEffect(() => {
+    if (!gameTitle || !ready || failed) return;
+    return navigation.addListener("beforeRemove", (e: any) => {
+      e.preventDefault();
+      Alert.alert(gameTitle, undefined, [
+        { text: t("common.cancel"), style: "cancel" },
+        { text: t("communities.leave"), style: "destructive", onPress: () => navigation.dispatch(e.data.action) },
+      ]);
+    });
+  }, [gameTitle, ready, failed, navigation, t]);
 
   useEffect(() => {
     if (ready) return;
@@ -375,6 +400,9 @@ const ArcadeGameScreen = () => {
             The game is served from dehub.io and is downloaded when you open it, so it needs a
             working connection the first time. Check yours and try again.
           </Text>
+          <Pressable onPress={retry} style={styles.panelButton}>
+            <Text style={styles.panelButtonLabel}>{t("common.retry")}</Text>
+          </Pressable>
           <Pressable onPress={goBack} style={styles.panelButton}>
             <Text style={styles.panelButtonLabel}>Back to the arcade</Text>
           </Pressable>
@@ -383,6 +411,7 @@ const ArcadeGameScreen = () => {
         <View style={styles.web} />
       ) : (
         <WebView
+          key={attempt}
           ref={webRef}
           source={{ uri: gameUrl || game.url }}
           style={styles.web}

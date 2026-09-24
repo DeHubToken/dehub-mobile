@@ -12,7 +12,7 @@ import DexAddPoolSheet from '../components/DexAddPoolSheet';
 import { useUser } from '../context/AuthContext';
 import { useDexSigner } from '../hooks/useDexSigner';
 import { ScreenNames } from '../navigation/ScreenNames';
-import { toastError, toastSuccess } from '../libs';
+import { toastError, toastInfo, toastSuccess } from '../libs';
 import { runWithPermissions } from '../libs/permissions.util';
 import { withWalletHeader } from '../libs/supabase-wallet-client';
 import { supabase } from '../services/supabase';
@@ -222,6 +222,15 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
     setPrice(String(Number(seeded.toPrecision(8))));
   }, [marketPrice, side, increment]);
   useEffect(() => { setInstantQuote(null); setFormError(''); }, [side, mode, amount, payNative]);
+  // Leaving mid-order drops the step that records it once the chain confirms,
+  // so the order or trade never shows up here. Hold the screen until it lands.
+  useEffect(() => {
+    if (!busy && !acting) return;
+    return navigation.addListener('beforeRemove', (e: any) => {
+      e.preventDefault();
+      toastInfo(t('toasts.waiting_for_confirmation'));
+    });
+  }, [busy, acting, navigation, t]);
 
   const priceNumber = Number(price), amountNumber = Number(amount);
   const estimate = amountNumber > 0 && priceNumber > 0 ? side === 'buy' ? amountNumber / priceNumber : amountNumber * priceNumber : 0;
