@@ -10,7 +10,7 @@ import {
 import { useNavigation, useRoute } from "@react-navigation/native";
 import NetInfo from "@react-native-community/netinfo";
 import { LinearGradient } from "expo-linear-gradient";
-import { activateKeepAwakeAsync, deactivateKeepAwake } from "expo-keep-awake";
+import { useKeepScreenOn } from "../libs/keepAwake";
 import { useLive } from "../hooks/use-live";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useCameraPermissions } from "expo-camera";
@@ -1045,15 +1045,7 @@ const LiveProducerScreen: React.FC = () => {
 
   // A phone on a tripod nobody touches would hit the screen timeout, Android
   // would pause the app and take the camera, and the stream would die.
-  const keepAwake = stage === "starting" || stage === "live";
-  useEffect(() => {
-    if (!keepAwake) return;
-    const tag = "live-producer";
-    activateKeepAwakeAsync(tag).catch(() => {});
-    return () => {
-      deactivateKeepAwake(tag).catch(() => {});
-    };
-  }, [keepAwake]);
+  useKeepScreenOn(stage === "starting" || stage === "live", "live-producer");
 
   // no camera handoff delay needed
   // Defer heavy publisher mount until after initial interactions to render instantly
