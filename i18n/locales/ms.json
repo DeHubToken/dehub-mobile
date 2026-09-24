@@ -5195,7 +5195,8 @@
       "layersHint": "Bahagian atas senarai ialah bahagian hadapan. Gunakan anak panah untuk menyusun semula. Lapisan yang dikunci dan disembunyikan hanya boleh dipilih di sini.",
       "agentWebOnly": "Sebahagian daripadanya hanya berfungsi dalam editor web buat masa ini.",
       "brandLogoHint": "Pilih gambar pada halaman, kemudian gunakannya sebagai logo anda.",
-      "useAsLogo": "Guna gambar yang dipilih"
+      "useAsLogo": "Guna gambar yang dipilih",
+      "bgRemoveFailed": "Tidak dapat membuang latar belakang. Cuba gambar lain."
     },
     "filters": {
       "none": "Asal",
@@ -5409,6 +5410,12 @@
       "replaceConfirm": "Gantikan reka bentuk semasa dengan templat ini? Anda boleh membuat asal.",
       "replaceTitle": "Gantikan reka bentuk anda?",
       "replace": "Gantikan"
+    },
+    "bgRemove": {
+      "action": "Buang latar belakang",
+      "working": "Membuang latar belakang…",
+      "downloading": "Menyediakan model AI… {{percent}}%",
+      "done": "Latar belakang dibuang."
     }
   },
   "creator": {

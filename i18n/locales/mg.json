@@ -5006,7 +5006,8 @@
       "layersHint": "Ny eo an-tampon'ny lisitra no eo aloha indrindra. Ampiasao ny zana-tsipìka hanovana ny filaharana. Eto ihany no ahafahana misafidy ireo sosona voahidy sy miafina.",
       "agentWebOnly": "Ny sasany amin'izany dia mandeha amin'ny tonian-dahatsoratra an-tranonkala ihany aloha.",
       "brandLogoHint": "Misafidiana sary eo amin'ny pejy, dia ampiasao ho logonao.",
-      "useAsLogo": "Ampiasao ny sary voafidy"
+      "useAsLogo": "Ampiasao ny sary voafidy",
+      "bgRemoveFailed": "Tsy voaesotra ny ambadika. Andramo sary hafa."
     },
     "filters": {
       "none": "Tany am-boalohany",
@@ -5220,6 +5221,12 @@
       "replaceConfirm": "Soloina ity modely ity ve ny famolavolana ankehitriny? Azonao foanana izany.",
       "replaceTitle": "Hosoloina ny famolavolanao?",
       "replace": "Soloina"
+    },
+    "bgRemove": {
+      "action": "Esory ny ambadika",
+      "working": "Manala ny ambadika…",
+      "downloading": "Manomana ny modely AI… {{percent}}%",
+      "done": "Voaesotra ny ambadika."
     }
   },
   "creator": {

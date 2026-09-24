@@ -67,6 +67,10 @@ within 7/255.
    come from `free-stock-assets` and are downloaded on the phone (`stock.ts`),
    and the brand kit lives in AsyncStorage (`brand.ts`). Captions, pages and AI
    generation stay web-only until video lands; the agent says so when asked.
+   **Remove background** runs on the phone inside the canvas WebView: the
+   web's lite model (MODNet, 6.6 MB, transformers.js from jsdelivr) in a
+   worker. The cut-out is saved as a new PNG picture and swapped onto the layer
+   (one undo); the AI's `remove_background` does the same.
 2. **Designs across devices.** Both apps keep projects on the device today, so
    the same design cannot yet move between them. Sync the snapshot to a table
    keyed by wallet and upload pictures to the `editor-assets` bucket the web's

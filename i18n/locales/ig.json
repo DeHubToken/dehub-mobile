@@ -4906,7 +4906,8 @@
       "layersHint": "Nke dị n'elu ndepụta bụ nke dị n'ihu. Jiri akụ gbanwee usoro ha. Ọkwa ndị a kpọchiri na ndị ezoro ezo ka a pụrụ ịhọrọ naanị ebe a.",
       "agentWebOnly": "Ụfọdụ n'ime ya na-arụ ọrụ naanị na ndezi weebụ ugbu a.",
       "brandLogoHint": "Họrọ foto dị na peeji, wee jiri ya mee akara ngosi gị.",
-      "useAsLogo": "Jiri foto ahọpụtara"
+      "useAsLogo": "Jiri foto ahọpụtara",
+      "bgRemoveFailed": "Enweghị ike iwepụ ndabere. Nwalee foto ọzọ."
     },
     "filters": {
       "none": "Nke mbụ",
@@ -5120,6 +5121,12 @@
       "replaceConfirm": "Dochie imewe dị ugbu a na ndebiri a? Ị nwere ike ịtụgharị ya.",
       "replaceTitle": "Dochie imewe gị?",
       "replace": "Dochie"
+    },
+    "bgRemove": {
+      "action": "Wepụ azụ foto",
+      "working": "Na-ewepụ azụ foto…",
+      "downloading": "Na-akwado ụdị AI… {{percent}}%",
+      "done": "E wepụla azụ foto."
     }
   },
   "creator": {

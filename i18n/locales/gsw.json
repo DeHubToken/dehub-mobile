@@ -4920,7 +4920,8 @@
       "layersHint": "Zoberscht i de Lischte isch vorne. Mit de Pfiil chasch d Reihefolg ändere. Gsperrti und versteckti Ebene chasch nur da uswähle.",
       "agentWebOnly": "Es paar vo däm gaht im Moment nume im Web-Editor.",
       "brandLogoHint": "Wähl es Bild uf de Siite us und bruuch das denn als dis Logo.",
-      "useAsLogo": "Usgwählts Bild bruuche"
+      "useAsLogo": "Usgwählts Bild bruuche",
+      "bgRemoveFailed": "Hintergrund het nöd chöne entfernt wärde. Probier es anders Bild."
     },
     "filters": {
       "none": "Original",
@@ -5134,6 +5135,12 @@
       "replaceConfirm": "Aktuelli Gstaltig dur die Vorlag ersetze? Chasch es rückgängig mache.",
       "replaceTitle": "Dis Design ersetze?",
       "replace": "Ersetze"
+    },
+    "bgRemove": {
+      "action": "Hintergrund entferne",
+      "working": "Hintergrund wird entfernt…",
+      "downloading": "KI-Modell wird parat gmacht… {{percent}} %",
+      "done": "Hintergrund entfernt."
     }
   },
   "creator": {

@@ -4996,7 +4996,8 @@
       "layersHint": "목록의 맨 위가 가장 앞입니다. 화살표로 순서를 바꾸세요. 잠겼거나 숨겨진 레이어는 여기에서만 선택할 수 있습니다.",
       "agentWebOnly": "일부 기능은 현재 웹 편집기에서만 작동합니다.",
       "brandLogoHint": "페이지에서 이미지를 선택한 다음 로고로 사용하세요.",
-      "useAsLogo": "선택한 이미지 사용"
+      "useAsLogo": "선택한 이미지 사용",
+      "bgRemoveFailed": "배경을 제거하지 못했어요. 다른 이미지로 시도해 보세요."
     },
     "filters": {
       "none": "원본",
@@ -5210,6 +5211,12 @@
       "replaceConfirm": "현재 디자인을 이 템플릿으로 바꿀까요? 실행 취소할 수 있어요.",
       "replaceTitle": "디자인을 바꿀까요?",
       "replace": "바꾸기"
+    },
+    "bgRemove": {
+      "action": "배경 제거",
+      "working": "배경 제거 중…",
+      "downloading": "AI 모델 준비 중… {{percent}}%",
+      "done": "배경을 제거했어요."
     }
   },
   "creator": {

@@ -14,9 +14,10 @@
  * editor draws with, so the pixels match.
  *
  * Messages in (JSON):  render {snapshot, time, fontCss} · media {id, src} · export {reqId, format, quality}
- *                      stats {reqId, mediaId}
+ *                      stats {reqId, mediaId} · cutout {reqId, mediaId}
  * Messages out (JSON): ready · frame {layers, missing} · exported {reqId, dataUrl} · exportFailed {reqId, error}
  *                      stats {reqId, mean, std, sat} (Auto enhance; null fields when the picture is missing)
+ *                      cutoutProgress {reqId, loaded, total} · cutout {reqId, dataUrl, width, height} · cutoutFailed {reqId, error}
  *
  * Written as plain ES2017 inside String.raw: no backticks and no "${" below.
  */
@@ -531,6 +532,98 @@ canvas{display:block;width:100%;height:100%;}
     requestAnimationFrame(function () { queued = false; render(); });
   }
 
+  // ── background removal ──
+  // Same model and library as the web's lite mode (dehubweb
+  // public/editor/bg-remove-worker.js): MODNet, 6.6 MB uint8, on WASM, via
+  // transformers.js from a pinned jsdelivr URL. On the phone, nothing is
+  // uploaded and nothing is billed. It runs in a worker so the canvas keeps
+  // drawing, and the model is downloaded once and then comes from the
+  // WebView's cache.
+  function cutoutWorkerMain() {
+    var LIB_URL = "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0/dist/transformers.min.js";
+    var pipePromise = null;
+    self.onmessage = function (event) {
+      var d = event.data || {};
+      var id = d.id;
+      var files = {};
+      import(LIB_URL).then(function (T) {
+        T.env.allowLocalModels = false;
+        if (!pipePromise) {
+          pipePromise = T.pipeline("background-removal", "Xenova/modnet", {
+            device: "wasm",
+            dtype: "uint8",
+            progress_callback: function (p) {
+              if (!p || p.status !== "progress" || !p.file || !p.total) return;
+              files[p.file] = { loaded: p.loaded || 0, total: p.total };
+              var loaded = 0, total = 0;
+              Object.keys(files).forEach(function (k) { loaded += files[k].loaded; total += files[k].total; });
+              self.postMessage({ id: id, type: "progress", loaded: loaded, total: total });
+            }
+          });
+          pipePromise.catch(function () { pipePromise = null; });
+        }
+        return Promise.all([T.RawImage.fromBlob(d.blob), pipePromise]);
+      }).then(function (r) {
+        self.postMessage({ id: id, type: "running" });
+        return r[1](r[0]);
+      }).then(function (out) {
+        var result = Array.isArray(out) ? out[0] : out;
+        return result.toBlob("image/png");
+      }).then(function (png) {
+        self.postMessage({ id: id, type: "done", blob: png });
+      }).catch(function (e) {
+        self.postMessage({ id: id, type: "error", message: String((e && e.message) || e) });
+      });
+    };
+  }
+  var cutoutWorker = null;
+  function getCutoutWorker() {
+    if (cutoutWorker) return cutoutWorker;
+    var src = "(" + cutoutWorkerMain.toString() + ")();";
+    var url = URL.createObjectURL(new Blob([src], { type: "text/javascript" }));
+    cutoutWorker = new Worker(url, { type: "module" });
+    cutoutWorker.onmessage = function (ev) {
+      var d = ev.data || {};
+      if (d.type === "progress") post({ type: "cutoutProgress", reqId: d.id, loaded: d.loaded, total: d.total });
+      else if (d.type === "running") post({ type: "cutoutProgress", reqId: d.id, loaded: 1, total: 1 });
+      else if (d.type === "error") post({ type: "cutoutFailed", reqId: d.id, error: d.message });
+      else if (d.type === "done") {
+        var img = new Image();
+        var blobUrl = URL.createObjectURL(d.blob);
+        img.onload = function () {
+          var reader = new FileReader();
+          reader.onload = function () {
+            post({ type: "cutout", reqId: d.id, dataUrl: reader.result, width: img.naturalWidth, height: img.naturalHeight });
+            URL.revokeObjectURL(blobUrl);
+          };
+          reader.onerror = function () { post({ type: "cutoutFailed", reqId: d.id, error: "read" }); };
+          reader.readAsDataURL(d.blob);
+        };
+        img.onerror = function () { post({ type: "cutoutFailed", reqId: d.id, error: "decode" }); };
+        img.src = blobUrl;
+      }
+    };
+    cutoutWorker.onerror = function (e) {
+      // A worker that failed to start is useless; the next request makes a new one.
+      cutoutWorker = null;
+      post({ type: "cutoutFailed", reqId: null, error: String((e && e.message) || "worker") });
+    };
+    return cutoutWorker;
+  }
+  function cutout(m) {
+    var src = images.get(m.mediaId);
+    if (!src) { post({ type: "cutoutFailed", reqId: m.reqId, error: "missing" }); return; }
+    var c = document.createElement("canvas");
+    c.width = src.naturalWidth || src.width;
+    c.height = src.naturalHeight || src.height;
+    c.getContext("2d").drawImage(src, 0, 0);
+    c.toBlob(function (blob) {
+      if (!blob) { post({ type: "cutoutFailed", reqId: m.reqId, error: "encode" }); return; }
+      try { getCutoutWorker().postMessage({ id: m.reqId, blob: blob }); }
+      catch (e) { post({ type: "cutoutFailed", reqId: m.reqId, error: String((e && e.message) || e) }); }
+    }, "image/png");
+  }
+
   var lastEvent = null;
   function onMessage(ev) {
     // Android dispatches on document, which bubbles to window: handle it once.
@@ -571,6 +664,8 @@ canvas{display:block;width:100%;height:100%;}
       if (!n) { post(none); return; }
       var mean = sum / n;
       post({ type: "stats", reqId: m.reqId, mean: mean, std: Math.sqrt(Math.max(0, sumSq / n - mean * mean)), sat: sat / n });
+    } else if (m.type === "cutout") {
+      cutout(m);
     } else if (m.type === "export") {
       var done = function () {
         try {

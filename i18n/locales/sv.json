@@ -4936,7 +4936,8 @@
       "layersHint": "Överst i listan är längst fram. Använd pilarna för att ändra ordningen. Låsta och dolda lager kan bara väljas här.",
       "agentWebOnly": "En del av det fungerar än så länge bara i webbredigeraren.",
       "brandLogoHint": "Markera en bild på sidan och använd den sedan som din logotyp.",
-      "useAsLogo": "Använd vald bild"
+      "useAsLogo": "Använd vald bild",
+      "bgRemoveFailed": "Det gick inte att ta bort bakgrunden. Prova en annan bild."
     },
     "filters": {
       "none": "Original",
@@ -5150,6 +5151,12 @@
       "replaceConfirm": "Ersätt nuvarande design med den här mallen? Du kan ångra det.",
       "replaceTitle": "Ersätta din design?",
       "replace": "Ersätt"
+    },
+    "bgRemove": {
+      "action": "Ta bort bakgrund",
+      "working": "Tar bort bakgrunden…",
+      "downloading": "Förbereder AI-modellen… {{percent}} %",
+      "done": "Bakgrunden har tagits bort."
     }
   },
   "creator": {

@@ -4972,7 +4972,8 @@
       "layersHint": "Ro'yxatning yuqorisi eng old tomon. Tartibni o'zgartirish uchun strelkalardan foydalaning. Qulflangan va yashirilgan qatlamlarni faqat shu yerda tanlash mumkin.",
       "agentWebOnly": "Buning bir qismi hozircha faqat veb muharrirda ishlaydi.",
       "brandLogoHint": "Sahifada rasmni tanlang, soʻng uni logotipingiz sifatida ishlating.",
-      "useAsLogo": "Tanlangan rasmni ishlatish"
+      "useAsLogo": "Tanlangan rasmni ishlatish",
+      "bgRemoveFailed": "Fonni olib tashlab bo‘lmadi. Boshqa rasmni sinab ko‘ring."
     },
     "filters": {
       "none": "Asl",
@@ -5186,6 +5187,12 @@
       "replaceConfirm": "Joriy dizayn ushbu shablon bilan almashtirilsinmi? Bekor qilishingiz mumkin.",
       "replaceTitle": "Dizayningiz almashtirilsinmi?",
       "replace": "Almashtirish"
+    },
+    "bgRemove": {
+      "action": "Fonni olib tashlash",
+      "working": "Fon olib tashlanmoqda…",
+      "downloading": "AI modeli tayyorlanmoqda… {{percent}}%",
+      "done": "Fon olib tashlandi."
     }
   },
   "creator": {

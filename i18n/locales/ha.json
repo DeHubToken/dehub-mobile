@@ -4917,7 +4917,8 @@
       "layersHint": "Saman jerin shi ne gaba. Yi amfani da kibiyoyi don sake tsara su. Yadudduka da aka kulle ko aka ɓoye za a iya zaɓar su nan kawai.",
       "agentWebOnly": "Wasu daga cikin wannan suna aiki ne kawai a editan yanar gizo a yanzu.",
       "brandLogoHint": "Zaɓi hoto a shafin, sannan ka yi amfani da shi a matsayin tambarinka.",
-      "useAsLogo": "Yi amfani da hoton da aka zaɓa"
+      "useAsLogo": "Yi amfani da hoton da aka zaɓa",
+      "bgRemoveFailed": "Ba a iya cire bango ba. Gwada wani hoto."
     },
     "filters": {
       "none": "Na asali",
@@ -5131,6 +5132,12 @@
       "replaceConfirm": "Maye gurbin zanen yanzu da wannan samfurin? Za ka iya sokewa.",
       "replaceTitle": "Maye gurbin zanenka?",
       "replace": "Maye gurbi"
+    },
+    "bgRemove": {
+      "action": "Cire bango",
+      "working": "Ana cire bango…",
+      "downloading": "Ana shirya samfurin AI… {{percent}}%",
+      "done": "An cire bango."
     }
   },
   "creator": {

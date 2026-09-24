@@ -4931,7 +4931,8 @@
       "layersHint": "Loendi ülemine on kõige ees. Järjekorra muutmiseks kasuta nooli. Lukustatud ja peidetud kihte saab valida ainult siin.",
       "agentWebOnly": "Osa sellest töötab praegu ainult veebiredaktoris.",
       "brandLogoHint": "Vali lehel pilt ja kasuta seda oma logona.",
-      "useAsLogo": "Kasuta valitud pilti"
+      "useAsLogo": "Kasuta valitud pilti",
+      "bgRemoveFailed": "Tausta ei õnnestunud eemaldada. Proovi mõnda teist pilti."
     },
     "filters": {
       "none": "Originaal",
@@ -5145,6 +5146,12 @@
       "replaceConfirm": "Kas asendada praegune kujundus selle malliga? Saad selle tagasi võtta.",
       "replaceTitle": "Kas asendada sinu kujundus?",
       "replace": "Asenda"
+    },
+    "bgRemove": {
+      "action": "Eemalda taust",
+      "working": "Tausta eemaldamine…",
+      "downloading": "AI-mudeli ettevalmistamine… {{percent}}%",
+      "done": "Taust eemaldatud."
     }
   },
   "creator": {

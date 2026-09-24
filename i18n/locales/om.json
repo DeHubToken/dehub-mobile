@@ -4993,7 +4993,8 @@
       "layersHint": "Gubbaan tarreeffamaa fuula duraati. Tartiiba jijjiiruuf xiyya fayyadami. Leeyariiwwan cufamanii fi dhokataniin as qofatti filatamu.",
       "agentWebOnly": "Kanneen keessaa tokko tokko amma gulaalaa weebii qofa irratti hojjeta.",
       "brandLogoHint": "Fuula irratti suuraa tokko filadhu, achiis akka loogoo keetiitti fayyadami.",
-      "useAsLogo": "Suuraa filatame fayyadami"
+      "useAsLogo": "Suuraa filatame fayyadami",
+      "bgRemoveFailed": "Duubaa haquun hin danda'amne. Suuraa biraa yaali."
     },
     "filters": {
       "none": "Kan jalqabaa",
@@ -5207,6 +5208,12 @@
       "replaceConfirm": "Dizaayinii ammaa tempileetii kanaan bakka buusi? Deebisuu dandeessa.",
       "replaceTitle": "Dizaayinii kee bakka buusi?",
       "replace": "Bakka buusi"
+    },
+    "bgRemove": {
+      "action": "Duubaa haqi",
+      "working": "Duubaa haqaa jira…",
+      "downloading": "Moodeela AI qopheessaa jira… {{percent}}%",
+      "done": "Duubaan haqameera."
     }
   },
   "creator": {
