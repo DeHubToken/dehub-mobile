@@ -1,7 +1,7 @@
 import { applyOps, describeScene } from "../../libs/editor/agent";
 import { applyBrand, EMPTY_BRAND } from "../../libs/editor/brand";
 import { TEMPLATES, templateOps } from "../../libs/editor/templates";
-import { newProject } from "../../libs/editor/project";
+import { addImage, newProject } from "../../libs/editor/project";
 import type { ShapeClip, TextClip } from "../../libs/editor/types";
 
 const t = ((k: string) => k) as unknown as import("i18next").TFunction;
@@ -29,6 +29,17 @@ describe("editor agent on the phone (same ops as the web)", () => {
   it("reports what only the web does instead of failing silently", async () => {
     const { report } = await applyOps(newProject("1:1", "t"), [{ op: "captions" }, { op: "add_page" }]);
     expect(report.unsupported).toEqual(["captions", "add_page"]);
+  });
+
+  it("swaps a picture for its cut-out when the phone can remove backgrounds", async () => {
+    const { project: base, clipId } = addImage(newProject("1:1", "t"), "photo1");
+    const without = await applyOps(base, [{ op: "remove_background", id: clipId }]);
+    expect(without.report.unsupported).toEqual(["remove_background"]);
+    const { project, report } = await applyOps(base, [{ op: "remove_background", id: clipId }], {
+      removeBackground: async (mediaId) => mediaId + "-cut",
+    });
+    expect(report.applied).toBe(1);
+    expect(project.clips.find((c) => c.id === clipId)).toMatchObject({ mediaId: "photo1-cut" });
   });
 
   it("describes the brand kit only when one is set", () => {

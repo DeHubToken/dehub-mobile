@@ -5003,7 +5003,8 @@
       "layersHint": "La parte superior de la lista es el frente. Usa las flechas para reordenar. Las capas bloqueadas y ocultas solo se pueden seleccionar aquí.",
       "agentWebOnly": "Parte de eso solo funciona en el editor web por ahora.",
       "brandLogoHint": "Selecciona una imagen de la página y úsala como tu logotipo.",
-      "useAsLogo": "Usar imagen seleccionada"
+      "useAsLogo": "Usar imagen seleccionada",
+      "bgRemoveFailed": "No se pudo quitar el fondo. Prueba con otra imagen."
     },
     "filters": {
       "none": "Original",
@@ -5217,6 +5218,12 @@
       "replaceConfirm": "¿Reemplazar el diseño actual con esta plantilla? Puedes deshacerlo.",
       "replaceTitle": "¿Reemplazar tu diseño?",
       "replace": "Reemplazar"
+    },
+    "bgRemove": {
+      "action": "Quitar fondo",
+      "working": "Quitando el fondo…",
+      "downloading": "Preparando el modelo de IA… {{percent}}%",
+      "done": "Fondo eliminado."
     }
   },
   "creator": {

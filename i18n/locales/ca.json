@@ -4933,7 +4933,8 @@
       "layersHint": "La part superior de la llista és el davant. Fes servir les fletxes per reordenar. Les capes bloquejades i ocultes només es poden seleccionar aquí.",
       "agentWebOnly": "Part d'això de moment només funciona a l'editor web.",
       "brandLogoHint": "Selecciona una imatge de la pàgina i fes-la servir com a logotip.",
-      "useAsLogo": "Utilitza la imatge seleccionada"
+      "useAsLogo": "Utilitza la imatge seleccionada",
+      "bgRemoveFailed": "No s'ha pogut eliminar el fons. Prova amb una altra imatge."
     },
     "filters": {
       "none": "Original",
@@ -5147,6 +5148,12 @@
       "replaceConfirm": "Vols substituir el disseny actual per aquesta plantilla? Ho pots desfer.",
       "replaceTitle": "Vols substituir el disseny?",
       "replace": "Substitueix"
+    },
+    "bgRemove": {
+      "action": "Elimina el fons",
+      "working": "S'està eliminant el fons…",
+      "downloading": "S'està preparant el model d'IA… {{percent}}%",
+      "done": "S'ha eliminat el fons."
     }
   },
   "creator": {

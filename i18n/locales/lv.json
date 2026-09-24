@@ -4930,7 +4930,8 @@
       "layersHint": "Saraksta augšā ir priekšplāns. Izmantojiet bultiņas, lai mainītu secību. Bloķētos un paslēptos slāņus var atlasīt tikai šeit.",
       "agentWebOnly": "Daļa no tā pagaidām darbojas tikai tīmekļa redaktorā.",
       "brandLogoHint": "Atlasiet attēlu lapā un izmantojiet to kā savu logotipu.",
-      "useAsLogo": "Izmantot atlasīto attēlu"
+      "useAsLogo": "Izmantot atlasīto attēlu",
+      "bgRemoveFailed": "Neizdevās noņemt fonu. Izmēģiniet citu attēlu."
     },
     "filters": {
       "none": "Oriģināls",
@@ -5144,6 +5145,12 @@
       "replaceConfirm": "Aizstāt pašreizējo dizainu ar šo veidni? To var atsaukt.",
       "replaceTitle": "Aizstāt jūsu dizainu?",
       "replace": "Aizstāt"
+    },
+    "bgRemove": {
+      "action": "Noņemt fonu",
+      "working": "Noņem fonu…",
+      "downloading": "Sagatavo AI modeli… {{percent}}%",
+      "done": "Fons noņemts."
     }
   },
   "creator": {

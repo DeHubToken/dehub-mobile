@@ -5097,7 +5097,8 @@
       "layersHint": "Vrch zoznamu je vpredu. Poradie zmeníte šípkami. Zamknuté a skryté vrstvy sa dajú vybrať len tu.",
       "agentWebOnly": "Časť z toho zatiaľ funguje len vo webovom editore.",
       "brandLogoHint": "Vyberte obrázok na stránke a potom ho použite ako logo.",
-      "useAsLogo": "Použiť vybraný obrázok"
+      "useAsLogo": "Použiť vybraný obrázok",
+      "bgRemoveFailed": "Pozadie sa nepodarilo odstrániť. Skúste iný obrázok."
     },
     "filters": {
       "none": "Originál",
@@ -5311,6 +5312,12 @@
       "replaceConfirm": "Nahradiť aktuálny dizajn touto šablónou? Môžete to vrátiť späť.",
       "replaceTitle": "Nahradiť váš dizajn?",
       "replace": "Nahradiť"
+    },
+    "bgRemove": {
+      "action": "Odstrániť pozadie",
+      "working": "Odstraňuje sa pozadie…",
+      "downloading": "Pripravuje sa AI model… {{percent}} %",
+      "done": "Pozadie bolo odstránené."
     }
   },
   "creator": {

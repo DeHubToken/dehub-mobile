@@ -4889,7 +4889,8 @@
       "layersHint": "Sing paling dhuwur ing dhaftar iku sing paling ngarep. Gunakake panah kanggo ngurutake maneh. Lapisan sing dikunci lan didhelikake mung bisa dipilih ing kene.",
       "agentWebOnly": "Sawetara saka iku saiki mung bisa ing editor web.",
       "brandLogoHint": "Pilih gambar ing kaca, banjur gunakake minangka logomu.",
-      "useAsLogo": "Gunakake gambar sing dipilih"
+      "useAsLogo": "Gunakake gambar sing dipilih",
+      "bgRemoveFailed": "Ora bisa mbusak latar mburi. Coba gambar liyane."
     },
     "filters": {
       "none": "Asli",
@@ -5103,6 +5104,12 @@
       "replaceConfirm": "Ganti desain saiki nganggo cithakan iki? Sampeyan bisa mbatalake.",
       "replaceTitle": "Ganti desainmu?",
       "replace": "Ganti"
+    },
+    "bgRemove": {
+      "action": "Busak latar mburi",
+      "working": "Mbusak latar mburi…",
+      "downloading": "Nyiapake model AI… {{percent}}%",
+      "done": "Latar mburi wis dibusak."
     }
   },
   "creator": {

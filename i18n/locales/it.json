@@ -5003,7 +5003,8 @@
       "layersHint": "La parte alta dell’elenco è in primo piano. Usa le frecce per riordinare. I livelli bloccati e nascosti si possono selezionare solo qui.",
       "agentWebOnly": "Alcune di queste funzioni per ora sono disponibili solo nell'editor web.",
       "brandLogoHint": "Seleziona un'immagine nella pagina, poi usala come logo.",
-      "useAsLogo": "Usa immagine selezionata"
+      "useAsLogo": "Usa immagine selezionata",
+      "bgRemoveFailed": "Impossibile rimuovere lo sfondo. Prova con un'altra immagine."
     },
     "filters": {
       "none": "Originale",
@@ -5217,6 +5218,12 @@
       "replaceConfirm": "Sostituire il design attuale con questo modello? Puoi annullare.",
       "replaceTitle": "Sostituire il tuo progetto?",
       "replace": "Sostituisci"
+    },
+    "bgRemove": {
+      "action": "Rimuovi sfondo",
+      "working": "Rimozione dello sfondo…",
+      "downloading": "Preparazione del modello IA… {{percent}}%",
+      "done": "Sfondo rimosso."
     }
   },
   "creator": {

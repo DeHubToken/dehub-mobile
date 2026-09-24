@@ -150,6 +150,28 @@ export async function mediaDataUrl(meta: MediaMeta): Promise<string | null> {
   }
 }
 
+/** Save a cut-out (PNG data URL from the canvas) as a new picture. */
+export async function saveCutout(dataUrl: string, width: number, height: number, sourceName: string): Promise<MediaMeta> {
+  await ensureDir(mediaDir());
+  const id = newId(10);
+  const file = `${id}.png`;
+  await FileSystem.writeAsStringAsync(`${mediaDir()}${file}`, dataUrl.slice(dataUrl.indexOf(",") + 1), {
+    encoding: FileSystem.EncodingType.Base64,
+  });
+  const meta: MediaMeta = {
+    id,
+    name: `${sourceName.replace(/.[a-z0-9]+$/i, "")}-cutout.png`,
+    kind: "image",
+    mimeType: "image/png",
+    width,
+    height,
+    file,
+    createdAt: Date.now(),
+  };
+  await FileSystem.writeAsStringAsync(`${mediaDir()}${id}.json`, JSON.stringify(meta));
+  return meta;
+}
+
 // ── exports ──
 
 /** Write an exported data URL to a cache file and return its uri. */

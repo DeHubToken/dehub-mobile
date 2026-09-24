@@ -4932,7 +4932,8 @@
       "layersHint": "Juu ya orodha ndiyo mbele. Tumia mishale kupanga upya. Tabaka zilizofungwa na zilizofichwa zinaweza kuchaguliwa hapa tu.",
       "agentWebOnly": "Baadhi ya hayo kwa sasa yanafanya kazi kwenye kihariri cha wavuti pekee.",
       "brandLogoHint": "Chagua picha kwenye ukurasa, kisha uitumie kama nembo yako.",
-      "useAsLogo": "Tumia picha iliyochaguliwa"
+      "useAsLogo": "Tumia picha iliyochaguliwa",
+      "bgRemoveFailed": "Imeshindikana kuondoa mandharinyuma. Jaribu picha nyingine."
     },
     "filters": {
       "none": "Asili",
@@ -5146,6 +5147,12 @@
       "replaceConfirm": "Badilisha muundo wa sasa kwa kiolezo hiki? Unaweza kutendua.",
       "replaceTitle": "Badilisha muundo wako?",
       "replace": "Badilisha"
+    },
+    "bgRemove": {
+      "action": "Ondoa mandharinyuma",
+      "working": "Inaondoa mandharinyuma…",
+      "downloading": "Inaandaa modeli ya AI… {{percent}}%",
+      "done": "Mandharinyuma yameondolewa."
     }
   },
   "creator": {

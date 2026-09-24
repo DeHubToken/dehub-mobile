@@ -4997,7 +4997,8 @@
       "layersHint": "Top of the list is the front. Use the arrows to restack. Locked and hidden layers can only be picked here.",
       "agentWebOnly": "Some of that only works in the web editor for now.",
       "brandLogoHint": "Select a picture on the page, then use it as your logo.",
-      "useAsLogo": "Use selected picture"
+      "useAsLogo": "Use selected picture",
+      "bgRemoveFailed": "Couldn't remove the background. Try another picture."
     },
     "filters": {
       "none": "Original",
@@ -5211,6 +5212,12 @@
       "replaceConfirm": "Replace the current design with this template? You can undo it.",
       "replaceTitle": "Replace your design?",
       "replace": "Replace"
+    },
+    "bgRemove": {
+      "action": "Remove background",
+      "working": "Removing background…",
+      "downloading": "Getting the AI model ready… {{percent}}%",
+      "done": "Background removed."
     }
   },
   "creator": {

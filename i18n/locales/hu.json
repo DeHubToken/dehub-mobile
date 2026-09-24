@@ -4936,7 +4936,8 @@
       "layersHint": "A lista teteje van legelöl. A nyilakkal rendezheted át a sorrendet. A zárolt és rejtett rétegek csak itt jelölhetők ki.",
       "agentWebOnly": "Ennek egy része egyelőre csak a webes szerkesztőben működik.",
       "brandLogoHint": "Jelölj ki egy képet az oldalon, majd használd logóként.",
-      "useAsLogo": "Kijelölt kép használata"
+      "useAsLogo": "Kijelölt kép használata",
+      "bgRemoveFailed": "Nem sikerült eltávolítani a hátteret. Próbálj ki egy másik képet."
     },
     "filters": {
       "none": "Eredeti",
@@ -5150,6 +5151,12 @@
       "replaceConfirm": "Lecseréled a jelenlegi tervet erre a sablonra? Visszavonhatod.",
       "replaceTitle": "Lecseréled a tervedet?",
       "replace": "Csere"
+    },
+    "bgRemove": {
+      "action": "Háttér eltávolítása",
+      "working": "Háttér eltávolítása…",
+      "downloading": "Az AI-modell előkészítése… {{percent}}%",
+      "done": "Háttér eltávolítva."
     }
   },
   "creator": {

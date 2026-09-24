@@ -5106,7 +5106,8 @@
       "layersHint": "Ang itaas ng listahan ang nasa harap. Gamitin ang mga arrow para ayusin ulit ang pagkakasunod. Dito lang mapipili ang mga naka-lock at nakatagong layer.",
       "agentWebOnly": "Ang ilan dito ay gumagana lang sa web editor sa ngayon.",
       "brandLogoHint": "Pumili ng larawan sa page, pagkatapos ay gamitin ito bilang iyong logo.",
-      "useAsLogo": "Gamitin ang napiling larawan"
+      "useAsLogo": "Gamitin ang napiling larawan",
+      "bgRemoveFailed": "Hindi maalis ang background. Subukan ang ibang larawan."
     },
     "filters": {
       "none": "Orihinal",
@@ -5320,6 +5321,12 @@
       "replaceConfirm": "Palitan ang kasalukuyang disenyo ng template na ito? Puwede mo itong i-undo.",
       "replaceTitle": "Palitan ang iyong disenyo?",
       "replace": "Palitan"
+    },
+    "bgRemove": {
+      "action": "Alisin ang background",
+      "working": "Inaalis ang background…",
+      "downloading": "Inihahanda ang AI model… {{percent}}%",
+      "done": "Naalis na ang background."
     }
   },
   "creator": {

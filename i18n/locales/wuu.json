@@ -4878,7 +4878,8 @@
       "layersHint": "列表最上头个辣最前头。用箭头调整顺序。锁牢个搭隐藏个图层只好辣此地选。",
       "agentWebOnly": "迭眼里向有点功能暂时只好辣网页版编辑器里用。",
       "brandLogoHint": "辣页面浪选一张图片，再拿伊当侬个标志。",
-      "useAsLogo": "用选中个图片"
+      "useAsLogo": "用选中个图片",
+      "bgRemoveFailed": "背景去弗脱。换一张图试试看。"
     },
     "filters": {
       "none": "原图",
@@ -5092,6 +5093,12 @@
       "replaceConfirm": "用这个模板替换当前设计？可以撤销。",
       "replaceTitle": "替换您的设计？",
       "replace": "替换"
+    },
+    "bgRemove": {
+      "action": "去除背景",
+      "working": "正在去除背景…",
+      "downloading": "AI 模型准备中… {{percent}}%",
+      "done": "背景去除好了。"
     }
   },
   "creator": {

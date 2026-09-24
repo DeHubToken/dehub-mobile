@@ -228,6 +228,8 @@ export interface ApplyContext {
   applyBrand?: (p: ProjectSnapshot) => ProjectSnapshot;
   /** Starter template by id, as ops (libs/editor/templates.ts). */
   templateOps?: (id: string) => AgentOp[] | null;
+  /** Cut the subject out of a picture on the phone; resolves with the new media id. */
+  removeBackground?: (mediaId: string) => Promise<string | null>;
 }
 
 export interface ApplyReport {
@@ -425,7 +427,16 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         p = inner.project;
         return inner.report.applied > 0;
       }
-      case "add_page": case "goto_page": case "captions": case "generate": case "remove_background": case "timing": case "audio": case "add_media":
+      case "remove_background": {
+        const clip = find(op.id);
+        if (!clip || clip.kind !== "image") return false;
+        if (!ctx.removeBackground) { report.unsupported.push(String(op.op)); return false; }
+        const mediaId = await ctx.removeBackground(clip.mediaId);
+        if (!mediaId) return false;
+        p = updateClip(p, clip.id, { mediaId });
+        return true;
+      }
+      case "add_page": case "goto_page": case "captions": case "generate": case "timing": case "audio": case "add_media":
         report.unsupported.push(String(op.op));
         return false;
       default:

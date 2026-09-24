@@ -4960,7 +4960,8 @@
       "layersHint": "Phezulu ohlwini kungaphambili. Sebenzisa imicibisholo ukuhlela kabusha. Izendlalelo ezikhiyiwe nezifihliwe zingakhethwa lapha kuphela.",
       "agentWebOnly": "Okunye kwalokho kusebenza kuphela kusihleli sewebhu okwamanje.",
       "brandLogoHint": "Khetha isithombe ekhasini, bese usisebenzisa njengelogo yakho.",
-      "useAsLogo": "Sebenzisa isithombe esikhethiwe"
+      "useAsLogo": "Sebenzisa isithombe esikhethiwe",
+      "bgRemoveFailed": "Akukwazekanga ukususa ingemuva. Zama esinye isithombe."
     },
     "filters": {
       "none": "Okwangempela",
@@ -5174,6 +5175,12 @@
       "replaceConfirm": "Faka lesi sifanekiso esikhundleni sedizayini yamanje? Ungakuhlehlisa.",
       "replaceTitle": "Shintsha umklamo wakho?",
       "replace": "Shintsha"
+    },
+    "bgRemove": {
+      "action": "Susa ingemuva",
+      "working": "Isusa ingemuva…",
+      "downloading": "Ilungisa imodeli ye-AI… {{percent}}%",
+      "done": "Ingemuva lisusiwe."
     }
   },
   "creator": {

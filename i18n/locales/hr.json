@@ -4933,7 +4933,8 @@
       "layersHint": "Vrh popisa je sprijeda. Strelicama mijenjate redoslijed. Zaključani i skriveni slojevi mogu se odabrati samo ovdje.",
       "agentWebOnly": "Dio toga zasad radi samo u web-uređivaču.",
       "brandLogoHint": "Odaberite sliku na stranici, a zatim je upotrijebite kao logotip.",
-      "useAsLogo": "Upotrijebi odabranu sliku"
+      "useAsLogo": "Upotrijebi odabranu sliku",
+      "bgRemoveFailed": "Pozadinu nije moguće ukloniti. Pokušajte s drugom slikom."
     },
     "filters": {
       "none": "Original",
@@ -5147,6 +5148,12 @@
       "replaceConfirm": "Zamijeniti trenutni dizajn ovim predloškom? Možete poništiti.",
       "replaceTitle": "Zamijeniti vaš dizajn?",
       "replace": "Zamijeni"
+    },
+    "bgRemove": {
+      "action": "Ukloni pozadinu",
+      "working": "Uklanjanje pozadine…",
+      "downloading": "Priprema AI modela… {{percent}} %",
+      "done": "Pozadina je uklonjena."
     }
   },
   "creator": {

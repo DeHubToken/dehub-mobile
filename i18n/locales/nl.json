@@ -5199,7 +5199,8 @@
       "layersHint": "Bovenaan de lijst is vooraan. Gebruik de pijlen om de volgorde te wijzigen. Vergrendelde en verborgen lagen kun je alleen hier selecteren.",
       "agentWebOnly": "Een deel daarvan werkt voorlopig alleen in de webeditor.",
       "brandLogoHint": "Selecteer een afbeelding op de pagina en gebruik die als je logo.",
-      "useAsLogo": "Geselecteerde afbeelding gebruiken"
+      "useAsLogo": "Geselecteerde afbeelding gebruiken",
+      "bgRemoveFailed": "De achtergrond kon niet worden verwijderd. Probeer een andere afbeelding."
     },
     "filters": {
       "none": "Origineel",
@@ -5413,6 +5414,12 @@
       "replaceConfirm": "Huidig ontwerp vervangen door dit sjabloon? Je kunt het ongedaan maken.",
       "replaceTitle": "Je ontwerp vervangen?",
       "replace": "Vervangen"
+    },
+    "bgRemove": {
+      "action": "Achtergrond verwijderen",
+      "working": "Achtergrond verwijderen…",
+      "downloading": "AI-model klaarmaken… {{percent}}%",
+      "done": "Achtergrond verwijderd."
     }
   },
   "creator": {
