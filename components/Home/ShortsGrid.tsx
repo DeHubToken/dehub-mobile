@@ -13,7 +13,7 @@ import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { useNavigation, useScrollToTop } from "@react-navigation/native";
-import ShortsGridCard, { CARD_HEIGHT, GRID_GAP } from "./ShortsGridCard";
+import ShortsGridCard, { useShortsCardSize, GRID_GAP } from "./ShortsGridCard";
 import ShortsGridSkeleton from "./ShortsGridSkeleton";
 import Icon from "../ui/Icon";
 import { getShortsFeed } from "../../services/feed.unified.service";
@@ -48,8 +48,6 @@ interface ShortsGridProps {
 // Animated wrapper so a worklet onScroll runs on the UI thread; cast keeps FlatList generics.
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
 
-const ROW_HEIGHT = CARD_HEIGHT + GRID_GAP;
-
 const ShortsGrid: React.FC<ShortsGridProps> = ({
   params,
   pageSize = 20,
@@ -65,6 +63,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   const { t } = useTranslation();
   const [refreshing, setRefreshing] = useState(false);
   const { isMinimal } = useAppTheme();
+  const ROW_HEIGHT = useShortsCardSize().height + GRID_GAP;
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
 
@@ -255,7 +254,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     length: ROW_HEIGHT,
     offset: ROW_HEIGHT * Math.floor(index / 2),
     index,
-  }), []);
+  }), [ROW_HEIGHT]);
 
   if (initialLoading) {
     return (

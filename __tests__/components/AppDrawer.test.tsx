@@ -17,6 +17,7 @@ jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', TextInput: 'TextInput', TouchableOpacity: 'TouchableOpacity', ScrollView: 'ScrollView',
   Platform: { OS: 'android' },
   Dimensions: { get: () => ({ width: 390, height: 844 }) },
+  useWindowDimensions: () => ({ width: 390, height: 844, scale: 3, fontScale: 1 }),
   StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s },
   BackHandler: { addEventListener: () => ({ remove: jest.fn() }) },
   Keyboard: { dismiss: jest.fn() },

@@ -21,7 +21,7 @@ import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
-  Dimensions,
+  useWindowDimensions,
   Image,
   Modal,
   ScrollView,
@@ -52,8 +52,6 @@ import { useTranslation } from 'react-i18next';
 
 const log = createLogger('CreditPaywallSheet');
 const DEHUB_COIN = require('../../assets/web-icons/dehub-coin.png');
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
-const SHEET_HEIGHT = SCREEN_HEIGHT * 0.82;
 
 export interface PaywallModelOption {
   id: string;
@@ -102,6 +100,8 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   onConfirm,
 }) => {
   const insets = useSafeAreaInsets();
+  const { height: screenHeight } = useWindowDimensions();
+  const sheetHeight = screenHeight * 0.82;
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   // Defaults resolved here rather than in the destructure so they translate.
@@ -148,7 +148,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
     !isWalletLoading && !unsupportedChain && priceDhb > 0 && walletDhb < priceDhb;
 
   /* ── Sheet animation ─────────────────────────────────────────────────── */
-  const translateY = useSharedValue(SHEET_HEIGHT);
+  const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
 
@@ -161,7 +161,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
       backdropOpacity.value = withTiming(1, { duration: 200 });
     } else {
       translateY.value = withTiming(
-        SHEET_HEIGHT,
+        sheetHeight,
         { duration: 220, easing: Easing.in(Easing.cubic) },
         () => runOnJS(setIsFullyClosed)(true),
       );
@@ -174,12 +174,12 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   const closeSheet = useCallback(() => {
     if (isPaying) return; // A signature is in flight; closing would orphan it.
     translateY.value = withTiming(
-      SHEET_HEIGHT,
+      sheetHeight,
       { duration: 220, easing: Easing.in(Easing.cubic) },
       () => runOnJS(onClose)(),
     );
     backdropOpacity.value = withTiming(0, { duration: 180 });
-  }, [isPaying, onClose, translateY, backdropOpacity]);
+  }, [isPaying, onClose, translateY, backdropOpacity, sheetHeight]);
 
   const panGesture = Gesture.Pan()
     .onUpdate((e) => {
@@ -266,7 +266,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
           <TouchableOpacity style={StyleSheet.absoluteFill} activeOpacity={1} onPress={closeSheet} />
         </Animated.View>
 
-        <Animated.View style={[s.sheet, { paddingBottom: insets.bottom + 16 }, sheetStyle]}>
+        <Animated.View style={[s.sheet, { maxHeight: sheetHeight, paddingBottom: insets.bottom + 16 }, sheetStyle]}>
           <View style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <GestureDetector gesture={panGesture}>
@@ -455,7 +455,6 @@ const s = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    maxHeight: SHEET_HEIGHT,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: 'hidden',

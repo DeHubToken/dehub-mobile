@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from "react";
 import { t } from "i18next";
-import { View, Text, Image, TouchableOpacity, ActivityIndicator, Dimensions } from "react-native";
+import { View, Text, Image, TouchableOpacity, ActivityIndicator, useWindowDimensions } from "react-native";
 import Icon from "../ui/Icon";
 import { getNFT } from "../../services/nft.service";
 import { getAvatarUrl, buildFeedImageUrls } from "../../libs/misc";
@@ -29,7 +29,7 @@ const metaCache = new Map<string, PostMeta | null>();
 // The bubble caps at 75% of the row (MessageBubble's MAX_IMAGE_WIDTH uses the
 // same base). Keep the card + its mx-2 margins (16) inside that cap, or the
 // bubble's overflow-hidden clips the card's right edge on narrow screens.
-const CARD_WIDTH = Math.min(240, Math.round(Dimensions.get("window").width * 0.75) - 40);
+const cardWidth = (windowWidth: number) => Math.min(240, Math.round(windowWidth * 0.75) - 40);
 
 /** True when the fetch came back without anything worth showing on the card. */
 const isSparse = (meta: PostMeta, tokenId: string): boolean =>
@@ -81,6 +81,7 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
   onPress,
   onLongPress,
 }) => {
+  const { width: windowWidth } = useWindowDimensions();
   const [meta, setMeta] = useState<PostMeta | null>(() =>
     metaCache.has(tokenId) ? metaCache.get(tokenId)! : null,
   );
@@ -138,7 +139,7 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
       onLongPress={onLongPress}
       delayLongPress={350}
       className={`rounded-xl overflow-hidden border ${border}`}
-      style={{ width: CARD_WIDTH }}
+      style={{ width: cardWidth(windowWidth) }}
     >
       {loading ? (
         <View className="h-32 items-center justify-center dark-surface bg-black/20">

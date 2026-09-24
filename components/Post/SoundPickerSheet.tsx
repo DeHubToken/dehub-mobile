@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   FlatList,
   ActivityIndicator,
-  Dimensions,
+  useWindowDimensions,
   StyleSheet,
   PanResponder,
   Animated,
@@ -23,7 +23,6 @@ import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unifie
 import { getAvatarUrl } from "../../libs";
 import type { AttachedSound } from "../../hooks/usePostSound";
 
-const { height: SCREEN_H } = Dimensions.get("window");
 const MIN_PCT = 0.55;
 const MAX_PCT = 0.92;
 
@@ -53,6 +52,7 @@ const resolveTrackTitle = (item: UnifiedFeedItem): string => {
 const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, currentSound }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { height: SCREEN_H } = useWindowDimensions();
   const [searchText, setSearchText] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [results, setResults] = useState<UnifiedFeedItem[]>([]);
@@ -113,7 +113,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
           }
         },
       }),
-    [heightPct, heightAnim, onClose],
+    [heightPct, heightAnim, onClose, SCREEN_H],
   );
 
   // Debounce search

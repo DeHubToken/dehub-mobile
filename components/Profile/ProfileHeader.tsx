@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useRef } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator, Dimensions } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator, useWindowDimensions } from "react-native";
 import SmartImage from "../common/SmartImage";
 import Avatar from "../common/Avatar";
 import { Ionicons } from "@expo/vector-icons";
@@ -35,8 +35,6 @@ import * as ImagePicker from "expo-image-picker";
 
 /** Matches the Avatar `size={88}` below. */
 const PROFILE_AVATAR_PT = 88;
-/** The cover is full-bleed, so it is fetched at the screen's own width. */
-const COVER_WIDTH_PT = Dimensions.get("window").width;
 import {
   openCroppedImagePicker,
   resizeAndCompress,
@@ -70,6 +68,8 @@ const ProfileHeader = () => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
+  // The cover is full-bleed, so it is fetched at the window's own (live) width.
+  const { width: COVER_WIDTH_PT } = useWindowDimensions();
   const user = useUser() as any;
   const { refreshUser, patchUser } = useAuthActions();
   const [translatedBio, setTranslatedBio] = useState<string | null>(null);

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
-import { View, Text, Modal, Pressable, Dimensions, StyleSheet, Keyboard, BackHandler } from "react-native";
+import { View, Text, Modal, Pressable, useWindowDimensions, StyleSheet, Keyboard, BackHandler } from "react-native";
 import { useTranslation } from "react-i18next";
 import Animated, {
   useAnimatedStyle,
@@ -25,7 +25,6 @@ import {
   minimalTabStrip,
 } from "../../theme/minimal";
 
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const SHEET_FRACTION = 0.82;
 
 // No likes tab: who reacted is the author's to see, and it lives behind the ⓘ
@@ -71,7 +70,8 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   const inline = inlineHeight !== undefined;
-  const SHEET_HEIGHT = inlineHeight ?? SCREEN_HEIGHT * SHEET_FRACTION;
+  const { height: screenHeight } = useWindowDimensions();
+  const SHEET_HEIGHT = inlineHeight ?? screenHeight * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);

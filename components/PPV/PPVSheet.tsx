@@ -13,7 +13,7 @@ import {
   TouchableOpacity,
   Modal,
   Pressable,
-  Dimensions,
+  useWindowDimensions,
   StyleSheet,
   Platform,
   ActivityIndicator,
@@ -71,14 +71,6 @@ import { isSolanaChain } from "../../config/solana.constants";
 import { formatCompactNumber } from "../../libs";
 import PPVTopUpStep, { type PPVShortfall } from "./PPVTopUpStep";
 
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
-const SHEET_MAX_HEIGHT = SCREEN_HEIGHT * 0.52;
-// The top-up step carries more rows than the price view, and on a small phone
-// 52% of the screen clips its last button. It gets its own ceiling; the hide
-// offset covers the taller of the two so the sheet always animates fully off.
-const SHEET_TOPUP_MAX_HEIGHT = SCREEN_HEIGHT * 0.72;
-const SHEET_HIDE_OFFSET = SCREEN_HEIGHT * 0.75;
-
 export interface PPVSheetProps {
   visible: boolean;
   onClose: () => void;
@@ -105,6 +97,13 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { height: screenHeight } = useWindowDimensions();
+  const SHEET_MAX_HEIGHT = screenHeight * 0.52;
+  // The top-up step carries more rows than the price view, and on a small phone
+  // 52% of the screen clips its last button. It gets its own ceiling; the hide
+  // offset covers the taller of the two so the sheet always animates fully off.
+  const SHEET_TOPUP_MAX_HEIGHT = screenHeight * 0.72;
+  const SHEET_HIDE_OFFSET = screenHeight * 0.75;
   const user = useUser();
   const { requireAuth, patchUser } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
@@ -203,7 +202,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
       () => runOnJS(onClose)(),
     );
     backdropOpacity.value = withTiming(0, { duration: 180 });
-  }, [onClose, isBusy]);
+  }, [onClose, isBusy, SHEET_HIDE_OFFSET]);
 
   const panGesture = Gesture.Pan()
     .onUpdate((e) => {
@@ -444,7 +443,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
       },
     );
     backdropOpacity.value = withTiming(0, { duration: 180 });
-  }, [onClose, onSuccess]);
+  }, [onClose, onSuccess, SHEET_HIDE_OFFSET]);
 
   if (!visible && isFullyClosed) return null;
 
