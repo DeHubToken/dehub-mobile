@@ -34,6 +34,7 @@ import {
 } from "../../libs/attachments";
 import { runWithPermissions } from "../../libs/permissions.util";
 import GifPicker from "./GifPicker";
+import ChatAttachSheet, { type ChatAttachOption } from "./ChatAttachSheet";
 import SmartReplyTray from "./SmartReplyTray";
 import { useSmartReplies } from "../../hooks/useSmartReplies";
 import { setAppPref, useAppPrefs } from "../../hooks/useAppPrefs";
@@ -103,6 +104,26 @@ interface ChatInputBarProps {
 
 const TYPING_IDLE_MS = 5000;
 
+/*
+ * Composer metrics. Attach and send/mic are one CONTROL-square box each (with
+ * a little hitSlop, a 48dp target), and the field pads to the same height so a
+ * single line of text sits on the icons' centre line. The TextInput's own box
+ * is zeroed, Android font padding included, or the text rides high in the row.
+ */
+const CONTROL = 44;
+const LINE = 20;
+const FIELD_PAD = (CONTROL - LINE) / 2;
+const CONTROL_BOX = { width: CONTROL, height: CONTROL } as const;
+const INPUT_BOX = { paddingHorizontal: 4, paddingVertical: FIELD_PAD, maxHeight: 120 } as const;
+const INPUT_TEXT = {
+  margin: 0,
+  padding: 0,
+  minHeight: LINE,
+  maxHeight: 120 - FIELD_PAD * 2,
+  includeFontPadding: false,
+  textAlignVertical: "top",
+} as const;
+
 const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   onSendText,
   onSendMedia,
@@ -139,6 +160,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const [media, setMedia] = useState<ChatMediaAttachment | null>(null);
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
+  const [attachOpen, setAttachOpen] = useState(false);
   const [enhancing, setEnhancing] = useState(false);
   // Down for THIS message only - the send handler drops the tray whose
   // drafts the send just invalidated. Switching the feature off is a
@@ -482,6 +504,45 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const insufficientBalance =
     showCostOnSend && dhbBalance != null && dhbBalance < totalCost;
 
+  // The keyboard goes down first so the sheet opens over the thread rather
+  // than stacked on top of the keys.
+  const handleOpenAttach = () => {
+    haptic.tap();
+    Keyboard.dismiss();
+    setAttachOpen(true);
+  };
+
+  // Each option closes the sheet and then runs exactly what its old toolbar
+  // button ran. Closing first matters: the pickers and the GIF, tip and poll
+  // sheets are windows of their own and must not open underneath this one.
+  const fromSheet = (run: () => unknown) => () => {
+    setAttachOpen(false);
+    run();
+  };
+  const attachOptions: ChatAttachOption[] = [
+    // Tipping is voluntary and never needed to send, and a tip already set is
+    // shown (with its clear button) in the badge above the field — so the gem
+    // gives up its permanent slot in the row.
+    ...(canAddTip && onTipPress
+      ? [{ key: "tip", icon: "Gem" as const, label: t("dm.addTip"), onPress: fromSheet(onTipPress) }]
+      : []),
+    { key: "gif", icon: "Clapperboard", label: t("dm.chooseGif"), onPress: fromSheet(() => setGifPickerVisible(true)) },
+    { key: "image", icon: "Image", label: t("dm.attachImage"), onPress: fromSheet(handlePickImage) },
+    { key: "video", icon: "Video", label: t("dm.attachVideo"), onPress: fromSheet(handlePickVideo) },
+    { key: "file", icon: "Paperclip", label: t("dm.attachFile"), onPress: fromSheet(handlePickFile) },
+    ...(onPollPress
+      ? [{ key: "poll", icon: "ChartColumn" as const, label: t("postOptions.createPoll"), onPress: fromSheet(onPollPress) }]
+      : []),
+    // Works on what is already typed, so it stays greyed out until there is some.
+    {
+      key: "enhance",
+      icon: "Sparkles",
+      label: t("dm.enhanceWithAi"),
+      onPress: fromSheet(handleEnhance),
+      disabled: !text.trim(),
+    },
+  ];
+
 
   if (disabled) {
     return (
@@ -670,164 +731,57 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           </Animated.View>
         )}
 
-        {/* Text input — full width */}
-        <View className="px-3 pt-3 pb-2">
-          <TextInput
-            ref={inputRef}
-            value={text}
-            onChangeText={handleTextChange}
-            placeholder={placeholder}
-            placeholderTextColor="#8B8D90"
-            multiline
-            maxLength={DM_TEXT_MAX_LENGTH}
-            className="text-white text-[15px] leading-5 p-0 m-0"
-            style={{ minHeight: 44, maxHeight: 120, textAlignVertical: 'top' }}
-          />
-        </View>
-
-        {/* Toolbar row */}
-        <View className="flex-row items-center justify-between px-3 pt-0.5 pb-2">
-          {/* Gem (tip / diamond) */}
-          {canAddTip && onTipPress ? (
-            <TouchableOpacity
-              onPress={onTipPress}
-              className="w-9 h-9 items-center justify-center"
-              hitSlop={4}
-              activeOpacity={0.6}
-              disabled={enhancing}
-              accessibilityRole="button"
-              accessibilityLabel={t("dm.addTip")}
-              accessibilityState={{ disabled: enhancing }}
-            >
-              <Icon name="Gem" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
-            </TouchableOpacity>
-          ) : (
-            <View className="w-9 h-9 items-center justify-center">
-              <Icon name="Gem" size={22} color="#3F3F46" />
-            </View>
-          )}
-
-          {/* GIF picker */}
+        {/* Composer row: attach, the field, send/mic. Everything else is in
+            the attach sheet — see ChatAttachSheet for why. */}
+        <View className="flex-row items-end px-2 pt-2 pb-2">
+          {/* Attach. While an AI rewrite is running every other control is
+              locked, so the spinner the sparkles used to show lives here. */}
           <TouchableOpacity
-            onPress={() => setGifPickerVisible(true)}
-            className="w-9 h-9 items-center justify-center"
-            hitSlop={4}
+            onPress={handleOpenAttach}
+            className="items-center justify-center"
+            style={CONTROL_BOX}
+            hitSlop={2}
             activeOpacity={0.6}
             disabled={enhancing}
             accessibilityRole="button"
-            accessibilityLabel={t("dm.chooseGif")}
+            accessibilityLabel={t("liveChat.attachTitle")}
             accessibilityState={{ disabled: enhancing }}
-          >
-            <Text style={{ fontSize: 14, lineHeight: 22, fontWeight: '800', color: enhancing ? '#3F3F46' : '#A6A9AC' }}>GIF</Text>
-          </TouchableOpacity>
-
-          {/* Image picker */}
-          <TouchableOpacity
-            onPress={handlePickImage}
-            className="w-9 h-9 items-center justify-center"
-            hitSlop={4}
-            activeOpacity={0.6}
-            disabled={enhancing}
-            accessibilityRole="button"
-            accessibilityLabel={t("dm.attachImage")}
-            accessibilityState={{ disabled: enhancing }}
-          >
-            <Icon name="Image" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
-          </TouchableOpacity>
-
-          {/* Video picker */}
-          <TouchableOpacity
-            onPress={handlePickVideo}
-            className="w-9 h-9 items-center justify-center"
-            hitSlop={4}
-            activeOpacity={0.6}
-            disabled={enhancing}
-            accessibilityRole="button"
-            accessibilityLabel={t("dm.attachVideo")}
-            accessibilityState={{ disabled: enhancing }}
-          >
-            <Icon name="Video" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
-          </TouchableOpacity>
-
-          {/* File picker */}
-          <TouchableOpacity
-            onPress={handlePickFile}
-            className="w-9 h-9 items-center justify-center"
-            hitSlop={4}
-            activeOpacity={0.6}
-            disabled={enhancing}
-            accessibilityRole="button"
-            accessibilityLabel={t("dm.attachFile")}
-            accessibilityState={{ disabled: enhancing }}
-          >
-            <Icon name="Paperclip" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
-          </TouchableOpacity>
-
-          {/* Mic */}
-          <TouchableOpacity
-            onPress={onStartVoice}
-            className="w-9 h-9 items-center justify-center"
-            hitSlop={4}
-            activeOpacity={0.6}
-            disabled={enhancing}
-            accessibilityRole="button"
-            accessibilityLabel={t("comments.recordVoice")}
-            accessibilityState={{ disabled: enhancing }}
-          >
-            <Icon name="Mic" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
-          </TouchableOpacity>
-
-          {/* Poll */}
-          {onPollPress && (
-            <TouchableOpacity
-              onPress={onPollPress}
-              className="w-9 h-9 items-center justify-center"
-              hitSlop={4}
-              activeOpacity={0.6}
-              disabled={enhancing}
-              accessibilityRole="button"
-              accessibilityLabel={t("postOptions.createPoll")}
-              accessibilityState={{ disabled: enhancing }}
-            >
-              <Icon name="ChartColumn" size={22} color={enhancing ? "#3F3F46" : "#A6A9AC"} />
-            </TouchableOpacity>
-          )}
-
-          {/* Sparkles — AI enhance. The orb no longer shares this slot: the
-              tray raises itself when the composer takes focus, so the only orb
-              is the one at the bottom of that tray. */}
-          <TouchableOpacity
-            onPress={handleEnhance}
-            className="w-9 h-9 items-center justify-center"
-            hitSlop={4}
-            activeOpacity={0.6}
-            disabled={!text.trim() || enhancing}
-            accessibilityRole="button"
-            accessibilityLabel={t("dm.enhanceWithAi")}
-            accessibilityState={{ disabled: !text.trim() || enhancing }}
           >
             {enhancing ? (
               <ActivityIndicator size={18} color="#F4F4F5" />
             ) : (
-              <Icon
-                name="Sparkles"
-                size={22}
-                color={text.trim() ? '#A6A9AC' : '#3F3F46'}
-              />
+              <Icon name="Plus" size={24} color="#A6A9AC" />
             )}
           </TouchableOpacity>
 
-          {/* Send */}
+          <View className="flex-1 mx-1" style={INPUT_BOX}>
+            <TextInput
+              ref={inputRef}
+              value={text}
+              onChangeText={handleTextChange}
+              placeholder={placeholder}
+              placeholderTextColor="#8B8D90"
+              multiline
+              maxLength={DM_TEXT_MAX_LENGTH}
+              className="text-white text-[15px] leading-5"
+              style={INPUT_TEXT}
+            />
+          </View>
+
+          {/* Send when there is something to send (or a tip on its own),
+              otherwise the mic — the two never need the slot at once. */}
           {showSendButton ? (
             showCostOnSend ? (
               <TouchableOpacity
                 onPress={handleSend}
                 disabled={sending || enhancing || insufficientBalance || tipBelowFee}
                 activeOpacity={0.7}
+                hitSlop={2}
                 accessibilityRole="button"
                 accessibilityLabel={t("dm.sendMessage")}
                 accessibilityState={{ disabled: sending || enhancing || insufficientBalance || tipBelowFee }}
-                className={`h-9 flex-row items-center justify-center rounded-xl px-3 ${
+                style={{ height: CONTROL }}
+                className={`flex-row items-center justify-center rounded-xl px-3 ${
                   insufficientBalance || tipBelowFee
                     ? "bg-theme-neutrals-700"
                     : "bg-white/10 border border-white/20"
@@ -848,7 +802,9 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               <TouchableOpacity
                 onPress={handleSend}
                 disabled={sending || enhancing}
-                className="w-9 h-9 items-center justify-center"
+                className="items-center justify-center"
+                style={CONTROL_BOX}
+                hitSlop={2}
                 accessibilityRole="button"
                 accessibilityLabel={t("dm.sendMessage")}
                 accessibilityState={{ disabled: sending || enhancing }}
@@ -862,14 +818,17 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             )
           ) : (
             <TouchableOpacity
-              className="w-9 h-9 items-center justify-center"
+              onPress={onStartVoice}
+              className="items-center justify-center"
+              style={CONTROL_BOX}
+              hitSlop={2}
               activeOpacity={0.6}
-              disabled
+              disabled={enhancing}
               accessibilityRole="button"
-              accessibilityLabel={t("dm.sendMessage")}
-              accessibilityState={{ disabled: true }}
+              accessibilityLabel={t("comments.recordVoice")}
+              accessibilityState={{ disabled: enhancing }}
             >
-              <Icon name="Send" size={22} color="#3F3F46" />
+              <Icon name="Mic" size={22} color={enhancing ? "#3F3F46" : "#A6A9AC"} />
             </TouchableOpacity>
           )}
         </View>
@@ -880,6 +839,12 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
         visible={gifPickerVisible}
         onPick={handleGifPicked}
         onClose={() => setGifPickerVisible(false)}
+      />
+
+      <ChatAttachSheet
+        visible={attachOpen}
+        onClose={() => setAttachOpen(false)}
+        options={attachOptions}
       />
     </>
   );
