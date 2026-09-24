@@ -54,6 +54,9 @@ const FAMILY_BY_WEIGHT: Record<string, string> = {
 
 const DEFAULT_FAMILY = "Exo_400Regular";
 
+/** Largest system font scale text honours; see the cap in wrap(). */
+const MAX_FONT_SCALE = 1.4;
+
 /**
  * Tailwind weight utilities, for the ~590 nodes that set their weight through
  * `className` rather than `style`. Alternation is longest-first so `font-bold`
@@ -159,6 +162,12 @@ function wrap(jsx: any) {
       // Appended, not prepended: it has to outrank whatever NativeWind derives
       // from `className`, which is the only other thing setting a weight here.
       if (injected) props = { ...props, style: [props.style, injected] };
+      // Cap how far the system font size can blow text up. Past ~1.4x the
+      // fixed-height pills, badges and buttons clip their labels; below it the
+      // setting still does its job. A node that sets its own cap keeps it.
+      if (props.maxFontSizeMultiplier == null) {
+        props = { ...props, maxFontSizeMultiplier: MAX_FONT_SCALE };
+      }
     }
     return jsx(type, props, ...rest);
   };
