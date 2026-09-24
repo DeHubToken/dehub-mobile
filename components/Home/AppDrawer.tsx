@@ -104,12 +104,17 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true, storefrontHidden: true },
   { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
   { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores, storefrontHidden: true },
+  // The marketplace has no native screen yet, so this opens the web page, as Docs and Blog do.
+  { icon: "ChartPie", labelKey: "nav.fractions", url: `${WEBSITE_LINK}/app/fractions`, storefrontHidden: true },
+  { icon: "AtSign", labelKey: "screens.usernames", screen: ScreenNames.Usernames, storefrontHidden: true },
+  { icon: "IdCard", labelKey: "screens.accounts", screen: ScreenNames.Accounts, storefrontHidden: true },
   { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads, requiresAuth: true, storefrontHidden: true },
   { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
   // Sits between Stores and Glossary, as on the web sidebar. Only the games
   // that work on a touchscreen are listed — see config/arcade-games.
   { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade, storefrontHidden: true },
   { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true },
+  { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },

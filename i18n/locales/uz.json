@@ -19,6 +19,7 @@
     "unavailable": "Ilovaning bu versiyasida mavjud emas"
   },
   "nav": {
+    "fractions": "Ulushlar",
     "home": "Bosh sahifa",
     "explore": "Kashf qilish",
     "notifications": "Bildirishnomalar",
@@ -56,7 +57,7 @@
     "tv": "Jonli TV",
     "arcade": "Arkada",
     "converter": "Konverter",
-    "migrate": "Barchasini ko&#39;chirish"
+    "migrate": "Barchasini ko‘chirish"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",

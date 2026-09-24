@@ -19,6 +19,7 @@
     "unavailable": "ऐप के इस वर्ज़न में उपलब्ध नहीं"
   },
   "nav": {
+    "fractions": "फ़्रैक्शन",
     "home": "گھر",
     "explore": "ڈھونڈو",
     "notifications": "اطلاع",
@@ -56,7 +57,7 @@
     "tv": "لائیو ٹی وی",
     "arcade": "آرکیڈ",
     "converter": "Converter",
-    "migrate": "Migrate all"
+    "migrate": "सब माइग्रेट करो"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",

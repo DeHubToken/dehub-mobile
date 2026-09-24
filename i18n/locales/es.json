@@ -19,6 +19,7 @@
     "unavailable": "No disponible en esta versión de la aplicación"
   },
   "nav": {
+    "fractions": "Fracciones",
     "home": "Inicio",
     "explore": "Explorar",
     "notifications": "Notificaciones",
@@ -3058,8 +3059,8 @@
     "moderators": "Moderadores",
     "bannedUsers": "Usuarios baneados",
     "work": "Trabajo",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "Nombres de usuario",
+    "accounts": "Cuentas",
     "stores": "Tiendas",
     "comingSoon": "Próximamente",
     "signIn": "Iniciar sesión",

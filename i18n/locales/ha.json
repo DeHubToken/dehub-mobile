@@ -19,6 +19,7 @@
     "unavailable": "Ba a samu a wannan sigar manhajar ba"
   },
   "nav": {
+    "fractions": "Rabe-rabe",
     "home": "Gida",
     "explore": "Bincika",
     "notifications": "Sanarwa",
@@ -56,7 +57,7 @@
     "tv": "TV Kai Tsaye",
     "arcade": "Arcade",
     "converter": "Canja wurin",
-    "migrate": "Yi ƙaura duk"
+    "migrate": "Matsar da duka"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",

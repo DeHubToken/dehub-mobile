@@ -19,6 +19,7 @@
     "unavailable": "Indisponible dans cette version de l'application"
   },
   "nav": {
+    "fractions": "Fractions",
     "home": "Accueil",
     "explore": "Explorer",
     "notifications": "Notifications",
@@ -3061,8 +3062,8 @@
     "moderators": "Modérateurs",
     "bannedUsers": "Utilisateurs bannis",
     "work": "Travail",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "Noms d’utilisateur",
+    "accounts": "Comptes",
     "stores": "Boutiques",
     "comingSoon": "Bientôt disponible",
     "signIn": "Se connecter",

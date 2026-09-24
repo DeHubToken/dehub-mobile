@@ -19,6 +19,7 @@
     "unavailable": "このバージョンのアプリでは利用できません"
   },
   "nav": {
+    "fractions": "フラクション",
     "home": "ホーム",
     "explore": "検索",
     "notifications": "通知",
@@ -3056,8 +3057,8 @@
     "moderators": "モデレーター",
     "bannedUsers": "BANされたユーザー",
     "work": "仕事",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "ユーザー名",
+    "accounts": "アカウント",
     "stores": "ストア",
     "comingSoon": "近日公開",
     "signIn": "サインイン",

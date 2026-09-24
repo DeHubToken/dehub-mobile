@@ -19,6 +19,7 @@
     "unavailable": "ኣብዚ ስሪት ናይዚ መተግበሪ ኣይርከብን"
   },
   "nav": {
+    "fractions": "ክፍልታት",
     "home": "ገዛ",
     "explore": "ድለ",
     "notifications": "ምልክታታት",
@@ -56,7 +57,7 @@
     "tv": "ቀጥታ ቲቪ",
     "arcade": "ኣርኬድ",
     "converter": "ለዋጢ",
-    "migrate": "ንዅሉ ስደት"
+    "migrate": "ኩሉ ኣግዕዝ"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",
