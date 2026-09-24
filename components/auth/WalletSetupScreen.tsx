@@ -34,6 +34,7 @@ const unlockLog = createLogger("WalletUnlock");
 
 import type { EncryptedPayload } from "../../libs/wallet-core/crypto";
 import { getPayloadKdf } from "../../libs/wallet-core/crypto";
+import { useSecureScreen } from "../../hooks/useSecureScreen";
 
 export type WalletSetupRequest =
   | { mode: "unlock"; supabaseUserId: string; address: string; payload: EncryptedPayload }
@@ -415,6 +416,8 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     onConnectWallet,
   }) => {
     const { t } = useTranslation();
+    // Shows and takes the recovery phrase and wallet passwords.
+    useSecureScreen(visible, "wallet-setup");
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
     const [showPw, setShowPw] = useState(false);

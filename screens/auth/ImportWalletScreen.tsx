@@ -43,6 +43,7 @@ import {
 } from "../../components/auth/AuthControls";
 import ScreenHeader from "../../components/ScreenHeader";
 import { useTranslation } from "react-i18next";
+import { useSecureScreen } from "../../hooks/useSecureScreen";
 
 // 3D wallet image
 const WALLET_3D_IMAGE = require("../../assets/onboarding/wallet-3d.png");
@@ -59,6 +60,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
   const { t } = useTranslation();
   const { isLoading: authLoading, needsUsername } = useAuthState();
   const { signInWithWallet } = useAuthActions();
+  useSecureScreen(true, "import-wallet-screen");
 
   const [privateKey, setPrivateKey] = useState("");
   const [showPk, setShowPk] = useState(false);
@@ -93,19 +95,13 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
   // Check clipboard for valid private key
   useEffect(() => {
     let mounted = true;
+    // Only ask whether there is something to paste. Reading the clipboard on
+    // open showed Android's "pasted from" toast and read whatever the person
+    // last copied; the read now happens on the Paste tap, as in the modal.
     const checkClipboard = async () => {
       try {
-        const clip = await Clipboard.getStringAsync();
-        const normalized = clip?.trim();
-        if (normalized && validatePk(normalized)) {
-          if (mounted) {
-            setClipboardPk(
-              normalized.startsWith("0x") ? normalized : `0x${normalized}`
-            );
-          }
-        } else {
-          if (mounted) setClipboardPk(null);
-        }
+        const has = await Clipboard.hasStringAsync();
+        if (mounted) setClipboardPk(has ? "pending" : null);
       } catch {
         if (mounted) setClipboardPk(null);
       }
@@ -116,11 +112,18 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
     };
   }, [validatePk]);
 
-  const handlePasteFromClipboard = useCallback(() => {
-    if (clipboardPk) {
-      setPrivateKey(clipboardPk);
+  const handlePasteFromClipboard = useCallback(async () => {
+    try {
+      const clip = (await Clipboard.getStringAsync())?.trim();
+      if (clip && validatePk(clip)) {
+        setPrivateKey(clip.startsWith("0x") ? clip : `0x${clip}`);
+      } else {
+        setClipboardPk(null);
+      }
+    } catch {
+      setClipboardPk(null);
     }
-  }, [clipboardPk]);
+  }, [validatePk]);
 
   const handleImport = useCallback(async () => {
     if (!isPkValid) return;
@@ -283,6 +286,8 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
             autoCapitalize="none"
             autoCorrect={false}
             secureTextEntry={!showPk}
+            importantForAutofill="no"
+            autoComplete="off"
             placeholder={t("auth.privateKeyPlaceholder")}
             editable={!busy}
             trailing={
