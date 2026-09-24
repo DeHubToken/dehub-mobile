@@ -4933,7 +4933,10 @@
       "padding": "Odsazení {{value}}",
       "thickness": "Tloušťka {{value}}",
       "drawHint": "Kreslete tažením po stránce. Každý tah je samostatná vrstva, kterou můžete přesunout, změnit její velikost nebo smazat. Až budete hotovi, klepněte na Přestat kreslit.",
-      "layersHint": "Horní položka seznamu je vpředu. Pořadí změníte šipkami. Zamčené a skryté vrstvy lze vybrat jen tady."
+      "layersHint": "Horní položka seznamu je vpředu. Pořadí změníte šipkami. Zamčené a skryté vrstvy lze vybrat jen tady.",
+      "agentWebOnly": "Část z toho zatím funguje jen ve webovém editoru.",
+      "brandLogoHint": "Vyberte obrázek na stránce a pak ho použijte jako logo.",
+      "useAsLogo": "Použít vybraný obrázek"
     },
     "filters": {
       "none": "Originál",
@@ -5027,7 +5030,8 @@
     },
     "rail": {
       "elements": "Prvky",
-      "layers": "Vrstvy"
+      "layers": "Vrstvy",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normální",
@@ -5063,6 +5067,89 @@
       "outlineOn": "Obrys",
       "outlineWidth": "Šířka obrysu {{value}}",
       "path": "Kresba"
+    },
+    "agent": {
+      "changes": "Provedené úpravy: {{count}}",
+      "clear": "Vymazat chat",
+      "done": "Hotovo.",
+      "failed": "AI to teď nedokázala udělat. Zkuste to za chvíli znovu.",
+      "introBody": "Popište návrh nebo změnu vlastními slovy. Změní velikost stránky, napíše a naformátuje text, najde volné fotky, videa a hudbu, použije filtry, uspořádá vrstvy a animuje je. Každý požadavek jde vrátit jedním krokem zpět.",
+      "introTitle": "Řekněte AI, co chcete",
+      "noStock": "Pro „{{query}}“ nebyly nalezeny žádné volné materiály.",
+      "nothingToDo": "Nenašel jsem nic, co by se dalo změnit. Zkuste popsat úpravu, kterou chcete.",
+      "placeholder": "Popište, co chcete…",
+      "rateLimited": "Odeslali jste hodně požadavků. Zkuste to znovu za pár minut.",
+      "send": "Odeslat",
+      "suggestFilter": "Udělej fotku teplejší a trochu světlejší",
+      "suggestPoster": "Udělej čtvercový příspěvek na Instagram pro letní výprodej s fotkou pláže a výrazným nadpisem",
+      "suggestStory": "Předělej to na příběh 9:16 a vyplň stránku fotkou",
+      "suggestTitle": "Přidej nahoru velký tučný nadpis a pod něj menší podnadpis",
+      "undo": "Zpět",
+      "working": "Pracuji na tom…"
+    },
+    "brand": {
+      "addColor": "Přidat barvu značky",
+      "addLogo": "Přidat logo",
+      "applied": "Značka použita na vrstvy: {{count}}.",
+      "apply": "Použít značku",
+      "bodyFont": "Písmo textu",
+      "colors": "Barvy značky",
+      "heading": "Značka",
+      "headingFont": "Písmo nadpisů",
+      "logo": "Logo",
+      "noLogo": "Žádné logo",
+      "removeColor": "Odebrat {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Již brzy",
+        "title": "Chystáme velkou novinku"
+      },
+      "birthday": {
+        "name": "Same!",
+        "title": "Všechno nejlepší"
+      },
+      "crypto": {
+        "change": "+42 % za týden",
+        "title": "Aktualizace ceny"
+      },
+      "event": {
+        "date": "Pátek 20:00",
+        "place": "Sklad, centrum",
+        "title": "Večer živé hudby"
+      },
+      "heading": "Šablony",
+      "meme": {
+        "bottom": "Hned napoprvé",
+        "top": "Když kód funguje",
+        "title": "Mem"
+      },
+      "podcast": {
+        "episode": "Díl 12 · Právě venku",
+        "title": "Show tvůrců"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Jednoduše, ale výrazně.",
+        "title": "Karta s citátem"
+      },
+      "sale": {
+        "subtitle": "Až −50 % · Jen tento víkend",
+        "title": "Letní výprodej"
+      },
+      "story": {
+        "cta": "Přejeď nahoru a nakupuj",
+        "title": "Nová kolekce"
+      },
+      "thumbnail": {
+        "badge": "Novinka",
+        "title": "Tomu neuvěříte!"
+      },
+      "hint": "Vyberte jednu a začněte. Každé slovo, barvu i fotku můžete změnit, nebo o to požádat AI.",
+      "use": "Použít šablonu {{name}}",
+      "replaceConfirm": "Nahradit aktuální návrh touto šablonou? Lze to vrátit.",
+      "replaceTitle": "Nahradit váš návrh?",
+      "replace": "Nahradit"
     }
   },
   "creator": {

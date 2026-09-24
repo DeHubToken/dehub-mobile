@@ -4917,7 +4917,10 @@
       "padding": "Innenabstand {{value}}",
       "thickness": "Dicki {{value}}",
       "drawHint": "Zieh uf de Siite zum Zeichne. Jede Strich isch en eigeni Ebene, wo du chasch verschiebe, grösser oder chliiner mache oder lösche. Tipp uf «Zeichne beände», wenn du fertig bisch.",
-      "layersHint": "Zoberscht i de Lischte isch vorne. Mit de Pfiil chasch d Reihefolg ändere. Gsperrti und versteckti Ebene chasch nur da uswähle."
+      "layersHint": "Zoberscht i de Lischte isch vorne. Mit de Pfiil chasch d Reihefolg ändere. Gsperrti und versteckti Ebene chasch nur da uswähle.",
+      "agentWebOnly": "Es paar vo däm gaht im Moment nume im Web-Editor.",
+      "brandLogoHint": "Wähl es Bild uf de Siite us und bruuch das denn als dis Logo.",
+      "useAsLogo": "Usgwählts Bild bruuche"
     },
     "filters": {
       "none": "Original",
@@ -5011,7 +5014,8 @@
     },
     "rail": {
       "elements": "Elemänt",
-      "layers": "Ebene"
+      "layers": "Ebene",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5047,6 +5051,89 @@
       "outlineOn": "Kontur",
       "outlineWidth": "Konturbreiti {{value}}",
       "path": "Zeichnig"
+    },
+    "agent": {
+      "changes": "Bearbeitige: {{count}}",
+      "clear": "Chat lösche",
+      "done": "Fertig.",
+      "failed": "D'AI het das grad nöd chöne mache. Probier's gli nomol.",
+      "introBody": "Beschrieb d'Gstaltig oder d'Änderig i dine eigete Wort. Si passt d'Gröössi vo de Siite aa, schriibt und gstaltet Text, findet gratis Fotis, Videos und Musig, wändet Filter aa, ordnet Ebene und animiert si. Jedi Aafrog isch ei Rückgängig.",
+      "introTitle": "Säg de AI, was du wotsch",
+      "noStock": "Kei gratis Material passt zu «{{query}}».",
+      "nothingToDo": "Ich ha nüt gfunde, wo mer do chönnt ändere. Beschrieb doch d'Bearbeitig, wo du wotsch.",
+      "placeholder": "Beschrieb, was du wotsch…",
+      "rateLimited": "Du hesch vill Aafroge gschickt. Probier's i es paar Minute nomol.",
+      "send": "Schicke",
+      "suggestFilter": "Mach s'Foti wärmer und chli heller",
+      "suggestPoster": "Mach en quadratische Instagram-Post für en Summerusverchauf mit emne Strandfoti und emne fette Titel",
+      "suggestStory": "Mach drus e 9:16-Story und füll d'Siite mit em Foti",
+      "suggestTitle": "Tue obe en grosse, fette Titel dezue und drunder en chliinere Untertitel",
+      "undo": "Rückgängig",
+      "working": "Bi draa…"
+    },
+    "brand": {
+      "addColor": "Markefarb derzuefüege",
+      "addLogo": "Logo derzuefüege",
+      "applied": "Marke uf {{count}} Ebene aagwändet.",
+      "apply": "Marke aawände",
+      "bodyFont": "Textschrift",
+      "colors": "Markefarbe",
+      "heading": "Markekit",
+      "headingFont": "Titelschrift",
+      "logo": "Logo",
+      "noLogo": "Kei Logo",
+      "removeColor": "{{color}} entferne"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Bald",
+        "title": "Grossi News chömed"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Alles Gueti zum Geburi"
+      },
+      "crypto": {
+        "change": "+42% die Wuche",
+        "title": "Priis-Update"
+      },
+      "event": {
+        "date": "Friitig 20 Uhr",
+        "place": "D Lagerhalle, Innestadt",
+        "title": "Live-Musig-Abig"
+      },
+      "heading": "Vorlage",
+      "meme": {
+        "bottom": "Scho bim erschte Mol",
+        "top": "Wenn de Code lauft",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Folg 12 · Jetzt dusse",
+        "title": "D Creator-Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Mach's eifach, aber bedütend.",
+        "title": "Zitatcharte"
+      },
+      "sale": {
+        "subtitle": "Bis 50% billiger · Nume das Wuchenend",
+        "title": "Summer-Usverchauf"
+      },
+      "story": {
+        "cta": "Uufe wische und poschte",
+        "title": "Neui Kollektion"
+      },
+      "thumbnail": {
+        "badge": "Neu",
+        "title": "Das glaubsch nöd!"
+      },
+      "hint": "Wähl eini zum Starte. Jedes Wort, jedi Farb und jedes Foto chasch ändere, oder d KI fröge, dass sies für di macht.",
+      "use": "Vorlag {{name}} bruuche",
+      "replaceConfirm": "Aktuelli Gstaltig dur die Vorlag ersetze? Chasch es rückgängig mache.",
+      "replaceTitle": "Dis Design ersetze?",
+      "replace": "Ersetze"
     }
   },
   "creator": {

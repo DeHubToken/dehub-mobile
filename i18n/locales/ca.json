@@ -4930,7 +4930,10 @@
       "padding": "Marge interior {{value}}",
       "thickness": "Gruix {{value}}",
       "drawHint": "Arrossega sobre la pàgina per dibuixar. Cada traç és una capa pròpia que pots moure, redimensionar o eliminar. Toca «Deixa de dibuixar» quan acabis.",
-      "layersHint": "La part superior de la llista és el davant. Fes servir les fletxes per reordenar. Les capes bloquejades i ocultes només es poden seleccionar aquí."
+      "layersHint": "La part superior de la llista és el davant. Fes servir les fletxes per reordenar. Les capes bloquejades i ocultes només es poden seleccionar aquí.",
+      "agentWebOnly": "Part d'això de moment només funciona a l'editor web.",
+      "brandLogoHint": "Selecciona una imatge de la pàgina i fes-la servir com a logotip.",
+      "useAsLogo": "Utilitza la imatge seleccionada"
     },
     "filters": {
       "none": "Original",
@@ -5024,7 +5027,8 @@
     },
     "rail": {
       "elements": "Elements",
-      "layers": "Capes"
+      "layers": "Capes",
+      "agent": "IA"
     },
     "blend": {
       "normal": "Normal",
@@ -5060,6 +5064,89 @@
       "outlineOn": "Contorn",
       "outlineWidth": "Gruix del contorn {{value}}",
       "path": "Dibuix"
+    },
+    "agent": {
+      "changes": "Canvis fets: {{count}}",
+      "clear": "Esborra el xat",
+      "done": "Fet.",
+      "failed": "La IA no ho ha pogut fer ara mateix. Torna-ho a provar d'aquí a un moment.",
+      "introBody": "Descriu el disseny o el canvi amb les teves paraules. Redimensiona la pàgina, escriu i dona estil al text, troba fotos, vídeos i música gratuïts, aplica filtres, ordena les capes i les anima. Cada petició es desfà d'un sol cop.",
+      "introTitle": "Digues a la IA què vols",
+      "noStock": "Cap recurs gratuït coincideix amb “{{query}}”.",
+      "nothingToDo": "No he trobat res a canviar amb això. Prova de descriure l'edició que vols.",
+      "placeholder": "Descriu el que vols…",
+      "rateLimited": "Has enviat moltes peticions. Torna-ho a provar d'aquí a uns minuts.",
+      "send": "Envia",
+      "suggestFilter": "Fes la foto més càlida i una mica més brillant",
+      "suggestPoster": "Fes una publicació quadrada d'Instagram per a les rebaixes d'estiu amb una foto de platja i un títol destacat",
+      "suggestStory": "Converteix-ho en una història 9:16 i omple la pàgina amb la foto",
+      "suggestTitle": "Afegeix un títol gran i en negreta a dalt i un subtítol més petit a sota",
+      "undo": "Desfés",
+      "working": "Hi estic treballant…"
+    },
+    "brand": {
+      "addColor": "Afegeix un color de marca",
+      "addLogo": "Afegeix un logotip",
+      "applied": "Marca aplicada a {{count}} capes.",
+      "apply": "Aplica la marca",
+      "bodyFont": "Font del cos",
+      "colors": "Colors de marca",
+      "heading": "Kit de marca",
+      "headingFont": "Font dels títols",
+      "logo": "Logotip",
+      "noLogo": "Sense logotip",
+      "removeColor": "Elimina {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Properament",
+        "title": "Arriben grans notícies"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Per molts anys"
+      },
+      "crypto": {
+        "change": "+42% aquesta setmana",
+        "title": "Actualització de preu"
+      },
+      "event": {
+        "date": "Divendres 20 h",
+        "place": "The Warehouse, al centre",
+        "title": "Nit de música en directe"
+      },
+      "heading": "Plantilles",
+      "meme": {
+        "bottom": "A la primera",
+        "top": "Quan el codi funciona",
+        "title": "Mem"
+      },
+      "podcast": {
+        "episode": "Episodi 12 · Ja disponible",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Fes-ho simple, però significatiu.",
+        "title": "Targeta de cita"
+      },
+      "sale": {
+        "subtitle": "Fins a un 50% · Només aquest cap de setmana",
+        "title": "Rebaixes d'estiu"
+      },
+      "story": {
+        "cta": "Llisca amunt per comprar",
+        "title": "Novetat"
+      },
+      "thumbnail": {
+        "badge": "Nou",
+        "title": "No t'ho creuràs"
+      },
+      "hint": "Tria'n una per començar. Pots canviar cada paraula, color i foto, o demanar a la IA que ho faci per tu.",
+      "use": "Fes servir la plantilla {{name}}",
+      "replaceConfirm": "Vols substituir el disseny actual per aquesta plantilla? Ho pots desfer.",
+      "replaceTitle": "Vols substituir el disseny?",
+      "replace": "Substitueix"
     }
   },
   "creator": {

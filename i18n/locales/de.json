@@ -4997,7 +4997,10 @@
       "padding": "Innenabstand {{value}}",
       "thickness": "Stärke {{value}}",
       "drawHint": "Zum Zeichnen über die Seite ziehen. Jeder Strich ist eine eigene Ebene, die du verschieben, skalieren oder löschen kannst. Tippe auf „Zeichnen beenden“, wenn du fertig bist.",
-      "layersHint": "Oben in der Liste ist vorne. Mit den Pfeilen änderst du die Reihenfolge. Gesperrte und ausgeblendete Ebenen lassen sich nur hier auswählen."
+      "layersHint": "Oben in der Liste ist vorne. Mit den Pfeilen änderst du die Reihenfolge. Gesperrte und ausgeblendete Ebenen lassen sich nur hier auswählen.",
+      "agentWebOnly": "Einiges davon funktioniert vorerst nur im Web-Editor.",
+      "brandLogoHint": "Wähle ein Bild auf der Seite aus und verwende es dann als dein Logo.",
+      "useAsLogo": "Ausgewähltes Bild verwenden"
     },
     "filters": {
       "none": "Original",
@@ -5091,7 +5094,8 @@
     },
     "rail": {
       "elements": "Elemente",
-      "layers": "Ebenen"
+      "layers": "Ebenen",
+      "agent": "KI"
     },
     "blend": {
       "normal": "Normal",
@@ -5127,6 +5131,89 @@
       "outlineOn": "Kontur",
       "outlineWidth": "Konturstärke {{value}}",
       "path": "Zeichnung"
+    },
+    "agent": {
+      "changes": "Änderungen: {{count}}",
+      "clear": "Chat leeren",
+      "done": "Fertig.",
+      "failed": "Die KI konnte das gerade nicht ausführen. Versuch es gleich noch einmal.",
+      "introBody": "Beschreibe das Design oder die Änderung in eigenen Worten. Die KI ändert die Seitengröße, schreibt und gestaltet Text, findet kostenlose Fotos, Videos und Musik, wendet Filter an, ordnet Ebenen und animiert sie. Jede Anfrage lässt sich mit einem Schritt rückgängig machen.",
+      "introTitle": "Sag der KI, was du willst",
+      "noStock": "Keine kostenlosen Inhalte zu „{{query}}“ gefunden.",
+      "nothingToDo": "Dafür habe ich nichts zum Ändern gefunden. Beschreibe die gewünschte Bearbeitung.",
+      "placeholder": "Beschreibe, was du willst…",
+      "rateLimited": "Du hast viele Anfragen gesendet. Versuch es in ein paar Minuten noch einmal.",
+      "send": "Senden",
+      "suggestFilter": "Mach das Foto wärmer und etwas heller",
+      "suggestPoster": "Erstelle einen quadratischen Instagram-Post für einen Sommerschlussverkauf mit Strandfoto und fettem Titel",
+      "suggestStory": "Mach daraus eine 9:16-Story und füll die Seite mit dem Foto",
+      "suggestTitle": "Füge oben einen großen, fetten Titel und darunter einen kleineren Untertitel hinzu",
+      "undo": "Rückgängig",
+      "working": "Wird bearbeitet…"
+    },
+    "brand": {
+      "addColor": "Markenfarbe hinzufügen",
+      "addLogo": "Logo hinzufügen",
+      "applied": "Marke auf {{count}} Ebenen angewendet.",
+      "apply": "Marke anwenden",
+      "bodyFont": "Textschrift",
+      "colors": "Markenfarben",
+      "heading": "Markenkit",
+      "headingFont": "Überschriftenschrift",
+      "logo": "Logo",
+      "noLogo": "Kein Logo",
+      "removeColor": "{{color}} entfernen"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Demnächst",
+        "title": "Große News kommen"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Alles Gute zum Geburtstag"
+      },
+      "crypto": {
+        "change": "+42 % diese Woche",
+        "title": "Kurs-Update"
+      },
+      "event": {
+        "date": "Freitag, 20 Uhr",
+        "place": "The Warehouse, Innenstadt",
+        "title": "Live-Musik-Abend"
+      },
+      "heading": "Vorlagen",
+      "meme": {
+        "bottom": "Beim ersten Versuch",
+        "top": "Wenn der Code läuft",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Folge 12 · Jetzt online",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Einfach, aber bedeutend.",
+        "title": "Zitatkarte"
+      },
+      "sale": {
+        "subtitle": "Bis zu 50 % Rabatt · Nur dieses Wochenende",
+        "title": "Summer Sale"
+      },
+      "story": {
+        "cta": "Nach oben wischen zum Shoppen",
+        "title": "Neu eingetroffen"
+      },
+      "thumbnail": {
+        "badge": "Neu",
+        "title": "Das glaubst du nicht"
+      },
+      "hint": "Wähle eine zum Start. Jedes Wort, jede Farbe und jedes Foto lässt sich ändern – oder lass die KI das für dich machen.",
+      "use": "Vorlage {{name}} verwenden",
+      "replaceConfirm": "Aktuelles Design durch diese Vorlage ersetzen? Du kannst es rückgängig machen.",
+      "replaceTitle": "Dein Design ersetzen?",
+      "replace": "Ersetzen"
     }
   },
   "creator": {

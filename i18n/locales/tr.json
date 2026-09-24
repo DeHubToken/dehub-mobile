@@ -4991,7 +4991,10 @@
       "padding": "Dolgu {{value}}",
       "thickness": "Kalınlık {{value}}",
       "drawHint": "Çizmek için sayfada sürükleyin. Her çizgi taşıyabileceğiniz, boyutunu değiştirebileceğiniz veya silebileceğiniz ayrı bir katmandır. Bitirdiğinizde Çizmeyi bırak'a dokunun.",
-      "layersHint": "Listenin en üstü en öndedir. Sıralamayı değiştirmek için okları kullanın. Kilitli ve gizli katmanlar yalnızca buradan seçilebilir."
+      "layersHint": "Listenin en üstü en öndedir. Sıralamayı değiştirmek için okları kullanın. Kilitli ve gizli katmanlar yalnızca buradan seçilebilir.",
+      "agentWebOnly": "Bunun bir kısmı şimdilik yalnızca web düzenleyicide çalışıyor.",
+      "brandLogoHint": "Sayfada bir resim seçin, ardından onu logonuz olarak kullanın.",
+      "useAsLogo": "Seçili resmi kullan"
     },
     "filters": {
       "none": "Orijinal",
@@ -5085,7 +5088,8 @@
     },
     "rail": {
       "elements": "Öğeler",
-      "layers": "Katmanlar"
+      "layers": "Katmanlar",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5121,6 +5125,89 @@
       "outlineOn": "Kontur",
       "outlineWidth": "Kontur kalınlığı {{value}}",
       "path": "Çizim"
+    },
+    "agent": {
+      "changes": "Yapılan düzenlemeler: {{count}}",
+      "clear": "Sohbeti temizle",
+      "done": "Tamam.",
+      "failed": "AI bunu şu anda yapamadı. Biraz sonra tekrar dene.",
+      "introBody": "Tasarımı veya değişikliği kendi sözlerinle anlat. Sayfayı yeniden boyutlandırır, metin yazıp biçimlendirir, ücretsiz fotoğraf, video ve müzik bulur, filtre uygular, katmanları düzenler ve canlandırır. Her istek tek bir geri alma ile geri alınır.",
+      "introTitle": "AI'ya ne istediğini söyle",
+      "noStock": "“{{query}}” ile eşleşen ücretsiz içerik yok.",
+      "nothingToDo": "Bunun için değiştirilecek bir şey bulamadım. İstediğin düzenlemeyi anlatmayı dene.",
+      "placeholder": "Ne istediğini anlat…",
+      "rateLimited": "Çok fazla istek gönderdin. Birkaç dakika sonra tekrar dene.",
+      "send": "Gönder",
+      "suggestFilter": "Fotoğrafı daha sıcak ve biraz daha parlak yap",
+      "suggestPoster": "Plaj fotoğrafı ve dikkat çekici bir başlıkla yaz indirimi için kare bir Instagram gönderisi yap",
+      "suggestStory": "Bunu 9:16 bir hikâyeye çevir ve sayfayı fotoğrafla doldur",
+      "suggestTitle": "Üste büyük kalın bir başlık, altına da daha küçük bir alt başlık ekle",
+      "undo": "Geri al",
+      "working": "Üzerinde çalışıyorum…"
+    },
+    "brand": {
+      "addColor": "Marka rengi ekle",
+      "addLogo": "Logo ekle",
+      "applied": "Marka {{count}} katmana uygulandı.",
+      "apply": "Markayı uygula",
+      "bodyFont": "Gövde yazı tipi",
+      "colors": "Marka renkleri",
+      "heading": "Marka kiti",
+      "headingFont": "Başlık yazı tipi",
+      "logo": "Logo",
+      "noLogo": "Logo yok",
+      "removeColor": "{{color}} kaldır"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Çok yakında",
+        "title": "Büyük haber geliyor"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "İyi ki doğdun"
+      },
+      "crypto": {
+        "change": "Bu hafta +%42",
+        "title": "Fiyat güncellemesi"
+      },
+      "event": {
+        "date": "Cuma 20:00",
+        "place": "Depo, şehir merkezi",
+        "title": "Canlı müzik gecesi"
+      },
+      "heading": "Şablonlar",
+      "meme": {
+        "bottom": "Hem de ilk denemede",
+        "top": "Kod çalışınca",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "12. Bölüm · Yayında",
+        "title": "Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Basit olsun, ama anlamlı.",
+        "title": "Alıntı kartı"
+      },
+      "sale": {
+        "subtitle": "%50'ye varan indirim · Sadece bu hafta sonu",
+        "title": "Yaz İndirimi"
+      },
+      "story": {
+        "cta": "Alışveriş için yukarı kaydır",
+        "title": "Yeni sezon"
+      },
+      "thumbnail": {
+        "badge": "Yeni",
+        "title": "Buna inanamayacaksın!"
+      },
+      "hint": "Başlamak için birini seç. Her kelime, renk ve fotoğraf değiştirilebilir ya da yapay zekâdan senin için değiştirmesini iste.",
+      "use": "{{name}} şablonunu kullan",
+      "replaceConfirm": "Mevcut tasarım bu şablonla değiştirilsin mi? Geri alabilirsin.",
+      "replaceTitle": "Tasarımın değiştirilsin mi?",
+      "replace": "Değiştir"
     }
   },
   "creator": {

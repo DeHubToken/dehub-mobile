@@ -4886,7 +4886,10 @@
       "padding": "Jarak njero {{value}}",
       "thickness": "Kekandelan {{value}}",
       "drawHint": "Geser ing kaca kanggo nggambar. Saben goresan iku lapisan dhewe sing bisa dipindhah, diowahi ukurane utawa dibusak. Tutul “Mandheg nggambar” yen wis rampung.",
-      "layersHint": "Sing paling dhuwur ing dhaftar iku sing paling ngarep. Gunakake panah kanggo ngurutake maneh. Lapisan sing dikunci lan didhelikake mung bisa dipilih ing kene."
+      "layersHint": "Sing paling dhuwur ing dhaftar iku sing paling ngarep. Gunakake panah kanggo ngurutake maneh. Lapisan sing dikunci lan didhelikake mung bisa dipilih ing kene.",
+      "agentWebOnly": "Sawetara saka iku saiki mung bisa ing editor web.",
+      "brandLogoHint": "Pilih gambar ing kaca, banjur gunakake minangka logomu.",
+      "useAsLogo": "Gunakake gambar sing dipilih"
     },
     "filters": {
       "none": "Asli",
@@ -4980,7 +4983,8 @@
     },
     "rail": {
       "elements": "Elemen",
-      "layers": "Lapisan"
+      "layers": "Lapisan",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5016,6 +5020,89 @@
       "outlineOn": "Garis pinggir",
       "outlineWidth": "Kandel garis pinggir {{value}}",
       "path": "Gambar"
+    },
+    "agent": {
+      "changes": "Suntingan sing digawe: {{count}}",
+      "clear": "Busak obrolan",
+      "done": "Rampung.",
+      "failed": "AI saiki durung bisa nindakake kuwi. Coba maneh sedhela engkas.",
+      "introBody": "Critakna desain utawa owahan nganggo tembungmu dhewe. AI bisa ngowahi ukuran kaca, nulis lan nata gaya teks, golek foto, video lan musik gratis, nerapake filter, nata lapisan lan nganimasikake. Saben panjaluk bisa dibatalake sepisan.",
+      "introTitle": "Kandhani AI apa sing mbok karepake",
+      "noStock": "Ora ana stok gratis sing cocog karo “{{query}}”.",
+      "nothingToDo": "Aku ora nemokake apa-apa sing kudu diowahi. Coba critakna suntingan sing mbok karepake.",
+      "placeholder": "Critakna apa sing mbok karepake…",
+      "rateLimited": "Kowe wis ngirim akeh panjaluk. Coba maneh sawetara menit engkas.",
+      "send": "Kirim",
+      "suggestFilter": "Gawe fotone luwih anget lan rada luwih padhang",
+      "suggestPoster": "Gawekna kiriman Instagram kothak kanggo diskon musim panas nganggo foto pantai lan judhul kandel",
+      "suggestStory": "Owahi iki dadi story 9:16 lan kebaki kaca nganggo fotone",
+      "suggestTitle": "Tambahna judhul gedhe kandel ing ndhuwur lan subjudhul luwih cilik ing ngisore",
+      "undo": "Batalake",
+      "working": "Lagi digarap…"
+    },
+    "brand": {
+      "addColor": "Tambah werna merek",
+      "addLogo": "Tambah logo",
+      "applied": "Merek wis ditrapake ing {{count}} lapisan.",
+      "apply": "Trapake merek",
+      "bodyFont": "Font isi",
+      "colors": "Werna merek",
+      "heading": "Kit merek",
+      "headingFont": "Font judhul",
+      "logo": "Logo",
+      "noLogo": "Ora ana logo",
+      "removeColor": "Busak {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Enggal teka",
+        "title": "Kabar gedhe arep teka"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Sugeng Ambal Warsa"
+      },
+      "crypto": {
+        "change": "+42% minggu iki",
+        "title": "Update rega"
+      },
+      "event": {
+        "date": "Jemuwah jam 8 bengi",
+        "place": "The Warehouse, tengah kutha",
+        "title": "Wengi musik live"
+      },
+      "heading": "Cithakan",
+      "meme": {
+        "bottom": "Pas nyoba pisanan",
+        "top": "Nalika kode mlaku",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episode 12 · Wis metu",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Gawe prasaja, nanging migunani.",
+        "title": "Kertu kutipan"
+      },
+      "sale": {
+        "subtitle": "Nganti 50% · Mung minggu iki",
+        "title": "Diskon Mangsa Panas"
+      },
+      "story": {
+        "cta": "Geser munggah kanggo tuku",
+        "title": "Rilis anyar"
+      },
+      "thumbnail": {
+        "badge": "Anyar",
+        "title": "Ora bakal percaya"
+      },
+      "hint": "Pilih siji kanggo miwiti. Saben tembung, werna lan foto bisa diowahi, utawa njaluk AI ngowahi kanggo sampeyan.",
+      "use": "Gunakake cithakan {{name}}",
+      "replaceConfirm": "Ganti desain saiki nganggo cithakan iki? Sampeyan bisa mbatalake.",
+      "replaceTitle": "Ganti desainmu?",
+      "replace": "Ganti"
     }
   },
   "creator": {

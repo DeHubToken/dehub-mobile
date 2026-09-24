@@ -4933,7 +4933,10 @@
       "padding": "Utfyllnad {{value}}",
       "thickness": "Tjocklek {{value}}",
       "drawHint": "Dra på sidan för att rita. Varje streck är ett eget lager som du kan flytta, ändra storlek på eller ta bort. Tryck på Sluta rita när du är klar.",
-      "layersHint": "Överst i listan är längst fram. Använd pilarna för att ändra ordningen. Låsta och dolda lager kan bara väljas här."
+      "layersHint": "Överst i listan är längst fram. Använd pilarna för att ändra ordningen. Låsta och dolda lager kan bara väljas här.",
+      "agentWebOnly": "En del av det fungerar än så länge bara i webbredigeraren.",
+      "brandLogoHint": "Markera en bild på sidan och använd den sedan som din logotyp.",
+      "useAsLogo": "Använd vald bild"
     },
     "filters": {
       "none": "Original",
@@ -5027,7 +5030,8 @@
     },
     "rail": {
       "elements": "Element",
-      "layers": "Lager"
+      "layers": "Lager",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5063,6 +5067,89 @@
       "outlineOn": "Kontur",
       "outlineWidth": "Konturbredd {{value}}",
       "path": "Teckning"
+    },
+    "agent": {
+      "changes": "Gjorda ändringar: {{count}}",
+      "clear": "Rensa chatten",
+      "done": "Klart.",
+      "failed": "AI:n kunde inte göra det just nu. Försök igen om en stund.",
+      "introBody": "Beskriv designen eller ändringen med egna ord. Den ändrar sidans storlek, skriver och formaterar text, hittar gratis foton, videor och musik, lägger på filter, ordnar lager och animerar dem. Varje begäran kan ångras i ett steg.",
+      "introTitle": "Berätta för AI:n vad du vill ha",
+      "noStock": "Inget gratis material matchade ”{{query}}”.",
+      "nothingToDo": "Jag hittade inget att ändra utifrån det. Försök beskriva redigeringen du vill ha.",
+      "placeholder": "Beskriv vad du vill ha…",
+      "rateLimited": "Du har skickat många förfrågningar. Försök igen om några minuter.",
+      "send": "Skicka",
+      "suggestFilter": "Gör bilden varmare och lite ljusare",
+      "suggestPoster": "Gör ett kvadratiskt Instagraminlägg för en sommarrea med en strandbild och en fet rubrik",
+      "suggestStory": "Gör om det här till en 9:16-story och fyll sidan med bilden",
+      "suggestTitle": "Lägg till en stor fet rubrik överst och en mindre underrubrik under den",
+      "undo": "Ångra",
+      "working": "Jobbar på det…"
+    },
+    "brand": {
+      "addColor": "Lägg till varumärkesfärg",
+      "addLogo": "Lägg till logotyp",
+      "applied": "Varumärket tillämpades på {{count}} lager.",
+      "apply": "Använd varumärke",
+      "bodyFont": "Brödtexttypsnitt",
+      "colors": "Varumärkesfärger",
+      "heading": "Varumärkeskit",
+      "headingFont": "Rubriktypsnitt",
+      "logo": "Logotyp",
+      "noLogo": "Ingen logotyp",
+      "removeColor": "Ta bort {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Kommer snart",
+        "title": "Stora nyheter på väg"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Grattis på födelsedagen"
+      },
+      "crypto": {
+        "change": "+42% den här veckan",
+        "title": "Kursuppdatering"
+      },
+      "event": {
+        "date": "Fredag 20.00",
+        "place": "The Warehouse, centrum",
+        "title": "Livemusikkväll"
+      },
+      "heading": "Mallar",
+      "meme": {
+        "bottom": "På första försöket",
+        "top": "När koden funkar",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Avsnitt 12 · Ute nu",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Gör det enkelt, men betydelsefullt.",
+        "title": "Citatkort"
+      },
+      "sale": {
+        "subtitle": "Upp till 50% rabatt · Bara i helgen",
+        "title": "Sommarrea"
+      },
+      "story": {
+        "cta": "Svep upp och shoppa",
+        "title": "Nyhet"
+      },
+      "thumbnail": {
+        "badge": "Ny",
+        "title": "Det här tror du inte"
+      },
+      "hint": "Välj en för att börja. Varje ord, färg och foto kan ändras, eller be AI:n ändra det åt dig.",
+      "use": "Använd mallen {{name}}",
+      "replaceConfirm": "Ersätt nuvarande design med den här mallen? Du kan ångra det.",
+      "replaceTitle": "Ersätta din design?",
+      "replace": "Ersätt"
     }
   },
   "creator": {

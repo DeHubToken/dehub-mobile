@@ -61,6 +61,12 @@ within 7/255.
    WebView). `types.ts` is back to identical with the web, and `canvasHtml.ts`
    ports the web's shape, blend, hidden-layer and grade code; the web also
    dropped its automatic 0.3s text fade-in, so the page did too.
+   **AI, templates, brand kit:** the AI chat calls the same `editor-agent` edge
+   function as the web; `libs/editor/agent.ts` applies its ops to the snapshot
+   (one undo). Templates are the web's op lists (`templates.ts`), stock photos
+   come from `free-stock-assets` and are downloaded on the phone (`stock.ts`),
+   and the brand kit lives in AsyncStorage (`brand.ts`). Captions, pages and AI
+   generation stay web-only until video lands; the agent says so when asked.
 2. **Designs across devices.** Both apps keep projects on the device today, so
    the same design cannot yet move between them. Sync the snapshot to a table
    keyed by wallet and upload pictures to the `editor-assets` bucket the web's

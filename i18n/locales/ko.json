@@ -4993,7 +4993,10 @@
       "padding": "여백 {{value}}",
       "thickness": "두께 {{value}}",
       "drawHint": "페이지를 드래그해서 그리세요. 각 획은 이동, 크기 조절, 삭제가 가능한 별도의 레이어가 됩니다. 다 그리면 그리기 중지를 탭하세요.",
-      "layersHint": "목록의 맨 위가 가장 앞입니다. 화살표로 순서를 바꾸세요. 잠겼거나 숨겨진 레이어는 여기에서만 선택할 수 있습니다."
+      "layersHint": "목록의 맨 위가 가장 앞입니다. 화살표로 순서를 바꾸세요. 잠겼거나 숨겨진 레이어는 여기에서만 선택할 수 있습니다.",
+      "agentWebOnly": "일부 기능은 현재 웹 편집기에서만 작동합니다.",
+      "brandLogoHint": "페이지에서 이미지를 선택한 다음 로고로 사용하세요.",
+      "useAsLogo": "선택한 이미지 사용"
     },
     "filters": {
       "none": "원본",
@@ -5087,7 +5090,8 @@
     },
     "rail": {
       "elements": "요소",
-      "layers": "레이어"
+      "layers": "레이어",
+      "agent": "AI"
     },
     "blend": {
       "normal": "표준",
@@ -5123,6 +5127,89 @@
       "outlineOn": "윤곽선",
       "outlineWidth": "윤곽선 두께 {{value}}",
       "path": "그림"
+    },
+    "agent": {
+      "changes": "적용된 편집: {{count}}",
+      "clear": "대화 지우기",
+      "done": "완료했습니다.",
+      "failed": "지금은 AI가 이 작업을 할 수 없습니다. 잠시 후 다시 시도하세요.",
+      "introBody": "디자인이나 변경 사항을 편하게 설명하세요. 페이지 크기 조정, 텍스트 작성과 스타일 지정, 무료 사진·동영상·음악 찾기, 필터 적용, 레이어 정리와 애니메이션까지 해 줍니다. 요청마다 실행 취소 한 번으로 되돌릴 수 있습니다.",
+      "introTitle": "AI에게 원하는 것을 말해 보세요",
+      "noStock": "'{{query}}'와 일치하는 무료 소재가 없습니다.",
+      "nothingToDo": "변경할 부분을 찾지 못했습니다. 원하는 편집을 설명해 보세요.",
+      "placeholder": "원하는 것을 설명하세요…",
+      "rateLimited": "요청을 너무 많이 보냈습니다. 몇 분 후에 다시 시도하세요.",
+      "send": "보내기",
+      "suggestFilter": "사진을 더 따뜻하고 조금 더 밝게 해 줘",
+      "suggestPoster": "해변 사진과 굵은 제목으로 여름 세일용 정사각형 인스타그램 게시물 만들어 줘",
+      "suggestStory": "이걸 9:16 스토리로 바꾸고 사진으로 페이지를 꽉 채워 줘",
+      "suggestTitle": "상단에 크고 굵은 제목을 넣고 그 아래에 작은 부제목을 추가해 줘",
+      "undo": "실행 취소",
+      "working": "작업 중…"
+    },
+    "brand": {
+      "addColor": "브랜드 색상 추가",
+      "addLogo": "로고 추가",
+      "applied": "레이어 {{count}}개에 브랜드를 적용했습니다.",
+      "apply": "브랜드 적용",
+      "bodyFont": "본문 글꼴",
+      "colors": "브랜드 색상",
+      "heading": "브랜드 키트",
+      "headingFont": "제목 글꼴",
+      "logo": "로고",
+      "noLogo": "로고 없음",
+      "removeColor": "{{color}} 삭제"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "커밍 순",
+        "title": "빅 뉴스가 온다"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "생일 축하해"
+      },
+      "crypto": {
+        "change": "이번 주 +42%",
+        "title": "가격 업데이트"
+      },
+      "event": {
+        "date": "금요일 오후 8시",
+        "place": "더 웨어하우스, 다운타운",
+        "title": "라이브 뮤직 나이트"
+      },
+      "heading": "템플릿",
+      "meme": {
+        "bottom": "한 번에",
+        "top": "코드가 돌아갈 때",
+        "title": "밈"
+      },
+      "podcast": {
+        "episode": "12화 · 지금 공개",
+        "title": "크리에이터 쇼"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "단순하게, 하지만 의미 있게.",
+        "title": "명언 카드"
+      },
+      "sale": {
+        "subtitle": "최대 50% 할인 · 이번 주말만",
+        "title": "썸머 세일"
+      },
+      "story": {
+        "cta": "위로 밀어서 쇼핑",
+        "title": "신상 출시"
+      },
+      "thumbnail": {
+        "badge": "NEW",
+        "title": "믿을 수 없을걸!"
+      },
+      "hint": "하나를 골라 시작하세요. 모든 글자, 색상, 사진을 바꿀 수 있고 AI에게 바꿔 달라고 할 수도 있어요.",
+      "use": "{{name}} 템플릿 사용",
+      "replaceConfirm": "현재 디자인을 이 템플릿으로 바꿀까요? 실행 취소할 수 있어요.",
+      "replaceTitle": "디자인을 바꿀까요?",
+      "replace": "바꾸기"
     }
   },
   "creator": {

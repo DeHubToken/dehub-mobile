@@ -4994,7 +4994,10 @@
       "padding": "Padding {{value}}",
       "thickness": "Thickness {{value}}",
       "drawHint": "Drag on the page to draw. Each stroke is its own layer you can move, resize or delete. Tap Stop drawing when you are done.",
-      "layersHint": "Top of the list is the front. Use the arrows to restack. Locked and hidden layers can only be picked here."
+      "layersHint": "Top of the list is the front. Use the arrows to restack. Locked and hidden layers can only be picked here.",
+      "agentWebOnly": "Some of that only works in the web editor for now.",
+      "brandLogoHint": "Select a picture on the page, then use it as your logo.",
+      "useAsLogo": "Use selected picture"
     },
     "filters": {
       "none": "Original",
@@ -5088,7 +5091,8 @@
     },
     "rail": {
       "elements": "Elements",
-      "layers": "Layers"
+      "layers": "Layers",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5124,6 +5128,89 @@
       "outlineOn": "Outline",
       "outlineWidth": "Outline width {{value}}",
       "path": "Drawing"
+    },
+    "agent": {
+      "changes": "Edits made: {{count}}",
+      "clear": "Clear chat",
+      "done": "Done.",
+      "failed": "The AI couldn't do that right now. Try again in a moment.",
+      "introBody": "Describe the design or the change in your own words. It resizes the page, writes and styles text, finds free photos, videos and music, applies filters, arranges layers and animates them. Every request is one undo.",
+      "introTitle": "Tell the AI what you want",
+      "noStock": "No free stock matched “{{query}}”.",
+      "nothingToDo": "I couldn't find anything to change for that. Try describing the edit you want.",
+      "placeholder": "Describe what you want…",
+      "rateLimited": "You've sent a lot of requests. Try again in a few minutes.",
+      "send": "Send",
+      "suggestFilter": "Make the photo warmer and a bit brighter",
+      "suggestPoster": "Make a square Instagram post for a summer sale with a beach photo and a bold title",
+      "suggestStory": "Turn this into a 9:16 story and fill the page with the photo",
+      "suggestTitle": "Add a big bold title at the top and a smaller subtitle under it",
+      "undo": "Undo",
+      "working": "Working on it…"
+    },
+    "brand": {
+      "addColor": "Add a brand colour",
+      "addLogo": "Add logo",
+      "applied": "Brand applied to {{count}} layers.",
+      "apply": "Apply brand",
+      "bodyFont": "Body font",
+      "colors": "Brand colours",
+      "heading": "Brand kit",
+      "headingFont": "Heading font",
+      "logo": "Logo",
+      "noLogo": "No logo",
+      "removeColor": "Remove {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Coming soon",
+        "title": "Big news is coming"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Happy Birthday"
+      },
+      "crypto": {
+        "change": "+42% this week",
+        "title": "Price update"
+      },
+      "event": {
+        "date": "Friday 8 PM",
+        "place": "The Warehouse, downtown",
+        "title": "Live music night"
+      },
+      "heading": "Templates",
+      "meme": {
+        "bottom": "On the first try",
+        "top": "When the code works",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episode 12 · Out now",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Make it simple, but significant.",
+        "title": "Quote card"
+      },
+      "sale": {
+        "subtitle": "Up to 50% off · This weekend only",
+        "title": "Summer Sale"
+      },
+      "story": {
+        "cta": "Swipe up to shop",
+        "title": "New drop"
+      },
+      "thumbnail": {
+        "badge": "New",
+        "title": "You won't believe this"
+      },
+      "hint": "Pick one to start. Every word, colour and photo can be changed, or ask the AI to change it for you.",
+      "use": "Use the {{name}} template",
+      "replaceConfirm": "Replace the current design with this template? You can undo it.",
+      "replaceTitle": "Replace your design?",
+      "replace": "Replace"
     }
   },
   "creator": {

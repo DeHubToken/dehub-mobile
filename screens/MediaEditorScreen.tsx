@@ -47,12 +47,19 @@ import {
   PositionPanel,
   ShadowPanel,
   Swatches,
+  SWATCHES,
   TextColourPanel,
   TextStylePanel,
   type LayerClip,
   type Patch,
 } from "../components/editor/EditorPanels";
-import { BlendPanel, DrawPanel, LayersPanel, ShapeStylePanel, ShapesPanel } from "../components/editor/EditorLayerPanels";
+import { BlendPanel, BrandPanel, DrawPanel, LayersPanel, ShapeStylePanel, ShapesPanel, TemplateTiles } from "../components/editor/EditorLayerPanels";
+import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
+import { applyOps, askAgent, describeScene, type AgentMessage } from "../libs/editor/agent";
+import { applyBrand, EMPTY_BRAND, hasBrand, loadBrand, saveBrand, type BrandKit } from "../libs/editor/brand";
+import { TEMPLATES, templateOps } from "../libs/editor/templates";
+import { importStockPhoto } from "../libs/editor/stock";
+import { EDITOR_FONTS, fontFamilyCss as fontCssOf } from "../libs/editor/fonts";
 import {
   addImage,
   addShape,
@@ -106,6 +113,25 @@ export default function MediaEditorScreen() {
 function Home({ onOpen, onCreate }: { onOpen: (id: string) => void; onCreate: (p: ProjectSnapshot) => void }) {
   const { t } = useTranslation();
   const [projects, setProjects] = useState<ProjectSnapshot[] | null>(null);
+  const [templateBusy, setTemplateBusy] = useState<string | null>(null);
+
+  // A template is the same list of operations the AI agent uses; photos are
+  // fetched from the free stock library now, on the phone.
+  const startFromTemplate = async (id: string) => {
+    const tpl = TEMPLATES.find((x) => x.id === id);
+    const ops = templateOps(id, t);
+    if (!tpl || !ops) return;
+    setTemplateBusy(id);
+    try {
+      const base = newProject(tpl.aspect as Exclude<AspectPreset, "custom">, t(tpl.titleKey));
+      const { project } = await applyOps(base, ops, { importStock: (q, o) => importStockPhoto(q, o) });
+      onCreate(project);
+    } catch {
+      toastError(t("common.somethingWentWrong"));
+    } finally {
+      setTemplateBusy(null);
+    }
+  };
 
   const refresh = useCallback(() => { listProjects().then(setProjects); }, []);
   useEffect(refresh, [refresh]);
@@ -148,6 +174,13 @@ function Home({ onOpen, onCreate }: { onOpen: (id: string) => void; onCreate: (p
                 );
               })}
             </View>
+            <Text className="text-white text-lg font-semibold mt-4">{t("editor.templates.heading")}</Text>
+            <TemplateTiles
+              templates={TEMPLATES.map((x) => ({ id: x.id, aspect: x.aspect, preview: x.preview, title: t(x.titleKey) }))}
+              busyId={templateBusy}
+              onPick={(id) => { void startFromTemplate(id); }}
+            />
+            {templateBusy && <DeHubLoader size={32} />}
             <Text className="text-white text-lg font-semibold mt-4">{t("editor.app.yourDesigns")}</Text>
             {projects === null && <DeHubLoader />}
           </View>
@@ -188,10 +221,10 @@ type Tool =
   | "filters" | "adjust" | "crop" | "corners" | "fit"
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
-  | "shapes" | "draw" | "layers" | "shapeStyle" | "blend";
+  | "shapes" | "draw" | "layers" | "shapeStyle" | "blend" | "brand";
 
 interface ToolButton {
-  id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete";
+  id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete" | "ai";
   icon: IconName;
   label: string;
 }
@@ -261,6 +294,13 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
   const [busy, setBusy] = useState(false);
   // Freehand pen; while set, one finger draws on the page.
   const [pen, setPen] = useState<{ color: string; width: number } | null>(null);
+  // AI chat and brand kit.
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chat, setChat] = useState<ChatEntry[]>([]);
+  const [chatBusy, setChatBusy] = useState(false);
+  const [brand, setBrand] = useState<BrandKit>(EMPTY_BRAND);
+  useEffect(() => { loadBrand().then(setBrand); }, []);
+  const updateBrand = (kit: BrandKit) => { setBrand(kit); void saveBrand(kit); };
 
   // Open an existing design.
   useEffect(() => {
@@ -361,8 +401,37 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
     }));
   };
 
+  const sendToAgent = async (text: string) => {
+    if (!project || chatBusy) return;
+    const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+    const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
+    setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
+    setChatBusy(true);
+    try {
+      const { reply, ops } = await askAgent(history, describeScene(project, selectedId, hasBrand(brand) ? brand : null));
+      const { project: next, report } = await applyOps(project, ops, {
+        importStock: (q, o) => importStockPhoto(q, o),
+        brand,
+        applyBrand: (p) => applyBrand(p, brand),
+        templateOps: (id) => templateOps(id, t),
+      });
+      if (report.applied > 0) h.commit(next);
+      if (report.selectedId) setSelectedId(report.selectedId);
+      let content = reply || (ops.length ? t("editor.agent.done") : t("editor.agent.nothingToDo"));
+      if (report.missingStock.length) content += ` ${t("editor.agent.noStock", { query: report.missingStock.join(", ") })}`;
+      if (report.unsupported.length) content += ` ${t("editor.app.agentWebOnly")}`;
+      setChat((c) => [...c, { id: entryId(), role: "assistant", content, applied: report.applied }]);
+    } catch (e) {
+      const code = e instanceof Error ? e.message : "";
+      setChat((c) => [...c, { id: entryId(), role: "assistant", error: true, content: code === "rate_limited" ? t("editor.agent.rateLimited") : t("editor.agent.failed") }]);
+    } finally {
+      setChatBusy(false);
+    }
+  };
+
   const onToolPress = (id: ToolButton["id"]) => {
     if (!project) return;
+    if (id === "ai") { setChatOpen(true); return; }
     if (id === "photo") { void addPhoto(); return; }
     if (id === "text") { addTextLayer(); return; }
     if (id === "edit" && selectedId) { setEditingText(selectedId); return; }
@@ -383,11 +452,13 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
   const tools: ToolButton[] = useMemo(() => {
     if (!selected) {
       return [
+        { id: "ai", icon: "Sparkles", label: t("editor.rail.agent") },
         { id: "photo", icon: "ImagePlus", label: t("editor.app.photo") },
         { id: "text", icon: "Type", label: t("editor.menu.addText") },
         { id: "shapes", icon: "Shapes", label: t("editor.rail.elements") },
         { id: "draw", icon: "PenLine", label: t("editor.draw.heading") },
         { id: "layers", icon: "Layers", label: t("editor.rail.layers") },
+        { id: "brand", icon: "Stamp", label: t("editor.brand.heading") },
         { id: "page", icon: "RectangleVertical", label: t("editor.app.pageSize") },
         { id: "background", icon: "PaintBucket", label: t("editor.app.background") },
       ];
@@ -450,6 +521,33 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
       );
     }
     if (tool === "draw") return <DrawPanel pen={pen} onChange={setPen} />;
+    if (tool === "brand") {
+      const designColors = project.clips.flatMap((c) => (c.kind === "text" ? [c.color] : c.kind === "shape" && c.fill ? [c.fill] : []));
+      return (
+        <BrandPanel
+          kit={brand}
+          designColors={[project.settings.background, ...designColors]}
+          palette={SWATCHES}
+          fonts={EDITOR_FONTS.map((f) => ({ family: f.family, css: fontCssOf(f) }))}
+          canUseSelectedAsLogo={selected?.kind === "image"}
+          onChange={updateBrand}
+          onUseSelectedAsLogo={() => {
+            if (selected?.kind === "image") updateBrand({ ...brand, logoMediaId: selected.mediaId });
+            else toastError(t("editor.app.brandLogoHint"));
+          }}
+          onApply={() => {
+            if (!hasBrand(brand)) return;
+            h.commit(applyBrand(project, brand));
+            toastSuccess(t("editor.brand.applied", { count: project.clips.length }));
+          }}
+          onAddLogo={() => {
+            if (!brand.logoMediaId) return;
+            const { project: next, clipId } = addImage(project, brand.logoMediaId);
+            h.commit(updateClip(next, clipId, { transform: { x: 0.88, y: 0.1, scale: 0.16, rotation: 0 } }));
+          }}
+        />
+      );
+    }
     if (tool === "layers") {
       return (
         <LayersPanel
@@ -555,6 +653,7 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
         <Pressable className="flex-1 px-2" onPress={() => setRenaming(true)} accessibilityRole="button" accessibilityLabel={t("editor.app.rename")}>
           <Text className="text-white font-semibold" numberOfLines={1}>{project.title || t("creator.untitled")}</Text>
         </Pressable>
+        <IconButton icon="Sparkles" label={t("editor.rail.agent")} onPress={() => setChatOpen(true)} />
         <IconButton icon="Undo2" label={t("editor.app.undo")} onPress={h.undo} disabled={!h.canUndo} />
         <IconButton icon="Redo2" label={t("editor.app.redo")} onPress={h.redo} disabled={!h.canRedo} />
         <Pressable
@@ -653,6 +752,16 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
           h.commit({ ...project, title: value.trim() || t("creator.untitled") });
           setRenaming(false);
         }}
+      />
+
+      <AgentSheet
+        visible={chatOpen}
+        entries={chat}
+        busy={chatBusy}
+        onSend={(text) => { void sendToAgent(text); }}
+        onUndo={h.undo}
+        onClose={() => setChatOpen(false)}
+        onClear={() => setChat([])}
       />
 
       <ExportSheet

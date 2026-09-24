@@ -4519,7 +4519,10 @@
       "padding": "Padding {{value}}",
       "thickness": "Thickness {{value}}",
       "drawHint": "Drag for di page for draw. Every line wey you draw na ih own layer wey you fit move, resize or delete. Tap “Stop draw” when you don finish.",
-      "layersHint": "Di one for top of di list na di one for front. Use di arrows for arrange dem again. Na only for here you fit pick layers wey you lock or hide."
+      "layersHint": "Di one for top of di list na di one for front. Use di arrows for arrange dem again. Na only for here you fit pick layers wey you lock or hide.",
+      "agentWebOnly": "Some of dat one na only for web editor e di work for now.",
+      "brandLogoHint": "Select one picture for di page, den use am as yua logo.",
+      "useAsLogo": "Use di picture weh you select"
     },
     "filters": {
       "none": "Original",
@@ -4613,7 +4616,8 @@
     },
     "rail": {
       "elements": "Elements",
-      "layers": "Layers"
+      "layers": "Layers",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -4649,6 +4653,89 @@
       "outlineOn": "Outline",
       "outlineWidth": "Outline width {{value}}",
       "path": "Drawing"
+    },
+    "agent": {
+      "changes": "Edit wey we make: {{count}}",
+      "clear": "Clear chat",
+      "done": "E don finish.",
+      "failed": "AI no fit do dat one now. Try again small time.",
+      "introBody": "Describe di design or di change for yua own word. E fit resize di page, write and style text, find free photo, video and music, put filter, arrange layer dem and animate dem. Every request na one undo.",
+      "introTitle": "Tell AI wetin you want",
+      "noStock": "No free stock match “{{query}}”.",
+      "nothingToDo": "I no find anything for change for dat one. Try describe di edit wey you want.",
+      "placeholder": "Describe wetin you want…",
+      "rateLimited": "You don send plenty request. Try again after some minute.",
+      "send": "Send",
+      "suggestFilter": "Make di photo warm small and bright small",
+      "suggestPoster": "Make square Instagram post for summer sale wit beach photo and big bold title",
+      "suggestStory": "Turn dis one for 9:16 story and make di photo full di page",
+      "suggestTitle": "Put big bold title for top and small subtitle for under-am",
+      "undo": "Undo",
+      "working": "I di work for am…"
+    },
+    "brand": {
+      "addColor": "Add one brand colour",
+      "addLogo": "Add logo",
+      "applied": "Brand don apply for {{count}} layer dem.",
+      "apply": "Apply brand",
+      "bodyFont": "Body font",
+      "colors": "Brand colour dem",
+      "heading": "Brand kit",
+      "headingFont": "Heading font",
+      "logo": "Logo",
+      "noLogo": "No logo",
+      "removeColor": "Remove {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "E di come soon",
+        "title": "Big news di come"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Happy Birthday"
+      },
+      "crypto": {
+        "change": "+42% dis week",
+        "title": "Price update"
+      },
+      "event": {
+        "date": "Friday 8 PM",
+        "place": "The Warehouse, for town",
+        "title": "Live music night"
+      },
+      "heading": "Templates",
+      "meme": {
+        "bottom": "For first try",
+        "top": "When di code work",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episode 12 · E don comot",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Make am simple, but make e get meaning.",
+        "title": "Quote card"
+      },
+      "sale": {
+        "subtitle": "Up to 50% off · Na dis weekend only",
+        "title": "Summer Sale"
+      },
+      "story": {
+        "cta": "Swipe up for buy",
+        "title": "New tins don land"
+      },
+      "thumbnail": {
+        "badge": "New",
+        "title": "You no go believe dis"
+      },
+      "hint": "Pick one for start. You fit change every word, colour and photo, or ask AI make e change am for you.",
+      "use": "Use di {{name}} template",
+      "replaceConfirm": "Replace dis design wit dis template? You fit undo am.",
+      "replaceTitle": "Change your design?",
+      "replace": "Change-am"
     }
   },
   "creator": {

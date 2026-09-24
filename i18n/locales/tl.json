@@ -5103,7 +5103,10 @@
       "padding": "Padding {{value}}",
       "thickness": "Kapal {{value}}",
       "drawHint": "I-drag sa pahina para gumuhit. Bawat guhit ay sariling layer na puwede mong ilipat, baguhin ang laki o burahin. I-tap ang Itigil ang pagguhit kapag tapos ka na.",
-      "layersHint": "Ang itaas ng listahan ang nasa harap. Gamitin ang mga arrow para ayusin ulit ang pagkakasunod. Dito lang mapipili ang mga naka-lock at nakatagong layer."
+      "layersHint": "Ang itaas ng listahan ang nasa harap. Gamitin ang mga arrow para ayusin ulit ang pagkakasunod. Dito lang mapipili ang mga naka-lock at nakatagong layer.",
+      "agentWebOnly": "Ang ilan dito ay gumagana lang sa web editor sa ngayon.",
+      "brandLogoHint": "Pumili ng larawan sa page, pagkatapos ay gamitin ito bilang iyong logo.",
+      "useAsLogo": "Gamitin ang napiling larawan"
     },
     "filters": {
       "none": "Orihinal",
@@ -5197,7 +5200,8 @@
     },
     "rail": {
       "elements": "Mga elemento",
-      "layers": "Mga layer"
+      "layers": "Mga layer",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5233,6 +5237,89 @@
       "outlineOn": "Outline",
       "outlineWidth": "Kapal ng outline {{value}}",
       "path": "Drawing"
+    },
+    "agent": {
+      "changes": "Mga nagawang edit: {{count}}",
+      "clear": "I-clear ang chat",
+      "done": "Tapos na.",
+      "failed": "Hindi ito magawa ng AI ngayon. Subukan ulit mamaya.",
+      "introBody": "Ilarawan ang disenyo o ang pagbabago sa sarili mong salita. Binabago nito ang laki ng page, nagsusulat at nag-i-style ng teksto, naghahanap ng libreng litrato, video at musika, naglalagay ng filter, nag-aayos ng mga layer at ina-animate ang mga ito. Bawat request ay isang undo lang.",
+      "introTitle": "Sabihin sa AI ang gusto mo",
+      "noStock": "Walang libreng stock na tumugma sa “{{query}}”.",
+      "nothingToDo": "Wala akong nakitang babaguhin para diyan. Subukang ilarawan ang edit na gusto mo.",
+      "placeholder": "Ilarawan ang gusto mo…",
+      "rateLimited": "Marami ka nang naipadalang request. Subukan ulit pagkalipas ng ilang minuto.",
+      "send": "Ipadala",
+      "suggestFilter": "Gawing mas warm at medyo mas maliwanag ang litrato",
+      "suggestPoster": "Gumawa ng square na Instagram post para sa summer sale na may litrato ng beach at bold na pamagat",
+      "suggestStory": "Gawin itong 9:16 na story at punuin ang page ng litrato",
+      "suggestTitle": "Magdagdag ng malaking bold na pamagat sa itaas at mas maliit na subtitle sa ilalim nito",
+      "undo": "I-undo",
+      "working": "Ginagawa na…"
+    },
+    "brand": {
+      "addColor": "Magdagdag ng kulay ng brand",
+      "addLogo": "Magdagdag ng logo",
+      "applied": "Nailapat ang brand sa {{count}} layer.",
+      "apply": "Ilapat ang brand",
+      "bodyFont": "Font ng body",
+      "colors": "Mga kulay ng brand",
+      "heading": "Brand kit",
+      "headingFont": "Font ng heading",
+      "logo": "Logo",
+      "noLogo": "Walang logo",
+      "removeColor": "Alisin ang {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Malapit na",
+        "title": "May malaking balita"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Maligayang Kaarawan"
+      },
+      "crypto": {
+        "change": "+42% ngayong linggo",
+        "title": "Update sa presyo"
+      },
+      "event": {
+        "date": "Biyernes, 8 PM",
+        "place": "The Warehouse, downtown",
+        "title": "Gabi ng live music"
+      },
+      "heading": "Mga template",
+      "meme": {
+        "bottom": "Sa unang subok",
+        "top": "Kapag gumana ang code",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episode 12 · Labas na",
+        "title": "Ang Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Gawing simple, pero may saysay.",
+        "title": "Quote card"
+      },
+      "sale": {
+        "subtitle": "Hanggang 50% off · Ngayong weekend lang",
+        "title": "Summer Sale"
+      },
+      "story": {
+        "cta": "Mag-swipe up para mamili",
+        "title": "Bagong labas"
+      },
+      "thumbnail": {
+        "badge": "Bago",
+        "title": "Hindi ka maniniwala"
+      },
+      "hint": "Pumili ng isa para magsimula. Mababago ang bawat salita, kulay at larawan, o ipagawa ito sa AI.",
+      "use": "Gamitin ang {{name}} template",
+      "replaceConfirm": "Palitan ang kasalukuyang disenyo ng template na ito? Puwede mo itong i-undo.",
+      "replaceTitle": "Palitan ang iyong disenyo?",
+      "replace": "Palitan"
     }
   },
   "creator": {

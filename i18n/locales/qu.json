@@ -4956,7 +4956,10 @@
       "padding": "Ukhu chawpi {{value}}",
       "thickness": "Rakhu kay {{value}}",
       "drawHint": "Raphipi aysay siq'inaykipaq. Sapa siq'iqa kikin pataqmi, kuyuchiyta, sayayninta tikrayta utaq pichayta atinki. Tukuspaqa “Siq'iyta sayachiy” nisqata ñit'iy.",
-      "layersHint": "Listapa hawanmi ñawpaqpi kachkan. Wach'ichakunawan huk kutita churay. Wichqasqa, pakasqa pataqkunataqa kaypillam akllayta atikun."
+      "layersHint": "Listapa hawanmi ñawpaqpi kachkan. Wach'ichakunawan huk kutita churay. Wichqasqa, pakasqa pataqkunataqa kaypillam akllayta atikun.",
+      "agentWebOnly": "Chaymanta wakinqa kunanqa web editorllapi llamk'an.",
+      "brandLogoHint": "P'anqapi huk siq'ita akllay, chaymantataq logoyki hina llamk'achiy.",
+      "useAsLogo": "Akllasqa siq'ita llamk'achiy"
     },
     "filters": {
       "none": "Qallariy kaq",
@@ -5050,7 +5053,8 @@
     },
     "rail": {
       "elements": "Imakuna",
-      "layers": "Pataqkuna"
+      "layers": "Pataqkuna",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5086,6 +5090,89 @@
       "outlineOn": "Muyuq siqi",
       "outlineWidth": "Muyuq siqipa rakhu kaynin {{value}}",
       "path": "Siq'isqa"
+    },
+    "agent": {
+      "changes": "Ruwasqa allichaykuna: {{count}}",
+      "clear": "Rimanakuyta pichay",
+      "done": "Tukusqa.",
+      "failed": "AI-qa manam kunan chayta ruwayta atirqanchu. Huk ratumanta yapamanta pruebay.",
+      "introBody": "Diseñota utaq tikrayta kikiykiq simiykiwan willay. Paginaq sayayninta tikran, qillqata qillqan hinaspa sumaqchan, mana qullqiyuq fotokunata, videokunata, takikunatapas maskan, filtrokunata churan, capakunata allichan hinaspa kuyuchin. Sapa mañakuyqa huk kutichiywanmi kutirin.",
+      "introTitle": "AI-man willay imatachus munanki",
+      "noStock": "Mana qullqiyuq imakuna “{{query}}”-wan tupanchu.",
+      "nothingToDo": "Chaypaq mana imatapas tikranapaq tarirqanichu. Munasqayki allichayta willayta pruebay.",
+      "placeholder": "Imatachus munanki willay…",
+      "rateLimited": "Achka mañakuykunata apachirqanki. Wakin minutokuna qhipaman yapamanta pruebay.",
+      "send": "Apachiy",
+      "suggestFilter": "Fotota aswan q'uñiman hinaspa huk chikan aswan k'anchayniyuqman tukuchiy",
+      "suggestPoster": "Rupay mit'a rebajapaq tawa k'uchuyuq Instagram willakuyta ruway, qucha patapi fotowan, rakhu sutichaywan",
+      "suggestStory": "Kayta 9:16 historiaman tukuchiy hinaspa paginata fotowan hunt'achiy",
+      "suggestTitle": "Hawaman hatun rakhu sutichayta churay, uranmantaq aswan huch'uy uña sutichayta",
+      "undo": "Kutichiy",
+      "working": "Llamk'achkani…"
+    },
+    "brand": {
+      "addColor": "Marcapa llimp'inta yapay",
+      "addLogo": "Logota yapay",
+      "applied": "Marcaqa {{count}} capakunapi churasqa.",
+      "apply": "Marcata churay",
+      "bodyFont": "Qillqa laya",
+      "colors": "Marcapa llimp'inkuna",
+      "heading": "Marcapa kit",
+      "headingFont": "Umalliq qillqa laya",
+      "logo": "Logo",
+      "noLogo": "Mana logo kanchu",
+      "removeColor": "{{color}} qichuy"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Qayllaña",
+        "title": "Hatun willakuy hamushan"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Sumaq p'unchawniyki"
+      },
+      "crypto": {
+        "change": "+42% kay semanapi",
+        "title": "Chanin musuqchay"
+      },
+      "event": {
+        "date": "Viernes tutapi 8",
+        "place": "The Warehouse, llaqta chawpi",
+        "title": "Kawsaq takiy tuta"
+      },
+      "heading": "Plantillakuna",
+      "meme": {
+        "bottom": "Ñawpaq kaqpi",
+        "top": "Codigo llamk'aqtin",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episodio 12 · Kunan lluqsirqan",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Ch'uyata ruray, ichaqa chaniyuqta.",
+        "title": "Rimay tarjeta"
+      },
+      "sale": {
+        "subtitle": "50% kama pisiyan · Kay semana tukukuypi",
+        "title": "Ruphay mit'a qhatu"
+      },
+      "story": {
+        "cta": "Rantinaykipaq wichayman aysay",
+        "title": "Musuq lluqsiy"
+      },
+      "thumbnail": {
+        "badge": "Musuq",
+        "title": "Mana creerankichu"
+      },
+      "hint": "Hukta akllay qallarinaykipaq. Sapa simita, llimpita, fototapas tikrayta atinki, utaq IA-ta mañakuy qampaq tikrananpaq.",
+      "use": "{{name}} plantillata llamk'achiy",
+      "replaceConfirm": "Kunan diseñota kay plantillawan tikraykuchikuchu? Kutichiyta atinki.",
+      "replaceTitle": "¿Diseñoykita tikranki?",
+      "replace": "Tikray"
     }
   },
   "creator": {

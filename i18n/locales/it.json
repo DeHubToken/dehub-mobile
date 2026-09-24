@@ -5000,7 +5000,10 @@
       "padding": "Spaziatura interna {{value}}",
       "thickness": "Spessore {{value}}",
       "drawHint": "Trascina sulla pagina per disegnare. Ogni tratto è un livello a sé che puoi spostare, ridimensionare o eliminare. Tocca Smetti di disegnare quando hai finito.",
-      "layersHint": "La parte alta dell’elenco è in primo piano. Usa le frecce per riordinare. I livelli bloccati e nascosti si possono selezionare solo qui."
+      "layersHint": "La parte alta dell’elenco è in primo piano. Usa le frecce per riordinare. I livelli bloccati e nascosti si possono selezionare solo qui.",
+      "agentWebOnly": "Alcune di queste funzioni per ora sono disponibili solo nell'editor web.",
+      "brandLogoHint": "Seleziona un'immagine nella pagina, poi usala come logo.",
+      "useAsLogo": "Usa immagine selezionata"
     },
     "filters": {
       "none": "Originale",
@@ -5094,7 +5097,8 @@
     },
     "rail": {
       "elements": "Elementi",
-      "layers": "Livelli"
+      "layers": "Livelli",
+      "agent": "IA"
     },
     "blend": {
       "normal": "Normale",
@@ -5130,6 +5134,89 @@
       "outlineOn": "Contorno",
       "outlineWidth": "Spessore contorno {{value}}",
       "path": "Disegno"
+    },
+    "agent": {
+      "changes": "Modifiche effettuate: {{count}}",
+      "clear": "Cancella chat",
+      "done": "Fatto.",
+      "failed": "L'IA non è riuscita a farlo ora. Riprova tra un momento.",
+      "introBody": "Descrivi il design o la modifica con parole tue. Ridimensiona la pagina, scrive e formatta il testo, trova foto, video e musica gratuiti, applica filtri, dispone i livelli e li anima. Ogni richiesta si annulla in un solo passaggio.",
+      "introTitle": "Di' all'IA cosa vuoi",
+      "noStock": "Nessun contenuto gratuito corrisponde a “{{query}}”.",
+      "nothingToDo": "Non ho trovato nulla da modificare. Prova a descrivere la modifica che vuoi.",
+      "placeholder": "Descrivi cosa vuoi…",
+      "rateLimited": "Hai inviato molte richieste. Riprova tra qualche minuto.",
+      "send": "Invia",
+      "suggestFilter": "Rendi la foto più calda e un po' più luminosa",
+      "suggestPoster": "Crea un post Instagram quadrato per i saldi estivi con una foto di spiaggia e un titolo in grassetto",
+      "suggestStory": "Trasformalo in una storia 9:16 e riempi la pagina con la foto",
+      "suggestTitle": "Aggiungi un titolo grande in grassetto in alto e un sottotitolo più piccolo sotto",
+      "undo": "Annulla",
+      "working": "Ci sto lavorando…"
+    },
+    "brand": {
+      "addColor": "Aggiungi un colore del brand",
+      "addLogo": "Aggiungi logo",
+      "applied": "Brand applicato a {{count}} livelli.",
+      "apply": "Applica brand",
+      "bodyFont": "Font del testo",
+      "colors": "Colori del brand",
+      "heading": "Kit del brand",
+      "headingFont": "Font dei titoli",
+      "logo": "Logo",
+      "noLogo": "Nessun logo",
+      "removeColor": "Rimuovi {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "In arrivo",
+        "title": "Grandi novità in arrivo"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Buon compleanno"
+      },
+      "crypto": {
+        "change": "+42% questa settimana",
+        "title": "Aggiornamento prezzo"
+      },
+      "event": {
+        "date": "Venerdì ore 20",
+        "place": "The Warehouse, in centro",
+        "title": "Serata di musica live"
+      },
+      "heading": "Modelli",
+      "meme": {
+        "bottom": "Al primo colpo",
+        "top": "Quando il codice funziona",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Episodio 12 · Ora disponibile",
+        "title": "Il Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Semplice, ma significativo.",
+        "title": "Scheda citazione"
+      },
+      "sale": {
+        "subtitle": "Fino al 50% · Solo questo weekend",
+        "title": "Saldi estivi"
+      },
+      "story": {
+        "cta": "Scorri su per acquistare",
+        "title": "Nuovi arrivi"
+      },
+      "thumbnail": {
+        "badge": "Novità",
+        "title": "Non ci crederai"
+      },
+      "hint": "Scegline uno per iniziare. Ogni parola, colore e foto si può cambiare, oppure chiedi all'IA di farlo per te.",
+      "use": "Usa il modello {{name}}",
+      "replaceConfirm": "Sostituire il design attuale con questo modello? Puoi annullare.",
+      "replaceTitle": "Sostituire il tuo progetto?",
+      "replace": "Sostituisci"
     }
   },
   "creator": {
