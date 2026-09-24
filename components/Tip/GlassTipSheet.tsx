@@ -33,6 +33,7 @@ import {
   Platform,
   Image,
   KeyboardAvoidingView,
+  ScrollView,
 } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -598,7 +599,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             </GestureDetector>
 
             {phase !== "sent" ? (
-              <View style={styles.content}>
+              // Scrolls: on a small phone with the keyboard up, the quick-amount grid
+              // alone pushed the Send row past the sheet cap.
+              <ScrollView style={{ flexShrink: 1 }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled" bounces={false}>
                 {/* Header */}
                 <View style={styles.headerRow}>
                   <Icon name="Gem" size={18} color="#F9FBFF" />
@@ -760,7 +763,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                     </LinearGradient>
                   </View>
                 </View>
-              </View>
+              </ScrollView>
             ) : (
               /* Success state */
               <View style={styles.successWrap}>

@@ -155,7 +155,7 @@ export default function BoostSheet({
   return (
     <>
     <GlassModal visible={visible && !buyOpen} onClose={onClose} presentation="bottom">
-      <View className="px-5 pb-8 pt-4">
+      <View className="px-5 pb-8 pt-4" style={{ flexShrink: 1 }}>
         <View className="mb-4 flex-row items-center gap-2">
           <Icon name="Zap" size={20} color="#fff" />
           <Text className="text-lg font-semibold text-white">SuperPowers</Text>
@@ -189,7 +189,7 @@ export default function BoostSheet({
             </Pressable>
           </View>
         ) : (
-          <ScrollView className="max-h-[70%]" contentContainerClassName="gap-4">
+          <ScrollView style={{ flexShrink: 1 }} contentContainerClassName="gap-4">
             {!!postTitle && (
               <Text numberOfLines={2} className="text-xs text-zinc-400">
                 {postTitle}

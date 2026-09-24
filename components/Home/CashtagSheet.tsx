@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Linking,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
 import Animated, {
@@ -225,7 +226,9 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
               </TouchableOpacity>
             </View>
           ) : pair ? (
-            <View style={styles.content}>
+            // Scrolls so the DexScreener link stays reachable when the nav bar
+            // or a large system font eats into the fixed sheet height.
+            <ScrollView style={styles.content} contentContainerStyle={styles.contentInner} bounces={false}>
               {/* Price row */}
               <View style={styles.priceRow}>
                 <Text style={styles.price}>{formatPrice(pair.priceUsd)}</Text>
@@ -267,7 +270,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
                 <Icon name="ExternalLink" size={14} color="#D4D4D8" />
                 <Text style={styles.dexLinkText}>View on DexScreener</Text>
               </TouchableOpacity>
-            </View>
+            </ScrollView>
           ) : null}
         </Animated.View>
       </GestureHandlerRootView>
@@ -282,6 +285,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: SHEET_HEIGHT,
+    maxHeight: "88%",
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     overflow: "hidden",
@@ -310,7 +314,8 @@ const styles = StyleSheet.create({
   errorText: { color: "#8B8D90", fontSize: 14, textAlign: "center", paddingHorizontal: 32 },
   retryBtn: { marginTop: 4, backgroundColor: "rgba(255,255,255,0.12)", borderRadius: 10, paddingHorizontal: 20, paddingVertical: 10 },
   retryText: { color: "#D4D4D8", fontSize: 14, fontWeight: "600" },
-  content: { flex: 1, paddingHorizontal: 20, paddingTop: 16 },
+  content: { flex: 1 },
+  contentInner: { paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 },
   priceRow: { flexDirection: "row", alignItems: "center", gap: 10 },
   price: { color: "#F9FBFF", fontSize: 28, fontWeight: "700" },
   changeBadge: { flexDirection: "row", alignItems: "center", gap: 4, paddingHorizontal: 8, paddingVertical: 4, borderRadius: 8 },

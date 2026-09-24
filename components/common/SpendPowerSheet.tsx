@@ -263,7 +263,10 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
 
   return (
     <GlassModal visible={visible} onClose={onClose} presentation="bottom">
-      <View className="px-5 pb-8 pt-4">
+      {/* The panel caps its height; shrinking here (not a % max-height, which
+          resolves against nothing) keeps the Spend button on screen and lets
+          the list scroll instead. */}
+      <View className="px-5 pb-8 pt-4" style={{ flexShrink: 1 }}>
         <View className="mb-3 flex-row items-center justify-between gap-3">
           <View className="min-w-0 flex-1 flex-row items-center gap-2">
             {power ? <SuperPowerIcon power={power.key} style={{ width: 32, height: 32 }} /> : null}
@@ -274,7 +277,7 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
           </Pressable>
         </View>
 
-        <ScrollView className="max-h-[70%]" contentContainerClassName="gap-3">
+        <ScrollView style={{ flexShrink: 1 }} contentContainerClassName="gap-3">
           <Text className="text-[13px] leading-5 text-zinc-400">{power?.summary}</Text>
 
           {power?.key === "trend_jacker" ? (
