@@ -53,6 +53,8 @@ import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { toastInfo } from "../../libs";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { retryTranscode } from "../../services/nft.service";
+import CaptionOverlay from "../VideoPlayerCore/CaptionOverlay";
+import { getSubtitlesEnabled } from "../../libs/subtitlePrefs";
 import { movedBeyondMediaTapSlop } from "../../libs/media-gesture";
 import {
   continuesTapGesture,
@@ -242,6 +244,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // seek/fullscreen; state is only committed while something is watching it.
   const currentTimeRef = useRef(0);
   const showControlsRef = useRef(false);
+  // Caption playhead. Same rule as `currentTime`: only committed while
+  // subtitles are switched on, so a card with CC off never re-renders on tick.
+  const [captionPosMs, setCaptionPosMs] = useState(0);
   const [videoDuration, setVideoDuration] = useState(0);
   const [hasStartedAutoplay, setHasStartedAutoplay] = useState(false);
   const [isBuffering, setIsBuffering] = useState(false);
@@ -618,6 +623,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         player.addListener("timeUpdate", ({ currentTime: ct }: any) => {
           currentTimeRef.current = ct ?? 0;
           if (showControlsRef.current) setCurrentTime(ct ?? 0);
+          if (ct != null && getSubtitlesEnabled()) setCaptionPosMs(ct * 1000);
           if (ct != null) maybeSkipSegment(ct);
           if (ct != null && viewRecorderRef.current) {
             viewRecorderRef.current.onProgress(
@@ -1242,6 +1248,19 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           </View>
           )}
         </>
+      )}
+
+      {/* Subtitles with a language picker. Outside the controls block so the
+          captions stay on screen when the chrome hides. */}
+      {!hideControls && tokenId != null && !isContentGated && (
+        <CaptionOverlay
+          tokenId={tokenId}
+          positionMs={captionPosMs}
+          controlsVisible={showControls || !isPlaying}
+          bottomOffset={showControls ? 56 : 16}
+          player={player}
+          isPlaying={isPlaying}
+        />
       )}
 
       {tapAnimReaction && (
