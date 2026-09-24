@@ -123,14 +123,15 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
   if (status === "ended") {
     return (
       <View style={[StyleSheet.absoluteFill, styles.centre]} pointerEvents="none">
-        <StatusCard icon="Radio" title="Stream Ended">
+        <StatusCard icon="Radio" title={t("liveViewer.streamEnded")}>
           {durationText ? (
-            <Text style={styles.body}>Duration {durationText}</Text>
+            <Text style={styles.body}>{t("liveViewer.duration", { duration: durationText })}</Text>
           ) : null}
           {endedAtDate ? (
             <Text style={styles.caption}>
-              {"Ended " +
-                formatDistance(endedAtDate, new Date(), { addSuffix: true })}
+              {t("liveViewer.endedAgo", {
+                time: formatDistance(endedAtDate, new Date(), { addSuffix: true }),
+              })}
             </Text>
           ) : null}
         </StatusCard>
@@ -141,13 +142,14 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
   if (status === "scheduled") {
     return (
       <View style={[StyleSheet.absoluteFill, styles.centre]} pointerEvents="none">
-        <StatusCard icon="CalendarClock" title="Upcoming Stream">
+        <StatusCard icon="CalendarClock" title={t("liveViewer.upcomingStream")}>
           {scheduledForDate ? (
             <Text style={styles.body}>
-              {"Starts " +
-                formatDistance(scheduledForDate, new Date(), {
+              {t("liveViewer.startsIn", {
+                time: formatDistance(scheduledForDate, new Date(), {
                   addSuffix: true,
-                })}
+                }),
+              })}
             </Text>
           ) : null}
         </StatusCard>
@@ -158,9 +160,9 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
   if (status === "offline") {
     return (
       <View style={[StyleSheet.absoluteFill, styles.centre]} pointerEvents="none">
-        <StatusCard icon="WifiOff" title="Stream Offline">
+        <StatusCard icon="WifiOff" title={t("postInfo.streamOffline")}>
           <Text style={styles.body}>
-            {"The streamer hasn't started broadcasting yet"}
+            {t("liveViewer.notStartedYet")}
           </Text>
         </StatusCard>
       </View>

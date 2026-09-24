@@ -97,6 +97,7 @@ interface SpeakerCardProps {
 }
 
 const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaking, onRemove }) => {
+  const { t } = useTranslation();
   const name = participant.username || `${participant.wallet_address.slice(0, 6)}...`;
   const isParticipantHost = participant.role === "host";
   const speakingAnim = useRef(new Animated.Value(1)).current;
@@ -164,7 +165,7 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
         {name}
       </Text>
       <Text style={{ color: "rgba(255,255,255,0.4)", fontSize: 10, marginTop: 1 }}>
-        {isParticipantHost ? "Host" : "Speaker"}
+        {isParticipantHost ? t("stages.roleHost") : t("stages.roleStageSpeaker")}
       </Text>
       {isHost && !isParticipantHost && onRemove && (
         <TouchableOpacity
@@ -177,7 +178,7 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
             backgroundColor: "rgba(255,255,255,0.2)",
           }}
         >
-          <Text style={{ color: "#F4F4F5", fontSize: 10 }}>Remove</Text>
+          <Text style={{ color: "#F4F4F5", fontSize: 10 }}>{t("stages.removeSpeaker")}</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -192,6 +193,7 @@ interface HandRequestRowProps {
 }
 
 const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) => {
+  const { t } = useTranslation();
   const name = request.username || `${request.wallet_address.slice(0, 8)}...`;
   return (
     <View
@@ -230,7 +232,7 @@ const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) =
           backgroundColor: "rgba(255,255,255,0.15)",
         }}
       >
-        <Text style={{ color: "#fff", fontSize: 12, fontWeight: "600" }}>Let Speak</Text>
+        <Text style={{ color: "#fff", fontSize: 12, fontWeight: "600" }}>{t("stages.inviteToSpeak")}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -278,8 +280,8 @@ const LiveStageModal: React.FC = () => {
   const spaceTitle = currentSpace?.title ?? "";
   const { t } = useTranslation();
   const handleShare = useCallback(() => {
-    Share.share({ message: `Join me on DeHub Stages: "${spaceTitle}"`, title: spaceTitle });
-  }, [spaceTitle]);
+    Share.share({ message: t("stages.joinMe", { title: spaceTitle }), title: spaceTitle });
+  }, [spaceTitle, t]);
 
   // Front Row is the Blue Whale rung. `status.powers` decides whether this
   // account has it — the badge the client draws from a live wallet read
@@ -306,9 +308,9 @@ const LiveStageModal: React.FC = () => {
     bookFrontRow.mutate(
       { tokenId: 0, power: "front_row", stageId: currentSpace.id },
       {
-        onSuccess: booking => toastSuccess(`Front row for ${booking.minutes} minutes`),
+        onSuccess: booking => toastSuccess(t("stages.frontRowBooked", { count: booking.minutes })),
         // The server writes these sentences for a person to read.
-        onError: (error: any) => toastError(error?.message || "Could not take the front row"),
+        onError: (error: any) => toastError(error?.message || t("stages.frontRowFailed")),
       },
     );
   };
@@ -394,10 +396,10 @@ const LiveStageModal: React.FC = () => {
                 }}
               >
                 <View style={{ width: 5, height: 5, borderRadius: 3, backgroundColor: "#FAFAFA" }} />
-                <Text style={{ color: "#F4F4F5", fontSize: 10, fontWeight: "700" }}>LIVE</Text>
+                <Text style={{ color: "#F4F4F5", fontSize: 10, fontWeight: "700" }}>{t("stages.live")}</Text>
               </View>
               <Text style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>
-                {speakers.length} speaker{speakers.length !== 1 ? "s" : ""} · {listenerCount} listener{listenerCount !== 1 ? "s" : ""}
+                {t("stages.speakers", { count: speakers.length })} · {t("stages.listeners", { count: listenerCount })}
               </Text>
               {isRecording && (
                 <View
@@ -416,7 +418,7 @@ const LiveStageModal: React.FC = () => {
                 </View>
               )}
               {!isConnected && (
-                <Text style={{ color: "#D4D4D8", fontSize: 11 }}>Connecting...</Text>
+                <Text style={{ color: "#D4D4D8", fontSize: 11 }}>{t("stages.connecting")}</Text>
               )}
             </View>
           </View>
@@ -433,7 +435,7 @@ const LiveStageModal: React.FC = () => {
               disabled={bookFrontRow.isPending}
               hitSlop={4}
               accessibilityRole="button"
-              accessibilityLabel="Front row"
+              accessibilityLabel={t("stages.frontRow")}
               style={{
                 width: 38,
                 height: 38,
@@ -452,7 +454,7 @@ const LiveStageModal: React.FC = () => {
             onPress={handleShare}
             hitSlop={4}
             accessibilityRole="button"
-            accessibilityLabel="Share"
+            accessibilityLabel={t("stages.share")}
             style={{
               width: 38,
               height: 38,
@@ -469,7 +471,7 @@ const LiveStageModal: React.FC = () => {
             onPress={closeModal}
             hitSlop={4}
             accessibilityRole="button"
-            accessibilityLabel="Minimize"
+            accessibilityLabel={t("stages.minimize")}
             style={{
               width: 38,
               height: 38,
@@ -508,7 +510,7 @@ const LiveStageModal: React.FC = () => {
                 marginLeft: 4,
               }}
             >
-              Raised Hands ({handRequests.length})
+              {t("stages.raisedHands", { count: handRequests.length })}
             </Text>
             <ScrollView
               style={{ maxHeight: 3 * 52 }}
@@ -551,7 +553,7 @@ const LiveStageModal: React.FC = () => {
               marginLeft: 4,
             }}
           >
-            On Stage
+            {t("stages.onStage")}
           </Text>
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             {speakers.map(p => (
@@ -565,7 +567,7 @@ const LiveStageModal: React.FC = () => {
             ))}
             {speakers.length === 0 && (
               <Text style={{ color: "rgba(255,255,255,0.6)", fontSize: 13, marginBottom: 16, marginLeft: 4 }}>
-                No speakers yet
+                {t("stages.noSpeakers")}
               </Text>
             )}
           </View>
@@ -637,7 +639,7 @@ const LiveStageModal: React.FC = () => {
             }}
           >
             <Text style={{ color: "rgba(255,255,255,0.4)", fontSize: 10, fontWeight: "600", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>
-              🎭 Voice Effect
+              {t("stages.voiceEffect")}
             </Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, paddingHorizontal: 2 }}>
               {VOICE_EFFECTS.map(effect => (
@@ -683,7 +685,7 @@ const LiveStageModal: React.FC = () => {
             }}
           >
             <Text style={{ color: "rgba(255,255,255,0.4)", fontSize: 10, fontWeight: "600", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>
-              🔊 Text-to-Speech
+              {t("stages.textToSpeech")}
             </Text>
             {/* Voice picker */}
             {isTtsVoicesLoading ? (
@@ -697,7 +699,7 @@ const LiveStageModal: React.FC = () => {
                   marginBottom: 8, alignSelf: "flex-start",
                 }}
               >
-                <Text style={{ color: "rgba(255,255,255,0.6)", fontSize: 12 }}>Load voices</Text>
+                <Text style={{ color: "rgba(255,255,255,0.6)", fontSize: 12 }}>{t("stages.loadVoices")}</Text>
               </TouchableOpacity>
             ) : (
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, marginBottom: 8 }}>
@@ -728,7 +730,7 @@ const LiveStageModal: React.FC = () => {
                 <TextInput
                   value={ttsText}
                   onChangeText={t => setTtsText(t.slice(0, 500))}
-                  placeholder="Type a message to speak…"
+                  placeholder={t("stages.ttsPlaceholder")}
                   placeholderTextColor="rgba(255,255,255,0.3)"
                   multiline
                   style={{
@@ -818,7 +820,7 @@ const LiveStageModal: React.FC = () => {
             >
               <Icon name="LogIn" size={18} color="rgba(255,255,255,0.85)" />
               <Text style={{ color: "rgba(255,255,255,0.85)", fontWeight: "600", fontSize: 14 }}>
-                Sign in to join in
+                {t("stages.signInToJoin")}
               </Text>
             </TouchableOpacity>
           )}
@@ -857,7 +859,7 @@ const LiveStageModal: React.FC = () => {
           >
             <Icon name={isHostRole ? "X" : "LogOut"} size={18} color={isHostRole ? "#09090B" : "#F4F4F5"} />
             <Text style={{ color: isHostRole ? "#09090B" : "#F4F4F5", fontWeight: "600", fontSize: 14 }}>
-              {isHostRole ? "End Stage" : "Leave"}
+              {isHostRole ? t("stages.endStage") : t("stages.leaveStage")}
             </Text>
           </TouchableOpacity>
         </View>

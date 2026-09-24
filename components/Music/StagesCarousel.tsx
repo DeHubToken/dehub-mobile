@@ -15,6 +15,7 @@
 import React, { useCallback } from "react";
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
+import { useTranslation } from "react-i18next";
 
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
@@ -25,6 +26,7 @@ import type { AudioSpace } from "../../hooks/useStages";
 import SectionHeader from "./SectionHeader";
 
 const StageCard: React.FC<{ space: AudioSpace; onPress: () => void }> = ({ space, onPress }) => {
+  const { t } = useTranslation();
   const heads = Math.max(1, (space.speaker_count || 1) + (space.listener_count || 0));
   const host = space.host_username || String(space.host_wallet_address || "").slice(0, 6);
 
@@ -33,7 +35,7 @@ const StageCard: React.FC<{ space: AudioSpace; onPress: () => void }> = ({ space
       <View style={styles.topRow}>
         <View style={styles.liveChip}>
           <View style={styles.liveDot} />
-          <Text style={styles.liveText}>LIVE</Text>
+          <Text style={styles.liveText}>{t("stages.live")}</Text>
         </View>
         <View style={styles.headRow}>
           <Icon name="Users" size={13} color="rgba(255,255,255,0.5)" />
@@ -50,7 +52,7 @@ const StageCard: React.FC<{ space: AudioSpace; onPress: () => void }> = ({ space
           borderColor="rgba(255,255,255,0.2)"
         />
         <View style={styles.hostText}>
-          <Text style={styles.hostedBy}>Hosted by</Text>
+          <Text style={styles.hostedBy}>{t("stages.hostedBy")}</Text>
           <Text style={styles.hostName} numberOfLines={1}>
             @{host}
           </Text>
@@ -70,6 +72,7 @@ const StageCard: React.FC<{ space: AudioSpace; onPress: () => void }> = ({ space
 };
 
 const StagesCarousel: React.FC = () => {
+  const { t } = useTranslation();
   const { liveSpaces, openModal } = useStages();
   const scrollGuard = useHorizontalScrollGuard();
 
@@ -89,15 +92,15 @@ const StagesCarousel: React.FC = () => {
 
   return (
     <View style={styles.section}>
-      <SectionHeader icon="Mic" title="Stages" count={liveSpaces.length} onSeeAll={openStages} />
+      <SectionHeader icon="Mic" title={t("nav.stages")} count={liveSpaces.length} onSeeAll={openStages} />
       {liveSpaces.length === 0 ? (
         <TouchableOpacity onPress={openStages} activeOpacity={0.85} style={styles.empty}>
           <View style={styles.emptyIcon}>
             <Icon name="Plus" size={20} color="rgba(255,255,255,0.6)" />
           </View>
           <View style={styles.emptyText}>
-            <Text style={styles.emptyTitle}>No live stages right now</Text>
-            <Text style={styles.emptySub}>Start a stage and go live with your audience</Text>
+            <Text style={styles.emptyTitle}>{t("stages.noLiveStages")}</Text>
+            <Text style={styles.emptySub}>{t("stages.startStageHint")}</Text>
           </View>
         </TouchableOpacity>
       ) : scrollGuard ? (

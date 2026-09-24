@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import ConfirmModal from "../common/ConfirmModal";
 import { resolveChatGif, gifCaption } from "../../libs/chat-gif";
@@ -18,6 +19,7 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
   onUnpin,
   isModerator,
 }) => {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const count = pinnedMessages.length;
@@ -49,9 +51,9 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
   }, [current, onUnpin, safeIndex, count]);
 
   const senderName = useMemo(() => {
-    if (!current?.sender) return current?.senderAddress?.slice(0, 8) || "User";
-    return current.sender.displayName || current.sender.username || "User";
-  }, [current]);
+    if (!current?.sender) return current?.senderAddress?.slice(0, 8) || t("liveChat.user");
+    return current.sender.displayName || current.sender.username || t("liveChat.user");
+  }, [current, t]);
 
   // A pin's one-line summary. Web posts a GIF with its URL as the body, so the
   // raw text would put an address here where every other kind gets a label.
@@ -60,9 +62,9 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
     const gif = resolveChatGif(current);
     return (
       gifCaption(current, gif) ||
-      (gif ? "GIF" : current.media?.length ? "Photo" : "Message")
+      (gif ? "GIF" : current.media?.length ? t("liveChat.photo") : t("liveChat.message"))
     );
-  }, [current]);
+  }, [current, t]);
 
   if (!current) return null;
 
@@ -110,7 +112,7 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
         <View className="flex-row items-center gap-1.5">
           <Icon name="Pin" size={13} color="#F4F4F5" />
           <Text className="text-blue-400 text-[11px] font-semibold">
-            {count > 1 ? `Pinned Message #${safeIndex + 1}` : "Pinned Message"}
+            {count > 1 ? t("liveChat.pinnedMessageN", { n: safeIndex + 1 }) : t("liveChat.pinnedMessage")}
           </Text>
           {count > 1 && (
             <Text className="text-white/40 text-[11px]">
@@ -143,9 +145,9 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
 
     <ConfirmModal
       visible={unpinConfirmVisible}
-      title="Unpin Message"
-      description="Remove this pinned message?"
-      confirmText="Unpin"
+      title={t("liveChat.unpinTitle")}
+      description={t("liveChat.unpinConfirm")}
+      confirmText={t("liveChat.unpinMessage")}
       confirmKind="danger"
       onConfirm={confirmUnpin}
       onCancel={() => setUnpinConfirmVisible(false)}

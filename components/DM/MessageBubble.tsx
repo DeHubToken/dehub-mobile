@@ -97,6 +97,7 @@ interface AutoImageProps {
  * Shows skeleton while loading, fallback icon on error.
  */
 const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongPress }) => {
+  const { t } = useTranslation();
   const [aspect, setAspect] = useState<number>(DEFAULT_ASPECT);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -144,7 +145,7 @@ const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongP
         >
           <Icon name="Image" size={32} color="#555" />
           <Text className="text-theme-neutrals-500 text-[11px] mt-1">
-            Failed to load
+            {t("dm.failedToLoad")}
           </Text>
         </View>
       </TouchableOpacity>
@@ -485,14 +486,14 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     try {
       const supported = await Linking.canOpenURL(url);
       if (!supported) {
-        toastError("Can't open this file on this device.");
+        toastError(t("dm.cantOpenFile"));
         return;
       }
       await Linking.openURL(url);
     } catch {
-      toastError("Couldn't open that file.");
+      toastError(t("dm.couldntOpenFile"));
     }
-  }, []);
+  }, [t]);
 
 
   const timeStr = formatTime(message.createdAt);
@@ -528,7 +529,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             isMine ? "text-white/40" : "text-theme-neutrals-600"
           }`}
         >
-          · edited
+          {t("dm.editedSuffix")}
         </Text>
       )}
       {message.encrypted && (
@@ -542,7 +543,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         />
       )}
     </View>
-  ), [timeStr, isMine, message.isEdited, message.isRead, message.encrypted]);
+  ), [timeStr, isMine, message.isEdited, message.isRead, message.encrypted, t]);
 
 
   const bubbleBg = isMine
@@ -602,7 +603,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         </View>
         {isPending && (
           <Text className="text-theme-neutrals-500 text-[11px] mt-1">
-            Confirming on-chain…
+            {t("dm.confirmingOnChain")}
           </Text>
         )}
       </View>
@@ -682,7 +683,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               <View className="flex-row items-center gap-1 px-3 pt-1.5">
                 <Icon name="Forward" size={10} color={isMine ? "rgba(255,255,255,0.5)" : "#A6A9AC"} />
                 <Text className={`text-[11px] italic ${isMine ? "text-white/50" : "text-theme-neutrals-400"}`}>
-                  Forwarded
+                  {t("dm.forwarded")}
                 </Text>
               </View>
             )}
@@ -705,7 +706,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                   >
                     {message.replyTo.sender?.displayName ||
                       message.replyTo.sender?.username ||
-                      "Unknown"}
+                      t("settings.unknown")}
                   </Text>
                   {message.replyTo.msgType === "voice" ? (
                     <View className="flex-row items-center gap-1">
@@ -719,7 +720,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                           isMine ? "text-white/50" : "text-theme-neutrals-400"
                         }`}
                       >
-                        Voice note
+                        {t("dm.voiceNote")}
                         {message.replyTo.voiceDuration
                           ? ` ${Math.floor(message.replyTo.voiceDuration / 60)}:${String(
                               Math.round(message.replyTo.voiceDuration % 60),
@@ -750,7 +751,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                         }`}
                         numberOfLines={1}
                       >
-                        {message.replyTo.content || "Photo"}
+                        {message.replyTo.content || t("dm.photo")}
                       </Text>
                     </View>
                   ) : (
@@ -796,7 +797,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                           }`}
                           numberOfLines={1}
                         >
-                          {(item as any).name || "Attachment"}
+                          {(item as any).name || t("dm.attachment")}
                         </Text>
                         <Text
                           className={`text-[11px] mt-0.5 ${
@@ -833,7 +834,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                   <View className="absolute inset-0 items-center justify-center dark-surface bg-black/40">
                     <ActivityIndicator color="#fff" size="small" />
                     <Text className="text-[11px] text-white/80 mt-1">
-                      Sending…
+                      {t("dm.sending")}
                     </Text>
                   </View>
                 )}
@@ -841,7 +842,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                   <View className="absolute inset-0 items-center justify-center dark-surface bg-black/50">
                     <Icon name="CircleAlert" size={28} color="#F4F4F5" />
                     <Text className="text-[11px] text-white/80 mt-1 font-medium">
-                      Failed to send
+                      {t("dm.failedToSend")}
                     </Text>
                   </View>
                 )}
@@ -994,7 +995,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                 <View className={`${isPaidMsg ? "px-2 pb-1.5" : "absolute bottom-1.5 right-2"} flex-row items-center gap-1 ${isPaidMsg ? "justify-end" : "dark-surface bg-black/50 rounded-full px-1.5 py-0.5"}`}>
                   <Text className="text-[11px] text-white/80">{timeStr}</Text>
                   {message.isEdited && (
-                    <Text className="text-[11px] text-white/50">· edited</Text>
+                    <Text className="text-[11px] text-white/50">{t("dm.editedSuffix")}</Text>
                   )}
                   {message.encrypted && (
                     <Icon name="Lock" size={10} color="rgba(255,255,255,0.6)" />

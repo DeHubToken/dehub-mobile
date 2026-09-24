@@ -82,7 +82,7 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
           activeOpacity={0.8}
           className={`${CIRCLE} bg-zinc-900/60`}
           accessibilityRole="button"
-          accessibilityLabel="Flip camera"
+          accessibilityLabel={t("calls.flip")}
         >
           <RefreshCw color="#fff" size={20} />
         </TouchableOpacity>
@@ -94,7 +94,7 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
             micMuted ? "bg-white/20" : "bg-zinc-900/60"
           }`}
           accessibilityRole="button"
-          accessibilityLabel={micMuted ? "Unmute microphone" : "Mute microphone"}
+          accessibilityLabel={micMuted ? t("live.unmuteMic") : t("live.muteMic")}
           accessibilityState={{ selected: micMuted }}
         >
           {micMuted ? (
@@ -111,7 +111,7 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
             cameraOff ? "bg-white/20" : "bg-zinc-900/60"
           }`}
           accessibilityRole="button"
-          accessibilityLabel={cameraOff ? "Turn camera on" : "Turn camera off"}
+          accessibilityLabel={cameraOff ? t("live.cameraOn") : t("live.cameraOffAction")}
           accessibilityState={{ selected: cameraOff }}
         >
           {cameraOff ? (
@@ -149,7 +149,7 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
               externalMode ? "bg-white/20" : "bg-zinc-900/60"
             }`}
             accessibilityRole="button"
-            accessibilityLabel="Stream from OBS or another encoder"
+            accessibilityLabel={t("live.streamFromEncoder")}
             accessibilityState={{ selected: externalMode }}
           >
             <Server color="#fff" size={18} />
@@ -169,7 +169,7 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
         >
           <Radio color="#fff" size={18} />
           <Text className="text-white font-bold text-sm ml-2">
-            {isEnding ? "Ending..." : "End Stream"}
+            {isEnding ? t("live.ending") : t("postOptions.endStream")}
           </Text>
         </TouchableOpacity>
       ) : (
@@ -187,12 +187,12 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
             }`}
           >
             {isStarting
-              ? "Setting Up..."
+              ? t("live.settingUp")
               : startDisabled
-              ? "Preparing..."
+              ? t("settings.preparing")
               : externalMode
-              ? "Start External"
-              : "Go Live"}
+              ? t("live.startExternal")
+              : t("upload.goLive")}
           </Text>
         </TouchableOpacity>
       )}

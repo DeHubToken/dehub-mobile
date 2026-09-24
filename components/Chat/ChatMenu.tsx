@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Pressable, TouchableOpacity, View, Text, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 import type { icons } from 'lucide-react-native';
 
@@ -52,6 +53,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
   peerHasFreeAccess,
   isCreator,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   if (!visible) return null;
   return (
@@ -71,7 +73,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
               <>
                 <MenuRow
                   icon="Search"
-                  label="Search in chat"
+                  label={t('dm.searchInChat')}
                   onPress={() => { onClose(); onSearchChat(); }}
                 />
                 <View className="h-[1px] bg-theme-neutrals-700/60" />
@@ -82,7 +84,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
               <>
                 <MenuRow
                   icon="Trash2"
-                  label="Clear messages"
+                  label={t('dm.clearMessages')}
                   onPress={() => { onClose(); onClearChat(); }}
                 />
                 <View className="h-[1px] bg-theme-neutrals-700/60" />
@@ -93,7 +95,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
               <>
                 <MenuRow
                   icon={peerHasFreeAccess ? "CircleMinus" : "ShieldCheck"}
-                  label={peerHasFreeAccess ? "Remove free access" : "Grant free access"}
+                  label={peerHasFreeAccess ? t('dm.removeFreeAccess') : t('dm.grantFreeAccess')}
                   onPress={() => { onClose(); onToggleFreeAccess(); }}
                   iconColor={peerHasFreeAccess ? "#F4F4F5" : "#8B8D90"}
                 />
@@ -105,7 +107,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
               <>
                 <MenuRow
                   icon="Coins"
-                  label="DM fee settings"
+                  label={t('dm.feeSettings')}
                   onPress={() => { onClose(); onManageDmFee(); }}
                 />
                 <View className="h-[1px] bg-theme-neutrals-700/60" />
@@ -114,7 +116,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
 
             <MenuRow
               icon={isBlocked ? "CircleMinus" : "Ban"}
-              label={isBlocked ? "Unblock user" : "Block user"}
+              label={isBlocked ? t('dm.unblockUser') : t('dm.blockUser')}
               onPress={isBlocked ? (onUnblockUser || onClose) : onBlockUser}
               color={isBlocked ? "text-theme-neutrals-200" : "text-white/80"}
               iconColor={isBlocked ? "#D4D4D8" : "#F4F4F5"}

@@ -21,6 +21,7 @@
 
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import Icon from "../ui/Icon";
 import StageRateButton from "./StageRateButton";
@@ -35,6 +36,7 @@ import {
 } from "../../libs/stage-playback";
 
 const StageRecordingMiniPlayer: React.FC = () => {
+  const { t } = useTranslation();
   const { spaceId, title, loading, paused, popout, progress, seekable, timeLeft } =
     useStagePlayback();
   const { currentSpace, isConnected } = useStages();
@@ -46,7 +48,7 @@ const StageRecordingMiniPlayer: React.FC = () => {
   return (
     <View
       style={[styles.container, liveBarShowing && styles.aboveLiveBar]}
-      accessibilityLabel="Stage recording playback"
+      accessibilityLabel={t("stages.recordingPlayback")}
     >
       <View style={styles.titleRow}>
         <Text style={styles.title} numberOfLines={1}>
@@ -60,7 +62,7 @@ const StageRecordingMiniPlayer: React.FC = () => {
           hitSlop={8}
           style={styles.closeBtn}
           accessibilityRole="button"
-          accessibilityLabel="Stop and close the player"
+          accessibilityLabel={t("stages.stopAndClose")}
         >
           <Icon name="X" size={15} color="rgba(255,255,255,0.5)" />
         </TouchableOpacity>
@@ -71,7 +73,7 @@ const StageRecordingMiniPlayer: React.FC = () => {
           onPress={togglePauseStageRecording}
           style={styles.playBtn}
           accessibilityRole="button"
-          accessibilityLabel={paused ? "Resume recording" : "Pause recording"}
+          accessibilityLabel={paused ? t("stages.resumeRecording") : t("stages.pauseRecording")}
         >
           {loading ? (
             <ActivityIndicator size="small" color="#FFFFFF" />

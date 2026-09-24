@@ -399,14 +399,14 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
       const ov = overrides[speakerId];
       if (ov?.username) return `@${ov.username}`;
       const entry = transcript?.speaker_map?.[speakerId];
-      if (entry?.type === "ai") return entry.label || "AI Voice";
+      if (entry?.type === "ai") return entry.label || t("stages.aiVoice");
       if (entry?.type === "user" && entry.wallet) {
         return `${entry.wallet.slice(0, 6)}…${entry.wallet.slice(-4)}`;
       }
       const idx = fallbackSpeakerMap.get(speakerId) ?? 0;
-      return `Speaker ${idx + 1}`;
+      return t("stages.speakerN", { n: idx + 1 });
     },
-    [overrides, transcript?.speaker_map, fallbackSpeakerMap]
+    [overrides, transcript?.speaker_map, fallbackSpeakerMap, t]
   );
 
   const activeSegmentIndex = useMemo(() => {
@@ -426,13 +426,13 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   const handleShare = () => {
     const url = `https://dehub.io/stages/${stageId}`;
     Share.share({
-      message: `Check out this Stage transcript: "${space?.title || "Audio Stage"}"\n\nLink: ${url}`,
-      title: space?.title || "Audio Stage Transcript",
+      message: `${t("stages.transcriptShare", { title: space?.title || t("stages.audioStage") })}\n\n${t("stages.transcriptLink", { url })}`,
+      title: space?.title || t("stages.audioStageTranscript"),
     });
   };
 
   const handleQuote = (segmentText: string, speakerLabel: string) => {
-    const quote = `> "${segmentText}"\n— ${speakerLabel} on Stage: "${space?.title || "Audio Space"}"`;
+    const quote = `> "${segmentText}"\n${t("stages.quoteOnStage", { speaker: speakerLabel, title: space?.title || t("stages.audioStage") })}`;
     copyToClipboard(quote);
     toastSuccess(t("transcript.quoteCopied"));
   };
@@ -590,9 +590,9 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
               <View className="bg-white/5 border border-white/10 rounded-xl p-3 mb-3 gap-2">
                 <View className="flex-row items-center gap-2">
                   <Icon name="Sparkles" size={13} color="#D4D4D8" />
-                  <Text className="text-purple-300 font-bold text-xs uppercase tracking-wider">AI Summary</Text>
+                  <Text className="text-purple-300 font-bold text-xs uppercase tracking-wider">{t("stages.aiSummary")}</Text>
                   {transcript?.summary_status === "processing" && (
-                    <Text className="text-[10px] text-zinc-400 font-medium italic">generating summary...</Text>
+                    <Text className="text-[10px] text-zinc-400 font-medium italic">{t("stages.generatingSummary")}</Text>
                   )}
                 </View>
                 {summary ? (
@@ -640,7 +640,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
               {/* Language Selector */}
               <View className="w-36">
                 <Dropdown
-                  options={LANGUAGES}
+                  options={LANGUAGES.map((l) => (l.value === "original" ? { ...l, label: t("stages.originalLanguage") } : l))}
                   value={language}
                   onChange={setLanguage}
                   placeholder={t("settings.language")}
@@ -750,7 +750,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
               ) : (
                 <View className="py-12 items-center justify-center">
                   <Text className="text-zinc-400 text-sm">
-                    {searchQuery ? "No matching segments" : "No transcript segments found"}
+                    {searchQuery ? t("stages.noMatchingSegments") : t("stages.noSegments")}
                   </Text>
                 </View>
               )}

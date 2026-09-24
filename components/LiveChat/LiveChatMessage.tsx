@@ -10,6 +10,7 @@ import Animated, {
 import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
 import { useTranslation } from "../../hooks/useTranslation";
+import { useTranslation as useI18n } from "react-i18next";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
 import { openInApp } from "../../libs/links.utils";
@@ -77,6 +78,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
   onReplyPress,
   highlighted = false,
 }) => {
+  const { t } = useI18n();
   const sender = message.sender;
   // Both sides can be empty — a signed-out reader has no address, and a
   // message can arrive with no author — and empty must not match empty.
@@ -88,7 +90,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
   const avatarUrl = getAvatarUrl(sender?.avatarUrl || "");
   const displayName = isAssistant
     ? ASSISTANT_USERNAME
-    : sender?.displayName || sender?.username || message.senderAddress?.slice(0, 8) || "Anon";
+    : sender?.displayName || sender?.username || message.senderAddress?.slice(0, 8) || t("liveChat.anon");
   const badgeImg = isAssistant ? null : getBadgeUrlFor(sender);
   const isMod = sender?.isModerator && !isAssistant;
 
@@ -197,7 +199,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
           {message.isPinned && (
             <View className="flex-row items-center bg-white/10 rounded px-1.5 py-0.5 gap-0.5">
               <Icon name="Pin" size={9} color="#D4D4D8" />
-              <Text className="text-theme-neutrals-200 text-[10px] font-bold">Pinned</Text>
+              <Text className="text-theme-neutrals-200 text-[10px] font-bold">{t("liveChat.pinned")}</Text>
             </View>
           )}
           {isAssistant && (
@@ -241,7 +243,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
         )}
 
         {message.isDeleted ? (
-          <Text className="text-white/30 text-sm italic">Message deleted</Text>
+          <Text className="text-white/30 text-sm italic">{t("liveChat.messageDeleted")}</Text>
         ) : (
           <>
             {!!bodyText && (

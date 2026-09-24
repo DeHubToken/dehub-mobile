@@ -8,6 +8,7 @@ import Avatar from "../common/Avatar";
 import { getAvatarUrl } from "../../libs/misc";
 import { TEXT_SHADOW } from "../common/ViewerChrome";
 import { useTranslation } from "../../hooks/useTranslation";
+import { useTranslation as useI18n } from "react-i18next";
 import TranslateButton from "../ui/TranslateButton";
 
 /**
@@ -117,6 +118,7 @@ interface ChatBubbleProps {
 }
 
 const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
+  const { t } = useI18n();
   const displayName = resolveDisplayName(a);
   const avatarUrl = resolveAvatarUrl(a);
   const profileId = resolveProfileId(a);
@@ -170,7 +172,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
             <Text onPress={handlePress} className="font-medium">
               {displayName}
             </Text>{" "}
-            joined
+            {t("liveViewer.joined")}
           </Text>
         </View>
       );
@@ -185,7 +187,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
             <Text onPress={handlePress} className="font-medium">
               {displayName}
             </Text>{" "}
-            left
+            {t("liveViewer.leftStream")}
           </Text>
         </View>
       );
@@ -203,7 +205,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
               <Text onPress={handlePress}>
                 {displayName}
               </Text>{" "}
-              sent {amt.toLocaleString()} <DhbCoin />
+              {t("liveViewer.sentAmount", { amount: amt.toLocaleString() })} <DhbCoin />
             </Text>
             {a.meta?.message ? (
               <Text style={{ color: 'rgba(255,255,255,0.7)' }} className="text-[11px] mt-0.5">
@@ -219,7 +221,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
       return (
         <View className="mb-1 self-start">
           <Text className="text-white/70 text-[11px] font-semibold">
-            Live started
+            {t("liveViewer.liveStarted")}
           </Text>
         </View>
       );
@@ -228,7 +230,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
       return (
         <View className="mb-1 self-start">
           <Text className="text-white/50 text-[11px]">
-            Stream has ended
+            {t("liveViewer.streamHasEnded")}
           </Text>
         </View>
       );

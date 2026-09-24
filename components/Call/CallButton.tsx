@@ -1,6 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View, StyleSheet } from "react-native";
 import Icon from "../ui/Icon";
+import { useTranslation } from "react-i18next";
 import { useCall } from "../../context/CallContext";
 
 interface CallButtonProps {
@@ -8,6 +9,7 @@ interface CallButtonProps {
 }
 
 const CallButton: React.FC<CallButtonProps> = ({ recipientAddress }) => {
+  const { t } = useTranslation();
   const { startCall, isCallActive, isConnecting } = useCall();
   const disabled = isCallActive || isConnecting;
 
@@ -20,7 +22,7 @@ const CallButton: React.FC<CallButtonProps> = ({ recipientAddress }) => {
         activeOpacity={0.6}
         hitSlop={4}
         accessibilityRole="button"
-        accessibilityLabel="Start voice call"
+        accessibilityLabel={t("calls.startVoice")}
         accessibilityState={{ disabled }}
       >
         <Icon name="Phone" size={18} color={disabled ? "#808089" : "#FFFFFF"} />
@@ -32,7 +34,7 @@ const CallButton: React.FC<CallButtonProps> = ({ recipientAddress }) => {
         activeOpacity={0.6}
         hitSlop={4}
         accessibilityRole="button"
-        accessibilityLabel="Start video call"
+        accessibilityLabel={t("calls.startVideo")}
         accessibilityState={{ disabled }}
       >
         <Icon name="Video" size={18} color={disabled ? "#808089" : "#FFFFFF"} />

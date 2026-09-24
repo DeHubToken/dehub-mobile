@@ -66,13 +66,14 @@ const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
 type MusicSubTab = "all" | "tracks" | "videos" | "podcasts" | "radio" | "stages";
 
 // Same six, in web's order, so the tab you reach for is where you left it.
+// Labels are i18n keys, resolved at render time.
 const SUB_TABS: { value: MusicSubTab; label: string; icon: IconName }[] = [
-  { value: "all", label: "All", icon: "Music" },
-  { value: "tracks", label: "Tracks", icon: "Disc3" },
-  { value: "videos", label: "Videos", icon: "Play" },
-  { value: "podcasts", label: "Podcasts", icon: "MicVocal" },
-  { value: "radio", label: "Radio", icon: "Radio" },
-  { value: "stages", label: "Stages", icon: "Mic" },
+  { value: "all", label: "music.all", icon: "Music" },
+  { value: "tracks", label: "music.tracks", icon: "Disc3" },
+  { value: "videos", label: "music.videos", icon: "Play" },
+  { value: "podcasts", label: "music.podcasts", icon: "MicVocal" },
+  { value: "radio", label: "music.radio", icon: "Radio" },
+  { value: "stages", label: "nav.stages", icon: "Mic" },
 ];
 
 /** Shelves rendered under All, in web's order. */
@@ -303,7 +304,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
             <View style={styles.section}>
               <SectionHeader
                 icon="Play"
-                title="Music Videos"
+                title={t("music.musicVideos")}
                 onSeeAll={carouselVideos.length ? () => setTab("videos") : undefined}
               />
               {loadingCarouselVideos ? (
@@ -325,7 +326,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
             <View style={styles.section}>
               <SectionHeader
                 icon="Radio"
-                title="Radio Stations"
+                title={t("music.radioStations")}
                 onSeeAll={() => setTab("radio")}
               />
               {curatedStations.length === 0 ? (
@@ -345,7 +346,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
         case "audio":
           return (
             <View style={styles.section}>
-              <SectionHeader icon="Disc3" title="Audio Uploads" count={audioUploads.length} />
+              <SectionHeader icon="Disc3" title={t("music.audioUploads")} count={audioUploads.length} />
               {loadingAudio ? (
                 <ShelfSkeleton width={280} height={124} />
               ) : audioUploads.length === 0 ? (
@@ -363,7 +364,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
           return <EmptyShelf icon="MicVocal" title={t("music.podcasts")} note={t("music.noPodcasts")} />;
       }
     },
-    [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio, active],
+    [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio, active, t],
   );
 
   const { data, renderItem, keyExtractor } = useMemo(() => {
@@ -427,7 +428,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
                 style={[styles.subTab, active && styles.subTabOn]}
                 accessibilityRole="tab"
                 accessibilityState={{ selected: active }}
-                accessibilityLabel={item.label}
+                accessibilityLabel={t(item.label)}
               >
                 <Icon
                   name={item.icon}
@@ -435,7 +436,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
                   color={active ? "#FFFFFF" : "rgba(255,255,255,0.5)"}
                 />
                 <Text style={[styles.subTabText, active && styles.subTabTextOn]}>
-                  {item.label}
+                  {t(item.label)}
                 </Text>
               </TouchableOpacity>
             );
@@ -450,7 +451,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               <TextInput
                 value={search}
                 onChangeText={setSearch}
-                placeholder="Search 50,000+ radio stations..."
+                placeholder={t("music.searchRadio")}
                 placeholderTextColor="rgba(255,255,255,0.35)"
                 style={styles.searchInput}
                 returnKeyType="search"
@@ -493,7 +494,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
         )}
       </View>
     ),
-    [headerInset, tab, search, genre, isSearchingRadio],
+    [headerInset, tab, search, genre, isSearchingRadio, t],
   );
 
   const listEmpty = useMemo(() => {
@@ -501,9 +502,9 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
       return (
         <View style={styles.empty}>
           <Icon name={tab === "tracks" ? "Disc3" : "MicVocal"} size={26} color="rgba(255,255,255,0.3)" />
-          <Text style={styles.emptyTitle}>No {tab} yet</Text>
+          <Text style={styles.emptyTitle}>{tab === "tracks" ? t("music.noTracks") : t("music.noPodcasts")}</Text>
           <Text style={styles.emptyNote}>
-            Music content will appear here once creators start uploading.
+            {t("music.emptyNote")}
           </Text>
         </View>
       );
@@ -514,10 +515,10 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
         <View style={styles.empty}>
           <Icon name="Radio" size={26} color="rgba(255,255,255,0.3)" />
           <Text style={styles.emptyTitle}>
-            {isSearchingRadio ? "No stations found" : "No stations available"}
+            {isSearchingRadio ? t("music.noStationsFound") : t("music.noStationsAvailable")}
           </Text>
           <Text style={styles.emptyNote}>
-            {isSearchingRadio ? "Try a different search term." : "Try another genre."}
+            {isSearchingRadio ? t("music.tryDifferentSearch") : t("music.tryAnotherGenre")}
           </Text>
         </View>
       );
@@ -532,7 +533,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
       );
     }
     return null;
-  }, [tab, loadingStations, isSearchingRadio, musicVideos.isLoading]);
+  }, [tab, loadingStations, isSearchingRadio, musicVideos.isLoading, t]);
 
   return (
     <View style={{ flex: 1 }}>
