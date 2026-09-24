@@ -2829,7 +2829,11 @@
     "vaultListedCannotWear": "Yọ àtòjọ náà kúrò kí o tó lo orúkọ yìí.",
     "vaultReleaseBody": "Ó padà sínú adágún omi àti pé ẹnikẹ́ni lè mú un. Kò sí ohun tí a kò lè ṣe, àti wíwá rà á padà yóò ná ohunkóhun tí onílé tuntun bá béèrè.",
     "swapHintKept": "O dúró pẹ̀lú @{{handle}} — ó wọ inú àwọn orúkọ olumúlùmọ̀ rẹ, o sì lè wọ̀ ọ́ tàbí tà á lẹ́yìn náà. Àwọn ìwé ìròyìn, àwọn tó ń tẹ̀lé ọ, àti àpò rẹ kò yí padà.",
-    "swapHintNoChange": "Àwọn ìwé ìròyìn, àwọn tó ń tẹ̀lé ọ, àti àpò rẹ kò yí padà."
+    "swapHintNoChange": "Àwọn ìwé ìròyìn, àwọn tó ń tẹ̀lé ọ, àti àpò rẹ kò yí padà.",
+    "addedToYourUsernames": "A ó fi kún àwọn orúkọ olùmúlò rẹ",
+    "boughtNameGoesToVault": "O ṣì jẹ́ @{{current}}. @{{handle}} yóò wọ inú àwọn orúkọ olùmúlò rẹ, o sì lè yí padà sí i nígbàkúùgbà tí o bá fẹ́.",
+    "youAreNow": "O ti di @{{handle}} báyìí",
+    "boughtToVaultToast": "@{{handle}} ti wà nínú àwọn orúkọ olùmúlò rẹ báyìí"
   },
   "stores": {
     "subtitle": "Ṣàwárí àwọn ọjà láti ọ̀dọ̀ àwùjọ DeHub",

@@ -3037,7 +3037,11 @@
     "vaultReleaseTitle": "Vrijgeven @{{handle}}?",
     "vaultReleaseBody": "Het gaat terug in de pool en iedereen kan het overnemen. Er is geen weg terug, en terugkopen zou je net zoveel kosten als de nieuwe eigenaar vraagt.",
     "swapHintKept": "Je behoudt @{{handle}} — het gaat naar je gebruikersnamen en je kunt het opnieuw dragen of later verkopen. Berichten, volgers en je portemonnee zijn onaangeroerd.",
-    "swapHintNoChange": "Berichten, volgers en je portemonnee zijn onaangeroerd."
+    "swapHintNoChange": "Berichten, volgers en je portemonnee zijn onaangeroerd.",
+    "addedToYourUsernames": "Wordt toegevoegd aan je gebruikersnamen",
+    "boughtNameGoesToVault": "Je blijft @{{current}}. @{{handle}} komt bij je gebruikersnamen en je kunt er altijd naar overstappen.",
+    "youAreNow": "Je bent nu @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} staat nu bij je gebruikersnamen"
   },
   "stores": {
     "subtitle": "Ontdek producten van de DeHub-community",

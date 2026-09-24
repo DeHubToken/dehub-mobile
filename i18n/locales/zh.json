@@ -2843,7 +2843,11 @@
     "vaultReleaseTitle": "释放 @{{handle}}?",
     "vaultReleaseBody": "它将返回到池中，任何人都可以获取它。无法撤销，并且将其买回将花费新所有者要求的任何价格。",
     "swapHintKept": "您保留了@ {{handle}} —它会进入您的用户名，您可以再次佩戴或稍后出售。 帖子、关注者和您的钱包不受影响。",
-    "swapHintNoChange": "帖子、关注者和您的钱包不受影响。"
+    "swapHintNoChange": "帖子、关注者和您的钱包不受影响。",
+    "addedToYourUsernames": "添加到你的用户名",
+    "boughtNameGoesToVault": "你仍是 @{{current}}。@{{handle}} 会加入你的用户名，你可以随时切换过去。",
+    "youAreNow": "你现在是 @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} 已加入你的用户名"
   },
   "stores": {
     "subtitle": "发现来自 DeHub 社区的商品",

@@ -2605,7 +2605,11 @@
       "completed": "مکمل",
       "expired": "میعاد ختم"
     },
-    "tabMine": "میرا"
+    "tabMine": "میرا",
+    "addedToYourUsernames": "تمہارے یوزرنیم میں جڑ جائے گا",
+    "boughtNameGoesToVault": "تم @{{current}} ہی رہو گے۔ @{{handle}} تمہارے یوزرنیم میں چلا جائے گا، اور جب چاہو اس پر بدل سکتے ہو۔",
+    "youAreNow": "اب تم @{{handle}} ہو",
+    "boughtToVaultToast": "@{{handle}} اب تمہارے یوزرنیم میں ہے"
   },
   "stores": {
     "subtitle": "DeHub برادری کی مصنوعات ڈھونڈو",
