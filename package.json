@@ -87,6 +87,7 @@
     "expo-file-system": "~19.0.14",
     "expo-font": "~14.0.8",
     "expo-gl": "~16.0.7",
+    "expo-haptics": "~15.0.8",
     "expo-image": "~3.0.9",
     "expo-image-manipulator": "~14.0.7",
     "expo-image-picker": "~17.0.11",

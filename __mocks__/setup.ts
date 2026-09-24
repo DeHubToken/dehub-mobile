@@ -127,6 +127,14 @@ jest.mock('react-native-mmkv', () => {
   return { MMKV };
 });
 
+jest.mock('expo-haptics', () => ({
+  impactAsync: jest.fn().mockResolvedValue(undefined),
+  selectionAsync: jest.fn().mockResolvedValue(undefined),
+  notificationAsync: jest.fn().mockResolvedValue(undefined),
+  ImpactFeedbackStyle: { Light: 'light', Medium: 'medium', Heavy: 'heavy' },
+  NotificationFeedbackType: { Success: 'success', Warning: 'warning', Error: 'error' },
+}), { virtual: true });
+
 jest.mock('expo-clipboard', () => ({
   setString: jest.fn(),
   getStringAsync: jest.fn().mockResolvedValue(''),

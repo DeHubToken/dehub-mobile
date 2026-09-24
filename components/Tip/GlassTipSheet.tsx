@@ -76,6 +76,7 @@ import { withWalletHeader } from "../../libs/supabase-wallet-client";
 import { ButtonLoader } from "../DeHubLoader";
 import { getAccount } from "../../services/user.service";
 import { sanitizeAmountInput } from "../../libs/amount-input";
+import { haptic } from "../../libs/haptics";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -384,12 +385,14 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             chainId: paymentChainId,
           });
           setPhase("sent");
+          haptic.success();
           setLastAmount(numericAmount);
           onSuccess?.(numericAmount);
           setAmount("");
           setSelectedPreset(null);
         } catch (e) {
           setPhase("error");
+          haptic.error();
           setTipError(
             e instanceof Error ? e.message : t("tip.solanaFailed", "Solana tip failed"),
           );
@@ -430,6 +433,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           await prepareDhbSpend(tokenContract, controllerAddress, amountBN);
         } catch (e) {
           setPhase("error");
+          haptic.error();
           setTipError(parseTxError(e, "approve"));
           return;
         }
@@ -469,10 +473,12 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           }
           if (receipt && receipt.status !== undefined && receipt.status !== 1) {
             setPhase("error");
+          haptic.error();
             setTipError(t("wallet.transactionFailed"));
             return;
           }
           setPhase("sent");
+          haptic.success();
           setLastAmount(numericAmount);
 
           // Record the tip the way web does. Mobile tips never wrote a
@@ -512,6 +518,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           setSelectedPreset(null);
         } catch (e) {
           setPhase("error");
+          haptic.error();
           setTipError(parseTxError(e, "send"));
         }
       } catch (e) {
