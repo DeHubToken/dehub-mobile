@@ -19,6 +19,7 @@
     "unavailable": "이 버전의 앱에서는 사용할 수 없습니다"
   },
   "nav": {
+    "fractions": "프랙션",
     "home": "홈",
     "explore": "탐색",
     "notifications": "알림",
@@ -3056,8 +3057,8 @@
     "moderators": "관리자",
     "bannedUsers": "차단된 사용자",
     "work": "업무",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "사용자 이름",
+    "accounts": "계정",
     "stores": "스토어",
     "comingSoon": "곧 출시",
     "signIn": "로그인",

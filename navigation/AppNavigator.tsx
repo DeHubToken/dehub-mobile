@@ -116,6 +116,10 @@ function AppNavigatorContent() {
           getComponent={() => require("../screens/ConverterScreen").default}
         />
         <Stack.Screen
+          name={ScreenNames.Migrate}
+          getComponent={() => require("../screens/MigrateScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Glossary}
           getComponent={() => require("../screens/GlossaryScreen").default}
         />

@@ -19,6 +19,7 @@
     "unavailable": "这个版本的应用里没有"
   },
   "nav": {
+    "fractions": "碎片",
     "home": "家",
     "explore": "找找看",
     "notifications": "通知",
@@ -2993,8 +2994,8 @@
     "moderators": "管理员",
     "bannedUsers": "已封禁用户",
     "work": "工作",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "用户名",
+    "accounts": "账号",
     "stores": "商店",
     "comingSoon": "即将推出",
     "signIn": "登录",

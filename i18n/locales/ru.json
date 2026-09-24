@@ -19,6 +19,7 @@
     "unavailable": "Недоступно в этой версии приложения"
   },
   "nav": {
+    "fractions": "Доли",
     "home": "Главная",
     "explore": "Обзор",
     "notifications": "Уведомления",
@@ -3059,8 +3060,8 @@
     "moderators": "Модераторы",
     "bannedUsers": "Забаненные пользователи",
     "work": "Работа",
-    "usernames": "Usernames",
-    "accounts": "Accounts",
+    "usernames": "Имена пользователей",
+    "accounts": "Аккаунты",
     "stores": "Магазины",
     "comingSoon": "Скоро",
     "signIn": "Войти",

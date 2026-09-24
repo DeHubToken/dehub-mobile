@@ -19,6 +19,7 @@
     "unavailable": "Հասանելի չէ հավելվածի այս տարբերակում"
   },
   "nav": {
+    "fractions": "Կոտորակներ",
     "home": "Գլdelays",
     "explore": "Ուdelays",
     "notifications": "Ծanouncements",
@@ -56,7 +57,7 @@
     "tv": "Ուղիղ TV",
     "arcade": "Արկադ",
     "converter": "Փոխակերպիչ",
-    "migrate": "Արտագաղթել բոլորից"
+    "migrate": "Տեղափոխել բոլորը"
   },
   "affiliate": {
     "subtitle": "Earn from everyone you invite — forever",
