@@ -125,13 +125,16 @@ export interface WalletSetupScreenProps {
 }
 
 /** Shared reveal toggle for every password field on this screen. */
-const RevealToggle: React.FC<{ shown: boolean; onToggle: () => void }> = ({ shown, onToggle }) => (
-  <AuthIconButton
-    icon={shown ? "eye-off-outline" : "eye-outline"}
-    onPress={onToggle}
-    accessibilityLabel={shown ? "Hide password" : "Show password"}
-  />
-);
+const RevealToggle: React.FC<{ shown: boolean; onToggle: () => void }> = ({ shown, onToggle }) => {
+  const { t } = useTranslation();
+  return (
+    <AuthIconButton
+      icon={shown ? "eye-off-outline" : "eye-outline"}
+      onPress={onToggle}
+      accessibilityLabel={shown ? t("walletSetup.hidePassword") : t("walletSetup.showPassword")}
+    />
+  );
+};
 
 /** One line of the "what you lose" / "what stays" lists. */
 const ResetPoint: React.FC<{ tone: "lose" | "keep"; head: string; body: string }> = memo(
@@ -205,7 +208,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
     onBack,
   }) => {
     const { t } = useTranslation();
-    const short = address ? `${address.slice(0, 6)}…${address.slice(-4)}` : "this wallet";
+    const short = address ? `${address.slice(0, 6)}…${address.slice(-4)}` : t("walletSetup.thisWallet");
     const hasOtherWayIn = !!otherCopies && (otherCopies.recovery || otherCopies.passkeys > 0);
 
     if (!otherCopies) {
@@ -237,17 +240,18 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
           </Text>
           {otherCopies.recovery && (
             <Text style={[authText.body, { marginBottom: 12 }]}>
-              {t("walletSetup.accountHasA")} <Text style={authText.emphasis}>recovery record</Text> from
-              dehub.io. The 24-word recovery code you were given still opens this wallet. Open
-              dehub.io on a computer, sign in the same way and with the same account, and use that
-              code — it brings the wallet, and your account, back exactly as they were.
+              <Trans
+                i18nKey="walletSetup.recoveryRecordNotice"
+                components={{ em: <Text style={authText.emphasis} /> }}
+              />
             </Text>
           )}
+          {/* One-or-several rather than an i18next plural: only _one/_other are
+              stored per locale, and languages with more plural forms would
+              fall back to English for counts like 3. */}
           {n > 0 && (
             <Text style={[authText.body, { marginBottom: 12 }]}>
-              This account has {n} passkey unlock{n === 1 ? "" : "s"} registered on dehub.io. In the
-              browser that holds {n === 1 ? "it" : "one of them"}, dehub.io can still open this
-              wallet.
+              {n === 1 ? t("walletSetup.passkeyNoticeSingle") : t("walletSetup.passkeyNoticeMultiple")}
             </Text>
           )}
           <AuthButton
@@ -275,7 +279,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
 
         {otherCopies.failed && (
           <View style={{ marginBottom: 16 }}>
-            <AuthErrorNotice message="Couldn't check whether you have other ways back into this wallet. If you ever set up a recovery code or a passkey on dehub.io, go and try that first — continuing here clears them." />
+            <AuthErrorNotice message={t("walletSetup.otherWaysCheckFailed")} />
           </View>
         )}
 
@@ -288,8 +292,8 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
             that deserves none. */}
         <ResetPoint
           tone="lose"
-          head="Anything the old wallet holds."
-          body={`Its balances stay at ${short} on the blockchain — nothing is spent or taken — but moving them needs that wallet's recovery phrase or private key. Without one, nobody can reach them: not you, not us. Unless you can get the key off the device that made it, treat what's in there as gone.`}
+          head={t("walletSetup.loseFundsHead")}
+          body={t("walletSetup.loseFundsBody", { address: short })}
         />
         {/* Gated on "might exist", not on "we know it exists". The reset
             clears both tables either way, so when the probe couldn't read
@@ -299,22 +303,22 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
         {(otherCopies.recovery || otherCopies.failed) && (
           <ResetPoint
             tone="lose"
-            head="Your recovery code."
+            head={t("walletSetup.loseRecoveryHead")}
             body={
               otherCopies.recovery
-                ? "The recovery record on dehub.io is cleared as part of this, so that route closes too."
-                : "If you ever set up a 24-word recovery code on dehub.io, it is cleared as part of this. We couldn't check whether you have one."
+                ? t("walletSetup.loseRecoveryBody")
+                : t("walletSetup.loseRecoveryUnknownBody")
             }
           />
         )}
         {(otherCopies.passkeys > 0 || otherCopies.failed) && (
           <ResetPoint
             tone="lose"
-            head="Your passkey unlocks."
+            head={t("walletSetup.losePasskeysHead")}
             body={
               otherCopies.passkeys > 0
-                ? "The passkeys registered on dehub.io are removed as part of this."
-                : "Any passkeys registered on dehub.io are removed as part of this. We couldn't check whether you have any."
+                ? t("walletSetup.losePasskeysBody")
+                : t("walletSetup.losePasskeysUnknownBody")
             }
           />
         )}
@@ -326,28 +330,30 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
             forever. It does not any more — see the backend's rotate-wallet. */}
         <ResetPoint
           tone="keep"
-          head="Your account, exactly as it is."
-          body="Username, profile, posts, comments, followers, badges and history all move to the new wallet. It is the same account — nobody has to find you again."
+          head={t("walletSetup.keepAccountHead")}
+          body={t("walletSetup.keepAccountBody")}
         />
         <ResetPoint
           tone="keep"
-          head="Your messages and your inbox."
-          body="Conversations, notifications, bookmarks, saved posts and watch history come with you. Nothing is deleted and nobody else can read any of it."
+          head={t("walletSetup.keepMessagesHead")}
+          body={t("walletSetup.keepMessagesBody")}
         />
         <ResetPoint
           tone="keep"
-          head="How you sign in."
-          body="Same phone number, email or Google account, same one tap. It is the wallet behind the login that is being replaced, not the login."
+          head={t("walletSetup.keepSignInHead")}
+          body={t("walletSetup.keepSignInBody")}
         />
 
         <Text style={[styles.resetHeading, { marginTop: 16 }]}>{t("walletSetup.beforeYouDoThis")}</Text>
         <ResetPoint
           tone="keep"
-          head="Check the device you set it up on."
-          body="A phone keeps its own copy of the key while DeHub is installed, and a browser keeps its passkey. If you still have either, go there, export the private key, and come back and use Restore instead — that keeps the balances too."
+          head={t("walletSetup.checkDeviceHead")}
+          body={t("walletSetup.checkDeviceBody")}
         />
 
-        <Text style={[authText.caption, { marginTop: 16 }]}>Wallet being left behind: {short}</Text>
+        <Text style={[authText.caption, { marginTop: 16 }]}>
+          {t("walletSetup.walletLeftBehind", { address: short })}
+        </Text>
 
         <TouchableOpacity
           onPress={onToggleAcknowledged}
@@ -618,7 +624,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         if (!full.acceptable) {
           setError(
             full.breached === true
-              ? "This password has appeared in a data breach — choose a different one"
+              ? t("walletSetup.passwordBreached")
               : full.warnings[0] ? t(full.warnings[0], { n: MIN_PASSWORD_LENGTH }) : t("walletSetup.chooseStronger")
           );
           return;
@@ -690,7 +696,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         if (!full.acceptable) {
           setError(
             full.breached === true
-              ? "This password has appeared in a data breach — choose a different one"
+              ? t("walletSetup.passwordBreached")
               : full.warnings[0] ? t(full.warnings[0], { n: MIN_PASSWORD_LENGTH }) : t("walletSetup.chooseStronger")
           );
           return;
@@ -773,13 +779,13 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       if (!normalizedRestoreSecret || restoreSecretValid) return null;
       const words = normalizedRestoreSecret.split(" ").length;
       if (words >= 9) {
-        return "That doesn't check out as a recovery phrase — 12 words, in the order they were shown, all lowercase.";
+        return t("walletSetup.phraseInvalidHint");
       }
       if (/^(0x)?[0-9a-fA-F]+$/.test(normalizedRestoreSecret)) {
-        return "A private key is 64 hex characters after the 0x.";
+        return t("walletSetup.privateKeyHint");
       }
       return null;
-    }, [normalizedRestoreSecret, restoreSecretValid]);
+    }, [normalizedRestoreSecret, restoreSecretValid, t]);
 
     // A restore with no cloud identity has no row to protect, so no password.
     const restoreNeedsPassword = !(request?.mode === "restore" && !request.supabaseUserId);
@@ -798,7 +804,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           if (!full.acceptable) {
             setError(
               full.breached === true
-                ? "This password has appeared in a data breach — choose a different one"
+                ? t("walletSetup.passwordBreached")
                 : full.warnings[0] ? t(full.warnings[0], { n: MIN_PASSWORD_LENGTH }) : t("walletSetup.chooseStronger")
             );
             return;
@@ -1001,7 +1007,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                         style={[styles.segmentItem, active && styles.segmentItemActive]}
                       >
                         <Text style={[styles.segmentLabel, active && styles.segmentLabelActive]}>
-                          {choice === "biometric" ? "Biometric" : "Password"}
+                          {choice === "biometric" ? t("walletSetup.biometricTab") : t("walletSetup.password")}
                         </Text>
                       </TouchableOpacity>
                     );
@@ -1106,18 +1112,21 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   as a certainty sent people who had never opened dehub.io to
                   dehub.io. Say both, and let the probe below settle it. */}
               <Text style={[authText.body, { marginBottom: 16 }]}>
-                This account has a wallet address on file, but no backup this phone can use — either
-                it was protected with{" "}
-                <Text style={authText.emphasis}>biometrics or a passkey on the web</Text> (that
-                unlock stays in the browser and does not sync here), or an earlier sign-up on this
-                phone was interrupted before it finished.
+                <Trans
+                  i18nKey="walletSetup.noUsableBackup"
+                  components={{ em: <Text style={authText.emphasis} /> }}
+                />
               </Text>
               <Text style={[authText.body, { marginBottom: 20 }]}>
-                {t("walletSetup.ifYouUsedDehub")} <Text style={authText.emphasis}>add a wallet password</Text>{" "}
-                — that saves an encrypted backup to the cloud. Then come back here and try again.
+                <Trans
+                  i18nKey="walletSetup.addPasswordOnWeb"
+                  components={{ em: <Text style={authText.emphasis} /> }}
+                />
               </Text>
               <Text style={[authText.caption, { marginBottom: 16 }]}>
-                Wallet: {request.address.slice(0, 6)}…{request.address.slice(-4)}
+                {t("walletSetup.walletAddress", {
+                  address: `${request.address.slice(0, 6)}…${request.address.slice(-4)}`,
+                })}
               </Text>
               <AuthButton
                 variant="primary"
@@ -1236,7 +1245,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   <AuthErrorNotice
                     message={
                       biometricError
-                        ? `${biometricError} If this keeps failing, use your wallet password below or "Import external wallet".`
+                        ? t("walletSetup.biometricKeepsFailing", { error: biometricError })
                         : null
                     }
                     style={{ marginBottom: 12 }}
@@ -1266,15 +1275,18 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 // password that was never wrong.
                 <>
                   <Text style={[authText.body, { marginBottom: 12 }]}>
-                    This wallet unlocks with{" "}
-                    <Text style={authText.emphasis}>biometrics held on one specific device</Text> —
-                    the phone or browser it was set up on. This phone doesn&apos;t have that key,
-                    and neither does dehub.io: the key never leaves the device that made it.
+                    <Trans
+                      i18nKey="walletSetup.deviceBoundKey"
+                      components={{ em: <Text style={authText.emphasis} /> }}
+                    />
                   </Text>
                   <Text style={[authText.caption, { marginBottom: 20 }]}>
-                    Wallet: {request?.mode === "biometric-unlock"
-                      ? `${request.address.slice(0, 6)}…${request.address.slice(-4)}`
-                      : ""}
+                    {t("walletSetup.walletAddress", {
+                      address:
+                        request?.mode === "biometric-unlock"
+                          ? `${request.address.slice(0, 6)}…${request.address.slice(-4)}`
+                          : "",
+                    })}
                   </Text>
 
                   {/* Reported right here rather than beside the restore form
@@ -1482,8 +1494,8 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
             <View>
               <Text style={[authText.body, { marginBottom: 20 }]}>
                 {unlockPasskeyOnly
-                  ? "This wallet was secured with a passkey on the web and has no password backup in the cloud yet. If you set a wallet password on dehub.io, enter it here — otherwise use Import external wallet below."
-                  : "This account already has a wallet, protected by a password. Enter it to recover your wallet on this device."}
+                  ? t("walletSetup.unlockPasskeyOnly")
+                  : t("walletSetup.unlockWithPasswordExplainer")}
               </Text>
               <AuthField
                 label={t("walletSetup.walletPassword")}
