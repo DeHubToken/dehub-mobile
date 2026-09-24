@@ -108,13 +108,19 @@ export interface NotificationData {
 
 // Configure default behavior when notification is received in foreground
 Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-    shouldShowBanner: true,
-    shouldShowList: true,
-  }),
+  handleNotification: async (notification) => {
+    // With the app open the incoming-call screen is already up; a banner and
+    // a second sound on top of it would only be noise.
+    const isCall = (notification?.request?.content?.data as any)?.type === 'incoming_call';
+    const show = !isCall;
+    return {
+      shouldShowAlert: show,
+      shouldPlaySound: show,
+      shouldSetBadge: show,
+      shouldShowBanner: show,
+      shouldShowList: show,
+    };
+  },
 });
 
 // Singleton state for token registration
@@ -328,6 +334,19 @@ async function setupAndroidChannels(): Promise<void> {
       vibrationPattern: [0, 300, 100, 300],
       lightColor: '#000000',
       sound: 'default',
+    });
+
+    // Incoming calls. MAX importance so a locked phone lights up and sounds
+    // instead of dropping the call into the shade silently.
+    await Notifications.setNotificationChannelAsync('calls', {
+      name: 'Calls',
+      description: 'Incoming voice and video calls',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 800, 400, 800, 400, 800],
+      lightColor: '#000000',
+      sound: 'default',
+      lockscreenVisibility: Notifications.AndroidNotificationVisibility.PUBLIC,
+      bypassDnd: false,
     });
 
     // Content channel (milestones, moderation)
