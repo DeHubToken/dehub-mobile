@@ -22,6 +22,7 @@ import { t } from 'i18next';
 import { getNotifications } from '../user.service';
 import { countUnreadNotifications, incrementUnreadCount } from '../../libs/notifications.unread';
 import { emitProfileDeepLink } from '../../libs/deeplink.events';
+import { useOnboarding } from '../../context/OnboardingChecklistContext';
 
 const logger = createLogger('PushProvider');
 
@@ -36,8 +37,10 @@ const SOFT_ASK_COOLDOWN_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 // The OS dialog used to fire one second after sign-in, landing on top of the
 // welcome copy a new user is still reading. The pre-prompt waits until they
-// have had time with the app instead.
-const SOFT_ASK_DELAY_MS = 12_000;
+// have had time with the app instead — and, counting from the moment the
+// username and walkthrough-offer modals are out of the way, long enough that
+// a walkthrough sheet opened from that offer is not immediately covered.
+const SOFT_ASK_DELAY_MS = 20_000;
 
 // How long a "notifications are blocked" notice stays away once shown. Long
 // enough not to nag, short enough that it resurfaces for someone who meant to
@@ -182,6 +185,10 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   const { isSignedIn, needsUsername } = useAuthState();
   const { patchUser } = useAuthActions();
   const isFullySignedIn = isSignedIn && !needsUsername;
+  // A new member's walkthrough offer is a modal of its own; the pre-prompt
+  // waits until it has been answered rather than stacking on top of it.
+  const onboarding = useOnboarding();
+  const onboardingOfferPending = !!onboarding && (onboarding.loading || onboarding.shouldOffer);
   const userAddress = user?.walletAddress || user?.address;
   // A plain boolean, not the prefs object: this feeds a useCallback dep array,
   // and an object identity there is how the unread-count render loop started.
@@ -557,7 +564,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     }
 
     // Ask once the user is settled in the app, not the instant auth resolves.
-    if (isFullySignedIn && userAddress && !hasRegisteredRef.current) {
+    if (isFullySignedIn && userAddress && !onboardingOfferPending && !hasRegisteredRef.current) {
       const timer = setTimeout(() => {
         maybeAskForPushPermission();
       }, SOFT_ASK_DELAY_MS);
@@ -573,7 +580,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       softAskHandledRef.current = false;
       setSoftAskVisible(false);
     }
-  }, [isFullySignedIn, userAddress, maybeAskForPushPermission, handleNotificationNavigation]);
+  }, [isFullySignedIn, userAddress, onboardingOfferPending, maybeAskForPushPermission, handleNotificationNavigation]);
 
   // When the app is launched from a killed state by tapping a notification,
   // addNotificationResponseReceivedListener may fire before this component

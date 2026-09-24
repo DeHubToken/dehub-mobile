@@ -362,6 +362,8 @@ export default function SmsNotificationsSheet({
                         placeholder="123456"
                         placeholderTextColor="#6b7280"
                         keyboardType="number-pad"
+                        textContentType="oneTimeCode"
+                        autoComplete="sms-otp"
                         maxLength={6}
                         value={code}
                         onChangeText={setCode}
