@@ -32,6 +32,15 @@ import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { runWithPermissions } from "../../libs/permissions.util";
 import { toastError, toastSuccess } from "../../libs/toast";
+import { useAppTheme } from "../../context/ThemeContext";
+import {
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  minimalRow,
+  minimalTab,
+  minimalTabActive,
+  minimalTabStrip,
+} from "../../theme/minimal";
 import {
   useMyStores,
   useMyListings,
@@ -509,6 +518,10 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   onSignIn,
 }) => {
   const { t } = useTranslation();
+  // Minimal: sub-tabs become file tabs and the listing/order cards become
+  // edge-to-edge hairline rows. The banner header and buttons stay.
+  const { isMinimal } = useAppTheme();
+  const rowStyle = [styles.row, isMinimal && styles.minimalRow];
   const { data: stores = [], isLoading: loadingStores } = useMyStores();
   const { data: listings = [] } = useMyListings();
   const sellerOrders = useMyOrders("seller");
@@ -713,14 +726,24 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
       </View>
 
       {/* Sub tabs */}
-      <View style={styles.segment}>
+      <View style={[styles.segment, isMinimal && styles.minimalSegment]}>
         {TABS.map((t) => (
           <Pressable
             key={t.key}
             onPress={() => setSubTab(t.key)}
-            style={[styles.segmentBtn, subTab === t.key && styles.segmentBtnActive]}
+            style={[
+              styles.segmentBtn,
+              subTab === t.key && styles.segmentBtnActive,
+              isMinimal && (subTab === t.key ? minimalTabActive : minimalTab),
+            ]}
           >
-            <Text style={[styles.segmentText, subTab === t.key && styles.segmentTextActive]}>
+            <Text
+              style={[
+                styles.segmentText,
+                subTab === t.key && styles.segmentTextActive,
+                isMinimal && { color: subTab === t.key ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
+              ]}
+            >
               {t.label} ({t.count})
             </Text>
           </Pressable>
@@ -736,7 +759,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
           storeListings.map((l) => {
             const imgs = Array.isArray(l.images) ? l.images : [];
             return (
-              <View key={l.id} style={styles.row}>
+              <View key={l.id} style={rowStyle}>
                 <View style={styles.rowThumb}>
                   {imgs[0] ? (
                     <Image source={{ uri: imgs[0] }} style={StyleSheet.absoluteFill} contentFit="cover" />
@@ -776,7 +799,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
           return (
             <Pressable
               key={o.id}
-              style={styles.row}
+              style={rowStyle}
               onPress={canAdvance ? () => advanceOrder(o) : undefined}
               disabled={!canAdvance}
             >
@@ -855,6 +878,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 3,
   },
+  // -12 cancels the scroll gutter so the baseline / hairlines run edge to edge.
+  minimalSegment: { ...minimalTabStrip, marginHorizontal: -12, padding: 0, gap: 0, marginBottom: 0 },
   segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 9, alignItems: "center" },
   segmentBtnActive: { backgroundColor: "rgba(255,255,255,0.15)" },
   segmentText: { color: "#A1A1AA", fontSize: 12, fontWeight: "600" },
@@ -871,6 +896,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.08)",
     marginBottom: 8,
   },
+  minimalRow: { ...minimalRow, marginHorizontal: -12, marginBottom: 0, paddingHorizontal: 16 },
   rowThumb: {
     width: 44,
     height: 44,

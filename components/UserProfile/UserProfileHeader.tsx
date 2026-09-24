@@ -18,6 +18,8 @@ import { useTranslation as useI18n } from "react-i18next";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import type { FollowListItem } from "../../services/user.service";
 import TotalReachPill from "../Profile/TotalReachPill";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 
 const SOCIAL_SVGS: Record<string, string> = {
   twitter: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg>`,
@@ -137,6 +139,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   onSubscribe,
 }) => {
   const { t } = useI18n();
+  const { isMinimal } = useAppTheme();
   // Bios go through the shared hook rather than a private translateText call,
   // which is what gets them auto-translation, the persisted cache and — the
   // reason the old code was wrong — the reader's CHOSEN language. It targeted
@@ -181,6 +184,18 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
     return list;
   }, [socials]);
 
+  // The glass fill every header button is painted with. Minimal drops it for a
+  // 1px outline (s.minimalBtn), and grows the box to 44pt so the tap target
+  // does not shrink with the slab.
+  const glassLayers = isMinimal ? null : (
+    <>
+      <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
+      <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
+      <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
+    </>
+  );
+  const btn = isMinimal ? [s.glassBtn, s.minimalBtn] : s.glassBtn;
+
   const followingItem = stats?.find((s) => s.key === "following");
   const followersItem = stats?.find((s) => s.key === "followers");
 
@@ -190,11 +205,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         <TouchableOpacity
           onPress={onEditProfile}
           activeOpacity={0.7}
-          style={s.glassBtn}
+          style={btn}
         >
-          <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
-          <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-          <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
+          {glassLayers}
           <View style={s.glassBtnContent}>
             <Icon name="Pencil" size={14} color="#fff" />
             <Text style={s.glassBtnLabel}>{t("screens.editProfile")}</Text>
@@ -205,10 +218,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 
     if (followLoading) {
       return (
-        <View style={[s.glassBtn, { opacity: 0.6 }]}>
-          <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
-          <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-          <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
+        <View style={[btn, { opacity: 0.6 }]}>
+          {glassLayers}
           <View style={s.glassBtnContent}>
             <ActivityIndicator size="small" color="#fff" />
           </View>
@@ -222,11 +233,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           onPress={() => !disableActions && onOpenUnfollow?.()}
           disabled={disableActions}
           activeOpacity={0.7}
-          style={[s.glassBtn, disableActions && { opacity: 0.4 }]}
+          style={[btn, disableActions && { opacity: 0.4 }]}
         >
-          <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
-          <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-          <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
+          {glassLayers}
           <View style={s.glassBtnContent}>
             <Icon name="Clock" size={14} color="#fff" />
             <Text style={s.glassBtnLabel}>{t("follow.requested")}</Text>
@@ -241,11 +250,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           onPress={() => !disableActions && onOpenUnfollow?.()}
           disabled={disableActions}
           activeOpacity={0.7}
-          style={[s.glassBtn, disableActions && { opacity: 0.4 }]}
+          style={[btn, disableActions && { opacity: 0.4 }]}
         >
-          <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
-          <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-          <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
+          {glassLayers}
           <View style={s.glassBtnContent}>
             <Text style={s.glassBtnLabel}>{t("filters.following")}</Text>
             <Icon name="Check" size={14} color="#fff" />
@@ -259,11 +266,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         onPress={disableActions ? undefined : onFollow}
         disabled={disableActions}
         activeOpacity={0.7}
-        style={[s.glassBtn, disableActions && { opacity: 0.4 }]}
+        style={[btn, disableActions && { opacity: 0.4 }]}
       >
-        <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
-        <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-        <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
+        {glassLayers}
         <View style={s.glassBtnContent}>
           <Icon name="UserPlus" size={14} color="#fff" />
           <Text style={s.glassBtnLabel}>
@@ -277,11 +282,15 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   return (
     <View>
       <TouchableOpacity activeOpacity={0.8} onPress={() => onOpenImage("cover")}>
-        <View className="mx-4 rounded-xl overflow-hidden" style={{ height: 140 }}>
+        {/* Minimal: media runs edge to edge, so the cover drops its inset. */}
+        <View
+          className={isMinimal ? "overflow-hidden" : "mx-4 rounded-xl overflow-hidden"}
+          style={{ height: 140 }}
+        >
           <ImageBackground
             source={coverUrl === "default-banner" ? FallbackBanner : { uri: coverUrl as string }}
             style={{ width: "100%", height: "100%" }}
-            imageStyle={{ borderRadius: 12 }}
+            imageStyle={isMinimal ? undefined : { borderRadius: 12 }}
             resizeMode="cover"
           />
         </View>
@@ -305,11 +314,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   activeOpacity={0.7}
                   accessibilityRole="button"
                   accessibilityLabel={t("profile.messageUser")}
-                  style={[s.glassBtn, s.iconBtn]}
+                  style={[btn, s.iconBtn, isMinimal && s.minimalIconBtn]}
                 >
-                  <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
-                  <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-                  <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
+                  {glassLayers}
                   <View style={s.glassBtnContent}>
                     <Icon name="MessageSquare" size={16} color="#fff" />
                   </View>
@@ -337,9 +344,17 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                     hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}
                     accessibilityLabel={si.key}
                   >
+                    {/* Minimal: bare icon, no glass chip; hitSlop already
+                        takes the 32pt box to a 44pt target. */}
+                    {isMinimal ? (
+                      <View style={{ width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
+                        <SvgXml xml={si.svg} width={14} height={14} color="#A1A1AA" />
+                      </View>
+                    ) : (
                     <FakeGlass className="rounded-xl" style={{ width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
                       <SvgXml xml={si.svg} width={14} height={14} color="#A1A1AA" />
                     </FakeGlass>
+                    )}
                   </TouchableOpacity>
                 ))}
               </View>
@@ -455,17 +470,15 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             than beside Follow: two glass pills plus the avatar overflow on a
             narrow phone. */}
         {!isOwnProfile && !isBlocked && plansLoading && !hasPlans ? (
-          <View style={[s.glassBtn, s.subscribePlaceholder]} />
+          <View style={[btn, s.subscribePlaceholder]} />
         ) : (
           !isOwnProfile && !isBlocked && hasPlans && !!onSubscribe && (
             <TouchableOpacity
               onPress={onSubscribe}
               activeOpacity={0.7}
-              style={[s.glassBtn, { marginTop: 12, paddingHorizontal: 0 }]}
+              style={[btn, { marginTop: 12, paddingHorizontal: 0 }]}
             >
-              <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
-              <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-              <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
+              {glassLayers}
               <View style={s.glassBtnContent}>
                 <Icon name="Star" size={14} color="#fff" />
                 <Text style={s.glassBtnLabel}>{t("profile.subscribeNow")}</Text>
@@ -510,6 +523,14 @@ const s = StyleSheet.create({
   iconBtn: {
     width: BTN_H,
     paddingHorizontal: 0,
+  },
+  minimalBtn: {
+    height: 44,
+    borderWidth: 1,
+    borderColor: MINIMAL_HAIRLINE,
+  },
+  minimalIconBtn: {
+    width: 44,
   },
   glassOverlay: {
     backgroundColor: "rgba(24,24,27,0.3)",

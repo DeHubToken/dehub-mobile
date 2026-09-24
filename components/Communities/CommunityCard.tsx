@@ -6,6 +6,8 @@ import type { Community } from "../../types/community";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_INSET, minimalRow } from "../../theme/minimal";
 
 interface Props {
   community: Community;
@@ -25,10 +27,11 @@ function formatRelativeTime(dateString: string, t: TFunction): string {
 
 const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const isOwner = role === "owner";
 
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.75} style={styles.card}>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.75} style={[styles.card, isMinimal && styles.minimalCard]}>
       {!!community.banner_url && (
         <>
           <Image
@@ -87,6 +90,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     overflow: "hidden",
     position: "relative",
+  },
+  // Minimal: the card becomes a list row — no fill, outline or gap, one
+  // hairline underneath. The banner still washes the row as media.
+  minimalCard: {
+    ...minimalRow,
+    marginBottom: 0,
+    paddingLeft: MINIMAL_INSET,
   },
   bannerBg: {
     ...StyleSheet.absoluteFillObject,

@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
+import { useAppTheme } from "../../context/ThemeContext";
+import { minimalRow } from "../../theme/minimal";
 import { getMyPosts } from "../../services/user.service";
 import { getDHBPrice } from "../../services/ai.service";
 
@@ -84,6 +86,9 @@ function compact(n: number): string {
 
 const EarningsComparisonCard: React.FC = () => {
   const { t } = useTranslation();
+  // Minimal: the card and the per-platform rows dissolve into hairline rows;
+  // the stat tiles and RPM / views inputs keep their fill.
+  const { isMinimal } = useAppTheme();
   const user = useUser() as any;
 
   const [loading, setLoading] = useState(true);
@@ -158,7 +163,7 @@ const EarningsComparisonCard: React.FC = () => {
   }, [estimatorViews, rpms]);
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, isMinimal && minimalRow]}>
       <Text style={styles.cardTitle}>{t("earningsVs.title")}</Text>
       <Text style={styles.cardSubtitle}>{t("earningsVs.subtitle")}</Text>
 
@@ -198,9 +203,9 @@ const EarningsComparisonCard: React.FC = () => {
           </View>
 
           {/* Comparison rows */}
-          <View style={{ gap: 6 }}>
+          <View style={{ gap: isMinimal ? 0 : 6 }}>
             {rows.map((r) => (
-              <View key={r.key} style={styles.platformRow}>
+              <View key={r.key} style={[styles.platformRow, isMinimal && styles.minimalPlatformRow]}>
                 <View style={styles.platformTop}>
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <Text style={styles.platformName}>{r.label}</Text>
@@ -306,6 +311,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
   },
+  // The card's padding already insets the text; the rows only need the rule.
+  minimalPlatformRow: { ...minimalRow, paddingHorizontal: 0 },
   platformTop: { flexDirection: "row", alignItems: "center", gap: 8 },
   platformName: { color: "#F9FBFF", fontSize: 13, fontWeight: "600" },
   platformRange: { color: "#A6A9AC", fontSize: 12, marginTop: 1 },

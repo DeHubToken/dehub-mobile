@@ -1,12 +1,19 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useAppTheme } from '../../context/ThemeContext';
+import { MINIMAL_HAIRLINE } from '../../theme/minimal';
 
 // Skeleton placeholder matching the current UserProfileHeader layout
 const UserProfileSkeleton: React.FC = () => {
+  const { isMinimal } = useAppTheme();
   return (
     <View>
       {/* Cover image */}
-      <View className="mx-4 rounded-xl overflow-hidden" style={{ height: 140 }}>
+      {/* Minimal mirrors the real header: edge-to-edge cover. */}
+      <View
+        className={isMinimal ? 'overflow-hidden' : 'mx-4 rounded-xl overflow-hidden'}
+        style={{ height: 140 }}
+      >
         <View className="w-full h-full bg-theme-neutrals-800 animate-pulse" />
       </View>
 
@@ -17,7 +24,15 @@ const UserProfileSkeleton: React.FC = () => {
             className="bg-theme-neutrals-700 animate-pulse"
             style={{ width: 88, height: 88, borderRadius: 12, borderWidth: 3, borderColor: '#010305' }}
           />
-          <View className="h-9 w-24 bg-theme-neutrals-800 rounded-xl mb-1 animate-pulse" />
+          {/* Minimal's header button is a 44pt hairline outline, not a slab. */}
+          {isMinimal ? (
+            <View
+              className="w-24 mb-1 animate-pulse"
+              style={{ height: 44, borderWidth: 1, borderColor: MINIMAL_HAIRLINE }}
+            />
+          ) : (
+            <View className="h-9 w-24 bg-theme-neutrals-800 rounded-xl mb-1 animate-pulse" />
+          )}
         </View>
 
         {/* Name + social icons row */}

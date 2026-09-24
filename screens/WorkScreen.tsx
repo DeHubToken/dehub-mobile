@@ -13,7 +13,7 @@ import {
   FlatList,
   ScrollView,
   TextInput,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -22,6 +22,15 @@ import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { theme } from "../theme";
+import { useAppTheme } from "../context/ThemeContext";
+import {
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  minimalRow,
+  minimalTab,
+  minimalTabActive,
+  minimalTabStrip,
+} from "../theme/minimal";
 import { appLocale, parseDateOnly } from "../libs/date.util";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
@@ -51,10 +60,11 @@ const num = (n: number, max = 2) =>
 
 export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, onPress }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const isBoosted = !!job.boost_expires_at && new Date(job.boost_expires_at) > new Date();
 
   return (
-    <Pressable style={styles.card} onPress={onPress}>
+    <Pressable style={[styles.card, isMinimal && styles.minimalCard]} onPress={onPress}>
       <View style={styles.cardTop}>
         <View style={styles.badgeRow}>
           <View style={styles.badge}>
@@ -126,6 +136,9 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
 
 export default function WorkScreen() {
   const { t } = useTranslation();
+  // Minimal: type tabs become file tabs and bounty cards edge-to-edge
+  // hairline rows. Search and the currency/sort chips keep their fill.
+  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
 
@@ -196,7 +209,7 @@ export default function WorkScreen() {
         horizontal
         showsHorizontalScrollIndicator={false}
         style={styles.strip}
-        contentContainerStyle={styles.chipRow}
+        contentContainerStyle={[styles.chipRow, isMinimal && styles.minimalTabRow]}
       >
         {TABS.map((tabItem) => {
           const active = tab === tabItem.id;
@@ -204,10 +217,24 @@ export default function WorkScreen() {
             <Pressable
               key={tabItem.id}
               onPress={() => setTab(tabItem.id)}
-              style={[styles.tabChip, active && styles.tabChipActive]}
+              style={[
+                styles.tabChip,
+                active && styles.tabChipActive,
+                isMinimal && (active ? minimalTabActive : minimalTab),
+              ]}
             >
-              <Icon name={tabItem.icon} size={13} color={active ? "#FFFFFF" : "#A1A1AA"} />
-              <Text style={[styles.tabText, active && styles.tabTextActive]}>
+              <Icon
+                name={tabItem.icon}
+                size={13}
+                color={active ? MINIMAL_TAB_TEXT_ACTIVE : isMinimal ? MINIMAL_TAB_TEXT : "#A1A1AA"}
+              />
+              <Text
+                style={[
+                  styles.tabText,
+                  active && styles.tabTextActive,
+                  isMinimal && { color: active ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
+                ]}
+              >
                 {t(`work.types.${tabItem.id}`)}
               </Text>
             </Pressable>
@@ -280,10 +307,10 @@ export default function WorkScreen() {
           keyExtractor={(j) => j.id}
           renderItem={({ item }) => <JobCard job={item} onPress={() => openJob(item)} />}
           contentContainerStyle={{
-            paddingHorizontal: 12,
+            paddingHorizontal: isMinimal ? 0 : 12,
             paddingBottom: insets.bottom + 24,
             paddingTop: 2,
-            gap: 12,
+            gap: isMinimal ? 0 : 12,
           }}
           showsVerticalScrollIndicator={false}
           refreshControl={
@@ -316,8 +343,8 @@ export default function WorkScreen() {
               </View>
 
               {showCompletedFallback && completedJobs.length > 0 && (
-                <View style={{ gap: 12 }}>
-                  <Text style={styles.sectionHeading}>{t("work.recentlyCompleted")}</Text>
+                <View style={{ gap: isMinimal ? 0 : 12 }}>
+                  <Text style={[styles.sectionHeading, isMinimal && styles.minimalHeading]}>{t("work.recentlyCompleted")}</Text>
                   {completedJobs.map((j) => (
                     <JobCard key={j.id} job={j} onPress={() => openJob(j)} />
                   ))}
@@ -357,6 +384,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.05)",
   },
   tabChipActive: { backgroundColor: "rgba(255,255,255,0.15)" },
+  // flexGrow so the baseline spans the screen even when the tabs don't.
+  minimalTabRow: { ...minimalTabStrip, flexGrow: 1, paddingVertical: 0, gap: 0 },
   tabText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
   tabTextActive: { color: "#FFFFFF" },
 
@@ -399,6 +428,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.10)",
     padding: 14,
   },
+  minimalCard: { ...minimalRow, paddingHorizontal: 16 },
   cardTop: { flexDirection: "row", justifyContent: "space-between", gap: 10, marginBottom: 10 },
   badgeRow: { flexDirection: "row", flexWrap: "wrap", gap: 5, flex: 1 },
   badge: {
@@ -474,4 +504,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
     marginBottom: 2,
   },
+  minimalHeading: { paddingHorizontal: 16, marginBottom: 8 },
 });

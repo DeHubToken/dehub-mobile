@@ -37,9 +37,16 @@ import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useDMContext } from "../context/DMContext";
 import AppTopBar from "../components/AppTopBar";
 import { FIELD_TEXT } from "../theme/inputs";
+import { useAppTheme } from "../context/ThemeContext";
+import { MINIMAL_HAIRLINE } from "../theme/minimal";
+
+// Minimal: the list's separators run the full width in the shared hairline,
+// rather than an inset zinc rule.
+const MINIMAL_SEPARATOR = { height: 1, backgroundColor: MINIMAL_HAIRLINE } as const;
 
 const DirectMessagesInner: React.FC = () => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const navigation = useNavigation<any>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -347,15 +354,24 @@ const DirectMessagesInner: React.FC = () => {
           </View>
         </View>
       </TouchableOpacity>
-      <View className="h-[1px] bg-theme-neutrals-800/50 mx-4" />
+      {isMinimal ? (
+        <View style={MINIMAL_SEPARATOR} />
+      ) : (
+        <View className="h-[1px] bg-theme-neutrals-800/50 mx-4" />
+      )}
       </>
     ),
-    [handleOpenLiveChat],
+    [handleOpenLiveChat, isMinimal],
   );
 
   const itemSeparator = useCallback(
-    () => <View className="h-[1px] bg-theme-neutrals-800/50 mx-4" />,
-    [],
+    () =>
+      isMinimal ? (
+        <View style={MINIMAL_SEPARATOR} />
+      ) : (
+        <View className="h-[1px] bg-theme-neutrals-800/50 mx-4" />
+      ),
+    [isMinimal],
   );
 
 

@@ -23,6 +23,13 @@ import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { theme } from "../../theme";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { flattenFeedPages } from "../../libs/feed-pages";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_TAB_LINE } from "../../theme/minimal";
+
+// Minimal: tiles sit on black while their image loads, and an empty tile or a
+// skeleton cell is a faint lift off black rather than a grey square.
+const MINIMAL_TILE_BG = "#000";
+const MINIMAL_PLACEHOLDER_BG = "rgba(255,255,255,0.04)";
 
 export interface HomeImageGridHandle {
   scrollToTopAndRefresh: () => void;
@@ -85,14 +92,15 @@ const GridItem = memo<GridItemProps>(({ item, index, size, onPress }) => {
 
   const hasMultiple = (item.imageUrls?.length ?? 0) > 1;
   const handlePress = useCallback(() => onPress(index), [onPress, index]);
+  const { isMinimal } = useAppTheme();
 
-  if (!imageUri) return <View style={{ width: size, height: size, backgroundColor: "#262626" }} />;
+  if (!imageUri) return <View style={{ width: size, height: size, backgroundColor: isMinimal ? MINIMAL_PLACEHOLDER_BG : "#262626" }} />;
 
   return (
     <TouchableOpacity
       activeOpacity={0.85}
       onPress={handlePress}
-      style={{ width: size, height: size, backgroundColor: "#262626" }}
+      style={{ width: size, height: size, backgroundColor: isMinimal ? MINIMAL_TILE_BG : "#262626" }}
     >
       <Image
         source={imageUri}
@@ -180,33 +188,37 @@ const GridRow = memo<GridRowProps>(({ row, data, onItemPress }) => {
   );
 });
 
-const GridSkeleton: React.FC = () => (
-  <View style={{ opacity: 0.6 }}>
-    {[0, 1].map((p) => (
-      <React.Fragment key={p}>
-        <View style={styles.patternRow}>
-          <View style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
-          <View style={styles.stackedColumn}>
-            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+const GridSkeleton: React.FC = () => {
+  const { isMinimal } = useAppTheme();
+  const cell = isMinimal ? [styles.skeletonItem, styles.minimalSkeletonItem] : styles.skeletonItem;
+  return (
+    <View style={{ opacity: 0.6 }}>
+      {[0, 1].map((p) => (
+        <React.Fragment key={p}>
+          <View style={styles.patternRow}>
+            <View style={[cell, { width: BIG_SIZE, height: BIG_SIZE }]} />
+            <View style={styles.stackedColumn}>
+              <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+              <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            </View>
           </View>
-        </View>
-        <View style={styles.patternRow}>
-          <View style={styles.stackedColumn}>
-            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+          <View style={styles.patternRow}>
+            <View style={styles.stackedColumn}>
+              <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+              <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            </View>
+            <View style={[cell, { width: BIG_SIZE, height: BIG_SIZE }]} />
           </View>
-          <View style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
-        </View>
-        <View style={styles.equalRow}>
-          <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-          <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-          <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-        </View>
-      </React.Fragment>
-    ))}
-  </View>
-);
+          <View style={styles.equalRow}>
+            <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+          </View>
+        </React.Fragment>
+      ))}
+    </View>
+  );
+};
 
 const getGridItemLayout = (_data: any, index: number) => {
   const patternGroup = Math.floor(index / 3);
@@ -231,6 +243,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   onOpenImageFeed,
 }) => {
   const [refreshing, setRefreshing] = useState(false);
+  const { isMinimal } = useAppTheme();
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
 
@@ -371,7 +384,12 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     return (
       <View className="flex-1 items-center justify-center px-4">
         <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
-        <TouchableOpacity onPress={() => refetch()} className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
+        <TouchableOpacity
+          onPress={() => refetch()}
+          className={isMinimal ? "px-5 py-2 border" : "px-5 py-2 rounded-xl bg-theme-neutrals-700"}
+          // Minimal: outline only, no fill.
+          style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
+        >
           <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
         </TouchableOpacity>
       </View>
@@ -457,6 +475,9 @@ const styles = StyleSheet.create({
   },
   skeletonItem: {
     backgroundColor: "#262626",
+  },
+  minimalSkeletonItem: {
+    backgroundColor: MINIMAL_PLACEHOLDER_BG,
   },
 });
 

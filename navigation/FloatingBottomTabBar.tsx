@@ -39,6 +39,12 @@ import type { TabPressIntent } from "./tabPressIntent";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../context/ThemeContext";
 import { useKidsMode } from "../hooks/useKidsMode";
+import {
+  MINIMAL_HAIRLINE,
+  MINIMAL_TAB_LINE,
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+} from "../theme/minimal";
 
 const SCROLL_HINT_SEEN_KEY = "dehub:navScrollHintSeen";
 
@@ -59,6 +65,14 @@ const NAV_EDGE_PAD = 4; // matches web's pl-1/pr-1
  */
 const tabWidthFor = (screenW: number) =>
   (Math.min((screenW - 16) * 0.72, 340) - CENTER_W - NAV_EDGE_PAD * 2) / 4;
+
+/**
+ * Minimal's bar runs edge to edge with no side padding, so the four primary
+ * tabs and the centre button share the whole width instead of 72% of it. The
+ * floor keeps every tap target at 44pt on the narrowest phones.
+ */
+const minimalTabWidthFor = (screenW: number) =>
+  Math.max(44, (screenW - CENTER_W - NAV_EDGE_PAD * 2) / 4);
 
 interface TabDef {
   name: string;
@@ -204,7 +218,7 @@ const NavButton = memo<{
   animProgress: SharedValue<number>;
   badgeCount?: number;
 }>(({ icon, label, isActive, isCenter, routeName, onPress, index, tabW, animProgress, badgeCount = 0 }) => {
-  const { colors, isLight } = useAppTheme();
+  const { colors, isLight, isMinimal } = useAppTheme();
   const scale = useSharedValue(1);
 
   const handlePress = useCallback(() => onPress(routeName), [onPress, routeName]);
@@ -233,6 +247,25 @@ const NavButton = memo<{
       opacity: interpolate(itemProgress, [0, 0.35, 1], [0, 0.85, 1], "clamp"),
     };
   });
+
+  if (isCenter && isMinimal) {
+    // No glass in minimal: the blur, wash and inset highlight all go, leaving
+    // a plain 1px outlined square around the icon. Same 52pt tap target.
+    return (
+      <AnimatedPressable
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        onPress={handlePress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        style={[styles.centerButton, animatedStyle]}
+      >
+        <View style={styles.minimalCenterIcon}>
+          <Icon name={icon} size={20} color={MINIMAL_TAB_TEXT_ACTIVE} strokeWidth={2} />
+        </View>
+      </AnimatedPressable>
+    );
+  }
 
   if (isCenter) {
     return (
@@ -289,11 +322,16 @@ const NavButton = memo<{
       onPressOut={handlePressOut}
       style={[styles.tabButton, { width: tabW }, animatedStyle]}
     >
-      <View style={isActive && !isLight ? styles.activeGlow : undefined}>
+      {/* Minimal shows the active tab by colour alone — no glow. */}
+      <View style={isActive && !isLight && !isMinimal ? styles.activeGlow : undefined}>
         <Icon
           name={icon}
           size={20}
-          color={isActive ? colors.foreground : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"}
+          color={
+            isMinimal
+              ? isActive ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
+              : isActive ? colors.foreground : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"
+          }
           strokeWidth={isActive ? 2 : 1.75}
         />
       </View>
@@ -317,7 +355,7 @@ const ScrollNavButton = memo<{
   badgeCount?: number;
 }>(
   ({ icon, label, item, onPress, tabW, badgeCount = 0 }) => {
-    const { colors, isLight } = useAppTheme();
+    const { colors, isLight, isMinimal } = useAppTheme();
     const scale = useSharedValue(1);
 
     // SCROLL_NAV_ITEMS is module scope, so `item` is a stable identity and this
@@ -348,7 +386,7 @@ const ScrollNavButton = memo<{
         <Icon
           name={icon}
           size={20}
-          color={isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"}
+          color={isMinimal ? MINIMAL_TAB_TEXT : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"}
           strokeWidth={1.75}
         />
         {badgeCount > 0 && (
@@ -365,11 +403,11 @@ const ScrollNavButton = memo<{
 
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const { t } = useTranslation();
-  const { colors, isLight } = useAppTheme();
+  const { colors, isLight, isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   // Live, not a module constant — see tabWidthFor.
   const { width: screenW } = useWindowDimensions();
-  const tabW = tabWidthFor(screenW);
+  const tabW = isMinimal ? minimalTabWidthFor(screenW) : tabWidthFor(screenW);
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
   const { isKidsMode } = useKidsMode();
@@ -558,28 +596,47 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   });
 
   return (
-    <Reanimated.View style={[styles.outerWrap, { paddingBottom: bottomPadding }, hideStyle]} pointerEvents="box-none">
-      <Reanimated.View style={[styles.navContainer, entranceStyle]}>
+    <Reanimated.View
+      style={[
+        styles.outerWrap,
+        { paddingBottom: bottomPadding },
+        // Minimal has no floating pill: the bar sits flush on the bottom edge,
+        // full width, with the home-indicator inset inside its own black fill
+        // so nothing scrolls visibly beneath it.
+        isMinimal && styles.minimalOuterWrap,
+        isMinimal && { paddingBottom: insets.bottom },
+        hideStyle,
+      ]}
+      // Minimal's wrapper is an opaque bar, so a tap on its inset strip must
+      // not fall through to content hidden underneath it.
+      pointerEvents={isMinimal ? "auto" : "box-none"}
+    >
+      <Reanimated.View style={[styles.navContainer, isMinimal && styles.minimalNavContainer, entranceStyle]}>
         {/* The pill is a solid surface, not glass. It used to be a blur under a
             near-transparent wash, which meant its appearance was a function of
             whatever happened to be behind it — fine over the dark feed, clear
             glass with icons floating on video over Shorts — and it needed a
             96pt gradient scrim under it to hold a luminance floor. One opaque
             fill does the same job with no scrim, no per-platform blur library
-            and no backdrop sampling on every scrolled frame. */}
-        <View
-          style={[
-            StyleSheet.absoluteFill,
-            styles.pillFill,
-            isLight && { backgroundColor: colors.background },
-          ]}
-        />
-        <View
-          style={[
-            styles.pillBorder,
-            isLight && { borderColor: 'rgba(0, 0, 0, 0.12)' },
-          ]}
-        />
+            and no backdrop sampling on every scrolled frame. Minimal skips
+            both layers; outerWrap's black fill and top hairline replace them. */}
+        {!isMinimal && (
+          <>
+            <View
+              style={[
+                StyleSheet.absoluteFill,
+                styles.pillFill,
+                isLight && { backgroundColor: colors.background },
+              ]}
+            />
+            <View
+              style={[
+                styles.pillBorder,
+                isLight && { borderColor: 'rgba(0, 0, 0, 0.12)' },
+              ]}
+            />
+          </>
+        )}
         <ScrollView
           ref={scrollRef}
           horizontal
@@ -661,6 +718,31 @@ const styles = StyleSheet.create({
       },
       android: {},
     }),
+  },
+  minimalOuterWrap: {
+    bottom: 0,
+    paddingHorizontal: 0,
+    alignItems: "stretch",
+    backgroundColor: "#000",
+    borderTopWidth: 1,
+    borderTopColor: MINIMAL_HAIRLINE,
+  },
+  minimalNavContainer: {
+    width: "100%",
+    maxWidth: "100%",
+    shadowOpacity: 0,
+    elevation: 0,
+  },
+  // Plain outlined square in place of the glass stack — deliberately not built
+  // on centerIconWrap, so none of its drop shadow or elevation comes along.
+  minimalCenterIcon: {
+    width: 36,
+    height: 36,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: MINIMAL_TAB_LINE,
+    backgroundColor: "transparent",
   },
   pillFill: {
     // zinc-900. The app background is #010305, so a flat near-black would make

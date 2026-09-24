@@ -20,6 +20,8 @@ import Icon from '../ui/Icon';
 import { openInApp } from '../../libs/links.utils';
 import { parseDehubLink } from '../../libs/dehub-links';
 import { fetchLinkPreview, extractUrlsFromText, type LinkPreviewData } from '../../libs/link-preview';
+import { useAppTheme } from '../../context/ThemeContext';
+import { minimalFlat } from '../../theme/minimal';
 
 /** The first URL in the text that isn't one of our own entity links. */
 function firstExternalUrl(text?: string | null): string | null {
@@ -54,6 +56,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
   const [preview, setPreview] = useState<LinkPreviewData | null>(null);
   const [loading, setLoading] = useState(!!url);
   const fetchedFor = useRef<string | null>(null);
+  const { isMinimal } = useAppTheme();
 
   useEffect(() => {
     if (!url) {
@@ -82,19 +85,21 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
   }, [url]);
 
   if (!url) return null;
-  if (loading) return <View style={[styles.skeleton, style]} />;
+  if (loading) return <View style={[styles.skeleton, isMinimal && styles.minimalSkeleton, style]} />;
   if (!preview) return null;
 
+  // Minimal: no card. The image spans the text column and the site, title and
+  // description sit under it flush with the post text, so nothing is boxed.
   return (
     <TouchableOpacity
       activeOpacity={0.85}
-      style={[styles.card, style]}
+      style={[styles.card, isMinimal && minimalFlat, style]}
       onPress={() => openInApp(preview.url)}
     >
       {!!preview.image && (
-        <Image source={{ uri: preview.image }} style={styles.image} contentFit="cover" />
+        <Image source={{ uri: preview.image }} style={[styles.image, isMinimal && styles.minimalImage]} contentFit="cover" />
       )}
-      <View style={styles.body}>
+      <View style={[styles.body, isMinimal && styles.minimalBody]}>
         <View style={styles.eyebrowRow}>
           <Icon name="ExternalLink" size={11} color="#808089" />
           <Text style={styles.eyebrow} numberOfLines={1}>
@@ -137,6 +142,9 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     backgroundColor: 'rgba(255,255,255,0.05)',
   },
+  minimalImage: { backgroundColor: 'rgba(255,255,255,0.04)' },
+  minimalBody: { paddingHorizontal: 0, paddingTop: 8, paddingBottom: 0 },
+  minimalSkeleton: { backgroundColor: 'rgba(255,255,255,0.04)' },
 });
 
 export default memo(LinkPreviewCardComponent);

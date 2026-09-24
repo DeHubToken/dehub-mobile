@@ -31,6 +31,8 @@ import { getAvatarUrl } from "../../libs/misc";
 import { toastError, toastInfo } from "../../libs";
 import { openInApp } from "../../libs/links.utils";
 import { useTranslation } from "react-i18next";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE, MINIMAL_INSET, minimalFlat } from "../../theme/minimal";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const DRAWER_WIDTH = SCREEN_WIDTH * 0.82;
@@ -129,24 +131,35 @@ interface MenuItemProps {
   onPress: () => void;
   disabled?: boolean;
   active?: boolean;
+  /** Minimal theme — passed down rather than read per row from context. */
+  minimal?: boolean;
 }
 
 // Items that carry a small "Test" badge on the web sidebar (matched by key
 // since labels are now translated).
 const TEST_BADGE_KEYS = new Set(["nav.prompt", "screens.work", "screens.stores"]);
 
-const MenuItem = memo<MenuItemProps>(({ icon, label, labelKey, testLabel, soonLabel, onPress, disabled, active }) => (
+const MenuItem = memo<MenuItemProps>(({ icon, label, labelKey, testLabel, soonLabel, onPress, disabled, active, minimal }) => (
   <TouchableOpacity
     accessibilityRole="button"
     accessibilityLabel={label}
     className="flex-row items-center gap-3.5 px-3 py-3 mx-2 rounded-xl"
     activeOpacity={disabled ? 1 : 0.6}
     onPress={onPress}
-    style={[styles.itemBase, active && styles.itemActive, disabled ? { opacity: 0.45 } : null]}
+    style={[
+      styles.itemBase,
+      active && styles.itemActive,
+      // Minimal: rows run the full panel width with no box; the active one is
+      // marked by a 2pt white bar on its leading edge plus the bold label.
+      minimal && styles.minimalItem,
+      minimal && active && styles.minimalItemActive,
+      disabled ? { opacity: 0.45 } : null,
+    ]}
   >
     {/* Icon chip — matches web's translucent rounded-square with hairline border,
-        brighter when the item is the active route (web's active icon container). */}
-    <View style={[styles.iconChip, active && styles.iconChipActive]}>
+        brighter when the item is the active route (web's active icon container).
+        Minimal keeps the box for alignment but drops its fill and border. */}
+    <View style={[styles.iconChip, active && styles.iconChipActive, minimal && minimalFlat]}>
       <Icon name={icon} size={22} color={disabled ? "#6b7280" : "#FFFFFF"} strokeWidth={active ? 2 : 1.8} />
       {TEST_BADGE_KEYS.has(labelKey) && (
         <View style={styles.testBadge}>
@@ -195,6 +208,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const { signOut } = useAuthActions();
   const user = useUser();
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const [menuQuery, setMenuQuery] = useState("");
   const [isSigningOut, setIsSigningOut] = useState(false);
 
@@ -382,7 +396,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
       <GestureDetector gesture={panGesture}>
         <Animated.View
-          style={[styles.drawer, drawerStyle, { width: DRAWER_WIDTH }]}
+          style={[styles.drawer, isMinimal && styles.minimalDrawer, drawerStyle, { width: DRAWER_WIDTH }]}
         >
           {/* Web gets border-white/10 over a real backdrop-blur(24px). Android
               cannot: expo-blur paints a flat tint instead of blurring, and the
@@ -469,7 +483,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                 second content search, which is why it says "Search menu".
                 Anything that is not a page is one row away: the hand-off at the
                 bottom of the list runs the query on the Explore tab. */}
-            <View style={styles.searchWrap}>
+            <View style={[styles.searchWrap, isMinimal && styles.minimalSearchWrap]}>
               <Icon name="Search" size={16} color="#808089" />
               <TextInput
                 value={menuQuery}
@@ -517,6 +531,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                   soonLabel={t("screens.soon")}
                   disabled={item.disabled}
                   active={!!item.screen && item.screen === activeRouteName}
+                  minimal={isMinimal}
                   onPress={() => handleItemPress(item)}
                 />
               ))}
@@ -528,14 +543,15 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                       {t("sidebar.noMenuMatches")}
                     </Text>
                   )}
-                  <View style={styles.handoffRule} />
+                  <View style={[styles.handoffRule, isMinimal && styles.minimalHandoffRule]} />
                   <TouchableOpacity
                     accessibilityRole="button"
                     className="flex-row items-center gap-3.5 px-3 py-3 mx-2 rounded-xl"
                     activeOpacity={0.6}
                     onPress={runFullSearch}
+                    style={isMinimal ? styles.minimalItem : undefined}
                   >
-                    <View style={styles.iconChip}>
+                    <View style={[styles.iconChip, isMinimal && minimalFlat]}>
                       <Icon name="Search" size={20} color="#A1A1AA" strokeWidth={1.8} />
                     </View>
                     <Text className="text-[15px] text-neutral-400 flex-1" numberOfLines={1}>
@@ -549,7 +565,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           </ScrollView>
 
           {isSignedIn && (
-            <View style={styles.logoutFooter}>
+            <View style={[styles.logoutFooter, isMinimal && { borderTopColor: MINIMAL_HAIRLINE }]}>
               <TouchableOpacity
                 accessibilityRole="button"
                 accessibilityLabel={t("sidebar.logOut")}
@@ -600,6 +616,38 @@ const styles = StyleSheet.create({
   itemActive: {
     backgroundColor: "rgba(255, 255, 255, 0.10)",
     borderColor: "rgba(255, 255, 255, 0.22)",
+  },
+  // Minimal: the panel edge is the only line; no raised elevation shadow.
+  minimalDrawer: {
+    borderRightColor: MINIMAL_HAIRLINE,
+    elevation: 0,
+  },
+  // Full-width row (overrides the mx-2 / px-3 classes). The 2pt transparent
+  // leading border is always present so the active bar never shifts the text.
+  minimalItem: {
+    marginHorizontal: 0,
+    paddingLeft: MINIMAL_INSET - 2,
+    paddingRight: MINIMAL_INSET,
+    backgroundColor: "transparent",
+    borderWidth: 0,
+    borderLeftWidth: 2,
+    borderLeftColor: "transparent",
+  },
+  minimalItemActive: {
+    borderLeftColor: "#FFFFFF",
+  },
+  // Minimal field: no box, just a hairline underneath, edge to edge.
+  minimalSearchWrap: {
+    marginHorizontal: 0,
+    paddingHorizontal: MINIMAL_INSET,
+    backgroundColor: "transparent",
+    borderWidth: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: MINIMAL_HAIRLINE,
+  },
+  minimalHandoffRule: {
+    marginHorizontal: 0,
+    backgroundColor: MINIMAL_HAIRLINE,
   },
   // Same translucent fill and hairline as the icon chips, so the field reads as
   // part of the menu rather than a control dropped on top of it.

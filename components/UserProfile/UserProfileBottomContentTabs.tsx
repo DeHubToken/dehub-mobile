@@ -53,6 +53,7 @@ import {
 import { useProfileContentCounts } from "../Profile/useProfileContentCounts";
 import { getPlans, type SubscriptionPlan } from "../../services/subscription.service";
 import { useTranslation } from "react-i18next";
+import { useAppTheme } from "../../context/ThemeContext";
 
 interface UserProfileBottomContentTabsProps {
   address: string;
@@ -136,6 +137,7 @@ const UserProfileBottomContentTabs: React.FC<
   onPendingTabConsumed,
 }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
   const listRef = useRef<FlatList<any> | null>(null);
@@ -370,10 +372,13 @@ const UserProfileBottomContentTabs: React.FC<
     if (canViewContent) return null;
 
     // Blocked state takes precedence over private
+    // Minimal: the icon sits bare on black — no tinted tile around it.
+    const iconBox = isMinimal ? "p-5 mb-5" : "bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5";
+
     if (isBlocked) {
       return (
         <View className="flex-1 items-center justify-center px-6 py-12">
-          <View className="bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5">
+          <View className={iconBox}>
             <Icon name="Ban" size={40} color={theme.colors.neutrals[500]} />
           </View>
           {!youBlocked && (
@@ -392,7 +397,7 @@ const UserProfileBottomContentTabs: React.FC<
 
     return (
       <View className="flex-1 items-center justify-center px-6 py-12">
-        <View className="bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5">
+        <View className={iconBox}>
           <Icon name="Lock" size={40} color={theme.colors.neutrals[500]} />
         </View>
         <Text className="text-white text-lg font-bold text-center mb-2">
@@ -423,6 +428,7 @@ const UserProfileBottomContentTabs: React.FC<
     isBlocked,
     youBlocked,
     blockedYou,
+    isMinimal,
   ]);
 
   /**
@@ -638,7 +644,8 @@ const UserProfileBottomContentTabs: React.FC<
             height: STICKY_BAR_HEIGHT,
             zIndex: 10,
             elevation: 10,
-            backgroundColor: theme.colors.neutrals[900],
+            // Minimal: the pinned tab strip sits on the same pure black.
+            backgroundColor: isMinimal ? "#000" : theme.colors.neutrals[900],
           }}
         >
           {TabBar}
@@ -658,6 +665,9 @@ const UserProfileBottomContentTabs: React.FC<
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.3,
             shadowRadius: 4,
+            // Minimal carries no shadows. Elevation stays: on Android it is
+            // what keeps this button stacked above the list.
+            ...(isMinimal ? { shadowOpacity: 0 } : null),
           }}
         >
           <Icon
