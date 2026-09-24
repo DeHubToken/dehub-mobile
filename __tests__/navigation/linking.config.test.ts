@@ -95,6 +95,12 @@ describe('getStateFromPath — one-segment paths', () => {
     expect(emitProfile).not.toHaveBeenCalled();
   });
 
+  it('rewrites the bare /fractions onto the /app route', () => {
+    resolve('/fractions');
+    expect(emitProfile).not.toHaveBeenCalled();
+    expect(fallback).toHaveBeenCalledWith('/app/fractions', expect.anything());
+  });
+
   it('leaves multi-segment paths to the route table', () => {
     resolve('/app/post/123');
     expect(emitProfile).not.toHaveBeenCalled();
@@ -146,6 +152,12 @@ describe('parseDeepLink', () => {
       type: 'community',
       params: { slug: 'dehub' },
     });
+  });
+
+  it('reads the fraction market at /app/fractions and the bare /fractions', () => {
+    expect(parseDeepLink('https://dehub.io/app/fractions')).toEqual({ type: 'fractions', params: {} });
+    expect(parseDeepLink('https://dehub.io/fractions')).toEqual({ type: 'fractions', params: {} });
+    expect(ShareLinks.fractions()).toBe('https://dehub.io/app/fractions');
   });
 
   it('still reads the top-level routes that are not /app children', () => {
