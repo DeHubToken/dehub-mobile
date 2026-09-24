@@ -4439,7 +4439,8 @@
       "layersHint": "Di one wey dey top of di list na di one wey dey front. Use di arrows take arrange dem again. Na only here you fit pick layers wey you lock or hide.",
       "agentWebOnly": "Some of dat one na only for web editor e dey work for now.",
       "brandLogoHint": "Select one picture for di page, den use am as your logo.",
-      "useAsLogo": "Use di picture wey you select"
+      "useAsLogo": "Use di picture wey you select",
+      "bgRemoveFailed": "We no fit comot di background. Try anoda picture."
     },
     "filters": {
       "none": "Original",
@@ -4653,6 +4654,12 @@
       "replaceConfirm": "You wan replace di design wey dey now with dis template? You fit undo am.",
       "replaceTitle": "Change your design?",
       "replace": "Change am"
+    },
+    "bgRemove": {
+      "action": "Remove background",
+      "working": "Dey remove background…",
+      "downloading": "Dey ready di AI model… {{percent}}%",
+      "done": "Background don comot."
     }
   },
   "creator": {

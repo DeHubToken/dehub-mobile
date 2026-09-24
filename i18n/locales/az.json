@@ -4914,7 +4914,8 @@
       "layersHint": "Siyahının yuxarısı öndədir. Sıralamanı dəyişmək üçün oxlardan istifadə edin. Kilidli və gizli qatları yalnız burada seçmək olar.",
       "agentWebOnly": "Bunun bir hissəsi hələlik yalnız veb redaktorda işləyir.",
       "brandLogoHint": "Səhifədə şəkil seçin, sonra onu loqonuz kimi istifadə edin.",
-      "useAsLogo": "Seçilmiş şəkli istifadə et"
+      "useAsLogo": "Seçilmiş şəkli istifadə et",
+      "bgRemoveFailed": "Fonu silmək mümkün olmadı. Başqa şəkil sınayın."
     },
     "filters": {
       "none": "Orijinal",
@@ -5128,6 +5129,12 @@
       "replaceConfirm": "Cari dizayn bu şablonla əvəz edilsin? Geri qaytara bilərsiniz.",
       "replaceTitle": "Dizaynınız əvəz edilsin?",
       "replace": "Əvəz et"
+    },
+    "bgRemove": {
+      "action": "Fonu sil",
+      "working": "Fon silinir…",
+      "downloading": "Süni intellekt modeli hazırlanır… {{percent}}%",
+      "done": "Fon silindi."
     }
   },
   "creator": {

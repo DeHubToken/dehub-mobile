@@ -4932,7 +4932,8 @@
       "layersHint": "Luettelon ylin on edimmäisenä. Järjestä uudelleen nuolilla. Lukittuja ja piilotettuja tasoja voi valita vain täältä.",
       "agentWebOnly": "Osa tästä toimii toistaiseksi vain verkkoeditorissa.",
       "brandLogoHint": "Valitse sivulta kuva ja käytä sitä logonasi.",
-      "useAsLogo": "Käytä valittua kuvaa"
+      "useAsLogo": "Käytä valittua kuvaa",
+      "bgRemoveFailed": "Taustaa ei voitu poistaa. Kokeile toista kuvaa."
     },
     "filters": {
       "none": "Alkuperäinen",
@@ -5146,6 +5147,12 @@
       "replaceConfirm": "Korvataanko nykyinen suunnitelma tällä mallilla? Voit kumota sen.",
       "replaceTitle": "Korvataanko suunnitelmasi?",
       "replace": "Korvaa"
+    },
+    "bgRemove": {
+      "action": "Poista tausta",
+      "working": "Poistetaan taustaa…",
+      "downloading": "Valmistellaan tekoälymallia… {{percent}} %",
+      "done": "Tausta poistettu."
     }
   },
   "creator": {

@@ -4929,7 +4929,8 @@
       "layersHint": "Sąrašo viršus yra priekis. Rodyklėmis pakeiskite tvarką. Užrakintus ir paslėptus sluoksnius galima pasirinkti tik čia.",
       "agentWebOnly": "Dalis to kol kas veikia tik žiniatinklio redaktoriuje.",
       "brandLogoHint": "Pasirinkite paveikslėlį puslapyje ir naudokite jį kaip savo logotipą.",
-      "useAsLogo": "Naudoti pasirinktą paveikslėlį"
+      "useAsLogo": "Naudoti pasirinktą paveikslėlį",
+      "bgRemoveFailed": "Nepavyko pašalinti fono. Išbandykite kitą paveikslėlį."
     },
     "filters": {
       "none": "Originalas",
@@ -5143,6 +5144,12 @@
       "replaceConfirm": "Pakeisti dabartinį dizainą šiuo šablonu? Galėsi atšaukti.",
       "replaceTitle": "Pakeisti jūsų dizainą?",
       "replace": "Pakeisti"
+    },
+    "bgRemove": {
+      "action": "Pašalinti foną",
+      "working": "Šalinamas fonas…",
+      "downloading": "Ruošiamas DI modelis… {{percent}} %",
+      "done": "Fonas pašalintas."
     }
   },
   "creator": {

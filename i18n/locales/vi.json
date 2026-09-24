@@ -5017,7 +5017,8 @@
       "layersHint": "Đầu danh sách là lớp trên cùng. Dùng mũi tên để sắp xếp lại. Lớp bị khóa và bị ẩn chỉ chọn được ở đây.",
       "agentWebOnly": "Một phần trong đó hiện chỉ hoạt động trong trình chỉnh sửa web.",
       "brandLogoHint": "Chọn một hình ảnh trên trang, rồi dùng nó làm logo của bạn.",
-      "useAsLogo": "Dùng hình ảnh đã chọn"
+      "useAsLogo": "Dùng hình ảnh đã chọn",
+      "bgRemoveFailed": "Không thể xóa phông nền. Hãy thử ảnh khác."
     },
     "filters": {
       "none": "Gốc",
@@ -5231,6 +5232,12 @@
       "replaceConfirm": "Thay thiết kế hiện tại bằng mẫu này? Bạn có thể hoàn tác.",
       "replaceTitle": "Thay thế thiết kế của bạn?",
       "replace": "Thay thế"
+    },
+    "bgRemove": {
+      "action": "Xóa phông nền",
+      "working": "Đang xóa phông nền…",
+      "downloading": "Đang chuẩn bị mô hình AI… {{percent}}%",
+      "done": "Đã xóa phông nền."
     }
   },
   "creator": {

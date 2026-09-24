@@ -5050,7 +5050,8 @@
       "layersHint": "Die bokant van die lys is voor. Gebruik die pyltjies om die lae te herrangskik. Geslote en versteekte lae kan net hier gekies word.",
       "agentWebOnly": "Sommige daarvan werk tans net in die webredigeerder.",
       "brandLogoHint": "Kies 'n prent op die bladsy en gebruik dit dan as jou logo.",
-      "useAsLogo": "Gebruik gekose prent"
+      "useAsLogo": "Gebruik gekose prent",
+      "bgRemoveFailed": "Kon nie die agtergrond verwyder nie. Probeer 'n ander prent."
     },
     "filters": {
       "none": "Oorspronklik",
@@ -5264,6 +5265,12 @@
       "replaceConfirm": "Vervang die huidige ontwerp met hierdie sjabloon? Jy kan dit ontdoen.",
       "replaceTitle": "Vervang jou ontwerp?",
       "replace": "Vervang"
+    },
+    "bgRemove": {
+      "action": "Verwyder agtergrond",
+      "working": "Verwyder agtergrond…",
+      "downloading": "Maak die KI-model gereed… {{percent}}%",
+      "done": "Agtergrond verwyder."
     }
   },
   "creator": {

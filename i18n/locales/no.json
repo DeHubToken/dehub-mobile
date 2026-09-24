@@ -4916,7 +4916,8 @@
       "layersHint": "Øverst i listen er fremst. Bruk pilene til å endre rekkefølgen. Låste og skjulte lag kan bare velges her.",
       "agentWebOnly": "Noe av dette fungerer foreløpig bare i nettredigeringsprogrammet.",
       "brandLogoHint": "Velg et bilde på siden, og bruk det som logoen din.",
-      "useAsLogo": "Bruk valgt bilde"
+      "useAsLogo": "Bruk valgt bilde",
+      "bgRemoveFailed": "Kunne ikke fjerne bakgrunnen. Prøv et annet bilde."
     },
     "filters": {
       "none": "Original",
@@ -5130,6 +5131,12 @@
       "replaceConfirm": "Erstatte gjeldende design med denne malen? Du kan angre.",
       "replaceTitle": "Erstatte designet ditt?",
       "replace": "Erstatt"
+    },
+    "bgRemove": {
+      "action": "Fjern bakgrunn",
+      "working": "Fjerner bakgrunnen…",
+      "downloading": "Gjør klar AI-modellen… {{percent}} %",
+      "done": "Bakgrunnen er fjernet."
     }
   },
   "creator": {

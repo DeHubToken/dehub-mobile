@@ -4920,7 +4920,8 @@
       "layersHint": "Korka liisku waa hore. Isticmaal fallaadhaha si aad dib ugu habayso. Lakabyada xiran iyo kuwa qarsoon halkan oo keliya ayaa laga dooran karaa.",
       "agentWebOnly": "Qaar ka mid ah taas waxay hadda ka shaqeeyaan tafatiraha webka oo keliya.",
       "brandLogoHint": "Dooro sawir bogga ku yaal, kadibna u isticmaal astaantaada.",
-      "useAsLogo": "Isticmaal sawirka la doortay"
+      "useAsLogo": "Isticmaal sawirka la doortay",
+      "bgRemoveFailed": "Lama saari karin asalka. Isku day sawir kale."
     },
     "filters": {
       "none": "Asal",
@@ -5134,6 +5135,12 @@
       "replaceConfirm": "Naqshadda hadda ku beddel qaabkan? Waad ka noqon kartaa.",
       "replaceTitle": "Ma beddeshaa naqshaddaada?",
       "replace": "Beddel"
+    },
+    "bgRemove": {
+      "action": "Ka saar asalka",
+      "working": "Waa la saarayaa asalka…",
+      "downloading": "Moodeelka AI waa la diyaarinayaa… {{percent}}%",
+      "done": "Asalka waa la saaray."
     }
   },
   "creator": {

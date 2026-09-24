@@ -4491,7 +4491,8 @@
       "layersHint": "Serê lîsteyê pêş e. Ji bo rêzkirina ji nû ve tîran bi kar bîne. Qatên kilîtkirî û veşartî tenê ji vir dikarin werin hilbijartin.",
       "agentWebOnly": "Hin ji wê niha tenê di edîtora webê de dixebite.",
       "brandLogoHint": "Wêneyekî li ser rûpelê hilbijêre, paşê wê wekî logoya xwe bi kar bîne.",
-      "useAsLogo": "Wêneyê hilbijartî bi kar bîne"
+      "useAsLogo": "Wêneyê hilbijartî bi kar bîne",
+      "bgRemoveFailed": "Paşxane nehat rakirin. Wêneyekî din biceribîne."
     },
     "filters": {
       "none": "Orîjînal",
@@ -4705,6 +4706,12 @@
       "replaceConfirm": "دیزاینی ئێستا بەم ڕووکارە بگۆڕدرێت؟ دەتوانیت پاشگەزی بکەیتەوە.",
       "replaceTitle": "دیزاینەکەت بگۆڕیت؟",
       "replace": "گۆڕین"
+    },
+    "bgRemove": {
+      "action": "Paşxaneyê rake",
+      "working": "Paşxane tê rakirin…",
+      "downloading": "Modela AI tê amadekirin… {{percent}}%",
+      "done": "Paşxane hat rakirin."
     }
   },
   "creator": {

@@ -4994,7 +4994,8 @@
       "layersHint": "Listenin en üstü en öndedir. Sıralamayı değiştirmek için okları kullanın. Kilitli ve gizli katmanlar yalnızca buradan seçilebilir.",
       "agentWebOnly": "Bunun bir kısmı şimdilik yalnızca web düzenleyicide çalışıyor.",
       "brandLogoHint": "Sayfada bir resim seçin, ardından onu logonuz olarak kullanın.",
-      "useAsLogo": "Seçili resmi kullan"
+      "useAsLogo": "Seçili resmi kullan",
+      "bgRemoveFailed": "Arka plan kaldırılamadı. Başka bir görsel deneyin."
     },
     "filters": {
       "none": "Orijinal",
@@ -5208,6 +5209,12 @@
       "replaceConfirm": "Mevcut tasarım bu şablonla değiştirilsin mi? Geri alabilirsin.",
       "replaceTitle": "Tasarımın değiştirilsin mi?",
       "replace": "Değiştir"
+    },
+    "bgRemove": {
+      "action": "Arka planı kaldır",
+      "working": "Arka plan kaldırılıyor…",
+      "downloading": "Yapay zekâ modeli hazırlanıyor… %{{percent}}",
+      "done": "Arka plan kaldırıldı."
     }
   },
   "creator": {

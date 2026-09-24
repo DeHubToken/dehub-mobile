@@ -4945,7 +4945,8 @@
       "layersHint": "Partea de sus a listei este în față. Folosește săgețile pentru a reordona. Straturile blocate și ascunse pot fi selectate doar de aici.",
       "agentWebOnly": "O parte din asta funcționează deocamdată doar în editorul web.",
       "brandLogoHint": "Selectează o imagine de pe pagină, apoi folosește-o ca logo.",
-      "useAsLogo": "Folosește imaginea selectată"
+      "useAsLogo": "Folosește imaginea selectată",
+      "bgRemoveFailed": "Fundalul nu a putut fi eliminat. Încearcă altă imagine."
     },
     "filters": {
       "none": "Original",
@@ -5159,6 +5160,12 @@
       "replaceConfirm": "Înlocuiești designul actual cu acest șablon? Poți anula.",
       "replaceTitle": "Înlocuiești designul?",
       "replace": "Înlocuiește"
+    },
+    "bgRemove": {
+      "action": "Elimină fundalul",
+      "working": "Se elimină fundalul…",
+      "downloading": "Se pregătește modelul AI… {{percent}}%",
+      "done": "Fundal eliminat."
     }
   },
   "creator": {

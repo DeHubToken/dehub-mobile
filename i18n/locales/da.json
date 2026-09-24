@@ -4936,7 +4936,8 @@
       "layersHint": "Øverst på listen er forrest. Brug pilene til at ændre rækkefølgen. Låste og skjulte lag kan kun vælges her.",
       "agentWebOnly": "Noget af det virker indtil videre kun i webeditoren.",
       "brandLogoHint": "Vælg et billede på siden, og brug det derefter som dit logo.",
-      "useAsLogo": "Brug valgt billede"
+      "useAsLogo": "Brug valgt billede",
+      "bgRemoveFailed": "Baggrunden kunne ikke fjernes. Prøv et andet billede."
     },
     "filters": {
       "none": "Original",
@@ -5150,6 +5151,12 @@
       "replaceConfirm": "Erstat det nuværende design med denne skabelon? Du kan fortryde det.",
       "replaceTitle": "Erstat dit design?",
       "replace": "Erstat"
+    },
+    "bgRemove": {
+      "action": "Fjern baggrund",
+      "working": "Fjerner baggrund…",
+      "downloading": "Gør AI-modellen klar… {{percent}}%",
+      "done": "Baggrund fjernet."
     }
   },
   "creator": {

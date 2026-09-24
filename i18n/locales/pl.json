@@ -5000,7 +5000,8 @@
       "layersHint": "Góra listy to pierwszy plan. Użyj strzałek, aby zmienić kolejność. Zablokowane i ukryte warstwy można wybrać tylko tutaj.",
       "agentWebOnly": "Część z tego działa na razie tylko w edytorze internetowym.",
       "brandLogoHint": "Zaznacz obraz na stronie, a następnie użyj go jako logo.",
-      "useAsLogo": "Użyj zaznaczonego obrazu"
+      "useAsLogo": "Użyj zaznaczonego obrazu",
+      "bgRemoveFailed": "Nie udało się usunąć tła. Spróbuj innego obrazu."
     },
     "filters": {
       "none": "Oryginał",
@@ -5214,6 +5215,12 @@
       "replaceConfirm": "Zastąpić obecny projekt tym szablonem? Możesz to cofnąć.",
       "replaceTitle": "Zastąpić projekt?",
       "replace": "Zastąp"
+    },
+    "bgRemove": {
+      "action": "Usuń tło",
+      "working": "Usuwanie tła…",
+      "downloading": "Przygotowywanie modelu AI… {{percent}}%",
+      "done": "Tło usunięte."
     }
   },
   "creator": {
