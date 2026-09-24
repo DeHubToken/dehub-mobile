@@ -650,7 +650,11 @@
       "hintAllow": "Sistem lan crawler AI sing ngurmati sinyal iki bisa nglatih audio, karya seni, lan tulisanmu.",
       "hintDeny": "Sistem lan crawler AI sing ngurmati sinyal iki dijaluk supaya ora nglatih audio, karya seni, lan tulisanmu. Crawler sing nglirwakake sinyal ora diblokir dening iku.",
       "saved": "Preferensi latihan AI disimpen"
-    }
+    },
+    "chainIdLabel": "Rante ID: {{id}}",
+    "exportPkConfirmPhrase": "AKU PENGERTI",
+    "exportPkCopy": "Salin kunci pribadi",
+    "e2eAutomatic": "Otomatis"
   },
   "common": {
     "mute": "Bisu",
@@ -690,7 +694,17 @@
     "optionalSuffix": "(opsional)",
     "yesterday": "Wingi",
     "ok": "OKE",
-    "continue": "Terusna"
+    "continue": "Terusna",
+    "goesToHomeFeed": "Menuju ke umpan utama",
+    "openMenu": "Buka menu",
+    "scrollsFeedToTop": "Gulir menyang ndhuwur umpan lan muat ulang",
+    "notificationsUnread": "Notifikasi, {{unread}} durung diwaca",
+    "errorDetails": "Rincian kesalahan:",
+    "failedToLoad": "Gagal dimuat",
+    "noInternetTitle": "Ora Ana Sambungan Internet",
+    "noInternetBody": "Mangga priksa sambungan internet sampeyan lan coba maneh. Sampeyan kudu nyambung menyang internet kanggo nggunakake DeHub.",
+    "noInternetStatus": "Offline - Ora ana sambungan jaringan",
+    "noInternetHint": "Priksa manawa Wi-Fi utawa data seluler wis urip, banjur tutul \"{{action}}\""
   },
   "tip": {
     "title": "Kirim Hadiah",
@@ -1580,7 +1594,12 @@
     "chooseUsernameBody": "Pilih jeneng pangguna lan jeneng tampilan kanggo nerusake. Bisa diganti mengko.",
     "checkingAvailability": "Mriksa kasedhiyan…",
     "usernameTakenHint": "Jeneng wis dipakai — coba tambahi angka utawa garis ngisor",
-    "displayNameLength": "Jeneng tampilan kudu 2-50 karakter."
+    "displayNameLength": "Jeneng tampilan kudu 2-50 karakter.",
+    "loginFailedRetry": "Login gagal. Coba maneh.",
+    "sendCodeFailedRetry": "Ora bisa ngirim kode. Coba maneh.",
+    "invalidCodeRetry": "Kode ora valid. Coba maneh.",
+    "invalidEmailOrPassword": "Email utawa sandhi ora valid.",
+    "welcomeToDehub": "Sugeng rawuh ing DeHub"
   },
   "messages": {
     "smartRepliesOff": "Wangsulan sing disaranake dipateni",
@@ -1658,7 +1677,32 @@
     "offerWorthNow": "Kira-kira {{amount}} DHB miturut kurs saiki",
     "offerNotePlaceholder": "Tambahi cathetan (opsional)",
     "offerCommitsNothing": "Gawe tawaran ora larang lan ora ngunci DHB. Kowe mung mbayar yen sing duwe nampa.",
-    "offerNeedsHandle": "Akun iki ora duwe jeneng panganggo kanggo ditawakake."
+    "offerNeedsHandle": "Akun iki ora duwe jeneng panganggo kanggo ditawakake.",
+    "noPostsYet": "Durung ana kiriman",
+    "noPostsYetSub": "Konten bakal katon ing kene nalika dikirim",
+    "noPinnedPosts": "Durung ana kiriman sing disematake",
+    "noPinnedPostsSub": "Kiriman sing disematake bakal katon ing kene",
+    "emptyLiked": "Durung ana kiriman sing disukai.",
+    "emptySaved": "Durung ana kiriman sing disimpen.",
+    "emptyUnlocked": "Durung ana kiriman sing dibukak.",
+    "emptyWatched": "Durung ana riwayat tontonan.",
+    "emptyFolder": "Durung ana kiriman ing folder iki.",
+    "emptyPosts": "Durung ana kiriman.",
+    "couldNotLoadPosts": "Ora bisa mbukak kiriman.",
+    "noPostsOrReplies": "Durung ana kiriman, komentar, utawa balesan",
+    "noPostsOrRepliesSub": "Bakal katon ing kene",
+    "avatarUpdated": "Avatar wis dianyari",
+    "coverUpdated": "Sampul wis dianyari",
+    "couldNotPickImage": "Ora bisa milih gambar",
+    "changeCoverImage": "Ganti gambar sampul",
+    "changeAvatar": "Ganti avatar",
+    "verifiedEnsName": "Jeneng ENS wis diverifikasi {{name}}",
+    "notFullyJoined": "Pangguna iki durung rampung gabung. Dheweke durung njupuk jeneng pangguna utawa ngrampungake persiyapan profil. Sampeyan isih bisa ndeleng aktivitas umum lan ngirim tip yen ana.",
+    "loadRepliesFailed": "Gagal mbukak balesan",
+    "refreshFailed": "Gagal nyegerake",
+    "noRepliesYet": "Durung Ana Balesan",
+    "noRepliesYetSub": "Nalika pangguna iki mbales kiriman, bakal katon ing kene.",
+    "noMoreReplies": "Ora ana balesan maneh"
   },
   "tv": {
     "title": "TV",
@@ -1741,7 +1785,11 @@
     "loadingPrice": "Ngemot rega…",
     "topUpExplanation": "DHB ditransfer ing rantai menyang perbendaharaan iklan DeHub, banjur saldo sampeyan ditambah sawise verifikasi mandiri ing rantai.",
     "paymentHistory": "Riwayat pambayaran",
-    "noPayments": "Durung ana pambayaran"
+    "noPayments": "Durung ana pambayaran",
+    "sponsored": "Disponsori",
+    "morePosts": "Kiriman liyane",
+    "loadMorePosts": "Muat kiriman liyane",
+    "playAdVideo": "Putar video iklan"
   },
   "buyCoins": {
     "title": "Tuku Koin",
@@ -2176,7 +2224,8 @@
     "privateBalanceMode": "Mode saldo pribadi aktif",
     "addressHidden": "Alamat didhelikake",
     "allowInFeeds": "Ijinake panganggo iki katon ing feed sampeyan",
-    "hideContent": "Dhelikake kontene lan watesi interaksi"
+    "hideContent": "Dhelikake kontene lan watesi interaksi",
+    "a11yLabel": "Pilihan profil"
   },
   "toasts": {
     "saved_to_bookmarks": "Disimpen ing bookmark",
@@ -2548,7 +2597,8 @@
     "roles": {
       "owner": "Sing duwe",
       "moderator": "Moderator",
-      "member": "Anggota"
+      "member": "Anggota",
+      "admin": "Admin"
     },
     "time": {
       "today": "dina iki",
@@ -2557,7 +2607,126 @@
       "weeks": "{{count}} minggu",
       "months": "{{count}} sasi",
       "years": "{{count}} taun"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "disunting",
+      "deleteTitle": "Busak pesen",
+      "deleteConfirm": "Busak pesen iki? Iki ora bisa dibalekake.",
+      "muted": "Sampeyan dibungkem",
+      "postingDisabled": "Ngirim pesen dipateni kanggo anggota ing kene",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Pesen disematake",
+      "showEarlier": "Tampilake pesen sadurunge",
+      "editingMessage": "Nyunting pesen",
+      "copied": "Pasan dikopi",
+      "copyText": "Salin teks",
+      "mutedUntil": "Sampeyan bisu nganti {{date}}",
+      "slowMode": "Mode alon: siji pesen saben {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Tolak admin",
+      "cancel": "Batal",
+      "dismissAdmin": "Tolak admin",
+      "roleAdmin": "Administrator",
+      "roleMember": "Anggota",
+      "whatCanTheyDo": "Apa sing bisa ditindakake admin iki?",
+      "rightNotHeld": "Sampeyan ora duwe hak iki dhewe",
+      "customTitle": "Gelar khusus",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Ditampilake tinimbang lencana Admin standar.",
+      "saveChanges": "Simpen owah-owahan",
+      "promote": "Promosikake",
+      "tabs": {
+        "members": "Anggota",
+        "admins": "Admin",
+        "permissions": "Prakara",
+        "invites": "Undhangan",
+        "rules": "Aturan",
+        "recentActions": "Aksi pungkasan",
+        "danger": "Zona bebaya"
+      },
+      "title": "Kelola",
+      "purgeTitle": "Busak kabeh pesen?",
+      "purgeConfirm": "Busak",
+      "kickTitle": "Copot anggota?",
+      "kickConfirm": "Copot",
+      "bannedPermanent": "Diblokir — permanen",
+      "mutedPermanent": "Dibisu — permanen",
+      "editAdminRights": "Edit hak admin",
+      "promoteToAdmin": "Promosikake dadi admin",
+      "unmute": "Batalake bisu",
+      "mute": "Bisu",
+      "unban": "Batalake larangan",
+      "ban": "Larangan",
+      "deleteAllMessages": "Busak kabeh pesen",
+      "removeFromCommunity": "Metu saka komunitas",
+      "noActionsAvailable": "Sampeyan ora bisa moderasi anggota iki.",
+      "showMore": "Tampilake liyane",
+      "joinRequests": "Panyuwunan gabung",
+      "approve": "Setujoni",
+      "reject": "Tolak",
+      "members": "Anggota",
+      "searchMembers": "Golèki miturut alamat dompèt",
+      "noMembersMatch": "Ora ana anggota sing cocog.",
+      "noMembers": "Durung ana anggota.",
+      "muted": "Dibisu",
+      "banned": "Dilarang",
+      "muteEffect": "Dheweke tetep ana ing komunitas nanging ora bisa ngirim pesen nganti bisu kadaluwarsa.",
+      "banEffect": "Dheweke diilangi saka obrolan lan ora bisa gabung maneh nganti larangan dicabut.",
+      "durationLabel": "Wektu",
+      "reasonLabel": "Alesan (opsional)",
+      "reasonPlaceholder": "Apa sebabe dheweke dilarang?",
+      "alsoDeleteMessages": "Uga busak kabeh pesen saka dheweke",
+      "confirmMute": "Bisu anggota",
+      "confirmBan": "Larangan anggota",
+      "rulesUpdated": "Aturan dianyari",
+      "rulesTitle": "Aturan komunitas",
+      "rulesEmpty": "Durung ana aturan — tambahen sing pertama ing ngisor iki.",
+      "rulePlaceholder": "Terangna aturané",
+      "addRule": "Tambah aturan",
+      "saveRules": "Simpen aturan",
+      "dismissAdminBody": "{{wallet}} bakal balik dadi anggota biyasa.",
+      "purgeBody": "Saben pesen sing dikirim {{name}} ing komunitas iki bakal dibusak.",
+      "kickBody": "{{name}} bakal diusir saka komunitas. Dheweke bisa gabung maneh mengko.",
+      "bannedUntil": "Diblokir nganti {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Dibungkem nganti {{date}}",
+      "bannedUntilShort": "Nganti {{date}}",
+      "muteTitle": "Bungkem {{name}}",
+      "banTitle": "Blokir {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} saka {{max}}",
+      "moveRuleUp": "Pindhah aturan munggah",
+      "moveRuleDown": "Pindhah aturan mudhun",
+      "deleteRule": "Busak aturan",
+      "rights": {
+        "changeInfo": "Ganti info komunitas",
+        "changeInfoHint": "Sunting jeneng, katrangan, avatar, lan banner",
+        "deleteMessages": "Busak pesen",
+        "deleteMessagesHint": "Busak pesen apa waé saka obrolan komunitas",
+        "restrictMembers": "Blokir panganggo",
+        "restrictMembersHint": "Bungkem, usir, lan blokir anggota",
+        "inviteUsers": "Undhang panganggo liwat pranala",
+        "inviteUsersHint": "Gawe lan cabut pranala undhangan",
+        "pinMessages": "Tancepake pesen",
+        "pinMessagesHint": "Tancepake pesen ing ndhuwur obrolan",
+        "manageEvents": "Atur acara",
+        "manageEventsHint": "Gawe lan sunting acara komunitas",
+        "addAdmins": "Tambah admin anyar",
+        "addAdminsHint": "Promosikake anggota lan owahi hak admin sing ditambahake",
+        "remainAnonymous": "Tetep anonim",
+        "remainAnonymousHint": "Sembunyikake admin iki saka dhaptar anggota"
+      },
+      "durations": {
+        "oneHour": "1 jam",
+        "eightHours": "8 jam",
+        "oneDay": "1 dina",
+        "oneWeek": "1 minggu",
+        "forever": "Selawase"
+      }
+    },
+    "chooseAvatar": "Pilih avatar"
   },
   "work": {
     "title": "Hadiah",
@@ -2909,7 +3078,9 @@
       "shipped": "Dikirim",
       "completed": "Rampung",
       "cancelled": "Dibatalake"
-    }
+    },
+    "removePhoto": "Copot foto",
+    "listingOptions": "Pilihan listing"
   },
   "accounts": {
     "subtitle": "Akun lengkap sing didol, regane nganggo DHB",
@@ -3277,7 +3448,14 @@
     "removeFollowerHint": "Tekan lan tahan pengikut kanggo mbusak.",
     "cancel": "Batal",
     "remove": "Mbusak",
-    "thisUser": "Pangguna iki"
+    "thisUser": "Pangguna iki",
+    "cancelRequestTo": "Batalake panjaluk tindakake @{{username}}?",
+    "followingUser": "Ngetutake @{{username}}",
+    "contentUnavailable": "Konten Ora Kasedhiya",
+    "youBlockedBody": "Sampeyan ora bakal weruh kiriman utawa bisa sesambungan karo dheweke. Batalake blokir kanggo mulihake akses.",
+    "restrictedBody": "Pangguna iki wis mbatesi interaksi karo akun sampeyan.",
+    "requestPendingBody": "Panjaluk tindakake wis dikirim. Sampeyan bakal bisa ndeleng kirimane sawise dheweke nyetujoni panjaluk sampeyan.",
+    "followToSeePosts": "Tindakake akun iki kanggo ndeleng kirimane."
   },
   "reactionInfo": {
     "title": "Reaksi",
@@ -3591,7 +3769,8 @@
     "needGas": "Butuh {{token}} asli kanggo gas ing {{chain}}.",
     "bridging": "Lagi bridge…",
     "bridgeAction": "Bridge {{from}} → {{to}}",
-    "failed": "Bridge gagal"
+    "failed": "Bridge gagal",
+    "sentArriveShortly": "{{amount}} DHB dikirim saka {{from}} → {{to}}. Token bakal teka sanalika."
   },
   "banned": {
     "title": "Akun sampeyan wis dilarang",
@@ -3769,7 +3948,16 @@
     "legacyRecovered": "Akun lawasmu{{suffix}} wis diverifikasi lan dompete wis dibalèkake. Gawe sandhi kanggo nglindhungi ing piranti iki — ing HP iki lan ing ngendi wae, wiwit saiki.",
     "passwordMin": "Sandhi (paling ora {{min}} karakter)",
     "newPasswordMin": "Sandhi anyar (paling ora {{min}} karakter)",
-    "newWalletPasswordMin": "Sandhi dompet anyar (paling ora {{min}} karakter)"
+    "newWalletPasswordMin": "Sandhi dompet anyar (paling ora {{min}} karakter)",
+    "deviceCheckCancelled": "Pemeriksaan piranti dibatalake — ora ana sing diganti.",
+    "savePhraseTitle": "Simpen frasa pemulihan sampeyan",
+    "startOverTitle": "Miwiti maneh nganggo dompet anyar",
+    "secureNewWalletTitle": "Amanake dompet anyar sampeyan",
+    "secureWalletTitle": "Amanake dompet sampeyan",
+    "unlockOnMobileTitle": "Buka kunci ing seluler",
+    "oldAccountFoundTitle": "Akun lawas ditemokake",
+    "unlockWalletTitle": "Buka kunci dompet sampeyan",
+    "phraseExplainer": "Dompet sampeyan bakal dilindhungi dening biometrik telpon iki. Buka kunci <em> mung bisa digunakake ing telpon iki</em> — 12 tembung iki minangka siji-sijine cara kanggo bali yen sampeyan nginstal ulang DeHub, ganti handset, utawa kelangan."
   },
   "transcript": {
     "title": "Transkrip",
@@ -3955,7 +4143,38 @@
     "subscribe": "Langganan",
     "subscriberCount_one": "{{count}} pelanggan",
     "subscriberCount_other": "{{count}} pelanggan",
-    "subscribeToForRich": "Langganan <name>{{name}}</name> regane <price>{{price}}</price>"
+    "subscribeToForRich": "Langganan <name>{{name}}</name> regane <price>{{price}}</price>",
+    "loadPlansFailed": "Gagal mbukak rencana",
+    "subscriberContent": "Konten pelanggan",
+    "subscriberContentSub": "Gawe rencana kanggo nawakake konten eksklusif kanggo pelanggan",
+    "createFirstPlan": "Gawe Rencana Pertamamu",
+    "addNewPlan": "Tambah Rencana Anyar",
+    "durations": {
+      "oneMonth": "1 Sasi",
+      "threeMonths": "3 Sasi",
+      "sixMonths": "6 Sasi",
+      "oneYear": "1 Taun",
+      "lifetime": "Saperluwase"
+    },
+    "planNameRequired": "Jeneng rencana dibutuhake",
+    "enterValidPrice": "Lebokake rega sing bener",
+    "availableChains": "Langganan saiki kasedhiya ing Base lan BNB",
+    "waitForSwitch": "Enteni jaringan langganan rampung ganti",
+    "connectAndWait": "Sambungake dompet sampeyan lan enteni jaringan langganan",
+    "planUpdated": "Rencana dianyari",
+    "creating": "Nggawe…",
+    "planPublished": "Rencana digawe lan diterbitake",
+    "createPlanTitle": "Gawe Rencana Langganan",
+    "network": "Jaringan langganan",
+    "planNameLabel": "Jeneng Rencana *",
+    "planNamePlaceholder": "contone Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Apa sing ditampa pelanggan...",
+    "priceLabel": "Rega (USD) *",
+    "legacyMigrationNote": "Ngirit migrasi rencana DHB lawas iki menyang rega dolar kanthi tarif pra-dhaptar.",
+    "benefits": "Keuntungan",
+    "benefitPlaceholder": "Tambah keuntungan...",
+    "createAndPublish": "Gawe & Terbitake",
+    "publishingOnChain": "Penerbitan minangka transaksi on-chain"
   },
   "live": {
     "notSet": "Durung disetel",
@@ -4073,7 +4292,22 @@
     "acceptTerms": "Aku nampa <terms>Syarat Layanan</terms>",
     "sentTo": "{{amount}} {{symbol}} dikirim menyang {{address}}",
     "tokensSentTo": "Token dikirim menyang {{address}}",
-    "goToProfile": "Menyang Profil"
+    "goToProfile": "Menyang Profil",
+    "aboutTitle": "Babagan DeHub & pembayaran",
+    "aboutSubtitle": "Gerbang sampeyan menyang pembayaran token sing lancar",
+    "aboutTokenTitle": "Token DeHub",
+    "aboutTokenBody": "Token dianggo kanggo langganan kreator, menehi tip streamer utawa mbukak kunci konten. Luwih akeh sing dicekel, biaya luwih murah lan luwih akeh kekuwatan super sing dibukak kaya dorongan tren garis wektu lan lencana verifikasi.",
+    "aboutInstantTitle": "Pembayaran Langsung",
+    "aboutInstantBody": "Nggunakake Stripe, sampeyan bisa tuku token kanthi cepet lan lancar menyang akun apa wae sing sampeyan mlebu. DeHub nggawe token gampang lan kanggo kabeh. Yen sampeyan butuh dhukungan luwih akeh, mung munggah ing obrolan komunitas langsung 24/7 lan njaluk dhukungan admin.",
+    "aboutSecureTitle": "Gerbang Aman",
+    "aboutSecureBody": "Kabeh rincian pembayaran dienkripsi lan diproses kanthi aman dening Stripe. Kita ora bisa ngakses utawa nyimpen informasi sensitif utawa rincian kertu, menehi sampeyan tentrem atine.",
+    "transfersSummary": "Ringkesan Transfer",
+    "availableToBuy": "Kasedhiya kanggo dituku saiki",
+    "noSupplyShort": "Ora ana pasokan",
+    "topUpSubtitle": "Tuku $DHB nggunakake kertu lan entuk gas gratis kanggo digunakake kanthi cepet",
+    "noTxHash": "Ora bisa nemokake hash transaksi",
+    "latestTransactions": "Transaksi Paling Anyar",
+    "showAll": "Tampilake kabeh"
   },
   "musicSheet": {
     "title": "Gawe lagu",
@@ -4202,7 +4436,13 @@
     "followUpNote": "Kita bisa uga ngubungi sampeyan kanggo pitakon lanjutan babagan panyaruwe",
     "submitFeedback": "Kirim panyaruwe",
     "provideFeedback": "Mangga tulis panyaruwe sampeyan",
-    "thankYou": "Matur nuwun kanggo panyaruwene!"
+    "thankYou": "Matur nuwun kanggo panyaruwene!",
+    "submitFailed": "Gagal ngirim umpan balik. Coba maneh.",
+    "maybeLater": "Mungkin Mengko",
+    "helpUsImprove": "Bantu kita nambah",
+    "rateExperience": "Kepiye sampeyan bakal menehi rating pengalaman sampeyan?",
+    "telegramOptional": "Telegram (opsional)",
+    "discordOptional": "Discord (opsional)"
   },
   "migrate": {
     "clearAll": "Busaken kabeh",
@@ -4319,7 +4559,14 @@
       "blueWhale": "Bab paling gedhe sing wis tau urip. Iku sampeyan.",
       "megalodon": "Iki mahkota sampeyan — sampeyan royalti app saiki"
     },
-    "continue": "Bali menyang DeHub"
+    "continue": "Bali menyang DeHub",
+    "none": "Ora ana",
+    "noBadgeYet": "Ora ana lencana durung",
+    "next": "Sabanjure",
+    "topTier": "Tingkat paling dhuwur",
+    "toNextTier": "{{amount}} DHB menyang {{tier}}",
+    "everyTierUnlocked": "Saben tingkat dibukak",
+    "holdNote": "Sawise lencana dibukak, iku duweke sampeyan anggere sampeyan nyekel DHB. Jumlah token sing dibutuhake kanggo mbukak lencana anyar bisa diganti karo rega token."
   },
   "passwordStrength": {
     "veryWeak": "Banget ringkih",
@@ -4401,7 +4648,11 @@
     },
     "ttsLabel": "Ucapake kanthi seru",
     "ttsPlaceholder": "Waosen ing stream...",
-    "ttsHint": "Waosen kanthi banter marang kabeh sing nonton nalika hadiahmu teka."
+    "ttsHint": "Waosen kanthi banter marang kabeh sing nonton nalika hadiahmu teka.",
+    "sendAGift": "Kirim Hadiah",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Hadiah minimal yaiku {{amount}}",
+    "sendGift": "Kirim Hadiah"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4784,7 +5035,8 @@
         "title": "Deleng carane entuk dhuwit",
         "body": "Temokake carane tip, lencana, lan SuperPowers ngowahi apa sing sampeyan lakoni ing kene dadi apa sing sampeyan entuk."
       }
-    }
+    },
+    "swipeToStart": "Geser kanggo miwiti"
   },
   "conversation": {
     "commonGround": {
@@ -5266,5 +5518,18 @@
     "toastPaidSettled": "Wis dibayar — dagangan rampung",
     "walletNotReady": "Dompetmu durung siap — jajal maneh sedhela engkas.",
     "wrongChain": "Dagangan iki rampung ing {{chain}}. Ganti menyang {{chain}} ing Setelan, banjur jajal maneh."
+  },
+  "moderation": {
+    "appealDuplicate": "Sampeyan wis mbandhingake iki",
+    "appealSent": "Panyuwunan dikirim",
+    "appealFailed": "Ora bisa ngajokake panyuwunan kasebut",
+    "appealTitle": "Bandingake keputusan iki",
+    "appealSubtitle": "Wong bakal maca iki lan ndeleng maneh keputusane.",
+    "appealPlaceholder": "Apa sing sampeyan pikirake sing kliwat? Konteks babagan konten luwih mbiyantu tinimbang apa wae.",
+    "appealSend": "Kirim panyuwunan",
+    "appealFootnote": "Sampeyan bakal entuk nomer referensi, lan wangsulane bakal bali ing kene. Siji panyuwunan saben keputusan.",
+    "appealRef": "Referensi {{ref}}",
+    "appealSubtitleSubject": "Wong bakal maca iki lan ndeleng maneh {{subject}}.",
+    "appealMore": "Karakter isih dibutuhake: {{count}}"
   }
 }

@@ -158,7 +158,7 @@ const StoreForm: React.FC<{
                 onPress={onClose}
                 hitSlop={12}
                 accessibilityRole="button"
-                accessibilityLabel="Close"
+                accessibilityLabel={t("common.close")}
               >
                 <Icon name="X" size={20} color="#A1A1AA" />
               </Pressable>
@@ -346,7 +346,7 @@ const ListingForm: React.FC<{
                 onPress={onClose}
                 hitSlop={12}
                 accessibilityRole="button"
-                accessibilityLabel="Close"
+                accessibilityLabel={t("common.close")}
               >
                 <Icon name="X" size={20} color="#A1A1AA" />
               </Pressable>
@@ -365,7 +365,7 @@ const ListingForm: React.FC<{
                         onPress={() => setImages((prev) => prev.filter((_, idx) => idx !== i))}
                         hitSlop={12}
                         accessibilityRole="button"
-                        accessibilityLabel="Remove photo"
+                        accessibilityLabel={t("stores.removePhoto")}
                       >
                         <Icon name="X" size={12} color="#FFFFFF" />
                       </Pressable>
@@ -756,7 +756,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
                   onPress={() => listingMenu(l)}
                   hitSlop={14}
                   accessibilityRole="button"
-                  accessibilityLabel="Listing options"
+                  accessibilityLabel={t("stores.listingOptions")}
                 >
                   <Icon name="EllipsisVertical" size={16} color="#A1A1AA" />
                 </Pressable>

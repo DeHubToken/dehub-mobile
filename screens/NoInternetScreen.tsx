@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import AccentButtonGradient from '../components/ui/AccentButtonGradient';
 import { colors } from '../theme/colors';
@@ -10,6 +11,7 @@ interface NoInternetScreenProps {
 }
 
 export default function NoInternetScreen({ onRetry }: NoInternetScreenProps) {
+  const { t } = useTranslation();
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <View className="flex-1 justify-center items-center px-6">
@@ -29,18 +31,18 @@ export default function NoInternetScreen({ onRetry }: NoInternetScreenProps) {
         </View>
 
         <Text className="text-theme-neutrals-100 text-2xl font-bold text-center mb-3">
-          No Internet Connection
+          {t('common.noInternetTitle')}
         </Text>
 
         <Text className="text-theme-neutrals-300 text-base text-center mb-8 leading-6 max-w-sm">
-          Please check your internet connection and try again. You need to be connected to the internet to use DEHUB.
+          {t('common.noInternetBody')}
         </Text>
 
         <View className="bg-theme-neutrals-800 rounded-lg p-4 mb-8 w-full max-w-sm">
           <View className="flex-row items-center justify-center">
             <View className="w-3 h-3 bg-white rounded-full mr-3" />
             <Text className="text-theme-neutrals-200 text-sm">
-              Offline - No network connection
+              {t('common.noInternetStatus')}
             </Text>
           </View>
         </View>
@@ -59,7 +61,7 @@ export default function NoInternetScreen({ onRetry }: NoInternetScreenProps) {
                   color="white"
                 />
                 <Text className="text-white text-base font-semibold ml-2">
-                  Try Again
+                  {t('common.tryAgain')}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -67,7 +69,7 @@ export default function NoInternetScreen({ onRetry }: NoInternetScreenProps) {
         </View>
 
         <Text className="text-theme-neutrals-400 text-sm text-center max-w-xs">
-          Make sure WiFi or mobile data is turned on, then tap "Try Again"
+          {t('common.noInternetHint', { action: t('common.tryAgain') })}
         </Text>
       </View>
     </View>

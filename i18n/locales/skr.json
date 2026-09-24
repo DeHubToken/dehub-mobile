@@ -650,7 +650,11 @@
       "hintAllow": "AI سسٹمز تے کرالرز جہڑے ایس اشارے دا احترام کریندن اوہ تہاڈی آڈیو، آرٹ تے لکھت تے ٹرین کر سکدے نیں۔",
       "hintDeny": "AI سسٹمز تے کرالرز جہڑے ایس اشارے دا احترام کریندن اوہناں نوں تہاڈی آڈیو، آرٹ تے لکھت تے ٹرین نہ کرن دا آکھیا گیا اے۔ جہڑے کرالرز ایس اشارے نوں نظر انداز کریندن اوہناں نوں ایہہ روکے نئیں سکدا۔",
       "saved": "AI ٹریننگ دی ترجیح محفوظ کر لئی گئی"
-    }
+    },
+    "chainIdLabel": "چین آئی ڈی: {{id}}",
+    "exportPkConfirmPhrase": "میں سمجھدا ہاں",
+    "exportPkCopy": "نجی کلید کاپی کرو",
+    "e2eAutomatic": "خودکار"
   },
   "common": {
     "mute": "آواز بند کرو",
@@ -690,7 +694,17 @@
     "optionalSuffix": "(اختیاری)",
     "yesterday": "کل",
     "ok": "ٹھیک ہے",
-    "continue": "جاری رکھو"
+    "continue": "جاری رکھو",
+    "goesToHomeFeed": "ہوم فیڈ تے ونجے",
+    "openMenu": "مینو کھولو",
+    "scrollsFeedToTop": "فیڈ دے اُتے تے ریفریش کرو",
+    "notificationsUnread": "نوٹیفیکیشن، {{unread}} ان پڑھ",
+    "errorDetails": "غلطی دی تفصیل:",
+    "failedToLoad": "لوڈ کرن وچ ناکام",
+    "noInternetTitle": "انٹرنیٹ کنکشن نہیں",
+    "noInternetBody": "مہربانی کر کے اپنڑاں انٹرنیٹ کنکشن چیک کرو تے ٻل ٻیا کوشش کرو۔ ڈی ہب استعمال کرن لئی تساں کوں انٹرنیٹ نال جُڑیا ہووݨا چاہیدا اے۔",
+    "noInternetStatus": "آف لائن - نیٹ ورک کنکشن نہیں",
+    "noInternetHint": "یقینی بݨوو وائی فائی یا موبائل ڈیٹا آن اے، پھر \"{{action}}\" تے ٹیپ کرو"
   },
   "tip": {
     "title": "ٹِپ گھلو",
@@ -1573,7 +1587,12 @@
     "chooseUsernameBody": "جاری رکھݨ لئی یوزر نام تے ݙکھاوݨ آلا ناں چݨو۔ بعد وچ بدل سڳدے او۔",
     "checkingAvailability": "دستیابی چیک تھیندی پئی ہے…",
     "usernameTakenHint": "ایہ ناں پہلے ہی لیتا ونڄ چکا ہے — ہندسے یا انڈر سکور رل کے ݙیکھو",
-    "displayNameLength": "ݙکھاوݨ آلا ناں 2-50 اکھراں دا ہوونا چاہیدے۔"
+    "displayNameLength": "ݙکھاوݨ آلا ناں 2-50 اکھراں دا ہوونا چاہیدے۔",
+    "loginFailedRetry": "لاگ ان ناکام ہو گیا۔ مہربانی کر کے ٻل ٻیا کوشش کرو۔",
+    "sendCodeFailedRetry": "کوڈ بھیجیا نہیں جا سگیا۔ مہربانی کر کے ٻل ٻیا کوشش کرو۔",
+    "invalidCodeRetry": "غلط کوڈ۔ مہربانی کر کے ٻل ٻیا کوشش کرو۔",
+    "invalidEmailOrPassword": "غلط ای میل یا پاس ورڈ۔",
+    "welcomeToDehub": "ڈی ہب وچ خوش آمدید"
   },
   "messages": {
     "smartRepliesOff": "تجویز کیتے ڳئے جواب بند تھی ڳئے",
@@ -1651,7 +1670,32 @@
     "offerWorthNow": "موجودہ ریٹ تے تقریباً {{amount}} DHB",
     "offerNotePlaceholder": "نوٹ شامل کرو (اختیاری)",
     "offerCommitsNothing": "پیشکش کرݨ تے کجھ خرچ کائنی تھیندا تے کوئی DHB بند کائنی تھیندا۔ تساں تݙݨ ادا کریسو جݙݨ مالک قبول کریسی۔",
-    "offerNeedsHandle": "ایں اکاؤنٹ دا کوئی یوزرنیم کائنی جیندے تے پیشکش کیتی ونج سڳے۔"
+    "offerNeedsHandle": "ایں اکاؤنٹ دا کوئی یوزرنیم کائنی جیندے تے پیشکش کیتی ونج سڳے۔",
+    "noPostsYet": "ہجے کوئی پوسٹ نہیں",
+    "noPostsYetSub": "پوسٹ تھیوݨ تے مواد اتھاں ظاہر تھیسی",
+    "noPinnedPosts": "ہجے کوئی پن پوسٹ نہیں",
+    "noPinnedPostsSub": "پن پوسٹ اتھاں ظاہر تھیسن",
+    "emptyLiked": "ہجے کوئی پسند کیتی پوسٹ نہیں",
+    "emptySaved": "ہجے کوئی محفوظ کیتی پوسٹ نہیں",
+    "emptyUnlocked": "ہجے کوئی ان لاک کیتی پوسٹ نہیں",
+    "emptyWatched": "ہجے کوئی واچ ہسٹری نہیں",
+    "emptyFolder": "اس فولڈر وچ ہجے کوئی پوسٹ نہیں",
+    "emptyPosts": "ہجے کوئی پوسٹ نہیں",
+    "couldNotLoadPosts": "پوسٹ لوڈ نہیں تھی سگیاں۔",
+    "noPostsOrReplies": "ہن تئیں کوئی پوسٹ، تبصرہ یا جواب کینی",
+    "noPostsOrRepliesSub": "اِیہ اِتھاں نظر آسن",
+    "avatarUpdated": "اوتار اپ ڈیٹ تھی ڳیا",
+    "coverUpdated": "کور اپ ڈیٹ تھی ڳیا",
+    "couldNotPickImage": "تصویر چاھنڑ نا تھی سڳی",
+    "changeCoverImage": "کور تصویر بدلو",
+    "changeAvatar": "اوتار بدلو",
+    "verifiedEnsName": "تصدیق شدہ ENS ناں {{name}}",
+    "notFullyJoined": "ایں صارف دا مکمل طور تے شمولیت نا تھی ڳئی۔ اِیہاں اپݨا ناں منتخب نا کیتا یا پروفائل سیٹ اپ مکمل نا کیتا۔ تساں ہن تئیں عوامی سرگرمیاں ڈیکھ سڳدے او اتے دستیاب ہوسن تاں ٹِپ بھیڄ سڳدے او۔",
+    "loadRepliesFailed": "جواب لوڈ تھیونڑ نا تھی سڳیا",
+    "refreshFailed": "ریفرش ناکام تھی ڳیا",
+    "noRepliesYet": "ہن تئیں کوئی جواب کینی",
+    "noRepliesYetSub": "جݙاھیں ایں صارف پوسٹاں دا جواب ڈیسی، اِیہ اِتھاں نظر آسن۔",
+    "noMoreReplies": "ہور جواب کینی"
   },
   "tv": {
     "title": "ٹی وی",
@@ -1734,7 +1778,11 @@
     "loadingPrice": "قیمت لگدی پئی ہے…",
     "topUpExplanation": "DHB زنجیر تے DeHub اشتہار خزانے وچ ونڄدا ہے، فیر آزاد آن چین تصدیق دے بعد تہاݙے بیلنس وچ رل ویندا ہے۔",
     "paymentHistory": "ادائیگی دی تاریخ",
-    "noPayments": "ہݨ تائیں کوئی ادائیگی کائنی"
+    "noPayments": "ہݨ تائیں کوئی ادائیگی کائنی",
+    "sponsored": "سپر ہٹ",
+    "morePosts": "ہور پوسٹاں",
+    "loadMorePosts": "ہور پوسٹاں لوڈ کرو",
+    "playAdVideo": "اشتہاری ویڈیو چلاؤ"
   },
   "buyCoins": {
     "title": "سکے خریدو",
@@ -2168,7 +2216,8 @@
     "privateBalanceMode": "پرائیویٹ بیلنس موڈ فعال ہے",
     "addressHidden": "پتہ لکیا ہویا ہے",
     "allowInFeeds": "ایں صارف کوں اپݨے فیڈاں وچ ݙسݨ ݙیو",
-    "hideContent": "اݙھاں دا مواد لُکاؤ تے گل بات محدود کرو"
+    "hideContent": "اݙھاں دا مواد لُکاؤ تے گل بات محدود کرو",
+    "a11yLabel": "پروفائل آپشن"
   },
   "toasts": {
     "saved_to_bookmarks": "بُک مارکس وچ محفوظ تھی ڳیا",
@@ -2540,7 +2589,8 @@
     "roles": {
       "owner": "مالک",
       "moderator": "منتظم",
-      "member": "رکن"
+      "member": "رکن",
+      "admin": "ایڈمن"
     },
     "time": {
       "today": "اڄ",
@@ -2549,7 +2599,126 @@
       "weeks": "{{count}} ہفتے",
       "months": "{{count}} مہینے",
       "years": "{{count}} ورھے"
-    }
+    },
+    "chatPanel": {
+      "anon": "گمنام",
+      "edited": "ایڈٹ کیتا",
+      "deleteTitle": "میسج ڈیلیٹ کرو",
+      "deleteConfirm": "ایں میسج کوں ڈیلیٹ کرݨا اے؟ اِیہ واپس نا آس سڳسی۔",
+      "muted": "تساں میوٹ تھی ڳئے او",
+      "postingDisabled": "اِتھاں دے میمبرز واسطے پوسٹ کرݨا بند کر ݙتا ڳیا اے",
+      "mediaMessage": "میڈیا",
+      "pinnedMessage": "پن کیتا ہویا میسج",
+      "showEarlier": "پچھلیاں میسج ڈیکھاؤ",
+      "editingMessage": "میسج ایڈٹ کرݨا",
+      "copied": "پیغام نقل کر لیا گیا",
+      "copyText": "متن کاپی کرو",
+      "mutedUntil": "توں {{date}} تئیں میوٹ تھیوں",
+      "slowMode": "سلو موڈ: ہر {{interval}} بعد اک پیغام"
+    },
+    "manage": {
+      "dismissAdminTitle": "ایڈمن ختم کرو",
+      "cancel": "منسوخ کرو",
+      "dismissAdmin": "ایڈمن ختم کرو",
+      "roleAdmin": "منتظم",
+      "roleMember": "رکن",
+      "whatCanTheyDo": "ایہ منتظم کیہ کر سگدا اے؟",
+      "rightNotHeld": "تینوں ایہ حق کُودے نئیں",
+      "customTitle": "کسٹم ٹائٹل",
+      "customTitlePlaceholder": "منتظم",
+      "customTitleHint": "ڈیفالٹ منتظم بیج دی بجائے دِکھایا ویندا اے۔",
+      "saveChanges": "تبدیلیاں محفوظ کرو",
+      "promote": "ترقی دیو",
+      "tabs": {
+        "members": "اراکین",
+        "admins": "منتظم",
+        "permissions": "اجازت نامے",
+        "invites": "دعوت نامے",
+        "rules": "قواعد",
+        "recentActions": "حالیہ کاروائیاں",
+        "danger": "خطرناک علاقہ"
+      },
+      "title": "انتظام کرو",
+      "purgeTitle": "سارے پیغامات ختم کر سٹے؟",
+      "purgeConfirm": "ختم کرو",
+      "kickTitle": "رکن کڈھیا ونجے؟",
+      "kickConfirm": "کڈھو",
+      "bannedPermanent": "بین کر سٹیا گیا — مستقل",
+      "mutedPermanent": "میوٹ کر سٹیا گیا — مستقل",
+      "editAdminRights": "اڈمن حقوق میں ترمیم کریں",
+      "promoteToAdmin": "اڈمن کے عہدے پر ترقی دیں",
+      "unmute": "خاموشی ختم کریں",
+      "mute": "خاموش کریں",
+      "unban": "بین ختم کریں",
+      "ban": "بین کریں",
+      "deleteAllMessages": "تمام پیغامات حذف کریں",
+      "removeFromCommunity": "کمیونٹی سے ہٹائیں",
+      "noActionsAvailable": "آپ اس رکن کی نگرانی نہیں کر سکتے۔",
+      "showMore": "مزید دکھائیں",
+      "joinRequests": "شامل ہونے کی درخواستیں",
+      "approve": "منظور کریں",
+      "reject": "مسترد کریں",
+      "members": "اراکین",
+      "searchMembers": "والیٹ ایڈریس کے ذریعے تلاش کریں",
+      "noMembersMatch": "کوئی رکن اس سے مماثل نہیں ہے۔",
+      "noMembers": "ابھی تک کوئی رکن نہیں ہے۔",
+      "muted": "خاموش",
+      "banned": "بین شدہ",
+      "muteEffect": "وہ کمیونٹی میں رہتے ہیں لیکن خاموشی کی مدت ختم ہونے تک پوسٹ نہیں کر سکتے۔",
+      "banEffect": "انہیں چیٹ سے ہٹا دیا گیا ہے اور بین ختم ہونے تک دوبارہ شامل نہیں ہو سکتے۔",
+      "durationLabel": "مدت",
+      "reasonLabel": "وجہ (اختیاری)",
+      "reasonPlaceholder": "انہیں کیوں بین کیا جا رہا ہے؟",
+      "alsoDeleteMessages": "ان کے تمام پیغامات بھی حذف کریں",
+      "confirmMute": "رکن کو خاموش کریں",
+      "confirmBan": "رکن کو بین کریں",
+      "rulesUpdated": "قواعد اپ ڈیٹ ہو گئے",
+      "rulesTitle": "کمیونٹی کے قواعد",
+      "rulesEmpty": "ابھی تک کوئی قاعدہ نہیں — ذیل میں پہلا شامل کریں۔",
+      "rulePlaceholder": "قاعدہ بیان کرو",
+      "addRule": "قاعدہ شامل کرو",
+      "saveRules": "قاعدے محفوظ کرو",
+      "dismissAdminBody": "{{wallet}} عام رکن بن جاۓ گا۔",
+      "purgeBody": "اس کمیونٹی میں {{name}} کا بھیجا ہوا ہر پیغام ہٹا دیا جاۓ گا۔",
+      "kickBody": "{{name}} کو کمیونٹی سے نکال دیا جاۓ گا۔ وہ بعد میں دوبارہ شامل ہو سکتا ہے۔",
+      "bannedUntil": "{{date}} تک پابندی",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "{{date}} تک خاموشی",
+      "bannedUntilShort": "{{date}} تک",
+      "muteTitle": "{{name}} کو خاموش کرو",
+      "banTitle": "{{name}} پر پابندی لگاؤ",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{max}} میں سے {{used}}",
+      "moveRuleUp": "قاعدہ اوپر لے جاؤ",
+      "moveRuleDown": "قاعدہ نیچے لے جاؤ",
+      "deleteRule": "قاعدہ حذف کرو",
+      "rights": {
+        "changeInfo": "کمیونٹی کی معلومات تبدیل کرو",
+        "changeInfoHint": "نام، تفصیل، اوتار اور بینر میں ترمیم کرو",
+        "deleteMessages": "پیغام حذف کرو",
+        "deleteMessagesHint": "کمیونٹی چیٹ سے کوئی بھی پیغام ہٹا دو",
+        "restrictMembers": "ممبران پر پابندی لگاؤ",
+        "restrictMembersHint": "ممبران کو خاموش کرو، ہٹا دو اور پابندی لگاؤ",
+        "inviteUsers": "لنک کے ذریعے ممبران کو دعوت دو",
+        "inviteUsersHint": "دعوت نامے کے لنکس بنائیں اور منسوخ کریں",
+        "pinMessages": "پیغام پن کرو",
+        "pinMessagesHint": "چیٹ کے اوپر ایک پیغام پن کرو",
+        "manageEvents": "ایونٹس کا انتظام کرو",
+        "manageEventsHint": "کمیونٹی ایونٹس بنائیں اور ان میں ترمیم کریں",
+        "addAdmins": "نئے ایڈمن شامل کریں",
+        "addAdminsHint": "ممبران کی ترقی دیں اور ان کے شامل کردہ ایڈمنز کے حقوق میں ترمیم کریں",
+        "remainAnonymous": "خفیہ رہیں",
+        "remainAnonymousHint": "اس ایڈمن کو ممبر لسٹ سے چھپائیں"
+      },
+      "durations": {
+        "oneHour": "1 گھنٹہ",
+        "eightHours": "8 گھنٹے",
+        "oneDay": "1 دن",
+        "oneWeek": "1 ہفتہ",
+        "forever": "ہمیشہ کے لیے"
+      }
+    },
+    "chooseAvatar": "اوتار منتخب کریں"
   },
   "work": {
     "title": "انعام",
@@ -2900,7 +3069,9 @@
       "shipped": "گھلیا ڳیا",
       "completed": "پورا تھیا",
       "cancelled": "منسوخ"
-    }
+    },
+    "removePhoto": "تصویر ہٹائیں",
+    "listingOptions": "لسٹنگ کے اختیارات"
   },
   "accounts": {
     "subtitle": "پورے کھاتے وِکرے کیتے، DHB وچ قیمت",
@@ -3260,7 +3431,14 @@
     "removeFollowerBody": "{{name}} کوں پتہ کینی لڳسی جو اوہ تہاڈے فالوورز توں کڈھیا گئیا اے۔",
     "cancel": "منسوخ",
     "remove": "کڈھ ونجو",
-    "thisUser": "اھو صارف"
+    "thisUser": "اھو صارف",
+    "cancelRequestTo": "@{{username}}? کی فالو ریکویسٹ منسوخ کریں",
+    "followingUser": "@{{username}} کو فالو کر رہے ہیں",
+    "contentUnavailable": "مواد دستیاب نہیں ہے",
+    "youBlockedBody": "آپ ان کی پوسٹس نہیں دیکھ سکیں گے اور نہ ہی ان کے ساتھ بات چیت کر سکیں گے۔ رسائی بحال کرنے کے لیے ان بلاک کریں۔",
+    "restrictedBody": "اس صارف نے آپ کے اکاؤنٹ کے ساتھ بات چیت کو محدود کر دیا ہے۔",
+    "requestPendingBody": "آپ کی فالو ریکویسٹ بھیج دی گئی ہے۔ جب وہ آپ کی درخواست منظور کریں گے تو آپ ان کی پوسٹس دیکھ سکیں گے۔",
+    "followToSeePosts": "ان کی پوسٹس دیکھنے کے لیے اس اکاؤنٹ کو فالو کریں۔"
   },
   "reactionInfo": {
     "title": "ردعملیاں",
@@ -3575,7 +3753,8 @@
     "needGas": "{{chain}} تے گیس کیتے اصل {{token}} چاہیدا ہے۔",
     "bridging": "برج تھیندا پیا ہے…",
     "bridgeAction": "{{from}} → {{to}} برج کرو",
-    "failed": "برج ناکام تھیا"
+    "failed": "برج ناکام تھیا",
+    "sentArriveShortly": "{{amount}} DHB نے {{from}} سے {{to}} بھیجا۔ ٹوکن جلد پہنچ جائیں گے۔"
   },
   "banned": {
     "title": "تہاڈو اکاؤنٹ بند ہے",
@@ -3753,7 +3932,16 @@
     "legacyRecovered": "تہاݙا پرانا کھاتا{{suffix}} تصدیق تھی ڳیا تے ایندا والٹ واپس مل ڳیا۔ ہݨ کنوں ایں ڈیوائس تے — ایں فون تے ہر تھاں — ایندی حفاظت لئی پاس ورڈ رکھو۔",
     "passwordMin": "پاس ورڈ (گھٹ توں گھٹ {{min}} اکھر)",
     "newPasswordMin": "نواں پاس ورڈ (گھٹ توں گھٹ {{min}} اکھر)",
-    "newWalletPasswordMin": "نویں والٹ دا پاس ورڈ (گھٹ توں گھٹ {{min}} اکھر)"
+    "newWalletPasswordMin": "نویں والٹ دا پاس ورڈ (گھٹ توں گھٹ {{min}} اکھر)",
+    "deviceCheckCancelled": "ڈیوائس چیک منسوخ کر دیا گیا — کچھ بھی تبدیل نہیں کیا گیا۔",
+    "savePhraseTitle": "اپنی ریکوری فریز محفوظ کریں",
+    "startOverTitle": "نئے والٹ کے ساتھ دوبارہ شروع کریں",
+    "secureNewWalletTitle": "اپنا نیا والٹ محفوظ کریں",
+    "secureWalletTitle": "اپنا والٹ محفوظ کریں",
+    "unlockOnMobileTitle": "موبائل پر ان لاک کریں",
+    "oldAccountFoundTitle": "پرانا اکاؤنٹ ملا",
+    "unlockWalletTitle": "اپنا والٹ ان لاک کریں",
+    "phraseExplainer": "آپ کا والٹ اس فون کے بائیو میٹرکس سے محفوظ رہے گا۔ یہ ان لاک <em>صرف اس فون پر کام کرتا ہے</em> — اگر آپ DeHub دوبارہ انسٹال کرتے ہیں، ہینڈ سیٹ تبدیل کرتے ہیں، یا اسے کھو دیتے ہیں تو یہ 12 الفاظ ہی واپس آنے کا واحد طریقہ ہیں۔"
   },
   "transcript": {
     "title": "نقل",
@@ -3939,7 +4127,38 @@
     "subscribe": "سبسکرائب کرو",
     "subscriberCount_one": "{{count}} سبسکرائبر",
     "subscriberCount_other": "{{count}} سبسکرائبرز",
-    "subscribeToForRich": "<price>{{price}}</price> وچ <name>{{name}}</name> سبسکرائب کرو"
+    "subscribeToForRich": "<price>{{price}}</price> وچ <name>{{name}}</name> سبسکرائب کرو",
+    "loadPlansFailed": "پلان لوڈ کرنے میں ناکام",
+    "subscriberContent": "سبسکرائبر مواد",
+    "subscriberContentSub": "ممبران کی خاطر خاص مواد پیش کرنڑ واسطے منصوبے بناؤ",
+    "createFirstPlan": "اولی منصوبہ بناؤ",
+    "addNewPlan": "نویں منصوبہ شامل کرو",
+    "durations": {
+      "oneMonth": "1 مہینہ",
+      "threeMonths": "3 مہینے",
+      "sixMonths": "6 مہینے",
+      "oneYear": "1 سال",
+      "lifetime": "حیاتی"
+    },
+    "planNameRequired": "منصوبے دا ناں لازمی اے",
+    "enterValidPrice": "ٹھیک قیمت داخل کرو",
+    "availableChains": "فی الحال Base تے BNB تے سبسکرپشن موجود اے",
+    "waitForSwitch": "سبسکرپشن نیٹ ورک دے بدلن دا انتظار کرو",
+    "connectAndWait": "اَپنا والٹ جوڑو تے سبسکرپشن نیٹ ورک دا انتظار کرو",
+    "planUpdated": "منصوبہ اپ ڈیٹ تھی گیا",
+    "creating": "بنڑدا پیا اے…",
+    "planPublished": "منصوبہ بنڑ گیا تے شائع تھی گیا",
+    "createPlanTitle": "سبسکرپشن منصوبہ بناؤ",
+    "network": "سبسکرپشن نیٹ ورک",
+    "planNameLabel": "منصوبے دا ناں *",
+    "planNamePlaceholder": "مثال: پریمیم، گولڈ، وی آئی پی…",
+    "descriptionPlaceholder": "ممبران کی شے مِلسی…",
+    "priceLabel": "قیمت (USD) *",
+    "legacyMigrationNote": "بچت اِیہ پرانی DHB منصوبہ ڈالر دے ریٹ تے منتقل کریندی اے جو لسٹنگ توں پہلوں آ",
+    "benefits": "فائدے",
+    "benefitPlaceholder": "فائدہ شامل کرو…",
+    "createAndPublish": "بناؤ تے شائع کرو",
+    "publishingOnChain": "شائع کرݨ اِک آن-چین ٹرانزیکشن اے"
   },
   "live": {
     "notSet": "مقرر کائنی",
@@ -4057,7 +4276,22 @@
     "acceptTerms": "میں قبول کریندا ہاں <terms>سروس دیاں شرطاں</terms>",
     "sentTo": "{{amount}} {{symbol}} نوں {{address}} بھیجیا گیا",
     "tokensSentTo": "Tokens {{address}} کوں بھیجیا گئیا ہن",
-    "goToProfile": "پروفائل تے ونجو"
+    "goToProfile": "پروفائل تے ونجو",
+    "aboutTitle": "DeHub تے ادائیگی دے بارے وچ",
+    "aboutSubtitle": "اَپنا گیٹ وے بغیر کسی رکاوٹ دے ٹوکن ادائیگی واسطے",
+    "aboutTokenTitle": "DeHub ٹوکن",
+    "aboutTokenBody": "ٹیکناں دا استعمال کریئٹرز نال سبسکرائب کرن، سٹیمرز نوں ٹپ دین یاں مواد ان لاک کرن لئی ہوندا اے۔ جتنا زیادہ تساں کول ہوسے، تہاڈیاں فیساں اونی گھٹ ہوسن تے تساں اینج دے ودھ سپرپاورز ان لاک کر سکدے او جیویں ٹائم لائن ٹرینڈ بوسٹ تے ویریفیکیشن بیج۔",
+    "aboutInstantTitle": "فوری ادائیگی",
+    "aboutInstantBody": "سٹرائپ دے نال، تساں فوری تے بغیر کسے رکاوٹ دے اپنے لاگ ان اکاؤنٹ وچ ٹیکناں خرید سکدے او۔ ڈی ہب ٹیکناں نوں سادہ تے سبھ لئی بناؤندا اے۔ جے تساں نوں ہور مدد دی لوڑ اے، تے ساڈے 24/7 لائیو کمیونٹی چیٹ وچ آؤ تے ایڈمن سپورٹ منگو۔",
+    "aboutSecureTitle": "محفوظ گیٹ وے",
+    "aboutSecureBody": "ساریاں ادائیگی دیاں تفصیلات انکرپٹڈ ہوندیاں نیں تے سٹرائپ ولوں محفوظ طریقے نال پراسیس کیتیاں جاندیاں نیں۔ اسیں تہاڈی حساس معلومات یاں کارڈ دیاں تفصیلات تک رسائی یاں سٹور نئیں کر سکدے، تساں نوں مکمل ذہنی سکون دیندے ہوئے۔",
+    "transfersSummary": "ٹرانسفر دا خلاصہ",
+    "availableToBuy": "خریدن لئی دستیاب",
+    "noSupplyShort": "کوئی سپلائی نئیں",
+    "topUpSubtitle": "کارڈ نال $DHB خرید و تے مفت گیس حاصل کرو تے فوری استعمال کرو",
+    "noTxHash": "ٹرانزیکشن ہیش نئیں لبھ سکیا",
+    "latestTransactions": "تازہ ترین ٹرانزیکشنز",
+    "showAll": "ساریاں دکھاؤ"
   },
   "musicSheet": {
     "title": "گانا بݨاؤ",
@@ -4186,7 +4420,13 @@
     "followUpNote": "تہاݙی رائے بارے ودھیک سوالاں کیتے اساں رابطہ کر سڳدے ہیں",
     "submitFeedback": "رائے بھیجو",
     "provideFeedback": "مہربانی کر کے اپݨی رائے لکھو",
-    "thankYou": "تہاݙی رائے کیتے شکریہ!"
+    "thankYou": "تہاݙی رائے کیتے شکریہ!",
+    "submitFailed": "فیڈ بیک جمع کروان وچ ناکام۔ مہر بانی کر کے دوبارہ کوشش کرو۔",
+    "maybeLater": "بعد وچ کدی",
+    "helpUsImprove": "سہارا دیو اساں نوں بہتر بنان وچ",
+    "rateExperience": "تہاڈا تجربہ کیسا رہیا؟",
+    "telegramOptional": "ٹیلی گرام (اختیاری)",
+    "discordOptional": "ڈسکارڈ (اختیاری)"
   },
   "migrate": {
     "clearAll": "صاف ڪريو",
@@ -4300,7 +4540,14 @@
       "blueWhale": "سب توں وڈی چیز جو کدی رہی اے۔ ایہ تسيں اے۔",
       "megalodon": "یتھے تہاڈا تاج اے — تسيں ہن ایپ کی بادشاہی اے"
     },
-    "continue": "DeHub ڏانهن واپس"
+    "continue": "DeHub ڏانهن واپس",
+    "none": "کوئی نئیں",
+    "noBadgeYet": "کوئی بیج نئیں ہجے",
+    "next": "اگلا",
+    "topTier": "ٹاپ ٹائر",
+    "toNextTier": "{{amount}} DHB توں {{tier}}",
+    "everyTierUnlocked": "ہر ٹائر ان لاک ہویا",
+    "holdNote": "اک واری بیج ان لاک ہو جاندا اے، تے اوہ تہاڈے کول اونا چر رہندا اے جتنا چر تساں اپنا DHB رکھدے او۔ نویں بیج ان لاک کرن لئی لوڑیندی ٹیکناں دی گنتی ٹیکناں دی قیمت نال بدل سکدی اے۔"
   },
   "passwordStrength": {
     "veryWeak": "بہوں کمزور",
@@ -4355,7 +4602,11 @@
     "backToGift": "Back to gift",
     "ttsLabel": "کجھ زور نال آکھو",
     "ttsPlaceholder": "سٹریم تے وِچّھ آکھو…",
-    "ttsHint": "جدوں تہاڈا تحفہ آوے تے ویکھن والے ساریاں نوں زور نال آکھو۔"
+    "ttsHint": "جدوں تہاڈا تحفہ آوے تے ویکھن والے ساریاں نوں زور نال آکھو۔",
+    "sendAGift": "تحفہ گھجو",
+    "minPlaceholder": "منٹ: {{amount}}",
+    "minGift": "منٹ تحفہ {{amount}} اے",
+    "sendGift": "تحفہ گھجو"
   },
   "goLive": {
     "streamKey": "سٹریم کلید",
@@ -4675,7 +4926,8 @@
         "title": "کماون دا طریقہ ویکھو",
         "body": "پتا کراؤ کہ ٹِپ، بیج تے سپر پاور تہاڈے کم کوں کمائی اچ کِتھاں بدلن۔"
       }
-    }
+    },
+    "swipeToStart": "شروع کرن لئی سوائپ کرو"
   },
   "conversation": {
     "commonGround": {
@@ -5157,5 +5409,18 @@
     "toastPaidSettled": "ادا تھی ڳیا — سودا مُک ڳیا",
     "walletNotReady": "تہاݙا بٹوا ہݨ تئیں تیار کائنی — تھوڑی دیر بعد ول کوشش کرو۔",
     "wrongChain": "ایہ سودا {{chain}} تے مُکدا ہے۔ ترتیباں وچ {{chain}} تے سوئچ کرو، ول کوشش کرو۔"
+  },
+  "moderation": {
+    "appealDuplicate": "تساں پہلے ای اپیل کر چکے او",
+    "appealSent": "اپیل بھیجی گئی",
+    "appealFailed": "اوہ اپیل فائل نہ تھی سکی",
+    "appealTitle": "اس فیصلے دی اپیل کرو",
+    "appealSubtitle": "اک بندا ایہہ پڑھسی تے فیصلے تے دوبارہ غور کرسی۔",
+    "appealPlaceholder": "تساں کیہہ سمجھدے او کہ کیہہ چیز رہ گئی سی؟ مواد بارے معلومات سب توں ودھ مدد دیندی اے۔",
+    "appealSend": "اپیل بھیجو",
+    "appealFootnote": "تساں کوں اک ریفرنس نمبر ملے گا، تے جواب اتھاں واپس آئے گا۔ فی فیصلے دے لئی اک اپیل۔",
+    "appealRef": "ریفرنس {{ref}}",
+    "appealSubtitleSubject": "اک بندا ایہہ پڑھسی تے {{subject}} تے دوبارہ غور کرسی۔",
+    "appealMore": "حروف دی لوڑ اے: {{count}}"
   }
 }

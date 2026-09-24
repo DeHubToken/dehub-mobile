@@ -691,7 +691,11 @@
       "hintAllow": "Sustavi umjetne inteligencije i alati za indeksiranje koji poštuju ovaj signal mogu vježbati na vašem zvuku, umjetničkim djelima i pisanju.",
       "hintDeny": "Od sustava umjetne inteligencije i indeksirača koji poštuju ovaj signal traži se da ne vježbaju na vašem zvuku, umjetničkim djelima i pisanju. Alati za indeksiranje koji zanemaruju signal nisu njime blokirani.",
       "saved": "Postavka umjetne inteligencije za obuku je spremljena"
-    }
+    },
+    "chainIdLabel": "Lanac ID: {{id}}",
+    "exportPkConfirmPhrase": "RAZUMIJEM",
+    "exportPkCopy": "Kopiraj privatni ključ",
+    "e2eAutomatic": "Automatski"
   },
   "common": {
     "mute": "Isključi zvuk",
@@ -731,7 +735,17 @@
     "optionalSuffix": "(neobavezno)",
     "yesterday": "Jučer",
     "ok": "U redu",
-    "continue": "Nastavi"
+    "continue": "Nastavi",
+    "goesToHomeFeed": "Odlazi na početni feed",
+    "openMenu": "Otvori izbornik",
+    "scrollsFeedToTop": "Pomakne se na vrh feeda i osvježi ga",
+    "notificationsUnread": "Obavijesti, {{unread}} nepročitanih",
+    "errorDetails": "Detalji pogreške:",
+    "failedToLoad": "Nije uspjelo učitavanje",
+    "noInternetTitle": "Nema internetske veze",
+    "noInternetBody": "Provjerite svoju internetsku vezu i pokušajte ponovno. Morate biti povezani na internet da biste koristili DeHub.",
+    "noInternetStatus": "Izvan mreže - Nema mrežne veze",
+    "noInternetHint": "Provjerite je li Wi-Fi ili mobilni podaci uključeni, a zatim dodirnite \"{{action}}\""
   },
   "tip": {
     "title": "Pošalji napojnicu",
@@ -1621,7 +1635,12 @@
     "chooseUsernameBody": "Odaberite korisničko ime i prikazano ime za nastavak. Kasnije ih možete promijeniti.",
     "checkingAvailability": "Provjera dostupnosti…",
     "usernameTakenHint": "Ime je zauzeto — pokušajte dodati brojeve ili donju crtu",
-    "displayNameLength": "Prikazano ime mora imati 2-50 znakova."
+    "displayNameLength": "Prikazano ime mora imati 2-50 znakova.",
+    "loginFailedRetry": "Prijava nije uspjela. Pokušajte ponovno.",
+    "sendCodeFailedRetry": "Nije moguće poslati kod. Pokušajte ponovno.",
+    "invalidCodeRetry": "Neispravan kod. Pokušajte ponovno.",
+    "invalidEmailOrPassword": "Neispravna e-pošta ili lozinka.",
+    "welcomeToDehub": "Dobrodošli u DeHub"
   },
   "messages": {
     "smartRepliesOff": "Predloženi odgovori isključeni",
@@ -1699,7 +1718,32 @@
     "offerWorthNow": "Oko {{amount}} DHB po trenutnom tečaju",
     "offerNotePlaceholder": "Dodaj poruku (neobavezno)",
     "offerCommitsNothing": "Davanje ponude ne košta ništa i ne blokira DHB. Plaćaš samo ako vlasnik prihvati.",
-    "offerNeedsHandle": "Ovaj račun nema korisničko ime za koje bi se moglo ponuditi."
+    "offerNeedsHandle": "Ovaj račun nema korisničko ime za koje bi se moglo ponuditi.",
+    "noPostsYet": "Još nema postova",
+    "noPostsYetSub": "Sadržaj će se pojaviti ovdje kada bude objavljen",
+    "noPinnedPosts": "Još nema prikvačenih postova",
+    "noPinnedPostsSub": "Prikvačeni postovi će se pojaviti ovdje",
+    "emptyLiked": "Još nema lajkiranih postova.",
+    "emptySaved": "Još nema spremljenih postova.",
+    "emptyUnlocked": "Još nema otključanih postova.",
+    "emptyWatched": "Još nema povijesti gledanja.",
+    "emptyFolder": "Još nema postova u ovoj mapi.",
+    "emptyPosts": "Još nema postova.",
+    "couldNotLoadPosts": "Nije moguće učitati postove.",
+    "noPostsOrReplies": "Još nema postova, komentara ni odgovora",
+    "noPostsOrRepliesSub": "Pojavit će se ovdje",
+    "avatarUpdated": "Avatar je ažuriran",
+    "coverUpdated": "Naslovnica je ažurirana",
+    "couldNotPickImage": "Nije moguće odabrati sliku",
+    "changeCoverImage": "Promijeni naslovnu sliku",
+    "changeAvatar": "Promijeni avatar",
+    "verifiedEnsName": "Potvrđeno ENS ime {{name}}",
+    "notFullyJoined": "Ovaj korisnik još nije u potpunosti pristupio. Nije preuzeo korisničko ime niti dovršio postavljanje profila. Još uvijek možete pregledavati javne aktivnosti i slati napojnice ako su dostupne.",
+    "loadRepliesFailed": "Nije moguće učitati odgovore",
+    "refreshFailed": "Osvježavanje nije uspjelo",
+    "noRepliesYet": "Još nema odgovora",
+    "noRepliesYetSub": "Kada ovaj korisnik odgovori na postove, oni će se prikazati ovdje.",
+    "noMoreReplies": "Nema više odgovora"
   },
   "tv": {
     "title": "TV",
@@ -1782,7 +1826,11 @@
     "loadingPrice": "Učitavanje cijene…",
     "topUpExplanation": "DHB se on-chain prenosi u DeHubovu oglašivačku riznicu, a stanje ti se pripisuje nakon neovisne provjere na lancu.",
     "paymentHistory": "Povijest plaćanja",
-    "noPayments": "Još nema plaćanja"
+    "noPayments": "Još nema plaćanja",
+    "sponsored": "Sponzorirano",
+    "morePosts": "Više postova",
+    "loadMorePosts": "Učitaj više postova",
+    "playAdVideo": "Reproduciraj oglasni video"
   },
   "buyCoins": {
     "title": "Kupi novčiće",
@@ -2217,7 +2265,8 @@
     "privateBalanceMode": "Način privatnog stanja je uključen",
     "addressHidden": "Adresa skrivena",
     "allowInFeeds": "Dopusti ovom korisniku da se pojavljuje u tvojim feedovima",
-    "hideContent": "Sakrij njihov sadržaj i ograniči interakcije"
+    "hideContent": "Sakrij njihov sadržaj i ograniči interakcije",
+    "a11yLabel": "Opcije profila"
   },
   "toasts": {
     "saved_to_bookmarks": "Spremljeno u oznake",
@@ -2589,7 +2638,8 @@
     "roles": {
       "owner": "Vlasnik",
       "moderator": "Moderator",
-      "member": "Član"
+      "member": "Član",
+      "admin": "Administrator"
     },
     "time": {
       "today": "danas",
@@ -2598,7 +2648,126 @@
       "weeks": "{{count}} tj.",
       "months": "{{count}} mj.",
       "years": "{{count}} g."
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "uređeno",
+      "deleteTitle": "Izbriši poruku",
+      "deleteConfirm": "Želite li izbrisati ovu poruku? Ovo se ne može poništiti.",
+      "muted": "Ne možete objavljivati",
+      "postingDisabled": "Objavljivanje je onemogućeno za članove ovdje",
+      "mediaMessage": "Mediji",
+      "pinnedMessage": "Prikvačena poruka",
+      "showEarlier": "Prikaži ranije poruke",
+      "editingMessage": "Uređivanje poruke",
+      "copied": "Poruka je kopirana",
+      "copyText": "Kopiraj tekst",
+      "mutedUntil": "Isključen vam je zvuk do {{date}}",
+      "slowMode": "Usporeni način rada: jedna poruka svakih {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Odbaci administratora",
+      "cancel": "Odustani",
+      "dismissAdmin": "Odbaci administratora",
+      "roleAdmin": "Administrator",
+      "roleMember": "Član",
+      "whatCanTheyDo": "Što ovaj administrator može učiniti?",
+      "rightNotHeld": "Sami nemate to pravo",
+      "customTitle": "Prilagođeni naslov",
+      "customTitlePlaceholder": "Administrator",
+      "customTitleHint": "Prikazuje se umjesto zadane značke administratora.",
+      "saveChanges": "Spremi izmjene",
+      "promote": "Promoviraj",
+      "tabs": {
+        "members": "Članovi",
+        "admins": "Administratori",
+        "permissions": "Dozvole",
+        "invites": "Pozivnice",
+        "rules": "Pravila",
+        "recentActions": "Nedavne radnje",
+        "danger": "Opasna zona"
+      },
+      "title": "Upravljanje",
+      "purgeTitle": "Želite li izbrisati sve poruke?",
+      "purgeConfirm": "Izbriši",
+      "kickTitle": "Želite li ukloniti člana?",
+      "kickConfirm": "Ukloni",
+      "bannedPermanent": "Zabranjeno — trajno",
+      "mutedPermanent": "Utišano — trajno",
+      "editAdminRights": "Uredi administratorska prava",
+      "promoteToAdmin": "Promoviraj u administratore",
+      "unmute": "Ukloni utišavanje",
+      "mute": "Utišaj",
+      "unban": "Ukloni zabranu",
+      "ban": "Zabrani",
+      "deleteAllMessages": "Izbriši sve poruke",
+      "removeFromCommunity": "Ukloni iz zajednice",
+      "noActionsAvailable": "Ne možeš moderirati ovog člana.",
+      "showMore": "Prikaži više",
+      "joinRequests": "Zahtjevi za pridruživanje",
+      "approve": "Odobri",
+      "reject": "Odbij",
+      "members": "Članovi",
+      "searchMembers": "Pretraži po adresi novčanika",
+      "noMembersMatch": "Nijedan član ne odgovara.",
+      "noMembers": "Još nema članova.",
+      "muted": "Utišani",
+      "banned": "Zabranjeni",
+      "muteEffect": "Oni ostaju u zajednici, ali ne mogu objavljivati dok ne istekne utišavanje.",
+      "banEffect": "Oni su uklonjeni iz chata i ne mogu se ponovno pridružiti dok se zabrana ne ukine.",
+      "durationLabel": "Trajanje",
+      "reasonLabel": "Razlog (opcionalno)",
+      "reasonPlaceholder": "Zašto im se zabranjuje?",
+      "alsoDeleteMessages": "Također izbriši sve njihove poruke",
+      "confirmMute": "Utišaj člana",
+      "confirmBan": "Zabrani člana",
+      "rulesUpdated": "Pravila ažurirana",
+      "rulesTitle": "Pravila zajednice",
+      "rulesEmpty": "Još nema pravila — dodajte prvo ispod.",
+      "rulePlaceholder": "Opis pravila",
+      "addRule": "Dodaj pravilo",
+      "saveRules": "Spremi pravila",
+      "dismissAdminBody": "{{wallet}} će se vratiti kao običan član.",
+      "purgeBody": "Svaka poruka koju je {{name}} poslao u ovoj zajednici bit će uklonjena.",
+      "kickBody": "{{name}} će biti uklonjen iz zajednice. Mogu se ponovno pridružiti kasnije.",
+      "bannedUntil": "Zabranjeno do {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Utišan do {{date}}",
+      "bannedUntilShort": "Do {{date}}",
+      "muteTitle": "Utišaj {{name}}",
+      "banTitle": "Zabranite {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} od {{max}}",
+      "moveRuleUp": "Pomakni pravilo gore",
+      "moveRuleDown": "Pomakni pravilo dolje",
+      "deleteRule": "Izbriši pravilo",
+      "rights": {
+        "changeInfo": "Promijeni informacije o zajednici",
+        "changeInfoHint": "Uredi naziv, opis, avatar i banner",
+        "deleteMessages": "Izbriši poruke",
+        "deleteMessagesHint": "Ukloni bilo koju poruku iz chata zajednice",
+        "restrictMembers": "Zabranite korisnike",
+        "restrictMembersHint": "Utišaj, ukloni i zabrani članove",
+        "inviteUsers": "Pozovi korisnike putem linka",
+        "inviteUsersHint": "Stvori i opozovi pozivne linkove",
+        "pinMessages": "Prikvači poruke",
+        "pinMessagesHint": "Prikvači poruku na vrh chata",
+        "manageEvents": "Upravljaj događajima",
+        "manageEventsHint": "Stvori i uredi događaje zajednice",
+        "addAdmins": "Dodaj nove administratore",
+        "addAdminsHint": "Promovirajte članove i uredite prava administratora koje su dodali",
+        "remainAnonymous": "Ostani anoniman",
+        "remainAnonymousHint": "Sakrij ovog administratora s popisa članova"
+      },
+      "durations": {
+        "oneHour": "1 sat",
+        "eightHours": "8 sati",
+        "oneDay": "1 dan",
+        "oneWeek": "1 tjedan",
+        "forever": "Zauvijek"
+      }
+    },
+    "chooseAvatar": "Odaberi avatar"
   },
   "work": {
     "title": "Nagrade",
@@ -2950,7 +3119,9 @@
       "shipped": "Poslano",
       "completed": "Dovršeno",
       "cancelled": "Otkazano"
-    }
+    },
+    "removePhoto": "Ukloni fotografiju",
+    "listingOptions": "Opcije popisa"
   },
   "accounts": {
     "subtitle": "Cijeli računi na prodaju, cijena u DHB",
@@ -3318,7 +3489,14 @@
     "removeFollowerHint": "Pritisnite i držite pratitelja da biste ga uklonili.",
     "cancel": "Odustani",
     "remove": "Ukloni",
-    "thisUser": "Ovaj korisnik"
+    "thisUser": "Ovaj korisnik",
+    "cancelRequestTo": "Otkaži zahtjev za praćenje @{{username}}?",
+    "followingUser": "Pratim @{{username}}",
+    "contentUnavailable": "Sadržaj nedostupan",
+    "youBlockedBody": "Nećete vidjeti njihove objave niti moći komunicirati s njima. Deblokirajte kako biste vratili pristup.",
+    "restrictedBody": "Ovaj korisnik je ograničio interakcije s vašim računom.",
+    "requestPendingBody": "Vaš zahtjev za praćenje je poslan. Moći ćete vidjeti njihove objave nakon što odobre vaš zahtjev.",
+    "followToSeePosts": "Pratite ovaj račun da biste vidjeli njihove objave."
   },
   "reactionInfo": {
     "title": "Reakcije",
@@ -3633,7 +3811,8 @@
     "needGas": "Potreban je izvorni {{token}} za gas na {{chain}}.",
     "bridging": "Prebacivanje…",
     "bridgeAction": "Most {{from}} → {{to}}",
-    "failed": "Most nije uspio"
+    "failed": "Most nije uspio",
+    "sentArriveShortly": "{{amount}} DHB poslao s {{from}} → {{to}}. Tokeni stižu uskoro."
   },
   "banned": {
     "title": "Tvoj je račun zabranjen",
@@ -3811,7 +3990,16 @@
     "legacyRecovered": "Potvrdili smo vaš stari račun{{suffix}} i vratili njegov novčanik. Postavite lozinku koja će ga od sada štititi na ovom uređaju — na ovom telefonu i svugdje drugdje.",
     "passwordMin": "Lozinka (najmanje {{min}} znakova)",
     "newPasswordMin": "Nova lozinka (najmanje {{min}} znakova)",
-    "newWalletPasswordMin": "Lozinka novog novčanika (najmanje {{min}} znakova)"
+    "newWalletPasswordMin": "Lozinka novog novčanika (najmanje {{min}} znakova)",
+    "deviceCheckCancelled": "Provjera uređaja otkazana — ništa nije promijenjeno.",
+    "savePhraseTitle": "Spremite svoju frazu za oporavak",
+    "startOverTitle": "Započni ponovno s novim novčanikom",
+    "secureNewWalletTitle": "Osigurajte svoj novi novčanik",
+    "secureWalletTitle": "Osigurajte svoj novčanik",
+    "unlockOnMobileTitle": "Otključaj na mobitelu",
+    "oldAccountFoundTitle": "Pronađen stari račun",
+    "unlockWalletTitle": "Otključaj svoj novčanik",
+    "phraseExplainer": "Vaš novčanik će biti zaštićen biometrijom ovog telefona. To otključavanje <em>radi samo na ovom telefonu</em> — ovih 12 riječi je jedini način da se vratite ako ponovno instalirate DeHub, promijenite slušalicu ili je izgubite."
   },
   "transcript": {
     "title": "Transkript",
@@ -3998,7 +4186,38 @@
     "subscribe": "Pretplati se",
     "subscriberCount_one": "{{count}} pretplatnik",
     "subscriberCount_other": "{{count}} pretplatnika",
-    "subscribeToForRich": "Pretplatite se na <name>{{name}}</name> za <price>{{price}}</price>"
+    "subscribeToForRich": "Pretplatite se na <name>{{name}}</name> za <price>{{price}}</price>",
+    "loadPlansFailed": "Nije uspjelo učitavanje planova",
+    "subscriberContent": "Sadržaj za pretplatnike",
+    "subscriberContentSub": "Stvorite planove za ponudu ekskluzivnog sadržaja pretplatnicima",
+    "createFirstPlan": "Stvorite svoj prvi plan",
+    "addNewPlan": "Dodaj novi plan",
+    "durations": {
+      "oneMonth": "1 mjesec",
+      "threeMonths": "3 mjeseca",
+      "sixMonths": "6 mjeseci",
+      "oneYear": "1 godina",
+      "lifetime": "Doživotno"
+    },
+    "planNameRequired": "Naziv plana je obavezan",
+    "enterValidPrice": "Unesite važeću cijenu",
+    "availableChains": "Pretplate su trenutno dostupne na Base i BNB",
+    "waitForSwitch": "Pričekajte da se mreža pretplate završi s prebacivanjem",
+    "connectAndWait": "Povežite svoj novčanik i pričekajte mrežu pretplate",
+    "planUpdated": "Plan je ažuriran",
+    "creating": "Stvaranje…",
+    "planPublished": "Plan je kreiran i objavljen",
+    "createPlanTitle": "Stvori plan pretplate",
+    "network": "Mreža pretplate",
+    "planNameLabel": "Naziv plana *",
+    "planNamePlaceholder": "npr. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Što pretplatnici dobivaju...",
+    "priceLabel": "Cijena (USD) *",
+    "legacyMigrationNote": "Ušteda migrira ovaj naslijeđeni DHB plan na cijene u dolarima po pretprodajnoj stopi.",
+    "benefits": "Prednosti",
+    "benefitPlaceholder": "Dodaj prednost...",
+    "createAndPublish": "Stvori i objavi",
+    "publishingOnChain": "Objavljivanje je transakcija na lancu"
   },
   "live": {
     "notSet": "Nije postavljeno",
@@ -4116,7 +4335,22 @@
     "acceptTerms": "Prihvaćam <terms>Uvjeti pružanja usluge</terms>",
     "sentTo": "{{amount}} {{symbol}} je poslan na {{address}}",
     "tokensSentTo": "Tokeni su poslani na {{address}}",
-    "goToProfile": "Otvori profil"
+    "goToProfile": "Otvori profil",
+    "aboutTitle": "O DeHubu i plaćanjima",
+    "aboutSubtitle": "Vaš pristup besprijekornim plaćanjima tokenima",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokeni se koriste za pretplatu na kreatore, davanje napojnica streamerima ili otključavanje sadržaja. Što više posjedujete, to su niže vaše naknade i više supermoći otključavate poput pojačanja trendova na vremenskoj traci i znački za provjeru.",
+    "aboutInstantTitle": "Trenutna plaćanja",
+    "aboutInstantBody": "Koristeći Stripe, možete odmah i besprijekorno kupiti tokene na bilo koji račun na koji ste prijavljeni. DeHub čini tokene jednostavnima i za sve. Ako vam je potrebna dodatna podrška, jednostavno se javite u našem 24/7 live chatu zajednice i zatražite podršku administratora.",
+    "aboutSecureTitle": "Siguran pristupnik",
+    "aboutSecureBody": "Svi detalji plaćanja su šifrirani i sigurno obrađeni od strane Stripe. Ne možemo pristupiti niti pohraniti vaše osjetljive podatke ili podatke kartice, pružajući vam potpunu bezbrižnost.",
+    "transfersSummary": "Sažetak prijenosa",
+    "availableToBuy": "Dostupno za kupnju sada",
+    "noSupplyShort": "Nema ponude",
+    "topUpSubtitle": "Kupite $DHB karticom i dobijte besplatan gas za trenutno korištenje",
+    "noTxHash": "Nije pronađen hash transakcije",
+    "latestTransactions": "Najnovije transakcije",
+    "showAll": "Prikaži sve"
   },
   "musicSheet": {
     "title": "Stvori pjesmu",
@@ -4245,7 +4479,13 @@
     "followUpNote": "Možda vam se javimo s dodatnim pitanjima o vašim povratnim informacijama",
     "submitFeedback": "Pošalji povratne informacije",
     "provideFeedback": "Molimo napišite svoje povratne informacije",
-    "thankYou": "Hvala na povratnim informacijama!"
+    "thankYou": "Hvala na povratnim informacijama!",
+    "submitFailed": "Nije uspjelo slanje povratnih informacija. Molimo pokušajte ponovno.",
+    "maybeLater": "Možda kasnije",
+    "helpUsImprove": "Pomozite nam da poboljšamo",
+    "rateExperience": "Kako biste ocijenili svoje iskustvo?",
+    "telegramOptional": "Telegram (opcionalno)",
+    "discordOptional": "Discord (opcionalno)"
   },
   "migrate": {
     "clearAll": "Obriši sve",
@@ -4363,7 +4603,14 @@
       "blueWhale": "Najveća stvar koja je ikada živjela. To si ti.",
       "megalodon": "Ovo je tvoja kruna — sada si član tantijema za aplikaciju"
     },
-    "continue": "Natrag na DeHub"
+    "continue": "Natrag na DeHub",
+    "none": "Nijedno",
+    "noBadgeYet": "Nema značke",
+    "next": "Dalje",
+    "topTier": "Najviša razina",
+    "toNextTier": "{{amount}} DHB do {{tier}}",
+    "everyTierUnlocked": "Svaka otključana razina",
+    "holdNote": "Jednom kada se značka otključa, ona je vaša sve dok posjedujete svoj DHB. Broj tokena potrebnih za otključavanje nove značke može se promijeniti s cijenom tokena."
   },
   "passwordStrength": {
     "veryWeak": "Vrlo slaba",
@@ -4445,7 +4692,11 @@
     },
     "ttsLabel": "Recite nešto naglas",
     "ttsPlaceholder": "Čitajte u streamu…",
-    "ttsHint": "Čitajte naglas svima koji gledaju kada vaš dar sleti."
+    "ttsHint": "Čitajte naglas svima koji gledaju kada vaš dar sleti.",
+    "sendAGift": "Pošalji poklon",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minimalni poklon je {{amount}}",
+    "sendGift": "Pošalji poklon"
   },
   "goLive": {
     "streamKey": "Ključ strima",
@@ -4828,7 +5079,8 @@
         "title": "Pogledaj kako funkcionira zarada",
         "body": "Saznajte kako savjeti, značke i SuperPowers pretvaraju ono što ovdje radite u nešto od čega zarađujete."
       }
-    }
+    },
+    "swipeToStart": "Prijeđite prstom za početak"
   },
   "conversation": {
     "commonGround": {
@@ -5310,5 +5562,18 @@
     "toastPaidSettled": "Plaćeno — trgovina je završena",
     "walletNotReady": "Vaš novčanik još nije spreman — pokušajte ponovno za trenutak.",
     "wrongChain": "Ova se trgovina namiruje na {{chain}}. U Postavkama prebacite na {{chain}}, zatim pokušajte ponovno."
+  },
+  "moderation": {
+    "appealDuplicate": "Već ste uložili žalbu na ovu",
+    "appealSent": "Žalba je poslana",
+    "appealFailed": "Žalba nije mogla biti podnesena",
+    "appealTitle": "Uložite žalbu na ovu odluku",
+    "appealSubtitle": "Osoba će ovo pročitati i ponovno pogledati odluku.",
+    "appealPlaceholder": "Što mislite da je nedostajalo? Kontekst o sadržaju pomaže više od bilo čega drugog.",
+    "appealSend": "Pošalji žalbu",
+    "appealFootnote": "Dobijete referentni broj, a odgovor se vraća ovdje. Jedna žalba po odluci.",
+    "appealRef": "Referenca {{ref}}",
+    "appealSubtitleSubject": "Osoba će ovo pročitati i ponovno pogledati {{subject}}.",
+    "appealMore": "Znakovi koji su još potrebni: {{count}}"
   }
 }

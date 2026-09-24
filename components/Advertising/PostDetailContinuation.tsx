@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import FeedCard from "../Home/FeedCard";
 import { useServedAds } from "../../hooks/useAdServing";
 import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
@@ -16,6 +17,7 @@ interface PostDetailContinuationProps {
 
 /** Ad first, then an explicitly paginated continuation of recent posts. */
 export default function PostDetailContinuation({ currentPostId }: PostDetailContinuationProps) {
+  const { t } = useTranslation();
   const { data: servedAds = [], isLoading: servedAdLoading } = useServedAds("related", { count: 1 });
   const servedAd = servedAds[0] ?? null;
 
@@ -70,7 +72,7 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
         ) : houseAd ? (
           <View className="rounded-2xl border border-theme-neutrals-700 bg-theme-neutrals-800/50 p-3">
             <View className="mb-2 flex-row items-center justify-between">
-              <Text className="text-xs text-theme-neutrals-400">Sponsored</Text>
+              <Text className="text-xs text-theme-neutrals-400">{t("ads.sponsored")}</Text>
               <View className="rounded bg-yellow-500 px-1.5 py-0.5">
                 <Text className="text-xs font-bold text-black">AD</Text>
               </View>
@@ -85,7 +87,7 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
       </View>
 
       <Text className="px-4 pb-1 pt-7 text-sm font-semibold text-theme-neutrals-100">
-        More posts
+        {t("ads.morePosts")}
       </Text>
 
       {posts.map((post) => (
@@ -106,13 +108,13 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
           disabled={isFetchingNextPage}
           activeOpacity={0.75}
           accessibilityRole="button"
-          accessibilityLabel="Load more posts"
+          accessibilityLabel={t("ads.loadMorePosts")}
           className="mx-4 my-4 items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800/60 py-3"
         >
           {isFetchingNextPage ? (
             <ActivityIndicator size="small" color="#E4E4E7" />
           ) : (
-            <Text className="text-sm font-medium text-theme-neutrals-100">Load more posts</Text>
+            <Text className="text-sm font-medium text-theme-neutrals-100">{t("ads.loadMorePosts")}</Text>
           )}
         </TouchableOpacity>
       )}

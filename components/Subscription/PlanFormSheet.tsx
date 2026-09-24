@@ -7,6 +7,7 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import {
@@ -54,11 +55,11 @@ interface PlanFormSheetProps {
  * nobody could ever buy.
  */
 const DURATION_OPTIONS = [
-  { label: "1 Month", months: 1 },
-  { label: "3 Months", months: 3 },
-  { label: "6 Months", months: 6 },
-  { label: "1 Year", months: 12 },
-  { label: "Lifetime", months: 0 },
+  { labelKey: "subscriptions.durations.oneMonth", months: 1 },
+  { labelKey: "subscriptions.durations.threeMonths", months: 3 },
+  { labelKey: "subscriptions.durations.sixMonths", months: 6 },
+  { labelKey: "subscriptions.durations.oneYear", months: 12 },
+  { labelKey: "subscriptions.durations.lifetime", months: 0 },
 ];
 
 const SUBSCRIPTION_CHAIN_OPTIONS: ChainOption[] = [
@@ -95,6 +96,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   onPublished,
   editPlan,
 }) => {
+  const { t } = useTranslation();
   const { chainId } = useProvider();
   const { switchChain } = useAuthActions();
   const subscriptionContract = useSubscriptionContract();
@@ -153,7 +155,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
     setSwitchingChain(true);
     switchChain(selectedChainId)
       .catch((error) => {
-        if (active) toastError(error, "Could not switch subscription network");
+        if (active) toastError(error, t("subscriptions.switchFailed"));
       })
       .finally(() => {
         if (active) setSwitchingChain(false);
@@ -162,7 +164,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
     return () => {
       active = false;
     };
-  }, [visible, isEditing, selectedChainId, chainId, switchChain]);
+  }, [visible, isEditing, selectedChainId, chainId, switchChain, t]);
 
   const addBenefit = useCallback(() => {
     const trimmed = benefitInput.trim();
@@ -177,27 +179,27 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
 
   const handleSave = useCallback(async () => {
     if (!name.trim()) {
-      toastError(null, "Plan name is required");
+      toastError(null, t("subscriptions.planNameRequired"));
       return;
     }
     const parsedPrice = parseFloat(price);
     if (isNaN(parsedPrice) || parsedPrice <= 0) {
-      toastError(null, "Enter a valid price");
+      toastError(null, t("subscriptions.enterValidPrice"));
       return;
     }
 
     const targetChain = selectedChainId;
     const paymentToken = subscriptionPaymentToken(targetChain);
     if (!paymentToken || UNAVAILABLE_SUBSCRIPTION_CHAINS.includes(targetChain)) {
-      toastError(null, "Subscriptions are currently available on Base and BNB");
+      toastError(null, t("subscriptions.availableChains"));
       return;
     }
     if (!isEditing && (switchingChain || chainId !== targetChain)) {
-      toastError(null, "Wait for the subscription network to finish switching");
+      toastError(null, t("subscriptions.waitForSwitch"));
       return;
     }
     if (!isEditing && !subscriptionContract) {
-      toastError(null, "Connect your wallet and wait for the subscription network");
+      toastError(null, t("subscriptions.connectAndWait"));
       return;
     }
 
@@ -224,9 +226,9 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
               }
             : {}),
         });
-        toastSuccess("Plan updated");
+        toastSuccess(t("subscriptions.planUpdated"));
       } else {
-        setStage("Creating…");
+        setStage(t("subscriptions.creating"));
         result = await createPlan({
           name: name.trim(),
           description: description.trim() || undefined,
@@ -248,7 +250,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
         // A plan only becomes buyable once it is listed on chain. If this leg
         // fails the plan survives unpublished and can be published later,
         // rather than silently reverting for every buyer.
-        setStage("Confirm in your wallet…");
+        setStage(t("subscriptions.confirmInWallet"));
         const tx = await writeContractAA(
           subscriptionContract,
           "createPlan",
@@ -263,11 +265,11 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
           ],
           { context: "send" },
         );
-        setStage("Waiting for the transaction…");
+        setStage(t("subscriptions.waitingTx"));
         await tx.wait(1);
-        setStage("Finishing up…");
+        setStage(t("subscriptions.finishing"));
         await confirmPlanPublished(String(planId), targetChain);
-        toastSuccess("Plan created and published");
+        toastSuccess(t("subscriptions.planPublished"));
         onPublished?.();
       }
       if (result) onSuccess(result);
@@ -278,7 +280,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       setSaving(false);
       setStage("");
     }
-  }, [name, description, price, duration, benefits, isEditing, editPlan, existingIsUsdPriced, originalDollarPrice, selectedChainId, switchingChain, chainId, subscriptionContract, onSuccess, onPublished, onClose]);
+  }, [name, description, price, duration, benefits, isEditing, editPlan, existingIsUsdPriced, originalDollarPrice, selectedChainId, switchingChain, chainId, subscriptionContract, onSuccess, onPublished, onClose, t]);
 
   return (
     <GlassModal
@@ -292,14 +294,14 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       <View style={{ flex: 1 }}>
         <View className="flex-row items-center justify-between px-5 pt-4 pb-3 border-b border-white/10">
           <Text className="text-white font-bold text-base">
-            {isEditing ? "Edit Plan" : "Create Subscription Plan"}
+            {isEditing ? t("subscriptions.editPlan") : t("subscriptions.createPlanTitle")}
           </Text>
           <View className="flex-row items-center gap-1">
             <ChainSelector
               selectedChainId={selectedChainId}
               onChange={setSelectedChainId}
               variant="settings"
-              title="Subscription network"
+              title={t("subscriptions.network")}
               options={SUBSCRIPTION_CHAIN_OPTIONS}
               unavailableChainIds={UNAVAILABLE_SUBSCRIPTION_CHAINS}
               disabled={isEditing || saving}
@@ -317,11 +319,11 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
         >
           {/* Name */}
           <View>
-            <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">Plan Name *</Text>
+            <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">{t("subscriptions.planNameLabel")}</Text>
             <TextInput
               className="bg-theme-neutrals-800 border border-theme-neutrals-700 text-white text-sm px-4 py-3 rounded-xl"
               placeholderTextColor="#8B8D90"
-              placeholder="e.g. Premium, Gold, VIP..."
+              placeholder={t("subscriptions.planNamePlaceholder")}
               value={name}
               onChangeText={setName}
               maxLength={50}
@@ -330,11 +332,11 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
 
           {/* Description */}
           <View>
-            <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">Description</Text>
+            <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">{t("stores.description")}</Text>
             <TextInput
               className="bg-theme-neutrals-800 border border-theme-neutrals-700 text-white text-sm px-4 py-3 rounded-xl"
               placeholderTextColor="#8B8D90"
-              placeholder="What subscribers get..."
+              placeholder={t("subscriptions.descriptionPlaceholder")}
               value={description}
               onChangeText={setDescription}
               multiline
@@ -347,7 +349,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
           {/* Price */}
           <View>
             <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">
-              Price (USD) *
+              {t("subscriptions.priceLabel")}
             </Text>
             <View className="relative">
               <TextInput
@@ -366,14 +368,14 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
             </View>
             {!existingIsUsdPriced && (
               <Text className="text-theme-neutrals-500 text-xs mt-1.5">
-                Saving migrates this legacy DHB plan to dollar pricing at the pre-listing rate.
+                {t("subscriptions.legacyMigrationNote")}
               </Text>
             )}
           </View>
 
           {/* Duration */}
           <View>
-            <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">Duration</Text>
+            <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">{t("filters.duration")}</Text>
             <View className="flex-row flex-wrap gap-2">
               {DURATION_OPTIONS.map(opt => (
                 <TouchableOpacity
@@ -387,7 +389,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
                   }`}
                 >
                   <Text className={`text-sm font-medium ${duration === opt.months ? "text-black" : "text-theme-neutrals-400"}`}>
-                    {opt.label}
+                    {t(opt.labelKey)}
                   </Text>
                 </TouchableOpacity>
               ))}
@@ -396,12 +398,12 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
 
           {/* Benefits */}
           <View>
-            <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">Benefits</Text>
+            <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">{t("subscriptions.benefits")}</Text>
             <View className="flex-row gap-2 mb-2">
               <TextInput
                 className="flex-1 bg-theme-neutrals-800 border border-theme-neutrals-700 text-white text-sm px-4 py-3 rounded-xl"
                 placeholderTextColor="#8B8D90"
-                placeholder="Add a benefit..."
+                placeholder={t("subscriptions.benefitPlaceholder")}
                 value={benefitInput}
                 onChangeText={setBenefitInput}
                 onSubmitEditing={addBenefit}
@@ -439,14 +441,14 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
               <ActivityIndicator color="#000000" size="small" />
             ) : (
               <Text className="text-black font-semibold text-sm">
-                {isEditing ? "Save Changes" : "Create & Publish"}
+                {isEditing ? t("common.saveChanges") : t("subscriptions.createAndPublish")}
               </Text>
             )}
           </TouchableOpacity>
           {/* Publishing opens the wallet, so the button alone leaves people
               wondering what it is waiting for. */}
           <Text className="text-theme-neutrals-400 text-xs text-center mt-2">
-            {stage || (isEditing ? " " : "Publishing is an on-chain transaction")}
+            {stage || (isEditing ? " " : t("subscriptions.publishingOnChain"))}
           </Text>
         </View>
       </View>

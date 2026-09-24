@@ -47,7 +47,7 @@ const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose })
               <Image source={CHAIN_ICONS[ChainId.BASE_MAINNET]} className="w-8 h-8 rounded-full mr-3" />
               <View>
                 <Text className="text-white text-sm">Base</Text>
-                <Text className="text-theme-neutrals-400 text-[11px] mt-0.5">Chain ID: {ChainId.BASE_MAINNET}</Text>
+                <Text className="text-theme-neutrals-400 text-[11px] mt-0.5">{t("settings.chainIdLabel", { id: ChainId.BASE_MAINNET })}</Text>
               </View>
             </View>
             {isBase ? (
@@ -65,7 +65,7 @@ const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose })
               <Image source={CHAIN_ICONS[ChainId.BSC_MAINNET]} className="w-8 h-8 rounded-full mr-3" />
               <View>
                 <Text className="text-white text-sm">BNB</Text>
-                <Text className="text-theme-neutrals-400 text-[11px] mt-0.5">Chain ID: {ChainId.BSC_MAINNET}</Text>
+                <Text className="text-theme-neutrals-400 text-[11px] mt-0.5">{t("settings.chainIdLabel", { id: ChainId.BSC_MAINNET })}</Text>
               </View>
             </View>
             {isBNB ? (

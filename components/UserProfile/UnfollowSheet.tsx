@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 interface UnfollowSheetProps {
   visible: boolean;
@@ -20,6 +21,7 @@ interface UnfollowSheetProps {
 
 const UnfollowSheet: React.FC<UnfollowSheetProps> = memo(
   ({ visible, username, followLoading, onClose, onUnfollow, isCancelRequest = false }) => {
+    const { t } = useTranslation();
     return (
       <RNModal
         visible={visible}
@@ -39,8 +41,8 @@ const UnfollowSheet: React.FC<UnfollowSheetProps> = memo(
             <View className="w-12 h-1 bg-theme-neutrals-600 self-center rounded-full mb-4" />
             <Text className="text-white text-base font-semibold mb-3 text-center">
               {isCancelRequest
-                ? `Cancel follow request to @${username}?`
-                : `Following @${username}`}
+                ? t("follow.cancelRequestTo", { username })
+                : t("follow.followingUser", { username })}
             </Text>
             <TouchableOpacity
               disabled={followLoading}
@@ -59,7 +61,7 @@ const UnfollowSheet: React.FC<UnfollowSheetProps> = memo(
                     color="#fff"
                   />
                   <Text className="text-white font-medium">
-                    {isCancelRequest ? "Cancel Request" : "Unfollow"}
+                    {isCancelRequest ? t("postOptions.cancelRequest") : t("profileOptions.unfollow")}
                   </Text>
                 </>
               )}
@@ -69,7 +71,7 @@ const UnfollowSheet: React.FC<UnfollowSheetProps> = memo(
               disabled={followLoading}
               className="mt-3 py-3 rounded-lg bg-theme-neutrals-700/40 items-center"
             >
-              <Text className="text-white font-medium">Cancel</Text>
+              <Text className="text-white font-medium">{t("common.cancel")}</Text>
             </TouchableOpacity>
           </View>
         </TouchableOpacity>

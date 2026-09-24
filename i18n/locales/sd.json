@@ -679,7 +679,11 @@
       "hintAllow": "AI سسٽم ۽ crawlers جيڪي هن سگنل جو احترام ڪن ٿا شايد توهان جي آڊيو، آرٽ ورڪ ۽ لکڻين تي تربيت ڏين.",
       "hintDeny": "AI سسٽم ۽ کرالر جيڪي هن سگنل جو احترام ڪن ٿا انهن کي توهان جي آڊيو، آرٽ ورڪ ۽ لکڻين تي تربيت نه ڏيڻ لاء چيو ويو آهي. سگنل کي نظرانداز ڪندڙ crawlers ان جي طرفان بلاڪ نه ڪيا ويا آهن.",
       "saved": "AI ٽريننگ ترجيح محفوظ ڪئي وئي"
-    }
+    },
+    "chainIdLabel": "چين ID: {{id}}",
+    "exportPkConfirmPhrase": "مان سمجهان ٿو",
+    "exportPkCopy": "نجي ڪيئي ڪاپي ڪريو",
+    "e2eAutomatic": "خودڪار"
   },
   "common": {
     "mute": "آواز بند ڪريو",
@@ -719,7 +723,17 @@
     "optionalSuffix": "(اختياري)",
     "yesterday": "ڪالهه",
     "ok": "ٺيڪ آهي",
-    "continue": "جاري رکو"
+    "continue": "جاري رکو",
+    "goesToHomeFeed": "گهر فيڊ ڏانهن وڃي ٿو",
+    "openMenu": "مينيو کوليو",
+    "scrollsFeedToTop": "فيڊ جي مٿي تائين اسڪرول ڪري ٿو ۽ ان کي ريفريش ڪري ٿو",
+    "notificationsUnread": "نوٽيفڪيشن، {{unread}} اڻ پڙهيل",
+    "errorDetails": "غلطي جا تفصيل:",
+    "failedToLoad": "لوڊ ڪرڻ ۾ ناڪام",
+    "noInternetTitle": "انٽرنيٽ ڪنيڪشن ناهي",
+    "noInternetBody": "مهرباني ڪري پنهنجي انٽرنيٽ ڪنيڪشن چيڪ ڪريو ۽ ٻيهر ڪوشش ڪريو. DeHub استعمال ڪرڻ لاءِ توهان کي انٽرنيٽ سان ڳنڍيل هجڻ ضروري آهي.",
+    "noInternetStatus": "آف لائن - نيٽ ورڪ ڪنيڪشن ناهي",
+    "noInternetHint": "پڪ ڪريو ته وائي فائي يا موبائيل ڊيٽا آن آهي، پوءِ \"{{action}}\" تي ٽيپ ڪريو"
   },
   "tip": {
     "title": "ٽپ موڪليو",
@@ -1606,7 +1620,12 @@
     "chooseUsernameBody": "جاري رکڻ لاءِ يوزر نالو ۽ ڏيکاريندڙ نالو چونڊيو. اهي پوءِ تبديل ڪري سگهو ٿا.",
     "checkingAvailability": "دستيابي جاچي پئي وڃي…",
     "usernameTakenHint": "هي نالو ورتو ويو آهي — انگ يا انڊر اسڪور شامل ڪري ڏسو",
-    "displayNameLength": "ڏيکاريندڙ نالو 2-50 اکرن جو هجڻ گهرجي."
+    "displayNameLength": "ڏيکاريندڙ نالو 2-50 اکرن جو هجڻ گهرجي.",
+    "loginFailedRetry": "لاگ ان ناڪام ٿيو. مهرباني ڪري ٻيهر ڪوشش ڪريو.",
+    "sendCodeFailedRetry": "ڪوڊ موڪلڻ ۾ ناڪام. مهرباني ڪري ٻيهر ڪوشش ڪريو.",
+    "invalidCodeRetry": "غلط ڪوڊ. مهرباني ڪري ٻيهر ڪوشش ڪريو.",
+    "invalidEmailOrPassword": "غلط اي ميل يا پاسورڊ.",
+    "welcomeToDehub": "DeHub ۾ ڀليڪار"
   },
   "messages": {
     "smartRepliesOff": "تجويز ڪيل جواب بند ٿي ويا",
@@ -1684,7 +1703,32 @@
     "offerWorthNow": "موجوده اگهه تي لڳ ڀڳ {{amount}} DHB",
     "offerNotePlaceholder": "نوٽ شامل ڪريو (اختياري)",
     "offerCommitsNothing": "آڇ ڪرڻ تي ڪجهه خرچ نه ٿو ٿئي ۽ ڪو DHB بند نه ٿو ٿئي. توهان تڏهن ادا ڪندؤ جڏهن مالڪ قبول ڪندو.",
-    "offerNeedsHandle": "هن اڪائونٽ وٽ ڪو يوزرنيم ناهي جنهن تي آڇ ڪري سگهجي."
+    "offerNeedsHandle": "هن اڪائونٽ وٽ ڪو يوزرنيم ناهي جنهن تي آڇ ڪري سگهجي.",
+    "noPostsYet": "اڃا تائين ڪا پوسٽ ناهي",
+    "noPostsYetSub": "پوسٽ ٿيڻ تي مواد هتي ظاهر ٿيندو",
+    "noPinnedPosts": "اڃا تائين ڪا پن ٿيل پوسٽ ناهي",
+    "noPinnedPostsSub": "پن ٿيل پوسٽون هتي ظاهر ٿينديون",
+    "emptyLiked": "اڃا تائين ڪا پسند ڪيل پوسٽ ناهي.",
+    "emptySaved": "اڃا تائين ڪا محفوظ ڪيل پوسٽ ناهي.",
+    "emptyUnlocked": "اڃا تائين ڪا انلاڪ ٿيل پوسٽ ناهي.",
+    "emptyWatched": "اڃا تائين ڪا واچ تاريخ ناهي.",
+    "emptyFolder": "هن فولڊر ۾ اڃا تائين ڪا پوسٽ ناهي.",
+    "emptyPosts": "اڃا تائين ڪا پوسٽ ناهي.",
+    "couldNotLoadPosts": "پوسٽون لوڊ نه ڪري سگهيو.",
+    "noPostsOrReplies": "اڃا ڪا پوسٽ، تبصرو يا جواب ناهي",
+    "noPostsOrRepliesSub": "اھي ھتي نظر ايندا",
+    "avatarUpdated": "اوتار اپڊيٽ ڪيو ويو",
+    "coverUpdated": "ڪور اپڊيٽ ڪيو ويو",
+    "couldNotPickImage": "تصوير نه چونڊي سگهي",
+    "changeCoverImage": "ڪور تصوير تبديل ڪريو",
+    "changeAvatar": "اواتار تبديل ڪريو",
+    "verifiedEnsName": "تصديق ٿيل ENS نالو {{name}}",
+    "notFullyJoined": "هي صارف اڃا مڪمل طور تي شامل نه ٿيو آهي. هنن يوزر نالو نه چونڊيو آهي يا پروفائل سيٽ اپ مڪمل نه ڪيو آهي. توهان اڃا به عوامي سرگرمي ڏسي سگهو ٿا ۽ جيڪڏهن دستياب هجي ته ٽپ موڪلي سگهو ٿا.",
+    "loadRepliesFailed": "جواب لوڊ ڪرڻ ۾ ناڪام",
+    "refreshFailed": "ريفرش ناڪام",
+    "noRepliesYet": "ڪو جواب ناهي",
+    "noRepliesYetSub": "جڏهن هي صارف پوسٽن تي جواب ڏيندو، اهي هتي ظاهر ٿيندا.",
+    "noMoreReplies": "وڌيڪ جواب ناهي"
   },
   "tv": {
     "title": "TV",
@@ -1767,7 +1811,11 @@
     "loadingPrice": "قيمت لوڊ ٿي رهي آهي…",
     "topUpExplanation": "DHB زنجير تي DeHub اشتهاري خزاني ڏانهن منتقل ٿئي ٿو، پوءِ آزاد آن-چين تصديق کان پوءِ توهان جي بيلنس ۾ شامل ٿئي ٿو.",
     "paymentHistory": "ادائگي جي تاريخ",
-    "noPayments": "اڃا ڪا ادائگي ناهي"
+    "noPayments": "اڃا ڪا ادائگي ناهي",
+    "sponsored": "اسپانسر ٿيل",
+    "morePosts": "وڌيڪ پوسٽون",
+    "loadMorePosts": "وڌيڪ پوسٽون لوڊ ڪريو",
+    "playAdVideo": "اشتھاري وڊيو هلائي"
   },
   "buyCoins": {
     "title": "ڪوئن خريد ڪريو",
@@ -2202,7 +2250,8 @@
     "privateBalanceMode": "نجي بيلنس موڊ فعال آهي",
     "addressHidden": "پتو لڪل آهي",
     "allowInFeeds": "هن صارف کي پنهنجي فيڊ ۾ ظاهر ٿيڻ ڏيو",
-    "hideContent": "انهن جو مواد لڪايو ۽ لهه وچڙ محدود ڪريو"
+    "hideContent": "انهن جو مواد لڪايو ۽ لهه وچڙ محدود ڪريو",
+    "a11yLabel": "پروفائل آپشن"
   },
   "toasts": {
     "saved_to_bookmarks": "بُڪ مارڪ ۾ محفوظ ٿيو",
@@ -2574,7 +2623,8 @@
     "roles": {
       "owner": "مالڪ",
       "moderator": "موڊريٽر",
-      "member": "ميمبر"
+      "member": "ميمبر",
+      "admin": "منتظم"
     },
     "time": {
       "today": "اڄ",
@@ -2583,7 +2633,126 @@
       "weeks": "{{count}} هفتا",
       "months": "{{count}} مهينا",
       "years": "{{count}} سال"
-    }
+    },
+    "chatPanel": {
+      "anon": "گمنام",
+      "edited": "ايڊٽ ڪيو ويو",
+      "deleteTitle": "پيغام ختم ڪريو",
+      "deleteConfirm": "هي پيغام ختم ڪريو؟ اهو اڻٽر نه ٿي سگهندو.",
+      "muted": "توهان ميوت آهيو",
+      "postingDisabled": "هتي ميمبرن لاءِ پوسٽنگ بند آهي",
+      "mediaMessage": "ميڊيا",
+      "pinnedMessage": "پن ڪيل پيغام",
+      "showEarlier": "اڳوڻي پيغام ڏيکاريو",
+      "editingMessage": "پيغام ايڊٽ ڪرڻ",
+      "copied": "پيغام نقل ڪيو ويو",
+      "copyText": "متن نقل ڪريو",
+      "mutedUntil": "توهان {{date}} تائين خاموش ٿي ويا آهيو",
+      "slowMode": "سست موڊ: هڪ پيغام هر {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "ايڊمنسٽريٽر کي خارج ڪريو",
+      "cancel": "منسوخ ڪريو",
+      "dismissAdmin": "ايڊمنسٽريٽر کي خارج ڪريو",
+      "roleAdmin": "ايڊمنسٽريٽر",
+      "roleMember": "ميمبر",
+      "whatCanTheyDo": "هي ايڊمنسٽريٽر ڇا ٿو ڪري سگهي ؟",
+      "rightNotHeld": "ههههههههه هذا حق نفسك",
+      "customTitle": "حسب ضرورت عنوان",
+      "customTitlePlaceholder": "انتظاميه",
+      "customTitleHint": "ڊفالٽ ايڊمنسٽريٽر بيج جي بدران ڏيکاريو.",
+      "saveChanges": "تبديليون محفوظ ڪريو",
+      "promote": "فروغ ڏيو",
+      "tabs": {
+        "members": "ميمبر",
+        "admins": "ائڊمنسٽريشن",
+        "permissions": "اجازتون",
+        "invites": "دعوتون",
+        "rules": "قاعدا",
+        "recentActions": "تازا ڪارناما",
+        "danger": "خطرناڪ علائقو"
+      },
+      "title": "انتظام ڪريو",
+      "purgeTitle": "سڀ پيغام ختم ڪريو ؟",
+      "purgeConfirm": "ڊاهيو",
+      "kickTitle": "ميمبر ختم ڪريو ؟",
+      "kickConfirm": "هٽايو",
+      "bannedPermanent": "پابند- مستقل",
+      "mutedPermanent": "مستقل — مستقل",
+      "editAdminRights": "ايڊمن جا حق تبديل ڪريو",
+      "promoteToAdmin": "ايڊمن بڻايو",
+      "unmute": "ڳالھ ٻولھ بند نه ڪريو",
+      "mute": "ڳالھ ٻولھ بند ڪريو",
+      "unban": "بين نه ڪريو",
+      "ban": "بين ڪريو",
+      "deleteAllMessages": "سڀئي پيغام ختم ڪريو",
+      "removeFromCommunity": "ڪميونٽي مان ڪڍو",
+      "noActionsAvailable": "توھان ھن ميمبر کي منظم نٿا ڪري سگھو.",
+      "showMore": "وڌيڪ ڏيکاريو",
+      "joinRequests": "شامل ٿيڻ جون درخواستون",
+      "approve": "منظور ڪريو",
+      "reject": "رد ڪريو",
+      "members": "ميمبر",
+      "searchMembers": "واٽليٽ ايڊريس ذريعي ڳولا ڪريو",
+      "noMembersMatch": "ڪو به ميمبر ان سان نه ٿو ملي.",
+      "noMembers": "اڃا تائين ڪو به ميمبر نه آھي.",
+      "muted": "ڳالھ ٻولھ بند ڪيل",
+      "banned": "بين ڪيل",
+      "muteEffect": "اھي ڪميونٽي ۾ رھندا پر ڳالھ ٻولھ بند ٿيڻ تائين پوسٽ نٿا ڪري سگھن.",
+      "banEffect": "اھي چيٽ مان ڪڍيا ويا آھن ۽ بين ختم ٿيڻ تائين ٻيھر شامل نٿا ٿي سگھن.",
+      "durationLabel": "مدت",
+      "reasonLabel": "سبب (اختياري)",
+      "reasonPlaceholder": "اھي ڇو بين ڪيا پيا وڃن؟",
+      "alsoDeleteMessages": "اھي سڀئي پيغام پڻ ختم ڪريو",
+      "confirmMute": "ميمبر جي ڳالھ ٻولھ بند ڪريو",
+      "confirmBan": "ميمبر کي بين ڪريو",
+      "rulesUpdated": "قوانين ۾ تبديلي ڪئي وئي",
+      "rulesTitle": "ڪميونٽي جا قاعدا",
+      "rulesEmpty": "اڃا تائين ڪو به قاعدو نه آھي — پھريون ھيٺ شامل ڪريو.",
+      "rulePlaceholder": "قاعده بيان ڪريو",
+      "addRule": "قاعدو شامل ڪريو",
+      "saveRules": "قاعدا محفوظ ڪريو",
+      "dismissAdminBody": "{{wallet}} هڪ عام ميمبر بڻجي ويندو.",
+      "purgeBody": "{{name}} پاران هن ڪميونٽي ۾ موڪليل هر پيغام ختم ڪيو ويندو.",
+      "kickBody": "{{name}} کي ڪميونٽي مان ڪڍيو ويندو. هو بعد ۾ ٻيهر شامل ٿي سگهي ٿو.",
+      "bannedUntil": "{{date}} تائين پابندي",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "{{date}} تائين خاموش",
+      "bannedUntilShort": "{{date}} تائين",
+      "muteTitle": "{{name}} کي خاموش ڪريو",
+      "banTitle": "{{name}} تي پابندي لڳايو",
+      "reasonCounter": "{{len}}/ 200 ههههه",
+      "rulesCount": "{{max}} مان {{used}}",
+      "moveRuleUp": "قاعدو مٿي منتقل ڪريو",
+      "moveRuleDown": "قاعدو هيٺ منتقل ڪريو",
+      "deleteRule": "قاعدو ختم ڪريو",
+      "rights": {
+        "changeInfo": "ڪميونٽي جي معلومات تبديل ڪريو",
+        "changeInfoHint": "نالو، وضاحت، اوتار ۽ بينر ايڊٽ ڪريو",
+        "deleteMessages": "پيغام ختم ڪريو",
+        "deleteMessagesHint": "ڪميونٽي چيٽ مان ڪو به پيغام هٽايو",
+        "restrictMembers": "ميمبرن تي پابندي لڳايو",
+        "restrictMembersHint": "ميمبرن کي خاموش ڪريو، هٽايو ۽ منع ڪريو",
+        "inviteUsers": "لنڪ ذريعي ميمبرن کي دعوت ڏيو",
+        "inviteUsersHint": "دعوت لنڪس ٺاهيو ۽ رد ڪريو",
+        "pinMessages": "پيغام پن ڪريو",
+        "pinMessagesHint": "چيٽ جي مٿي تي پيغام پن ڪريو",
+        "manageEvents": "ايونٽس جو انتظام ڪريو",
+        "manageEventsHint": "ڪميونٽي ايونٽس ٺاهيو ۽ ايڊٽ ڪريو",
+        "addAdmins": "نئون منتظم شامل ڪريو",
+        "addAdminsHint": "ميمبرز کي ترقي ڏيو ۽ انهن جي شامل ڪيل ايڊمنز جا حق ايڊٽ ڪريو",
+        "remainAnonymous": "گمنام رهو",
+        "remainAnonymousHint": "هن ايڊمن کي ميمبر لسٽ مان لڪايو"
+      },
+      "durations": {
+        "oneHour": "1 ڪلاڪ",
+        "eightHours": "8 ڪلاڪ",
+        "oneDay": "1 ڏينهن",
+        "oneWeek": "1 هفتو",
+        "forever": "هميشه لاءِ"
+      }
+    },
+    "chooseAvatar": "اوتار چونڊيو"
   },
   "work": {
     "title": "انعام",
@@ -2935,7 +3104,9 @@
       "shipped": "موڪليل",
       "completed": "مڪمل",
       "cancelled": "منسوخ"
-    }
+    },
+    "removePhoto": "تصوير هٽايو",
+    "listingOptions": "لسٽنگ جا اختيار"
   },
   "accounts": {
     "subtitle": "پورا کاتا وڪري لاءِ، DHB ۾ قيمت",
@@ -3301,7 +3472,14 @@
     "removeFollowerHint": "انهن کي هٽائڻ لاءِ فالوور تي پريس ڪري رکو.",
     "cancel": "منسوخ ڪريو",
     "remove": "هٽايو",
-    "thisUser": "ھي استعمال ڪندڙ"
+    "thisUser": "ھي استعمال ڪندڙ",
+    "cancelRequestTo": "@{{username}}؟ جي فالو ريڪويسٽ منسوخ ڪريو",
+    "followingUser": "@{{username}} کي فالو ڪري رهيو آهيان",
+    "contentUnavailable": "مواد دستياب ناهي",
+    "youBlockedBody": "توهان انهن جون پوسٽون نه ڏسندا ۽ نه ئي انهن سان رابطو ڪري سگهندا. رسائي بحال ڪرڻ لاءِ ان بلاڪ ڪريو.",
+    "restrictedBody": "هن يوزر پنهنجي اڪائونٽ سان رابطن کي محدود ڪيو آهي.",
+    "requestPendingBody": "توهان جي فالو ريڪويسٽ موڪلي وئي آهي. توهان انهن جي پوسٽون ڏسي سگهندا جڏهن اهي توهان جي درخواست منظور ڪندا.",
+    "followToSeePosts": "هن اڪائونٽ کي فالو ڪريو ته جيئن انهن جون پوسٽون ڏسي سگهو."
   },
   "reactionInfo": {
     "title": "رد عمل",
@@ -3616,7 +3794,8 @@
     "needGas": "{{chain}} تي گيس لاءِ اصل {{token}} گهرجي.",
     "bridging": "پل ٿي رهيو آهي…",
     "bridgeAction": "پل {{from}} ← {{to}}",
-    "failed": "پل ناڪام ٿيو"
+    "failed": "پل ناڪام ٿيو",
+    "sentArriveShortly": "{{amount}} DHB {{from}} مان موڪليو {{to}}. ٽوڪن جلد ئي پهچي ويندا."
   },
   "banned": {
     "title": "توھان جي کاتي تي پابندي آھي",
@@ -3794,7 +3973,16 @@
     "legacyRecovered": "توهان جو پراڻو اڪائونٽ{{suffix}} تصديق ٿيو ۽ ان جو والٽ واپس مليو. هاڻي کان هن ڊوائيس تي — هن فون ۽ هر جاءِ تي — ان جي حفاظت لاءِ پاسورڊ رکو.",
     "passwordMin": "پاسورڊ (گهٽ ۾ گهٽ {{min}} اکر)",
     "newPasswordMin": "نئون پاسورڊ (گهٽ ۾ گهٽ {{min}} اکر)",
-    "newWalletPasswordMin": "نئين والٽ جو پاسورڊ (گهٽ ۾ گهٽ {{min}} اکر)"
+    "newWalletPasswordMin": "نئين والٽ جو پاسورڊ (گهٽ ۾ گهٽ {{min}} اکر)",
+    "deviceCheckCancelled": "ڊيوائس چيڪ منسوخ ڪيو ويو - ڪا به تبديلي نه ڪئي وئي.",
+    "savePhraseTitle": "پنهنجي ريڪوري واري جملي کي محفوظ ڪريو",
+    "startOverTitle": "نئين والٽ سان ٻيهر شروع ڪريو",
+    "secureNewWalletTitle": "پنهنجي نئين والٽ کي محفوظ ڪريو",
+    "secureWalletTitle": "پنهنجي والٽ کي محفوظ ڪريو",
+    "unlockOnMobileTitle": "موبائل تي انلاڪ ڪريو",
+    "oldAccountFoundTitle": "پراڻو اڪائونٽ مليو",
+    "unlockWalletTitle": "پنهنجي والٽ کي انلاڪ ڪريو",
+    "phraseExplainer": "توهان جو والٽ هن فون جي بايو ميٽرڪس ذريعي محفوظ ڪيو ويندو. اهو انلاڪ <em> صرف هن فون تي ڪم ڪري ٿو</em> — هي 12 لفظ ئي واپس اچڻ جو واحد طريقو آهن جيڪڏهن توهان DeHub ٻيهر انسٽال ڪيو، هينڊ سيٽ تبديل ڪيو، يا اهو وڃائي ڇڏيو."
   },
   "transcript": {
     "title": "لکت",
@@ -3980,7 +4168,38 @@
     "subscribe": "سبسڪرائب ڪريو",
     "subscriberCount_one": "{{count}} سبسڪرائبر",
     "subscriberCount_other": "{{count}} سبسڪرائبر",
-    "subscribeToForRich": "<price>{{price}}</price> ۾ <name>{{name}}</name> سبسڪرائب ڪريو"
+    "subscribeToForRich": "<price>{{price}}</price> ۾ <name>{{name}}</name> سبسڪرائب ڪريو",
+    "loadPlansFailed": "پلان لوڊ ڪرڻ ۾ ناڪامي",
+    "subscriberContent": "سبسڪرائبر مواد",
+    "subscriberContentSub": "سبسڪرائبرز لاءِ خاص مواد پيش ڪرڻ جا منصوبا ٺاهيو",
+    "createFirstPlan": "پنھنجو پھريون منصوبو ٺاھيو",
+    "addNewPlan": "نئون منصوبو شامل ڪريو",
+    "durations": {
+      "oneMonth": "1 مھينو",
+      "threeMonths": "3 مھينا",
+      "sixMonths": "6 مھينا",
+      "oneYear": "1 سال",
+      "lifetime": "زندگيءَ لاءِ"
+    },
+    "planNameRequired": "منصوبي جو نالو لازمي آھي",
+    "enterValidPrice": "درست قيمت داخل ڪريو",
+    "availableChains": "في الحال بيس ۽ بي اين بي تي سبسڪرپشن موجود آھن",
+    "waitForSwitch": "سبسڪرپشن نيٽ ورڪ جي مڪمل ٿيڻ جو انتظار ڪريو",
+    "connectAndWait": "پنھنجو والٽ ڳنڍيو ۽ سبسڪرپشن نيٽ ورڪ جو انتظار ڪريو",
+    "planUpdated": "منصوبو اپڊيٽ ڪيو ويو",
+    "creating": "ٺاھي رھيو آھي…",
+    "planPublished": "منصوبو ٺاھيو ويو ۽ شايع ڪيو ويو",
+    "createPlanTitle": "سبسڪرپشن پلان ٺاھيو",
+    "network": "سبسڪرپشن نيٽ ورڪ",
+    "planNameLabel": "منصوبي جو نالو *",
+    "planNamePlaceholder": "مثال طور پريميئم، گولڊ، وي آءِ پي...",
+    "descriptionPlaceholder": "سبسڪرائبرز کي ڇا ملندو...",
+    "priceLabel": "قيمت (USD) *",
+    "legacyMigrationNote": "بچت ھن پراڻي DHB پلان کي ڊالر جي قيمتن تي لسٽنگ کان اڳ واري شرح تي منتقل ڪري ٿي.",
+    "benefits": "فائدا",
+    "benefitPlaceholder": "فائدو شامل ڪريو...",
+    "createAndPublish": "ٺاھيو ۽ شايع ڪريو",
+    "publishingOnChain": "شايع ڪرڻ ھڪ آن-چين ٽرانزيڪشن آھي"
   },
   "live": {
     "notSet": "مقرر ناهي",
@@ -4085,7 +4304,22 @@
     "acceptTerms": "آئون قبول ڪريان ٿو <terms>خدمت جون شرطون</terms>",
     "sentTo": "{{amount}}{{symbol}} کي موڪليو ويو {{address}}",
     "tokensSentTo": "ٽوڪن ڏانهن موڪليو ويو {{address}}",
-    "goToProfile": "پروفائل ڏانھن وڃو"
+    "goToProfile": "پروفائل ڏانھن وڃو",
+    "aboutTitle": "ڊي ھب ۽ ادائيگين بابت",
+    "aboutSubtitle": "توھان جو گيٽ وي بيحد ٽوڪن ادائيگين لاءِ",
+    "aboutTokenTitle": "ڊي ھب ٽوڪن",
+    "aboutTokenBody": "ٽوڪن ٺاهيندڙن کي سبسڪرائب ڪرڻ، اسٽريمرز کي ٽپ ڏيڻ يا مواد انلاڪ ڪرڻ لاءِ استعمال ڪيا ويندا آهن. توهان وٽ جيترا وڌيڪ هوندا، اوتري گهٽ فيس هوندي ۽ توهان وڌيڪ سپر پاورز انلاڪ ڪندا جهڙوڪر ٽائم لائن ٽرينڊ بوسٽس ۽ تصديق وارا بيج.",
+    "aboutInstantTitle": "فوري ادائيگيون",
+    "aboutInstantBody": "اسٽرائپ استعمال ڪندي، توهان پنهنجي لاگ ان ٿيل ڪنهن به اڪائونٽ ۾ فوري طور تي ۽ آساني سان ٽوڪن خريد ڪري سگهو ٿا. DeHub ٽوڪن کي سادو ۽ سڀني لاءِ بڻائي ٿو. جيڪڏهن توهان کي وڌيڪ سپورٽ جي ضرورت آهي، بس اسان جي 24/7 لائيو ڪميونٽي چيٽ ۾ اچو ۽ ايڊمن سپورٽ لاءِ پڇو.",
+    "aboutSecureTitle": "محفوظ گيٽ وي",
+    "aboutSecureBody": "سڀني ادائين جا تفصيل انڪرپٽ ٿيل آهن ۽ اسٽرائپ طرفان محفوظ طور تي پروسيس ڪيا ويندا آهن. اسان توهان جي حساس معلومات يا ڪارڊ جي تفصيل تائين رسائي يا ذخيرو نٿا ڪري سگهون، توهان کي مڪمل ذهني سڪون ڏئي ٿو.",
+    "transfersSummary": "ٽرانسفر جو خلاصو",
+    "availableToBuy": "هاڻي خريد ڪرڻ لاءِ موجود",
+    "noSupplyShort": "ڪا به سپلاءِ ناهي",
+    "topUpSubtitle": "ڪارڊ استعمال ڪندي $DHB خريد ڪريو ۽ فوري طور تي استعمال ڪرڻ لاءِ مفت گيس حاصل ڪريو",
+    "noTxHash": "ٽرانزيڪشن هاش نه مليو",
+    "latestTransactions": "تازو ٽرانزيڪشن",
+    "showAll": "سڀ ڏيکاريو"
   },
   "musicSheet": {
     "title": "گيت ٺاهيو",
@@ -4214,7 +4448,13 @@
     "followUpNote": "توهان جي راءِ بابت وڌيڪ سوالن لاءِ اسان رابطو ڪري سگهون ٿا",
     "submitFeedback": "راءِ موڪليو",
     "provideFeedback": "مهرباني ڪري پنهنجي راءِ لکو",
-    "thankYou": "توهان جي راءِ لاءِ مهرباني!"
+    "thankYou": "توهان جي راءِ لاءِ مهرباني!",
+    "submitFailed": "فيڊبڪ جمع ڪرائڻ ۾ ناڪام. مھرباني ڪري ٻيهر ڪوشش ڪريو.",
+    "maybeLater": "شايد بعد ۾",
+    "helpUsImprove": "اسان کي بهتر بنائڻ ۾ مدد ڪريو",
+    "rateExperience": "توهان جي تجربي کي ڪيئن درجه بندي ڪندا؟",
+    "telegramOptional": "ٽيليگرام (اختياري)",
+    "discordOptional": "Discord (اختياري)"
   },
   "migrate": {
     "clearAll": "سڀئي صاف ڪريو",
@@ -4332,7 +4572,14 @@
       "blueWhale": "سڀ کان وڏي شيءَ جيڪا مون ڪڏهن ڏٺي آهي. اهو تون آهين.",
       "megalodon": "هيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيهيههيهيهيهيهي"
     },
-    "continue": "DeHub ڏانهن واپس وڃو"
+    "continue": "DeHub ڏانهن واپس وڃو",
+    "none": "ڪو به نه",
+    "noBadgeYet": "هاڻي تائين ڪو بيج ناهي",
+    "next": "اڳيون",
+    "topTier": "ٽاپ ٽيئر",
+    "toNextTier": "{{amount}} DHB کان {{tier}}",
+    "everyTierUnlocked": "هر ٽيئر انلاڪ ٿيل",
+    "holdNote": "هڪ دفعو بيج انلاڪ ٿي وڃي، اهو توهان جي ملڪيت آهي جيستائين توهان پنهنجو DHB رکو. نئون بيج انلاڪ ڪرڻ لاءِ گهربل ٽوڪن جو تعداد ٽوڪن جي قيمت سان تبديل ٿي سگهي ٿو."
   },
   "passwordStrength": {
     "veryWeak": "تمام ڪمزور",
@@ -4414,7 +4661,11 @@
     },
     "ttsLabel": "ڪا ڳالھه زور سان چئو",
     "ttsPlaceholder": "پڙهو ته پڙهو...",
-    "ttsHint": "سڀني کي بلند آواز سان پڙهو جڏهن توهان جو تحفو زمين تي آهي."
+    "ttsHint": "سڀني کي بلند آواز سان پڙهو جڏهن توهان جو تحفو زمين تي آهي.",
+    "sendAGift": "تحفو موڪليو",
+    "minPlaceholder": "گهٽ ۾ گهٽ: {{amount}}",
+    "minGift": "گهٽ ۾ گهٽ تحفو {{amount}} آهي",
+    "sendGift": "تحفو موڪليو"
   },
   "goLive": {
     "streamKey": "سٽريم ڪي",
@@ -4796,7 +5047,8 @@
         "title": "ڏسو ته ڪيئن ڪمائي ٿئي ٿي",
         "body": "ڄاڻو ته ڪيئن ٽِپس، بيج ۽ سپر پاورز توهان جي هتي ڪيل ڪم کي اهڙي شيءِ ۾ تبديل ڪن ٿا جتان توهان ڪمائي ڪري سگهو ٿا."
       }
-    }
+    },
+    "swipeToStart": "شروع ڪرڻ لاءِ سوائپ ڪريو"
   },
   "conversation": {
     "commonGround": {
@@ -5278,5 +5530,18 @@
     "toastPaidSettled": "ادا ٿيو — واپار طئي ٿي ويو",
     "walletNotReady": "توهان جو والٽ اڃا تيار ناهي — ٿوري دير ۾ ٻيهر ڪوشش ڪريو.",
     "wrongChain": "هي واپار {{chain}} تي طئي ٿئي ٿو. سيٽنگن ۾ {{chain}} تي مٽايو، پوءِ ٻيهر ڪوشش ڪريو."
+  },
+  "moderation": {
+    "appealDuplicate": "توھان اڳ ۾ ئي ھن اپيل ڪئي آھي",
+    "appealSent": "اپيل موڪلي وئي",
+    "appealFailed": "ان اپيل کي فائل نه ڪري سگھيو",
+    "appealTitle": "هن فيصلي جي اپيل ڪريو",
+    "appealSubtitle": "هڪ ماڻهو هن کي پڙهندو ۽ وري فيصلي تي نظر وجهندو.",
+    "appealPlaceholder": "نظرتون راجع به چيه ؟ مواد بابت تناظر هر شي کان وڌيڪ مدد ڪري ٿو.",
+    "appealSend": "اپيل موڪليو",
+    "appealFootnote": "توهان کي هڪ حوالو نمبر ملي ٿو، ۽ جواب هتي واپس اچي ٿو. هر فيصلي لاءِ هڪ اپيل.",
+    "appealRef": "حوالو {{ref}}",
+    "appealSubtitleSubject": "هڪ ماڻهو هن کي پڙهندو ۽ ٻيهر ڏسندو {{subject}}.",
+    "appealMore": "اڃا تائين ڪردارن جي ضرورت آهي: {{count}}"
   }
 }

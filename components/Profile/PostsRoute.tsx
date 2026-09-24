@@ -8,6 +8,7 @@ import {
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import FeedCard from "../Home/FeedCard";
 import UserReplyCard from "../UserProfile/UserReplyCard";
 import {
@@ -59,6 +60,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   scrollEnabled = true,
   onBeforeNavigate,
 }) => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const user = useUser() as any;
   const ownAddress = user?.walletAddress || user?.address;
@@ -250,8 +252,8 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         {listHeader}
         <ProfileEmptyState
           kind="posts"
-          title="No posts, comments, or replies yet"
-          subtitle="They will appear here"
+          title={t("profile.noPostsOrReplies")}
+          subtitle={t("profile.noPostsOrRepliesSub")}
         />
       </Animated.ScrollView>
     );

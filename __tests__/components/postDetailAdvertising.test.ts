@@ -25,8 +25,8 @@ describe("post detail advertising continuation", () => {
   });
 
   it("renders the advert before explicitly paginated more posts", () => {
-    expect(continuation.indexOf("<SponsoredAdCard")).toBeLessThan(continuation.indexOf("More posts"));
+    expect(continuation.indexOf("<SponsoredAdCard")).toBeLessThan(continuation.indexOf('t("ads.morePosts")'));
     expect(continuation).toContain('initialPageParam: 1');
-    expect(continuation).toContain('accessibilityLabel="Load more posts"');
+    expect(continuation).toContain('accessibilityLabel={t("ads.loadMorePosts")}');
   });
 });

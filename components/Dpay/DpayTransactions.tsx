@@ -95,7 +95,7 @@ const DpayTransactions: React.FC = () => {
     const iconSource = tx.chainId === 8453 ? baseIcon : tx.chainId === 56 ? bnbIcon : null;
     const onPress = () => {
       if (!tx.txHash) {
-        toastError("Couldn't find transaction hash");
+        toastError(t("dpay.noTxHash"));
         return;
       }
       const url = getTransactionLink(tx.chainId, tx.txHash);
@@ -139,18 +139,18 @@ const DpayTransactions: React.FC = () => {
         </View>
       </TouchableOpacity>
     );
-  }, []);
+  }, [t]);
 
   return (
     <View className="mt-4">
       <View className="flex-row items-center justify-between mb-3">
-        <Text className="text-white text-lg font-semibold tracking-wide">Latest Transactions</Text>
+        <Text className="text-white text-lg font-semibold tracking-wide">{t("dpay.latestTransactions")}</Text>
         <TouchableOpacity
           onPress={onShowAll}
           hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
           className="px-3 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700 flex-row items-center"
         >
-          <Text className="text-white text-xs mr-1">Show all</Text>
+          <Text className="text-white text-xs mr-1">{t("dpay.showAll")}</Text>
           <Ionicons name="open-outline" size={14} color="#FFFFFF" />
         </TouchableOpacity>
       </View>

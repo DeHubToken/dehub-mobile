@@ -703,7 +703,11 @@
       "hintAllow": "이 신호를 존중하는 AI 시스템 및 크롤러는 오디오, 아트워크 및 글쓰기를 훈련할 수 있습니다.",
       "hintDeny": "이 신호를 존중하는 AI 시스템 및 크롤러는 오디오, 아트워크 및 글쓰기에 대한 교육을 받지 않도록 요청받습니다. 신호를 무시하는 크롤러는 신호에 의해 차단되지 않습니다.",
       "saved": "AI 교육 기본 설정 저장됨"
-    }
+    },
+    "chainIdLabel": "체인 ID: {{id}}",
+    "exportPkConfirmPhrase": "이해했습니다",
+    "exportPkCopy": "개인 키 복사",
+    "e2eAutomatic": "자동"
   },
   "common": {
     "mute": "음소거",
@@ -743,7 +747,17 @@
     "optionalSuffix": "(선택)",
     "yesterday": "어제",
     "ok": "확인",
-    "continue": "계속하기"
+    "continue": "계속하기",
+    "goesToHomeFeed": "홈 피드로 이동",
+    "openMenu": "메뉴 열기",
+    "scrollsFeedToTop": "피드 상단으로 스크롤하여 새로고침",
+    "notificationsUnread": "알림, {{unread}}개 읽지 않음",
+    "errorDetails": "오류 세부 정보:",
+    "failedToLoad": "로드 실패",
+    "noInternetTitle": "인터넷 연결 없음",
+    "noInternetBody": "인터넷 연결을 확인하고 다시 시도하세요. DeHub를 사용하려면 인터넷에 연결되어 있어야 합니다.",
+    "noInternetStatus": "오프라인 - 네트워크 연결 없음",
+    "noInternetHint": "Wi-Fi 또는 모바일 데이터가 켜져 있는지 확인한 후 \"{{action}}\"을 탭하세요."
   },
   "tip": {
     "title": "팁 보내기",
@@ -1632,7 +1646,12 @@
     "chooseUsernameBody": "계속하려면 사용자 이름과 표시 이름을 정하세요. 나중에 변경할 수 있습니다.",
     "checkingAvailability": "사용 가능 여부 확인 중…",
     "usernameTakenHint": "이미 사용 중인 이름입니다 — 숫자나 밑줄을 넣어 보세요",
-    "displayNameLength": "표시 이름은 2~50자여야 합니다."
+    "displayNameLength": "표시 이름은 2~50자여야 합니다.",
+    "loginFailedRetry": "로그인 실패. 다시 시도하세요.",
+    "sendCodeFailedRetry": "코드를 보낼 수 없습니다. 다시 시도하세요.",
+    "invalidCodeRetry": "잘못된 코드입니다. 다시 시도하세요.",
+    "invalidEmailOrPassword": "잘못된 이메일 또는 비밀번호입니다.",
+    "welcomeToDehub": "DeHub에 오신 것을 환영합니다"
   },
   "messages": {
     "smartRepliesOff": "추천 답장을 껐습니다",
@@ -1710,7 +1729,32 @@
     "offerWorthNow": "현재 시세로 약 {{amount}} DHB",
     "offerNotePlaceholder": "메모 추가 (선택)",
     "offerCommitsNothing": "제안에는 비용이 들지 않으며 DHB가 묶이지도 않습니다. 상대가 수락한 경우에만 결제합니다.",
-    "offerNeedsHandle": "이 계정에는 제안할 사용자 이름이 없습니다."
+    "offerNeedsHandle": "이 계정에는 제안할 사용자 이름이 없습니다.",
+    "noPostsYet": "아직 게시물이 없습니다",
+    "noPostsYetSub": "게시물이 여기에 표시됩니다",
+    "noPinnedPosts": "아직 고정된 게시물이 없습니다.",
+    "noPinnedPostsSub": "고정된 게시물이 여기에 표시됩니다",
+    "emptyLiked": "아직 좋아요를 누른 게시물이 없습니다.",
+    "emptySaved": "아직 저장된 게시물이 없습니다.",
+    "emptyUnlocked": "아직 잠금 해제된 게시물이 없습니다.",
+    "emptyWatched": "시청 기록이 없습니다.",
+    "emptyFolder": "이 폴더에 게시물이 없습니다.",
+    "emptyPosts": "아직 게시물이 없습니다.",
+    "couldNotLoadPosts": "게시물을 로드할 수 없습니다.",
+    "noPostsOrReplies": "아직 게시물, 댓글 또는 답글이 없습니다",
+    "noPostsOrRepliesSub": "여기에 표시됩니다",
+    "avatarUpdated": "아바타가 업데이트되었습니다",
+    "coverUpdated": "커버가 업데이트되었습니다",
+    "couldNotPickImage": "이미지를 선택할 수 없습니다",
+    "changeCoverImage": "커버 이미지 변경",
+    "changeAvatar": "아바타 변경",
+    "verifiedEnsName": "인증된 ENS 이름 {{name}}",
+    "notFullyJoined": "이 사용자는 아직 완전히 참여하지 않았습니다. 사용자 이름을 선택하거나 프로필 설정을 완료하지 않았습니다. 공개 활동을 보거나 팁을 보낼 수 있습니다.",
+    "loadRepliesFailed": "답글을 불러오지 못했습니다",
+    "refreshFailed": "새로고침 실패",
+    "noRepliesYet": "답글 없음",
+    "noRepliesYetSub": "이 사용자가 게시물에 답글을 달면 여기에 표시됩니다.",
+    "noMoreReplies": "더 이상 답글이 없습니다"
   },
   "tv": {
     "title": "TV",
@@ -1793,7 +1837,11 @@
     "loadingPrice": "가격 불러오는 중…",
     "topUpExplanation": "DHB는 온체인으로 DeHub 광고 트레저리에 전송되며, 독립적인 온체인 검증 후 잔액에 반영됩니다.",
     "paymentHistory": "결제 내역",
-    "noPayments": "아직 결제 내역이 없습니다"
+    "noPayments": "아직 결제 내역이 없습니다",
+    "sponsored": "스폰서",
+    "morePosts": "더 많은 게시물",
+    "loadMorePosts": "더 많은 게시물 불러오기",
+    "playAdVideo": "광고 영상 재생"
   },
   "buyCoins": {
     "title": "코인 구매",
@@ -2231,7 +2279,8 @@
     "privateBalanceMode": "비공개 잔액 모드가 켜져 있습니다",
     "addressHidden": "주소 숨김",
     "allowInFeeds": "이 사용자가 내 피드에 표시되도록 허용",
-    "hideContent": "콘텐츠를 숨기고 상호작용을 제한"
+    "hideContent": "콘텐츠를 숨기고 상호작용을 제한",
+    "a11yLabel": "프로필 옵션"
   },
   "toasts": {
     "saved_to_bookmarks": "북마크에 저장됨",
@@ -2603,7 +2652,8 @@
     "roles": {
       "owner": "소유자",
       "moderator": "운영자",
-      "member": "멤버"
+      "member": "멤버",
+      "admin": "관리자"
     },
     "time": {
       "today": "오늘",
@@ -2612,7 +2662,126 @@
       "weeks": "{{count}}주",
       "months": "{{count}}개월",
       "years": "{{count}}년"
-    }
+    },
+    "chatPanel": {
+      "anon": "익명",
+      "edited": "수정됨",
+      "deleteTitle": "메시지 삭제",
+      "deleteConfirm": "이 메시지를 삭제하시겠습니까? 실행 취소가 불가능합니다.",
+      "muted": "음소거되었습니다",
+      "postingDisabled": "여기서는 멤버들의 게시가 비활성화되었습니다",
+      "mediaMessage": "미디어",
+      "pinnedMessage": "고정된 메시지",
+      "showEarlier": "이전 메시지 보기",
+      "editingMessage": "메시지 수정",
+      "copied": "메시지 복사 완료",
+      "copyText": "텍스트 복사",
+      "mutedUntil": "{{date}} 까지 음소거됩니다",
+      "slowMode": "느린 모드: {{interval}} 마다 하나의 메시지"
+    },
+    "manage": {
+      "dismissAdminTitle": "관리자 닫기",
+      "cancel": "취소",
+      "dismissAdmin": "관리자 닫기",
+      "roleAdmin": "관리자",
+      "roleMember": "회원",
+      "whatCanTheyDo": "이 관리자는 무엇을 할 수 있나요?",
+      "rightNotHeld": "본인에 대한 권한이 없습니다.",
+      "customTitle": "사용자 정의 제목",
+      "customTitlePlaceholder": "관리자",
+      "customTitleHint": "기본 관리자 배지 대신 표시됩니다.",
+      "saveChanges": "변경사항 저장",
+      "promote": "승급",
+      "tabs": {
+        "members": "회원",
+        "admins": "관리자",
+        "permissions": "권한",
+        "invites": "초대",
+        "rules": "규칙",
+        "recentActions": "최근 작업",
+        "danger": "위험 구역"
+      },
+      "title": "관리",
+      "purgeTitle": "모든 메시지를 삭제하시겠어요?",
+      "purgeConfirm": "삭제",
+      "kickTitle": "구성원을 제거하시겠습니까?",
+      "kickConfirm": "삭제",
+      "bannedPermanent": "금지됨 — 영구",
+      "mutedPermanent": "음소거됨 — 영구",
+      "editAdminRights": "관리자 권한 편집",
+      "promoteToAdmin": "관리자로 승격",
+      "unmute": "음소거 해제",
+      "mute": "음소거",
+      "unban": "차단 해제",
+      "ban": "차단",
+      "deleteAllMessages": "모든 메시지 삭제",
+      "removeFromCommunity": "커뮤니티에서 제거",
+      "noActionsAvailable": "이 멤버를 관리할 수 없습니다.",
+      "showMore": "더 보기",
+      "joinRequests": "가입 요청",
+      "approve": "승인",
+      "reject": "거부",
+      "members": "멤버",
+      "searchMembers": "지갑 주소로 검색",
+      "noMembersMatch": "일치하는 멤버가 없습니다.",
+      "noMembers": "아직 멤버가 없습니다.",
+      "muted": "음소거됨",
+      "banned": "차단됨",
+      "muteEffect": "커뮤니티에 남아 있지만 음소거가 만료될 때까지 게시할 수 없습니다.",
+      "banEffect": "채팅에서 제거되었으며 차단이 해제될 때까지 다시 참여할 수 없습니다.",
+      "durationLabel": "기간",
+      "reasonLabel": "이유 (선택 사항)",
+      "reasonPlaceholder": "왜 차단하는 건가요?",
+      "alsoDeleteMessages": "모든 메시지도 삭제",
+      "confirmMute": "멤버 음소거",
+      "confirmBan": "멤버 차단",
+      "rulesUpdated": "규칙 업데이트됨",
+      "rulesTitle": "커뮤니티 규칙",
+      "rulesEmpty": "아직 규칙이 없습니다. 아래에서 첫 번째 규칙을 추가하세요.",
+      "rulePlaceholder": "규칙 설명",
+      "addRule": "규칙 추가",
+      "saveRules": "규칙 저장",
+      "dismissAdminBody": "{{wallet}}는 일반 멤버로 돌아갑니다.",
+      "purgeBody": "{{name}}가 이 커뮤니티에 보낸 모든 메시지가 삭제됩니다.",
+      "kickBody": "{{name}}는 커뮤니티에서 추방됩니다. 나중에 다시 참여할 수 있습니다.",
+      "bannedUntil": "{{date}}까지 차단",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "{{date}}까지 음소거",
+      "bannedUntilShort": "{{date}}까지",
+      "muteTitle": "{{name}} 음소거",
+      "banTitle": "{{name}} 차단",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{max}} 중 {{used}}",
+      "moveRuleUp": "규칙 위로 이동",
+      "moveRuleDown": "규칙 아래로 이동",
+      "deleteRule": "규칙 삭제",
+      "rights": {
+        "changeInfo": "커뮤니티 정보 변경",
+        "changeInfoHint": "이름, 설명, 아바타 및 배너 편집",
+        "deleteMessages": "메시지 삭제",
+        "deleteMessagesHint": "커뮤니티 채팅에서 모든 메시지 제거",
+        "restrictMembers": "사용자 차단",
+        "restrictMembersHint": "멤버 음소거, 제거 및 차단",
+        "inviteUsers": "링크를 통해 사용자 초대",
+        "inviteUsersHint": "초대 링크 생성 및 취소",
+        "pinMessages": "메시지 고정",
+        "pinMessagesHint": "채팅 상단에 메시지 고정",
+        "manageEvents": "이벤트 관리",
+        "manageEventsHint": "커뮤니티 이벤트 생성 및 편집",
+        "addAdmins": "새 관리자 추가",
+        "addAdminsHint": "멤버 승격 및 관리자가 추가한 관리자의 권한 수정",
+        "remainAnonymous": "익명 유지",
+        "remainAnonymousHint": "이 관리자를 멤버 목록에서 숨기기"
+      },
+      "durations": {
+        "oneHour": "1시간",
+        "eightHours": "8시간",
+        "oneDay": "1일",
+        "oneWeek": "1주",
+        "forever": "영원히"
+      }
+    },
+    "chooseAvatar": "아바타 선택"
   },
   "work": {
     "title": "바운티",
@@ -2970,7 +3139,9 @@
       "shipped": "배송됨",
       "completed": "완료",
       "cancelled": "취소됨"
-    }
+    },
+    "removePhoto": "사진 삭제",
+    "listingOptions": "목록 옵션"
   },
   "accounts": {
     "subtitle": "계정 전체 판매, DHB로 가격 책정",
@@ -3386,7 +3557,14 @@
     "removeFollowerHint": "팔로워를 길게 눌러 삭제하세요.",
     "cancel": "취소",
     "remove": "삭제",
-    "thisUser": "이 사용자"
+    "thisUser": "이 사용자",
+    "cancelRequestTo": "{{username}}님의 팔로우 요청 취소",
+    "followingUser": "{{username}}님 팔로우 중",
+    "contentUnavailable": "콘텐츠를 사용할 수 없습니다.",
+    "youBlockedBody": "해당 사용자의 게시물을 볼 수 없으며 상호 작용할 수 없습니다. 차단을 해제하면 액세스가 복원됩니다.",
+    "restrictedBody": "이 사용자는 귀하의 계정과의 상호 작용을 제한했습니다.",
+    "requestPendingBody": "팔로우 요청이 전송되었습니다. 해당 사용자가 요청을 승인하면 게시물을 볼 수 있습니다.",
+    "followToSeePosts": "이 계정을 팔로우하여 게시물을 확인하세요."
   },
   "reactionInfo": {
     "title": "반응",
@@ -3700,7 +3878,8 @@
     "needGas": "{{chain}}의 가스비로 네이티브 {{token}}이(가) 필요합니다.",
     "bridging": "브리지 중…",
     "bridgeAction": "{{from}} → {{to}} 브리지",
-    "failed": "브리지에 실패했습니다"
+    "failed": "브리지에 실패했습니다",
+    "sentArriveShortly": "{{amount}}님이 {{from}}에서 {{to}}로 보냈습니다. 토큰이 곧 도착합니다."
   },
   "banned": {
     "title": "계정이 차단되었습니다",
@@ -3878,7 +4057,16 @@
     "legacyRecovered": "이전 계정{{suffix}}을 확인하고 그 지갑을 복구했습니다. 앞으로 이 기기에서 — 이 전화와 다른 모든 곳에서 — 지갑을 보호할 비밀번호를 설정하세요.",
     "passwordMin": "비밀번호({{min}}자 이상)",
     "newPasswordMin": "새 비밀번호({{min}}자 이상)",
-    "newWalletPasswordMin": "새 지갑 비밀번호({{min}}자 이상)"
+    "newWalletPasswordMin": "새 지갑 비밀번호({{min}}자 이상)",
+    "deviceCheckCancelled": "기기 확인 취소 — 변경된 사항이 없습니다.",
+    "savePhraseTitle": "복구 문구 저장",
+    "startOverTitle": "새 지갑으로 다시 시작",
+    "secureNewWalletTitle": "새 지갑 보안",
+    "secureWalletTitle": "지갑 보안",
+    "unlockOnMobileTitle": "모바일에서 잠금 해제",
+    "oldAccountFoundTitle": "기존 계정 발견",
+    "unlockWalletTitle": "지갑 잠금 해제",
+    "phraseExplainer": "지갑은 이 휴대폰의 생체 인식으로 보호됩니다. 이 잠금 해제는 <em>이 휴대폰에서만 작동</em>합니다. DeHub를 재설치하거나, 기기를 변경하거나, 분실하는 경우 이 12단어가 유일한 복구 방법입니다."
   },
   "transcript": {
     "title": "대화 기록",
@@ -4065,7 +4253,38 @@
     "subscribe": "구독하기",
     "subscriberCount_one": "구독자 {{count}}명",
     "subscriberCount_other": "구독자 {{count}}명",
-    "subscribeToForRich": "<price>{{price}}</price>에 <name>{{name}}</name> 구독"
+    "subscribeToForRich": "<price>{{price}}</price>에 <name>{{name}}</name> 구독",
+    "loadPlansFailed": "플랜 로드 실패",
+    "subscriberContent": "구독자 콘텐츠",
+    "subscriberContentSub": "구독자에게 독점 콘텐츠를 제공하기 위한 계획 만들기",
+    "createFirstPlan": "첫 번째 계획 만들기",
+    "addNewPlan": "새 계획 추가",
+    "durations": {
+      "oneMonth": "1개월",
+      "threeMonths": "3개월",
+      "sixMonths": "6개월",
+      "oneYear": "1년",
+      "lifetime": "평생"
+    },
+    "planNameRequired": "계획 이름은 필수입니다",
+    "enterValidPrice": "유효한 가격을 입력하세요",
+    "availableChains": "구독은 현재 Base 및 BNB에서 이용 가능합니다",
+    "waitForSwitch": "구독 네트워크 전환이 완료될 때까지 기다리세요",
+    "connectAndWait": "지갑을 연결하고 구독 네트워크를 기다리세요",
+    "planUpdated": "계획이 업데이트되었습니다",
+    "creating": "생성 중…",
+    "planPublished": "계획이 생성되고 게시되었습니다",
+    "createPlanTitle": "구독 계획 만들기",
+    "network": "구독 네트워크",
+    "planNameLabel": "계획 이름 *",
+    "planNamePlaceholder": "예: 프리미엄, 골드, VIP...",
+    "descriptionPlaceholder": "구독자가 받게 될 혜택…",
+    "priceLabel": "가격 (USD) *",
+    "legacyMigrationNote": "이 레거시 DHB 계획을 상장 전 요율로 달러 가격으로 전환합니다.",
+    "benefits": "혜택",
+    "benefitPlaceholder": "혜택 추가…",
+    "createAndPublish": "만들기 및 게시",
+    "publishingOnChain": "게시는 온체인 거래입니다"
   },
   "live": {
     "notSet": "설정 안 됨",
@@ -4183,7 +4402,22 @@
     "acceptTerms": "다음에 동의합니다: <terms>서비스 약관</terms>",
     "sentTo": "{{amount}} {{symbol}} 이 (가) {{address}} (으) 로 전송되었습니다.",
     "tokensSentTo": "토큰이 {{address}} (으) 로 전송되었습니다",
-    "goToProfile": "프로필로 이동"
+    "goToProfile": "프로필로 이동",
+    "aboutTitle": "DeHub 및 결제 정보",
+    "aboutSubtitle": "원활한 토큰 결제를 위한 게이트웨이",
+    "aboutTokenTitle": "DeHub 토큰",
+    "aboutTokenBody": "토큰은 크리에이터 구독, 스트리머 팁 주기, 콘텐츠 잠금 해제에 사용됩니다. 더 많이 보유할수록 수수료가 낮아지고 타임라인 트렌드 부스트 및 인증 배지와 같은 슈퍼파워를 더 많이 잠금 해제할 수 있습니다.",
+    "aboutInstantTitle": "즉시 결제",
+    "aboutInstantBody": "Stripe을 사용하면 로그인한 계정으로 즉시 원활하게 토큰을 구매할 수 있습니다. DeHub는 토큰을 간단하고 모두를 위해 만듭니다. 더 많은 지원이 필요한 경우 24시간 연중무휴 라이브 커뮤니티 채팅에 참여하여 관리자 지원을 요청하세요.",
+    "aboutSecureTitle": "보안 게이트웨이",
+    "aboutSecureBody": "모든 결제 세부 정보는 Stripe에서 암호화되고 안전하게 처리됩니다. 당사는 귀하의 민감한 정보나 카드 세부 정보를 액세스하거나 저장할 수 없으므로 궁극적인 마음의 평화를 얻을 수 있습니다.",
+    "transfersSummary": "전송 요약",
+    "availableToBuy": "지금 구매 가능",
+    "noSupplyShort": "공급 없음",
+    "topUpSubtitle": "카드로 $DHB를 구매하고 즉시 사용할 수 있는 무료 가스를 받으세요.",
+    "noTxHash": "거래 해시를 찾을 수 없습니다.",
+    "latestTransactions": "최신 거래",
+    "showAll": "모두 보기"
   },
   "musicSheet": {
     "title": "곡 만들기",
@@ -4312,7 +4546,13 @@
     "followUpNote": "의견에 대해 추가로 여쭤볼 수 있습니다",
     "submitFeedback": "의견 보내기",
     "provideFeedback": "의견을 입력해 주세요",
-    "thankYou": "의견 감사합니다!"
+    "thankYou": "의견 감사합니다!",
+    "submitFailed": "피드백 제출 실패. 다시 시도해 주세요.",
+    "maybeLater": "나중에",
+    "helpUsImprove": "개선에 도움을 주세요",
+    "rateExperience": "경험을 어떻게 평가하시겠습니까?",
+    "telegramOptional": "Telegram (선택 사항)",
+    "discordOptional": "Discord (선택 사항)"
   },
   "migrate": {
     "clearAll": "모두 지우기",
@@ -4428,7 +4668,14 @@
       "blueWhale": "지금까지 살아온 것 중 가장 큰 것. 바로 당신입니다.",
       "megalodon": "회원님의 왕관입니다. 이제 앱 로열티를 받으실 수 있습니다"
     },
-    "continue": "DeHub로 돌아가기"
+    "continue": "DeHub로 돌아가기",
+    "none": "없음",
+    "noBadgeYet": "배지 없음",
+    "next": "다음",
+    "topTier": "최상위 등급",
+    "toNextTier": "{{tier}}까지 {{amount}} DHB",
+    "everyTierUnlocked": "모든 등급 잠금 해제",
+    "holdNote": "배지가 잠금 해제되면 DHB를 보유하는 동안 계속 사용할 수 있습니다. 새 배지를 잠금 해제하는 데 필요한 토큰 수는 토큰 가격에 따라 변경될 수 있습니다."
   },
   "passwordStrength": {
     "veryWeak": "매우 약함",
@@ -4510,7 +4757,11 @@
     },
     "ttsLabel": "큰 소리로 말하기",
     "ttsPlaceholder": "스트림으로 읽기...",
-    "ttsHint": "선물이 도착하면 구경하는 모든 사람에게 큰 소리로 읽어주세요."
+    "ttsHint": "선물이 도착하면 구경하는 모든 사람에게 큰 소리로 읽어주세요.",
+    "sendAGift": "선물 보내기",
+    "minPlaceholder": "최소: {{amount}}",
+    "minGift": "최소 선물은 {{amount}}입니다.",
+    "sendGift": "선물 보내기"
   },
   "goLive": {
     "streamKey": "스트림 키",
@@ -4891,7 +5142,8 @@
         "title": "수익 창출 방식 알아보기",
         "body": "팁, 배지, SuperPowers가 여러분이 여기서 하는 일을 수익으로 전환하는 방법을 알아보세요."
       }
-    }
+    },
+    "swipeToStart": "시작하려면 스와이프하세요."
   },
   "conversation": {
     "commonGround": {
@@ -5373,5 +5625,18 @@
     "toastPaidSettled": "결제 완료 — 거래가 정산되었습니다",
     "walletNotReady": "지갑이 아직 준비되지 않았습니다 — 잠시 후 다시 시도하세요.",
     "wrongChain": "이 거래는 {{chain}}에서 정산됩니다. 설정에서 {{chain}}(으)로 전환한 후 다시 시도하세요."
+  },
+  "moderation": {
+    "appealDuplicate": "이미 이의를 제기하셨습니다.",
+    "appealSent": "이의 제기 전송 완료",
+    "appealFailed": "이의 제기를 제출할 수 없습니다",
+    "appealTitle": "이 결정에 이의 제기하기",
+    "appealSubtitle": "사람이 이 글을 읽고 결정을 다시 살펴볼 것입니다.",
+    "appealPlaceholder": "어떤 점을 놓쳤다고 생각하시나요? 콘텐츠에 대한 맥락은 무엇보다도 도움이 됩니다.",
+    "appealSend": "이의 제기하기",
+    "appealFootnote": "참조 번호를 받으면 답이 여기로 돌아옵니다. 결정당 하나의 이의 제기.",
+    "appealRef": "참조 {{ref}}",
+    "appealSubtitleSubject": "사람이 이 글을 읽고 {{subject}} 을 (를) 다시 보게 됩니다.",
+    "appealMore": "아직 필요한 문자: {{count}}"
   }
 }

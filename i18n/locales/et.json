@@ -690,7 +690,11 @@
       "hintAllow": "Seda signaali austavad tehisintellektisüsteemid ja roomikud võivad treenida teie heli, kunstiteoseid ja kirjutamist.",
       "hintDeny": "Seda signaali austavatel tehisintellektisüsteemidel ja roomikutel palutakse mitte treenida teie heli, kunstiteoseid ja kirjutamist. See ei blokeeri signaali eiravaid roomikuid.",
       "saved": "Tehisintellekti koolituse eelistus on salv"
-    }
+    },
+    "chainIdLabel": "Ahela ID: {{id}}",
+    "exportPkConfirmPhrase": "MA MÕISTAN",
+    "exportPkCopy": "Kopeeri privaatvõti",
+    "e2eAutomatic": "Automaatne"
   },
   "common": {
     "mute": "Vaigista",
@@ -730,7 +734,17 @@
     "optionalSuffix": "(valikuline)",
     "yesterday": "Eile",
     "ok": "OK",
-    "continue": "Jätka"
+    "continue": "Jätka",
+    "goesToHomeFeed": "Läheb avalehele",
+    "openMenu": "Ava menüü",
+    "scrollsFeedToTop": "Liigub uudistevoogu üles ja värskendab seda",
+    "notificationsUnread": "Teavitused, {{unread}} lugemata",
+    "errorDetails": "Veateated:",
+    "failedToLoad": "Laadimine ebaõnnestus",
+    "noInternetTitle": "Pole internetiühendust",
+    "noInternetBody": "Palun kontrollige oma internetiühendust ja proovige uuesti. DeHubi kasutamiseks peate olema ühendatud internetiga.",
+    "noInternetStatus": "Võrguühenduseta – võrguühendust pole",
+    "noInternetHint": "Veenduge, et Wi-Fi või mobiilne andmeside on sisse lülitatud, seejärel puudutage \"{{action}}\""
   },
   "tip": {
     "title": "Saada jootraha",
@@ -1620,7 +1634,12 @@
     "chooseUsernameBody": "Jätkamiseks vali kasutajanimi ja kuvatav nimi. Neid saab hiljem muuta.",
     "checkingAvailability": "Saadavuse kontrollimine…",
     "usernameTakenHint": "Nimi on võetud — proovi lisada numbreid või alakriipsu",
-    "displayNameLength": "Kuvatav nimi peab olema 2–50 tähemärki."
+    "displayNameLength": "Kuvatav nimi peab olema 2–50 tähemärki.",
+    "loginFailedRetry": "Sisselogimine ebaõnnestus. Palun proovige uuesti.",
+    "sendCodeFailedRetry": "Koodi ei saa saata. Palun proovige uuesti.",
+    "invalidCodeRetry": "Kehtetu kood. Palun proovige uuesti.",
+    "invalidEmailOrPassword": "Kehtetu e-posti aadress või parool.",
+    "welcomeToDehub": "Tere tulemast DeHubi"
   },
   "messages": {
     "smartRepliesOff": "Soovitatud vastused on välja lülitatud",
@@ -1698,7 +1717,32 @@
     "offerWorthNow": "Umbes {{amount}} DHB praeguse kursiga",
     "offerNotePlaceholder": "Lisa märkus (valikuline)",
     "offerCommitsNothing": "Pakkumise tegemine ei maksa midagi ega broneeri DHB-d. Maksad ainult siis, kui omanik nõustub.",
-    "offerNeedsHandle": "Sellel kontol pole kasutajanime, millele pakkuda."
+    "offerNeedsHandle": "Sellel kontol pole kasutajanime, millele pakkuda.",
+    "noPostsYet": "Postitusi pole veel",
+    "noPostsYetSub": "Siia ilmuvad postitused, kui need on avaldatud",
+    "noPinnedPosts": "Kiip-postitusi pole veel",
+    "noPinnedPostsSub": "Kiip-postitused ilmuvad siia",
+    "emptyLiked": "Meeldimisi pole veel",
+    "emptySaved": "Salvestatud postitusi pole veel.",
+    "emptyUnlocked": "Avatud postitusi pole veel.",
+    "emptyWatched": "Vaatamisajalugu puudub.",
+    "emptyFolder": "Selles kaustas pole veel postitusi.",
+    "emptyPosts": "Postitusi pole veel.",
+    "couldNotLoadPosts": "Postitusi ei õnnestunud laadida.",
+    "noPostsOrReplies": "Veel pole postitusi, kommentaare ega vastuseid",
+    "noPostsOrRepliesSub": "Need ilmuvad siia",
+    "avatarUpdated": "Avatari värskendatud",
+    "coverUpdated": "Taustapildi värskendatud",
+    "couldNotPickImage": "Ei õnnestunud pilti valida",
+    "changeCoverImage": "Muuda taustapilti",
+    "changeAvatar": "Muuda avatari",
+    "verifiedEnsName": "Verifitseeritud ENS-i nimi {{name}}",
+    "notFullyJoined": "See kasutaja pole veel täielikult liitunud. Nad pole kasutajanime nõudnud ega profiili seadistamist lõpetanud. Saate siiski vaadata avalikku tegevust ja saata näpunäiteid, kui need on saadaval.",
+    "loadRepliesFailed": "Vastuste laadimine ebaõnnestus",
+    "refreshFailed": "Värskendamine ebaõnnestus",
+    "noRepliesYet": "Vastuseid pole",
+    "noRepliesYetSub": "Kui see kasutaja postitustele vastab, ilmuvad need siia.",
+    "noMoreReplies": "Rohkem vastuseid pole"
   },
   "tv": {
     "title": "TV",
@@ -1781,7 +1825,11 @@
     "loadingPrice": "Hinna laadimine…",
     "topUpExplanation": "DHB kantakse ahelas DeHubi reklaamikassasse ja seejärel kantakse su saldole pärast sõltumatut ahelapõhist kontrolli.",
     "paymentHistory": "Maksete ajalugu",
-    "noPayments": "Makseid pole veel"
+    "noPayments": "Makseid pole veel",
+    "sponsored": "Sponsor",
+    "morePosts": "Rohkem postitusi",
+    "loadMorePosts": "Laadi rohkem postitusi",
+    "playAdVideo": "Esita reklaamvideo"
   },
   "buyCoins": {
     "title": "Osta münte",
@@ -2216,7 +2264,8 @@
     "privateBalanceMode": "Privaatse saldo režiim on sisse lülitatud",
     "addressHidden": "Aadress on peidetud",
     "allowInFeeds": "Luba sellel kasutajal sinu voogudes ilmuda",
-    "hideContent": "Peida nende sisu ja piira suhtlust"
+    "hideContent": "Peida nende sisu ja piira suhtlust",
+    "a11yLabel": "Profiili valikud"
   },
   "toasts": {
     "saved_to_bookmarks": "Salvestatud järjehoidjatesse",
@@ -2588,7 +2637,8 @@
     "roles": {
       "owner": "Omanik",
       "moderator": "Moderaator",
-      "member": "Liige"
+      "member": "Liige",
+      "admin": "Admin"
     },
     "time": {
       "today": "täna",
@@ -2597,7 +2647,126 @@
       "weeks": "{{count}} näd",
       "months": "{{count}} kuud",
       "years": "{{count}} a"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "muudetud",
+      "deleteTitle": "Kustuta sõnum",
+      "deleteConfirm": "Kustutada see sõnum? Seda ei saa tagasi võtta.",
+      "muted": "Oled vaigistatud",
+      "postingDisabled": "Postitamine on siin liikmetele keelatud",
+      "mediaMessage": "Meedia",
+      "pinnedMessage": "Kinni pandud sõnum",
+      "showEarlier": "Näita varasemaid sõnumeid",
+      "editingMessage": "Sõnumi muutmine",
+      "copied": "Sõnum on kopeeritud",
+      "copyText": "Kopeeri tekst",
+      "mutedUntil": "Oled vaigistatud kuni {{date}}",
+      "slowMode": "Aeglane režiim: üks teade iga {{interval}} järel"
+    },
+    "manage": {
+      "dismissAdminTitle": "Loobu administraatorist",
+      "cancel": "Tühista",
+      "dismissAdmin": "Loobu administraatorist",
+      "roleAdmin": "Administraator",
+      "roleMember": "Liige",
+      "whatCanTheyDo": "Mida see administraator teha saab?",
+      "rightNotHeld": "Teil endal seda õigust ei ole",
+      "customTitle": "Kohandatud pealkiri",
+      "customTitlePlaceholder": "Administraator",
+      "customTitleHint": "Kuvatakse administraatori vaikemärgi asemel.",
+      "saveChanges": "Salvesta muudatused",
+      "promote": "Reklaami",
+      "tabs": {
+        "members": "Liikmed",
+        "admins": "Administraatorid",
+        "permissions": "Load",
+        "invites": "Kutsed",
+        "rules": "Reeglid",
+        "recentActions": "Hiljutised toimingud",
+        "danger": "Ohutsoon"
+      },
+      "title": "Halda",
+      "purgeTitle": "Kas kustutada kõik sõnumid?",
+      "purgeConfirm": "Kustuta",
+      "kickTitle": "Kas eemaldada liige?",
+      "kickConfirm": "Eemalda",
+      "bannedPermanent": "Keelatud — püsiv",
+      "mutedPermanent": "Vaigistatud — püsiv",
+      "editAdminRights": "Muuda administraatori õigusi",
+      "promoteToAdmin": "Eduta administraatoriks",
+      "unmute": "Tühista vaigistus",
+      "mute": "Vaigista",
+      "unban": "Tühista keeld",
+      "ban": "Keela",
+      "deleteAllMessages": "Kustuta kõik sõnumid",
+      "removeFromCommunity": "Eemalda kogukonnast",
+      "noActionsAvailable": "Sa ei saa seda liiget modereerida.",
+      "showMore": "Näita rohkem",
+      "joinRequests": "Liitumisavaldused",
+      "approve": "Kinnita",
+      "reject": "Lükka tagasi",
+      "members": "Liikmed",
+      "searchMembers": "Otsi rahakoti aadressi järgi",
+      "noMembersMatch": "Ühtegi liiget ei leitud.",
+      "noMembers": "Liikmeid pole veel.",
+      "muted": "Vaigistatud",
+      "banned": "Keelatud",
+      "muteEffect": "Nad jäävad kogukonda, kuid ei saa postitada enne, kui vaigistus aegub.",
+      "banEffect": "Nad eemaldatakse vestlusest ja ei saa uuesti liituda enne, kui keeld tühistatakse.",
+      "durationLabel": "Kestus",
+      "reasonLabel": "Põhjus (valikuline)",
+      "reasonPlaceholder": "Miks nad keelatakse?",
+      "alsoDeleteMessages": "Kustuta ka kõik nende sõnumid",
+      "confirmMute": "Vaigista liige",
+      "confirmBan": "Keela liige",
+      "rulesUpdated": "Reeglid on värskendatud",
+      "rulesTitle": "Kogukonna reeglid",
+      "rulesEmpty": "Reegleid pole veel — lisa esimene allpool.",
+      "rulePlaceholder": "Kirjelda reeglit",
+      "addRule": "Lisa reegel",
+      "saveRules": "Salvesta reeglid",
+      "dismissAdminBody": "{{wallet}} saab tavaliikmeks.",
+      "purgeBody": "Kõik {{name}} saadetud sõnumid selles kogukonnas eemaldatakse.",
+      "kickBody": "{{name}} eemaldatakse kogukonnast. Nad saavad hiljem uuesti liituda.",
+      "bannedUntil": "Keelatud kuni {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Vaigistatud kuni {{date}}",
+      "bannedUntilShort": "Kuni {{date}}",
+      "muteTitle": "Vaigista {{name}}",
+      "banTitle": "Keela {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} / {{max}}",
+      "moveRuleUp": "Liiguta reeglit üles",
+      "moveRuleDown": "Liiguta reeglit alla",
+      "deleteRule": "Kustuta reegel",
+      "rights": {
+        "changeInfo": "Muuda kogukonna teavet",
+        "changeInfoHint": "Muuda nime, kirjeldust, avatari ja bannerit",
+        "deleteMessages": "Kustuta sõnumeid",
+        "deleteMessagesHint": "Eemalda kogukonna vestlusest mis tahes sõnum",
+        "restrictMembers": "Keela kasutajaid",
+        "restrictMembersHint": "Vaigista, eemalda ja keela liikmeid",
+        "inviteUsers": "Kutsu liikmeid lingi kaudu",
+        "inviteUsersHint": "Loo ja tühista kutselingid",
+        "pinMessages": "Kinnita sõnumeid",
+        "pinMessagesHint": "Kinnita sõnum vestluse tippu",
+        "manageEvents": "Halda sündmusi",
+        "manageEventsHint": "Loo ja muuda kogukonna sündmusi",
+        "addAdmins": "Lisa uusi administraatoreid",
+        "addAdminsHint": "Eduta liikmeid ja muuda nende lisatud administraatorite õigusi",
+        "remainAnonymous": "Jää anonüümseks",
+        "remainAnonymousHint": "Peida see administraator liikmete loendist"
+      },
+      "durations": {
+        "oneHour": "1 tund",
+        "eightHours": "8 tundi",
+        "oneDay": "1 päev",
+        "oneWeek": "1 nädal",
+        "forever": "Igavesti"
+      }
+    },
+    "chooseAvatar": "Vali avatar"
   },
   "work": {
     "title": "Preemiad",
@@ -2949,7 +3118,9 @@
       "shipped": "Saadetud",
       "completed": "Lõpetatud",
       "cancelled": "Tühistatud"
-    }
+    },
+    "removePhoto": "Eemalda foto",
+    "listingOptions": "Loendi valikud"
   },
   "accounts": {
     "subtitle": "Terved kontod müügis, hind DHB-des",
@@ -3317,7 +3488,14 @@
     "removeFollowerHint": "Eemaldamiseks vajuta ja hoia jälgijat all.",
     "cancel": "Tühistama",
     "remove": "Eemaldama",
-    "thisUser": "See kasutaja"
+    "thisUser": "See kasutaja",
+    "cancelRequestTo": "Tühista jälgimistaotlus @{{username}}?",
+    "followingUser": "Jälgin @{{username}}",
+    "contentUnavailable": "Sisu pole saadaval",
+    "youBlockedBody": "Sa ei näe nende postitusi ega saa nendega suhelda. Taastage juurdepääs, kui blokeering tühistate.",
+    "restrictedBody": "See kasutaja on piiranud interaktsioone teie kontoga.",
+    "requestPendingBody": "Teie jälgimistaotlus on saadetud. Saate nende postitusi näha, kui nad teie taotluse heaks kiidavad.",
+    "followToSeePosts": "Jälgi seda kontot, et näha nende postitusi."
   },
   "reactionInfo": {
     "title": "Reaktsioonid",
@@ -3632,7 +3810,8 @@
     "needGas": "{{chain}} ahelas on gaasi jaoks vaja algupärast {{token}}.",
     "bridging": "Sildamine…",
     "bridgeAction": "Sild {{from}} → {{to}}",
-    "failed": "Sildamine ebaõnnestus"
+    "failed": "Sildamine ebaõnnestus",
+    "sentArriveShortly": "{{amount}} DHB saatis {{from}} → {{to}}. Tokenid saabuvad varsti."
   },
   "banned": {
     "title": "Sinu konto on keelatud",
@@ -3810,7 +3989,16 @@
     "legacyRecovered": "Kinnitasime su vana konto{{suffix}} ja taastasime selle rahakoti. Määra parool, mis kaitseb seda nüüdsest selles seadmes — selles telefonis ja igal pool mujal.",
     "passwordMin": "Parool (vähemalt {{min}} tähemärki)",
     "newPasswordMin": "Uus parool (vähemalt {{min}} tähemärki)",
-    "newWalletPasswordMin": "Uue rahakoti parool (vähemalt {{min}} tähemärki)"
+    "newWalletPasswordMin": "Uue rahakoti parool (vähemalt {{min}} tähemärki)",
+    "deviceCheckCancelled": "Seadme kontroll tühistatud – midagi ei muudetud.",
+    "savePhraseTitle": "Salvestage oma taastamisfraas",
+    "startOverTitle": "Alustage uue rahakotiga otsast peale",
+    "secureNewWalletTitle": "Turvake oma uus rahakott",
+    "secureWalletTitle": "Turvake oma rahakott",
+    "unlockOnMobileTitle": "Avage mobiilis",
+    "oldAccountFoundTitle": "Leiti vana konto",
+    "unlockWalletTitle": "Avage oma rahakott",
+    "phraseExplainer": "Teie rahakotti kaitseb selle telefoni biomeetria. See avamine <em>töötab ainult sellel telefonil</em> – need 12 sõna on ainus viis tagasi, kui installite DeHubi uuesti, vahetate telefoni või kaotate selle."
   },
   "transcript": {
     "title": "Transkriptsioon",
@@ -3997,7 +4185,38 @@
     "subscribe": "Telli",
     "subscriberCount_one": "{{count}} tellija",
     "subscriberCount_other": "{{count}} tellijat",
-    "subscribeToForRich": "Telli <name>{{name}}</name> hinnaga <price>{{price}}</price>"
+    "subscribeToForRich": "Telli <name>{{name}}</name> hinnaga <price>{{price}}</price>",
+    "loadPlansFailed": "Plaane ei õnnestunud laadida",
+    "subscriberContent": "Tellija sisu",
+    "subscriberContentSub": "Loo plaanid eksklusiivse sisu pakkumiseks tellijatele",
+    "createFirstPlan": "Loo oma esimene plaan",
+    "addNewPlan": "Lisa uus plaan",
+    "durations": {
+      "oneMonth": "1 kuu",
+      "threeMonths": "3 kuud",
+      "sixMonths": "6 kuud",
+      "oneYear": "1 aasta",
+      "lifetime": "Eluaegne"
+    },
+    "planNameRequired": "Plaani nimi on nõutav",
+    "enterValidPrice": "Sisesta kehtiv hind",
+    "availableChains": "Tellimused on praegu saadaval Base ja BNB võrkudes",
+    "waitForSwitch": "Oota, kuni tellimisvõrk lõpetab ülemineku",
+    "connectAndWait": "Ühenda oma rahakott ja oota tellimisvõrku",
+    "planUpdated": "Plaan värskendatud",
+    "creating": "Loomine…",
+    "planPublished": "Plaan loodud ja avaldatud",
+    "createPlanTitle": "Loo tellimisplaan",
+    "network": "Tellimisvõrk",
+    "planNameLabel": "Plaani nimi *",
+    "planNamePlaceholder": "nt. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Mida tellijad saavad...",
+    "priceLabel": "Hind (USD) *",
+    "legacyMigrationNote": "Säästmine migreerib selle pärand-DHB plaani dollaripõhiseks hinnaks enne noteerimist.",
+    "benefits": "Hüved",
+    "benefitPlaceholder": "Lisa hüve...",
+    "createAndPublish": "Loo ja avalda",
+    "publishingOnChain": "Avaldamine on plokiahela tehing"
   },
   "live": {
     "notSet": "Määramata",
@@ -4115,7 +4334,22 @@
     "acceptTerms": "Nõustun <terms>Teenusetingimused</terms>",
     "sentTo": "{{amount}} {{symbol}} saadeti numbrile {{address}}",
     "tokensSentTo": "Tokenid saadeti aadressile {{address}}",
-    "goToProfile": "Mine profiili juurde"
+    "goToProfile": "Mine profiili juurde",
+    "aboutTitle": "DeHub & maksete kohta",
+    "aboutSubtitle": "Sinu värav sujuvateks token-makseteks",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokeneid kasutatakse loojatele tellimiseks, striimijatele tippi andmiseks või sisu avamiseks. Mida rohkem teil on, seda madalamad on teie tasud ja seda rohkem supervõimeid avate, nagu ajajoonetrendi võimendused ja kinnitusmärgid.",
+    "aboutInstantTitle": "Kiirmaksed",
+    "aboutInstantBody": "Stripe'i abil saate tokenid koheselt ja sujuvalt osta mis tahes kontole, kuhu olete sisse logitud. DeHub muudab tokenid lihtsaks ja kõigile kättesaadavaks. Kui vajate rohkem tuge, liituge meie 24/7 kogukonna otsevestlusega ja küsige administraatori abi.",
+    "aboutSecureTitle": "Turvaline värav",
+    "aboutSecureBody": "Kõik makseandmed on krüpteeritud ja Stripe'i poolt turvaliselt töödeldud. Me ei saa teie tundlikku teavet ega kaardiandmeid kasutada ega salvestada, mis annab teile täieliku meelerahu.",
+    "transfersSummary": "Tehingute kokkuvõte",
+    "availableToBuy": "Saadaval ostmiseks kohe",
+    "noSupplyShort": "Tarne puudub",
+    "topUpSubtitle": "Osta $DHB kaardiga ja saad tasuta gaasi koheseks kasutamiseks",
+    "noTxHash": "Tehingu räsi ei leitud",
+    "latestTransactions": "Viimased tehingud",
+    "showAll": "Näita kõiki"
   },
   "musicSheet": {
     "title": "Loo laul",
@@ -4244,7 +4478,13 @@
     "followUpNote": "Võime sinuga ühendust võtta täpsustavate küsimustega tagasiside kohta",
     "submitFeedback": "Saada tagasiside",
     "provideFeedback": "Palun kirjuta oma tagasiside",
-    "thankYou": "Aitäh tagasiside eest!"
+    "thankYou": "Aitäh tagasiside eest!",
+    "submitFailed": "Tagasiside esitamine ebaõnnestus. Palun proovige uuesti.",
+    "maybeLater": "Hiljem",
+    "helpUsImprove": "Aita meil paremaks muutuda",
+    "rateExperience": "Kuidas hindaksite oma kogemust?",
+    "telegramOptional": "Telegram (valikuline)",
+    "discordOptional": "Discord (valikuline)"
   },
   "migrate": {
     "clearAll": "Kustuta kõik",
@@ -4361,7 +4601,14 @@
       "blueWhale": "Suurim asi, mis kunagi elanud. See oled sina.",
       "megalodon": "Siin on sinu kroon — oled nüüd rakenduse autoritasu"
     },
-    "continue": "Tagasi DeHubi"
+    "continue": "Tagasi DeHubi",
+    "none": "Mitte ühtegi",
+    "noBadgeYet": "Märki pole veel",
+    "next": "Järgmine",
+    "topTier": "Tipptase",
+    "toNextTier": "{{amount}} DHB kuni {{tier}}",
+    "everyTierUnlocked": "Iga avatud tase",
+    "holdNote": "Kui märgi on avatud, on see teie nii kaua, kui hoiate oma DHB-d. Uue märgi avamiseks vajalike tokenite arv võib muutuda koos tokeni hinnaga."
   },
   "passwordStrength": {
     "veryWeak": "Väga nõrk",
@@ -4443,7 +4690,11 @@
     },
     "ttsLabel": "Ütle midagi valjusti",
     "ttsPlaceholder": "Loe voogu ette…",
-    "ttsHint": "Loe valjusti kõigile, kes vaatavad, millal su kingitus maandub."
+    "ttsHint": "Loe valjusti kõigile, kes vaatavad, millal su kingitus maandub.",
+    "sendAGift": "Saada kingitus",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minimaalne kingitus on {{amount}}",
+    "sendGift": "Saada kingitus"
   },
   "goLive": {
     "streamKey": "Striimi võti",
@@ -4826,7 +5077,8 @@
         "title": "Vaata, kuidas tulu teenimine käib",
         "body": "Vaata, kuidas nõuanded, märgid ja SuperPowers muudavad selle, mida sa siin teed, millekski, millega sa teenid."
       }
-    }
+    },
+    "swipeToStart": "Pühkige alustamiseks"
   },
   "conversation": {
     "commonGround": {
@@ -5308,5 +5560,18 @@
     "toastPaidSettled": "Makstud — tehing on arveldatud",
     "walletNotReady": "Sinu rahakott pole veel valmis — proovi hetke pärast uuesti.",
     "wrongChain": "See tehing arveldatakse võrgus {{chain}}. Lülitu seadetes võrgule {{chain}} ja proovi uuesti."
+  },
+  "moderation": {
+    "appealDuplicate": "Oled selle juba vaidlustanud",
+    "appealSent": "Kaebus on saadetud",
+    "appealFailed": "Seda kaebust ei saanud esitada",
+    "appealTitle": "Kaeba see otsus edasi",
+    "appealSubtitle": "Isik loeb seda ja vaatab otsuse uuesti üle.",
+    "appealPlaceholder": "Millest sinu arvates ilma jäid? Sisu kontekst aitab rohkem kui miski muu.",
+    "appealSend": "Saada kaebus",
+    "appealFootnote": "Saad viitenumbri ja vastus tuleb siia tagasi. Üks kaebus otsuse kohta.",
+    "appealRef": "Viide {{ref}}",
+    "appealSubtitleSubject": "Isik loeb seda ja vaatab uuesti aadressil {{subject}}.",
+    "appealMore": "Vaja on veel märke: {{count}}"
   }
 }

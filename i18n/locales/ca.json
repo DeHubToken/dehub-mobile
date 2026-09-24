@@ -691,7 +691,11 @@
       "hintAllow": "Els sistemes d'intel·ligència artificial i els rastrejadors que respecten aquest senyal poden entrenar-se amb l'àudio, les obres d'art i l'escriptura.",
       "hintDeny": "Es demana als sistemes d'intel·ligència artificial i als rastrejadors que respectin aquest senyal que no entrenin en el teu àudio, obres d'art i escriptura. Els rastrejadors que ignoren el senyal no queden bloquejats per aquest.",
       "saved": "Preferència d'entrenament d'IA desada"
-    }
+    },
+    "chainIdLabel": "Cadena ID: {{id}}",
+    "exportPkConfirmPhrase": "ENTENC",
+    "exportPkCopy": "Copia la clau privada",
+    "e2eAutomatic": "Automàtic"
   },
   "common": {
     "mute": "Silencia",
@@ -731,7 +735,17 @@
     "optionalSuffix": "(opcional)",
     "yesterday": "Ahir",
     "ok": "D'acord",
-    "continue": "Continua"
+    "continue": "Continua",
+    "goesToHomeFeed": "Va al feed principal",
+    "openMenu": "Obre el menú",
+    "scrollsFeedToTop": "Puja a la part superior del feed i el refresca",
+    "notificationsUnread": "Notificacions, {{unread}} no llegides",
+    "errorDetails": "Detalls de l'error:",
+    "failedToLoad": "Error en carregar",
+    "noInternetTitle": "Sense connexió a Internet",
+    "noInternetBody": "Comprova la teva connexió a Internet i torna-ho a provar. Necessites estar connectat a Internet per utilitzar DeHub.",
+    "noInternetStatus": "Desconnectat - Sense connexió de xarxa",
+    "noInternetHint": "Assegura't que el Wi-Fi o les dades mòbils estiguin activats, després toca \"{{action}}\""
   },
   "tip": {
     "title": "Enviar propina",
@@ -1621,7 +1635,12 @@
     "chooseUsernameBody": "Tria un nom d'usuari i un nom visible per continuar. Els pots canviar més endavant.",
     "checkingAvailability": "S'està comprovant la disponibilitat…",
     "usernameTakenHint": "El nom ja està agafat: prova d'afegir-hi xifres o un guió baix",
-    "displayNameLength": "El nom visible ha de tenir entre 2 i 50 caràcters."
+    "displayNameLength": "El nom visible ha de tenir entre 2 i 50 caràcters.",
+    "loginFailedRetry": "Error d'inici de sessió. Torna-ho a provar.",
+    "sendCodeFailedRetry": "No s'ha pogut enviar el codi. Torna-ho a provar.",
+    "invalidCodeRetry": "Codi invàlid. Torna-ho a provar.",
+    "invalidEmailOrPassword": "Correu electrònic o contrasenya invàlids.",
+    "welcomeToDehub": "Benvingut a DeHub"
   },
   "messages": {
     "smartRepliesOff": "Respostes suggerides desactivades",
@@ -1699,7 +1718,32 @@
     "offerWorthNow": "Uns {{amount}} DHB al canvi actual",
     "offerNotePlaceholder": "Afegeix una nota (opcional)",
     "offerCommitsNothing": "Fer una oferta no costa res ni bloqueja DHB. Només pagues si el propietari accepta.",
-    "offerNeedsHandle": "Aquest compte no té cap nom d’usuari pel qual oferir."
+    "offerNeedsHandle": "Aquest compte no té cap nom d’usuari pel qual oferir.",
+    "noPostsYet": "Encara no hi ha publicacions",
+    "noPostsYetSub": "El contingut apareixerà aquí quan es publiqui",
+    "noPinnedPosts": "Encara no hi ha publicacions fixades",
+    "noPinnedPostsSub": "Les publicacions fixades apareixeran aquí",
+    "emptyLiked": "Encara no hi ha publicacions marcades com a \"m'agrada\".",
+    "emptySaved": "Encara no hi ha publicacions desades.",
+    "emptyUnlocked": "Encara no hi ha publicacions desbloquejades.",
+    "emptyWatched": "Encara no hi ha historial de visualització.",
+    "emptyFolder": "Encara no hi ha publicacions en aquesta carpeta.",
+    "emptyPosts": "Encara no hi ha publicacions.",
+    "couldNotLoadPosts": "No s'han pogut carregar les publicacions.",
+    "noPostsOrReplies": "Encara no hi ha publicacions, comentaris ni respostes",
+    "noPostsOrRepliesSub": "Apareixeran aquí",
+    "avatarUpdated": "Avatar actualitzat",
+    "coverUpdated": "Portada actualitzada",
+    "couldNotPickImage": "No s'ha pogut seleccionar la imatge",
+    "changeCoverImage": "Canviar imatge de portada",
+    "changeAvatar": "Canviar avatar",
+    "verifiedEnsName": "Nom ENS verificat {{name}}",
+    "notFullyJoined": "Aquest usuari encara no s'ha unit completament. No ha reclamat un nom d'usuari ni ha completat la configuració del perfil. Encara podeu veure l'activitat pública i enviar consells si estan disponibles.",
+    "loadRepliesFailed": "No s'han pogut carregar les respostes",
+    "refreshFailed": "Error en actualitzar",
+    "noRepliesYet": "Encara no hi ha respostes",
+    "noRepliesYetSub": "Quan aquest usuari respongui a publicacions, apareixeran aquí.",
+    "noMoreReplies": "No hi ha més respostes"
   },
   "tv": {
     "title": "TV",
@@ -1782,7 +1826,11 @@
     "loadingPrice": "S'està carregant el preu…",
     "topUpExplanation": "El DHB es transfereix on-chain a la tresoreria de publicitat de DeHub, i el teu saldo s'abona després d'una verificació independent a la cadena.",
     "paymentHistory": "Historial de pagaments",
-    "noPayments": "Encara no hi ha pagaments"
+    "noPayments": "Encara no hi ha pagaments",
+    "sponsored": "Patrocinat",
+    "morePosts": "Més publicacions",
+    "loadMorePosts": "Carregar més publicacions",
+    "playAdVideo": "Reprodueix vídeo publicitari"
   },
   "buyCoins": {
     "title": "Comprar monedes",
@@ -2217,7 +2265,8 @@
     "privateBalanceMode": "El mode de saldo privat està activat",
     "addressHidden": "Adreça amagada",
     "allowInFeeds": "Permet que aquest usuari aparegui als teus feeds",
-    "hideContent": "Amaga el seu contingut i limita les interaccions"
+    "hideContent": "Amaga el seu contingut i limita les interaccions",
+    "a11yLabel": "Opcions del perfil"
   },
   "toasts": {
     "saved_to_bookmarks": "Desat als marcadors",
@@ -2589,7 +2638,8 @@
     "roles": {
       "owner": "Propietari",
       "moderator": "Moderador",
-      "member": "Membre"
+      "member": "Membre",
+      "admin": "Administrador"
     },
     "time": {
       "today": "avui",
@@ -2598,7 +2648,126 @@
       "weeks": "{{count}} set.",
       "months": "{{count}} mesos",
       "years": "{{count}} anys"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "editat",
+      "deleteTitle": "Eliminar missatge",
+      "deleteConfirm": "Vols eliminar aquest missatge? No es podrà desfer.",
+      "muted": "Tens el silenci activat",
+      "postingDisabled": "No es poden fer publicacions per als membres aquí",
+      "mediaMessage": "Mitjans",
+      "pinnedMessage": "Missatge fixat",
+      "showEarlier": "Mostra missatges anteriors",
+      "editingMessage": "Edició de missatge",
+      "copied": "Missatge copiat",
+      "copyText": "Copia el text",
+      "mutedUntil": "Estàs silenciós fins a {{date}}",
+      "slowMode": "Mode lent: un missatge cada {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Ignora administrador",
+      "cancel": "Cancel·la",
+      "dismissAdmin": "Ignora administrador",
+      "roleAdmin": "Administrador",
+      "roleMember": "Membre",
+      "whatCanTheyDo": "Què pot fer aquest administrador?",
+      "rightNotHeld": "Tu mateix no tens aquest dret",
+      "customTitle": "Títol personalitzat",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Es mostra en lloc de la insígnia d'Admin per defecte.",
+      "saveChanges": "Desa els canvis",
+      "promote": "Promoure",
+      "tabs": {
+        "members": "Membres",
+        "admins": "Admins",
+        "permissions": "Permisos",
+        "invites": "Invitacions",
+        "rules": "Regles",
+        "recentActions": "Accions recents",
+        "danger": "Zona perillosa"
+      },
+      "title": "Gestiona",
+      "purgeTitle": "Eliminar tots els missatges?",
+      "purgeConfirm": "Elimina",
+      "kickTitle": "Eliminar membre?",
+      "kickConfirm": "Elimina",
+      "bannedPermanent": "Banejat — permanent",
+      "mutedPermanent": "Silenciat — permanent",
+      "editAdminRights": "Edita els drets d'administrador",
+      "promoteToAdmin": "Promou a administrador",
+      "unmute": "Desemmudir",
+      "mute": "Emmudir",
+      "unban": "Desbloquejar",
+      "ban": "Bloquejar",
+      "deleteAllMessages": "Suprimeix tots els missatges",
+      "removeFromCommunity": "Elimina de la comunitat",
+      "noActionsAvailable": "No pots moderar aquest membre.",
+      "showMore": "Mostra més",
+      "joinRequests": "Sol·licituds d'unió",
+      "approve": "Aprova",
+      "reject": "Rebutja",
+      "members": "Membres",
+      "searchMembers": "Cerca per adreça de cartera",
+      "noMembersMatch": "No hi ha cap membre que coincideixi.",
+      "noMembers": "Encara no hi ha membres.",
+      "muted": "Emmudits",
+      "banned": "Bloquejats",
+      "muteEffect": "Es queden a la comunitat però no poden publicar fins que expiri l'emmudiment.",
+      "banEffect": "Són eliminats del xat i no poden tornar a unir-se fins que s'aixequi el bloqueig.",
+      "durationLabel": "Durada",
+      "reasonLabel": "Motiu (opcional)",
+      "reasonPlaceholder": "Per què s'està bloquejant?",
+      "alsoDeleteMessages": "També suprimeix tots els seus missatges",
+      "confirmMute": "Emmudeix el membre",
+      "confirmBan": "Bloqueja el membre",
+      "rulesUpdated": "Normes actualitzades",
+      "rulesTitle": "Normes de la comunitat",
+      "rulesEmpty": "Encara no hi ha normes: afegeix la primera a continuació.",
+      "rulePlaceholder": "Descriure la regla",
+      "addRule": "Afegir regla",
+      "saveRules": "Guardar regles",
+      "dismissAdminBody": "{{wallet}} tornarà a ser un membre ordinari.",
+      "purgeBody": "EsBorraran tots els missatges que {{name}} ha enviat en aquesta comunitat.",
+      "kickBody": "{{name}} serà eliminat de la comunitat. Podrà tornar a unir-se més tard.",
+      "bannedUntil": "Banejat fins {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Silenciat fins {{date}}",
+      "bannedUntilShort": "Fins {{date}}",
+      "muteTitle": "Silenciar {{name}}",
+      "banTitle": "Banejar {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} de {{max}}",
+      "moveRuleUp": "Moure regla amunt",
+      "moveRuleDown": "Moure regla avall",
+      "deleteRule": "Eliminar regla",
+      "rights": {
+        "changeInfo": "Canviar informació de la comunitat",
+        "changeInfoHint": "Editar el nom, la descripció, l'avatar i el bàner",
+        "deleteMessages": "Eliminar missatges",
+        "deleteMessagesHint": "Eliminar qualsevol missatge del xat de la comunitat",
+        "restrictMembers": "Banejar usuaris",
+        "restrictMembersHint": "Silenciar, eliminar i bannejar membres",
+        "inviteUsers": "Convidar usuaris mitjançant enllaç",
+        "inviteUsersHint": "Crear i revocar enllaços d'invitació",
+        "pinMessages": "Fixar missatges",
+        "pinMessagesHint": "Fixar un missatge a la part superior del xat",
+        "manageEvents": "Gestionar esdeveniments",
+        "manageEventsHint": "Crear i editar esdeveniments de la comunitat",
+        "addAdmins": "Afegir nous administradors",
+        "addAdminsHint": "Promociona membres i edita els drets dels administradors que van afegir",
+        "remainAnonymous": "Romanir anònim",
+        "remainAnonymousHint": "Oculta aquest administrador de la llista de membres"
+      },
+      "durations": {
+        "oneHour": "1 hora",
+        "eightHours": "8 hores",
+        "oneDay": "1 dia",
+        "oneWeek": "1 setmana",
+        "forever": "Sempre"
+      }
+    },
+    "chooseAvatar": "Tria un avatar"
   },
   "work": {
     "title": "Recompenses",
@@ -2950,7 +3119,9 @@
       "shipped": "Enviat",
       "completed": "Completat",
       "cancelled": "Cancel·lat"
-    }
+    },
+    "removePhoto": "Elimina la foto",
+    "listingOptions": "Opcions de llistat"
   },
   "accounts": {
     "subtitle": "Comptes sencers en venda, amb preu en DHB",
@@ -3318,7 +3489,14 @@
     "removeFollowerHint": "Mantén premut un seguidor per eliminar-lo.",
     "cancel": "Cancel·lar",
     "remove": "Eliminar",
-    "thisUser": "Aquest usuari"
+    "thisUser": "Aquest usuari",
+    "cancelRequestTo": "Cancel·la la sol·licitud de seguir a @{{username}}?",
+    "followingUser": "Seguint @{{username}}",
+    "contentUnavailable": "Contingut no disponible",
+    "youBlockedBody": "No veuràs les seves publicacions ni podràs interactuar amb elles. Desbloqueja per restaurar l'accés.",
+    "restrictedBody": "Aquest usuari ha restringit les interaccions amb el teu compte.",
+    "requestPendingBody": "La teva sol·licitud de seguir s'ha enviat. Podràs veure les seves publicacions un cop aprovin la teva sol·licitud.",
+    "followToSeePosts": "Segueix aquest compte per veure les seves publicacions."
   },
   "reactionInfo": {
     "title": "Reaccions",
@@ -3633,7 +3811,8 @@
     "needGas": "Cal {{token}} natiu per al gas a {{chain}}.",
     "bridging": "S'està fent el pont…",
     "bridgeAction": "Pont {{from}} → {{to}}",
-    "failed": "El pont ha fallat"
+    "failed": "El pont ha fallat",
+    "sentArriveShortly": "{{amount}} DHB enviat des de {{from}} → {{to}}. Els tokens arribaran aviat."
   },
   "banned": {
     "title": "El teu compte està bloquejat",
@@ -3811,7 +3990,16 @@
     "legacyRecovered": "Hem verificat el teu compte antic{{suffix}} i n'hem recuperat la cartera. Defineix una contrasenya per protegir-la en aquest dispositiu —en aquest telèfon i a tot arreu— a partir d'ara.",
     "passwordMin": "Contrasenya (mín. {{min}} caràcters)",
     "newPasswordMin": "Contrasenya nova (mín. {{min}} caràcters)",
-    "newWalletPasswordMin": "Contrasenya de la cartera nova (mín. {{min}} caràcters)"
+    "newWalletPasswordMin": "Contrasenya de la cartera nova (mín. {{min}} caràcters)",
+    "deviceCheckCancelled": "Comprovació del dispositiu cancel·lada: no s'ha canviat res.",
+    "savePhraseTitle": "Guarda la teva frase de recuperació",
+    "startOverTitle": "Comença de nou amb una cartera nova",
+    "secureNewWalletTitle": "Protegeix la teva nova cartera",
+    "secureWalletTitle": "Protegeix la teva cartera",
+    "unlockOnMobileTitle": "Desbloqueja al mòbil",
+    "oldAccountFoundTitle": "S'ha trobat un compte antic",
+    "unlockWalletTitle": "Desbloqueja la teva cartera",
+    "phraseExplainer": "La teva cartera estarà protegida per la biometria d'aquest telèfon. Aquest desbloqueig <em>només funciona en aquest telèfon</em> — aquestes 12 paraules són l'única manera de tornar-hi si reinstal·les DeHub, canvies de telèfon o el perds."
   },
   "transcript": {
     "title": "Transcripció",
@@ -3998,7 +4186,38 @@
     "subscribe": "Subscriu-t'hi",
     "subscriberCount_one": "{{count}} subscriptor",
     "subscriberCount_other": "{{count}} subscriptors",
-    "subscribeToForRich": "Subscriu-te a <name>{{name}}</name> per <price>{{price}}</price>"
+    "subscribeToForRich": "Subscriu-te a <name>{{name}}</name> per <price>{{price}}</price>",
+    "loadPlansFailed": "No s'han pogut carregar els plans",
+    "subscriberContent": "Contingut per a subscriptors",
+    "subscriberContentSub": "Crea plans per oferir contingut exclusiu als subscriptors",
+    "createFirstPlan": "Crea el teu primer pla",
+    "addNewPlan": "Afegeix un pla nou",
+    "durations": {
+      "oneMonth": "1 Mes",
+      "threeMonths": "3 Mesos",
+      "sixMonths": "6 Mesos",
+      "oneYear": "1 Any",
+      "lifetime": "Per sempre"
+    },
+    "planNameRequired": "Cal el nom del pla",
+    "enterValidPrice": "Introdueix un preu vàlid",
+    "availableChains": "Les subscripcions estan disponibles actualment a Base i BNB",
+    "waitForSwitch": "Espereu que la xarxa de subscripció acabi de canviar",
+    "connectAndWait": "Connecteu la vostra cartera i espereu la xarxa de subscripció",
+    "planUpdated": "Pla actualitzat",
+    "creating": "Creant…",
+    "planPublished": "Pla creat i publicat",
+    "createPlanTitle": "Crea un pla de subscripció",
+    "network": "Xarxa de subscripció",
+    "planNameLabel": "Nom del pla *",
+    "planNamePlaceholder": "p. ex. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Què obtindran els subscriptors...",
+    "priceLabel": "Preu (USD) *",
+    "legacyMigrationNote": "L'estalvi migra aquest pla DHB antic a preus en dòlars a la tarifa prèvia a la cotització.",
+    "benefits": "Beneficis",
+    "benefitPlaceholder": "Afegeix un benefici...",
+    "createAndPublish": "Crea i publica",
+    "publishingOnChain": "La publicació és una transacció on-chain"
   },
   "live": {
     "notSet": "Sense definir",
@@ -4116,7 +4335,22 @@
     "acceptTerms": "Accepto els <terms>Termes i condicions del servei</terms>",
     "sentTo": "S'ha enviat {{amount}} {{symbol}} a {{address}}",
     "tokensSentTo": "S'han enviat fitxes a {{address}}",
-    "goToProfile": "Ves a Perfil."
+    "goToProfile": "Ves a Perfil.",
+    "aboutTitle": "Quant a DeHub i pagaments",
+    "aboutSubtitle": "La teva passarel·la per a pagaments de tokens sense problemes",
+    "aboutTokenTitle": "Token DeHub",
+    "aboutTokenBody": "Els tokens s'utilitzen per subscriure's a creadors, donar propines a streamers o desbloquejar contingut. Com més en tinguis, més baixes seran les teves tarifes i més superpoders desbloquejaràs com impulsos de tendències a la línia de temps i insígnies de verificació.",
+    "aboutInstantTitle": "Pagaments instantanis",
+    "aboutInstantBody": "Utilitzant Stripe, pots comprar tokens a l'instant i sense problemes al compte on estiguis connectat. DeHub fa que els tokens siguin senzills i per a tothom. Si necessites més suport, només has de connectar-te al nostre xat comunitari en directe 24/7 i demanar suport a l'administrador.",
+    "aboutSecureTitle": "Passarel·la segura",
+    "aboutSecureBody": "Tots els detalls de pagament estan xifrats i processats de manera segura per Stripe. No podem accedir ni emmagatzemar la teva informació sensible ni els detalls de la teva targeta, cosa que et proporciona la màxima tranquil·litat.",
+    "transfersSummary": "Resum de transferències",
+    "availableToBuy": "Disponible per comprar ara",
+    "noSupplyShort": "Sense subministrament",
+    "topUpSubtitle": "Compra $DHB amb targeta i obtén gas gratuït per utilitzar a l'instant",
+    "noTxHash": "No s'ha pogut trobar l'hash de la transacció",
+    "latestTransactions": "Últimes transaccions",
+    "showAll": "Mostra-ho tot"
   },
   "musicSheet": {
     "title": "Crea una cançó",
@@ -4245,7 +4479,13 @@
     "followUpNote": "És possible que et contactem amb preguntes de seguiment sobre els teus comentaris",
     "submitFeedback": "Envia els comentaris",
     "provideFeedback": "Escriu els teus comentaris",
-    "thankYou": "Gràcies pels teus comentaris!"
+    "thankYou": "Gràcies pels teus comentaris!",
+    "submitFailed": "No s'ha pogut enviar el comentari. Torna-ho a provar.",
+    "maybeLater": "Més tard",
+    "helpUsImprove": "Ajuda'ns a millorar",
+    "rateExperience": "Com qualificaries la teva experiència?",
+    "telegramOptional": "Telegram (opcional)",
+    "discordOptional": "Discord (opcional)"
   },
   "migrate": {
     "clearAll": "Esborrar tot",
@@ -4363,7 +4603,14 @@
       "blueWhale": "La cosa més gran que ha viscut mai. Ets tu.",
       "megalodon": "Aquí tens la teva corona: ara ets la realeça de l'aplicació"
     },
-    "continue": "Torna a DeHub"
+    "continue": "Torna a DeHub",
+    "none": "Cap",
+    "noBadgeYet": "Cap insígnia encara",
+    "next": "Següent",
+    "topTier": "Màxim nivell",
+    "toNextTier": "{{amount}} DHB a {{tier}}",
+    "everyTierUnlocked": "Cada nivell desbloquejat",
+    "holdNote": "Un cop es desbloqueja una insígnia, és teva mentre tinguis els teus DHB. El nombre de tokens necessaris per desbloquejar una nova insígnia pot canviar amb el preu del token."
   },
   "passwordStrength": {
     "veryWeak": "Molt feble",
@@ -4445,7 +4692,11 @@
     },
     "ttsLabel": "Digues alguna cosa en veu alta",
     "ttsPlaceholder": "Llegiu el flux...",
-    "ttsHint": "Llegiu en veu alta a tothom que estigui mirant quan arribi el vostre regal."
+    "ttsHint": "Llegiu en veu alta a tothom que estigui mirant quan arribi el vostre regal.",
+    "sendAGift": "Enviar un regal",
+    "minPlaceholder": "Mín: {{amount}}",
+    "minGift": "El regal mínim és {{amount}}",
+    "sendGift": "Enviar regal"
   },
   "goLive": {
     "streamKey": "Clau de transmissió",
@@ -4828,7 +5079,8 @@
         "title": "Descobreix com funcionen els ingressos",
         "body": "Descobreix com els consells, les insígnies i els Superpoders converteixen el que fas aquí en una cosa per la qual guanyes diners."
       }
-    }
+    },
+    "swipeToStart": "Llisca per començar"
   },
   "conversation": {
     "commonGround": {
@@ -5310,5 +5562,18 @@
     "toastPaidSettled": "Pagat — l'operació s'ha liquidat",
     "walletNotReady": "La teva cartera encara no està a punt — torna-ho a provar d'aquí a un moment.",
     "wrongChain": "Aquesta operació es liquida a {{chain}}. Canvia a {{chain}} a Configuració i torna-ho a provar."
+  },
+  "moderation": {
+    "appealDuplicate": "Ja has apel·lat a això",
+    "appealSent": "Recurs enviat",
+    "appealFailed": "No s'ha pogut presentar aquesta apel·lació",
+    "appealTitle": "Apel·la aquesta decisió",
+    "appealSubtitle": "Una persona ho llegirà i tornarà a veure la decisió.",
+    "appealPlaceholder": "Què creus que s'ha perdut? El context sobre el contingut ajuda més que res.",
+    "appealSend": "Envia una reclamació",
+    "appealFootnote": "Tens un número de referència i la resposta torna aquí. Un recurs per resolució.",
+    "appealRef": "Referència {{ref}}",
+    "appealSubtitleSubject": "Una persona ho llegirà i tornarà a mirar {{subject}}.",
+    "appealMore": "Encara calen caràcters: {{count}}"
   }
 }

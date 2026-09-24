@@ -683,7 +683,11 @@
       "hintAllow": "Usoro AI na crawlers ndị na-akwanyere mgbaàmà a ùgwù nwere ike ịzụ na ọdịyo gị, ihe osise na ederede.",
       "hintDeny": "AI usoro na crawlers na-akwanyere mgbaàmà a na-jụrụ ghara ịzụ na gị audio, artwork na ide. A naghị egbochi ndị na-agbagharị agbagharị na-eleghara ihe mgbaàmà ahụ anya.",
       "saved": "AI ọzụzụ mmasị echekwara"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "AGBALAM",
+    "exportPkCopy": "Detuo igodo nzuzo",
+    "e2eAutomatic": "Akwụkwọ"
   },
   "common": {
     "mute": "Mechie ụda",
@@ -723,7 +727,17 @@
     "optionalSuffix": "(nhọrọ)",
     "yesterday": "Ụnyaahụ",
     "ok": "Ọ dị mma",
-    "continue": "Gaa n 'ihu?"
+    "continue": "Gaa n 'ihu?",
+    "goesToHomeFeed": "Na-aga nri nri ulo",
+    "openMenu": "Mepee menu",
+    "scrollsFeedToTop": "Na-agbada elu nri nri ulo ma na-eme ka ọ dị ọhụrụ",
+    "notificationsUnread": "Ọkwa, {{unread}} na-agụbeghị",
+    "errorDetails": "Nkọwa mmehihe:",
+    "failedToLoad": "Emeghị ka ọ budata",
+    "noInternetTitle": "Enweghị njikọ Internet",
+    "noInternetBody": "Biko lelee njikọ internet gị ma gbalịa ọzọ. Ị chọrọ ijikọ na internet iji jiri DeHub.",
+    "noInternetStatus": "N'ịntanetị - Enweghị njikọ netwọkụ",
+    "noInternetHint": "Jide n'aka na Wi-Fi ma ọ bụ data mkpanaka gbanyere, wee pịa \"{{action}}\""
   },
   "tip": {
     "title": "Ziga Onyinye",
@@ -1606,7 +1620,12 @@
     "chooseUsernameBody": "Họrọ aha njirimara na aha ngosi iji gaa n'ihu. Ị nwere ike gbanwee ha emesịa.",
     "checkingAvailability": "Na-enyocha ịdị adị…",
     "usernameTakenHint": "E werela aha a — gbalịa ịtinye ọnụọgụ ma ọ bụ ahịrị n'okpuru",
-    "displayNameLength": "Aha ngosi ga-abụrịrị mkpụrụedemede 2-50."
+    "displayNameLength": "Aha ngosi ga-abụrịrị mkpụrụedemede 2-50.",
+    "loginFailedRetry": "Ntinye aka dara. Biko gbalịa ọzọ.",
+    "sendCodeFailedRetry": "E nweghị ike izipu koodu. Biko gbalịa ọzọ.",
+    "invalidCodeRetry": "Koodu na-ezighi ezi. Biko gbalịa ọzọ.",
+    "invalidEmailOrPassword": "Email ma ọ bụ paswọọdụ na-ezighi ezi.",
+    "welcomeToDehub": "Nnọọ na DeHub"
   },
   "messages": {
     "smartRepliesOff": "Agbanyụọla nzaghachi atụrụ aro",
@@ -1684,7 +1703,32 @@
     "offerWorthNow": "Ihe dị ka {{amount}} DHB n’ọnụahịa ugbu a",
     "offerNotePlaceholder": "Tinye ozi (nhọrọ)",
     "offerCommitsNothing": "Inye onyinye ọnụahịa adịghị efu ihe ọ bụla, ọ naghịkwa akpọchi DHB. Ị na-akwụ ụgwọ naanị ma onye nwe ya nabata.",
-    "offerNeedsHandle": "Akaụntụ a enweghị aha njirimara a ga-enye onyinye ọnụahịa."
+    "offerNeedsHandle": "Akaụntụ a enweghị aha njirimara a ga-enye onyinye ọnụahịa.",
+    "noPostsYet": "Enweghị posts ka",
+    "noPostsYetSub": "Ihe ga-apụta ebe a mgbe e bipụtara ya",
+    "noPinnedPosts": "Enweghị posts etinyere ka",
+    "noPinnedPostsSub": "Posts etinyere ga-apụta ebe a",
+    "emptyLiked": "Enweghị posts masịrị ka.",
+    "emptySaved": "Enweghị posts echekwara ka.",
+    "emptyUnlocked": "Enweghị posts akpọchiri akpọchi ka.",
+    "emptyWatched": "Enweghị akụkọ ihe ngosi elekere ka.",
+    "emptyFolder": "Enweghị posts na folda a ka.",
+    "emptyPosts": "Enweghị posts ka.",
+    "couldNotLoadPosts": "E nweghị ike ibudata posts.",
+    "noPostsOrReplies": "Ọ dịghị posts, comments, ma ọ bụ nzaghachi ọ bụla",
+    "noPostsOrRepliesSub": "Ha ga-apụta ebe a",
+    "avatarUpdated": "E dechara avatar",
+    "coverUpdated": "E dechara mkpuchi",
+    "couldNotPickImage": "E nweghị ike ịhọrọ onyonyo",
+    "changeCoverImage": "Gbanwee onyonyo mkpuchi",
+    "changeAvatar": "Gbanwee avatar",
+    "verifiedEnsName": "Aha ENS enyochara {{name}}",
+    "notFullyJoined": "Onye ọrụ a abanyebeghị nke ọma. Ha ekwughị aha njirimara ma ọ bụ mezue nhazi profaịlụ. Ị ka nwere ike ilele ọrụ ọha na eze ma zipụ ndụmọdụ ma ọ bụrụ na ọ dị.",
+    "loadRepliesFailed": "E nweghị ike ibudata nzaghachi",
+    "refreshFailed": "Ndozi dara",
+    "noRepliesYet": "Ọ dịghị nzaghachi ọ bụla",
+    "noRepliesYetSub": "Mgbe onye ọrụ a zara ajụjụ, ha ga-apụta ebe a.",
+    "noMoreReplies": "Ọ dịghị nzaghachi ọzọ"
   },
   "tv": {
     "title": "TV",
@@ -1767,7 +1811,11 @@
     "loadingPrice": "Na-ebu ọnụahịa…",
     "topUpExplanation": "A na-ebufe DHB n'agbụ gaa n'ụlọakụ mgbasa ozi DeHub, mgbe ahụ a ga-etinye ya n'ego gị mgbe enyochachara ya n'onwe ya na agbụ.",
     "paymentHistory": "Akụkọ ntinye ụgwọ",
-    "noPayments": "Enweghị ịkwụ ụgwọ ma"
+    "noPayments": "Enweghị ịkwụ ụgwọ ma",
+    "sponsored": "Nkwado",
+    "morePosts": "Ọtụtụ posts",
+    "loadMorePosts": "Budata ọtụtụ posts",
+    "playAdVideo": "Kpọọ vidiyo mgbasa ozi"
   },
   "buyCoins": {
     "title": "Zụta Mkpụrụ Ego",
@@ -2202,7 +2250,8 @@
     "privateBalanceMode": "Ọnọdụ nguzozi nzuzo gbanyere",
     "addressHidden": "E zoro adreesị",
     "allowInFeeds": "Kwe ka onye ọrụ a pụta na feed gị",
-    "hideContent": "Zoo ọdịnaya ha ma machie mkparịta ụka"
+    "hideContent": "Zoo ọdịnaya ha ma machie mkparịta ụka",
+    "a11yLabel": "Nhọrọ profaịlụ"
   },
   "toasts": {
     "saved_to_bookmarks": "Echekwara na bukmaak",
@@ -2574,7 +2623,8 @@
     "roles": {
       "owner": "Onye nwe",
       "moderator": "Onye nhazi",
-      "member": "Onye otu"
+      "member": "Onye otu",
+      "admin": "Onye nchịkwa"
     },
     "time": {
       "today": "taa",
@@ -2583,7 +2633,126 @@
       "weeks": "Izu {{count}}",
       "months": "Ọnwa {{count}}",
       "years": "Afọ {{count}}"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "edegharịrị",
+      "deleteTitle": "Hichapụ ozi",
+      "deleteConfirm": "Hichapụ ozi a? Enweghị ike ịgbagha nke a.",
+      "muted": "A gbachiri gị ọnụ",
+      "postingDisabled": "A machibidoro izipu ozi maka ndị otu ebe a",
+      "mediaMessage": "Mgbasa ozi",
+      "pinnedMessage": "Ozi etinyere",
+      "showEarlier": "Gosi ozi ndị gara aga",
+      "editingMessage": "Degharị ozi",
+      "copied": "Ozi e depụtaghachiri",
+      "copyText": "Debata ngwe",
+      "mutedUntil": "Ị na-muted ruo mgbe {{date}}",
+      "slowMode": "Ọnọdụ nwayọ: otu ozi ọ bụla {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Wepụ admin",
+      "cancel": "Kagbuo",
+      "dismissAdmin": "Wepụ admin",
+      "roleAdmin": "Nchịkwa",
+      "roleMember": "Òtù",
+      "whatCanTheyDo": "Kedu ihe onye nchịkwa a nwere ike ime?",
+      "rightNotHeld": "Ị nweghị ikike a n 'onwe gị.",
+      "customTitle": "Isiokwu emeredịkachọrọ",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Egosi kama nke ndabere Admin baajị.",
+      "saveChanges": "Chekwaa mgbanwe",
+      "promote": "Nkwalite",
+      "tabs": {
+        "members": "Ndị òtù",
+        "admins": "Admins",
+        "permissions": "Ikikembanye:",
+        "invites": "Òkù",
+        "rules": "Iwu",
+        "recentActions": "Omume ndị ọfụụ",
+        "danger": "Mpaghara ihe ize ndụ"
+      },
+      "title": "Jikwaa",
+      "purgeTitle": "Hichaa ozi niile?",
+      "purgeConfirm": "Hichaa",
+      "kickTitle": "Wepụ onye òtù?",
+      "kickConfirm": "Wepụ",
+      "bannedPermanent": "Amachibidoro — na-adịgide adịgide",
+      "mutedPermanent": "Muted — na-adịgide adịgide",
+      "editAdminRights": "Dezie ikike nchịkwa",
+      "promoteToAdmin": "Kwado ka ọ bụrụ onye nchịkwa",
+      "unmute": "Kwụsị ịgbachi nkịtị",
+      "mute": "Gbachi nkịtị",
+      "unban": "Kwụsị ịchụpụ",
+      "ban": "Chụpụ",
+      "deleteAllMessages": "Hichapụ ozi niile",
+      "removeFromCommunity": "Wepụ na obodo",
+      "noActionsAvailable": "I gaghị enwe ike ịchịkwa onye a.",
+      "showMore": "Gosi ihe ndị ọzọ",
+      "joinRequests": "Ngwa ịbanye",
+      "approve": "Kwado",
+      "reject": "Jụ",
+      "members": "Ndị otu",
+      "searchMembers": "Chọọ site na adreesị akpa",
+      "noMembersMatch": "Ọ dịghị onye otu dabara na nke ahụ.",
+      "noMembers": "Ndị otu adịghị",
+      "muted": "Ndị gbachiri nkịtị",
+      "banned": "Ndị chụpụrụ",
+      "muteEffect": "Ha na-anọ na obodo mana ha enweghị ike ibipụta ruo mgbe ịgbachi nkịtị ga-ejedebe.",
+      "banEffect": "A napụrụ ha na mkparịta ụka ahụ ma ha enweghị ike isonye ọzọ ruo mgbe a ga-ebuli mmachibido iwu ahụ.",
+      "durationLabel": "Oge",
+      "reasonLabel": "Ihe kpatara ya (nhọrọ)",
+      "reasonPlaceholder": "Gịnị mere e ji achụpụ ha?",
+      "alsoDeleteMessages": "Kpochapụkwa ozi ha niile",
+      "confirmMute": "Gbachi onye otu ahụ nkịtị",
+      "confirmBan": "Chụpụ onye otu ahụ",
+      "rulesUpdated": "E degharịrị iwu",
+      "rulesTitle": "Iwu obodo",
+      "rulesEmpty": "Iwu adịghị — tinye nke mbụ n'okpuru.",
+      "rulePlaceholder": "Kọwa iwu",
+      "addRule": "Tinye iwu",
+      "saveRules": "Chekwa iwu",
+      "dismissAdminBody": "{{wallet}} ga-alaghachi ka ọ bụrụ onye otu nkịtị.",
+      "purgeBody": "Ozi ọ bụla {{name}} zipụrụ na obodo a ga-ewepụ ya.",
+      "kickBody": "A ga-ewepụ {{name}} na obodo ahụ. Ha nwere ike isonye ọzọ ma emechaa.",
+      "bannedUntil": "Agụnyere ruo {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Ejighị {{date}}",
+      "bannedUntilShort": "Ruo {{date}}",
+      "muteTitle": "Gbanyụọ {{name}}",
+      "banTitle": "Machibido {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} nke {{max}}",
+      "moveRuleUp": "Bugharịa iwu elu",
+      "moveRuleDown": "Bugharịa iwu ala",
+      "deleteRule": "Hichapụ iwu",
+      "rights": {
+        "changeInfo": "Gbanwee ozi obodo",
+        "changeInfoHint": "Dezie aha, nkọwa, avatar na ọkọlọtọ",
+        "deleteMessages": "Hichapụ ozi",
+        "deleteMessagesHint": "Wepụ ozi ọ bụla na mkparịta ụka obodo",
+        "restrictMembers": "Machibido ndị ọrụ",
+        "restrictMembersHint": "Gbanyụọ, wepụ ma machibido ndị otu",
+        "inviteUsers": "Kpọọ ndị ọrụ site na njikọ",
+        "inviteUsersHint": "Mepụta ma kagbuo njikọ oku",
+        "pinMessages": "Tinye ozi",
+        "pinMessagesHint": "Tinye ozi n'elu mkparịta ụka",
+        "manageEvents": "Jikwaa ihe omume",
+        "manageEventsHint": "Mepụta ma dezie ihe omume obodo",
+        "addAdmins": "Tinye ndị nchịkwakwa ọhụrụ",
+        "addAdminsHint": "Kwado ndị otu ma dezie ikike nke ndị nchịkwa ha gbakwunyere",
+        "remainAnonymous": "Nọrọ na nzuzo",
+        "remainAnonymousHint": "Zoo onye nchịkwa a na ndepụta ndị otu"
+      },
+      "durations": {
+        "oneHour": "1 awa",
+        "eightHours": "8 awa",
+        "oneDay": "1 ụbọchị",
+        "oneWeek": "1 izu",
+        "forever": "Ruo mgbe ebighị ebi"
+      }
+    },
+    "chooseAvatar": "Họrọ avatar"
   },
   "work": {
     "title": "Onyinye ọrụ",
@@ -2935,7 +3104,9 @@
       "shipped": "Ezigala",
       "completed": "Emechara",
       "cancelled": "Akagbuola"
-    }
+    },
+    "removePhoto": "Wepụ foto",
+    "listingOptions": "Nhọrọ ndepụta"
   },
   "accounts": {
     "subtitle": "Aha ndị a na-ere, ọnụahịa na DHB",
@@ -3303,7 +3474,14 @@
     "removeFollowerHint": "Pịa ma jide onye na-eso ụzọ iji wepụ ya.",
     "cancel": "Kagbuo",
     "remove": "Wepu",
-    "thisUser": "Ojieme a"
+    "thisUser": "Ojieme a",
+    "cancelRequestTo": "Kagbuo arịrịọ ịgbaso @{{username}}?",
+    "followingUser": "Na-eso @{{username}}",
+    "contentUnavailable": "Ọdịnaya adịghị",
+    "youBlockedBody": "Agaghị ahụ posts ha ma ọ bụ nwee ike ịmekọrịta ha. Meghee ka ịweghachi ohere.",
+    "restrictedBody": "Onye ọrụ a egbochila mmekọrịta na akaụntụ gị.",
+    "requestPendingBody": "E zigara arịrịọ ịgbaso gị. Ị ga-enwe ike ịhụ posts ha ozugbo ha kwadoro arịrịọ gị.",
+    "followToSeePosts": "Soro akaụntụ a ka ịhụ posts ha."
   },
   "reactionInfo": {
     "title": "Mmetụta",
@@ -3611,7 +3789,8 @@
     "needGas": "Ị chọrọ {{token}} nke sitere na ya maka gas na {{chain}}.",
     "bridging": "Na-àkwà…",
     "bridgeAction": "Àkwà {{from}} → {{to}}",
-    "failed": "Àkwà dara"
+    "failed": "Àkwà dara",
+    "sentArriveShortly": "{{amount}} DHB zipụrụ site na {{from}} → {{to}}. Tokens ga-abịa n'oge na-adịghị anya."
   },
   "banned": {
     "title": "A machibidoro akaụntụ gị",
@@ -3789,7 +3968,16 @@
     "legacyRecovered": "Anyị enyochaala akaụntụ ochie gị{{suffix}} wee weghachite obere akpa ya. Tọọ okwuntughe iji chekwaa ya na ngwaọrụ a — na ekwentị a na ebe ọ bụla ọzọ, site ugbu a.",
     "passwordMin": "Okwuntughe (opekata mpe mkpụrụedemede {{min}})",
     "newPasswordMin": "Okwuntughe ọhụrụ (opekata mpe mkpụrụedemede {{min}})",
-    "newWalletPasswordMin": "Okwuntughe obere akpa ọhụrụ (opekata mpe mkpụrụedemede {{min}})"
+    "newWalletPasswordMin": "Okwuntughe obere akpa ọhụrụ (opekata mpe mkpụrụedemede {{min}})",
+    "deviceCheckCancelled": "E mere ka nlele ngwaọrụ kwụsị — enweghị ihe agbanwere.",
+    "savePhraseTitle": "Chekwaa okwu mgbake gị",
+    "startOverTitle": "Malitegharịa na obere akpa ọhụrụ",
+    "secureNewWalletTitle": "Chekwaa obere akpa ọhụrụ gị",
+    "secureWalletTitle": "Chekwaa obere akpa gị",
+    "unlockOnMobileTitle": "Meghee na mobile",
+    "oldAccountFoundTitle": "E nwetara akaụntụ ochie",
+    "unlockWalletTitle": "Meghee obere akpa gị",
+    "phraseExplainer": "Ekwentị a ga-eji ihe mkpịsị aka gị chekwaa obere akpa gị. Nke a <em>na-arụ ọrụ naanị na ekwentị a</em> — okwu 12 ndị a bụ naanị ụzọ ị ga-esi laghachi ma ọ bụrụ na ịwụnye DeHub ọzọ, gbanwee ekwentị, ma ọ bụ tufuo ya."
   },
   "transcript": {
     "title": "Ihe edere ede",
@@ -3975,7 +4163,38 @@
     "subscribe": "Debanye aha",
     "subscriberCount_one": "Onye debanyere aha {{count}}",
     "subscriberCount_other": "Ndị debanyere aha {{count}}",
-    "subscribeToForRich": "Debanye aha na <name>{{name}}</name> maka <price>{{price}}</price>"
+    "subscribeToForRich": "Debanye aha na <name>{{name}}</name> maka <price>{{price}}</price>",
+    "loadPlansFailed": "E nweghị ike ibugharị atụmatụ",
+    "subscriberContent": "Ọdịnaya onye debanyere aha",
+    "subscriberContentSub": "Mepụta atụmatụ iji nye ọdịnaya pụrụ iche nye ndị debanyere aha",
+    "createFirstPlan": "Mepụta Atụmatụ Mbụ Gị",
+    "addNewPlan": "Tinye Atụmatụ Ọhụrụ",
+    "durations": {
+      "oneMonth": "Ọnwa 1",
+      "threeMonths": "ọnwa 3",
+      "sixMonths": "ọnwa 6",
+      "oneYear": "Afọ 1",
+      "lifetime": "Ndụ niile"
+    },
+    "planNameRequired": "A chọrọ aha atụmatụ",
+    "enterValidPrice": "Tinye ọnụahịa ziri ezi",
+    "availableChains": "Ndebanye aha dị ugbu a na Base na BNB",
+    "waitForSwitch": "Chere ka netwọkụ ndebanye aha gwụchaa ịgbanwe",
+    "connectAndWait": "Jikọọ akpa gị ma chere maka netwọkụ ndebanye aha",
+    "planUpdated": "Emelitere atụmatụ",
+    "creating": "Na-eke…",
+    "planPublished": "E mepụtara atụmatụ ma bipụta ya",
+    "createPlanTitle": "Mepụta Atụmatụ Ndebanye Aha",
+    "network": "Netwọkụ ndebanye aha",
+    "planNameLabel": "Aha Atụmatụ *",
+    "planNamePlaceholder": "dịka. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Ihe ndị debanyere aha ga-enweta...",
+    "priceLabel": "Ọnụahịa (USD) *",
+    "legacyMigrationNote": "Nchekwa na-ebugharị atụmatụ DHB ochie a na ọnụahịa dollar na ọnụego tupu ndepụta.",
+    "benefits": "Uru",
+    "benefitPlaceholder": "Tinye uru…",
+    "createAndPublish": "Mepụta & Bipụta",
+    "publishingOnChain": "Ihe ngosi bụ azụmahịa dị na ntanetị"
   },
   "live": {
     "notSet": "Edobeghị",
@@ -4092,7 +4311,22 @@
     "checkoutUnavailable": "Njikọ ịkwụ ụgwọ adịghị. Nwaa ọzọ.",
     "acceptTerms": "Anabatara m <terms>Usoro ọrụ</terms>",
     "tokensSentTo": "E zigara Tokens na {{address}}",
-    "goToProfile": "Gaa na profaịlụ"
+    "goToProfile": "Gaa na profaịlụ",
+    "aboutTitle": "Banyere DeHub & ịkwụ ụgwọ",
+    "aboutSubtitle": "Ụzọ gị maka ịkwụ ụgwọ token na-enweghị nsogbu",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "A na-eji akara maka ndenye aha na ndị okike, inye ndị na-agbasa ozi ego, ma ọ bụ imeghe ọdịnaya. Ka ị na-ejide ọtụtụ ihe, ka obere ụgwọ gị na-adị, ma ka ị na-emeghe ike karịa dị ka nkwalite usoro oge na akara nkwado.",
+    "aboutInstantTitle": "Ịkwụ ụgwọ ozugbo",
+    "aboutInstantBody": "Iji Stripe, ị nwere ike ịzụta akara ozugbo na enweghị nsogbu n'ime akaụntụ ọ bụla ị banyere. DeHub na-eme ka akara dị mfe ma maka mmadụ niile. Ọ bụrụ na ịchọrọ nkwado ọzọ, naanị pụta na mkparịta ụka obodo anyị dị ndụ 24/7 ma rịọ nkwado nchịkwa.",
+    "aboutSecureTitle": "Ụzọ nchekwa",
+    "aboutSecureBody": "A na-ezochi nkọwa ịkwụ ụgwọ niile ma Stripe na-ejikwa ha n'enweghị nsogbu. Anyị enweghị ike ịnweta ma ọ bụ chekwaa ozi gị dị mkpa ma ọ bụ nkọwa kaadị gị, na-enye gị obi iru ala zuru oke.",
+    "transfersSummary": "Nchịkọta Mfefe",
+    "availableToBuy": "Dị maka ịzụta ugbu a",
+    "noSupplyShort": "Enweghị ngwaahịa",
+    "topUpSubtitle": "Zụta $DHB na kaadị ma nweta gas efu iji jiri ozugbo",
+    "noTxHash": "Achọtaghị hash nke azụmahịa",
+    "latestTransactions": "Azụmahịa kacha ọhụrụ",
+    "showAll": "Gosi ihe niile"
   },
   "musicSheet": {
     "title": "Mepụta abụ",
@@ -4221,7 +4455,13 @@
     "followUpNote": "Anyị nwere ike ịkpọtụrụ gị ịjụ ajụjụ ndị ọzọ gbasara nzaghachi gị",
     "submitFeedback": "Zipụ nzaghachi",
     "provideFeedback": "Biko dee nzaghachi gị",
-    "thankYou": "Daalụ maka nzaghachi gị!"
+    "thankYou": "Daalụ maka nzaghachi gị!",
+    "submitFailed": "Emechaghị izipu nzaghachi. Biko nwaa ọzọ.",
+    "maybeLater": "Mgbe e mesịrị",
+    "helpUsImprove": "Nyere anyị aka imeziwanye",
+    "rateExperience": "Kedu ka ị ga-esi kewaa ahụmahụ gị?",
+    "telegramOptional": "Telegram (nhọrọ)",
+    "discordOptional": "Discord (nhọrọ)"
   },
   "migrate": {
     "clearAll": "Hichapụ ihe niile",
@@ -4338,7 +4578,14 @@
       "blueWhale": "Ihe kachasị ukwuu nke dịrịla ndụ. Nke ahụ bụ gị.",
       "megalodon": "Nke a bụ okpueze gị — ị bụ eze ngwa ugbu a"
     },
-    "continue": "Laghachi na DeHub"
+    "continue": "Laghachi na DeHub",
+    "none": "Ọ dịghị ihe",
+    "noBadgeYet": "Enweghị akara ka",
+    "next": "Na-esote",
+    "topTier": "Ọkwa kachasị elu",
+    "toNextTier": "{{amount}} DHB na {{tier}}",
+    "everyTierUnlocked": "Tier ọ bụla emeghechara",
+    "holdNote": "Ozugbo emeghechara akara, ọ bụ gị ka ọ ga-adị ka ogologo oge ị na-ejide DHB gị. Ọnụ ọgụgụ akara achọrọ iji mepee akara ọhụrụ nwere ike ịgbanwe na ọnụahịa akara."
   },
   "passwordStrength": {
     "veryWeak": "Adịghị ike ma ọlị",
@@ -4420,7 +4667,11 @@
     },
     "ttsLabel": "Kwuo ihe n 'olu dara ụda",
     "ttsPlaceholder": "Gụpụta na iyi...",
-    "ttsHint": "Gụọ onye ọ bụla na-ekiri mgbe onyinye gị rutere."
+    "ttsHint": "Gụọ onye ọ bụla na-ekiri mgbe onyinye gị rutere.",
+    "sendAGift": "Zipụ Onyinye",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Onyinye kacha nta bụ {{amount}}",
+    "sendGift": "Zipụ Onyinye"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4801,7 +5052,8 @@
         "title": "Lee otú ịkpata ọrụ na-arụ ọrụ",
         "body": "Chọpụta ka ndụmọdụ, baajị na SuperPower si gbanwee ihe ị na-eme ebe a ka ọ bụrụ ihe ị na-enweta site na ya."
       }
-    }
+    },
+    "swipeToStart": "Mee ka ọsọ iji malite"
   },
   "conversation": {
     "commonGround": {
@@ -5283,5 +5535,18 @@
     "toastPaidSettled": "Akwụla ụgwọ — azụmahịa ahụ emechaala",
     "walletNotReady": "Obere akpa ego gị adịbeghị njikere — nwaa ọzọ n'oge na-adịghị anya.",
     "wrongChain": "Azụmahịa a na-emecha na {{chain}}. Gbanwee gaa {{chain}} na Ntọala, wee nwaa ọzọ."
+  },
+  "moderation": {
+    "appealDuplicate": "Ị rịọlarị arịrịọ a.",
+    "appealSent": "Zitere mkpesa",
+    "appealFailed": "Agaghị edebenwu mkpokọta ahụ",
+    "appealTitle": "Kpọọ mkpebi a",
+    "appealSubtitle": "Mmadụ ga-agụ ihe a ma lee mkpebi ahụ anya ọzọ.",
+    "appealPlaceholder": "Gịnị ka i chere na a tụfuru? Ọnọdụ gbasara ọdịnaya ahụ na-enyere aka karịa ihe ọ bụla ọzọ.",
+    "appealSend": "Ziga mkpesa",
+    "appealFootnote": "Ị nwetara nọmba ntụaka, ma azịza ya laghachiri ebe a. Otu mkpesa maka mkpebi.",
+    "appealRef": "Reference {{ref}}",
+    "appealSubtitleSubject": "Mmadụ ga-agụ ihe a ma lee anya ọzọ na {{subject}}.",
+    "appealMore": "Ihe odide ka dị mkpa: {{count}}"
   }
 }

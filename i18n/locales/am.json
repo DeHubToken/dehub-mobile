@@ -682,7 +682,11 @@
       "hintAllow": "ይህንን ምልክት የሚያከብሩ የአይ ሲስተሞች እና ተንሸራታቾች በድምጽዎ ፣ በኪነ-ጥበባትዎ እና በጽሑፍዎ ላይ ሊያሠለጥኑ ይችላሉ ።",
       "hintDeny": "ይህንን ምልክት የሚያከብሩ የአይ ሲስተሞች እና ተንሸራታቾች በድምጽዎ ፣ በኪነ-ጥበባትዎ እና በጽሑፍዎ ላይ እንዳያሰለጥኑ ይጠየቃሉ ። ምልክቱን ችላ የሚሉ ተንኮለኞች አይከለከሉም ።",
       "saved": "የአይአይ ስልጠና ምርጫ ተቀምጧል"
-    }
+    },
+    "chainIdLabel": "የሰንሰለት መታወቂያ፡ {{id}}",
+    "exportPkConfirmPhrase": "ተረድቻለሁ",
+    "exportPkCopy": "የግል ቁልፍን ቅዳ",
+    "e2eAutomatic": "በራስ-ሰር"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",
@@ -722,7 +726,17 @@
     "optionalSuffix": "(አማራጭ)",
     "yesterday": "ትናንት",
     "ok": "እሺ",
-    "continue": "ይቀጥሉ"
+    "continue": "ይቀጥሉ",
+    "goesToHomeFeed": "ወደ መነሻ ምግብ ይሄዳል",
+    "openMenu": "ምናሌ ክፈት",
+    "scrollsFeedToTop": "ወደ ምግቡ አናት ይሸብልል እና ያድሳል",
+    "notificationsUnread": "ማሳወቂያዎች፣ {{unread}} ያልተነበቡ",
+    "errorDetails": "የስህተት ዝርዝሮች፡",
+    "failedToLoad": "ለመጫን አልተቻለም",
+    "noInternetTitle": "የበይነመረብ ግንኙነት የለም",
+    "noInternetBody": "እባክዎ የበይነመረብ ግንኙነትዎን ያረጋግጡ እና እንደገና ይሞክሩ። DeHub ለመጠቀም ከበይነመረቡ ጋር መገናኘት ያስፈልግዎታል።",
+    "noInternetStatus": "ከመስመር ውጭ - ምንም የአውታረ መረብ ግንኙነት የለም",
+    "noInternetHint": "Wi-Fi ወይም የሞባይል ዳታ መብራቱን ያረጋግጡ፣ ከዚያ \"{{action}}\" ን ይንኩ።"
   },
   "tip": {
     "title": "ጥቆማ ላክ",
@@ -1610,7 +1624,12 @@
     "chooseUsernameBody": "ለመቀጠል የተጠቃሚ ስምና የማሳያ ስም ይምረጡ። በኋላ መቀየር ይችላሉ።",
     "checkingAvailability": "ተገኝነት እየተረጋገጠ ነው…",
     "usernameTakenHint": "ስሙ ተይዟል — ቁጥሮች ወይም የታች ሰረዝ ለመጨመር ይሞክሩ",
-    "displayNameLength": "የማሳያ ስም ከ2 እስከ 50 ቁምፊ መሆን አለበት።"
+    "displayNameLength": "የማሳያ ስም ከ2 እስከ 50 ቁምፊ መሆን አለበት።",
+    "loginFailedRetry": "ግባ አልተሳካም። እባክዎ እንደገና ይሞክሩ።",
+    "sendCodeFailedRetry": "ኮድ መላክ አልተቻለም። እባክዎ እንደገና ይሞክሩ።",
+    "invalidCodeRetry": "የማይሰራ ኮድ። እባክዎ እንደገና ይሞክሩ።",
+    "invalidEmailOrPassword": "የማይሰራ ኢሜል ወይም የይለፍ ቃል.",
+    "welcomeToDehub": "ወደ DeHub እንኳን በደህና መጡ"
   },
   "messages": {
     "smartRepliesOff": "የተጠቆሙ ምላሾች ጠፍተዋል",
@@ -1688,7 +1707,32 @@
     "offerWorthNow": "በአሁኑ ምንዛሪ ወደ {{amount}} DHB ገደማ",
     "offerNotePlaceholder": "ማስታወሻ ጨምር (አማራጭ)",
     "offerCommitsNothing": "ቅናሽ ማቅረብ ምንም አያስከፍልም እና DHB አይይዝም። የምትከፍለው ባለቤቱ ከተቀበለ ብቻ ነው።",
-    "offerNeedsHandle": "ይህ መለያ ቅናሽ የሚቀርብበት የተጠቃሚ ስም የለውም።"
+    "offerNeedsHandle": "ይህ መለያ ቅናሽ የሚቀርብበት የተጠቃሚ ስም የለውም።",
+    "noPostsYet": "ምንም ልጥፎች የሉም",
+    "noPostsYetSub": "ሲለጠፉ ይዘት እዚህ ይታያል።",
+    "noPinnedPosts": "ምንም የተለጠፉ ልጥፎች የሉም",
+    "noPinnedPostsSub": "የተለጠፉ ልጥፎች እዚህ ይታያሉ።",
+    "emptyLiked": "ምንም የወደዱት ልጥፎች የሉም።",
+    "emptySaved": "ምንም የተቀመጡ ልጥፎች የሉም።",
+    "emptyUnlocked": "ምንም ያልተከፈቱ ልጥፎች የሉም።",
+    "emptyWatched": "ምንም የእይታ ታሪክ የለም።",
+    "emptyFolder": "በዚህ አቃፊ ውስጥ ምንም ልጥፎች የሉም።",
+    "emptyPosts": "ምንም ልጥፎች የሉም።",
+    "couldNotLoadPosts": "ልጥፎችን መጫን አልተቻለም።",
+    "noPostsOrReplies": "ገና ምንም ጽሑፎች፣ አስተያየቶች ወይም ምላሾች የሉም",
+    "noPostsOrRepliesSub": "እዚህ ይታያሉ",
+    "avatarUpdated": "የመገለጫ ሥዕል ተዘምኗል",
+    "coverUpdated": "የሽፋን ሥዕል ተዘምኗል",
+    "couldNotPickImage": "ሥዕል መምረጥ አልተቻለም",
+    "changeCoverImage": "የሽፋን ሥዕል ቀይር",
+    "changeAvatar": "የመገለጫ ሥዕል ቀይር",
+    "verifiedEnsName": "የተረጋገጠ ENS ስም {{name}}",
+    "notFullyJoined": "ይህ ተጠቃሚ ገና ሙሉ በሙሉ አልተቀላቀለም። የተጠቃሚ ስም አልጠየቀም ወይም የመገለጫ ማዋቀርን አልጨረሰም። አሁንም የህዝብ እንቅስቃሴን ማየት እና የሚገኙ ከሆነ ጠቃሚ ምክሮችን መላክ ይችላሉ።",
+    "loadRepliesFailed": "ምላሾችን መጫን አልተቻለም",
+    "refreshFailed": "ማደስ አልተሳካም።",
+    "noRepliesYet": "ምላሾች የሉም",
+    "noRepliesYetSub": "ይህ ተጠቃሚ ለጽሑፎች ምላሽ ሲሰጥ እዚህ ይታያሉ።",
+    "noMoreReplies": "ተጨማሪ ምላሾች የሉም"
   },
   "tv": {
     "title": "ቴሌቪዥን",
@@ -1771,7 +1815,11 @@
     "loadingPrice": "ዋጋ በመጫን ላይ…",
     "topUpExplanation": "DHB በሰንሰለቱ ላይ ወደ DeHub ማስታወቂያ ግምጃ ቤት ይተላለፋል፣ ከዚያም ከገለልተኛ የሰንሰለት ማረጋገጫ በኋላ ወደ ቀሪ ሂሳብዎ ይገባል።",
     "paymentHistory": "የክፍያ ታሪክ",
-    "noPayments": "እስካሁን ክፍያዎች የሉም"
+    "noPayments": "እስካሁን ክፍያዎች የሉም",
+    "sponsored": "በስፖንሰር የተደረገ",
+    "morePosts": "ተጨማሪ ጽሑፎች",
+    "loadMorePosts": "ተጨማሪ ጽሑፎችን ጫን",
+    "playAdVideo": "ማስታወቂያ ቪዲዮ አጫውት"
   },
   "buyCoins": {
     "title": "ሳንቲሞች ግዛ",
@@ -2234,7 +2282,8 @@
     "privateBalanceMode": "የግል ቀሪ ሂሳብ ሁነታ ነቅቷል",
     "addressHidden": "አድራሻ ተደብቋል",
     "allowInFeeds": "ይህ ተጠቃሚ በምግቦችዎ እንዲታይ ይፍቀዱ",
-    "hideContent": "ይዘታቸውን ይደብቁና መስተጋብሮችን ይገድቡ"
+    "hideContent": "ይዘታቸውን ይደብቁና መስተጋብሮችን ይገድቡ",
+    "a11yLabel": "የመገለጫ አማራጮች"
   },
   "toasts": {
     "saved_to_bookmarks": "ወደ ዕልባቶች ተቀምጧል",
@@ -2593,7 +2642,8 @@
     "roles": {
       "owner": "ባለቤት",
       "moderator": "አወያይ",
-      "member": "አባል"
+      "member": "አባል",
+      "admin": "አስተዳዳሪ"
     },
     "time": {
       "today": "ዛሬ",
@@ -2602,7 +2652,126 @@
       "weeks": "{{count}} ሳምንታት",
       "months": "{{count}} ወራት",
       "years": "{{count}} ዓመታት"
-    }
+    },
+    "chatPanel": {
+      "anon": "አንቶኒም",
+      "edited": "አርትዕ ተደርጓል",
+      "deleteTitle": "መልዕክት ሰርዝ",
+      "deleteConfirm": "ይህን መልዕክት መሰረዝ ይፈልጋሉ? ይህ ሊቀለበስ አይችልም።",
+      "muted": "ተከልክለሃል",
+      "postingDisabled": "እዚህ ላይ አባላት መለጠፍ አይችሉም",
+      "mediaMessage": "ሚዲያ",
+      "pinnedMessage": "የተሰካ መልዕክት",
+      "showEarlier": "ቀደምት መልዕክቶችን አሳይ",
+      "editingMessage": "መልዕክት ማርትዕ",
+      "copied": "መልዕክት ተገለበጠ",
+      "copyText": "ጽሑፍ ቅጂ",
+      "mutedUntil": "እስከ {{date}} ድረስ ተለውጠዋል",
+      "slowMode": "ቀርፋፋ ሁነታ: አንድ መልዕክት እያንዳንዱ {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "አስተዳዳሪን ያጥፉ",
+      "cancel": "ሰርዝ",
+      "dismissAdmin": "አስተዳዳሪን ያጥፉ",
+      "roleAdmin": "አስተዳዳሪ",
+      "roleMember": "አባል",
+      "whatCanTheyDo": "ይህ አስተዳዳሪ ምን ሊያደርግ ይችላል?",
+      "rightNotHeld": "አንተ ራስህ ይህን መብት የለህም",
+      "customTitle": "ብጁ ርዕስ",
+      "customTitlePlaceholder": "አስተዳዳሪ",
+      "customTitleHint": "ነባሪ አስተዳዳሪ ባጅ ይልቅ ይዝለሉ.",
+      "saveChanges": "ለውጦችን ያስቀምጡ",
+      "promote": "ያስተዋውቁ",
+      "tabs": {
+        "members": "አባላት",
+        "admins": "አስተዳዳሪዎች",
+        "permissions": "ፈቃዶች",
+        "invites": "ግብዣዎች",
+        "rules": "ደንቦች",
+        "recentActions": "የቅርብ ጊዜ እርምጃዎች",
+        "danger": "አደጋ ዞን"
+      },
+      "title": "ያስተዳድሩ",
+      "purgeTitle": "ሁሉንም መልዕክቶች ሰርዝ?",
+      "purgeConfirm": "ሰርዝ",
+      "kickTitle": "አባል አስወግድ?",
+      "kickConfirm": "አስወግድ",
+      "bannedPermanent": "ታግዷል - ቋሚ",
+      "mutedPermanent": "Muted — ቋሚ",
+      "editAdminRights": "የአስተዳዳሪ መብቶችን ያርትሙ",
+      "promoteToAdmin": "ወደ አስተዳዳሪ ከፍ ያድርጉ",
+      "unmute": "ድምጸ-ከልን አንሳ",
+      "mute": "ድምጸ-ከል",
+      "unban": "እገዳ አንሳ",
+      "ban": "እገዳ",
+      "deleteAllMessages": "ሁሉንም መልዕክቶች ሰርዝ",
+      "removeFromCommunity": "ከማህበረሰብ አስወግድ",
+      "noActionsAvailable": "ይህንን አባል ማስተዳደር አይችሉም።",
+      "showMore": "ተጨማሪ አሳይ",
+      "joinRequests": "የመቀላቀል ጥያቄዎች",
+      "approve": "አጽድቅ",
+      "reject": "ውድቅ አድርግ",
+      "members": "አባላት",
+      "searchMembers": "በኪስ ቦርሳ አድራሻ ይፈልጉ",
+      "noMembersMatch": "አባል የለም።",
+      "noMembers": "አባላት የሉም።",
+      "muted": "ድምጸ-ከል የተደረገባቸው",
+      "banned": "የተከለከሉ",
+      "muteEffect": "በማህበረሰቡ ውስጥ ይቆያሉ ነገር ግን ድምጸ-ከል እስኪያልቅ ድረስ መለጠፍ አይችሉም።",
+      "banEffect": "ከውይይቱ ተወግደዋል እና እገዳው እስኪነሳ ድረስ እንደገና መቀላቀል አይችሉም።",
+      "durationLabel": "የቆይታ ጊዜ",
+      "reasonLabel": "ምክንያት (አማራጭ)",
+      "reasonPlaceholder": "ለምን እየታገዱ ነው?",
+      "alsoDeleteMessages": "እንዲሁም ሁሉንም መልዕክቶቻቸውን ሰርዝ",
+      "confirmMute": "አባልን ድምጸ-ከል አድርግ",
+      "confirmBan": "አባልን እገዳ አድርግ",
+      "rulesUpdated": "ህጎች ተዘምነዋል",
+      "rulesTitle": "የማህበረሰብ ህጎች",
+      "rulesEmpty": "ምንም ህጎች የሉም — የመጀመሪያውን ከዚህ በታች ያክሉ።",
+      "rulePlaceholder": "ደንቡን ይግለጹ",
+      "addRule": "ደንብ ጨምር",
+      "saveRules": "ደንቦችን አስቀምጥ",
+      "dismissAdminBody": "{{wallet}} ተራ አባል ይሆናል።",
+      "purgeBody": "{{name}} የላከው እያንዳንዱ መልእክት ከማህበረሰቡ ይወገዳል።",
+      "kickBody": "{{name}} ከማህበረሰቡ ይወገዳል። በኋላ ላይ እንደገና ሊቀላቀሉ ይችላሉ።",
+      "bannedUntil": "እስከ {{date}} ድረስ ታግዷል",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "እስከ {{date}} ድረስ ጸጥ ተደርጓል",
+      "bannedUntilShort": "እስከ {{date}} ድረስ",
+      "muteTitle": "{{name}} ጸጥ አሰኝ",
+      "banTitle": "{{name}} ን ከልክል",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} ከ {{max}}",
+      "moveRuleUp": "ደንቡን ወደ ላይ አንቀሳቅስ",
+      "moveRuleDown": "ደንቡን ወደ ታች አንቀሳቅስ",
+      "deleteRule": "ደንቡን ሰርዝ",
+      "rights": {
+        "changeInfo": "የማህበረሰብ መረጃን ቀይር",
+        "changeInfoHint": "ስም፣ መግለጫ፣ አምሳያ እና ባነር ያርትዑ",
+        "deleteMessages": "መልዕክቶችን ሰርዝ",
+        "deleteMessagesHint": "ከማህበረሰብ ውይይት ማንኛውንም መልእክት አስወግድ",
+        "restrictMembers": "ተጠቃሚዎችን ከልክል",
+        "restrictMembersHint": "አባላትን ጸጥ አሰኝ፣ አስወግድ እና ከልክል",
+        "inviteUsers": "በአገናኝ ተጠቃሚዎችን ይጋብዙ",
+        "inviteUsersHint": "የግብዣ አገናኞችን ፍጠር እና ሰርዝ",
+        "pinMessages": "መልዕክቶችን ፒን አድርግ",
+        "pinMessagesHint": "መልዕክትን ወደ ውይይቱ አናት ፒን አድርግ",
+        "manageEvents": "ዝግጅቶችን አስተዳድር",
+        "manageEventsHint": "የማህበረሰብ ዝግጅቶችን ፍጠር እና አርትዕ",
+        "addAdmins": "አዲስ አስተዳዳሪዎችን ጨምር",
+        "addAdminsHint": "አባላትን ያሳድጉ እና የጨመሩትን የአስተዳዳሪዎች መብቶች ያርትዑ",
+        "remainAnonymous": "ስም-አልባ ይሁኑ",
+        "remainAnonymousHint": "ይህንን አስተዳዳሪ ከስብስብ ዝርዝር ይደብቁ"
+      },
+      "durations": {
+        "oneHour": "1 ሰዓት",
+        "eightHours": "8 ሰዓታት",
+        "oneDay": "1 ቀን",
+        "oneWeek": "1 ሳምንት",
+        "forever": "ለዘላለም"
+      }
+    },
+    "chooseAvatar": "አቫታር ይምረጡ"
   },
   "work": {
     "title": "ሽልማቶች",
@@ -2954,7 +3123,9 @@
       "shipped": "ተልኳል",
       "completed": "ተጠናቅቋል",
       "cancelled": "ተሰርዟል"
-    }
+    },
+    "removePhoto": "ፎቶን ያስወግዱ",
+    "listingOptions": "የዝርዝር አማራጮች"
   },
   "accounts": {
     "subtitle": "ሙሉ መለያዎች ለሽያጭ፣ ዋጋቸው በDHB",
@@ -3321,7 +3492,14 @@
     "removeFollowerHint": "ለማስወገድ ተከታይን ተጭነው ይያዙ።",
     "cancel": "ሰርዝ",
     "remove": "አስወግድ",
-    "thisUser": "ይህ ተጠቃሚ"
+    "thisUser": "ይህ ተጠቃሚ",
+    "cancelRequestTo": "@{{username}}? የጥያቄ መከተልን ሰርዝ",
+    "followingUser": "@{{username}}ን መከተል",
+    "contentUnavailable": "ይዘት አይገኝም",
+    "youBlockedBody": "ምርቶቻቸውን አያዩም ወይም ከእነሱ ጋር መስተጋብር መፍጠር አይችሉም። መዳረሻን ለመመለስ አግድ።",
+    "restrictedBody": "ይህ ተጠቃሚ ከእርስዎ መለያ ጋር ያለውን መስተጋብር ገድቧል።",
+    "requestPendingBody": "የመከተል ጥያቄዎ ተልኳል። ጥያቄያቸውን ከፀደቁ በኋላ ምርቶቻቸውን ማየት ይችላሉ።",
+    "followToSeePosts": "ምርቶቻቸውን ለማየት ይህን መለያ ይከተሉ።"
   },
   "reactionInfo": {
     "title": "ምላሾች",
@@ -3626,7 +3804,8 @@
     "needGas": "በ{{chain}} ላይ ለጋዝ የቤተኛ {{token}} ያስፈልጋል።",
     "bridging": "በማሻገር ላይ…",
     "bridgeAction": "{{from}} → {{to}} ያሻግሩ",
-    "failed": "ማሻገር አልተሳካም"
+    "failed": "ማሻገር አልተሳካም",
+    "sentArriveShortly": "{{amount}} DHB ከ {{from}} ተልኳል → {{to}}። ቶከኖች በቅርቡ ይመጣሉ።"
   },
   "banned": {
     "title": "መለያዎ ታግዷል",
@@ -3804,7 +3983,16 @@
     "legacyRecovered": "የቀድሞ መለያዎ{{suffix}} ተረጋግጦ ቦርሳው ተመልሷል። ከአሁን ጀምሮ በዚህ ስልክና በሌላም ቦታ ሁሉ እንዲጠበቅ የይለፍ ቃል ያስቀምጡ።",
     "passwordMin": "የይለፍ ቃል (ቢያንስ {{min}} ቁምፊ)",
     "newPasswordMin": "አዲስ የይለፍ ቃል (ቢያንስ {{min}} ቁምፊ)",
-    "newWalletPasswordMin": "የአዲሱ ቦርሳ የይለፍ ቃል (ቢያንስ {{min}} ቁምፊ)"
+    "newWalletPasswordMin": "የአዲሱ ቦርሳ የይለፍ ቃል (ቢያንስ {{min}} ቁምፊ)",
+    "deviceCheckCancelled": "የመሣሪያ ምርመራ ተሰርዟል — ምንም አልተቀየረም።",
+    "savePhraseTitle": "የማገገሚያ ሐረግዎን ያስቀምጡ",
+    "startOverTitle": "በአዲስ የኪስ ቦርሳ ይጀምሩ",
+    "secureNewWalletTitle": "አዲስ የኪስ ቦርሳዎን ይጠብቁ",
+    "secureWalletTitle": "የኪስ ቦርሳዎን ይጠብቁ",
+    "unlockOnMobileTitle": "በሞባይል ይክፈቱ",
+    "oldAccountFoundTitle": "የድሮ መለያ ተገኝቷል",
+    "unlockWalletTitle": "የኪስ ቦርሳዎን ይክፈቱ",
+    "phraseExplainer": "የኪስ ቦርሳዎ በዚህ ስልክ ባዮሜትሪክ ይጠበቃል። ያ መክፈቻ <em>በዚህ ስልክ ላይ ብቻ ነው የሚሰራው</em> — DeHub ን እንደገና ከጫኑ፣ ስልክ ከቀየሩ ወይም ከጠፋብዎት እነዚህ 12 ቃላት ብቻ ወደ ውስጥ ለመግባት ብቸኛው መንገድ ናቸው።"
   },
   "transcript": {
     "title": "ግልባጭ",
@@ -3990,7 +4178,38 @@
     "subscribe": "ይመዝገቡ",
     "subscriberCount_one": "{{count}} ደንበኛ",
     "subscriberCount_other": "{{count}} ደንበኞች",
-    "subscribeToForRich": "በ<price>{{price}}</price> ለ<name>{{name}}</name> ይመዝገቡ"
+    "subscribeToForRich": "በ<price>{{price}}</price> ለ<name>{{name}}</name> ይመዝገቡ",
+    "loadPlansFailed": "እቅዶችን መጫን አልተቻለም",
+    "subscriberContent": "የደንበኝነት ተመዝጋቢ ይዘት",
+    "subscriberContentSub": "ለደንበኝነት ተመዝጋቢዎች ልዩ ይዘት ለማቅረብ እቅዶችን ይፍጠሩ",
+    "createFirstPlan": "የመጀመሪያ እቅድዎን ይፍጠሩ",
+    "addNewPlan": "አዲስ እቅድ ጨምር",
+    "durations": {
+      "oneMonth": "1 ወር",
+      "threeMonths": "3 ወራት",
+      "sixMonths": "6 ወራት",
+      "oneYear": "1 ዓመት",
+      "lifetime": "የዕድሜ ልክ"
+    },
+    "planNameRequired": "የእቅድ ስም ያስፈልጋል",
+    "enterValidPrice": "ትክክለኛ ዋጋ ያስገቡ",
+    "availableChains": "አሁን ምዝገባዎች በBase እና BNB ይገኛሉ",
+    "waitForSwitch": "የምዝገባ አውታረ መረቡ እስኪጠናቀቅ ይጠብቁ",
+    "connectAndWait": "የእርስዎን የኪስ ቦርሳ ያገናኙ እና የምዝገባ አውታረ መረብ ይጠብቁ",
+    "planUpdated": "እቅድ ተዘምኗል",
+    "creating": "በመፍጠር ላይ…",
+    "planPublished": "እቅድ ተፈጥሯል እና ታትሟል",
+    "createPlanTitle": "የምዝገባ እቅድ ይፍጠሩ",
+    "network": "የምዝገባ አውታረ መረብ",
+    "planNameLabel": "የእቅድ ስም *",
+    "planNamePlaceholder": "ለምሳሌ ፕሪሚየም፣ ጎልድ፣ ቪአይፒ...",
+    "descriptionPlaceholder": "ተመዝጋቢዎች የሚያገኙት...",
+    "priceLabel": "ዋጋ (USD) *",
+    "legacyMigrationNote": "ቁጠባ ይህን የድሮ DHB እቅድ ወደ ዶላር ዋጋ ከዝርዝር በፊት ባለው ዋጋ ያሳድሳል።",
+    "benefits": "ጥቅሞች",
+    "benefitPlaceholder": "ጥቅም ጨምር...",
+    "createAndPublish": "ፍጠር እና አሳትም",
+    "publishingOnChain": "ማተም በሰንሰለት ላይ ያለ ግብይት ነው።"
   },
   "live": {
     "notSet": "አልተቀናበረም",
@@ -4067,7 +4286,22 @@
     "acceptTerms": "እስማማለሁ በ <terms>የአገልግሎት ውሎች</terms>",
     "sentTo": "{{amount}} {{symbol}} ወደ {{address}} ተልኳል",
     "tokensSentTo": "ምልክቶችን ወደ {{address}} ተልኳል",
-    "goToProfile": "ወደ መገለጫ ይሂዱ"
+    "goToProfile": "ወደ መገለጫ ይሂዱ",
+    "aboutTitle": "ስለ DeHub እና ክፍያዎች",
+    "aboutSubtitle": "ለቀላል የቶከን ክፍያዎች የእርስዎ መግቢያ",
+    "aboutTokenTitle": "DeHub ቶከን",
+    "aboutTokenBody": "ቶከኖች ለፈጣሪዎች ለመመዝገብ፣ ዥረት ተጫዋቾችን ለመሸለም ወይም ይዘትን ለመክፈት ያገለግላሉ። ብዙ በያዙ ቁጥር ክፍያዎችዎ ዝቅተኛ ይሆናሉ እና እንደ የጊዜ መስመር አዝማሚያ ማበረታቻዎች እና የማረጋገጫ ባጆች ያሉ ተጨማሪ ሱፐር ሃይሎችን ይከፍታሉ።",
+    "aboutInstantTitle": "ፈጣን ክፍያዎች",
+    "aboutInstantBody": "Stripeን በመጠቀም፣ ቶከኖችን ወዲያውኑ እና ያለችግር ወደሚገቡበት ማንኛውም ሂሳብ መግዛት ይችላሉ። DeHub ቶከኖችን ቀላል እና ለሁሉም ያደርጋል። ተጨማሪ ድጋፍ ከፈለጉ፣ በ24/7 የቀጥታ ማህበረሰብ ውይይታችን ውስጥ ይግቡና የአስተዳደር ድጋፍ ይጠይቁ።",
+    "aboutSecureTitle": "ደህንነቱ የተጠበቀ መግቢያ",
+    "aboutSecureBody": "ሁሉም የክፍያ ዝርዝሮች በStripe በኩል ደህንነቱ በተጠበቀ ሁኔታ የተመሰጠሩ እና የሚሰሩ ናቸው። የእርስዎን ስሱ መረጃ ወይም የካርድ ዝርዝሮችን ማግኘትም ሆነ ማከማቸት አንችልም፣ ይህም የመጨረሻውን የአእምሮ ሰላም ይሰጥዎታል።",
+    "transfersSummary": "የማስተላለፍ ማጠቃለያ",
+    "availableToBuy": "አሁን ለመግዛት ይገኛል",
+    "noSupplyShort": "አቅርቦት የለም",
+    "topUpSubtitle": "$DHB በካርድ ይግዙ እና ወዲያውኑ ለመጠቀም ነፃ ጋዝ ያግኙ",
+    "noTxHash": "የግብይት ሃሽ አልተገኘም።",
+    "latestTransactions": "የቅርብ ጊዜ ግብይቶች",
+    "showAll": "ሁሉንም አሳይ"
   },
   "musicSheet": {
     "title": "ዘፈን ይፍጠሩ",
@@ -4196,7 +4430,13 @@
     "followUpNote": "ስለ አስተያየትዎ ተከታታይ ጥያቄዎችን ልንጠይቅዎ እንችላለን",
     "submitFeedback": "አስተያየት ላክ",
     "provideFeedback": "እባክዎ አስተያየትዎን ያስገቡ",
-    "thankYou": "ስለ አስተያየትዎ እናመሰግናለን!"
+    "thankYou": "ስለ አስተያየትዎ እናመሰግናለን!",
+    "submitFailed": "ግብረመልስ ማስገባት አልተሳካም። እባክዎ እንደገና ይሞክሩ።",
+    "maybeLater": "በኋላ ላይ",
+    "helpUsImprove": "እኛን ለማሻሻል እርዳን",
+    "rateExperience": "ተሞክሮዎን እንዴት ይገመግሙታል?",
+    "telegramOptional": "Telegram (አማራጭ)",
+    "discordOptional": "Discord (አማራጭ)"
   },
   "migrate": {
     "clearAll": "ሁሉንም ያጥፉ",
@@ -4308,7 +4548,14 @@
       "blueWhale": "እስከ ዛሬ ካየነው ነገር ሁሉ የላቀ ነው ። ያንተ ነው ።",
       "megalodon": "የእርስዎ ዘውድ ይኸውልዎት — አሁን የመተግበሪያ ንጉሣዊ ነዎት"
     },
-    "continue": "ወደ DeHub ተመለስ"
+    "continue": "ወደ DeHub ተመለስ",
+    "none": "ምንም",
+    "noBadgeYet": "ምንም ባጅ የለም",
+    "next": "ቀጣይ",
+    "topTier": "ከፍተኛ ደረጃ",
+    "toNextTier": "{{amount}} DHB ወደ {{tier}}",
+    "everyTierUnlocked": "እያንዳንዱ ደረጃ ተከፍቷል።",
+    "holdNote": "ባጅ ከተከፈተ በኋላ፣ DHBዎን እስካቆዩ ድረስ የእርስዎ ነው። አዲስ ባጅ ለመክፈት የሚያስፈልጉት የቶከኖች ብዛት ከቶከን ዋጋ ጋር ሊቀየር ይችላል።"
   },
   "passwordStrength": {
     "veryWeak": "በጣም ደካማ",
@@ -4363,7 +4610,11 @@
     "backToGift": "Back to gift",
     "ttsLabel": "ጮክ ብለህ የሆነ ነገር ተናገር",
     "ttsPlaceholder": "ወደ ዥረት ያንብቡ...",
-    "ttsHint": "ስጦታዎ በሚወርድበት ጊዜ ለሚመለከቱ ሁሉ ጮክ ብለው ያንብቡ ።"
+    "ttsHint": "ስጦታዎ በሚወርድበት ጊዜ ለሚመለከቱ ሁሉ ጮክ ብለው ያንብቡ ።",
+    "sendAGift": "ስጦታ ላክ",
+    "minPlaceholder": "ዝቅተኛው: {{amount}}",
+    "minGift": "ዝቅተኛው ስጦታ {{amount}} ነው።",
+    "sendGift": "ስጦታ ላክ"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4743,7 +4994,8 @@
         "title": "ገቢ እንዴት እንደሚሰራ ይመልከቱ",
         "body": "ጠቃሚ ምክሮች, ባጆች እና SuperPowers እዚህ ምን እንደሚያደርጉት ከምታገኙት ነገር እንዴት እንደሚለውጡ ይወቁ."
       }
-    }
+    },
+    "swipeToStart": "ለመጀመር ያንሸራትቱ"
   },
   "conversation": {
     "commonGround": {
@@ -5225,5 +5477,18 @@
     "toastPaidSettled": "ተከፍሏል — ግብይቱ ተጠናቋል",
     "walletNotReady": "ቦርሳዎ ገና ዝግጁ አይደለም — ትንሽ ቆይተው እንደገና ይሞክሩ።",
     "wrongChain": "ይህ ግብይት በ{{chain}} ላይ ይጠናቀቃል። በቅንብሮች ውስጥ ወደ {{chain}} ይቀይሩ፣ ከዚያ እንደገና ይሞክሩ።"
+  },
+  "moderation": {
+    "appealDuplicate": "አስቀድመህ ይህን አቤቱታ አቅርበሃል",
+    "appealSent": "አቤቱታ ተልኳል",
+    "appealFailed": "ያንን ይግባኝ ማስገባት አልተቻለም",
+    "appealTitle": "ይግባኝ ይህን ውሳኔ",
+    "appealSubtitle": "አንድ ሰው ይህንን አንብቦ ውሳኔውን እንደገና ይመለከታል ።",
+    "appealPlaceholder": "ምን ጠፍቶ መሰላችሁ? ስለ ይዘቱ ማውራት ከምንም ነገር በላይ ይረዳል ።",
+    "appealSend": "ይግባኝ ላክ",
+    "appealFootnote": "እርስዎ የማጣቀሻ ቁጥር ያገኛሉ, እና መልሱ እዚህ ተመልሶ ይመጣል. በአንድ ውሳኔ አንድ አቤቱታ.",
+    "appealRef": "ማጣቀሻ {{ref}}",
+    "appealSubtitleSubject": "አንድ ሰው ይህንን ያነባል እና እንደገና ይመለከታል {{subject}}.",
+    "appealMore": "ቁምፊዎች አሁንም ያስፈልጋሉ: {{count}}"
   }
 }

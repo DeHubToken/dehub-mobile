@@ -689,7 +689,11 @@
       "hintAllow": "Amasistimu we-AI nabakhasa abahlonipha lesi siginali bangaqeqesha kumsindo wakho, emisebenzini yobuciko nasekubhaleni.",
       "hintDeny": "Amasistimu we-AI nabakhasa abahlonipha lesi siginali bacelwa ukuba bangaqeqeshi umsindo, ubuciko nokubhala kwakho. Ama-crawlers angayinaki isignali awavinjwa yiyo.",
       "saved": "Okuthandwa ukuqeqeshwa kwe-AI kugciniwe"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "NGIYAVUMA",
+    "exportPkCopy": "Kopisha isihluthulelo sangasese",
+    "e2eAutomatic": "Okuzenzakalelayo"
   },
   "common": {
     "mute": "Thulisa",
@@ -729,7 +733,17 @@
     "optionalSuffix": "(okuzikhethela)",
     "yesterday": "Izolo",
     "ok": "Kulungile",
-    "continue": "Qhubeka"
+    "continue": "Qhubeka",
+    "goesToHomeFeed": "Kuhamba kokuphakelayo kwasekhaya",
+    "openMenu": "Vula imenyu",
+    "scrollsFeedToTop": "Kuhamba phezulu kokuphakelayo bese kuyavuselela",
+    "notificationsUnread": "Izaziso, {{unread}} azifundwanga",
+    "errorDetails": "Imininingwane yephutha:",
+    "failedToLoad": "Kuhlulekile ukulayisha",
+    "noInternetTitle": "Ayikho uxhumano lwe-inthanethi",
+    "noInternetBody": "Sicela uhlole uxhumano lwakho lwe-inthanethi bese uzama futhi. Udinga ukuxhunywa kwi-inthanethi ukuze usebenzise i-DeHub.",
+    "noInternetStatus": "Ayixhunyiwe - Ayikho uxhumano lwenethiwekhi",
+    "noInternetHint": "Qiniseka ukuthi i-Wi-Fi noma idatha yeselula ivuliwe, bese uthepha ku-\"{{action}}\""
   },
   "tip": {
     "title": "Thumela Ithiphu",
@@ -1620,7 +1634,12 @@
     "chooseUsernameBody": "Khetha igama lomsebenzisi negama elibonisiwe ukuze uqhubeke. Ungawashintsha kamuva.",
     "checkingAvailability": "Kuhlolwa ukutholakala…",
     "usernameTakenHint": "Leli gama selithathiwe — zama ukungeza izinombolo noma umudwa ongaphansi",
-    "displayNameLength": "Igama elibonisiwe kumele libe nezinhlamvu ezingu-2-50."
+    "displayNameLength": "Igama elibonisiwe kumele libe nezinhlamvu ezingu-2-50.",
+    "loginFailedRetry": "Ukungena kuhlulekile. Sicela uzame futhi.",
+    "sendCodeFailedRetry": "Kuhlulekile ukuthumela ikhodi. Sicela uzame futhi.",
+    "invalidCodeRetry": "Ikhodi engavumelekile. Sicela uzame futhi.",
+    "invalidEmailOrPassword": "I-imeyili noma iphasiwedi engavumelekile.",
+    "welcomeToDehub": "Uyemukelwa ku-DeHub"
   },
   "messages": {
     "smartRepliesOff": "Izimpendulo eziphakanyisiwe zivaliwe",
@@ -1698,7 +1717,32 @@
     "offerWorthNow": "Cishe {{amount}} DHB ngesilinganiso samanje",
     "offerNotePlaceholder": "Engeza inothi (ongakhetha)",
     "offerCommitsNothing": "Ukwenza isinikelo akubizi lutho futhi akubambi ma-DHB. Ukhokha kuphela uma umnikazi evuma.",
-    "offerNeedsHandle": "Le akhawunti ayinalo igama lomsebenzisi ongenza kulo isinikelo."
+    "offerNeedsHandle": "Le akhawunti ayinalo igama lomsebenzisi ongenza kulo isinikelo.",
+    "noPostsYet": "Amaphosta akekho okwamanje",
+    "noPostsYetSub": "Okuqukethwe kuzovela lapha lapho kuthunyelwa",
+    "noPinnedPosts": "Amaphosta akekho okwamanje anamathelisiwe",
+    "noPinnedPostsSub": "Amaphosta anamathelisiwe azovela lapha",
+    "emptyLiked": "Amaphosta akekho okwamanje athandwayo.",
+    "emptySaved": "Amaphosta akekho okwamanje agciniwe.",
+    "emptyUnlocked": "Amaphosta akekho okwamanje avuliwe.",
+    "emptyWatched": "Ayikho umlando wokubuka okwamanje.",
+    "emptyFolder": "Amaphosta akekho okwamanje kuleli folda.",
+    "emptyPosts": "Amaphosta akekho okwamanje.",
+    "couldNotLoadPosts": "Kuhlulekile ukulayisha amaphosta.",
+    "noPostsOrReplies": "Awekho okuthunyelwe, ukuphawula, noma izimpendulo okwamanje",
+    "noPostsOrRepliesSub": "Zizovela lapha",
+    "avatarUpdated": "I-Avatar ibuyekeziwe",
+    "coverUpdated": "Ikhava ibuyekeziwe",
+    "couldNotPickImage": "Kuhlulekile ukukhetha isithombe",
+    "changeCoverImage": "Shintsha isithombe sekhava",
+    "changeAvatar": "Shintsha i-avatar",
+    "verifiedEnsName": "Igama le-ENS eliqinisekisiwe {{name}}",
+    "notFullyJoined": "Lo msebenzisi akakajoyini ngokugcwele. Akakakhethi igama lomsebenzisi noma aqedele ukusethwa kwephrofayela. Ungabuka umsebenzi womphakathi futhi uthumele amathiphu uma etholakala.",
+    "loadRepliesFailed": "Kuhlulekile ukulayisha izimpendulo",
+    "refreshFailed": "Ukuvuselela kuhlulekile",
+    "noRepliesYet": "Awekho Izimpendulo Okwamanje",
+    "noRepliesYetSub": "Lapho lo msebenzisi ephendula okuthunyelwe, zizovela lapha.",
+    "noMoreReplies": "Awekho amanye amaphephabhuku"
   },
   "tv": {
     "title": "TV",
@@ -1781,7 +1825,11 @@
     "loadingPrice": "Ilayisha intengo…",
     "topUpExplanation": "I-DHB idluliselwa ku-chain iye kumnyango wezikhangiso we-DeHub, bese ibhalansi yakho ifakwa ngemva kokuqinisekiswa okuzimele ku-chain.",
     "paymentHistory": "Umlando wezinkokhelo",
-    "noPayments": "Azikho izinkokhelo okwamanje"
+    "noPayments": "Azikho izinkokhelo okwamanje",
+    "sponsored": "I-Sponsored",
+    "morePosts": "Okuthunyelwe okwengeziwe",
+    "loadMorePosts": "Layisha okuthunyelwe okwengeziwe",
+    "playAdVideo": "Dlala ividiyo yokukhangisa"
   },
   "buyCoins": {
     "title": "Thenga Izinhlamvu",
@@ -2246,7 +2294,8 @@
     "privateBalanceMode": "Imodi yebhalansi eyimfihlo ivuliwe",
     "addressHidden": "Ikheli lifihliwe",
     "allowInFeeds": "Vumela lo msebenzisi avele kumifudlana yakho",
-    "hideContent": "Fihla okuqukethwe kwabo futhi ukhawulele ukusebenzisana"
+    "hideContent": "Fihla okuqukethwe kwabo futhi ukhawulele ukusebenzisana",
+    "a11yLabel": "Izinketho zephrofayela"
   },
   "toasts": {
     "saved_to_bookmarks": "Igcinwe kubhukumaki",
@@ -2618,7 +2667,8 @@
     "roles": {
       "owner": "Umnikazi",
       "moderator": "Umlawuli",
-      "member": "Ilungu"
+      "member": "Ilungu",
+      "admin": "Umlawuli"
     },
     "time": {
       "today": "namuhla",
@@ -2627,7 +2677,126 @@
       "weeks": "Amaviki angu-{{count}}",
       "months": "Izinyanga ezingu-{{count}}",
       "years": "Iminyaka engu-{{count}}"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "ihlelwe",
+      "deleteTitle": "Sula umlayezo",
+      "deleteConfirm": "Sula lo moya? Lokhu akukwazi ukubuyiselwa emuva.",
+      "muted": "Uvalelwe",
+      "postingDisabled": "Ukuthumela kuvinjelwe amalungu lapha",
+      "mediaMessage": "Imidiya",
+      "pinnedMessage": "Umlayezo oqiniswe phezulu",
+      "showEarlier": "Bonisa imilayezo yangaphambili",
+      "editingMessage": "Ukuhlela umlayezo",
+      "copied": "Umlayezo ukopishiwe",
+      "copyText": "Kopisha umbhalo",
+      "mutedUntil": "Uyadidiyelwa kuze kube ngu- {{date}}",
+      "slowMode": "Imodi ehamba kancane: umyalezo owodwa njalo {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Chitha umqondisi",
+      "cancel": "Khansela",
+      "dismissAdmin": "Chitha umqondisi",
+      "roleAdmin": "Umqondisi",
+      "roleMember": "Ilungu",
+      "whatCanTheyDo": "Yini lo mqondisi angayenza?",
+      "rightNotHeld": "Awunalo leli lungelo ngokwakho",
+      "customTitle": "Isihloko esiqokiwe",
+      "customTitlePlaceholder": "Abaqondisi",
+      "customTitleHint": "Kuboniswe esikhundleni sebheji labaqondisi eliqokiwe.",
+      "saveChanges": "Gcina izinguquko",
+      "promote": "Phromotha",
+      "tabs": {
+        "members": "Amalungu",
+        "admins": "Abaqondisi",
+        "permissions": "Izimvume",
+        "invites": "Izimemo",
+        "rules": "Imithetho",
+        "recentActions": "Izenzo zakamuva",
+        "danger": "Indawo eyingozi"
+      },
+      "title": "Lawula",
+      "purgeTitle": "Susa yonke imilayezo?",
+      "purgeConfirm": "Susa",
+      "kickTitle": "Susa ilungu?",
+      "kickConfirm": "Susa",
+      "bannedPermanent": "Okuvinjelwe — okuhlala njalo",
+      "mutedPermanent": "Okuthambile — okuhlala njalo",
+      "editAdminRights": "Hlela amalungelo omphathi",
+      "promoteToAdmin": "Phakamisela ku-admin",
+      "unmute": "Khulula ukuthula",
+      "mute": "Thulisa",
+      "unban": "Khulula ukuvinjelwa",
+      "ban": "Vimbela",
+      "deleteAllMessages": "Sula yonke imilayezo",
+      "removeFromCommunity": "Susa emphakathini",
+      "noActionsAvailable": "Awukwazi ukulawula ilungu.",
+      "showMore": "Bonisa okwengeziwe",
+      "joinRequests": "Izicelo zokungena",
+      "approve": "Vumela",
+      "reject": "Yenqaba",
+      "members": "Amalungu",
+      "searchMembers": "Sesha ngekheli le-wallet",
+      "noMembersMatch": "Awekho amalungu afanayo.",
+      "noMembers": "Awekho amalungu okwamanje.",
+      "muted": "Kuthulisiwe",
+      "banned": "Kuvinjelwe",
+      "muteEffect": "Zihlala emphakathini kodwa azikwazi ukuthumela kuze kuphele isikhathi sokuthula.",
+      "banEffect": "Zisuswe engxoxweni futhi azikwazi ukujoyina futhi kuze kuvulwe ukuvinjelwa.",
+      "durationLabel": "Isikhathi",
+      "reasonLabel": "Isizathu (uyazikhethela)",
+      "reasonPlaceholder": "Kungani kuvinjelwa?",
+      "alsoDeleteMessages": "Futhi susa yonke imilayezo yabo",
+      "confirmMute": "Thulisa ilungu",
+      "confirmBan": "Vimbela ilungu",
+      "rulesUpdated": "Imithetho ibuyekeziwe",
+      "rulesTitle": "Imithetho yomphakathi",
+      "rulesEmpty": "Awekho imithetho okwamanje — engeza eyokuqala ngezansi.",
+      "rulePlaceholder": "Chaza umthetho",
+      "addRule": "Engeza umthetho",
+      "saveRules": "Londoloza imithetho",
+      "dismissAdminBody": "{{wallet}} uzobuyela ekubeni yilungu elivamile.",
+      "purgeBody": "Umyalezo ngamunye {{name}} athumele kuwo kulo mphakathi uzosuswa.",
+      "kickBody": "{{name}} uzosuswa emphakathini. Bangajoyina futhi kamuva.",
+      "bannedUntil": "Uvinjelwe kuze kube {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Uthulisiwe kuze kube {{date}}",
+      "bannedUntilShort": "Kuze kube {{date}}",
+      "muteTitle": "Thulisa {{name}}",
+      "banTitle": "Vimba {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} we {{max}}",
+      "moveRuleUp": "Hambisa umthetho phezulu",
+      "moveRuleDown": "Hambisa umthetho phansi",
+      "deleteRule": "Susa umthetho",
+      "rights": {
+        "changeInfo": "Shintsha ulwazi lomphakathi",
+        "changeInfoHint": "Hlela igama, incazelo, isithombe nephaneli",
+        "deleteMessages": "Susa imilayezo",
+        "deleteMessagesHint": "Susa noma yimuphi umlayezo engxoxweni yomphakathi",
+        "restrictMembers": "Vimba abasebenzisi",
+        "restrictMembersHint": "Thulisa, susa futhi uvimbe amalungu",
+        "inviteUsers": "Mema abasebenzisi nge-link",
+        "inviteUsersHint": "Dala futhi ubuyekeze izixhumanisi zokumema",
+        "pinMessages": "Namathisela imilayezo",
+        "pinMessagesHint": "Namathisela umlayezo phezulu engxoxweni",
+        "manageEvents": "Phatha imicimbi",
+        "manageEventsHint": "Dala futhi uhlele imicimbi yomphakathi",
+        "addAdmins": "Engeza abaphathi abasha",
+        "addAdminsHint": "Phakamisa amalungu bese uhlela amalungelo abaphathi abawengezile",
+        "remainAnonymous": "Hlala ungaziwa",
+        "remainAnonymousHint": "Fihla lo mphathi ohlwini lwabantu"
+      },
+      "durations": {
+        "oneHour": "1 ihora",
+        "eightHours": "8 amahora",
+        "oneDay": "1 usuku",
+        "oneWeek": "1 isonto",
+        "forever": "Phakade"
+      }
+    },
+    "chooseAvatar": "Khetha i-avatar"
   },
   "work": {
     "title": "Imiklomelo",
@@ -2979,7 +3148,9 @@
       "shipped": "Kuthunyelwe",
       "completed": "Kuqediwe",
       "cancelled": "Kukhanseliwe"
-    }
+    },
+    "removePhoto": "Susa isithombe",
+    "listingOptions": "Izinketho zokufakwa ohlwini"
   },
   "accounts": {
     "subtitle": "Ama-akhawunti aphelele athengiswayo, anentengo nge-DHB",
@@ -3347,7 +3518,14 @@
     "removeFollowerHint": "Cindezela bese ubamba umbukeli ukuze umesule.",
     "cancel": "Khansela",
     "remove": "Susa",
-    "thisUser": "Lo msebenzisi"
+    "thisUser": "Lo msebenzisi",
+    "cancelRequestTo": "Khansela isicelo sokulandela ku-@{{username}}?",
+    "followingUser": "Ulandela i-@{{username}}",
+    "contentUnavailable": "Okuqukethwe Akutholakali",
+    "youBlockedBody": "Ngeke ukwazi ukubona okuthunyelwe kwabo noma ukuxhumana nabo. Vula ukuze ubuyisele ukufinyelela.",
+    "restrictedBody": "Lo msebenzisi uvinjelwe ukuxhumana ne-akhawunti yakho.",
+    "requestPendingBody": "Isicelo sakho sokulandela sithunyelwe. Uzokwazi ukubona okuthunyelwe kwabo uma sebeqinisekisa isicelo sakho.",
+    "followToSeePosts": "Landela le akhawunti ukuze ubone okuthunyelwe kwayo."
   },
   "reactionInfo": {
     "title": "Ukusabela",
@@ -3662,7 +3840,8 @@
     "needGas": "Udinga i-{{token}} yendabuko yegesi ku-{{chain}}.",
     "bridging": "Iyabhuloha…",
     "bridgeAction": "Ibhuloho {{from}} → {{to}}",
-    "failed": "Ibhuloho lihlulekile"
+    "failed": "Ibhuloho lihlulekile",
+    "sentArriveShortly": "I-{{amount}} DHB ithunyelwe kusuka ku-{{from}} → {{to}}. Amathokheni azofika kungekudala."
   },
   "banned": {
     "title": "I-akhawunti yakho ivinjelwe",
@@ -3840,7 +4019,16 @@
     "legacyRecovered": "Siqinisekise i-akhawunti yakho endala{{suffix}} futhi sabuyisa isikhwama sayo. Setha iphasiwedi ukuyivikela kule divayisi — kule foni nakuzo zonke ezinye izindawo, kusukela manje.",
     "passwordMin": "Iphasiwedi (okungenani izinhlamvu ezingu-{{min}})",
     "newPasswordMin": "Iphasiwedi elisha (okungenani izinhlamvu ezingu-{{min}})",
-    "newWalletPasswordMin": "Iphasiwedi lesikhwama esisha (okungenani izinhlamvu ezingu-{{min}})"
+    "newWalletPasswordMin": "Iphasiwedi lesikhwama esisha (okungenani izinhlamvu ezingu-{{min}})",
+    "deviceCheckCancelled": "Isheke yedivayisi likhanseliwe — akukho okuguqukile.",
+    "savePhraseTitle": "Gcina ibinzana lakho lokubuyisa",
+    "startOverTitle": "Qala kabusha ngesikhwama esisha",
+    "secureNewWalletTitle": "Vikela isikhwama sakho esisha",
+    "secureWalletTitle": "Vikela isikhwama sakho",
+    "unlockOnMobileTitle": "Vula kuselula",
+    "oldAccountFoundTitle": "Kutholakele i-akhawunti endala",
+    "unlockWalletTitle": "Vula isikhwama sakho",
+    "phraseExplainer": "Isikhwama sakho sizovikelwa izinto zokubopha izigxivizo zale foni. Lokhu kuvula i-<em>kusebenza kuphela kule foni</em> — la mazwi angu-12 ayindlela kuphela yokubuyela uma ufake kabusha i-DeHub, ushintsha ifoni, noma ulahlekelwa yikho."
   },
   "transcript": {
     "title": "Umbhalo wokukhulunywayo",
@@ -4026,7 +4214,38 @@
     "subscribe": "Bhalisa",
     "subscriberCount_one": "Umbhalisi ongu-{{count}}",
     "subscriberCount_other": "Ababhalisi abangu-{{count}}",
-    "subscribeToForRich": "Bhalisela <name>{{name}}</name> nge-<price>{{price}}</price>"
+    "subscribeToForRich": "Bhalisela <name>{{name}}</name> nge-<price>{{price}}</price>",
+    "loadPlansFailed": "Kuhlulekile ukulayisha amacebo",
+    "subscriberContent": "Okuqukethwe komsubhukeli",
+    "subscriberContentSub": "Dala izinhlelo zokunikeza okuqukethwe okukhethekile kubabhalisile",
+    "createFirstPlan": "Dala Uhlelo Lwakho Lokuqala",
+    "addNewPlan": "Engeza Uhlelo Olusha",
+    "durations": {
+      "oneMonth": "1 Inyanga",
+      "threeMonths": "3 Izinyanga",
+      "sixMonths": "6 Izinyanga",
+      "oneYear": "1 Unyaka",
+      "lifetime": "Impilo Yonke"
+    },
+    "planNameRequired": "Igama lohlelo liyadingeka",
+    "enterValidPrice": "Faka intengo evumelekile",
+    "availableChains": "Okubhalisile okwamanje kutholakala ku-Base ne-BNB",
+    "waitForSwitch": "Linda inethiwekhi yokubhalisa ukuthi iqede ukushintsha",
+    "connectAndWait": "Xhuma isikhwama sakho bese ulinda inethiwekhi yokubhalisa",
+    "planUpdated": "Uhlelo olubuyekeziwe",
+    "creating": "Ukudala…",
+    "planPublished": "Uhlelo ludaliwe futhi lwashicilelwa",
+    "createPlanTitle": "Dala Uhlelo Lokubhalisa",
+    "network": "Inethiwekhi Yokubhalisa",
+    "planNameLabel": "Igama lohlelo *",
+    "planNamePlaceholder": "Isb. I-Premium, i-Gold, i-VIP...",
+    "descriptionPlaceholder": "Ababhalisile bathola ini...",
+    "priceLabel": "Intengo (USD) *",
+    "legacyMigrationNote": "Ukonga kuthutha lolu hlelo oludala lwe-DHB lube yintengo yedola ngesilinganiso sangaphambi kokufakwa kuhlu.",
+    "benefits": "Izinzuzo",
+    "benefitPlaceholder": "Engeza inzuzo...",
+    "createAndPublish": "Dala & Shicilela",
+    "publishingOnChain": "Ukushicilela kuwukuthengiselana okuku-chain"
   },
   "live": {
     "notSet": "Akuzange kusethwe",
@@ -4144,7 +4363,22 @@
     "acceptTerms": "Ngiyayamukela <terms>Imigomo Yesevisi</terms>",
     "sentTo": "{{amount}}{{symbol}} ithunyelwe ku- {{address}}",
     "tokensSentTo": "Amathokheni athunyelwe ku- {{address}}",
-    "goToProfile": "Iya kokuthi Iphrofayili"
+    "goToProfile": "Iya kokuthi Iphrofayili",
+    "aboutTitle": "Mayelana ne-DeHub & izinkokhelo",
+    "aboutSubtitle": "Indlela yakho yokukhokha amathokheni ngaphandle komthungo",
+    "aboutTokenTitle": "Ithokheni le-DeHub",
+    "aboutTokenBody": "Amathokheni asetshenziselwa ukubhalisa kubadali, ukunikeza abasakazi izipho noma ukuvula okuqukethwe. Uma unamathokheni amaningi, izimali zakho ziyancipha futhi uvula amandla amaningi afana nokukhuphuka kwesikhathi namabheji okuqinisekisa.",
+    "aboutInstantTitle": "Izinkokhelo Ezinganqamuki",
+    "aboutInstantBody": "Ngokusebenzisa i-Stripe, ungathenga amathokheni ngokushesha nangokungenamathungo kunoma iyiphi i-akhawunti ongene kuyo. I-DeHub yenza amathokheni alula futhi abe ngawakho bonke. Uma udinga usizo olwengeziwe, vele uvakashele ingxoxo yethu yomphakathi ebukhoma engu-24/7 futhi ucele usizo kumphathi.",
+    "aboutSecureTitle": "Isango Eliphephile",
+    "aboutSecureBody": "Wonke imininingwane yokukhokha icashile futhi icutshungulwa ngokuphepha yi-Stripe. Asikwazi ukufinyelela noma ukugcina imininingwane yakho ebucayi noma imininingwane yekhadi, sikunikeza ukuthula kwengqondo okuphelele.",
+    "transfersSummary": "Isifinyezo Sokudluliselwa",
+    "availableToBuy": "Kuyatholakala ukuthenga manje",
+    "noSupplyShort": "Akukho sabelo",
+    "topUpSubtitle": "Thenga i-$DHB usebenzisa ikhadi futhi uthole igesi yamahhala ongayisebenzisa ngokushesha",
+    "noTxHash": "Ayitholakalanga i-transaction hash",
+    "latestTransactions": "Izinto Zokugcina Zokudluliselwa",
+    "showAll": "Bonisa zonke"
   },
   "musicSheet": {
     "title": "Dala ingoma",
@@ -4273,7 +4507,13 @@
     "followUpNote": "Singase sixhumane nawe ngemibuzo eyengeziwe mayelana nempendulo yakho",
     "submitFeedback": "Thumela impendulo",
     "provideFeedback": "Sicela ubhale impendulo yakho",
-    "thankYou": "Siyabonga ngempendulo yakho!"
+    "thankYou": "Siyabonga ngempendulo yakho!",
+    "submitFailed": "Kuhlulekile ukuthumela impendulo. Sicela uzame futhi.",
+    "maybeLater": "Mhlawumbe Kamuva",
+    "helpUsImprove": "Sisize sithuthuke",
+    "rateExperience": "Ungalinganisa kanjani isipiliyoni sakho?",
+    "telegramOptional": "I-Telegram (uyazikhethela)",
+    "discordOptional": "I-Discord (uyazikhethela)"
   },
   "migrate": {
     "clearAll": "Sula konke",
@@ -4390,7 +4630,14 @@
       "blueWhale": "Into enkulu kunazo zonke ezake zaphila. Nguwe lowo.",
       "megalodon": "Nanku umqhele wakho — usebukhosini be-app manje"
     },
-    "continue": "Buyela ku-DeHub"
+    "continue": "Buyela ku-DeHub",
+    "none": "Akukho",
+    "noBadgeYet": "Akukho ibheji okwamanje",
+    "next": "Okulandelayo",
+    "topTier": "Izinga eliphezulu",
+    "toNextTier": "{{amount}} DHB kuya ku-{{tier}}",
+    "everyTierUnlocked": "Wonke amazinga avuliwe",
+    "holdNote": "Uma ibheji selivuliwe, lingelakho inqobo nje uma unama-DHB akho. Inani lamathokheni adingekayo ukuvula ibheji elisha lingashintsha ngenani lethokheni."
   },
   "passwordStrength": {
     "veryWeak": "Buthakathaka kakhulu",
@@ -4472,7 +4719,11 @@
     },
     "ttsLabel": "Yisho okuthile ngokuzwakalayo",
     "ttsPlaceholder": "Funda ukuze usakaze...",
-    "ttsHint": "Funda ngokuzwakalayo kuwo wonke umuntu obuka lapho isipho sakho sifika."
+    "ttsHint": "Funda ngokuzwakalayo kuwo wonke umuntu obuka lapho isipho sakho sifika.",
+    "sendAGift": "Thumela Isipho",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Isipho esincane singama-{{amount}}",
+    "sendGift": "Thumela Isipho"
   },
   "goLive": {
     "streamKey": "Ukhiye Wokusasaza",
@@ -4855,7 +5106,8 @@
         "title": "Bona ukuthi iholo lisebenza kanjani",
         "body": "Thola indlela amacebiso, amabheji ne-SuperPower okuguqula ngayo lokho okwenzayo lapha kube yinto oyitholayo."
       }
-    }
+    },
+    "swipeToStart": "Swayipha ukuze uqale"
   },
   "conversation": {
     "commonGround": {
@@ -5337,5 +5589,18 @@
     "toastPaidSettled": "Kukhokhiwe — ukuhweba kuxazululiwe",
     "walletNotReady": "Isikhwama sakho asikakulungeli — zama futhi emzuzwini.",
     "wrongChain": "Lokhu kuhweba kuxazululwa ku-{{chain}}. Shintshela ku-{{chain}} kokuthi Izilungiselelo, bese uzama futhi."
+  },
+  "moderation": {
+    "appealDuplicate": "Usuvele ufake isikhalazo ngalokhu",
+    "appealSent": "Isikhalazo sithunyelwe",
+    "appealFailed": "Ayikwazanga ukufaka leso sikhalazo",
+    "appealTitle": "Faka isikhalazo ngalesi sinqumo",
+    "appealSubtitle": "Umuntu uzofunda lokhu bese ebheka isinqumo futhi.",
+    "appealPlaceholder": "Ucabanga ukuthi yini ebingekho? Umongo mayelana nokuqukethwe usiza ngaphezu kwanoma yini enye.",
+    "appealSend": "Thumela isikhalazo",
+    "appealFootnote": "Uthola inombolo yereferensi, futhi impendulo ibuyela lapha. Isikhalazo esisodwa ngesinqumo ngasinye.",
+    "appealRef": "Ireferensi {{ref}}",
+    "appealSubtitleSubject": "Umuntu uzofunda lokhu bese ebheka futhi ku- {{subject}}.",
+    "appealMore": "Izinhlamvu ezisadingeka: {{count}}"
   }
 }

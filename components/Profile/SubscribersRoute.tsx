@@ -3,6 +3,7 @@ import { View, Text, ScrollView, FlatList, ActivityIndicator, TouchableOpacity }
 import PlanCard from "../Subscription/PlanCard";
 import PlanFormSheet from "../Subscription/PlanFormSheet";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import { getPlans, type SubscriptionPlan } from "../../services/subscription.service";
 import ProfileEmptyState from "./ProfileEmptyState";
@@ -14,6 +15,7 @@ interface SubscribersRouteProps {
 }
 
 const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfile, listHeader }) => {
+  const { t } = useTranslation();
   const [plans, setPlans] = useState<SubscriptionPlan[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -28,11 +30,11 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
       const result = await getPlans(address);
       setPlans(result);
     } catch (e: any) {
-      setError(e?.message || "Failed to load plans");
+      setError(e?.message || t("subscriptions.loadPlansFailed"));
     } finally {
       setLoading(false);
     }
-  }, [address]);
+  }, [address, t]);
 
   useEffect(() => {
     fetchPlans();
@@ -94,7 +96,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
             activeOpacity={0.7}
             style={{ backgroundColor: "rgba(255,255,255,0.10)", borderRadius: 10, paddingHorizontal: 20, paddingVertical: 10 }}
           >
-            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "600" }}>Retry</Text>
+            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "600" }}>{t("common.retry")}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -114,8 +116,8 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24 }}>
               <ProfileEmptyState
                 kind="subscribers"
-                title="Subscriber content"
-                subtitle="Create plans to offer exclusive content to subscribers"
+                title={t("subscriptions.subscriberContent")}
+                subtitle={t("subscriptions.subscriberContentSub")}
               />
               <View>
                 <AccentButtonGradient>
@@ -124,7 +126,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
                     activeOpacity={0.7}
                     style={{ paddingHorizontal: 24, paddingVertical: 10 }}
                   >
-                    <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "700" }}>Create Your First Plan</Text>
+                    <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "700" }}>{t("subscriptions.createFirstPlan")}</Text>
                   </TouchableOpacity>
                 </AccentButtonGradient>
               </View>
@@ -132,8 +134,8 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
           ) : (
             <ProfileEmptyState
               kind="subscribers"
-              title="No subscription plans"
-              subtitle="This creator hasn't set up any plans yet"
+              title={t("profile.noPlans")}
+              subtitle={t("profile.noPlansSub")}
             />
           )
         }
@@ -147,7 +149,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
                 className="flex-row items-center justify-center gap-2 bg-white/10 border border-white/20 rounded-xl py-3 mb-3"
               >
                 <Icon name="Plus" size={16} color="#FFFFFF" />
-                <Text className="text-white font-semibold text-sm">Add New Plan</Text>
+                <Text className="text-white font-semibold text-sm">{t("subscriptions.addNewPlan")}</Text>
               </TouchableOpacity>
             ) : null}
           </>

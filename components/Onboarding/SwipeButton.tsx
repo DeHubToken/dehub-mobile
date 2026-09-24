@@ -5,6 +5,7 @@ import React, {
 } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated, {
   useSharedValue,
@@ -68,6 +69,7 @@ interface SwipeButtonProps {
 
 const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
   ({ onComplete }, ref) => {
+    const { t } = useTranslation();
     // Animation values
     const swipeProgress = useSharedValue(0); // 0 to 1
     const isPressed = useSharedValue(0); // 0 or 1
@@ -260,7 +262,7 @@ const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
         style={styles.container}
         accessible
         accessibilityRole="button"
-        accessibilityLabel="Swipe to start"
+        accessibilityLabel={t("onboarding.swipeToStart")}
         onAccessibilityTap={triggerComplete}
         accessibilityActions={[{ name: "activate" }]}
         onAccessibilityAction={(event) => {
@@ -324,7 +326,9 @@ const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
 
           {/* Text label */}
           <Animated.View style={[styles.textContainer, textStyle]}>
-            <Text style={styles.text}>Swipe to start</Text>
+            <Text style={styles.text} numberOfLines={1} adjustsFontSizeToFit>
+              {t("onboarding.swipeToStart")}
+            </Text>
           </Animated.View>
         </View>
       </View>
