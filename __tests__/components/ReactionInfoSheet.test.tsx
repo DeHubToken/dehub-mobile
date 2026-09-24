@@ -7,7 +7,7 @@ const mockShowProfile = jest.fn();
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', Pressable: 'Pressable', Modal: 'Modal', ActivityIndicator: 'ActivityIndicator',
-  Platform: { OS: 'ios' }, Dimensions: { get: () => ({ height: 800 }) },
+  Platform: { OS: 'ios' }, Dimensions: { get: () => ({ height: 800 }) }, useWindowDimensions: () => ({ width: 400, height: 800, scale: 2, fontScale: 1 }),
   StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s },
   SectionList: ({ sections, renderItem }: any) => sections.flatMap((section: any) => section.data.map((item: any) => renderItem({ item }))),
 }));
