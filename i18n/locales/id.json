@@ -119,7 +119,12 @@
     "music": "Musik",
     "live": "Siaran Langsung",
     "newPosts_one": "{{count}} postingan baru",
-    "newPosts_other": "{{count}} postingan baru"
+    "newPosts_other": "{{count}} postingan baru",
+    "privateContent": "Konten Pribadi",
+    "privateContentBody": "Konten ini berasal dari akun pribadi. Ikuti pembuatnya untuk melihat postingan mereka.",
+    "noMoreContent": "Tidak ada konten lagi",
+    "noPostsYet": "Belum ada postingan.",
+    "pullToRefresh": "Tarik untuk menyegarkan atau coba lagi nanti."
   },
   "explore": {
     "all": "Semua",
@@ -710,7 +715,19 @@
       "mentions": "Hanya penyebutan tentang saya",
       "replies": "Hanya balasan untuk komentar saya",
       "account": "Hanya pemberitahuan tentang akun saya"
-    }
+    },
+    "avatarUpdateFailed": "Pembaruan avatar gagal",
+    "coverUpdateFailed": "Pembaruan sampul gagal",
+    "fixInvalidSocialLinks": "Harap perbaiki tautan sosial yang tidak valid",
+    "updateFailed": "Pembaruan gagal",
+    "channelUrlOrHandle": "URL atau handle channel",
+    "inviteLinkPlaceholder": "Tautan undangan",
+    "profileUrlOrUsername": "URL profil atau nama pengguna",
+    "yourDisplayName": "Nama tampilan Anda",
+    "usernameAvailable": "Nama pengguna tersedia",
+    "hideBadgeAndBalance": "Sembunyikan lencana dan saldo",
+    "hideBadgeAndBalanceDesc": "Menyembunyikan detail keuangan dan menonaktifkan pengiriman serta tip kepada Anda.",
+    "onChainPublicWarning": "Transaksi on-chain bersifat publik. Mengirim token atau tip dapat mengungkapkan alamat dompet Anda, termasuk transaksi yang dilakukan sebelum mode saldo pribadi diaktifkan."
   },
   "common": {
     "mute": "Bisukan",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Tidak Ada Koneksi Internet",
     "noInternetBody": "Periksa koneksi internet Anda dan coba lagi. Anda perlu terhubung ke internet untuk menggunakan DeHub.",
     "noInternetStatus": "Offline - Tidak ada koneksi jaringan",
-    "noInternetHint": "Pastikan Wi-Fi atau data seluler aktif, lalu ketuk \"{{action}}\""
+    "noInternetHint": "Pastikan Wi-Fi atau data seluler aktif, lalu ketuk \"{{action}}\"",
+    "saving": "Menyimpan…",
+    "offlineStatus": "Offline - Tidak ada koneksi jaringan"
   },
   "tip": {
     "title": "Kirim Tip",
@@ -1094,7 +1113,17 @@
     "post": "Postingan",
     "officialLogo": "Ini logo resmi DeHub! 🎨",
     "editedImage": "Ini gambar yang sudah diedit!",
-    "generatedImage": "Ini gambar yang dibuat!"
+    "generatedImage": "Ini gambar yang dibuat!",
+    "toolCompleted": "{{name}} selesai",
+    "aiTool": "Alat AI",
+    "cannotAnimateImage": "{{model}} tidak dapat menganimasikan gambar yang terpasang. Pilih model video lain.",
+    "needsImageToAnimate": "{{model}} memerlukan gambar untuk dianimasikan. Lampirkan satu atau pilih model lain.",
+    "couldNotReadImage": "Tidak dapat membaca gambar itu",
+    "logoLoadFailed": "Tidak dapat memuat logo DeHub — membuat tanpa itu",
+    "imageAttachedDescribe": "Gambar terpasang — jelaskan editan Anda",
+    "couldNotPreparePost": "Tidak dapat menyiapkan itu untuk diposting",
+    "generateImage": "Buat Gambar",
+    "generateVideo": "Buat Video"
   },
   "commandCentre": {
     "title": "Pusat Komando",
@@ -1606,7 +1635,10 @@
     "edit": "Edit",
     "deleteRequestTitle": "Hapus permintaan ini?",
     "deleteRequestDescription": "Ini tidak bisa dibatalkan.",
-    "attachmentTooLarge": "Setiap berkas harus di bawah 20MB"
+    "attachmentTooLarge": "Setiap berkas harus di bawah 20MB",
+    "deleteCommentA11y": "Hapus Komentar",
+    "sendCommentA11y": "Kirim komentar",
+    "requestOptions": "Opsi permintaan"
   },
   "auth": {
     "loginRequired": "Login diperlukan",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Tidak dapat mengirim kode. Silakan coba lagi.",
     "invalidCodeRetry": "Kode tidak valid. Silakan coba lagi.",
     "invalidEmailOrPassword": "Email atau kata sandi tidak valid.",
-    "welcomeToDehub": "Selamat datang di DeHub"
+    "welcomeToDehub": "Selamat datang di DeHub",
+    "importWalletOptional": "Impor Dompet (Opsional)",
+    "couldNotSendCodeRetry": "Tidak dapat mengirim kode. Silakan coba lagi.",
+    "exploreWithoutSignIn": "Jelajahi tanpa masuk",
+    "continueExploring": "Lanjutkan penjelajahan",
+    "exploreWithoutSignInA11y": "Jelajahi DeHub tanpa masuk",
+    "continueExploringA11y": "Lanjutkan menjelajahi DeHub",
+    "importWalletRecommended": "Login sosial direkomendasikan.",
+    "importWalletPurpose": "Alat ini untuk mengimpor akun yang sudah ada dari DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Balasan yang disarankan dimatikan",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Ini sudah dilaporkan otomatis.",
     "loadFailed": "Tidak bisa memuat saluran",
     "noSearchResults": "Tidak ada saluran yang cocok dengan pencarian Anda",
-    "noChannels": "Tidak ada saluran tersedia"
+    "noChannels": "Tidak ada saluran tersedia",
+    "pairCodeExpired": "Kode tersebut telah kedaluwarsa. Minta TV untuk yang baru.",
+    "signedInOnTv": "Masuk di TV Anda",
+    "pairRefused": "Ditolak",
+    "pairIntro": "Buka DeHub di televisi Anda dan ketik kode yang ditampilkan di sini.",
+    "pairNotFound": "Tidak ada televisi yang menunggu kode itu. Mungkin sudah kedaluwarsa — minta TV untuk yang baru.",
+    "wantsToSignIn": "ingin masuk saat Anda",
+    "pairWarning": "Hanya setujui ini jika itu adalah televisi yang Anda lihat saat ini. Menyetujui tanda - tanda siapa pun yang memegang kode itu ke akun Anda. Ini akan dapat menonton, menyukai, dan mengikuti — tidak dapat dihabiskan, dan Anda dapat menandatanganinya kapan saja dari sesi Aktif.",
+    "pairApprove": "Ya, masuk ke TV ini",
+    "pairDeny": "Tidak, saya tidak meminta ini",
+    "pairDoneTitle": "TV Anda sudah masuk",
+    "pairDoneBody": "Ini seharusnya sudah menunjukkan akun Anda. Keluar kapan saja dari Pengaturan → Privasi Sesi → aktif.",
+    "closePlayer": "Tutup pemain",
+    "declineFailed": "Tidak dapat menolaknya — mungkin sudah kedaluwarsa.",
+    "tipSentTvNotTold": "Tip terkirim, tetapi TV tidak bisa diberi tahu. Waktu akan habis.",
+    "sentAmount": "Kirim {{amount}} DHB",
+    "nothingWaiting": "Tidak ada yang menunggu",
+    "nothingWaitingBody": "Saat Anda memberi tip dari DeHub di televisi Anda, itu akan muncul di sini untuk Anda setujui. TV Anda tidak pernah menyimpan dompet Anda.",
+    "yourTelevision": "Televisi Anda",
+    "wantsToTip": "ingin mengirim tip · {{time}} meninggalkan",
+    "tipTo": "ke {{name}}",
+    "tipForPost": "untuk “{{title}}”",
+    "reviewAndApprove": "Tinjau dan setujui"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Kirim lamaran",
     "nameEmailRequired": "Nama dan email wajib diisi",
     "applicationSuccess": "Lamaran berhasil dikirim! Kami akan menghubungi Anda.",
-    "applicationFailed": "Gagal mengirim. Silakan coba lagi."
+    "applicationFailed": "Gagal mengirim. Silakan coba lagi.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Perbendaharaan DAO",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Disematkan di bagian atas postingan ini",
     "unpinnedToast": "Sematan dihapus",
     "pinFailed": "Komentar itu tidak bisa disematkan",
-    "kidsOnlyThread": "Postingan ini untuk anak - anak. Hanya Mode Anak yang dapat mengomentarinya."
+    "kidsOnlyThread": "Postingan ini untuk anak - anak. Hanya Mode Anak yang dapat mengomentarinya.",
+    "editFailed": "Gagal mengedit komentar"
   },
   "postInfo": {
     "title": "Info Postingan",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Segera hadir",
     "signIn": "Masuk",
     "tapToGetStarted": "Ketuk untuk memulai",
-    "soon": "Segera"
+    "soon": "Segera",
+    "glossarySubtitle": "Pelajari arti setiap ikon dan fitur",
+    "searchGlossary": "Cari glosarium...",
+    "noResultsFor": "Tidak ada hasil untuk \"{{query}}\"",
+    "guideSubtitle": "Panduan langkah demi langkah untuk setiap fitur",
+    "searchGuide": "Cari panduan...",
+    "repostsTab": "Repost",
+    "quotesTab": "Kutipan",
+    "noMoreReposts": "Tidak ada lagi repost",
+    "noMoreQuotes": "Tidak ada lagi kutipan",
+    "noRepostsYet": "Belum ada repost",
+    "noQuotesYet": "Belum ada kutipan"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Game yang berjalan langsung di aplikasi ini. Tidak perlu instal, tidak perlu beli — sumber terbuka, dan disajikan dari DeHub sendiri."
+    "intro": "Game yang berjalan langsung di aplikasi ini. Tidak perlu instal, tidak perlu beli — sumber terbuka, dan disajikan dari DeHub sendiri.",
+    "noGameCalled": "Tidak ada game bernama <slug>{{slug}}</slug> di arkade.",
+    "seeWhatIsHere": "Lihat apa yang ada di sini",
+    "locationNotGranted": "Izin lokasi tidak diberikan.",
+    "signInToPlaceOnGlobe": "Masuk untuk menempatkan diri Anda di peta dunia.",
+    "couldNotPlaceOnGlobe": "Tidak dapat menempatkan Anda di peta dunia.",
+    "onTheGlobe": "Anda berada di peta dunia — ditampilkan dalam area perkiraan 25 km.",
+    "couldNotReach": "TIDAK DAPAT MENCAPAI ARKADE",
+    "didNotLoad": "{{title}} tidak dimuat",
+    "needsConnection": "Game disajikan dari dehub.io dan diunduh saat Anda membukanya, jadi perlu koneksi yang berfungsi pada kali pertama. Periksa koneksi Anda dan coba lagi.",
+    "backToArcade": "Kembali ke arkade",
+    "openPrivacySettings": "Buka pengaturan privasi",
+    "privacyWarning": "Jika Anda memiliki banyak token atau tinggal di area yang tidak aman, sembunyikan lencana dan saldo Anda sebelum menggunakan fitur ini. Transaksi on-chain masih mengungkapkan alamat Anda. Buka pengaturan.",
+    "leaveGame": "Tinggalkan permainan",
+    "loadingGame": "Memuat {{title}}",
+    "hideThis": "Sembunyikan ini"
   },
   "videoLooks": {
     "button": "Gaya kamera",
@@ -3425,7 +3515,22 @@
     "someone": "Seseorang",
     "oneTyping": "{{name}} sedang mengetik…",
     "fewTyping": "{{names}} sedang mengetik…",
-    "manyTyping": "{{count}} orang sedang mengetik…"
+    "manyTyping": "{{count}} orang sedang mengetik…",
+    "modBadge": "MOD",
+    "thisUser": "pengguna ini",
+    "unbanConfirm": "Apakah Anda yakin ingin membuka blokir {{name}}?",
+    "unban": "Buka blokir",
+    "unbanFailed": "Gagal membuka blokir pengguna",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} pengguna",
+    "usersCount_other": "{{count}} pengguna",
+    "totalMessages": "Total Pesan",
+    "slowMode": "Mode Lambat",
+    "cooldownSeconds": "{{seconds}}s jeda",
+    "minStakeRequired": "Taruhan Minimum Diperlukan",
+    "noParticipants": "Belum ada peserta",
+    "noModerators": "Tidak ada moderator",
+    "noBannedUsers": "Tidak ada pengguna yang diblokir"
   },
   "promptFeed": {
     "headline": "Apa yang ingin kamu lihat?",
@@ -4177,7 +4282,26 @@
     "madeForKidsOffDesc": "Menampilkan postingan ini kepada anak-anak yang menggunakan Mode Anak-anak, dan mengeluarkannya dari feed biasa.",
     "madeForKidsBlockedByMature": "Postingan yang ditandai dewasa tidak dapat juga dipublikasikan untuk anak-anak.",
     "encoderTitle": "OBS / encoder",
-    "encoderHint": "Ambil detail RTMP"
+    "encoderHint": "Ambil detail RTMP",
+    "queueWaiting": "Menunggu…",
+    "queueUploading": "Mengunggah",
+    "queueProcessing": "Memproses…",
+    "queueMinting": "Mencetak…",
+    "queuePosted": "Diposting",
+    "queueFailed": "Gagal",
+    "noRetriesLeft": "(tidak ada percobaan ulang tersisa)",
+    "noUploads": "Tidak ada unggahan",
+    "uploadsAppearHere": "Unggahan Anda akan muncul di sini",
+    "imagesTotalLimit": "Gambar dalam satu unggahan harus total 100 MB atau kurang",
+    "chooseDatabase": "Pilih Basis Data Terdesentralisasi",
+    "livestreamMode": "Mode Streaming Langsung",
+    "addThumbnail": "Tambahkan Thumbnail",
+    "showCover": "Tampilkan sampul",
+    "max60s": "Maks 60 - an",
+    "confirmLivestream": "Konfirmasi Streaming Langsung",
+    "liveFeaturesTitle": "Fitur Langsung",
+    "discardPostTitle": "Buang Pos?",
+    "discardPostBody": "Postingan Anda akan hilang. Apakah Anda ingin menyimpannya sebagai draf?"
   },
   "bounty": {
     "claimed": "Sudah diklaim",
@@ -4494,7 +4618,25 @@
     "allowNewDmsOff": "Aktifkan DM untuk mengizinkan pesan baru.",
     "perMessageFee": "Biaya per pesan (DHB)",
     "perMessageFeeSub": "Kenakan biaya per pesan. Setel 0 untuk DM gratis. Anda bisa memberi akses gratis ke pengguna tertentu.",
-    "allDisabled": "Saat ini semua DM dinonaktifkan. DM baru diblokir secara bawaan."
+    "allDisabled": "Saat ini semua DM dinonaktifkan. DM baru diblokir secara bawaan.",
+    "failedToEdit": "Gagal mengedit",
+    "messageDeleted": "Pesan dihapus",
+    "cantForwardFromDevice": "Pesan ini tidak dapat diteruskan dari perangkat ini",
+    "messageForwarded": "Pesan diteruskan",
+    "clearMessages": "Hapus pesan",
+    "clearMessagesConfirm": "Hapus semua pesan dalam percakapan ini? Ini tidak bisa dibatalkan.",
+    "messagesCleared": "Pesan dihapus",
+    "failedToClearMessages": "Gagal menghapus pesan",
+    "removedFreeAccess": "Menghapus akses gratis untuk {{name}}",
+    "grantedFreeAccess": "Diberikan akses gratis ke {{name}}",
+    "failedToUpdateFreeAccess": "Gagal memperbarui akses gratis",
+    "searchComingSoon": "Pencarian segera hadir",
+    "tapToUnblock": "Ketuk untuk membuka blokir",
+    "userFallback": "pengguna",
+    "failedToBlock": "Gagal memblokir",
+    "failedToDeleteConversation": "Gagal menghapus percakapan",
+    "newDm": "Pesan langsung baru",
+    "noConversationsFound": "Percakapan tidak ditemukan"
   },
   "editPost": {
     "mediaPermission": "Izin pustaka media diperlukan",
@@ -4516,7 +4658,17 @@
     "retry": "Coba lagi",
     "retrying": "Mencoba lagi…",
     "retryQueued": "Memproses lagi",
-    "retryFailed": "Tidak dapat mencoba kembali postingan itu"
+    "retryFailed": "Tidak dapat mencoba kembali postingan itu",
+    "closeVideo": "Tutup video",
+    "rotateOrientation": "Putar orientasi",
+    "videoProgress": "Progres video: {{percent}}%",
+    "tapToSeek": "Ketuk untuk mencari posisi tertentu",
+    "photoAccessToSaveImages": "Izinkan akses pustaka foto untuk menyimpan gambar",
+    "failedToSaveImage": "Gagal menyimpan gambar",
+    "downloadImage": "Unduh gambar",
+    "goToImage": "Buka gambar {{index}}",
+    "allCaughtUp": "Anda sudah selesai",
+    "checkBackForShorts": "Periksa lagi nanti untuk short lainnya"
   },
   "liveViewer": {
     "loadingStream": "Memuat siaran...",
@@ -4526,7 +4678,22 @@
   },
   "search": {
     "endOfResults": "Akhir hasil",
-    "searchDehub": "Cari di DeHub"
+    "searchDehub": "Cari di DeHub",
+    "tabVoice": "Suara",
+    "trendingThisWeek": "Sedang Tren Minggu Ini",
+    "trendingPosts": "Postingan Tren",
+    "trendingImages": "Gambar Tren",
+    "trendingVideos": "Video Tren",
+    "trendingVoicePosts": "Postingan Suara Tren",
+    "trendingLive": "Live Tren",
+    "seeAll": "Lihat Semua",
+    "noAccountsFound": "Tidak ada akun yang ditemukan",
+    "tryDifferentKeywords": "Coba kata kunci lain atau periksa ejaan Anda",
+    "noContentResults": "Tidak ada hasil konten",
+    "recentSearches": "Pencarian Terbaru",
+    "noTrendingThisWeek": "Tidak ada konten tren minggu ini",
+    "closeFilterOptions": "Tutup opsi filter",
+    "openFilterOptions": "Buka opsi filter"
   },
   "notifPrompt": {
     "stayInLoop": "Tetap update",
@@ -4776,7 +4943,26 @@
     "externalTitle": "Mode Streaming Eksternal",
     "externalLiveHint": "Streaming Anda ditayangkan melalui perangkat lunak eksternal. Kamera dalam aplikasi dinonaktifkan.",
     "externalHint": "Hubungkan perangkat lunak streaming Anda menggunakan detail di bawah ini, lalu mulai penyiaran.",
-    "useInAppCamera": "Gunakan Kamera Dalam Aplikasi"
+    "useInAppCamera": "Gunakan Kamera Dalam Aplikasi",
+    "livestreamEnded": "Livestream berakhir",
+    "chatEnabled": "Obrolan diaktifkan",
+    "chatDisabled": "Obrolan dinonaktifkan",
+    "failedToUpdateSettings": "Gagal memperbarui pengaturan",
+    "networkLostReconnecting": "Jaringan hilang — streaming dijeda. Menyambungkan kembali…",
+    "openingViewer": "Membuka penampil...",
+    "cameraPermissionRequired": "Izin kamera diperlukan",
+    "grantPermission": "Berikan Izin",
+    "waitingForLivepeer": "Menunggu Livepeer...",
+    "waitingForExternalSource": "Menunggu sumber eksternal...",
+    "settingUpPublisher": "Menyiapkan penayang...",
+    "scheduledStream": "Streaming Terjadwal",
+    "scheduledAt": "{{date}} di {{time}}",
+    "pressGoLiveWhenReady": "Tekan Siaran Langsung saat siap untuk memulai",
+    "connectionInterrupted": "Koneksi Terputus",
+    "streamPausedReconnecting": "Streaming Anda dijeda. Menghubungkan kembali...",
+    "streamWillEnd": "Streaming akan berakhir jika tidak tersambung kembali",
+    "endStreamConfirmTitle": "Akhiri Streaming?",
+    "endStreamConfirmBody": "Penutupan sekarang akan mengakhiri streaming langsung Anda untuk semua pemirsa. Anda dapat melanjutkan streaming atau mengakhirinya secara permanen."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

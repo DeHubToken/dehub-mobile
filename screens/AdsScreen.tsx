@@ -184,7 +184,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
                 onPress={onClose}
                 hitSlop={12}
                 accessibilityRole="button"
-                accessibilityLabel="Close"
+                accessibilityLabel={t("common.close")}
               >
                 <Icon name="X" size={20} color="#A1A1AA" />
               </Pressable>

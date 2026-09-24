@@ -27,14 +27,14 @@ import { cancelJob } from "../services/upload.processor";
 
 const STATUS_CONFIG: Record<
   UploadJobStatus,
-  { label: string; color: string; icon: string }
+  { labelKey: string; color: string; icon: string }
 > = {
-  queued: { label: "Waiting…", color: "#9ca3af", icon: "Clock" },
-  uploading: { label: "Uploading", color: "#fff", icon: "Upload" },
-  processing: { label: "Processing…", color: "#fff", icon: "Loader" },
-  minting: { label: "Minting…", color: "#fff", icon: "Coins" },
-  done: { label: "Posted", color: "#fff", icon: "CircleCheck" },
-  failed: { label: "Failed", color: "#F4F4F5", icon: "CircleAlert" },
+  queued: { labelKey: "upload.queueWaiting", color: "#9ca3af", icon: "Clock" },
+  uploading: { labelKey: "upload.queueUploading", color: "#fff", icon: "Upload" },
+  processing: { labelKey: "upload.queueProcessing", color: "#fff", icon: "Loader" },
+  minting: { labelKey: "upload.queueMinting", color: "#fff", icon: "Coins" },
+  done: { labelKey: "upload.queuePosted", color: "#fff", icon: "CircleCheck" },
+  failed: { labelKey: "upload.queueFailed", color: "#F4F4F5", icon: "CircleAlert" },
 };
 
 const JobItem = memo<{ job: UploadJob }>(({ job }) => {
@@ -77,20 +77,20 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
 
         <View className="flex-1 mr-3">
           <Text className="text-white text-sm font-medium" numberOfLines={1}>
-            {job.title || "Untitled"}
+            {job.title || t("creator.untitled")}
           </Text>
           <View className="flex-row items-center mt-0.5">
             <Icon name={config.icon as any} size={12} color={config.color} />
             <Text style={{ color: config.color }} className="text-xs ml-1">
               {(job.status === "uploading" || job.status === "processing" || job.status === "minting")
                 ? `${progressPercent}%`
-                : config.label}
+                : t(config.labelKey)}
             </Text>
           </View>
           {job.error && (
             <Text className="text-white/80 text-[11px] mt-0.5" numberOfLines={2}>
               {job.error}
-              {retriesExhausted ? " (no retries left)" : ""}
+              {retriesExhausted ? ` ${t("upload.noRetriesLeft")}` : ""}
             </Text>
           )}
         </View>
@@ -154,19 +154,22 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
   );
 });
 
-const EmptyState = memo(() => (
+const EmptyState = memo(() => {
+  const { t } = useTranslation();
+  return (
   <View className="flex-1 items-center justify-center py-20">
     <View className="w-14 h-14 rounded-xl bg-theme-neutrals-800 items-center justify-center mb-4">
       <Icon name="Upload" size={24} color="#4b5563" />
     </View>
     <Text className="text-theme-neutrals-500 text-sm font-medium">
-      No uploads
+      {t("upload.noUploads")}
     </Text>
     <Text className="text-theme-neutrals-400 text-xs mt-1">
-      Your uploads will appear here
+      {t("upload.uploadsAppearHere")}
     </Text>
   </View>
-));
+  );
+});
 
 const UploadQueueScreen: React.FC<any> = () => {
   const { t } = useTranslation();
@@ -194,7 +197,7 @@ const UploadQueueScreen: React.FC<any> = () => {
         rightContent={
           hasCompleted ? (
             <TouchableOpacity onPress={handleClearCompleted} activeOpacity={0.7}>
-              <Text className="text-blue-400 text-sm font-medium">Clear</Text>
+              <Text className="text-blue-400 text-sm font-medium">{t("library.clear")}</Text>
             </TouchableOpacity>
           ) : undefined
         }

@@ -1963,14 +1963,14 @@ const ShortsViewerScreen = () => {
       >
         <Icon name="Film" size={48} color="rgba(255,255,255,0.3)" />
         <Text className="text-white/50 text-sm mt-3 font-medium">
-          You're all caught up
+          {t("player.allCaughtUp")}
         </Text>
         <Text className="text-white/60 text-xs mt-1">
-          Check back later for more shorts
+          {t("player.checkBackForShorts")}
         </Text>
       </View>
     );
-  }, [noMoreShorts, items.length, containerHeight]);
+  }, [noMoreShorts, items.length, containerHeight, t]);
 
   const renderEmpty = useCallback(() => {
     if (initialLoading) return null;
@@ -1985,14 +1985,14 @@ const ShortsViewerScreen = () => {
       >
         <Icon name="Film" size={48} color="rgba(255,255,255,0.3)" />
         <Text className="text-white/50 text-sm mt-3 font-medium">
-          You're all caught up
+          {t("player.allCaughtUp")}
         </Text>
         <Text className="text-white/60 text-xs mt-1">
-          Check back later for more shorts
+          {t("player.checkBackForShorts")}
         </Text>
       </View>
     );
-  }, [initialLoading, containerHeight]);
+  }, [initialLoading, containerHeight, t]);
 
   const handleScrollEnd = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (!noMoreShorts || !listRef.current || items.length === 0) return;
@@ -2008,7 +2008,7 @@ const ShortsViewerScreen = () => {
         animated: true,
       });
     }, 1500);
-  }, [noMoreShorts, items.length, containerHeight]);
+  }, [noMoreShorts, items.length, containerHeight, t]);
 
   const activeVideoRef = useRef<VideoView>(null);
 

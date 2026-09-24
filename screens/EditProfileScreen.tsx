@@ -208,7 +208,7 @@ const EditProfileScreen = () => {
         setLocalAvatar(manip);
       });
     } catch (e) {
-      toastError(e, "Avatar update failed");
+      toastError(e, t("settings.avatarUpdateFailed"));
       setLocalAvatar(null);
     } finally {
       setProcessingAvatar(false);
@@ -237,7 +237,7 @@ const EditProfileScreen = () => {
         setLocalCover(manip);
       });
     } catch (e) {
-      toastError(e, "Cover update failed");
+      toastError(e, t("settings.coverUpdateFailed"));
       setLocalCover(null);
     } finally {
       setProcessingCover(false);
@@ -250,7 +250,7 @@ const EditProfileScreen = () => {
       setSaving(true);
       const usernameChanged = username?.trim() !== initial.username.trim();
       if (usernameChanged && isReservedUsername(username)) {
-        throw new Error("This username is reserved");
+        throw new Error(t("setProfile.usernameReserved"));
       }
       const tw = validateSocial("x", twitterLink);
       const ig = validateSocial("instagram", instagramLink);
@@ -270,7 +270,7 @@ const EditProfileScreen = () => {
       };
       setSocialErrors(errs);
       if (Object.values(errs).some(Boolean)) {
-        throw new Error("Please fix invalid social links");
+        throw new Error(t("settings.fixInvalidSocialLinks"));
       }
 
       const payload: Record<string, any> = {
@@ -332,7 +332,7 @@ const EditProfileScreen = () => {
       payload.facebookLink = fb.normalized;
       await AuthService.updateProfile(payload);
       await refreshUser?.();
-      toastSuccess("Profile updated");
+      toastSuccess(t("toasts.profile_updated"));
       navigation.goBack();
     } catch (e) {
       if (prevUserSnapshot && typeof patchUser === "function") {
@@ -340,7 +340,7 @@ const EditProfileScreen = () => {
           await patchUser(prevUserSnapshot as any);
         } catch {}
       }
-      toastError(e, "Update failed");
+      toastError(e, t("settings.updateFailed"));
     } finally {
       setSaving(false);
     }
@@ -352,15 +352,15 @@ const EditProfileScreen = () => {
 
   const socialFields: SocialField[] = useMemo(
     () => [
-      { key: "twitterLink", label: "X (Twitter)", platform: "x", reach: "twitter", svg: TWITTER_SVG_XML, placeholder: "Username", value: twitterLink, setter: setTwitterLink },
-      { key: "instagramLink", label: "Instagram", platform: "instagram", reach: "instagram", svg: INSTAGRAM_SVG_XML, placeholder: "Username", value: instagramLink, setter: setInstagramLink },
-      { key: "tiktokLink", label: "TikTok", platform: "tiktok", reach: "tiktok", svg: TIKTOK_SVG_XML, placeholder: "Username", value: tiktokLink, setter: setTiktokLink },
-      { key: "youtubeLink", label: "YouTube", platform: "youtube", reach: "youtube", svg: YOUTUBE_SVG_XML, placeholder: "Channel URL or handle", value: youtubeLink, setter: setYoutubeLink },
-      { key: "discordLink", label: "Discord", platform: "discord", reach: "discord", svg: DISCORD_SVG_XML, placeholder: "Invite link", value: discordLink, setter: setDiscordLink },
-      { key: "telegramLink", label: "Telegram", platform: "telegram", reach: "telegram", svg: TELEGRAM_SVG_XML, placeholder: "Username", value: telegramLink, setter: setTelegramLink },
-      { key: "facebookLink", label: "Facebook", platform: "facebook", reach: "facebook", svg: FACEBOOK_SVG_XML, placeholder: "Profile URL or username", value: facebookLink, setter: setFacebookLink },
+      { key: "twitterLink", label: "X (Twitter)", platform: "x", reach: "twitter", svg: TWITTER_SVG_XML, placeholder: t("settings.username"), value: twitterLink, setter: setTwitterLink },
+      { key: "instagramLink", label: "Instagram", platform: "instagram", reach: "instagram", svg: INSTAGRAM_SVG_XML, placeholder: t("settings.username"), value: instagramLink, setter: setInstagramLink },
+      { key: "tiktokLink", label: "TikTok", platform: "tiktok", reach: "tiktok", svg: TIKTOK_SVG_XML, placeholder: t("settings.username"), value: tiktokLink, setter: setTiktokLink },
+      { key: "youtubeLink", label: "YouTube", platform: "youtube", reach: "youtube", svg: YOUTUBE_SVG_XML, placeholder: t("settings.channelUrlOrHandle"), value: youtubeLink, setter: setYoutubeLink },
+      { key: "discordLink", label: "Discord", platform: "discord", reach: "discord", svg: DISCORD_SVG_XML, placeholder: t("settings.inviteLinkPlaceholder"), value: discordLink, setter: setDiscordLink },
+      { key: "telegramLink", label: "Telegram", platform: "telegram", reach: "telegram", svg: TELEGRAM_SVG_XML, placeholder: t("settings.username"), value: telegramLink, setter: setTelegramLink },
+      { key: "facebookLink", label: "Facebook", platform: "facebook", reach: "facebook", svg: FACEBOOK_SVG_XML, placeholder: t("settings.profileUrlOrUsername"), value: facebookLink, setter: setFacebookLink },
     ],
-    [twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink]
+    [twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink, t]
   );
 
   // A changed username has to be positively cleared. The old gate only blocked
@@ -387,7 +387,7 @@ const EditProfileScreen = () => {
             <View className="flex-row items-center gap-1">
               {saving && <ActivityIndicator size="small" color="#fff" />}
               <Text className="text-white font-medium text-sm">
-                {saving ? "Saving..." : "Save"}
+                {saving ? t("common.saving") : t("common.save")}
               </Text>
             </View>
           </TouchableOpacity>
@@ -452,11 +452,11 @@ const EditProfileScreen = () => {
 
           <View className="px-4 gap-5">
             <View>
-              <Text className="text-neutral-400 text-xs font-medium mb-1.5">Display Name</Text>
+              <Text className="text-neutral-400 text-xs font-medium mb-1.5">{t("settings.displayName")}</Text>
               <TextInput
                 className="bg-theme-neutrals-900 text-white text-base px-4 py-3 rounded-xl border border-theme-neutrals-700"
                 placeholderTextColor="#6b7280"
-                placeholder="Your display name"
+                placeholder={t("settings.yourDisplayName")}
                 value={displayName}
                 onChangeText={setDisplayName}
                 autoCapitalize="words"
@@ -464,7 +464,7 @@ const EditProfileScreen = () => {
             </View>
 
             <View>
-              <Text className="text-neutral-400 text-xs font-medium mb-1.5">Username</Text>
+              <Text className="text-neutral-400 text-xs font-medium mb-1.5">{t("settings.username")}</Text>
               <TextInput
                 className="bg-theme-neutrals-900 text-white text-base px-4 py-3 rounded-xl border border-theme-neutrals-700"
                 placeholderTextColor="#6b7280"
@@ -483,34 +483,34 @@ const EditProfileScreen = () => {
               />
               <View className="mt-1 min-h-[16px]">
                 {checkingUsername && (
-                  <Text className="text-[10px] text-neutral-400">Checking availability…</Text>
+                  <Text className="text-[10px] text-neutral-400">{t("auth.checkingAvailability")}</Text>
                 )}
                 {!checkingUsername &&
                   username.trim().length > 0 &&
                   username.trim() !== initial.username.trim() &&
                   usernameAvailable === true && (
-                    <Text className="text-[10px] text-white/80">Username is available</Text>
+                    <Text className="text-[10px] text-white/80">{t("settings.usernameAvailable")}</Text>
                   )}
                 {!checkingUsername &&
                   username.trim().length > 0 &&
                   username.trim() !== initial.username.trim() &&
                   usernameAvailable === false && (
                     <Text className="text-[10px] text-white/80">
-                      {isReservedUsername(username) ? "This username is reserved" : "Username taken"}
+                      {isReservedUsername(username) ? t("setProfile.usernameReserved") : t("setProfile.usernameTaken")}
                     </Text>
                   )}
                 {!checkingUsername && username.trim().length === 0 && (
-                  <Text className="text-[10px] text-neutral-500">3–30 chars: letters, numbers, underscore.</Text>
+                  <Text className="text-[10px] text-neutral-500">{t("setProfile.usernameHint")}</Text>
                 )}
               </View>
             </View>
 
             <View>
-              <Text className="text-neutral-400 text-xs font-medium mb-1.5">Bio</Text>
+              <Text className="text-neutral-400 text-xs font-medium mb-1.5">{t("settings.bio")}</Text>
               <TextInput
                 className="bg-theme-neutrals-900 text-white text-base px-4 py-3 rounded-xl border border-theme-neutrals-700 h-28"
                 placeholderTextColor="#6b7280"
-                placeholder="Tell people about you"
+                placeholder={t("settings.bioPlaceholder")}
                 value={aboutMe}
                 onChangeText={(val) => setAboutMe(val.slice(0, BIO_MAX))}
                 multiline

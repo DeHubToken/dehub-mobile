@@ -119,7 +119,12 @@
     "music": "موسيقي",
     "live": "لائيو",
     "newPosts_one": "{{count}} نئين پوسٽ",
-    "newPosts_other": "{{count}} نيون پوسٽون"
+    "newPosts_other": "{{count}} نيون پوسٽون",
+    "privateContent": "ذاتي مواد",
+    "privateContentBody": "هي مواد هڪ ذاتي اڪائونٽ مان آهي. پوسٽون ڏسڻ لاءِ ٺاهيندڙ جي پيروي ڪريو.",
+    "noMoreContent": "وڌيڪ مواد ناهي",
+    "noPostsYet": "اڃا تائين ڪا پوسٽ ناهي.",
+    "pullToRefresh": "تازہ ڪرڻ لاءِ ھيٺ ڏانهن ڇڪيو يا بعد ۾ ٻيهر ڪوشش ڪريو."
   },
   "explore": {
     "all": "سڀ",
@@ -709,7 +714,19 @@
     "smsBalanceMessages": "اٽڪل {{count}} وڌيڪ پيغام",
     "smsTopUp": "{{dhb}} DHB ٽاپ اپ ڪريو",
     "smsCodeSent": "ڪوڊ موڪليو ويو. ان تي {{price}} DHB خرچ آيو.",
-    "smsCodeLabel": "ڪوڊ جيڪو اسان {{phone}} ڏانهن موڪليو"
+    "smsCodeLabel": "ڪوڊ جيڪو اسان {{phone}} ڏانهن موڪليو",
+    "avatarUpdateFailed": "اوتار اپڊيٽ ناڪام ٿيو",
+    "coverUpdateFailed": "ڪور اپڊيٽ ناڪام ٿيو",
+    "fixInvalidSocialLinks": "مهرباني ڪري غلط سوشل لنڪس درست ڪريو",
+    "updateFailed": "اپڊيٽ ناڪام ٿيو",
+    "channelUrlOrHandle": "چينل يو آر ايل يا هينڊل",
+    "inviteLinkPlaceholder": "دعوت نامو لنڪ",
+    "profileUrlOrUsername": "پروفائل يو آر ايل يا يوزر نيم",
+    "yourDisplayName": "تنهنجو ڏيکاريل نالو",
+    "usernameAvailable": "يوزر نيم موجود آهي",
+    "hideBadgeAndBalance": "بيج ۽ بيلنس لڪايو",
+    "hideBadgeAndBalanceDesc": "مالياتي تفصيل لڪائي ٿو ۽ توهان کي موڪلڻ ۽ ٽوٽيون بند ڪري ٿو.",
+    "onChainPublicWarning": "آن-چين ٽرانزيڪشن عوامي آهن. ٽوڪن يا ٽوٽيون موڪلڻ سان توهان جو والٽ پتو ظاهر ٿي سگهي ٿو، جنهن ۾ پرائيويٽ بيلنس موڊ فعال ٿيڻ کان اڳ ڪيل ٽرانزيڪشن شامل آهن."
   },
   "common": {
     "mute": "آواز بند ڪريو",
@@ -759,7 +776,9 @@
     "noInternetTitle": "انٽرنيٽ ڪنيڪشن ناهي",
     "noInternetBody": "مهرباني ڪري پنهنجي انٽرنيٽ ڪنيڪشن چيڪ ڪريو ۽ ٻيهر ڪوشش ڪريو. DeHub استعمال ڪرڻ لاءِ توهان کي انٽرنيٽ سان ڳنڍيل هجڻ ضروري آهي.",
     "noInternetStatus": "آف لائن - نيٽ ورڪ ڪنيڪشن ناهي",
-    "noInternetHint": "پڪ ڪريو ته وائي فائي يا موبائيل ڊيٽا آن آهي، پوءِ \"{{action}}\" تي ٽيپ ڪريو"
+    "noInternetHint": "پڪ ڪريو ته وائي فائي يا موبائيل ڊيٽا آن آهي، پوءِ \"{{action}}\" تي ٽيپ ڪريو",
+    "saving": "محفوظ ٿي رهيو آهي…",
+    "offlineStatus": "آف لائن - نيٽ ورڪ ڪنيڪشن ناهي"
   },
   "tip": {
     "title": "ٽپ موڪليو",
@@ -1093,7 +1112,17 @@
     "post": "پوسٽ",
     "officialLogo": "هتي DeHub جو سرڪاري لوگو آهي! 🎨",
     "editedImage": "هتي توهان جي تدوين ٿيل تصوير آهي!",
-    "generatedImage": "هتي توهان جي ٺاهيل تصوير آهي!"
+    "generatedImage": "هتي توهان جي ٺاهيل تصوير آهي!",
+    "toolCompleted": "{{name}} مڪمل ٿيو",
+    "aiTool": "AI اوزار",
+    "cannotAnimateImage": "{{model}} هڪ ڳنڍيل تصوير کي متحرڪ نٿو ڪري سگهي. ٻيو وڊيو ماڊل چونڊيو.",
+    "needsImageToAnimate": "{{model}} کي متحرڪ ڪرڻ لاءِ تصوير جي ضرورت آهي. هڪ ڳنڍيو يا ٻيو ماڊل چونڊيو.",
+    "couldNotReadImage": "اها تصوير پڙهي نه سگهيو",
+    "logoLoadFailed": "DeHub لوگو لوڊ نه ڪري سگهيو - ان کان سواءِ ٺاهي رهيو آهي",
+    "imageAttachedDescribe": "تصوير ڳنڍيل آهي — پنهنجي ترميمن کي بيان ڪريو",
+    "couldNotPreparePost": "پوسٽ ڪرڻ لاءِ تيار نه ڪري سگهيو",
+    "generateImage": "عڪس ٺاهيو",
+    "generateVideo": "وڊيو ٺاهيو"
   },
   "commandCentre": {
     "title": "ڪمانڊ سينٽر",
@@ -1605,7 +1634,10 @@
     "edit": "ايڊٽ ڪريو",
     "deleteRequestTitle": "هي درخواست ڊليٽ ڪجي؟",
     "deleteRequestDescription": "هي واپس نه ٿي سگهندو.",
-    "attachmentTooLarge": "هر فائل 20MB کان گهٽ هجڻ گهرجي"
+    "attachmentTooLarge": "هر فائل 20MB کان گهٽ هجڻ گهرجي",
+    "deleteCommentA11y": "تبصرو ختم ڪريو",
+    "sendCommentA11y": "تبصرو موڪليو",
+    "requestOptions": "درخواست جا اختيار"
   },
   "auth": {
     "loginRequired": "لاگ ان ضروري",
@@ -1654,7 +1686,15 @@
     "sendCodeFailedRetry": "ڪوڊ موڪلڻ ۾ ناڪام. مهرباني ڪري ٻيهر ڪوشش ڪريو.",
     "invalidCodeRetry": "غلط ڪوڊ. مهرباني ڪري ٻيهر ڪوشش ڪريو.",
     "invalidEmailOrPassword": "غلط اي ميل يا پاسورڊ.",
-    "welcomeToDehub": "DeHub ۾ ڀليڪار"
+    "welcomeToDehub": "DeHub ۾ ڀليڪار",
+    "importWalletOptional": "پرس درآمد ڪريو (اختياري)",
+    "couldNotSendCodeRetry": "ڪوڊ موڪلي نه سگهيو. مهرباني ڪري ٻيهر ڪوشش ڪريو.",
+    "exploreWithoutSignIn": "سائن ان ٿيڻ کان سواءِ جستجو ڪريو",
+    "continueExploring": "جستجو جاري رکو",
+    "exploreWithoutSignInA11y": "سائن ان ٿيڻ کان سواءِ DeHub جي ڳولا ڪريو",
+    "continueExploringA11y": "DeHub جي ڳولا جاري رکو",
+    "importWalletRecommended": "سماجي لاگ ان جي سفارش ڪئي وئي آهي.",
+    "importWalletPurpose": "هي اوزار DeHub. io کان موجوده اڪائونٽ درآمد ڪرڻ لاءِ آهي."
   },
   "messages": {
     "smartRepliesOff": "تجويز ڪيل جواب بند ٿي ويا",
@@ -1769,7 +1809,29 @@
     "reportedAutomatically": "اهو پاڻمرادو رپورٽ ٿي ويو آهي.",
     "loadFailed": "چينل لوڊ نه ٿي سگهيا",
     "noSearchResults": "توهان جي ڳولا سان ملندڙ ڪو چينل ناهي",
-    "noChannels": "ڪو چينل دستياب ناهي"
+    "noChannels": "ڪو چينل دستياب ناهي",
+    "pairCodeExpired": "اهو ڪوڊ ختم ٿي چڪو آهي. نئين ٽي وي لاءِ پڇو.",
+    "signedInOnTv": "پنهنجي ٽيليويزن تي سائن ان ٿيو",
+    "pairRefused": "رد ٿيل",
+    "pairIntro": "پنھنجي ٽيليويزن تي DeHub کوليو ۽ ڪوڊ لکو جيڪو اھو ھتي ڏيکاري ٿو.",
+    "pairNotFound": "ڪو ٽيليويزن ان ڪوڊ جو انتظار نه ڪري رهيو آهي. ٿي سگهي ٿو اهو ختم ٿي چڪو هجي — ٽيليويزن کي نئين لاءِ پڇو.",
+    "wantsToSignIn": "توهان جي طور تي سائن ان ڪرڻ گھري ٿو",
+    "pairWarning": "صرف انهي کي منظور ڪريو جيڪڏهن اهو هڪ ٽيليويزن آهي جيڪو توهان هن وقت ڏسي رهيا آهيو. جيڪو توکي چوڻو آهي، سو بنا ڪنهن ٻڏتر جي چئه! ”اهو ڏسڻ، پسند ڪرڻ ۽ پيروي ڪرڻ جي قابل هوندو — اهو خرچ نٿو ڪري سگهي، ۽ توهان ان کي فعال سيشن کان ڪنهن به وقت سائن آئوٽ ڪري سگهو ٿا.",
+    "pairApprove": "ها، هن ٽي وي ۾ سائن ان ڪريو",
+    "pairDeny": "نه, مون کي هن جي لاء ڪو به پڇا ڳاڇا نه ڪيو.",
+    "pairDoneTitle": "توهان جي ٽي وي ۾ سائن ان ٿيل آهي",
+    "pairDoneBody": "اهو اڳ ۾ ئي توهان جي اڪائونٽ کي ڏيکارڻ گهرجي. ان کي ڪنهن به وقت سيٽنگون → پرائيويسي → فعال سيشن مان سائن آئوٽ ڪريو.",
+    "closePlayer": "پليئر کي بند ڪريو",
+    "declineFailed": "ان کي رد نه ٿو ڪري سگھجي — اهو شايد اڳ ۾ ئي ختم ٿي چڪو آهي.",
+    "tipSentTvNotTold": "ٽپ موڪليو ويو، پر ٽيليويزن کي ٻڌائي نه سگهيو. اهو وقت ختم ٿي ويندو.",
+    "sentAmount": "جي ڊي ايڇ بي موڪليو {{amount}}",
+    "nothingWaiting": "ڪجهه به انتظار ناهي",
+    "nothingWaitingBody": "جڏهن توهان پنهنجي ٽيليويزن تي ڊي هب مان ٽپ ڏيندا آهيو، اهو توهان جي منظوري لاءِ هتي ظاهر ٿئي ٿو. توهان جي ٽي وي ڪڏهن به توهان جي والٽ نه رکندو آهي.",
+    "yourTelevision": "توهان جي ٽيليويزن",
+    "wantsToTip": "هڪ ٽپ موڪلڻ چاهي ٿو · {{time}} ڇڏيو",
+    "tipTo": "لاءِ {{name}}",
+    "tipForPost": "لاءِ ”{{title}}“",
+    "reviewAndApprove": "نظرثاني ڪريو ۽ منظور ڪريو"
   },
   "top100": {
     "title": "مٿيان 100",
@@ -2041,7 +2103,8 @@
     "submitApplication": "درخواست داخل ڪريو",
     "nameEmailRequired": "نالو ۽ اي ميل ضروري آهن",
     "applicationSuccess": "درخواست ڪاميابيءَ سان داخل ٿي وئي! اسان رابطو ڪنداسين.",
-    "applicationFailed": "داخل نه ٿي سگهيو. ٻيهر ڪوشش ڪريو."
+    "applicationFailed": "داخل نه ٿي سگهيو. ٻيهر ڪوشش ڪريو.",
+    "namePlaceholder": "جين سمٿ"
   },
   "dao": {
     "title": "DAO خزاني",
@@ -2201,7 +2264,8 @@
     "pinnedToast": "هن پوسٽ جي سڀ کان مٿي پن ڪيو ويو",
     "unpinnedToast": "پن هٽائي ڇڏيو ويو",
     "pinFailed": "اهو تبصرو پن نه ٿي سگهيو",
-    "kidsOnlyThread": "هي پوسٽ ٻارن لاءِ آهي. صرف ٻارن جو موڊ ان تي تبصرو ڪري سگهي ٿو."
+    "kidsOnlyThread": "هي پوسٽ ٻارن لاءِ آهي. صرف ٻارن جو موڊ ان تي تبصرو ڪري سگهي ٿو.",
+    "editFailed": "تبصرو ايڊٽ ڪرڻ ۾ ناڪام"
   },
   "postInfo": {
     "title": "پوسٽ معلومات",
@@ -3242,14 +3306,40 @@
     "comingSoon": "جلد اچي رهيو آهي",
     "signIn": "سائن ان",
     "tapToGetStarted": "شروع ڪرڻ لاءِ ٽيپ ڪريو",
-    "soon": "جلد"
+    "soon": "جلد",
+    "glossarySubtitle": "هر آئڪن ۽ فيچر جو مطلب سکو",
+    "searchGlossary": "لغت ڳوليو...",
+    "noResultsFor": "”{{query}}“ لاءِ ڪو نتيجو ناهي",
+    "guideSubtitle": "هر فيچر جو قدم قدم Walkthrough",
+    "searchGuide": "گائيڊ ڳوليو...",
+    "repostsTab": "ٻيهر پوسٽون",
+    "quotesTab": "اقتباس",
+    "noMoreReposts": "وڌيڪ ٻيهر پوسٽون ناهن",
+    "noMoreQuotes": "وڌيڪ اقتباس ناهن",
+    "noRepostsYet": "اڃا تائين ڪا ٻيهر پوسٽ ناهي",
+    "noQuotesYet": "اڃا تائين ڪو اقتباس ناهي"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "راندين جيڪي هتي ئي ايپ ۾ هلن ٿيون. ڪجهه انسٽال ڪرڻ جي ضرورت ناهي، ڪجهه خريد ڪرڻ جي ضرورت ناهي — اوپن سورس، ۽ DeHub پاڻ فراهم ڪري ٿو."
+    "intro": "راندين جيڪي هتي ئي ايپ ۾ هلن ٿيون. ڪجهه انسٽال ڪرڻ جي ضرورت ناهي، ڪجهه خريد ڪرڻ جي ضرورت ناهي — اوپن سورس، ۽ DeHub پاڻ فراهم ڪري ٿو.",
+    "noGameCalled": "آرڪيڊ ۾ <slug>{{slug}}</slug> نالي ڪا به راند ناهي.",
+    "seeWhatIsHere": "ڏسو ته هتي ڇا آهي",
+    "locationNotGranted": "مقام جي اجازت نه ڏني وئي.",
+    "signInToPlaceOnGlobe": "پاڻ کي گلوب تي رکڻ لاءِ سائن ان ڪريو.",
+    "couldNotPlaceOnGlobe": "توهان کي گلوب تي رکي نه سگهيو.",
+    "onTheGlobe": "توهان گلوب تي آهيو — تقريبن 25 ڪلوميٽر جي علائقي ۾ ڏيکاريل آهي.",
+    "couldNotReach": "آرڪيڊ تائين پهچي نه سگهيو",
+    "didNotLoad": "{{title}} لوڊ نه ٿيو",
+    "needsConnection": "راند dehub.io تان سرور ڪئي وئي آهي ۽ جڏهن توهان ان کي کوليو ٿا ته ڊائون لوڊ ٿئي ٿي، تنهنڪري ان کي پهرين ڀيري ڪم ڪندڙ ڪنيڪشن جي ضرورت آهي. پنهنجو چيڪ ڪريو ۽ ٻيهر ڪوشش ڪريو.",
+    "backToArcade": "آرڪيڊ ڏانهن واپس",
+    "openPrivacySettings": "نجي سيٽنگون کوليو",
+    "privacyWarning": "جيڪڏهن توهان وٽ وڏي تعداد ۾ ٽوڪن آهن يا غير محفوظ علائقي ۾ رهندا آهيو، هن فيچر کي استعمال ڪرڻ کان پهريان پنهنجو بيج ۽ بيلنس لڪايو. آن-چين ٽرانزيڪشن اڃا تائين توهان جو پتو ظاهر ڪن ٿا. سيٽنگون کوليو.",
+    "leaveGame": "راند ڇڏي ڏيو",
+    "loadingGame": "{{title}} لوڊ ٿي رهيو آهي",
+    "hideThis": "هي لڪايو"
   },
   "videoLooks": {
     "button": "ڪيمرا لُڪ",
@@ -3373,7 +3463,22 @@
     "someone": "ڪو",
     "oneTyping": "{{name}} لکي رهيو آهي…",
     "fewTyping": "{{names}} لکي رهيا آهن…",
-    "manyTyping": "{{count}} ماڻهو لکي رهيا آهن…"
+    "manyTyping": "{{count}} ماڻهو لکي رهيا آهن…",
+    "thisUser": "هي صارف",
+    "unbanConfirm": "ڇا توهان کي پڪ آهي ته توهان {{name}} کي ان بين ڪرڻ چاهيو ٿا؟",
+    "unban": "ان بين ڪريو",
+    "unbanFailed": "صارف کي ان بين ڪرڻ ۾ ناڪامي",
+    "onlineLabel": "آن لائن",
+    "usersCount_one": "{{count}} صارف",
+    "usersCount_other": "{{count}} صارف",
+    "totalMessages": "ڪل پيغام",
+    "slowMode": "سست موڊ",
+    "cooldownSeconds": "{{seconds}}s ڪولڊاون",
+    "minStakeRequired": "گھٽ ۾ گھٽ اسٽيڪ گهربل",
+    "noParticipants": "اڃا تائين ڪو شرڪت ڪندڙ ناهي",
+    "noModerators": "ڪو ماڊريٽر ناهي",
+    "noBannedUsers": "ڪو به بين ٿيل صارف ناهي",
+    "modBadge": "مولوي صاحب"
   },
   "promptFeed": {
     "headline": "توهان ڇا ڏسڻ چاهيو ٿا؟",
@@ -4125,7 +4230,26 @@
     "madeForKidsBlockedByMature": "پختو نشان زد پوسٽ ٻارن لاءِ شايع نٿو ڪري سگهجي.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "RTMP تفصيلات حاصل ڪريو",
-    "markMadeForKids": "ٻارن لاءِ ٺاهيل طور نشان لڳايو"
+    "markMadeForKids": "ٻارن لاءِ ٺاهيل طور نشان لڳايو",
+    "queueWaiting": "انتظار ڪري رهيو آهي…",
+    "queueUploading": "اپلوڊ ٿي رهيو آهي",
+    "queueProcessing": "پروسيس ٿي رهيو آهي…",
+    "queueMinting": "منٽ ٿي رهيو آهي…",
+    "queuePosted": "پوسٽ ڪيو ويو",
+    "queueFailed": "ناڪام",
+    "noRetriesLeft": "(ڪو ريٽري نه بچيو)",
+    "noUploads": "ڪو اپلوڊ ناهي",
+    "uploadsAppearHere": "توهان جا اپلوڊ هتي ظاهر ٿيندا",
+    "imagesTotalLimit": "هڪ اپ لوڊ ۾ تصويرون مجموعي طور تي 100 ايم بي يا گهٽ هجڻ گهرجن",
+    "chooseDatabase": "Decentralized ڊيٽابيس کي منتخب ڪريو",
+    "livestreamMode": "لائيو اسٽريم موڊ",
+    "addThumbnail": "ٿمبنيل شامل ڪريو",
+    "showCover": "ڍڪ ڏيکاريو",
+    "max60s": "وڌ 60s",
+    "confirmLivestream": "لائيو اسٽريمنگ جي تصديق ڪريو",
+    "liveFeaturesTitle": "لائيو خاصيتون",
+    "discardPostTitle": "پوسٽ رد ڪريو ؟",
+    "discardPostBody": "توھان جو عهدو ختم ٿي ويندو. ڇا توھان ان جي بدران ان کي محفوظ ڪرڻ چاھيو ٿا ؟"
   },
   "bounty": {
     "claimed": "حاصل ٿيو",
@@ -4442,7 +4566,25 @@
     "allowNewDmsOff": "نون پيغامن جي اجازت لاءِ DM فعال ڪريو.",
     "perMessageFee": "في پيغام فيس (DHB)",
     "perMessageFeeSub": "في پيغام چارج ڪريو. مفت DM لاءِ 0 رکو. ڪجهه صارفن کي مفت رسائي ڏئي سگهو ٿا.",
-    "allDisabled": "هن وقت سڀ DM بند آهن. نوان DM ڊفالٽ طور روڪيل آهن."
+    "allDisabled": "هن وقت سڀ DM بند آهن. نوان DM ڊفالٽ طور روڪيل آهن.",
+    "failedToEdit": "ترميم ڪرڻ ۾ ناڪام",
+    "messageDeleted": "پيغام ختم ڪيو ويو",
+    "cantForwardFromDevice": "هي پيغام هن ڊوائيس کان اڳتي نه ٿو وڌي سگهي",
+    "messageForwarded": "موڪليل پيغام",
+    "clearMessages": "واضح پيغام",
+    "clearMessagesConfirm": "هن ڪچهري ۾ سڀئي پيغام حذف ڪريو ؟ هي رد نه ٿو ڪري سگھجي.",
+    "messagesCleared": "پيغام صاف ڪيا ويا",
+    "failedToClearMessages": "پيغام صاف ڪرڻ ۾ ناڪام",
+    "removedFreeAccess": "{{name}} لاءِ مفت رسائي ختم ڪئي",
+    "grantedFreeAccess": "{{name}} تائين مفت رسائي ڏني",
+    "failedToUpdateFreeAccess": "مفت رسائي کي اپڊيٽ ڪرڻ ۾ ناڪام",
+    "searchComingSoon": "ڳولا جلدي اچي رهي آهي",
+    "tapToUnblock": "بلاڪ ڪرڻ لاءِ ٽيپ ڪريو",
+    "userFallback": "استعمال ڪندڙ",
+    "failedToBlock": "بلاڪ ڪرڻ ۾ ناڪام",
+    "failedToDeleteConversation": "گفتگو ختم ڪرڻ ۾ ناڪام",
+    "newDm": "نئون سڌو پيغام",
+    "noConversationsFound": "ڪا به گفتگو نه ملي"
   },
   "editPost": {
     "mediaPermission": "ميڊيا لائبريري جي اجازت گھربل آهي",
@@ -4464,7 +4606,16 @@
     "retry": "ٻيهر ڪوشش ڪريو",
     "retrying": "ٻيهر ڪوشش ڪندي...",
     "retryQueued": "ٻيهر پروسيسنگ",
-    "retryFailed": "ان پوسٽ جي ٻيهر ڪوشش نه ٿي سگهي"
+    "retryFailed": "ان پوسٽ جي ٻيهر ڪوشش نه ٿي سگهي",
+    "closeVideo": "وڊيو بند ڪريو",
+    "videoProgress": "وڊيو جي ترقي: {{percent}}%",
+    "tapToSeek": "مخصوص پوزيشن تي وڃڻ لاءِ ٽيپ ڪريو",
+    "photoAccessToSaveImages": "تصويرون محفوظ ڪرڻ لاءِ فوٽو لائبريري تائين رسائي جي اجازت ڏيو",
+    "failedToSaveImage": "تصوير محفوظ ڪرڻ ۾ ناڪام",
+    "downloadImage": "تصوير ڊائون لوڊ ڪريو",
+    "goToImage": "تصوير {{index}} ڏانهن وڃو",
+    "allCaughtUp": "توهان سڀ ڪجهه ڏسي چڪا آهيو",
+    "checkBackForShorts": "وڌيڪ شارٽس لاءِ بعد ۾ چيڪ ڪريو"
   },
   "liveViewer": {
     "loadingStream": "اسٽريم لوڊ ٿي رهي آهي...",
@@ -4474,7 +4625,22 @@
   },
   "search": {
     "endOfResults": "نتيجن جو پڇاڙي",
-    "searchDehub": "DeHub ۾ ڳوليو"
+    "searchDehub": "DeHub ۾ ڳوليو",
+    "tabVoice": "آواز",
+    "trendingThisWeek": "هن هفتي جي رجحان",
+    "trendingPosts": "رجحان پوسٽون",
+    "trendingImages": "رجحان تصويرون",
+    "trendingVideos": "رجحان وڊيوز",
+    "trendingVoicePosts": "رجحان آواز پوسٽون",
+    "trendingLive": "رجحان لائيو",
+    "seeAll": "سڀ ڏسو",
+    "noAccountsFound": "ڪو به اڪائونٽ نه مليو",
+    "tryDifferentKeywords": "مختلف ڪي ورڊس آزمائين يا پنهنجي اسپيلنگ چيڪ ڪريو",
+    "noContentResults": "ڪو به مواد نه مليو",
+    "recentSearches": "حاليہ ڳولھيون",
+    "noTrendingThisWeek": "هن هفتي ڪو به رجحان مواد نه آهي",
+    "closeFilterOptions": "فلٽر جا اختيار بند ڪريو",
+    "openFilterOptions": "فلٽر جا اختيار کوليو"
   },
   "notifPrompt": {
     "stayInLoop": "باخبر رهو",
@@ -4725,7 +4891,26 @@
     "externalTitle": "خارجي اسٽريمنگ موڊ",
     "externalLiveHint": "توهان جو وهڪرو خارجي سافٽ ويئر ذريعي زنده آهي. ان- ائپ ڪئميرا معذور آهي.",
     "externalHint": "هيٺ ڏنل تفصيل استعمال ڪندي پنهنجي اسٽريمنگ سافٽ ويئر کي ڳن connectيو، پوءِ نشر ڪرڻ شروع ڪريو.",
-    "useInAppCamera": "ايپ ۾ ڪئميرا بدران استعمال ڪريو"
+    "useInAppCamera": "ايپ ۾ ڪئميرا بدران استعمال ڪريو",
+    "livestreamEnded": "لائيو اسٽريم ختم ٿي وئي",
+    "chatEnabled": "چيٽ فعال",
+    "chatDisabled": "چيٽ غير فعال",
+    "failedToUpdateSettings": "سيٽنگون اپڊيٽ ڪرڻ ۾ ناڪام",
+    "networkLostReconnecting": "نيٽ ورڪ ضايع ٿي ويو - اسٽريم رڪجي ويو. ٻيهر ڳنڍي رهيو آهي…",
+    "openingViewer": "وِيوَر کوليو پيو وڃي...",
+    "cameraPermissionRequired": "ڪيمرا جي اجازت گهربل آهي",
+    "grantPermission": "اجازت نامو",
+    "waitingForLivepeer": "منتظر رسانه هاي مسافرتي...",
+    "waitingForExternalSource": "خارجي ذريعن جي منتظر...",
+    "settingUpPublisher": "پبلشر قائم ڪري رهيو آهي...",
+    "scheduledStream": "شيڊول ٿيل وهڪرو",
+    "scheduledAt": "{{date}} تي {{time}}",
+    "pressGoLiveWhenReady": "پريس وڃو لائيو جڏهن شروع ڪرڻ لاء تيار",
+    "connectionInterrupted": "ڪنيڪشن مداخلت ٿيو",
+    "streamPausedReconnecting": "توهان جو وهڪرو روڪيو ويو آهي. ٻيهر ڳن connectingڻ...",
+    "streamWillEnd": "وهڪرو ختم ٿي ويندو جيڪڏهن ٻيهر ڳن notيل نه هجي",
+    "endStreamConfirmTitle": "اسٽريم ختم ڪريو ؟",
+    "endStreamConfirmBody": "هاڻي بند ڪرڻ سان سڀني ناظرین لاءِ توهان جو لائيو اسٽريم ختم ٿي ويندو. توھان وهڪرو جاري رکي سگھوٿا يا ان کي مستقل طور ختم ڪري سگھو ٿا."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

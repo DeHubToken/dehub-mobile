@@ -119,7 +119,12 @@
     "music": "Zene",
     "live": "Élő",
     "newPosts_one": "{{count}} új bejegyzés",
-    "newPosts_other": "{{count}} új bejegyzés"
+    "newPosts_other": "{{count}} új bejegyzés",
+    "privateContent": "Privát tartalom",
+    "privateContentBody": "Ez a tartalom egy privát fiókból származik. Kövesd az alkotót a bejegyzéseinek megtekintéséhez.",
+    "noMoreContent": "Nincs több tartalom",
+    "noPostsYet": "Még nincsenek bejegyzések.",
+    "pullToRefresh": "Húzd az újratöltéshez, vagy próbáld meg később."
   },
   "explore": {
     "all": "Összes",
@@ -710,7 +715,19 @@
       "replies": "Csak a hozzászólásaimra adott válaszok",
       "account": "Csak az értesítések a fiókomról"
     },
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Avatar frissítése sikertelen",
+    "coverUpdateFailed": "Borító frissítése sikertelen",
+    "fixInvalidSocialLinks": "Kérjük, javítsd ki az érvénytelen közösségi linkeket",
+    "updateFailed": "Frissítés sikertelen",
+    "channelUrlOrHandle": "Csatorna URL vagy kezelő",
+    "inviteLinkPlaceholder": "Meghívó link",
+    "profileUrlOrUsername": "Profil URL vagy felhasználónév",
+    "yourDisplayName": "Megjelenítendő neved",
+    "usernameAvailable": "A felhasználónév elérhető",
+    "hideBadgeAndBalance": "Jelvény és egyenleg elrejtése",
+    "hideBadgeAndBalanceDesc": "Elrejti a pénzügyi részleteket, és letiltja a küldést és a borravalót neked.",
+    "onChainPublicWarning": "A láncon belüli tranzakciók nyilvánosak. Tokenek vagy borravalók küldése felfedheti a pénztárca címét, beleértve azokat a tranzakciókat is, amelyeket a privát egyenleg mód engedélyezése előtt tettek."
   },
   "common": {
     "mute": "Némítás",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Nincs internetkapcsolat",
     "noInternetBody": "Kérjük, ellenőrizze az internetkapcsolatát, és próbálkozzon újra. Az internethez csatlakoznia kell a DeHub használatához.",
     "noInternetStatus": "Offline - Nincs hálózati kapcsolat",
-    "noInternetHint": "Győződjön meg róla, hogy a Wi-Fi vagy a mobiladat be van kapcsolva, majd koppintson a \"{{action}}\" elemre."
+    "noInternetHint": "Győződjön meg róla, hogy a Wi-Fi vagy a mobiladat be van kapcsolva, majd koppintson a \"{{action}}\" elemre.",
+    "saving": "Mentés…",
+    "offlineStatus": "Offline - Nincs hálózati kapcsolat"
   },
   "tip": {
     "title": "Borravaló küldése",
@@ -1094,7 +1113,17 @@
     "post": "Bejegyzés",
     "officialLogo": "Ez a DeHub hivatalos logója! 🎨",
     "editedImage": "Itt a szerkesztett képe!",
-    "generatedImage": "Itt a generált képe!"
+    "generatedImage": "Itt a generált képe!",
+    "toolCompleted": "{{name}} befejeződött",
+    "aiTool": "AI eszköz",
+    "cannotAnimateImage": "{{model}} nem tud animálni egy csatolt képet. Válassz másik videó modellt.",
+    "needsImageToAnimate": "{{model}}-nak szüksége van egy képre az animáláshoz. Csatolj egyet, vagy válassz másik modellt.",
+    "couldNotReadImage": "Nem lehetett elolvasni ezt a képet",
+    "logoLoadFailed": "Nem sikerült betölteni a DeHub logót – nélküle generáljuk",
+    "imageAttachedDescribe": "Kép csatolva – írd le a módosításokat",
+    "couldNotPreparePost": "Nem lehetett előkészíteni a közzétételhez",
+    "generateImage": "Kép létrehozása",
+    "generateVideo": "Előállítás a videóból"
   },
   "commandCentre": {
     "title": "Parancsnoki központ",
@@ -1606,7 +1635,10 @@
     "edit": "Szerkesztés",
     "deleteRequestTitle": "Törlöd ezt a kérést?",
     "deleteRequestDescription": "Ez nem vonható vissza.",
-    "attachmentTooLarge": "Minden fájl legyen 20 MB alatt"
+    "attachmentTooLarge": "Minden fájl legyen 20 MB alatt",
+    "deleteCommentA11y": "Hozzászólás törlése",
+    "sendCommentA11y": "Megjegyzés küldése",
+    "requestOptions": "Igénylési lehetőségek"
   },
   "auth": {
     "loginRequired": "Bejelentkezés szükséges",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Nem sikerült elküldeni a kódot. Kérjük, próbálja újra.",
     "invalidCodeRetry": "Érvénytelen kód. Kérjük, próbálja újra.",
     "invalidEmailOrPassword": "Érvénytelen e-mail vagy jelszó.",
-    "welcomeToDehub": "Üdvözöljük a DeHubban"
+    "welcomeToDehub": "Üdvözöljük a DeHubban",
+    "importWalletOptional": "Pénztárca importálása (nem kötelező)",
+    "couldNotSendCodeRetry": "A kódot nem sikerült elküldeni. Próbálja újra.",
+    "exploreWithoutSignIn": "Felfedezés bejelentkezés nélkül",
+    "continueExploring": "Folytasd a felfedezést",
+    "exploreWithoutSignInA11y": "Fedezd fel a DeHubot bejelentkezés nélkül",
+    "continueExploringA11y": "Folytasd a DeHub felfedezését",
+    "importWalletRecommended": "Közösségi bejelentkezések javasoltak.",
+    "importWalletPurpose": "Ez az eszköz a DeHub.io meglévő fiókjainak importálására szolgál."
   },
   "messages": {
     "smartRepliesOff": "A javasolt válaszok ki vannak kapcsolva",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Automatikusan jelentettük.",
     "loadFailed": "Nem sikerült betölteni a csatornákat",
     "noSearchResults": "Egyetlen csatorna sem felel meg a keresésednek",
-    "noChannels": "Nincs elérhető csatorna"
+    "noChannels": "Nincs elérhető csatorna",
+    "pairCodeExpired": "A kód lejárt. Kérjen újat a tévétől.",
+    "signedInOnTv": "Bejelentkezve a TV-n",
+    "pairRefused": "Reddedildi",
+    "pairIntro": "Nyissa meg a DeHubot a televízióján, és írja be ide a megjelenített kódot.",
+    "pairNotFound": "Egyetlen televízió sem vár erre a kódra. Lehet, hogy lejárt — kérjen újat a tévétől.",
+    "wantsToSignIn": "szeretne bejelentkezni, mint",
+    "pairWarning": "Ezt csak akkor hagyja jóvá, ha éppen egy televíziót néz. Jóváhagyó jelek, akik a kódot a fiókodban tartják. Megnézheti, kedvelheti és követheti — nem költheti el, és bármikor kijelentkezhet az aktív munkamenetekből.",
+    "pairApprove": "Igen, jelentkezzen be a TV-be",
+    "pairDeny": "Nem, ezt nem én kértem",
+    "pairDoneTitle": "A TV be van jelentkezve",
+    "pairDoneBody": "Már meg kell jelennie a fiókodnak. Bármikor kijelentkezhet a Beállítások → Adatvédelem → Aktív munkamenetekből.",
+    "closePlayer": "Lejátszó bezárása",
+    "declineFailed": "Ezt nem lehetett elutasítani — lehet, hogy már lejárt.",
+    "tipSentTvNotTold": "A tipp elküldve, de a TV-t nem lehetett elmondani. Időtúllépés lesz.",
+    "sentAmount": "Küldött {{amount}} DHB",
+    "nothingWaiting": "Nincs függőben",
+    "nothingWaitingBody": "Amikor a DeHub-ról tippelsz a televíziódon, az itt jelenik meg jóváhagyásra. A TV-d soha nem tartja a pénztárcádat.",
+    "yourTelevision": "A televíziód",
+    "wantsToTip": "tippet szeretne küldeni · {{time}} hagyta",
+    "tipTo": "{{name}} -nak",
+    "tipForPost": "„{{title}}” -ért",
+    "reviewAndApprove": "Felülvizsgálat és jóváhagyás"
   },
   "top100": {
     "title": "Top 100",
@@ -2046,7 +2108,8 @@
     "submitApplication": "Jelentkezés beküldése",
     "nameEmailRequired": "Név és e-mail kötelező",
     "applicationSuccess": "Jelentkezés sikeresen beküldve! Hamarosan jelentkezünk.",
-    "applicationFailed": "Beküldés sikertelen. Próbálja újra."
+    "applicationFailed": "Beküldés sikertelen. Próbálja újra.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO Kincstár",
@@ -2206,7 +2269,8 @@
     "pinnedToast": "Kitűzve a bejegyzés tetejére",
     "unpinnedToast": "Kitűzés eltávolítva",
     "pinFailed": "Nem sikerült kitűzni ezt a hozzászólást",
-    "kidsOnlyThread": "Ez a bejegyzés gyerekeknek szól. Csak Gyermek üzemmódban lehet megjegyzést fűzni hozzá."
+    "kidsOnlyThread": "Ez a bejegyzés gyerekeknek szól. Csak Gyermek üzemmódban lehet megjegyzést fűzni hozzá.",
+    "editFailed": "Nem sikerült a hozzászólás szerkesztése"
   },
   "postInfo": {
     "title": "Bejegyzés infó",
@@ -3247,14 +3311,40 @@
     "comingSoon": "Hamarosan",
     "signIn": "Bejelentkezés",
     "tapToGetStarted": "Koppints a kezdéshez",
-    "soon": "Hamarosan"
+    "soon": "Hamarosan",
+    "glossarySubtitle": "Ismerd meg minden ikon és funkció jelentését",
+    "searchGlossary": "Szószedet keresése...",
+    "noResultsFor": "Nincs találat „{{query}}” -ra",
+    "guideSubtitle": "Lépésről lépésre útmutató minden funkcióhoz",
+    "searchGuide": "Útmutató keresése...",
+    "repostsTab": "Újraküldések",
+    "quotesTab": "Idézetek",
+    "noMoreReposts": "Nincs több újraküldés",
+    "noMoreQuotes": "Nincs több idézet",
+    "noRepostsYet": "Még nincsenek újraküldések",
+    "noQuotesYet": "Még nincsenek idézetek"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Játékok, amelyek itt, az appban futnak. Nincs mit telepíteni, nincs mit megvenni — nyílt forráskódúak, és magától a DeHubtól érkeznek."
+    "intro": "Játékok, amelyek itt, az appban futnak. Nincs mit telepíteni, nincs mit megvenni — nyílt forráskódúak, és magától a DeHubtól érkeznek.",
+    "noGameCalled": "Nincs <slug>{{slug}}</slug> nevű játék az arcade-ban.",
+    "seeWhatIsHere": "Nézd meg, mi van itt",
+    "locationNotGranted": "Helymeghatározási engedélyt nem kaptunk.",
+    "signInToPlaceOnGlobe": "Jelentkezz be, hogy elhelyezkedj a térképen.",
+    "couldNotPlaceOnGlobe": "Nem sikerült elhelyezni a térképen.",
+    "onTheGlobe": "A térképen vagy – egy hozzávetőleges 25 km-es területen belül jelenik meg.",
+    "couldNotReach": "AZ ARCADE ELÉRÉSE NEM SIKERÜLT",
+    "didNotLoad": "{{title}} nem töltődött be",
+    "needsConnection": "A játék a dehub.io-ról érkezik, és amikor megnyitod, letöltődik, így első alkalommal működő kapcsolatra van szükség. Ellenőrizd a tiédet, és próbáld újra.",
+    "backToArcade": "Vissza az arcade-ba",
+    "openPrivacySettings": "Adatvédelmi beállítások megnyitása",
+    "privacyWarning": "Ha nagy mennyiségű tokent tartasz, vagy bizonytalan területen élsz, rejtsd el a jelvényedet és az egyenlegedet, mielőtt ezt a funkciót használnád. Az on-chain tranzakciók továbbra is felfedik a címedet. Beállítások megnyitása.",
+    "leaveGame": "Elhagyom a játékot",
+    "loadingGame": "Betöltés: {{title}}",
+    "hideThis": "Elrejtés"
   },
   "videoLooks": {
     "button": "Kameramegjelenések",
@@ -3380,7 +3470,22 @@
     "someone": "Valaki",
     "oneTyping": "{{name}} éppen ír…",
     "fewTyping": "{{names}} éppen írnak…",
-    "manyTyping": "{{count}} ember ír…"
+    "manyTyping": "{{count}} ember ír…",
+    "modBadge": "MOD",
+    "thisUser": "ez a felhasználó",
+    "unbanConfirm": "Biztosan feloldod {{name}} fhould tiltását?",
+    "unban": "Feloldás",
+    "unbanFailed": "Nem sikerült a felhasználó feloldása",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} felhasználó",
+    "usersCount_other": "{{count}} felhasználók",
+    "totalMessages": "Összes üzenet",
+    "slowMode": "Lassú mód",
+    "cooldownSeconds": "{{seconds}} mp-es visszaszámlálás",
+    "minStakeRequired": "Min. tét szükséges",
+    "noParticipants": "Még nincsenek résztvevők",
+    "noModerators": "Nincsenek moderátorok",
+    "noBannedUsers": "Nincsenek kitiltott felhasználók"
   },
   "promptFeed": {
     "headline": "Mit szeretnél látni?",
@@ -4132,7 +4237,26 @@
     "madeForKidsOffDesc": "Megjeleníti ezt a bejegyzést a Gyerekmódot használó gyerekeknek, és eltávolítja a szokásos hírfolyamokról.",
     "madeForKidsBlockedByMature": "Az érettnek jelölt bejegyzés nem tehető közzé gyerekeknek is.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "RTMP részletek megtekintése"
+    "encoderHint": "RTMP részletek megtekintése",
+    "queueWaiting": "Várakozás…",
+    "queueUploading": "Feltöltés",
+    "queueProcessing": "Feldolgozás…",
+    "queueMinting": "Verés…",
+    "queuePosted": "Közzétett",
+    "queueFailed": "Sikertelen",
+    "noRetriesLeft": "(nincs több próbálkozás)",
+    "noUploads": "Nincsenek feltöltések",
+    "uploadsAppearHere": "Itt jelennek meg a feltöltéseid",
+    "imagesTotalLimit": "Egy feltöltött kép összesen legfeljebb 100 MB lehet",
+    "chooseDatabase": "Decentralizált adatbázis választása",
+    "livestreamMode": "Élő közvetítés mód",
+    "addThumbnail": "Bélyegkép hozzáadása",
+    "showCover": "Borító megjelenítése",
+    "max60s": "Max. 60 mp",
+    "confirmLivestream": "Élő közvetítés megerősítése",
+    "liveFeaturesTitle": "Élő funkciók",
+    "discardPostTitle": "Elveti a bejegyzést?",
+    "discardPostBody": "Bejegyzésed el fog veszni. Szeretné inkább piszkozatként menteni?"
   },
   "bounty": {
     "claimed": "Igényelve",
@@ -4449,7 +4573,25 @@
     "allowNewDmsOff": "Kapcsold be az üzeneteket az újak engedélyezéséhez.",
     "perMessageFee": "Üzenetenkénti díj (DHB)",
     "perMessageFeeSub": "Számolj fel díjat üzenetenként. Állítsd 0-ra az ingyenes üzenetekhez. Egyes felhasználóknak ingyenes hozzáférést adhatsz.",
-    "allDisabled": "Jelenleg minden üzenet ki van kapcsolva. Az újak alapból blokkolva vannak."
+    "allDisabled": "Jelenleg minden üzenet ki van kapcsolva. Az újak alapból blokkolva vannak.",
+    "failedToEdit": "Nem sikerült szerkeszteni",
+    "messageDeleted": "Üzenet törölve",
+    "cantForwardFromDevice": "Ez az üzenet nem továbbítható erről az eszközről",
+    "messageForwarded": "Üzenet továbbítva",
+    "clearMessages": "VILÁGOS ÜZENETEK",
+    "clearMessagesConfirm": "Törli a beszélgetés összes üzenetét? A művelet nem vonható vissza.",
+    "messagesCleared": "Üzenetek törölve",
+    "failedToClearMessages": "Nem sikerült törölni az üzeneteket",
+    "removedFreeAccess": "Ingyenes hozzáférés eltávolítva {{name}} számára",
+    "grantedFreeAccess": "Ingyenes hozzáférés a következőhöz: {{name}}",
+    "failedToUpdateFreeAccess": "Ingyenes hozzáférés frissítése sikertelen",
+    "searchComingSoon": "Keresés hamarosan",
+    "tapToUnblock": "Koppints a zárolás feloldásához",
+    "userFallback": "használó",
+    "failedToBlock": "Nem sikerült letiltani",
+    "failedToDeleteConversation": "Beszélgetés törlése sikertelen",
+    "newDm": "Új közvetlen üzenet",
+    "noConversationsFound": "Nem található beszélgetés"
   },
   "editPost": {
     "mediaPermission": "Médiakönyvtár-engedély szükséges",
@@ -4471,7 +4613,17 @@
     "retry": "Próbálkozz újra",
     "retrying": "Újrapróbálkozás…",
     "retryQueued": "Újbóli feldolgozás",
-    "retryFailed": "Nem sikerült újra megpróbálni ezt a bejegyzést"
+    "retryFailed": "Nem sikerült újra megpróbálni ezt a bejegyzést",
+    "closeVideo": "Videó bezárása",
+    "rotateOrientation": "Tájolás elforgatása",
+    "videoProgress": "Videó állása: {{percent}}%",
+    "tapToSeek": "Érintse meg a kívánt pozícióra ugráshoz",
+    "photoAccessToSaveImages": "Engedélyezze a fotókönyvtár elérését a képek mentéséhez",
+    "failedToSaveImage": "Nem sikerült a kép mentése",
+    "downloadImage": "Kép letöltése",
+    "goToImage": "Ugrás a {{index}}. képhez",
+    "allCaughtUp": "Minden tartalom megtekintve",
+    "checkBackForShorts": "Később érdemes visszanézni további rövid videókért"
   },
   "liveViewer": {
     "loadingStream": "Közvetítés betöltése...",
@@ -4481,7 +4633,22 @@
   },
   "search": {
     "endOfResults": "A találatok vége",
-    "searchDehub": "Keresés a DeHubon"
+    "searchDehub": "Keresés a DeHubon",
+    "tabVoice": "Hang",
+    "trendingThisWeek": "E heti felkapottak",
+    "trendingPosts": "Felkapott bejegyzések",
+    "trendingImages": "Felkapott képek",
+    "trendingVideos": "Felkapott videók",
+    "trendingVoicePosts": "Felkapott hangbejegyzések",
+    "trendingLive": "Felkapott élő",
+    "seeAll": "Összes megtekintése",
+    "noAccountsFound": "Nem található fiók",
+    "tryDifferentKeywords": "Próbáljon más kulcsszavakat, vagy ellenőrizze a helyesírást",
+    "noContentResults": "Nincs találat a tartalomra",
+    "recentSearches": "Legutóbbi keresések",
+    "noTrendingThisWeek": "Nincs felkapott tartalom ezen a héten",
+    "closeFilterOptions": "Szűrőbeállítások bezárása",
+    "openFilterOptions": "Szűrőbeállítások megnyitása"
   },
   "notifPrompt": {
     "stayInLoop": "Maradj naprakész",
@@ -4731,7 +4898,26 @@
     "externalTitle": "Külső adatfolyam mód",
     "externalLiveHint": "Az adatfolyamod külső szoftveren keresztül érhető el. Az alkalmazáson belüli kamera le van tiltva.",
     "externalHint": "Csatlakoztassa a streaming szoftvert az alábbi adatokkal, majd indítsa el a műsorszórást.",
-    "useInAppCamera": "Használd inkább az alkalmazáson belüli kamerát"
+    "useInAppCamera": "Használd inkább az alkalmazáson belüli kamerát",
+    "livestreamEnded": "Az élő közvetítés véget ért",
+    "chatEnabled": "Csevegés engedélyezve",
+    "chatDisabled": "Csevegés letiltva",
+    "failedToUpdateSettings": "Nem sikerült a beállítások frissítése",
+    "networkLostReconnecting": "Hálózat elveszett – a stream szüneteltetve. Újracsatlakozás…",
+    "openingViewer": "Megnyitás…",
+    "cameraPermissionRequired": "Kamerahasználati engedély szükséges",
+    "grantPermission": "Engedély megadása",
+    "waitingForLivepeer": "Várakozás a Livepeerre...",
+    "waitingForExternalSource": "Várakozás külső forrásra...",
+    "settingUpPublisher": "Kiadó beállítása folyamatban...",
+    "scheduledStream": "Ütemezett adatfolyam",
+    "scheduledAt": "{{date}}, {{time}}",
+    "pressGoLiveWhenReady": "Nyomja meg a Go Live gombot, ha készen áll az indításra",
+    "connectionInterrupted": "A kapcsolat megszakadt",
+    "streamPausedReconnecting": "Adatfolyamod szüneteltetve van. Újrakapcsolódás...",
+    "streamWillEnd": "A közvetítés befejeződik, ha nem csatlakozik újra",
+    "endStreamConfirmTitle": "Adatfolyam vége?",
+    "endStreamConfirmBody": "A bezárás után az élő közvetítés minden néző számára véget ér. Folytathatod az adatfolyamot, vagy végleg befejezheted."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

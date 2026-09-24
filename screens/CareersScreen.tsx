@@ -233,7 +233,7 @@ export default function CareersScreen() {
           {formOpen && (
             <View style={styles.form}>
               <Text style={styles.formTitle}>{t("careers.yourApplication")}</Text>
-              <Field label={t("careers.fullName")} required value={form.name} onChangeText={set("name")} placeholder="Jane Smith" />
+              <Field label={t("careers.fullName")} required value={form.name} onChangeText={set("name")} placeholder={t("careers.namePlaceholder")} />
               <Field label={t("careers.email")} required value={form.email} onChangeText={set("email")} placeholder="you@example.com" keyboardType="email-address" />
               <Field label={t("careers.telegram")} value={form.telegram} onChangeText={set("telegram")} placeholder="@username" />
               <Field label={t("careers.xTwitter")} value={form.twitter} onChangeText={set("twitter")} placeholder="@username" />

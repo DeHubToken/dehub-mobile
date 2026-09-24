@@ -119,7 +119,12 @@
     "music": "Music",
     "live": "Live",
     "newPosts_one": "{{count}} bagong post",
-    "newPosts_other": "{{count}} bagong post"
+    "newPosts_other": "{{count}} bagong post",
+    "privateContent": "Pribadong Nilalaman",
+    "privateContentBody": "Ang nilalamang ito ay mula sa isang pribadong account. Sundan ang lumikha upang makita ang kanilang mga post.",
+    "noMoreContent": "Wala nang nilalaman",
+    "noPostsYet": "Wala pang mga post.",
+    "pullToRefresh": "Hilahin upang i-refresh o subukang muli mamaya."
   },
   "explore": {
     "all": "All",
@@ -710,7 +715,19 @@
       "mentions": "Mga pagbanggit lang sa akin",
       "replies": "Mga reply lang sa mga comment ko",
       "account": "Mga abiso lang tungkol sa account ko"
-    }
+    },
+    "avatarUpdateFailed": "Nabigong i-update ang avatar",
+    "coverUpdateFailed": "Nabigong i-update ang cover",
+    "fixInvalidSocialLinks": "Pakusin ang mga hindi wastong social link",
+    "updateFailed": "Nabigong i-update",
+    "channelUrlOrHandle": "URL o handle ng channel",
+    "inviteLinkPlaceholder": "Link ng imbitasyon",
+    "profileUrlOrUsername": "URL o username ng profile",
+    "yourDisplayName": "Ang iyong display name",
+    "usernameAvailable": "Magagamit ang username",
+    "hideBadgeAndBalance": "Itago ang badge at balanse",
+    "hideBadgeAndBalanceDesc": "Itinatago ang mga detalye sa pananalapi at pinapagana ang mga pagpapadala at tip sa iyo.",
+    "onChainPublicWarning": "Ang mga transaksyon sa on-chain ay pampubliko. Ang pagpapadala ng mga token o tip ay maaaring magbunyag ng iyong wallet address, kabilang ang mga transaksyon na ginawa bago paganahin ang pribadong mode ng balanse."
   },
   "common": {
     "mute": "I-mute",
@@ -803,7 +820,9 @@
     "noInternetTitle": "Walang Koneksyon sa Internet",
     "noInternetBody": "Pakisuri ang iyong koneksyon sa internet at subukang muli. Kailangan mong konektado sa internet upang magamit ang DeHub.",
     "noInternetStatus": "Offline - Walang koneksyon sa network",
-    "noInternetHint": "Siguraduhing naka-on ang Wi-Fi o mobile data, pagkatapos ay i-tap ang \"{{action}}\""
+    "noInternetHint": "Siguraduhing naka-on ang Wi-Fi o mobile data, pagkatapos ay i-tap ang \"{{action}}\"",
+    "saving": "Nagse-save…",
+    "offlineStatus": "Offline - Walang koneksyon sa network"
   },
   "tip": {
     "title": "Send Tip",
@@ -1137,7 +1156,17 @@
     "post": "Post",
     "officialLogo": "Here's the official DeHub logo! 🎨",
     "editedImage": "Here's your edited image!",
-    "generatedImage": "Here's your generated image!"
+    "generatedImage": "Here's your generated image!",
+    "toolCompleted": "Natapos ang {{name}}",
+    "aiTool": "AI tool",
+    "cannotAnimateImage": "Hindi ma-animate ng {{model}} ang isang nakalakip na imahe. Pumili ng ibang video model.",
+    "needsImageToAnimate": "Kailangan ng {{model}} ng imahe upang i-animate. Maglakip ng isa o pumili ng ibang model.",
+    "couldNotReadImage": "Hindi mabasa ang imaheng iyon",
+    "logoLoadFailed": "Hindi ma-load ang DeHub logo — ginagawa ito nang wala ito",
+    "imageAttachedDescribe": "Nakalakip ang imahe — ilarawan ang iyong mga pagbabago",
+    "couldNotPreparePost": "Hindi maihanda iyon para sa pag-post",
+    "generateImage": "Bumuo ng Larawan",
+    "generateVideo": "Bumuo ng Video"
   },
   "commandCentre": {
     "title": "Command Center",
@@ -1654,7 +1683,10 @@
     "edit": "I-edit",
     "deleteRequestTitle": "Burahin ang kahilingang ito?",
     "deleteRequestDescription": "Hindi ito mababawi.",
-    "attachmentTooLarge": "Dapat wala pang 20MB ang bawat file"
+    "attachmentTooLarge": "Dapat wala pang 20MB ang bawat file",
+    "deleteCommentA11y": "I-delete ang komento",
+    "sendCommentA11y": "Magpadala ng komento",
+    "requestOptions": "Mga opsyon sa kahilingan"
   },
   "auth": {
     "loginRequired": "Log in required",
@@ -1703,7 +1735,15 @@
     "sendCodeFailedRetry": "Hindi maipadala ang code. Pakisubukang muli.",
     "invalidCodeRetry": "Hindi wasto ang code. Pakisubukang muli.",
     "invalidEmailOrPassword": "Hindi wasto ang email o password.",
-    "welcomeToDehub": "Maligayang pagdating sa DeHub"
+    "welcomeToDehub": "Maligayang pagdating sa DeHub",
+    "importWalletOptional": "Mag - import ng Wallet (Opsyonal)",
+    "couldNotSendCodeRetry": "Hindi maipadala ang code. Pakisubukan muli.",
+    "exploreWithoutSignIn": "Mag - explore nang hindi nagsa - sign in",
+    "continueExploring": "Magpatuloy sa paggalugad",
+    "exploreWithoutSignInA11y": "I - explore ang DeHub nang hindi nagsa - sign in",
+    "continueExploringA11y": "Magpatuloy sa paggalugad ng DeHub",
+    "importWalletRecommended": "Inirerekomenda ang mga social login.",
+    "importWalletPurpose": "Ang tool na ito ay para sa pag - import ng mga umiiral na account mula sa DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Naka-off na ang mga iminungkahing sagot",
@@ -1818,7 +1858,29 @@
     "reportedAutomatically": "Awtomatiko na itong naireport.",
     "loadFailed": "Hindi ma-load ang mga channel",
     "noSearchResults": "Walang channel na tumutugma sa paghahanap mo",
-    "noChannels": "Walang available na channel"
+    "noChannels": "Walang available na channel",
+    "pairCodeExpired": "Nag - expire na ang code na iyon. Humingi ng bago sa TV.",
+    "signedInOnTv": "Nag - sign in sa iyong TV",
+    "pairRefused": "Tumangi",
+    "pairIntro": "Buksan ang DeHub sa iyong telebisyon at i - type ang code na ipinapakita dito.",
+    "pairNotFound": "Walang telebisyon ang naghihintay sa code na iyon. Maaaring nag — expire na ito — humingi ng bago sa TV.",
+    "wantsToSignIn": "gusto mong mag - sign in habang ikaw ay",
+    "pairWarning": "Tanging aprubahan ito kung ito ay isang telebisyon na iyong tinitingnan ngayon. Pag - apruba ng mga palatandaan kung sino ang may hawak ng code na iyon sa iyong account. Magagawa nitong panoorin, i - like at i — follow — hindi ito maaaring gumastos, at maaari mo itong lagdaan anumang oras mula sa Mga Aktibong session.",
+    "pairApprove": "Oo, mag - sign in sa TV na ito",
+    "pairDeny": "Hindi, hindi ko hiniling ito",
+    "pairDoneTitle": "Ang iyong TV ay naka - sign in",
+    "pairDoneBody": "Dapat ay ipinapakita na nito ang iyong account. I - sign out ito anumang oras mula sa Mga Setting ng Mga → Aktibong session sa → Privacy.",
+    "closePlayer": "Isara ang manlalaro",
+    "declineFailed": "Hindi matanggihan iyon — maaaring nag - expire na ito.",
+    "tipSentTvNotTold": "Nagpadala ng tip, ngunit hindi masabi ang TV. Mag - time out ito.",
+    "sentAmount": "Ipinadala {{amount}} DHB",
+    "nothingWaiting": "Walang naghihintay",
+    "nothingWaitingBody": "Kapag nag-tip ka mula sa DeHub sa iyong telebisyon, lumalabas ito dito para maaprubahan mo. Hindi kailanman hawak ng iyong TV ang iyong wallet.",
+    "yourTelevision": "Ang iyong telebisyon",
+    "wantsToTip": "gustong magpadala ng tip · {{time}} ang nag-iwan",
+    "tipTo": "para kay {{name}}",
+    "tipForPost": "para sa “{{title}}”",
+    "reviewAndApprove": "Suriin at aprubahan"
   },
   "top100": {
     "title": "Top 100",
@@ -2090,7 +2152,8 @@
     "submitApplication": "Submit Application",
     "nameEmailRequired": "Name and email are required",
     "applicationSuccess": "Application submitted successfully! We'll be in touch.",
-    "applicationFailed": "Failed to submit. Please try again."
+    "applicationFailed": "Failed to submit. Please try again.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO Treasury",
@@ -2250,7 +2313,8 @@
     "pinnedToast": "Naka-pin sa itaas ng post na ito",
     "unpinnedToast": "Inalis ang pin",
     "pinFailed": "Hindi ma-pin ang komentong iyon",
-    "kidsOnlyThread": "Ang post na ito ay para sa mga bata. Kids Mode lamang ang maaaring magkomento tungkol dito."
+    "kidsOnlyThread": "Ang post na ito ay para sa mga bata. Kids Mode lamang ang maaaring magkomento tungkol dito.",
+    "editFailed": "Nabigong i-edit ang komento"
   },
   "postInfo": {
     "title": "Post Info",
@@ -3291,14 +3355,40 @@
     "comingSoon": "Malapit na",
     "signIn": "Mag-sign in",
     "tapToGetStarted": "I-tap para magsimula",
-    "soon": "Malapit na"
+    "soon": "Malapit na",
+    "glossarySubtitle": "Alamin kung ano ang ibig sabihin ng bawat icon at feature",
+    "searchGlossary": "Maghanap sa glossary...",
+    "noResultsFor": "Walang resulta para sa \"{{query}}\"",
+    "guideSubtitle": "Hakbang-hakbang na gabay sa bawat feature",
+    "searchGuide": "Maghanap sa gabay...",
+    "repostsTab": "Mga repost",
+    "quotesTab": "Mga quote",
+    "noMoreReposts": "Wala nang repost",
+    "noMoreQuotes": "Wala nang quote",
+    "noRepostsYet": "Wala pang repost",
+    "noQuotesYet": "Wala pang quote"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Mga larong tumatakbo mismo dito sa app. Walang i-install, walang bilhin — open source at inihahain mismo ng DeHub."
+    "intro": "Mga larong tumatakbo mismo dito sa app. Walang i-install, walang bilhin — open source at inihahain mismo ng DeHub.",
+    "noGameCalled": "Walang larong tinatawag na <slug>{{slug}}</slug> sa arcade.",
+    "seeWhatIsHere": "Tingnan kung ano ang narito",
+    "locationNotGranted": "Hindi naibigay ang pahintulot sa lokasyon.",
+    "signInToPlaceOnGlobe": "Mag-sign in para ilagay ang iyong sarili sa mapa.",
+    "couldNotPlaceOnGlobe": "Hindi ka mailagay sa mapa.",
+    "onTheGlobe": "Nasa mapa ka — ipinapakita sa loob ng tinatayang 25 km na lugar.",
+    "couldNotReach": "HINDI MAABOT ANG ARCADE",
+    "didNotLoad": "Hindi nag-load ang {{title}}",
+    "needsConnection": "Ang laro ay naka-host sa dehub.io at dina-download kapag binuksan mo ito, kaya kailangan nito ng gumaganang koneksyon sa unang pagkakataon. Suriin ang iyo at subukang muli.",
+    "backToArcade": "Bumalik sa arcade",
+    "openPrivacySettings": "Buksan ang mga setting ng privacy",
+    "privacyWarning": "Kung mayroon kang malaking bilang ng mga token o nakatira sa isang hindi ligtas na lugar, itago ang iyong badge at balanse bago gamitin ang feature na ito. Ang mga on-chain transaction ay nagpapakita pa rin ng iyong address. Buksan ang mga setting.",
+    "leaveGame": "Iwanan ang laro",
+    "loadingGame": "Naglo-load {{title}}",
+    "hideThis": "Itago ito"
   },
   "videoLooks": {
     "button": "Mga look ng camera",
@@ -3424,7 +3514,22 @@
     "someone": "May isang tao",
     "oneTyping": "Nagta-type si {{name}}…",
     "fewTyping": "Nagta-type sina {{names}}…",
-    "manyTyping": "{{count}} katao ang nagta-type…"
+    "manyTyping": "{{count}} katao ang nagta-type…",
+    "modBadge": "MOD",
+    "thisUser": "ang user na ito",
+    "unbanConfirm": "Sigurado ka bang gusto mong i-unban si {{name}}?",
+    "unban": "I-unban",
+    "unbanFailed": "Nabigong i-unban ang user",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} user",
+    "usersCount_other": "{{count}} users",
+    "totalMessages": "Kabuuang Mensahe",
+    "slowMode": "Slow Mode",
+    "cooldownSeconds": "{{seconds}}s cooldown",
+    "minStakeRequired": "Minimum na Stake na Kailangan",
+    "noParticipants": "Wala pang kalahok",
+    "noModerators": "Walang moderator",
+    "noBannedUsers": "Walang mga banned na user"
   },
   "promptFeed": {
     "headline": "Ano ang gusto mong makita?",
@@ -4176,7 +4281,26 @@
     "madeForKidsBlockedByMature": "Ang post na minarkahan bilang mature ay hindi maaaring ilathala din para sa mga bata.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Kunin ang RTMP details",
-    "markMadeForKids": "Markahan bilang ginawa para sa mga bata"
+    "markMadeForKids": "Markahan bilang ginawa para sa mga bata",
+    "queueWaiting": "Naghihintay…",
+    "queueUploading": "Nag-a-upload",
+    "queueProcessing": "Nagpo-proseso…",
+    "queueMinting": "Nagmi-mint…",
+    "queuePosted": "Na-post",
+    "queueFailed": "Nabigo",
+    "noRetriesLeft": "(wala nang natitirang pagsubok)",
+    "noUploads": "Walang mga upload",
+    "uploadsAppearHere": "Dito lalabas ang iyong mga upload",
+    "imagesTotalLimit": "Ang mga larawan sa isang pag - upload ay dapat na may kabuuang 100 MB o mas mababa",
+    "chooseDatabase": "Pumili ng Desentralisadong Database",
+    "livestreamMode": "Mode ng Livestream",
+    "addThumbnail": "Magdagdag ng Thumbnail",
+    "showCover": "Ipakita ang cover",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Kumpirmahin ang Livestream",
+    "liveFeaturesTitle": "Mga Live na Tampok",
+    "discardPostTitle": "I-discard ang Post",
+    "discardPostBody": "Mawawala ang iyong post. Gusto mo bang i - save ito bilang isang draft sa halip?"
   },
   "bounty": {
     "claimed": "Nakuha na",
@@ -4492,7 +4616,25 @@
     "allowNewDmsOff": "I-on ang DM para payagan ang mga bagong mensahe.",
     "perMessageFee": "Bayad kada mensahe (DHB)",
     "perMessageFeeSub": "Maningil kada mensahe. Itakda sa 0 para libre ang DM. Puwede kang magbigay ng libreng access sa ilang user.",
-    "allDisabled": "Naka-off lahat ng DM ngayon. Naka-block bilang default ang bagong DM."
+    "allDisabled": "Naka-off lahat ng DM ngayon. Naka-block bilang default ang bagong DM.",
+    "failedToEdit": "Nabigong i - edit",
+    "messageDeleted": "MESSAGE DELETED.",
+    "cantForwardFromDevice": "Hindi maipapasa ang mensaheng ito mula sa device na ito",
+    "messageForwarded": "Naipasa na ang mensahe",
+    "clearMessages": "I - clear ang mga mensahe",
+    "clearMessagesConfirm": "Tanggalin ang lahat ng mensahe sa pag - uusap na ito? Hindi ito maibabalik.",
+    "messagesCleared": "Na - clear ang mga mensahe",
+    "failedToClearMessages": "Nabigong i - clear ang mga mensahe",
+    "removedFreeAccess": "Inalis ang libreng access para sa {{name}}",
+    "grantedFreeAccess": "Binigyan ng libreng access sa {{name}}",
+    "failedToUpdateFreeAccess": "Nabigong i - update ang libreng access",
+    "searchComingSoon": "Malapit na ang paghahanap",
+    "tapToUnblock": "I - tap para i - unblock",
+    "userFallback": "dahil ginagamit ito sa kusina at pang putol ng kahoy",
+    "failedToBlock": "Nabigong i - block",
+    "failedToDeleteConversation": "Nabigong tanggalin ang pag - uusap",
+    "newDm": "direct message",
+    "noConversationsFound": "Walang nahanap na pag - uusap"
   },
   "editPost": {
     "mediaPermission": "Kailangan ng pahintulot sa media library",
@@ -4514,7 +4656,17 @@
     "retry": "Subukan muli",
     "retrying": "Sinusubukang muli...",
     "retryQueued": "Pinoproseso muli",
-    "retryFailed": "Hindi masubukang muli ang post na iyon"
+    "retryFailed": "Hindi masubukang muli ang post na iyon",
+    "closeVideo": "Isara ang video",
+    "rotateOrientation": "I - rotate ang oryentasyon",
+    "videoProgress": "Pag-usad ng video: {{percent}}%",
+    "tapToSeek": "Tapikin para lumipat sa partikular na posisyon",
+    "photoAccessToSaveImages": "Payagan ang access sa photo library para mag-save ng mga larawan",
+    "failedToSaveImage": "Nabigong i-save ang larawan",
+    "downloadImage": "Mag-download ng larawan",
+    "goToImage": "Pumunta sa larawan {{index}}",
+    "allCaughtUp": "Tapos ka na",
+    "checkBackForShorts": "Bumalik mamaya para sa iba pang shorts"
   },
   "liveViewer": {
     "loadingStream": "Nilo-load ang stream...",
@@ -4524,7 +4676,22 @@
   },
   "search": {
     "endOfResults": "Katapusan ng mga resulta",
-    "searchDehub": "Maghanap sa DeHub"
+    "searchDehub": "Maghanap sa DeHub",
+    "tabVoice": "Boses",
+    "trendingThisWeek": "Trending Ngayong Linggo",
+    "trendingPosts": "Mga Trending na Post",
+    "trendingImages": "Mga Trending na Larawan",
+    "trendingVideos": "Mga Trending na Video",
+    "trendingVoicePosts": "Mga Trending na Boses na Post",
+    "trendingLive": "Trending Live",
+    "seeAll": "Tingnan Lahat",
+    "noAccountsFound": "Walang nakitang account",
+    "tryDifferentKeywords": "Subukan ang ibang mga keyword o suriin ang iyong spelling",
+    "noContentResults": "Walang resulta ng nilalaman",
+    "recentSearches": "Mga Kamakailang Paghahanap",
+    "noTrendingThisWeek": "Walang trending na nilalaman ngayong linggo",
+    "closeFilterOptions": "Isara ang mga opsyon sa filter",
+    "openFilterOptions": "Buksan ang mga opsyon sa filter"
   },
   "notifPrompt": {
     "stayInLoop": "Manatiling updated",
@@ -4773,7 +4940,26 @@
     "externalTitle": "Panlabas na Streaming Mode",
     "externalLiveHint": "Ang iyong stream ay live sa pamamagitan ng panlabas na software. Hindi pinagana ang in - app camera.",
     "externalHint": "Ikonekta ang iyong streaming software gamit ang mga detalye sa ibaba, pagkatapos ay simulan ang pagsasahimpapawid.",
-    "useInAppCamera": "Gamitin sa halip ang In - App Camera"
+    "useInAppCamera": "Gamitin sa halip ang In - App Camera",
+    "livestreamEnded": "Nagtapos ang Livestream",
+    "chatEnabled": "Naka-enable ang Chat",
+    "chatDisabled": "Naka-disable ang Chat",
+    "failedToUpdateSettings": "Nabigong i-update ang mga setting",
+    "networkLostReconnecting": "Nawala ang network — naka-pause ang stream. Kumokonekta muli…",
+    "openingViewer": "Nagbubukas ng viewer...",
+    "cameraPermissionRequired": "Kailangan ng pahintulot sa camera",
+    "grantPermission": "Magbigay ng Pahintulot",
+    "waitingForLivepeer": "Naghihintay para sa Livepeer...",
+    "waitingForExternalSource": "Hinihintay ang external source...",
+    "settingUpPublisher": "Pag - set up ng publisher...",
+    "scheduledStream": "Nakaiskedyul na Stream",
+    "scheduledAt": "{{date}} sa {{time}}",
+    "pressGoLiveWhenReady": "Pindutin ang Go Live kapag handa nang magsimula",
+    "connectionInterrupted": "Naantala ang Koneksyon",
+    "streamPausedReconnecting": "Naka - pause ang iyong stream. Muling kumokonekta...",
+    "streamWillEnd": "Magtatapos ang stream kung hindi muling nakakonekta",
+    "endStreamConfirmTitle": "Tapusin ang Stream?",
+    "endStreamConfirmBody": "Ang pagsasara ngayon ay magtatapos sa iyong live stream para sa lahat ng mga manonood. Maaari mong ipagpatuloy ang streaming o tapusin ito nang permanente."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

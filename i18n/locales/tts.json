@@ -119,7 +119,12 @@
     "music": "เพลง",
     "live": "ถ่ายทอดสด",
     "newPosts_one": "{{count}} โพสต์ใหม่",
-    "newPosts_other": "{{count}} โพสต์ใหม่"
+    "newPosts_other": "{{count}} โพสต์ใหม่",
+    "privateContent": "เนื้อหาส่วนตัว",
+    "privateContentBody": "เนื้อหานี้มาจากบัญชีส่วนตัว ติดตามผู้สร้างเพื่อดูโพสต์ของพวกเขา",
+    "noMoreContent": "ไม่มีเนื้อหาเพิ่มเติม",
+    "noPostsYet": "ยังไม่มีโพสต์",
+    "pullToRefresh": "ดึงเพื่อรีเฟรช หรือลองอีกครั้งภายหลัง"
   },
   "explore": {
     "all": "ทั้งหมด",
@@ -710,7 +715,19 @@
     "smsRemoveNumber": "ลบเบอร์นี้",
     "smsRemoveFailed": "เราไม่สามารถลบเบอร์นี้ได้",
     "smsNumberRemoved": "ลบเบอร์แล้ว",
-    "smsCountryBlocked": "เรายังไม่สามารถส่งข้อความไปยังประเทศนั้นได้"
+    "smsCountryBlocked": "เรายังไม่สามารถส่งข้อความไปยังประเทศนั้นได้",
+    "avatarUpdateFailed": "อัปเดตอวาตาร์ไม่สำเร็จ",
+    "coverUpdateFailed": "อัปเดตหน้าปกไม่สำเร็จ",
+    "fixInvalidSocialLinks": "โปรดแก้ไขลิงก์โซเชียลที่ไม่ถูกต้อง",
+    "updateFailed": "อัปเดตไม่สำเร็จ",
+    "channelUrlOrHandle": "URL ช่อง หรือชื่อผู้ใช้",
+    "inviteLinkPlaceholder": "ลิงก์เชิญ",
+    "profileUrlOrUsername": "URL โปรไฟล์ หรือชื่อผู้ใช้",
+    "yourDisplayName": "ชื่อที่แสดงของคุณ",
+    "usernameAvailable": "ชื่อผู้ใช้พร้อมใช้งาน",
+    "hideBadgeAndBalance": "ซ่อนป้ายและยอดคงเหลือ",
+    "hideBadgeAndBalanceDesc": "ซ่อนรายละเอียดทางการเงินและปิดการส่งและการให้ทิปถึงคุณ",
+    "onChainPublicWarning": "ธุรกรรมบนบล็อกเชนเป็นสาธารณะ การส่งโทเค็นหรือให้ทิปอาจเปิดเผยที่อยู่กระเป๋าเงินของคุณ รวมถึงธุรกรรมที่ทำก่อนเปิดใช้งานโหมดสมดุลส่วนตัว"
   },
   "common": {
     "mute": "ปิดเสียง",
@@ -760,7 +777,9 @@
     "noInternetTitle": "ไม่มีการเชื่อมต่ออินเทอร์เน็ต",
     "noInternetBody": "โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลองอีกครั้ง คุณต้องเชื่อมต่ออินเทอร์เน็ตเพื่อใช้ DeHub",
     "noInternetStatus": "ออฟไลน์ - ไม่มีการเชื่อมต่อเครือข่าย",
-    "noInternetHint": "ตรวจสอบให้แน่ใจว่า Wi-Fi หรือข้อมูลมือถือเปิดอยู่ จากนั้นแตะ \"{{action}}\""
+    "noInternetHint": "ตรวจสอบให้แน่ใจว่า Wi-Fi หรือข้อมูลมือถือเปิดอยู่ จากนั้นแตะ \"{{action}}\"",
+    "saving": "กำลังบันทึก…",
+    "offlineStatus": "ออฟไลน์ - ไม่มีการเชื่อมต่อเครือข่าย"
   },
   "tip": {
     "title": "ส่งทิป",
@@ -1094,7 +1113,17 @@
     "post": "โพสต์",
     "officialLogo": "นี่คือโลโก้ DeHub อย่างเป็นทางการ! 🎨",
     "editedImage": "นี่คือฮูปที่แก้ไขแล้ว!",
-    "generatedImage": "นี่คือฮูปที่สร้างแล้ว!"
+    "generatedImage": "นี่คือฮูปที่สร้างแล้ว!",
+    "toolCompleted": "{{name}} เสร็จสมบูรณ์",
+    "aiTool": "เครื่องมือ AI",
+    "cannotAnimateImage": "{{model}} ไม่สามารถเคลื่อนไหวรูปภาพที่แนบมาได้ เลือกโมเดลวิดีโออื่น",
+    "needsImageToAnimate": "{{model}} ต้องการรูปภาพเพื่อเคลื่อนไหว แนบรูปภาพ หรือเลือกโมเดลอื่น",
+    "couldNotReadImage": "ไม่สามารถอ่านรูปภาพนั้นได้",
+    "logoLoadFailed": "ไม่สามารถโหลดโลโก้ DeHub ได้ - กำลังสร้างโดยไม่มีโลโก้",
+    "imageAttachedDescribe": "แนบรูปภาพแล้ว — อธิบายการแก้ไขของคุณ",
+    "couldNotPreparePost": "ไม่สามารถเตรียมการนั้นสำหรับการโพสต์ได้",
+    "generateImage": "สร้างรูปภาพ",
+    "generateVideo": "สร้างวิดีโอ"
   },
   "commandCentre": {
     "title": "ศูนย์บัญชาการ",
@@ -1606,7 +1635,10 @@
     "edit": "แก้ไข",
     "deleteRequestTitle": "ลบคำขอนี้บ่?",
     "deleteRequestDescription": "อันนี้ย้อนกลับบ่ได้",
-    "attachmentTooLarge": "แต่ละไฟล์ต้องน้อยกว่า 20MB"
+    "attachmentTooLarge": "แต่ละไฟล์ต้องน้อยกว่า 20MB",
+    "deleteCommentA11y": "ลบคอมเมนต์",
+    "sendCommentA11y": "ส่งคอมเมนต์",
+    "requestOptions": "ขอทางเลือก"
   },
   "auth": {
     "loginRequired": "ต้องเข้าสู่ระบบ",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "ไม่สามารถส่งรหัส โปรดลองอีกครั้ง",
     "invalidCodeRetry": "รหัสไม่ถูกต้อง โปรดลองอีกครั้ง",
     "invalidEmailOrPassword": "อีเมลหรือรหัสผ่านไม่ถูกต้อง",
-    "welcomeToDehub": "ยินดีต้อนรับสู่ DeHub"
+    "welcomeToDehub": "ยินดีต้อนรับสู่ DeHub",
+    "importWalletOptional": "นำเข้ากระเป๋าเงิน (ทางเลือก)",
+    "couldNotSendCodeRetry": "ส่งรหัสบ่ได้ครับ ลองใหม่เด้อ",
+    "exploreWithoutSignIn": "สำรวจโดยไม่ต้องเข้าสู่ระบบ",
+    "continueExploring": "ไปต่อเด้อ",
+    "exploreWithoutSignInA11y": "สำรวจ DeHub โดยไม่ต้องเข้าสู่ระบบ",
+    "continueExploringA11y": "ไปต่อกันเลย DeHub",
+    "importWalletRecommended": "การเข้าสู่ระบบผ่านโซเชียลเป็นที่แนะนำ",
+    "importWalletPurpose": "เครื่องมือนี้สำหรับนำเข้าบัญชีที่มีอยู่จาก DeHub.io"
   },
   "messages": {
     "smartRepliesOff": "ปิดคำตอบแนะนำแล้ว",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "ถืกแจ้งอัตโนมัติแล้ว",
     "loadFailed": "โหลดซ่องบ่ได้",
     "noSearchResults": "บ่มีซ่องที่ตรงกับการค้นหาของเจ้า",
-    "noChannels": "บ่มีซ่องให้ใซ้"
+    "noChannels": "บ่มีซ่องให้ใซ้",
+    "pairCodeExpired": "โค้ดนั้นหมดอายุแล้ว ไปขออันใหม่จากทีวี",
+    "signedInOnTv": "ลงชื่อเข้าใช้แล้วทางทีวีเจ้า",
+    "pairRefused": "บ่รับ",
+    "pairIntro": "เปิด DeHub บนทีวีเจ้า แล้วพิมพ์รหัสที่มันขึ้นมานี่เด้อ",
+    "pairNotFound": "บ่มีทีวีรอโค้ดนั้นอยู่เด้ มันอาจสิบ่ได้แล้ว — ถามทีวีเอาอันใหม่โลด",
+    "wantsToSignIn": "อยากเข้าสู่ระบบในฐานะเจ้า",
+    "pairWarning": "อนุมัติตามนี้ถ้าเป็นทีวีที่เจ้าเบิ่งอยู่ตอนนี้เด้อนั่น การอนุมัตินี้สิเซ็นชื่อผู้ที่ถือรหัสนี้เข้าสู่บัญชีเจ้าได้ เขา/หล่อนสิเบิ่ง, กดไลก์ และกดติดตามได้ — แต่ว่าใช้เงินบ่ได้ และเจ้าสามารถเซ็นชื่อออกได้ทุกเมื่อจากเซสชันที่ใช้งานอยู่",
+    "pairApprove": "ครับ เซ็นอินทีวีอันนี้",
+    "pairDeny": "บ่ได้ขอเด้อ",
+    "pairDoneTitle": "ทีวีเจ้าลงชื่อเข้าใช้แล้ว",
+    "pairDoneBody": "มันควรจะแสดงบัญชีของคุณแล้ว ออกจากระบบได้ทุกเมื่อจาก การตั้งค่า → ความเป็นส่วนตัว → เซสชันที่ใช้งานอยู่",
+    "closePlayer": "ปิดผู้เล่น",
+    "declineFailed": "บ่ได้ปฏิเสธดอก — มันอาจจะหมดอายุแล้ว",
+    "tipSentTvNotTold": "ส่งทิปแล้ว แต่ทีวีมันบ่ฮู้เรื่อง มันสิหมดเวลา",
+    "sentAmount": "ส่ง {{amount}} DHB",
+    "nothingWaiting": "บ่มีหยังรอ",
+    "nothingWaitingBody": "เวลาเจ้าส่งทิปจาก DeHub ผ่านทีวี เจ้าสิเห็นมันอยู่ตรงนี้ให้เจ้าอนุมัติ ทีวีของเจ้าบ่เคยเก็บกระเป๋าเงินของเจ้าไว้",
+    "yourTelevision": "ทีวีของเจ้า",
+    "wantsToTip": "อยากส่งทิป · {{time}} ฝากมา",
+    "tipTo": "ให้ {{name}}",
+    "tipForPost": "สำหรับ “{{title}}”",
+    "reviewAndApprove": "ตรวจสอบและอนุมัติ"
   },
   "top100": {
     "title": "เทิงสุด 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "ส่งใบสมัคร",
     "nameEmailRequired": "ชื่อและอีเมลจำเป็น",
     "applicationSuccess": "ส่งใบสมัครสำเร็จ! เราจะติดต่อกลับ",
-    "applicationFailed": "ส่งล้มเหลว กะรุนาลองใหม่"
+    "applicationFailed": "ส่งล้มเหลว กะรุนาลองใหม่",
+    "namePlaceholder": "เจน สมิธ"
   },
   "dao": {
     "title": "คลัง DAO",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "ปักหมุดไว้เทิงสุดของโพสต์นี้",
     "unpinnedToast": "เอาหมุดออกแล้ว",
     "pinFailed": "ปักหมุดคำเห็นนั้นบ่ได้",
-    "kidsOnlyThread": "โพสต์นี้เป็นสำหรับเด็ก เฉพาะ Kids Mode เท่านั้นที่สามารถแสดงความเห็นได้"
+    "kidsOnlyThread": "โพสต์นี้เป็นสำหรับเด็ก เฉพาะ Kids Mode เท่านั้นที่สามารถแสดงความเห็นได้",
+    "editFailed": "แก้ไขความคิดเห็นบ่สำเร็จ"
   },
   "postInfo": {
     "title": "ข้อมูลโพสต์",
@@ -3243,14 +3307,40 @@
     "comingSoon": "เร็ว ๆ นี้",
     "signIn": "เข้าสู่ระบบ",
     "tapToGetStarted": "แตะเพื่อเริ่ม",
-    "soon": "เร็ว ๆ นี้"
+    "soon": "เร็ว ๆ นี้",
+    "glossarySubtitle": "เรียนรู้ว่าสัญลักษณ์และฟีเจอร์แต่ละอันหมายถึงอะไร",
+    "searchGlossary": "ค้นหาอภิธานศัพท์...",
+    "noResultsFor": "บ่พบบันทึกสำหรับ \"{{query}}\"",
+    "guideSubtitle": "คำแนะนำทีละขั้นตอนสำหรับทุกฟีเจอร์",
+    "searchGuide": "ค้นหาคู่มือ...",
+    "repostsTab": "โพสต์ซ้ำ",
+    "quotesTab": "คำพูด",
+    "noMoreReposts": "บ่มีโพสต์ซ้ำอีกต่อไป",
+    "noMoreQuotes": "บ่มีคำพูดอีกต่อไป",
+    "noRepostsYet": "ยังบ่มีโพสต์ซ้ำ",
+    "noQuotesYet": "ยังบ่มีคำพูด"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "เกมที่แล่นอยู่ในแอปนี้เลย บ่ต้องติดตั้ง บ่ต้องซื้อ — โอเพนซอร์ส และ DeHub เป็นผู้ให้เอง"
+    "intro": "เกมที่แล่นอยู่ในแอปนี้เลย บ่ต้องติดตั้ง บ่ต้องซื้อ — โอเพนซอร์ส และ DeHub เป็นผู้ให้เอง",
+    "noGameCalled": "บ่มีเกมชื่อ <slug>{{slug}}</slug> ในอาร์เคด",
+    "seeWhatIsHere": "เบิ่งว่ามีหยังอยู่ตรงนี้",
+    "locationNotGranted": "บ่ได้รับอนุญาตให้เข้าถึงตำแหน่ง",
+    "signInToPlaceOnGlobe": "ลงชื่อเข้าใช้เพื่อวางเจ้าบนโลก",
+    "couldNotPlaceOnGlobe": "วางเจ้าบนโลกบ่ได้",
+    "onTheGlobe": "เจ้าอยู่บนโลกแล้ว — แสดงในพื้นที่ประมาณ 25 กม.",
+    "couldNotReach": "ไปอาร์เคดบ่ได้",
+    "didNotLoad": "{{title}} โหลดบ่ได้",
+    "needsConnection": "เกมนี้ให้บริการจาก dehub.io และจะถูกดาวน์โหลดเมื่อเจ้าเปิดมัน ดังนั้นมันจึงต้องการการเชื่อมต่อที่ใช้งานได้ในครั้งแรก ตรวจสอบการเชื่อมต่อของเจ้าแล้วลองอีกครั้ง",
+    "backToArcade": "กลับไปที่อาร์เคด",
+    "openPrivacySettings": "เปิดการตั้งค่าความเป็นส่วนตัว",
+    "privacyWarning": "หากคุณมีโทเค็นจำนวนมาก หรืออาศัยอยู่ในพื้นที่ที่ไม่ปลอดภัย ให้ซ่อนป้ายและยอดคงเหลือของคุณก่อนใช้ฟีเจอร์นี้ การทำธุรกรรมบนเชนยังคงเปิดเผยที่อยู่ของคุณ เปิดการตั้งค่า",
+    "leaveGame": "ออกจากเกม",
+    "loadingGame": "กำลังโหลด {{title}}",
+    "hideThis": "ซ่อนสิ่งนี้"
   },
   "videoLooks": {
     "button": "ลุคกล้อง",
@@ -3376,7 +3466,22 @@
     "someone": "ผู้ได๋ผู้หนึ่ง",
     "oneTyping": "{{name}} กำลังพิมพ์…",
     "fewTyping": "{{names}} กำลังพิมพ์…",
-    "manyTyping": "{{count}} คนกำลังพิมพ์…"
+    "manyTyping": "{{count}} คนกำลังพิมพ์…",
+    "modBadge": "MOD",
+    "thisUser": "ผู้ใช้นี้",
+    "unbanConfirm": "คุณแน่ใจหรือไม่ว่าต้องการปลดแบน {{name}}?",
+    "unban": "ปลดแบน",
+    "unbanFailed": "ไม่สามารถปลดแบนผู้ใช้ได้",
+    "onlineLabel": "ออนไลน์",
+    "usersCount_one": "ผู้ใช้ {{count}}",
+    "usersCount_other": "ผู้ใช้ {{count}} คน",
+    "totalMessages": "ข้อความทั้งหมด",
+    "slowMode": "โหมดช้า",
+    "cooldownSeconds": "คูลดาวน์ {{seconds}} วินาที",
+    "minStakeRequired": "ต้องวางเดิมพันขั้นต่ำ",
+    "noParticipants": "ยังไม่มีผู้เข้าร่วม",
+    "noModerators": "ไม่มีผู้ดูแล",
+    "noBannedUsers": "ไม่มีผู้ใช้ที่ถูกแบน"
   },
   "promptFeed": {
     "headline": "เจ้าอยากเบิ่งหยัง",
@@ -4128,7 +4233,26 @@
     "madeForKidsBlockedByMature": "โพสต์ที่ทำเครื่องหมายว่าเป็นผู้ใหญ่ไม่สามารถเผยแพร่สำหรับเด็กได้เช่นกัน",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "รับรายละเอียด RTMP",
-    "markMadeForKids": "ทำเครื่องหมายว่าสร้างมาสำหรับเด็ก"
+    "markMadeForKids": "ทำเครื่องหมายว่าสร้างมาสำหรับเด็ก",
+    "queueWaiting": "กำลังรอ…",
+    "queueUploading": "กำลังอัปโหลด",
+    "queueProcessing": "กำลังประมวลผล…",
+    "queueMinting": "กำลังสร้าง…",
+    "queuePosted": "โพสต์แล้ว",
+    "queueFailed": "ล้มเหลว",
+    "noRetriesLeft": "(ไม่มีการลองใหม่เหลืออยู่)",
+    "noUploads": "ไม่มีการอัปโหลด",
+    "uploadsAppearHere": "การอัปโหลดของคุณจะปรากฏที่นี่",
+    "imagesTotalLimit": "รูปภาพที่อัปโหลดพร้อมกันต้องไม่เกิน 100 MB",
+    "chooseDatabase": "เลือกฐานข้อมูลแบบกระจายศูนย์",
+    "livestreamMode": "โหมดไลฟ์สด",
+    "addThumbnail": "เพิ่มรูปภาพขนาดย่อ",
+    "showCover": "แสดงปก",
+    "max60s": "แม็ก 60 วิ",
+    "confirmLivestream": "ยืนยันการถ่ายทอดสด",
+    "liveFeaturesTitle": "ฟีเจอร์ไลฟ์",
+    "discardPostTitle": "ทิ่มถิ่มโพสต์ติ๊?",
+    "discardPostBody": "โพสต์เจ้าสิหายเด้ สิอยากเซฟไว้เป็นฉบับร่างบ่"
   },
   "bounty": {
     "claimed": "ฮับแล้ว",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "เปิด DM เปื้ออนุญาตข้อความใหม่",
     "perMessageFee": "ก้าธรรมเนียมต่อข้อความ (DHB)",
     "perMessageFeeSub": "เก็บก้าธรรมเนียมต่อข้อความ ตั้งเป๋น 0 เปื้อหื้อ DM ฟรี ต้านหื้อสิทธิ์ฟรีกับผู้ใจ้บางคนได้",
-    "allDisabled": "ตอนนี้ DM ตังหมดถูกปิด DM ใหม่ถูกบล็อกโดยก้าเริ่มต้น"
+    "allDisabled": "ตอนนี้ DM ตังหมดถูกปิด DM ใหม่ถูกบล็อกโดยก้าเริ่มต้น",
+    "failedToEdit": "แก้ไขบ่ได้",
+    "messageDeleted": "ข้อความถูกลบ",
+    "cantForwardFromDevice": "ข้อความนี้ส่งต่อจากเครื่องนี้บ่ได้",
+    "messageForwarded": "ข้อความถูกส่งต่อ",
+    "clearMessages": "ข้อความชัดเจน",
+    "clearMessagesConfirm": "ลบข้อความทั้งหมดในบทสนทนานี้เลยติ? อันนี้เฮ็ดคืนบ่ได้เด้อ",
+    "messagesCleared": "ข้อความถูกลบแล้ว",
+    "failedToClearMessages": "ล้มเหลวในการล้างข้อความ",
+    "removedFreeAccess": "เอาออกแล้วการเข้าถึงฟรีสำหรับ {{name}}",
+    "grantedFreeAccess": "ให้สิทธิ์เข้าถึงฟรี {{name}}",
+    "failedToUpdateFreeAccess": "อัปเดตสิทธิ์เข้าใช้ฟรีบ่ได้",
+    "searchComingSoon": "กำลังสิมาเด้อ",
+    "tapToUnblock": "แตะเพื่อปลดบล็อก",
+    "userFallback": "ผู้ใช้",
+    "failedToBlock": "บล็อกบ่ได้",
+    "failedToDeleteConversation": "ล้มเหลวในการลบคุย",
+    "newDm": "ข้อความส่วนตัวใหม่",
+    "noConversationsFound": "บ่มีข้อความใด๋พบ"
   },
   "editPost": {
     "mediaPermission": "ต้องได้ฮับสิทธิ์เข้าเถิงคลังสื่อ",
@@ -4467,7 +4609,17 @@
     "retry": "ลองอีกครั้ง",
     "retrying": "กำลังลองใหม่…",
     "retryQueued": "กำลังประมวลผลอีกครั้ง",
-    "retryFailed": "ลองโพสต์นั้นใหม่บ่ได้"
+    "retryFailed": "ลองโพสต์นั้นใหม่บ่ได้",
+    "closeVideo": "ปิดวิดีโอ",
+    "rotateOrientation": "หมุนทิศทาง",
+    "videoProgress": "ความคืบหน้าวิดีโอ: {{percent}}%",
+    "tapToSeek": "แตะเพื่อเลื่อนไปยังตำแหน่งที่ต้องการ",
+    "photoAccessToSaveImages": "อนุญาตให้เข้าถึงคลังภาพเพื่อบันทึกรูปภาพ",
+    "failedToSaveImage": "บันทึกรูปภาพไม่สำเร็จ",
+    "downloadImage": "ดาวน์โหลดรูปภาพ",
+    "goToImage": "ไปที่รูปภาพ {{index}}",
+    "allCaughtUp": "คุณดูหมดแล้ว",
+    "checkBackForShorts": "กลับมาดูอีกครั้งในภายหลังสำหรับวิดีโอสั้นเพิ่มเติม"
   },
   "liveViewer": {
     "loadingStream": "กำลังโหลดสตรีม...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "หมดผลกาน໊ก้นหาแล้ว",
-    "searchDehub": "ก้นหาใน DeHub"
+    "searchDehub": "ก้นหาใน DeHub",
+    "tabVoice": "เสียง",
+    "trendingThisWeek": "กำลังเป็นที่นิยมสัปดาห์นี้",
+    "trendingPosts": "โพสต์ที่กำลังเป็นที่นิยม",
+    "trendingImages": "รูปภาพที่กำลังเป็นที่นิยม",
+    "trendingVideos": "วิดีโอที่กำลังเป็นที่นิยม",
+    "trendingVoicePosts": "โพสต์เสียงที่กำลังเป็นที่นิยม",
+    "trendingLive": "ถ่ายทอดสดที่กำลังเป็นที่นิยม",
+    "seeAll": "ดูทั้งหมด",
+    "noAccountsFound": "ไม่พบรายการที่ตรงกัน",
+    "tryDifferentKeywords": "ลองใช้คำหลักอื่น หรือตรวจสอบการสะกดคำของคุณ",
+    "noContentResults": "ไม่พบผลลัพธ์เนื้อหา",
+    "recentSearches": "การค้นหาล่าสุด",
+    "noTrendingThisWeek": "ไม่มีเนื้อหาที่กำลังเป็นที่นิยมในสัปดาห์นี้",
+    "closeFilterOptions": "ปิดตัวเลือกตัวกรอง",
+    "openFilterOptions": "เปิดตัวเลือกตัวกรอง"
   },
   "notifPrompt": {
     "stayInLoop": "บ่พลาดตุกความเคลื่อนไหว",
@@ -4727,7 +4894,26 @@
     "externalTitle": "โหมดสตรีมภายนอก",
     "externalLiveHint": "การสตรีมของคุณกำลังถ่ายทอดสดผ่านซอฟต์แวร์ภายนอก กล้องในแอปถูกปิดใช้งาน",
     "externalHint": "เชื่อมต่อซอฟต์แวร์สตรีมมิ่งของคุณโดยใช้รายละเอียดด้านล่าง จากนั้นเริ่มการถ่ายทอดสด",
-    "useInAppCamera": "ใช้กล้องในแอปแทน"
+    "useInAppCamera": "ใช้กล้องในแอปแทน",
+    "livestreamEnded": "การถ่ายทอดสดสิ้นสุดลงแล้ว",
+    "chatEnabled": "เปิดใช้งานแชท",
+    "chatDisabled": "ปิดใช้งานแชท",
+    "failedToUpdateSettings": "อัปเดตการตั้งค่าไม่สำเร็จ",
+    "networkLostReconnecting": "ขาดการเชื่อมต่อเครือข่าย — หยุดสตรีมชั่วคราว กำลังเชื่อมต่อใหม่…",
+    "openingViewer": "กำลังเปิดโปรแกรมดู...",
+    "cameraPermissionRequired": "ต้องได้รับอนุญาตจากกล้อง",
+    "grantPermission": "อนุญาต",
+    "waitingForLivepeer": "รอ Livepeer...",
+    "waitingForExternalSource": "รอแหล่งภายนอก...",
+    "settingUpPublisher": "ตั้งค่าผู้เผยแพร่...",
+    "scheduledStream": "การถ่ายทอดสดที่กำหนดเวลาไว้",
+    "scheduledAt": "{{date}} ที่ {{time}}",
+    "pressGoLiveWhenReady": "กด \"เริ่มถ่ายทอดสด\" เมื่อพร้อม",
+    "connectionInterrupted": "การเชื่อมต่อขาดหาย",
+    "streamPausedReconnecting": "การถ่ายทอดสดของคุณหยุดชั่วคราว กำลังเชื่อมต่อใหม่...",
+    "streamWillEnd": "การถ่ายทอดสดจะสิ้นสุดลงหากไม่เชื่อมต่อใหม่",
+    "endStreamConfirmTitle": "สิ้นสุดการถ่ายทอดสด?",
+    "endStreamConfirmBody": "การปิดตอนนี้จะสิ้นสุดการถ่ายทอดสดของคุณสำหรับผู้ชมทั้งหมด คุณสามารถถ่ายทอดสดต่อไปหรือสิ้นสุดถาวร"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -119,7 +119,12 @@
     "music": "Música",
     "live": "En directe",
     "newPosts_one": "{{count}} publicació nova",
-    "newPosts_other": "{{count}} publicacions noves"
+    "newPosts_other": "{{count}} publicacions noves",
+    "privateContent": "Contingut privat",
+    "privateContentBody": "Aquest contingut és d'un compte privat. Segueix el creador per veure les seves publicacions.",
+    "noMoreContent": "No hi ha més contingut",
+    "noPostsYet": "Encara no hi ha publicacions.",
+    "pullToRefresh": "Estira per actualitzar o torna-ho a provar més tard."
   },
   "explore": {
     "all": "Tot",
@@ -710,7 +715,19 @@
       "replies": "Només respostes als meus comentaris",
       "account": "Només avisos sobre el meu compte"
     },
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Error en l'actualització de l'avatar",
+    "coverUpdateFailed": "Error en l'actualització de la portada",
+    "fixInvalidSocialLinks": "Si us plau, corregeix els enllaços socials invàlids",
+    "updateFailed": "Error en l'actualització",
+    "channelUrlOrHandle": "URL o nom d'usuari del canal",
+    "inviteLinkPlaceholder": "Enllaç d'invitació",
+    "profileUrlOrUsername": "URL o nom d'usuari del perfil",
+    "yourDisplayName": "El teu nom a mostrar",
+    "usernameAvailable": "El nom d'usuari està disponible",
+    "hideBadgeAndBalance": "Oculta la insígnia i el saldo",
+    "hideBadgeAndBalanceDesc": "Oculta els detalls financers i desactiva els enviaments i les propines.",
+    "onChainPublicWarning": "Les transaccions a la cadena són públiques. Enviar fitxes o fer propines pot revelar la teva adreça de cartera, incloses les transaccions fetes abans d'habilitar el mode de saldo privat."
   },
   "common": {
     "mute": "Silencia",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Sense connexió a Internet",
     "noInternetBody": "Comprova la teva connexió a Internet i torna-ho a provar. Necessites estar connectat a Internet per utilitzar DeHub.",
     "noInternetStatus": "Desconnectat - Sense connexió de xarxa",
-    "noInternetHint": "Assegura't que el Wi-Fi o les dades mòbils estiguin activats, després toca \"{{action}}\""
+    "noInternetHint": "Assegura't que el Wi-Fi o les dades mòbils estiguin activats, després toca \"{{action}}\"",
+    "saving": "Desant…",
+    "offlineStatus": "Desconnectat - Sense connexió de xarxa"
   },
   "tip": {
     "title": "Enviar propina",
@@ -1094,7 +1113,17 @@
     "post": "Publicació",
     "officialLogo": "Aquí tens el logotip oficial de DeHub! 🎨",
     "editedImage": "Aquí tens la teva imatge editada!",
-    "generatedImage": "Aquí tens la teva imatge generada!"
+    "generatedImage": "Aquí tens la teva imatge generada!",
+    "toolCompleted": "{{name}} completat",
+    "aiTool": "Eina d'IA",
+    "cannotAnimateImage": "{{model}} no pot animar una imatge adjunta. Tria un altre model de vídeo.",
+    "needsImageToAnimate": "{{model}} necessita una imatge per animar. Adjunta'n una o tria un altre model.",
+    "couldNotReadImage": "No s'ha pogut llegir aquesta imatge",
+    "logoLoadFailed": "No s'ha pogut carregar el logotip de DeHub — generant sense ell",
+    "imageAttachedDescribe": "Imatge adjunta — descriu les teves modificacions",
+    "couldNotPreparePost": "No s'ha pogut preparar per a la publicació",
+    "generateImage": "Genera una imatge",
+    "generateVideo": "Genera del vídeo"
   },
   "commandCentre": {
     "title": "Centre de Comandament",
@@ -1606,7 +1635,10 @@
     "edit": "Edita",
     "deleteRequestTitle": "Vols suprimir aquesta sol·licitud?",
     "deleteRequestDescription": "Això no es pot desfer.",
-    "attachmentTooLarge": "Cada fitxer ha de pesar menys de 20 MB"
+    "attachmentTooLarge": "Cada fitxer ha de pesar menys de 20 MB",
+    "deleteCommentA11y": "Suprimeix el comentari",
+    "sendCommentA11y": "Enviar comentari",
+    "requestOptions": "Opcions de sol·licitud"
   },
   "auth": {
     "loginRequired": "Cal iniciar sessió",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "No s'ha pogut enviar el codi. Torna-ho a provar.",
     "invalidCodeRetry": "Codi invàlid. Torna-ho a provar.",
     "invalidEmailOrPassword": "Correu electrònic o contrasenya invàlids.",
-    "welcomeToDehub": "Benvingut a DeHub"
+    "welcomeToDehub": "Benvingut a DeHub",
+    "importWalletOptional": "Importar cartera (opcional)",
+    "couldNotSendCodeRetry": "No s'ha pogut enviar el codi. Torna-ho a intentar.",
+    "exploreWithoutSignIn": "Explora sense iniciar sessió",
+    "continueExploring": "Continua explorant",
+    "exploreWithoutSignInA11y": "Explora DeHub sense iniciar sessió",
+    "continueExploringA11y": "Continua explorant DeHub",
+    "importWalletRecommended": "Es recomana iniciar sessió a les xarxes socials.",
+    "importWalletPurpose": "Aquesta eina és per importar comptes existents des de DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Respostes suggerides desactivades",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "S'ha informat automàticament.",
     "loadFailed": "No s'han pogut carregar els canals",
     "noSearchResults": "Cap canal coincideix amb la teva cerca",
-    "noChannels": "No hi ha canals disponibles"
+    "noChannels": "No hi ha canals disponibles",
+    "pairCodeExpired": "Aquest codi ha caducat. Demana'n una de nova al televisor.",
+    "signedInOnTv": "Inicia sessió al teu televisor",
+    "pairRefused": "Rebutjada",
+    "pairIntro": "Obre DeHub al teu televisor i escriu el codi que es mostra aquí.",
+    "pairNotFound": "No hi ha televisió esperant aquest codi. És possible que hagi caducat. Demana'n un de nou al televisor.",
+    "wantsToSignIn": "vol iniciar sessió com a",
+    "pairWarning": "Només aprova aquesta opció si estàs mirant un televisor ara mateix. Aprovar signa qui té aquest codi al teu compte. Podrà veure'l, donar-li «m'agrada» i seguir-lo. No es pot gastar i pots tancar la sessió quan vulguis des de les sessions actives.",
+    "pairApprove": "Sí, inicia la sessió en aquest televisor",
+    "pairDeny": "No, no ho he demanat",
+    "pairDoneTitle": "El teu televisor ha iniciat la sessió",
+    "pairDoneBody": "Ja hauria de mostrar el teu compte. Tanca la sessió quan vulguis des de Configuració → Privacitat Sessions → actives.",
+    "closePlayer": "Tanca el jugador",
+    "declineFailed": "No s'ha pogut rebutjar. És possible que ja hagi caducat.",
+    "tipSentTvNotTold": "S'ha enviat el consell, però no s'ha pogut dir al televisor. S'acabarà el temps.",
+    "sentAmount": "Enviat {{amount}} DHB",
+    "nothingWaiting": "Res en espera",
+    "nothingWaitingBody": "Quan envies una propina des de DeHub a la teva televisió, apareix aquí perquè l'aprovis. La teva TV mai no guarda la teva cartera.",
+    "yourTelevision": "La teva televisió",
+    "wantsToTip": "vol enviar una propina · {{time}} ha deixat",
+    "tipTo": "a {{name}}",
+    "tipForPost": "per “{{title}}”",
+    "reviewAndApprove": "Revisa i aprova"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Enviar sol·licitud",
     "nameEmailRequired": "El nom i el correu són obligatoris",
     "applicationSuccess": "Sol·licitud enviada correctament! Ens posarem en contacte.",
-    "applicationFailed": "Error en enviar. Si us plau, torna-ho a provar."
+    "applicationFailed": "Error en enviar. Si us plau, torna-ho a provar.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Tresoreria DAO",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Fixat a dalt de tot d'aquesta publicació",
     "unpinnedToast": "Fixació tret",
     "pinFailed": "No s'ha pogut fixar aquest comentari",
-    "kidsOnlyThread": "Aquesta publicació és per a nens. Només el mode nens pot comentar-ho."
+    "kidsOnlyThread": "Aquesta publicació és per a nens. Només el mode nens pot comentar-ho.",
+    "editFailed": "No s'ha pogut editar el comentari"
   },
   "postInfo": {
     "title": "Informació de la publicació",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Ben aviat",
     "signIn": "Inicia la sessió",
     "tapToGetStarted": "Toca per començar",
-    "soon": "Aviat"
+    "soon": "Aviat",
+    "glossarySubtitle": "Aprèn què significa cada icona i funció",
+    "searchGlossary": "Cerca al glossari...",
+    "noResultsFor": "No hi ha resultats per a \"{{query}}\"",
+    "guideSubtitle": "Guia pas a pas de cada funció",
+    "searchGuide": "Cerca a la guia...",
+    "repostsTab": "Reposts",
+    "quotesTab": "Cites",
+    "noMoreReposts": "No més reposts",
+    "noMoreQuotes": "No més cites",
+    "noRepostsYet": "Encara no hi ha reposts",
+    "noQuotesYet": "Encara no hi ha cites"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Jocs que funcionen aquí mateix, a l'app. Res per instal·lar, res per comprar: codi obert i servits pel mateix DeHub."
+    "intro": "Jocs que funcionen aquí mateix, a l'app. Res per instal·lar, res per comprar: codi obert i servits pel mateix DeHub.",
+    "noGameCalled": "No hi ha cap joc anomenat <slug>{{slug}}</slug> a la sala de jocs.",
+    "seeWhatIsHere": "Veure què hi ha aquí",
+    "locationNotGranted": "No s'ha concedit el permís d'ubicació.",
+    "signInToPlaceOnGlobe": "Inicia sessió per situar-te al globus.",
+    "couldNotPlaceOnGlobe": "No s'ha pogut situar al globus.",
+    "onTheGlobe": "Estàs al globus — mostrat dins d'una àrea aproximada de 25 km.",
+    "couldNotReach": "NO ES POT ACCEDIR A LA SALA DE JOCS",
+    "didNotLoad": "{{title}} no s'ha carregat",
+    "needsConnection": "El joc es serveix des de dehub.io i es descarrega quan l'obres, per la qual cosa necessita una connexió funcional la primera vegada. Comprova la teva i torna-ho a provar.",
+    "backToArcade": "Tornar a la sala de jocs",
+    "openPrivacySettings": "Obre la configuració de privadesa",
+    "privacyWarning": "Si tens una gran quantitat de fitxes o vius en una zona insegura, amaga la teva insígnia i el teu saldo abans d'utilitzar aquesta funció. Les transaccions a la cadena encara revelen la teva adreça. Obre la configuració.",
+    "leaveGame": "Abandonar el joc",
+    "loadingGame": "Carregant {{title}}",
+    "hideThis": "Amaga això"
   },
   "videoLooks": {
     "button": "Aspectes de la càmera",
@@ -3376,7 +3466,22 @@
     "someone": "Algú",
     "oneTyping": "{{name}} està escrivint…",
     "fewTyping": "{{names}} estan escrivint…",
-    "manyTyping": "{{count}} persones estan escrivint…"
+    "manyTyping": "{{count}} persones estan escrivint…",
+    "modBadge": "MOD",
+    "thisUser": "aquest usuari",
+    "unbanConfirm": "Estàs segur que vols desbannejar {{name}}?",
+    "unban": "Desbannejar",
+    "unbanFailed": "No s'ha pogut desbannejar l'usuari",
+    "onlineLabel": "En línia",
+    "usersCount_one": "usuari {{count}}",
+    "usersCount_other": "usuaris {{count}}",
+    "totalMessages": "Missatges totals",
+    "slowMode": "Mode lent",
+    "cooldownSeconds": "cooldown de {{seconds}}s",
+    "minStakeRequired": "Aposta mínima requerida",
+    "noParticipants": "Encara no hi ha participants",
+    "noModerators": "No hi ha moderadors",
+    "noBannedUsers": "No hi ha usuaris prohibits"
   },
   "promptFeed": {
     "headline": "Què vols veure?",
@@ -4128,7 +4233,26 @@
     "madeForKidsOffDesc": "Mostra aquesta publicació als nens que utilitzen Mode Nens, i la treu dels feeds ordinaris.",
     "madeForKidsBlockedByMature": "Una publicació marcada com a madura no pot ser publicada també per a nens.",
     "encoderTitle": "OBS / Codificador",
-    "encoderHint": "Obtén detalls RTMP"
+    "encoderHint": "Obtén detalls RTMP",
+    "queueWaiting": "Esperant…",
+    "queueUploading": "Pujant",
+    "queueProcessing": "Processant…",
+    "queueMinting": "Creant…",
+    "queuePosted": "Publicat",
+    "queueFailed": "Error",
+    "noRetriesLeft": "(no queden intents)",
+    "noUploads": "No hi ha pujades",
+    "uploadsAppearHere": "Les teves pujades apareixeran aquí",
+    "imagesTotalLimit": "Les imatges en una sola càrrega han de sumar 100 MB o menys",
+    "chooseDatabase": "Tria Base de dades descentralitzada",
+    "livestreamMode": "Mode de transmissió en directe",
+    "addThumbnail": "Afegeix miniatura",
+    "showCover": "Mostra la portada",
+    "max60s": "Màx 60s",
+    "confirmLivestream": "Confirma la transmissió en directe",
+    "liveFeaturesTitle": "Funcions en directe",
+    "discardPostTitle": "Descarta la publicació?",
+    "discardPostBody": "La teva publicació es perdrà. Vols desar-la com a esborrany?"
   },
   "bounty": {
     "claimed": "Reclamat",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Activa els missatges per permetre'n de nous.",
     "perMessageFee": "Tarifa per missatge (DHB)",
     "perMessageFeeSub": "Cobra per missatge. Posa 0 per a missatges gratuïts. Pots donar accés gratuït a usuaris concrets.",
-    "allDisabled": "Ara mateix tots els missatges estan desactivats. Els nous es bloquegen per defecte."
+    "allDisabled": "Ara mateix tots els missatges estan desactivats. Els nous es bloquegen per defecte.",
+    "failedToEdit": "Error en editar",
+    "messageDeleted": "Missatge eliminat",
+    "cantForwardFromDevice": "Aquest missatge no es pot reenviar des d'aquest dispositiu",
+    "messageForwarded": "Missatge reenviat",
+    "clearMessages": "Esborra els missatges",
+    "clearMessagesConfirm": "Vols esborrar tots els missatges d'aquesta conversa? No es podrà desfer.",
+    "messagesCleared": "Missatges esborrats",
+    "failedToClearMessages": "Error en esborrar missatges",
+    "removedFreeAccess": "S'ha eliminat l'accés gratuït per a {{name}}",
+    "grantedFreeAccess": "S'ha concedit accés gratuït a {{name}}",
+    "failedToUpdateFreeAccess": "Error en actualitzar l'accés gratuït",
+    "searchComingSoon": "Cerca properament",
+    "tapToUnblock": "Toca per desbloquejar",
+    "userFallback": "user",
+    "failedToBlock": "Error en bloquejar",
+    "failedToDeleteConversation": "Error en eliminar la conversa",
+    "newDm": "Missatge directe nou",
+    "noConversationsFound": "No s'han trobat converses"
   },
   "editPost": {
     "mediaPermission": "Cal permís per a la biblioteca multimèdia",
@@ -4467,7 +4609,17 @@
     "retry": "Torna-ho a provar",
     "retrying": "Tornant a intentar-ho...",
     "retryQueued": "S'està processant de nou",
-    "retryFailed": "No s'ha pogut tornar a intentar aquesta publicació"
+    "retryFailed": "No s'ha pogut tornar a intentar aquesta publicació",
+    "closeVideo": "Tanca el vídeo",
+    "rotateOrientation": "Gira l'orientació",
+    "videoProgress": "Progrés del vídeo: {{percent}}%",
+    "tapToSeek": "Toca per anar a una posició específica",
+    "photoAccessToSaveImages": "Permet l'accés a la biblioteca de fotos per desar imatges",
+    "failedToSaveImage": "No s'ha pogut desar la imatge",
+    "downloadImage": "Descarregar imatge",
+    "goToImage": "Anar a la imatge {{index}}",
+    "allCaughtUp": "Estàs al dia",
+    "checkBackForShorts": "Torna més tard per veure més vídeos curts"
   },
   "liveViewer": {
     "loadingStream": "S'està carregant l'emissió...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Fi dels resultats",
-    "searchDehub": "Cerca a DeHub"
+    "searchDehub": "Cerca a DeHub",
+    "tabVoice": "Veu",
+    "trendingThisWeek": "Tendències aquesta setmana",
+    "trendingPosts": "Publicacions de tendència",
+    "trendingImages": "Imatges de tendència",
+    "trendingVideos": "Vídeos de tendència",
+    "trendingVoicePosts": "Publicacions de veu de tendència",
+    "trendingLive": "En directe de tendència",
+    "seeAll": "Veure tot",
+    "noAccountsFound": "No s'han trobat comptes",
+    "tryDifferentKeywords": "Prova paraules clau diferents o comprova l'ortografia",
+    "noContentResults": "No hi ha resultats de contingut",
+    "recentSearches": "Cercas recents",
+    "noTrendingThisWeek": "No hi ha contingut de tendència aquesta setmana",
+    "closeFilterOptions": "Tanca les opcions de filtre",
+    "openFilterOptions": "Obre les opcions de filtre"
   },
   "notifPrompt": {
     "stayInLoop": "Mantén-te al dia",
@@ -4728,7 +4895,26 @@
     "externalTitle": "Mode de transmissió externa",
     "externalLiveHint": "La transmissió és en directe a través de programari extern. La càmera de l'aplicació està desactivada.",
     "externalHint": "Connecta el programari de transmissió mitjançant les dades següents i, a continuació, comença a emetre.",
-    "useInAppCamera": "Utilitza la càmera de l'aplicació"
+    "useInAppCamera": "Utilitza la càmera de l'aplicació",
+    "livestreamEnded": "La transmissió en directe ha finalitzat",
+    "chatEnabled": "Xat activat",
+    "chatDisabled": "Xat desactivat",
+    "failedToUpdateSettings": "No s'han pogut actualitzar la configuració",
+    "networkLostReconnecting": "Xarxa perduda — transmissió en pausa. Reconnectant…",
+    "openingViewer": "Obrint visualitzador...",
+    "cameraPermissionRequired": "Cal permís de la càmera",
+    "grantPermission": "Concedeix permís",
+    "waitingForLivepeer": "S'està esperant Livepeer...",
+    "waitingForExternalSource": "S'està esperant una font externa...",
+    "settingUpPublisher": "S'està configurant l'editor...",
+    "scheduledStream": "Flux programat",
+    "scheduledAt": "{{date}} a les {{time}}",
+    "pressGoLiveWhenReady": "Premeu Anar en directe quan estigui a punt per començar",
+    "connectionInterrupted": "S'ha interromput la connexió",
+    "streamPausedReconnecting": "El teu flux està en pausa. Tornant a connectar...",
+    "streamWillEnd": "El flux finalitzarà si no es torna a connectar",
+    "endStreamConfirmTitle": "Vols finalitzar el flux?",
+    "endStreamConfirmBody": "Si tanques ara, la transmissió en directe acabarà per a tots els espectadors. Pots continuar la transmissió o acabar-la definitivament."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -119,7 +119,12 @@
     "music": "Umculo",
     "live": "Bukhoma",
     "newPosts_one": "Okuthunyelwe okusha okungu-{{count}}",
-    "newPosts_other": "Okuthunyelwe okusha okungu-{{count}}"
+    "newPosts_other": "Okuthunyelwe okusha okungu-{{count}}",
+    "privateContent": "Okuqukethwe Okuyimfihlo",
+    "privateContentBody": "Lokhu okuqukethwe kuvela ku-akhawunti eyimfihlo. Landela umdali ukuze ubuke okuthunyelwe kwakhe.",
+    "noMoreContent": "Akusekho okuqukethwe",
+    "noPostsYet": "Azikho izithombe okwamanje.",
+    "pullToRefresh": "Donsela ukuze uvuselele noma uzame futhi ngokuhamba kwesikhathi."
   },
   "explore": {
     "all": "Konke",
@@ -710,7 +715,19 @@
     },
     "smsNotificationsDescReady": "Kuthunyelwe ku-{{phone}} — {{dhb}} DHB ngayinye, kusele cishe {{count}}",
     "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
-    "smsBalance": "Kusele {{dhb}} DHB (${{usd}})"
+    "smsBalance": "Kusele {{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Isibuyekezo se-Avatar sehlulekile",
+    "coverUpdateFailed": "Isibuyekezo se-Cover sehlulekile",
+    "fixInvalidSocialLinks": "Sicela ulungise izixhumanisi zenhlalo ezingavumelekile",
+    "updateFailed": "Isibuyekezo sehlulekile",
+    "channelUrlOrHandle": "I-URL yesiteshi noma isibambo",
+    "inviteLinkPlaceholder": "Isixhumanisi sokumema",
+    "profileUrlOrUsername": "I-URL yephrofayela noma igama lomsebenzisi",
+    "yourDisplayName": "Igama lakho lokubonisa",
+    "usernameAvailable": "Igama lomsebenzisi liyatholakala",
+    "hideBadgeAndBalance": "Fihla ibheji nebhalansi",
+    "hideBadgeAndBalanceDesc": "Ifihla imininingwane yezezimali futhi ivimela ukuthumela nokunikeza amathiphu kuwe.",
+    "onChainPublicWarning": "Imisebenzi ye-On-chain iyimfihlo. Ukuthumela amathokheni noma amathiphu kungaveza ikheli lakho le-wallet, okuhlanganisa nemisebenzi eyenziwe ngaphambi kokuthi imodi yebhalansi eyimfihlo yenziwe yasebenza."
   },
   "common": {
     "mute": "Thulisa",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Ayikho uxhumano lwe-inthanethi",
     "noInternetBody": "Sicela uhlole uxhumano lwakho lwe-inthanethi bese uzama futhi. Udinga ukuxhunywa kwi-inthanethi ukuze usebenzise i-DeHub.",
     "noInternetStatus": "Ayixhunyiwe - Ayikho uxhumano lwenethiwekhi",
-    "noInternetHint": "Qiniseka ukuthi i-Wi-Fi noma idatha yeselula ivuliwe, bese uthepha ku-\"{{action}}\""
+    "noInternetHint": "Qiniseka ukuthi i-Wi-Fi noma idatha yeselula ivuliwe, bese uthepha ku-\"{{action}}\"",
+    "saving": "Kugcinwa…",
+    "offlineStatus": "Ungaxhunyiwe ku-inthanethi - Ayikho uxhumano lwenethiwekhi"
   },
   "tip": {
     "title": "Thumela Ithiphu",
@@ -1094,7 +1113,17 @@
     "post": "Thumela",
     "officialLogo": "Nali ilogo esemthethweni yeDeHub! 🎨",
     "editedImage": "Nasi isithombe sakho esihlelelwe!",
-    "generatedImage": "Nasi isithombe sakho esikhiqiziwe!"
+    "generatedImage": "Nasi isithombe sakho esikhiqiziwe!",
+    "toolCompleted": "{{name}} kuqediwe",
+    "aiTool": "Ithuluzi le-AI",
+    "cannotAnimateImage": "{{model}} ayikwazi ukwenza isithombe esinamathiselwe sibe nokunyakaza. Khetha enye imodeli yevidiyo.",
+    "needsImageToAnimate": "{{model}} idinga isithombe ukuze isenze sibe nokunyakaza. Namathisela esinye noma khetha enye imodeli.",
+    "couldNotReadImage": "Ayikwazanga ukufunda leso sithombe",
+    "logoLoadFailed": "Ayikwazanga ukulayisha ilogo ye-DeHub — izokhiqizwa ngaphandle kwayo",
+    "imageAttachedDescribe": "Isithombe esinamathiselwe — chaza izinto ozishintshile",
+    "couldNotPreparePost": "Ayikwazanga ukukulungiselela lokho ukuze kuthunyelwe",
+    "generateImage": "Khiqiza Isithombe",
+    "generateVideo": "Khiqiza Ividiyo"
   },
   "commandCentre": {
     "title": "Isikhungo Sokulawula",
@@ -1607,7 +1636,10 @@
     "edit": "Hlela",
     "deleteRequestTitle": "Susa lesi sicelo?",
     "deleteRequestDescription": "Lokhu ngeke kuhlehliswe.",
-    "attachmentTooLarge": "Ifayela ngalinye kufanele libe ngaphansi kuka-20MB"
+    "attachmentTooLarge": "Ifayela ngalinye kufanele libe ngaphansi kuka-20MB",
+    "deleteCommentA11y": "Susa ukuphawula",
+    "sendCommentA11y": "Thumela ukuphawula",
+    "requestOptions": "Cela ongakhetha kukho"
   },
   "auth": {
     "loginRequired": "Ukungena kuyadingeka",
@@ -1656,7 +1688,15 @@
     "sendCodeFailedRetry": "Kuhlulekile ukuthumela ikhodi. Sicela uzame futhi.",
     "invalidCodeRetry": "Ikhodi engavumelekile. Sicela uzame futhi.",
     "invalidEmailOrPassword": "I-imeyili noma iphasiwedi engavumelekile.",
-    "welcomeToDehub": "Uyemukelwa ku-DeHub"
+    "welcomeToDehub": "Uyemukelwa ku-DeHub",
+    "importWalletOptional": "Ngenisa Isikhwama Semali (Akuphoqelekile)",
+    "couldNotSendCodeRetry": "Ayikwazanga ukuthumela ikhodi. Sicela uzame futhi.",
+    "exploreWithoutSignIn": "Hlola ngaphandle kokungena ngemvume",
+    "continueExploring": "Qhubeka nokuhlola",
+    "exploreWithoutSignInA11y": "Hlola i-DeHub ngaphandle kokungena ngemvume",
+    "continueExploringA11y": "Qhubeka nokuhlola i-DeHub",
+    "importWalletRecommended": "Ukungena ku-akhawunti komphakathi kuyatuswa.",
+    "importWalletPurpose": "Leli thuluzi lokungenisa ama-akhawunti akhona ku-DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Izimpendulo eziphakanyisiwe zivaliwe",
@@ -1771,7 +1811,29 @@
     "reportedAutomatically": "Kubikwe ngokuzenzakalela.",
     "loadFailed": "Ayikwazanga ukulayisha iziteshi",
     "noSearchResults": "Azikho iziteshi ezihambisana nosesho lwakho",
-    "noChannels": "Azikho iziteshi ezitholakalayo"
+    "noChannels": "Azikho iziteshi ezitholakalayo",
+    "pairCodeExpired": "Leyo khodi iphelelwe yisikhathi. Cela i-TV entsha.",
+    "signedInOnTv": "Ungene ngemvume ku-TV yakho",
+    "pairRefused": "Yenqatshiwe",
+    "pairIntro": "Vula i-DeHub kuthelevishini yakho bese uthayipha ikhodi eyibonisayo lapha.",
+    "pairNotFound": "Ayikho ithelevishini elindile kuleyo khodi. Kungenzeka ukuthi iphelelwe yisikhathi — cela i-TV entsha.",
+    "wantsToSignIn": "ufuna ukungena ngemvume njengoba wena",
+    "pairWarning": "Gunyaza lokhu kuphela uma kuyithelevishini oyibukayo njengamanje. Ukugunyaza kusayina noma ubani ophethe leyo khodi ku-akhawunti yakho. Izokwazi ukubuka, ukuthanda nokulandela — ayikwazi ukuchitha, futhi ungayisayina nganoma yisiphi isikhathi kumaseshini Abhalisile.",
+    "pairApprove": "Yebo, ngena ngemvume kule TV",
+    "pairDeny": "Cha, angikucelanga lokhu",
+    "pairDoneTitle": "I-TV yakho ingene ngemvume",
+    "pairDoneBody": "Kufanele ibonise i-akhawunti yakho kakade. Yisayine nganoma yisiphi isikhathi kusuka Amasethingi → Obumfihlo Amaseshini → asebenzayo.",
+    "closePlayer": "Vala isidlali",
+    "declineFailed": "Ayikwazanga ukukwenqaba lokho - kungenzeka ukuthi sekuphelelwe yisikhathi kakade.",
+    "tipSentTvNotTold": "Icebiso lithunyelwe, kodwa i-TV ayikwazanga ukutshelwa. Kuzophuma isikhathi.",
+    "sentAmount": "Thumela i-{{amount}} DHB",
+    "nothingWaiting": "Akukho okulindile",
+    "nothingWaitingBody": "Lapho uthola i-tip ku-DeHub ku-TV yakho, ivela lapha ukuze uyivumele. I-TV yakho ayilokothi ibambe isikhwama sakho.",
+    "yourTelevision": "I-TV yakho",
+    "wantsToTip": "ifuna ukuthumela i-tip · i-{{time}} ishiye",
+    "tipTo": "ku-{{name}}",
+    "tipForPost": "nge-\"{{title}}\"",
+    "reviewAndApprove": "Buyekeza futhi uvume"
   },
   "top100": {
     "title": "Okuphezulu okungu-100",
@@ -2043,7 +2105,8 @@
     "submitApplication": "Thumela isicelo",
     "nameEmailRequired": "Igama ne-email kuyadingeka",
     "applicationSuccess": "Isicelo sithunyelwe ngempumelelo! Sizokuxhumana nawe.",
-    "applicationFailed": "Ukuthumela kuhlulekile. Sicela uzame futhi."
+    "applicationFailed": "Ukuthumela kuhlulekile. Sicela uzame futhi.",
+    "namePlaceholder": "uJane Smith"
   },
   "dao": {
     "title": "Isikhwama se-DAO",
@@ -2233,7 +2296,8 @@
     "pinnedToast": "Iphinwe phezulu kulesi sithombe",
     "unpinnedToast": "Iphini lisusiwe",
     "pinFailed": "Awukwazanga ukuphina lowo mbono",
-    "kidsOnlyThread": "Le phosti ngeyezingane. Imodi Yezingane kuphela engaphawula ngayo."
+    "kidsOnlyThread": "Le phosti ngeyezingane. Imodi Yezingane kuphela engaphawula ngayo.",
+    "editFailed": "Kuhlulekile ukuhlela ukuphawula"
   },
   "postInfo": {
     "title": "Ulwazi Lokuthunyelwe",
@@ -3274,14 +3338,40 @@
     "comingSoon": "Kuyeza maduze",
     "signIn": "Ngena",
     "tapToGetStarted": "Thepha ukuze uqale",
-    "soon": "Maduze"
+    "soon": "Maduze",
+    "glossarySubtitle": "Funda ukuthi isithonjana nesici ngasinye kusho ukuthini",
+    "searchGlossary": "Sesha isichazamazwi...",
+    "noResultsFor": "Azikho iziphumo ze-\"{{query}}\"",
+    "guideSubtitle": "Isiqondiso sesinyathelo ngesinyathelo sesici ngasinye",
+    "searchGuide": "Sesha umhlahlandlela...",
+    "repostsTab": "Ama-Repost",
+    "quotesTab": "Izingcaphuno",
+    "noMoreReposts": "Awekho ama-repost engeziwe",
+    "noMoreQuotes": "Awekho izingcaphuno ezengeziwe",
+    "noRepostsYet": "Awekho ama-repost okwamanje",
+    "noQuotesYet": "Awekho izingcaphuno okwamanje"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Imidlalo esebenza lapha ku-app. Akukho okufakwayo, akukho okuthengwayo — umthombo ovulekile, futhi ilethwa yi-DeHub uqobo."
+    "intro": "Imidlalo esebenza lapha ku-app. Akukho okufakwayo, akukho okuthengwayo — umthombo ovulekile, futhi ilethwa yi-DeHub uqobo.",
+    "noGameCalled": "Ayikho imidlalo ebizwa nge-<slug>{{slug}}</slug> ku-arcade.",
+    "seeWhatIsHere": "Bona ukuthi yini elapha",
+    "locationNotGranted": "Imvume yendawo ayinikezwanga.",
+    "signInToPlaceOnGlobe": "Ngena ukuze uzibeke ebalazweni.",
+    "couldNotPlaceOnGlobe": "Kuhlulekile ukukubeka ebalazweni.",
+    "onTheGlobe": "Use ebalazweni — uboniswa endaweni elinganiselwa ku-25 km.",
+    "couldNotReach": "KUNGAKWAHLULEKILE UKUFINYELELA I-ARCADE",
+    "didNotLoad": "I-{{title}} ayilayishanga",
+    "needsConnection": "Umdlalo ukhonzwa ku-dehub.io futhi ulayishwa lapho uwuvula, ngakho udinga ukuxhumana okusebenzayo okokuqala. Hlola okwakho bese uzama futhi.",
+    "backToArcade": "Buyela ku-arcade",
+    "openPrivacySettings": "Vula izilungiselelo zobumfihlo",
+    "privacyWarning": "Uma unamathokheni amaningi noma uhlala endaweni engaphephile, fihla ibheji lakho nebhalansi ngaphambi kokusebenzisa lesi sici. Imisebenzi ye-On-chain isabonisa ikheli lakho. Vula izilungiselelo.",
+    "leaveGame": "Phuma kumdlalo",
+    "loadingGame": "Ilayisha i-{{title}}",
+    "hideThis": "Fihla lokhu"
   },
   "videoLooks": {
     "button": "Ukubukeka kwekhamera",
@@ -3407,7 +3497,22 @@
     "someone": "Umuntu othile",
     "oneTyping": "U-{{name}} uyathayipha…",
     "fewTyping": "O-{{names}} bayathayipha…",
-    "manyTyping": "Abantu abangu-{{count}} bayathayipha…"
+    "manyTyping": "Abantu abangu-{{count}} bayathayipha…",
+    "modBadge": "MOD",
+    "thisUser": "lomsebenzisi",
+    "unbanConfirm": "Uqinisekile ukuthi ufuna ukuvula i-{{name}}?",
+    "unban": "Vula",
+    "unbanFailed": "Kwehlulekile ukuvula umsebenzisi",
+    "onlineLabel": "Ku-inthanethi",
+    "usersCount_one": "umsebenzisi we-{{count}}",
+    "usersCount_other": "abasebenzisi be-{{count}}",
+    "totalMessages": "Imilayezo Eyisamba",
+    "slowMode": "Imodi Eyingozi",
+    "cooldownSeconds": "ukuphola kwe-{{seconds}}s",
+    "minStakeRequired": "Isikhathi Esincane Esidingekayo",
+    "noParticipants": "Ababambiqhaza abekho okwamanje",
+    "noModerators": "Abaphathi abekho",
+    "noBannedUsers": "Abasebenzisi abavinjiwe abekho"
   },
   "promptFeed": {
     "headline": "Ufuna ukubona ini?",
@@ -4159,7 +4264,26 @@
     "madeForKidsBlockedByMature": "Ikhwama elimakwe njengokukhanya kabantu abadala alikwazi futhi likupapashwe ngabantwana.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Thola imininingwane ye-RTMP",
-    "markMadeForKids": "Phawula ukuthi yenzelwe izingane"
+    "markMadeForKids": "Phawula ukuthi yenzelwe izingane",
+    "queueWaiting": "Kulindile…",
+    "queueUploading": "Ilayisha",
+    "queueProcessing": "Igcina…",
+    "queueMinting": "I-Minting…",
+    "queuePosted": "Kuthunyelwe",
+    "queueFailed": "Kwehlulekile",
+    "noRetriesLeft": "(akukho ukuzama okusele)",
+    "noUploads": "Izilayishiwe azikho",
+    "uploadsAppearHere": "Izilayishi zakho zizovela lapha",
+    "imagesTotalLimit": "Izithombe ekulayisheni okukodwa kumelwe zibe yingqikithi engu-100 MB noma ngaphansi",
+    "chooseDatabase": "Khetha Idathabheyisi Esekelwe Emthethweni",
+    "livestreamMode": "Imodi Yokusakaza bukhoma",
+    "addThumbnail": "Faka i-Thumbnail",
+    "showCover": "Veza isembozo",
+    "max60s": "Umkhawulo wama-60s",
+    "confirmLivestream": "Qinisekisa ukusakaza bukhoma",
+    "liveFeaturesTitle": "Izici Ezibukhoma",
+    "discardPostTitle": "Lahla Iphosti?",
+    "discardPostBody": "Iphosti yakho izolahleka. Ungathanda ukuyigcina njengedrafti esikhundleni salokho?"
   },
   "bounty": {
     "claimed": "Kuthathiwe",
@@ -4476,7 +4600,25 @@
     "allowNewDmsOff": "Vula ama-DM ukuze uvumele imilayezo emisha.",
     "perMessageFee": "Imali ngomlayezo ngamunye (DHB)",
     "perMessageFeeSub": "Khokhisa umlayezo ngamunye. Beka ku-0 ukuze ama-DM abe mahhala. Ungavumela abasebenzisi abathile mahhala.",
-    "allDisabled": "Wonke ama-DM avaliwe njengamanje. Ama-DM amasha avinjelwe ngokuzenzakalelayo."
+    "allDisabled": "Wonke ama-DM avaliwe njengamanje. Ama-DM amasha avinjelwe ngokuzenzakalelayo.",
+    "failedToEdit": "Yehlulekile ukuhlela",
+    "messageDeleted": "Umlayezo ususiwe",
+    "cantForwardFromDevice": "Lo mlayezo awukwazi ukudluliswa kusuka kule divayisi",
+    "messageForwarded": "Umlayezo udlulisiwe",
+    "clearMessages": "Sula imilayezo",
+    "clearMessagesConfirm": "Susa yonke imiyalezo kule ngxoxo? Lokhu akukwazi ukuhlehliswa.",
+    "messagesCleared": "Imiyalezo isusiwe",
+    "failedToClearMessages": "Yehlulekile ukucacisa imilayezo",
+    "removedFreeAccess": "Ikhishiwe imvume yamahhala ye- {{name}}",
+    "grantedFreeAccess": "Kunikezwe imvume yamahhala ku- {{name}}",
+    "failedToUpdateFreeAccess": "Yehlulekile ukubuyekeza ukufinyelela kwamahhala",
+    "searchComingSoon": "Usesho luyeza maduzane",
+    "tapToUnblock": "Thepha ukuze uvule",
+    "userFallback": "Umsebenzisi",
+    "failedToBlock": "Yehlulekile ukuvimba",
+    "failedToDeleteConversation": "Yehlulekile ukususa ingxoxo",
+    "newDm": "Umyalezo omusha oqondile",
+    "noConversationsFound": "Azikho izingxoxo ezitholakele"
   },
   "editPost": {
     "mediaPermission": "Kudingeka imvume yomtapo wolwazi wemidiya",
@@ -4498,7 +4640,17 @@
     "retry": "Zama futhi",
     "retrying": "Iyazama futhi...",
     "retryQueued": "Iphrosesa futhi",
-    "retryFailed": "Ayikwazanga ukuzama futhi leyo phosti"
+    "retryFailed": "Ayikwazanga ukuzama futhi leyo phosti",
+    "closeVideo": "Vala ividiyo",
+    "rotateOrientation": "Jikelezisa ukuqondisa",
+    "videoProgress": "Intuthuko yevidiyo: {{percent}}%",
+    "tapToSeek": "Thepha ukuze uye endaweni ethile",
+    "photoAccessToSaveImages": "Vumela ukufinyelela ilabhulali yezithombe ukuze ugcine izithombe",
+    "failedToSaveImage": "Kuhlulekile ukugcina isithombe",
+    "downloadImage": "Landa isithombe",
+    "goToImage": "Iya esithombeni {{index}}",
+    "allCaughtUp": "Uqedile konke",
+    "checkBackForShorts": "Buyela emuva kamuva ukuze uthole okunye okufushane"
   },
   "liveViewer": {
     "loadingStream": "Kulayishwa ukusakaza...",
@@ -4508,7 +4660,22 @@
   },
   "search": {
     "endOfResults": "Ukuphela kwemiphumela",
-    "searchDehub": "Sesha i-DeHub"
+    "searchDehub": "Sesha i-DeHub",
+    "tabVoice": "Izwi",
+    "trendingThisWeek": "Okuthrendayo Ngalesi Sikhathi",
+    "trendingPosts": "Okuthrendayo Okuthunyelwe",
+    "trendingImages": "Okuthrendayo Izithombe",
+    "trendingVideos": "Okuthrendayo Amavidiyo",
+    "trendingVoicePosts": "Okuthrendayo Okuthunyelwe Ngezwi",
+    "trendingLive": "Okuthrendayo Okubukhoma",
+    "seeAll": "Bona Konke",
+    "noAccountsFound": "Awekho ama-akhawunti atholakele",
+    "tryDifferentKeywords": "Zama amagama angukhiye ahlukile noma hlola ukubhalwa kwakho",
+    "noContentResults": "Awekho imiphumela yokuqukethwe",
+    "recentSearches": "Ukwesekwa Kwakamuva",
+    "noTrendingThisWeek": "Awekho okuqukethwe okuthrendayo ngalesi sikhathi",
+    "closeFilterOptions": "Vala izinketho zokuhlunga",
+    "openFilterOptions": "Vula izinketho zokuhlunga"
   },
   "notifPrompt": {
     "stayInLoop": "Hlala wazi",
@@ -4758,7 +4925,26 @@
     "externalTitle": "Imodi Yokusakaza Kwangaphandle",
     "externalLiveHint": "Ukusakaza kwakho kubukhoma ngesofthiwe yangaphandle. Ikhamera engaphakathi kwe-app ivaliwe.",
     "externalHint": "Xhuma isofthiwe yakho yokusakaza usebenzisa imininingwane engezansi, bese uqala ukusakaza.",
-    "useInAppCamera": "Sebenzisa Ikhamera Engaphakathi ku-App Kunalokho"
+    "useInAppCamera": "Sebenzisa Ikhamera Engaphakathi ku-App Kunalokho",
+    "livestreamEnded": "I-Livestream iphelile",
+    "chatEnabled": "Ingxoxo inikwe amandla",
+    "chatDisabled": "Ingxoxo ikhubaziwe",
+    "failedToUpdateSettings": "Kuhlulekile ukubuyekeza izilungiselelo",
+    "networkLostReconnecting": "Inethiwekhi ilahlekile — ukusakaza kumisiwe. Kuxhuma kabusha…",
+    "openingViewer": "Kuvula isibukeli…",
+    "cameraPermissionRequired": "Imvume yekhamera iyadingeka",
+    "grantPermission": "Imvume Yokunikeza Isibonelelo",
+    "waitingForLivepeer": "Ilinde i-Livepeer...",
+    "waitingForExternalSource": "Ilinde umthombo wangaphandle...",
+    "settingUpPublisher": "Isetha umshicileli...",
+    "scheduledStream": "Ukusakaza Okuhleliwe",
+    "scheduledAt": "{{date}} at {{time}}",
+    "pressGoLiveWhenReady": "Cindezela okuthi Iya bukhoma uma usukulungele ukuqala",
+    "connectionInterrupted": "Ukuxhumeka kuphazamisekile",
+    "streamPausedReconnecting": "Ukusakazwa kwakho kumisiwe okwesikhashana. Ixhuma kabusha...",
+    "streamWillEnd": "Ukusakaza kuzophela uma kungaxhunyiwe kabusha",
+    "endStreamConfirmTitle": "Qeda Ukusakaza?",
+    "endStreamConfirmBody": "Ukuvala manje kuzoqeda ukusakaza kwakho bukhoma kubo bonke ababukeli. Ungaqhubeka usakaza noma uyiqede unomphela."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

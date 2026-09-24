@@ -119,7 +119,12 @@
     "music": "Hudba",
     "live": "Živě",
     "newPosts_one": "{{count}} nový příspěvek",
-    "newPosts_other": "{{count}} nových příspěvků"
+    "newPosts_other": "{{count}} nových příspěvků",
+    "privateContent": "Soukromý obsah",
+    "privateContentBody": "Tento obsah je z privátního účtu. Sledujte tvůrce a prohlížejte jeho příspěvky.",
+    "noMoreContent": "Žádný další obsah",
+    "noPostsYet": "Zatím žádné příspěvky.",
+    "pullToRefresh": "Potáhněte pro obnovení nebo zkuste později."
   },
   "explore": {
     "all": "Vše",
@@ -710,7 +715,19 @@
       "replies": "Pouze odpovědi na mé komentáře",
       "account": "Pouze oznámení o mém účtu"
     },
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Aktualizace avatara se nezdařila",
+    "coverUpdateFailed": "Aktualizace obálky se nezdařila",
+    "fixInvalidSocialLinks": "Opravte prosím neplatné sociální odkazy",
+    "updateFailed": "Aktualizace se nezdařila",
+    "channelUrlOrHandle": "URL nebo název kanálu",
+    "inviteLinkPlaceholder": "Odkaz na pozvánku",
+    "profileUrlOrUsername": "URL nebo uživatelské jméno profilu",
+    "yourDisplayName": "Vaše zobrazované jméno",
+    "usernameAvailable": "Uživatelské jméno je k dispozici",
+    "hideBadgeAndBalance": "Skrýt odznak a zůstatek",
+    "hideBadgeAndBalanceDesc": "Skryje finanční údaje a zakáže odesílání a tipy vám.",
+    "onChainPublicWarning": "On-chain transakce jsou veřejné. Odesílání tokenů nebo tipů může odhalit vaši adresu peněženky, včetně transakcí provedených před povolením režimu soukromého zůstatku."
   },
   "common": {
     "mute": "Ztlumit",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Žádné připojení k internetu",
     "noInternetBody": "Zkontrolujte své připojení k internetu a zkuste to znovu. K používání DeHubu musíte být připojeni k internetu.",
     "noInternetStatus": "Offline - Žádné síťové připojení",
-    "noInternetHint": "Ujistěte se, že je zapnutá Wi-Fi nebo mobilní data, a poté klepněte na \"{{action}}\""
+    "noInternetHint": "Ujistěte se, že je zapnutá Wi-Fi nebo mobilní data, a poté klepněte na \"{{action}}\"",
+    "saving": "Ukládání…",
+    "offlineStatus": "Offline – žádné síťové připojení"
   },
   "tip": {
     "title": "Poslat spropitné",
@@ -1094,7 +1113,17 @@
     "post": "Příspěvek",
     "officialLogo": "Toto je oficiální logo DeHub! 🎨",
     "editedImage": "Zde je váš upravený obrázek!",
-    "generatedImage": "Zde je váš vytvořený obrázek!"
+    "generatedImage": "Zde je váš vytvořený obrázek!",
+    "toolCompleted": "{{name}} dokončeno",
+    "aiTool": "Nástroj AI",
+    "cannotAnimateImage": "{{model}} nemůže animovat připojený obrázek. Vyberte jiný video model.",
+    "needsImageToAnimate": "{{model}} potřebuje obrázek k animaci. Připojte jeden nebo vyberte jiný model.",
+    "couldNotReadImage": "Nepodařilo se přečíst obrázek",
+    "logoLoadFailed": "Nepodařilo se načíst logo DeHub – generování bez něj",
+    "imageAttachedDescribe": "Připojený obrázek – popište své úpravy",
+    "couldNotPreparePost": "Nepodařilo se připravit k odeslání",
+    "generateImage": "Vygenerovat obrázek",
+    "generateVideo": "Vygenerovat video"
   },
   "commandCentre": {
     "title": "Příkazové centrum",
@@ -1606,7 +1635,10 @@
     "edit": "Upravit",
     "deleteRequestTitle": "Smazat tento požadavek?",
     "deleteRequestDescription": "Tohle nejde vrátit.",
-    "attachmentTooLarge": "Každý soubor musí mít méně než 20 MB"
+    "attachmentTooLarge": "Každý soubor musí mít méně než 20 MB",
+    "deleteCommentA11y": "Odstranit komentář",
+    "sendCommentA11y": "Odeslat komentář",
+    "requestOptions": "Možnosti žádosti"
   },
   "auth": {
     "loginRequired": "Vyžadováno přihlášení",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Nepodařilo se odeslat kód. Zkuste to znovu.",
     "invalidCodeRetry": "Neplatný kód. Zkuste to znovu.",
     "invalidEmailOrPassword": "Neplatný e-mail nebo heslo.",
-    "welcomeToDehub": "Vítejte v DeHub"
+    "welcomeToDehub": "Vítejte v DeHub",
+    "importWalletOptional": "Importovat peněženku (volitelné)",
+    "couldNotSendCodeRetry": "Kód se nepodařilo odeslat. Zkuste to prosím znovu.",
+    "exploreWithoutSignIn": "Prozkoumejte bez přihlášení",
+    "continueExploring": "Pokračovat v objevování",
+    "exploreWithoutSignInA11y": "Prozkoumejte DeHub bez přihlášení",
+    "continueExploringA11y": "Pokračujte v prozkoumávání DeHubu",
+    "importWalletRecommended": "Doporučujeme přihlašovací údaje do sociálních sítí.",
+    "importWalletPurpose": "Tento nástroj slouží k importu stávajících účtů z DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Navrhované odpovědi jsou vypnuté",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Bylo to automaticky nahlášeno.",
     "loadFailed": "Kanály se nepodařilo načíst",
     "noSearchResults": "Tvému hledání neodpovídá žádný kanál",
-    "noChannels": "Nejsou dostupné žádné kanály"
+    "noChannels": "Nejsou dostupné žádné kanály",
+    "pairCodeExpired": "Platnost tohoto kódu vypršela. Požádejte televizi o nový.",
+    "signedInOnTv": "Přihlášen/a na tvém televizoru",
+    "pairRefused": "zamítnuto",
+    "pairIntro": "Otevřete DeHub v televizi a zadejte kód, který zobrazuje.",
+    "pairNotFound": "Žádná televize na tento kód nečeká. Možná vypršela platnost — požádejte televizi o novou.",
+    "wantsToSignIn": "se chce přihlásit jako vy",
+    "pairWarning": "Schvalte to pouze v případě, že se právě díváte na televizi. Schvalující osoba podepíše ten, kdo má tento kód na vašem účtu. Bude moci sledovat, lajkovat a sledovat — nemůže utrácet a můžete se kdykoli odhlásit z Aktivních relací.",
+    "pairApprove": "Ano, přihlaste se k tomuto televizoru",
+    "pairDeny": "Ne, o to jsem nežádal/a",
+    "pairDoneTitle": "Vaše televize je přihlášena",
+    "pairDoneBody": "Na tvém účtu by už měl být vidět. Kdykoliv se odhlaste z Nastavení → Soukromí → Aktivní relace.",
+    "closePlayer": "Zavřít hráče",
+    "declineFailed": "To se nepodařilo odmítnout — možná už vypršela platnost.",
+    "tipSentTvNotTold": "Spropitné bylo odesláno, ale televizi nebylo možné sdělit. Čas vyprší.",
+    "sentAmount": "Odesláno {{amount}} DHB",
+    "nothingWaiting": "Nic nečeká",
+    "nothingWaitingBody": "Když pošlete spropitné z DeHubu na televizi, objeví se zde k vašemu schválení. Vaše televize nikdy nedrží vaši peněženku.",
+    "yourTelevision": "Vaše televize",
+    "wantsToTip": "chce poslat spropitné · {{time}} zanechal",
+    "tipTo": "pro {{name}}",
+    "tipForPost": "za „{{title}}“",
+    "reviewAndApprove": "Zkontrolovat a schválit"
   },
   "top100": {
     "title": "Top 100",
@@ -2046,7 +2108,8 @@
     "submitApplication": "Odeslat přihlášku",
     "nameEmailRequired": "Jméno a e-mail jsou povinné",
     "applicationSuccess": "Přihláška úspěšně odeslána! Ozveme se.",
-    "applicationFailed": "Odeslání selhalo. Zkuste znovu."
+    "applicationFailed": "Odeslání selhalo. Zkuste znovu.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Pokladna DAO",
@@ -2206,7 +2269,8 @@
     "pinnedToast": "Připnuto na začátek tohoto příspěvku",
     "unpinnedToast": "Připnutí zrušeno",
     "pinFailed": "Tento komentář se nepodařilo připnout",
-    "kidsOnlyThread": "Tento příspěvek je pro děti. Komentovat to může pouze dětský režim."
+    "kidsOnlyThread": "Tento příspěvek je pro děti. Komentovat to může pouze dětský režim.",
+    "editFailed": "Nepodařilo se upravit komentář"
   },
   "postInfo": {
     "title": "Informace o příspěvku",
@@ -3247,14 +3311,40 @@
     "comingSoon": "Již brzy",
     "signIn": "Přihlásit se",
     "tapToGetStarted": "Klepnutím začnete",
-    "soon": "Brzy"
+    "soon": "Brzy",
+    "glossarySubtitle": "Zjistěte, co znamená každá ikona a funkce",
+    "searchGlossary": "Hledat ve slovníku...",
+    "noResultsFor": "Žádné výsledky pro „{{query}}“",
+    "guideSubtitle": "Podrobný návod ke každé funkci",
+    "searchGuide": "Hledat v průvodci...",
+    "repostsTab": "Reposty",
+    "quotesTab": "Citace",
+    "noMoreReposts": "Už žádné reposty",
+    "noMoreQuotes": "Už žádné citace",
+    "noRepostsYet": "Zatím žádné reposty",
+    "noQuotesYet": "Zatím žádné citace"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Hry, které běží přímo tady v aplikaci. Nic k instalaci, nic ke koupi — otevřený kód a servírované přímo DeHubem."
+    "intro": "Hry, které běží přímo tady v aplikaci. Nic k instalaci, nic ke koupi — otevřený kód a servírované přímo DeHubem.",
+    "noGameCalled": "V arkádě není žádná hra s názvem <slug>{{slug}}</slug>.",
+    "seeWhatIsHere": "Podívejte se, co je zde",
+    "locationNotGranted": "Oprávnění k poloze nebylo uděleno.",
+    "signInToPlaceOnGlobe": "Přihlaste se, abyste se umístili na mapě.",
+    "couldNotPlaceOnGlobe": "Nepodařilo se vás umístit na mapu.",
+    "onTheGlobe": "Jste na mapě — zobrazeni v přibližné oblasti 25 km.",
+    "couldNotReach": "NELZE DOSÁHNOUT ARKÁDY",
+    "didNotLoad": "{{title}} se nenahrálo",
+    "needsConnection": "Hra je obsluhována z dehub.io a stáhne se při jejím otevření, takže při prvním spuštění potřebuje funkční připojení. Zkontrolujte své a zkuste to znovu.",
+    "backToArcade": "Zpět do arkády",
+    "openPrivacySettings": "Otevřít nastavení soukromí",
+    "privacyWarning": "Pokud držíte velké množství tokenů nebo žijete v nezabezpečené oblasti, skryjte svůj odznak a zůstatek před použitím této funkce. Transakce na řetězci stále odhalují vaši adresu. Otevřít nastavení.",
+    "leaveGame": "Opustit hru",
+    "loadingGame": "Načítání {{title}}",
+    "hideThis": "Skrýt toto"
   },
   "videoLooks": {
     "button": "Vzhledy kamery",
@@ -3380,7 +3470,22 @@
     "someone": "Někdo",
     "oneTyping": "{{name}} píše…",
     "fewTyping": "{{names}} píší…",
-    "manyTyping": "Píše {{count}} lidí…"
+    "manyTyping": "Píše {{count}} lidí…",
+    "modBadge": "MOD",
+    "thisUser": "tento uživatel",
+    "unbanConfirm": "Opravdu chcete zrušit ban {{name}}?",
+    "unban": "Zrušit ban",
+    "unbanFailed": "Nepodařilo se zrušit ban uživatele",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} uživatel",
+    "usersCount_other": "{{count}} uživatelů",
+    "totalMessages": "Celkem zpráv",
+    "slowMode": "Pomalý režim",
+    "cooldownSeconds": "{{seconds}}s zpoždění",
+    "minStakeRequired": "Minimální požadovaný vklad",
+    "noParticipants": "Zatím žádní účastníci",
+    "noModerators": "Žádní moderátoři",
+    "noBannedUsers": "Žádní zabanovaní uživatelé"
   },
   "promptFeed": {
     "headline": "Co chcete vidět?",
@@ -4132,7 +4237,26 @@
     "madeForKidsOffDesc": "Zobrazuje tento příspěvek dětem používajícím režim pro děti a odstraňuje ho z běžných kanálů.",
     "madeForKidsBlockedByMature": "Příspěvek označený jako pro dospělé nelze také publikovat pro děti.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Získejte podrobnosti RTMP"
+    "encoderHint": "Získejte podrobnosti RTMP",
+    "queueWaiting": "Čekání…",
+    "queueUploading": "Nahrávání",
+    "queueProcessing": "Zpracovává se…",
+    "queueMinting": "Ražení…",
+    "queuePosted": "Odesláno",
+    "queueFailed": "Selhalo",
+    "noRetriesLeft": "(žádné další pokusy)",
+    "noUploads": "Žádné nahrávky",
+    "uploadsAppearHere": "Vaše nahrávky se zobrazí zde",
+    "imagesTotalLimit": "Obrázky v jednom nahrání musí mít celkovou velikost 100 MB nebo méně",
+    "chooseDatabase": "Vyberte decentralizovanou databázi",
+    "livestreamMode": "Režim živého vysílání",
+    "addThumbnail": "Přidat miniaturu",
+    "showCover": "Zobrazovat obal",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Potvrdit živý přenos",
+    "liveFeaturesTitle": "Živé funkce",
+    "discardPostTitle": "Zahodit příspěvek?",
+    "discardPostBody": "Váš příspěvek bude ztracen. Chcete jej místo toho uložit jako koncept?"
   },
   "bounty": {
     "claimed": "Vyzvednuto",
@@ -4449,7 +4573,25 @@
     "allowNewDmsOff": "Zapněte zprávy, abyste povolili nové.",
     "perMessageFee": "Poplatek za zprávu (DHB)",
     "perMessageFeeSub": "Účtujte si za zprávu. Nastavte 0 pro bezplatné zprávy. Konkrétním uživatelům můžete dát přístup zdarma.",
-    "allDisabled": "Všechny zprávy jsou nyní vypnuté. Nové jsou ve výchozím nastavení blokované."
+    "allDisabled": "Všechny zprávy jsou nyní vypnuté. Nové jsou ve výchozím nastavení blokované.",
+    "failedToEdit": "Úprava se nezdařila",
+    "messageDeleted": "Zpráva byla odstraněna",
+    "cantForwardFromDevice": "Tuto zprávu nelze z tohoto zařízení přeposlat",
+    "messageForwarded": "Předáno",
+    "clearMessages": "JEDNOZNAČNÉ INFORMACE",
+    "clearMessagesConfirm": "Smazat všechny zprávy v této konverzaci? Tuto akci nelze vrátit zpět.",
+    "messagesCleared": "Zprávy vymazány",
+    "failedToClearMessages": "Zprávy se nepodařilo vymazat",
+    "removedFreeAccess": "Byl odstraněn volný přístup pro uživatele{{name}}",
+    "grantedFreeAccess": "Udělen volný přístup k {{name}}",
+    "failedToUpdateFreeAccess": "Aktualizace volného přístupu se nezdařila",
+    "searchComingSoon": "Vyhledávání již brzy",
+    "tapToUnblock": "Klepnutím odblokuješ",
+    "userFallback": "uživatel",
+    "failedToBlock": "Blokování se nezdařilo",
+    "failedToDeleteConversation": "Odstranění konverzace se nezdařilo",
+    "newDm": "Přímá zpráva",
+    "noConversationsFound": "Nebyly nalezeny žádné konverzace"
   },
   "editPost": {
     "mediaPermission": "Je vyžadováno oprávnění k mediální knihovně",
@@ -4471,7 +4613,17 @@
     "retry": "Zkusit znovu",
     "retrying": "Probíhá opakování...",
     "retryQueued": "Opět se zpracovává",
-    "retryFailed": "Příspěvek se nepodařilo zopakovat"
+    "retryFailed": "Příspěvek se nepodařilo zopakovat",
+    "closeVideo": "Zavřít video",
+    "rotateOrientation": "Orientace otáčení",
+    "videoProgress": "Stav videa: {{percent}} %",
+    "tapToSeek": "Klepnutím přejdete na konkrétní pozici",
+    "photoAccessToSaveImages": "Povolit přístup do knihovny fotografií pro ukládání obrázků",
+    "failedToSaveImage": "Nepodařilo se uložit obrázek",
+    "downloadImage": "Stáhnout obrázek",
+    "goToImage": "Přejít na obrázek {{index}}",
+    "allCaughtUp": "Už jste viděli všechno",
+    "checkBackForShorts": "Vraťte se později pro další krátká videa"
   },
   "liveViewer": {
     "loadingStream": "Načítání streamu...",
@@ -4481,7 +4633,22 @@
   },
   "search": {
     "endOfResults": "Konec výsledků",
-    "searchDehub": "Hledat v DeHub"
+    "searchDehub": "Hledat v DeHub",
+    "tabVoice": "Hlas",
+    "trendingThisWeek": "Trendy tento týden",
+    "trendingPosts": "Populární příspěvky",
+    "trendingImages": "Populární obrázky",
+    "trendingVideos": "Populární videa",
+    "trendingVoicePosts": "Populární hlasové příspěvky",
+    "trendingLive": "Populární živé přenosy",
+    "seeAll": "Zobrazit vše",
+    "noAccountsFound": "Nenalezeny žádné účty",
+    "tryDifferentKeywords": "Zkuste jiná klíčová slova nebo zkontrolujte pravopis",
+    "noContentResults": "Žádné výsledky obsahu",
+    "recentSearches": "Nedávná hledání",
+    "noTrendingThisWeek": "Tento týden žádný populární obsah",
+    "closeFilterOptions": "Zavřít možnosti filtrování",
+    "openFilterOptions": "Otevřít možnosti filtrování"
   },
   "notifPrompt": {
     "stayInLoop": "Buďte v obraze",
@@ -4731,7 +4898,26 @@
     "externalTitle": "Režim externího streamování",
     "externalLiveHint": "Váš stream je živě prostřednictvím externího softwaru. Kamera v aplikaci je vypnutá.",
     "externalHint": "Připojte svůj streamovací software pomocí níže uvedených podrobností a začněte vysílat.",
-    "useInAppCamera": "Použít místo toho kameru v aplikaci"
+    "useInAppCamera": "Použít místo toho kameru v aplikaci",
+    "livestreamEnded": "Živý přenos skončil",
+    "chatEnabled": "Chat povolen",
+    "chatDisabled": "Chat zakázán",
+    "failedToUpdateSettings": "Nepodařilo se aktualizovat nastavení",
+    "networkLostReconnecting": "Ztráta sítě — stream pozastaven. Připojuji se znovu…",
+    "openingViewer": "Otevírám prohlížeč...",
+    "cameraPermissionRequired": "Je vyžadováno oprávnění fotoaparátu",
+    "grantPermission": "Udělit oprávnění",
+    "waitingForLivepeer": "Čekání na Livepeer...",
+    "waitingForExternalSource": "Čekání na externí zdroj...",
+    "settingUpPublisher": "Nastavení vydavatele...",
+    "scheduledStream": "Naplánovaný stream",
+    "scheduledAt": "{{date}} v {{time}}",
+    "pressGoLiveWhenReady": "Až budete připraveni ke spuštění, stiskněte tlačítko Go Live",
+    "connectionInterrupted": "Připojení přerušeno",
+    "streamPausedReconnecting": "Váš stream je pozastaven. Probíhá opětovné připojení...",
+    "streamWillEnd": "Stream bude ukončen, pokud nebude znovu připojen",
+    "endStreamConfirmTitle": "Ukončit stream?",
+    "endStreamConfirmBody": "Uzavřením nyní ukončíte živý přenos pro všechny diváky. Můžete pokračovat ve streamování nebo jej ukončit natrvalo."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

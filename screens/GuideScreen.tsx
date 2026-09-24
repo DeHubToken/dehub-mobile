@@ -8,6 +8,7 @@
 import React, { useMemo, useState, useCallback } from "react";
 import { View, Text, TextInput, ScrollView, StyleSheet, Pressable, LayoutAnimation, Platform, UIManager } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 
@@ -456,6 +457,7 @@ function sectionMatches(section: GuideSection, tokens: string[]): boolean {
 }
 
 export default function GuideScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [query, setQuery] = useState("");
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set([SECTIONS[0].id]));
@@ -479,7 +481,7 @@ export default function GuideScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title="Guide" subtitle="Step-by-step walkthrough of every feature" />
+      <ScreenHeader title={t("nav.guide")} subtitle={t("screens.guideSubtitle")} />
 
       {/* Search */}
       <View style={styles.searchWrap}>
@@ -487,7 +489,7 @@ export default function GuideScreen() {
         <TextInput
           value={query}
           onChangeText={setQuery}
-          placeholder="Search the guide..."
+          placeholder={t("screens.searchGuide")}
           placeholderTextColor="#8B8D90"
           style={styles.searchInput}
           autoCorrect={false}
@@ -548,7 +550,7 @@ export default function GuideScreen() {
         ) : (
           <View style={styles.empty}>
             <Icon name="Search" size={28} color="#52525B" />
-            <Text style={styles.emptyText}>No results for "{query}"</Text>
+            <Text style={styles.emptyText}>{t("screens.noResultsFor", { query })}</Text>
           </View>
         )}
       </ScrollView>

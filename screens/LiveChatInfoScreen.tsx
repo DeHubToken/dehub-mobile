@@ -61,6 +61,7 @@ const UserRow: React.FC<{
   trailing?: React.ReactNode;
   onPress?: () => void;
 }> = ({ user, trailing, onPress }) => {
+  const { t } = useTranslation();
   const avatarUrl = getAvatarUrl(user.avatarUrl || "");
   const displayName = user.displayName || user.username || user.address?.slice(0, 10) || "Unknown";
   const badgeImg = getBadgeUrlFor(user);
@@ -82,7 +83,7 @@ const UserRow: React.FC<{
           )}
           {user.isModerator && (
             <View className="bg-amber-500/20 rounded px-1 py-0.5">
-              <Text className="text-amber-400 text-[9px] font-bold">MOD</Text>
+              <Text className="text-amber-400 text-[9px] font-bold">{t("liveChat.modBadge")}</Text>
             </View>
           )}
         </View>
@@ -226,11 +227,11 @@ const LiveChatInfoScreen: React.FC = () => {
 
   const handleUnban = useCallback(
     (user: LiveChatUser) => {
-      const name = user.displayName || user.username || user.address?.slice(0, 10) || "this user";
+      const name = user.displayName || user.username || user.address?.slice(0, 10) || t("liveChat.thisUser");
       showConfirm({
-        title: "Unban User",
-        description: `Are you sure you want to unban ${name}?`,
-        confirmText: "Unban",
+        title: t("publicChat.unbanUser"),
+        description: t("liveChat.unbanConfirm", { name }),
+        confirmText: t("liveChat.unban"),
         confirmKind: "primary",
         onConfirm: async () => {
           dismissConfirm();
@@ -249,16 +250,16 @@ const LiveChatInfoScreen: React.FC = () => {
             });
           } catch (e) {
             showConfirm({
-              title: "Error",
-              description: "Failed to unban user",
-              confirmText: "OK",
+              title: t("toasts.error"),
+              description: t("liveChat.unbanFailed"),
+              confirmText: t("common.ok"),
               onConfirm: dismissConfirm,
             });
           }
         },
       });
     },
-    [showConfirm, dismissConfirm],
+    [showConfirm, dismissConfirm, t],
   );
 
   const handleUserPress = useCallback(
@@ -293,7 +294,7 @@ const LiveChatInfoScreen: React.FC = () => {
           <View className="w-16 h-16 bg-blue-500/20 rounded-2xl items-center justify-center mb-3">
             <Ionicons name="chatbubbles" size={28} color="#F4F4F5" />
           </View>
-          <Text className="text-white text-lg font-bold">{room?.name || "Public Chat"}</Text>
+          <Text className="text-white text-lg font-bold">{room?.name || t("publicChat.title")}</Text>
           {room?.description ? (
             <Text className="text-white/40 text-sm text-center mt-1">{room.description}</Text>
           ) : null}
@@ -302,27 +303,27 @@ const LiveChatInfoScreen: React.FC = () => {
         <View className="mx-4 bg-white/5 rounded-xl overflow-hidden mb-2">
           <InfoRow
             icon="people-outline"
-            label="Online"
-            value={`${passedOnlineCount || room?.onlineCount || 0} users`}
+            label={t("liveChat.onlineLabel")}
+            value={t("liveChat.usersCount", { count: passedOnlineCount || room?.onlineCount || 0 })}
           />
           <View className="h-px bg-white/5 mx-4" />
           <InfoRow
             icon="chatbubble-outline"
-            label="Total Messages"
+            label={t("liveChat.totalMessages")}
             value={`${room?.messageCount?.toLocaleString() || "0"}`}
           />
           <View className="h-px bg-white/5 mx-4" />
           <InfoRow
             icon="time-outline"
-            label="Slow Mode"
-            value={room?.slowMode ? `${room.slowModeSeconds}s cooldown` : "Off"}
+            label={t("liveChat.slowMode")}
+            value={room?.slowMode ? t("liveChat.cooldownSeconds", { seconds: room.slowModeSeconds }) : t("subtitles.off")}
           />
           {!!room?.minStakeRequired && room.minStakeRequired > 0 && (
             <>
               <View className="h-px bg-white/5 mx-4" />
               <InfoRow
                 icon="lock-closed-outline"
-                label="Min Stake Required"
+                label={t("liveChat.minStakeRequired")}
                 value={`${room.minStakeRequired.toLocaleString()} DHB`}
               />
             </>
@@ -353,7 +354,7 @@ const LiveChatInfoScreen: React.FC = () => {
                       </Text>
                     </View>
                     <Text className="text-white/70 text-sm" numberOfLines={2}>
-                      {msg.content || (msg.gif ? "GIF" : msg.media?.length ? "Media" : "")}
+                      {msg.content || (msg.gif ? "GIF" : msg.media?.length ? t("settings.media") : "")}
                     </Text>
                   </View>
                 </React.Fragment>
@@ -371,7 +372,7 @@ const LiveChatInfoScreen: React.FC = () => {
         <View className="mx-4 bg-white/5 rounded-xl overflow-hidden">
           {passedParticipants.length === 0 ? (
             <View className="items-center py-6">
-              <Text className="text-white/30 text-sm">No participants yet</Text>
+              <Text className="text-white/30 text-sm">{t("liveChat.noParticipants")}</Text>
             </View>
           ) : (
             passedParticipants.map((u, idx) => (
@@ -397,7 +398,7 @@ const LiveChatInfoScreen: React.FC = () => {
             </View>
           ) : modProfiles.length === 0 ? (
             <View className="items-center py-6">
-              <Text className="text-white/30 text-sm">No moderators</Text>
+              <Text className="text-white/30 text-sm">{t("liveChat.noModerators")}</Text>
             </View>
           ) : (
             modProfiles.map((u, idx) => (
@@ -424,7 +425,7 @@ const LiveChatInfoScreen: React.FC = () => {
                 </View>
               ) : bannedProfiles.length === 0 ? (
                 <View className="items-center py-6">
-                  <Text className="text-white/30 text-sm">No banned users</Text>
+                  <Text className="text-white/30 text-sm">{t("liveChat.noBannedUsers")}</Text>
                 </View>
               ) : (
                 bannedProfiles.map((u, idx) => (
@@ -439,7 +440,7 @@ const LiveChatInfoScreen: React.FC = () => {
                           activeOpacity={0.6}
                           className="bg-white/10 rounded-lg px-3 py-1.5"
                         >
-                          <Text className="text-white text-xs font-medium">Unban</Text>
+                          <Text className="text-white text-xs font-medium">{t("liveChat.unban")}</Text>
                         </TouchableOpacity>
                       }
                     />

@@ -119,7 +119,12 @@
     "music": "ሙዚቃ",
     "live": "ቀጥታ",
     "newPosts_one": "{{count}} ሓድሽ ጽሑፍ",
-    "newPosts_other": "{{count}} ሓደስቲ ጽሑፋት"
+    "newPosts_other": "{{count}} ሓደስቲ ጽሑፋት",
+    "privateContent": "ናይ ውልቀ-ሰብ ትሕዝቶ",
+    "privateContentBody": "እዚ ትሕዝቶ እዚ ካብ ናይ ውልቀ-ሰብ መለያ እዩ ዝመጸ ። ነቲ ፈጣሪ ስዓቦ ፡ ነቲ ቦታኡ ድማ ርኣዮ ።",
+    "noMoreContent": "ካልእ ትሕዝቶ የለን ።",
+    "noPostsYet": "ገና ጽሑፍ የለን ።",
+    "pullToRefresh": "ንድሕሪት ምልስ ኢልካ ወይ ንድሕሪት ምልስ ኢልካ ።"
   },
   "explore": {
     "all": "ኩሉ",
@@ -707,7 +712,19 @@
     "smsBalanceMessages": "ብዛዕባ {{count}} ተወሳኺ መልእኽቲ",
     "smsTopUp": "ኣብ ላዕሊ {{dhb}} DHB",
     "smsCodeSent": "ኮድ ተላኢኹ ፡ እዚ ዋጋ {{price}}DHB እዩ ።",
-    "smsCodeLabel": "ኮድ ናብ {{phone}}"
+    "smsCodeLabel": "ኮድ ናብ {{phone}}",
+    "avatarUpdateFailed": "ዝዘመነ ኣቫታር ኣይተዓወተን",
+    "coverUpdateFailed": "ዝዘመነ ሽፋን ኣይተዓወተን",
+    "fixInvalidSocialLinks": "ኣመልኪት ሓበራዊ መራኸቢታት ጌጋታት ኣለዎ",
+    "updateFailed": "ዝዘመነ ኣይተዓወተን",
+    "channelUrlOrHandle": "ናይ ሰርጥ URL ወይ ኣተሓሕዛ",
+    "inviteLinkPlaceholder": "ሊንክ ጋብዝ",
+    "profileUrlOrUsername": "ናይ መገለጺ URL ወይ ናይ ተጠቃሚ ስም",
+    "yourDisplayName": "ስምካ",
+    "usernameAvailable": "ስም ተጠቃሚ ተዳልዩ ኣሎ",
+    "hideBadgeAndBalance": "ባጅን ሚዛንን",
+    "hideBadgeAndBalanceDesc": "ነቲ ናይ ገንዘብ ዝርዝራት ይሓብእ ፡ ነቲ ናይ ገንዘብ ዝርዝራት ድማ ይሓብእ ።",
+    "onChainPublicWarning": "ኣብ ናይ መስመር ግብረ-ሰራሕቲ ህዝባዊ እዩ ። ምልክታት ወይ ምኽርታት ንምልኣኽ ፡ ቅድሚ ናይ ውልቀ-ሰብ ሚዛን ኣገባብ ምግባርካ እተገብረ ግብረ-ሰራሕቲ ሓዊሱ ፡ ናይ ቦርሳ ኣድራሻኻ ኺገልጽ ይኽእል እዩ ።"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",
@@ -757,7 +774,9 @@
     "noInternetTitle": "ምስ መርበብ ሓበሬታ ርክብ ተቋሪፁ",
     "noInternetBody": "በጃኻ ኢንተርነትካ መርምር እሞ መሊስካ ፈትኖ ። DeHub ንምጥቃም ምስ ኢንተርነት ክትራኸብ ኣለካ ።",
     "noInternetStatus": "ምስ ይጥፋእ - ኔትወርክ ኣይብሉን",
-    "noInternetHint": "Wi-Fi ወይ ተንቀሳቃሲ ሓበሬታ ከም ዚበራበር ኣረጋግጽ ፣ ድሕሪኡ ድማ \"{{action}}\" ጠውቑ"
+    "noInternetHint": "Wi-Fi ወይ ተንቀሳቃሲ ሓበሬታ ከም ዚበራበር ኣረጋግጽ ፣ ድሕሪኡ ድማ \"{{action}}\" ጠውቑ",
+    "saving": "ምድሓን...",
+    "offlineStatus": "ምስ ይጥፋእ - ኔትወርክ ኣይብሉን"
   },
   "tip": {
     "title": "ሽልማት ስደድ",
@@ -1091,7 +1110,16 @@
     "post": "ጽሑፍ",
     "officialLogo": "እነሆ ወግዓዊ ሎጎ DeHub! 🎨",
     "editedImage": "እነሆ ዝተረትዐ ስእልኻ!",
-    "generatedImage": "እነሆ ዝተፈጥረ ስእልኻ!"
+    "generatedImage": "እነሆ ዝተፈጥረ ስእልኻ!",
+    "toolCompleted": "{{name}} ተዛዚሙ",
+    "aiTool": "መሳርሒ AI",
+    "cannotAnimateImage": "{{model}} ዝተኣሳሰረ ስእሊ ክነድፍ ኣይክእልን እዩ ። ካልእ ናይ ቪድዮ ሞዴል ሕረጽ ።",
+    "couldNotReadImage": "ነዚ ስእሊ እዚ ክነንብቦ ኣይከኣልኩን ።",
+    "logoLoadFailed": "ነቲ DeHub አርማ ክጭፍልቕ ኣይከኣለን — ብዘይኡ ምፍጣር",
+    "imageAttachedDescribe": "ስእሊ ተታሒዙ — ኣርትዖታትካ ግለጽ",
+    "couldNotPreparePost": "ኣይተዳለወን ንምዝርጋሕ",
+    "generateImage": "ስእሊ ኣማዕብል",
+    "generateVideo": "ቪድዮ ኣማዕብል"
   },
   "commandCentre": {
     "title": "ማእከል ትእዛዝ",
@@ -1591,7 +1619,10 @@
     "edit": "ኣርትዕ",
     "deleteRequestTitle": "እዚ ሕቶ ይሰረዝ?",
     "deleteRequestDescription": "እዚ ክምለስ ኣይክእልን።",
-    "attachmentTooLarge": "ነፍሲ ወከፍ ፋይል ትሕቲ 20MB ክኸውን ኣለዎ"
+    "attachmentTooLarge": "ነፍሲ ወከፍ ፋይል ትሕቲ 20MB ክኸውን ኣለዎ",
+    "deleteCommentA11y": "ርእይቶ ሰርዝ",
+    "sendCommentA11y": "ርእይቶ ልኣኽ",
+    "requestOptions": "ኣማራጺታት ሕተታ"
   },
   "auth": {
     "loginRequired": "ብዓል ዝድሊ",
@@ -1640,7 +1671,15 @@
     "sendCodeFailedRetry": "ኮድ ክትልእኽ ኣይትኽእልን ኢኻ ። በጃኻ ንድሕሪት ክትምለስ ትኽእል ኢኻ ።",
     "invalidCodeRetry": "ዘይቕቡል ኮድ ። በጃኻ ንድሕሪት ተመሊስካ ።",
     "invalidEmailOrPassword": "ዘይቕቡል ኢመይል ወይ ቃል-ምስጢር ።",
-    "welcomeToDehub": "ናብ ደሆብ እንበጽሓኩም"
+    "welcomeToDehub": "ናብ ደሆብ እንበጽሓኩም",
+    "importWalletOptional": "ኣቑሑት ኣቑሑት (ተወሳኺ)",
+    "couldNotSendCodeRetry": "ኮድ ክትልእኽ ኣይትኽእልን ኢኻ ። በጃኻ ንድሕሪት ክትምለስ ትኽእል ኢኻ ።",
+    "exploreWithoutSignIn": "ብዘይምእታው መርምር",
+    "continueExploring": "ክትምርምር ቀጽል",
+    "exploreWithoutSignInA11y": "ብዘይምእታው DeHub ንመርምር",
+    "continueExploringA11y": "ደሆብ ክትመርምር ቀጽል",
+    "importWalletRecommended": "ማሕበራዊ መእተዊታት ይመኽረሉ ።",
+    "importWalletPurpose": "እዚ መሳርሒ እዚ ንህሉው መለያታት ካብ DeHub.io ንምእታው እዩ ።"
   },
   "messages": {
     "smartRepliesOff": "ዝተጠቕሱ መልስታት ጠፊኦም",
@@ -1755,7 +1794,27 @@
     "reportedAutomatically": "ብቐጥታ ተሓቢሩ እዩ።",
     "loadFailed": "ቻነላት ክጽዓኑ ኣይከኣሉን",
     "noSearchResults": "ምስ ድሌትካ ዝሰማማዑ ቻነላት የለዉን",
-    "noChannels": "ዝርከቡ ቻነላት የለዉን"
+    "noChannels": "ዝርከቡ ቻነላት የለዉን",
+    "pairCodeExpired": "እቲ ኮድ ተዛዘመ ። ሓድሽ ቲቪ ሕተቶ ።",
+    "signedInOnTv": "ኣብ ቲቪኻ ተጸምቢርካ",
+    "pairRefused": "ነጺግካ",
+    "pairIntro": "DeHub ኣብ ቴሌቪዥንካ ክፉት ግበር ፡ ነቲ ኣብዚ እትርእይዎ ኮድ ድማ ጽሓፍ ።",
+    "pairNotFound": "እቲ ዝጽውዓኒ ድማ እዚ ጥራይ እዩ ። ምናልባት ጠፊኡ ይኸውን — ሓድሽ ቲቪ ሕተቶ ።",
+    "wantsToSignIn": "ከም ንስኻ ክትኣቱ ትደሊ",
+    "pairWarning": "እዚ ሕጂ እትርእይዎ ቴሌቪዥን እንተ ዀይኑ ጥራይ እዩ ዚጽድቕ ። ነቲ ኮድ ኣብ መለያኻ ዚሕዝ ምልክታት ኣጽዲቕካ ። ክትርእዮን ክትከታተልን ትኽእል ኢኻ — ክትውፍዮ ኣይትኽእልን ኢኻ ፣ ካብ ናይ ስራሕ ክፍለ-ጊዜታት ድማ ኣብ ዝኾነ እዋን ክትፈርሞ ትኽእል ኢኻ ።",
+    "pairApprove": "እወ ፡ ኣብ ቲቪ ኣቲኻ",
+    "pairDeny": "ኣይፋል ፡ ከምኡ ኣይገበርኩን ።",
+    "pairDoneTitle": "ቲቪኻ ተፈርመ",
+    "pairDoneBody": "ነቲ ሕሳብካ ቀዲሙ ኺሕብር ኣለዎ ። ካብ ናይ ግላዊነት ኣቃውማ ክፍለ-ጊዜታት → ኣብ ዝኾነ እዋን → ክትፈርሞ ትኽእል ኢኻ ።",
+    "closePlayer": "ተዓጽዩ ዘሎ ተጻዋታይ",
+    "declineFailed": "እዚ ክወድቕ ኣይከኣለን — ምናልባት ድሮ ጠፊኡ ነይሩ ይኸውን ።",
+    "tipSentTvNotTold": "እቲ ቲቪ ክነግረካ ኣይክእልን እዩ ። ግዜኡ እዩ መጺኡ ።",
+    "nothingWaiting": "ዝጽበዮ ነገር የለን",
+    "nothingWaitingBody": "ኣብ ቲቪኻ ካብ ደሁብ ምስ እትወጽእ ፡ ክትጽድቕ ትኽእል ኢኻ ። ቲቪኻ ቦርሳኻ ኣይሕዝን እዩ ።",
+    "yourTelevision": "ቲቪኻ",
+    "tipTo": "ናብ {{name}}",
+    "reviewAndApprove": "ምግምጋምን ምጽዳቕን",
+    "sentAmount": "ልኡኽ {{amount}} DHB"
   },
   "top100": {
     "title": "ላዕለዎት 100",
@@ -2027,7 +2086,8 @@
     "submitApplication": "ምልክታ ኣቕርብ",
     "nameEmailRequired": "ስምን ኢመይልን ዝድሊ",
     "applicationSuccess": "ምልክታ ብዓወት ቀሪቡ! ክንረኽበካ ኢና።",
-    "applicationFailed": "ምቕራብ ኣይተዓወተን። በጃኻ ዳግማይ ፈትን።"
+    "applicationFailed": "ምቕራብ ኣይተዓወተን። በጃኻ ዳግማይ ፈትን።",
+    "namePlaceholder": "ጄን ስሚዝ"
   },
   "dao": {
     "title": "ገንዘብ ቤት DAO",
@@ -2184,7 +2244,8 @@
     "pinnedToast": "ኣብ ጫፍ እዚ ጽሑፍ ተሰኪዑ",
     "unpinnedToast": "መስከዒ ተወጊዱ",
     "pinFailed": "ነቲ ርእይቶ ክስከዕ ኣይተኻእለን",
-    "kidsOnlyThread": "እዚ ጽሑፍ እዚ ንቘልዑ እዩ ። ቈልዑ ጥራይ እዮም ብዛዕባኡ ኺገልጹ ዚኽእሉ ።"
+    "kidsOnlyThread": "እዚ ጽሑፍ እዚ ንቘልዑ እዩ ። ቈልዑ ጥራይ እዮም ብዛዕባኡ ኺገልጹ ዚኽእሉ ።",
+    "editFailed": "ርእይቶታት ክትቅይሮ ኣይከኣለትን"
   },
   "postInfo": {
     "title": "ሓበሬታ ጽሑፍ",
@@ -3224,14 +3285,38 @@
     "comingSoon": "ኣብ ቀረባ ግዜ",
     "signIn": "እቶ",
     "tapToGetStarted": "ንምጅማር ተንክፍ",
-    "soon": "ኣብ ቀረባ"
+    "soon": "ኣብ ቀረባ",
+    "glossarySubtitle": "ነፍሲ ወከፍ ኣዶን ባህርያትን እንታይ ማለት ምዃኑ ተምሃር",
+    "searchGlossary": "ብብርሃን እምላለሁ",
+    "guideSubtitle": "ደረጃ ብደረጃ ናይ ነፍሲ ወከፍ ባህሪ ምጉዓዝ",
+    "repostsTab": "ምትዕርራይ",
+    "quotesTab": "ጥቕስታት",
+    "noMoreReposts": "ደጊም ኣይምለስን",
+    "noMoreQuotes": "ደጊም ጥቕስታት የብሎምን ።",
+    "noRepostsYet": "ክሳብ ሕጂ ዝኾነ ዳግመ-ምግቢ የለን ።",
+    "noQuotesYet": "ክሳብ ሕጂ ዝኾነ ጥቕስታት የለን ።",
+    "searchGuide": "ነቲ መምርሒ መርምር..."
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "ኣብዚ ኣፕሊኬሽን ዝሰርሑ ጸወታታት። ዝጽዓን የለን፡ ዝግዛእ የለን — ክፉት ምንጪ፡ ብ DeHub ባዕሉ ዝቐርብ።"
+    "intro": "ኣብዚ ኣፕሊኬሽን ዝሰርሑ ጸወታታት። ዝጽዓን የለን፡ ዝግዛእ የለን — ክፉት ምንጪ፡ ብ DeHub ባዕሉ ዝቐርብ።",
+    "backToArcade": "ምስጋና ናብ ኣርኬድ",
+    "openPrivacySettings": "ጸገማት ግልጽነት ክፈት",
+    "privacyWarning": "ብዝሒ ቶክን እንተሓዝኩም ወይ ኣብ ዘይድሕን ቦታ እንተነብርኩም፡ እዚ ኣገልግሎት ቅድሚ ምጥቃምኩም ባጅኹምን ሚዛንኩምን ሓብዩ። ኣብ ጸረ-ገንዘብ ግብይቲታት ሕጂ’ውን ኣድራሻኹም ይገልጽ። ጸገማት ክፈት።",
+    "leaveGame": "ካብ ጸወታ ውጻእ",
+    "loadingGame": "<0xC2><0xA0>{{title}}<0xC2><0xA0> እናሳኣለ",
+    "hideThis": "እዚ ሓብእ",
+    "seeWhatIsHere": "ኣብዚ እንታይ ከም ዘሎ ርኣዮ",
+    "locationNotGranted": "እቲ ናይ ቦታ ፍቓድ ኣይተቐበለን ።",
+    "signInToPlaceOnGlobe": "ንገዛእ ርእስኻ ኣብ ዓለም ከተእትዎ ሕተቱ ።",
+    "couldNotPlaceOnGlobe": "ኣብ ዓለም ክትንስእ ኣይከኣልኩን ።",
+    "onTheGlobe": "ኣብ ዓለም ትርከብ — ኣብ ከባቢ 25 ኪ.",
+    "couldNotReach": "ናብ ኣርኬድ ክበጽሕ ኣይከኣልኩን ።",
+    "didNotLoad": "{{title}} ኣይጭነቕን",
+    "needsConnection": "እቲ ጸወታ ካብ dehub.io እዩ ዚውሃብ ፡ ምስ እትኸፍት ድማ ይወርድ ፡ ስለዚ ንመጀመርታ ግዜ ናይ ስራሕ ርክብ የድልዮ እዩ ። ንገዛእ ርእስኻ መርምር ፡ እንደገና ድማ ፈትኖ ።"
   },
   "videoLooks": {
     "button": "ናይ ካሜራ ትርኢታት",
@@ -3356,7 +3441,22 @@
     "someone": "ሓደ ሰብ",
     "oneTyping": "{{name}} ይጽሕፍ ኣሎ…",
     "fewTyping": "{{names}} ይጽሕፉ ኣለዉ…",
-    "manyTyping": "{{count}} ሰባት ይጽሕፉ ኣለዉ…"
+    "manyTyping": "{{count}} ሰባት ይጽሕፉ ኣለዉ…",
+    "modBadge": "ሞድ",
+    "thisUser": "እዚ ተጠቃሚ",
+    "unbanConfirm": "ርግጽዶ ኣለኻ ን{{name}} ካብ እገዳ ንምፍታሕ?",
+    "unban": "ካብ እገዳ ፍታሕ",
+    "unbanFailed": "ኣይተኻኣለን ንተጠቃሚ ካብ እገዳ ንምፍታሕ",
+    "onlineLabel": "ኣብ ጸረ-ገንዘብ",
+    "usersCount_one": "ተጠቃሚ {{count}}",
+    "usersCount_other": "ተጠቃሚታት {{count}}",
+    "totalMessages": "ድምር መልእኽቲታት",
+    "slowMode": "ጸገም ፍጥነት",
+    "cooldownSeconds": "{{seconds}}s ቅዝፈት",
+    "minStakeRequired": "ዝተሓተተ ክትክክ ዝተሓተተ",
+    "noParticipants": "ኣይተሳተፉ ኣለዉ",
+    "noModerators": "ኣይተሓጋገዙን",
+    "noBannedUsers": "ኣይተገደቡን ተጠቃሚታት"
   },
   "promptFeed": {
     "headline": "እንታይ ክትርኢ ትደሊ?",
@@ -4105,7 +4205,26 @@
     "madeForKidsBlockedByMature": "ሓድሽ ፅሑፍ ብ mature ምልክት ኣልዩ ንላልና ምልጻፍ ኣይከኣልን።",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "ዝርዝር RTMP ርኸብ",
-    "markMadeForKids": "ከምዚ ንህጻናት ዝተፈጥረ ምልክት ግበሮ"
+    "markMadeForKids": "ከምዚ ንህጻናት ዝተፈጥረ ምልክት ግበሮ",
+    "queueWaiting": "ይጽበ",
+    "queueUploading": "ይስቀል",
+    "queueProcessing": "ይሰርሕ ኣሎ…",
+    "queueMinting": "ይስራሕ ኣሎ…",
+    "queuePosted": "ተለጠፈ",
+    "queueFailed": "ኣይተኻኣለን",
+    "noRetriesLeft": "(ተደጋጊሙ ኣይተሰርሐን)",
+    "noUploads": "ኣይተሰቐለን",
+    "uploadsAppearHere": "ኣብዚ ክትሰቐልዎ ዝጸሓፍኩሞ ክርኣይ እዩ",
+    "imagesTotalLimit": "ኣብ ሓደ ምዕቃብ ዝቐርቡ ስእሊታት 100MB ወይ ካብኡ ንታሕቲ ክኾኑ ኣለዎም",
+    "chooseDatabase": "ዲሴንትራላይዝድ ዳታቤስ ምረጽ",
+    "livestreamMode": "ናይ ቀጥታ ስርጭት መገዲ",
+    "addThumbnail": "መበገሲ ስእሊ ኣስዕብ",
+    "showCover": "ሽፍኒ ኣርእዮ",
+    "confirmLivestream": "ናይ ቀጥታ ስርጭት ኣረጋግጽ",
+    "liveFeaturesTitle": "ናይ ቀጥታ ስርጭት ባህርያት",
+    "discardPostTitle": "ሓደስቲ ጽሑፍ ይጥፋእ?",
+    "discardPostBody": "ጽሑፍካ ክጠፍእ እዩ። ከም ረቂቕ ክትዕቅቦዶ ትደሊ?",
+    "max60s": "ማክስ 60ታት"
   },
   "bounty": {
     "claimed": "ተወሲዱ",
@@ -4422,7 +4541,25 @@
     "allowNewDmsOff": "ሓደስቲ መልእኽትታት ንምፍቃድ DM ኣንቅስቕስ።",
     "perMessageFee": "ኣብ ነፍሲ ወከፍ መልእኽቲ ክፍሊት (DHB)",
     "perMessageFeeSub": "ኣብ ነፍሲ ወከፍ መልእኽቲ ክፍሊት ውሰድ። ብናጻ DM እንተደሊኻ 0 ግበሮ። ንገለ ተጠቀምቲ ናጻ መእተዊ ክትህብ ትኽእል።",
-    "allDisabled": "ሕጂ ኩሎም DM ተዓጽዮም ኣለዉ። ሓደስቲ DM ብቐጥታ ተኸልኪሎም።"
+    "allDisabled": "ሕጂ ኩሎም DM ተዓጽዮም ኣለዉ። ሓደስቲ DM ብቐጥታ ተኸልኪሎም።",
+    "failedToEdit": "ኣይተሰርዐን",
+    "messageDeleted": "መልእኽቲ ተሰሪዙ",
+    "cantForwardFromDevice": "እዚ መልእኽቲ እዚ ካብዚ ኣቕሓ እዚ ናብ ካልእ ክውሰድ ኣይክእልን",
+    "messageForwarded": "መልእኽቲ ተወስደ",
+    "clearMessages": "መልእኽቲታት ጽረግ",
+    "clearMessagesConfirm": "ኩሉ መልእኽቲታት ኣብዚ ርክብ ይጥፋእ? እዚ ክምለስ ኣይክእልን።",
+    "messagesCleared": "መልእኽቲታት ተጸሪየን",
+    "failedToClearMessages": "ኣይተጸረዐን",
+    "removedFreeAccess": "ናይ {{name}} ናጻ ኣገባብ ተኣጒዱ",
+    "grantedFreeAccess": "ናይ {{name}} ናጻ ኣገባብ ተዋሂቡ",
+    "failedToUpdateFreeAccess": "ናይ ናጻ ኣገባብ ምዕባይ ኣይተሰርዐን",
+    "searchComingSoon": "ጽላል ይመጽእ ኣሎ",
+    "tapToUnblock": "ንምትዕንጋል ጽገ",
+    "userFallback": "ተጻራሪ",
+    "failedToBlock": "ናይ ምዕንጋል ኣይተሰርዐን",
+    "failedToDeleteConversation": "ናይ ርክብ ምብራስ ኣይተሰርዐን",
+    "newDm": "ሓድሽ ቀጥታ መልእኽቲ",
+    "noConversationsFound": "ኣይተረኽበት"
   },
   "editPost": {
     "mediaPermission": "ናይ ሚድያ ቤተ-መጻሕፍቲ ፍቓድ የድሊ",
@@ -4444,7 +4581,17 @@
     "retry": "እንደገና ፈትኖ",
     "retrying": "ንድሕሪት ምልስ ኢልካ...",
     "retryQueued": "ዳግማይ ምድላው",
-    "retryFailed": "ነቲ ልኡኽ ክትመልሶ ኣይትኽእልን ኢኻ"
+    "retryFailed": "ነቲ ልኡኽ ክትመልሶ ኣይትኽእልን ኢኻ",
+    "closeVideo": "ቪድዮ ስዓር",
+    "rotateOrientation": "መደብ ኣቕኒዕ",
+    "videoProgress": "ቪድዮ ምዕባለ ፦ {{percent}}%",
+    "tapToSeek": "ናብ ሓደ ፍሉይ ቦታ ንምብጻሕ ጠውቑ",
+    "photoAccessToSaveImages": "ስእልታት ንምድሓን ናይ ስእሊ ቤተ-መጽሓፍቲ ክፉት ግበር",
+    "failedToSaveImage": "ስእሊ ክዕቅብ ኣይከኣለን ።",
+    "downloadImage": "ምስሊ ኣውጽእ",
+    "goToImage": "ናብ ስእሊ {{index}}",
+    "allCaughtUp": "ኩልኹም ተታሒዝኩም ኣለኹም",
+    "checkBackForShorts": "ንዝያዳ ሓበሬታ ንድሕሪት ተመሊስካ"
   },
   "liveViewer": {
     "loadingStream": "ስርጭት ይጽዓን ኣሎ...",
@@ -4454,7 +4601,22 @@
   },
   "search": {
     "endOfResults": "መወዳእታ ውጽኢታት",
-    "searchDehub": "ኣብ DeHub ድለ"
+    "searchDehub": "ኣብ DeHub ድለ",
+    "tabVoice": "ድምጺ",
+    "trendingThisWeek": "ኣብዚ ሰሙን እዚ",
+    "trendingPosts": "ናይ ምትዕርራይ ልኡኽታት",
+    "trendingImages": "ናይ ምስሊ መግለጺ",
+    "trendingVideos": "ቪድዮታት",
+    "trendingVoicePosts": "ናይ ድምጺ ልኡኽታት",
+    "trendingLive": "ህያው",
+    "seeAll": "ኩሉ ኣርኢ",
+    "noAccountsFound": "ዝኾነ ሕሳብ ኣይተረኽበን ።",
+    "tryDifferentKeywords": "እተፈላለየ ቁልፍ ቃላት ፈትኖ ወይ ፊደልካ መርምር",
+    "noContentResults": "ውጽኢት ትሕዝቶ የለን",
+    "recentSearches": "ኣብ ቀረባ እዋን እተገብረ መጽናዕቲ",
+    "noTrendingThisWeek": "ኣብዚ ሰሙን እዚ ዝዝርግሕ ትሕዝቶ የለን ።",
+    "closeFilterOptions": "ናይ ማጣሪያ ኣማራጺታት ምዕጻው",
+    "openFilterOptions": "ኣማራጺታት ፍሊተር ክፉት"
   },
   "notifPrompt": {
     "stayInLoop": "ሓበሬታ ሓዝ",
@@ -4702,7 +4864,25 @@
     "externalTitle": "ውጫዊ ኣገባብ ስርሒት",
     "externalLiveHint": "እቲ ዥረትካ ብውሽጣዊ ሶፍትዌር እዩ ዚነብር ። እቲ ናይ ውሽጢ መተግበሪ ካሜራ ተሰናኺሉ ኣሎ ።",
     "externalHint": "ነቲ ኣብ ታሕቲ ዘሎ ዝርዝር ብምጥቃም ፡ ነቲ ናይ ስርሒት ሶፍትዌርካ ኣገናኝ ፡ ድሕሪኡ ድማ ናይ ስርሒት ምጅማር ።",
-    "useInAppCamera": "ኣብ ክንዲ ኣብ ኣፕ ካሜራ ተጠቐም"
+    "useInAppCamera": "ኣብ ክንዲ ኣብ ኣፕ ካሜራ ተጠቐም",
+    "livestreamEnded": "ህይወት ተዛዘመ",
+    "chatEnabled": "ቻት ተበራበረ",
+    "chatDisabled": "ናይ ቻት ስንክልና",
+    "failedToUpdateSettings": "ኣቀማምጣታት ክትሓድሶ ኣይከኣለትን",
+    "networkLostReconnecting": "እቲ ዝጠፍአ ኔትወርክ — እቲ ዝጠፍአ ዥረት ።",
+    "openingViewer": "ተዓዘብቲ ክፉት...",
+    "cameraPermissionRequired": "ፍቓድ ካሜራ የድሊ",
+    "grantPermission": "ፍቓድ ምሃብ",
+    "waitingForLivepeer": "ን Livepeer ተጸበዩ...",
+    "waitingForExternalSource": "ናይ ወጻኢ ምንጪ ምጽባይ...",
+    "settingUpPublisher": "ኣሰናዳኢ ኣሰናዳኢ...",
+    "scheduledStream": "ዝተመደበ ዥረት",
+    "pressGoLiveWhenReady": "ክትጅምር ምስ እትዳሎ ፡ ብቀጥታ ግበር",
+    "connectionInterrupted": "ርክብ ተቛሪጹ",
+    "streamPausedReconnecting": "እቲ ዥረትካ ተቛሪጹ ኣሎ ።",
+    "streamWillEnd": "እቲ ዥረት እንተ ዘይተኣታተወ ፡ ኪዛዘም እዩ ።",
+    "endStreamConfirmTitle": "መወዳእታ ዥረት?",
+    "endStreamConfirmBody": "ሕጂ ምዕጻው ንኹሉ ተዓዘብቲ ብቀጥታ ስርሒትካ ክዛዘም እዩ ። ብቐጻሊ ክትዝርጋሕ ወይ ከኣ ንሓዋሩ ክትዛዘም ትኽእል ኢኻ ።"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

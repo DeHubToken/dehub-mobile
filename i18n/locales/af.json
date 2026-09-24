@@ -119,7 +119,12 @@
     "music": "Music",
     "live": "Live",
     "newPosts_one": "{{count}} nuwe plasing",
-    "newPosts_other": "{{count}} nuwe plasings"
+    "newPosts_other": "{{count}} nuwe plasings",
+    "privateContent": "Privaat inhoud",
+    "privateContentBody": "Hierdie inhoud is van 'n private rekening. Volg die skepper om hul plasings te sien.",
+    "noMoreContent": "Geen verdere inhoud nie",
+    "noPostsYet": "Nog geen plasings nie.",
+    "pullToRefresh": "Trek om te verfris of probeer later weer."
   },
   "explore": {
     "all": "All",
@@ -711,7 +716,19 @@
     "smsDepositSlow": "Jou oordrag het nog nie op die ketting verskyn nie. Dit is veilig — maak hierdie weer oop en dit sal gekrediteer word. Verwysing: {{hash}}",
     "smsBalance": "{{dhb}} DHB oor (${{usd}})",
     "smsCodeSent": "Kode gestuur. Dit het {{price}} DHB gekos.",
-    "smsCodeLabel": "Kode wat ons na {{phone}} gestuur het"
+    "smsCodeLabel": "Kode wat ons na {{phone}} gestuur het",
+    "avatarUpdateFailed": "Avatar-opdatering het misluk",
+    "coverUpdateFailed": "Omslagopdatering het misluk",
+    "fixInvalidSocialLinks": "Stel asseblief ongeldige sosiale skakels reg",
+    "updateFailed": "Opdatering het misluk",
+    "channelUrlOrHandle": "Kanaal URL of handvatsel",
+    "inviteLinkPlaceholder": "Uitnodigingskakel",
+    "profileUrlOrUsername": "Profiel URL of gebruikersnaam",
+    "yourDisplayName": "Jou vertoonnaam",
+    "usernameAvailable": "Gebruikersnaam is beskikbaar",
+    "hideBadgeAndBalance": "Versteek kenteken en balans",
+    "hideBadgeAndBalanceDesc": "Versteek finansiële besonderhede en skakel versendings en wenke na jou toe uit.",
+    "onChainPublicWarning": "On-chain transaksies is publiek. Die versending van tokens of wenke kan jou beursie-adres openbaar, insluitend transaksies wat gemaak is voordat privaat balansmodus geaktiveer is."
   },
   "common": {
     "mute": "Demp",
@@ -761,7 +778,9 @@
     "noInternetTitle": "Geen internetverbinding nie",
     "noInternetBody": "Kontroleer asseblief jou internetverbinding en probeer weer. Jy moet aan die internet gekoppel wees om DeHub te gebruik.",
     "noInternetStatus": "Vanlyn - Geen netwerkverbinding nie",
-    "noInternetHint": "Maak seker Wi-Fi of mobiele data is aangeskakel, tik dan op \"{{action}}\""
+    "noInternetHint": "Maak seker Wi-Fi of mobiele data is aangeskakel, tik dan op \"{{action}}\"",
+    "saving": "Besig om te stoor…",
+    "offlineStatus": "Vanlyn - Geen netwerkverbinding nie"
   },
   "tip": {
     "title": "Send Tip",
@@ -1095,7 +1114,17 @@
     "post": "Post",
     "officialLogo": "Here's the official DeHub logo! 🎨",
     "editedImage": "Here's your edited image!",
-    "generatedImage": "Here's your generated image!"
+    "generatedImage": "Here's your generated image!",
+    "toolCompleted": "{{name}} voltooi",
+    "aiTool": "KI-instrument",
+    "cannotAnimateImage": "{{model}} kan nie 'n aangehegte beeld animeer nie. Kies 'n ander videamodel.",
+    "needsImageToAnimate": "{{model}} benodig 'n beeld om te animeer. Heg een aan of kies 'n ander model.",
+    "couldNotReadImage": "Kon daardie beeld nie lees nie",
+    "logoLoadFailed": "Kon nie die DeHub-logo laai nie — genereer sonder dit",
+    "imageAttachedDescribe": "Beeld aangeheg — beskryf jou wysigings",
+    "couldNotPreparePost": "Kon dit nie voorberei vir plasing nie",
+    "generateImage": "Genereer beeld",
+    "generateVideo": "Genereer video"
   },
   "commandCentre": {
     "title": "Beheersentrum",
@@ -1629,7 +1658,10 @@
     "edit": "Wysig",
     "deleteRequestTitle": "Vee hierdie versoek uit?",
     "deleteRequestDescription": "Dit kan nie ongedaan gemaak word nie.",
-    "attachmentTooLarge": "Elke lêer moet kleiner as 20MB wees"
+    "attachmentTooLarge": "Elke lêer moet kleiner as 20MB wees",
+    "deleteCommentA11y": "Skrap kommentaar",
+    "sendCommentA11y": "Stuur kommentaar",
+    "requestOptions": "Versoek opsies"
   },
   "auth": {
     "loginRequired": "Log in required",
@@ -1678,7 +1710,15 @@
     "sendCodeFailedRetry": "Kon nie kode stuur nie. Probeer asseblief weer.",
     "invalidCodeRetry": "Ongeldige kode. Probeer asseblief weer.",
     "invalidEmailOrPassword": "Ongeldige e-pos of wagwoord.",
-    "welcomeToDehub": "Welkom by DeHub"
+    "welcomeToDehub": "Welkom by DeHub",
+    "importWalletOptional": "In voer Beursie (Opsioneel)",
+    "couldNotSendCodeRetry": "Kon nie kode stuur nie. Probeer asseblief weer.",
+    "exploreWithoutSignIn": "Verken sonder om in te teken",
+    "continueExploring": "Gaan voort om te verken",
+    "exploreWithoutSignInA11y": "Verken DeHub sonder om aan te meld",
+    "continueExploringA11y": "Gaan voort met die verkenning van DeHub",
+    "importWalletRecommended": "Sosiale logboeke word aanbeveel.",
+    "importWalletPurpose": "Hierdie instrument is vir die invoer van bestaande rekeninge vanaf DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Voorgestelde antwoorde afgeskakel",
@@ -1799,7 +1839,29 @@
     "reportedAutomatically": "Dit is outomaties aangemeld.",
     "loadFailed": "Kon nie kanale laai nie",
     "noSearchResults": "Geen kanale pas by jou soektog nie",
-    "noChannels": "Geen kanale beskikbaar nie"
+    "noChannels": "Geen kanale beskikbaar nie",
+    "pairCodeExpired": "Die kode is verby. Vra die TV vir 'n nuwe een.",
+    "signedInOnTv": "Teken in op jou TV",
+    "pairRefused": "Weier",
+    "pairIntro": "Maak DeHub oop op jou televisie en tik die kode wat dit hier wys.",
+    "pairNotFound": "Geen TV wag op hierdie kode nie. Dit het dalk verstryk — vra die TV vir 'n nuwe een.",
+    "wantsToSignIn": "teken in as jy",
+    "pairWarning": "Maak dit net goed as dit 'n TV is waarna jy op die oomblik kyk. Goedkeur tekens wie hou die kode in jou rekening. Dit sal in staat wees om te kyk, soos en volg — dit kan nie spandeer nie, en jy kan teken dit uit enige tyd van aktiewe sessies.",
+    "pairApprove": "Ja, teken op hierdie televisie",
+    "pairDeny": "Nee, ek het nie daarvoor gevra nie",
+    "pairDoneTitle": "Televisie is ondertekend",
+    "pairDoneBody": "Dit moet reeds jou rekening wys. Teken dit uit enige tyd van Instellings → Privaatheid → Aktiewe sessies.",
+    "closePlayer": "Sluit speler",
+    "declineFailed": "Kon dit nie weier nie — dit kon reeds verstryk het.",
+    "tipSentTvNotTold": "Die boodskap is gestuur, maar die televisie kon nie vertel word nie. Dit sal tyd neem.",
+    "sentAmount": "Sent {{amount}} DHB",
+    "nothingWaiting": "Niks wag nie",
+    "nothingWaitingBody": "Wanneer jy vanaf DeHub op jou televisie 'n fooi stuur, verskyn dit hier sodat jy dit kan goedkeur. Jou TV hou nooit jou beursie nie.",
+    "yourTelevision": "Jou televisie",
+    "wantsToTip": "wil 'n fooi stuur · {{time}} het gelos",
+    "tipTo": "aan {{name}}",
+    "tipForPost": "vir “{{title}}”",
+    "reviewAndApprove": "Hersien en keur goed"
   },
   "top100": {
     "title": "Top 100",
@@ -2073,7 +2135,8 @@
     "applicationSuccess": "Application submitted successfully! We'll be in touch.",
     "applicationFailed": "Failed to submit. Please try again.",
     "description": "Sluit aan by ons span.",
-    "openPositions": "Oop posisies"
+    "openPositions": "Oop posisies",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO Tesourie",
@@ -2235,7 +2298,8 @@
     "pinnedToast": "Boaan hierdie plasing vasgespeld",
     "unpinnedToast": "Speld verwyder",
     "pinFailed": "Kon nie daardie opmerking vasspeld nie",
-    "kidsOnlyThread": "Hierdie artikel is vir kinders. Net kinders kan hierop kommentaar lewer."
+    "kidsOnlyThread": "Hierdie artikel is vir kinders. Net kinders kan hierop kommentaar lewer.",
+    "editFailed": "Kon nie opmerking wysig nie"
   },
   "postInfo": {
     "title": "Post Info",
@@ -3276,14 +3340,40 @@
     "comingSoon": "Binnekort",
     "signIn": "Meld aan",
     "tapToGetStarted": "Tik om te begin",
-    "soon": "Binnekort"
+    "soon": "Binnekort",
+    "glossarySubtitle": "Leer wat elke ikoon en funksie beteken",
+    "searchGlossary": "Soek glosarium...",
+    "noResultsFor": "Geen resultate vir \"{{query}}\" nie",
+    "guideSubtitle": "Stap-vir-stap-gids van elke funksie",
+    "searchGuide": "Soek die gids...",
+    "repostsTab": "Herplasings",
+    "quotesTab": "Aanhalings",
+    "noMoreReposts": "Nie meer herplasings nie",
+    "noMoreQuotes": "Nie meer aanhalings nie",
+    "noRepostsYet": "Nog geen herplasings nie",
+    "noQuotesYet": "Nog geen aanhalings nie"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Speletjies wat reg hier in die app loop. Niks om te installeer nie, niks om te koop nie — oopbron, en bedien vanaf DeHub self."
+    "intro": "Speletjies wat reg hier in die app loop. Niks om te installeer nie, niks om te koop nie — oopbron, en bedien vanaf DeHub self.",
+    "noGameCalled": "Daar is geen speletjie genaamd <slug>{{slug}}</slug> in die arcade nie.",
+    "seeWhatIsHere": "Sien wat hier is",
+    "locationNotGranted": "Liggingtoestemming is nie toegestaan ​​nie.",
+    "signInToPlaceOnGlobe": "Meld aan om jouself op die aardbol te plaas.",
+    "couldNotPlaceOnGlobe": "Kon jou nie op die aardbol plaas nie.",
+    "onTheGlobe": "Jy is op die aardbol — vertoon binne 'n benaderde 25 km area.",
+    "couldNotReach": "KON NIE DIE ARCADE BEREIK NIE",
+    "didNotLoad": "{{title}} het nie gelaai nie",
+    "needsConnection": "Die speletjie word vanaf dehub.io bedien en word afgelaai wanneer jy dit oopmaak, so dit benodig 'n werkende verbinding die eerste keer. Gaan joune na en probeer weer.",
+    "backToArcade": "Terug na die arcade",
+    "openPrivacySettings": "Maak privaatheidsinstellings oop",
+    "privacyWarning": "As jy 'n groot hoeveelheid tokens hou of in 'n onveilige area woon, versteek jou kenteken en balans voordat jy hierdie funksie gebruik. On-chain transaksies openbaar steeds jou adres. Maak instellings oop.",
+    "leaveGame": "Verlaat die speletjie",
+    "loadingGame": "Laai {{title}}",
+    "hideThis": "Versteek hierdie"
   },
   "videoLooks": {
     "button": "Kameravoorkomste",
@@ -3409,7 +3499,22 @@
     "someone": "Iemand",
     "oneTyping": "{{name}} tik…",
     "fewTyping": "{{names}} tik…",
-    "manyTyping": "{{count}} mense tik…"
+    "manyTyping": "{{count}} mense tik…",
+    "modBadge": "MOD",
+    "thisUser": "hierdie gebruiker",
+    "unbanConfirm": "Is jy seker jy wil {{name}} debanneer?",
+    "unban": "Debanneer",
+    "unbanFailed": "Het misluk om gebruiker te debanneer",
+    "onlineLabel": "Aanlyn",
+    "usersCount_one": "{{count}} gebruiker",
+    "usersCount_other": "{{count}} gebruikers",
+    "totalMessages": "Totaal boodskappe",
+    "slowMode": "Stil modus",
+    "cooldownSeconds": "{{seconds}}s afkoeling",
+    "minStakeRequired": "Min belang vereis",
+    "noParticipants": "Nog geen deelnemers nie",
+    "noModerators": "Geen moderators nie",
+    "noBannedUsers": "Geen verbode gebruikers nie"
   },
   "promptFeed": {
     "headline": "Wat wil jy sien?",
@@ -4161,7 +4266,26 @@
     "madeForKidsOffDesc": "Wys hierdie pos aan kinders wat Kindermodus gebruik, en haal dit af van die gewone voere.",
     "madeForKidsBlockedByMature": "'n Pos wat as volwasse gemerk is, kan nie ook vir kinders gepubliseer word nie.",
     "encoderTitle": "OBS / Enkodeerder",
-    "encoderHint": "Kry RTMP-besonderhede"
+    "encoderHint": "Kry RTMP-besonderhede",
+    "queueWaiting": "Wag…",
+    "queueUploading": "Oplaai",
+    "queueProcessing": "Verwerking…",
+    "queueMinting": "Munt…",
+    "queuePosted": "Geplaas",
+    "queueFailed": "Misluk",
+    "noRetriesLeft": "(geen pogings oor nie)",
+    "noUploads": "Geen uploads nie",
+    "uploadsAppearHere": "Jou uploads sal hier verskyn",
+    "imagesTotalLimit": "Beelde in een oplaai moet 100 MB of minder wees",
+    "chooseDatabase": "Kies Gedesentraliseerde Databasis",
+    "livestreamMode": "Regstreekse Modus",
+    "addThumbnail": "Voeg Miniatuur by",
+    "showCover": "Wys voorblad",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Bevestig Regstreekse Uitsending",
+    "liveFeaturesTitle": "Regstreekse Kenmerke",
+    "discardPostTitle": "Gooi plasing weg?",
+    "discardPostBody": "Jou plasing sal verlore gaan. Wil jy dit eerder as 'n konsep stoor?"
   },
   "bounty": {
     "claimed": "Opgeëis",
@@ -4478,7 +4602,25 @@
     "allowNewDmsOff": "Skakel DM's aan om nuwe boodskappe toe te laat.",
     "perMessageFee": "Fooi per boodskap (DHB)",
     "perMessageFeeSub": "Hef 'n fooi per boodskap. Stel op 0 vir gratis DM's. Jy kan spesifieke gebruikers gratis toegang gee.",
-    "allDisabled": "Alle DM's is tans af. Nuwe DM's word by verstek geblokkeer."
+    "allDisabled": "Alle DM's is tans af. Nuwe DM's word by verstek geblokkeer.",
+    "failedToEdit": "Kon nie wysig nie",
+    "messageDeleted": "Boodskap uitgevee",
+    "cantForwardFromDevice": "Hierdie boodskap kan nie vanaf hierdie toestel aangestuur word nie",
+    "messageForwarded": "Boodskap aangestuur",
+    "clearMessages": "Vee boodskappe uit",
+    "clearMessagesConfirm": "Vee alle boodskappe in hierdie gesprek uit? Dit kan nie ongedaan gemaak word nie.",
+    "messagesCleared": "Boodskappe uitgevee",
+    "failedToClearMessages": "Kon nie boodskappe uitvee nie",
+    "removedFreeAccess": "Gratis toegang vir {{name}} verwyder",
+    "grantedFreeAccess": "Gratis toegang aan {{name}} verleen",
+    "failedToUpdateFreeAccess": "Kon nie gratis toegang opdateer nie",
+    "searchComingSoon": "Soek kom binnekort",
+    "tapToUnblock": "Tik om te ontblokkeer",
+    "userFallback": "user",
+    "failedToBlock": "Kon nie blokkeer nie",
+    "failedToDeleteConversation": "Kon nie gesprek uitvee nie",
+    "newDm": "Nuwe direkte boodskap",
+    "noConversationsFound": "Geen gesprekke gevind nie"
   },
   "editPost": {
     "mediaPermission": "Toestemming vir die medialibrary word vereis",
@@ -4500,7 +4642,17 @@
     "retry": "Probeer weer",
     "retrying": "Herprobeer tans...",
     "retryQueued": "Verwerking weer",
-    "retryFailed": "Kon nie die plasing weer probeer nie"
+    "retryFailed": "Kon nie die plasing weer probeer nie",
+    "closeVideo": "Sluit video",
+    "rotateOrientation": "Draai oriëntasie",
+    "videoProgress": "Video vordering: {{percent}}%",
+    "tapToSeek": "Tik om na 'n spesifieke posisie te soek",
+    "photoAccessToSaveImages": "Laat toegang tot die fotobiblioteek toe om beelde te stoor",
+    "failedToSaveImage": "Kon nie beeld stoor nie",
+    "downloadImage": "Laai beeld af",
+    "goToImage": "Gaan na beeld {{index}}",
+    "allCaughtUp": "Jy's op datum",
+    "checkBackForShorts": "Kyk later weer vir meer kortbroeke"
   },
   "liveViewer": {
     "loadingStream": "Laai stroom...",
@@ -4510,7 +4662,22 @@
   },
   "search": {
     "endOfResults": "Einde van resultate",
-    "searchDehub": "Soek DeHub"
+    "searchDehub": "Soek DeHub",
+    "tabVoice": "Stem",
+    "trendingThisWeek": "Gewild hierdie week",
+    "trendingPosts": "Gewilde plasings",
+    "trendingImages": "Gewilde beelde",
+    "trendingVideos": "Gewilde video's",
+    "trendingVoicePosts": "Gewilde stemplasings",
+    "trendingLive": "Gewilde regstreeks",
+    "seeAll": "Sien alles",
+    "noAccountsFound": "Geen rekeninge gevind nie",
+    "tryDifferentKeywords": "Probeer verskillende sleutelwoorde of kyk na jou spelling",
+    "noContentResults": "Geen inhoudresultate nie",
+    "recentSearches": "Onlangse soektogte",
+    "noTrendingThisWeek": "Geen gewilde inhoud hierdie week nie",
+    "closeFilterOptions": "Sluit filteropsies",
+    "openFilterOptions": "Maak filteropsies oop"
   },
   "notifPrompt": {
     "stayInLoop": "Bly op hoogte",
@@ -4761,7 +4928,26 @@
     "externalTitle": "Eksterne Stroom Modus",
     "externalLiveHint": "U stroom is regstreeks via eksterne sagteware. Die in-app kamera is gedeaktiveer.",
     "externalHint": "Verbind jou stroomprogrammatuur met die onderstaande besonderhede en begin dan uitsaai.",
-    "useInAppCamera": "Gebruik In-App kamera In plaas"
+    "useInAppCamera": "Gebruik In-App kamera In plaas",
+    "livestreamEnded": "Regstreekse uitsending geëindig",
+    "chatEnabled": "Klets geaktiveer",
+    "chatDisabled": "Klets gedeaktiveer",
+    "failedToUpdateSettings": "Kon nie instellings opdateer nie",
+    "networkLostReconnecting": "Netwerk verloor — stroom onderbreek. Herkoppel...",
+    "openingViewer": "Kykprogram word oopgemaak...",
+    "cameraPermissionRequired": "Kamera toestemming benodig",
+    "grantPermission": "Toekenning Toestemming",
+    "waitingForLivepeer": "Seeking Livepeer...",
+    "waitingForExternalSource": "Op soek na 'n eksterne bron...",
+    "settingUpPublisher": "Opstel van redakteurs...",
+    "scheduledStream": "Geskeduleerde stroom",
+    "scheduledAt": "{{date}} by {{time}}",
+    "pressGoLiveWhenReady": "Druk Gaan Live wanneer gereed om te begin",
+    "connectionInterrupted": "Verbinding onderbreek",
+    "streamPausedReconnecting": "Jou stroom is onderbreek. Herkoppel...",
+    "streamWillEnd": "Stroom sal eindig as dit nie heraansluit word nie",
+    "endStreamConfirmTitle": "Einde Stroom?",
+    "endStreamConfirmBody": "Deur nou te sluit, sal u regstreekse stroom vir alle kykers beëindig word. Jy kan voortgaan om te stroom of eindig dit permanent."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

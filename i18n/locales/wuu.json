@@ -119,7 +119,12 @@
     "music": "音乐",
     "live": "直播",
     "newPosts_one": "{{count}} 篇新帖子",
-    "newPosts_other": "{{count}} 篇新帖子"
+    "newPosts_other": "{{count}} 篇新帖子",
+    "privateContent": "私密内容",
+    "privateContentBody": "箇内容是来自一个私密账号。关注创作者来查看伊拉个帖子。",
+    "noMoreContent": "没内容了",
+    "noPostsYet": "还没帖子。",
+    "pullToRefresh": "下拉刷新或者稍后重试。"
   },
   "explore": {
     "all": "全部",
@@ -710,7 +715,19 @@
     "smsRemoveFailed": "吾伲未能移除迭个号码。",
     "smsNumberRemoved": "号码已移除",
     "smsCountryBlocked": "吾伲还无法向迭个国家发送短信。",
-    "smsPricePerMessage": "{{dhb}} 迪爱比 (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} 迪爱比 (${{usd}})",
+    "avatarUpdateFailed": "头像更新失败",
+    "coverUpdateFailed": "封面更新失败",
+    "fixInvalidSocialLinks": "请修复无效个社交链接",
+    "updateFailed": "更新失败",
+    "channelUrlOrHandle": "频道URL或用户名",
+    "inviteLinkPlaceholder": "邀请链接",
+    "profileUrlOrUsername": "个人主页URL或用户名",
+    "yourDisplayName": "您个显示名称",
+    "usernameAvailable": "用户名可用",
+    "hideBadgeAndBalance": "隐藏徽章和余额",
+    "hideBadgeAndBalanceDesc": "隐藏财务信息，并禁用向您发送消息和打赏。",
+    "onChainPublicWarning": "链上交易是公开个。发送代币或打赏可能会暴露您个钱包地址，包括在启用私密余额模式之前进行个交易。"
   },
   "common": {
     "mute": "静音",
@@ -760,7 +777,9 @@
     "noInternetTitle": "没有网络连接",
     "noInternetBody": "请检查您的网络连接并重试。您需要连接到互联网才能使用 DeHub。",
     "noInternetStatus": "离线 - 没有网络连接",
-    "noInternetHint": "确保 Wi-Fi 或移动数据已打开，然后点击“{{action}}”"
+    "noInternetHint": "确保 Wi-Fi 或移动数据已打开，然后点击“{{action}}”",
+    "saving": "正在保存…",
+    "offlineStatus": "离线 - 没网络连接"
   },
   "tip": {
     "title": "送礼物",
@@ -1094,7 +1113,17 @@
     "post": "发布",
     "officialLogo": "搿个是DeHub个官方标志！🎨",
     "editedImage": "搿个是侬编辑过个图片！",
-    "generatedImage": "搿个是侬生成个图片！"
+    "generatedImage": "搿个是侬生成个图片！",
+    "toolCompleted": "{{name}} 完成",
+    "aiTool": "AI 工具",
+    "cannotAnimateImage": "{{model}} 无法为附加个图像制作动画。请选择另一个视频模型。",
+    "needsImageToAnimate": "{{model}} 需要一张图像来制作动画。附加一张或选择另一个模型。",
+    "couldNotReadImage": "无法读取该图像",
+    "logoLoadFailed": "无法加载 DeHub logo — 正在生成，不带 logo",
+    "imageAttachedDescribe": "已附加图像 — 描述您个修改",
+    "couldNotPreparePost": "无法为发布做准备",
+    "generateImage": "生成图像",
+    "generateVideo": "生成视频"
   },
   "commandCentre": {
     "title": "指挥中心",
@@ -1604,7 +1633,10 @@
     "edit": "编辑",
     "deleteRequestTitle": "删脱搿只请求？",
     "deleteRequestDescription": "搿个是转勿转来个。",
-    "attachmentTooLarge": "每只文件要小于 20MB"
+    "attachmentTooLarge": "每只文件要小于 20MB",
+    "deleteCommentA11y": "删脱评论",
+    "sendCommentA11y": "发评论",
+    "requestOptions": "请求选项"
   },
   "auth": {
     "loginRequired": "需要登录",
@@ -1653,7 +1685,15 @@
     "sendCodeFailedRetry": "无法发送验证码。请重试。",
     "invalidCodeRetry": "验证码无效。请重试。",
     "invalidEmailOrPassword": "电子邮件或密码无效。",
-    "welcomeToDehub": "欢迎来到 DeHub"
+    "welcomeToDehub": "欢迎来到 DeHub",
+    "importWalletOptional": "导入钱包 (可选)",
+    "couldNotSendCodeRetry": "发送辰光失败。请重试。",
+    "exploreWithoutSignIn": "免注册浏览",
+    "continueExploring": "继续探索",
+    "exploreWithoutSignInA11y": "免登录探索 DeHub",
+    "continueExploringA11y": "继续探索DeHub",
+    "importWalletRecommended": "社交登录推荐。",
+    "importWalletPurpose": "此工具用于从 DeHub.io 导入现有账户。"
   },
   "messages": {
     "smartRepliesOff": "建议回复关脱哉",
@@ -1768,7 +1808,29 @@
     "reportedAutomatically": "已经自家报告脱哉。",
     "loadFailed": "频道装勿进来",
     "noSearchResults": "呒没频道对牢侬个搜寻",
-    "noChannels": "呒没频道好用"
+    "noChannels": "呒没频道好用",
+    "pairCodeExpired": "箇程式碼過期了。問電視機拿一個新個。",
+    "signedInOnTv": "登入到侬个电视浪了",
+    "pairRefused": "拒絕",
+    "pairIntro": "勒DeHub到侬电视浪，输入伊显示个号码。",
+    "pairNotFound": "电视呒没等来迭个码。可能已经过期了——问电视要个新个。",
+    "wantsToSignIn": "想以你嘅身份登入",
+    "pairWarning": "假使侬现在看的是电视机，才好批准。批准了之后，持有呢个码个侬就可以登入侬个账号。渠可以看、点赞、关注——但花不脱钱，侬随时可以从“活跃会话”里登出渠。",
+    "pairApprove": "倷，签进呢只电视",
+    "pairDeny": "吾倷勿要箇",
+    "pairDoneTitle": "侬个电视已经登入哉",
+    "pairDoneBody": "应该已经显示了你的账号。随时可以在“设置”→“隐私”→“活跃会话”里退出。",
+    "closePlayer": "搋牢个玩家",
+    "declineFailed": "搿个勿能推脱脱——可能已经过期了。",
+    "tipSentTvNotTold": "搿个小费送脱了，电视厢勿晓得。要超时了。",
+    "sentAmount": "发送了 {{amount}} DHB",
+    "nothingWaiting": "没啥等着的",
+    "nothingWaitingBody": "当您从电视上的 DeHub 打赏时，它会在此处显示供您批准。您的电视永远不会保管您的钱包。",
+    "yourTelevision": "您的电视",
+    "wantsToTip": "想发送打赏 · {{time}} 留下了",
+    "tipTo": "给 {{name}}",
+    "tipForPost": "用于“{{title}}”",
+    "reviewAndApprove": "查看并批准"
   },
   "top100": {
     "title": "头 100",
@@ -2040,7 +2102,8 @@
     "submitApplication": "提交申请",
     "nameEmailRequired": "需要名字搭邮箱",
     "applicationSuccess": "申请提交成功！我伲会联系侬。",
-    "applicationFailed": "提交失败。请再试过。"
+    "applicationFailed": "提交失败。请再试过。",
+    "namePlaceholder": "简·史密斯"
   },
   "dao": {
     "title": "DAO 财库",
@@ -2200,7 +2263,8 @@
     "pinnedToast": "已经置顶到搿条帖子最上头",
     "unpinnedToast": "已经取消置顶",
     "pinFailed": "覅能置顶搿条评论",
-    "kidsOnlyThread": "这篇帖子是给小孩子的。只有小孩模式才能评论。"
+    "kidsOnlyThread": "这篇帖子是给小孩子的。只有小孩模式才能评论。",
+    "editFailed": "编辑评论失败"
   },
   "postInfo": {
     "title": "帖子信息",
@@ -3241,14 +3305,40 @@
     "comingSoon": "即将推出",
     "signIn": "登录",
     "tapToGetStarted": "点按开始",
-    "soon": "即将"
+    "soon": "即将",
+    "glossarySubtitle": "了解每个图标和功能的意思",
+    "searchGlossary": "搜索词汇表...",
+    "noResultsFor": "没有找到“{{query}}”的结果",
+    "guideSubtitle": "每个功能的分步演练",
+    "searchGuide": "搜索指南...",
+    "repostsTab": "转发",
+    "quotesTab": "引用",
+    "noMoreReposts": "不再转发",
+    "noMoreQuotes": "不再引用",
+    "noRepostsYet": "还没有转发",
+    "noQuotesYet": "还没有引用"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "就勒搿只应用里向跑个游戏。呒啥好装，呒啥好买 — 开源个，DeHub 自家供个。"
+    "intro": "就勒搿只应用里向跑个游戏。呒啥好装，呒啥好买 — 开源个，DeHub 自家供个。",
+    "noGameCalled": "街机里没有叫 <slug>{{slug}}</slug> 的游戏。",
+    "seeWhatIsHere": "看看这里有什么",
+    "locationNotGranted": "未授予位置权限。",
+    "signInToPlaceOnGlobe": "登录以便将您放置在地球上。",
+    "couldNotPlaceOnGlobe": "无法将您放置在地球上。",
+    "onTheGlobe": "您已在地球上 — 显示在约 25 公里的范围内。",
+    "couldNotReach": "无法连接到街机",
+    "didNotLoad": "{{title}} 未加载",
+    "needsConnection": "游戏是从 dehub.io 提供的，并在您打开时下载，因此第一次需要有效的连接。检查您的连接并重试。",
+    "backToArcade": "回到街机",
+    "openPrivacySettings": "打开隐私设置",
+    "privacyWarning": "倷要是持有大量代币或者住勒不安全个地方，用迭个功能之前请隐藏倷个徽章搭余额。链上交易还是会暴露倷个地址。打开设置。",
+    "leaveGame": "退出游戏",
+    "loadingGame": "加载 {{title}}",
+    "hideThis": "隐藏迭个"
   },
   "videoLooks": {
     "button": "摄像头滤镜",
@@ -3373,7 +3463,22 @@
     "someone": "某人",
     "oneTyping": "{{name}} 正在输入…",
     "fewTyping": "{{names}} 正在输入…",
-    "manyTyping": "{{count}} 人正在输入…"
+    "manyTyping": "{{count}} 人正在输入…",
+    "thisUser": "迭个用户",
+    "unbanConfirm": "倷确定要解除对 {{name}} 个禁令伐？",
+    "unban": "解除禁令",
+    "unbanFailed": "解除用户禁令失败",
+    "onlineLabel": "在线",
+    "usersCount_one": "{{count}} 用户",
+    "usersCount_other": "{{count}} 个用户",
+    "totalMessages": "总消息数",
+    "slowMode": "慢速模式",
+    "cooldownSeconds": "{{seconds}} 秒冷却",
+    "minStakeRequired": "最低质押要求",
+    "noParticipants": "还没人参加",
+    "noModerators": "没管理员",
+    "noBannedUsers": "没被禁个用户",
+    "modBadge": "版主"
   },
   "promptFeed": {
     "headline": "你想看什么？",
@@ -4125,7 +4230,26 @@
     "madeForKidsBlockedByMature": "标记为成人内容的帖子不能同时为儿童发布。",
     "encoderTitle": "OBS / 编码器",
     "encoderHint": "获取 RTMP 详情",
-    "markMadeForKids": "标记为儿童内容"
+    "markMadeForKids": "标记为儿童内容",
+    "queueWaiting": "等待中…",
+    "queueUploading": "上传中",
+    "queueProcessing": "处理中…",
+    "queueMinting": "铸造中…",
+    "queuePosted": "已发布",
+    "queueFailed": "失败",
+    "noRetriesLeft": "（没重试机会了）",
+    "noUploads": "没上传内容",
+    "uploadsAppearHere": "倷个上传内容会显示勒迭里",
+    "imagesTotalLimit": "图片单次上传总大小不得超过100MB",
+    "chooseDatabase": "选择去中心化数据库",
+    "livestreamMode": "直播模式",
+    "addThumbnail": "添加缩略图",
+    "showCover": "显示封面",
+    "max60s": "最长60秒",
+    "confirmLivestream": "确认直播",
+    "liveFeaturesTitle": "直播功能",
+    "discardPostTitle": "放弃帖子？",
+    "discardPostBody": "您的帖子将会丢失。是否要将其另存为草稿？"
   },
   "bounty": {
     "claimed": "已领取",
@@ -4442,7 +4566,25 @@
     "allowNewDmsOff": "启用私信才能接收新消息。",
     "perMessageFee": "每条消息费用 (DHB)",
     "perMessageFeeSub": "按条收费。设为 0 即为免费私信。你也可以给特定用户免费权限。",
-    "allDisabled": "目前所有私信都已关闭。新私信默认被屏蔽。"
+    "allDisabled": "目前所有私信都已关闭。新私信默认被屏蔽。",
+    "failedToEdit": "编辑失败",
+    "messageDeleted": "消息已删除",
+    "cantForwardFromDevice": "此消息无法从此设备转发",
+    "messageForwarded": "消息已转发",
+    "clearMessages": "清除消息",
+    "clearMessagesConfirm": "删除此对话中的所有消息？此操作无法撤销。",
+    "messagesCleared": "消息已清除",
+    "failedToClearMessages": "清除消息失败",
+    "removedFreeAccess": "已移除 {{name}} 的免费访问权限",
+    "grantedFreeAccess": "已授予 {{name}} 免费访问权限",
+    "failedToUpdateFreeAccess": "更新免费访问权限失败",
+    "searchComingSoon": "搜索即将推出",
+    "tapToUnblock": "点按以解除屏蔽",
+    "userFallback": "用户",
+    "failedToBlock": "屏蔽失败",
+    "failedToDeleteConversation": "删除对话失败",
+    "newDm": "新的直接消息",
+    "noConversationsFound": "未找到对话"
   },
   "editPost": {
     "mediaPermission": "需要媒体库权限",
@@ -4464,7 +4606,17 @@
     "retry": "试一试",
     "retrying": "重试中…",
     "retryQueued": "重新处理",
-    "retryFailed": "重试勿脱迭个帖子"
+    "retryFailed": "重试勿脱迭个帖子",
+    "closeVideo": "关闭视频",
+    "rotateOrientation": "旋转方向",
+    "videoProgress": "视频进度：{{percent}}%",
+    "tapToSeek": "点按可跳转到特定位置",
+    "photoAccessToSaveImages": "允许访问照片图库以保存图片",
+    "failedToSaveImage": "无法保存图片",
+    "downloadImage": "下载图片",
+    "goToImage": "前往图片 {{index}}",
+    "allCaughtUp": "您已全部看完",
+    "checkBackForShorts": "稍后回来查看更多短视频"
   },
   "liveViewer": {
     "loadingStream": "正在加载直播……",
@@ -4474,7 +4626,22 @@
   },
   "search": {
     "endOfResults": "结果到底了",
-    "searchDehub": "搜索 DeHub"
+    "searchDehub": "搜索 DeHub",
+    "tabVoice": "语音",
+    "trendingThisWeek": "本周热门",
+    "trendingPosts": "热门帖子",
+    "trendingImages": "热门图片",
+    "trendingVideos": "热门视频",
+    "trendingVoicePosts": "热门语音帖子",
+    "trendingLive": "热门直播",
+    "seeAll": "查看全部",
+    "noAccountsFound": "未找到任何账号",
+    "tryDifferentKeywords": "尝试其他关键词或检查拼写",
+    "noContentResults": "无内容结果",
+    "recentSearches": "最近搜索",
+    "noTrendingThisWeek": "本周无热门内容",
+    "closeFilterOptions": "关闭筛选选项",
+    "openFilterOptions": "打开筛选选项"
   },
   "notifPrompt": {
     "stayInLoop": "保持关注",
@@ -4724,7 +4891,26 @@
     "externalTitle": "外部推流模式",
     "externalLiveHint": "您正在通过外部软件进行直播。应用内摄像头已禁用。",
     "externalHint": "使用下面的详细信息连接您的推流软件，然后开始直播。",
-    "useInAppCamera": "改用应用内摄像头"
+    "useInAppCamera": "改用应用内摄像头",
+    "livestreamEnded": "直播已结束",
+    "chatEnabled": "聊天已启用",
+    "chatDisabled": "聊天已禁用",
+    "failedToUpdateSettings": "更新设置失败",
+    "networkLostReconnecting": "网络丢失 — 视频已暂停。正在重新连接…",
+    "openingViewer": "正在打开播放器…",
+    "cameraPermissionRequired": "需要相机权限",
+    "grantPermission": "授予权限",
+    "waitingForLivepeer": "等待 Livepeer...",
+    "waitingForExternalSource": "等待外部源...",
+    "settingUpPublisher": "设置发布者...",
+    "scheduledStream": "计划直播",
+    "scheduledAt": "{{date}} 于 {{time}}",
+    "pressGoLiveWhenReady": "准备好后按“开始直播”",
+    "connectionInterrupted": "连接中断",
+    "streamPausedReconnecting": "您的直播已暂停。正在重新连接...",
+    "streamWillEnd": "如果未重新连接，直播将结束",
+    "endStreamConfirmTitle": "结束直播？",
+    "endStreamConfirmBody": "现在关闭将结束您对所有观众的直播。您可以继续直播或永久结束。"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

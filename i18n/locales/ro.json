@@ -119,7 +119,12 @@
     "music": "Music",
     "live": "Live",
     "newPosts_one": "{{count}} postare nouă",
-    "newPosts_other": "{{count}} postări noi"
+    "newPosts_other": "{{count}} postări noi",
+    "privateContent": "Conținut privat",
+    "privateContentBody": "Acest conținut este de pe un cont privat. Urmărește creatorul pentru a vedea postările sale.",
+    "noMoreContent": "Nu mai există conținut",
+    "noPostsYet": "Nicio postare încă.",
+    "pullToRefresh": "Trage pentru a reîmprospăta sau încearcă din nou mai târziu."
   },
   "explore": {
     "all": "All",
@@ -710,7 +715,19 @@
       "replies": "Doar răspunsuri la comentariile mele",
       "account": "Doar notificări despre contul meu"
     },
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Actualizare avatar eșuată",
+    "coverUpdateFailed": "Actualizare copertă eșuată",
+    "fixInvalidSocialLinks": "Te rugăm să corectezi linkurile sociale invalide",
+    "updateFailed": "Actualizare eșuată",
+    "channelUrlOrHandle": "URL sau nume canal",
+    "inviteLinkPlaceholder": "Link de invitație",
+    "profileUrlOrUsername": "URL profil sau nume utilizator",
+    "yourDisplayName": "Numele tău afișat",
+    "usernameAvailable": "Numele de utilizator este disponibil",
+    "hideBadgeAndBalance": "Ascunde insigna și soldul",
+    "hideBadgeAndBalanceDesc": "Ascunde detaliile financiare și dezactivează trimiterile și sfaturile către tine.",
+    "onChainPublicWarning": "Tranzacțiile on-chain sunt publice. Trimiterea de tokenuri sau sfaturi poate dezvălui adresa portofelului tău, inclusiv tranzacțiile efectuate înainte ca modul de sold privat să fie activat."
   },
   "common": {
     "mute": "Dezactivează sunetul",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Fără conexiune la internet",
     "noInternetBody": "Verifică-ți conexiunea la internet și încearcă din nou. Trebuie să fii conectat la internet pentru a folosi DeHub.",
     "noInternetStatus": "Offline - Fără conexiune la rețea",
-    "noInternetHint": "Asigură-te că Wi-Fi sau datele mobile sunt activate, apoi atinge \"{{action}}\""
+    "noInternetHint": "Asigură-te că Wi-Fi sau datele mobile sunt activate, apoi atinge \"{{action}}\"",
+    "saving": "Se salvează…",
+    "offlineStatus": "Offline - Fără conexiune la rețea"
   },
   "tip": {
     "title": "Send Tip",
@@ -1094,7 +1113,17 @@
     "post": "Post",
     "officialLogo": "Here's the official DeHub logo! 🎨",
     "editedImage": "Here's your edited image!",
-    "generatedImage": "Here's your generated image!"
+    "generatedImage": "Here's your generated image!",
+    "toolCompleted": "{{name}} finalizat",
+    "aiTool": "Instrument AI",
+    "cannotAnimateImage": "{{model}} nu poate anima o imagine atașată. Alege alt model video.",
+    "needsImageToAnimate": "{{model}} necesită o imagine pentru a anima. Atașează una sau alege alt model.",
+    "couldNotReadImage": "Nu am putut citi acea imagine",
+    "logoLoadFailed": "Nu am putut încărca logo-ul DeHub — se generează fără el",
+    "imageAttachedDescribe": "Imagine atașată — descrie modificările tale",
+    "couldNotPreparePost": "Nu am putut pregăti asta pentru postare",
+    "generateImage": "Generare imagine",
+    "generateVideo": "Generare din Video"
   },
   "commandCentre": {
     "title": "Command Center",
@@ -1606,7 +1635,10 @@
     "edit": "Editează",
     "deleteRequestTitle": "Ștergi această cerere?",
     "deleteRequestDescription": "Asta nu se poate anula.",
-    "attachmentTooLarge": "Fiecare fișier trebuie să fie sub 20 MB"
+    "attachmentTooLarge": "Fiecare fișier trebuie să fie sub 20 MB",
+    "deleteCommentA11y": "Ștergere comentariu",
+    "sendCommentA11y": "Trimite comentariu",
+    "requestOptions": "Opțiuni de solicitare"
   },
   "auth": {
     "loginRequired": "Log in required",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Nu s-a putut trimite codul. Te rugăm să încerci din nou.",
     "invalidCodeRetry": "Cod invalid. Te rugăm să încerci din nou.",
     "invalidEmailOrPassword": "Email sau parolă invalidă.",
-    "welcomeToDehub": "Bine ai venit pe DeHub"
+    "welcomeToDehub": "Bine ai venit pe DeHub",
+    "importWalletOptional": "Importă portofel (opțional)",
+    "couldNotSendCodeRetry": "Codul nu a putut fi trimis. Reîncercați.",
+    "exploreWithoutSignIn": "Explorează fără să te conectezi",
+    "continueExploring": "Continuă explorarea",
+    "exploreWithoutSignInA11y": "Explorează DeHub fără să te conectezi",
+    "continueExploringA11y": "Continuă să explorezi DeHub",
+    "importWalletRecommended": "Se recomandă conectări sociale.",
+    "importWalletPurpose": "Acest instrument este pentru importul conturilor existente din DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Răspunsurile sugerate au fost dezactivate",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "A fost raportat automat.",
     "loadFailed": "Canalele nu au putut fi încărcate",
     "noSearchResults": "Niciun canal nu se potrivește cu căutarea ta",
-    "noChannels": "Nu sunt canale disponibile"
+    "noChannels": "Nu sunt canale disponibile",
+    "pairCodeExpired": "Acest cod a expirat. Cereți televizorului unul nou.",
+    "signedInOnTv": "Conectat la televizor",
+    "pairRefused": "Refuzat",
+    "pairIntro": "Deschideți DeHub pe televizor și tastați codul pe care îl afișează aici.",
+    "pairNotFound": "Niciun televizor nu așteaptă acel cod. Este posibil să fi expirat — cereți televizorului unul nou.",
+    "wantsToSignIn": "vrea să se conecteze ca tine",
+    "pairWarning": "Aprobați acest lucru numai dacă este un televizor la care vă uitați chiar acum. Se aprobă persoanele care dețin acel cod în contul dvs. Acesta va putea viziona, aprecia și urmări — nu poate cheltui și îl puteți deconecta oricând de la sesiunile active.",
+    "pairApprove": "Da, conectați-vă la acest televizor",
+    "pairDeny": "Nu, nu am cerut acest lucru",
+    "pairDoneTitle": "Televizorul dvs. este conectat",
+    "pairDoneBody": "Ar trebui să îți arate deja contul. Deconectați-vă oricând din Setări → Confidențialitate Sesiuni → active.",
+    "closePlayer": "Închideți jucătorul",
+    "declineFailed": "Nu se poate refuza — este posibil să fi expirat deja.",
+    "tipSentTvNotTold": "Sfatul a fost trimis, dar televizorul nu a putut fi spus. Va expira.",
+    "sentAmount": "Trimis {{amount}} DHB",
+    "nothingWaiting": "Nimic în așteptare",
+    "nothingWaitingBody": "Când trimiți un bacșiș de pe DeHub pe televizorul tău, acesta apare aici pentru a-l aproba. Televizorul tău nu îți deține niciodată portofelul.",
+    "yourTelevision": "Televizorul tău",
+    "wantsToTip": "vrea să trimită un bacșiș · {{time}} a lăsat",
+    "tipTo": "către {{name}}",
+    "tipForPost": "pentru „{{title}}”",
+    "reviewAndApprove": "Revizuiește și aprobă"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Submit Application",
     "nameEmailRequired": "Name and email are required",
     "applicationSuccess": "Application submitted successfully! We'll be in touch.",
-    "applicationFailed": "Failed to submit. Please try again."
+    "applicationFailed": "Failed to submit. Please try again.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Tezaurul DAO",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Fixat în partea de sus a acestei postări",
     "unpinnedToast": "Fixare eliminată",
     "pinFailed": "Comentariul nu a putut fi fixat",
-    "kidsOnlyThread": "Această postare este pentru copii. Numai modul Copii poate comenta acest lucru."
+    "kidsOnlyThread": "Această postare este pentru copii. Numai modul Copii poate comenta acest lucru.",
+    "editFailed": "Nu s-a putut edita comentariul"
   },
   "postInfo": {
     "title": "Post Info",
@@ -3243,14 +3307,40 @@
     "comingSoon": "În curând",
     "signIn": "Conectează-te",
     "tapToGetStarted": "Atinge pentru a începe",
-    "soon": "În curând"
+    "soon": "În curând",
+    "glossarySubtitle": "Află ce înseamnă fiecare pictogramă și funcție",
+    "searchGlossary": "Caută în glosar...",
+    "noResultsFor": "Niciun rezultat pentru „{{query}}”",
+    "guideSubtitle": "Ghid pas cu pas pentru fiecare funcție",
+    "searchGuide": "Caută în ghid...",
+    "repostsTab": "Repostează",
+    "quotesTab": "Citate",
+    "noMoreReposts": "Gata cu reposteazările",
+    "noMoreQuotes": "Gata cu citatele",
+    "noRepostsYet": "Niciun repost încă",
+    "noQuotesYet": "Niciun citat încă"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Jocuri care rulează chiar aici, în aplicație. Nimic de instalat, nimic de cumpărat — open source și servite chiar de DeHub."
+    "intro": "Jocuri care rulează chiar aici, în aplicație. Nimic de instalat, nimic de cumpărat — open source și servite chiar de DeHub.",
+    "noGameCalled": "Nu există jocul numit <slug>{{slug}}</slug> în arcade.",
+    "seeWhatIsHere": "Vezi ce este aici",
+    "locationNotGranted": "Permisiunea de locație nu a fost acordată.",
+    "signInToPlaceOnGlobe": "Conectează-te pentru a te plasa pe glob.",
+    "couldNotPlaceOnGlobe": "Nu ai putut fi plasat pe glob.",
+    "onTheGlobe": "Ești pe glob — afișat într-o zonă de aproximativ 25 km.",
+    "couldNotReach": "NU AM PUTUT AJUNGE LA ARCADE",
+    "didNotLoad": "{{title}} nu s-a încărcat",
+    "needsConnection": "Jocul este servit de pe dehub.io și este descărcat când îl deschizi, deci necesită o conexiune funcțională prima dată. Verifică-ți conexiunea și încearcă din nou.",
+    "backToArcade": "Înapoi la arcade",
+    "openPrivacySettings": "Deschide setările de confidențialitate",
+    "privacyWarning": "Dacă deții o cantitate mare de tokenuri sau locuiești într-o zonă nesigură, ascunde-ți insigna și soldul înainte de a utiliza această funcție. Tranzacțiile on-chain îți dezvăluie în continuare adresa. Deschide setările.",
+    "leaveGame": "Părăsește jocul",
+    "loadingGame": "Se încarcă {{title}}",
+    "hideThis": "Ascunde asta"
   },
   "videoLooks": {
     "button": "Aspecte ale camerei",
@@ -3376,7 +3466,22 @@
     "someone": "Cineva",
     "oneTyping": "{{name}} scrie…",
     "fewTyping": "{{names}} scriu…",
-    "manyTyping": "{{count}} persoane scriu…"
+    "manyTyping": "{{count}} persoane scriu…",
+    "modBadge": "MOD",
+    "thisUser": "acest utilizator",
+    "unbanConfirm": "Ești sigur că vrei să-l debanezi pe {{name}}?",
+    "unban": "Debanare",
+    "unbanFailed": "Eroare la deblocarea utilizatorului",
+    "onlineLabel": "Online",
+    "usersCount_one": "utilizator {{count}}",
+    "usersCount_other": "utilizatori {{count}}",
+    "totalMessages": "Mesaje totale",
+    "slowMode": "Mod lent",
+    "cooldownSeconds": "{{seconds}}s răcire",
+    "minStakeRequired": "Miză minimă necesară",
+    "noParticipants": "Încă nu există participanți",
+    "noModerators": "Fără moderatori",
+    "noBannedUsers": "Niciun utilizator banat"
   },
   "promptFeed": {
     "headline": "Ce vrei să vezi?",
@@ -4128,7 +4233,26 @@
     "madeForKidsOffDesc": "Afișează această postare copiilor care folosesc Modul pentru copii și o scoate din feed-urile obișnuite.",
     "madeForKidsBlockedByMature": "O postare marcată ca pentru adulți nu poate fi publicată și pentru copii.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Obține detalii RTMP"
+    "encoderHint": "Obține detalii RTMP",
+    "queueWaiting": "Așteptare…",
+    "queueUploading": "Încărcare",
+    "queueProcessing": "Procesare…",
+    "queueMinting": "Creare…",
+    "queuePosted": "Postat",
+    "queueFailed": "Eșuat",
+    "noRetriesLeft": "(nu mai sunt încercări)",
+    "noUploads": "Niciun upload",
+    "uploadsAppearHere": "Upload-urile tale vor apărea aici",
+    "imagesTotalLimit": "Imaginile dintr-o încărcare trebuie să totalizeze 100 MB sau mai puțin",
+    "chooseDatabase": "Alegeți baza de date descentralizată",
+    "livestreamMode": "Mod Livestream",
+    "addThumbnail": "Adaugă imagine miniatură",
+    "showCover": "Arată coperta",
+    "max60s": "Max. 60s",
+    "confirmLivestream": "Confirmă transmisiunea în direct",
+    "liveFeaturesTitle": "Caracteristici live",
+    "discardPostTitle": "Renunți la postare?",
+    "discardPostBody": "Postarea ta va fi pierdută. Doriți să îl salvați ca ciornă?"
   },
   "bounty": {
     "claimed": "Revendicat",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Activează mesajele pentru a permite mesaje noi.",
     "perMessageFee": "Taxă pe mesaj (DHB)",
     "perMessageFeeSub": "Percepe o taxă pe mesaj. Setează 0 pentru mesaje gratuite. Poți acorda acces gratuit anumitor utilizatori.",
-    "allDisabled": "Toate mesajele sunt momentan dezactivate. Cele noi sunt blocate implicit."
+    "allDisabled": "Toate mesajele sunt momentan dezactivate. Cele noi sunt blocate implicit.",
+    "failedToEdit": "Editarea a eșuat",
+    "messageDeleted": "Mesajul a fost șters",
+    "cantForwardFromDevice": "Acest mesaj nu poate fi redirecționat de pe acest dispozitiv",
+    "messageForwarded": "Mesaj redirecționat",
+    "clearMessages": "Șterge mesajele",
+    "clearMessagesConfirm": "Ștergeți toate mesajele din această conversație? Acest lucru nu poate fi anulat.",
+    "messagesCleared": "Mesajele au fost șterse",
+    "failedToClearMessages": "Ștergerea mesajelor a eșuat",
+    "removedFreeAccess": "S-a eliminat accesul gratuit pentru {{name}}",
+    "grantedFreeAccess": "Acces gratuit la {{name}}",
+    "failedToUpdateFreeAccess": "Actualizarea accesului liber a eșuat",
+    "searchComingSoon": "Caută în curând",
+    "tapToUnblock": "Atinge pentru a debloca",
+    "userFallback": "utilizator",
+    "failedToBlock": "Blocarea a eșuat",
+    "failedToDeleteConversation": "Ștergerea conversației a eșuat",
+    "newDm": "Mesaj Direct",
+    "noConversationsFound": "Nu a fost gasit"
   },
   "editPost": {
     "mediaPermission": "Este necesară permisiunea pentru biblioteca media",
@@ -4467,7 +4609,17 @@
     "retry": "Încearcă din nou",
     "retrying": "Se încearcă din nou...",
     "retryQueued": "Se procesează din nou",
-    "retryFailed": "Nu s-a putut reîncerca acea postare"
+    "retryFailed": "Nu s-a putut reîncerca acea postare",
+    "closeVideo": "Închide videoclipul",
+    "rotateOrientation": "Rotește orientarea",
+    "videoProgress": "Progres video: {{percent}}%",
+    "tapToSeek": "Atingeți pentru a sări la o poziție specifică",
+    "photoAccessToSaveImages": "Permiteți accesul la biblioteca foto pentru a salva imagini",
+    "failedToSaveImage": "Nu s-a putut salva imaginea",
+    "downloadImage": "Descărcați imaginea",
+    "goToImage": "Mergi la imaginea {{index}}",
+    "allCaughtUp": "Ați ajuns la zi",
+    "checkBackForShorts": "Verificați mai târziu pentru mai multe scurtmetraje"
   },
   "liveViewer": {
     "loadingStream": "Se încarcă transmisiunea...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Sfârșitul rezultatelor",
-    "searchDehub": "Caută pe DeHub"
+    "searchDehub": "Caută pe DeHub",
+    "tabVoice": "Voce",
+    "trendingThisWeek": "În trend săptămâna aceasta",
+    "trendingPosts": "Postări în trend",
+    "trendingImages": "Imagini în trend",
+    "trendingVideos": "Videoclipuri în trend",
+    "trendingVoicePosts": "Postări vocale în trend",
+    "trendingLive": "Live în trend",
+    "seeAll": "Vezi tot",
+    "noAccountsFound": "Nu s-au găsit conturi",
+    "tryDifferentKeywords": "Încercați cuvinte cheie diferite sau verificați ortografia",
+    "noContentResults": "Niciun rezultat de conținut",
+    "recentSearches": "Căutări recente",
+    "noTrendingThisWeek": "Niciun conținut în trend săptămâna aceasta",
+    "closeFilterOptions": "Închideți opțiunile de filtrare",
+    "openFilterOptions": "Deschideți opțiunile de filtrare"
   },
   "notifPrompt": {
     "stayInLoop": "Rămâi la curent",
@@ -4727,7 +4894,26 @@
     "externalTitle": "Mod de redare în flux extern",
     "externalLiveHint": "Fluxul dvs. este live prin intermediul unui software extern. Camera din aplicație este dezactivată.",
     "externalHint": "Conectați software-ul de streaming utilizând detaliile de mai jos, apoi începeți să difuzați.",
-    "useInAppCamera": "Folosește în schimb camera din aplicație"
+    "useInAppCamera": "Folosește în schimb camera din aplicație",
+    "livestreamEnded": "Transmisiunea live s-a încheiat",
+    "chatEnabled": "Chat activat",
+    "chatDisabled": "Chat dezactivat",
+    "failedToUpdateSettings": "Nu s-au putut actualiza setările",
+    "networkLostReconnecting": "Rețea pierdută — fluxul a fost întrerupt. Reconectare…",
+    "openingViewer": "Se deschide vizualizatorul...",
+    "cameraPermissionRequired": "Este necesară permisiunea camerei",
+    "grantPermission": "Acordarea permisiunii",
+    "waitingForLivepeer": "Se așteaptă Livepeer...",
+    "waitingForExternalSource": "Se așteaptă sursa externă...",
+    "settingUpPublisher": "Se configurează editorul...",
+    "scheduledStream": "Flux programat",
+    "scheduledAt": "{{date}} la {{time}}",
+    "pressGoLiveWhenReady": "Apasă pe Activează când ești gata să pornești",
+    "connectionInterrupted": "Conexiune întreruptă",
+    "streamPausedReconnecting": "Fluxul tău este întrerupt. Se reconectează...",
+    "streamWillEnd": "Fluxul se va încheia dacă nu este reconectat",
+    "endStreamConfirmTitle": "Închei fluxul?",
+    "endStreamConfirmBody": "Închiderea acum va încheia fluxul live pentru toți spectatorii. Poți continua redarea în flux sau o poți încheia definitiv."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

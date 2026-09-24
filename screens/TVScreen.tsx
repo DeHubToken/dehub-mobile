@@ -123,7 +123,7 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
             hitSlop={10}
             style={styles.backBtn}
             accessibilityRole="button"
-            accessibilityLabel="Close player"
+            accessibilityLabel={t("tv.closePlayer")}
           >
             <Icon name="ChevronDown" size={24} color="#FFFFFF" />
           </Pressable>
@@ -287,7 +287,7 @@ export default function TVScreen() {
             onPress={() => setSearch("")}
             hitSlop={14}
             accessibilityRole="button"
-            accessibilityLabel="Clear search"
+            accessibilityLabel={t("sidebar.clearSearch")}
           >
             <Icon name="X" size={15} color={theme.colors.neutrals[400]} />
           </Pressable>

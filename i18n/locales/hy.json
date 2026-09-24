@@ -119,7 +119,12 @@
     "music": "Erazhshtoutyun",
     "live": "Ouvaghits",
     "newPosts_one": "{{count}} նոր գրառում",
-    "newPosts_other": "{{count}} նոր գրառում"
+    "newPosts_other": "{{count}} նոր գրառում",
+    "privateContent": "Գաղտնի բովանդակություն",
+    "privateContentBody": "Այս բովանդակությունը մասնավոր հաշվից է։ Հետևեք ստեղծողին՝ նրա գրառումները դիտելու համար։",
+    "noMoreContent": "Այլ բովանդակություն չկա",
+    "noPostsYet": "Դեռևս գրառումներ չկան։",
+    "pullToRefresh": "Քաշեք՝ թարմացնելու կամ փորձեք ավելի ուշ։"
   },
   "explore": {
     "all": "Bolaor",
@@ -710,7 +715,19 @@
       "replies": "Միայն իմ մեկնաբանություններին պատասխանները",
       "account": "Միայն ծանուցումներ իմ հաշվի մասին"
     },
-    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) բացում է հաղորդագրությունները և դառնում է ձեր առաջին մնացորդը։"
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) բացում է հաղորդագրությունները և դառնում է ձեր առաջին մնացորդը։",
+    "avatarUpdateFailed": "Պատկերակի թարմացումը ձախողվեց",
+    "coverUpdateFailed": "Շապիկի թարմացումը ձախողվեց",
+    "fixInvalidSocialLinks": "Խնդրում ենք ուղղել անվավեր սոցիալական հղումները",
+    "updateFailed": "Թարմացումը ձախողվեց",
+    "channelUrlOrHandle": "Ալիքի URL կամ անուն",
+    "inviteLinkPlaceholder": "Հրավերի հղում",
+    "profileUrlOrUsername": "Պրոֆիլի URL կամ օգտանուն",
+    "yourDisplayName": "Ձեր ցուցադրական անունը",
+    "usernameAvailable": "Օգտանունը հասանելի է",
+    "hideBadgeAndBalance": "Թաքցնել կրծքանշանը և մնացորդը",
+    "hideBadgeAndBalanceDesc": "Թաքցնում է ֆինանսական մանրամասները և անջատում է ձեզ ուղարկելը և խորհուրդները։",
+    "onChainPublicWarning": "Շղթայում գտնվող գործարքները հանրային են։ Ժետոններ կամ խորհուրդներ ուղարկելը կարող է բացահայտել ձեր դրամապանակի հասցեն, ներառյալ այն գործարքները, որոնք կատարվել են մինչև մասնավոր մնացորդի ռեժիմի միացումը։"
   },
   "common": {
     "mute": "Անջատել ձայնը",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Ինտերնետ կապ չկա",
     "noInternetBody": "Խնդրում ենք ստուգել ձեր ինտերնետ կապը և նորից փորձել։ DeHub օգտագործելու համար անհրաժեշտ է ինտերնետ կապ։",
     "noInternetStatus": "Անցանց - Ցանցային կապ չկա",
-    "noInternetHint": "Համոզվեք, որ Wi-Fi կամ բջջային տվյալները միացված են, այնուհետև հպեք «{{action}}»"
+    "noInternetHint": "Համոզվեք, որ Wi-Fi կամ բջջային տվյալները միացված են, այնուհետև հպեք «{{action}}»",
+    "saving": "Պահպանում…",
+    "offlineStatus": "Անցանց - Ցանցային կապ չկա"
   },
   "tip": {
     "title": "Send Tip",
@@ -1094,7 +1113,17 @@
     "post": "Grouem",
     "officialLogo": "Aha DeHub-i pashdonen logo-n! 🎨",
     "editedImage": "Aha dzer khmbagirvaats nkare!",
-    "generatedImage": "Aha dzer steghtsagortsevaats nkare!"
+    "generatedImage": "Aha dzer steghtsagortsevaats nkare!",
+    "toolCompleted": "{{name}} ավարտված",
+    "aiTool": "ԱՀ գործիք",
+    "cannotAnimateImage": "{{model}}-ը չի կարող անիմացնել կցված պատկերը։ Ընտրեք մեկ այլ վիդեո մոդել։",
+    "needsImageToAnimate": "{{model}}-ին անհրաժեշտ է պատկեր՝ անիմացնելու համար։ Կցեք մեկը կամ ընտրեք մեկ այլ մոդել։",
+    "couldNotReadImage": "Չհաջողվեց կարդալ այդ պատկերը",
+    "logoLoadFailed": "Չհաջողվեց բեռնել DeHub լոգոն — առանց դրա ստեղծելով",
+    "imageAttachedDescribe": "Պատկեր կցված է — նկարագրեք ձեր փոփոխությունները",
+    "couldNotPreparePost": "Չհաջողվեց պատրաստել դա հրապարակման համար",
+    "generateImage": "Ստեղծել պատկեր",
+    "generateVideo": "Ստեղծել տեսանյութ"
   },
   "commandCentre": {
     "title": "Hramanadar Kendr",
@@ -1606,7 +1635,10 @@
     "edit": "Խմբագրել",
     "deleteRequestTitle": "Ջնջե՞լ այս հայտը։",
     "deleteRequestDescription": "Սա հնարավոր չէ հետ շրջել։",
-    "attachmentTooLarge": "Յուրաքանչյուր ֆայլ պետք է լինի 20ՄԲ-ից փոքր"
+    "attachmentTooLarge": "Յուրաքանչյուր ֆայլ պետք է լինի 20ՄԲ-ից փոքր",
+    "deleteCommentA11y": "Ջնջել մեկնաբանությունը",
+    "sendCommentA11y": "Ուղարկել Մեկնաբանություն",
+    "requestOptions": "Հայտի տարբերակներ"
   },
   "auth": {
     "loginRequired": "Moutq pahanjvoum e",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Կոդ ուղարկել չհաջողվեց։ Խնդրում ենք նորից փորձել։",
     "invalidCodeRetry": "Անվավեր կոդ։ Խնդրում ենք նորից փորձել։",
     "invalidEmailOrPassword": "Անվավեր էլ. փոստ կամ գաղտնաբառ։",
-    "welcomeToDehub": "Բարի գալուստ DeHub"
+    "welcomeToDehub": "Բարի գալուստ DeHub",
+    "importWalletOptional": "Ներմուծել դրամապանակը (ըստ ցանկության)",
+    "couldNotSendCodeRetry": "Չհաջողվեց կոդ ուղարկել: Խնդրում ենք կրկին փորձել:",
+    "exploreWithoutSignIn": "Ուսումնասիրել առանց մուտք գործելու",
+    "continueExploring": "Շարունակել ուսումնասիրությունը",
+    "exploreWithoutSignInA11y": "Ուսումնասիրեք ԴեՀաբը ՝ առանց մուտք գործելու",
+    "continueExploringA11y": "Շարունակեք ուսումնասիրել DeHub - ը",
+    "importWalletRecommended": "Խորհուրդ են տրվում սոցիալական մուտքեր:",
+    "importWalletPurpose": "Այս գործիքը DeHub.io- ից առկա հաշիվներ ներմուծելու համար է:"
   },
   "messages": {
     "smartRepliesOff": "Առաջարկվող պատասխանները անջատված են",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Այն ավտոմատ հաղորդվել է։",
     "loadFailed": "Չհաջողվեց բեռնել ալիքները",
     "noSearchResults": "Ոչ մի ալիք չի համապատասխանում ձեր որոնմանը",
-    "noChannels": "Հասանելի ալիքներ չկան"
+    "noChannels": "Հասանելի ալիքներ չկան",
+    "pairCodeExpired": "Այդ կոդի ժամկետը լրացել է ։ Հեռուստացույցին խնդրեք նորը:",
+    "signedInOnTv": "Գրանցվել եք ձեր հեռուստացույցով",
+    "pairRefused": "Մերժված",
+    "pairIntro": "Բացեք DeHub - ը ձեր հեռուստացույցով և մուտքագրեք այն կոդը, որը ցույց է տալիս այստեղ:",
+    "pairNotFound": "Ոչ մի հեռուստացույց չի սպասում այդ կոդին: Հնարավոր է, որ դրա ժամկետը սպառվել է. հեռուստացույցին խնդրեք նորը:",
+    "wantsToSignIn": "ուզում է մուտք գործել այնպես, ինչպես դուք եք",
+    "pairWarning": "Հաստատեք դա միայն այն դեպքում, եթե դա հեռուստացույց է, որն այս պահին դիտում եք: Նշանների հաստատում, որոնք պահում են այդ կոդը ձեր հաշվում ։ Այն կկարողանա դիտել, հավանել և հետևել, չի կարող ծախսել, և դուք կարող եք ցանկացած պահի գրանցել այն Ակտիվ նիստերից:",
+    "pairApprove": "Այո, մուտք գործեք այս հեռուստացույցով",
+    "pairDeny": "Ոչ, ես դա չեմ խնդրել",
+    "pairDoneTitle": "Ձեր հեռուստացույցը մուտքագրվում է",
+    "pairDoneBody": "Այն արդեն պետք է ցուցադրի ձեր հաշիվը ։ Գրանցեք այն ցանկացած պահի Կարգավորումների → Գաղտնիության → Ակտիվ նիստերից:",
+    "closePlayer": "Փակել նվագարկիչը",
+    "declineFailed": "Չհաջողվեց մերժել դա. հնարավոր է, որ այն արդեն սպառվել է:",
+    "tipSentTvNotTold": "Խորհուրդն ուղարկվեց, բայց հեռուստացույցը չպատմվեց: Կանցնի ժամանակը ։",
+    "sentAmount": "Ուղարկված {{amount}} DHB",
+    "nothingWaiting": "Ոչինչ չի սպասում",
+    "nothingWaitingBody": "Երբ հուշում եք DeHub-ից ձեր հեռուստացույցով, այն հայտնվում է այստեղ՝ ձեր հաստատման համար։ Ձեր հեռուստացույցը երբեք չի պահում ձեր դրամապանակը։",
+    "yourTelevision": "Ձեր հեռուստացույցը",
+    "wantsToTip": "ցանկանում է ուղարկել հուշում · {{time}} թողել",
+    "tipTo": "դեպի {{name}}",
+    "tipForPost": "համար «{{title}}»",
+    "reviewAndApprove": "Վերանայել և հաստատել"
   },
   "top100": {
     "title": "Լավագույն 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Ougharkuhr haytse",
     "nameEmailRequired": "Anoune ev email-e partadiir en",
     "applicationSuccess": "Haytse haghordavorits ougharkvaats e! Menq kap kpahel.",
-    "applicationFailed": "Chehaghordagrvats ougharkuhr. Khndreum enq photsek nor angam."
+    "applicationFailed": "Chehaghordagrvats ougharkuhr. Khndreum enq photsek nor angam.",
+    "namePlaceholder": "Ջեյն Սմիթ"
   },
   "dao": {
     "title": "DAO գանձարան",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Ամրացվեց այս գրառման վերևում",
     "unpinnedToast": "Ամրացումը հեռացվեց",
     "pinFailed": "Չհաջողվեց ամրացնել այդ մեկնաբանությունը",
-    "kidsOnlyThread": "Այս գրառումը երեխաների համար է ։ Միայն Kids Mode - ը կարող է մեկնաբանել այն ։"
+    "kidsOnlyThread": "Այս գրառումը երեխաների համար է ։ Միայն Kids Mode - ը կարող է մեկնաբանել այն ։",
+    "editFailed": "Չհաջողվեց խմբագրել մեկնաբանությունը"
   },
   "postInfo": {
     "title": "Գdelaysայթի տdelaysdelays",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Շուտով",
     "signIn": "Մուտք",
     "tapToGetStarted": "Հպեք սկսելու համար",
-    "soon": "Շուտով"
+    "soon": "Շուտով",
+    "glossarySubtitle": "Իմացեք, թե ինչ է նշանակում յուրաքանչյուր պատկերակ և գործառույթ",
+    "searchGlossary": "Փնտրել բառարան...",
+    "noResultsFor": "Ոչ մի արդյունք «{{query}}»-ի համար",
+    "guideSubtitle": "Քայլ առ քայլ ուղեցույց յուրաքանչյուր գործառույթի համար",
+    "searchGuide": "Փնտրել ուղեցույցում...",
+    "repostsTab": "Վերաբեռնումներ",
+    "quotesTab": "Մեջբերումներ",
+    "noMoreReposts": "Այլևս վերաբեռնումներ չկան",
+    "noMoreQuotes": "Այլևս մեջբերումներ չկան",
+    "noRepostsYet": "Դեռ վերաբեռնումներ չկան",
+    "noQuotesYet": "Դեռ մեջբերումներ չկան"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Խաղեր, որոնք աշխատում են հենց այստեղ՝ հավելվածում։ Ոչինչ տեղադրելու կամ գնելու կարիք չկա — բաց կոդով և մատուցվում են հենց DeHub-ի կողմից։"
+    "intro": "Խաղեր, որոնք աշխատում են հենց այստեղ՝ հավելվածում։ Ոչինչ տեղադրելու կամ գնելու կարիք չկա — բաց կոդով և մատուցվում են հենց DeHub-ի կողմից։",
+    "noGameCalled": "Խաղասրահում «<slug>{{slug}}</slug>» անունով խաղ չկա։",
+    "seeWhatIsHere": "Տեսեք, թե ինչ կա այստեղ",
+    "locationNotGranted": "Տեղադրության թույլտվությունը չի տրվել։",
+    "signInToPlaceOnGlobe": "Մուտք գործեք՝ ձեզ գլոբուսի վրա տեղադրելու համար։",
+    "couldNotPlaceOnGlobe": "Չհաջողվեց ձեզ գլոբուսի վրա տեղադրել։",
+    "onTheGlobe": "Դուք գլոբուսի վրա եք՝ ցուցադրված մոտ 25 կմ տարածքում։",
+    "couldNotReach": "ՉՀԱՋՈՂՎԵՑ ՄՈՒՏՔ ԳՈՐԾԵԼ ԽԱՂԱՍՐԱՀ",
+    "didNotLoad": "{{title}} չի բեռնվել",
+    "needsConnection": "Խաղը սպասարկվում է dehub.io կայքից և ներբեռնվում է, երբ այն բացում եք, ուստի այն առաջին անգամ աշխատող միացում է պահանջում։ Ստուգեք ձեր միացումը և փորձեք նորից։",
+    "backToArcade": "Վերադառնալ արկադ",
+    "openPrivacySettings": "Բացել գաղտնիության կարգավորումները",
+    "privacyWarning": "Եթե դուք ունեք մեծ քանակությամբ թոքեններ կամ ապրում եք անապահով տարածքում, թաքցրեք ձեր կրծքանշանը և մնացորդը՝ մինչև այս գործառույթն օգտագործելը։ Շղթայում կատարվող գործարքները դեռևս բացահայտում են ձեր հասցեն։ Բացել կարգավորումները։",
+    "leaveGame": "Դուրս գալ խաղից",
+    "loadingGame": "Բեռնվում է {{title}}",
+    "hideThis": "Թաքցնել սա"
   },
   "videoLooks": {
     "button": "Տեսախցիկի տեսքեր",
@@ -3376,7 +3466,22 @@
     "someone": "Ինչ-որ մեկը",
     "oneTyping": "{{name}} գրում է…",
     "fewTyping": "{{names}} գրում են…",
-    "manyTyping": "{{count}} մարդ գրում է…"
+    "manyTyping": "{{count}} մարդ գրում է…",
+    "modBadge": "MOD",
+    "thisUser": "այս օգտատերը",
+    "unbanConfirm": "Վստա՞հ եք, որ ցանկանում եք հանել {{name}}-ին արգելանքից։",
+    "unban": "Հանել արգելանքից",
+    "unbanFailed": "Չհաջողվեց հանել օգտատիրոջը արգելանքից",
+    "onlineLabel": "Միացած",
+    "usersCount_one": "{{count}} օգտատեր",
+    "usersCount_other": "{{count}} օգտատերեր",
+    "totalMessages": "Ընդհանուր հաղորդագրություններ",
+    "slowMode": "Արագ ռեժիմ",
+    "cooldownSeconds": "{{seconds}} վայրկյան սառեցում",
+    "minStakeRequired": "Նվազագույն խաղադրույքի պահանջ",
+    "noParticipants": "Դեռևս մասնակիցներ չկան",
+    "noModerators": "Համակարգողներ չկան",
+    "noBannedUsers": "Արգելված օգտատերեր չկան"
   },
   "promptFeed": {
     "headline": "Ի՞նչ եք ուզում տեսնել։",
@@ -4128,7 +4233,26 @@
     "madeForKidsOffDesc": "Այս գրառումը ցուցադրում է երեխաներին, ովքեր օգտագործում են Kids Mode, և հեռացնում այն սովորական ֆիդերից:",
     "madeForKidsBlockedByMature": "Չափահաս նշված գրառումը չի կարող նաև հրապարակվել երեխաների համար:",
     "encoderTitle": "OBS / Կոդավորիչ",
-    "encoderHint": "Ստացեք RTMP մանրամասներ"
+    "encoderHint": "Ստացեք RTMP մանրամասներ",
+    "queueWaiting": "Սպասում…",
+    "queueUploading": "Բեռնվում է",
+    "queueProcessing": "Մշակվում է…",
+    "queueMinting": "Ստեղծվում է…",
+    "queuePosted": "Հրապարակված",
+    "queueFailed": "Ձախողված",
+    "noRetriesLeft": "(փորձեր չեն մնացել)",
+    "noUploads": "Ներբեռնումներ չկան",
+    "uploadsAppearHere": "Ձեր ներբեռնումները կհայտնվեն այստեղ",
+    "imagesTotalLimit": "Մեկ վերբեռնումում պատկերները պետք է կազմեն 100 ՄԲ կամ ավելի քիչ",
+    "chooseDatabase": "Ընտրեք ապակենտրոնացված տվյալների շտեմարան",
+    "livestreamMode": "Ուղիղ հեռարձակման ռեժիմ",
+    "addThumbnail": "Ավելացնել մանրապատկեր",
+    "showCover": "Ցույց տալ շապիկը",
+    "max60s": "Առավելագույնը 60 - ական թվականներ",
+    "confirmLivestream": "Հաստատել ուղիղ հեռարձակում",
+    "liveFeaturesTitle": "Ուղիղ հեռարձակման գործառույթներ",
+    "discardPostTitle": "Չեղարկե ՞ լ գրառումը",
+    "discardPostBody": "Ձեր գրառումը կկորչի: Փոխարենը ՝ կցանկանայի ՞ ք պահպանել այն որպես սևագիր ։"
   },
   "bounty": {
     "claimed": "Ստացված",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Միացրեք հաղորդագրությունները նորերը թույլատրելու համար։",
     "perMessageFee": "Վճար յուրաքանչյուր հաղորդագրության համար (DHB)",
     "perMessageFeeSub": "Գանձեք յուրաքանչյուր հաղորդագրության համար։ Դրեք 0՝ անվճար հաղորդագրությունների համար։ Կարող եք առանձին օգտատերերի անվճար հասանելիություն տալ։",
-    "allDisabled": "Ներկայումս բոլոր հաղորդագրություններն անջատված են։ Նորերն ըստ լռելյայն արգելափակված են։"
+    "allDisabled": "Ներկայումս բոլոր հաղորդագրություններն անջատված են։ Նորերն ըստ լռելյայն արգելափակված են։",
+    "failedToEdit": "Խմբագրումը ձախողվեց",
+    "messageDeleted": "Հաղորդագրությունը ջնջվել է",
+    "cantForwardFromDevice": "Այս հաղորդագրությունը հնարավոր չէ փոխանցել այս սարքից",
+    "messageForwarded": "Հաղորդագրությունն ուղարկված է",
+    "clearMessages": "Ջնջել հաղորդագրությունները",
+    "clearMessagesConfirm": "Ջնջե ՞ լ այս զրույցի բոլոր հաղորդագրությունները ։ Սա հնարավոր չէ չեղարկել ։",
+    "messagesCleared": "Հաղորդագրությունները մաքրվել են",
+    "failedToClearMessages": "Չհաջողվեց ջնջել հաղորդագրությունները",
+    "removedFreeAccess": "Հեռացվել է անվճար մուտքը {{name}}-ի համար",
+    "grantedFreeAccess": "Անվճար մուտք դեպի {{name}}",
+    "failedToUpdateFreeAccess": "Չհաջողվեց թարմացնել անվճար մուտքը",
+    "searchComingSoon": "Որոնել շուտով",
+    "tapToUnblock": "Սեղմեք արգելահանելու համար",
+    "userFallback": "Օգտվող",
+    "failedToBlock": "Չհաջողվեց արգելափակել",
+    "failedToDeleteConversation": "Չհաջողվեց ջնջել զրույցը",
+    "newDm": "Նոր ուղիղ հաղորդագրություն",
+    "noConversationsFound": "Ոչ մի զրույցչ չի գտել"
   },
   "editPost": {
     "mediaPermission": "Պահանջվում է մեդիագրադարանի թույլտվություն",
@@ -4467,7 +4609,17 @@
     "retry": "Նորից փորձել",
     "retrying": "Կրկին փորձվում է…",
     "retryQueued": "Կրկին մշակվում է",
-    "retryFailed": "Չհաջողվեց նորից փորձել այդ գրառումը"
+    "retryFailed": "Չհաջողվեց նորից փորձել այդ գրառումը",
+    "closeVideo": "Փակել տեսանյութը",
+    "rotateOrientation": "Պտտել կողմնորոշումը",
+    "videoProgress": "Տեսանյութի առաջընթացը՝ {{percent}}%",
+    "tapToSeek": "Հպեք՝ որոշակի դիրքի անցնելու համար",
+    "photoAccessToSaveImages": "Թույլատրել լուսանկարների գրադարան մուտքը՝ պատկերները պահելու համար",
+    "failedToSaveImage": "Չհաջողվեց պահել պատկերը",
+    "downloadImage": "Ներբեռնել պատկերը",
+    "goToImage": "Անցնել պատկեր {{index}}",
+    "allCaughtUp": "Դուք ամեն ինչ դիտել եք",
+    "checkBackForShorts": "Ավելի շատ կարճ տեսանյութերի համար ավելի ուշ ստուգեք"
   },
   "liveViewer": {
     "loadingStream": "Հեռարձակումը բեռնվում է...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Արդյունքների վերջ",
-    "searchDehub": "Որոնել DeHub-ում"
+    "searchDehub": "Որոնել DeHub-ում",
+    "tabVoice": "Ձայն",
+    "trendingThisWeek": "Այս շաբաթվա հիթերը",
+    "trendingPosts": "Հիթային գրառումներ",
+    "trendingImages": "Հիթային պատկերներ",
+    "trendingVideos": "Հիթային տեսանյութեր",
+    "trendingVoicePosts": "Հիթային ձայնային գրառումներ",
+    "trendingLive": "Հիթային ուղիղ եթեր",
+    "seeAll": "Տեսնել բոլորը",
+    "noAccountsFound": "Հաշիվներ չեն գտնվել",
+    "tryDifferentKeywords": "Փորձեք այլ բանալի բառեր կամ ստուգեք ուղղագրությունը",
+    "noContentResults": "Բովանդակության արդյունքներ չկան",
+    "recentSearches": "Վերջին որոնումները",
+    "noTrendingThisWeek": "Այս շաբաթ հիթային բովանդակություն չկա",
+    "closeFilterOptions": "Փակել զտիչի տարբերակները",
+    "openFilterOptions": "Բացել զտիչի տարբերակները"
   },
   "notifPrompt": {
     "stayInLoop": "Մնացեք տեղեկացված",
@@ -4727,7 +4894,26 @@
     "externalTitle": "Արտաքին հոսքային ռեժիմ",
     "externalLiveHint": "Ձեր հոսքը հեռարձակվում է արտաքին ծրագրային ապահովման միջոցով ։ Հավելվածի ներկառուցված տեսախցիկն անջատված է ։",
     "externalHint": "Միացրեք ձեր հոսքային ծրագիրը ՝ օգտագործելով ստորև բերված մանրամասները, այնուհետև սկսեք հեռարձակել:",
-    "useInAppCamera": "Փոխարենը օգտագործեք ներհավելվածային տեսախցիկ"
+    "useInAppCamera": "Փոխարենը օգտագործեք ներհավելվածային տեսախցիկ",
+    "livestreamEnded": "Ուղիղ եթերը ավարտվեց",
+    "chatEnabled": "Զրույցը միացված է",
+    "chatDisabled": "Զրույցը անջատված է",
+    "failedToUpdateSettings": "Չհաջողվեց թարմացնել կարգավորումները",
+    "networkLostReconnecting": "Ցանցը կորել է — հեռարձակումը դադարեցված է։ Միացվում է նորից…",
+    "openingViewer": "Դիտողը բացվում է...",
+    "cameraPermissionRequired": "Տեսախցիկի թույլտվություն է պահանջվում",
+    "grantPermission": "Տրամադրման թույլտվություն",
+    "waitingForLivepeer": "Սպասում ենք Livepeer - ի...",
+    "waitingForExternalSource": "Սպասում ենք արտաքին աղբյուրի...",
+    "settingUpPublisher": "Ինչպես ստեղծել հրատարակիչ...",
+    "scheduledStream": "Պլանավորված հոսք",
+    "scheduledAt": "{{date}} {{time}}- ում",
+    "pressGoLiveWhenReady": "Սեղմեք Go Live, երբ պատրաստ լինեք սկսելու",
+    "connectionInterrupted": "Կապն ընդհատվել է",
+    "streamPausedReconnecting": "Ձեր հոսքը դադարեցված է ։ Վերամիավորում...",
+    "streamWillEnd": "Հոսքը կավարտվի, եթե կրկին միացված չլինի",
+    "endStreamConfirmTitle": "Ավարտե ՞ լ հոսքը",
+    "endStreamConfirmBody": "Այժմ փակելը կավարտի ձեր ուղիղ հեռարձակումը բոլոր հեռուստադիտողների համար ։ Կարող եք շարունակել հոսքը կամ ընդմիշտ ավարտել այն ։"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

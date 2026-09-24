@@ -119,7 +119,12 @@
     "music": "Aýdym-saz",
     "live": "Göni",
     "newPosts_one": "{{count}} täze bildiriş",
-    "newPosts_other": "{{count}} täze bildiriş"
+    "newPosts_other": "{{count}} täze bildiriş",
+    "privateContent": "Hususy Kontent",
+    "privateContentBody": "Bu kontent hususy hasapdan. Onuň postlaryny görmek üçin dörediji ýazylyň.",
+    "noMoreContent": "Beýleki kontent ýok",
+    "noPostsYet": "Heniz post ýok.",
+    "pullToRefresh": "Täzelemek üçin aşak çekip goýberiň ýa-da soňrak synanyşyň."
   },
   "explore": {
     "all": "Ählisi",
@@ -710,7 +715,19 @@
     "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
     "smsDepositAction": "{{dhb}} DHB iberiň",
     "smsBalance": "{{dhb}} DHB galdy (${{usd}})",
-    "smsBalanceMessages": "Takmynan {{count}} goşmaça habar"
+    "smsBalanceMessages": "Takmynan {{count}} goşmaça habar",
+    "avatarUpdateFailed": "Awatar täzelenmesi başa barmady",
+    "coverUpdateFailed": "Daşky bezeg täzelenmesi başa barmady",
+    "fixInvalidSocialLinks": "Ýalňyş sosial baglanyşyklary düzediň",
+    "updateFailed": "Täzelenme başa barmady",
+    "channelUrlOrHandle": "Kanalyň URL-i ýa-da tutawajy",
+    "inviteLinkPlaceholder": "Çakylyk baglanyşygy",
+    "profileUrlOrUsername": "Profil URL-i ýa-da ulanyjy ady",
+    "yourDisplayName": "Siziň görkezme adyňyz",
+    "usernameAvailable": "Ulanyjy ady elýeterli",
+    "hideBadgeAndBalance": "Nyşany we balansi gizle",
+    "hideBadgeAndBalanceDesc": "Bu maliýe maglumatlaryny gizleýär we size iberilenleri we maslahatlary öçürýär.",
+    "onChainPublicWarning": "Zynjyrdaky amallar köpçülikleýin. Tokenlary ýa-da maslahatlary ibermek, hususy balans tertibi işjeňleşdirilmezden ozal edilen amallar bilen birlikde, siziň hamyň salgyňyzy açyp biler."
   },
   "common": {
     "mute": "Sesi öçür",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Internet birikmesi ýok",
     "noInternetBody": "Internet birikmäňizi barlaň we täzeden synanyşyň. DeHub-dan peýdalanmak üçin internete birikmek zerur.",
     "noInternetStatus": "Ofllaýn - Tor birikmesi ýok",
-    "noInternetHint": "Wi-Fi ýa-da mobil maglumatlaryňyzyň ýakylygyny üpjün ediň, soňra \"{{action}}\" düwmesine basyň"
+    "noInternetHint": "Wi-Fi ýa-da mobil maglumatlaryňyzyň ýakylygyny üpjün ediň, soňra \"{{action}}\" düwmesine basyň",
+    "saving": "Ýazylýar…",
+    "offlineStatus": "Offline - Tor baglanyşygy ýok"
   },
   "tip": {
     "title": "Send Tip",
@@ -1094,7 +1113,17 @@
     "post": "Ýazgy",
     "officialLogo": "Ine DeHub-yň resmi nyşany! 🎨",
     "editedImage": "Ine üýtgedilen suratyňyz!",
-    "generatedImage": "Ine döredilen suratyňyz!"
+    "generatedImage": "Ine döredilen suratyňyz!",
+    "toolCompleted": "{{name}} tamamlandy",
+    "aiTool": "AI gurallar",
+    "cannotAnimateImage": "{{model}} birleşdirilen suraty janlandyryp bilmez. Başga wideo modelini saýlaň.",
+    "needsImageToAnimate": "{{model}} janlandyrmak üçin surata mätäç. Birini birleşdiriň ýa-da başga model saýlaň.",
+    "couldNotReadImage": "Şol suraty okap bolmady",
+    "logoLoadFailed": "DeHub logosyny ýüklemek başa barmady — onsuz döredilýär",
+    "imageAttachedDescribe": "Surat birleşdirildi — üýtgeşmeleriňizi suratlandyryň",
+    "couldNotPreparePost": "Şonuň üçin taýýarlap bolmady",
+    "generateImage": "Resimi Ewir Et",
+    "generateVideo": "Video ýarat"
   },
   "commandCentre": {
     "title": "Buýruk merkezi",
@@ -1604,7 +1633,10 @@
     "edit": "Üýtget",
     "deleteRequestTitle": "Bu haýyş pozulsynmy?",
     "deleteRequestDescription": "Muny yzyna gaýtaryp bolmaýar.",
-    "attachmentTooLarge": "Her faýl 20MB-dan az bolmaly"
+    "attachmentTooLarge": "Her faýl 20MB-dan az bolmaly",
+    "deleteCommentA11y": "Komentary Sil",
+    "sendCommentA11y": "Komentary iber",
+    "requestOptions": "Çykyş saýlamalary talap et"
   },
   "auth": {
     "loginRequired": "Girmek talap edilýär",
@@ -1653,7 +1685,15 @@
     "sendCodeFailedRetry": "Kod ibermek başa barmady. Täzeden synanyşyň.",
     "invalidCodeRetry": "Nädogry kod. Täzeden synanyşyň.",
     "invalidEmailOrPassword": "Nädogry e-poçta ýa-da parol.",
-    "welcomeToDehub": "DeHub-a hoş geldiňiz"
+    "welcomeToDehub": "DeHub-a hoş geldiňiz",
+    "importWalletOptional": "Kalkülot (opsional)",
+    "couldNotSendCodeRetry": "Kod iberilmedi. Lütfen gaýtalap geçiň.",
+    "exploreWithoutSignIn": "Men hiç hili gol çekmän barlap barýaryn",
+    "continueExploring": "Aragatnaşmagy dowam ediň",
+    "exploreWithoutSignInA11y": "DeHub-da imza goýman barlaň",
+    "continueExploringA11y": "DeHub-y barlaň",
+    "importWalletRecommended": "Içki girişler maslahat berilýär.",
+    "importWalletPurpose": "Bu esbap DeHub.io-da bar hasabatlary import etmek üçin."
   },
   "messages": {
     "smartRepliesOff": "Teklip edilýän jogaplar öçürildi",
@@ -1768,7 +1808,29 @@
     "reportedAutomatically": "Awtomatiki habar berildi.",
     "loadFailed": "Kanallar ýüklenip bilmedi",
     "noSearchResults": "Gözlegiňize gabat gelýän kanal ýok",
-    "noChannels": "Elýeterli kanal ýok"
+    "noChannels": "Elýeterli kanal ýok",
+    "pairCodeExpired": "Kodyň soňy geldi. Telewizýadan täze birini soraň.",
+    "signedInOnTv": "Men ony telegepleşikde görýärin",
+    "pairRefused": "Inkär etmek",
+    "pairIntro": "DeHub-y telegepleşikde açyň we bu ýerde görkezilen kody ýazyň.",
+    "pairNotFound": "Hiç bir telegepleşik bu kody garaşmaýar. Bu wagt tamamlanandyr — telegepleşikden täze birini soraň.",
+    "wantsToSignIn": "men seniň ýaly bolmak isleýärin",
+    "pairWarning": "Eger siz şu wagt seredýän telegepleşik bolsaňyz, muny kabul ediň. Bu kody siziň hasabatyňyzda saklaýanlaryň ählisiniň alamatlaryny tassyklaň. Ol görmäge, diňlemäge we ulanmaga ukyply bolar — ol harç edip bilmez we siz ony her wagt hereketli sessiýadan imzalap bilersiňiz.",
+    "pairApprove": "Hawa, bu telegepleşikde ýazylan",
+    "pairDeny": "Ýok, men ondan soramadym",
+    "pairDoneTitle": "Telewizýa açylýar",
+    "pairDoneBody": "Bu siziň hasabatyňyzy öňünden görkezmeli. Bulary her wagt Settings Privacy Active → → sessiýasyndan çykaryň.",
+    "closePlayer": "Ýakyndan oýnaýjy",
+    "declineFailed": "Ol muny ret edip bilmedi — ol eýýäm tamamlanandyr.",
+    "tipSentTvNotTold": "Tip iberildi, ýöne telegepleşik habar berilmedi. Wagtyň geçmegi bilen,",
+    "sentAmount": "Sent {{amount}} DHB",
+    "nothingWaiting": "Hiç zat garaşmaýar",
+    "nothingWaitingBody": "DeHub-dan telewideniýäňize sowgat ibereniňizde, ol siziň tassyklamagyňyz üçin şu ýerde peýda bolýar. Telewideniýäňiz hiç haçan gapjygynyzy saklamaýar.",
+    "yourTelevision": "Siziň telewideniýäňiz",
+    "wantsToTip": "sowgat ibermegi isleýär · {{time}} goýdy",
+    "tipTo": "{{name}}-a",
+    "tipForPost": "“{{title}}” üçin",
+    "reviewAndApprove": "Gözden geçiriň we tassyklanyň"
   },
   "top100": {
     "title": "Ýokary 100",
@@ -2040,7 +2102,8 @@
     "submitApplication": "Arza ibermek",
     "nameEmailRequired": "At we e-poçta hökmany",
     "applicationSuccess": "Arza üstünlikli iberildi! Habarlaşarys.",
-    "applicationFailed": "Ibermek başa barmady. Gaýtadan synanyşyň."
+    "applicationFailed": "Ibermek başa barmady. Gaýtadan synanyşyň.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO hazynasy",
@@ -2200,7 +2263,8 @@
     "pinnedToast": "Bu ýazgynyň iň ýokarsynda berkidildi",
     "unpinnedToast": "Berkitme aýryldy",
     "pinFailed": "Ol teswiri berkidip bolmady",
-    "kidsOnlyThread": "Bu binalar çagalar üçin howply. Bu barada diňe Çagalar Mody gürrüň berip biler."
+    "kidsOnlyThread": "Bu binalar çagalar üçin howply. Bu barada diňe Çagalar Mody gürrüň berip biler.",
+    "editFailed": "Teswir redaktirlemek başa barmady"
   },
   "postInfo": {
     "title": "Ýazgy maglumaty",
@@ -3241,14 +3305,40 @@
     "comingSoon": "Ýakynda",
     "signIn": "Gir",
     "tapToGetStarted": "Başlamak üçin basyň",
-    "soon": "Ýakynda"
+    "soon": "Ýakynda",
+    "glossarySubtitle": "Her nyşan we aýratynlyk näme aňladýandygyny öwreniň",
+    "searchGlossary": "Glosariýa gözläň...",
+    "noResultsFor": "\"{{query}}\" üçin netije ýok",
+    "guideSubtitle": "Her aýratynlygyň ädimme-ädim görkezilişi",
+    "searchGuide": "Görkeziji gözläň...",
+    "repostsTab": "Gaýtadan goýlanlar",
+    "quotesTab": "Sitatalar",
+    "noMoreReposts": "Gaýtadan goýlan ýok",
+    "noMoreQuotes": "Sitata ýok",
+    "noRepostsYet": "Heniz gaýtadan goýlan ýok",
+    "noQuotesYet": "Heniz sitata ýok"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Şu ýerde, programmanyň içinde işleýän oýunlar. Gurnamaga zat ýok, satyn almaga zat ýok — açyk çeşme we DeHub-yň özi hödürleýär."
+    "intro": "Şu ýerde, programmanyň içinde işleýän oýunlar. Gurnamaga zat ýok, satyn almaga zat ýok — açyk çeşme we DeHub-yň özi hödürleýär.",
+    "noGameCalled": "Arkada <slug>{{slug}}</slug> atly oýun ýok.",
+    "seeWhatIsHere": "Näme bar, görüň",
+    "locationNotGranted": "Ýerleşdirme rugsatnamasy berilmändi.",
+    "signInToPlaceOnGlobe": "Özüňizi planetada ýerleşdirmek üçin giriň.",
+    "couldNotPlaceOnGlobe": "Sizi planetada ýerleşdirip bolmady.",
+    "onTheGlobe": "Siz planetada — takmynan 25 km töweregi görkezilýär.",
+    "couldNotReach": "ARKADA ÝETIP BOLMADY",
+    "didNotLoad": "{{title}} ýüklenmedi",
+    "needsConnection": "Oýun dehub.io-dan hyzmat edilýär we ony açanyňyzda göçürilýär, şonuň üçin ilkinji gezek işläp duran birikme gerek. Ony barlaň we täzeden synanyşyň.",
+    "backToArcade": "Arkada gaýdyp geliň",
+    "openPrivacySettings": "Gizlinlik sazlamalaryny aç",
+    "privacyWarning": "Köplenç nyşanlaryň köpüsini saklaýan bolsaňyz ýa-da howpsuz däl ýerde ýaşaýan bolsaňyz, bu aýratynlygy ulanmazdan ozal nyşanyňyzy we balansiňizi gizläň. Zynjyrdaky amallar adresiňizi açyp görkezýär. Sazlamalary açyň.",
+    "leaveGame": "Oýundan çykyň",
+    "loadingGame": "{{title}} ýüklenýär",
+    "hideThis": "Muny gizle"
   },
   "videoLooks": {
     "button": "Kamera görnüşleri",
@@ -3374,7 +3464,22 @@
     "someone": "Kimdir",
     "oneTyping": "{{name}} ýazýar…",
     "fewTyping": "{{names}} ýazýarlar…",
-    "manyTyping": "{{count}} adam ýazýar…"
+    "manyTyping": "{{count}} adam ýazýar…",
+    "modBadge": "MOD",
+    "thisUser": "bu ulanyjy",
+    "unbanConfirm": "{{name}}-niň ban-yny aýyrmak isleýärsiňizmi?",
+    "unban": "Ban-yny aýyr",
+    "unbanFailed": "Ulanyjynyň ban-yny aýyrmak başa barmady",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} ulanyjy",
+    "usersCount_other": "{{count}} ulanyjylar",
+    "totalMessages": "Jemi hatlar",
+    "slowMode": "Sazlamalar",
+    "cooldownSeconds": "{{seconds}} s sowadyjy",
+    "minStakeRequired": "Iň pes goýum talap edilýär",
+    "noParticipants": "Heniz gatnaşyjylar ýok",
+    "noModerators": "Moderatorlar ýok",
+    "noBannedUsers": "Bannly ulanyjylar ýok"
   },
   "promptFeed": {
     "headline": "Näme görmek isleýärsiňiz?",
@@ -4126,7 +4231,26 @@
     "madeForKidsBlockedByMature": "Ýetginjek hökmünde bellenen post çagalar üçin hem neşir edilip bilmeýär.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "RTMP detallary alıň",
-    "markMadeForKids": "Çagalar üçin ýasalan marka"
+    "markMadeForKids": "Çagalar üçin ýasalan marka",
+    "queueWaiting": "Garaşylýar…",
+    "queueUploading": "Ýüklenýär",
+    "queueProcessing": "Proses edilýär…",
+    "queueMinting": "Mint edilýär…",
+    "queuePosted": "Ýerleşdirildi",
+    "queueFailed": "Başar",
+    "noRetriesLeft": "(gaýtadan synanyşyk ýok)",
+    "noUploads": "Ýüklemeler ýok",
+    "uploadsAppearHere": "Ýüklemeleriňiz şu ýerde peýda bolar",
+    "imagesTotalLimit": "Bir wagtda ýüklenen suratlaryň jemi 100 MB ýa-da ondan az bolmaly",
+    "chooseDatabase": "Desentralizirlenen maglumatlar bazasyny saýlaň",
+    "livestreamMode": "Göni ýaýlym tertibi",
+    "addThumbnail": "Saýlama surat goşuň",
+    "showCover": "Ýapgy görkez",
+    "max60s": "Iň köp 60 sekunt",
+    "confirmLivestream": "Göni ýaýlymy tassyklaň",
+    "liveFeaturesTitle": "Göni ýaýlym aýratynlyklary",
+    "discardPostTitle": "Ýazgyny ýatyrjakmy?",
+    "discardPostBody": "Siziň ýazgyňyz ýitip gider. Muny ýerine taslama hökmünde saklamaga isläňizmi?"
   },
   "bounty": {
     "claimed": "Alyndy",
@@ -4442,7 +4566,25 @@
     "allowNewDmsOff": "Täze habarlara rugsat bermek üçin DM-leri işjeňleşdiriň.",
     "perMessageFee": "Her habar üçin töleg (DHB)",
     "perMessageFeeSub": "Her habar üçin töleg al. Mugt DM üçin 0 goý. Käbir ulanyjylara mugt elýeterlilik berip bilersiňiz.",
-    "allDisabled": "Häzir ähli DM öçürilen. Täze DM-ler deslapky ýagdaýda blokirlenýär."
+    "allDisabled": "Häzir ähli DM öçürilen. Täze DM-ler deslapky ýagdaýda blokirlenýär.",
+    "failedToEdit": "Üýtgetmek başa barmady",
+    "messageDeleted": "Habar öçürildi",
+    "cantForwardFromDevice": "Bu habary şu enjamdan iberip bolmaýar",
+    "messageForwarded": "Habar iberildi",
+    "clearMessages": "Hatlary arassalaň",
+    "clearMessagesConfirm": "Bu söhbetdäki ähli habarlary öçürmek isleýärsiňizmi? Muny yzyna alyp bolmaz.",
+    "messagesCleared": "Hatlary arassalandy",
+    "failedToClearMessages": "Hatlary arassalamak başa barmady",
+    "removedFreeAccess": "{{name}} üçin mugt elýeterliligi aýyrdy",
+    "grantedFreeAccess": "{{name}} üçin mugt elýeterliligi berdi",
+    "failedToUpdateFreeAccess": "Mugtyň elýeterliligini täzelemek başa barmady",
+    "searchComingSoon": "Gözleg ýakyn wagtda",
+    "tapToUnblock": "Blokdan çykmak üçin basyň",
+    "userFallback": "user",
+    "failedToBlock": "Blok etmek başa barmady",
+    "failedToDeleteConversation": "Söhbetdeşligi öçürmek başa barmady",
+    "newDm": "Täze göni hat",
+    "noConversationsFound": "Söhbetdeşlik tapylmady"
   },
   "editPost": {
     "mediaPermission": "Media kitaphanasyna rugsat gerek",
@@ -4464,7 +4606,17 @@
     "retry": "Gaýtalaň",
     "retrying": "Geri çekilmek...",
     "retryQueued": "Gaýtalaň",
-    "retryFailed": "Men bu posty gaýtaryp bilmedim"
+    "retryFailed": "Men bu posty gaýtaryp bilmedim",
+    "closeVideo": "Wideo ýapmak",
+    "rotateOrientation": "Öwrülişigi öwürmek",
+    "videoProgress": "Video dowamlylygy: {{percent}}%",
+    "tapToSeek": "Ýörite ýere geçmek üçin basyň",
+    "photoAccessToSaveImages": "Suratlary ýatda saklamak üçin fotosuratlaryň kitaphanasyna elýeterliligi rugsat beriň",
+    "failedToSaveImage": "Surat ýatda saklanyp bilmedi",
+    "downloadImage": "Surat göçürip alyň",
+    "goToImage": "Surata geçiň {{index}}",
+    "allCaughtUp": "Hemmesini gördüňiz",
+    "checkBackForShorts": "Soňra täzelenmeler üçin täzeden barlap görüň"
   },
   "liveViewer": {
     "loadingStream": "Ýaýlym ýüklenýär...",
@@ -4474,7 +4626,22 @@
   },
   "search": {
     "endOfResults": "Netijeleriň ahyry",
-    "searchDehub": "DeHub-da gözle"
+    "searchDehub": "DeHub-da gözle",
+    "tabVoice": "Sesiň",
+    "trendingThisWeek": "Bu hepdedäki meşhur",
+    "trendingPosts": "Meşhur ýazgylar",
+    "trendingImages": "Meşhur suratlar",
+    "trendingVideos": "Meşhur wideolar",
+    "trendingVoicePosts": "Meşhur sesli ýazgylar",
+    "trendingLive": "Meşhur göni ýaýlym",
+    "seeAll": "Hemmesini gör",
+    "noAccountsFound": "Hasap tapylmady",
+    "tryDifferentKeywords": "Başga açar sözleri synanyşyň ýa-da ýalňyşlygyňyzy barlaň",
+    "noContentResults": "Kontent netijeleri ýok",
+    "recentSearches": "Soňky gözlegler",
+    "noTrendingThisWeek": "Bu hepdede meşhur kontent ýok",
+    "closeFilterOptions": "Süzgüç opsiýalaryny ýapyň",
+    "openFilterOptions": "Süzgüç opsiýalaryny açyň"
   },
   "notifPrompt": {
     "stayInLoop": "Habarly boluň",
@@ -4724,7 +4891,26 @@
     "externalTitle": "Daşary akma modu",
     "externalLiveHint": "Siziň akyşyňyz daşary ýardamy arkaly diridir. Ulymaç kamerasy ýitirilýär.",
     "externalHint": "Öwrenme ýardamyny aşakdaky jikme-jikleri ulanyp, soňra ýaýratmaga başlaň.",
-    "useInAppCamera": "Gaýtam, ulagda kamera ulan"
+    "useInAppCamera": "Gaýtam, ulagda kamera ulan",
+    "livestreamEnded": "Göni ýaýlym tamamlandy",
+    "chatEnabled": "Gepleşikler işjeňleşdirildi",
+    "chatDisabled": "Gepleşikler öçürildi",
+    "failedToUpdateSettings": "Sazlamalar täzelenip bilmedi",
+    "networkLostReconnecting": "Tor ýitdi — ýaýlym togtadyldy. Täzeden birikdirilýär…",
+    "openingViewer": "Görkeziji açylýar...",
+    "cameraPermissionRequired": "Kamera rugsatnamasy gerek",
+    "grantPermission": "Izn ber",
+    "waitingForLivepeer": "Livepeer garaşylýar...",
+    "waitingForExternalSource": "Daşky çeşmä garaşylýar...",
+    "settingUpPublisher": "Neşirçi gurulýar...",
+    "scheduledStream": "Meýilnamalaşdyrylan ýaýlym",
+    "scheduledAt": "{{date}}, {{time}}-de",
+    "pressGoLiveWhenReady": "Taý bolanyňyzda başlamak üçin \"Go Live\" düwmesine basyň",
+    "connectionInterrupted": "Aragatnaşyk üzüldi",
+    "streamPausedReconnecting": "Ýaýlymyňyz togtadyldy. Täzeden birikdirilýär...",
+    "streamWillEnd": "Täzeden birikdirilmeýän bolsa, ýaýlym gutarar",
+    "endStreamConfirmTitle": "Ýaýlymy bes etmekmi?",
+    "endStreamConfirmBody": "Indi ýapmak ähli tomaşaçylar üçin göni ýaýlymyňyzy gutarar. Ýaýlymy dowam etdirip ýa-da hemişelik bes edip bilersiňiz."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

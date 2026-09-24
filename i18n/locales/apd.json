@@ -119,7 +119,12 @@
     "music": "موسيقى",
     "live": "بث مباشر",
     "newPosts_one": "{{count}} منشور جديد",
-    "newPosts_other": "{{count}} منشورات جديدة"
+    "newPosts_other": "{{count}} منشورات جديدة",
+    "privateContent": "محتوى خاص",
+    "privateContentBody": "هذا المحتوى من حساب خاص. تابع المنشئ لعرض منشوراته.",
+    "noMoreContent": "لا يوجد المزيد من المحتوى",
+    "noPostsYet": "لا توجد منشورات بعد.",
+    "pullToRefresh": "اسحب للتحديث أو حاول مرة أخرى لاحقًا."
   },
   "explore": {
     "all": "الكل",
@@ -710,7 +715,19 @@
     "smsRemoveNumber": "احذف الرقم ده",
     "smsRemoveFailed": "ما قدرنا نحذف الرقم ده.",
     "smsNumberRemoved": "الرقم تم حذفه",
-    "smsCountryBlocked": "ما بنقدر نرسل نصوص للدولة دي حالياً."
+    "smsCountryBlocked": "ما بنقدر نرسل نصوص للدولة دي حالياً.",
+    "avatarUpdateFailed": "فشل تحديث الصورة الرمزية",
+    "coverUpdateFailed": "فشل تحديث الغلاف",
+    "fixInvalidSocialLinks": "يرجى إصلاح روابط التواصل الاجتماعي غير الصالحة",
+    "updateFailed": "فشل التحديث",
+    "channelUrlOrHandle": "رابط القناة أو المعرف",
+    "inviteLinkPlaceholder": "رابط الدعوة",
+    "profileUrlOrUsername": "رابط الملف الشخصي أو اسم المستخدم",
+    "yourDisplayName": "اسم العرض الخاص بك",
+    "usernameAvailable": "اسم المستخدم متاح",
+    "hideBadgeAndBalance": "إخفاء الشارة والرصيد",
+    "hideBadgeAndBalanceDesc": "يخفي التفاصيل المالية ويعطل الإرسال والإكراميات إليك.",
+    "onChainPublicWarning": "المعاملات على السلسلة عامة. قد يكشف إرسال الرموز أو الإكراميات عن عنوان محفظتك، بما في ذلك المعاملات التي تمت قبل تمكين وضع الرصيد الخاص."
   },
   "common": {
     "mute": "اكتم الصوت",
@@ -760,7 +777,9 @@
     "noInternetTitle": "لا يوجد اتصال بالإنترنت",
     "noInternetBody": "يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى. تحتاج إلى الاتصال بالإنترنت لاستخدام DeHub.",
     "noInternetStatus": "غير متصل - لا يوجد اتصال بالشبكة",
-    "noInternetHint": "تأكد من تشغيل Wi-Fi أو بيانات الجوال، ثم اضغط على \"{{action}}\""
+    "noInternetHint": "تأكد من تشغيل Wi-Fi أو بيانات الجوال، ثم اضغط على \"{{action}}\"",
+    "saving": "جارٍ الحفظ…",
+    "offlineStatus": "غير متصل - لا يوجد اتصال بالشبكة"
   },
   "tip": {
     "title": "ابعث هدية",
@@ -1094,7 +1113,17 @@
     "post": "منشور",
     "officialLogo": "دا الشعار الرسمي لـ DeHub! 🎨",
     "editedImage": "دي صورتك المعدّلة!",
-    "generatedImage": "دي صورتك المولّدة!"
+    "generatedImage": "دي صورتك المولّدة!",
+    "toolCompleted": "{{name}} اكتمل",
+    "aiTool": "أداة الذكاء الاصطناعي",
+    "cannotAnimateImage": "لا يمكن لـ {{model}} تحريك صورة مرفقة. اختر نموذج فيديو آخر.",
+    "needsImageToAnimate": "يحتاج {{model}} إلى صورة لتحريكها. أرفق واحدة أو اختر نموذجًا آخر.",
+    "couldNotReadImage": "تعذر قراءة تلك الصورة",
+    "logoLoadFailed": "تعذر تحميل شعار DeHub — جارٍ الإنشاء بدونه",
+    "imageAttachedDescribe": "تم إرفاق صورة — صف تعديلاتك",
+    "couldNotPreparePost": "تعذر إعداد ذلك للنشر",
+    "generateImage": "توليد صورة",
+    "generateVideo": "شغّل فيديو"
   },
   "commandCentre": {
     "title": "مركز الأوامر",
@@ -1606,7 +1635,10 @@
     "edit": "عدّل",
     "deleteRequestTitle": "تمسح الطلب دا؟",
     "deleteRequestDescription": "دا ما بيرجع.",
-    "attachmentTooLarge": "كل ملف لازم يكون أقل من 20MB"
+    "attachmentTooLarge": "كل ملف لازم يكون أقل من 20MB",
+    "deleteCommentA11y": "امسح التعليق",
+    "sendCommentA11y": "أرسل تعليق",
+    "requestOptions": "خيارات الطلب"
   },
   "auth": {
     "loginRequired": "مطلوب تسجيل دخول",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "تعذر إرسال الرمز. يرجى المحاولة مرة أخرى.",
     "invalidCodeRetry": "رمز غير صالح. يرجى المحاولة مرة أخرى.",
     "invalidEmailOrPassword": "بريد إلكتروني أو كلمة مرور غير صالحة.",
-    "welcomeToDehub": "مرحباً بك في DeHub"
+    "welcomeToDehub": "مرحباً بك في DeHub",
+    "importWalletOptional": "استيراد محفظة (اختياري)",
+    "couldNotSendCodeRetry": "ما قدرنا نرسل الكود. جرب تاني.",
+    "exploreWithoutSignIn": "استكشف بدون تسجيل دخول",
+    "continueExploring": "واصل الاستكشاف",
+    "exploreWithoutSignInA11y": "استكشف ديهب بدون تسجيل دخول",
+    "continueExploringA11y": "واصل استكشاف DeHub",
+    "importWalletRecommended": "تسجيل الدخول عبر السوشيال ميديا موصى به.",
+    "importWalletPurpose": "الأداة دي عشان تستورد الحسابات القديمة من DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "اتقفلت الردود المقترحة",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "اتبلّغ عنها أوتوماتيك.",
     "loadFailed": "ما قدرنا نحمّل القنوات",
     "noSearchResults": "ما في قنوات بتطابق بحثك",
-    "noChannels": "ما في قنوات متوفرة"
+    "noChannels": "ما في قنوات متوفرة",
+    "pairCodeExpired": "الكود ده انتهى صلاحيته. اطلب واحد جديد من التلفزيون.",
+    "signedInOnTv": "سجلت دخول في التلفزيون بتاعك",
+    "pairRefused": "رفض",
+    "pairIntro": "افتح الديهب في تلفزيونك واكتب الكود اللي بيظهر فيه هنا.",
+    "pairNotFound": "مافي تلفزيون منتظر الكود دا. ممكن يكون انتهى صلاحيته — اسأل التلفزيون يجيب ليك واحد جديد.",
+    "wantsToSignIn": "عايز يسجل دخول باسمك",
+    "pairWarning": "بس وافق على ده لو تلفزيون شايفه هسي. الموافقة بتدخل الزول اللي معاهو الكود ده في حسابك. حيقدر يشوف، يعجب، ويتابع — ما حيقدر يصرف، وتقدر تخرجو في أي وقت من الجلسات النشطة.",
+    "pairApprove": "ايوه، سجل دخول في التلفزيون دا",
+    "pairDeny": "لا، ما طلبت ده",
+    "pairDoneTitle": "تلفزيونك مسجل دخول",
+    "pairDoneBody": "المفروض حسابك يكون ظاهر. ممكن تسجل خروج منه في أي وقت من الإعدادات → الخصوصية → الجلسات النشطة.",
+    "closePlayer": "قفل اللاعب",
+    "declineFailed": "ما بقدر أرفض دا — ممكن يكون انتهى صلاحيتو خلاص.",
+    "tipSentTvNotTold": "تم إرسال البقشيش، لكن التلفزيون ما قدر يعرف. حتنتهي صلاحيته.",
+    "sentAmount": "تم إرسال {{amount}} DHB",
+    "nothingWaiting": "لا يوجد شيء في الانتظار",
+    "nothingWaitingBody": "عندما ترسل إكرامية من DeHub على تلفزيونك، تظهر هنا لتوافق عليها. تلفزيونك لا يحتفظ بمحفظتك أبدًا.",
+    "yourTelevision": "تلفزيونك",
+    "wantsToTip": "يريد إرسال إكرامية · {{time}} ترك",
+    "tipTo": "إلى {{name}}",
+    "tipForPost": "لـ \"{{title}}\"",
+    "reviewAndApprove": "مراجعة والموافقة"
   },
   "top100": {
     "title": "أعلى 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "قدّم الطلب",
     "nameEmailRequired": "الاسم والإيميل مطلوبين",
     "applicationSuccess": "الطلب اتقدّم بنجاح! حنتواصل معاك.",
-    "applicationFailed": "ما قدرنا نقدّم. حاول تاني."
+    "applicationFailed": "ما قدرنا نقدّم. حاول تاني.",
+    "namePlaceholder": "جين سميث"
   },
   "dao": {
     "title": "خزينة الـ DAO",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "اتثبت فوق في البوست دا",
     "unpinnedToast": "اتشال التثبيت",
     "pinFailed": "ما قدرنا نثبت التعليق دا",
-    "kidsOnlyThread": "الپوست دا للأطفال. بتاع الأطفال بس يقدرو يعلقو عليهو."
+    "kidsOnlyThread": "الپوست دا للأطفال. بتاع الأطفال بس يقدرو يعلقو عليهو.",
+    "editFailed": "فشل في تعديل التعليق"
   },
   "postInfo": {
     "title": "معلومات المنشور",
@@ -3243,14 +3307,40 @@
     "comingSoon": "قريبًا",
     "signIn": "تسجيل الدخول",
     "tapToGetStarted": "انقر للبدء",
-    "soon": "قريبًا"
+    "soon": "قريبًا",
+    "glossarySubtitle": "تعرف على معنى كل أيقونة وميزة",
+    "searchGlossary": "ابحث في المسرد...",
+    "noResultsFor": "لا توجد نتائج لـ \"{{query}}\"",
+    "guideSubtitle": "شرح خطوة بخطوة لكل ميزة",
+    "searchGuide": "ابحث في الدليل...",
+    "repostsTab": "إعادة النشر",
+    "quotesTab": "اقتباسات",
+    "noMoreReposts": "لا مزيد من إعادة النشر",
+    "noMoreQuotes": "لا مزيد من الاقتباسات",
+    "noRepostsYet": "لا يوجد إعادة نشر بعد",
+    "noQuotesYet": "لا يوجد اقتباسات بعد"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "ألعاب بتشتغل هنا جوة التطبيق نفسو. ما في حاجة تتركب ولا حاجة تتشترى — مفتوحة المصدر، وDeHub نفسو بيقدمها."
+    "intro": "ألعاب بتشتغل هنا جوة التطبيق نفسو. ما في حاجة تتركب ولا حاجة تتشترى — مفتوحة المصدر، وDeHub نفسو بيقدمها.",
+    "noGameCalled": "لا توجد لعبة اسمها <slug>{{slug}}</slug> في الأركيد.",
+    "seeWhatIsHere": "شاهد ما هو موجود هنا",
+    "locationNotGranted": "لم يتم منح إذن الموقع.",
+    "signInToPlaceOnGlobe": "سجل الدخول لوضع نفسك على الخريطة.",
+    "couldNotPlaceOnGlobe": "لم يتمكن من وضعك على الخريطة.",
+    "onTheGlobe": "أنت على الخريطة — تظهر ضمن منطقة تقريبية تبلغ 25 كم.",
+    "couldNotReach": "تعذر الوصول إلى الأركيد",
+    "didNotLoad": "لم يتم تحميل {{title}}",
+    "needsConnection": "اللعبة مقدمة من dehub.io ويتم تنزيلها عند فتحها، لذا فهي تحتاج إلى اتصال يعمل في المرة الأولى. تحقق من اتصالك وحاول مرة أخرى.",
+    "backToArcade": "رجعت للآركيد",
+    "openPrivacySettings": "افتح إعدادات الخصوصية",
+    "privacyWarning": "لو معاك كمية كبيرة من التوكنز أو عايش في منطقة ما فيها أمان، اخفي الشارة والرصيد قبل ما تستخدم الميزة دي. المعاملات على السلسلة لسه بتكشف عنوانك. افتح الإعدادات.",
+    "leaveGame": "اطلع من اللعبة",
+    "loadingGame": "جاري التحميل {{title}}",
+    "hideThis": "اخفي دا"
   },
   "videoLooks": {
     "button": "مظاهر الكاميرا",
@@ -3375,7 +3465,22 @@
     "someone": "زول",
     "oneTyping": "{{name}} بيكتب…",
     "fewTyping": "{{names}} بيكتبوا…",
-    "manyTyping": "{{count}} ناس بيكتبوا…"
+    "manyTyping": "{{count}} ناس بيكتبوا…",
+    "thisUser": "المستخدم دا",
+    "unbanConfirm": "متأكد عايز تشيل الحظر عن {{name}}؟",
+    "unban": "شيل الحظر",
+    "unbanFailed": "فشل في إلغاء حظر المستخدم",
+    "onlineLabel": "أونلاين",
+    "usersCount_one": "مستخدم {{count}}",
+    "usersCount_other": "مستخدمين {{count}}",
+    "totalMessages": "إجمالي الرسائل",
+    "slowMode": "الوضع البطيء",
+    "cooldownSeconds": "تأخير {{seconds}} ثانية",
+    "minStakeRequired": "الحد الأدنى للمراهنة المطلوب",
+    "noParticipants": "مافي مشاركين لسه",
+    "noModerators": "مافي مشرفين",
+    "noBannedUsers": "مافي مستخدمين محظورين",
+    "modBadge": "مود"
   },
   "promptFeed": {
     "headline": "داير تشوف شنو؟",
@@ -4127,7 +4232,26 @@
     "madeForKidsBlockedByMature": "البوست اللي معلم ناضج ما يقدر ينشر للأطفال كمان.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "احصل على تفاصيل RTMP",
-    "markMadeForKids": "وضع علامة \"صنع للأطفال\""
+    "markMadeForKids": "وضع علامة \"صنع للأطفال\"",
+    "queueWaiting": "بانتظار…",
+    "queueUploading": "جاري الرفع",
+    "queueProcessing": "جاري المعالجة…",
+    "queueMinting": "جاري السك…",
+    "queuePosted": "تم النشر",
+    "queueFailed": "فشل",
+    "noRetriesLeft": "(مافي محاولات تانية)",
+    "noUploads": "مافي رفعات",
+    "uploadsAppearHere": "رفععاتك حتظهر هنا",
+    "imagesTotalLimit": "الصور في تحميل واحد لازم ما تتعدى 100 ميجا بايت",
+    "chooseDatabase": "اختار قاعدة بيانات لامركزية",
+    "livestreamMode": "وضع البث المباشر",
+    "addThumbnail": "ضيف صورة مصغرة",
+    "showCover": "ورّيني الغلاف",
+    "max60s": "ماكس 60 ثانية",
+    "confirmLivestream": "تأكيد البث المباشر",
+    "liveFeaturesTitle": "ميزات لايف",
+    "discardPostTitle": "تجاهل المنشور؟",
+    "discardPostBody": "بوستك حيمشي. داير تحفظو كمسودة بدل دا؟"
   },
   "bounty": {
     "claimed": "اتسلم",
@@ -4444,7 +4568,25 @@
     "allowNewDmsOff": "شغّل الرسائل حتى تسمح برسائل جديدة.",
     "perMessageFee": "رسم لكل رسالة (DHB)",
     "perMessageFeeSub": "احسب على المستخدمين لكل رسالة. خلّيه 0 حتى تصير الرسائل مجانية. تكدر تعطي وصول مجاني لناس معينين.",
-    "allDisabled": "كل الرسائل مطفية حالياً. الرسائل الجديدة ممنوعة افتراضياً."
+    "allDisabled": "كل الرسائل مطفية حالياً. الرسائل الجديدة ممنوعة افتراضياً.",
+    "failedToEdit": "فشل التعديل",
+    "messageDeleted": "تم حذف الرسالة",
+    "cantForwardFromDevice": "الرسالة دي ما بتترسل من الجهاز ده",
+    "messageForwarded": "رسالة محولة",
+    "clearMessages": "رسائل واضحة",
+    "clearMessagesConfirm": "تمسح كل الرسائل في المحادثة دي؟ ما بتقدر ترجعها تاني.",
+    "messagesCleared": "تم مسح الرسائل",
+    "failedToClearMessages": "فشل في مسح الرسائل",
+    "removedFreeAccess": "تم إلغاء الوصول المجاني لـ {{name}}",
+    "grantedFreeAccess": "ممنوح وصول مجاني لـ {{name}}",
+    "failedToUpdateFreeAccess": "فشل تحديث الوصول المجاني",
+    "searchComingSoon": "قريبًا",
+    "tapToUnblock": "اضغط لفك الحظر",
+    "userFallback": "يا زول",
+    "failedToBlock": "فشل الحظر",
+    "failedToDeleteConversation": "فشل حذف المحادثة",
+    "newDm": "رسالة خاصة جديدة",
+    "noConversationsFound": "مافي محادثات لاقينها"
   },
   "editPost": {
     "mediaPermission": "لازم إذن مكتبة الوسائط",
@@ -4466,7 +4608,17 @@
     "retry": "جرب تاني",
     "retrying": "بنحاول تاني…",
     "retryQueued": "بنجهز تاني",
-    "retryFailed": "ما قدرنا نعيد المحاولة في البوست دا"
+    "retryFailed": "ما قدرنا نعيد المحاولة في البوست دا",
+    "closeVideo": "اقفل الفيديو",
+    "rotateOrientation": "لفّ الاتجاه",
+    "videoProgress": "تقدم الفيديو: {{percent}}%",
+    "tapToSeek": "اضغط للبحث عن موضع معين",
+    "photoAccessToSaveImages": "اسمح بالوصول لمكتبة الصور لحفظ الصور",
+    "failedToSaveImage": "فشل حفظ الصورة",
+    "downloadImage": "تنزيل الصورة",
+    "goToImage": "اذهب للصورة {{index}}",
+    "allCaughtUp": "لقد انتهيت من كل شيء",
+    "checkBackForShorts": "ارجع لاحقاً للمزيد من الفيديوهات القصيرة"
   },
   "liveViewer": {
     "loadingStream": "يجري تحميل البث...",
@@ -4476,7 +4628,22 @@
   },
   "search": {
     "endOfResults": "نهاية النتائج",
-    "searchDehub": "دوّر بـ DeHub"
+    "searchDehub": "دوّر بـ DeHub",
+    "tabVoice": "صوت",
+    "trendingThisWeek": "الأكثر رواجاً هذا الأسبوع",
+    "trendingPosts": "المنشورات الأكثر رواجاً",
+    "trendingImages": "الصور الأكثر رواجاً",
+    "trendingVideos": "الفيديوهات الأكثر رواجاً",
+    "trendingVoicePosts": "المنشورات الصوتية الأكثر رواجاً",
+    "trendingLive": "البث المباشر الأكثر رواجاً",
+    "seeAll": "شاهد الكل",
+    "noAccountsFound": "لم يتم العثور على حسابات",
+    "tryDifferentKeywords": "جرب كلمات مفتاحية مختلفة أو تحقق من تهجئتك",
+    "noContentResults": "لا توجد نتائج للمحتوى",
+    "recentSearches": "عمليات البحث الأخيرة",
+    "noTrendingThisWeek": "لا يوجد محتوى رائج هذا الأسبوع",
+    "closeFilterOptions": "إغلاق خيارات التصفية",
+    "openFilterOptions": "فتح خيارات التصفية"
   },
   "notifPrompt": {
     "stayInLoop": "ضل على اطلاع",
@@ -4726,7 +4893,26 @@
     "externalTitle": "وضع البث الخارجي",
     "externalLiveHint": "بثك مباشر عبر برنامج خارجي. كاميرا التطبيق معطلة.",
     "externalHint": "صل برنامج البث الخاص بك باستخدام التفاصيل أدناه، ثم ابدأ البث.",
-    "useInAppCamera": "استخدم كاميرا التطبيق بدلاً من ذلك"
+    "useInAppCamera": "استخدم كاميرا التطبيق بدلاً من ذلك",
+    "livestreamEnded": "انتهى البث المباشر",
+    "chatEnabled": "تم تفعيل الدردشة",
+    "chatDisabled": "تم تعطيل الدردشة",
+    "failedToUpdateSettings": "فشل تحديث الإعدادات",
+    "networkLostReconnecting": "فقدان الشبكة - تم إيقاف البث مؤقتاً. جارٍ إعادة الاتصال...",
+    "openingViewer": "جارٍ فتح المشاهد...",
+    "cameraPermissionRequired": "مطلوب إذن الكاميرا",
+    "grantPermission": "منح الإذن",
+    "waitingForLivepeer": "في انتظار Livepeer...",
+    "waitingForExternalSource": "في انتظار المصدر الخارجي...",
+    "settingUpPublisher": "جاري إعداد الناشر...",
+    "scheduledStream": "بث مجدول",
+    "scheduledAt": "{{date}} في {{time}}",
+    "pressGoLiveWhenReady": "اضغط على \"بدء البث\" عندما تكون جاهزًا للبدء",
+    "connectionInterrupted": "تم قطع الاتصال",
+    "streamPausedReconnecting": "تم إيقاف البث مؤقتًا. جاري إعادة الاتصال...",
+    "streamWillEnd": "سينتهي البث إذا لم تتم إعادة الاتصال",
+    "endStreamConfirmTitle": "إنهاء البث؟",
+    "endStreamConfirmBody": "الإغلاق الآن سينهي بثك المباشر لجميع المشاهدين. يمكنك متابعة البث أو إنهائه بشكل دائم."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

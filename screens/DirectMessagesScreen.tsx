@@ -167,9 +167,9 @@ const DirectMessagesInner: React.FC = () => {
     if (!addr) return;
     try {
       await blockUser(addr, "Blocked from DM list");
-      toastSuccess(`Blocked ${user?.displayName || user?.username || "user"}`);
+      toastSuccess(t("postOptions.blockedUser", { name: user?.displayName || user?.username || t("dm.userFallback") }));
     } catch (e) {
-      toastError(e, "Failed to block");
+      toastError(e, t("dm.failedToBlock"));
     }
   }, []);
 
@@ -179,9 +179,9 @@ const DirectMessagesInner: React.FC = () => {
       try {
         await deleteConversation(conv._id, myAddress);
         dmActions.removeConversation(conv._id);
-        toastSuccess("Conversation deleted");
+        toastSuccess(t("toasts.conversation_deleted"));
       } catch (e) {
-        toastError(e, "Failed to delete conversation");
+        toastError(e, t("dm.failedToDeleteConversation"));
       }
     },
     [myAddress],
@@ -219,16 +219,16 @@ const DirectMessagesInner: React.FC = () => {
         setMyDmStatus((prev) =>
           prev ? { ...prev, freeAccessUsers: (prev.freeAccessUsers || []).filter((a) => a.toLowerCase() !== addr) } : prev,
         );
-        toastSuccess(`Removed free access for ${ctxUser?.displayName || ctxUser?.username || "user"}`);
+        toastSuccess(t("dm.removedFreeAccess", { name: ctxUser?.displayName || ctxUser?.username || t("dm.userFallback") }));
       } else {
         await addFreeAccess(addr);
         setMyDmStatus((prev) =>
           prev ? { ...prev, freeAccessUsers: [...(prev.freeAccessUsers || []), addr] } : prev,
         );
-        toastSuccess(`Granted free access to ${ctxUser?.displayName || ctxUser?.username || "user"}`);
+        toastSuccess(t("dm.grantedFreeAccess", { name: ctxUser?.displayName || ctxUser?.username || t("dm.userFallback") }));
       }
     } catch (e) {
-      toastError(e, "Failed to update free access");
+      toastError(e, t("dm.failedToUpdateFreeAccess"));
     }
   }, [ctxUser, myDmStatus]);
 
@@ -253,7 +253,7 @@ const DirectMessagesInner: React.FC = () => {
       ).toLowerCase();
       const selfAddr = myAddress;
       if (addr && addr === selfAddr) {
-        toastInfo("You can't message yourself");
+        toastInfo(t("dm.cantMessageYourself"));
         return;
       }
       const title =
@@ -344,12 +344,12 @@ const DirectMessagesInner: React.FC = () => {
         <View className="flex-1 justify-center">
           <View className="flex-row items-center gap-1.5">
             <Text className="text-theme-neutrals-100 text-[15px] font-semibold" numberOfLines={1}>
-              Public Chat
+              {t("publicChat.title")}
             </Text>
           </View>
           <View className="flex-row items-center gap-1 mt-0.5">
             <Text className="text-theme-neutrals-400 text-[13px] flex-1" numberOfLines={1}>
-              Join the community conversation
+              {t("publicChat.subtitle")}
             </Text>
           </View>
         </View>
@@ -398,7 +398,7 @@ const DirectMessagesInner: React.FC = () => {
             onPress={openSettings}
             className="w-10 h-10 items-center justify-center active:opacity-70"
             accessibilityRole="button"
-            accessibilityLabel="Settings"
+            accessibilityLabel={t("settings.title")}
           >
             <Icon name="Settings" size={22} color="#A1A1AA" />
           </TouchableOpacity>
@@ -413,7 +413,7 @@ const DirectMessagesInner: React.FC = () => {
             <TextInput
               value={query}
               onChangeText={setQuery}
-              placeholder="Search conversations..."
+              placeholder={t("messages.searchConversations")}
               placeholderTextColor="#8B8D90"
               className="flex-1 text-white text-sm"
               returnKeyType="search"
@@ -425,7 +425,7 @@ const DirectMessagesInner: React.FC = () => {
               style={GLASS_SHADOW}
               hitSlop={8}
               accessibilityRole="button"
-              accessibilityLabel="New DM"
+              accessibilityLabel={t("dm.newDm")}
             >
               <GlassIndicator borderRadius={10} />
               <Icon name="Plus" size={16} color="#FFFFFF" />
@@ -450,7 +450,7 @@ const DirectMessagesInner: React.FC = () => {
           ListEmptyComponent={
             hasConversations ? (
               <View className="items-center mt-10">
-                <Text className="text-theme-neutrals-400">No conversations found</Text>
+                <Text className="text-theme-neutrals-400">{t("dm.noConversationsFound")}</Text>
               </View>
             ) : null
           }

@@ -119,7 +119,12 @@
     "music": "ସଙ୍ଗୀତ",
     "live": "ଲାଇଭ",
     "newPosts_one": "{{count}} ନୂଆ ପୋଷ୍ଟ",
-    "newPosts_other": "{{count}} ନୂଆ ପୋଷ୍ଟ"
+    "newPosts_other": "{{count}} ନୂଆ ପୋଷ୍ଟ",
+    "privateContent": "Private Content",
+    "noMoreContent": "No more content",
+    "noPostsYet": "No posts yet.",
+    "privateContentBody": "ଏହି ବିଷୟବସ୍ତୁ ଏକ ବ୍ୟକ୍ତିଗତ ଆକାଉଣ୍ଟରୁ ଆସିଛି। ପୋଷ୍ଟଗୁଡିକ ଦେଖିବା ପାଇଁ ସ୍ରଷ୍ଟାଙ୍କୁ ଅନୁସରଣ କରନ୍ତୁ।",
+    "pullToRefresh": "ରିଫ୍ରେଶ୍ କରିବାକୁ ଟାଣନ୍ତୁ କିମ୍ବା ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।"
   },
   "explore": {
     "all": "ସବୁ",
@@ -709,7 +714,19 @@
     "smsBalance": "{{dhb}} DHB ବାକି ଅଛି (${{usd}})",
     "smsTopUp": "{{dhb}} DHB ଟପ୍ ଅପ୍ କରନ୍ତୁ",
     "smsCodeSent": "କୋଡ୍ ପଠାଯାଇଛି | ଏଥିରେ {{price}} DHB ଖର୍ଚ୍ଚ ହୋଇଛି |",
-    "smsCodeLabel": "ଆମେ {{phone}} କୁ ଯେଉଁ କୋଡ୍ ଟେକ୍ସଟ୍ କରିଛୁ"
+    "smsCodeLabel": "ଆମେ {{phone}} କୁ ଯେଉଁ କୋଡ୍ ଟେକ୍ସଟ୍ କରିଛୁ",
+    "avatarUpdateFailed": "Avatar update failed",
+    "coverUpdateFailed": "Cover update failed",
+    "updateFailed": "Update failed",
+    "inviteLinkPlaceholder": "Invite link",
+    "usernameAvailable": "Username is available",
+    "fixInvalidSocialLinks": "ଦୟାକରି ଭୁଲ୍ ସୋସିଆଲ୍ ଲିଙ୍କ୍ଗୁଡିକୁ ସଜାଡନ୍ତୁ",
+    "channelUrlOrHandle": "ଚ୍ୟାନେଲ୍ URL କିମ୍ବା ହ୍ୟାଣ୍ଡେଲ୍",
+    "profileUrlOrUsername": "ପ୍ରୋଫାଇଲ୍ URL କିମ୍ବା ୟୁଜରନେମ୍",
+    "yourDisplayName": "ଆପଣଙ୍କ ପ୍ରଦର୍ଶନ ନାମ",
+    "hideBadgeAndBalance": "ବ୍ୟାଜ୍ ଏବଂ ବାଲାନ୍ସ ଲୁଚାନ୍ତୁ",
+    "hideBadgeAndBalanceDesc": "ଆର୍ଥିକ ବିବରଣୀ ଲୁଚାଇଥାଏ ଏବଂ ଆପଣଙ୍କୁ ପଠାଇବା ଏବଂ ଟିପ୍ସ ଅକ୍ଷମ କରିଥାଏ।",
+    "onChainPublicWarning": "ଅନ୍-ଚେନ୍ ଟ୍ରାଞ୍ଜାକ୍ସନ୍ଗୁଡିକ ସର୍ବସାଧାରଣ ଅଟେ। ଟୋକେନ୍ ପଠାଇବା କିମ୍ବା ଟିପ୍ସ ଦେବା ଆପଣଙ୍କ ୱାଲେଟ୍ ଠିକଣା ପ୍ରକାଶ କରିପାରେ, ଯେଉଁଥିରେ ପ୍ରାଇଭେଟ୍ ବାଲାନ୍ସ ମୋଡ୍ ସକ୍ଷମ ହେବା ପୂର୍ବରୁ କରାଯାଇଥିବା ଟ୍ରାଞ୍ଜାକ୍ସନ୍ଗୁଡିକ ମଧ୍ୟ ଅନ୍ତର୍ଭୁକ୍ତ।"
   },
   "common": {
     "mute": "ମ୍ୟୁଟ୍ କରନ୍ତୁ",
@@ -759,7 +776,9 @@
     "noInternetTitle": "ଇଣ୍ଟରନେଟ୍ ସଂଯୋଗ ନାହିଁ",
     "noInternetBody": "ଦୟାକରି ଆପଣଙ୍କ ଇଣ୍ଟରନେଟ୍ ସଂଯୋଗ ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ପୁଣି ଥରେ ଚେଷ୍ଟା କରନ୍ତୁ। DeHub ବ୍ୟବହାର କରିବା ପାଇଁ ଆପଣଙ୍କୁ ଇଣ୍ଟରନେଟ୍ ସହିତ ସଂଯୁକ୍ତ ହେବା ଆବଶ୍ୟକ।",
     "noInternetStatus": "ଅଫଲାଇନ୍ - ନେଟୱାର୍କ ସଂଯୋଗ ନାହିଁ",
-    "noInternetHint": "ୱାଇ-ଫାଇ କିମ୍ବା ମୋବାଇଲ୍ ଡାଟା ଅନ୍ ଅଛି କି ନାହିଁ ନିଶ୍ଚିତ କରନ୍ତୁ, ତା'ପରେ \"{{action}}\" ଟାପ୍ କରନ୍ତୁ"
+    "noInternetHint": "ୱାଇ-ଫାଇ କିମ୍ବା ମୋବାଇଲ୍ ଡାଟା ଅନ୍ ଅଛି କି ନାହିଁ ନିଶ୍ଚିତ କରନ୍ତୁ, ତା'ପରେ \"{{action}}\" ଟାପ୍ କରନ୍ତୁ",
+    "saving": "Saving…",
+    "offlineStatus": "ଅଫଲାଇନ୍ - କୌଣସି ନେଟୱାର୍କ ସଂଯୋଗ ନାହିଁ"
   },
   "tip": {
     "title": "ଟିପ ପଠାନ୍ତୁ",
@@ -1093,7 +1112,17 @@
     "post": "ପୋଷ୍ଟ",
     "officialLogo": "ଏଠାରେ DeHub ର ଅଧିକୃତ ଲୋଗୋ! 🎨",
     "editedImage": "ଏଠାରେ ଆପଣଙ୍କ ସମ୍ପାଦିତ ଛବି!",
-    "generatedImage": "ଏଠାରେ ଆପଣଙ୍କ ତିଆରି ଛବି!"
+    "generatedImage": "ଏଠାରେ ଆପଣଙ୍କ ତିଆରି ଛବି!",
+    "toolCompleted": "{{name}} completed",
+    "aiTool": "AI tool",
+    "generateImage": "ପ୍ରତିଛବି ସୃଷ୍ଟି କରନ୍ତୁ",
+    "generateVideo": "ଭିଡ଼ିଓ ସୃଷ୍ଟି କରନ୍ତୁ",
+    "cannotAnimateImage": "{{model}} ଏକ ସଂଲଗ୍ନ ଚିତ୍ରକୁ ଆନିମେଟ୍ କରିପାରିବ ନାହିଁ। ଅନ୍ୟ ଏକ ଭିଡିଓ ମଡେଲ୍ ବାଛନ୍ତୁ।",
+    "needsImageToAnimate": "{{model}} କୁ ଆନିମେଟ୍ କରିବା ପାଇଁ ଏକ ଚିତ୍ର ଆବଶ୍ୟକ। ଗୋଟିଏ ସଂଲଗ୍ନ କରନ୍ତୁ କିମ୍ବା ଅନ୍ୟ ଏକ ମଡେଲ୍ ବାଛନ୍ତୁ।",
+    "couldNotReadImage": "ସେହି ଚିତ୍ରଟି ପଢ଼ାଯାଇପାରିଲା ନାହିଁ",
+    "logoLoadFailed": "DeHub ଲୋଗୋ ଲୋଡ୍ କରିବାରେ ଅସମର୍ଥ - ଏହା ବିନା ତିଆରି କରାଯାଉଛି",
+    "imageAttachedDescribe": "ଚିତ୍ର ସଂଲଗ୍ନ ହୋଇଛି — ଆପଣଙ୍କ ସମ୍ପାଦନା ବର୍ଣ୍ଣନା କରନ୍ତୁ",
+    "couldNotPreparePost": "ପୋଷ୍ଟ କରିବା ପାଇଁ ପ୍ରସ୍ତୁତ କରିବାରେ ଅସମର୍ଥ"
   },
   "commandCentre": {
     "title": "କಮାଣ୍ଡ ସେଣ୍ଟର",
@@ -1605,7 +1634,10 @@
     "edit": "ସମ୍ପାଦନ",
     "deleteRequestTitle": "ଏହି ଅନୁରୋଧ ଡିଲିଟ କରିବେ?",
     "deleteRequestDescription": "ଏହା ପୂର୍ବବତ କରାଯାଇପାରିବ ନାହିଁ।",
-    "attachmentTooLarge": "ପ୍ରତ୍ୟେକ ଫାଇଲ 20MB ରୁ କମ ହେବା ଆବଶ୍ୟକ"
+    "attachmentTooLarge": "ପ୍ରତ୍ୟେକ ଫାଇଲ 20MB ରୁ କମ ହେବା ଆବଶ୍ୟକ",
+    "deleteCommentA11y": "ଟିପ୍ପଣୀ ଅପସାରଣ କରନ୍ତୁ",
+    "sendCommentA11y": "ଟିପ୍ପଣୀ ପଠାନ୍ତୁ",
+    "requestOptions": "ଅନୁରୋଧ ବିକଳ୍ପଗୁଡ଼ିକ"
   },
   "auth": {
     "loginRequired": "ଲଗ ଇନ ଆବଶ୍ୟକ",
@@ -1654,7 +1686,15 @@
     "sendCodeFailedRetry": "କୋଡ୍ ପଠାଇବାକୁ ଅସମର୍ଥ। ଦୟାକରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
     "invalidCodeRetry": "ଅବୈଧ କୋଡ୍। ଦୟାକରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
     "invalidEmailOrPassword": "ଅବୈଧ ଇମେଲ୍ କିମ୍ବା ପାସୱାର୍ଡ।",
-    "welcomeToDehub": "DeHub ରେ ସ୍ୱାଗତ"
+    "welcomeToDehub": "DeHub ରେ ସ୍ୱାଗତ",
+    "importWalletOptional": "ୱାଲେଟ ଆମଦାନୀ କରନ୍ତୁ (ଇଚ୍ଛାଧୀନ)",
+    "couldNotSendCodeRetry": "କୋଡ ପଠାଯାଇପାରିଲା ନାହିଁ । ଦୟାକରି ପୁଣିଥରେ ଚେଷ୍ଟା କରନ୍ତୁ ।",
+    "exploreWithoutSignIn": "ସାଇନଇନ ନକରି ଅନୁସନ୍ଧାନ କରନ୍ତୁ",
+    "continueExploring": "ଅନୁସନ୍ଧାନ ଜାରି ରଖନ୍ତୁ",
+    "exploreWithoutSignInA11y": "NAME OF TRANSLATORS",
+    "continueExploringA11y": "DeHub ଅନୁସନ୍ଧାନ ଜାରି ରଖନ୍ତୁ",
+    "importWalletRecommended": "ସୋସିଆଲ୍ ଲଗିନ୍ଗୁଡିକ ସୁପାରିଶ କରାଯାଏ।",
+    "importWalletPurpose": "ଏହି ଉପକରଣଟି DeHub.io ରୁ ବିଦ୍ୟମାନ ଆକାଉଣ୍ଟଗୁଡିକ ଆମଦାନୀ କରିବା ପାଇଁ।"
   },
   "messages": {
     "smartRepliesOff": "ପ୍ରସ୍ତାବିତ ଉତ୍ତର ବନ୍ଦ କରାଗଲା",
@@ -1769,7 +1809,29 @@
     "reportedAutomatically": "ଏହା ସ୍ୱୟଂଚାଳିତ ଭାବରେ ରିପୋର୍ଟ କରାଯାଇଛି।",
     "loadFailed": "ଚ୍ୟାନେଲ ଲୋଡ କରାଯାଇ ପାରିଲା ନାହିଁ",
     "noSearchResults": "ଆପଣଙ୍କ ସନ୍ଧାନ ସହିତ ମେଳ ଖାଉଥିବା ଚ୍ୟାନେଲ ନାହିଁ",
-    "noChannels": "କୌଣସି ଚ୍ୟାନେଲ ଉପଲବ୍ଧ ନାହିଁ"
+    "noChannels": "କୌଣସି ଚ୍ୟାନେଲ ଉପଲବ୍ଧ ନାହିଁ",
+    "pairCodeExpired": "ଏହି କୋଡଟି ସମାପ୍ତ ହୋଇସାରିଛି । ଟେଲିଭିଜନ୍ ‌ କୁ ନୂଆ ଟେଲିଭିଜନ୍ ‌ ମାଗନ୍ତୁ ।",
+    "signedInOnTv": "ଆପଣଙ୍କ ଟେଲିଭିଜନରେ ସ୍ୱାକ୍ଷରିତ",
+    "pairRefused": "ପ୍ରତ୍ୟାଖ୍ୟାନ କରାଯାଇଛି",
+    "pairIntro": "ଆପଣଙ୍କର ଟେଲିଭିଜନରେ DeHub ଖୋଲନ୍ତୁ ଏବଂ ଏଠାରେ ଦର୍ଶାଯାଇଥିବା କୋଡ୍ ଟାଇପ୍ କରନ୍ତୁ ।",
+    "pairNotFound": "ଏହି କୋଡ ଉପରେ କୌଣସି ଟେଲିଭିଜନ ଅପେକ୍ଷା କରୁନାହିଁ । ଏହାର ଅବଧି ସମାପ୍ତ ହୋଇସାରିଛି — ଟିଭିକୁ ନୂଆ ଟେଲିଭିଜନ ପାଇଁ ପଚାରନ୍ତୁ ।",
+    "wantsToSignIn": "ଆପଣ ପରି ଦସ୍ତଖତ କରିବାକୁ ଚାହୁଁଛନ୍ତି",
+    "pairWarning": "ଆପଣ ବର୍ତ୍ତମାନ ଯେଉଁ ଟେଲିଭିଜନକୁ ଦେଖୁଛନ୍ତି, କେବଳ ସେହି ଟେଲିଭିଜନରେ ହିଁ ଏହାକୁ ଅନୁମୋଦନ କରନ୍ତୁ । ଯେଉଁମାନେ ଆପଣଙ୍କ ଆକାଉଣ୍ଟରେ ଏହି କୋଡ୍ ଧାରଣ କରୁଛନ୍ତି, ସେମାନଙ୍କୁ ମଞ୍ଜୁରୀ ଦେବା । ଏହା ଦେଖିବାରେ ସକ୍ଷମ ହେବ, ପସନ୍ଦ କରିବ ଏବଂ ଅନୁସରଣ କରିବ — ଏହା ଖର୍ଚ୍ଚ କରିପାରିବ ନାହିଁ, ଏବଂ ଆପଣ ଏହାକୁ ସକ୍ରିୟ ଅଧିବେଶନରୁ ଯେକୌଣସି ସମୟରେ ଦସ୍ତଖତ କରିପାରିବେ ।",
+    "pairApprove": "ହଁ, ଏହି ଟିଭିରେ ସାଇନ କରନ୍ତୁ",
+    "pairDeny": "ନା, ମୁଁ ଏମିତି କିଛି ମାଗି ନଥିଲି ।",
+    "pairDoneTitle": "ଆପଣଙ୍କର ଟେଲିଭିଜନ ସାଇନଇନ ହୋଇଛି",
+    "pairDoneBody": "ଏହା ପୂର୍ବରୁ ହିଁ ଆପଣଙ୍କ ଖାତା ଦେଖାଉଛି । ସେଟିଙ୍ଗଗୁଡ଼ିକର → ଗୋପନୀୟତା → ସକ୍ରିୟ ଅଧିବେଶନଗୁଡ଼ିକରୁ ଯେକୌଣସି ସମୟରେ ଏହାକୁ ହସ୍ତାକ୍ଷର କରନ୍ତୁ ।",
+    "closePlayer": "ଚାଳକକୁ ବନ୍ଦ କରନ୍ତୁ",
+    "declineFailed": "ଏହାକୁ ପ୍ରତ୍ୟାଖ୍ୟାନ କରିହେବ ନାହିଁ — ଏହା ପୂର୍ବରୁ ସମାପ୍ତ ହୋଇସାରିଛି ।",
+    "tipSentTvNotTold": "ଟିପ ପଠାଯାଇଥିଲା, କିନ୍ତୁ ଟିଭିକୁ କୁହାଯାଇପାରିଲା ନାହିଁ । ସମୟ ଗଡ଼ିବ ।",
+    "sentAmount": "Sent {{amount}} DHB",
+    "nothingWaiting": "Nothing waiting",
+    "yourTelevision": "Your television",
+    "tipTo": "to {{name}}",
+    "tipForPost": "for “{{title}}”",
+    "nothingWaitingBody": "ଯେତେବେଳେ ଆପଣ ଆପଣଙ୍କ ଟେଲିଭିଜନରେ DeHub ରୁ ଟିପ୍ ଦିଅନ୍ତି, ଏହା ଆପଣଙ୍କ ଅନୁମୋଦନ ପାଇଁ ଏଠାରେ ଦେଖାଯାଏ। ଆପଣଙ୍କ ଟିଭି କେବେବି ଆପଣଙ୍କ ୱାଲେଟ୍ ଧାରଣ କରେ ନାହିଁ।",
+    "wantsToTip": "ଟିପ୍ ଦେବାକୁ ଚାହେଁ · {{time}} ଛାଡିଛି",
+    "reviewAndApprove": "ସମୀକ୍ଷା କରନ୍ତୁ ଏବଂ ଅନୁମୋଦନ କରନ୍ତୁ"
   },
   "top100": {
     "title": "ଶୀର୍ଷ 100",
@@ -2041,7 +2103,8 @@
     "submitApplication": "ଆବେଦନ ଦାଖଲ କରନ୍ତୁ",
     "nameEmailRequired": "ନାମ ଏବଂ ଇମେଲ ଆବଶ୍ୟକ",
     "applicationSuccess": "ଆବେଦନ ସଫଳ ଭାବେ ଦାଖଲ ହେଲା! ଆମେ ଯୋଗାଯୋଗ କରିବୁ।",
-    "applicationFailed": "ଦାଖଲ ହୋଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।"
+    "applicationFailed": "ଦାଖଲ ହୋଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO ତ foc",
@@ -2201,7 +2264,8 @@
     "pinnedToast": "ଏହି ପୋଷ୍ଟର ସବୁଠାରୁ ଉପରେ ପିନ୍ କରାଗଲା",
     "unpinnedToast": "ପିନ୍ ହଟାଗଲା",
     "pinFailed": "ସେହି ମନ୍ତବ୍ୟ ପିନ୍ କରାଯାଇପାରିଲା ନାହିଁ",
-    "kidsOnlyThread": "ଏହି ପୋଷ୍ଟଟି ଛୋଟ ପିଲାଙ୍କ ପାଇଁ । କେବଳ କିଡସ୍ ‌ ମୋଡ୍ ‌ ଏହା ଉପରେ ମତାମତ ଦେଇପାରିବ ।"
+    "kidsOnlyThread": "ଏହି ପୋଷ୍ଟଟି ଛୋଟ ପିଲାଙ୍କ ପାଇଁ । କେବଳ କିଡସ୍ ‌ ମୋଡ୍ ‌ ଏହା ଉପରେ ମତାମତ ଦେଇପାରିବ ।",
+    "editFailed": "ଟିପ୍ପଣୀ ସମ୍ପାଦନା କରିବାରେ ବିଫଳ"
   },
   "postInfo": {
     "title": "ପୋଷ୍ଟ ସୂଚନା",
@@ -3241,14 +3305,40 @@
     "comingSoon": "ଶୀଘ୍ର ଆସୁଛି",
     "signIn": "ସାଇନ୍ ଇନ୍",
     "tapToGetStarted": "ଆରମ୍ଭ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ",
-    "soon": "ଶୀଘ୍ର"
+    "soon": "ଶୀଘ୍ର",
+    "searchGlossary": "Search glossary...",
+    "repostsTab": "Reposts",
+    "quotesTab": "Quotes",
+    "noMoreReposts": "No more reposts",
+    "noMoreQuotes": "No more quotes",
+    "noRepostsYet": "No reposts yet",
+    "noQuotesYet": "No quotes yet",
+    "glossarySubtitle": "ପ୍ରତ୍ୟେକ ଆଇକନ୍ ଏବଂ ଫିଚରର ଅର୍ଥ କ'ଣ ଜାଣନ୍ତୁ",
+    "noResultsFor": "\"{{query}}\" ପାଇଁ କୌଣସି ଫଳାଫଳ ନାହିଁ",
+    "guideSubtitle": "ପ୍ରତ୍ୟେକ ଫିଚରର ପଦକ୍ଷେପ-ଦ୍ୱାରା-ପଦକ୍ଷେପ ୱାଲ୍କଥ୍ରୁ",
+    "searchGuide": "ଗାଇଡ୍ ଖୋଜନ୍ତୁ..."
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "ଏହି ଆପ ଭିତରେ ହିଁ ଚାଲୁଥିବା ଖେଳ। ଇନଷ୍ଟଲ କରିବାକୁ କିଛି ନାହିଁ, କିଣିବାକୁ କିଛି ନାହିଁ — ଓପନ ସୋର୍ସ, ଏବଂ DeHub ନିଜେ ଯୋଗାଇଥାଏ।"
+    "intro": "ଏହି ଆପ ଭିତରେ ହିଁ ଚାଲୁଥିବା ଖେଳ। ଇନଷ୍ଟଲ କରିବାକୁ କିଛି ନାହିଁ, କିଣିବାକୁ କିଛି ନାହିଁ — ଓପନ ସୋର୍ସ, ଏବଂ DeHub ନିଜେ ଯୋଗାଇଥାଏ।",
+    "backToArcade": "ଆର୍କେଡକୁ ଫେରନ୍ତୁ",
+    "openPrivacySettings": "ଗୋପନୀୟତା ସେଟିଂ ଖୋଲନ୍ତୁ",
+    "privacyWarning": "ଯଦି ଆପଣଙ୍କ ପାଖରେ ଅଧିକ ଟୋକେନ୍ ଅଛି କିମ୍ବା ଅସୁରକ୍ଷିତ ଅଞ୍ଚଳରେ ରହୁଛନ୍ତି, ତେବେ ଏହି ଫିଚର୍ ବ୍ୟବହାର କରିବା ପୂର୍ବରୁ ଆପଣଙ୍କ ବ୍ୟାଜ୍ ଏବଂ ବାଲାନ୍ସ ଲୁଚାଇ ଦିଅନ୍ତୁ। ଅନ୍-ଚେନ୍ ଟ୍ରାଞ୍ଜାକ୍ସନ୍ ଗୁଡିକ ଆପଣଙ୍କ ଠିକଣାକୁ ପ୍ରକାଶ କରିବ। ସେଟିଂ ଖୋଲନ୍ତୁ।",
+    "leaveGame": "ଖେଳ ଛାଡନ୍ତୁ",
+    "loadingGame": "ଲୋଡ୍ ହେଉଛି {{title}}",
+    "hideThis": "ଏହା ଲୁଚାନ୍ତୁ",
+    "noGameCalled": "ଆର୍କେଡରେ <slug>{{slug}}</slug> ନାମକ କୌଣସି ଖେଳ ନାହିଁ।",
+    "seeWhatIsHere": "ଏଠାରେ କ'ଣ ଅଛି ଦେଖନ୍ତୁ",
+    "locationNotGranted": "ଅବସ୍ଥାନ ଅନୁମତି ଦିଆଯାଇନାହିଁ ।",
+    "signInToPlaceOnGlobe": "ନିଜକୁ ବିଶ୍ୱରେ ସ୍ଥାନ ଦେବା ପାଇଁ ସାଇନ୍ ‌ ଇନ୍ ‌ କରନ୍ତୁ ।",
+    "couldNotPlaceOnGlobe": "ମୁଁ ତୁମକୁ ବିଶ୍ୱରେ ରଖିପାରିଲି ନାହିଁ ।",
+    "onTheGlobe": "ଆପଣ ବିଶ୍ଵରେ ଅଛନ୍ତି — ପ୍ରାୟ 25 କିଲୋମିଟର କ୍ଷେତ୍ରଫଳ ମଧ୍ୟରେ ପ୍ରଦର୍ଶିତ ।",
+    "couldNotReach": "ଧାଡ଼ିରେ ପହଁଞ୍ଚି ପାରିଲା ନାହିଁ",
+    "didNotLoad": "{{title}} ଧାରଣ କରିନାହିଁ",
+    "needsConnection": "ଏହି ଖେଳ dehub.io ରୁ ପରିବେଷଣ କରାଯାଇଥାଏ ଏବଂ ଯେତେବେଳେ ଆପଣ ଏହାକୁ ଖୋଲନ୍ତି ସେତେବେଳେ ଏହାକୁ ଡାଉନଲୋଡ କରାଯାଇଥାଏ, ତେଣୁ ଏହାକୁ ପ୍ରଥମ ଥର ପାଇଁ କାର୍ଯ୍ୟ ସଂଯୋଗ ଆବଶ୍ୟକ ହୋଇଥାଏ । ଆପଣଙ୍କର ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ପୁଣିଥରେ ଚେଷ୍ଟା କରନ୍ତୁ ।"
   },
   "videoLooks": {
     "button": "କ୍ୟାମେରା ଲୁକ୍",
@@ -3372,7 +3462,22 @@
     "someone": "କେହି",
     "oneTyping": "{{name}} ଟାଇପ କରୁଛନ୍ତି…",
     "fewTyping": "{{names}} ଟାଇପ କରୁଛନ୍ତି…",
-    "manyTyping": "{{count}} ଜଣ ଟାଇପ କରୁଛନ୍ତି…"
+    "manyTyping": "{{count}} ଜଣ ଟାଇପ କରୁଛନ୍ତି…",
+    "modBadge": "MOD",
+    "thisUser": "ଏହି ଉପଭୋକ୍ତା",
+    "unbanConfirm": "ଆପଣ ନିଶ୍ଚିତ କି ଆପଣ {{name}} ଙ୍କୁ ଅନବ୍ୟାନ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି?",
+    "unban": "ଅନବ୍ୟାନ୍ କରନ୍ତୁ",
+    "unbanFailed": "ବ୍ୟବହାରକାରୀଙ୍କୁ ଅନବ୍ୟାନ୍ କରିବାରେ ବିଫଳ",
+    "onlineLabel": "ଅନଲାଇନ",
+    "usersCount_one": "{{count}} ଉପଭୋକ୍ତା",
+    "usersCount_other": "{{count}} ଉପଭୋକ୍ତା",
+    "totalMessages": "ମୋଟ ବାର୍ତ୍ତା",
+    "slowMode": "ସ୍ଲୋ ମୋଡ୍",
+    "cooldownSeconds": "{{seconds}} ସେକେଣ୍ଡ୍ କୁଲଡାଉନ୍",
+    "minStakeRequired": "କମ୍ ଷ୍ଟେକ୍ ଆବଶ୍ୟକ",
+    "noParticipants": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଅଂଶଗ୍ରହଣକାରୀ ନାହାଁନ୍ତି",
+    "noModerators": "କୌଣସି ମୋଡରେଟର ନାହିଁ",
+    "noBannedUsers": "କୌଣସି ବ୍ୟାନ୍ ହୋଇଥିବା ଉପଭୋକ୍ତା ନାହିଁ"
   },
   "promptFeed": {
     "headline": "ଆପଣ କ'ଣ ଦେଖିବାକୁ ଚାହାଁନ୍ତି?",
@@ -4124,7 +4229,26 @@
     "madeForKidsBlockedByMature": "ଏକ ପୋଷ୍ଟ ଯାହା ପରିପକ୍ବ ଭାବରେ ଚିହ୍ନିତ ତାହା ବାଚ୍ଚାମାନଙ୍କ ପାଇଁ ମଧ୍ୟ ପ୍ରକାଶ କରାଯାଇ ପାରେ ନାହିଁ।",
     "encoderTitle": "OBS / ଏନକୋଡର୍",
     "encoderHint": "RTMP ବିବରଣୀ ପାଆନ୍ତୁ",
-    "markMadeForKids": "ପିଲାମାନଙ୍କ ପାଇଁ ତିଆରି କରାଯାଇଛି ବୋଲି ଚିହ୍ନିତ କରନ୍ତୁ"
+    "markMadeForKids": "ପିଲାମାନଙ୍କ ପାଇଁ ତିଆରି କରାଯାଇଛି ବୋଲି ଚିହ୍ନିତ କରନ୍ତୁ",
+    "queueWaiting": "ଅପେକ୍ଷା କରୁଛି…",
+    "queueUploading": "ଅପଲୋଡ୍ ହେଉଛି",
+    "queueProcessing": "ପ୍ରକ୍ରିୟା କରୁଛି…",
+    "queueMinting": "ମିଣ୍ଟିଂ କରୁଛି…",
+    "queuePosted": "ପୋଷ୍ଟ୍ ହୋଇଛି",
+    "queueFailed": "ବିଫଳ",
+    "noRetriesLeft": "(କୌଣସି ରିଟ୍ରାଏ ବାକି ନାହିଁ)",
+    "noUploads": "କୌଣସି ଅପଲୋଡ୍ ନାହିଁ",
+    "uploadsAppearHere": "ଆପଣଙ୍କ ଅପଲୋଡ୍ ଏଠାରେ ଦେଖାଯିବ",
+    "imagesTotalLimit": "ଗୋଟିଏ ଅପଲୋଡ଼ରେ ଥିବା ପ୍ରତିଛବିଗୁଡ଼ିକ 100 MB କିମ୍ବା ତା 'ଠାରୁ କମ୍ ହେବା ଉଚିତ",
+    "chooseDatabase": "ବିକେନ୍ଦ୍ରୀକୃତ ଡାଟାବେସକୁ ବାଛନ୍ତୁ",
+    "livestreamMode": "ଲାଇଭ୍ ‌ ଷ୍ଟ୍ରିମ୍ ‌ ମୋଡ୍ ‌",
+    "addThumbnail": "Thumbnail ଯୋଗ କରନ୍ତୁ",
+    "showCover": "ଆଚ୍ଛାଦନ ଦର୍ଶାନ୍ତୁ",
+    "max60s": "ମାକ୍ସ 60s",
+    "confirmLivestream": "ଲାଇଭଷ୍ଟ୍ରିମକୁ ନିଶ୍ଚିତ କରନ୍ତୁ",
+    "liveFeaturesTitle": "ଲାଇଭ ଫିଚର",
+    "discardPostTitle": "ପୋଷ୍ଟକୁ ପରିତ୍ୟାଗ କରିବେ କି?",
+    "discardPostBody": "ଆପଣଙ୍କ ପଦବୀ ହଜିଯିବ । ଏହା ପରିବର୍ତ୍ତେ ଆପଣ ଏହାକୁ ଏକ ଡ୍ରାଫ୍ଟ ଭାବରେ ସଂରକ୍ଷଣ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?"
   },
   "bounty": {
     "claimed": "ଗ୍ରହଣ କରାଯାଇଛି",
@@ -4441,7 +4565,25 @@
     "allowNewDmsOff": "ନୂଆ ବାର୍ତ୍ତାକୁ ଅନୁମତି ଦେବା ପାଇଁ DM ସକ୍ରିୟ କରନ୍ତୁ।",
     "perMessageFee": "ପ୍ରତି ବାର୍ତ୍ତା ଶୁଳ୍କ (DHB)",
     "perMessageFeeSub": "ପ୍ରତି ବାର୍ତ୍ତାରେ ଶୁଳ୍କ ନିଅନ୍ତୁ। ମାଗଣା DM ପାଇଁ 0 ରଖନ୍ତୁ। ନିର୍ଦ୍ଦିଷ୍ଟ ବ୍ୟବହାରକାରୀଙ୍କୁ ମାଗଣା ପ୍ରବେଶ ଦେଇପାରିବେ।",
-    "allDisabled": "ବର୍ତ୍ତମାନ ସମସ୍ତ DM ବନ୍ଦ ଅଛି। ନୂଆ DM ଡିଫଲ୍ଟ ଭାବେ ଅବରୋଧିତ।"
+    "allDisabled": "ବର୍ତ୍ତମାନ ସମସ୍ତ DM ବନ୍ଦ ଅଛି। ନୂଆ DM ଡିଫଲ୍ଟ ଭାବେ ଅବରୋଧିତ।",
+    "failedToEdit": "ସମ୍ପାଦନ କରିବାରେ ବିଫଳ",
+    "messageDeleted": "ସନ୍ଦେଶକୁ ଅପସାରଣ କରାଯାଇଛି",
+    "cantForwardFromDevice": "ଏହି ସନ୍ଦେଶକୁ ଏହି ଉପକରଣରୁ ଫରୱାର୍ଡ କରାଯାଇପାରିବ ନାହିଁ",
+    "messageForwarded": "ସନ୍ଦେଶ ଫରୱାର୍ଡ କରାଯାଇଛି",
+    "clearMessages": "ସନ୍ଦେଶଗୁଡ଼ିକୁ ସଫା କରନ୍ତୁ",
+    "clearMessagesConfirm": "ଏହି ବାର୍ତ୍ତାଳାପରେ ଥିବା ସମସ୍ତ ସନ୍ଦେଶକୁ ଅପସାରଣ କରିବେ କି? ଏହାକୁ ଏଡ଼ାଇ ଦିଆଯାଇପାରିବ ନାହିଁ ।",
+    "messagesCleared": "ସନ୍ଦେଶଗୁଡ଼ିକୁ ସଫା କରାଯାଇଛି",
+    "failedToClearMessages": "ସନ୍ଦେଶଗୁଡ଼ିକୁ ସଫା କରିବାରେ ବିଫଳ",
+    "removedFreeAccess": "{{name}} ପାଇଁ ମାଗଣା ଅଭିଗମ୍ୟତା ଅପସାରଣ କରାଯାଇଛି",
+    "grantedFreeAccess": "{{name}} କୁ ମାଗଣାରେ ପ୍ରବେଶ ମଞ୍ଜୁର କରାଯାଇଛି",
+    "failedToUpdateFreeAccess": "ମୁକ୍ତ ଅଭିଗମ୍ୟତାକୁ ଅଦ୍ୟତନ କରିବାରେ ବିଫଳ",
+    "searchComingSoon": "ସନ୍ଧାନ ଶୀଘ୍ର ଆସୁଅଛି",
+    "tapToUnblock": "ଅପରିବର୍ତ୍ତନୀୟ କରିବା ପାଇଁ ଟ୍ୟାପ୍ କରନ୍ତୁ",
+    "userFallback": "ଚାଳକ",
+    "failedToBlock": "ଅବରୋଧ କରିବାରେ ବିଫଳ",
+    "failedToDeleteConversation": "ବାର୍ତ୍ତାଳାପକୁ ଅପସାରଣ କରିବାରେ ବିଫଳ",
+    "newDm": "ନୂତନ ସିଧାସଳଖ ସନ୍ଦେଶ",
+    "noConversationsFound": "କୌଣସି ବାର୍ତ୍ତାଳାପ ମିଳିଲା ନାହିଁ"
   },
   "editPost": {
     "mediaPermission": "ମିଡିଆ ଲାଇବ୍ରେରୀ ଅନୁମତି ଆବଶ୍ୟକ",
@@ -4463,7 +4605,17 @@
     "retry": "ପୁଣିଥରେ ଚେଷ୍ଟା କରନ୍ତୁ",
     "retrying": "ପୁଣିଥରେ ଚେଷ୍ଟା କରୁଅଛି...",
     "retryQueued": "ପୁଣିଥରେ ପ୍ରକ୍ରିୟାକରଣ କରୁଅଛି",
-    "retryFailed": "ସେହି ପୋଷ୍ଟକୁ ପୁନଃପ୍ରଚେଷ୍ଟା କରିପାରିଲା ନାହିଁ"
+    "retryFailed": "ସେହି ପୋଷ୍ଟକୁ ପୁନଃପ୍ରଚେଷ୍ଟା କରିପାରିଲା ନାହିଁ",
+    "closeVideo": "ଭିଡ଼ିଓ ବନ୍ଦ କରନ୍ତୁ",
+    "rotateOrientation": "ଆବର୍ତ୍ତନକୁ ଘୁରାଅ",
+    "videoProgress": "Video progress: {{percent}}%",
+    "tapToSeek": "ଏକ ନିର୍ଦ୍ଦିଷ୍ଟ ସ୍ଥାନକୁ ଯିବା ପାଇଁ ଟାପ୍ କରନ୍ତୁ",
+    "photoAccessToSaveImages": "ଚିତ୍ର ସଞ୍ଚୟ କରିବା ପାଇଁ ଫଟୋ ଲାଇବ୍ରେରୀକୁ ଅନୁମତି ଦିଅନ୍ତୁ",
+    "failedToSaveImage": "ଚିତ୍ର ସଞ୍ଚୟ କରିବାରେ ବିଫଳ ହୋଇଛି",
+    "downloadImage": "ଚିତ୍ର ଡାଉନଲୋଡ୍ କରନ୍ତୁ",
+    "goToImage": "ଚିତ୍ର {{index}} କୁ ଯାଆନ୍ତୁ",
+    "allCaughtUp": "ଆପଣ ସବୁ ଦେଖି ସାରିଛନ୍ତି",
+    "checkBackForShorts": "ପାଇଁ ପରେ ପୁଣି ଯାଞ୍ଚ କରନ୍ତୁ"
   },
   "liveViewer": {
     "loadingStream": "ଷ୍ଟ୍ରିମ ଲୋଡ୍ ହେଉଛି...",
@@ -4473,7 +4625,22 @@
   },
   "search": {
     "endOfResults": "ଫଳାଫଳର ଶେଷ",
-    "searchDehub": "DeHub ରେ ଖୋଜନ୍ତୁ"
+    "searchDehub": "DeHub ରେ ଖୋଜନ୍ତୁ",
+    "tabVoice": "Voice",
+    "trendingThisWeek": "ଏ ସପ୍ତାହର ଟ୍ରେଣ୍ଡିଂ",
+    "trendingPosts": "ଟ୍ରେଣ୍ଡିଂ ପୋଷ୍ଟ",
+    "trendingImages": "ଟ୍ରେଣ୍ଡିଂ ଚିତ୍ର",
+    "trendingVideos": "ଟ୍ରେଣ୍ଡିଂ ଭିଡିଓ",
+    "trendingVoicePosts": "ଟ୍ରେଣ୍ଡିଂ ଭଏସ୍ ପୋଷ୍ଟ",
+    "trendingLive": "ଟ୍ରେଣ୍ଡିଂ ଲାଇଭ୍",
+    "seeAll": "ସବୁ ଦେଖନ୍ତୁ",
+    "noAccountsFound": "କୌଣସି ଆକାଉଣ୍ଟ୍ ମିଳିଲା ନାହିଁ",
+    "tryDifferentKeywords": "ଅଲଗା କୀୱାର୍ଡ୍ ଉଦ୍ୟମ କରନ୍ତୁ କିମ୍ବା ଆପଣଙ୍କ ସ୍ପେଲିଂ ଯାଞ୍ଚ କରନ୍ତୁ",
+    "noContentResults": "କୌଣସି କଣ୍ଟେଣ୍ଟ୍ ଫଳାଫଳ ନାହିଁ",
+    "recentSearches": "ସମ୍ପ୍ରତିକ ସନ୍ଧାନ",
+    "noTrendingThisWeek": "ଏ ସପ୍ତାହରେ କୌଣସି ଟ୍ରେଣ୍ଡିଂ କଣ୍ଟେଣ୍ଟ୍ ନାହିଁ",
+    "closeFilterOptions": "ଫିଲ୍ଟର୍ ବିକଳ୍ପ ବନ୍ଦ କରନ୍ତୁ",
+    "openFilterOptions": "ଫିଲ୍ଟର୍ ବିକଳ୍ପ ଖୋଲନ୍ତୁ"
   },
   "notifPrompt": {
     "stayInLoop": "ଅବଗତ ରୁହନ୍ତୁ",
@@ -4722,7 +4889,26 @@
     "externalTitle": "ବାହ୍ୟ ପ୍ରବାହ ଧାରା",
     "externalLiveHint": "ଆପଣଙ୍କର ପ୍ରବାହ ବାହ୍ୟ ସଫ୍ଟୱେର ମାଧ୍ୟମରେ ଜୀବନ୍ତ ଅଟେ । ଇନ-ଆପ କ୍ୟାମେରାକୁ ନିଷ୍କ୍ରିୟ କରାଯାଇଛି ।",
     "externalHint": "ନିମ୍ନଲିଖିତ ବିବରଣୀ ବ୍ୟବହାର କରି ଆପଣଙ୍କର ଷ୍ଟ୍ରିମିଂ ସଫ୍ଟୱେରକୁ ସଂଯୋଗ କରନ୍ତୁ, ତା 'ପରେ ପ୍ରସାରଣ ଆରମ୍ଭ କରନ୍ତୁ ।",
-    "useInAppCamera": "ପରିବର୍ତ୍ତେ ଇନ-ଆପ୍ କ୍ୟାମେରା ବ୍ୟବହାର କରନ୍ତୁ"
+    "useInAppCamera": "ପରିବର୍ତ୍ତେ ଇନ-ଆପ୍ କ୍ୟାମେରା ବ୍ୟବହାର କରନ୍ତୁ",
+    "livestreamEnded": "ଲାଇଭ୍ଷ୍ଟ୍ରିମ୍ ଶେଷ ହୋଇଛି",
+    "chatEnabled": "ଚାଟ୍ ସକ୍ଷମ ହୋଇଛି",
+    "chatDisabled": "ଚାଟ୍ ଅକ୍ଷମ ହୋଇଛି",
+    "failedToUpdateSettings": "ସେଟିଂ ଅପଡେଟ୍ କରିବାରେ ବିଫଳ ହୋଇଛି",
+    "networkLostReconnecting": "ନେଟୱାର୍କ ହରାଇଲା — ଷ୍ଟ୍ରିମ୍ ବିରତ ହୋଇଛି। ପୁନଃ ସଂଯୋଗ କରୁଛି…",
+    "openingViewer": "ଭିଉୟର୍ ଖୋଲୁଛି...",
+    "cameraPermissionRequired": "କ୍ୟାମେରା ଅନୁମତି ଆବଶ୍ୟକ",
+    "grantPermission": "ଅନୁମତି ପ୍ରଦାନ କରନ୍ତୁ",
+    "waitingForLivepeer": "Livepeer ପାଇଁ ଅପେକ୍ଷା କରୁଅଛି...",
+    "waitingForExternalSource": "ବାହ୍ୟ ଉତ୍ସ ପାଇଁ ଅପେକ୍ଷା କରୁଅଛି...",
+    "settingUpPublisher": "ପ୍ରକାଶକ ସ୍ଥାପନ କରୁଅଛି...",
+    "scheduledStream": "ଅନୁସୂଚିତ ପ୍ରବାହ",
+    "scheduledAt": "{{date}} {{time}}",
+    "pressGoLiveWhenReady": "ଆରମ୍ଭ କରିବା ପାଇଁ ପ୍ରସ୍ତୁତ ହେବା ସମୟରେ ଲାଇଭ ଯାଆନ୍ତୁକୁ ଦବାନ୍ତୁ",
+    "connectionInterrupted": "ସଂଯୋଗ ବାଧାପ୍ରାପ୍ତ ହୋଇଛି",
+    "streamPausedReconnecting": "ଆପଣଙ୍କର ପ୍ରବାହଟି ସ୍ଥଗିତ ଅଛି । ପୁନଃସଂଯୋଗ କରୁଅଛି...",
+    "streamWillEnd": "ଯଦି ପୁନଃ ସଂଯୁକ୍ତ ହୋଇନଥାଏ ତେବେ ପ୍ରବାହ ସମାପ୍ତ ହେବ",
+    "endStreamConfirmTitle": "ପ୍ରବାହକୁ ସମାପ୍ତ କରିବେ କି?",
+    "endStreamConfirmBody": "ବର୍ତ୍ତମାନ ବନ୍ଦ ହେବା ଦ୍ୱାରା ସମସ୍ତ ଦର୍ଶକଙ୍କ ପାଇଁ ଆପଣଙ୍କର ଲାଇଭ୍ ‌ ଷ୍ଟ୍ରିମ୍ ‌ ସମାପ୍ତ ହେବ । ଆପଣ ଷ୍ଟ୍ରିମିଂ ଜାରି ରଖିପାରିବେ କିମ୍ବା ଏହାକୁ ସ୍ଥାୟୀ ଭାବରେ ସମାପ୍ତ କରିପାରିବେ ।"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

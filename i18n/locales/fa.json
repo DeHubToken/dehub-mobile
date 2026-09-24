@@ -119,7 +119,12 @@
     "music": "موسیقی",
     "live": "زنده",
     "newPosts_one": "{{count}} پست جدید",
-    "newPosts_other": "{{count}} پست جدید"
+    "newPosts_other": "{{count}} پست جدید",
+    "privateContent": "محتوای خصوصی",
+    "privateContentBody": "این محتوا از یک حساب خصوصی است. سازنده را دنبال کنید تا پست‌های او را مشاهده کنید.",
+    "noMoreContent": "محتوای بیشتر",
+    "noPostsYet": "پستی وجود ندارد.",
+    "pullToRefresh": "برای تازه کردن بکشید یا بعداً دوباره امتحان کنید."
   },
   "explore": {
     "all": "همه",
@@ -710,7 +715,19 @@
       "replies": "فقط پاسخ به نظرات من",
       "account": "فقط اطلاعیه‌ها درباره حساب من"
     },
-    "smsCodeSent": "کد ارسال شد. این {{price}} DHB هزینه داشت."
+    "smsCodeSent": "کد ارسال شد. این {{price}} DHB هزینه داشت.",
+    "avatarUpdateFailed": "به‌روزرسانی آواتار ناموفق بود",
+    "coverUpdateFailed": "به‌روزرسانی کاور ناموفق بود",
+    "fixInvalidSocialLinks": "لطفاً لینک‌های اجتماعی نامعتبر را اصلاح کنید",
+    "updateFailed": "به‌روزرسانی ناموفق بود",
+    "channelUrlOrHandle": "URL یا نام کانال",
+    "inviteLinkPlaceholder": "لینک دعوت",
+    "profileUrlOrUsername": "URL یا نام کاربری پروفایل",
+    "yourDisplayName": "نام نمایشی شما",
+    "usernameAvailable": "نام کاربری موجود است",
+    "hideBadgeAndBalance": "نماد و موجودی را پنهان کن",
+    "hideBadgeAndBalanceDesc": "جزئیات مالی را پنهان می‌کند و ارسال‌ها و انعام‌ها را به شما غیرفعال می‌کند.",
+    "onChainPublicWarning": "تراکنش‌های روی زنجیره عمومی هستند. ارسال توکن‌ها یا انعام‌ها می‌تواند آدرس کیف پول شما را فاش کند، از جمله تراکنش‌های انجام شده قبل از فعال شدن حالت موجودی خصوصی."
   },
   "common": {
     "mute": "بی‌صدا",
@@ -760,7 +777,9 @@
     "noInternetTitle": "عدم اتصال به اینترنت",
     "noInternetBody": "لطفاً اتصال اینترنت خود را بررسی کرده و دوباره امتحان کنید. برای استفاده از DeHub باید به اینترنت متصل باشید.",
     "noInternetStatus": "آفلاین - عدم اتصال به شبکه",
-    "noInternetHint": "مطمئن شوید که Wi-Fi یا داده تلفن همراه روشن است، سپس روی \"{{action}}\" ضربه بزنید"
+    "noInternetHint": "مطمئن شوید که Wi-Fi یا داده تلفن همراه روشن است، سپس روی \"{{action}}\" ضربه بزنید",
+    "saving": "در حال ذخیره…",
+    "offlineStatus": "آفلاین - عدم اتصال به شبکه"
   },
   "tip": {
     "title": "ارسال انعام",
@@ -1094,7 +1113,17 @@
     "post": "پست",
     "officialLogo": "این لوگوی رسمی DeHub است! 🎨",
     "editedImage": "تصویر ویرایش شده شما اینجاست!",
-    "generatedImage": "تصویر تولید شده شما اینجاست!"
+    "generatedImage": "تصویر تولید شده شما اینجاست!",
+    "toolCompleted": "{{name}} تکمیل شد",
+    "aiTool": "ابزار هوش مصنوعی",
+    "cannotAnimateImage": "{{model}} نمی‌تواند تصویر پیوست شده را متحرک کند. یک مدل ویدیوی دیگر انتخاب کنید.",
+    "needsImageToAnimate": "{{model}} برای متحرک‌سازی به یک تصویر نیاز دارد. یکی را پیوست کنید یا یک مدل دیگر انتخاب کنید.",
+    "couldNotReadImage": "امکان خواندن آن تصویر وجود نداشت",
+    "logoLoadFailed": "لوگوی DeHub بارگیری نشد - بدون آن تولید می‌شود",
+    "imageAttachedDescribe": "تصویر پیوست شد - ویرایش‌های خود را شرح دهید",
+    "couldNotPreparePost": "آماده‌سازی آن برای ارسال امکان‌پذیر نبود",
+    "generateImage": "ایجاد تصویر",
+    "generateVideo": "تولید از ویدیو"
   },
   "commandCentre": {
     "title": "مرکز فرماندهی",
@@ -1606,7 +1635,10 @@
     "edit": "ویرایش",
     "deleteRequestTitle": "این درخواست حذف شود؟",
     "deleteRequestDescription": "این کار برگشت‌پذیر نیست.",
-    "attachmentTooLarge": "هر فایل باید کمتر از ۲۰ مگابایت باشد"
+    "attachmentTooLarge": "هر فایل باید کمتر از ۲۰ مگابایت باشد",
+    "deleteCommentA11y": "حذف نظر",
+    "sendCommentA11y": "ارسال نظر",
+    "requestOptions": "گزینه‌های درخواست"
   },
   "auth": {
     "loginRequired": "ورود لازم است",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "ارسال کد ممکن نبود. لطفاً دوباره امتحان کنید.",
     "invalidCodeRetry": "کد نامعتبر است. لطفاً دوباره امتحان کنید.",
     "invalidEmailOrPassword": "ایمیل یا رمز عبور نامعتبر است.",
-    "welcomeToDehub": "به DeHub خوش آمدید"
+    "welcomeToDehub": "به DeHub خوش آمدید",
+    "importWalletOptional": "کیف پول را وارد کنید (اختیاری)",
+    "couldNotSendCodeRetry": "کد ارسال نشد. لطفا دوباره امتحان کنید.",
+    "exploreWithoutSignIn": "بدون ورود به سیستم کاوش کنید",
+    "continueExploring": "ادامه کاوش",
+    "exploreWithoutSignInA11y": "بدون ورود به سیستم، DeHub را کاوش کنید",
+    "continueExploringA11y": "ادامه کاوش در DeHub",
+    "importWalletRecommended": "ورود به سیستم از طریق شبکه‌های اجتماعی توصیه می‌شود.",
+    "importWalletPurpose": "این ابزار برای وارد کردن حساب‌های موجود از DeHub.io است."
   },
   "messages": {
     "smartRepliesOff": "پاسخ‌های پیشنهادی خاموش شد",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "به‌طور خودکار گزارش شد.",
     "loadFailed": "بارگذاری کانال‌ها ناموفق بود",
     "noSearchResults": "هیچ کانالی با جست‌وجوی شما مطابقت ندارد",
-    "noChannels": "کانالی در دسترس نیست"
+    "noChannels": "کانالی در دسترس نیست",
+    "pairCodeExpired": "آن کد منقضی شده است. از تلویزیون کد جدید بخواهید.",
+    "signedInOnTv": "وارد تلویزیون خود شوید",
+    "pairRefused": "رد شد",
+    "pairIntro": "برنامه DeHub را روی تلویزیون خود باز کنید و کدی را که نشان می‌دهد اینجا تایپ کنید.",
+    "pairNotFound": "هیچ تلویزیونی منتظر آن کد نیست. ممکن است منقضی شده باشد - از تلویزیون درخواست کد جدید کنید.",
+    "wantsToSignIn": "می‌خواهد به عنوان شما وارد سیستم شود",
+    "pairWarning": "فقط در صورتی این کد را تأیید کنید که تلویزیونی باشد که همین الان به آن نگاه می‌کنید. تأیید، هر کسی را که آن کد را در اختیار دارد، وارد حساب شما می‌کند. این کد قادر به تماشا، لایک و دنبال کردن خواهد بود - نمی‌تواند خرج کند و می‌توانید هر زمان که خواستید از جلسات فعال خارج شوید.",
+    "pairApprove": "بله، این تلویزیون را وارد کنید",
+    "pairDeny": "نه، من این را نپرسیدم",
+    "pairDoneTitle": "تلویزیون شما وارد سیستم شده است",
+    "pairDoneBody": "باید حساب کاربری شما از قبل نمایش داده شود. هر زمان که خواستید از طریق تنظیمات → حریم خصوصی → جلسات فعال، از آن خارج شوید.",
+    "closePlayer": "بازیکن را ببندید",
+    "declineFailed": "نمی‌توانستم آن را رد کنم - ممکن است قبلاً منقضی شده باشد.",
+    "tipSentTvNotTold": "نکته ارسال شد، اما تلویزیون قابل تشخیص نبود. زمان آن تمام خواهد شد.",
+    "sentAmount": "ارسال {{amount}} DHB",
+    "nothingWaiting": "چیزی در انتظار نیست",
+    "nothingWaitingBody": "هنگامی که از DeHub در تلویزیون خود انعام می‌دهید، در اینجا ظاهر می‌شود تا شما آن را تأیید کنید. تلویزیون شما هرگز کیف پول شما را نگه نمی‌دارد.",
+    "yourTelevision": "تلویزیون شما",
+    "wantsToTip": "می‌خواهد انعام بفرستد · {{time}} باقی مانده",
+    "tipTo": "به {{name}}",
+    "tipForPost": "برای \"{{title}}\"",
+    "reviewAndApprove": "بررسی و تأیید کنید"
   },
   "top100": {
     "title": "۱۰۰ برتر",
@@ -2042,7 +2104,8 @@
     "submitApplication": "ارسال درخواست",
     "nameEmailRequired": "نام و ایمیل الزامی هستند",
     "applicationSuccess": "درخواست با موفقیت ارسال شد! با شما تماس خواهیم گرفت.",
-    "applicationFailed": "ارسال ناموفق بود. لطفاً دوباره تلاش کنید."
+    "applicationFailed": "ارسال ناموفق بود. لطفاً دوباره تلاش کنید.",
+    "namePlaceholder": "جین اسمیت"
   },
   "dao": {
     "title": "خزانه‌داری DAO",
@@ -2232,7 +2295,8 @@
     "pinnedToast": "به بالای این پست سنجاق شد",
     "unpinnedToast": "سنجاق برداشته شد",
     "pinFailed": "نشد آن دیدگاه را سنجاق کرد",
-    "kidsOnlyThread": "این پست مخصوص بچه‌هاست. فقط بخش کودکان می‌تواند در مورد آن نظر بدهد."
+    "kidsOnlyThread": "این پست مخصوص بچه‌هاست. فقط بخش کودکان می‌تواند در مورد آن نظر بدهد.",
+    "editFailed": "ویرایش نظر ناموفق بود"
   },
   "postInfo": {
     "title": "اطلاعات پست",
@@ -3273,14 +3337,40 @@
     "comingSoon": "به‌زودی",
     "signIn": "ورود",
     "tapToGetStarted": "برای شروع ضربه بزنید",
-    "soon": "به‌زودی"
+    "soon": "به‌زودی",
+    "glossarySubtitle": "یاد بگیرید که هر آیکون و ویژگی به چه معناست",
+    "searchGlossary": "واژه‌نامه را جستجو کنید...",
+    "noResultsFor": "نتیجه‌ای برای \"{{query}}\" یافت نشد",
+    "guideSubtitle": "راهنمای گام به گام هر ویژگی",
+    "searchGuide": "راهنما را جستجو کنید...",
+    "repostsTab": "بازنشرها",
+    "quotesTab": "نقل قول‌ها",
+    "noMoreReposts": "دیگر بازنشر وجود ندارد",
+    "noMoreQuotes": "دیگر نقل قول وجود ندارد",
+    "noRepostsYet": "هنوز بازنشر وجود ندارد",
+    "noQuotesYet": "هنوز نقل قول وجود ندارد"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "بازی‌هایی که همین‌جا در برنامه اجرا می‌شوند. چیزی برای نصب و خرید نیست — متن‌باز و از خود DeHub سرو می‌شود."
+    "intro": "بازی‌هایی که همین‌جا در برنامه اجرا می‌شوند. چیزی برای نصب و خرید نیست — متن‌باز و از خود DeHub سرو می‌شود.",
+    "noGameCalled": "هیچ بازی به نام <slug>{{slug}}</slug> در آرکید وجود ندارد.",
+    "seeWhatIsHere": "ببینید اینجا چه خبر است",
+    "locationNotGranted": "مجوز مکان اعطا نشد.",
+    "signInToPlaceOnGlobe": "برای قرار دادن خود در کره زمین وارد شوید.",
+    "couldNotPlaceOnGlobe": "نتوانستیم شما را در کره زمین قرار دهیم.",
+    "onTheGlobe": "شما در کره زمین هستید — در یک منطقه تقریبی ۲۵ کیلومتری نشان داده شده‌اید.",
+    "couldNotReach": "دسترسی به آرکید امکان‌پذیر نبود",
+    "didNotLoad": "{{title}} بارگذاری نشد",
+    "needsConnection": "بازی از dehub.io سرویس‌دهی می‌شود و هنگام باز کردن آن دانلود می‌شود، بنابراین برای اولین بار به اتصال کارآمد نیاز دارد. اتصال خود را بررسی کنید و دوباره امتحان کنید.",
+    "backToArcade": "بازگشت به آرکید",
+    "openPrivacySettings": "باز کردن تنظیمات حریم خصوصی",
+    "privacyWarning": "اگر مقدار زیادی توکن دارید یا در منطقه ناامنی زندگی می‌کنید، قبل از استفاده از این ویژگی، نشان و موجودی خود را مخفی کنید. تراکنش‌های روی زنجیره همچنان آدرس شما را فاش می‌کنند. تنظیمات را باز کنید.",
+    "leaveGame": "خروج از بازی",
+    "loadingGame": "در حال بارگذاری {{title}}",
+    "hideThis": "مخفی کردن این"
   },
   "videoLooks": {
     "button": "ظاهرهای دوربین",
@@ -3405,7 +3495,22 @@
     "someone": "کسی",
     "oneTyping": "{{name}} در حال نوشتن است…",
     "fewTyping": "{{names}} در حال نوشتن هستند…",
-    "manyTyping": "{{count}} نفر در حال نوشتن هستند…"
+    "manyTyping": "{{count}} نفر در حال نوشتن هستند…",
+    "modBadge": "مدیر",
+    "thisUser": "این کاربر",
+    "unbanConfirm": "آیا مطمئن هستید که می‌خواهید {{name}} را از لیست سیاه خارج کنید؟",
+    "unban": "حذف از لیست سیاه",
+    "unbanFailed": "خطا در حذف کاربر از لیست سیاه",
+    "onlineLabel": "آنلاین",
+    "usersCount_one": "کاربر {{count}}",
+    "usersCount_other": "کاربران {{count}}",
+    "totalMessages": "کل پیام‌ها",
+    "slowMode": "حالت آهسته",
+    "cooldownSeconds": "خنک‌سازی {{seconds}} ثانیه",
+    "minStakeRequired": "حداقل سهام مورد نیاز",
+    "noParticipants": "هنوز هیچ شرکتی وجود ندارد",
+    "noModerators": "هیچ مدیری وجود ندارد",
+    "noBannedUsers": "هیچ کاربری در لیست سیاه وجود ندارد"
   },
   "promptFeed": {
     "headline": "چه چیزی می‌خواهید ببینید؟",
@@ -4156,7 +4261,26 @@
     "madeForKidsOffDesc": "این پست را برای کودکانی که از حالت کودکان استفاده می‌کنند نمایش می‌دهد، و آن را از فیدهای معمولی حذف می‌کند.",
     "madeForKidsBlockedByMature": "یک پست علامت‌گذاری شده به عنوان بالغ نمی‌تواند برای کودکان منتشر شود.",
     "encoderTitle": "OBS / انکودر",
-    "encoderHint": "جزئیات RTMP را دریافت کنید"
+    "encoderHint": "جزئیات RTMP را دریافت کنید",
+    "queueWaiting": "در انتظار…",
+    "queueUploading": "در حال بارگذاری",
+    "queueProcessing": "در حال پردازش…",
+    "queueMinting": "در حال ضرب…",
+    "queuePosted": "ارسال شد",
+    "queueFailed": "شکست خورد",
+    "noRetriesLeft": "(تلاش مجدد باقی نمانده)",
+    "noUploads": "هیچ بارگذاری‌ای وجود ندارد",
+    "uploadsAppearHere": "بارگذاری‌های شما در اینجا ظاهر می‌شوند",
+    "imagesTotalLimit": "تصاویر در یک آپلود باید مجموعاً ۱۰۰ مگابایت یا کمتر باشند",
+    "chooseDatabase": "پایگاه داده غیرمتمرکز را انتخاب کنید",
+    "livestreamMode": "حالت پخش زنده",
+    "addThumbnail": "افزودن تصویر",
+    "showCover": "نشان دادن کاور",
+    "max60s": "حداکثر ۶۰ ثانیه",
+    "confirmLivestream": "پخش زنده را تأیید کنید",
+    "liveFeaturesTitle": "ویژگی‌های زنده",
+    "discardPostTitle": "پست را کنار بگذارید؟",
+    "discardPostBody": "پست شما از بین خواهد رفت. آیا می‌خواهید آن را به عنوان پیش‌نویس ذخیره کنید؟"
   },
   "bounty": {
     "claimed": "دریافت‌شده",
@@ -4473,7 +4597,25 @@
     "allowNewDmsOff": "برای اجازه پیام‌های جدید، پیام مستقیم را روشن کنید.",
     "perMessageFee": "هزینه هر پیام (DHB)",
     "perMessageFeeSub": "برای هر پیام هزینه بگیرید. برای پیام رایگان روی ۰ بگذارید. می‌توانید به کاربران خاصی دسترسی رایگان بدهید.",
-    "allDisabled": "در حال حاضر همه پیام‌ها غیرفعال است. پیام‌های جدید به‌صورت پیش‌فرض مسدودند."
+    "allDisabled": "در حال حاضر همه پیام‌ها غیرفعال است. پیام‌های جدید به‌صورت پیش‌فرض مسدودند.",
+    "failedToEdit": "خطا در ویرایش VRF",
+    "messageDeleted": "پیام پاک شد.",
+    "cantForwardFromDevice": "این پیام از این دستگاه قابل بازارسال نیست",
+    "messageForwarded": "پیام ارسال شد",
+    "clearMessages": "پاکسازی همه ی پیام ها",
+    "clearMessagesConfirm": "آیا می‌خواهید همه پیام‌های این مکالمه را حذف کنید؟ این کار قابل بازگشت نیست.",
+    "messagesCleared": "پیام‌ها پاک شدند",
+    "failedToClearMessages": "پیام‌ها پاک نشدند",
+    "removedFreeAccess": "دسترسی رایگان برای {{name}} حذف شد",
+    "grantedFreeAccess": "دسترسی رایگان به {{name}} اعطا شد",
+    "failedToUpdateFreeAccess": "به‌روزرسانی دسترسی رایگان انجام نشد",
+    "searchComingSoon": "جستجو به زودی",
+    "tapToUnblock": "برای رفع انسداد، ضربه بزنید",
+    "userFallback": "کاربر",
+    "failedToBlock": "کاربر مسدود نشد",
+    "failedToDeleteConversation": "حذف مکالمه ناموفق بود",
+    "newDm": "دایرکت خودکار",
+    "noConversationsFound": "هیچ مکالمه ای یافت نشد"
   },
   "editPost": {
     "mediaPermission": "دسترسی به کتابخانه رسانه لازم است",
@@ -4495,7 +4637,17 @@
     "retry": "دوباره امتحان کنید",
     "retrying": "در حال تلاش مجدد…",
     "retryQueued": "پردازش دوباره",
-    "retryFailed": "نتونستم اون پست رو دوباره امتحان کنم"
+    "retryFailed": "نتونستم اون پست رو دوباره امتحان کنم",
+    "closeVideo": "بستن ویدیو",
+    "rotateOrientation": "جهت چرخش",
+    "videoProgress": "پیشرفت ویدیو: {{percent}}%",
+    "tapToSeek": "برای رفتن به موقعیت خاص ضربه بزنید",
+    "photoAccessToSaveImages": "دسترسی به کتابخانه عکس برای ذخیره تصاویر را مجاز کنید",
+    "failedToSaveImage": "ذخیره تصویر ناموفق بود",
+    "downloadImage": "دانلود تصویر",
+    "goToImage": "رفتن به تصویر {{index}}",
+    "allCaughtUp": "همه موارد را مشاهده کردید",
+    "checkBackForShorts": "بعداً برای ویدیوهای کوتاه بیشتر دوباره بررسی کنید"
   },
   "liveViewer": {
     "loadingStream": "در حال بارگذاری پخش...",
@@ -4505,7 +4657,22 @@
   },
   "search": {
     "endOfResults": "پایان نتایج",
-    "searchDehub": "جستجو در DeHub"
+    "searchDehub": "جستجو در DeHub",
+    "tabVoice": "صدا",
+    "trendingThisWeek": "موضوعات داغ این هفته",
+    "trendingPosts": "پست‌های داغ",
+    "trendingImages": "تصاویر داغ",
+    "trendingVideos": "ویدیوهای داغ",
+    "trendingVoicePosts": "پست‌های صوتی داغ",
+    "trendingLive": "پخش زنده داغ",
+    "seeAll": "مشاهده همه",
+    "noAccountsFound": "هیچ حسابی یافت نشد",
+    "tryDifferentKeywords": "کلمات کلیدی متفاوتی را امتحان کنید یا املای خود را بررسی کنید",
+    "noContentResults": "نتیجه محتوایی یافت نشد",
+    "recentSearches": "جستجوهای اخیر",
+    "noTrendingThisWeek": "محتوای داغی این هفته وجود ندارد",
+    "closeFilterOptions": "بستن گزینه‌های فیلتر",
+    "openFilterOptions": "باز کردن گزینه‌های فیلتر"
   },
   "notifPrompt": {
     "stayInLoop": "در جریان باشید",
@@ -4754,7 +4921,25 @@
     "externalTitle": "حالت پخش خارجی",
     "externalLiveHint": "پخش زنده شما از طریق نرم‌افزار خارجی انجام می‌شود. دوربین درون برنامه غیرفعال است.",
     "externalHint": "نرم‌افزار پخش خود را با استفاده از جزئیات زیر متصل کنید، سپس پخش را شروع کنید.",
-    "useInAppCamera": "به جای آن از دوربین درون برنامه‌ای استفاده کنید"
+    "useInAppCamera": "به جای آن از دوربین درون برنامه‌ای استفاده کنید",
+    "livestreamEnded": "پخش زنده به پایان رسید",
+    "chatEnabled": "چت فعال شد",
+    "chatDisabled": "چت غیرفعال شد",
+    "failedToUpdateSettings": "به‌روزرسانی تنظیمات ناموفق بود",
+    "networkLostReconnecting": "شبکه قطع شد - پخش متوقف شد. در حال اتصال مجدد…",
+    "openingViewer": "در حال باز کردن نمایشگر...",
+    "cameraPermissionRequired": "مجوز دوربین مورد نیاز است",
+    "grantPermission": "اعطای مجوز",
+    "waitingForLivepeer": "منتظر لایوپیر هستیم...",
+    "waitingForExternalSource": "منتظر منبع خارجی هستم...",
+    "settingUpPublisher": "راه‌اندازی ناشر...",
+    "scheduledStream": "پخش زمان‌بندی‌شده",
+    "pressGoLiveWhenReady": "وقتی آماده شروع شدید، Go Live را فشار دهید",
+    "connectionInterrupted": "اتصال قطع شد",
+    "streamPausedReconnecting": "پخش زنده شما متوقف شده است. در حال اتصال مجدد...",
+    "streamWillEnd": "در صورت عدم اتصال مجدد، پخش جریانی متوقف خواهد شد",
+    "endStreamConfirmTitle": "پایان جریان؟",
+    "endStreamConfirmBody": "بستن در حال حاضر، پخش زنده شما را برای همه بینندگان متوقف می‌کند. می‌توانید پخش را ادامه دهید یا آن را برای همیشه متوقف کنید."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

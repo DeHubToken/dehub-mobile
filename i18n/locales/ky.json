@@ -119,7 +119,12 @@
     "music": "Музыка",
     "live": "Түз эфир",
     "newPosts_one": "{{count}} жаңы жазуу",
-    "newPosts_other": "{{count}} жаңы жазуу"
+    "newPosts_other": "{{count}} жаңы жазуу",
+    "privateContent": "Жеке менчик контент",
+    "privateContentBody": "Бул контент жеке аккаунттан алынды. Анын постторун көрүү үчүн жаратуучуну ээрчиңиз.",
+    "noMoreContent": "Башка контент жок",
+    "noPostsYet": "Азырынча посттор жок.",
+    "pullToRefresh": "Жаңыртуу үчүн ылдый сүрүңүз же кийинчерээк аракет кылыңыз."
   },
   "explore": {
     "all": "Баары",
@@ -710,7 +715,19 @@
     "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) тексттердин кулпусун ачат жана биринчи балансыңыз болот.",
     "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
     "smsBalance": "{{dhb}} DHB калды (${{usd}})",
-    "badgeDelegationLendsAny": "Ар бири башка аккаунтка кулпусун ачкан төш белгиңизди берет, өзүңүздүн {{tier}} чейин. Кичинекей төш белги да бүт уячаны колдонот."
+    "badgeDelegationLendsAny": "Ар бири башка аккаунтка кулпусун ачкан төш белгиңизди берет, өзүңүздүн {{tier}} чейин. Кичинекей төш белги да бүт уячаны колдонот.",
+    "avatarUpdateFailed": "Аватарды жаңыртуу ишке ашкан жок",
+    "coverUpdateFailed": "Мукабаны жаңыртуу ишке ашкан жок",
+    "fixInvalidSocialLinks": "Жараксыз социалдык шилтемелерди оңдоңуз",
+    "updateFailed": "Жаңыртуу ишке ашкан жок",
+    "channelUrlOrHandle": "Каналдын URL дареги же аталышы",
+    "inviteLinkPlaceholder": "Чакыруу шилтемеси",
+    "profileUrlOrUsername": "Профиль URL дареги же колдонуучу аты",
+    "yourDisplayName": "Сиздин көрсөтүлүүчү атыңыз",
+    "usernameAvailable": "Колдонуучу аты бар",
+    "hideBadgeAndBalance": "Баракчаны жана балансты жашыруу",
+    "hideBadgeAndBalanceDesc": "Каржылык маалыматтарды жашырат жана сизге жөнөтүүлөрдү жана кеңештерди өчүрөт.",
+    "onChainPublicWarning": "Чынжырдагы транзакциялар ачык. Токендерди же кеңештерди жөнөтүү капчыгыңыздын дарегин ачып бериши мүмкүн, анын ичинде жеке баланс режими иштетилгенге чейин жасалган транзакциялар да бар."
   },
   "common": {
     "mute": "Үнүн өчүрүү",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Интернет байланышы жок",
     "noInternetBody": "Интернет байланышыңызды текшерип, кайра аракет кылыңыз. DeHub колдонуу үчүн интернетке туташуу керек.",
     "noInternetStatus": "Оффлайн - тармакка туташуу жок",
-    "noInternetHint": "Wi-Fi же мобилдик маалымат күйгүзүлгөнүн текшерип, андан кийин \"{{action}}\" басыңыз"
+    "noInternetHint": "Wi-Fi же мобилдик маалымат күйгүзүлгөнүн текшерип, андан кийин \"{{action}}\" басыңыз",
+    "saving": "Сакталууда…",
+    "offlineStatus": "Оффлайн - тармак байланышы жок"
   },
   "tip": {
     "title": "Send Tip",
@@ -1094,7 +1113,17 @@
     "post": "Жарыялоо",
     "officialLogo": "Мына DeHubдун расмий логосу! 🎨",
     "editedImage": "Мына түзөтүлгөн сүрөтүңүз!",
-    "generatedImage": "Мына түзүлгөн сүрөтүңүз!"
+    "generatedImage": "Мына түзүлгөн сүрөтүңүз!",
+    "toolCompleted": "{{name}} аткарылды",
+    "aiTool": "AI куралы",
+    "cannotAnimateImage": "{{model}} тиркелген сүрөттү анимациялай албайт. Башка видео моделин тандаңыз.",
+    "needsImageToAnimate": "{{model}} анимациялоо үчүн сүрөттү талап кылат. Бирөөнү тиркеңиз же башка моделди тандаңыз.",
+    "couldNotReadImage": "Бул сүрөттү окуй алган жок",
+    "logoLoadFailed": "DeHub логотибин жүктөө мүмкүн болгон жок — асыз эле түзүлүүдө",
+    "imageAttachedDescribe": "Сүрөт тиркелген — түзөтүүлөрүңүздү сүрөттөп бериңиз",
+    "couldNotPreparePost": "Муну пост үчүн даярдай алган жок",
+    "generateImage": "Undo-type",
+    "generateVideo": "Видеону жаратуу"
   },
   "commandCentre": {
     "title": "Буйрук борбору",
@@ -1606,7 +1635,10 @@
     "edit": "Түзөтүү",
     "deleteRequestTitle": "Бул суроо-талап өчүрүлсүнбү?",
     "deleteRequestDescription": "Муну кайтарууга болбойт.",
-    "attachmentTooLarge": "Ар бир файл 20 МБ'дан кичине болушу керек"
+    "attachmentTooLarge": "Ар бир файл 20 МБ'дан кичине болушу керек",
+    "deleteCommentA11y": "Комментарийди өчүрүү",
+    "sendCommentA11y": "Комментарий жөнөтүү",
+    "requestOptions": "Параметрлерди суроо"
   },
   "auth": {
     "loginRequired": "Кирүү талап кылынат",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Код жөнөтүү мүмкүн болбой калды. Кайра аракет кылыңыз.",
     "invalidCodeRetry": "Жараксыз код. Кайра аракет кылыңыз.",
     "invalidEmailOrPassword": "Жараксыз электрондук почта же сырсөз.",
-    "welcomeToDehub": "DeHub'ка кош келиңиз"
+    "welcomeToDehub": "DeHub'ка кош келиңиз",
+    "importWalletOptional": "Капчыкты импорттоо (милдеттүү эмес)",
+    "couldNotSendCodeRetry": "Кодду жөнөтүүгө болбоду. Кайра текшерип көрүңүз.",
+    "exploreWithoutSignIn": "Кол коюусуз иликтөө",
+    "continueExploring": "Изилдөөнү улантуу",
+    "exploreWithoutSignInA11y": "DeHub менен кол койбостон изилдөө",
+    "continueExploringA11y": "DeHub изилдөөнү улантуу",
+    "importWalletRecommended": "Социалдык логиндер сунушталат.",
+    "importWalletPurpose": "Бул курал DeHub.io сайтынан учурдагы эсептерди импорттоо үчүн."
   },
   "messages": {
     "smartRepliesOff": "Сунушталган жооптор өчүрүлдү",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Ал автоматтык түрдө билдирилди.",
     "loadFailed": "Каналдар жүктөлгөн жок",
     "noSearchResults": "Издөөңүзгө дал келген канал жок",
-    "noChannels": "Жеткиликтүү каналдар жок"
+    "noChannels": "Жеткиликтүү каналдар жок",
+    "pairCodeExpired": "Бул коддун мөөнөтү бүттү. Телевизордон жаңысын сураңыз.",
+    "signedInOnTv": "Телевизоруңузга кол коюңуз",
+    "pairRefused": "Четке кагылды",
+    "pairIntro": "Телевизоруңузда DeHub ачып, бул жерде көрсөтүлгөн кодду териңиз.",
+    "pairNotFound": "Бул кодду эч кандай телекөрсөтүү күтпөйт. Анын мөөнөтү бүткөн болушу мүмкүн — телекөрсөтүүдөн жаңысын сураңыз.",
+    "wantsToSignIn": "сиз сыяктуу катталгыңыз келет",
+    "pairWarning": "Бул сиз азыр карап жаткан телекөрсөтүү болсо гана жактырыңыз. Бул кодду сиздин аккаунтуңузда кармап турган белгилерди бекитүү. Ал көрүү, жактыруу жана ээрчүү мүмкүнчүлүгүнө ээ болот — ал сарптай албайт жана аны Активдүү сессиялардан каалаган убакта кол койсоңуз болот.",
+    "pairApprove": "Ооба, бул сыналгыга жазылуу",
+    "pairDeny": "Жок, мен муну сураган жокмун",
+    "pairDoneTitle": "Телекөрсөтүүңүзгө кол коюлду",
+    "pairDoneBody": "Бул сиздин каттоо эсебиңизди мурунтан эле көрсөтүп турушу керек. Жөндөөлөр → Купуялык → Активдүү сессияларынан каалаган убакта кол коюңуз.",
+    "closePlayer": "Ойноткучту жабуу",
+    "declineFailed": "Муну четке кагуу мүмкүн эмес — анын мөөнөтү бүткөн болушу мүмкүн.",
+    "tipSentTvNotTold": "Кеңеш жөнөтүлдү, бирок телекөрсөтүүнү айтууга мүмкүн болгон жок. Убакыт өтүп кетет.",
+    "sentAmount": "Sent {{amount}} DHB",
+    "nothingWaiting": "Эч нерсе күтүлбөйт",
+    "nothingWaitingBody": "Телевизоруңуздан DeHub аркылуу кеңеш бергенде, ал сиздин бекитүүңүз үчүн бул жерде пайда болот. Телевизоруңуз эч качан капчыгыңызды кармабайт.",
+    "yourTelevision": "Сиздин телевизоруңуз",
+    "wantsToTip": "кеңеш жөнөткүсү келет · {{time}} калтырды",
+    "tipTo": "{{name}} га",
+    "tipForPost": "“{{title}}” үчүн",
+    "reviewAndApprove": "Карап чыгып, бекит"
   },
   "top100": {
     "title": "Мыкты 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Арызды жөнөтүү",
     "nameEmailRequired": "Аты жана электрондук почтасы милдеттүү",
     "applicationSuccess": "Арыз ийгиликтүү жөнөтүлдү! Биз байланышабыз.",
-    "applicationFailed": "Жөнөтүү ишке ашкан жок. Кайра аракет кылыңыз."
+    "applicationFailed": "Жөнөтүү ишке ашкан жок. Кайра аракет кылыңыз.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO казынасы",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Бул жазуунун эң башына кадалды",
     "unpinnedToast": "Кадоо алынды",
     "pinFailed": "Бул пикирди кадоо мүмкүн болбоду",
-    "kidsOnlyThread": "Бул пост балдар үчүн. Болгону Kids Mode бул тууралуу комментарий бере алат."
+    "kidsOnlyThread": "Бул пост балдар үчүн. Болгону Kids Mode бул тууралуу комментарий бере алат.",
+    "editFailed": "Комментарийди түзөтүү мүмкүн болбой калды"
   },
   "postInfo": {
     "title": "Пост маалыматы",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Жакында",
     "signIn": "Кирүү",
     "tapToGetStarted": "Баштоо үчүн басыңыз",
-    "soon": "Жакында"
+    "soon": "Жакында",
+    "glossarySubtitle": "Ар бир сүрөтчө жана өзгөчөлүк эмнени билдирерин билип алыңыз",
+    "searchGlossary": "Глоссарийден издеңиз...",
+    "noResultsFor": "\"{{query}}\" үчүн жыйынтык жок",
+    "guideSubtitle": "Ар бир өзгөчөлүктүн кадам-кадам көрсөтмөсү",
+    "searchGuide": "Жол көрсөткүчтөн издеңиз...",
+    "repostsTab": "Репосттор",
+    "quotesTab": "Цитаталар",
+    "noMoreReposts": "Мындан ары репосттор жок",
+    "noMoreQuotes": "Мындан ары цитаталар жок",
+    "noRepostsYet": "Азырынча репосттор жок",
+    "noQuotesYet": "Азырынча цитаталар жок"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Ушул колдонмонун ичинде эле иштеген оюндар. Орното турган да, сатып ала турган да эч нерсе жок — ачык булак, DeHub'тун өзү тартуулайт."
+    "intro": "Ушул колдонмонун ичинде эле иштеген оюндар. Орното турган да, сатып ала турган да эч нерсе жок — ачык булак, DeHub'тун өзү тартуулайт.",
+    "noGameCalled": "Аркадада <slug>{{slug}}</slug> деген оюн жок.",
+    "seeWhatIsHere": "Бул жерде эмне бар экенин көрүңүз",
+    "locationNotGranted": "Жайгашкан жердин уруксаты берилген эмес.",
+    "signInToPlaceOnGlobe": "Өзүңүздү глобуста жайгаштыруу үчүн кириңиз.",
+    "couldNotPlaceOnGlobe": "Сизди глобуска жайгаштыруу мүмкүн болбой калды.",
+    "onTheGlobe": "Сиз глобустасыз — болжол менен 25 км аймакта көрсөтүлөт.",
+    "couldNotReach": "АРКАДАГА ЖЕТҮҮ МҮМКҮН БОЛБОДУ",
+    "didNotLoad": "{{title}} жүктөлгөн жок",
+    "needsConnection": "Оюн dehub.io сайтынан берилет жана аны ачканда жүктөлүп алынат, андыктан биринчи жолу иштеши үчүн туташуу керек. Байланышыңызды текшерип, кайра аракет кылыңыз.",
+    "backToArcade": "Аркадага кайтуу",
+    "openPrivacySettings": "Купуялык жөндөөлөрүн ачуу",
+    "privacyWarning": "Эгерде сизде көп сандагы токендер болсо же кооптуу аймакта жашасаңыз, бул функцияны колдонуудан мурун өзүңүздүн төш белгиңизди жана балансыңызды жашырыңыз. Блокчейндеги транзакциялар дагы эле дарегиңизди ачыкка чыгарат. Жөндөөлөрдү ачуу.",
+    "leaveGame": "Оюнду таштап кетүү",
+    "loadingGame": "Жүктөлүп жатат {{title}}",
+    "hideThis": "Муну жашыруу"
   },
   "videoLooks": {
     "button": "Камера стилдери",
@@ -3376,7 +3466,22 @@
     "someone": "Кимдир",
     "oneTyping": "{{name}} жазып жатат…",
     "fewTyping": "{{names}} жазып жатышат…",
-    "manyTyping": "{{count}} киши жазып жатат…"
+    "manyTyping": "{{count}} киши жазып жатат…",
+    "modBadge": "MOD",
+    "thisUser": "бул колдонуучу",
+    "unbanConfirm": "{{name}}ны бөгөттөн чыгарууну каалайсызбы?",
+    "unban": "Бөгөттөн чыгаруу",
+    "unbanFailed": "Колдонуучу бөгөттөн чыгарылбай калды",
+    "onlineLabel": "Онлайн",
+    "usersCount_one": "{{count}} колдонуучу",
+    "usersCount_other": "{{count}} колдонуучулар",
+    "totalMessages": "Бардык билдирүүлөр",
+    "slowMode": "Жай режим",
+    "cooldownSeconds": "{{seconds}}с тыныгуу",
+    "minStakeRequired": "Минималдуу коюм талап кылынат",
+    "noParticipants": "Катышуучулар жок",
+    "noModerators": "Модераторлор жок",
+    "noBannedUsers": "Бөгөттөлгөн колдонуучулар жок"
   },
   "promptFeed": {
     "headline": "Эмнени көргүңүз келет?",
@@ -4128,7 +4233,26 @@
     "madeForKidsBlockedByMature": "Өндөгөн деп белгиленген пост балалар үчүн жарыялана албайт.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "RTMP деталдарын алыңыз",
-    "markMadeForKids": "Балдар үчүн жасалгандай белгилөө"
+    "markMadeForKids": "Балдар үчүн жасалгандай белгилөө",
+    "queueWaiting": "Күтүүдө…",
+    "queueUploading": "Жүктөлүп жатат",
+    "queueProcessing": "Иштетилүүдө…",
+    "queueMinting": "Жаратылууда…",
+    "queuePosted": "Жарыяланды",
+    "queueFailed": "Ишке ашкан жок",
+    "noRetriesLeft": "(кайталоо мүмкүнчүлүктөрү жок)",
+    "noUploads": "Жүктөөлөр жок",
+    "uploadsAppearHere": "Сиздин жүктөгөн нерселериңиз бул жерде пайда болот",
+    "imagesTotalLimit": "Бир жүктөө сүрөттөр жалпы 100 MB же андан аз болушу керек",
+    "chooseDatabase": "Борбордон ажыратылган маалымат базасын тандоо",
+    "livestreamMode": "Агым режими",
+    "addThumbnail": "Undo-type",
+    "showCover": "Капкакты көрсөтүү",
+    "max60s": "Макс 60s",
+    "confirmLivestream": "Түз эфирди ырастоо",
+    "liveFeaturesTitle": "Live өзгөчөлүктөрү",
+    "discardPostTitle": "Постту жокко чыгаруу керекпи?",
+    "discardPostBody": "Постуңуз жоголот. Анын ордуна аны долбоор катары сактагыңыз келеби?"
   },
   "bounty": {
     "claimed": "Алынды",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Жаңы билдирүүлөргө уруксат берүү үчүн DM күйгүзүңүз.",
     "perMessageFee": "Ар бир билдирүү үчүн төлөм (DHB)",
     "perMessageFeeSub": "Ар бир билдирүү үчүн акча алыңыз. Акысыз DM үчүн 0 коюңуз. Айрым колдонуучуларга акысыз мүмкүнчүлүк бере аласыз.",
-    "allDisabled": "Учурда бардык DM өчүк. Жаңы DM демейде бөгөттөлөт."
+    "allDisabled": "Учурда бардык DM өчүк. Жаңы DM демейде бөгөттөлөт.",
+    "failedToEdit": "Өзгөртүү ишке ашпады",
+    "messageDeleted": "Кабар өчүрүлдү",
+    "cantForwardFromDevice": "Бул билдирүүнү бул түзмөктөн жөнөтүү мүмкүн эмес",
+    "messageForwarded": "Кабар жөнөтүлдү",
+    "clearMessages": "Кабарларды тазалоо",
+    "clearMessagesConfirm": "Сүйлөшүүдөгү бардык билдирүүлөр өчүрүлсүнбү? Муну жокко чыгаруу мүмкүн эмес.",
+    "messagesCleared": "Кабарлар тазаланды",
+    "failedToClearMessages": "Кабарларды тазалоо ишке ашпады",
+    "removedFreeAccess": "{{name}} үчүн акысыз кирүү өчүрүлдү",
+    "grantedFreeAccess": "{{name}} дарегине акысыз кирүү",
+    "failedToUpdateFreeAccess": "Акысыз кирүүнү жаңыртуу ишке ашпады",
+    "searchComingSoon": "Жакында издөө",
+    "tapToUnblock": "Блоктон чыгаруу үчүн баскычты басуу",
+    "userFallback": "Колодонуучусу",
+    "failedToBlock": "Блоктоо ишке ашпады",
+    "failedToDeleteConversation": "Сүйлөшүүнү өчүрүү ишке ашпады",
+    "newDm": "Жаңы түздөн-түз билдирүү",
+    "noConversationsFound": "Сүйлөшүүлөр табылган жок"
   },
   "editPost": {
     "mediaPermission": "Медиа китепканага уруксат керек",
@@ -4467,7 +4609,17 @@
     "retry": "Дагы бир жолу аракет кылып көрүңүз",
     "retrying": "Кайталанып жатат...",
     "retryQueued": "Кайра иштетүү",
-    "retryFailed": "Бул постту кайталоого болбоду"
+    "retryFailed": "Бул постту кайталоого болбоду",
+    "closeVideo": "Видеону жабуу",
+    "rotateOrientation": "Айлануу багыты",
+    "videoProgress": "Видео прогресси: {{percent}}%",
+    "tapToSeek": "Белгилүү бир жерге өтүү үчүн таптаңыз",
+    "photoAccessToSaveImages": "Сүрөттөрдү сактоо үчүн фото китепканага кирүүгө уруксат бериңиз",
+    "failedToSaveImage": "Сүрөттү сактоо мүмкүн болбой калды",
+    "downloadImage": "Сүрөттү жүктөп алыңыз",
+    "goToImage": "Сүрөткө өтүңүз {{index}}",
+    "allCaughtUp": "Сиз толугу менен көрүп бүттүңүз",
+    "checkBackForShorts": "Көбүрөөк кыскача видеолорду кийинчерээк текшериңиз"
   },
   "liveViewer": {
     "loadingStream": "Стрим жүктөлүүдө...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Натыйжалардын аягы",
-    "searchDehub": "DeHub'дан издөө"
+    "searchDehub": "DeHub'дан издөө",
+    "tabVoice": "Үн",
+    "trendingThisWeek": "Ушул аптада трендде",
+    "trendingPosts": "Тренддеги посттор",
+    "trendingImages": "Тренддеги сүрөттөр",
+    "trendingVideos": "Тренддеги видеолор",
+    "trendingVoicePosts": "Тренддеги үн посттору",
+    "trendingLive": "Тренддеги түз эфир",
+    "seeAll": "Баарын көрүү",
+    "noAccountsFound": "Аккаунттар табылган жок",
+    "tryDifferentKeywords": "Башка ачкыч сөздөрдү колдонуп көрүңүз же жазууңузду текшериңиз",
+    "noContentResults": "Мазмундун жыйынтыгы жок",
+    "recentSearches": "Жакында издөөлөр",
+    "noTrendingThisWeek": "Ушул аптада тренддеги мазмун жок",
+    "closeFilterOptions": "Чыпкалоо параметрлерин жабуу",
+    "openFilterOptions": "Чыпкалоо параметрлерин ачуу"
   },
   "notifPrompt": {
     "stayInLoop": "Кабардар болуңуз",
@@ -4728,7 +4895,26 @@
     "externalTitle": "Сырткы агым режими",
     "externalLiveHint": "Сиздин агымыңыз тышкы программа аркылуу түз эфирде көрсөтүлөт. Колдонмодогу камера өчүрүлгөн.",
     "externalHint": "Төмөнкү деталдарды колдонуп, агымдык программаңызды туташтырыңыз, андан кийин эфирди баштаңыз.",
-    "useInAppCamera": "Колдонуу In-App Камера ордуна"
+    "useInAppCamera": "Колдонуу In-App Камера ордуна",
+    "livestreamEnded": "Түз эфир аяктады",
+    "chatEnabled": "Чат иштетилди",
+    "chatDisabled": "Чат өчүрүлдү",
+    "failedToUpdateSettings": "Жөндөөлөрдү жаңыртуу мүмкүн болбой калды",
+    "networkLostReconnecting": "Тармак жоголду — агым тындырылды. Кайра туташууда…",
+    "openingViewer": "Көрүүчү ачылууда...",
+    "cameraPermissionRequired": "Камера уруксаты талап кылынат",
+    "grantPermission": "Гранттык уруксат",
+    "waitingForLivepeer": "Livepeer күтүүдө...",
+    "waitingForExternalSource": "Тышкы булакты күтүүдө...",
+    "settingUpPublisher": "Жарчы орнотулууда...",
+    "scheduledStream": "Пландаштырылган агым",
+    "scheduledAt": "{{date}} боюнча {{time}}",
+    "pressGoLiveWhenReady": "Басма сөз баштоого даяр болгондо Live Go",
+    "connectionInterrupted": "Байланыш үзгүлтүккө учурады",
+    "streamPausedReconnecting": "Агымыңыз токтоп калды. Кайра туташуу...",
+    "streamWillEnd": "Агым кайра туташтырылбаса аяктайт",
+    "endStreamConfirmTitle": "Агымдын аягы?",
+    "endStreamConfirmBody": "Азыр жабуу бардык көрүүчүлөр үчүн түз агымыңызды аяктайт. Агымдарды улантууга же аны биротоло токтотууга болот."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

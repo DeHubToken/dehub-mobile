@@ -119,7 +119,12 @@
     "music": "Musik",
     "live": "Live",
     "newPosts_one": "{{count}} nytt inlägg",
-    "newPosts_other": "{{count}} nya inlägg"
+    "newPosts_other": "{{count}} nya inlägg",
+    "privateContent": "Privat innehåll",
+    "privateContentBody": "Det här innehållet kommer från ett privat konto. Följ skaparen för att se deras inlägg.",
+    "noMoreContent": "Inget mer innehåll",
+    "noPostsYet": "Inga inlägg ännu.",
+    "pullToRefresh": "Dra för att uppdatera eller försök igen senare."
   },
   "explore": {
     "all": "Alla",
@@ -710,7 +715,19 @@
       "replies": "Endast svar på mina kommentarer",
       "account": "Endast meddelanden om mitt konto"
     },
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Avataruppdatering misslyckades",
+    "coverUpdateFailed": "Omslagsbildsuppdatering misslyckades",
+    "fixInvalidSocialLinks": "Vänligen åtgärda ogiltiga sociala länkar",
+    "updateFailed": "Uppdatering misslyckades",
+    "channelUrlOrHandle": "Kanal-URL eller handtag",
+    "inviteLinkPlaceholder": "Inbjudningslänk",
+    "profileUrlOrUsername": "Profil-URL eller användarnamn",
+    "yourDisplayName": "Ditt visningsnamn",
+    "usernameAvailable": "Användarnamn är tillgängligt",
+    "hideBadgeAndBalance": "Dölj badge och saldo",
+    "hideBadgeAndBalanceDesc": "Döljer finansiella detaljer och inaktiverar skickningar och dricks till dig.",
+    "onChainPublicWarning": "Transaktioner på kedjan är offentliga. Att skicka tokens eller dricks kan avslöja din plånboksadress, inklusive transaktioner som gjorts innan privat saldoläge aktiverades."
   },
   "common": {
     "mute": "Stäng av ljud",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Ingen internetanslutning",
     "noInternetBody": "Kontrollera din internetanslutning och försök igen. Du måste vara ansluten till internet för att använda DeHub.",
     "noInternetStatus": "Offline - Ingen nätverksanslutning",
-    "noInternetHint": "Se till att Wi-Fi eller mobildata är påslaget och tryck sedan på \"{{action}}\""
+    "noInternetHint": "Se till att Wi-Fi eller mobildata är påslaget och tryck sedan på \"{{action}}\"",
+    "saving": "Sparar…",
+    "offlineStatus": "Offline - Ingen nätverksanslutning"
   },
   "tip": {
     "title": "Skicka dricks",
@@ -1094,7 +1113,17 @@
     "post": "Inlägg",
     "officialLogo": "Detta är DeHubs officiella logotyp! 🎨",
     "editedImage": "Här är din redigerade bild!",
-    "generatedImage": "Här är din skapade bild!"
+    "generatedImage": "Här är din skapade bild!",
+    "toolCompleted": "{{name}} slutförd",
+    "aiTool": "AI-verktyg",
+    "cannotAnimateImage": "{{model}} kan inte animera en bifogad bild. Välj en annan videomodell.",
+    "needsImageToAnimate": "{{model}} behöver en bild för att animera. Bifoga en eller välj en annan modell.",
+    "couldNotReadImage": "Kunde inte läsa den bilden",
+    "logoLoadFailed": "Kunde inte ladda DeHub-logotypen — genererar utan den",
+    "imageAttachedDescribe": "Bild bifogad — beskriv dina ändringar",
+    "couldNotPreparePost": "Kunde inte förbereda det för publicering",
+    "generateImage": "Generera bild",
+    "generateVideo": "Generera från video"
   },
   "commandCentre": {
     "title": "Kommandocentral",
@@ -1606,7 +1635,10 @@
     "edit": "Redigera",
     "deleteRequestTitle": "Radera den här förfrågan?",
     "deleteRequestDescription": "Det här går inte att ångra.",
-    "attachmentTooLarge": "Varje fil måste vara under 20 MB"
+    "attachmentTooLarge": "Varje fil måste vara under 20 MB",
+    "deleteCommentA11y": "Ta bort kommentar",
+    "sendCommentA11y": "Sádde kommeantta",
+    "requestOptions": "Alternativ för förfrågan"
   },
   "auth": {
     "loginRequired": "Inloggning krävs",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Kunde inte skicka kod. Försök igen.",
     "invalidCodeRetry": "Ogiltig kod. Försök igen.",
     "invalidEmailOrPassword": "Ogiltig e-postadress eller lösenord.",
-    "welcomeToDehub": "Välkommen till DeHub"
+    "welcomeToDehub": "Välkommen till DeHub",
+    "importWalletOptional": "Importera plånbok (valfritt)",
+    "couldNotSendCodeRetry": "Det gick inte att skicka koden. Försök igen.",
+    "exploreWithoutSignIn": "Utforska utan att logga in",
+    "continueExploring": "Fortsätt utforska",
+    "exploreWithoutSignInA11y": "Utforska DeHub utan att logga in",
+    "continueExploringA11y": "Fortsätt utforska DeHub",
+    "importWalletRecommended": "Sociala inloggningar rekommenderas.",
+    "importWalletPurpose": "Det här verktyget är till för att importera befintliga konton från DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Föreslagna svar avstängda",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Det har rapporterats automatiskt.",
     "loadFailed": "Kunde inte läsa in kanaler",
     "noSearchResults": "Ingen kanal matchar din sökning",
-    "noChannels": "Inga kanaler tillgängliga"
+    "noChannels": "Inga kanaler tillgängliga",
+    "pairCodeExpired": "Den koden har löpt ut. Be tv: n om en ny.",
+    "signedInOnTv": "Inloggad på din TV",
+    "pairRefused": "Underkända",
+    "pairIntro": "Öppna DeHub på din tv och skriv in koden som visas här.",
+    "pairNotFound": "Ingen tv väntar på den koden. Den kan ha gått ut — be TV: n om en ny.",
+    "wantsToSignIn": "vill logga in som du",
+    "pairWarning": "Godkänn endast detta om det är en tv du tittar på just nu. Godkänna tecken på den som håller den koden på ditt konto. Det kommer att kunna titta, gilla och följa — det kan inte spendera, och du kan logga ut när som helst från aktiva sessioner.",
+    "pairApprove": "Ja, logga in på den här TV: n",
+    "pairDeny": "Nej, jag bad inte om det här",
+    "pairDoneTitle": "Din TV är inloggad",
+    "pairDoneBody": "Det bör redan visa ditt konto. Logga ut när som helst från Inställningar → Sekretess → Aktiva sessioner.",
+    "closePlayer": "Stäng spelare",
+    "declineFailed": "Kunde inte avböja det — det kan redan ha löpt ut.",
+    "tipSentTvNotTold": "Dricks skickades, men TV: n kunde inte berättas. Det kommer att ta tid.",
+    "sentAmount": "Skickat {{amount}} DHB",
+    "nothingWaiting": "Inget väntar",
+    "nothingWaitingBody": "När du skickar dricks från DeHub på din TV visas det här så att du kan godkänna. Din TV hanterar aldrig din plånbok.",
+    "yourTelevision": "Din TV",
+    "wantsToTip": "vill skicka dricks · {{time}} lämnade",
+    "tipTo": "till {{name}}",
+    "tipForPost": "för “{{title}}”",
+    "reviewAndApprove": "Granska och godkänn"
   },
   "top100": {
     "title": "Topp 100",
@@ -2046,7 +2108,8 @@
     "submitApplication": "Skicka ansökan",
     "nameEmailRequired": "Namn och e-post krävs",
     "applicationSuccess": "Ansökan skickad! Vi hör av oss.",
-    "applicationFailed": "Inskickning misslyckades. Försök igen."
+    "applicationFailed": "Inskickning misslyckades. Försök igen.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO-kassan",
@@ -2206,7 +2269,8 @@
     "pinnedToast": "Fäst högst upp i det här inlägget",
     "unpinnedToast": "Fästning borttagen",
     "pinFailed": "Kommentaren kunde inte fästas",
-    "kidsOnlyThread": "Det här inlägget är för barn. Endast barnläget kan kommentera det."
+    "kidsOnlyThread": "Det här inlägget är för barn. Endast barnläget kan kommentera det.",
+    "editFailed": "Kunde inte redigera kommentar"
   },
   "postInfo": {
     "title": "Inläggsinfo",
@@ -3247,14 +3311,40 @@
     "comingSoon": "Kommer snart",
     "signIn": "Logga in",
     "tapToGetStarted": "Tryck för att komma igång",
-    "soon": "Snart"
+    "soon": "Snart",
+    "glossarySubtitle": "Lär dig vad varje ikon och funktion betyder",
+    "searchGlossary": "Sök i ordlista...",
+    "noResultsFor": "Inga resultat för \"{{query}}\"",
+    "guideSubtitle": "Steg-för-steg-guide för varje funktion",
+    "searchGuide": "Sök i guiden...",
+    "repostsTab": "Reposts",
+    "quotesTab": "Citat",
+    "noMoreReposts": "Inga fler reposts",
+    "noMoreQuotes": "Inga fler citat",
+    "noRepostsYet": "Inga reposts ännu",
+    "noQuotesYet": "Inga citat ännu"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Spel som körs här i appen. Inget att installera, inget att köpa — öppen källkod och serverade från DeHub självt."
+    "intro": "Spel som körs här i appen. Inget att installera, inget att köpa — öppen källkod och serverade från DeHub självt.",
+    "noGameCalled": "Det finns inget spel som heter <slug>{{slug}}</slug> i arkaden.",
+    "seeWhatIsHere": "Se vad som finns här",
+    "locationNotGranted": "Platsbehörighet beviljades inte.",
+    "signInToPlaceOnGlobe": "Logga in för att placera dig på kartan.",
+    "couldNotPlaceOnGlobe": "Kunde inte placera dig på kartan.",
+    "onTheGlobe": "Du är på kartan — visas inom ett ungefärligt område på 25 km.",
+    "couldNotReach": "KUNDE INTE NÅ ARKADEN",
+    "didNotLoad": "{{title}} laddades inte",
+    "needsConnection": "Spelet serveras från dehub.io och laddas ner när du öppnar det, så det behöver en fungerande anslutning första gången. Kontrollera din och försök igen.",
+    "backToArcade": "Tillbaka till arkaden",
+    "openPrivacySettings": "Öppna sekretessinställningar",
+    "privacyWarning": "Om du har ett stort antal tokens eller bor i ett osäkert område, dölj ditt märke och saldo innan du använder den här funktionen. Transaktioner på kedjan avslöjar fortfarande din adress. Öppna inställningar.",
+    "leaveGame": "Lämna spelet",
+    "loadingGame": "Laddar {{title}}",
+    "hideThis": "Dölj detta"
   },
   "videoLooks": {
     "button": "Kameralooks",
@@ -3380,7 +3470,22 @@
     "someone": "Någon",
     "oneTyping": "{{name}} skriver…",
     "fewTyping": "{{names}} skriver…",
-    "manyTyping": "{{count}} personer skriver…"
+    "manyTyping": "{{count}} personer skriver…",
+    "modBadge": "MOD",
+    "thisUser": "den här användaren",
+    "unbanConfirm": "Är du säker på att du vill avblockera {{name}}?",
+    "unban": "Avblockera",
+    "unbanFailed": "Misslyckades med att avblockera användare",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} användare",
+    "usersCount_other": "{{count}} användare",
+    "totalMessages": "Totalt antal meddelanden",
+    "slowMode": "Långsamt läge",
+    "cooldownSeconds": "{{seconds}}s nedkylning",
+    "minStakeRequired": "Minsta insats krävs",
+    "noParticipants": "Inga deltagare ännu",
+    "noModerators": "Inga moderatorer",
+    "noBannedUsers": "Inga blockerade användare"
   },
   "promptFeed": {
     "headline": "Vad vill du se?",
@@ -4132,7 +4237,26 @@
     "madeForKidsOffDesc": "Visar det här inlägget för barn som använder barnläge och tar det bort från de vanliga flödena.",
     "madeForKidsBlockedByMature": "Ett inlägg markerat som innehål för vuxna kan inte också publiceras för barn.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Hämta RTMP-detaljer"
+    "encoderHint": "Hämta RTMP-detaljer",
+    "queueWaiting": "Väntar…",
+    "queueUploading": "Laddar upp",
+    "queueProcessing": "Bearbetar…",
+    "queueMinting": "Skapar…",
+    "queuePosted": "Publicerad",
+    "queueFailed": "Misslyckades",
+    "noRetriesLeft": "(inga fler försök kvar)",
+    "noUploads": "Inga uppladdningar",
+    "uploadsAppearHere": "Dina uppladdningar visas här",
+    "imagesTotalLimit": "Bilder i en uppladdning måste uppgå till 100 MB eller mindre",
+    "chooseDatabase": "Välj decentraliserad databas",
+    "livestreamMode": "Livestream-läge",
+    "addThumbnail": "Lägg till miniatyrstorlek",
+    "showCover": "Visa omslag",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Bekräfta livestream",
+    "liveFeaturesTitle": "Live-funktioner",
+    "discardPostTitle": "Kassera inlägg?",
+    "discardPostBody": "Ditt inlägg kommer att gå förlorat. Vill du spara det som ett utkast istället?"
   },
   "bounty": {
     "claimed": "Uttagen",
@@ -4449,7 +4573,25 @@
     "allowNewDmsOff": "Slå på DM för att tillåta nya meddelanden.",
     "perMessageFee": "Avgift per meddelande (DHB)",
     "perMessageFeeSub": "Ta betalt per meddelande. Sätt 0 för gratis DM. Du kan ge enskilda användare gratis åtkomst.",
-    "allDisabled": "Alla DM är avstängda just nu. Nya DM blockeras som standard."
+    "allDisabled": "Alla DM är avstängda just nu. Nya DM blockeras som standard.",
+    "failedToEdit": "Det gick inte att redigera",
+    "messageDeleted": "Meddelande har tagits bort",
+    "cantForwardFromDevice": "Det här meddelandet kan inte vidarebefordras från den här enheten",
+    "messageForwarded": "Meddelande vidarebefordrat",
+    "clearMessages": "ETT TYDLIGT BUDSKAP",
+    "clearMessagesConfirm": "Radera alla meddelanden i den här konversationen? Detta kan inte ångras.",
+    "messagesCleared": "Meddelanden rensade",
+    "failedToClearMessages": "Kunde inte rensa meddelanden",
+    "removedFreeAccess": "Tog bort fri åtkomst för {{name}}",
+    "grantedFreeAccess": "Beviljad fri tillgång till {{name}}",
+    "failedToUpdateFreeAccess": "Det gick inte att uppdatera fri åtkomst",
+    "searchComingSoon": "Sökning kommer snart",
+    "tapToUnblock": "Tryck för att avblockera",
+    "userFallback": "användare",
+    "failedToBlock": "Det gick inte att blockera",
+    "failedToDeleteConversation": "Det gick inte att ta bort konversationen",
+    "newDm": "Direktmeddelande",
+    "noConversationsFound": "Inga konversationer hittades"
   },
   "editPost": {
     "mediaPermission": "Behörighet till mediebiblioteket krävs",
@@ -4471,7 +4613,17 @@
     "retry": "Försök igen",
     "retrying": "Försöker igen...",
     "retryQueued": "Behandlas igen",
-    "retryFailed": "Det gick inte att försöka igen med det inlägget"
+    "retryFailed": "Det gick inte att försöka igen med det inlägget",
+    "closeVideo": "Stäng video",
+    "rotateOrientation": "Rotera orientering",
+    "videoProgress": "Video framsteg: {{percent}}%",
+    "tapToSeek": "Tryck för att söka till en specifik position",
+    "photoAccessToSaveImages": "Tillåt åtkomst till fotobiblioteket för att spara bilder",
+    "failedToSaveImage": "Misslyckades med att spara bild",
+    "downloadImage": "Ladda ner bild",
+    "goToImage": "Gå till bild {{index}}",
+    "allCaughtUp": "Du har sett allt",
+    "checkBackForShorts": "Kom tillbaka senare för fler klipp"
   },
   "liveViewer": {
     "loadingStream": "Läser in sändning...",
@@ -4481,7 +4633,22 @@
   },
   "search": {
     "endOfResults": "Slut på resultaten",
-    "searchDehub": "Sök i DeHub"
+    "searchDehub": "Sök i DeHub",
+    "tabVoice": "Röst",
+    "trendingThisWeek": "Populärt denna vecka",
+    "trendingPosts": "Populära inlägg",
+    "trendingImages": "Populära bilder",
+    "trendingVideos": "Populära videor",
+    "trendingVoicePosts": "Populära röstinlägg",
+    "trendingLive": "Populärt live",
+    "seeAll": "Visa alla",
+    "noAccountsFound": "Inga konton hittades",
+    "tryDifferentKeywords": "Prova andra sökord eller kontrollera stavningen",
+    "noContentResults": "Inga innehållsresultat",
+    "recentSearches": "Senaste sökningar",
+    "noTrendingThisWeek": "Inget populärt innehåll denna vecka",
+    "closeFilterOptions": "Stäng filteralternativ",
+    "openFilterOptions": "Öppna filteralternativ"
   },
   "notifPrompt": {
     "stayInLoop": "Håll dig uppdaterad",
@@ -4731,7 +4898,26 @@
     "externalTitle": "Externt strömningsläge",
     "externalLiveHint": "Din ström är live via extern programvara. Kameran i appen är inaktiverad.",
     "externalHint": "Anslut din strömmande programvara med hjälp av informationen nedan och börja sedan sända.",
-    "useInAppCamera": "Använd kameran i appen istället"
+    "useInAppCamera": "Använd kameran i appen istället",
+    "livestreamEnded": "Livestream avslutad",
+    "chatEnabled": "Chatt aktiverad",
+    "chatDisabled": "Chatt inaktiverad",
+    "failedToUpdateSettings": "Misslyckades med att uppdatera inställningar",
+    "networkLostReconnecting": "Nätverket förlorat — strömmen pausad. Återansluter…",
+    "openingViewer": "Öppnar visare...",
+    "cameraPermissionRequired": "Kameratillstånd krävs",
+    "grantPermission": "Bevilja behörighet",
+    "waitingForLivepeer": "Väntar på Livepeer...",
+    "waitingForExternalSource": "Väntar på extern källa...",
+    "settingUpPublisher": "Ställer in utgivare...",
+    "scheduledStream": "Schemalagd ström",
+    "scheduledAt": "{{date}} at {{time}}",
+    "pressGoLiveWhenReady": "Tryck på Go Live när du är redo att starta",
+    "connectionInterrupted": "Anslutning avbruten",
+    "streamPausedReconnecting": "Din ström är pausad. Återansluter...",
+    "streamWillEnd": "Strömmen kommer att avslutas om den inte återansluts",
+    "endStreamConfirmTitle": "Avsluta ström?",
+    "endStreamConfirmBody": "Om du stänger nu avslutas din livestream för alla tittare. Du kan fortsätta strömma eller avsluta det permanent."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

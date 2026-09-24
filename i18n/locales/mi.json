@@ -119,7 +119,12 @@
     "music": "Waiata",
     "live": "Ora",
     "newPosts_one": "{{count}} pānui hou",
-    "newPosts_other": "{{count}} pānui hou"
+    "newPosts_other": "{{count}} pānui hou",
+    "privateContent": "He Ihirangi Motuhake",
+    "privateContentBody": "He ihirangi tēnei nō tētahi pūkete motuhake. A peehi i te kaihanga kia kite i āna whakairinga.",
+    "noMoreContent": "Kāore he ihirangi atu",
+    "noPostsYet": "Kāore anō he whakairinga.",
+    "pullToRefresh": "Kume ki te whakahou, tēnā me titiro anō a muri ake nei."
   },
   "explore": {
     "all": "Katoa",
@@ -710,7 +715,19 @@
     "smsTopUp": "Whakakiia te {{dhb}} DHB",
     "smsCodeSent": "Kua tukua te waehere. He {{price}} DHB te utu.",
     "smsCodeLabel": "Te waehere i tukua e mātou ki {{phone}}",
-    "badgeDelegationLendsAny": "Ka hoatu e ia tangata he tohu kua wewetehia e koe ki tētahi atu pūkete, tae atu ki tō ake {{tier}}. Ka noho tonu te tohu iti ki te whakamahi i tētahi mokamoka katoa."
+    "badgeDelegationLendsAny": "Ka hoatu e ia tangata he tohu kua wewetehia e koe ki tētahi atu pūkete, tae atu ki tō ake {{tier}}. Ka noho tonu te tohu iti ki te whakamahi i tētahi mokamoka katoa.",
+    "avatarUpdateFailed": "Kua rahua te whakahou avatar",
+    "coverUpdateFailed": "Kua rahua te whakahou taupoki",
+    "fixInvalidSocialLinks": "Tēnā whakatikaina ngā hononga pāpori he",
+    "updateFailed": "Kua rahua te whakahou",
+    "channelUrlOrHandle": "URL hongere, tau rānei",
+    "inviteLinkPlaceholder": "Hono tono",
+    "profileUrlOrUsername": "URL pūkete, ingoa kaiwhakamahi rānei",
+    "yourDisplayName": "Tō ingoa whakaatu",
+    "usernameAvailable": "Kei te wātea te ingoa kaiwhakamahi",
+    "hideBadgeAndBalance": "Whakaerihia te tohu me te toenga",
+    "hideBadgeAndBalanceDesc": "Ka huna i ngā taipitopito pūtea, ā, ka whakakore i ngā tuku me ngā tohutohu ki a koe.",
+    "onChainPublicWarning": "He tūmatanui ngā whakawhitiwhiti i runga mekameka. Ko te tuku tohu, tohutohu rānei ka whakaatu i tō wāhitau putea, tae atu ki ngā whakawhitiwhiti i mahia i mua i te whakahoahoatanga o te aratau toenga motuhake."
   },
   "common": {
     "mute": "Whakangū",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Kāore he hononga Ipurangi",
     "noInternetBody": "Tēnā tirohia tō hononga Ipurangi, ka ngana anō. Me hono koe ki te Ipurangi kia taea ai te whakamahi i te DeHub.",
     "noInternetStatus": "Tūmau - Kāore he hononga whatunga",
-    "noInternetHint": "Me whakarite kia whakakā te Wi-Fi, te raraunga pūkoro rānei, kātahi ka pēhi i te \"{{action}}\""
+    "noInternetHint": "Me whakarite kia whakakā te Wi-Fi, te raraunga pūkoro rānei, kātahi ka pēhi i te \"{{action}}\"",
+    "saving": "E tiaki ana…",
+    "offlineStatus": "Tūmau - Kāore he hononga whatunga"
   },
   "tip": {
     "title": "Tukuna koha",
@@ -1094,7 +1113,17 @@
     "post": "Pānui",
     "officialLogo": "Anei te tohu mana o DeHub! 🎨",
     "editedImage": "Anei tō whakaahua kua whakatikaina!",
-    "generatedImage": "Anei tō whakaahua kua hangaia!"
+    "generatedImage": "Anei tō whakaahua kua hangaia!",
+    "toolCompleted": "Kua oti te {{name}}",
+    "aiTool": "Utauta AI",
+    "cannotAnimateImage": "Kāore e taea e te {{model}} te whakahou i tētahi whakaahua kua āpitihia. Kōwhiria tētahi atu tauira ataata.",
+    "needsImageToAnimate": "E hiahia ana te {{model}} ki tētahi whakaahua hei whakahou. Āpitihia tētahi, tēnā kōwhiria tētahi atu tauira.",
+    "couldNotReadImage": "Kāore i taea te pānui i taua whakaahua",
+    "logoLoadFailed": "Kāore i taea te uta i te tohu DeHub — kei te whakaputa me te kore ia",
+    "imageAttachedDescribe": "Kua āpitihia te whakaahua — whakaahuahia āu whakarerekētanga",
+    "couldNotPreparePost": "Kāore i taea te whakarite tēnā mō te whakairi",
+    "generateImage": "Whakaahua",
+    "generateVideo": "Te whakaputa i te ataata"
   },
   "commandCentre": {
     "title": "Pūtahi Whakahau",
@@ -1606,7 +1635,10 @@
     "edit": "Whakatika",
     "deleteRequestTitle": "Mukua tēnei tono?",
     "deleteRequestDescription": "Kāore e taea te whakakore i tēnei.",
-    "attachmentTooLarge": "Me iti iho i te 20MB ia kōnae"
+    "attachmentTooLarge": "Me iti iho i te 20MB ia kōnae",
+    "deleteCommentA11y": "Whakakorea ngā kōrero",
+    "sendCommentA11y": "Tukuna mai he korero",
+    "requestOptions": "Kōwhiringa tono"
   },
   "auth": {
     "loginRequired": "Me takiuru",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Kāore i taea te tuku waehere. Tēnā ngana anō.",
     "invalidCodeRetry": "Waehere he. Tēnā ngana anō.",
     "invalidEmailOrPassword": "Īmēra, kupuhipo rānei he.",
-    "welcomeToDehub": "Nau mai ki DeHub"
+    "welcomeToDehub": "Nau mai ki DeHub",
+    "importWalletOptional": "Putea kawemai (Kōwhiringa)",
+    "couldNotSendCodeRetry": "Kaore e taea te tuku waehere. tēnā retry.",
+    "exploreWithoutSignIn": "Whakamātauria me te kore e haina i roto i",
+    "continueExploring": "Haere tonu ki te tirotiro",
+    "exploreWithoutSignInA11y": "Tirohia te DeHub me te kore e haina i roto i",
+    "continueExploringA11y": "Haere tonu ki te tirotiro i te DeHub",
+    "importWalletRecommended": "Ka tūtohutia ngā pūkete pāpori.",
+    "importWalletPurpose": "Ko tenei taputapu mo te kawemai i nga kaute o mua mai i DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Kua whakawetohia ngā whakautu tūtohu",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Kua pūrongotia aunoa.",
     "loadFailed": "Kāore i taea te uta i ngā hongere",
     "noSearchResults": "Kāore he hongere e hāngai ana ki tāu rapunga",
-    "noChannels": "Kāore he hongere e wātea ana"
+    "noChannels": "Kāore he hongere e wātea ana",
+    "pairCodeExpired": "Kua mutu taua waehere. Pātai ki te pouaka whakaata mō tētahi mea hou.",
+    "signedInOnTv": "Hokona i runga i tou pouaka whakaata",
+    "pairRefused": "Whakakorea",
+    "pairIntro": "Whakatūwhera DeHub i runga i tou pouaka whakaata, me te tāuta i te waehere e whakaatu ana i konei.",
+    "pairNotFound": "Kaore he pouaka whakaata e tatari ana ki taua waehere. Ka mutu pea — ui atu ki te pouaka whakaata mo tetahi mea hou.",
+    "wantsToSignIn": "e hiahia ana koe ki te takiuru i roto i rite ki a koutou",
+    "pairWarning": "Kia whakaae noa ki tenei, ki te mea he pouaka whakaata e titiro ana koe i tenei wa. Tuhia he tohu ki te hunga e mau ana i taua waehere ki to kaute. Ka taea e te reira te mātakitaki, rite, me te whai — e kore e taea e te reira te whakapau, a ka taea e koe te haina i te reira i tetahi wa i ngā hui Active.",
+    "pairApprove": "Ae, haina i roto i tenei pouaka whakaata",
+    "pairDeny": "E kore, kihai ahau i ui mo tenei",
+    "pairDoneTitle": "Kua hainahia tō pouaka whakaata i roto i",
+    "pairDoneBody": "Me whakaatu e ia to koutou pūkete i teie nei. Hokona i nga wa katoa mai i nga Huihuinga → Whakahaere → Tūmataiti.",
+    "closePlayer": "Kaitākaro tata",
+    "declineFailed": "Kaore e taea te whakakore i tenei — kua mutu pea.",
+    "tipSentTvNotTold": "I tukuna e ia he tohutohu, engari kaore i taea te korero i te pouaka whakaata. Ka tae mai te wa ki waho.",
+    "sentAmount": "Tukua {{amount}} DHB",
+    "nothingWaiting": "Kāore he tatari",
+    "nothingWaitingBody": "A, ka tohutohu koe mai i te DeHub i runga i to pouaka whakaata, ka puta ki konei kia whakaaetia e koe. Kāore tō pouaka whakaata e pupuri i tō putea.",
+    "yourTelevision": "Tō pouaka whakaata",
+    "wantsToTip": "e hiahia ana ki te tuku tohutohu · {{time}} i waiho",
+    "tipTo": "ki {{name}}",
+    "tipForPost": "mō te “{{title}}”",
+    "reviewAndApprove": "Arotake me te whakaae"
   },
   "top100": {
     "title": "Runga 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Tukuna tono",
     "nameEmailRequired": "Ko te ingoa me te īmēra he mea hira",
     "applicationSuccess": "Kua angitū te tuku tono! Ka whakapā atu mātou.",
-    "applicationFailed": "Kāore i taea te tuku. Ngana anō."
+    "applicationFailed": "Kāore i taea te tuku. Ngana anō.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Te Putea a te DAO",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Kua titia ki runga ake o tēnei pou",
     "unpinnedToast": "Kua tangohia te titi",
     "pinFailed": "Kāore i taea te titi i taua kōrero",
-    "kidsOnlyThread": "Ko tenei tuhinga mo nga tamariki. Ko te tikanga tamariki anake e taea te kōrero i runga i te reira."
+    "kidsOnlyThread": "Ko tenei tuhinga mo nga tamariki. Ko te tikanga tamariki anake e taea te kōrero i runga i te reira.",
+    "editFailed": "Kāore i taea te whakatika kōrero"
   },
   "postInfo": {
     "title": "Mōhiohio pou",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Kei te haere mai",
     "signIn": "Takiuru",
     "tapToGetStarted": "Pāwhiri hei tīmata",
-    "soon": "Ākuanei"
+    "soon": "Ākuanei",
+    "glossarySubtitle": "Akohia te tikanga o ia tohu me ia āhuatanga",
+    "searchGlossary": "Rapua te kupu whakarite...",
+    "noResultsFor": "Kāore he hua mō te \"{{query}}\"",
+    "guideSubtitle": "Aromātai ā-taahiraa o ia āhuatanga",
+    "searchGuide": "Rapua te aratohu...",
+    "repostsTab": "Tukunga anō",
+    "quotesTab": "Ngā kōrero",
+    "noMoreReposts": "Kāore he tukunga anō",
+    "noMoreQuotes": "Kāore he kōrero anō",
+    "noRepostsYet": "Kāore anō he tukunga anō",
+    "noQuotesYet": "Kāore anō he kōrero"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Ngā kēmu e rere ana i konei tonu i te taupānga. Kāore he mea hei whakauru, kāore he mea hei hoko — pūtake tuwhera, ā, nā DeHub tonu i tuku."
+    "intro": "Ngā kēmu e rere ana i konei tonu i te taupānga. Kāore he mea hei whakauru, kāore he mea hei hoko — pūtake tuwhera, ā, nā DeHub tonu i tuku.",
+    "noGameCalled": "Kāore he kēmu ko <slug>{{slug}}</slug> i te whare takaro.",
+    "seeWhatIsHere": "Tirohia te mea kei konei",
+    "locationNotGranted": "Kāore i tukua te whakaaetanga waahi.",
+    "signInToPlaceOnGlobe": "Takiuru ki te whakanoho i a koe ki runga i te ao.",
+    "couldNotPlaceOnGlobe": "Kāore i taea te whakanoho i a koe ki runga i te ao.",
+    "onTheGlobe": "Kei runga koe i te ao — ka whakaatuhia i roto i te rohe tata ki te 25 km.",
+    "couldNotReach": "KĀORE I TE KEA TE WHARE TAKARO",
+    "didNotLoad": "Kāore a {{title}} i uta",
+    "needsConnection": "Ka tukuna te kēmu mai i te dehub.io, ka tikiakea ina whakatuwheratia e koe, no reira me whai hononga mahi i te wa tuatahi. Tirohia tō hononga ka ngana anō.",
+    "backToArcade": "Hoki ki te whare takaro",
+    "openPrivacySettings": "Whakatuwheratia ngā tautuhinga tūmataiti",
+    "privacyWarning": "Mēnā kei a koe te nui o ngā tohu, te noho rānei ki tētahi wāhi kāore i te haumaru, hunaia tō tohu me tō toenga i mua i te whakamahi i tēnei āhuatanga. Ko ngā whakawhitiwhiti i runga i te mekameka ka whakaatu tonu i tō wāhitau. Whakatuwheratia ngā tautuhinga.",
+    "leaveGame": "Puta atu i te kēmu",
+    "loadingGame": "E uta ana {{title}}",
+    "hideThis": "Hunaia tēnei"
   },
   "videoLooks": {
     "button": "Ngā āhua kāmera",
@@ -3375,7 +3465,22 @@
     "someone": "Tētahi",
     "oneTyping": "Kei te patopato a {{name}}…",
     "fewTyping": "Kei te patopato a {{names}}…",
-    "manyTyping": "E {{count}} ngā tāngata e patopato ana…"
+    "manyTyping": "E {{count}} ngā tāngata e patopato ana…",
+    "modBadge": "MOD",
+    "thisUser": "tēnei kaiwhakamahi",
+    "unbanConfirm": "Kei te tino mōhio koe kei te whakakore koe i te aukati a {{name}}?",
+    "unban": "Whakakorehia te aukati",
+    "unbanFailed": "Kua rahua te whakakore i te aukati o te kaiwhakamahi",
+    "onlineLabel": "Tuihono",
+    "usersCount_one": "kaiwhakamahi {{count}}",
+    "usersCount_other": "ngā kaiwhakamahi {{count}}",
+    "totalMessages": "Ngā Karere Katoa",
+    "slowMode": "Aratau Pōturi",
+    "cooldownSeconds": "Whakamaoatanga {{seconds}}s",
+    "minStakeRequired": "Te Whakatōpū Iti e Hiahia Ana",
+    "noParticipants": "Kāore anō kia whai kaiuru",
+    "noModerators": "Kāore he kaiwhakahaere",
+    "noBannedUsers": "Kāore he kaiwhakamahi kua aukatia"
   },
   "promptFeed": {
     "headline": "He aha tāu e hiahia ana kia kite?",
@@ -4127,7 +4232,26 @@
     "madeForKidsBlockedByMature": "Kaore e taea te whakapuaki i tētahi pōtae kua tohua hei pakeke mō ngā tamariki.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Tīkina ngā taipitopito RTMP",
-    "markMadeForKids": "He mea hanga mo nga tamariki"
+    "markMadeForKids": "He mea hanga mo nga tamariki",
+    "queueWaiting": "Tēnā tatari…",
+    "queueUploading": "E uta ana",
+    "queueProcessing": "E tukatuka ana…",
+    "queueMinting": "E whakarewa ana…",
+    "queuePosted": "I tukuna",
+    "queueFailed": "I rahua",
+    "noRetriesLeft": "(kāore he whakamātau anō e toe ana)",
+    "noUploads": "Kāore he utanga",
+    "uploadsAppearHere": "Ka puta āu utanga ki konei",
+    "imagesTotalLimit": "Ko ngā whakaahua i roto i tētahi tukunga me kaua e neke atu i te 100 MB",
+    "chooseDatabase": "Kōwhiria he Pātengi Raraunga Whakawhitinga",
+    "livestreamMode": "Arātau Ora",
+    "addThumbnail": "Tāpiri Atu i te Iti",
+    "showCover": "Whakaaturia te taupoki",
+    "max60s": "Mōrahi 60s",
+    "confirmLivestream": "Whakaūngia te Arātau Ora",
+    "liveFeaturesTitle": "Ngā Āhuatanga Ora",
+    "discardPostTitle": "Pāhūhia te Poutāpeta?",
+    "discardPostBody": "Ka ngaro tō poutāpeta. E hiahia ana koe ki te tiaki hei tauira hei tiaki?"
   },
   "bounty": {
     "claimed": "Kua tonoa",
@@ -4443,7 +4567,25 @@
     "allowNewDmsOff": "Whakahohea ngā DM kia whakaaetia ngā karere hou.",
     "perMessageFee": "Utu mō ia karere (DHB)",
     "perMessageFeeSub": "Utaina ia karere. Whakaritea ki te 0 mō ngā DM koreutu. Ka taea e koe te tuku urunga koreutu ki ētahi kaiwhakamahi.",
-    "allDisabled": "Kua weto ngā DM katoa ināianei. Ka ārai te taunoa i ngā DM hou."
+    "allDisabled": "Kua weto ngā DM katoa ināianei. Ka ārai te taunoa i ngā DM hou.",
+    "failedToEdit": "Kore i taea te whakatika",
+    "messageDeleted": "Kua mukua te karere",
+    "cantForwardFromDevice": "Kāore e taea te tuku i tēnei karere mai i tēnei pūrere",
+    "messageForwarded": "Kua tukuna te karere",
+    "clearMessages": "Pāhūhia ngā karere",
+    "clearMessagesConfirm": "Pāhūhia ngā karere katoa i roto i tēnei kōrero? Kāore e taea te whakahoki mai tēnei.",
+    "messagesCleared": "Kua pāhūhia ngā karere",
+    "failedToClearMessages": "Kore i taea te pāhū i ngā karere",
+    "removedFreeAccess": "Kua tangohia te uru kore utu mō {{name}}",
+    "grantedFreeAccess": "Kua hoatu te uru kore utu ki {{name}}",
+    "failedToUpdateFreeAccess": "Kore i taea te whakahou i te uru kore utu",
+    "searchComingSoon": "Kei te haere mai te Rapunga",
+    "tapToUnblock": "Paoa hei whakawātea",
+    "userFallback": "user",
+    "failedToBlock": "Kore i taea te aukati",
+    "failedToDeleteConversation": "Kore i taea te pāhū i te kōrero",
+    "newDm": "Karere Tūpono Hou",
+    "noConversationsFound": "Kāore he kōrero i kitea"
   },
   "editPost": {
     "mediaPermission": "Me whai whakaaetanga whare pukapuka pāpāho",
@@ -4465,7 +4607,17 @@
     "retry": "Whakamātauria ano",
     "retrying": "Ko te hokinga mai...",
     "retryQueued": "Te tukatuka ano",
-    "retryFailed": "Kaore e taea e au te whakahoki mai i taua pou"
+    "retryFailed": "Kaore e taea e au te whakahoki mai i taua pou",
+    "closeVideo": "Pāhūhia te ataata",
+    "rotateOrientation": "Hurihia te tūranga",
+    "videoProgress": "Te anga whakamua ataata: {{percent}}%",
+    "tapToSeek": "Pao ki te rapu i tētahi tūranga motuhake",
+    "photoAccessToSaveImages": "Whakaaetia te uru ki te whare whakaahua hei tiaki i ngā whakaahua",
+    "failedToSaveImage": "Kua rahua te tiaki i te whakaahua",
+    "downloadImage": "Tārua te whakaahua",
+    "goToImage": "Haere ki te whakaahua {{index}}",
+    "allCaughtUp": "Kua oti katoa koe",
+    "checkBackForShorts": "Tirohia anō a muri ake nei mō ētahi atu poto"
   },
   "liveViewer": {
     "loadingStream": "E uta ana i te rerenga...",
@@ -4475,7 +4627,22 @@
   },
   "search": {
     "endOfResults": "Mutunga o ngā hua",
-    "searchDehub": "Rapua a DeHub"
+    "searchDehub": "Rapua a DeHub",
+    "tabVoice": "Reo",
+    "trendingThisWeek": "Ngā Tūāhua o Tēnei Wiki",
+    "trendingPosts": "Ngā Panui Tūāhua",
+    "trendingImages": "Ngā Whakaahua Tūāhua",
+    "trendingVideos": "Ngā Ataata Tūāhua",
+    "trendingVoicePosts": "Ngā Panui Reo Tūāhua",
+    "trendingLive": "Ngā Ora Tūāhua",
+    "seeAll": "Tirohia Katoa",
+    "noAccountsFound": "Kāore he pūkete i kitea",
+    "tryDifferentKeywords": "Whakamātauhia ētahi atu kupu matua, tirohia rānei tō wetewete",
+    "noContentResults": "Kāore he hua ihirangi",
+    "recentSearches": "Ngā Rapunga Hou",
+    "noTrendingThisWeek": "Kāore he ihirangi tūāhua o tēnei wiki",
+    "closeFilterOptions": "Katia ngā kōwhiringa tātari",
+    "openFilterOptions": "Whakatuwheratia ngā kōwhiringa tātari"
   },
   "notifPrompt": {
     "stayInLoop": "Kia mōhio tonu",
@@ -4726,7 +4893,25 @@
     "externalTitle": "Te aratau rere o waho",
     "externalLiveHint": "Kei te ora tō awa mā te pūmanawa o waho. He ngoikore te kāmera i roto i te taupānga.",
     "externalHint": "Hono i tō pūmanawa rere mā te whakamahi i ngā taipitopito i raro nei, ka tīmata te tuku.",
-    "useInAppCamera": "Whakamahia i roto i-App kāmera i te wahi"
+    "useInAppCamera": "Whakamahia i roto i-App kāmera i te wahi",
+    "livestreamEnded": "Kua mutu te reremō",
+    "chatEnabled": "Kua whakakā te kōrerorero",
+    "chatDisabled": "Kua whakaweto te kōrerorero",
+    "failedToUpdateSettings": "Kua rahua te whakahou i ngā tautuhinga",
+    "networkLostReconnecting": "Kua ngaro te whatunga—kua tatare te reremō. Kei te hono anō…",
+    "openingViewer": "Kei te whakatuwhera te kaimātai...",
+    "cameraPermissionRequired": "Me whakaaetia te kāmera",
+    "grantPermission": "Te whakaaetanga o te tuku",
+    "waitingForLivepeer": "Kei te tatari ahau ki te Livepeer...",
+    "waitingForExternalSource": "Te tatari mo te puna o waho...",
+    "settingUpPublisher": "Te hanga i te kaiwhakaputa...",
+    "scheduledStream": "Te rere kua whakaritea",
+    "pressGoLiveWhenReady": "Press Haere ora i te wa e rite ana ki te tīmata",
+    "connectionInterrupted": "Whakakorea te hononga",
+    "streamPausedReconnecting": "Kua pahemo to rerenga. Whakahoutia...",
+    "streamWillEnd": "Ka mutu te rere ki te kore e hono",
+    "endStreamConfirmTitle": "Te mutunga o te rere?",
+    "endStreamConfirmBody": "Ko te kati inaianei ka mutu to rere ora mo nga kaitirotiro katoa. Ka taea e koe te haere tonu ki te rere, ki te whakamutu ranei i te reira tonu."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

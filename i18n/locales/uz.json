@@ -119,7 +119,12 @@
     "music": "Musiqa",
     "live": "Jonli",
     "newPosts_one": "{{count}} ta yangi post",
-    "newPosts_other": "{{count}} ta yangi post"
+    "newPosts_other": "{{count}} ta yangi post",
+    "privateContent": "Maxfiy kontent",
+    "privateContentBody": "Bu kontent shaxsiy akkauntdan. Postlarni ko'rish uchun yaratuvchiga obuna bo'ling.",
+    "noMoreContent": "Boshqa kontent yo'q",
+    "noPostsYet": "Hali postlar yo'q.",
+    "pullToRefresh": "Yangilash uchun torting yoki keyinroq qayta urinib ko'ring."
   },
   "explore": {
     "all": "Hammasi",
@@ -709,7 +714,19 @@
       "replies": "Faqat mening sharhlarimga javoblar",
       "account": "Faqat mening hisobim haqidagi bildirishnomalar"
     },
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Avatarni yangilash muvaffaqiyatsiz tugadi",
+    "coverUpdateFailed": "Muqovani yangilash muvaffaqiyatsiz tugadi",
+    "fixInvalidSocialLinks": "Noto'g'ri ijtimoiy havolalarni tuzating",
+    "updateFailed": "Yangilash muvaffaqiyatsiz tugadi",
+    "channelUrlOrHandle": "Kanal URL manzili yoki nomi",
+    "inviteLinkPlaceholder": "Taklif havolasi",
+    "profileUrlOrUsername": "Profil URL manzili yoki foydalanuvchi nomi",
+    "yourDisplayName": "Sizning ko'rsatiladigan nomingiz",
+    "usernameAvailable": "Foydalanuvchi nomi mavjud",
+    "hideBadgeAndBalance": "Belgi va balansni yashirish",
+    "hideBadgeAndBalanceDesc": "Moliya ma'lumotlarini yashiradi va sizga yuborish va maslahatlar berishni o'chiradi.",
+    "onChainPublicWarning": "On-chain (blokcheyn) operatsiyalari ommaviy hisoblanadi. Tokenlar yoki maslahatlar yuborish sizning hamyon manzilingizni oshkor qilishi mumkin, shu jumladan maxfiy balans rejimi yoqilishidan oldin amalga oshirilgan operatsiyalar ham."
   },
   "common": {
     "mute": "Ovozni o‘chirish",
@@ -759,7 +776,9 @@
     "noInternetTitle": "Internet ulanishi yo'q",
     "noInternetBody": "Internet ulanishingizni tekshiring va qayta urinib ko'ring. DeHub'dan foydalanish uchun internetga ulanishingiz kerak.",
     "noInternetStatus": "Chiqarilgan - Tarmoq ulanishi yo'q",
-    "noInternetHint": "Wi-Fi yoki mobil ma'lumotlar yoqilganligiga ishonch hosil qiling, so'ng \"{{action}}\" tugmasini bosing"
+    "noInternetHint": "Wi-Fi yoki mobil ma'lumotlar yoqilganligiga ishonch hosil qiling, so'ng \"{{action}}\" tugmasini bosing",
+    "saving": "Saqlanmoqda…",
+    "offlineStatus": "Offline - Tarmoq ulanishi yo'q"
   },
   "tip": {
     "title": "Tip yuborish",
@@ -1093,7 +1112,17 @@
     "post": "Post",
     "officialLogo": "Bu rasmiy DeHub logotipi! 🎨",
     "editedImage": "Bu sizning tahrirlangan rasmingiz!",
-    "generatedImage": "Bu sizning yaratilgan rasmingiz!"
+    "generatedImage": "Bu sizning yaratilgan rasmingiz!",
+    "toolCompleted": "{{name}} tugallandi",
+    "aiTool": "AI vositasi",
+    "cannotAnimateImage": "{{model}} biriktirilgan rasmni jonlantira olmaydi. Boshqa video modelini tanlang.",
+    "needsImageToAnimate": "{{model}} jonlantirish uchun rasmga muhtoj. Uni biriktiring yoki boshqa modelni tanlang.",
+    "couldNotReadImage": "Ushbu rasmni o'qib bo'lmadi",
+    "logoLoadFailed": "DeHub logotipini yuklab bo'lmadi — u holda yaratilmoqda",
+    "imageAttachedDescribe": "Rasm biriktirildi — o'zgartirishlarni tasvirlab bering",
+    "couldNotPreparePost": "Buni chop etish uchun tayyorlab bo'lmadi",
+    "generateImage": "Rasm yaratish",
+    "generateVideo": "Video yaratish"
   },
   "commandCentre": {
     "title": "Boshqaruv markazi",
@@ -1622,7 +1651,10 @@
     "edit": "Tahrirlash",
     "deleteRequestTitle": "Bu so'rov o'chirilsinmi?",
     "deleteRequestDescription": "Buni ortga qaytarib bo'lmaydi.",
-    "attachmentTooLarge": "Har bir fayl 20 MB dan kichik bo'lishi kerak"
+    "attachmentTooLarge": "Har bir fayl 20 MB dan kichik bo'lishi kerak",
+    "deleteCommentA11y": "Sharhingizni o'chirish",
+    "sendCommentA11y": "Izoh jo'natish",
+    "requestOptions": "So'rov variantlari"
   },
   "auth": {
     "loginRequired": "Avtorizatsiya kerak",
@@ -1671,7 +1703,15 @@
     "sendCodeFailedRetry": "Kod yuborilmadi. Iltimos, qayta urinib ko'ring.",
     "invalidCodeRetry": "Noto'g'ri kod. Iltimos, qayta urinib ko'ring.",
     "invalidEmailOrPassword": "Noto'g'ri elektron pochta yoki parol.",
-    "welcomeToDehub": "DeHub'ga xush kelibsiz"
+    "welcomeToDehub": "DeHub'ga xush kelibsiz",
+    "importWalletOptional": "Hamyonni import qilish (ixtiyoriy)",
+    "couldNotSendCodeRetry": "Kodni yuborib bo'lmadi. Qayta urinib ko'ring.",
+    "exploreWithoutSignIn": "Tizimga kirmasdan o'rganing",
+    "continueExploring": "Tadqiqotni davom ettiring",
+    "exploreWithoutSignInA11y": "Tizimga kirmasdan DeHub’ni o‘rganing",
+    "continueExploringA11y": "DeHub’ni o‘rganishda davom eting",
+    "importWalletRecommended": "Ijtimoiy tarmoqlarga kirish tavsiya etiladi.",
+    "importWalletPurpose": "Ushbu vosita DeHub.io dan mavjud hisoblarni import qilish uchun mo&#39;ljallangan."
   },
   "messages": {
     "smartRepliesOff": "Tavsiya etilgan javoblar o'chirildi",
@@ -1786,7 +1826,29 @@
     "reportedAutomatically": "Bu avtomatik xabar qilindi.",
     "loadFailed": "Kanallar yuklanmadi",
     "noSearchResults": "Qidiruvingizga mos kanal yo'q",
-    "noChannels": "Mavjud kanallar yo'q"
+    "noChannels": "Mavjud kanallar yo'q",
+    "pairCodeExpired": "Bu kodning amal qilish muddati tugagan. Televizordan yangisini so'rang.",
+    "signedInOnTv": "Televizoringizda tizimga kirdingiz",
+    "pairRefused": "Rad etildi",
+    "pairIntro": "Televizoringizda DeHub-ni oching va u yerda ko'rsatilgan kodni kiriting.",
+    "pairNotFound": "Hech bir televizor bu kodni kutmayapti. Uning amal qilish muddati tugagan bo'lishi mumkin — televizordan yangisini so'rang.",
+    "wantsToSignIn": "sizning nomingizdan tizimga kirishni xohlaydi",
+    "pairWarning": "Buni faqat hozir ko'rayotgan televizoringiz bo'lsa tasdiqlang. Tasdiqlash ushbu kodni hisobingizda saqlayotgan shaxsni belgilaydi. U tomosha qilishi, yoqtirishi va obuna bo'lishi mumkin — sarflay olmaydi va siz uni istalgan vaqtda Faol sessiyalardan chiqarib tashlashingiz mumkin.",
+    "pairApprove": "Ha, ushbu televizorga kiring",
+    "pairDeny": "Yo'q, men buni so'ramaganman",
+    "pairDoneTitle": "Televizoringiz tizimga kirildi",
+    "pairDoneBody": "Bu sizning hisobingizni allaqachon ko'rsatayotgan bo'lishi kerak. Sozlamalar → Maxfiylik → Faol sessiyalar menyusidan istalgan vaqtda hisobingizdan chiqing.",
+    "closePlayer": "Pleyerni yopish",
+    "declineFailed": "Buni rad etib bo'lmadi — uning amal qilish muddati allaqachon tugagan bo'lishi mumkin.",
+    "tipSentTvNotTold": "Maslahat yuborildi, lekin televizorga aytilmadi. Vaqt tugaydi.",
+    "sentAmount": "Sent {{amount}} DHB",
+    "nothingWaiting": "Hech narsa kutmayapti",
+    "nothingWaitingBody": "Televizoringizdagi DeHub'dan xayr-ehson yuborganingizda, u tasdiqlashingiz uchun shu yerda paydo bo'ladi. Televizoringiz hech qachon hamyoningizni ushlab turmaydi.",
+    "yourTelevision": "Sizning televizoringiz",
+    "wantsToTip": "xayr-ehson yubormoqchi · {{time}} qoldirdi",
+    "tipTo": "{{name}} ga",
+    "tipForPost": "\"{{title}}\" uchun",
+    "reviewAndApprove": "Ko'rib chiqing va tasdiqlang"
   },
   "top100": {
     "title": "Top 100",
@@ -2058,7 +2120,8 @@
     "submitApplication": "Arizani yuborish",
     "nameEmailRequired": "Ism va email majburiy",
     "applicationSuccess": "Ariza muvaffaqiyatli yuborildi! Siz bilan bogʻlanamiz.",
-    "applicationFailed": "Yuborish amalga oshmadi. Iltimos qayta urinib koʻring."
+    "applicationFailed": "Yuborish amalga oshmadi. Iltimos qayta urinib koʻring.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO xazinasi",
@@ -2216,7 +2279,8 @@
     "pinnedToast": "Bu postning eng tepasiga mahkamlandi",
     "unpinnedToast": "Mahkamlash olib tashlandi",
     "pinFailed": "Bu izohni mahkamlab bo‘lmadi",
-    "kidsOnlyThread": "Bu post bolalar uchun. Unga faqat Bolalar rejimi izoh qoldirishi mumkin."
+    "kidsOnlyThread": "Bu post bolalar uchun. Unga faqat Bolalar rejimi izoh qoldirishi mumkin.",
+    "editFailed": "Sharhni tahrirlash bajarilmadi"
   },
   "postInfo": {
     "title": "Post ma'lumoti",
@@ -3256,14 +3320,40 @@
     "comingSoon": "Tez orada",
     "signIn": "Kirish",
     "tapToGetStarted": "Boshlash uchun bosing",
-    "soon": "Tez orada"
+    "soon": "Tez orada",
+    "glossarySubtitle": "Har bir belgi va xususiyat nimani anglatishini bilib oling",
+    "searchGlossary": "Lug'atni qidiring...",
+    "noResultsFor": "\"{{query}}\" uchun natijalar yo'q",
+    "guideSubtitle": "Har bir xususiyatning bosqichma-bosqich ko'rsatmasi",
+    "searchGuide": "Yo'riqnomani qidiring...",
+    "repostsTab": "Qayta joylashtirishlar",
+    "quotesTab": "Iqtiboslar",
+    "noMoreReposts": "Boshqa qayta joylashtirishlar yo'q",
+    "noMoreQuotes": "Boshqa iqtiboslar yo'q",
+    "noRepostsYet": "Hali qayta joylashtirishlar yo'q",
+    "noQuotesYet": "Hali iqtiboslar yo'q"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "To'g'ridan-to'g'ri shu ilovada ishlaydigan o'yinlar. O'rnatadigan ham, sotib oladigan ham narsa yo'q — ochiq kod, DeHub'ning o'zi taqdim etadi."
+    "intro": "To'g'ridan-to'g'ri shu ilovada ishlaydigan o'yinlar. O'rnatadigan ham, sotib oladigan ham narsa yo'q — ochiq kod, DeHub'ning o'zi taqdim etadi.",
+    "noGameCalled": "Arkada <slug>{{slug}}</slug> nomli o'yin mavjud emas.",
+    "seeWhatIsHere": "Bu yerda nima borligini ko'ring",
+    "locationNotGranted": "Joylashuv ruxsati berilmadi.",
+    "signInToPlaceOnGlobe": "Globusda o'zingizni ko'rsatish uchun tizimga kiring.",
+    "couldNotPlaceOnGlobe": "Sizni globusga joylashtirib bo'lmadi.",
+    "onTheGlobe": "Siz globusdasiz — taxminan 25 km radiusda ko'rsatilgan.",
+    "couldNotReach": "ARKADAGA YETIB BORIB BO'LMADI",
+    "didNotLoad": "{{title}} yuklanmadi",
+    "needsConnection": "O'yin dehub.io saytidan taqdim etiladi va uni ochganingizda yuklab olinadi, shuning uchun birinchi marta ishlaydigan ulanish kerak. O'zingiznikini tekshiring va qayta urinib ko'ring.",
+    "backToArcade": "Arkada qaytish",
+    "openPrivacySettings": "Maxfiylik sozlamalarini oching",
+    "privacyWarning": "Agar siz ko'p miqdorda tokenlarga ega bo'lsangiz yoki xavfsiz bo'lmagan hududda yashasangiz, ushbu funksiyadan foydalanishdan oldin belgini va balansni yashiring. Zanjirdagi operatsiyalar hali ham manzilingizni oshkor qiladi. Sozlamalarni oching.",
+    "leaveGame": "O'yindan chiqish",
+    "loadingGame": "{{title}} yuklanmoqda",
+    "hideThis": "Buni yashirish"
   },
   "videoLooks": {
     "button": "Kamera koʻrinishlari",
@@ -3389,7 +3479,22 @@
     "someone": "Kimdir",
     "oneTyping": "{{name}} yozmoqda…",
     "fewTyping": "{{names}} yozmoqda…",
-    "manyTyping": "{{count}} kishi yozmoqda…"
+    "manyTyping": "{{count}} kishi yozmoqda…",
+    "modBadge": "MOD",
+    "thisUser": "ushbu foydalanuvchi",
+    "unbanConfirm": "{{name}} ni taqiqlashdan chiqarishga ishonchingiz komilmi?",
+    "unban": "Taqiqlashdan chiqarish",
+    "unbanFailed": "Foydalanuvchini taqiqlashdan chiqarishda xatolik yuz berdi",
+    "onlineLabel": "Onlayn",
+    "usersCount_one": "{{count}} foydalanuvchi",
+    "usersCount_other": "{{count}} foydalanuvchilar",
+    "totalMessages": "Jami xabarlar",
+    "slowMode": "Sekin rejim",
+    "cooldownSeconds": "{{seconds}} s sovutish vaqti",
+    "minStakeRequired": "Minimal stavka talab qilinadi",
+    "noParticipants": "Hali ishtirokchilar yo'q",
+    "noModerators": "Moderatorlar yo'q",
+    "noBannedUsers": "Taqiqlangan foydalanuvchilar yo'q"
   },
   "promptFeed": {
     "headline": "Nimani ko‘rmoqchisiz?",
@@ -4139,7 +4244,26 @@
     "madeForKidsBlockedByMature": "Yetuk deb belgilangan post ham bolalar uchun nashr qilinishi mumkin emas.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "RTMP tafsilotlarini oling",
-    "markMadeForKids": "Bolalar uchun yaratilgan deb belgilash"
+    "markMadeForKids": "Bolalar uchun yaratilgan deb belgilash",
+    "queueWaiting": "Kutilmoqda…",
+    "queueUploading": "Yuklanmoqda",
+    "queueProcessing": "Jarayon…",
+    "queueMinting": "Yaratilmoqda…",
+    "queuePosted": "Joylandi",
+    "queueFailed": "Muammoli",
+    "noRetriesLeft": "(qayta urinishlar qolmadi)",
+    "noUploads": "Yuklamalar yo'q",
+    "uploadsAppearHere": "Yuklamalaringiz bu yerda paydo bo'ladi",
+    "imagesTotalLimit": "Bitta yuklashdagi rasmlarning umumiy hajmi 100 MB yoki undan kam bo'lishi kerak",
+    "chooseDatabase": "Markazlashtirilmagan ma'lumotlar bazasini tanlang",
+    "livestreamMode": "Jonli efir rejimi",
+    "addThumbnail": "Eskiz qo'shish",
+    "showCover": "Muqovani ko'rsatish",
+    "max60s": "Maksimal 60s",
+    "confirmLivestream": "Jonli efirni tasdiqlang",
+    "liveFeaturesTitle": "Jonli efirlar",
+    "discardPostTitle": "Post bekor qilinsinmi?",
+    "discardPostBody": "Postingiz yo'qoladi. Buning o'rniga uni qoralama sifatida saqlamoqchimisiz?"
   },
   "bounty": {
     "claimed": "Olindi",
@@ -4456,7 +4580,25 @@
     "allowNewDmsOff": "Yangi xabarlarga ruxsat berish uchun DM ni yoqing.",
     "perMessageFee": "Har bir xabar uchun to'lov (DHB)",
     "perMessageFeeSub": "Har bir xabar uchun to'lov oling. Bepul DM uchun 0 qo'ying. Ayrim foydalanuvchilarga bepul kirish bera olasiz.",
-    "allDisabled": "Hozir barcha DM o'chirilgan. Yangi DM lar sukut bo'yicha bloklanadi."
+    "allDisabled": "Hozir barcha DM o'chirilgan. Yangi DM lar sukut bo'yicha bloklanadi.",
+    "failedToEdit": "Tahrirlash amalga oshmadi",
+    "messageDeleted": "Xabar o'chirildi",
+    "cantForwardFromDevice": "Bu xabarni ushbu qurilmadan yo'naltirib bo'lmaydi",
+    "messageForwarded": "Xabar yo'naltirildi",
+    "clearMessages": "Xabarlarni tozalash",
+    "clearMessagesConfirm": "Ushbu suhbatdagi barcha xabarlarni o'chirib tashlamoqchimisiz? Buni ortga qaytarib bo'lmaydi.",
+    "messagesCleared": "Xabarlar tozalandi",
+    "failedToClearMessages": "Xabarlarni tozalashda xatolik yuz berdi",
+    "removedFreeAccess": "{{name}} uchun bepul kirish olib tashlandi",
+    "grantedFreeAccess": "{{name}} ga bepul kirish huquqi berildi",
+    "failedToUpdateFreeAccess": "Bepul kirishni yangilashda xatolik yuz berdi",
+    "searchComingSoon": "Tez orada qidiruv boshlanadi",
+    "tapToUnblock": "Blokdan chiqarish uchun bosing",
+    "userFallback": "foydalanuvchi",
+    "failedToBlock": "Bloklash amalga oshmadi",
+    "failedToDeleteConversation": "Suhbatni oʻchirib boʻlmadi",
+    "newDm": "Yangi to'g'ridan-to'g'ri xabar",
+    "noConversationsFound": "Hech qanday suhbat topilmadi"
   },
   "editPost": {
     "mediaPermission": "Media kutubxonasiga ruxsat kerak",
@@ -4478,7 +4620,17 @@
     "retry": "Qayta urinish",
     "retrying": "Qayta urinilmoqda…",
     "retryQueued": "Qayta ishlov berilmoqda",
-    "retryFailed": "Bu postni qayta urib bo&#39;lmadi"
+    "retryFailed": "Bu postni qayta urib bo&#39;lmadi",
+    "closeVideo": "Videoni yopish",
+    "rotateOrientation": "Yo'nalishni aylantirish",
+    "videoProgress": "Video progress: {{percent}}%",
+    "tapToSeek": "Belgilangan joyga o'tish uchun bosing",
+    "photoAccessToSaveImages": "Tasvirlarni saqlash uchun fotosurat kutubxonasiga kirishga ruxsat bering",
+    "failedToSaveImage": "Tasvirni saqlashda xatolik yuz berdi",
+    "downloadImage": "Tasvirni yuklab olish",
+    "goToImage": "Tasvirga o'tish {{index}}",
+    "allCaughtUp": "Hammasini ko'rib chiqdingiz",
+    "checkBackForShorts": "Ko'proq qisqa videolarni keyinroq tekshiring"
   },
   "liveViewer": {
     "loadingStream": "Efir yuklanmoqda...",
@@ -4488,7 +4640,22 @@
   },
   "search": {
     "endOfResults": "Natijalar tugadi",
-    "searchDehub": "DeHub dan qidirish"
+    "searchDehub": "DeHub dan qidirish",
+    "tabVoice": "Ovoz",
+    "trendingThisWeek": "Bu hafta trenddagilar",
+    "trendingPosts": "Trenddagi postlar",
+    "trendingImages": "Trenddagi tasvirlar",
+    "trendingVideos": "Trenddagi videolar",
+    "trendingVoicePosts": "Trenddagi ovozli postlar",
+    "trendingLive": "Trenddagi jonli efir",
+    "seeAll": "Barchasini ko'rish",
+    "noAccountsFound": "Hisoblar topilmadi",
+    "tryDifferentKeywords": "Boshqa kalit so'zlarni sinab ko'ring yoki imloni tekshiring",
+    "noContentResults": "Natijalar yo'q",
+    "recentSearches": "So'nggi qidiruvlar",
+    "noTrendingThisWeek": "Bu hafta trenddagi kontent yo'q",
+    "closeFilterOptions": "Filtri variantlarini yopish",
+    "openFilterOptions": "Filtri variantlarini ochish"
   },
   "notifPrompt": {
     "stayInLoop": "Xabardor bo'ling",
@@ -4733,7 +4900,26 @@
     "externalTitle": "Tashqi oqim rejimi",
     "externalLiveHint": "Translatsiyangiz tashqi dastur orqali jonli efirda. Ilova ichidagi kamera o&#39;chirib qo&#39;yilgan.",
     "externalHint": "Quyidagi ma&#39;lumotlardan foydalanib, striming dasturini ulang, so&#39;ngra strimingni boshlang.",
-    "useInAppCamera": "Buning o&#39;rniga ilova ichidagi kameradan foydalaning"
+    "useInAppCamera": "Buning o&#39;rniga ilova ichidagi kameradan foydalaning",
+    "livestreamEnded": "Jonli efir tugadi",
+    "chatEnabled": "Chat yoqilgan",
+    "chatDisabled": "Chat o'chirilgan",
+    "failedToUpdateSettings": "Sozlamalarni yangilashda xatolik yuz berdi",
+    "networkLostReconnecting": "Tarmoq uzildi — efir to'xtatildi. Qayta ulanmoqda…",
+    "openingViewer": "Ko'rish oynasi ochilmoqda...",
+    "cameraPermissionRequired": "Kamera ruxsati talab qilinadi",
+    "grantPermission": "Ruxsat berish",
+    "waitingForLivepeer": "Livepeer kutilmoqda...",
+    "waitingForExternalSource": "Tashqi manba kutilmoqda...",
+    "settingUpPublisher": "Nashriyotchi sozlanmoqda...",
+    "scheduledStream": "Rejalashtirilgan oqim",
+    "scheduledAt": "{{date}} {{time}} da",
+    "pressGoLiveWhenReady": "Boshlashga tayyor bo'lganingizda \"Jonli efirga uzatish\" tugmasini bosing",
+    "connectionInterrupted": "Ulanish uzildi",
+    "streamPausedReconnecting": "Translatsiyangiz to'xtatildi. Qayta ulanmoqda...",
+    "streamWillEnd": "Qayta ulanmagan bo'lsangiz, translatsiya tugaydi",
+    "endStreamConfirmTitle": "Strim tugallansinmi?",
+    "endStreamConfirmBody": "Hozir yopsangiz, jonli efiringiz barcha tomoshabinlar uchun tugaydi. Siz translyatsiyani davom ettirishingiz yoki butunlay tugatishingiz mumkin."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

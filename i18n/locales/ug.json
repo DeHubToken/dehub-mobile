@@ -119,7 +119,12 @@
     "music": "مۇزىكا",
     "live": "جانلىق",
     "newPosts_one": "{{count}} يېڭى يازما",
-    "newPosts_other": "{{count}} يېڭى يازما"
+    "newPosts_other": "{{count}} يېڭى يازما",
+    "privateContent": "Personal Content",
+    "privateContentBody": "بۇ مەزمۇن شەخسىي ھېسابتىن كەلگەن. ئۇنىڭ يازمىلىرىنى كۆرۈش ئۈچۈن ئىجادكارغا ئەگىشىڭ.",
+    "noMoreContent": "باشقا مەزمۇن يوق",
+    "noPostsYet": "ھازىرچە يازما يوق.",
+    "pullToRefresh": "يېڭىلاش ئۈچۈن تارتىڭ ياكى كېيىنرەك سىناپ بېقىڭ."
   },
   "explore": {
     "all": "ھەممە",
@@ -710,7 +715,19 @@
     "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) خەتلەرنى ئاچىدۇ ۋە سىزنىڭ تۇنجى قەرەملىك پۇل قالدۇقىڭىزغا ئايلىنىدۇ.",
     "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
     "smsBalance": "{{dhb}} DHB قالدى (${{usd}})",
-    "smsCodeSent": "كود ئەۋەتىلدى. بۇ {{price}} DHB تۇتتى."
+    "smsCodeSent": "كود ئەۋەتىلدى. بۇ {{price}} DHB تۇتتى.",
+    "avatarUpdateFailed": "ئەۋزەل رەسىمىنى يېڭىلاش مەغلۇپ بولدى",
+    "coverUpdateFailed": "قاپاقنى يېڭىلاش مەغلۇپ بولدى",
+    "fixInvalidSocialLinks": "تەپسىلىي ئىجتىمائىي ئۇلىنىشلارنى تۈزۈپ بېرىڭ",
+    "updateFailed": "يېڭىلاش مەغلۇپ بولدى",
+    "channelUrlOrHandle": "شانال ئۇلىنىشى ياكى ئىسمى",
+    "inviteLinkPlaceholder": "تەكلىپ ئۇلىنىشى",
+    "profileUrlOrUsername": "تىزىملاش ئۇلىنىشى ياكى ئىشلەتكۈچى ئىسمى",
+    "yourDisplayName": "سىزنىڭ كۆرسىتىش ئىسمىڭىز",
+    "usernameAvailable": "ئىشلەتكۈچى ئىسمى بار",
+    "hideBadgeAndBalance": "نىشان ۋە بالانسنى يوشۇرۇش",
+    "hideBadgeAndBalanceDesc": "بۇ مەبلەغ ئۇچۇرلىرىنى يوشۇرىدۇ ۋە سىزگە ئەۋەتىش ۋە ئۇچىنى چەكلەيدۇ.",
+    "onChainPublicWarning": "زەنجىردىكى سودىلار ئاشكارا. پارچىلارنى ئەۋەتىش ياكى ئۇچىنى چەكلەش سىزنىڭ پۇل-مۇئامىلە ئادرېسىڭىزنى ئاشكارىلىشى مۇمكىن، بۇنىڭ ئىچىدە شەخسىي بالانس مودېلى قوزغىلىشتىن بۇرۇنقى سودىلارمۇ بار."
   },
   "common": {
     "mute": "ئاۋازنى ئېتىش",
@@ -760,7 +777,9 @@
     "noInternetTitle": "تورداشمايۋاتىدۇ",
     "noInternetBody": "تور ئۇلىنىشىڭىزنى تەكشۈرۈپ، قايتا سىناپ بېقىڭ. DeHub نى ئىشلىتىش ئۈچۈن تورغا ئۇلىنىشىڭىز كېرەك.",
     "noInternetStatus": "توردا - تور ئۇلىنىشى يوق",
-    "noInternetHint": "Wi-Fi ياكى ئۆزگىچە سانلىق مەلۇماتنىڭ قوزغىتىلغانلىقىنى جەزملەشتۈرۈپ، \"{{action}}\" نى چېكىڭ"
+    "noInternetHint": "Wi-Fi ياكى ئۆزگىچە سانلىق مەلۇماتنىڭ قوزغىتىلغانلىقىنى جەزملەشتۈرۈپ، \"{{action}}\" نى چېكىڭ",
+    "saving": "ساقلاش…",
+    "offlineStatus": "Offline - تور ئۇلىنىشى يوق"
   },
   "tip": {
     "title": "Send Tip",
@@ -1094,7 +1113,17 @@
     "post": "يوللاش",
     "officialLogo": "مانا DeHub نىڭ رەسمىي بەلگىسى! 🎨",
     "editedImage": "مانا تەھرىرلەنگەن رەسىمىڭىز!",
-    "generatedImage": "مانا ھاسىل قىلىنغان رەسىمىڭىز!"
+    "generatedImage": "مانا ھاسىل قىلىنغان رەسىمىڭىز!",
+    "toolCompleted": "{{name}} تاماملاندى",
+    "aiTool": "AI قورالى",
+    "cannotAnimateImage": "{{model}} قوشۇلغان رەسىمنى ھەرىكەتلەندۈرەلمەيدۇ. باشقا سىن مودېلىنى تاللاڭ.",
+    "needsImageToAnimate": "{{model}} ھەرىكەتلەندۈرۈش ئۈچۈن رەسىمگە موھتاج. بىرنى قوشۇڭ ياكى باشقا مودېلنى تاللاڭ.",
+    "couldNotReadImage": "بۇ رەسىمنى ئوقۇغىلى بولمىدى",
+    "logoLoadFailed": "DeHub لوگوسىنى يۈكلەپ بولمىدى — ئۇنى ئىشلەتمەي ھاسىل قىلىۋاتىمىز",
+    "imageAttachedDescribe": "رەسىم قوشۇلدى — ئۆزگەرتىشلىرىڭىزنى تەسۋىرلاپ بېرىڭ",
+    "couldNotPreparePost": "بۇنى نەشىر قىلىشقا تەييارلىغىلى بولمىدى",
+    "generateImage": "سۈرەت ياساش",
+    "generateVideo": "فىلىم ياساش پروگراممىسى"
   },
   "commandCentre": {
     "title": "بۇيرۇق مەركىزى",
@@ -1606,7 +1635,10 @@
     "edit": "تەھرىرلەش",
     "deleteRequestTitle": "بۇ تەلەپنى ئۆچۈرەمسىز؟",
     "deleteRequestDescription": "بۇنى قايتۇرغىلى بولمايدۇ.",
-    "attachmentTooLarge": "ھەر بىر ھۆججەت 20MB دىن كىچىك بولۇشى كېرەك"
+    "attachmentTooLarge": "ھەر بىر ھۆججەت 20MB دىن كىچىك بولۇشى كېرەك",
+    "deleteCommentA11y": "ئىنكاسنى ئۆچۈرۈش",
+    "sendCommentA11y": "ئىنكاس يوللاش",
+    "requestOptions": "تاللانمىلارنى سوراش"
   },
   "auth": {
     "loginRequired": "كىرىش تەلەپ قىلىنىدۇ",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "كود ئەۋەتىش مۇمكىن بولمىدى. قايتا سىناپ بېقىڭ.",
     "invalidCodeRetry": "كود خاتالىق. قايتا سىناپ بېقىڭ.",
     "invalidEmailOrPassword": "ئېلخەت ياكى پارول خاتالىق.",
-    "welcomeToDehub": "DeHub غا خۇش كېلىپسىز"
+    "welcomeToDehub": "DeHub غا خۇش كېلىپسىز",
+    "importWalletOptional": "ئىمپورت خەزىنىسى (ئىختىيارىي)",
+    "couldNotSendCodeRetry": "كودىنى ئەۋەتكىلى بولمىدى. تەكرارلاپ بېقىڭ.",
+    "exploreWithoutSignIn": "ئىمزا قويماي ئىزدىنىش",
+    "continueExploring": "ئىزدىنىشنى داۋاملاشتۇرۇش",
+    "exploreWithoutSignInA11y": "DeHub نى ئىمزا قويمايلا تەكشۈرۈڭ",
+    "continueExploringA11y": "DeHub نى تەكشۈرۈشنى داۋاملاشتۇرۇش",
+    "importWalletRecommended": "ئىجتىمائىي كىرگۈزۈش تەۋسىيە قىلىنىدۇ.",
+    "importWalletPurpose": "بۇ قورال مەۋجۇت ھېساباتلارنى DeHub.io دىن ئىمپورت قىلىش ئۈچۈن ئىشلىتىلىدۇ."
   },
   "messages": {
     "smartRepliesOff": "تەۋسىيە جاۋابلار ئېتىلدى",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "ئۇ ئۆزلۈكىدىن مەلۇم قىلىندى.",
     "loadFailed": "قاناللارنى يۈكلىگىلى بولمىدى",
     "noSearchResults": "ئىزدىشىڭىزگە ماس كېلىدىغان قانال يوق",
-    "noChannels": "قانال يوق"
+    "noChannels": "قانال يوق",
+    "pairCodeExpired": "بۇ كود ئاخىرلاشتى. تېلېۋىزوردىن يېڭىسىنى سوراڭ.",
+    "signedInOnTv": "تېلېۋىزورىڭىزغا ئىمزا قويدى",
+    "pairRefused": "رەت قىلىندى",
+    "pairIntro": "تېلېۋىزوردا DeHub نى ئېچىڭ ۋە بۇ يەردە كۆرسىتىلگەن كودنى كىرگۈزۈڭ.",
+    "pairNotFound": "بۇ كودنى تېلېۋىزور كۈتمەيدۇ. بەلكىم ۋاقتى ئۆتۈپ كەتكەن بولۇشى مۇمكىن — تېلېۋىزوردىن يېڭىسىنى سوراڭ.",
+    "wantsToSignIn": "سىزدەك ئىمزا قويۇشنى خالايدۇ",
+    "pairWarning": "ئەگەر سىز ھازىر كۆرۈۋاتقان تېلېۋىزور بولسا، بۇنى تەستىقلاڭ. بۇ كودنى ھېساباتىڭىزدا ساقلىغانلارنى تەستىقلايدۇ. ئۇ كۆزىتىش، ياقتۇرۇش ۋە ئەگەشتۈرۈش ئىقتىدارىغا ئىگە بولىدۇ — ئۇ چىقىم قىلالمايدۇ، سىز ئۇنى ھەر ۋاقىت ئاكتىپ سىنلاردىن ئىمزالىيالايسىز.",
+    "pairApprove": "ھەئە، بۇ تېلېۋىزورغا ئىمزا قوي",
+    "pairDeny": "ھەرگىز ئۇنداق ئەمەس (يەنى بۇ كاپىر ئىنسان تەكەببۇرلۇقىدىن يانسۇن)، مەن (قۇرئاننى باشقىلاردىن)",
+    "pairDoneTitle": "تېلېۋىزورىڭىز ئىمزالاندى",
+    "pairDoneBody": "ھېساباتىڭىزنى ئاللىقاچان كۆرسىتىشى كېرەك. قاچىلاش → مەخپىيەتلىك سىنلىرىدىن ھەرقانداق ۋاقىتتا ئىمزا → قويۇڭ.",
+    "closePlayer": "يېقىن قويغۇ",
+    "declineFailed": "بۇنى رەت قىلغىلى بولمىدى، بۇ بەلكىم ئاللىقاچان تۈگىگەن بولۇشى مۇمكىن.",
+    "tipSentTvNotTold": "تەكلىپ ئەۋەتىلدى، لېكىن تېلېۋىزورنى ئېيتىپ بېرەلمىدى. ۋاقىت ئۆتۈپ كېتىدۇ.",
+    "sentAmount": "Sent {{amount}} DHB",
+    "nothingWaiting": "ئىش يوق",
+    "nothingWaitingBody": "تىلۋىزىيىڭىزدىكى DeHub دىن پۇل ئەۋەتسەڭىز، ئۇنى تەستىقلاش ئۈچۈن بۇ يەردە پەيدا بولىدۇ. تېلۋىزىيىڭىز ھېچقاچان ھەمىيانىڭىزنى ساقلىمايدۇ.",
+    "yourTelevision": "سىزنىڭ تېلۋىزىيىڭىز",
+    "wantsToTip": "بىر پۇل ئەۋەتىشنى خالىدى - {{time}} قالدۇردى",
+    "tipTo": "{{name}} گە",
+    "tipForPost": "«{{title}}» ئۈچۈن",
+    "reviewAndApprove": "قايتا كۆرۈپ چىقىپ تەستىقلاڭ"
   },
   "top100": {
     "title": "ئالدىنقى 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "ئىلتىماس يوللاش",
     "nameEmailRequired": "ئىسىم ۋە ئېلخەت مەجبۇرىي",
     "applicationSuccess": "ئىلتىماس مۇۋەپپەقىيەتلىك يوللاندى! ئالاقىلىشىمىز.",
-    "applicationFailed": "يوللاش مەغلۇب بولدى. قايتا سىناڭ."
+    "applicationFailed": "يوللاش مەغلۇب بولدى. قايتا سىناڭ.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO خەزىنىسى",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "بۇ يازمىنىڭ ئەڭ ئۈستىگە قادالدى",
     "unpinnedToast": "قادا ئېلىۋېتىلدى",
     "pinFailed": "ئۇ ئىنكاسنى قاداشقا بولمىدى",
-    "kidsOnlyThread": "بۇ يازما بالىلار ئۈچۈن. بۇنىڭغا پەقەت بالىلار ھالىتىلا ئىنكاس قايتۇرالايدۇ."
+    "kidsOnlyThread": "بۇ يازما بالىلار ئۈچۈن. بۇنىڭغا پەقەت بالىلار ھالىتىلا ئىنكاس قايتۇرالايدۇ.",
+    "editFailed": "باھا تەھرىرلەش مەغلۇپ بولدى"
   },
   "postInfo": {
     "title": "يوللىما ئۇچۇرى",
@@ -3243,14 +3307,40 @@
     "comingSoon": "پات يېقىندا",
     "signIn": "كىرىش",
     "tapToGetStarted": "باشلاش ئۈچۈن چېكىڭ",
-    "soon": "پات يېقىندا"
+    "soon": "پات يېقىندا",
+    "glossarySubtitle": "ھەر بىر سىمو ۋە ئىقتىدارنىڭ نېمىنى بىلدۈرىدىغانلىقىنى ئۆگىنىڭ",
+    "searchGlossary": "ئىزاھاتلىق سۆزلۈكنى ئىزدەش...",
+    "noResultsFor": "«{{query}}» ئۈچۈن نەتىجە يوق",
+    "guideSubtitle": "ھەر بىر ئىقتىدارنىڭ باسقۇچما-باسقۇچ يېتەكچىسى",
+    "searchGuide": "يول باشلاشنى ئىزدەش...",
+    "repostsTab": "قايتا يوللاش",
+    "quotesTab": "ئىقتىباس",
+    "noMoreReposts": "قايتا يوللاش يوق",
+    "noMoreQuotes": "ئىقتىباس يوق",
+    "noRepostsYet": "ھازىرچە قايتا يوللاش يوق",
+    "noQuotesYet": "ھازىرچە ئىقتىباس يوق"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "دەل مۇشۇ ئەپ ئىچىدە ئىشلەيدىغان ئويۇنلار. ئورنىتىدىغان نەرسە يوق، سېتىۋالىدىغان نەرسە يوق — ئوچۇق مەنبە ۋە DeHub ئۆزى تەمىنلەيدۇ."
+    "intro": "دەل مۇشۇ ئەپ ئىچىدە ئىشلەيدىغان ئويۇنلار. ئورنىتىدىغان نەرسە يوق، سېتىۋالىدىغان نەرسە يوق — ئوچۇق مەنبە ۋە DeHub ئۆزى تەمىنلەيدۇ.",
+    "noGameCalled": "ئوينيڭىزدا <slug>{{slug}}</slug> دەپ ئاتالغان ئويۇن يوق.",
+    "seeWhatIsHere": "بۇ يەردە نېمە بارلىقىنى كۆرۈڭ",
+    "locationNotGranted": "ئورۇنغا ئىجازەت بېرىلمىدى.",
+    "signInToPlaceOnGlobe": "دۇنيادىكى ئورنىڭىزنى كۆرسىتىش ئۈچۈن كىرمىڭ.",
+    "couldNotPlaceOnGlobe": "دۇنيادىكى ئورنىڭىزنى قويغىلى بولمىدى.",
+    "onTheGlobe": "سىز دۇنيادىكى ئورنىڭىزدا - تەخمىنەن 25 كىلومېتىر دائىرىسىدە كۆرسىتىلىسىز.",
+    "couldNotReach": "ئوينيڭىزغا بارغىلى بولمىدى",
+    "didNotLoad": "{{title}} يۈكلەنمىدى",
+    "needsConnection": "ئويۇن dehub.io دىن تەمىنلىنىدۇ ۋە سىز ئۇنى ئاچقاندا چۈشۈرۈلىدۇ، شۇڭا ئۇ تۇنجى قېتىم ئىشلەيدىغان ئۇلىنىشقا موھتاج. ئۇنى تەكشۈرۈپ، قايتا سىناپ بېقىڭ.",
+    "backToArcade": "Arcade-غا قايتىش",
+    "openPrivacySettings": "شەخسىي مەخپۇرىيەت تەڭشەكلىرىنى ئېچىڭ",
+    "privacyWarning": "ئەگەر سىزدە نۇرغۇنلىغان توكېن بولسا ياكى بىخەتەر بولمىغان رايوندا ياشىسىڭىز، بۇ ئىقتىدارنى ئىشلىتىشتىن بۇرۇن بەلگىڭىزنى ۋە قالدۇقىڭىزنى يوشۇرۇڭ. زەنجىردىكى سودىلار يەنىلا ئادرېسىڭىزنى ئاشكارىلايدۇ. تەڭشەكلىرىنى ئېچىڭ.",
+    "leaveGame": "ئويۇندىن چېكىنىش",
+    "loadingGame": "{{title}} نى يۈكلەۋاتىدۇ",
+    "hideThis": "بۇنى يوشۇر"
   },
   "videoLooks": {
     "button": "كامېرا كۆرۈنۈشلىرى",
@@ -3376,7 +3466,22 @@
     "someone": "بىرەيلەن",
     "oneTyping": "{{name}} خەت يېزىۋاتىدۇ…",
     "fewTyping": "{{names}} خەت يېزىۋاتىدۇ…",
-    "manyTyping": "{{count}} كىشى خەت يېزىۋاتىدۇ…"
+    "manyTyping": "{{count}} كىشى خەت يېزىۋاتىدۇ…",
+    "modBadge": "MOD",
+    "thisUser": "بۇ ئىشلەتكۈچى",
+    "unbanConfirm": "ئەمدى {{name}} نى چەكلەش تۈگىتىشنى خالايمەن؟",
+    "unban": "چەكلەش تۈگىتىش",
+    "unbanFailed": "ئىشلەتكۈچىنى چەكلەش تۈگىتىش مەغلۇپ بولدى",
+    "onlineLabel": "توردا",
+    "usersCount_one": "{{count}} ئىشلەتكۈچى",
+    "usersCount_other": "{{count}} ئىشلەتكۈچىلەر",
+    "totalMessages": "ئومۇمىي خەۋەرلەر",
+    "slowMode": "ئاستا ھالەت",
+    "cooldownSeconds": "{{seconds}}s سوۋۇتۇش ۋاقتى",
+    "minStakeRequired": "ئىشلىتىشكە بولىدىغان ئەڭ تۆۋەن مەبلەغ",
+    "noParticipants": "ھازىرچە قاتناشقۇچى يوق",
+    "noModerators": "باشقۇرغۇچى يوق",
+    "noBannedUsers": "چەكلەنگەن ئىشلەتكۈچى يوق"
   },
   "promptFeed": {
     "headline": "نېمىنى كۆرمەكچىسىز؟",
@@ -4128,7 +4233,26 @@
     "madeForKidsBlockedByMature": "بالىغلار ئۈچۈن بەلگىلەنگەن پوست بالىلار ئۈچۈن نەشر قىلىنالمايدۇ.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "RTMP تەپسىلاتىنى الىڭ",
-    "markMadeForKids": "بالىلار ئۈچۈن ياسالغان ماركا"
+    "markMadeForKids": "بالىلار ئۈچۈن ياسالغان ماركا",
+    "queueWaiting": "كۈتۈۋاتىدۇ…",
+    "queueUploading": "يۈكلەۋاتىدۇ",
+    "queueProcessing": "بىر تەرەپ قىلىۋاتىدۇ…",
+    "queueMinting": "تىزىملىتىۋاتىدۇ…",
+    "queuePosted": "ئېلان قىلىندى",
+    "queueFailed": "مەغلۇپ بولدى",
+    "noRetriesLeft": "(قايتا سىناش پۇرسىتى يوق)",
+    "noUploads": "يۈكلەش يوق",
+    "uploadsAppearHere": "سىزنىڭ يۈكلىگەنلىرىڭىز بۇ يەردە كۆرۈنىدۇ",
+    "imagesTotalLimit": "بىر يۈكلىمىدىكى سۈرەتلەر جەمئىي 100 MB ياكى ئۇنىڭدىن تۆۋەن بولۇشى كېرەك",
+    "chooseDatabase": "مەركەزسىز سانداننى تاللاش",
+    "livestreamMode": "Liveestream ھالىتى",
+    "addThumbnail": "Thumbnail قوشۇڭ",
+    "showCover": "قاپاقنى كۆرسىتىش",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Liveestream نى تەستىقلاش پروگراممىسى",
+    "liveFeaturesTitle": "Canlı ئالاھىدىلىكلەر",
+    "discardPostTitle": "يازمىنى ئۆچۈرگىلى بولامدۇ ؟",
+    "discardPostBody": "يازمىڭىز يوقاپ كېتىدۇ. ئۇنى لايىھىلەشنى خالامسىز ؟"
   },
   "bounty": {
     "claimed": "تاپشۇرۇۋېلىندى",
@@ -4444,7 +4568,25 @@
     "allowNewDmsOff": "يېڭى ئۇچۇرلارغا رۇخسەت قىلىش ئۈچۈن DM نى ئېچىڭ.",
     "perMessageFee": "ھەر ئۇچۇرغا ھەق (DHB)",
     "perMessageFeeSub": "ھەر ئۇچۇرغا ھەق ئېلىڭ. ھەقسىز DM ئۈچۈن 0 قىلىڭ. بەزى ئىشلەتكۈچىلەرگە ھەقسىز زىيارەت بېرەلەيسىز.",
-    "allDisabled": "ھازىر بارلىق DM تاقالغان. يېڭى DM سۈكۈتتىكى ھالەتتە چەكلىنىدۇ."
+    "allDisabled": "ھازىر بارلىق DM تاقالغان. يېڭى DM سۈكۈتتىكى ھالەتتە چەكلىنىدۇ.",
+    "failedToEdit": "تەھرىرلىيەلمىدى",
+    "messageDeleted": "ئۇچۇر ئۆچۈرۈلدى",
+    "cantForwardFromDevice": "بۇ ئۇچۇرنى بۇ ئۈسكۈنىدىن ئەۋەتكىلى بولمايدۇ",
+    "messageForwarded": "ئەۋەتىلگەن ئۇچۇر",
+    "clearMessages": "ئۇچۇرلارنى تازىلاش",
+    "clearMessagesConfirm": "بۇ سۆھبەتتىكى بارلىق ئۇچۇرلارنى ئۆچۈرگىلى بولامدۇ ؟ بۇنى رەت قىلغىلى بولمايدۇ.",
+    "messagesCleared": "ئۇچۇرلار تازىلاندى",
+    "failedToClearMessages": "ئۇچۇرلارنى تازىلاش مەغلۇپ بولدى",
+    "removedFreeAccess": "{{name}} نىڭ ھەقسىز كىرىش ئېغىزى ئۆچۈرۈلدى",
+    "grantedFreeAccess": "{{name}} غا ھەقسىز كىرىش ھوقۇقى",
+    "failedToUpdateFreeAccess": "ئەركىن كىرىش ئىقتىدارىنى يېڭىلىغىلى بولمىدى",
+    "searchComingSoon": "ئىزدىنىش يېقىندا كېلىدۇ",
+    "tapToUnblock": "تاقەتسىزلەندۈرۈشكە تەڭشەش",
+    "userFallback": "ئىشلەتكۈچى",
+    "failedToBlock": "تاقالمىدى",
+    "failedToDeleteConversation": "سۆھبەتنى ئۆچۈرگىلى بولمىدى",
+    "newDm": "يېڭى بىۋاستە ئۇچۇر",
+    "noConversationsFound": "سۆھبەتلەر تېپىلمىدى"
   },
   "editPost": {
     "mediaPermission": "مېدىيا ئامبىرى ئىجازىتى كېرەك",
@@ -4466,7 +4608,17 @@
     "retry": "قايتا سىناڭ",
     "retrying": "تەكرارلاش...",
     "retryQueued": "يەنە بىر قېتىم جەرىمانە قويۇش",
-    "retryFailed": "بۇ يازمىنى قايتا تەھرىرلىيەلمىدى"
+    "retryFailed": "بۇ يازمىنى قايتا تەھرىرلىيەلمىدى",
+    "closeVideo": "فىلىملەرنى تاقاش پروگراممىسى",
+    "rotateOrientation": "ئايلىنىش يۆنىلىشى",
+    "videoProgress": "سۈرەتلىك فىلىمنىڭ ئىلگىرىلەش ئەھۋالى: {{percent}}%",
+    "tapToSeek": "بىر مەلۇم ئورۇنغا يۆتكىلىش ئۈچۈن چېكىڭ",
+    "photoAccessToSaveImages": "رەسىملەرنى ساقلاش ئۈچۈن سۈرەتلىك كۇتۇپخانىغا ئىشلىتىشكە رۇخسەت قىلىڭ",
+    "failedToSaveImage": "رەسىمنى ساقلاش مەغلۇپ بولدى",
+    "downloadImage": "رەسىمنى چۈشۈرۈش",
+    "goToImage": "رەسىم {{index}} گە بېرىڭ",
+    "allCaughtUp": "سىز ھەممىنى كۆرۈپ بولدىڭىز",
+    "checkBackForShorts": "كېيىن تېخىمۇ قىسقا فىلىملەرنى كۆرۈپ تۇرۇڭ"
   },
   "liveViewer": {
     "loadingStream": "تارقىتىش يۈكلىنىۋاتىدۇ...",
@@ -4476,7 +4628,22 @@
   },
   "search": {
     "endOfResults": "نەتىجىلەرنىڭ ئاخىرى",
-    "searchDehub": "DeHub تىن ئىزدەش"
+    "searchDehub": "DeHub تىن ئىزدەش",
+    "tabVoice": "ئاۋاز",
+    "trendingThisWeek": "بۇ ھەپتىدىكى مودا",
+    "trendingPosts": "مودا بولغان ماقالىلەر",
+    "trendingImages": "مودا بولغان رەسىملەر",
+    "trendingVideos": "مودا بولغان فىلىملەر",
+    "trendingVoicePosts": "مودا بولغان ئاۋازلىق ماقالىلەر",
+    "trendingLive": "مودا بولغان نەق مەيدان",
+    "seeAll": "ھەممىنى كۆرۈڭ",
+    "noAccountsFound": "ھېچقانداق ھېساب تېپىلمىدى",
+    "tryDifferentKeywords": "باشقا ئاچقۇچلۇق سۆزلەرنى سىناپ بېقىڭ ياكى تەلەپپۇزىڭىزنى تەكشۈرۈڭ",
+    "noContentResults": "ھېچقانداق مەزمۇن نەتىجىسى يوق",
+    "recentSearches": "يېقىنقى ئىزدەش",
+    "noTrendingThisWeek": "بۇ ھەپتىدە مودا بولغان مەزمۇن يوق",
+    "closeFilterOptions": "سۈزگۈچ تاللانمىلىرىنى تاقاش",
+    "openFilterOptions": "سۈزگۈچ تاللانمىلىرىنى ئېچىش"
   },
   "notifPrompt": {
     "stayInLoop": "خەۋەردار بولۇڭ",
@@ -4727,7 +4894,26 @@
     "externalTitle": "تاشقى ئېقىم ھالىتى",
     "externalLiveHint": "ئېقىمىڭىز سىرتقى يۇمشاق دېتال ئارقىلىق بىۋاستە تارقىتىلىدۇ. ئەپ ئىچىدىكى كامېرا ئۆچۈرۈلگەن.",
     "externalHint": "تۆۋەندىكى تەپسىلاتلارنى ئىشلىتىپ، تارقىتىش يۇمشاق دېتالىڭىزنى ئۇلاڭ، ئاندىن تارقىتىشنى باشلاڭ.",
-    "useInAppCamera": "ئۇنىڭ ئورنىغا ئەپ ئىچىدىكى كامېرا ئىشلىتىش"
+    "useInAppCamera": "ئۇنىڭ ئورنىغا ئەپ ئىچىدىكى كامېرا ئىشلىتىش",
+    "livestreamEnded": "نەق مەيدان قويۇش تاماملاندى",
+    "chatEnabled": "لهېمە قوزغىتىلدى",
+    "chatDisabled": "لەھەم ئىشلەپ تۇرمايدۇ",
+    "failedToUpdateSettings": "تەڭشەكلەرنى يېڭىلاش مەغلۇپ بولدى",
+    "networkLostReconnecting": "تور ئۈزۈلدى — قويۇش توختىتىلدى. قايتا ئۇلىنىۋاتىدۇ…",
+    "openingViewer": "كۆرگۈچنى ئېچىۋاتىدۇ...",
+    "cameraPermissionRequired": "دورۇن ئىشلىتىش ئىجازىتى تەلەپ قىلىنىدۇ",
+    "grantPermission": "ھوقۇق بېرىش",
+    "waitingForLivepeer": "Livepeer نى ساقلاش...",
+    "waitingForExternalSource": "سىرتقى مەنبەنى ساقلاش...",
+    "settingUpPublisher": "نەشر قىلغۇچىنى تەڭشەش...",
+    "scheduledStream": "پىلانلانغان ستريم",
+    "scheduledAt": "{{date}} {{time}} دا",
+    "pressGoLiveWhenReady": "تەييار بولغاندا نەق شۇ يېرىدا باشلاش ئۈچۈن «نەق شۇ يېرىدا باشلا» نى بېسىڭ",
+    "connectionInterrupted": "ئۇلىنىش ئۈزۈلدى",
+    "streamPausedReconnecting": "ستىرىم توختىتىلدى. قايتا ئۇلاش...",
+    "streamWillEnd": "قايتا ئۇلانمىسا ستىرىم ئاخىرلىشىدۇ",
+    "endStreamConfirmTitle": "ستىرىمنى تاقاش؟",
+    "endStreamConfirmBody": "ھازىر تاقاش سىزنىڭ نەق شۇ يېرىدىكى ستىرىمىڭىزنى بارلىق كۆرگۈچىلەر ئۈچۈن ئاخىرلاشتۇرىدۇ. سىز ستىرىمنى داۋاملاشتۇرۇش ياكى مەڭگۈلۈك ئاخىرلاشتۇرۇش ئىقتىدارىغا ئىگە."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

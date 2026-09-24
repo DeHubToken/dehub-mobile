@@ -18,6 +18,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import * as FileSystem from "expo-file-system/legacy";
 import * as MediaLibrary from "expo-media-library";
 import Icon from "../components/ui/Icon";
@@ -257,6 +258,7 @@ const ZoomableImage = memo(
 );
 
 const ImageViewerScreen = () => {
+  const { t } = useTranslation();
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
@@ -313,7 +315,7 @@ const ImageViewerScreen = () => {
       setIsSaving(true);
       const { status } = await MediaLibrary.requestPermissionsAsync();
       if (status !== "granted") {
-        toastError("Allow photo library access to save images");
+        toastError(t("player.photoAccessToSaveImages"));
         return;
       }
 
@@ -339,7 +341,7 @@ const ImageViewerScreen = () => {
       }
     } catch (err) {
       console.error("[ImageViewer] download failed:", err);
-      toastError("Failed to save image");
+      toastError(t("player.failedToSaveImage"));
     } finally {
       setIsSaving(false);
     }
@@ -480,7 +482,7 @@ const ImageViewerScreen = () => {
           style={styles.glassButton}
           hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           accessibilityRole="button"
-          accessibilityLabel="Close"
+          accessibilityLabel={t("common.close")}
         >
           <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
           <Icon name="X" size={20} color="#fff" />
@@ -508,7 +510,7 @@ const ImageViewerScreen = () => {
               disabled={isSaving}
               hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
               accessibilityRole="button"
-              accessibilityLabel="Download image"
+              accessibilityLabel={t("player.downloadImage")}
             >
               <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
               {isSaving ? (
@@ -533,7 +535,7 @@ const ImageViewerScreen = () => {
               onPress={() => scrollToImage(idx)}
               hitSlop={{ top: 18, bottom: 18, left: 5, right: 5 }}
               accessibilityRole="button"
-              accessibilityLabel={`Go to image ${idx + 1}`}
+              accessibilityLabel={t("player.goToImage", { index: idx + 1 })}
             >
               <View
                 style={[

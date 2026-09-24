@@ -119,7 +119,12 @@
     "music": "Musikk",
     "live": "Direkte",
     "newPosts_one": "{{count}} nytt innlegg",
-    "newPosts_other": "{{count}} nye innlegg"
+    "newPosts_other": "{{count}} nye innlegg",
+    "privateContent": "Privat innhold",
+    "privateContentBody": "Dette innholdet er fra en privat konto. Følg skaperen for å se innleggene deres.",
+    "noMoreContent": "Mer innhold",
+    "noPostsYet": "Ingen innlegg ennå.",
+    "pullToRefresh": "Dra for å oppdatere eller prøv igjen senere."
   },
   "explore": {
     "all": "Alle",
@@ -710,7 +715,19 @@
     },
     "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
     "smsDepositAction": "Send {{dhb}} DHB",
-    "smsCodeSent": "Kode sendt. Det kostet {{price}} DHB."
+    "smsCodeSent": "Kode sendt. Det kostet {{price}} DHB.",
+    "avatarUpdateFailed": "Avatar-oppdatering mislyktes",
+    "coverUpdateFailed": "Omslagsbilde-oppdatering mislyktes",
+    "fixInvalidSocialLinks": "Vennligst fiks ugyldige sosiale lenker",
+    "updateFailed": "Oppdatering mislyktes",
+    "channelUrlOrHandle": "Kanal-URL eller håndtak",
+    "inviteLinkPlaceholder": "Invitasjonslenke",
+    "profileUrlOrUsername": "Profil-URL eller brukernavn",
+    "yourDisplayName": "Ditt visningsnavn",
+    "usernameAvailable": "Brukernavn er tilgjengelig",
+    "hideBadgeAndBalance": "Skjul merke og saldo",
+    "hideBadgeAndBalanceDesc": "Skjuler økonomiske detaljer og deaktiverer sendinger og tips til deg.",
+    "onChainPublicWarning": "Transaksjoner på kjeden er offentlige. Sending av tokens eller tips kan avsløre lommebokadressen din, inkludert transaksjoner gjort før privat balansemodus ble aktivert."
   },
   "common": {
     "mute": "Demp",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Ingen internettforbindelse",
     "noInternetBody": "Vennligst sjekk internettforbindelsen din og prøv igjen. Du må være koblet til internett for å bruke DeHub.",
     "noInternetStatus": "Frakoblet - Ingen nettverksforbindelse",
-    "noInternetHint": "Sørg for at Wi-Fi eller mobildata er slått på, og trykk deretter på \"{{action}}\""
+    "noInternetHint": "Sørg for at Wi-Fi eller mobildata er slått på, og trykk deretter på \"{{action}}\"",
+    "saving": "Lagrer…",
+    "offlineStatus": "Frakoblet - Ingen nettverkstilkobling"
   },
   "tip": {
     "title": "Send Tip",
@@ -1094,7 +1113,17 @@
     "post": "Publiser",
     "officialLogo": "Her er den offisielle DeHub-logoen! 🎨",
     "editedImage": "Her er det redigerte bildet ditt!",
-    "generatedImage": "Her er det genererte bildet ditt!"
+    "generatedImage": "Her er det genererte bildet ditt!",
+    "toolCompleted": "{{name}} fullført",
+    "aiTool": "AI-verktøy",
+    "cannotAnimateImage": "{{model}} kan ikke animere et vedlagt bilde. Velg en annen videomodell.",
+    "needsImageToAnimate": "{{model}} trenger et bilde for å animere. Legg ved et eller velg en annen modell.",
+    "couldNotReadImage": "Kunne ikke lese det bildet",
+    "logoLoadFailed": "Kunne ikke laste DeHub-logoen — genererer uten den",
+    "imageAttachedDescribe": "Bilde vedlagt — beskriv endringene dine",
+    "couldNotPreparePost": "Kunne ikke forberede det for publisering",
+    "generateImage": "Generer bilde",
+    "generateVideo": "Generer video"
   },
   "commandCentre": {
     "title": "Kommandosenter",
@@ -1606,7 +1635,10 @@
     "edit": "Rediger",
     "deleteRequestTitle": "Slette denne forespørselen?",
     "deleteRequestDescription": "Dette kan ikke angres.",
-    "attachmentTooLarge": "Hver fil må være under 20 MB"
+    "attachmentTooLarge": "Hver fil må være under 20 MB",
+    "deleteCommentA11y": "Slett kommentar",
+    "sendCommentA11y": "send kommentar",
+    "requestOptions": "Forespørselsalternativer"
   },
   "auth": {
     "loginRequired": "Innlogging påkrevd",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Kunne ikke sende kode. Vennligst prøv igjen.",
     "invalidCodeRetry": "Ugyldig kode. Vennligst prøv igjen.",
     "invalidEmailOrPassword": "Ugyldig e-post eller passord.",
-    "welcomeToDehub": "Velkommen til DeHub"
+    "welcomeToDehub": "Velkommen til DeHub",
+    "importWalletOptional": "Importer lommebok (valgfritt)",
+    "couldNotSendCodeRetry": "Kunne ikke sende koden. Prøv på nytt.",
+    "exploreWithoutSignIn": "Utforsk uten å logge inn",
+    "continueExploring": "Fortsett å utforske",
+    "exploreWithoutSignInA11y": "Utforsk DeHub uten å logge inn",
+    "continueExploringA11y": "Fortsett å utforske DeHub",
+    "importWalletRecommended": "Sosiale innlogginger anbefales.",
+    "importWalletPurpose": "Dette verktøyet er for å importere eksisterende kontoer fra DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Foreslåtte svar er slått av",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Det er meldt fra automatisk.",
     "loadFailed": "Kunne ikke laste kanaler",
     "noSearchResults": "Ingen kanaler samsvarer med søket ditt",
-    "noChannels": "Ingen kanaler tilgjengelig"
+    "noChannels": "Ingen kanaler tilgjengelig",
+    "pairCodeExpired": "Den koden er utløpt. Be TV-en om en ny.",
+    "signedInOnTv": "Logget inn på TV-en din",
+    "pairRefused": "Nektet",
+    "pairIntro": "Åpne DeHub på TV-en din og skriv inn koden som vises her.",
+    "pairNotFound": "Ingen TV-er venter på den koden. Den kan ha utløpt – be TV-en om en ny.",
+    "wantsToSignIn": "ønsker å logge inn som deg",
+    "pairWarning": "Godkjenn bare dette hvis det er en TV du ser på akkurat nå. Godkjenning signerer den som har koden på kontoen din. Den vil kunne se, like og følge – den kan ikke bruke penger, og du kan logge den ut fra aktive økter når som helst.",
+    "pairApprove": "Ja, logg inn på denne TV-en",
+    "pairDeny": "Nei, jeg ba ikke om dette",
+    "pairDoneTitle": "TV-en din er logget på",
+    "pairDoneBody": "Den skal allerede vise kontoen din. Logg den ut når som helst fra Innstillinger → Personvern → Aktive økter.",
+    "closePlayer": "Lukk spiller",
+    "declineFailed": "Kunne ikke avslå det – det kan allerede ha utløpt.",
+    "tipSentTvNotTold": "Tipset er sendt, men TV-en kunne ikke bli fortalt. Det vil gå ut på tid.",
+    "sentAmount": "Sendt {{amount}} DHB",
+    "nothingWaiting": "Ingenting venter",
+    "nothingWaitingBody": "Når du gir et tips fra DeHub på TV-en din, vises det her slik at du kan godkjenne det. TV-en din holder aldri lommeboken din.",
+    "yourTelevision": "TV-en din",
+    "wantsToTip": "ønsker å sende et tips · {{time}} igjen",
+    "tipTo": "til {{name}}",
+    "tipForPost": "for “{{title}}”",
+    "reviewAndApprove": "Se gjennom og godkjenn"
   },
   "top100": {
     "title": "Topp 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Send søknad",
     "nameEmailRequired": "Navn og e-post er påkrevd",
     "applicationSuccess": "Søknad sendt! Vi tar kontakt.",
-    "applicationFailed": "Sending mislyktes. Prøv igjen."
+    "applicationFailed": "Sending mislyktes. Prøv igjen.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO-kasse",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Festet øverst i dette innlegget",
     "unpinnedToast": "Festing fjernet",
     "pinFailed": "Kunne ikke feste den kommentaren",
-    "kidsOnlyThread": "Dette innlegget er for barn. Bare Barnemodus kan kommentere på det."
+    "kidsOnlyThread": "Dette innlegget er for barn. Bare Barnemodus kan kommentere på det.",
+    "editFailed": "Kunne ikke redigere kommentar"
   },
   "postInfo": {
     "title": "Innleggsinformasjon",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Kommer snart",
     "signIn": "Logg inn",
     "tapToGetStarted": "Trykk for å komme i gang",
-    "soon": "Snart"
+    "soon": "Snart",
+    "glossarySubtitle": "Lær hva hvert ikon og funksjon betyr",
+    "searchGlossary": "Søk i ordliste...",
+    "noResultsFor": "Ingen resultater for \"{{query}}\"",
+    "guideSubtitle": "Steg-for-steg gjennomgang av hver funksjon",
+    "searchGuide": "Søk i veiledningen...",
+    "repostsTab": "Reposts",
+    "quotesTab": "Sitat",
+    "noMoreReposts": "Ingen flere reposts",
+    "noMoreQuotes": "Ingen flere sitater",
+    "noRepostsYet": "Ingen reposts ennå",
+    "noQuotesYet": "Ingen sitater ennå"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Spill som kjører rett her i appen. Ingenting å installere, ingenting å kjøpe — åpen kildekode og servert fra DeHub selv."
+    "intro": "Spill som kjører rett her i appen. Ingenting å installere, ingenting å kjøpe — åpen kildekode og servert fra DeHub selv.",
+    "noGameCalled": "Det finnes ingen spill som heter <slug>{{slug}}</slug> i arkaden.",
+    "seeWhatIsHere": "Se hva som er her",
+    "locationNotGranted": "Stedsrettigheter ble ikke gitt.",
+    "signInToPlaceOnGlobe": "Logg inn for å plassere deg selv på kloden.",
+    "couldNotPlaceOnGlobe": "Kunne ikke plassere deg på kloden.",
+    "onTheGlobe": "Du er på kloden — vist innenfor et omtrentlig område på 25 km.",
+    "couldNotReach": "KUNNE IKKE NÅ ARKADEN",
+    "didNotLoad": "{{title}} lastet ikke",
+    "needsConnection": "Spillet serveres fra dehub.io og lastes ned når du åpner det, så det trenger en fungerende tilkobling første gang. Sjekk din og prøv igjen.",
+    "backToArcade": "Tilbake til arkaden",
+    "openPrivacySettings": "Åpne personverninnstillinger",
+    "privacyWarning": "Hvis du har et stort antall tokens eller bor i et usikkert område, skjuler du merket og saldoen din før du bruker denne funksjonen. Transaksjoner på kjeden avslører fortsatt adressen din. Åpne innstillinger.",
+    "leaveGame": "Forlat spillet",
+    "loadingGame": "Laster {{title}}",
+    "hideThis": "Skjul dette"
   },
   "videoLooks": {
     "button": "Kameralooker",
@@ -3376,7 +3466,22 @@
     "someone": "Noen",
     "oneTyping": "{{name}} skriver…",
     "fewTyping": "{{names}} skriver…",
-    "manyTyping": "{{count}} personer skriver…"
+    "manyTyping": "{{count}} personer skriver…",
+    "modBadge": "MOD",
+    "thisUser": "denne brukeren",
+    "unbanConfirm": "Er du sikker på at du vil fjerne bannlysningen av {{name}}?",
+    "unban": "Fjern bannlysning",
+    "unbanFailed": "Kunne ikke fjerne bannlysning av bruker",
+    "onlineLabel": "På nett",
+    "usersCount_one": "{{count}} bruker",
+    "usersCount_other": "{{count}} brukere",
+    "totalMessages": "Totalt antall meldinger",
+    "slowMode": "Sakte modus",
+    "cooldownSeconds": "{{seconds}}s nedkjøling",
+    "minStakeRequired": "Min innsats kreves",
+    "noParticipants": "Ingen deltakere ennå",
+    "noModerators": "Ingen moderatorer",
+    "noBannedUsers": "Ingen bannlyste brukere"
   },
   "promptFeed": {
     "headline": "Hva vil du se?",
@@ -4123,7 +4228,26 @@
     "madeForKidsBlockedByMature": "Et innlegg merket som modent kan ikke også publiseres for barn.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Få RTMP-detaljer",
-    "markMadeForKids": "Merk som laget for barn"
+    "markMadeForKids": "Merk som laget for barn",
+    "queueWaiting": "Venter…",
+    "queueUploading": "Laster opp",
+    "queueProcessing": "Behandler…",
+    "queueMinting": "Utsteder…",
+    "queuePosted": "Postet",
+    "queueFailed": "Mislyktes",
+    "noRetriesLeft": "(ingen gjentakelser igjen)",
+    "noUploads": "Ingen opplastinger",
+    "uploadsAppearHere": "Dine opplastinger vil vises her",
+    "imagesTotalLimit": "Bilder i én opplasting må være maksimalt 100 MB",
+    "chooseDatabase": "Velg desentralisert database",
+    "livestreamMode": "Direktestrømmingsmodus",
+    "addThumbnail": "Legg til miniatyrbilde",
+    "showCover": "Vis cover",
+    "max60s": "Maks 60-tallet",
+    "confirmLivestream": "Bekreft direktesending",
+    "liveFeaturesTitle": "Live-funksjoner",
+    "discardPostTitle": "Forkast innlegget?",
+    "discardPostBody": "Innlegget ditt vil gå tapt. Vil du lagre det som et utkast i stedet?"
   },
   "bounty": {
     "claimed": "Innløst",
@@ -4440,7 +4564,25 @@
     "allowNewDmsOff": "Slå på DM-er for å tillate nye meldinger.",
     "perMessageFee": "Avgift per melding (DHB)",
     "perMessageFeeSub": "Ta betalt per melding. Sett til 0 for gratis DM-er. Du kan gi enkelte brukere gratis tilgang.",
-    "allDisabled": "Alle DM-er er avslått nå. Nye DM-er blokkeres som standard."
+    "allDisabled": "Alle DM-er er avslått nå. Nye DM-er blokkeres som standard.",
+    "failedToEdit": "Kunne ikke redigere nyhet",
+    "messageDeleted": "Melding slettet.",
+    "cantForwardFromDevice": "Denne meldingen kan ikke videresendes fra denne enheten",
+    "messageForwarded": "Melding videresendt",
+    "clearMessages": "Slett meldinger",
+    "clearMessagesConfirm": "Vil du slette alle meldingene i denne samtalen? Dette kan ikke angres.",
+    "messagesCleared": "Meldinger slettet",
+    "failedToClearMessages": "Kunne ikke fjerne meldinger",
+    "removedFreeAccess": "Fjernet gratis tilgang for {{name}}",
+    "grantedFreeAccess": "Får gratis tilgang til {{name}}",
+    "failedToUpdateFreeAccess": "Kunne ikke oppdatere gratis tilgang",
+    "searchComingSoon": "Søk kommer snart",
+    "tapToUnblock": "Trykk for å blokkere",
+    "userFallback": "bruker",
+    "failedToBlock": "Kunne ikke blokkere bruker",
+    "failedToDeleteConversation": "Kunne ikke slette samtalen",
+    "newDm": "Direkte melding",
+    "noConversationsFound": "Ingen samtaler funnet"
   },
   "editPost": {
     "mediaPermission": "Tillatelse til mediebiblioteket kreves",
@@ -4462,7 +4604,17 @@
     "retry": "Prøv igjen",
     "retrying": "Prøver igjen.",
     "retryQueued": "Behandler igjen",
-    "retryFailed": "Kunne ikke prøve å legge inn innlegget på nytt"
+    "retryFailed": "Kunne ikke prøve å legge inn innlegget på nytt",
+    "closeVideo": "Lukk videoen",
+    "rotateOrientation": "Roter retning",
+    "videoProgress": "Videofremdrift: {{percent}}%",
+    "tapToSeek": "Trykk for å søke til en bestemt posisjon",
+    "photoAccessToSaveImages": "Tillat tilgang til fotobiblioteket for å lagre bilder",
+    "failedToSaveImage": "Kunne ikke lagre bilde",
+    "downloadImage": "Last ned bilde",
+    "goToImage": "Gå til bilde {{index}}",
+    "allCaughtUp": "Du er ajour",
+    "checkBackForShorts": "Kom tilbake senere for flere shorts"
   },
   "liveViewer": {
     "loadingStream": "Laster strøm...",
@@ -4472,7 +4624,22 @@
   },
   "search": {
     "endOfResults": "Slutt på resultatene",
-    "searchDehub": "Søk i DeHub"
+    "searchDehub": "Søk i DeHub",
+    "tabVoice": "Stemme",
+    "trendingThisWeek": "Populært denne uken",
+    "trendingPosts": "Populære innlegg",
+    "trendingImages": "Populære bilder",
+    "trendingVideos": "Populære videoer",
+    "trendingVoicePosts": "Populære stemmeinnlegg",
+    "trendingLive": "Populært live",
+    "seeAll": "Se alle",
+    "noAccountsFound": "Ingen kontoer funnet",
+    "tryDifferentKeywords": "Prøv andre søkeord eller sjekk stavemåten din",
+    "noContentResults": "Ingen innholdsresultater",
+    "recentSearches": "Nylige søk",
+    "noTrendingThisWeek": "Ingen populært innhold denne uken",
+    "closeFilterOptions": "Lukk filteralternativer",
+    "openFilterOptions": "Åpne filteralternativer"
   },
   "notifPrompt": {
     "stayInLoop": "Hold deg oppdatert",
@@ -4718,7 +4885,25 @@
     "externalTitle": "Ekstern strømmemodus",
     "externalLiveHint": "Strømmen din er direkte via ekstern programvare. Kameraet i appen er deaktivert.",
     "externalHint": "Koble til strømmeprogramvaren din ved hjelp av detaljene nedenfor, og start deretter kringkastingen.",
-    "useInAppCamera": "Bruk kameraet i appen i stedet"
+    "useInAppCamera": "Bruk kameraet i appen i stedet",
+    "livestreamEnded": "Livestream avsluttet",
+    "chatEnabled": "Chat aktivert",
+    "chatDisabled": "Chat deaktivert",
+    "failedToUpdateSettings": "Kunne ikke oppdatere innstillinger",
+    "networkLostReconnecting": "Nettverk mistet — strømmen er satt på pause. Kobler til igjen…",
+    "openingViewer": "Åpner visning...",
+    "cameraPermissionRequired": "Kameratillatelse kreves",
+    "grantPermission": "Gi tillatelse",
+    "waitingForLivepeer": "Venter på Livepeer...",
+    "waitingForExternalSource": "Venter på ekstern kilde...",
+    "settingUpPublisher": "Setter opp utgiver ...",
+    "scheduledStream": "Planlagt strømming",
+    "pressGoLiveWhenReady": "Trykk på Gå direkte når du er klar til å starte",
+    "connectionInterrupted": "Forbindelsen ble avbrutt",
+    "streamPausedReconnecting": "Strømmen din er satt på pause. Kobler til igjen ...",
+    "streamWillEnd": "Strømmen avsluttes hvis den ikke kobles til igjen",
+    "endStreamConfirmTitle": "Avslutte strømming?",
+    "endStreamConfirmBody": "Å avslutte nå vil avslutte direktesendingen din for alle seere. Du kan fortsette sendingen eller avslutte den permanent."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

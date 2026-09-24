@@ -119,7 +119,12 @@
     "music": "Muzika",
     "live": "Tiesiogiai",
     "newPosts_one": "{{count}} naujas įrašas",
-    "newPosts_other": "{{count}} nauji įrašai"
+    "newPosts_other": "{{count}} nauji įrašai",
+    "privateContent": "Privatus turinys",
+    "privateContentBody": "Šis turinys yra iš privataus paskyros. Sekite kūrėją, kad peržiūrėtumėte jo įrašus.",
+    "noMoreContent": "Daugiau turinio nėra",
+    "noPostsYet": "Dar nėra įrašų.",
+    "pullToRefresh": "Patraukite, kad atnaujintumėte, arba pabandykite vėliau."
   },
   "explore": {
     "all": "Visi",
@@ -710,7 +715,19 @@
       "account": "Tik pranešimai apie mano paskyrą"
     },
     "smsNotificationsLocked": "Atrakinti su {{dhb}} DHB (${{usd}}) kredito",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Avataro naujinimas nepavyko",
+    "coverUpdateFailed": "Viršelio naujinimas nepavyko",
+    "fixInvalidSocialLinks": "Pataisykite neteisingas socialines nuorodas",
+    "updateFailed": "Naujinimas nepavyko",
+    "channelUrlOrHandle": "Kanalo URL arba vardas",
+    "inviteLinkPlaceholder": "Kvietimo nuoroda",
+    "profileUrlOrUsername": "Profilio URL arba vartotojo vardas",
+    "yourDisplayName": "Jūsų rodomas vardas",
+    "usernameAvailable": "Vartotojo vardas yra laisvas",
+    "hideBadgeAndBalance": "Slėpti ženklelį ir balansą",
+    "hideBadgeAndBalanceDesc": "Slepiama finansinė informacija ir išjungiami siuntimai bei patarimai jums.",
+    "onChainPublicWarning": "On-chain transakcijos yra viešos. Siunčiant žetonus ar patarimus gali būti atskleistas jūsų piniginės adresas, įskaitant transakcijas, atliktas prieš įjungiant privatų balanso režimą."
   },
   "common": {
     "mute": "Nutildyti",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Nėra interneto ryšio",
     "noInternetBody": "Patikrinkite savo interneto ryšį ir bandykite dar kartą. Norint naudotis DeHub, reikia būti prisijungus prie interneto.",
     "noInternetStatus": "Neprisijungęs – nėra tinklo ryšio",
-    "noInternetHint": "Įsitikinkite, kad įjungtas „Wi-Fi“ arba mobilusis duomenų ryšys, tada palieskite „{{action}}“"
+    "noInternetHint": "Įsitikinkite, kad įjungtas „Wi-Fi“ arba mobilusis duomenų ryšys, tada palieskite „{{action}}“",
+    "saving": "Įrašoma…",
+    "offlineStatus": "Neprisijungęs – nėra tinklo ryšio"
   },
   "tip": {
     "title": "Siųsti arbatpinigius",
@@ -1094,7 +1113,17 @@
     "post": "Įrašas",
     "officialLogo": "Štai oficialus DeHub logotipas! 🎨",
     "editedImage": "Štai jūsų redaguota nuotrauka!",
-    "generatedImage": "Štai jūsų sugeneruota nuotrauka!"
+    "generatedImage": "Štai jūsų sugeneruota nuotrauka!",
+    "toolCompleted": "{{name}} baigta",
+    "aiTool": "AI įrankis",
+    "cannotAnimateImage": "{{model}} negali animuoti pridėto vaizdo. Pasirinkite kitą vaizdo modelį.",
+    "needsImageToAnimate": "{{model}} reikia vaizdo, kurį būtų galima animuoti. Pridėkite jį arba pasirinkite kitą modelį.",
+    "couldNotReadImage": "Nepavyko perskaityti to vaizdo",
+    "logoLoadFailed": "Nepavyko įkelti „DeHub“ logotipo – generuojama be jo",
+    "imageAttachedDescribe": "Vaizdas pridėtas – apibūdinkite savo pakeitimus",
+    "couldNotPreparePost": "Nepavyko paruošti to įrašymui",
+    "generateImage": "Generuoti vaizdą",
+    "generateVideo": "Generuoti vaizdo įrašą"
   },
   "commandCentre": {
     "title": "Valdymo centras",
@@ -1606,7 +1635,10 @@
     "edit": "Redaguoti",
     "deleteRequestTitle": "Ištrinti šį pageidavimą?",
     "deleteRequestDescription": "To atšaukti nepavyks.",
-    "attachmentTooLarge": "Kiekvienas failas turi būti mažesnis nei 20 MB"
+    "attachmentTooLarge": "Kiekvienas failas turi būti mažesnis nei 20 MB",
+    "deleteCommentA11y": "Ištrinti Komentarą",
+    "sendCommentA11y": "Siųsti komentarą",
+    "requestOptions": "Prašymo parinktys"
   },
   "auth": {
     "loginRequired": "Reikia prisijungti",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Nepavyko išsiųsti kodo. Bandykite dar kartą.",
     "invalidCodeRetry": "Neteisingas kodas. Bandykite dar kartą.",
     "invalidEmailOrPassword": "Neteisingas el. paštas arba slaptažodis.",
-    "welcomeToDehub": "Sveiki atvykę į DeHub"
+    "welcomeToDehub": "Sveiki atvykę į DeHub",
+    "importWalletOptional": "Importuoti piniginę (nebūtina)",
+    "couldNotSendCodeRetry": "Nepavyko išsiųsti kodo. Bandykite dar kartą.",
+    "exploreWithoutSignIn": "Naršykite neprisijungę",
+    "continueExploring": "Tęsti paiešką",
+    "exploreWithoutSignInA11y": "Naršyti DeHub neprisijungus",
+    "continueExploringA11y": "Tęsti „DeHub“ paiešką",
+    "importWalletRecommended": "Rekomenduojama prisijungti socialiniuose tinkluose.",
+    "importWalletPurpose": "Šis įrankis skirtas esamų paskyrų importui iš DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Siūlomi atsakymai išjungti",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Apie tai pranešta automatiškai.",
     "loadFailed": "Nepavyko įkelti kanalų",
     "noSearchResults": "Jokie kanalai neatitinka jūsų paieškos",
-    "noChannels": "Nėra prieinamų kanalų"
+    "noChannels": "Nėra prieinamų kanalų",
+    "pairCodeExpired": "Kodas nebegalioja. Paprašykite televizoriaus naujo.",
+    "signedInOnTv": "Prisijungta jūsų televizoriuje",
+    "pairRefused": "Atsisakyta išduoti",
+    "pairIntro": "Televizoriuje atidarykite „DeHub“ ir čia įveskite rodomą kodą.",
+    "pairNotFound": "Jokia televizija nelaukia šio kodo. Gali būti, kad jis nebegalioja — paprašykite naujo televizoriaus.",
+    "wantsToSignIn": "nori prisijungti kaip jūs",
+    "pairWarning": "Patvirtinkite tai tik tuo atveju, jei šiuo metu žiūrite televizorių. Tvirtiname ženklus, kad ir kas laikytų tą kodą jūsų paskyroje. Jis galės stebėti, patikti ir sekti — jis negali išleisti, o jūs galite bet kada atsijungti nuo aktyvių užsiėmimų.",
+    "pairApprove": "Taip, prisijungti prie šio televizoriaus",
+    "pairDeny": "Ne, aš to neprašiau",
+    "pairDoneTitle": "Jūsų televizorius yra prisijungęs",
+    "pairDoneBody": "Jau turėtų būti rodoma jūsų paskyra. Atsijunkite bet kuriuo metu per Nustatymai → Privatumas → Aktyvūs seansai.",
+    "closePlayer": "Uždaryti grotuvą",
+    "declineFailed": "Nepavyko to atmesti — gali būti, kad jis jau nebegalioja.",
+    "tipSentTvNotTold": "Arbatpinigiai išsiųsti, bet televizoriaus pasakyti nepavyko. Baigsis skirtasis laikas.",
+    "sentAmount": "Siųsti {{amount}} DHB",
+    "nothingWaiting": "Nieko nelaukiama",
+    "nothingWaitingBody": "Kai siunčiate arbatpinigių iš „DeHub“ per televizorių, jie čia pasirodo, kad galėtumėte juos patvirtinti. Jūsų televizorius niekada nelaiko jūsų piniginės.",
+    "yourTelevision": "Jūsų televizorius",
+    "wantsToTip": "norite išsiųsti arbatpinigių · {{time}} paliko",
+    "tipTo": "į {{name}}",
+    "tipForPost": "už „{{title}}“",
+    "reviewAndApprove": "Peržiūrėti ir patvirtinti"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Pateikti paraišką",
     "nameEmailRequired": "Vardas ir el. paštas yra privalomi",
     "applicationSuccess": "Paraiška sėkmingai pateikta! Susisieksime.",
-    "applicationFailed": "Nepavyko pateikti. Bandykite dar kartą."
+    "applicationFailed": "Nepavyko pateikti. Bandykite dar kartą.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO iždas",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Prisegta šio įrašo viršuje",
     "unpinnedToast": "Prisegimas pašalintas",
     "pinFailed": "Nepavyko prisegti to komentaro",
-    "kidsOnlyThread": "Šis įrašas skirtas vaikams. Jį gali komentuoti tik vaikų režimas."
+    "kidsOnlyThread": "Šis įrašas skirtas vaikams. Jį gali komentuoti tik vaikų režimas.",
+    "editFailed": "Nepavyko redaguoti komentaro"
   },
   "postInfo": {
     "title": "Įrašo informacija",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Netrukus",
     "signIn": "Prisijungti",
     "tapToGetStarted": "Palieskite, kad pradėtumėte",
-    "soon": "Netrukus"
+    "soon": "Netrukus",
+    "glossarySubtitle": "Sužinokite, ką reiškia kiekviena piktograma ir funkcija",
+    "searchGlossary": "Ieškoti žodynėlyje...",
+    "noResultsFor": "Nėra rezultatų, susijusių su „{{query}}“",
+    "guideSubtitle": "Žingsnis po žingsnio vadovas po kiekvieną funkciją",
+    "searchGuide": "Ieškoti vadove...",
+    "repostsTab": "Pakartotiniai įrašai",
+    "quotesTab": "Citatos",
+    "noMoreReposts": "Daugiau jokių pakartotinių įrašų",
+    "noMoreQuotes": "Daugiau jokių citatų",
+    "noRepostsYet": "Dar nėra pakartotinių įrašų",
+    "noQuotesYet": "Dar nėra citatų"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Žaidimai, veikiantys tiesiog čia, programėlėje. Nieko diegti nereikia, nieko pirkti nereikia — atvirasis kodas, tiekiama paties DeHub."
+    "intro": "Žaidimai, veikiantys tiesiog čia, programėlėje. Nieko diegti nereikia, nieko pirkti nereikia — atvirasis kodas, tiekiama paties DeHub.",
+    "noGameCalled": "Arkadoje nėra žaidimo, pavadinto <slug>{{slug}}</slug>.",
+    "seeWhatIsHere": "Žiūrėkite, kas čia yra",
+    "locationNotGranted": "Vietos leidimas nebuvo suteiktas.",
+    "signInToPlaceOnGlobe": "Prisijunkite, kad galėtumėte save parodyti žemėlapyje.",
+    "couldNotPlaceOnGlobe": "Nepavyko parodyti jūsų žemėlapyje.",
+    "onTheGlobe": "Jūs esate žemėlapyje – rodomas maždaug 25 km spinduliu.",
+    "couldNotReach": "NEGALIMA PASIEKTI ARKADOS",
+    "didNotLoad": "{{title}} nepasikrovė",
+    "needsConnection": "Žaidimas yra iš dehub.io ir atsisiunčiamas, kai jį atidarote, todėl pirmą kartą reikalingas veikiantis ryšys. Patikrinkite savo ir bandykite dar kartą.",
+    "backToArcade": "Grįžti į žaidimų automatą",
+    "openPrivacySettings": "Atidaryti privatumo nustatymus",
+    "privacyWarning": "Jei turite daug žetonų arba gyvenate nesaugioje vietovėje, paslėpkite savo ženklelį ir likutį prieš naudodami šią funkciją. „On-chain“ operacijos vis tiek atskleidžia jūsų adresą. Atidaryti nustatymus.",
+    "leaveGame": "Išeiti iš žaidimo",
+    "loadingGame": "Įkeliama {{title}}",
+    "hideThis": "Slėpti tai"
   },
   "videoLooks": {
     "button": "Kameros stiliai",
@@ -3376,7 +3466,22 @@
     "someone": "Kažkas",
     "oneTyping": "{{name}} rašo…",
     "fewTyping": "{{names}} rašo…",
-    "manyTyping": "Rašo {{count}} žmonės…"
+    "manyTyping": "Rašo {{count}} žmonės…",
+    "modBadge": "MOD",
+    "thisUser": "šis vartotojas",
+    "unbanConfirm": "Ar tikrai norite atblokuoti {{name}}?",
+    "unban": "Atblokuoti",
+    "unbanFailed": "Nepavyko atblokuoti vartotojo",
+    "onlineLabel": "Prisijungęs",
+    "usersCount_one": "{{count}} vartotojas",
+    "usersCount_other": "{{count}} vartotojai",
+    "totalMessages": "Visos žinutės",
+    "slowMode": "Lėtas režimas",
+    "cooldownSeconds": "{{seconds}}s atvėsimas",
+    "minStakeRequired": "Reikalingas minimalus statymas",
+    "noParticipants": "Dar nėra dalyvių",
+    "noModerators": "Nėra moderatorių",
+    "noBannedUsers": "Nėra užblokuotų vartotojų"
   },
   "promptFeed": {
     "headline": "Ką norite matyti?",
@@ -4128,7 +4233,26 @@
     "madeForKidsBlockedByMature": "Įrašas, pažymėtas kaip suaugusiųjų, negali būti publikuojamas ir vaikams.",
     "encoderTitle": "OBS / Koduoklis",
     "encoderHint": "Gaukite RTMP išsamią informaciją",
-    "markMadeForKids": "Pažymėti kaip sukurtą vaikams"
+    "markMadeForKids": "Pažymėti kaip sukurtą vaikams",
+    "queueWaiting": "Laukiama…",
+    "queueUploading": "Įkeliama",
+    "queueProcessing": "Apdorojama…",
+    "queueMinting": "Kaldinama…",
+    "queuePosted": "Paskelbta",
+    "queueFailed": "Nepavyko",
+    "noRetriesLeft": "(nebėra bandymų)",
+    "noUploads": "Nėra įkėlimų",
+    "uploadsAppearHere": "Jūsų įkėlimai bus rodomi čia",
+    "imagesTotalLimit": "Vieno įkėlimo vaizdų bendras dydis turi būti 100 MB arba mažiau",
+    "chooseDatabase": "Pasirinkti decentralizuotą duomenų bazę",
+    "livestreamMode": "Tiesioginės transliacijos režimas",
+    "addThumbnail": "Pridėti miniatiūrą",
+    "showCover": "Rodyti viršelį",
+    "max60s": "Daugiausia 60 s",
+    "confirmLivestream": "Patvirtinti tiesioginę transliaciją",
+    "liveFeaturesTitle": "Tiesioginės funkcijos",
+    "discardPostTitle": "Atmesti įrašą?",
+    "discardPostBody": "Jūsų įrašas bus prarastas. Ar norėtumėte jį išsaugoti kaip juodraštį?"
   },
   "bounty": {
     "claimed": "Atsiimta",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Įjunkite žinutes, kad leistumėte naujas.",
     "perMessageFee": "Mokestis už žinutę (DHB)",
     "perMessageFeeSub": "Imkite mokestį už žinutę. Nustatykite 0 nemokamoms žinutėms. Konkretiems naudotojams galite suteikti nemokamą prieigą.",
-    "allDisabled": "Šiuo metu visos žinutės išjungtos. Naujos pagal numatytuosius nustatymus blokuojamos."
+    "allDisabled": "Šiuo metu visos žinutės išjungtos. Naujos pagal numatytuosius nustatymus blokuojamos.",
+    "failedToEdit": "Nepavyko redaguoti",
+    "messageDeleted": "Žinutė ištrinta",
+    "cantForwardFromDevice": "Šios žinutės negalima peradresuoti iš šio įrenginio",
+    "messageForwarded": "Žinutė persiųsta",
+    "clearMessages": "Išvalyti žinutes",
+    "clearMessagesConfirm": "Ištrinti visas šio pokalbio žinutes? Šio veiksmo anuliuoti negalima.",
+    "messagesCleared": "Žinutės išvalytos",
+    "failedToClearMessages": "Nepavyko išvalyti žinučių",
+    "removedFreeAccess": "Pašalinta nemokama prieiga {{name}}",
+    "grantedFreeAccess": "Suteikta nemokama prieiga prie {{name}}",
+    "failedToUpdateFreeAccess": "Nepavyko atnaujinti nemokamos prieigos",
+    "searchComingSoon": "Paieška jau netrukus",
+    "tapToUnblock": "Bakstelėkite, kad atblokuotumėte",
+    "userFallback": "naudotojas",
+    "failedToBlock": "Nepavyko užblokuoti",
+    "failedToDeleteConversation": "Nepavyko ištrinti pokalbio",
+    "newDm": "Nauja tiesioginė žinutė",
+    "noConversationsFound": "Pokalbių nerasta"
   },
   "editPost": {
     "mediaPermission": "Reikalingas medijos bibliotekos leidimas",
@@ -4467,7 +4609,17 @@
     "retry": "Bandyti dar kartą",
     "retrying": "Bandoma dar kartą...",
     "retryQueued": "Apdorojama dar kartą",
-    "retryFailed": "Nepavyko pakartoti šio įrašo"
+    "retryFailed": "Nepavyko pakartoti šio įrašo",
+    "closeVideo": "Uždaryti vaizdo įrašą",
+    "rotateOrientation": "Pasukti orientaciją",
+    "videoProgress": "Vaizdo įrašo eiga: {{percent}}%",
+    "tapToSeek": "Palieskite, kad pereitumėte į konkrečią vietą",
+    "photoAccessToSaveImages": "Leisti prieigą prie nuotraukų bibliotekos, kad išsaugotumėte vaizdus",
+    "failedToSaveImage": "Nepavyko išsaugoti vaizdo",
+    "downloadImage": "Atsisiųsti vaizdą",
+    "goToImage": "Eiti į vaizdą {{index}}",
+    "allCaughtUp": "Jūs viską matėte",
+    "checkBackForShorts": "Grįžkite vėliau, kad pamatytumėte daugiau trumpų vaizdo įrašų"
   },
   "liveViewer": {
     "loadingStream": "Įkeliama transliacija...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Rezultatų pabaiga",
-    "searchDehub": "Ieškoti DeHub"
+    "searchDehub": "Ieškoti DeHub",
+    "tabVoice": "Balsas",
+    "trendingThisWeek": "Šią savaitę populiaru",
+    "trendingPosts": "Populiarūs įrašai",
+    "trendingImages": "Populiarūs vaizdai",
+    "trendingVideos": "Populiarūs vaizdo įrašai",
+    "trendingVoicePosts": "Populiarūs balsiniai įrašai",
+    "trendingLive": "Populiari tiesioginė transliacija",
+    "seeAll": "Žiūrėti viską",
+    "noAccountsFound": "Paskyrų nerasta",
+    "tryDifferentKeywords": "Pabandykite kitų raktinių žodžių arba patikrinkite rašybą",
+    "noContentResults": "Turinio rezultatų nerasta",
+    "recentSearches": "Neseniai ieškota",
+    "noTrendingThisWeek": "Šią savaitę populiaraus turinio nerasta",
+    "closeFilterOptions": "Uždaryti filtro parinktis",
+    "openFilterOptions": "Atidaryti filtro parinktis"
   },
   "notifPrompt": {
     "stayInLoop": "Būkite informuoti",
@@ -4727,7 +4894,26 @@
     "externalTitle": "Išorinio srautinio perdavimo režimas",
     "externalLiveHint": "Jūsų srautas tiesiogiai transliuojamas per išorinę programinę įrangą. Kamera programėlėje išjungta.",
     "externalHint": "Prijunkite srautinio perdavimo programinę įrangą naudodami toliau pateiktą informaciją, tada pradėkite transliuoti.",
-    "useInAppCamera": "Vietoj to naudoti kamerą programėlėje"
+    "useInAppCamera": "Vietoj to naudoti kamerą programėlėje",
+    "livestreamEnded": "Tiesioginė transliacija baigta",
+    "chatEnabled": "Pokalbis įjungtas",
+    "chatDisabled": "Pokalbis išjungtas",
+    "failedToUpdateSettings": "Nepavyko atnaujinti nuostatų",
+    "networkLostReconnecting": "Ryšys prarastas – transliacija pristabdyta. Bandoma prisijungti iš naujo…",
+    "openingViewer": "Atidaromas žiūryklė…",
+    "cameraPermissionRequired": "Reikalingas kameros leidimas",
+    "grantPermission": "Suteikti leidimą",
+    "waitingForLivepeer": "Laukiama „Livepeer“...",
+    "waitingForExternalSource": "Laukiama išorinio šaltinio...",
+    "settingUpPublisher": "Nustatomas leidėjas...",
+    "scheduledStream": "Suplanuotas srautas",
+    "scheduledAt": "{{date}} {{time}}",
+    "pressGoLiveWhenReady": "Kai būsite pasiruošę pradėti, paspauskite „Go Live“",
+    "connectionInterrupted": "Ryšys nutrauktas",
+    "streamPausedReconnecting": "Jūsų srautas pristabdytas. Jungiamasi iš naujo...",
+    "streamWillEnd": "Jei srautas nebus prijungtas iš naujo, jis bus nutrauktas",
+    "endStreamConfirmTitle": "Baigti transliaciją?",
+    "endStreamConfirmBody": "Uždarius dabar, tiesioginė transliacija bus nutraukta visiems žiūrovams. Galite tęsti transliaciją arba visam laikui ją nutraukti."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -119,7 +119,12 @@
     "music": "Muusig",
     "live": "Toos",
     "newPosts_one": "{{count}} boostada cusub",
-    "newPosts_other": "{{count}} boostooyin cusub"
+    "newPosts_other": "{{count}} boostooyin cusub",
+    "privateContent": "Nuxurka Gaarka ah",
+    "privateContentBody": "Nuxurkan waxa uu ka yimid akoon gaar ah. Raac abuuraha si aad u aragto qoraaladiisa.",
+    "noMoreContent": "Ma jirto wax nuxur ah",
+    "noPostsYet": "Ma jiraan wax qoraal ah weli.",
+    "pullToRefresh": "Soo jiid si aad u cusboonaysiiso ama mar kale isku day."
   },
   "explore": {
     "all": "Dhammaan",
@@ -710,7 +715,19 @@
     "smsBalance": "{{dhb}} DHB ayaa haray (${{usd}})",
     "smsBalanceMessages": "Ku dhawaad {{count}} fariimood oo dheeraad ah",
     "smsTopUp": "Ku soo shub {{dhb}} DHB",
-    "smsCodeSent": "Koodh ayaa la diray. Tani waxay ku kacday {{price}} DHB."
+    "smsCodeSent": "Koodh ayaa la diray. Tani waxay ku kacday {{price}} DHB.",
+    "avatarUpdateFailed": "Cusboonaysiinta avatar-ka waa fashilantay",
+    "coverUpdateFailed": "Cusboonaysiinta daboolka waa fashilantay",
+    "fixInvalidSocialLinks": "Fadlan hagaaji xiriirinta bulshada ee aan ansax ahayn",
+    "updateFailed": "Cusboonaysiinta waa fashilantay",
+    "channelUrlOrHandle": "URL-ka kanaalka ama magaca",
+    "inviteLinkPlaceholder": "Xiriirinta martiqaadka",
+    "profileUrlOrUsername": "URL-ka profile-ka ama magaca isticmaalaha",
+    "yourDisplayName": "Magacaaga soo bandhigida",
+    "usernameAvailable": "Magaca isticmaalaha waa la heli karaa",
+    "hideBadgeAndBalance": "Qari calaamada iyo dheelitirka",
+    "hideBadgeAndBalanceDesc": "Waxay qarinaysaa faahfaahinta maaliyadeed waxayna joojinaysaa dirida iyo talooyinka adiga.",
+    "onChainPublicWarning": "Qoraalada on-chain waa kuwo dadweyne. Dirida calaamadaha ama talooyinka waxay kashifaysaa ciwaanka jeebkaaga, oo ay ku jiraan qoraalada la sameeyay ka hor inta aan la hawlgelin habka dheelitirka gaarka ah."
   },
   "common": {
     "mute": "Aamusi",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Ma jirto xiriir internet ah",
     "noInternetBody": "Fadlan hubi xiriirkaaga internetka oo mar kale isku day. Waxaad u baahan tahay inaad ku xirnaato internetka si aad u isticmaasho DeHub.",
     "noInternetStatus": "Offline - Ma jirto xiriir shabakad",
-    "noInternetHint": "Hubi in Wi-Fi ama xogta mobaylka ay shidan tahay, ka dibna taabo \"{{action}}\""
+    "noInternetHint": "Hubi in Wi-Fi ama xogta mobaylka ay shidan tahay, ka dibna taabo \"{{action}}\"",
+    "saving": "Kaydinaya…",
+    "offlineStatus": "Offline - Ma Jirto Xiriir Shabakad"
   },
   "tip": {
     "title": "Dir Bakhshiish",
@@ -1094,7 +1113,17 @@
     "post": "Qoraal",
     "officialLogo": "Waa kan astaanta rasmiga ah ee DeHub! 🎨",
     "editedImage": "Waa kan sawirkaaga la wax ka beddelay!",
-    "generatedImage": "Waa kan sawirkaaga la sameeyay!"
+    "generatedImage": "Waa kan sawirkaaga la sameeyay!",
+    "toolCompleted": "{{name}} waa la dhammaystiray",
+    "aiTool": "Qalabka AI",
+    "cannotAnimateImage": "{{model}} ma awoodo inuu dhaqaajiyo sawir lifaaqan. Dooro qaab muuqaal kale.",
+    "needsImageToAnimate": "{{model}} wuxuu u baahan yahay sawir si uu u dhaqaajiyo. Lifaaq mid ama dooro qaab kale.",
+    "couldNotReadImage": "Ma awoodin inaan akhriyo sawirkaas",
+    "logoLoadFailed": "Ma awoodin inaan soo dejiyo astaanta DeHub — waxaan ku soo saarayaa iyada oo aan lahayn",
+    "imageAttachedDescribe": "Sawir waa lifaaqan — qeex wax ka beddelkaaga",
+    "couldNotPreparePost": "Ma awoodin inaan u diyaariyo tan si aan u qoro",
+    "generateImage": "Samee Sawirka",
+    "generateVideo": "Abuur Video"
   },
   "commandCentre": {
     "title": "Xarunta Amarka",
@@ -1606,7 +1635,10 @@
     "edit": "Wax ka beddel",
     "deleteRequestTitle": "Ma tirtiraysaa codsigan?",
     "deleteRequestDescription": "Tan dib looma celin karo.",
-    "attachmentTooLarge": "Fayl kastaa waa inuu ka yar yahay 20MB"
+    "attachmentTooLarge": "Fayl kastaa waa inuu ka yar yahay 20MB",
+    "deleteCommentA11y": "Tirtir faallo",
+    "sendCommentA11y": "Dir faallo",
+    "requestOptions": "Fursadaha codsiga"
   },
   "auth": {
     "loginRequired": "Soo galitaan waa loo baahan yahay",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Koodh lama soo diri karo. Fadlan mar kale isku day.",
     "invalidCodeRetry": "Koodh aan sax ahayn. Fadlan mar kale isku day.",
     "invalidEmailOrPassword": "Email ama lambarka sirta ah oo aan sax ahayn.",
-    "welcomeToDehub": "Ku soo dhawow DeHub"
+    "welcomeToDehub": "Ku soo dhawow DeHub",
+    "importWalletOptional": "Boorsada Soo Dejinta (Ikhtiyaar)",
+    "couldNotSendCodeRetry": "Ma diri karo koodh. fadlan dib u soo celi.",
+    "exploreWithoutSignIn": "Baadh adigoon saxiixin",
+    "continueExploring": "Sii wad sahaminta",
+    "exploreWithoutSignInA11y": "Baadh DeHub adigoon saxiixin",
+    "continueExploringA11y": "Sii wad sahaminta DeHub",
+    "importWalletRecommended": "Calaamadaha bulshada waxaa lagula talinayaa.",
+    "importWalletPurpose": "Qalabkani waa soo dejinta xisaabaadka jira ee DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Jawaabaha la soo jeediyay waa la damiyay",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Si toos ah ayaa loo soo sheegay.",
     "loadFailed": "Lama soo rari karin kanaallada",
     "noSearchResults": "Kanaallo ku habboon raadintaada ma jiraan",
-    "noChannels": "Kanaallo lama helo"
+    "noChannels": "Kanaallo lama helo",
+    "pairCodeExpired": "Koodhkaasi wuu dhammaaday. Weydii TV-ga mid cusub.",
+    "signedInOnTv": "Ku qor TV-gaaga",
+    "pairRefused": "Diidday",
+    "pairIntro": "Ka fur DeHub telefishankaaga oo ku qor koodhka ay halkan ku muujinayso.",
+    "pairNotFound": "Ma jiro telefishan sugaya koodhkaas. Waxaa laga yaabaa inay dhammaatay — weydiiso TV-ga mid cusub.",
+    "wantsToSignIn": "waxay rabtaa inay ku soo gasho sidii aad",
+    "pairWarning": "Kaliya ogolow tan haddii ay tahay telefishan aad hadda fiirineyso. Ogolaanshaha calaamadaha cidda koodhkaas ku haysa koontadaada. Waxay awood u yeelan doontaa inay daawato, sida iyo raacdo — ma bixin karto, oo waad saxiixi kartaa wakhti kasta oo ka yimaada fadhiyada firfircoon.",
+    "pairApprove": "Haa, ku saxiix telefishan",
+    "pairDeny": "Maya, ma aanan weydiin tan.",
+    "pairDoneTitle": "Telefishankaaga ayaa ku saxiixan",
+    "pairDoneBody": "Waa inuu horey u muujiyaa koontadaada. Saxeex wakhti kasta oo ka mid ah fadhiyada Settings → Privacy → Active.",
+    "closePlayer": "Ciyaaryahan dhow",
+    "declineFailed": "Ma diidi karo taas — waxaa laga yaabaa inay horey u dhammaatay.",
+    "tipSentTvNotTold": "Talo ayaa la soo diray, laakiin TV-ga lama sheegi karo. Wakhti ayey ka bixi doontaa.",
+    "sentAmount": "U dir {{amount}} DHB",
+    "nothingWaiting": "Waxba ma sugayaan",
+    "nothingWaitingBody": "Markaad ka bixiso DeHub telefishankaaga, halkan ayay kaaga soo muuqataa inaad ansixiso. TV-gaaga waligiis ma haysto jeebkaaga.",
+    "yourTelevision": "Telefishankaaga",
+    "wantsToTip": "wuxuu rabaa inuu soo diro talo · {{time}} ayaa ka tagtay",
+    "tipTo": "si {{name}}",
+    "tipForPost": "loogu talo galay “{{title}}”",
+    "reviewAndApprove": "Dib u eeg oo ansixi"
   },
   "top100": {
     "title": "Sare 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Dir Codsiga",
     "nameEmailRequired": "Magaca iyo iimeylka waa loo baahan yahay",
     "applicationSuccess": "Codsiga si guul leh ayaa loo diray! Waan kula soo xiriiri doonnaa.",
-    "applicationFailed": "Diriddu wuu fashilmay. Fadlan mar kale isku day."
+    "applicationFailed": "Diriddu wuu fashilmay. Fadlan mar kale isku day.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "Kaydka DAO",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Waxaa lagu dhejiyay qoraalkan kore",
     "unpinnedToast": "Dhejintii waa la saaray",
     "pinFailed": "Faallada lama dhejin karin",
-    "kidsOnlyThread": "Qoraalkan waxaa loogu talagalay carruurta. Kaliya hababka carruurta ayaa ka faalloon kara."
+    "kidsOnlyThread": "Qoraalkan waxaa loogu talagalay carruurta. Kaliya hababka carruurta ayaa ka faalloon kara.",
+    "editFailed": "Fashilmay inaan tafatiro faallo"
   },
   "postInfo": {
     "title": "Macluumaadka qoraalka",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Dhawaan",
     "signIn": "Gal",
     "tapToGetStarted": "Taabo si aad u bilowdo",
-    "soon": "Dhawaan"
+    "soon": "Dhawaan",
+    "glossarySubtitle": "Baro waxa calaamad kasta iyo muuqaal kasta ay ka dhigan tahay",
+    "searchGlossary": "Raadi ereybixin...",
+    "noResultsFor": "Ma jiraan natiijooyin la helay “{{query}}”",
+    "guideSubtitle": "Tusmo tallaabo tallaabo ah oo ku saabsan muuqaal kasta",
+    "searchGuide": "Raadi hagaha...",
+    "repostsTab": "Dib u dhajiyay",
+    "quotesTab": "Xigasho",
+    "noMoreReposts": "Ma jiraan dib u dhajin dheeraad ah",
+    "noMoreQuotes": "Ma jiraan xigashooyin dheeraad ah",
+    "noRepostsYet": "Ma jiraan dib u dhajin weli",
+    "noQuotesYet": "Ma jiraan xigashooyin weli"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Ciyaaro halkan app-ka gudihiisa ku shaqeeya. Waxba lama rakibayo, waxba lama iibsanayo — il furan, oo DeHub laftiisa uu bixiyo."
+    "intro": "Ciyaaro halkan app-ka gudihiisa ku shaqeeya. Waxba lama rakibayo, waxba lama iibsanayo — il furan, oo DeHub laftiisa uu bixiyo.",
+    "noGameCalled": "Ma jirto ciyaar lagu magacaabo <slug>{{slug}}</slug> oo ku taal arcade-ka.",
+    "seeWhatIsHere": "Eeg waxa halkan yaal",
+    "locationNotGranted": "Oggolaanshaha goobta lama bixin.",
+    "signInToPlaceOnGlobe": "Gasho si aad naftaada ugu dhigto meel ku taal adduunka.",
+    "couldNotPlaceOnGlobe": "Kuma dhigi karo meel ku taal adduunka.",
+    "onTheGlobe": "Waxaad ku taal adduunka — waxaad ku muujineysaa meel qiyaastii 25 km ah.",
+    "couldNotReach": "LA MA GAARI KARO ARCADE-KA",
+    "didNotLoad": "{{title}} ma soo shubin",
+    "needsConnection": "Ciayarta waxaa laga soo qaaday dehub.io waxaana la soo degsan doonaa markaad furto, sidaa darteed waxay u baahan tahay xiriir shaqeynaya markii ugu horeysay. Hubi kaaga oo mar kale isku day.",
+    "backToArcade": "Ku noqo arcade-ka",
+    "openPrivacySettings": "Fur goobaha asturnaanta",
+    "privacyWarning": "Haddii aad haysato tiro badan oo calaamado ah ama aad ku nooshahay meel aan ammaan ahayn, qari calaamadaada iyo dheelitirkaaga ka hor intaadan isticmaalin muuqaalkan. Haddana, macaamilka on-chain wuxuu muujinayaa cinwaankaaga. Fur goobaha.",
+    "leaveGame": "Ka bax ciyaarta",
+    "loadingGame": "Loading {{title}}",
+    "hideThis": "Qari tan"
   },
   "videoLooks": {
     "button": "Muuqaallada kaamirada",
@@ -3376,7 +3466,22 @@
     "someone": "Qof",
     "oneTyping": "{{name}} wuu qorayaa…",
     "fewTyping": "{{names}} way qorayaan…",
-    "manyTyping": "{{count}} qof ayaa qoraya…"
+    "manyTyping": "{{count}} qof ayaa qoraya…",
+    "modBadge": "MOD",
+    "thisUser": "isticmaalahaan",
+    "unbanConfirm": "Ma hubtaa inaad ka saartid xayiraada {{name}}?",
+    "unban": "Ka saar xayiraada",
+    "unbanFailed": "Ku guuldareysatay in la ka saaro xayiraada isticmaalaha",
+    "onlineLabel": "Online",
+    "usersCount_one": "isticmaale {{count}}",
+    "usersCount_other": "isticmaalayaal {{count}}",
+    "totalMessages": "Fariimaha Guud",
+    "slowMode": "Habka Gaabiska ah",
+    "cooldownSeconds": "{{seconds}}s cooldown",
+    "minStakeRequired": "Ugu Yar ee Lagu Qiyaaso",
+    "noParticipants": "Ma jiraan ka qaybgalayaal weli",
+    "noModerators": "Ma jiraan maamulayaal",
+    "noBannedUsers": "Ma jiraan isticmaalayaal la mamnuucay"
   },
   "promptFeed": {
     "headline": "Maxaad rabtaa inaad aragto?",
@@ -4128,7 +4233,26 @@
     "madeForKidsBlockedByMature": "Post-ka lagu calaamadeeya inuu ballaaran yahay ma alaabta carruurta ah oo keliya.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Hel RTMP details",
-    "markMadeForKids": "Calaamadee sida loogu talagalay carruurta"
+    "markMadeForKids": "Calaamadee sida loogu talagalay carruurta",
+    "queueWaiting": "Sugaya…",
+    "queueUploading": "Soo rarista",
+    "queueProcessing": "Processing…",
+    "queueMinting": "Minting…",
+    "queuePosted": "La soo dhajiyay",
+    "queueFailed": "Ku guuldareystay",
+    "noRetriesLeft": "(ma jiraan isku dayo kale oo haray)",
+    "noUploads": "Ma jiraan wax la soo raray",
+    "uploadsAppearHere": "Soo raristaada halkan ayay ka soo muuqan doontaa",
+    "imagesTotalLimit": "Images in hal upload waa in wadar ahaan 100 MB ama ka yar",
+    "chooseDatabase": "Dooro Database Decentralized",
+    "livestreamMode": "Habka Livestream",
+    "addThumbnail": "Ku dar Thumbnail",
+    "showCover": "Muuji daboolka",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Xaqiiji Livestream",
+    "liveFeaturesTitle": "Astaamaha Tooska ah",
+    "discardPostTitle": "Tuur Boostada",
+    "discardPostBody": "Your post waa la lumin doonaa. Ma rabtaa inaad ka badbaadiso sidii mashruuc halkii aad ka heli lahayd?"
   },
   "bounty": {
     "claimed": "La qaatay",
@@ -4444,7 +4568,25 @@
     "allowNewDmsOff": "Shid DM-yada si aad u ogolaato fariimo cusub.",
     "perMessageFee": "Khidmad fariin kasta (DHB)",
     "perMessageFeeSub": "Fariin kasta khidmad ka qaado. U dhig 0 DM bilaash ah. Waxaad siin kartaa isticmaaleyaal gaar ah gelitaan bilaash ah.",
-    "allDisabled": "Dhammaan DM-yada hadda waa la damiyay. DM cusub si caadi ah ayaa loo xannibay."
+    "allDisabled": "Dhammaan DM-yada hadda waa la damiyay. DM cusub si caadi ah ayaa loo xannibay.",
+    "failedToEdit": "Ku guuldareystay in wax laga bedelo",
+    "messageDeleted": "Fariin la tirtiray",
+    "cantForwardFromDevice": "Farriintan laguma soo gudbin karo qalabkan",
+    "messageForwarded": "Fariin la soo diray",
+    "clearMessages": "Farriimo cad",
+    "clearMessagesConfirm": "Tirtir dhammaan fariimaha ku jira wada hadalkan? Tani ma noqon karto mid aan la baabi 'in karin.",
+    "messagesCleared": "Farriimaha la nadiifiyay",
+    "failedToClearMessages": "Ku guuldareystay in la cadeeyo fariimaha",
+    "removedFreeAccess": "Helitaanka bilaashka ah ee laga saaray {{name}}",
+    "grantedFreeAccess": "Helitaanka bilaashka ah ee la siiyay {{name}}",
+    "failedToUpdateFreeAccess": "Ku guuldareystay in la cusbooneysiiyo helitaanka bilaashka ah",
+    "searchComingSoon": "Search soo soon",
+    "tapToUnblock": "Taabo si aad u furto",
+    "userFallback": "Isticmaalayaal",
+    "failedToBlock": "Ku guuldareystay in la xannibo",
+    "failedToDeleteConversation": "Ku guuldareystay in la tirtiro wadahadalka",
+    "newDm": "Fariin cusub oo toos ah",
+    "noConversationsFound": "Wadahadal lama helin"
   },
   "editPost": {
     "mediaPermission": "Waxaa loo baahan yahay ogolaanshaha maktabadda warbaahinta",
@@ -4466,7 +4608,17 @@
     "retry": "Isku day mar kale",
     "retrying": "Dib u soo noqoshada...",
     "retryQueued": "Ka baaraandegid mar kale",
-    "retryFailed": "Ma soo celin karo qoraalkaas"
+    "retryFailed": "Ma soo celin karo qoraalkaas",
+    "closeVideo": "Xiritaanka fiidiyowga",
+    "rotateOrientation": "Rotate jihada",
+    "videoProgress": "Horumarinta fiidiyowga: {{percent}}%",
+    "tapToSeek": "Taabo si aad u aado meel gaar ah",
+    "photoAccessToSaveImages": "U ogolow marin maktabadda sawirrada si aad u keydiso sawirrada",
+    "failedToSaveImage": "Ku guuldareysatay keydinta sawirka",
+    "downloadImage": "Soo dejiso sawirka",
+    "goToImage": "Aad sawirka {{index}}",
+    "allCaughtUp": "Waan dhammaystirtay",
+    "checkBackForShorts": "Dib u soo laabo mar dambe si aad u hesho waxyaabo kale oo gaagaaban"
   },
   "liveViewer": {
     "loadingStream": "Baahinta waa la soo rarayaa...",
@@ -4476,7 +4628,22 @@
   },
   "search": {
     "endOfResults": "Dhammaadka natiijooyinka",
-    "searchDehub": "Ka raadi DeHub"
+    "searchDehub": "Ka raadi DeHub",
+    "tabVoice": "Cod",
+    "trendingThisWeek": "Waxyaabaha ugu caansan toddobaadkan",
+    "trendingPosts": "Qoraallada ugu caansan",
+    "trendingImages": "Sawirrada ugu caansan",
+    "trendingVideos": "Fiidiyowyada ugu caansan",
+    "trendingVoicePosts": "Qoraallada codka ugu caansan",
+    "trendingLive": "Tooska ugu caansan",
+    "seeAll": "Fiiri Dhammaan",
+    "noAccountsFound": "Ma helin wax koonto ah",
+    "tryDifferentKeywords": "Isku day ereyo kale ama hubi higgaadaada",
+    "noContentResults": "Ma jiraan natiijooyin waxyaabo ah",
+    "recentSearches": "Raadinnadii dhawaa",
+    "noTrendingThisWeek": "Ma jiraan waxyaabo caan ah toddobaadkan",
+    "closeFilterOptions": "Xir fursadaha filtarka",
+    "openFilterOptions": "Fur fursadaha filtarka"
   },
   "notifPrompt": {
     "stayInLoop": "Ku sii jir warka",
@@ -4726,7 +4893,26 @@
     "externalTitle": "Habka Daadinta Dibadda",
     "externalLiveHint": "Your stream waa live via software dibadda. Kaamirada gudaha ee app-ka ayaa naafo ah.",
     "externalHint": "Isku xir barnaamijkaaga qulqulka adoo adeegsanaya faahfaahinta hoose, ka dibna bilaw baahinta.",
-    "useInAppCamera": "Isticmaal In-App Camera Halkii"
+    "useInAppCamera": "Isticmaal In-App Camera Halkii",
+    "livestreamEnded": "Baahinta tooska ah waa dhammaatay",
+    "chatEnabled": "Wada-hadalka waa la furay",
+    "chatDisabled": "Wada-hadalka waa la xiray",
+    "failedToUpdateSettings": "Ku guuldareysatay cusboonaysiinta dejimaha",
+    "networkLostReconnecting": "Shabakadda waa lumisay — baahinta waa istaagtay. Dib ayaa loo xirayaa…",
+    "openingViewer": "Furista daawadaha...",
+    "cameraPermissionRequired": "Loo baahan yahay ogolaansho kamarad",
+    "grantPermission": "Oggolaanshaha Deeqda",
+    "waitingForLivepeer": "Waheeda Livepeer...",
+    "waitingForExternalSource": "Sugida ilo dibadeed...",
+    "settingUpPublisher": "Samaynta daabacaha...",
+    "scheduledStream": "Stream Jadwalka",
+    "scheduledAt": "{{date}} at {{time}}",
+    "pressGoLiveWhenReady": "Riix Live markaad diyaar u tahay inaad bilowdo",
+    "connectionInterrupted": "Xidhiidhka La Joojiyay",
+    "streamPausedReconnecting": "Durdurkaaga waa la joojiyay dib u soo celinta...",
+    "streamWillEnd": "Daadku wuu dhammaan doonaa haddii aan dib loo xirin",
+    "endStreamConfirmTitle": "Dhammaadka Stream?",
+    "endStreamConfirmBody": "Xiritaanka hadda waxay soo afjari doontaa qulqulka tooska ah ee dhammaan daawadayaasha. Waad sii wadi kartaa qulqulka ama si joogto ah ayaad u joojin kartaa."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

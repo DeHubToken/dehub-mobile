@@ -130,7 +130,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
     try {
       setIsImporting(true);
       const address = deriveAddressFromPrivateKey(privateKey)?.toLowerCase();
-      if (!address) throw new Error("Invalid private key");
+      if (!address) throw new Error(t("auth.invalidPrivateKey"));
 
       const preferred = await getPreferredChainId();
       const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
@@ -164,7 +164,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
         clearSigningProvider();
       }
     } catch (e: any) {
-      toastError(e, "Could not import wallet");
+      toastError(e, t("auth.couldNotImportWallet"));
     } finally {
       setIsImporting(false);
     }
@@ -175,16 +175,12 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
       try {
         setIsImporting(true);
         const pk = await getPrivateKeyForAddress(address, {
-          purpose: "Unlock this DeHub wallet to use it",
+          purpose: t("auth.unlockToUse"),
           onUnverified: () =>
-            toastWarning(
-              "This phone has no screen lock, so anyone holding it can use your wallet. Set a passcode or biometrics in your device settings.",
-            ),
+            toastWarning(t("auth.noScreenLock")),
         });
         if (!pk) {
-          toastError(
-            "No private key stored for this account. Please re-import."
-          );
+          toastError(t("auth.noStoredKey"));
           return;
         }
 
@@ -217,7 +213,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
           clearSigningProvider();
         }
       } catch (e: any) {
-        toastError(e, "Failed to use this account");
+        toastError(e, t("auth.failedToUseAccount"));
       } finally {
         setIsImporting(false);
       }
@@ -270,11 +266,10 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
           {/* Header - overlaps with image shadow */}
           <View style={{ alignItems: "center", marginTop: -20, marginBottom: 24 }}>
             <Text style={[authText.title, { marginBottom: 8 }]}>
-              Import Wallet (Optional)
+              {t("auth.importWalletOptional")}
             </Text>
             <Text style={[authText.body, { textAlign: "center", paddingHorizontal: 8 }]}>
-              Social logins are recommended.{"\n"} This tool is for importing
-              existing accounts from DeHub.io.
+              {t("auth.importWalletRecommended")}{"\n"}{t("auth.importWalletPurpose")}
             </Text>
           </View>
 
@@ -294,7 +289,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
               <AuthIconButton
                 icon={showPk ? "eye-off-outline" : "eye-outline"}
                 onPress={() => setShowPk(!showPk)}
-                accessibilityLabel={showPk ? "Hide private key" : "Show private key"}
+                accessibilityLabel={showPk ? t("auth.hidePrivateKey") : t("auth.showPrivateKey")}
               />
             }
           />
@@ -335,7 +330,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
                 <View key={account.address} style={styles.accountRow}>
                   <View style={{ flex: 1 }}>
                     <Text style={styles.accountName}>
-                      {account.username || "Imported account"}
+                      {account.username || t("auth.importedAccount")}
                     </Text>
                     <Text style={authText.caption}>{miniAddress(account.address)}</Text>
                   </View>

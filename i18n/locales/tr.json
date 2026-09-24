@@ -119,7 +119,12 @@
     "music": "Müzik",
     "live": "Canlı",
     "newPosts_one": "{{count}} yeni gönderi",
-    "newPosts_other": "{{count}} yeni gönderi"
+    "newPosts_other": "{{count}} yeni gönderi",
+    "privateContent": "Özel İçerik",
+    "privateContentBody": "Bu içerik özel bir hesaba aittir. Gönderilerini görüntülemek için yaratıcıyı takip edin.",
+    "noMoreContent": "Daha fazla içerik yok",
+    "noPostsYet": "Henüz gönderi yok.",
+    "pullToRefresh": "Yenilemek için çekin veya daha sonra tekrar deneyin."
   },
   "explore": {
     "all": "Tümü",
@@ -710,7 +715,19 @@
     "chainIdLabel": "Zincir Kimliği: {{id}}",
     "exportPkConfirmPhrase": "ANLADIM",
     "exportPkCopy": "Özel anahtarı kopyala",
-    "e2eAutomatic": "Otomatik"
+    "e2eAutomatic": "Otomatik",
+    "avatarUpdateFailed": "Avatar güncellemesi başarısız oldu",
+    "coverUpdateFailed": "Kapak güncellemesi başarısız oldu",
+    "fixInvalidSocialLinks": "Lütfen geçersiz sosyal bağlantıları düzeltin",
+    "updateFailed": "Güncelleme başarısız oldu",
+    "channelUrlOrHandle": "Kanal URL'si veya tanıtıcısı",
+    "inviteLinkPlaceholder": "Davet bağlantısı",
+    "profileUrlOrUsername": "Profil URL'si veya kullanıcı adı",
+    "yourDisplayName": "Görünen adınız",
+    "usernameAvailable": "Kullanıcı adı mevcut",
+    "hideBadgeAndBalance": "Rozeti ve bakiyeyi gizle",
+    "hideBadgeAndBalanceDesc": "Finansal ayrıntıları gizler ve size gönderi ve bahşiş göndermeyi devre dışı bırakır.",
+    "onChainPublicWarning": "Zincir üstü işlemler herkese açıktır. Token göndermek veya bahşiş vermek, özel bakiye moduna geçilmeden önce yapılan işlemler de dahil olmak üzere cüzdan adresinizi ortaya çıkarabilir."
   },
   "common": {
     "mute": "Sesi kapat",
@@ -760,7 +777,9 @@
     "noInternetTitle": "İnternet Bağlantısı Yok",
     "noInternetBody": "Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin. DeHub'ı kullanmak için internete bağlı olmanız gerekir.",
     "noInternetStatus": "Çevrimdışı - Ağ bağlantısı yok",
-    "noInternetHint": "Wi-Fi veya mobil verinin açık olduğundan emin olun, ardından \"{{action}}\" seçeneğine dokunun"
+    "noInternetHint": "Wi-Fi veya mobil verinin açık olduğundan emin olun, ardından \"{{action}}\" seçeneğine dokunun",
+    "saving": "Kaydediliyor…",
+    "offlineStatus": "Çevrimdışı - Ağ bağlantısı yok"
   },
   "tip": {
     "title": "Bahşiş Gönder",
@@ -1094,7 +1113,17 @@
     "post": "Gönderi",
     "officialLogo": "İşte resmi DeHub logosu! 🎨",
     "editedImage": "İşte düzenlenmiş görseliniz!",
-    "generatedImage": "İşte oluşturulan görseliniz!"
+    "generatedImage": "İşte oluşturulan görseliniz!",
+    "toolCompleted": "{{name}} tamamlandı",
+    "aiTool": "Yapay zeka aracı",
+    "cannotAnimateImage": "{{model}} ekli bir görüntüyü canlandıramaz. Başka bir video modeli seçin.",
+    "needsImageToAnimate": "{{model}} canlandırılacak bir görüntüye ihtiyaç duyar. Bir tane ekleyin veya başka bir model seçin.",
+    "couldNotReadImage": "Bu görüntüyü okuyamadı",
+    "logoLoadFailed": "DeHub logosu yüklenemedi — logosuz oluşturuluyor",
+    "imageAttachedDescribe": "Görüntü eklendi — düzenlemelerinizi açıklayın",
+    "couldNotPreparePost": "Bunu gönderi için hazırlayamadı",
+    "generateImage": "Görüntü Oluştur",
+    "generateVideo": "Video Oluşturmak"
   },
   "commandCentre": {
     "title": "Komuta Merkezi",
@@ -1606,7 +1635,10 @@
     "edit": "Düzenle",
     "deleteRequestTitle": "Bu istek silinsin mi?",
     "deleteRequestDescription": "Bu işlem geri alınamaz.",
-    "attachmentTooLarge": "Her dosya 20MB’den küçük olmalı"
+    "attachmentTooLarge": "Her dosya 20MB’den küçük olmalı",
+    "deleteCommentA11y": "Yorum silme",
+    "sendCommentA11y": "Yorum gönder",
+    "requestOptions": "İstek seçenekleri"
   },
   "auth": {
     "loginRequired": "Giriş yapılması gerekiyor",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Kod gönderilemedi. Lütfen tekrar deneyin.",
     "invalidCodeRetry": "Geçersiz kod. Lütfen tekrar deneyin.",
     "invalidEmailOrPassword": "Geçersiz e-posta veya şifre.",
-    "welcomeToDehub": "DeHub'a Hoş Geldiniz"
+    "welcomeToDehub": "DeHub'a Hoş Geldiniz",
+    "importWalletOptional": "Cüzdanı İçe Aktar (İsteğe Bağlı)",
+    "couldNotSendCodeRetry": "Kod gönderilemedi. Lütfen tekrar deneyin.",
+    "exploreWithoutSignIn": "Oturum açmadan keşfedin",
+    "continueExploring": "Keşfe Devam",
+    "exploreWithoutSignInA11y": "Oturum açmadan DeHub'ı keşfedin",
+    "continueExploringA11y": "DeHub'ı keşfetmeye devam edin",
+    "importWalletRecommended": "Sosyal ağ girişleri önerilir.",
+    "importWalletPurpose": "Bu araç, DeHub.io'dan mevcut hesapları içe aktarmak içindir."
   },
   "messages": {
     "smartRepliesOff": "Önerilen yanıtlar kapatıldı",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Sorun otomatik olarak bildirildi.",
     "loadFailed": "Kanallar yüklenemedi",
     "noSearchResults": "Aramanızla eşleşen kanal yok",
-    "noChannels": "Kullanılabilir kanal yok"
+    "noChannels": "Kullanılabilir kanal yok",
+    "pairCodeExpired": "Bu kodun süresi doldu. Televizyondan yenisini isteyin.",
+    "signedInOnTv": "TV'nizde oturum açıldı",
+    "pairRefused": "reddedildi",
+    "pairIntro": "Televizyonunuzda DeHub'ı açın ve gösterdiği kodu buraya yazın.",
+    "pairNotFound": "O kodu bekleyen bir televizyon yok. Süresi dolmuş olabilir - TV'den yeni bir tane isteyin.",
+    "wantsToSignIn": "siz olarak oturum açmak istiyor",
+    "pairWarning": "Bunu yalnızca şu anda bir televizyon izliyorsanız onaylayın. Onaylamak, bu kodu elinde tutan kişiyi hesabınıza giriş yapmış sayar. İzleyebilir, beğenebilir ve takip edebilir — harcama yapamaz ve Aktif oturumlardan istediğiniz zaman çıkış yapabilirsiniz.",
+    "pairApprove": "Evet, bu TV'de oturum aç",
+    "pairDeny": "Hayır, bunu ben istemedim",
+    "pairDoneTitle": "TV'nizde oturum açıldı",
+    "pairDoneBody": "Hesabınız zaten gösteriliyor olmalı. Ayarlar → Gizlilik → Etkin oturumlarından istediğiniz zaman oturumunuzu kapatın.",
+    "closePlayer": "Oyuncuyu kapat",
+    "declineFailed": "Bunu reddedemezsiniz — süresi dolmuş olabilir.",
+    "tipSentTvNotTold": "İpucu gönderildi, ancak TV'ye söylenemedi. Zaman aşımına uğrayacak.",
+    "sentAmount": "{{amount}} DHB gönderildi",
+    "nothingWaiting": "Bekleyen bir şey yok",
+    "nothingWaitingBody": "Televizyonunuzdaki DeHub'dan bahşiş gönderdiğinizde, onaylamanız için burada görünür. Televizyonunuz asla cüzdanınızı tutmaz.",
+    "yourTelevision": "Televizyonunuz",
+    "wantsToTip": "bir bahşiş göndermek istiyor · {{time}} bıraktı",
+    "tipTo": "{{name}}'ya",
+    "tipForPost": "“{{title}}” için",
+    "reviewAndApprove": "Gözden geçir ve onayla"
   },
   "top100": {
     "title": "İlk 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Başvuru gönder",
     "nameEmailRequired": "Ad ve e-posta gereklidir",
     "applicationSuccess": "Başvuru başarıyla gönderildi! Sizinle iletişime geçeceğiz.",
-    "applicationFailed": "Gönderilemedi. Lütfen tekrar deneyin."
+    "applicationFailed": "Gönderilemedi. Lütfen tekrar deneyin.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO Hazinesi",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Bu gönderinin en üstüne sabitlendi",
     "unpinnedToast": "Sabitleme kaldırıldı",
     "pinFailed": "Bu yorum sabitlenemedi",
-    "kidsOnlyThread": "Bu gönderi çocuklar içindir. Sadece Çocuk Modu yorum yapabilir."
+    "kidsOnlyThread": "Bu gönderi çocuklar içindir. Sadece Çocuk Modu yorum yapabilir.",
+    "editFailed": "Yorum düzenlenemedi"
   },
   "postInfo": {
     "title": "Gönderi Bilgisi",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Çok yakında",
     "signIn": "Giriş yap",
     "tapToGetStarted": "Başlamak için dokun",
-    "soon": "Yakında"
+    "soon": "Yakında",
+    "glossarySubtitle": "Her simgenin ve özelliğin ne anlama geldiğini öğrenin",
+    "searchGlossary": "Sözlükte ara...",
+    "noResultsFor": "\"{{query}}\" için sonuç bulunamadı",
+    "guideSubtitle": "Her özelliğin adım adım açıklaması",
+    "searchGuide": "Rehberde ara...",
+    "repostsTab": "Tekrar Gönderiler",
+    "quotesTab": "Alıntılar",
+    "noMoreReposts": "Daha fazla tekrar gönderi yok",
+    "noMoreQuotes": "Daha fazla alıntı yok",
+    "noRepostsYet": "Henüz tekrar gönderi yok",
+    "noQuotesYet": "Henüz alıntı yok"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Doğrudan uygulamanın içinde çalışan oyunlar. Kurulacak bir şey yok, satın alınacak bir şey yok — açık kaynak ve DeHub'ın kendisinden sunuluyor."
+    "intro": "Doğrudan uygulamanın içinde çalışan oyunlar. Kurulacak bir şey yok, satın alınacak bir şey yok — açık kaynak ve DeHub'ın kendisinden sunuluyor.",
+    "noGameCalled": "Arcade'de <slug>{{slug}}</slug> adında bir oyun yok.",
+    "seeWhatIsHere": "Burada ne olduğunu gör",
+    "locationNotGranted": "Konum izni verilmedi.",
+    "signInToPlaceOnGlobe": "Kendinizi küre üzerinde göstermek için oturum açın.",
+    "couldNotPlaceOnGlobe": "Sizi küre üzerine yerleştirilemedi.",
+    "onTheGlobe": "Küre üzerindesiniz — yaklaşık 25 km'lik bir alanda gösterilirsiniz.",
+    "couldNotReach": "ARCADE'E ULAŞILAMADI",
+    "didNotLoad": "{{title}} yüklenmedi",
+    "needsConnection": "Oyun dehub.io'dan sunulur ve açtığınızda indirilir, bu nedenle ilk seferde çalışan bir bağlantıya ihtiyaç duyar. Sizinkini kontrol edin ve tekrar deneyin.",
+    "backToArcade": "Arcade'e geri dön",
+    "openPrivacySettings": "Gizlilik ayarlarını aç",
+    "privacyWarning": "Çok sayıda jetonunuz varsa veya güvensiz bir bölgede yaşıyorsanız, bu özelliği kullanmadan önce rozetinizi ve bakiyenizi gizleyin. Zincir üstü işlemler adresinizi hala ortaya çıkarır. Ayarları aç.",
+    "leaveGame": "Oyundan ayrıl",
+    "loadingGame": "Yükleniyor {{title}}",
+    "hideThis": "Bunu gizle"
   },
   "videoLooks": {
     "button": "Kamera görünümleri",
@@ -3425,7 +3515,22 @@
     "someone": "Biri",
     "oneTyping": "{{name}} yazıyor…",
     "fewTyping": "{{names}} yazıyor…",
-    "manyTyping": "{{count}} kişi yazıyor…"
+    "manyTyping": "{{count}} kişi yazıyor…",
+    "modBadge": "MOD",
+    "thisUser": "bu kullanıcı",
+    "unbanConfirm": "{{name}}'nun yasağını kaldırmak istediğinizden emin misiniz?",
+    "unban": "Yasağı kaldır",
+    "unbanFailed": "Kullanıcının yasağı kaldırılamadı",
+    "onlineLabel": "Çevrimiçi",
+    "usersCount_one": "{{count}} kullanıcı",
+    "usersCount_other": "{{count}} kullanıcı",
+    "totalMessages": "Toplam Mesaj",
+    "slowMode": "Yavaş Mod",
+    "cooldownSeconds": "{{seconds}} s bekleme süresi",
+    "minStakeRequired": "Gerekli Minimum Bahis",
+    "noParticipants": "Henüz katılımcı yok",
+    "noModerators": "Moderatör yok",
+    "noBannedUsers": "Yasaklı kullanıcı yok"
   },
   "promptFeed": {
     "headline": "Ne görmek istiyorsun?",
@@ -4177,7 +4282,26 @@
     "madeForKidsOffDesc": "Bu gönderiyi Çocuk Modu'nu kullanan çocuklara gösterir ve normal akışlardan çıkarır.",
     "madeForKidsBlockedByMature": "Olgun olarak işaretlenmiş bir gönderi aynı zamanda çocuklar için yayınlanamaz.",
     "encoderTitle": "OBS / kodlayıcı",
-    "encoderHint": "RTMP bilgilerini al"
+    "encoderHint": "RTMP bilgilerini al",
+    "queueWaiting": "Bekleniyor…",
+    "queueUploading": "Yükleniyor",
+    "queueProcessing": "İşleniyor…",
+    "queueMinting": "Basılıyor…",
+    "queuePosted": "Gönderildi",
+    "queueFailed": "Başarısız",
+    "noRetriesLeft": "(yeniden deneme hakkı kalmadı)",
+    "noUploads": "Yükleme yok",
+    "uploadsAppearHere": "Yüklemeleriniz burada görünecektir",
+    "imagesTotalLimit": "Bir yüklemedeki resimler toplam 100 MB veya daha az olmalıdır",
+    "chooseDatabase": "Merkezi Olmayan Veritabanını Seçin",
+    "livestreamMode": "Canlı Yayın Modu",
+    "addThumbnail": "Tarifinize ait fotoğraf ekleyin.",
+    "showCover": "Kapağı göster",
+    "max60s": "Maks 60s",
+    "confirmLivestream": "Canlı Yayını Onayla",
+    "liveFeaturesTitle": "Canlı Özellikler",
+    "discardPostTitle": "Gönderi Atılsın mı?",
+    "discardPostBody": "Gönderiniz kaybolacak. Bunun yerine taslak olarak kaydetmek ister misiniz?"
   },
   "bounty": {
     "claimed": "Alındı",
@@ -4494,7 +4618,25 @@
     "allowNewDmsOff": "Yeni mesajlara izin vermek için DM'leri açın.",
     "perMessageFee": "Mesaj başına ücret (DHB)",
     "perMessageFeeSub": "Mesaj başına ücret alın. Ücretsiz DM için 0 yapın. Belirli kullanıcılara ücretsiz erişim verebilirsiniz.",
-    "allDisabled": "Şu anda tüm DM'ler kapalı. Yeni DM'ler varsayılan olarak engellenir."
+    "allDisabled": "Şu anda tüm DM'ler kapalı. Yeni DM'ler varsayılan olarak engellenir.",
+    "failedToEdit": "Düzenlenemedi",
+    "messageDeleted": "Mesaj silindi",
+    "cantForwardFromDevice": "Bu mesaj bu cihazdan iletilemiyor",
+    "messageForwarded": "Mesaj iletildi",
+    "clearMessages": "Mesajları Temizle",
+    "clearMessagesConfirm": "Bu konuşmadaki tüm mesajlar silinsin mi? Bu işlem geri alınamaz.",
+    "messagesCleared": "Mesajlar temizlendi",
+    "failedToClearMessages": "Mesajlar temizlenemedi",
+    "removedFreeAccess": "{{name}} için ücretsiz erişim kaldırıldı",
+    "grantedFreeAccess": "{{name}} için ücretsiz erişim izni verildi",
+    "failedToUpdateFreeAccess": "Ücretsiz erişim güncellenemedi",
+    "searchComingSoon": "Arama çok yakında",
+    "tapToUnblock": "Engeli kaldırmak için dokunun.",
+    "userFallback": "kullanıcı",
+    "failedToBlock": "Kullanıcı engellenemedi",
+    "failedToDeleteConversation": "Konuşma silinemedi",
+    "newDm": "Mesaj gönder",
+    "noConversationsFound": "Görüşme bulunamadı"
   },
   "editPost": {
     "mediaPermission": "Medya kitaplığı izni gerekiyor",
@@ -4516,7 +4658,17 @@
     "retry": "Tekrar deneyin",
     "retrying": "Yeniden deneniyor...",
     "retryQueued": "Tekrar işleniyor",
-    "retryFailed": "Bu gönderi yeniden denenemedi"
+    "retryFailed": "Bu gönderi yeniden denenemedi",
+    "closeVideo": "Videoyu kapat",
+    "rotateOrientation": "Döndürme yönü",
+    "videoProgress": "Video ilerlemesi: {{percent}}%",
+    "tapToSeek": "Belirli bir konuma gitmek için dokunun",
+    "photoAccessToSaveImages": "Görüntüleri kaydetmek için fotoğraf kitaplığına erişime izin ver",
+    "failedToSaveImage": "Görüntü kaydedilemedi",
+    "downloadImage": "Görüntüyü indir",
+    "goToImage": "Görüntüye git {{index}}",
+    "allCaughtUp": "Tamamen güncellendiniz",
+    "checkBackForShorts": "Daha fazla kısa video için daha sonra tekrar kontrol edin"
   },
   "liveViewer": {
     "loadingStream": "Yayın yükleniyor...",
@@ -4526,7 +4678,22 @@
   },
   "search": {
     "endOfResults": "Sonuçların sonu",
-    "searchDehub": "DeHub'da ara"
+    "searchDehub": "DeHub'da ara",
+    "tabVoice": "Ses",
+    "trendingThisWeek": "Bu Hafta Trend Olanlar",
+    "trendingPosts": "Trend Olan Gönderiler",
+    "trendingImages": "Trend Olan Görüntüler",
+    "trendingVideos": "Trend Olan Videolar",
+    "trendingVoicePosts": "Trend Olan Sesli Gönderiler",
+    "trendingLive": "Trend Olan Canlı Yayınlar",
+    "seeAll": "Tümünü Gör",
+    "noAccountsFound": "Hesap bulunamadı",
+    "tryDifferentKeywords": "Farklı anahtar kelimeler deneyin veya yazımınızı kontrol edin",
+    "noContentResults": "İçerik sonucu yok",
+    "recentSearches": "Son Aramalar",
+    "noTrendingThisWeek": "Bu hafta trend içerik yok",
+    "closeFilterOptions": "Filtre seçeneklerini kapat",
+    "openFilterOptions": "Filtre seçeneklerini aç"
   },
   "notifPrompt": {
     "stayInLoop": "Haberdar ol",
@@ -4776,7 +4943,26 @@
     "externalTitle": "Harici Akış Modu",
     "externalLiveHint": "Akışınız harici yazılımlar aracılığıyla canlıdır. Uygulama içi kamera devre dışıdır.",
     "externalHint": "Aşağıdaki bilgileri kullanarak akış yazılımınızı bağlayın, ardından yayına başlayın.",
-    "useInAppCamera": "Bunun Yerine Uygulama İçi Kamera Kullanın"
+    "useInAppCamera": "Bunun Yerine Uygulama İçi Kamera Kullanın",
+    "livestreamEnded": "Canlı yayın sona erdi",
+    "chatEnabled": "Sohbet etkin",
+    "chatDisabled": "Sohbet devre dışı",
+    "failedToUpdateSettings": "Ayarlar güncellenemedi",
+    "networkLostReconnecting": "Ağ bağlantısı kesildi — yayın duraklatıldı. Yeniden bağlanılıyor…",
+    "openingViewer": "Görüntüleyici açılıyor...",
+    "cameraPermissionRequired": "Kamera izni gerekli",
+    "grantPermission": "İzin Ver",
+    "waitingForLivepeer": "Livepeer bekleniyor...",
+    "waitingForExternalSource": "Dış kaynak bekleniyor...",
+    "settingUpPublisher": "Yayıncı kuruluyor...",
+    "scheduledStream": "Zamanlanmış Akış",
+    "scheduledAt": "{{date}} saat {{time}}",
+    "pressGoLiveWhenReady": "Başlamaya hazır olduğunuzda Canlıya Geç'e basın",
+    "connectionInterrupted": "Bağlantı Kesildi",
+    "streamPausedReconnecting": "Akışınız duraklatıldı. Yeniden bağlanılıyor...",
+    "streamWillEnd": "Yeniden bağlanılmazsa akış sona erecek",
+    "endStreamConfirmTitle": "Akış Sonlandırılsın mı",
+    "endStreamConfirmBody": "Şimdi kapanış, tüm izleyiciler için canlı akışınızı sonlandıracaktır. Akışa devam edebilir veya kalıcı olarak sonlandırabilirsiniz."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

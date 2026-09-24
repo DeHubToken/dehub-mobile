@@ -8,6 +8,7 @@
 import React, { useMemo, useState } from "react";
 import { View, Text, TextInput, ScrollView, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 
@@ -154,6 +155,7 @@ function GlossaryCard({ icon, title, description }: GlossaryEntry) {
 }
 
 export default function GlossaryScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [query, setQuery] = useState("");
 
@@ -170,7 +172,7 @@ export default function GlossaryScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title="Glossary" subtitle="Learn what every icon and feature means" />
+      <ScreenHeader title={t("nav.glossary")} subtitle={t("screens.glossarySubtitle")} />
 
       {/* Search */}
       <View style={styles.searchWrap}>
@@ -178,7 +180,7 @@ export default function GlossaryScreen() {
         <TextInput
           value={query}
           onChangeText={setQuery}
-          placeholder="Search glossary..."
+          placeholder={t("screens.searchGlossary")}
           placeholderTextColor="#8B8D90"
           style={styles.searchInput}
           autoCorrect={false}
@@ -207,7 +209,7 @@ export default function GlossaryScreen() {
         ) : (
           <View style={styles.empty}>
             <Icon name="Search" size={28} color="#52525B" />
-            <Text style={styles.emptyText}>No results for "{query}"</Text>
+            <Text style={styles.emptyText}>{t("screens.noResultsFor", { query })}</Text>
           </View>
         )}
       </ScrollView>

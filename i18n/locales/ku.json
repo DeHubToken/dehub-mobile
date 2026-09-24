@@ -119,7 +119,12 @@
     "music": "Muzîk",
     "live": "Zindî",
     "newPosts_one": "{{count}} şandiya nû",
-    "newPosts_other": "{{count}} şandiyên nû"
+    "newPosts_other": "{{count}} şandiyên nû",
+    "privateContent": "ناوه‌ڕۆکی تایبه‌ت",
+    "privateContentBody": "ئه‌م ناوه‌ڕۆکه‌ له‌ ئه‌کاونتێکی تایبه‌ته‌وه‌ هاتووه‌. به‌دوای دروستکه‌ردا بڕۆ بۆ بینینی پۆسته‌کانی.",
+    "noMoreContent": "هیچ ناوه‌ڕۆکی زیاتر نییه‌",
+    "noPostsYet": "هێشتا هیچ پۆستێک نییه‌.",
+    "pullToRefresh": "بۆ نوێکردنه‌وه‌ بکێشه‌ یان دواتر هه‌وڵبده‌وه‌."
   },
   "explore": {
     "all": "Hemû",
@@ -678,7 +683,19 @@
     "kidsModeTurnOff": "ڕەفتاری منداڵان بکوژێنەرەوە",
     "kidsModePinMismatch": "ئەم PINانە جیاوازن. دەستپێبکەرەوە.",
     "kidsModeFailed": "ئەمە کارینەکرد. دوبارە هەوڵ بدە.",
-    "kidsModeForgotPin": "لەبیرت کردووە؟ لەگەڵ سۆمەکەت لە ئامێرێکی تردا بچۆژوژە بۆ ئەوەی ڕەفتاری منداڵان دابگیرسێنیتەوە."
+    "kidsModeForgotPin": "لەبیرت کردووە؟ لەگەڵ سۆمەکەت لە ئامێرێکی تردا بچۆژوژە بۆ ئەوەی ڕەفتاری منداڵان دابگیرسێنیتەوە.",
+    "avatarUpdateFailed": "نوێکردنه‌وه‌ی ئاڤاتار سه‌رکه‌وتوو نه‌بوو",
+    "coverUpdateFailed": "نوێکردنه‌وه‌ی به‌رگ سه‌رکه‌وتوو نه‌بوو",
+    "fixInvalidSocialLinks": "تکایه‌ لینکه‌ کۆمه‌ڵایه‌تییه‌ هه‌ڵه‌کان چاک بکه‌ره‌وه‌",
+    "updateFailed": "نوێکردنه‌وه‌ سه‌رکه‌وتوو نه‌بوو",
+    "channelUrlOrHandle": "ناونیشانی یان ده‌ستکاره‌ری چه‌ناڵ",
+    "inviteLinkPlaceholder": "لینک بانگهێشت",
+    "profileUrlOrUsername": "ناونیشانی یان ناوی به‌کارهێنه‌ری پرۆفایل",
+    "yourDisplayName": "ناوی نمایشی تۆ",
+    "usernameAvailable": "ناوی به‌کارهێنه‌ر به‌رده‌سته‌",
+    "hideBadgeAndBalance": "نیشان و باڵانس بشارێره‌وه‌",
+    "hideBadgeAndBalanceDesc": "وردەکارییە داراییەکان دەشارێتەوە و ناردن و ڕاوێژەکان بۆ تۆ ناچالاک دەکات.",
+    "onChainPublicWarning": "مامەڵە لەسەر زنجیرە گشتییەکان. ناردنی توکن یان ڕاوێژ دەتوانێت ناونیشانی خەزێنەکەت ئاشکرا بکات، لەوانە مامەڵەکانی پێش ئەوەی بارودۆخی باڵانسی تایبەت چالاک بکرێت."
   },
   "common": {
     "mute": "Bêdeng bike",
@@ -728,7 +745,9 @@
     "noInternetBody": "تکایە پەیوەندی ئینتەرنێتەکەت بزانە و دووبارە هەوڵ بدە. پێویستت بە پەیوەندی ئینتەرنێت هەیە بۆ بەکارهێنانی DeHub.",
     "noInternetStatus": "لە دەرەوەی هێڵ - نییە پەیوەندی تۆڕ",
     "noInternetHint": "دڵنیابە Wi-Fi یان داتای مۆبایل کراوەیە، پاشان لێبدە \"{{action}}\"",
-    "continue": "بەردەوام بوون"
+    "continue": "بەردەوام بوون",
+    "saving": "پاشەکەوتکردن…",
+    "offlineStatus": "له‌ ده‌ره‌وه‌ی هێڵ - په‌یوه‌ندیی تۆڕ نییه‌"
   },
   "tip": {
     "title": "Bexşîş Bişîne",
@@ -1061,7 +1080,17 @@
     "post": "Bişîne",
     "officialLogo": "Va ye logoya fermî ya DeHub! 🎨",
     "editedImage": "Va ye wêneyê we yê guherî!",
-    "generatedImage": "Va ye wêneyê we yê çêkirî!"
+    "generatedImage": "Va ye wêneyê we yê çêkirî!",
+    "toolCompleted": "{{name}} ته‌واو بوو",
+    "aiTool": "ئامرازی زیره‌کی ده‌ستکرد",
+    "cannotAnimateImage": "{{model}} ناتوانێت وێنه‌یه‌کی به‌ستراو ببه‌خشرێت. مۆدێلێکی ڤیدیۆی تر هه‌ڵبژێره‌.",
+    "needsImageToAnimate": "{{model}} پێویستی به‌ وێنه‌یه‌ک هه‌یه‌ بۆ به‌خشین. یه‌کێک به‌سته‌ره‌وه‌ یان مۆدێلێکی تر هه‌ڵبژێره‌.",
+    "couldNotReadImage": "نه‌توانرا ئه‌و وێنه‌یه‌ بخوێنرێته‌وه‌",
+    "logoLoadFailed": "نه‌توانرا لۆگۆی DeHub باربکرێت — به‌بێ ئه‌و دروست ده‌کرێت",
+    "imageAttachedDescribe": "وێنه‌ به‌ستراوه‌ — وه‌سفی گۆڕانکارییه‌کانت بکه‌",
+    "couldNotPreparePost": "نه‌توانرا ئه‌وه‌ بۆ بڵاوکردنه‌وه‌ ئاماده‌ بکرێت",
+    "generateImage": "دروستکردنی وێنە",
+    "generateVideo": "دروستکردنی ڤیدیۆ"
   },
   "commandCentre": {
     "title": "Navenda Fermanê",
@@ -1572,7 +1601,10 @@
     "edit": "Biguherîne",
     "deleteRequestTitle": "Ev daxwaz were jêbirin?",
     "deleteRequestDescription": "Ev nayê vegerandin.",
-    "attachmentTooLarge": "Divê her dosye ji 20MB kêmtir be"
+    "attachmentTooLarge": "Divê her dosye ji 20MB kêmtir be",
+    "deleteCommentA11y": "سڕینەوەی کۆمێنت",
+    "sendCommentA11y": "ناردنی کۆمێنت",
+    "requestOptions": "هەڵبژاردەکانی داواکاری"
   },
   "auth": {
     "loginRequired": "Têketin pêwîst e",
@@ -1621,7 +1653,15 @@
     "sendCodeFailedRetry": "نەیتوانی کۆد بنێرێت. تکایە دووبارە هەوڵ بدە.",
     "invalidCodeRetry": "کۆدی هەڵەیە. تکایە دووبارە هەوڵ بدە.",
     "invalidEmailOrPassword": "ئیمەیڵ یان وشەی نهێنی هەڵەیە.",
-    "welcomeToDehub": "بەخێربێیت بۆ DeHub"
+    "welcomeToDehub": "بەخێربێیت بۆ DeHub",
+    "importWalletOptional": "هێنانی ناوخاتون (ئارەزوومەندانە)",
+    "importWalletRecommended": "خۆتۆمارکردن لە ڕێگەی سۆشیال میدیاوە پێشنیار دەکرێت.",
+    "importWalletPurpose": "ئەم ئامرازە بۆ هێنانی هەژمارە بوونیەکانە لە DeHub.io.",
+    "couldNotSendCodeRetry": "ناردنی کۆدەکە نەکرا. تکایە دووبارە هەوڵ بدە.",
+    "exploreWithoutSignIn": "بێ ئەوەی بچیتەژوورەوە گەڕان بکە",
+    "continueExploring": "بەردەوام بە لە گەڕان",
+    "exploreWithoutSignInA11y": "بێ ئەوەی بچیتەژوورەوە DeHub بگەڕێ",
+    "continueExploringA11y": "بەردەوام بە لە گەڕانی DeHub"
   },
   "messages": {
     "smartRepliesOff": "Bersivên pêşniyarkirî hatin girtin",
@@ -1736,7 +1776,29 @@
     "reportedAutomatically": "Bixweber hate ragihandin.",
     "loadFailed": "Kanal nehatin barkirin",
     "noSearchResults": "Tu kanal bi lêgerîna te re li hev nake",
-    "noChannels": "Tu kanal berdest nine"
+    "noChannels": "Tu kanal berdest nine",
+    "sentAmount": "ناردرا {{amount}} DHB",
+    "nothingWaiting": "هیچ شتێک چاوەڕێ ناکات",
+    "nothingWaitingBody": "کە تۆ لە DeHub ەوە لەسەر تەلەفیزیۆنەکەتدا پارە دەدەیت، لێرە دەردەکەوێت بۆ ئەوەی پەسەندی بکەیت. تەلەفیزیۆنەکەت هەرگیز پارەی تۆ ناگرێت.",
+    "yourTelevision": "تەلەفیزیۆنەکەت",
+    "wantsToTip": "دەیەوێت پارە بدات · {{time}} جێی هێشت",
+    "tipTo": "بۆ {{name}}",
+    "tipForPost": "بۆ “{{title}}”",
+    "reviewAndApprove": "ڕێنمایی بکە و پەسەندی بکە",
+    "pairCodeExpired": "ئەو کۆدە بەسەرچووە. داوای کۆدێکی نوێ لە تەلەفزیۆنەکەت بکە.",
+    "signedInOnTv": "لە تەلەفزیۆنەکەتدا چوونەژوورەوەت کردووە",
+    "pairRefused": "ڕەتکرا",
+    "pairIntro": "DeHub لەسەر تەلەفزیۆنەکەت بکەرەوە و ئەو کۆدەی کە نیشان دەدات لێرە بنووسە.",
+    "pairNotFound": "هیچ تەلەفزیۆنێک چاوەڕێی ئەو کۆدە ناکات. لەوانەیە بەسەرچووبێت — داوای کۆدێکی نوێ لە تەلەفزیۆنەکەت بکە.",
+    "wantsToSignIn": "دەیەوێت وەک تۆ بچێتەژوورەوە",
+    "pairWarning": "تەنها ئەگەر تەلەفزیۆنێکە کە ئێستا سەیری دەکەیت، ئەوا پەسەندی بکە. پەسەندکردنەکە دەبێتە هۆی ئەوەی هەر کەسێک ئەو کۆدەی پێیە بچێتەژوورەوە بۆ ناو هەژمارەکەت. دەتوانێت سەیری بکات، لایکی بکات و فۆڵۆی بکات — ناتوانێت پارە خەرج بکات، و دەتوانیت هەر کاتێک لە دانیشتنە چالاکەکانەوە دەری بکەیت.",
+    "pairApprove": "بەڵێ، ئەم تەلەفزیۆنە بچێتەژوورەوە",
+    "pairDeny": "نەخێر، من داوام نەکردووە",
+    "pairDoneTitle": "تەلەفزیۆنەکەت چوونەژوورەوەی کردووە",
+    "pairDoneBody": "دەبێت ئێستا هەژمارەکەت نیشان بدات. هەر کاتێک لە ڕێگەی ڕێکخستنەکان ➔ تایبەتمەندی ➔ دانیشتنە چالاکەکانەوە دەری بکە.",
+    "closePlayer": "داخستنی یاریزان",
+    "declineFailed": "نەتوانرا ڕەت بکرێتەوە — لەوانەیە بەسەرچووبێت.",
+    "tipSentTvNotTold": "نێردرا، بەڵام تەلەفزیۆنەکە نەیتوانی پێی بڵێت. کاتەکەی تەواو دەبێت."
   },
   "top100": {
     "title": "Ya jorîn 100",
@@ -2008,7 +2070,8 @@
     "submitApplication": "Serlêdanê Bişîne",
     "nameEmailRequired": "Nav û e-name pêwîst in",
     "applicationSuccess": "Serlêdan bi serkeftî hat şandin! Em ê bi we re têkildar bibin.",
-    "applicationFailed": "Şandin têkçû. Ji kerema xwe dîsa biceribînin."
+    "applicationFailed": "Şandin têkçû. Ji kerema xwe dîsa biceribînin.",
+    "namePlaceholder": "جەین سمیس"
   },
   "dao": {
     "title": "Xezîneya DAO",
@@ -2168,7 +2231,8 @@
     "reportCommentDescription": "پێمان بڵێ چی لەم کۆمێنتە هەڵەیە و دادوەرەکانمان لێی ورد دەبنەوە.",
     "reportCommentAlready": "تۆ پێشتر ئەم کۆمێنتەت ڕاپۆرت کردووە.",
     "reportReasonPlaceholder": "هەر وردەکارییەک زیاد بکە کە یارمەتیمان بدات لێی ورد ببینەوە (ئارەزوومەندە)",
-    "kidsOnlyThread": "ئەم پۆستە بۆ منداڵانە. تەنها \"ڕەفتاری منداڵانە\" دەتوانێت کۆمێنت لەسەر ئەم پۆستە بنووسێت."
+    "kidsOnlyThread": "ئەم پۆستە بۆ منداڵانە. تەنها \"ڕەفتاری منداڵانە\" دەتوانێت کۆمێنت لەسەر ئەم پۆستە بنووسێت.",
+    "editFailed": "کۆمێنتەکە ناتوانرێت دەستکاری بکرێت"
   },
   "postInfo": {
     "title": "Agahiya postê",
@@ -3209,14 +3273,40 @@
     "comingSoon": "Zû tê",
     "signIn": "Têkeve",
     "tapToGetStarted": "Ji bo destpêkê bitikîne",
-    "soon": "Zû"
+    "soon": "Zû",
+    "glossarySubtitle": "فێربە مانای هەموو ئایکۆن و تایبەتمەندییەک چییە",
+    "searchGlossary": "گەڕان بەدوای وشەنامەدا...",
+    "noResultsFor": "هیچ ئەنجامێک بۆ \"{{query}}\"",
+    "guideSubtitle": "ڕێنمایی هەنگاو بە هەنگاو بۆ هەموو تایبەتمەندییەک",
+    "searchGuide": "گەڕان بەدوای ڕێبەرەکەدا...",
+    "repostsTab": "دووبارە بڵاوکردنەوەکان",
+    "quotesTab": "وتەکان",
+    "noMoreReposts": "چیتر دووبارە بڵاوکردنەوە نییە",
+    "noMoreQuotes": "چیتر وتە نییە",
+    "noRepostsYet": "هێشتا دووبارە بڵاوکردنەوە نییە",
+    "noQuotesYet": "هێشتا وتە نییە"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Lîstikên ku li vir di sepanê de dixebitin. Tiştek ji bo saz kirinê tune, tiştek ji bo kirînê tune — çavkanî vekirî ye, û ji aliyê DeHub bi xwe ve tê pêşkêşkirin."
+    "intro": "Lîstikên ku li vir di sepanê de dixebitin. Tiştek ji bo saz kirinê tune, tiştek ji bo kirînê tune — çavkanî vekirî ye, û ji aliyê DeHub bi xwe ve tê pêşkêşkirin.",
+    "noGameCalled": "هیچ یارییەک بە ناوی <slug>{{slug}}</slug> لە یاریگادا نییە.",
+    "seeWhatIsHere": "ببینە چی لێرەدایە",
+    "locationNotGranted": "ڕێپێدانی شوێن وەرنەگیرا.",
+    "signInToPlaceOnGlobe": "بچۆژوژووان بۆ ئەوەی خۆت لەسەر جیهان دانێیت.",
+    "couldNotPlaceOnGlobe": "نەتوانرا تۆ لەسەر جیهان دابنرێت.",
+    "onTheGlobe": "تۆ لەسەر جیهان داندراویت — لە ناوچەیەکی نزیکەی ٢٥ کمدا نیشان دەدرێت.",
+    "couldNotReach": "نەتوانرا بگاتە یاریگا",
+    "didNotLoad": "{{title}} بار نەکرا",
+    "needsConnection": "یارییەکە لە dehub.io ەوە خزمەتگوزاری دەکرێت و کاتێک دەکەیتەوە باردەکرێت، بۆیە جارێکی یەکەم پێویستی بە پەیوەندییەکی کارا هەیە. پەیوەندی خۆت بزانە و جارێکی تر هەوڵ بدە.",
+    "backToArcade": "گەڕانەوە بۆ ئارکەید",
+    "openPrivacySettings": "کردنەوەی ڕێکخستنەکانی تایبەتێتی",
+    "privacyWarning": "ئەگەر بڕێکی زۆر توکێن (tokens) هەڵدەگریت یان لە ناوچەیەکی نائاسایودا دەژیت، پێش بەکارهێنانی ئەم تایبەتمەندییە، نیشان و باڵانسەکەت بشارەوە. گواستنەوەکانی سەر زنجیر (On-chain transactions) هێشتا ناونیشانی تۆ ئاشکرا دەکەن. کردنەوەی ڕێکخستنەکان.",
+    "leaveGame": "جێهێشتنی یارییەکە",
+    "loadingGame": "بارکردن {{title}}",
+    "hideThis": "ئەمە بشارەوە"
   },
   "videoLooks": {
     "button": "Dîmenên kamerayê",
@@ -3334,7 +3424,21 @@
     "attachPhoto": "وێنە",
     "attachEmoji": "ئیمۆجی",
     "removeAttachment": "پاشکۆ لابە",
-    "attachFailed": "نەتوانرا ئەو وێنەیە بنێردرێت."
+    "attachFailed": "نەتوانرا ئەو وێنەیە بنێردرێت.",
+    "thisUser": "ئەم بەکارهێنەرە",
+    "unbanConfirm": "دڵنیایت دەتەوێت {{name}} لە قەدەغە دەربکەیت؟",
+    "unban": "لە قەدەغە دەربکە",
+    "unbanFailed": "شکستی هێنا لە دەرهێنانی بەکارهێنەر لە قەدەغە",
+    "onlineLabel": "سەرھێڵ",
+    "usersCount_one": "{{count}} بەکارهێنەر",
+    "usersCount_other": "{{count}} بەکارهێنەران",
+    "totalMessages": "کۆی نامەکان",
+    "slowMode": "باری خێرا",
+    "cooldownSeconds": "{{seconds}} ساردکەرەوە",
+    "minStakeRequired": "کەمترین قازانجی پێویست",
+    "noParticipants": "هیچ بەشداربوویەک نییە",
+    "noModerators": "هیچ مودیرێک نییە",
+    "noBannedUsers": "هیچ بەکارهێنەرێکی قەدەغەکراو نییە"
   },
   "promptFeed": {
     "headline": "Tu dixwazî çi bibînî?",
@@ -4079,7 +4183,26 @@
     "madeForKidsBlockedByMature": "پۆستێک کە بە بالغ نیشان دراوە ناتوانێت هەروەها بۆ منداڵان بڵاو بکرێت.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Get RTMP details",
-    "markMadeForKids": "وەک بۆ منداڵان دروستکراو دیاری بکە"
+    "markMadeForKids": "وەک بۆ منداڵان دروستکراو دیاری بکە",
+    "queueWaiting": "چاوەڕوانی...",
+    "queueUploading": "بارکردن",
+    "queueProcessing": "پرۆسەکردن...",
+    "queueMinting": "دروستکردن...",
+    "queuePosted": "بڵاوکراوە",
+    "queueFailed": "شکستی هێنا",
+    "noRetriesLeft": "(هیچ هەوڵدانەوەیەکی ماوە نەماوە)",
+    "noUploads": "هیچ بارکردنێک نییە",
+    "uploadsAppearHere": "بارکردنەکانت لێرە دەردەکەون",
+    "imagesTotalLimit": "وێنەکان لە یەک بارکردنەوەدا دەبێت کۆی گشتی 100 مێگابایت یان کەمتر بێت",
+    "chooseDatabase": "هەڵبژاردەی داتابەیسی بڵاوبووەوە هەڵبژێرە",
+    "livestreamMode": "ڕەوتی ڕاستەوخۆ",
+    "addThumbnail": "وێنەی سەرپەڕ",
+    "showCover": "پیشاندانی بەرگ",
+    "max60s": "زۆرترین 60 چرکە",
+    "confirmLivestream": "ڕەوتی ڕاستەوخۆ پشتڕاست بکەرەوە",
+    "liveFeaturesTitle": "تایبەتمەندییە ڕاستەوخۆکان",
+    "discardPostTitle": "پۆستەکە بسڕدرێتەوە؟",
+    "discardPostBody": "پۆستەکەت لەدەست دەچێت. ئایا دەتەوێت لەبری ئەوە وەک پۆستێکی درافت هەڵبگیرێت؟"
   },
   "bounty": {
     "claimed": "Hate wergirtin",
@@ -4396,7 +4519,23 @@
     "allowNewDmsOff": "Ji bo destûra peyamên nû DM çalak bike.",
     "perMessageFee": "Heqê her peyamê (DHB)",
     "perMessageFeeSub": "Ji her peyamê heq bistîne. Ji bo DM-yên belaş 0 bike. Tu dikarî ji hin bikarhêneran re gihîştina belaş bidî.",
-    "allDisabled": "Niha hemû DM girtî ne. DM-yên nû bi awayê standard têne astengkirin."
+    "allDisabled": "Niha hemû DM girtî ne. DM-yên nû bi awayê standard têne astengkirin.",
+    "failedToEdit": "هەڵەی نوێکردنەوە",
+    "messageDeleted": "پەیام سڕایەوە",
+    "cantForwardFromDevice": "ئەم پەیامە ناتوانرێت لەم ئامرازەوە بگوازرێتەوە",
+    "messageForwarded": "پەیام گواسترا",
+    "clearMessages": "پەیامەکان بسڕەوە",
+    "clearMessagesConfirm": "هەموو پەیامەکانی ئەم گفتوگۆیە بسڕدرێتەوە؟ ئەمە ناگەڕێتەوە.",
+    "messagesCleared": "پەیامەکان سڕانەوە",
+    "failedToClearMessages": "هەڵەی سڕینەوەی پەیامەکان",
+    "removedFreeAccess": "دەستگەیشتنی بێبەرامبەر بۆ {{name}} لابرا",
+    "grantedFreeAccess": "دەستگەیشتنی بێبەرامبەر بۆ {{name}} درا",
+    "failedToUpdateFreeAccess": "هەڵەی نوێکردنەوەی دەستگەیشتنی بێبەرامبەر",
+    "searchComingSoon": "گەڕان لە داهاتوودا",
+    "tapToUnblock": "داگرە بۆ بلۆککردن",
+    "failedToBlock": "هەڵەی بلۆککردن",
+    "failedToDeleteConversation": "هەڵەی سڕینەوەی گفتوگۆ",
+    "newDm": "پەیامی ڕاستەوخۆی نوێ"
   },
   "editPost": {
     "mediaPermission": "Destûra pirtûkxaneya medyayê pêwîst e",
@@ -4418,7 +4557,15 @@
     "retryHint": "هیچ شتێک بۆ بارکردنەوە نییە - فایلەکەت پارێزراوە.",
     "retrying": "دوبارە هەوڵدەینەوە…",
     "retryQueued": "جارێکی تر پرۆسە دەکەین",
-    "retryFailed": "نەمانتوانی ئەو پۆستە دوبارە تاقیبکەینەوە"
+    "retryFailed": "نەمانتوانی ئەو پۆستە دوبارە تاقیبکەینەوە",
+    "videoProgress": "پێشکەوتنی ڤیدیۆ: {{percent}}%",
+    "tapToSeek": "لێبدە بۆ چونە شوێنێکی دیاریکراو",
+    "photoAccessToSaveImages": "ڕێگە بدە بۆ کتێبخانەی وێنە بۆ پاراستنی وێنەکان",
+    "failedToSaveImage": "هەڵەی پاراستنی وێنە",
+    "downloadImage": "داگرتنی وێنە",
+    "goToImage": "چوونە سەر وێنەی {{index}}",
+    "allCaughtUp": "تەواو بوویت",
+    "checkBackForShorts": "دواتر بگەڕێ بۆ کورتە ڤیدیۆی زیاتر"
   },
   "liveViewer": {
     "loadingStream": "Weşan tê barkirin...",
@@ -4428,7 +4575,22 @@
   },
   "search": {
     "endOfResults": "Dawiya encaman",
-    "searchDehub": "Li DeHub bigere"
+    "searchDehub": "Li DeHub bigere",
+    "tabVoice": "دەنگ",
+    "trendingThisWeek": "باوترین ئەم هەفتەیە",
+    "trendingPosts": "بابەتی باو",
+    "trendingImages": "وێنەی باو",
+    "trendingVideos": "ڤیدیۆی باو",
+    "trendingVoicePosts": "دەنگی باو",
+    "trendingLive": "ڕاستەوخۆی باو",
+    "seeAll": "هەمووی ببینە",
+    "noAccountsFound": "هیچ هەژمارێک نەدۆزرایەوە",
+    "tryDifferentKeywords": "هەوڵ بدە وشەی جیاواز بەکاربهێنیت یان وردبینی بکە",
+    "noContentResults": "هیچ ئەنجامێکی ناوەڕۆک نییە",
+    "recentSearches": "گەڕانەکانی دوایی",
+    "noTrendingThisWeek": "هیچ ناوەڕۆکی باو ئەم هەفتەیە نییە",
+    "closeFilterOptions": "داخستنی ڕێگاکانی فلتەر",
+    "openFilterOptions": "کردنەوەی ڕێگاکانی فلتەر"
   },
   "notifPrompt": {
     "stayInLoop": "Agahdar bimîne",
@@ -4617,7 +4779,14 @@
     "externalTitle": "External Streaming Mode",
     "externalLiveHint": "Your stream is live via external software. The in-app camera is disabled.",
     "externalHint": "Connect your streaming software using the details below, then start broadcasting.",
-    "useInAppCamera": "Use In-App Camera Instead"
+    "useInAppCamera": "Use In-App Camera Instead",
+    "livestreamEnded": "ڕاستەوخۆیی کۆتایی هات",
+    "chatEnabled": "چات چالاک کرا",
+    "chatDisabled": "چات ناچالاک کرا",
+    "failedToUpdateSettings": "هەڵەی نوێکردنەوەی ڕێکخستنەکان",
+    "networkLostReconnecting": "هێڵی نێو تۆڕ ون بوو - پەخش وەستاوە. دووبارە دەبەسترێتەوە…",
+    "openingViewer": "کردنەوەی بینەر...",
+    "cameraPermissionRequired": "پێویستە ڕێگەپێدانی کامێرا بدرێت"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

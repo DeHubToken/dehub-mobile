@@ -297,7 +297,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
                       hitSlop={10}
                       style={{ marginLeft: "auto" }}
                       accessibilityRole="button"
-                      accessibilityLabel="Delete comment"
+                      accessibilityLabel={t("features.deleteCommentA11y")}
                     >
                       <Icon name="Trash2" size={12} color="#808089" />
                     </Pressable>
@@ -324,7 +324,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
             onPress={send}
             disabled={!draft.trim() || submitComment.isPending}
             accessibilityRole="button"
-            accessibilityLabel="Send comment"
+            accessibilityLabel={t("features.sendCommentA11y")}
             style={[
               styles.sendBtn,
               (!draft.trim() || submitComment.isPending) && styles.sendBtnDisabled,
@@ -481,7 +481,7 @@ const FeatureCard: React.FC<{
             hitSlop={10}
             style={styles.menuBtn}
             accessibilityRole="button"
-            accessibilityLabel="Request options"
+            accessibilityLabel={t("features.requestOptions")}
           >
             <Icon name="EllipsisVertical" size={16} color="#808089" />
           </Pressable>
@@ -585,22 +585,22 @@ const FeatureCard: React.FC<{
           <View style={styles.actionRow}>
             <ActionButton
               icon="ThumbsDown"
-              label="Dislike"
+              label={t("comments.dislike")}
               count={feature.dislike_count ?? 0}
               active={myVote === -1}
               onPress={() => onVote(-1)}
             />
-            <ActionButton icon="Share2" label="Share" onPress={onShare} />
+            <ActionButton icon="Share2" label={t("postOptions.share")} onPress={onShare} />
             <ActionButton
               icon="MessageSquare"
-              label="Comments"
+              label={t("postInfo.comments")}
               count={feature.comment_count ?? 0}
               active={showComments}
               onPress={() => setShowComments((s) => !s)}
             />
             <ActionButton
               icon="ThumbsUp"
-              label="Like"
+              label={t("reactionInfo.labels.like")}
               count={feature.like_count ?? 0}
               active={myVote === 1}
               onPress={() => onVote(1)}
@@ -716,7 +716,7 @@ const SubmitSheet: React.FC<{
                 hitSlop={10}
                 style={styles.sheetClose}
                 accessibilityRole="button"
-                accessibilityLabel="Close"
+                accessibilityLabel={t("common.close")}
               >
                 <Icon name="X" size={16} color="#A1A1AA" />
               </Pressable>
@@ -1031,7 +1031,7 @@ export default function FeatureRequestsScreen() {
           hitSlop={10}
           style={styles.backRow}
           accessibilityRole="button"
-          accessibilityLabel="Go back"
+          accessibilityLabel={t("common.goBack")}
         >
           <Icon name="ArrowLeft" size={20} color="#FAFAFA" />
         </Pressable>
