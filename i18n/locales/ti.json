@@ -684,7 +684,30 @@
     "chainIdLabel": "መለለዪ መንነት ሰንሰለት ፦ {{id}}",
     "exportPkConfirmPhrase": "ተረዲኡኒ ኣሎ",
     "exportPkCopy": "ናይ ውልቀ ቁልፍ ቅዳሕ",
-    "e2eAutomatic": "ኣውቶማቲክ"
+    "e2eAutomatic": "ኣውቶማቲክ",
+    "publicChatAlertsRateOption": "{{count}} ሓደ ሰዓት",
+    "smsScopeLabel": "እንታይ ኢልካ ምመለስካ ፧",
+    "smsScopeDesc": "እቲ ጽሑፍ ገንዘብ የኽፍል ፡ ስለዚ ነቲ ዕንቅፋት ዚግብኦ ነገር ኣጽኒዕዎ",
+    "smsScope": {
+      "all": "ኵሉ እቲ ዝሐደጎኒ",
+      "tips": "ነቲ ዝረኸብክዎ ምኽሪ ጥራይ",
+      "subscriptions": "ሓደስቲ ተመዝጋቢታት ጥራይ",
+      "sales": "ናይ ትሕዝቶይ መሸጣ ጥራይ",
+      "bounties": "ብዓልቲ ቤት ጥራይ",
+      "fractions": "ንሽያጭን ንሽያጭን ጥራይ",
+      "messages": "ቀጥታዊ መልእኽቲ ጥራይ",
+      "mentions": "ኣነ ጥራይ እየ ዝዝክሮ",
+      "replies": "መልሲ ርእይቶይ",
+      "account": "ብዛዕባ ሕሳብይ ኣስተብህለሉ"
+    },
+    "smsNotificationsDescReady": "ናብ {{phone}} — {{dhb}}DHB ነፍሲ ወከፍ ፡ ብዛዕባ {{count}} left",
+    "smsNotificationsLocked": "ምስ {{dhb}} DHB (${{usd}}) ክፉት",
+    "smsUnlockPrice": "{{dhb}}DHB (${{usd}}) ጽሑፍ ይኽፈት ፡ ናይ መጀመርታ ሚዛንካ ድማ ይኸውን ።",
+    "smsNeedDhb": "ናይ ጽሑፍ ኣፍልጦታት ንምኽፋት {{dhb}} DHB የድልየካ ።",
+    "smsBalanceMessages": "ብዛዕባ {{count}} ተወሳኺ መልእኽቲ",
+    "smsTopUp": "ኣብ ላዕሊ {{dhb}} DHB",
+    "smsCodeSent": "ኮድ ተላኢኹ ፡ እዚ ዋጋ {{price}}DHB እዩ ።",
+    "smsCodeLabel": "ኮድ ናብ {{phone}}"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",
@@ -768,7 +791,8 @@
     "attachDescription": "DHB ቶክን ናብ መልእኽትካ ጫፍ ብምልካት",
     "minAmount": "ዝተዓወተ {{amount}} DHB።",
     "attachAmount": "{{amount}} DHB ልካት",
-    "removeTip": "ጫፍ ወግድ"
+    "removeTip": "ጫፍ ወግድ",
+    "toContent": "ትሕዝቶ ጠውቑ"
   },
   "postOptions": {
     "options": "ምርጫታት",
@@ -1278,7 +1302,8 @@
     "evmAddressCopied": "ኣድራሻ EVM ተቐቢሉ",
     "solanaAddressLabel": "ሶላና",
     "solanaAddressHint": "ናይ ሶል ኤንድ SPL ምልክታት ጥራይ",
-    "solanaAddressCopied": "ናይ ሶላና ኣድራሻ ቅዳሕ"
+    "solanaAddressCopied": "ናይ ሶላና ኣድራሻ ቅዳሕ",
+    "evmAddressLabel": "ኢቪኤም"
   },
   "bookmarks": {
     "title": "ዕልባታትካ",
@@ -1838,7 +1863,8 @@
     "otherTokens": "ካልኦት ቶከናት",
     "otherTokensDesc": "ብካርድኻ ኣብ Base ETH ወይ USDC ግዛእ",
     "shareToFeed": "ኣብ መብልዕተይ ክካፈል እየ",
-    "sharePostTemplate": "{{amount}} $ DHB ኣብ DeHub ኣብ ዝርከብ መደቀሲይ ኣክሊልካ ። ምስ ማሕበረሰብ ተዘራረብ ። #ደሆብ #DHB"
+    "sharePostTemplate": "{{amount}} $ DHB ኣብ DeHub ኣብ ዝርከብ መደቀሲይ ኣክሊልካ ። ምስ ማሕበረሰብ ተዘራረብ ። #ደሆብ #DHB",
+    "minDhbPurchase": "ትሑት DHB መግዛእቲ $ 0.50"
   },
   "agents": {
     "title": "AI ኤጀንት",
@@ -2978,7 +3004,13 @@
     "addedToYourUsernames": "ናብ ናይ ተጠቃሚ ስማትካ ይውሰኽ",
     "boughtNameGoesToVault": "@{{current}} ኮይንካ ትቕጽል። @{{handle}} ናብ ናይ ተጠቃሚ ስማትካ ይኣቱ፣ ኣብ ዝደለኻዮ እዋን ናብኡ ክትቕይር ትኽእል።",
     "youAreNow": "ሕጂ @{{handle}} ኢኻ",
-    "boughtToVaultToast": "@{{handle}} ሕጂ ኣብ ናይ ተጠቃሚ ስማትካ ኣሎ"
+    "boughtToVaultToast": "@{{handle}} ሕጂ ኣብ ናይ ተጠቃሚ ስማትካ ኣሎ",
+    "askingPriceUsd": "ዋጋ ምሕታት (USD)",
+    "dollarPriceRange": "$ 1- $ 1,000,000 ኣእቲኻ ፡ ክሳብ ክልተ ደሳማላዊ ቦታታት ድማ ኣቲኻ ።",
+    "fixedDollarPrice": "ዋጋ ዶላር ተረጋጊጹ ይጸንሕ ፣ ናይ ምልክት መጠን ዝዘመነ ።",
+    "priceUpdated": "እቲ ዝተሓደሰ ዋጋ ። ነቲ መጠን ገምግም እሞ እንደገና ግዛ ።",
+    "tokensPaidToSeller": "ብቐጥታ ናብ ሸያጭ ክኸፍል",
+    "priceUsd": "ዋጋ (USD)"
   },
   "stores": {
     "subtitle": "ካብ ማሕበረሰብ DeHub ፍርያት ርኸብ",
@@ -3302,7 +3334,8 @@
     "title": "ህዝባዊ ዝርርብ",
     "mentionTitle": "ኣብ ህዝባዊ ቻት እተጠቕሰ",
     "voiceMessage": "መልእኽቲ ድምጺ",
-    "image": "ስእሊ ልኢኽካ"
+    "image": "ስእሊ ልኢኽካ",
+    "digest": "{{count}} ሓደስቲ መልእኽቲ ካብ {{who}}: {{message}}"
   },
   "liveChat": {
     "attach": "ስእሊ ፡ ጂአይኤፍ ወይ ኢሞጂ ኣክል",
@@ -3462,7 +3495,10 @@
     "youBlockedBody": "ጽሑፎም ኣይርኣኹምንን ኣይትተሓሓዙዎምንን ኢኹም። ንምርኣይ ብሎክ ኣወግድ።",
     "restrictedBody": "እዚ ተጠቃሚ ምስ ሂሳብካ ዝተሓሓዝ ክሳብ ሕጂ ኣይፈቐደን።",
     "requestPendingBody": "ናይ ጻውዒት ተኸታታሊ ኣቕሪብኩም ኣለኹም። ምስ ዝፈቐዱዎ ክትረኽቡዎም ክትኽእሉ ኢኹም።",
-    "followToSeePosts": "ኣብዚ ሂሳብ ተኸታተሉ ንጽሑፎም ንምርኣይ።"
+    "followToSeePosts": "ኣብዚ ሂሳብ ተኸታተሉ ንጽሑፎም ንምርኣይ።",
+    "noMatches": "ኣይተረኽበን \"{{query}}\"",
+    "privateBody": "{{name}} ንተከታተልቱን ዝተኸተሎምን ሓበሬታ ብሕቡእ ንኽገብሮም መሪጹ ኣሎ።",
+    "removeFollowerBody": "{{name}} ካብቶም ተከታተልትኻ ከም ዝተወስድካ ኣይፍለጦን።"
   },
   "reactionInfo": {
     "title": "ግብረ መልሲ",
@@ -3504,7 +3540,8 @@
     "creator": "DeHub ፈጣሪ",
     "play": "ተጻወት",
     "pause": "ዕረፍቲ",
-    "listens_one": "{{count}} ስማዕ"
+    "listens_one": "{{count}} ስማዕ",
+    "listens_other": "{{count}} ይሰምዕ"
   },
   "transfer": {
     "title": "ቶከናት ኣመሓላልፍ",
@@ -3570,7 +3607,8 @@
     "reviewDescriptionPlaceholder": "ብዛዕባ እዚ ጽሑፍ እዚ ገለ ነገር ንገሮ (ምምራጽ)",
     "reviewLiveWarning": "እዚ ርክብ እዚ ህያው ፍሰት እዩ ። ክሳዕ ዚዛዘም ተጸበዩ ፡ ኣብ ክንዳኡስ ፡ ነቲ መዝገብ ኣምጽኡ ።",
     "reviewCancel": "ሰርዝ",
-    "reviewConfirm": "ኣምጽእ"
+    "reviewConfirm": "ኣምጽእ",
+    "statusDownloadingPercent": "ኣብ ምውራድ {{percent}}%"
   },
   "earnings": {
     "filter24h": "24ሰ",
@@ -3837,7 +3875,8 @@
     "approveFailed": "ነዚ ሕቶ እዚ ክቅበሎ ኣይከኣለን ።",
     "declineFailed": "ነዚ ሕቶ እዚ ክነጽጎ ኣይከኣለን ።",
     "updated": "እተሓደሰ ጕጅለ",
-    "updateFailed": "ነዚ ጉጅለ እዚ ክሓድሶ ኣይከኣለን ።"
+    "updateFailed": "ነዚ ጉጅለ እዚ ክሓድሶ ኣይከኣለን ።",
+    "teamMeta": "{{count}}/{{max}} ኣባላት፣ {{tier}}፣ {{amount}} DHB"
   },
   "addToFolder": {
     "title": "ናብ ፋይል ኣቐምጥ",
@@ -4065,7 +4104,8 @@
     "madeForKidsOffDesc": "ነዚ ፅሑፍ ንላልና Kids Mode ይጠቀምዋ ይርአይ፣ ካብ ተለመደ ምግላጽ ይወጽእ።",
     "madeForKidsBlockedByMature": "ሓድሽ ፅሑፍ ብ mature ምልክት ኣልዩ ንላልና ምልጻፍ ኣይከኣልን።",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "ዝርዝር RTMP ርኸብ"
+    "encoderHint": "ዝርዝር RTMP ርኸብ",
+    "markMadeForKids": "ከምዚ ንህጻናት ዝተፈጥረ ምልክት ግበሮ"
   },
   "bounty": {
     "claimed": "ተወሲዱ",
@@ -4308,7 +4348,8 @@
     "topUpSubtitle": "$DHB ብካርድ ግዛ ፡ ብኡብኡ ድማ ብነጻ ጋዝ ተጠቐም",
     "noTxHash": "ናይ ንግዲ ሃሽ ኣይረኸብኩን ።",
     "latestTransactions": "ናይ መወዳእታ ግብረ-ሰናይ",
-    "showAll": "ኩሉ ኣርኢ"
+    "showAll": "ኩሉ ኣርኢ",
+    "sentTo": "{{amount}} {{symbol}} ናብ {{address}} ተላኢኹ ኣሎ"
   },
   "musicSheet": {
     "title": "ደርፊ ፍጠር",
@@ -4508,7 +4549,11 @@
     "videosCount": "{{videos}} ቪድዮታት",
     "viewFeed": "ምግቢኻ ርኣዮ",
     "yourChannel": "መትረብኻ",
-    "yourChannelHint": "ኣድራሻ ቻነልካ ኣጽዲቕካ — ነቲ ናይ ገዛእ ርእስኻ ስራሕ እውን ኣጽዲቕካ ።"
+    "yourChannelHint": "ኣድራሻ ቻነልካ ኣጽዲቕካ — ነቲ ናይ ገዛእ ርእስኻ ስራሕ እውን ኣጽዲቕካ ።",
+    "how1": "ኣትግባእ፣ ሓበሬታ ቻነልካ ኣጣብቕ፣ ከምኡውን እቲ ቪድዮታት ናትካ ምዃኖም ኣረጋግጽ። DeHub ንሕበሬታ ቻነል ብሕባእ ዝወጸ ዝርዝር ቪድዮታት ይንበብ።",
+    "how3": "ንሕና ንውርድን ንፕሮፋይልካ ኣብ ጀርባ ንሕትሞን። እቲ ጽሕፈት ስዓሞ — ምስ ዝውድእ ሓበሬታ ክትረክብ ኢኻ።",
+    "progressRunning": "ኣብ ምግዓዝ — እዚ ኣብ ጀርባ ይሰርሕ፣ እዚ ጽሕፈት ስዓሞ። ምስ ዝውድእ ሓበሬታ ክንህበካ ኢና።",
+    "paste": "ተለዊጥካ"
   },
   "calls": {
     "voiceCall": "DeHub ናይ ድምጺ ጻውዒት",
@@ -4916,7 +4961,8 @@
       "opening": "መዋኛ ይኽፈት…",
       "created": "መዋኛ {{symbol}} ተኸፊቱ ኣሎ",
       "createFailed": "ኣብ ሓይቂ ዘሎ ገንዳ ክፉት ክኸውን ኣይከኣለን።",
-      "feeDhb": "≈ {{amount}} DHB"
+      "feeDhb": "≈ {{amount}} DHB",
+      "swapNote": "ኣታዊኻ {{symbol}} ን DHB ብተመሳሳሊ ግብይቲ ብዘለዎ ክፍሊት ይቕየር። ዝተረፈ ኩሉ ኣብ ኪስኻ ይጸንሕ።"
     },
     "pool": {
       "missingTitle": "ገንዳ ኣይተረኽበን — DeHub DEX",
@@ -4954,7 +5000,9 @@
       "noOrders": "ን {{symbol}} ገና ክፉት ትእዛዝ የለን ። እቲ ቐዳማይ ፡ \"እቲ ቐዳማይ\" እዩ ።",
       "noMyOrders": "ኣብዚ ገንዳ እዚ ክፉት ትእዛዝ የብልካን ።",
       "cancel": "ሰርዝ",
-      "cancelled": "ትእዛዝ ተሰሪዙ"
+      "cancelled": "ትእዛዝ ተሰሪዙ",
+      "bought": "ገይኡ {{amount}} {{symbol}}",
+      "sold": "ሸይጡ {{amount}} {{symbol}}"
     },
     "chart": {
       "bookStarts": "እቲ መጽሓፍ ኣብዚ ይጅምር",
@@ -4963,7 +5011,8 @@
       "candlesStart": "እዚ ምልክት እዚ ምስ እተሸጠ ፡ ሻማታት ይረኣዩ እዮም ።",
       "depthLabel": "ኣዘዝቲ መጽሓፍ ጥልቀት ብ USD ዋጋ",
       "depthHint": "መመርመሪ {{symbol}} · መመርመሪ",
-      "priceHint": "{{symbol}} price · USD · ሆቨር ንምምርማር"
+      "priceHint": "{{symbol}} price · USD · ሆቨር ንምምርማር",
+      "priceLabel": "{{symbol}} ዋጋ ሻማታት ብ USD"
     },
     "connectWallet": "Wallet ርከብ",
     "prepareFailed": "Position ምድላው ኣይከኣለን",
@@ -5576,5 +5625,47 @@
     "appealRef": "መወከሲ {{ref}}",
     "appealSubtitleSubject": "ሓደ ሰብ ነዚ ኣንቢቡ እንደገና ናብ {{subject}} ክርኢ እዩ ።",
     "appealMore": "እቲ ዜድሊ ባህርያት ፦ {{count}}"
+  },
+  "support": {
+    "title": "ደገፍ",
+    "subtitle": "ትኬትካን ኩነታትካን ። ኣይፋልን ፣ ኣይፋልን እዩ ።",
+    "newTicket": "ሓድሽ ትኬት",
+    "newTicketHint": "ሕጂ ንገዛእ ርእስኻ ርአ ፡ እዚ እንታይ ምዃኑ ፡",
+    "backToTickets": "ናብ ትኬት ተመለስ",
+    "openHeading": "ክፉት ({{n}})",
+    "noTickets": "ክሳብ ሕጂ ዝኾነ ናይ ደገፍ ትኬት ኣይረኸብካን ኢኻ ።",
+    "loadFailed": "ትኬትካ ክጭፍልቕ ኣይከኣልኩን ። በጃኻ ደጊምካ ፈትኖ ።",
+    "categoryLabel": "ምድብ",
+    "severityLabel": "ቀዳምነት",
+    "subjectLabel": "ጉዳዩ፦",
+    "subjectPlaceholder": "ሓደ መስመር ነቲ ጸገም የረድእ",
+    "descriptionLabel": "እንታይ ተፈጢሩ?",
+    "descriptionPlaceholder": "እንታይ ከም ዝገበርካ ፡ እንታይ ከም እተጸበኻ ፡ እንታይ ከም እተፈጸመ ፡",
+    "stepsLabel": "ናይ ምስራዕ ስጉምቲ (ናይ ምምራጽ)",
+    "submit": "ትኬት ልኣኽ",
+    "submitting": "ኣብ ምልኣኽ...",
+    "filed": "ትኬት {{ref}} ምስ ጉጅለ እዩ ።",
+    "filedNotEmailed": "ትኬት {{ref}} ተመዝጊቡ ኣሎ ። ነቲ መወከሲ ሓልዎ ።",
+    "alreadyOpen": "እዚ ሕጂ ተኸፊቱ ኣሎ {{ref}}.",
+    "filingFailed": "ነዚ ትኬት እዚ ክህበካ ኣይክእልን እየ ። በጃኻ ደጊምካ ፈትኖ ።",
+    "status": {
+      "in_progress": "ኣብ መስርሕ",
+      "resolved": "ተፈትሐ",
+      "closed": "ተዓጽወ"
+    },
+    "severity": {
+      "urgent": "ህጹጽ"
+    },
+    "category": {
+      "account_access": "ናብ ሕሳብ ምእታው",
+      "wallet_or_transactions": "ቦርሳ ወይ ግብረ-ግብሪ",
+      "posting_or_uploads": "ትለኣኽ ወይ ትለኣኽ",
+      "payments_or_subscriptions": "ክፍሊት ወይ ኣባልነት",
+      "live_streaming": "ብቀጥታ ስርሒት",
+      "content_or_moderation": "ትሕዝቶ ወይ ሚዛናዊነት",
+      "bug": "ቡግ",
+      "feature_request": "ሕቶ ባህሪ",
+      "other": "ካልእ"
+    }
   }
 }

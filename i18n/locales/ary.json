@@ -617,7 +617,8 @@
     "smsBand": {
       "domestic": "المملكة المتحدة",
       "europe": "أوروبا",
-      "global": "معظم البلدان الأخرى"
+      "global": "معظم البلدان الأخرى",
+      "premium": "فأي بلاصة أخرى"
     },
     "smsDepositAction": "إرسال {{dhb}} DHB",
     "smsDepositPaying": "تأكيد في محفظتك...",
@@ -694,7 +695,22 @@
     "chainIdLabel": "معرف السلسلة: {{id}}",
     "exportPkConfirmPhrase": "أنا أفهم",
     "exportPkCopy": "نسخ المفتاح الخاص",
-    "e2eAutomatic": "تلقائي"
+    "e2eAutomatic": "تلقائي",
+    "smsScopeLabel": "شنو باش تصيفط",
+    "smsScopeDesc": "الرسائل كتكلف فلوس، داكشي علاش قللهم باش ما يزعجوكش",
+    "smsScope": {
+      "all": "كلشي لي شعلتو",
+      "tips": "غير النصائح لي كنستقبل",
+      "subscriptions": "غير المشتركين الجدد",
+      "sales": "غير المبيعات ديال المحتوى ديالي",
+      "bounties": "غير المكافآت",
+      "fractions": "غير العروض والبيع ديال الأجزاء",
+      "messages": "غير الرسائل المباشرة",
+      "mentions": "غير الإشارات ليا",
+      "replies": "غير الردود على التعليقات ديالي",
+      "account": "غير الإشعارات على الحساب ديالي"
+    },
+    "smsPricePerMessage": "{{dhb}} درهم (${{usd}})"
   },
   "common": {
     "mute": "سكّت الصوت",
@@ -1289,7 +1305,8 @@
     "evmAddressCopied": "تم نسخ عنوان EVM",
     "solanaAddressLabel": "سولانا",
     "solanaAddressHint": "رموز SOL و SPL فقط",
-    "solanaAddressCopied": "تم نسخ عنوان سولانا"
+    "solanaAddressCopied": "تم نسخ عنوان سولانا",
+    "evmAddressLabel": "الإدارة الفاعلة للقاحات"
   },
   "bookmarks": {
     "title": "المحفوظات ديالك",
@@ -1861,7 +1878,8 @@
     "otherTokens": "عملات أخرى",
     "otherTokensDesc": "شري ETH ولا USDC على Base بالكارط ديالك",
     "shareToFeed": "المشاركة على خلاصتي",
-    "sharePostTemplate": "لقد أضفت للتو {{amount}} $ إلى مكدسي على. البناء مع المجتمع. #DeHub #DHB"
+    "sharePostTemplate": "لقد أضفت للتو {{amount}} $ إلى مكدسي على. البناء مع المجتمع. #DeHub #DHB",
+    "minDhbPurchase": "الحد الأدنى للشراء هو 0.50 دولار"
   },
   "agents": {
     "title": "وكلاء AI",
@@ -3035,7 +3053,13 @@
     "addedToYourUsernames": "كيتزاد لأسماء المستخدمين ديالك",
     "boughtNameGoesToVault": "كتبقى @{{current}}. @{{handle}} كيتزاد لأسماء المستخدمين ديالك، وتقدر تبدّل ليه فوقاش ما بغيتي.",
     "youAreNow": "دابا نتا @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} ولّى من أسماء المستخدمين ديالك"
+    "boughtToVaultToast": "@{{handle}} ولّى من أسماء المستخدمين ديالك",
+    "askingPriceUsd": "الثمن المطلوب (بالدولار)",
+    "dollarPriceRange": "دخل 1$–1,000,000$، مع ما يصل إلى رقمين عشريين.",
+    "fixedDollarPrice": "ثمن الدولار كيبقى ثابت؛ كمية التوكن كتغير.",
+    "priceUpdated": "الثمن تحدد. راجع الكمية وضغط على \"شراء\" مرة أخرى.",
+    "tokensPaidToSeller": "الدفع مباشرة للبائع",
+    "priceUsd": "الثمن (بالدولار)"
   },
   "stores": {
     "subtitle": "كتشف منتوجات من مجموعة DeHub",
@@ -3381,7 +3405,8 @@
     "someone": "شي واحد",
     "oneTyping": "{{name}} كيكتب…",
     "fewTyping": "{{names}} كيكتبو…",
-    "manyTyping": "{{count}} ناس كيكتبو…"
+    "manyTyping": "{{count}} ناس كيكتبو…",
+    "attachGif": "GIFصورة بتنسيق GIF"
   },
   "promptFeed": {
     "headline": "شنو بغيتي تشوف؟",
@@ -3541,7 +3566,8 @@
       "sad": "حزين",
       "cry": "البكاء",
       "poo": "براز",
-      "dislike": "عدم الإعجاب"
+      "dislike": "عدم الإعجاب",
+      "lol": "هههه"
     },
     "mediaSource": "اختيار مصدر الوسائط",
     "photoLibrary": "مكتبة الصور",
@@ -4121,7 +4147,18 @@
     "whatsHappening": "شنو كاين؟",
     "quotaShortfall": "هاد البوست كيسوا {{cost}} DHB وعندك {{held}}.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "حصل على RTMP details"
+    "encoderHint": "حصل على RTMP details",
+    "madeForKids": "صنع للأطفال",
+    "madeForKidsHint": "يظهر في وضع الأطفال",
+    "madeForKidsConfirmTitle": "نشر هذا للأطفال؟",
+    "madeForKidsConfirmAudience": "سيتم عرض هذا المنشور للأطفال الذين يستخدمون وضع الأطفال. لا شيء آخر على DeHub يصل إليهم.",
+    "madeForKidsConfirmReach": "كما أنه يخرج من خلاصات الأخبار العادية - لا يزال الناس يجدونه على ملفك الشخصي، وفي البحث ومن خلال رابط تشاركه.",
+    "madeForKidsConfirmComments": "وضع الأطفال فقط يمكنه التعليق عليه. لا يزال بإمكانك الرد عليهم بنفسك.",
+    "madeForKidsConfirmYes": "نعم، إنه للأطفال",
+    "markMadeForKids": "وضع علامة \"صنع للأطفال\"",
+    "madeForKidsOnDesc": "يظهر للأطفال في وضع الأطفال، ويخرج من خلاصات الأخبار العادية.",
+    "madeForKidsOffDesc": "يعرض هذا المنشور للأطفال الذين يستخدمون وضع الأطفال، ويخرجه من خلاصات الأخبار العادية.",
+    "madeForKidsBlockedByMature": "لا يمكن وضع علامة على منشور ناضج ونشره أيضًا للأطفال."
   },
   "bounty": {
     "claimed": "تسلم",
@@ -4540,7 +4577,36 @@
     "videosCount": "{{videos}} فيديوهات",
     "viewFeed": "عرض خلاصتك",
     "yourChannel": "قناتك",
-    "yourChannelHint": "الصق عنوان قناتك — المقبض يعمل من تلقاء نفسه أيضًا."
+    "yourChannelHint": "الصق عنوان قناتك — المقبض يعمل من تلقاء نفسه أيضًا.",
+    "getPriceOne": "احصل على سعر فيديو {{n}}",
+    "how1": "قم بتسجيل الدخول، والصق عنوان قناتك، وتأكد من أن مقاطع الفيديو لك. يقرأ DeHub قائمة التحميلات العامة للقناة.",
+    "how2": "اختر ما تريد جلبه وادفع مرة واحدة للمجموعة بأكملها. أي شيء تم استيراده بالفعل يتم تخطيه ولا يتم شحنه مرتين أبدًا.",
+    "how3": "نقوم بتنزيلها ونشرها على ملفك الشخصي في الخلفية. أغلق علامة التبويب - ستتلقى إشعارًا عند الانتهاء.",
+    "howNote": "تنشر مقاطع الفيديو كمنشورات عادية بدون سك، حيث لا يمكن لمجموعة أن تتوقف لتطلب من محفظتك التوقيع على كل منها.",
+    "howTitle": "كيف يعمل",
+    "importedBadge": "مستورد",
+    "justOne": "فيديو واحد فقط؟",
+    "noUploadsBody": "لا توجد مقاطع فيديو متاحة للهجرة في هذه القناة.",
+    "noUploadsTitle": "لم يتم العثور على تحميلات",
+    "ownership": "هذه قناتي، أو لدي إذن صاحب الحقوق بنشر مقاطع الفيديو الخاصة به على DeHub.",
+    "paste": "لصق",
+    "pay": "دفع",
+    "pickCount": "تم تحديد {{selected}} من أصل {{total}}. أي شيء موجود بالفعل على ملفك الشخصي يتم تخطيه ولا يتم شحنه مرتين أبدًا.",
+    "pickTitle": "اختر ما تريد إحضاره",
+    "progressDone": "تم استيراد {{imported}}.",
+    "progressDoneWithFailures": "تم استيراد {{imported}}، تعذر استيراد {{failed}}.",
+    "progressRunning": "الترحيل — يعمل هذا في الخلفية، آمن لإغلاق علامة التبويب هذه. سنبلغك عند الانتهاء.",
+    "progressTitle": "تقدم الهجرة",
+    "reading": "جارٍ قراءة قناتك...",
+    "retryFailed": "فشل إعادة المحاولة {{n}}",
+    "selectAll": "تحديد الكل",
+    "shortfallLabel": "هذه الهجرة",
+    "showMyVideos": "عرض مقاطع الفيديو الخاصة بي",
+    "signInToShow": "تسجيل الدخول لعرض مقاطع الفيديو الخاصة بي",
+    "startMigration": "بدء الترحيل",
+    "statusFailed": "فشل",
+    "statusImported": "مستورد",
+    "statusImporting": "الاستيراد"
   },
   "calls": {
     "voiceCall": "مكالمة صوتية من DeHub",
@@ -5612,5 +5678,53 @@
     "appealRef": "المرجع {{ref}}",
     "appealSubtitleSubject": "سيقرأ الشخص هذا وينظر مرة أخرى في {{subject}}.",
     "appealMore": "لا تزال الأحرف مطلوبة: {{count}}"
+  },
+  "support": {
+    "title": "الدعم",
+    "subtitle": "التذاكر ديالك والحالة ديالهم. لا ذكاء اصطناعي، لا رسوم.",
+    "newTicket": "تذكرة جديدة",
+    "newTicketHint": "قول لينا شنو وقع وشنو كنتي متوقع.",
+    "backToTickets": "رجوع للتذاكر",
+    "openHeading": "مفتوحة ({{n}})",
+    "closedHeading": "مغلقة ({{n}})",
+    "noTickets": "مازال ما قدمتي حتى تذكرة دعم.",
+    "loadFailed": "تعذر تحميل تذاكرك. يُرجى إعادة المحاولة.",
+    "categoryLabel": "المعيار الأساسي",
+    "severityLabel": "الأولوية",
+    "subjectLabel": "الموضوع",
+    "subjectPlaceholder": "سطر واحد يصف المشكلة",
+    "descriptionLabel": "ماذا حدث",
+    "descriptionPlaceholder": "ماذا فعلت وماذا توقعت وماذا حدث بدلاً من ذلك.",
+    "stepsLabel": "خطوات إعادة الإنتاج (اختياري)",
+    "submit": "إرسال تذكرة",
+    "submitting": "جاري الإرسال ...",
+    "filed": "التذكرة {{ref}} مع الفريق.",
+    "filedNotEmailed": "التذكرة {{ref}} مسجلة. احتفظ بالرقم المرجعي.",
+    "alreadyOpen": "لديك بالفعل هذا مفتوح باسم {{ref}}.",
+    "filingFailed": "تعذر تقديم هذه التذكرة. يُرجى إعادة المحاولة.",
+    "status": {
+      "open": "إجابة مفتوحة",
+      "in_progress": "قيد التنفيذ",
+      "resolved": "تم الحل",
+      "closed": "مغلق"
+    },
+    "severity": {
+      "low": "منخفضة",
+      "normal": "عادى",
+      "high": "مرتفع",
+      "urgent": "عاجل"
+    },
+    "category": {
+      "account_access": "الوصول إلى الحساب",
+      "wallet_or_transactions": "المحفظة أو المعاملات",
+      "posting_or_uploads": "النشر أو التحميلات",
+      "payments_or_subscriptions": "المدفوعات أو الاشتراكات",
+      "live_streaming": "بث مباشر",
+      "content_or_moderation": "المحتوى أو الإشراف",
+      "bug": "الشوائب",
+      "feature_request": "طلب ميزة",
+      "other": "أخرى"
+    },
+    "filedOn": "تم الإيداع {{date}}"
   }
 }

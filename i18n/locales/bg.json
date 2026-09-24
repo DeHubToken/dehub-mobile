@@ -695,7 +695,21 @@
     "chainIdLabel": "Идентификатор на веригата: {{id}}",
     "exportPkConfirmPhrase": "РАЗБИРАМ",
     "exportPkCopy": "Копирай частен ключ",
-    "e2eAutomatic": "Автоматично"
+    "e2eAutomatic": "Автоматично",
+    "smsScopeLabel": "Какво да изпратя като текст",
+    "smsScopeDesc": "Текстовете струват пари, така че ги ограничете до това, което си заслужава прекъсването",
+    "smsScope": {
+      "all": "Всичко, което съм включил",
+      "tips": "Само получени съвети",
+      "subscriptions": "Само нови абонати",
+      "sales": "Само продажби на моето съдържание",
+      "bounties": "Само награди",
+      "fractions": "Само оферти и продажби на части",
+      "messages": "Само директни съобщения",
+      "mentions": "Само споменавания на мен",
+      "replies": "Само отговори на моите коментари",
+      "account": "Само известия за моя акаунт"
+    }
   },
   "common": {
     "mute": "Без звук",
@@ -1290,7 +1304,8 @@
     "evmAddressCopied": "EVM адресът е копиран",
     "solanaAddressLabel": "Солана",
     "solanaAddressHint": "Само жетони SOL и SPL",
-    "solanaAddressCopied": "Адресът на Солана е копиран"
+    "solanaAddressCopied": "Адресът на Солана е копиран",
+    "evmAddressLabel": "ЕVМ"
   },
   "bookmarks": {
     "title": "Отметки",
@@ -1862,7 +1877,8 @@
     "otherTokens": "Други токени",
     "otherTokensDesc": "Купете ETH или USDC в Base с вашата карта",
     "shareToFeed": "Споделяне в емисията ми",
-    "sharePostTemplate": "Току - що добавих {{amount}} $DHB към моя стак в DeHub. Сътрудничество с общността. #DeHub #DHB"
+    "sharePostTemplate": "Току - що добавих {{amount}} $DHB към моя стак в DeHub. Сътрудничество с общността. #DeHub #DHB",
+    "minDhbPurchase": "Минималната покупка на DHB е $0.50"
   },
   "agents": {
     "title": "AI агенти",
@@ -3010,7 +3026,13 @@
     "addedToYourUsernames": "Добавя се към потребителските ви имена",
     "boughtNameGoesToVault": "Оставате @{{current}}. @{{handle}} отива в потребителските ви имена и можете да превключите към него когато пожелаете.",
     "youAreNow": "Вече сте @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} вече е в потребителските ви имена"
+    "boughtToVaultToast": "@{{handle}} вече е в потребителските ви имена",
+    "askingPriceUsd": "Продаважна цена (USD)",
+    "dollarPriceRange": "Въведете $1–$1,000,000, с до две десетични знака.",
+    "fixedDollarPrice": "Цената в долари остава фиксирана; количеството токени се актуализира.",
+    "priceUpdated": "Цената е актуализирана. Прегледайте количеството и докоснете „Купи“ отново.",
+    "tokensPaidToSeller": "Платено директно на продавача",
+    "priceUsd": "Цена (USD)"
   },
   "stores": {
     "subtitle": "Открийте продукти от общността на DeHub",
@@ -3515,7 +3537,9 @@
       "hundred": "100",
       "sad": "Тъжно",
       "cry": "Плач",
-      "dislike": "Нехаресване"
+      "dislike": "Нехаресване",
+      "lol": "Забавно....",
+      "poo": "Пръдня"
     },
     "mediaSource": "Избор на медиен източник",
     "photoLibrary": "Библиотека със снимки",
@@ -5626,5 +5650,52 @@
     "appealRef": "Препоръка {{ref}}",
     "appealSubtitleSubject": "Човек ще прочете това и ще погледне отново на {{subject}}.",
     "appealMore": "Все още са необходими знаци: {{count}}"
+  },
+  "support": {
+    "title": "Поддръжка",
+    "subtitle": "Вашите билети и техния статус. Без AI, без такса.",
+    "newTicket": "Нов билет",
+    "newTicketHint": "Разкажете ни какво се е случило и какво сте очаквали вместо това.",
+    "backToTickets": "Обратно към билетите",
+    "openHeading": "Отворени ({{n}})",
+    "closedHeading": "Затворени ({{n}})",
+    "noTickets": "Все още не сте подали никакви билети за поддръжка.",
+    "loadFailed": "Не успяхме да заредим вашите билети. Моля, опитайте отново.",
+    "categoryLabel": "Категория",
+    "severityLabel": "Приоритет",
+    "subjectLabel": "Тема",
+    "subjectPlaceholder": "Един ред, описващ проблема",
+    "descriptionLabel": "Какво е станало?",
+    "descriptionPlaceholder": "Какво сте направили, какво сте очаквали и какво се е случило вместо това.",
+    "stepsLabel": "Стъпки за възпроизвеждане (незадължително)",
+    "submit": "Изпращане на заявка за обслужване",
+    "submitting": "Изпращане...",
+    "filed": "Билетът {{ref}} е с екипа.",
+    "filedNotEmailed": "Билетът {{ref}} е записан. Запазете референцията.",
+    "alreadyOpen": "Вече имате това отворено като {{ref}}.",
+    "filingFailed": "Този тикет не може да бъде подаден. Моля, опитайте отново.",
+    "status": {
+      "open": "Отворен",
+      "in_progress": "В процес",
+      "resolved": "Разрешени",
+      "closed": "Затворен"
+    },
+    "severity": {
+      "low": "Ниско",
+      "normal": "Нормално",
+      "high": "Високо",
+      "urgent": "Спешно"
+    },
+    "category": {
+      "account_access": "Достъп до профила",
+      "wallet_or_transactions": "Портфейл или транзакции",
+      "posting_or_uploads": "Публикуване или качване",
+      "payments_or_subscriptions": "Плащания или абонаменти",
+      "live_streaming": "Стрийминг на живо",
+      "content_or_moderation": "Съдържание или модериране",
+      "feature_request": "Заявка за функция",
+      "other": "Друго"
+    },
+    "filedOn": "Подадено {{date}}"
   }
 }

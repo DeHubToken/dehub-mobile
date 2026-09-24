@@ -695,7 +695,22 @@
     "chainIdLabel": "Ketjun tunnus: {{id}}",
     "exportPkConfirmPhrase": "YMMÄRRÄN",
     "exportPkCopy": "Kopioi yksityinen avain",
-    "e2eAutomatic": "Automaattinen"
+    "e2eAutomatic": "Automaattinen",
+    "smsScopeLabel": "Mitä tekstiviestit",
+    "smsScopeDesc": "Tekstiviestit maksavat, joten rajaa ne siihen, mikä on keskeytyksen arvoista",
+    "smsScope": {
+      "all": "Kaikki, mitä minulla on päällä",
+      "tips": "Vain saamani vinkit",
+      "subscriptions": "Vain uudet tilaajat",
+      "sales": "Vain sisältöni myynnit",
+      "bounties": "Vain palkkiot",
+      "fractions": "Vain murto-osatarjoukset ja myynnit",
+      "messages": "Vain suorat viestit",
+      "mentions": "Vain maininnat minusta",
+      "replies": "Vain vastaukset kommentteihini",
+      "account": "Vain ilmoitukset tilistäni"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Mykistä",
@@ -1863,7 +1878,8 @@
     "otherTokens": "Muut tokenit",
     "otherTokensDesc": "Osta ETH tai USDC Basessa kortillasi",
     "shareToFeed": "Jaa syötteeseeni",
-    "sharePostTemplate": "Lisäsin juuri {{amount}} $DHB: n pinooni DeHubissa. Rakennamme yhdessä yhteisön kanssa. #DeHub #DHB"
+    "sharePostTemplate": "Lisäsin juuri {{amount}} $DHB: n pinooni DeHubissa. Rakennamme yhdessä yhteisön kanssa. #DeHub #DHB",
+    "minDhbPurchase": "Minimi DHB-osto on 0,50 $"
   },
   "agents": {
     "title": "Tekoälyagentit",
@@ -3007,7 +3023,13 @@
     "addedToYourUsernames": "Lisätään käyttäjänimiisi",
     "boughtNameGoesToVault": "Pysyt nimellä @{{current}}. @{{handle}} lisätään käyttäjänimiisi, ja voit vaihtaa siihen milloin haluat.",
     "youAreNow": "Olet nyt @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} on nyt käyttäjänimissäsi"
+    "boughtToVaultToast": "@{{handle}} on nyt käyttäjänimissäsi",
+    "askingPriceUsd": "Pyydetty hinta (USD)",
+    "dollarPriceRange": "Syötä 1–1 000 000 $, enintään kahdella desimaalilla.",
+    "fixedDollarPrice": "Dollarihinta pysyy kiinteänä; token-määrä päivittyy.",
+    "priceUpdated": "Hinta päivitetty. Tarkista määrä ja napauta Osta uudelleen.",
+    "tokensPaidToSeller": "Maksettu suoraan myyjälle",
+    "priceUsd": "Hinta (USD)"
   },
   "stores": {
     "subtitle": "Löydä tuotteita DeHub-yhteisöltä",
@@ -5628,5 +5650,53 @@
     "appealRef": "Reference {{ref}}",
     "appealSubtitleSubject": "Henkilö lukee tämän ja katsoo uudelleen osoitteessa {{subject}}.",
     "appealMore": "Merkkejä tarvitaan vielä: {{count}}"
+  },
+  "support": {
+    "title": "Tuki",
+    "subtitle": "Lippusi ja niiden tila. Ei tekoälyä, ei maksua.",
+    "newTicket": "Uusi lippu",
+    "newTicketHint": "Kerro meille, mitä tapahtui ja mitä odotit sen sijaan.",
+    "backToTickets": "Takaisin lippuihin",
+    "openHeading": "Avoimet ({{n}})",
+    "closedHeading": "Suljetut ({{n}})",
+    "noTickets": "Et ole vielä jättänyt tukilippuja.",
+    "loadFailed": "Lippujasi ei voitu ladata. Yritä uudelleen.",
+    "categoryLabel": "Kategoria",
+    "severityLabel": "Prioriteetti",
+    "subjectLabel": "Aihe",
+    "subjectPlaceholder": "Yksi ongelmaa kuvaava rivi",
+    "descriptionLabel": "Mitä tapahtui ?",
+    "descriptionPlaceholder": "Mitä teit, mitä odotit ja mitä sen sijaan tapahtui.",
+    "stepsLabel": "Lisääntymisvaiheet (valinnainen)",
+    "submit": "Lähetä pyyntö",
+    "submitting": "Lähetetään...",
+    "filed": "Lippu {{ref}} on tiimin kanssa.",
+    "filedNotEmailed": "Tiketti {{ref}} tallennettu. Säilytä viite.",
+    "alreadyOpen": "Tämä on jo avoinna käyttäjänä {{ref}}.",
+    "filingFailed": "Tiketin arkistointi epäonnistui. Yritä uudelleen.",
+    "status": {
+      "open": "Auki",
+      "in_progress": "Käynnissä",
+      "resolved": "Ratkaistu",
+      "closed": "Suljettu"
+    },
+    "severity": {
+      "low": "Matala",
+      "normal": "Normaali",
+      "high": "Korkea",
+      "urgent": "Kiireellinen"
+    },
+    "category": {
+      "account_access": "Pääsy tilille",
+      "wallet_or_transactions": "Lompakko tai maksutapahtumat",
+      "posting_or_uploads": "Julkaiseminen tai lataaminen",
+      "payments_or_subscriptions": "Maksut tai tilaukset",
+      "live_streaming": "Suoratoisto",
+      "content_or_moderation": "Sisältö tai moderointi",
+      "bug": "Vika",
+      "feature_request": "Kehitysehdotus",
+      "other": "Muu"
+    },
+    "filedOn": "Jätetty {{date}}"
   }
 }

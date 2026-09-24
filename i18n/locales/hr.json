@@ -695,7 +695,22 @@
     "chainIdLabel": "Lanac ID: {{id}}",
     "exportPkConfirmPhrase": "RAZUMIJEM",
     "exportPkCopy": "Kopiraj privatni ključ",
-    "e2eAutomatic": "Automatski"
+    "e2eAutomatic": "Automatski",
+    "smsScopeLabel": "Što poslati",
+    "smsScopeDesc": "Tekstualne poruke koštaju, stoga ih svedite na ono što vrijedi prekida",
+    "smsScope": {
+      "all": "Sve što sam uključio",
+      "tips": "Samo primljene napojnice",
+      "subscriptions": "Samo novi pretplatnici",
+      "sales": "Samo prodaje mog sadržaja",
+      "bounties": "Samo nagrade",
+      "fractions": "Samo ponude i prodaje frakcija",
+      "messages": "Samo izravne poruke",
+      "mentions": "Samo spominjanja mene",
+      "replies": "Samo odgovori na moje komentare",
+      "account": "Samo obavijesti o mom računu"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Isključi zvuk",
@@ -1863,7 +1878,8 @@
     "otherTokens": "Ostali tokeni",
     "otherTokensDesc": "Kupite ETH ili USDC na Baseu svojom karticom",
     "shareToFeed": "Podijeli na moj feed",
-    "sharePostTemplate": "Upravo sam dodao {{amount}} $DHB na svoj stog na DeHubu. Gradimo zajedno sa zajednicom. #DeHub #DHB"
+    "sharePostTemplate": "Upravo sam dodao {{amount}} $DHB na svoj stog na DeHubu. Gradimo zajedno sa zajednicom. #DeHub #DHB",
+    "minDhbPurchase": "Minimalna kupnja DHB-a je 0,50 USD"
   },
   "agents": {
     "title": "AI Agenti",
@@ -3007,7 +3023,13 @@
     "addedToYourUsernames": "Dodaje se vašim korisničkim imenima",
     "boughtNameGoesToVault": "Ostajete @{{current}}. @{{handle}} ide među vaša korisnička imena i možete se prebaciti na njega kad god želite.",
     "youAreNow": "Sada ste @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} je sada među vašim korisničkim imenima"
+    "boughtToVaultToast": "@{{handle}} je sada među vašim korisničkim imenima",
+    "askingPriceUsd": "Tražena cijena (USD)",
+    "dollarPriceRange": "Unesite 1–1.000.000 USD, s najviše dva decimalna mjesta.",
+    "fixedDollarPrice": "Cijena u dolarima ostaje fiksna; iznos tokena se ažurira.",
+    "priceUpdated": "Cijena je ažurirana. Pregledajte iznos i dodirnite Kupite ponovno.",
+    "tokensPaidToSeller": "Plaćeno izravno prodavatelju",
+    "priceUsd": "Cijena (USD)"
   },
   "stores": {
     "subtitle": "Otkrij proizvode zajednice DeHub",
@@ -5629,5 +5651,52 @@
     "appealRef": "Referenca {{ref}}",
     "appealSubtitleSubject": "Osoba će ovo pročitati i ponovno pogledati {{subject}}.",
     "appealMore": "Znakovi koji su još potrebni: {{count}}"
+  },
+  "support": {
+    "title": "Podrška",
+    "subtitle": "Vaše karte i njihov status. Bez AI, bez naknade.",
+    "newTicket": "Nova karta",
+    "newTicketHint": "Recite nam što se dogodilo i što ste očekivali umjesto toga.",
+    "backToTickets": "Natrag na karte",
+    "openHeading": "Otvorene ({{n}})",
+    "closedHeading": "Zatvorene ({{n}})",
+    "noTickets": "Još niste podnijeli nikakve karte za podršku.",
+    "loadFailed": "Nije moguće učitati vaše karte. Pokušajte ponovno.",
+    "categoryLabel": "Kategorija",
+    "severityLabel": "Prioritet",
+    "subjectLabel": "Predmet",
+    "subjectPlaceholder": "Jedan redak koji opisuje problem",
+    "descriptionLabel": "Što se dogodilo?",
+    "descriptionPlaceholder": "Što ste učinili, što ste očekivali i što se umjesto toga dogodilo.",
+    "stepsLabel": "Koraci za reprodukciju (opcionalno)",
+    "submit": "Pošaljite prijavu",
+    "submitting": "Šalje se...",
+    "filed": "Ulaznica {{ref}} je s timom.",
+    "filedNotEmailed": "Tiket {{ref}} je snimljen. Zadržite referencu.",
+    "alreadyOpen": "Ovo je već otvoreno kao {{ref}}.",
+    "filingFailed": "Nije bilo moguće podnijeti taj zahtjev. Pokušajte ponovno.",
+    "status": {
+      "open": "Otvorena",
+      "in_progress": "U tijeku",
+      "resolved": "Rješeno",
+      "closed": "Zatvoreno"
+    },
+    "severity": {
+      "low": "Nisko",
+      "normal": "normalna",
+      "high": "visoka",
+      "urgent": "Žurno"
+    },
+    "category": {
+      "account_access": "Stranica o Pristupu naloga",
+      "wallet_or_transactions": "Novčanik ili transakcije",
+      "posting_or_uploads": "Objavljivanje ili prijenosi",
+      "payments_or_subscriptions": "Plaćanja ili pretplate",
+      "live_streaming": "PRIJENOS UŽIVO",
+      "content_or_moderation": "Sadržaj ili moderiranje",
+      "bug": "Greška",
+      "feature_request": "Zahtjev za značajku",
+      "other": "Drugo"
+    }
   }
 }

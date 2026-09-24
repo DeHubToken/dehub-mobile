@@ -694,7 +694,23 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "NAELEWA",
     "exportPkCopy": "Nakili ufunguo wa faragha",
-    "e2eAutomatic": "Kiotomatiki"
+    "e2eAutomatic": "Kiotomatiki",
+    "smsScopeLabel": "Nini cha kutuma SMS",
+    "smsScopeDesc": "SMS hugharimu pesa, kwa hivyo zibane kwa kile kinachostahili kukatiza",
+    "smsScope": {
+      "all": "Kila kitu nilichoziwasha",
+      "tips": "Vidokezo tu ninavyopokea",
+      "subscriptions": "Wachangiaji wapya tu",
+      "sales": "Mauzo tu ya maudhui yangu",
+      "bounties": "Zawadi tu",
+      "fractions": "Ofa na mauzo madogo tu",
+      "messages": "Ujumbe wa moja kwa moja tu",
+      "mentions": "Kutajwa kwangu tu",
+      "replies": "Majibu kwa maoni yangu tu",
+      "account": "Arifa tu kuhusu akaunti yangu"
+    },
+    "smsNotificationsDescReady": "Zilizotumwa kwa {{phone}} — {{dhb}} DHB kila moja, zimebaki kama {{count}}",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
   },
   "common": {
     "mute": "Nyamazisha",
@@ -1863,7 +1879,8 @@
     "otherTokens": "Tokeni nyingine",
     "otherTokensDesc": "Nunua ETH au USDC kwenye Base kwa kadi yako",
     "shareToFeed": "Shiriki kwenye mpasho wangu",
-    "sharePostTemplate": "Nimeweka {{amount}} $DHB kwenye stakabadhi yangu kwenye DeHub. Kujenga na jumuiya. #DeHub #DHB"
+    "sharePostTemplate": "Nimeweka {{amount}} $DHB kwenye stakabadhi yangu kwenye DeHub. Kujenga na jumuiya. #DeHub #DHB",
+    "minDhbPurchase": "Kununua chini kwa DHB ni $0.50"
   },
   "agents": {
     "title": "Mawakala wa AI",
@@ -3007,7 +3024,13 @@
     "addedToYourUsernames": "Linaongezwa kwenye majina yako ya mtumiaji",
     "boughtNameGoesToVault": "Unabaki kuwa @{{current}}. @{{handle}} linaingia kwenye majina yako ya mtumiaji, na unaweza kubadilisha kwenda kwake wakati wowote.",
     "youAreNow": "Sasa wewe ni @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} sasa liko kwenye majina yako ya mtumiaji"
+    "boughtToVaultToast": "@{{handle}} sasa liko kwenye majina yako ya mtumiaji",
+    "askingPriceUsd": "Bei ya kuomba (USD)",
+    "dollarPriceRange": "Weka $1–$1,000,000, na hadi sehemu mbili za desimali.",
+    "fixedDollarPrice": "Bei ya dola inakaa sawa; kiasi cha tokeni kinasasishwa.",
+    "priceUpdated": "Bei imesasishwa. Kagua kiasi na uguse Nunua tena.",
+    "tokensPaidToSeller": "Inalipwa moja kwa moja kwa muuzaji",
+    "priceUsd": "Bei (USD)"
   },
   "stores": {
     "subtitle": "Gundua bidhaa kutoka kwa jumuiya ya DeHub",
@@ -5628,5 +5651,53 @@
     "appealRef": "Marejeleo {{ref}}",
     "appealSubtitleSubject": "Mtu atasoma hii na kuangalia tena {{subject}}.",
     "appealMore": "Herufi bado zinahitajika: {{count}}"
+  },
+  "support": {
+    "title": "Usaidizi",
+    "subtitle": "Tiketi zako na hali yake. Hakuna AI, hakuna ada.",
+    "newTicket": "Tiketi mpya",
+    "newTicketHint": "Tuambie kilichotokea na ulivyotarajia badala yake.",
+    "backToTickets": "Rudi kwenye tiketi",
+    "openHeading": "Zimefunguliwa ({{n}})",
+    "closedHeading": "Zimefungwa ({{n}})",
+    "noTickets": "Hujawahi kuwasilisha tiketi zozote za usaidizi bado.",
+    "loadFailed": "Imeshindwa kupakia tiketi zako. Tafadhali jaribu tena.",
+    "categoryLabel": "Kategoria",
+    "severityLabel": "Kipaumbele",
+    "subjectLabel": "Mada",
+    "subjectPlaceholder": "Mstari mmoja unaoelezea tatizo",
+    "descriptionLabel": "Kile kilichotokea",
+    "descriptionPlaceholder": "Kile ulichofanya, kile ulichotarajia, na kile kilichotokea badala yake.",
+    "stepsLabel": "Hatua za kuzaliana (hiari)",
+    "submit": "Tuma tiketi",
+    "submitting": "Inatuma...",
+    "filed": "Ticket {{ref}} iko pamoja na timu.",
+    "filedNotEmailed": "Tiketi {{ref}} imerekodiwa. Dumisha udhamini.",
+    "alreadyOpen": "Tayari umefungua hii kama {{ref}}.",
+    "filingFailed": "Haikuweza kuwasilisha tiketi hiyo. Tafadhali jaribu tena.",
+    "status": {
+      "open": "Fungua",
+      "in_progress": "Inaendelea",
+      "resolved": "Imetatuliwa",
+      "closed": "Imefungwa"
+    },
+    "severity": {
+      "low": "Ya chini",
+      "normal": "Kawaida",
+      "high": "Ya juu",
+      "urgent": "Haraka"
+    },
+    "category": {
+      "account_access": "Ufikiaji wa akaunti",
+      "wallet_or_transactions": "Wallet au miamala",
+      "posting_or_uploads": "Inachapisha au kupakia",
+      "payments_or_subscriptions": "Malipo au usajili",
+      "live_streaming": "Utiririshaji wa moja kwa moja",
+      "content_or_moderation": "Maudhui au kiasi",
+      "bug": "Kunguni",
+      "feature_request": "Ombi la kipengele",
+      "other": "Nyingine"
+    },
+    "filedOn": "Iliyowekwa {{date}}"
   }
 }

@@ -793,7 +793,8 @@
     "attachDescription": "დაამატეთ DHB ტოკენები tip-ად თქვენი შეტყობინებისთვის",
     "minAmount": "მინ {{amount}} DHB.",
     "attachAmount": "დაამატეთ {{amount}} DHB",
-    "removeTip": "Tip-ის ამოშლა"
+    "removeTip": "Tip-ის ამოშლა",
+    "toContent": "რჩევის შინაარსი"
   },
   "postOptions": {
     "options": "პარამეტრები",
@@ -1893,7 +1894,8 @@
     "otherTokens": "სხვა ტოკენები",
     "otherTokensDesc": "იყიდეთ ETH ან USDC Base-ზე თქვენი ბარათით",
     "shareToFeed": "Გაუზიარეთ ჩემს არხებს",
-    "sharePostTemplate": "{{amount}} $DHB დაემატა ჩემს დასტას DeHub-ზე. Შეიმუშავეთ გაერთიანებასთან ერთად. #DeHub #DHB"
+    "sharePostTemplate": "{{amount}} $DHB დაემატა ჩემს დასტას DeHub-ზე. Შეიმუშავეთ გაერთიანებასთან ერთად. #DeHub #DHB",
+    "minDhbPurchase": "DHB-ის მინიმალური შესყიდვა არის $0.50"
   },
   "agents": {
     "title": "AI აგენტი",
@@ -2556,7 +2558,37 @@
     "lockedEarlyFee": "დაბლოკირებული {{date}} -მდე. ახლა გამოტანა აბრუნებს 88% — 12% საკომისიო, დაახლოებით {{fee}} DHB. კიდევ ერთხელ დააჭირეთ მისაღებად.",
     "unstakeReverted": "გამოტანა დაბრუნდა ჯაჭვში.",
     "unstakeSent": "გამოტანილი {{amount}} DHB! TX: {{hash}}…",
-    "unstakeFailed": "გამოტანა ვერ მოხერხდა."
+    "unstakeFailed": "გამოტანა ვერ მოხერხდა.",
+    "walletBalance": "საფულის ბალანსი",
+    "dhbOnBase": "DHB Base-ზე",
+    "amountUnstaking": "{{amount}} გატანა",
+    "pendingRewards": "მოსაცდელი ჯილდოები",
+    "claimOnWeb": "მოითხოვე ვებ აპლიკაციაში",
+    "stakeOnBaseDesc": "შეიტანეთ DHB Base-ზე პროტოკოლის ჯილდოების მისაღებად.",
+    "unstakeFromBnbDesc": "გაიტანეთ BNB Chain კონტრაქტიდან. Base აუზში არსებულ DHB-ს ჯერ არ აქვს გატანის კონტრაქტი.",
+    "availableToStake": "ხელმისაწვდომია: {{amount}} DHB",
+    "withdrawableOnBnb": "გამოსატანი: {{amount}} DHB BNB Chain-ზე",
+    "restInBasePool": "{{amount}} Base აუზში",
+    "lockedUntilWithFee": "ჩაკეტილია {{date}}-მდე, 12% საკომისიო ამ დრომდე",
+    "totalStakedProtocol": "სულ შეტანილი (პროტოკოლი)",
+    "orSendDirectly": "ან გაგზავნეთ DHB პირდაპირ Base-ზე არსებულ შესატან მისამართზე:",
+    "refreshBalances": "ბალანსების განახლება",
+    "addressCopied": "შეტანის მისამართი კოპირებულია!",
+    "checkForNewStake": "ახალი დეპოზიტის შემოწმება",
+    "viewTransaction": "ტრანზაქციის ნახვა",
+    "checkAgain": "კიდევ შემოწმება",
+    "pendingConfirmed": "{{amount}} DHB დადასტურებულია. თქვენი დეპოზიტის ისტორია განახლდება. არ გაგზავნოთ ისევ.",
+    "pendingSubmitted": "{{amount}} DHB გაგზავნილია. დადასტურება ჯერ კიდევ შემოწმდება. არ გაგზავნოთ ისევ.",
+    "refreshFailed": "ახალი დეპოზიტების შემოწმება ვერ მოხერხდა. სცადეთ ხელახლა მომენტში.",
+    "foundNewStake": "ნაპოვნია {{amount}} DHB. თქვენი დეპოზიტი განახლებულია.",
+    "noNewTransfers": "ჯერ არ არის ნაპოვნი ახალი გადარიცხვები.",
+    "stakeConfirmedOnBase": "{{amount}} DHB დადასტურებულია Base-ზე.",
+    "stakeReverted": "ბლოკჩეინმა დაადასტურა, რომ ეს ტრანზაქცია გაუქმდა.",
+    "enterValidStakeAmount": "შეიყვანეთ შესატანი თანხის ვალიდური რაოდენობა.",
+    "enterValidUnstakeAmount": "Გამოსატანად მიუთითეთ სწორი თანხა.",
+    "walletNotConnected": "Საფულე არ არის დაკავშირებული.",
+    "walletNotReady": "Საფულე არ არის მზად. სცადეთ ხელახლა.",
+    "insufficientOnBase": "Არასაკმარისი DHB ბალანსი ფუძეზე."
   },
   "communities": {
     "title": "Communities",
@@ -3007,7 +3039,13 @@
     "addedToYourUsernames": "ემატება თქვენს მომხმარებლის სახელებს",
     "boughtNameGoesToVault": "რჩებით @{{current}}. @{{handle}} ემატება თქვენს მომხმარებლის სახელებს და ნებისმიერ დროს შეგიძლიათ მასზე გადართვა.",
     "youAreNow": "ახლა თქვენ ხართ @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} ახლა თქვენს მომხმარებლის სახელებშია"
+    "boughtToVaultToast": "@{{handle}} ახლა თქვენს მომხმარებლის სახელებშია",
+    "askingPriceUsd": "Მოთხოვნის ფასი (აშშ დოლარი)",
+    "dollarPriceRange": "Შეიყვანეთ $ 1–$ 1 000 000, ორი ათობითი ადგილით.",
+    "fixedDollarPrice": "Დოლარის ფასი ფიქსირებულია; განახლებულია კოდის ოდენობა.",
+    "priceUpdated": "Ფასი განახლდა. გადახედეთ თანხას და შეხებით აირჩიეთ ხელახლა ყიდვა.",
+    "tokensPaidToSeller": "Გადახდილია უშუალოდ გამყიდველისთვის",
+    "priceUsd": "ფასი აშშ დოლარი"
   },
   "stores": {
     "subtitle": "აღმოაჩინეთ DeHub საზოგადოების პროდუქტები",
@@ -3513,7 +3551,8 @@
       "sad": "Სევდიანი",
       "cry": "Ტირილი",
       "poo": "Პოუ",
-      "dislike": "Არ მომწონს"
+      "dislike": "Არ მომწონს",
+      "lol": "- ჰა ჰა"
     },
     "mediaSource": "Აირჩიეთ მედიის წყარო",
     "photoLibrary": "Ფოტობიბლიოთეკა",
@@ -4103,7 +4142,8 @@
     "madeForKidsOffDesc": "აჩვენებს ამ პოსტს ბავშვებს, რომლებიც Kids Mode-ს იყენებენ, და ჩვეულებრივი ფიდებიდან ამოღებს.",
     "madeForKidsBlockedByMature": "მომწიფებული ნიშნით მონიშული პოსტი ასევე ბავშვებისთვის გამოქვეყნებული არ შეიძლება.",
     "encoderTitle": "OBS / ენკოდერი",
-    "encoderHint": "მიიღეთ RTMP დეტალები"
+    "encoderHint": "მიიღეთ RTMP დეტალები",
+    "markMadeForKids": "მონიშნეთ როგორც შექმნილი ბავშვებისთვის"
   },
   "bounty": {
     "claimed": "მიღებულია",
@@ -4550,7 +4590,8 @@
     "videosCount": "{{videos}} ვიდეო",
     "viewFeed": "Თქვენი არხის ნახვა",
     "yourChannel": "Თქვენი არხი",
-    "yourChannelHint": "Ჩასვით თქვენი არხის მისამართი — სახელური საკუთარ საქმეებზეც."
+    "yourChannelHint": "Ჩასვით თქვენი არხის მისამართი — სახელური საკუთარ საქმეებზეც.",
+    "pickCount": "{{selected}} {{total}}-დან არჩეულია. ყველაფერი, რაც უკვე თქვენს პროფილზეა, გამოტოვებულია და არასდროს დაგერიცხებათ ორჯერ."
   },
   "calls": {
     "voiceCall": "Დეჰაბის ხმოვანი ზარი",
@@ -5014,7 +5055,8 @@
     "prepareFailed": "პოზიციის მომზადება ვერ მოხერხდა",
     "sellAmount": "გასაყიდი თანხა",
     "spend": "დახარჯე",
-    "withdrawFailed": "გატანა ვერ მოხერხდა"
+    "withdrawFailed": "გატანა ვერ მოხერხდა",
+    "reviewSwap": "ჯერ შეცვალეთ {{amountIn}} {{symbol}}-ზე {{usdc}} USDC-ზე Base-ზე. გამოუყენებელი {{symbol}} იმავე ტრანზაქციაში ბრუნდება."
   },
   "onboarding": {
     "optIn": {
@@ -5658,5 +5700,52 @@
     "appealRef": "მითითება {{ref}}",
     "appealSubtitleSubject": "Ადამიანი წაიკითხავს ამას და კიდევ ერთხელ შეხედავს {{subject}}-ს.",
     "appealMore": "Ჯერ კიდევ საჭიროა სიმბოლოები: {{count}}"
+  },
+  "support": {
+    "title": "მხარდაჭერა",
+    "subtitle": "თქვენი ბილეთები და მათი სტატუსი. არა AI, არა საკომისიო.",
+    "newTicket": "Ახალი ბილეთი",
+    "newTicketHint": "Მოგვიყევით, რა მოხდა და რას ელოდეთ.",
+    "backToTickets": "ბილეთებში დაბრუნება",
+    "openHeading": "Ღია ({{n}})",
+    "noTickets": "თქვენ ჯერ არცერთი საგარანტიო განაცხადი არ შეგვიტანია.",
+    "loadFailed": "Ბილეთების ჩატვირთვა ვერ მოხერხდა. სცადეთ ხელახლა.",
+    "categoryLabel": "კატეგორია",
+    "severityLabel": "პრიორიტეტი",
+    "subjectLabel": "სუბიექტი",
+    "subjectPlaceholder": "Ერთი ხაზი, რომელიც აღწერს პრობლემას",
+    "descriptionLabel": "- ვ, ოჲლსფთ ჟვ.",
+    "descriptionPlaceholder": "რასაც აკეთებდი, რასაც ელოდი და რა მოხდა ამის ნაცვლად.",
+    "stepsLabel": "Რეპროდუცირების საფეხურები (არასავალდებულო)",
+    "submit": "Ბილეთის გაგზავნა",
+    "submitting": "იგზავნება",
+    "filed": "Ბილეთი {{ref}} გუნდთან ერთად არის.",
+    "filedNotEmailed": "ბილეთი {{ref}} ჩაიწერა. შეინახეთ მითითება.",
+    "alreadyOpen": "ეს უკვე ღია გაქვთ როგორც {{ref}}.",
+    "filingFailed": "ბილეთის შექმნა ვერ მოხერხდა. გთხოვთ, სცადოთ ხელახლა.",
+    "status": {
+      "open": "ღია",
+      "in_progress": "მიმდინარე",
+      "resolved": "მოგვარებული",
+      "closed": "დახურული"
+    },
+    "severity": {
+      "low": "დაბალი",
+      "normal": "ნორმალური",
+      "high": "მაღალი",
+      "urgent": "გადაუდებელი"
+    },
+    "category": {
+      "account_access": "ანგარიშზე შესვლა",
+      "wallet_or_transactions": "საფულე ან ტრანზაქციები",
+      "posting_or_uploads": "პოსტები ან ატვირთვები",
+      "payments_or_subscriptions": "გადახდები ან გამოწერები",
+      "live_streaming": "ლაივ სტრიმინგი",
+      "content_or_moderation": "შინაარსი ან მოდერაცია",
+      "bug": "შეცდომა",
+      "feature_request": "ახალი ფუნქციის მოთხოვნა",
+      "other": "სხვა"
+    },
+    "filedOn": "შექმნილია {{date}}"
   }
 }

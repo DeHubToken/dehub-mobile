@@ -654,7 +654,63 @@
     "chainIdLabel": "Rante ID: {{id}}",
     "exportPkConfirmPhrase": "AKU PENGERTI",
     "exportPkCopy": "Salin kunci pribadi",
-    "e2eAutomatic": "Otomatis"
+    "e2eAutomatic": "Otomatis",
+    "smsNotifications": "Wara-wara Teks",
+    "smsScopeLabel": "Apa sing dikirim",
+    "smsScopeDesc": "Teks iku nganggo dhuwit, mula watesana mung sing pantes diganggu",
+    "smsScope": {
+      "all": "Kabeh sing tak uripake",
+      "tips": "Mung tips sing tak tampa",
+      "subscriptions": "Mung pelanggan anyar",
+      "sales": "Mung dodolan isiku",
+      "bounties": "Mung bounty",
+      "fractions": "Mung tawaran lan dodolan pecahan",
+      "messages": "Mung pesen langsung",
+      "mentions": "Mung sebutan babagan aku",
+      "replies": "Mung balesan kanggo komentarku",
+      "account": "Mung kabar babagan akunku"
+    },
+    "smsNotificationsDesc": "Entuk sing penting minangka pesen teks",
+    "smsNotificationsDescReady": "Dikirim menyang {{phone}} — {{dhb}} DHB saben, kira-kira {{count}} isih ana",
+    "smsNotificationsLocked": "Buka nganggo {{dhb}} DHB (${{usd}}) kredit",
+    "smsNotificationsNeedsNumber": "Tambah lan verifikasi nomer telpon kanggo miwiti",
+    "smsNotificationsEmpty": "Kehabisan kredit — isi ulang kanggo terus nampa teks",
+    "smsUnavailable": "Wara-wara teks saiki ora kasedhiya",
+    "smsDialogIntro": "Teks iku nganggo dhuwit kanggo dikirim, mula saluran iki nganggo kredit sing diisi ulang ing DHB.",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) mbukak kunci teks lan dadi imbangan pisananmu.",
+    "smsUnlockExplainer": "Ora ana sing kadaluwarsa. Kredit dibelanjakake siji pesen saben wektu, lan mung kanggo wara-wara sing wis diuripake.",
+    "smsPricesHeading": "Pira regane pesen",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsBand": {
+      "domestic": "Inggris Raya",
+      "europe": "Eropah",
+      "global": "Umume negara liyane",
+      "premium": "Liyane kabeh panggonan"
+    },
+    "smsDepositAction": "Kirim {{dhb}} DHB",
+    "smsDepositPaying": "Konfirmasi ing dompetmu…",
+    "smsDepositConfirming": "Ngenteni rantai...",
+    "smsDepositNotSent": "Transfer durung dikirim.",
+    "smsDepositSlow": "Transfer sampeyan durung katon ing rantai. Aman kok — bukak maneh iki lan bakal dikredit. Referensi: {{hash}}",
+    "smsChainUnsupported": "Ganti menyang Base utawa BNB Chain ing Setelan kanggo nambah kredit teks sampeyan.",
+    "smsWalletNotReady": "Dompet sampeyan durung siyap — coba maneh sedhela.",
+    "smsNeedDhb": "Sampeyan butuh {{dhb}} DHB kanggo mbukak kunci notifikasi teks.",
+    "smsUnlocked": "Notifikasi teks wis dibukak",
+    "smsBalance": "{{dhb}} DHB isih ana (${{usd}})",
+    "smsBalanceMessages": "Kira-kira {{count}} pesen maneh",
+    "smsTopUp": "Tambah {{dhb}} DHB",
+    "smsNumberLabel": "Nomor telpon",
+    "smsSendCode": "Kirim kode menyang aku",
+    "smsCodeSent": "Kode wis dikirim. Iki regane {{price}} DHB.",
+    "smsCodeFailed": "Kode kasebut ora bisa dikirim.",
+    "smsCodeLabel": "Kode sing dikirim menyang {{phone}}",
+    "smsVerify": "Konfirmasi kode",
+    "smsVerifyFailed": "Kode kasebut ora bisa dikonfirmasi.",
+    "smsNumberVerified": "Nomor wis diverifikasi",
+    "smsRemoveNumber": "Copot nomer iki",
+    "smsRemoveFailed": "Nomer iki ora bisa dicopot.",
+    "smsNumberRemoved": "Nomer wis dicopot",
+    "smsCountryBlocked": "Teks durung bisa dikirim menyang negara kasebut."
   },
   "common": {
     "mute": "Bisu",
@@ -1822,7 +1878,8 @@
     "otherTokens": "Token liyane",
     "otherTokensDesc": "Tuku ETH utawa USDC ing Base nganggo kartumu",
     "shareToFeed": "Bagikan menyang feedku",
-    "sharePostTemplate": "Nembe nambahake {{amount}} $DHB menyang tumpukan ing DeHub. Mbangun karo komunitas. #DeHub #DHB"
+    "sharePostTemplate": "Nembe nambahake {{amount}} $DHB menyang tumpukan ing DeHub. Mbangun karo komunitas. #DeHub #DHB",
+    "minDhbPurchase": "Tuku DHB minimal $0.50"
   },
   "agents": {
     "title": "Agen AI",
@@ -2966,7 +3023,13 @@
     "addedToYourUsernames": "Ditambahake menyang jeneng panganggo sampeyan",
     "boughtNameGoesToVault": "Sampeyan tetep @{{current}}. @{{handle}} mlebu ing jeneng panganggo sampeyan, lan sampeyan bisa ngalih kapan wae.",
     "youAreNow": "Saiki sampeyan @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} saiki ana ing jeneng panganggo sampeyan"
+    "boughtToVaultToast": "@{{handle}} saiki ana ing jeneng panganggo sampeyan",
+    "askingPriceUsd": "Rego dijaluk (USD)",
+    "dollarPriceRange": "Lebokake $1–$1.000.000, kanthi nganti rong desimal.",
+    "fixedDollarPrice": "Rego dolar tetep; jumlah token bakal dianyari.",
+    "priceUpdated": "Rego wis dianyari. Priksa jumlah lan tutul Beli maneh.",
+    "tokensPaidToSeller": "Dibayar langsung menyang penjual",
+    "priceUsd": "Rego (USD)"
   },
   "stores": {
     "subtitle": "Temokake produk saka komunitas DeHub",
@@ -3498,7 +3561,8 @@
     "creator": "Kreator DeHub",
     "play": "Mainake",
     "listens_one": "{{count}} ngrungokake",
-    "listens_other": "{{count}} ngrungokake"
+    "listens_other": "{{count}} ngrungokake",
+    "pause": "Jeda"
   },
   "transfer": {
     "title": "Transfer token",
@@ -4063,7 +4127,8 @@
     "madeForKidsOffDesc": "Nampilake posting iki kanggo bocah sing nggunakake Mode Bocah, lan ngilangi saka feed biasa.",
     "madeForKidsBlockedByMature": "Posting sing ditandai dewasa ora bisa uga dinerbitake kanggo bocah.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Njaluk rincian RTMP"
+    "encoderHint": "Njaluk rincian RTMP",
+    "markMadeForKids": "Tandhani minangka digawe kanggo bocah"
   },
   "bounty": {
     "claimed": "Wis diklaim",
@@ -5585,5 +5650,53 @@
     "appealRef": "Referensi {{ref}}",
     "appealSubtitleSubject": "Wong bakal maca iki lan ndeleng maneh {{subject}}.",
     "appealMore": "Karakter isih dibutuhake: {{count}}"
+  },
+  "support": {
+    "title": "Dhukungan",
+    "subtitle": "Tiketmu lan statusé. Ora nganggo AI, ora mbayar.",
+    "newTicket": "Tiket anyar",
+    "newTicketHint": "Critakna apa sing kedadeyan lan apa sing kokarepake sakwise kuwi.",
+    "backToTickets": "Bali menyang tiket",
+    "openHeading": "Buka ({{n}})",
+    "closedHeading": "Ditutup ({{n}})",
+    "noTickets": "Sampeyan durung ngajokake tiket dhukungan apa wae.",
+    "loadFailed": "Ora bisa mbukak tiketmu. Coba maneh.",
+    "categoryLabel": "Kategori",
+    "severityLabel": "Prioritas",
+    "subjectLabel": "Subjek",
+    "subjectPlaceholder": "Siji baris njlentrehake masalah",
+    "descriptionLabel": "Ana apa",
+    "descriptionPlaceholder": "Apa sing kok lakoni, apa sing kok karepake, lan apa sing kedadeyan sakwuse.",
+    "stepsLabel": "Langkah-langkah kanggo ngasilake (opsional)",
+    "submit": "Kirim tiket",
+    "submitting": "Nglirimake...",
+    "filed": "Tiket {{ref}} ana ing tim.",
+    "filedNotEmailed": "Tiket {{ref}} kacathet. Simpen referensi kasebut.",
+    "alreadyOpen": "Sampeyan wis mbukak iki minangka {{ref}}.",
+    "filingFailed": "Ora bisa ngirim tiket kuwi. Coba maneh.",
+    "status": {
+      "open": "Mbukak",
+      "in_progress": "Manèh diprosès",
+      "resolved": "Dirampungake",
+      "closed": "Ditutup"
+    },
+    "severity": {
+      "low": "Ngisor",
+      "normal": "Normal",
+      "high": "Dhuwur",
+      "urgent": "Gegês"
+    },
+    "category": {
+      "account_access": "Akses akun",
+      "wallet_or_transactions": "Dompet utawa transaksi",
+      "posting_or_uploads": "Ngirim utawa unggah",
+      "payments_or_subscriptions": "Pembayaran utawa langganan",
+      "live_streaming": "Siaran langsung",
+      "content_or_moderation": "Konten utawa moderasi",
+      "bug": "Bug",
+      "feature_request": "Panyuwunan fitur",
+      "other": "Liyane"
+    },
+    "filedOn": "Diajukake {{date}}"
   }
 }

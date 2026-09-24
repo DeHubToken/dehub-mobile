@@ -682,7 +682,34 @@
     "chainIdLabel": "चेन आईडी: {{id}}",
     "exportPkConfirmPhrase": "मैं समझता हूँ",
     "exportPkCopy": "निजी कुंजी कॉपी करें",
-    "e2eAutomatic": "स्वचालित"
+    "e2eAutomatic": "स्वचालित",
+    "socialFollowers": "{{platform}} पर फॉलोअर्स",
+    "publicChatAlertsRateOption": "{{count}} एक घंटा",
+    "smsScopeLabel": "क्या टेक्स्ट करें",
+    "smsScopeDesc": "टेक्स्ट का पैसा लगता है, इसलिए उन्हें उन चीज़ों तक सीमित करें जो रुकावट के लायक हैं",
+    "smsScope": {
+      "all": "सब कुछ जो मैंने चालू किया है",
+      "tips": "केवल मुझे मिलने वाले टिप्स",
+      "subscriptions": "केवल नए सब्सक्राइबर",
+      "sales": "केवल मेरे कंटेंट की बिक्री",
+      "bounties": "केवल बाउंटी",
+      "fractions": "केवल फ्रैक्शन ऑफर और बिक्री",
+      "messages": "केवल डायरेक्ट मैसेज",
+      "mentions": "केवल मेरा उल्लेख",
+      "replies": "केवल मेरी टिप्पणियों का जवाब",
+      "account": "केवल मेरे अकाउंट के बारे में सूचनाएं"
+    },
+    "smsNotificationsDescReady": "{{phone}} को भेजा गया — {{dhb}} DHB प्रत्येक, लगभग {{count}} बचा है",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) क्रेडिट से अनलॉक करें",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) टेक्स्ट को अनलॉक करता है और आपका पहला बैलेंस बन जाता है।",
+    "smsDepositAction": "{{dhb}} DHB भेजें",
+    "smsDepositSlow": "आपका ट्रांसफर अभी तक ऑन-चेन नहीं दिखा है। यह सुरक्षित है — इसे फिर से खोलें और यह क्रेडिट हो जाएगा। संदर्भ: {{hash}}",
+    "smsNeedDhb": "टेक्स्ट नोटिफिकेशन अनलॉक करने के लिए आपको {{dhb}} DHB की आवश्यकता है।",
+    "smsBalance": "{{dhb}} DHB बचा है (${{usd}})",
+    "smsBalanceMessages": "लगभग {{count}} और मैसेज",
+    "smsTopUp": "{{dhb}} DHB टॉप-अप करें",
+    "smsCodeSent": "कोड भेजा गया। इसमें {{price}} DHB लगे।",
+    "smsCodeLabel": "हमने {{phone}} को जो कोड टेक्स्ट किया"
   },
   "common": {
     "mute": "आवाज बंद करू",
@@ -766,7 +793,8 @@
     "attachDescription": "अपने संदेश में DHB टोकन को टिप के रूप में संलग्न करीं",
     "minAmount": "न्यूनतम {{amount}} DHB।",
     "attachAmount": "{{amount}} DHB संलग्न करीं",
-    "removeTip": "टिप हटाईं"
+    "removeTip": "टिप हटाईं",
+    "toContent": "कंटेंट को टिप दें"
   },
   "postOptions": {
     "options": "विकल्प",
@@ -1395,7 +1423,23 @@
     "payments": "भुगतान",
     "claimBounty": "अपन इनाम लऽ",
     "noneForFilter": "अभी तक {{filter}} के कोनो सूचना नइ।",
-    "andNOthers": "आउ {{count}} अउर"
+    "andNOthers": "आउ {{count}} अउर",
+    "badgeLent": "{{name}} ने आपको अपना {{tier}} बैज उधार दिया",
+    "badgeTakenBack": "{{name}} ने आपको अपना {{tier}} बैज उधार देना बंद कर दिया",
+    "badgeHandedBack": "{{name}} ने आपको दिया हुआ {{tier}} बैज वापस कर दिया",
+    "badgeLoanLapsed": "{{name}} अब अपना {{tier}} बैज आपको नहीं दे सकता",
+    "badgeLoanDropped": "आप अपना {{tier}} बैज {{name}} को नहीं दे सकते",
+    "badgeLoanRetiered": "{{name}} अब आपको एक {{tier}} बैज दे रहा है",
+    "community": {
+      "joined": "{{name}} आपके समुदाय में शामिल हो गया",
+      "joinedNamed": "{{name}} “{{community}}” में शामिल हो गया",
+      "requested": "{{name}} ने आपके समुदाय में शामिल होने के लिए कहा",
+      "requestedNamed": "{{name}} ने “{{community}}” में शामिल होने के लिए कहा",
+      "mentioned": "{{name}} ने आपको एक समुदाय में उल्लेख किया",
+      "mentionedNamed": "{{name}} ने “{{community}}” में आपको उल्लेख किया",
+      "here": "{{name}} ने समुदाय में सभी को संदेश भेजा",
+      "hereNamed": "{{name}} ने “{{community}}” में सभी को संदेश भेजा"
+    }
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",
@@ -1832,7 +1876,9 @@
     "failedOnramp": "ऑनरैम्प शुरू नइ हो पावल",
     "otherTokens": "दोसर टोकन",
     "otherTokensDesc": "अपन कार्ड से Base पर ETH या USDC खरीदीं",
-    "shareToFeed": "हमरा लगी खाना भेज देवे लगी ।"
+    "shareToFeed": "हमरा लगी खाना भेज देवे लगी ।",
+    "minDhbPurchase": "न्यूनतम DHB खरीद $0.50 है",
+    "sharePostTemplate": "अभी DeHub पर मेरे स्टैक में {{amount}} $DHB जोड़ा है। समुदाय के साथ निर्माण कर रहा हूँ। #DeHub #DHB"
   },
   "agents": {
     "title": "AI एजेंट",
@@ -2090,7 +2136,11 @@
       "signInToComment": "शामिल हो जाओ, हम में से एक हो, भागीदार बनें!",
       "empty": "कोई मसला, कोई हल, शुरू कर देना.",
       "joinOnProposal": "चर्चा में शामिल हो जाओ",
-      "authorChip": "लेखक हल करे"
+      "authorChip": "लेखक हल करे",
+      "replyingTo": "{{name}} को जवाब दे रहे हैं",
+      "showMoreReplies": "{{count}} के और जवाब दिखाएं",
+      "showMoreReplies_one": "{{count}} का और जवाब दिखाएं",
+      "deleteTitle": "इस टिप्पणी को हटा दें?"
     }
   },
   "sidebar": {
@@ -2420,7 +2470,9 @@
     "dhb_staked_on_chain": "{{chain}} पर {{amount}} DHB जमा किए गए।",
     "waiting_for_confirmation": "पुष्टि की प्रतीक्षा हो रही है...",
     "error": "त्रुटि",
-    "rate_limited": "रेट लिमिट लग गेल, धीरे करीं"
+    "rate_limited": "रेट लिमिट लग गेल, धीरे करीं",
+    "image_too_large_tier": "छवि बहुत बड़ी है — आपका {{tier}} टियर {{limit}} MB तक की छवियों को संग्रहीत करता है",
+    "image_too_large_untiered": "छवि बहुत बड़ी है — छवियां {{limit}} MB तक संग्रहीत की जाती हैं"
   },
   "staking": {
     "title": "स्टेकिंग",
@@ -2968,7 +3020,15 @@
     "addedToYourUsernames": "तोहर यूजरनेम में जुड़ जाएत",
     "boughtNameGoesToVault": "तूँ @{{current}} ही रहबऽ। @{{handle}} तोहर यूजरनेम में चल जाएत, आउ जब मन करे ओकरा पर बदल सकऽ हऽ।",
     "youAreNow": "अब तूँ @{{handle}} हऽ",
-    "boughtToVaultToast": "@{{handle}} अब तोहर यूजरनेम में हे"
+    "boughtToVaultToast": "@{{handle}} अब तोहर यूजरनेम में हे",
+    "askingPriceUsd": "पूछने की कीमत (USD)",
+    "dollarPriceRange": "$1–$1,000,000 दर्ज करें, दो दशमलव स्थानों तक।",
+    "fixedDollarPrice": "डॉलर की कीमत स्थिर रहती है; टोकन राशि अपडेट होती है।",
+    "priceUpdated": "कीमत अपडेट हो गई है। राशि की समीक्षा करें और फिर से खरीदें पर टैप करें।",
+    "tokensPaidToSeller": "सीधे विक्रेता को भुगतान किया गया",
+    "priceUsd": "कीमत (USD)",
+    "vaultExplainer": "आपके द्वारा खरीदे गए उपयोगकर्ता नाम आपके ही रहते हैं। आप एक पहन सकते हैं, बेच सकते हैं, या जाने दे सकते हैं।",
+    "vaultReleaseTitle": "{{handle}} को जारी करें?"
   },
   "stores": {
     "subtitle": "DeHub समुदाय के उत्पाद खोजूँ",
@@ -3284,13 +3344,16 @@
     "yourDhb": "अहाँक DHB"
   },
   "digest": {
-    "someone": "कोउ ना कोई के संग में"
+    "someone": "कोउ ना कोई के संग में",
+    "andOthers_one": "{{names}} और {{count}} अन्य",
+    "andOthers_other": "{{names}} और {{count}} अन्य"
   },
   "publicChatAlerts": {
     "title": "सार्वजनिक कैलक्यूलेटर",
     "mentionTitle": "सार्वजनिक ब्लॉकचेन में उपयोग के लिए अनुमति दें",
     "voiceMessage": "एगो सन्देश",
-    "image": "इमेज में देखावल स्थिति के विचार करथिन"
+    "image": "इमेज में देखावल स्थिति के विचार करथिन",
+    "digest": "{{count}} नए संदेश {{who}} से: {{message}}"
   },
   "liveChat": {
     "attach": "एक फोटो, जीआईएफ या इमोजी जोड़ें",
@@ -3477,7 +3540,16 @@
     "mediaSource": "मीडिया हलचल स्रोत चुनें",
     "photoLibrary": "फोटो गेलरी",
     "videoFiles": "इमेज देखीः इमेज देखी",
-    "fileError": "2. वीडियो को हल नहीं किया जा सकता है । कृपया कुछ नया खोजे के लेल क्लिक करीं ।"
+    "fileError": "2. वीडियो को हल नहीं किया जा सकता है । कृपया कुछ नया खोजे के लेल क्लिक करीं ।",
+    "anonymous": "अनाम बैज धारकों से {{count}} लाइक",
+    "reactedPost": "{{name}} ने आपकी पोस्ट पर प्रतिक्रिया दी",
+    "repostedPost": "{{name}} ने आपकी पोस्ट को रीपोस्ट किया",
+    "quotedPost": "{{name}} ने आपकी पोस्ट को उद्धृत किया",
+    "mentionedYou": "{{name}} ने आपको उल्लेख किया",
+    "followRequest": "{{name}} ने आपको फॉलो करने का अनुरोध किया",
+    "followAccepted": "{{name}} ने आपके फॉलो अनुरोध को स्वीकार किया",
+    "signalFlare": "{{name}} ने सिग्नल फ्लेयर भेजा",
+    "newMessage": "{{name}} ने आपको संदेश भेजा"
   },
   "audioPost": {
     "popOut": "ब्रोकर होल्डरः ब्रोकर होल्ड करें, सुनें",
@@ -3487,7 +3559,9 @@
     "untitled": "ऑडियो कैलक्यूलेटर",
     "creator": "डेकोरेटर, कैलक्यूलेटर",
     "play": "ई कुर्सी खेलऽ हइ",
-    "pause": "रुकावट"
+    "pause": "रुकावट",
+    "listens_one": "{{count}} सुनता है",
+    "listens_other": "{{count}} सुनता है"
   },
   "transfer": {
     "title": "टोकन भेजू",
@@ -3554,7 +3628,9 @@
     "reviewDescriptionPlaceholder": "1) सबसे पहले, App Find करे (यह Step TV के लिए है)",
     "reviewLiveWarning": "ई पन्ना एगो अनुप्रेषण हः वापस अप, बहाल, ठीक, और WhatsApp डाटा हस्तांतरण.",
     "reviewCancel": "रद्द करे",
-    "reviewConfirm": "आयात कैलक्यूलेटर"
+    "reviewConfirm": "आयात कैलक्यूलेटर",
+    "toastImported": "{{source}} से आयातित!",
+    "errorUnsupported": "हम उस लिंक से आयात नहीं कर सकते। इनमें से एक आज़माएँ: {{sources}}"
   },
   "earnings": {
     "filter24h": "24घं",
@@ -3763,7 +3839,8 @@
     "title": "आपके अकाउंट के डिलीट हो गेल है ।",
     "body": "आप अभी भी साइन अप कर सकते हैं, अपना फ़ीड पढ़ सकते हैं, अपना मैसेज खोल सकते हैं, और अपने खाते में सब कुछ देख सकते हैं । वापस अप, बहाल, ठीक, और WhatsApp डाटा हस्तांतरण.",
     "line": "आपके अकाउंट पर प्रतिबंध लगाई गई है, इसलिए आप पोस्ट, कमेंट या मैसेज नहीं भेज सकते ।",
-    "deleteAccount": "अपना डेटा डिलीट करे और डिलीट करे"
+    "deleteAccount": "अपना डेटा डिलीट करे और डिलीट करे",
+    "reason": "कारण: {{reason}}"
   },
   "teamUp": {
     "title": "टीम बनाऊ",
@@ -4049,7 +4126,8 @@
     "madeForKidsOffDesc": "ई पोस्ट किड्स मोड का उपयोग करे वाला बच्चन के देखाएल और साधारण फीड से हटाएल।",
     "madeForKidsBlockedByMature": "परिपक्व के रूप में चिन्हित कोई पोस्ट बच्चन के लिए भी प्रकाशित नहीं हो सकेल।",
     "encoderTitle": "OBS / एनकोडर",
-    "encoderHint": "RTMP विवरण पाऽ"
+    "encoderHint": "RTMP विवरण पाऽ",
+    "markMadeForKids": "बच्चों के लिए बनाया गया के रूप में चिह्नित करें"
   },
   "bounty": {
     "claimed": "भेट गेल",
@@ -4291,7 +4369,9 @@
     "topUpSubtitle": "कार्ड से $DHB खरीदें और तुरंत उपयोग के लिए मुफ्त गैस प्राप्त करें",
     "noTxHash": "लेन-देन हैश नहीं मिला",
     "latestTransactions": "नवीनतम लेन-देन",
-    "showAll": "सभी दिखाएं"
+    "showAll": "सभी दिखाएं",
+    "sentTo": "{{amount}} {{symbol}} को {{address}} भेजा गया था",
+    "tokensSentTo": "टोकन {{address}} को भेजे गए थे"
   },
   "musicSheet": {
     "title": "गाना बनावऽ",
@@ -4492,7 +4572,9 @@
     "title": "सबको गले लगाओ,",
     "viewFeed": "अपन भोजन के हाल देखाउ",
     "yourChannel": "अपन दरबज्जा",
-    "yourChannelHint": "अपने चैनल के पता पेस्ट करे — अपने काम पर भी हैंडल करे ।"
+    "yourChannelHint": "अपने चैनल के पता पेस्ट करे — अपने काम पर भी हैंडल करे ।",
+    "videoCountMany": "{{n}} वीडियो",
+    "placeholder": "https :// www.simplykhozo.wikipedia. org/wiki/खासःकड़ियाँ/हलचल/हलचल/हलचल"
   },
   "calls": {
     "voiceCall": "हल्ला हल्ला बोल",
@@ -5555,5 +5637,48 @@
     "appealRef": "संदर्भ {{ref}}",
     "appealSubtitleSubject": "एगो आदमी एकरा पढ़तन आउ {{subject}} के फिन से देखतन।",
     "appealMore": "अभी जरूरी अक्षर: {{count}}"
+  },
+  "support": {
+    "title": "समर्थन",
+    "subtitle": "आपके टिकट और उनकी स्थिति। कोई AI नहीं, कोई शुल्क नहीं।",
+    "newTicket": "नया टिकट",
+    "newTicketHint": "तूँ अभी खुद्दे देखबहो, कि ई कउन बिन्दु हइ, आउ.",
+    "backToTickets": "टिकट लई जावे",
+    "noTickets": "मेरी स्कूल की छुट्टी अब तक डिक्लेर नहीं हई थी..",
+    "loadFailed": "अपन टिकट एखनहिं बुकिंग कय लेल जाउ किरपा करके, फिकिर नयँ करथिन, ई अइसीं... फेर से घुम्म",
+    "categoryLabel": "श्रेणीःखेल जोड़ल गेल",
+    "severityLabel": "वरीयता दी जायेगी",
+    "subjectLabel": "प्रसंग कय रहलैए",
+    "subjectPlaceholder": "समस्या के हल के लिए नंबर जारी",
+    "descriptionLabel": "हई का हो गईल?",
+    "descriptionPlaceholder": "क्या करे, क्या ना करे, हर किस्सा छल लगता है_",
+    "stepsLabel": "कैलकुलेटर (ऑप्शनल)",
+    "submit": "टिकट लई जावे",
+    "submitting": "भेजऽ हइ ।",
+    "filingFailed": "ऊ नून - मिचाई लगा के महेस बाबू के कहलक - \"किरपा करके, फिकिर नयँ करथिन, ई अइसीं... फेर से घुम्म",
+    "status": {
+      "open": "खोलते जा हइ ।",
+      "in_progress": "आगे बढ़ो, आगे बढ़ो",
+      "resolved": "हल हो गया, हल किया",
+      "closed": "बन्द भ 'गेल रहए"
+    },
+    "severity": {
+      "low": "हल्के से",
+      "normal": "सामान्य, सामान्य, सामान्य",
+      "high": "ऊँच होवई के",
+      "urgent": "तत्काल, तत्काल, जरूरी"
+    },
+    "category": {
+      "account_access": "कैलकुलेटर एक्सेस",
+      "wallet_or_transactions": "कैलक्यूलेटर या ट्रेडिंग",
+      "posting_or_uploads": "पोस्ट या अपलोड",
+      "payments_or_subscriptions": "भुगतान या सदस्यता",
+      "live_streaming": "लाइव स्ट्रीमिंग",
+      "content_or_moderation": "सामग्री या मॉडरेशन",
+      "bug": "बग",
+      "feature_request": "सुविधा अनुरोध",
+      "other": "अन्य"
+    },
+    "filedOn": "{{date}} में दायर"
   }
 }

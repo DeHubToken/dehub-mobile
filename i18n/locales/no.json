@@ -692,7 +692,25 @@
     "chainIdLabel": "Kjede-ID: {{id}}",
     "exportPkConfirmPhrase": "JEG FORSTÅR",
     "exportPkCopy": "Kopier privat nøkkel",
-    "e2eAutomatic": "Automatisk"
+    "e2eAutomatic": "Automatisk",
+    "publicChatAlertsRateOption": "{{count}} i timen",
+    "smsScopeLabel": "Hva du skal sende",
+    "smsScopeDesc": "Tekster koster penger, så begrens dem til det som er verdt en avbrytelse",
+    "smsScope": {
+      "all": "Alt jeg har slått på",
+      "tips": "Kun tips jeg mottar",
+      "subscriptions": "Kun nye abonnenter",
+      "sales": "Kun salg av mitt innhold",
+      "bounties": "Kun dusører",
+      "fractions": "Kun brøk-tilbud og salg",
+      "messages": "Kun direkte meldinger",
+      "mentions": "Kun omtaler av meg",
+      "replies": "Kun svar på mine kommentarer",
+      "account": "Kun varsler om kontoen min"
+    },
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsDepositAction": "Send {{dhb}} DHB",
+    "smsCodeSent": "Kode sendt. Det kostet {{price}} DHB."
   },
   "common": {
     "mute": "Demp",
@@ -1287,7 +1305,8 @@
     "evmAddressHint": "Base, BNB og Ethereum",
     "evmAddressCopied": "Adresse kopiert",
     "solanaAddressHint": "Kun SOL- og SPL-tokener",
-    "solanaAddressCopied": "Solana-adressen er kopiert"
+    "solanaAddressCopied": "Solana-adressen er kopiert",
+    "solanaAddressLabel": "Solana"
   },
   "bookmarks": {
     "title": "Dine bokmerker",
@@ -1859,7 +1878,8 @@
     "otherTokens": "Andre tokens",
     "otherTokensDesc": "Kjøp ETH eller USDC på Base med kortet ditt",
     "shareToFeed": "Del i feeden min",
-    "sharePostTemplate": "Har nettopp lagt til {{amount}} $DHB i DeHub-stacken min. Bygger med fellesskapet. #DeHub #DHB"
+    "sharePostTemplate": "Har nettopp lagt til {{amount}} $DHB i DeHub-stacken min. Bygger med fellesskapet. #DeHub #DHB",
+    "minDhbPurchase": "Minimum DHB-kjøp er $0,50"
   },
   "agents": {
     "title": "AI-agenter",
@@ -2120,7 +2140,8 @@
       "signInToComment": "Logg inn for å delta i diskusjonen",
       "empty": "Ingen spørsmål ennå. Start diskusjonen.",
       "joinOnProposal": "Bli med i diskusjonen",
-      "authorChip": "Forslagsforfatter"
+      "authorChip": "Forslagsforfatter",
+      "showMoreReplies": "Vis {{count}} flere svar"
     }
   },
   "sidebar": {
@@ -3002,7 +3023,13 @@
     "addedToYourUsernames": "Legges til brukernavnene dine",
     "boughtNameGoesToVault": "Du forblir @{{current}}. @{{handle}} havner blant brukernavnene dine, og du kan bytte til det når du vil.",
     "youAreNow": "Du er nå @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} er nå blant brukernavnene dine"
+    "boughtToVaultToast": "@{{handle}} er nå blant brukernavnene dine",
+    "askingPriceUsd": "Prisforespørsel (USD)",
+    "dollarPriceRange": "Skriv inn $1–$1 000 000, med opptil to desimaler.",
+    "fixedDollarPrice": "Dollaren forblir fast; token-beløpet oppdateres.",
+    "priceUpdated": "Pris oppdatert. Se gjennom beløpet og trykk på Kjøp igjen.",
+    "tokensPaidToSeller": "Betalt direkte til selgeren",
+    "priceUsd": "Pris (USD)"
   },
   "stores": {
     "subtitle": "Oppdag produkter fra DeHub-fellesskapet",
@@ -3530,7 +3557,8 @@
     "stopAndClose": "Stopp og lukk spilleren",
     "untitled": "Lydinnlegg",
     "creator": "DeHub-skaperen",
-    "play": "Spill"
+    "play": "Spill",
+    "pause": "Pause"
   },
   "transfer": {
     "title": "Overfør tokens",
@@ -4094,7 +4122,8 @@
     "madeForKidsOffDesc": "Viser dette innlegget for barn som bruker barnmodus, og tar det av de vanlige feedene.",
     "madeForKidsBlockedByMature": "Et innlegg merket som modent kan ikke også publiseres for barn.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Få RTMP-detaljer"
+    "encoderHint": "Få RTMP-detaljer",
+    "markMadeForKids": "Merk som laget for barn"
   },
   "bounty": {
     "claimed": "Innløst",
@@ -5612,5 +5641,51 @@
     "appealRef": "Referanse {{ref}}",
     "appealSubtitleSubject": "En person vil lese dette og se på {{subject}} igjen.",
     "appealMore": "Tegn som fortsatt trengs: {{count}}"
+  },
+  "support": {
+    "title": "Støtte",
+    "subtitle": "Dine billetter og deres status. Ingen AI, ingen gebyr.",
+    "newTicket": "Ny billett",
+    "newTicketHint": "Fortell oss hva som skjedde og hva du forventet i stedet.",
+    "backToTickets": "Tilbake til billetter",
+    "noTickets": "Du har ikke sendt inn noen supportforespørsler ennå.",
+    "loadFailed": "Kunne ikke laste inn billettene dine. Prøv på nytt.",
+    "categoryLabel": "Kategori",
+    "severityLabel": "Prioritet",
+    "subjectLabel": "Emne",
+    "subjectPlaceholder": "Én linje som beskriver problemet",
+    "descriptionLabel": "Hva skjedde",
+    "descriptionPlaceholder": "Hva du gjorde, hva du forventet, og hva som skjedde i stedet.",
+    "stepsLabel": "Fremgangsmåte for å reprodusere (valgfritt)",
+    "stepsPlaceholder": "1. Åpne feeden&#10; 2. Trykk på last opp&#10; 3. ...",
+    "submit": "Send billett",
+    "submitting": "Sender ...",
+    "filed": "Billett {{ref}} er hos laget.",
+    "filedNotEmailed": "Billett {{ref}} registrert. Ta vare på referansen.",
+    "alreadyOpen": "Du har allerede dette åpent som {{ref}}.",
+    "filingFailed": "Kunne ikke sende inn den saken. Prøv på nytt.",
+    "status": {
+      "open": "Åpne",
+      "in_progress": "Pågår",
+      "resolved": "Løst",
+      "closed": "Lukket"
+    },
+    "severity": {
+      "low": "Lav",
+      "normal": "Vanlig",
+      "high": "Høy",
+      "urgent": "Viktig"
+    },
+    "category": {
+      "account_access": "Enkel tilgang til kontoen",
+      "wallet_or_transactions": "Lommebok eller transaksjoner",
+      "posting_or_uploads": "Publisering eller opplasting",
+      "payments_or_subscriptions": "Betalinger eller abonnementer",
+      "live_streaming": "Direktesending",
+      "content_or_moderation": "Innhold eller moderering",
+      "bug": "FlaggermusDescription",
+      "feature_request": "Funksjonsforespørsel",
+      "other": "Andre"
+    }
   }
 }

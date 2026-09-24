@@ -686,7 +686,30 @@
     "chainIdLabel": "चेन आयडी: {{id}}",
     "exportPkConfirmPhrase": "मी समजतो",
     "exportPkCopy": "खाजगी की कॉपी करा",
-    "e2eAutomatic": "स्वयंचलित"
+    "e2eAutomatic": "स्वयंचलित",
+    "publicChatAlertsRateOption": "{{count}} प्रति तास",
+    "smsScopeLabel": "काय पाठवायचे",
+    "smsScopeDesc": "संदेश पाठवण्यासाठी पैसे लागतात, त्यामुळे व्यत्यय आणण्यासारख्या महत्त्वाच्या गोष्टींवरच लक्ष केंद्रित करा",
+    "smsScope": {
+      "all": "मी चालू केलेल्या सर्व गोष्टी",
+      "tips": "मला मिळालेल्या सर्व टिप्स",
+      "subscriptions": "नवीन सदस्य",
+      "sales": "माझ्या सामग्रीची विक्री",
+      "bounties": "बक्षीस",
+      "fractions": "अंश ऑफर आणि विक्री",
+      "messages": "थेट संदेश",
+      "mentions": "माझा उल्लेख",
+      "replies": "माझ्या टिप्पण्यांना प्रतिसाद",
+      "account": "माझ्या खात्याबद्दल सूचना"
+    },
+    "smsNotificationsDescReady": "{{phone}} ला पाठवले — प्रत्येकी {{dhb}} DHB, सुमारे {{count}} शिल्लक",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) सह अनलॉक करा",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) संदेश अनलॉक करते आणि तुमची पहिली शिल्लक बनते.",
+    "smsDepositAction": "{{dhb}} DHB पाठवा",
+    "smsNeedDhb": "संदेश सूचना अनलॉक करण्यासाठी तुम्हाला {{dhb}} DHB ची आवश्यकता आहे.",
+    "smsBalance": "{{dhb}} DHB शिल्लक (${{usd}})",
+    "smsTopUp": "{{dhb}} DHB टॉप अप करा",
+    "smsCodeLabel": "आम्ही {{phone}} ला पाठवलेला कोड"
   },
   "common": {
     "mute": "म्यूट करा",
@@ -770,7 +793,8 @@
     "attachDescription": "तुमच्या संदेशाला DHB टोकन टिप म्हणून संलग्न करा",
     "minAmount": "किमान {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB संलग्न करा",
-    "removeTip": "टिप काढून टाका"
+    "removeTip": "टिप काढून टाका",
+    "toContent": "सामग्रीला टीप द्या"
   },
   "postOptions": {
     "options": "पर्याय",
@@ -1412,8 +1436,10 @@
       "requestedNamed": "{{name}} यांना “{{community}}” मध्ये सामील होण्यास सांगितले",
       "mentioned": "{{name}} ने एका समुदायात आपला उल्लेख केला",
       "mentionedNamed": "{{name}} यांनी “{{community}}” मध्ये आपला उल्लेख केला",
-      "hereNamed": "{{name}} सर्वांनी “{{community}}” मध्ये संदेश पाठविला"
-    }
+      "hereNamed": "{{name}} सर्वांनी “{{community}}” मध्ये संदेश पाठविला",
+      "here": "{{name}} ने समुदायातील सर्वांना संदेश पाठवला"
+    },
+    "badgeLoanDropped": "तुम्ही आता तुमचा {{tier}} बॅज {{name}} ला देऊ शकत नाही"
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",
@@ -1851,7 +1877,8 @@
     "otherTokens": "इतर टोकन",
     "otherTokensDesc": "तुमच्या कार्डने Base वर ETH किंवा USDC खरेदी करा",
     "shareToFeed": "माझ्या फीडमध्ये सामायिक करा",
-    "sharePostTemplate": "फक्त {{amount}} $DHB माझ्या स्टॅकवर जोडले DeHub. कम्युनिटीला जोडलेली पाने #DeHub #DHB"
+    "sharePostTemplate": "फक्त {{amount}} $DHB माझ्या स्टॅकवर जोडले DeHub. कम्युनिटीला जोडलेली पाने #DeHub #DHB",
+    "minDhbPurchase": "किमान DHB खरेदी $0.50 आहे"
   },
   "agents": {
     "title": "AI एजंट्स",
@@ -2117,7 +2144,8 @@
       "empty": "अद्याप कोणतेही प्रश्न नाहीत. चर्चा सुरू करा.",
       "joinOnProposal": "चर्चेत सामील व्हा",
       "authorChip": "प्रस्ताव लेखक"
-    }
+    },
+    "againstLabel": "विरुद्ध"
   },
   "sidebar": {
     "talkOfTheTown": "शहराची चर्चा",
@@ -2998,7 +3026,13 @@
     "addedToYourUsernames": "तुमच्या युजरनेममध्ये जोडले जाईल",
     "boughtNameGoesToVault": "तुम्ही @{{current}} च राहाल. @{{handle}} तुमच्या युजरनेममध्ये जाईल आणि तुम्ही हवे तेव्हा त्यावर स्विच करू शकता.",
     "youAreNow": "आता तुम्ही @{{handle}} आहात",
-    "boughtToVaultToast": "@{{handle}} आता तुमच्या युजरनेममध्ये आहे"
+    "boughtToVaultToast": "@{{handle}} आता तुमच्या युजरनेममध्ये आहे",
+    "askingPriceUsd": "मागितलेली किंमत (USD)",
+    "dollarPriceRange": "$1–$1,000,000 प्रविष्ट करा, दोन दशांश स्थानांपर्यंत.",
+    "fixedDollarPrice": "डॉलरची किंमत स्थिर राहते; टोकनची रक्कम अपडेट होते.",
+    "priceUpdated": "किंमत अपडेट केली. रकमेचे पुनरावलोकन करा आणि पुन्हा खरेदी करा वर टॅप करा.",
+    "tokensPaidToSeller": "थेट विक्रेत्याला पैसे दिले",
+    "priceUsd": "किंमत (USD)"
   },
   "stores": {
     "subtitle": "DeHub समुदायाची उत्पादने शोधा",
@@ -3503,7 +3537,8 @@
       "sad": "दु: खी",
       "cry": "रडणे",
       "poo": "पू",
-      "dislike": "आवडले नाही"
+      "dislike": "आवडले नाही",
+      "lol": "हाहा"
     },
     "mediaSource": "मीडिया स्त्रोत निवडा",
     "photoLibrary": "फोटो लायब्ररी",
@@ -4092,7 +4127,8 @@
     "madeForKidsOffDesc": "हा पोस्ट Kids Mode वापरणारी मुलांना दाखवते आणि सामान्य फीडमधून हटवते.",
     "madeForKidsBlockedByMature": "परिपक्व म्हणून चिन्हांकित केलेला पोस्ट मुलांसाठी प्रकाशित केला जाऊ शकत नाही.",
     "encoderTitle": "OBS / एनकोडर",
-    "encoderHint": "RTMP तपशील मिळवा"
+    "encoderHint": "RTMP तपशील मिळवा",
+    "markMadeForKids": "मुलांसाठी बनविलेले चिन्हांकित करा"
   },
   "bounty": {
     "claimed": "मिळवले",
@@ -5609,5 +5645,51 @@
     "appealRef": "संदर्भ {{ref}}",
     "appealSubtitleSubject": "एक व्यक्ती हे वाचेल आणि {{subject}} वर पुन्हा दिसेल.",
     "appealMore": "अजूनही आवश्यक वर्ण: {{count}}"
+  },
+  "support": {
+    "title": "सहाय्य",
+    "subtitle": "तुमची तिकिटे आणि तुमचे स्टेटस. एआय नाही, फी नाही.",
+    "newTicket": "नवीन तिकीट",
+    "newTicketHint": "काय घडले आणि त्याऐवजी आपण कशाची अपेक्षा केली ते आम्हाला सांगा.",
+    "backToTickets": "तिकिटांवर परत जा",
+    "openHeading": "उघडा ({{n}})",
+    "noTickets": "तुम्ही अद्याप कोणतेही सहाय्यक तिकिट दाखल केलेले नाही.",
+    "loadFailed": "तुमची तिकिटे लोड करू शकलो नाही. कृपया पुन्हा प्रयत्न करा.",
+    "categoryLabel": "वर्ग",
+    "severityLabel": "प्राधान्य",
+    "subjectLabel": "विषय",
+    "subjectPlaceholder": "समस्येचे वर्णन करणारे एक रेखाटन",
+    "descriptionLabel": "काय झालं?",
+    "descriptionPlaceholder": "आपण काय केले, आपण काय अपेक्षा करता आणि त्याऐवजी काय घडले ते पहा.",
+    "stepsLabel": "पुनरुत्पादनासाठी पायऱ्या (पर्यायी)",
+    "submit": "तिकीट पाठवा",
+    "submitting": "पाठवत आहे",
+    "filed": "ट्वीट{{ref}} टीम सोबत आहे.",
+    "filedNotEmailed": "तिकिट {{ref}} रेकॉर्ड केले. संदर्भ ठेवा.",
+    "alreadyOpen": "आपण आधीच {{ref}} म्हणून हे उघडले आहे.",
+    "filingFailed": "ते तिकीट दाखल करता आले नाही. कृपया पुन्हा प्रयत्न करा.",
+    "status": {
+      "open": "उघडा",
+      "in_progress": "चालू आहे.",
+      "resolved": "निराकरण केले",
+      "closed": "बंद झालेले"
+    },
+    "severity": {
+      "low": "कमी",
+      "normal": "सामान्य",
+      "high": "उच्च",
+      "urgent": "तातडीची"
+    },
+    "category": {
+      "account_access": "खाते अ‍ॅक्सेस",
+      "wallet_or_transactions": "वॉलेट किंवा व्यवहार",
+      "posting_or_uploads": "पोस्ट करणे किंवा अपलोड करणे",
+      "payments_or_subscriptions": "पेमेंट्स किंवा सदस्यता",
+      "live_streaming": "थेट प्रवाह",
+      "content_or_moderation": "सामग्री किंवा संयम",
+      "bug": "बग",
+      "feature_request": "वैशिष्ट्य विनंती",
+      "other": "इतर"
+    }
   }
 }

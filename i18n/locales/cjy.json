@@ -654,7 +654,62 @@
     "chainIdLabel": "链 ID：{{id}}",
     "exportPkConfirmPhrase": "我明白了",
     "exportPkCopy": "复制私钥",
-    "e2eAutomatic": "自动"
+    "e2eAutomatic": "自动",
+    "smsNotifications": "文本通知",
+    "smsScopeLabel": "发送什么文本",
+    "smsScopeDesc": "短信需要付费，所以请仅选择值得打扰的内容",
+    "smsScope": {
+      "all": "我已开启的所有内容",
+      "tips": "仅限我收到的提示",
+      "subscriptions": "仅限新订阅者",
+      "sales": "仅限我的内容销售",
+      "bounties": "仅限赏金",
+      "fractions": "仅限碎片化优惠和销售",
+      "messages": "仅限私信",
+      "mentions": "仅限提及我",
+      "replies": "仅限回复我的评论",
+      "account": "仅限关于我账户的通知"
+    },
+    "smsNotificationsDesc": "将重要的内容设为短信通知",
+    "smsNotificationsDescReady": "发送至 {{phone}} — 每条 {{dhb}} DHB，剩余约 {{count}} 条",
+    "smsNotificationsLocked": "使用 {{dhb}} DHB（${{usd}}）的额度解锁",
+    "smsNotificationsNeedsNumber": "添加并验证手机号码即可开始",
+    "smsNotificationsEmpty": "额度不足 — 充值以继续接收短信",
+    "smsUnavailable": "文本通知目前不可用",
+    "smsDialogIntro": "发送短信需要付费，因此此频道依赖您在 DHB 中充值的额度。",
+    "smsUnlockPrice": "{{dhb}} DHB（${{usd}}）可解锁短信，并成为您的初始余额。",
+    "smsUnlockExplainer": "无过期。额度按消息逐条花费，且仅用于您已开启的通知。",
+    "smsPricesHeading": "一条消息的费用",
+    "smsBand": {
+      "domestic": "英国",
+      "europe": "欧洲",
+      "global": "大多数其他国家",
+      "premium": "其他所有地区"
+    },
+    "smsDepositAction": "发送 {{dhb}} DHB",
+    "smsDepositPaying": "在您的钱包中确认…",
+    "smsDepositConfirming": "等待链上确认…",
+    "smsDepositNotSent": "转账未提交。",
+    "smsDepositSlow": "您的转账尚未出现在链上。这是安全的——重新打开它，它就会被记入。参考：{{hash}}",
+    "smsChainUnsupported": "在设置中切换到 Base 或 BNB Chain 以充值您的文本额度。",
+    "smsWalletNotReady": "您的钱包尚未准备好——请稍后再试。",
+    "smsNeedDhb": "您需要 {{dhb}} DHB 才能解锁文本通知。",
+    "smsUnlocked": "文本通知已解锁",
+    "smsBalance": "剩余 {{dhb}} DHB（${{usd}}）",
+    "smsBalanceMessages": "大约还有 {{count}} 条消息",
+    "smsTopUp": "充值 {{dhb}} DHB",
+    "smsNumberLabel": "电话号码",
+    "smsSendCode": "发短信给我一个代码",
+    "smsCodeSent": "代码已发送。这花费了 {{price}} DHB。",
+    "smsCodeFailed": "我们无法发送该代码。",
+    "smsCodeLabel": "我们发送到 {{phone}} 的代码",
+    "smsVerify": "确认代码",
+    "smsVerifyFailed": "我们无法确认该代码。",
+    "smsNumberVerified": "号码已验证",
+    "smsRemoveNumber": "移除此号码",
+    "smsRemoveFailed": "我们无法移除此号码。",
+    "smsNumberRemoved": "号码已移除",
+    "smsCountryBlocked": "我们尚无法向该国家/地区发送短信。"
   },
   "common": {
     "mute": "静音",
@@ -1820,7 +1875,8 @@
     "otherTokens": "其它代币",
     "otherTokensDesc": "用你嘞卡在 Base 上买 ETH 或 USDC",
     "shareToFeed": "分享到我的动态",
-    "sharePostTemplate": "我刚刚在 DeHub 上添加了 {{amount}} $DHB 到我的堆栈。与社区一起建设。#DeHub #DHB"
+    "sharePostTemplate": "我刚刚在 DeHub 上添加了 {{amount}} $DHB 到我的堆栈。与社区一起建设。#DeHub #DHB",
+    "minDhbPurchase": "最低 DHB 购买金额为 0.50 美元"
   },
   "agents": {
     "title": "AI 代理",
@@ -2964,7 +3020,13 @@
     "addedToYourUsernames": "加到你嘅用户名里",
     "boughtNameGoesToVault": "你还是 @{{current}}。@{{handle}} 放进你嘅用户名里，想换就随时换。",
     "youAreNow": "你而今是 @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} 已经在你嘅用户名里了"
+    "boughtToVaultToast": "@{{handle}} 已经在你嘅用户名里了",
+    "askingPriceUsd": "要价（美元）",
+    "dollarPriceRange": "输入 1–1,000,000 美元，最多两位小数。",
+    "fixedDollarPrice": "美元价格固定；代币数量会更新。",
+    "priceUpdated": "价格已更新。请查看金额，然后再次点击购买。",
+    "tokensPaidToSeller": "直接支付给卖家",
+    "priceUsd": "价格 (美元)"
   },
   "stores": {
     "subtitle": "寻寻 DeHub 社区嘞产品",
@@ -4061,7 +4123,8 @@
     "madeForKidsOffDesc": "将此帖子显示给使用儿童模式的儿童，并将其从普通信息流中移除。",
     "madeForKidsBlockedByMature": "标记为成人内容的帖子不能同时为儿童发布。",
     "encoderTitle": "OBS / 编码器",
-    "encoderHint": "获取 RTMP 详情"
+    "encoderHint": "获取 RTMP 详情",
+    "markMadeForKids": "标记为儿童内容"
   },
   "bounty": {
     "claimed": "已领取",
@@ -4974,7 +5037,9 @@
     "prepareFailed": "无法准备仓位",
     "sellAmount": "卖出数量",
     "spend": "花费",
-    "withdrawFailed": "提取失败"
+    "withdrawFailed": "提取失败",
+    "title": "DHB / 美元",
+    "heading": "DHB / 美元"
   },
   "onboarding": {
     "optIn": {
@@ -5625,5 +5690,53 @@
     "appealRef": "参考号 {{ref}}",
     "appealSubtitleSubject": "将有人阅读此内容并重新查看 {{subject}}。",
     "appealMore": "还需字符数：{{count}}"
+  },
+  "support": {
+    "title": "支持",
+    "subtitle": "您的门票及状态。无人工智能，无费用。",
+    "newTicket": "新工单",
+    "newTicketHint": "告诉我们发生了什么，以及你期望的相反情况。",
+    "backToTickets": "回到票务",
+    "openHeading": "打开 ({{n}})",
+    "closedHeading": "关停 ({{n}})",
+    "noTickets": "您尚未提交任何支持工单。",
+    "loadFailed": "无法加载您的门票。请重试。",
+    "categoryLabel": "类别",
+    "severityLabel": "优先",
+    "subjectLabel": "主题",
+    "subjectPlaceholder": "一行描述问题",
+    "descriptionLabel": "发生了什么",
+    "descriptionPlaceholder": "你做了什么，你期望了什么，以及实际发生了什么。",
+    "stepsLabel": "重现步骤 (可选)",
+    "submit": "发送门票",
+    "submitting": "发送中...",
+    "filed": "工单 {{ref}} 正在由团队处理。",
+    "filedNotEmailed": "已记录工单 {{ref}}。请保留此参考。",
+    "alreadyOpen": "你已经把它打开了，就像 {{ref}} 一样。",
+    "filingFailed": "无法提交该工单。请重试。",
+    "status": {
+      "open": "打开",
+      "in_progress": "进行中",
+      "resolved": "已解决",
+      "closed": "关"
+    },
+    "severity": {
+      "low": "低",
+      "normal": "正常",
+      "high": "高",
+      "urgent": "紧急"
+    },
+    "category": {
+      "account_access": "账户访问",
+      "wallet_or_transactions": "钱包或交易",
+      "posting_or_uploads": "发帖或上传",
+      "payments_or_subscriptions": "付款或订阅",
+      "live_streaming": "直播",
+      "content_or_moderation": "内容或审核",
+      "bug": "错误",
+      "feature_request": "功能请求",
+      "other": "其他"
+    },
+    "filedOn": "已提交 {{date}}"
   }
 }

@@ -617,7 +617,8 @@
     "smsBand": {
       "domestic": "المملكة المتحدة",
       "europe": "أوروبا",
-      "global": "معظم البلدان الأخرى"
+      "global": "معظم البلدان الأخرى",
+      "premium": "في كل مكان آخر"
     },
     "smsDepositAction": "إرسال {{dhb}} DHB",
     "smsDepositPaying": "تأكيد في محفظتك...",
@@ -694,7 +695,21 @@
     "chainIdLabel": "معرف السلسلة: {{id}}",
     "exportPkConfirmPhrase": "أنا أفهم",
     "exportPkCopy": "نسخ المفتاح الخاص",
-    "e2eAutomatic": "تلقائي"
+    "e2eAutomatic": "تلقائي",
+    "smsScopeLabel": "ماذا ترسل",
+    "smsScopeDesc": "الرسائل النصية تكلف مالاً، لذا قللها إلى ما يستحق المقاطعة",
+    "smsScope": {
+      "all": "كل ما قمت بتشغيله",
+      "tips": "فقط الإكراميات التي أتلقاها",
+      "subscriptions": "فقط المشتركون الجدد",
+      "sales": "فقط مبيعات المحتوى الخاص بي",
+      "bounties": "فقط المكافآت",
+      "fractions": "فقط عروض و مبيعات الكسور",
+      "messages": "فقط الرسائل المباشرة",
+      "mentions": "فقط الإشارات لي",
+      "replies": "فقط الردود على تعليقاتي",
+      "account": "فقط الإشعارات حول حسابي"
+    }
   },
   "common": {
     "mute": "اكتم الصوت",
@@ -1289,7 +1304,8 @@
     "evmAddressCopied": "تم نسخ عنوان EVM",
     "solanaAddressLabel": "سولانا",
     "solanaAddressHint": "رموز SOL و SPL فقط",
-    "solanaAddressCopied": "تم نسخ عنوان سولانا"
+    "solanaAddressCopied": "تم نسخ عنوان سولانا",
+    "evmAddressLabel": "الإدارة الفاعلة للقاحات"
   },
   "bookmarks": {
     "title": "محفوظاتك",
@@ -1861,7 +1877,8 @@
     "otherTokens": "عملات تانية",
     "otherTokensDesc": "اشتري ETH أو USDC على Base بالكارت بتاعك",
     "shareToFeed": "المشاركة على خلاصتي",
-    "sharePostTemplate": "لقد أضفت للتو {{amount}} $ إلى مكدسي على. البناء مع المجتمع. #DeHub #DHB"
+    "sharePostTemplate": "لقد أضفت للتو {{amount}} $ إلى مكدسي على. البناء مع المجتمع. #DeHub #DHB",
+    "minDhbPurchase": "الحد الأدنى لشراء DHB هو 0.50 دولار"
   },
   "agents": {
     "title": "إيجنتات AI",
@@ -3005,7 +3022,13 @@
     "addedToYourUsernames": "بيتضاف لأسماء المستخدمين بتاعتك",
     "boughtNameGoesToVault": "هتفضل @{{current}}. @{{handle}} بيتضاف لأسماء المستخدمين بتاعتك، وتقدر تبدّل له وقت ما تحب.",
     "youAreNow": "إنت دلوقتي @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} بقى ضمن أسماء المستخدمين بتاعتك"
+    "boughtToVaultToast": "@{{handle}} بقى ضمن أسماء المستخدمين بتاعتك",
+    "askingPriceUsd": "سعر الطلب (دولار أمريكي)",
+    "dollarPriceRange": "أدخل 1 دولار - 1,000,000 دولار، مع ما يصل إلى منزلتين عشريتين.",
+    "fixedDollarPrice": "سعر الدولار ثابت؛ كمية الرمز تتحدث.",
+    "priceUpdated": "تم تحديث السعر. راجع الكمية واضغط على شراء مرة أخرى.",
+    "tokensPaidToSeller": "مدفوع مباشرة للبائع",
+    "priceUsd": "السعر (دولار أمريكي)"
   },
   "stores": {
     "subtitle": "اكتشف منتجات من مجتمع DeHub",
@@ -3351,7 +3374,8 @@
     "someone": "حد",
     "oneTyping": "{{name}} بيكتب…",
     "fewTyping": "{{names}} بيكتبوا…",
-    "manyTyping": "{{count}} أشخاص بيكتبوا…"
+    "manyTyping": "{{count}} أشخاص بيكتبوا…",
+    "attachGif": "GIFصورة بتنسيق GIF"
   },
   "promptFeed": {
     "headline": "عايز تشوف إيه؟",
@@ -3511,7 +3535,8 @@
       "sad": "حزين",
       "cry": "البكاء",
       "poo": "براز",
-      "dislike": "عدم الإعجاب"
+      "dislike": "عدم الإعجاب",
+      "lol": "هههه"
     },
     "mediaSource": "اختيار مصدر الوسائط",
     "photoLibrary": "مكتبة الصور",
@@ -4101,7 +4126,8 @@
     "madeForKidsOffDesc": "بيعرض البوست ده للأطفال اللي بيستخدموا وضع الأطفال، وبيطلعه من الفيدات العادية.",
     "madeForKidsBlockedByMature": "البوست اللي اتحط عليه علامة بالغ ما يقدرش يتنشر للأطفال كمان.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "احصل على تفاصيل RTMP"
+    "encoderHint": "احصل على تفاصيل RTMP",
+    "markMadeForKids": "وضع علامة \"مصنوع للأطفال\""
   },
   "bounty": {
     "claimed": "اتسلم",
@@ -5621,5 +5647,53 @@
     "appealRef": "المرجع {{ref}}",
     "appealSubtitleSubject": "سيقرأ الشخص هذا وينظر مرة أخرى في {{subject}}.",
     "appealMore": "لا تزال الأحرف مطلوبة: {{count}}"
+  },
+  "support": {
+    "title": "الدعم",
+    "subtitle": "تذاكرك وحالتها. لا يوجد ذكاء اصطناعي، لا رسوم.",
+    "newTicket": "تذكرة جديدة",
+    "newTicketHint": "أخبرنا بما حدث وما كنت تتوقعه بدلاً من ذلك.",
+    "backToTickets": "العودة إلى التذاكر",
+    "openHeading": "مفتوحة ({{n}})",
+    "closedHeading": "مغلقة ({{n}})",
+    "noTickets": "لم تقدم أي تذاكر دعم بعد.",
+    "loadFailed": "تعذر تحميل تذاكرك. يُرجى إعادة المحاولة.",
+    "categoryLabel": "المعيار الأساسي",
+    "severityLabel": "الأولوية",
+    "subjectLabel": "الموضوع",
+    "subjectPlaceholder": "سطر واحد يصف المشكلة",
+    "descriptionLabel": "ماذا حدث",
+    "descriptionPlaceholder": "ماذا فعلت وماذا توقعت وماذا حدث بدلاً من ذلك.",
+    "stepsLabel": "خطوات إعادة الإنتاج (اختياري)",
+    "submit": "ابعت التذكرة",
+    "submitting": "جاري الإرسال ...",
+    "filed": "التذكرة {{ref}} مع الفريق.",
+    "filedNotEmailed": "التذكرة {{ref}} مسجلة. احتفظ بالرقم المرجعي.",
+    "alreadyOpen": "لديك بالفعل هذا مفتوح باسم {{ref}}.",
+    "filingFailed": "تعذر تقديم هذه التذكرة. يُرجى إعادة المحاولة.",
+    "status": {
+      "open": "إجابة مفتوحة",
+      "in_progress": "قيد التنفيذ",
+      "resolved": "تم الحل",
+      "closed": "مغلق"
+    },
+    "severity": {
+      "low": "منخفضة",
+      "normal": "عادى",
+      "high": "مرتفع",
+      "urgent": "عاجل"
+    },
+    "category": {
+      "account_access": "الوصول إلى الحساب",
+      "wallet_or_transactions": "المحفظة أو المعاملات",
+      "posting_or_uploads": "النشر أو التحميلات",
+      "payments_or_subscriptions": "المدفوعات أو الاشتراكات",
+      "live_streaming": "بث مباشر",
+      "content_or_moderation": "المحتوى أو الإشراف",
+      "bug": "الشوائب",
+      "feature_request": "طلب الميزة",
+      "other": "أخرى"
+    },
+    "filedOn": "تم التقديم {{date}}"
   }
 }

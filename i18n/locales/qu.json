@@ -696,7 +696,21 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "INTIENDI",
     "exportPkCopy": "Clave privada Copiar",
-    "e2eAutomatic": "Automático"
+    "e2eAutomatic": "Automático",
+    "smsScopeLabel": "Imatata qillqanayki",
+    "smsScopeDesc": "Qillqakuna qolqeyuqmi, chayraykumi imaymanata hark'ayta atikunman.",
+    "smsScope": {
+      "all": "Tukuy imaymana kaqta llamk'achisqay",
+      "tips": "Chaskisqay yanapakuyllakuna",
+      "subscriptions": "Musuq qatikuqkuna",
+      "sales": "Lliuy kaqkunamanta rantiykuna",
+      "bounties": "Qullqiyuq mañakuykuna",
+      "fractions": "Chiqap qullqi qullqiyuq kaqkunamanta, rantiykunamanta",
+      "messages": "Chiqap qillqakuna",
+      "mentions": "Ñuqamanta willakuykuna",
+      "replies": "Ñuqap qillqasqayman kutichiykuna",
+      "account": "Ñuqap kontumanta willakuykuna"
+    }
   },
   "common": {
     "mute": "Upallachiy",
@@ -1865,7 +1879,8 @@
     "otherTokens": "Huk tokenkuna",
     "otherTokensDesc": "Base nisqapi ETH icha USDC rantiy tarjetaykiwan",
     "shareToFeed": "Mikhuyman rakinakuy",
-    "sharePostTemplate": "Chayraqmi {{amount}} $DHBta DeHub nisqapi pilayman yapasqa. Ayllu llaqtawan wasichakuy. #DeHub #DHB nisqa"
+    "sharePostTemplate": "Chayraqmi {{amount}} $DHBta DeHub nisqapi pilayman yapasqa. Ayllu llaqtawan wasichakuy. #DeHub #DHB nisqa",
+    "minDhbPurchase": "Chiqap DHB rantiyqa $0.50"
   },
   "agents": {
     "title": "AI Wakinkuna",
@@ -3039,7 +3054,13 @@
     "addedToYourUsernames": "Ruraqpa sutiykiman yapakun",
     "boughtNameGoesToVault": "@{{current}} kasqallaykim. @{{handle}} ruraqpa sutiykiman yaykun, munasqaykipi paymanmi tikrakuyta atinki.",
     "youAreNow": "Kunanqa @{{handle}} kanki",
-    "boughtToVaultToast": "@{{handle}} kunanqa ruraqpa sutiykikunapim kachkan"
+    "boughtToVaultToast": "@{{handle}} kunanqa ruraqpa sutiykikunapim kachkan",
+    "askingPriceUsd": "Rantiy munaq kachkan (USD)",
+    "dollarPriceRange": "Qillqay $1–$1,000,000, iskay decimal lugareskama.",
+    "fixedDollarPrice": "Dolarpa presionqa mana tukuyta atikunñachu; tokenpa yupayninmi miran.",
+    "priceUpdated": "Presionqa allinyasqa. Yupayta qhawariy chaynataq Yapamanta Rantiyta saruy.",
+    "tokensPaidToSeller": "Chiqapta rantikuqmanmi chayan",
+    "priceUsd": "Presion (USD)"
   },
   "stores": {
     "subtitle": "DeHub ayllumanta rantikunata tariy",
@@ -4135,7 +4156,8 @@
     "madeForKidsOffDesc": "Kaypi post-ta wawakuna Wawakuna Modota llamkachispa rikuchisun, chaynallataq ordinario feed-manta urayta apakun.",
     "madeForKidsBlockedByMature": "Mature nisqa post-ta wawakuna para publishasqa mana atisunchu.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "RTMP detalleskunata apay"
+    "encoderHint": "RTMP detalleskunata apay",
+    "markMadeForKids": "Wawakunapaq ruwasqa hina marcay"
   },
   "bounty": {
     "claimed": "Chaskisqa",
@@ -5655,5 +5677,54 @@
     "appealRef": "Referencia {{ref}} nisqapi qillqasqa.",
     "appealSubtitleSubject": "Huk runa kayta ñawinchaspa {{subject}} nisqapi yapamanta qhawarinqa.",
     "appealMore": "Characterkuna necesitakunraq: {{count}}"
+  },
+  "support": {
+    "title": "Yanapay",
+    "subtitle": "Qamkunaq ticketkuna chaynataq imaynatam kachkan. Mana AI, mana qullqi.",
+    "newTicket": "Musuq ticket",
+    "newTicketHint": "Imata pasasqanta chaynataq imata suyakuq kachkanki chayta willaway.",
+    "backToTickets": "Ticketkunaman kutiy",
+    "openHeading": "Kichasqa ({{n}})",
+    "closedHeading": "Wichqasqa ({{n}})",
+    "noTickets": "Mana hayk'aqpas ticketkunata churaykunkichu.",
+    "loadFailed": "Mana atikurqanchu ticketkuna qhawariyta. Kutimuyta munay.",
+    "categoryLabel": "Kategoriy",
+    "severityLabel": "Prioridad",
+    "subjectLabel": "Rimana",
+    "subjectPlaceholder": "Huk chiru sasachakuymanta willakuq",
+    "descriptionLabel": "Imataq karun",
+    "descriptionPlaceholder": "Ima ruwasqaykipas, ima suyasqaykipas, chaypa rantinpi imakuna pasasqanpas.",
+    "stepsLabel": "Miranapaq ruwaykuna (munasqa) .",
+    "stepsPlaceholder": "1. Mikhunata kichay&#10; 2. Carga nisqapi ñit’iy&#10; 3. ...",
+    "submit": "Boletota apachiy",
+    "submitting": "Kachaspa...",
+    "filed": "Boleto {{ref}} equipowan kachkan.",
+    "filedNotEmailed": "Boleto {{ref}} grabasqa. Chay referenciata waqaychay.",
+    "alreadyOpen": "Kayta {{ref}} sutiwan kichasqaña kanki.",
+    "filingFailed": "Chay boletotaqa manam archivayta atirqachu. Ama hina kaspa, hukmanta kallpachakuy.",
+    "status": {
+      "open": "Kichasqa",
+      "in_progress": "Progresopi kachkan",
+      "resolved": "Allchasqa",
+      "closed": "Wichqasqa"
+    },
+    "severity": {
+      "low": "Pisi",
+      "normal": "Normal",
+      "high": "Hatun",
+      "urgent": "Utqaylla"
+    },
+    "category": {
+      "account_access": "Cuentaman yaykuy",
+      "wallet_or_transactions": "Wallet utaq transacciones nisqakuna",
+      "posting_or_uploads": "Qillqay utaq churay",
+      "payments_or_subscriptions": "Pagokuna otaq suscripcionkuna",
+      "live_streaming": "Kawsaq purichiy",
+      "content_or_moderation": "Contenido otaq moderación nisqa",
+      "bug": "Kuru",
+      "feature_request": "Rasgo mañakuy",
+      "other": "Huk"
+    },
+    "filedOn": "Willasqa {{date}} nisqapi."
   }
 }

@@ -627,7 +627,8 @@
     "smsBand": {
       "domestic": "Ұлыбритания",
       "europe": "Еуропа.",
-      "premium": "Басқа жерде"
+      "premium": "Басқа жерде",
+      "global": "Басқа елдердің көпшілігі"
     },
     "smsDepositAction": "{{dhb}} DHB жіберіңіз",
     "smsDepositPaying": "Әмияныңызда растаңыз...",
@@ -703,7 +704,12 @@
     "chainIdLabel": "Тізбек идентификаторы: {{id}}",
     "exportPkConfirmPhrase": "ТҮСІНДІМ",
     "exportPkCopy": "Жеке кілтті көшіру",
-    "e2eAutomatic": "Автоматты"
+    "e2eAutomatic": "Автоматты",
+    "publicChatAlertsRateOption": "{{count}} сағат",
+    "smsNotificationsDescReady": "{{phone}} жіберілді — әрқайсысы {{dhb}} DHB, шамамен {{count}} қалды",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) несиемен ашыңыз",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) мәтіндерді ашады және сіздің бірінші балансыңыз болады.",
+    "smsBalance": "{{dhb}} DHB қалды (${{usd}})"
   },
   "common": {
     "mute": "Дыбысты өшіру",
@@ -787,7 +793,8 @@
     "attachDescription": "Сообщениеңізге DHB токендерін сыйлық ретінде қосыңыз",
     "minAmount": "Минимум {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB қосу",
-    "removeTip": "Сыйлықты алып тастау"
+    "removeTip": "Сыйлықты алып тастау",
+    "toContent": "Мазмұнға кеңес беріңіз"
   },
   "postOptions": {
     "options": "Параметрлер",
@@ -1448,7 +1455,8 @@
       "mentionedNamed": "{{name}} Сізді «{{community}}» бөлімінде атап өтті",
       "here": "{{name}} қауымдастықтағы барлық адамдарға хабарлама жіберді",
       "hereNamed": "{{name}} Барлығына «{{community}}» хабарлама жіберді"
-    }
+    },
+    "badgeLent": "{{name}} сізге {{tier}} белгісін берді"
   },
   "leaderboard": {
     "title": "Рейтинг",
@@ -1886,7 +1894,8 @@
     "otherTokens": "Басқа токендер",
     "otherTokensDesc": "Картаңызбен Base желісінде ETH немесе USDC сатып алыңыз",
     "shareToFeed": "Менің арнама бөлісу",
-    "sharePostTemplate": "Жаңа DeHub-дағы жинағыма {{amount}} $DHB қосылды. Қоғаммен байланыс орнату. #DeHub #DHB"
+    "sharePostTemplate": "Жаңа DeHub-дағы жинағыма {{amount}} $DHB қосылды. Қоғаммен байланыс орнату. #DeHub #DHB",
+    "minDhbPurchase": "Ең аз DHB сатып алу $0.50 құрайды"
   },
   "agents": {
     "title": "AI Агент",
@@ -3030,7 +3039,13 @@
     "addedToYourUsernames": "Пайдаланушы аттарыңызға қосылады",
     "boughtNameGoesToVault": "Сіз @{{current}} болып қаласыз. @{{handle}} пайдаланушы аттарыңызға қосылады, оған кез келген уақытта ауыса аласыз.",
     "youAreNow": "Енді сіз @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} енді пайдаланушы аттарыңызда"
+    "boughtToVaultToast": "@{{handle}} енді пайдаланушы аттарыңызда",
+    "askingPriceUsd": "Сұралған баға (USD)",
+    "dollarPriceRange": "$1–$1,000,000 аралығында, екі ондық белгіге дейін енгізіңіз.",
+    "fixedDollarPrice": "Доллар бағасы тұрақты қалады; токен мөлшері жаңарады.",
+    "priceUpdated": "Баға жаңартылды. Мөлшерді қарап шығып, қайтадан \"Сатып алу\" түймесін басыңыз.",
+    "tokensPaidToSeller": "Тікелей сатушыға төленеді",
+    "priceUsd": "Баға (USD)"
   },
   "stores": {
     "subtitle": "DeHub қауымдастығының өнімдерін ашыңыз",
@@ -3535,7 +3550,9 @@
       "hundred": "100",
       "sad": "Қайғылы",
       "cry": "Жылау",
-      "dislike": "Ұнамайды"
+      "dislike": "Ұнамайды",
+      "lol": "Күлкілі",
+      "poo": "Қақ"
     },
     "mediaSource": "Медиа көзін таңдау",
     "photoLibrary": "Фотокітапхана",
@@ -4124,7 +4141,8 @@
     "madeForKidsOffDesc": "Осы постты балалар режимін пайдаланатын балаларға көрсетеді және оны әдеттегі лентадан шығарады.",
     "madeForKidsBlockedByMature": "Ересек деп белгіленген пост балалар үшін де жариялана алмайды.",
     "encoderTitle": "OBS / кодтаушы",
-    "encoderHint": "RTMP деректемелерін алыңыз"
+    "encoderHint": "RTMP деректемелерін алыңыз",
+    "markMadeForKids": "Балаларға арналған таңбалау"
   },
   "bounty": {
     "claimed": "Алынды",
@@ -4570,7 +4588,8 @@
     "videosCount": "{{videos}} Бейнелер",
     "viewFeed": "Өз арнаңызды көру",
     "yourChannel": "Сіздің арна",
-    "yourChannelHint": "Арна мекенжайын қойыңыз — тұтқаны өз жұмыстарына да қойыңыз."
+    "yourChannelHint": "Арна мекенжайын қойыңыз — тұтқаны өз жұмыстарына да қойыңыз.",
+    "progressDone": "{{imported}} Импортталды."
   },
   "calls": {
     "voiceCall": "DeHub дауыстық қоңырауы",
@@ -5679,5 +5698,53 @@
     "appealRef": "Анықтама {{ref}}",
     "appealSubtitleSubject": "Мұны оқитын адам {{subject}} деген бетті қайта қарайды.",
     "appealMore": "Таңбалар әлі де қажет: {{count}}"
+  },
+  "support": {
+    "title": "Қолдау",
+    "subtitle": "Сіздің билеттеріңіз және олардың мәртебесі. AI жоқ, комиссия жоқ.",
+    "newTicket": "Жаңа билет",
+    "newTicketHint": "Не болғанын және оның орнына не күткеніңізді айтып беріңіз.",
+    "backToTickets": "Билеттерге оралу",
+    "openHeading": "Ашық ({{n}})",
+    "closedHeading": "Жабық ({{n}})",
+    "noTickets": "Сіз әлі ешқандай қолдау билеттерін тіркемегенсіз.",
+    "loadFailed": "Билеттеріңізді жүктеу мүмкін болмады. Қайтадан көріңіз.",
+    "categoryLabel": "Санат",
+    "severityLabel": "Басымдылық",
+    "subjectLabel": "Тақырып",
+    "subjectPlaceholder": "Мәселені сипаттайтын бір жол",
+    "descriptionLabel": "Жағдайдың мән-жайы",
+    "descriptionPlaceholder": "Сіз не істедіңіз, не күттіңіз және оның орнына не болды.",
+    "stepsLabel": "Көбейту қадамдары (міндетті емес)",
+    "submit": "Билет жіберу",
+    "submitting": "Жіберуде...",
+    "filed": "{{ref}} билеті командамен бірге.",
+    "filedNotEmailed": "Билет {{ref}} жазылды. Анықтаманы сақтаңыз.",
+    "alreadyOpen": "Сізде бұл {{ref}} ретінде ашылды.",
+    "filingFailed": "Бұл билетті беру мүмкін емес. Әрекетті қайталаңыз.",
+    "status": {
+      "open": "Ашу",
+      "in_progress": "Қарастыруда",
+      "resolved": "Шешілді ме?",
+      "closed": "Жабық"
+    },
+    "severity": {
+      "low": "Төмен",
+      "normal": "Қалыпты",
+      "high": "Жоғары",
+      "urgent": "Шұғыл"
+    },
+    "category": {
+      "account_access": "Тіркелгіге кіру",
+      "wallet_or_transactions": "Әмиян немесе транзакциялар",
+      "posting_or_uploads": "Жіберу немесе жүктеу",
+      "payments_or_subscriptions": "Төлемдер немесе жазылымдар",
+      "live_streaming": "Тікелей эфир",
+      "content_or_moderation": "Мазмұны немесе модерациясы",
+      "bug": "Қате",
+      "feature_request": "Мүмкіндік сұранысы",
+      "other": "Басқасы"
+    },
+    "filedOn": "{{date}} жіберілді"
   }
 }

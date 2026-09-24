@@ -683,7 +683,33 @@
     "chainIdLabel": "Сүлжээний ID: {{id}}",
     "exportPkConfirmPhrase": "БИ ОЙЛГОСОН",
     "exportPkCopy": "Хувийн түлхүүрийг хуулах",
-    "e2eAutomatic": "Автомат"
+    "e2eAutomatic": "Автомат",
+    "publicChatAlertsRateOption": "{{count}} цагт",
+    "smsScopeLabel": "Юу гэж мессеж бичих вэ",
+    "smsScopeDesc": "Мессеж бүрд мөнгө төлдөг тул таныг сатааруулах зүйлийг хязгаарлаарай",
+    "smsScope": {
+      "all": "Надад асаалттай байгаа бүх зүйл",
+      "tips": "Зөвхөн би авсан зөвлөмжүүд",
+      "subscriptions": "Зөвхөн шинэ захиалагчид",
+      "sales": "Зөвхөн миний контентын борлуулалт",
+      "bounties": "Зөвхөн шагнал",
+      "fractions": "Зөвхөн хувьцааны санал ба борлуулалт",
+      "messages": "Зөвхөн шууд мессеж",
+      "mentions": "Зөвхөн намайг дурдсан байдал",
+      "replies": "Зөвхөн миний сэтгэгдэлд хариу",
+      "account": "Зөвхөн миний дансны тухай мэдэгдэл"
+    },
+    "smsNotificationsDescReady": "{{phone}} руу илгээсэн — {{dhb}} DHB тус бүр, ойролцоогоор {{count}} үлдсэн",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) -аар нээх",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) нь мессежийг нээж, таны анхны үлдэгдэл болно.",
+    "smsDepositAction": "{{dhb}} DHB илгээх",
+    "smsDepositSlow": "Таны шилжүүлэг гинжинд харагдахгүй байна. Энэ нь аюулгүй — үүнийг дахин нээвэл танд олгогдоно. Лавлагаа: {{hash}}",
+    "smsNeedDhb": "Мессеж мэдэгдлийг нээхийн тулд танд {{dhb}} DHB хэрэгтэй.",
+    "smsBalance": "{{dhb}} DHB үлдсэн (${{usd}})",
+    "smsBalanceMessages": "Ойролцоогоор {{count}} мессеж байна",
+    "smsTopUp": "{{dhb}} DHB нэмэх",
+    "smsCodeSent": "Код илгээгдлээ. Энэ нь {{price}} DHB болсон.",
+    "smsCodeLabel": "{{phone}} руу бидний илгээсэн код"
   },
   "common": {
     "mute": "Дуугүй болгох",
@@ -767,7 +793,8 @@
     "attachDescription": "Таны мессежид DHB токен зөвлөмжийн хэлбэрээр хавсаргана уу",
     "minAmount": "Хамгийн бага {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB хавсаргана",
-    "removeTip": "Зөвлөмжийг хасах"
+    "removeTip": "Зөвлөмжийг хасах",
+    "toContent": "Контент руу зөвлөмж өгөх"
   },
   "postOptions": {
     "options": "Сонголтууд",
@@ -1276,7 +1303,8 @@
     "evmAddressHint": "Суурь, BNB ба Ethereum",
     "evmAddressCopied": "EVM хаяг хуулсан",
     "solanaAddressHint": "Зөвхөн SOL болон SPL токенс",
-    "solanaAddressCopied": "Solana хаягийг хуулсан"
+    "solanaAddressCopied": "Solana хаягийг хуулсан",
+    "solanaAddressLabel": "Солана"
   },
   "bookmarks": {
     "title": "Таны хавчуурга",
@@ -1327,7 +1355,8 @@
       "back": "Бүх тоглуулах жагсаалт",
       "noPosts": "Энэ тоглуулах жагсаалт одоогоор нийтлэгдээгүй байна.",
       "unavailable": "Энэ тоглуулах жагсаалт дахиж боломжгүй байна.",
-      "loadMore": "Илүү дэлгэрэнгүй мэдэгдлүүдийг үзэх"
+      "loadMore": "Илүү дэлгэрэнгүй мэдэгдлүүдийг үзэх",
+      "itemsCount": "{{count}} нийтлэл"
     }
   },
   "notifications": {
@@ -1407,7 +1436,8 @@
       "mentioned": "{{name}} таныг нийгэмд дурдсан",
       "mentionedNamed": "{{name}} таныг “{{community}}” гэж дурдсан",
       "here": "{{name}} messaged нийт хүн бүр",
-      "hereNamed": "{{name}} messaged хүн бүрийг “{{community}}”"
+      "hereNamed": "{{name}} messaged хүн бүрийг “{{community}}”",
+      "joinedNamed": "{{name}} нь “{{community}}” -д элссэн"
     }
   },
   "leaderboard": {
@@ -1846,7 +1876,8 @@
     "otherTokens": "Бусад токен",
     "otherTokensDesc": "Картаараа Base дээр ETH эсвэл USDC худалдаж авах",
     "shareToFeed": "Миний хоолонд хуваалцах",
-    "sharePostTemplate": "{{amount}} $ DHB-гDeHub дээрээ стек дээр нэмсэн. Олон нийттэй хамтран ажиллах. #DeHub #DHB"
+    "sharePostTemplate": "{{amount}} $ DHB-гDeHub дээрээ стек дээр нэмсэн. Олон нийттэй хамтран ажиллах. #DeHub #DHB",
+    "minDhbPurchase": "DHB худалдан авалт хамгийн бага нь $ 0.50 байна"
   },
   "agents": {
     "title": "AI агентууд",
@@ -2990,7 +3021,13 @@
     "addedToYourUsernames": "Таны хэрэглэгчийн нэрс рүү нэмэгдэнэ",
     "boughtNameGoesToVault": "Та @{{current}} хэвээр үлдэнэ. @{{handle}} таны хэрэглэгчийн нэрс рүү орох бөгөөд хүссэн үедээ түүн рүү шилжиж болно.",
     "youAreNow": "Та одоо @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} одоо таны хэрэглэгчийн нэрс дотор байна"
+    "boughtToVaultToast": "@{{handle}} одоо таны хэрэглэгчийн нэрс дотор байна",
+    "askingPriceUsd": "Асуух үнэ (ам .доллар)",
+    "dollarPriceRange": "$ 1–$ 1,000,000, 2 хүртэл аравтын бутархайтай оруулна уу.",
+    "fixedDollarPrice": "Долларын үнэ тогтсон хэвээр байна; токен дүнгийн шинэчлэлт.",
+    "priceUpdated": "Үнэ шинэчлэгдлээ. Дүнг шалгаад Худалдан авалтыг дахин дарна уу.",
+    "tokensPaidToSeller": "Худалдагч талд шууд төлдөг",
+    "priceUsd": "Үнэ (ам .доллар)"
   },
   "stores": {
     "subtitle": "DeHub нийгэмлэгийн бүтээгдэхүүнийг олж мэд",
@@ -4083,7 +4120,8 @@
     "madeForKidsOffDesc": "Энэ постыг Хүүхдийн горимыг ашигладаг хүүхдүүдэд харуулж, ердийн лентээс хасна.",
     "madeForKidsBlockedByMature": "Насанд хүрэгчдэд зориулсан гэж тэмдэглэсэн постыг хүүхдүүдэд нийтлэх боломжгүй.",
     "encoderTitle": "ХАБЭА-н / кодлогч",
-    "encoderHint": "RTMP дэлгэрэнгүй мэдээллийг авах"
+    "encoderHint": "RTMP дэлгэрэнгүй мэдээллийг авах",
+    "markMadeForKids": "Хүүхдэд зориулсан зүйлийг тэмдэглэ"
   },
   "bounty": {
     "claimed": "Авсан",
@@ -5598,5 +5636,51 @@
     "appealRef": "ТОДОРХОЙЛОЛТ {{ref}}",
     "appealSubtitleSubject": "Хүн үүнийг уншиж, {{subject}} руу дахин харна уу.",
     "appealMore": "Тэмдэгтүүд одоо ч хэрэгтэй байна: {{count}}"
+  },
+  "support": {
+    "title": "Тусламж",
+    "subtitle": "Таны тасалбар, тэдний статус. Үгүй, хураамжгүй.",
+    "newTicket": "Шинэ тасалбар",
+    "newTicketHint": "Юу болсныг, юу хүсэж байгаагаа хэлээрэй.",
+    "backToTickets": "Буцах тасалбарууд",
+    "noTickets": "Та одоогоор ямар ч дэмжлэг тийз мэдэгдээгүй байна.",
+    "loadFailed": "Таны тасалбаруудыг ачаалж чадсангүй. Дахин оролдоно уу.",
+    "categoryLabel": "Ангилал",
+    "severityLabel": "Эрэмбэ",
+    "subjectLabel": "Гарчиг",
+    "subjectPlaceholder": "Асуудлыг тодорхойлсон нэг мөр",
+    "descriptionLabel": "Юу болсон бэ?",
+    "descriptionPlaceholder": "Юу хийсэн, юу хүсэн хүлээж байсан, юу болсныг нь бодож үзээрэй.",
+    "stepsLabel": "Давтах алхмууд (заавал биш)",
+    "submit": "Тасалбар илгээх",
+    "submitting": "Илгээж байна...",
+    "filed": "Тасалбар {{ref}} нь багтай хамт байна.",
+    "filedNotEmailed": "Тасалбар {{ref}} бүртгэгдсэн. Лавлагаа хадгал.",
+    "alreadyOpen": "Танд {{ref}} гэж нээгдсэн байна.",
+    "filingFailed": "Тэр тасалбарыг бөглөж чадсангүй. Дахин оролдоно уу.",
+    "status": {
+      "open": "Нээлттэй",
+      "in_progress": "Явагдаж байна",
+      "resolved": "Шийдэгдсэн",
+      "closed": "Хаагдсан"
+    },
+    "severity": {
+      "low": "Бага",
+      "normal": "Энгийн",
+      "high": "АХЛАХ",
+      "urgent": "Чухал"
+    },
+    "category": {
+      "account_access": "Дансны хандалт",
+      "wallet_or_transactions": "Түрийвч эсвэл гүйлгээ",
+      "posting_or_uploads": "Тусгах эсвэл байршуулах",
+      "payments_or_subscriptions": "Төлбөр эсвэл захиалга",
+      "live_streaming": "Шууд дамжуулалт",
+      "content_or_moderation": "Агуулга эсвэл зохицуулалт",
+      "bug": "Согог",
+      "feature_request": "Онцлогийн хүсэлт",
+      "other": "Бусад"
+    },
+    "filedOn": "ХАВСРАЛТЫН {{date}}"
   }
 }

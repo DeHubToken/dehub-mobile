@@ -696,7 +696,21 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "SAYA MENGERTI",
     "exportPkCopy": "Salin kunci pribadi",
-    "e2eAutomatic": "Otomatis"
+    "e2eAutomatic": "Otomatis",
+    "smsScopeLabel": "Apa yang perlu dikirim",
+    "smsScopeDesc": "SMS berbayar, jadi batasi hanya pada hal yang layak untuk diinterupsi",
+    "smsScope": {
+      "all": "Semua yang saya aktifkan",
+      "tips": "Hanya tip yang saya terima",
+      "subscriptions": "Hanya pelanggan baru",
+      "sales": "Hanya penjualan konten saya",
+      "bounties": "Hanya hadiah",
+      "fractions": "Hanya penawaran dan penjualan pecahan",
+      "messages": "Hanya pesan langsung",
+      "mentions": "Hanya penyebutan tentang saya",
+      "replies": "Hanya balasan untuk komentar saya",
+      "account": "Hanya pemberitahuan tentang akun saya"
+    }
   },
   "common": {
     "mute": "Bisukan",
@@ -1864,7 +1878,8 @@
     "otherTokens": "Token lainnya",
     "otherTokensDesc": "Beli ETH atau USDC di Base dengan kartu Anda",
     "shareToFeed": "Bagikan ke feed saya",
-    "sharePostTemplate": "Baru saja menambahkan {{amount}} $DHB ke tumpukan saya di DeHub. Membangun bersama masyarakat. #DeHub #DHB"
+    "sharePostTemplate": "Baru saja menambahkan {{amount}} $DHB ke tumpukan saya di DeHub. Membangun bersama masyarakat. #DeHub #DHB",
+    "minDhbPurchase": "Pembelian DHB minimum adalah $0,50"
   },
   "agents": {
     "title": "Agen AI",
@@ -3008,7 +3023,13 @@
     "addedToYourUsernames": "Ditambahkan ke nama pengguna Anda",
     "boughtNameGoesToVault": "Anda tetap @{{current}}. @{{handle}} masuk ke nama pengguna Anda, dan Anda bisa beralih kapan saja.",
     "youAreNow": "Anda sekarang @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} sekarang ada di nama pengguna Anda"
+    "boughtToVaultToast": "@{{handle}} sekarang ada di nama pengguna Anda",
+    "askingPriceUsd": "Harga permintaan (USD)",
+    "dollarPriceRange": "Masukkan $1–$1.000.000, dengan hingga dua tempat desimal.",
+    "fixedDollarPrice": "Harga dolar tetap; jumlah token diperbarui.",
+    "priceUpdated": "Harga diperbarui. Tinjau jumlahnya dan ketuk Beli lagi.",
+    "tokensPaidToSeller": "Dibayar langsung ke penjual",
+    "priceUsd": "Harga (USD)"
   },
   "stores": {
     "subtitle": "Temukan produk dari komunitas DeHub",

@@ -617,7 +617,8 @@
     "smsBand": {
       "domestic": "المملكة المتحدة",
       "europe": "أوروبا",
-      "global": "معظم البلدان الأخرى"
+      "global": "معظم البلدان الأخرى",
+      "premium": "في كل مكان آخر"
     },
     "smsDepositAction": "إرسال {{dhb}} DHB",
     "smsDepositPaying": "تأكيد في محفظتك...",
@@ -694,7 +695,21 @@
     "chainIdLabel": "معرف السلسلة: {{id}}",
     "exportPkConfirmPhrase": "أنا أفهم",
     "exportPkCopy": "نسخ المفتاح الخاص",
-    "e2eAutomatic": "تلقائي"
+    "e2eAutomatic": "تلقائي",
+    "smsScopeLabel": "ما يجب إرساله في رسالة نص",
+    "smsScopeDesc": "تكلف النصوص المال، لذا قم بتضييقها إلى ما يستحق المقاطعة",
+    "smsScope": {
+      "all": "كل شيء قمت بتشغيله",
+      "tips": "فقط الإكراميات التي أتلقاها",
+      "subscriptions": "المشتركون الجدد فقط",
+      "sales": "مبيعات المحتوى الخاص بي فقط",
+      "bounties": "المكافآت فقط",
+      "fractions": "العروض والمبيعات الجزئية فقط",
+      "messages": "الرسائل المباشرة فقط",
+      "mentions": "يذكرني فقط",
+      "replies": "الردود على تعليقاتي فقط",
+      "account": "إشعارات فقط حول حسابي"
+    }
   },
   "common": {
     "mute": "كتم الصوت",
@@ -1861,7 +1876,8 @@
     "otherTokens": "عملات أخرى",
     "otherTokensDesc": "اشترِ ETH أو USDC على Base ببطاقتك",
     "shareToFeed": "المشاركة على خلاصتي",
-    "sharePostTemplate": "لقد أضفت للتو {{amount}} $ إلى مكدسي على. البناء مع المجتمع. #DeHub #DHB"
+    "sharePostTemplate": "لقد أضفت للتو {{amount}} $ إلى مكدسي على. البناء مع المجتمع. #DeHub #DHB",
+    "minDhbPurchase": "الحد الأدنى لشراء DHB هو 0.50 $"
   },
   "agents": {
     "title": "وكلاء AI",

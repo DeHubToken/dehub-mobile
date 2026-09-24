@@ -654,7 +654,62 @@
     "chainIdLabel": "چین آئی ڈی: {{id}}",
     "exportPkConfirmPhrase": "میں سمجھدا ہاں",
     "exportPkCopy": "نجی کلید کاپی کرو",
-    "e2eAutomatic": "خودکار"
+    "e2eAutomatic": "خودکار",
+    "smsNotifications": "پیغاماں دے نوٹیفیکیشن",
+    "smsScopeLabel": "کیہ پیغام بھیجنڑا ہے",
+    "smsScopeDesc": "پیغاماں تے پیسے لاگدے نیں، ایں کر کے اوہناں کوں محدود کر جیہڑے توجہ دے لائق ہون",
+    "smsScope": {
+      "all": "اوہ ساریاں گالھیں جیہڑیاں میں آن کیتیاں نیں",
+      "tips": "صرف اوہ ٹپس جیہڑیاں مینوں ملدیاں نیں",
+      "subscriptions": "صرف نویں سبسکرائبر",
+      "sales": "صرف میرے مواد دی وکری",
+      "bounties": "صرف انعام",
+      "fractions": "صرف حصص دے آفر تے وکری",
+      "messages": "صرف براہ راست پیغام",
+      "mentions": "صرف مینوں ذکر",
+      "replies": "صرف میرے تبصریاں دے جواب",
+      "account": "صرف میرے اکاؤنٹ بارے اطلاع"
+    },
+    "smsNotificationsDesc": "اوہ پیغام حاصل کرو جیہڑے اہم نیں بطور پیغام",
+    "smsNotificationsDescReady": "{{phone}} — {{dhb}} DHB دے حساب نال بھیجے گئے، تقریباً {{count}} باقی رہ گئے نیں",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) کریڈٹ نال ان لاک کرو",
+    "smsNotificationsNeedsNumber": "شروع کرن واسطے فون نمبر شامل کرو تے تصدیق کرو",
+    "smsNotificationsEmpty": "کریڈٹ ختم — پیغام وصول کرن واسطے ٹاپ اپ کرو",
+    "smsUnavailable": "پیغاماں دے نوٹیفیکیشن فی الحال دستیاب نئیں نیں",
+    "smsDialogIntro": "پیغام بھیجن واسطے پیسے لاگدے نیں، ایں کر کے ایہ چینل اوہ کریڈٹ تے چلدا اے جیہڑا تساں DHB وچ ٹاپ اپ کر دے او۔",
+    "smsUnlockExplainer": "کجھ وی ختم نئیں ہوندا۔ کریڈٹ اک ویلھے اک پیغام تے خرچ ہوندا اے، تے صرف اوہناں نوٹیفیکیشن تے جیہڑے تساں پہلے ای آن کیتے ہوئے نیں۔",
+    "smsPricesHeading": "پیغام دی قیمت",
+    "smsBand": {
+      "domestic": "مملکت متحدہ",
+      "europe": "یورپ",
+      "global": "ٻیا زیادہ تر مُلک",
+      "premium": "باقی ساریاں جاہیں"
+    },
+    "smsDepositAction": "{{dhb}} DHB بھیجو",
+    "smsDepositPaying": "تہاڈے والٹ وچ تصدیق کرو…",
+    "smsDepositConfirming": "Chain دا انتظار...",
+    "smsDepositNotSent": "Transfer submit نئی تھی.",
+    "smsDepositSlow": "تہاڈا transfer ابھی chain تے نظر نئی آیا. ایہہ محفوظ اے — ایہنوں دوبارہ کھولھو تے ایہہ credit کر دتا ویسی. Reference: {{hash}}",
+    "smsChainUnsupported": "Text credit top up کرن لئی Settings وچ Base یا BNB Chain تے سوئچ کرو.",
+    "smsWalletNotReady": "تہاڈا wallet ابھی تیار نئی اے — کجھ ویلے بعد دوبارہ کوشش کرو.",
+    "smsNeedDhb": "Text notifications unlock کرن لئی تہاڈے کول {{dhb}} DHB ہونڑ چاہیئاں.",
+    "smsBalance": "{{dhb}} DHB باقی (${{usd}})",
+    "smsBalanceMessages": "تقریباً {{count}} ہور پیغامات",
+    "smsTopUp": "{{dhb}} DHB top up کرو",
+    "smsSendCode": "مینوں اک code text کرو",
+    "smsCodeSent": "Code بھیج دتا گیا. ایہہ {{price}} DHB دا سی.",
+    "smsCodeFailed": "اسیں اوہ code نئی بھیج سکے.",
+    "smsCodeLabel": "Code جیہڑا اساں {{phone}} تے text کیتا سی",
+    "smsVerify": "Code confirm کرو",
+    "smsVerifyFailed": "اساں اوہ code confirm نئی کر سکے.",
+    "smsRemoveNumber": "ایہہ number remove کرو",
+    "smsRemoveFailed": "اساں اوہ number نئی remove کر سکے.",
+    "smsCountryBlocked": "اساں ابھی اوہناں ملکاں وچ texts deliver نئی کر سکے.",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) کے متن کھولتا ہے اور آپ کا پہلا بیلنس بن جاتا ہے۔",
+    "smsUnlocked": "نوٹیفیکیشن ان لاک تھئ گئن",
+    "smsNumberLabel": "فون نمبر",
+    "smsNumberVerified": "نمبر تصدیق شدہ",
+    "smsNumberRemoved": "نمبر ہٹا ڈتا گئیا"
   },
   "common": {
     "mute": "آواز بند کرو",
@@ -809,7 +864,14 @@
     "boostPostDesc": "ایں کوں ہوم فیڈ دے سبھ کنوں اُتے رکھو",
     "mintPostDesc": "ایہہ پوسٹ آن چین شائع کرو",
     "giftBoost": "ہک بوسٹ تحفہ ݙیوو",
-    "giftBoostDesc": "اپݨا ہک ایں پوسٹ تے خرچ کرو"
+    "giftBoostDesc": "اپݨا ہک ایں پوسٹ تے خرچ کرو",
+    "removeBookmark": "Bookmark remove کرو",
+    "pinPost": "Profile تے Pin کرو",
+    "unpinPost": "Profile توں Unpin کرو",
+    "postPinned": "Profile تے Pinned",
+    "postUnpinned": "Profile توں Unpinned",
+    "pinFailed": "ایہہ post pin یا unpin نئی کر سکے",
+    "bookmark": "بُک مارک"
   },
   "filters": {
     "sort": "ترتیب",
@@ -1815,7 +1877,8 @@
     "otherTokens": "ٻئے ٹوکن",
     "otherTokensDesc": "اپݨے کارڈ نال Base تے ETH یا USDC خریدو",
     "shareToFeed": "میرے فیڈ تے شیئر کرو",
-    "sharePostTemplate": "میں حال ہی وچ DeHub تے {{amount}} $DHB اپنے سٹیک وچ شامل کیتا اے۔ کمیونٹی دے نال تعمیر کر رہیا ہاں۔ #DeHub #DHB"
+    "sharePostTemplate": "میں حال ہی وچ DeHub تے {{amount}} $DHB اپنے سٹیک وچ شامل کیتا اے۔ کمیونٹی دے نال تعمیر کر رہیا ہاں۔ #DeHub #DHB",
+    "minDhbPurchase": "Minimum DHB purchase $0.50 اے"
   },
   "agents": {
     "title": "AI ایجنٹ",
@@ -2957,7 +3020,13 @@
     "addedToYourUsernames": "تہاڈے یوزرنیم وچ شامل تھی ویسی",
     "boughtNameGoesToVault": "تساں @{{current}} ای رہسو۔ @{{handle}} تہاڈے یوزرنیم وچ ونج ویسی، تے جڈاں چاہو اوں تے بدل سگدے او۔",
     "youAreNow": "ہݨ تساں @{{handle}} او",
-    "boughtToVaultToast": "@{{handle}} ہݨ تہاڈے یوزرنیم وچ ہے"
+    "boughtToVaultToast": "@{{handle}} ہݨ تہاڈے یوزرنیم وچ ہے",
+    "askingPriceUsd": "گُزاری قیمت (امریکی ڈالر)",
+    "dollarPriceRange": "$1–$1,000,000 تئیں داخل کرو، ڈو اعشاریائی اعداد تئیں.",
+    "priceUpdated": "قیمت اپ ڈیٹ تھی گئ اے۔ رقم دا جائزہ گھن تے فیر توں خریدن تے ٹیپ کرو۔",
+    "tokensPaidToSeller": "وچولے دے بغیر براہ راست بیچنے والے نوں",
+    "priceUsd": "قیمت (امریکی ڈالر)",
+    "tabMine": "مِین"
   },
   "stores": {
     "subtitle": "DeHub برادری دیاں مصنوعات لبھو",
@@ -3400,7 +3469,12 @@
     "boostCancelledRefunded": "بوسٹ منسوخ تھیا تے تہاݙے کوٹے وچ واپس",
     "boostCancelledSpent": "بوسٹ منسوخ تھیا۔ اوہ پہلے ای شروع تھی گیا ہائی، ایں کیتے خرچ ای رہسی۔",
     "cancelFailed": "اوہ بوسٹ منسوخ کائنی تھی سگھیا",
-    "screenTitle": "SuperPowers"
+    "screenTitle": "SuperPowers",
+    "homePost": "اوپن شیٹ توں، فیر بوسٹ تے، اپنڑے پوسٹ توں خرچ کرو۔",
+    "homeGift": "اوپن شیٹ توں، فیر بوسٹ تے، کسے ہور دی پوسٹ تے خرچ کرو۔",
+    "homeComment": "اپنڑے کمنٹ تے خرچ کرو، کسے ہور دے تھریڈ وچ۔",
+    "homeStage": "اُس سٹیج توں خرچ کرو جیہڑی تساں ہوسٹ کر رہے ہو۔",
+    "homePage": "اِتھے، اِس سکرین دے اُتلے پاسے خرچ کرو۔"
   },
   "follow": {
     "followers": "فالوورز",
@@ -3438,7 +3512,9 @@
     "youBlockedBody": "آپ ان کی پوسٹس نہیں دیکھ سکیں گے اور نہ ہی ان کے ساتھ بات چیت کر سکیں گے۔ رسائی بحال کرنے کے لیے ان بلاک کریں۔",
     "restrictedBody": "اس صارف نے آپ کے اکاؤنٹ کے ساتھ بات چیت کو محدود کر دیا ہے۔",
     "requestPendingBody": "آپ کی فالو ریکویسٹ بھیج دی گئی ہے۔ جب وہ آپ کی درخواست منظور کریں گے تو آپ ان کی پوسٹس دیکھ سکیں گے۔",
-    "followToSeePosts": "ان کی پوسٹس دیکھنے کے لیے اس اکاؤنٹ کو فالو کریں۔"
+    "followToSeePosts": "ان کی پوسٹس دیکھنے کے لیے اس اکاؤنٹ کو فالو کریں۔",
+    "privateBodyGeneric": "اِس صارف نے اپنڑے فالوورز تے فالووینگ لسٹ نوں خفیہ رکھݨ دا فیصلہ کیتا اے۔",
+    "removeFollowerHint": "کسے فالوور نوں ہٹاوݨ واسطے اُوھدے تے دبا کے رکھو۔"
   },
   "reactionInfo": {
     "title": "ردعملیاں",
@@ -4047,7 +4123,8 @@
     "madeForKidsOffDesc": "ایہ پوسٹ بچیاں موڈ استعمال کرن والے بچیاں نوں دکھاندا اے، اور اسے عام فیڈز وچوں نکال دیندا اے۔",
     "madeForKidsBlockedByMature": "پختہ نشان زد پوسٹ بچیاں لئی شائع نہیں کیتی جا سکدی۔",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "RTMP تفصیلات حاصل کریں"
+    "encoderHint": "RTMP تفصیلات حاصل کریں",
+    "markMadeForKids": "بچیاں واسطے بݨایا گیا مارک کرو"
   },
   "bounty": {
     "claimed": "حاصل تھی ڳیا",
@@ -4492,7 +4569,10 @@
     "videosCount": "{{videos}} ویڈیوز",
     "viewFeed": "اپنا فیڈ دیکھیں",
     "yourChannel": "آپ کا چینل",
-    "yourChannelHint": "اپنا چینل پتہ پیسٹ کریں — اس کا ہینڈل اکیلے بھی کام کرتا ہے۔"
+    "yourChannelHint": "اپنا چینل پتہ پیسٹ کریں — اس کا ہینڈل اکیلے بھی کام کرتا ہے۔",
+    "progressDone": "{{imported}} درآمد.",
+    "selectAll": "سڀ چونڊيو",
+    "paste": "پیسٹ کرو"
   },
   "calls": {
     "voiceCall": "DeHub وائس کال",
@@ -4606,7 +4686,34 @@
     "sendAGift": "تحفہ گھجو",
     "minPlaceholder": "منٹ: {{amount}}",
     "minGift": "منٹ تحفہ {{amount}} اے",
-    "sendGift": "تحفہ گھجو"
+    "sendGift": "تحفہ گھجو",
+    "pickTier": "ڪا تقريب چونڊيو",
+    "plays": "سٹريم تي {{tier}} وڄائيندو آهي",
+    "you": "توهان",
+    "tier": {
+      "heart": "پيار دل",
+      "chocolate": "چاکليٽ جو دٻو",
+      "bouquet": "گلن جو گلدستو",
+      "crown": "تاج",
+      "magicRing": "جادو جي انگوزي",
+      "spartans": "اسپارٽنز فوج",
+      "party": "پارٽي جي تقريب",
+      "gold3": "سنہری اسڪرين (3s)",
+      "gold10": "سنہری اسڪرين (10s)",
+      "ultimate": "الٽيميٽ تقريب"
+    },
+    "tierDesc": {
+      "heart": "دل اسٽريم جي ڪنڊ مٿي اڏرن ٿيون.",
+      "chocolate": "چاکليٽ جو هڪ دٻو اسڪرين مٿي ڪري ٿو.",
+      "bouquet": "گلن جو هڪ گلدستو ڪنڊ ۾ کُلي ٿو.",
+      "crown": "هڪ تاج اسٽريم مٿان اڀري ٿو ۽ چمڪي ٿو.",
+      "magicRing": "هڪ انگوزي وچ ۾ لهي ٿي ۽ چمڪن ۾ گونجي ٿي.",
+      "spartans": "هڪ شيلڊ وال اسٽريم مٿان مارچ ڪري ٿي.",
+      "party": "ڪنفيٽي اڏامي ٿي ۽ هڪ ڊسڪو بال لهي ٿي.",
+      "gold3": "اسڪرين سنئين ٿي وڃي ٿي ۽ 3 سيڪنڊن تائين سڪا وسن ٿا.",
+      "gold10": "اسڪرين سنئين ٿي وڃي ٿي ۽ 10 سيڪنڊن تائين سڪا وسن ٿا.",
+      "ultimate": "هر تقريب هڪ ئي وقت - سونا، ڪنفيٽي، سڪا ۽ هڪ ٽرافي."
+    }
   },
   "goLive": {
     "streamKey": "سٹریم کلید",
@@ -4844,7 +4951,37 @@
     "buyWithBnbNote": "BNB Chain تے ٹریڈنگ بند تھی گئی اے۔ BNB ہے؟ ایں نال Base تے DHB خریدو۔",
     "buyWithBnb": "BNB نال خریدو",
     "pools": {
-      "feeDhb": "≈ {{amount}} DHB"
+      "feeDhb": "≈ {{amount}} DHB",
+      "title": "پول",
+      "search": "پول ڳوليو",
+      "loading": "پول لوڊ ٿي رهيا آهن…",
+      "noMatch": "ڪو به پول ان ڳولا سان نه ٿو ملي.",
+      "add": "پول شامل ڪريو",
+      "addTitle": "هڪ نئون پول کوليو",
+      "addDescription": "Base، Ethereum، Robinhood Chain يا Solana تي ڪنهن به ٽوڪن کي ان جي پنهنجي آرڊر بڪ سان لسٽ ڪريو. پول کولڻ جي قيمت $100 آهي، جيڪا DHB ۾ ادا ڪئي ويندي.",
+      "network": "نيٽ ورڪ",
+      "contract": "ٽوڪن ڪانٽريڪٽ ايڊريس",
+      "mintPlaceholder": "ٽوڪن منٽ ايڊريس",
+      "lookingUp": "ٽوڪن ڳولي رهيو آهيان…",
+      "lookupFailed": "اهو ٽوڪن نه ملي سگهيو.",
+      "exists": "{{symbol}} وٽ اڳ ۾ ئي هڪ پول آهي.",
+      "openExisting": "ان کي کوليو",
+      "setImage": "پول جي تصوير مقرر ڪريو",
+      "imageHint": "پول جي تصوير مقرر ڪرڻ لاءِ دائري تي ٽيپ ڪريو.",
+      "imageRules": "5 MB يا ان کان گهٽ جي PNG، JPG، WebP يا GIF چونڊيو.",
+      "priceUnavailable": "DHB جي قيمت هن وقت دستياب ناهي. هڪ منٽ ۾ ٻيهر ڪوشش ڪريو.",
+      "swapNote": "توهان جو {{symbol}} فيس لاءِ ساڳئي ٽرانزيڪشن ۾ DHB ۾ مٽايو ويندو. جيڪو به بچي ويندو اهو توهان جي والٽ ۾ رهندو.",
+      "alreadyPaid": "توهان جي فيس اڳ ۾ ئي ادا ڪئي وئي آهي. پول کولڻ مڪمل ڪريو.",
+      "finish": "پول کولڻ مڪمل ڪريو",
+      "notEnough": "$100 فيس لاءِ ڪافي بيلنس ناهي",
+      "payAndOpen": "${{amount}} ادا ڪريو ۽ پول کوليو",
+      "discardPaid": "ٻئي ٽوڪن سان ٻيهر شروع ڪريو",
+      "uploading": "تصوير اپ لوڊ ڪري رهيو آهيان…",
+      "quoting": "فيس جي قيمت مقرر ڪري رهيو آهيان…",
+      "paying": "فيس ادا ڪري رهيو آهيان…",
+      "opening": "پول کوليو پيو وڃي…",
+      "created": "{{symbol}} پول کليل آهي",
+      "createFailed": "پول نه کولي سگهيو."
     },
     "pool": {
       "evmLimitNote": "تہاڈی ٹوکن اک پاسے و الی Uniswap رینج وچ تہاڈے پرائس تے ہن تے مارکیٹ دے ٹریڈ کرن تے تبدیل تھی ویندن۔ کِنی وی ویل ودھ سکدے او۔",
@@ -4855,7 +4992,33 @@
       "cancel": "کینسل کرو",
       "cancelled": "آرڈر کینسل تھی گیا",
       "bought": "{{amount}} {{symbol}} خریدیا",
-      "sold": "{{amount}} {{symbol}} ویچیا"
+      "sold": "{{amount}} {{symbol}} ویچیا",
+      "missingTitle": "پول نه مليو — DeHub DEX",
+      "missing": "هن ٽوڪن لاءِ اڃا تائين ڪو پول ناهي. ان جي آرڊر بڪ شروع ڪرڻ لاءِ هڪ کوليو.",
+      "seoTitle": "{{symbol}}/USD — {{name}} کي {{chain}} تي واپار ڪريو | DeHub DEX",
+      "seoDescription": "DeHub DEX تے {{name}} ({{symbol}}) نوں {{chain}} تے ٹریڈ کرو: لائیو آرڈر بک، لمٹ آرڈر تے فوری خرید و فروخت۔",
+      "changeImage": "تصویر بدلو",
+      "imageUpdated": "تصویر اپ ڈیٹ تھی گئی",
+      "imageFailed": "تصویر اپ ڈیٹ نئیں تھی سکی۔",
+      "volume24": "24 گھنٹے والیم",
+      "size": "سائز ({{symbol}})",
+      "total": "کل ({{symbol}})",
+      "buyTotal": "بِڈز {{amount}} {{symbol}}",
+      "sellTotal": "آسکز {{amount}} {{symbol}}",
+      "orderType": "آرڈر دی قسم",
+      "limit": "لمٹ",
+      "instant": "فوری",
+      "instantBuy": "فوری خرید",
+      "instantSell": "فوری فروخت",
+      "confirmInstantBuy": "فوری خرید دی تصدیق کرو",
+      "confirmInstantSell": "فوری فروخت دی تصدیق کرو",
+      "placeBuy": "{{symbol}} واسطے خرید آرڈر کرو",
+      "placeSell": "{{symbol}} واسطے وِکْری دا آرڈر کرو",
+      "buyAt": "قیمت تے خرید کرو",
+      "youReceive": "تساں کوں ملدی اے",
+      "priceImpact": "قیمت اثر",
+      "minimum": "گھٹ توں گھٹ آرڈر",
+      "instantNote": "ھن نیٹ ورڪ تي ھر ايڪسچينج تي فوري واپار بھترين قيمت تي فوراً پُورا ٿين ٿا، 1% تائين سلپيج سان."
     },
     "chart": {
       "bookStarts": "کتاب ایتھو شروع تھیو وِنجے",
@@ -4869,7 +5032,9 @@
     },
     "connectWallet": "والٹ کنیکٹ کرو",
     "prepareFailed": "پوزیشن تیار نی کر سگدے",
-    "withdrawFailed": "ودھرا کرݨ ناکام تھی گیا"
+    "withdrawFailed": "ودھرا کرݨ ناکام تھی گیا",
+    "sellAmount": "وِکدی رقم",
+    "spend": "خرچ"
   },
   "onboarding": {
     "optIn": {
@@ -5476,5 +5641,51 @@
     "appealRef": "ریفرنس {{ref}}",
     "appealSubtitleSubject": "اک بندا ایہہ پڑھسی تے {{subject}} تے دوبارہ غور کرسی۔",
     "appealMore": "حروف دی لوڑ اے: {{count}}"
+  },
+  "support": {
+    "title": "سپورٹ",
+    "subtitle": "توهان جا ٽڪيٽ ۽ انهن جي حيثيت. ڪو AI ناهي، ڪا فيس ناهي.",
+    "newTicket": "نواں ٹکٹ",
+    "newTicketHint": "سانوں دسو کی ہویا تے تساں کی امید کریندے ہئیو؟",
+    "backToTickets": "واپس ٹکٹاں تے",
+    "openHeading": "کھول ({{n}})",
+    "closedHeading": "بند ({{n}})",
+    "noTickets": "تساں ہجے کوئی وی سپورٹ ٹکٹ فائل نئیں کیتا۔",
+    "categoryLabel": "گروہ",
+    "severityLabel": "ترجیح",
+    "subjectLabel": "مضمون",
+    "subjectPlaceholder": "مسئلے دا اک جملہ",
+    "descriptionLabel": "کی تھیا",
+    "descriptionPlaceholder": "تہاڈے کیہ کیتا، تہاڈا کیہ توقع سی، اتے کیہ ہویا۔",
+    "stepsLabel": "تفسیر کرنے دے طریقے (اختیاری)",
+    "submit": "ٹکٹ گھل",
+    "submitting": "موڪليون پيو...",
+    "filed": "ٹکٹ {{ref}} ٹیم دے کول اے۔",
+    "filedNotEmailed": "ٹکٹ {{ref}} درج کر لیا گیا۔ حوالہ رکھو۔",
+    "alreadyOpen": "تساڈے کول ایہہ پہلے توں ہی {{ref}} دے نال کھولھیا ہویا اے۔",
+    "status": {
+      "open": "کھل",
+      "in_progress": "جاری",
+      "resolved": "حل ٿي ويو",
+      "closed": "بند"
+    },
+    "severity": {
+      "low": "گھٹ",
+      "normal": "عام",
+      "high": "اچو",
+      "urgent": "فوری"
+    },
+    "category": {
+      "account_access": "اکاؤنٹ رسائی",
+      "wallet_or_transactions": "وولٹ یا لین دین",
+      "posting_or_uploads": "پوسٹ کرین یا اپلوڈ کرین",
+      "payments_or_subscriptions": "ادا یا سبسکرپشن",
+      "live_streaming": "لائیو سٹریمنگ",
+      "content_or_moderation": "مواد یا ماڈریشن",
+      "bug": "کیڑا",
+      "feature_request": "خاصیت دی درخواست",
+      "other": "ٻيو"
+    },
+    "filedOn": "داخل ٿيل {{date}}"
   }
 }

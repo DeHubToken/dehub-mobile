@@ -690,7 +690,27 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "МЕН ТҮШҮНДҮМ",
     "exportPkCopy": "Жеке ачкычты көчүрүү",
-    "e2eAutomatic": "Автоматтык"
+    "e2eAutomatic": "Автоматтык",
+    "smsScopeLabel": "Тексттерге эмне жазса болот",
+    "smsScopeDesc": "Тексттер акча талап кылат, андыктан аларды үзгүлтүккө учурууга арзый турган нерселерге чейин кыскартыңыз",
+    "smsScope": {
+      "all": "Мен күйгүзгөн нерселердин баары",
+      "tips": "Мен алган кеңештер гана",
+      "subscriptions": "Жаңы жазылуучулар гана",
+      "sales": "Менин контентимдин сатылышы гана",
+      "bounties": "Сыйлыктар гана",
+      "fractions": "Фракциялык сунуштар жана сатуулар гана",
+      "messages": "Түз билдирүүлөр гана",
+      "mentions": "Мени эскерүүлөр гана",
+      "replies": "Менин комментарийлериме жооптор гана",
+      "account": "Менин аккаунтум жөнүндө эскертүүлөр гана"
+    },
+    "smsNotificationsDescReady": "{{phone}} — {{dhb}} DHB ар бири, {{count}} калды",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) менен кулпусун ачуу",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) тексттердин кулпусун ачат жана биринчи балансыңыз болот.",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsBalance": "{{dhb}} DHB калды (${{usd}})",
+    "badgeDelegationLendsAny": "Ар бири башка аккаунтка кулпусун ачкан төш белгиңизди берет, өзүңүздүн {{tier}} чейин. Кичинекей төш белги да бүт уячаны колдонот."
   },
   "common": {
     "mute": "Үнүн өчүрүү",
@@ -1419,7 +1439,8 @@
       "mentionedNamed": "{{name}} Сизди “{{community}}” деп атаган",
       "here": "{{name}} Коомчулуктун баарына билдирүү жөнөттү",
       "hereNamed": "{{name}} \"{{community}}\" ичиндеги баарына билдирүү жөнөттү"
-    }
+    },
+    "badgeHandedBack": "{{name}} сизге берген {{tier}} төш белгисин кайтарып берди"
   },
   "leaderboard": {
     "title": "Рейтинг",
@@ -1857,7 +1878,8 @@
     "otherTokens": "Башка токендер",
     "otherTokensDesc": "Картаңыз менен Base тармагында ETH же USDC сатып алыңыз",
     "shareToFeed": "Менин тоюмду бөлүшүү",
-    "sharePostTemplate": "Жөн гана кошулду {{amount}} $ DHB DeHub менин стекке. Коомчулук менен түзүү. #DeHub #DHB"
+    "sharePostTemplate": "Жөн гана кошулду {{amount}} $ DHB DeHub менин стекке. Коомчулук менен түзүү. #DeHub #DHB",
+    "minDhbPurchase": "DHB сатып алуунун минималдуу суммасы $0.50"
   },
   "agents": {
     "title": "AI Агенттер",
@@ -3001,7 +3023,13 @@
     "addedToYourUsernames": "Колдонуучу аттарыңызга кошулат",
     "boughtNameGoesToVault": "Сиз @{{current}} бойдон каласыз. @{{handle}} колдонуучу аттарыңызга кошулат, каалаган убакта ага өтө аласыз.",
     "youAreNow": "Эми сиз @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} эми колдонуучу аттарыңызда"
+    "boughtToVaultToast": "@{{handle}} эми колдонуучу аттарыңызда",
+    "askingPriceUsd": "Суралып жаткан баа (USD)",
+    "dollarPriceRange": "$1–$1,000,000 чейин, эки ондук белгиге чейин киргизиңиз.",
+    "fixedDollarPrice": "Доллар баасы туруктуу бойдон калат; токендин саны жаңыртылат.",
+    "priceUpdated": "Баа жаңыртылды. Сумманы карап чыгып, Дагы сатып алуу баскычын басыңыз.",
+    "tokensPaidToSeller": "Түздөн-түз сатуучуга төлөнөт",
+    "priceUsd": "Баа (USD)"
   },
   "stores": {
     "subtitle": "DeHub жамаатынын товарларын ачыңыз",
@@ -3533,7 +3561,8 @@
     "creator": "DeHub жаратуучусу",
     "play": "Ойнотуу",
     "pause": "Пауза",
-    "listens_one": "{{count}} угуу"
+    "listens_one": "{{count}} угуу",
+    "listens_other": "{{count}} listens"
   },
   "transfer": {
     "title": "Токендерди которуу",
@@ -4098,7 +4127,8 @@
     "madeForKidsOffDesc": "Бул постту Балалар режимин колдонуп жаткан балаларга көрсөтөт жана аны кадимки лентадан алып салат.",
     "madeForKidsBlockedByMature": "Өндөгөн деп белгиленген пост балалар үчүн жарыялана албайт.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "RTMP деталдарын алыңыз"
+    "encoderHint": "RTMP деталдарын алыңыз",
+    "markMadeForKids": "Балдар үчүн жасалгандай белгилөө"
   },
   "bounty": {
     "claimed": "Алынды",
@@ -5620,5 +5650,52 @@
     "appealRef": "Шилтеме {{ref}}",
     "appealSubtitleSubject": "Бир адам муну окуп, {{subject}} дагы бир жолу карайт.",
     "appealMore": "Белгилер дагы деле керек: {{count}}"
+  },
+  "support": {
+    "title": "Колдоо",
+    "subtitle": "Сиздин билеттериңиз жана алардын статусу. AI жок, комиссия жок.",
+    "newTicket": "Жаңы билет",
+    "newTicketHint": "Эмне болгонун жана анын ордуна эмнени күткөнүңүздү айтып бериңиз.",
+    "backToTickets": "Билеттерге кайтуу",
+    "closedHeading": "Жабык ({{n}})",
+    "noTickets": "Сиз азырынча эч кандай колдоо билеттерин тапшыра элексиз.",
+    "loadFailed": "Билеттериңизди жүктөөгө болбоду. Кайра аракет кылып көрүңүз.",
+    "categoryLabel": "Категория",
+    "severityLabel": "Алгачкылык",
+    "subjectLabel": "Окуу предмети",
+    "subjectPlaceholder": "Көйгөйдү сүрөттөгөн бир сап",
+    "descriptionLabel": "Эмне болду?",
+    "descriptionPlaceholder": "Сиз эмне кылдыңыз, эмнени күткөнсүз жана анын ордуна эмне болду.",
+    "stepsLabel": "Репродукцияга кадамдар (милдеттүү эмес)",
+    "submit": "Билетти жөнөтүү",
+    "submitting": "Жөнөтүү",
+    "filed": "Билет {{ref}} команда менен.",
+    "filedNotEmailed": "Билет {{ref}} жазылды. Шилтемени сактаңыз.",
+    "alreadyOpen": "Сизде буга чейин {{ref}} катары ачылган.",
+    "filingFailed": "Бул билетти берүүгө болбоду. Кайра аракет кылып көрүңүз.",
+    "status": {
+      "open": "Ачуу",
+      "in_progress": "Изилдөө жүрүп жатат",
+      "resolved": "Чечилди",
+      "closed": "Жабык"
+    },
+    "severity": {
+      "low": "Кичине",
+      "normal": "Нормалдуу",
+      "high": "Бийик",
+      "urgent": "Шашылыш"
+    },
+    "category": {
+      "account_access": "Аккаунтка кирүү",
+      "wallet_or_transactions": "Капчык же транзакциялар",
+      "posting_or_uploads": "Жөнөтүү же жүктөө",
+      "payments_or_subscriptions": "Төлөмдөр же жазылуулар",
+      "live_streaming": "Түз агым",
+      "content_or_moderation": "Мазмун же модерация",
+      "bug": "Bug",
+      "feature_request": "Өзгөчөлүгү сурам",
+      "other": "Башка"
+    },
+    "filedOn": "Жарыяланган {{date}}"
   }
 }

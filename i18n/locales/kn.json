@@ -705,7 +705,11 @@
     "chainIdLabel": "ಚೈನ್ ಐಡಿ: {{id}}",
     "exportPkConfirmPhrase": "ನಾನು ಅರ್ಥಮಾಡಿಕೊಂಡಿದ್ದೇನೆ",
     "exportPkCopy": "ಖಾಸಗಿ ಕೀಲಿಯನ್ನು ನಕಲಿಸಿ",
-    "e2eAutomatic": "ಸ್ವಯಂಚಾಲಿತ"
+    "e2eAutomatic": "ಸ್ವಯಂಚಾಲಿತ",
+    "smsNotificationsLocked": "{{dhb}} DHB ($ {{usd}}) ಕ್ರೆಡಿಟ್‌ನೊಂದಿಗೆ ಅನ್‌ಲಾಕ್ ಮಾಡಿ",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) ಪಠ್ಯಗಳನ್ನು ಅನ್‌ಲಾಕ್ ಮಾಡುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಮೊದಲ ಬ್ಯಾಲೆನ್ಸ್ ಆಗುತ್ತದೆ.",
+    "smsBalance": "{{dhb}} DHB ಎಡಕ್ಕೆ (${{usd}})",
+    "smsBalanceMessages": "{{count}} ಇನ್ನಷ್ಟು ಸಂದೇಶಗಳು"
   },
   "common": {
     "mute": "ಮ್ಯೂಟ್ ಮಾಡಿ",
@@ -1872,7 +1876,8 @@
     "otherTokens": "ಇತರ ಟೋಕನ್‌ಗಳು",
     "otherTokensDesc": "ನಿಮ್ಮ ಕಾರ್ಡ್‌ನಿಂದ Base ನಲ್ಲಿ ETH ಅಥವಾ USDC ಖರೀದಿಸಿ",
     "shareToFeed": "ನನ್ನ ಫೀಡ್‌ಗೆ ಹಂಚಿಕೊಳ್ಳಿ",
-    "sharePostTemplate": "DeHub ನಲ್ಲಿ ನನ್ನ ಸ್ಟ್ಯಾಕ್‌ಗೆ {{amount}} $DHB ಅನ್ನು ಸೇರಿಸಲಾಗಿದೆ. ಸಮುದಾಯದೊಂದಿಗೆ ನಿರ್ಮಿಸುವುದು. #DeHub #DHB"
+    "sharePostTemplate": "DeHub ನಲ್ಲಿ ನನ್ನ ಸ್ಟ್ಯಾಕ್‌ಗೆ {{amount}} $DHB ಅನ್ನು ಸೇರಿಸಲಾಗಿದೆ. ಸಮುದಾಯದೊಂದಿಗೆ ನಿರ್ಮಿಸುವುದು. #DeHub #DHB",
+    "minDhbPurchase": "ಕನಿಷ್ಠ DHB ಖರೀದಿ $ 0.50 ಆಗಿದೆ"
   },
   "agents": {
     "title": "AI ಏಜೆಂಟ್‌ಗಳು",
@@ -3016,7 +3021,13 @@
     "addedToYourUsernames": "ನಿಮ್ಮ ಬಳಕೆದಾರ ಹೆಸರುಗಳಿಗೆ ಸೇರಿಸಲಾಗುತ್ತದೆ",
     "boughtNameGoesToVault": "ನೀವು @{{current}} ಆಗಿಯೇ ಇರುತ್ತೀರಿ. @{{handle}} ನಿಮ್ಮ ಬಳಕೆದಾರ ಹೆಸರುಗಳಿಗೆ ಸೇರುತ್ತದೆ, ಬೇಕಾದಾಗ ಅದಕ್ಕೆ ಬದಲಾಯಿಸಬಹುದು.",
     "youAreNow": "ಈಗ ನೀವು @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} ಈಗ ನಿಮ್ಮ ಬಳಕೆದಾರ ಹೆಸರುಗಳಲ್ಲಿದೆ"
+    "boughtToVaultToast": "@{{handle}} ಈಗ ನಿಮ್ಮ ಬಳಕೆದಾರ ಹೆಸರುಗಳಲ್ಲಿದೆ",
+    "askingPriceUsd": "ಕೇಳುವ ಬೆಲೆ (USD)",
+    "dollarPriceRange": "ಎರಡು ದಶಮಾಂಶ ಸ್ಥಳಗಳೊಂದಿಗೆ $ 1–$ 1,000,000 ಅನ್ನು ನಮೂದಿಸಿ.",
+    "fixedDollarPrice": "ಡಾಲರ್ ಬೆಲೆ ಸ್ಥಿರವಾಗಿರುತ್ತದೆ; ಟೋಕನ್ ಮೊತ್ತದ ಅಪ್‌ಡೇಟ್‌ಗಳು.",
+    "priceUpdated": "ಬೆಲೆ ನವೀಕರಿಸಲಾಗಿದೆ. ಮೊತ್ತವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಖರೀದಿಸಿ ಟ್ಯಾಪ್ ಮಾಡಿ.",
+    "tokensPaidToSeller": "ಮಾರಾಟಗಾರರಿಗೆ ನೇರವಾಗಿ ಪಾವತಿಸಲಾಗಿದೆ",
+    "priceUsd": "ಬೆಲೆ (USD)"
   },
   "stores": {
     "subtitle": "DeHub ಸಮುದಾಯದ ಉತ್ಪನ್ನಗಳನ್ನು ಅನ್ವೇಷಿಸಿ",
@@ -3340,7 +3351,8 @@
     "title": "ಸಾರ್ವಜನಿಕ ಚಾಟ್",
     "mentionTitle": "ಸಾರ್ವಜನಿಕ ಚಾಟ್‌ನಲ್ಲಿ ಉಲ್ಲೇಖಿಸಲಾಗಿದೆ",
     "voiceMessage": "ಧ್ವನಿ ಸಂದೇಶ",
-    "image": "ಚಿತ್ರವನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ"
+    "image": "ಚಿತ್ರವನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ",
+    "digest": "{{who}} ರಿಂದ {{count}} ಹೊಸ ಸಂದೇಶಗಳು: {{message}}"
   },
   "liveChat": {
     "attach": "ಫೋಟೋ, GIF ಅಥವಾ ಎಮೋಜಿಯನ್ನು ಸೇರಿಸಿ",
@@ -3545,7 +3557,8 @@
     "creator": "DeHub ಸೃಷ್ಟಿಕರ್ತ",
     "play": "ಪ್ಲೇ ಮಾಡಿ",
     "pause": "ವಿರಾಮ",
-    "listens_one": "{{count}} ಆಲಿಸಿ"
+    "listens_one": "{{count}} ಆಲಿಸಿ",
+    "listens_other": "{{count}} ಕೇಳುತ್ತದೆ"
   },
   "transfer": {
     "title": "ಟೋಕನ್ ವರ್ಗಾಯಿಸಿ",
@@ -4110,7 +4123,8 @@
     "madeForKidsOffDesc": "ಕಿಡ್ಸ್ ಮೋಡ್ ಬಳಸುವ ಮಕ್ಕಳಿಗೆ ಈ ಪೋಸ್ಟ್ ತೋರಿಸುತ್ತದೆ, ಮತ್ತು ಸಾಮಾನ್ಯ ಫೀಡ್‌ಗಳಿಂದ ಅದನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ.",
     "madeForKidsBlockedByMature": "ಪರಿಪಕ್ವ ಎಂದು ಗುರುತಿಸಿದ ಪೋಸ್ಟ್ ಅನ್ನು ಮಕ್ಕಳಿಗಾಗಿ ಪ್ರಕಾಶಿಸಲಾಗುವುದಿಲ್ಲ.",
     "encoderTitle": "OBS / ಎನ್‌ಕೋಡರ್",
-    "encoderHint": "RTMP ವಿವರಗಳನ್ನು ಪಡೆಯಿರಿ"
+    "encoderHint": "RTMP ವಿವರಗಳನ್ನು ಪಡೆಯಿರಿ",
+    "markMadeForKids": "ಮಕ್ಕಳಿಗಾಗಿ ಮಾಡಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಿ"
   },
   "bounty": {
     "claimed": "ಪಡೆದಿದೆ",
@@ -4353,7 +4367,8 @@
     "topUpSubtitle": "ಕಾರ್ಡ್ ಬಳಸಿ $DHB ಖರೀದಿಸಿ ಮತ್ತು ತಕ್ಷಣವೇ ಬಳಸಲು ಉಚಿತ ಗ್ಯಾಸ್ ಪಡೆಯಿರಿ",
     "noTxHash": "ವಹಿವಾಟಿನ ಹ್ಯಾಶ್ ಕಂಡುಬಂದಿಲ್ಲ",
     "latestTransactions": "ಇತ್ತೀಚಿನ ವಹಿವಾಟುಗಳು",
-    "showAll": "ಎಲ್ಲವನ್ನೂ ತೋರಿಸು"
+    "showAll": "ಎಲ್ಲವನ್ನೂ ತೋರಿಸು",
+    "sentTo": "{{amount}} {{symbol}} ಅನ್ನು {{address}} ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ"
   },
   "musicSheet": {
     "title": "ಹಾಡು ರಚಿಸಿ",
@@ -5628,5 +5643,52 @@
     "appealRef": "ಉಲ್ಲೇಖ {{ref}}",
     "appealSubtitleSubject": "ಒಬ್ಬ ವ್ಯಕ್ತಿಯು ಇದನ್ನು ಓದುತ್ತಾನೆ ಮತ್ತು {{subject}} ನಲ್ಲಿ ಮತ್ತೆ ನೋಡುತ್ತಾನೆ.",
     "appealMore": "ಇನ್ನೂ ಅಗತ್ಯವಿರುವ ಅಕ್ಷರಗಳು: {{count}}"
+  },
+  "support": {
+    "title": "ಬೆಂಬಲ",
+    "subtitle": "ನಿಮ್ಮ ಟಿಕೆಟ್‌ಗಳು ಮತ್ತು ಅವುಗಳ ಸ್ಥಿತಿ. AI ಇಲ್ಲ, ಶುಲ್ಕವಿಲ್ಲ.",
+    "newTicket": "ಹೊಸ ಟಿಕೆಟ್",
+    "newTicketHint": "ಏನಾಯಿತು ಮತ್ತು ಅದರ ಬದಲಿಗೆ ನೀವು ಏನನ್ನು ನಿರೀಕ್ಷಿಸಿದ್ದೀರಿ ಎಂಬುದನ್ನು ನಮಗೆ ತಿಳಿಸಿ.",
+    "backToTickets": "ಟಿಕೆಟ್‌ಗಳಿಗೆ ಹಿಂತಿರುಗಿ",
+    "openHeading": "ತೆರೆಯಿರಿ ({{n}})",
+    "noTickets": "ನೀವು ಇನ್ನೂ ಯಾವುದೇ ಬೆಂಬಲ ಟಿಕೆಟ್‌ಗಳನ್ನು ಸಲ್ಲಿಸಿಲ್ಲ.",
+    "loadFailed": "ನಿಮ್ಮ ಟಿಕೆಟ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+    "categoryLabel": "ವರ್ಗ",
+    "severityLabel": "ಆದ್ಯತೆ",
+    "subjectLabel": "ವಿಷಯ",
+    "subjectPlaceholder": "ಸಮಸ್ಯೆಯನ್ನು ವಿವರಿಸುವ ಒಂದು ಸಾಲು",
+    "descriptionLabel": "ಏನು ಸಂಭವಿಸಿತು?",
+    "descriptionPlaceholder": "ನೀವು ಏನು ಮಾಡಿದ್ದೀರಿ, ನೀವು ಏನನ್ನು ನಿರೀಕ್ಷಿಸಿದ್ದೀರಿ ಮತ್ತು ಬದಲಿಗೆ ಏನಾಯಿತು.",
+    "stepsLabel": "ಪುನರಾವರ್ತಿಸಲು ಕ್ರಮಗಳು (ಐಚ್ಛಿಕ)",
+    "submit": "ಟಿಕೆಟ್ ಕಳುಹಿಸಿ",
+    "submitting": "ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...",
+    "filed": "ಟಿಕೆಟ್ {{ref}} ತಂಡದೊಂದಿಗೆ ಇದೆ.",
+    "filedNotEmailed": "ಟಿಕೆಟ್ {{ref}} ದಾಖಲಿಸಲಾಗಿದೆ. ಉಲ್ಲೇಖವನ್ನು ಇರಿಸಿಕೊಳ್ಳಿ.",
+    "alreadyOpen": "ನೀವು ಈಗಾಗಲೇ ಇದನ್ನು {{ref}} ಆಗಿ ತೆರೆದಿದ್ದೀರಿ.",
+    "filingFailed": "ಆ ಟಿಕೆಟ್ ಅನ್ನು ಫೈಲ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+    "status": {
+      "open": "ತೆರೆ",
+      "in_progress": "ಪ್ರಗತಿಯಲ್ಲಿದೆ",
+      "resolved": "ಪರಿಹರಿಸಲಾಗಿದೆ",
+      "closed": "ಮುಚ್ಚಲಾಗಿದೆ"
+    },
+    "severity": {
+      "low": "ಕಡಿಮೆ",
+      "normal": "ಸಾಮಾನ್ಯ",
+      "high": "ಹೆಚ್ಚು",
+      "urgent": "ಅತ್ಯವಶ್ಯಕ"
+    },
+    "category": {
+      "account_access": "ಖಾತೆ ಪ್ರವೇಶ",
+      "wallet_or_transactions": "ವ್ಯಾಲೆಟ್ ಅಥವಾ ವಹಿವಾಟುಗಳು",
+      "posting_or_uploads": "ಪೋಸ್ಟಿಂಗ್ ಅಥವಾ ಅಪ್‌ಲೋಡ್‌ಗಳು",
+      "payments_or_subscriptions": "ಪಾವತಿಗಳು ಅಥವಾ ಚಂದಾದಾರಿಕೆಗಳು",
+      "live_streaming": "ಲೈವ್ ಸ್ಟ್ರೀಮಿಂಗ್",
+      "content_or_moderation": "ವಿಷಯ ಅಥವಾ ನಿಯಂತ್ರಣ",
+      "bug": "ದೋಷ",
+      "feature_request": "ವೈಶಿಷ್ಟ್ಯ ವಿನಂತಿ",
+      "other": "ಇತರೆ"
+    },
+    "filedOn": "{{date}} ಸಲ್ಲಿಸಲಾಗಿದೆ"
   }
 }

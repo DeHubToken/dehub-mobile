@@ -693,7 +693,24 @@
     "chainIdLabel": "شناسه زنجیره: {{id}}",
     "exportPkConfirmPhrase": "متوجه شدم",
     "exportPkCopy": "کلید خصوصی را کپی کنید",
-    "e2eAutomatic": "خودکار"
+    "e2eAutomatic": "خودکار",
+    "publicChatAlertsRate": "حداکثر",
+    "publicChatAlertsRateOption": "ساعتی {{count}}",
+    "smsScopeLabel": "چه چیزی را پیامک کنیم",
+    "smsScopeDesc": "پیامک‌ها هزینه دارند، پس آن‌ها را به مواردی محدود کنید که ارزش وقفه را دارند",
+    "smsScope": {
+      "all": "همه چیزهایی که روشن کرده‌ام",
+      "tips": "فقط نکات دریافتی",
+      "subscriptions": "فقط مشترکین جدید",
+      "sales": "فقط فروش محتوای من",
+      "bounties": "فقط پاداش‌ها",
+      "fractions": "فقط پیشنهادات و فروش‌های کسری",
+      "messages": "فقط پیام‌های مستقیم",
+      "mentions": "فقط ذکر نام من",
+      "replies": "فقط پاسخ به نظرات من",
+      "account": "فقط اطلاعیه‌ها درباره حساب من"
+    },
+    "smsCodeSent": "کد ارسال شد. این {{price}} DHB هزینه داشت."
   },
   "common": {
     "mute": "بی‌صدا",
@@ -1861,7 +1878,8 @@
     "otherTokens": "توکن‌های دیگر",
     "otherTokensDesc": "با کارت خود ETH یا USDC را روی Base بخرید",
     "shareToFeed": "در فید من به اشتراک بگذارید",
-    "sharePostTemplate": "همین الان {{amount}} $DHB رو به استک خودم توی DeHub اضافه کردم. دارم با همکاری جامعه کار می‌کنم. #DeHub #DHB"
+    "sharePostTemplate": "همین الان {{amount}} $DHB رو به استک خودم توی DeHub اضافه کردم. دارم با همکاری جامعه کار می‌کنم. #DeHub #DHB",
+    "minDhbPurchase": "حداقل خرید DHB 0.50 دلار است"
   },
   "agents": {
     "title": "عوامل هوش مصنوعی",
@@ -2571,7 +2589,20 @@
     "enterValidUnstakeAmount": "مبلغ معتبری برای برداشت وارد کنید.",
     "walletNotConnected": "کیف پول متصل نیست.",
     "walletNotReady": "کیف پول آماده نیست. لطفاً دوباره امتحان کنید.",
-    "insufficientOnBase": "موجودی DHB ناکافی در Base."
+    "insufficientOnBase": "موجودی DHB ناکافی در Base.",
+    "switchBaseFailed": "تلاش برای تغییر به شبکه Base ناموفق بود.",
+    "switchBnbFailed": "تلاش برای تغییر به BNB Chain ناموفق بود.",
+    "stakeSubmitted": "واریز ارسال شد. در حال بررسی تأیید — دوباره آن را ارسال نکنید.",
+    "txCancelledInWallet": "تراکنش در کیف پول شما لغو شد.",
+    "txCancelled": "تراکنش لغو شد.",
+    "stakeUnconfirmed": "تأیید واریز امکان‌پذیر نبود. قبل از تلاش مجدد، فعالیت کیف پول خود را بررسی کنید.",
+    "onlyThisMuchStaked": "شما فقط {{amount}} DHB واریز کرده‌اید.",
+    "onlyLegacyWithdrawable": "فقط {{amount}} DHB در حال حاضر قابل برداشت است — بقیه در استخر Base هستند که هنوز قرارداد برداشت ندارد.",
+    "poolHasNoWithdrawal": "DHB شما در استخر Base است که هنوز قرارداد برداشت ندارد. برای برداشت با پشتیبانی تماس بگیرید.",
+    "lockedEarlyFee": "تا {{date}} قفل شده است. برداشت اکنون 88% بازمی‌گرداند — 12% کارمزد، حدود {{fee}} DHB. برای پذیرش دوباره ضربه بزنید.",
+    "unstakeReverted": "برداشت در زنجیره برگشت خورد.",
+    "unstakeSent": "{{amount}} DHB برداشت شد! TX: {{hash}}…",
+    "unstakeFailed": "برداشت ناموفق بود."
   },
   "communities": {
     "title": "انجمن‌ها",
@@ -3022,7 +3053,13 @@
     "addedToYourUsernames": "به نام‌های کاربری شما اضافه می‌شود",
     "boughtNameGoesToVault": "شما @{{current}} می‌مانید. @{{handle}} به نام‌های کاربری شما اضافه می‌شود و هر وقت خواستید می‌توانید به آن تغییر دهید.",
     "youAreNow": "اکنون شما @{{handle}} هستید",
-    "boughtToVaultToast": "@{{handle}} اکنون در نام‌های کاربری شماست"
+    "boughtToVaultToast": "@{{handle}} اکنون در نام‌های کاربری شماست",
+    "askingPriceUsd": "قیمت درخواستی (دلار آمریکا)",
+    "dollarPriceRange": "۱ تا ۱,۰۰۰,۰۰۰ دلار را با حداکثر دو رقم اعشار وارد کنید.",
+    "fixedDollarPrice": "قیمت دلار ثابت می‌ماند؛ مقدار توکن به‌روزرسانی می‌شود.",
+    "priceUpdated": "قیمت به‌روزرسانی شد. مبلغ را بررسی کنید و دوباره روی خرید ضربه بزنید.",
+    "tokensPaidToSeller": "مستقیماً به فروشنده پرداخت می‌شود",
+    "priceUsd": "هزینه ( ريال )"
   },
   "stores": {
     "subtitle": "محصولات جامعه DeHub را کشف کنید",
@@ -5640,5 +5677,53 @@
     "appealRef": "شماره پیگیری {{ref}}",
     "appealSubtitleSubject": "شخصی این را خواهد خواند و دوباره به {{subject}} نگاه خواهد کرد.",
     "appealMore": "کاراکترهای مورد نیاز: {{count}}"
+  },
+  "support": {
+    "title": "پشتیبانی",
+    "subtitle": "بلیط‌های شما و وضعیت آنها. بدون هوش مصنوعی، بدون هزینه.",
+    "newTicket": "ارسال تیکت جدید",
+    "newTicketHint": "به جای آن به ما بگویید چه اتفاقی افتاد و چه انتظاری داشتید.",
+    "backToTickets": "برگشت به درخواست ها",
+    "openHeading": "باز ({{n}})",
+    "noTickets": "شما هنوز هیچ تیکت پشتیبانی ثبت نکرده‌اید.",
+    "loadFailed": "بلیط‌های شما بارگیری نشد. لطفاً دوباره امتحان کنید.",
+    "categoryLabel": "دسته‌بندی",
+    "severityLabel": "اولویت",
+    "subjectLabel": "عنوان",
+    "subjectPlaceholder": "یک خط توضیح مشکل",
+    "descriptionLabel": "چه اتفاقی افتاد؟",
+    "descriptionPlaceholder": "کاری که انجام دادید، چیزی که انتظار داشتید، و چیزی که در عوض اتفاق افتاد.",
+    "stepsLabel": "مراحل تکثیر (اختیاری)",
+    "stepsPlaceholder": "۱. فید را باز کنید&#10; ۲. روی آپلود ضربه بزنید&#10; ۳. ...",
+    "submit": "ارسال تیکت در پنل کاربری",
+    "submitting": "درحال ارسال...",
+    "filed": "بلیت {{ref}} نزد تیم است.",
+    "filedNotEmailed": "تیکت {{ref}} ثبت شد. رفرنس را نگه دارید.",
+    "alreadyOpen": "شما این را از قبل به صورت {{ref}} باز کرده‌اید.",
+    "filingFailed": "ثبت تیکت مقدور نبود. لطفا دوباره امتحان کنید.",
+    "status": {
+      "open": "باز کردن",
+      "in_progress": "در حال پردازش",
+      "resolved": "حل شده",
+      "closed": "بسته شده"
+    },
+    "severity": {
+      "low": "پایین",
+      "normal": "احساسی عادی داشتم.",
+      "high": "بالا",
+      "urgent": "فوری"
+    },
+    "category": {
+      "account_access": "صفحه ی دسترسی حساب کاربری",
+      "wallet_or_transactions": "کیف پول یا تراکنش‌ها",
+      "posting_or_uploads": "ارسال یا آپلود",
+      "payments_or_subscriptions": "پرداخت‌ها یا اشتراک‌ها",
+      "live_streaming": "پخش زنده",
+      "content_or_moderation": "محتوا یا تعدیل",
+      "bug": "حشره",
+      "feature_request": "درخواست ویژگی",
+      "other": "دیگر"
+    },
+    "filedOn": "ثبت شده {{date}}"
   }
 }

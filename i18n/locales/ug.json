@@ -689,7 +689,28 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "چۈشەندىم",
     "exportPkCopy": "تىز سۈرۈش كودىنى كۆچۈر",
-    "e2eAutomatic": "ئاپتوماتىك"
+    "e2eAutomatic": "ئاپتوماتىك",
+    "publicChatAlertsRateOption": "ھەر سائەت {{count}}",
+    "smsScopeLabel": "نېمە يېزىش كېرەك",
+    "smsScopeDesc": "خەتلەر پۇل تۇتىدۇ، شۇڭا ئۇلارنى ئۈزۈلۈشۈشكە ئەرزىيدىغان ئىشلار بىلەنلا چەكلىگەنسىز",
+    "smsScope": {
+      "all": "مېنىڭ ھەممە ئىشلىتىلگەنلىرىم",
+      "tips": "مەن ئالغان تىپىلارلا",
+      "subscriptions": "يېڭى ئابونتلارلا",
+      "sales": "مېنىڭ مەزمۇنلىرىمنىڭ سېتىلىشىلا",
+      "bounties": "مۇكاپاتلا",
+      "fractions": "ئاز ساندىكى تەكلىپلەر ۋە سېتىلىشلارلا",
+      "messages": "تىكست خەتلەر",
+      "mentions": "مېنى تىلغا ئېلىشلارلا",
+      "replies": "مېنىڭ ئىنكاسلىرىمغا جاۋابلارلا",
+      "account": "مېنىڭ ھېساباتىم ھەققىدىكى خەۋەرلەرلا"
+    },
+    "smsNotificationsDescReady": "{{phone}} گە ئەۋەتىلدى — ھەر بىرى {{dhb}} DHB، {{count}} ئەتراپىدا قالدى",
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) بىلەن ئېچىڭ",
+    "smsUnlockPrice": "{{dhb}} DHB (${{usd}}) خەتلەرنى ئاچىدۇ ۋە سىزنىڭ تۇنجى قەرەملىك پۇل قالدۇقىڭىزغا ئايلىنىدۇ.",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsBalance": "{{dhb}} DHB قالدى (${{usd}})",
+    "smsCodeSent": "كود ئەۋەتىلدى. بۇ {{price}} DHB تۇتتى."
   },
   "common": {
     "mute": "ئاۋازنى ئېتىش",
@@ -1417,7 +1438,9 @@
       "mentionedNamed": "{{name}}\" {{community}} \"دا سىزنى تىلغا ئالغان",
       "here": "{{name}} جەمئىيەتتىكى ھەممە ئادەمنى خەۋەرلەندۈردى",
       "hereNamed": "{{name}} ھەممىگە \"{{community}}\" دەپ ئۇچۇر يوللىدى"
-    }
+    },
+    "badgeLent": "{{name}} سىزگە {{tier}} نىشانىنى قەرز بەردى",
+    "badgeHandedBack": "{{name}} سىزگە قەرز بەرگەن {{tier}} نىشانىنى قايتۇردى"
   },
   "leaderboard": {
     "title": "تەرتىپنامە",
@@ -1855,7 +1878,8 @@
     "otherTokens": "باشقا توكەنلار",
     "otherTokensDesc": "كارتىڭىز بىلەن Base دا ETH ياكى USDC سېتىۋېلىڭ",
     "shareToFeed": "مېنىڭ يېمەكلىكىمگە ئورتاقلاش",
-    "sharePostTemplate": "ھازىرلا {{amount}} $ DHB نى DeHub دىكى توپلىمىمغا قوشۇپ قويدۇم. (ئى مۇھەممەد!) سەن ئۇلارنىڭ ئارىسىدىكى مەلۇم كىشىلەر بىلەن (مۇشرىكلارغا ياردەم بەرمەسلىكلىرى ئۈستىدە) مۇن #DeHub #DHB"
+    "sharePostTemplate": "ھازىرلا {{amount}} $ DHB نى DeHub دىكى توپلىمىمغا قوشۇپ قويدۇم. (ئى مۇھەممەد!) سەن ئۇلارنىڭ ئارىسىدىكى مەلۇم كىشىلەر بىلەن (مۇشرىكلارغا ياردەم بەرمەسلىكلىرى ئۈستىدە) مۇن #DeHub #DHB",
+    "minDhbPurchase": "DHB نىڭ ئەڭ تۆۋەن سېتىۋېلىش باھاسى 0.50 دوللار"
   },
   "agents": {
     "title": "سۈنئىي ئەقىل ۋاكالەتچىلىرى",
@@ -2999,7 +3023,13 @@
     "addedToYourUsernames": "ئىشلەتكۈچى ناملىرىڭىزغا قوشۇلىدۇ",
     "boughtNameGoesToVault": "سىز @{{current}} بولۇپ قالىسىز. @{{handle}} ئىشلەتكۈچى ناملىرىڭىزغا كىرىدۇ، خالىغان ۋاقىتتا ئۇنىڭغا ئالماشسىڭىز بولىدۇ.",
     "youAreNow": "ھازىر سىز @{{handle}}",
-    "boughtToVaultToast": "@{{handle}} ھازىر ئىشلەتكۈچى ناملىرىڭىزدا"
+    "boughtToVaultToast": "@{{handle}} ھازىر ئىشلەتكۈچى ناملىرىڭىزدا",
+    "askingPriceUsd": "باھا (USD)",
+    "dollarPriceRange": "1-1,000,000 دوللار ئارىلىقىدا، ئىككى ئونلۇق ھالەتكىچە كىرگۈزۈڭ.",
+    "fixedDollarPrice": "دوللار باھاسى ئۆزگەرمەيدۇ؛ توكېن مىقدارى يېڭىلىنىدۇ.",
+    "priceUpdated": "باھا يېڭىلاندى. مىقدارنى تەكشۈرۈپ، يەنە سېتىۋېلىش كۇنۇپكىسىنى بېسىڭ.",
+    "tokensPaidToSeller": "ۋاسىتىچىگە بىۋاسىتە تاپشۇرۇلدى",
+    "priceUsd": "باھا (USD)"
   },
   "stores": {
     "subtitle": "DeHub مەھەللىسىنىڭ مەھسۇلاتلىرىنى بايقاڭ",
@@ -3530,7 +3560,9 @@
     "untitled": "ئاۋازلىق پوچتا",
     "creator": "DeHub ياراتقۇچى",
     "play": "قويۇش",
-    "pause": "توختىتىش"
+    "pause": "توختىتىش",
+    "listens_one": "{{count}} Listen",
+    "listens_other": "{{count}} listens"
   },
   "transfer": {
     "title": "توكېن يۆتكەش",
@@ -4095,7 +4127,8 @@
     "madeForKidsOffDesc": "بۇ پوستنى بالىلار ئېسكېمىسىنى ئىشلىتىدىغان بالىلارغا كۆرسىتىدى ۋە ئادەتتىكى فىدلارنىڭ سىرتىدا قويىدۇ.",
     "madeForKidsBlockedByMature": "بالىغلار ئۈچۈن بەلگىلەنگەن پوست بالىلار ئۈچۈن نەشر قىلىنالمايدۇ.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "RTMP تەپسىلاتىنى الىڭ"
+    "encoderHint": "RTMP تەپسىلاتىنى الىڭ",
+    "markMadeForKids": "بالىلار ئۈچۈن ياسالغان ماركا"
   },
   "bounty": {
     "claimed": "تاپشۇرۇۋېلىندى",
@@ -4683,7 +4716,8 @@
     "sendAGift": "سوۋغا ئەۋەتىش",
     "minPlaceholder": "Min: {{amount}}",
     "minGift": "ئەڭ كىچىك سوۋغا {{amount}}",
-    "sendGift": "سوۋغا ئەۋەتىش"
+    "sendGift": "سوۋغا ئەۋەتىش",
+    "pickTier": "ھېيتنى تاللاش"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -5613,5 +5647,52 @@
     "appealRef": "كۆرسەتمە {{ref}}",
     "appealSubtitleSubject": "بىر ئادەم بۇنى ئوقۇيدۇ ۋە يەنە بىر قېتىم قاراپ چىقىدۇ {{subject}}.",
     "appealMore": "ھاجىتى بار ھەرپلەر: {{count}}"
+  },
+  "support": {
+    "title": "قوللاش",
+    "subtitle": "سىزنىڭ تىكىتىڭىز ۋە ئۇلارنىڭ ھالىتى. سۈنئىي ئەقىل يوق، ھەق يوق.",
+    "newTicket": "يېڭى بېلەت",
+    "newTicketHint": "بىزگە نېمە ئىش بولغانلىقىنى ۋە ئۇنىڭ ئورنىغا نېمە ئۈمىد قىلغانلىقىڭىزنى ئېيتىپ بېرىڭ.",
+    "backToTickets": "بېلەتكە قايتىش",
+    "closedHeading": "تاقالغان ({{n}})",
+    "noTickets": "سىز تېخى ھېچقانداق ياردەم بېلىتىنى تاپشۇرمىدىڭىز.",
+    "loadFailed": "بېلىتىڭىزنى يۈكلىيەلمىدىم. قايتا سىناپ بېقىڭ.",
+    "categoryLabel": "Category",
+    "severityLabel": "ئەۋزەللىك",
+    "subjectLabel": "مەۋزۇ",
+    "subjectPlaceholder": "مەسىلىنى چۈشەندۈرىدىغان بىر سىزىق",
+    "descriptionLabel": "نېمە بولدى",
+    "descriptionPlaceholder": "سەن نېمە قىلدىڭ، سەن نېمىنى كۈتۈۋاتىسەن، ئۇنىڭ ئورنىغا نېمىنى كۈتۈۋاتىسەن.",
+    "stepsLabel": "كۆپەيتىش باسقۇچلىرى (ئىختىيارسىز)",
+    "submit": "بېلەت ئەۋەتىش پروگراممىسى",
+    "submitting": "ئەۋەتكۈچى...",
+    "filed": "بىلەت {{ref}} ئەترىتى بىلەن بىللە.",
+    "filedNotEmailed": "بىلەت {{ref}} خاتىرىلەندى. ئادرېسنى ساقلاڭ.",
+    "alreadyOpen": "بۇنى ئاللىقاچان ئېچىپ بولدىڭىز {{ref}}.",
+    "filingFailed": "ئۇ بېلەتنى تاپشۇرغىلى بولمىدى. قايتا سىناپ بېقىڭ.",
+    "status": {
+      "open": "&ئېچىڭ",
+      "in_progress": "ئالغا ئىلگىرىلىمەكتە",
+      "resolved": "ھەل قىلىندى",
+      "closed": "تاقالغان"
+    },
+    "severity": {
+      "low": "تۆۋەن",
+      "normal": "نورمال",
+      "high": "ئالىي",
+      "urgent": "جىددىي"
+    },
+    "category": {
+      "account_access": "ھېساباتىغا كىرىش",
+      "wallet_or_transactions": "خەزىنە ياكى مەشغۇلات",
+      "posting_or_uploads": "يوللاش ياكى يۈكلەش پروگراممىسى",
+      "payments_or_subscriptions": "پۇل تۆلەش ياكى ئىمزا قويۇش پروگراممىسى",
+      "live_streaming": "بىۋاستە تارقىتىش",
+      "content_or_moderation": "مەزمۇن ياكى ئۆلچەملەشتۈرۈش",
+      "bug": "Bug",
+      "feature_request": "ئۆزگىچە تەلەپ",
+      "other": "باشقا"
+    },
+    "filedOn": "Filed {{date}}"
   }
 }
