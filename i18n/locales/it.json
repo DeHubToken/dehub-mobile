@@ -3167,6 +3167,16 @@
     "boughtToVaultToast": "@{{handle}} è ora tra i tuoi nomi utente"
   },
   "stores": {
+    "podToggle": "Articolo stampa su richiesta",
+    "podHint": "Collega un prodotto dal tuo negozio di stampa su richiesta. Il fornitore stampa e spedisce ogni ordine, senza magazzino.",
+    "podUrlLabel": "Link del prodotto",
+    "podProviderLabel": "Fornitore",
+    "podOther": "Altro",
+    "podInvalidUrl": "Inserisci un link https:// valido",
+    "podBadge": "Stampa su richiesta",
+    "podBuyOn": "Acquista su {{provider}}",
+    "podNote": "Stampato e spedito su richiesta da {{provider}}. Il pagamento avviene sul loro sito.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Scopri i prodotti della community DeHub",
     "browse": "Sfoglia",
     "myStore": "Il mio negozio",

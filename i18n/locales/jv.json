@@ -3167,6 +3167,16 @@
     "priceUsd": "Rego (USD)"
   },
   "stores": {
+    "podToggle": "Barang cetak miturut pesenan",
+    "podHint": "Tautna produk saka toko cetak miturut pesenan sampeyan. Panyedhiya nyithak lan ngirim saben pesenan, dadi ora perlu stok.",
+    "podUrlLabel": "Tautan produk",
+    "podProviderLabel": "Panyedhiya",
+    "podOther": "Liyane",
+    "podInvalidUrl": "Lebokna tautan https:// sing bener",
+    "podBadge": "Cetak miturut pesenan",
+    "podBuyOn": "Tuku ing {{provider}}",
+    "podNote": "Dicithak lan dikirim miturut pesenan dening {{provider}}. Pambayaran ing situs kasebut.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Temokake produk saka komunitas DeHub",
     "browse": "Jelajah",
     "myStore": "Tokoku",

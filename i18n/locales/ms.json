@@ -3428,6 +3428,16 @@
     "priceUsd": "Harga (USD)"
   },
   "stores": {
+    "podToggle": "Item cetak atas permintaan",
+    "podHint": "Pautkan produk daripada kedai cetak atas permintaan anda. Pembekal mencetak dan menghantar setiap pesanan, jadi tiada stok diperlukan.",
+    "podUrlLabel": "Pautan produk",
+    "podProviderLabel": "Pembekal",
+    "podOther": "Lain-lain",
+    "podInvalidUrl": "Masukkan pautan https:// yang sah",
+    "podBadge": "Cetak atas permintaan",
+    "podBuyOn": "Beli di {{provider}}",
+    "podNote": "Dicetak dan dihantar atas permintaan oleh {{provider}}. Pembayaran di laman mereka.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Temui produk daripada komuniti DeHub",
     "browse": "Layari",
     "myStore": "Kedai Saya",

@@ -3167,6 +3167,16 @@
     "priceUsd": "Pris (USD)"
   },
   "stores": {
+    "podToggle": "Print-on-demand-vare",
+    "podHint": "Lenk et produkt fra print-on-demand-butikken din. Leverandøren trykker og sender hver ordre, så du trenger ikke lager.",
+    "podUrlLabel": "Produktlenke",
+    "podProviderLabel": "Leverandør",
+    "podOther": "Annet",
+    "podInvalidUrl": "Skriv inn en gyldig https://-produktlenke",
+    "podBadge": "Print on demand",
+    "podBuyOn": "Kjøp hos {{provider}}",
+    "podNote": "Trykkes og sendes ved bestilling av {{provider}}. Betaling skjer på deres side.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Oppdag produkter fra DeHub-fellesskapet",
     "browse": "Bla",
     "myStore": "Butikken min",

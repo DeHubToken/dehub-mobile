@@ -67,6 +67,9 @@ export interface StoreListing {
   is_digital: boolean;
   condition: string | null;
   shipping_info: string | null;
+  /** Print-on-demand listings: bought on the provider's site, never via DHB checkout. */
+  external_url?: string | null;
+  pod_provider?: string | null;
   status: string;
   created_at: string;
   stores?: { name: string; avatar_url: string | null; wallet_address: string } | null;
@@ -277,6 +280,8 @@ export function useCreateListing() {
       is_digital: boolean;
       condition: string;
       shipping_info?: string;
+      external_url?: string | null;
+      pod_provider?: string | null;
       status?: string;
     }) => {
       if (!wallet) throw new Error("Not authenticated");

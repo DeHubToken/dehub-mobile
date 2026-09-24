@@ -3167,6 +3167,16 @@
     "priceUsd": "Preț (USD)"
   },
   "stores": {
+    "podToggle": "Articol tipărit la cerere",
+    "podHint": "Leagă un produs din magazinul tău de tipărire la cerere. Furnizorul tipărește și expediază fiecare comandă, fără stoc.",
+    "podUrlLabel": "Link produs",
+    "podProviderLabel": "Furnizor",
+    "podOther": "Altul",
+    "podInvalidUrl": "Introdu un link https:// valid",
+    "podBadge": "Tipărire la cerere",
+    "podBuyOn": "Cumpără pe {{provider}}",
+    "podNote": "Tipărit și expediat la cerere de {{provider}}. Plata se face pe site-ul lor.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Descoperă produse de la comunitatea DeHub",
     "browse": "Răsfoiește",
     "myStore": "Magazinul meu",

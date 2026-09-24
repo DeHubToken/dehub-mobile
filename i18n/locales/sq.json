@@ -3167,6 +3167,16 @@
     "priceUsd": "Çmimi (USD)"
   },
   "stores": {
+    "podToggle": "Artikull me shtypje sipas kërkesës",
+    "podHint": "Lidh një produkt nga dyqani yt i shtypjes sipas kërkesës. Ofruesi shtyp dhe dërgon çdo porosi, pa pasur nevojë për stok.",
+    "podUrlLabel": "Lidhja e produktit",
+    "podProviderLabel": "Ofruesi",
+    "podOther": "Tjetër",
+    "podInvalidUrl": "Fut një lidhje të vlefshme https://",
+    "podBadge": "Shtypje sipas kërkesës",
+    "podBuyOn": "Bli në {{provider}}",
+    "podNote": "Shtypet dhe dërgohet sipas kërkesës nga {{provider}}. Pagesa bëhet në faqen e tyre.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Zbulo produkte nga komuniteti DeHub",
     "browse": "Shfleto",
     "myStore": "Dyqani im",

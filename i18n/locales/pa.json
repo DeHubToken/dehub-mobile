@@ -3171,6 +3171,16 @@
     "priceUsd": "ਕੀਮਤ (USD)"
   },
   "stores": {
+    "podToggle": "ਮੰਗ 'ਤੇ ਛਪਾਈ ਵਾਲੀ ਚੀਜ਼",
+    "podHint": "ਆਪਣੀ ਪ੍ਰਿੰਟ-ਆਨ-ਡਿਮਾਂਡ ਦੁਕਾਨ ਤੋਂ ਉਤਪਾਦ ਲਿੰਕ ਕਰੋ। ਪ੍ਰਦਾਤਾ ਹਰ ਆਰਡਰ ਛਾਪ ਕੇ ਭੇਜਦਾ ਹੈ, ਸਟਾਕ ਦੀ ਲੋੜ ਨਹੀਂ।",
+    "podUrlLabel": "ਉਤਪਾਦ ਲਿੰਕ",
+    "podProviderLabel": "ਪ੍ਰਦਾਤਾ",
+    "podOther": "ਹੋਰ",
+    "podInvalidUrl": "ਇੱਕ ਵੈਧ https:// ਲਿੰਕ ਦਰਜ ਕਰੋ",
+    "podBadge": "ਮੰਗ 'ਤੇ ਛਪਾਈ",
+    "podBuyOn": "{{provider}} 'ਤੇ ਖਰੀਦੋ",
+    "podNote": "{{provider}} ਮੰਗ 'ਤੇ ਛਾਪ ਕੇ ਭੇਜਦਾ ਹੈ। ਭੁਗਤਾਨ ਉਨ੍ਹਾਂ ਦੀ ਸਾਈਟ 'ਤੇ ਹੁੰਦਾ ਹੈ।",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub ਭਾਈਚਾਰੇ ਦੇ ਉਤਪਾਦ ਖੋਜੋ",
     "browse": "ਬ੍ਰਾਊਜ਼ ਕਰੋ",
     "myStore": "ਮੇਰੀ ਦੁਕਾਨ",
