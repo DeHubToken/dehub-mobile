@@ -804,7 +804,11 @@
     "select": "Filuu",
     "noResults": "Bu'aan hin jiru",
     "moreInfo": "Odeeffannoo dabalataa",
-    "translate": "Hiikuu"
+    "translate": "Hiikuu",
+    "paste": "Paste gochuu",
+    "scanQr": "QR scan godhaa",
+    "scanQrHint": "Kaameeraa teessoo boorsaa QR koodii tokkotti akeeki",
+    "allowCameraForQr": "Koodii QR scan gochuuf kaameraan akka seenu hayyami"
   },
   "tip": {
     "title": "Tiippii Ergi",
@@ -3256,7 +3260,9 @@
       "paymentReverted": "Kaffaltiin sanadaa irratti duubatti deebi'e — ajajni hin uumamne.",
       "purchaseFailed": "Bittaan hin milkoofne",
       "transactionCancelled": "Daldalli haqameera.",
-      "pickRating": "Duraan sadarkaa urjii filadhu."
+      "pickRating": "Duraan sadarkaa urjii filadhu.",
+      "confirmTitle": "Bittaa mirkaneessuu",
+      "confirmBody": "{{amount}} DHB (waa&#39;ee {{usd}}) Base irratti ni kaffaltu, kallattiin gara boorsaa gurguraa. Kun duubatti deebi’uu hin danda’u."
     },
     "categories": {
       "all": "Hunda",

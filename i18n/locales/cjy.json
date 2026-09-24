@@ -804,7 +804,11 @@
     "select": "选择",
     "noResults": "无结果",
     "moreInfo": "更多信息",
-    "translate": "翻译"
+    "translate": "翻译",
+    "scanQr": "扫描二维码",
+    "scanQrHint": "将摄像头对准钱包地址的二维码",
+    "allowCameraForQr": "允许相机访问以扫描二维码",
+    "paste": "粘贴"
   },
   "tip": {
     "title": "发打赏",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "付款在链上退回来咾 — 没做成订单。",
       "purchaseFailed": "买入没成",
       "transactionCancelled": "交易取消咾。",
-      "pickRating": "先挑星级评分。"
+      "pickRating": "先挑星级评分。",
+      "confirmTitle": "确认购买",
+      "confirmBody": "您将支付 {{amount}} 迪拜哈希币（约 {{usd}}）到 Base，直接支付给卖家的钱包。此操作无法撤销。"
     },
     "categories": {
       "all": "全部",

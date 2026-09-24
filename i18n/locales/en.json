@@ -804,7 +804,11 @@
     "select": "Select",
     "noResults": "No results",
     "moreInfo": "More info",
-    "translate": "Translate"
+    "translate": "Translate",
+    "paste": "Paste",
+    "scanQr": "Scan QR",
+    "scanQrHint": "Point the camera at a wallet address QR code",
+    "allowCameraForQr": "Allow camera access to scan a QR code"
   },
   "tip": {
     "title": "Send Tip",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Payment reverted on-chain — no order was created.",
       "purchaseFailed": "Purchase failed",
       "transactionCancelled": "Transaction cancelled.",
-      "pickRating": "Pick a star rating first."
+      "pickRating": "Pick a star rating first.",
+      "confirmTitle": "Confirm purchase",
+      "confirmBody": "You will pay {{amount}} DHB (about {{usd}}) on Base, straight to the seller's wallet. This cannot be undone."
     },
     "categories": {
       "all": "All",

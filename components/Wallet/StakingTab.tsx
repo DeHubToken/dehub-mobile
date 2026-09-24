@@ -83,7 +83,7 @@ function fmt(val: number): string {
   if (!Number.isFinite(val) || val === 0) return "0";
   if (val >= 1_000_000) return (val / 1_000_000).toFixed(2) + "M";
   if (val >= 1_000) return (val / 1_000).toFixed(2) + "K";
-  return val.toLocaleString("en-US", { maximumFractionDigits: 2 });
+  return val.toLocaleString(appLocale(), { maximumFractionDigits: 2 });
 }
 
 const StakingTab: React.FC = () => {

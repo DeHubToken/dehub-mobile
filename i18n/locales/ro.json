@@ -804,7 +804,11 @@
     "select": "Selectați",
     "noResults": "Niciun rezultat",
     "moreInfo": "Mai multe informații",
-    "translate": "Traduceți"
+    "translate": "Traduceți",
+    "paste": "Lipire",
+    "scanQr": "Scanează QR",
+    "scanQrHint": "Îndreptați camera spre un cod QR al adresei portofelului",
+    "allowCameraForQr": "Permite accesul camerei pentru a scana un cod QR"
   },
   "tip": {
     "title": "Trimite sugestia",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Plata a fost anulată on-chain — nu s-a creat nicio comandă.",
       "purchaseFailed": "Achiziția a eșuat",
       "transactionCancelled": "Tranzacție anulată.",
-      "pickRating": "Alege întâi o notă cu stele."
+      "pickRating": "Alege întâi o notă cu stele.",
+      "confirmTitle": "Confirmă achiziția",
+      "confirmBody": "Veți plăti {{amount}} DHB (aproximativ {{usd}}) în bază, direct în portofelul vânzătorului. Acest lucru nu poate fi anulat."
     },
     "categories": {
       "all": "Toate",

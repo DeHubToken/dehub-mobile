@@ -9,6 +9,7 @@
  * with expo-image-picker and uploaded via `uploadStoreMedia` (fetch → Blob),
  * since React Native has no File object.
  */
+import { appLocale } from "../../libs/date.util";
 import React, { useCallback, useMemo, useState } from "react";
 import {
   View,
@@ -66,7 +67,7 @@ const MAX_IMAGES = 5;
 
 function money(n: number): string {
   const v = Number(n) || 0;
-  return `$${v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  return `$${v.toLocaleString(appLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
 async function pickImage(): Promise<string | null> {

@@ -804,7 +804,11 @@
     "select": "Tīpakohia",
     "noResults": "Kāore he hua",
     "moreInfo": "Ētahi atu mōhiohio",
-    "translate": "Whakamaoritia"
+    "translate": "Whakamaoritia",
+    "paste": "Whakapiri",
+    "scanQr": "Pānuihia te QR",
+    "scanQrHint": "Tuhia te kāmera ki te wāhitau putea QR",
+    "allowCameraForQr": "Ka taea e te kāmera te uru ki te tirotiro i te waehere QR"
   },
   "tip": {
     "title": "Tukuna koha",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Kua hoki whakamuri te utu i runga mekameka — kāore he ota i hangaia.",
       "purchaseFailed": "Kāore i angitu te hoko",
       "transactionCancelled": "Kua whakakorea te whakawhitinga.",
-      "pickRating": "Kōwhirihia tētahi tohu whetū i te tuatahi."
+      "pickRating": "Kōwhirihia tētahi tohu whetū i te tuatahi.",
+      "confirmTitle": "Hokona whakapūmau",
+      "confirmBody": "Ka utua e koe {{amount}} DHB (e pā ana ki {{usd}}) i runga i Base, tika ki te putea o te kaihoko. Kaore e taea te whakakore i tenei."
     },
     "categories": {
       "all": "Katoa",

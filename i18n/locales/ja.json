@@ -804,7 +804,11 @@
     "select": "選択",
     "noResults": "結果がありません",
     "moreInfo": "詳細情報",
-    "translate": "翻訳"
+    "translate": "翻訳",
+    "paste": "ペースト",
+    "scanQr": "QRをスキャン",
+    "scanQrHint": "ウォレットアドレスのQRコードにカメラを向けます",
+    "allowCameraForQr": "QRコードをスキャンするためにカメラへのアクセスを許可する"
   },
   "tip": {
     "title": "チップを送る",
@@ -3245,7 +3249,9 @@
       "paymentReverted": "支払いがオンチェーンで巻き戻されました。注文は作成されていません。",
       "purchaseFailed": "購入に失敗しました",
       "transactionCancelled": "トランザクションをキャンセルしました。",
-      "pickRating": "先に星評価を選んでください。"
+      "pickRating": "先に星評価を選んでください。",
+      "confirmTitle": "仕入確定",
+      "confirmBody": "売り手の財布に直接{{amount}} DHB （約{{usd}}）をBaseで支払います。これは元に戻せません。"
     },
     "categories": {
       "all": "すべて",

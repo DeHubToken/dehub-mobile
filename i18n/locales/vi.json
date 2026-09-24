@@ -817,7 +817,11 @@
     "select": "Chọn",
     "noResults": "Không có kết quả",
     "moreInfo": "Thêm thông tin",
-    "translate": "Dịch"
+    "translate": "Dịch",
+    "paste": "Dán (Paste)",
+    "scanQr": "Quét QR",
+    "scanQrHint": "Hướng camera vào địa chỉ ví mã QR",
+    "allowCameraForQr": "Cho phép truy cập camera để quét mã QR"
   },
   "tip": {
     "title": "Gửi tiền thưởng",
@@ -3256,7 +3260,9 @@
       "paymentReverted": "Thanh toán bị hoàn on-chain — không đơn hàng nào được tạo.",
       "purchaseFailed": "Mua không thành công",
       "transactionCancelled": "Đã hủy giao dịch.",
-      "pickRating": "Hãy chọn số sao trước."
+      "pickRating": "Hãy chọn số sao trước.",
+      "confirmTitle": "Xác nhận lệnh mua",
+      "confirmBody": "Bạn sẽ thanh toán {{amount}} DHB (khoảng {{usd}}) trên Base, trực tiếp vào ví của người bán. Không thể hoàn tác thao tác này."
     },
     "categories": {
       "all": "Tất cả",

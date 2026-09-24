@@ -386,7 +386,7 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
 
   const book = (levels: BookLevel[], bid: boolean) => !levels.length
     ? <Text style={s.empty}>{t(bid ? 'dex.noBids' : 'dex.noOrders')}</Text>
-    : <View>{nearestBookLevels(levels, bid, BOOK_ROWS).map((level) => <TouchableOpacity key={level.price} disabled={busy} accessibilityLabel={t('dex.usePrice', { price: formatBookPrice(level.price, increment) })} onPress={() => choosePrice(level.price, bid ? 'buy' : 'sell')} style={s.bookRow}>
+    : <View>{nearestBookLevels(levels, bid, BOOK_ROWS).map((level) => <TouchableOpacity key={level.price} disabled={busy} accessibilityLabel={t('dex.usePrice', { price: formatBookPrice(level.price, increment) })} onPress={() => choosePrice(level.price, bid ? 'buy' : 'sell')} hitSlop={{ top: 4, bottom: 4 }} style={s.bookRow}>
       <View pointerEvents="none" style={[s.depthBar, { width: `${level.cumulativeDhb / (levels.at(-1)?.cumulativeDhb || 1) * 100}%`, backgroundColor: bid ? '#20c997' : '#f05b72' }]} />
       <Text style={[s.cell, { color: bid ? '#20c997' : '#f05b72' }]}>{formatBookPrice(level.price, increment)}</Text><Text style={[s.cell, s.right]}>{formatSize(level.dhb)}</Text><Text style={[s.cell, s.right]}>{formatSize(level.cumulativeDhb)}</Text>
     </TouchableOpacity>)}</View>;
@@ -488,8 +488,8 @@ const s = StyleSheet.create({
   inline: { flexDirection: 'row', flexWrap: 'wrap', gap: 4 }, smallTab: { paddingVertical: 7, paddingHorizontal: 8, borderRadius: 4 }, selected: { backgroundColor: '#29313b' }, heading: { color: '#e9edf2', fontWeight: '600' },
   note: { color: '#919ca9', fontSize: 10, lineHeight: 16, paddingTop: 12 }, empty: { color: '#919ca9', padding: 30, textAlign: 'center', fontSize: 12 },
   transactions: { borderTopWidth: 1, borderColor: '#252b34' }, transactionHead: { flexDirection: 'row', justifyContent: 'space-between', padding: 10, borderBottomWidth: 1, borderColor: '#252b34' }, transaction: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10, borderBottomWidth: 1, borderColor: '#1e242c' }, transactionType: { fontSize: 11, fontWeight: '600', marginBottom: 3 },
-  bookHead: { flexDirection: 'row', padding: 12 }, cell: { flex: 1, color: '#c5ced8', fontSize: 10, fontVariant: ['tabular-nums'] }, right: { textAlign: 'right' },
-  bookRow: { flexDirection: 'row', paddingHorizontal: 12, paddingVertical: 7, position: 'relative' }, depthBar: { position: 'absolute', right: 0, top: 1, bottom: 1, opacity: .09 },
+  bookHead: { flexDirection: 'row', padding: 12 }, cell: { flex: 1, color: '#c5ced8', fontSize: 12, fontVariant: ['tabular-nums'] }, right: { textAlign: 'right' },
+  bookRow: { flexDirection: 'row', alignItems: 'center', minHeight: 36, paddingHorizontal: 12, paddingVertical: 7, position: 'relative' }, depthBar: { position: 'absolute', right: 0, top: 1, bottom: 1, opacity: .09 },
   spread: { flexDirection: 'row', justifyContent: 'space-between', padding: 14, borderTopWidth: 1, borderBottomWidth: 1, borderColor: '#252b34' }, ratio: { height: 3, margin: 12, backgroundColor: '#f05b72' },
   ticket: { padding: 16 }, side: { flexDirection: 'row', padding: 3, backgroundColor: '#090d12', borderRadius: 6 }, sideButton: { flex: 1, padding: 12, alignItems: 'center', borderRadius: 4 },
   instant: { flex: 1, paddingVertical: 12, borderRadius: 6, alignItems: 'center', borderWidth: 1 }, instantText: { fontWeight: '700', fontSize: 13 },

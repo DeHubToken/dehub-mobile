@@ -804,7 +804,11 @@
     "select": "Velg",
     "noResults": "Ingen resultater",
     "moreInfo": "Mer informasjon",
-    "translate": "Oversett"
+    "translate": "Oversett",
+    "paste": "Lim inn",
+    "scanQr": "Skann QR-kode",
+    "scanQrHint": "Rett kameraet mot en QR-kode for lommebokadressen",
+    "allowCameraForQr": "Gi kameratilgang for å skanne en QR-kode"
   },
   "tip": {
     "title": "Send tips",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Betalingen ble tilbakestilt on-chain — ingen ordre ble opprettet.",
       "purchaseFailed": "Kjøpet mislyktes",
       "transactionCancelled": "Transaksjonen ble avbrutt.",
-      "pickRating": "Velg en stjernevurdering først."
+      "pickRating": "Velg en stjernevurdering først.",
+      "confirmTitle": "Bekreft kjøp",
+      "confirmBody": "Du betaler {{amount}} DHB (omtrent {{usd}}) på Base, rett til selgerens lommebok. Dette kan ikke angres."
     },
     "categories": {
       "all": "Alle",

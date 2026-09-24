@@ -804,7 +804,11 @@
     "select": "Saýlaň",
     "noResults": "Netije ýok",
     "moreInfo": "Goşmaça maglumat",
-    "translate": "Terjime et"
+    "translate": "Terjime et",
+    "paste": "_Ýabşyr",
+    "scanQr": "QR-i Skan et",
+    "scanQrHint": "Kamera adresini QR kody bilen görkeziň",
+    "allowCameraForQr": "Kameralara QR kodyny skan etmäge rugsat beriň"
   },
   "tip": {
     "title": "Sowgat ibermek",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Töleg zynjyrda yzyna gaýtdy — hiç hili sargyt döredilmedi.",
       "purchaseFailed": "Satyn almak şowsuz boldy",
       "transactionCancelled": "Amal ýatyryldy.",
-      "pickRating": "Ilki ýyldyz bahasyny saýlaň."
+      "pickRating": "Ilki ýyldyz bahasyny saýlaň.",
+      "confirmTitle": "Satyn alyşy tassykla",
+      "confirmBody": "Siz {{amount}} DHB (tahminen {{usd}}) esasynda, satyjynyň pulçusyna tölersiňiz. Bu şeýle ret edilmeli däl."
     },
     "categories": {
       "all": "Hemmesi",

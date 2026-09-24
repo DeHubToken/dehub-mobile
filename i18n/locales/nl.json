@@ -995,7 +995,10 @@
     "select": "Selecteer",
     "noResults": "Geen resultaten",
     "moreInfo": "Meer informatie",
-    "translate": "Vertalen"
+    "translate": "Vertalen",
+    "scanQr": "QR scannen",
+    "scanQrHint": "Richt de camera op een QR-code van het portemonneeadres",
+    "allowCameraForQr": "Cameratoegang toestaan om een QR-code te scannen"
   },
   "tip": {
     "title": "Fooi sturen",
@@ -3434,7 +3437,9 @@
       "paymentReverted": "Betaling on-chain teruggedraaid — er is geen bestelling aangemaakt.",
       "purchaseFailed": "Aankoop mislukt",
       "transactionCancelled": "Transactie geannuleerd.",
-      "pickRating": "Kies eerst een sterbeoordeling."
+      "pickRating": "Kies eerst een sterbeoordeling.",
+      "confirmTitle": "Bevestig aankoop",
+      "confirmBody": "Je betaalt {{amount}} DHB (ongeveer {{usd}}) op Base, rechtstreeks in de portemonnee van de verkoper. Dit kan niet ongedaan worden gemaakt."
     },
     "categories": {
       "all": "Alles",

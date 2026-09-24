@@ -804,7 +804,11 @@
     "select": "Pasirinkti",
     "noResults": "Nėra rezultatų",
     "moreInfo": "Daugiau informacijos",
-    "translate": "Versti"
+    "translate": "Versti",
+    "paste": "Įklijuoti",
+    "scanQr": "Nuskaityti QR",
+    "scanQrHint": "Nukreipkite kamerą į piniginės adreso QR kodą",
+    "allowCameraForQr": "Suteikite prieigą prie kameros, kad galėtumėte nuskaityti QR kodą"
   },
   "tip": {
     "title": "Siųsti arbatpinigius",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Mokėjimas grandinėje atšauktas — užsakymas nesukurtas.",
       "purchaseFailed": "Pirkimas nepavyko",
       "transactionCancelled": "Operacija atšaukta.",
-      "pickRating": "Pirmiausia pasirinkite žvaigždučių įvertinimą."
+      "pickRating": "Pirmiausia pasirinkite žvaigždučių įvertinimą.",
+      "confirmTitle": "Patvirtinti Pirkimą",
+      "confirmBody": "Mokėsite {{amount}} DHB (apie {{usd}}) bazėje tiesiai į pardavėjo piniginę. Tai negali būti anuliuota."
     },
     "categories": {
       "all": "Visi",

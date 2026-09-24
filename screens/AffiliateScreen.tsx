@@ -65,7 +65,7 @@ const AFFILIATES_PAGE_SIZE = 12;
 
 function formatMoney(cents: number, currency = "USD"): string {
   try {
-    return new Intl.NumberFormat("en-US", { style: "currency", currency }).format(cents / 100);
+    return new Intl.NumberFormat(appLocale(), { style: "currency", currency }).format(cents / 100);
   } catch {
     return `$${(cents / 100).toFixed(2)}`;
   }

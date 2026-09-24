@@ -804,7 +804,11 @@
     "select": "Vælg",
     "noResults": "Ingen resultater",
     "moreInfo": "Mere info",
-    "translate": "Oversæt"
+    "translate": "Oversæt",
+    "paste": "Indsæt",
+    "scanQr": "Scan QR-kode",
+    "scanQrHint": "Peg kameraet på en tegnebogsadresse QR-kode",
+    "allowCameraForQr": "Tillad kameraadgang for at scanne en QR-kode"
   },
   "tip": {
     "title": "Send drikkepenge",
@@ -3247,7 +3251,9 @@
       "paymentReverted": "Betalingen blev rullet tilbage on-chain — der blev ikke oprettet nogen ordre.",
       "purchaseFailed": "Købet mislykkedes",
       "transactionCancelled": "Transaktionen blev annulleret.",
-      "pickRating": "Vælg først en stjernebedømmelse."
+      "pickRating": "Vælg først en stjernebedømmelse.",
+      "confirmTitle": "Bekræft køb",
+      "confirmBody": "Du betaler {{amount}}DHB(ca. {{usd}})på Base direkte til sælgerens tegnebog. Dette kan ikke fortrydes."
     },
     "categories": {
       "all": "Alle",

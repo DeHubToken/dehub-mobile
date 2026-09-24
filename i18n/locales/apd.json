@@ -804,7 +804,11 @@
     "select": "اختار",
     "noResults": "ما في نتائج",
     "moreInfo": "مزيد من المعلومات",
-    "translate": "ترجمة"
+    "translate": "ترجمة",
+    "scanQr": "امسح الكود",
+    "scanQrHint": "وجّه الكاميرا لـ QR كود عنوان المحفظة",
+    "allowCameraForQr": "اسمح للكاميرا بالوصول لمسح كود QR",
+    "paste": "لصق"
   },
   "tip": {
     "title": "ابعث هدية",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "الدفع رجع على السلسلة — ما اتعمل أي طلب.",
       "purchaseFailed": "الشراء فشل",
       "transactionCancelled": "المعاملة اتلغت.",
-      "pickRating": "أول حاجة اختار تقييم النجوم."
+      "pickRating": "أول حاجة اختار تقييم النجوم.",
+      "confirmTitle": "تأكيد الشراء",
+      "confirmBody": "ح تدفع {{amount}} درهم (حوالي {{usd}}) على بيس، مباشرة لمحفظة البائع. ما بتقدر تتراجع عن ده."
     },
     "categories": {
       "all": "الكل",

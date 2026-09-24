@@ -804,7 +804,11 @@
     "select": "منتخب کرو",
     "noResults": "نتائج نہ ہن",
     "moreInfo": "وڌیگ معلومات",
-    "translate": "ترجمہ کرو"
+    "translate": "ترجمہ کرو",
+    "scanQr": "QR سکین",
+    "scanQrHint": "کیمرہ والٹ ایڈریس کیو آر کوڈ تے پوائنٹ کرو",
+    "allowCameraForQr": "ڪئميرا جي رسائي جي اجازت ڏيو QR ڪوڊ اسڪين ڪرڻ لاءِ",
+    "paste": "پیسٹ کرو"
   },
   "tip": {
     "title": "ٹِپ گھلو",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "ادائیگی زنجیر تے واپس مُڑ گئی — کوئی آرڈر کائنی بݨیا۔",
       "purchaseFailed": "ونڄݨ ناکام تھیا",
       "transactionCancelled": "لین ݙین منسوخ تھیا۔",
-      "pickRating": "پہلے ستارہ درجہ چݨو۔"
+      "pickRating": "پہلے ستارہ درجہ چݨو۔",
+      "confirmTitle": "خرید دی تصدیق",
+      "confirmBody": "تساں Base تے {{amount}} DHB (تقریباً {{usd}}) سِدھا ویچݨ آلے دے والٹ وچ ݙیسو۔ اینکوں واپس نئیں کیتا ونڄ سڳدا۔"
     },
     "categories": {
       "all": "سارے",

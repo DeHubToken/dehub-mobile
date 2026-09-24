@@ -804,7 +804,11 @@
     "select": "Pilih",
     "noResults": "Ora ana asil",
     "moreInfo": "Info liyane",
-    "translate": "Terjemahake"
+    "translate": "Terjemahake",
+    "paste": "Tempel",
+    "scanQr": "Pindai QR",
+    "scanQrHint": "Arahna kamera menyang kode QR alamat dompèt",
+    "allowCameraForQr": "Wenehana akses kamera kanggo mindhai kode QR"
   },
   "tip": {
     "title": "Kirim Hadiah",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Pambayaran bali ing rantai — ora ana pesenan sing digawe.",
       "purchaseFailed": "Tuku gagal",
       "transactionCancelled": "Transaksi dibatalake.",
-      "pickRating": "Pilih rating bintang dhisik."
+      "pickRating": "Pilih rating bintang dhisik.",
+      "confirmTitle": "Konfirmasi tuku",
+      "confirmBody": "Sampeyan bakal mbayar {{amount}} DHB (kira-kira {{usd}}) ing Base, langsung menyang dompete bakul. Iki ora bisa dibatalake."
     },
     "categories": {
       "all": "Kabeh",

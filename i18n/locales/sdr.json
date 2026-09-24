@@ -804,7 +804,11 @@
     "select": "منتخب کر",
     "noResults": "نتائج نہیں",
     "moreInfo": "ہور معلومات",
-    "translate": "ترجمہ کر"
+    "translate": "ترجمہ کر",
+    "paste": "पेस्ट करो",
+    "scanQr": "QR स्कैन करो",
+    "scanQrHint": "Wallet address QR code ke taraf camera dikhao",
+    "allowCameraForQr": "QR कोड स्कैन करने के लिए कैमरा एक्सेस की अनुमति दें"
   },
   "tip": {
     "title": "ٹِپ بھیجو",
@@ -3257,7 +3261,9 @@
       "paymentReverted": "ادائیگی زنجیر پر واپس پلٹ گیل — کوئی آرڈر نہیں بنل۔",
       "purchaseFailed": "خریداری ناکام ہوئل",
       "transactionCancelled": "لین دین رد ہوئل۔",
-      "pickRating": "پہلے تارا درجہ چنو۔"
+      "pickRating": "پہلے تارا درجہ چنو۔",
+      "confirmTitle": "تأكيد الشراء",
+      "confirmBody": "تؤدي دفع {{amount}} درهم (حوالي {{usd}}) على Base، مباشرة إلى محفظة البائع. لا يمكن التراجع عن هذا."
     },
     "categories": {
       "all": "سب",

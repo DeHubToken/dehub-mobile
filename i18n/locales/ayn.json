@@ -804,7 +804,11 @@
     "select": "اختر",
     "noResults": "ما في نتائج",
     "moreInfo": "معلومات زيادة",
-    "translate": "ترجمة"
+    "translate": "ترجمة",
+    "scanQr": "اسكان الكيو ار",
+    "scanQrHint": "صوّر الكاميرا على رمز QR لعنوان المحفظة",
+    "allowCameraForQr": "اسمح للكاميرا بالوصول لمسح كود QR",
+    "paste": "لصق"
   },
   "tip": {
     "title": "أرسل إكرامية",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "الدفع رجع على السلسلة — ما انسوى أي طلب.",
       "purchaseFailed": "الشراء فشل",
       "transactionCancelled": "المعاملة انلغت.",
-      "pickRating": "أول شي اختر تقييم النجوم."
+      "pickRating": "أول شي اختر تقييم النجوم.",
+      "confirmTitle": "تأكيد الشراء",
+      "confirmBody": "بتدفع {{amount}} درهم (تقريباً {{usd}}) على البيس، مباشرة لمحفظة البائع. هذا ما يتراجع."
     },
     "categories": {
       "all": "الكل",

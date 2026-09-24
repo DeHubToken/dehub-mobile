@@ -227,10 +227,10 @@ export default function SuperPowersScreen() {
         ) : (
           <View style={styles.table}>
             <View style={styles.tableHead}>
-              <Text style={[styles.th, styles.colTier]}>{t("superpowers.thTier")}</Text>
-              <Text style={[styles.th, styles.colNum]}>{t("superpowers.thBoosts")}</Text>
-              <Text style={[styles.th, styles.colNum]}>{t("superpowers.thEach")}</Text>
-              <Text style={[styles.th, styles.colNum]}>{t("superpowers.thPerCycle")}</Text>
+              <Text numberOfLines={2} style={[styles.th, styles.colTier]}>{t("superpowers.thTier")}</Text>
+              <Text numberOfLines={2} style={[styles.th, styles.colNum]}>{t("superpowers.thBoosts")}</Text>
+              <Text numberOfLines={2} style={[styles.th, styles.colNum]}>{t("superpowers.thEach")}</Text>
+              <Text numberOfLines={2} style={[styles.th, styles.colNum]}>{t("superpowers.thPerCycle")}</Text>
             </View>
             {(ladder?.tiers ?? [])
               .filter(tier => tier.name)
@@ -521,8 +521,9 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     overflow: "hidden",
   },
-  tableHead: { flexDirection: "row", paddingHorizontal: 12, paddingVertical: 10 },
-  th: { color: "#808089", fontSize: 9, letterSpacing: 1 },
+  tableHead: { flexDirection: "row", alignItems: "flex-end", paddingHorizontal: 12, paddingVertical: 10 },
+  // Headers wrap to two lines instead of clipping in long languages.
+  th: { color: "#808089", fontSize: 11, lineHeight: 14 },
   tr: {
     flexDirection: "row",
     paddingHorizontal: 12,

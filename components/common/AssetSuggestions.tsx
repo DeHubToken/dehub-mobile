@@ -7,6 +7,7 @@
  * `MentionSuggestions` so it drops into the same slot under a TextInput.
  */
 
+import { appLocale } from "../../libs/date.util";
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -29,7 +30,7 @@ interface AssetSuggestionsProps {
 function formatPrice(value: number | null): string | null {
   if (value == null) return null;
   if (value >= 1000)
-    return `$${value.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+    return `$${value.toLocaleString(appLocale(), { maximumFractionDigits: 0 })}`;
   if (value >= 1) return `$${value.toFixed(2)}`;
   if (value >= 0.01) return `$${value.toFixed(4)}`;
   return `$${value.toFixed(8)}`;

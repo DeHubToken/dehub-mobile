@@ -1,3 +1,4 @@
+import { appLocale } from '../libs/date.util';
 import React, { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +13,7 @@ import { runWithPermissions } from '../libs/permissions.util';
 import { toastSuccess } from '../libs';
 import { dexActionError } from '../libs/dex-action-error';
 import { formatSize } from '../libs/dex-orderbook';
+import AddressInputTools from './common/AddressInputTools';
 import {
   FEE_ASSETS, POOL_CHAINS, POOL_CHAIN_INFO, POOL_FEE_USD, checkToken, createPool, fetchUsdPrices, isAcceptedPoolImage, isTokenAddress,
   loadFeeBalances, payFee, planFee, uploadPoolImage,
@@ -150,6 +152,7 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
             <Text style={[s.muted, s.label]}>{t('dex.pools.contract')}</Text>
             <TextInput editable={!locked} accessibilityLabel={t('dex.pools.contract')} placeholder={chain === 'solana' ? t('dex.pools.mintPlaceholder') : '0x…'} placeholderTextColor="#596675"
               value={address} onChangeText={(v) => setAddress(v.trim())} autoCapitalize="none" autoCorrect={false} spellCheck={false} style={s.input} />
+            <AddressInputTools disabled={locked} onValue={(v) => setAddress(v.trim())} />
             {checking && <View style={s.inline}><ActivityIndicator size="small" color="#20c997" /><Text style={s.muted}>{t('dex.pools.lookingUp')}</Text></View>}
             {check?.exists && check.pool && <View style={s.review}><Text style={s.reviewText}>{t('dex.pools.exists', { symbol: check.pool.symbol })}</Text>
               <TouchableOpacity onPress={() => { onClose(); onCreated(check.pool!); }}><Text style={s.link}>{t('dex.pools.openExisting')}</Text></TouchableOpacity></View>}
@@ -170,7 +173,7 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
               </View>
               {!paid && <><Text style={[s.muted, s.label]}>{t('dex.payWith')}</Text>
                 <View style={s.chips}>{(balances.length ? balances : FEE_ASSETS.map((asset) => ({ asset, amount: 0, usd: 0 }))).map((b) => <TouchableOpacity key={b.asset.symbol} disabled={!!busy} accessibilityRole="radio" accessibilityState={{ selected: selected === b.asset.symbol }} style={[s.chip, selected === b.asset.symbol && s.chipActive]} onPress={() => setPayWith(b.asset.symbol)}>
-                  <Text style={selected === b.asset.symbol ? s.white : s.muted}>{b.asset.symbol} · ${b.usd.toLocaleString('en-US', { maximumFractionDigits: 2 })}</Text></TouchableOpacity>)}</View></>}
+                  <Text style={selected === b.asset.symbol ? s.white : s.muted}>{b.asset.symbol} · ${b.usd.toLocaleString(appLocale(), { maximumFractionDigits: 2 })}</Text></TouchableOpacity>)}</View></>}
               {!paid && selected !== 'DHB' && <Text style={s.help}>{t('dex.pools.swapNote', { symbol: selected })}</Text>}
               {paid && <Text style={s.help}>{t('dex.pools.alreadyPaid')}</Text>}
             </>}
