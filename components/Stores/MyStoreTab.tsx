@@ -165,7 +165,11 @@ const StoreForm: React.FC<{
             </View>
 
             <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-              <Pressable style={styles.bannerPick} onPress={() => upload("banner")}>
+              <Pressable
+                style={styles.bannerPick}
+                onPress={() => upload("banner")}
+                accessibilityRole="button"
+              >
                 {bannerUrl ? (
                   <Image source={{ uri: bannerUrl }} style={StyleSheet.absoluteFill} contentFit="cover" />
                 ) : null}
@@ -181,7 +185,13 @@ const StoreForm: React.FC<{
                 </View>
               </Pressable>
 
-              <Pressable style={styles.avatarPick} onPress={() => upload("avatar")}>
+              {/* Icon-only tile: without a label a screen reader just says "button". */}
+              <Pressable
+                style={styles.avatarPick}
+                onPress={() => upload("avatar")}
+                accessibilityRole="button"
+                accessibilityLabel={t("dex.pool.changeImage")}
+              >
                 {avatarUrl ? (
                   <Image source={{ uri: avatarUrl }} style={StyleSheet.absoluteFill} contentFit="cover" />
                 ) : null}
@@ -362,7 +372,13 @@ const ListingForm: React.FC<{
                     </View>
                   ))}
                   {images.length < MAX_IMAGES && (
-                    <Pressable style={styles.thumbAdd} onPress={addImage} disabled={uploading}>
+                    <Pressable
+                      style={styles.thumbAdd}
+                      onPress={addImage}
+                      disabled={uploading}
+                      accessibilityRole="button"
+                      accessibilityLabel={t("comments.addImage")}
+                    >
                       {uploading ? (
                         <ActivityIndicator size="small" color="#A1A1AA" />
                       ) : (

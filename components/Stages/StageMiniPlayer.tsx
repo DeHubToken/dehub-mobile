@@ -41,6 +41,7 @@ const StageMiniPlayer: React.FC = () => {
         onPress={isHost ? () => confirmEndStage(t, currentSpace.title, endSpace) : leaveSpace}
         style={[styles.leaveBtn, isHost && styles.endBtn]}
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        accessibilityRole="button"
       >
         <Text style={[styles.leaveText, isHost && styles.endText]}>{isHost ? "End" : "Leave"}</Text>
       </TouchableOpacity>
@@ -95,6 +96,10 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
   leaveBtn: {
+    // 32pt pill plus the 8pt slop fills the 48pt bar, so the target is as
+    // tall as it can be without reaching outside the player.
+    minHeight: 32,
+    justifyContent: "center",
     paddingHorizontal: 14,
     paddingVertical: 6,
     borderRadius: 14,

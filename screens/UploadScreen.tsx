@@ -2980,7 +2980,7 @@ export default function UploadScreen() {
               onPress={handleCaptureMedia}
               activeOpacity={0.7}
               className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
-              hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+              hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
               accessibilityRole="button"
               accessibilityLabel={t("upload.takePhotoOrVideo")}
             >
@@ -2995,7 +2995,7 @@ export default function UploadScreen() {
               onPress={handlePickMedia}
               activeOpacity={0.7}
               className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
-              hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+              hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
               accessibilityRole="button"
               accessibilityLabel={t("upload.addPhotosOrVideo")}
             >
@@ -3011,7 +3011,7 @@ export default function UploadScreen() {
                 onPress={() => setShowAudioMenu((prev) => !prev)}
                 activeOpacity={0.7}
                 className="w-9 h-9 rounded-xl items-center justify-center"
-                hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+                hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
                 style={{
                   backgroundColor:
                     pickedAudio || attachedSound ? "rgba(255,255,255,0.2)" : "transparent",
@@ -3104,7 +3104,7 @@ export default function UploadScreen() {
               }}
               activeOpacity={0.7}
               className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
-              hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+              hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
               style={{
                 backgroundColor: isLiveMode ? "rgba(255,255,255,0.2)" : "transparent",
               }}
@@ -3120,7 +3120,7 @@ export default function UploadScreen() {
               onPress={handleTogglePoll}
               activeOpacity={0.7}
               className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
-              hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+              hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
               style={{
                 backgroundColor: pollEnabled ? "rgba(255,255,255,0.2)" : "transparent",
               }}
@@ -3136,7 +3136,7 @@ export default function UploadScreen() {
             onPress={() => setShowEmojiSheet(true)}
             activeOpacity={0.7}
             className="w-9 h-9 rounded-xl items-center justify-center"
-            hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+            hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
             accessibilityRole="button"
             accessibilityLabel={t("upload.insertEmoji")}
           >
@@ -3154,7 +3154,7 @@ export default function UploadScreen() {
               onPress={toggleLiveSettings}
               activeOpacity={0.7}
               className="w-9 h-9 rounded-xl items-center justify-center mr-2"
-              hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+              hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
               accessibilityRole="button"
               accessibilityLabel={t("upload.livestreamSettings")}
             >
@@ -3171,6 +3171,7 @@ export default function UploadScreen() {
             disabled={!bodyText.trim() || isEnhancing}
             activeOpacity={0.7}
             className="h-8 px-3 mr-2 rounded-xl flex-row items-center justify-center border border-white/20 bg-white/5"
+            hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
             style={{ opacity: !bodyText.trim() || isEnhancing ? 0.5 : 1 }}
             accessibilityRole="button"
             accessibilityLabel={t("upload.enhanceText")}
@@ -3187,6 +3188,10 @@ export default function UploadScreen() {
             disabled={isLiveMode ? (!canGoLive || postInFlight) : (!canPost || postInFlight)}
             activeOpacity={0.8}
             className="h-8 px-4 rounded-xl items-center justify-center"
+            // The pill stays 32pt to match web; the slop carries it to a
+            // 48pt target so the most-pressed button on the screen isn't a
+            // precision tap.
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             accessibilityRole="button"
             accessibilityLabel={isLiveMode ? t("upload.goLive") : scheduledDate ? t("upload.schedule") : t("aiChat.post")}
             style={{
