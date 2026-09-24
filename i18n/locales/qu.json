@@ -6568,5 +6568,34 @@
       "violence": "Waqayasqa",
       "scam_or_fraud": "Estafa otaq engaña"
     }
+  },
+  "affiliateLanding": {
+    "title": "Invitación p'anqaykita allinchay",
+    "subtitle": "P'anqaqa qan hina kachun. Watukuqkunaqa kay qillqata rikunku manaraq yaykuspa.",
+    "headline": "Uma sinru",
+    "message": "Allin hamusqayki willay",
+    "buttonText": "Hatun butunpa qillqan",
+    "destination": "DeHub maypi",
+    "extraTitle": "Aswan butunkuna ({{count}}/{{max}})",
+    "extraHint": "Watukuqkunata DeHubpa munasqanku rakinman chiqanta kachay. Sapa butunmi referidoykita waqaychan.",
+    "extraLabel": "Butunpa qillqan",
+    "removeButton": "Butunta qichuy",
+    "addCustom": "Kikiykipa",
+    "presets": {
+      "edit": "Allichay",
+      "create": "Ruray",
+      "build": "Hatarichiy",
+      "import": "Apamuy",
+      "explore": "Maskay"
+    },
+    "publish": "Tikraykunata riqsichiy",
+    "publishing": "Riqsichichkan…",
+    "reset": "Kaqmanta churay",
+    "preview": "Kawsaq ñawpaq qhaway",
+    "published": "Invitación p'anqa riqsichisqaña",
+    "saveFailed": "Manam invitación p'anqata waqaychayta atikurqanchu",
+    "clicksTitle": "Ñit'iykuna maypi hina",
+    "clicksRow_one": "{{clicks}} ñit'iy · {{unique}} sapallan",
+    "clicksRow_other": "{{clicks}} ñit'iykuna · {{unique}} sapallan"
   }
 }

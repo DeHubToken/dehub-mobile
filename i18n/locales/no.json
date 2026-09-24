@@ -6537,5 +6537,34 @@
       "violence": "Vold",
       "scam_or_fraud": "Svindel eller bedrageri"
     }
+  },
+  "affiliateLanding": {
+    "title": "Tilpass invitasjonssiden din",
+    "subtitle": "Få siden til å høres ut som deg. Besøkende ser denne teksten før de blir med.",
+    "headline": "Overskrift",
+    "message": "Velkomstmelding",
+    "buttonText": "Tekst på hovedknapp",
+    "destination": "DeHub-mål",
+    "extraTitle": "Ekstra knapper ({{count}}/{{max}})",
+    "extraHint": "Send besøkende rett til den delen av DeHub de bryr seg om. Hver knapp beholder henvisningen din.",
+    "extraLabel": "Knappetekst",
+    "removeButton": "Fjern knapp",
+    "addCustom": "Egendefinert",
+    "presets": {
+      "edit": "Rediger",
+      "create": "Opprett",
+      "build": "Bygg",
+      "import": "Importer",
+      "explore": "Utforsk"
+    },
+    "publish": "Publiser endringer",
+    "publishing": "Publiserer…",
+    "reset": "Tilbakestill",
+    "preview": "Forhåndsvisning",
+    "published": "Invitasjonsside publisert",
+    "saveFailed": "Kunne ikke lagre invitasjonssiden",
+    "clicksTitle": "Klikk per mål",
+    "clicksRow_one": "{{clicks}} klikk · {{unique}} unike",
+    "clicksRow_other": "{{clicks}} klikk · {{unique}} unike"
   }
 }

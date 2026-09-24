@@ -6576,5 +6576,34 @@
     "viewOnDexScreener": "විස්තර: DEXSCREENER",
     "noData": "${{symbol}} සඳහා දත්ත සොයාගත නොහැකි විය",
     "loadFailed": "ටෝකන් දත්ත පූරණය කිරීමට අසමත් විය"
+  },
+  "affiliateLanding": {
+    "title": "ඔබේ ආරාධනා පිටුව අභිරුචිකරණය කරන්න",
+    "subtitle": "පිටුව ඔබ වගේ දැනෙන්න සලස්වන්න. එක්වීමට පෙර අමුත්තන් මෙම පාඨය දකිති.",
+    "headline": "සිරස්තලය",
+    "message": "සාදර පණිවිඩය",
+    "buttonText": "ප්‍රධාන බොත්තමේ පාඨය",
+    "destination": "DeHub ගමනාන්තය",
+    "extraTitle": "අමතර බොත්තම් ({{count}}/{{max}})",
+    "extraHint": "අමුත්තන් ඔවුන් කැමති DeHub කොටසට කෙලින්ම යවන්න. සෑම බොත්තමක්ම ඔබේ යොමුව රඳවා ගනී.",
+    "extraLabel": "බොත්තම් පාඨය",
+    "removeButton": "බොත්තම ඉවත් කරන්න",
+    "addCustom": "අභිරුචි",
+    "presets": {
+      "edit": "සංස්කරණය",
+      "create": "සාදන්න",
+      "build": "ගොඩනඟන්න",
+      "import": "ආයාත",
+      "explore": "ගවේෂණය"
+    },
+    "publish": "වෙනස්කම් ප්‍රකාශ කරන්න",
+    "publishing": "ප්‍රකාශ කරමින්…",
+    "reset": "යළි සකසන්න",
+    "preview": "සජීවී පෙරදසුන",
+    "published": "ආරාධනා පිටුව ප්‍රකාශිතයි",
+    "saveFailed": "ආරාධනා පිටුව සුරැකිය නොහැකි විය",
+    "clicksTitle": "ගමනාන්තය අනුව ක්ලික්",
+    "clicksRow_one": "{{clicks}} ක්ලික් · {{unique}} අනන්‍ය",
+    "clicksRow_other": "{{clicks}} ක්ලික් · {{unique}} අනන්‍ය"
   }
 }

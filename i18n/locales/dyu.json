@@ -6537,5 +6537,34 @@
     "alreadyReported": "I y'a fɔ a ye ka ban. An y'a filɛ.",
     "contextPlaceholder": "O ye koo dɔ ye min be se k'an dɛmɛ ka koo dɔw faamu",
     "whyName": "Mun na i bɛ {{name}} jira?"
+  },
+  "affiliateLanding": {
+    "title": "I ka weelekan sɛbɛ labɛn",
+    "subtitle": "A to sɛbɛ ka kɛ i ko. Mɔgɔ minnu bɛ na, olu bɛ nin sɛbɛ ye sani u ka don.",
+    "headline": "Kunkanko",
+    "message": "Bisimila kuma",
+    "buttonText": "Butɔn kunba sɛbɛ",
+    "destination": "DeHub yɔrɔ",
+    "extraTitle": "Butɔn wɛrɛw ({{count}}/{{max}})",
+    "extraHint": "Mɔgɔw ci ka taga DeHub yɔrɔ la min bɛ u diya. Butɔn bɛɛ bɛ i ka referal mara.",
+    "extraLabel": "Butɔn sɛbɛ",
+    "removeButton": "Butɔn bɔ",
+    "addCustom": "I yɛrɛ ta",
+    "presets": {
+      "edit": "Yɛlɛma",
+      "create": "Da",
+      "build": "Jɔ",
+      "import": "Don",
+      "explore": "Ɲini"
+    },
+    "publish": "Yɛlɛmaliw bɔ kɛnɛ kan",
+    "publishing": "A bɛ bɔ kɛnɛ kan…",
+    "reset": "Segin a cogo kɔrɔ la",
+    "preview": "Filɛli teliman",
+    "published": "Weelekan sɛbɛ bɔra kɛnɛ kan",
+    "saveFailed": "Weelekan sɛbɛ ma se ka mara",
+    "clicksTitle": "Digiliw ka kɛɲɛ ni yɔrɔ ye",
+    "clicksRow_one": "{{clicks}} digili · {{unique}} kelen-kelen",
+    "clicksRow_other": "{{clicks}} digiliw · {{unique}} kelen-kelen"
   }
 }

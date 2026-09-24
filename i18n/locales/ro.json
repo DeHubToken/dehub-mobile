@@ -6551,5 +6551,34 @@
       "violence": "Violență",
       "scam_or_fraud": "Înșelătorie sau fraudă"
     }
+  },
+  "affiliateLanding": {
+    "title": "Personalizează-ți pagina de invitație",
+    "subtitle": "Fă pagina să sune ca tine. Vizitatorii văd acest text înainte să se alăture.",
+    "headline": "Titlu",
+    "message": "Mesaj de bun venit",
+    "buttonText": "Textul butonului principal",
+    "destination": "Destinație DeHub",
+    "extraTitle": "Butoane suplimentare ({{count}}/{{max}})",
+    "extraHint": "Trimite vizitatorii direct în partea din DeHub care îi interesează. Fiecare buton păstrează recomandarea ta.",
+    "extraLabel": "Textul butonului",
+    "removeButton": "Elimină butonul",
+    "addCustom": "Personalizat",
+    "presets": {
+      "edit": "Editează",
+      "create": "Creează",
+      "build": "Construiește",
+      "import": "Importă",
+      "explore": "Explorează"
+    },
+    "publish": "Publică modificările",
+    "publishing": "Se publică…",
+    "reset": "Resetează",
+    "preview": "Previzualizare live",
+    "published": "Pagina de invitație a fost publicată",
+    "saveFailed": "Pagina de invitație nu a putut fi salvată",
+    "clicksTitle": "Clicuri pe destinație",
+    "clicksRow_one": "{{clicks}} clic · {{unique}} unice",
+    "clicksRow_other": "{{clicks}} clicuri · {{unique}} unice"
   }
 }

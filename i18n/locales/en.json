@@ -6530,5 +6530,34 @@
       "violence": "Violence",
       "scam_or_fraud": "Scam or fraud"
     }
+  },
+  "affiliateLanding": {
+    "title": "Customize your invite page",
+    "subtitle": "Make the page sound like you. Visitors see this copy before they join.",
+    "headline": "Headline",
+    "message": "Welcome message",
+    "buttonText": "Main button text",
+    "destination": "DeHub destination",
+    "extraTitle": "Extra buttons ({{count}}/{{max}})",
+    "extraHint": "Send visitors straight to the part of DeHub they care about. Every button keeps your referral.",
+    "extraLabel": "Button text",
+    "removeButton": "Remove button",
+    "addCustom": "Custom",
+    "presets": {
+      "edit": "Edit",
+      "create": "Create",
+      "build": "Build",
+      "import": "Import",
+      "explore": "Explore"
+    },
+    "publish": "Publish changes",
+    "publishing": "Publishing…",
+    "reset": "Reset",
+    "preview": "Live preview",
+    "published": "Invite page published",
+    "saveFailed": "Could not save invite page",
+    "clicksTitle": "Clicks by destination",
+    "clicksRow_one": "{{clicks}} click · {{unique}} unique",
+    "clicksRow_other": "{{clicks}} clicks · {{unique}} unique"
   }
 }

@@ -6538,5 +6538,34 @@
       "violence": "Vurugu",
       "scam_or_fraud": "Utapeli au ulaghai"
     }
+  },
+  "affiliateLanding": {
+    "title": "Badilisha ukurasa wako wa mwaliko",
+    "subtitle": "Fanya ukurasa usikike kama wewe. Wageni huona maandishi haya kabla ya kujiunga.",
+    "headline": "Kichwa",
+    "message": "Ujumbe wa kukaribisha",
+    "buttonText": "Maandishi ya kitufe kikuu",
+    "destination": "Mahali pa DeHub",
+    "extraTitle": "Vitufe vya ziada ({{count}}/{{max}})",
+    "extraHint": "Wapeleke wageni moja kwa moja kwenye sehemu ya DeHub wanayoipenda. Kila kitufe kinahifadhi rufaa yako.",
+    "extraLabel": "Maandishi ya kitufe",
+    "removeButton": "Ondoa kitufe",
+    "addCustom": "Maalum",
+    "presets": {
+      "edit": "Hariri",
+      "create": "Unda",
+      "build": "Jenga",
+      "import": "Leta",
+      "explore": "Gundua"
+    },
+    "publish": "Chapisha mabadiliko",
+    "publishing": "Inachapisha…",
+    "reset": "Weka upya",
+    "preview": "Onyesho la moja kwa moja",
+    "published": "Ukurasa wa mwaliko umechapishwa",
+    "saveFailed": "Imeshindwa kuhifadhi ukurasa wa mwaliko",
+    "clicksTitle": "Mibofyo kwa mahali",
+    "clicksRow_one": "{{clicks}} mbofyo · {{unique}} ya kipekee",
+    "clicksRow_other": "{{clicks}} mibofyo · {{unique}} ya kipekee"
   }
 }

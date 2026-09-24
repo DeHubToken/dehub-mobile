@@ -6567,5 +6567,34 @@
       "violence": "خشونت",
       "scam_or_fraud": "کلاهبرداری یا تقلب"
     }
+  },
+  "affiliateLanding": {
+    "title": "صفحه دعوت خود را شخصی‌سازی کنید",
+    "subtitle": "بگذارید صفحه لحن شما را داشته باشد. بازدیدکنندگان این متن را پیش از پیوستن می‌بینند.",
+    "headline": "عنوان",
+    "message": "پیام خوشامد",
+    "buttonText": "متن دکمه اصلی",
+    "destination": "مقصد در DeHub",
+    "extraTitle": "دکمه‌های اضافی ({{count}}/{{max}})",
+    "extraHint": "بازدیدکنندگان را مستقیم به بخشی از DeHub بفرستید که برایشان مهم است. هر دکمه ارجاع شما را حفظ می‌کند.",
+    "extraLabel": "متن دکمه",
+    "removeButton": "حذف دکمه",
+    "addCustom": "سفارشی",
+    "presets": {
+      "edit": "ویرایش",
+      "create": "ساختن",
+      "build": "بنا کردن",
+      "import": "وارد کردن",
+      "explore": "کاوش"
+    },
+    "publish": "انتشار تغییرات",
+    "publishing": "در حال انتشار…",
+    "reset": "بازنشانی",
+    "preview": "پیش‌نمایش زنده",
+    "published": "صفحه دعوت منتشر شد",
+    "saveFailed": "ذخیره صفحه دعوت ممکن نشد",
+    "clicksTitle": "کلیک‌ها بر اساس مقصد",
+    "clicksRow_one": "{{clicks}} کلیک · {{unique}} یکتا",
+    "clicksRow_other": "{{clicks}} کلیک · {{unique}} یکتا"
   }
 }

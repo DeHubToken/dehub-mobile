@@ -6537,5 +6537,34 @@
       "violence": "Violencia",
       "scam_or_fraud": "Estafa o fraude"
     }
+  },
+  "affiliateLanding": {
+    "title": "Personaliza tu página de invitación",
+    "subtitle": "Haz que la página suene como tú. Los visitantes ven este texto antes de unirse.",
+    "headline": "Titular",
+    "message": "Mensaje de bienvenida",
+    "buttonText": "Texto del botón principal",
+    "destination": "Destino en DeHub",
+    "extraTitle": "Botones extra ({{count}}/{{max}})",
+    "extraHint": "Lleva a los visitantes directo a la parte de DeHub que les interesa. Cada botón conserva tu referido.",
+    "extraLabel": "Texto del botón",
+    "removeButton": "Quitar botón",
+    "addCustom": "Personalizado",
+    "presets": {
+      "edit": "Editar",
+      "create": "Crear",
+      "build": "Construir",
+      "import": "Importar",
+      "explore": "Explorar"
+    },
+    "publish": "Publicar cambios",
+    "publishing": "Publicando…",
+    "reset": "Restablecer",
+    "preview": "Vista previa en vivo",
+    "published": "Página de invitación publicada",
+    "saveFailed": "No se pudo guardar la página de invitación",
+    "clicksTitle": "Clics por destino",
+    "clicksRow_one": "{{clicks}} clic · {{unique}} únicos",
+    "clicksRow_other": "{{clicks}} clics · {{unique}} únicos"
   }
 }

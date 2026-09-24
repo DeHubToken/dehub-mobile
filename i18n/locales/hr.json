@@ -6537,5 +6537,34 @@
       "violence": "Nasilje",
       "scam_or_fraud": "Prijevara ili prijevara"
     }
+  },
+  "affiliateLanding": {
+    "title": "Prilagodi svoju stranicu pozivnice",
+    "subtitle": "Neka stranica zvuči kao ti. Posjetitelji vide ovaj tekst prije pridruživanja.",
+    "headline": "Naslov",
+    "message": "Poruka dobrodošlice",
+    "buttonText": "Tekst glavnog gumba",
+    "destination": "Odredište na DeHubu",
+    "extraTitle": "Dodatni gumbi ({{count}}/{{max}})",
+    "extraHint": "Pošalji posjetitelje ravno u dio DeHuba koji ih zanima. Svaki gumb zadržava tvoju preporuku.",
+    "extraLabel": "Tekst gumba",
+    "removeButton": "Ukloni gumb",
+    "addCustom": "Prilagođeno",
+    "presets": {
+      "edit": "Uredi",
+      "create": "Stvori",
+      "build": "Gradi",
+      "import": "Uvezi",
+      "explore": "Istraži"
+    },
+    "publish": "Objavi promjene",
+    "publishing": "Objavljivanje…",
+    "reset": "Poništi",
+    "preview": "Pregled uživo",
+    "published": "Stranica pozivnice objavljena",
+    "saveFailed": "Nije moguće spremiti stranicu pozivnice",
+    "clicksTitle": "Klikovi po odredištu",
+    "clicksRow_one": "{{clicks}} klik · {{unique}} jedinstvenih",
+    "clicksRow_other": "{{clicks}} klikova · {{unique}} jedinstvenih"
   }
 }

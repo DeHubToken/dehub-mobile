@@ -6537,5 +6537,34 @@
       "violence": "عنف",
       "scam_or_fraud": "احتيال أو خداع"
     }
+  },
+  "affiliateLanding": {
+    "title": "خصّص صفحة الدعوة تبعك",
+    "subtitle": "خلّي الصفحة تشبهك. الزوار بيشوفوا هالكلام قبل ما ينضموا.",
+    "headline": "العنوان",
+    "message": "رسالة الترحيب",
+    "buttonText": "نص الزر الرئيسي",
+    "destination": "الوجهة بـ DeHub",
+    "extraTitle": "أزرار زيادة ({{count}}/{{max}})",
+    "extraHint": "ابعت الزوار دغري عالقسم اللي بيهمهم بـ DeHub. كل زر بيحافظ عالإحالة تبعك.",
+    "extraLabel": "نص الزر",
+    "removeButton": "شيل الزر",
+    "addCustom": "مخصص",
+    "presets": {
+      "edit": "عدّل",
+      "create": "اعمل",
+      "build": "ابني",
+      "import": "استورد",
+      "explore": "اكتشف"
+    },
+    "publish": "انشر التغييرات",
+    "publishing": "عم ينشر…",
+    "reset": "رجّع",
+    "preview": "معاينة مباشرة",
+    "published": "انتشرت صفحة الدعوة",
+    "saveFailed": "ما قدرنا نحفظ صفحة الدعوة",
+    "clicksTitle": "الكبسات حسب الوجهة",
+    "clicksRow_one": "{{clicks}} كبسة · {{unique}} مختلفة",
+    "clicksRow_other": "{{clicks}} كبسات · {{unique}} مختلفة"
   }
 }

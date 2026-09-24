@@ -6535,5 +6535,34 @@
     "submitFailed": "We no fit send the report",
     "alreadyReported": "You don already report this one. We dey check am.",
     "contextPlaceholder": "Give more gist about am…"
+  },
+  "affiliateLanding": {
+    "title": "Arrange your invite page",
+    "subtitle": "Make di page sound like you. People wey visit go see dis write-up before dem join.",
+    "headline": "Headline",
+    "message": "Welcome message",
+    "buttonText": "Main button text",
+    "destination": "DeHub destination",
+    "extraTitle": "Extra buttons ({{count}}/{{max}})",
+    "extraHint": "Send people straight go di part of DeHub wey dem like. Every button go keep your referral.",
+    "extraLabel": "Button text",
+    "removeButton": "Comot button",
+    "addCustom": "Custom",
+    "presets": {
+      "edit": "Edit am",
+      "create": "Create",
+      "build": "Build",
+      "import": "Import",
+      "explore": "Explore"
+    },
+    "publish": "Publish di changes",
+    "publishing": "E dey publish…",
+    "reset": "Reset",
+    "preview": "Live preview",
+    "published": "Invite page don publish",
+    "saveFailed": "We no fit save invite page",
+    "clicksTitle": "Clicks by destination",
+    "clicksRow_one": "{{clicks}} click · {{unique}} different people",
+    "clicksRow_other": "{{clicks}} clicks · {{unique}} different people"
   }
 }
