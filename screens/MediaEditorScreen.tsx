@@ -79,9 +79,11 @@ import {
 } from "../libs/editor/project";
 import {
   deleteProject,
+  getMedia,
   importPicture,
   listProjects,
   loadProject,
+  saveCutout,
   saveProject,
   writeExport,
 } from "../libs/editor/storage";
@@ -224,7 +226,7 @@ type Tool =
   | "shapes" | "draw" | "layers" | "shapeStyle" | "blend" | "brand";
 
 interface ToolButton {
-  id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete" | "ai";
+  id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg";
   icon: IconName;
   label: string;
 }
@@ -245,6 +247,8 @@ function useHistory(initial: ProjectSnapshot | null) {
 
   return {
     project,
+    /** The project as of now, for work that finishes after an await. */
+    latest: () => current.current,
     canUndo: past.current.length > 0,
     canRedo: future.current.length > 0,
     reset: (p: ProjectSnapshot) => { past.current = []; future.current = []; setProject(p); },
@@ -300,6 +304,9 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
   const [chatBusy, setChatBusy] = useState(false);
   const [brand, setBrand] = useState<BrandKit>(EMPTY_BRAND);
   useEffect(() => { loadBrand().then(setBrand); }, []);
+  // Background removal in progress: the model download, then the cut itself.
+  const [cutting, setCutting] = useState<{ fraction: number } | null>(null);
+  const cuttingRef = useRef(false);
   const updateBrand = (kit: BrandKit) => { setBrand(kit); void saveBrand(kit); };
 
   // Open an existing design.
@@ -401,6 +408,38 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
     }));
   };
 
+  // Runs on the phone inside the canvas page; resolves with the cut-out's media id.
+  const cutoutMedia = async (mediaId: string): Promise<string | null> => {
+    if (cuttingRef.current) return null;
+    cuttingRef.current = true;
+    setCutting({ fraction: 0 });
+    try {
+      const out = await canvasRef.current?.removeBackground(mediaId, (fraction) => setCutting({ fraction }));
+      if (!out) return null;
+      const source = await getMedia(mediaId);
+      const meta = await saveCutout(out.dataUrl, out.width, out.height, source?.name ?? "picture");
+      return meta.id;
+    } catch {
+      return null;
+    } finally {
+      cuttingRef.current = false;
+      setCutting(null);
+    }
+  };
+
+  const removeBackground = async () => {
+    if (!selected || selected.kind !== "image") return;
+    const clipId = selected.id;
+    const mediaId = await cutoutMedia(selected.mediaId);
+    const now = h.latest();
+    if (!mediaId || !now || !now.clips.some((c) => c.id === clipId)) {
+      toastError(t("editor.app.bgRemoveFailed"));
+      return;
+    }
+    h.commit(updateClip(now, clipId, { mediaId }));
+    toastSuccess(t("editor.bgRemove.done"));
+  };
+
   const sendToAgent = async (text: string) => {
     if (!project || chatBusy) return;
     const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
@@ -414,6 +453,7 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
         brand,
         applyBrand: (p) => applyBrand(p, brand),
         templateOps: (id) => templateOps(id, t),
+        removeBackground: cutoutMedia,
       });
       if (report.applied > 0) h.commit(next);
       if (report.selectedId) setSelectedId(report.selectedId);
@@ -434,6 +474,7 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
     if (id === "ai") { setChatOpen(true); return; }
     if (id === "photo") { void addPhoto(); return; }
     if (id === "text") { addTextLayer(); return; }
+    if (id === "removeBg") { void removeBackground(); return; }
     if (id === "edit" && selectedId) { setEditingText(selectedId); return; }
     if (id === "duplicate" && selectedId) {
       const r = duplicateClip(project, selectedId);
@@ -490,6 +531,7 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
       ];
     }
     return [
+      { id: "removeBg", icon: "Scissors", label: t("editor.bgRemove.action") },
       { id: "filters", icon: "Sparkles", label: t("editor.app.filters") },
       { id: "adjust", icon: "SlidersHorizontal", label: t("editor.app.adjust") },
       { id: "crop", icon: "Crop", label: t("editor.layer.crop") },
@@ -688,6 +730,18 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
             if (r) h.commit(r.project);
           }}
         />
+        {cutting && (
+          <View pointerEvents="none" className="absolute top-3 left-6 right-6 items-center">
+            <View className="flex-row items-center rounded-full bg-black/75 px-4 py-2" style={{ gap: 8 }}>
+              <DeHubLoader size={18} />
+              <Text className="text-white text-xs">
+                {cutting.fraction < 1
+                  ? t("editor.bgRemove.downloading", { percent: Math.round(cutting.fraction * 100) })
+                  : t("editor.bgRemove.working")}
+              </Text>
+            </View>
+          </View>
+        )}
         {project.clips.length === 0 && (
           <View pointerEvents="none" className="absolute inset-0 items-center justify-center">
             <Text className="text-white/70 text-sm">{t("editor.app.emptyHint")}</Text>

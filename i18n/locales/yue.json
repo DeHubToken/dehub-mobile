@@ -4929,7 +4929,8 @@
       "layersHint": "列表最頂嘅係最前面。用箭嘴重新排次序。鎖定咗同隱藏咗嘅圖層只可以喺呢度揀。",
       "agentWebOnly": "當中有啲嘢暫時淨係喺網頁版編輯器用到。",
       "brandLogoHint": "喺頁面揀一張圖，然後用佢做你嘅標誌。",
-      "useAsLogo": "用揀咗嘅圖"
+      "useAsLogo": "用揀咗嘅圖",
+      "bgRemoveFailed": "移除唔到背景。試下第二張圖啦。"
     },
     "filters": {
       "none": "原圖",
@@ -5143,6 +5144,12 @@
       "replaceConfirm": "用呢個範本取代目前嘅設計？可以復原㗎。",
       "replaceTitle": "要取代您的設計嗎？",
       "replace": "取代"
+    },
+    "bgRemove": {
+      "action": "移除背景",
+      "working": "正在移除背景…",
+      "downloading": "準備緊 AI 模型… {{percent}}%",
+      "done": "已移除背景。"
     }
   },
   "creator": {

@@ -4982,7 +4982,8 @@
       "layersHint": "Bagian atas daftar adalah yang paling depan. Gunakan panah untuk mengubah urutan. Lapisan yang dikunci dan disembunyikan hanya bisa dipilih di sini.",
       "agentWebOnly": "Sebagian dari itu untuk saat ini hanya berfungsi di editor web.",
       "brandLogoHint": "Pilih gambar di halaman, lalu gunakan sebagai logo Anda.",
-      "useAsLogo": "Gunakan gambar terpilih"
+      "useAsLogo": "Gunakan gambar terpilih",
+      "bgRemoveFailed": "Tidak dapat menghapus latar belakang. Coba gambar lain."
     },
     "filters": {
       "none": "Asli",
@@ -5196,6 +5197,12 @@
       "replaceConfirm": "Ganti desain saat ini dengan template ini? Kamu bisa membatalkannya.",
       "replaceTitle": "Ganti desain Anda?",
       "replace": "Ganti"
+    },
+    "bgRemove": {
+      "action": "Hapus latar belakang",
+      "working": "Menghapus latar belakang…",
+      "downloading": "Menyiapkan model AI… {{percent}}%",
+      "done": "Latar belakang dihapus."
     }
   },
   "creator": {

@@ -4928,7 +4928,8 @@
       "layersHint": "Maja e listës është përpara. Përdorni shigjetat për të ndryshuar radhën. Shtresat e kyçura dhe të fshehura mund të zgjidhen vetëm këtu.",
       "agentWebOnly": "Disa prej tyre për momentin funksionojnë vetëm në redaktuesin e uebit.",
       "brandLogoHint": "Zgjidh një figurë në faqe, pastaj përdore si logon tënde.",
-      "useAsLogo": "Përdor figurën e zgjedhur"
+      "useAsLogo": "Përdor figurën e zgjedhur",
+      "bgRemoveFailed": "Sfondi nuk u hoq dot. Provo një imazh tjetër."
     },
     "filters": {
       "none": "Origjinal",
@@ -5142,6 +5143,12 @@
       "replaceConfirm": "Të zëvendësohet dizajni aktual me këtë shabllon? Mund ta zhbësh.",
       "replaceTitle": "Ta zëvendësosh dizajnin?",
       "replace": "Zëvendëso"
+    },
+    "bgRemove": {
+      "action": "Hiq sfondin",
+      "working": "Po hiqet sfondi…",
+      "downloading": "Po përgatitet modeli i AI… {{percent}}%",
+      "done": "Sfondi u hoq."
     }
   },
   "creator": {

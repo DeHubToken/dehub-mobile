@@ -4914,7 +4914,8 @@
       "layersHint": "Ko te runga o te rārangi te mua. Whakamahia ngā pere hei whakaraupapa anō. Ko ngā paparanga kua rakaina, kua hunaia rānei, ka taea anake te kōwhiri i konei.",
       "agentWebOnly": "Ko ētahi o ēnei ka mahi noa i te ētita tukutuku i tēnei wā.",
       "brandLogoHint": "Tīpakohia he pikitia i te whārangi, kātahi ka whakamahia hei moko māu.",
-      "useAsLogo": "Whakamahia te pikitia kua tīpakohia"
+      "useAsLogo": "Whakamahia te pikitia kua tīpakohia",
+      "bgRemoveFailed": "Kāore i taea te tango i te papamuri. Whakamātauria tētahi atu whakaahua."
     },
     "filters": {
       "none": "Taketake",
@@ -5128,6 +5129,12 @@
       "replaceConfirm": "Whakakapia te hoahoa o nāianei ki tēnei tauira? Ka taea te wetewete.",
       "replaceTitle": "Whakakapi i tō hoahoa?",
       "replace": "Whakakapi"
+    },
+    "bgRemove": {
+      "action": "Tangohia te papamuri",
+      "working": "E tango ana i te papamuri…",
+      "downloading": "E whakareri ana i te tauira AI… {{percent}}%",
+      "done": "Kua tangohia te papamuri."
     }
   },
   "creator": {

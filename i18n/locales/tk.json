@@ -4898,7 +4898,8 @@
       "layersHint": "Sanawyň ýokarsy iň öňdäki bolýar. Tertibini üýtgetmek üçin oklary ulanyň. Gulplanan we gizlenen gatlaklary diňe şu ýerden saýlap bolýar.",
       "agentWebOnly": "Onuň käbiri häzirlikçe diňe web redaktorynda işleýär.",
       "brandLogoHint": "Sahypada bir surat saýlaň, soňra ony logotipiňiz hökmünde ulanyň.",
-      "useAsLogo": "Saýlanan suraty ulan"
+      "useAsLogo": "Saýlanan suraty ulan",
+      "bgRemoveFailed": "Fony aýryp bolmady. Başga surat synap görüň."
     },
     "filters": {
       "none": "Asyl",
@@ -5112,6 +5113,12 @@
       "replaceConfirm": "Häzirki dizaýny bu şablon bilen çalyşmalymy? Yzyna gaýtaryp bilersiňiz.",
       "replaceTitle": "Dizaýnyňyzy çalyşmalymy?",
       "replace": "Çalyş"
+    },
+    "bgRemove": {
+      "action": "Fony aýyr",
+      "working": "Fon aýrylýar…",
+      "downloading": "AI modeli taýýarlanýar… {{percent}}%",
+      "done": "Fon aýryldy."
     }
   },
   "creator": {

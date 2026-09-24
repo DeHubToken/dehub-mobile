@@ -4799,7 +4799,8 @@
       "layersHint": "Lisi sanfɛ ta de bɛ ɲɛfɛ. Sɛgɛnw labaara walasa ka u sigicogo yɛlɛma. Kɔrɔ minw datugulen don wala minw dogolen don, olu bɛ se ka sugandi yan dɔrɔn.",
       "agentWebOnly": "O dɔw bɛ baara web editɛri dɔrɔn na sisan.",
       "brandLogoHint": "Ja dɔ sugandi paji kan, o kɔ k'a kɛ i ka logo ye.",
-      "useAsLogo": "Ja sugandilen ta"
+      "useAsLogo": "Ja sugandilen ta",
+      "bgRemoveFailed": "Kɔfɛla ma se ka bɔ. Ja wɛrɛ kɔrɔbɔ."
     },
     "filters": {
       "none": "A cogo fɔlɔ",
@@ -5013,6 +5014,12 @@
       "replaceConfirm": "I ka desɛn sisan bila ka nin modɛli bila a nɔ na? I bɛ se ka a segin.",
       "replaceTitle": "I ka dizayini falen wa?",
       "replace": "A falen"
+    },
+    "bgRemove": {
+      "action": "Kɔfɛla bɔ",
+      "working": "Kɔfɛla bɛ ka bɔ…",
+      "downloading": "AI modɛli bɛ ka labɛn… {{percent}}%",
+      "done": "Kɔfɛla bɔra."
     }
   },
   "creator": {

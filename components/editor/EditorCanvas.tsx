@@ -31,6 +31,12 @@ export interface EditorCanvasHandle {
   exportImage: (format: "png" | "jpeg", quality?: number) => Promise<string>;
   /** Brightness, spread and colourfulness of a picture, for Auto enhance. Null when it is not loaded. */
   pictureStats: (mediaId: string) => Promise<{ mean: number; std: number; sat: number } | null>;
+  /**
+   * Cut the subject out of a picture on the phone (see canvasHtml: MODNet in
+   * a worker). Resolves with a PNG data URL, or null when it failed.
+   * onProgress gets the model download progress (0..1), then 1 while it runs.
+   */
+  removeBackground: (mediaId: string, onProgress?: (fraction: number) => void) => Promise<{ dataUrl: string; width: number; height: number } | null>;
 }
 
 interface Props {
@@ -99,6 +105,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const sentMedia = useRef(new Set<string>());
   const exports = useRef(new Map<string, { resolve: (v: string) => void; reject: (e: Error) => void }>());
   const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
+  type Cutout = { dataUrl: string; width: number; height: number } | null;
+  const cutoutReqs = useRef(new Map<string, { done: (v: Cutout) => void; progress?: (f: number) => void }>());
 
   const W = project.settings.width;
   const H = project.settings.height;
@@ -164,6 +172,22 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         done?.(typeof msg.mean === "number" ? { mean: msg.mean, std: msg.std, sat: msg.sat } : null);
         break;
       }
+      case "cutoutProgress": {
+        const total = Number(msg.total) || 0;
+        cutoutReqs.current.get(msg.reqId)?.progress?.(total ? Math.min(1, Number(msg.loaded) / total) : 0);
+        break;
+      }
+      case "cutout":
+      case "cutoutFailed": {
+        const ok = msg.type === "cutout" && typeof msg.dataUrl === "string";
+        // A worker that failed to start reports no request: fail them all.
+        const keys = msg.reqId ? [msg.reqId] : [...cutoutReqs.current.keys()];
+        for (const key of keys) {
+          cutoutReqs.current.get(key)?.done(ok ? { dataUrl: msg.dataUrl, width: msg.width, height: msg.height } : null);
+          cutoutReqs.current.delete(key);
+        }
+        break;
+      }
       case "exportFailed":
         exports.current.get(msg.reqId)?.reject(new Error(msg.error || "export failed"));
         exports.current.delete(msg.reqId);
@@ -173,6 +197,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   // A killed renderer process leaves a blank page; start a fresh one.
   const restart = useCallback(() => {
+    for (const r of cutoutReqs.current.values()) r.done(null);
+    cutoutReqs.current.clear();
     setReady(false);
     setWebKey((n) => n + 1);
   }, []);
@@ -198,6 +224,16 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         setTimeout(() => {
           if (statsReqs.current.has(reqId)) { statsReqs.current.delete(reqId); resolve(null); }
         }, 5000);
+      }),
+    removeBackground: (mediaId, onProgress) =>
+      new Promise((resolve) => {
+        const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        cutoutReqs.current.set(reqId, { done: resolve, progress: onProgress });
+        post({ type: "cutout", reqId, mediaId });
+        // First use downloads the model; a slow phone on mobile data needs time.
+        setTimeout(() => {
+          if (cutoutReqs.current.has(reqId)) { cutoutReqs.current.delete(reqId); resolve(null); }
+        }, 180000);
       }),
   }), [post]);
 

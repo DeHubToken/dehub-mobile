@@ -5006,7 +5006,8 @@
       "layersHint": "O topo da lista fica na frente. Use as setas para reordenar. Camadas bloqueadas e ocultas só podem ser selecionadas aqui.",
       "agentWebOnly": "Parte disso por enquanto só funciona no editor web.",
       "brandLogoHint": "Selecione uma imagem na página e use-a como seu logotipo.",
-      "useAsLogo": "Usar imagem selecionada"
+      "useAsLogo": "Usar imagem selecionada",
+      "bgRemoveFailed": "Não foi possível remover o fundo. Tente outra imagem."
     },
     "filters": {
       "none": "Original",
@@ -5220,6 +5221,12 @@
       "replaceConfirm": "Substituir o design atual por este modelo? Dá para desfazer.",
       "replaceTitle": "Substituir seu design?",
       "replace": "Substituir"
+    },
+    "bgRemove": {
+      "action": "Remover fundo",
+      "working": "Removendo fundo…",
+      "downloading": "Preparando o modelo de IA… {{percent}}%",
+      "done": "Fundo removido."
     }
   },
   "creator": {

@@ -4919,7 +4919,8 @@
       "layersHint": "Òkè àtòkọ ni iwájú. Lo àwọn ọfà láti tún ètò ṣe. Àwọn ìpele tí a tì pa àti èyí tí a fi pamọ́ ṣeé yàn níbí nìkan.",
       "agentWebOnly": "Díẹ̀ nínú ìyẹn ń ṣiṣẹ́ nínú olóòtú wẹ́ẹ̀bù nìkan fún báyìí.",
       "brandLogoHint": "Yan àwòrán kan lórí ojú-ìwé, lẹ́yìn náà lò ó gẹ́gẹ́ bí àmì rẹ.",
-      "useAsLogo": "Lo àwòrán tí a yàn"
+      "useAsLogo": "Lo àwòrán tí a yàn",
+      "bgRemoveFailed": "A kò lè yọ ẹ̀yìn àwòrán kúrò. Gbìyànjú àwòrán míì."
     },
     "filters": {
       "none": "Ojúlówó",
@@ -5133,6 +5134,12 @@
       "replaceConfirm": "Fi àwòṣe yìí rọ́pò àpẹrẹ lọ́wọ́lọ́wọ́? O lè dá a padà.",
       "replaceTitle": "Ṣé o fẹ́ rọ́pò àwòrán rẹ?",
       "replace": "Rọ́pò"
+    },
+    "bgRemove": {
+      "action": "Yọ ẹ̀yìn àwòrán kúrò",
+      "working": "Ń yọ ẹ̀yìn àwòrán kúrò…",
+      "downloading": "Ń ṣètò àwòṣe AI… {{percent}}%",
+      "done": "A ti yọ ẹ̀yìn àwòrán kúrò."
     }
   },
   "creator": {

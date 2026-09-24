@@ -4959,7 +4959,8 @@
       "layersHint": "Listapa hawanmi ñawpaqpi kachkan. Wach'ichakunawan huk kutita churay. Wichqasqa, pakasqa pataqkunataqa kaypillam akllayta atikun.",
       "agentWebOnly": "Chaymanta wakinqa kunanqa web editorllapi llamk'an.",
       "brandLogoHint": "P'anqapi huk siq'ita akllay, chaymantataq logoyki hina llamk'achiy.",
-      "useAsLogo": "Akllasqa siq'ita llamk'achiy"
+      "useAsLogo": "Akllasqa siq'ita llamk'achiy",
+      "bgRemoveFailed": "Manam qhipa pampata qichuyta atikurqachu. Huk siq'ita llamiy."
     },
     "filters": {
       "none": "Qallariy kaq",
@@ -5173,6 +5174,12 @@
       "replaceConfirm": "Kunan diseñota kay plantillawan tikraykuchikuchu? Kutichiyta atinki.",
       "replaceTitle": "¿Diseñoykita tikranki?",
       "replace": "Tikray"
+    },
+    "bgRemove": {
+      "action": "Qhipa pampata qichuy",
+      "working": "Qhipa pampata qichuchkan…",
+      "downloading": "AI modelota wakichichkan… {{percent}}%",
+      "done": "Qhipa pampa qichusqa."
     }
   },
   "creator": {

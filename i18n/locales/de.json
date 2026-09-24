@@ -5000,7 +5000,8 @@
       "layersHint": "Oben in der Liste ist vorne. Mit den Pfeilen änderst du die Reihenfolge. Gesperrte und ausgeblendete Ebenen lassen sich nur hier auswählen.",
       "agentWebOnly": "Einiges davon funktioniert vorerst nur im Web-Editor.",
       "brandLogoHint": "Wähle ein Bild auf der Seite aus und verwende es dann als dein Logo.",
-      "useAsLogo": "Ausgewähltes Bild verwenden"
+      "useAsLogo": "Ausgewähltes Bild verwenden",
+      "bgRemoveFailed": "Hintergrund konnte nicht entfernt werden. Versuch es mit einem anderen Bild."
     },
     "filters": {
       "none": "Original",
@@ -5214,6 +5215,12 @@
       "replaceConfirm": "Aktuelles Design durch diese Vorlage ersetzen? Du kannst es rückgängig machen.",
       "replaceTitle": "Dein Design ersetzen?",
       "replace": "Ersetzen"
+    },
+    "bgRemove": {
+      "action": "Hintergrund entfernen",
+      "working": "Hintergrund wird entfernt…",
+      "downloading": "KI-Modell wird vorbereitet… {{percent}} %",
+      "done": "Hintergrund entfernt."
     }
   },
   "creator": {

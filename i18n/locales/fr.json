@@ -5007,7 +5007,8 @@
       "layersHint": "Le haut de la liste correspond au premier plan. Utilisez les flèches pour réorganiser. Les calques verrouillés et masqués ne peuvent être sélectionnés qu’ici.",
       "agentWebOnly": "Une partie de cela ne fonctionne pour l'instant que dans l'éditeur web.",
       "brandLogoHint": "Sélectionnez une image sur la page, puis utilisez-la comme logo.",
-      "useAsLogo": "Utiliser l'image sélectionnée"
+      "useAsLogo": "Utiliser l'image sélectionnée",
+      "bgRemoveFailed": "Impossible de supprimer l'arrière-plan. Essayez une autre image."
     },
     "filters": {
       "none": "Original",
@@ -5221,6 +5222,12 @@
       "replaceConfirm": "Remplacer le design actuel par ce modèle ? Vous pourrez annuler.",
       "replaceTitle": "Remplacer votre design ?",
       "replace": "Remplacer"
+    },
+    "bgRemove": {
+      "action": "Supprimer l’arrière-plan",
+      "working": "Suppression de l’arrière-plan…",
+      "downloading": "Préparation du modèle d’IA… {{percent}} %",
+      "done": "Arrière-plan supprimé."
     }
   },
   "creator": {

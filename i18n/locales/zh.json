@@ -4987,7 +4987,8 @@
       "layersHint": "列表顶部即为最前方。使用箭头调整叠放顺序。锁定和隐藏的图层只能在此处选择。",
       "agentWebOnly": "其中部分功能目前仅支持网页版编辑器。",
       "brandLogoHint": "在页面上选择一张图片，然后将其用作你的标志。",
-      "useAsLogo": "使用所选图片"
+      "useAsLogo": "使用所选图片",
+      "bgRemoveFailed": "无法移除背景。请换一张图片试试。"
     },
     "filters": {
       "none": "原图",
@@ -5201,6 +5202,12 @@
       "replaceConfirm": "用此模板替换当前设计？你可以撤销。",
       "replaceTitle": "替换你的设计？",
       "replace": "替换"
+    },
+    "bgRemove": {
+      "action": "移除背景",
+      "working": "正在移除背景…",
+      "downloading": "正在准备 AI 模型… {{percent}}%",
+      "done": "背景已移除。"
     }
   },
   "creator": {

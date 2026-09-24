@@ -4936,7 +4936,8 @@
       "layersHint": "Horní položka seznamu je vpředu. Pořadí změníte šipkami. Zamčené a skryté vrstvy lze vybrat jen tady.",
       "agentWebOnly": "Část z toho zatím funguje jen ve webovém editoru.",
       "brandLogoHint": "Vyberte obrázek na stránce a pak ho použijte jako logo.",
-      "useAsLogo": "Použít vybraný obrázek"
+      "useAsLogo": "Použít vybraný obrázek",
+      "bgRemoveFailed": "Pozadí se nepodařilo odstranit. Zkuste jiný obrázek."
     },
     "filters": {
       "none": "Originál",
@@ -5150,6 +5151,12 @@
       "replaceConfirm": "Nahradit aktuální návrh touto šablonou? Lze to vrátit.",
       "replaceTitle": "Nahradit váš návrh?",
       "replace": "Nahradit"
+    },
+    "bgRemove": {
+      "action": "Odstranit pozadí",
+      "working": "Odstraňování pozadí…",
+      "downloading": "Příprava modelu AI… {{percent}} %",
+      "done": "Pozadí odstraněno."
     }
   },
   "creator": {
