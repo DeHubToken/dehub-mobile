@@ -26,6 +26,7 @@ import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { toastInfo, toastWarning } from "../../libs";
 import { getPreferredChainId } from "../../libs/auth.utils";
 import { useTranslation } from "react-i18next";
+import { useSecureScreen } from "../../hooks/useSecureScreen";
 
 export interface ImportWalletModalProps {
   visible: boolean;
@@ -42,6 +43,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
     const { signInWithWallet } = useAuthActions();
     const [privateKey, setPrivateKey] = useState<string>("");
     const [showPk, setShowPk] = useState<boolean>(false);
+    useSecureScreen(visible, "import-wallet-modal");
     const [isImporting, setIsImporting] = useState<boolean>(false);
   const [accounts, setAccounts] = useState<LocalAccount[]>([]);
   const [clipboardPk, setClipboardPk] = useState<string | null>(null);
@@ -225,6 +227,8 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
             autoCapitalize="none"
             autoCorrect={false}
             secureTextEntry={!showPk}
+            importantForAutofill="no"
+            autoComplete="off"
             trailing={
               <AuthIconButton
                 icon={showPk ? "eye-off-outline" : "eye-outline"}

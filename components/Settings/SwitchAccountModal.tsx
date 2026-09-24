@@ -31,6 +31,7 @@ import { setSigningProvider, setEoaSigningProvider, clearSigningProvider } from 
 import { useAuthActions } from "../../context/AuthContext";
 import { toastSuccess } from "../../libs";
 import { createLogger } from "../../libs/logger";
+import { useSecureScreen } from "../../hooks/useSecureScreen";
 
 const log = createLogger("SwitchAccountModal");
 
@@ -78,6 +79,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
   const [busyProvider, setBusyProvider] = useState<LegacyProvider | null>(null);
   const [email, setEmail] = useState("");
   const [privateKey, setPrivateKey] = useState("");
+  useSecureScreen(visible && showManualEntry, "switch-account-key");
   const [showPk, setShowPk] = useState(false);
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -307,6 +309,8 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
                 autoCapitalize="none"
                 autoCorrect={false}
                 secureTextEntry={!showPk}
+                importantForAutofill="no"
+                autoComplete="off"
                 className="flex-1 text-white text-sm"
               />
               <TouchableOpacity onPress={() => setShowPk((s) => !s)} className="pl-2 py-1">
