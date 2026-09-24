@@ -3791,7 +3791,11 @@
     "total": "Totaal",
     "pricing": "Prijs berekenen…",
     "payWithDhb": "Betalen met DHB",
-    "yourDhb": "Je DHB"
+    "yourDhb": "Je DHB",
+    "generateFree_one": "Genereer gratis · {{count}} over",
+    "generateFree_other": "Genereer gratis · {{count}} over",
+    "freeImagesLeft_one": "Je hebt nog {{count}} gratis afbeelding over. Geen betaling nodig.",
+    "freeImagesLeft_other": "Je hebt nog {{count}} gratis afbeeldingen over. Geen betaling nodig."
   },
   "digest": {
     "andOthers_one": "{{names}} en {{count}} anders",

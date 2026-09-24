@@ -3614,7 +3614,11 @@
     "total": "សរុប",
     "pricing": "កំពុងគណនាតម្លៃ…",
     "payWithDhb": "បង់ដោយ DHB",
-    "yourDhb": "DHB របស់អ្នក"
+    "yourDhb": "DHB របស់អ្នក",
+    "generateFree_one": "បង្កើតដោយឥតគិតថ្លៃ · {{count}} ឆ្វេង",
+    "generateFree_other": "បង្កើតដោយឥតគិតថ្លៃ · {{count}} ឆ្វេង",
+    "freeImagesLeft_one": "អ្នកមាន {{count}} រូបភាពឥតគិតថ្លៃនៅសល់ ។ មិនចាំបាច់បង់ប្រាក់ទេ ។",
+    "freeImagesLeft_other": "អ្នកមាន {{count}} រូបភាពឥតគិតថ្លៃនៅសល់ ។ មិនចាំបាច់បង់ប្រាក់ទេ ។"
   },
   "digest": {
     "andOthers_one": "{{names}} និង {{count}} ផ្សេងទៀត",

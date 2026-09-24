@@ -3632,7 +3632,11 @@
     "total": "Llapan",
     "pricing": "Chaninta yupashan…",
     "payWithDhb": "DHB-wan pagay",
-    "yourDhb": "Qampa DHB"
+    "yourDhb": "Qampa DHB",
+    "generateFree_one": "Mana qullqiyuqta paqarichiy · {{count}} lluq'i",
+    "generateFree_other": "Mana qullqiyuqta paqarichiy · {{count}} lluq'i",
+    "freeImagesLeft_one": "Qamqa {{count}} mana qullqiyuq siq'ita puchuchkanki. Mana paganapaq necesitakunchu.",
+    "freeImagesLeft_other": "{{count}} mana qullqiyuq siq'ikunata puchunki. Mana paganapaq necesitakunchu."
   },
   "digest": {
     "andOthers_one": "{{names}} hinaspa {{count}} huk",

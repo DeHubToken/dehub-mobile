@@ -3605,7 +3605,11 @@
     "total": "Összesen",
     "pricing": "Árazás folyamatban…",
     "payWithDhb": "Fizetés DHB-vel",
-    "yourDhb": "A te DHB-d"
+    "yourDhb": "A te DHB-d",
+    "generateFree_one": "Ingyenes létrehozás · {{count}} maradt",
+    "generateFree_other": "Ingyenes létrehozás · {{count}} maradt",
+    "freeImagesLeft_one": "{{count}} ingyenes képed maradt. Nincs szükség fizetésre.",
+    "freeImagesLeft_other": "Még {{count}} ingyenes képed van. Nincs szükség fizetésre."
   },
   "digest": {
     "andOthers_one": "{{names}} és {{count}} egyéb",

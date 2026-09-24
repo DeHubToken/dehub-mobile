@@ -3631,7 +3631,11 @@
     "total": "Total",
     "pricing": "Priis wird berächnet…",
     "payWithDhb": "Mit DHB zahle",
-    "yourDhb": "Dini DHB"
+    "yourDhb": "Dini DHB",
+    "generateFree_one": "Generier gratis · {{count}} übrig",
+    "generateFree_other": "Generier gratis · {{count}} übrig",
+    "freeImagesLeft_one": "Du hesch {{count}} gratis Bild übrig. Kei Zahlige nötig.",
+    "freeImagesLeft_other": "Du hesch {{count}} gratis Bilder übrig. Kei Zahlige nötig."
   },
   "digest": {
     "andOthers_one": "{{names}} und {{count}} anderi",

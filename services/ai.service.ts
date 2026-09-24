@@ -308,6 +308,8 @@ export interface AIImageRequest {
   bannerFormat?: 'landscape' | 'square' | 'portrait';
   /** Hash of the DHB transfer that paid for this job. */
   txHash?: string;
+  /** Run on one of the wallet's free starter images instead of a transfer. */
+  useFree?: boolean;
 }
 
 export interface AIImageResponse {
@@ -510,6 +512,16 @@ export async function generateImage(
     } as unknown as Record<string, unknown>,
     walletAddress,
   );
+}
+
+/**
+ * Free starter images left for the signed-in wallet, and the models they run
+ * on. The server claims one per job when the request carries `useFree`.
+ */
+export async function getFreeImages(
+  walletAddress?: string | null,
+): Promise<{ remaining: number; limit: number; models: string[] }> {
+  return paidEdgeFetch<{ remaining: number; limit: number; models: string[] }>('ai-free', {}, walletAddress);
 }
 
 export async function startVideoGeneration(

@@ -3614,7 +3614,11 @@
     "total": "जम्मा",
     "pricing": "मूल्य निकाल्दै…",
     "payWithDhb": "DHB ले भुक्तानी गर्नुहोस्",
-    "yourDhb": "तपाईंको DHB"
+    "yourDhb": "तपाईंको DHB",
+    "generateFree_one": "नि:शुल्क उत्पन्न गर्नुहोस् · {{count}} बाँकी",
+    "generateFree_other": "नि:शुल्क उत्पन्न गर्नुहोस् · {{count}} बाँकी",
+    "freeImagesLeft_one": "तपाईंसँग {{count}} निःशुल्क छवि बाँकी छ । कुनै भुक्तानी आवश्यक छैन ।",
+    "freeImagesLeft_other": "तपाईंसँग {{count}} निःशुल्क छविहरू बाँकी छन् । कुनै भुक्तानी आवश्यक छैन ।"
   },
   "digest": {
     "andOthers_one": "{{names}} र {{count}} अन्य",

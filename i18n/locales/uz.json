@@ -3619,7 +3619,11 @@
     "total": "Jami",
     "pricing": "Narx hisoblanmoqda…",
     "payWithDhb": "DHB bilan to‘lash",
-    "yourDhb": "Sizning DHB"
+    "yourDhb": "Sizning DHB",
+    "generateFree_one": "Bepul yarating · {{count}} chapga",
+    "generateFree_other": "Bepul yarating · {{count}} chapga",
+    "freeImagesLeft_one": "Sizda {{count}} ta bepul rasm qoldi. To‘lov shart emas.",
+    "freeImagesLeft_other": "Sizda {{count}} ta bepul rasm qoldi. To‘lov shart emas."
   },
   "digest": {
     "andOthers_one": "{{names}} va {{count}} boshqa",

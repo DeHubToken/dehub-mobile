@@ -3601,7 +3601,11 @@
     "total": "Tevahî",
     "pricing": "Biha tê hesibandin…",
     "payWithDhb": "Bi DHB bide",
-    "yourDhb": "DHB-ya te"
+    "yourDhb": "DHB-ya te",
+    "generateFree_one": "Belaş çêbike · {{count}} hişt",
+    "generateFree_other": "Belaş çêbike · {{count}} hişt",
+    "freeImagesLeft_one": "Wêneyekî belaş ê {{count}} li cem te maye. Pêdivî bi pereyan nîne.",
+    "freeImagesLeft_other": "{{count}} wêneyên belaş li cem te mane. Pêdivî bi pereyan nîne."
   },
   "digest": {
     "someone": "Kesek",

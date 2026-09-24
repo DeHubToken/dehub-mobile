@@ -3605,7 +3605,11 @@
     "total": "మొత్తం",
     "pricing": "ధర లెక్కిస్తోంది…",
     "payWithDhb": "DHB తో చెల్లించండి",
-    "yourDhb": "మీ DHB"
+    "yourDhb": "మీ DHB",
+    "generateFree_one": "ఉచిత ఉత్పత్తి · {{count}} ఎడమ",
+    "generateFree_other": "ఉచిత ఉత్పత్తి · {{count}} ఎడమ",
+    "freeImagesLeft_one": "మీకు {{count}} ఉచిత చిత్రం మిగిలి ఉంది. చెల్లింపు అవసరం లేదు.",
+    "freeImagesLeft_other": "మీకు {{count}} ఉచిత చిత్రాలు మిగిలి ఉన్నాయి. చెల్లింపు అవసరం లేదు."
   },
   "digest": {
     "andOthers_one": "{{names}} మరియు {{count}} ఇతర",

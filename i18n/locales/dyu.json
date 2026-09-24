@@ -3601,7 +3601,11 @@
     "total": "Bɛɛ lajɛlen",
     "pricing": "Sɔngɔ bɛ jate…",
     "payWithDhb": "Sara ni DHB ye",
-    "yourDhb": "I ka DHB"
+    "yourDhb": "I ka DHB",
+    "generateFree_one": "Ka sɛbɛri kɛ: {{count}} left",
+    "generateFree_other": "Ka sɛbɛri kɛ: {{count}} left",
+    "freeImagesLeft_other": "I ye {{count}} free images to i bolo. Ni mɔgɔ dɔ ye a ka koo dɔ kɛ, a tɛ se ka wari sɔrɔ.",
+    "freeImagesLeft_one": "Ja fu {{count}} tolen bɛ i fɛ. Wari sara man kan."
   },
   "digest": {
     "someone": "Mɔgɔ dɔ",

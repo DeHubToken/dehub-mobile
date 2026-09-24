@@ -3862,7 +3862,11 @@
     "total": "Jumlah",
     "pricing": "Mengira harga…",
     "payWithDhb": "Bayar dengan DHB",
-    "yourDhb": "DHB anda"
+    "yourDhb": "DHB anda",
+    "generateFree_one": "Jana baki percuma · {{count}}",
+    "generateFree_other": "Jana baki percuma · {{count}}",
+    "freeImagesLeft_one": "Anda ada {{count}} imej percuma yang tinggal. Tiada bayaran diperlukan.",
+    "freeImagesLeft_other": "Anda ada {{count}} imej percuma lagi. Tiada bayaran diperlukan."
   },
   "digest": {
     "andOthers_one": "{{names}} dan {{count}} lain",

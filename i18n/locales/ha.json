@@ -3601,7 +3601,11 @@
     "total": "Jimla",
     "pricing": "Ana lissafa farashi…",
     "payWithDhb": "Biya da DHB",
-    "yourDhb": "DHB naka"
+    "yourDhb": "DHB naka",
+    "generateFree_one": "Tsara kyauta · {{count}} hagu",
+    "generateFree_other": "Tsara kyauta · {{count}} hagu",
+    "freeImagesLeft_one": "Kuna da {{count}} free image bar. Babu biyan kuɗi da ake buƙata.",
+    "freeImagesLeft_other": "Kuna da {{count}} hotunan kyauta sun rage. Babu biyan kuɗi da ake buƙata."
   },
   "digest": {
     "andOthers_one": "{{names}} da {{count}} sauran",

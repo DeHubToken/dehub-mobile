@@ -3634,7 +3634,11 @@
     "total": "Totaal",
     "pricing": "Prys hierdie lopie…",
     "payWithDhb": "Betaal met DHB",
-    "yourDhb": "Jou DHB"
+    "yourDhb": "Jou DHB",
+    "generateFree_one": "Genereer gratis · {{count}} links",
+    "generateFree_other": "Genereer gratis · {{count}} links",
+    "freeImagesLeft_one": "Jy het {{count}} gratis beeld links. Geen betaling nodig nie.",
+    "freeImagesLeft_other": "Jy het {{count}} gratis beelde oor. Geen betaling nodig nie."
   },
   "digest": {
     "andOthers_one": "{{names}} en {{count}} ander",

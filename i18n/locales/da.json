@@ -3605,7 +3605,11 @@
     "total": "I alt",
     "pricing": "Beregner pris…",
     "payWithDhb": "Betal med DHB",
-    "yourDhb": "Din DHB"
+    "yourDhb": "Din DHB",
+    "generateFree_one": "Generer gratis ·{{count}} tilbage",
+    "generateFree_other": "Generer gratis ·{{count}} tilbage",
+    "freeImagesLeft_one": "Du har {{count}} gratis billede tilbage. Der kræves ingen betaling.",
+    "freeImagesLeft_other": "Du har {{count}} gratis billeder tilbage. Der kræves ingen betaling."
   },
   "digest": {
     "andOthers_one": "{{names}} og {{count}} andet",

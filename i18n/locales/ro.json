@@ -3601,7 +3601,11 @@
     "total": "Total",
     "pricing": "Se calculează prețul…",
     "payWithDhb": "Plătește cu DHB",
-    "yourDhb": "DHB-ul tău"
+    "yourDhb": "DHB-ul tău",
+    "generateFree_one": "Generați gratuit · {{count}} rămas",
+    "generateFree_other": "Generați gratuit · {{count}} rămas",
+    "freeImagesLeft_one": "Mai ai {{count}} imagine gratuită. Nu este necesară nicio plată.",
+    "freeImagesLeft_other": "Mai ai {{count}} imagini gratuite. Nu este necesară nicio plată."
   },
   "digest": {
     "andOthers_one": "{{names}} și încă {{count}}",

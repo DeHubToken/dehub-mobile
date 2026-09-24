@@ -3605,7 +3605,11 @@
     "total": "סה\"כ",
     "pricing": "מחשב מחיר…",
     "payWithDhb": "שלם ב-DHB",
-    "yourDhb": "ה-DHB שלך"
+    "yourDhb": "ה-DHB שלך",
+    "generateFree_one": "ליצור בחינם · {{count}} שמאל",
+    "generateFree_other": "ליצור בחינם · {{count}} שמאל",
+    "freeImagesLeft_one": "נותרה לכם {{count}} תמונה בחינם. אין צורך בתשלום.",
+    "freeImagesLeft_other": "נותרו לכם {{count}} תמונות בחינם. אין צורך בתשלום."
   },
   "digest": {
     "andOthers_one": "{{names}} ועוד {{count}}",

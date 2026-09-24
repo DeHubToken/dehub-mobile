@@ -3601,7 +3601,11 @@
     "total": "Wadarta",
     "pricing": "Waa la xisaabinayaa qiimaha…",
     "payWithDhb": "Ku bixi DHB",
-    "yourDhb": "DHB-gaaga"
+    "yourDhb": "DHB-gaaga",
+    "generateFree_one": "Abuur bilaash ah · {{count}} left",
+    "generateFree_other": "Abuur bilaash ah · {{count}} left",
+    "freeImagesLeft_one": "Waxaad haysataa {{count}} image free tagay. Wax lacag ah looma baahna.",
+    "freeImagesLeft_other": "Waxaad haysataa {{count}} sawirada bilaashka ah ee haray. Wax lacag ah looma baahna."
   },
   "digest": {
     "andOthers_one": "{{names}} iyo {{count}} kale",

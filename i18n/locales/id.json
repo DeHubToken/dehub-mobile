@@ -3650,7 +3650,11 @@
     "total": "Total",
     "pricing": "Menghitung harga…",
     "payWithDhb": "Bayar dengan DHB",
-    "yourDhb": "DHB Anda"
+    "yourDhb": "DHB Anda",
+    "generateFree_one": "Hasilkan gratis ·{{count}} tersisa",
+    "generateFree_other": "Hasilkan gratis ·{{count}} tersisa",
+    "freeImagesLeft_one": "Anda memiliki {{count}} gambar gratis tersisa. Tidak perlu pembayaran.",
+    "freeImagesLeft_other": "Anda memiliki {{count}} gambar gratis tersisa. Tidak perlu pembayaran."
   },
   "digest": {
     "andOthers_one": "{{names}} dan {{count}} lainnya",

@@ -3605,7 +3605,11 @@
     "total": "کل",
     "pricing": "قیمت لگائی جا رہی ہے…",
     "payWithDhb": "DHB سے ادائیگی کریں",
-    "yourDhb": "آپ کا DHB"
+    "yourDhb": "آپ کا DHB",
+    "generateFree_one": "مفت جنریٹ کریں · {{count}} بائیں",
+    "generateFree_other": "مفت جنریٹ کریں · {{count}} بائیں",
+    "freeImagesLeft_one": "آپ کے پاس {{count}} مفت تصویر باقی ہے ۔ کسی ادائیگی کی ضرورت نہیں ہے ۔",
+    "freeImagesLeft_other": "آپ کے پاس {{count}} مفت تصاویر باقی ہیں ۔ کسی ادائیگی کی ضرورت نہیں ہے ۔"
   },
   "digest": {
     "andOthers_one": "{{names}} اور {{count}} دیگر",

@@ -3614,7 +3614,11 @@
     "total": "Ida'a",
     "pricing": "Gatii shallagaa jira…",
     "payWithDhb": "DHB dhaan kaffali",
-    "yourDhb": "DHB kee"
+    "yourDhb": "DHB kee",
+    "generateFree_one": "Bilisaa maddisiisuu · {{count}} hafe",
+    "generateFree_other": "Bilisaa maddisiisuu · {{count}} hafe",
+    "freeImagesLeft_one": "Suuraa bilisaa {{count}} isin hafe. Kaffaltiin hin barbaachisu.",
+    "freeImagesLeft_other": "Suuraa bilisaa {{count}} isin hafe. Kaffaltiin hin barbaachisu."
   },
   "digest": {
     "andOthers_one": "{{names}} fi {{count}} kanneen biroo",

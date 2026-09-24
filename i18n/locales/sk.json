@@ -3709,7 +3709,11 @@
     "total": "Spolu",
     "pricing": "Počítam cenu…",
     "payWithDhb": "Zaplatiť v DHB",
-    "yourDhb": "Váš DHB"
+    "yourDhb": "Váš DHB",
+    "generateFree_one": "Vygenerujte zadarmo · {{count}} zostáva",
+    "generateFree_other": "Vygenerujte zadarmo · {{count}} zostáva",
+    "freeImagesLeft_one": "Máte {{count}} voľný obrázok. Nevyžaduje sa žiadna platba.",
+    "freeImagesLeft_other": "Máte {{count}} voľných obrázkov. Nevyžaduje sa žiadna platba."
   },
   "digest": {
     "andOthers_one": "{{names}} a {{count}} iné",

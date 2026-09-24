@@ -3601,7 +3601,11 @@
     "total": "Ukupno",
     "pricing": "Izračun cijene…",
     "payWithDhb": "Plati DHB-om",
-    "yourDhb": "Tvoj DHB"
+    "yourDhb": "Tvoj DHB",
+    "generateFree_one": "Generiraj besplatno · {{count}} lijevo",
+    "generateFree_other": "Generiraj besplatno · {{count}} lijevo",
+    "freeImagesLeft_one": "Imate još {{count}} slobodne slike. Plaćanje nije potrebno.",
+    "freeImagesLeft_other": "Imate još {{count}} slobodnih slika. Plaćanje nije potrebno."
   },
   "digest": {
     "andOthers_one": "{{names}} i {{count}} ostalo",

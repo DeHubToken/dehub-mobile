@@ -3601,7 +3601,11 @@
     "total": "Razem",
     "pricing": "Wyliczanie ceny…",
     "payWithDhb": "Zapłać w DHB",
-    "yourDhb": "Twoje DHB"
+    "yourDhb": "Twoje DHB",
+    "generateFree_one": "Wygeneruj bezpłatnie · {{count}} pozostało",
+    "generateFree_other": "Wygeneruj bezpłatnie · {{count}} pozostało",
+    "freeImagesLeft_one": "Pozostało Ci {{count}} darmowego obrazu. Płatność nie jest wymagana.",
+    "freeImagesLeft_other": "Pozostało Ci {{count}} darmowych obrazów. Płatność nie jest wymagana."
   },
   "digest": {
     "andOthers_one": "{{names}} i {{count}} inne",

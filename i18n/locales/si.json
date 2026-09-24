@@ -3614,7 +3614,11 @@
     "total": "එකතුව",
     "pricing": "මිල ගණනය කරමින්…",
     "payWithDhb": "DHB වලින් ගෙවන්න",
-    "yourDhb": "ඔබේ DHB"
+    "yourDhb": "ඔබේ DHB",
+    "generateFree_one": "නිදහස් · {{count}} ඉතිරි",
+    "generateFree_other": "නිදහස් · {{count}} ඉතිරි",
+    "freeImagesLeft_one": "ඔබට {{count}} නිදහස් රූපයක් ඉතිරිව ඇත. ගෙවීමක් අවශ්‍ය නැත.",
+    "freeImagesLeft_other": "ඔබට {{count}} නිදහස් රූප ඉතිරිව ඇත. ගෙවීමක් අවශ්‍ය නැත."
   },
   "digest": {
     "andOthers_one": "{{names}} සහ {{count}} වෙනත්",

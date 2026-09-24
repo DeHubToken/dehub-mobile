@@ -3601,7 +3601,11 @@
     "total": "รวม",
     "pricing": "กำลังคิดราคา…",
     "payWithDhb": "จ่ายด้วย DHB",
-    "yourDhb": "DHB ของเจ้า"
+    "yourDhb": "DHB ของเจ้า",
+    "generateFree_one": "สร้างฟรี · เหลือ {{count}}",
+    "generateFree_other": "สร้างฟรี · เหลือ {{count}}",
+    "freeImagesLeft_one": "คุณเหลือรูปภาพฟรี {{count}} รูป ไม่ต้องจ่ายเงิน",
+    "freeImagesLeft_other": "คุณเหลือรูปภาพฟรี {{count}} รูป ไม่ต้องจ่ายเงิน"
   },
   "digest": {
     "andOthers_one": "{{names}} และ {{count}} อื่น",

@@ -3605,7 +3605,11 @@
     "total": "மொத்தம்",
     "pricing": "விலை கணக்கிடப்படுகிறது…",
     "payWithDhb": "DHB மூலம் செலுத்து",
-    "yourDhb": "உங்கள் DHB"
+    "yourDhb": "உங்கள் DHB",
+    "generateFree_one": "இலவசமாக உருவாக்கவும் · {{count}} இடது",
+    "generateFree_other": "இலவசமாக உருவாக்கவும் · {{count}} இடது",
+    "freeImagesLeft_one": "உங்களிடம் {{count}} இலவச படம் மீதமுள்ளது. கட்டணம் எதுவும் தேவையில்லை.",
+    "freeImagesLeft_other": "உங்களிடம் {{count}} இலவச படங்கள் உள்ளன. கட்டணம் எதுவும் தேவையில்லை."
   },
   "digest": {
     "andOthers_one": "{{names}} மற்றும் {{count}} மற்றவை",
