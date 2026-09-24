@@ -15,7 +15,7 @@ import {
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import { useAuthActions, useProvider } from "../../context/AuthContext";
-import { copyToClipboard, toastError, toastInfo, apiClient } from "../../libs";
+import { copySecretToClipboard, toastError, toastInfo, apiClient } from "../../libs";
 import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
 import Icon from "../ui/Icon";
 import { useSecureScreen } from "../../hooks/useSecureScreen";
@@ -130,7 +130,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
 
   const handleCopyPk = useCallback(() => {
     if (!privateKey) return;
-    copyToClipboard(privateKey);
+    void copySecretToClipboard(privateKey);
     setCopied(true);
     if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
     copyTimerRef.current = setTimeout(() => setCopied(false), 2000);

@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "
 import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Trans, useTranslation } from "react-i18next";
-import * as Clipboard from "expo-clipboard";
+import { copySecretToClipboard } from "../../libs/clipboard.utils";
 import GlassModal from "../ui/GlassModal";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
 import {
@@ -746,7 +746,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     const handleCopyPhrase = useCallback(async () => {
       if (!recoveryPhrase) return;
       try {
-        await Clipboard.setStringAsync(recoveryPhrase);
+        await copySecretToClipboard(recoveryPhrase);
         setError(null);
       } catch {
         setError(t("walletSetup.couldNotCopy"));
@@ -1038,6 +1038,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     autoCorrect={false}
                     secureTextEntry={!showPw}
                     textContentType="newPassword"
+                    autoComplete="new-password"
                     autoFocus
                     trailing={<RevealToggle shown={showPw} onToggle={() => setShowPw((s) => !s)} />}
                   />
@@ -1052,6 +1053,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     autoCorrect={false}
                     secureTextEntry={!showPw}
                     textContentType="newPassword"
+                    autoComplete="new-password"
                     containerStyle={{ marginTop: 12 }}
                   />
 
@@ -1164,6 +1166,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 autoCorrect={false}
                 secureTextEntry={!showPw}
                 textContentType="newPassword"
+                autoComplete="new-password"
                 autoFocus
                 trailing={<RevealToggle shown={showPw} onToggle={() => setShowPw((s) => !s)} />}
               />
@@ -1176,6 +1179,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 autoCorrect={false}
                 secureTextEntry={!showPw}
                 textContentType="newPassword"
+                autoComplete="new-password"
                 containerStyle={{ marginTop: 12 }}
               />
 
@@ -1325,6 +1329,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     autoCorrect={false}
                     secureTextEntry={!showPw}
                     textContentType="newPassword"
+                    autoComplete="new-password"
                     containerStyle={{ marginTop: 12 }}
                     trailing={<RevealToggle shown={showPw} onToggle={() => setShowPw((s) => !s)} />}
                   />
@@ -1337,6 +1342,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     autoCorrect={false}
                     secureTextEntry={!showPw}
                     textContentType="newPassword"
+                    autoComplete="new-password"
                     containerStyle={{ marginTop: 12 }}
                   />
 
@@ -1427,6 +1433,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     autoCorrect={false}
                     secureTextEntry={!showPw}
                     textContentType="newPassword"
+                    autoComplete="new-password"
                     containerStyle={{ marginTop: 12 }}
                     trailing={<RevealToggle shown={showPw} onToggle={() => setShowPw((s) => !s)} />}
                   />
@@ -1439,6 +1446,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     autoCorrect={false}
                     secureTextEntry={!showPw}
                     textContentType="newPassword"
+                    autoComplete="new-password"
                     containerStyle={{ marginTop: 12 }}
                   />
                 </>
@@ -1486,6 +1494,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 autoCorrect={false}
                 secureTextEntry={!showPw}
                 textContentType="password"
+                autoComplete="current-password"
                 autoFocus
                 trailing={<RevealToggle shown={showPw} onToggle={() => setShowPw((s) => !s)} />}
               />
