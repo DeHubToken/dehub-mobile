@@ -3171,6 +3171,16 @@
     "priceUsd": "המחיר (בדולרים)"
   },
   "stores": {
+    "podToggle": "פריט בהדפסה לפי דרישה",
+    "podHint": "קשרו מוצר מחנות ההדפסה לפי דרישה שלכם. הספק מדפיס ושולח כל הזמנה, כך שאין צורך במלאי.",
+    "podUrlLabel": "קישור למוצר",
+    "podProviderLabel": "ספק",
+    "podOther": "אחר",
+    "podInvalidUrl": "הזינו קישור https:// תקין",
+    "podBadge": "הדפסה לפי דרישה",
+    "podBuyOn": "קנייה ב-{{provider}}",
+    "podNote": "מודפס ונשלח לפי דרישה על ידי {{provider}}. התשלום מתבצע באתר שלהם.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "גלו מוצרים מקהילת DeHub",
     "browse": "עיון",
     "myStore": "החנות שלי",

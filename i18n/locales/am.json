@@ -3197,6 +3197,16 @@
     "priceUsd": "ዋጋ (USD)"
   },
   "stores": {
+    "podToggle": "በፍላጎት የሚታተም ዕቃ",
+    "podHint": "ከበፍላጎት ማተሚያ ሱቅዎ ምርት ያገናኙ። አቅራቢው እያንዳንዱን ትዕዛዝ ያትማል እና ይልካል፣ ስለዚህ ክምችት አያስፈልግዎትም።",
+    "podUrlLabel": "የምርት አገናኝ",
+    "podProviderLabel": "አቅራቢ",
+    "podOther": "ሌላ",
+    "podInvalidUrl": "ትክክለኛ https:// የምርት አገናኝ ያስገቡ",
+    "podBadge": "በፍላጎት ማተም",
+    "podBuyOn": "በ{{provider}} ይግዙ",
+    "podNote": "በ{{provider}} በፍላጎት ታትሞ ይላካል። ክፍያ በድረ-ገጻቸው ላይ ይፈጸማል።",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "ከDeHub ማህበረሰብ ምርቶችን ያግኙ",
     "browse": "አስስ",
     "myStore": "የእኔ መደብር",

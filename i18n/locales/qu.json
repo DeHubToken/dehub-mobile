@@ -3198,6 +3198,16 @@
     "priceUsd": "Presion (USD)"
   },
   "stores": {
+    "podToggle": "Mañakuyman hina ñit'isqa ima",
+    "podHint": "Mañakuyman hina ñit'iq tiendaykimanta huk rurukunata t'inkiy. Quqqa sapa mañakuyta ñit'in, apachin ima, chayrayku mana waqaychasqa kaqta munankichu.",
+    "podUrlLabel": "Rurukunap t'inkin",
+    "podProviderLabel": "Quq",
+    "podOther": "Huk",
+    "podInvalidUrl": "Allin https:// t'inkita churay",
+    "podBadge": "Mañakuyman hina ñit'iy",
+    "podBuyOn": "{{provider}}-pi rantiy",
+    "podNote": "{{provider}} mañakuyman hina ñit'in, apachin. Paganakuyqa paykunap sitionpi.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub ayllumanta rantikunata tariy",
     "browse": "Qhaway",
     "myStore": "Qatu wasiy",

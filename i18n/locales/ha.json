@@ -3167,6 +3167,16 @@
     "priceUsd": "Farashin (USD)"
   },
   "stores": {
+    "podToggle": "Kayan bugawa bisa buƙata",
+    "podHint": "Haɗa kaya daga shagon bugawa bisa buƙata naka. Mai samarwa yana bugawa kuma yana aika kowane oda, don haka ba ka riƙe kaya.",
+    "podUrlLabel": "Hanyar haɗin kaya",
+    "podProviderLabel": "Mai samarwa",
+    "podOther": "Wani",
+    "podInvalidUrl": "Shigar da ingantacciyar hanyar https://",
+    "podBadge": "Bugawa bisa buƙata",
+    "podBuyOn": "Saya a {{provider}}",
+    "podNote": "{{provider}} ne ke bugawa da aikawa bisa buƙata. Biyan kuɗi yana faruwa a shafinsu.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Gano kayayyaki daga al'ummar DeHub",
     "browse": "Bincika",
     "myStore": "Shagona",

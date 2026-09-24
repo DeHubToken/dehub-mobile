@@ -3167,6 +3167,16 @@
     "priceUsd": "Hind (USD)"
   },
   "stores": {
+    "podToggle": "Tellimuspõhise trüki toode",
+    "podHint": "Lingi toode oma tellimuspõhise trüki poest. Pakkuja trükib ja saadab iga tellimuse, sul pole laovaru vaja.",
+    "podUrlLabel": "Toote link",
+    "podProviderLabel": "Pakkuja",
+    "podOther": "Muu",
+    "podInvalidUrl": "Sisesta kehtiv https:// tootelink",
+    "podBadge": "Trükk tellimisel",
+    "podBuyOn": "Osta {{provider}} lehelt",
+    "podNote": "{{provider}} trükib ja saadab tellimisel. Maksmine toimub nende lehel.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Avasta DeHubi kogukonna tooteid",
     "browse": "Sirvi",
     "myStore": "Minu pood",

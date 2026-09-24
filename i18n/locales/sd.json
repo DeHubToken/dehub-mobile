@@ -3167,6 +3167,16 @@
     "priceUsd": "قيمت (يو ايس ڊي)"
   },
   "stores": {
+    "podToggle": "گهرج تي ڇپيل شيءِ",
+    "podHint": "پنهنجي پرنٽ-آن-ڊيمانڊ دڪان مان پراڊڪٽ ڳنڍيو. فراهم ڪندڙ هر آرڊر ڇاپي موڪلي ٿو، تنهنڪري اسٽاڪ جي ضرورت ناهي.",
+    "podUrlLabel": "پراڊڪٽ لنڪ",
+    "podProviderLabel": "فراهم ڪندڙ",
+    "podOther": "ٻيو",
+    "podInvalidUrl": "صحيح https:// لنڪ داخل ڪريو",
+    "podBadge": "گهرج تي ڇپائي",
+    "podBuyOn": "{{provider}} تان خريد ڪريو",
+    "podNote": "{{provider}} گهرج تي ڇاپي موڪلي ٿو. ادائيگي سندن سائيٽ تي ٿيندي آهي.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub ڪميونٽي جون پراڊڪٽس دريافت ڪريو",
     "browse": "ڏسو",
     "myStore": "منهنجو دڪان",

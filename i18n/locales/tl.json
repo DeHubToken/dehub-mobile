@@ -3214,6 +3214,16 @@
     "priceUsd": "Presyo (USD)"
   },
   "stores": {
+    "podToggle": "Item na print-on-demand",
+    "podHint": "I-link ang produkto mula sa iyong print-on-demand shop. Ang provider ang nagpi-print at nagpapadala ng bawat order, kaya walang stock na kailangan.",
+    "podUrlLabel": "Link ng produkto",
+    "podProviderLabel": "Provider",
+    "podOther": "Iba pa",
+    "podInvalidUrl": "Maglagay ng wastong https:// link",
+    "podBadge": "Print on demand",
+    "podBuyOn": "Bilhin sa {{provider}}",
+    "podNote": "Pini-print at ipinapadala on demand ng {{provider}}. Sa kanilang site ang bayaran.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Tumuklas ng produkto mula sa komunidad ng DeHub",
     "browse": "Mag-browse",
     "myStore": "Tindahan Ko",

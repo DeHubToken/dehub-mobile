@@ -21,6 +21,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
+import { podProviderLabel } from "../libs/pod-providers";
 import ScreenHeader from "../components/ScreenHeader";
 import ShareLinkButton from "../components/common/ShareLinkButton";
 import { ShareLinks } from "../navigation/linking.config";
@@ -103,6 +104,13 @@ export default function StoreDetailScreen() {
           ) : (
             <View style={styles.thumbFallback}>
               <Icon name="Package" size={24} color="#3F3F46" />
+            </View>
+          )}
+          {!!item.external_url && (
+            <View style={styles.podPill}>
+              <Text style={styles.podText} numberOfLines={1}>
+                {podProviderLabel(item.pod_provider) ?? t("stores.podBadge")}
+              </Text>
             </View>
           )}
           {item.stock_quantity === 0 && (
@@ -194,6 +202,17 @@ const styles = StyleSheet.create({
   },
   thumbWrap: { width: "100%", backgroundColor: "#0A0A0A" },
   thumbFallback: { ...StyleSheet.absoluteFillObject, alignItems: "center", justifyContent: "center" },
+  podPill: {
+    position: "absolute",
+    top: 7,
+    right: 7,
+    maxWidth: "70%",
+    paddingHorizontal: 7,
+    paddingVertical: 2,
+    borderRadius: 999,
+    backgroundColor: "rgba(0,0,0,0.65)",
+  },
+  podText: { color: "#E4E4E7", fontSize: 12, fontWeight: "700" },
   soldOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0,0,0,0.6)",

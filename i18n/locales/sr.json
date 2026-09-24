@@ -3171,6 +3171,16 @@
     "vaultReleaseTitle": "Ослободити @{{handle}}?"
   },
   "stores": {
+    "podToggle": "Артикал штампе на захтев",
+    "podHint": "Повежите производ из своје продавнице штампе на захтев. Добављач штампа и шаље сваку поруџбину, залихе нису потребне.",
+    "podUrlLabel": "Линк производа",
+    "podProviderLabel": "Добављач",
+    "podOther": "Остало",
+    "podInvalidUrl": "Унесите исправан https:// линк",
+    "podBadge": "Штампа на захтев",
+    "podBuyOn": "Купи на {{provider}}",
+    "podNote": "Штампа и шаље на захтев {{provider}}. Плаћање је на њиховом сајту.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Откриј производе заједнице DeHub",
     "browse": "Прегледај",
     "myStore": "Моја продавница",

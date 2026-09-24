@@ -3167,6 +3167,16 @@
     "priceUsd": "Cijena (USD)"
   },
   "stores": {
+    "podToggle": "Artikl tiska na zahtjev",
+    "podHint": "Povežite proizvod iz svoje trgovine s tiskom na zahtjev. Pružatelj tiska i šalje svaku narudžbu, pa ne trebate zalihe.",
+    "podUrlLabel": "Poveznica proizvoda",
+    "podProviderLabel": "Pružatelj",
+    "podOther": "Ostalo",
+    "podInvalidUrl": "Unesite valjanu https:// poveznicu",
+    "podBadge": "Tisak na zahtjev",
+    "podBuyOn": "Kupi na {{provider}}",
+    "podNote": "Tiska i šalje na zahtjev {{provider}}. Plaćanje se obavlja na njihovoj stranici.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Otkrij proizvode zajednice DeHub",
     "browse": "Pregledaj",
     "myStore": "Moja trgovina",

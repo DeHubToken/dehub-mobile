@@ -11,6 +11,7 @@
  */
 import { appLocale } from "../../libs/date.util";
 import React, { useCallback, useMemo, useState } from "react";
+import { POD_PROVIDERS, detectPodProvider, parsePodUrl, type PodProvider } from "../../libs/pod-providers";
 import {
   View,
   Text,
@@ -274,8 +275,14 @@ const ListingForm: React.FC<{
   const [stockQty, setStockQty] = useState("");
   const [images, setImages] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
+  const [isPod, setIsPod] = useState(false);
+  const [podUrl, setPodUrl] = useState("");
+  const [podProvider, setPodProvider] = useState<PodProvider>("other");
 
   const reset = useCallback(() => {
+    setIsPod(false);
+    setPodUrl("");
+    setPodProvider("other");
     setTitle("");
     setDescription("");
     setPrice("");
@@ -307,6 +314,10 @@ const ListingForm: React.FC<{
       toastError(t("stores.titlePriceRequired"));
       return;
     }
+    if (isPod && !parsePodUrl(podUrl)) {
+      toastError(t("stores.podInvalidUrl"));
+      return;
+    }
     createListing.mutate(
       {
         store_id: storeId,
@@ -318,7 +329,9 @@ const ListingForm: React.FC<{
         stock_quantity: stockQty ? Number(stockQty) : null,
         is_digital: isDigital,
         condition,
-        shipping_info: shippingInfo.trim() || undefined,
+        shipping_info: isPod ? undefined : shippingInfo.trim() || undefined,
+        external_url: isPod ? podUrl.trim() : null,
+        pod_provider: isPod ? podProvider : null,
         status: "active",
       },
       {
@@ -338,6 +351,9 @@ const ListingForm: React.FC<{
     isDigital,
     condition,
     shippingInfo,
+    isPod,
+    podUrl,
+    podProvider,
     storeId,
     createListing,
     reset,
@@ -459,6 +475,57 @@ const ListingForm: React.FC<{
               </View>
 
               <View style={styles.switchRow}>
+                <Text style={styles.switchLabel}>{t("stores.podToggle")}</Text>
+                <Switch
+                  value={isPod}
+                  onValueChange={(v) => {
+                    setIsPod(v);
+                    if (v) {
+                      setIsDigital(false);
+                      setCategory("merch");
+                    }
+                  }}
+                  trackColor={{ false: "#3F3F46", true: "#FFFFFF" }}
+                  thumbColor={isPod ? "#000000" : "#A1A1AA"}
+                />
+              </View>
+
+              {isPod && (
+                <>
+                  <Text style={styles.label}>{t("stores.podHint")}</Text>
+                  <Text style={styles.label}>{t("stores.podUrlLabel")}</Text>
+                  <TextInput
+                    value={podUrl}
+                    onChangeText={(v) => {
+                      setPodUrl(v);
+                      setPodProvider(detectPodProvider(v));
+                    }}
+                    placeholder={t("stores.podUrlPlaceholder")}
+                    placeholderTextColor="#8B8D90"
+                    keyboardType="url"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    style={styles.input}
+                  />
+                  <Text style={styles.label}>{t("stores.podProviderLabel")}</Text>
+                  <View style={styles.chipWrap}>
+                    {POD_PROVIDERS.map((p) => (
+                      <Pressable
+                        key={p.value}
+                        onPress={() => setPodProvider(p.value)}
+                        style={[styles.chip, podProvider === p.value && styles.chipActive]}
+                      >
+                        <Text style={[styles.chipText, podProvider === p.value && styles.chipTextActive]}>
+                          {p.value === "other" ? t("stores.podOther") : p.label}
+                        </Text>
+                      </Pressable>
+                    ))}
+                  </View>
+                </>
+              )}
+
+              {!isPod && (
+              <View style={styles.switchRow}>
                 <Text style={styles.switchLabel}>{t("stores.digitalItem")}</Text>
                 <Switch
                   value={isDigital}
@@ -467,8 +534,9 @@ const ListingForm: React.FC<{
                   thumbColor={isDigital ? "#000000" : "#A1A1AA"}
                 />
               </View>
+              )}
 
-              {!isDigital && (
+              {!isDigital && !isPod && (
                 <>
                   <Text style={styles.label}>{t("stores.stockOptional")}</Text>
                   <TextInput

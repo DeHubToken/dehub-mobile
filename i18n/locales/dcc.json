@@ -3167,6 +3167,16 @@
     "swapHintNoChange": "پوسٹس، فالوورز اور آپ کا والٹ غیر متاثر رہتے ہیں۔"
   },
   "stores": {
+    "podToggle": "طلب پر چھپنے والی چیز",
+    "podHint": "اپنی پرنٹ آن ڈیمانڈ دکان سے پروڈکٹ لنک کریں۔ فراہم کنندہ ہر آرڈر چھاپ کر بھیجتا ہے، اس لیے اسٹاک کی ضرورت نہیں۔",
+    "podUrlLabel": "پروڈکٹ لنک",
+    "podProviderLabel": "فراہم کنندہ",
+    "podOther": "دیگر",
+    "podInvalidUrl": "درست https:// لنک درج کریں",
+    "podBadge": "طلب پر چھپائی",
+    "podBuyOn": "{{provider}} پر خریدیں",
+    "podNote": "{{provider}} طلب پر چھاپ کر بھیجتا ہے۔ ادائیگی ان کی سائٹ پر ہوتی ہے۔",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub برادری کی مصنوعات ڈھونڈو",
     "browse": "دیکھو",
     "myStore": "میری دکان",

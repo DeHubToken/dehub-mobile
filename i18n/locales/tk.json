@@ -3167,6 +3167,16 @@
     "priceUsd": "ABŞ dollary (ABŞ dollary)"
   },
   "stores": {
+    "podToggle": "Sargyt boýunça çap edilýän haryt",
+    "podHint": "Sargyt boýunça çap dükanyňyzdan harydy baglaň. Üpjünçi her sargydy çap edip iberýär, ätiýaçlyk gerek däl.",
+    "podUrlLabel": "Haryt salgysy",
+    "podProviderLabel": "Üpjünçi",
+    "podOther": "Başga",
+    "podInvalidUrl": "Dogry https:// salgy giriziň",
+    "podBadge": "Sargyt boýunça çap",
+    "podBuyOn": "{{provider}} saýtynda satyn al",
+    "podNote": "{{provider}} sargyt boýunça çap edip iberýär. Töleg olaryň saýtynda.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub jemgyýetiniň önümlerini tapyň",
     "browse": "Gözden geçir",
     "myStore": "Meniň dükanym",

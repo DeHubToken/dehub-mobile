@@ -3168,6 +3168,16 @@
     "priceUpdated": "Price don change. Check the amount and tap Buy again."
   },
   "stores": {
+    "podToggle": "Print-on-demand item",
+    "podHint": "Link one product from your print-on-demand shop. Di provider go print and ship every order, so you no need keep stock.",
+    "podUrlLabel": "Product link",
+    "podProviderLabel": "Provider",
+    "podOther": "Oda",
+    "podInvalidUrl": "Put correct https:// product link",
+    "podBadge": "Print on demand",
+    "podBuyOn": "Buy for {{provider}}",
+    "podNote": "{{provider}} dey print and ship am when person order. Payment dey happen for their site.",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "Discover products from di DeHub community",
     "browse": "Browse",
     "myStore": "My store",

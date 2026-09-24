@@ -3167,6 +3167,16 @@
     "priceUsd": "價格 (美元)"
   },
   "stores": {
+    "podToggle": "按需印刷商品",
+    "podHint": "連結你按需印刷店舖嘅商品。服務商逐單印刷同寄貨，你唔使囤貨。",
+    "podUrlLabel": "商品連結",
+    "podProviderLabel": "服務商",
+    "podOther": "其他",
+    "podInvalidUrl": "請輸入有效嘅 https:// 商品連結",
+    "podBadge": "按需印刷",
+    "podBuyOn": "喺 {{provider}} 購買",
+    "podNote": "由 {{provider}} 按需印刷同寄貨，喺佢哋網站結帳。",
+    "podUrlPlaceholder": "https://…",
     "subtitle": "發掘 DeHub 社群嘅產品",
     "browse": "瀏覽",
     "myStore": "我嘅商店",
