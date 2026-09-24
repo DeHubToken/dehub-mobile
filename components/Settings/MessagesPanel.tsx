@@ -89,7 +89,7 @@ const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
           description={t('settings.e2eEncryptionDesc')}
           right={
             <Text className="text-theme-neutrals-300 text-xs font-medium">
-              Automatic
+              {t('settings.e2eAutomatic')}
             </Text>
           }
         />

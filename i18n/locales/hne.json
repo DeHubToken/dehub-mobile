@@ -678,7 +678,11 @@
       "hintAllow": "एआई सिस्टम अउ क्रॉलर जेहर ए संकेत के सम्मान करत हंवय, आपके ऑडियो, कलाकृति अउ लेखन म अभ्यास कर सकत हंवय ।",
       "hintDeny": "एआई सिस्टम अउ क्रॉलर जेहर ए संकेत के सम्मान करत हंवय ओमन ले आपके ऑडियो, कलाकृति अउ लेखन म प्रशिक्षण नी करे बर कहा जात हवय । संकेत ल अनदेखा करे वाले क्रॉलरमन ल एखर ले अवरुद्ध नी करे जात हवय ।",
       "saved": "एआई प्रशिक्षण प्राथमिकता सहेजिस"
-    }
+    },
+    "chainIdLabel": "चेन आईडी: {{id}}",
+    "exportPkConfirmPhrase": "मैं समझता हूँ",
+    "exportPkCopy": "निजी कुंजी कॉपी करें",
+    "e2eAutomatic": "स्वचालित"
   },
   "common": {
     "mute": "आवाज बंद करव",
@@ -718,7 +722,17 @@
     "optionalSuffix": "(वैकल्पिक)",
     "yesterday": "काली",
     "ok": "ठीक हे",
-    "continue": "जारी रखव"
+    "continue": "जारी रखव",
+    "goesToHomeFeed": "होम फ़ीड पर जाता है",
+    "openMenu": "मेनू खोलें",
+    "scrollsFeedToTop": "फ़ीड के शीर्ष पर स्क्रॉल करता है और इसे ताज़ा करता है",
+    "notificationsUnread": "सूचनाएं, {{unread}} अपठित",
+    "errorDetails": "त्रुटि विवरण:",
+    "failedToLoad": "लोड करने में विफल",
+    "noInternetTitle": "कोई इंटरनेट कनेक्शन नहीं",
+    "noInternetBody": "कृपया अपना इंटरनेट कनेक्शन जांचें और पुनः प्रयास करें। DeHub का उपयोग करने के लिए आपको इंटरनेट से कनेक्ट होना होगा।",
+    "noInternetStatus": "ऑफ़लाइन - कोई नेटवर्क कनेक्शन नहीं",
+    "noInternetHint": "सुनिश्चित करें कि वाई-फाई या मोबाइल डेटा चालू है, फिर \"{{action}}\" पर टैप करें"
   },
   "tip": {
     "title": "टिप भेजव",
@@ -1592,7 +1606,12 @@
     "chooseUsernameBody": "आगे बढ़े बर यूजरनेम अउ देखे वाला नाव चुनव। बाद म बदल सकत हस।",
     "checkingAvailability": "उपलब्धता जाँचत हे…",
     "usernameTakenHint": "ए नाव पहिली ले लेगे हे — अंक या अंडरस्कोर जोड़ के देखव",
-    "displayNameLength": "देखे वाला नाव 2-50 अक्षर के होना चाही।"
+    "displayNameLength": "देखे वाला नाव 2-50 अक्षर के होना चाही।",
+    "loginFailedRetry": "लॉगिन विफल। कृपया पुनः प्रयास करें।",
+    "sendCodeFailedRetry": "कोड नहीं भेज सका। कृपया पुनः प्रयास करें।",
+    "invalidCodeRetry": "अमान्य कोड। कृपया पुनः प्रयास करें।",
+    "invalidEmailOrPassword": "अमान्य ईमेल या पासवर्ड।",
+    "welcomeToDehub": "DeHub में आपका स्वागत है"
   },
   "messages": {
     "smartRepliesOff": "सुझाए गे जवाब बंद हो गे",
@@ -1670,7 +1689,32 @@
     "offerWorthNow": "अभी के दर म लगभग {{amount}} DHB",
     "offerNotePlaceholder": "नोट जोड़व (मर्जी के)",
     "offerCommitsNothing": "ऑफर देय म कुछु खरचा नइ होय अउ कोनो DHB नइ रुकय। तुमन तभे भुगतान करहू जब मालिक मानही।",
-    "offerNeedsHandle": "ये खाता के कोनो यूजरनेम नइहे जेमा ऑफर देय जा सकय।"
+    "offerNeedsHandle": "ये खाता के कोनो यूजरनेम नइहे जेमा ऑफर देय जा सकय।",
+    "noPostsYet": "अभी तक कोई पोस्ट नहीं",
+    "noPostsYetSub": "पोस्ट होने पर सामग्री यहाँ दिखाई देगी",
+    "noPinnedPosts": "अभी तक कोई पिन की गई पोस्ट नहीं",
+    "noPinnedPostsSub": "पिन की गई पोस्ट यहाँ दिखाई देंगी",
+    "emptyLiked": "अभी तक कोई पसंद की गई पोस्ट नहीं।",
+    "emptySaved": "अभी तक कोई सहेजी गई पोस्ट नहीं।",
+    "emptyUnlocked": "अभी तक कोई अनलॉक की गई पोस्ट नहीं।",
+    "emptyWatched": "अभी तक कोई वॉच हिस्ट्री नहीं।",
+    "emptyFolder": "इस फ़ोल्डर में अभी तक कोई पोस्ट नहीं।",
+    "emptyPosts": "अभी तक कोई पोस्ट नहीं।",
+    "couldNotLoadPosts": "पोस्ट लोड नहीं हो सकीं।",
+    "noPostsOrReplies": "कोनो पोस्ट, कॉमेंट या रिप्लाई नइ हे",
+    "noPostsOrRepliesSub": "ये ओही दिखही",
+    "avatarUpdated": "अवतार बदल गे हे",
+    "coverUpdated": "कवर बदल गे हे",
+    "couldNotPickImage": "इमेज नइ चुन पाइस",
+    "changeCoverImage": "कवर इमेज बदलव",
+    "changeAvatar": "अवतार बदलव",
+    "verifiedEnsName": "वेरिफाइड ENS नाम {{name}}",
+    "notFullyJoined": "ये यूजर अभी पूरा नइ जुड़िस हे। ओखर कोनो यूजरनेम नइ हे या प्रोफाइल सेटअप पूरा नइ करिस हे। तू अभी पब्लिक एक्टिविटी देख सकत हाव अउ टिप भेज सकत हाव जऊन उपलब्ध होही।",
+    "loadRepliesFailed": "रिप्लाई लोड नइ होइस",
+    "refreshFailed": "रिफ्रेश नइ होइस",
+    "noRepliesYet": "कोनो रिप्लाई नइ हे",
+    "noRepliesYetSub": "जब ये यूजर पोस्ट म रिप्लाई करही, वो ओही दिखही।",
+    "noMoreReplies": "कोनो अउ रिप्लाई नइ"
   },
   "tv": {
     "title": "टीवी",
@@ -1753,7 +1797,11 @@
     "loadingPrice": "दाम लोड होवत हे…",
     "topUpExplanation": "DHB चेन ऊपर DeHub विज्ञापन कोष म भेजे जाथे, तहाँ ले स्वतंत्र ऑन-चेन जाँच के बाद तोर बैलेंस म जुड़ जाथे।",
     "paymentHistory": "भुगतान के इतिहास",
-    "noPayments": "अभी तक कोनो भुगतान नइ हे"
+    "noPayments": "अभी तक कोनो भुगतान नइ हे",
+    "sponsored": "स्पॉन्सर्ड",
+    "morePosts": "अउ पोस्ट",
+    "loadMorePosts": "अउ पोस्ट लोड करव",
+    "playAdVideo": "एड वीडियो चलाव"
   },
   "buyCoins": {
     "title": "सिक्का खरीदव",
@@ -2185,7 +2233,8 @@
     "privateBalanceMode": "निजी बैलेंस मोड चालू हे",
     "addressHidden": "पता लुकाय हे",
     "allowInFeeds": "ये उपयोगकर्ता ल अपन फीड म दिखे देव",
-    "hideContent": "उंकर कंटेंट लुकाव अउ बातचीत ल सीमित करव"
+    "hideContent": "उंकर कंटेंट लुकाव अउ बातचीत ल सीमित करव",
+    "a11yLabel": "प्रोफाइल ऑप्शन"
   },
   "toasts": {
     "saved_to_bookmarks": "बुकमार्क म सेव होइस",
@@ -2557,7 +2606,8 @@
     "roles": {
       "owner": "मालिक",
       "moderator": "संचालक",
-      "member": "सदस्य"
+      "member": "सदस्य",
+      "admin": "एडमिन"
     },
     "time": {
       "today": "आज",
@@ -2566,7 +2616,126 @@
       "weeks": "{{count}} हफ्ता",
       "months": "{{count}} महीना",
       "years": "{{count}} साल"
-    }
+    },
+    "chatPanel": {
+      "anon": "एनन",
+      "edited": "एडिट करिस",
+      "deleteTitle": "मैसेज डिलीट करव",
+      "deleteConfirm": "ये मैसेज डिलीट करव का? येला वापस नइ लाय जा सकय।",
+      "muted": "तू म्यूट हाव",
+      "postingDisabled": "इहाँ मेंबर मन बर पोस्टिंग बंद कर दे गे हे",
+      "mediaMessage": "मीडिया",
+      "pinnedMessage": "पिन्ड मैसेज",
+      "showEarlier": "पहिले के मैसेज दिखाव",
+      "editingMessage": "मैसेज एडिट करत हाव",
+      "copied": "संदेस नकल",
+      "copyText": "पाठ नकल करव",
+      "mutedUntil": "तोला {{date}} तक म्यूट करे गे हे",
+      "slowMode": "धीमी मोड: एक संदेस हर {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "डिमिस एडमिन",
+      "cancel": "खारिज करव",
+      "dismissAdmin": "डिमिस एडमिन",
+      "roleAdmin": "प्रसासक",
+      "roleMember": "सदस्य",
+      "whatCanTheyDo": "ए प्रशासक का कर सकत हवय?",
+      "rightNotHeld": "तोर खुद के अधिकार नइ हे",
+      "customTitle": "मनमाफिक सीर्सक",
+      "customTitlePlaceholder": "प्रसासक",
+      "customTitleHint": "डिफाल्ट एडमिन बैज के बदले प्रदर्सित करव.",
+      "saveChanges": "बदलाव सहेजव",
+      "promote": "प्रचार करव",
+      "tabs": {
+        "members": "सदस्य",
+        "admins": "एडमिन्स",
+        "permissions": "अनुमति",
+        "invites": "निमंत्रन",
+        "rules": "नियम",
+        "recentActions": "हालिया काम",
+        "danger": "खतरा छेत्र"
+      },
+      "title": "प्रबंधक",
+      "purgeTitle": "सब्बो संदेस मेटाव?",
+      "purgeConfirm": "मेटाव",
+      "kickTitle": "सदस्य ल मेटाव?",
+      "kickConfirm": "मेटाव",
+      "bannedPermanent": "मॉडल: स्थायी",
+      "mutedPermanent": "Modele: स्थायी/स्थायी",
+      "editAdminRights": "एडमिन अधिकार संपादित करें",
+      "promoteToAdmin": "एडमिन बनाएं",
+      "unmute": "अनम्यूट करें",
+      "mute": "म्यूट करें",
+      "unban": "अनबैन करें",
+      "ban": "बैन करें",
+      "deleteAllMessages": "सभी संदेश हटाएँ",
+      "removeFromCommunity": "समुदाय से हटाएँ",
+      "noActionsAvailable": "आप इस सदस्य को मॉडरेट नहीं कर सकते।",
+      "showMore": "और दिखाएँ",
+      "joinRequests": "शामिल होने के अनुरोध",
+      "approve": "स्वीकार करें",
+      "reject": "अस्वीकार करें",
+      "members": "सदस्य",
+      "searchMembers": "वॉलेट पते से खोजें",
+      "noMembersMatch": "कोई सदस्य मेल नहीं खाता।",
+      "noMembers": "अभी कोई सदस्य नहीं है।",
+      "muted": "म्यूट किए गए",
+      "banned": "बैन किए गए",
+      "muteEffect": "वे समुदाय में रहते हैं लेकिन म्यूट समाप्त होने तक पोस्ट नहीं कर सकते।",
+      "banEffect": "उन्हें चैट से हटा दिया गया है और बैन हटने तक वे फिर से शामिल नहीं हो सकते।",
+      "durationLabel": "अवधि",
+      "reasonLabel": "कारण (वैकल्पिक)",
+      "reasonPlaceholder": "उन्हें क्यों बैन किया जा रहा है?",
+      "alsoDeleteMessages": "उनके सभी संदेश भी हटा दें",
+      "confirmMute": "सदस्य को म्यूट करें",
+      "confirmBan": "सदस्य को बैन करें",
+      "rulesUpdated": "नियम अपडेट किए गए",
+      "rulesTitle": "समुदाय के नियम",
+      "rulesEmpty": "अभी कोई नियम नहीं है — नीचे पहला जोड़ें।",
+      "rulePlaceholder": "नियम बता",
+      "addRule": "नियम जोड़ें",
+      "saveRules": "नियम सहेजें",
+      "dismissAdminBody": "{{wallet}} एक सामान्य सदस्य बन जाएगा।",
+      "purgeBody": "{{name}} द्वारा इस समुदाय में भेजे गए हर संदेश को हटा दिया जाएगा।",
+      "kickBody": "{{name}} को समुदाय से हटा दिया जाएगा। वे बाद में फिर से शामिल हो सकते हैं।",
+      "bannedUntil": "{{date}} तक प्रतिबंधित",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "{{date}} तक म्यूट",
+      "bannedUntilShort": "{{date}} तक",
+      "muteTitle": "{{name}} को म्यूट करें",
+      "banTitle": "{{name}} को प्रतिबंधित करें",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{max}} में से {{used}}",
+      "moveRuleUp": "नियम ऊपर ले जाएं",
+      "moveRuleDown": "नियम नीचे ले जाएं",
+      "deleteRule": "नियम हटाएं",
+      "rights": {
+        "changeInfo": "समुदाय की जानकारी बदलें",
+        "changeInfoHint": "नाम, विवरण, अवतार और बैनर संपादित करें",
+        "deleteMessages": "संदेश हटाएं",
+        "deleteMessagesHint": "समुदाय चैट से कोई भी संदेश हटा दें",
+        "restrictMembers": "सदस्यों को प्रतिबंधित करें",
+        "restrictMembersHint": "सदस्यों को म्यूट करें, हटा दें और प्रतिबंधित करें",
+        "inviteUsers": "लिंक के माध्यम से सदस्यों को आमंत्रित करें",
+        "inviteUsersHint": "आमंत्रण लिंक बनाएं और रद्द करें",
+        "pinMessages": "संदेश पिन करें",
+        "pinMessagesHint": "चैट के शीर्ष पर एक संदेश पिन करें",
+        "manageEvents": "इवेंट प्रबंधित करें",
+        "manageEventsHint": "समुदाय इवेंट बनाएं और संपादित करें",
+        "addAdmins": "नए एडमिन जोड़ें",
+        "addAdminsHint": "सदस्यन ला बढ़ावा दे अउ ओमन डहार ले जोड़िस गए एडमिन मन के अधिकार संपादित करव",
+        "remainAnonymous": "गुमनाम रहव",
+        "remainAnonymousHint": "ए एडमिन ला सदस्य सूची ले छिपाव"
+      },
+      "durations": {
+        "oneHour": "1 घंटा",
+        "eightHours": "8 घंटा",
+        "oneDay": "1 दिन",
+        "oneWeek": "1 हफ्ता",
+        "forever": "हमेशा बर"
+      }
+    },
+    "chooseAvatar": "अवतार चुनो"
   },
   "work": {
     "title": "इनाम",
@@ -2918,7 +3087,9 @@
       "shipped": "पठोय गिस",
       "completed": "पूरा होइस",
       "cancelled": "रद्द"
-    }
+    },
+    "removePhoto": "फोटो हटाव",
+    "listingOptions": "सूची विकल्प"
   },
   "accounts": {
     "subtitle": "पूरा खाता बिक्री बर, दाम DHB म",
@@ -3283,7 +3454,14 @@
     "removeFollowerHint": "ओमन ल हटाए बर कोनो अनुयायी ल दबा के धरे रहो।",
     "cancel": "रद्द कर",
     "remove": "हटा दे",
-    "thisUser": "ये कमइया"
+    "thisUser": "ये कमइया",
+    "cancelRequestTo": "@{{username}}? के फॉलो अनुरोध रद्द करव",
+    "followingUser": "@{{username}} के फॉलो करत हव",
+    "contentUnavailable": "सामग्री उपलब्ध नइ हे",
+    "youBlockedBody": "तोर पोस्ट नइ दिखही अउ तंू ओमन संग बातचीत नइ कर सकय. अनब्लॉक कर के पहुँच बहाली करव.",
+    "restrictedBody": "ए उपयोगकर्ता ह तंूरे खाता संग बातचीत सीमित करे हवय.",
+    "requestPendingBody": "तोर फॉलो अनुरोध भेज दे गे हवय. ओमन तंूरे अनुरोध स्वीकृत करे के बाद तंू ओमन के पोस्ट देख सकबे.",
+    "followToSeePosts": "ओमन के पोस्ट देखय बर ए खाता के फॉलो करव."
   },
   "reactionInfo": {
     "title": "प्रतिक्रिया",
@@ -3586,7 +3764,8 @@
     "needGas": "{{chain}} म गैस बर नेटिव {{token}} चाही।",
     "bridging": "ब्रिज होवत हे…",
     "bridgeAction": "{{from}} → {{to}} ब्रिज करव",
-    "failed": "ब्रिज फेल होगे"
+    "failed": "ब्रिज फेल होगे",
+    "sentArriveShortly": "{{amount}} DHB ह {{from}} ले {{to}} भेजिस. टोकन जल्दी आ जही."
   },
   "banned": {
     "title": "अपन खाता बंद करे गे हे",
@@ -3764,7 +3943,16 @@
     "legacyRecovered": "तोर जुन्ना खाता{{suffix}} सत्यापित होगे अउ ओखर वॉलेट वापिस मिलगे। अब ले ए डिवाइस म — ए फोन अउ हर जगा — एला सुरक्छित रखे बर पासवर्ड लगाव।",
     "passwordMin": "पासवर्ड (कम से कम {{min}} अक्षर)",
     "newPasswordMin": "नवा पासवर्ड (कम से कम {{min}} अक्षर)",
-    "newWalletPasswordMin": "नवा वॉलेट के पासवर्ड (कम से कम {{min}} अक्षर)"
+    "newWalletPasswordMin": "नवा वॉलेट के पासवर्ड (कम से कम {{min}} अक्षर)",
+    "deviceCheckCancelled": "डिवाइस जाँच रद्द कर दे गे हवय — कुछ घलो नइ बदले गे हवय.",
+    "savePhraseTitle": "तोर रिकवरी वाक्यांश बचा लेव",
+    "startOverTitle": "नया बटुआ संग सुरुआत करव",
+    "secureNewWalletTitle": "तोर नया बटुआ सुरक्षित करव",
+    "secureWalletTitle": "तोर बटुआ सुरक्षित करव",
+    "unlockOnMobileTitle": "मोबाइल म अनलॉक करव",
+    "oldAccountFoundTitle": "पुराना खाता मिलिस",
+    "unlockWalletTitle": "तोर बटुआ अनलॉक करव",
+    "phraseExplainer": "तोर बटुआ ए फोन के बायोमेट्रिक्स ले सुरक्षित रही. ए अनलॉक <em>सिर्फ ए फोन म काम करथे</em> — अगर तंू DeHub फेर ले स्थापित करथस, हैंडसेट बदलथस, या खो देथस त ओकर बर ए 12 सब्द ह एकमात रस्ता हवय."
   },
   "transcript": {
     "title": "परतिलेख",
@@ -3950,7 +4138,38 @@
     "subscribe": "सब्सक्राइब करव",
     "subscriberCount_one": "{{count}} सब्सक्राइबर",
     "subscriberCount_other": "{{count}} सब्सक्राइबर",
-    "subscribeToForRich": "<price>{{price}}</price> म <name>{{name}}</name> ला सब्सक्राइब करव"
+    "subscribeToForRich": "<price>{{price}}</price> म <name>{{name}}</name> ला सब्सक्राइब करव",
+    "loadPlansFailed": "योजना लोड करे म असफल",
+    "subscriberContent": "सब्सक्राइबर सामग्री",
+    "subscriberContentSub": "सब्सक्राइबर मन बर खास कंटेंट दे के प्लान बनाव",
+    "createFirstPlan": "तोर पहिली प्लान बनाव",
+    "addNewPlan": "नया प्लान जोड़व",
+    "durations": {
+      "oneMonth": "1 महीना",
+      "threeMonths": "3 महीना",
+      "sixMonths": "6 महीना",
+      "oneYear": "1 बछर",
+      "lifetime": "जिनगी भर"
+    },
+    "planNameRequired": "प्लान के नांव जरूरी हावय",
+    "enterValidPrice": "एक ठन सही कीमत बताव",
+    "availableChains": "सब्सक्रिप्शन अभी बेस अउ BNB म उपलब्ध हावय",
+    "waitForSwitch": "सब्सक्रिप्शन नेटवर्क के बदलई के परतीछा करव",
+    "connectAndWait": "तोर बटुआ जोड़व अउ सब्सक्रिप्शन नेटवर्क के परतीछा करव",
+    "planUpdated": "प्लान बदल दे गे हावय",
+    "creating": "बनावत हावन…",
+    "planPublished": "प्लान बन गे अउ पब्लिश हो गे हावय",
+    "createPlanTitle": "सब्सक्रिप्शन प्लान बनाव",
+    "network": "सब्सक्रिप्शन नेटवर्क",
+    "planNameLabel": "प्लान के नांव *",
+    "planNamePlaceholder": "जैसे प्रीमियम, गोल्ड, वीआईपी...",
+    "descriptionPlaceholder": "सब्सक्राइबर मन का पाही...",
+    "priceLabel": "कीमत (USD) *",
+    "legacyMigrationNote": "बचत हावय ये पुरान DHB प्लान ला डॉलर कीमत म लिस्टिंग ले पहिली के दर म बदलत हावय।",
+    "benefits": "फायदा",
+    "benefitPlaceholder": "एक ठन फायदा जोड़व...",
+    "createAndPublish": "बना अउ पब्लिश करव",
+    "publishingOnChain": "पब्लिशिंग एक ऑन-चेन ट्रांजेक्शन हावय"
   },
   "live": {
     "notSet": "सेट नइ हे",
@@ -4068,7 +4287,22 @@
     "acceptTerms": "मैं मानत हँव <terms>सेवा के सरत</terms>",
     "sentTo": "{{amount}} {{symbol}} ला {{address}} भेज देइस",
     "tokensSentTo": "टोकन {{address}} म भेजे गए",
-    "goToProfile": "प्रोफाइल म जा"
+    "goToProfile": "प्रोफाइल म जा",
+    "aboutTitle": "डीहब अउ पेमेंट के बारे म",
+    "aboutSubtitle": "तोर सहज टोकन पेमेंट बर गेटवे",
+    "aboutTokenTitle": "डीहब टोकन",
+    "aboutTokenBody": "टोकन क्रिएटर को सब्सक्राइब करने, स्ट्रीमर को टिप देने या कंटेंट अनलॉक करने के लिए इस्तेमाल होते हैं। आप जितना ज़्यादा रखते हैं, आपकी फीस उतनी ही कम होती है और आप टाइमलाइन ट्रेंड बूस्ट और वेरिफिकेशन बैज जैसी ज़्यादा सुपरपावर अनलॉक करते हैं।",
+    "aboutInstantTitle": "इंस्टेंट पेमेंट",
+    "aboutInstantBody": "स्ट्राइप का इस्तेमाल करके, आप तुरंत और आसानी से अपने किसी भी अकाउंट में टोकन खरीद सकते हैं जिसमें आप लॉग इन हैं। डीहब टोकन को सरल और सबके लिए बनाता है। अगर आपको और सपोर्ट चाहिए, तो बस हमारे 24/7 लाइव कम्युनिटी चैट में आएं और एडमिन सपोर्ट मांगें।",
+    "aboutSecureTitle": "सिक्योर गेटवे",
+    "aboutSecureBody": "सभी पेमेंट डिटेल एन्क्रिप्टेड हैं और स्ट्राइप द्वारा सुरक्षित रूप से प्रोसेस की जाती हैं। हम आपकी संवेदनशील जानकारी या कार्ड डिटेल को एक्सेस या स्टोर नहीं कर सकते, जिससे आपको पूरी मानसिक शांति मिलती है।",
+    "transfersSummary": "ट्रांसफर सारांश",
+    "availableToBuy": "अभी खरीदने के लिए उपलब्ध",
+    "noSupplyShort": "कोई सप्लाई नहीं",
+    "topUpSubtitle": "कार्ड से $DHB खरीदें और तुरंत इस्तेमाल के लिए फ्री गैस पाएं",
+    "noTxHash": "ट्रांजेक्शन हैश नहीं मिला",
+    "latestTransactions": "नवीनतम ट्रांजेक्शन",
+    "showAll": "सभी दिखाएं"
   },
   "musicSheet": {
     "title": "गाना बनाव",
@@ -4197,7 +4431,13 @@
     "followUpNote": "तुम्हर फीडबैक म अउ सवाल बर हमन संपर्क कर सकथन",
     "submitFeedback": "फीडबैक भेजव",
     "provideFeedback": "किरपा करके अपन फीडबैक लिखव",
-    "thankYou": "तुम्हर फीडबैक बर धन्यवाद!"
+    "thankYou": "तुम्हर फीडबैक बर धन्यवाद!",
+    "submitFailed": "फीडबैक सबमिट करने में विफल। कृपया दोबारा प्रयास करें।",
+    "maybeLater": "बाद में",
+    "helpUsImprove": "हमें बेहतर बनाने में मदद करें",
+    "rateExperience": "आप अपने अनुभव को कैसे रेट करेंगे?",
+    "telegramOptional": "टेलीग्राम (वैकल्पिक)",
+    "discordOptional": "डिस्कॉर्ड (वैकल्पिक)"
   },
   "migrate": {
     "clearAll": "सब्बो साफ करव",
@@ -4311,7 +4551,14 @@
       "blueWhale": "सबले बडखा चीज जऊन ह कभू जीये हवय । ए तुंहरच हे ।",
       "megalodon": "ए तोर मुकुट हवय — तेंह अब एप रॉयल्टी हवस"
     },
-    "continue": "DeHub म लौटें"
+    "continue": "DeHub म लौटें",
+    "none": "कोई नहीं",
+    "noBadgeYet": "कोई बैज नहीं",
+    "next": "अगला",
+    "topTier": "टॉप टियर",
+    "toNextTier": "{{amount}} DHB से {{tier}}",
+    "everyTierUnlocked": "हर टियर अनलॉक हुआ",
+    "holdNote": "एक बार बैज अनलॉक हो जाने के बाद, यह तब तक आपका है जब तक आप अपना DHB रखते हैं। नए बैज को अनलॉक करने के लिए आवश्यक टोकन की संख्या टोकन की कीमत के साथ बदल सकती है।"
   },
   "passwordStrength": {
     "veryWeak": "बहुत कमजोर",
@@ -4393,7 +4640,11 @@
     },
     "ttsLabel": "कोनो बात ल जोर ले कहि दे",
     "ttsPlaceholder": "पानी के तीर म पढ़व -",
-    "ttsHint": "जब तुमन अपन उपहार ल देखथव, त जम्मो झन ला जोर से पढ़व ।"
+    "ttsHint": "जब तुमन अपन उपहार ल देखथव, त जम्मो झन ला जोर से पढ़व ।",
+    "sendAGift": "गिफ्ट भेजें",
+    "minPlaceholder": "मिन: {{amount}}",
+    "minGift": "न्यूनतम गिफ्ट {{amount}} है",
+    "sendGift": "गिफ्ट भेजें"
   },
   "goLive": {
     "streamKey": "स्ट्रीम कुंजी",
@@ -4770,7 +5021,8 @@
         "title": "देखव कमाई कइसे काम करथे",
         "body": "पता लगाववव कि सुझाव, बैज अउ सुपरपावर्स आप इहां करत हंवय ल आप कमाए के चीज म कैसे बदल देत हंवय ।"
       }
-    }
+    },
+    "swipeToStart": "शुरू करने के लिए स्वाइप करें"
   },
   "conversation": {
     "commonGround": {
@@ -5296,5 +5548,18 @@
     "toastPaidSettled": "भुगतान होगे — सौदा निपट गे",
     "walletNotReady": "तुंहर वॉलेट अभी तियार नइ हे — थोरकन बाद फेर कोसिस करव।",
     "wrongChain": "ए सौदा {{chain}} म निपटथे। सेटिंग्स म {{chain}} म बदलव, फेर कोसिस करव।"
+  },
+  "moderation": {
+    "appealDuplicate": "तुमन एला पहिले ले ही अपील करे हव",
+    "appealSent": "भेजे गए आह्वान",
+    "appealFailed": "अपील जमा नइ कर सकिस",
+    "appealTitle": "ए निर्णय ल अपील करे",
+    "appealSubtitle": "एक मनखे ह एला पढ़ही अऊ फेर फैसला ल देखही ।",
+    "appealPlaceholder": "का सोचथे कि ओमन ला का कमी हवय? सामग्री के संदर्भ हर कुछु आने चीज ले ज्यादा मदद करत हवय ।",
+    "appealSend": "अपील भेजव",
+    "appealFootnote": "आप एक संदर्भ संख्या प्राप्त करत हंवय, अउ उत्तर इहां वापस आ जात हवय । एक अपील हर निर्णय बर ।",
+    "appealRef": "रेफरेंस {{ref}}",
+    "appealSubtitleSubject": "एक झन मनखे एला पढ़ही अउ {{subject}} ला फेर ले देखही।",
+    "appealMore": "अक्छर अभी घलो जरूरी हे: {{count}}"
   }
 }

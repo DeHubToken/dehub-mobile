@@ -107,7 +107,7 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
               onPress={() => setSearch("")}
               className="p-2 -mr-2"
               accessibilityRole="button"
-              accessibilityLabel="Clear search"
+              accessibilityLabel={t("sidebar.clearSearch")}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
               <Icon name="X" size={14} color="#6b7280" />

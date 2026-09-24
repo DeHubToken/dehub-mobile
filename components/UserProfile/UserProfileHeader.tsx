@@ -359,7 +359,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
               <TouchableOpacity
                 onPress={handleCopyEns}
                 activeOpacity={0.7}
-                accessibilityLabel={`Verified ENS name ${ensName}`}
+                accessibilityLabel={t("profile.verifiedEnsName", { name: ensName })}
                 className="px-2 py-0.5 bg-theme-neutrals-800 rounded-md flex-row items-center"
               >
                 <Icon name="Globe" size={11} color="#A1A1AA" />
@@ -477,7 +477,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         {!hasUsername && (
           <View className="mt-3 bg-theme-neutrals-800/60 rounded-lg p-3">
             <Text className="text-theme-neutrals-200 text-xs leading-4">
-              This user hasn't fully joined yet. They haven't claimed a username or completed profile setup. You can still view public activity and send tips if available.
+              {t("profile.notFullyJoined")}
             </Text>
           </View>
         )}

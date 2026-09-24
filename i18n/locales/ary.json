@@ -690,7 +690,11 @@
       "hintAllow": "قد تتدرب أنظمة الذكاء الاصطناعي والزواحف التي تحترم هذه الإشارة على الصوت والأعمال الفنية والكتابة.",
       "hintDeny": "يُطلب من أنظمة الذكاء الاصطناعي والزواحف التي تحترم هذه الإشارة عدم التدريب على الصوت والعمل الفني والكتابة. لا يتم حظر الزواحف التي تتجاهل الإشارة بواسطتها.",
       "saved": "تم حفظ تفضيلات التدريب على الذكاء الاصطناعي"
-    }
+    },
+    "chainIdLabel": "معرف السلسلة: {{id}}",
+    "exportPkConfirmPhrase": "أنا أفهم",
+    "exportPkCopy": "نسخ المفتاح الخاص",
+    "e2eAutomatic": "تلقائي"
   },
   "common": {
     "mute": "سكّت الصوت",
@@ -730,7 +734,17 @@
     "optionalSuffix": "(اختياري)",
     "yesterday": "البارح",
     "ok": "واخا",
-    "continue": "تابع"
+    "continue": "تابع",
+    "goesToHomeFeed": "يذهب إلى موجز الأخبار الرئيسي",
+    "openMenu": "افتح القائمة",
+    "scrollsFeedToTop": "ينتقل إلى أعلى الموجز ويقوم بتحديثه",
+    "notificationsUnread": "إشعارات، {{unread}} غير مقروءة",
+    "errorDetails": "تفاصيل الخطأ:",
+    "failedToLoad": "فشل التحميل",
+    "noInternetTitle": "لا يوجد اتصال بالإنترنت",
+    "noInternetBody": "الرجاء التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى. تحتاج إلى الاتصال بالإنترنت لاستخدام DeHub.",
+    "noInternetStatus": "غير متصل - لا يوجد اتصال بالشبكة",
+    "noInternetHint": "تأكد من تشغيل Wi-Fi أو بيانات الجوال، ثم اضغط على \"{{action}}\""
   },
   "tip": {
     "title": "بعت تيب",
@@ -1619,7 +1633,12 @@
     "chooseUsernameBody": "ختار اسم المستخدم واسم العرض باش تكمل. تقدر تبدلهوم من بعد.",
     "checkingAvailability": "كنشيكيو واش متوفر…",
     "usernameTakenHint": "السمية مخدومة — جرب زيد أرقام ولا خط تحتاني",
-    "displayNameLength": "اسم العرض خاصو يكون بين 2 و50 حرف."
+    "displayNameLength": "اسم العرض خاصو يكون بين 2 و50 حرف.",
+    "loginFailedRetry": "فشل تسجيل الدخول. الرجاء المحاولة مرة أخرى.",
+    "sendCodeFailedRetry": "تعذر إرسال الرمز. الرجاء المحاولة مرة أخرى.",
+    "invalidCodeRetry": "رمز غير صالح. الرجاء المحاولة مرة أخرى.",
+    "invalidEmailOrPassword": "بريد إلكتروني أو كلمة مرور غير صالحة.",
+    "welcomeToDehub": "مرحباً بك في DeHub"
   },
   "messages": {
     "smartRepliesOff": "تطفاو الردود المقترحة",
@@ -1697,7 +1716,32 @@
     "offerWorthNow": "تقريبا {{amount}} DHB بالثمن دابا",
     "offerNotePlaceholder": "زيد ملاحظة (اختياري)",
     "offerCommitsNothing": "دير عرض ما كيكلف والو وما كيحجز حتى DHB. ما غادي تخلّص غير إلا قبل المالك.",
-    "offerNeedsHandle": "هاد الحساب ما عندوش سمية باش دير عليها عرض."
+    "offerNeedsHandle": "هاد الحساب ما عندوش سمية باش دير عليها عرض.",
+    "noPostsYet": "لا توجد منشورات بعد",
+    "noPostsYetSub": "سيظهر المحتوى هنا عند نشره",
+    "noPinnedPosts": "لا توجد منشورات مثبتة بعد",
+    "noPinnedPostsSub": "ستظهر المنشورات المثبتة هنا",
+    "emptyLiked": "لا توجد منشورات معجب بها بعد.",
+    "emptySaved": "لا توجد منشورات محفوظة بعد.",
+    "emptyUnlocked": "لا توجد منشورات مفتوحة بعد.",
+    "emptyWatched": "لا يوجد سجل مشاهدة بعد.",
+    "emptyFolder": "لا توجد منشورات في هذا المجلد بعد.",
+    "emptyPosts": "لا توجد منشورات بعد.",
+    "couldNotLoadPosts": "تعذر تحميل المنشورات.",
+    "noPostsOrReplies": "مازال ما كاين حتى منشور، تعليق، أو رد",
+    "noPostsOrRepliesSub": "غادي يبانو هنا",
+    "avatarUpdated": "تم تحديث الصورة الرمزية",
+    "coverUpdated": "تم تحديث صورة الغلاف",
+    "couldNotPickImage": "تعذر اختيار الصورة",
+    "changeCoverImage": "تغيير صورة الغلاف",
+    "changeAvatar": "تغيير الصورة الرمزية",
+    "verifiedEnsName": "اسم ENS موثق {{name}}",
+    "notFullyJoined": "هذا المستخدم لم ينضم بالكامل بعد. لم يطالب باسم مستخدم أو يكمل إعداد الملف الشخصي. لا يزال بإمكانك عرض النشاط العام وإرسال الإكراميات إذا كانت متاحة.",
+    "loadRepliesFailed": "فشل تحميل الردود",
+    "refreshFailed": "فشل التحديث",
+    "noRepliesYet": "لا توجد ردود بعد",
+    "noRepliesYetSub": "عندما يرد هذا المستخدم على المنشورات، ستظهر هنا.",
+    "noMoreReplies": "لا مزيد من الردود"
   },
   "tv": {
     "title": "التلفزة",
@@ -1780,7 +1824,11 @@
     "loadingPrice": "كيتحمّل الثمن…",
     "topUpExplanation": "DHB كيتحوّل على السلسلة لخزينة الإشهار ديال DeHub، ومن بعد كيتزاد لرصيدك من بعد تأكيد مستقل على السلسلة.",
     "paymentHistory": "تاريخ الخلاصات",
-    "noPayments": "مازال ماكايناش خلاصات"
+    "noPayments": "مازال ماكايناش خلاصات",
+    "sponsored": "إعلان",
+    "morePosts": "المزيد من المنشورات",
+    "loadMorePosts": "تحميل المزيد من المنشورات",
+    "playAdVideo": "تشغيل إعلان الفيديو"
   },
   "buyCoins": {
     "title": "شري كوينز",
@@ -2245,7 +2293,8 @@
     "privateBalanceMode": "وضع الرصيد الخاص مفعل",
     "addressHidden": "العنوان مخبي",
     "allowInFeeds": "خلي هاد المستخدم يبان فالفيدز ديالك",
-    "hideContent": "خبي المحتوى ديالهم وحدد التفاعلات"
+    "hideContent": "خبي المحتوى ديالهم وحدد التفاعلات",
+    "a11yLabel": "خيارات الملف الشخصي"
   },
   "toasts": {
     "saved_to_bookmarks": "تحفظ فالمفضلة",
@@ -2617,7 +2666,8 @@
     "roles": {
       "owner": "المالك",
       "moderator": "مشرف",
-      "member": "عضو"
+      "member": "عضو",
+      "admin": "مسؤول"
     },
     "time": {
       "today": "اليوم",
@@ -2626,7 +2676,126 @@
       "weeks": "{{count}} سيمانات",
       "months": "{{count}} شهور",
       "years": "{{count}} سنين"
-    }
+    },
+    "chatPanel": {
+      "anon": "مجهول",
+      "edited": "تم التعديل",
+      "deleteTitle": "حذف الرسالة",
+      "deleteConfirm": "هل تريد حذف هذه الرسالة؟ لا يمكن التراجع عن هذا.",
+      "muted": "تم إسكاتك",
+      "postingDisabled": "النشر معطل للأعضاء هنا",
+      "mediaMessage": "وسائط",
+      "pinnedMessage": "رسالة مثبتة",
+      "showEarlier": "عرض الرسائل السابقة",
+      "editingMessage": "تعديل الرسالة",
+      "copied": "تم نسخ الرسالة",
+      "copyText": "نسخ النص",
+      "mutedUntil": "تم كتم صوتك حتى {{date}}",
+      "slowMode": "الوضع البطيء: رسالة واحدة كل {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "تجاهل المشرف",
+      "cancel": "إلغاء",
+      "dismissAdmin": "تجاهل المشرف",
+      "roleAdmin": "المسؤول",
+      "roleMember": "عضو",
+      "whatCanTheyDo": "ما الذي يمكن أن يفعله هذا المسؤول ؟",
+      "rightNotHeld": "ليس لديك هذا الحق بنفسك",
+      "customTitle": "عنوان مخصص",
+      "customTitlePlaceholder": "المشرف",
+      "customTitleHint": "تظهر بدلاً من شارة المسؤول الافتراضية.",
+      "saveChanges": "حفظ التغييرات",
+      "promote": "تعزيز",
+      "tabs": {
+        "members": "الأعضاء",
+        "admins": "المشرفون",
+        "permissions": "الأذونات",
+        "invites": "دعوات",
+        "rules": "القواعد",
+        "recentActions": "الإجراءات الأخيرة",
+        "danger": "منطقة خطر"
+      },
+      "title": "إدارة",
+      "purgeTitle": "هل تريد حذف جميع الرسائل ؟",
+      "purgeConfirm": "حذف",
+      "kickTitle": "هل تريد إزالة العضو ؟",
+      "kickConfirm": "إزالة",
+      "bannedPermanent": "محظور — دائم",
+      "mutedPermanent": "صامت — دائم",
+      "editAdminRights": "تعديل صلاحيات المسؤول",
+      "promoteToAdmin": "ترقية إلى مسؤول",
+      "unmute": "إلغاء كتم الصوت",
+      "mute": "كتم الصوت",
+      "unban": "إلغاء الحظر",
+      "ban": "حظر",
+      "deleteAllMessages": "حذف كل الرسائل",
+      "removeFromCommunity": "إزالة من المجتمع",
+      "noActionsAvailable": "لا يمكنك الإشراف على هذا العضو.",
+      "showMore": "عرض المزيد",
+      "joinRequests": "طلبات الانضمام",
+      "approve": "موافقة",
+      "reject": "رفض",
+      "members": "الأعضاء",
+      "searchMembers": "البحث عن طريق عنوان المحفظة",
+      "noMembersMatch": "لا يوجد عضو مطابق.",
+      "noMembers": "لا يوجد أعضاء بعد.",
+      "muted": "تم كتم الصوت",
+      "banned": "تم الحظر",
+      "muteEffect": "يبقون في المجتمع ولكن لا يمكنهم النشر حتى تنتهي مدة كتم الصوت.",
+      "banEffect": "تمت إزالتهم من الدردشة ولا يمكنهم الانضمام مرة أخرى حتى يتم رفع الحظر.",
+      "durationLabel": "المدة",
+      "reasonLabel": "السبب (اختياري)",
+      "reasonPlaceholder": "لماذا يتم حظرهم؟",
+      "alsoDeleteMessages": "احذف كل رسائلهم أيضاً",
+      "confirmMute": "كتم صوت العضو",
+      "confirmBan": "حظر العضو",
+      "rulesUpdated": "تم تحديث القواعد",
+      "rulesTitle": "قواعد المجتمع",
+      "rulesEmpty": "لا توجد قواعد بعد — أضف أول قاعدة أدناه.",
+      "rulePlaceholder": "وصف القاعدة",
+      "addRule": "إضافة قاعدة",
+      "saveRules": "حفظ القواعد",
+      "dismissAdminBody": "{{wallet}} سيعود عضوا عاديا.",
+      "purgeBody": "سيتم حذف كل رسالة أرسلها {{name}} في هذا المجتمع.",
+      "kickBody": "سيتم إزالة {{name}} من المجتمع. يمكنهم الانضمام مرة أخرى لاحقًا.",
+      "bannedUntil": "محظور حتى {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "مكتوم حتى {{date}}",
+      "bannedUntilShort": "حتى {{date}}",
+      "muteTitle": "إسكات {{name}}",
+      "banTitle": "حظر {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} من {{max}}",
+      "moveRuleUp": "نقل القاعدة للأعلى",
+      "moveRuleDown": "نقل القاعدة للأسفل",
+      "deleteRule": "حذف القاعدة",
+      "rights": {
+        "changeInfo": "تغيير معلومات المجتمع",
+        "changeInfoHint": "تعديل الاسم، الوصف، الصورة الرمزية، والبانر",
+        "deleteMessages": "حذف الرسائل",
+        "deleteMessagesHint": "إزالة أي رسالة من دردشة المجتمع",
+        "restrictMembers": "حظر المستخدمين",
+        "restrictMembersHint": "إسكات، إزالة وحظر الأعضاء",
+        "inviteUsers": "دعوة المستخدمين عبر الرابط",
+        "inviteUsersHint": "إنشاء وإلغاء روابط الدعوة",
+        "pinMessages": "تثبيت الرسائل",
+        "pinMessagesHint": "تثبيت رسالة في أعلى الدردشة",
+        "manageEvents": "إدارة الأحداث",
+        "manageEventsHint": "إنشاء وتعديل أحداث المجتمع",
+        "addAdmins": "إضافة مشرفين جدد",
+        "addAdminsHint": "ترقية الأعضاء وتعديل صلاحيات المشرفين الذين أضافوهم",
+        "remainAnonymous": "ابق مجهولاً",
+        "remainAnonymousHint": "إخفاء هذا المشرف من قائمة الأعضاء"
+      },
+      "durations": {
+        "oneHour": "1 ساعة",
+        "eightHours": "8 ساعات",
+        "oneDay": "1 يوم",
+        "oneWeek": "1 أسبوع",
+        "forever": "للأبد"
+      }
+    },
+    "chooseAvatar": "اختر صورة رمزية"
   },
   "work": {
     "title": "الجوائز",
@@ -2978,7 +3147,9 @@
       "shipped": "تصيفط",
       "completed": "سالا",
       "cancelled": "ملغي"
-    }
+    },
+    "removePhoto": "إزالة الصورة",
+    "listingOptions": "خيارات القائمة"
   },
   "accounts": {
     "subtitle": "حسابات كاملة معروضة للبيع، الثمن بالـ DHB",
@@ -3345,7 +3516,14 @@
     "removeFollowerHint": "اضغط مع الاستمرار على متابع لإزالته.",
     "cancel": "إلغاء",
     "remove": "إزالة",
-    "thisUser": "هذا المستخدم"
+    "thisUser": "هذا المستخدم",
+    "cancelRequestTo": "إلغاء طلب المتابعة لـ @{{username}}؟",
+    "followingUser": "متابعة @{{username}}",
+    "contentUnavailable": "المحتوى غير متوفر",
+    "youBlockedBody": "لن ترى منشوراتهم ولن تتمكن من التفاعل معهم. إلغاء الحظر لاستعادة الوصول.",
+    "restrictedBody": "هذا المستخدم قيد تفاعلاتك مع حسابك.",
+    "requestPendingBody": "تم إرسال طلب المتابعة الخاص بك. ستتمكن من رؤية منشوراتهم بمجرد موافقتهم على طلبك.",
+    "followToSeePosts": "تابع هذا الحساب لرؤية منشوراته."
   },
   "reactionInfo": {
     "title": "ردود الفعل",
@@ -3659,7 +3837,8 @@
     "needGas": "خاصك {{token}} الأصلي للغاز ف {{chain}}.",
     "bridging": "كيجسر…",
     "bridgeAction": "جسر {{from}} ← {{to}}",
-    "failed": "الجسر فشل"
+    "failed": "الجسر فشل",
+    "sentArriveShortly": "{{amount}} DHB أرسلت من {{from}} → {{to}}. الرموز تصل قريباً."
   },
   "banned": {
     "title": "حسابك محظور",
@@ -3837,7 +4016,16 @@
     "legacyRecovered": "تأكدنا من الحساب القديم ديالك{{suffix}} ورجعنا البورتفوي ديالو. دير كلمة سر باش تحميه فهاد الجهاز — فهاد التيليفون وفكل بلاصة أخرى، من دابا وليه.",
     "passwordMin": "كلمة السر (على الأقل {{min}} حرف)",
     "newPasswordMin": "كلمة سر جديدة (على الأقل {{min}} حرف)",
-    "newWalletPasswordMin": "كلمة سر البورتفوي الجديد (على الأقل {{min}} حرف)"
+    "newWalletPasswordMin": "كلمة سر البورتفوي الجديد (على الأقل {{min}} حرف)",
+    "deviceCheckCancelled": "تم إلغاء فحص الجهاز - لم يتم تغيير أي شيء.",
+    "savePhraseTitle": "احفظ عبارة الاسترداد الخاصة بك",
+    "startOverTitle": "ابدأ من جديد بمحفظة جديدة",
+    "secureNewWalletTitle": "أمّن محفظتك الجديدة",
+    "secureWalletTitle": "أمّن محفظتك",
+    "unlockOnMobileTitle": "افتح على الهاتف المحمول",
+    "oldAccountFoundTitle": "تم العثور على حساب قديم",
+    "unlockWalletTitle": "افتح محفظتك",
+    "phraseExplainer": "سيتم حماية محفظتك بواسطة بصمة الإصبع الخاصة بهذا الهاتف. هذا الفتح <em>يعمل فقط على هذا الهاتف</em> - هذه الكلمات الـ 12 هي الطريقة الوحيدة للعودة إذا قمت بإعادة تثبيت DeHub أو تغيير الهاتف أو فقدته."
   },
   "transcript": {
     "title": "النص المكتوب",
@@ -4013,7 +4201,38 @@
     "subscribe": "اشترك",
     "subscriberCount_one": "{{count}} مشترك",
     "subscriberCount_other": "{{count}} مشترك",
-    "subscribeToForRich": "اشترك ف<name>{{name}}</name> بـ<price>{{price}}</price>"
+    "subscribeToForRich": "اشترك ف<name>{{name}}</name> بـ<price>{{price}}</price>",
+    "loadPlansFailed": "فشل تحميل الخطط",
+    "subscriberContent": "محتوى المشترك",
+    "subscriberContentSub": "صنع خطط لتقديم محتوى حصري للمشتركين",
+    "createFirstPlan": "اصنع خطتك الأولى",
+    "addNewPlan": "أضف خطة جديدة",
+    "durations": {
+      "oneMonth": "شهر واحد",
+      "threeMonths": "3 أشهر",
+      "sixMonths": "6 أشهر",
+      "oneYear": "سنة واحدة",
+      "lifetime": "مدى الحياة"
+    },
+    "planNameRequired": "اسم الخطة مطلوب",
+    "enterValidPrice": "أدخل سعراً صالحاً",
+    "availableChains": "الاشتراكات متاحة حالياً على Base و BNB",
+    "waitForSwitch": "انتظر حتى تنتهي شبكة الاشتراك من التبديل",
+    "connectAndWait": "اربط محفظتك وانتظر شبكة الاشتراك",
+    "planUpdated": "تم تحديث الخطة",
+    "creating": "جاري الإنشاء…",
+    "planPublished": "تم إنشاء الخطة ونشرها",
+    "createPlanTitle": "إنشاء خطة اشتراك",
+    "network": "شبكة الاشتراك",
+    "planNameLabel": "اسم الخطة *",
+    "planNamePlaceholder": "مثال: بريميوم، جولد، في آي بي...",
+    "descriptionPlaceholder": "ما يحصل عليه المشتركون...",
+    "priceLabel": "السعر (بالدولار الأمريكي) *",
+    "legacyMigrationNote": "التوفير ينقل خطة DHB القديمة هذه إلى أسعار الدولار بالسعر قبل الإدراج.",
+    "benefits": "الفوائد",
+    "benefitPlaceholder": "أضف فائدة...",
+    "createAndPublish": "إنشاء ونشر",
+    "publishingOnChain": "النشر هو معاملة على السلسلة"
   },
   "live": {
     "notSet": "ماشي محدد",
@@ -4131,7 +4350,22 @@
     "acceptTerms": "كنوافق على <terms>شروط الخدمة</terms>",
     "sentTo": "تم إرسال {{amount}}{{symbol}} إلى {{address}}",
     "tokensSentTo": "تم إرسال الرموز إلى {{address}}",
-    "goToProfile": "الانتقال إلى الملف الشخصي"
+    "goToProfile": "الانتقال إلى الملف الشخصي",
+    "aboutTitle": "حول DeHub والمدفوعات",
+    "aboutSubtitle": "بوابتك لمدفوعات التوكن السلسة",
+    "aboutTokenTitle": "توكن DeHub",
+    "aboutTokenBody": "لي طوكنز كيستعملو باش تشترك مع لي كرياتورز، ولا تبارطاجي مع لي ستريمرز، ولا تفتح لي كونتوني. كلما كان عندك بزاف، كلما لي فري ديالك كينقصو وكتفتح بزاف ديال لي سوبر باورز بحال لي بوسط ديال لي طراند في لي طالاين و لي بادج ديال لي فيريفيكاسيون.",
+    "aboutInstantTitle": "الدفعات الفورية",
+    "aboutInstantBody": "باستعمال سترايب، تقدر تشري لي طوكنز فوريا وبدون مشاكل في أي كونط مسجل فيه. دي هاب كيخلي لي طوكنز ساهلين و للجميع. إذا احتجتي مساعدة إضافية، غير دخلي للكوميونيتي ديالنا اللي خدامة 24/7 وطلب الدعم من لآدمين.",
+    "aboutSecureTitle": "بوابة آمنة",
+    "aboutSecureBody": "جميع تفاصيل الدفع مشفرة ومعالجة بأمان من طرف سترايب. ما يمكنناش نوصلو أو نخزنو معلوماتك الحساسة أو تفاصيل الكارط ديالك، باش تكون عندك راحة البال التامة.",
+    "transfersSummary": "ملخص التحويلات",
+    "availableToBuy": "متوفر للشراء الآن",
+    "noSupplyShort": "لا يوجد إمداد",
+    "topUpSubtitle": "اشري $DHB بالكارط وخد غاز مجاني للاستعمال الفوري",
+    "noTxHash": "لم يتم العثور على هاش المعاملة",
+    "latestTransactions": "آخر المعاملات",
+    "showAll": "عرض الكل"
   },
   "musicSheet": {
     "title": "دير أغنية",
@@ -4260,7 +4494,13 @@
     "followUpNote": "يمكن نتواصلو معاك بأسئلة زايدة على الملاحظات ديالك",
     "submitFeedback": "صيفط الملاحظات",
     "provideFeedback": "عافاك كتب الملاحظات ديالك",
-    "thankYou": "شكرا على الملاحظات ديالك!"
+    "thankYou": "شكرا على الملاحظات ديالك!",
+    "submitFailed": "فشل إرسال الملاحظات. حاول مرة أخرى.",
+    "maybeLater": "لاحقا",
+    "helpUsImprove": "ساعدنا على التحسين",
+    "rateExperience": "كيف تقيم تجربتك؟",
+    "telegramOptional": "تليجرام (اختياري)",
+    "discordOptional": "ديسكورد (اختياري)"
   },
   "migrate": {
     "clearAll": "Msa7 الكل",
@@ -4348,7 +4588,14 @@
       "blueWhale": "أكبر شيء عاش على الإطلاق. هذا أنت.",
       "megalodon": "ها هو تاجك — أنت أحد ملوك التطبيق الآن"
     },
-    "continue": "العودة إلى DeHub"
+    "continue": "العودة إلى DeHub",
+    "none": "لا شيء",
+    "noBadgeYet": "لا يوجد بادج بعد",
+    "next": "التالي",
+    "topTier": "أعلى مستوى",
+    "toNextTier": "{{amount}} DHB إلى {{tier}}",
+    "everyTierUnlocked": "كل مستوى مفتوح",
+    "holdNote": "بمجرد فتح بادج، فهو لك طالما احتفظت بـ DHB الخاص بك. عدد الطوكنز المطلوبة لفتح بادج جديد يمكن أن يتغير مع سعر الطوكن."
   },
   "passwordStrength": {
     "veryWeak": "ضعيف بزاف",
@@ -4430,7 +4677,11 @@
     },
     "ttsLabel": "قل شيئًا بصوت عالٍ",
     "ttsPlaceholder": "اقرأ بصوت عالٍ على البث...",
-    "ttsHint": "اقرأ بصوت عالٍ لكل من يشاهد هديتك عند وصولها."
+    "ttsHint": "اقرأ بصوت عالٍ لكل من يشاهد هديتك عند وصولها.",
+    "sendAGift": "إرسال هدية",
+    "minPlaceholder": "الحد الأدنى: {{amount}}",
+    "minGift": "الحد الأدنى للهدية هو {{amount}}",
+    "sendGift": "إرسال هدية"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4811,7 +5062,8 @@
         "title": "تعرَّف على كيفية تحقيق الدخل",
         "body": "اكتشف كيف تحول النصائح والشارات والقوى الخارقة ما تفعله هنا إلى شيء تربح منه."
       }
-    }
+    },
+    "swipeToStart": "اسحب للبدء"
   },
   "conversation": {
     "commonGround": {
@@ -5293,5 +5545,18 @@
     "toastPaidSettled": "تخلص — الصفقة تسالات",
     "walletNotReady": "المحفظة ديالك باقي ما واجداش — عاود جرب من بعد شوية.",
     "wrongChain": "هاد الصفقة كتسالا على {{chain}}. بدل ل {{chain}} ف الإعدادات، ومن بعد عاود جرب."
+  },
+  "moderation": {
+    "appealDuplicate": "لقد استأنفت هذا بالفعل",
+    "appealSent": "تم إرسال الالتماس",
+    "appealFailed": "تعذر تقديم هذا الاستئناف",
+    "appealTitle": "الاعتراض على هذا القرار",
+    "appealSubtitle": "سيقرأ الشخص هذا وينظر في القرار مرة أخرى.",
+    "appealPlaceholder": "ما الذي تعتقد أنه فاتك ؟ يساعد سياق المحتوى أكثر من أي شيء آخر.",
+    "appealSend": "إرسال الاستئناف",
+    "appealFootnote": "تحصل على رقم مرجعي، وتعود الإجابة هنا. استئناف واحد لكل قرار.",
+    "appealRef": "المرجع {{ref}}",
+    "appealSubtitleSubject": "سيقرأ الشخص هذا وينظر مرة أخرى في {{subject}}.",
+    "appealMore": "لا تزال الأحرف مطلوبة: {{count}}"
   }
 }

@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 type DpayAboutProps = {
   defaultOpen?: boolean;
@@ -20,6 +21,7 @@ const SectionRow: React.FC<{ icon: keyof typeof Ionicons.glyphMap; title: string
   );
 
 const DpayAbout: React.FC<DpayAboutProps> = ({ defaultOpen = false }) => {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState<boolean>(defaultOpen);
 
   const toggle = React.useCallback(() => setOpen((v) => !v), []);
@@ -32,9 +34,9 @@ const DpayAbout: React.FC<DpayAboutProps> = ({ defaultOpen = false }) => {
         className="px-4 py-3 flex-row items-center justify-between"
       >
         <View>
-          <Text className="text-white font-semibold">About DeHub & payments</Text>
+          <Text className="text-white font-semibold">{t("dpay.aboutTitle")}</Text>
           {!open && (
-            <Text className="text-theme-neutrals-400 text-[11px] mt-0.5">Your gateway to seamless token payments</Text>
+            <Text className="text-theme-neutrals-400 text-[11px] mt-0.5">{t("dpay.aboutSubtitle")}</Text>
           )}
         </View>
         <Ionicons name={open ? "chevron-up" : "chevron-down"} size={18} color="#A6A9AC" />
@@ -42,14 +44,14 @@ const DpayAbout: React.FC<DpayAboutProps> = ({ defaultOpen = false }) => {
 
       {open && (
         <View className="px-4 pb-4">
-          <SectionRow icon="pricetag" title="DeHub Token">
-            Tokens are used for subscribing to creators, tipping streamers or unlocking content. The more you hold, the lower your fees are and the more superpowers you unlock like timeline trend boosts and verification badges.
+          <SectionRow icon="pricetag" title={t("dpay.aboutTokenTitle")}>
+            {t("dpay.aboutTokenBody")}
           </SectionRow>
-          <SectionRow icon="flash" title="Instant Payments">
-            Using Stripe, you can buy tokens instantly and seamlessly into whatever account you're logged into. DeHub makes tokens simple and for all. If you need more support, just pop up in our 24/7 live community chat and ask for admin support.
+          <SectionRow icon="flash" title={t("dpay.aboutInstantTitle")}>
+            {t("dpay.aboutInstantBody")}
           </SectionRow>
-          <SectionRow icon="shield-checkmark" title="Secure Gateway">
-            All payment details are encrypted and processed securely by Stripe. We can't access or store your sensitive information or card details, giving you ultimate peace of mind.
+          <SectionRow icon="shield-checkmark" title={t("dpay.aboutSecureTitle")}>
+            {t("dpay.aboutSecureBody")}
           </SectionRow>
         </View>
       )}

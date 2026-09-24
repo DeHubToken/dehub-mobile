@@ -201,7 +201,7 @@ export function MembersTab({ community, membership }: MembersTabProps) {
               onPress={() => setSearch("")}
               hitSlop={15}
               accessibilityRole="button"
-              accessibilityLabel="Clear search"
+              accessibilityLabel={t("sidebar.clearSearch")}
             >
               <Icon name="X" size={14} color="#808089" />
             </TouchableOpacity>

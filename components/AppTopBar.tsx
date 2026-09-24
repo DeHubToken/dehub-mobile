@@ -2,6 +2,7 @@ import React, { useCallback, memo } from "react";
 import { View } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import SmartImage from "./common/SmartImage";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useAppTheme } from "../context/ThemeContext";
@@ -31,6 +32,7 @@ export const APP_TOP_BAR_HEIGHT = 44;
 const AppTopBar: React.FC<{ onPress?: () => void }> = ({ onPress }) => {
   const navigation = useNavigation<any>();
   const { colors } = useAppTheme();
+  const { t } = useTranslation();
 
   const handlePress = useCallback(() => {
     if (onPress) {
@@ -50,7 +52,7 @@ const AppTopBar: React.FC<{ onPress?: () => void }> = ({ onPress }) => {
         activeOpacity={0.7}
         accessibilityRole="button"
         accessibilityLabel="DeHub"
-        accessibilityHint="Goes to the home feed"
+        accessibilityHint={t("common.goesToHomeFeed")}
         hitSlop={{ top: 8, bottom: 8, left: 16, right: 16 }}
       >
         <SmartImage

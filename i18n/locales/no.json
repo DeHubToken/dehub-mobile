@@ -688,7 +688,11 @@
       "hintAllow": "AI-systemer og robotsøkeprogrammer som respekterer dette signalet, kan trene på lyd, grafikk og tekst.",
       "hintDeny": "AI-systemer og robotsøkere som respekterer dette signalet blir bedt om ikke å trene på lyd, grafikk og tekst. Robotsøkere som ignorerer signalet blokkeres ikke av det.",
       "saved": "AI-opplæringspreferanser lagret"
-    }
+    },
+    "chainIdLabel": "Kjede-ID: {{id}}",
+    "exportPkConfirmPhrase": "JEG FORSTÅR",
+    "exportPkCopy": "Kopier privat nøkkel",
+    "e2eAutomatic": "Automatisk"
   },
   "common": {
     "mute": "Demp",
@@ -728,7 +732,17 @@
     "optionalSuffix": "(valgfritt)",
     "yesterday": "I går",
     "ok": "OK",
-    "continue": "Fortsett"
+    "continue": "Fortsett",
+    "goesToHomeFeed": "Går til hjem-feeden",
+    "openMenu": "Åpne meny",
+    "scrollsFeedToTop": "Ruller til toppen av feeden og oppdaterer den",
+    "notificationsUnread": "Varsler, {{unread}} uleste",
+    "errorDetails": "Feildetaljer:",
+    "failedToLoad": "Kunne ikke laste inn",
+    "noInternetTitle": "Ingen internettforbindelse",
+    "noInternetBody": "Vennligst sjekk internettforbindelsen din og prøv igjen. Du må være koblet til internett for å bruke DeHub.",
+    "noInternetStatus": "Frakoblet - Ingen nettverksforbindelse",
+    "noInternetHint": "Sørg for at Wi-Fi eller mobildata er slått på, og trykk deretter på \"{{action}}\""
   },
   "tip": {
     "title": "Send Tip",
@@ -1617,7 +1631,12 @@
     "chooseUsernameBody": "Velg et brukernavn og visningsnavn for å fortsette. Du kan endre dem senere.",
     "checkingAvailability": "Sjekker tilgjengelighet…",
     "usernameTakenHint": "Navnet er opptatt — prøv å legge til tall eller understrek",
-    "displayNameLength": "Visningsnavnet må være på 2–50 tegn."
+    "displayNameLength": "Visningsnavnet må være på 2–50 tegn.",
+    "loginFailedRetry": "Innlogging mislyktes. Vennligst prøv igjen.",
+    "sendCodeFailedRetry": "Kunne ikke sende kode. Vennligst prøv igjen.",
+    "invalidCodeRetry": "Ugyldig kode. Vennligst prøv igjen.",
+    "invalidEmailOrPassword": "Ugyldig e-post eller passord.",
+    "welcomeToDehub": "Velkommen til DeHub"
   },
   "messages": {
     "smartRepliesOff": "Foreslåtte svar er slått av",
@@ -1695,7 +1714,32 @@
     "offerWorthNow": "Omtrent {{amount}} DHB til dagens kurs",
     "offerNotePlaceholder": "Legg til et notat (valgfritt)",
     "offerCommitsNothing": "Å gi et bud koster ingenting og binder ingen DHB. Du betaler bare hvis eieren godtar.",
-    "offerNeedsHandle": "Denne kontoen har ikke noe brukernavn å by på."
+    "offerNeedsHandle": "Denne kontoen har ikke noe brukernavn å by på.",
+    "noPostsYet": "Ingen innlegg ennå",
+    "noPostsYetSub": "Innhold vil vises her når det er publisert",
+    "noPinnedPosts": "Ingen festede innlegg ennå",
+    "noPinnedPostsSub": "Festede innlegg vil vises her",
+    "emptyLiked": "Ingen likte innlegg ennå.",
+    "emptySaved": "Ingen lagrede innlegg ennå.",
+    "emptyUnlocked": "Ingen ulåste innlegg ennå.",
+    "emptyWatched": "Ingen visningshistorikk ennå.",
+    "emptyFolder": "Ingen innlegg i denne mappen ennå.",
+    "emptyPosts": "Ingen innlegg ennå.",
+    "couldNotLoadPosts": "Kunne ikke laste inn innlegg.",
+    "noPostsOrReplies": "Ingen innlegg, kommentarer eller svar ennå",
+    "noPostsOrRepliesSub": "De vil vises her",
+    "avatarUpdated": "Avatar oppdatert",
+    "coverUpdated": "Bakgrunn oppdatert",
+    "couldNotPickImage": "Kunne ikke velge bilde",
+    "changeCoverImage": "Endre bakgrunnsbilde",
+    "changeAvatar": "Endre avatar",
+    "verifiedEnsName": "Verifisert ENS-navn {{name}}",
+    "notFullyJoined": "Denne brukeren har ikke fullført registreringen ennå. De har ikke valgt et brukernavn eller fullført profilinnstillingene. Du kan fortsatt se offentlig aktivitet og sende tips hvis tilgjengelig.",
+    "loadRepliesFailed": "Kunne ikke laste inn svar",
+    "refreshFailed": "Oppdatering mislyktes",
+    "noRepliesYet": "Ingen svar ennå",
+    "noRepliesYetSub": "Når denne brukeren svarer på innlegg, vil de vises her.",
+    "noMoreReplies": "Ingen flere svar"
   },
   "tv": {
     "title": "TV",
@@ -1778,7 +1822,11 @@
     "loadingPrice": "Laster pris…",
     "topUpExplanation": "DHB overføres on-chain til DeHubs annonsekasse, og saldoen din krediteres etter uavhengig verifisering on-chain.",
     "paymentHistory": "Betalingshistorikk",
-    "noPayments": "Ingen betalinger ennå"
+    "noPayments": "Ingen betalinger ennå",
+    "sponsored": "Sponset",
+    "morePosts": "Flere innlegg",
+    "loadMorePosts": "Last inn flere innlegg",
+    "playAdVideo": "Spill annonsevideo"
   },
   "buyCoins": {
     "title": "Kjøp mynter",
@@ -2212,7 +2260,8 @@
     "privateBalanceMode": "Privat saldomodus er aktivert",
     "addressHidden": "Adressen er skjult",
     "allowInFeeds": "Tillat at denne brukeren vises i feedene dine",
-    "hideContent": "Skjul innholdet deres og begrens samhandling"
+    "hideContent": "Skjul innholdet deres og begrens samhandling",
+    "a11yLabel": "Profilalternativer"
   },
   "toasts": {
     "saved_to_bookmarks": "Lagret i bokmerker",
@@ -2584,7 +2633,8 @@
     "roles": {
       "owner": "Eier",
       "moderator": "Moderator",
-      "member": "Medlem"
+      "member": "Medlem",
+      "admin": "Admin"
     },
     "time": {
       "today": "i dag",
@@ -2593,7 +2643,126 @@
       "weeks": "{{count}} uker",
       "months": "{{count}} mnd",
       "years": "{{count}} år"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anonym",
+      "edited": "redigert",
+      "deleteTitle": "Slett melding",
+      "deleteConfirm": "Slett denne meldingen? Dette kan ikke angres.",
+      "muted": "Du er dempet",
+      "postingDisabled": "Publisering er deaktivert for medlemmer her",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Festet melding",
+      "showEarlier": "Vis tidligere meldinger",
+      "editingMessage": "Redigerer melding",
+      "copied": "Meldingen er kopiert",
+      "copyText": "Oppsprettmeny",
+      "mutedUntil": "Du er dempet til {{date}}",
+      "slowMode": "Sakte modus: én melding hver {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Avvis administrator",
+      "cancel": "Avbryt",
+      "dismissAdmin": "Avvis administrator",
+      "roleAdmin": "Administrator",
+      "roleMember": "Medlem",
+      "whatCanTheyDo": "Hva kan denne administratoren gjøre?",
+      "rightNotHeld": "Du har ikke denne retten selv",
+      "customTitle": "Egendefinert tittel (valgfritt)",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Vises i stedet for standard administratormerket.",
+      "saveChanges": "Lagre endringer",
+      "promote": "Forfrem",
+      "tabs": {
+        "members": "Medlemmer",
+        "admins": "Administratorer",
+        "permissions": "Tillatelser",
+        "invites": "Invitasjoner",
+        "rules": "Regel",
+        "recentActions": "Siste handlinger",
+        "danger": "Faresone"
+      },
+      "title": "Administrer",
+      "purgeTitle": "Slette alle meldinger?",
+      "purgeConfirm": "Slett",
+      "kickTitle": "Fjern medlem",
+      "kickConfirm": "Fjern",
+      "bannedPermanent": "Utestengt – permanent",
+      "mutedPermanent": "Dempet – permanent",
+      "editAdminRights": "Rediger adminrettigheter",
+      "promoteToAdmin": "Forfremme til admin",
+      "unmute": "Fjern demping",
+      "mute": "Dempe",
+      "unban": "Opphev utestengelse",
+      "ban": "Utesteng",
+      "deleteAllMessages": "Slett alle meldinger",
+      "removeFromCommunity": "Fjern fra fellesskapet",
+      "noActionsAvailable": "Du kan ikke moderere dette medlemmet.",
+      "showMore": "Vis mer",
+      "joinRequests": "Forespørsler om å bli med",
+      "approve": "Godkjenn",
+      "reject": "Avvis",
+      "members": "Medlemmer",
+      "searchMembers": "Søk etter lommebokadresse",
+      "noMembersMatch": "Ingen medlemmer samsvarer med dette.",
+      "noMembers": "Ingen medlemmer ennå.",
+      "muted": "Dempet",
+      "banned": "Utestengt",
+      "muteEffect": "De forblir i fellesskapet, men kan ikke poste før dempingen utløper.",
+      "banEffect": "De er fjernet fra chatten og kan ikke bli med igjen før utestengelsen er opphevet.",
+      "durationLabel": "Varighet",
+      "reasonLabel": "Årsak (valgfritt)",
+      "reasonPlaceholder": "Hvorfor blir de utestengt?",
+      "alsoDeleteMessages": "Slett også alle meldingene deres",
+      "confirmMute": "Dempe medlem",
+      "confirmBan": "Utesteng medlem",
+      "rulesUpdated": "Regler oppdatert",
+      "rulesTitle": "Fellesskapsregler",
+      "rulesEmpty": "Ingen regler ennå — legg til den første nedenfor.",
+      "rulePlaceholder": "Beskriv regelen",
+      "addRule": "Legg til regel",
+      "saveRules": "Lagre regler",
+      "dismissAdminBody": "{{wallet}} vil gå tilbake til å være et vanlig medlem.",
+      "purgeBody": "Hver melding {{name}} har sendt i dette fellesskapet vil bli fjernet.",
+      "kickBody": "{{name}} vil bli fjernet fra fellesskapet. De kan bli med igjen senere.",
+      "bannedUntil": "Utestengt til {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Meldt av til {{date}}",
+      "bannedUntilShort": "Til {{date}}",
+      "muteTitle": "Meld av {{name}}",
+      "banTitle": "Utesteng {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} av {{max}}",
+      "moveRuleUp": "Flytt regel opp",
+      "moveRuleDown": "Flytt regel ned",
+      "deleteRule": "Slett regel",
+      "rights": {
+        "changeInfo": "Endre fellesskapsinfo",
+        "changeInfoHint": "Rediger navn, beskrivelse, avatar og banner",
+        "deleteMessages": "Slett meldinger",
+        "deleteMessagesHint": "Fjern enhver melding fra fellesskapets chat",
+        "restrictMembers": "Utelukk brukere",
+        "restrictMembersHint": "Meld av, fjern og utelukk medlemmer",
+        "inviteUsers": "Inviter brukere via lenke",
+        "inviteUsersHint": "Opprett og tilbakekall invitasjonslenker",
+        "pinMessages": "Fest meldinger",
+        "pinMessagesHint": "Fest en melding øverst i chatten",
+        "manageEvents": "Administrer arrangementer",
+        "manageEventsHint": "Opprett og rediger fellesskapsarrangementer",
+        "addAdmins": "Legg til nye administratorer",
+        "addAdminsHint": "Fremme medlemmer og rediger rettighetene til administratorer de la til",
+        "remainAnonymous": "Forbli anonym",
+        "remainAnonymousHint": "Skjul denne administratoren fra medlemslisten"
+      },
+      "durations": {
+        "oneHour": "1 time",
+        "eightHours": "8 timer",
+        "oneDay": "1 dag",
+        "oneWeek": "1 uke",
+        "forever": "For alltid"
+      }
+    },
+    "chooseAvatar": "Velg avatar"
   },
   "work": {
     "title": "Bounties",
@@ -2945,7 +3114,9 @@
       "shipped": "Sendt",
       "completed": "Fullført",
       "cancelled": "Avbrutt"
-    }
+    },
+    "removePhoto": "Fjern bilde",
+    "listingOptions": "Listingsalternativer"
   },
   "accounts": {
     "subtitle": "Hele kontoer til salgs, priset i DHB",
@@ -3313,7 +3484,14 @@
     "removeFollowerHint": "Trykk og hold på en følger for å fjerne dem.",
     "cancel": "Avbryt",
     "remove": "Fjern",
-    "thisUser": "denne brukeren"
+    "thisUser": "denne brukeren",
+    "cancelRequestTo": "Avbryt følgespørring til @{{username}}?",
+    "followingUser": "Følger @{{username}}",
+    "contentUnavailable": "Innhold utilgjengelig",
+    "youBlockedBody": "Du vil ikke se innleggene deres eller kunne samhandle med dem. Fjern blokkering for å gjenopprette tilgang.",
+    "restrictedBody": "Denne brukeren har begrenset samhandling med kontoen din.",
+    "requestPendingBody": "Følgespørringen din er sendt. Du vil kunne se innleggene deres når de godkjenner forespørselen din.",
+    "followToSeePosts": "Følg denne kontoen for å se innleggene deres."
   },
   "reactionInfo": {
     "title": "Reaksjon",
@@ -3623,7 +3801,8 @@
     "needGas": "Trenger native {{token}} til gass på {{chain}}.",
     "bridging": "Broer…",
     "bridgeAction": "Bro {{from}} → {{to}}",
-    "failed": "Broen mislyktes"
+    "failed": "Broen mislyktes",
+    "sentArriveShortly": "{{amount}} DHB sendt fra {{from}} → {{to}}. Tokens kommer snart."
   },
   "banned": {
     "title": "Kontoen din er utestengt",
@@ -3800,7 +3979,16 @@
     "legacyRecovered": "Vi har bekreftet den gamle kontoen din{{suffix}} og gjenopprettet lommeboken. Angi et passord som beskytter den på denne enheten — på denne telefonen og overalt ellers, fra nå av.",
     "passwordMin": "Passord (minst {{min}} tegn)",
     "newPasswordMin": "Nytt passord (minst {{min}} tegn)",
-    "newWalletPasswordMin": "Passord for ny lommebok (minst {{min}} tegn)"
+    "newWalletPasswordMin": "Passord for ny lommebok (minst {{min}} tegn)",
+    "deviceCheckCancelled": "Enhetskontroll avbrutt — ingenting ble endret.",
+    "savePhraseTitle": "Lagre gjenopprettingsfrasen din",
+    "startOverTitle": "Start på nytt med en ny lommebok",
+    "secureNewWalletTitle": "Sikre din nye lommebok",
+    "secureWalletTitle": "Sikre lommeboken din",
+    "unlockOnMobileTitle": "Lås opp på mobil",
+    "oldAccountFoundTitle": "Gammel konto funnet",
+    "unlockWalletTitle": "Lås opp lommeboken din",
+    "phraseExplainer": "Lommeboken din vil bli beskyttet av denne telefonens biometri. Den opplåsningen <em>fungerer kun på denne telefonen</em> — disse 12 ordene er den eneste måten å komme tilbake på hvis du reinstallerer DeHub, bytter telefon, eller mister den."
   },
   "transcript": {
     "title": "Utskrift",
@@ -3986,7 +4174,38 @@
     "subscribe": "Abonner",
     "subscriberCount_one": "{{count}} abonnent",
     "subscriberCount_other": "{{count}} abonnenter",
-    "subscribeToForRich": "Abonner på <name>{{name}}</name> for <price>{{price}}</price>"
+    "subscribeToForRich": "Abonner på <name>{{name}}</name> for <price>{{price}}</price>",
+    "loadPlansFailed": "Kunne ikke laste planer",
+    "subscriberContent": "Abonnentinnhold",
+    "subscriberContentSub": "Lag planer for å tilby eksklusivt innhold til abonnenter",
+    "createFirstPlan": "Lag din første plan",
+    "addNewPlan": "Legg til ny plan",
+    "durations": {
+      "oneMonth": "1 måned",
+      "threeMonths": "3 måneder",
+      "sixMonths": "6 måneder",
+      "oneYear": "1 år",
+      "lifetime": "Livstid"
+    },
+    "planNameRequired": "Plan navn er påkrevd",
+    "enterValidPrice": "Oppgi en gyldig pris",
+    "availableChains": "Abonnementer er for øyeblikket tilgjengelige på Base og BNB",
+    "waitForSwitch": "Vent til abonnementsnettverket er ferdig med å bytte",
+    "connectAndWait": "Koble til lommeboken din og vent på abonnementsnettverket",
+    "planUpdated": "Plan oppdatert",
+    "creating": "Oppretter…",
+    "planPublished": "Plan opprettet og publisert",
+    "createPlanTitle": "Opprett abonnementsplan",
+    "network": "Abonnementsnettverk",
+    "planNameLabel": "Plan Navn *",
+    "planNamePlaceholder": "f.eks. Premium, Gull, VIP...",
+    "descriptionPlaceholder": "Hva abonnenter får...",
+    "priceLabel": "Pris (USD) *",
+    "legacyMigrationNote": "Lagring migrerer denne eldre DHB-planen til dollarpriser til kursen før notering.",
+    "benefits": "Fordeler",
+    "benefitPlaceholder": "Legg til en fordel...",
+    "createAndPublish": "Opprett og publiser",
+    "publishingOnChain": "Publisering er en transaksjon på kjeden"
   },
   "live": {
     "notSet": "Ikke angitt",
@@ -4104,7 +4323,22 @@
     "acceptTerms": "Jeg godtar <terms>Vilkår for tjenesten</terms>",
     "sentTo": "{{amount}} {{symbol}} ble sendt til {{address}}",
     "tokensSentTo": "Tokener ble sendt til {{address}}",
-    "goToProfile": "Gå til profil"
+    "goToProfile": "Gå til profil",
+    "aboutTitle": "Om DeHub & betalinger",
+    "aboutSubtitle": "Din inngangsport til sømløse token-betalinger",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokens brukes til å abonnere på skapere, gi tips til streamere eller låse opp innhold. Jo mer du har, jo lavere blir avgiftene dine, og jo flere superkrefter låser du opp, som tidslinjetrender og verifiseringsmerker.",
+    "aboutInstantTitle": "Umiddelbare betalinger",
+    "aboutInstantBody": "Ved å bruke Stripe kan du kjøpe tokens umiddelbart og sømløst inn på hvilken som helst konto du er logget inn på. DeHub gjør tokens enkle og for alle. Hvis du trenger mer støtte, bare duk opp i vårt 24/7 live fellesskapssamtale og be om admin-støtte.",
+    "aboutSecureTitle": "Sikker gateway",
+    "aboutSecureBody": "Alle betalingsdetaljer er kryptert og behandlet sikkert av Stripe. Vi kan ikke få tilgang til eller lagre sensitiv informasjon eller kortdetaljer, noe som gir deg full trygghet.",
+    "transfersSummary": "Sammendrag av overføringer",
+    "availableToBuy": "Tilgjengelig for kjøp nå",
+    "noSupplyShort": "Ingen forsyning",
+    "topUpSubtitle": "Kjøp $DHB med kort og få gratis gass til umiddelbar bruk",
+    "noTxHash": "Fant ikke transaksjons-hash",
+    "latestTransactions": "Siste transaksjoner",
+    "showAll": "Vis alle"
   },
   "musicSheet": {
     "title": "Lag en sang",
@@ -4233,7 +4467,13 @@
     "followUpNote": "Vi kan ta kontakt med oppfølgingsspørsmål om tilbakemeldingen din",
     "submitFeedback": "Send tilbakemelding",
     "provideFeedback": "Skriv inn tilbakemeldingen din",
-    "thankYou": "Takk for tilbakemeldingen!"
+    "thankYou": "Takk for tilbakemeldingen!",
+    "submitFailed": "Kunne ikke sende tilbakemelding. Vennligst prøv igjen.",
+    "maybeLater": "Kanskje senere",
+    "helpUsImprove": "Hjelp oss å forbedre oss",
+    "rateExperience": "Hvordan vil du vurdere din opplevelse?",
+    "telegramOptional": "Telegram (valgfritt)",
+    "discordOptional": "Discord (valgfritt)"
   },
   "migrate": {
     "clearAll": "Fjern alt",
@@ -4346,7 +4586,14 @@
       "blueWhale": "Det største som noen gang har levd. Det er deg.",
       "megalodon": "Her er kronen din – nå er du app-kongelig"
     },
-    "continue": "Tilbake til DeHub"
+    "continue": "Tilbake til DeHub",
+    "none": "Ingen",
+    "noBadgeYet": "Intet merke ennå",
+    "next": "Neste",
+    "topTier": "Toppnivå",
+    "toNextTier": "{{amount}} DHB til {{tier}}",
+    "everyTierUnlocked": "Hvert nivå låst opp",
+    "holdNote": "Når et merke er låst opp, er det ditt så lenge du beholder din DHB. Antallet tokens som trengs for å låse opp et nytt merke kan endres med tokenprisen."
   },
   "passwordStrength": {
     "veryWeak": "Veldig svakt",
@@ -4428,7 +4675,11 @@
     },
     "ttsLabel": "Si noe høyt",
     "ttsPlaceholder": "Les ut til strømmen...",
-    "ttsHint": "Les høyt for alle som ser på når gaven din lander."
+    "ttsHint": "Les høyt for alle som ser på når gaven din lander.",
+    "sendAGift": "Send en gave",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minimum gave er {{amount}}",
+    "sendGift": "Send gave"
   },
   "goLive": {
     "streamKey": "Strømnøkkel",
@@ -4811,7 +5062,8 @@
         "title": "Se hvordan opptjening fungerer",
         "body": "Finn ut hvordan tips, merker og superkrefter gjør det du gjør her til noe du tjener penger på."
       }
-    }
+    },
+    "swipeToStart": "Sveip for å starte"
   },
   "conversation": {
     "commonGround": {
@@ -5293,5 +5545,18 @@
     "toastPaidSettled": "Betalt — handelen er oppgjort",
     "walletNotReady": "Lommeboken din er ikke klar ennå — prøv igjen om et øyeblikk.",
     "wrongChain": "Denne handelen gjøres opp på {{chain}}. Bytt til {{chain}} i Innstillinger, og prøv igjen."
+  },
+  "moderation": {
+    "appealDuplicate": "Du har allerede anket dette",
+    "appealSent": "Anke sendt",
+    "appealFailed": "Kunne ikke sende inn den anken",
+    "appealTitle": "Ank denne avgjørelsen",
+    "appealSubtitle": "En person vil lese dette og se på avgjørelsen på nytt.",
+    "appealPlaceholder": "Hva tror du ble oversett? Kontekst rundt innholdet hjelper mer enn noe annet.",
+    "appealSend": "Send anke",
+    "appealFootnote": "Du får et referansenummer, og svaret kommer tilbake hit. Én anke per avgjørelse.",
+    "appealRef": "Referanse {{ref}}",
+    "appealSubtitleSubject": "En person vil lese dette og se på {{subject}} igjen.",
+    "appealMore": "Tegn som fortsatt trengs: {{count}}"
   }
 }

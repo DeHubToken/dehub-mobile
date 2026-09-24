@@ -182,7 +182,7 @@ const BridgeTab: React.FC = () => {
       });
 
       toastSuccess(t("bridge.initiated", { tx: txHash.slice(0, 10) + "…" }));
-      toastSuccess(`${amount} DHB sent from ${sourceChain} → ${destChain}. Tokens arrive shortly.`);
+      toastSuccess(t("bridge.sentArriveShortly", { amount, from: sourceChain, to: destChain }));
       setAmount("");
       setTimeout(fetchBalances, 8000);
       setTimeout(fetchTransfers, 8000);

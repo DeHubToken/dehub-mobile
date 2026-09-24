@@ -6,7 +6,7 @@ import React, {
 } from "react";
 import { View, Text, Image, ScrollView, Platform, type TextStyle } from "react-native";
 import { toastError, toastInfo } from "../../libs";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { AuthButton, authColors, authText } from "../../components/auth/AuthControls";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
@@ -556,7 +556,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       await runProvisionAndSignIn(supabaseUserId);
     } catch (e: any) {
       log.error("Google login error", e?.stack || e);
-      toastError(e, "Login failed. Please retry.");
+      toastError(e, t("auth.loginFailedRetry"));
       hasNavigatedRef.current = false;
     } finally {
       if (isMountedRef.current) {
@@ -564,7 +564,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         setCurrentProvider("");
       }
     }
-  }, [runProvisionAndSignIn]);
+  }, [runProvisionAndSignIn, t]);
 
   const handleAppleLogin = useCallback(async () => {
     hasNavigatedRef.current = false;
@@ -575,7 +575,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       await runProvisionAndSignIn(supabaseUserId);
     } catch (e: any) {
       log.error("Apple login error", e?.stack || e);
-      toastError(e, "Login failed. Please retry.");
+      toastError(e, t("auth.loginFailedRetry"));
       hasNavigatedRef.current = false;
     } finally {
       if (isMountedRef.current) {
@@ -583,7 +583,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         setCurrentProvider("");
       }
     }
-  }, [runProvisionAndSignIn]);
+  }, [runProvisionAndSignIn, t]);
 
   /**
    * Passkey-only sign-in (see services/auth/passkeyAuth.service). The OS sheet
@@ -632,7 +632,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       log.error("Telegram login error", e?.stack || e);
       // Closing Telegram's consent screen is a choice, not a failure.
       if (!/cancelled/i.test(e?.message || "")) {
-        toastError(e, "Login failed. Please retry.");
+        toastError(e, t("auth.loginFailedRetry"));
       }
       hasNavigatedRef.current = false;
     } finally {
@@ -641,7 +641,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         setCurrentProvider("");
       }
     }
-  }, [runProvisionAndSignIn]);
+  }, [runProvisionAndSignIn, t]);
 
   const handleEmailSubmit = useCallback(async (email: string) => {
     setIsLocalLoading(true);
@@ -652,14 +652,14 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       setAuthStep("email-code");
     } catch (e: any) {
       log.error("Email OTP send error", e);
-      toastError(e, "Could not send code. Please retry.");
+      toastError(e, t("auth.sendCodeFailedRetry"));
     } finally {
       if (isMountedRef.current) {
         setIsLocalLoading(false);
         setCurrentProvider("");
       }
     }
-  }, []);
+  }, [t]);
 
   const handleEmailCodeSubmit = useCallback(
     async (code: string) => {
@@ -670,13 +670,13 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         await runProvisionAndSignIn(supabaseUserId);
       } catch (e: any) {
         log.error("Email code verify error", e);
-        toastError(e, "Invalid code. Please retry.");
+        toastError(e, t("auth.invalidCodeRetry"));
         hasNavigatedRef.current = false;
       } finally {
         if (isMountedRef.current) setIsLocalLoading(false);
       }
     },
-    [pendingEmail, runProvisionAndSignIn]
+    [pendingEmail, runProvisionAndSignIn, t]
   );
 
   /**
@@ -693,7 +693,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         await runProvisionAndSignIn(supabaseUserId);
       } catch (e: any) {
         log.error("Email password login error", e);
-        toastError(e, "Invalid email or password.");
+        toastError(e, t("auth.invalidEmailOrPassword"));
         hasNavigatedRef.current = false;
       } finally {
         if (isMountedRef.current) {
@@ -702,7 +702,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         }
       }
     },
-    [runProvisionAndSignIn]
+    [runProvisionAndSignIn, t]
   );
 
   const handleResendEmailCode = useCallback(() => {
@@ -718,14 +718,14 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       setAuthStep("phone-code");
     } catch (e: any) {
       log.error("Phone OTP send error", e);
-      toastError(e, "Could not send code. Please retry.");
+      toastError(e, t("auth.sendCodeFailedRetry"));
     } finally {
       if (isMountedRef.current) {
         setIsLocalLoading(false);
         setCurrentProvider("");
       }
     }
-  }, []);
+  }, [t]);
 
   const handlePhoneCodeSubmit = useCallback(
     async (code: string) => {
@@ -736,13 +736,13 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         await runProvisionAndSignIn(supabaseUserId);
       } catch (e: any) {
         log.error("Phone code verify error", e);
-        toastError(e, "Invalid code. Please retry.");
+        toastError(e, t("auth.invalidCodeRetry"));
         hasNavigatedRef.current = false;
       } finally {
         if (isMountedRef.current) setIsLocalLoading(false);
       }
     },
-    [pendingPhone, runProvisionAndSignIn]
+    [pendingPhone, runProvisionAndSignIn, t]
   );
 
   const handleResendPhoneCode = useCallback(() => {
@@ -794,7 +794,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               resizeMode="contain"
               accessibilityIgnoresInvertColors
             />
-            <Text style={authText.title}>Welcome to DeHub</Text>
+            <Text style={authText.title}>{t("auth.welcomeToDehub")}</Text>
           </View>
 
           {/* Sign-in options: Email, Phone, Google, Apple, and Connect Wallet
@@ -879,23 +879,27 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           {/* Terms and Privacy */}
           <View style={{ marginTop: 24 }}>
             <Text style={[authText.caption, { textAlign: "center" }]}>
-              By continuing, you agree to our{" "}
-              <Text
-                style={legalLink}
-                onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
-                accessibilityRole="link"
-              >
-                Terms of Service
-              </Text>
-              {"\n"}and{" "}
-              <Text
-                style={legalLink}
-                onPress={() => openInApp(PRIVACY_POLICY_LINK)}
-                accessibilityRole="link"
-              >
-                Privacy Policy
-              </Text>
-              .
+              {/* The links travel with the sentence so languages that reorder
+                  the terms and the policy still read correctly. */}
+              <Trans
+                i18nKey="auth.legalLine"
+                components={{
+                  terms: (
+                    <Text
+                      style={legalLink}
+                      onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
+                      accessibilityRole="link"
+                    />
+                  ),
+                  privacy: (
+                    <Text
+                      style={legalLink}
+                      onPress={() => openInApp(PRIVACY_POLICY_LINK)}
+                      accessibilityRole="link"
+                    />
+                  ),
+                }}
+              />
             </Text>
           </View>
 

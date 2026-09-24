@@ -1,6 +1,7 @@
 import Animated from "react-native-reanimated";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View, ScrollView, FlatList, ActivityIndicator, Pressable, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import { apiClient } from "../../libs";
 import FeedCard from "../Home/FeedCard";
@@ -18,6 +19,7 @@ interface PinnedRouteProps {
 const PAGE_SIZE = 20;
 
 const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, listHeader, onBeforeNavigate }) => {
+  const { t } = useTranslation();
   const [items, setItems] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -53,7 +55,7 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, l
     setError(null);
     pageRef.current = 1;
     endRef.current = false;
-    fetchPins(1).catch((e: any) => setError(e?.message || "Failed to load")).finally(() => setLoading(false));
+    fetchPins(1).catch((e: any) => setError(e?.message || t("common.failedToLoad"))).finally(() => setLoading(false));
   }, [address, fetchPins]);
 
   useEffect(() => {
@@ -91,7 +93,7 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, l
             hitSlop={8}
             style={{ height: 40, borderWidth: 1, borderColor: "rgba(255,255,255,0.30)", borderRadius: 12, paddingHorizontal: 16, justifyContent: "center", alignItems: "center" }}
           >
-            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "500" }}>Retry</Text>
+            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "500" }}>{t("common.retry")}</Text>
           </Pressable>
         </View>
       </Animated.ScrollView>
@@ -104,8 +106,8 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, l
         {listHeader}
         <ProfileEmptyState
           kind="pinned"
-          title="No pinned posts yet"
-          subtitle="Pinned posts will appear here"
+          title={t("profile.noPinnedPosts")}
+          subtitle={t("profile.noPinnedPostsSub")}
         />
       </Animated.ScrollView>
     );

@@ -681,7 +681,11 @@
       "hintAllow": "AI tsarin da crawlers waɗanda ke girmama wannan siginar na iya horar da sauti, zane-zane da rubutu.",
       "hintDeny": "AI tsarin da crawlers da ke girmama wannan siginar ana tambayar su kada su horar da sauti, zane-zane da rubutu. Crawlers da suka yi watsi da siginar ba a toshe shi ba.",
       "saved": "AI horo fifiko ceto"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "NAYI Imani",
+    "exportPkCopy": "Kwafin maɓalli na sirri",
+    "e2eAutomatic": "Ta atomatik"
   },
   "common": {
     "mute": "Kashe sauti",
@@ -721,7 +725,17 @@
     "optionalSuffix": "(na zaɓi)",
     "yesterday": "Jiya",
     "ok": "To",
-    "continue": "Cigaba"
+    "continue": "Cigaba",
+    "goesToHomeFeed": "Yana zuwa ga abincin gida",
+    "openMenu": "Bude menu",
+    "scrollsFeedToTop": "Yana zuwa saman abincin kuma yana sabunta shi",
+    "notificationsUnread": "Sanarwa, {{unread}} ba a karanta ba",
+    "errorDetails": "Cikakkun bayanai na kuskure:",
+    "failedToLoad": "Gaza loda",
+    "noInternetTitle": "Babu Haɗin Intanet",
+    "noInternetBody": "Da fatan za a duba haɗin intanet ɗin ku kuma a sake gwadawa. Kuna buƙatar haɗawa da intanet don amfani da DeHub.",
+    "noInternetStatus": "Ba a layi - Babu haɗin cibiyar sadarwa",
+    "noInternetHint": "Tabbatar da cewa Wi-Fi ko bayanan hannu an kunna su, sannan danna \"{{action}}\""
   },
   "tip": {
     "title": "Aika Kyauta",
@@ -1611,7 +1625,12 @@
     "chooseUsernameBody": "Zaɓi sunan mai amfani da sunan nunawa don ci gaba. Za ka iya canza su daga baya.",
     "checkingAvailability": "Ana duba samuwa…",
     "usernameTakenHint": "An riga an ɗauki wannan sunan — gwada ƙara lambobi ko layin ƙasa",
-    "displayNameLength": "Sunan nunawa dole ya kasance haruffa 2-50."
+    "displayNameLength": "Sunan nunawa dole ya kasance haruffa 2-50.",
+    "loginFailedRetry": "Shiga ya gaza. Da fatan za a sake gwadawa.",
+    "sendCodeFailedRetry": "An kasa aika lambar. Da fatan za a sake gwadawa.",
+    "invalidCodeRetry": "Lambar ba ta da inganci. Da fatan za a sake gwadawa.",
+    "invalidEmailOrPassword": "Imel ko kalmar sirri ba ta da inganci.",
+    "welcomeToDehub": "Barka da zuwa DeHub"
   },
   "messages": {
     "smartRepliesOff": "An kashe amsoshin da aka ba da shawara",
@@ -1689,7 +1708,32 @@
     "offerWorthNow": "Kimanin {{amount}} DHB a farashin yanzu",
     "offerNotePlaceholder": "Ƙara saƙo (na zaɓi)",
     "offerCommitsNothing": "Yin tayi ba ya kashe komai kuma ba ya kulle DHB. Sai mai shi ya karɓa kafin ka biya.",
-    "offerNeedsHandle": "Wannan asusun ba shi da sunan mai amfani da za a yi wa tayi."
+    "offerNeedsHandle": "Wannan asusun ba shi da sunan mai amfani da za a yi wa tayi.",
+    "noPostsYet": "Babu sakonni tukuna",
+    "noPostsYetSub": "Abun ciki zai bayyana anan lokacin da aka aika",
+    "noPinnedPosts": "Babu sakonni da aka ɗaura tukuna",
+    "noPinnedPostsSub": "Sakonni da aka ɗaura za su bayyana anan",
+    "emptyLiked": "Babu sakonni da aka so tukuna.",
+    "emptySaved": "Babu sakonni da aka adana tukuna.",
+    "emptyUnlocked": "Babu sakonni da aka buɗe tukuna.",
+    "emptyWatched": "Babu tarihin kallo tukuna.",
+    "emptyFolder": "Babu sakonni a wannan babban fayil ɗin tukuna.",
+    "emptyPosts": "Babu sakonni tukuna.",
+    "couldNotLoadPosts": "An kasa loda sakonni.",
+    "noPostsOrReplies": "Babu wani sakonni, ko comments, ko replies tukuna",
+    "noPostsOrRepliesSub": "Za su bayyana anan",
+    "avatarUpdated": "An sabunta avatar",
+    "coverUpdated": "An sabunta cover",
+    "couldNotPickImage": "An kasa zaɓan hoto",
+    "changeCoverImage": "Canza hoton cover",
+    "changeAvatar": "Canza avatar",
+    "verifiedEnsName": "An tabbatar da sunan ENS {{name}}",
+    "notFullyJoined": "Wannan mai amfani bai gama shiga ba tukuna. Bai karɓi sunan mai amfani ba ko kuma ya kammala saitin bayanan martaba. Har yanzu kuna iya duba ayyukan jama'a da aika kuɗi idan akwai.",
+    "loadRepliesFailed": "An kasa loda replies",
+    "refreshFailed": "An kasa sabuntawa",
+    "noRepliesYet": "Babu Replies Tukuna",
+    "noRepliesYetSub": "Lokacin da wannan mai amfani ya yiwa sakonni reply, za su bayyana anan.",
+    "noMoreReplies": "Babu ƙarin replies"
   },
   "tv": {
     "title": "Talabijin",
@@ -1772,7 +1816,11 @@
     "loadingPrice": "Ana loda farashi…",
     "topUpExplanation": "Ana canja DHB kan sarkar zuwa ma'ajiyar tallace-tallace ta DeHub, sannan a ƙara wa ma'aunin ka bayan tabbatarwa mai zaman kanta kan sarka.",
     "paymentHistory": "Tarihin biyan kuɗi",
-    "noPayments": "Babu biyan kuɗi tukuna"
+    "noPayments": "Babu biyan kuɗi tukuna",
+    "sponsored": "Tallace-tallace",
+    "morePosts": "Ƙarin sakonni",
+    "loadMorePosts": "Loda ƙarin sakonni",
+    "playAdVideo": "Wasa bidiyon talla"
   },
   "buyCoins": {
     "title": "Sayi Tsabar Kuɗi",
@@ -2206,7 +2254,8 @@
     "privateBalanceMode": "An kunna yanayin ma'auni na sirri",
     "addressHidden": "An ɓoye adireshi",
     "allowInFeeds": "Bar wannan mai amfani ya bayyana a jerin naka",
-    "hideContent": "Ɓoye abun cikinsu kuma iyakance hulɗa"
+    "hideContent": "Ɓoye abun cikinsu kuma iyakance hulɗa",
+    "a11yLabel": "Zaɓuɓɓukan bayanan martaba"
   },
   "toasts": {
     "saved_to_bookmarks": "An ajiye a cikin alamomin shafi",
@@ -2578,7 +2627,8 @@
     "roles": {
       "owner": "Mai mallaka",
       "moderator": "Mai daidaitawa",
-      "member": "Memba"
+      "member": "Memba",
+      "admin": "Admin"
     },
     "time": {
       "today": "yau",
@@ -2587,7 +2637,126 @@
       "weeks": "Mako {{count}}",
       "months": "Wata {{count}}",
       "years": "Shekara {{count}}"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "an gyara",
+      "deleteTitle": "Goge saƙo",
+      "deleteConfirm": "Goge wannan saƙon? Ba za a iya mayar da wannan ba.",
+      "muted": "An saka ku a kunne",
+      "postingDisabled": "An hana yin sakonni ga membobi anan",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Saƙo da aka ɗaure",
+      "showEarlier": "Nuna tsofaffin saƙonni",
+      "editingMessage": "Gyara saƙo",
+      "copied": "Saƙon da aka kwafa",
+      "copyText": "Rubutun kwafi",
+      "mutedUntil": "Kuna da muted har {{date}}",
+      "slowMode": "Yanayin Slow: saƙo ɗaya kowane {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Cire mai gudanarwa",
+      "cancel": "Soke",
+      "dismissAdmin": "Cire mai gudanarwa",
+      "roleAdmin": "Mai gudanarwa",
+      "roleMember": "Memba",
+      "whatCanTheyDo": "Menene wannan admin zai iya yi?",
+      "rightNotHeld": "Ba ku da wannan dama da kanku",
+      "customTitle": "Sunan al'ada",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Shown maimakon tsoho Admin badge.",
+      "saveChanges": "Ajiye canje-canje",
+      "promote": "Ƙaddamarwa",
+      "tabs": {
+        "members": "Membobi",
+        "admins": "Admins",
+        "permissions": "Izini",
+        "invites": "Gayyata",
+        "rules": "Dokokin",
+        "recentActions": "Ayyukan kwanan nan",
+        "danger": "Yankin haɗari"
+      },
+      "title": "Sarrafa",
+      "purgeTitle": "Share duk saƙonni?",
+      "purgeConfirm": "Share",
+      "kickTitle": "Cire memba?",
+      "kickConfirm": "Cire",
+      "bannedPermanent": "Hanin Dhiya — Dindindin",
+      "mutedPermanent": "Muted — dindindin",
+      "editAdminRights": "Gyara izinin gudanarwa",
+      "promoteToAdmin": "Sanya a matsayin gudanarwa",
+      "unmute": "Cire kunne",
+      "mute": "Saka kunne",
+      "unban": "Cire haramci",
+      "ban": "Haramta",
+      "deleteAllMessages": "Share duk saƙonnin",
+      "removeFromCommunity": "Cire daga al'umma",
+      "noActionsAvailable": "Ba za ku iya sarrafa wannan memba ba.",
+      "showMore": "Nuna ƙari",
+      "joinRequests": "Bukatar shiga",
+      "approve": "Amincewa",
+      "reject": "Karyatawa",
+      "members": "Membobi",
+      "searchMembers": "Bincika ta adireshin walat",
+      "noMembersMatch": "Babu memba da ya dace da hakan.",
+      "noMembers": "Babu membobi tukuna.",
+      "muted": "An saka kunne",
+      "banned": "An haramta",
+      "muteEffect": "Suna zama a cikin al'umma amma ba za su iya aika saƙo ba har sai an gama saka kunne.",
+      "banEffect": "An cire su daga taɗi kuma ba za su iya komawa ba har sai an cire haramcin.",
+      "durationLabel": "Tsawon lokaci",
+      "reasonLabel": "Dalili (na zaɓi)",
+      "reasonPlaceholder": "Me yasa ake hana su?",
+      "alsoDeleteMessages": "Har ila yau, share duk saƙonninsu",
+      "confirmMute": "Saka memba kunne",
+      "confirmBan": "Haramta memba",
+      "rulesUpdated": "An sabunta dokoki",
+      "rulesTitle": "Dokokin al'umma",
+      "rulesEmpty": "Babu dokoki tukuna — ƙara na farko a ƙasa.",
+      "rulePlaceholder": "Bayyana doka",
+      "addRule": "Ƙara doka",
+      "saveRules": "Ajiye dokoki",
+      "dismissAdminBody": "{{wallet}} zai koma zama memba na al'ada.",
+      "purgeBody": "Kowane saƙo da {{name}} ya aika a wannan al'umma za a cire shi.",
+      "kickBody": "Za a cire {{name}} daga al'umma. Zai iya sake shiga nan gaba.",
+      "bannedUntil": "An hana har abada har sai {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "An hana magana har sai {{date}}",
+      "bannedUntilShort": "Har sai {{date}}",
+      "muteTitle": "Hana magana ga {{name}}",
+      "banTitle": "Hana {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} daga {{max}}",
+      "moveRuleUp": "Daga sama da doka",
+      "moveRuleDown": "Daga ƙasa da doka",
+      "deleteRule": "Share doka",
+      "rights": {
+        "changeInfo": "Canza bayanin al'umma",
+        "changeInfoHint": "Gyara suna, bayani, avatar da banner",
+        "deleteMessages": "Share saƙonni",
+        "deleteMessagesHint": "Cire kowane saƙo daga tattaunawar al'umma",
+        "restrictMembers": "Hana masu amfani",
+        "restrictMembersHint": "Hana magana, cirewa da hana membobi",
+        "inviteUsers": "Gayyatar masu amfani ta hanyar hanyar haɗi",
+        "inviteUsersHint": "Ƙirƙiri da janye hanyoyin gayyata",
+        "pinMessages": "Saka saƙonni",
+        "pinMessagesHint": "Saka saƙo a saman tattaunawar",
+        "manageEvents": "Gudanar da abubuwan da suka faru",
+        "manageEventsHint": "Ƙirƙiri da gyara abubuwan da suka faru na al'umma",
+        "addAdmins": "Ƙara sabbin masu gudanarwa",
+        "addAdminsHint": "Bada damar zama memba da kuma gyara haƙƙoƙin masu gudanarwa da suka ƙara",
+        "remainAnonymous": "Rage sunanka",
+        "remainAnonymousHint": "Boye wannan mai gudanarwa daga jerin membobi"
+      },
+      "durations": {
+        "oneHour": "1 awa",
+        "eightHours": "8 awanni",
+        "oneDay": "1 rana",
+        "oneWeek": "1 mako",
+        "forever": "Har abada"
+      }
+    },
+    "chooseAvatar": "Zaɓi hoto"
   },
   "work": {
     "title": "Lada",
@@ -2939,7 +3108,9 @@
       "shipped": "An aika",
       "completed": "An kammala",
       "cancelled": "An soke"
-    }
+    },
+    "removePhoto": "Cire hoto",
+    "listingOptions": "Zaɓuɓɓukan jeri"
   },
   "accounts": {
     "subtitle": "Cikakkun asusu don sayarwa, farashi da DHB",
@@ -3307,7 +3478,14 @@
     "removeFollowerHint": "Danna ka riƙe mai bibiya don cire shi.",
     "cancel": "Soke",
     "remove": "Cire",
-    "thisUser": "Wannan mai amfani"
+    "thisUser": "Wannan mai amfani",
+    "cancelRequestTo": "Janye buƙatar biyo ta @{{username}}?",
+    "followingUser": "Yana biye da @{{username}}",
+    "contentUnavailable": "Abun Ciki Bai Samu Ba",
+    "youBlockedBody": "Ba za ku ga bayanan su ba ko ku yi hulɗa da su. Cire toshewa don dawo da damar.",
+    "restrictedBody": "Wannan mai amfani ya taƙaita hulɗa da asusunka.",
+    "requestPendingBody": "An aika buƙatar biyan ku. Za ku iya ganin bayanan su idan sun amince da buƙatar ku.",
+    "followToSeePosts": "Bi wannan asusun don ganin bayanan su."
   },
   "reactionInfo": {
     "title": "Ra'ayoyi",
@@ -3621,7 +3799,8 @@
     "needGas": "Kana buƙatar {{token}} na asali don gas a kan {{chain}}.",
     "bridging": "Ana gadar…",
     "bridgeAction": "Gada {{from}} → {{to}}",
-    "failed": "Gadar ta gaza"
+    "failed": "Gadar ta gaza",
+    "sentArriveShortly": "{{amount}} DHB ya aika daga {{from}} → {{to}}. An bayar da kuɗi nan da nan."
   },
   "banned": {
     "title": "An haramta asusunka",
@@ -3799,7 +3978,16 @@
     "legacyRecovered": "Mun tabbatar da tsohon asusunka{{suffix}} kuma mun dawo da walat ɗinsa. Saita kalmar sirri don kare shi a wannan na'urar — a wannan wayar da ko'ina, daga yanzu.",
     "passwordMin": "Kalmar sirri (aƙalla haruffa {{min}})",
     "newPasswordMin": "Sabuwar kalmar sirri (aƙalla haruffa {{min}})",
-    "newWalletPasswordMin": "Kalmar sirrin sabon walat (aƙalla haruffa {{min}})"
+    "newWalletPasswordMin": "Kalmar sirrin sabon walat (aƙalla haruffa {{min}})",
+    "deviceCheckCancelled": "An soke duba na'ura — babu abin da aka canza.",
+    "savePhraseTitle": "Ajiye kalmar ku ta murmurewa",
+    "startOverTitle": "Fara sabon walat",
+    "secureNewWalletTitle": "Amsar sabon walat ɗin ku",
+    "secureWalletTitle": "Amsar walat ɗin ku",
+    "unlockOnMobileTitle": "Bude akan wayar hannu",
+    "oldAccountFoundTitle": "An samo tsohon asusu",
+    "unlockWalletTitle": "Bude walat ɗin ku",
+    "phraseExplainer": "Wannan wayar za ta kare walat ɗin ku ta hanyar amfani da bayanan ku. Wannan bude <em>yana aiki ne kawai akan wannan wayar</em> — waɗannan kalmomi 12 su ne kawai hanyar dawowa idan kun sake shigar da DeHub, kun canza waya, ko kuma kuka rasa shi."
   },
   "transcript": {
     "title": "Rubutaccen magana",
@@ -3985,7 +4173,38 @@
     "subscribe": "Yi rajista",
     "subscriberCount_one": "Mai biyan kuɗi {{count}}",
     "subscriberCount_other": "Masu biyan kuɗi {{count}}",
-    "subscribeToForRich": "Yi rajista zuwa <name>{{name}}</name> kan <price>{{price}}</price>"
+    "subscribeToForRich": "Yi rajista zuwa <name>{{name}}</name> kan <price>{{price}}</price>",
+    "loadPlansFailed": "An kasa loda tsare-tsare",
+    "subscriberContent": "Abun ciki na masu biyan kuɗi",
+    "subscriberContentSub": "Ƙirƙirar shirye-shirye don bayar da keɓantaccen abun ciki ga masu biyan kuɗi",
+    "createFirstPlan": "Ƙirƙiri Shirinka na Farko",
+    "addNewPlan": "Ƙara Sabon Shirye-shirye",
+    "durations": {
+      "oneMonth": "1 Watan",
+      "threeMonths": "3 Watan",
+      "sixMonths": "6 Watan",
+      "oneYear": "1 Shekara",
+      "lifetime": "Rayuwa"
+    },
+    "planNameRequired": "Ana buƙatar sunan shiri",
+    "enterValidPrice": "Shigar da ingantaccen farashi",
+    "availableChains": "A halin yanzu ana samun biyan kuɗi akan Base da BNB",
+    "waitForSwitch": "Jira hanyar sadarwa ta biyan kuɗi ta gama canzawa",
+    "connectAndWait": "Haɗa walat ɗinka kuma jira hanyar sadarwa ta biyan kuɗi",
+    "planUpdated": "An sabunta shiri",
+    "creating": "Ana ƙirƙira…",
+    "planPublished": "An ƙirƙiri kuma an buga shiri",
+    "createPlanTitle": "Ƙirƙiri Shirin Biyan Kuɗi",
+    "network": "Hanyar sadarwa ta biyan kuɗi",
+    "planNameLabel": "Sunan Shirye-shirye *",
+    "planNamePlaceholder": "Misali. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Abin da masu biyan kuɗi ke samu...",
+    "priceLabel": "Farashi (USD) *",
+    "legacyMigrationNote": "Ajiye yana canza wannan tsohon shirin DHB zuwa farashin dalar Amurka a ƙimar kafin jeri.",
+    "benefits": "Fa'idodi",
+    "benefitPlaceholder": "Ƙara fa'ida...",
+    "createAndPublish": "Ƙirƙiri & Bugawa",
+    "publishingOnChain": "Bugawa ma'amala ce ta kan-rantar"
   },
   "live": {
     "notSet": "Ba a saita ba",
@@ -4103,7 +4322,22 @@
     "acceptTerms": "Na yarda da <terms>Sharuɗɗan Sabis</terms>",
     "sentTo": "{{amount}} {{symbol}} an aika zuwa {{address}}",
     "tokensSentTo": "An aika da Tokens zuwa {{address}}",
-    "goToProfile": "Je zuwa Profile"
+    "goToProfile": "Je zuwa Profile",
+    "aboutTitle": "Game da DeHub & biyan kuɗi",
+    "aboutSubtitle": "Kofarku zuwa biyan kuɗi masu sauƙi ta token",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Ana amfani da alamomi don biyan kuɗi ga masu ƙirƙirar abun ciki, ba masu watsa shirye-shirye kuɗi, ko buɗe abun ciki. Yawan abun da kake da shi, ƙananan kuɗin da kake biya, kuma ƙarin iko na musamman da kake buɗewa kamar haɓaka yanayin yanayi da alamomin tabbaci.",
+    "aboutInstantTitle": "Biya Nan Take",
+    "aboutInstantBody": "Ta amfani da Stripe, zaka iya siyan alamomi nan take kuma ba tare da matsala ba zuwa duk wani asusun da ka shiga. DeHub yana mai da alamomi masu sauƙi kuma ga kowa. Idan kana buƙatar ƙarin tallafi, kawai ka shiga cikin tattaunawar al'ummarmu ta rayuwa 24/7 kuma ka nemi tallafin gudanarwa.",
+    "aboutSecureTitle": "Amintaccen Ƙofar",
+    "aboutSecureBody": "Duk bayanan biyan kuɗi ana ɓoye su kuma Stripe ke sarrafa su cikin aminci. Ba za mu iya samun damar ko adana bayanan sirri ko bayanan katin ku ba, wanda ke ba ku cikakken kwanciyar hankali.",
+    "transfersSummary": "Taƙaitaccen Canja Wuri",
+    "availableToBuy": "Akwai don siye yanzu",
+    "noSupplyShort": "Babu kayan aiki",
+    "topUpSubtitle": "Saye $DHB ta amfani da katin kuma sami gas kyauta don amfani nan take",
+    "noTxHash": "Ba a sami lambar wucewa ba",
+    "latestTransactions": "Sabbin Canja Wuri",
+    "showAll": "Nuna duka"
   },
   "musicSheet": {
     "title": "Ƙirƙiri waƙa",
@@ -4232,7 +4466,13 @@
     "followUpNote": "Za mu iya tuntuɓar ka da ƙarin tambayoyi game da ra'ayinka",
     "submitFeedback": "Aika ra'ayi",
     "provideFeedback": "Don Allah ka rubuta ra'ayinka",
-    "thankYou": "Na gode da ra'ayinka!"
+    "thankYou": "Na gode da ra'ayinka!",
+    "submitFailed": "An kasa aika ra'ayi. Da fatan za a sake gwadawa.",
+    "maybeLater": "Bayan Lokaci",
+    "helpUsImprove": "Taimaka mana mu inganta",
+    "rateExperience": "Yaya zaka kimanta gogewar ka?",
+    "telegramOptional": "Telegram (na zaɓi)",
+    "discordOptional": "Discord (na zaɓi)"
   },
   "migrate": {
     "clearAll": "Gama duka",
@@ -4350,7 +4590,14 @@
       "blueWhale": "Abu mafi girma da ya taɓa rayuwa. Wannan shi ne ku.",
       "megalodon": "Ga kambinku — kun kasance app royalty yanzu"
     },
-    "continue": "Komawa zuwa DeHub"
+    "continue": "Komawa zuwa DeHub",
+    "none": "Babu",
+    "noBadgeYet": "Babu alama tukuna",
+    "next": "Na gaba",
+    "topTier": "Babban matsayi",
+    "toNextTier": "{{amount}} DHB zuwa {{tier}}",
+    "everyTierUnlocked": "Kowane matsayi da aka buɗe",
+    "holdNote": "Da zarar an buɗe alama, tana gare ku muddin kuna riƙe da DHB ɗin ku. Yawan alamomin da ake buƙata don buɗe sabuwar alama na iya canzawa tare da farashin alamar."
   },
   "passwordStrength": {
     "veryWeak": "Mai rauni sosai",
@@ -4432,7 +4679,11 @@
     },
     "ttsLabel": "Ka ce wani abu mai ƙarfi",
     "ttsPlaceholder": "Karanta zuwa rafi...",
-    "ttsHint": "Karanta da ƙarfi ga kowa da kowa yana kallo lokacin da kyautarku ta sauka."
+    "ttsHint": "Karanta da ƙarfi ga kowa da kowa yana kallo lokacin da kyautarku ta sauka.",
+    "sendAGift": "Aika Kyauta",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Ƙaramin kyauta shine {{amount}}",
+    "sendGift": "Aika Kyauta"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4812,7 +5063,8 @@
         "title": "Dubi yadda samun kudi ke aiki",
         "body": "Gano yadda tukwici, badges da SuperPowers ke juya abin da kuke yi a nan zuwa wani abu da kuka samu daga."
       }
-    }
+    },
+    "swipeToStart": "Gungura don farawa"
   },
   "conversation": {
     "commonGround": {
@@ -5294,5 +5546,18 @@
     "toastPaidSettled": "An biya — an kammala cinikin",
     "walletNotReady": "Walat ɗinka bai shirya ba tukuna — sake gwadawa nan da ɗan lokaci.",
     "wrongChain": "Wannan ciniki ana kammala shi a kan {{chain}}. Canja zuwa {{chain}} a Saituna, sannan ka sake gwadawa."
+  },
+  "moderation": {
+    "appealDuplicate": "Kun riga kun yi kira ga wannan",
+    "appealSent": "An aika daukaka kara",
+    "appealFailed": "Ba za a iya shigar da wannan roko ba",
+    "appealTitle": "Ku daukaka wannan shawarar",
+    "appealSubtitle": "Mutum zai karanta wannan kuma ya sake duba shawarar.",
+    "appealPlaceholder": "Me kuke tsammani ya ɓace? Context game da abun ciki yana taimakawa fiye da kowane abu.",
+    "appealSend": "Aika daukaka kara",
+    "appealFootnote": "Kuna samun lambar tunani, kuma amsar ta dawo nan. Ɗaya daga cikin roƙo a kowane yanke shawara.",
+    "appealRef": "Nunawa {{ref}}",
+    "appealSubtitleSubject": "Mutum zai karanta wannan kuma ya sake duba {{subject}}.",
+    "appealMore": "Har yanzu ana buƙatar halaye: {{count}}"
   }
 }

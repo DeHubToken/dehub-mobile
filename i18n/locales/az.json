@@ -680,7 +680,11 @@
       "hintAllow": "AI sistemləri və bu siqnala hörmət edən tarayıcılar səs, sənət əsəri və yazı üzərində məşq edə bilər.",
       "hintDeny": "Bu siqnala hörmət edən AI sistemləri və tarayıcılardan audio, incəsənət və yazı üzərində məşq etməmələri xahiş olunur. Siqnala məhəl qoymayan sürünənlər bununla bloklanmır.",
       "saved": "AI təlimi tərcihləri yaddaşda saxlanıldı"
-    }
+    },
+    "chainIdLabel": "Zəncir ID: {{id}}",
+    "exportPkConfirmPhrase": "BAŞA DÜŞDÜM",
+    "exportPkCopy": "Şəxsi açarı köçür",
+    "e2eAutomatic": "Avtomatik"
   },
   "common": {
     "mute": "Səssiz et",
@@ -720,7 +724,17 @@
     "optionalSuffix": "(istəyə bağlı)",
     "yesterday": "Dünən",
     "ok": "OK",
-    "continue": "Davam et"
+    "continue": "Davam et",
+    "goesToHomeFeed": "Ana lentə gedir",
+    "openMenu": "Menyu aç",
+    "scrollsFeedToTop": "Lentə yuxarı doğru gedir və onu yeniləyir",
+    "notificationsUnread": "Bildirişlər, {{unread}} oxunmamış",
+    "errorDetails": "Xəta detalları:",
+    "failedToLoad": "Yüklənmədi",
+    "noInternetTitle": "İnternet bağlantısı yoxdur",
+    "noInternetBody": "Xahiş edirik internet bağlantınızı yoxlayın və yenidən cəhd edin. DeHub-dan istifadə etmək üçün internetə qoşulmalısınız.",
+    "noInternetStatus": "Offline - Şəbəkə bağlantısı yoxdur",
+    "noInternetHint": "Wi-Fi və ya mobil məlumatın açıq olduğundan əmin olun, sonra \"{{action}}\" düyməsini basın"
   },
   "tip": {
     "title": "Bəxşiş Göndər",
@@ -1609,7 +1623,12 @@
     "chooseUsernameBody": "Davam etmək üçün istifadəçi adı və görünən ad seçin. Sonra dəyişə bilərsiniz.",
     "checkingAvailability": "Əlçatanlıq yoxlanılır…",
     "usernameTakenHint": "Bu ad tutulub — rəqəm və ya alt xətt əlavə etməyi sınayın",
-    "displayNameLength": "Görünən ad 2-50 simvol olmalıdır."
+    "displayNameLength": "Görünən ad 2-50 simvol olmalıdır.",
+    "loginFailedRetry": "Giriş uğursuz oldu. Zəhmət olmasa yenidən cəhd edin.",
+    "sendCodeFailedRetry": "Kod göndərilə bilmədi. Zəhmət olmasa yenidən cəhd edin.",
+    "invalidCodeRetry": "Yanlış kod. Zəhmət olmasa yenidən cəhd edin.",
+    "invalidEmailOrPassword": "Yanlış e-poçt və ya şifrə.",
+    "welcomeToDehub": "DeHub-a xoş gəlmisiniz"
   },
   "messages": {
     "smartRepliesOff": "Təklif olunan cavablar söndürüldü",
@@ -1687,7 +1706,32 @@
     "offerWorthNow": "Cari məzənnə ilə təxminən {{amount}} DHB",
     "offerNotePlaceholder": "Qeyd əlavə et (istəyə bağlı)",
     "offerCommitsNothing": "Təklif vermək heç nəyə başa gəlmir və DHB bloklamır. Yalnız sahibi qəbul edərsə ödəyirsən.",
-    "offerNeedsHandle": "Bu hesabın təklif veriləcək istifadəçi adı yoxdur."
+    "offerNeedsHandle": "Bu hesabın təklif veriləcək istifadəçi adı yoxdur.",
+    "noPostsYet": "Hələlik heç bir yazı yoxdur",
+    "noPostsYetSub": "Yazılar yerləşdirildikdə burada görünəcək",
+    "noPinnedPosts": "Hələlik heç bir sabitlənmiş yazı yoxdur",
+    "noPinnedPostsSub": "Sabitlənmiş yazılar burada görünəcək",
+    "emptyLiked": "Hələlik heç bir bəyənilmiş yazı yoxdur.",
+    "emptySaved": "Hələlik heç bir saxlanılmış yazı yoxdur.",
+    "emptyUnlocked": "Hələlik heç bir kilidi açılmış yazı yoxdur.",
+    "emptyWatched": "Hələlik baxış tarixi yoxdur.",
+    "emptyFolder": "Bu qovluqda hələlik heç bir yazı yoxdur.",
+    "emptyPosts": "Hələlik heç bir yazı yoxdur.",
+    "couldNotLoadPosts": "Yazılar yüklənə bilmədi.",
+    "noPostsOrReplies": "Hələlik heç bir paylaşım, şərh və ya cavab yoxdur",
+    "noPostsOrRepliesSub": "Onlar burada görünəcək",
+    "avatarUpdated": "Avatar yeniləndi",
+    "coverUpdated": "Şəkil yeniləndi",
+    "couldNotPickImage": "Şəkili seçmək mümkün olmadı",
+    "changeCoverImage": "Şəkilini dəyiş",
+    "changeAvatar": "Avatarını dəyiş",
+    "verifiedEnsName": "Təsdiqlənmiş ENS adı {{name}}",
+    "notFullyJoined": "Bu istifadəçi hələ tam qoşulmayıb. İstifadəçi adı seçməyib və ya profil quruluşunu tamamlamayıb. Siz hələ də ictimai fəaliyyəti görə və əgər varsa, göstərişlər göndərə bilərsiniz.",
+    "loadRepliesFailed": "Cavablar yüklənmədi",
+    "refreshFailed": "Yeniləmə uğursuz oldu",
+    "noRepliesYet": "Cavab yoxdur",
+    "noRepliesYetSub": "Bu istifadəçi paylaşımlara cavab verdikdə, onlar burada görünəcək.",
+    "noMoreReplies": "Daha cavab yoxdur"
   },
   "tv": {
     "title": "TV",
@@ -1770,7 +1814,11 @@
     "loadingPrice": "Qiymət yüklənir…",
     "topUpExplanation": "DHB zəncir üzərində DeHub reklam xəzinəsinə köçürülür, sonra müstəqil zəncir yoxlamasından sonra balansına əlavə olunur.",
     "paymentHistory": "Ödəniş tarixçəsi",
-    "noPayments": "Hələ ödəniş yoxdur"
+    "noPayments": "Hələ ödəniş yoxdur",
+    "sponsored": "Sponsorlu",
+    "morePosts": "Daha çox paylaşım",
+    "loadMorePosts": "Daha çox paylaşım yüklə",
+    "playAdVideo": "Reklam videosunu oynat"
   },
   "buyCoins": {
     "title": "Sikkə Al",
@@ -2205,7 +2253,8 @@
     "privateBalanceMode": "Şəxsi balans rejimi aktivdir",
     "addressHidden": "Ünvan gizlidir",
     "allowInFeeds": "Bu istifadəçinin lentlərinizdə görünməsinə icazə ver",
-    "hideContent": "Onların məzmununu gizlət və qarşılıqlı əlaqələri məhdudlaşdır"
+    "hideContent": "Onların məzmununu gizlət və qarşılıqlı əlaqələri məhdudlaşdır",
+    "a11yLabel": "Profil seçimləri"
   },
   "toasts": {
     "saved_to_bookmarks": "Əlfəcinlərə saxlanıldı",
@@ -2577,7 +2626,8 @@
     "roles": {
       "owner": "Sahib",
       "moderator": "Moderator",
-      "member": "Üzv"
+      "member": "Üzv",
+      "admin": "Admin"
     },
     "time": {
       "today": "bu gün",
@@ -2586,7 +2636,126 @@
       "weeks": "{{count}} həftə",
       "months": "{{count}} ay",
       "years": "{{count}} il"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "redaktə edildi",
+      "deleteTitle": "Mesajı sil",
+      "deleteConfirm": "Bu mesajı silmək istəyirsiniz? Bu geri qaytarıla bilməz.",
+      "muted": "Siz səssizləşdirildiniz",
+      "postingDisabled": "Burada üzvlər üçün paylaşım etmək qadağandır",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Sabitlənmiş mesaj",
+      "showEarlier": "Daha əvvəlki mesajları göstər",
+      "editingMessage": "Mesajı redaktə etmək",
+      "copied": "Mesaj kopyalandı",
+      "copyText": "Mətni kopy",
+      "mutedUntil": "{{date}} tarixinə qədər dəyişmisiniz",
+      "slowMode": "Yavaş rejim: hər {{interval}} üçün bir mesaj"
+    },
+    "manage": {
+      "dismissAdminTitle": "Admindən imtina et",
+      "cancel": "Ləğv et",
+      "dismissAdmin": "Admindən imtina et",
+      "roleAdmin": "Administrator",
+      "roleMember": "Üzv",
+      "whatCanTheyDo": "Bu idarəçi nə edə bilər?",
+      "rightNotHeld": "Bu sizin özünüzdə yoxdur",
+      "customTitle": "Fərdi başlıq",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Standart Admin nişanı əvəzinə göstərilsin.",
+      "saveChanges": "Dəyişiklikləri yaddaşda saxla",
+      "promote": "Təşviq et",
+      "tabs": {
+        "members": "Üzvlər",
+        "admins": "Adminlər",
+        "permissions": "İcazələr",
+        "invites": "Dəvətlər",
+        "rules": "Qaydalar",
+        "recentActions": "Son fəaliyyətlər",
+        "danger": "Təhlükəli zona"
+      },
+      "title": "İdarə et",
+      "purgeTitle": "Bütün mesajlar silinsin?",
+      "purgeConfirm": "Sil",
+      "kickTitle": "Üzv silinsin?",
+      "kickConfirm": "Sil",
+      "bannedPermanent": "Qadağan edilmiş — daimi",
+      "mutedPermanent": "Mövqeli — qalıcı",
+      "editAdminRights": "Admin hüquqlarını redaktə et",
+      "promoteToAdmin": "Adminliyə yüksəlt",
+      "unmute": "Səsini aç",
+      "mute": "Səsini kəs",
+      "unban": "Qadağanı qaldır",
+      "ban": "Qadağan et",
+      "deleteAllMessages": "Bütün mesajları sil",
+      "removeFromCommunity": "İcmadan çıxar",
+      "noActionsAvailable": "Bu üzvü moderasiya edə bilməzsiniz.",
+      "showMore": "Daha çox göstər",
+      "joinRequests": "Dəvət tələbləri",
+      "approve": "Təsdiqlə",
+      "reject": "Rədd et",
+      "members": "Üzvlər",
+      "searchMembers": "Cüzdan ünvanına görə axtar",
+      "noMembersMatch": "Heç bir üzv uyğun gəlmir.",
+      "noMembers": "Hələ üzv yoxdur.",
+      "muted": "Səs kəsildi",
+      "banned": "Qadağan edildi",
+      "muteEffect": "Onlar icmada qalırlar, lakin səs kəsilməsi bitənə qədər yazı yaza bilmirlər.",
+      "banEffect": "Onlar söhbətdən çıxarılırlar və qadağa qaldırılana qədər geri qayıda bilmirlər.",
+      "durationLabel": "Müddət",
+      "reasonLabel": "Səbəb (isteğe bağlı)",
+      "reasonPlaceholder": "Niyə qadağan olunurlar?",
+      "alsoDeleteMessages": "Onların bütün mesajlarını da sil",
+      "confirmMute": "Üzvü səssizləşdir",
+      "confirmBan": "Üzvü qadağan et",
+      "rulesUpdated": "Qaydalar yeniləndi",
+      "rulesTitle": "İcma qaydaları",
+      "rulesEmpty": "Hələ qayda yoxdur — ilkini aşağıya əlavə edin.",
+      "rulePlaceholder": "Qaydanı təsvir et",
+      "addRule": "Qayda əlavə et",
+      "saveRules": "Qaydaları yadda saxla",
+      "dismissAdminBody": "{{wallet}} adi üzvə geri dönəcək.",
+      "purgeBody": "{{name}} tərəfindən bu icmaya göndərilən hər bir mesaj silinəcək.",
+      "kickBody": "{{name}} icmadan xaric ediləcək. Onlar daha sonra yenidən qoşula bilərlər.",
+      "bannedUntil": "{{date}} -dək qadağan edildi",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "{{date}} -dək səssizləşdirildi",
+      "bannedUntilShort": "{{date}} -dək",
+      "muteTitle": "{{name}} -i səssizləşdir",
+      "banTitle": "{{name}} -i qadağan et",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{max}} -dan {{used}}",
+      "moveRuleUp": "Qaydanı yuxarı apar",
+      "moveRuleDown": "Qaydanı aşağı apar",
+      "deleteRule": "Qaydanı sil",
+      "rights": {
+        "changeInfo": "İcmanın məlumatlarını dəyişdir",
+        "changeInfoHint": "Adı, təsviri, avatarları və banneri redaktə et",
+        "deleteMessages": "Mesajları sil",
+        "deleteMessagesHint": "İcma söhbətindən istənilən mesajı sil",
+        "restrictMembers": "İstifadəçiləri qadağan et",
+        "restrictMembersHint": "Üzvləri səssizləşdir, uzaqlaşdır və qadağan et",
+        "inviteUsers": "Link vasitəsilə istifadəçiləri dəvət et",
+        "inviteUsersHint": "Dəvət linkləri yarat və ləğv et",
+        "pinMessages": "Mesajları bərkit",
+        "pinMessagesHint": "Mesajı söhbətin yuxarısına bərkit",
+        "manageEvents": "Tədbirləri idarə et",
+        "manageEventsHint": "İcma tədbirləri yarat və redaktə et",
+        "addAdmins": "Yeni administratorlar əlavə et",
+        "addAdminsHint": "Üzvləri təbliğ edin və əlavə etdikləri adminlərin hüquqlarını redaktə edin",
+        "remainAnonymous": "Adsız qalın",
+        "remainAnonymousHint": "Bu admini üzvlər siyahısından gizlədin"
+      },
+      "durations": {
+        "oneHour": "1 saat",
+        "eightHours": "8 saat",
+        "oneDay": "1 gün",
+        "oneWeek": "1 həftə",
+        "forever": "Əbədi"
+      }
+    },
+    "chooseAvatar": "Avatar seçin"
   },
   "work": {
     "title": "Mükafatlar",
@@ -2938,7 +3107,9 @@
       "shipped": "Göndərilib",
       "completed": "Tamamlanıb",
       "cancelled": "Ləğv edilib"
-    }
+    },
+    "removePhoto": "Şəkli silin",
+    "listingOptions": "Siyahı seçimləri"
   },
   "accounts": {
     "subtitle": "Tam hesablar satışda, qiyməti DHB ilə",
@@ -3306,7 +3477,14 @@
     "removeFollowerHint": "Onları silmək üçün bir təqibçini basıb saxlayın.",
     "cancel": "Ləğv et",
     "remove": "Sil",
-    "thisUser": "Bu istifadəçi"
+    "thisUser": "Bu istifadəçi",
+    "cancelRequestTo": "@{{username}}-ın izləmə tələbini ləğv edin?",
+    "followingUser": "@{{username}}-ı izləyirsiniz",
+    "contentUnavailable": "Məzmun mövcud deyil",
+    "youBlockedBody": "Onun yazılarını görməyəcək və onlarla qarşılıqlı əlaqə qura bilməyəcəksiniz. Yenidən əlaqə qurmaq üçün blokdan çıxarın.",
+    "restrictedBody": "Bu istifadəçi hesabınızla qarşılıqlı əlaqələri məhdudlaşdırıb.",
+    "requestPendingBody": "İzləmə tələbiniz göndərildi. Tələbinizi təsdiqlədikdən sonra onun yazılarını görə biləcəksiniz.",
+    "followToSeePosts": "Onun yazılarını görmək üçün bu hesaba abunə olun."
   },
   "reactionInfo": {
     "title": "Reaksiyalar",
@@ -3617,7 +3795,8 @@
     "needGas": "{{chain}} üzərində qaz üçün doğma {{token}} lazımdır.",
     "bridging": "Körpülənir…",
     "bridgeAction": "{{from}} → {{to}} körpülə",
-    "failed": "Körpü alınmadı"
+    "failed": "Körpü alınmadı",
+    "sentArriveShortly": "{{amount}} DHB, {{from}}-dan {{to}}-a göndərildi. Tokenlər tezliklə gələcək."
   },
   "banned": {
     "title": "Hesabınız qadağan edildi",
@@ -3795,7 +3974,16 @@
     "legacyRecovered": "Köhnə hesabınız{{suffix}} təsdiqləndi və cüzdanı bərpa olundu. Bundan sonra bu cihazda — bu telefonda və hər yerdə — qorunması üçün parol təyin edin.",
     "passwordMin": "Parol (ən azı {{min}} simvol)",
     "newPasswordMin": "Yeni parol (ən azı {{min}} simvol)",
-    "newWalletPasswordMin": "Yeni cüzdan parolu (ən azı {{min}} simvol)"
+    "newWalletPasswordMin": "Yeni cüzdan parolu (ən azı {{min}} simvol)",
+    "deviceCheckCancelled": "Cihaz yoxlaması ləğv edildi — heç bir dəyişiklik edilmədi.",
+    "savePhraseTitle": "Bərpa cümlənizi qeyd edin",
+    "startOverTitle": "Yeni cüzdanla yenidən başlayın",
+    "secureNewWalletTitle": "Yeni cüzdanınızı təmin edin",
+    "secureWalletTitle": "Cüzdanınızı təmin edin",
+    "unlockOnMobileTitle": "Mobil cihazda kilidi açın",
+    "oldAccountFoundTitle": "Köhnə hesab tapıldı",
+    "unlockWalletTitle": "Cüzdanınızın kilidini açın",
+    "phraseExplainer": "Cüzdanınız bu telefonun biomətrik məlumatları ilə qorunacaq. Bu kilid açma <em>yalnız bu telefonda işləyir</em> — DeHub-u yenidən quraşdırsanız, telefonu dəyişsəniz və ya itirsəniz, geri qayıtmağın yeganə yolu bu 12 sözdür."
   },
   "transcript": {
     "title": "Transkript",
@@ -3982,7 +4170,38 @@
     "subscribe": "Abunə ol",
     "subscriberCount_one": "{{count}} abunəçi",
     "subscriberCount_other": "{{count}} abunəçi",
-    "subscribeToForRich": "<price>{{price}}</price> qarşılığında <name>{{name}}</name> planına abunə olun"
+    "subscribeToForRich": "<price>{{price}}</price> qarşılığında <name>{{name}}</name> planına abunə olun",
+    "loadPlansFailed": "Planlar yüklənə bilmədi",
+    "subscriberContent": "Abunəçi məzmunu",
+    "subscriberContentSub": "Abonentlərə eksklüziv məzmun təklif etmək üçün planlar yaradın",
+    "createFirstPlan": "İlk Planınızı Yaradın",
+    "addNewPlan": "Yeni Plan Əlavə Et",
+    "durations": {
+      "oneMonth": "1 Ay",
+      "threeMonths": "3 Ay",
+      "sixMonths": "6 Ay",
+      "oneYear": "1 İl",
+      "lifetime": "Ömürlük"
+    },
+    "planNameRequired": "Plan adı tələb olunur",
+    "enterValidPrice": "Etibarlı qiymət daxil edin",
+    "availableChains": "Subskripsiyalar hazırda Base və BNB-də mövcuddur",
+    "waitForSwitch": "Subskripsiya şəbəkəsinin dəyişilməsini tamamlamasını gözləyin",
+    "connectAndWait": "Cüzdanınızı qoşun və subskripsiya şəbəkəsini gözləyin",
+    "planUpdated": "Plan yeniləndi",
+    "creating": "Yaradılır…",
+    "planPublished": "Plan yaradıldı və dərc olundu",
+    "createPlanTitle": "Subskripsiya Planı Yaradın",
+    "network": "Subskripsiya şəbəkəsi",
+    "planNameLabel": "Plan Adı *",
+    "planNamePlaceholder": "Məsələn: Premium, Qızıl, VIP...",
+    "descriptionPlaceholder": "Abonentlər nə əldə edir...",
+    "priceLabel": "Qiymət (USD) *",
+    "legacyMigrationNote": "Qənaət, bu köhnə DHB planını siyahıdan əvvəlki məzənnə ilə dollar qiymətlərinə köçürür.",
+    "benefits": "Faydalı məlumatlar",
+    "benefitPlaceholder": "Bir faydalı məlumat əlavə edin...",
+    "createAndPublish": "Yaradın və Dərc Edin",
+    "publishingOnChain": "Dərc etmək on-chain əməliyyatdır"
   },
   "live": {
     "notSet": "Təyin edilməyib",
@@ -4099,7 +4318,22 @@
     "checkoutUnavailable": "Ödəniş linki əlçatmazdır. Zəhmət olmasa yenidən cəhd edin.",
     "acceptTerms": "Qəbul edirəm <terms>Xidmət şərtləri</terms>",
     "tokensSentTo": "Tokenlər {{address}} ünvanına göndərildi",
-    "goToProfile": "Profilə keç"
+    "goToProfile": "Profilə keç",
+    "aboutTitle": "DeHub & ödənişlər haqqında",
+    "aboutSubtitle": "Səmərəli token ödənişləri üçün qapınız",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokenlər yaradıcılara abunə olmaq, strimerlərə pul göndərmək və ya məzmunun kilidini açmaq üçün istifadə olunur. Nə qədər çox saxlasanız, ödənişləriniz bir o qədər aşağı olar və zaman xətti trendlərini artırmaq və təsdiqləmə nişanları kimi daha çox super gücün kilidini açarsınız.",
+    "aboutInstantTitle": "Anında Ödənişlər",
+    "aboutInstantBody": "Stripe istifadə edərək, daxil olduğunuz istənilən hesaba dərhal və problemsiz tokenlər ala bilərsiniz. DeHub tokenləri sadə və hamı üçün əlçatan edir. Daha çox dəstəyə ehtiyacınız varsa, 24/7 canlı icma söhbətimizə daxil olun və admin dəstəyi üçün müraciət edin.",
+    "aboutSecureTitle": "Təhlükəsiz Qapı",
+    "aboutSecureBody": "Bütün ödəniş məlumatları şifrələnir və Stripe tərəfindən təhlükəsiz şəkildə emal olunur. Biz sizin həssas məlumatlarınıza və ya kart məlumatlarınıza daxil ola və ya onları saxlaya bilmərik, bu da sizə tam əminlik verir.",
+    "transfersSummary": "Transferlər Xülasəsi",
+    "availableToBuy": "İndi almaq üçün mövcuddur",
+    "noSupplyShort": "Təchizat yoxdur",
+    "topUpSubtitle": "Kartla $DHB alın və dərhal istifadə üçün pulsuz qaz əldə edin",
+    "noTxHash": "Əməliyyat xəşini tapmaq mümkün olmadı",
+    "latestTransactions": "Son Əməliyyatlar",
+    "showAll": "Hamısını göstər"
   },
   "musicSheet": {
     "title": "Mahnı yarat",
@@ -4228,7 +4462,13 @@
     "followUpNote": "Rəyinizlə bağlı əlavə suallar üçün sizinlə əlaqə saxlaya bilərik",
     "submitFeedback": "Rəyi göndər",
     "provideFeedback": "Zəhmət olmasa rəyinizi yazın",
-    "thankYou": "Rəyiniz üçün təşəkkürlər!"
+    "thankYou": "Rəyiniz üçün təşəkkürlər!",
+    "submitFailed": "Rəy təqdim etmək alınmadı. Zəhmət olmasa yenidən cəhd edin.",
+    "maybeLater": "Sonra",
+    "helpUsImprove": "Kömək et",
+    "rateExperience": "Təcrübənizi necə qiymətləndirərdiniz?",
+    "telegramOptional": "Telegram (isteğe bağlı)",
+    "discordOptional": "Discord (isteğe bağlı)"
   },
   "migrate": {
     "clearAll": "Hamısını təmizlə",
@@ -4344,7 +4584,14 @@
       "blueWhale": "Yaşanmış ən böyük şey. Bu sənsən.",
       "megalodon": "Bu da sizin tacınız — indi tətbiq royalsınız"
     },
-    "continue": "DeHub-a qayıt"
+    "continue": "DeHub-a qayıt",
+    "none": "Heç biri",
+    "noBadgeYet": "Hələ nişan yoxdur",
+    "next": "Növbəti",
+    "topTier": "Ən yüksək səviyyə",
+    "toNextTier": "{{amount}} DHB - {{tier}} -ə",
+    "everyTierUnlocked": "Hər səviyyənin kilidi açıldı",
+    "holdNote": "Nişan kilidini açdıqdan sonra, DHB-nizi saxladığınız müddətcə o sizin olacaq. Yeni nişanın kilidini açmaq üçün lazım olan tokenlərin sayı token qiyməti ilə dəyişə bilər."
   },
   "passwordStrength": {
     "veryWeak": "Çox zəif",
@@ -4426,7 +4673,11 @@
     },
     "ttsLabel": "Yüksək səslə nəsə deyin",
     "ttsPlaceholder": "Axına baxın...",
-    "ttsHint": "Hədiyyəniz yerə endikdə izləyən hər kəsə ucadan oxuyun."
+    "ttsHint": "Hədiyyəniz yerə endikdə izləyən hər kəsə ucadan oxuyun.",
+    "sendAGift": "Hədiyyə Göndər",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minimum hədiyyə {{amount}} -dir",
+    "sendGift": "Hədiyyə Göndər"
   },
   "goLive": {
     "streamKey": "Axın Açarı",
@@ -4809,7 +5060,8 @@
         "title": "Qazancın necə işlədiyinə baxın",
         "body": "İpucları, nişanlar və Super Güclərin burada etdiklərinizi necə qazandığınız bir şeyə çevirdiyini öyrənin."
       }
-    }
+    },
+    "swipeToStart": "Başlamaq üçün sürüşdürün"
   },
   "conversation": {
     "commonGround": {
@@ -5291,5 +5543,18 @@
     "toastPaidSettled": "Ödənildi — sövdə həll edildi",
     "walletNotReady": "Pul kisəniz hələ hazır deyil — bir az sonra yenidən cəhd edin.",
     "wrongChain": "Bu sövdə {{chain}} üzərində həll olunur. Parametrlərdə {{chain}} şəbəkəsinə keçin və yenidən cəhd edin."
+  },
+  "moderation": {
+    "appealDuplicate": "Artıq buna etiraz etmisiniz",
+    "appealSent": "Etiraz göndərildi",
+    "appealFailed": "Bu etirazı təqdim etmək mümkün olmadı",
+    "appealTitle": "Bu qərara etiraz edin",
+    "appealSubtitle": "Bir nəfər bunu oxuyacaq və qərara yenidən baxacaq.",
+    "appealPlaceholder": "Sizcə, nə çatışmadı? Məzmun haqqında məzmun digərlərindən daha çox kömək edir.",
+    "appealSend": "Etiraz göndər",
+    "appealFootnote": "İstinad nömrəsi alırsınız və cavab bura qayıdır. Hər qərar üçün bir etiraz.",
+    "appealRef": "İstinad {{ref}}",
+    "appealSubtitleSubject": "Bir nəfər bunu oxuyacaq və {{subject}} səhifəsinə yenidən baxacaq.",
+    "appealMore": "Simvollar hələ də lazımdır: {{count}}"
   }
 }

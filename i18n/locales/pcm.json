@@ -638,7 +638,11 @@
     "aiScraping": {
       "section": "AI training",
       "saved": "AI training preference saved"
-    }
+    },
+    "chainIdLabel": "Chain ID na {{id}}",
+    "exportPkConfirmPhrase": "I DON UNDERSTAND",
+    "exportPkCopy": "Copy di private key",
+    "e2eAutomatic": "E dey do am by itself"
   },
   "common": {
     "mute": "Off di sound",
@@ -678,7 +682,17 @@
     "optionalSuffix": "(optional)",
     "yesterday": "Yesterday",
     "ok": "OK",
-    "continue": "Continue"
+    "continue": "Continue",
+    "goesToHomeFeed": "E go carry you go di home feed",
+    "openMenu": "Open di menu",
+    "scrollsFeedToTop": "E go scroll go top of di feed and refresh am",
+    "notificationsUnread": "Notifications, {{unread}} wey you never read",
+    "errorDetails": "Wetin cause di error:",
+    "failedToLoad": "E no gree load",
+    "noInternetTitle": "Internet no dey",
+    "noInternetBody": "Abeg check your internet connection and try again. You need internet to use DeHub.",
+    "noInternetStatus": "Offline - Network no dey",
+    "noInternetHint": "Make sure say Wi-Fi or mobile data dey on, then tap \"{{action}}\""
   },
   "tip": {
     "title": "Send Tip",
@@ -1537,7 +1551,12 @@
     "chooseUsernameBody": "Pick username and display name make you continue. You fit change am later.",
     "checkingAvailability": "We dey check if e dey available…",
     "usernameTakenHint": "Somebody don take dis username — try add numbers or underscore",
-    "displayNameLength": "Display name suppose be 2-50 characters."
+    "displayNameLength": "Display name suppose be 2-50 characters.",
+    "loginFailedRetry": "Login no work. Abeg try again.",
+    "sendCodeFailedRetry": "We no fit send code. Abeg try again.",
+    "invalidCodeRetry": "Di code no correct. Abeg try again.",
+    "invalidEmailOrPassword": "Email or password no correct.",
+    "welcomeToDehub": "You don land DeHub, welcome"
   },
   "messages": {
     "smartRepliesOff": "Dem don off the reply wey we suggest",
@@ -1613,7 +1632,32 @@
     "offerWorthNow": "About {{amount}} DHB for the rate now",
     "offerNotePlaceholder": "Add small note (if you want)",
     "offerCommitsNothing": "To make offer no cost anything and e no go hold any DHB. Na only if the owner accept you go pay.",
-    "offerNeedsHandle": "This account no get username wey you fit offer for."
+    "offerNeedsHandle": "This account no get username wey you fit offer for.",
+    "noPostsYet": "No post dey yet",
+    "noPostsYetSub": "Content go show here when dem post am",
+    "noPinnedPosts": "No pinned post yet",
+    "noPinnedPostsSub": "Pinned posts go show here",
+    "emptyLiked": "No post wey you like yet.",
+    "emptySaved": "No post wey you save yet.",
+    "emptyUnlocked": "No post wey you unlock yet.",
+    "emptyWatched": "You never watch anything yet.",
+    "emptyFolder": "No post dey inside dis folder yet.",
+    "emptyPosts": "No post dey yet.",
+    "couldNotLoadPosts": "Posts no gree load.",
+    "noPostsOrReplies": "No posts, comments or replies yet",
+    "noPostsOrRepliesSub": "Dem go show here",
+    "avatarUpdated": "Avatar don change",
+    "coverUpdated": "Cover don change",
+    "couldNotPickImage": "We no fit pick di picture",
+    "changeCoverImage": "Change di cover picture",
+    "changeAvatar": "Change di avatar",
+    "verifiedEnsName": "ENS name wey dem don verify: {{name}}",
+    "notFullyJoined": "Dis user never join finish. Dem never claim username or finish profile setup. You fit still see dia public activity and send tips if e dey available.",
+    "loadRepliesFailed": "Replies no gree load",
+    "refreshFailed": "Refresh no work",
+    "noRepliesYet": "No reply dey yet",
+    "noRepliesYetSub": "When dis user reply posts, di replies go show here.",
+    "noMoreReplies": "No more replies again"
   },
   "tv": {
     "title": "TV",
@@ -1696,7 +1740,11 @@
     "loadingPrice": "Dey load price…",
     "topUpExplanation": "Dem dey send DHB on-chain go DeHub ads treasury, den dem go credit your balance after independent on-chain check.",
     "paymentHistory": "Payment history",
-    "noPayments": "No payment dey yet"
+    "noPayments": "No payment dey yet",
+    "sponsored": "Na sponsor pay for am",
+    "morePosts": "Plenty more posts",
+    "loadMorePosts": "Load more posts join",
+    "playAdVideo": "Play di ad video"
   },
   "buyCoins": {
     "title": "Buy Coins",
@@ -2117,7 +2165,8 @@
     "privateBalanceMode": "Private balance mode dey on",
     "addressHidden": "Address dey hidden",
     "allowInFeeds": "Allow dis user show for your feeds",
-    "hideContent": "Hide dem content and limit interactions"
+    "hideContent": "Hide dem content and limit interactions",
+    "a11yLabel": "Wetin you fit do for dis profile"
   },
   "toasts": {
     "saved_to_bookmarks": "E don save for bookmarks",
@@ -2458,7 +2507,8 @@
     "roles": {
       "owner": "Owner",
       "moderator": "Moderator",
-      "member": "Member"
+      "member": "Member",
+      "admin": "Oga admin"
     },
     "time": {
       "today": "today",
@@ -2467,7 +2517,126 @@
       "weeks": "{{count}} weeks",
       "months": "{{count}} months",
       "years": "{{count}} years"
-    }
+    },
+    "chatPanel": {
+      "anon": "Person wey no get name",
+      "edited": "dem don edit am",
+      "deleteTitle": "Delete di message",
+      "deleteConfirm": "You wan delete dis message? You no fit undo am.",
+      "muted": "Dem don mute you",
+      "postingDisabled": "Members no fit post for here",
+      "mediaMessage": "Picture or video",
+      "pinnedMessage": "Message wey dem pin",
+      "showEarlier": "Show di messages wey don pass",
+      "editingMessage": "You dey edit message",
+      "copied": "Message don copy",
+      "copyText": "Copy di text",
+      "mutedUntil": "Dem don mute you until {{date}}",
+      "slowMode": "Slow mode: one message for every {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Comot am as admin",
+      "cancel": "Cancel am",
+      "dismissAdmin": "Comot am as admin",
+      "roleAdmin": "Oga admin",
+      "roleMember": "Member of di community",
+      "whatCanTheyDo": "Wetin dis admin fit do?",
+      "rightNotHeld": "You no get dis right yourself",
+      "customTitle": "Your own title",
+      "customTitlePlaceholder": "Oga admin",
+      "customTitleHint": "E go show instead of di normal Admin badge.",
+      "saveChanges": "Save di changes",
+      "promote": "Promote am",
+      "tabs": {
+        "members": "Di members",
+        "admins": "Di admins",
+        "permissions": "Wetin dem fit do",
+        "invites": "Invite links",
+        "rules": "Di rules",
+        "recentActions": "Wetin happen recently",
+        "danger": "Danger side"
+      },
+      "title": "Manage am",
+      "purgeTitle": "Delete all di messages?",
+      "purgeConfirm": "Delete am",
+      "kickTitle": "Comot dis member?",
+      "kickConfirm": "Comot am",
+      "bannedPermanent": "Dem don ban am — forever",
+      "mutedPermanent": "Dem don mute am — forever",
+      "editAdminRights": "Change wetin di admin fit do",
+      "promoteToAdmin": "Make am admin",
+      "unmute": "Remove di mute",
+      "mute": "Mute am",
+      "unban": "Remove di ban",
+      "ban": "Ban am",
+      "deleteAllMessages": "Delete all di messages",
+      "removeFromCommunity": "Comot am from di community",
+      "noActionsAvailable": "You no fit moderate dis member.",
+      "showMore": "Show more of dem",
+      "joinRequests": "People wey wan join",
+      "approve": "Gree for am",
+      "reject": "No gree",
+      "members": "Di members",
+      "searchMembers": "Search with wallet address",
+      "noMembersMatch": "No member match dat one.",
+      "noMembers": "No member dey yet.",
+      "muted": "Dem don mute am",
+      "banned": "Dem don ban am",
+      "muteEffect": "Dem go still dey inside di community but dem no fit post until di mute finish.",
+      "banEffect": "Dem go comot dem from di chat and dem no fit join again until dem lift di ban.",
+      "durationLabel": "How long",
+      "reasonLabel": "Why (you no must write am)",
+      "reasonPlaceholder": "Why una dey ban dem?",
+      "alsoDeleteMessages": "Delete all dia messages too",
+      "confirmMute": "Mute di member",
+      "confirmBan": "Ban di member",
+      "rulesUpdated": "Rules don change",
+      "rulesTitle": "Di community rules",
+      "rulesEmpty": "No rules yet — add di first one for down.",
+      "rulePlaceholder": "Explain di rule",
+      "addRule": "Add rule join",
+      "saveRules": "Save di rules",
+      "dismissAdminBody": "{{wallet}} go go back to be ordinary member.",
+      "purgeBody": "Every message wey {{name}} don send for dis community go comot.",
+      "kickBody": "Dem go comot {{name}} from di community. Dem fit join again later.",
+      "bannedUntil": "Dem ban am until {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Dem mute am until {{date}}",
+      "bannedUntilShort": "Reach {{date}}",
+      "muteTitle": "Mute {{name}} for now",
+      "banTitle": "Ban {{name}} comot",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} out of {{max}}",
+      "moveRuleUp": "Carry di rule go up",
+      "moveRuleDown": "Carry di rule come down",
+      "deleteRule": "Delete di rule",
+      "rights": {
+        "changeInfo": "Change di community info",
+        "changeInfoHint": "Change di name, description, avatar and banner",
+        "deleteMessages": "Delete messages dem",
+        "deleteMessagesHint": "Comot any message from di community chat",
+        "restrictMembers": "Ban people",
+        "restrictMembersHint": "Mute, comot and ban members",
+        "inviteUsers": "Invite people with link",
+        "inviteUsersHint": "Create and cancel invite links",
+        "pinMessages": "Pin messages dem",
+        "pinMessagesHint": "Pin message for di top of di chat",
+        "manageEvents": "Handle events",
+        "manageEventsHint": "Create and change community events",
+        "addAdmins": "Add new admins join",
+        "addAdminsHint": "Promote members and edit di rights of admins wey dem add",
+        "remainAnonymous": "Hide who you be",
+        "remainAnonymousHint": "Hide dis admin from di member list"
+      },
+      "durations": {
+        "oneHour": "1 hour time",
+        "eightHours": "8 hours time",
+        "oneDay": "1 day time",
+        "oneWeek": "1 week time",
+        "forever": "Forever and ever"
+      }
+    },
+    "chooseAvatar": "Pick avatar"
   },
   "work": {
     "title": "Bounties",
@@ -2806,7 +2975,9 @@
       "shipped": "Shipped",
       "completed": "Complete",
       "cancelled": "Cancelled"
-    }
+    },
+    "removePhoto": "Comot di picture",
+    "listingOptions": "Wetin you fit do with di listing"
   },
   "accounts": {
     "subtitle": "Whole accounts dey for sale, price dey for DHB",
@@ -3131,7 +3302,14 @@
     "removeFollowerTitle": "Remove follower?",
     "cancel": "Cancel",
     "remove": "Remove",
-    "thisUser": "This user"
+    "thisUser": "This user",
+    "cancelRequestTo": "Cancel di follow request wey you send to @{{username}}?",
+    "followingUser": "You dey follow @{{username}}",
+    "contentUnavailable": "Di content no dey available",
+    "youBlockedBody": "You no go see dia posts and you no fit interact with dem. Unblock dem make you get access again.",
+    "restrictedBody": "Dis user don limit how your account fit interact with dem.",
+    "requestPendingBody": "Your follow request don go. You go fit see dia posts once dem approve your request.",
+    "followToSeePosts": "Follow dis account make you see dia posts."
   },
   "reactionInfo": {
     "title": "Reactions",
@@ -3401,7 +3579,8 @@
     "needGas": "You need native {{token}} for gas for {{chain}}.",
     "bridging": "Bridging…",
     "bridgeAction": "Bridge {{from}} → {{to}}",
-    "failed": "Bridge fail"
+    "failed": "Bridge fail",
+    "sentArriveShortly": "{{amount}} DHB don comot from {{from}} → {{to}}. Di tokens go land soon."
   },
   "teamUp": {
     "title": "Join team",
@@ -3560,7 +3739,16 @@
     "legacyRecovered": "We don verify your old account{{suffix}} and recover im wallet. Set password wey go protect am for dis device — for dis phone and everywhere else, from now.",
     "passwordMin": "Password (at least {{min}} characters)",
     "newPasswordMin": "New password (at least {{min}} characters)",
-    "newWalletPasswordMin": "New wallet password (at least {{min}} characters)"
+    "newWalletPasswordMin": "New wallet password (at least {{min}} characters)",
+    "deviceCheckCancelled": "Device check don cancel — nothing change.",
+    "savePhraseTitle": "Keep your recovery phrase safe",
+    "startOverTitle": "Start again with new wallet",
+    "secureNewWalletTitle": "Protect your new wallet",
+    "secureWalletTitle": "Protect your wallet",
+    "unlockOnMobileTitle": "Open am for phone",
+    "oldAccountFoundTitle": "We see your old account",
+    "unlockWalletTitle": "Open your wallet",
+    "phraseExplainer": "Na dis phone biometrics go protect your wallet. Dat unlock <em>go only work for dis phone</em> — dis 12 words na di only way to enter back if you reinstall DeHub, change phone, or lose am."
   },
   "transcript": {
     "title": "Transcript",
@@ -3736,7 +3924,38 @@
     "subscribe": "Subscribe",
     "subscriberCount_one": "{{count}} subscriber",
     "subscriberCount_other": "{{count}} subscribers",
-    "subscribeToForRich": "Subscribe to <name>{{name}}</name> for <price>{{price}}</price>"
+    "subscribeToForRich": "Subscribe to <name>{{name}}</name> for <price>{{price}}</price>",
+    "loadPlansFailed": "Plans no gree load",
+    "subscriberContent": "Content for subscribers",
+    "subscriberContentSub": "Create plans make you fit give subscribers special content",
+    "createFirstPlan": "Create your first plan",
+    "addNewPlan": "Add new plan",
+    "durations": {
+      "oneMonth": "1 Month time",
+      "threeMonths": "3 Months time",
+      "sixMonths": "6 Months time",
+      "oneYear": "1 Year time",
+      "lifetime": "For life"
+    },
+    "planNameRequired": "You must put plan name",
+    "enterValidPrice": "Put correct price",
+    "availableChains": "For now, subscriptions dey only for Base and BNB",
+    "waitForSwitch": "Wait make di subscription network finish to switch",
+    "connectAndWait": "Connect your wallet and wait for di subscription network",
+    "planUpdated": "Plan don change",
+    "creating": "E dey create…",
+    "planPublished": "Plan don create and publish",
+    "createPlanTitle": "Create subscription plan",
+    "network": "Di subscription network",
+    "planNameLabel": "Plan name (you must put am) *",
+    "planNamePlaceholder": "like Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Wetin subscribers go get...",
+    "priceLabel": "Price for USD *",
+    "legacyMigrationNote": "If you save, dis old DHB plan go change to dollar price for di pre-listing rate.",
+    "benefits": "Wetin dem go gain",
+    "benefitPlaceholder": "Add wetin dem go gain...",
+    "createAndPublish": "Create am and publish am",
+    "publishingOnChain": "To publish na on-chain transaction"
   },
   "live": {
     "notSet": "Dem never set am",
@@ -3841,7 +4060,22 @@
     "openingCheckout": "Dey open di checkout…",
     "checkoutUnavailable": "Checkout link no dey. Try again.",
     "acceptTerms": "I gree wit di <terms>Terms and service</terms>",
-    "goToProfile": "Go to Profile"
+    "goToProfile": "Go to Profile",
+    "aboutTitle": "About DeHub and payments",
+    "aboutSubtitle": "Your easy road to token payments",
+    "aboutTokenTitle": "Di DeHub Token",
+    "aboutTokenBody": "Na tokens you go use subscribe to creators, tip streamers or unlock content. Di more you hold, di less your fees go be and di more superpowers you go unlock, like timeline trend boost and verification badges.",
+    "aboutInstantTitle": "Payment wey dey sharp",
+    "aboutInstantBody": "With Stripe, you fit buy tokens sharp sharp enter any account wey you don log into. DeHub make tokens simple for everybody. If you need more help, just enter our 24/7 live community chat and ask admin for support.",
+    "aboutSecureTitle": "Safe payment road",
+    "aboutSecureBody": "Stripe dey encrypt and process all payment details safe. We no fit see or keep your private information or card details, so your mind go dey at rest.",
+    "transfersSummary": "Summary of di transfers",
+    "availableToBuy": "Wetin you fit buy now",
+    "noSupplyShort": "E don finish",
+    "topUpSubtitle": "Buy $DHB with card and get free gas wey you fit use sharp sharp",
+    "noTxHash": "We no see di transaction hash",
+    "latestTransactions": "Di latest transactions",
+    "showAll": "Show all of dem"
   },
   "musicSheet": {
     "title": "Make song",
@@ -3968,7 +4202,13 @@
     "followUpNote": "We fit reach you make we ask more question about your feedback",
     "submitFeedback": "Send feedback",
     "provideFeedback": "Abeg write your feedback",
-    "thankYou": "Thank you for your feedback!"
+    "thankYou": "Thank you for your feedback!",
+    "submitFailed": "Feedback no gree send. Abeg try again.",
+    "maybeLater": "Maybe another time",
+    "helpUsImprove": "Help us make am better",
+    "rateExperience": "How you go rate your experience?",
+    "telegramOptional": "Telegram (you no must put am)",
+    "discordOptional": "Discord (you no must put am)"
   },
   "migrate": {
     "clearAll": "Clear all",
@@ -4038,7 +4278,14 @@
       "lobster": "Keep swimming",
       "octopus": "Eight arms, every pot"
     },
-    "continue": "Back to DeHub"
+    "continue": "Back to DeHub",
+    "none": "Nothing",
+    "noBadgeYet": "No badge dey yet",
+    "next": "Di next one",
+    "topTier": "Di highest level",
+    "toNextTier": "{{amount}} DHB remain to reach {{tier}}",
+    "everyTierUnlocked": "You don unlock every level",
+    "holdNote": "Once you don unlock badge, e be your own as long as you still hold your DHB. Di number of tokens wey you need to unlock new badge fit change with di token price."
   },
   "passwordStrength": {
     "veryWeak": "Very weak",
@@ -4107,7 +4354,11 @@
     },
     "ttsLabel": "Say something out loud",
     "ttsPlaceholder": "Read out to the stream…",
-    "ttsHint": "Read aloud to everyone watching when your gift lands."
+    "ttsHint": "Read aloud to everyone watching when your gift lands.",
+    "sendAGift": "Send gift",
+    "minPlaceholder": "Di smallest: {{amount}}",
+    "minGift": "Di smallest gift na {{amount}}",
+    "sendGift": "Send di gift"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4355,7 +4606,8 @@
       "follow": {
         "title": "Follow three creators"
       }
-    }
+    },
+    "swipeToStart": "Swipe make you start"
   },
   "conversation": {
     "commonGround": {
@@ -4816,5 +5068,18 @@
     "toastPaidSettled": "You don pay — the trade don settle",
     "walletNotReady": "Your wallet never ready — try again small time.",
     "wrongChain": "This trade dey settle for {{chain}}. Switch to {{chain}} for Settings, then try again."
+  },
+  "moderation": {
+    "appealDuplicate": "You don already appeal dis one",
+    "appealSent": "Appeal don go",
+    "appealFailed": "We no fit file dat appeal",
+    "appealTitle": "Appeal dis decision",
+    "appealSubtitle": "Person go read dis one and look di decision again.",
+    "appealPlaceholder": "Wetin you tink say dem miss? Gist about di content go help pass anything else.",
+    "appealSend": "Send di appeal",
+    "appealFootnote": "You go get reference number, and di answer go come back here. One appeal for each decision.",
+    "appealRef": "Reference number {{ref}}",
+    "appealSubtitleSubject": "Person go read dis one and look {{subject}} again.",
+    "appealMore": "Letters wey remain: {{count}}"
   }
 }

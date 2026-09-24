@@ -30,6 +30,7 @@ import {
   nftToReplyPost,
 } from "../../libs/replyPostDisplay";
 import UserReplyCard from "./UserReplyCard";
+import { useTranslation } from "react-i18next";
 
 
 interface UserRepliesListProps {
@@ -114,6 +115,7 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
   },
   ref,
 ) => {
+  const { t } = useTranslation();
   const listRef = useRef<FlatList<UserReplyItem>>(null);
   const [items, setItems] = useState<UserReplyItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -151,7 +153,7 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
     setError(null);
     fetchPage(1, true)
       .catch((e) => {
-        if (!cancelled) setError(e?.message || "Failed to load replies");
+        if (!cancelled) setError(e?.message || t("profile.loadRepliesFailed"));
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
@@ -159,7 +161,7 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
     return () => {
       cancelled = true;
     };
-  }, [fetchPage]);
+  }, [fetchPage, t]);
 
   // Pull-to-refresh
   const handleRefresh = useCallback(async () => {
@@ -167,12 +169,12 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
     try {
       await fetchPage(1, true);
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : "Refresh failed";
+      const msg = e instanceof Error ? e.message : t("profile.refreshFailed");
       setError(msg);
     } finally {
       setRefreshing(false);
     }
-  }, [fetchPage]);
+  }, [fetchPage, t]);
 
   // Infinite scroll
   const handleEndReached = useCallback(async () => {
@@ -232,7 +234,7 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
               onPress={handleRefresh}
               className="text-theme-neutrals-50 font-medium text-sm"
             >
-              Retry
+              {t("common.retry")}
             </Text>
           </View>
         </View>
@@ -250,10 +252,10 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
             <Ionicons name="chatbubbles-outline" size={40} color="#666" />
           </View>
           <Text className="text-white text-lg font-bold text-center mb-2">
-            No Replies Yet
+            {t("profile.noRepliesYet")}
           </Text>
           <Text className="text-gray-400 text-center text-sm leading-5">
-            When this user replies to posts, they'll show up here.
+            {t("profile.noRepliesYetSub")}
           </Text>
         </View>
       </View>
@@ -292,7 +294,7 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
           </View>
         ) : !paginationRef.current?.hasMore && items.length > 0 ? (
           <View className="px-4 py-6 items-center">
-            <Text className="text-theme-neutrals-400 text-xs">No more replies</Text>
+            <Text className="text-theme-neutrals-400 text-xs">{t("profile.noMoreReplies")}</Text>
           </View>
         ) : null
       }

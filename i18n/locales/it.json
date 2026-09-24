@@ -706,7 +706,11 @@
       "hintAllow": "I sistemi di intelligenza artificiale e i crawler che rispettano questo segnale possono allenarsi sul tuo audio, grafica e scrittura.",
       "hintDeny": "Ai sistemi di intelligenza artificiale e ai crawler che rispettano questo segnale viene chiesto di non allenarsi su audio, grafica e scrittura. I cingoli che ignorano il segnale non vengono bloccati da esso.",
       "saved": "Preferenze di addestramento AI salvate"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "HO CAPITO",
+    "exportPkCopy": "Copia chiave privata",
+    "e2eAutomatic": "Automatico"
   },
   "common": {
     "mute": "Disattiva audio",
@@ -746,7 +750,17 @@
     "optionalSuffix": "(facoltativo)",
     "yesterday": "Ieri",
     "ok": "OK",
-    "continue": "Continua"
+    "continue": "Continua",
+    "goesToHomeFeed": "Va al feed principale",
+    "openMenu": "Apri menu",
+    "scrollsFeedToTop": "Scorre fino in cima al feed e lo aggiorna",
+    "notificationsUnread": "Notifiche, {{unread}} non lette",
+    "errorDetails": "Dettagli errore:",
+    "failedToLoad": "Caricamento fallito",
+    "noInternetTitle": "Nessuna connessione Internet",
+    "noInternetBody": "Controlla la tua connessione Internet e riprova. Devi essere connesso a Internet per usare DeHub.",
+    "noInternetStatus": "Offline - Nessuna connessione di rete",
+    "noInternetHint": "Assicurati che il Wi-Fi o i dati mobili siano attivi, quindi tocca \"{{action}}\""
   },
   "tip": {
     "title": "Invia mancia",
@@ -1636,7 +1650,12 @@
     "chooseUsernameBody": "Scegli un nome utente e un nome visualizzato per continuare. Potrai cambiarli in seguito.",
     "checkingAvailability": "Verifica della disponibilità…",
     "usernameTakenHint": "Nome già in uso: prova ad aggiungere numeri o un trattino basso",
-    "displayNameLength": "Il nome visualizzato deve contenere da 2 a 50 caratteri."
+    "displayNameLength": "Il nome visualizzato deve contenere da 2 a 50 caratteri.",
+    "loginFailedRetry": "Accesso fallito. Riprova.",
+    "sendCodeFailedRetry": "Impossibile inviare il codice. Riprova.",
+    "invalidCodeRetry": "Codice non valido. Riprova.",
+    "invalidEmailOrPassword": "Email o password non validi.",
+    "welcomeToDehub": "Benvenuto in DeHub"
   },
   "messages": {
     "smartRepliesOff": "Risposte suggerite disattivate",
@@ -1714,7 +1733,32 @@
     "offerWorthNow": "Circa {{amount}} DHB al cambio attuale",
     "offerNotePlaceholder": "Aggiungi una nota (facoltativo)",
     "offerCommitsNothing": "Fare un’offerta non costa nulla e non blocca DHB. Paghi solo se il proprietario accetta.",
-    "offerNeedsHandle": "Questo account non ha un nome utente per cui fare un’offerta."
+    "offerNeedsHandle": "Questo account non ha un nome utente per cui fare un’offerta.",
+    "noPostsYet": "Nessun post ancora",
+    "noPostsYetSub": "I contenuti appariranno qui quando verranno pubblicati",
+    "noPinnedPosts": "Nessun post fissato ancora",
+    "noPinnedPostsSub": "I post fissati appariranno qui",
+    "emptyLiked": "Nessun post messo mi piace ancora.",
+    "emptySaved": "Nessun post salvato ancora.",
+    "emptyUnlocked": "Nessun post sbloccato ancora.",
+    "emptyWatched": "Nessuna cronologia visualizzazioni ancora.",
+    "emptyFolder": "Nessun post in questa cartella ancora.",
+    "emptyPosts": "Nessun post ancora.",
+    "couldNotLoadPosts": "Impossibile caricare i post.",
+    "noPostsOrReplies": "Nessun post, commento o risposta ancora",
+    "noPostsOrRepliesSub": "Appariranno qui",
+    "avatarUpdated": "Avatar aggiornato",
+    "coverUpdated": "Copertina aggiornata",
+    "couldNotPickImage": "Impossibile selezionare l'immagine",
+    "changeCoverImage": "Cambia immagine di copertina",
+    "changeAvatar": "Cambia avatar",
+    "verifiedEnsName": "Nome ENS verificato {{name}}",
+    "notFullyJoined": "Questo utente non si è ancora unito completamente. Non ha scelto un nome utente né completato la configurazione del profilo. Puoi comunque visualizzare l'attività pubblica e inviare mance, se disponibili.",
+    "loadRepliesFailed": "Impossibile caricare le risposte",
+    "refreshFailed": "Aggiornamento fallito",
+    "noRepliesYet": "Nessuna risposta ancora",
+    "noRepliesYetSub": "Quando questo utente risponderà ai post, appariranno qui.",
+    "noMoreReplies": "Nessuna altra risposta"
   },
   "tv": {
     "title": "TV",
@@ -1797,7 +1841,11 @@
     "loadingPrice": "Caricamento prezzo…",
     "topUpExplanation": "Il DHB viene trasferito on-chain alla tesoreria pubblicitaria di DeHub, poi il tuo saldo viene accreditato dopo una verifica indipendente sulla catena.",
     "paymentHistory": "Cronologia pagamenti",
-    "noPayments": "Ancora nessun pagamento"
+    "noPayments": "Ancora nessun pagamento",
+    "sponsored": "Sponsorizzato",
+    "morePosts": "Altri post",
+    "loadMorePosts": "Carica altri post",
+    "playAdVideo": "Riproduci video pubblicitario"
   },
   "buyCoins": {
     "title": "Acquista Coin",
@@ -2232,7 +2280,8 @@
     "privateBalanceMode": "La modalità saldo privato è attiva",
     "addressHidden": "Indirizzo nascosto",
     "allowInFeeds": "Consenti a questo utente di apparire nei tuoi feed",
-    "hideContent": "Nascondi i loro contenuti e limita le interazioni"
+    "hideContent": "Nascondi i loro contenuti e limita le interazioni",
+    "a11yLabel": "Opzioni del profilo"
   },
   "toasts": {
     "saved_to_bookmarks": "Salvato nei segnalibri",
@@ -2604,7 +2653,8 @@
     "roles": {
       "owner": "Proprietario",
       "moderator": "Moderatore",
-      "member": "Membro"
+      "member": "Membro",
+      "admin": "Admin"
     },
     "time": {
       "today": "oggi",
@@ -2613,7 +2663,126 @@
       "weeks": "{{count}} sett",
       "months": "{{count}} mesi",
       "years": "{{count}} a"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "modificato",
+      "deleteTitle": "Elimina messaggio",
+      "deleteConfirm": "Eliminare questo messaggio? Non sarà possibile annullare l'operazione.",
+      "muted": "Sei muto",
+      "postingDisabled": "La pubblicazione è disabilitata per i membri qui",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Messaggio fissato",
+      "showEarlier": "Mostra messaggi precedenti",
+      "editingMessage": "Modifica messaggio",
+      "copied": "Messaggio copiato",
+      "copyText": "Copia testo",
+      "mutedUntil": "Sei disattivato fino a {{date}}",
+      "slowMode": "Modalità lenta: un messaggio ogni {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Rimuovi amministratore",
+      "cancel": "Annulla",
+      "dismissAdmin": "Rimuovi amministratore",
+      "roleAdmin": "Amministratore",
+      "roleMember": "Membro",
+      "whatCanTheyDo": "Cosa può fare questo amministratore?",
+      "rightNotHeld": "Non hai questo diritto tu stesso",
+      "customTitle": "Titolo personalizzato",
+      "customTitlePlaceholder": "Amministratore",
+      "customTitleHint": "Mostrato al posto del badge amministratore predefinito.",
+      "saveChanges": "Salva modifiche",
+      "promote": "Promuovi",
+      "tabs": {
+        "members": "Membri",
+        "admins": "Amministratori",
+        "permissions": "Autorizzazioni",
+        "invites": "Inviti",
+        "rules": "Regole",
+        "recentActions": "Azioni recenti",
+        "danger": "Zona pericolosa"
+      },
+      "title": "Gestisci",
+      "purgeTitle": "Eliminare tutti i messaggi?",
+      "purgeConfirm": "Elimina",
+      "kickTitle": "Rimuovere membro?",
+      "kickConfirm": "Rimuovi",
+      "bannedPermanent": "Vietato — permanente",
+      "mutedPermanent": "Silenziato — permanente",
+      "editAdminRights": "Modifica i diritti di amministratore",
+      "promoteToAdmin": "Promuovi ad amministratore",
+      "unmute": "Annulla disattivazione",
+      "mute": "Disattiva",
+      "unban": "Annulla ban",
+      "ban": "Banna",
+      "deleteAllMessages": "Elimina tutti i messaggi",
+      "removeFromCommunity": "Rimuovi dalla community",
+      "noActionsAvailable": "Non puoi moderare questo membro.",
+      "showMore": "Mostra altro",
+      "joinRequests": "Richieste di accesso",
+      "approve": "Approva",
+      "reject": "Rifiuta",
+      "members": "Membri",
+      "searchMembers": "Cerca per indirizzo del wallet",
+      "noMembersMatch": "Nessun membro corrisponde.",
+      "noMembers": "Nessun membro ancora.",
+      "muted": "Disattivati",
+      "banned": "Bannati",
+      "muteEffect": "Rimangono nella community ma non possono pubblicare fino alla scadenza della disattivazione.",
+      "banEffect": "Sono stati rimossi dalla chat e non possono rientrare fino alla revoca del ban.",
+      "durationLabel": "Durata",
+      "reasonLabel": "Motivo (facoltativo)",
+      "reasonPlaceholder": "Perché vengono bannati?",
+      "alsoDeleteMessages": "Elimina anche tutti i loro messaggi",
+      "confirmMute": "Disattiva membro",
+      "confirmBan": "Banna membro",
+      "rulesUpdated": "Regole aggiornate",
+      "rulesTitle": "Regole della community",
+      "rulesEmpty": "Nessuna regola ancora — aggiungi la prima qui sotto.",
+      "rulePlaceholder": "Descrivi la regola",
+      "addRule": "Aggiungi regola",
+      "saveRules": "Salva regole",
+      "dismissAdminBody": "{{wallet}} tornerà ad essere un membro ordinario.",
+      "purgeBody": "Ogni messaggio inviato da {{name}} in questa community verrà rimosso.",
+      "kickBody": "{{name}} verrà rimosso dalla community. Potrà unirsi di nuovo in seguito.",
+      "bannedUntil": "Bannato fino a {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Muto fino a {{date}}",
+      "bannedUntilShort": "Fino a {{date}}",
+      "muteTitle": "Muta {{name}}",
+      "banTitle": "Banna {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} di {{max}}",
+      "moveRuleUp": "Sposta regola su",
+      "moveRuleDown": "Sposta regola giù",
+      "deleteRule": "Elimina regola",
+      "rights": {
+        "changeInfo": "Modifica informazioni community",
+        "changeInfoHint": "Modifica nome, descrizione, avatar e banner",
+        "deleteMessages": "Elimina messaggi",
+        "deleteMessagesHint": "Rimuovi qualsiasi messaggio dalla chat della community",
+        "restrictMembers": "Banna utenti",
+        "restrictMembersHint": "Muta, rimuovi e banna membri",
+        "inviteUsers": "Invita utenti tramite link",
+        "inviteUsersHint": "Crea e revoca link di invito",
+        "pinMessages": "Fissa messaggi",
+        "pinMessagesHint": "Fissa un messaggio in cima alla chat",
+        "manageEvents": "Gestisci eventi",
+        "manageEventsHint": "Crea e modifica eventi della community",
+        "addAdmins": "Aggiungi nuovi amministratori",
+        "addAdminsHint": "Promuovi i membri e modifica i diritti degli amministratori che hanno aggiunto",
+        "remainAnonymous": "Rimani anonimo",
+        "remainAnonymousHint": "Nascondi questo amministratore dall'elenco dei membri"
+      },
+      "durations": {
+        "oneHour": "1 ora",
+        "eightHours": "8 ore",
+        "oneDay": "1 giorno",
+        "oneWeek": "1 settimana",
+        "forever": "Per sempre"
+      }
+    },
+    "chooseAvatar": "Scegli avatar"
   },
   "work": {
     "title": "Taglie",
@@ -2971,7 +3140,9 @@
       "shipped": "Spedito",
       "completed": "Completato",
       "cancelled": "Annullato"
-    }
+    },
+    "removePhoto": "Rimuovi foto",
+    "listingOptions": "Opzioni di elenco"
   },
   "accounts": {
     "subtitle": "Account interi in vendita, prezzo in DHB",
@@ -3388,7 +3559,14 @@
     "removeFollowerHint": "Tieni premuto un follower per rimuoverlo.",
     "cancel": "Annulla",
     "remove": "Rimuovi",
-    "thisUser": "Il seguente utente:"
+    "thisUser": "Il seguente utente:",
+    "cancelRequestTo": "Annulla richiesta di follow a @{{username}}?",
+    "followingUser": "Seguendo @{{username}}",
+    "contentUnavailable": "Contenuto non disponibile",
+    "youBlockedBody": "Non vedrai i loro post né potrai interagire con loro. Sblocca per ripristinare l'accesso.",
+    "restrictedBody": "Questo utente ha limitato le interazioni con il tuo account.",
+    "requestPendingBody": "La tua richiesta di follow è stata inviata. Potrai vedere i loro post una volta approvata la tua richiesta.",
+    "followToSeePosts": "Segui questo account per vedere i loro post."
   },
   "reactionInfo": {
     "title": "Reazioni",
@@ -3703,7 +3881,8 @@
     "needGas": "Serve {{token}} nativo per il gas su {{chain}}.",
     "bridging": "Bridging in corso…",
     "bridgeAction": "Bridge {{from}} → {{to}}",
-    "failed": "Bridge non riuscito"
+    "failed": "Bridge non riuscito",
+    "sentArriveShortly": "{{amount}} DHB inviato da {{from}} → {{to}}. I token arriveranno a breve."
   },
   "banned": {
     "title": "Il tuo account è stato bannato",
@@ -3881,7 +4060,16 @@
     "legacyRecovered": "Abbiamo verificato il tuo vecchio account{{suffix}} e recuperato il suo portafoglio. Imposta una password per proteggerlo su questo dispositivo — su questo telefono e ovunque altrove — da ora in poi.",
     "passwordMin": "Password (min {{min}} caratteri)",
     "newPasswordMin": "Nuova password (min {{min}} caratteri)",
-    "newWalletPasswordMin": "Password del nuovo portafoglio (min {{min}} caratteri)"
+    "newWalletPasswordMin": "Password del nuovo portafoglio (min {{min}} caratteri)",
+    "deviceCheckCancelled": "Controllo dispositivo annullato — non è stato modificato nulla.",
+    "savePhraseTitle": "Salva la tua frase di recupero",
+    "startOverTitle": "Inizia da capo con un nuovo wallet",
+    "secureNewWalletTitle": "Proteggi il tuo nuovo wallet",
+    "secureWalletTitle": "Proteggi il tuo wallet",
+    "unlockOnMobileTitle": "Sblocca su mobile",
+    "oldAccountFoundTitle": "Account precedente trovato",
+    "unlockWalletTitle": "Sblocca il tuo wallet",
+    "phraseExplainer": "Il tuo wallet sarà protetto dalla biometria di questo telefono. Questo sblocco <em>funziona solo su questo telefono</em> — queste 12 parole sono l'unico modo per rientrare se reinstalli DeHub, cambi telefono o lo perdi."
   },
   "transcript": {
     "title": "Trascrizione",
@@ -4068,7 +4256,38 @@
     "subscribe": "Abbonati",
     "subscriberCount_one": "{{count}} abbonato",
     "subscriberCount_other": "{{count}} abbonati",
-    "subscribeToForRich": "Abbonati a <name>{{name}}</name> per <price>{{price}}</price>"
+    "subscribeToForRich": "Abbonati a <name>{{name}}</name> per <price>{{price}}</price>",
+    "loadPlansFailed": "Impossibile caricare i piani",
+    "subscriberContent": "Contenuto per abbonati",
+    "subscriberContentSub": "Crea piani per offrire contenuti esclusivi agli abbonati",
+    "createFirstPlan": "Crea il tuo primo piano",
+    "addNewPlan": "Aggiungi nuovo piano",
+    "durations": {
+      "oneMonth": "1 mese",
+      "threeMonths": "3 mesi",
+      "sixMonths": "6 mesi",
+      "oneYear": "1 anno",
+      "lifetime": "A vita"
+    },
+    "planNameRequired": "Il nome del piano è obbligatorio",
+    "enterValidPrice": "Inserisci un prezzo valido",
+    "availableChains": "Gli abbonamenti sono attualmente disponibili su Base e BNB",
+    "waitForSwitch": "Attendi il completamento del passaggio della rete di abbonamento",
+    "connectAndWait": "Collega il tuo wallet e attendi la rete di abbonamento",
+    "planUpdated": "Piano aggiornato",
+    "creating": "Creazione in corso…",
+    "planPublished": "Piano creato e pubblicato",
+    "createPlanTitle": "Crea piano di abbonamento",
+    "network": "Rete di abbonamento",
+    "planNameLabel": "Nome piano *",
+    "planNamePlaceholder": "es. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Cosa ottengono gli abbonati...",
+    "priceLabel": "Prezzo (USD) *",
+    "legacyMigrationNote": "Il risparmio migra questo piano DHB legacy a prezzi in dollari alla tariffa pre-listing.",
+    "benefits": "Benefici",
+    "benefitPlaceholder": "Aggiungi un beneficio...",
+    "createAndPublish": "Crea e pubblica",
+    "publishingOnChain": "La pubblicazione è una transazione on-chain"
   },
   "live": {
     "notSet": "Non impostato",
@@ -4186,7 +4405,22 @@
     "acceptTerms": "Accetto i <terms>Termini di servizio</terms>",
     "sentTo": "{{amount}} {{symbol}} è stato inviato a {{address}}",
     "tokensSentTo": "I token sono stati inviati a {{address}}",
-    "goToProfile": "Vai al profilo"
+    "goToProfile": "Vai al profilo",
+    "aboutTitle": "Informazioni su DeHub e pagamenti",
+    "aboutSubtitle": "Il tuo gateway per pagamenti fluidi con token",
+    "aboutTokenTitle": "Token DeHub",
+    "aboutTokenBody": "I token vengono utilizzati per abbonarsi ai creator, fare mance agli streamer o sbloccare contenuti. Più ne possiedi, più basse sono le tue commissioni e più superpoteri sblocchi come i boost di tendenza della timeline e i badge di verifica.",
+    "aboutInstantTitle": "Pagamenti Istantanei",
+    "aboutInstantBody": "Utilizzando Stripe, puoi acquistare token istantaneamente e senza interruzioni nel tuo account. DeHub rende i token semplici e per tutti. Se hai bisogno di ulteriore supporto, entra nella nostra chat comunitaria live 24/7 e chiedi supporto all'amministratore.",
+    "aboutSecureTitle": "Gateway Sicuro",
+    "aboutSecureBody": "Tutti i dettagli di pagamento sono crittografati ed elaborati in modo sicuro da Stripe. Non possiamo accedere né archiviare le tue informazioni sensibili o i dettagli della tua carta, offrendoti la massima tranquillità.",
+    "transfersSummary": "Riepilogo Trasferimenti",
+    "availableToBuy": "Disponibile per l'acquisto ora",
+    "noSupplyShort": "Nessuna fornitura",
+    "topUpSubtitle": "Acquista $DHB con carta e ottieni gas gratuito da usare istantaneamente",
+    "noTxHash": "Impossibile trovare l'hash della transazione",
+    "latestTransactions": "Ultime Transazioni",
+    "showAll": "Mostra tutto"
   },
   "musicSheet": {
     "title": "Crea una canzone",
@@ -4315,7 +4549,13 @@
     "followUpNote": "Potremmo contattarti per domande di approfondimento sul tuo feedback",
     "submitFeedback": "Invia feedback",
     "provideFeedback": "Inserisci il tuo feedback",
-    "thankYou": "Grazie per il tuo feedback!"
+    "thankYou": "Grazie per il tuo feedback!",
+    "submitFailed": "Impossibile inviare feedback. Riprova.",
+    "maybeLater": "Più tardi",
+    "helpUsImprove": "Aiutaci a migliorare",
+    "rateExperience": "Come valuti la tua esperienza?",
+    "telegramOptional": "Telegram (opzionale)",
+    "discordOptional": "Discord (opzionale)"
   },
   "migrate": {
     "clearAll": "Cancella tutto",
@@ -4433,7 +4673,14 @@
       "blueWhale": "La cosa più grande che sia mai vissuta. Sei tu.",
       "megalodon": "Ecco la tua corona: ora sei una royalty dell'app"
     },
-    "continue": "Torna a DeHub"
+    "continue": "Torna a DeHub",
+    "none": "Nessuno",
+    "noBadgeYet": "Nessun badge ancora",
+    "next": "Avanti",
+    "topTier": "Livello superiore",
+    "toNextTier": "{{amount}} DHB a {{tier}}",
+    "everyTierUnlocked": "Ogni livello sbloccato",
+    "holdNote": "Una volta sbloccato un badge, è tuo finché possiedi i tuoi DHB. Il numero di token necessari per sbloccare un nuovo badge può cambiare con il prezzo del token."
   },
   "passwordStrength": {
     "veryWeak": "Molto debole",
@@ -4515,7 +4762,11 @@
     },
     "ttsLabel": "Dì qualcosa ad alta voce",
     "ttsPlaceholder": "Leggi al torrente...",
-    "ttsHint": "Leggi ad alta voce a tutti coloro che guardano quando arriva il tuo regalo."
+    "ttsHint": "Leggi ad alta voce a tutti coloro che guardano quando arriva il tuo regalo.",
+    "sendAGift": "Invia un Regalo",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Il regalo minimo è {{amount}}",
+    "sendGift": "Invia Regalo"
   },
   "goLive": {
     "streamKey": "Chiave dello stream",
@@ -4898,7 +5149,8 @@
         "title": "Scopri come funzionano i guadagni",
         "body": "Scopri come suggerimenti, badge e Superpoteri trasformano ciò che fai qui in qualcosa da cui guadagni."
       }
-    }
+    },
+    "swipeToStart": "Scorri per iniziare"
   },
   "conversation": {
     "commonGround": {
@@ -5380,5 +5632,18 @@
     "toastPaidSettled": "Pagato — lo scambio è concluso",
     "walletNotReady": "Il tuo wallet non è ancora pronto — riprova tra un momento.",
     "wrongChain": "Questo scambio si conclude su {{chain}}. Passa a {{chain}} nelle Impostazioni, poi riprova."
+  },
+  "moderation": {
+    "appealDuplicate": "Hai già presentato ricorso",
+    "appealSent": "Ricorso inviato",
+    "appealFailed": "Impossibile presentare il ricorso",
+    "appealTitle": "Ricorri contro questa decisione",
+    "appealSubtitle": "Una persona leggerà questo e guarderà di nuovo la decisione.",
+    "appealPlaceholder": "Cosa pensi che sia mancato? Il contesto sul contenuto aiuta più di ogni altra cosa.",
+    "appealSend": "Invia ricorso",
+    "appealFootnote": "Ottieni un numero di riferimento e la risposta torna qui. Un ricorso per decisione.",
+    "appealRef": "Riferimento {{ref}}",
+    "appealSubtitleSubject": "Una persona leggerà questo e guarderà di nuovo {{subject}}.",
+    "appealMore": "Caratteri ancora necessari: {{count}}"
   }
 }

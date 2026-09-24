@@ -677,7 +677,11 @@
       "hintAllow": "AI rafitra sy ny crawlers izay manaja izany famantarana dia mety hampiofana eo amin'ny feo, zavakanto sy ny soratra.",
       "hintDeny": "Ny rafitra AI sy ny mpitsikilo izay manaja ity mari-pamantarana ity dia angatahana tsy hampiofana ny feo, ny zavakanto ary ny soratra. Tsy voasakana ireo mpidoroka tsy miraharaha ny fanairana.",
       "saved": "AI fiofanana voatahiry"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "AZAHO KOA",
+    "exportPkCopy": "Kopia ny lakilasy manokana",
+    "e2eAutomatic": "Mandrakaraka"
   },
   "common": {
     "mute": "Hampangina",
@@ -717,7 +721,17 @@
     "optionalSuffix": "(safidy)",
     "yesterday": "Omaly",
     "ok": "Eny",
-    "continue": "Sehon'ny mpiaty"
+    "continue": "Sehon'ny mpiaty",
+    "goesToHomeFeed": "Mankany amin'ny fampidiran-tranonkala",
+    "openMenu": "Sokafy ny sakafo",
+    "scrollsFeedToTop": "Mihodina mankany amin'ny tampon'ny fampidiran-tranonkala ary manavao izany",
+    "notificationsUnread": "Fampandrenesana, {{unread}} tsy voavaky",
+    "errorDetails": "Antsipirihan'ny fahadisoana:",
+    "failedToLoad": "Tsy nahavita nampiditra",
+    "noInternetTitle": "Tsy misy fifandraisana amin'ny Internet",
+    "noInternetBody": "Azafady jereo ny fifandraisanao amin'ny Internet ary manandrama indray. Mila mifandray amin'ny Internet ianao mba hampiasana ny DeHub.",
+    "noInternetStatus": "Tsy misy Internet - Tsy misy fifandraisana amin'ny tambajotra",
+    "noInternetHint": "Azafady mba ataovy azo antoka fa tafiditra ny Wi-Fi na ny finday data, ary tsindrio ny \"{{action}}\""
   },
   "tip": {
     "title": "Handefa fanomezana",
@@ -1629,7 +1643,12 @@
     "chooseUsernameBody": "Misafidiana anaram-pikambana sy anarana aseho mba hanohy. Azonao ovaina any aoriana izy ireo.",
     "checkingAvailability": "Manamarina ny fisiana…",
     "usernameTakenHint": "Efa misy mampiasa io anarana io — andramo asiana isa na tsipika ambany",
-    "displayNameLength": "Tsy maintsy misy litera 2-50 ny anarana aseho."
+    "displayNameLength": "Tsy maintsy misy litera 2-50 ny anarana aseho.",
+    "loginFailedRetry": "Tsy nahomby ny fidirana. Azafady manandrama indray.",
+    "sendCodeFailedRetry": "Tsy nahavita nandefa kaody. Azafady manandrama indray.",
+    "invalidCodeRetry": "Kaody tsy manan-kery. Azafady manandrama indray.",
+    "invalidEmailOrPassword": "Tsy manan-kery ny mailaka na ny tenimiafina.",
+    "welcomeToDehub": "Tongasoa eto amin'ny DeHub"
   },
   "messages": {
     "smartRepliesOff": "Novonoina ny valiny atolotra",
@@ -1707,7 +1726,32 @@
     "offerWorthNow": "Manodidina ny {{amount}} DHB amin’ny tahan’izao",
     "offerNotePlaceholder": "Ampio naoty (tsy voatery)",
     "offerCommitsNothing": "Tsy mandany na inona na inona ny fanaovana tolotra ary tsy misy DHB voahidy. Handoa ianao raha toa ka manaiky ny tompony.",
-    "offerNeedsHandle": "Tsy manana anaram-pikambanana hanaovana tolotra ity kaonty ity."
+    "offerNeedsHandle": "Tsy manana anaram-pikambanana hanaovana tolotra ity kaonty ity.",
+    "noPostsYet": "Mbola tsy misy lahatsoratra",
+    "noPostsYetSub": "Hiseho eto ny votoaty rehefa avy nisy lahatsoratra",
+    "noPinnedPosts": "Mbola tsy misy lahatsoratra voapetraka",
+    "noPinnedPostsSub": "Hiseho eto ny lahatsoratra voapetraka",
+    "emptyLiked": "Mbola tsy misy lahatsoratra tiana.",
+    "emptySaved": "Mbola tsy misy lahatsoratra voatahiry.",
+    "emptyUnlocked": "Mbola tsy misy lahatsoratra nosokafana.",
+    "emptyWatched": "Mbola tsy misy tantaran'ny fijerena.",
+    "emptyFolder": "Mbola tsy misy lahatsoratra ao anaty lahatahiry ity.",
+    "emptyPosts": "Mbola tsy misy lahatsoratra.",
+    "couldNotLoadPosts": "Tsy nahavita nampiditra lahatsoratra.",
+    "noPostsOrReplies": "Tsy mbola misy hafatra, fanehoan-kevitra, na valiny",
+    "noPostsOrRepliesSub": "Hiseho eto izy ireo",
+    "avatarUpdated": "Nohavaozina ny avatar",
+    "coverUpdated": "Nohavaozina ny sarin-dahy",
+    "couldNotPickImage": "Tsy nahafaka naka sary",
+    "changeCoverImage": "Ovay ny sarin-dahy",
+    "changeAvatar": "Ovay ny avatar",
+    "verifiedEnsName": "Anarana ENS voamarina {{name}}",
+    "notFullyJoined": "Mbola tsy tafiditra tanteraka ity mpampiasa ity. Tsy naka anarana mpampiasa izy na nahavita ny fametrahana ny mombamomba azy. Azonao jerena ihany ny hetsika ampahibemaso ary alefaso torohevitra raha misy.",
+    "loadRepliesFailed": "Tsy nahafaka naka valiny",
+    "refreshFailed": "Tsy nahafaka namerina",
+    "noRepliesYet": "Tsy misy valiny eto",
+    "noRepliesYetSub": "Rehefa mamaly hafatra ity mpampiasa ity, dia hiseho eto izy ireo.",
+    "noMoreReplies": "Tsy misy valiny intsony"
   },
   "tv": {
     "title": "TV",
@@ -1790,7 +1834,11 @@
     "loadingPrice": "Mampiditra vidiny…",
     "topUpExplanation": "Alefa amin'ny rojo mankany amin'ny tahirim-bolan'ny dokambarotra DeHub ny DHB, avy eo dia ampidirina ao amin'ny volanao rehefa voamarina tsy miankina eo amin'ny rojo.",
     "paymentHistory": "Tantaran'ny fandoavam-bola",
-    "noPayments": "Mbola tsy misy fandoavam-bola"
+    "noPayments": "Mbola tsy misy fandoavam-bola",
+    "sponsored": "Nohasinana",
+    "morePosts": "Hafatra maro kokoa",
+    "loadMorePosts": "Ampidino ny hafatra maro kokoa",
+    "playAdVideo": "Alefaso ny horonan-tsary dokam-barotra"
   },
   "buyCoins": {
     "title": "Mividy vola",
@@ -2224,7 +2272,8 @@
     "privateBalanceMode": "Mandeha ny fomba vola miafina",
     "addressHidden": "Miafina ny adiresy",
     "allowInFeeds": "Avelao hiseho amin'ny fandefasanao ity mpampiasa ity",
-    "hideContent": "Afeno ny votoatiny ary fereno ny fifandraisana"
+    "hideContent": "Afeno ny votoatiny ary fereno ny fifandraisana",
+    "a11yLabel": "Safidy mombamomba"
   },
   "toasts": {
     "saved_to_bookmarks": "Voatahiry ao amin'ny marika",
@@ -2596,7 +2645,8 @@
     "roles": {
       "owner": "Tompony",
       "moderator": "Mpandrindra",
-      "member": "Mpikambana"
+      "member": "Mpikambana",
+      "admin": "Admin"
     },
     "time": {
       "today": "androany",
@@ -2605,7 +2655,126 @@
       "weeks": "{{count}} herinandro",
       "months": "{{count}} volana",
       "years": "{{count}} taona"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "navoaka",
+      "deleteTitle": "Fafao ny hafatra",
+      "deleteConfirm": "Fafao ve ity hafatra ity? Tsy azo foanana izany.",
+      "muted": "Voarara tsy hanao zavatra ianao",
+      "postingDisabled": "Voarara tsy hanao zavatra ny mpikambana eto",
+      "mediaMessage": "Fitaovana",
+      "pinnedMessage": "Hafatra voatsindrona",
+      "showEarlier": "Asehoy ny hafatra taloha",
+      "editingMessage": "Fanovana hafatra",
+      "copied": "Voarakitra ny hafatra",
+      "copyText": "Handika lahabolana",
+      "mutedUntil": "Voasakana hatramin'ny {{date}} ianao",
+      "slowMode": "Slow mode: hafatra iray isaky ny {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Fanesorana Admin",
+      "cancel": "Ajanona",
+      "dismissAdmin": "Fanesorana Admin",
+      "roleAdmin": "Fitantanana avy lavitra",
+      "roleMember": "Mpikambana",
+      "whatCanTheyDo": "Inona no afaka ataon'io admin io?",
+      "rightNotHeld": "Tsy ianao irery no mahatsapa toy izany koa.",
+      "customTitle": "Lohateny safidy",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Aseho fa tsy ny badge Admin tsotra.",
+      "saveChanges": "Tehirizo ireo fanovana",
+      "promote": "Hanandratra",
+      "tabs": {
+        "members": "MPIKAMBANA",
+        "admins": "Admins",
+        "permissions": "Alalana",
+        "invites": "Fanasana",
+        "rules": "Fitsipika",
+        "recentActions": "Asa Vao Haingana",
+        "danger": "Loza mitatao"
+      },
+      "title": "Fandrindrana",
+      "purgeTitle": "Ho fafàna ireo hafatra rehetra?",
+      "purgeConfirm": "Hamafa",
+      "kickTitle": "Nesorina ny mpikambana?",
+      "kickConfirm": "Esory",
+      "bannedPermanent": "Mandalo —",
+      "mutedPermanent": "49 - Voalazan'ny and.",
+      "editAdminRights": "Manova ny zo ho mpitantana",
+      "promoteToAdmin": "Ampidino ho mpitantana",
+      "unmute": "Avelao hanao feo indray",
+      "mute": "Arovy",
+      "unban": "Avelao hiditra indray",
+      "ban": "Arovy",
+      "deleteAllMessages": "Fafao ny hafatra rehetra",
+      "removeFromCommunity": "Esory amin'ny vondrom-piarahamonina",
+      "noActionsAvailable": "Tsy afaka mitantana ity mpikambana ity ianao.",
+      "showMore": "Asehoy bebe kokoa",
+      "joinRequests": "Fangatahana hiditra",
+      "approve": "Ekeo",
+      "reject": "Atsipazo",
+      "members": "Membres",
+      "searchMembers": "Karohy amin'ny adiresin'ny poketra",
+      "noMembersMatch": "Tsy misy mpikambana mifanaraka amin'izany.",
+      "noMembers": "Mbola tsy misy mpikambana.",
+      "muted": "Voarohana",
+      "banned": "Voarara",
+      "muteEffect": "Mijanona ao amin'ny vondrom-piarahamonina izy ireo saingy tsy afaka mandefa hafatra mandra-pahatapitry ny fanarohana.",
+      "banEffect": "Voaroaka amin'ny chat izy ireo ary tsy afaka miverina raha tsy esorina ny fandrarana.",
+      "durationLabel": "Faharetana",
+      "reasonLabel": "Antony (tsy voatery)",
+      "reasonPlaceholder": "Nahoana izy ireo no rarana?",
+      "alsoDeleteMessages": "Fafao koa ny hafatra rehetra",
+      "confirmMute": "Arovy ny mpikambana",
+      "confirmBan": "Rarano ny mpikambana",
+      "rulesUpdated": "Nohavaozina ny fitsipika",
+      "rulesTitle": "Fitsipiky ny vondrom-piarahamonina",
+      "rulesEmpty": "Mbola tsy misy fitsipika — ampidiro eto ambany ny voalohany.",
+      "rulePlaceholder": "Farany ny fitsipika",
+      "addRule": "Ampio fitsipika",
+      "saveRules": "Tehirizo ny fitsipika",
+      "dismissAdminBody": "{{wallet}} dia hiverina ho mpikambana tsotra.",
+      "purgeBody": "Ny hafatra rehetra nalefan'i {{name}} tao amin'ity vondrom-piarahamonina ity dia hofafana.",
+      "kickBody": "{{name}} dia hesorina amin'ny vondrom-piarahamonina. Afaka miditra indray izy ireo any aoriana.",
+      "bannedUntil": "Voaroaka hatramin'ny {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Nofoanana hatramin'ny {{date}}",
+      "bannedUntilShort": "Hatramin'ny {{date}}",
+      "muteTitle": "Fadio ny hanao resaka {{name}}",
+      "banTitle": "Voarara {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} amin'ny {{max}}",
+      "moveRuleUp": "Afindra ambony ny fitsipika",
+      "moveRuleDown": "Afindra midina ny fitsipika",
+      "deleteRule": "Fafao ny fitsipika",
+      "rights": {
+        "changeInfo": "Ovay ny mombamomba ny vondrom-piarahamonina",
+        "changeInfoHint": "Ovay ny anarana, famaritana, avatar ary sora-baventy",
+        "deleteMessages": "Fafao ny hafatra",
+        "deleteMessagesHint": "Esory ny hafatra rehetra avy amin'ny resaka vondrom-piarahamonina",
+        "restrictMembers": "Voarara ny mpikambana",
+        "restrictMembersHint": "Fadio, esory ary raràny ny mpikambana",
+        "inviteUsers": "Asao ny mpikambana amin'ny alalan'ny rohy",
+        "inviteUsersHint": "Mamorona ary manafoana rohy fanasana",
+        "pinMessages": "Apetraho ny hafatra",
+        "pinMessagesHint": "Apetraho eo ambony ny hafatra iray",
+        "manageEvents": "Tantano ny hetsika",
+        "manageEventsHint": "Mamorona ary ovay ny hetsika vondrom-piarahamonina",
+        "addAdmins": "Ampio admin vaovao",
+        "addAdminsHint": "Hampiroboroboana ny mpikambana sy ovaina ny zo'ny admin nampidiriny",
+        "remainAnonymous": "Mijanonona ho tsy fantatra anarana",
+        "remainAnonymousHint": "Afenina ity admin ity amin'ny lisitry ny mpikambana"
+      },
+      "durations": {
+        "oneHour": "1 ora",
+        "eightHours": "8 ora",
+        "oneDay": "1 andro",
+        "oneWeek": "1 herinandro",
+        "forever": "Mandrakizay"
+      }
+    },
+    "chooseAvatar": "Mifidiana avatar"
   },
   "work": {
     "title": "Loka",
@@ -2957,7 +3126,9 @@
       "shipped": "Nalefa",
       "completed": "Vita",
       "cancelled": "Nofoanana"
-    }
+    },
+    "removePhoto": "Esory ny sary",
+    "listingOptions": "Safidy lisitra"
   },
   "accounts": {
     "subtitle": "Kaonty manontolo amidy, amin'ny DHB ny vidiny",
@@ -3323,7 +3494,14 @@
     "removeFollowerHint": "Tsindrio ary tano ny mpanaraka iray mba hanesorana azy.",
     "cancel": "Atsaharo",
     "remove": "Esory",
-    "thisUser": "Ny mpampiasa no"
+    "thisUser": "Ny mpampiasa no",
+    "cancelRequestTo": "Hofoanana ny fangatahana fanarahana an'i @{{username}}?",
+    "followingUser": "Manaraka an'i @{{username}}",
+    "contentUnavailable": "Tsy misy ny votoaty",
+    "youBlockedBody": "Tsy ho hitanao ny zavatra nosoratany na tsy afaka hifandray amin'izy ireo ianao. Hofoanana ny fanakanana mba hamerenana ny fidirana.",
+    "restrictedBody": "Voafetra ny fifandraisana amin'ny kaontinao ity mpampiasa ity.",
+    "requestPendingBody": "Voalefa ny fangatahanao fanarahana. Ho afaka hahita ny zavatra nosoratany ianao rehefa ankatoaviny ny fangatahanao.",
+    "followToSeePosts": "Araho ity kaonty ity mba hahitana ny zavatra nosoratany."
   },
   "reactionInfo": {
     "title": "Fanehoan-kevitra",
@@ -3635,7 +3813,8 @@
     "needGas": "Mila {{token}} tena izy ho an'ny gazy ao amin'ny {{chain}}.",
     "bridging": "Manao tetezana…",
     "bridgeAction": "Tetezana {{from}} → {{to}}",
-    "failed": "Tsy nahomby ny tetezana"
+    "failed": "Tsy nahomby ny tetezana",
+    "sentArriveShortly": "{{amount}} DHB nalefa avy amin'ny {{from}} → {{to}}. Ho tonga tsy ho ela ny famantarana."
   },
   "banned": {
     "title": "Voarara ny kaontinao",
@@ -3813,7 +3992,16 @@
     "legacyRecovered": "Voamarina ny kaontinao taloha{{suffix}} ary voaverina ny kitapom-bolany. Mametraha tenimiafina hiarovana azy amin'ity fitaovana ity — amin'ity finday ity sy any amin'ny toerana rehetra, manomboka izao.",
     "passwordMin": "Tenimiafina (litera {{min}} farafahakeliny)",
     "newPasswordMin": "Tenimiafina vaovao (litera {{min}} farafahakeliny)",
-    "newWalletPasswordMin": "Tenimiafinan'ny kitapom-bola vaovao (litera {{min}} farafahakeliny)"
+    "newWalletPasswordMin": "Tenimiafinan'ny kitapom-bola vaovao (litera {{min}} farafahakeliny)",
+    "deviceCheckCancelled": "Nofoanana ny fizahana fitaovana — tsy nisy fiovana.",
+    "savePhraseTitle": "Tehirizo ny fehezanteny fanarenanao",
+    "startOverTitle": "Atombohy indray amin'ny poketra vaovao",
+    "secureNewWalletTitle": "Arovy ny poketrao vaovao",
+    "secureWalletTitle": "Arovy ny poketrao",
+    "unlockOnMobileTitle": "Hivoaka amin'ny finday",
+    "oldAccountFoundTitle": "Kaonty taloha hita",
+    "unlockWalletTitle": "Hivoaka ny poketrao",
+    "phraseExplainer": "Ho voaro ny poketrao amin'ny biometrika an'ity telefaona ity. Io fivoahana io <em>dia miasa amin'ity telefaona ity ihany</em> — ireo teny 12 ireo no hany fomba hiverenana raha toa ka fametrahana DeHub indray ianao, manova finday, na mamoy izany."
   },
   "transcript": {
     "title": "Fandikana an-tsoratra",
@@ -3999,7 +4187,38 @@
     "subscribe": "Misoratra anarana",
     "subscriberCount_one": "Mpanoratra anarana {{count}}",
     "subscriberCount_other": "Mpanoratra anarana {{count}}",
-    "subscribeToForRich": "Misoratra anarana amin'ny <name>{{name}}</name> amin'ny <price>{{price}}</price>"
+    "subscribeToForRich": "Misoratra anarana amin'ny <name>{{name}}</name> amin'ny <price>{{price}}</price>",
+    "loadPlansFailed": "Tsy nahavita nampiditra drafitra",
+    "subscriberContent": "Votoatin'ny mpikambana mpanjifa",
+    "subscriberContentSub": "Mamorona drafitra hanolorana votoaty manokana ho an'ny mpikambana",
+    "createFirstPlan": "Mamorona ny Drafitra Voalohany",
+    "addNewPlan": "Ampio Drafitra Vaovao",
+    "durations": {
+      "oneMonth": "1 Volana",
+      "threeMonths": "3 Volana",
+      "sixMonths": "6 Volana",
+      "oneYear": "1 Taona",
+      "lifetime": "Fiainana manontolo"
+    },
+    "planNameRequired": "Ilaina ny anaran'ny drafitra",
+    "enterValidPrice": "Mampidira vidiny manan-kery",
+    "availableChains": "Misy amin'ny Base sy BNB ny famandrihana amin'izao fotoana izao",
+    "waitForSwitch": "Miandry ny famitranana ny tambajotran'ny famandrihana",
+    "connectAndWait": "Ampifandraiso ny poketrao ary miandry ny tambajotran'ny famandrihana",
+    "planUpdated": "Drafitra nohavaozina",
+    "creating": "Mamorona…",
+    "planPublished": "Drafitra noforonina sy navoaka",
+    "createPlanTitle": "Mamorona Drafitra Famandrihana",
+    "network": "Tambajotran'ny famandrihana",
+    "planNameLabel": "Anaran'ny Drafitra *",
+    "planNamePlaceholder": "ohatra. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Inona no ho azon'ny mpikambana...",
+    "priceLabel": "Vidiny (USD) *",
+    "legacyMigrationNote": "Ny fampifindrana ny tahiry avy amin'ity drafitra DHB taloha ity ho amin'ny vidin'ny dolara amin'ny tahan'ny alohan'ny lisitra.",
+    "benefits": "Tombontsoa",
+    "benefitPlaceholder": "Ampio tombontsoa...",
+    "createAndPublish": "Mamorona & Mamoaka",
+    "publishingOnChain": "Ny famoahana dia fifanarahana an-tsambonana"
   },
   "live": {
     "notSet": "Tsy voafaritra",
@@ -4117,7 +4336,22 @@
     "acceptTerms": "Manaiky aho <terms>Fepetra sy Fanompoana</terms>",
     "sentTo": "{{amount}}{{symbol}} nalefa tany {{address}}",
     "tokensSentTo": "Nisy mari-tsoratra nalefa tany amin'ny {{address}}",
-    "goToProfile": "Ho any amin'ny profil"
+    "goToProfile": "Ho any amin'ny profil",
+    "aboutTitle": "Momba ny DeHub & ny fandoavam-bola",
+    "aboutSubtitle": "Ny vavahadinao amin'ny fandoavam-bola tokena tsy misy olana",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Ampiasaina ny \"tokens\" mba hisoratra anarana amin'ny mpamorona, hanomezana vola ny mpitendry na hanokafana votoaty. Arakaraka ny habetsahana anananao no hampihenana ny sarany ary arakaraka ny \"superpowers\" hovohanao toy ny fampitomboana ny fironana amin'ny \"timeline\" sy ny mari-pankasitrahana fanamarinana.",
+    "aboutInstantTitle": "Fandoavam-bola avy hatrany",
+    "aboutInstantBody": "Mampiasa an'i Stripe, azonao atao ny mividy \"tokens\" avy hatrany sy tsy misy olana ao anatin'ny kaonty rehetra misy anao. Ny DeHub dia manamora ny \"tokens\" ho an'ny rehetra. Raha mila fanampiana bebe kokoa ianao, tongava fotsiny ao amin'ny chat vondrom-piarahamonina mivantana 24/7 ary mangataha fanampiana amin'ny \"admin\".",
+    "aboutSecureTitle": "Fiantohana azo antoka",
+    "aboutSecureBody": "Ny antsipirian'ny fandoavam-bola rehetra dia voafafa ary voahodina soa aman-tsara amin'ny alàlan'i Stripe. Tsy afaka miditra na mitahiry ny vaovao saro-pady na ny antsipirian'ny karatrao izahay, ka manome anao fiadanan-tsaina farany.",
+    "transfersSummary": "Famintinana ny fifindrana",
+    "availableToBuy": "Misy hividy ankehitriny",
+    "noSupplyShort": "Tsy misy famatsiana",
+    "topUpSubtitle": "Mividiana $DHB amin'ny karatra ary mahazoa entona maimaim-poana hovidiana avy hatrany",
+    "noTxHash": "Tsy nahita ny \"transaction hash\"",
+    "latestTransactions": "Fifindrana farany",
+    "showAll": "Asehoy avokoa"
   },
   "musicSheet": {
     "title": "Mamorona hira",
@@ -4246,7 +4480,13 @@
     "followUpNote": "Mety hifandray aminao izahay hametraka fanontaniana fanampiny momba ny hevitrao",
     "submitFeedback": "Alefaso ny hevitra",
     "provideFeedback": "Azafady soraty ny hevitrao",
-    "thankYou": "Misaotra tamin'ny hevitrao!"
+    "thankYou": "Misaotra tamin'ny hevitrao!",
+    "submitFailed": "Tsy nahavita nandefa ny valin-teninao. Mba andramo indray.",
+    "maybeLater": "Angamba Aoriana",
+    "helpUsImprove": "Ampio izahay hanatsara",
+    "rateExperience": "Ahoana no anombananao ny traikefanao?",
+    "telegramOptional": "Telegrama (tsy voatery)",
+    "discordOptional": "Discord (tsy voatery)"
   },
   "migrate": {
     "clearAll": "Mahafoy ny rehetra",
@@ -4361,7 +4601,14 @@
       "blueWhale": "Ny tena zava-tsarotra mafy dia ny hoe efa nisy hatrizay. Anao izany izao.",
       "megalodon": "Indro ny satroboninahitra — ianao fampiharana ny fanjakany ankehitriny"
     },
-    "continue": "Bumalik sa DeHub"
+    "continue": "Bumalik sa DeHub",
+    "none": "Tsy misy",
+    "noBadgeYet": "Tsy misy mari-pankasitrahana mbola",
+    "next": "Manaraka",
+    "topTier": "Ambaratonga ambony indrindra",
+    "toNextTier": "{{amount}} DHB ho an'ny {{tier}}",
+    "everyTierUnlocked": "Ny ambaratonga rehetra voahohana",
+    "holdNote": "Rehefa voahohana ny mari-pankasitrahana, dia anao izany raha mbola mitazona ny DHB anao ianao. Ny isan'ny \"tokens\" ilaina hanokafana mari-pankasitrahana vaovao dia mety miova miaraka amin'ny vidin'ny \"token\"."
   },
   "passwordStrength": {
     "veryWeak": "Malemy be",
@@ -4443,7 +4690,11 @@
     },
     "ttsLabel": "Lazao zavatra mafy",
     "ttsPlaceholder": "Hivoaka eny amin'ny tosaka...",
-    "ttsHint": "Vakio mafy ny olona rehetra mijery rehefa tonga ny fanomezam-pahasoavanao."
+    "ttsHint": "Vakio mafy ny olona rehetra mijery rehefa tonga ny fanomezam-pahasoavanao.",
+    "sendAGift": "Alefaso fanomezana",
+    "minPlaceholder": "Farafahakeliny: {{amount}}",
+    "minGift": "Ny fanomezana farany ambany dia {{amount}}",
+    "sendGift": "Alefaso ny fanomezana"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4825,7 +5076,8 @@
         "title": "Jereo ny fomba fitadiavam-bola asa",
         "body": "Fantaro ny fomba toro-hevitra, karatra ary SuperPowers mitodika ny zavatra ataonao eto ho zavatra azonao avy."
       }
-    }
+    },
+    "swipeToStart": "Sintomy mba hanombohana"
   },
   "conversation": {
     "commonGround": {
@@ -5383,5 +5635,18 @@
     "toastPaidSettled": "Voaloa — vita ny varotra",
     "walletNotReady": "Mbola tsy vonona ny kitaponao — andramo indray afaka kelikely.",
     "wrongChain": "Amin'ny {{chain}} no hamitana ity varotra ity. Mifindrà amin'ny {{chain}} ao amin'ny Fandrindrana, dia andramo indray."
+  },
+  "moderation": {
+    "appealDuplicate": "Ireto farany izay nanamarika raha nanontaniako fa",
+    "appealSent": "Antso nalefa",
+    "appealFailed": "Tsy afaka nameno izany antso izany",
+    "appealTitle": "Avela amin'ny fieritreretanao io",
+    "appealSubtitle": "Noho izany dia averiko indray ary avereno jerena indray ny zava-misy.",
+    "appealPlaceholder": "Inona araka ny eritreritrao no tsy hita? Ny fampiharana ny endrika dia manampy betsaka kokoa noho ny zavatra hafa.",
+    "appealSend": "Mandefasa antso",
+    "appealFootnote": "Hahazo torohevitra mahasoa ianao, ary misy rohy vitsivitsy. Fanapahan-kevitra iray tamin'ny fanapahan-kevitra.",
+    "appealRef": "Laharana {{ref}}",
+    "appealSubtitleSubject": "Hisy olona hamaky izany ary hijery indray {{subject}}.",
+    "appealMore": "Mbola ilaina ireo karazana ireo: {{count}}"
   }
 }

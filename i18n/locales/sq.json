@@ -691,7 +691,11 @@
       "hintAllow": "Sistemet AI dhe zvarritësit që respektojnë këtë sinjal mund të trajnohen në audio, vepra arti dhe shkrime.",
       "hintDeny": "Sistemet AI dhe zvarritësit që respektojnë këtë sinjal u kërkohet të mos trajnohen në audio, vepra arti dhe shkrime. Zvarritësit që injorojnë sinjalin nuk bllokohen prej tij.",
       "saved": "Preferenca e trajnimit të AI u ruajt"
-    }
+    },
+    "chainIdLabel": "ID zinxhiri: {{id}}",
+    "exportPkConfirmPhrase": "UNË E KUPOJ",
+    "exportPkCopy": "Kopjo çelësin privat",
+    "e2eAutomatic": "Automatike"
   },
   "common": {
     "mute": "Hiq zërin",
@@ -731,7 +735,17 @@
     "optionalSuffix": "(opsionale)",
     "yesterday": "Dje",
     "ok": "Në rregull",
-    "continue": "Vazhdo"
+    "continue": "Vazhdo",
+    "goesToHomeFeed": "Shkon te rrjedha kryesore",
+    "openMenu": "Hap menynë",
+    "scrollsFeedToTop": "Lëviz në krye të rrjedhës dhe e rifreskon atë",
+    "notificationsUnread": "Njoftime, {{unread}} të palexuara",
+    "errorDetails": "Detajet e gabimit:",
+    "failedToLoad": "Dështoi të ngarkohej",
+    "noInternetTitle": "Nuk ka lidhje interneti",
+    "noInternetBody": "Ju lutemi kontrolloni lidhjen tuaj me internetin dhe provoni përsëri. Ju duhet të jeni të lidhur me internetin për të përdorur DeHub.",
+    "noInternetStatus": "Offline - Nuk ka lidhje rrjeti",
+    "noInternetHint": "Sigurohuni që Wi-Fi ose të dhënat mobile të jenë të aktivizuara, pastaj shtypni \"{{action}}\""
   },
   "tip": {
     "title": "Dërgo Bakshish",
@@ -1621,7 +1635,12 @@
     "chooseUsernameBody": "Zgjidh një emër përdoruesi dhe një emër shfaqjeje për të vazhduar. Mund t'i ndryshosh më vonë.",
     "checkingAvailability": "Po kontrollohet disponueshmëria…",
     "usernameTakenHint": "Emri është zënë — provo të shtosh numra ose një vizë të poshtme",
-    "displayNameLength": "Emri i shfaqjes duhet të ketë 2-50 karaktere."
+    "displayNameLength": "Emri i shfaqjes duhet të ketë 2-50 karaktere.",
+    "loginFailedRetry": "Hyrja dështoi. Ju lutemi provoni përsëri.",
+    "sendCodeFailedRetry": "Nuk mund të dërgohej kodi. Ju lutemi provoni përsëri.",
+    "invalidCodeRetry": "Kodi i pavlefshëm. Ju lutemi provoni përsëri.",
+    "invalidEmailOrPassword": "Email ose fjalëkalim i pavlefshëm.",
+    "welcomeToDehub": "Mirë se erdhët në DeHub"
   },
   "messages": {
     "smartRepliesOff": "Përgjigjet e sugjeruara u çaktivizuan",
@@ -1699,7 +1718,32 @@
     "offerWorthNow": "Rreth {{amount}} DHB me kursin aktual",
     "offerNotePlaceholder": "Shto një shënim (opsionale)",
     "offerCommitsNothing": "Të bësh një ofertë nuk kushton asgjë dhe nuk bllokon DHB. Paguan vetëm nëse pronari e pranon.",
-    "offerNeedsHandle": "Kjo llogari nuk ka emër përdoruesi për të cilin të ofrosh."
+    "offerNeedsHandle": "Kjo llogari nuk ka emër përdoruesi për të cilin të ofrosh.",
+    "noPostsYet": "Asnjë postim akoma",
+    "noPostsYetSub": "Përmbajtja do të shfaqet këtu kur të postohet",
+    "noPinnedPosts": "Asnjë postim i ngulitur akoma",
+    "noPinnedPostsSub": "Postimet e ngulitura do të shfaqen këtu",
+    "emptyLiked": "Asnjë postim i pëlqyer akoma.",
+    "emptySaved": "Asnjë postim i ruajtur akoma.",
+    "emptyUnlocked": "Asnjë postim i zhbllokuar akoma.",
+    "emptyWatched": "Asnjë histori shikimi akoma.",
+    "emptyFolder": "Asnjë postim në këtë dosje akoma.",
+    "emptyPosts": "Asnjë postim akoma.",
+    "couldNotLoadPosts": "Nuk mund të ngarkoheshin postimet.",
+    "noPostsOrReplies": "Asnjë postim, koment apo përgjigje akoma",
+    "noPostsOrRepliesSub": "Do të shfaqen këtu",
+    "avatarUpdated": "Avatar-i u përditësua",
+    "coverUpdated": "Cover-i u përditësua",
+    "couldNotPickImage": "Nuk mund të zgjidhej imazhi",
+    "changeCoverImage": "Ndrysho imazhin e cover-it",
+    "changeAvatar": "Ndrysho avatar-in",
+    "verifiedEnsName": "Emri i verifikuar ENS {{name}}",
+    "notFullyJoined": "Ky përdorues nuk është bashkuar plotësisht ende. Nuk ka kërkuar një emër përdoruesi ose nuk ka përfunduar konfigurimin e profilit. Ju ende mund të shikoni aktivitetin publik dhe të dërgoni këshilla nëse janë të disponueshme.",
+    "loadRepliesFailed": "Dështoi ngarkimi i përgjigjeve",
+    "refreshFailed": "Rifreskimi dështoi",
+    "noRepliesYet": "Asnjë përgjigje akoma",
+    "noRepliesYetSub": "Kur ky përdorues t'i përgjigjet postimeve, ato do të shfaqen këtu.",
+    "noMoreReplies": "Asnjë përgjigje më"
   },
   "tv": {
     "title": "TV",
@@ -1782,7 +1826,11 @@
     "loadingPrice": "Po ngarkohet çmimi…",
     "topUpExplanation": "DHB transferohet on-chain te thesari i reklamave i DeHub, dhe më pas bilanci yt kreditohet pas një verifikimi të pavarur on-chain.",
     "paymentHistory": "Historiku i pagesave",
-    "noPayments": "Ende nuk ka pagesa"
+    "noPayments": "Ende nuk ka pagesa",
+    "sponsored": "Sponsorizuar",
+    "morePosts": "Më shumë postime",
+    "loadMorePosts": "Ngarko më shumë postime",
+    "playAdVideo": "Luaj video reklamë"
   },
   "buyCoins": {
     "title": "Bli Monedha",
@@ -2217,7 +2265,8 @@
     "privateBalanceMode": "Modaliteti i bilancit privat është aktiv",
     "addressHidden": "Adresa është e fshehur",
     "allowInFeeds": "Lejo këtë përdorues të shfaqet në furnizimet e tua",
-    "hideContent": "Fshihni përmbajtjen e tyre dhe kufizoni ndërveprimet"
+    "hideContent": "Fshihni përmbajtjen e tyre dhe kufizoni ndërveprimet",
+    "a11yLabel": "Opsionet e profilit"
   },
   "toasts": {
     "saved_to_bookmarks": "U ruajt te faqeshënuesit",
@@ -2589,7 +2638,8 @@
     "roles": {
       "owner": "Pronar",
       "moderator": "Moderator",
-      "member": "Anëtar"
+      "member": "Anëtar",
+      "admin": "Admin"
     },
     "time": {
       "today": "sot",
@@ -2598,7 +2648,126 @@
       "weeks": "{{count}} javë",
       "months": "{{count}} muaj",
       "years": "{{count}} vjet"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "redaktuar",
+      "deleteTitle": "Fshij mesazhin",
+      "deleteConfirm": "Fshij këtë mesazh? Kjo nuk mund të kthehet.",
+      "muted": "Je në heshtje",
+      "postingDisabled": "Postimi është çaktivizuar për anëtarët këtu",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Mesazhi i ngulitur",
+      "showEarlier": "Trego mesazhet e mëparshme",
+      "editingMessage": "Redaktimi i mesazhit",
+      "copied": "Mesazhi u kopjua",
+      "copyText": "Kopjo tekstin",
+      "mutedUntil": "Je i heshtur deri në {{date}}",
+      "slowMode": "Modaliteti i ngadaltë: një mesazh çdo {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Largo administratorin",
+      "cancel": "Anulo",
+      "dismissAdmin": "Largo administratorin",
+      "roleAdmin": "Administratori",
+      "roleMember": "Anëtar",
+      "whatCanTheyDo": "Çfarë mund të bëjë ky administrator?",
+      "rightNotHeld": "Ju nuk e keni këtë të drejtë vetë",
+      "customTitle": "Titull i personalizuar",
+      "customTitlePlaceholder": "Administratori",
+      "customTitleHint": "Shfaqet në vend të distinktivit të paracaktuar të Administratorit.",
+      "saveChanges": "Ruaj ndryshimet",
+      "promote": "Promovo",
+      "tabs": {
+        "members": "Anëtarët",
+        "admins": "Administratorët",
+        "permissions": "Lejet",
+        "invites": "Ftesa",
+        "rules": "Rregullat",
+        "recentActions": "Veprimet e fundit",
+        "danger": "Zona e rrezikut"
+      },
+      "title": "Menaxho",
+      "purgeTitle": "Do t 'i fshish të gjitha mesazhet?",
+      "purgeConfirm": "Fshi",
+      "kickTitle": "Do ta heqësh anëtarësinë?",
+      "kickConfirm": "Hiq",
+      "bannedPermanent": "I ndaluar — i përhershëm",
+      "mutedPermanent": "Memec — i përhershëm",
+      "editAdminRights": "Redakto të drejtat e administratorit",
+      "promoteToAdmin": "Promovo në administrator",
+      "unmute": "Shkarkoje nga heshtja",
+      "mute": "Hesht",
+      "unban": "Hiq nga bllokimi",
+      "ban": "Blloko",
+      "deleteAllMessages": "Fshi të gjitha mesazhet",
+      "removeFromCommunity": "Hiqe nga komuniteti",
+      "noActionsAvailable": "Nuk mund ta moderoni këtë anëtar.",
+      "showMore": "Trego më shumë",
+      "joinRequests": "Kërkesat për t'u bashkuar",
+      "approve": "Mirato",
+      "reject": "Refuzo",
+      "members": "Anëtarët",
+      "searchMembers": "Kërko sipas adresës së portofolit",
+      "noMembersMatch": "Asnjë anëtar nuk përputhet me këtë.",
+      "noMembers": "Asnjë anëtar akoma.",
+      "muted": "Heshtur",
+      "banned": "Bllokuar",
+      "muteEffect": "Ata qëndrojnë në komunitet por nuk mund të postojnë derisa të skadojë heshtja.",
+      "banEffect": "Ata hiqen nga biseda dhe nuk mund të ribashkohen derisa të hiqet bllokimi.",
+      "durationLabel": "Kohëzgjatja",
+      "reasonLabel": "Arsyeja (opsionale)",
+      "reasonPlaceholder": "Pse po bllokohen?",
+      "alsoDeleteMessages": "Gjithashtu fshi të gjitha mesazhet e tyre",
+      "confirmMute": "Hesht anëtarin",
+      "confirmBan": "Blloko anëtarin",
+      "rulesUpdated": "Rregullat e përditësuara",
+      "rulesTitle": "Rregullat e komunitetit",
+      "rulesEmpty": "Asnjë rregull akoma — shtoni të parin më poshtë.",
+      "rulePlaceholder": "Përshkruaj rregullin",
+      "addRule": "Shto rregull",
+      "saveRules": "Ruaj rregullat",
+      "dismissAdminBody": "{{wallet}} do të kthehet në një anëtar të zakonshëm.",
+      "purgeBody": "Çdo mesazh që {{name}} ka dërguar në këtë komunitet do të fshihet.",
+      "kickBody": "{{name}} do të hiqet nga komuniteti. Ata mund të bashkohen përsëri më vonë.",
+      "bannedUntil": "I ndaluar deri në {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "I heshtur deri në {{date}}",
+      "bannedUntilShort": "Deri në {{date}}",
+      "muteTitle": "Hesht {{name}}",
+      "banTitle": "Ndalo {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} nga {{max}}",
+      "moveRuleUp": "Lëviz rregullin lart",
+      "moveRuleDown": "Lëviz rregullin poshtë",
+      "deleteRule": "Fshij rregullin",
+      "rights": {
+        "changeInfo": "Ndrysho informacionin e komunitetit",
+        "changeInfoHint": "Redakto emrin, përshkrimin, avatarin dhe banerin",
+        "deleteMessages": "Fshi mesazhet",
+        "deleteMessagesHint": "Hiq çdo mesazh nga biseda e komunitetit",
+        "restrictMembers": "Ndalo përdoruesit",
+        "restrictMembersHint": "Hesht, hiq dhe ndalo anëtarët",
+        "inviteUsers": "Fto përdoruesit përmes lidhjes",
+        "inviteUsersHint": "Krijo dhe revoko lidhjet e ftesave",
+        "pinMessages": "Ngjit mesazhet",
+        "pinMessagesHint": "Ngjit një mesazh në krye të bisedës",
+        "manageEvents": "Menaxho ngjarjet",
+        "manageEventsHint": "Krijo dhe redakto ngjarjet e komunitetit",
+        "addAdmins": "Shto administratorë të rinj",
+        "addAdminsHint": "Promovo anëtarët dhe modifiko të drejtat e administratorëve që ata shtuan",
+        "remainAnonymous": "Mbetu anonim",
+        "remainAnonymousHint": "Fshih këtë administrator nga lista e anëtarëve"
+      },
+      "durations": {
+        "oneHour": "1 orë",
+        "eightHours": "8 orë",
+        "oneDay": "1 ditë",
+        "oneWeek": "1 javë",
+        "forever": "Përgjithmonë"
+      }
+    },
+    "chooseAvatar": "Zgjidh avatar"
   },
   "work": {
     "title": "Shpërblime",
@@ -2950,7 +3119,9 @@
       "shipped": "I dërguar",
       "completed": "I përfunduar",
       "cancelled": "I anuluar"
-    }
+    },
+    "removePhoto": "Hiq foton",
+    "listingOptions": "Opsionet e listimit"
   },
   "accounts": {
     "subtitle": "Llogari të plota në shitje, me çmim në DHB",
@@ -3318,7 +3489,14 @@
     "removeFollowerHint": "Shtyp dhe mbaj shtypur një ndjekës për ta hequr.",
     "cancel": "Anulo",
     "remove": "Hiqe",
-    "thisUser": "Ky përdorues"
+    "thisUser": "Ky përdorues",
+    "cancelRequestTo": "Anulo kërkesën për ndjekje për @{{username}}?",
+    "followingUser": "Tani po ndjek @{{username}}",
+    "contentUnavailable": "Përmbajtje e padisponueshme",
+    "youBlockedBody": "Nuk do t'i shihni postimet e tyre ose nuk do të mund të bashkëveproni me ta. Zhbllokoni për të rivendosur aksesin.",
+    "restrictedBody": "Ky përdorues ka kufizuar bashkëveprimet me llogarinë tuaj.",
+    "requestPendingBody": "Kërkesa juaj për ndjekje është dërguar. Do të mund t'i shihni postimet e tyre pasi ata të miratojnë kërkesën tuaj.",
+    "followToSeePosts": "Ndiqni këtë llogari për të parë postimet e tyre."
   },
   "reactionInfo": {
     "title": "Reagimet",
@@ -3632,7 +3810,8 @@
     "needGas": "Duhet {{token}} vendas për gazin në {{chain}}.",
     "bridging": "Po kalohet ura…",
     "bridgeAction": "Urë {{from}} → {{to}}",
-    "failed": "Ura dështoi"
+    "failed": "Ura dështoi",
+    "sentArriveShortly": "{{amount}} DHB dërguar nga {{from}} → {{to}}. Tokenat do të mbërrijnë së shpejti."
   },
   "banned": {
     "title": "Llogaria jote është e ndaluar",
@@ -3810,7 +3989,16 @@
     "legacyRecovered": "Verifikuam llogarinë tënde të vjetër{{suffix}} dhe rikuperuam portofolin e saj. Cakto një fjalëkalim që ta mbrojë në këtë pajisje — në këtë telefon dhe kudo tjetër, që tani e tutje.",
     "passwordMin": "Fjalëkalimi (min {{min}} karaktere)",
     "newPasswordMin": "Fjalëkalim i ri (min {{min}} karaktere)",
-    "newWalletPasswordMin": "Fjalëkalimi i portofolit të ri (min {{min}} karaktere)"
+    "newWalletPasswordMin": "Fjalëkalimi i portofolit të ri (min {{min}} karaktere)",
+    "deviceCheckCancelled": "Kontrolli i pajisjes u anulua — nuk u bë asnjë ndryshim.",
+    "savePhraseTitle": "Ruaje frazën tënde të rikuperimit",
+    "startOverTitle": "Fillo përsëri me një portofol të ri",
+    "secureNewWalletTitle": "Siguroje portofolin tënd të ri",
+    "secureWalletTitle": "Siguroje portofolin tënd",
+    "unlockOnMobileTitle": "Zhbloje në celular",
+    "oldAccountFoundTitle": "Llogaria e vjetër u gjet",
+    "unlockWalletTitle": "Zhbloje portofolin tënd",
+    "phraseExplainer": "Portofoli yt do të mbrohet nga biometria e këtij telefoni. Kjo zhbllokim <em>funksionon vetëm në këtë telefon</em> — këto 12 fjalë janë e vetmja mënyrë për t'u kthyer nëse instaloni DeHub, ndërroni dorëzuesin, ose e humbni atë."
   },
   "transcript": {
     "title": "Transkript",
@@ -3996,7 +4184,38 @@
     "subscribe": "Abonohu",
     "subscriberCount_one": "{{count}} abonent",
     "subscriberCount_other": "{{count}} abonentë",
-    "subscribeToForRich": "Abonohu te <name>{{name}}</name> për <price>{{price}}</price>"
+    "subscribeToForRich": "Abonohu te <name>{{name}}</name> për <price>{{price}}</price>",
+    "loadPlansFailed": "Dështoi të ngarkohen planet",
+    "subscriberContent": "Përmbajtja e abonuesit",
+    "subscriberContentSub": "Krijo plane për të ofruar përmbajtje ekskluzive për abonentët",
+    "createFirstPlan": "Krijo Planin Tënd të Parë",
+    "addNewPlan": "Shto Plan të Ri",
+    "durations": {
+      "oneMonth": "1 Muaj",
+      "threeMonths": "3 Muaj",
+      "sixMonths": "6 Muaj",
+      "oneYear": "1 Vit",
+      "lifetime": "Jetëgjatë"
+    },
+    "planNameRequired": "Emri i planit kërkohet",
+    "enterValidPrice": "Fut një çmim të vlefshëm",
+    "availableChains": "Abonimet aktualisht janë të disponueshme në Base dhe BNB",
+    "waitForSwitch": "Prisni që rrjeti i abonimit të përfundojë ndërrimin",
+    "connectAndWait": "Lidhni portofolin tuaj dhe prisni rrjetin e abonimit",
+    "planUpdated": "Plani u përditësua",
+    "creating": "Krijimi…",
+    "planPublished": "Plani u krijua dhe u publikua",
+    "createPlanTitle": "Krijo Plan Abonimi",
+    "network": "Rrjeti i abonimit",
+    "planNameLabel": "Emri i Planit *",
+    "planNamePlaceholder": "p.sh. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Çfarë marrin abonentët...",
+    "priceLabel": "Çmimi (USD) *",
+    "legacyMigrationNote": "Kursimi migron këtë plan të trashëguar DHB në çmime në dollarë me normën para-listimit.",
+    "benefits": "Përfitimet",
+    "benefitPlaceholder": "Shto një përfitim...",
+    "createAndPublish": "Krijo & Publiko",
+    "publishingOnChain": "Publikimi është një transaksion në zinxhir"
   },
   "live": {
     "notSet": "I pacaktuar",
@@ -4114,7 +4333,22 @@
     "acceptTerms": "I pranoj <terms>Kushtet e shërbimit</terms>",
     "sentTo": "{{amount}} {{symbol}} u dërgua në {{address}}",
     "tokensSentTo": "Shenjat u dërguan në {{address}}",
-    "goToProfile": "Shko te profili"
+    "goToProfile": "Shko te profili",
+    "aboutTitle": "Rreth DeHub & pagesave",
+    "aboutSubtitle": "Porta juaj drejt pagesave të pandërprera me token",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokenet përdoren për t'u abonuar te krijuesit, për t'u dhënë bakshish transmetuesve ose për të zhbllokuar përmbajtje. Sa më shumë të mbash, aq më të ulëta janë tarifat tuaja dhe aq më shumë superpotenca zhbllokoni si përforcime të trendeve në linjën kohore dhe shenja verifikimi.",
+    "aboutInstantTitle": "Pagesa të Menjëhershme",
+    "aboutInstantBody": "Duke përdorur Stripe, ju mund të blini token menjëherë dhe pa probleme në çdo llogari ku jeni identifikuar. DeHub i bën tokenat e thjeshta dhe për të gjithë. Nëse keni nevojë për më shumë mbështetje, thjesht paraqituni në bisedën tonë të komunitetit live 24/7 dhe kërkoni mbështetje nga administratori.",
+    "aboutSecureTitle": "Portë e Sigurt",
+    "aboutSecureBody": "Të gjitha detajet e pagesës janë të koduara dhe përpunohen në mënyrë të sigurt nga Stripe. Ne nuk mund të aksesojmë ose ruajmë informacionin tuaj të ndjeshëm ose detajet e kartës, duke ju dhënë qetësi absolute.",
+    "transfersSummary": "Përmbledhja e Transferimeve",
+    "availableToBuy": "Në dispozicion për blerje tani",
+    "noSupplyShort": "Pa furnizim",
+    "topUpSubtitle": "Bleni $DHB duke përdorur kartë dhe merrni gaz falas për përdorim të menjëhershëm",
+    "noTxHash": "Nuk u gjet hash transaksioni",
+    "latestTransactions": "Transaksionet më të Fundit",
+    "showAll": "Trego të gjitha"
   },
   "musicSheet": {
     "title": "Krijo një këngë",
@@ -4243,7 +4477,13 @@
     "followUpNote": "Mund të të kontaktojmë me pyetje shtesë për komentin tënd",
     "submitFeedback": "Dërgo komentin",
     "provideFeedback": "Ju lutemi shkruani komentin tuaj",
-    "thankYou": "Faleminderit për komentin tuaj!"
+    "thankYou": "Faleminderit për komentin tuaj!",
+    "submitFailed": "Dështoi dërgimi i feedback-ut. Ju lutem provoni përsëri.",
+    "maybeLater": "Mbase më Vonë",
+    "helpUsImprove": "Na ndihmoni të përmirësohemi",
+    "rateExperience": "Si do ta vlerësonit përvojën tuaj?",
+    "telegramOptional": "Telegram (opsionale)",
+    "discordOptional": "Discord (opsionale)"
   },
   "migrate": {
     "clearAll": "Pastro të gjitha",
@@ -4360,7 +4600,14 @@
       "blueWhale": "Gjëja më e madhe që ka jetuar ndonjëherë. Kjo je ti.",
       "megalodon": "Ja kurora jote — tani je mbretëror i aplikacionit"
     },
-    "continue": "Kthehu në DeHub"
+    "continue": "Kthehu në DeHub",
+    "none": "Asnjë",
+    "noBadgeYet": "Asnjë shenjë akoma",
+    "next": "Tjetra",
+    "topTier": "Niveli më i lartë",
+    "toNextTier": "{{amount}} DHB për {{tier}}",
+    "everyTierUnlocked": "Çdo nivel i zhbllokuar",
+    "holdNote": "Pasi një shenjë të jetë zhbllokuar, ajo është tuaja për aq kohë sa të mbani DHB tuaj. Numri i tokenave të nevojshëm për të zhbllokuar një shenjë të re mund të ndryshojë me çmimin e tokenit."
   },
   "passwordStrength": {
     "veryWeak": "Shumë i dobët",
@@ -4442,7 +4689,11 @@
     },
     "ttsLabel": "Thuaj diçka me zë të lartë",
     "ttsPlaceholder": "Lexo te rrjedha...",
-    "ttsHint": "Lexo me zë të lartë për të gjithë ata që shikojnë se kur do të mbërrijë dhurata jote."
+    "ttsHint": "Lexo me zë të lartë për të gjithë ata që shikojnë se kur do të mbërrijë dhurata jote.",
+    "sendAGift": "Dërgo një Dhuratë",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Dhurata minimale është {{amount}}",
+    "sendGift": "Dërgo Dhuratë"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4823,7 +5074,8 @@
         "title": "Zbulo se si funksionon fitimi",
         "body": "Zbulo se si sugjerimet, distinktivët dhe Superfuqitë e kthejnë atë që bën këtu në diçka nga e cila fiton."
       }
-    }
+    },
+    "swipeToStart": "Rrëshqit për të filluar"
   },
   "conversation": {
     "commonGround": {
@@ -5305,5 +5557,18 @@
     "toastPaidSettled": "U pagua — tregtimi përfundoi",
     "walletNotReady": "Portofoli juaj nuk është gati ende — provoni sërish pas pak.",
     "wrongChain": "Ky tregtim shlyhet në {{chain}}. Kaloni në {{chain}} te Cilësimet, pastaj provoni sërish."
+  },
+  "moderation": {
+    "appealDuplicate": "E ke apeluar tashmë këtë",
+    "appealSent": "Apelimi u dërgua",
+    "appealFailed": "Nuk mund ta paraqes këtë apelim",
+    "appealTitle": "Ankimo këtë vendim",
+    "appealSubtitle": "Një person do ta lexojë këtë dhe do ta shikojë vendimin përsëri.",
+    "appealPlaceholder": "Çfarë mendon se mungoi? Konteksti rreth përmbajtjes ndihmon më shumë se çdo gjë tjetër.",
+    "appealSend": "Dërgo apelimin",
+    "appealFootnote": "Merr një numër referimi dhe përgjigjja kthehet këtu. Një ankim për vendim.",
+    "appealRef": "Referenca {{ref}}",
+    "appealSubtitleSubject": "Një person do ta lexojë këtë dhe do të shikojë përsëri {{subject}}.",
+    "appealMore": "Duhen ende karaktere: {{count}}"
   }
 }

@@ -176,7 +176,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
             {this.props.showDetails && this.state.error && (
               <ScrollView style={styles.detailsContainer}>
-                <Text style={styles.detailsTitle}>Error Details:</Text>
+                <Text style={styles.detailsTitle}>{tr('common.errorDetails', 'Error details:')}</Text>
                 <Text style={styles.detailsText}>
                   {this.state.error.message}
                 </Text>

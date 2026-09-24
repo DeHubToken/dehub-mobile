@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Platform, Keyboard, I18nManager } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { colors } from '../theme/colors';
 import AppTopBar, { APP_TOP_BAR_HEIGHT } from './AppTopBar';
 
@@ -40,6 +41,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   leftContent,
   onBackPress,
 }) => {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const showBack = canGoBack && (onBackPress || (navigation as any).canGoBack?.());
   const backLockRef = useRef(false);
@@ -106,7 +108,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
             className="w-10 h-10 mr-2 items-center justify-center active:opacity-70"
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             accessibilityRole="button"
-            accessibilityLabel="Go back"
+            accessibilityLabel={t("common.goBack")}
           >
             {/* Icons are not mirrored by the layout; back points right in RTL. */}
             <Ionicons

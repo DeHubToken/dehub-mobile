@@ -177,7 +177,7 @@ export function RulesTab({ community, membership }: RulesTabProps) {
                     onPress={() => moveRule(index, -1)}
                     disabled={!canEdit || saving || index === 0}
                     accessibilityRole="button"
-                    accessibilityLabel="Move rule up"
+                    accessibilityLabel={t("communities.manage.moveRuleUp")}
                   >
                     <Icon
                       name="ChevronUp"
@@ -190,7 +190,7 @@ export function RulesTab({ community, membership }: RulesTabProps) {
                     onPress={() => moveRule(index, 1)}
                     disabled={!canEdit || saving || index === rules.length - 1}
                     accessibilityRole="button"
-                    accessibilityLabel="Move rule down"
+                    accessibilityLabel={t("communities.manage.moveRuleDown")}
                   >
                     <Icon
                       name="ChevronDown"
@@ -203,7 +203,7 @@ export function RulesTab({ community, membership }: RulesTabProps) {
                     onPress={() => removeRule(index)}
                     disabled={!canEdit || saving}
                     accessibilityRole="button"
-                    accessibilityLabel="Delete rule"
+                    accessibilityLabel={t("communities.manage.deleteRule")}
                   >
                     <Icon name="Trash2" size={16} color={canEdit ? "#F4F4F5" : "#3f3f46"} />
                   </TouchableOpacity>

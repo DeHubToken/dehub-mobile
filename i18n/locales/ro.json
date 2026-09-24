@@ -691,7 +691,11 @@
       "hintAllow": "Sistemele AI și crawlerele care respectă acest semnal se pot instrui cu privire la audio, grafică și scriere.",
       "hintDeny": "Sistemele AI și crawlerele care respectă acest semnal sunt rugate să nu se instruiască cu privire la audio, grafică și scriere. Șenilele care ignoră semnalul nu sunt blocate de acesta.",
       "saved": "Preferința de instruire AI salvată"
-    }
+    },
+    "chainIdLabel": "ID lanț: {{id}}",
+    "exportPkConfirmPhrase": "AM ÎNȚELES",
+    "exportPkCopy": "Copiază cheia privată",
+    "e2eAutomatic": "Automat"
   },
   "common": {
     "mute": "Dezactivează sunetul",
@@ -731,7 +735,17 @@
     "optionalSuffix": "(opțional)",
     "yesterday": "Ieri",
     "ok": "OK",
-    "continue": "Continuare"
+    "continue": "Continuare",
+    "goesToHomeFeed": "Merge la fluxul principal",
+    "openMenu": "Deschide meniul",
+    "scrollsFeedToTop": "Derulează în partea de sus a fluxului și îl reîmprospătează",
+    "notificationsUnread": "Notificări, {{unread}} necitite",
+    "errorDetails": "Detalii eroare:",
+    "failedToLoad": "Eroare la încărcare",
+    "noInternetTitle": "Fără conexiune la internet",
+    "noInternetBody": "Verifică-ți conexiunea la internet și încearcă din nou. Trebuie să fii conectat la internet pentru a folosi DeHub.",
+    "noInternetStatus": "Offline - Fără conexiune la rețea",
+    "noInternetHint": "Asigură-te că Wi-Fi sau datele mobile sunt activate, apoi atinge \"{{action}}\""
   },
   "tip": {
     "title": "Send Tip",
@@ -1621,7 +1635,12 @@
     "chooseUsernameBody": "Alege un nume de utilizator și un nume afișat pentru a continua. Le poți schimba mai târziu.",
     "checkingAvailability": "Se verifică disponibilitatea…",
     "usernameTakenHint": "Numele este ocupat — încearcă să adaugi cifre sau o liniuță de subliniere",
-    "displayNameLength": "Numele afișat trebuie să aibă 2-50 de caractere."
+    "displayNameLength": "Numele afișat trebuie să aibă 2-50 de caractere.",
+    "loginFailedRetry": "Autentificare eșuată. Te rugăm să încerci din nou.",
+    "sendCodeFailedRetry": "Nu s-a putut trimite codul. Te rugăm să încerci din nou.",
+    "invalidCodeRetry": "Cod invalid. Te rugăm să încerci din nou.",
+    "invalidEmailOrPassword": "Email sau parolă invalidă.",
+    "welcomeToDehub": "Bine ai venit pe DeHub"
   },
   "messages": {
     "smartRepliesOff": "Răspunsurile sugerate au fost dezactivate",
@@ -1699,7 +1718,32 @@
     "offerWorthNow": "Aproximativ {{amount}} DHB la cursul actual",
     "offerNotePlaceholder": "Adaugă o notă (opțional)",
     "offerCommitsNothing": "O ofertă nu costă nimic și nu blochează DHB. Plătești doar dacă proprietarul acceptă.",
-    "offerNeedsHandle": "Acest cont nu are un nume de utilizator pentru care să oferi."
+    "offerNeedsHandle": "Acest cont nu are un nume de utilizator pentru care să oferi.",
+    "noPostsYet": "Niciun post încă",
+    "noPostsYetSub": "Conținutul va apărea aici când va fi postat",
+    "noPinnedPosts": "Niciun post fixat încă",
+    "noPinnedPostsSub": "Postările fixate vor apărea aici",
+    "emptyLiked": "Niciun post apreciat încă.",
+    "emptySaved": "Niciun post salvat încă.",
+    "emptyUnlocked": "Niciun post deblocat încă.",
+    "emptyWatched": "Niciun istoric de vizionare încă.",
+    "emptyFolder": "Niciun post în acest folder încă.",
+    "emptyPosts": "Niciun post încă.",
+    "couldNotLoadPosts": "Nu s-au putut încărca postările.",
+    "noPostsOrReplies": "Niciun post, comentariu sau răspuns încă",
+    "noPostsOrRepliesSub": "Vor apărea aici",
+    "avatarUpdated": "Avatar actualizat",
+    "coverUpdated": "Copertă actualizată",
+    "couldNotPickImage": "Nu s-a putut selecta imaginea",
+    "changeCoverImage": "Schimbă imaginea de copertă",
+    "changeAvatar": "Schimbă avatarul",
+    "verifiedEnsName": "Nume ENS verificat {{name}}",
+    "notFullyJoined": "Acest utilizator nu s-a alăturat complet încă. Nu și-a revendicat un nume de utilizator și nu a finalizat configurarea profilului. Poți vizualiza în continuare activitatea publică și poți trimite sfaturi, dacă sunt disponibile.",
+    "loadRepliesFailed": "Nu s-au putut încărca răspunsurile",
+    "refreshFailed": "Reîncărcare eșuată",
+    "noRepliesYet": "Niciun răspuns încă",
+    "noRepliesYetSub": "Când acest utilizator va răspunde la postări, acestea vor apărea aici.",
+    "noMoreReplies": "Nu mai există răspunsuri"
   },
   "tv": {
     "title": "TV",
@@ -1782,7 +1826,11 @@
     "loadingPrice": "Se încarcă prețul…",
     "topUpExplanation": "DHB se transferă on-chain în trezoreria de reclame DeHub, iar soldul tău e creditat după o verificare independentă on-chain.",
     "paymentHistory": "Istoricul plăților",
-    "noPayments": "Încă nu există plăți"
+    "noPayments": "Încă nu există plăți",
+    "sponsored": "Sponsorizat",
+    "morePosts": "Mai multe postări",
+    "loadMorePosts": "Încarcă mai multe postări",
+    "playAdVideo": "Redă videoclipul publicitar"
   },
   "buyCoins": {
     "title": "Buy Coins",
@@ -2217,7 +2265,8 @@
     "privateBalanceMode": "Modul de sold privat este activat",
     "addressHidden": "Adresă ascunsă",
     "allowInFeeds": "Permite acestui utilizator să apară în fluxurile tale",
-    "hideContent": "Ascunde conținutul lor și limitează interacțiunile"
+    "hideContent": "Ascunde conținutul lor și limitează interacțiunile",
+    "a11yLabel": "Opțiuni profil"
   },
   "toasts": {
     "saved_to_bookmarks": "Salvat în marcaje",
@@ -2588,7 +2637,8 @@
     "roles": {
       "owner": "Proprietar",
       "moderator": "Moderator",
-      "member": "Membru"
+      "member": "Membru",
+      "admin": "Admin"
     },
     "time": {
       "today": "azi",
@@ -2597,7 +2647,126 @@
       "weeks": "{{count}} săpt",
       "months": "{{count}} luni",
       "years": "{{count}} ani"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "editat",
+      "deleteTitle": "Șterge mesajul",
+      "deleteConfirm": "Ștergi acest mesaj? Acest lucru nu poate fi anulat.",
+      "muted": "Ești blocat",
+      "postingDisabled": "Postarea este dezactivată pentru membrii de aici",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Mesaj fixat",
+      "showEarlier": "Arată mesajele anterioare",
+      "editingMessage": "Editarea mesajului",
+      "copied": "Mesaj copiat",
+      "copyText": "Copiază textul",
+      "mutedUntil": "Sunteți dezactivat (ă) până la{{date}}",
+      "slowMode": "Mod lent: un mesaj la fiecare {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Închideți administratorul",
+      "cancel": "Anulează",
+      "dismissAdmin": "Închideți administratorul",
+      "roleAdmin": "Administrator",
+      "roleMember": "Membru",
+      "whatCanTheyDo": "Ce poate face acest administrator?",
+      "rightNotHeld": "Nici dvs. nu aveți acest drept",
+      "customTitle": "Titlu personalizat",
+      "customTitlePlaceholder": "Administrator",
+      "customTitleHint": "Afișat în locul insignei de administrator implicite.",
+      "saveChanges": "Salvează modificările",
+      "promote": "Promovează",
+      "tabs": {
+        "members": "Membri",
+        "admins": "Administratori",
+        "permissions": "Permisiuni",
+        "invites": "Invitații",
+        "rules": "Reguli",
+        "recentActions": "Acțiuni recente",
+        "danger": "Zonă de pericol"
+      },
+      "title": "Gestionează",
+      "purgeTitle": "Ștergi toate mesajele?",
+      "purgeConfirm": "Șterge",
+      "kickTitle": "Elimini membrul?",
+      "kickConfirm": "Elimină",
+      "bannedPermanent": "Interzis — permanent",
+      "mutedPermanent": "Dezactivat — permanent",
+      "editAdminRights": "Editează drepturile de administrator",
+      "promoteToAdmin": "Promovează la administrator",
+      "unmute": "Dezmutește",
+      "mute": "Dezactivează sunetul",
+      "unban": "Dezinterzice",
+      "ban": "Interzice",
+      "deleteAllMessages": "Șterge toate mesajele",
+      "removeFromCommunity": "Elimină din comunitate",
+      "noActionsAvailable": "Nu poți modera acest membru.",
+      "showMore": "Arată mai mult",
+      "joinRequests": "Solicitări de alăturare",
+      "approve": "Aprobă",
+      "reject": "Respinge",
+      "members": "Membri",
+      "searchMembers": "Caută după adresa portofelului",
+      "noMembersMatch": "Nu există membri care să corespundă.",
+      "noMembers": "Încă nu există membri.",
+      "muted": "Mutați",
+      "banned": "Interziși",
+      "muteEffect": "Aceștia rămân în comunitate, dar nu pot posta până la expirarea mute-ului.",
+      "banEffect": "Aceștia sunt eliminați din chat și nu se pot alătura din nou până la ridicarea interdicției.",
+      "durationLabel": "Durată",
+      "reasonLabel": "Motiv (opțional)",
+      "reasonPlaceholder": "De ce sunt interziși?",
+      "alsoDeleteMessages": "Șterge și toate mesajele lor",
+      "confirmMute": "Mute membru",
+      "confirmBan": "Interzice membru",
+      "rulesUpdated": "Reguli actualizate",
+      "rulesTitle": "Regulile comunității",
+      "rulesEmpty": "Încă nu există reguli — adaugă prima mai jos.",
+      "rulePlaceholder": "Descrie regula",
+      "addRule": "Adaugă regulă",
+      "saveRules": "Salvează regulile",
+      "dismissAdminBody": "{{wallet}} va reveni la statutul de membru obișnuit.",
+      "purgeBody": "Fiecare mesaj trimis de {{name}} în această comunitate va fi eliminat.",
+      "kickBody": "{{name}} va fi eliminat din comunitate. Se poate alătura din nou mai târziu.",
+      "bannedUntil": "Interzis până la {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Silențiat până la {{date}}",
+      "bannedUntilShort": "Până la {{date}}",
+      "muteTitle": "Silențiază {{name}}",
+      "banTitle": "Interzice {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} din {{max}}",
+      "moveRuleUp": "Mută regula în sus",
+      "moveRuleDown": "Mută regula în jos",
+      "deleteRule": "Șterge regula",
+      "rights": {
+        "changeInfo": "Modifică informațiile comunității",
+        "changeInfoHint": "Editează numele, descrierea, avatarul și bannerul",
+        "deleteMessages": "Șterge mesaje",
+        "deleteMessagesHint": "Elimină orice mesaj din chatul comunității",
+        "restrictMembers": "Interzice utilizatori",
+        "restrictMembersHint": "Silențiază, elimină și interzice membri",
+        "inviteUsers": "Invitați utilizatori prin link",
+        "inviteUsersHint": "Creează și revocă linkuri de invitație",
+        "pinMessages": "Fixează mesaje",
+        "pinMessagesHint": "Fixează un mesaj în partea de sus a chatului",
+        "manageEvents": "Gestionează evenimente",
+        "manageEventsHint": "Creează și editează evenimente ale comunității",
+        "addAdmins": "Adaugă administratori noi",
+        "addAdminsHint": "Promovează membrii și editează drepturile administratorilor pe care i-au adăugat",
+        "remainAnonymous": "Rămâi anonim",
+        "remainAnonymousHint": "Ascunde acest administrator din lista membrilor"
+      },
+      "durations": {
+        "oneHour": "1 oră",
+        "eightHours": "8 ore",
+        "oneDay": "1 zi",
+        "oneWeek": "1 săptămână",
+        "forever": "Pentru totdeauna"
+      }
+    },
+    "chooseAvatar": "Alege avatar"
   },
   "work": {
     "title": "Recompense",
@@ -2949,7 +3118,9 @@
       "shipped": "Expediat",
       "completed": "Finalizat",
       "cancelled": "Anulat"
-    }
+    },
+    "removePhoto": "Elimină fotografie",
+    "listingOptions": "Opțiuni de listare"
   },
   "accounts": {
     "subtitle": "Conturi întregi de vânzare, cu preț în DHB",
@@ -3317,7 +3488,14 @@
     "removeFollowerHint": "Apasă și ține apăsat pe un urmăritor pentru a-l elimina.",
     "cancel": "Anulează",
     "remove": "Elimină",
-    "thisUser": "Acest utilizator"
+    "thisUser": "Acest utilizator",
+    "cancelRequestTo": "Anulează cererea de urmărire către @{{username}}?",
+    "followingUser": "Urmăresc @{{username}}",
+    "contentUnavailable": "Conținut indisponibil",
+    "youBlockedBody": "Nu vei vedea postările lor și nu vei putea interacționa cu ei. Deblochează pentru a restabili accesul.",
+    "restrictedBody": "Acest utilizator a restricționat interacțiunile cu contul tău.",
+    "requestPendingBody": "Cererea ta de urmărire a fost trimisă. Vei putea vedea postările lor odată ce aceștia îți aprobă cererea.",
+    "followToSeePosts": "Urmărește acest cont pentru a vedea postările sale."
   },
   "reactionInfo": {
     "title": "Reacții",
@@ -3632,7 +3810,8 @@
     "needGas": "Ai nevoie de {{token}} nativ pentru gas pe {{chain}}.",
     "bridging": "Se creează puntea…",
     "bridgeAction": "Punte {{from}} → {{to}}",
-    "failed": "Puntea a eșuat"
+    "failed": "Puntea a eșuat",
+    "sentArriveShortly": "{{amount}} DHB trimis de la {{from}} → {{to}}. Token-urile sosesc în curând."
   },
   "banned": {
     "title": "Contul tău este interzis",
@@ -3810,7 +3989,16 @@
     "legacyRecovered": "Ți-am verificat contul vechi{{suffix}} și i-am recuperat portofelul. Setează o parolă care să-l protejeze pe acest dispozitiv — pe acest telefon și oriunde altundeva, de acum înainte.",
     "passwordMin": "Parolă (min. {{min}} caractere)",
     "newPasswordMin": "Parolă nouă (min. {{min}} caractere)",
-    "newWalletPasswordMin": "Parola noului portofel (min. {{min}} caractere)"
+    "newWalletPasswordMin": "Parola noului portofel (min. {{min}} caractere)",
+    "deviceCheckCancelled": "Verificarea dispozitivului a fost anulată — nu s-a modificat nimic.",
+    "savePhraseTitle": "Salvează-ți fraza de recuperare",
+    "startOverTitle": "Începe din nou cu un portofel nou",
+    "secureNewWalletTitle": "Securizează-ți portofelul nou",
+    "secureWalletTitle": "Securizează-ți portofelul",
+    "unlockOnMobileTitle": "Deblochează pe mobil",
+    "oldAccountFoundTitle": "Cont vechi găsit",
+    "unlockWalletTitle": "Deblochează-ți portofelul",
+    "phraseExplainer": "Portofelul tău va fi protejat de biometria acestui telefon. Această deblocare <em>funcționează doar pe acest telefon</em> — aceste 12 cuvinte sunt singura modalitate de a reveni dacă reinstalezi DeHub, schimbi telefonul sau îl pierzi."
   },
   "transcript": {
     "title": "Transcriere",
@@ -3997,7 +4185,38 @@
     "subscribe": "Abonează-te",
     "subscriberCount_one": "{{count}} abonat",
     "subscriberCount_other": "{{count}} abonați",
-    "subscribeToForRich": "Abonează-te la <name>{{name}}</name> pentru <price>{{price}}</price>"
+    "subscribeToForRich": "Abonează-te la <name>{{name}}</name> pentru <price>{{price}}</price>",
+    "loadPlansFailed": "Eroare la încărcarea planurilor",
+    "subscriberContent": "Conținut pentru abonați",
+    "subscriberContentSub": "Creează planuri pentru a oferi conținut exclusiv abonaților",
+    "createFirstPlan": "Creează primul tău plan",
+    "addNewPlan": "Adaugă plan nou",
+    "durations": {
+      "oneMonth": "1 lună",
+      "threeMonths": "3 luni",
+      "sixMonths": "6 luni",
+      "oneYear": "1 an",
+      "lifetime": "Pe viață"
+    },
+    "planNameRequired": "Numele planului este obligatoriu",
+    "enterValidPrice": "Introdu un preț valid",
+    "availableChains": "Abonamentele sunt disponibile în prezent pe Base și BNB",
+    "waitForSwitch": "Așteaptă finalizarea tranziției rețelei de abonamente",
+    "connectAndWait": "Conectează-ți portofelul și așteaptă rețeaua de abonamente",
+    "planUpdated": "Plan actualizat",
+    "creating": "Se creează…",
+    "planPublished": "Plan creat și publicat",
+    "createPlanTitle": "Creează plan de abonament",
+    "network": "Rețea de abonamente",
+    "planNameLabel": "Nume plan *",
+    "planNamePlaceholder": "ex. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Ce primesc abonații...",
+    "priceLabel": "Preț (USD) *",
+    "legacyMigrationNote": "Economisirea migrează acest plan DHB existent la prețuri în dolari la rata pre-listare.",
+    "benefits": "Beneficii",
+    "benefitPlaceholder": "Adaugă un beneficiu...",
+    "createAndPublish": "Creează și publică",
+    "publishingOnChain": "Publicarea este o tranzacție on-chain"
   },
   "live": {
     "notSet": "Nesetat",
@@ -4115,7 +4334,22 @@
     "acceptTerms": "Accept <terms>Termenii serviciului</terms>",
     "sentTo": "{{amount}} {{symbol}} a fost trimis la {{address}}",
     "tokensSentTo": "Jetoanele au fost trimise la {{address}}",
-    "goToProfile": "Accesează profilul"
+    "goToProfile": "Accesează profilul",
+    "aboutTitle": "Despre DeHub și plăți",
+    "aboutSubtitle": "Poarta ta către plăți tokenizate fără probleme",
+    "aboutTokenTitle": "Token DeHub",
+    "aboutTokenBody": "Tokenurile sunt folosite pentru a te abona la creatori, a oferi bacșișuri streamerilor sau a debloca conținut. Cu cât deții mai multe, cu atât taxele tale sunt mai mici și deblochezi mai multe superputeri, cum ar fi boost-uri de trend pe timeline și insigne de verificare.",
+    "aboutInstantTitle": "Plăți Instantanee",
+    "aboutInstantBody": "Folosind Stripe, poți cumpăra tokenuri instantaneu și fără probleme în orice cont în care ești conectat. DeHub face tokenurile simple și pentru toți. Dacă ai nevoie de mai mult suport, intră în chatul nostru live 24/7 și cere suport de la admin.",
+    "aboutSecureTitle": "Gateway Securizat",
+    "aboutSecureBody": "Toate detaliile de plată sunt criptate și procesate în siguranță de Stripe. Nu putem accesa sau stoca informațiile tale sensibile sau detaliile cardului, oferindu-ți liniște sufletească deplină.",
+    "transfersSummary": "Rezumat Transferuri",
+    "availableToBuy": "Disponibil pentru cumpărare acum",
+    "noSupplyShort": "Fără ofertă",
+    "topUpSubtitle": "Cumpără $DHB folosind cardul și primești gaz gratuit pentru utilizare instantanee",
+    "noTxHash": "Nu am găsit hash-ul tranzacției",
+    "latestTransactions": "Ultimele Tranzacții",
+    "showAll": "Arată tot"
   },
   "musicSheet": {
     "title": "Creează o melodie",
@@ -4244,7 +4478,13 @@
     "followUpNote": "S-ar putea să te contactăm cu întrebări suplimentare despre feedbackul tău",
     "submitFeedback": "Trimite feedbackul",
     "provideFeedback": "Te rugăm să scrii feedbackul tău",
-    "thankYou": "Îți mulțumim pentru feedback!"
+    "thankYou": "Îți mulțumim pentru feedback!",
+    "submitFailed": "Nu am putut trimite feedback. Te rugăm să încerci din nou.",
+    "maybeLater": "Mai târziu",
+    "helpUsImprove": "Ajută-ne să ne îmbunătățim",
+    "rateExperience": "Cum ai evalua experiența ta?",
+    "telegramOptional": "Telegram (opțional)",
+    "discordOptional": "Discord (opțional)"
   },
   "migrate": {
     "clearAll": "Șterge tot",
@@ -4361,7 +4601,14 @@
       "blueWhale": "Cel mai mare lucru care a trăit vreodată. Asta ești tu.",
       "megalodon": "Iată coroana dvs. — sunteți redevența aplicației acum"
     },
-    "continue": "Înapoi la DeHub"
+    "continue": "Înapoi la DeHub",
+    "none": "Niciuna",
+    "noBadgeYet": "Nicio insignă încă",
+    "next": "Următorul",
+    "topTier": "Cel mai înalt nivel",
+    "toNextTier": "{{amount}} DHB către {{tier}}",
+    "everyTierUnlocked": "Fiecare nivel deblocat",
+    "holdNote": "Odată ce o insignă este deblocată, este a ta atâta timp cât deții DHB-ul tău. Numărul de tokenuri necesare pentru a debloca o nouă insignă se poate schimba odată cu prețul tokenului."
   },
   "passwordStrength": {
     "veryWeak": "Foarte slabă",
@@ -4443,7 +4690,11 @@
     },
     "ttsLabel": "Spune ceva cu voce tare",
     "ttsPlaceholder": "Citiți în flux...",
-    "ttsHint": "Citește cu voce tare tuturor celor care te privesc atunci când cadoul tău aterizează."
+    "ttsHint": "Citește cu voce tare tuturor celor care te privesc atunci când cadoul tău aterizează.",
+    "sendAGift": "Trimite un Cadou",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Cadoul minim este {{amount}}",
+    "sendGift": "Trimite Cadou"
   },
   "goLive": {
     "streamKey": "Cheie de transmisiune",
@@ -4826,7 +5077,8 @@
         "title": "Află cum funcționează câștigurile",
         "body": "Află cum recompensele, insignele și superputerile transformă ceea ce faci aici în ceva din care câștigi bani."
       }
-    }
+    },
+    "swipeToStart": "Glisează pentru a începe"
   },
   "conversation": {
     "commonGround": {
@@ -5322,5 +5574,18 @@
     "toastPaidSettled": "Plătit — tranzacția este finalizată",
     "walletNotReady": "Portofelul tău nu este încă pregătit — încearcă din nou peste câteva momente.",
     "wrongChain": "Această tranzacție se decontează pe {{chain}}. Comută pe {{chain}} în Setări, apoi încearcă din nou."
+  },
+  "moderation": {
+    "appealDuplicate": "Ați contestat deja acest lucru",
+    "appealSent": "Contestație trimisă",
+    "appealFailed": "Această contestație nu a putut fi depusă",
+    "appealTitle": "Contestați această decizie",
+    "appealSubtitle": "O persoană va citi acest lucru și se va uita din nou la decizie.",
+    "appealPlaceholder": "Ce crezi că s-a pierdut? Contextul despre conținut ajută mai mult decât orice altceva.",
+    "appealSend": "Trimite contestația",
+    "appealFootnote": "Primești un număr de referință, iar răspunsul se întoarce aici. O contestație pentru fiecare decizie.",
+    "appealRef": "Referință {{ref}}",
+    "appealSubtitleSubject": "O persoană va citi acest lucru și se va uita din nou la {{subject}}.",
+    "appealMore": "Caractere încă necesare: {{count}}"
   }
 }

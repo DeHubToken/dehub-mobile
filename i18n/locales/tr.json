@@ -706,7 +706,11 @@
       "hintAllow": "Bu sinyale saygı duyan yapay zeka sistemleri ve tarayıcılar sesiniz, sanat eseriniz ve yazınız üzerinde eğitim alabilir.",
       "hintDeny": "Bu sinyale saygı duyan yapay zeka sistemleri ve tarayıcılardan ses, sanat eseriniz ve yazınız üzerinde eğitim almamaları istenir. Sinyali görmezden gelen tarayıcılar sinyal tarafından engellenmez.",
       "saved": "Yapay zeka eğitim tercihi kaydedildi"
-    }
+    },
+    "chainIdLabel": "Zincir Kimliği: {{id}}",
+    "exportPkConfirmPhrase": "ANLADIM",
+    "exportPkCopy": "Özel anahtarı kopyala",
+    "e2eAutomatic": "Otomatik"
   },
   "common": {
     "mute": "Sesi kapat",
@@ -746,7 +750,17 @@
     "optionalSuffix": "(isteğe bağlı)",
     "yesterday": "Dün",
     "ok": "Tamam",
-    "continue": "Devam et"
+    "continue": "Devam et",
+    "goesToHomeFeed": "Ana akışa gider",
+    "openMenu": "Menüyü aç",
+    "scrollsFeedToTop": "Akışın en üstüne kaydırır ve yeniler",
+    "notificationsUnread": "Bildirimler, {{unread}} okunmamış",
+    "errorDetails": "Hata ayrıntıları:",
+    "failedToLoad": "Yüklenemedi",
+    "noInternetTitle": "İnternet Bağlantısı Yok",
+    "noInternetBody": "Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin. DeHub'ı kullanmak için internete bağlı olmanız gerekir.",
+    "noInternetStatus": "Çevrimdışı - Ağ bağlantısı yok",
+    "noInternetHint": "Wi-Fi veya mobil verinin açık olduğundan emin olun, ardından \"{{action}}\" seçeneğine dokunun"
   },
   "tip": {
     "title": "Bahşiş Gönder",
@@ -1634,7 +1648,12 @@
     "chooseUsernameBody": "Devam etmek için bir kullanıcı adı ve görünen ad seçin. Bunları sonra değiştirebilirsiniz.",
     "checkingAvailability": "Uygunluk kontrol ediliyor…",
     "usernameTakenHint": "Bu kullanıcı adı alınmış — rakam veya alt çizgi eklemeyi deneyin",
-    "displayNameLength": "Görünen ad 2-50 karakter olmalıdır."
+    "displayNameLength": "Görünen ad 2-50 karakter olmalıdır.",
+    "loginFailedRetry": "Giriş başarısız. Lütfen tekrar deneyin.",
+    "sendCodeFailedRetry": "Kod gönderilemedi. Lütfen tekrar deneyin.",
+    "invalidCodeRetry": "Geçersiz kod. Lütfen tekrar deneyin.",
+    "invalidEmailOrPassword": "Geçersiz e-posta veya şifre.",
+    "welcomeToDehub": "DeHub'a Hoş Geldiniz"
   },
   "messages": {
     "smartRepliesOff": "Önerilen yanıtlar kapatıldı",
@@ -1712,7 +1731,32 @@
     "offerWorthNow": "Güncel kurla yaklaşık {{amount}} DHB",
     "offerNotePlaceholder": "Bir not ekle (isteğe bağlı)",
     "offerCommitsNothing": "Teklif vermek hiçbir şeye mal olmaz ve DHB bloke etmez. Yalnızca sahibi kabul ederse ödersin.",
-    "offerNeedsHandle": "Bu hesabın teklif verilecek bir kullanıcı adı yok."
+    "offerNeedsHandle": "Bu hesabın teklif verilecek bir kullanıcı adı yok.",
+    "noPostsYet": "Henüz gönderi yok",
+    "noPostsYetSub": "Gönderi yapıldığında içerik burada görünecektir",
+    "noPinnedPosts": "Sabitlenmiş gönderi yok",
+    "noPinnedPostsSub": "Sabitlenmiş gönderiler burada görünecektir",
+    "emptyLiked": "Beğenilen gönderi yok.",
+    "emptySaved": "Kaydedilen gönderi yok.",
+    "emptyUnlocked": "Kilidi açılan gönderi yok.",
+    "emptyWatched": "İzleme geçmişi yok.",
+    "emptyFolder": "Bu klasörde henüz gönderi yok.",
+    "emptyPosts": "Henüz gönderi yok.",
+    "couldNotLoadPosts": "Gönderiler yüklenemedi.",
+    "noPostsOrReplies": "Henüz gönderi, yorum veya yanıt yok",
+    "noPostsOrRepliesSub": "Burada görünecekler",
+    "avatarUpdated": "Avatar güncellendi",
+    "coverUpdated": "Kapak güncellendi",
+    "couldNotPickImage": "Resim seçilemedi",
+    "changeCoverImage": "Kapak resmini değiştir",
+    "changeAvatar": "Avatar değiştir",
+    "verifiedEnsName": "Doğrulanmış ENS adı {{name}}",
+    "notFullyJoined": "Bu kullanıcı henüz tam olarak katılmadı. Bir kullanıcı adı seçmedi veya profil kurulumunu tamamlamadı. Yine de herkese açık etkinlikleri görüntüleyebilir ve mevcutsa bahşiş gönderebilirsiniz.",
+    "loadRepliesFailed": "Yanıtlar yüklenemedi",
+    "refreshFailed": "Yenileme başarısız oldu",
+    "noRepliesYet": "Henüz Yanıt Yok",
+    "noRepliesYetSub": "Bu kullanıcı gönderilere yanıt verdiğinde burada görünecek.",
+    "noMoreReplies": "Daha fazla yanıt yok"
   },
   "tv": {
     "title": "TV",
@@ -1795,7 +1839,11 @@
     "loadingPrice": "Fiyat yükleniyor…",
     "topUpExplanation": "DHB zincir üzerinden DeHub reklam hazinesine aktarılır; bağımsız zincir doğrulamasından sonra bakiyenize eklenir.",
     "paymentHistory": "Ödeme geçmişi",
-    "noPayments": "Henüz ödeme yok"
+    "noPayments": "Henüz ödeme yok",
+    "sponsored": "Sponsorlu",
+    "morePosts": "Daha fazla gönderi",
+    "loadMorePosts": "Daha fazla gönderi yükle",
+    "playAdVideo": "Reklam videosunu oynat"
   },
   "buyCoins": {
     "title": "Coin Satın Al",
@@ -2230,7 +2278,8 @@
     "privateBalanceMode": "Özel bakiye modu açık",
     "addressHidden": "Adres gizli",
     "allowInFeeds": "Bu kullanıcının akışlarında görünmesine izin ver",
-    "hideContent": "İçeriklerini gizle ve etkileşimleri sınırla"
+    "hideContent": "İçeriklerini gizle ve etkileşimleri sınırla",
+    "a11yLabel": "Profil seçenekleri"
   },
   "toasts": {
     "saved_to_bookmarks": "Yer imlerine kaydedildi",
@@ -2602,7 +2651,8 @@
     "roles": {
       "owner": "Sahip",
       "moderator": "Moderatör",
-      "member": "Üye"
+      "member": "Üye",
+      "admin": "Yönetici"
     },
     "time": {
       "today": "bugün",
@@ -2611,7 +2661,126 @@
       "weeks": "{{count}} hf.",
       "months": "{{count}} ay",
       "years": "{{count}} yıl"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anonim",
+      "edited": "düzenlendi",
+      "deleteTitle": "Mesajı sil",
+      "deleteConfirm": "Bu mesajı sil? Bu geri alınamaz.",
+      "muted": "Sessize alındınız",
+      "postingDisabled": "Buradaki üyeler için gönderi yapma devre dışı",
+      "mediaMessage": "Medya",
+      "pinnedMessage": "Sabitlenmiş mesaj",
+      "showEarlier": "Daha önceki mesajları göster",
+      "editingMessage": "Mesajı düzenleme",
+      "copied": "Mesaj kopyalandı",
+      "copyText": "Metni kopyala",
+      "mutedUntil": "{{date}} tarihine kadar sessize alındınız",
+      "slowMode": "Yavaş mod: her {{interval}} bir mesaj"
+    },
+    "manage": {
+      "dismissAdminTitle": "Yöneticiyi kapat",
+      "cancel": "İptal",
+      "dismissAdmin": "Yöneticiyi kapat",
+      "roleAdmin": "Yönetici",
+      "roleMember": "Üye",
+      "whatCanTheyDo": "Bu yönetici ne yapabilir?",
+      "rightNotHeld": "Kendiniz bu hakka sahip değilsiniz",
+      "customTitle": "Özel başlık",
+      "customTitlePlaceholder": "Yönetici",
+      "customTitleHint": "Varsayılan Yönetici rozeti yerine gösterilir.",
+      "saveChanges": "Değişiklikleri kaydet",
+      "promote": "Terfi ettir",
+      "tabs": {
+        "members": "Üyeler",
+        "admins": "Yöneticiler",
+        "permissions": "İzinler",
+        "invites": "Davetler",
+        "rules": "Kurallar",
+        "recentActions": "Son işlemler",
+        "danger": "Tehlike alanı"
+      },
+      "title": "Yönet",
+      "purgeTitle": "Tüm mesajlar silinsin mi?",
+      "purgeConfirm": "Sil",
+      "kickTitle": "Üye kaldırılsın mı?",
+      "kickConfirm": "Kaldır",
+      "bannedPermanent": "Yasaklı — kalıcı",
+      "mutedPermanent": "Sessiz — kalıcı",
+      "editAdminRights": "Yönetici haklarını düzenle",
+      "promoteToAdmin": "Yönetici yap",
+      "unmute": "Sessizliği kaldır",
+      "mute": "Sessize al",
+      "unban": "Yasaklamayı kaldır",
+      "ban": "Yasakla",
+      "deleteAllMessages": "Tüm mesajları sil",
+      "removeFromCommunity": "Topluluktan kaldır",
+      "noActionsAvailable": "Bu üyeyi yönetemezsin.",
+      "showMore": "Daha fazla göster",
+      "joinRequests": "Katılma istekleri",
+      "approve": "Onayla",
+      "reject": "Reddet",
+      "members": "Üyeler",
+      "searchMembers": "Cüzdan adresine göre ara",
+      "noMembersMatch": "Eşleşen üye yok.",
+      "noMembers": "Henüz üye yok.",
+      "muted": "Sessize alınmış",
+      "banned": "Yasaklanmış",
+      "muteEffect": "Toplulukta kalırlar ancak sessizliğin süresi dolana kadar gönderi yapamazlar.",
+      "banEffect": "Sohbetten kaldırılırlar ve yasak kaldırılana kadar tekrar katılamazlar.",
+      "durationLabel": "Süre",
+      "reasonLabel": "Neden (isteğe bağlı)",
+      "reasonPlaceholder": "Neden yasaklanıyorlar?",
+      "alsoDeleteMessages": "Ayrıca tüm mesajlarını da sil",
+      "confirmMute": "Üyeyi sessize al",
+      "confirmBan": "Üyeyi yasakla",
+      "rulesUpdated": "Kurallar güncellendi",
+      "rulesTitle": "Topluluk kuralları",
+      "rulesEmpty": "Henüz kural yok — ilkini aşağıya ekleyin.",
+      "rulePlaceholder": "Kuralı açıkla",
+      "addRule": "Kural ekle",
+      "saveRules": "Kuralları kaydet",
+      "dismissAdminBody": "{{wallet}} sıradan bir üye olacak.",
+      "purgeBody": "{{name}} tarafından gönderilen her mesaj bu topluluktan kaldırılacak.",
+      "kickBody": "{{name}} topluluktan çıkarılacak. Daha sonra tekrar katılabilir.",
+      "bannedUntil": "{{date}}'ya kadar yasaklandı",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "{{date}}'ya kadar susturuldu",
+      "bannedUntilShort": "{{date}}'ya kadar",
+      "muteTitle": "{{name}}'yu sustur",
+      "banTitle": "{{name}}'yu yasakla",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{max}}'den {{used}}",
+      "moveRuleUp": "Kuralı yukarı taşı",
+      "moveRuleDown": "Kuralı aşağı taşı",
+      "deleteRule": "Kuralı sil",
+      "rights": {
+        "changeInfo": "Topluluk bilgilerini değiştir",
+        "changeInfoHint": "Adı, açıklamayı, avatarı ve banner'ı düzenle",
+        "deleteMessages": "Mesajları sil",
+        "deleteMessagesHint": "Topluluk sohbetindeki herhangi bir mesajı kaldır",
+        "restrictMembers": "Kullanıcıları yasakla",
+        "restrictMembersHint": "Üyeleri sustur, kaldır ve yasakla",
+        "inviteUsers": "Bağlantı ile kullanıcı davet et",
+        "inviteUsersHint": "Davet bağlantıları oluştur ve iptal et",
+        "pinMessages": "Mesajları sabitle",
+        "pinMessagesHint": "Bir mesajı sohbetin en üstüne sabitle",
+        "manageEvents": "Etkinlikleri yönet",
+        "manageEventsHint": "Topluluk etkinlikleri oluştur ve düzenle",
+        "addAdmins": "Yeni yöneticiler ekle",
+        "addAdminsHint": "Üyeleri terfi ettirin ve ekledikleri yöneticilerin haklarını düzenleyin",
+        "remainAnonymous": "Anonim kal",
+        "remainAnonymousHint": "Bu yöneticinin üye listesinden gizlenmesi"
+      },
+      "durations": {
+        "oneHour": "1 saat",
+        "eightHours": "8 saat",
+        "oneDay": "1 gün",
+        "oneWeek": "1 hafta",
+        "forever": "Sonsuza dek"
+      }
+    },
+    "chooseAvatar": "Avatar seçin"
   },
   "work": {
     "title": "Ödüllü İşler",
@@ -2963,7 +3132,9 @@
       "shipped": "Kargolandı",
       "completed": "Tamamlandı",
       "cancelled": "İptal edildi"
-    }
+    },
+    "removePhoto": "Fotoğrafı kaldır",
+    "listingOptions": "Listeleme seçenekleri"
   },
   "accounts": {
     "subtitle": "Komple hesaplar satılık, DHB cinsinden",
@@ -3380,7 +3551,14 @@
     "removeFollowerHint": "Kaldırmak için bir takipçiye basılı tutun.",
     "cancel": "İptal",
     "remove": "Kaldır",
-    "thisUser": "bu Kullanıcı"
+    "thisUser": "bu Kullanıcı",
+    "cancelRequestTo": "@{{username}}?'dan takip isteğini iptal et",
+    "followingUser": "@{{username}}'u takip ediyorsunuz",
+    "contentUnavailable": "İçerik Kullanılamıyor",
+    "youBlockedBody": "Gönderilerini göremez veya onlarla etkileşim kuramazsınız. Erişimi geri yüklemek için engeli kaldırın.",
+    "restrictedBody": "Bu kullanıcı hesabınızla etkileşimleri kısıtladı.",
+    "requestPendingBody": "Takip isteğiniz gönderildi. İsteğinizi onayladıklarında gönderilerini görebileceksiniz.",
+    "followToSeePosts": "Gönderilerini görmek için bu hesabı takip edin."
   },
   "reactionInfo": {
     "title": "Tepkiler",
@@ -3695,7 +3873,8 @@
     "needGas": "{{chain}} üzerinde gas için yerel {{token}} gerekiyor.",
     "bridging": "Köprüleniyor…",
     "bridgeAction": "Köprü {{from}} → {{to}}",
-    "failed": "Köprü başarısız oldu"
+    "failed": "Köprü başarısız oldu",
+    "sentArriveShortly": "{{amount}} DHB, {{from}}'dan gönderildi → {{to}}. Tokenlar kısa süre sonra gelecek."
   },
   "banned": {
     "title": "Hesabınız yasaklandı",
@@ -3873,7 +4052,16 @@
     "legacyRecovered": "Eski hesabınızı{{suffix}} doğruladık ve cüzdanını kurtardık. Bundan sonra bu cihazda — bu telefonda ve her yerde — korumak için bir şifre belirleyin.",
     "passwordMin": "Şifre (en az {{min}} karakter)",
     "newPasswordMin": "Yeni şifre (en az {{min}} karakter)",
-    "newWalletPasswordMin": "Yeni cüzdan şifresi (en az {{min}} karakter)"
+    "newWalletPasswordMin": "Yeni cüzdan şifresi (en az {{min}} karakter)",
+    "deviceCheckCancelled": "Cihaz kontrolü iptal edildi — hiçbir şey değiştirilmedi.",
+    "savePhraseTitle": "Kurtarma ifadenizi kaydedin",
+    "startOverTitle": "Yeni bir cüzdanla baştan başlayın",
+    "secureNewWalletTitle": "Yeni cüzdanınızı güvenceye alın",
+    "secureWalletTitle": "Cüzdanınızı güvenceye alın",
+    "unlockOnMobileTitle": "Mobil cihazda kilidi aç",
+    "oldAccountFoundTitle": "Eski hesap bulundu",
+    "unlockWalletTitle": "Cüzdanınızın kilidini açın",
+    "phraseExplainer": "Cüzdanınız bu telefonun biyometrik verileriyle korunacaktır. Bu kilit açma <em>yalnızca bu telefonda çalışır</em> — DeHub'ı yeniden yüklemeniz, telefonu değiştirmeniz veya kaybetmeniz durumunda geri dönmenin tek yolu bu 12 kelimedir."
   },
   "transcript": {
     "title": "Döküm",
@@ -4060,7 +4248,38 @@
     "subscribe": "Abone ol",
     "subscriberCount_one": "{{count}} abone",
     "subscriberCount_other": "{{count}} abone",
-    "subscribeToForRich": "<price>{{price}}</price> karşılığında <name>{{name}}</name> aboneliği alın"
+    "subscribeToForRich": "<price>{{price}}</price> karşılığında <name>{{name}}</name> aboneliği alın",
+    "loadPlansFailed": "Planlar yüklenemedi",
+    "subscriberContent": "Abonelik içeriği",
+    "subscriberContentSub": "Abonelere özel içerik sunma planları oluşturun",
+    "createFirstPlan": "İlk Planınızı Oluşturun",
+    "addNewPlan": "Yeni Plan Ekle",
+    "durations": {
+      "oneMonth": "1 Ay",
+      "threeMonths": "3 Ay",
+      "sixMonths": "6 Ay",
+      "oneYear": "1 Yıl",
+      "lifetime": "Ömür Boyu"
+    },
+    "planNameRequired": "Plan adı gerekli",
+    "enterValidPrice": "Geçerli bir fiyat girin",
+    "availableChains": "Abonelikler şu anda Base ve BNB'de mevcut",
+    "waitForSwitch": "Abonelik ağının geçişini tamamlamasını bekleyin",
+    "connectAndWait": "Cüzdanınızı bağlayın ve abonelik ağını bekleyin",
+    "planUpdated": "Plan güncellendi",
+    "creating": "Oluşturuluyor…",
+    "planPublished": "Plan oluşturuldu ve yayınlandı",
+    "createPlanTitle": "Abonelik Planı Oluştur",
+    "network": "Abonelik ağı",
+    "planNameLabel": "Plan Adı *",
+    "planNamePlaceholder": "Örn. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Aboneler ne kazanır...",
+    "priceLabel": "Fiyat (USD) *",
+    "legacyMigrationNote": "Tasarruf, bu eski DHB planını listeleme öncesi orandan dolar fiyatlandırmasına taşıyor.",
+    "benefits": "Faydalar",
+    "benefitPlaceholder": "Bir fayda ekleyin...",
+    "createAndPublish": "Oluştur ve Yayınla",
+    "publishingOnChain": "Yayınlama zincir üstü bir işlemdir"
   },
   "live": {
     "notSet": "Ayarlanmadı",
@@ -4178,7 +4397,22 @@
     "acceptTerms": "Kabul ediyorum: <terms>Hizmet Şartları</terms>",
     "sentTo": "{{amount}}{{symbol}},{{address}} adresine gönderildi",
     "tokensSentTo": "Jetonlar {{address}} adresine gönderildi",
-    "goToProfile": "Profile Git"
+    "goToProfile": "Profile Git",
+    "aboutTitle": "DeHub ve ödemeler hakkında",
+    "aboutSubtitle": "Sorunsuz token ödemeleri için ağ geçidiniz",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokenlar, yayıncılara abone olmak, yayıncılara bahşiş vermek veya içeriklerin kilidini açmak için kullanılır. Ne kadar çok tutarsanız, ücretleriniz o kadar düşük olur ve zaman çizelgesi trend artışları ve doğrulama rozetleri gibi daha fazla süper güç kilidini açarsınız.",
+    "aboutInstantTitle": "Anında Ödemeler",
+    "aboutInstantBody": "Stripe kullanarak, giriş yaptığınız herhangi bir hesaba anında ve sorunsuz bir şekilde token satın alabilirsiniz. DeHub, tokenları herkes için basit hale getirir. Daha fazla desteğe ihtiyacınız olursa, 7/24 canlı topluluk sohbetimizde görünüp yönetici desteği isteyin.",
+    "aboutSecureTitle": "Güvenli Ağ Geçidi",
+    "aboutSecureBody": "Tüm ödeme ayrıntıları Stripe tarafından şifrelenir ve güvenli bir şekilde işlenir. Hassas bilgilerinize veya kart ayrıntılarınıza erişemeyiz veya bunları saklayamayız, bu da size tam bir gönül rahatlığı sağlar.",
+    "transfersSummary": "Transferler Özeti",
+    "availableToBuy": "Şimdi satın alınabilir",
+    "noSupplyShort": "Arz yok",
+    "topUpSubtitle": "Kartla $DHB satın alın ve anında kullanmak için ücretsiz gaz kazanın",
+    "noTxHash": "İşlem karması bulunamadı",
+    "latestTransactions": "Son İşlemler",
+    "showAll": "Tümünü göster"
   },
   "musicSheet": {
     "title": "Şarkı oluştur",
@@ -4307,7 +4541,13 @@
     "followUpNote": "Geri bildiriminizle ilgili ek sorular için size ulaşabiliriz",
     "submitFeedback": "Geri bildirimi gönder",
     "provideFeedback": "Lütfen geri bildiriminizi yazın",
-    "thankYou": "Geri bildiriminiz için teşekkürler!"
+    "thankYou": "Geri bildiriminiz için teşekkürler!",
+    "submitFailed": "Geri bildirim gönderilemedi. Lütfen tekrar deneyin.",
+    "maybeLater": "Belki Daha Sonra",
+    "helpUsImprove": "Gelişmemize yardım edin",
+    "rateExperience": "Deneyiminizi nasıl değerlendirirsiniz?",
+    "telegramOptional": "Telegram (isteğe bağlı)",
+    "discordOptional": "Discord (isteğe bağlı)"
   },
   "migrate": {
     "clearAll": "Tümünü Temizle",
@@ -4424,7 +4664,14 @@
       "blueWhale": "Şimdiye kadar yaşamış en büyük şey. Bu sensin.",
       "megalodon": "İşte tacınız — artık uygulama telif hakkınız"
     },
-    "continue": "DeHub'a Geri Dön"
+    "continue": "DeHub'a Geri Dön",
+    "none": "Yok",
+    "noBadgeYet": "Henüz rozet yok",
+    "next": "Sonraki",
+    "topTier": "En üst seviye",
+    "toNextTier": "{{amount}} DHB, {{tier}}'e",
+    "everyTierUnlocked": "Her seviye kilidi açıldı",
+    "holdNote": "Bir rozetin kilidi açıldığında, DHB'nizi tuttuğunuz sürece sizindir. Yeni bir rozetin kilidini açmak için gereken token sayısı, token fiyatına göre değişebilir."
   },
   "passwordStrength": {
     "veryWeak": "Çok zayıf",
@@ -4506,7 +4753,11 @@
     },
     "ttsLabel": "Yüksek sesle bir şey söyle",
     "ttsPlaceholder": "Akışa yüksek sesle okuyun…",
-    "ttsHint": "Hediyeniz geldiğinde izleyen herkese yüksek sesle okuyun."
+    "ttsHint": "Hediyeniz geldiğinde izleyen herkese yüksek sesle okuyun.",
+    "sendAGift": "Hediye Gönder",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minimum hediye {{amount}}",
+    "sendGift": "Hediye Gönder"
   },
   "goLive": {
     "streamKey": "Yayın anahtarı",
@@ -4889,7 +5140,8 @@
         "title": "Kazancın işleyişine göz atın",
         "body": "İpuçlarının, rozetlerin ve Süper Güçlerin burada yaptıklarını nasıl kazandığın bir şeye dönüştürdüğünü öğren."
       }
-    }
+    },
+    "swipeToStart": "Başlamak için kaydırın"
   },
   "conversation": {
     "commonGround": {
@@ -5371,5 +5623,18 @@
     "toastPaidSettled": "Ödendi — işlem tamamlandı",
     "walletNotReady": "Cüzdanın henüz hazır değil — birazdan tekrar dene.",
     "wrongChain": "Bu işlem {{chain}} üzerinde tamamlanır. Ayarlar'dan {{chain}} ağına geç ve tekrar dene."
+  },
+  "moderation": {
+    "appealDuplicate": "Bunu zaten temyize götürdünüz",
+    "appealSent": "İtiraz gönderildi",
+    "appealFailed": "Bu itiraz başvurusu yapılamadı",
+    "appealTitle": "Bu karara itiraz et",
+    "appealSubtitle": "Bir kişi bunu okuyacak ve karara tekrar bakacak.",
+    "appealPlaceholder": "Sence ne kaçırıldı? İçerikle ilgili bağlam her şeyden daha fazla yardımcı olur.",
+    "appealSend": "İtiraz gönder",
+    "appealFootnote": "Bir referans numarası alırsınız ve cevap buraya geri gelir. Karar başına bir itiraz.",
+    "appealRef": "Referans {{ref}}",
+    "appealSubtitleSubject": "Bir kişi bunu okuyacak ve {{subject}}adresine tekrar bakacaktır.",
+    "appealMore": "Hala gerekli karakterler: {{count}}"
   }
 }

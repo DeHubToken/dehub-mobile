@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, type NativeSyntheticEvent, type NativeScrollEvent } from 'react-native';
 import InfiniteFeed, { type InfiniteFeedRenderItemInfo } from '../Feed/InfiniteFeed';
 import FeedCard from '../Home/FeedCard';
@@ -53,6 +54,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
   hasBounty,
   isLocked,
 }) => {
+  const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
   const user = useUser() as any;
   const ownAddress = user?.walletAddress || user?.address;
@@ -149,8 +151,8 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
         emptyComponent={(
           <ProfileEmptyState
             kind="home"
-            title="No posts yet"
-            subtitle="Content will appear here when posted"
+            title={t("profile.noPostsYet")}
+            subtitle={t("profile.noPostsYetSub")}
           />
         )}
         // isVisible must be forwarded or FeedCard falls back to its own

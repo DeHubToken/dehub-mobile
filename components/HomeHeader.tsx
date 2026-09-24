@@ -4,6 +4,7 @@ import SmartImage from "./common/SmartImage";
 import Avatar from "./common/Avatar";
 import Icon from "./ui/Icon";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { getAvatarUrl } from "../libs/misc";
@@ -19,6 +20,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
   const { isSignedIn } = useAuthState();
   const user = useUser();
   const { colors } = useAppTheme();
+  const { t } = useTranslation();
 
   const hasUnread = (user?.notificationCount || 0) > 0;
   const unreadCount = user?.notificationCount || 0;
@@ -40,7 +42,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
         accessibilityRole="button"
         // Signed in this control is the user's own avatar, which is why the
         // label says what it does rather than what it looks like.
-        accessibilityLabel="Open menu"
+        accessibilityLabel={t("common.openMenu")}
         className="w-8 h-8 items-center justify-center"
       >
         {isSignedIn ? (
@@ -66,7 +68,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
           activeOpacity={0.7}
           accessibilityRole="button"
           accessibilityLabel="DeHub"
-          accessibilityHint="Scrolls to the top of the feed and refreshes it"
+          accessibilityHint={t("common.scrollsFeedToTop")}
         >
           <SmartImage
             source={require("../assets/web-icons/dehub-logo-center.png")}
@@ -86,7 +88,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           activeOpacity={0.7}
           accessibilityRole="button"
-          accessibilityLabel={hasUnread ? `Notifications, ${unreadCount} unread` : "Notifications"}
+          accessibilityLabel={hasUnread ? t("common.notificationsUnread", { unread: unreadCount }) : t("nav.notifications")}
           className="w-9 h-9 items-center justify-center"
         >
           <Icon name="Bell" size={24} color={colors.neutrals[200]} />

@@ -692,7 +692,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
               style={[styles.sendBtn, sendDisabled && { opacity: 0.4 }]}
               hitSlop={6}
               accessibilityRole="button"
-              accessibilityLabel="Send message"
+              accessibilityLabel={t("dm.sendMessage")}
             >
               {sending ? (
                 <ActivityIndicator size="small" color="#FFFFFF" />

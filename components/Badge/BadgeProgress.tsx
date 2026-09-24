@@ -18,6 +18,7 @@
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useMemo } from "react";
 import { View, Text, Image, ScrollView } from "react-native";
+import { useTranslation } from "react-i18next";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -59,6 +60,7 @@ function formatUsd(value: number): string {
 }
 
 export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressProps) {
+  const { t } = useTranslation();
   const scale = useBadgeScale();
   const price = useBadgeLadderPrice();
 
@@ -93,15 +95,15 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
               resizeMode="contain"
             />
           ) : (
-            <Text className="text-[9px] uppercase tracking-wider text-white/30">
-              None
+            <Text numberOfLines={1} adjustsFontSizeToFit className="text-[9px] uppercase tracking-wider text-white/30">
+              {t("badgeAscension.none")}
             </Text>
           )}
         </View>
 
         <View className="flex-1 min-w-0">
           <Text numberOfLines={1} className="text-base font-semibold text-white">
-            {standing.tier ?? "No badge yet"}
+            {standing.tier ?? t("badgeAscension.noBadgeYet")}
           </Text>
           <Text numberOfLines={1} className="text-xs text-white/50">
             {formatDhb(standing.balance)} <DhbCoin />
@@ -113,7 +115,7 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
           {standing.nextTier ? (
             <>
               <Text className="text-[10px] uppercase tracking-wider text-white/30">
-                Next
+                {t("badgeAscension.next")}
               </Text>
               <Text numberOfLines={1} className="text-sm font-medium text-white/80">
                 {standing.nextTier}
@@ -121,7 +123,7 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
             </>
           ) : (
             <Text className="text-[10px] uppercase tracking-wider text-white/40">
-              Top tier
+              {t("badgeAscension.topTier")}
             </Text>
           )}
         </View>
@@ -151,8 +153,8 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
         <Text className="text-[11px] text-white/40">{percent}%</Text>
         <Text numberOfLines={1} className="text-[11px] text-white/60 flex-1 text-right ml-2">
           {standing.nextTier
-            ? `${formatDhb(standing.remaining)} DHB to ${standing.nextTier}`
-            : "Every tier unlocked"}
+            ? t("badgeAscension.toNextTier", { amount: formatDhb(standing.remaining), tier: standing.nextTier })
+            : t("badgeAscension.everyTierUnlocked")}
         </Text>
       </View>
 
@@ -189,8 +191,7 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
       )}
 
       <Text className="mt-3 text-[10px] leading-4 text-white/45">
-        Once a badge is unlocked, it is yours for as long as you hold your DHB. The number of tokens
-        needed to unlock a new badge can change with the token price.
+        {t("badgeAscension.holdNote")}
       </Text>
     </View>
   );

@@ -691,7 +691,11 @@
       "hintAllow": "AI-system och sökrobotar som respekterar denna signal kan träna på ditt ljud, konstverk och skrivande.",
       "hintDeny": "AI-system och sökrobotar som respekterar denna signal ombeds att inte träna på ditt ljud, konstverk och skrivande. Crawlers som ignorerar signalen blockeras inte av den.",
       "saved": "AI-utbildningspreferens sparad"
-    }
+    },
+    "chainIdLabel": "Kedje-ID: {{id}}",
+    "exportPkConfirmPhrase": "JAG FÖRSTÅR",
+    "exportPkCopy": "Kopiera privat nyckel",
+    "e2eAutomatic": "Automatisk"
   },
   "common": {
     "mute": "Stäng av ljud",
@@ -731,7 +735,17 @@
     "optionalSuffix": "(valfritt)",
     "yesterday": "I går",
     "ok": "OK",
-    "continue": "Fortsätt"
+    "continue": "Fortsätt",
+    "goesToHomeFeed": "Går till hemflödet",
+    "openMenu": "Öppna meny",
+    "scrollsFeedToTop": "Skrollar till toppen av flödet och uppdaterar det",
+    "notificationsUnread": "Aviseringar, {{unread}} olästa",
+    "errorDetails": "Feldetaljer:",
+    "failedToLoad": "Kunde inte laddas",
+    "noInternetTitle": "Ingen internetanslutning",
+    "noInternetBody": "Kontrollera din internetanslutning och försök igen. Du måste vara ansluten till internet för att använda DeHub.",
+    "noInternetStatus": "Offline - Ingen nätverksanslutning",
+    "noInternetHint": "Se till att Wi-Fi eller mobildata är påslaget och tryck sedan på \"{{action}}\""
   },
   "tip": {
     "title": "Skicka dricks",
@@ -1621,7 +1635,12 @@
     "chooseUsernameBody": "Välj ett användarnamn och visningsnamn för att fortsätta. Du kan ändra dem senare.",
     "checkingAvailability": "Kontrollerar tillgänglighet…",
     "usernameTakenHint": "Namnet är upptaget — prova att lägga till siffror eller ett understreck",
-    "displayNameLength": "Visningsnamnet måste vara 2–50 tecken."
+    "displayNameLength": "Visningsnamnet måste vara 2–50 tecken.",
+    "loginFailedRetry": "Inloggning misslyckades. Försök igen.",
+    "sendCodeFailedRetry": "Kunde inte skicka kod. Försök igen.",
+    "invalidCodeRetry": "Ogiltig kod. Försök igen.",
+    "invalidEmailOrPassword": "Ogiltig e-postadress eller lösenord.",
+    "welcomeToDehub": "Välkommen till DeHub"
   },
   "messages": {
     "smartRepliesOff": "Föreslagna svar avstängda",
@@ -1699,7 +1718,32 @@
     "offerWorthNow": "Ungefär {{amount}} DHB till aktuell kurs",
     "offerNotePlaceholder": "Lägg till en notering (valfritt)",
     "offerCommitsNothing": "Att lägga ett bud kostar ingenting och binder inga DHB. Du betalar bara om ägaren accepterar.",
-    "offerNeedsHandle": "Det här kontot har inget användarnamn att buda på."
+    "offerNeedsHandle": "Det här kontot har inget användarnamn att buda på.",
+    "noPostsYet": "Inga inlägg ännu",
+    "noPostsYetSub": "Innehåll kommer att visas här när det publiceras",
+    "noPinnedPosts": "Inga fästa inlägg ännu",
+    "noPinnedPostsSub": "Fästa inlägg kommer att visas här",
+    "emptyLiked": "Inga gillade inlägg ännu.",
+    "emptySaved": "Inga sparade inlägg ännu.",
+    "emptyUnlocked": "Inga upplåsta inlägg ännu.",
+    "emptyWatched": "Ingen visningshistorik ännu.",
+    "emptyFolder": "Inga inlägg i den här mappen ännu.",
+    "emptyPosts": "Inga inlägg ännu.",
+    "couldNotLoadPosts": "Kunde inte ladda inlägg.",
+    "noPostsOrReplies": "Inga inlägg, kommentarer eller svar ännu",
+    "noPostsOrRepliesSub": "De kommer att visas här",
+    "avatarUpdated": "Avatar uppdaterad",
+    "coverUpdated": "Omslagsbild uppdaterad",
+    "couldNotPickImage": "Kunde inte välja bild",
+    "changeCoverImage": "Ändra omslagsbild",
+    "changeAvatar": "Ändra avatar",
+    "verifiedEnsName": "Verifierat ENS-namn {{name}}",
+    "notFullyJoined": "Den här användaren har inte gått med helt än. De har inte valt ett användarnamn eller slutfört profilinställningarna. Du kan fortfarande se offentlig aktivitet och skicka dricks om det är tillgängligt.",
+    "loadRepliesFailed": "Misslyckades med att ladda svar",
+    "refreshFailed": "Uppdatering misslyckades",
+    "noRepliesYet": "Inga svar ännu",
+    "noRepliesYetSub": "När den här användaren svarar på inlägg kommer de att visas här.",
+    "noMoreReplies": "Inga fler svar"
   },
   "tv": {
     "title": "TV",
@@ -1782,7 +1826,11 @@
     "loadingPrice": "Läser in pris…",
     "topUpExplanation": "DHB överförs on-chain till DeHubs annonskassa, och därefter krediteras ditt saldo efter en oberoende verifiering on-chain.",
     "paymentHistory": "Betalningshistorik",
-    "noPayments": "Inga betalningar ännu"
+    "noPayments": "Inga betalningar ännu",
+    "sponsored": "Sponsrat",
+    "morePosts": "Fler inlägg",
+    "loadMorePosts": "Ladda fler inlägg",
+    "playAdVideo": "Spela annonsvideo"
   },
   "buyCoins": {
     "title": "Köp mynt",
@@ -2221,7 +2269,8 @@
     "privateBalanceMode": "Privat saldoläge är aktiverat",
     "addressHidden": "Adressen är dold",
     "allowInFeeds": "Tillåt att den här användaren visas i dina flöden",
-    "hideContent": "Dölj deras innehåll och begränsa interaktioner"
+    "hideContent": "Dölj deras innehåll och begränsa interaktioner",
+    "a11yLabel": "Profilalternativ"
   },
   "toasts": {
     "saved_to_bookmarks": "Sparad i bokmärken",
@@ -2593,7 +2642,8 @@
     "roles": {
       "owner": "Ägare",
       "moderator": "Moderator",
-      "member": "Medlem"
+      "member": "Medlem",
+      "admin": "Admin"
     },
     "time": {
       "today": "i dag",
@@ -2602,7 +2652,126 @@
       "weeks": "{{count}} v",
       "months": "{{count}} mån",
       "years": "{{count}} år"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anonym",
+      "edited": "redigerad",
+      "deleteTitle": "Ta bort meddelande",
+      "deleteConfirm": "Ta bort detta meddelande? Detta kan inte ångras.",
+      "muted": "Du är avstängd",
+      "postingDisabled": "Inlägg är inaktiverade för medlemmar här",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Fäst meddelande",
+      "showEarlier": "Visa tidigare meddelanden",
+      "editingMessage": "Redigera meddelande",
+      "copied": "Meddelande kopierat",
+      "copyText": "Kopiera text",
+      "mutedUntil": "Du är avstängd tills {{date}}",
+      "slowMode": "Långsamt läge: ett meddelande var {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Avfärda admin",
+      "cancel": "Avbryt",
+      "dismissAdmin": "Avfärda admin",
+      "roleAdmin": "Administratör",
+      "roleMember": "Medlem",
+      "whatCanTheyDo": "Vad kan denna administratör göra?",
+      "rightNotHeld": "Du har inte denna rättighet själv",
+      "customTitle": "Anpassad titel",
+      "customTitlePlaceholder": "Administratör",
+      "customTitleHint": "Visas istället för standardadministratörsmärket.",
+      "saveChanges": "Spara ändringar",
+      "promote": "Marknadsför",
+      "tabs": {
+        "members": "Medlemmar",
+        "admins": "Administratörer",
+        "permissions": "Behörigheter",
+        "invites": "Inbjudningar",
+        "rules": "Regler",
+        "recentActions": "Senaste åtgärderna",
+        "danger": "Farozon"
+      },
+      "title": "Hantera",
+      "purgeTitle": "Radera alla meddelanden?",
+      "purgeConfirm": "Radera",
+      "kickTitle": "Ta bort medlem?",
+      "kickConfirm": "Ta bort",
+      "bannedPermanent": "Avstängd — permanent",
+      "mutedPermanent": "Dämpad — permanent",
+      "editAdminRights": "Redigera administratörsrättigheter",
+      "promoteToAdmin": "Befordra till administratör",
+      "unmute": "Avstängning",
+      "mute": "Tysta",
+      "unban": "Avblockera",
+      "ban": "Blockera",
+      "deleteAllMessages": "Radera alla meddelanden",
+      "removeFromCommunity": "Ta bort från communityn",
+      "noActionsAvailable": "Du kan inte moderera den här medlemmen.",
+      "showMore": "Visa mer",
+      "joinRequests": "Anslutningsförfrågningar",
+      "approve": "Godkänn",
+      "reject": "Avvisa",
+      "members": "Medlemmar",
+      "searchMembers": "Sök efter plånboksadress",
+      "noMembersMatch": "Ingen medlem matchar det.",
+      "noMembers": "Inga medlemmar ännu.",
+      "muted": "Tystade",
+      "banned": "Blockerade",
+      "muteEffect": "De stannar i communityn men kan inte posta förrän tystnaden löper ut.",
+      "banEffect": "De tas bort från chatten och kan inte återansluta förrän blockeringen hävs.",
+      "durationLabel": "Varaktighet",
+      "reasonLabel": "Anledning (valfritt)",
+      "reasonPlaceholder": "Varför blockeras de?",
+      "alsoDeleteMessages": "Radera även alla deras meddelanden",
+      "confirmMute": "Tysta medlem",
+      "confirmBan": "Blockera medlem",
+      "rulesUpdated": "Regler uppdaterade",
+      "rulesTitle": "Communityregler",
+      "rulesEmpty": "Inga regler ännu — lägg till den första nedan.",
+      "rulePlaceholder": "Beskriv regeln",
+      "addRule": "Lägg till regel",
+      "saveRules": "Spara regler",
+      "dismissAdminBody": "{{wallet}} kommer att återgå till att vara en vanlig medlem.",
+      "purgeBody": "Varje meddelande som {{name}} har skickat i denna community kommer att tas bort.",
+      "kickBody": "{{name}} kommer att tas bort från communityn. De kan gå med igen senare.",
+      "bannedUntil": "Bannlyst till {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Avstängd till {{date}}",
+      "bannedUntilShort": "Till {{date}}",
+      "muteTitle": "Stäng av {{name}}",
+      "banTitle": "Banna {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} av {{max}}",
+      "moveRuleUp": "Flytta regel upp",
+      "moveRuleDown": "Flytta regel ner",
+      "deleteRule": "Ta bort regel",
+      "rights": {
+        "changeInfo": "Ändra communityinformation",
+        "changeInfoHint": "Redigera namn, beskrivning, avatar och banner",
+        "deleteMessages": "Ta bort meddelanden",
+        "deleteMessagesHint": "Ta bort alla meddelanden från communitychatt",
+        "restrictMembers": "Banna användare",
+        "restrictMembersHint": "Stäng av, ta bort och banna medlemmar",
+        "inviteUsers": "Bjud in användare via länk",
+        "inviteUsersHint": "Skapa och återkalla inbjudningslänkar",
+        "pinMessages": "Fäst meddelanden",
+        "pinMessagesHint": "Fäst ett meddelande högst upp i chatten",
+        "manageEvents": "Hantera evenemang",
+        "manageEventsHint": "Skapa och redigera communityevenemang",
+        "addAdmins": "Lägg till nya administratörer",
+        "addAdminsHint": "Främja medlemmar och redigera rättigheterna för administratörer de lagt till",
+        "remainAnonymous": "Förbli anonym",
+        "remainAnonymousHint": "Dölj denna administratör från medlemslistan"
+      },
+      "durations": {
+        "oneHour": "1 timme",
+        "eightHours": "8 timmar",
+        "oneDay": "1 dag",
+        "oneWeek": "1 vecka",
+        "forever": "För evigt"
+      }
+    },
+    "chooseAvatar": "Välj avatar"
   },
   "work": {
     "title": "Bounties",
@@ -2954,7 +3123,9 @@
       "shipped": "Skickad",
       "completed": "Slutförd",
       "cancelled": "Avbruten"
-    }
+    },
+    "removePhoto": "Ta bort foto",
+    "listingOptions": "Listningsalternativ"
   },
   "accounts": {
     "subtitle": "Hela konton till salu, prissatta i DHB",
@@ -3322,7 +3493,14 @@
     "removeFollowerHint": "Håll ner en följare för att ta bort dem.",
     "cancel": "Avbryt",
     "remove": "Ta bort",
-    "thisUser": "Denna Användare"
+    "thisUser": "Denna Användare",
+    "cancelRequestTo": "Avbryt följningsbegäran till @{{username}}?",
+    "followingUser": "Följer @{{username}}",
+    "contentUnavailable": "Innehåll otillgängligt",
+    "youBlockedBody": "Du kommer inte att se deras inlägg eller kunna interagera med dem. Avblockera för att återställa åtkomst.",
+    "restrictedBody": "Den här användaren har begränsat interaktioner med ditt konto.",
+    "requestPendingBody": "Din följningsbegäran har skickats. Du kommer att kunna se deras inlägg när de godkänner din begäran.",
+    "followToSeePosts": "Följ detta konto för att se deras inlägg."
   },
   "reactionInfo": {
     "title": "Reaktioner",
@@ -3637,7 +3815,8 @@
     "needGas": "Du behöver native {{token}} för gas på {{chain}}.",
     "bridging": "Bryggar…",
     "bridgeAction": "Brygga {{from}} → {{to}}",
-    "failed": "Bryggningen misslyckades"
+    "failed": "Bryggningen misslyckades",
+    "sentArriveShortly": "{{amount}} DHB skickat från {{from}} → {{to}}. Tokens anländer strax."
   },
   "banned": {
     "title": "Ditt konto är spärrat",
@@ -3815,7 +3994,16 @@
     "legacyRecovered": "Vi har verifierat ditt gamla konto{{suffix}} och återställt dess plånbok. Ange ett lösenord som skyddar den på den här enheten — på den här telefonen och överallt annars, från och med nu.",
     "passwordMin": "Lösenord (minst {{min}} tecken)",
     "newPasswordMin": "Nytt lösenord (minst {{min}} tecken)",
-    "newWalletPasswordMin": "Lösenord för ny plånbok (minst {{min}} tecken)"
+    "newWalletPasswordMin": "Lösenord för ny plånbok (minst {{min}} tecken)",
+    "deviceCheckCancelled": "Enhetskontroll avbruten — ingenting ändrades.",
+    "savePhraseTitle": "Spara din återställningsfras",
+    "startOverTitle": "Börja om med en ny plånbok",
+    "secureNewWalletTitle": "Säkra din nya plånbok",
+    "secureWalletTitle": "Säkra din plånbok",
+    "unlockOnMobileTitle": "Lås upp på mobilen",
+    "oldAccountFoundTitle": "Gammalt konto hittat",
+    "unlockWalletTitle": "Lås upp din plånbok",
+    "phraseExplainer": "Din plånbok kommer att skyddas av den här telefonens biometri. Den upplåsningen <em>fungerar bara på den här telefonen</em> — dessa 12 ord är det enda sättet att komma tillbaka om du installerar om DeHub, byter telefon eller tappar bort den."
   },
   "transcript": {
     "title": "Transkription",
@@ -4002,7 +4190,38 @@
     "subscribe": "Prenumerera",
     "subscriberCount_one": "{{count}} prenumerant",
     "subscriberCount_other": "{{count}} prenumeranter",
-    "subscribeToForRich": "Prenumerera på <name>{{name}}</name> för <price>{{price}}</price>"
+    "subscribeToForRich": "Prenumerera på <name>{{name}}</name> för <price>{{price}}</price>",
+    "loadPlansFailed": "Kunde inte ladda planer",
+    "subscriberContent": "Prenumerationsinnehåll",
+    "subscriberContentSub": "Skapa planer för att erbjuda exklusivt innehåll till prenumeranter",
+    "createFirstPlan": "Skapa din första plan",
+    "addNewPlan": "Lägg till ny plan",
+    "durations": {
+      "oneMonth": "1 månad",
+      "threeMonths": "3 månader",
+      "sixMonths": "6 månader",
+      "oneYear": "1 år",
+      "lifetime": "Livstid"
+    },
+    "planNameRequired": "Planens namn krävs",
+    "enterValidPrice": "Ange ett giltigt pris",
+    "availableChains": "Prenumerationer är för närvarande tillgängliga på Base och BNB",
+    "waitForSwitch": "Vänta tills prenumerationsnätverket är klart att byta",
+    "connectAndWait": "Anslut din plånbok och vänta på prenumerationsnätverket",
+    "planUpdated": "Plan uppdaterad",
+    "creating": "Skapar…",
+    "planPublished": "Plan skapad och publicerad",
+    "createPlanTitle": "Skapa prenumerationsplan",
+    "network": "Prenumerationsnätverk",
+    "planNameLabel": "Planens namn *",
+    "planNamePlaceholder": "t.ex. Premium, Guld, VIP...",
+    "descriptionPlaceholder": "Vad prenumeranter får...",
+    "priceLabel": "Pris (USD) *",
+    "legacyMigrationNote": "Sparar migrering av denna äldre DHB-plan till dollarprissättning till kursen före notering.",
+    "benefits": "Förmåner",
+    "benefitPlaceholder": "Lägg till en förmån...",
+    "createAndPublish": "Skapa & Publicera",
+    "publishingOnChain": "Publicering är en transaktion på kedjan"
   },
   "live": {
     "notSet": "Inte angivet",
@@ -4120,7 +4339,22 @@
     "acceptTerms": "Jag godkänner <terms>Användarvillkor</terms>",
     "sentTo": "{{amount}} {{symbol}} skickades till {{address}}",
     "tokensSentTo": "Tokens skickades till {{address}}",
-    "goToProfile": "Gå till profil"
+    "goToProfile": "Gå till profil",
+    "aboutTitle": "Om DeHub & betalningar",
+    "aboutSubtitle": "Din gateway till smidiga tokenbetalningar",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokens används för att prenumerera på skapare, ge dricks till streamers eller låsa upp innehåll. Ju mer du har, desto lägre blir dina avgifter och desto fler superkrafter låser du upp, som trendförstärkningar i tidslinjen och verifieringsmärken.",
+    "aboutInstantTitle": "Omedelbara betalningar",
+    "aboutInstantBody": "Med Stripe kan du köpa tokens omedelbart och sömlöst till vilket konto du än är inloggad på. DeHub gör tokens enkla och tillgängliga för alla. Om du behöver mer support, dyk bara upp i vår 24/7 live community-chatt och be om administratörssupport.",
+    "aboutSecureTitle": "Säker gateway",
+    "aboutSecureBody": "Alla betalningsuppgifter är krypterade och bearbetas säkert av Stripe. Vi kan inte komma åt eller lagra din känsliga information eller kortuppgifter, vilket ger dig maximal sinnesro.",
+    "transfersSummary": "Översikt över överföringar",
+    "availableToBuy": "Tillgänglig att köpa nu",
+    "noSupplyShort": "Ingen tillgång",
+    "topUpSubtitle": "Köp $DHB med kort och få gratis gas att använda omedelbart",
+    "noTxHash": "Kunde inte hitta transaktions-hash",
+    "latestTransactions": "Senaste transaktioner",
+    "showAll": "Visa alla"
   },
   "musicSheet": {
     "title": "Skapa en låt",
@@ -4249,7 +4483,13 @@
     "followUpNote": "Vi kan höra av oss med följdfrågor om din feedback",
     "submitFeedback": "Skicka feedback",
     "provideFeedback": "Skriv gärna din feedback",
-    "thankYou": "Tack för din feedback!"
+    "thankYou": "Tack för din feedback!",
+    "submitFailed": "Kunde inte skicka feedback. Försök igen.",
+    "maybeLater": "Senare",
+    "helpUsImprove": "Hjälp oss att förbättra",
+    "rateExperience": "Hur skulle du betygsätta din upplevelse?",
+    "telegramOptional": "Telegram (valfritt)",
+    "discordOptional": "Discord (valfritt)"
   },
   "migrate": {
     "clearAll": "Rensa allt",
@@ -4366,7 +4606,14 @@
       "blueWhale": "Det största som någonsin har levt. Det är du.",
       "megalodon": "Här är din krona — du är app royalty nu"
     },
-    "continue": "Tillbaka till DeHub"
+    "continue": "Tillbaka till DeHub",
+    "none": "Ingen",
+    "noBadgeYet": "Inget märke än",
+    "next": "Nästa",
+    "topTier": "Toppskikt",
+    "toNextTier": "{{amount}} DHB till {{tier}}",
+    "everyTierUnlocked": "Varje nivå upplåst",
+    "holdNote": "När ett märke är upplåst är det ditt så länge du behåller din DHB. Antalet tokens som behövs för att låsa upp ett nytt märke kan ändras med tokenpriset."
   },
   "passwordStrength": {
     "veryWeak": "Mycket svagt",
@@ -4448,7 +4695,11 @@
     },
     "ttsLabel": "Säg något högt",
     "ttsPlaceholder": "Läs upp till strömmen...",
-    "ttsHint": "Läs högt för alla som ser när din gåva landar."
+    "ttsHint": "Läs högt för alla som ser när din gåva landar.",
+    "sendAGift": "Skicka en gåva",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minsta gåva är {{amount}}",
+    "sendGift": "Skicka gåva"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4831,7 +5082,8 @@
         "title": "Se hur intjäning fungerar",
         "body": "Ta reda på hur tips, märken och superkrafter förvandlar det du gör här till något du tjänar på."
       }
-    }
+    },
+    "swipeToStart": "Svep för att starta"
   },
   "conversation": {
     "commonGround": {
@@ -5313,5 +5565,18 @@
     "toastPaidSettled": "Betalt — affären är avräknad",
     "walletNotReady": "Din plånbok är inte redo än — försök igen om en stund.",
     "wrongChain": "Den här affären avräknas på {{chain}}. Byt till {{chain}} i Inställningar och försök igen."
+  },
+  "moderation": {
+    "appealDuplicate": "Du har redan överklagat detta",
+    "appealSent": "Överklagande skickat",
+    "appealFailed": "Det gick inte att lämna in överklagandet",
+    "appealTitle": "Överklaga detta beslut",
+    "appealSubtitle": "En person kommer att läsa detta och titta på beslutet igen.",
+    "appealPlaceholder": "Vad tror du saknades? Kontext om innehållet hjälper mer än något annat.",
+    "appealSend": "Skicka överklagande",
+    "appealFootnote": "Du får ett referensnummer och svaret kommer tillbaka hit. Ett överklagande per beslut.",
+    "appealRef": "Referens {{ref}}",
+    "appealSubtitleSubject": "En person kommer att läsa detta och titta igen på {{subject}}.",
+    "appealMore": "Tecken som fortfarande behövs: {{count}}"
   }
 }

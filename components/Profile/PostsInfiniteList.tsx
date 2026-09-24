@@ -20,6 +20,7 @@ import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import { getMyPosts, getLikedPosts, getSavedPosts, getUnlockedPosts, getWatchHistory } from "../../services/user.service";
 import { getFolderItems } from "../../services/bookmark.service";
 import { GetNFTsResponse, GetNFTsResult } from "../../services/nft.service";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 
 type PostVariant = "myPosts" | "liked" | "saved" | "unlocked" | "watched" | "folder";
@@ -41,6 +42,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
   bottomPadding = 0,
   folderId,
 }) => {
+  const { t } = useTranslation();
   const [items, setItems] = useState<PostItem[]>([]);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
@@ -159,20 +161,20 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
   const emptyMessage = useMemo(() => {
     switch (variant) {
       case "liked":
-        return "No liked posts yet.";
+        return t("profile.emptyLiked");
       case "saved":
-        return "No saved posts yet.";
+        return t("profile.emptySaved");
       case "unlocked":
-        return "No unlocked posts yet.";
+        return t("profile.emptyUnlocked");
       case "watched":
-        return "No watch history yet.";
+        return t("profile.emptyWatched");
       case "folder":
-        return "No posts in this folder yet.";
+        return t("profile.emptyFolder");
       case "myPosts":
       default:
-        return "No posts yet.";
+        return t("profile.emptyPosts");
     }
-  }, [variant]);
+  }, [variant, t]);
 
   const ListEmpty = useMemo(() => {
     if (loading) {
@@ -189,7 +191,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
         <View className="py-16 items-center px-6">
           <Icon name="WifiOff" size={48} color="#808089" />
           <Text className="text-theme-neutrals-400 text-base mt-4 text-center">
-            Couldn&apos;t load posts.
+            {t("profile.couldNotLoadPosts")}
           </Text>
           <Pressable
             onPress={() => loadPage(0, true)}
@@ -197,7 +199,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
             className="mt-4 rounded-xl px-4 justify-center items-center"
             style={{ height: 40, borderWidth: 1, borderColor: "rgba(255,255,255,0.30)" }}
           >
-            <Text className="text-white text-sm font-medium">Retry</Text>
+            <Text className="text-white text-sm font-medium">{t("common.retry")}</Text>
           </Pressable>
         </View>
       );
@@ -214,7 +216,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
         </Text>
       </View>
     );
-  }, [loading, error, variant, emptyMessage, loadPage]);
+  }, [loading, error, variant, emptyMessage, loadPage, t]);
 
   return (
     <View className="flex-1">

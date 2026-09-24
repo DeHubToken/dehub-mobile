@@ -214,7 +214,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
     } catch (error: any) {
       console.error("[ReviewModal] Submit error:", error);
       toastError(
-        error.message || "Failed to submit feedback. Please try again."
+        error.message || t("review.submitFailed")
       );
     } finally {
       setIsSubmitting(false);
@@ -324,7 +324,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
             activeOpacity={0.7}
           >
             <Text className="text-theme-neutrals-400 text-base">
-              Maybe Later
+              {t("review.maybeLater")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -341,11 +341,11 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
       </View>
 
       <Text className="text-white text-2xl font-bold text-center mb-2">
-        Help us improve
+        {t("review.helpUsImprove")}
       </Text>
 
       <Text className="text-theme-neutrals-300 text-sm text-center mb-6">
-        How would you rate your experience?
+        {t("review.rateExperience")}
       </Text>
 
       <View className="flex-row justify-center gap-3 mb-6">
@@ -389,7 +389,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
 
           <View className="mb-4">
             <Text className="text-theme-neutrals-400 text-xs mb-2">
-              Telegram (Optional)
+              {t("review.telegramOptional")}
             </Text>
             <TextInput
               value={telegram}
@@ -403,7 +403,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
 
           <View className="mb-6">
             <Text className="text-theme-neutrals-400 text-xs mb-2">
-              Discord (Optional)
+              {t("review.discordOptional")}
             </Text>
             <TextInput
               value={discord}

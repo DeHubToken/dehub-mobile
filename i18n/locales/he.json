@@ -689,7 +689,11 @@
       "hintAllow": "מערכות בינה מלאכותית וסורקים שמכבדים אות זה עשויים להתאמן על השמע, הגרפיקה והכתיבה שלך.",
       "hintDeny": "מערכות בינה מלאכותית וסורקים שמכבדים אות זה מתבקשים לא להתאמן על האודיו, הגרפיקה והכתיבה שלך. זוחלים המתעלמים מהאות אינם חסומים על ידו.",
       "saved": "העדפת אימון AI נשמרה"
-    }
+    },
+    "chainIdLabel": "מזהה שרשרת: {{id}}",
+    "exportPkConfirmPhrase": "אני מבין",
+    "exportPkCopy": "העתק מפתח פרטי",
+    "e2eAutomatic": "אוטומטי"
   },
   "common": {
     "mute": "השתק",
@@ -729,7 +733,17 @@
     "optionalSuffix": "(אופציונלי)",
     "yesterday": "אתמול",
     "ok": "אישור",
-    "continue": "להמשיך"
+    "continue": "להמשיך",
+    "goesToHomeFeed": "עובר לפיד הראשי",
+    "openMenu": "פתח תפריט",
+    "scrollsFeedToTop": "גולל לראש הפיד ומרענן אותו",
+    "notificationsUnread": "התראות, {{unread}} שלא נקראו",
+    "errorDetails": "פרטי שגיאה:",
+    "failedToLoad": "נכשל בטעינה",
+    "noInternetTitle": "אין חיבור לאינטרנט",
+    "noInternetBody": "אנא בדוק את חיבור האינטרנט שלך ונסה שוב. עליך להיות מחובר לאינטרנט כדי להשתמש ב-DeHub.",
+    "noInternetStatus": "לא מקוון - אין חיבור רשת",
+    "noInternetHint": "ודא ש-Wi-Fi או נתונים סלולריים מופעלים, ואז הקש \"{{action}}\""
   },
   "tip": {
     "title": "שלח טיפ",
@@ -1618,7 +1632,12 @@
     "chooseUsernameBody": "בחרו שם משתמש ושם תצוגה כדי להמשיך. תוכלו לשנות אותם בהמשך.",
     "checkingAvailability": "בודקים זמינות…",
     "usernameTakenHint": "השם תפוס — נסו להוסיף ספרות או קו תחתון",
-    "displayNameLength": "שם התצוגה חייב להיות באורך 2–50 תווים."
+    "displayNameLength": "שם התצוגה חייב להיות באורך 2–50 תווים.",
+    "loginFailedRetry": "הכניסה נכשלה. אנא נסה שוב.",
+    "sendCodeFailedRetry": "לא ניתן לשלוח קוד. אנא נסה שוב.",
+    "invalidCodeRetry": "קוד לא תקין. אנא נסה שוב.",
+    "invalidEmailOrPassword": "דוא\"ל או סיסמה לא תקינים.",
+    "welcomeToDehub": "ברוכים הבאים ל-DeHub"
   },
   "messages": {
     "smartRepliesOff": "התשובות המוצעות כובו",
@@ -1696,7 +1715,32 @@
     "offerWorthNow": "בערך {{amount}} DHB לפי השער הנוכחי",
     "offerNotePlaceholder": "הוסף הערה (אופציונלי)",
     "offerCommitsNothing": "הגשת הצעה לא עולה כלום ולא מקפיאה DHB. תשלם רק אם הבעלים יאשר.",
-    "offerNeedsHandle": "לחשבון הזה אין שם משתמש להציע עליו."
+    "offerNeedsHandle": "לחשבון הזה אין שם משתמש להציע עליו.",
+    "noPostsYet": "עדיין אין פוסטים",
+    "noPostsYetSub": "התוכן יופיע כאן כשיפורסם",
+    "noPinnedPosts": "עדיין אין פוסטים נעוצים",
+    "noPinnedPostsSub": "פוסטים נעוצים יופיעו כאן",
+    "emptyLiked": "עדיין אין פוסטים שאהבת.",
+    "emptySaved": "עדיין אין פוסטים שמורים.",
+    "emptyUnlocked": "עדיין אין פוסטים ששוחררו.",
+    "emptyWatched": "עדיין אין היסטוריית צפייה.",
+    "emptyFolder": "עדיין אין פוסטים בתיקיה זו.",
+    "emptyPosts": "עדיין אין פוסטים.",
+    "couldNotLoadPosts": "לא ניתן היה לטעון פוסטים.",
+    "noPostsOrReplies": "עדיין אין פוסטים, תגובות או תשובות",
+    "noPostsOrRepliesSub": "הם יופיעו כאן",
+    "avatarUpdated": "התמונה האישית עודכנה",
+    "coverUpdated": "תמונת הכיסוי עודכנה",
+    "couldNotPickImage": "לא ניתן היה לבחור תמונה",
+    "changeCoverImage": "שנה את תמונת הכיסוי",
+    "changeAvatar": "שנה את התמונה האישית",
+    "verifiedEnsName": "שם ENS מאומת {{name}}",
+    "notFullyJoined": "משתמש זה עדיין לא הצטרף במלואו. הוא לא בחר שם משתמש או השלים את הגדרת הפרופיל. עדיין ניתן להציג פעילות ציבורית ולשלוח טיפים אם זמינים.",
+    "loadRepliesFailed": "טעינת תשובות נכשלה",
+    "refreshFailed": "רענון נכשל",
+    "noRepliesYet": "אין תשובות עדיין",
+    "noRepliesYetSub": "כאשר משתמש זה יענה לפוסטים, הם יופיעו כאן.",
+    "noMoreReplies": "אין עוד תשובות"
   },
   "tv": {
     "title": "טלוויזיה",
@@ -1779,7 +1823,11 @@
     "loadingPrice": "טוען מחיר…",
     "topUpExplanation": "ה-DHB מועבר on-chain לקופת הפרסום של DeHub, ואז היתרה שלכם מזוכה לאחר אימות עצמאי on-chain.",
     "paymentHistory": "היסטוריית תשלומים",
-    "noPayments": "אין עדיין תשלומים"
+    "noPayments": "אין עדיין תשלומים",
+    "sponsored": "ממומן",
+    "morePosts": "עוד פוסטים",
+    "loadMorePosts": "טען עוד פוסטים",
+    "playAdVideo": "נגן סרטון פרסומת"
   },
   "buyCoins": {
     "title": "קנה מטבעות",
@@ -2218,7 +2266,8 @@
     "privateBalanceMode": "מצב יתרה פרטית מופעל",
     "addressHidden": "הכתובת מוסתרת",
     "allowInFeeds": "אפשר למשתמש הזה להופיע בפידים שלך",
-    "hideContent": "הסתר את התוכן שלהם והגבל אינטראקציות"
+    "hideContent": "הסתר את התוכן שלהם והגבל אינטראקציות",
+    "a11yLabel": "אפשרויות פרופיל"
   },
   "toasts": {
     "saved_to_bookmarks": "נשמר בסימניות",
@@ -2577,7 +2626,8 @@
     "roles": {
       "owner": "בעלים",
       "moderator": "מנהל",
-      "member": "חבר"
+      "member": "חבר",
+      "admin": "מנהל מערכת"
     },
     "time": {
       "today": "היום",
@@ -2586,7 +2636,126 @@
       "weeks": "{{count}} שבועות",
       "months": "{{count}} חודשים",
       "years": "{{count}} שנים"
-    }
+    },
+    "chatPanel": {
+      "anon": "אנונימי",
+      "edited": "נערך",
+      "deleteTitle": "מחק הודעה",
+      "deleteConfirm": "למחוק הודעה זו? לא ניתן לבטל פעולה זו.",
+      "muted": "אתה מושתק",
+      "postingDisabled": "הפרסום מושבת לחברים כאן",
+      "mediaMessage": "מדיה",
+      "pinnedMessage": "הודעה נעוצה",
+      "showEarlier": "הצג הודעות קודמות",
+      "editingMessage": "עריכת הודעה",
+      "copied": "ההודעה הועתקה",
+      "copyText": "העתקת טקסט",
+      "mutedUntil": "אתם מושתקים עד {{date}}",
+      "slowMode": "מצב איטי: הודעה אחת בכל {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "סגירת מנהל המערכת",
+      "cancel": "ביטול",
+      "dismissAdmin": "סגירת מנהל המערכת",
+      "roleAdmin": "מנהל מערכת",
+      "roleMember": "חבר",
+      "whatCanTheyDo": "מה מנהל המערכת הזה יכול לעשות?",
+      "rightNotHeld": "אין לכם את הזכות הזו בעצמכם",
+      "customTitle": "כותרת מותאמת אישית",
+      "customTitlePlaceholder": "מנהל מערכת",
+      "customTitleHint": "מוצג במקום תג מנהל המערכת המוגדר כברירת מחדל.",
+      "saveChanges": "שמירת השינויים",
+      "promote": "קידום",
+      "tabs": {
+        "members": "חברים",
+        "admins": "מנהלי מערכת",
+        "permissions": "הרשאות",
+        "invites": "הזמנות",
+        "rules": "כללים",
+        "recentActions": "פעולות אחרונות",
+        "danger": "אזור סכנה"
+      },
+      "title": "ניהול",
+      "purgeTitle": "למחוק את כל ההודעות?",
+      "purgeConfirm": "מחיקה",
+      "kickTitle": "להסיר חבר?",
+      "kickConfirm": "הסרה",
+      "bannedPermanent": "חסום — קבוע",
+      "mutedPermanent": "מושתק — קבוע",
+      "editAdminRights": "ערוך הרשאות מנהל",
+      "promoteToAdmin": "קדם למנהל",
+      "unmute": "בטל השתקה",
+      "mute": "השתק",
+      "unban": "בטל חסימה",
+      "ban": "חסום",
+      "deleteAllMessages": "מחק את כל ההודעות",
+      "removeFromCommunity": "הסר מהקהילה",
+      "noActionsAvailable": "אינך יכול לנהל את החבר הזה.",
+      "showMore": "הצג עוד",
+      "joinRequests": "בקשות הצטרפות",
+      "approve": "אשר",
+      "reject": "דחה",
+      "members": "חברים",
+      "searchMembers": "חפש לפי כתובת ארנק",
+      "noMembersMatch": "לא נמצאו חברים תואמים.",
+      "noMembers": "עדיין אין חברים.",
+      "muted": "מושתקים",
+      "banned": "חסומים",
+      "muteEffect": "הם נשארים בקהילה אך אינם יכולים לפרסם עד שתפוג ההשתקה.",
+      "banEffect": "הם מוסרים מהצ'אט ואינם יכולים להצטרף מחדש עד להסרת החסימה.",
+      "durationLabel": "משך זמן",
+      "reasonLabel": "סיבה (אופציונלי)",
+      "reasonPlaceholder": "מדוע הם נחסמים?",
+      "alsoDeleteMessages": "גם מחק את כל ההודעות שלהם",
+      "confirmMute": "השתק חבר",
+      "confirmBan": "חסום חבר",
+      "rulesUpdated": "הכללים עודכנו",
+      "rulesTitle": "כללי הקהילה",
+      "rulesEmpty": "עדיין אין כללים — הוסף את הראשון למטה.",
+      "rulePlaceholder": "תאר את הכלל",
+      "addRule": "הוסף כלל",
+      "saveRules": "שמור כללים",
+      "dismissAdminBody": "{{wallet}} יחזור להיות חבר רגיל.",
+      "purgeBody": "כל הודעה ש-{{name}} שלח בקהילה זו תימחק.",
+      "kickBody": "{{name}} יוסר מהקהילה. הם יוכלו להצטרף שוב מאוחר יותר.",
+      "bannedUntil": "נחסם עד {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "הושתק עד {{date}}",
+      "bannedUntilShort": "עד {{date}}",
+      "muteTitle": "השתק את {{name}}",
+      "banTitle": "חסום את {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} מתוך {{max}}",
+      "moveRuleUp": "הזז כלל למעלה",
+      "moveRuleDown": "הזז כלל למטה",
+      "deleteRule": "מחק כלל",
+      "rights": {
+        "changeInfo": "שנה מידע קהילתי",
+        "changeInfoHint": "ערוך את השם, התיאור, האווטאר והבאנר",
+        "deleteMessages": "מחק הודעות",
+        "deleteMessagesHint": "הסר כל הודעה מצ'אט הקהילה",
+        "restrictMembers": "חסום משתמשים",
+        "restrictMembersHint": "השתק, הסר וחסום חברים",
+        "inviteUsers": "הזמן משתמשים באמצעות קישור",
+        "inviteUsersHint": "צור ובטל קישורי הזמנה",
+        "pinMessages": "נעץ הודעות",
+        "pinMessagesHint": "נעץ הודעה בראש הצ'אט",
+        "manageEvents": "נהל אירועים",
+        "manageEventsHint": "צור וערוך אירועי קהילה",
+        "addAdmins": "הוסף אדמינים חדשים",
+        "addAdminsHint": "קדם חברים וערוך את זכויות המנהלים שהם הוסיפו",
+        "remainAnonymous": "הישאר אנונימי",
+        "remainAnonymousHint": "הסתר מנהל זה מרשימת החברים"
+      },
+      "durations": {
+        "oneHour": "שעה אחת",
+        "eightHours": "8 שעות",
+        "oneDay": "יום אחד",
+        "oneWeek": "שבוע אחד",
+        "forever": "לנצח"
+      }
+    },
+    "chooseAvatar": "בחר אווטאר"
   },
   "work": {
     "title": "פרסים",
@@ -2938,7 +3107,9 @@
       "shipped": "נשלח",
       "completed": "הושלם",
       "cancelled": "בוטל"
-    }
+    },
+    "removePhoto": "הסר תמונה",
+    "listingOptions": "אפשרויות רישום"
   },
   "accounts": {
     "subtitle": "חשבונות שלמים למכירה, במחיר ב-DHB",
@@ -3305,7 +3476,14 @@
     "removeFollowerHint": "לחץ והחזק עוקב כדי להסירו.",
     "cancel": "ביטול",
     "remove": "הסר",
-    "thisUser": "משתמש זה"
+    "thisUser": "משתמש זה",
+    "cancelRequestTo": "בטל בקשת מעקב אל @{{username}}?",
+    "followingUser": "עוקב אחר @{{username}}",
+    "contentUnavailable": "התוכן אינו זמין",
+    "youBlockedBody": "לא תראה את הפוסטים שלהם ולא תוכל ליצור איתם אינטראקציה. בטל חסימה כדי לשחזר גישה.",
+    "restrictedBody": "משתמש זה הגביל אינטראקציות עם החשבון שלך.",
+    "requestPendingBody": "בקשת המעקב שלך נשלחה. תוכל לראות את הפוסטים שלהם לאחר שיאשרו את בקשתך.",
+    "followToSeePosts": "עקוב אחר חשבון זה כדי לראות את הפוסטים שלו."
   },
   "reactionInfo": {
     "title": "תגובות",
@@ -3620,7 +3798,8 @@
     "needGas": "נדרש {{token}} מקורי עבור עמלות ב-{{chain}}.",
     "bridging": "מגשר…",
     "bridgeAction": "גשר {{from}} ← {{to}}",
-    "failed": "הגישור נכשל"
+    "failed": "הגישור נכשל",
+    "sentArriveShortly": "{{amount}} DHB נשלח מ-{{from}} → {{to}}. אסימונים יגיעו בקרוב."
   },
   "banned": {
     "title": "החשבון שלך נחסם",
@@ -3798,7 +3977,16 @@
     "legacyRecovered": "אימתנו את החשבון הישן שלך{{suffix}} ושחזרנו את הארנק שלו. הגדירו סיסמה שתגן עליו במכשיר הזה — בטלפון הזה ובכל מקום אחר, מעכשיו.",
     "passwordMin": "סיסמה (לפחות {{min}} תווים)",
     "newPasswordMin": "סיסמה חדשה (לפחות {{min}} תווים)",
-    "newWalletPasswordMin": "סיסמת הארנק החדש (לפחות {{min}} תווים)"
+    "newWalletPasswordMin": "סיסמת הארנק החדש (לפחות {{min}} תווים)",
+    "deviceCheckCancelled": "בדיקת מכשיר בוטלה - לא השתנה דבר.",
+    "savePhraseTitle": "שמור את ביטוי השחזור שלך",
+    "startOverTitle": "התחל מחדש עם ארנק חדש",
+    "secureNewWalletTitle": "אבטח את הארנק החדש שלך",
+    "secureWalletTitle": "אבטח את הארנק שלך",
+    "unlockOnMobileTitle": "פתח במובייל",
+    "oldAccountFoundTitle": "נמצא חשבון ישן",
+    "unlockWalletTitle": "פתח את הארנק שלך",
+    "phraseExplainer": "הארנק שלך יהיה מוגן על ידי הביומטריה של הטלפון הזה. פתיחה זו <em>עובדת רק בטלפון זה</em> — 12 המילים הללו הן הדרך היחידה לחזור אם תתקין מחדש את DeHub, תחליף מכשיר, או תאבד אותו."
   },
   "transcript": {
     "title": "תמלול",
@@ -3984,7 +4172,38 @@
     "subscribe": "הרשמה",
     "subscriberCount_one": "{{count}} מנוי",
     "subscriberCount_other": "{{count}} מנויים",
-    "subscribeToForRich": "הירשמו ל־<name>{{name}}</name> תמורת <price>{{price}}</price>"
+    "subscribeToForRich": "הירשמו ל־<name>{{name}}</name> תמורת <price>{{price}}</price>",
+    "loadPlansFailed": "נכשל טעינת תוכניות",
+    "subscriberContent": "תוכן למנויים",
+    "subscriberContentSub": "צור תוכניות להצעת תוכן בלעדי למנויים",
+    "createFirstPlan": "צור את התוכנית הראשונה שלך",
+    "addNewPlan": "הוסף תוכנית חדשה",
+    "durations": {
+      "oneMonth": "חודש 1",
+      "threeMonths": "3 חודשים",
+      "sixMonths": "6 חודשים",
+      "oneYear": "שנה 1",
+      "lifetime": "לכל החיים"
+    },
+    "planNameRequired": "שם התוכנית נדרש",
+    "enterValidPrice": "הזן מחיר חוקי",
+    "availableChains": "מנויים זמינים כעת ב-Base וב-BNB",
+    "waitForSwitch": "המתן לסיום החלפת רשת המנויים",
+    "connectAndWait": "חבר את הארנק שלך והמתן לרשת המנויים",
+    "planUpdated": "התוכנית עודכנה",
+    "creating": "יוצר…",
+    "planPublished": "התוכנית נוצרה ופורסמה",
+    "createPlanTitle": "צור תוכנית מנוי",
+    "network": "רשת מנויים",
+    "planNameLabel": "שם התוכנית *",
+    "planNamePlaceholder": "לדוגמה: פרימיום, זהב, VIP...",
+    "descriptionPlaceholder": "מה מקבלים המנויים...",
+    "priceLabel": "מחיר (USD) *",
+    "legacyMigrationNote": "החיסכון מעביר את תוכנית ה-DHB הישנה הזו לתמחור בדולרים בתעריף שלפני הרישום.",
+    "benefits": "הטבות",
+    "benefitPlaceholder": "הוסף הטבה...",
+    "createAndPublish": "צור ופרסם",
+    "publishingOnChain": "הפרסום הוא עסקה על הבלוקצ'יין"
   },
   "live": {
     "notSet": "לא הוגדר",
@@ -4102,7 +4321,22 @@
     "acceptTerms": "אני מקבל את <terms>תנאי השירות</terms>",
     "sentTo": "{{amount}} {{symbol}} נשלח אל {{address}}",
     "tokensSentTo": "אסימונים נשלחו אל {{address}}",
-    "goToProfile": "מעבר לפרופיל"
+    "goToProfile": "מעבר לפרופיל",
+    "aboutTitle": "אודות DeHub & תשלומים",
+    "aboutSubtitle": "השער שלך לתשלומים חלקים באמצעות טוקנים",
+    "aboutTokenTitle": "אסימון DeHub",
+    "aboutTokenBody": "אסימונים משמשים למנוי ליוצרים, טיפ לסטרימרים או לפתיחת תוכן. ככל שתחזיק יותר, כך העמלות שלך יהיו נמוכות יותר ותפתח יותר כוחות-על כמו שיפור מגמות ציר זמן ותגי אימות.",
+    "aboutInstantTitle": "תשלומים מיידיים",
+    "aboutInstantBody": "באמצעות Stripe, תוכל לקנות אסימונים באופן מיידי וללא מאמץ לחשבון כלשהו שאליו אתה מחובר. DeHub הופך את האסימונים לפשוטים ולכולם. אם אתה זקוק לתמיכה נוספת, פשוט הצטרף לצ'אט הקהילה החי שלנו 24/7 ובקש תמיכת מנהל.",
+    "aboutSecureTitle": "שער מאובטח",
+    "aboutSecureBody": "כל פרטי התשלום מוצפנים ומעובדים באופן מאובטח על ידי Stripe. איננו יכולים לגשת או לאחסן את המידע הרגיש שלך או את פרטי הכרטיס שלך, מה שמעניק לך שקט נפשי אולטימטיבי.",
+    "transfersSummary": "סיכום העברות",
+    "availableToBuy": "זמין לרכישה כעת",
+    "noSupplyShort": "אין אספקה",
+    "topUpSubtitle": "קנה $DHB באמצעות כרטיס וקבל גז חינם לשימוש מיידי",
+    "noTxHash": "לא נמצא hash של עסקה",
+    "latestTransactions": "עסקאות אחרונות",
+    "showAll": "הצג הכל"
   },
   "musicSheet": {
     "title": "יצירת שיר",
@@ -4231,7 +4465,13 @@
     "followUpNote": "ייתכן שניצור קשר עם שאלות המשך על המשוב שלך",
     "submitFeedback": "שלח משוב",
     "provideFeedback": "נא לכתוב את המשוב שלך",
-    "thankYou": "תודה על המשוב!"
+    "thankYou": "תודה על המשוב!",
+    "submitFailed": "נכשל שליחת משוב. אנא נסה שוב.",
+    "maybeLater": "אולי מאוחר יותר",
+    "helpUsImprove": "עזור לנו להשתפר",
+    "rateExperience": "כיצד היית מדרג את החוויה שלך?",
+    "telegramOptional": "Telegram (אופציונלי)",
+    "discordOptional": "Discord (אופציונלי)"
   },
   "migrate": {
     "clearAll": "ניקוי הכול",
@@ -4348,7 +4588,14 @@
       "blueWhale": "הדבר הכי גדול שאי פעם חי. זה אתה.",
       "megalodon": "הנה הכתר שלך — אתה תמלוגים של אפליקציות עכשיו"
     },
-    "continue": "חזרה ל - DeHub"
+    "continue": "חזרה ל - DeHub",
+    "none": "אין",
+    "noBadgeYet": "אין תג עדיין",
+    "next": "הבא",
+    "topTier": "רמה עליונה",
+    "toNextTier": "{{amount}} DHB ל-{{tier}}",
+    "everyTierUnlocked": "כל רמה שנפתחה",
+    "holdNote": "ברגע שתג נפתח, הוא שלך כל עוד אתה מחזיק ב-DHB שלך. מספר האסימונים הדרושים לפתיחת תג חדש יכול להשתנות עם מחיר האסימון."
   },
   "passwordStrength": {
     "veryWeak": "חלשה מאוד",
@@ -4430,7 +4677,11 @@
     },
     "ttsLabel": "לומר משהו בקול רם",
     "ttsPlaceholder": "קרא את הזרם...",
-    "ttsHint": "קראו בקול רם לכל מי שצופה במתנה שלכם נוחתת."
+    "ttsHint": "קראו בקול רם לכל מי שצופה במתנה שלכם נוחתת.",
+    "sendAGift": "שלח מתנה",
+    "minPlaceholder": "מינימום: {{amount}}",
+    "minGift": "מתנה מינימלית היא {{amount}}",
+    "sendGift": "שלח מתנה"
   },
   "goLive": {
     "streamKey": "מפתח השידור",
@@ -4810,7 +5061,8 @@
         "title": "איך עובדים הרווחים",
         "body": "גלה כיצד טיפים, תגים וכוחות - על הופכים את מה שאתה עושה כאן למשהו שאתה מרוויח ממנו."
       }
-    }
+    },
+    "swipeToStart": "החלק כדי להתחיל"
   },
   "conversation": {
     "commonGround": {
@@ -5292,5 +5544,18 @@
     "toastPaidSettled": "שולם — העסקה הסתיימה",
     "walletNotReady": "הארנק שלך עדיין לא מוכן — נסה שוב בעוד רגע.",
     "wrongChain": "העסקה הזו מתבצעת ב-{{chain}}. עבור ל-{{chain}} בהגדרות ונסה שוב."
+  },
+  "moderation": {
+    "appealDuplicate": "כבר ערערתם על הבקשה הזו",
+    "appealSent": "הערעור נשלח",
+    "appealFailed": "לא ניתן להגיש את הערעור",
+    "appealTitle": "ערעור על החלטה זו",
+    "appealSubtitle": "אדם יקרא את זה ויסתכל על ההחלטה שוב.",
+    "appealPlaceholder": "מה לדעתכם פספסנו? ההקשר לגבי התוכן עוזר יותר מכל דבר אחר.",
+    "appealSend": "שליחת ערעור",
+    "appealFootnote": "אתם מקבלים מספר סימוכין, והתשובה חוזרת לכאן. ערעור אחד לכל החלטה.",
+    "appealRef": "המלצה {{ref}}",
+    "appealSubtitleSubject": "מישהו יקרא את זה ויסתכל שוב על {{subject}}.",
+    "appealMore": "עדיין דרושים תווים: {{count}}"
   }
 }

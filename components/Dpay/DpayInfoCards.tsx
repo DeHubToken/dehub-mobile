@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
+import { useTranslation } from "react-i18next";
 import baseIcon from "../../assets/chains/base-icon.png";
 import dhbIcon from "../../assets/tokens/DHB.png";
 
@@ -24,9 +25,10 @@ const Card: React.FC<{
 );
 
 const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
+  const { t } = useTranslation();
   return (
     <View className="flex-row gap-3 my-4">
-      <Card title="Transfers Summary" className="flex-1">
+      <Card title={t("dpay.transfersSummary")} className="flex-1">
         <View className="flex-row items-center mb-2">
           <View className="flex-row items-center">
             <Image source={baseIcon} className="w-6 h-6 rounded-full" />
@@ -43,7 +45,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
             : "—"}
         </Text>
       </Card>
-      <Card title="Available to buy now" className="flex-1">
+      <Card title={t("dpay.availableToBuy")} className="flex-1">
         <View className="flex-row items-center mb-2">
           <View className="flex-row items-center">
             <Image source={baseIcon} className="w-6 h-6 rounded-full" />
@@ -57,7 +59,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
         {typeof supplyAmount === "number" ? (
           supplyAmount === 0 ? (
             <Text className="text-zinc-300 text-sm">
-              DHB : <Text className="text-[#F4F4F5]">No Supply</Text>
+              DHB : <Text className="text-[#F4F4F5]">{t("dpay.noSupplyShort")}</Text>
             </Text>
           ) : (
             <Text className="text-theme-accent text-2xl font-bold">

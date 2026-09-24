@@ -218,16 +218,16 @@ const ProfileHeader = () => {
           await patchUser?.({ coverImageUrl: `${user?.coverImageUrl || ""}` });
         }
         await refreshUser?.();
-        toastSuccess(isAvatar ? "Avatar updated" : "Cover updated");
+        toastSuccess(isAvatar ? t("profile.avatarUpdated") : t("profile.coverUpdated"));
       } catch (e) {
-        toastError(e, "Upload failed");
+        toastError(e, t("stores.uploadFailed"));
         if (isAvatar) setLocalAvatarUri(null);
         else setLocalCoverUri(null);
       } finally {
         isAvatar ? setUploadingAvatar(false) : setUploadingCover(false);
       }
     },
-    [user, patchUser, refreshUser]
+    [user, patchUser, refreshUser, t]
   );
 
   const startChangeAvatar = useCallback(async () => {
@@ -245,9 +245,9 @@ const ProfileHeader = () => {
         await processAndUpload("avatar", pickedUri);
       });
     } catch (e) {
-      toastError(e, "Could not pick image");
+      toastError(e, t("profile.couldNotPickImage"));
     }
-  }, [processAndUpload]);
+  }, [processAndUpload, t]);
 
   const startChangeCover = useCallback(async () => {
     try {
@@ -264,9 +264,9 @@ const ProfileHeader = () => {
         await processAndUpload("cover", pickedUri);
       });
     } catch (e) {
-      toastError(e, "Could not pick image");
+      toastError(e, t("profile.couldNotPickImage"));
     }
-  }, [processAndUpload]);
+  }, [processAndUpload, t]);
 
   return (
     <View className="w-full">
@@ -306,7 +306,7 @@ const ProfileHeader = () => {
           <TouchableOpacity
             onPress={startChangeCover}
             className="absolute right-2 bottom-2 dark-surface bg-black/50 rounded-xl p-2"
-            accessibilityLabel="Change cover image"
+            accessibilityLabel={t("profile.changeCoverImage")}
             activeOpacity={0.85}
           >
             <Ionicons name="camera" size={16} color="#fff" />
@@ -338,7 +338,7 @@ const ProfileHeader = () => {
             <TouchableOpacity
               onPress={startChangeAvatar}
               className="absolute right-0 bottom-0 dark-surface bg-black/60 rounded-lg p-1.5 border border-white/20"
-              accessibilityLabel="Change avatar"
+              accessibilityLabel={t("profile.changeAvatar")}
               activeOpacity={0.85}
             >
               <Ionicons name="camera" size={13} color="#fff" />
@@ -354,18 +354,18 @@ const ProfileHeader = () => {
             <LiquidGlass className="rounded-xl" intensity={40} noBlur>
               <TouchableOpacity
                 onPress={() => navigation.navigate(ScreenNames.EditProfile)}
-                accessibilityLabel="Edit profile"
+                accessibilityLabel={t("settings.editProfile")}
                 activeOpacity={0.85}
                 className="px-4 flex-row items-center"
                 style={{ height: 36, gap: 6 }}
               >
                 <Ionicons name="pencil" size={14} color="#fff" />
-                <Text className="text-white font-semibold text-[13px]">Edit Profile</Text>
+                <Text className="text-white font-semibold text-[13px]">{t("screens.editProfile")}</Text>
               </TouchableOpacity>
             </LiquidGlass>
             <TouchableOpacity
               onPress={handleShare}
-              accessibilityLabel="Share profile"
+              accessibilityLabel={t("profileOptions.shareProfile")}
               activeOpacity={0.85}
             >
               <LiquidGlass className="rounded-xl" intensity={40} noBlur>
@@ -432,10 +432,10 @@ const ProfileHeader = () => {
               <TouchableOpacity
                 onPress={() => {
                   copyToClipboard(ensProfileUrl(ensName));
-                  toastSuccess("ENS profile URL copied");
+                  toastSuccess(t("profile.ensUrlCopied"));
                 }}
                 activeOpacity={0.7}
-                accessibilityLabel={`Verified ENS name ${ensName}`}
+                accessibilityLabel={t("profile.verifiedEnsName", { name: ensName })}
                 className="px-2 py-0.5 bg-theme-neutrals-800 rounded-md flex-row items-center"
               >
                 <Ionicons name="globe-outline" size={11} color="#A1A1AA" />

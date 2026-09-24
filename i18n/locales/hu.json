@@ -691,7 +691,11 @@
       "hintAllow": "Azok a mesterségesintelligencia-rendszerek és feltérképező robotok, amelyek tiszteletben tartják ezt a jelet, képezhetik az Ön hangját, grafikáját és írását.",
       "hintDeny": "Azokat az MI-rendszereket és robotokat, amelyek tiszteletben tartják ezt a jelet, arra kérjük, hogy ne gyakoroljanak a hangra, a műalkotásokra és az írásra. Azok a lánctalpasok, amelyek figyelmen kívül hagyják a jelet, nem blokkolják azt.",
       "saved": "AI képzési preferencia mentve"
-    }
+    },
+    "chainIdLabel": "Lánc azonosító: {{id}}",
+    "exportPkConfirmPhrase": "ÉRTEM",
+    "exportPkCopy": "Magánkulcs másolása",
+    "e2eAutomatic": "Automatikus"
   },
   "common": {
     "mute": "Némítás",
@@ -731,7 +735,17 @@
     "optionalSuffix": "(nem kötelező)",
     "yesterday": "Tegnap",
     "ok": "OK",
-    "continue": "Folytatás"
+    "continue": "Folytatás",
+    "goesToHomeFeed": "A főhírfolyamra megy",
+    "openMenu": "Menü megnyitása",
+    "scrollsFeedToTop": "A hírfolyam tetejére görget és frissíti azt",
+    "notificationsUnread": "Értesítések, {{unread}} olvasatlan",
+    "errorDetails": "Hiba részletei:",
+    "failedToLoad": "Betöltés sikertelen",
+    "noInternetTitle": "Nincs internetkapcsolat",
+    "noInternetBody": "Kérjük, ellenőrizze az internetkapcsolatát, és próbálkozzon újra. Az internethez csatlakoznia kell a DeHub használatához.",
+    "noInternetStatus": "Offline - Nincs hálózati kapcsolat",
+    "noInternetHint": "Győződjön meg róla, hogy a Wi-Fi vagy a mobiladat be van kapcsolva, majd koppintson a \"{{action}}\" elemre."
   },
   "tip": {
     "title": "Borravaló küldése",
@@ -1621,7 +1635,12 @@
     "chooseUsernameBody": "Válassz felhasználónevet és megjelenített nevet a folytatáshoz. Később módosíthatod őket.",
     "checkingAvailability": "Elérhetőség ellenőrzése…",
     "usernameTakenHint": "Ez a név foglalt — próbálj számokat vagy aláhúzást hozzáadni",
-    "displayNameLength": "A megjelenített névnek 2–50 karakter hosszúnak kell lennie."
+    "displayNameLength": "A megjelenített névnek 2–50 karakter hosszúnak kell lennie.",
+    "loginFailedRetry": "Bejelentkezés sikertelen. Kérjük, próbálja újra.",
+    "sendCodeFailedRetry": "Nem sikerült elküldeni a kódot. Kérjük, próbálja újra.",
+    "invalidCodeRetry": "Érvénytelen kód. Kérjük, próbálja újra.",
+    "invalidEmailOrPassword": "Érvénytelen e-mail vagy jelszó.",
+    "welcomeToDehub": "Üdvözöljük a DeHubban"
   },
   "messages": {
     "smartRepliesOff": "A javasolt válaszok ki vannak kapcsolva",
@@ -1699,7 +1718,32 @@
     "offerWorthNow": "Körülbelül {{amount}} DHB a jelenlegi árfolyamon",
     "offerNotePlaceholder": "Írj egy üzenetet (nem kötelező)",
     "offerCommitsNothing": "Az ajánlattétel semmibe nem kerül, és nem zárol DHB-t. Csak akkor fizetsz, ha a tulajdonos elfogadja.",
-    "offerNeedsHandle": "Ennek a fióknak nincs felhasználóneve, amire ajánlatot lehetne tenni."
+    "offerNeedsHandle": "Ennek a fióknak nincs felhasználóneve, amire ajánlatot lehetne tenni.",
+    "noPostsYet": "Még nincsenek bejegyzések",
+    "noPostsYetSub": "A tartalom itt jelenik meg, amikor közzéteszik",
+    "noPinnedPosts": "Még nincsenek rögzített bejegyzések",
+    "noPinnedPostsSub": "A rögzített bejegyzések itt jelennek meg",
+    "emptyLiked": "Még nincsenek kedvelt bejegyzések.",
+    "emptySaved": "Még nincsenek mentett bejegyzések.",
+    "emptyUnlocked": "Még nincsenek feloldott bejegyzések.",
+    "emptyWatched": "Még nincsen megtekintési előzmény.",
+    "emptyFolder": "Még nincsenek bejegyzések ebben a mappában.",
+    "emptyPosts": "Még nincsenek bejegyzések.",
+    "couldNotLoadPosts": "Nem sikerült betölteni a bejegyzéseket.",
+    "noPostsOrReplies": "Még nincsenek bejegyzések, hozzászólások vagy válaszok",
+    "noPostsOrRepliesSub": "Itt fognak megjelenni",
+    "avatarUpdated": "Avatar frissítve",
+    "coverUpdated": "Borító frissítve",
+    "couldNotPickImage": "Nem sikerült képet kiválasztani",
+    "changeCoverImage": "Borítóképet módosítása",
+    "changeAvatar": "Avatart módosítása",
+    "verifiedEnsName": "Hitelesített ENS név {{name}}",
+    "notFullyJoined": "Ez a felhasználó még nem csatlakozott teljesen. Nem választott felhasználónevet, és nem fejezte be a profilbeállítást. Továbbra is megtekintheti a nyilvános tevékenységeket, és tippeket küldhet, ha elérhető.",
+    "loadRepliesFailed": "Nem sikerült betölteni a válaszokat",
+    "refreshFailed": "Frissítés sikertelen",
+    "noRepliesYet": "Nincsenek válaszok",
+    "noRepliesYetSub": "Amikor ez a felhasználó válaszol a bejegyzésekre, itt jelennek meg.",
+    "noMoreReplies": "Nincsenek további válaszok"
   },
   "tv": {
     "title": "TV",
@@ -1782,7 +1826,11 @@
     "loadingPrice": "Ár betöltése…",
     "topUpExplanation": "A DHB on-chain kerül a DeHub hirdetési kincstárába, majd független on-chain ellenőrzés után jóváírjuk az egyenlegeden.",
     "paymentHistory": "Fizetési előzmények",
-    "noPayments": "Még nincs fizetés"
+    "noPayments": "Még nincs fizetés",
+    "sponsored": "Szponzorált",
+    "morePosts": "További bejegyzések",
+    "loadMorePosts": "További bejegyzések betöltése",
+    "playAdVideo": "Hirdetési videó lejátszása"
   },
   "buyCoins": {
     "title": "Érmék vásárlása",
@@ -2221,7 +2269,8 @@
     "privateBalanceMode": "A privát egyenleg mód be van kapcsolva",
     "addressHidden": "A cím rejtve van",
     "allowInFeeds": "Engedd, hogy ez a felhasználó megjelenjen a hírfolyamaidban",
-    "hideContent": "Rejtsd el a tartalmukat és korlátozd az interakciókat"
+    "hideContent": "Rejtsd el a tartalmukat és korlátozd az interakciókat",
+    "a11yLabel": "Profilbeállítások"
   },
   "toasts": {
     "saved_to_bookmarks": "Könyvjelzőkhöz mentve",
@@ -2593,7 +2642,8 @@
     "roles": {
       "owner": "Tulajdonos",
       "moderator": "Moderátor",
-      "member": "Tag"
+      "member": "Tag",
+      "admin": "Adminisztrátor"
     },
     "time": {
       "today": "ma",
@@ -2602,7 +2652,126 @@
       "weeks": "{{count}} hét",
       "months": "{{count}} hó",
       "years": "{{count}} év"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "szerkesztve",
+      "deleteTitle": "Üzenet törlése",
+      "deleteConfirm": "Biztosan törölni szeretné ezt az üzenetet? Ez nem vonható vissza.",
+      "muted": "Némítva vagy",
+      "postingDisabled": "A tagok itt nem posztolhatnak",
+      "mediaMessage": "Média",
+      "pinnedMessage": "Rögzített üzenet",
+      "showEarlier": "Korábbi üzenetek megjelenítése",
+      "editingMessage": "Üzenet szerkesztése",
+      "copied": "Üzenet másolva",
+      "copyText": "Szöveg másolása",
+      "mutedUntil": "Elnémítva eddig: {{date}}",
+      "slowMode": "Lassú üzemmód: minden {{interval}} után egy üzenet"
+    },
+    "manage": {
+      "dismissAdminTitle": "Adminisztrátor bezárása",
+      "cancel": "Mégse",
+      "dismissAdmin": "Adminisztrátor bezárása",
+      "roleAdmin": "Adminisztrátor",
+      "roleMember": "Tag",
+      "whatCanTheyDo": "Mit tehet ez az adminisztrátor?",
+      "rightNotHeld": "Te magad nem rendelkezel ezzel a joggal",
+      "customTitle": "Egyedi cím",
+      "customTitlePlaceholder": "Rendszergazda",
+      "customTitleHint": "Az alapértelmezett rendszergazdai jelvény helyett jelenik meg.",
+      "saveChanges": "Módosítások mentése",
+      "promote": "Előléptetés",
+      "tabs": {
+        "members": "Tagok",
+        "admins": "Rendszergazdák",
+        "permissions": "Jogosultságok",
+        "invites": "Meghívók",
+        "rules": "Szabályok",
+        "recentActions": "Legutóbbi műveletek",
+        "danger": "Veszélyzóna"
+      },
+      "title": "Kezelés",
+      "purgeTitle": "Törli az összes üzenetet?",
+      "purgeConfirm": "Törlés",
+      "kickTitle": "Eltávolítod a tagot",
+      "kickConfirm": "Eltávolítás",
+      "bannedPermanent": "Tiltott — végleges",
+      "mutedPermanent": "Némítva — állandó",
+      "editAdminRights": "Admin jogok szerkesztése",
+      "promoteToAdmin": "Promóció adminisztrátorként",
+      "unmute": "Némítás feloldása",
+      "mute": "Némítás",
+      "unban": "Kitiltás feloldása",
+      "ban": "Kitiltás",
+      "deleteAllMessages": "Összes üzenet törlése",
+      "removeFromCommunity": "Eltávolítás a közösségből",
+      "noActionsAvailable": "Nem moderálhatod ezt a tagot.",
+      "showMore": "Továbbiak mutatása",
+      "joinRequests": "Csatlakozási kérelmek",
+      "approve": "Jóváhagyás",
+      "reject": "Elutasítás",
+      "members": "Tagok",
+      "searchMembers": "Keresés pénztárca cím alapján",
+      "noMembersMatch": "Nincs találat.",
+      "noMembers": "Még nincsenek tagok.",
+      "muted": "Némítva",
+      "banned": "Kitiltva",
+      "muteEffect": "A közösségben maradnak, de nem posztolhatnak, amíg a némítás le nem jár.",
+      "banEffect": "Eltávolítják őket a csevegésből, és nem csatlakozhatnak újra, amíg a kitiltás fel nem oldják.",
+      "durationLabel": "Időtartam",
+      "reasonLabel": "Indok (opcionális)",
+      "reasonPlaceholder": "Miért tiltják ki őket?",
+      "alsoDeleteMessages": "Törölje az összes üzenetüket is",
+      "confirmMute": "Tag némítása",
+      "confirmBan": "Tag kitiltása",
+      "rulesUpdated": "Szabályok frissítve",
+      "rulesTitle": "Közösségi szabályok",
+      "rulesEmpty": "Még nincsenek szabályok – add hozzá az elsőt lent.",
+      "rulePlaceholder": "Szabály leírása",
+      "addRule": "Szabály hozzáadása",
+      "saveRules": "Szabályok mentése",
+      "dismissAdminBody": "{{wallet}} ismét egy átlagos tag lesz.",
+      "purgeBody": "{{name}} minden üzenete törlésre kerül ebből a közösségből.",
+      "kickBody": "{{name}} eltávolításra kerül a közösségből. Később újra csatlakozhat.",
+      "bannedUntil": "Kitiltva ekkor: {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Némítva ekkor: {{date}}",
+      "bannedUntilShort": "Ekkor: {{date}}",
+      "muteTitle": "{{name}} némítása",
+      "banTitle": "{{name}} kitiltása",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} / {{max}}",
+      "moveRuleUp": "Szabály feljebb mozgatása",
+      "moveRuleDown": "Szabály lejjebb mozgatása",
+      "deleteRule": "Szabály törlése",
+      "rights": {
+        "changeInfo": "Közösségi információk módosítása",
+        "changeInfoHint": "Név, leírás, avatar és banner szerkesztése",
+        "deleteMessages": "Üzenetek törlése",
+        "deleteMessagesHint": "Bármely üzenet eltávolítása a közösségi csevegésből",
+        "restrictMembers": "Felhasználók kitiltása",
+        "restrictMembersHint": "Tagok némítása, eltávolítása és kitiltása",
+        "inviteUsers": "Felhasználók meghívása linkkel",
+        "inviteUsersHint": "Meghívó linkek létrehozása és visszavonása",
+        "pinMessages": "Üzenetek rögzítése",
+        "pinMessagesHint": "Egy üzenet rögzítése a csevegés tetejére",
+        "manageEvents": "Események kezelése",
+        "manageEventsHint": "Közösségi események létrehozása és szerkesztése",
+        "addAdmins": "Új adminok hozzáadása",
+        "addAdminsHint": "Promóció tagoknak és a hozzáadott adminok jogainak szerkesztése",
+        "remainAnonymous": "Névtelen maradás",
+        "remainAnonymousHint": "Ezt az elemet elrejtheti innen:"
+      },
+      "durations": {
+        "oneHour": "1 óra",
+        "eightHours": "8 óra",
+        "oneDay": "1 nap",
+        "oneWeek": "1 hét",
+        "forever": "Örökké"
+      }
+    },
+    "chooseAvatar": "Válassz avatart"
   },
   "work": {
     "title": "Jutalmak",
@@ -2954,7 +3123,9 @@
       "shipped": "Kiszállítva",
       "completed": "Befejezett",
       "cancelled": "Törölve"
-    }
+    },
+    "removePhoto": "Távolítsd el a fotót",
+    "listingOptions": "Listázási lehetőségek"
   },
   "accounts": {
     "subtitle": "Teljes fiókok eladók, DHB-ben árazva",
@@ -3322,7 +3493,14 @@
     "removeFollowerHint": "Nyomd le és tartsd lenyomva egy követőt az eltávolításához.",
     "cancel": "Mégse",
     "remove": "Eltávolítás",
-    "thisUser": "Ez a felhasználó"
+    "thisUser": "Ez a felhasználó",
+    "cancelRequestTo": "Mégse követési kérelem @{{username}}-nak/-nek?",
+    "followingUser": "{{username}} követése",
+    "contentUnavailable": "Tartalom nem elérhető",
+    "youBlockedBody": "Nem fogod látni a bejegyzéseit, és nem tudsz velük interakcióba lépni. Feloldás a hozzáférés visszaállításához.",
+    "restrictedBody": "Ez a felhasználó korlátozta az interakciókat a fiókoddal.",
+    "requestPendingBody": "A követési kérelem el lett küldve. Akkor láthatod a bejegyzéseit, ha jóváhagyja a kérésedet.",
+    "followToSeePosts": "Kövesd ezt a fiókot, hogy lásd a bejegyzéseit."
   },
   "reactionInfo": {
     "title": "Reakciók",
@@ -3637,7 +3815,8 @@
     "needGas": "Natív {{token}} szükséges a gázdíjhoz a(z) {{chain}} láncon.",
     "bridging": "Áthidalás folyamatban…",
     "bridgeAction": "Áthidalás: {{from}} → {{to}}",
-    "failed": "Az áthidalás sikertelen"
+    "failed": "Az áthidalás sikertelen",
+    "sentArriveShortly": "{{amount}} DHB küldte innen: {{from}} → {{to}}. Tokenek hamarosan megérkeznek."
   },
   "banned": {
     "title": "A fiókodat letiltottuk",
@@ -3815,7 +3994,16 @@
     "legacyRecovered": "Ellenőriztük a régi fiókodat{{suffix}}, és visszaállítottuk a tárcáját. Adj meg egy jelszót, amely mostantól ezen az eszközön — ezen a telefonon és mindenhol máshol — védi.",
     "passwordMin": "Jelszó (min. {{min}} karakter)",
     "newPasswordMin": "Új jelszó (min. {{min}} karakter)",
-    "newWalletPasswordMin": "Az új tárca jelszava (min. {{min}} karakter)"
+    "newWalletPasswordMin": "Az új tárca jelszava (min. {{min}} karakter)",
+    "deviceCheckCancelled": "Eszközellenőrzés törölve – nem történt változás.",
+    "savePhraseTitle": "Mentsd el a helyreállítási kulcsodat",
+    "startOverTitle": "Kezdd elölről egy új tárcával",
+    "secureNewWalletTitle": "Biztosítsd az új tárcádat",
+    "secureWalletTitle": "Biztosítsd a tárcádat",
+    "unlockOnMobileTitle": "Feloldás mobilon",
+    "oldAccountFoundTitle": "Régi fiók található",
+    "unlockWalletTitle": "Nyisd fel a tárcádat",
+    "phraseExplainer": "A tárcádat ez a telefon biometrikus adatai fogják védeni. Ez a feloldás <em>csak ezen a telefonon működik</em> – ez a 12 szó az egyetlen út vissza, ha újratelepíted a DeHub-ot, telefont cserélsz, vagy elveszíted."
   },
   "transcript": {
     "title": "Átirat",
@@ -4002,7 +4190,38 @@
     "subscribe": "Előfizetés",
     "subscriberCount_one": "{{count}} előfizető",
     "subscriberCount_other": "{{count}} előfizető",
-    "subscribeToForRich": "Fizess elő a(z) <name>{{name}}</name> csomagra <price>{{price}}</price> áron"
+    "subscribeToForRich": "Fizess elő a(z) <name>{{name}}</name> csomagra <price>{{price}}</price> áron",
+    "loadPlansFailed": "Nem sikerült betölteni a terveket",
+    "subscriberContent": "Előfizetői tartalom",
+    "subscriberContentSub": "Készíts terveket exkluzív tartalom felajánlására előfizetőknek",
+    "createFirstPlan": "Készítsd el az első tervedet",
+    "addNewPlan": "Új terv hozzáadása",
+    "durations": {
+      "oneMonth": "1 Hónap",
+      "threeMonths": "3 Hónap",
+      "sixMonths": "6 Hónap",
+      "oneYear": "1 Év",
+      "lifetime": "Életre szóló"
+    },
+    "planNameRequired": "Terv neve kötelező",
+    "enterValidPrice": "Adjon meg érvényes árat",
+    "availableChains": "Az előfizetések jelenleg a Base és a BNB hálózaton érhetők el",
+    "waitForSwitch": "Várja meg, amíg az előfizetési hálózat befejezi a váltást",
+    "connectAndWait": "Csatlakoztassa a pénztárcáját, és várja meg az előfizetési hálózatot",
+    "planUpdated": "Terv frissítve",
+    "creating": "Létrejön…",
+    "planPublished": "Terv létrehozva és közzétéve",
+    "createPlanTitle": "Előfizetési terv létrehozása",
+    "network": "Előfizetési hálózat",
+    "planNameLabel": "Terv neve *",
+    "planNamePlaceholder": "pl. Prémium, Arany, VIP…",
+    "descriptionPlaceholder": "Mit kapnak az előfizetők…",
+    "priceLabel": "Ár (USD) *",
+    "legacyMigrationNote": "A megtakarítás ezt a régi DHB tervet dollár alapú árazásra migrálja a listázás előtti árfolyamon.",
+    "benefits": "Előnyök",
+    "benefitPlaceholder": "Előny hozzáadása…",
+    "createAndPublish": "Létrehozás és közzététel",
+    "publishingOnChain": "A közzététel egy blokklánc tranzakció"
   },
   "live": {
     "notSet": "Nincs beállítva",
@@ -4120,7 +4339,22 @@
     "acceptTerms": "Elfogadom a <terms>Szolgáltatási feltételek</terms>",
     "sentTo": "{{amount}}{{symbol}} elküldve {{address}} részére",
     "tokensSentTo": "A tokeneket elküldtük {{address}}részére",
-    "goToProfile": "Ugrás a profilhoz"
+    "goToProfile": "Ugrás a profilhoz",
+    "aboutTitle": "A DeHub & fizetésekről",
+    "aboutSubtitle": "Az Ön átjárója a zökkenőmentes token fizetésekhez",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "A tokenokat alkotók előfizetésére, streamek borravalózására vagy tartalmak feloldására használják. Minél többet birtokolsz, annál alacsonyabbak a díjaid, és annál több szupererőt oldasz fel, mint például az idővonal trend növelése és az ellenőrző jelvények.",
+    "aboutInstantTitle": "Azonnali fizetés",
+    "aboutInstantBody": "A Stripe használatával azonnal és zökkenőmentesen vásárolhatsz tokeneket bármelyik fiókba, amelybe bejelentkeztél. A DeHub egyszerűvé és mindenki számára elérhetővé teszi a tokeneket. Ha további támogatásra van szükséged, csak csatlakozz a 24/7 élő közösségi csevegésünkhöz, és kérj adminisztrátori segítséget.",
+    "aboutSecureTitle": "Biztonságos átjáró",
+    "aboutSecureBody": "Minden fizetési adat titkosítva van, és biztonságosan feldolgozza a Stripe. Nem férünk hozzá vagy tároljuk érzékeny adataidat vagy kártyaadataidat, így teljes nyugalmat biztosítunk.",
+    "transfersSummary": "Tranzakciók összefoglalása",
+    "availableToBuy": "Most vásárolható",
+    "noSupplyShort": "Nincs kínálat",
+    "topUpSubtitle": "Vásárolj $DHB-t kártyával, és kapj ingyenes gázt az azonnali használathoz",
+    "noTxHash": "Nem található tranzakciós hash",
+    "latestTransactions": "Legutóbbi tranzakciók",
+    "showAll": "Összes mutatása"
   },
   "musicSheet": {
     "title": "Dal készítése",
@@ -4249,7 +4483,13 @@
     "followUpNote": "Lehet, hogy megkeresünk további kérdésekkel a visszajelzésedről",
     "submitFeedback": "Visszajelzés küldése",
     "provideFeedback": "Kérjük, írd le a visszajelzésedet",
-    "thankYou": "Köszönjük a visszajelzésed!"
+    "thankYou": "Köszönjük a visszajelzésed!",
+    "submitFailed": "Nem sikerült visszajelzést küldeni. Kérjük, próbálja újra.",
+    "maybeLater": "Később",
+    "helpUsImprove": "Segíts nekünk fejlődni",
+    "rateExperience": "Hogyan értékelnéd az élményedet?",
+    "telegramOptional": "Telegram (opcionális)",
+    "discordOptional": "Discord (opcionális)"
   },
   "migrate": {
     "clearAll": "Töröl mindent",
@@ -4366,7 +4606,14 @@
       "blueWhale": "A legnagyobb dolog, ami valaha is élt. Ez vagy te.",
       "megalodon": "Íme a koronád — mostantól alkalmazásjogosult vagy"
     },
-    "continue": "Vissza a DeHubra"
+    "continue": "Vissza a DeHubra",
+    "none": "Egyik sem",
+    "noBadgeYet": "Még nincs jelvény",
+    "next": "Következő",
+    "topTier": "Legfelső szint",
+    "toNextTier": "{{amount}} DHB {{tier}}-nak",
+    "everyTierUnlocked": "Minden szint feloldva",
+    "holdNote": "Miután egy jelvényt feloldottál, az mindaddig a tiéd marad, amíg birtokolod a DHB-det. Az új jelvény feloldásához szükséges tokenek száma a token árfolyamával változhat."
   },
   "passwordStrength": {
     "veryWeak": "Nagyon gyenge",
@@ -4448,7 +4695,11 @@
     },
     "ttsLabel": "Mondj valamit hangosan",
     "ttsPlaceholder": "Olvass fel a patakba...",
-    "ttsHint": "Olvasd fel hangosan, hogy mindenki láthassa, amikor az ajándékod megérkezik."
+    "ttsHint": "Olvasd fel hangosan, hogy mindenki láthassa, amikor az ajándékod megérkezik.",
+    "sendAGift": "Ajándék küldése",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "A minimális ajándék {{amount}}",
+    "sendGift": "Ajándék küldése"
   },
   "goLive": {
     "streamKey": "Stream kulcs",
@@ -4831,7 +5082,8 @@
         "title": "Nézd meg, hogyan működik a pénzkeresés",
         "body": "Tudd meg, hogy a borravalók, a jelvények és a szuperképességek hogyan alakítják a munkádat olyanná, amiből pénzt kereshetsz."
       }
-    }
+    },
+    "swipeToStart": "Húzd el az indításhoz"
   },
   "conversation": {
     "commonGround": {
@@ -5313,5 +5565,18 @@
     "toastPaidSettled": "Kifizetve — az ügylet lezárult",
     "walletNotReady": "A tárcád még nem áll készen — próbáld újra egy pillanat múlva.",
     "wrongChain": "Ez az ügylet a(z) {{chain}} hálózaton záródik. Válts a(z) {{chain}} hálózatra a Beállításokban, majd próbáld újra."
+  },
+  "moderation": {
+    "appealDuplicate": "Már fellebbeztél ez ellen",
+    "appealSent": "Fellebbezés elküldve",
+    "appealFailed": "Nem sikerült benyújtani a fellebbezést",
+    "appealTitle": "Fellebbezés a döntés ellen",
+    "appealSubtitle": "Egy személy elolvassa ezt, és újra megvizsgálja a döntést.",
+    "appealPlaceholder": "Ön szerint mi hiányzott? A tartalommal kapcsolatos kontextus minden másnál többet segít.",
+    "appealSend": "Fellebbezés küldése",
+    "appealFootnote": "Kapsz egy hivatkozási számot, és a válasz visszajön ide. Határozatonként egy fellebbezés.",
+    "appealRef": "Referencia {{ref}}",
+    "appealSubtitleSubject": "Ezt valaki elolvassa, és újra megnézi a {{subject}}címen.",
+    "appealMore": "Még szükséges karakterek: {{count}}"
   }
 }

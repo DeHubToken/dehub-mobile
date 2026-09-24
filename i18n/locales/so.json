@@ -682,7 +682,11 @@
       "hintAllow": "Nidaamyada AI iyo crawlers ixtiraamaya calaamaddan ayaa laga yaabaa inay ku tababaraan maqalkaaga, farshaxankaaga iyo qoraaga.",
       "hintDeny": "Nidaamyada AI iyo crawlers ixtiraamaya calaamadan waxaa laga codsanayaa inaysan ku tababarin maqalkaaga, farshaxankaaga iyo qoraaga. Crawlers oo iska indho tiraya calaamadda looma xannibo.",
       "saved": "Doorbididda tababarka AI ee la badbaadiyay"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "Waan fahamay",
+    "exportPkCopy": "Furaha gaarka ah nuqul ka samee",
+    "e2eAutomatic": "Si toos ah"
   },
   "common": {
     "mute": "Aamusi",
@@ -722,7 +726,17 @@
     "optionalSuffix": "(ikhtiyaari)",
     "yesterday": "Shalay",
     "ok": "Waa hagaag",
-    "continue": "Sii wad"
+    "continue": "Sii wad",
+    "goesToHomeFeed": "Waxay aadaa quudinta guriga",
+    "openMenu": "Fur menu-ga",
+    "scrollsFeedToTop": "Waxay u gudubtaa dusha sare ee quudinta waxayna cusbooneysiisaa",
+    "notificationsUnread": "Ogeysiisyada, {{unread}} oo aan la akhriyin",
+    "errorDetails": "Faahfaahinta khaladaadka:",
+    "failedToLoad": "Load-ka waa ku guuldareystay",
+    "noInternetTitle": "Ma jirto xiriir internet ah",
+    "noInternetBody": "Fadlan hubi xiriirkaaga internetka oo mar kale isku day. Waxaad u baahan tahay inaad ku xirnaato internetka si aad u isticmaasho DeHub.",
+    "noInternetStatus": "Offline - Ma jirto xiriir shabakad",
+    "noInternetHint": "Hubi in Wi-Fi ama xogta mobaylka ay shidan tahay, ka dibna taabo \"{{action}}\""
   },
   "tip": {
     "title": "Dir Bakhshiish",
@@ -1612,7 +1626,12 @@
     "chooseUsernameBody": "Dooro magac isticmaale iyo magac muuqda si aad u sii wadato. Markii dambe waad bedeli kartaa.",
     "checkingAvailability": "Waxaa la hubinayaa helitaanka…",
     "usernameTakenHint": "Magacan waa la qaatay — isku day inaad ku darto tirooyin ama xariiq hoose",
-    "displayNameLength": "Magaca muuqdaa waa inuu ka koobnaadaa 2-50 xaraf."
+    "displayNameLength": "Magaca muuqdaa waa inuu ka koobnaadaa 2-50 xaraf.",
+    "loginFailedRetry": "Galitaanka waa ku guuldareystay. Fadlan mar kale isku day.",
+    "sendCodeFailedRetry": "Koodh lama soo diri karo. Fadlan mar kale isku day.",
+    "invalidCodeRetry": "Koodh aan sax ahayn. Fadlan mar kale isku day.",
+    "invalidEmailOrPassword": "Email ama lambarka sirta ah oo aan sax ahayn.",
+    "welcomeToDehub": "Ku soo dhawow DeHub"
   },
   "messages": {
     "smartRepliesOff": "Jawaabaha la soo jeediyay waa la damiyay",
@@ -1690,7 +1709,32 @@
     "offerWorthNow": "Qiyaastii {{amount}} DHB qiimaha hadda",
     "offerNotePlaceholder": "Ku dar qoraal (ikhtiyaari)",
     "offerCommitsNothing": "Dalab samayntu waxba kaama qaadanayso mana xidhayso DHB. Waxaad bixinaysaa haddii uu milkiiluhu aqbalo oo kaliya.",
-    "offerNeedsHandle": "Akoonkan ma laha magac isticmaale oo dalab loo sameeyo."
+    "offerNeedsHandle": "Akoonkan ma laha magac isticmaale oo dalab loo sameeyo.",
+    "noPostsYet": "Ma jiraan wax qoraal ah oo weli la soo dhigay",
+    "noPostsYetSub": "Qoraalladu halkan ayay ka soo muuqan doonaan marka la soo dhigo",
+    "noPinnedPosts": "Ma jiraan wax qoraal ah oo weli la xiray",
+    "noPinnedPostsSub": "Qoraallada la xiray halkan ayay ka soo muuqan doonaan",
+    "emptyLiked": "Ma jiraan wax qoraal ah oo weli la jecel yahay.",
+    "emptySaved": "Ma jiraan wax qoraal ah oo weli la keydiyay.",
+    "emptyUnlocked": "Ma jiraan wax qoraal ah oo weli la furay.",
+    "emptyWatched": "Ma jiraan wax taariikh ah oo la daawaday oo weli la hayo.",
+    "emptyFolder": "Ma jiraan wax qoraal ah oo ku jira faylkan oo weli la hayo.",
+    "emptyPosts": "Ma jiraan wax qoraal ah oo weli la soo dhigay.",
+    "couldNotLoadPosts": "Qoraallada ma soo bixi karaan.",
+    "noPostsOrReplies": "Ma jiraan wax qoraal ah, faallo ama jawaab ah oo weli la soo dhigay",
+    "noPostsOrRepliesSub": "Halkan ayay ka soo muuqan doonaan",
+    "avatarUpdated": "Avatar-ka waa la cusboonaysiiyay",
+    "coverUpdated": "Cover-ka waa la cusboonaysiiyay",
+    "couldNotPickImage": "Sawir lama dooran karo",
+    "changeCoverImage": "Beddel sawirka cover-ka",
+    "changeAvatar": "Beddel avatar-ka",
+    "verifiedEnsName": "Magaca ENS-ka ee la xaqiijiyay {{name}}",
+    "notFullyJoined": "Isticmaalahani weli si buuxda uguma biirin. Ma aysan dalban magac isticmaale ama dhammaystirin habaynta profile-ka. Weli waad arki kartaa hawlaha dadweynaha oo waad soo diri kartaa talooyin haddii la heli karo.",
+    "loadRepliesFailed": "Jawaabaha lama soo dejin karo",
+    "refreshFailed": "Dib u cusboonaysiinta waa ku fashilantay",
+    "noRepliesYet": "Jawaab Ma Jirto Weligeed",
+    "noRepliesYetSub": "Marka isticmaalahani ka jawaabo qoraallada, halkan ayay ka soo muuqan doonaan.",
+    "noMoreReplies": "Jawaab Dambe Ma Jirto"
   },
   "tv": {
     "title": "TV",
@@ -1773,7 +1817,11 @@
     "loadingPrice": "Qiimaha waa la soo raraya…",
     "topUpExplanation": "DHB waxaa lagu wareejiyaa silsiladda khasnadda xayeysiinta DeHub, kadibna hadhaagaaga ayaa lagu daraa xaqiijin madax-bannaan oo silsiladeed ka dib.",
     "paymentHistory": "Taariikhda lacag bixinta",
-    "noPayments": "Weli lacag bixin ma jirto"
+    "noPayments": "Weli lacag bixin ma jirto",
+    "sponsored": "La soo kireeyay",
+    "morePosts": "Qoraallo badan",
+    "loadMorePosts": "Soo dejiso qoraallo badan",
+    "playAdVideo": "Ciyaar fiidiyowga xayeysiiska"
   },
   "buyCoins": {
     "title": "Iibso Lacag",
@@ -2208,7 +2256,8 @@
     "privateBalanceMode": "Habka hadhaaga gaarka ah waa la shidey",
     "addressHidden": "Cinwaanka waa la qariyay",
     "allowInFeeds": "U ogolow isticmaalahan inuu ka soo muuqdo wararkaaga",
-    "hideContent": "Qari waxyaabahooda oo xaddid falgalka"
+    "hideContent": "Qari waxyaabahooda oo xaddid falgalka",
+    "a11yLabel": "Doorashooyinka Profile-ka"
   },
   "toasts": {
     "saved_to_bookmarks": "Ku keydiyay calaamadaha",
@@ -2580,7 +2629,8 @@
     "roles": {
       "owner": "Milkiile",
       "moderator": "Maamule",
-      "member": "Xubin"
+      "member": "Xubin",
+      "admin": "Maamul"
     },
     "time": {
       "today": "maanta",
@@ -2589,7 +2639,126 @@
       "weeks": "{{count}} toddobaad",
       "months": "{{count}} bilood",
       "years": "{{count}} sano"
-    }
+    },
+    "chatPanel": {
+      "anon": "Qof aan la garanayn",
+      "edited": "la bedelay",
+      "deleteTitle": "Tirtir fariinta",
+      "deleteConfirm": "Ma fariintan la tirtiraa? Tan lama burin karo.",
+      "muted": "Waa la aamusiyay",
+      "postingDisabled": "Qoraal-qorista waa la joojiyay xubnaha halkan",
+      "mediaMessage": "Warbaahinta",
+      "pinnedMessage": "Fariinta la xidhay",
+      "showEarlier": "Muuji fariimaha hore",
+      "editingMessage": "Beddelka fariinta",
+      "copied": "Fariin la nuqulay",
+      "copyText": "Qoraalka nuqul",
+      "mutedUntil": "Waxaad tahay muted ilaa {{date}}",
+      "slowMode": "Qaabka gaabiska ah: hal fariin kasta {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Joojinta admin",
+      "cancel": "Jooji",
+      "dismissAdmin": "Joojinta admin",
+      "roleAdmin": "Maamulaha",
+      "roleMember": "Xubin",
+      "whatCanTheyDo": "Muxuu maamulkani sameyn karaa?",
+      "rightNotHeld": "Adiga qudhaadu xaq uma lihid.",
+      "customTitle": "Cinwaanka Gaarka ah",
+      "customTitlePlaceholder": "Maareeyaha",
+      "customTitleHint": "Shown halkii default Admin badge.",
+      "saveChanges": "Keydso isbeddellada",
+      "promote": "Dhiirrigelinta",
+      "tabs": {
+        "members": "Xubnaha",
+        "admins": "Admins",
+        "permissions": "Oggolaanshaha",
+        "invites": "Martiqaadyo",
+        "rules": "Xeerarka",
+        "recentActions": "Tallaabooyinkii ugu dambeeyay",
+        "danger": "Aagga Khatarta"
+      },
+      "title": "Maamul",
+      "purgeTitle": "Tirtir dhammaan fariimaha?",
+      "purgeConfirm": "Tirtir",
+      "kickTitle": "Ka saar xubin?",
+      "kickConfirm": "Ka saar",
+      "bannedPermanent": "Xayiraad - waara",
+      "mutedPermanent": "Muted — waara",
+      "editAdminRights": "Edit xuquuqda maamulaha",
+      "promoteToAdmin": "U dallacsiinta maamulaha",
+      "unmute": "Ka saar codka",
+      "mute": "Amuus",
+      "unban": "Ka saar xayiraada",
+      "ban": "Xayir",
+      "deleteAllMessages": "Tirtir dhammaan farriimaha",
+      "removeFromCommunity": "Ka saar bulshada",
+      "noActionsAvailable": "Ma maamuli kartid xubintan.",
+      "showMore": "Muuji wax dheeraad ah",
+      "joinRequests": "Codsi ku biirid",
+      "approve": "Oggolow",
+      "reject": "Diido",
+      "members": "Xubnaha",
+      "searchMembers": "Ku raadi cinwaanka jeebka",
+      "noMembersMatch": "Ma jirto xubin u dhiganta taas.",
+      "noMembers": "Ma jiraan xubno weli.",
+      "muted": "Amuus",
+      "banned": "Xayiray",
+      "muteEffect": "Waxay ku sii joogaan bulshada laakiin ma dhajin karaan ilaa uu dhaco codka.",
+      "banEffect": "Waxaa laga saaray sheekada mana soo laaban karaan ilaa la qaado xayiraada.",
+      "durationLabel": "Muddada",
+      "reasonLabel": "Sababta (ikhtiyaari)",
+      "reasonPlaceholder": "Maxay loo xayiray?",
+      "alsoDeleteMessages": "Sidoo kale tirtir farriimahaaga oo dhan",
+      "confirmMute": "Amuus xubinta",
+      "confirmBan": "Xayir xubinta",
+      "rulesUpdated": "Sharciyada waa la cusbooneysiiyay",
+      "rulesTitle": "Sharciyada bulshada",
+      "rulesEmpty": "Ma jiraan sharciyo weli — ku dar kii ugu horreeyay hoos.",
+      "rulePlaceholder": "Qalluumaad",
+      "addRule": "Ku dar qalluumaad",
+      "saveRules": "Kaydi qalluumaadka",
+      "dismissAdminBody": "{{wallet}} wuxuu ku noqon doonaa xubin caadi ah.",
+      "purgeBody": "Fariin kasta oo {{name}} u soo diray bulshadan waa la tirtiri doonaa.",
+      "kickBody": "{{name}} waa laga saari doonaa bulshada. Waxay mar kale ku biiri karaan hadhow.",
+      "bannedUntil": "Xannibay ilaa {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Aamus ilaa {{date}}",
+      "bannedUntilShort": "Ilaa {{date}}",
+      "muteTitle": "Aamus {{name}}",
+      "banTitle": "Xannib {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} oo ah {{max}}",
+      "moveRuleUp": "U guur qalluumaadka kor",
+      "moveRuleDown": "U guur qalluumaadka hoos",
+      "deleteRule": "Tirtir qalluumaadka",
+      "rights": {
+        "changeInfo": "Beddel macluumaadka bulshada",
+        "changeInfoHint": "Tifatir magaca, sharaxaada, avatar-ka iyo banner-ka",
+        "deleteMessages": "Tirtir fariimaha",
+        "deleteMessagesHint": "Ka saar fariin kasta oo ka timid wada-hadalka bulshada",
+        "restrictMembers": "Xannib isticmaalayaasha",
+        "restrictMembersHint": "Aamus, ka saar oo xannib xubnaha",
+        "inviteUsers": "Ku martiqaad isticmaalayaasha xiriirka",
+        "inviteUsersHint": "Samee oo buri xiriirrada martiqaadka",
+        "pinMessages": "Ku dheji fariimaha",
+        "pinMessagesHint": "Ku dheji fariin meel sare oo ka mid ah wada-hadalka",
+        "manageEvents": "Maamul dhacdooyinka",
+        "manageEventsHint": "Samee oo tifatir dhacdooyinka bulshada",
+        "addAdmins": "Ku dar maamulayaal cusub",
+        "addAdminsHint": "Xubnaha u dallacsiiso oo wax ka beddel xuquuqda maamulayaasha ay ku dareen",
+        "remainAnonymous": "Ku sii ahaaw magac la'aan",
+        "remainAnonymousHint": "Qari maamulahan liiska xubnaha"
+      },
+      "durations": {
+        "oneHour": "1 saac",
+        "eightHours": "8 saacadood",
+        "oneDay": "1 maalin",
+        "oneWeek": "1 toddobaad",
+        "forever": "Weligeed"
+      }
+    },
+    "chooseAvatar": "Dooro avatar"
   },
   "work": {
     "title": "Abaalmarino",
@@ -2941,7 +3110,9 @@
       "shipped": "La diray",
       "completed": "La dhammeeyay",
       "cancelled": "La joojiyay"
-    }
+    },
+    "removePhoto": "Ka saar sawirka",
+    "listingOptions": "Doorashooyinka liiska"
   },
   "accounts": {
     "subtitle": "Akoonno dhammaystiran oo iib ah, qiimahoodu waa DHB",
@@ -3309,7 +3480,14 @@
     "removeFollowerHint": "Riix oo hayso taageeraha si aad uga saarto.",
     "cancel": "Cancel",
     "remove": "Ka saar",
-    "thisUser": "Isticmaalahan"
+    "thisUser": "Isticmaalahan",
+    "cancelRequestTo": "Jooji codsiga raacida @{{username}}?",
+    "followingUser": "Raacaya @{{username}}",
+    "contentUnavailable": "Nuxurka lama heli karo",
+    "youBlockedBody": "Ma arki doontid qoraaladooda ama ma awoodi doontid inaad la falgasho. Furitaanka si aad u soo celiso marin.",
+    "restrictedBody": "Isticmaalahani waxa uu xaddiday isdhexgalka koontadaada.",
+    "requestPendingBody": "Codsigaaga raacida waa la soo diray. Waxaad awoodi doontaa inaad aragto qoraaladooda marka ay ansixiyaan codsigaaga.",
+    "followToSeePosts": "Raac koontadan si aad u aragto qoraaladooda."
   },
   "reactionInfo": {
     "title": "Falcelinta",
@@ -3624,7 +3802,8 @@
     "needGas": "Waxaad u baahan tahay {{token}} asalka ah oo gaas ah {{chain}}.",
     "bridging": "Waa la buundeynayaa…",
     "bridgeAction": "Buundo {{from}} → {{to}}",
-    "failed": "Buundada way fashilantay"
+    "failed": "Buundada way fashilantay",
+    "sentArriveShortly": "{{amount}} DHB waxa laga soo diray {{from}} → {{to}}. Tokens-ka ayaa soo gaari doona dhawaan."
   },
   "banned": {
     "title": "Koontadaada waa la mamnuucay",
@@ -3802,7 +3981,16 @@
     "legacyRecovered": "Waan xaqiijinay xisaabtaadii hore{{suffix}} waana soo celinnay boorsadeeda. Samee erayga sirta ah si loo ilaaliyo qalabkan — taleefankan iyo meel kasta oo kale, hadda ka bilaabmaya.",
     "passwordMin": "Erayga sirta (ugu yaraan {{min}} xaraf)",
     "newPasswordMin": "Eray sir cusub (ugu yaraan {{min}} xaraf)",
-    "newWalletPasswordMin": "Erayga sirta boorsada cusub (ugu yaraan {{min}} xaraf)"
+    "newWalletPasswordMin": "Erayga sirta boorsada cusub (ugu yaraan {{min}} xaraf)",
+    "deviceCheckCancelled": "Hubinta qalabka waa la joojiyay — waxba lama beddelin.",
+    "savePhraseTitle": "Keydi weedhaada soo kabashada",
+    "startOverTitle": "Ku bilow mar kale lacag-la'aan cusub",
+    "secureNewWalletTitle": "Xafid lacag-la'aantaada cusub",
+    "secureWalletTitle": "Xafid lacag-la'aantaada",
+    "unlockOnMobileTitle": "Ku fur mobaylka",
+    "oldAccountFoundTitle": "Koonto hore waa la helay",
+    "unlockWalletTitle": "Fur lacag-la'aantaada",
+    "phraseExplainer": "Lacag-la'aantaada waxa ilaalin doona biometrics-ka taleefankaaga. Furitaankaas <em>waxa kaliya ka shaqeeya taleefankan</em> — 12da kelmadood ee hoos ku qoran waa dariiqa kaliya ee aad ku soo noqon karto haddii aad dib u rakibto DeHub, beddesho gacanta, ama lumiso."
   },
   "transcript": {
     "title": "Qoraal hadal",
@@ -3988,7 +4176,38 @@
     "subscribe": "Rukun",
     "subscriberCount_one": "{{count}} rukume",
     "subscriberCount_other": "{{count}} rukumayaal",
-    "subscribeToForRich": "Ku rukun <name>{{name}}</name> <price>{{price}}</price>"
+    "subscribeToForRich": "Ku rukun <name>{{name}}</name> <price>{{price}}</price>",
+    "loadPlansFailed": "Kala-bixinta qorshayaasha waa ku guuldareysatay",
+    "subscriberContent": "Nuxurka macaamiisha",
+    "subscriberContentSub": "Qorsho u samee si aad u siiso waxyaabo gaar ah macaamiisha",
+    "createFirstPlan": "Samee Qorshahaaga Koowaad",
+    "addNewPlan": "Ku dar Qorshe Cusub",
+    "durations": {
+      "oneMonth": "1 Bilood",
+      "threeMonths": "3 Bilood",
+      "sixMonths": "6 Bilood",
+      "oneYear": "1 Sano",
+      "lifetime": "Nolosha oo dhan"
+    },
+    "planNameRequired": "Magaca qorshaha waa loo baahan yahay",
+    "enterValidPrice": "Geli qiimo sax ah",
+    "availableChains": "Hadda macaamiisha waxaa laga heli karaa Base iyo BNB",
+    "waitForSwitch": "Sug in shabakada macaamiisha ay dhamaystirto bedelka",
+    "connectAndWait": "Ku xir boorsadaada oo sug shabakada macaamiisha",
+    "planUpdated": "Qorshaha waa la cusboonaysiiyay",
+    "creating": "Samaynaya…",
+    "planPublished": "Qorshaha waa la sameeyay oo la daabacay",
+    "createPlanTitle": "Samee Qorshe Macaamiil",
+    "network": "Shabakada Macaamiisha",
+    "planNameLabel": "Magaca Qorshaha *",
+    "planNamePlaceholder": "tusaale. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Maxay helayaan macaamiisha...",
+    "priceLabel": "Qiimaha (USD) *",
+    "legacyMigrationNote": "Kaydinta waxay u beddeshaa qorshahan dhaxalka ah ee DHB qiimaha doolarka iyadoo la isticmaalayo qiimaha ka hor liiska.",
+    "benefits": "Faa'iidooyinka",
+    "benefitPlaceholder": "Ku dar faa'iido...",
+    "createAndPublish": "Samee & Daabac",
+    "publishingOnChain": "Daabacaadu waa hawl-gal silsilad ah"
   },
   "live": {
     "notSet": "Lama dejin",
@@ -4105,7 +4324,22 @@
     "checkoutUnavailable": "Linkiga bixinta lama helin. Isku day mar kale.",
     "acceptTerms": "Waan aqbalayaa <terms>Shuruudaha Adeegga</terms>",
     "tokensSentTo": "Calaamadaha waxaa loo diray {{address}}",
-    "goToProfile": "Tag Profile"
+    "goToProfile": "Tag Profile",
+    "aboutTitle": "Ku saabsan DeHub & lacag-bixinnada",
+    "aboutSubtitle": "Goobtaada lacag-bixinta token-ka ee aan dhib lahayn",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokens waxaa loo isticmaalaa in lagu biiriyo abuurayaasha, lagu siiyo deeq-bixiyeyaal, ama waxyaabo la furo. Inta badan ee aad haysato, ayaa ka hooseeya khidmadahaaga, waxaadna furtaa awoodo dheeraad ah sida kor u qaadista isbeddellada wakhtiga iyo calaamadaha xaqiijinta.",
+    "aboutInstantTitle": "Bixinta Degdegga ah",
+    "aboutInstantBody": "Adigoo isticmaalaya Stripe, waxaad si degdeg ah oo aan dhib lahayn ugu iibsan kartaa tokens-ka koontada kasta oo aad gasho. DeHub wuxuu ka dhigayaa tokens-ka kuwo fudud oo qof walba u heli karo. Haddii aad u baahan tahay taageero dheeraad ah, kaliya soo galidaan wada hadalka bulshada ee tooska ah 24/7 oo weydii taageerada maamulka.",
+    "aboutSecureTitle": "Gateway Amni ah",
+    "aboutSecureBody": "Dhammaan faahfaahinta bixinta waa la siraystay waxaana si ammaan ah u farsameeyay Stripe. Ma heli karno ama ma keydin karno macluumaadkaaga xasaasiga ah ama faahfaahinta kaarkaaga, taasoo ku siinaysa nabadgelyo dhammaystiran.",
+    "transfersSummary": "Soo Koobida Wareejinta",
+    "availableToBuy": "Diyaar u ah in la iibsado hadda",
+    "noSupplyShort": "Ma jirto sahay",
+    "topUpSubtitle": "Iibso $DHB adigoo isticmaalaya kaarka oo hel gaaska bilaashka ah si aad u isticmaasho isla markiiba",
+    "noTxHash": "Ma helin hasha macaamilka",
+    "latestTransactions": "Macamiladii Ugu Dambeysay",
+    "showAll": "Muuji dhammaan"
   },
   "musicSheet": {
     "title": "Samee hees",
@@ -4234,7 +4468,13 @@
     "followUpNote": "Waxaa laga yaabaa inaan kula soo xiriirno su'aalo dheeraad ah oo ku saabsan fikradaada",
     "submitFeedback": "Dir fikradaada",
     "provideFeedback": "Fadlan qor fikradaada",
-    "thankYou": "Waad ku mahadsan tahay fikradaada!"
+    "thankYou": "Waad ku mahadsan tahay fikradaada!",
+    "submitFailed": "Fadlan mar kale isku day, ma awoodin inaan gudbiyo jawaab celinta.",
+    "maybeLater": "Hore u sii",
+    "helpUsImprove": "Naga caawi inaan hagaajino",
+    "rateExperience": "Sidee ku qiimayn lahayd khibradaada?",
+    "telegramOptional": "Telegram (ikhtiyaari)",
+    "discordOptional": "Discord (ikhtiyaari)"
   },
   "migrate": {
     "clearAll": "Nadiifi",
@@ -4351,7 +4591,14 @@
       "blueWhale": "Waxa ugu weyn ee abid noolaa. Taasi waa adiga.",
       "megalodon": "Halkan waa taajkaaga — waxaad tahay app Royalty hadda"
     },
-    "continue": "Ku noqo DeHub"
+    "continue": "Ku noqo DeHub",
+    "none": "Midna",
+    "noBadgeYet": "Ma jirto calaamad weli",
+    "next": "Xiga",
+    "topTier": "Darajada sare",
+    "toNextTier": "{{amount}} DHB ilaa {{tier}}",
+    "everyTierUnlocked": "Darajada kasta oo la furo",
+    "holdNote": "Marka calaamad la furo, waa kuu ahaaneysaa inta aad haysato DHB-gaaga. Tirada tokens-ka loo baahan yahay si loo furo calaamad cusub way isbeddeli kartaa iyadoo ku xiran qiimaha token-ka."
   },
   "passwordStrength": {
     "veryWeak": "Aad u daciif ah",
@@ -4433,7 +4680,11 @@
     },
     "ttsLabel": "Wax qaylo dheer dheh",
     "ttsPlaceholder": "Ka akhri qulqulka...",
-    "ttsHint": "Aqri qof walba oo daawanaya marka hadiyaddaadu soo degto."
+    "ttsHint": "Aqri qof walba oo daawanaya marka hadiyaddaadu soo degto.",
+    "sendAGift": "U dir Hadiyad",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Hadiyadda ugu yar waa {{amount}}",
+    "sendGift": "Dir Hadiyad"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4815,7 +5066,8 @@
         "title": "Fiiri sida ay u shaqeyso kasbashada",
         "body": "Ogow sida talooyinka, calaamadaha iyo SuperPowers u beddelaan waxa aad halkan ku samayso wax aad ka kasbato."
       }
-    }
+    },
+    "swipeToStart": "U soo jiid si aad u bilowdo"
   },
   "conversation": {
     "commonGround": {
@@ -5297,5 +5549,18 @@
     "toastPaidSettled": "Waa la bixiyay — ganacsiga waa la dhammeeyay",
     "walletNotReady": "Boorsadaadu weli diyaar ma aha — isku day mar kale daqiiqad kadib.",
     "wrongChain": "Ganacsigan wuxuu ku dhammaanayaa {{chain}}. U beddel {{chain}} Dejinta, kadibna isku day mar kale."
+  },
+  "moderation": {
+    "appealDuplicate": "Waxaad horey u racfaan qaadatay tan.",
+    "appealSent": "Racfaanka la soo diray",
+    "appealFailed": "Ma xareyn karo racfaankaas",
+    "appealTitle": "Racfaan ka qaad go 'aankan",
+    "appealSubtitle": "Qofku wuxuu akhriyi doonaa tan oo uu mar kale eegi doonaa go 'aanka.",
+    "appealPlaceholder": "Maxaad u malaynaysaa in la waayay? Mawduuca ku saabsan mawduuca wuxuu caawiyaa wax ka badan wax kasta oo kale.",
+    "appealSend": "Soo dir rafcaan",
+    "appealFootnote": "Waxaad heleysaa lambar tixraac ah, jawaabtuna waxay ku soo noqotaa halkan. Hal racfaan go 'aan kasta.",
+    "appealRef": "Tixraaca {{ref}}",
+    "appealSubtitleSubject": "Qof ayaa tan akhrin doona oo mar kale eegi doona {{subject}}.",
+    "appealMore": "Astaamaha weli loo baahan yahay: {{count}}"
   }
 }

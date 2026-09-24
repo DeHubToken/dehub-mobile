@@ -690,7 +690,11 @@
       "hintAllow": "AI sistēmas un rāpuļprogrammas, kas ievēro šo signālu, var apmācīt jūsu audio, mākslas darbus un rakstīšanu.",
       "hintDeny": "AI sistēmas un rāpuļprogrammas, kas respektē šo signālu, tiek lūgtas neapmācīt jūsu audio, mākslas darbus un rakstīšanu. Rāpuļprogrammas, kas ignorē signālu, ar to netiek bloķētas.",
       "saved": "MI apmācības preference ir saglabāta"
-    }
+    },
+    "chainIdLabel": "Ķēdes ID: {{id}}",
+    "exportPkConfirmPhrase": "ES SAPROTU",
+    "exportPkCopy": "Kopēt privāto atslēgu",
+    "e2eAutomatic": "Automātiski"
   },
   "common": {
     "mute": "Izslēgt skaņu",
@@ -730,7 +734,17 @@
     "optionalSuffix": "(neobligāti)",
     "yesterday": "Vakar",
     "ok": "Labi",
-    "continue": "Turpināt"
+    "continue": "Turpināt",
+    "goesToHomeFeed": "Dodas uz sākuma plūsmu",
+    "openMenu": "Atvērt izvēlni",
+    "scrollsFeedToTop": "Ritina uz plūsmas augšu un atjauno to",
+    "notificationsUnread": "Paziņojumi, {{unread}} nelasīti",
+    "errorDetails": "Kļūdas detaļas:",
+    "failedToLoad": "Neizdevās ielādēt",
+    "noInternetTitle": "Nav interneta savienojuma",
+    "noInternetBody": "Lūdzu, pārbaudiet interneta savienojumu un mēģiniet vēlreiz. Lai izmantotu DeHub, jums ir jābūt savienotam ar internetu.",
+    "noInternetStatus": "Bezsaistē - Nav tīkla savienojuma",
+    "noInternetHint": "Pārliecinieties, ka Wi-Fi vai mobilie dati ir ieslēgti, pēc tam nospiediet \"{{action}}\""
   },
   "tip": {
     "title": "Sūtīt dzeramnaudu",
@@ -1620,7 +1634,12 @@
     "chooseUsernameBody": "Izvēlieties lietotājvārdu un attēloto vārdu, lai turpinātu. Tos varēsiet mainīt vēlāk.",
     "checkingAvailability": "Tiek pārbaudīta pieejamība…",
     "usernameTakenHint": "Vārds jau aizņemts — mēģiniet pievienot ciparus vai pasvītrojumu",
-    "displayNameLength": "Attēlotajam vārdam jābūt 2–50 rakstzīmes."
+    "displayNameLength": "Attēlotajam vārdam jābūt 2–50 rakstzīmes.",
+    "loginFailedRetry": "Pieteikšanās neizdevās. Lūdzu, mēģiniet vēlreiz.",
+    "sendCodeFailedRetry": "Nevarēja nosūtīt kodu. Lūdzu, mēģiniet vēlreiz.",
+    "invalidCodeRetry": "Nederīgs kods. Lūdzu, mēģiniet vēlreiz.",
+    "invalidEmailOrPassword": "Nederīgs e-pasts vai parole.",
+    "welcomeToDehub": "Laipni lūdzam DeHub"
   },
   "messages": {
     "smartRepliesOff": "Ieteiktās atbildes izslēgtas",
@@ -1698,7 +1717,32 @@
     "offerWorthNow": "Aptuveni {{amount}} DHB pēc pašreizējā kursa",
     "offerNotePlaceholder": "Pievieno piezīmi (nav obligāti)",
     "offerCommitsNothing": "Piedāvājuma izteikšana neko nemaksā un nerezervē DHB. Maksā tikai tad, ja īpašnieks piekrīt.",
-    "offerNeedsHandle": "Šim kontam nav lietotājvārda, par ko piedāvāt."
+    "offerNeedsHandle": "Šim kontam nav lietotājvārda, par ko piedāvāt.",
+    "noPostsYet": "Vēl nav ziņu",
+    "noPostsYetSub": "Saturs parādīsies šeit, kad tas tiks publicēts",
+    "noPinnedPosts": "Vēl nav piespraustu ziņu",
+    "noPinnedPostsSub": "Piespraustās ziņas parādīsies šeit",
+    "emptyLiked": "Vēl nav iecienītu ziņu.",
+    "emptySaved": "Vēl nav saglabātu ziņu.",
+    "emptyUnlocked": "Vēl nav atbloķētu ziņu.",
+    "emptyWatched": "Vēl nav skatīšanās vēstures.",
+    "emptyFolder": "Šajā mapē vēl nav ziņu.",
+    "emptyPosts": "Vēl nav ziņu.",
+    "couldNotLoadPosts": "Neizdevās ielādēt ziņas.",
+    "noPostsOrReplies": "Vēl nav neviena ieraksta, komentāra vai atbildes",
+    "noPostsOrRepliesSub": "Tie parādīsies šeit",
+    "avatarUpdated": "Avatārs atjaunināts",
+    "coverUpdated": "Vāks atjaunināts",
+    "couldNotPickImage": "Nevarēja izvēlēties attēlu",
+    "changeCoverImage": "Mainīt vāka attēlu",
+    "changeAvatar": "Mainīt avatāru",
+    "verifiedEnsName": "Verificēts ENS vārds {{name}}",
+    "notFullyJoined": "Šis lietotājs vēl nav pilnībā pievienojies. Viņš nav pieprasījis lietotājvārdu vai pabeidzis profila iestatīšanu. Jūs joprojām varat skatīt publisko darbību un nosūtīt dzeramnaudu, ja tā ir pieejama.",
+    "loadRepliesFailed": "Neizdevās ielādēt atbildes",
+    "refreshFailed": "Atsvaidzināšana neizdevās",
+    "noRepliesYet": "Vēl nav atbilžu",
+    "noRepliesYetSub": "Kad šis lietotājs atbildēs uz ierakstiem, tās parādīsies šeit.",
+    "noMoreReplies": "Vairs nav atbilžu"
   },
   "tv": {
     "title": "TV",
@@ -1781,7 +1825,11 @@
     "loadingPrice": "Ielādē cenu…",
     "topUpExplanation": "DHB tiek pārskaitīts ķēdē uz DeHub reklāmas kasi, un pēc neatkarīgas pārbaudes ķēdē tavs atlikums tiek papildināts.",
     "paymentHistory": "Maksājumu vēsture",
-    "noPayments": "Vēl nav maksājumu"
+    "noPayments": "Vēl nav maksājumu",
+    "sponsored": "Sponsorēts",
+    "morePosts": "Vairāk ierakstu",
+    "loadMorePosts": "Ielādēt vairāk ierakstu",
+    "playAdVideo": "Atskaņot reklāmas video"
   },
   "buyCoins": {
     "title": "Pirkt monētas",
@@ -2216,7 +2264,8 @@
     "privateBalanceMode": "Privātā bilances režīms ir ieslēgts",
     "addressHidden": "Adrese paslēpta",
     "allowInFeeds": "Atļaut šim lietotājam parādīties tavās plūsmās",
-    "hideContent": "Paslēpt viņu saturu un ierobežot mijiedarbību"
+    "hideContent": "Paslēpt viņu saturu un ierobežot mijiedarbību",
+    "a11yLabel": "Profīla opcijas"
   },
   "toasts": {
     "saved_to_bookmarks": "Saglabāts grāmatzīmēs",
@@ -2588,7 +2637,8 @@
     "roles": {
       "owner": "Īpašnieks",
       "moderator": "Moderators",
-      "member": "Dalībnieks"
+      "member": "Dalībnieks",
+      "admin": "Administrators"
     },
     "time": {
       "today": "šodien",
@@ -2597,7 +2647,126 @@
       "weeks": "{{count}} ned.",
       "months": "{{count}} mēn.",
       "years": "{{count}} g."
-    }
+    },
+    "chatPanel": {
+      "anon": "Anonīms",
+      "edited": "rediģēts",
+      "deleteTitle": "Dzēst ziņojumu",
+      "deleteConfirm": "Dzēst šo ziņojumu? To nevarēs atsaukt.",
+      "muted": "Jums ir izslēgta skaņa",
+      "postingDisabled": "Dalībniekiem šeit nav atļauts publicēt",
+      "mediaMessage": "Multivide",
+      "pinnedMessage": "Piesprausts ziņojums",
+      "showEarlier": "Rādīt iepriekšējos ziņojumus",
+      "editingMessage": "Rediģēt ziņojumu",
+      "copied": "Ziņojums nokopēts",
+      "copyText": "Kopēt tekstu",
+      "mutedUntil": "Jūs esat izslēgts līdz {{date}}",
+      "slowMode": "Lēnais režīms: viens ziņojums ik pēc {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Noraidīt administratoru",
+      "cancel": "Atcelt",
+      "dismissAdmin": "Noraidīt administratoru",
+      "roleAdmin": "Administrators",
+      "roleMember": "Biedrs",
+      "whatCanTheyDo": "Ko šis administrators var darīt?",
+      "rightNotHeld": "Jums pašam nav šādu tiesību",
+      "customTitle": "Pielāgots nosaukums",
+      "customTitlePlaceholder": "Administrators",
+      "customTitleHint": "Tiek rādīts noklusējuma Administratora nozīmītes vietā.",
+      "saveChanges": "Saglabāt izmaiņas",
+      "promote": "Paaugstināt",
+      "tabs": {
+        "members": "Dalībnieki",
+        "admins": "Administratori",
+        "permissions": "Atļaujas",
+        "invites": "Uzaicinājumi",
+        "rules": "Noteikumi",
+        "recentActions": "Pēdējās darbības",
+        "danger": "Bīstamā zona"
+      },
+      "title": "Pārvaldīt",
+      "purgeTitle": "Vai dzēst visus ziņojumus?",
+      "purgeConfirm": "Dzēst",
+      "kickTitle": "Vai noņemt dalībnieku?",
+      "kickConfirm": "Noņemt",
+      "bannedPermanent": "Aizliegts — pastāvīgs",
+      "mutedPermanent": "Apklusināts — pastāvīgs",
+      "editAdminRights": "Rediģēt administratora tiesības",
+      "promoteToAdmin": "Paaugstināt par administratoru",
+      "unmute": "Atbloķēt skaņu",
+      "mute": "Izslēgt skaņu",
+      "unban": "Atbloķēt",
+      "ban": "Bloķēt",
+      "deleteAllMessages": "Dzēst visas ziņas",
+      "removeFromCommunity": "Noņemt no kopienas",
+      "noActionsAvailable": "Jūs nevarat moderēt šo dalībnieku.",
+      "showMore": "Rādīt vairāk",
+      "joinRequests": "Pieprasījumi pievienoties",
+      "approve": "Apstiprināt",
+      "reject": "Noraidīt",
+      "members": "Dalībnieki",
+      "searchMembers": "Meklēt pēc maka adreses",
+      "noMembersMatch": "Nav dalībnieku, kas atbilstu.",
+      "noMembers": "Vēl nav dalībnieku.",
+      "muted": "Izslēgti",
+      "banned": "Bloķēti",
+      "muteEffect": "Viņi paliek kopienā, bet nevar publicēt ziņas, kamēr izslēgšanas laiks nav beidzies.",
+      "banEffect": "Viņi tiek izņemti no tērzētavas un nevar atgriezties, kamēr bloķēšana nav atcelta.",
+      "durationLabel": "Ilgums",
+      "reasonLabel": "Iemesls (nav obligāti)",
+      "reasonPlaceholder": "Kāpēc viņi tiek bloķēti?",
+      "alsoDeleteMessages": "Dzēst arī visas viņu ziņas",
+      "confirmMute": "Izslēgt dalībnieku",
+      "confirmBan": "Bloķēt dalībnieku",
+      "rulesUpdated": "Atjaunināti noteikumi",
+      "rulesTitle": "Kopienas noteikumi",
+      "rulesEmpty": "Vēl nav noteikumu — pievienojiet pirmo zemāk.",
+      "rulePlaceholder": "Aprakstīt noteikumu",
+      "addRule": "Pievienot noteikumu",
+      "saveRules": "Saglabāt noteikumus",
+      "dismissAdminBody": "{{wallet}} atkal kļūs par parastu dalībnieku.",
+      "purgeBody": "Katra {{name}} nosūtītā ziņa šajā kopienā tiks dzēsta.",
+      "kickBody": "{{name}} tiks izslēgts no kopienas. Viņi var pievienoties vēlāk.",
+      "bannedUntil": "Bloķēts līdz {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Noklusināts līdz {{date}}",
+      "bannedUntilShort": "Līdz {{date}}",
+      "muteTitle": "Noklusināt {{name}}",
+      "banTitle": "Bloķēt {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} no {{max}}",
+      "moveRuleUp": "Pārvietot noteikumu uz augšu",
+      "moveRuleDown": "Pārvietot noteikumu uz leju",
+      "deleteRule": "Dzēst noteikumu",
+      "rights": {
+        "changeInfo": "Mainīt kopienas informāciju",
+        "changeInfoHint": "Rediģēt nosaukumu, aprakstu, iemiesojumu un baneri",
+        "deleteMessages": "Dzēst ziņojumus",
+        "deleteMessagesHint": "Noņemt jebkuru ziņojumu no kopienas tērzēšanas",
+        "restrictMembers": "Bloķēt lietotājus",
+        "restrictMembersHint": "Noklusināt, noņemt un bloķēt dalībniekus",
+        "inviteUsers": "Uzaicināt lietotājus, izmantojot saiti",
+        "inviteUsersHint": "Izveidot un atsaukt uzaicinājuma saites",
+        "pinMessages": "Piespraust ziņojumus",
+        "pinMessagesHint": "Piespraust ziņojumu tērzēšanas augšdaļā",
+        "manageEvents": "Pārvaldīt pasākumus",
+        "manageEventsHint": "Izveidot un rediģēt kopienas pasākumus",
+        "addAdmins": "Pievienot jaunus administratorus",
+        "addAdminsHint": "Paaugstini dalībniekus un rediģē viņu pievienoto administratoru tiesības",
+        "remainAnonymous": "Palikt anonīmam",
+        "remainAnonymousHint": "Slēpt šo administratoru no dalībnieku saraksta"
+      },
+      "durations": {
+        "oneHour": "1 stunda",
+        "eightHours": "8 stundas",
+        "oneDay": "1 diena",
+        "oneWeek": "1 nedēļa",
+        "forever": "Mūžīgi"
+      }
+    },
+    "chooseAvatar": "Izvēlēties iemiesojumu"
   },
   "work": {
     "title": "Atlīdzības",
@@ -2949,7 +3118,9 @@
       "shipped": "Nosūtīts",
       "completed": "Pabeigts",
       "cancelled": "Atcelts"
-    }
+    },
+    "removePhoto": "Noņemt fotoattēlu",
+    "listingOptions": "Saraksta opcijas"
   },
   "accounts": {
     "subtitle": "Pārdodami veseli konti, cena DHB",
@@ -3317,7 +3488,14 @@
     "removeFollowerHint": "Nospied un turiet sekotāju, lai to noņemtu.",
     "cancel": "Atcelt",
     "remove": "Noņemt",
-    "thisUser": "Šis lietotājs"
+    "thisUser": "Šis lietotājs",
+    "cancelRequestTo": "Atcelt sekošanas pieprasījumu @{{username}}?",
+    "followingUser": "Seko @{{username}}",
+    "contentUnavailable": "Saturs nav pieejams",
+    "youBlockedBody": "Jūs neredzēsit viņu ziņas un nevarēsit ar viņiem sazināties. Atbloķējiet, lai atjaunotu piekļuvi.",
+    "restrictedBody": "Šis lietotājs ir ierobežojis mijiedarbību ar jūsu kontu.",
+    "requestPendingBody": "Jūsu sekošanas pieprasījums ir nosūtīts. Jūs varēsit redzēt viņu ziņas, kad viņi apstiprinās jūsu pieprasījumu.",
+    "followToSeePosts": "Seko šim kontam, lai redzētu viņu ziņas."
   },
   "reactionInfo": {
     "title": "Reakcijas",
@@ -3632,7 +3810,8 @@
     "needGas": "Ķēdē {{chain}} gāzei nepieciešams vietējais {{token}}.",
     "bridging": "Notiek pārsūtīšana…",
     "bridgeAction": "Tilts {{from}} → {{to}}",
-    "failed": "Tilts neizdevās"
+    "failed": "Tilts neizdevās",
+    "sentArriveShortly": "{{amount}} DHB nosūtīts no {{from}} → {{to}}. Žetoni drīzumā ieradīsies."
   },
   "banned": {
     "title": "Jūsu konts ir bloķēts",
@@ -3810,7 +3989,16 @@
     "legacyRecovered": "Apstiprinājām jūsu veco kontu{{suffix}} un atguvām tā maku. Iestatiet paroli, kas to no šī brīža aizsargās šajā ierīcē — šajā tālrunī un visur citur.",
     "passwordMin": "Parole (vismaz {{min}} rakstzīmes)",
     "newPasswordMin": "Jauna parole (vismaz {{min}} rakstzīmes)",
-    "newWalletPasswordMin": "Jaunā maka parole (vismaz {{min}} rakstzīmes)"
+    "newWalletPasswordMin": "Jaunā maka parole (vismaz {{min}} rakstzīmes)",
+    "deviceCheckCancelled": "Ierīces pārbaude atcelta — nekas netika mainīts.",
+    "savePhraseTitle": "Saglabājiet savu atkopšanas frāzi",
+    "startOverTitle": "Sākt no jauna ar jaunu maku",
+    "secureNewWalletTitle": "Nodrošiniet savu jauno maku",
+    "secureWalletTitle": "Nodrošiniet savu maku",
+    "unlockOnMobileTitle": "Atbloķēt mobilajā ierīcē",
+    "oldAccountFoundTitle": "Atrasts vecs konts",
+    "unlockWalletTitle": "Atbloķējiet savu maku",
+    "phraseExplainer": "Jūsu maciņu aizsargās šī tālruņa biometrija. Šī atbloķēšana <em>darbojas tikai šajā tālrunī</em> — šie 12 vārdi ir vienīgais veids, kā atgūt piekļuvi, ja atkārtoti instalējat DeHub, maināt tālruni vai pazaudējat to."
   },
   "transcript": {
     "title": "Transkripcija",
@@ -3996,7 +4184,38 @@
     "subscribe": "Abonēt",
     "subscriberCount_one": "{{count}} abonents",
     "subscriberCount_other": "{{count}} abonenti",
-    "subscribeToForRich": "Abonējiet <name>{{name}}</name> par <price>{{price}}</price>"
+    "subscribeToForRich": "Abonējiet <name>{{name}}</name> par <price>{{price}}</price>",
+    "loadPlansFailed": "Neizdevās ielādēt plānus",
+    "subscriberContent": "Abonentu saturs",
+    "subscriberContentSub": "Izveidojiet plānus ekskluzīva satura piedāvāšanai abonentiem",
+    "createFirstPlan": "Izveidojiet savu pirmo plānu",
+    "addNewPlan": "Pievienot jaunu plānu",
+    "durations": {
+      "oneMonth": "1 mēnesis",
+      "threeMonths": "3 mēneši",
+      "sixMonths": "6 mēneši",
+      "oneYear": "1 gads",
+      "lifetime": "Mūžs"
+    },
+    "planNameRequired": "Nepieciešams plāna nosaukums",
+    "enterValidPrice": "Ievadiet derīgu cenu",
+    "availableChains": "Abonementi pašlaik ir pieejami uz Base un BNB",
+    "waitForSwitch": "Uzsakiet abonēšanas tīkla pārslēgšanu",
+    "connectAndWait": "Savienojiet savu maku un uzklausiet abonēšanas tīklu",
+    "planUpdated": "Plāns atjaunināts",
+    "creating": "Tiek izveidots…",
+    "planPublished": "Plāns izveidots un publicēts",
+    "createPlanTitle": "Izveidot abonēšanas plānu",
+    "network": "Abonēšanas tīkls",
+    "planNameLabel": "Plāna nosaukums *",
+    "planNamePlaceholder": "piemēram, Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Ko abonenti saņem...",
+    "priceLabel": "Cena (USD) *",
+    "legacyMigrationNote": "Ietaupījums migrē šo mantoto DHB plānu uz dolāru cenām pēc pirmslistes kursa.",
+    "benefits": "Priekšrocības",
+    "benefitPlaceholder": "Pievienot priekšrocību…",
+    "createAndPublish": "Izveidot un publicēt",
+    "publishingOnChain": "Publicēšana ir ķēdes darījums"
   },
   "live": {
     "notSet": "Nav iestatīts",
@@ -4114,7 +4333,22 @@
     "acceptTerms": "Es piekrītu <terms>Pakalpojuma noteikumi</terms>",
     "sentTo": "{{amount}} {{symbol}} tika nosūtīts uz {{address}}",
     "tokensSentTo": "Žetoni tika nosūtīti uz {{address}}",
-    "goToProfile": "Doties uz profilu"
+    "goToProfile": "Doties uz profilu",
+    "aboutTitle": "Par DeHub un maksājumiem",
+    "aboutSubtitle": "Jūsu vārti uz nemanāmiem tokenu maksājumiem",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Žetoni tiek izmantoti, lai abonētu veidotājus, dotos dzeramnaudu straumētājiem vai atbloķētu saturu. Jo vairāk jums pieder, jo zemākas ir jūsu maksas un jo vairāk superspēju jūs atbloķējat, piemēram, laika joslas tendenču paaugstinājumus un verifikācijas emblēmas.",
+    "aboutInstantTitle": "Tūlītēji maksājumi",
+    "aboutInstantBody": "Izmantojot Stripe, jūs varat nekavējoties un nevainojami iegādāties žetonus jebkurā kontā, kurā esat pieteicies. DeHub padara žetonus vienkāršus un pieejamus visiem. Ja jums nepieciešams vairāk atbalsta, vienkārši pievienojieties mūsu 24/7 tiešraides kopienas tērzēšanai un pieprasiet administratora atbalstu.",
+    "aboutSecureTitle": "Drošs vārteja",
+    "aboutSecureBody": "Visas maksājumu detaļas tiek šifrētas un droši apstrādātas, izmantojot Stripe. Mēs nevaram piekļūt jūsu sensitīvajai informācijai vai karšu datiem un tos saglabāt, nodrošinot jums pilnīgu sirdsmieru.",
+    "transfersSummary": "Pārskaitījumu kopsavilkums",
+    "availableToBuy": "Pieejams iegādei tagad",
+    "noSupplyShort": "Nav piedāvājuma",
+    "topUpSubtitle": "Pērciet $DHB, izmantojot karti, un saņemiet bezmaksas gāzi, ko izmantot nekavējoties",
+    "noTxHash": "Neizdevās atrast darījuma jaucēju",
+    "latestTransactions": "Jaunākie darījumi",
+    "showAll": "Rādīt visus"
   },
   "musicSheet": {
     "title": "Izveidot dziesmu",
@@ -4243,7 +4477,13 @@
     "followUpNote": "Iespējams, sazināsimies ar papildu jautājumiem par jūsu atsauksmi",
     "submitFeedback": "Nosūtīt atsauksmi",
     "provideFeedback": "Lūdzu, uzrakstiet savu atsauksmi",
-    "thankYou": "Paldies par jūsu atsauksmi!"
+    "thankYou": "Paldies par jūsu atsauksmi!",
+    "submitFailed": "Neizdevās iesniegt atsauksmes. Lūdzu, mēģiniet vēlreiz.",
+    "maybeLater": "Vēlāk",
+    "helpUsImprove": "Palīdziet mums uzlabot",
+    "rateExperience": "Kā jūs novērtētu savu pieredzi?",
+    "telegramOptional": "Telegram (nav obligāts)",
+    "discordOptional": "Discord (nav obligāts)"
   },
   "migrate": {
     "clearAll": "Notīrēt visu",
@@ -4360,7 +4600,14 @@
       "blueWhale": "Lielākais, kas jebkad ir dzīvojis. Tas esi tu.",
       "megalodon": "Lūk, jūsu kronis — jūs tagad esat aplikācijas autoratlīdzība"
     },
-    "continue": "Atpakaļ uz DeHub"
+    "continue": "Atpakaļ uz DeHub",
+    "none": "Nav",
+    "noBadgeYet": "Vēl nav emblēmas",
+    "next": "Tālāk",
+    "topTier": "Augstākā līmeņa",
+    "toNextTier": "{{amount}} DHB uz {{tier}}",
+    "everyTierUnlocked": "Katra atbloķētā līmeņa emblēma",
+    "holdNote": "Kad emblēma ir atbloķēta, tā ir jūsu tik ilgi, kamēr jūs turat savu DHB. Žetonu skaits, kas nepieciešams jaunas emblēmas atbloķēšanai, var mainīties atkarībā no žetona cenas."
   },
   "passwordStrength": {
     "veryWeak": "Ļoti vājš",
@@ -4442,7 +4689,11 @@
     },
     "ttsLabel": "Izsakiet kaut ko skaļi",
     "ttsPlaceholder": "Nolasīt straumē...",
-    "ttsHint": "Lasiet skaļi visiem, kas skatās, kad jūsu dāvana pienāk."
+    "ttsHint": "Lasiet skaļi visiem, kas skatās, kad jūsu dāvana pienāk.",
+    "sendAGift": "Nosūtīt dāvanu",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minimālā dāvana ir {{amount}}",
+    "sendGift": "Nosūtīt dāvanu"
   },
   "goLive": {
     "streamKey": "Tiešraides atslēga",
@@ -4825,7 +5076,8 @@
         "title": "Uzziniet, kā notiek pelnīšana",
         "body": "Uzziniet, kā padomi, nozīmītes un superspējas pārvērš to, ko šeit darāt, par kaut ko, no kā nopelnāt."
       }
-    }
+    },
+    "swipeToStart": "Velciet, lai sāktu"
   },
   "conversation": {
     "commonGround": {
@@ -5307,5 +5559,18 @@
     "toastPaidSettled": "Samaksāts — darījums ir nokārtots",
     "walletNotReady": "Jūsu maciņš vēl nav gatavs — mēģiniet vēlreiz pēc brīža.",
     "wrongChain": "Šis darījums tiek nokārtots tīklā {{chain}}. Iestatījumos pārslēdzieties uz {{chain}} un mēģiniet vēlreiz."
+  },
+  "moderation": {
+    "appealDuplicate": "Jūs to jau pārsūdzējāt",
+    "appealSent": "Pārsūdzība nosūtīta",
+    "appealFailed": "Nevarēja iesniegt šo pārsūdzību",
+    "appealTitle": "Pārsūdzēt šo lēmumu",
+    "appealSubtitle": "Persona to izlasīs un vēlreiz izskatīs lēmumu.",
+    "appealPlaceholder": "Kas, jūsuprāt, tika palaists garām? Konteksts par saturu palīdz vairāk nekā jebkas cits.",
+    "appealSend": "Sūtīt pārsūdzību",
+    "appealFootnote": "Jūs saņemsiet atsauces numuru, un atbilde tiks sniegta šeit. Viena pārsūdzība par katru lēmumu.",
+    "appealRef": "Atsauce {{ref}}",
+    "appealSubtitleSubject": "Persona to izlasīs un vēlreiz apskatīs {{subject}}.",
+    "appealMore": "Vēl nepieciešamas rakstzīmes: {{count}}"
   }
 }

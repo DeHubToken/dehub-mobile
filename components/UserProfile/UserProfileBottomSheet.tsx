@@ -3,6 +3,7 @@ import { View, Modal, TouchableOpacity } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import ScreenHeader from "../ScreenHeader";
 import Icon from "../ui/Icon";
 import UserProfileSheetContent from "./UserProfileSheetContent";
@@ -30,6 +31,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   usernameOrAddress,
   embedded = false,
 }) => {
+  const { t } = useTranslation();
   const [showUnfollowSheet, setShowUnfollowSheet] = useState(false);
   const [menuTrigger, setMenuTrigger] = React.useState<(() => void) | null>(null);
 
@@ -113,7 +115,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             className="absolute right-3 top-3 z-20 w-10 h-10 items-center justify-center rounded-xl dark-surface bg-black/40"
             accessibilityRole="button"
-            accessibilityLabel="Profile options"
+            accessibilityLabel={t("profileOptions.a11yLabel")}
           >
             <Icon name="EllipsisVertical" size={20} color="#E5E7EB" />
           </TouchableOpacity>
@@ -192,7 +194,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   className="w-10 h-10 items-center justify-center"
                   accessibilityRole="button"
-                  accessibilityLabel="Profile options"
+                  accessibilityLabel={t("profileOptions.a11yLabel")}
                 >
                   <Icon name="EllipsisVertical" size={20} color="#E5E7EB" />
                 </TouchableOpacity>

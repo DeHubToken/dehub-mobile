@@ -695,7 +695,11 @@
       "hintAllow": "Systémy umelej inteligencie a crawlery, ktoré rešpektujú tento signál, môžu trénovať váš zvuk, umelecké diela a písanie.",
       "hintDeny": "UI systémy a crawlery, ktoré rešpektujú tento signál, sú požiadané, aby sa netrénovali na vašom audiu, umeleckých dielach a písaní. Crawlery, ktoré ignorujú signál, nie sú blokované.",
       "saved": "Predvoľba školenia AI uložená"
-    }
+    },
+    "chainIdLabel": "Reťazec ID: {{id}}",
+    "exportPkConfirmPhrase": "ROZUMIEM",
+    "exportPkCopy": "Kopírovať súkromný kľúč",
+    "e2eAutomatic": "Automaticky"
   },
   "common": {
     "mute": "Stlmiť",
@@ -754,7 +758,17 @@
     "showMore": "Zobraziť viac",
     "showLess": "Zobraziť menej",
     "noResults": "Žiadne výsledky",
-    "comingSoon": "Čoskoro"
+    "comingSoon": "Čoskoro",
+    "goesToHomeFeed": "Prejde na domovskú nástenku",
+    "openMenu": "Otvoriť menu",
+    "scrollsFeedToTop": "Posunie sa na začiatok nástenky a obnoví ju",
+    "notificationsUnread": "Notifikácie, {{unread}} neprečítaných",
+    "errorDetails": "Detaily chyby:",
+    "failedToLoad": "Nepodarilo sa načítať",
+    "noInternetTitle": "Žiadne internetové pripojenie",
+    "noInternetBody": "Skontrolujte svoje internetové pripojenie a skúste to znova. Na používanie DeHubu potrebujete byť pripojení na internet.",
+    "noInternetStatus": "Offline - Žiadne sieťové pripojenie",
+    "noInternetHint": "Uistite sa, že máte zapnutú Wi-Fi alebo mobilné dáta, potom klepnite na \"{{action}}\""
   },
   "tip": {
     "title": "Send Tip",
@@ -1679,7 +1693,12 @@
     "chooseUsernameBody": "Vyberte si používateľské a zobrazované meno, aby ste mohli pokračovať. Neskôr ich môžete zmeniť.",
     "checkingAvailability": "Kontroluje sa dostupnosť…",
     "usernameTakenHint": "Meno je obsadené — skúste pridať číslice alebo podčiarkovník",
-    "displayNameLength": "Zobrazované meno musí mať 2 – 50 znakov."
+    "displayNameLength": "Zobrazované meno musí mať 2 – 50 znakov.",
+    "loginFailedRetry": "Prihlásenie zlyhalo. Skúste to znova.",
+    "sendCodeFailedRetry": "Kód sa nepodarilo odoslať. Skúste to znova.",
+    "invalidCodeRetry": "Neplatný kód. Skúste to znova.",
+    "invalidEmailOrPassword": "Neplatný e-mail alebo heslo.",
+    "welcomeToDehub": "Vitajte v DeHub"
   },
   "messages": {
     "smartRepliesOff": "Navrhované odpovede sú vypnuté",
@@ -1779,7 +1798,32 @@
     "muteUser": "Stlmiť",
     "subscribe": "Predplatiť",
     "subscribed": "Predplatené",
-    "tip": "Tip"
+    "tip": "Tip",
+    "noPostsYet": "Zatiaľ žiadne príspevky",
+    "noPostsYetSub": "Obsah sa tu zobrazí po zverejnení",
+    "noPinnedPosts": "Zatiaľ žiadne pripnuté príspevky",
+    "noPinnedPostsSub": "Pripnuté príspevky sa tu zobrazia",
+    "emptyLiked": "Zatiaľ žiadne označené príspevky.",
+    "emptySaved": "Zatiaľ žiadne uložené príspevky.",
+    "emptyUnlocked": "Zatiaľ žiadne odomknuté príspevky.",
+    "emptyWatched": "Zatiaľ žiadna história sledovania.",
+    "emptyFolder": "V tomto priečinku zatiaľ žiadne príspevky.",
+    "emptyPosts": "Zatiaľ žiadne príspevky.",
+    "couldNotLoadPosts": "Nepodarilo sa načítať príspevky.",
+    "noPostsOrReplies": "Zatiaľ žiadne príspevky, komentáre ani odpovede",
+    "noPostsOrRepliesSub": "Zobrazia sa tu",
+    "avatarUpdated": "Avatar aktualizovaný",
+    "coverUpdated": "Obal aktualizovaný",
+    "couldNotPickImage": "Nepodarilo sa vybrať obrázok",
+    "changeCoverImage": "Zmeniť obrázok obalu",
+    "changeAvatar": "Zmeniť avatara",
+    "verifiedEnsName": "Overené ENS meno {{name}}",
+    "notFullyJoined": "Tento používateľ sa ešte plne nezapojil. Nenárokoval si používateľské meno ani nedokončil nastavenie profilu. Stále si môžete pozrieť verejnú aktivitu a posielať tipy, ak sú k dispozícii.",
+    "loadRepliesFailed": "Nepodarilo sa načítať odpovede",
+    "refreshFailed": "Obnovenie zlyhalo",
+    "noRepliesYet": "Žiadne odpovede zatiaľ",
+    "noRepliesYetSub": "Keď tento používateľ odpovie na príspevky, zobrazia sa tu.",
+    "noMoreReplies": "Už žiadne odpovede"
   },
   "tv": {
     "title": "TV",
@@ -1865,7 +1909,11 @@
     "loadingPrice": "Načítava sa cena…",
     "topUpExplanation": "DHB sa on-chain prevedie do reklamnej pokladnice DeHubu a po nezávislom overení na reťazci sa ti pripíše na zostatok.",
     "paymentHistory": "História platieb",
-    "noPayments": "Zatiaľ žiadne platby"
+    "noPayments": "Zatiaľ žiadne platby",
+    "sponsored": "Sponzorované",
+    "morePosts": "Viac príspevkov",
+    "loadMorePosts": "Načítať viac príspevkov",
+    "playAdVideo": "Prehrať video reklamu"
   },
   "buyCoins": {
     "title": "Buy Coins",
@@ -2326,7 +2374,8 @@
     "privateBalanceMode": "Režim súkromného zostatku je zapnutý",
     "addressHidden": "Adresa skrytá",
     "allowInFeeds": "Povoliť tomuto používateľovi zobrazovať sa vo vašich kanáloch",
-    "hideContent": "Skryť ich obsah a obmedziť interakcie"
+    "hideContent": "Skryť ich obsah a obmedziť interakcie",
+    "a11yLabel": "Možnosti profilu"
   },
   "toasts": {
     "saved_to_bookmarks": "Uložené do záložiek",
@@ -2698,7 +2747,8 @@
     "roles": {
       "owner": "Vlastník",
       "moderator": "Moderátor",
-      "member": "Člen"
+      "member": "Člen",
+      "admin": "Správca"
     },
     "time": {
       "today": "dnes",
@@ -2707,7 +2757,126 @@
       "weeks": "{{count}} týž.",
       "months": "{{count}} mes.",
       "years": "{{count}} r."
-    }
+    },
+    "chatPanel": {
+      "anon": "Anonym",
+      "edited": "upravené",
+      "deleteTitle": "Odstrániť správu",
+      "deleteConfirm": "Odstrániť túto správu? Toto sa nedá vziať späť.",
+      "muted": "Ste umlčaný",
+      "postingDisabled": "Zverejňovanie je tu pre členov zakázané",
+      "mediaMessage": "Médiá",
+      "pinnedMessage": "Pripnutá správa",
+      "showEarlier": "Zobraziť skoršie správy",
+      "editingMessage": "Úprava správy",
+      "copied": "Správa bola skopírovaná",
+      "copyText": "Kopírovať text",
+      "mutedUntil": "Stlmíme vás do {{date}}",
+      "slowMode": "Pomalý režim: jedna správa každých {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Zrušiť správcu",
+      "cancel": "Zrušiť",
+      "dismissAdmin": "Zrušiť správcu",
+      "roleAdmin": "Správca",
+      "roleMember": "Člen",
+      "whatCanTheyDo": "Čo môže tento správca urobiť?",
+      "rightNotHeld": "Sám toto právo nemáte",
+      "customTitle": "Vlastný názov",
+      "customTitlePlaceholder": "Správca",
+      "customTitleHint": "Zobrazené namiesto predvoleného odznaku správcu.",
+      "saveChanges": "Uložiť zmeny",
+      "promote": "Propagovať",
+      "tabs": {
+        "members": "Členovia",
+        "admins": "Správcovia",
+        "permissions": "Povolenia",
+        "invites": "Pozvánky",
+        "rules": "Pravidlá",
+        "recentActions": "Nedávne akcie",
+        "danger": "Nebezpečná zóna"
+      },
+      "title": "Spravovať",
+      "purgeTitle": "Odstrániť všetky správy?",
+      "purgeConfirm": "Odstrániť",
+      "kickTitle": "Odstrániť člena?",
+      "kickConfirm": "Odstrániť",
+      "bannedPermanent": "Zakázané — trvalé",
+      "mutedPermanent": "Stlmené — trvalé",
+      "editAdminRights": "Upraviť práva správcu",
+      "promoteToAdmin": "Povýšiť na správcu",
+      "unmute": "Odzrušiť",
+      "mute": "Zrušiť",
+      "unban": "Zrušiť ban",
+      "ban": "Zakázať",
+      "deleteAllMessages": "Odstrániť všetky správy",
+      "removeFromCommunity": "Odstrániť z komunity",
+      "noActionsAvailable": "Tento člen nemôže byť moderovaný.",
+      "showMore": "Zobraziť viac",
+      "joinRequests": "Požiadavky na pripojenie",
+      "approve": "Schváliť",
+      "reject": "Odmietnuť",
+      "members": "Členovia",
+      "searchMembers": "Hľadať podľa adresy peňaženky",
+      "noMembersMatch": "Žiadny člen sa nezhoduje.",
+      "noMembers": "Zatiaľ žiadni členovia.",
+      "muted": "Zrušení",
+      "banned": "Zakázaní",
+      "muteEffect": "Zostávajú v komunite, ale nemôžu prispievať, kým nevyprší čas zrušenia.",
+      "banEffect": "Sú odstránení z chatu a nemôžu sa vrátiť, kým nebude zrušený ban.",
+      "durationLabel": "Trvanie",
+      "reasonLabel": "Dôvod (voliteľné)",
+      "reasonPlaceholder": "Prečo je zakázaný?",
+      "alsoDeleteMessages": "Tiež odstrániť všetky jeho správy",
+      "confirmMute": "Zrušiť člena",
+      "confirmBan": "Zakázať člena",
+      "rulesUpdated": "Pravidlá aktualizované",
+      "rulesTitle": "Pravidlá komunity",
+      "rulesEmpty": "Zatiaľ žiadne pravidlá — pridajte prvé nižšie.",
+      "rulePlaceholder": "Opíšte pravidlo",
+      "addRule": "Pridať pravidlo",
+      "saveRules": "Uložiť pravidlá",
+      "dismissAdminBody": "{{wallet}} sa vráti do stavu bežného člena.",
+      "purgeBody": "Každá správa, ktorú {{name}} v tejto komunite poslal, bude odstránená.",
+      "kickBody": "{{name}} bude z komunity odstránený. Môže sa neskôr znova pripojiť.",
+      "bannedUntil": "Zakázané do {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Umlčaný do {{date}}",
+      "bannedUntilShort": "Do {{date}}",
+      "muteTitle": "Umlčať {{name}}",
+      "banTitle": "Zakázať {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} z {{max}}",
+      "moveRuleUp": "Posunúť pravidlo nahor",
+      "moveRuleDown": "Posunúť pravidlo nadol",
+      "deleteRule": "Odstrániť pravidlo",
+      "rights": {
+        "changeInfo": "Zmeniť informácie o komunite",
+        "changeInfoHint": "Upraviť názov, popis, avatar a banner",
+        "deleteMessages": "Odstrániť správy",
+        "deleteMessagesHint": "Odstrániť akúkoľvek správu z chatu komunity",
+        "restrictMembers": "Zakázať používateľov",
+        "restrictMembersHint": "Umlčať, odstrániť a zakázať členov",
+        "inviteUsers": "Pozvať používateľov prostredníctvom odkazu",
+        "inviteUsersHint": "Vytvoriť a odvolať pozývacie odkazy",
+        "pinMessages": "Pripnúť správy",
+        "pinMessagesHint": "Pripnúť správu na začiatok chatu",
+        "manageEvents": "Spravovať udalosti",
+        "manageEventsHint": "Vytvoriť a upraviť udalosti komunity",
+        "addAdmins": "Pridať nových administrátorov",
+        "addAdminsHint": "Propagovať členov a upraviť práva administrátorov, ktorých pridali",
+        "remainAnonymous": "Zostať anonymný",
+        "remainAnonymousHint": "Skryť tohto administrátora zo zoznamu členov"
+      },
+      "durations": {
+        "oneHour": "1 hodina",
+        "eightHours": "8 hodín",
+        "oneDay": "1 deň",
+        "oneWeek": "1 týždeň",
+        "forever": "Navždy"
+      }
+    },
+    "chooseAvatar": "Vybrať avatara"
   },
   "work": {
     "title": "Odmeny",
@@ -3059,7 +3228,9 @@
       "shipped": "Odoslané",
       "completed": "Dokončené",
       "cancelled": "Zrušené"
-    }
+    },
+    "removePhoto": "Odstrániť fotku",
+    "listingOptions": "Možnosti zobrazenia"
   },
   "accounts": {
     "subtitle": "Celé účty na predaj, ocenené v DHB",
@@ -3427,7 +3598,14 @@
     "removeFollowerHint": "Stlačením a podržaním sledovateľa ho odstránite.",
     "cancel": "Zrušiť",
     "remove": "Odstrániť",
-    "thisUser": "Tento používateľ"
+    "thisUser": "Tento používateľ",
+    "cancelRequestTo": "Zrušiť žiadosť o sledovanie pre @{{username}}?",
+    "followingUser": "Sledujem @{{username}}",
+    "contentUnavailable": "Obsah nedostupný",
+    "youBlockedBody": "Nebudete vidieť ich príspevky ani s nimi interagovať. Zrušte blokovanie na obnovenie prístupu.",
+    "restrictedBody": "Tento používateľ obmedzil interakcie s vaším účtom.",
+    "requestPendingBody": "Vaša žiadosť o sledovanie bola odoslaná. Ich príspevky budete môcť vidieť, keď schvália vašu žiadosť.",
+    "followToSeePosts": "Sledujte tento účet, aby ste videli jeho príspevky."
   },
   "reactionInfo": {
     "title": "Reakcie",
@@ -3742,7 +3920,8 @@
     "needGas": "Na {{chain}} je potrebný natívny {{token}} na poplatky.",
     "bridging": "Prebieha prevod…",
     "bridgeAction": "Most {{from}} → {{to}}",
-    "failed": "Most zlyhal"
+    "failed": "Most zlyhal",
+    "sentArriveShortly": "{{amount}} DHB odoslané z {{from}} → {{to}}. Tokeny dorazia čoskoro."
   },
   "banned": {
     "title": "Váš účet je zablokovaný",
@@ -3920,7 +4099,16 @@
     "legacyRecovered": "Overili sme váš starý účet{{suffix}} a obnovili jeho peňaženku. Nastavte heslo, ktoré ju odteraz ochráni na tomto zariadení — v tomto telefóne aj všade inde.",
     "passwordMin": "Heslo (min. {{min}} znakov)",
     "newPasswordMin": "Nové heslo (min. {{min}} znakov)",
-    "newWalletPasswordMin": "Heslo novej peňaženky (min. {{min}} znakov)"
+    "newWalletPasswordMin": "Heslo novej peňaženky (min. {{min}} znakov)",
+    "deviceCheckCancelled": "Kontrola zariadenia zrušená — nič sa nezmenilo.",
+    "savePhraseTitle": "Uložte si svoju obnovovaciu frázu",
+    "startOverTitle": "Začať odznova s novou peňaženkou",
+    "secureNewWalletTitle": "Zabezpečte svoju novú peňaženku",
+    "secureWalletTitle": "Zabezpečte svoju peňaženku",
+    "unlockOnMobileTitle": "Odomknúť na mobile",
+    "oldAccountFoundTitle": "Nájdite starý účet",
+    "unlockWalletTitle": "Odomknite svoju peňaženku",
+    "phraseExplainer": "Vaša peňaženka bude chránená biometriou tohto telefónu. Toto odomknutie <em>funguje iba na tomto telefóne</em> — týchto 12 slov je jediný spôsob, ako sa vrátiť, ak preinštalujete DeHub, zmeníte telefón alebo ho stratíte."
   },
   "transcript": {
     "title": "Prepis",
@@ -4106,7 +4294,38 @@
     "subscribe": "Odoberať",
     "subscriberCount_one": "{{count}} odberateľ",
     "subscriberCount_other": "{{count}} odberateľov",
-    "subscribeToForRich": "Predplaťte si <name>{{name}}</name> za <price>{{price}}</price>"
+    "subscribeToForRich": "Predplaťte si <name>{{name}}</name> za <price>{{price}}</price>",
+    "loadPlansFailed": "Nepodarilo sa načítať plány",
+    "subscriberContent": "Obsah pre predplatiteľov",
+    "subscriberContentSub": "Vytvorte plány na ponuku exkluzívneho obsahu pre predplatiteľov",
+    "createFirstPlan": "Vytvorte svoj prvý plán",
+    "addNewPlan": "Pridať nový plán",
+    "durations": {
+      "oneMonth": "1 mesiac",
+      "threeMonths": "3 mesiace",
+      "sixMonths": "6 mesiacov",
+      "oneYear": "1 rok",
+      "lifetime": "Navždy"
+    },
+    "planNameRequired": "Názov plánu je povinný",
+    "enterValidPrice": "Zadajte platnú cenu",
+    "availableChains": "Predplatné je momentálne k dispozícii na Base a BNB",
+    "waitForSwitch": "Počkajte, kým sa sieť predplatného dokončí prepínanie",
+    "connectAndWait": "Pripojte svoju peňaženku a počkajte na sieť predplatného",
+    "planUpdated": "Plán aktualizovaný",
+    "creating": "Vytvára sa…",
+    "planPublished": "Plán vytvorený a publikovaný",
+    "createPlanTitle": "Vytvoriť plán predplatného",
+    "network": "Sieť predplatného",
+    "planNameLabel": "Názov plánu *",
+    "planNamePlaceholder": "napr. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Čo predplatitelia získajú...",
+    "priceLabel": "Cena (USD) *",
+    "legacyMigrationNote": "Úspora migruje tento starý plán DHB na ceny v dolároch pri predzápisnej sadzbe.",
+    "benefits": "Výhody",
+    "benefitPlaceholder": "Pridať výhodu...",
+    "createAndPublish": "Vytvoriť a publikovať",
+    "publishingOnChain": "Publikovanie je transakcia na reťazci"
   },
   "live": {
     "notSet": "Nenastavené",
@@ -4224,7 +4443,22 @@
     "acceptTerms": "Súhlasím s <terms>Podmienky služby</terms>",
     "sentTo": "{{amount}} {{symbol}} bola odoslaná na {{address}}",
     "tokensSentTo": "Tokeny boli odoslané na adresu {{address}}",
-    "goToProfile": "Prejsť na profil"
+    "goToProfile": "Prejsť na profil",
+    "aboutTitle": "O DeHub & platbách",
+    "aboutSubtitle": "Vaša brána k bezproblémovým platbám tokenmi",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokeny sa používajú na predplatenie tvorcov, tipovanie streamerov alebo odomykanie obsahu. Čím viac ich držíte, tým nižšie sú vaše poplatky a tým viac superschopností odomknete, ako sú posilnenia trendov na časovej osi a overovacie odznaky.",
+    "aboutInstantTitle": "Okamžité platby",
+    "aboutInstantBody": "Pomocou Stripe si môžete tokeny okamžite a bezproblémovo kúpiť do akéhokoľvek účtu, do ktorého ste prihlásení. DeHub robí tokeny jednoduchými a pre všetkých. Ak potrebujete ďalšiu podporu, stačí sa pripojiť do nášho komunitného živého chatu 24/7 a požiadať o podporu administrátora.",
+    "aboutSecureTitle": "Bezpečný bránový systém",
+    "aboutSecureBody": "Všetky platobné údaje sú šifrované a bezpečne spracované spoločnosťou Stripe. Nemáme prístup k vašim citlivým informáciám ani údajom o karte, ani ich neukladáme, čo vám poskytuje maximálny pokoj.",
+    "transfersSummary": "Prehľad prevodov",
+    "availableToBuy": "K dispozícii na kúpu teraz",
+    "noSupplyShort": "Žiadna ponuka",
+    "topUpSubtitle": "Kúpte si $DHB kartou a získajte plyn zadarmo na okamžité použitie",
+    "noTxHash": "Nenašiel sa hash transakcie",
+    "latestTransactions": "Najnovšie transakcie",
+    "showAll": "Zobraziť všetko"
   },
   "musicSheet": {
     "title": "Vytvoriť pieseň",
@@ -4353,7 +4587,13 @@
     "followUpNote": "Môžeme sa ozvať s doplňujúcimi otázkami k vašej spätnej väzbe",
     "submitFeedback": "Odoslať spätnú väzbu",
     "provideFeedback": "Napíšte prosím svoju spätnú väzbu",
-    "thankYou": "Ďakujeme za spätnú väzbu!"
+    "thankYou": "Ďakujeme za spätnú väzbu!",
+    "submitFailed": "Nepodarilo sa odoslať spätnú väzbu. Skúste to znova.",
+    "maybeLater": "Možno neskôr",
+    "helpUsImprove": "Pomôžte nám zlepšiť",
+    "rateExperience": "Ako by ste ohodnotili svoju skúsenosť?",
+    "telegramOptional": "Telegram (voliteľné)",
+    "discordOptional": "Discord (voliteľné)"
   },
   "migrate": {
     "clearAll": "Vymazať všetko",
@@ -4470,7 +4710,14 @@
       "blueWhale": "Najväčšia vec, ktorá kedy žila. To si ty.",
       "megalodon": "Tu je vaša koruna — teraz ste app royalty"
     },
-    "continue": "Späť na DeHub"
+    "continue": "Späť na DeHub",
+    "none": "Žiadny",
+    "noBadgeYet": "Zatiaľ žiadny odznak",
+    "next": "Ďalšie",
+    "topTier": "Najvyššia úroveň",
+    "toNextTier": "{{amount}} DHB do {{tier}}",
+    "everyTierUnlocked": "Každá úroveň odomknutá",
+    "holdNote": "Akonáhle je odznak odomknutý, je váš tak dlho, ako budete držať svoje DHB. Počet tokenov potrebných na odomknutie nového odznaku sa môže meniť s cenou tokenu."
   },
   "passwordStrength": {
     "veryWeak": "Veľmi slabé",
@@ -4552,7 +4799,11 @@
     },
     "ttsLabel": "Povedzte niečo nahlas",
     "ttsPlaceholder": "Prečítajte si do prúdu...",
-    "ttsHint": "Čítajte nahlas všetkým, ktorí sledujú, kedy váš dar príde."
+    "ttsHint": "Čítajte nahlas všetkým, ktorí sledujú, kedy váš dar príde.",
+    "sendAGift": "Poslať darček",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minimálny darček je {{amount}}",
+    "sendGift": "Poslať darček"
   },
   "goLive": {
     "streamKey": "Kľúč toku",
@@ -4935,7 +5186,8 @@
         "title": "Pozrite sa, ako funguje zárobok",
         "body": "Zistite, ako rady, odznaky a SuperPowers premenia to, čo tu robíte, na niečo, z čoho si zarobíte."
       }
-    }
+    },
+    "swipeToStart": "Potiahnite pre začatie"
   },
   "conversation": {
     "commonGround": {
@@ -5474,5 +5726,18 @@
     "toastPaidSettled": "Zaplatené — obchod je vyrovnaný",
     "walletNotReady": "Vaša peňaženka ešte nie je pripravená — skúste to o chvíľu znova.",
     "wrongChain": "Tento obchod sa vyrovnáva na {{chain}}. V Nastaveniach prepnite na {{chain}} a skúste to znova."
+  },
+  "moderation": {
+    "appealDuplicate": "Proti tomuto ste sa už odvolali",
+    "appealSent": "Odvolanie odoslané",
+    "appealFailed": "Toto odvolanie sa nepodarilo podať",
+    "appealTitle": "Odvolať sa proti tomuto rozhodnutiu",
+    "appealSubtitle": "Osoba si to prečíta a znovu sa na rozhodnutie pozrie.",
+    "appealPlaceholder": "Čo si myslíte, že chýbalo? Kontext o obsahu pomáha viac ako čokoľvek iné.",
+    "appealSend": "Odoslať odvolanie",
+    "appealFootnote": "Dostanete referenčné číslo a odpoveď sa vráti sem. Jedno odvolanie na každé rozhodnutie.",
+    "appealRef": "Referencia {{ref}}",
+    "appealSubtitleSubject": "Osoba si to prečíta a znova sa pozrie na {{subject}}.",
+    "appealMore": "Potrebné znaky: {{count}}"
   }
 }

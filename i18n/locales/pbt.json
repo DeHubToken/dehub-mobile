@@ -677,7 +677,11 @@
       "hintAllow": "د AI سیسټمونه او کرالرونه چې دې سیګنال ته درناوی لري ممکن ستاسو په آډیو، هنر کار او لیکلو کې روزنه ورکړي.",
       "hintDeny": "د AI سیسټمونه او کرالر چې دې سیګنال ته درناوی لري له تاسو څخه غوښتنه کیږي چې ستاسو په آډیو، هنر کار او لیکلو کې روزنه ونه کړي. هغه کسان چې د پيښي په اړه يې معلومات نه دي ترلاسه کړي، د پيښي په اړه يې پلټني پيل کړي دي.",
       "saved": "د زده کړې غوره توبونه خوندي کړئ"
-    }
+    },
+    "chainIdLabel": "د چین ID: {{id}}",
+    "exportPkConfirmPhrase": "زه پوهیږم",
+    "exportPkCopy": "شخصي کیلي کاپي کړئ",
+    "e2eAutomatic": "اتوماتیک"
   },
   "common": {
     "mute": "غږ بند کړئ",
@@ -717,7 +721,17 @@
     "optionalSuffix": "(اختیاري)",
     "yesterday": "پرون",
     "ok": "ښه",
-    "continue": "دوام ورکړئ"
+    "continue": "دوام ورکړئ",
+    "goesToHomeFeed": "کور فیډ ته ځي",
+    "openMenu": "مینو خلاص کړئ",
+    "scrollsFeedToTop": "فیډ ته پورته ځي او بیا یې تازه کوي",
+    "notificationsUnread": "خبرتیاوې، {{unread}} نه لوستل شوي",
+    "errorDetails": "د خطا توضیحات:",
+    "failedToLoad": "بارولو کې پاتې راغلی",
+    "noInternetTitle": "د انټرنیټ اتصال نشته",
+    "noInternetBody": "مهرباني وکړئ خپل د انټرنیټ اتصال وګورئ او بیا هڅه وکړئ. د DeHub کارولو لپاره تاسو باید انټرنیټ سره وصل شئ.",
+    "noInternetStatus": "آفلاین - د شبکې اتصال نشته",
+    "noInternetHint": "ډاډ ترلاسه کړئ چې وای فای یا ګرځنده ډیټا فعال دی، بیا \"{{action}}\" ټایپ کړئ"
   },
   "tip": {
     "title": "ټپ ولیږئ",
@@ -1590,7 +1604,12 @@
     "chooseUsernameBody": "د دوام لپاره یو کارن نوم او ښکارېدونکی نوم وټاکئ. وروسته یې بدلولی شئ.",
     "checkingAvailability": "شتون والی څېړل کیږي…",
     "usernameTakenHint": "دا نوم نیول شوی — شمېرې یا لاندې کرښه ورزیاته کړئ",
-    "displayNameLength": "ښکارېدونکی نوم باید ۲-۵۰ توري وي."
+    "displayNameLength": "ښکارېدونکی نوم باید ۲-۵۰ توري وي.",
+    "loginFailedRetry": "لاګین پاتې شو. مهرباني وکړئ بیا هڅه وکړئ.",
+    "sendCodeFailedRetry": "کوډ نشو لیږلی. مهرباني وکړئ بیا هڅه وکړئ.",
+    "invalidCodeRetry": "ناسم کوډ. مهرباني وکړئ بیا هڅه وکړئ.",
+    "invalidEmailOrPassword": "ناسم بریښنالیک یا پټنوم.",
+    "welcomeToDehub": "DeHub ته ښه راغلاست"
   },
   "messages": {
     "smartRepliesOff": "وړاندیز شوي ځوابونه بند شول",
@@ -1668,7 +1687,32 @@
     "offerWorthNow": "په اوسني نرخ نږدې {{amount}} DHB",
     "offerNotePlaceholder": "یادښت ورزیات کړه (اختیاري)",
     "offerCommitsNothing": "وړاندیز کول هیڅ نه لګوي او هیڅ DHB نه بندوي. یوازې هغه وخت ورکوې چې مالک یې ومني.",
-    "offerNeedsHandle": "دا حساب داسې کارن‌نوم نه لري چې وړاندیز پرې وشي."
+    "offerNeedsHandle": "دا حساب داسې کارن‌نوم نه لري چې وړاندیز پرې وشي.",
+    "noPostsYet": "اوس مهال پوسټونه نشته",
+    "noPostsYetSub": "کله چې پوسټ شي نو مینځپانګه به دلته ښکاره شي",
+    "noPinnedPosts": "اوس مهال پین شوي پوسټونه نشته",
+    "noPinnedPostsSub": "پین شوي پوسټونه به دلته ښکاره شي",
+    "emptyLiked": "اوس مهال خوښ شوي پوسټونه نشته.",
+    "emptySaved": "اوس مهال خوندي شوي پوسټونه نشته.",
+    "emptyUnlocked": "اوس مهال خلاص شوي پوسټونه نشته.",
+    "emptyWatched": "اوس مهال د لید تاریخ نشته.",
+    "emptyFolder": "په دې فولډر کې اوس مهال پوسټونه نشته.",
+    "emptyPosts": "اوس مهال پوسټونه نشته.",
+    "couldNotLoadPosts": "پوسټونه نشو بارولی.",
+    "noPostsOrReplies": "تر اوسه هېڅ پوسټ، تبصره یا ځواب نشته",
+    "noPostsOrRepliesSub": "دلته به ښکاره شي",
+    "avatarUpdated": "اوتار تازه شو",
+    "coverUpdated": "پوښ تازه شو",
+    "couldNotPickImage": "عکس نه شو اخیستل کېدای",
+    "changeCoverImage": "د پوښ عکس بدل کړئ",
+    "changeAvatar": "اواتار بدل کړئ",
+    "verifiedEnsName": "تایید شوی ENS نوم {{name}}",
+    "notFullyJoined": "دا کارن لا تر اوسه په بشپړه توګه نه دی شامل شوی. دوی د کارن نوم نه دی اخیستی یا د پروفایل تنظیمات یې بشپړ نه دي. تاسو لاهم عام فعالیت لیدلی شئ او که شتون ولري نو لارښوونې لیږئ.",
+    "loadRepliesFailed": "ځوابونه بار نه شول",
+    "refreshFailed": "بیا تازه کول ناکامه شول",
+    "noRepliesYet": "اوس مهال ځواب نشته",
+    "noRepliesYetSub": "کله چې دا کارن پوسټونو ته ځواب ووایي، نو دلته به ښکاره شي.",
+    "noMoreReplies": "نور ځوابونه نشته"
   },
   "tv": {
     "title": "TV",
@@ -1751,7 +1795,11 @@
     "loadingPrice": "بیه لوډیږي…",
     "topUpExplanation": "DHB په زنځیر کې د DeHub د اعلاناتو خزانې ته لیږدول کیږي، بیا د خپلواکې زنځیري تاییدۍ وروسته ستاسو بیلانس ته اضافه کیږي.",
     "paymentHistory": "د پیسو ورکولو تاریخچه",
-    "noPayments": "تر اوسه کومې پیسې نه دي ورکړل شوې"
+    "noPayments": "تر اوسه کومې پیسې نه دي ورکړل شوې",
+    "sponsored": "سپانسر شوی",
+    "morePosts": "نور پوسټونه",
+    "loadMorePosts": "نور پوسټونه بار کړئ",
+    "playAdVideo": "د اعلاناتو ویډیو پلی کړئ"
   },
   "buyCoins": {
     "title": "سکې واخلئ",
@@ -2182,7 +2230,8 @@
     "privateBalanceMode": "د شخصي بیلانس حالت فعال دی",
     "addressHidden": "پته پټه ده",
     "allowInFeeds": "دې کاروونکي ته اجازه ورکړئ چې ستاسو په فیډونو کې ښکاره شي",
-    "hideContent": "د هغوی منځپانګه پټه کړئ او اړیکې محدودې کړئ"
+    "hideContent": "د هغوی منځپانګه پټه کړئ او اړیکې محدودې کړئ",
+    "a11yLabel": "د پروفایل اختیارونه"
   },
   "toasts": {
     "saved_to_bookmarks": "بکمارکونو کې خوندي شو",
@@ -2551,7 +2600,8 @@
     "roles": {
       "owner": "مالک",
       "moderator": "مدیر",
-      "member": "غړی"
+      "member": "غړی",
+      "admin": "ادمین"
     },
     "time": {
       "today": "نن",
@@ -2560,7 +2610,126 @@
       "weeks": "{{count}} اونۍ",
       "months": "{{count}} میاشتې",
       "years": "{{count}} کلونه"
-    }
+    },
+    "chatPanel": {
+      "anon": "ناپېژانده",
+      "edited": "ایډیټ شوی",
+      "deleteTitle": "پیغام حذف کړئ",
+      "deleteConfirm": "دا پیغام حذف کړئ؟ دا نه شي بیرته اخیستل کیدای.",
+      "muted": "تاسو خاموش یاست",
+      "postingDisabled": "دلته د غړو لپاره پوسټ کول بند دي",
+      "mediaMessage": "رسنۍ",
+      "pinnedMessage": "ګنډل شوی پیغام",
+      "showEarlier": "مخکیني پیغامونه وښایاست",
+      "editingMessage": "د پیغام سمول",
+      "copied": "پيام هاي کپي شده",
+      "copyText": "د متن کاپي کول",
+      "mutedUntil": "تریاک تر هغه وخته چې {{date}} شي",
+      "slowMode": "ورو ورو حالت: هر {{interval}} یو پیغام"
+    },
+    "manage": {
+      "dismissAdminTitle": "د اداري فساد له منځه وړل",
+      "cancel": "لغوه کول",
+      "dismissAdmin": "د اداري فساد له منځه وړل",
+      "roleAdmin": "د مدیر په توګه",
+      "roleMember": "د غړي په توګه",
+      "whatCanTheyDo": "دغه اداره څه کولای شي ؟",
+      "rightNotHeld": "تاسو د خپل ځان د دې حق نه لري",
+      "customTitle": "د عامو او غیر معمولی نومونو",
+      "customTitlePlaceholder": "د مديريت په اړه",
+      "customTitleHint": "د دې پر ځای چې د اداري فساد پرضد لاس په کار شئ، د اداري فساد پرضد مبارزه وکړئ.",
+      "saveChanges": "بدلونونه خوندي کړئ",
+      "promote": "ترویج کړئ",
+      "tabs": {
+        "members": "غړي",
+        "admins": "مدیران په په",
+        "permissions": "د جوازونو",
+        "invites": "دعوتونه وړاندې کوي",
+        "rules": "قواعد او قواعد",
+        "recentActions": "وروستۍ کړنې",
+        "danger": "د خطر زون"
+      },
+      "title": "د مديريت په اړه",
+      "purgeTitle": "خپل ټول پیغامونه حذف کړئ ؟",
+      "purgeConfirm": "له منځه یوسئ",
+      "kickTitle": "د غړيتوب لغوه کول ؟",
+      "kickConfirm": "لرې کړئ",
+      "bannedPermanent": "منع شوی — د تل لپاره",
+      "mutedPermanent": "تلپاتې — د تلپاتې",
+      "editAdminRights": "د مدیر حقونه بدل کړئ",
+      "promoteToAdmin": "د مدیر په توګه وټاکئ",
+      "unmute": "چوپتیا مات کړئ",
+      "mute": "چوپ کړئ",
+      "unban": "بندیز لیرې کړئ",
+      "ban": "بندیز ولګوئ",
+      "deleteAllMessages": "ټول پیغامونه حذف کړئ",
+      "removeFromCommunity": "له ګروپ څخه لرې کړئ",
+      "noActionsAvailable": "تاسو نشئ کولی دا غړی تنظیم کړئ.",
+      "showMore": "نور وښایاست",
+      "joinRequests": "د ګډون غوښتنې",
+      "approve": "تایید کړئ",
+      "reject": "رد کړئ",
+      "members": "غړي",
+      "searchMembers": "د والټ پته لخوا لټون وکړئ",
+      "noMembersMatch": "هیڅ غړی ورسره سمون نه خوري.",
+      "noMembers": "تر اوسه هیڅ غړی نشته.",
+      "muted": "چوپ شوي",
+      "banned": "بندیز شوي",
+      "muteEffect": "دوی په ګروپ کې پاتې کیږي مګر تر هغه وخته چې د چوپتیا موده پای ته ورسیږي نشي کولی پوسټ وکړي.",
+      "banEffect": "دوی له چیټ څخه لرې شوي او تر هغه وخته چې بندیز لیرې شي بیا نشي ګډون کولی.",
+      "durationLabel": "موده",
+      "reasonLabel": "دلیل (اختیاري)",
+      "reasonPlaceholder": "ولې دوی بندیز کیږي؟",
+      "alsoDeleteMessages": "د دوی ټول پیغامونه هم حذف کړئ",
+      "confirmMute": "غړی چوپ کړئ",
+      "confirmBan": "غړي ته بندیز ولګوئ",
+      "rulesUpdated": "قوانین تازه شول",
+      "rulesTitle": "د ګروپ قوانین",
+      "rulesEmpty": "تر اوسه هیڅ قانون نشته — لاندې لومړی قانون اضافه کړئ.",
+      "rulePlaceholder": "قاعده تشریح کړئ",
+      "addRule": "قاعده اضافه کړئ",
+      "saveRules": "قوانین را ذخیره کنید",
+      "dismissAdminBody": "{{wallet}} به یک عضو عادی تبدیل خواهد شد.",
+      "purgeBody": "هر پیامی که {{name}} در این انجمن ارسال کرده است حذف خواهد شد.",
+      "kickBody": "{{name}} از انجمن حذف خواهد شد. آنها می توانند بعداً دوباره بپیوندند.",
+      "bannedUntil": "تا {{date}} ممنوع شد",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "تا {{date}} صدا خاموش شد",
+      "bannedUntilShort": "تا {{date}}",
+      "muteTitle": "{{name}} را صدا خاموش کنید",
+      "banTitle": "{{name}} را ممنوع کنید",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} از {{max}}",
+      "moveRuleUp": "قاعده را بالا ببرید",
+      "moveRuleDown": "قاعده را پایین ببرید",
+      "deleteRule": "قاعده را حذف کنید",
+      "rights": {
+        "changeInfo": "اطلاعات انجمن را تغییر دهید",
+        "changeInfoHint": "نام، توضیحات، آواتار و بنر را ویرایش کنید",
+        "deleteMessages": "پیام ها را حذف کنید",
+        "deleteMessagesHint": "هر پیامی را از چت انجمن حذف کنید",
+        "restrictMembers": "کاربران را ممنوع کنید",
+        "restrictMembersHint": "اعضا را صدا خاموش، حذف و ممنوع کنید",
+        "inviteUsers": "کاربران را از طریق لینک دعوت کنید",
+        "inviteUsersHint": "لینک های دعوت را ایجاد و لغو کنید",
+        "pinMessages": "پیام ها را پین کنید",
+        "pinMessagesHint": "یک پیام را به بالای چت پین کنید",
+        "manageEvents": "رویدادها را مدیریت کنید",
+        "manageEventsHint": "رویدادهای انجمن را ایجاد و ویرایش کنید",
+        "addAdmins": "مدیران جدید اضافه کنید",
+        "addAdminsHint": "غړي ترویج کړئ او د مدیرانو حقونه یې ترمیم کړئ چې دوی اضافه کړي",
+        "remainAnonymous": "پټ پاتې شئ",
+        "remainAnonymousHint": "دا مدیر له غړو لیست څخه پټ کړئ"
+      },
+      "durations": {
+        "oneHour": "1 ساعت",
+        "eightHours": "8 ساعتونه",
+        "oneDay": "1 ورځ",
+        "oneWeek": "1 اونۍ",
+        "forever": "تل"
+      }
+    },
+    "chooseAvatar": "اوتار غوره کړئ"
   },
   "work": {
     "title": "جایزې",
@@ -2912,7 +3081,9 @@
       "shipped": "لیږل شوی",
       "completed": "بشپړ شوی",
       "cancelled": "لغوه شوی"
-    }
+    },
+    "removePhoto": "عکس لرې کړئ",
+    "listingOptions": "د لیست کولو اختیارونه"
   },
   "accounts": {
     "subtitle": "بشپړ حسابونه د پلورلو لپاره، بیه یې په DHB کې",
@@ -3277,7 +3448,14 @@
     "removeFollowerHint": "د دوی لرې کولو لپاره پیروي کونکي فشار ورکړئ او ونیسئ.",
     "cancel": "لغوه کړئ",
     "remove": "لرې کړئ",
-    "thisUser": "د دې کاروونکي"
+    "thisUser": "د دې کاروونکي",
+    "cancelRequestTo": "د @{{username}} تعقیب غوښتنه لغوه کړئ؟",
+    "followingUser": "د @{{username}} تعقیب کول",
+    "contentUnavailable": "محتوا نشته",
+    "youBlockedBody": "تاسو به یې پوسټونه ونه ګورئ یا ورسره اړیکه نشئ نیولی. د لاسرسي د بیا رغولو لپاره بلاک کړئ.",
+    "restrictedBody": "دې کارونکي ستاسو حساب سره تعاملات محدود کړي دي.",
+    "requestPendingBody": "ستاسو د تعقیب غوښتنه واستول شوه. کله چې دوی ستاسو غوښتنه ومني نو تاسو به یې پوسټونه وګورئ.",
+    "followToSeePosts": "د دې حساب تعقیب کړئ ترڅو یې پوسټونه وګورئ."
   },
   "reactionInfo": {
     "title": "عکس العملونه",
@@ -3579,7 +3757,8 @@
     "needGas": "په {{chain}} کې د ګاز لپاره اصلي {{token}} ته اړتیا ده.",
     "bridging": "پل کیږي…",
     "bridgeAction": "پله {{from}} → {{to}}",
-    "failed": "پله ناکامه شوه"
+    "failed": "پله ناکامه شوه",
+    "sentArriveShortly": "{{amount}} DHB له {{from}} څخه {{to}} ته لیږل شوی. ټوکن ژر راځي."
   },
   "banned": {
     "title": "ستاسو حساب بند شوی دی",
@@ -3756,7 +3935,16 @@
     "legacyRecovered": "ستاسو زوړ حساب{{suffix}} تایید شو او والټ یې بېرته ترلاسه شو. یو پټنوم وټاکئ چې له اوسه پر دې وسیله — پر دې ټیلیفون او هر بل ځای — یې وساتي.",
     "passwordMin": "پټنوم (لږ تر لږه {{min}} توري)",
     "newPasswordMin": "نوی پټنوم (لږ تر لږه {{min}} توري)",
-    "newWalletPasswordMin": "د نوي والټ پټنوم (لږ تر لږه {{min}} توري)"
+    "newWalletPasswordMin": "د نوي والټ پټنوم (لږ تر لږه {{min}} توري)",
+    "deviceCheckCancelled": "د وسیلې چک لغوه شو - هیڅ بدلون نه دی شوی.",
+    "savePhraseTitle": "خپل د بیا رغولو جمله خوندي کړئ",
+    "startOverTitle": "له یوه نوي والټ سره بیا پیل کړئ",
+    "secureNewWalletTitle": "خپل نوی والټ خوندي کړئ",
+    "secureWalletTitle": "خپل والټ خوندي کړئ",
+    "unlockOnMobileTitle": "په ګرځنده وسیله خلاص کړئ",
+    "oldAccountFoundTitle": "زړې حساب موندل شوی",
+    "unlockWalletTitle": "خپل والټ خلاص کړئ",
+    "phraseExplainer": "ستاسو والټ به د دې تلیفون بایومیټریک لخوا خوندي شي. دا خلاصول <em> یوازې په دې تلیفون کار کوي</em> - دا 12 کلمې یوازې بیرته ستنیدو لاره ده که تاسو DeHub بیا نصب کړئ، تلیفون بدل کړئ، یا یې له لاسه ورکړئ."
   },
   "transcript": {
     "title": "لیکنه",
@@ -3942,7 +4130,38 @@
     "subscribe": "ګډون وکړئ",
     "subscriberCount_one": "{{count}} ګډونوال",
     "subscriberCount_other": "{{count}} ګډونوال",
-    "subscribeToForRich": "په <price>{{price}}</price> کې د <name>{{name}}</name> ګډون وکړئ"
+    "subscribeToForRich": "په <price>{{price}}</price> کې د <name>{{name}}</name> ګډون وکړئ",
+    "loadPlansFailed": "د پلان بارولو کې پاتې راغله",
+    "subscriberContent": "د ګډونوالو محتوا",
+    "subscriberContentSub": "د ګډونوالو لپاره ځانګړي مینځپانګې وړاندې کولو لپاره پلانونه جوړ کړئ",
+    "createFirstPlan": "خپل لومړی پلان جوړ کړئ",
+    "addNewPlan": "نوی پلان اضافه کړئ",
+    "durations": {
+      "oneMonth": "۱ میاشت",
+      "threeMonths": "۳ میاشتې",
+      "sixMonths": "۶ میاشتې",
+      "oneYear": "۱ کال",
+      "lifetime": "تلپاتې"
+    },
+    "planNameRequired": "د پلان نوم لازمي دی",
+    "enterValidPrice": "یو سم قیمت دننه کړئ",
+    "availableChains": "ګډونونه اوس مهال په بیس او BNB کې شتون لري",
+    "waitForSwitch": "د ګډون شبکې ته د بدلیدو پای ته انتظار وکړئ",
+    "connectAndWait": "خپل والټ وصل کړئ او د ګډون شبکې ته انتظار وکړئ",
+    "planUpdated": "پلان تازه شو",
+    "creating": "جوړول...",
+    "planPublished": "پلان جوړ او خپور شو",
+    "createPlanTitle": "د ګډون پلان جوړ کړئ",
+    "network": "د ګډون شبکه",
+    "planNameLabel": "د پلان نوم *",
+    "planNamePlaceholder": "د مثال په توګه پریمیم، ګولډ، VIP...",
+    "descriptionPlaceholder": "ګډونوال څه ترلاسه کوي...",
+    "priceLabel": "قیمت (USD) *",
+    "legacyMigrationNote": "سپما دا پخوانی DHB پلان د لیست کیدو دمخه نرخ کې د ډالر قیمتونو ته لیږدوي.",
+    "benefits": "ګټې",
+    "benefitPlaceholder": "یوه ګټه اضافه کړئ...",
+    "createAndPublish": "جوړ کړئ او خپاره کړئ",
+    "publishingOnChain": "خپرول یو آن-چین معامله ده"
   },
   "live": {
     "notSet": "نه دی ټاکل شوی",
@@ -4058,7 +4277,22 @@
     "openingCheckout": "تادیه پرانیستل کیږي…",
     "checkoutUnavailable": "د تادیې لینک شتون نلري. بیا هڅه وکړئ.",
     "acceptTerms": "زه مني <terms>د خدماتو شرایط</terms>",
-    "goToProfile": "ته وليږي تر څو د پوښتنې Profile"
+    "goToProfile": "ته وليږي تر څو د پوښتنې Profile",
+    "aboutTitle": "د DeHub او تادیاتو په اړه",
+    "aboutSubtitle": "ستاسو د بې سیمه توکن تادیاتو دروازه",
+    "aboutTokenTitle": "DeHub ټوکن",
+    "aboutTokenBody": "توکنونه د جوړونکو ګډون، سټریمرانو ته د ټیپ ورکولو یا د مینځپانګې خلاصولو لپاره کارول کیږي. هرڅومره چې تاسو ډیر وساتئ، ستاسو فیسونه ټیټ وي او تاسو ډیر سوپر پاورونه خلاص کړئ لکه د وخت رجحان وده او د تایید بیرجونه.",
+    "aboutInstantTitle": "فوري تادیات",
+    "aboutInstantBody": "د سټریپ په کارولو سره، تاسو کولی شئ په سمدستي او په اسانۍ سره هر هغه حساب ته توکونه واخلئ چې تاسو پکې لاګ ان یاست. DeHub توکونه ساده او د ټولو لپاره جوړوي. که تاسو نورو مرستې ته اړتیا لرئ، یوازې زموږ د 24/7 ژوندی ټولنې چیټ ته راشئ او د مدیر مرستې غوښتنه وکړئ.",
+    "aboutSecureTitle": "خوندي ګیټ وے",
+    "aboutSecureBody": "د تادیې ټول توضیحات د سټریپ لخوا خوندي شوي او په خوندي ډول پروسس کیږي. موږ ستاسو حساس معلومات یا د کارت توضیحاتو ته لاسرسی یا ذخیره نشو کولی، تاسو ته د ذهن بشپړ آرام درکوي.",
+    "transfersSummary": "د لیږدونو لنډیز",
+    "availableToBuy": "اوس پیرودلو لپاره شتون لري",
+    "noSupplyShort": "عرضه نشته",
+    "topUpSubtitle": "$DHB د کارت په واسطه وپیرئ او د فوري کارونې لپاره وړیا ګاز ترلاسه کړئ",
+    "noTxHash": "د معاملې هش ونه موندل شو",
+    "latestTransactions": "وروستي لیږدونه",
+    "showAll": "ټول وښایاست"
   },
   "musicSheet": {
     "title": "سندره جوړه کړئ",
@@ -4187,7 +4421,13 @@
     "followUpNote": "موږ ممکن ستاسو د نظر په اړه د نورو پوښتنو لپاره اړیکه ونیسو",
     "submitFeedback": "نظر ولیږئ",
     "provideFeedback": "مهرباني وکړئ خپل نظر ولیکئ",
-    "thankYou": "ستاسو د نظر لپاره مننه!"
+    "thankYou": "ستاسو د نظر لپاره مننه!",
+    "submitFailed": "د فیډبیک سپارلو کې پاتې راغلی. مهرباني وکړئ بیا هڅه وکړئ.",
+    "maybeLater": "شاید وروسته",
+    "helpUsImprove": "موږ سره مرسته وکړئ",
+    "rateExperience": "تاسو خپل تجربه څنګه درجه بندي کوئ؟",
+    "telegramOptional": "ټیلیګرام (اختیاري)",
+    "discordOptional": "ډیسکارډ (اختیاري)"
   },
   "migrate": {
     "clearAll": "همه چی واضحه",
@@ -4299,7 +4539,14 @@
       "blueWhale": "ترټولو لوی شی چې ما کله هم ژوند کړی دی. دا هغه څه دي چې تاسو یې یاست.",
       "megalodon": "ستاسو د پاچاهۍ په هیله — نن ټکی اسیا"
     },
-    "continue": "ته وليږي تر څو د پوښتنې DeHub"
+    "continue": "ته وليږي تر څو د پوښتنې DeHub",
+    "none": "هیڅ نه",
+    "noBadgeYet": "اوس مهال بیرج نشته",
+    "next": "بله",
+    "topTier": "لوړ پوړ",
+    "toNextTier": "{{amount}} DHB تر {{tier}} پورې",
+    "everyTierUnlocked": "هر پوړ خلاص شو",
+    "holdNote": "یوځل چې بیرج خلاص شي، دا ستاسو لپاره دی تر څو چې تاسو خپل DHB وساتئ. د نوي بیرج خلاصولو لپاره اړین توکونو شمیر د توکون قیمت سره بدلیدلی شي."
   },
   "passwordStrength": {
     "veryWeak": "ډېر کمزوری",
@@ -4381,7 +4628,11 @@
     },
     "ttsLabel": "یو څه په لوړ غږ ووایاست",
     "ttsPlaceholder": "په ټویټر کې ولولئ...",
-    "ttsHint": "د هرچا لپاره لوستل کله چې تاسو خپل کور وپلټئ."
+    "ttsHint": "د هرچا لپاره لوستل کله چې تاسو خپل کور وپلټئ.",
+    "sendAGift": "ډالۍ واستوئ",
+    "minPlaceholder": "لږترلږه: {{amount}}",
+    "minGift": "لږترلږه ډالۍ {{amount}} ده",
+    "sendGift": "ډالۍ واستوئ"
   },
   "goLive": {
     "streamKey": "سٹریم کلید",
@@ -4756,7 +5007,8 @@
         "title": "وګورئ چې پیسې څنګه کار کوي",
         "body": "ومومئ چې څنګه لارښوونې، بیجونه او سوپر پاورونه هغه څه ته اړوي چې تاسو یې دلته ترسره کوئ."
       }
-    }
+    },
+    "swipeToStart": "د پیل کولو لپاره سویپ کړئ"
   },
   "conversation": {
     "commonGround": {
@@ -5238,5 +5490,18 @@
     "toastPaidSettled": "تادیه وشوه — معامله تصفیه شوه",
     "walletNotReady": "ستاسو والټ لا چمتو نه دی — یوه شېبه وروسته بیا هڅه وکړئ.",
     "wrongChain": "دا معامله په {{chain}} کې تصفیه کېږي. په ترتیباتو کې {{chain}} ته واوړئ، بیا هڅه وکړئ."
+  },
+  "moderation": {
+    "appealDuplicate": "تاسو دمخه دا غوښتنه کړې",
+    "appealSent": "د استیناف غوښتنه شوې",
+    "appealFailed": "د دې غوښتنې غوښتنه نشي کولی",
+    "appealTitle": "د دې پریکړې غوښتنه وکړئ",
+    "appealSubtitle": "یو څوک به دا لوستل او بیا به پریکړه وکړي.",
+    "appealPlaceholder": "څه فکر کوئ چې ورک شوي یاست ؟ د مینځپانګې په اړه مینځپانګه د هرڅه څخه ډیر مرسته کوي.",
+    "appealSend": "د استیناف غوښتنه وکړئ",
+    "appealFootnote": "تاسو د مرجع شمیره ترلاسه کوئ، او ځواب دلته راځي. د پریکړې له مخې د استیناف غوښتنه.",
+    "appealRef": "حواله {{ref}}",
+    "appealSubtitleSubject": "یو سړی به دا ولولي او بیا به {{subject}} ته وګوري.",
+    "appealMore": "اوس هم اړین کرکټرونه: {{count}}"
   }
 }

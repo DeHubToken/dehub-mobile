@@ -615,7 +615,11 @@
     },
     "aiScraping": {
       "hintAllow": "سیستەمەکان و گەڕۆکەکانی زیرەکی دەستکرد کە ئەم نیشانە ڕێز دەگرن، دەتوانن لەسەر دەنگ، هونەر و نووسینەکانی تۆ مەشق بکەن."
-    }
+    },
+    "chainIdLabel": "زنجیرە ID: {{id}}",
+    "exportPkConfirmPhrase": "تێدەگەم",
+    "exportPkCopy": "کلیلە تایبەتەکە کۆپی بکە",
+    "e2eAutomatic": "خۆکارانە"
   },
   "common": {
     "mute": "Bêdeng bike",
@@ -654,7 +658,17 @@
     "copy": "Kopî bike",
     "optionalSuffix": "(bijarte)",
     "yesterday": "Duh",
-    "ok": "Baş e"
+    "ok": "Baş e",
+    "goesToHomeFeed": "دەچێتە سەر لاپەڕەی سەرەکی",
+    "openMenu": "پەنجەرەکە بکەرەوە",
+    "scrollsFeedToTop": "دەگەرێتەوە سەرەوەی لاپەڕەکە و نوێی دەکاتەوە",
+    "notificationsUnread": "ئاگادارکردنەوەکان، {{unread}} نەخوێندراو",
+    "errorDetails": "وردەکاری هەڵە:",
+    "failedToLoad": "بارکردن سەرکەوتوو نەبوو",
+    "noInternetTitle": "نییە پەیوەندی ئینتەرنێت",
+    "noInternetBody": "تکایە پەیوەندی ئینتەرنێتەکەت بزانە و دووبارە هەوڵ بدە. پێویستت بە پەیوەندی ئینتەرنێت هەیە بۆ بەکارهێنانی DeHub.",
+    "noInternetStatus": "لە دەرەوەی هێڵ - نییە پەیوەندی تۆڕ",
+    "noInternetHint": "دڵنیابە Wi-Fi یان داتای مۆبایل کراوەیە، پاشان لێبدە \"{{action}}\""
   },
   "tip": {
     "title": "Bexşîş Bişîne",
@@ -1476,7 +1490,12 @@
     "chooseUsernameBody": "Ji bo berdewamiyê navekî bikarhêner û navekî xuyanî hilbijêre. Tu dikarî paşê wan biguherînî.",
     "checkingAvailability": "Berdestbûn tê kontrolkirin…",
     "usernameTakenHint": "Ev nav hatiye girtin — hejmar an binxêzek lê zêde bike",
-    "displayNameLength": "Divê navê xuyanî 2-50 tîp be."
+    "displayNameLength": "Divê navê xuyanî 2-50 tîp be.",
+    "loginFailedRetry": "چوونە ژوورەوە سەرکەوتوو نەبوو. تکایە دووبارە هەوڵ بدە.",
+    "sendCodeFailedRetry": "نەیتوانی کۆد بنێرێت. تکایە دووبارە هەوڵ بدە.",
+    "invalidCodeRetry": "کۆدی هەڵەیە. تکایە دووبارە هەوڵ بدە.",
+    "invalidEmailOrPassword": "ئیمەیڵ یان وشەی نهێنی هەڵەیە.",
+    "welcomeToDehub": "بەخێربێیت بۆ DeHub"
   },
   "messages": {
     "smartRepliesOff": "Bersivên pêşniyarkirî hatin girtin",
@@ -1547,7 +1566,32 @@
     "offerWorthNow": "Bi qurê niha nêzîkî {{amount}} DHB",
     "offerNotePlaceholder": "Notek zêde bike (bijarte)",
     "offerCommitsNothing": "Pêşniyarkirin tiştekî naxwaze û tu DHB nagire. Tu tenê dema ku xwedî qebûl bike didî.",
-    "offerNeedsHandle": "Ev hesab navê bikarhêner tune ku jê re pêşniyar bê kirin."
+    "offerNeedsHandle": "Ev hesab navê bikarhêner tune ku jê re pêşniyar bê kirin.",
+    "noPostsYet": "هیچ پۆستێک نییە",
+    "noPostsYetSub": "ناوەرۆک لێرە دەردەکەوێت کاتێک پۆست دەکرێت",
+    "noPinnedPosts": "هیچ پۆستێکی دانەنراو نییە",
+    "noPinnedPostsSub": "پۆستە دانەنراوەکان لێرە دەردەکەون",
+    "emptyLiked": "هیچ پۆستێکی بە دڵ نەبوو نییە.",
+    "emptySaved": "هیچ پۆستێکی پارێزراو نییە.",
+    "emptyUnlocked": "هیچ پۆستێکی کراوە نییە.",
+    "emptyWatched": "هیچ مێژوویەکی بینین نییە.",
+    "emptyFolder": "هیچ پۆستێک لەم سندوقەدا نییە.",
+    "emptyPosts": "هیچ پۆستێک نییە.",
+    "couldNotLoadPosts": "نەیتوانی پۆستەکان بار بکات.",
+    "noPostsOrReplies": "هیچ پۆست، کۆمێنت، یان وەڵامێک هێشتا نییە",
+    "noPostsOrRepliesSub": "لێرە دەردەکەون",
+    "avatarUpdated": "ئاواتار نوێ کرایەوە",
+    "coverUpdated": "وێنەی بەرگ نوێ کرایەوە",
+    "couldNotPickImage": "نەتوانرا وێنە هەڵبژێردرێت",
+    "changeCoverImage": "وێنەی بەرگ بگۆڕە",
+    "changeAvatar": "ئاواتار بگۆڕە",
+    "verifiedEnsName": "ناوی ENS پشتڕاستکراوە {{name}}",
+    "notFullyJoined": "ئەم بەکارهێنەرە هێشتا بە تەواوی نەهاتووەتە ناو. ناوی بەکارهێنەریان وەرنەگرتووە یان ڕێکخستنی پڕۆفایلەکەیان تەواو نەکردووە. هێشتا دەتوانیت چالاکیی گشتی ببینیت و ئەگەر هەبێت ئامۆژگاری بنێریت.",
+    "loadRepliesFailed": "شکستی هێنا لە بارکردنی وەڵامەکان",
+    "refreshFailed": "شکستی هێنا لە نوێکردنەوە",
+    "noRepliesYet": "هێشتا وەڵام نییە",
+    "noRepliesYetSub": "کاتێک ئەم بەکارهێنەرە وەڵامی پۆستەکان دەداتەوە، لێرە دەردەکەون.",
+    "noMoreReplies": "هیچ وەڵامێکی تر نییە"
   },
   "tv": {
     "title": "TV",
@@ -1630,7 +1674,11 @@
     "loadingPrice": "Biha tê barkirin…",
     "topUpExplanation": "DHB li ser zincîrê tê şandin xezîneya reklamê ya DeHub, paşê piştî pejirandina serbixwe ya li ser zincîrê tê zêdekirin balansa te.",
     "paymentHistory": "Dîroka dayînê",
-    "noPayments": "Hîn dayîn tune"
+    "noPayments": "Hîn dayîn tune",
+    "sponsored": "سپۆنسەرکراو",
+    "morePosts": "زیاتر پۆست",
+    "loadMorePosts": "زیاتر پۆست بار بکە",
+    "playAdVideo": "ڤیدیۆی ڕیکلامەکە لێبدە"
   },
   "buyCoins": {
     "title": "Dirav Bikirin",
@@ -2042,7 +2090,8 @@
     "privateBalanceMode": "Moda balansa taybet çalak e",
     "addressHidden": "Navnîşan veşartî ye",
     "allowInFeeds": "Destûrê bide vî bikarhênerî ku di nûçegihanên te de xuya bibe",
-    "hideContent": "Naveroka wan veşêre û têkiliyan sînordar bike"
+    "hideContent": "Naveroka wan veşêre û têkiliyan sînordar bike",
+    "a11yLabel": "ڕەچاوەکانی پڕۆفایل"
   },
   "toasts": {
     "saved_to_bookmarks": "پاشەکەوت کرا",
@@ -2369,7 +2418,8 @@
     "roles": {
       "owner": "Xwedî",
       "moderator": "Moderator",
-      "member": "Endam"
+      "member": "Endam",
+      "admin": "بەڕێوەبەر"
     },
     "time": {
       "today": "îro",
@@ -2378,7 +2428,126 @@
       "weeks": "{{count}} hefte",
       "months": "{{count}} meh",
       "years": "{{count}} sal"
-    }
+    },
+    "chatPanel": {
+      "anon": "بێ ناو",
+      "edited": "دەستکاری کراوە",
+      "deleteTitle": "سڕینەوەی نامە",
+      "deleteConfirm": "ئەم نامەیە بسڕدرێتەوە؟ ئەمە ناگەڕێتەوە.",
+      "muted": "تۆ بێدەنگ کراویت",
+      "postingDisabled": "بڵاوکردنەوە بۆ ئەندامانی ئەم شوێنە ناچالاک کراوە",
+      "mediaMessage": "میدیا",
+      "pinnedMessage": "نامەی دانراو",
+      "showEarlier": "نامەکانی پێشووتر نیشان بدە",
+      "editingMessage": "دەستکاری کردنی نامە",
+      "copied": "نامەکە کۆپی کرا",
+      "copyText": "دەق کۆپی بکە",
+      "mutedUntil": "تۆ بێدەنگ کراویت تا {{date}}",
+      "slowMode": "باری خاوبوون: نامەیەک هەموو {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "ڕەتکردنەوەی بەڕێوەبەر",
+      "cancel": "هەڵوەشاندنەوە",
+      "dismissAdmin": "ڕەتکردنەوەی بەڕێوەبەر",
+      "roleAdmin": "بەڕێوەبەر",
+      "roleMember": "ئەندام",
+      "whatCanTheyDo": "ئەم بەڕێوەبەرە چی دەتوانێت بکات؟",
+      "rightNotHeld": "خۆت ئەم مافەت نییە",
+      "customTitle": "ناونیشانی تایبەت",
+      "customTitlePlaceholder": "بەڕێوەبەر",
+      "customTitleHint": "لە جیاتی نیشانی پێدراوی بەڕێوەبەر پیشان دەدرێت.",
+      "saveChanges": "پاشەکەوتکردنی گۆڕانکارییەکان",
+      "promote": "پرۆمۆتکردن",
+      "tabs": {
+        "members": "ئەندامان",
+        "admins": "بەڕێوەبەران",
+        "permissions": "مافەکان",
+        "invites": "بانگهێشتەکان",
+        "rules": "یاسا",
+        "recentActions": "کردارە نوێیەکان",
+        "danger": "ناوچەی مەترسیدار"
+      },
+      "title": "بەڕێوەبردن",
+      "purgeTitle": "سڕینەوەی هەموو نامەکان؟",
+      "purgeConfirm": "سرینەوە",
+      "kickTitle": "لابردنی ئەندام؟",
+      "kickConfirm": "سڕینەوە",
+      "bannedPermanent": "قەدەغەکراو — هەمیشەیی",
+      "mutedPermanent": "بێدەنگ کراو — هەمیشەیی",
+      "editAdminRights": "مافەکانی بەڕێوەبەر دەستکاریکە",
+      "promoteToAdmin": "بکە بە بەڕێوەبەر",
+      "unmute": "بێدەنگکردن هەڵگرە",
+      "mute": "بێدەنگکردن",
+      "unban": "قەدەغەکردن هەڵگرە",
+      "ban": "قەدەغەکردن",
+      "deleteAllMessages": "سڕینەوەی هەموو نامەکان",
+      "removeFromCommunity": "لێسەندنەوە لە کۆمەڵگە",
+      "noActionsAvailable": "ناتوانیت ئەم ئەندامە بەڕێوەببەیت.",
+      "showMore": "زیاتر نیشان بدە",
+      "joinRequests": "داواکارییەکانی چوونە ژوورەوە",
+      "approve": "پەسەندکردن",
+      "reject": "ڕەتکردنەوە",
+      "members": "ئەندامان",
+      "searchMembers": "گەڕان بە ناونیشانی والێت",
+      "noMembersMatch": "هیچ ئەندامێک ناگونجێت.",
+      "noMembers": "هێشتا هیچ ئەندامێک نییە.",
+      "muted": "بێدەنگکراو",
+      "banned": "قەدەغەکراو",
+      "muteEffect": "ئەوان لە کۆمەڵگەدا دەمێننەوە بەڵام ناتوانن پۆست بکەن تا کاتی بێدەنگکردنەکە تەواو دەبێت.",
+      "banEffect": "ئەوان لە چاتەکە دەردەکرێن و ناتوانن بگەڕێنەوە تا کاتی قەدەغەکردنەکە هەڵدەگیرێت.",
+      "durationLabel": "ماوە",
+      "reasonLabel": "هۆکار (ئارەزوومەندانە)",
+      "reasonPlaceholder": "بۆچی قەدەغە دەکرێن؟",
+      "alsoDeleteMessages": "هەروەها هەموو نامەکانی بسڕەوە",
+      "confirmMute": "ئەندام بێدەنگ بکە",
+      "confirmBan": "ئەندام قەدەغە بکە",
+      "rulesUpdated": "ڕێنماییەکان نوێ کرانەوە",
+      "rulesTitle": "ڕێنماییەکانی کۆمەڵگە",
+      "rulesEmpty": "هێشتا هیچ ڕێنماییەک نییە — یەکەمینیان لە خوارەوە زیاد بکە.",
+      "rulePlaceholder": "ڕێساکە وەسف بکە",
+      "addRule": "ڕێسایەک زیاد بکە",
+      "saveRules": "ڕێساکان بپارێزە",
+      "dismissAdminBody": "{{wallet}} دەگەڕێتەوە بۆ ئەندامێکی ئاسایی.",
+      "purgeBody": "هەموو نامەیەک کە {{name}} ناردوویەتی لەم کۆمەڵگەیەدا لادەبرێت.",
+      "kickBody": "{{name}} لە کۆمەڵگە لادەبرێت. ئەوان دەتوانن دواتر دیسانەوە بچنە ژوورەوە.",
+      "bannedUntil": "قەدەغەکراو تا {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "بێدەنگکراو تا {{date}}",
+      "bannedUntilShort": "تا {{date}}",
+      "muteTitle": "{{name}} بێدەنگ بکە",
+      "banTitle": "{{name}} قەدەغە بکە",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} لە {{max}}",
+      "moveRuleUp": "ڕێساکە بەرەو سەرەوە ببە",
+      "moveRuleDown": "ڕێساکە بەرەو خوارەوە ببە",
+      "deleteRule": "ڕێساکە بسڕەوە",
+      "rights": {
+        "changeInfo": "زانیاری کۆمەڵگە بگۆڕە",
+        "changeInfoHint": "ناو، وەسف، ئاڤاتار و بانەرەکە دەستکاری بکە",
+        "deleteMessages": "نامەکان بسڕەوە",
+        "deleteMessagesHint": "هەر نامەیەک لە چاتی کۆمەڵگەدا لادەبات",
+        "restrictMembers": "بەکارهێنەران قەدەغە بکە",
+        "restrictMembersHint": "ئەندامان بێدەنگ بکە، لێیان دوور بکەرەوە و قەدەغەیان بکە",
+        "inviteUsers": "بەکارهێنەران لە ڕێگەی لینکەوە بانگهێشت بکە",
+        "inviteUsersHint": "لینکەکانی بانگهێشت دروست بکە و هەڵیانوەشێنەوە",
+        "pinMessages": "نامەکان بلکێنە",
+        "pinMessagesHint": "نامەیەک لەسەرەوەی چاتەکە بلکێنە",
+        "manageEvents": "ڕووداوەکان بەڕێوەبەرە",
+        "manageEventsHint": "ڕووداوەکانی کۆمەڵگە دروست بکە و دەستکاری بکە",
+        "addAdmins": "ئەدمینی نوێ زیاد بکە",
+        "addAdminsHint": "پرۆمۆتکردنی ئەندامان و دەستکاریکردنی مافەکانی بەڕێوەبەرەکان کە ئەوان زیادکراون",
+        "remainAnonymous": "بێ ناو بنووسە",
+        "remainAnonymousHint": "ئەم بەڕێوەبەرە لە لیستی ئەندامان شارەوە"
+      },
+      "durations": {
+        "oneHour": "١ کاتژمێر",
+        "eightHours": "٨ کاتژمێر",
+        "oneDay": "١ ڕۆژ",
+        "oneWeek": "١ هەفتە",
+        "forever": "هەتاهەتاییە"
+      }
+    },
+    "chooseAvatar": "وێنەی سەرەکی هەڵبژێرە"
   },
   "work": {
     "title": "Xelat",
@@ -2730,7 +2899,9 @@
       "shipped": "Şandî",
       "completed": "Temamkirî",
       "cancelled": "Betalkirî"
-    }
+    },
+    "removePhoto": "وێنە لابە",
+    "listingOptions": "ڕێکخستنەکانی نیشاندن"
   },
   "accounts": {
     "subtitle": "Hesabên tevahî ji bo firotinê, bi DHB bihabûyî",
@@ -3081,7 +3252,14 @@
     "removeFollowerBody": "{{name}} ئاگادار ناکرێتەوە کە لە شوێنکەوتووان لادراوە.",
     "removeFollowerHint": "بۆ لادانی شوێنکەوتوویەک، پەنجە بخەرە سەری و دایبگرە.",
     "cancel": "ھەڵوەشاندنەوە",
-    "remove": "لادان"
+    "remove": "لادان",
+    "cancelRequestTo": "داواکاریی شوێنکەوتنی @{{username}} هەڵوەشێنەوە؟",
+    "followingUser": "شوێنکەوتنی @{{username}}",
+    "contentUnavailable": "ناوەرۆک بەردەست نییە",
+    "youBlockedBody": "ناتوانیت پۆستەکانی ببینیت یان مامەڵەیان لەگەڵ بکەیت. لابردنی بلۆکەکە دەبێتە هۆی گەڕانەوەی دەستگەیشتن.",
+    "restrictedBody": "ئەم بەکارهێنەرە مامەڵەکان لەگەڵ هەژمارەکەت سنووردار کردووە.",
+    "requestPendingBody": "داواکاریی شوێنکەوتنت نێردرا. دوای پەسەندکردنی داواکارییەکەت دەتوانیت پۆستەکانی ببینیت.",
+    "followToSeePosts": "ئەم هەژمارە شوێن بکەوە بۆ بینینی پۆستەکانی."
   },
   "reactionInfo": {
     "labels": {
@@ -3335,7 +3513,8 @@
     "needGas": "Ji bo gazê li ser {{chain}} {{token}} ya resen hewce ye.",
     "bridging": "Tê veguhastin…",
     "bridgeAction": "Pir {{from}} → {{to}}",
-    "failed": "Pir bi ser neket"
+    "failed": "Pir bi ser neket",
+    "sentArriveShortly": "{{amount}} DHB نێردرا لە {{from}} → {{to}}. توکنەکان بەم زووانە دەگەن."
   },
   "teamUp": {
     "title": "Tîmê pêk bîne",
@@ -3506,7 +3685,16 @@
     "legacyRecovered": "Me hesabê te yê kevn{{suffix}} piştrast kir û berîka wê vegerand. Şîfreyekê saz bike ku ji niha pê ve wê li ser vê amûrê biparêze — li ser vê telefonê û li her derê din.",
     "passwordMin": "Şîfre (kêmî {{min}} tîp)",
     "newPasswordMin": "Şîfreya nû (kêmî {{min}} tîp)",
-    "newWalletPasswordMin": "Şîfreya berîka nû (kêmî {{min}} tîp)"
+    "newWalletPasswordMin": "Şîfreya berîka nû (kêmî {{min}} tîp)",
+    "deviceCheckCancelled": "پشکنینی ئامێر هەڵوەشایەوە — هیچ شتێک نەگۆڕدرا.",
+    "savePhraseTitle": "دەستەواژەی چاکبوونەوەت بپارێزە",
+    "startOverTitle": "بە سێتی نوێ دەست پێ بکە لەگەڵ سێتی نوێ",
+    "secureNewWalletTitle": "سێتی نوێی پارێزراوت پارێزە",
+    "secureWalletTitle": "سێتی پارێزراوت پارێزە",
+    "unlockOnMobileTitle": "لە مۆبایل بکەرەوە",
+    "oldAccountFoundTitle": "هەژماری کۆن دۆزرایەوە",
+    "unlockWalletTitle": "سێتی پارێزراوت بکەرەوە",
+    "phraseExplainer": "سێتی پارێزراوت لەلایەن بایۆمێتریکەکانی ئەم مۆبایلەوە پارێزراو دەبێت. ئەم کردنەوەیە <em>تەنها لەم مۆبایلەدا کار دەکات</em> — ئەم ١٢ وشەیە تاکە ڕێگای گەڕانەوەن ئەگەر DeHub دابەزێنیتەوە، دەستەواژە بگۆڕیت، یان لەدەستی بدەیت."
   },
   "transcript": {
     "title": "Nivîsandin",
@@ -3692,7 +3880,38 @@
     "subscribe": "Bibe abone",
     "subscriberCount_one": "{{count}} abone",
     "subscriberCount_other": "{{count}} abone",
-    "subscribeToForRich": "Bi <price>{{price}}</price> bibe abone yê <name>{{name}}</name>"
+    "subscribeToForRich": "Bi <price>{{price}}</price> bibe abone yê <name>{{name}}</name>",
+    "loadPlansFailed": "نەتوانرا پلەکان باربکرێن",
+    "subscriberContent": "ناوەرۆکی بەشداربوو",
+    "subscriberContentSub": "دابینکردنی پلان بۆ ناوەڕۆکی تایبەت بۆ بەشداربووان",
+    "createFirstPlan": "یەکەم پلانت دروست بکە",
+    "addNewPlan": "پلانێکی نوێ زیاد بکە",
+    "durations": {
+      "oneMonth": "١ مانگ",
+      "threeMonths": "٣ مانگ",
+      "sixMonths": "٦ مانگ",
+      "oneYear": "١ ساڵ",
+      "lifetime": "هەتاهەتایی"
+    },
+    "planNameRequired": "ناوی پلان پێویستە",
+    "enterValidPrice": "نرخێکی دروست داخڵ بکە",
+    "availableChains": "بەشداریکردن ئێستا لەسەر Base و BNB بەردەستە",
+    "waitForSwitch": "چاوەڕێ بکە تۆڕی بەشداریکردن تەواو بێت بۆ گواستنەوە",
+    "connectAndWait": "وێلێتەکەت دابگرە و چاوەڕێی تۆڕی بەشداریکردن بکە",
+    "planUpdated": "پلان نوێ کرایەوە",
+    "creating": "دروستکردن…",
+    "planPublished": "پلان دروست کرا و بڵاوکرایەوە",
+    "createPlanTitle": "پلانى بەشداریکردن دروست بکە",
+    "network": "تۆڕی بەشداریکردن",
+    "planNameLabel": "ناو نیشانى پلان *",
+    "planNamePlaceholder": "بۆ نموونە: Premium, Gold, VIP...",
+    "descriptionPlaceholder": "چی بەشداربووان وەردەگرن...",
+    "priceLabel": "نرخ (دۆلار) *",
+    "legacyMigrationNote": "Saving ئەم پلانەى DHB ى کۆن دەگوازێتەوە بۆ نرخى دۆلار بە نرخى پێش تۆمارکردن.",
+    "benefits": "سوودەکان",
+    "benefitPlaceholder": "سوودێک زیاد بکە...",
+    "createAndPublish": "دروست بکە و بڵاو بکەرەوە",
+    "publishingOnChain": "بڵاوکردنەوە بریتییە لە مامەڵەیەکى ناو زنجیرە"
   },
   "live": {
     "notSet": "Nehatiye danîn",
@@ -3805,7 +4024,22 @@
     "redirecting": "Beralîkirin bo dravdanê…",
     "openingCheckout": "Dravdan tê vekirin…",
     "checkoutUnavailable": "Girêdana dravdanê ne berdest e. Dîsa biceribîne.",
-    "acceptTerms": "Ez qebûl dikim <terms>Mercên Xizmetê</terms>"
+    "acceptTerms": "Ez qebûl dikim <terms>Mercên Xizmetê</terms>",
+    "aboutTitle": "دەربارەى DeHub و پارەدان",
+    "aboutSubtitle": "دەروازەکەت بۆ پارەدانی بێ کێشەى توکن",
+    "aboutTokenTitle": "Tokena DeHub",
+    "aboutTokenBody": "تۆکنەکان بۆ سەبرکرابوون لەسەر دروستکەران، پێدانی پارە بە ستریمەرەکان، یان کردنەوەی ناوەڕۆک بەکاردێن. هەرچی زیاتر هەڵبگریت، پارەی کەمتر دەدەیت و زیاتر سوپەرپاوەر دەکەیتەوە وەک زیادکردنی ترێندەکانی کات و نیشانەکانی پشتڕاستکردنەوە.",
+    "aboutInstantTitle": "پارەدانی خێرا",
+    "aboutInstantBody": "بە بەکارهێنانی ستراپی، دەتوانیت بە خێرا و بێ کێشە تۆکن بکڕیت بۆ هەر حسابێک کە تێیدا لاگین کردبیت. دیهەب تۆکنەکان سادە دەکات و بۆ هەمووان. ئەگەر پێویستت بە پشتگیری زیاترە، تەنها لە چاتی کۆمەڵگاکەماندا کە ٢٤/٧ کراوەیە سەردانمان بکە و داوای پشتگیری ئیدارە بکە.",
+    "aboutSecureTitle": "دەروازەی پارێزراو",
+    "aboutSecureBody": "هەموو وردەکارییەکانی پارەدان لەلایەن ستراپییەوە شاردراوەتەوە و بە پارێزراوی پرۆسە دەکرێت. ئێمە ناتوانین زانیاری هەستیار یان وردەکاری کارتی تۆ دەستبکەوێت یان هەڵیبگرین، ئەمەش ئارامی تەواوت پێدەبەخشێت.",
+    "transfersSummary": "کورتەی گواستنەوەکان",
+    "availableToBuy": "ئێستا دەستدەکەوێت بۆ کڕین",
+    "noSupplyShort": "هیچ بڕێکی نییە",
+    "topUpSubtitle": "$DHB بە کارت بکڕە و گازی بێبەرامبەر وەرگرە بۆ بەکارهێنانی خێرا",
+    "noTxHash": "هەشدی گواستنەوە نەدۆزرایەوە",
+    "latestTransactions": "دوایین گواستنەوەکان",
+    "showAll": "هەموویان نیشان بدە"
   },
   "musicSheet": {
     "title": "Stranek çêke",
@@ -3928,7 +4162,13 @@
     "followUpNote": "Dibe ku em ji bo pirsên din ên li ser nêrîna te bi te re têkilî daynin",
     "submitFeedback": "Nêrînê bişîne",
     "provideFeedback": "Ji kerema xwe nêrîna xwe binivîse",
-    "thankYou": "Spas ji bo nêrîna te!"
+    "thankYou": "Spas ji bo nêrîna te!",
+    "submitFailed": "ناردنی فیدباک شکستی هێنا. تکایە دووبارە هەوڵ بدە.",
+    "maybeLater": "لەوانەیە دواتر",
+    "helpUsImprove": "یارمەتیمان بدە باشتر بین",
+    "rateExperience": "ئەزموونت چۆنە؟",
+    "telegramOptional": "تێلیگرام (ئارەزوومەندە)",
+    "discordOptional": "دیسکۆرد (ئارەزوومەندە)"
   },
   "migrate": {
     "getPriceOne": "بهای وێنەی {{n}} بگرە",
@@ -4045,7 +4285,11 @@
     },
     "ttsLabel": "Tiştekî bi dengekî bilind bêje",
     "ttsPlaceholder": "Bixwîne bo weşanê…",
-    "ttsHint": "Bi dengekî bilind ji her kesê re bixwîne ku temaşe dike kengî diyariya te digihîje."
+    "ttsHint": "Bi dengekî bilind ji her kesê re bixwîne ku temaşe dike kengî diyariya te digihîje.",
+    "sendAGift": "دیاری بنێرە",
+    "minPlaceholder": "کەم: {{amount}}",
+    "minGift": "کەمترین دیاری {{amount}} ە",
+    "sendGift": "دیاری بنێرە"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4394,7 +4638,8 @@
       "comment": {
         "title": "کۆمێنتێک لەسەر پۆستێک بنووسە"
       }
-    }
+    },
+    "swipeToStart": "بۆ دەستپێکردن بسوورە"
   },
   "conversation": {
     "commonGround": {
@@ -4868,5 +5113,27 @@
     "toastPaidSettled": "پارە درا — مامەڵەکە یەکلاکرایەوە",
     "walletNotReady": "جزدانەکەت هێشتا ئامادە نییە — دوای چرکەیەک دووبارە هەوڵ بدەرەوە.",
     "wrongChain": "ئەم مامەڵەیە لەسەر {{chain}} یەکلادەکرێتەوە. لە ڕێکخستنەکان بگۆڕە بۆ {{chain}}، پاشان دووبارە هەوڵ بدەرەوە."
+  },
+  "moderation": {
+    "appealDuplicate": "Te berê li ser vê îtiraz kiriye",
+    "appealSent": "Îtiraz hat şandin",
+    "appealFailed": "Me nekarî wê îtirazê tomar bikin",
+    "appealTitle": "Li dijî vê biryarê îtiraz bike",
+    "appealSubtitle": "Kesek wê vê bixwîne û dîsa li biryarê binêre.",
+    "appealPlaceholder": "Li gorî te çi hate paşguhkirin? Agahiyên li ser naverokê ji her tiştî bêtir alîkar in.",
+    "appealSend": "Îtirazê bişîne",
+    "appealFootnote": "Tu jimareyeke referansê distînî, û bersiv dê li vir vegere. Ji bo her biryarê yek îtiraz.",
+    "appealRef": "Referans {{ref}}",
+    "appealSubtitleSubject": "Kesek wê vê bixwîne û dîsa li {{subject}} binêre.",
+    "appealMore": "Tîpên hîn pêwîst: {{count}}"
+  },
+  "badgeAscension": {
+    "none": "هیچ",
+    "noBadgeYet": "هیچ نیشانەیەک هێشتا",
+    "next": "دواتر",
+    "topTier": "پلەی باڵا",
+    "toNextTier": "{{amount}} DHB بۆ {{tier}}",
+    "everyTierUnlocked": "هەموو پلەیەک کرایەوە",
+    "holdNote": "کاتێک نیشانەیەک کرایەوە، تا کاتێک DHBـەکەت هەبێت، هی تۆیە. ژمارەی تۆکنە پێویستەکان بۆ کردنەوەی نیشانەیەکی نوێ دەتوانێت لەگەڵ نرخی تۆکنەکەدا بگۆڕێت."
   }
 }

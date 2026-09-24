@@ -178,12 +178,12 @@ const GiftModal: React.FC<GiftModalProps> = ({
         !controllerAddress
       ) {
         inFlight.current = false;
-        setGiftError("Missing web3 context");
+        setGiftError(t("tip.missingWeb3") as string);
         return;
       }
       if (isSelf) {
         inFlight.current = false;
-        setGiftError("You can't tip yourself");
+        setGiftError(t("tip.cannotTipSelf") as string);
         return;
       }
       try {
@@ -352,10 +352,10 @@ const GiftModal: React.FC<GiftModalProps> = ({
           {/* The diamond leads the sheet on web too — same mark, same side. */}
           <View className="flex-row items-center gap-2">
             <Gem size={20} color="#fff" />
-            <Text className="text-white text-2xl font-bold">Send a Gift</Text>
+            <Text className="text-white text-2xl font-bold">{t("liveGift.sendAGift") as string}</Text>
           </View>
           <Text className="text-white/70 text-[12px]">
-            to {toAddress?.slice(0, 6)}…{toAddress?.slice(-4)}
+            {t("tip.toRecipient", { name: `${toAddress?.slice(0, 6)}…${toAddress?.slice(-4)}` }) as string}
           </Text>
         </View>
 
@@ -411,28 +411,28 @@ const GiftModal: React.FC<GiftModalProps> = ({
             ) : null}
 
             <View className="mt-4">
-              <Text className="text-white text-xs mb-1">Amount (DHB)</Text>
+              <Text className="text-white text-xs mb-1">{t("tip.amountIn", { currency: "DHB" }) as string}</Text>
               <View className="flex-row items-center bg-white/10 rounded-xl px-3 py-2">
                 <Ionicons name="cash-outline" size={16} color="#fff" />
                 <TextInput
                   value={amount}
                   onChangeText={(v) => setAmount(sanitizeAmountInput(v))}
                   keyboardType="numeric"
-                  placeholder={`Min: ${minTip}`}
+                  placeholder={t("liveGift.minPlaceholder", { amount: minTip }) as string}
                   placeholderTextColor="#8a8a8a"
                   className="flex-1 text-white text-[13px] ml-2"
                 />
               </View>
               <View className="flex-row justify-between mt-2">
                 <Text className="text-[11px] text-white/60">
-                  Balance: {balance} <DhbCoin />
+                  {t("tip.balanceAmount", { amount: balance }) as string} <DhbCoin />
                 </Text>
                 <Text
                   className={`text-[11px] ${
                     overLimit ? "text-white/80" : "text-white/40"
                   }`}
                 >
-                  Max: {limitTip}
+                  {t("tip.max", { amount: limitTip }) as string}
                 </Text>
               </View>
 
@@ -468,12 +468,12 @@ const GiftModal: React.FC<GiftModalProps> = ({
 
               {insufficient && (
                 <Text className="text-xs text-white/80 mt-1">
-                  Insufficient balance
+                  {t("tip.insufficientBalance") as string}
                 </Text>
               )}
               {isSelf && (
                 <Text className="text-xs text-white/80 mt-1">
-                  You can't tip yourself
+                  {t("tip.cannotTipSelf") as string}
                 </Text>
               )}
               {giftError && (
@@ -481,7 +481,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
               )}
               {numericAmount > 0 && numericAmount < minTip && (
                 <Text className="text-xs text-yellow-400 mt-1">
-                  Minimum gift is {minTip} <DhbCoin />
+                  {t("liveGift.minGift", { amount: minTip }) as string} <DhbCoin />
                 </Text>
               )}
             </View>
@@ -508,10 +508,10 @@ const GiftModal: React.FC<GiftModalProps> = ({
                     <Ionicons name="gift-outline" size={18} color="#fff" />
                   )}
                   <Text className="text-white font-semibold">
-                    {phase === "approving" && "Approving..."}
-                    {phase === "sending" && "Sending..."}
-                    {phase === "idle" && "Send Gift"}
-                    {phase === "error" && "Retry"}
+                    {phase === "approving" && (t("tip.approving") as string)}
+                    {phase === "sending" && (t("tip.sending") as string)}
+                    {phase === "idle" && (t("liveGift.sendGift") as string)}
+                    {phase === "error" && (t("common.retry") as string)}
                   </Text>
                 </TouchableOpacity>
               </AccentButtonGradient>
@@ -526,7 +526,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                 onPress={() => onOpenChange(false)}
                 className={`h-11 rounded-xl bg-white/10 items-center justify-center ${isBusy ? "opacity-60" : ""}`}
               >
-                <Text className="text-white font-semibold">Cancel</Text>
+                <Text className="text-white font-semibold">{t("common.cancel") as string}</Text>
               </TouchableOpacity>
             </View>
           </>

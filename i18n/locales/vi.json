@@ -691,7 +691,11 @@
       "hintAllow": "Các hệ thống AI và trình thu thập thông tin tôn trọng tín hiệu này có thể đào tạo về âm thanh, tác phẩm nghệ thuật và văn bản của bạn.",
       "hintDeny": "Các hệ thống AI và trình thu thập thông tin tôn trọng tín hiệu này được yêu cầu không đào tạo về âm thanh, tác phẩm nghệ thuật và văn bản của bạn. Trình thu thập thông tin bỏ qua tín hiệu không bị chặn bởi nó.",
       "saved": "Đã lưu tùy chọn đào tạo AI"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "TÔI HIỂU",
+    "exportPkCopy": "Sao chép khóa riêng tư",
+    "e2eAutomatic": "Tự động"
   },
   "common": {
     "mute": "Tắt tiếng",
@@ -744,7 +748,17 @@
     "error": "Lỗi",
     "success": "Thành công",
     "warning": "Cảnh báo",
-    "info": "Thông tin"
+    "info": "Thông tin",
+    "goesToHomeFeed": "Đi đến nguồn cấp tin chính",
+    "openMenu": "Mở menu",
+    "scrollsFeedToTop": "Cuộn lên đầu nguồn cấp tin và làm mới",
+    "notificationsUnread": "Thông báo, {{unread}} chưa đọc",
+    "errorDetails": "Chi tiết lỗi:",
+    "failedToLoad": "Không tải được",
+    "noInternetTitle": "Không có kết nối Internet",
+    "noInternetBody": "Vui lòng kiểm tra kết nối internet của bạn và thử lại. Bạn cần kết nối internet để sử dụng DeHub.",
+    "noInternetStatus": "Ngoại tuyến - Không có kết nối mạng",
+    "noInternetHint": "Đảm bảo Wi-Fi hoặc dữ liệu di động đã bật, sau đó nhấn \"{{action}}\""
   },
   "tip": {
     "title": "Gửi tiền thưởng",
@@ -1634,7 +1648,12 @@
     "chooseUsernameBody": "Chọn tên người dùng và tên hiển thị để tiếp tục. Bạn có thể đổi sau.",
     "checkingAvailability": "Đang kiểm tra khả dụng…",
     "usernameTakenHint": "Tên này đã có người dùng — thử thêm số hoặc dấu gạch dưới",
-    "displayNameLength": "Tên hiển thị phải có 2-50 ký tự."
+    "displayNameLength": "Tên hiển thị phải có 2-50 ký tự.",
+    "loginFailedRetry": "Đăng nhập thất bại. Vui lòng thử lại.",
+    "sendCodeFailedRetry": "Không thể gửi mã. Vui lòng thử lại.",
+    "invalidCodeRetry": "Mã không hợp lệ. Vui lòng thử lại.",
+    "invalidEmailOrPassword": "Email hoặc mật khẩu không hợp lệ.",
+    "welcomeToDehub": "Chào mừng bạn đến với DeHub"
   },
   "messages": {
     "smartRepliesOff": "Đã tắt câu trả lời gợi ý",
@@ -1712,7 +1731,32 @@
     "offerWorthNow": "Khoảng {{amount}} DHB theo tỷ giá hiện tại",
     "offerNotePlaceholder": "Thêm ghi chú (không bắt buộc)",
     "offerCommitsNothing": "Gửi đề nghị không tốn gì và không khoá DHB nào. Bạn chỉ trả tiền nếu chủ sở hữu chấp nhận.",
-    "offerNeedsHandle": "Tài khoản này không có tên người dùng để đề nghị mua."
+    "offerNeedsHandle": "Tài khoản này không có tên người dùng để đề nghị mua.",
+    "noPostsYet": "Chưa có bài đăng nào",
+    "noPostsYetSub": "Nội dung sẽ xuất hiện ở đây khi được đăng",
+    "noPinnedPosts": "Chưa có bài đăng nào được ghim.",
+    "noPinnedPostsSub": "Bài đăng được ghim sẽ xuất hiện ở đây",
+    "emptyLiked": "Chưa có bài đăng nào được thích.",
+    "emptySaved": "Chưa có bài đăng nào được lưu.",
+    "emptyUnlocked": "Chưa có bài đăng nào được mở khóa.",
+    "emptyWatched": "Chưa có lịch sử xem.",
+    "emptyFolder": "Chưa có bài đăng nào trong thư mục này.",
+    "emptyPosts": "Chưa có bài đăng nào.",
+    "couldNotLoadPosts": "Không thể tải bài đăng.",
+    "noPostsOrReplies": "Chưa có bài đăng, bình luận hay phản hồi nào",
+    "noPostsOrRepliesSub": "Chúng sẽ xuất hiện ở đây",
+    "avatarUpdated": "Ảnh đại diện đã được cập nhật",
+    "coverUpdated": "Ảnh bìa đã được cập nhật",
+    "couldNotPickImage": "Không thể chọn ảnh",
+    "changeCoverImage": "Thay đổi ảnh bìa",
+    "changeAvatar": "Thay đổi ảnh đại diện",
+    "verifiedEnsName": "Tên ENS đã được xác minh {{name}}",
+    "notFullyJoined": "Người dùng này chưa tham gia hoàn chỉnh. Họ chưa chọn tên người dùng hoặc hoàn tất thiết lập hồ sơ. Bạn vẫn có thể xem hoạt động công khai và gửi mẹo nếu có.",
+    "loadRepliesFailed": "Không tải được phản hồi",
+    "refreshFailed": "Làm mới thất bại",
+    "noRepliesYet": "Chưa có phản hồi nào",
+    "noRepliesYetSub": "Khi người dùng này phản hồi các bài đăng, chúng sẽ hiển thị ở đây.",
+    "noMoreReplies": "Không còn phản hồi nào"
   },
   "tv": {
     "title": "TV",
@@ -1795,7 +1839,11 @@
     "loadingPrice": "Đang tải giá…",
     "topUpExplanation": "DHB được chuyển on-chain vào ngân quỹ quảng cáo DeHub, sau đó số dư của bạn được ghi có sau khi xác minh độc lập trên chuỗi.",
     "paymentHistory": "Lịch sử thanh toán",
-    "noPayments": "Chưa có khoản thanh toán nào"
+    "noPayments": "Chưa có khoản thanh toán nào",
+    "sponsored": "Được tài trợ",
+    "morePosts": "Thêm bài đăng",
+    "loadMorePosts": "Tải thêm bài đăng",
+    "playAdVideo": "Phát video quảng cáo"
   },
   "buyCoins": {
     "title": "Mua coin",
@@ -2230,7 +2278,8 @@
     "privateBalanceMode": "Chế độ số dư riêng tư đang bật",
     "addressHidden": "Đã ẩn địa chỉ",
     "allowInFeeds": "Cho phép người dùng này xuất hiện trong bảng tin của bạn",
-    "hideContent": "Ẩn nội dung của họ và hạn chế tương tác"
+    "hideContent": "Ẩn nội dung của họ và hạn chế tương tác",
+    "a11yLabel": "Tùy chọn hồ sơ"
   },
   "toasts": {
     "saved_to_bookmarks": "Đã lưu vào dấu trang",
@@ -2602,7 +2651,8 @@
     "roles": {
       "owner": "Chủ sở hữu",
       "moderator": "Người kiểm duyệt",
-      "member": "Thành viên"
+      "member": "Thành viên",
+      "admin": "Quản trị viên"
     },
     "time": {
       "today": "hôm nay",
@@ -2611,7 +2661,126 @@
       "weeks": "{{count}} tuần",
       "months": "{{count}} tháng",
       "years": "{{count}} năm"
-    }
+    },
+    "chatPanel": {
+      "anon": "Ẩn danh",
+      "edited": "đã chỉnh sửa",
+      "deleteTitle": "Xóa tin nhắn",
+      "deleteConfirm": "Xóa tin nhắn này? Không thể hoàn tác.",
+      "muted": "Bạn bị tắt tiếng",
+      "postingDisabled": "Không thể đăng bài cho thành viên ở đây",
+      "mediaMessage": "Phương tiện",
+      "pinnedMessage": "Tin nhắn được ghim",
+      "showEarlier": "Hiển thị các tin nhắn trước đó",
+      "editingMessage": "Chỉnh sửa tin nhắn",
+      "copied": "Đã sao chép tin nhắn",
+      "copyText": "Sao chép văn bản",
+      "mutedUntil": "Bạn sẽ bị tắt tiếng cho đến {{date}}",
+      "slowMode": "Chế độ chậm: một tin nhắn mỗi {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Bỏ qua quản trị viên",
+      "cancel": "Hủy",
+      "dismissAdmin": "Bỏ qua quản trị viên",
+      "roleAdmin": "Quản trị viên",
+      "roleMember": "Thành viên",
+      "whatCanTheyDo": "Quản trị viên này có thể làm gì?",
+      "rightNotHeld": "Bạn không có quyền này cho chính mình",
+      "customTitle": "Tiêu đề tùy chỉnh",
+      "customTitlePlaceholder": "Quản trị viên",
+      "customTitleHint": "Được hiển thị thay vì huy hiệu Quản trị viên mặc định.",
+      "saveChanges": "Lưu thay đổi",
+      "promote": "Quảng bá",
+      "tabs": {
+        "members": "Thành viên",
+        "admins": "Quản trị viên",
+        "permissions": "Quyền hạn",
+        "invites": "Lời mời",
+        "rules": "Quy tắc",
+        "recentActions": "Hành động gần đây",
+        "danger": "Vùng nguy hiểm"
+      },
+      "title": "Quản lý",
+      "purgeTitle": "Xóa tất cả tin nhắn?",
+      "purgeConfirm": "Xóa",
+      "kickTitle": "Xóa thành viên?",
+      "kickConfirm": "Xóa",
+      "bannedPermanent": "Bị cấm — vĩnh viễn",
+      "mutedPermanent": "Đã tắt tiếng — vĩnh viễn",
+      "editAdminRights": "Chỉnh sửa quyền quản trị viên",
+      "promoteToAdmin": "Thăng cấp lên quản trị viên",
+      "unmute": "Bỏ tắt tiếng",
+      "mute": "Tắt tiếng",
+      "unban": "Bỏ cấm",
+      "ban": "Cấm",
+      "deleteAllMessages": "Xóa tất cả tin nhắn",
+      "removeFromCommunity": "Xóa khỏi cộng đồng",
+      "noActionsAvailable": "Bạn không thể kiểm duyệt thành viên này.",
+      "showMore": "Hiển thị thêm",
+      "joinRequests": "Yêu cầu tham gia",
+      "approve": "Chấp thuận",
+      "reject": "Từ chối",
+      "members": "Thành viên",
+      "searchMembers": "Tìm kiếm theo địa chỉ ví",
+      "noMembersMatch": "Không có thành viên nào khớp.",
+      "noMembers": "Chưa có thành viên nào.",
+      "muted": "Đã tắt tiếng",
+      "banned": "Đã cấm",
+      "muteEffect": "Họ vẫn ở trong cộng đồng nhưng không thể đăng bài cho đến khi hết thời gian tắt tiếng.",
+      "banEffect": "Họ bị xóa khỏi cuộc trò chuyện và không thể tham gia lại cho đến khi lệnh cấm được dỡ bỏ.",
+      "durationLabel": "Thời lượng",
+      "reasonLabel": "Lý do (tùy chọn)",
+      "reasonPlaceholder": "Tại sao họ bị cấm?",
+      "alsoDeleteMessages": "Cũng xóa tất cả tin nhắn của họ",
+      "confirmMute": "Tắt tiếng thành viên",
+      "confirmBan": "Cấm thành viên",
+      "rulesUpdated": "Quy tắc đã được cập nhật",
+      "rulesTitle": "Quy tắc cộng đồng",
+      "rulesEmpty": "Chưa có quy tắc — thêm quy tắc đầu tiên bên dưới.",
+      "rulePlaceholder": "Mô tả quy tắc",
+      "addRule": "Thêm quy tắc",
+      "saveRules": "Lưu quy tắc",
+      "dismissAdminBody": "{{wallet}} sẽ trở lại thành thành viên bình thường.",
+      "purgeBody": "Mọi tin nhắn {{name}} đã gửi trong cộng đồng này sẽ bị xóa.",
+      "kickBody": "{{name}} sẽ bị xóa khỏi cộng đồng. Họ có thể tham gia lại sau.",
+      "bannedUntil": "Cấm cho đến {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Tắt tiếng cho đến {{date}}",
+      "bannedUntilShort": "Cho đến {{date}}",
+      "muteTitle": "Tắt tiếng {{name}}",
+      "banTitle": "Cấm {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} trong số {{max}}",
+      "moveRuleUp": "Di chuyển quy tắc lên",
+      "moveRuleDown": "Di chuyển quy tắc xuống",
+      "deleteRule": "Xóa quy tắc",
+      "rights": {
+        "changeInfo": "Thay đổi thông tin cộng đồng",
+        "changeInfoHint": "Chỉnh sửa tên, mô tả, ảnh đại diện và banner",
+        "deleteMessages": "Xóa tin nhắn",
+        "deleteMessagesHint": "Xóa bất kỳ tin nhắn nào khỏi cuộc trò chuyện cộng đồng",
+        "restrictMembers": "Cấm người dùng",
+        "restrictMembersHint": "Tắt tiếng, xóa và cấm thành viên",
+        "inviteUsers": "Mời người dùng qua liên kết",
+        "inviteUsersHint": "Tạo và thu hồi liên kết mời",
+        "pinMessages": "Ghim tin nhắn",
+        "pinMessagesHint": "Ghim một tin nhắn lên đầu cuộc trò chuyện",
+        "manageEvents": "Quản lý sự kiện",
+        "manageEventsHint": "Tạo và chỉnh sửa sự kiện cộng đồng",
+        "addAdmins": "Thêm quản trị viên mới",
+        "addAdminsHint": "Thăng cấp thành viên và chỉnh sửa quyền của quản trị viên mà họ đã thêm",
+        "remainAnonymous": "Giữ ẩn danh",
+        "remainAnonymousHint": "Ẩn quản trị viên này khỏi danh sách thành viên"
+      },
+      "durations": {
+        "oneHour": "1 giờ",
+        "eightHours": "8 giờ",
+        "oneDay": "1 ngày",
+        "oneWeek": "1 tuần",
+        "forever": "Mãi mãi"
+      }
+    },
+    "chooseAvatar": "Chọn ảnh đại diện"
   },
   "work": {
     "title": "Tiền thưởng",
@@ -2963,7 +3132,9 @@
       "shipped": "Đã gửi",
       "completed": "Hoàn tất",
       "cancelled": "Đã hủy"
-    }
+    },
+    "removePhoto": "Xóa ảnh",
+    "listingOptions": "Tùy chọn danh sách"
   },
   "accounts": {
     "subtitle": "Tài khoản trọn vẹn đang rao bán, tính giá bằng DHB",
@@ -3331,7 +3502,14 @@
     "removeFollowerHint": "Nhấn và giữ một người theo dõi để xóa họ.",
     "cancel": "Hủy",
     "remove": "Xóa",
-    "thisUser": "Người dùng này"
+    "thisUser": "Người dùng này",
+    "cancelRequestTo": "Hủy yêu cầu theo dõi tới @{{username}}?",
+    "followingUser": "Đang theo dõi @{{username}}",
+    "contentUnavailable": "Nội dung không khả dụng",
+    "youBlockedBody": "Bạn sẽ không thấy bài đăng của họ hoặc không thể tương tác với họ. Bỏ chặn để khôi phục quyền truy cập.",
+    "restrictedBody": "Người dùng này đã hạn chế tương tác với tài khoản của bạn.",
+    "requestPendingBody": "Yêu cầu theo dõi của bạn đã được gửi. Bạn sẽ có thể xem bài đăng của họ sau khi họ phê duyệt yêu cầu của bạn.",
+    "followToSeePosts": "Theo dõi tài khoản này để xem bài đăng của họ."
   },
   "reactionInfo": {
     "title": "Phản ứng",
@@ -3646,7 +3824,8 @@
     "needGas": "Cần {{token}} gốc để trả phí gas trên {{chain}}.",
     "bridging": "Đang bắc cầu…",
     "bridgeAction": "Bắc cầu {{from}} → {{to}}",
-    "failed": "Bắc cầu thất bại"
+    "failed": "Bắc cầu thất bại",
+    "sentArriveShortly": "{{amount}} DHB đã gửi từ {{from}} → {{to}}. Token sẽ sớm được gửi đến."
   },
   "banned": {
     "title": "Tài khoản của bạn đã bị cấm",
@@ -3824,7 +4003,16 @@
     "legacyRecovered": "Đã xác minh tài khoản cũ của bạn{{suffix}} và khôi phục ví của nó. Hãy đặt mật khẩu để bảo vệ ví trên thiết bị này — trên điện thoại này và mọi nơi khác, kể từ bây giờ.",
     "passwordMin": "Mật khẩu (tối thiểu {{min}} ký tự)",
     "newPasswordMin": "Mật khẩu mới (tối thiểu {{min}} ký tự)",
-    "newWalletPasswordMin": "Mật khẩu ví mới (tối thiểu {{min}} ký tự)"
+    "newWalletPasswordMin": "Mật khẩu ví mới (tối thiểu {{min}} ký tự)",
+    "deviceCheckCancelled": "Đã hủy kiểm tra thiết bị — không có gì thay đổi.",
+    "savePhraseTitle": "Lưu cụm mật khẩu khôi phục của bạn",
+    "startOverTitle": "Bắt đầu lại với ví mới",
+    "secureNewWalletTitle": "Bảo mật ví mới của bạn",
+    "secureWalletTitle": "Bảo mật ví của bạn",
+    "unlockOnMobileTitle": "Mở khóa trên thiết bị di động",
+    "oldAccountFoundTitle": "Đã tìm thấy tài khoản cũ",
+    "unlockWalletTitle": "Mở khóa ví của bạn",
+    "phraseExplainer": "Ví của bạn sẽ được bảo vệ bằng sinh trắc học của điện thoại này. Chức năng mở khóa <em>chỉ hoạt động trên điện thoại này</em> — 12 từ này là cách duy nhất để truy cập lại nếu bạn cài đặt lại DeHub, đổi điện thoại hoặc làm mất nó."
   },
   "transcript": {
     "title": "Bản ghi lời nói",
@@ -4010,7 +4198,38 @@
     "subscribe": "Đăng ký",
     "subscriberCount_one": "{{count}} người đăng ký",
     "subscriberCount_other": "{{count}} người đăng ký",
-    "subscribeToForRich": "Đăng ký <name>{{name}}</name> với giá <price>{{price}}</price>"
+    "subscribeToForRich": "Đăng ký <name>{{name}}</name> với giá <price>{{price}}</price>",
+    "loadPlansFailed": "Không tải được gói",
+    "subscriberContent": "Nội dung dành cho người đăng ký",
+    "subscriberContentSub": "Tạo kế hoạch để cung cấp nội dung độc quyền cho người đăng ký",
+    "createFirstPlan": "Tạo kế hoạch đầu tiên của bạn",
+    "addNewPlan": "Thêm kế hoạch mới",
+    "durations": {
+      "oneMonth": "1 tháng",
+      "threeMonths": "3 tháng",
+      "sixMonths": "6 tháng",
+      "oneYear": "1 năm",
+      "lifetime": "Trọn đời"
+    },
+    "planNameRequired": "Tên kế hoạch là bắt buộc",
+    "enterValidPrice": "Nhập giá hợp lệ",
+    "availableChains": "Hiện tại có thể đăng ký trên Base và BNB",
+    "waitForSwitch": "Chờ mạng đăng ký hoàn tất chuyển đổi",
+    "connectAndWait": "Kết nối ví của bạn và chờ mạng đăng ký",
+    "planUpdated": "Kế hoạch đã được cập nhật",
+    "creating": "Đang tạo…",
+    "planPublished": "Kế hoạch đã được tạo và xuất bản",
+    "createPlanTitle": "Tạo kế hoạch đăng ký",
+    "network": "Mạng đăng ký",
+    "planNameLabel": "Tên kế hoạch *",
+    "planNamePlaceholder": "Ví dụ: Cao cấp, Vàng, VIP...",
+    "descriptionPlaceholder": "Người đăng ký nhận được gì...",
+    "priceLabel": "Giá (USD) *",
+    "legacyMigrationNote": "Tiết kiệm di chuyển kế hoạch DHB cũ này sang định giá bằng đô la với tỷ lệ trước niêm yết.",
+    "benefits": "Lợi ích",
+    "benefitPlaceholder": "Thêm một lợi ích...",
+    "createAndPublish": "Tạo & Xuất bản",
+    "publishingOnChain": "Xuất bản là một giao dịch trên chuỗi"
   },
   "live": {
     "notSet": "Chưa đặt",
@@ -4127,7 +4346,22 @@
     "checkoutUnavailable": "Không có liên kết thanh toán. Vui lòng thử lại.",
     "acceptTerms": "Tôi chấp nhận <terms>Điều khoản dịch vụ</terms>",
     "tokensSentTo": "Mã thông báo đã được gửi đến {{address}}",
-    "goToProfile": "Vào mục Hồ sơ"
+    "goToProfile": "Vào mục Hồ sơ",
+    "aboutTitle": "Giới thiệu về DeHub & thanh toán",
+    "aboutSubtitle": "Cổng thanh toán token liền mạch của bạn",
+    "aboutTokenTitle": "Token DeHub",
+    "aboutTokenBody": "Token được sử dụng để đăng ký người sáng tạo, tặng tiền cho streamer hoặc mở khóa nội dung. Bạn càng giữ nhiều, phí của bạn càng thấp và bạn càng mở khóa được nhiều siêu năng lực như tăng xu hướng dòng thời gian và huy hiệu xác minh.",
+    "aboutInstantTitle": "Thanh toán tức thì",
+    "aboutInstantBody": "Sử dụng Stripe, bạn có thể mua token ngay lập tức và liền mạch vào bất kỳ tài khoản nào bạn đã đăng nhập. DeHub làm cho token trở nên đơn giản và dành cho tất cả mọi người. Nếu bạn cần hỗ trợ thêm, chỉ cần tham gia vào nhóm trò chuyện cộng đồng trực tiếp 24/7 của chúng tôi và yêu cầu hỗ trợ quản trị viên.",
+    "aboutSecureTitle": "Cổng thanh toán an toàn",
+    "aboutSecureBody": "Tất cả chi tiết thanh toán đều được mã hóa và xử lý an toàn bởi Stripe. Chúng tôi không thể truy cập hoặc lưu trữ thông tin nhạy cảm hoặc chi tiết thẻ của bạn, mang đến cho bạn sự an tâm tuyệt đối.",
+    "transfersSummary": "Tóm tắt giao dịch",
+    "availableToBuy": "Có sẵn để mua ngay bây giờ",
+    "noSupplyShort": "Không có nguồn cung",
+    "topUpSubtitle": "Mua $DHB bằng thẻ và nhận gas miễn phí để sử dụng ngay lập tức",
+    "noTxHash": "Không tìm thấy mã giao dịch",
+    "latestTransactions": "Giao dịch mới nhất",
+    "showAll": "Hiển thị tất cả"
   },
   "musicSheet": {
     "title": "Tạo bài hát",
@@ -4256,7 +4490,13 @@
     "followUpNote": "Chúng tôi có thể liên hệ để hỏi thêm về phản hồi của bạn",
     "submitFeedback": "Gửi phản hồi",
     "provideFeedback": "Vui lòng nhập phản hồi của bạn",
-    "thankYou": "Cảm ơn phản hồi của bạn!"
+    "thankYou": "Cảm ơn phản hồi của bạn!",
+    "submitFailed": "Không gửi được phản hồi. Vui lòng thử lại.",
+    "maybeLater": "Để sau",
+    "helpUsImprove": "Giúp chúng tôi cải thiện",
+    "rateExperience": "Bạn đánh giá trải nghiệm của mình như thế nào?",
+    "telegramOptional": "Telegram (tùy chọn)",
+    "discordOptional": "Discord (tùy chọn)"
   },
   "migrate": {
     "clearAll": "Xóa tất cả",
@@ -4373,7 +4613,14 @@
       "blueWhale": "Điều vĩ đại nhất đã từng tồn tại. Đó chính là bạn.",
       "megalodon": "Đây là vương miện của bạn — bây giờ bạn đã là thành viên hoàng gia của ứng dụng"
     },
-    "continue": "Quay lại DeHub"
+    "continue": "Quay lại DeHub",
+    "none": "Không có",
+    "noBadgeYet": "Chưa có huy hiệu",
+    "next": "Tiếp theo",
+    "topTier": "Cấp cao nhất",
+    "toNextTier": "{{amount}} DHB cho {{tier}}",
+    "everyTierUnlocked": "Mở khóa mọi cấp độ",
+    "holdNote": "Một khi huy hiệu được mở khóa, nó sẽ thuộc về bạn miễn là bạn giữ DHB của mình. Số lượng token cần thiết để mở khóa một huy hiệu mới có thể thay đổi theo giá token."
   },
   "passwordStrength": {
     "veryWeak": "Rất yếu",
@@ -4455,7 +4702,11 @@
     },
     "ttsLabel": "Nói to điều gì đó",
     "ttsPlaceholder": "Đọc ra luồng…",
-    "ttsHint": "Đọc to cho mọi người xem khi món quà của bạn hạ cánh."
+    "ttsHint": "Đọc to cho mọi người xem khi món quà của bạn hạ cánh.",
+    "sendAGift": "Gửi quà",
+    "minPlaceholder": "Tối thiểu: {{amount}}",
+    "minGift": "Món quà tối thiểu là {{amount}}",
+    "sendGift": "Gửi quà"
   },
   "goLive": {
     "streamKey": "Khóa Luồng Phát Sóng",
@@ -4837,7 +5088,8 @@
         "title": "Tìm hiểu cách thức hoạt động của thu nhập",
         "body": "Tìm hiểu cách các mẹo, huy hiệu và Siêu năng lực biến những gì bạn làm ở đây thành thứ bạn kiếm được từ đó."
       }
-    }
+    },
+    "swipeToStart": "Vuốt để bắt đầu"
   },
   "conversation": {
     "commonGround": {
@@ -5394,5 +5646,18 @@
     "toastPaidSettled": "Đã thanh toán — giao dịch đã hoàn tất",
     "walletNotReady": "Ví của bạn chưa sẵn sàng — hãy thử lại sau giây lát.",
     "wrongChain": "Giao dịch này được thanh toán trên {{chain}}. Hãy chuyển sang {{chain}} trong Cài đặt rồi thử lại."
+  },
+  "moderation": {
+    "appealDuplicate": "Bạn đã khiếu nại điều này",
+    "appealSent": "Đã gửi khiếu nại",
+    "appealFailed": "Không thể gửi khiếu nại đó",
+    "appealTitle": "Khiếu nại quyết định này",
+    "appealSubtitle": "Một người sẽ đọc điều này và xem xét lại quyết định.",
+    "appealPlaceholder": "Bạn nghĩ điều gì đã bị bỏ lỡ? Bối cảnh về nội dung giúp ích nhiều hơn bất cứ điều gì khác.",
+    "appealSend": "Gửi khiếu nại",
+    "appealFootnote": "Bạn nhận được số tham chiếu và câu trả lời sẽ quay lại đây. Một đơn kháng cáo cho mỗi quyết định.",
+    "appealRef": "Tham chiếu {{ref}}",
+    "appealSubtitleSubject": "Một người sẽ đọc bài viết này và xem lại {{subject}}.",
+    "appealMore": "Vẫn cần ký tự: {{count}}"
   }
 }

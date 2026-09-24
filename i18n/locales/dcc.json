@@ -620,7 +620,11 @@
       "unavailable": "Streaming from an encoder is not available on your account right now.",
       "serverCopied": "Server copied",
       "keyCopied": "Stream key copied"
-    }
+    },
+    "chainIdLabel": "چین آئی ڈی: {{id}}",
+    "exportPkConfirmPhrase": "میں سمجھتا ہوں",
+    "exportPkCopy": "پرائیویٹ کی کاپی کریں",
+    "e2eAutomatic": "خودکار"
   },
   "common": {
     "mute": "آواز بند کرو",
@@ -659,7 +663,17 @@
     "copy": "کاپی",
     "optionalSuffix": "(اختیاری)",
     "yesterday": "کل",
-    "ok": "ٹھیک ہے"
+    "ok": "ٹھیک ہے",
+    "goesToHomeFeed": "ہوم فیڈ پر جاتا ہے",
+    "openMenu": "مینو کھولیں",
+    "scrollsFeedToTop": "فیڈ کے اوپر تک اسکرول کرتا ہے اور اسے ریفریش کرتا ہے",
+    "notificationsUnread": "اطلاعات، {{unread}} غیر پڑھے ہوئے",
+    "errorDetails": "غلطی کی تفصیلات:",
+    "failedToLoad": "لوڈ کرنے میں ناکام",
+    "noInternetTitle": "انٹرنیٹ کنکشن نہیں ہے",
+    "noInternetBody": "براہ کرم اپنے انٹرنیٹ کنکشن کو چیک کریں اور دوبارہ کوشش کریں۔ DeHub استعمال کرنے کے لیے آپ کو انٹرنیٹ سے منسلک ہونا ضروری ہے۔",
+    "noInternetStatus": "آف لائن - کوئی نیٹ ورک کنکشن نہیں",
+    "noInternetHint": "یقینی بنائیں کہ وائی فائی یا موبائل ڈیٹا آن ہے، پھر \"{{action}}\" پر ٹیپ کریں"
   },
   "tip": {
     "title": "ٹپ بھیجو",
@@ -1477,7 +1491,12 @@
     "chooseUsernameBody": "جاری رکھنے کے لیے یوزر نیم اور ڈسپلے نیم چنو۔ بعد میں بدل سکتے ہو۔",
     "checkingAvailability": "دستیابی چیک ہو رہی ہے…",
     "usernameTakenHint": "یہ نام لے لیا گیا ہے — نمبر یا انڈر اسکور لگا کر دیکھو",
-    "displayNameLength": "ڈسپلے نیم 2 سے 50 حروف کا ہونا چاہیے۔"
+    "displayNameLength": "ڈسپلے نیم 2 سے 50 حروف کا ہونا چاہیے۔",
+    "loginFailedRetry": "لاگ ان ناکام۔ براہ کرم دوبارہ کوشش کریں۔",
+    "sendCodeFailedRetry": "کوڈ بھیجنے میں ناکام۔ براہ کرم دوبارہ کوشش کریں۔",
+    "invalidCodeRetry": "غلط کوڈ۔ براہ کرم دوبارہ کوشش کریں۔",
+    "invalidEmailOrPassword": "غلط ای میل یا پاس ورڈ۔",
+    "welcomeToDehub": "DeHub میں خوش آمدید"
   },
   "messages": {
     "smartRepliesOff": "تجویز کیے گئے جواب بند ہو گئے",
@@ -1548,7 +1567,32 @@
     "offerWorthNow": "موجودہ ریٹ پر تقریباً {{amount}} DHB",
     "offerNotePlaceholder": "نوٹ شامل کرو (اختیاری)",
     "offerCommitsNothing": "آفر دینے پر کچھ خرچ نہیں ہوتا اور کوئی DHB نہیں رکتا۔ تم تبھی ادا کروگے جب مالک قبول کرے۔",
-    "offerNeedsHandle": "اس اکاؤنٹ کا کوئی یوزرنیم نہیں جس پر آفر دیا جا سکے۔"
+    "offerNeedsHandle": "اس اکاؤنٹ کا کوئی یوزرنیم نہیں جس پر آفر دیا جا سکے۔",
+    "noPostsYet": "ابھی تک کوئی پوسٹ نہیں",
+    "noPostsYetSub": "پوسٹ ہونے پر مواد یہاں ظاہر ہوگا۔",
+    "noPinnedPosts": "ابھی تک کوئی پن شدہ پوسٹ نہیں",
+    "noPinnedPostsSub": "پن شدہ پوسٹس یہاں ظاہر ہوں گی۔",
+    "emptyLiked": "ابھی تک کوئی پسندیدہ پوسٹ نہیں ہے۔",
+    "emptySaved": "ابھی تک کوئی محفوظ کردہ پوسٹ نہیں ہے۔",
+    "emptyUnlocked": "ابھی تک کوئی ان لاک شدہ پوسٹ نہیں ہے۔",
+    "emptyWatched": "ابھی تک کوئی واچ ہسٹری نہیں ہے۔",
+    "emptyFolder": "اس فولڈر میں ابھی تک کوئی پوسٹ نہیں ہے۔",
+    "emptyPosts": "ابھی تک کوئی پوسٹ نہیں ہے۔",
+    "couldNotLoadPosts": "پوسٹس لوڈ نہیں ہو سکیں۔",
+    "noPostsOrReplies": "ابھی تک کوئی پوسٹ، تبصرہ یا جواب نہیں ہے۔",
+    "noPostsOrRepliesSub": "وہ یہاں ظاہر ہوں گے۔",
+    "avatarUpdated": "اوتار اپ ڈیٹ ہو گیا۔",
+    "coverUpdated": "کور اپ ڈیٹ ہو گیا۔",
+    "couldNotPickImage": "تصویر منتخب نہیں ہو سکی",
+    "changeCoverImage": "کور امیج تبدیل کریں",
+    "changeAvatar": "اوتار تبدیل کریں",
+    "verifiedEnsName": "تصدیق شدہ ENS نام {{name}}",
+    "notFullyJoined": "یہ صارف ابھی تک مکمل طور پر شامل نہیں ہوا ہے۔ انہوں نے صارف نام کا دعویٰ نہیں کیا ہے یا پروفائل سیٹ اپ مکمل نہیں کیا ہے۔ آپ اب بھی عوامی سرگرمی دیکھ سکتے ہیں اور اگر دستیاب ہو تو ٹپس بھیج سکتے ہیں۔",
+    "loadRepliesFailed": "جواب لوڈ کرنے میں ناکام",
+    "refreshFailed": "ریفریش ناکام",
+    "noRepliesYet": "کوئی جواب نہیں",
+    "noRepliesYetSub": "جب یہ صارف پوسٹس کا جواب دے گا تو وہ یہاں ظاہر ہوں گے۔",
+    "noMoreReplies": "مزید جوابات نہیں"
   },
   "tv": {
     "title": "TV",
@@ -1631,7 +1675,11 @@
     "loadingPrice": "قیمت لگ رہی ہے…",
     "topUpExplanation": "DHB زنجیر پر DeHub اشتہار خزانے میں جاتا ہے، پھر آزاد آن چین تصدیق کے بعد تمہارے بیلنس میں جڑ جاتا ہے۔",
     "paymentHistory": "ادائیگی کی تاریخ",
-    "noPayments": "ابھی تک کوئی ادائیگی نکو"
+    "noPayments": "ابھی تک کوئی ادائیگی نکو",
+    "sponsored": "اسپانسر شدہ",
+    "morePosts": "مزید پوسٹس",
+    "loadMorePosts": "مزید پوسٹس لوڈ کریں",
+    "playAdVideo": "اشتہاری ویڈیو چلائیں"
   },
   "buyCoins": {
     "title": "کوائن خریدو",
@@ -2040,7 +2088,8 @@
     "privateBalanceMode": "پرائیویٹ بیلنس موڈ فعال ہے",
     "addressHidden": "ایڈریس چھپا ہوا",
     "allowInFeeds": "اس صارف کو اپنے فیڈز میں دکھنے دو",
-    "hideContent": "ان کا مواد چھپاؤ اور تعامل محدود کرو"
+    "hideContent": "ان کا مواد چھپاؤ اور تعامل محدود کرو",
+    "a11yLabel": "پروفائل کے اختیارات"
   },
   "toasts": {
     "saved_to_bookmarks": "بکمارک میں محفوظ",
@@ -2380,7 +2429,8 @@
     "roles": {
       "owner": "مالک",
       "moderator": "منتظم",
-      "member": "رکن"
+      "member": "رکن",
+      "admin": "ایڈمن"
     },
     "time": {
       "today": "آج",
@@ -2389,7 +2439,126 @@
       "weeks": "{{count}} ہفتے",
       "months": "{{count}} مہینے",
       "years": "{{count}} سال"
-    }
+    },
+    "chatPanel": {
+      "anon": "گمنام",
+      "edited": "میں ترمیم کی گئی",
+      "deleteTitle": "پیغام حذف کریں",
+      "deleteConfirm": "کیا یہ پیغام حذف کرنا ہے؟ اسے واپس نہیں لایا جا سکتا۔",
+      "muted": "آپ کو خاموش کر دیا گیا ہے۔",
+      "postingDisabled": "یہاں ممبران کے لیے پوسٹنگ معطل ہے۔",
+      "mediaMessage": "میڈیا",
+      "pinnedMessage": "پن شدہ پیغام",
+      "showEarlier": "پچھلے پیغامات دکھائیں",
+      "editingMessage": "پیغام میں ترمیم",
+      "copied": "پیغام کاپی ہو گیا",
+      "copyText": "متن کاپی کریں",
+      "mutedUntil": "آپ {{date}} تک خاموش ہیں",
+      "slowMode": "سست موڈ: ہر {{interval}} پر ایک پیغام"
+    },
+    "manage": {
+      "dismissAdminTitle": "ایڈمن کو برخاست کریں",
+      "cancel": "منسوخ کریں",
+      "dismissAdmin": "ایڈمن کو برخاست کریں",
+      "roleAdmin": "منتظم",
+      "roleMember": "ممبر",
+      "whatCanTheyDo": "یہ ایڈمن کیا کر سکتا ہے ؟",
+      "rightNotHeld": "آپ کو خود یہ حق حاصل نہیں ہے",
+      "customTitle": "حسب ضرورت عنوان",
+      "customTitlePlaceholder": "ایڈمن",
+      "customTitleHint": "ڈیفالٹ ایڈمن بیج کے بجائے دکھایا گیا ۔",
+      "saveChanges": "تبدیلیاں محفوظ کریں",
+      "promote": "پروموٹ کریں",
+      "tabs": {
+        "members": "ممبران",
+        "admins": "ایڈمنز",
+        "permissions": "اجازتیں",
+        "invites": "دعوت نامے",
+        "rules": "قواعد",
+        "recentActions": "حالیہ کارروائیاں",
+        "danger": "خطرہ زون"
+      },
+      "title": "انتظام کریں",
+      "purgeTitle": "تمام پیغامات حذف کریں ؟",
+      "purgeConfirm": "حذف کریں",
+      "kickTitle": "ممبر کو ہٹائیں ؟",
+      "kickConfirm": "ہٹائیں",
+      "bannedPermanent": "ممنوعہ — مستقل",
+      "mutedPermanent": "خاموش — مستقل",
+      "editAdminRights": "ایڈمن حقوق میں ترمیم کریں",
+      "promoteToAdmin": "ایڈمن کے عہدے پر ترقی دیں",
+      "unmute": "ان میوٹ کریں",
+      "mute": "میوٹ کریں",
+      "unban": "ان بین کریں",
+      "ban": "بین کریں",
+      "deleteAllMessages": "تمام پیغامات حذف کریں",
+      "removeFromCommunity": "کمیونٹی سے ہٹائیں",
+      "noActionsAvailable": "آپ اس رکن کی نگرانی نہیں کر سکتے۔",
+      "showMore": "مزید دکھائیں",
+      "joinRequests": "شامل ہونے کی درخواستیں",
+      "approve": "منظور کریں",
+      "reject": "مسترد کریں",
+      "members": "اراکین",
+      "searchMembers": "والٹ ایڈریس کے ذریعے تلاش کریں",
+      "noMembersMatch": "کوئی رکن اس سے میل نہیں کھاتا۔",
+      "noMembers": "ابھی تک کوئی رکن نہیں ہے۔",
+      "muted": "میوٹ شدہ",
+      "banned": "بین شدہ",
+      "muteEffect": "وہ کمیونٹی میں رہتے ہیں لیکن میوٹ کی مدت ختم ہونے تک پوسٹ نہیں کر سکتے۔",
+      "banEffect": "انہیں چیٹ سے ہٹا دیا گیا ہے اور جب تک بین ختم نہیں ہو جاتا وہ دوبارہ شامل نہیں ہو سکتے۔",
+      "durationLabel": "دورانیہ",
+      "reasonLabel": "وجہ (اختیاری)",
+      "reasonPlaceholder": "انہیں کیوں بین کیا جا رہا ہے؟",
+      "alsoDeleteMessages": "ان کے تمام پیغامات بھی حذف کریں",
+      "confirmMute": "رکن کو میوٹ کریں",
+      "confirmBan": "رکن کو بین کریں",
+      "rulesUpdated": "قواعد اپ ڈیٹ ہو گئے",
+      "rulesTitle": "کمیونٹی کے قواعد",
+      "rulesEmpty": "ابھی تک کوئی قاعدہ نہیں ہے — ذیل میں پہلا شامل کریں۔",
+      "rulePlaceholder": "قاعدہ بیان کریں",
+      "addRule": "قاعدہ شامل کریں",
+      "saveRules": "قواعد محفوظ کریں",
+      "dismissAdminBody": "{{wallet}} ایک عام رکن بن جائے گا۔",
+      "purgeBody": "اس کمیونٹی میں {{name}} کے بھیجے گئے ہر پیغام کو ہٹا دیا جائے گا۔",
+      "kickBody": "{{name}} کو کمیونٹی سے ہٹا دیا جائے گا۔ وہ بعد میں دوبارہ شامل ہو سکتے ہیں۔",
+      "bannedUntil": "{{date}} تک پابندی",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "{{date}} تک خاموش",
+      "bannedUntilShort": "{{date}} تک",
+      "muteTitle": "{{name}} کو خاموش کریں",
+      "banTitle": "{{name}} پر پابندی لگائیں",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{max}} میں سے {{used}}",
+      "moveRuleUp": "قاعدہ اوپر منتقل کریں",
+      "moveRuleDown": "قاعدہ نیچے منتقل کریں",
+      "deleteRule": "قاعدہ حذف کریں",
+      "rights": {
+        "changeInfo": "کمیونٹی کی معلومات تبدیل کریں",
+        "changeInfoHint": "نام، تفصیل، اوتار اور بینر میں ترمیم کریں",
+        "deleteMessages": "پیغام حذف کریں",
+        "deleteMessagesHint": "کمیونٹی چیٹ سے کوئی بھی پیغام ہٹا دیں",
+        "restrictMembers": "صارفین پر پابندی لگائیں",
+        "restrictMembersHint": "ممبران کو خاموش کریں، ہٹا دیں اور پابندی لگائیں",
+        "inviteUsers": "لنک کے ذریعے صارفین کو مدعو کریں",
+        "inviteUsersHint": "دعوت نامے کے لنکس بنائیں اور منسوخ کریں",
+        "pinMessages": "پیغام پن کریں",
+        "pinMessagesHint": "چیٹ کے اوپر ایک پیغام پن کریں",
+        "manageEvents": "ایونٹس کا انتظام کریں",
+        "manageEventsHint": "کمیونٹی ایونٹس بنائیں اور ان میں ترمیم کریں",
+        "addAdmins": "نئے ایڈمن شامل کریں",
+        "addAdminsHint": "ممبرز کو فروغ دیں اور ان کے ایڈمنز کے حقوق میں ترمیم کریں جو انہوں نے شامل کیے ہیں۔",
+        "remainAnonymous": "خفیہ رہیں",
+        "remainAnonymousHint": "اس ایڈمن کو ممبر لسٹ سے چھپائیں"
+      },
+      "durations": {
+        "oneHour": "1 گھنٹہ",
+        "eightHours": "8 گھنٹے",
+        "oneDay": "1 دن",
+        "oneWeek": "1 ہفتہ",
+        "forever": "ہمیشہ کے لیے"
+      }
+    },
+    "chooseAvatar": "اوتار منتخب کریں"
   },
   "work": {
     "title": "انعام",
@@ -2721,7 +2890,9 @@
       "shipped": "بھیجا گیا",
       "completed": "مکمل",
       "cancelled": "منسوخ"
-    }
+    },
+    "removePhoto": "تصویر ہٹائیں",
+    "listingOptions": "لسٹنگ کے اختیارات"
   },
   "accounts": {
     "subtitle": "پورے کھاتے بیچنے کو، قیمت DHB میں",
@@ -3011,7 +3182,14 @@
     "screenTitle": "SuperPowers"
   },
   "follow": {
-    "sortAlphabetical": "A-Z"
+    "sortAlphabetical": "A-Z",
+    "cancelRequestTo": "@{{username}}؟ کی فالو ریکویسٹ منسوخ کریں",
+    "followingUser": "@{{username}} کو فالو کر رہے ہیں",
+    "contentUnavailable": "مواد دستیاب نہیں ہے",
+    "youBlockedBody": "آپ ان کی پوسٹس نہیں دیکھ پائیں گے اور نہ ہی ان کے ساتھ بات چیت کر سکیں گے۔ رسائی بحال کرنے کے لیے ان بلاک کریں۔",
+    "restrictedBody": "اس صارف نے آپ کے اکاؤنٹ کے ساتھ بات چیت کو محدود کر دیا ہے۔",
+    "requestPendingBody": "آپ کی فالو ریکویسٹ بھیج دی گئی ہے۔ ان کی منظوری کے بعد آپ ان کی پوسٹس دیکھ سکیں گے۔",
+    "followToSeePosts": "ان کی پوسٹس دیکھنے کے لیے اس اکاؤنٹ کو فالو کریں۔"
   },
   "reactionInfo": {
     "title": "प्रतिक्रियाएं",
@@ -3286,7 +3464,8 @@
     "needGas": "{{chain}} پر گیس کے لیے نیٹو {{token}} چاہیے۔",
     "bridging": "برج ہو رہا ہے…",
     "bridgeAction": "{{from}} → {{to}} برج کرو",
-    "failed": "برج ناکام ہوا"
+    "failed": "برج ناکام ہوا",
+    "sentArriveShortly": "{{amount}} DHB نے {{from}} سے {{to}} پر بھیجا۔ ٹوکن جلد پہنچ جائیں گے۔"
   },
   "teamUp": {
     "title": "ٹیم بناؤ",
@@ -3449,7 +3628,16 @@
     "legacyRecovered": "تمہارا پرانا اکاؤنٹ{{suffix}} تصدیق ہو گیا اور اس کا والٹ واپس مل گیا۔ اب سے اس ڈیوائس پر — اس فون اور ہر جگہ — اسے محفوظ رکھنے کے لیے پاس ورڈ لگاؤ۔",
     "passwordMin": "پاس ورڈ (کم از کم {{min}} حروف)",
     "newPasswordMin": "نیا پاس ورڈ (کم از کم {{min}} حروف)",
-    "newWalletPasswordMin": "نئے والٹ کا پاس ورڈ (کم از کم {{min}} حروف)"
+    "newWalletPasswordMin": "نئے والٹ کا پاس ورڈ (کم از کم {{min}} حروف)",
+    "deviceCheckCancelled": "ڈیوائس چیک منسوخ کر دیا گیا — کچھ بھی تبدیل نہیں کیا گیا۔",
+    "savePhraseTitle": "اپنی ریکوری فریز محفوظ کریں",
+    "startOverTitle": "نئے والٹ کے ساتھ دوبارہ شروع کریں",
+    "secureNewWalletTitle": "اپنا نیا والٹ محفوظ کریں",
+    "secureWalletTitle": "اپنا والٹ محفوظ کریں",
+    "unlockOnMobileTitle": "موبائل پر ان لاک کریں",
+    "oldAccountFoundTitle": "پرانا اکاؤنٹ ملا",
+    "unlockWalletTitle": "اپنا والٹ ان لاک کریں",
+    "phraseExplainer": "آپ کا والٹ اس فون کے بائیو میٹرکس سے محفوظ رہے گا۔ یہ ان لاک <em>صرف اس فون پر کام کرتا ہے</em> — اگر آپ DeHub دوبارہ انسٹال کرتے ہیں، ہینڈ سیٹ تبدیل کرتے ہیں، یا اسے کھو دیتے ہیں تو یہ 12 الفاظ ہی واپس آنے کا واحد طریقہ ہیں۔"
   },
   "transcript": {
     "title": "نقل",
@@ -3625,7 +3813,38 @@
     "subscribe": "سبسکرائب کریں",
     "subscriberCount_one": "{{count}} سبسکرائبر",
     "subscriberCount_other": "{{count}} سبسکرائبرز",
-    "subscribeToForRich": "<price>{{price}}</price> میں <name>{{name}}</name> سبسکرائب کریں"
+    "subscribeToForRich": "<price>{{price}}</price> میں <name>{{name}}</name> سبسکرائب کریں",
+    "loadPlansFailed": "پلان لوڈ کرنے میں ناکام",
+    "subscriberContent": "سبسکرائبر مواد",
+    "subscriberContentSub": "سبسکرائبرز کے لیے خصوصی مواد پیش کرنے کے منصوبے بنائیں",
+    "createFirstPlan": "اپنا پہلا منصوبہ بنائیں",
+    "addNewPlan": "نیا منصوبہ شامل کریں",
+    "durations": {
+      "oneMonth": "1 مہینہ",
+      "threeMonths": "3 مہینے",
+      "sixMonths": "6 مہینے",
+      "oneYear": "1 سال",
+      "lifetime": "لائف ٹائم"
+    },
+    "planNameRequired": "منصوبے کا نام ضروری ہے",
+    "enterValidPrice": "درست قیمت درج کریں",
+    "availableChains": "سبسکرپشن فی الحال بیس اور بی این بی پر دستیاب ہیں",
+    "waitForSwitch": "سبسکرپشن نیٹ ورک کے سوئچنگ مکمل ہونے کا انتظار کریں",
+    "connectAndWait": "اپنا والیٹ کنیکٹ کریں اور سبسکرپشن نیٹ ورک کا انتظار کریں",
+    "planUpdated": "منصوبہ اپ ڈیٹ ہو گیا",
+    "creating": "تخلیق ہو رہی ہے…",
+    "planPublished": "منصوبہ تخلیق اور شائع ہو گیا",
+    "createPlanTitle": "سبسکرپشن منصوبہ بنائیں",
+    "network": "سبسکرپشن نیٹ ورک",
+    "planNameLabel": "منصوبے کا نام *",
+    "planNamePlaceholder": "مثال کے طور پر پریمیم، گولڈ، وی آئی پی…",
+    "descriptionPlaceholder": "سبسکرائبرز کو کیا ملے گا…",
+    "priceLabel": "قیمت (امریکی ڈالر) *",
+    "legacyMigrationNote": "بچت اس پرانے ڈی ایچ بی منصوبے کو پری لسٹنگ ریٹ پر ڈالر کی قیمتوں میں منتقل کرتی ہے۔",
+    "benefits": "فوائد",
+    "benefitPlaceholder": "ایک فائدہ شامل کریں…",
+    "createAndPublish": "بنائیں اور شائع کریں",
+    "publishingOnChain": "پبلشنگ ایک آن چین ٹرانزیکشن ہے"
   },
   "live": {
     "notSet": "مقرر نئیں",
@@ -3699,7 +3918,22 @@
     "redirecting": "چیک آؤٹ پر بھیجا جا رہا ہے…",
     "openingCheckout": "چیک آؤٹ کھولا جا رہا ہے…",
     "checkoutUnavailable": "چیک آؤٹ لنک دستیاب نئیں۔ دوبارہ کوشش کریں۔",
-    "acceptTerms": "میں قبول کرتا ہوں <terms>سروس کی شرائط</terms>"
+    "acceptTerms": "میں قبول کرتا ہوں <terms>سروس کی شرائط</terms>",
+    "aboutTitle": "ڈی ہب اور ادائیگیوں کے بارے میں",
+    "aboutSubtitle": "آپ کی ہموار ٹوکن ادائیگیوں کا گیٹ وے",
+    "aboutTokenTitle": "ڈی ہب ٹوکن",
+    "aboutTokenBody": "ٹوکنز تخلیق کاروں کو سبسکرائب کرنے، اسٹریمرز کو ٹپ دینے یا مواد اَن لاک کرنے کے لیے استعمال ہوتے ہیں۔ آپ جتنے زیادہ رکھیں گے، آپ کی فیس اتنی ہی کم ہوگی اور آپ اتنی ہی زیادہ سپر پاورز اَن لاک کریں گے، جیسے ٹائم لائن ٹرینڈ بوسٹ اور تصدیقی بیجز۔",
+    "aboutInstantTitle": "فوری ادائیگی",
+    "aboutInstantBody": "اسٹرائپ کا استعمال کرتے ہوئے، آپ فوری طور پر اور بغیر کسی رکاوٹ کے ٹوکن خرید سکتے ہیں جس اکاؤنٹ میں آپ لاگ ان ہیں۔ DeHub ٹوکن کو آسان اور سب کے لیے بناتا ہے۔ اگر آپ کو مزید مدد کی ضرورت ہو، تو بس ہماری 24/7 لائیو کمیونٹی چیٹ میں آئیں اور ایڈمن سپورٹ کے لیے پوچھیں۔",
+    "aboutSecureTitle": "محفوظ گیٹ وے",
+    "aboutSecureBody": "تمام ادائیگی کی تفصیلات کو اسٹرائپ کے ذریعے محفوظ طریقے سے انکرپٹ اور پروسیس کیا جاتا ہے۔ ہم آپ کی حساس معلومات یا کارڈ کی تفصیلات تک رسائی یا ذخیرہ نہیں کر سکتے، جو آپ کو مکمل ذہنی سکون فراہم کرتا ہے۔",
+    "transfersSummary": "ٹرانسفر کا خلاصہ",
+    "availableToBuy": "خریدنے کے لیے دستیاب ہے",
+    "noSupplyShort": "کوئی سپلائی نہیں",
+    "topUpSubtitle": "کارڈ استعمال کرکے $DHB خریدیں اور فوری استعمال کے لیے مفت گیس حاصل کریں",
+    "noTxHash": "ٹرانزیکشن ہیش نہیں ملا",
+    "latestTransactions": "حالیہ لین دین",
+    "showAll": "سب دکھائیں"
   },
   "musicSheet": {
     "title": "گانا بنائیں",
@@ -3821,7 +4055,13 @@
     "followUpNote": "ہم آپ کی رائے پر مزید سوالات کے لیے رابطہ کر سکتے ہیں",
     "submitFeedback": "رائے بھیجیں",
     "provideFeedback": "براہ کرم اپنی رائے لکھیں",
-    "thankYou": "آپ کی رائے کا شکریہ!"
+    "thankYou": "آپ کی رائے کا شکریہ!",
+    "submitFailed": "فیڈ بیک جمع کرانے میں ناکام۔ براہ کرم دوبارہ کوشش کریں۔",
+    "maybeLater": "شاید بعد میں",
+    "helpUsImprove": "ہمیں بہتر بنانے میں مدد کریں",
+    "rateExperience": "آپ اپنے تجربے کی درجہ بندی کیسے کریں گے؟",
+    "telegramOptional": "ٹیلیگرام (اختیاری)",
+    "discordOptional": "ڈسکارڈ (اختیاری)"
   },
   "migrate": {
     "getPriceOne": "{{n}} व्हिडिओसाठी किंमत मिळवा",
@@ -3907,7 +4147,11 @@
     "backToGift": "Back to gift",
     "ttsLabel": "Ek goṣṭ bol",
     "ttsPlaceholder": "Stream la vāchūn dākhav…",
-    "ttsHint": "Tūjh gift land jhālā tar pahāṇāryānnā vāchūn dākhav."
+    "ttsHint": "Tūjh gift land jhālā tar pahāṇāryānnā vāchūn dākhav.",
+    "sendAGift": "تحفہ بھیجیں",
+    "minPlaceholder": "منٹ: {{amount}}",
+    "minGift": "کم از کم تحفہ {{amount}} ہے",
+    "sendGift": "تحفہ بھیجیں"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4454,5 +4698,30 @@
     "toastPaidSettled": "پیمنٹ ہو گئی — سودا نمٹ گیا",
     "walletNotReady": "تمہارا والیٹ ابھی تیار نئیں ہے — تھوڑی دیر میں پھر کوشش کرو۔",
     "wrongChain": "یہ سودا {{chain}} پو نمٹتا۔ سیٹنگز میں {{chain}} پو سوئچ کرو، پھر کوشش کرو۔"
+  },
+  "moderation": {
+    "appealDuplicate": "آپ پہلے ہی اس کے خلاف اپیل کر چکے ہیں",
+    "appealSent": "اپیل بھیج دی گئی",
+    "appealFailed": "وہ اپیل دائر نہیں کی جا سکی",
+    "appealTitle": "اس فیصلے کے خلاف اپیل کریں",
+    "appealSubtitle": "ایک شخص اسے پڑھے گا اور فیصلے کو دوبارہ دیکھے گا ۔",
+    "appealPlaceholder": "آپ کے خیال میں کیا چھوٹ گیا تھا ؟ مواد کے بارے میں سیاق و سباق کسی بھی چیز سے زیادہ مدد کرتا ہے ۔",
+    "appealSend": "اپیل بھیجیں",
+    "appealFootnote": "آپ کو ایک حوالہ نمبر ملتا ہے، اور جواب یہاں واپس آتا ہے ۔ فی فیصلہ ایک اپیل ۔",
+    "appealRef": "حوالہ {{ref}}",
+    "appealSubtitleSubject": "ایک شخص اسے پڑھے گا اور {{subject}} پر دوبارہ دیکھے گا ۔",
+    "appealMore": "حروف کی اب بھی ضرورت ہے: {{count}}"
+  },
+  "badgeAscension": {
+    "none": "کوئی نہیں",
+    "noBadgeYet": "کوئی بیج نہیں",
+    "next": "اگلا",
+    "topTier": "ٹاپ ٹائر",
+    "toNextTier": "{{amount}} DHB سے {{tier}}",
+    "everyTierUnlocked": "ہر ٹائر ان لاک کیا گیا",
+    "holdNote": "ایک بار جب بیج ان لاک ہو جاتا ہے، تو یہ آپ کے پاس تب تک رہتا ہے جب تک آپ اپنا DHB رکھتے ہیں۔ نئے بیج کو ان لاک کرنے کے لیے درکار ٹوکن کی تعداد ٹوکن کی قیمت کے ساتھ بدل سکتی ہے۔"
+  },
+  "onboarding": {
+    "swipeToStart": "شروع کرنے کے لیے سوائپ کریں"
   }
 }

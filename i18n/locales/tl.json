@@ -691,7 +691,11 @@
       "hintAllow": "Ang mga sistema ng AI at mga crawler na iginagalang ang signal na ito ay maaaring magsanay sa iyong audio, likhang sining at pagsulat.",
       "hintDeny": "Ang mga sistema ng AI at mga crawler na iginagalang ang signal na ito ay hinihiling na huwag sanayin sa iyong audio, likhang sining at pagsulat. Crawlers na huwag pansinin ang signal ay hindi hinarangan ng mga ito.",
       "saved": "Na - save ang preperensiya sa pagsasanay ng AI"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "NAUNAWAAN KO",
+    "exportPkCopy": "Kopyahin ang pribadong susi",
+    "e2eAutomatic": "Awtomatiko"
   },
   "common": {
     "mute": "I-mute",
@@ -774,7 +778,17 @@
     "all": "Lahat",
     "new": "Bago",
     "old": "Luma",
-    "home": "Home"
+    "home": "Home",
+    "goesToHomeFeed": "Pupunta sa home feed",
+    "openMenu": "Buksan ang menu",
+    "scrollsFeedToTop": "Nag-scroll sa tuktok ng feed at ni-refresh ito",
+    "notificationsUnread": "Mga notipikasyon, {{unread}} hindi pa nababasa",
+    "errorDetails": "Mga detalye ng error:",
+    "failedToLoad": "Nabigong i-load",
+    "noInternetTitle": "Walang Koneksyon sa Internet",
+    "noInternetBody": "Pakisuri ang iyong koneksyon sa internet at subukang muli. Kailangan mong konektado sa internet upang magamit ang DeHub.",
+    "noInternetStatus": "Offline - Walang koneksyon sa network",
+    "noInternetHint": "Siguraduhing naka-on ang Wi-Fi o mobile data, pagkatapos ay i-tap ang \"{{action}}\""
   },
   "tip": {
     "title": "Send Tip",
@@ -1667,7 +1681,12 @@
     "chooseUsernameBody": "Pumili ng username at display name para magpatuloy. Puwede mo itong palitan mamaya.",
     "checkingAvailability": "Sinusuri ang availability…",
     "usernameTakenHint": "Kuha na ang username na ito — subukang magdagdag ng numero o underscore",
-    "displayNameLength": "Dapat 2-50 karakter ang display name."
+    "displayNameLength": "Dapat 2-50 karakter ang display name.",
+    "loginFailedRetry": "Nabigo ang pag-login. Pakisubukang muli.",
+    "sendCodeFailedRetry": "Hindi maipadala ang code. Pakisubukang muli.",
+    "invalidCodeRetry": "Hindi wasto ang code. Pakisubukang muli.",
+    "invalidEmailOrPassword": "Hindi wasto ang email o password.",
+    "welcomeToDehub": "Maligayang pagdating sa DeHub"
   },
   "messages": {
     "smartRepliesOff": "Naka-off na ang mga iminungkahing sagot",
@@ -1745,7 +1764,32 @@
     "offerWorthNow": "Mga {{amount}} DHB sa kasalukuyang palitan",
     "offerNotePlaceholder": "Magdagdag ng paalala (opsyonal)",
     "offerCommitsNothing": "Walang bayad ang pag-aalok at walang DHB na nakakandado. Magbabayad ka lang kung tatanggapin ng may-ari.",
-    "offerNeedsHandle": "Walang username ang account na ito na puwedeng alukin."
+    "offerNeedsHandle": "Walang username ang account na ito na puwedeng alukin.",
+    "noPostsYet": "Wala pang mga post",
+    "noPostsYetSub": "Dito lalabas ang nilalaman kapag nai-post",
+    "noPinnedPosts": "Wala pang mga naka-pin na post",
+    "noPinnedPostsSub": "Dito lalabas ang mga naka-pin na post",
+    "emptyLiked": "Wala pang mga nagustuhang post.",
+    "emptySaved": "Wala pang mga naka-save na post.",
+    "emptyUnlocked": "Wala pang mga na-unlock na post.",
+    "emptyWatched": "Wala pang kasaysayan ng panonood.",
+    "emptyFolder": "Wala pang mga post sa folder na ito.",
+    "emptyPosts": "Wala pang mga post.",
+    "couldNotLoadPosts": "Hindi ma-load ang mga post.",
+    "noPostsOrReplies": "Wala pang mga post, komento, o reply",
+    "noPostsOrRepliesSub": "Dito sila lalabas",
+    "avatarUpdated": "Na-update ang avatar",
+    "coverUpdated": "Na-update ang cover",
+    "couldNotPickImage": "Hindi mapili ang larawan",
+    "changeCoverImage": "Baguhin ang cover image",
+    "changeAvatar": "Baguhin ang avatar",
+    "verifiedEnsName": "Beripikadong ENS name {{name}}",
+    "notFullyJoined": "Hindi pa ganap na nakasali ang user na ito. Hindi pa sila nakakapili ng username o nakukumpleto ang pag-setup ng profile. Maaari mo pa ring tingnan ang pampublikong aktibidad at magpadala ng mga tip kung available.",
+    "loadRepliesFailed": "Nabigong i-load ang mga reply",
+    "refreshFailed": "Nabigong mag-refresh",
+    "noRepliesYet": "Wala pang Reply",
+    "noRepliesYetSub": "Kapag nag-reply ang user na ito sa mga post, dito sila lalabas.",
+    "noMoreReplies": "Wala nang mga reply"
   },
   "tv": {
     "title": "TV",
@@ -1828,7 +1872,11 @@
     "loadingPrice": "Naglo-load ng presyo…",
     "topUpExplanation": "Ililipat ang DHB on-chain sa ads treasury ng DeHub, tapos makikredito ang balanse mo pagkatapos ng malayang pagpapatunay on-chain.",
     "paymentHistory": "Kasaysayan ng bayad",
-    "noPayments": "Wala pang bayad"
+    "noPayments": "Wala pang bayad",
+    "sponsored": "Sponsored",
+    "morePosts": "Marami pang post",
+    "loadMorePosts": "Mag-load ng marami pang post",
+    "playAdVideo": "Mag-play ng ad video"
   },
   "buyCoins": {
     "title": "Buy Coins",
@@ -2263,7 +2311,8 @@
     "privateBalanceMode": "Naka-on ang private balance mode",
     "addressHidden": "Nakatago ang address",
     "allowInFeeds": "Payagan ang user na ito na lumabas sa iyong mga feed",
-    "hideContent": "Itago ang kanilang nilalaman at limitahan ang pakikipag-ugnayan"
+    "hideContent": "Itago ang kanilang nilalaman at limitahan ang pakikipag-ugnayan",
+    "a11yLabel": "Mga opsyon sa profile"
   },
   "toasts": {
     "saved_to_bookmarks": "Na-save sa mga bookmark",
@@ -2634,7 +2683,8 @@
     "roles": {
       "owner": "May-ari",
       "moderator": "Moderator",
-      "member": "Miyembro"
+      "member": "Miyembro",
+      "admin": "Admin"
     },
     "time": {
       "today": "ngayon",
@@ -2643,7 +2693,126 @@
       "weeks": "{{count}}li",
       "months": "{{count}}bw",
       "years": "{{count}}t"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "na-edit",
+      "deleteTitle": "Burahin ang mensahe",
+      "deleteConfirm": "Burahin ang mensaheng ito? Hindi na ito mababawi.",
+      "muted": "Naka-mute ka",
+      "postingDisabled": "Naka-disable ang pag-post para sa mga miyembro dito",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Naka-pin na mensahe",
+      "showEarlier": "Ipakita ang mga naunang mensahe",
+      "editingMessage": "Pag-edit ng mensahe",
+      "copied": "Nakopya na ang mensahe",
+      "copyText": "Kopyahin ang teksto",
+      "mutedUntil": "Naka - mute ka hanggang {{date}}",
+      "slowMode": "Mabagal na mode: isang mensahe kada {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "I - dismiss ang admin",
+      "cancel": "Kanselahin",
+      "dismissAdmin": "I - dismiss ang admin",
+      "roleAdmin": "Tagapangasiwa",
+      "roleMember": "Miyembro",
+      "whatCanTheyDo": "Ano ang magagawa ng admin na ito?",
+      "rightNotHeld": "Wala kang karapatan na ito sa iyong sarili",
+      "customTitle": "Iniangkop na pamagat",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Ipinapakita sa halip na default na badge ng Admin.",
+      "saveChanges": "I - save ang mga pagbabago",
+      "promote": "I - promote",
+      "tabs": {
+        "members": "Mga Miyembro",
+        "admins": "Admin",
+        "permissions": "Mga Pahintulot",
+        "invites": "Mga Imbitasyon",
+        "rules": "Mga Panuntunan",
+        "recentActions": "Mga kamakailang aksyon",
+        "danger": "Zona ng panganib"
+      },
+      "title": "Pangasiwaan",
+      "purgeTitle": "Tanggalin ang lahat ng mga mensahe?",
+      "purgeConfirm": "Tanggalin",
+      "kickTitle": "Alisin ang miyembro?",
+      "kickConfirm": "Alisin",
+      "bannedPermanent": "Ipinagbabawal — permanente",
+      "mutedPermanent": "Muted — permanente",
+      "editAdminRights": "I-edit ang mga karapatan ng admin",
+      "promoteToAdmin": "I-promote bilang admin",
+      "unmute": "I-unmute",
+      "mute": "I-mute",
+      "unban": "I-unban",
+      "ban": "I-ban",
+      "deleteAllMessages": "Burahin lahat ng mensahe",
+      "removeFromCommunity": "Alisin sa komunidad",
+      "noActionsAvailable": "Hindi mo maaaring i-moderate ang miyembrong ito.",
+      "showMore": "Magpakita ng higit pa",
+      "joinRequests": "Mga kahilingan sa pagsali",
+      "approve": "Aprubahan",
+      "reject": "Tanggihan",
+      "members": "Mga Miyembro",
+      "searchMembers": "Maghanap ayon sa wallet address",
+      "noMembersMatch": "Walang miyembrong tumutugma dito.",
+      "noMembers": "Wala pang miyembro.",
+      "muted": "Naka-mute",
+      "banned": "Naka-ban",
+      "muteEffect": "Mananatili sila sa komunidad ngunit hindi makakapag-post hanggang sa matapos ang mute.",
+      "banEffect": "Sila ay inalis sa chat at hindi makakabalik hanggang sa maalis ang ban.",
+      "durationLabel": "Tagal",
+      "reasonLabel": "Dahilan (opsyonal)",
+      "reasonPlaceholder": "Bakit sila binaban?",
+      "alsoDeleteMessages": "Burahin din ang lahat ng kanilang mensahe",
+      "confirmMute": "I-mute ang miyembro",
+      "confirmBan": "I-ban ang miyembro",
+      "rulesUpdated": "Na-update ang mga patakaran",
+      "rulesTitle": "Mga patakaran ng komunidad",
+      "rulesEmpty": "Wala pang patakaran — idagdag ang una sa ibaba.",
+      "rulePlaceholder": "Ilarawan ang tuntunin",
+      "addRule": "Magdagdag ng tuntunin",
+      "saveRules": "I-save ang mga tuntunin",
+      "dismissAdminBody": "{{wallet}} ay magiging ordinaryong miyembro muli.",
+      "purgeBody": "Bawat mensahe na ipinadala ni {{name}} sa komunidad na ito ay aalisin.",
+      "kickBody": "Si {{name}} ay aalisin sa komunidad. Maaari silang sumali muli sa ibang pagkakataon.",
+      "bannedUntil": "Banned hanggang {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Muted hanggang {{date}}",
+      "bannedUntilShort": "Hanggang {{date}}",
+      "muteTitle": "I-mute si {{name}}",
+      "banTitle": "I-ban si {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} ng {{max}}",
+      "moveRuleUp": "Ilipat ang tuntunin pataas",
+      "moveRuleDown": "Ilipat ang tuntunin pababa",
+      "deleteRule": "Burahin ang tuntunin",
+      "rights": {
+        "changeInfo": "Baguhin ang impormasyon ng komunidad",
+        "changeInfoHint": "I-edit ang pangalan, deskripsyon, avatar, at banner",
+        "deleteMessages": "Burahin ang mga mensahe",
+        "deleteMessagesHint": "Alisin ang anumang mensahe mula sa chat ng komunidad",
+        "restrictMembers": "I-ban ang mga user",
+        "restrictMembersHint": "I-mute, alisin, at i-ban ang mga miyembro",
+        "inviteUsers": "Mag-imbita ng mga user sa pamamagitan ng link",
+        "inviteUsersHint": "Gumawa at bawiin ang mga invite link",
+        "pinMessages": "I-pin ang mga mensahe",
+        "pinMessagesHint": "I-pin ang isang mensahe sa tuktok ng chat",
+        "manageEvents": "Pamahalaan ang mga event",
+        "manageEventsHint": "Gumawa at mag-edit ng mga event ng komunidad",
+        "addAdmins": "Magdagdag ng mga bagong admin",
+        "addAdminsHint": "I-promote ang mga miyembro at i-edit ang mga karapatan ng mga admin na idinagdag nila",
+        "remainAnonymous": "Manatiling anonymous",
+        "remainAnonymousHint": "Itago ang admin na ito mula sa listahan ng miyembro"
+      },
+      "durations": {
+        "oneHour": "1 oras",
+        "eightHours": "8 oras",
+        "oneDay": "1 araw",
+        "oneWeek": "1 linggo",
+        "forever": "Habang-buhay"
+      }
+    },
+    "chooseAvatar": "Pumili ng avatar"
   },
   "work": {
     "title": "Mga bounty",
@@ -2995,7 +3164,9 @@
       "shipped": "Naipadala",
       "completed": "Tapos na",
       "cancelled": "Kinansela"
-    }
+    },
+    "removePhoto": "Tanggalin ang larawan",
+    "listingOptions": "Mga opsyon sa paglilista"
   },
   "accounts": {
     "subtitle": "Buong account na ibinebenta, presyo sa DHB",
@@ -3363,7 +3534,14 @@
     "removeFollowerHint": "Pindutin at hawakan ang isang tagasubaybay upang alisin sila.",
     "cancel": "Kanselahin",
     "remove": "Alisin",
-    "thisUser": "Ang user na ito"
+    "thisUser": "Ang user na ito",
+    "cancelRequestTo": "Kanselahin ang follow request kay @{{username}}?",
+    "followingUser": "Sinusundan si @{{username}}",
+    "contentUnavailable": "Hindi Magagamit ang Nilalaman",
+    "youBlockedBody": "Hindi mo makikita ang kanilang mga post o makikipag-ugnayan sa kanila. I-unblock para maibalik ang access.",
+    "restrictedBody": "Nilimitahan ng user na ito ang mga pakikipag-ugnayan sa iyong account.",
+    "requestPendingBody": "Naipadala na ang iyong follow request. Makikita mo ang kanilang mga post kapag naaprubahan nila ang iyong kahilingan.",
+    "followToSeePosts": "Sundin ang account na ito para makita ang kanilang mga post."
   },
   "reactionInfo": {
     "title": "Mga Reaksyon",
@@ -3677,7 +3855,8 @@
     "needGas": "Kailangan ng native na {{token}} para sa gas sa {{chain}}.",
     "bridging": "Nagbi-bridge…",
     "bridgeAction": "I-bridge {{from}} → {{to}}",
-    "failed": "Nabigo ang bridge"
+    "failed": "Nabigo ang bridge",
+    "sentArriveShortly": "{{amount}} DHB ipinadala mula sa {{from}} → {{to}}. Malapit nang dumating ang mga token."
   },
   "banned": {
     "title": "Ipinagbabawal ang iyong account",
@@ -3855,7 +4034,16 @@
     "legacyRecovered": "Na-verify ang dati mong account{{suffix}} at narekober ang wallet nito. Maglagay ng password na magpoprotekta rito sa device na ito — sa teleponong ito at kahit saan, simula ngayon.",
     "passwordMin": "Password (hindi bababa sa {{min}} karakter)",
     "newPasswordMin": "Bagong password (hindi bababa sa {{min}} karakter)",
-    "newWalletPasswordMin": "Password ng bagong wallet (hindi bababa sa {{min}} karakter)"
+    "newWalletPasswordMin": "Password ng bagong wallet (hindi bababa sa {{min}} karakter)",
+    "deviceCheckCancelled": "Kinansela ang pagsusuri sa device — walang nabago.",
+    "savePhraseTitle": "I-save ang iyong recovery phrase",
+    "startOverTitle": "Magsimula muli gamit ang bagong wallet",
+    "secureNewWalletTitle": "I-secure ang iyong bagong wallet",
+    "secureWalletTitle": "I-secure ang iyong wallet",
+    "unlockOnMobileTitle": "Mag-unlock sa mobile",
+    "oldAccountFoundTitle": "May nakitang lumang account",
+    "unlockWalletTitle": "I-unlock ang iyong wallet",
+    "phraseExplainer": "Ang iyong wallet ay poprotektahan ng biometrics ng teleponong ito. Ang unlock na ito <em>ay gumagana lamang sa teleponong ito</em> — ang 12 salitang ito ang tanging paraan para makabalik kung muling i-install mo ang DeHub, magpalit ng handset, o mawala ito."
   },
   "transcript": {
     "title": "Transcript",
@@ -4041,7 +4229,38 @@
     "subscribe": "Mag-subscribe",
     "subscriberCount_one": "{{count}} subscriber",
     "subscriberCount_other": "{{count}} subscribers",
-    "subscribeToForRich": "Mag-subscribe sa <name>{{name}}</name> sa halagang <price>{{price}}</price>"
+    "subscribeToForRich": "Mag-subscribe sa <name>{{name}}</name> sa halagang <price>{{price}}</price>",
+    "loadPlansFailed": "Nabigong i-load ang mga plano",
+    "subscriberContent": "Nilalaman ng subscriber",
+    "subscriberContentSub": "Gumawa ng mga plano para mag-alok ng eksklusibong nilalaman sa mga subscriber",
+    "createFirstPlan": "Gawin ang Iyong Unang Plano",
+    "addNewPlan": "Magdagdag ng Bagong Plano",
+    "durations": {
+      "oneMonth": "1 Buwan",
+      "threeMonths": "3 Buwan",
+      "sixMonths": "6 Buwan",
+      "oneYear": "1 Taon",
+      "lifetime": "Panghabambuhay"
+    },
+    "planNameRequired": "Kailangan ang pangalan ng plano",
+    "enterValidPrice": "Maglagay ng balidong presyo",
+    "availableChains": "Sa kasalukuyan, available ang mga subscription sa Base at BNB",
+    "waitForSwitch": "Maghintay na matapos ang paglipat ng subscription network",
+    "connectAndWait": "Ikonekta ang iyong wallet at maghintay para sa subscription network",
+    "planUpdated": "Na-update ang plano",
+    "creating": "Ginagawa…",
+    "planPublished": "Nagawa at nai-publish ang plano",
+    "createPlanTitle": "Gumawa ng Subscription Plan",
+    "network": "Subscription network",
+    "planNameLabel": "Pangalan ng Plano *",
+    "planNamePlaceholder": "hal. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Ang makukuha ng mga subscriber...",
+    "priceLabel": "Presyo (USD) *",
+    "legacyMigrationNote": "Ang pag-save ay naglilipat ng legacy DHB plan na ito sa dolyar na pagpepresyo sa pre-listing rate.",
+    "benefits": "Mga Benepisyo",
+    "benefitPlaceholder": "Magdagdag ng benepisyo…",
+    "createAndPublish": "Gumawa at I-publish",
+    "publishingOnChain": "Ang pag-publish ay isang on-chain transaction"
   },
   "live": {
     "notSet": "Hindi nakatakda",
@@ -4158,7 +4377,22 @@
     "checkoutUnavailable": "Hindi available ang checkout link. Subukan ulit.",
     "acceptTerms": "Tinatanggap ko ang <terms>Mga Tuntunin ng Serbisyo</terms>",
     "tokensSentTo": "Ipinadala ang mga token sa {{address}}",
-    "goToProfile": "Pumunta sa Profile"
+    "goToProfile": "Pumunta sa Profile",
+    "aboutTitle": "Tungkol sa DeHub & mga bayarin",
+    "aboutSubtitle": "Ang iyong gateway sa walang putol na mga pagbabayad ng token",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Ginagamit ang mga token para mag-subscribe sa mga creator, mag-tip ng mga streamer, o mag-unlock ng content. Kung mas marami kang hawak, mas mababa ang iyong mga bayarin at mas maraming superpowers ang iyong maa-unlock tulad ng timeline trend boosts at verification badges.",
+    "aboutInstantTitle": "Instant na Pagbabayad",
+    "aboutInstantBody": "Gamit ang Stripe, maaari kang bumili ng mga token nang instant at walang putol sa anumang account na iyong naka-log in. Ginagawang simple ng DeHub ang mga token at para sa lahat. Kung kailangan mo ng karagdagang suporta, mag-pop up lang sa aming 24/7 live community chat at humingi ng admin support.",
+    "aboutSecureTitle": "Secure Gateway",
+    "aboutSecureBody": "Lahat ng detalye ng pagbabayad ay naka-encrypt at ligtas na pinoproseso ng Stripe. Hindi namin maa-access o maiimbak ang iyong sensitibong impormasyon o mga detalye ng card, na nagbibigay sa iyo ng lubos na kapayapaan ng isip.",
+    "transfersSummary": "Buod ng mga Transfer",
+    "availableToBuy": "Available na bilhin ngayon",
+    "noSupplyShort": "Walang supply",
+    "topUpSubtitle": "Bumili ng $DHB gamit ang card at makakuha ng libreng gas para magamit agad",
+    "noTxHash": "Hindi mahanap ang transaction hash",
+    "latestTransactions": "Mga Pinakabagong Transaksyon",
+    "showAll": "Ipakita lahat"
   },
   "musicSheet": {
     "title": "Gumawa ng kanta",
@@ -4287,7 +4521,13 @@
     "followUpNote": "Baka makipag-ugnayan kami para sa karagdagang tanong tungkol sa feedback mo",
     "submitFeedback": "Ipadala ang feedback",
     "provideFeedback": "Pakisulat ang iyong feedback",
-    "thankYou": "Salamat sa iyong feedback!"
+    "thankYou": "Salamat sa iyong feedback!",
+    "submitFailed": "Nabigong magsumite ng feedback. Pakisubukang muli.",
+    "maybeLater": "Mamaya na",
+    "helpUsImprove": "Tulungan kaming mapabuti",
+    "rateExperience": "Paano mo mamarkahan ang iyong karanasan?",
+    "telegramOptional": "Telegram (opsyonal)",
+    "discordOptional": "Discord (opsyonal)"
   },
   "migrate": {
     "clearAll": "Malinaw ang lahat",
@@ -4403,7 +4643,14 @@
       "killerWhale": "Tuktok ng kadena ng pagkain, at mangangaso ka sa mga pakete",
       "blueWhale": "Ang pinakamalaking bagay na nabuhay. Iyan ay ikaw.",
       "megalodon": "Narito ang iyong korona — ikaw ay app royalty ngayon"
-    }
+    },
+    "none": "Wala",
+    "noBadgeYet": "Wala pang badge",
+    "next": "Susunod",
+    "topTier": "Top tier",
+    "toNextTier": "{{amount}} DHB sa {{tier}}",
+    "everyTierUnlocked": "Bawat tier ay naka-unlock",
+    "holdNote": "Kapag na-unlock na ang isang badge, ito ay sa iyo hangga't hawak mo ang iyong DHB. Ang bilang ng mga token na kailangan upang mag-unlock ng bagong badge ay maaaring magbago kasama ang presyo ng token."
   },
   "passwordStrength": {
     "veryWeak": "Napakahina",
@@ -4485,7 +4732,11 @@
     },
     "ttsLabel": "Sabihin nang malakas ang isang bagay",
     "ttsPlaceholder": "Basahin sa stream...",
-    "ttsHint": "Basahin nang malakas sa lahat ng nanonood kapag nakarating ang iyong regalo."
+    "ttsHint": "Basahin nang malakas sa lahat ng nanonood kapag nakarating ang iyong regalo.",
+    "sendAGift": "Magpadala ng Regalo",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Ang minimum na regalo ay {{amount}}",
+    "sendGift": "Magpadala ng Regalo"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4867,7 +5118,8 @@
         "title": "Tingnan kung paano gumagana ang kita",
         "body": "Alamin kung paano ginagawa ng mga tip, badge, at SuperPower ang ginagawa mo rito bilang isang bagay na kinikita mo."
       }
-    }
+    },
+    "swipeToStart": "Mag-swipe para magsimula"
   },
   "conversation": {
     "commonGround": {
@@ -5483,5 +5735,18 @@
     "toastPaidSettled": "Bayad na — tapos na ang trade",
     "walletNotReady": "Hindi pa handa ang wallet mo — subukang muli mamaya.",
     "wrongChain": "Sa {{chain}} natatapos ang trade na ito. Lumipat sa {{chain}} sa Settings, saka subukang muli."
+  },
+  "moderation": {
+    "appealDuplicate": "Naapela mo na ito",
+    "appealSent": "Naipadala na ang apela",
+    "appealFailed": "Hindi ma - file ang apela na iyon",
+    "appealTitle": "Iapela ang desisyong ito",
+    "appealSubtitle": "Babasahin ito ng isang tao at titingnan muli ang desisyon.",
+    "appealPlaceholder": "Ano sa tingin mo ang nakaligtaan? Ang konteksto tungkol sa nilalaman ay nakakatulong sa higit sa anumang bagay.",
+    "appealSend": "Magpadala ng apela",
+    "appealFootnote": "Makakakuha ka ng reference number, at ang sagot ay bumalik dito. Isang apela sa bawat desisyon.",
+    "appealRef": "Sanggunian {{ref}}",
+    "appealSubtitleSubject": "Babasahin ito ng isang tao at titingnan ulit sa {{subject}}.",
+    "appealMore": "Kailangan pa rin ng mga character:{{count}}"
   }
 }

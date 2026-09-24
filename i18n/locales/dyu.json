@@ -677,7 +677,11 @@
       "hintAllow": "AI ka sisitɛmuw ni crawlers minw be bonya la o siginɛ kan, olu be se k'i dɛmɛ k'i ka kumakanw, i ka dɔnkiliw ani i ka sɛbɛri kɛ.",
       "hintDeny": "O la, aw ka kan ka aw ka kumakanw, aw ka dɔnkiliw ani aw ka sɛbɛri kɛcogow degi. Mɔgɔ minw tɛ sɔn ka kuma, olu tɛ se ka kuma.",
       "saved": "Kalan min ka di mɔgɔ ye"
-    }
+    },
+    "chainIdLabel": "ID de chaîne : {{id}}",
+    "exportPkConfirmPhrase": "JE COMPRENDS",
+    "exportPkCopy": "Copier la clé privée",
+    "e2eAutomatic": "Automatique"
   },
   "common": {
     "mute": "Kan bɔ",
@@ -717,7 +721,17 @@
     "optionalSuffix": "(a man wajibi ye)",
     "yesterday": "Kunu",
     "ok": "Awɔ",
-    "continue": "Ka to ka taga"
+    "continue": "Ka to ka taga",
+    "goesToHomeFeed": "N'a sɔrɔ a be dumuni kɛ soo kɔnɔ.",
+    "openMenu": "Ouvrir le menu",
+    "scrollsFeedToTop": "I ka taga ni filimu ye, walima i ka to ne fɛ.",
+    "notificationsUnread": "Notifications, {{unread}} non lues",
+    "errorDetails": "Détails de l'erreur :",
+    "failedToLoad": "Échec du chargement",
+    "noInternetTitle": "Pas de connexion Internet",
+    "noInternetBody": "N'i b'i ka ɛntɛrinɛti yɔrɔ lajɛ ani i ka segi k'a ɲini. I mako be ɛntɛrinɛti la walisa ka DeHub ta.",
+    "noInternetStatus": "Mɔgɔ tɛ sɔn ka baara wɛrɛ kɛ, a tɛ se ka baara wɛrɛ kɛ.",
+    "noInternetHint": "Aw ye a to Wi-Fi wala telefɔni ka kunnafoniw ka yɛlɛ, o kɔ, aw ye \"{{action}}\" sɛbɛn"
   },
   "tip": {
     "title": "Kɔrɔbɔ",
@@ -1599,7 +1613,12 @@
     "chooseUsernameBody": "Baarakɛla tɔgɔ ni jirali tɔgɔ sugandi walisa ka taa ɲɛ. I bɛ se k'u yɛlɛma kɔfɛ.",
     "checkingAvailability": "Sɔrɔli sɛgɛsɛgɛli bɛ kɛ…",
     "usernameTakenHint": "Tɔgɔ in tara — a lajɛ ni jatedenw walima jukɔrɔsira ye",
-    "displayNameLength": "Jirali tɔgɔ ka kan ka kɛ sɛbɛnden 2 fo 50 ye."
+    "displayNameLength": "Jirali tɔgɔ ka kan ka kɛ sɛbɛnden 2 fo 50 ye.",
+    "loginFailedRetry": "N'i b'a fɛ ka taga, n'i b'a fɛ ka taga.",
+    "sendCodeFailedRetry": "N'i ma se ka sɛbɛ ci, i ka segi k'a ci.",
+    "invalidCodeRetry": "N'i b'a fɛ ka koo dɔ kɛ, i ka segi k'o kɛ.",
+    "invalidEmailOrPassword": "I ka e-mail wala i ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye.",
+    "welcomeToDehub": "Bienvenue sur DeHub"
   },
   "messages": {
     "smartRepliesOff": "Jaabi fɔlenw fagara",
@@ -1677,7 +1696,32 @@
     "offerWorthNow": "Sisan sɔngɔ la, a bɛ se ka kɛ {{amount}} DHB ye",
     "offerNotePlaceholder": "Sɛbɛn dɔ fara a kan (i sago)",
     "offerCommitsNothing": "Fɛɛrɛ kɛli tɛ foyi bɔ i bolo, a tɛ DHB si datugu. I bɛ sara dɔrɔn n’a tigi y’a minɛ.",
-    "offerNeedsHandle": "Nin jatebɔlan in tɛ tɔgɔ si sɔrɔ ka fɛɛrɛ kɛ a kan."
+    "offerNeedsHandle": "Nin jatebɔlan in tɛ tɔgɔ si sɔrɔ ka fɛɛrɛ kɛ a kan.",
+    "noPostsYet": "Aucune publication pour le moment",
+    "noPostsYetSub": "Ne bena a yira i la tuma min na i bena a yira",
+    "noPinnedPosts": "PAS EncARA Kɔrɔbɔli",
+    "noPinnedPostsSub": "O la, an bena a ye ko an ye mɔgɔ dɔw ye minw be se ka kɛ",
+    "emptyLiked": "Aka ti n'a ni post kɛnɛ.",
+    "emptySaved": "O tɛ se ka kɛ halibi.",
+    "emptyUnlocked": "Aka nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi nyi ny",
+    "emptyWatched": "Aka n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'a n'",
+    "emptyFolder": "O gafe be weele ko: \"Logo ɲumanw\".",
+    "emptyPosts": "Aucune publication pour le moment.",
+    "couldNotLoadPosts": "Impossible de charger les publications.",
+    "noPostsOrReplies": "Mɔgɔ si ma sɔn ka kuma, mɔgɔ si ma sɔn ka kuma, mɔgɔ si ma sɔn ka kuma.",
+    "noPostsOrRepliesSub": "U bena na yan",
+    "avatarUpdated": "Avatar ka kunnafoniw",
+    "coverUpdated": "An ka kunnafoniw",
+    "couldNotPickImage": "Ne tɛ se ka n ka fotogwɛlɛsi to yen",
+    "changeCoverImage": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
+    "changeAvatar": "Aw ye aw yɛrɛ kɔrɔsi",
+    "verifiedEnsName": "Nom ENS vérifié {{name}}",
+    "notFullyJoined": "O tigi ma sɔn ka jɛn ni mɔgɔ wɛrɛ ye fɔlɔ. U ma mɔgɔ tɔgɔ ɲini wala u ma mɔgɔ tɔgɔ sɛbɛ. I be se ka to ka jama ka baara filɛ ani ka ladiliw ci n'i b'a fɛ.",
+    "loadRepliesFailed": "O tɛ se ka kɛ sabu an tɛ se ka mɔgɔ jaabi.",
+    "refreshFailed": "Fanga be mɔgɔ minw na, olu be se ka kɛ",
+    "noRepliesYet": "Mɔgɔ si ma sɔn ka kuma",
+    "noRepliesYetSub": "N'o tigi ye ɲiningaliw jaabi, a bena u yira yan.",
+    "noMoreReplies": "O kɔ, a ma sɔn ka kuma tugu."
   },
   "tv": {
     "title": "TV",
@@ -1760,7 +1804,11 @@
     "loadingPrice": "Sɔngɔ bɛ ka don…",
     "topUpExplanation": "DHB bɛ ci sirasira kan ka taa DeHub jɛnsɛn waribon na, o kɔfɛ i ka wari bɛ yiriwa dafalenya danfaralen kɔfɛ.",
     "paymentHistory": "Sarali tariku",
-    "noPayments": "Sarali si tɛ yen fɔlɔ"
+    "noPayments": "Sarali si tɛ yen fɔlɔ",
+    "sponsored": "Dɛmɛbaga",
+    "morePosts": "Ka tɛmɛ o kan",
+    "loadMorePosts": "N'i b'a fɛ ka dɔ fara a kan, i ka taga a filɛ",
+    "playAdVideo": "Aw ye videwo nin filɛ"
   },
   "buyCoins": {
     "title": "Kɔrɔbɔ",
@@ -2194,7 +2242,8 @@
     "privateBalanceMode": "Gundo wari hakɛ cogo bɛ baara la",
     "addressHidden": "Ladɛrɛsi dogora",
     "allowInFeeds": "A to nin baarakɛla ka bɔ i ka feed la",
-    "hideContent": "U ka kunnafoniw dogo ani ka jɛɲɔgɔnyaw dan"
+    "hideContent": "U ka kunnafoniw dogo ani ka jɛɲɔgɔnyaw dan",
+    "a11yLabel": "Fanga min b'a la ka mɔgɔ weele ka na"
   },
   "toasts": {
     "saved_to_bookmarks": "A mara taamasiyɛn kɔnɔ",
@@ -2547,7 +2596,8 @@
     "roles": {
       "owner": "Tigi",
       "moderator": "Ɲɛmɔgɔ",
-      "member": "Tɔnden"
+      "member": "Tɔnden",
+      "admin": "K'a to a ka baara la"
     },
     "time": {
       "today": "bi",
@@ -2556,7 +2606,126 @@
       "weeks": "Dɔgɔkun {{count}}",
       "months": "Kalo {{count}}",
       "years": "San {{count}}"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anɔn",
+      "edited": "ka kɛ",
+      "deleteTitle": "A ka kuma bɔ",
+      "deleteConfirm": "Yala i be se k'o fɔ wa? Yala i tɛ se k'o fɔ wa?",
+      "muted": "I be to ka to ka kuma",
+      "postingDisabled": "O kama, an ka ɲi k'an seko bɛɛ kɛ ka mɔgɔw dɛmɛ u ka se ka Jehova bato.",
+      "mediaMessage": "Kunnafonidilaw",
+      "pinnedMessage": "O ye kumajugu ye",
+      "showEarlier": "Ka kunnafoni wɛrɛw bila sen kan",
+      "editingMessage": "Ladili labɛn",
+      "copied": "Kopi kɛ",
+      "copyText": "Kɔrɔbɔli kumaw",
+      "mutedUntil": "Vous êtes en sourdine jusqu'à {{date}}",
+      "slowMode": "Mode lent : un message tous les {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Mɔgɔ min be baara kɛ",
+      "cancel": "Kanali",
+      "dismissAdmin": "Mɔgɔ min be baara kɛ",
+      "roleAdmin": "Kalanfa",
+      "roleMember": "Député ka la n'a ye",
+      "whatCanTheyDo": "O la, an ka ɲi ka mun lo kɛ do?",
+      "rightNotHeld": "I ka kan ka min kɛ, o tɛ i yɛrɛ ta ye.",
+      "customTitle": "Tɔgɔdafɛ",
+      "customTitlePlaceholder": "K'a to a ka baara la",
+      "customTitleHint": "O kɔrɔ ko, a ka ɲi ka kɛ ni tagamasiɲɛ ye min be weele ko \"Admin\" wala \"Admin\" tagamasiɲɛ.",
+      "saveChanges": "Ka yɛlɛmani dɔw kɛ",
+      "promote": "An ka dɛmɛ don",
+      "tabs": {
+        "members": "Députés ka lasigidenw",
+        "admins": "K'a to a ka baara la",
+        "permissions": "Mɔgɔ minw b'a fɛ ka taga yen, olu ka kan",
+        "invites": "A ye mɔgɔ weele ka na",
+        "rules": "Sariya",
+        "recentActions": "Sanni dɔɔni, u ye koo dɔw kɛ.",
+        "danger": "Kɔnɔnafoniw"
+      },
+      "title": "K'a to a ka baara la",
+      "purgeTitle": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye.",
+      "purgeConfirm": "A tun banna",
+      "kickTitle": "Ka kɛ mɔgɔ dɔ ye?",
+      "kickConfirm": "Ka bɔ",
+      "bannedPermanent": "Fanga min be Ala ka Kuma na, o ye nin ye:",
+      "mutedPermanent": "Modɛli: Tuma bɛɛ",
+      "editAdminRights": "Modifier les droits d'administrateur",
+      "promoteToAdmin": "Promouvoir en administrateur",
+      "unmute": "Annuler le silence",
+      "mute": "Faire taire",
+      "unban": "Annuler le bannissement",
+      "ban": "Bannir",
+      "deleteAllMessages": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
+      "removeFromCommunity": "Ka bɔ kafo kɔnɔ",
+      "noActionsAvailable": "I man kan ka kɛ o mɔgɔ dɔ ye.",
+      "showMore": "Afficher plus",
+      "joinRequests": "Demandes de participation",
+      "approve": "Approuver",
+      "reject": "Rejeter",
+      "members": "Membres",
+      "searchMembers": "Rechercher par adresse de portefeuille",
+      "noMembersMatch": "O kama, u tun tɛ se k'u yɛrɛ tanga o ma.",
+      "noMembers": "Aucun membre pour l'instant.",
+      "muted": "En sourdine",
+      "banned": "Bannis",
+      "muteEffect": "Awo kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛɛ ti kɛ",
+      "banEffect": "U be bɔ baro la ani u tɛ se ka segi ka don tugun fɔɔ ni bali banna.",
+      "durationLabel": "Durée",
+      "reasonLabel": "Raison (facultatif)",
+      "reasonPlaceholder": "U be fɛɛn minw kalan, yala u be mɔgɔ wɛrɛw dege o la wa?",
+      "alsoDeleteMessages": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
+      "confirmMute": "Faire taire le membre",
+      "confirmBan": "Bannir le membre",
+      "rulesUpdated": "Règles mises à jour",
+      "rulesTitle": "Règles de la communauté",
+      "rulesEmpty": "O kama, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+      "rulePlaceholder": "A ɲɛfɔ sariya ye",
+      "addRule": "Sariya sigibaga",
+      "saveRules": "Sariyaw",
+      "dismissAdminBody": "{{wallet}} bena segi ka kɛ mɔgɔdafanin ye.",
+      "purgeBody": "Chaque message envoyé par {{name}} dans cette communauté sera supprimé.",
+      "kickBody": "{{name}} bena bɔ kafo kɔnɔ. O kɔ, u be se ka segi ka na.",
+      "bannedUntil": "Add {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Ala ka Kuma {{date}}",
+      "bannedUntilShort": "O ye {{date}}",
+      "muteTitle": "Ala ka Kuma {{name}}",
+      "banTitle": "O ye {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} ka {{max}}",
+      "moveRuleUp": "I ka kan ka to ka koo bɛɛ kɛ",
+      "moveRuleDown": "Ka to ka to ka kuma",
+      "deleteRule": "Fanga min be sɔrɔ a ka sariya la",
+      "rights": {
+        "changeInfo": "Ka kunnafoniw yɛlɛma",
+        "changeInfoHint": "I tɔgɔ, i ka ɲɛfɔli, i ka avatar ani i ka pankarti yɛlɛma",
+        "deleteMessages": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
+        "deleteMessagesHint": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
+        "restrictMembers": "Mɔgɔ minw ma sɔn ka baara kɛ n'u ye",
+        "restrictMembersHint": "Ka mɔgɔ dɔw bali ka baara kɛ n'u ye, k'u bali ka baara kɛ n'u ye",
+        "inviteUsers": "N'i ye mɔgɔ dɔ weele ka na i ka site web kan",
+        "inviteUsersHint": "Ka mɔgɔ weele ka na a ka soo",
+        "pinMessages": "PIN ka kumaw",
+        "pinMessagesHint": "I ka kan ka kuma ni mɔgɔ dɔ ye min be se ka kuma i fɛ.",
+        "manageEvents": "Koo minw kɛra",
+        "manageEventsHint": "Ka sigida ka koo dɔw labɛn ani k'u labɛn",
+        "addAdmins": "Di yɛla admin fɛn dɔn ɲɛ na",
+        "addAdminsHint": "Promouvoir les membres et modifier les droits des administrateurs qu'ils ont ajoutés",
+        "remainAnonymous": "Rester anonyme",
+        "remainAnonymousHint": "Masquer cet administrateur de la liste des membres"
+      },
+      "durations": {
+        "oneHour": "1 heure",
+        "eightHours": "8 heures",
+        "oneDay": "1 jour",
+        "oneWeek": "1 semaine",
+        "forever": "Pour toujours"
+      }
+    },
+    "chooseAvatar": "Choisir un avatar"
   },
   "work": {
     "title": "Sarakaw",
@@ -2908,7 +3077,9 @@
       "shipped": "Cilen",
       "completed": "Dafalen",
       "cancelled": "Bɔsira"
-    }
+    },
+    "removePhoto": "Supprimer la photo",
+    "listingOptions": "Options de liste"
   },
   "accounts": {
     "subtitle": "Kunnafonidon bɛɛ bɛ feere, sɔngɔ bɛ DHB la",
@@ -3272,7 +3443,14 @@
     "removeFollowerHint": "Aw ye tugu ɲɔgɔn kɔ ka tugu ɲɔgɔn kɔ.",
     "cancel": "Kanali",
     "remove": "Ka bɔ",
-    "thisUser": "Mɔgɔ min be baara kɛ"
+    "thisUser": "Mɔgɔ min be baara kɛ",
+    "cancelRequestTo": "Annuler la demande de suivi de @{{username}} ?",
+    "followingUser": "Suivi de @{{username}}",
+    "contentUnavailable": "Contenu indisponible",
+    "youBlockedBody": "Vous ne verrez pas ses publications et ne pourrez pas interagir avec lui. Débloquez pour rétablir l'accès.",
+    "restrictedBody": "Cet utilisateur a restreint les interactions avec votre compte.",
+    "requestPendingBody": "Votre demande de suivi a été envoyée. Vous pourrez voir ses publications une fois qu'il aura approuvé votre demande.",
+    "followToSeePosts": "Suivez ce compte pour voir ses publications."
   },
   "reactionInfo": {
     "title": "O kama, a ka ɲi ka kɛ ni",
@@ -3577,7 +3755,8 @@
     "needGas": "{{token}} yɛrɛ ka kan ka kɛ gazi ye {{chain}} kan.",
     "bridging": "Tɛmɛli bɛ kɛ…",
     "bridgeAction": "Tɛmɛli {{from}} → {{to}}",
-    "failed": "Tɛmɛli ma ɲɛ"
+    "failed": "Tɛmɛli ma ɲɛ",
+    "sentArriveShortly": "{{amount}} DHB envoyé depuis {{from}} → {{to}}. Les jetons arrivent bientôt."
   },
   "banned": {
     "title": "I ka wari man kan ka kɛ",
@@ -3753,7 +3932,16 @@
     "legacyRecovered": "An y'i ka jate kɔrɔ{{suffix}} sɛgɛsɛgɛ ani k'a ka wari maraso sɔrɔ. Tɔgɔ gundolen sigi walisa k'a lakana nin minan kan — nin telefɔni kan ani yɔrɔ bɛɛ, ka bɔ sisan.",
     "passwordMin": "Tɔgɔ gundolen (sɛbɛnden {{min}} dɔɔni dɔɔni)",
     "newPasswordMin": "Tɔgɔ gundolen kura (sɛbɛnden {{min}} dɔɔni dɔɔni)",
-    "newWalletPasswordMin": "Wari maraso kura tɔgɔ gundolen (sɛbɛnden {{min}} dɔɔni dɔɔni)"
+    "newWalletPasswordMin": "Wari maraso kura tɔgɔ gundolen (sɛbɛnden {{min}} dɔɔni dɔɔni)",
+    "deviceCheckCancelled": "Vérification de l'appareil annulée — rien n'a été modifié.",
+    "savePhraseTitle": "Sauvegardez votre phrase de récupération",
+    "startOverTitle": "Recommencer avec un nouveau portefeuille",
+    "secureNewWalletTitle": "Sécuriser votre nouveau portefeuille",
+    "secureWalletTitle": "Sécuriser votre portefeuille",
+    "unlockOnMobileTitle": "Déverrouiller sur mobile",
+    "oldAccountFoundTitle": "Ancien compte trouvé",
+    "unlockWalletTitle": "Déverrouiller votre portefeuille",
+    "phraseExplainer": "Votre portefeuille sera protégé par la biométrie de ce téléphone. Ce déverrouillage <em>ne fonctionne que sur ce téléphone</em> — ces 12 mots sont le seul moyen de revenir si vous réinstallez DeHub, changez de téléphone ou le perdez."
   },
   "transcript": {
     "title": "Sɛbɛnni",
@@ -3939,7 +4127,38 @@
     "subscribe": "Don a la",
     "subscriberCount_one": "Kalansoden {{count}}",
     "subscriberCount_other": "Kalansodenw {{count}}",
-    "subscribeToForRich": "Don <name>{{name}}</name> la <price>{{price}}</price> la"
+    "subscribeToForRich": "Don <name>{{name}}</name> la <price>{{price}}</price> la",
+    "loadPlansFailed": "Échec du chargement des plans",
+    "subscriberContent": "Contenu réservé aux abonnés",
+    "subscriberContentSub": "Créer des plans pour offrir du contenu exclusif aux abonnés",
+    "createFirstPlan": "Créez votre premier plan",
+    "addNewPlan": "Ajouter un nouveau plan",
+    "durations": {
+      "oneMonth": "1 mois",
+      "threeMonths": "3 mois",
+      "sixMonths": "6 mois",
+      "oneYear": "1 an",
+      "lifetime": "À vie"
+    },
+    "planNameRequired": "Le nom du plan est requis",
+    "enterValidPrice": "Entrez un prix valide",
+    "availableChains": "Les abonnements sont actuellement disponibles sur Base et BNB",
+    "waitForSwitch": "Attendez que le réseau d'abonnement ait fini de basculer",
+    "connectAndWait": "Connectez votre portefeuille et attendez le réseau d'abonnement",
+    "planUpdated": "Plan mis à jour",
+    "creating": "Création…",
+    "planPublished": "Plan créé et publié",
+    "createPlanTitle": "Créer un plan d'abonnement",
+    "network": "Réseau d'abonnement",
+    "planNameLabel": "Nom du plan *",
+    "planNamePlaceholder": "par ex. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Ce que les abonnés obtiennent...",
+    "priceLabel": "Prix (USD) *",
+    "legacyMigrationNote": "L'épargne migre ce plan DHB hérité vers une tarification en dollars au taux de pré-cotation.",
+    "benefits": "Avantages",
+    "benefitPlaceholder": "Ajouter un avantage...",
+    "createAndPublish": "Créer et publier",
+    "publishingOnChain": "La publication est une transaction on-chain"
   },
   "live": {
     "notSet": "A ma sigi",
@@ -4055,7 +4274,22 @@
     "checkoutUnavailable": "Sarali sira tɛ yen. A lajɛ tuguni.",
     "acceptTerms": "N sɔnna <terms>Baara sariyaw</terms>",
     "tokensSentTo": "Tokens ka kan ka ci {{address}}",
-    "goToProfile": "I ka kunnafoniw lajɛ"
+    "goToProfile": "I ka kunnafoniw lajɛ",
+    "aboutTitle": "À propos de DeHub et des paiements",
+    "aboutSubtitle": "Votre passerelle vers des paiements fluides en tokens",
+    "aboutTokenTitle": "Token DeHub",
+    "aboutTokenBody": "Tokens be baara kɛ ka siginidenw bila, ka kunnafoniw bila, walima ka kunnafoniw bila. N'i be to ka dɔ fara i ka wari hakɛ kan, i be se ka dɔ fara i ka fanga kan i n'a fɔ wagati ka teli ka taga cogo min na.",
+    "aboutInstantTitle": "O kama, a ka ɲi ka wari caaman sɔrɔ.",
+    "aboutInstantBody": "N'i be tɛmɛ Stripe fɛ, i be se ka tagamasiyɛnw san joona ani cogo nɔgɔman na i ka ladɛrɛsi la. DeHub be tagamasiyɛnw kɛ cogo nɔgɔman na ani mɔgɔ bɛɛ fɛ. N'i mako be dɛmɛ na, i ka kan ka don an ka sigida ka baro la 24/7 ani ka dɛmɛ ɲini an ka mara la.",
+    "aboutSecureTitle": "Dɔrɔkɔ min be se ka kɛ yɔrɔ barikaman ye",
+    "aboutSecureBody": "O kama, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka ɲi ka wari di mɔgɔ ma. An tɛ se ka se ka i ka kunnafoniw wala i ka kartiw mara wala k'u mara, o min b'a to i hakili siginin lo.",
+    "transfersSummary": "K'i ka gafew lajɛ",
+    "availableToBuy": "A be se ka san sisan",
+    "noSupplyShort": "Fɛɛn si tɛ yen",
+    "topUpSubtitle": "I ka $DHB san ni karti ye ani i ka gazi sɔrɔ joona joona",
+    "noTxHash": "Can't find transaction hash",
+    "latestTransactions": "O kɔ, a ye baara kɛ ni mɔgɔ wɛrɛw ye.",
+    "showAll": "O bɛɛ yirala"
   },
   "musicSheet": {
     "title": "Dɔnkili dilan",
@@ -4184,7 +4418,13 @@
     "followUpNote": "An bɛ se ka i kunbɛn ni ɲininkali wɛrɛw ye i ka hakilina kan",
     "submitFeedback": "Hakilina ci",
     "provideFeedback": "I ka hakilina sɛbɛn sɔn",
-    "thankYou": "I ni ce i ka hakilina la!"
+    "thankYou": "I ni ce i ka hakilina la!",
+    "submitFailed": "O kama, n' ma se ka foyi fɔ. N'i b'a fɛ ka dɔ fara a kan, i ka segi k'a ɲini.",
+    "maybeLater": "O kɔ, a mɛnna",
+    "helpUsImprove": "An dɛmɛ ka ɲɛtaga kɛ",
+    "rateExperience": "I be mun lo miiri o koo la?",
+    "telegramOptional": "Kalanfaw (manfa ye)",
+    "discordOptional": "Kalanfaw (manfa ye)"
   },
   "migrate": {
     "clearAll": "O bɛɛ ka ɲi",
@@ -4298,7 +4538,14 @@
       "blueWhale": "Mɔgɔ si ma deli ka ɲɛnamaya kɛ cogo min na, o ye koo ɲuman ye. O ye i yɛrɛ lo ye.",
       "megalodon": "I ka masafugulan filɛ nin ye — i ye App Royalty ye sisan"
     },
-    "continue": "An ka kɔsegi ka na."
+    "continue": "An ka kɔsegi ka na.",
+    "none": "Mɔgɔ si tɛ yen",
+    "noBadgeYet": "O tɛ se ka kɛ halibi",
+    "next": "O kɔ, o kɔ, o",
+    "topTier": "Sanfɛyɔrɔ",
+    "toNextTier": "{{amount}} DHB ka {{tier}}",
+    "everyTierUnlocked": "O kɔ, a ye n' ka soow bɛɛ datugu.",
+    "holdNote": "N'i ye batɛmu dɔ yɛlɛ, o ye i ta ye fɔɔ i ka DHB mara. tagamasiɲɛ minw ka kan ka yɛlɛ badge kura dɔ la, olu hakɛ be se ka yɛlɛma ni tagamasiɲɛ sɔngɔ ye"
   },
   "passwordStrength": {
     "veryWeak": "A barika ka dɔgɔn kosɛbɛ",
@@ -4380,7 +4627,11 @@
     },
     "ttsLabel": "A' ye kuma dɔ fɔ ka bɔ a kaan na",
     "ttsPlaceholder": "A filɛ, a be se ka kɛ cogo min na.",
-    "ttsHint": "N'i ye fɛɛn dɔ di mɔgɔw ma, i ka kan k'o kalan."
+    "ttsHint": "N'i ye fɛɛn dɔ di mɔgɔw ma, i ka kan k'o kalan.",
+    "sendAGift": "Ka nilifɛn dɔ di",
+    "minPlaceholder": "Min : {{amount}}",
+    "minGift": "See min dira mɔgɔ ma, o ye {{amount}}",
+    "sendGift": "Ka nilifɛn dɔ di"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4695,7 +4946,8 @@
         "title": "A filɛ a be baara kɛ cogo min na",
         "body": "A filɛ i be min kɛra yan, i be se k'o yɛlɛma cogo min na k'a kɛ i be wari sɔrɔ o la."
       }
-    }
+    },
+    "swipeToStart": "Aw ka banba ka baara daminɛ"
   },
   "conversation": {
     "commonGround": {
@@ -5176,5 +5428,18 @@
     "toastPaidSettled": "A sarala — jago banna",
     "walletNotReady": "I ka warobɔrɔ ma labɛn fɔlɔ — a lajɛ kokura sisan dɔɔni.",
     "wrongChain": "Nin jago bɛ ban {{chain}} kan. {{chain}} ta Paramɛtiriw la, o kɔ a lajɛ kokura."
+  },
+  "moderation": {
+    "appealDuplicate": "O kama, a tun ka kan ka kɛ i ko a tun fɔra cogo min na.",
+    "appealSent": "A ye min fɔ, o ye tiɲɛ ye",
+    "appealFailed": "A ma se ka o welekan jaabi",
+    "appealTitle": "Nka, an ka ɲi ka sɔn o ma.",
+    "appealSubtitle": "Mɔgɔ dɔ bena o kalan ani k'a ka desizɔn lajɛ tugun.",
+    "appealPlaceholder": "I be miiri ko mun lo tun man di i ye? O gafew be se k'an dɛmɛ ka tɛmɛ fɛɛn bɛɛ kan.",
+    "appealSend": "An ka welekan nin ci",
+    "appealFootnote": "O la, i bena a ye ko i ye mɔgɔ dɔ ye min be se k'i dɛmɛ. O kama, a ka ɲi ka kiti tigɛ ka kɛɲɛ ni sariya ye.",
+    "appealRef": "Référence {{ref}}",
+    "appealSubtitleSubject": "Mɔgɔ dɔ bena o kalan ani a bena a filɛ tugun {{subject}}.",
+    "appealMore": "Personnages encore nécessaires : {{count}}"
   }
 }

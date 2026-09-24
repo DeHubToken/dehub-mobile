@@ -690,7 +690,11 @@
       "hintAllow": "Ushbu signalga rioya qiladigan sun&#39;iy intellekt tizimlari va sudraluvchilari sizning audio, badiiy asaringiz va yozuvingizni mashq qilishi mumkin.",
       "hintDeny": "Ushbu signalga rioya qiladigan sun&#39;iy intellekt tizimlari va qidiruv tizimlaridan sizning audio, badiiy asaringiz va yozuvlaringiz ustida mashq qilmaslik so&#39;raladi. Signalni e&#39;tiborsiz qoldiradigan qidiruv tizimlari u tomonidan bloklanmaydi.",
       "saved": "Sun&#39;iy intellekt bo&#39;yicha o&#39;qitish afzalligi saqlandi"
-    }
+    },
+    "chainIdLabel": "Zanjir ID: {{id}}",
+    "exportPkConfirmPhrase": "MEN TUSHUNDIM",
+    "exportPkCopy": "Maxfiy kalitni nusxalash",
+    "e2eAutomatic": "Avtomatik"
   },
   "common": {
     "mute": "Ovozni o‘chirish",
@@ -730,7 +734,17 @@
     "optionalSuffix": "(ixtiyoriy)",
     "yesterday": "Kecha",
     "ok": "OK",
-    "continue": "Davom eting"
+    "continue": "Davom eting",
+    "goesToHomeFeed": "Bosh sahifaga o'tadi",
+    "openMenu": "Menyuni oching",
+    "scrollsFeedToTop": "Kanalning yuqori qismiga o'tkazadi va uni yangilaydi",
+    "notificationsUnread": "Xabarnomalar, {{unread}} o'qilmagan",
+    "errorDetails": "Xatolik tafsilotlari:",
+    "failedToLoad": "Yuklab olishda xatolik",
+    "noInternetTitle": "Internet ulanishi yo'q",
+    "noInternetBody": "Internet ulanishingizni tekshiring va qayta urinib ko'ring. DeHub'dan foydalanish uchun internetga ulanishingiz kerak.",
+    "noInternetStatus": "Chiqarilgan - Tarmoq ulanishi yo'q",
+    "noInternetHint": "Wi-Fi yoki mobil ma'lumotlar yoqilganligiga ishonch hosil qiling, so'ng \"{{action}}\" tugmasini bosing"
   },
   "tip": {
     "title": "Tip yuborish",
@@ -1637,7 +1651,12 @@
     "chooseUsernameBody": "Davom etish uchun foydalanuvchi nomi va ko'rsatiladigan nomni tanlang. Keyinroq o'zgartirishingiz mumkin.",
     "checkingAvailability": "Mavjudligi tekshirilmoqda…",
     "usernameTakenHint": "Bu nom band — raqam yoki pastki chiziq qo'shib ko'ring",
-    "displayNameLength": "Ko'rsatiladigan nom 2-50 belgidan iborat bo'lishi kerak."
+    "displayNameLength": "Ko'rsatiladigan nom 2-50 belgidan iborat bo'lishi kerak.",
+    "loginFailedRetry": "Kirishda xatolik. Iltimos, qayta urinib ko'ring.",
+    "sendCodeFailedRetry": "Kod yuborilmadi. Iltimos, qayta urinib ko'ring.",
+    "invalidCodeRetry": "Noto'g'ri kod. Iltimos, qayta urinib ko'ring.",
+    "invalidEmailOrPassword": "Noto'g'ri elektron pochta yoki parol.",
+    "welcomeToDehub": "DeHub'ga xush kelibsiz"
   },
   "messages": {
     "smartRepliesOff": "Tavsiya etilgan javoblar o'chirildi",
@@ -1715,7 +1734,32 @@
     "offerWorthNow": "Joriy kurs bo‘yicha taxminan {{amount}} DHB",
     "offerNotePlaceholder": "Izoh qo‘sh (ixtiyoriy)",
     "offerCommitsNothing": "Taklif berish hech narsa turmaydi va DHB bloklamaydi. Faqat egasi rozi bo‘lsa to‘laysan.",
-    "offerNeedsHandle": "Bu hisobda taklif beriladigan foydalanuvchi nomi yo‘q."
+    "offerNeedsHandle": "Bu hisobda taklif beriladigan foydalanuvchi nomi yo‘q.",
+    "noPostsYet": "Hozircha postlar yo'q",
+    "noPostsYetSub": "Postlar joylashtirilganda ular bu yerda paydo bo'ladi",
+    "noPinnedPosts": "Hozircha belgilangan postlar yo'q",
+    "noPinnedPostsSub": "Belgilangan postlar bu yerda paydo bo'ladi",
+    "emptyLiked": "Hozircha yoqtirilgan postlar yo'q.",
+    "emptySaved": "Hozircha saqlangan postlar yo'q.",
+    "emptyUnlocked": "Hozircha ochilgan postlar yo'q.",
+    "emptyWatched": "Hozircha ko'rilganlar tarixi yo'q.",
+    "emptyFolder": "Bu papkada hozircha postlar yo'q.",
+    "emptyPosts": "Hozircha postlar yo'q.",
+    "couldNotLoadPosts": "Postlar yuklanmadi.",
+    "noPostsOrReplies": "Hali hech qanday post, sharh yoki javob yo'q",
+    "noPostsOrRepliesSub": "Ular shu yerda paydo bo'ladi",
+    "avatarUpdated": "Avatar yangilandi",
+    "coverUpdated": "Muqova yangilandi",
+    "couldNotPickImage": "Tasvirni tanlab bo'lmadi",
+    "changeCoverImage": "Muqova rasmini o'zgartirish",
+    "changeAvatar": "Avatarni o'zgartirish",
+    "verifiedEnsName": "Tasdiqlangan ENS nomi {{name}}",
+    "notFullyJoined": "Ushbu foydalanuvchi hali to'liq qo'shilmagan. U foydalanuvchi nomini tanlamagan yoki profilni sozlashni yakunlamagan. Siz hali ham ommaviy faoliyatni ko'rishingiz va mavjud bo'lsa, maslahatlar yuborishingiz mumkin.",
+    "loadRepliesFailed": "Javoblarni yuklab bo'lmadi",
+    "refreshFailed": "Yangilash muvaffaqiyatsiz tugadi",
+    "noRepliesYet": "Javoblar yo'q",
+    "noRepliesYetSub": "Ushbu foydalanuvchi postlarga javob yozganda, ular shu yerda paydo bo'ladi.",
+    "noMoreReplies": "Boshqa javoblar yo'q"
   },
   "tv": {
     "title": "Televizor",
@@ -1798,7 +1842,11 @@
     "loadingPrice": "Narx yuklanmoqda…",
     "topUpExplanation": "DHB zanjirda DeHub reklama xazinasiga o'tkaziladi, so'ng mustaqil zanjir tekshiruvidan keyin balansingizga qo'shiladi.",
     "paymentHistory": "To'lovlar tarixi",
-    "noPayments": "Hozircha to'lovlar yo'q"
+    "noPayments": "Hozircha to'lovlar yo'q",
+    "sponsored": "Homiylik",
+    "morePosts": "Boshqa postlar",
+    "loadMorePosts": "Ko'proq postlarni yuklash",
+    "playAdVideo": "Reklama videosini ijro etish"
   },
   "buyCoins": {
     "title": "Tangalarni sotib olish",
@@ -2231,7 +2279,8 @@
     "privateBalanceMode": "Shaxsiy balans rejimi yoqilgan",
     "addressHidden": "Manzil yashirilgan",
     "allowInFeeds": "Ushbu foydalanuvchining lentangizda ko‘rinishiga ruxsat bering",
-    "hideContent": "Ularning kontentini yashiring va muloqotni cheklang"
+    "hideContent": "Ularning kontentini yashiring va muloqotni cheklang",
+    "a11yLabel": "Profil sozlamalari"
   },
   "toasts": {
     "saved_to_bookmarks": "Xatchoʻplarga saqlandi",
@@ -2603,7 +2652,8 @@
     "roles": {
       "owner": "Egasi",
       "moderator": "Moderator",
-      "member": "A'zo"
+      "member": "A'zo",
+      "admin": "Admin"
     },
     "time": {
       "today": "bugun",
@@ -2612,7 +2662,126 @@
       "weeks": "{{count}} hafta",
       "months": "{{count}} oy",
       "years": "{{count}} yil"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "tahrirlandi",
+      "deleteTitle": "Xabarni o'chirish",
+      "deleteConfirm": "Ushbu xabarni o'chirishmi? Bu qaytarib bo'lmaydi.",
+      "muted": "Siz ovozingizni o'chirib qo'ydingiz",
+      "postingDisabled": "Bu yerda a'zolar uchun xabar yozish taqiqlangan",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Belgilangan xabar",
+      "showEarlier": "Avvalgi xabarlarni ko'rsatish",
+      "editingMessage": "Xabarni tahrirlash",
+      "copied": "Xabar nusxalandi",
+      "copyText": "Matnni nusxalash",
+      "mutedUntil": "Siz {{date}} gacha ovozsiz holatdasiz",
+      "slowMode": "Sekin rejim: har {{interval}} da bitta xabar"
+    },
+    "manage": {
+      "dismissAdminTitle": "Administratorni yopish",
+      "cancel": "Bekor qilish",
+      "dismissAdmin": "Administratorni yopish",
+      "roleAdmin": "Administrator",
+      "roleMember": "a’zosi",
+      "whatCanTheyDo": "Bu admin nima qila oladi?",
+      "rightNotHeld": "Sizda bunga o&#39;zingiz haqqingiz yo&#39;q",
+      "customTitle": "Maxsus sarlavha",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Standart administrator nishoni o&#39;rniga ko&#39;rsatiladi.",
+      "saveChanges": "O'zgarishlarni saqlash",
+      "promote": "Targ&#39;ibot qilish",
+      "tabs": {
+        "members": "Foydalanuvchilar",
+        "admins": "Adminlar",
+        "permissions": "Ruxsatnomalar",
+        "invites": "Taklifnomalar",
+        "rules": "Qoidalar",
+        "recentActions": "So&#39;nggi harakatlar",
+        "danger": "Xavfli zona"
+      },
+      "title": "Boshqarish",
+      "purgeTitle": "Xatlarni oʻchirish",
+      "purgeConfirm": "Oʻchirish",
+      "kickTitle": "A&#39;zoni olib tashlashmi?",
+      "kickConfirm": "Oʻchirish",
+      "bannedPermanent": "Taqiqlangan — doimiy",
+      "mutedPermanent": "O'chirilgan — doimiy",
+      "editAdminRights": "Admin huquqlarini tahrirlash",
+      "promoteToAdmin": "Admin etib tayinlash",
+      "unmute": "Ovozini ochish",
+      "mute": "Ovozini o'chirish",
+      "unban": "Ta'qiqni bekor qilish",
+      "ban": "Ta'qiqlash",
+      "deleteAllMessages": "Barcha xabarlarni o'chirish",
+      "removeFromCommunity": "Jamiyatdan chiqarib yuborish",
+      "noActionsAvailable": "Ushbu a'zoni moderatsiya qila olmaysiz.",
+      "showMore": "Ko'proq ko'rsatish",
+      "joinRequests": "Qo'shilish so'rovlari",
+      "approve": "Tasdiqlash",
+      "reject": "Rad etish",
+      "members": "A'zolar",
+      "searchMembers": "Hamyon manzili bo'yicha qidirish",
+      "noMembersMatch": "Bu nomga mos keladigan a'zo yo'q.",
+      "noMembers": "Hali a'zolar yo'q.",
+      "muted": "Ovozini o'chirilganlar",
+      "banned": "Ta'qiqlanganlar",
+      "muteEffect": "Ular jamiyatda qoladilar, lekin ovozini o'chirish muddati tugamaguncha xabar yozishlari mumkin emas.",
+      "banEffect": "Ular chatdan chiqarib yuboriladi va ta'qiq bekor qilinmaguncha qayta qo'shila olmaydilar.",
+      "durationLabel": "Muddati",
+      "reasonLabel": "Sababi (ixtiyoriy)",
+      "reasonPlaceholder": "Nima uchun ular ta'qiqlanmoqda?",
+      "alsoDeleteMessages": "Shuningdek, ularning barcha xabarlarini o'chiring",
+      "confirmMute": "A'zoni ovozini o'chirish",
+      "confirmBan": "A'zoni ta'qiqlash",
+      "rulesUpdated": "Qoidalar yangilandi",
+      "rulesTitle": "Jamiyat qoidalari",
+      "rulesEmpty": "Hali qoidalar yo'q — birinchi qoidani quyida qo'shing.",
+      "rulePlaceholder": "Qoidani tasvirlang",
+      "addRule": "Qoida qo'shing",
+      "saveRules": "Qoidalarni saqlash",
+      "dismissAdminBody": "{{wallet}} oddiy a'zoga qaytadi.",
+      "purgeBody": "{{name}} tomonidan ushbu jamiyatga yuborilgan har bir xabar o'chiriladi.",
+      "kickBody": "{{name}} jamiyatdan chiqariladi. Ular keyinroq yana qo'shilishi mumkin.",
+      "bannedUntil": "{{date}} gacha taqiqlangan",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "{{date}} gacha ovozi o'chirilgan",
+      "bannedUntilShort": "{{date}} gacha",
+      "muteTitle": "{{name}} ovozini o'chirish",
+      "banTitle": "{{name}} ni taqiqlash",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} / {{max}}",
+      "moveRuleUp": "Qoidani yuqoriga ko'chirish",
+      "moveRuleDown": "Qoidani pastga ko'chirish",
+      "deleteRule": "Qoidani o'chirish",
+      "rights": {
+        "changeInfo": "Jamiyat ma'lumotlarini o'zgartirish",
+        "changeInfoHint": "Ismni, tavsifni, avatarni va bannerini tahrirlash",
+        "deleteMessages": "Xabarlarni o'chirish",
+        "deleteMessagesHint": "Jamiyat chatidan istalgan xabarni olib tashlash",
+        "restrictMembers": "Foydalanuvchilarni taqiqlash",
+        "restrictMembersHint": "A'zolarning ovozini o'chirish, olib tashlash va taqiqlash",
+        "inviteUsers": "Foydalanuvchilarni havola orqali taklif qilish",
+        "inviteUsersHint": "Taklifnomalarni yaratish va bekor qilish",
+        "pinMessages": "Xabarlarni joylashtirish",
+        "pinMessagesHint": "Xabarni chatning yuqori qismiga joylashtirish",
+        "manageEvents": "Tadbirlarni boshqarish",
+        "manageEventsHint": "Jamiyat tadbirlarini yaratish va tahrirlash",
+        "addAdmins": "Yangi administratorlarni qo'shish",
+        "addAdminsHint": "Aʼzolarni targʻib qiling va ular qoʻshgan adminlarning huquqlarini tahrirlang",
+        "remainAnonymous": "Anonim qolish",
+        "remainAnonymousHint": "Ushbu adminni aʼzolar roʻyxatidan yashirish"
+      },
+      "durations": {
+        "oneHour": "1 soat",
+        "eightHours": "8 soat",
+        "oneDay": "1 kun",
+        "oneWeek": "1 hafta",
+        "forever": "Abadiy"
+      }
+    },
+    "chooseAvatar": "Rasmni tanlang"
   },
   "work": {
     "title": "Mukofotlar",
@@ -2963,7 +3132,9 @@
       "shipped": "Jo'natilgan",
       "completed": "Yakunlangan",
       "cancelled": "Bekor qilingan"
-    }
+    },
+    "removePhoto": "Rasmni olib tashlash",
+    "listingOptions": "Roʻyxatlash variantlari"
   },
   "accounts": {
     "subtitle": "To'liq hisoblar sotuvda, narxi DHB da",
@@ -3331,7 +3502,14 @@
     "removeFollowerHint": "Ularni olib tashlash uchun obunachini bosing va ushlab turing.",
     "cancel": "Bekor qilish",
     "remove": "Olib tashlash",
-    "thisUser": "Ushbu foydalanuvchi"
+    "thisUser": "Ushbu foydalanuvchi",
+    "cancelRequestTo": "@{{username}}? ning kuzatuv soʻrovini bekor qilish",
+    "followingUser": "@{{username}} ni kuzatish",
+    "contentUnavailable": "Kontent mavjud emas",
+    "youBlockedBody": "Uning postlarini koʻrmaysiz va ular bilan oʻzaro aloqada boʻla olmaysiz. Kirishni tiklash uchun blokdan chiqarish.",
+    "restrictedBody": "Ushbu foydalanuvchi sizning profilingiz bilan oʻzaro aloqalarni cheklab qoʻygan.",
+    "requestPendingBody": "Sizning kuzatuv soʻrovingiz yuborildi. Ular soʻrovingizni tasdiqlagandan soʻng siz ularning postlarini koʻra olasiz.",
+    "followToSeePosts": "Uning postlarini koʻrish uchun ushbu akkauntga obuna boʻling."
   },
   "reactionInfo": {
     "title": "Reaksiyalar",
@@ -3644,7 +3822,8 @@
     "needGas": "{{chain}} da gaz uchun mahalliy {{token}} kerak.",
     "bridging": "Ko‘prik orqali o‘tkazilmoqda…",
     "bridgeAction": "Ko‘prik {{from}} → {{to}}",
-    "failed": "Ko‘prik muvaffaqiyatsiz tugadi"
+    "failed": "Ko‘prik muvaffaqiyatsiz tugadi",
+    "sentArriveShortly": "{{amount}} DHB {{from}} dan {{to}} ga yuborildi. Tokenlar tez orada yetib keladi."
   },
   "banned": {
     "title": "Hisobingiz bloklandi",
@@ -3821,7 +4000,16 @@
     "legacyRecovered": "Eski hisobingiz{{suffix}} tasdiqlandi va uning hamyoni tiklandi. Bundan buyon uni shu qurilmada — shu telefonda va boshqa hamma joyda — himoya qilish uchun parol o'rnating.",
     "passwordMin": "Parol (kamida {{min}} ta belgi)",
     "newPasswordMin": "Yangi parol (kamida {{min}} ta belgi)",
-    "newWalletPasswordMin": "Yangi hamyon paroli (kamida {{min}} ta belgi)"
+    "newWalletPasswordMin": "Yangi hamyon paroli (kamida {{min}} ta belgi)",
+    "deviceCheckCancelled": "Qurilma tekshiruvi bekor qilindi — hech narsa oʻzgartirilmadi.",
+    "savePhraseTitle": "Qayta tiklash jumlani saqlang",
+    "startOverTitle": "Yangi hamyon bilan qayta boshlang",
+    "secureNewWalletTitle": "Yangi hamyoningizni himoya qiling",
+    "secureWalletTitle": "Hamyoningizni himoya qiling",
+    "unlockOnMobileTitle": "Mobil qurilmada qulfni oching",
+    "oldAccountFoundTitle": "Eski hisob topildi",
+    "unlockWalletTitle": "Hamyoningizni qulfdan chiqaring",
+    "phraseExplainer": "Hamyoningiz ushbu telefondagi biometriya yordamida himoyalangan boʻladi. Ushbu qulfni ochish <em>faqat ushbu telefonda ishlaydi</em> — agar siz DeHubni qayta oʻrnatsangiz, telefoni almashtirsangiz yoki yoʻqotsangiz, ushbu 12 ta soʻz kirishning yagona yoʻlidir."
   },
   "transcript": {
     "title": "Transkript",
@@ -4007,7 +4195,38 @@
     "subscribe": "Obuna bo‘lish",
     "subscriberCount_one": "{{count}} obunachi",
     "subscriberCount_other": "{{count}} obunachi",
-    "subscribeToForRich": "<price>{{price}}</price> evaziga <name>{{name}}</name>’ga obuna bo‘ling"
+    "subscribeToForRich": "<price>{{price}}</price> evaziga <name>{{name}}</name>’ga obuna bo‘ling",
+    "loadPlansFailed": "Rejalarni yuklab olishning uddasidan chiqa olmadi",
+    "subscriberContent": "Obunachi kontenti",
+    "subscriberContentSub": "Abonentlarga eksklyuziv kontentni taklif qilish rejalarini tuzing",
+    "createFirstPlan": "Birinchi rejangizni yarating",
+    "addNewPlan": "Yangi reja qo'shish",
+    "durations": {
+      "oneMonth": "1 oy",
+      "threeMonths": "3 oy",
+      "sixMonths": "6 oy",
+      "oneYear": "1 yil",
+      "lifetime": "Umrbod"
+    },
+    "planNameRequired": "Reja nomi talab qilinadi",
+    "enterValidPrice": "Yaroqli narxni kiriting",
+    "availableChains": "Abonentliklar hozirda Base va BNB da mavjud",
+    "waitForSwitch": "Abonentlik tarmog'ining almashtirilishini tugatishini kuting",
+    "connectAndWait": "Chet elingizni ulang va obuna tarmog'ini kuting",
+    "planUpdated": "Reja yangilandi",
+    "creating": "Yaratilmoqda…",
+    "planPublished": "Reja yaratildi va nashr etildi",
+    "createPlanTitle": "Abonentlik rejasini yarating",
+    "network": "Abonentlik tarmog'i",
+    "planNameLabel": "Reja nomi *",
+    "planNamePlaceholder": "Masalan, Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Abonentlar nimalarni oladi...",
+    "priceLabel": "Narxi (USD) *",
+    "legacyMigrationNote": "Saqlash ushbu meros qolgan DHB rejasini ro'yxatdan oldingi stavkada dollar narxlariga ko'chiradi.",
+    "benefits": "Foydalar",
+    "benefitPlaceholder": "Foyda qo'shish...",
+    "createAndPublish": "Yaratish va nashr qilish",
+    "publishingOnChain": "Nashr qilish zanjirdagi operatsiyadir"
   },
   "live": {
     "notSet": "Belgilanmagan",
@@ -4125,7 +4344,22 @@
     "acceptTerms": "Men qabul qilaman <terms>Xizmat shartlari</terms>",
     "sentTo": "{{amount}} {{symbol}} {{address}} ga yuborildi",
     "tokensSentTo": "Tokenlar {{address}} ga yuborildi",
-    "goToProfile": "Profilga o&#39;tish"
+    "goToProfile": "Profilga o&#39;tish",
+    "aboutTitle": "DeHub va to'lovlar haqida",
+    "aboutSubtitle": "Silliq token to'lovlari uchun darvozalaringiz",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokenlar ijodkorlarga obuna bo'lish, streamerlarga xayr-ehson qilish yoki kontentni ochish uchun ishlatiladi. Qancha ko'p saqlasangiz, to'lovlaringiz shunchalik kamayadi va vaqt jadvali tendentsiyasini kuchaytirish hamda tasdiqlash belgilari kabi ko'proq super kuchlarni ochasiz.",
+    "aboutInstantTitle": "Onlayn to'lovlar",
+    "aboutInstantBody": "Stripe yordamida siz tokenlarni darhol va muammosiz kirgan hisobingizga xarid qilishingiz mumkin. DeHub tokenlarni sodda va hamma uchun qulay qiladi. Agar ko'proq yordam kerak bo'lsa, 24/7 jonli hamjamiyatimiz chatiga kirib, admin yordamini so'rang.",
+    "aboutSecureTitle": "Xavfsiz portal",
+    "aboutSecureBody": "Barcha to'lov tafsilotlari Stripe tomonidan shifrlangan va xavfsiz tarzda qayta ishlanadi. Biz sizning maxfiy ma'lumotlaringiz yoki karta tafsilotlaringizga kira olmaymiz yoki saqlay olmaymiz, bu sizga to'liq xotirjamlikni taqdim etadi.",
+    "transfersSummary": "To'lovlar haqida ma'lumot",
+    "availableToBuy": "Hozir xarid qilish mumkin",
+    "noSupplyShort": "Ta'minot yo'q",
+    "topUpSubtitle": "$DHB ni karta orqali xarid qiling va darhol ishlatish uchun bepul gaz oling",
+    "noTxHash": "Tranzaksiya xeshi topilmadi",
+    "latestTransactions": "So'nggi tranzaksiyalar",
+    "showAll": "Hammasini ko'rsatish"
   },
   "musicSheet": {
     "title": "Qo'shiq yaratish",
@@ -4254,7 +4488,13 @@
     "followUpNote": "Fikringiz bo'yicha qo'shimcha savollar uchun siz bilan bog'lanishimiz mumkin",
     "submitFeedback": "Fikrni yuborish",
     "provideFeedback": "Iltimos, fikringizni yozing",
-    "thankYou": "Fikringiz uchun rahmat!"
+    "thankYou": "Fikringiz uchun rahmat!",
+    "submitFailed": "Fikr bildirishni yuborishda xatolik. Iltimos, qayta urinib ko'ring.",
+    "maybeLater": "Keyinroq",
+    "helpUsImprove": "Yordam bering",
+    "rateExperience": "Tajribangizni qanday baholaysiz?",
+    "telegramOptional": "Telegram (majburiy emas)",
+    "discordOptional": "Discord (majburiy emas)"
   },
   "migrate": {
     "clearAll": "Hammasini o'chirish",
@@ -4366,7 +4606,14 @@
       "blueWhale": "Dunyoda yashagan eng buyuk narsa. Bu sizsiz.",
       "megalodon": "Mana sizning tojingiz — endi siz royalti ilovasidasiz"
     },
-    "continue": "DeHubga qaytish"
+    "continue": "DeHubga qaytish",
+    "none": "Yo'q",
+    "noBadgeYet": "Hali belgi yo'q",
+    "next": "Keyingi",
+    "topTier": "Eng yuqori daraja",
+    "toNextTier": "{{amount}} DHB dan {{tier}}",
+    "everyTierUnlocked": "Har bir daraja ochildi",
+    "holdNote": "Belgi ochilgandan so'ng, u sizning DHB ni saqlaganingizcha sizniki bo'ladi. Yangi belgini ochish uchun kerak bo'lgan tokenlar soni token narxi bilan o'zgarishi mumkin."
   },
   "passwordStrength": {
     "veryWeak": "Juda zaif",
@@ -4448,7 +4695,11 @@
     },
     "ttsLabel": "Ovoz chiqarib bir narsa ayting",
     "ttsPlaceholder": "Oqimga o'qing…",
-    "ttsHint": "Sovg'angiz qo'lga tushganda, tomosha qilayotgan barchaga ovoz chiqarib o'qing."
+    "ttsHint": "Sovg'angiz qo'lga tushganda, tomosha qilayotgan barchaga ovoz chiqarib o'qing.",
+    "sendAGift": "Sovg'a yuborish",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minimal sovg'a {{amount}}",
+    "sendGift": "Sovg'a yuborish"
   },
   "goLive": {
     "streamKey": "Oqim Kaliti",
@@ -4830,7 +5081,8 @@
         "title": "Daromad qanday ishlashini ko&#39;ring",
         "body": "Maslahatlar, nishonlar va Super Kuchlar bu yerda qilayotgan ishlaringizni qanday qilib daromad keltiradigan narsaga aylantirishini bilib oling."
       }
-    }
+    },
+    "swipeToStart": "Boshlash uchun suring"
   },
   "conversation": {
     "commonGround": {
@@ -5349,5 +5601,18 @@
     "toastPaidSettled": "To‘landi — savdo yakunlandi",
     "walletNotReady": "Hamyoningiz hali tayyor emas — birozdan so‘ng qayta urinib ko‘ring.",
     "wrongChain": "Bu savdo {{chain}} tarmog‘ida hisoblanadi. Sozlamalarda {{chain}} ga o‘ting va qayta urinib ko‘ring."
+  },
+  "moderation": {
+    "appealDuplicate": "Siz allaqachon bunga shikoyat qilgansiz",
+    "appealSent": "Apellyatsiya yuborildi",
+    "appealFailed": "Ushbu apellyatsiyani topshirib bo&#39;lmadi",
+    "appealTitle": "Ushbu qarorga shikoyat qilish",
+    "appealSubtitle": "Bir kishi buni o&#39;qib, qarorga yana bir bor qaraydi.",
+    "appealPlaceholder": "Sizningcha, nima o&#39;tkazib yuborildi? Kontent haqidagi kontekst boshqa har qanday narsadan ko&#39;ra ko&#39;proq yordam beradi.",
+    "appealSend": "Apellyatsiya yuborish",
+    "appealFootnote": "Siz ma&#39;lumotnoma raqamini olasiz va javob shu yerga qaytib keladi. Har bir qaror uchun bitta apellyatsiya.",
+    "appealRef": "Havola {{ref}}",
+    "appealSubtitleSubject": "Bir kishi buni o&#39;qib, yana {{subject}} ga qaraydi.",
+    "appealMore": "Hali ham kerak bo&#39;lgan belgilar: {{count}}"
   }
 }

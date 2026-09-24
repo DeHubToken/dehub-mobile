@@ -691,7 +691,11 @@
       "hintAllow": "Tekoälyjärjestelmät ja indeksoijat, jotka kunnioittavat tätä signaalia, voivat harjoitella ääntäsi, taidettasi ja kirjoittamistasi.",
       "hintDeny": "Tekoälyjärjestelmiä ja indeksoijia, jotka kunnioittavat tätä signaalia, pyydetään olemaan harjoittelematta ääni-, taideteos- ja kirjoitustaidettasi. Ryömijät, jotka jättävät signaalin huomiotta, eivät ole sen estämiä.",
       "saved": "Tekoälykoulutusasetus tallennettu"
-    }
+    },
+    "chainIdLabel": "Ketjun tunnus: {{id}}",
+    "exportPkConfirmPhrase": "YMMÄRRÄN",
+    "exportPkCopy": "Kopioi yksityinen avain",
+    "e2eAutomatic": "Automaattinen"
   },
   "common": {
     "mute": "Mykistä",
@@ -731,7 +735,17 @@
     "optionalSuffix": "(valinnainen)",
     "yesterday": "Eilen",
     "ok": "OK",
-    "continue": "Jatka"
+    "continue": "Jatka",
+    "goesToHomeFeed": "Siirtyy etusivulle",
+    "openMenu": "Avaa valikko",
+    "scrollsFeedToTop": "Vierittää syötteen yläosaan ja päivittää sen",
+    "notificationsUnread": "Ilmoitukset, {{unread}} lukematonta",
+    "errorDetails": "Virheen tiedot:",
+    "failedToLoad": "Lataus epäonnistui",
+    "noInternetTitle": "Ei internetyhteyttä",
+    "noInternetBody": "Tarkista internetyhteytesi ja yritä uudelleen. Tarvitset internet-yhteyden käyttääksesi DeHubia.",
+    "noInternetStatus": "Offline - Ei verkkoyhteyttä",
+    "noInternetHint": "Varmista, että Wi-Fi tai mobiilidata on päällä, ja napauta sitten \"{{action}}\""
   },
   "tip": {
     "title": "Send Tip",
@@ -1621,7 +1635,12 @@
     "chooseUsernameBody": "Valitse käyttäjänimi ja näyttönimi jatkaaksesi. Voit muuttaa niitä myöhemmin.",
     "checkingAvailability": "Tarkistetaan saatavuutta…",
     "usernameTakenHint": "Nimi on varattu — kokeile lisätä numeroita tai alaviiva",
-    "displayNameLength": "Näyttönimen pituus on oltava 2–50 merkkiä."
+    "displayNameLength": "Näyttönimen pituus on oltava 2–50 merkkiä.",
+    "loginFailedRetry": "Kirjautuminen epäonnistui. Yritä uudelleen.",
+    "sendCodeFailedRetry": "Koodia ei voitu lähettää. Yritä uudelleen.",
+    "invalidCodeRetry": "Virheellinen koodi. Yritä uudelleen.",
+    "invalidEmailOrPassword": "Virheellinen sähköpostiosoite tai salasana.",
+    "welcomeToDehub": "Tervetuloa DeHubiin"
   },
   "messages": {
     "smartRepliesOff": "Ehdotetut vastaukset poistettiin käytöstä",
@@ -1699,7 +1718,32 @@
     "offerWorthNow": "Noin {{amount}} DHB nykykurssilla",
     "offerNotePlaceholder": "Lisää viesti (valinnainen)",
     "offerCommitsNothing": "Tarjouksen tekeminen ei maksa mitään eikä sido DHB:tä. Maksat vain, jos omistaja hyväksyy.",
-    "offerNeedsHandle": "Tällä tilillä ei ole käyttäjänimeä, josta tarjota."
+    "offerNeedsHandle": "Tällä tilillä ei ole käyttäjänimeä, josta tarjota.",
+    "noPostsYet": "Ei julkaisuja vielä",
+    "noPostsYetSub": "Sisältö ilmestyy tänne julkaisun jälkeen",
+    "noPinnedPosts": "Ei kiinnitettyjä julkaisuja vielä",
+    "noPinnedPostsSub": "Kiinnitetyt julkaisut ilmestyvät tänne",
+    "emptyLiked": "Ei tykättyjä julkaisuja vielä.",
+    "emptySaved": "Ei tallennettuja julkaisuja vielä.",
+    "emptyUnlocked": "Ei avattuja julkaisuja vielä.",
+    "emptyWatched": "Ei katseluhistoriaa vielä.",
+    "emptyFolder": "Ei julkaisuja tässä kansiossa vielä.",
+    "emptyPosts": "Ei julkaisuja vielä.",
+    "couldNotLoadPosts": "Julkaisuja ei voitu ladata.",
+    "noPostsOrReplies": "Ei julkaisuja, kommentteja tai vastauksia vielä",
+    "noPostsOrRepliesSub": "Ne ilmestyvät tähän",
+    "avatarUpdated": "Avatar päivitetty",
+    "coverUpdated": "Kansikuva päivitetty",
+    "couldNotPickImage": "Kuvan valinta epäonnistui",
+    "changeCoverImage": "Vaihda kansikuva",
+    "changeAvatar": "Vaihda avatar",
+    "verifiedEnsName": "Vahvistettu ENS-nimi {{name}}",
+    "notFullyJoined": "Tämä käyttäjä ei ole vielä täysin liittynyt. Hän ei ole lunastanut käyttäjänimeä tai suorittanut profiilin asetuksia. Voit silti tarkastella julkista toimintaa ja lähettää vinkkejä, jos saatavilla.",
+    "loadRepliesFailed": "Vastausten lataaminen epäonnistui",
+    "refreshFailed": "Päivitys epäonnistui",
+    "noRepliesYet": "Ei vastauksia vielä",
+    "noRepliesYetSub": "Kun tämä käyttäjä vastaa julkaisuihin, ne näkyvät täällä.",
+    "noMoreReplies": "Ei enempää vastauksia"
   },
   "tv": {
     "title": "TV",
@@ -1782,7 +1826,11 @@
     "loadingPrice": "Ladataan hintaa…",
     "topUpExplanation": "DHB siirretään ketjussa DeHubin mainoskassaan, ja saldosi hyvitetään riippumattoman ketjuvarmennuksen jälkeen.",
     "paymentHistory": "Maksuhistoria",
-    "noPayments": "Ei vielä maksuja"
+    "noPayments": "Ei vielä maksuja",
+    "sponsored": "Sponsoroitu",
+    "morePosts": "Lisää julkaisuja",
+    "loadMorePosts": "Lataa lisää julkaisuja",
+    "playAdVideo": "Toista mainosvideo"
   },
   "buyCoins": {
     "title": "Osta kolikoita",
@@ -2217,7 +2265,8 @@
     "privateBalanceMode": "Yksityinen saldotila on käytössä",
     "addressHidden": "Osoite piilotettu",
     "allowInFeeds": "Salli tämän käyttäjän näkyä syötteissäsi",
-    "hideContent": "Piilota heidän sisältönsä ja rajoita vuorovaikutusta"
+    "hideContent": "Piilota heidän sisältönsä ja rajoita vuorovaikutusta",
+    "a11yLabel": "Profiilivaihtoehdot"
   },
   "toasts": {
     "saved_to_bookmarks": "Tallennettu kirjanmerkkeihin",
@@ -2589,7 +2638,8 @@
     "roles": {
       "owner": "Omistaja",
       "moderator": "Valvoja",
-      "member": "Jäsen"
+      "member": "Jäsen",
+      "admin": "Ylläpitäjä"
     },
     "time": {
       "today": "tänään",
@@ -2598,7 +2648,126 @@
       "weeks": "{{count}} vk",
       "months": "{{count}} kk",
       "years": "{{count}} v"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anonyymi",
+      "edited": "muokattu",
+      "deleteTitle": "Poista viesti",
+      "deleteConfirm": "Poistetaanko tämä viesti? Tätä ei voi peruuttaa.",
+      "muted": "Olet mykistetty",
+      "postingDisabled": "Julkaiseminen on estetty jäseniltä täällä",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Kiinnitetty viesti",
+      "showEarlier": "Näytä aiemmat viestit",
+      "editingMessage": "Viestin muokkaus",
+      "copied": "Viesti kopioitu",
+      "copyText": "Kopioi teksti",
+      "mutedUntil": "Sinut mykistetään {{date}}asti",
+      "slowMode": "Hidas tila: yksi viesti {{interval}} välein"
+    },
+    "manage": {
+      "dismissAdminTitle": "Hylkää ylläpitäjä",
+      "cancel": "Peruuta",
+      "dismissAdmin": "Hylkää ylläpitäjä",
+      "roleAdmin": "Ylläpitäjä",
+      "roleMember": "Jäsen",
+      "whatCanTheyDo": "Mitä tämä ylläpitäjä voi tehdä?",
+      "rightNotHeld": "Sinulla ei ole tätä oikeutta itse",
+      "customTitle": "Mukautettu otsikko",
+      "customTitlePlaceholder": "Ylläpitäjä",
+      "customTitleHint": "Näytetään oletusarvoisen järjestelmänvalvojan merkin sijaan.",
+      "saveChanges": "Tallenna muutokset",
+      "promote": "Mainosta",
+      "tabs": {
+        "members": "Jäsenet",
+        "admins": "Ylläpitäjät",
+        "permissions": "Käyttöoikeudet",
+        "invites": "Kutsut",
+        "rules": "Säännöt",
+        "recentActions": "Viimeaikaiset toiminnot",
+        "danger": "Vaaravyöhyke"
+      },
+      "title": "Hallinnoi",
+      "purgeTitle": "Poistetaanko kaikki viestit?",
+      "purgeConfirm": "Poista",
+      "kickTitle": "Poistetaanko jäsen?",
+      "kickConfirm": "Poista",
+      "bannedPermanent": "Kielletty — pysyvä",
+      "mutedPermanent": "Mykistetty — pysyvä",
+      "editAdminRights": "Muokkaa järjestelmänvalvojan oikeuksia",
+      "promoteToAdmin": "Ylennä järjestelmänvalvojaksi",
+      "unmute": "Poista mykistys",
+      "mute": "Mykistä",
+      "unban": "Poista esto",
+      "ban": "Estä",
+      "deleteAllMessages": "Poista kaikki viestit",
+      "removeFromCommunity": "Poista yhteisöstä",
+      "noActionsAvailable": "Et voi moderoida tätä jäsentä.",
+      "showMore": "Näytä lisää",
+      "joinRequests": "Liittymispyynnöt",
+      "approve": "Hyväksy",
+      "reject": "Hylkää",
+      "members": "Jäsenet",
+      "searchMembers": "Hae lompakkosoitteen perusteella",
+      "noMembersMatch": "Yhtään jäsentä ei löytynyt.",
+      "noMembers": "Ei jäseniä vielä.",
+      "muted": "Mykistetyt",
+      "banned": "Estetyt",
+      "muteEffect": "He pysyvät yhteisössä, mutta eivät voi julkaista ennen kuin mykistys päättyy.",
+      "banEffect": "Heidät poistetaan keskustelusta, eivätkä he voi liittyä uudelleen ennen kuin esto puretaan.",
+      "durationLabel": "Kesto",
+      "reasonLabel": "Syy (valinnainen)",
+      "reasonPlaceholder": "Miksi heidät estetään?",
+      "alsoDeleteMessages": "Poista myös kaikki heidän viestinsä",
+      "confirmMute": "Mykistä jäsen",
+      "confirmBan": "Estä jäsen",
+      "rulesUpdated": "Säännöt päivitetty",
+      "rulesTitle": "Yhteisön säännöt",
+      "rulesEmpty": "Ei sääntöjä vielä — lisää ensimmäinen alla.",
+      "rulePlaceholder": "Kuvaile sääntö",
+      "addRule": "Lisää sääntö",
+      "saveRules": "Tallenna säännöt",
+      "dismissAdminBody": "{{wallet}} palaa tavalliseksi jäseneksi.",
+      "purgeBody": "Jokainen {{name}}:n lähettämä viesti tässä yhteisössä poistetaan.",
+      "kickBody": "{{name}} poistetaan yhteisöstä. Hän voi liittyä uudelleen myöhemmin.",
+      "bannedUntil": "Estetty, kunnes {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Mykistetty, kunnes {{date}}",
+      "bannedUntilShort": "Kunnes {{date}}",
+      "muteTitle": "Mykistä {{name}}",
+      "banTitle": "Estä {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} / {{max}}",
+      "moveRuleUp": "Siirrä sääntöä ylöspäin",
+      "moveRuleDown": "Siirrä sääntöä alaspäin",
+      "deleteRule": "Poista sääntö",
+      "rights": {
+        "changeInfo": "Muuta yhteisön tietoja",
+        "changeInfoHint": "Muokkaa nimeä, kuvausta, avataria ja banneria",
+        "deleteMessages": "Poista viestejä",
+        "deleteMessagesHint": "Poista mikä tahansa viesti yhteisön keskustelusta",
+        "restrictMembers": "Estä käyttäjiä",
+        "restrictMembersHint": "Mykistä, poista ja estä jäseniä",
+        "inviteUsers": "Kutsu käyttäjiä linkin kautta",
+        "inviteUsersHint": "Luo ja peruuta kutsuja",
+        "pinMessages": "Kiinnitä viestejä",
+        "pinMessagesHint": "Kiinnitä viesti keskustelun alkuun",
+        "manageEvents": "Hallinnoi tapahtumia",
+        "manageEventsHint": "Luo ja muokkaa yhteisön tapahtumia",
+        "addAdmins": "Lisää uusia ylläpitäjiä",
+        "addAdminsHint": "Ylennä jäseniä ja muokkaa heidän lisäämiensä ylläpitäjien oikeuksia",
+        "remainAnonymous": "Pysy anonyyminä",
+        "remainAnonymousHint": "Piilota tämä ylläpitäjä jäsenluettelosta"
+      },
+      "durations": {
+        "oneHour": "1 tunti",
+        "eightHours": "8 tuntia",
+        "oneDay": "1 päivä",
+        "oneWeek": "1 viikko",
+        "forever": "Ikuisesti"
+      }
+    },
+    "chooseAvatar": "Valitse avatar"
   },
   "work": {
     "title": "Palkkiot",
@@ -2950,7 +3119,9 @@
       "shipped": "Lähetetty",
       "completed": "Valmis",
       "cancelled": "Peruttu"
-    }
+    },
+    "removePhoto": "Poista kuva",
+    "listingOptions": "Listausvaihtoehdot"
   },
   "accounts": {
     "subtitle": "Myytäviä tilejä, hinnat DHB:nä",
@@ -3318,7 +3489,14 @@
     "removeFollowerHint": "Paina ja pidä seuraajaa poistaaksesi hänet.",
     "cancel": "Peruuta",
     "remove": "Poista",
-    "thisUser": "Tämä käyttäjä"
+    "thisUser": "Tämä käyttäjä",
+    "cancelRequestTo": "Peruuta seuraamispyyntö käyttäjälle @{{username}}?",
+    "followingUser": "Seuraan käyttäjää @{{username}}",
+    "contentUnavailable": "Sisältö ei saatavilla",
+    "youBlockedBody": "Et näe heidän julkaisujaan tai voi olla vuorovaikutuksessa heidän kanssaan. Poista esto palauttaaksesi pääsyn.",
+    "restrictedBody": "Tämä käyttäjä on rajoittanut vuorovaikutusta tilisi kanssa.",
+    "requestPendingBody": "Seuraamispyyntösi on lähetetty. Näet heidän julkaisunsa, kun he hyväksyvät pyyntösi.",
+    "followToSeePosts": "Seuraa tätä tiliä nähdäksesi heidän julkaisunsa."
   },
   "reactionInfo": {
     "title": "Reaktiot",
@@ -3633,7 +3811,8 @@
     "needGas": "Tarvitset natiivia {{token}} kaasumaksuihin ketjussa {{chain}}.",
     "bridging": "Siirretään…",
     "bridgeAction": "Siirrä {{from}} → {{to}}",
-    "failed": "Siirto epäonnistui"
+    "failed": "Siirto epäonnistui",
+    "sentArriveShortly": "{{amount}} DHB lähetti osoitteesta {{from}} → {{to}}. Tokenit saapuvat pian."
   },
   "banned": {
     "title": "Tilisi on estetty",
@@ -3811,7 +3990,16 @@
     "legacyRecovered": "Vahvistimme vanhan tilisi{{suffix}} ja palautimme sen lompakon. Aseta salasana, joka suojaa sitä tästä lähtien tällä laitteella — tässä puhelimessa ja kaikkialla muualla.",
     "passwordMin": "Salasana (väh. {{min}} merkkiä)",
     "newPasswordMin": "Uusi salasana (väh. {{min}} merkkiä)",
-    "newWalletPasswordMin": "Uuden lompakon salasana (väh. {{min}} merkkiä)"
+    "newWalletPasswordMin": "Uuden lompakon salasana (väh. {{min}} merkkiä)",
+    "deviceCheckCancelled": "Laitetarkistus peruutettu — mitään ei muutettu.",
+    "savePhraseTitle": "Tallenna palautuslauseesi",
+    "startOverTitle": "Aloita uudelleen uudella lompakolla",
+    "secureNewWalletTitle": "Suojaa uusi lompakkosi",
+    "secureWalletTitle": "Suojaa lompakkosi",
+    "unlockOnMobileTitle": "Avaa mobiililaitteella",
+    "oldAccountFoundTitle": "Vanha tili löytyi",
+    "unlockWalletTitle": "Avaa lompakkosi",
+    "phraseExplainer": "Tämä puhelin suojaa lompakkoasi biometrisillä tiedoilla. Tämä avaus <em>toimii vain tässä puhelimessa</em> — nämä 12 sanaa ovat ainoa tapa päästä takaisin, jos asennat DeHubin uudelleen, vaihdat puhelinta tai kadotat sen."
   },
   "transcript": {
     "title": "Litterointi",
@@ -3998,7 +4186,38 @@
     "subscribe": "Tilaa",
     "subscriberCount_one": "{{count}} tilaaja",
     "subscriberCount_other": "{{count}} tilaajaa",
-    "subscribeToForRich": "Tilaa <name>{{name}}</name> hintaan <price>{{price}}</price>"
+    "subscribeToForRich": "Tilaa <name>{{name}}</name> hintaan <price>{{price}}</price>",
+    "loadPlansFailed": "Suunnitelmien lataaminen epäonnistui",
+    "subscriberContent": "Tilaajien sisältö",
+    "subscriberContentSub": "Luo suunnitelmia eksklusiivisen sisällön tarjoamiseksi tilaajille",
+    "createFirstPlan": "Luo ensimmäinen suunnitelmasi",
+    "addNewPlan": "Lisää uusi suunnitelma",
+    "durations": {
+      "oneMonth": "1 kuukausi",
+      "threeMonths": "3 kuukautta",
+      "sixMonths": "6 kuukautta",
+      "oneYear": "1 vuosi",
+      "lifetime": "Elinikäinen"
+    },
+    "planNameRequired": "Suunnitelman nimi on pakollinen",
+    "enterValidPrice": "Anna kelvollinen hinta",
+    "availableChains": "Tilaukset ovat tällä hetkellä saatavilla Base- ja BNB-verkoissa",
+    "waitForSwitch": "Odota, että tilausverkko valmistuu vaihdosta",
+    "connectAndWait": "Yhdistä lompakkosi ja odota tilausverkkoa",
+    "planUpdated": "Suunnitelma päivitetty",
+    "creating": "Luodaan…",
+    "planPublished": "Suunnitelma luotu ja julkaistu",
+    "createPlanTitle": "Luo tilaussuunnitelma",
+    "network": "Tilausverkko",
+    "planNameLabel": "Suunnitelman nimi *",
+    "planNamePlaceholder": "esim. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Mitä tilaajat saavat…",
+    "priceLabel": "Hinta (USD) *",
+    "legacyMigrationNote": "Säästö siirtää tämän vanhan DHB-suunnitelman dollarihinnoitteluun listautumista edeltävällä kurssilla.",
+    "benefits": "Edut",
+    "benefitPlaceholder": "Lisää etu…",
+    "createAndPublish": "Luo ja julkaise",
+    "publishingOnChain": "Julkaiseminen on lohkoketjutransaktio"
   },
   "live": {
     "notSet": "Ei asetettu",
@@ -4116,7 +4335,22 @@
     "acceptTerms": "Hyväksyn <terms>Käyttöehdot</terms>",
     "sentTo": "{{amount}} {{symbol}} lähetettiin henkilölle {{address}}",
     "tokensSentTo": "Poletit lähetettiin osoitteeseen {{address}}",
-    "goToProfile": "Siirry profiiliin"
+    "goToProfile": "Siirry profiiliin",
+    "aboutTitle": "Tietoa DeHubista ja maksuista",
+    "aboutSubtitle": "Porttisi saumattomiin token-maksuihin",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokeneita käytetään sisällöntuottajien tilaamiseen, striimaajien tippaamiseen tai sisällön avaamiseen. Mitä enemmän omistat, sitä alhaisemmat maksusi ovat ja sitä enemmän supervoimia avaat, kuten aikajanan trendivahvistuksia ja vahvistusmerkkejä.",
+    "aboutInstantTitle": "Välittömät maksut",
+    "aboutInstantBody": "Stripeä käyttämällä voit ostaa tokeneita välittömästi ja saumattomasti mihin tahansa tiliin, johon olet kirjautunut. DeHub tekee tokeneista yksinkertaisia ja kaikille. Jos tarvitset lisää tukea, tule vain 24/7 live-yhteisökeskusteluumme ja pyydä ylläpitäjän tukea.",
+    "aboutSecureTitle": "Turvallinen yhdyskäytävä",
+    "aboutSecureBody": "Kaikki maksutiedot salataan ja Stripe käsittelee ne turvallisesti. Emme voi käyttää tai tallentaa arkaluonteisia tietojasi tai korttitietojasi, mikä antaa sinulle täydellisen mielenrauhan.",
+    "transfersSummary": "Siirtojen yhteenveto",
+    "availableToBuy": "Saatavilla ostettavaksi nyt",
+    "noSupplyShort": "Ei tarjontaa",
+    "topUpSubtitle": "Osta $DHB kortilla ja saat ilmaista kaasua käytettäväksi välittömästi",
+    "noTxHash": "Transaktiotunnistetta ei löytynyt",
+    "latestTransactions": "Viimeisimmät transaktiot",
+    "showAll": "Näytä kaikki"
   },
   "musicSheet": {
     "title": "Luo kappale",
@@ -4245,7 +4479,13 @@
     "followUpNote": "Saatamme ottaa yhteyttä lisäkysymyksillä palautteestasi",
     "submitFeedback": "Lähetä palaute",
     "provideFeedback": "Kirjoita palautteesi",
-    "thankYou": "Kiitos palautteestasi!"
+    "thankYou": "Kiitos palautteestasi!",
+    "submitFailed": "Palautteen lähettäminen epäonnistui. Yritä uudelleen.",
+    "maybeLater": "Myöhemmin",
+    "helpUsImprove": "Auta meitä parantamaan",
+    "rateExperience": "Kuinka arvioisit kokemuksesi?",
+    "telegramOptional": "Telegram (valinnainen)",
+    "discordOptional": "Discord (valinnainen)"
   },
   "migrate": {
     "clearAll": "Tyhjennä kaikki",
@@ -4362,7 +4602,14 @@
       "blueWhale": "Suurin asia, joka on koskaan elänyt. Se olet sinä.",
       "megalodon": "Tässä kruunusi — olet nyt sovelluksen kuninkaallinen"
     },
-    "continue": "Takaisin DeHubiin"
+    "continue": "Takaisin DeHubiin",
+    "none": "Ei mitään",
+    "noBadgeYet": "Ei vielä merkkiä",
+    "next": "Seuraava",
+    "topTier": "Huipputaso",
+    "toNextTier": "{{amount}} DHB {{tier}}:lle",
+    "everyTierUnlocked": "Jokainen taso avattu",
+    "holdNote": "Kun merkki on avattu, se on sinun niin kauan kuin omistat DHB:si. Uuden merkin avaamiseen tarvittavien tokenien määrä voi muuttua tokenin hinnan mukaan."
   },
   "passwordStrength": {
     "veryWeak": "Erittäin heikko",
@@ -4444,7 +4691,11 @@
     },
     "ttsLabel": "Sano jotain ääneen",
     "ttsPlaceholder": "Lue suoratoistoon...",
-    "ttsHint": "Lue ääneen kaikille, jotka katsovat, kun lahjasi saapuu."
+    "ttsHint": "Lue ääneen kaikille, jotka katsovat, kun lahjasi saapuu.",
+    "sendAGift": "Lähetä lahja",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Vähimmäislahja on {{amount}}",
+    "sendGift": "Lähetä lahja"
   },
   "goLive": {
     "streamKey": "Striimin avain",
@@ -4827,7 +5078,8 @@
         "title": "Katso, miten ansaitseminen toimii",
         "body": "Lue, miten vinkit, merkit ja SuperPowerit muuttavat täällä tekemäsi asiat joksikin, josta ansaitset."
       }
-    }
+    },
+    "swipeToStart": "Pyyhkäise aloittaaksesi"
   },
   "conversation": {
     "commonGround": {
@@ -5309,5 +5561,18 @@
     "toastPaidSettled": "Maksettu — kauppa on selvitetty",
     "walletNotReady": "Lompakkosi ei ole vielä valmis — yritä hetken kuluttua uudelleen.",
     "wrongChain": "Tämä kauppa selvitetään verkossa {{chain}}. Vaihda verkkoon {{chain}} asetuksissa ja yritä sitten uudelleen."
+  },
+  "moderation": {
+    "appealDuplicate": "Olet jo valittanut tästä",
+    "appealSent": "Valitus lähetetty",
+    "appealFailed": "Muutoksenhakua ei voitu tehdä",
+    "appealTitle": "Muutoksenhaku tähän päätökseen",
+    "appealSubtitle": "Henkilö lukee tämän ja tarkastelee päätöstä uudelleen.",
+    "appealPlaceholder": "Mitä mielestäsi jäi huomaamatta? Sisältöä koskeva konteksti auttaa enemmän kuin mikään muu.",
+    "appealSend": "Lähetä valitus",
+    "appealFootnote": "Saat viitenumeron, ja vastaus tulee tänne. Yksi valitus per päätös.",
+    "appealRef": "Reference {{ref}}",
+    "appealSubtitleSubject": "Henkilö lukee tämän ja katsoo uudelleen osoitteessa {{subject}}.",
+    "appealMore": "Merkkejä tarvitaan vielä: {{count}}"
   }
 }

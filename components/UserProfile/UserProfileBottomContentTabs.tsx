@@ -378,13 +378,13 @@ const UserProfileBottomContentTabs: React.FC<
           </View>
           {!youBlocked && (
             <Text className="text-white text-lg font-bold text-center mb-2">
-              Content Unavailable
+              {t("follow.contentUnavailable")}
             </Text>
           )}
           <Text className="text-gray-400 text-center text-sm leading-5 mb-5">
             {youBlocked
-              ? "You won't see their posts or be able to interact with them. Unblock to restore access."
-              : "This user has restricted interactions with your account."}
+              ? t("follow.youBlockedBody")
+              : t("follow.restrictedBody")}
           </Text>
         </View>
       );
@@ -396,12 +396,12 @@ const UserProfileBottomContentTabs: React.FC<
           <Icon name="Lock" size={40} color={theme.colors.neutrals[500]} />
         </View>
         <Text className="text-white text-lg font-bold text-center mb-2">
-          This Account is Private
+          {t("follow.privateTitle")}
         </Text>
         <Text className="text-gray-400 text-center text-sm leading-5 mb-5">
           {isFollowRequestPending
-            ? "Your follow request has been sent. You'll be able to see their posts once they approve your request."
-            : "Follow this account to see their posts."}
+            ? t("follow.requestPendingBody")
+            : t("follow.followToSeePosts")}
         </Text>
         {!isFollowRequestPending && onFollow && (
           <AccentButtonGradient>
