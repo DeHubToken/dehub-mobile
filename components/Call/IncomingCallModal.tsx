@@ -12,12 +12,15 @@ const IncomingCallModal: React.FC = () => {
   const insets = useSafeAreaInsets();
   const peer = usePeerIdentity(peerAddress);
 
+  // Back must not decline the call; Accept and Decline are the only exits.
+  const ignoreBack = () => {};
+
   if (!isIncoming) return null;
 
   const isVideo = currentCall?.call_type === "video";
 
   return (
-    <CallScreen onRequestClose={rejectCall}>
+    <CallScreen onRequestClose={ignoreBack}>
       <View style={[styles.body, { paddingTop: insets.top + 56 }]}>
         <CallIdentity
           kindIcon={isVideo ? "Video" : "Phone"}

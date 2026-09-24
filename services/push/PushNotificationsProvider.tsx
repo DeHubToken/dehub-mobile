@@ -281,6 +281,13 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
         return;
       }
 
+      // Opening the app is the whole job: the call provider polls for a
+      // ringing session on foreground and raises the incoming-call screen over
+      // whatever is showing. Navigating anywhere would only move it.
+      if ((type as string) === 'incoming_call') {
+        return;
+      }
+
       // Non-navigable types - just open notifications screen
       if (NON_NAVIGABLE_TYPES.has(type as NotificationType)) {
         navigation.navigate(ScreenNames.Notifications);

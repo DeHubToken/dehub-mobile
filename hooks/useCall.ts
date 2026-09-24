@@ -17,6 +17,7 @@ import { supabase, fetchAgoraToken } from "../services/supabase";
 import { AGORA_APP_ID } from "../config/agora.config";
 import { useAuth } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
+import { apiClient } from "../libs/api.client";
 
 const log = createLogger("useCall");
 
@@ -52,6 +53,9 @@ export interface UseCallReturn {
   toggleCamera: () => void;
   switchCamera: () => void;
   setCallMessageHandler: (handler: ((content: string) => void) | null) => void;
+  /** The full-screen call UI is tucked away behind the mini-player. */
+  isMinimized: boolean;
+  setMinimized: (minimized: boolean) => void;
 }
 
 let engineInstance: IRtcEngine | null = null;
@@ -88,6 +92,10 @@ export function useCall(): UseCallReturn {
   // Stable refs for callbacks
   const currentCallRef = useRef<CallSession | null>(null);
   useEffect(() => { currentCallRef.current = currentCall; }, [currentCall]);
+
+  // Android back used to end the call. It now tucks the call screen away;
+  // the mini-player brings it back.
+  const [isMinimized, setMinimized] = useState(false);
 
   const callTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const callTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -144,6 +152,7 @@ export function useCall(): UseCallReturn {
     }
     setRemoteUid(null);
     setIsCallActive(false);
+    setMinimized(false);
     setIsConnecting(false);
     setIsCameraOff(true);
     if (callTimerRef.current) {
@@ -400,6 +409,12 @@ export function useCall(): UseCallReturn {
       setCurrentCall(session);
       currentCallRef.current = session;
 
+      // The callee's app only watches call_sessions while it is open; ask the
+      // server to ring a locked or backgrounded phone with a push.
+      apiClient
+        .post("/push/call-ring", { sessionId: session.id }, { isAuthRequired: true })
+        .catch((e: unknown) => log.warn("Call ring push failed (non-fatal):", e));
+
       // Notify DM chat that a call was initiated
       callMessageHandlerRef.current?.(callType === "video" ? "📹 Video call" : "📞 Voice call");
 
@@ -576,6 +591,8 @@ export function useCall(): UseCallReturn {
       toggleCamera,
       switchCamera,
       setCallMessageHandler,
+      isMinimized,
+      setMinimized,
     }),
     [
       isCallActive,
@@ -598,6 +615,7 @@ export function useCall(): UseCallReturn {
       toggleCamera,
       switchCamera,
       setCallMessageHandler,
+      isMinimized,
     ],
   );
 }

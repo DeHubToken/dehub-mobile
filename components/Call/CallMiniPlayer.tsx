@@ -4,26 +4,33 @@ import { TouchableOpacity } from "react-native";
 import Icon from "../ui/Icon";
 import { radius } from "../../theme/radius";
 import { useCall } from "../../context/CallContext";
+import { useTranslation } from "react-i18next";
 
 const CallMiniPlayer: React.FC = () => {
-  const { isCallActive, callDuration, endCall } = useCall();
+  const { isCallActive, isConnecting, callDuration, endCall, setMinimized } = useCall();
+  const { t } = useTranslation();
 
-  if (!isCallActive) return null;
+  if (!isCallActive && !isConnecting) return null;
 
   return (
     <View style={styles.container}>
-      <View style={styles.info}>
+      <TouchableOpacity
+        style={styles.info}
+        onPress={() => setMinimized(false)}
+        accessibilityRole="button"
+        accessibilityLabel={t("calls.expand")}
+      >
         <View style={styles.iconWrap}>
           <Icon name="Phone" size={14} color="#F4F4F5" />
         </View>
         <Text style={styles.duration}>{callDuration}</Text>
-      </View>
+      </TouchableOpacity>
       <TouchableOpacity
         onPress={endCall}
         style={styles.endBtn}
         hitSlop={8}
         accessibilityRole="button"
-        accessibilityLabel="End call"
+        accessibilityLabel={t("calls.end")}
       >
         <Icon name="PhoneOff" size={14} color="#FFFFFF" />
       </TouchableOpacity>
@@ -49,6 +56,7 @@ const styles = StyleSheet.create({
     zIndex: 100,
   },
   info: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
