@@ -2822,7 +2822,11 @@
     "vaultReleaseTitle": "Tuku @{{handle}}?",
     "vaultReleaseBody": "Ka hoki ki te puna, ā, ka taea e te tangata te tango. Kāore he whakahokinga, ā, ko te utu ki te hoko anō ko tā te rangatira hou e tono ai.",
     "swapHintKept": "Ka noho tonu koe ki te @{{handle}} — ka neke ki roto i ō ingoa kaiwhakamahi, ā, ka taea e koe te mau anō, te hoko rānei i muri mai. Kāore ngā pou, ngā kaiwhai, me tō putea e pā.",
-    "swapHintNoChange": "Kāore ngā pou, ngā kaiwhai, me tō putea e pā."
+    "swapHintNoChange": "Kāore ngā pou, ngā kaiwhai, me tō putea e pā.",
+    "addedToYourUsernames": "Ka tāpirihia ki ō ingoa kaiwhakamahi",
+    "boughtNameGoesToVault": "Ka noho tonu koe hei @{{current}}. Ka uru a @{{handle}} ki ō ingoa kaiwhakamahi, ā, ka taea e koe te huri ki a ia ahakoa āhea.",
+    "youAreNow": "Ko @{{handle}} koe ināianei",
+    "boughtToVaultToast": "Kei ō ingoa kaiwhakamahi a @{{handle}} ināianei"
   },
   "stores": {
     "subtitle": "Kimihia ngā hua mai i te hapori DeHub",

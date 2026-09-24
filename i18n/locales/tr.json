@@ -2847,7 +2847,11 @@
     "vaultReleaseTitle": "@{{handle}}? Serbest bırak",
     "vaultReleaseBody": "Havuzda geri döner ve herkes alabilir. Geri dönüşü yoktur ve geri satın almak yeni sahibin istediği herhangi bir ücreti gerektirir.",
     "swapHintKept": "@{{handle}} — kullanıcı adlarınıza taşınır ve tekrar takabilir veya daha sonra satabilirsiniz. Gönderilere, takipçilere ve cüzdanınıza dokunulmaz.",
-    "swapHintNoChange": "Gönderilere, takipçilere ve cüzdanınıza dokunulmaz."
+    "swapHintNoChange": "Gönderilere, takipçilere ve cüzdanınıza dokunulmaz.",
+    "addedToYourUsernames": "Kullanıcı adlarına eklenir",
+    "boughtNameGoesToVault": "@{{current}} olarak kalırsın. @{{handle}} kullanıcı adlarına eklenir ve istediğin zaman ona geçebilirsin.",
+    "youAreNow": "Artık @{{handle}} oldun",
+    "boughtToVaultToast": "@{{handle}} artık kullanıcı adlarında"
   },
   "stores": {
     "subtitle": "DeHub topluluğundaki ürünleri keşfedin",

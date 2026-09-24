@@ -158,6 +158,12 @@ export type ClaimResult =
       username: string;
       previousUsername: string | null;
       /**
+       * What the buyer wears after the sale. Their existing handle — a bought
+       * name goes into the vault — unless the account had none. Optional
+       * because servers from before that rule do not send it.
+       */
+      activeUsername?: string;
+      /**
        * The handle they were wearing, now held rather than gone. Same string as
        * `previousUsername` — separate so the client can say "you keep @bob"
        * without having to know the retention rule.

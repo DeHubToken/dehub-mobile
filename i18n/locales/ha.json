@@ -2823,7 +2823,11 @@
     "vaultReleaseTitle": "Sakin @{{handle}}?",
     "vaultReleaseBody": "Yana komawa cikin wurin kuma kowa na iya ɗauka. Babu juyawa, kuma siyan shi sake zai kashe kuɗin da sabon mai shi ya buƙata.",
     "swapHintKept": "Kuna riƙe da @{{handle}} — yana shiga cikin sunayen masu amfani da ku, kuma zaku iya sake sawa ko siyarwa daga baya. Posts, masu biyan kuɗi da walat ɗinku ba su taɓa ba.",
-    "swapHintNoChange": "Posts, masu biyan kuɗi da walat ɗinku ba su taɓa ba."
+    "swapHintNoChange": "Posts, masu biyan kuɗi da walat ɗinku ba su taɓa ba.",
+    "addedToYourUsernames": "Za a ƙara shi cikin sunayen masu amfani naka",
+    "boughtNameGoesToVault": "Za ka ci gaba da zama @{{current}}. @{{handle}} zai shiga sunayen masu amfani naka, kuma za ka iya komawa gare shi duk lokacin da kake so.",
+    "youAreNow": "Yanzu kai ne @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} yanzu yana cikin sunayen masu amfani naka"
   },
   "stores": {
     "subtitle": "Gano kayayyaki daga al'ummar DeHub",

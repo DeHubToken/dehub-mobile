@@ -2838,7 +2838,11 @@
     "vaultReleaseTitle": "Uvolnit @{{handle}}?",
     "vaultReleaseBody": "Vrátí se do fondu a kdokoli si ho může vzít. Nelze to vzít zpět a jeho zpětný odkup by stál tolik, kolik si nový majitel řekne.",
     "swapHintKept": "Ponecháte si @{{handle}} — přesune se do vašich uživatelských jmen a můžete ho znovu použít nebo později prodat. Příspěvky, sledující a vaše peněženka zůstávají nedotčené.",
-    "swapHintNoChange": "Příspěvky, sledující a vaše peněženka zůstávají nedotčené."
+    "swapHintNoChange": "Příspěvky, sledující a vaše peněženka zůstávají nedotčené.",
+    "addedToYourUsernames": "Přidá se k vašim uživatelským jménům",
+    "boughtNameGoesToVault": "Zůstáváte @{{current}}. @{{handle}} přibude k vašim uživatelským jménům a můžete na něj kdykoli přepnout.",
+    "youAreNow": "Nyní jste @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} je nyní mezi vašimi uživatelskými jmény"
   },
   "stores": {
     "subtitle": "Objev produkty od komunity DeHub",

@@ -2629,7 +2629,11 @@
     "vaultUseThis": "Користи ово",
     "vaultSell": "Продај",
     "vaultEditListing": "Уреди оглас",
-    "vaultRelease": "Ослободи"
+    "vaultRelease": "Ослободи",
+    "addedToYourUsernames": "Додаје се вашим корисничким именима",
+    "boughtNameGoesToVault": "Остајете @{{current}}. @{{handle}} иде међу ваша корисничка имена и можете да пређете на њега кад год желите.",
+    "youAreNow": "Сада сте @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} је сада међу вашим корисничким именима"
   },
   "stores": {
     "subtitle": "Откриј производе заједнице DeHub",

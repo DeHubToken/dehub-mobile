@@ -2855,7 +2855,11 @@
     "vaultReleaseTitle": "Rilascia @{{handle}}?",
     "vaultReleaseBody": "Torna nel pool e chiunque può prenderlo. Non c'è modo di annullare, e ricomprarlo costerebbe quanto chiede il nuovo proprietario.",
     "swapHintKept": "Mantieni @ {{handle}}: si sposta nei tuoi nomi utente e puoi indossarlo di nuovo o venderlo in seguito. I post, i follower e il tuo portafoglio sono intatti.",
-    "swapHintNoChange": "I post, i follower e il tuo portafoglio sono intatti."
+    "swapHintNoChange": "I post, i follower e il tuo portafoglio sono intatti.",
+    "addedToYourUsernames": "Aggiunto ai tuoi nomi utente",
+    "boughtNameGoesToVault": "Resti @{{current}}. @{{handle}} va tra i tuoi nomi utente e puoi passarci quando vuoi.",
+    "youAreNow": "Ora sei @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} è ora tra i tuoi nomi utente"
   },
   "stores": {
     "subtitle": "Scopri i prodotti della community DeHub",

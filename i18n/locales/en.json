@@ -2856,7 +2856,11 @@
     "vaultReleaseTitle": "Release @{{handle}}?",
     "vaultReleaseBody": "It goes back in the pool and anyone can take it. There is no undo, and buying it back would cost whatever the new owner asks.",
     "swapHintKept": "You keep @{{handle}} — it moves into your usernames, and you can wear it again or sell it later. Posts, followers and your wallet are untouched.",
-    "swapHintNoChange": "Posts, followers and your wallet are untouched."
+    "swapHintNoChange": "Posts, followers and your wallet are untouched.",
+    "addedToYourUsernames": "Added to your usernames",
+    "boughtNameGoesToVault": "You stay @{{current}}. @{{handle}} goes into your usernames, and you can switch to it whenever you like.",
+    "youAreNow": "You are now @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} is now in your usernames"
   },
   "stores": {
     "subtitle": "Discover products from the DeHub community",

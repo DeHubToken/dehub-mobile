@@ -2833,7 +2833,11 @@
     "vaultReleaseTitle": "Vabasta @{{handle}}?",
     "vaultReleaseBody": "See läheb tagasi ringlusse ja igaüks võib selle võtta. Tagasivõtmist ei ole ja selle tagasi ostmine maksaks nii palju, kui uus omanik küsib.",
     "swapHintKept": "Sina säilitad @{{handle}} – see liigub sinu kasutajanimede hulka ja sa saad seda uuesti kasutada või hiljem müüa. Postitused, jälgijad ja sinu rahakott jäävad puutumata.",
-    "swapHintNoChange": "Postitused, jälgijad ja sinu rahakott jäävad puutumata."
+    "swapHintNoChange": "Postitused, jälgijad ja sinu rahakott jäävad puutumata.",
+    "addedToYourUsernames": "Lisatakse sinu kasutajanimede hulka",
+    "boughtNameGoesToVault": "Jääd @{{current}}. @{{handle}} lisandub sinu kasutajanimedele ja saad sellele igal ajal ümber lülituda.",
+    "youAreNow": "Sa oled nüüd @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} on nüüd sinu kasutajanimede hulgas"
   },
   "stores": {
     "subtitle": "Avasta DeHubi kogukonna tooteid",

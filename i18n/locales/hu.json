@@ -2838,7 +2838,11 @@
     "vaultReleaseTitle": "Visszavonás @{{handle}}?",
     "vaultReleaseBody": "Visszakerül a kalapba, és bárki elveheti. Nincs visszavonás, és a visszavásárlása annyiba kerülne, amennyit az új tulajdonos kér.",
     "swapHintKept": "Megtartod a(z) @{{handle}} nevet – ez bekerül a felhasználóneveid közé, és később újra használhatod vagy eladhatod. A bejegyzések, követők és a pénztárcád érintetlenek maradnak.",
-    "swapHintNoChange": "A bejegyzések, követők és a pénztárcád érintetlenek maradnak."
+    "swapHintNoChange": "A bejegyzések, követők és a pénztárcád érintetlenek maradnak.",
+    "addedToYourUsernames": "Bekerül a felhasználóneveid közé",
+    "boughtNameGoesToVault": "Maradsz @{{current}}. A(z) @{{handle}} bekerül a felhasználóneveid közé, és bármikor átválthatsz rá.",
+    "youAreNow": "Mostantól @{{handle}} vagy",
+    "boughtToVaultToast": "A(z) @{{handle}} most már a felhasználóneveid között van"
   },
   "stores": {
     "subtitle": "Fedezd fel a DeHub-közösség termékeit",

@@ -2854,7 +2854,11 @@
     "vaultReleaseTitle": "@{{handle}}? を解放する",
     "vaultReleaseBody": "プールに戻され、誰でも取得できるようになります。元に戻すことはできず、買い戻すには新しい所有者が要求する価格がかかります。",
     "swapHintKept": "@{{handle}}を維持すると、ユーザー名に移動し、再度着用することも、後で販売することもできます。 投稿、フォロワー、ウォレットには何の影響もありません。",
-    "swapHintNoChange": "投稿、フォロワー、ウォレットには何の影響もありません。"
+    "swapHintNoChange": "投稿、フォロワー、ウォレットには何の影響もありません。",
+    "addedToYourUsernames": "あなたのユーザー名に追加されます",
+    "boughtNameGoesToVault": "あなたは @{{current}} のままです。@{{handle}} はユーザー名に追加され、いつでも切り替えられます。",
+    "youAreNow": "あなたは @{{handle}} になりました",
+    "boughtToVaultToast": "@{{handle}} がユーザー名に追加されました"
   },
   "stores": {
     "subtitle": "DeHub コミュニティの商品を見つけよう",
