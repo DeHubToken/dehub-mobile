@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   Share,
+  FlatList,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
@@ -44,6 +45,13 @@ import CustomSwitch from "../components/ui/CustomSwitch";
 import { CommunityInfoEditor } from "../components/Communities/CommunityInfoEditor";
 import { CommunityChatPanel } from "../components/Communities/CommunityChatPanel";
 import { CommunityManageSheet } from "../components/Communities/manage/CommunityManageSheet";
+import Avatar from "../components/common/Avatar";
+import { getAvatarUrl } from "../libs/misc";
+import { getAccountSummaries, type AccountSummary } from "../services/user.service";
+import { useUserProfileSheet } from "../context/UserProfileSheetContext";
+
+/** Members rendered (and profile-resolved) per page of the Members tab. */
+const MEMBERS_PAGE = 30;
 
 type Tab = "posts" | "chat" | "members" | "about";
 
@@ -130,6 +138,39 @@ const CommunityDetailScreen: React.FC = () => {
     const order: Record<string, number> = { owner: 0, admin: 1, member: 2 };
     return [...members].sort((a, b) => (order[a.role] ?? 3) - (order[b.role] ?? 3));
   }, [members]);
+
+  // The roster rows only carry a wallet. Profiles are looked up a page at a
+  // time as the list scrolls, so a large community costs one batch request
+  // per page rather than one for the whole roster up front.
+  const { showUserProfile } = useUserProfileSheet();
+  const [visibleMembers, setVisibleMembers] = useState(MEMBERS_PAGE);
+  const [memberProfiles, setMemberProfiles] = useState<Record<string, AccountSummary>>({});
+  const requestedProfilesRef = useRef<Set<string>>(new Set());
+  const pagedMembers = useMemo(
+    () => sortedMembers.slice(0, visibleMembers),
+    [sortedMembers, visibleMembers],
+  );
+
+  useEffect(() => {
+    if (tab !== "members") return;
+    const missing = pagedMembers
+      .map((m) => m.wallet_address.toLowerCase())
+      .filter((addr) => !requestedProfilesRef.current.has(addr));
+    if (!missing.length) return;
+    missing.forEach((addr) => requestedProfilesRef.current.add(addr));
+    getAccountSummaries(missing)
+      .then((summaries) => {
+        setMemberProfiles((prev) => {
+          const next = { ...prev };
+          summaries.forEach((s) => {
+            if (s?.address) next[s.address.toLowerCase()] = s;
+          });
+          return next;
+        });
+      })
+      // A miss just leaves the row on its short address; let a later pass retry.
+      .catch(() => missing.forEach((addr) => requestedProfilesRef.current.delete(addr)));
+  }, [tab, pagedMembers]);
 
   // Membership is resolved through the same helper the permission mirror uses,
   // so an elapsed timed ban reads as active here too — the server already lets
@@ -273,8 +314,19 @@ const CommunityDetailScreen: React.FC = () => {
           key={item.key}
           style={[styles.tab, tab === item.key && styles.tabActive]}
           onPress={() => setTab(item.key)}
+          accessibilityRole="tab"
+          accessibilityState={{ selected: tab === item.key }}
         >
-          <Text style={[styles.tabText, tab === item.key && styles.tabTextActive]}>{item.label}</Text>
+          {/* Four equal cells on one line; a long translation shrinks to fit
+              instead of pushing the last tab off a 360dp screen. */}
+          <Text
+            style={[styles.tabText, tab === item.key && styles.tabTextActive]}
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.7}
+          >
+            {item.label}
+          </Text>
         </TouchableOpacity>
       ))}
     </View>
@@ -366,6 +418,18 @@ const CommunityDetailScreen: React.FC = () => {
     </View>
   );
 
+  const refreshControl = (
+    <DeHubRefreshControl
+      refreshing={refreshing}
+      onRefresh={async () => {
+        setRefreshing(true);
+        await load();
+        setRefreshing(false);
+      }}
+      tintColor={theme.colors.accent}
+    />
+  );
+
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title={t("communities.title")} />
@@ -383,38 +447,48 @@ const CommunityDetailScreen: React.FC = () => {
           {TabBar}
           <CommunityChatPanel community={community} membership={membership} isMember={isMember} />
         </View>
-      ) : (
-        <ScrollView
+      ) : tab === "members" ? (
+        <FlatList
           className="flex-1"
+          data={pagedMembers}
+          keyExtractor={(m) => m.id}
           contentContainerStyle={{ paddingBottom: 80 }}
           keyboardShouldPersistTaps="handled"
-          refreshControl={
-            <DeHubRefreshControl
-              refreshing={refreshing}
-              onRefresh={async () => {
-                setRefreshing(true);
-                await load();
-                setRefreshing(false);
-              }}
-              tintColor={theme.colors.accent}
-            />
+          refreshControl={refreshControl}
+          ListHeaderComponent={HeaderBlock}
+          onEndReached={() => {
+            if (visibleMembers < sortedMembers.length) setVisibleMembers((n) => n + MEMBERS_PAGE);
+          }}
+          onEndReachedThreshold={0.5}
+          ListEmptyComponent={
+            <Text className="text-zinc-400 text-center py-8">{t("communities.noMembers")}</Text>
           }
-        >
-          {HeaderBlock}
-          {tab === "members" && (
-            <View className="px-4 pt-2">
-              {sortedMembers.map((m) => {
-                const muted = !!m.muted_until && new Date(m.muted_until).getTime() > Date.now();
-                return (
-                  <View
-                    key={m.id}
-                    className="py-3 border-b border-white/5 flex-row items-center justify-between gap-2"
-                  >
-                    <View className="flex-row items-center gap-2 flex-1">
+          renderItem={({ item: m }) => {
+            const muted = !!m.muted_until && new Date(m.muted_until).getTime() > Date.now();
+            const profile = memberProfiles[m.wallet_address.toLowerCase()];
+            const shortAddress = `${m.wallet_address.slice(0, 6)}…${m.wallet_address.slice(-4)}`;
+            const name = profile?.displayName || profile?.username || shortAddress;
+            const avatar = getAvatarUrl(profile?.avatarImageUrl || "");
+            return (
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() =>
+                  showUserProfile(profile?.username || m.wallet_address, { source: "community-members" })
+                }
+                className="mx-4 py-3 border-b border-white/5 flex-row items-center justify-between gap-2"
+              >
+                <View className="flex-row items-center gap-3 flex-1 min-w-0">
+                  <Avatar
+                    uri={avatar && avatar !== "default-avatar" ? avatar : undefined}
+                    size={36}
+                    name={name}
+                  />
+                  <View className="flex-1 min-w-0">
+                    <View className="flex-row items-center gap-1.5">
                       {m.role === "owner" && <Icon name="Crown" size={13} color="#fff" />}
                       {m.role === "admin" && <Icon name="Shield" size={13} color="#A1A1AA" />}
-                      <Text className="text-white text-sm font-mono" numberOfLines={1}>
-                        {m.wallet_address.slice(0, 6)}…{m.wallet_address.slice(-4)}
+                      <Text className="text-white text-sm font-medium flex-shrink" numberOfLines={1}>
+                        {name}
                       </Text>
                       {muted && (
                         <Text className="text-amber-400 text-xs">
@@ -422,17 +496,26 @@ const CommunityDetailScreen: React.FC = () => {
                         </Text>
                       )}
                     </View>
-                    <Text className="text-zinc-500 text-xs capitalize">
-                      {m.custom_title || t(`communities.roles.${m.role}`, { defaultValue: m.role })}
+                    <Text className="text-zinc-500 text-xs mt-0.5" numberOfLines={1}>
+                      {profile?.username ? `@${profile.username}` : shortAddress}
                     </Text>
                   </View>
-                );
-              })}
-              {members.length === 0 && (
-                <Text className="text-zinc-400 text-center py-8">{t("communities.noMembers")}</Text>
-              )}
-            </View>
-          )}
+                </View>
+                <Text className="text-zinc-500 text-xs capitalize">
+                  {m.custom_title || t(`communities.roles.${m.role}`, { defaultValue: m.role })}
+                </Text>
+              </TouchableOpacity>
+            );
+          }}
+        />
+      ) : (
+        <ScrollView
+          className="flex-1"
+          contentContainerStyle={{ paddingBottom: 80 }}
+          keyboardShouldPersistTaps="handled"
+          refreshControl={refreshControl}
+        >
+          {HeaderBlock}
           {tab === "about" && (
             <View className="px-4 pt-2">
               <Text className="text-zinc-400 text-xs uppercase mb-2">{t("communities.about")}</Text>
@@ -571,7 +654,14 @@ const styles = StyleSheet.create({
     borderBottomColor: "rgba(255,255,255,0.08)",
     paddingHorizontal: 8,
   },
-  tab: { paddingHorizontal: 16, paddingVertical: 12, borderBottomWidth: 2, borderBottomColor: "transparent" },
+  tab: {
+    flex: 1,
+    alignItems: "center",
+    paddingHorizontal: 4,
+    paddingVertical: 12,
+    borderBottomWidth: 2,
+    borderBottomColor: "transparent",
+  },
   tabActive: { borderBottomColor: "#fff" },
   tabText: { color: "#A1A1AA", fontSize: 14, fontWeight: "500" },
   tabTextActive: { color: "#fff", fontWeight: "600" },

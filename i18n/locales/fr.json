@@ -727,7 +727,8 @@
     "usernameAvailable": "Le nom d'utilisateur est disponible",
     "hideBadgeAndBalance": "Masquer le badge et le solde",
     "hideBadgeAndBalanceDesc": "Masque les détails financiers et désactive les envois et les pourboires à votre attention.",
-    "onChainPublicWarning": "Les transactions sur la chaîne sont publiques. L'envoi de jetons ou de pourboires peut révéler votre adresse de portefeuille, y compris les transactions effectuées avant l'activation du mode de solde privé."
+    "onChainPublicWarning": "Les transactions sur la chaîne sont publiques. L'envoi de jetons ou de pourboires peut révéler votre adresse de portefeuille, y compris les transactions effectuées avant l'activation du mode de solde privé.",
+    "languageLoadFailed": "Impossible de changer de langue. Réessayez."
   },
   "common": {
     "mute": "Couper le son",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Hors ligne - Aucune connexion réseau",
     "noInternetHint": "Assurez-vous que le Wi-Fi ou les données mobiles sont activés, puis appuyez sur \"{{action}}\"",
     "saving": "Enregistrement…",
-    "offlineStatus": "Hors ligne - Pas de connexion réseau"
+    "offlineStatus": "Hors ligne - Pas de connexion réseau",
+    "postNotFound": "Nous n'avons pas trouvé cet article"
   },
   "tip": {
     "title": "Envoyer un pourboire",
@@ -2873,7 +2875,8 @@
         "forever": "Pour toujours"
       }
     },
-    "chooseAvatar": "Choisir un avatar"
+    "chooseAvatar": "Choisir un avatar",
+    "loadFailed": "Impossible de charger les communautés"
   },
   "work": {
     "title": "Primes",
@@ -2997,7 +3000,9 @@
     },
     "payout": {
       "alreadySent": "Déjà envoyé ({{ref}}). Ne payez pas une seconde fois — rouvrez la mission dans un instant, elle devrait apparaître comme payée."
-    }
+    },
+    "loadFailed": "Impossible de charger les primes",
+    "jobLoadFailed": "Impossible de charger cette prime"
   },
   "usernames": {
     "subtitle": "Pseudos à vendre, en USD",
@@ -3813,7 +3818,8 @@
     "youBlockedBody": "Vous ne verrez pas ses publications et ne pourrez pas interagir avec lui. Débloquez pour rétablir l'accès.",
     "restrictedBody": "Cet utilisateur a restreint les interactions avec votre compte.",
     "requestPendingBody": "Votre demande de suivi a été envoyée. Vous pourrez voir ses publications une fois qu'il aura approuvé votre demande.",
-    "followToSeePosts": "Suivez ce compte pour voir ses publications."
+    "followToSeePosts": "Suivez ce compte pour voir ses publications.",
+    "loadFailed": "Impossible de charger cette liste"
   },
   "reactionInfo": {
     "title": "Réactions",
@@ -4919,7 +4925,9 @@
     "forwardMessage": "Transférer le message",
     "pollSubmitVote": "Soumettre le vote",
     "doNotDisturb": "Ne pas déranger",
-    "doNotDisturbOn": "Ne pas déranger:"
+    "doNotDisturbOn": "Ne pas déranger:",
+    "deleteConversationTitle": "Supprimer la conversation ?",
+    "deleteConversationBody": "Cette conversation sera supprimée de votre boîte de réception."
   },
   "editPost": {
     "mediaPermission": "L'autorisation d'accès à la médiathèque est requise",

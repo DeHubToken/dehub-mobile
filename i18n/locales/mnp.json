@@ -686,7 +686,8 @@
     "usernameAvailable": "使用者名稱可用",
     "hideBadgeAndBalance": "隱藏徽章和餘額",
     "hideBadgeAndBalanceDesc": "隱藏財務詳細資訊並停用傳送和提示給您。",
-    "onChainPublicWarning": "鏈上交易是公開的。傳送代幣或提示可能會顯示您的錢包地址，包括在啟用私人餘額模式之前所做的交易。"
+    "onChainPublicWarning": "鏈上交易是公開的。傳送代幣或提示可能會顯示您的錢包地址，包括在啟用私人餘額模式之前所做的交易。",
+    "languageLoadFailed": "語言切換失敗，請再試一下。"
   },
   "common": {
     "mute": "静音",
@@ -738,7 +739,8 @@
     "noInternetStatus": "離線 - 無網絡連接",
     "noInternetHint": "確保 Wi-Fi 或移動數據已打開，然後點擊“{{action}}”",
     "saving": "正在儲存…",
-    "offlineStatus": "離線 - 無網路連線"
+    "offlineStatus": "離線 - 無網路連線",
+    "postNotFound": "尋無該帖子"
   },
   "tip": {
     "title": "送打赏",
@@ -2823,7 +2825,8 @@
         "forever": "永久"
       }
     },
-    "chooseAvatar": "选择头像"
+    "chooseAvatar": "选择头像",
+    "loadFailed": "社區載入失敗"
   },
   "work": {
     "title": "赏金",
@@ -2947,7 +2950,9 @@
     },
     "payout": {
       "alreadySent": "已经发出去了（{{ref}}）。莫再付一遍——过一歇再打开这单工，应该会显示已付。"
-    }
+    },
+    "loadFailed": "賞金載入失敗",
+    "jobLoadFailed": "該賞金載入失敗"
   },
   "usernames": {
     "subtitle": "正卖其用户名，用 USD 计价",
@@ -3703,7 +3708,8 @@
     "restrictedBody": "此用户已限制与您帐户的互动。",
     "requestPendingBody": "您的关注请求已发送。一旦他们批准您的请求，您就可以看到他们的帖子。",
     "followToSeePosts": "关注此帐户以查看他们的帖子。",
-    "thisUser": "此用戶"
+    "thisUser": "此用戶",
+    "loadFailed": "該列表載入失敗"
   },
   "reactionInfo": {
     "title": "反应",
@@ -4808,7 +4814,9 @@
     "forwardMessage": "轉發訊息",
     "pollSubmitVote": "提交投票",
     "doNotDisturb": "莫共人講",
-    "doNotDisturbOn": "勿扰：开"
+    "doNotDisturbOn": "勿扰：开",
+    "deleteConversationTitle": "刪除對話？",
+    "deleteConversationBody": "該對話會從你個收件箱移除。"
   },
   "editPost": {
     "mediaPermission": "需要媒体库权限",

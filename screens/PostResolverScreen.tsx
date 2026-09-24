@@ -13,12 +13,15 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { resolveNewPost } from "../services/nft.service";
 import { createLogger } from "../libs/logger";
+import { toastError } from "../libs/toast";
+import { useTranslation } from "react-i18next";
 
 const logger = createLogger("PostResolver");
 
 const PostResolverScreen: React.FC = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
 
   const tokenId: string | undefined =
     route.params?.tokenId ?? route.params?.postId ?? route.params?.id;
@@ -49,6 +52,8 @@ const PostResolverScreen: React.FC = () => {
         });
       } else {
         logger.warn("Slug did not resolve — going home", { newPostId });
+        // Say why the link landed on Home instead of the post it promised.
+        toastError(t("common.postNotFound"));
         goHome();
       }
       return;
@@ -56,6 +61,7 @@ const PostResolverScreen: React.FC = () => {
 
     if (!tokenId) {
       logger.warn("No tokenId — going home");
+      toastError(t("common.postNotFound"));
       goHome();
       return;
     }
@@ -65,7 +71,7 @@ const PostResolverScreen: React.FC = () => {
       tokenId,
       commentId,
     });
-  }, [tokenId, newPostId, commentId, navigation, goHome]);
+  }, [tokenId, newPostId, commentId, navigation, goHome, t]);
 
   useEffect(() => {
     resolve();

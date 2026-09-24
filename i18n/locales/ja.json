@@ -726,7 +726,8 @@
     "usernameAvailable": "ユーザー名は利用可能です",
     "hideBadgeAndBalance": "バッジと残高を非表示にする",
     "hideBadgeAndBalanceDesc": "財務情報が非表示になり、あなたへの送信とヒントが無効になります。",
-    "onChainPublicWarning": "オンチェーントランザクションは公開されます。トークンまたはヒントを送信すると、プライベート残高モードが有効になる前に作成されたトランザクションを含め、ウォレットアドレスが公開される可能性があります。"
+    "onChainPublicWarning": "オンチェーントランザクションは公開されます。トークンまたはヒントを送信すると、プライベート残高モードが有効になる前に作成されたトランザクションを含め、ウォレットアドレスが公開される可能性があります。",
+    "languageLoadFailed": "言語を切り替えられませんでした。もう一度お試しください。"
   },
   "common": {
     "mute": "ミュート",
@@ -778,7 +779,8 @@
     "noInternetStatus": "オフライン - ネットワーク接続がありません",
     "noInternetHint": "Wi-Fiまたはモバイルデータ通信がオンになっていることを確認してから、「{{action}}」をタップしてください。",
     "saving": "保存中…",
-    "offlineStatus": "オフライン - ネットワーク接続がありません"
+    "offlineStatus": "オフライン - ネットワーク接続がありません",
+    "postNotFound": "該当する投稿が見つかりませんでした"
   },
   "tip": {
     "title": "チップを送る",
@@ -2869,7 +2871,8 @@
         "forever": "永久に"
       }
     },
-    "chooseAvatar": "アバターを選択"
+    "chooseAvatar": "アバターを選択",
+    "loadFailed": "コミュニティを読み込めませんでした"
   },
   "work": {
     "title": "バウンティ",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "すでに送金済みです（{{ref}}）。二重に支払わないでください。少ししてから案件を開き直すと、支払い済みと表示されます。"
-    }
+    },
+    "loadFailed": "賞金を読み込めませんでした",
+    "jobLoadFailed": "この賞金を読み込めませんでした"
   },
   "usernames": {
     "subtitle": "USD建てで売り出し中のハンドル",
@@ -3807,7 +3812,8 @@
     "youBlockedBody": "投稿を表示したり、やり取りしたりできなくなります。ブロックを解除するとアクセスが復元されます。",
     "restrictedBody": "このユーザーはあなたのアカウントとのやり取りを制限しています。",
     "requestPendingBody": "フォローリクエストが送信されました。リクエストが承認されると、投稿を見ることができるようになります。",
-    "followToSeePosts": "このアカウントをフォローして、投稿を見てください。"
+    "followToSeePosts": "このアカウントをフォローして、投稿を見てください。",
+    "loadFailed": "このお気にいりを読み込めませんでした"
   },
   "reactionInfo": {
     "title": "リアクション",
@@ -4910,7 +4916,9 @@
     "forwardMessage": "メッセージを転送",
     "pollSubmitVote": "投票を送信",
     "doNotDisturb": "ご遠慮ください",
-    "doNotDisturbOn": "ご遠慮ください"
+    "doNotDisturbOn": "ご遠慮ください",
+    "deleteConversationTitle": "会話を削除しますか？",
+    "deleteConversationBody": "この会話は受信トレイから削除されます。"
   },
   "editPost": {
     "mediaPermission": "メディアライブラリへのアクセス許可が必要です",

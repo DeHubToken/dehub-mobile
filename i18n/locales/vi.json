@@ -727,7 +727,8 @@
     "usernameAvailable": "Tên người dùng khả dụng",
     "hideBadgeAndBalance": "Ẩn huy hiệu và số dư",
     "hideBadgeAndBalanceDesc": "Ẩn thông tin tài chính và vô hiệu hóa việc gửi và mẹo cho bạn.",
-    "onChainPublicWarning": "Các giao dịch trên chuỗi là công khai. Gửi token hoặc mẹo có thể tiết lộ địa chỉ ví của bạn, bao gồm cả các giao dịch được thực hiện trước khi bật chế độ số dư riêng tư."
+    "onChainPublicWarning": "Các giao dịch trên chuỗi là công khai. Gửi token hoặc mẹo có thể tiết lộ địa chỉ ví của bạn, bao gồm cả các giao dịch được thực hiện trước khi bật chế độ số dư riêng tư.",
+    "languageLoadFailed": "Không thể đổi ngôn ngữ. Hãy thử lại."
   },
   "common": {
     "mute": "Tắt tiếng",
@@ -792,7 +793,8 @@
     "noInternetStatus": "Ngoại tuyến - Không có kết nối mạng",
     "noInternetHint": "Đảm bảo Wi-Fi hoặc dữ liệu di động đã bật, sau đó nhấn \"{{action}}\"",
     "saving": "Đang lưu…",
-    "offlineStatus": "Ngoại tuyến - Không có kết nối mạng"
+    "offlineStatus": "Ngoại tuyến - Không có kết nối mạng",
+    "postNotFound": "Chúng tôi không thể tìm thấy bài đăng đó"
   },
   "tip": {
     "title": "Gửi tiền thưởng",
@@ -2882,7 +2884,8 @@
         "forever": "Mãi mãi"
       }
     },
-    "chooseAvatar": "Chọn ảnh đại diện"
+    "chooseAvatar": "Chọn ảnh đại diện",
+    "loadFailed": "Không thể tải cộng đồng"
   },
   "work": {
     "title": "Tiền thưởng",
@@ -3006,7 +3009,9 @@
     },
     "payout": {
       "alreadySent": "Đã gửi rồi ({{ref}}). Đừng thanh toán lại — mở lại công việc sau giây lát, nó sẽ hiển thị là đã thanh toán."
-    }
+    },
+    "loadFailed": "Không thể tải tiền thưởng",
+    "jobLoadFailed": "Không thể tải tiền thưởng này"
   },
   "usernames": {
     "subtitle": "Tên người dùng đang rao bán, tính giá bằng USD",
@@ -3773,7 +3778,8 @@
     "youBlockedBody": "Bạn sẽ không thấy bài đăng của họ hoặc không thể tương tác với họ. Bỏ chặn để khôi phục quyền truy cập.",
     "restrictedBody": "Người dùng này đã hạn chế tương tác với tài khoản của bạn.",
     "requestPendingBody": "Yêu cầu theo dõi của bạn đã được gửi. Bạn sẽ có thể xem bài đăng của họ sau khi họ phê duyệt yêu cầu của bạn.",
-    "followToSeePosts": "Theo dõi tài khoản này để xem bài đăng của họ."
+    "followToSeePosts": "Theo dõi tài khoản này để xem bài đăng của họ.",
+    "loadFailed": "Không thể tải danh sách này"
   },
   "reactionInfo": {
     "title": "Phản ứng",
@@ -4878,7 +4884,9 @@
     "forwardMessage": "Chuyển tiếp tin nhắn",
     "pollSubmitVote": "Gửi phiếu bầu",
     "doNotDisturb": "Không ồn ào nữa.",
-    "doNotDisturbOn": "không làm phiền"
+    "doNotDisturbOn": "không làm phiền",
+    "deleteConversationTitle": "Xóa cuộc trò chuyện?",
+    "deleteConversationBody": "Cuộc trò chuyện này sẽ bị xóa khỏi hộp thư đến của bạn."
   },
   "editPost": {
     "mediaPermission": "Cần quyền truy cập thư viện phương tiện",

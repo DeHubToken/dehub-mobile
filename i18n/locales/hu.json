@@ -727,7 +727,8 @@
     "usernameAvailable": "A felhasználónév elérhető",
     "hideBadgeAndBalance": "Jelvény és egyenleg elrejtése",
     "hideBadgeAndBalanceDesc": "Elrejti a pénzügyi részleteket, és letiltja a küldést és a borravalót neked.",
-    "onChainPublicWarning": "A láncon belüli tranzakciók nyilvánosak. Tokenek vagy borravalók küldése felfedheti a pénztárca címét, beleértve azokat a tranzakciókat is, amelyeket a privát egyenleg mód engedélyezése előtt tettek."
+    "onChainPublicWarning": "A láncon belüli tranzakciók nyilvánosak. Tokenek vagy borravalók küldése felfedheti a pénztárca címét, beleértve azokat a tranzakciókat is, amelyeket a privát egyenleg mód engedélyezése előtt tettek.",
+    "languageLoadFailed": "Nem sikerült nyelvet váltani. Próbálkozz újra."
   },
   "common": {
     "mute": "Némítás",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Nincs hálózati kapcsolat",
     "noInternetHint": "Győződjön meg róla, hogy a Wi-Fi vagy a mobiladat be van kapcsolva, majd koppintson a \"{{action}}\" elemre.",
     "saving": "Mentés…",
-    "offlineStatus": "Offline - Nincs hálózati kapcsolat"
+    "offlineStatus": "Offline - Nincs hálózati kapcsolat",
+    "postNotFound": "Nem találtuk meg a bejegyzést"
   },
   "tip": {
     "title": "Borravaló küldése",
@@ -2873,7 +2875,8 @@
         "forever": "Örökké"
       }
     },
-    "chooseAvatar": "Válassz avatart"
+    "chooseAvatar": "Válassz avatart",
+    "loadFailed": "Nem sikerült betölteni a közösségeket"
   },
   "work": {
     "title": "Jutalmak",
@@ -2997,7 +3000,9 @@
     },
     "payout": {
       "alreadySent": "Már elküldve ({{ref}}). Ne fizess újra — nyisd meg a munkát kisvártatva, és kifizetettként kell megjelennie."
-    }
+    },
+    "loadFailed": "Nem sikerült betölteni a vérdíjakat",
+    "jobLoadFailed": "Nem sikerült betölteni ezt a jutalmat"
   },
   "usernames": {
     "subtitle": "Eladó felhasználónevek, USD-ben árazva",
@@ -3764,7 +3769,8 @@
     "youBlockedBody": "Nem fogod látni a bejegyzéseit, és nem tudsz velük interakcióba lépni. Feloldás a hozzáférés visszaállításához.",
     "restrictedBody": "Ez a felhasználó korlátozta az interakciókat a fiókoddal.",
     "requestPendingBody": "A követési kérelem el lett küldve. Akkor láthatod a bejegyzéseit, ha jóváhagyja a kérésedet.",
-    "followToSeePosts": "Kövesd ezt a fiókot, hogy lásd a bejegyzéseit."
+    "followToSeePosts": "Kövesd ezt a fiókot, hogy lásd a bejegyzéseit.",
+    "loadFailed": "Nem sikerült betölteni ezt az albumot"
   },
   "reactionInfo": {
     "title": "Reakciók",
@@ -4870,7 +4876,9 @@
     "forwardMessage": "Üzenet továbbítása",
     "pollSubmitVote": "Szavazás elküldése",
     "doNotDisturb": "Ne zavarjanak",
-    "doNotDisturbOn": "Ne zavarjanak"
+    "doNotDisturbOn": "Ne zavarjanak",
+    "deleteConversationTitle": "Törlöd a beszélgetést?",
+    "deleteConversationBody": "Ezt a beszélgetést eltávolítjuk a postafiókodból."
   },
   "editPost": {
     "mediaPermission": "Médiakönyvtár-engedély szükséges",

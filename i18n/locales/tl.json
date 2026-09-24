@@ -727,7 +727,8 @@
     "usernameAvailable": "Magagamit ang username",
     "hideBadgeAndBalance": "Itago ang badge at balanse",
     "hideBadgeAndBalanceDesc": "Itinatago ang mga detalye sa pananalapi at pinapagana ang mga pagpapadala at tip sa iyo.",
-    "onChainPublicWarning": "Ang mga transaksyon sa on-chain ay pampubliko. Ang pagpapadala ng mga token o tip ay maaaring magbunyag ng iyong wallet address, kabilang ang mga transaksyon na ginawa bago paganahin ang pribadong mode ng balanse."
+    "onChainPublicWarning": "Ang mga transaksyon sa on-chain ay pampubliko. Ang pagpapadala ng mga token o tip ay maaaring magbunyag ng iyong wallet address, kabilang ang mga transaksyon na ginawa bago paganahin ang pribadong mode ng balanse.",
+    "languageLoadFailed": "Hindi makapagpalit ng wika. Subukan muli."
   },
   "common": {
     "mute": "I-mute",
@@ -822,7 +823,8 @@
     "noInternetStatus": "Offline - Walang koneksyon sa network",
     "noInternetHint": "Siguraduhing naka-on ang Wi-Fi o mobile data, pagkatapos ay i-tap ang \"{{action}}\"",
     "saving": "Nagse-save…",
-    "offlineStatus": "Offline - Walang koneksyon sa network"
+    "offlineStatus": "Offline - Walang koneksyon sa network",
+    "postNotFound": "Hindi namin mahanap ang post na iyon"
   },
   "tip": {
     "title": "Send Tip",
@@ -2917,7 +2919,8 @@
         "forever": "Habang-buhay"
       }
     },
-    "chooseAvatar": "Pumili ng avatar"
+    "chooseAvatar": "Pumili ng avatar",
+    "loadFailed": "Hindi ma - load ang mga komunidad"
   },
   "work": {
     "title": "Mga bounty",
@@ -3041,7 +3044,9 @@
     },
     "payout": {
       "alreadySent": "Naipadala na ({{ref}}). Huwag nang magbayad ulit — buksan mo ulit ang trabaho maya-maya at dapat lumabas itong bayad na."
-    }
+    },
+    "loadFailed": "Hindi ma - load ang mga bounty",
+    "jobLoadFailed": "Hindi ma - load ang bounty na ito"
   },
   "usernames": {
     "subtitle": "Mga handle na ibinebenta, nakapresyo sa USD",
@@ -3808,7 +3813,8 @@
     "youBlockedBody": "Hindi mo makikita ang kanilang mga post o makikipag-ugnayan sa kanila. I-unblock para maibalik ang access.",
     "restrictedBody": "Nilimitahan ng user na ito ang mga pakikipag-ugnayan sa iyong account.",
     "requestPendingBody": "Naipadala na ang iyong follow request. Makikita mo ang kanilang mga post kapag naaprubahan nila ang iyong kahilingan.",
-    "followToSeePosts": "Sundin ang account na ito para makita ang kanilang mga post."
+    "followToSeePosts": "Sundin ang account na ito para makita ang kanilang mga post.",
+    "loadFailed": "Hindi ma - load ang listahang ito"
   },
   "reactionInfo": {
     "title": "Mga Reaksyon",
@@ -4913,7 +4919,9 @@
     "forwardMessage": "Ipasa ang mensahe",
     "pollSubmitVote": "Isumite ang boto",
     "doNotDisturb": "linisin ang aking kuwarto",
-    "doNotDisturbOn": "bawal abalahin"
+    "doNotDisturbOn": "bawal abalahin",
+    "deleteConversationTitle": "Tanggalin ang pag - uusap?",
+    "deleteConversationBody": "Aalisin ang pag - uusap na ito sa iyong inbox."
   },
   "editPost": {
     "mediaPermission": "Kailangan ng pahintulot sa media library",

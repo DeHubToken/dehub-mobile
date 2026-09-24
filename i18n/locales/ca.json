@@ -727,7 +727,8 @@
     "usernameAvailable": "El nom d'usuari està disponible",
     "hideBadgeAndBalance": "Oculta la insígnia i el saldo",
     "hideBadgeAndBalanceDesc": "Oculta els detalls financers i desactiva els enviaments i les propines.",
-    "onChainPublicWarning": "Les transaccions a la cadena són públiques. Enviar fitxes o fer propines pot revelar la teva adreça de cartera, incloses les transaccions fetes abans d'habilitar el mode de saldo privat."
+    "onChainPublicWarning": "Les transaccions a la cadena són públiques. Enviar fitxes o fer propines pot revelar la teva adreça de cartera, incloses les transaccions fetes abans d'habilitar el mode de saldo privat.",
+    "languageLoadFailed": "No s'ha pogut canviar l'idioma. Torna-ho a provar."
   },
   "common": {
     "mute": "Silencia",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Desconnectat - Sense connexió de xarxa",
     "noInternetHint": "Assegura't que el Wi-Fi o les dades mòbils estiguin activats, després toca \"{{action}}\"",
     "saving": "Desant…",
-    "offlineStatus": "Desconnectat - Sense connexió de xarxa"
+    "offlineStatus": "Desconnectat - Sense connexió de xarxa",
+    "postNotFound": "No hem pogut trobar aquesta publicació"
   },
   "tip": {
     "title": "Enviar propina",
@@ -2869,7 +2871,8 @@
         "forever": "Sempre"
       }
     },
-    "chooseAvatar": "Tria un avatar"
+    "chooseAvatar": "Tria un avatar",
+    "loadFailed": "No s'han pogut carregar les comunitats"
   },
   "work": {
     "title": "Recompenses",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Ja s'ha enviat ({{ref}}). No tornis a pagar — torna a obrir la feina d'aquí a una estona i hauria d'aparèixer com a pagada."
-    }
+    },
+    "loadFailed": "No s'han pogut carregar les recompenses",
+    "jobLoadFailed": "No s'ha pogut carregar aquesta recompensa"
   },
   "usernames": {
     "subtitle": "Àlies en venda, amb preu en USD",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "No veuràs les seves publicacions ni podràs interactuar amb elles. Desbloqueja per restaurar l'accés.",
     "restrictedBody": "Aquest usuari ha restringit les interaccions amb el teu compte.",
     "requestPendingBody": "La teva sol·licitud de seguir s'ha enviat. Podràs veure les seves publicacions un cop aprovin la teva sol·licitud.",
-    "followToSeePosts": "Segueix aquest compte per veure les seves publicacions."
+    "followToSeePosts": "Segueix aquest compte per veure les seves publicacions.",
+    "loadFailed": "No s'ha pogut carregar aquesta llista"
   },
   "reactionInfo": {
     "title": "Reaccions",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Reenvia el missatge",
     "pollSubmitVote": "Envia el vot",
     "doNotDisturb": "Hello what’s your name",
-    "doNotDisturbOn": "No molesteu"
+    "doNotDisturbOn": "No molesteu",
+    "deleteConversationTitle": "Vols eliminar la conversa?",
+    "deleteConversationBody": "Aquesta conversa s'eliminarà de la teva safata d'entrada."
   },
   "editPost": {
     "mediaPermission": "Cal permís per a la biblioteca multimèdia",

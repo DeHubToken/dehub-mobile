@@ -727,7 +727,8 @@
     "usernameAvailable": "Benutzername ist verfügbar",
     "hideBadgeAndBalance": "Abzeichen und Guthaben ausblenden",
     "hideBadgeAndBalanceDesc": "Blendet Finanzdetails aus und deaktiviert das Senden und Trinkgelder an dich.",
-    "onChainPublicWarning": "On-Chain-Transaktionen sind öffentlich. Das Senden von Token oder Trinkgeldern kann deine Wallet-Adresse preisgeben, einschließlich Transaktionen, die vor der Aktivierung des privaten Guthabenmodus getätigt wurden."
+    "onChainPublicWarning": "On-Chain-Transaktionen sind öffentlich. Das Senden von Token oder Trinkgeldern kann deine Wallet-Adresse preisgeben, einschließlich Transaktionen, die vor der Aktivierung des privaten Guthabenmodus getätigt wurden.",
+    "languageLoadFailed": "Sprache konnte nicht gewechselt werden. Versuchen Sie es erneut."
   },
   "common": {
     "mute": "Stumm schalten",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Keine Netzwerkverbindung",
     "noInternetHint": "Stellen Sie sicher, dass WLAN oder mobile Daten eingeschaltet sind, und tippen Sie dann auf \"{{action}}\"",
     "saving": "Speichere…",
-    "offlineStatus": "Offline – Keine Netzwerkverbindung"
+    "offlineStatus": "Offline – Keine Netzwerkverbindung",
+    "postNotFound": "Wir konnten diesen Beitrag nicht finden"
   },
   "tip": {
     "title": "Trinkgeld senden",
@@ -2869,7 +2871,8 @@
         "forever": "Für immer"
       }
     },
-    "chooseAvatar": "Avatar auswählen"
+    "chooseAvatar": "Avatar auswählen",
+    "loadFailed": "Communitys konnten nicht geladen werden"
   },
   "work": {
     "title": "Prämien",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Bereits gesendet ({{ref}}). Nicht erneut bezahlen — öffne den Auftrag gleich noch einmal, dann sollte er als bezahlt erscheinen."
-    }
+    },
+    "loadFailed": "Kopfgelder konnten nicht geladen werden",
+    "jobLoadFailed": "Dieses Kopfgeld konnte nicht geladen werden"
   },
   "usernames": {
     "subtitle": "Handles zu verkaufen, Preis in USD",
@@ -3809,7 +3814,8 @@
     "youBlockedBody": "Sie werden ihre Beiträge nicht sehen und nicht mit ihnen interagieren können. Entsperren, um den Zugriff wiederherzustellen.",
     "restrictedBody": "Dieser Benutzer hat Interaktionen mit Ihrem Konto eingeschränkt.",
     "requestPendingBody": "Ihre Folgeanfrage wurde gesendet. Sie können ihre Beiträge sehen, sobald sie Ihre Anfrage genehmigen.",
-    "followToSeePosts": "Folgen Sie diesem Konto, um ihre Beiträge zu sehen."
+    "followToSeePosts": "Folgen Sie diesem Konto, um ihre Beiträge zu sehen.",
+    "loadFailed": "Diese Liste konnte nicht geladen werden"
   },
   "reactionInfo": {
     "title": "Reaktionen",
@@ -4915,7 +4921,9 @@
     "forwardMessage": "Nachricht weiterleiten",
     "pollSubmitVote": "Abstimmung abgeben",
     "doNotDisturb": "Nicht stören",
-    "doNotDisturbOn": "Bitte nicht stören – ein"
+    "doNotDisturbOn": "Bitte nicht stören – ein",
+    "deleteConversationTitle": "Konversation löschen?",
+    "deleteConversationBody": "Diese Unterhaltung wird aus deinem Posteingang entfernt."
   },
   "editPost": {
     "mediaPermission": "Berechtigung für die Mediathek erforderlich",

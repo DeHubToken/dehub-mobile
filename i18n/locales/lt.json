@@ -727,7 +727,8 @@
     "usernameAvailable": "Vartotojo vardas yra laisvas",
     "hideBadgeAndBalance": "Slėpti ženklelį ir balansą",
     "hideBadgeAndBalanceDesc": "Slepiama finansinė informacija ir išjungiami siuntimai bei patarimai jums.",
-    "onChainPublicWarning": "On-chain transakcijos yra viešos. Siunčiant žetonus ar patarimus gali būti atskleistas jūsų piniginės adresas, įskaitant transakcijas, atliktas prieš įjungiant privatų balanso režimą."
+    "onChainPublicWarning": "On-chain transakcijos yra viešos. Siunčiant žetonus ar patarimus gali būti atskleistas jūsų piniginės adresas, įskaitant transakcijas, atliktas prieš įjungiant privatų balanso režimą.",
+    "languageLoadFailed": "Nepavyko pakeisti kalbos. Bandykite dar kartą."
   },
   "common": {
     "mute": "Nutildyti",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Neprisijungęs – nėra tinklo ryšio",
     "noInternetHint": "Įsitikinkite, kad įjungtas „Wi-Fi“ arba mobilusis duomenų ryšys, tada palieskite „{{action}}“",
     "saving": "Įrašoma…",
-    "offlineStatus": "Neprisijungęs – nėra tinklo ryšio"
+    "offlineStatus": "Neprisijungęs – nėra tinklo ryšio",
+    "postNotFound": "Nepavyko rasti šio įrašo"
   },
   "tip": {
     "title": "Siųsti arbatpinigius",
@@ -2869,7 +2871,8 @@
         "forever": "Amžinai"
       }
     },
-    "chooseAvatar": "Pasirinkti avatarą"
+    "chooseAvatar": "Pasirinkti avatarą",
+    "loadFailed": "Nepavyko įkelti bendruomenių"
   },
   "work": {
     "title": "Atlygiai",
@@ -2993,7 +2996,9 @@
     },
     "payout": {
       "alreadySent": "Jau išsiųsta ({{ref}}). Nemokėkite dar kartą — po akimirkos atidarykite darbą iš naujo, jis turėtų būti pažymėtas kaip apmokėtas."
-    }
+    },
+    "loadFailed": "Nepavyko įkelti premijų",
+    "jobLoadFailed": "Nepavyko įkelti šios premijos"
   },
   "usernames": {
     "subtitle": "Parduodami vardai, kaina USD",
@@ -3760,7 +3765,8 @@
     "youBlockedBody": "Nematysite jų įrašų ir negalėsite su jais bendrauti. Atblokuokite, kad atkurtumėte prieigą.",
     "restrictedBody": "Šis vartotojas apribojo bendravimą su jūsų paskyra.",
     "requestPendingBody": "Jūsų sekimo užklausa išsiųsta. Jų įrašus galėsite matyti, kai jie patvirtins jūsų užklausą.",
-    "followToSeePosts": "Sekite šią paskyrą, kad matytumėte jos įrašus."
+    "followToSeePosts": "Sekite šią paskyrą, kad matytumėte jos įrašus.",
+    "loadFailed": "Nepavyko įkelti šio sąrašo"
   },
   "reactionInfo": {
     "title": "Reakcijos",
@@ -4866,7 +4872,9 @@
     "forwardMessage": "Persiųsti žinutę",
     "pollSubmitVote": "Pateikti balsavimą",
     "doNotDisturb": "Režimas „Netrukdyti“",
-    "doNotDisturbOn": "Įjungtas režimas „Netrukdyti“"
+    "doNotDisturbOn": "Įjungtas režimas „Netrukdyti“",
+    "deleteConversationTitle": "Ištrinti pokalbį?",
+    "deleteConversationBody": "Šis pokalbis bus pašalintas iš jūsų pašto dėžutės."
   },
   "editPost": {
     "mediaPermission": "Reikalingas medijos bibliotekos leidimas",

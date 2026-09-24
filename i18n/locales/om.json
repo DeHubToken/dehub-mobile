@@ -727,7 +727,8 @@
     "usernameAvailable": "Maqaan kun ni jira",
     "hideBadgeAndBalance": "Balaqqee fi Madaala Dhoksaa",
     "hideBadgeAndBalanceDesc": "Madaala maallaqaa fi wantoota dhoksaa, erguu fi gargaarsa kennuu ni dhoorkaa.",
-    "onChainPublicWarning": "Tarsiimoo maallaqaa irratti godhaman ni muldhachuu danda'u. Maallaqa ykn gargaarsa erguun iddoo maallaqni kee jiru, akkasumas tarsiimoo madaala dhuunfaa dura godhame ni muldhisuu danda'a."
+    "onChainPublicWarning": "Tarsiimoo maallaqaa irratti godhaman ni muldhachuu danda'u. Maallaqa ykn gargaarsa erguun iddoo maallaqni kee jiru, akkasumas tarsiimoo madaala dhuunfaa dura godhame ni muldhisuu danda'a.",
+    "languageLoadFailed": "Afaan jijjiiruu hin dandeenye. Ammas yaalaa."
   },
   "common": {
     "mute": "Sagalee cufi",
@@ -779,7 +780,8 @@
     "noInternetStatus": "Offline - Walitti qabamummaa network hin qabu",
     "noInternetHint": "Wi-Fi ykn mobaayil daataa akka on godhamte mirkaneeffadhuu, achiin booda \"{{action}}\" tuqi",
     "saving": "Eeguu…",
-    "offlineStatus": "Offline - Walitti qabamuu Network Hin Jiru"
+    "offlineStatus": "Offline - Walitti qabamuu Network Hin Jiru",
+    "postNotFound": "Barreeffama sana argachuu hin dandeenye"
   },
   "tip": {
     "title": "Tiippii Ergi",
@@ -2882,7 +2884,8 @@
         "forever": "Bara baraan"
       }
     },
-    "chooseAvatar": "Sa'aaba filadhu"
+    "chooseAvatar": "Sa'aaba filadhu",
+    "loadFailed": "Hawaasa fe&#39;uu hin dandeenye"
   },
   "work": {
     "title": "Badhaasa",
@@ -3006,7 +3009,9 @@
     },
     "payout": {
       "alreadySent": "Duraan ergameera ({{ref}}). Irra deebi'anii hin kaffalinaa — yeroo xiqqoo booda hojicha deebisanii banaa, kaffalame jedhee agarsiisa."
-    }
+    },
+    "loadFailed": "Bounties fe&#39;uu hin dandeenye",
+    "jobLoadFailed": "Badhaasa kana fe&#39;uu hin dandeenye"
   },
   "usernames": {
     "subtitle": "Maqaawwan gurgurtaaf jiran, gatiin USD'n",
@@ -3773,7 +3778,8 @@
     "youBlockedBody": "Barruulee isaanii hin argituu fi walitti si hin makamtu. Dhorkii kaasuun deebisun ni danda'ama.",
     "restrictedBody": "Miseensi kun walitti makamuu akaawuntii kee irraa dhoorkee jira.",
     "requestPendingBody": "Gaafii hordoffii kee ergameera. Gaafii isaanii erga fudhatanii booda barruulee isaanii argachuu dandeessa.",
-    "followToSeePosts": "Akaawuntii kana hordofiitii barruulee isaanii argi."
+    "followToSeePosts": "Akaawuntii kana hordofiitii barruulee isaanii argi.",
+    "loadFailed": "Tarree kana fe&#39;uu hin dandeenye"
   },
   "reactionInfo": {
     "title": "deebii kennuu",
@@ -4876,7 +4882,9 @@
     "forwardMessage": "Ergaa fuulduratti dabarsaa",
     "pollSubmitVote": "Sagalee dhiyeessuu",
     "doNotDisturb": "Hin jeeqin",
-    "doNotDisturbOn": "Hin jeeqin: Irratti"
+    "doNotDisturbOn": "Hin jeeqin: Irratti",
+    "deleteConversationTitle": "Haasaa haquu?",
+    "deleteConversationBody": "Haasaan kun inbox keessan keessaa ni haqama."
   },
   "editPost": {
     "mediaPermission": "Hayyamni mana kitaabaa miidiyaa barbaachisa",

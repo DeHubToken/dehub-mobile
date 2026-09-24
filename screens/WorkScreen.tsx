@@ -41,6 +41,7 @@ import {
   type WorkJobType,
   type WorkCurrency,
 } from "../hooks/useWork";
+import LoadErrorState from "../components/ui/LoadErrorState";
 
 type SortKey = "newest" | "highest_pay" | "ending_soon";
 
@@ -152,6 +153,7 @@ export default function WorkScreen() {
   const {
     data: jobs = [],
     isLoading,
+    isError,
     refetch,
     isRefetching,
   } = useBrowseJobs({
@@ -165,7 +167,7 @@ export default function WorkScreen() {
   // "board is genuinely empty", and fall back to completed bounties for the
   // latter so the page still shows what a bounty looks like.
   const hasFilters = tab !== "all" || currency !== "all" || search.trim().length > 0;
-  const showCompletedFallback = !isLoading && jobs.length === 0 && !hasFilters;
+  const showCompletedFallback = !isLoading && !isError && jobs.length === 0 && !hasFilters;
   const { data: completedJobs = [] } = useRecentCompletedJobs(showCompletedFallback);
 
   const clearFilters = useCallback(() => {
@@ -321,6 +323,9 @@ export default function WorkScreen() {
             />
           }
           ListEmptyComponent={
+            isError ? (
+              <LoadErrorState message={t("work.loadFailed")} onRetry={() => refetch()} />
+            ) : (
             <View>
               <View style={styles.emptyBlock}>
                 <Icon name="Briefcase" size={40} color="#3F3F46" />
@@ -351,6 +356,7 @@ export default function WorkScreen() {
                 </View>
               )}
             </View>
+            )
           }
         />
       )}

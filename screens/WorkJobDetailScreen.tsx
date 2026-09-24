@@ -57,6 +57,7 @@ import {
   type WorkJobStatus,
   type WorkSubmission,
 } from "../hooks/useWork";
+import LoadErrorState from "../components/ui/LoadErrorState";
 
 const num = (n: number, max = 4) =>
   (Number(n) || 0).toLocaleString(undefined, { maximumFractionDigits: max });
@@ -123,7 +124,7 @@ export default function WorkJobDetailScreen() {
     .toLowerCase() || undefined;
   const { showUserProfile } = useUserProfileSheet();
 
-  const { data: job, isLoading, refetch, isRefetching } = useWorkJob(jobId, seed);
+  const { data: job, isLoading, isError, refetch, isRefetching } = useWorkJob(jobId, seed);
   const { data: applications = [] } = useJobApplications(jobId);
   const { data: submissions = [] } = useJobSubmissions(jobId);
   const { data: reviews = [] } = useJobReviews(jobId);
@@ -220,9 +221,14 @@ export default function WorkJobDetailScreen() {
     return (
       <View style={styles.root}>
         <ScreenHeader title={t("work.bounty")} />
-        <View style={styles.center}>
-          <Text style={styles.dim}>{t("work.detail.notFound")}</Text>
-        </View>
+        {/* A fetch error is not a missing bounty — offer a retry instead. */}
+        {isError ? (
+          <LoadErrorState message={t("work.jobLoadFailed")} onRetry={() => refetch()} />
+        ) : (
+          <View style={styles.center}>
+            <Text style={styles.dim}>{t("work.detail.notFound")}</Text>
+          </View>
+        )}
       </View>
     );
   }

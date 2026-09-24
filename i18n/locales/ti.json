@@ -724,7 +724,8 @@
     "usernameAvailable": "ስም ተጠቃሚ ተዳልዩ ኣሎ",
     "hideBadgeAndBalance": "ባጅን ሚዛንን",
     "hideBadgeAndBalanceDesc": "ነቲ ናይ ገንዘብ ዝርዝራት ይሓብእ ፡ ነቲ ናይ ገንዘብ ዝርዝራት ድማ ይሓብእ ።",
-    "onChainPublicWarning": "ኣብ ናይ መስመር ግብረ-ሰራሕቲ ህዝባዊ እዩ ። ምልክታት ወይ ምኽርታት ንምልኣኽ ፡ ቅድሚ ናይ ውልቀ-ሰብ ሚዛን ኣገባብ ምግባርካ እተገብረ ግብረ-ሰራሕቲ ሓዊሱ ፡ ናይ ቦርሳ ኣድራሻኻ ኺገልጽ ይኽእል እዩ ።"
+    "onChainPublicWarning": "ኣብ ናይ መስመር ግብረ-ሰራሕቲ ህዝባዊ እዩ ። ምልክታት ወይ ምኽርታት ንምልኣኽ ፡ ቅድሚ ናይ ውልቀ-ሰብ ሚዛን ኣገባብ ምግባርካ እተገብረ ግብረ-ሰራሕቲ ሓዊሱ ፡ ናይ ቦርሳ ኣድራሻኻ ኺገልጽ ይኽእል እዩ ።",
+    "languageLoadFailed": "ቋንቋ ክቕይር ኣይከኣልኩን ። ደጊምካ ፈትኖ ።"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",
@@ -776,7 +777,8 @@
     "noInternetStatus": "ምስ ይጥፋእ - ኔትወርክ ኣይብሉን",
     "noInternetHint": "Wi-Fi ወይ ተንቀሳቃሲ ሓበሬታ ከም ዚበራበር ኣረጋግጽ ፣ ድሕሪኡ ድማ \"{{action}}\" ጠውቑ",
     "saving": "ምድሓን...",
-    "offlineStatus": "ምስ ይጥፋእ - ኔትወርክ ኣይብሉን"
+    "offlineStatus": "ምስ ይጥፋእ - ኔትወርክ ኣይብሉን",
+    "postNotFound": "ነዚ ጽሑፍ እዚ ክንረኽቦ ኣይንኽእልን ኢና ።"
   },
   "tip": {
     "title": "ሽልማት ስደድ",
@@ -2848,7 +2850,8 @@
         "forever": "ንዘለኣለም"
       }
     },
-    "chooseAvatar": "ኣቫታር ምረጽ"
+    "chooseAvatar": "ኣቫታር ምረጽ",
+    "loadFailed": "ማሕበረሰባት ክጭፍኑ ኣይከኣሉን ።"
   },
   "work": {
     "title": "ሽልማታት",
@@ -2972,7 +2975,9 @@
     },
     "payout": {
       "alreadySent": "ድሮ ተላኢኹ ({{ref}})። ከም ብሓድሽ ኣይትኽፈል — ድሕሪ ቁሩብ ግዜ ነቲ ስራሕ እንደገና ክፈቶ፣ ከም ዝተኸፍለ ኮይኑ ክረአ እዩ።"
-    }
+    },
+    "loadFailed": "ነቲ ዕንጨይቲ ክጭፍልቕ ኣይከኣልኩን ።",
+    "jobLoadFailed": "ነዚ ጸጋ እዚ ክጭፍልቕ ኣይከኣልኩን ።"
   },
   "usernames": {
     "subtitle": "ንሽያጭ ዝቐረቡ ስማት፡ ዋግኦም ብ USD",
@@ -3735,7 +3740,8 @@
     "followToSeePosts": "ኣብዚ ሂሳብ ተኸታተሉ ንጽሑፎም ንምርኣይ።",
     "noMatches": "ኣይተረኽበን \"{{query}}\"",
     "privateBody": "{{name}} ንተከታተልቱን ዝተኸተሎምን ሓበሬታ ብሕቡእ ንኽገብሮም መሪጹ ኣሎ።",
-    "removeFollowerBody": "{{name}} ካብቶም ተከታተልትኻ ከም ዝተወስድካ ኣይፍለጦን።"
+    "removeFollowerBody": "{{name}} ካብቶም ተከታተልትኻ ከም ዝተወስድካ ኣይፍለጦን።",
+    "loadFailed": "ነዚ ዝርዝር እዚ ክጭፍልቕ ኣይከኣልኩን ።"
   },
   "reactionInfo": {
     "title": "ግብረ መልሲ",
@@ -4837,7 +4843,9 @@
     "forwardMessage": "ናይ ቅድም መልእኽቲ",
     "pollSubmitVote": "ድምጺ ኣቕርብ",
     "doNotDisturb": "ኣይትጨነቑ",
-    "doNotDisturbOn": "ኣይትጨነቑ ፡ ኣብ"
+    "doNotDisturbOn": "ኣይትጨነቑ ፡ ኣብ",
+    "deleteConversationTitle": "ነቲ ዝርርብ ክትሰርሖ ትኽእልዶ ፧",
+    "deleteConversationBody": "እዚ ዝርርብ እዚ ካብ ሳጹን ኢመይልካ ክስረዝ እዩ ።"
   },
   "editPost": {
     "mediaPermission": "ናይ ሚድያ ቤተ-መጻሕፍቲ ፍቓድ የድሊ",
