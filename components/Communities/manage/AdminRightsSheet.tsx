@@ -1,4 +1,3 @@
-import SheetDismissHandle from "../../ui/SheetDismissHandle";
 /**
  * AdminRightsSheet
  * ================
@@ -14,10 +13,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
-  KeyboardAvoidingView,
-  Modal,
-  Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -25,6 +20,7 @@ import {
   View,
 } from "react-native";
 import { useTranslation } from "react-i18next";
+import GlassModal from "../../ui/GlassModal";
 import Icon from "../../ui/Icon";
 import CustomSwitch from "../../ui/CustomSwitch";
 import {
@@ -172,13 +168,11 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
   const canDismiss = isExistingAdmin && abilities.isOwner;
 
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      {/* Edge-to-edge Android never resizes the window for the keyboard, so the
-          sheet must lift itself or the custom-title input gets covered. */}
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-        <Pressable style={styles.overlay} onPress={onClose}>
-        <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
-          <SheetDismissHandle onClose={onClose} style={styles.header}>
+    // GlassModal lifts the sheet over the keyboard (the custom-title input),
+    // caps and scrolls it, pads the safe area and drags with the finger.
+    <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="88%" scrollable>
+        <View style={styles.sheet}>
+          <View style={styles.header}>
             <Icon name="Shield" size={20} color="#fff" />
             <View style={{ flex: 1 }}>
               <Text className="text-white text-sm font-mono" numberOfLines={1}>
@@ -198,13 +192,9 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
             >
               <Icon name="X" size={20} color="#808089" />
             </TouchableOpacity>
-          </SheetDismissHandle>
+          </View>
 
-          <ScrollView
-            style={styles.body}
-            keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}
-          >
+          <View>
             <Text className="text-zinc-400 text-xs uppercase mb-1">
               {t("communities.manage.whatCanTheyDo", { defaultValue: "What can this admin do?" })}
             </Text>
@@ -298,29 +288,19 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
                 </Text>
               </TouchableOpacity>
             )}
-          </ScrollView>
-          </Pressable>
-        </Pressable>
-      </KeyboardAvoidingView>
-    </Modal>
+          </View>
+        </View>
+    </GlassModal>
   );
 }
 
 const styles = StyleSheet.create({
-  overlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "rgba(12,12,14,0.96)",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(255,255,255,0.1)",
     paddingHorizontal: 20,
     paddingTop: 16,
-    paddingBottom: 24,
-    maxHeight: "88%",
+    paddingBottom: 12,
   },
   header: { flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 12 },
-  body: { flexGrow: 0 },
   titleInput: {
     color: "#ffffff",
     fontSize: 14,

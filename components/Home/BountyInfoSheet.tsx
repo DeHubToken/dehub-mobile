@@ -4,30 +4,13 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Modal,
-  Pressable,
-  useWindowDimensions,
   StyleSheet,
-  Platform,
   Image,
   ActivityIndicator,
 } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-  runOnJS,
-  Easing,
-  FadeInDown,
-  ZoomIn,
-} from "react-native-reanimated";
-import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView,
-} from "react-native-gesture-handler";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Animated, { FadeInDown, ZoomIn } from "react-native-reanimated";
+import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import { formatCompactNumber, toastError, toastSuccess } from "../../libs";
 import { getClaimBountySignature, type BountySignature } from "../../services/nft.service";
@@ -78,18 +61,11 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
   firstXComments,
   onBountyClaimed,
 }) => {
-  const insets = useSafeAreaInsets();
-  const { height: screenHeight } = useWindowDimensions();
-  const SHEET_MAX_HEIGHT = screenHeight * 0.65;
   const user = useUser();
   const { isSignedIn } = useAuthState();
   const { requireAuth, switchChain } = useAuthActions();
   const { chainId: walletChainId } = useWeb3Provider();
   const streamController = useStreamControllerContract();
-
-  const translateY = useSharedValue(SHEET_MAX_HEIGHT);
-  const backdropOpacity = useSharedValue(0);
-  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
 
   const [claimState, setClaimState] = useState<ClaimState>({
     viewerClaimed: false,
@@ -152,56 +128,16 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
 
   useEffect(() => {
     if (visible) {
-      setIsFullyClosed(false);
       setSheetView("info");
       setPendingClaimType(null);
-      translateY.value = withTiming(0, {
-        duration: 300,
-        easing: Easing.out(Easing.cubic),
-      });
-      backdropOpacity.value = withTiming(1, { duration: 250 });
-    } else {
-      translateY.value = withTiming(
-        SHEET_MAX_HEIGHT,
-        { duration: 220, easing: Easing.in(Easing.cubic) },
-        () => runOnJS(setIsFullyClosed)(true),
-      );
-      backdropOpacity.value = withTiming(0, { duration: 180 });
     }
   }, [visible]);
 
+  // A claim in flight is an on-chain transaction; the sheet must stay up until
+  // it resolves so its outcome is not lost.
   const closeSheet = useCallback(() => {
-    if (txPending) return;
-    translateY.value = withTiming(
-      SHEET_MAX_HEIGHT,
-      { duration: 220, easing: Easing.in(Easing.cubic) },
-      () => runOnJS(onClose)(),
-    );
-    backdropOpacity.value = withTiming(0, { duration: 180 });
-  }, [onClose, txPending, SHEET_MAX_HEIGHT]);
-
-  const panGesture = Gesture.Pan()
-    .onUpdate((e) => {
-      if (e.translationY > 0) translateY.value = e.translationY;
-    })
-    .onEnd((e) => {
-      if (e.translationY > 80 || e.velocityY > 500) {
-        runOnJS(closeSheet)();
-      } else {
-        translateY.value = withTiming(0, {
-          duration: 200,
-          easing: Easing.out(Easing.cubic),
-        });
-      }
-    });
-
-  const sheetStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: translateY.value }],
-  }));
-
-  const backdropStyle = useAnimatedStyle(() => ({
-    opacity: backdropOpacity.value,
-  }));
+    if (!txPending) onClose();
+  }, [onClose, txPending]);
 
   const handleClaimPress = useCallback((type: "viewer" | "commentor") => {
     setPendingClaimType(type);
@@ -301,8 +237,6 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
     setPendingClaimType(null);
     setLastClaimedType(null);
   }, []);
-
-  if (!visible && isFullyClosed) return null;
 
   const isViewerClaim = pendingClaimType === "viewer";
 
@@ -495,58 +429,29 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
   );
 
   return (
-    <Modal
+    // Scrollable: the height cap stays, and at large font sizes the claim
+    // buttons scroll into reach instead of being clipped off the bottom.
+    <GlassModal
       visible={visible}
-      transparent
-      animationType="none"
-      statusBarTranslucent
-      onRequestClose={txPending ? undefined : closeSheet}
+      onClose={closeSheet}
+      presentation="bottom"
+      maxHeight="65%"
+      dismissible={!txPending}
+      scrollable
     >
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <Animated.View
-          style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}
-        >
-          <Pressable style={{ flex: 1 }} onPress={txPending ? undefined : closeSheet} />
-        </Animated.View>
+      <View style={styles.handleWrap}>
+        <View style={styles.handle} />
+      </View>
 
-        <Animated.View
-          style={[styles.sheet, { maxHeight: SHEET_MAX_HEIGHT, paddingBottom: insets.bottom }, sheetStyle]}
-        >
-          {/* Solid, not glass: expo-blur does not blur on Android, so a tint
-              here let the sheet read through whatever it opened over. */}
-          <View style={[StyleSheet.absoluteFill, styles.overlay]} />
-
-          <GestureDetector gesture={panGesture}>
-            <Animated.View style={styles.handleWrap}>
-              <View style={styles.handle} />
-            </Animated.View>
-          </GestureDetector>
-
-          {sheetView === "info" && renderInfoContent()}
-          {sheetView === "confirming" && renderConfirmContent()}
-          {sheetView === "claiming" && renderClaimingContent()}
-          {sheetView === "success" && renderSuccessContent()}
-        </Animated.View>
-      </GestureHandlerRootView>
-    </Modal>
+      {sheetView === "info" && renderInfoContent()}
+      {sheetView === "confirming" && renderConfirmContent()}
+      {sheetView === "claiming" && renderClaimingContent()}
+      {sheetView === "success" && renderSuccessContent()}
+    </GlassModal>
   );
 };
 
 const styles = StyleSheet.create({
-  sheet: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    overflow: "hidden",
-  },
-  overlay: {
-    backgroundColor: "#0C0C0E",
-    borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.06)",
-  },
   handleWrap: {
     alignItems: "center",
     paddingVertical: 10,

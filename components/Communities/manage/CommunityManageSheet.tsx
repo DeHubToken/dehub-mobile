@@ -1,4 +1,3 @@
-import SheetDismissHandle from "../../ui/SheetDismissHandle";
 /**
  * CommunityManageSheet
  * ====================
@@ -11,8 +10,9 @@ import SheetDismissHandle from "../../ui/SheetDismissHandle";
  * on first open rather than all at once when the sheet appears.
  */
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, Modal, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
+import GlassModal from "../../ui/GlassModal";
 import Icon from "../../ui/Icon";
 import type { IconName } from "../../ui/Icon";
 import { getCommunityAbilities } from "../../../libs/community-permissions";
@@ -150,14 +150,17 @@ export function CommunityManageSheet({
   };
 
   return (
-    <Modal
+    // A fixed-height drawer rather than `scrollable`: each tab owns its own
+    // ScrollView, which needs a bounded parent to fill.
+    <GlassModal
       visible={visible}
-      animationType="slide"
-      presentationStyle="pageSheet"
-      onRequestClose={onClose}
+      onClose={onClose}
+      presentation="bottom"
+      panelHeight="92%"
+      maxHeight="92%"
     >
       <View className="flex-1 bg-theme-neutrals-900">
-        <SheetDismissHandle onClose={onClose} style={styles.header}>
+        <View style={styles.header}>
           <View className="flex-1 pr-3">
             <Text className="text-white text-base font-semibold" numberOfLines={1}>
               {community.name}
@@ -174,7 +177,7 @@ export function CommunityManageSheet({
           >
             <Icon name="X" size={20} color="#808089" />
           </TouchableOpacity>
-        </SheetDismissHandle>
+        </View>
 
         <View style={styles.stripWrap}>
           <ScrollView
@@ -202,7 +205,7 @@ export function CommunityManageSheet({
 
         <View className="flex-1">{renderActive()}</View>
       </View>
-    </Modal>
+    </GlassModal>
   );
 }
 
