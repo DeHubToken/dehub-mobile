@@ -473,10 +473,13 @@ const actionButtonStyle = {
   justifyContent: 'center',
 } as const;
 
-// Vertical slop is half the 8pt gap between the two buttons, so their touch
-// areas meet rather than overlap — an overlap sends the tap to whichever
-// happens to be on top, and the two do very different things.
+// Between the two buttons the slop is half the 8pt gap, so their touch areas
+// meet rather than overlap — an overlap sends the tap to whichever happens to
+// be on top, and the two do very different things. The outer edges have room
+// to spare, so they get the extra height there instead.
 const ACTION_HIT_SLOP = { top: 4, bottom: 4, left: 10, right: 10 };
+const MARK_HIT_SLOP = { ...ACTION_HIT_SLOP, top: 10 };
+const CLEAR_HIT_SLOP = { ...ACTION_HIT_SLOP, bottom: 10 };
 
 interface NotificationRowProps {
   item: NotificationItem;
@@ -782,6 +785,9 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
               <TouchableOpacity
                 onPress={() => onAcceptFollowRequest(item)}
                 activeOpacity={0.85}
+                // ~31pt tall pills; the slop brings them to a full target
+                // without touching each other across the 8pt gap.
+                hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
                 style={{
                   backgroundColor: '#fff',
                   paddingHorizontal: 16,
@@ -796,6 +802,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
               <TouchableOpacity
                 onPress={() => onRejectFollowRequest(item)}
                 activeOpacity={0.85}
+                hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
                 style={{
                   backgroundColor: '#27272a',
                   paddingHorizontal: 16,
@@ -840,7 +847,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
               <TouchableOpacity
                 onPress={handleMarkRead}
                 activeOpacity={0.7}
-                hitSlop={ACTION_HIT_SLOP}
+                hitSlop={MARK_HIT_SLOP}
                 accessibilityRole="button"
                 accessibilityLabel={t('notifications.markAsRead')}
                 style={actionButtonStyle}
@@ -855,7 +862,9 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           <TouchableOpacity
             onPress={handleClear}
             activeOpacity={0.7}
-            hitSlop={ACTION_HIT_SLOP}
+            // Alone in the column once the row is read, so it can take the
+            // top slop as well.
+            hitSlop={item.read ? { ...CLEAR_HIT_SLOP, top: 10 } : CLEAR_HIT_SLOP}
             accessibilityRole="button"
             accessibilityLabel={t('notifications.clearNotification')}
             style={actionButtonStyle}

@@ -499,7 +499,15 @@ export default function MigrateScreen() {
           returnKeyType="go"
           className="flex-1 h-11 px-2 text-theme-neutrals-50 text-sm"
         />
-        <Pressable onPress={handlePaste} disabled={stage === 'fetching'} hitSlop={6} className="flex-row items-center rounded-lg px-2 py-1">
+        {/* Fills the 44pt field vertically; the left side stays short so a
+            tap at the end of the typed link still lands in the input. */}
+        <Pressable
+          onPress={handlePaste}
+          disabled={stage === 'fetching'}
+          hitSlop={{ top: 10, bottom: 10, left: 4, right: 10 }}
+          className="flex-row items-center rounded-lg px-2 py-1"
+          accessibilityRole="button"
+        >
           <Icon name="Clipboard" size={13} color="#d4d4d8" />
           <Text className="text-theme-neutrals-300 text-xs ml-1">{t('migrate.paste')}</Text>
         </Pressable>

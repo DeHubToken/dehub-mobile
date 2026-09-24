@@ -12,6 +12,8 @@ type CustomSwitchProps = {
   value: boolean;
   onValueChange: (val: boolean) => void;
   disabled?: boolean;
+  /** What the switch controls. Without it a screen reader says only "switch, on". */
+  accessibilityLabel?: string;
 };
 
 const TRACK_W = 46;
@@ -24,6 +26,7 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
   value,
   onValueChange,
   disabled = false,
+  accessibilityLabel,
 }) => {
   const { colors } = useAppTheme();
   const progress = useSharedValue(value ? 1 : 0);
@@ -58,6 +61,7 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
       onPress={handlePress}
       hitSlop={{ top: 10, bottom: 10, left: 6, right: 6 }}
       accessibilityRole="switch"
+      accessibilityLabel={accessibilityLabel}
       accessibilityState={{ checked: value, disabled }}
       style={disabled ? { opacity: 0.5 } : undefined}
     >

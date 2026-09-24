@@ -38,6 +38,7 @@ const STATUS_CONFIG: Record<
 };
 
 const JobItem = memo<{ job: UploadJob }>(({ job }) => {
+  const { t } = useTranslation();
   const config = STATUS_CONFIG[job.status];
   const progressPercent = Math.min(Math.round((job.progress ?? 0) * 100), 100);
   const isActive = job.status === "uploading" || job.status === "processing" || job.status === "minting";
@@ -100,6 +101,11 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
               onPress={handleRetry}
               activeOpacity={0.7}
               className="w-8 h-8 rounded-lg bg-white/10 items-center justify-center mr-1.5"
+              // 32pt squares sitting 6pt apart: vertical slop brings them to
+              // 48pt tall, the sideways slop stops short of the neighbour.
+              hitSlop={{ top: 8, bottom: 8, left: 3, right: 3 }}
+              accessibilityRole="button"
+              accessibilityLabel={t("common.retry")}
             >
               <Icon name="RotateCcw" size={15} color="#fff" />
             </TouchableOpacity>
@@ -109,6 +115,9 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
               onPress={handleCancel}
               activeOpacity={0.7}
               className="w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center mr-1.5"
+              hitSlop={{ top: 8, bottom: 8, left: 3, right: 3 }}
+              accessibilityRole="button"
+              accessibilityLabel={t("common.cancel")}
             >
               <Icon name="X" size={15} color="#9ca3af" />
             </TouchableOpacity>
@@ -123,6 +132,9 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
               onPress={handleRemove}
               activeOpacity={0.7}
               className="w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center"
+              hitSlop={{ top: 8, bottom: 8, left: 3, right: 8 }}
+              accessibilityRole="button"
+              accessibilityLabel={t("common.delete")}
             >
               <Icon name="Trash2" size={14} color="#6b7280" />
             </TouchableOpacity>

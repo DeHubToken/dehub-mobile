@@ -1,6 +1,7 @@
 import SheetDismissHandle from "../ui/SheetDismissHandle";
 import React from "react";
 import { Modal, View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import { VIDEO_LOOKS, type VideoLookId } from "./videoLooks";
 
@@ -29,6 +30,7 @@ const VideoLookSheet: React.FC<VideoLookSheetProps> = ({
   onClose,
 }) => {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
 
   return (
     <Modal
@@ -44,7 +46,12 @@ const VideoLookSheet: React.FC<VideoLookSheetProps> = ({
         accessibilityRole="button"
         accessibilityLabel={t("common.close")}
       />
-      <View className="bg-zinc-950 border-t border-white/10 rounded-t-2xl px-4 pt-4 pb-8">
+      {/* A fixed bottom pad sat the hint under the gesture bar on edge-to-edge
+          phones; the old 32pt stays the floor where there is no inset. */}
+      <View
+        className="bg-zinc-950 border-t border-white/10 rounded-t-2xl px-4 pt-4"
+        style={{ paddingBottom: Math.max(32, insets.bottom + 16) }}
+      >
         <SheetDismissHandle onClose={onClose} className="flex-row items-center justify-between mb-3">
           <Text className="text-white text-base font-semibold">
             {t("videoLooks.title")}
@@ -53,6 +60,8 @@ const VideoLookSheet: React.FC<VideoLookSheetProps> = ({
             onPress={onClose}
             activeOpacity={0.8}
             className="px-3 py-1.5 rounded-xl bg-white/10"
+            // 28pt pill; the slop makes it a 44pt target without growing it.
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             accessibilityRole="button"
           >
             <Text className="text-white text-xs font-medium">
@@ -64,7 +73,10 @@ const VideoLookSheet: React.FC<VideoLookSheetProps> = ({
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingRight: 8 }}
+          // The scroller clips touches to its bounds, so the chips' slop needs
+          // room inside it: pad it out and pull it back by the same amount.
+          style={{ marginVertical: -6 }}
+          contentContainerStyle={{ paddingRight: 8, paddingVertical: 6 }}
         >
           {VIDEO_LOOKS.map((look) => {
             const selected = look.id === active;
@@ -78,6 +90,7 @@ const VideoLookSheet: React.FC<VideoLookSheetProps> = ({
                     ? "bg-white/20 border-white/30"
                     : "bg-white/5 border-white/10"
                 }`}
+                hitSlop={{ top: 6, bottom: 6 }}
                 accessibilityRole="button"
                 accessibilityState={{ selected }}
               >
