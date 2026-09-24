@@ -115,12 +115,12 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         }
       } catch (e) {
         console.error("[LiveChatInput] failed to upload voice", e);
-        toastError("Failed to upload voice message");
+        toastError(t("liveChat.voiceUploadFailed"));
       } finally {
         setUploadingVoice(false);
       }
     },
-    [onSend, replyingTo, onCancelReply]
+    [onSend, replyingTo, onCancelReply, t]
   );
 
   const recorder = useVoiceRecorder({
@@ -216,10 +216,10 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
   const disabled = isBanned || !canSend;
   const placeholder = isBanned
-    ? "You are banned from this chat"
+    ? t("liveChat.banned")
     : cooldown
-    ? `Slow mode (${slowModeSeconds}s)...`
-    : "Type a message...";
+    ? t("liveChat.slowMode", { seconds: slowModeSeconds })
+    : t("communities.typeMessage");
 
   const canSubmit = (!!text.trim() || !!attachmentUri) && !attachmentBusy;
 
@@ -230,16 +230,16 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
     const gif = resolveChatGif(replyingTo);
     return (
       gifCaption(replyingTo, gif) ||
-      (gif ? "GIF" : replyingTo.media?.length ? "Photo" : "")
+      (gif ? "GIF" : replyingTo.media?.length ? t("liveChat.photo") : "")
     );
-  }, [replyingTo]);
+  }, [replyingTo, t]);
 
   return (
     <View className="border-t border-white/5">
       {editingMessage && !recorder.isRecording && !uploadingVoice && (
         <View className="flex-row items-center px-4 py-2 bg-white/5 border-l-2 border-amber-500 mx-3 mt-2 rounded-lg">
           <View className="flex-1 mr-2">
-            <Text className="text-amber-400 text-[11px] font-medium">Editing message</Text>
+            <Text className="text-amber-400 text-[11px] font-medium">{t("liveChat.editingMessage")}</Text>
             <Text className="text-white/40 text-xs" numberOfLines={1}>
               {editingMessage.content}
             </Text>
@@ -316,7 +316,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
       {uploadingVoice ? (
         <View className="flex-row items-center justify-center py-4 bg-theme-neutrals-800 rounded-xl mx-2 my-1.5">
           <ActivityIndicator size="small" color="#F4F4F5" />
-          <Text className="text-white/70 text-sm ml-2">Uploading voice message...</Text>
+          <Text className="text-white/70 text-sm ml-2">{t("liveChat.uploadingVoice")}</Text>
         </View>
       ) : recorder.isRecording ? (
         <VoiceNoteRecordingOverlay recorder={recorder} />
@@ -372,7 +372,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             style={CONTROL_BOX}
             disabled={!text.trim() || enhancing}
             accessibilityRole="button"
-            accessibilityLabel="Enhance message"
+            accessibilityLabel={t("liveChat.enhanceMessage")}
             accessibilityState={{ disabled: !text.trim() || enhancing }}
           >
             {enhancing ? (
@@ -394,7 +394,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               hitSlop={4}
               style={CONTROL_BOX}
               accessibilityRole="button"
-              accessibilityLabel="Send message"
+              accessibilityLabel={t("liveChat.sendMessage")}
               accessibilityState={{
                 disabled: disabled || !canSubmit || cooldown || isOverLimit || enhancing,
               }}
@@ -417,7 +417,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               hitSlop={4}
               style={CONTROL_BOX}
               accessibilityRole="button"
-              accessibilityLabel="Record voice message"
+              accessibilityLabel={t("liveChat.recordVoice")}
               accessibilityState={{ disabled }}
             >
               <Icon

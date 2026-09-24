@@ -277,10 +277,10 @@ export function CheckoutSheet({
             {quote?.paymentsFrozen ? (
               <View className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-3 mb-4">
                 <Text className="text-amber-300 font-semibold text-xs">
-                  DHB transfers are paused
+                  {t("liveShop.transfersPaused")}
                 </Text>
                 <Text className="text-amber-200/80 text-xs mt-1">
-                  Buying is unavailable until trading resumes. Nothing has been charged.
+                  {t("liveShop.buyingUnavailable")}
                 </Text>
               </View>
             ) : null}
@@ -342,7 +342,7 @@ export function CheckoutSheet({
 
           {buy.isPending ? (
             <Text className="text-zinc-500 text-[11px] text-center mt-2">
-              Don't close this — the order is written once the transfer is confirmed on Base.
+              {t("liveShop.dontClose")}
             </Text>
           ) : null}
         </View>

@@ -463,7 +463,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const showTray =
     hasThread && awaitingReply && smartRepliesEnabled && !trayDismissed && !hasContent && !editingMessage;
   const hasMediaOrGif = !!media || !!gifUrl;
-  const placeholder = hasMediaOrGif ? "Add a caption…" : "Message…";
+  const placeholder = hasMediaOrGif ? t("dm.addCaption") : t("dm.messagePlaceholder");
 
   // Fee / tip display logic
   const feeRequired = !!dmFee?.required && !dmFee?.hasFreeAccess;
@@ -487,7 +487,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     return (
       <View className="px-4 py-3 bg-theme-neutrals-900 border-t border-theme-neutrals-800">
         <Text className="text-theme-neutrals-500 text-center text-sm">
-          {disabledMessage || "Messaging is not available"}
+          {disabledMessage || t("dm.messagingUnavailable")}
         </Text>
       </View>
     );
@@ -527,13 +527,13 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           >
             <View className="flex-1 mr-2">
               <Text className="text-[11px] text-accent font-medium">
-                Replying to
+                {t("dm.replyingTo")}
               </Text>
               <Text
                 className="text-[13px] text-theme-neutrals-400 mt-0.5"
                 numberOfLines={1}
               >
-                {replyTo.content || (replyTo.msgType === "voice" ? "🎤 Voice note" : "📷 Media")}
+                {replyTo.content || (replyTo.msgType === "voice" ? t("dm.voiceNoteEmoji") : t("dm.mediaEmoji"))}
               </Text>
             </View>
             <TouchableOpacity onPress={handleCancelReply} hitSlop={8}>
@@ -552,7 +552,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             <Icon name="Pencil" size={14} color="#D4D4D8" />
             <View className="flex-1 ml-2">
               <Text className="text-[11px] text-white/80 font-medium">
-                Editing message
+                {t("dm.editingMessage")}
               </Text>
               <Text
                 className="text-[13px] text-theme-neutrals-400 mt-0.5"

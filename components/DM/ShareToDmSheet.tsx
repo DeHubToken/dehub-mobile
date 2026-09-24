@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import GlassModal from "../ui/GlassModal";
 import { getAvatarUrl, toastSuccess } from "../../libs";
@@ -35,6 +36,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
   postTitle,
 }) => {
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
   const user = useUser();
   const conversations = useDmContacts();
   const [search, setSearch] = useState("");
@@ -65,15 +67,15 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
         conversationId: conv._id,
         sharedText: prefill,
       } as never);
-      toastSuccess("Opening conversation…");
+      toastSuccess(t("dm.openingConversation"));
     },
-    [navigation, tokenId, postTitle, onClose],
+    [navigation, tokenId, postTitle, onClose, t],
   );
 
   const renderItem = useCallback(
     ({ item }: { item: DmConversation }) => {
       const other = getOtherParticipant(item, myUserId, myAddress);
-      const name = other?.displayName || other?.username || "Unknown";
+      const name = other?.displayName || other?.username || t("settings.unknown");
       const avatar = getAvatarUrl(other?.avatarImageUrl);
       const badgeImg = getBadgeUrlFor(other as any);
       return (
@@ -105,19 +107,19 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
         </TouchableOpacity>
       );
     },
-    [myUserId, myAddress, handleSelect],
+    [myUserId, myAddress, handleSelect, t],
   );
 
   return (
     <GlassModal visible={visible} onClose={onClose} presentation="bottom">
       <View className="pb-6">
         <View className="flex-row items-center justify-between px-4 pt-1 pb-3">
-          <Text className="text-lg font-semibold text-white">Send to DM</Text>
+          <Text className="text-lg font-semibold text-white">{t("dm.sendToDm")}</Text>
           <TouchableOpacity
             onPress={onClose}
             className="w-11 h-11 items-center justify-center -mr-2"
             accessibilityRole="button"
-            accessibilityLabel="Close"
+            accessibilityLabel={t("common.close")}
           >
             <Ionicons name="close" size={22} color="#A6A9AC" />
           </TouchableOpacity>
@@ -128,7 +130,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
           <TextInput
             value={search}
             onChangeText={setSearch}
-            placeholder="Search conversations…"
+            placeholder={t("messages.searchConversations")}
             placeholderTextColor="#8B8D90"
             className="flex-1 text-white text-sm p-0 m-0"
           />
@@ -138,7 +140,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
           <View className="items-center py-10 px-6">
             <Ionicons name="chatbubbles-outline" size={40} color="#4B5563" />
             <Text className="text-theme-neutrals-500 text-sm text-center mt-3">
-              No conversations yet.{"\n"}Start a DM to share posts.
+              {t("dm.noConversationsYet")}{"\n"}{t("dm.startDmToShare")}
             </Text>
           </View>
         ) : (
@@ -150,7 +152,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
             keyboardShouldPersistTaps="handled"
             ListEmptyComponent={
               <Text className="text-theme-neutrals-500 text-center py-8 text-sm">
-                No matching conversations
+                {t("dm.noMatchingConversations")}
               </Text>
             }
           />

@@ -107,9 +107,9 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
       creator?.displayName ||
       creator?.username ||
       truncateAddress(creator?.address || creator?.walletAddress || "", 4, 4) ||
-      (fallbackMinter ? String(fallbackMinter) : "Creator")
+      (fallbackMinter ? String(fallbackMinter) : t("liveViewer.creator"))
     );
-  }, [creator, creatorLoading, fallbackMinter]);
+  }, [creator, creatorLoading, fallbackMinter, t]);
 
   const badgeImage = getBadgeUrlFor(creator as any);
 
@@ -155,7 +155,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
           onPress={handleOpenProfile}
           style={styles.creatorCard}
           accessibilityRole="button"
-          accessibilityLabel={"Open profile of " + displayName}
+          accessibilityLabel={t("liveViewer.openProfileOf", { name: displayName })}
         >
           <ChromeFill sheer />
           <Avatar
@@ -219,7 +219,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
 
       <View style={styles.controls}>
         <Pressable onPress={onToggleMute} hitSlop={CHROME_HIT_SLOP} style={styles.chromeButton}
-          accessibilityRole="button" accessibilityLabel={isMuted ? "Unmute" : "Mute"}>
+          accessibilityRole="button" accessibilityLabel={isMuted ? t("common.unmute") : t("common.mute")}>
           <ChromeFill sheer />
           <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
         </Pressable>

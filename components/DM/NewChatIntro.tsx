@@ -14,6 +14,7 @@ import React, { memo } from "react";
 import { View, Text } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import { truncateAddress } from "../../libs/strings.util";
 
@@ -60,10 +61,11 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
   peer,
   policy,
 }) => {
+  const { t } = useTranslation();
   const name =
     peer.displayName ||
     peer.username ||
-    (peer.address ? truncateAddress(peer.address) : "User");
+    (peer.address ? truncateAddress(peer.address) : t("dm.user"));
 
   return (
     <Animated.View
@@ -93,15 +95,15 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
           <InfoRow
             icon="chatbubble-ellipses-outline"
             iconColor="#F4F4F5"
-            text="DMs are open"
-            subtext="You can send messages"
+            text={t("dm.dmsOpen")}
+            subtext={t("dm.canSendMessages")}
           />
         ) : (
           <InfoRow
             icon="chatbubble-ellipses-outline"
             iconColor="#F4F4F5"
-            text="DMs are closed"
-            subtext={policy.dmDisabledReason || "This user is not accepting messages"}
+            text={t("dm.dmsClosed")}
+            subtext={policy.dmDisabledReason || t("dm.notAccepting")}
           />
         )}
 
@@ -112,15 +114,15 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
               <InfoRow
                 icon="shield-checkmark"
                 iconColor="#F4F4F5"
-                text="Free access granted"
-                subtext={`Normally ${policy.perMessageFee} DHB per message`}
+                text={t("dm.freeAccessGranted")}
+                subtext={t("dm.normallyFee", { fee: policy.perMessageFee })}
               />
             ) : (
               <InfoRow
                 icon="diamond"
                 iconColor="#F4F4F5"
-                text={`${policy.perMessageFee} DHB per message`}
-                subtext="Each message requires a DHB payment"
+                text={t("dm.feePerMessage", { fee: policy.perMessageFee })}
+                subtext={t("dm.eachMessagePaid")}
               />
             )}
           </>
@@ -131,8 +133,8 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
           <InfoRow
             icon="ban-outline"
             iconColor="#F4F4F5"
-            text="You've blocked this user"
-            subtext="Unblock to send messages"
+            text={t("dm.youBlocked")}
+            subtext={t("dm.unblockToSend")}
           />
         )}
 
@@ -143,14 +145,14 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
             <InfoRow
               icon="checkmark-circle-outline"
               iconColor="#F4F4F5"
-              text="Free to message"
-              subtext="No fees required"
+              text={t("dm.freeToMessage")}
+              subtext={t("dm.noFees")}
             />
           )}
       </View>
 
       <Text className="text-theme-neutrals-400 text-[12px] text-center mt-4 px-4">
-        Send your first message to start the conversation
+        {t("dm.sendFirstMessage")}
       </Text>
     </Animated.View>
   );

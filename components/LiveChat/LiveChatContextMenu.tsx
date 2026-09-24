@@ -13,6 +13,7 @@ import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
 import Icon, { type IconName } from "../ui/Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
@@ -86,10 +87,11 @@ const formatTime = (iso: string): string => {
 };
 
 const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ message }) => {
+  const { t } = useTranslation();
   const sender = message.sender;
   const avatarUrl = getAvatarUrl(sender?.avatarUrl || "");
   const displayName =
-    sender?.displayName || sender?.username || message.senderAddress?.slice(0, 8) || "Anon";
+    sender?.displayName || sender?.username || message.senderAddress?.slice(0, 8) || t("liveChat.anon");
   const badgeImg = getBadgeUrlFor(sender);
   const isMod = sender?.isModerator;
 
@@ -138,7 +140,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
 
       {/* Content */}
       {message.isDeleted ? (
-        <Text className="text-white/30 text-sm italic">Message deleted</Text>
+        <Text className="text-white/30 text-sm italic">{t("liveChat.messageDeleted")}</Text>
       ) : (
         <>
           {!!bodyText && (
@@ -177,7 +179,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
       {message.isPinned && (
         <View className="flex-row items-center gap-1 mt-1">
           <Icon name="Pin" size={11} color="rgba(255,255,255,0.5)" />
-          <Text className="text-white/50 text-[11px]">Pinned</Text>
+          <Text className="text-white/50 text-[11px]">{t("liveChat.pinned")}</Text>
         </View>
       )}
     </View>
@@ -204,6 +206,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
   onDelete,
   onPin,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   // Live height, not a module-level snapshot: on an iPad rotated after launch
   // the card was positioned against the wrong screen height.
@@ -388,15 +391,15 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
             {/* Action rows */}
             <View className="py-1">
               {onReply && (
-                <ActionRow icon="Reply" label="Reply" onPress={handleReply} />
+                <ActionRow icon="Reply" label={t("liveChat.reply")} onPress={handleReply} />
               )}
 
               {hasContent && (
-                <ActionRow icon="Copy" label="Copy" onPress={handleCopy} />
+                <ActionRow icon="Copy" label={t("common.copy")} onPress={handleCopy} />
               )}
 
               {canEdit && onEdit && (
-                <ActionRow icon="Pencil" label="Edit" onPress={handleEdit} />
+                <ActionRow icon="Pencil" label={t("common.edit")} onPress={handleEdit} />
               )}
 
               {isModerator && onPin && (
@@ -413,13 +416,13 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
                     />
                   </View>
                   <Text className="ml-3 text-[15px] text-theme-neutrals-100">
-                    {message.isPinned ? "Unpin" : "Pin"}
+                    {message.isPinned ? t("liveChat.unpinMessage") : t("liveChat.pinMessage")}
                   </Text>
                 </TouchableOpacity>
               )}
 
               {canDelete && onDelete && (
-                <ActionRow icon="Trash2" label="Delete" onPress={handleDelete} destructive />
+                <ActionRow icon="Trash2" label={t("common.delete")} onPress={handleDelete} destructive />
               )}
             </View>
           </View>

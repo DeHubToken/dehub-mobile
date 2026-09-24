@@ -11,6 +11,7 @@
  * Sizing is the caller's job: this fills whatever box it is given (flex: 1).
  */
 import React, { useCallback, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -48,11 +49,12 @@ const ChatRow: React.FC<{
   onToggleReaction: (id: string, emoji: string) => void;
   onOpenProfile: (identifier: string) => void;
 }> = ({ message, myAddress, onReply, onDelete, onToggleReaction, onOpenProfile }) => {
+  const { t } = useTranslation();
   const [showPicker, setShowPicker] = useState(false);
 
   const isMe = message.wallet_address?.toLowerCase() === myAddress;
   const displayName =
-    message.display_name || message.username || message.wallet_address?.slice(0, 8) || "Anon";
+    message.display_name || message.username || message.wallet_address?.slice(0, 8) || t("tv.anon");
   const avatarUrl = getAvatarUrl(message.avatar_url || "");
   const badgeImg = getBadgeUrl(resolveBadgeBalance({ badgeBalance: message.badge_balance }), { username: message.username });
 
@@ -148,7 +150,7 @@ const ChatRow: React.FC<{
               style={styles.pickerBtn}
               hitSlop={4}
               accessibilityRole="button"
-              accessibilityLabel="Reply"
+              accessibilityLabel={t("tv.reply")}
             >
               <Icon name="Reply" size={14} color="#A1A1AA" />
             </Pressable>
@@ -161,7 +163,7 @@ const ChatRow: React.FC<{
                 style={styles.pickerBtn}
                 hitSlop={4}
                 accessibilityRole="button"
-                accessibilityLabel="Delete"
+                accessibilityLabel={t("common.delete")}
               >
                 <Icon name="Trash2" size={14} color="#F4F4F5" />
               </Pressable>
@@ -194,6 +196,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
   bottomInset = 0,
   onClosePlayer,
 }) => {
+  const { t } = useTranslation();
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
@@ -275,7 +278,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
     <View style={styles.root}>
       <View style={styles.header}>
         <Icon name="MessageSquare" size={13} color="#A1A1AA" />
-        <Text style={styles.headerText}>Live chat</Text>
+        <Text style={styles.headerText}>{t("tv.liveChat")}</Text>
       </View>
 
       {isLoading ? (
@@ -308,7 +311,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
           ListEmptyComponent={
             <View style={styles.center}>
               <Icon name="MessageSquare" size={26} color="#3F3F46" />
-              <Text style={styles.dim}>No messages yet — say something.</Text>
+              <Text style={styles.dim}>{t("tv.noMessages")}</Text>
             </View>
           }
         />
@@ -319,17 +322,17 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
           <Icon name="Reply" size={13} color="#FFFFFF" />
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={styles.replyName} numberOfLines={1}>
-              {replyTo.display_name || replyTo.username || "User"}
+              {replyTo.display_name || replyTo.username || t("tv.user")}
             </Text>
             <Text style={styles.replyBody} numberOfLines={1}>
-              {replyTo.content || "Media"}
+              {replyTo.content || t("tv.media")}
             </Text>
           </View>
           <Pressable
             onPress={() => setReplyTo(null)}
             hitSlop={8}
             accessibilityRole="button"
-            accessibilityLabel="Dismiss reply"
+            accessibilityLabel={t("tv.dismissReply")}
           >
             <Icon name="X" size={14} color="#A1A1AA" />
           </Pressable>
@@ -342,7 +345,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
             <TextInput
               value={text}
               onChangeText={(v) => v.length <= MAX_LEN && setText(v)}
-              placeholder="Type here..."
+              placeholder={t("tv.typeHere")}
               placeholderTextColor="#8B8D90"
               style={styles.input}
               multiline
@@ -354,7 +357,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
               style={[styles.sendBtn, (!text.trim() || sending) && { opacity: 0.4 }]}
               hitSlop={6}
               accessibilityRole="button"
-              accessibilityLabel="Send"
+              accessibilityLabel={t("tv.send")}
             >
               {sending ? (
                 <ActivityIndicator size="small" color="#FFFFFF" />
@@ -366,7 +369,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
         ) : (
           <Pressable onPress={() => requireAuth(() => {})} style={styles.signInBtn}>
             <Icon name="LogIn" size={14} color="#A1A1AA" />
-            <Text style={styles.signInText}>Sign in to chat</Text>
+            <Text style={styles.signInText}>{t("tv.signInToChat")}</Text>
           </Pressable>
         )}
       </View>

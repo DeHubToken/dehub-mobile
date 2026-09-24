@@ -11,6 +11,7 @@ import React, { memo } from "react";
 import { View, Text } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import type { DmFee } from "../../services/dm/dm.types";
 
 interface DmFeeBannerProps {
@@ -22,6 +23,7 @@ const DmFeeBannerComponent: React.FC<DmFeeBannerProps> = ({
   dmFee,
   peerDisplayName,
 }) => {
+  const { t } = useTranslation();
   if (!dmFee || dmFee.fee <= 0) return null;
 
   const feeRequired = dmFee.required && !dmFee.hasFreeAccess;
@@ -36,11 +38,11 @@ const DmFeeBannerComponent: React.FC<DmFeeBannerProps> = ({
         <View className="flex-row items-center justify-center px-4 py-2 bg-white/10 border-b border-theme-neutrals-800/50">
           <Ionicons name="diamond" size={14} color="#F4F4F5" />
           <Text className="text-[12px] text-theme-neutrals-100 font-medium ml-1.5">
-            {dmFee.fee} <DhbCoin /> per message
+            {dmFee.fee} <DhbCoin /> {t("dm.perMessage")}
           </Text>
           {peerDisplayName ? (
             <Text className="text-[11px] text-theme-neutrals-500 ml-1">
-              · set by {peerDisplayName}
+              {t("dm.feeSetBy", { name: peerDisplayName })}
             </Text>
           ) : null}
         </View>
@@ -50,10 +52,10 @@ const DmFeeBannerComponent: React.FC<DmFeeBannerProps> = ({
         <View className="flex-row items-center justify-center px-4 py-2 bg-white/10 border-b border-theme-neutrals-800/50">
           <Ionicons name="shield-checkmark" size={14} color="#F4F4F5" />
           <Text className="text-[12px] text-white/80 font-medium ml-1.5">
-            Free access
+            {t("dm.freeAccess")}
           </Text>
           <Text className="text-[11px] text-theme-neutrals-500 ml-1">
-            · normally {dmFee.fee} <DhbCoin /> per message
+            {t("dm.normally")} {dmFee.fee} <DhbCoin /> {t("dm.perMessage")}
           </Text>
         </View>
       )}

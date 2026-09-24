@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Platform, ScrollView, Share } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
+import { useTranslation } from "react-i18next";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import * as ImagePicker from "expo-image-picker";
 import GlassModal from "../ui/GlassModal";
@@ -41,6 +42,7 @@ const CreateStageModal: React.FC = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
+  const { t } = useTranslation();
 
   // Default to an hour out, rounded to the next half hour — far enough ahead to
   // be plausible, close enough that most hosts only adjust the time.
@@ -80,7 +82,7 @@ const CreateStageModal: React.FC = () => {
       reset();
       openModal("live");
     } else {
-      setError("Failed to start stage. Please try again.");
+      setError(t("stages.startFailed"));
     }
   };
 
@@ -98,7 +100,7 @@ const CreateStageModal: React.FC = () => {
       if (!pick.canceled && pick.assets?.[0]?.uri) {
         const asset = pick.assets[0];
         if (typeof asset.fileSize === "number" && asset.fileSize > MAX_COVER_BYTES) {
-          setError("Cover must be under 8 MB");
+          setError(t("stages.coverTooLarge"));
           return;
         }
         setCoverUri(asset.uri);
@@ -128,7 +130,7 @@ const CreateStageModal: React.FC = () => {
   const handleSchedule = async () => {
     if (!title.trim()) return;
     if (when.getTime() <= Date.now()) {
-      setError("Pick a time in the future.");
+      setError(t("stages.pickFutureTime"));
       return;
     }
     setError("");
@@ -140,7 +142,7 @@ const CreateStageModal: React.FC = () => {
       setUploading(false);
       // A failed graphic must not cost the host the stage — carry on without it
       // and say so, rather than throwing the whole form away.
-      if (!coverImageUrl) setError("Cover image failed to upload — scheduling without it");
+      if (!coverImageUrl) setError(t("stages.coverUploadFailed"));
     }
 
     const space = await scheduleSpace({
@@ -153,7 +155,7 @@ const CreateStageModal: React.FC = () => {
     if (space) {
       setScheduledLink(ShareLinks.stage(space));
     } else {
-      setError("Failed to schedule stage. Please try again.");
+      setError(t("stages.scheduleFailed"));
     }
   };
 
@@ -177,11 +179,10 @@ const CreateStageModal: React.FC = () => {
           <View style={styles.successIcon}>
             <Icon name="Check" size={26} color="#FFFFFF" />
           </View>
-          <Text style={styles.successTitle}>Stage scheduled</Text>
+          <Text style={styles.successTitle}>{t("stages.stageScheduled")}</Text>
           <Text style={styles.successWhen}>{whenLabel} · {timeLabel}</Text>
           <Text style={styles.successHint}>
-            It's on the Upcoming shelf now. Share the link and it opens as a card
-            wherever you paste it.
+            {t("stages.scheduledHint")}
           </Text>
 
           <TouchableOpacity
@@ -190,7 +191,7 @@ const CreateStageModal: React.FC = () => {
               // Pre-filled, not published: the composer still runs the mint.
               // Routed through navigationRef because this modal host is a
               // sibling of the navigator, not a screen inside it.
-              const announcement = `🎙️ ${title.trim()} — live on Stages ${whenLabel}, ${timeLabel}\n\n${scheduledLink}`;
+              const announcement = `${t("stages.announcement", { title: title.trim(), date: whenLabel, time: timeLabel })}\n\n${scheduledLink}`;
               reset();
               closeModal();
               if (navigationRef.isReady()) {
@@ -206,25 +207,25 @@ const CreateStageModal: React.FC = () => {
             }}
           >
             <Icon name="Send" size={18} color="#09090B" />
-            <Text style={styles.goLiveText}>Post about it</Text>
+            <Text style={styles.goLiveText}>{t("stages.postAboutIt")}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.secondaryBtn}
             onPress={() => {
               Share.share({
-                message: `🎙️ ${title.trim()} — live on Stages ${whenLabel}, ${timeLabel}\n\n${scheduledLink}`,
+                message: `${t("stages.announcement", { title: title.trim(), date: whenLabel, time: timeLabel })}\n\n${scheduledLink}`,
               }).catch(() => {});
             }}
           >
-            <Text style={styles.secondaryText}>Share link</Text>
+            <Text style={styles.secondaryText}>{t("stages.shareLink")}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.secondaryBtn}
             onPress={() => { reset(); closeModal(); }}
           >
-            <Text style={styles.secondaryText}>Done</Text>
+            <Text style={styles.secondaryText}>{t("common.done")}</Text>
           </TouchableOpacity>
         </View>
       </GlassModal>
@@ -245,12 +246,12 @@ const CreateStageModal: React.FC = () => {
             onPress={handleBack}
             hitSlop={12}
             accessibilityRole="button"
-            accessibilityLabel="Back"
+            accessibilityLabel={t("stages.back")}
           >
             <Icon name="ArrowLeft" size={20} color="#FFFFFF" />
           </TouchableOpacity>
           <Text style={styles.title}>
-            {mode === "now" ? "Start a Stage" : "Schedule a Stage"}
+            {mode === "now" ? t("stages.startAStageButton") : t("stages.scheduleAStage")}
           </Text>
           <View style={{ width: 20 }} />
         </View>
@@ -269,7 +270,7 @@ const CreateStageModal: React.FC = () => {
                 color={mode === m ? "#FFFFFF" : "#8B8D90"}
               />
               <Text style={[styles.segmentText, mode === m && styles.segmentTextActive]}>
-                {m === "now" ? "Go live now" : "Schedule"}
+                {m === "now" ? t("stages.goLiveNow") : t("upload.schedule")}
               </Text>
             </TouchableOpacity>
           ))}
@@ -277,7 +278,7 @@ const CreateStageModal: React.FC = () => {
 
         <TextInput
           style={styles.input}
-          placeholder="Stage title..."
+          placeholder={t("stages.titlePlaceholder")}
           placeholderTextColor="#8B8D90"
           value={title}
           onChangeText={setTitle}
@@ -289,7 +290,7 @@ const CreateStageModal: React.FC = () => {
             same stage created from a phone lost its subtitle everywhere. */}
         <TextInput
           style={[styles.input, styles.inputMultiline]}
-          placeholder="Description (optional)"
+          placeholder={t("upload.descriptionOptional")}
           placeholderTextColor="#8B8D90"
           value={description}
           onChangeText={setDescription}
@@ -353,13 +354,13 @@ const CreateStageModal: React.FC = () => {
                     host sees here is what the graphic will look like in use. */}
                 <View style={styles.coverScrim} />
                 <Text style={styles.coverTitle} numberOfLines={1}>
-                  {title.trim() || "Your stage title"}
+                  {title.trim() || t("stages.yourStageTitle")}
                 </Text>
                 <TouchableOpacity
                   style={styles.coverRemove}
                   onPress={() => setCoverUri(null)}
                   accessibilityRole="button"
-                  accessibilityLabel="Remove cover graphic"
+                  accessibilityLabel={t("stages.removeCover")}
                 >
                   <Icon name="X" size={16} color="#FFFFFF" />
                 </TouchableOpacity>
@@ -367,7 +368,7 @@ const CreateStageModal: React.FC = () => {
             ) : (
               <TouchableOpacity style={styles.coverAdd} onPress={pickCover}>
                 <Icon name="ImagePlus" size={20} color="#8B8D90" />
-                <Text style={styles.coverAddText}>Add a graphic</Text>
+                <Text style={styles.coverAddText}>{t("stages.addGraphic")}</Text>
               </TouchableOpacity>
             )}
           </>
@@ -383,10 +384,10 @@ const CreateStageModal: React.FC = () => {
           <Icon name={mode === "now" ? "Radio" : "Calendar"} size={18} color="#09090B" />
           <Text style={styles.goLiveText}>
             {uploading
-              ? "Uploading cover..."
+              ? t("stages.uploadingCover")
               : busy
-                ? mode === "now" ? "Starting..." : "Scheduling..."
-                : mode === "now" ? "Go Live" : "Schedule stage"}
+                ? mode === "now" ? t("stages.starting") : t("stages.scheduling")
+                : mode === "now" ? t("stages.goLive") : t("stages.scheduleStage")}
           </Text>
         </TouchableOpacity>
       </ScrollView>

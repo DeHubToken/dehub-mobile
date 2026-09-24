@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 
 export type ChatHeaderMenuButtonProps = {
@@ -7,13 +8,14 @@ export type ChatHeaderMenuButtonProps = {
 };
 
 const ChatHeaderMenuButton: React.FC<ChatHeaderMenuButtonProps> = ({ onPress }) => {
+  const { t } = useTranslation();
   return (
     <TouchableOpacity
       className="w-10 h-10 items-center justify-center active:opacity-70"
       onPress={onPress}
       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
       accessibilityRole="button"
-      accessibilityLabel="Open chat menu"
+      accessibilityLabel={t('dm.openChatMenu')}
     >
       <Icon name="EllipsisVertical" size={20} color="#E5E7EB" />
     </TouchableOpacity>

@@ -16,6 +16,7 @@
  */
 
 import React, { memo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -56,6 +57,7 @@ interface Props {
 }
 
 export default function ProducerShopButton({ tokenId, visible = true }: Props) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [adding, setAdding] = useState(false);
   const { products } = useStreamProducts(tokenId);
@@ -89,8 +91,8 @@ export default function ProducerShopButton({ tokenId, visible = true }: Props) {
           </Text>
           <Text className="text-zinc-500 text-[10px] mt-0.5">
             ${effectivePrice(product)}
-            {product.live_price != null ? "  ·  live price" : ""}
-            {soldOut ? "  ·  sold out" : ""}
+            {product.live_price != null ? `  ·  ${t("live.livePrice")}` : ""}
+            {soldOut ? `  ·  ${t("live.soldOut")}` : ""}
           </Text>
         </View>
 
@@ -109,7 +111,7 @@ export default function ProducerShopButton({ tokenId, visible = true }: Props) {
               isPinned ? "text-[#09090B]" : "text-zinc-300"
             }`}
           >
-            {isPinned ? "On air" : "Air"}
+            {isPinned ? t("liveShop.onAir") : t("live.shopPutOnAir")}
           </Text>
         </TouchableOpacity>
 
@@ -143,7 +145,7 @@ export default function ProducerShopButton({ tokenId, visible = true }: Props) {
           <View className="bg-zinc-900 rounded-t-3xl border-t border-white/10 px-4 pt-4 pb-8 max-h-[75%]">
             <View className="flex-row items-center justify-between mb-4">
               <Text className="text-white font-semibold text-base">
-                {adding ? "Add to this stream" : "Stream shop"}
+                {adding ? t("live.shopAddToStream") : t("live.shopTitle")}
               </Text>
               <View className="flex-row items-center">
                 <TouchableOpacity
@@ -151,7 +153,7 @@ export default function ProducerShopButton({ tokenId, visible = true }: Props) {
                   className="bg-white/10 rounded-lg px-3 py-1.5 mr-3"
                 >
                   <Text className="text-white text-xs font-semibold">
-                    {adding ? "Done" : "Add"}
+                    {adding ? t("common.done") : t("live.shopAdd")}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => setOpen(false)} hitSlop={10}>
@@ -167,8 +169,8 @@ export default function ProducerShopButton({ tokenId, visible = true }: Props) {
                 ) : !available.length ? (
                   <Text className="text-zinc-500 text-xs text-center py-8">
                     {listings.length
-                      ? "Everything active in your store is already on this stream."
-                      : "You don't have any listings yet. Create them on the web store first."}
+                      ? t("live.shopAllAttached")
+                      : t("live.shopNoListings")}
                   </Text>
                 ) : (
                   available.map((listing) => (
@@ -188,14 +190,14 @@ export default function ProducerShopButton({ tokenId, visible = true }: Props) {
                         disabled={attach.isPending}
                         className="bg-white rounded-lg px-3 py-1.5"
                       >
-                        <Text className="text-[#09090B] text-[11px] font-semibold">Add</Text>
+                        <Text className="text-[#09090B] text-[11px] font-semibold">{t("live.shopAdd")}</Text>
                       </TouchableOpacity>
                     </View>
                   ))
                 )
               ) : !products.length ? (
                 <Text className="text-zinc-500 text-xs text-center py-8">
-                  Add something from your store and viewers can buy it without leaving the stream.
+                  {t("live.shopEmpty")}
                 </Text>
               ) : (
                 products.map(renderAttached)

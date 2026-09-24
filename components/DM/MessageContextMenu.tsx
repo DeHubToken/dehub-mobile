@@ -12,6 +12,7 @@ import {
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import GlassIndicator from "../ui/GlassIndicator";
@@ -107,6 +108,7 @@ const FloatingMessage: React.FC<{
   isMine: boolean;
   senderInfo?: { displayName?: string; username?: string; avatarImageUrl?: string };
 }> = ({ message, isMine, senderInfo }) => {
+  const { t } = useTranslation();
   // Live window size, not a module-level snapshot: on iPad the width changes
   // on rotation and the float's image used to overflow the screen.
   const { width: SCREEN_WIDTH } = useWindowDimensions();
@@ -120,7 +122,7 @@ const FloatingMessage: React.FC<{
   const isStandaloneTip = message.msgType === "tip";
 
   const avatarUrl = getAvatarUrl(senderInfo?.avatarImageUrl);
-  const name = senderInfo?.displayName || senderInfo?.username || "You";
+  const name = senderInfo?.displayName || senderInfo?.username || t("dm.you");
   const usernameTag = senderInfo?.username;
 
   const isPaidMsg = !!(message.paymentTxHash || message.paymentStatus || message.tipAmount);
@@ -184,7 +186,7 @@ const FloatingMessage: React.FC<{
         />
         <View className={`flex-shrink-1 ${isMine ? "items-end" : "items-start"}`}>
           <Text className="text-white text-[13px] font-semibold" numberOfLines={1}>
-            {isMine ? "You" : name}
+            {isMine ? t("dm.you") : name}
           </Text>
           {usernameTag && !isMine && usernameTag !== name && (
             <Text className="text-theme-neutrals-400 text-[10px]" numberOfLines={1}>
@@ -204,7 +206,7 @@ const FloatingMessage: React.FC<{
           <View className="flex-row items-center gap-1 px-3 pt-1.5">
             <Icon name="Forward" size={10} color={isMine ? "rgba(255,255,255,0.5)" : "#A6A9AC"} />
             <Text className={`text-[10px] italic ${isMine ? "text-white/50" : "text-theme-neutrals-400"}`}>
-              Forwarded
+              {t("dm.forwarded")}
             </Text>
           </View>
         )}
@@ -225,7 +227,7 @@ const FloatingMessage: React.FC<{
               >
                 {message.replyTo.sender?.displayName ||
                   message.replyTo.sender?.username ||
-                  "Unknown"}
+                  t("settings.unknown")}
               </Text>
               <Text
                 className={`text-[12px] ${
@@ -234,7 +236,7 @@ const FloatingMessage: React.FC<{
                 numberOfLines={2}
               >
                 {message.replyTo.content ||
-                  (message.replyTo.msgType === "voice" ? "🎤 Voice note" : "📷 Media")}
+                  (message.replyTo.msgType === "voice" ? t("dm.voiceNoteEmoji") : t("dm.mediaEmoji"))}
               </Text>
             </View>
           </View>
@@ -355,7 +357,7 @@ const FloatingMessage: React.FC<{
                   isMine ? "text-white/40" : "text-theme-neutrals-600"
                 }`}
               >
-                · edited
+                {t("dm.editedSuffix")}
               </Text>
             )}
             {isMine && (
@@ -404,6 +406,7 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
   onUnpin,
   isPinned,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   // Live window size (iPad rotation, Android multi-window); a module-level
   // Dimensions snapshot put the Reply/Copy/Delete card off-screen.
@@ -411,9 +414,9 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
 
   // Resolve sender info for the float header
   const senderInfo = useMemo(() => {
-    if (isMine) return myUser || { displayName: "You" };
-    return peerUser || { displayName: "User" };
-  }, [isMine, myUser, peerUser]);
+    if (isMine) return myUser || { displayName: t("dm.you") };
+    return peerUser || { displayName: t("dm.user") };
+  }, [isMine, myUser, peerUser, t]);
 
 
   const handleReply = useCallback(() => {
@@ -481,18 +484,18 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     const rows: ActionRowProps[] = [];
 
     if (onReply && !unsent)
-      rows.push({ icon: "MessageCircle", label: "Reply", onPress: handleReply });
-    if (hasContent) rows.push({ icon: "Copy", label: "Copy", onPress: handleCopy });
+      rows.push({ icon: "MessageCircle", label: t("dm.reply"), onPress: handleReply });
+    if (hasContent) rows.push({ icon: "Copy", label: t("common.copy"), onPress: handleCopy });
     if (onForward && !unsent)
-      rows.push({ icon: "Forward", label: "Forward", onPress: handleForward });
+      rows.push({ icon: "Forward", label: t("dm.forwardMessage"), onPress: handleForward });
     if (isMine && isTextOnly && !unsent && onEdit)
-      rows.push({ icon: "Pencil", label: "Edit", onPress: handleEdit });
+      rows.push({ icon: "Pencil", label: t("common.edit"), onPress: handleEdit });
     if (onPin && !isPinned && !unsent)
-      rows.push({ icon: "Pin", label: "Pin", onPress: handlePin });
+      rows.push({ icon: "Pin", label: t("dm.pinMessage"), onPress: handlePin });
     if (onUnpin && isPinned && !unsent)
-      rows.push({ icon: "Pin", label: "Unpin", onPress: handleUnpin });
+      rows.push({ icon: "Pin", label: t("dm.unpinMessage"), onPress: handleUnpin });
     if (isMine && onDelete && !unsent)
-      rows.push({ icon: "Trash2", label: "Delete", onPress: handleDelete, destructive: true });
+      rows.push({ icon: "Trash2", label: t("common.delete"), onPress: handleDelete, destructive: true });
 
     return rows;
   }, [
@@ -512,6 +515,7 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     handlePin,
     handleUnpin,
     handleDelete,
+    t,
   ]);
 
   const actionsCardHeight =

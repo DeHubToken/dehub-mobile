@@ -52,7 +52,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
    */
   const draft = useDraftText(dmDraftKey(myAddress, other?.address));
 
-  const displayName = other?.displayName || other?.username || "Unknown";
+  const displayName = other?.displayName || other?.username || t("settings.unknown");
   const username = other?.username;
   const avatarUrl = getAvatarUrl(other?.avatarImageUrl);
   const badgeImg = getBadgeUrlFor(other as any);
@@ -60,15 +60,15 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   // Last message preview
   const { previewText, previewIcon } = useMemo(() => {
     const msgs = conversation.messages;
-    if (!msgs?.length) return { previewText: "Start a conversation", previewIcon: null };
+    if (!msgs?.length) return { previewText: t("dm.startConversation"), previewIcon: null };
     // messages come newest-first from the store
     const last = msgs[0] as DmMessage;
     const isMine = last.author === "me";
-    const prefix = isMine ? "You: " : "";
+    const withPrefix = (s: string) => (isMine ? t("dm.youSaid", { text: s }) : s);
 
     if (last.msgType === "voice") {
       return {
-        previewText: `${prefix}Voice note`,
+        previewText: withPrefix(t("dm.voiceNote")),
         previewIcon: "mic" as const,
       };
     }
@@ -78,7 +78,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
         ? `${Number(last.tipAmount).toLocaleString()} ${last.tipSymbol || "DHB"}`
         : "DHB";
       return {
-        previewText: isMine ? `You tipped ${amt}` : `Tipped ${amt}`,
+        previewText: isMine ? t("dm.youTipped", { amount: amt }) : t("dm.tipped", { amount: amt }),
         previewIcon: "diamond" as const,
       };
     }
@@ -86,36 +86,36 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
     if (last.tipAmount && last.tipAmount > 0) {
       const amt = `${Number(last.tipAmount).toLocaleString()} ${last.tipSymbol || "DHB"}`;
       const contentPreview = last.content?.replace(/\n/g, " ")?.trim();
-      const msgLabel = last.msgType === "gif" ? "GIF" : last.msgType === "media" ? "Photo" : contentPreview || "Message";
+      const msgLabel = last.msgType === "gif" ? "GIF" : last.msgType === "media" ? t("dm.photo") : contentPreview || t("dm.message");
       return {
-        previewText: `${prefix}${msgLabel} · ${amt}`,
+        previewText: withPrefix(`${msgLabel} · ${amt}`),
         previewIcon: "diamond" as const,
       };
     }
     // Per-message fee message (paymentStatus set but no tipAmount — fee-based)
     if (last.paymentStatus || last.paymentTxHash) {
       const contentPreview = last.content?.replace(/\n/g, " ")?.trim();
-      const msgLabel = last.msgType === "gif" ? "GIF" : last.msgType === "media" ? "Photo" : contentPreview || "Message";
+      const msgLabel = last.msgType === "gif" ? "GIF" : last.msgType === "media" ? t("dm.photo") : contentPreview || t("dm.message");
       return {
-        previewText: `${prefix}${msgLabel} · Paid`,
+        previewText: withPrefix(t("dm.paidPreview", { label: msgLabel })),
         previewIcon: "diamond" as const,
       };
     }
     if (last.msgType === "gif") {
-      return { previewText: `${prefix}GIF`, previewIcon: "gif" as const };
+      return { previewText: withPrefix("GIF"), previewIcon: "gif" as const };
     }
     if (last.msgType === "media") {
       const hasVideo = last.mediaUrls?.some(
         (m) => typeof m === "object" && (m.type?.includes("video") || m.mimeType?.includes("video")),
       );
       return {
-        previewText: `${prefix}${hasVideo ? "Video" : "Photo"}`,
+        previewText: withPrefix(hasVideo ? t("dm.video") : t("dm.photo")),
         previewIcon: hasVideo ? ("videocam" as const) : ("image" as const),
       };
     }
     if (last.isForwarded) {
       return {
-        previewText: `${prefix}Forwarded message`,
+        previewText: withPrefix(t("dm.forwardedMessage")),
         previewIcon: "arrow-redo" as const,
       };
     }
@@ -123,16 +123,16 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
     // must never show its envelope.
     if (last.undecryptable || isEncryptedContent(last.content)) {
       return {
-        previewText: `${prefix}🔒 ${t("messages.cannotDecrypt")}`,
+        previewText: withPrefix(`🔒 ${t("messages.cannotDecrypt")}`),
         previewIcon: null,
       };
     }
     const text = last.content?.replace(/\n/g, " ") || "";
     return {
-      previewText: `${prefix}${text}`,
+      previewText: withPrefix(text),
       previewIcon: null,
     };
-  }, [conversation.messages]);
+  }, [conversation.messages, t]);
 
   const timeStr = useMemo(() => {
     const last = conversation.messages?.[0];
@@ -247,7 +247,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
             ))}
             {draft ? (
               <Text className="text-[13px] flex-1 text-theme-neutrals-400" numberOfLines={1}>
-                <Text className="text-white font-medium">Draft: </Text>
+                <Text className="text-white font-medium">{t("dm.draftLabel")} </Text>
                 {draft}
               </Text>
             ) : (

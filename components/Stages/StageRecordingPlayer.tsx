@@ -18,6 +18,7 @@
 
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View, type StyleProp, type ViewStyle } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import Icon from "../ui/Icon";
 import StageRateButton from "./StageRateButton";
@@ -77,6 +78,7 @@ const StageRecordingPlayer: React.FC<StageRecordingPlayerProps> = ({
   whenGone = "stop",
   style,
 }) => {
+  const { t } = useTranslation();
   const { spaceId: loadedId, loading, paused, popout, progress, seekable, timeLeft } =
     useStagePlayback();
 
@@ -131,12 +133,12 @@ const StageRecordingPlayer: React.FC<StageRecordingPlayerProps> = ({
   if (!recordingUrl) return null;
 
   return (
-    <View style={[styles.row, style]} accessibilityLabel="Stage recording">
+    <View style={[styles.row, style]} accessibilityLabel={t("stages.stageRecording")}>
       <TouchableOpacity
         onPress={togglePlay}
         style={[styles.playBtn, isLoaded ? styles.playBtnLoaded : styles.playBtnIdle]}
         accessibilityRole="button"
-        accessibilityLabel={isPlaying ? "Pause recording" : "Play recording"}
+        accessibilityLabel={isPlaying ? t("stages.pauseRecording") : t("stages.playRecording")}
         accessibilityState={{ selected: isLoaded }}
       >
         {busy ? (
@@ -180,7 +182,7 @@ const StageRecordingPlayer: React.FC<StageRecordingPlayerProps> = ({
           accessibilityRole="button"
           accessibilityState={{ selected: isPoppedOut }}
           accessibilityLabel={
-            isPoppedOut ? "Close the corner player" : "Pop out — keep listening while you browse"
+            isPoppedOut ? t("stages.closeCornerPlayer") : t("stages.popOut")
           }
         >
           <Icon

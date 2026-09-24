@@ -19,6 +19,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator, Alert } from "react-native";
 import * as DocumentPicker from "expo-document-picker";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import { supabase } from "../../services/supabase";
 import { uploadLocalFileToBucket } from "../../libs/storage-upload";
@@ -42,19 +43,20 @@ interface BuiltInSound {
  * straight from the web origin's public dir, so a rename there breaks them
  * here.
  */
+// Labels are i18n keys, resolved at render time.
 const BUILT_IN_SOUNDS: BuiltInSound[] = [
-  { id: "airhorn", label: "Air Horn", emoji: "📣", file: "airhorn.wav" },
-  { id: "applause", label: "Applause", emoji: "🎉", file: "applause.wav" },
-  { id: "drumroll", label: "Drum Roll", emoji: "🥁", file: "drumroll.wav" },
-  { id: "ba-dum-tish", label: "Ba Dum Tish", emoji: "🥁", file: "ba-dum-tish.wav" },
-  { id: "lol", label: "LOL", emoji: "😂", file: "lol.wav" },
-  { id: "cricket", label: "Crickets", emoji: "🦗", file: "crickets.wav" },
-  { id: "spooky", label: "Spooky", emoji: "👻", file: "spooky.wav" },
-  { id: "magic-spell", label: "Magic Spell", emoji: "🪄", file: "magic-spell.m4a" },
-  { id: "shhh", label: "Shhh", emoji: "🤫", file: "shhh.m4a" },
-  { id: "ooh-ahh", label: "Ooh Ahh", emoji: "✨", file: "ooh-ahh.wav" },
-  { id: "ooh-man", label: "Ooh (Man)", emoji: "🙎", file: "ooh-man.wav" },
-  { id: "ohh-girl", label: "Ohh (Girl)", emoji: "🙍", file: "ohh-girl.ogg" },
+  { id: "airhorn", label: "stages.sfx.airhorn", emoji: "📣", file: "airhorn.wav" },
+  { id: "applause", label: "stages.sfx.applause", emoji: "🎉", file: "applause.wav" },
+  { id: "drumroll", label: "stages.sfx.drumroll", emoji: "🥁", file: "drumroll.wav" },
+  { id: "ba-dum-tish", label: "stages.sfx.baDumTish", emoji: "🥁", file: "ba-dum-tish.wav" },
+  { id: "lol", label: "stages.sfx.lol", emoji: "😂", file: "lol.wav" },
+  { id: "cricket", label: "stages.sfx.crickets", emoji: "🦗", file: "crickets.wav" },
+  { id: "spooky", label: "stages.sfx.spooky", emoji: "👻", file: "spooky.wav" },
+  { id: "magic-spell", label: "stages.sfx.magicSpell", emoji: "🪄", file: "magic-spell.m4a" },
+  { id: "shhh", label: "stages.sfx.shhh", emoji: "🤫", file: "shhh.m4a" },
+  { id: "ooh-ahh", label: "stages.sfx.oohAhh", emoji: "✨", file: "ooh-ahh.wav" },
+  { id: "ooh-man", label: "stages.sfx.oohMan", emoji: "🙎", file: "ooh-man.wav" },
+  { id: "ohh-girl", label: "stages.sfx.ohhGirl", emoji: "🙍", file: "ohh-girl.ogg" },
 ];
 
 const SOUND_BASE = `${WEBSITE_LINK}/sounds`;
@@ -69,6 +71,7 @@ interface CustomSound {
 }
 
 const StageSoundboard: React.FC = () => {
+  const { t } = useTranslation();
   const { playingSoundId, playSoundEffect, stopSoundEffect } = useStages();
   const { user } = useAuth();
   const [customSounds, setCustomSounds] = useState<CustomSound[]>([]);
@@ -107,16 +110,16 @@ const StageSoundboard: React.FC = () => {
       try {
         await playSoundEffect(url, id);
       } catch {
-        toastError("Could not play that on stage");
+        toastError(t("stages.playFailed"));
       }
     },
-    [playSoundEffect],
+    [playSoundEffect, t],
   );
 
   const handleUpload = useCallback(async () => {
     if (!folder) return;
     if (customSounds.length >= MAX_CUSTOM_SOUNDS) {
-      toastError(`Max ${MAX_CUSTOM_SOUNDS} custom sounds — delete one first`);
+      toastError(t("stages.maxSounds", { max: MAX_CUSTOM_SOUNDS }));
       return;
     }
     try {
@@ -124,7 +127,7 @@ const StageSoundboard: React.FC = () => {
       if (picked.canceled || !picked.assets?.length) return;
       const asset = picked.assets[0];
       if ((asset.size ?? 0) > MAX_FILE_SIZE_MB * 1024 * 1024) {
-        toastError(`File must be under ${MAX_FILE_SIZE_MB}MB`);
+        toastError(t("stages.fileTooLarge", { max: MAX_FILE_SIZE_MB }));
         return;
       }
 
@@ -138,27 +141,27 @@ const StageSoundboard: React.FC = () => {
         contentType: asset.mimeType || "audio/mpeg",
       });
 
-      toastSuccess("Sound uploaded");
+      toastSuccess(t("stages.soundUploaded"));
       await loadCustomSounds();
     } catch (err) {
       log.error("Custom sound upload failed:", err);
-      toastError("Upload failed");
+      toastError(t("stages.uploadFailed"));
     } finally {
       setIsUploading(false);
     }
-  }, [folder, customSounds.length, loadCustomSounds]);
+  }, [folder, customSounds.length, loadCustomSounds, t]);
 
   const handleDelete = useCallback(
     (sound: CustomSound) => {
-      Alert.alert("Delete sound?", `"${sound.name}" will be removed from your soundboard.`, [
-        { text: "Keep it", style: "cancel" },
+      Alert.alert(t("stages.deleteSoundTitle"), t("stages.deleteSoundBody", { name: sound.name }), [
+        { text: t("stages.keepIt"), style: "cancel" },
         {
-          text: "Delete",
+          text: t("common.delete"),
           style: "destructive",
           onPress: async () => {
             const { error } = await supabase.storage.from(BUCKET).remove([sound.path]);
             if (error) {
-              toastError("Failed to delete");
+              toastError(t("stages.deleteFailed"));
               return;
             }
             setCustomSounds((prev) => prev.filter((s) => s.path !== sound.path));
@@ -166,7 +169,7 @@ const StageSoundboard: React.FC = () => {
         },
       ]);
     },
-    [],
+    [t],
   );
 
   const padStyle = (active: boolean) => ({
@@ -217,10 +220,10 @@ const StageSoundboard: React.FC = () => {
               backgroundColor: "rgba(255,255,255,0.2)",
             }}
             accessibilityRole="button"
-            accessibilityLabel="Stop sound"
+            accessibilityLabel={t("stages.stopSound")}
           >
             <Icon name="Square" size={11} color="#F4F4F5" />
-            <Text style={{ color: "#F4F4F5", fontSize: 11, fontWeight: "600" }}>Stop</Text>
+            <Text style={{ color: "#F4F4F5", fontSize: 11, fontWeight: "600" }}>{t("stages.stop")}</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -235,7 +238,7 @@ const StageSoundboard: React.FC = () => {
               style={padStyle(active)}
               activeOpacity={0.7}
               accessibilityRole="button"
-              accessibilityLabel={sound.label}
+              accessibilityLabel={t(sound.label)}
             >
               <Text style={{ fontSize: 13 }}>{sound.emoji}</Text>
               <Text
@@ -245,7 +248,7 @@ const StageSoundboard: React.FC = () => {
                   fontWeight: "500",
                 }}
               >
-                {sound.label}
+                {t(sound.label)}
               </Text>
             </TouchableOpacity>
           );
@@ -269,7 +272,7 @@ const StageSoundboard: React.FC = () => {
                 style={padStyle(active)}
                 activeOpacity={0.7}
                 accessibilityRole="button"
-                accessibilityLabel={`${sound.name}. Long press to delete.`}
+                accessibilityLabel={t("stages.customSoundLabel", { name: sound.name })}
               >
                 <Icon name="Music" size={12} color={active ? "#fff" : "rgba(255,255,255,0.6)"} />
                 <Text
@@ -293,7 +296,7 @@ const StageSoundboard: React.FC = () => {
             style={[padStyle(false), { opacity: isUploading ? 0.5 : 1 }]}
             activeOpacity={0.7}
             accessibilityRole="button"
-            accessibilityLabel="Upload a custom sound"
+            accessibilityLabel={t("stages.uploadCustomSound")}
           >
             {isUploading ? (
               <ActivityIndicator size="small" color="rgba(255,255,255,0.6)" />
@@ -301,7 +304,7 @@ const StageSoundboard: React.FC = () => {
               <Icon name="Plus" size={12} color="rgba(255,255,255,0.6)" />
             )}
             <Text style={{ color: "rgba(255,255,255,0.6)", fontSize: 12, fontWeight: "500" }}>
-              {isUploading ? "Uploading…" : `Add (${customSounds.length}/${MAX_CUSTOM_SOUNDS})`}
+              {isUploading ? t("stages.uploading") : t("stages.addSoundCount", { count: customSounds.length, max: MAX_CUSTOM_SOUNDS })}
             </Text>
           </TouchableOpacity>
         </ScrollView>

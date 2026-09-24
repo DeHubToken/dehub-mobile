@@ -252,7 +252,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
             <Ionicons name="close" size={24} color="#F9FBFF" />
           </TouchableOpacity>
           <Text className="text-white text-[17px] font-semibold">
-            New Message
+            {t("dm.newMessage")}
           </Text>
           <View className="w-9" />
         </View>
@@ -260,7 +260,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
         {/* "To:" search field */}
         <View className="flex-row items-center px-4 py-2.5 border-b border-theme-neutrals-700/30">
           <Text className="text-theme-neutrals-400 text-[15px] font-medium mr-2">
-            To:
+            {t("dm.toLabel")}
           </Text>
           <TextInput
             ref={searchRef}
@@ -295,7 +295,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
           {suggestions.length > 0 && (query || "").trim().length < 2 ? (
             <View className="mt-3">
               <Text className="text-white text-[14px] font-semibold mb-2.5">
-                Suggested
+                {t("dm.suggested")}
               </Text>
               <FlatList
                 data={suggestions as any[]}
@@ -398,10 +398,10 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
                 <View className="py-10 items-center">
                   <Ionicons name="person-outline" size={40} color="#4B5563" />
                   <Text className="text-theme-neutrals-300 text-[14px] mt-3">
-                    No accounts found
+                    {t("dm.noAccountsFound")}
                   </Text>
                   <Text className="text-theme-neutrals-500 text-[12px] mt-1 text-center px-4">
-                    Try searching with their username or wallet address
+                    {t("dm.trySearching")}
                   </Text>
                 </View>
               )}
@@ -410,7 +410,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
             <View className="py-10 items-center">
               <Ionicons name="chatbubble-ellipses-outline" size={40} color="#4B5563" />
               <Text className="text-theme-neutrals-400 text-[13px] mt-3 text-center px-4">
-                Search for a user by username or paste their wallet address to start chatting
+                {t("dm.searchHint")}
               </Text>
             </View>
           ) : null}

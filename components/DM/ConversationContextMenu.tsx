@@ -12,6 +12,7 @@ import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl } from "../../libs/misc";
 import { formatRelativeFromNow } from "../../libs/date.util";
@@ -85,9 +86,10 @@ const ConversationContextMenuComponent: React.FC<ConversationContextMenuProps> =
   peerHasFreeAccess,
   isCreator,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
 
-  const displayName = otherUser?.displayName || otherUser?.username || "Unknown";
+  const displayName = otherUser?.displayName || otherUser?.username || t("settings.unknown");
   const username = otherUser?.username;
   const avatarUrl = getAvatarUrl(otherUser?.avatarImageUrl);
 
@@ -96,17 +98,17 @@ const ConversationContextMenuComponent: React.FC<ConversationContextMenuProps> =
     if (!conversation) return { previewText: "", timeStr: "" };
     const msgs = conversation.messages;
     const last = msgs?.[0] as DmMessage | undefined;
-    if (!last) return { previewText: "No messages yet", timeStr: "" };
+    if (!last) return { previewText: t("communities.noMessagesYet"), timeStr: "" };
     const isMine = last.author === "me";
-    const prefix = isMine ? "You: " : "";
     let text = "";
-    if (last.msgType === "voice") text = `${prefix}Voice note`;
-    else if (last.msgType === "gif") text = `${prefix}GIF`;
-    else if (last.msgType === "media") text = `${prefix}Photo`;
-    else text = `${prefix}${last.content?.replace(/\n/g, " ") || ""}`;
+    if (last.msgType === "voice") text = t("dm.voiceNote");
+    else if (last.msgType === "gif") text = "GIF";
+    else if (last.msgType === "media") text = t("dm.photo");
+    else text = last.content?.replace(/\n/g, " ") || "";
+    if (isMine) text = t("dm.youSaid", { text });
     const ts = formatRelativeFromNow(last.createdAt || conversation.lastMessageAt);
     return { previewText: text, timeStr: ts };
-  }, [conversation]);
+  }, [conversation, t]);
 
   const handleOpen = useCallback(() => {
     onClose();
@@ -211,16 +213,16 @@ const ConversationContextMenuComponent: React.FC<ConversationContextMenuProps> =
             <View className="h-[1px] bg-theme-neutrals-700/60" />
 
             {/* Actions */}
-            <ActionRow icon="chatbubble-outline" label="Open chat" onPress={handleOpen} />
+            <ActionRow icon="chatbubble-outline" label={t("dm.openChat")} onPress={handleOpen} />
             {isCreator && onToggleFreeAccess && (
               <ActionRow
                 icon={peerHasFreeAccess ? "remove-circle-outline" : "shield-checkmark-outline"}
-                label={peerHasFreeAccess ? "Remove free access" : "Grant free access"}
+                label={peerHasFreeAccess ? t("dm.removeFreeAccess") : t("dm.grantFreeAccess")}
                 onPress={handleToggleFreeAccess}
               />
             )}
-            <ActionRow icon="ban-outline" label="Block user" onPress={handleBlock} destructive />
-            <ActionRow icon="trash-outline" label="Delete conversation" onPress={handleDelete} destructive />
+            <ActionRow icon="ban-outline" label={t("dm.blockUser")} onPress={handleBlock} destructive />
+            <ActionRow icon="trash-outline" label={t("dm.deleteConversation")} onPress={handleDelete} destructive />
           </View>
         </Pressable>
       </Animated.View>
