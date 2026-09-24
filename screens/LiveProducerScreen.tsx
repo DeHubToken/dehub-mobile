@@ -10,6 +10,7 @@ import {
 import { useNavigation, useRoute } from "@react-navigation/native";
 import NetInfo from "@react-native-community/netinfo";
 import { LinearGradient } from "expo-linear-gradient";
+import { activateKeepAwakeAsync, deactivateKeepAwake } from "expo-keep-awake";
 import { useLive } from "../hooks/use-live";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useCameraPermissions } from "expo-camera";
@@ -1027,6 +1028,32 @@ const LiveProducerScreen: React.FC = () => {
       discardDeadLaunchRef.current();
     };
   }, [navigation]);
+
+  // gestureEnabled only stops the iOS swipe. Android back / the back gesture
+  // would unmount the screen, and the cleanup above ends the broadcast for
+  // every viewer. While on air, route it through the same confirm the
+  // on-screen close uses; every deliberate exit sets endedRef first.
+  useEffect(() => {
+    const unsubscribe = navigation.addListener?.("beforeRemove", (e: any) => {
+      const s = latestStageRef.current;
+      if (endedRef.current || (s !== "starting" && s !== "live")) return;
+      e.preventDefault();
+      setShowEndConfirm(true);
+    });
+    return unsubscribe;
+  }, [navigation]);
+
+  // A phone on a tripod nobody touches would hit the screen timeout, Android
+  // would pause the app and take the camera, and the stream would die.
+  const keepAwake = stage === "starting" || stage === "live";
+  useEffect(() => {
+    if (!keepAwake) return;
+    const tag = "live-producer";
+    activateKeepAwakeAsync(tag).catch(() => {});
+    return () => {
+      deactivateKeepAwake(tag).catch(() => {});
+    };
+  }, [keepAwake]);
 
   // no camera handoff delay needed
   // Defer heavy publisher mount until after initial interactions to render instantly

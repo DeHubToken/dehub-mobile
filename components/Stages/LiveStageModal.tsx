@@ -27,6 +27,8 @@ import StageSoundboard from "./StageSoundboard";
 import StageScreenShare from "./StageScreenShare";
 import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
 import { toastError, toastSuccess } from "../../libs";
+import { useTranslation } from "react-i18next";
+import { confirmEndStage } from "./confirmEndStage";
 
 const { width: SW, height: SH } = Dimensions.get("window");
 
@@ -274,6 +276,7 @@ const LiveStageModal: React.FC = () => {
   const [selectedVoiceId, setSelectedVoiceId] = useState("");
 
   const spaceTitle = currentSpace?.title ?? "";
+  const { t } = useTranslation();
   const handleShare = useCallback(() => {
     Share.share({ message: `Join me on DeHub Stages: "${spaceTitle}"`, title: spaceTitle });
   }, [spaceTitle]);
@@ -839,7 +842,7 @@ const LiveStageModal: React.FC = () => {
           )}
 
           <TouchableOpacity
-            onPress={isHostRole ? endSpace : leaveSpace}
+            onPress={isHostRole ? () => confirmEndStage(t, spaceTitle, endSpace) : leaveSpace}
             style={{
               flexDirection: "row",
               alignItems: "center",

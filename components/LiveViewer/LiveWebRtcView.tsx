@@ -12,6 +12,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { RTCView, type MediaStream } from "react-native-webrtc";
+import { useKeepAwake } from "expo-keep-awake";
 import { DeHubLoader } from "../DeHubLoader";
 
 interface Props {
@@ -22,6 +23,8 @@ interface Props {
 
 const LiveWebRtcView: React.FC<Props> = ({ stream, objectFit = "contain" }) => {
   const [renderedStream, setRenderedStream] = useState<MediaStream | null>(null);
+  // Unlike the HLS player, RTCView does not hold the screen on by itself.
+  useKeepAwake("live-webrtc-view");
   return (
   <View style={[StyleSheet.absoluteFill, styles.backdrop]}>
     <RTCView
