@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, Platform, Keyboard } from 'react-native';
+import { View, Text, TouchableOpacity, Platform, Keyboard, I18nManager } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../theme/colors';
@@ -108,7 +108,13 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
             accessibilityRole="button"
             accessibilityLabel="Go back"
           >
-            <Ionicons name="arrow-back" size={22} color={colors.neutrals[100]} />
+            {/* Icons are not mirrored by the layout; back points right in RTL. */}
+            <Ionicons
+              name="arrow-back"
+              size={22}
+              color={colors.neutrals[100]}
+              style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}
+            />
           </TouchableOpacity>
         )}
         {leftContent ? (

@@ -1,9 +1,10 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { View, Text, TouchableOpacity, TextInput, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, ScrollView, DevSettings } from "react-native";
+import * as Updates from "expo-updates";
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
-import i18n, { SUPPORTED_LANGUAGES, loadLanguage } from "../../i18n";
+import i18n, { SUPPORTED_LANGUAGES, loadLanguage, applyLayoutDirection } from "../../i18n";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const STORAGE_KEY = "user-preferred-language";
@@ -41,14 +42,22 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
         onClose();
         return;
       }
+      let needsReload = false;
       try {
         await AsyncStorage.setItem(STORAGE_KEY, code);
-        await loadLanguage(code);
+        const loaded = await loadLanguage(code);
         await i18n.changeLanguage(code);
+        needsReload = loaded && applyLayoutDirection(code);
       } catch {
         // silently fall back
       } finally {
         onClose();
+      }
+      // Switching between a left-to-right and a right-to-left language only
+      // takes effect after a restart; do it now rather than leave the screens
+      // mirrored the wrong way until the next launch.
+      if (needsReload) {
+        Updates.reloadAsync().catch(() => DevSettings.reload());
       }
     },
     [currentLang, onClose]
