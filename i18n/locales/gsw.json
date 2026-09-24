@@ -650,7 +650,11 @@
       "hintAllow": "AI-System und Crawler, wo das Signal respektiered, chönd uf dim Audio, Kunst und Text trainiere.",
       "hintDeny": "AI-System und Crawler, wo das Signal respektiered, werded gfroged, nöd uf dim Audio, Kunst und Text z'trainiere. Crawler, wo s'Signal ignoriere, werded nöd druch's blockiert.",
       "saved": "AI-Training-Präferenz gspeichered"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "ICH VERSTAHND",
+    "exportPkCopy": "Privates Schlüssel kopiere",
+    "e2eAutomatic": "Automatisch"
   },
   "common": {
     "mute": "Stumm schalte",
@@ -690,7 +694,17 @@
     "optionalSuffix": "(optional)",
     "yesterday": "Geschter",
     "ok": "OK",
-    "continue": "Witer"
+    "continue": "Witer",
+    "goesToHomeFeed": "Gaht zum Home-Feed",
+    "openMenu": "Menü öffne",
+    "scrollsFeedToTop": "Scrollt zum Obe vom Feed und aktualisiert ihn",
+    "notificationsUnread": "Benachrichtigunge, {{unread}} unglese",
+    "errorDetails": "Fehlerdetails:",
+    "failedToLoad": "Lade fehlgeschlage",
+    "noInternetTitle": "Kei Internetverbindig",
+    "noInternetBody": "Bitte prüf dini Internetverbindig und versuechs nomal. Du bruchsch en Internetverbindig zum DeHub bruche.",
+    "noInternetStatus": "Offline - Kei Netzwerkverbindig",
+    "noInternetHint": "Stell sicher, dass Wi-Fi oder mobile Date agschalte sind, und tippe denn uf \"{{action}}\""
   },
   "tip": {
     "title": "Trinkgäld schicke",
@@ -1580,7 +1594,12 @@
     "chooseUsernameBody": "Wähl en Benutzername und en Aazeigname zum wiitermache. Du chasch si spöter ändere.",
     "checkingAvailability": "Verfüegbarkeit wird prüeft…",
     "usernameTakenHint": "De Name isch scho vergä — probier Zahle oder en Underschtrich",
-    "displayNameLength": "De Aazeigname mues 2–50 Zeiche lang si."
+    "displayNameLength": "De Aazeigname mues 2–50 Zeiche lang si.",
+    "loginFailedRetry": "Login fehlgeschlage. Bitte versuechs nomal.",
+    "sendCodeFailedRetry": "Code konnt nöd gschickt werde. Bitte versuechs nomal.",
+    "invalidCodeRetry": "Ungültiger Code. Bitte versuechs nomal.",
+    "invalidEmailOrPassword": "Ungültigi E-Mail oder Passwort.",
+    "welcomeToDehub": "Willkomme bi DeHub"
   },
   "messages": {
     "smartRepliesOff": "Antwortvorschläg abgschaltet",
@@ -1658,7 +1677,32 @@
     "offerWorthNow": "Öppe {{amount}} DHB zum aktuelle Kurs",
     "offerNotePlaceholder": "Notiz dezuetue (optional)",
     "offerCommitsNothing": "Es Aagebot choschtet nüt und bindet kei DHB. Du zahlsch nur, wenn de Bsitzer aanimmt.",
-    "offerNeedsHandle": "Das Konto het kein Benutzername, für wo me chönnt biete."
+    "offerNeedsHandle": "Das Konto het kein Benutzername, für wo me chönnt biete.",
+    "noPostsYet": "No kei Posts",
+    "noPostsYetSub": "Inhalt wird hier erschtelle, wenn posts gmacht werde",
+    "noPinnedPosts": "No kei Pinned Posts",
+    "noPinnedPostsSub": "Pinned Posts werde hier erschtelle",
+    "emptyLiked": "No kei Liked Posts.",
+    "emptySaved": "No kei Gspeicherte Posts.",
+    "emptyUnlocked": "No kei Entsperrti Posts.",
+    "emptyWatched": "No kei Watch-History.",
+    "emptyFolder": "No kei Posts i dere Ordner.",
+    "emptyPosts": "No kei Posts.",
+    "couldNotLoadPosts": "Posts konnt nöd glade werde.",
+    "noPostsOrReplies": "Keini Posts, Kommentär oder Antworte bis jetzt",
+    "noPostsOrRepliesSub": "Sie werde do erschiine",
+    "avatarUpdated": "Avatar aktualisiert",
+    "coverUpdated": "Cover aktualisiert",
+    "couldNotPickImage": "Bild konnt nöd usgwählt werde",
+    "changeCoverImage": "Coverbild ändere",
+    "changeAvatar": "Avatar ändere",
+    "verifiedEnsName": "Verifizierte ENS Name {{name}}",
+    "notFullyJoined": "Dä User isch no nöd vollstänndig debi. Er hät ke Name usgwählt oder Profil-Iistellige abgschlosse. Du chasch immer no öffentlichi Aktivitäte gseh und Trinkgeld geh, falls verfügbar.",
+    "loadRepliesFailed": "Antworte konnt nöd glade werde",
+    "refreshFailed": "Aktualisiere fehlgschlage",
+    "noRepliesYet": "Keini Antworte bis jetzt",
+    "noRepliesYetSub": "Wenn dä User uf Posts antworte, werded sie do erschiine.",
+    "noMoreReplies": "Keini meh Antworte"
   },
   "tv": {
     "title": "TV",
@@ -1741,7 +1785,11 @@
     "loadingPrice": "Priis wird glade…",
     "topUpExplanation": "DHB wird uf de Chetti a d'DeHub-Wärbekasse überwiese, denn wird dis Guethabe noch ere unabhängige On-Chain-Prüefig guetgschribe.",
     "paymentHistory": "Zahligsverlauf",
-    "noPayments": "No kei Zahlige"
+    "noPayments": "No kei Zahlige",
+    "sponsored": "Gesponsert",
+    "morePosts": "Meh Posts",
+    "loadMorePosts": "Meh Posts lade",
+    "playAdVideo": "Werbigsvideo abspiele"
   },
   "buyCoins": {
     "title": "Coins chaufe",
@@ -2206,7 +2254,8 @@
     "privateBalanceMode": "Private Guethabe-Modus isch aktiviert",
     "addressHidden": "Adrässe usblendet",
     "allowInFeeds": "Dem Nutzer erlaube, i dine Feeds z erschiine",
-    "hideContent": "Ihri Inhalt usblende und Interaktione iischränke"
+    "hideContent": "Ihri Inhalt usblende und Interaktione iischränke",
+    "a11yLabel": "Profil-Optione"
   },
   "toasts": {
     "saved_to_bookmarks": "Bi de Läsezeiche gspeicheret",
@@ -2578,7 +2627,8 @@
     "roles": {
       "owner": "Bsitzer",
       "moderator": "Moderator",
-      "member": "Mitglied"
+      "member": "Mitglied",
+      "admin": "Admin"
     },
     "time": {
       "today": "hüt",
@@ -2587,7 +2637,126 @@
       "weeks": "{{count}} Wuche",
       "months": "{{count}} Mönet",
       "years": "{{count}} Jahr"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "bearbeitet",
+      "deleteTitle": "Nachricht lösche",
+      "deleteConfirm": "Dä Nachricht lösche? Das chan nöd rüggängig gmacht werde.",
+      "muted": "Du bisch stumm gschalte",
+      "postingDisabled": "Posts sind für Mitgliider do nöd erlaubt",
+      "mediaMessage": "Mediä",
+      "pinnedMessage": "Angepinnti Nachricht",
+      "showEarlier": "Früehneri Nachrichte zeige",
+      "editingMessage": "Nachricht bearbeite",
+      "copied": "Bote kopiert",
+      "copyText": "Text kopiere",
+      "mutedUntil": "Du bisch bis {{date}} stumm gschaltet",
+      "slowMode": "Langsammodus: öppis jede {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Admin entlasse",
+      "cancel": "Abbreche",
+      "dismissAdmin": "Admin entlasse",
+      "roleAdmin": "Administrator",
+      "roleMember": "Mitglied",
+      "whatCanTheyDo": "Was chan de Admin mache?",
+      "rightNotHeld": "Du hesch das Recht selber nöd",
+      "customTitle": "Benutzerdefiniert Titel",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Zeigt statt em Standard Admin-Abzeiche a.",
+      "saveChanges": "Änderige speichere",
+      "promote": "Fördere",
+      "tabs": {
+        "members": "Mitglieder",
+        "admins": "Admins",
+        "permissions": "Berechtigunge",
+        "invites": "Iiladige",
+        "rules": "Regle",
+        "recentActions": "Neui Aktione",
+        "danger": "Gfahrezoone"
+      },
+      "title": "Verwalte",
+      "purgeTitle": "Alli Bote lösche?",
+      "purgeConfirm": "Lösche",
+      "kickTitle": "Mitglied entfärne?",
+      "kickConfirm": "Entfärne",
+      "bannedPermanent": "Bann - für immer",
+      "mutedPermanent": "Stumm - für immer",
+      "editAdminRights": "Admin-Rächte bearbeite",
+      "promoteToAdmin": "Zum Admin befördere",
+      "unmute": "Stummschaltig ufhebe",
+      "mute": "Stummschalte",
+      "unban": "Ban ufhebe",
+      "ban": "Ban",
+      "deleteAllMessages": "Alli Nöchrichte lösche",
+      "removeFromCommunity": "Us de Community entfärne",
+      "noActionsAvailable": "Du chasch die Person nöd moderiere.",
+      "showMore": "Meh zeige",
+      "joinRequests": "Bitritts-Uuforderige",
+      "approve": "Bewillige",
+      "reject": "Ablehne",
+      "members": "Mitglieder",
+      "searchMembers": "Suche nach Wallet-Adress",
+      "noMembersMatch": "Kein Mitglied passt dazu.",
+      "noMembers": "Noch kei Mitglieder.",
+      "muted": "Stummgschaltet",
+      "banned": "Bannt",
+      "muteEffect": "Sie blibe i de Community, chönd aber nöd poste, bis die Stummschaltig abgloufe isch.",
+      "banEffect": "Sie werded us em Chat entfärnt und chönd nöd zrugg cho, bis de Ban ufghobe isch.",
+      "durationLabel": "Dauer",
+      "reasonLabel": "Grund (optional)",
+      "reasonPlaceholder": "Warum wird sie/er bannt?",
+      "alsoDeleteMessages": "Au alli ihre/sini Nöchrichte lösche",
+      "confirmMute": "Mitglied stummschalte",
+      "confirmBan": "Mitglied banne",
+      "rulesUpdated": "Regle aktualisiert",
+      "rulesTitle": "Community-Regle",
+      "rulesEmpty": "Noch kei Regle — füeg die erste da drunter ii.",
+      "rulePlaceholder": "Regle beschriibe",
+      "addRule": "Regle adde",
+      "saveRules": "Regle speichere",
+      "dismissAdminBody": "{{wallet}} wird wieder zu dim normale Mitgliid.",
+      "purgeBody": "Jedi Nachricht, wo {{name}} i dere Community gschickt het, wird glöscht.",
+      "kickBody": "{{name}} wird us dere Community entfernt. Sie chönd spöter wieder dra teilnäh.",
+      "bannedUntil": "Gschperrt bis {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Stumm bis {{date}}",
+      "bannedUntilShort": "Bis {{date}}",
+      "muteTitle": "{{name}} stumm schalte",
+      "banTitle": "{{name}} sperre",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} vo {{max}}",
+      "moveRuleUp": "Regle uus schiibe",
+      "moveRuleDown": "Regle uus schiibe",
+      "deleteRule": "Regle lösche",
+      "rights": {
+        "changeInfo": "Community-Infos ändere",
+        "changeInfoHint": "Name, Beschriibig, Avatar und Banner bearbeite",
+        "deleteMessages": "Nachrichte lösche",
+        "deleteMessagesHint": "Beliebigi Nachrichte us em Community-Chat entferne",
+        "restrictMembers": "Nutzer sperre",
+        "restrictMembersHint": "Mitglieder stumm schalte, entferne und sperre",
+        "inviteUsers": "Nutzer per Link iilade",
+        "inviteUsersHint": "Iiladigslings erstelle und widerrufe",
+        "pinMessages": "Nachrichte pinne",
+        "pinMessagesHint": "E Nachricht obe im Chat pinne",
+        "manageEvents": "Events verwalte",
+        "manageEventsHint": "Community-Events erstelle und bearbeite",
+        "addAdmins": "Neui Admins adde",
+        "addAdminsHint": "Mitglieder befördere und die Rechte von Admins bearbeite, wo sie hinzugefügt werde",
+        "remainAnonymous": "Anonym blibe",
+        "remainAnonymousHint": "Dä Admin us de Mitgliederliste verstecke"
+      },
+      "durations": {
+        "oneHour": "1 Stund",
+        "eightHours": "8 Stund",
+        "oneDay": "1 Tag",
+        "oneWeek": "1 Wuche",
+        "forever": "Für immer"
+      }
+    },
+    "chooseAvatar": "Avatar wähle"
   },
   "work": {
     "title": "Prämie",
@@ -2939,7 +3108,9 @@
       "shipped": "Verschickt",
       "completed": "Abgschlosse",
       "cancelled": "Abbroche"
-    }
+    },
+    "removePhoto": "Foto entferne",
+    "listingOptions": "Listig-Optione"
   },
   "accounts": {
     "subtitle": "Ganzi Konte zum Verchauf, priset i DHB",
@@ -3307,7 +3478,14 @@
     "removeFollowerHint": "Drücke und halte en Follower zum Ihn/Sie z'entferne.",
     "cancel": "Abbräche",
     "remove": "Entferne",
-    "thisUser": "Dä User"
+    "thisUser": "Dä User",
+    "cancelRequestTo": "Folge-Uufdrag für @{{username}} abbreche?",
+    "followingUser": "Folge @{{username}}",
+    "contentUnavailable": "Inhalt nöd verfügbar",
+    "youBlockedBody": "Du wirsch ihre Posts nöd gseh und chasch nöd mit ihne interagiere. Entsperre zum Zugriff wiederherstelle.",
+    "restrictedBody": "Dä User hät Interaktione mit dim Account igschränkt.",
+    "requestPendingBody": "Dini Folge-Uufdrag isch gschickt worde. Du chasch ihre Posts gseh, sobald sie din Uufdrag bestätige.",
+    "followToSeePosts": "Folge däm Account zum ihre Posts gseh."
   },
   "reactionInfo": {
     "title": "Reaktione",
@@ -3622,7 +3800,8 @@
     "needGas": "Für Gas uf {{chain}} bruuchsch natives {{token}}.",
     "bridging": "Wird überbruggt…",
     "bridgeAction": "Bridge {{from}} → {{to}}",
-    "failed": "Bridge fehlgschlage"
+    "failed": "Bridge fehlgschlage",
+    "sentArriveShortly": "{{amount}} DHB gschickt vo {{from}} → {{to}}. Tokens chömed bald."
   },
   "banned": {
     "title": "Dini Konto isch gsperrt",
@@ -3800,7 +3979,16 @@
     "legacyRecovered": "Mir hend dis alts Konto{{suffix}} bestätigt und sis Wallet zrugggholt. Setz es Passwort, wo's ab jetzt uf däm Grät schützt — uf däm Telefon und überall susch.",
     "passwordMin": "Passwort (mind. {{min}} Zeiche)",
     "newPasswordMin": "Neus Passwort (mind. {{min}} Zeiche)",
-    "newWalletPasswordMin": "Passwort vom neue Wallet (mind. {{min}} Zeiche)"
+    "newWalletPasswordMin": "Passwort vom neue Wallet (mind. {{min}} Zeiche)",
+    "deviceCheckCancelled": "Geräte-Check abbroche — nüt isch gänderet worde.",
+    "savePhraseTitle": "Dini Wiederherstellig-Phrase speichere",
+    "startOverTitle": "Neu mit ere Wallet starte",
+    "secureNewWalletTitle": "Dini neu Wallet sichere",
+    "secureWalletTitle": "Dini Wallet sichere",
+    "unlockOnMobileTitle": "Uf em Mobile entsperre",
+    "oldAccountFoundTitle": "Alti Account gfunde",
+    "unlockWalletTitle": "Dini Wallet entsperre",
+    "phraseExplainer": "Dini Wallet wird dur d'Biometrie vo dim Handy gschützt. Dä Unlock <em>funktioniert nur uf dim Handy</em> — die 12 Wörter sind de einzig Weg zrugg, falls du DeHub neu installiersch, s'Handy wächselsch oder es verliersch."
   },
   "transcript": {
     "title": "Transkript",
@@ -3986,7 +4174,38 @@
     "subscribe": "Abonniere",
     "subscriberCount_one": "{{count}} Abonnänt",
     "subscriberCount_other": "{{count}} Abonnänte",
-    "subscribeToForRich": "<name>{{name}}</name> für <price>{{price}}</price> abonniere"
+    "subscribeToForRich": "<name>{{name}}</name> für <price>{{price}}</price> abonniere",
+    "loadPlansFailed": "Plän chönd nöd glade werde",
+    "subscriberContent": "Abo-Inhalt",
+    "subscriberContentSub": "Plän mache zum Abonnente exklusivi Inhalts-Aagebot z'mache",
+    "createFirstPlan": "Mach din erscht Plan",
+    "addNewPlan": "Neu Plan dezuefüüge",
+    "durations": {
+      "oneMonth": "1 Monet",
+      "threeMonths": "3 Monet",
+      "sixMonths": "6 Monet",
+      "oneYear": "1 Johr",
+      "lifetime": "Lebenslängli"
+    },
+    "planNameRequired": "Plan-Name isch obligatorisch",
+    "enterValidPrice": "Gib en gültige Priis ii",
+    "availableChains": "Abonnemente sind momentan uf Base und BNB verfügbar",
+    "waitForSwitch": "Warte bis s'Abonnementsnetzwerk fertig mit em Wechsel",
+    "connectAndWait": "Verbind din Wallet und warte uf s'Abonnementsnetzwerk",
+    "planUpdated": "Plan aktualisiert",
+    "creating": "Wird erstelle…",
+    "planPublished": "Plan erstellt und publiziert",
+    "createPlanTitle": "Abonnementsplan erstelle",
+    "network": "Abonnementsnetzwerk",
+    "planNameLabel": "Plan-Name *",
+    "planNamePlaceholder": "z.B. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Was Abonnente übercho…",
+    "priceLabel": "Priis (USD) *",
+    "legacyMigrationNote": "Spare migriert die alte DHB-Plän zu Dollar-Priise zum Vor-Listing-Kurs.",
+    "benefits": "Vorteil",
+    "benefitPlaceholder": "En Vorteil dezuefüüge…",
+    "createAndPublish": "Erstelle & Publizier",
+    "publishingOnChain": "Publizierä isch en On-Chain-Transaktion"
   },
   "live": {
     "notSet": "Nöd festgleit",
@@ -4104,7 +4323,22 @@
     "acceptTerms": "Ich akzeptier d <terms>Nutzigsbedingige</terms>",
     "sentTo": "{{amount}} {{symbol}} isch zu {{address}} gschickt worde",
     "tokensSentTo": "Tokens sind zu {{address}} gschickt worde",
-    "goToProfile": "Gang zum Profil"
+    "goToProfile": "Gang zum Profil",
+    "aboutTitle": "Über DeHub & Zahlige",
+    "aboutSubtitle": "Din Gateway zu nahtlose Token-Zahlige",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokens werdet bruucht zum Creators abonnierä, Streamers Trinkgeld gäh oder Content freischalte. Je meh du hesch, desto tiefer sind din Gebühre und desto meh Superchraft schaltisch frei wie Timeline Trend Boosts und Verifikations-Badges.",
+    "aboutInstantTitle": "Sofortzahlige",
+    "aboutInstantBody": "Mit Stripe chasch Tokens sofort und nahtlos in jedes Konto choufe, wo du igloggt bisch. DeHub macht Tokens eifach und für alli. Wenn meh Support bruchsch, chum eifach in unser 24/7 Live Community Chat und frag nach Admin Support.",
+    "aboutSecureTitle": "Sichere Gateway",
+    "aboutSecureBody": "Alli Zahlungsdetails sind verschlüsslet und sicher vo Stripe verarbeitet. Mir chönd dinä empfindlichi Informatione oder Kartendetails nöd abrufe oder speichere, was dir ultimative Seelenfriedä git.",
+    "transfersSummary": "Überblick über Überwiisige",
+    "availableToBuy": "Jetzt zum choufe verfügbar",
+    "noSupplyShort": "Kei Vorrat",
+    "topUpSubtitle": "$DHB mit Karte choufe und gratis Gas becho zum sofort bruuche",
+    "noTxHash": "Transaktions-Hash nöd gfunde",
+    "latestTransactions": "Neuesti Transaktione",
+    "showAll": "Alli zeige"
   },
   "musicSheet": {
     "title": "Es Lied mache",
@@ -4233,7 +4467,13 @@
     "followUpNote": "Mir mälded üs villicht mit Rückfrage zu dim Feedback",
     "submitFeedback": "Feedback schicke",
     "provideFeedback": "Bitte gib dis Feedback ii",
-    "thankYou": "Danke für dis Feedback!"
+    "thankYou": "Danke für dis Feedback!",
+    "submitFailed": "Feedback überchoufe isch fehlgschlage. Bitte probier's no mal.",
+    "maybeLater": "Vielleicht spöter",
+    "helpUsImprove": "Hilf eus zum verbessere",
+    "rateExperience": "Wie würdsch din Erläbnis bewärte?",
+    "telegramOptional": "Telegram (optional)",
+    "discordOptional": "Discord (optional)"
   },
   "migrate": {
     "clearAll": "Alles löschen",
@@ -4350,7 +4590,14 @@
       "blueWhale": "S grösste Ding wo je gläbt hät. Das bisch du.",
       "megalodon": "Da isch dini Chrone — du bisch jetzt App-Royalty"
     },
-    "continue": "Zrugg zu DeHub"
+    "continue": "Zrugg zu DeHub",
+    "none": "Keini",
+    "noBadgeYet": "Kein Badge bis jetzt",
+    "next": "Nächscht",
+    "topTier": "Top-Tier",
+    "toNextTier": "{{amount}} DHB zu {{tier}}",
+    "everyTierUnlocked": "Jedes Tier freigschalte",
+    "holdNote": "Sobald en Badge freigschalte isch, ghört er dir, solang wie du din DHB hesch. D Zahl vo Tokens, wo bruucht werdet zum en neue Badge freizschalte, chan sich mit em Token-Preis ändere."
   },
   "passwordStrength": {
     "veryWeak": "Sehr schwach",
@@ -4432,7 +4679,11 @@
     },
     "ttsLabel": "Sag öppis laut",
     "ttsPlaceholder": "Lies em Stream vor…",
-    "ttsHint": "Lies em ganzi Chat vor, wänn din Gschänk-Gift landet."
+    "ttsHint": "Lies em ganzi Chat vor, wänn din Gschänk-Gift landet.",
+    "sendAGift": "En Gschänk schicke",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Mindescht-Gschänk isch {{amount}}",
+    "sendGift": "Gschänk schicke"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4815,7 +5066,8 @@
         "title": "Lueg, wie's Verdienä funktioniert",
         "body": "Findi us, wie Trinkgeld, Abzeiche und SuperPowers das, wo du do machsch, zu öppis machä, wo du us em verdienst."
       }
-    }
+    },
+    "swipeToStart": "Wisch zum starte"
   },
   "conversation": {
     "commonGround": {
@@ -5297,5 +5549,18 @@
     "toastPaidSettled": "Zahlt — de Handel isch abgwicklet",
     "walletNotReady": "Dis Wallet isch no nöd parat — probier's grad nomal.",
     "wrongChain": "Dä Handel wird uf {{chain}} abgwicklet. Wächsle i de Iistellige uf {{chain}} und probier's nomal."
+  },
+  "moderation": {
+    "appealDuplicate": "Du hesch das scho aagfoche",
+    "appealSent": "Aagfoche",
+    "appealFailed": "Das Aagfoche isch nöd glunge",
+    "appealTitle": "Aagfoche",
+    "appealSubtitle": "E Person wird das läse und d Entscheidig no einisch aaluege.",
+    "appealPlaceholder": "Was meinsch, isch vergässe gange? Kontext zum Inhalt hilft meh als alles anderi.",
+    "appealSend": "Aagfoche schicke",
+    "appealFootnote": "Du bechunsch en Referenznummere, und d Antwort chunnt denn do zrugg. Pro Entscheidig ei Aagfoche.",
+    "appealRef": "Referenz {{ref}}",
+    "appealSubtitleSubject": "E Person wird das läse und {{subject}} no einisch aaluege.",
+    "appealMore": "Zeiche, wo no bruucht werdet: {{count}}"
   }
 }

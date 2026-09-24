@@ -690,7 +690,11 @@
       "hintAllow": "Dirbtinio intelekto sistemos ir skaitytuvai, kurie atsižvelgia į šį signalą, gali treniruoti jūsų garsą, meno kūrinius ir rašymą.",
       "hintDeny": "Dirbtinio intelekto sistemų ir skaitytuvų, kurie atsižvelgia į šį signalą, prašoma nesitreniruoti garso, meno kūrinių ir rašymo srityse. Šliaužiklių, kurie ignoruoja signalą, jis neblokuoja.",
       "saved": "Dirbtinio intelekto mokymo nuostata išsaugota"
-    }
+    },
+    "chainIdLabel": "Grandininis ID: {{id}}",
+    "exportPkConfirmPhrase": "AŠ SUPRANTU",
+    "exportPkCopy": "Kopijuoti privatų raktą",
+    "e2eAutomatic": "Automatinis"
   },
   "common": {
     "mute": "Nutildyti",
@@ -730,7 +734,17 @@
     "optionalSuffix": "(nebūtina)",
     "yesterday": "Vakar",
     "ok": "Gerai",
-    "continue": "Tęsti"
+    "continue": "Tęsti",
+    "goesToHomeFeed": "Eina į pagrindinį kanalą",
+    "openMenu": "Atidaryti meniu",
+    "scrollsFeedToTop": "Slinksta į kanalo viršų ir jį atnaujina",
+    "notificationsUnread": "Pranešimai, {{unread}} neskaityta",
+    "errorDetails": "Klaidos detalės:",
+    "failedToLoad": "Nepavyko įkelti",
+    "noInternetTitle": "Nėra interneto ryšio",
+    "noInternetBody": "Patikrinkite savo interneto ryšį ir bandykite dar kartą. Norint naudotis DeHub, reikia būti prisijungus prie interneto.",
+    "noInternetStatus": "Neprisijungęs – nėra tinklo ryšio",
+    "noInternetHint": "Įsitikinkite, kad įjungtas „Wi-Fi“ arba mobilusis duomenų ryšys, tada palieskite „{{action}}“"
   },
   "tip": {
     "title": "Siųsti arbatpinigius",
@@ -1620,7 +1634,12 @@
     "chooseUsernameBody": "Pasirinkite naudotojo vardą ir rodomą vardą, kad tęstumėte. Vėliau galėsite juos pakeisti.",
     "checkingAvailability": "Tikrinamas prieinamumas…",
     "usernameTakenHint": "Vardas užimtas — pabandykite pridėti skaičių arba apatinį brūkšnį",
-    "displayNameLength": "Rodomas vardas turi būti 2–50 simbolių."
+    "displayNameLength": "Rodomas vardas turi būti 2–50 simbolių.",
+    "loginFailedRetry": "Nepavyko prisijungti. Bandykite dar kartą.",
+    "sendCodeFailedRetry": "Nepavyko išsiųsti kodo. Bandykite dar kartą.",
+    "invalidCodeRetry": "Neteisingas kodas. Bandykite dar kartą.",
+    "invalidEmailOrPassword": "Neteisingas el. paštas arba slaptažodis.",
+    "welcomeToDehub": "Sveiki atvykę į DeHub"
   },
   "messages": {
     "smartRepliesOff": "Siūlomi atsakymai išjungti",
@@ -1698,7 +1717,32 @@
     "offerWorthNow": "Apie {{amount}} DHB dabartiniu kursu",
     "offerNotePlaceholder": "Pridėk žinutę (neprivaloma)",
     "offerCommitsNothing": "Pasiūlymas nieko nekainuoja ir neužšaldo DHB. Sumokėsi tik tada, jei savininkas sutiks.",
-    "offerNeedsHandle": "Ši paskyra neturi naudotojo vardo, dėl kurio būtų galima siūlyti."
+    "offerNeedsHandle": "Ši paskyra neturi naudotojo vardo, dėl kurio būtų galima siūlyti.",
+    "noPostsYet": "Dar nėra įrašų",
+    "noPostsYetSub": "Turinys čia pasirodys, kai bus paskelbtas",
+    "noPinnedPosts": "Dar nėra prisegtų įrašų",
+    "noPinnedPostsSub": "Prisegti įrašai čia pasirodys",
+    "emptyLiked": "Dar nėra patiktų įrašų.",
+    "emptySaved": "Dar nėra išsaugotų įrašų.",
+    "emptyUnlocked": "Dar nėra atrakintų įrašų.",
+    "emptyWatched": "Dar nėra žiūrėjimo istorijos.",
+    "emptyFolder": "Šiame aplanke dar nėra įrašų.",
+    "emptyPosts": "Dar nėra įrašų.",
+    "couldNotLoadPosts": "Nepavyko įkelti įrašų.",
+    "noPostsOrReplies": "Dar nėra įrašų, komentarų ar atsakymų",
+    "noPostsOrRepliesSub": "Jie pasirodys čia",
+    "avatarUpdated": "Avataro atnaujinimas",
+    "coverUpdated": "Viršelio atnaujinimas",
+    "couldNotPickImage": "Nepavyko pasirinkti paveikslėlio",
+    "changeCoverImage": "Keisti viršelio paveikslėlį",
+    "changeAvatar": "Keisti avatarą",
+    "verifiedEnsName": "Patvirtintas ENS vardas {{name}}",
+    "notFullyJoined": "Šis vartotojas dar neprisijungė. Jis nepateikė vartotojo vardo arba neužbaigė profilio nustatymo. Vis tiek galite peržiūrėti viešą veiklą ir siųsti patarimus, jei jie pasiekiami.",
+    "loadRepliesFailed": "Nepavyko įkelti atsakymų",
+    "refreshFailed": "Atnaujinimas nepavyko",
+    "noRepliesYet": "Dar nėra atsakymų",
+    "noRepliesYetSub": "Kai šis vartotojas atsakys į įrašus, jie pasirodys čia.",
+    "noMoreReplies": "Daugiau nėra atsakymų"
   },
   "tv": {
     "title": "TV",
@@ -1781,7 +1825,11 @@
     "loadingPrice": "Įkeliama kaina…",
     "topUpExplanation": "DHB grandinėje pervedamas į DeHub reklamos iždą, o po nepriklausomo patikrinimo grandinėje jūsų likutis papildomas.",
     "paymentHistory": "Mokėjimų istorija",
-    "noPayments": "Mokėjimų kol kas nėra"
+    "noPayments": "Mokėjimų kol kas nėra",
+    "sponsored": "Skelbimas",
+    "morePosts": "Daugiau įrašų",
+    "loadMorePosts": "Įkelti daugiau įrašų",
+    "playAdVideo": "Leisti reklaminį vaizdo įrašą"
   },
   "buyCoins": {
     "title": "Pirkti monetas",
@@ -2216,7 +2264,8 @@
     "privateBalanceMode": "Įjungtas privataus likučio režimas",
     "addressHidden": "Adresas paslėptas",
     "allowInFeeds": "Leisti šiam naudotojui rodytis jūsų srautuose",
-    "hideContent": "Slėpti jų turinį ir apriboti sąveiką"
+    "hideContent": "Slėpti jų turinį ir apriboti sąveiką",
+    "a11yLabel": "Profilių parinktys"
   },
   "toasts": {
     "saved_to_bookmarks": "Išsaugota žymėse",
@@ -2588,7 +2637,8 @@
     "roles": {
       "owner": "Savininkas",
       "moderator": "Moderatorius",
-      "member": "Narys"
+      "member": "Narys",
+      "admin": "Administratorius"
     },
     "time": {
       "today": "šiandien",
@@ -2597,7 +2647,126 @@
       "weeks": "{{count}} sav.",
       "months": "{{count}} mėn.",
       "years": "{{count}} m."
-    }
+    },
+    "chatPanel": {
+      "anon": "Anoniminis",
+      "edited": "redaguota",
+      "deleteTitle": "Ištrinti pranešimą",
+      "deleteConfirm": "Ištrinti šį pranešimą? Tai negali būti atšaukta.",
+      "muted": "Jūs esate nutildytas",
+      "postingDisabled": "Nariai čia negali skelbti",
+      "mediaMessage": "Medija",
+      "pinnedMessage": "Prisegtas pranešimas",
+      "showEarlier": "Rodyti ankstesnius pranešimus",
+      "editingMessage": "Redaguoti pranešimą",
+      "copied": "Žinutė nukopijuota",
+      "copyText": "Kopijuoti tekstą",
+      "mutedUntil": "Esate nutildyti iki {{date}}",
+      "slowMode": "Lėtas režimas: viena žinutė kas {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Atmesti administratorių",
+      "cancel": "Atšaukti",
+      "dismissAdmin": "Atmesti administratorių",
+      "roleAdmin": "Administratorius",
+      "roleMember": "Narys",
+      "whatCanTheyDo": "Ką šis administratorius gali padaryti?",
+      "rightNotHeld": "Jūs pats neturite šios teisės",
+      "customTitle": "Pasirinktinis pavadinimas",
+      "customTitlePlaceholder": "Administratorius",
+      "customTitleHint": "Rodoma vietoj numatytojo Administratoriaus ženklelio.",
+      "saveChanges": "Išsaugoti pakeitimus",
+      "promote": "Reklamuoti",
+      "tabs": {
+        "members": "Nariai",
+        "admins": "Administratoriai",
+        "permissions": "Leidimai",
+        "invites": "Pakvietimai",
+        "rules": "Taisyklės",
+        "recentActions": "Naujausi veiksmai",
+        "danger": "Pavojinga zona"
+      },
+      "title": "Tvarkyti",
+      "purgeTitle": "Ištrinti visas žinutes?",
+      "purgeConfirm": "Ištrinti",
+      "kickTitle": "Pašalinti narį?",
+      "kickConfirm": "Šalinti",
+      "bannedPermanent": "Uždraustas — nuolatinis",
+      "mutedPermanent": "Nutildyta — nuolatinė",
+      "editAdminRights": "Redaguoti administratoriaus teises",
+      "promoteToAdmin": "Paaukštinti iki administratoriaus",
+      "unmute": "Atšaukti nutildymą",
+      "mute": "Nutildyti",
+      "unban": "Atšaukti draudimą",
+      "ban": "Uždrausti",
+      "deleteAllMessages": "Ištrinti visus pranešimus",
+      "removeFromCommunity": "Pašalinti iš bendruomenės",
+      "noActionsAvailable": "Negalite moderuoti šio nario.",
+      "showMore": "Rodyti daugiau",
+      "joinRequests": "Prisijungimo užklausos",
+      "approve": "Patvirtinti",
+      "reject": "Atmesti",
+      "members": "Nariai",
+      "searchMembers": "Ieškoti pagal piniginės adresą",
+      "noMembersMatch": "Nėra atitinkančių narių.",
+      "noMembers": "Dar nėra narių.",
+      "muted": "Nutildyti",
+      "banned": "Uždrausti",
+      "muteEffect": "Jie lieka bendruomenėje, bet negali skelbti, kol pasibaigs nutildymo laikotarpis.",
+      "banEffect": "Jie pašalinami iš pokalbio ir negali grįžti, kol nebus panaikintas draudimas.",
+      "durationLabel": "Trukmė",
+      "reasonLabel": "Priežastis (pasirenkama)",
+      "reasonPlaceholder": "Kodėl jie yra draudžiami?",
+      "alsoDeleteMessages": "Taip pat ištrinti visus jų pranešimus",
+      "confirmMute": "Nutildyti narį",
+      "confirmBan": "Uždrausti narį",
+      "rulesUpdated": "Taisyklės atnaujintos",
+      "rulesTitle": "Bendruomenės taisyklės",
+      "rulesEmpty": "Dar nėra taisyklių — pridėkite pirmąją žemiau.",
+      "rulePlaceholder": "Apibūdinti taisyklę",
+      "addRule": "Pridėti taisyklę",
+      "saveRules": "Išsaugoti taisykles",
+      "dismissAdminBody": "{{wallet}} vėl taps paprastu nariu.",
+      "purgeBody": "Kiekviena {{name}} išsiųsta žinutė šioje bendruomenėje bus pašalinta.",
+      "kickBody": "{{name}} bus pašalintas iš bendruomenės. Jie gali prisijungti vėliau.",
+      "bannedUntil": "Uždrausta iki {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Nutildyta iki {{date}}",
+      "bannedUntilShort": "Iki {{date}}",
+      "muteTitle": "Nutildyti {{name}}",
+      "banTitle": "Uždrausti {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} iš {{max}}",
+      "moveRuleUp": "Perkelti taisyklę aukštyn",
+      "moveRuleDown": "Perkelti taisyklę žemyn",
+      "deleteRule": "Ištrinti taisyklę",
+      "rights": {
+        "changeInfo": "Keisti bendruomenės informaciją",
+        "changeInfoHint": "Redaguoti pavadinimą, aprašymą, avatarą ir reklamjuostę",
+        "deleteMessages": "Ištrinti žinutes",
+        "deleteMessagesHint": "Pašalinti bet kokią žinutę iš bendruomenės pokalbio",
+        "restrictMembers": "Uždrausti vartotojus",
+        "restrictMembersHint": "Nutildyti, pašalinti ir uždrausti narius",
+        "inviteUsers": "Kviesti vartotojus per nuorodą",
+        "inviteUsersHint": "Kurti ir atšaukti kvietimo nuorodas",
+        "pinMessages": "Smeigti žinutes",
+        "pinMessagesHint": "Smeigti žinutę į pokalbio viršų",
+        "manageEvents": "Tvarkyti renginius",
+        "manageEventsHint": "Kurti ir redaguoti bendruomenės renginius",
+        "addAdmins": "Pridėti naujų administratorių",
+        "addAdminsHint": "Skatinti narius ir redaguoti jų pridėtų administratorių teises",
+        "remainAnonymous": "Likti anonimu",
+        "remainAnonymousHint": "Slėpti šį administratorių iš narių sąrašo"
+      },
+      "durations": {
+        "oneHour": "1 valanda",
+        "eightHours": "8 valandos",
+        "oneDay": "1 diena",
+        "oneWeek": "1 savaitė",
+        "forever": "Amžinai"
+      }
+    },
+    "chooseAvatar": "Pasirinkti avatarą"
   },
   "work": {
     "title": "Atlygiai",
@@ -2949,7 +3118,9 @@
       "shipped": "Išsiųsta",
       "completed": "Užbaigtas",
       "cancelled": "Atšauktas"
-    }
+    },
+    "removePhoto": "Pašalinti nuotrauką",
+    "listingOptions": "Sąrašo parinktys"
   },
   "accounts": {
     "subtitle": "Parduodamos visos paskyros, kaina DHB",
@@ -3317,7 +3488,14 @@
     "removeFollowerHint": "Pabelskite ir palaikykite sekėją, kad jį pašalintumėte.",
     "cancel": "Atšaukti",
     "remove": "Pašalinti",
-    "thisUser": "Šis naudotojas"
+    "thisUser": "Šis naudotojas",
+    "cancelRequestTo": "Atšaukti sekimo užklausą @{{username}}?",
+    "followingUser": "Seku @{{username}}",
+    "contentUnavailable": "Turinys neprieinamas",
+    "youBlockedBody": "Nematysite jų įrašų ir negalėsite su jais bendrauti. Atblokuokite, kad atkurtumėte prieigą.",
+    "restrictedBody": "Šis vartotojas apribojo bendravimą su jūsų paskyra.",
+    "requestPendingBody": "Jūsų sekimo užklausa išsiųsta. Jų įrašus galėsite matyti, kai jie patvirtins jūsų užklausą.",
+    "followToSeePosts": "Sekite šią paskyrą, kad matytumėte jos įrašus."
   },
   "reactionInfo": {
     "title": "Reakcijos",
@@ -3632,7 +3810,8 @@
     "needGas": "Grandinėje {{chain}} dujoms reikia vietinio {{token}}.",
     "bridging": "Pervedama…",
     "bridgeAction": "Tiltas {{from}} → {{to}}",
-    "failed": "Tiltas nepavyko"
+    "failed": "Tiltas nepavyko",
+    "sentArriveShortly": "{{amount}} DHB išsiųsta iš {{from}} → {{to}}. Tokenai netrukus pasieks."
   },
   "banned": {
     "title": "Jūsų paskyra užblokuota",
@@ -3810,7 +3989,16 @@
     "legacyRecovered": "Patvirtinome jūsų seną paskyrą{{suffix}} ir atkūrėme jos piniginę. Nustatykite slaptažodį, kuris nuo šiol ją saugos šiame įrenginyje — šiame telefone ir visur kitur.",
     "passwordMin": "Slaptažodis (bent {{min}} simbolių)",
     "newPasswordMin": "Naujas slaptažodis (bent {{min}} simbolių)",
-    "newWalletPasswordMin": "Naujos piniginės slaptažodis (bent {{min}} simbolių)"
+    "newWalletPasswordMin": "Naujos piniginės slaptažodis (bent {{min}} simbolių)",
+    "deviceCheckCancelled": "Įrenginio patikrinimas atšauktas – niekas nebuvo pakeista.",
+    "savePhraseTitle": "Išsaugokite savo atkūrimo frazę",
+    "startOverTitle": "Pradėkite iš naujo su nauja pinigine",
+    "secureNewWalletTitle": "Apsaugokite savo naują piniginę",
+    "secureWalletTitle": "Apsaugokite savo piniginę",
+    "unlockOnMobileTitle": "Atrakinti mobiliajame telefone",
+    "oldAccountFoundTitle": "Rasta sena paskyra",
+    "unlockWalletTitle": "Atrakinkite savo piniginę",
+    "phraseExplainer": "Jūsų piniginę saugos šio telefono biometriniai duomenys. Tas atrakinimas <em>veikia tik šiame telefone</em> – šie 12 žodžių yra vienintelis būdas grįžti, jei iš naujo įdiegsite DeHub, pakeisite telefoną ar jį pametėte."
   },
   "transcript": {
     "title": "Transkripcija",
@@ -3996,7 +4184,38 @@
     "subscribe": "Prenumeruoti",
     "subscriberCount_one": "{{count}} prenumeratorius",
     "subscriberCount_other": "{{count}} prenumeratoriai",
-    "subscribeToForRich": "Prenumeruokite <name>{{name}}</name> už <price>{{price}}</price>"
+    "subscribeToForRich": "Prenumeruokite <name>{{name}}</name> už <price>{{price}}</price>",
+    "loadPlansFailed": "Nepavyko įkelti planų",
+    "subscriberContent": "Prenumeruojamas turinys",
+    "subscriberContentSub": "Sukurkite planus, kad pasiūlytumėte išskirtinį turinį prenumeratoriams",
+    "createFirstPlan": "Sukurkite savo pirmąjį planą",
+    "addNewPlan": "Pridėti naują planą",
+    "durations": {
+      "oneMonth": "1 mėnuo",
+      "threeMonths": "3 mėnesiai",
+      "sixMonths": "6 mėnesiai",
+      "oneYear": "1 metai",
+      "lifetime": "Visam laikui"
+    },
+    "planNameRequired": "Reikalingas plano pavadinimas",
+    "enterValidPrice": "Įveskite tinkamą kainą",
+    "availableChains": "Prenumeratos šiuo metu pasiekiamos „Base“ ir „BNB“",
+    "waitForSwitch": "Palaukite, kol prenumeratos tinklas baigs persijungti",
+    "connectAndWait": "Prijunkite savo piniginę ir palaukite prenumeratos tinklo",
+    "planUpdated": "Planas atnaujintas",
+    "creating": "Kuriamas…",
+    "planPublished": "Planas sukurtas ir paskelbtas",
+    "createPlanTitle": "Sukurti prenumeratos planą",
+    "network": "Prenumeratos tinklas",
+    "planNameLabel": "Plano pavadinimas *",
+    "planNamePlaceholder": "pvz. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Ką gaus prenumeratoriai...",
+    "priceLabel": "Kaina (USD) *",
+    "legacyMigrationNote": "Taupymas perkelia šį senąjį DHB planą į dolerių kainas pagal išankstinį kotiravimo kursą.",
+    "benefits": "Privalumai",
+    "benefitPlaceholder": "Pridėti privalumą...",
+    "createAndPublish": "Sukurti ir paskelbti",
+    "publishingOnChain": "Skelbimas yra grandininė operacija"
   },
   "live": {
     "notSet": "Nenustatyta",
@@ -4114,7 +4333,22 @@
     "acceptTerms": "Sutinku su <terms>Paslaugų teikimo sąlygos</terms>",
     "sentTo": "{{amount}}{{symbol}} buvo išsiųstas {{address}}",
     "tokensSentTo": "Ženklai išsiųsti {{address}}",
-    "goToProfile": "Eiti į profilį"
+    "goToProfile": "Eiti į profilį",
+    "aboutTitle": "Apie „DeHub“ ir mokėjimus",
+    "aboutSubtitle": "Jūsų vartai į sklandžius mokėjimus žetonais",
+    "aboutTokenTitle": "„DeHub“ žetonas",
+    "aboutTokenBody": "Žetonai naudojami prenumeruojant kūrėjus, skiriant arbatpinigių transliuotojams arba atrakinant turinį. Kuo daugiau turėsite, tuo mažesni bus jūsų mokesčiai ir tuo daugiau supergalių atrakinsite, pavyzdžiui, laiko juostos tendencijų stiprinimus ir patvirtinimo ženklelius.",
+    "aboutInstantTitle": "Momentiniai mokėjimai",
+    "aboutInstantBody": "Naudodami „Stripe“, galite akimirksniu ir sklandžiai pirkti žetonus į bet kurią paskyrą, kurioje esate prisijungę. „DeHub“ daro žetonus paprastus ir prieinamus visiems. Jei reikia daugiau pagalbos, tiesiog prisijunkite prie mūsų 24 valandas per parą, 7 dienas per savaitę veikiančio tiesioginio bendruomenės pokalbio ir paprašykite administratoriaus pagalbos.",
+    "aboutSecureTitle": "Saugi sąsaja",
+    "aboutSecureBody": "Visi mokėjimo duomenys yra užšifruoti ir saugiai apdorojami „Stripe“. Mes negalime pasiekti ar saugoti jūsų neskelbtinos informacijos ar kortelės duomenų, suteikdami jums visišką ramybę.",
+    "transfersSummary": "Perdavimų santrauka",
+    "availableToBuy": "Galima pirkti dabar",
+    "noSupplyShort": "Nėra pasiūlos",
+    "topUpSubtitle": "Pirkite $DHB kortele ir gaukite nemokamą dujų, kad galėtumėte naudoti iš karto",
+    "noTxHash": "Nepavyko rasti operacijos maišos",
+    "latestTransactions": "Naujausios operacijos",
+    "showAll": "Rodyti viską"
   },
   "musicSheet": {
     "title": "Sukurti dainą",
@@ -4243,7 +4477,13 @@
     "followUpNote": "Galime susisiekti su papildomais klausimais apie jūsų atsiliepimą",
     "submitFeedback": "Pateikti atsiliepimą",
     "provideFeedback": "Prašome parašyti savo atsiliepimą",
-    "thankYou": "Ačiū už jūsų atsiliepimą!"
+    "thankYou": "Ačiū už jūsų atsiliepimą!",
+    "submitFailed": "Nepavyko pateikti atsiliepimų. Prašome bandyti dar kartą.",
+    "maybeLater": "Gal vėliau",
+    "helpUsImprove": "Padėkite mums tobulėti",
+    "rateExperience": "Kaip įvertintumėte savo patirtį?",
+    "telegramOptional": "Telegrama (pasirenkama)",
+    "discordOptional": "Discord (pasirenkama)"
   },
   "migrate": {
     "clearAll": "Ištrinti viską",
@@ -4360,7 +4600,14 @@
       "blueWhale": "Didžiausias kada nors gyvenęs dalykas. Tai tu.",
       "megalodon": "Štai jūsų karūna — dabar esate programėlės honoraras"
     },
-    "continue": "Grįžti į DeHub"
+    "continue": "Grįžti į DeHub",
+    "none": "Nėra",
+    "noBadgeYet": "Dar nėra ženklelio",
+    "next": "Kitas",
+    "topTier": "Aukščiausias lygis",
+    "toNextTier": "{{amount}} DHB iki {{tier}}",
+    "everyTierUnlocked": "Kiekvienas atrakintas lygis",
+    "holdNote": "Kai ženklelis bus atrakintas, jis bus jūsų tol, kol turėsite savo DHB. Žetonų, reikalingų naujam ženkleliui atrakinti, skaičius gali keistis priklausomai nuo žetono kainos."
   },
   "passwordStrength": {
     "veryWeak": "Labai silpnas",
@@ -4442,7 +4689,11 @@
     },
     "ttsLabel": "Pasakykite ką nors garsiai",
     "ttsPlaceholder": "Perskaitykite sraute...",
-    "ttsHint": "Skaitykite garsiai visiems, stebintiems, kada nusileidžia jūsų dovana."
+    "ttsHint": "Skaitykite garsiai visiems, stebintiems, kada nusileidžia jūsų dovana.",
+    "sendAGift": "Siųsti dovaną",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minimali dovana yra {{amount}}",
+    "sendGift": "Siųsti dovaną"
   },
   "goLive": {
     "streamKey": "Srauto raktas",
@@ -4824,7 +5075,8 @@
         "title": "Sužinokite, kaip gaunamos pajamos",
         "body": "Sužinokite, kaip patarimai, ženkleliai ir supergalios paverčia tai, ką čia darote, tuo, iš ko uždirbate."
       }
-    }
+    },
+    "swipeToStart": "Braukite, kad pradėtumėte"
   },
   "conversation": {
     "commonGround": {
@@ -5306,5 +5558,18 @@
     "toastPaidSettled": "Apmokėta — sandoris užbaigtas",
     "walletNotReady": "Jūsų piniginė dar neparuošta — pabandykite po akimirkos.",
     "wrongChain": "Šis sandoris vykdomas tinkle {{chain}}. Nustatymuose perjunkite į {{chain}} ir bandykite dar kartą."
+  },
+  "moderation": {
+    "appealDuplicate": "Jūs jau pateikėte apeliaciją",
+    "appealSent": "Apeliacija išsiųsta",
+    "appealFailed": "Nepavyko pateikti šio apeliacinio skundo",
+    "appealTitle": "Pateikti apeliaciją dėl šio sprendimo",
+    "appealSubtitle": "Asmuo tai perskaitys ir dar kartą peržiūrės sprendimą.",
+    "appealPlaceholder": "Kaip manai, ką praleidai? Kontekstas apie turinį padeda labiau nei kas nors kitas.",
+    "appealSend": "Siųsti apeliaciją",
+    "appealFootnote": "Gausite nuorodos numerį, o atsakymas grįš čia. Vienas apeliacinis skundas vienam sprendimui.",
+    "appealRef": "Nuoroda {{ref}}",
+    "appealSubtitleSubject": "Asmuo tai perskaitys ir dar kartą pažvelgs į {{subject}}.",
+    "appealMore": "Simbolių vis dar reikia: {{count}}"
   }
 }

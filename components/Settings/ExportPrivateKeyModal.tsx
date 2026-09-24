@@ -27,13 +27,14 @@ type ExportPrivateKeyModalProps = {
 
 type Step = "warn" | "reveal";
 
-const REQUIRED_PHRASE = "I UNDERSTAND";
-
 const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
   visible,
   onClose,
 }) => {
   const { t } = useTranslation();
+  // The phrase is typed in the reader's own language, so it is translated and
+  // matched without regard to case — a locale may not have capitals at all.
+  const requiredPhrase = t("settings.exportPkConfirmPhrase");
   const { ensureProvider } = useAuthActions();
   const { providerStatus, provider, authMethod } = useProvider();
   // The fetch below awaits ensureProvider() and then needs the provider that
@@ -56,8 +57,8 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
   const copyTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const canContinue = useMemo(
-    () => confirmText.trim().toUpperCase() === REQUIRED_PHRASE,
-    [confirmText]
+    () => confirmText.trim().toLocaleLowerCase() === requiredPhrase.trim().toLocaleLowerCase(),
+    [confirmText, requiredPhrase]
   );
 
   const reset = useCallback(() => {
@@ -117,11 +118,11 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
       return;
     }
     if (!canContinue) {
-      toastInfo(t("settings.exportPkTypeToProceed", { phrase: REQUIRED_PHRASE }));
+      toastInfo(t("settings.exportPkTypeToProceed", { phrase: requiredPhrase }));
       return;
     }
     void fetchPrivateKey();
-  }, [canContinue, fetchPrivateKey, isLocal, t]);
+  }, [canContinue, fetchPrivateKey, isLocal, t, requiredPhrase]);
 
   const toggleMasked = useCallback(() => {
     setMasked((m) => !m);
@@ -191,12 +192,12 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                   </Text>
                 </View>
                 <Text className="text-theme-neutrals-400 text-xs mb-1">
-                  {t("settings.exportPkTypeToContinue", { phrase: REQUIRED_PHRASE })}
+                  {t("settings.exportPkTypeToContinue", { phrase: requiredPhrase })}
                 </Text>
                 <TextInput
                   value={confirmText}
                   onChangeText={setConfirmText}
-                  placeholder={REQUIRED_PHRASE}
+                  placeholder={requiredPhrase}
                   placeholderTextColor="#8B8D90"
                   className="border border-theme-neutrals-700 rounded-md px-3 py-2 text-white bg-theme-neutrals-800"
                 />
@@ -288,7 +289,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                 onPress={handleCopyPk}
                 className="ml-3 p-1"
                 accessibilityRole="button"
-                accessibilityLabel="Copy private key"
+                accessibilityLabel={t("settings.exportPkCopy")}
                 hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
               >
                 <Icon

@@ -647,7 +647,11 @@
       "hintAllow": "د AI سیسټمونه او کراولرونه چې دا سیګنال درناوی کوي ممکن ستاسو آډیو، هنر او لیکل روزل شي.",
       "hintDeny": "د AI سیسټمونه او کراولرونه چې دا سیګنال درناوی کوي له روزنې څخه ستاسو آډیو، هنر او لیکل منع دي. کراولرونه چې سیګنال له پامه غورځوي د دې لخوا نه بند شوي دي.",
       "saved": "د AI روزل غوره توب خوندي شو"
-    }
+    },
+    "chainIdLabel": "چین آئی ڈی: {{id}}",
+    "exportPkConfirmPhrase": "مانا درکم کرد",
+    "exportPkCopy": "کلید خصوصی را کپی کنید",
+    "e2eAutomatic": "خودکار"
   },
   "common": {
     "mute": "आवाज बंद करा",
@@ -687,7 +691,17 @@
     "optionalSuffix": "(ঐচ্ছিক)",
     "yesterday": "কাইল",
     "ok": "ঠিক আছে",
-    "continue": "دامه"
+    "continue": "دامه",
+    "goesToHomeFeed": "به فید اصلی می‌رود",
+    "openMenu": "منو را باز کنید",
+    "scrollsFeedToTop": "به بالای فید پیمایش کرده و آن را تازه می‌کند",
+    "notificationsUnread": "اعلان‌ها، {{unread}} خوانده نشده",
+    "errorDetails": "جزئیات خطا:",
+    "failedToLoad": "بارگیری ناموفق بود",
+    "noInternetTitle": "عدم اتصال به اینترنت",
+    "noInternetBody": "لطفاً اتصال اینترنت خود را بررسی کرده و دوباره امتحان کنید. برای استفاده از DeHub باید به اینترنت متصل باشید.",
+    "noInternetStatus": "آفلاین - عدم اتصال به شبکه",
+    "noInternetHint": "مطمئن شوید Wi-Fi یا داده تلفن همراه روشن است، سپس روی \"{{action}}\" ضربه بزنید"
   },
   "tip": {
     "title": "ٹِپ بھیجو",
@@ -1572,7 +1586,12 @@
     "chooseUsernameBody": "بۆ بەردەوامبوون ناوێکی بەکارهێنەر و ناوی پیشاندان هەڵبژێرە. دواتر دەتوانیت بیانگۆڕیت.",
     "checkingAvailability": "بەردەستبوون تاقی دەکرێتەوە…",
     "usernameTakenHint": "ئەم ناوە گیراوە — هەوڵبدە ژمارە یان هێڵی ژێرەوە زیاد بکەیت",
-    "displayNameLength": "ناوی پیشاندان دەبێت ٢-٥٠ پیت بێت."
+    "displayNameLength": "ناوی پیشاندان دەبێت ٢-٥٠ پیت بێت.",
+    "loginFailedRetry": "ورود ناموفق بود. لطفاً دوباره امتحان کنید.",
+    "sendCodeFailedRetry": "کد ارسال نشد. لطفاً دوباره امتحان کنید.",
+    "invalidCodeRetry": "کد نامعتبر است. لطفاً دوباره امتحان کنید.",
+    "invalidEmailOrPassword": "ایمیل یا رمز عبور نامعتبر است.",
+    "welcomeToDehub": "به DeHub خوش آمدید"
   },
   "messages": {
     "smartRepliesOff": "تجویز کیل جواب بند ہو گیل",
@@ -1664,7 +1683,32 @@
     "muteUser": "میوٹ کرو",
     "subscribe": "سبسکرائب کرو",
     "subscribed": "سبسکرائب کیا",
-    "tip": "ٹِپ"
+    "tip": "ٹِپ",
+    "noPostsYet": "پستی وجود ندارد",
+    "noPostsYetSub": "محتوا پس از ارسال در اینجا ظاهر می‌شود",
+    "noPinnedPosts": "پست پین شده‌ای وجود ندارد",
+    "noPinnedPostsSub": "پست‌های پین شده در اینجا ظاهر می‌شوند",
+    "emptyLiked": "پستی لایک نشده است.",
+    "emptySaved": "پستی ذخیره نشده است.",
+    "emptyUnlocked": "پستی باز نشده است.",
+    "emptyWatched": "سابقه تماشایی وجود ندارد.",
+    "emptyFolder": "پستی در این پوشه وجود ندارد.",
+    "emptyPosts": "پستی وجود ندارد.",
+    "couldNotLoadPosts": "امکان بارگیری پست‌ها وجود نداشت.",
+    "noPostsOrReplies": "هېڅ پوسټ، تبصره یا ځواب نشته",
+    "noPostsOrRepliesSub": "دلته به ښکاره شي",
+    "avatarUpdated": "اوتار تازه شو",
+    "coverUpdated": "پوښ تازه شو",
+    "couldNotPickImage": "عکس نشو اخیستل کیدای",
+    "changeCoverImage": "د پوښ عکس بدل کړئ",
+    "changeAvatar": "اووتار بدل کړئ",
+    "verifiedEnsName": "تایید شوی ENS نوم {{name}}",
+    "notFullyJoined": "دا کارن لا تر اوسه په بشپړه توګه نه دی شامل شوی. دوی د کارن نوم نه دی اخیستی یا د پروفایل تنظیمات یې بشپړ نه دي. تاسو لاهم عام فعالیت لیدلی شئ او که شتون ولري نو لارښوونې لیږئ.",
+    "loadRepliesFailed": "د ځوابونو بارولو کې پاتې راغلل",
+    "refreshFailed": "بیا بارول پاتې راغلل",
+    "noRepliesYet": "هېڅ ځواب نشته",
+    "noRepliesYetSub": "کله چې دا کارن پوسټونو ته ځواب ووایي، نو دلته به ښکاره شي.",
+    "noMoreReplies": "نور ځوابونه نشته"
   },
   "tv": {
     "title": "ٹی وی",
@@ -1747,7 +1791,11 @@
     "loadingPrice": "دام لگ رہل ہے…",
     "topUpExplanation": "DHB زنجیر پر DeHub اشتہار خزانہ میں جائے ہے، پھر الگ سے آن چین جانچ کے بعد تہار بیلنس میں جڑ جائے ہے۔",
     "paymentHistory": "ادائیگی کے تاریخ",
-    "noPayments": "اب تک کوئی ادائیگی نہیں ہے"
+    "noPayments": "اب تک کوئی ادائیگی نہیں ہے",
+    "sponsored": "سپانسر شوی",
+    "morePosts": "نور پوسټونه",
+    "loadMorePosts": "نور پوسټونه بار کړئ",
+    "playAdVideo": "د اعلاناتو ویډیو پلی کړئ"
   },
   "buyCoins": {
     "title": "سکے خریدو",
@@ -2181,7 +2229,8 @@
     "privateBalanceMode": "ব্যক্তিগত ব্যালেন্স মোড চালু আছে",
     "addressHidden": "ঠিকানা লুকানো",
     "allowInFeeds": "এই ব্যবহারকারীক তোমার ফিডত দেখাবার অনুমতি দেও",
-    "hideContent": "তাঁর কনটেন্ট লুকাও আর যোগাযোগ সীমিত করো"
+    "hideContent": "তাঁর কনটেন্ট লুকাও আর যোগাযোগ সীমিত করো",
+    "a11yLabel": "د پروفایل اختیارونه"
   },
   "toasts": {
     "saved_to_bookmarks": "بُڪ مارڪ ۾ محفوظ ٿيو",
@@ -2553,7 +2602,8 @@
     "roles": {
       "owner": "مالک",
       "moderator": "منتظم",
-      "member": "رکن"
+      "member": "رکن",
+      "admin": "ادمین"
     },
     "time": {
       "today": "آج",
@@ -2562,7 +2612,126 @@
       "weeks": "{{count}} ہفتہ",
       "months": "{{count}} مہینہ",
       "years": "{{count}} سال"
-    }
+    },
+    "chatPanel": {
+      "anon": "ناپېژانده",
+      "edited": "ایډیټ شوی",
+      "deleteTitle": "پیغام حذف کړئ",
+      "deleteConfirm": "دا پیغام حذف کړئ؟ دا بیرته نشي کیدای.",
+      "muted": "تاسو خاموش یاست",
+      "postingDisabled": "دلته د غړو لپاره پوسټ کول بند دي",
+      "mediaMessage": "رسنۍ",
+      "pinnedMessage": "ټاکل شوی پیغام",
+      "showEarlier": "مخکیني پیغامونه وښایاست",
+      "editingMessage": "د پیغام ایډیټ کول",
+      "copied": "پیغام کاپی ہو گیا",
+      "copyText": "متن کاپی کریں",
+      "mutedUntil": "تۆ بێدەنگ کراویت تا {{date}}",
+      "slowMode": "سست موڈ: ہر {{interval}} پر ایک پیغام"
+    },
+    "manage": {
+      "dismissAdminTitle": "ایڈمن کو برخاست کریں",
+      "cancel": "منسوخ کریں",
+      "dismissAdmin": "ایڈمن کو برخاست کریں",
+      "roleAdmin": "منتظم",
+      "roleMember": "ممبر",
+      "whatCanTheyDo": "ئەم بەڕێوەبەرە چی دەتوانێت بیکات؟",
+      "rightNotHeld": "تۆ خۆت ئەم مافەت نییە",
+      "customTitle": "حسب ضرورت عنوان",
+      "customTitlePlaceholder": "ایڈمن",
+      "customTitleHint": "لە جیاتی نیشانی پێشفرەزی بەڕێوەبەر نیشان دەدرێت.",
+      "saveChanges": "تبدیلیاں محفوظ کریں",
+      "promote": "پروموٹ کریں",
+      "tabs": {
+        "members": "ممبران",
+        "admins": "ایڈمنز",
+        "permissions": "اجازتیں",
+        "invites": "دعوت نامے",
+        "rules": "قواعد",
+        "recentActions": "حالیہ کارروائیاں",
+        "danger": "خطرہ زون"
+      },
+      "title": "انتظام کریں",
+      "purgeTitle": "سڕینەوەی هەموو نامەکان؟",
+      "purgeConfirm": "حذف کریں",
+      "kickTitle": "ممبر کو ہٹائیں ؟",
+      "kickConfirm": "ہٹائیں",
+      "bannedPermanent": "ممنوعہ — مستقل",
+      "mutedPermanent": "خاموش — مستقل",
+      "editAdminRights": "ایڈمن حقوق میں ترمیم کریں",
+      "promoteToAdmin": "ایڈمن کے عہدے پر ترقی دیں",
+      "unmute": "ان میوٹ کریں",
+      "mute": "میوٹ کریں",
+      "unban": "ان بین کریں",
+      "ban": "بین کریں",
+      "deleteAllMessages": "سڕینەوەی هەموو نامەکان",
+      "removeFromCommunity": "لەکۆمەڵگە لابرا",
+      "noActionsAvailable": "ناتوانێت ئەم ئەندامە بەڕێوەببیت.",
+      "showMore": "مزید دکھائیں",
+      "joinRequests": "شامل ہونے کی درخواستیں",
+      "approve": "منظور کریں",
+      "reject": "مسترد کریں",
+      "members": "اراکین",
+      "searchMembers": "والٹ ایڈریس کے ذریعے تلاش کریں",
+      "noMembersMatch": "هیچ ئەندامێک ناگونجێت.",
+      "noMembers": "ابھی تک کوئی رکن نہیں ہے۔",
+      "muted": "میوٹ شدہ",
+      "banned": "بین شدہ",
+      "muteEffect": "ئەوان لە کۆمەڵگەدا دەمێننەوە بەڵام ناتوانن تا کاتی بێدەنگکردن بڵاوبکەنەوە.",
+      "banEffect": "ئەوان لە چاتەکە لابراون و ناتوانن تا کاتی هەڵگرتنی قەدەغەکردنەوە بگەڕێنەوە.",
+      "durationLabel": "دورانیہ",
+      "reasonLabel": "وجہ (اختیاری)",
+      "reasonPlaceholder": "بۆچی قەدەغە دەکرێن؟",
+      "alsoDeleteMessages": "هەروەها سڕینەوەی هەموو نامەکانیان",
+      "confirmMute": "رکن کو میوٹ کریں",
+      "confirmBan": "رکن کو بین کریں",
+      "rulesUpdated": "قواعد اپ ڈیٹ ہو گئے",
+      "rulesTitle": "کمیونٹی کے قواعد",
+      "rulesEmpty": "هێشتا هیچ یاسایەک نییە — یەکەمینیان لە خوارەوە زیاد بکە.",
+      "rulePlaceholder": "دیسکرایب رول",
+      "addRule": "أد رول",
+      "saveRules": "سەیڤ رولز",
+      "dismissAdminBody": "{{wallet}} دەگەڕێتەوە بۆ ئەندامێکی ئاسایی.",
+      "purgeBody": "هەموو نامەیەک کە {{name}} ناردوویەتی لەم کۆمەڵگەیەدا لادەبرێت.",
+      "kickBody": "{{name}} لە کۆمەڵگە لادەبرێت. دەتوانن دواتر دیسانەوە بچنە ژوورەوە.",
+      "bannedUntil": "باند کراوە تا {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "بێدەنگ کراوە تا {{date}}",
+      "bannedUntilShort": "تا {{date}}",
+      "muteTitle": "بێدەنگکردنی {{name}}",
+      "banTitle": "بانکردنی {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} لە {{max}}",
+      "moveRuleUp": "ڕوولەکە بەرەو سەرەوە ببە",
+      "moveRuleDown": "ڕوولەکە بەرەو خوارەوە ببە",
+      "deleteRule": "ڕوولەکە بسڕەوە",
+      "rights": {
+        "changeInfo": "زانیاری کۆمەڵگە بگۆڕە",
+        "changeInfoHint": "ناو، وەسف، ئاڤاتار و بانەرەکە دەستکاری بکە",
+        "deleteMessages": "نامەکان بسڕەوە",
+        "deleteMessagesHint": "هەر نامەیەک لە چاتی کۆمەڵگەدا لادەبات",
+        "restrictMembers": "بەکارهێنەران بان بکە",
+        "restrictMembersHint": "ئەندامان بێدەنگ بکە، لێیان دوور بکەرەوە و بان بکە",
+        "inviteUsers": "بانگهێشتکردنی بەکارهێنەران لە ڕێگەی لینکەوە",
+        "inviteUsersHint": "لینکەکانی بانگهێشت دروست بکە و هەڵوەشێنەوە",
+        "pinMessages": "نامەکان پین بکە",
+        "pinMessagesHint": "نامەیەک لەسەرەوەی چاتەکە پین بکە",
+        "manageEvents": "ڕووداوەکان بەڕێوەبەرە",
+        "manageEventsHint": "ڕووداوەکانی کۆمەڵگە دروست بکە و دەستکاری بکە",
+        "addAdmins": "ئەدمینی نوێ زیاد بکە",
+        "addAdminsHint": "ئەندامان پرۆمۆت بکە و مافەکانی بەڕێوەبەرەکان کە زیادکراون دەستکاری بکە",
+        "remainAnonymous": "خفیہ رہیں",
+        "remainAnonymousHint": "ئەم بەڕێوەبەرە لە لیستی ئەندامان شارەوە"
+      },
+      "durations": {
+        "oneHour": "1 گھنٹہ",
+        "eightHours": "8 گھنٹے",
+        "oneDay": "1 دن",
+        "oneWeek": "1 ہفتہ",
+        "forever": "ہمیشہ کے لیے"
+      }
+    },
+    "chooseAvatar": "اوتار منتخب کریں"
   },
   "work": {
     "title": "انعام",
@@ -2914,7 +3083,9 @@
       "shipped": "بھیجل",
       "completed": "پورا ہوئل",
       "cancelled": "رد"
-    }
+    },
+    "removePhoto": "تصویر ہٹائیں",
+    "listingOptions": "لسٹنگ کے اختیارات"
   },
   "accounts": {
     "subtitle": "پورا کھاتا بکری کے واسطے، DHB میں دام",
@@ -3259,7 +3430,14 @@
     "removeFollowerHint": "بۆ لادانی فۆڵۆوەرێک، پەنجە بنێ و دایبگرە.",
     "cancel": "هەڵوەشاندنەوە",
     "remove": "لابردن",
-    "thisUser": "E user"
+    "thisUser": "E user",
+    "cancelRequestTo": "داواکاری شوێنکەوتن بۆ @{{username}} هەڵبوەشێنەوە؟",
+    "followingUser": "@{{username}} کو فالو کر رہے ہیں",
+    "contentUnavailable": "مواد دستیاب نہیں ہے",
+    "youBlockedBody": "نامەکانیان نابینیت و ناتوانیت پەیوەندیان پێوە بکەیت. بلۆککردن هەڵگرە بۆ گەڕانەوەی دەستگەیشتن.",
+    "restrictedBody": "اس صارف نے تمہارے اکاؤنٹ کے ساتھ رابطہ محدود کر دیا ہے۔",
+    "requestPendingBody": "داواکاری شوێنکەوتنت نێردرا. کاتێک داواکارییەکەت پەسەند کرا، دەتوانیت نامەکانیان ببینیت.",
+    "followToSeePosts": "ان کی پوسٹیں دیکھنے کے لیے اس اکاؤنٹ کو فالو کرو۔"
   },
   "reactionInfo": {
     "title": "प्रतिक्रियाएं",
@@ -3574,7 +3752,8 @@
     "needGas": "{{chain}}-ত গ্যাসের জন্য নেটিভ {{token}} লাগিবে।",
     "bridging": "ব্রিজ হইতেছে…",
     "bridgeAction": "{{from}} → {{to}} ব্রিজ করো",
-    "failed": "ব্রিজ ব্যর্থ হইল"
+    "failed": "ব্রিজ ব্যর্থ হইল",
+    "sentArriveShortly": "{{amount}} DHB نێردرا لە {{from}} → {{to}}. تۆکنەکان بەم زووانە دەگەن."
   },
   "banned": {
     "title": "आपको खाता प्रतिबंधित कर दिया गया है",
@@ -3752,7 +3931,16 @@
     "legacyRecovered": "هەژماری کۆنت{{suffix}} پشتڕاست کرایەوە و جزدانەکەی گەڕێنرایەوە. وشەیەکی تێپەڕ دابنێ بۆ پاراستنی لەسەر ئەم ئامێرە — لەسەر ئەم مۆبایلە و هەموو شوێنێکی تر، لە ئێستاوە.",
     "passwordMin": "وشەی تێپەڕ (لانیکەم {{min}} پیت)",
     "newPasswordMin": "وشەی تێپەڕی نوێ (لانیکەم {{min}} پیت)",
-    "newWalletPasswordMin": "وشەی تێپەڕی جزدانی نوێ (لانیکەم {{min}} پیت)"
+    "newWalletPasswordMin": "وشەی تێپەڕی جزدانی نوێ (لانیکەم {{min}} پیت)",
+    "deviceCheckCancelled": "پشکنینی ئامێر هەڵوەشایەوە — هیچ شتێک نەگۆڕدرا.",
+    "savePhraseTitle": "دەستەواژەی چاکبوونەوەت بپارێزە",
+    "startOverTitle": "بە سندوقێکی نوێ دەست پێ بکە",
+    "secureNewWalletTitle": "سندوقی نوێی خۆت بپارێزە",
+    "secureWalletTitle": "سندوقەکەت بپارێزە",
+    "unlockOnMobileTitle": "موبائل پر ان لاک کریں",
+    "oldAccountFoundTitle": "پرانا اکاؤنٹ ملا",
+    "unlockWalletTitle": "سندوقەکەت بکەرەوە",
+    "phraseExplainer": "سندوقەکەت لەلایەن بایۆمیتری ئەم تەلەفۆنەوە پارێزراو دەبێت. ئەو کردنەوەی <em>تەنها لەم تەلەفۆنەدا کار دەکات</em> — ئەم 12 وشەیە تاکە ڕێگای گەڕانەوەیە ئەگەر DeHub دووبارە دامەزرێنیت، دەستکەوت بگۆڕیت، یان لەدەستی بدەیت."
   },
   "transcript": {
     "title": "প্রতিলিপি",
@@ -3938,7 +4126,38 @@
     "subscribe": "সাবস্ক্রাইব করেন",
     "subscriberCount_one": "{{count}} সাবস্ক্রাইবার",
     "subscriberCount_other": "{{count}} সাবস্ক্রাইবার",
-    "subscribeToForRich": "<price>{{price}}</price> ত <name>{{name}}</name> ত সাবস্ক্রাইব করেন"
+    "subscribeToForRich": "<price>{{price}}</price> ত <name>{{name}}</name> ত সাবস্ক্রাইব করেন",
+    "loadPlansFailed": "نەتوانرا پلەکان باربکرێن",
+    "subscriberContent": "سبسکرائبر مواد",
+    "subscriberContentSub": "د plans جوړ کړئ ترڅو subscribers ته exclusive content وړاندې کړئ",
+    "createFirstPlan": "خپل لومړی plan جوړ کړئ",
+    "addNewPlan": "نوی plan اضافه کړئ",
+    "durations": {
+      "oneMonth": "۱ میاشت",
+      "threeMonths": "۳ میاشتې",
+      "sixMonths": "۶ میاشتې",
+      "oneYear": "۱ کال",
+      "lifetime": "تلپاتې"
+    },
+    "planNameRequired": "Plan نوم اړین دی",
+    "enterValidPrice": "یو سم قیمت دننه کړئ",
+    "availableChains": "سبسکرپشنونه اوس مهال په Base او BNB باندې شتون لري",
+    "waitForSwitch": "د subscription network د بدلیدو تر بشپړیدو پورې انتظار وکړئ",
+    "connectAndWait": "خپل wallet سره وصل شئ او د subscription network لپاره انتظار وکړئ",
+    "planUpdated": "Plan تازه شو",
+    "creating": "جوړول...",
+    "planPublished": "Plan جوړ او خپور شو",
+    "createPlanTitle": "د subscription plan جوړ کړئ",
+    "network": "د subscription network",
+    "planNameLabel": "د Plan نوم *",
+    "planNamePlaceholder": "د مثال په توګه Premium, Gold, VIP...",
+    "descriptionPlaceholder": "سبسکرایبران څه ترلاسه کوي...",
+    "priceLabel": "قیمت (USD) *",
+    "legacyMigrationNote": "سپما دا پخوانی DHB plan په ډالر قیمتونو بدلوي په pre-listing نرخ.",
+    "benefits": "ګټې",
+    "benefitPlaceholder": "یوه ګټه اضافه کړئ...",
+    "createAndPublish": "جوړ کړئ او خپور کړئ",
+    "publishingOnChain": "خپرول یو on-chain transaction دی"
   },
   "live": {
     "notSet": "ঠিক করা নাই",
@@ -4056,7 +4275,22 @@
     "acceptTerms": "মুই মানি নেছু <terms>সেবার শর্ত</terms>",
     "sentTo": "{{amount}} {{symbol}} ke {{address}} bhejel geyl",
     "tokensSentTo": "Tokens {{address}} ke bhejel geyl",
-    "goToProfile": "Profile ke jao"
+    "goToProfile": "Profile ke jao",
+    "aboutTitle": "د DeHub او تادیاتو په اړه",
+    "aboutSubtitle": "ستاسو د seamless token تادیاتو دروازه",
+    "aboutTokenTitle": "ڈی ہب ٹوکن",
+    "aboutTokenBody": "टोकन क्रिएटर को सब्सक्राइब करने, स्ट्रीमर को टिप देने या कंटेंट को अनलॉक करने के लिए इस्तेमाल किए जाते हैं। आप जितना ज़्यादा होल्ड करेंगे, आपकी फीस उतनी ही कम होगी और आप टाइमलाइन ट्रेंड बूस्ट और वेरिफिकेशन बैज जैसी ज़्यादा सुपरपावर अनलॉक कर पाएंगे।",
+    "aboutInstantTitle": "इंस्टेंट पेमेंट",
+    "aboutInstantBody": "Stripe का इस्तेमाल करके, आप तुरंत और आसानी से अपने किसी भी अकाउंट में टोकन खरीद सकते हैं जिसमें आप लॉग इन हैं। DeHub टोकन को सरल और सबके लिए बनाता है। अगर आपको और सपोर्ट की ज़रूरत है, तो बस हमारे 24/7 लाइव कम्युनिटी चैट में आएं और एडमिन सपोर्ट मांगें।",
+    "aboutSecureTitle": "सिक्योर गेटवे",
+    "aboutSecureBody": "सभी पेमेंट डिटेल एन्क्रिप्टेड हैं और Stripe द्वारा सुरक्षित रूप से प्रोसेस की जाती हैं। हम आपकी संवेदनशील जानकारी या कार्ड डिटेल को एक्सेस या स्टोर नहीं कर सकते हैं, जिससे आपको पूरी मानसिक शांति मिलती है।",
+    "transfersSummary": "ट्रांसफर सारांश",
+    "availableToBuy": "अभी खरीदने के लिए उपलब्ध",
+    "noSupplyShort": "कोई सप्लाई नहीं",
+    "topUpSubtitle": "कार्ड से $DHB खरीदें और तुरंत इस्तेमाल के लिए फ्री गैस पाएं",
+    "noTxHash": "ट्रांजेक्शन हैश नहीं मिला",
+    "latestTransactions": "नवीनतम ट्रांजेक्शन",
+    "showAll": "सभी दिखाएं"
   },
   "musicSheet": {
     "title": "گۆرانییەک دروست بکە",
@@ -4185,7 +4419,13 @@
     "followUpNote": "لەوانەیە پەیوەندیت پێوە بکەین بۆ پرسیاری زیاتر دەربارەی ڕاکەت",
     "submitFeedback": "ڕا بنێرە",
     "provideFeedback": "تکایە ڕای خۆت بنووسە",
-    "thankYou": "سوپاس بۆ ڕاکەت!"
+    "thankYou": "سوپاس بۆ ڕاکەت!",
+    "submitFailed": "फीडबैक सबमिट करने में विफल। कृपया पुनः प्रयास करें।",
+    "maybeLater": "बाद में शायद",
+    "helpUsImprove": "हमें बेहतर बनाने में मदद करें",
+    "rateExperience": "आप अपने अनुभव को कैसे रेट करेंगे?",
+    "telegramOptional": "टेलीग्राम (वैकल्पिक)",
+    "discordOptional": "डिस्कॉर्ड (वैकल्पिक)"
   },
   "migrate": {
     "clearAll": "सब कुछ साफ करो",
@@ -4302,7 +4542,14 @@
       "blueWhale": "सबसे बड़ी चीज जो कभी रही है। वह तुम हो।",
       "megalodon": "यहाँ आपका ताज है — आप अब ऐप रॉयल्टी हैं"
     },
-    "continue": "DeHub के पास वापस"
+    "continue": "DeHub के पास वापस",
+    "none": "कोई नहीं",
+    "noBadgeYet": "कोई बैज नहीं",
+    "next": "अगला",
+    "topTier": "टॉप टियर",
+    "toNextTier": "{{amount}} DHB से {{tier}}",
+    "everyTierUnlocked": "हर टियर अनलॉक किया गया",
+    "holdNote": "एक बार बैज अनलॉक हो जाने के बाद, यह तब तक आपका है जब तक आप अपना DHB होल्ड करते हैं। नए बैज को अनलॉक करने के लिए आवश्यक टोकन की संख्या टोकन की कीमत के साथ बदल सकती है।"
   },
   "passwordStrength": {
     "veryWeak": "زۆر لاواز",
@@ -4371,7 +4618,11 @@
     },
     "ttsLabel": "Say something out loud",
     "ttsPlaceholder": "Read out to the stream…",
-    "ttsHint": "Read aloud to everyone watching when your gift lands."
+    "ttsHint": "Read aloud to everyone watching when your gift lands.",
+    "sendAGift": "गिफ्ट भेजें",
+    "minPlaceholder": "न्यूनतम: {{amount}}",
+    "minGift": "न्यूनतम गिफ्ट {{amount}} है",
+    "sendGift": "गिफ्ट भेजें"
   },
   "goLive": {
     "streamKey": "स्ट्रीम की",
@@ -4733,7 +4984,8 @@
         "title": "د ګټلو طریقه وګورئ",
         "body": "ومومئ چې څنګه ټیپونه، بیجونه او سوپر پاورز هغه څه چې تاسو دلته کوئ په داسې څه بدلوي چې له هغې څخه ګټه ترلاسه کوئ."
       }
-    }
+    },
+    "swipeToStart": "शुरू करने के लिए स्वाइप करें"
   },
   "conversation": {
     "commonGround": {
@@ -5272,5 +5524,18 @@
     "toastPaidSettled": "भुगतान होय गेलक — सौदा निपट गेलक",
     "walletNotReady": "तोहर वॉलेट अभी तैयार नखे — तनी देर में फिर कोसिस करा।",
     "wrongChain": "ई सौदा {{chain}} में निपटेला। सेटिंग में {{chain}} में बदला, फिर कोसिस करा।"
+  },
+  "moderation": {
+    "appealDuplicate": "تە ئیتر ئەمە داوای پێداچوونەوەت کردووە",
+    "appealSent": "داوای پێداچوونەوە نێردرا",
+    "appealFailed": "نەتوانرا ئەو داوایە تۆمار بکرێت",
+    "appealTitle": "ئەم بڕیارە داوای پێداچوونەوەی بۆ بکە",
+    "appealSubtitle": "کەسێک ئەمە دەخوێنێتەوە و جارێکی تر سەیری بڕیارەکە دەکاتەوە.",
+    "appealPlaceholder": "چی پێتوایە لەبیرکراوە؟ زانیاری زیاتر دەربارەی ناوەڕۆک زۆرتر یارمەتی دەدات.",
+    "appealSend": "داوای پێداچوونەوە بنێرە",
+    "appealFootnote": "ژمارەیەکی ڕێفرانس وەردەگریت، و وەڵامەکە لێرە دەگەڕێتەوە. یەک داوای پێداچوونەوە بۆ هەر بڕیارێک.",
+    "appealRef": "ڕێفرانس {{ref}}",
+    "appealSubtitleSubject": "کەسێک ئەمە دەخوێنێتەوە و جارێکی تر سەیری {{subject}} دەکاتەوە.",
+    "appealMore": "کەسایەتییە پێویستەکان: {{count}}"
   }
 }

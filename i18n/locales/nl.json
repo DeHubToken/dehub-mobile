@@ -706,7 +706,11 @@
       "hintAllow": "AI-systemen en crawlers die dit signaal respecteren, kunnen trainen op je audio, artwork en schrijven.",
       "hintDeny": "AI-systemen en crawlers die dit signaal respecteren, wordt gevraagd om niet te trainen op je audio, artwork en schrijven. Crawlers die het signaal negeren, worden er niet door geblokkeerd.",
       "saved": "AI-trainingsvoorkeur opgeslagen"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "IK BEGRIJP HET",
+    "exportPkCopy": "Privésleutel kopiëren",
+    "e2eAutomatic": "Automatisch"
   },
   "common": {
     "mute": "Dempen",
@@ -938,7 +942,16 @@
     "age": "Leeftijd",
     "from": "Van",
     "to": "Naar",
-    "value": "Waarde"
+    "value": "Waarde",
+    "goesToHomeFeed": "Gaat naar de homefeed",
+    "scrollsFeedToTop": "Scrolt naar de bovenkant van de feed en vernieuwt deze",
+    "notificationsUnread": "Meldingen, {{unread}} ongelezen",
+    "errorDetails": "Foutdetails:",
+    "failedToLoad": "Laden mislukt",
+    "noInternetTitle": "Geen internetverbinding",
+    "noInternetBody": "Controleer uw internetverbinding en probeer het opnieuw. U moet verbonden zijn met internet om DeHub te gebruiken.",
+    "noInternetStatus": "Offline - Geen netwerkverbinding",
+    "noInternetHint": "Zorg ervoor dat Wi-Fi of mobiele data is ingeschakeld en tik vervolgens op \"{{action}}\""
   },
   "tip": {
     "title": "Fooi sturen",
@@ -1824,7 +1837,12 @@
     "chooseUsernameBody": "Kies een gebruikersnaam en weergavenaam om door te gaan. Je kunt ze later wijzigen.",
     "checkingAvailability": "Beschikbaarheid controleren…",
     "usernameTakenHint": "Naam is al bezet — probeer cijfers of een underscore toe te voegen",
-    "displayNameLength": "Weergavenaam moet 2-50 tekens bevatten."
+    "displayNameLength": "Weergavenaam moet 2-50 tekens bevatten.",
+    "loginFailedRetry": "Inloggen mislukt. Probeer het opnieuw.",
+    "sendCodeFailedRetry": "Code kon niet worden verzonden. Probeer het opnieuw.",
+    "invalidCodeRetry": "Ongeldige code. Probeer het opnieuw.",
+    "invalidEmailOrPassword": "Ongeldige e-mail of wachtwoord.",
+    "welcomeToDehub": "Welkom bij DeHub"
   },
   "messages": {
     "smartRepliesOff": "Voorgestelde antwoorden uitgezet",
@@ -1902,7 +1920,32 @@
     "offerWorthNow": "Ongeveer {{amount}} DHB tegen de huidige koers",
     "offerNotePlaceholder": "Voeg een notitie toe (optioneel)",
     "offerCommitsNothing": "Een bod doen kost niets en zet geen DHB vast. Je betaalt alleen als de eigenaar accepteert.",
-    "offerNeedsHandle": "Dit account heeft geen gebruikersnaam om op te bieden."
+    "offerNeedsHandle": "Dit account heeft geen gebruikersnaam om op te bieden.",
+    "noPostsYet": "Nog geen berichten",
+    "noPostsYetSub": "Inhoud verschijnt hier wanneer deze wordt geplaatst",
+    "noPinnedPosts": "Nog geen vastgezette berichten",
+    "noPinnedPostsSub": "Vastgezette berichten verschijnen hier",
+    "emptyLiked": "Nog geen gelikete berichten.",
+    "emptySaved": "Nog geen opgeslagen berichten.",
+    "emptyUnlocked": "Nog geen ontgrendelde berichten.",
+    "emptyWatched": "Nog geen kijkgeschiedenis.",
+    "emptyFolder": "Nog geen berichten in deze map.",
+    "emptyPosts": "Nog geen berichten.",
+    "couldNotLoadPosts": "Berichten konden niet worden geladen.",
+    "noPostsOrReplies": "Nog geen berichten, reacties of antwoorden",
+    "noPostsOrRepliesSub": "Ze verschijnen hier",
+    "avatarUpdated": "Avatar bijgewerkt",
+    "coverUpdated": "Omslag bijgewerkt",
+    "couldNotPickImage": "Afbeelding kon niet worden gekozen",
+    "changeCoverImage": "Omslagafbeelding wijzigen",
+    "changeAvatar": "Avatar wijzigen",
+    "verifiedEnsName": "Geverifieerde ENS-naam {{name}}",
+    "notFullyJoined": "Deze gebruiker is nog niet volledig lid. Ze hebben nog geen gebruikersnaam gekozen of hun profiel ingesteld. Je kunt nog steeds openbare activiteiten bekijken en tips sturen indien beschikbaar.",
+    "loadRepliesFailed": "Antwoorden konden niet worden geladen",
+    "refreshFailed": "Vernieuwen mislukt",
+    "noRepliesYet": "Nog geen antwoorden",
+    "noRepliesYetSub": "Wanneer deze gebruiker reageert op berichten, verschijnen ze hier.",
+    "noMoreReplies": "Geen verdere antwoorden"
   },
   "tv": {
     "title": "TV",
@@ -1985,7 +2028,11 @@
     "loadingPrice": "Prijs laden…",
     "topUpExplanation": "DHB wordt on-chain overgemaakt naar de DeHub-advertentiekas, waarna je saldo wordt bijgeschreven na onafhankelijke on-chain verificatie.",
     "paymentHistory": "Betalingsgeschiedenis",
-    "noPayments": "Nog geen betalingen"
+    "noPayments": "Nog geen betalingen",
+    "sponsored": "Gesponsord",
+    "morePosts": "Meer berichten",
+    "loadMorePosts": "Meer berichten laden",
+    "playAdVideo": "Advertentievideo afspelen"
   },
   "buyCoins": {
     "title": "Munten kopen",
@@ -2420,7 +2467,8 @@
     "privateBalanceMode": "Privé-saldomodus is ingeschakeld",
     "addressHidden": "Adres verborgen",
     "allowInFeeds": "Sta toe dat deze gebruiker in je feeds verschijnt",
-    "hideContent": "Verberg hun inhoud en beperk interacties"
+    "hideContent": "Verberg hun inhoud en beperk interacties",
+    "a11yLabel": "Profielopties"
   },
   "toasts": {
     "saved_to_bookmarks": "Opgeslagen in bladwijzers",
@@ -2792,7 +2840,8 @@
     "roles": {
       "owner": "Eigenaar",
       "moderator": "Moderator",
-      "member": "Lid"
+      "member": "Lid",
+      "admin": "Beheerder"
     },
     "time": {
       "today": "vandaag",
@@ -2801,7 +2850,126 @@
       "weeks": "{{count}} w",
       "months": "{{count}} mnd",
       "years": "{{count}} j"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "bewerkt",
+      "deleteTitle": "Bericht verwijderen",
+      "deleteConfirm": "Dit bericht verwijderen? Dit kan niet ongedaan worden gemaakt.",
+      "muted": "Je bent gemute",
+      "postingDisabled": "Berichten plaatsen is hier uitgeschakeld voor leden",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Vastgepind bericht",
+      "showEarlier": "Eerdere berichten tonen",
+      "editingMessage": "Bericht bewerken",
+      "copied": "Bericht gekopieerd",
+      "copyText": "Tekst kopiëren",
+      "mutedUntil": "U bent gedempt tot {{date}}",
+      "slowMode": "Langzame modus: één bericht elke {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Admin negeren",
+      "cancel": "Annuleren",
+      "dismissAdmin": "Admin negeren",
+      "roleAdmin": "Beheerder",
+      "roleMember": "Lid",
+      "whatCanTheyDo": "Wat kan deze beheerder doen?",
+      "rightNotHeld": "Dit recht heb je zelf niet",
+      "customTitle": "Aangepaste titel",
+      "customTitlePlaceholder": "Beheerder",
+      "customTitleHint": "Weergegeven in plaats van de standaard beheerdersbadge.",
+      "saveChanges": "Wijzigingen opslaan",
+      "promote": "Promoten",
+      "tabs": {
+        "members": "Leden",
+        "admins": "Beheerders",
+        "permissions": "Toestemmingen",
+        "invites": "Uitnodigingen",
+        "rules": "Regels",
+        "recentActions": "Recente acties",
+        "danger": "Gevarenzone"
+      },
+      "title": "Beheren",
+      "purgeTitle": "Alle berichten verwijderen?",
+      "purgeConfirm": "Verwijderen",
+      "kickTitle": "Lid verwijderen?",
+      "kickConfirm": "Verwijderen",
+      "bannedPermanent": "Verboden — permanent",
+      "mutedPermanent": "Gedempd — permanent",
+      "editAdminRights": "Beheerdersrechten bewerken",
+      "promoteToAdmin": "Promoveer naar beheerder",
+      "unmute": "Demute",
+      "mute": "Dempen",
+      "unban": "Ophef ban",
+      "ban": "Verbannen",
+      "deleteAllMessages": "Verwijder alle berichten",
+      "removeFromCommunity": "Verwijder uit community",
+      "noActionsAvailable": "Je kunt dit lid niet modereren.",
+      "showMore": "Meer weergeven",
+      "joinRequests": "Aanvraag tot deelname",
+      "approve": "Goedkeuren",
+      "reject": "Afwijzen",
+      "members": "Leden",
+      "searchMembers": "Zoeken op portemonnee-adres",
+      "noMembersMatch": "Geen lid komt overeen.",
+      "noMembers": "Nog geen leden.",
+      "muted": "Gedempt",
+      "banned": "Geband",
+      "muteEffect": "Ze blijven in de community, maar kunnen niet posten totdat de mute verloopt.",
+      "banEffect": "Ze worden uit de chat verwijderd en kunnen niet opnieuw deelnemen totdat de ban is opgeheven.",
+      "durationLabel": "Duur",
+      "reasonLabel": "Reden (optioneel)",
+      "reasonPlaceholder": "Waarom worden ze geband?",
+      "alsoDeleteMessages": "Verwijder ook al hun berichten",
+      "confirmMute": "Lid dempen",
+      "confirmBan": "Lid banden",
+      "rulesUpdated": "Regels bijgewerkt",
+      "rulesTitle": "Communityregels",
+      "rulesEmpty": "Nog geen regels — voeg hieronder de eerste toe.",
+      "rulePlaceholder": "Beschrijf de regel",
+      "addRule": "Regel toevoegen",
+      "saveRules": "Regels opslaan",
+      "dismissAdminBody": "{{wallet}} wordt weer een gewoon lid.",
+      "purgeBody": "Elk bericht dat {{name}} in deze community heeft gestuurd, wordt verwijderd.",
+      "kickBody": "{{name}} wordt uit de community verwijderd. Ze kunnen later opnieuw lid worden.",
+      "bannedUntil": "Verbannen tot {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Gemute tot {{date}}",
+      "bannedUntilShort": "Tot {{date}}",
+      "muteTitle": "{{name}} muten",
+      "banTitle": "{{name}} verbannen",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} van {{max}}",
+      "moveRuleUp": "Regel omhoog verplaatsen",
+      "moveRuleDown": "Regel omlaag verplaatsen",
+      "deleteRule": "Regel verwijderen",
+      "rights": {
+        "changeInfo": "Community-info wijzigen",
+        "changeInfoHint": "Naam, beschrijving, avatar en banner bewerken",
+        "deleteMessages": "Berichten verwijderen",
+        "deleteMessagesHint": "Verwijder elk bericht uit de community-chat",
+        "restrictMembers": "Gebruikers verbannen",
+        "restrictMembersHint": "Leden muten, verwijderen en verbannen",
+        "inviteUsers": "Gebruikers uitnodigen via link",
+        "inviteUsersHint": "Uitnodigingslinks maken en intrekken",
+        "pinMessages": "Berichten vastpinnen",
+        "pinMessagesHint": "Pin een bericht bovenaan de chat",
+        "manageEvents": "Evenementen beheren",
+        "manageEventsHint": "Community-evenementen maken en bewerken",
+        "addAdmins": "Nieuwe beheerders toevoegen",
+        "addAdminsHint": "Leden promoten en de rechten van beheerders die ze hebben toegevoegd bewerken",
+        "remainAnonymous": "Anoniem blijven",
+        "remainAnonymousHint": "Verberg deze beheerder uit de ledenlijst"
+      },
+      "durations": {
+        "oneHour": "1 uur",
+        "eightHours": "8 uur",
+        "oneDay": "1 dag",
+        "oneWeek": "1 week",
+        "forever": "Voor altijd"
+      }
+    },
+    "chooseAvatar": "Avatar kiezen"
   },
   "work": {
     "title": "Bounties",
@@ -3153,7 +3321,9 @@
       "shipped": "Verzonden",
       "completed": "Voltooid",
       "cancelled": "Geannuleerd"
-    }
+    },
+    "removePhoto": "Foto verwijderen",
+    "listingOptions": "Lijstopties"
   },
   "accounts": {
     "subtitle": "Hele accounts te koop, geprijsd in DHB",
@@ -3521,7 +3691,14 @@
     "removeFollowerHint": "Houd een volger ingedrukt om deze te verwijderen.",
     "cancel": "Annuleren",
     "remove": "Verwijderen",
-    "thisUser": "Deze gebruiker:"
+    "thisUser": "Deze gebruiker:",
+    "cancelRequestTo": "Volgverzoek annuleren aan @{{username}}?",
+    "followingUser": "Volgt @{{username}}",
+    "contentUnavailable": "Inhoud niet beschikbaar",
+    "youBlockedBody": "Je ziet hun berichten niet en kunt niet met hen interageren. Deblokkeer om de toegang te herstellen.",
+    "restrictedBody": "Deze gebruiker heeft interacties met je account beperkt.",
+    "requestPendingBody": "Je volgverzoek is verzonden. Je kunt hun berichten zien zodra ze je verzoek goedkeuren.",
+    "followToSeePosts": "Volg dit account om hun berichten te zien."
   },
   "reactionInfo": {
     "title": "Reacties",
@@ -3836,7 +4013,8 @@
     "needGas": "Je hebt native {{token}} nodig voor gas op {{chain}}.",
     "bridging": "Bezig met bridgen…",
     "bridgeAction": "Bridge {{from}} → {{to}}",
-    "failed": "Bridge mislukt"
+    "failed": "Bridge mislukt",
+    "sentArriveShortly": "{{amount}} DHB verzonden vanaf {{from}} → {{to}}. Tokens komen spoedig aan."
   },
   "banned": {
     "title": "Je account is geblokkeerd",
@@ -4014,7 +4192,16 @@
     "legacyRecovered": "We hebben je oude account{{suffix}} geverifieerd en de wallet hersteld. Stel een wachtwoord in dat hem vanaf nu op dit apparaat beschermt — op deze telefoon en overal elders.",
     "passwordMin": "Wachtwoord (min. {{min}} tekens)",
     "newPasswordMin": "Nieuw wachtwoord (min. {{min}} tekens)",
-    "newWalletPasswordMin": "Wachtwoord nieuwe wallet (min. {{min}} tekens)"
+    "newWalletPasswordMin": "Wachtwoord nieuwe wallet (min. {{min}} tekens)",
+    "deviceCheckCancelled": "Apparaatcontrole geannuleerd — er is niets gewijzigd.",
+    "savePhraseTitle": "Bewaar je herstelzin",
+    "startOverTitle": "Begin opnieuw met een nieuwe wallet",
+    "secureNewWalletTitle": "Beveilig je nieuwe wallet",
+    "secureWalletTitle": "Beveilig je wallet",
+    "unlockOnMobileTitle": "Ontgrendelen op mobiel",
+    "oldAccountFoundTitle": "Oude account gevonden",
+    "unlockWalletTitle": "Ontgrendel je wallet",
+    "phraseExplainer": "Je wallet wordt beschermd door de biometrie van deze telefoon. Dat ontgrendelen <em>werkt alleen op deze telefoon</em> — deze 12 woorden zijn de enige manier om terug te komen als je DeHub opnieuw installeert, van telefoon wisselt of het verliest."
   },
   "transcript": {
     "title": "Transcript",
@@ -4201,7 +4388,38 @@
     "subscribe": "Abonneren",
     "subscriberCount_one": "{{count}} abonnee",
     "subscriberCount_other": "{{count}} abonnees",
-    "subscribeToForRich": "Abonneer op <name>{{name}}</name> voor <price>{{price}}</price>"
+    "subscribeToForRich": "Abonneer op <name>{{name}}</name> voor <price>{{price}}</price>",
+    "loadPlansFailed": "Plannen konden niet worden geladen",
+    "subscriberContent": "Abonnee-inhoud",
+    "subscriberContentSub": "Maak plannen om exclusieve inhoud aan abonnees aan te bieden",
+    "createFirstPlan": "Maak je eerste abonnement",
+    "addNewPlan": "Nieuw abonnement toevoegen",
+    "durations": {
+      "oneMonth": "1 Maand",
+      "threeMonths": "3 Maanden",
+      "sixMonths": "6 Maanden",
+      "oneYear": "1 Jaar",
+      "lifetime": "Levenslang"
+    },
+    "planNameRequired": "Abonnementsnaam is verplicht",
+    "enterValidPrice": "Voer een geldige prijs in",
+    "availableChains": "Abonnementen zijn momenteel beschikbaar op Base en BNB",
+    "waitForSwitch": "Wacht tot het abonnementnetwerk is overgeschakeld",
+    "connectAndWait": "Verbind je wallet en wacht op het abonnementnetwerk",
+    "planUpdated": "Abonnement bijgewerkt",
+    "creating": "Aanmaken…",
+    "planPublished": "Abonnement aangemaakt en gepubliceerd",
+    "createPlanTitle": "Abonnementsplan maken",
+    "network": "Abonnementnetwerk",
+    "planNameLabel": "Abonnementsnaam *",
+    "planNamePlaceholder": "bijv. Premium, Goud, VIP...",
+    "descriptionPlaceholder": "Wat abonnees krijgen...",
+    "priceLabel": "Prijs (USD) *",
+    "legacyMigrationNote": "Besparing migreert dit legacy DHB-abonnement naar dollar-prijzen tegen de pre-listing koers.",
+    "benefits": "Voordelen",
+    "benefitPlaceholder": "Een voordeel toevoegen...",
+    "createAndPublish": "Maken & Publiceren",
+    "publishingOnChain": "Publiceren is een on-chain transactie"
   },
   "live": {
     "notSet": "Niet ingesteld",
@@ -4319,7 +4537,22 @@
     "acceptTerms": "Ik accepteer de <terms>Servicevoorwaarden</terms>",
     "sentTo": "{{amount}} {{symbol}} is verzonden naar {{address}}",
     "tokensSentTo": "Tokens zijn verzonden naar {{address}}",
-    "goToProfile": "Ga naar profiel"
+    "goToProfile": "Ga naar profiel",
+    "aboutTitle": "Over DeHub & betalingen",
+    "aboutSubtitle": "Uw toegangspoort tot naadloze tokenbetalingen",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokens worden gebruikt voor het abonneren op creators, het geven van fooien aan streamers of het ontgrendelen van content. Hoe meer je bezit, hoe lager je kosten zijn en hoe meer superkrachten je ontgrendelt, zoals timeline trend boosts en verificatiebadges.",
+    "aboutInstantTitle": "Directe betalingen",
+    "aboutInstantBody": "Met Stripe kun je direct en naadloos tokens kopen in het account waarmee je bent ingelogd. DeHub maakt tokens eenvoudig en voor iedereen. Als je meer ondersteuning nodig hebt, kom dan langs in onze 24/7 live community chat en vraag om admin support.",
+    "aboutSecureTitle": "Veilig Gateway",
+    "aboutSecureBody": "Alle betalingsgegevens worden versleuteld en veilig verwerkt door Stripe. Wij hebben geen toegang tot of opslag van uw gevoelige informatie of kaartgegevens, wat u ultieme gemoedsrust geeft.",
+    "transfersSummary": "Overzicht Overboekingen",
+    "availableToBuy": "Nu te koop",
+    "noSupplyShort": "Geen aanbod",
+    "topUpSubtitle": "Koop $DHB met kaart en ontvang gratis gas om direct te gebruiken",
+    "noTxHash": "Transactiehash niet gevonden",
+    "latestTransactions": "Laatste Transacties",
+    "showAll": "Toon alles"
   },
   "musicSheet": {
     "title": "Een nummer maken",
@@ -4448,7 +4681,13 @@
     "followUpNote": "We nemen mogelijk contact op met vervolgvragen over je feedback",
     "submitFeedback": "Feedback verzenden",
     "provideFeedback": "Geef alsjeblieft je feedback",
-    "thankYou": "Bedankt voor je feedback!"
+    "thankYou": "Bedankt voor je feedback!",
+    "submitFailed": "Kon feedback niet indienen. Probeer het opnieuw.",
+    "maybeLater": "Misschien Later",
+    "helpUsImprove": "Help ons verbeteren",
+    "rateExperience": "Hoe beoordeelt u uw ervaring?",
+    "telegramOptional": "Telegram (optioneel)",
+    "discordOptional": "Discord (optioneel)"
   },
   "migrate": {
     "clearAll": "Alles wissen",
@@ -4565,7 +4804,14 @@
       "blueWhale": "Het grootste ding dat ooit heeft geleefd. Dat ben jij.",
       "megalodon": "Hier is je kroon — je bent nu app-royalty"
     },
-    "continue": "Terug naar DeHub"
+    "continue": "Terug naar DeHub",
+    "none": "Geen",
+    "noBadgeYet": "Nog geen badge",
+    "next": "Volgende",
+    "topTier": "Top tier",
+    "toNextTier": "{{amount}} DHB naar {{tier}}",
+    "everyTierUnlocked": "Elke tier ontgrendeld",
+    "holdNote": "Zodra een badge is ontgrendeld, is deze van jou zolang je je DHB aanhoudt. Het aantal tokens dat nodig is om een nieuwe badge te ontgrendelen, kan veranderen met de tokenprijs."
   },
   "passwordStrength": {
     "veryWeak": "Zeer zwak",
@@ -4647,7 +4893,11 @@
     },
     "ttsLabel": "Zeg iets hardop",
     "ttsPlaceholder": "Lees uit naar de stream...",
-    "ttsHint": "Lees hardop voor aan iedereen die kijkt wanneer je cadeau binnenkomt."
+    "ttsHint": "Lees hardop voor aan iedereen die kijkt wanneer je cadeau binnenkomt.",
+    "sendAGift": "Stuur een Cadeau",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minimum cadeau is {{amount}}",
+    "sendGift": "Cadeau Sturen"
   },
   "goLive": {
     "streamKey": "Stream-sleutel",
@@ -5030,7 +5280,8 @@
         "title": "Bekijk hoe omzet maken werkt",
         "body": "Ontdek hoe tips, badges en SuperPowers van wat je hier doet, iets maken waar je aan verdient."
       }
-    }
+    },
+    "swipeToStart": "Veeg om te starten"
   },
   "conversation": {
     "commonGround": {
@@ -5576,5 +5827,18 @@
     "toastPaidSettled": "Betaald — de transactie is afgewikkeld",
     "walletNotReady": "Je wallet is nog niet klaar — probeer het zo opnieuw.",
     "wrongChain": "Deze transactie wordt afgewikkeld op {{chain}}. Schakel in Instellingen over naar {{chain}} en probeer het opnieuw."
+  },
+  "moderation": {
+    "appealDuplicate": "Je hebt al bezwaar gemaakt tegen dit",
+    "appealSent": "Beroep verzonden",
+    "appealFailed": "Kon dat beroep niet indienen",
+    "appealTitle": "Bezwaar maken tegen deze beslissing",
+    "appealSubtitle": "Een persoon zal dit lezen en opnieuw naar de beslissing kijken.",
+    "appealPlaceholder": "Wat denk je dat er gemist is? Context over de inhoud helpt meer dan wat dan ook.",
+    "appealSend": "Beroep indienen",
+    "appealFootnote": "Je krijgt een referentienummer en het antwoord komt hier terug. Eén beroep per beslissing.",
+    "appealRef": "Kenmerk {{ref}}",
+    "appealSubtitleSubject": "Een persoon zal dit lezen en opnieuw kijken op {{subject}}.",
+    "appealMore": "Tekens nog nodig: {{count}}"
   }
 }

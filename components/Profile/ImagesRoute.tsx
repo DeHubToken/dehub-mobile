@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, ScrollView, ActivityIndicator, Pressable, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import ProfileImageGrid from "./ProfileImageGrid";
 import { getUnifiedFeed, type FeedRange, type FeedSortBy, type UnifiedFeedItem } from "../../services/feed.unified.service";
@@ -35,6 +36,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({
   hasBounty,
   isLocked,
 }) => {
+  const { t } = useTranslation();
   const [images, setImages] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -71,7 +73,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({
         endRef.current = true;
       }
     } catch (e: any) {
-      if (page === 1) setError(e?.message || "Failed to load");
+      if (page === 1) setError(e?.message || t("common.failedToLoad"));
     }
   }, [address, sortBy, sortOrder, search, category, range, isPPV, hasBounty, isLocked]);
 
@@ -139,7 +141,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({
             hitSlop={8}
             style={{ height: 40, borderWidth: 1, borderColor: "rgba(255,255,255,0.30)", borderRadius: 12, paddingHorizontal: 16, justifyContent: "center", alignItems: "center" }}
           >
-            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "500" }}>Retry</Text>
+            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "500" }}>{t("common.retry")}</Text>
           </Pressable>
         </View>
       </ScrollView>
@@ -152,8 +154,8 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({
         {listHeader}
         <ProfileEmptyState
           kind="images"
-          title="No images yet"
-          subtitle="Image posts will appear here"
+          title={t("profile.noImages")}
+          subtitle={t("profile.noImagesSub")}
         />
       </ScrollView>
     );

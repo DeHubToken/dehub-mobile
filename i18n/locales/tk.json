@@ -684,7 +684,11 @@
       "hintAllow": "Bu habary hormatlaýan AI sistemeleri we krawler siziň ses, sanat we ýazma işleriňiziň üstünde tälim berip bilerler.",
       "hintDeny": "Bu habary berjaý edýän AI sistemasy we krawler ses, sanat we ýazgylaryňyzda tälim bermezligi haýyş edýärler. Sinyaly äsgermezlik edýän krawler ony saklamaýarlar.",
       "saved": "Öwrenme terjimesi halas boldy"
-    }
+    },
+    "chainIdLabel": "Zynjyr ID: {{id}}",
+    "exportPkConfirmPhrase": "DÜŞÜNÝÄRIN",
+    "exportPkCopy": "Hususy açary göçüriň",
+    "e2eAutomatic": "Awtomatiki"
   },
   "common": {
     "mute": "Sesi öçür",
@@ -724,7 +728,17 @@
     "optionalSuffix": "(islege bagly)",
     "yesterday": "Düýn",
     "ok": "Bolýar",
-    "continue": "Dowam et"
+    "continue": "Dowam et",
+    "goesToHomeFeed": "Esasy akymyna geçýär",
+    "openMenu": "Menýuny aç",
+    "scrollsFeedToTop": "Akymyň başyna süýşýär we ony täzelenýär",
+    "notificationsUnread": "Bildirişler, {{unread}} okamadyk",
+    "errorDetails": "Ýalňyşlyk jikme-jiklikleri:",
+    "failedToLoad": "Ýüklemek başa barmady",
+    "noInternetTitle": "Internet birikmesi ýok",
+    "noInternetBody": "Internet birikmäňizi barlaň we täzeden synanyşyň. DeHub-dan peýdalanmak üçin internete birikmek zerur.",
+    "noInternetStatus": "Ofllaýn - Tor birikmesi ýok",
+    "noInternetHint": "Wi-Fi ýa-da mobil maglumatlaryňyzyň ýakylygyny üpjün ediň, soňra \"{{action}}\" düwmesine basyň"
   },
   "tip": {
     "title": "Send Tip",
@@ -1602,7 +1616,12 @@
     "chooseUsernameBody": "Dowam etmek üçin ulanyjy ady we görkeziliş ady saýlaň. Soňra üýtgedip bilersiňiz.",
     "checkingAvailability": "Elýeterlilik barlanýar…",
     "usernameTakenHint": "Bu at eýýäm alnan — san ýa-da aşaky çyzyk goşup görüň",
-    "displayNameLength": "Görkeziliş ady 2-50 belgi bolmaly."
+    "displayNameLength": "Görkeziliş ady 2-50 belgi bolmaly.",
+    "loginFailedRetry": "Giriş başa barmady. Täzeden synanyşyň.",
+    "sendCodeFailedRetry": "Kod ibermek başa barmady. Täzeden synanyşyň.",
+    "invalidCodeRetry": "Nädogry kod. Täzeden synanyşyň.",
+    "invalidEmailOrPassword": "Nädogry e-poçta ýa-da parol.",
+    "welcomeToDehub": "DeHub-a hoş geldiňiz"
   },
   "messages": {
     "smartRepliesOff": "Teklip edilýän jogaplar öçürildi",
@@ -1680,7 +1699,32 @@
     "offerWorthNow": "Häzirki kurs boýunça takmynan {{amount}} DHB",
     "offerNotePlaceholder": "Bellik goş (hökman däl)",
     "offerCommitsNothing": "Teklip etmek hiç zada durmaýar we DHB bloklamaýar. Diňe eýesi razy bolsa töleýärsiň.",
-    "offerNeedsHandle": "Bu hasapda teklip ediler ýaly ulanyjy ady ýok."
+    "offerNeedsHandle": "Bu hasapda teklip ediler ýaly ulanyjy ady ýok.",
+    "noPostsYet": "Heniz ýazgy ýok",
+    "noPostsYetSub": "Ýazgy goýlanda täzelenmeler bu ýerde peýda bolar",
+    "noPinnedPosts": "Heniz bellik edilen ýazgy ýok",
+    "noPinnedPostsSub": "Bellik edilen ýazgy bu ýerde peýda bolar",
+    "emptyLiked": "Heniz halanan ýazgy ýok.",
+    "emptySaved": "Heniz halan ýazgy ýok.",
+    "emptyUnlocked": "Heniz açylan ýazgy ýok.",
+    "emptyWatched": "Heniz gören taryhyňyz ýok.",
+    "emptyFolder": "Bu bukjada heniz ýazgy ýok.",
+    "emptyPosts": "Heniz ýazgy ýok.",
+    "couldNotLoadPosts": "Ýazgylary ýüklemek başa barmady.",
+    "noPostsOrReplies": "Heniz hiç zat ýok",
+    "noPostsOrRepliesSub": "Bu ýerde peýda bolar",
+    "avatarUpdated": "Awatarlar täzelendi",
+    "coverUpdated": "Sahypa täzelendi",
+    "couldNotPickImage": "Surat saýlap bolmady",
+    "changeCoverImage": "Sahypa suraty üýtget",
+    "changeAvatar": "Awatary üýtget",
+    "verifiedEnsName": "Tassyklaýan ENS ady {{name}}",
+    "notFullyJoined": "Bu ulanyjy heniz doly goşulmady. Ol özüniň ulanyjy adyny saýlamady ýa-da profiliň sazlamalaryny tamamlamady. Siz entegem jemgyýetçilik işjeňligini görüp we elýeterli bolsa, sowgat iberip bilersiňiz.",
+    "loadRepliesFailed": "Jogaplar ýüklenip alınmady",
+    "refreshFailed": "Täzelemek başa bar/−",
+    "noRepliesYet": "Heniz jogap ýok",
+    "noRepliesYetSub": "Bu ulanyjy postlara jogap berende, olar bu ýerde görner.",
+    "noMoreReplies": "Jogap ýok"
   },
   "tv": {
     "title": "TV",
@@ -1763,7 +1807,11 @@
     "loadingPrice": "Baha ýüklenýär…",
     "topUpExplanation": "DHB zynjyrda DeHub mahabat gaznasyna geçirilýär, soňra garaşsyz zynjyr tassyklamasyndan soň balansyňyza goşulýar.",
     "paymentHistory": "Töleg taryhy",
-    "noPayments": "Heniz töleg ýok"
+    "noPayments": "Heniz töleg ýok",
+    "sponsored": "Sponsorly",
+    "morePosts": "Goşmaça postlar",
+    "loadMorePosts": "Goşmaça postlary ýükle",
+    "playAdVideo": "Reklama wideo oýnat"
   },
   "buyCoins": {
     "title": "Teňňe satyn almak",
@@ -2198,7 +2246,8 @@
     "privateBalanceMode": "Şahsy balans režimi açyk",
     "addressHidden": "Salgy gizlenen",
     "allowInFeeds": "Bu ulanyjynyň lentaňyzda görünmegine rugsat beriň",
-    "hideContent": "Olaryň mazmunyny gizläň we aragatnaşygy çäklendiriň"
+    "hideContent": "Olaryň mazmunyny gizläň we aragatnaşygy çäklendiriň",
+    "a11yLabel": "Profil opsiýalary"
   },
   "toasts": {
     "saved_to_bookmarks": "Belgilere ýatda saklandy",
@@ -2570,7 +2619,8 @@
     "roles": {
       "owner": "Eýesi",
       "moderator": "Moderator",
-      "member": "Agza"
+      "member": "Agza",
+      "admin": "Admin"
     },
     "time": {
       "today": "şu gün",
@@ -2579,7 +2629,126 @@
       "weeks": "{{count}} hepde",
       "months": "{{count}} aý",
       "years": "{{count}} ýyl"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anonim",
+      "edited": "Üýtgedildi",
+      "deleteTitle": "Habary poz",
+      "deleteConfirm": "Bu habary pozmaly? Muny yzyna alyp bolmaz.",
+      "muted": "Siz sesleşdirildiňiz",
+      "postingDisabled": "Bu ýerdäki agzalar üçin ýazmak gadagan edildi",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Goýlan habar",
+      "showEarlier": "Öňki habarlary görkez",
+      "editingMessage": "Habary üýtgetmek",
+      "copied": "Kopyalan habar",
+      "copyText": "Metini nusgala",
+      "mutedUntil": "Siz {{date}} çenli üýtgedildiňiz",
+      "slowMode": "Slow mode: her bir habar{{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Ýolbaşçylyk maslahaty",
+      "cancel": "Gaýd Et",
+      "dismissAdmin": "Ýolbaşçylyk maslahaty",
+      "roleAdmin": "Ýolbaşçy",
+      "roleMember": "Üye",
+      "whatCanTheyDo": "Bu iş dolandyryjy näme edip biler?",
+      "rightNotHeld": "Sen bu hakyňy özüňe bermeýärsiň",
+      "customTitle": "Adat ady",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Öňki Admin tagmasynyň ýerine görkezilýär.",
+      "saveChanges": "Özgertmeleri Gaýd Et",
+      "promote": "Öwret",
+      "tabs": {
+        "members": "Üye",
+        "admins": "Adminler",
+        "permissions": "Ruhlandyryjylar",
+        "invites": "Çakylyk",
+        "rules": "Kanunlar",
+        "recentActions": "Soňky hereketler",
+        "danger": "Howp astyndaky ýer"
+      },
+      "title": "Ýolbaşçylyk",
+      "purgeTitle": "Ähli habarlary silmek?",
+      "purgeConfirm": "Ewez Et",
+      "kickTitle": "Ol ýakyndan agza boldymy?",
+      "kickConfirm": "Ewez Et",
+      "bannedPermanent": "Daşary — dawamly",
+      "mutedPermanent": "Daşary — dawamly",
+      "editAdminRights": "Admin hukuklaryny redaktirlemek",
+      "promoteToAdmin": "Adminlige geçirmek",
+      "unmute": "Sessizlige çykarmak",
+      "mute": "Sessizlige goýmak",
+      "unban": "Ýapgyt aýyrmak",
+      "ban": "Ýapgyt goýmak",
+      "deleteAllMessages": "Töweleýiň ähli habarlaryny öçürmek",
+      "removeFromCommunity": "Topardan aýyrmak",
+      "noActionsAvailable": "Bu agzany dolandyryp bilmersiňiz.",
+      "showMore": "Has köp görkez",
+      "joinRequests": "Goşulmak isleýänleriň haýyşlary",
+      "approve": "Tassykla",
+      "reject": "Ýalňyzla",
+      "members": "Agzalar",
+      "searchMembers": "Walet salgysy boýunça gözlemek",
+      "noMembersMatch": "Şeýle agza tapylmady.",
+      "noMembers": "Heniz agza ýok.",
+      "muted": "Sessizlige salnan",
+      "banned": "Ýapgyt goýlan",
+      "muteEffect": "Olar jemgyýetde galýarlar, ýöne sessizligiň möhleti gutarýança ýazyp bilmeýärler.",
+      "banEffect": "Olar söhbetdeşlikden çykaryldy we ýapgyt aýrylýança täzeden goşulyp bilmeýärler.",
+      "durationLabel": "Wagt",
+      "reasonLabel": "Sebäbi (meýletin)",
+      "reasonPlaceholder": "Näme üçin ýapgyt goýulýar?",
+      "alsoDeleteMessages": "Şeýle hem olaryň ähli habarlaryny öçüriň",
+      "confirmMute": "Agzany sessizlige goýmak",
+      "confirmBan": "Agzany ýapgyt goýmak",
+      "rulesUpdated": "Düzgünler täzelendi",
+      "rulesTitle": "Jemgyýet düzgünleri",
+      "rulesEmpty": "Heniz düzgün ýok — aşakda ilkinjini goşuň.",
+      "rulePlaceholder": "Düzgüni düşündiriň",
+      "addRule": "Düzgüni goş",
+      "saveRules": "Düzgünleri sakla",
+      "dismissAdminBody": "{{wallet}} adaty agza bolup galar.",
+      "purgeBody": "{{name}} tarapyndan bu jemgyýete iberilen her bir hat aýrylar.",
+      "kickBody": "{{name}} jemgyýetden aýrylar. Olar soňra täzeden goşulyp bilerler.",
+      "bannedUntil": "{{date}} çenli gadagan edildi",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "{{date}} çenli sesini öçüriň",
+      "bannedUntilShort": "{{date}} çenli",
+      "muteTitle": "{{name}}-niň sesini öçüriň",
+      "banTitle": "{{name}}-ni gadagan ediň",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} / {{max}}",
+      "moveRuleUp": "Düzgüni ýokaryk göter",
+      "moveRuleDown": "Düzgüni aşak at",
+      "deleteRule": "Düzgüni aýyr",
+      "rights": {
+        "changeInfo": "Jemgyýet maglumatyny üýtget",
+        "changeInfoHint": "Ady, düşündirişi, awatary we banneri redaktirlemek",
+        "deleteMessages": "Hatary aýyryň",
+        "deleteMessagesHint": "Jemgyýetdäki islendik haty aýyryň",
+        "restrictMembers": "Ulanyjylary gadagan ediň",
+        "restrictMembersHint": "Agzalaryň sesini öçüriň, aýyryň we gadagan ediň",
+        "inviteUsers": "Link arkaly ulanyjylary çagyryň",
+        "inviteUsersHint": "Çakylyşyk linklerini dörediň we ýatyryň",
+        "pinMessages": "Hatary belläň",
+        "pinMessagesHint": "Chatyň başyna haty belläň",
+        "manageEvents": "Çäreleri dolandyryň",
+        "manageEventsHint": "Jemgyýet çärelerini dörediň we redaktirleň",
+        "addAdmins": "Täze administratorlary goşuň",
+        "addAdminsHint": "Agzalary öňe sür we goşan administratorlaryň hukuklaryny redaktirlemek",
+        "remainAnonymous": "Gizlin galmak",
+        "remainAnonymousHint": "Bu administratory agzalar sanawyndan gizlemek"
+      },
+      "durations": {
+        "oneHour": "1 sagat",
+        "eightHours": "8 sagat",
+        "oneDay": "1 gün",
+        "oneWeek": "1 hepde",
+        "forever": "Ebedilik"
+      }
+    },
+    "chooseAvatar": "Awatary saýlaň"
   },
   "work": {
     "title": "Baýraklar",
@@ -2931,7 +3100,9 @@
       "shipped": "Iberilen",
       "completed": "Tamamlanan",
       "cancelled": "Ýatyrylan"
-    }
+    },
+    "removePhoto": "Suraty aýyryň",
+    "listingOptions": "Sanaw opsiýalary"
   },
   "accounts": {
     "subtitle": "Bahasy DHB bilen bolan tutuş hasaplar satlyk",
@@ -3298,7 +3469,14 @@
     "removeFollowerHint": "Olary aýyrmak üçin meýletini basyp saklaň.",
     "cancel": "Ýatyrmak",
     "remove": "Aýyrmak",
-    "thisUser": "Bu ulanýan"
+    "thisUser": "Bu ulanýan",
+    "cancelRequestTo": "@{{username}}? diýen haýyşyňyzy ýatyryň",
+    "followingUser": "@{{username}} diýen hasaba abuna ýazylmak",
+    "contentUnavailable": "Kontent ýok",
+    "youBlockedBody": "Olaryň postlaryny görmersiňiz we olar bilen özara täsirleşip bilmersiňiz. Täzeden açmak bilen elýeterliligi dikelderiň.",
+    "restrictedBody": "Bu ulanyjy siziň hasabyňyz bilen özara täsir etmegi çäklendirdi.",
+    "requestPendingBody": "Siziň abuna ýazylmak haýyşyňyz ugradyldy. Olaryň postlaryny olaryň haýyşyňyzy tassyklandan soň görüp bilersiňiz.",
+    "followToSeePosts": "Olaryň postlaryny görmek üçin bu hasaba abuna ýazylyň."
   },
   "reactionInfo": {
     "title": "Reaksiýalar",
@@ -3603,7 +3781,8 @@
     "needGas": "{{chain}} -da gaz üçin ýerli {{token}} gerek.",
     "bridging": "Köprüden geçirilýär…",
     "bridgeAction": "Köprü {{from}} → {{to}}",
-    "failed": "Köprü şowsuz boldy"
+    "failed": "Köprü şowsuz boldy",
+    "sentArriveShortly": "{{amount}} DHB, {{from}}-den ugradyldy → {{to}}. Tokeneriňiz tizden geler."
   },
   "banned": {
     "title": "Siziň hasabatyňyz gadagan edilýär",
@@ -3781,7 +3960,16 @@
     "legacyRecovered": "Köne hasabyňyzy{{suffix}} tassykladyk we onuň gapjygyny dikeltdik. Şu wagtdan başlap ony şu enjamda — şu telefonda we beýleki ýerlerde — goramak üçin parol belläň.",
     "passwordMin": "Parol (iň azyndan {{min}} belgi)",
     "newPasswordMin": "Täze parol (iň azyndan {{min}} belgi)",
-    "newWalletPasswordMin": "Täze gapjygyň paroly (iň azyndan {{min}} belgi)"
+    "newWalletPasswordMin": "Täze gapjygyň paroly (iň azyndan {{min}} belgi)",
+    "deviceCheckCancelled": "Enjam barlagy ýatyryldy — üýtgeşiklik edilmedi.",
+    "savePhraseTitle": "Galkynyş sözbaşyňyzy saklaň",
+    "startOverTitle": "Täze portfel bilen täzeden başlaň",
+    "secureNewWalletTitle": "Täze portfeliňizi gorap saklaň",
+    "secureWalletTitle": "Portfeliňizi gorap saklaň",
+    "unlockOnMobileTitle": "Mobil enjamda açmak",
+    "oldAccountFoundTitle": "Köne hasap tapyldy",
+    "unlockWalletTitle": "Portfeliňizi açmak",
+    "phraseExplainer": "Portfeliňiz bu telefonyň biometriýasy bilen goralar. Bu açmak <em>diňe bu telefonda işleýär</em> — bu 12 söz DeHub-y täzeden gurnasaňyz, telefonyňyzy çalyşsaňyz ýa-da ýitirseňiz, ýeke-täk ýol."
   },
   "transcript": {
     "title": "Transkript",
@@ -3967,7 +4155,38 @@
     "subscribe": "Abuna bol",
     "subscriberCount_one": "{{count}} abunaçy",
     "subscriberCount_other": "{{count}} abunaçy",
-    "subscribeToForRich": "<price>{{price}}</price> bilen <name>{{name}}</name> abunasyny alyň"
+    "subscribeToForRich": "<price>{{price}}</price> bilen <name>{{name}}</name> abunasyny alyň",
+    "loadPlansFailed": "Planlary ýüklemek başa barmady",
+    "subscriberContent": "Abuna ýazylan kontent",
+    "subscriberContentSub": "Abonentlere ýörite mazmun hödürlemek üçin meýilnamalary dörediň",
+    "createFirstPlan": "Ilkinji meýilnamany dörediň",
+    "addNewPlan": "Täze meýilnama goşuň",
+    "durations": {
+      "oneMonth": "1 Aý",
+      "threeMonths": "3 Aý",
+      "sixMonths": "6 Aý",
+      "oneYear": "1 Ýyl",
+      "lifetime": "Ömürlik"
+    },
+    "planNameRequired": "Meýilnamanyň ady hökmany",
+    "enterValidPrice": "Doly bahany giriziň",
+    "availableChains": "Häzirki wagtda esasy we BNB-de ýazgylar elýeterlidir",
+    "waitForSwitch": "Ýazgy ulgamynyň üýtgemegi tamamlanýança garaşyň",
+    "connectAndWait": "Portmonyňyzy birleşdiriň we ýazgy ulgamynyň tamamlanmagyny garaşyň",
+    "planUpdated": "Meýilnama täzelendi",
+    "creating": "Döredilýär…",
+    "planPublished": "Meýilnama döredildi we neşir edildi",
+    "createPlanTitle": "Ýazgy meýilnamasyny dörediň",
+    "network": "Ýazgy ulgamy",
+    "planNameLabel": "Meýilnamanyň ady *",
+    "planNamePlaceholder": "Mysal üçin: Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Abone bolanlar näme alýar...",
+    "priceLabel": "Bahasy (USD) *",
+    "legacyMigrationNote": "Ýeňillikler bu köne DHB meýilnamasynyListingden öňki bahasda dollara geçirmäge mümkinçilik berýär.",
+    "benefits": "Peýdalar",
+    "benefitPlaceholder": "Peýda goşuň...",
+    "createAndPublish": "Dörediň we neşiriň",
+    "publishingOnChain": "Neşir etmek zynjyrdaky amaldyr"
   },
   "live": {
     "notSet": "Bellenmedi",
@@ -4084,7 +4303,22 @@
     "checkoutUnavailable": "Töleg salgysy elýeterli däl. Gaýtadan synanyşyň.",
     "acceptTerms": "Men kabul edýärin <terms>Hyzmat şertleri</terms>",
     "tokensSentTo": "Çykyşlar {{address}} adresineiberildi",
-    "goToProfile": "Profil ýarat"
+    "goToProfile": "Profil ýarat",
+    "aboutTitle": "DeHub we tölegler barada",
+    "aboutSubtitle": "Siziň täsirli nyşan tölegleriňize giriş",
+    "aboutTokenTitle": "DeHub nyşany",
+    "aboutTokenBody": "Tokenler döredijilere abuna ýazylmak, ýaýlymcylara sowgat bermek ýa-da kontenti açmak üçin ulanylýar. Köpräk saklasaňyz, tölegleriňiz peselýär we wagt görkezijisiniň trendlerini güýçlendirmek we tassyklaýyş nyşanlary ýaly has köp güýçleri açýarsyňyz.",
+    "aboutInstantTitle": "Dürli tölegler",
+    "aboutInstantBody": "Stripe ulanyp, göni we rahatlyk bilen islendik hasabyňyza token satyn alyp bilersiňiz. DeHub tokenleri ýönekeý we hemmeler üçin elýeterli edýär. Kömek gerek bolsa, 24/7 ýaşaýyş jemgyýetçilik söhbetdeşligimize baryp, administrasiýadan kömek soraň.",
+    "aboutSecureTitle": "Howpsuz Gateway",
+    "aboutSecureBody": "Ähli töleg jikme-jiklikleri Stripe tarapyndan şifrlenýär we howpsuz işlenýär. Sensiýa maglumatlaryňyzy ýa-da kartyň jikme-jikliklerini görüp ýa-da saklap bilemzok, bu size doly parahatçylyk berýär.",
+    "transfersSummary": "Geçirimleriň jemi",
+    "availableToBuy": "Indi satyn alyp bolýar",
+    "noSupplyShort": "Supply ýok",
+    "topUpSubtitle": "$DHB kart bilen satyn alyň we göni ulanyp boljak mugt gaz alyň",
+    "noTxHash": "Geçirim tapylmady",
+    "latestTransactions": "Soňky geçirimler",
+    "showAll": "Hemmesini görkez"
   },
   "musicSheet": {
     "title": "Aýdym döret",
@@ -4213,7 +4447,13 @@
     "followUpNote": "Pikiriňiz barada goşmaça soraglar üçin siz bilen habarlaşyp bileris",
     "submitFeedback": "Pikiri iber",
     "provideFeedback": "Haýyş, pikiriňizi ýazyň",
-    "thankYou": "Pikiriňiz üçin sag boluň!"
+    "thankYou": "Pikiriňiz üçin sag boluň!",
+    "submitFailed": "Teswirleri ibermek başartmady. Gaýtadan synanyşyň.",
+    "maybeLater": "Belki soňrak",
+    "helpUsImprove": "Biziň ösmegimize kömek ediň",
+    "rateExperience": "Tecrübiňizi nähili bahasyna ýetirersiňiz?",
+    "telegramOptional": "Telegram (meýletin)",
+    "discordOptional": "Discord (meýletin)"
   },
   "migrate": {
     "clearAll": "Hemmesini arassala",
@@ -4330,7 +4570,14 @@
       "blueWhale": "Bu meniň durmuşymda bolan iň uly waka. Bu sen.",
       "megalodon": "Bu siziň täç — siz indi App royalty"
     },
-    "continue": "DeHub-a dolanmak"
+    "continue": "DeHub-a dolanmak",
+    "none": "Hiç biri",
+    "noBadgeYet": "Heniz nyşan ýok",
+    "next": "Indiki",
+    "topTier": "Iň ýokary dereje",
+    "toNextTier": "{{amount}} DHB {{tier}}-e",
+    "everyTierUnlocked": "Her dereje açyldy",
+    "holdNote": "Nyşan açylandan soň, DHB-iňizi saklaýşyňyz ýaly, ol siziňki bolar. Täze nyşany açmak üçin gerek bolan tokenleriň sany token bahasyna görä üýtgeýär."
   },
   "passwordStrength": {
     "veryWeak": "Örän gowşak",
@@ -4412,7 +4659,11 @@
     },
     "ttsLabel": "Bir zady gaty aýt",
     "ttsPlaceholder": "Garawul diňi we Garawul diňi",
-    "ttsHint": "Seniň sowgatyňy görýänleriň ählisine sesli okamagy öwreniň."
+    "ttsHint": "Seniň sowgatyňy görýänleriň ählisine sesli okamagy öwreniň.",
+    "sendAGift": "Sowgat iber",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Iň pes sowgat {{amount}}",
+    "sendGift": "Sowgat iber"
   },
   "goLive": {
     "streamKey": "Akış Anahtarı",
@@ -4793,7 +5044,8 @@
         "title": "Garawul diňi we Garawul diňi",
         "body": "Bu ýerde edýän işleriňizi gazanç edýän zadyňyza öwrüp biljekdigiňizi görüň."
       }
-    }
+    },
+    "swipeToStart": "Başlamak üçin süýşüriň"
   },
   "conversation": {
     "commonGround": {
@@ -5275,5 +5527,18 @@
     "toastPaidSettled": "Tölendi — söwda tamamlandy",
     "walletNotReady": "Gapjygyňyz entek taýýar däl — biraz soň täzeden synanyşyň.",
     "wrongChain": "Bu söwda {{chain}} ulgamynda tamamlanýar. Sazlamalarda {{chain}} ulgamyna geçiň we täzeden synanyşyň."
+  },
+  "moderation": {
+    "appealDuplicate": "Sen ony çagyrdyň",
+    "appealSent": "Dawa iberildi",
+    "appealFailed": "Bu çakylygy gaýd edip bilmedim",
+    "appealTitle": "Bu kararyň çakylygy",
+    "appealSubtitle": "Adam muny okap, ýene-de karara geler.",
+    "appealPlaceholder": "Näme ýitirip bilersiň? Mundan başga-da, içginiň kontekstiniň kömegi bar.",
+    "appealSend": "Çakylyk iber",
+    "appealFootnote": "Siz bir sany görkezme alarsyňyz we jogap bu ýerde gaýdyp geler. Bir karara ýüz tutmak.",
+    "appealRef": "Referans {{ref}}",
+    "appealSubtitleSubject": "Bir adam muny okap, ýene-de {{subject}}sereder.",
+    "appealMore": "Häzirem gerekli karakterler: {{count}}"
   }
 }

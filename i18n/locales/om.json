@@ -706,7 +706,11 @@
       "hintAllow": "Sirnoonni AI fi crawlers mallattoo kana kabajan sagalee, hojii aartii fi barreeffama keessan irratti leenji&#39;uu danda&#39;u.",
       "hintDeny": "Sirnoonni AI fi crawlers mallattoo kana kabajan sagalee, hojii aartii fi barreeffama keessan irratti akka hin leenjifamne gaafatamna. Crawlers kanneen mallattoo tuffatan ittiin hin ugguraman.",
       "saved": "Filannoon leenjii AI qusatameera"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "ANIBAA",
+    "exportPkCopy": "Keyii dhoksaa kopii godhi",
+    "e2eAutomatic": "Automaatiikii"
   },
   "common": {
     "mute": "Sagalee cufi",
@@ -746,7 +750,17 @@
     "optionalSuffix": "(filannoo)",
     "yesterday": "Kaleessa",
     "ok": "Tole",
-    "continue": "Itti fufuu"
+    "continue": "Itti fufuu",
+    "goesToHomeFeed": "Mana fuulaatti deema",
+    "openMenu": "Menyuu banaa",
+    "scrollsFeedToTop": "Fuula olitti rarraasee deebisee haareffata",
+    "notificationsUnread": "Beeksisa, {{unread}} dubbisuu hin dandeenye",
+    "errorDetails": "Badiiwwan ibsuu:",
+    "failedToLoad": "Kaasuun dadhabame",
+    "noInternetTitle": "Walitti qabamummaa Intarneetii hin qabu",
+    "noInternetBody": "Walitti qabamummaa Intarneetii kee mirkaneeffadhuu deebiitii yaali. DeHub fayyadamuuuf Intarneetitti walitti qabamuun si barbaachisa.",
+    "noInternetStatus": "Offline - Walitti qabamummaa network hin qabu",
+    "noInternetHint": "Wi-Fi ykn mobaayil daataa akka on godhamte mirkaneeffadhuu, achiin booda \"{{action}}\" tuqi"
   },
   "tip": {
     "title": "Tiippii Ergi",
@@ -1649,7 +1663,12 @@
     "chooseUsernameBody": "Itti fufuuf maqaa fayyadamaa fi maqaa mul'atu filadhu. Booda jijjiiruu dandeessa.",
     "checkingAvailability": "Argamuu ilaalaa jira…",
     "usernameTakenHint": "Maqaan kun fudhatameera — lakkoofsa ykn sarara jala ida'uu yaali",
-    "displayNameLength": "Maqaan mul'atu arfii 2-50 ta'uu qaba."
+    "displayNameLength": "Maqaan mul'atu arfii 2-50 ta'uu qaba.",
+    "loginFailedRetry": "Seenuun dadhabame. Deebiitii yaali.",
+    "sendCodeFailedRetry": "Koodii erguun dadhabame. Deebiitii yaali.",
+    "invalidCodeRetry": "Koodii sirrii miti. Deebiitii yaali.",
+    "invalidEmailOrPassword": "Imeeyilii ykn paasweerdi sirrii miti.",
+    "welcomeToDehub": "DeHub irratti nagaan dhufe"
   },
   "messages": {
     "smartRepliesOff": "Deebiiwwan yaadaman dhaamamaniiru",
@@ -1727,7 +1746,32 @@
     "offerWorthNow": "Gatii ammaatiin gara {{amount}} DHB",
     "offerNotePlaceholder": "Yaadannoo dabali (filannoo)",
     "offerCommitsNothing": "Dhiheessa gochuun homaa hin baasisu, DHB tokko illee hin ugguru. Kan kaffaltu abbaan isaa yoo fudhate qofa.",
-    "offerNeedsHandle": "Herregni kun maqaa fayyadamaa dhiheessi irratti godhamu hin qabu."
+    "offerNeedsHandle": "Herregni kun maqaa fayyadamaa dhiheessi irratti godhamu hin qabu.",
+    "noPostsYet": "Qubannoon amma hin jiru",
+    "noPostsYetSub": "Qubannoon yeroo maxxanfamu as jira",
+    "noPinnedPosts": "Qubannoon hidhame amma hin jiru",
+    "noPinnedPostsSub": "Qubannoon hidhamoon as jira",
+    "emptyLiked": "Qubannoon jaallatame amma hin jiru",
+    "emptySaved": "Qubannoon kuufame amma hin jiru",
+    "emptyUnlocked": "Qubannoon baname amma hin jiru",
+    "emptyWatched": "Seenaa ilaaluu amma hin jiru",
+    "emptyFolder": "Qubannoon suupha kana keessa amma hin jiru",
+    "emptyPosts": "Qubannoon amma hin jiru",
+    "couldNotLoadPosts": "Qubannoon kaasuun dadhabame.",
+    "noPostsOrReplies": "Qo'annoonni, yaadaafi deebiin hin jiran",
+    "noPostsOrRepliesSub": "As irratti mul'atu",
+    "avatarUpdated": "Awaataarratti jijjiirama godhameera",
+    "coverUpdated": "Fuulli gubbaa irratti jijjiirama godhameera",
+    "couldNotPickImage": "Sa'la fudhachuu hin danda'amne",
+    "changeCoverImage": "Fuula gubbaa jijjiiru",
+    "changeAvatar": "Awaata jijjiiru",
+    "verifiedEnsName": "Maqaa ENS mirkanaa'e {{name}}",
+    "notFullyJoined": "Tajaajila kana hin xumure. Maqaa barreessaa hin filanne yookiin qindaa'ina isaa hin xumurre. Haa ta'u malee, tajaajila ifa godhamuu ilaaluu fi yoo jiraate gargaarsa erguu dandeessan.",
+    "loadRepliesFailed": "Deebiin fe'amuu hin danda'ane",
+    "refreshFailed": "Fe'amuu hin milka'ine",
+    "noRepliesYet": "Deebiin Hin Jiru",
+    "noRepliesYetSub": "Tajaajila kana yeroo deebisu, as irratti mul'atu.",
+    "noMoreReplies": "Deebiin biraa hin jiru"
   },
   "tv": {
     "title": "TV",
@@ -1810,7 +1854,11 @@
     "loadingPrice": "Gatii fe'aa jira…",
     "topUpExplanation": "DHB'n sanadaa irratti gara kuusaa beeksisaa DeHub'tti darba, ergasii mirkaneessa walabaa sanadaa irratti booda baalansii keetti dabalama.",
     "paymentHistory": "Seenaa kaffaltii",
-    "noPayments": "Ammatti kaffaltiin hin jiru"
+    "noPayments": "Ammatti kaffaltiin hin jiru",
+    "sponsored": "Sponsorii",
+    "morePosts": "Qo'annoonni hedduu",
+    "loadMorePosts": "Qo'annoonni hedduu fe'i",
+    "playAdVideo": "Fiilmii sa'la tapha"
   },
   "buyCoins": {
     "title": "Tookenii Bitii",
@@ -2245,7 +2293,8 @@
     "privateBalanceMode": "Haalli hafteessa dhuunfaa banameera",
     "addressHidden": "Teessoon dhokfameera",
     "allowInFeeds": "Fayyadamaan kun feedii kee keessatti akka mul'atu hayyami",
-    "hideContent": "Qabiyyee isaanii dhoksiitii walqunnamtii daangessi"
+    "hideContent": "Qabiyyee isaanii dhoksiitii walqunnamtii daangessi",
+    "a11yLabel": "Filannoon fuula irratti"
   },
   "toasts": {
     "saved_to_bookmarks": "Mallattoo keessa kuufame",
@@ -2617,7 +2666,8 @@
     "roles": {
       "owner": "Abbaa",
       "moderator": "Gaggeessaa",
-      "member": "Miseensa"
+      "member": "Miseensa",
+      "admin": "Abbaa taayitaa"
     },
     "time": {
       "today": "har'a",
@@ -2626,7 +2676,126 @@
       "weeks": "Torbee {{count}}",
       "months": "Ji'a {{count}}",
       "years": "Waggaa {{count}}"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "Macaafni",
+      "deleteTitle": "Yaada kana haqu",
+      "deleteConfirm": "Yaada kana haquu? Kun irra deebi'ee hin ta'u.",
+      "muted": "Si hidhaniiru",
+      "postingDisabled": "Qo'annoonni as irratti hin danda'aman",
+      "mediaMessage": "Sa'la",
+      "pinnedMessage": "Yaada olitti qabame",
+      "showEarlier": "Yaada duraa argisi",
+      "editingMessage": "Yaada jijjiiru",
+      "copied": "Ergaan waraabame",
+      "copyText": "Barreeffama waraabi",
+      "mutedUntil": "Hanga {{date}} tti afaan qabattee jirta.",
+      "slowMode": "Haala suuta jedhu: ergaa tokko {{interval}} hunda."
+    },
+    "manage": {
+      "dismissAdminTitle": "Admin hojii irraa ari&#39;aa",
+      "cancel": "Haquu",
+      "dismissAdmin": "Admin hojii irraa ari&#39;aa",
+      "roleAdmin": "Bulchaa",
+      "roleMember": "Miseensa",
+      "whatCanTheyDo": "Admin kun maal gochuu danda&#39;a?",
+      "rightNotHeld": "Ofii keetii mirga kana hin qabdu",
+      "customTitle": "Mata duree aadaa",
+      "customTitlePlaceholder": "Ammantaa",
+      "customTitleHint": "Bakka baajii Bulchaa durtii agarsiifameera.",
+      "saveChanges": "Jijjiirama qusadhu",
+      "promote": "Guddisuu",
+      "tabs": {
+        "members": "Membaraa",
+        "admins": "Abbootii bulchiinsaa",
+        "permissions": "Hayyama",
+        "invites": "Affeera",
+        "rules": "Seerota",
+        "recentActions": "Tarkaanfiiwwan dhiheenya kana fudhataman",
+        "danger": "Zoonii balaa"
+      },
+      "title": "Bulchuu",
+      "purgeTitle": "Ergaa hunda haquu?",
+      "purgeConfirm": "Haquu",
+      "kickTitle": "Miseensa buqqisuu?",
+      "kickConfirm": "Foorii",
+      "bannedPermanent": "Uggurame — dhaabbataa",
+      "mutedPermanent": "Muted — dhaabbataa",
+      "editAdminRights": "Aangoolee admin jijjiruu",
+      "promoteToAdmin": "Admin taasisuu",
+      "unmute": "Dubbachuu dhoorkaa kaasuuf",
+      "mute": "Dubbachuu dhoorkuu",
+      "unban": "Ban kaasuuf",
+      "ban": "Ban gochuu",
+      "deleteAllMessages": "Ergamaa hunda haquu",
+      "removeFromCommunity": "Waldaa irraa kaasuuf",
+      "noActionsAvailable": "Membara kana hin bulchitan.",
+      "showMore": "Aduu agarsiisuu",
+      "joinRequests": "Kallattii seensaa",
+      "approve": "Eyyamuuf",
+      "reject": "Akkasuuf",
+      "members": "Membaraawwan",
+      "searchMembers": "Qorannoo iddoo qusannoo qunnamtii addaan",
+      "noMembersMatch": "Membara hin argamu.",
+      "noMembers": "Membara hin qabnu.",
+      "muted": "Dubbachuu dhoorkame",
+      "banned": "Ban godhame",
+      "muteEffect": "Waldaa keessatti ni turu garuu hanga dhoorki yeroo isaa darbee dubbachuu hin danda'u.",
+      "banEffect": "Garuu achi irraa kaafamee deebi'ee hin seene hanga ban isaa kaafamutti.",
+      "durationLabel": "Yeroo",
+      "reasonLabel": "Sababa (filannoo)",
+      "reasonPlaceholder": "Maaliif ban godhamaa jira?",
+      "alsoDeleteMessages": "Ergamaa isaa hunda haquus",
+      "confirmMute": "Membara dhoorkuu",
+      "confirmBan": "Membara ban gochuu",
+      "rulesUpdated": "Aangooleen haaromfamaniiru",
+      "rulesTitle": "Aangooleen waldaa",
+      "rulesEmpty": "Aangooleen hin jiran — isa jalqabaa gadii dabali.",
+      "rulePlaceholder": "Akkamta labsii",
+      "addRule": "Labsii dabali",
+      "saveRules": "Labsii qabsi",
+      "dismissAdminBody": "{{wallet}} miseensa salphaa ta'ee deebi'a.",
+      "purgeBody": "Gabaafni {{name}} hundinuu haa badu.",
+      "kickBody": "{{name}} haa badu. Sana booda deebi'uu danda'a.",
+      "bannedUntil": "Guyyaa {{date}}tti hidhaa",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Guyyaa {{date}}tti callisi",
+      "bannedUntilShort": "Guyyaa {{date}}tti",
+      "muteTitle": "{{name}} callisi",
+      "banTitle": "{{name}} hidhaa",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} irraa {{max}}",
+      "moveRuleUp": "Labsii ol fudhi",
+      "moveRuleDown": "Labsii gadi fudhi",
+      "deleteRule": "Labsii balleesi",
+      "rights": {
+        "changeInfo": "Gabaafa waldaa jijjir",
+        "changeInfoHint": "Maqaa, ibsa, avatar fi banner jijjir",
+        "deleteMessages": "Gabaafota balleesi",
+        "deleteMessagesHint": "Gabaafota waldaa irraa haa balleessu",
+        "restrictMembers": "Miseensota hidhaa",
+        "restrictMembersHint": "Miseensota callisi, balleesi fi hidhaa",
+        "inviteUsers": "Miseensota linkiin afeeri",
+        "inviteUsersHint": "Linkota afeerraa uumuu fi haqu",
+        "pinMessages": "Gabaafota qabsi",
+        "pinMessagesHint": "Gabaafota olitti qabsi",
+        "manageEvents": "Taphawwan bulchi",
+        "manageEventsHint": "Taphawwan waldaa uumuu fi jijjiruu",
+        "addAdmins": "Aduumoota haaraa dabali",
+        "addAdminsHint": "Membara jajjabeessi fi mirga abbootii seeraa isaan dabalan haaromsi",
+        "remainAnonymous": "Automaatuma ta'i",
+        "remainAnonymousHint": "Abbaa seera kana miseensa irraa dhoksuu"
+      },
+      "durations": {
+        "oneHour": "Sa'a 1",
+        "eightHours": "Sa'a 8",
+        "oneDay": "Guyyaa 1",
+        "oneWeek": "Wiixana 1",
+        "forever": "Bara baraan"
+      }
+    },
+    "chooseAvatar": "Sa'aaba filadhu"
   },
   "work": {
     "title": "Badhaasa",
@@ -2978,7 +3147,9 @@
       "shipped": "Ergame",
       "completed": "Xumurame",
       "cancelled": "Haqame"
-    }
+    },
+    "removePhoto": "Fakkii kaasi",
+    "listingOptions": "Filannoo barreessuu"
   },
   "accounts": {
     "subtitle": "Herregawwan guutuu gurgurtaaf jiran, gatiin DHB'n",
@@ -3346,7 +3517,14 @@
     "removeFollowerHint": "Hordofaa kaasuuf hordofaa tokko qabadhu.",
     "cancel": "Balleesi",
     "remove": "Kaasi",
-    "thisUser": "Fayyadamaan kun"
+    "thisUser": "Fayyadamaan kun",
+    "cancelRequestTo": "Gaafii hordoffii @{{username}} dhorki",
+    "followingUser": "@{{username}} hordofuu",
+    "contentUnavailable": "Matiin hin argamne",
+    "youBlockedBody": "Barruulee isaanii hin argituu fi walitti si hin makamtu. Dhorkii kaasuun deebisun ni danda'ama.",
+    "restrictedBody": "Miseensi kun walitti makamuu akaawuntii kee irraa dhoorkee jira.",
+    "requestPendingBody": "Gaafii hordoffii kee ergameera. Gaafii isaanii erga fudhatanii booda barruulee isaanii argachuu dandeessa.",
+    "followToSeePosts": "Akaawuntii kana hordofiitii barruulee isaanii argi."
   },
   "reactionInfo": {
     "title": "deebii kennuu",
@@ -3660,7 +3838,8 @@
     "needGas": "{{chain}} irratti gaazii kaffaluuf {{token}} dhalootaa barbaachisa.",
     "bridging": "Riqicha keessa dabarsaa jira…",
     "bridgeAction": "Riqicha {{from}} → {{to}}",
-    "failed": "Riqichi hin milkoofne"
+    "failed": "Riqichi hin milkoofne",
+    "sentArriveShortly": "{{amount}} DHB irraa ergame {{from}} → {{to}}. Tokeen ni dhufu."
   },
   "banned": {
     "title": "Akkaawuntii keessan dhorkameera",
@@ -3838,7 +4017,16 @@
     "legacyRecovered": "Herrega kee durii{{suffix}} mirkaneessinee boorsaa isaa deebisneerra. Ammaan booda meeshaa kana irratti — bilbila kanaa fi bakka biraa hundatti — eeguuf jecha darbii kaa'i.",
     "passwordMin": "Jecha darbii (yoo xiqqaate arfii {{min}})",
     "newPasswordMin": "Jecha darbii haaraa (yoo xiqqaate arfii {{min}})",
-    "newWalletPasswordMin": "Jecha darbii boorsaa haaraa (yoo xiqqaate arfii {{min}})"
+    "newWalletPasswordMin": "Jecha darbii boorsaa haaraa (yoo xiqqaate arfii {{min}})",
+    "deviceCheckCancelled": "Mootummaa bilisummaa dhorkamee jira — wanti jijjirame hin jiru.",
+    "savePhraseTitle": "Mata duree deebisaa kee eegi",
+    "startOverTitle": "Bilaashii haaraa wajjin jalqabi",
+    "secureNewWalletTitle": "Bilaashii haaraa eegi",
+    "secureWalletTitle": "Bilaashii kee eegi",
+    "unlockOnMobileTitle": "Mobaayila irratti banaa",
+    "oldAccountFoundTitle": "Akaawuntii durii argame",
+    "unlockWalletTitle": "Bilaashii kee banaa",
+    "phraseExplainer": "Bilaashii kee bilbila kana irraa bilisummaa isaa kanatti fayyadamuu danda'a. Kun mata duree <em>bilbila kana irratti qofa hojjeta</em> — jechoota 12 kana qofa deebisun yoo DeHub irra deebiste, bilbila jijjirite, ykn dhume yoo ta'e deebisuun ni danda'ama."
   },
   "transcript": {
     "title": "Barreeffama sagalee",
@@ -4024,7 +4212,38 @@
     "subscribe": "Galmaaʼi",
     "subscriberCount_one": "Galmeeffataa {{count}}",
     "subscriberCount_other": "Galmeeffattoota {{count}}",
-    "subscribeToForRich": "<price>{{price}}</price>n <name>{{name}}</name> galmaaʼi"
+    "subscribeToForRich": "<price>{{price}}</price>n <name>{{name}}</name> galmaaʼi",
+    "loadPlansFailed": "Qabeenyi qabachuun hin danda'amne",
+    "subscriberContent": "Matiin abbaa qabeenyaa",
+    "subscriberContentSub": "Qophiiwwan faayidaa addaa abonentootaaf kennuu",
+    "createFirstPlan": "Qophii Keessan Jalqabaa Uumuu",
+    "addNewPlan": "Qophii Cusaan Dabaluu",
+    "durations": {
+      "oneMonth": "1 Baatii",
+      "threeMonths": "3 Baatii",
+      "sixMonths": "6 Baatii",
+      "oneYear": "1 Baatii",
+      "lifetime": "Gammachuudhaan"
+    },
+    "planNameRequired": "Inka qophii gaafatamuu",
+    "enterValidPrice": "Gatii sirrii ta'e galchi",
+    "availableChains": "Abonnementoonni amma immoo Baasee fi BNB irratti argamu",
+    "waitForSwitch": "Abonnementiin saayikilii xumuruuf eegi",
+    "connectAndWait": "Wallet keessan walqabsiisuun abonnementiin saayikilii eeguuf eegi",
+    "planUpdated": "Qophii haaromfame",
+    "creating": "Uumamaa jira…",
+    "planPublished": "Qophii uumamee fi maxxanfame",
+    "createPlanTitle": "Qophii Abonnementii Uumuu",
+    "network": "Abonnementiin Saayikilii",
+    "planNameLabel": "Inka Qophii *",
+    "planNamePlaceholder": "Fkn. Faayidaa, Warqee, VIP...",
+    "descriptionPlaceholder": "Abonentoonni maal argatu...",
+    "priceLabel": "Gatii (USD) *",
+    "legacyMigrationNote": "Gargaarsa warqee kana qophii dhaala DHB gara gatii dolaraatti jijjiiraa, gatii duraan maxxanfamee dura.",
+    "benefits": "Faayidaawwan",
+    "benefitPlaceholder": "Faayidaa Dabaluu...",
+    "createAndPublish": "Uumuu & Maxxanfamu",
+    "publishingOnChain": "Maxxanfamuun godaansa saayikilii irratti taasifama"
   },
   "live": {
     "notSet": "Hin qindoofne",
@@ -4140,7 +4359,22 @@
     "acceptTerms": "Ani nan fudha <terms>Haala Tajaajilaa</terms>",
     "sentTo": "{{amount}} {{symbol}} gara {{address}} tti ergame.",
     "tokensSentTo": "Tookiin gara {{address}} tti ergameera.",
-    "goToProfile": "Gara Profile deemaa"
+    "goToProfile": "Gara Profile deemaa",
+    "aboutTitle": "DeHub & Kaffaltii irratti",
+    "aboutSubtitle": "Baga galchuu keessan kaffaltii token salphaa",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokens uumamtoota maallaqa galchuuf, tipping streamers ykn qabiyyee banuuf fayyadamu. Hamma qabatteen kaffaltiin kee gadi bu&#39;aa fi humnoota ol&#39;aanoo akka timeline trend boosts fi verification badges baay&#39;ee hiiktu.",
+    "aboutInstantTitle": "Kaffaltii Battalaa",
+    "aboutInstantBody": "Stripe fayyadamuun, battalumatti fi haala walxaxaa ta&#39;een tokens bitachuu dandeessa, akkaawuntii kamiyyuu seentu. DeHub tookiin salphaa fi hundaaf ta&#39;a. Yoo deeggarsa dabalataa barbaaddan, 24/7 live community chat keenya keessatti pop up gochuun deeggarsa admin gaafachuu qofa.",
+    "aboutSecureTitle": "Karra Nageenya Qabu",
+    "aboutSecureBody": "Bal&#39;inni kaffaltii hundi icciitii ta&#39;ee Stripe&#39;n haala nageenya qabuun adeemsifama. Odeeffannoo miiraa ykn ibsa kaardii keessanii argachuu ykn kuusuu hin dandeenyu, tasgabbii sammuu isa dhumaa isiniif kenna.",
+    "transfersSummary": "Cuunfaa Jijjiirraa",
+    "availableToBuy": "Amma bitachuuf ni argama",
+    "noSupplyShort": "Dhiyeessiin hin jiru",
+    "topUpSubtitle": "Kaardii fayyadamuun $DHB bitadhaatii battalumatti fayyadamuuf gaazii bilisaa argadhaa",
+    "noTxHash": "Haashii daldalaa argachuu hin dandeenye",
+    "latestTransactions": "Daldala Yeroo Ammaa",
+    "showAll": "Hundaa agarsiisi"
   },
   "musicSheet": {
     "title": "Sirba uumi",
@@ -4269,7 +4503,13 @@
     "followUpNote": "Waa'ee yaada keetii gaaffii dabalataaf si quunnamuu dandeenya",
     "submitFeedback": "Yaada ergi",
     "provideFeedback": "Maaloo yaada kee barreessi",
-    "thankYou": "Yaada keetiif galatoomi!"
+    "thankYou": "Yaada keetiif galatoomi!",
+    "submitFailed": "Yaada dhiyeessuu hin dandeenye. Mee irra deebi&#39;ii yaalaa.",
+    "maybeLater": "Tarii Booda",
+    "helpUsImprove": "Fooyyessuuf nu gargaaraa",
+    "rateExperience": "Muuxannoo kee akkamitti madaala?",
+    "telegramOptional": "Telegiraamii (dirqama) .",
+    "discordOptional": "Wal dhabdee (dirqama) ."
   },
   "migrate": {
     "clearAll": "Hir qabaa",
@@ -4386,7 +4626,14 @@
       "blueWhale": "Waan guddaa hanga ammaatti jiraate. Sun sidha.",
       "megalodon": "Kunoo gonfoo kee — ati amma app royalty taate"
     },
-    "continue": "Gara DeHub tti deebi&#39;a"
+    "continue": "Gara DeHub tti deebi&#39;a",
+    "none": "Homaa",
+    "noBadgeYet": "Ammatti baajii hin qabu",
+    "next": "Kan itti aanu",
+    "topTier": "Sadarkaa olaanaa",
+    "toNextTier": "{{amount}} DHB irraa gara {{tier}}",
+    "everyTierUnlocked": "Tier hunda unlocked",
+    "holdNote": "Baajiin tokko erga banamee booda hanga DHB kee qabdutti kan kee ti. Lakkoofsi tookiin baajii haaraa banuuf barbaachisan gatii mallattoo wajjin jijjiiramuu danda&#39;a."
   },
   "passwordStrength": {
     "veryWeak": "Baay'ee dadhabaa",
@@ -4468,7 +4715,11 @@
     },
     "ttsLabel": "Sagalee ol kaastee waan tokko dubbadhu",
     "ttsPlaceholder": "Tamsaasa kallattiif dubbisi...",
-    "ttsHint": "Yeroo kennaan kee bu'u nama ilaalu hundaaf sagalee ol kaastee dubbisi."
+    "ttsHint": "Yeroo kennaan kee bu'u nama ilaalu hundaaf sagalee ol kaastee dubbisi.",
+    "sendAGift": "Kennaa Ergaa",
+    "minPlaceholder": "Xiqqaa: {{amount}}",
+    "minGift": "Kennaan xiqqaan {{amount}} dha.",
+    "sendGift": "Kennaa Ergaa"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4851,7 +5102,8 @@
         "title": "Akkaataa galiin itti hojjetu ilaalaa",
         "body": "Akkamitti gargaarsi, mallattooleen fi \"SuperPowers\" hojii kee as irratti taasistu gara wantoota irraa argachuu dandeessutti jijjiiruuf gargaaran hubadhu."
       }
-    }
+    },
+    "swipeToStart": "Jalqabuuf swipe godhi"
   },
   "conversation": {
     "commonGround": {
@@ -5370,5 +5622,18 @@
     "toastPaidSettled": "Kaffalameera — daldalli xumurameera",
     "walletNotReady": "Baallamni kee amma iyyuu qophaa'aa miti — yeroo muraasa booda irra deebi'ii yaali.",
     "wrongChain": "Daldalli kun {{chain}} irratti xumurama. Qindaa'ina keessatti gara {{chain}} jijjiiriitii irra deebi'ii yaali."
+  },
+  "moderation": {
+    "appealDuplicate": "Kana duraan ol iyyannoo dhiheessiteetta",
+    "appealSent": "Ol’iyyannoo ergame",
+    "appealFailed": "Ol&#39;iyyannoo sana dhiyeessu hin dandeenye",
+    "appealTitle": "Murtii kana ol’iyyannoo dhiheessaa",
+    "appealSubtitle": "Namni kana dubbisee murtoo irra deebi&#39;ee ilaala.",
+    "appealPlaceholder": "Maaltu darbe jettanii yaaddu? Yaadni dubbii waa’ee qabiyyee sanaa waan hundumaa caalaa gargaara.",
+    "appealSend": "Ol’iyyannoo ergaa",
+    "appealFootnote": "Lakkoofsa wabii argatta, deebiin isaas asitti deebi&#39;a. Murtii tokkoof ol’iyyannoo tokko.",
+    "appealRef": "Wabii {{ref}}",
+    "appealSubtitleSubject": "Namni tokko kana dubbisee irra deebi&#39;ee {{subject}} ilaala.",
+    "appealMore": "Arfiileen ammallee barbaachisan: {{count}}"
   }
 }

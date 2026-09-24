@@ -689,7 +689,11 @@
       "hintAllow": "سیستم‌های هوش مصنوعی و خزنده‌هایی که به این سیگنال احترام می‌گذارند، ممکن است روی صدا، آثار هنری و نوشته‌های شما آموزش ببینند.",
       "hintDeny": "از سیستم‌های هوش مصنوعی و خزنده‌هایی که به این سیگنال احترام می‌گذارند، خواسته می‌شود که روی صدا، آثار هنری و نوشته‌های شما آموزش نبینند. خزنده‌هایی که این سیگنال را نادیده می‌گیرند، توسط آن مسدود نمی‌شوند.",
       "saved": "اولویت آموزش هوش مصنوعی ذخیره شد"
-    }
+    },
+    "chainIdLabel": "شناسه زنجیره: {{id}}",
+    "exportPkConfirmPhrase": "متوجه شدم",
+    "exportPkCopy": "کلید خصوصی را کپی کنید",
+    "e2eAutomatic": "خودکار"
   },
   "common": {
     "mute": "بی‌صدا",
@@ -729,7 +733,17 @@
     "optionalSuffix": "(اختیاری)",
     "yesterday": "دیروز",
     "ok": "باشه",
-    "continue": "ادامه"
+    "continue": "ادامه",
+    "goesToHomeFeed": "به فید اصلی می‌رود",
+    "openMenu": "باز کردن منو",
+    "scrollsFeedToTop": "به بالای فید پیمایش کرده و آن را تازه می‌کند",
+    "notificationsUnread": "اعلان‌ها، {{unread}} خوانده نشده",
+    "errorDetails": "جزئیات خطا:",
+    "failedToLoad": "بارگیری ناموفق بود",
+    "noInternetTitle": "عدم اتصال به اینترنت",
+    "noInternetBody": "لطفاً اتصال اینترنت خود را بررسی کرده و دوباره امتحان کنید. برای استفاده از DeHub باید به اینترنت متصل باشید.",
+    "noInternetStatus": "آفلاین - عدم اتصال به شبکه",
+    "noInternetHint": "مطمئن شوید که Wi-Fi یا داده تلفن همراه روشن است، سپس روی \"{{action}}\" ضربه بزنید"
   },
   "tip": {
     "title": "ارسال انعام",
@@ -1619,7 +1633,12 @@
     "chooseUsernameBody": "برای ادامه یک نام کاربری و نام نمایشی انتخاب کنید. بعداً می‌توانید تغییرشان دهید.",
     "checkingAvailability": "در حال بررسی در دسترس بودن…",
     "usernameTakenHint": "این نام گرفته شده است — عدد یا زیرخط اضافه کنید",
-    "displayNameLength": "نام نمایشی باید بین ۲ تا ۵۰ کاراکتر باشد."
+    "displayNameLength": "نام نمایشی باید بین ۲ تا ۵۰ کاراکتر باشد.",
+    "loginFailedRetry": "ورود ناموفق بود. لطفاً دوباره امتحان کنید.",
+    "sendCodeFailedRetry": "ارسال کد ممکن نبود. لطفاً دوباره امتحان کنید.",
+    "invalidCodeRetry": "کد نامعتبر است. لطفاً دوباره امتحان کنید.",
+    "invalidEmailOrPassword": "ایمیل یا رمز عبور نامعتبر است.",
+    "welcomeToDehub": "به DeHub خوش آمدید"
   },
   "messages": {
     "smartRepliesOff": "پاسخ‌های پیشنهادی خاموش شد",
@@ -1697,7 +1716,32 @@
     "offerWorthNow": "حدود {{amount}} DHB با نرخ فعلی",
     "offerNotePlaceholder": "یادداشت اضافه کن (اختیاری)",
     "offerCommitsNothing": "دادن پیشنهاد هیچ هزینه‌ای ندارد و هیچ DHB قفل نمی‌کند. فقط اگر مالک بپذیرد پرداخت می‌کنی.",
-    "offerNeedsHandle": "این حساب نام کاربری‌ای ندارد که برایش پیشنهاد بدهی."
+    "offerNeedsHandle": "این حساب نام کاربری‌ای ندارد که برایش پیشنهاد بدهی.",
+    "noPostsYet": "پستی وجود ندارد",
+    "noPostsYetSub": "محتوا پس از ارسال در اینجا نمایش داده می‌شود",
+    "noPinnedPosts": "پست پین شده‌ای وجود ندارد",
+    "noPinnedPostsSub": "پست‌های پین شده در اینجا نمایش داده می‌شوند",
+    "emptyLiked": "پستی لایک نشده است.",
+    "emptySaved": "پست ذخیره شده‌ای وجود ندارد.",
+    "emptyUnlocked": "پست باز نشده‌ای وجود ندارد.",
+    "emptyWatched": "سابقه تماشایی وجود ندارد.",
+    "emptyFolder": "پستی در این پوشه وجود ندارد.",
+    "emptyPosts": "پستی وجود ندارد.",
+    "couldNotLoadPosts": "بارگیری پست‌ها ممکن نبود.",
+    "noPostsOrReplies": "هنوز هیچ پست، نظر یا پاسخی وجود ندارد",
+    "noPostsOrRepliesSub": "آنها اینجا ظاهر خواهند شد",
+    "avatarUpdated": "آواتار به‌روز شد",
+    "coverUpdated": "کاور به‌روز شد",
+    "couldNotPickImage": "انتخاب تصویر ممکن نبود",
+    "changeCoverImage": "تغییر تصویر کاور",
+    "changeAvatar": "تغییر آواتار",
+    "verifiedEnsName": "نام تأیید شده ENS {{name}}",
+    "notFullyJoined": "این کاربر هنوز به طور کامل ملحق نشده است. نام کاربری خود را انتخاب نکرده یا تنظیمات پروفایل را کامل نکرده است. همچنان می‌توانید فعالیت‌های عمومی را مشاهده کرده و در صورت امکان انعام ارسال کنید.",
+    "loadRepliesFailed": "بارگذاری پاسخ‌ها ناموفق بود",
+    "refreshFailed": "بارگذاری مجدد ناموفق بود",
+    "noRepliesYet": "پاسخی وجود ندارد",
+    "noRepliesYetSub": "هنگامی که این کاربر به پست‌ها پاسخ دهد، در اینجا نمایش داده می‌شوند.",
+    "noMoreReplies": "پاسخ دیگری وجود ندارد"
   },
   "tv": {
     "title": "تلویزیون",
@@ -1780,7 +1824,11 @@
     "loadingPrice": "در حال بارگذاری قیمت…",
     "topUpExplanation": "DHB روی زنجیره به خزانه تبلیغات DeHub منتقل می‌شود و سپس پس از راستی‌آزمایی مستقل روی زنجیره به موجودی شما افزوده می‌گردد.",
     "paymentHistory": "تاریخچه پرداخت",
-    "noPayments": "هنوز پرداختی نیست"
+    "noPayments": "هنوز پرداختی نیست",
+    "sponsored": "اسپانسر شده",
+    "morePosts": "پست‌های بیشتر",
+    "loadMorePosts": "بارگذاری پست‌های بیشتر",
+    "playAdVideo": "پخش ویدیوی تبلیغاتی"
   },
   "buyCoins": {
     "title": "خرید سکه",
@@ -2245,7 +2293,8 @@
     "privateBalanceMode": "حالت موجودی خصوصی فعال است",
     "addressHidden": "آدرس پنهان است",
     "allowInFeeds": "اجازه دهید این کاربر در فیدهای شما ظاهر شود",
-    "hideContent": "محتوای آن‌ها را پنهان و تعاملات را محدود کنید"
+    "hideContent": "محتوای آن‌ها را پنهان و تعاملات را محدود کنید",
+    "a11yLabel": "گزینه‌های پروفایل"
   },
   "toasts": {
     "saved_to_bookmarks": "در نشانک‌ها ذخیره شد",
@@ -2604,7 +2653,8 @@
     "roles": {
       "owner": "مالک",
       "moderator": "مدیر",
-      "member": "عضو"
+      "member": "عضو",
+      "admin": "مدیر"
     },
     "time": {
       "today": "امروز",
@@ -2613,7 +2663,126 @@
       "weeks": "{{count}} هفته",
       "months": "{{count}} ماه",
       "years": "{{count}} سال"
-    }
+    },
+    "chatPanel": {
+      "anon": "ناشناس",
+      "edited": "ویرایش شده",
+      "deleteTitle": "حذف پیام",
+      "deleteConfirm": "آیا این پیام حذف شود؟ این عمل قابل بازگشت نیست.",
+      "muted": "شما میوت شده‌اید",
+      "postingDisabled": "ارسال پست برای اعضا در اینجا غیرفعال است",
+      "mediaMessage": "رسانه",
+      "pinnedMessage": "پیام پین شده",
+      "showEarlier": "نمایش پیام‌های قبلی",
+      "editingMessage": "ویرایش پیام",
+      "copied": "پیام کپی شد",
+      "copyText": "متن جایگزین کپی",
+      "mutedUntil": "شما تا زمان {{date}} بی‌صدا هستید",
+      "slowMode": "حالت آهسته: یک پیام در هر {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "مدیر را اخراج کنید",
+      "cancel": "لغو کنید",
+      "dismissAdmin": "مدیر را اخراج کنید",
+      "roleAdmin": "مدیر",
+      "roleMember": "اعضاء",
+      "whatCanTheyDo": "این مدیر چه کاری می‌تواند انجام دهد؟",
+      "rightNotHeld": "خودت این حق رو نداری",
+      "customTitle": "عنوان سفارشی",
+      "customTitlePlaceholder": "مدیر",
+      "customTitleHint": "به جای نشان پیش‌فرض مدیریت نمایش داده می‌شود.",
+      "saveChanges": "ذخیره تغییرات",
+      "promote": "ارتقای آگهی",
+      "tabs": {
+        "members": "اعضا",
+        "admins": "مدیر سایت",
+        "permissions": "مجوزها",
+        "invites": "دعوت می کند",
+        "rules": "دستورالعمل‌ها",
+        "recentActions": "فعالیت های اخیر",
+        "danger": "منطقه خطر"
+      },
+      "title": "مدیریت",
+      "purgeTitle": "حذف پیامها",
+      "purgeConfirm": "حذف",
+      "kickTitle": "حذف شرکت",
+      "kickConfirm": "برداشتن",
+      "bannedPermanent": "ممنوع - دائمی",
+      "mutedPermanent": "بی‌صدا - دائمی",
+      "editAdminRights": "ویرایش حقوق مدیر",
+      "promoteToAdmin": "ارتقا به مدیر",
+      "unmute": "لغو میوت",
+      "mute": "میوت",
+      "unban": "لغو بن",
+      "ban": "بن",
+      "deleteAllMessages": "حذف تمام پیام‌ها",
+      "removeFromCommunity": "حذف از انجمن",
+      "noActionsAvailable": "شما نمی‌توانید این عضو را مدیریت کنید.",
+      "showMore": "نمایش بیشتر",
+      "joinRequests": "درخواست‌های پیوستن",
+      "approve": "تایید",
+      "reject": "رد",
+      "members": "اعضا",
+      "searchMembers": "جستجو بر اساس آدرس کیف پول",
+      "noMembersMatch": "هیچ عضوی با این مشخصات یافت نشد.",
+      "noMembers": "هنوز هیچ عضوی وجود ندارد.",
+      "muted": "میوت شده",
+      "banned": "بن شده",
+      "muteEffect": "آنها در انجمن باقی می‌مانند اما تا پایان زمان میوت نمی‌توانند پست بگذارند.",
+      "banEffect": "آنها از چت حذف شده‌اند و تا زمانی که بن لغو نشود، نمی‌توانند دوباره بپیوندند.",
+      "durationLabel": "مدت زمان",
+      "reasonLabel": "دلیل (اختیاری)",
+      "reasonPlaceholder": "چرا آنها بن می‌شوند؟",
+      "alsoDeleteMessages": "همچنین تمام پیام‌های آنها را حذف کنید",
+      "confirmMute": "میوت کردن عضو",
+      "confirmBan": "بن کردن عضو",
+      "rulesUpdated": "قوانین به‌روز شدند",
+      "rulesTitle": "قوانین انجمن",
+      "rulesEmpty": "هنوز قانونی وجود ندارد — اولین قانون را در زیر اضافه کنید.",
+      "rulePlaceholder": "توضیح قانون",
+      "addRule": "افزودن قانون",
+      "saveRules": "ذخیره قوانین",
+      "dismissAdminBody": "{{wallet}} دوباره به یک عضو عادی تبدیل خواهد شد.",
+      "purgeBody": "تمام پیام‌های {{name}} در این انجمن حذف خواهند شد.",
+      "kickBody": "{{name}} از انجمن حذف خواهد شد. آنها می‌توانند بعداً دوباره بپیوندند.",
+      "bannedUntil": "مسدود شده تا {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "سکوت شده تا {{date}}",
+      "bannedUntilShort": "تا {{date}}",
+      "muteTitle": "{{name}} را ساکت کن",
+      "banTitle": "{{name}} را مسدود کن",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} از {{max}}",
+      "moveRuleUp": "انتقال قانون به بالا",
+      "moveRuleDown": "انتقال قانون به پایین",
+      "deleteRule": "حذف قانون",
+      "rights": {
+        "changeInfo": "تغییر اطلاعات انجمن",
+        "changeInfoHint": "ویرایش نام، توضیحات، آواتار و بنر",
+        "deleteMessages": "حذف پیام‌ها",
+        "deleteMessagesHint": "حذف هر پیام از چت انجمن",
+        "restrictMembers": "مسدود کردن کاربران",
+        "restrictMembersHint": "سکوت کردن، حذف و مسدود کردن اعضا",
+        "inviteUsers": "دعوت کاربران از طریق لینک",
+        "inviteUsersHint": "ایجاد و لغو لینک‌های دعوت",
+        "pinMessages": "پین کردن پیام‌ها",
+        "pinMessagesHint": "پین کردن یک پیام در بالای چت",
+        "manageEvents": "مدیریت رویدادها",
+        "manageEventsHint": "ایجاد و ویرایش رویدادهای انجمن",
+        "addAdmins": "افزودن مدیران جدید",
+        "addAdminsHint": "ارتقاء اعضا و ویرایش حقوق مدیرانی که اضافه کرده‌اند",
+        "remainAnonymous": "ناشناس بمان",
+        "remainAnonymousHint": "این مدیر را از لیست اعضا مخفی کن"
+      },
+      "durations": {
+        "oneHour": "۱ ساعت",
+        "eightHours": "۸ ساعت",
+        "oneDay": "۱ روز",
+        "oneWeek": "۱ هفته",
+        "forever": "همیشه"
+      }
+    },
+    "chooseAvatar": "انتخاب آواتار"
   },
   "work": {
     "title": "پاداش‌ها",
@@ -2965,7 +3134,9 @@
       "shipped": "ارسال‌شده",
       "completed": "تکمیل‌شده",
       "cancelled": "لغوشده"
-    }
+    },
+    "removePhoto": "حذف عکس",
+    "listingOptions": "گزینه‌های فهرست"
   },
   "accounts": {
     "subtitle": "حساب‌های کامل برای فروش، با قیمت DHB",
@@ -3332,7 +3503,14 @@
     "removeFollowerHint": "برای حذف یک دنبال‌کننده، آن را فشار داده و نگه دارید.",
     "cancel": "لغو",
     "remove": "حذف کردن",
-    "thisUser": "این کاربر"
+    "thisUser": "این کاربر",
+    "cancelRequestTo": "لغو درخواست دنبال کردن برای @{{username}}؟",
+    "followingUser": "دنبال کردن @{{username}}",
+    "contentUnavailable": "محتوا در دسترس نیست",
+    "youBlockedBody": "شما پست‌های او را نخواهید دید و قادر به تعامل با او نخواهید بود. برای بازیابی دسترسی، مسدودیت را بردارید.",
+    "restrictedBody": "این کاربر تعامل با حساب شما را محدود کرده است.",
+    "requestPendingBody": "درخواست دنبال کردن شما ارسال شد. پس از تأیید درخواست شما، قادر به دیدن پست‌های او خواهید بود.",
+    "followToSeePosts": "این حساب را دنبال کنید تا پست‌های او را ببینید."
   },
   "reactionInfo": {
     "title": "واکنش ها",
@@ -3646,7 +3824,8 @@
     "needGas": "برای کارمزد در {{chain}} به {{token}} بومی نیاز دارید.",
     "bridging": "در حال پل زدن…",
     "bridgeAction": "پل {{from}} ← {{to}}",
-    "failed": "پل ناموفق بود"
+    "failed": "پل ناموفق بود",
+    "sentArriveShortly": "{{amount}} DHB ارسال شده از {{from}} به {{to}}. توکن‌ها به زودی می‌رسند."
   },
   "banned": {
     "title": "حساب شما مسدود شده است",
@@ -3824,7 +4003,16 @@
     "legacyRecovered": "حساب قدیمی شما{{suffix}} تأیید شد و کیف پول آن بازیابی شد. برای محافظت از آن روی این دستگاه — روی این گوشی و همه‌جای دیگر — از حالا یک رمز تعیین کنید.",
     "passwordMin": "رمز عبور (حداقل {{min}} کاراکتر)",
     "newPasswordMin": "رمز عبور جدید (حداقل {{min}} کاراکتر)",
-    "newWalletPasswordMin": "رمز کیف پول جدید (حداقل {{min}} کاراکتر)"
+    "newWalletPasswordMin": "رمز کیف پول جدید (حداقل {{min}} کاراکتر)",
+    "deviceCheckCancelled": "بررسی دستگاه لغو شد - هیچ تغییری ایجاد نشد.",
+    "savePhraseTitle": "عبارت بازیابی خود را ذخیره کنید",
+    "startOverTitle": "با یک کیف پول جدید شروع کنید",
+    "secureNewWalletTitle": "کیف پول جدید خود را ایمن کنید",
+    "secureWalletTitle": "کیف پول خود را ایمن کنید",
+    "unlockOnMobileTitle": "در موبایل باز کنید",
+    "oldAccountFoundTitle": "حساب قدیمی پیدا شد",
+    "unlockWalletTitle": "کیف پول خود را باز کنید",
+    "phraseExplainer": "کیف پول شما با اثر انگشت این تلفن محافظت می‌شود. این باز کردن قفل <em>فقط روی این تلفن کار می‌کند</em> — این ۱۲ کلمه تنها راه بازگشت در صورت نصب مجدد DeHub، تعویض گوشی یا گم کردن آن است."
   },
   "transcript": {
     "title": "رونوشت",
@@ -4011,7 +4199,38 @@
     "subscribe": "اشتراک",
     "subscriberCount_one": "{{count}} مشترک",
     "subscriberCount_other": "{{count}} مشترک",
-    "subscribeToForRich": "با <price>{{price}}</price> در <name>{{name}}</name> مشترک شوید"
+    "subscribeToForRich": "با <price>{{price}}</price> در <name>{{name}}</name> مشترک شوید",
+    "loadPlansFailed": "بارگذاری طرح‌ها ناموفق بود",
+    "subscriberContent": "محتوای اشتراکی",
+    "subscriberContentSub": "ایجاد طرح‌هایی برای ارائه محتوای انحصاری به مشترکین",
+    "createFirstPlan": "اولین طرح خود را ایجاد کنید",
+    "addNewPlan": "افزودن طرح جدید",
+    "durations": {
+      "oneMonth": "۱ ماه",
+      "threeMonths": "۳ ماه",
+      "sixMonths": "۶ ماه",
+      "oneYear": "۱ سال",
+      "lifetime": "همیشگی"
+    },
+    "planNameRequired": "نام طرح الزامی است",
+    "enterValidPrice": "قیمت معتبر وارد کنید",
+    "availableChains": "اشتراک‌ها در حال حاضر در Base و BNB در دسترس هستند",
+    "waitForSwitch": "منتظر بمانید تا شبکه اشتراک به طور کامل تغییر کند",
+    "connectAndWait": "کیف پول خود را وصل کنید و منتظر شبکه اشتراک بمانید",
+    "planUpdated": "طرح به‌روز شد",
+    "creating": "در حال ایجاد…",
+    "planPublished": "طرح ایجاد و منتشر شد",
+    "createPlanTitle": "ایجاد طرح اشتراک",
+    "network": "شبکه اشتراک",
+    "planNameLabel": "نام طرح *",
+    "planNamePlaceholder": "مثال: پرمیوم، گلد، وی‌آی‌پی…",
+    "descriptionPlaceholder": "مشترکین چه چیزی دریافت می‌کنند…",
+    "priceLabel": "قیمت (دلار آمریکا) *",
+    "legacyMigrationNote": "صرفه‌جویی، این طرح قدیمی DHB را با قیمت‌گذاری دلاری با نرخ قبل از لیست‌گذاری منتقل می‌کند.",
+    "benefits": "مزایا",
+    "benefitPlaceholder": "یک مزیت اضافه کنید…",
+    "createAndPublish": "ایجاد و انتشار",
+    "publishingOnChain": "انتشار یک تراکنش در بلاکچین است"
   },
   "live": {
     "notSet": "تنظیم نشده",
@@ -4129,7 +4348,22 @@
     "acceptTerms": "می‌پذیرم <terms>شرایط خدمات</terms>",
     "sentTo": "{{amount}} {{symbol}} به {{address}} ارسال شد",
     "tokensSentTo": "توکن‌ها به {{address}} ارسال شدند.",
-    "goToProfile": "رفتن به پروفایل"
+    "goToProfile": "رفتن به پروفایل",
+    "aboutTitle": "درباره DeHub و پرداخت‌ها",
+    "aboutSubtitle": "درگاه شما برای پرداخت‌های توکنی بی‌دردسر",
+    "aboutTokenTitle": "توکن DeHub",
+    "aboutTokenBody": "توکن‌ها برای اشتراک در سازندگان، انعام دادن به استریمرها یا باز کردن قفل محتوا استفاده می‌شوند. هرچه بیشتر نگه دارید، هزینه‌های شما کمتر می‌شود و قدرت‌های بیشتری مانند افزایش روند زمانی و نشان‌های تأیید را باز می‌کنید.",
+    "aboutInstantTitle": "پرداخت‌های فوری",
+    "aboutInstantBody": "با استفاده از Stripe، می‌توانید توکن‌ها را فوراً و به‌طور یکپارچه در هر حسابی که وارد آن شده‌اید خریداری کنید. DeHub توکن‌ها را ساده و برای همه می‌سازد. اگر به پشتیبانی بیشتری نیاز دارید، کافیست در چت زنده جامعه ۲۴/۷ ما حاضر شوید و درخواست پشتیبانی مدیر را بدهید.",
+    "aboutSecureTitle": "درگاه امن",
+    "aboutSecureBody": "تمام جزئیات پرداخت توسط Stripe رمزگذاری و به‌طور ایمن پردازش می‌شوند. ما نمی‌توانیم به اطلاعات حساس یا جزئیات کارت شما دسترسی داشته باشیم یا آن‌ها را ذخیره کنیم، که به شما آرامش خاطر کامل می‌دهد.",
+    "transfersSummary": "خلاصه تراکنش‌ها",
+    "availableToBuy": "اکنون برای خرید موجود است",
+    "noSupplyShort": "بدون عرضه",
+    "topUpSubtitle": "$DHB را با کارت بخرید و بنزین رایگان برای استفاده فوری دریافت کنید",
+    "noTxHash": "هش تراکنش پیدا نشد",
+    "latestTransactions": "آخرین تراکنش‌ها",
+    "showAll": "نمایش همه"
   },
   "musicSheet": {
     "title": "یک آهنگ بسازید",
@@ -4258,7 +4492,13 @@
     "followUpNote": "ممکن است برای پرسش‌های تکمیلی درباره بازخوردتان با شما تماس بگیریم",
     "submitFeedback": "ارسال بازخورد",
     "provideFeedback": "لطفاً بازخورد خود را بنویسید",
-    "thankYou": "از بازخورد شما سپاسگزاریم!"
+    "thankYou": "از بازخورد شما سپاسگزاریم!",
+    "submitFailed": "ارسال بازخورد ناموفق بود. لطفا دوباره امتحان کنید.",
+    "maybeLater": "بعداً",
+    "helpUsImprove": "به ما در بهبود کمک کنید",
+    "rateExperience": "تجربه خود را چگونه ارزیابی می‌کنید؟",
+    "telegramOptional": "تلگرام (اختیاری)",
+    "discordOptional": "دیسکورد (اختیاری)"
   },
   "migrate": {
     "clearAll": "پاک کردن همه",
@@ -4374,7 +4614,14 @@
       "blueWhale": "بزرگترین چیزی که تا به حال وجود داشته، تویی.",
       "megalodon": "تاج شما اینجاست - اکنون شما صاحب امتیاز برنامه هستید"
     },
-    "continue": "بازگشت به دی‌هاب"
+    "continue": "بازگشت به دی‌هاب",
+    "none": "هیچکدام",
+    "noBadgeYet": "هنوز نشان ندارم",
+    "next": "بعدی",
+    "topTier": "بالاترین رده",
+    "toNextTier": "{{amount}} DHB به {{tier}}",
+    "everyTierUnlocked": "هر رده باز شده است",
+    "holdNote": "هنگامی که یک نشان باز شد، تا زمانی که DHB خود را نگه دارید، متعلق به شماست. تعداد توکن‌های مورد نیاز برای باز کردن قفل یک نشان جدید می‌تواند با قیمت توکن تغییر کند."
   },
   "passwordStrength": {
     "veryWeak": "خیلی ضعیف",
@@ -4456,7 +4703,11 @@
     },
     "ttsLabel": "یه چیزی رو با صدای بلند بگو",
     "ttsPlaceholder": "برای پخش زنده بخوانید…",
-    "ttsHint": "وقتی هدیه‌ات به دستت رسید، برای همه کسانی که تماشا می‌کنند با صدای بلند بخوان."
+    "ttsHint": "وقتی هدیه‌ات به دستت رسید، برای همه کسانی که تماشا می‌کنند با صدای بلند بخوان.",
+    "sendAGift": "ارسال هدیه",
+    "minPlaceholder": "حداقل: {{amount}}",
+    "minGift": "حداقل هدیه {{amount}} است",
+    "sendGift": "ارسال هدیه"
   },
   "goLive": {
     "streamKey": "کلید جریان",
@@ -4839,7 +5090,8 @@
         "title": "ببینید کسب درآمد چگونه کار می‌کند",
         "body": "ببینید چطور انعام‌ها، نشان‌ها و ابرقدرت‌ها کاری که اینجا انجام می‌دهید را به چیزی تبدیل می‌کنند که از آن کسب درآمد می‌کنید."
       }
-    }
+    },
+    "swipeToStart": "برای شروع بکشید"
   },
   "conversation": {
     "commonGround": {
@@ -5321,5 +5573,18 @@
     "toastPaidSettled": "پرداخت شد — معامله تسویه شد",
     "walletNotReady": "کیف پول شما هنوز آماده نیست — چند لحظه دیگر دوباره امتحان کنید.",
     "wrongChain": "این معامله روی {{chain}} تسویه می‌شود. در تنظیمات به {{chain}} تغییر دهید و دوباره امتحان کنید."
+  },
+  "moderation": {
+    "appealDuplicate": "شما قبلاً به این درخواست تجدیدنظر داده‌اید",
+    "appealSent": "درخواست تجدیدنظر ارسال شد",
+    "appealFailed": "نتوانستیم آن درخواست تجدیدنظر را ثبت کنیم",
+    "appealTitle": "به این تصمیم اعتراض کنید",
+    "appealSubtitle": "یک فرد این را می‌خواند و دوباره به تصمیم نگاه می‌کند.",
+    "appealPlaceholder": "به نظر شما چه چیزی از قلم افتاده است؟ زمینه‌سازی در مورد محتوا بیش از هر چیز دیگری کمک می‌کند.",
+    "appealSend": "ارسال درخواست تجدیدنظر",
+    "appealFootnote": "شما یک شماره مرجع دریافت می‌کنید و پاسخ به اینجا برمی‌گردد. یک درخواست تجدیدنظر برای هر تصمیم.",
+    "appealRef": "شماره پیگیری {{ref}}",
+    "appealSubtitleSubject": "شخصی این را خواهد خواند و دوباره به {{subject}} نگاه خواهد کرد.",
+    "appealMore": "کاراکترهای مورد نیاز: {{count}}"
   }
 }

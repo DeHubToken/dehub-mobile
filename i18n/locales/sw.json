@@ -690,7 +690,11 @@
       "hintAllow": "Mifumo ya AI na watambaaji wanaoheshimu ishara hii wanaweza kutoa mafunzo kwenye sauti, sanaa na uandishi wako.",
       "hintDeny": "Mifumo ya AI na watambaaji wanaoheshimu ishara hii wanaombwa kutofundisha juu ya sauti, sanaa na uandishi wako. Matambaa yanayopuuza ishara hayazuiliwi nayo.",
       "saved": "Upendeleo wa mafunzo ya AI umehifadhiwa"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "NAELEWA",
+    "exportPkCopy": "Nakili ufunguo wa faragha",
+    "e2eAutomatic": "Kiotomatiki"
   },
   "common": {
     "mute": "Nyamazisha",
@@ -730,7 +734,17 @@
     "optionalSuffix": "(si lazima)",
     "yesterday": "Jana",
     "ok": "Sawa",
-    "continue": "Endelea"
+    "continue": "Endelea",
+    "goesToHomeFeed": "Inaelekea kwenye malisho ya nyumbani",
+    "openMenu": "Fungua menyu",
+    "scrollsFeedToTop": "Inaenda juu ya malisho na kuifanya upya",
+    "notificationsUnread": "Arifa, {{unread}} hazijasomwa",
+    "errorDetails": "Maelezo ya hitilafu:",
+    "failedToLoad": "Imeshindwa kupakia",
+    "noInternetTitle": "Hakuna Muunganisho wa Mtandao",
+    "noInternetBody": "Tafadhali angalia muunganisho wako wa intaneti na ujaribu tena. Unahitaji kuunganishwa kwenye intaneti ili kutumia DeHub.",
+    "noInternetStatus": "Nje ya Mtandao - Hakuna muunganisho wa mtandao",
+    "noInternetHint": "Hakikisha Wi-Fi au data ya simu imewashwa, kisha gusa \"{{action}}\""
   },
   "tip": {
     "title": "Tuma Kidokezo",
@@ -1621,7 +1635,12 @@
     "chooseUsernameBody": "Chagua jina la mtumiaji na jina la kuonyeshwa ili kuendelea. Unaweza kuyabadilisha baadaye.",
     "checkingAvailability": "Inakagua upatikanaji…",
     "usernameTakenHint": "Jina limeshachukuliwa — jaribu kuongeza namba au mstari wa chini",
-    "displayNameLength": "Jina la kuonyeshwa lazima liwe herufi 2-50."
+    "displayNameLength": "Jina la kuonyeshwa lazima liwe herufi 2-50.",
+    "loginFailedRetry": "Kuingia kumefeli. Tafadhali jaribu tena.",
+    "sendCodeFailedRetry": "Imeshindwa kutuma nambari. Tafadhali jaribu tena.",
+    "invalidCodeRetry": "Nambari batili. Tafadhali jaribu tena.",
+    "invalidEmailOrPassword": "Barua pepe au nenosiri batili.",
+    "welcomeToDehub": "Karibu DeHub"
   },
   "messages": {
     "smartRepliesOff": "Majibu yanayopendekezwa yamezimwa",
@@ -1699,7 +1718,32 @@
     "offerWorthNow": "Takriban {{amount}} DHB kwa kiwango cha sasa",
     "offerNotePlaceholder": "Ongeza ujumbe (si lazima)",
     "offerCommitsNothing": "Kutoa ofa hakugharimu chochote wala hakufungi DHB. Unalipa tu iwapo mmiliki atakubali.",
-    "offerNeedsHandle": "Akaunti hii haina jina la mtumiaji la kutolea ofa."
+    "offerNeedsHandle": "Akaunti hii haina jina la mtumiaji la kutolea ofa.",
+    "noPostsYet": "Hakuna machapisho bado",
+    "noPostsYetSub": "Yaliyomo yataonekana hapa yanapochapishwa",
+    "noPinnedPosts": "Hakuna machapisho yaliyobandikwa bado",
+    "noPinnedPostsSub": "Machapisho yaliyobandikwa yataonekana hapa",
+    "emptyLiked": "Hakuna machapisho yaliyopendezwa bado.",
+    "emptySaved": "Hakuna machapisho yaliyohifadhiwa bado.",
+    "emptyUnlocked": "Hakuna machapisho yaliyofunguliwa bado.",
+    "emptyWatched": "Hakuna historia ya kutazama bado.",
+    "emptyFolder": "Hakuna machapisho katika folda hii bado.",
+    "emptyPosts": "Hakuna machapisho bado.",
+    "couldNotLoadPosts": "Imeshindwa kupakia machapisho.",
+    "noPostsOrReplies": "Hakuna machapisho, maoni, au majibu bado",
+    "noPostsOrRepliesSub": "Yataonekana hapa",
+    "avatarUpdated": "Avatar imesasishwa",
+    "coverUpdated": "Jalada limesasishwa",
+    "couldNotPickImage": "Imeshindwa kuchagua picha",
+    "changeCoverImage": "Badilisha picha ya jalada",
+    "changeAvatar": "Badilisha avatar",
+    "verifiedEnsName": "Jina la ENS lililothibitishwa {{name}}",
+    "notFullyJoined": "Mtumiaji huyu hajajiunga kikamilifu bado. Hajadai jina la mtumiaji au kukamilisha usanidi wa wasifu. Bado unaweza kuona shughuli za umma na kutuma vidokezo ikiwa zinapatikana.",
+    "loadRepliesFailed": "Imeshindwa kupakia majibu",
+    "refreshFailed": "Imeshindwa kufanya upya",
+    "noRepliesYet": "Hakuna Majibu Bado",
+    "noRepliesYetSub": "Mtumiaji huyu akijibu machapisho, yataonekana hapa.",
+    "noMoreReplies": "Hakuna majibu zaidi"
   },
   "tv": {
     "title": "TV",
@@ -1782,7 +1826,11 @@
     "loadingPrice": "Inapakia bei…",
     "topUpExplanation": "DHB huhamishwa kwenye mnyororo hadi hazina ya matangazo ya DeHub, kisha salio lako huongezwa baada ya uthibitisho huru kwenye mnyororo.",
     "paymentHistory": "Historia ya malipo",
-    "noPayments": "Bado hakuna malipo"
+    "noPayments": "Bado hakuna malipo",
+    "sponsored": "Ime sponsor",
+    "morePosts": "Machapisho zaidi",
+    "loadMorePosts": "Pakia machapisho zaidi",
+    "playAdVideo": "Cheza video ya tangazo"
   },
   "buyCoins": {
     "title": "Nunua Sarafu",
@@ -2217,7 +2265,8 @@
     "privateBalanceMode": "Hali ya salio la faragha imewashwa",
     "addressHidden": "Anwani imefichwa",
     "allowInFeeds": "Ruhusu mtumiaji huyu aonekane kwenye milisho yako",
-    "hideContent": "Ficha maudhui yao na uzuie mawasiliano"
+    "hideContent": "Ficha maudhui yao na uzuie mawasiliano",
+    "a11yLabel": "Chaguo za wasifu"
   },
   "toasts": {
     "saved_to_bookmarks": "Imehifadhiwa kwenye alamisho",
@@ -2589,7 +2638,8 @@
     "roles": {
       "owner": "Mmiliki",
       "moderator": "Msimamizi",
-      "member": "Mwanachama"
+      "member": "Mwanachama",
+      "admin": "Msimamizi"
     },
     "time": {
       "today": "leo",
@@ -2598,7 +2648,126 @@
       "weeks": "wiki {{count}}",
       "months": "miezi {{count}}",
       "years": "miaka {{count}}"
-    }
+    },
+    "chatPanel": {
+      "anon": "Bila jina",
+      "edited": "imehaririwa",
+      "deleteTitle": "Futa ujumbe",
+      "deleteConfirm": "Futa ujumbe huu? Hii haiwezi kurudishwa nyuma.",
+      "muted": "Umenyamazishwa",
+      "postingDisabled": "Kutuma machapisho kumezimwa kwa wanachama hapa",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Ujumbe uliowekwa juu",
+      "showEarlier": "Onyesha jumbe za awali",
+      "editingMessage": "Kuhariri ujumbe",
+      "copied": "Ujumbe umenakiliwa",
+      "copyText": "Nakili maandishi",
+      "mutedUntil": "Unakata tamaa hadi {{date}}",
+      "slowMode": "Hali ya polepole: ujumbe mmoja kila {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Ondoa msimamizi",
+      "cancel": "Ghairi",
+      "dismissAdmin": "Ondoa msimamizi",
+      "roleAdmin": "Msimamizi",
+      "roleMember": "Mwanachama",
+      "whatCanTheyDo": "Msimamizi huyu anaweza kufanya nini?",
+      "rightNotHeld": "Huna haki hii mwenyewe",
+      "customTitle": "Kichwa mahususi",
+      "customTitlePlaceholder": "Msimamizi",
+      "customTitleHint": "Imeonyeshwa badala ya beji chaguo-msingi ya Msimamizi.",
+      "saveChanges": "Hifadhi mabadiliko",
+      "promote": "Tangaza",
+      "tabs": {
+        "members": "Washiriki",
+        "admins": "Wasimamizi",
+        "permissions": "Ruhusa",
+        "invites": "Mialiko",
+        "rules": "Sheria",
+        "recentActions": "Hatua za hivi karibuni",
+        "danger": "Eneo la hatari"
+      },
+      "title": "Simamia",
+      "purgeTitle": "Ungependa kufuta ujumbe wote?",
+      "purgeConfirm": "Futa",
+      "kickTitle": "Ungependa kumwondoa mwanachama?",
+      "kickConfirm": "Ondoa",
+      "bannedPermanent": "Imepigwa marufuku — ya kudumu",
+      "mutedPermanent": "Imepunguzwa — ya kudumu",
+      "editAdminRights": "Hariri haki za msimamizi",
+      "promoteToAdmin": "Teua kuwa msimamizi",
+      "unmute": "Nyamazisha",
+      "mute": "Nyamazisha",
+      "unban": "Futa marufuku",
+      "ban": "Piga marufuku",
+      "deleteAllMessages": "Futa jumbe zote",
+      "removeFromCommunity": "Ondoa kwenye jumuiya",
+      "noActionsAvailable": "Huwezi kumsimamia mwanachama huyu.",
+      "showMore": "Onyesha zaidi",
+      "joinRequests": "Maombi ya kujiunga",
+      "approve": "Idhinisha",
+      "reject": "Kataa",
+      "members": "Wanachama",
+      "searchMembers": "Tafuta kwa anwani ya pochi",
+      "noMembersMatch": "Hakuna mwanachama anayelingana na hicho.",
+      "noMembers": "Hakuna wanachama bado.",
+      "muted": "Nyamazishwa",
+      "banned": "Wamepigwa marufuku",
+      "muteEffect": "Wanakaa kwenye jumuiya lakini hawawezi kuchapisha hadi muda wa kunyamazishwa utakapokwisha.",
+      "banEffect": "Wameondolewa kwenye gumzo na hawawezi kujiunga tena hadi marufuku itakapofutwa.",
+      "durationLabel": "Muda",
+      "reasonLabel": "Sababu (hiari)",
+      "reasonPlaceholder": "Kwa nini wanapigwa marufuku?",
+      "alsoDeleteMessages": "Pia futa jumbe zao zote",
+      "confirmMute": "Nyamazisha mwanachama",
+      "confirmBan": "Piga marufuku mwanachama",
+      "rulesUpdated": "Sheria zimefanywa upya",
+      "rulesTitle": "Sheria za jumuiya",
+      "rulesEmpty": "Hakuna sheria bado — ongeza ya kwanza hapa chini.",
+      "rulePlaceholder": "Eleza sheria",
+      "addRule": "Ongeza sheria",
+      "saveRules": "Hifadhi sheria",
+      "dismissAdminBody": "{{wallet}} atarejea kuwa mwanachama wa kawaida.",
+      "purgeBody": "Kila ujumbe ambao {{name}} ametuma katika jumuiya hii utaondolewa.",
+      "kickBody": "{{name}} ataondolewa kutoka kwa jumuiya. Wanaweza kujiunga tena baadaye.",
+      "bannedUntil": "Fungia hadi {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Nyamazisha hadi {{date}}",
+      "bannedUntilShort": "Hadi {{date}}",
+      "muteTitle": "Nyamazisha {{name}}",
+      "banTitle": "Fungia {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} kati ya {{max}}",
+      "moveRuleUp": "Sogeza sheria juu",
+      "moveRuleDown": "Sogeza sheria chini",
+      "deleteRule": "Futa sheria",
+      "rights": {
+        "changeInfo": "Badilisha maelezo ya jumuiya",
+        "changeInfoHint": "Hariri jina, maelezo, avatar na bendera",
+        "deleteMessages": "Futa jumbe",
+        "deleteMessagesHint": "Ondoa ujumbe wowote kutoka kwa gumzo la jumuiya",
+        "restrictMembers": "Fungia watumiaji",
+        "restrictMembersHint": "Nyamazisha, ondoa na fungia wanachama",
+        "inviteUsers": "Waalike watumiaji kupitia kiungo",
+        "inviteUsersHint": "Unda na ughairi viungo vya mwaliko",
+        "pinMessages": "Bandika jumbe",
+        "pinMessagesHint": "Bandika ujumbe juu ya gumzo",
+        "manageEvents": "Dhibiti matukio",
+        "manageEventsHint": "Unda na uhariri matukio ya jumuiya",
+        "addAdmins": "Ongeza wasimamizi wapya",
+        "addAdminsHint": "Watumiaji wa kukuza na kuhariri haki za wasimamizi walioongeza",
+        "remainAnonymous": "Baki bila kutambulika",
+        "remainAnonymousHint": "Ficha msimamizi huyu kutoka kwenye orodha ya wanachama"
+      },
+      "durations": {
+        "oneHour": "1 saa",
+        "eightHours": "8 masaa",
+        "oneDay": "1 siku",
+        "oneWeek": "1 wiki",
+        "forever": "Milele"
+      }
+    },
+    "chooseAvatar": "Chagua avatar"
   },
   "work": {
     "title": "Zawadi",
@@ -2950,7 +3119,9 @@
       "shipped": "Imesafirishwa",
       "completed": "Imekamilika",
       "cancelled": "Imeghairiwa"
-    }
+    },
+    "removePhoto": "Ondoa picha",
+    "listingOptions": "Chaguo za uorodheshaji"
   },
   "accounts": {
     "subtitle": "Akaunti kamili zinazouzwa, bei kwa DHB",
@@ -3318,7 +3489,14 @@
     "removeFollowerHint": "Bonyeza na shikilia mfuasi ili umwondoe.",
     "cancel": "Ghairi",
     "remove": "Ondoa",
-    "thisUser": "Mtumiaji huyu"
+    "thisUser": "Mtumiaji huyu",
+    "cancelRequestTo": "Ghairi ombi la kumfuata la @{{username}}?",
+    "followingUser": "Kumfuata @{{username}}",
+    "contentUnavailable": "Maudhui Hayapo",
+    "youBlockedBody": "Hutawaona machapisho yao wala kuingiliana nao. Fungua ili urejeshe ufikiaji.",
+    "restrictedBody": "Mtumiaji huyu amezuia mwingiliano na akaunti yako.",
+    "requestPendingBody": "Ombi lako la kumfuata limetumwa. Utaweza kuona machapisho yao mara tu watakapokubali ombi lako.",
+    "followToSeePosts": "Mfuatilie akaunti hii ili uone machapisho yao."
   },
   "reactionInfo": {
     "title": "Miitikio",
@@ -3633,7 +3811,8 @@
     "needGas": "Unahitaji {{token}} asilia kwa gesi kwenye {{chain}}.",
     "bridging": "Inavusha…",
     "bridgeAction": "Daraja {{from}} → {{to}}",
-    "failed": "Daraja limeshindwa"
+    "failed": "Daraja limeshindwa",
+    "sentArriveShortly": "{{amount}} DHB ilitumwa kutoka {{from}} → {{to}}. Tokeni zitawasili hivi karibuni."
   },
   "banned": {
     "title": "Akaunti yako imepigwa marufuku",
@@ -3811,7 +3990,16 @@
     "legacyRecovered": "Tumethibitisha akaunti yako ya zamani{{suffix}} na kurejesha pochi yake. Weka nenosiri la kuilinda kwenye kifaa hiki — kwenye simu hii na kila mahali pengine, kuanzia sasa.",
     "passwordMin": "Nenosiri (angalau herufi {{min}})",
     "newPasswordMin": "Nenosiri jipya (angalau herufi {{min}})",
-    "newWalletPasswordMin": "Nenosiri la pochi mpya (angalau herufi {{min}})"
+    "newWalletPasswordMin": "Nenosiri la pochi mpya (angalau herufi {{min}})",
+    "deviceCheckCancelled": "Kuangalia kifaa kumegHairiwa - hakuna kilichobadilishwa.",
+    "savePhraseTitle": "Hifadhi neno lako la kurejesha",
+    "startOverTitle": "Anza upya na pochi mpya",
+    "secureNewWalletTitle": "Linda pochi yako mpya",
+    "secureWalletTitle": "Linda pochi yako",
+    "unlockOnMobileTitle": "Fungua kwenye simu",
+    "oldAccountFoundTitle": "Akaunti ya zamani imepatikana",
+    "unlockWalletTitle": "Fungua pochi yako",
+    "phraseExplainer": "Pochi yako italindwa na biometriska za simu hii. Kufungua huku <em>kufanya kazi tu kwenye simu hii</em> — maneno haya 12 ndiyo njia pekee ya kurudi ikiwa utaweka upya DeHub, kubadilisha simu, au kuipoteza."
   },
   "transcript": {
     "title": "Nakala ya maneno",
@@ -3998,7 +4186,38 @@
     "subscribe": "Jisajili",
     "subscriberCount_one": "Mfuatiliaji {{count}}",
     "subscriberCount_other": "Wafuatiliaji {{count}}",
-    "subscribeToForRich": "Jisajili kwa <name>{{name}}</name> kwa <price>{{price}}</price>"
+    "subscribeToForRich": "Jisajili kwa <name>{{name}}</name> kwa <price>{{price}}</price>",
+    "loadPlansFailed": "Imeshindwa kupakia mipango",
+    "subscriberContent": "Maudhi ya mteja",
+    "subscriberContentSub": "Unda mipango ya kutoa maudhui ya kipekee kwa wanachama",
+    "createFirstPlan": "Unda Mpango Wako wa Kwanza",
+    "addNewPlan": "Ongeza Mpango Mpya",
+    "durations": {
+      "oneMonth": "Mwezi 1",
+      "threeMonths": "Miezi 3",
+      "sixMonths": "Miezi 6",
+      "oneYear": "Mwaka 1",
+      "lifetime": "Maisha"
+    },
+    "planNameRequired": "Jina la mpango linahitajika",
+    "enterValidPrice": "Weka bei halali",
+    "availableChains": "Usajili kwa sasa unapatikana kwenye Base na BNB",
+    "waitForSwitch": "Subiri mtandao wa usajili ukamilishe kubadilika",
+    "connectAndWait": "Unganisha pochi yako na subiri mtandao wa usajili",
+    "planUpdated": "Mpango umesasishwa",
+    "creating": "Inatengenezwa…",
+    "planPublished": "Mpango umeundwa na kuchapishwa",
+    "createPlanTitle": "Unda Mpango wa Usajili",
+    "network": "Mtandao wa Usajili",
+    "planNameLabel": "Jina la Mpango *",
+    "planNamePlaceholder": "k.m. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Wanachama hupata nini...",
+    "priceLabel": "Bei (USD) *",
+    "legacyMigrationNote": "Akiba inahamisha mpango huu wa zamani wa DHB hadi bei za dola kwa kiwango cha kabla ya kuorodheshwa.",
+    "benefits": "Faida",
+    "benefitPlaceholder": "Ongeza faida...",
+    "createAndPublish": "Unda & Chapisha",
+    "publishingOnChain": "Kuchapisha ni muamala wa kwenye mnyororo"
   },
   "live": {
     "notSet": "Haijawekwa",
@@ -4116,7 +4335,22 @@
     "acceptTerms": "Ninakubali <terms>Masharti ya Huduma</terms>",
     "sentTo": "{{amount}} {{symbol}} ilitumwa kwa {{address}}",
     "tokensSentTo": "Tokeni zilitumwa kwa {{address}}",
-    "goToProfile": "Nenda kwenye Wasifu"
+    "goToProfile": "Nenda kwenye Wasifu",
+    "aboutTitle": "Kuhusu DeHub & malipo",
+    "aboutSubtitle": "Njia yako ya malipo ya tokeni bila mshono",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokeni hutumiwa kujisajili kwa watunzi, kuwapa zawadi watangazaji au kufungua maudhui. Kadiri unavyomiliki zaidi, ndivyo ada zako zinavyopungua na ndivyo unavyofungua uwezo mkuu zaidi kama vile nyongeza za mitindo ya ratiba na beji za uthibitisho.",
+    "aboutInstantTitle": "Malipo ya Papo Hapo",
+    "aboutInstantBody": "Kwa kutumia Stripe, unaweza kununua tokeni mara moja na bila mshono kwenye akaunti yoyote uliyoingia. DeHub hufanya tokeni kuwa rahisi na kwa wote. Ikiwa unahitaji usaidizi zaidi, ingia tu kwenye gumzo letu la jumuiya ya moja kwa moja la 24/7 na uombe usaidizi wa msimamizi.",
+    "aboutSecureTitle": "Lango Salama",
+    "aboutSecureBody": "Maelezo yote ya malipo yanasimbwa kwa njia fiche na kuchakatwa kwa usalama na Stripe. Hatuna uwezo wa kufikia au kuhifadhi maelezo yako nyeti au maelezo ya kadi, hivyo kukupa amani ya akili kabisa.",
+    "transfersSummary": "Muhtasari wa Uhamisho",
+    "availableToBuy": "Inapatikana kununua sasa",
+    "noSupplyShort": "Hakuna usambazaji",
+    "topUpSubtitle": "Nunua $DHB ukitumia kadi na upate gesi ya bure kutumia mara moja",
+    "noTxHash": "Haikupata muamala",
+    "latestTransactions": "Miamala ya Hivi Punde",
+    "showAll": "Onyesha zote"
   },
   "musicSheet": {
     "title": "Tengeneza wimbo",
@@ -4245,7 +4479,13 @@
     "followUpNote": "Tunaweza kuwasiliana nawe kwa maswali zaidi kuhusu maoni yako",
     "submitFeedback": "Tuma maoni",
     "provideFeedback": "Tafadhali andika maoni yako",
-    "thankYou": "Asante kwa maoni yako!"
+    "thankYou": "Asante kwa maoni yako!",
+    "submitFailed": "Imeshindwa kuwasilisha maoni. Tafadhali jaribu tena.",
+    "maybeLater": "Baadaye Kidogo",
+    "helpUsImprove": "Tusaidie kuboresha",
+    "rateExperience": "Unawezaje kukadiria uzoefu wako?",
+    "telegramOptional": "Telegram (hiari)",
+    "discordOptional": "Discord (hiari)"
   },
   "migrate": {
     "clearAll": "Futa yote",
@@ -4362,7 +4602,14 @@
       "blueWhale": "Jambo kubwa zaidi ambalo limewahi kuishi. Huyo ni wewe.",
       "megalodon": "Hili ndilo taji lako — wewe ni mrahaba wa programu sasa"
     },
-    "continue": "Rudi kwenye DeHub"
+    "continue": "Rudi kwenye DeHub",
+    "none": "Hakuna",
+    "noBadgeYet": "Hakuna beji bado",
+    "next": "Ifuatayo",
+    "topTier": "Daraja la juu",
+    "toNextTier": "{{amount}} DHB kwa {{tier}}",
+    "everyTierUnlocked": "Kila daraja limefunguliwa",
+    "holdNote": "Mara tu beji inapofunguliwa, ni yako kwa muda mrefu tu utakapoendelea kumiliki DHB yako. Idadi ya tokeni zinazohitajika kufungua beji mpya inaweza kubadilika kulingana na bei ya tokeni."
   },
   "passwordStrength": {
     "veryWeak": "Dhaifu sana",
@@ -4444,7 +4691,11 @@
     },
     "ttsLabel": "Sema kitu kwa sauti",
     "ttsPlaceholder": "Soma hadi kwenye mkondo...",
-    "ttsHint": "Soma kwa sauti kwa kila mtu anayetazama zawadi yako inapotua."
+    "ttsHint": "Soma kwa sauti kwa kila mtu anayetazama zawadi yako inapotua.",
+    "sendAGift": "Tuma Zawadi",
+    "minPlaceholder": "Kima: {{amount}}",
+    "minGift": "Kima cha chini cha zawadi ni {{amount}}",
+    "sendGift": "Tuma Zawadi"
   },
   "goLive": {
     "streamKey": "Ufunguo wa Mtiririko",
@@ -4827,7 +5078,8 @@
         "title": "Angalia jinsi mapato yanavyofanya kazi",
         "body": "Fahamu jinsi vidokezi, beji na Nguvu Kubwa zinavyogeuza kile unachofanya hapa kuwa kitu unachopata kutokana nacho."
       }
-    }
+    },
+    "swipeToStart": "Telezesha ili uanze"
   },
   "conversation": {
     "commonGround": {
@@ -5309,5 +5561,18 @@
     "toastPaidSettled": "Imelipwa — biashara imekamilika",
     "walletNotReady": "Pochi yako bado haiko tayari — jaribu tena baada ya muda mfupi.",
     "wrongChain": "Biashara hii inakamilishwa kwenye {{chain}}. Badilisha hadi {{chain}} katika Mipangilio, kisha ujaribu tena."
+  },
+  "moderation": {
+    "appealDuplicate": "Tayari umekata rufaa hii",
+    "appealSent": "Rufaa imetumwa",
+    "appealFailed": "Haikuweza kuwasilisha rufaa hiyo",
+    "appealTitle": "Kata rufaa dhidi ya uamuzi huu",
+    "appealSubtitle": "Mtu atasoma hii na kutazama uamuzi tena.",
+    "appealPlaceholder": "Unafikiri ni nini kilikosekana? Muktadha kuhusu maudhui husaidia zaidi kuliko kitu kingine chochote.",
+    "appealSend": "Tuma rufaa",
+    "appealFootnote": "Unapata nambari ya kumbukumbu, na jibu linarudi hapa. Rufaa moja kwa kila uamuzi.",
+    "appealRef": "Marejeleo {{ref}}",
+    "appealSubtitleSubject": "Mtu atasoma hii na kuangalia tena {{subject}}.",
+    "appealMore": "Herufi bado zinahitajika: {{count}}"
   }
 }

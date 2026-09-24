@@ -409,7 +409,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
     <View className="bg-theme-neutrals-800 rounded-xl p-5 border border-theme-neutrals-700/60">
       <Text className="text-white text-xl font-semibold mb-1">{t("dpay.topUp")}</Text>
       <Text className="text-gray-300 text-[11px] mb-4">
-        Buy $DHB using card and get free gas to use instantly
+        {t("dpay.topUpSubtitle")}
       </Text>
 
       <View className="mb-3">

@@ -108,7 +108,7 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
             <Text style={{ color: "#fff", fontSize: 17, fontWeight: "600", flex: 1 }}>
               {t("moderation.appealTitle", "Appeal this decision")}
             </Text>
-            <Pressable onPress={onClose} hitSlop={10} accessibilityLabel="Close">
+            <Pressable onPress={onClose} hitSlop={10} accessibilityLabel={t("common.close")}>
               <Icon name="X" size={20} color="#a1a1aa" />
             </Pressable>
           </SheetDismissHandle>
@@ -149,7 +149,7 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
           <Text style={{ color: "#808089", fontSize: 11, textAlign: "right" }}>
             {trimmed.length < MIN_REASON
               ? t("moderation.appealMore", {
-                  defaultValue: "{{count}} more characters",
+                  defaultValue: "Characters still needed: {{count}}",
                   count: MIN_REASON - trimmed.length,
                 })
               : `${reason.length}/${MAX_REASON}`}

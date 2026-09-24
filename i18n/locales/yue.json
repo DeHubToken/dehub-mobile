@@ -691,7 +691,11 @@
       "hintAllow": "尊重呢個訊號嘅人工智能系統同爬蟲程式可能會訓練你嘅音頻、藝術品同寫作。",
       "hintDeny": "尊重呢個訊號嘅人工智能系統同爬蟲程式被要求唔好訓練你嘅音頻、藝術品同寫作。忽略訊號嘅爬蟲程式唔會被佢阻擋。",
       "saved": "儲存咗 AI 訓練偏好設定"
-    }
+    },
+    "chainIdLabel": "鏈 ID：{{id}}",
+    "exportPkConfirmPhrase": "我明白",
+    "exportPkCopy": "複製私鑰",
+    "e2eAutomatic": "自動"
   },
   "common": {
     "mute": "靜音",
@@ -731,7 +735,17 @@
     "optionalSuffix": "（可選）",
     "yesterday": "尋日",
     "ok": "確定",
-    "continue": "繼續"
+    "continue": "繼續",
+    "goesToHomeFeed": "前往主動態消息",
+    "openMenu": "打開選單",
+    "scrollsFeedToTop": "捲動到動態消息頂部並重新整理",
+    "notificationsUnread": "通知，{{unread}} 則未讀",
+    "errorDetails": "錯誤詳情：",
+    "failedToLoad": "載入失敗",
+    "noInternetTitle": "沒有網路連線",
+    "noInternetBody": "請檢查您的網路連線並重試。您需要連線到網際網路才能使用 DeHub。",
+    "noInternetStatus": "離線 - 沒有網路連線",
+    "noInternetHint": "請確保 Wi-Fi 或行動數據已開啟，然後點擊「{{action}}」"
   },
   "tip": {
     "title": "送禮物",
@@ -1620,7 +1634,12 @@
     "chooseUsernameBody": "揀個用戶名同顯示名先可以繼續，之後可以改。",
     "checkingAvailability": "檢查緊有冇得用…",
     "usernameTakenHint": "呢個用戶名已經有人用咗 — 試吓加數字或者底線",
-    "displayNameLength": "顯示名要 2-50 個字元。"
+    "displayNameLength": "顯示名要 2-50 個字元。",
+    "loginFailedRetry": "登入失敗。請重試。",
+    "sendCodeFailedRetry": "無法傳送驗證碼。請重試。",
+    "invalidCodeRetry": "驗證碼無效。請重試。",
+    "invalidEmailOrPassword": "電子郵件或密碼無效。",
+    "welcomeToDehub": "歡迎來到 DeHub"
   },
   "messages": {
     "smartRepliesOff": "已閂咗建議回覆",
@@ -1698,7 +1717,32 @@
     "offerWorthNow": "以而家嘅匯率大約 {{amount}} DHB",
     "offerNotePlaceholder": "加個備註（可以唔填）",
     "offerCommitsNothing": "出價唔使錢，亦唔會鎖住任何 DHB。對方接受咗你先要找數。",
-    "offerNeedsHandle": "呢個帳戶冇用戶名可以出價。"
+    "offerNeedsHandle": "呢個帳戶冇用戶名可以出價。",
+    "noPostsYet": "暫無貼文",
+    "noPostsYetSub": "內容將在此處顯示",
+    "noPinnedPosts": "暫無釘選貼文",
+    "noPinnedPostsSub": "釘選貼文將在此處顯示",
+    "emptyLiked": "暫無按讚的貼文。",
+    "emptySaved": "暫無已儲存的貼文。",
+    "emptyUnlocked": "暫無已解鎖的貼文。",
+    "emptyWatched": "暫無觀看紀錄。",
+    "emptyFolder": "此資料夾暫無貼文。",
+    "emptyPosts": "暫無貼文。",
+    "couldNotLoadPosts": "無法載入貼文。",
+    "noPostsOrReplies": "暫時未有帖子、留言或回覆",
+    "noPostsOrRepliesSub": "它們將會顯示在這裡",
+    "avatarUpdated": "頭像已更新",
+    "coverUpdated": "封面已更新",
+    "couldNotPickImage": "無法選擇圖片",
+    "changeCoverImage": "更改封面圖片",
+    "changeAvatar": "更改頭像",
+    "verifiedEnsName": "已驗證的 ENS 名稱 {{name}}",
+    "notFullyJoined": "該用戶尚未完全加入。他們尚未領取用戶名或完成個人資料設置。你仍然可以查看公開活動並發送提示（如果可用）。",
+    "loadRepliesFailed": "無法載入回覆",
+    "refreshFailed": "重新整理失敗",
+    "noRepliesYet": "暫無回覆",
+    "noRepliesYetSub": "當該用戶回覆帖子時，它們將會顯示在這裡。",
+    "noMoreReplies": "沒有更多回覆"
   },
   "tv": {
     "title": "電視",
@@ -1781,7 +1825,11 @@
     "loadingPrice": "載入緊價錢…",
     "topUpExplanation": "DHB 會喺鏈上轉入 DeHub 廣告金庫，經獨立鏈上核實之後就會入你嘅餘額。",
     "paymentHistory": "付款記錄",
-    "noPayments": "仲未有付款"
+    "noPayments": "仲未有付款",
+    "sponsored": "贊助內容",
+    "morePosts": "更多帖子",
+    "loadMorePosts": "載入更多帖子",
+    "playAdVideo": "播放廣告影片"
   },
   "buyCoins": {
     "title": "購買代幣",
@@ -2216,7 +2264,8 @@
     "privateBalanceMode": "私密餘額模式已開啟",
     "addressHidden": "地址已隱藏",
     "allowInFeeds": "允許呢個用戶喺你嘅動態出現",
-    "hideContent": "隱藏佢哋嘅內容並限制互動"
+    "hideContent": "隱藏佢哋嘅內容並限制互動",
+    "a11yLabel": "個人資料選項"
   },
   "toasts": {
     "saved_to_bookmarks": "已儲存到書籤",
@@ -2588,7 +2637,8 @@
     "roles": {
       "owner": "擁有人",
       "moderator": "版主",
-      "member": "成員"
+      "member": "成員",
+      "admin": "管理員"
     },
     "time": {
       "today": "今日",
@@ -2597,7 +2647,126 @@
       "weeks": "{{count}} 星期",
       "months": "{{count}} 個月",
       "years": "{{count}} 年"
-    }
+    },
+    "chatPanel": {
+      "anon": "匿名",
+      "edited": "已編輯",
+      "deleteTitle": "刪除訊息",
+      "deleteConfirm": "確定要刪除此訊息嗎？此操作無法復原。",
+      "muted": "你已被靜音",
+      "postingDisabled": "在此處發佈訊息已停用",
+      "mediaMessage": "媒體",
+      "pinnedMessage": "置頂訊息",
+      "showEarlier": "顯示較早的訊息",
+      "editingMessage": "編輯訊息",
+      "copied": "訊息複製咗",
+      "copyText": "複製文字",
+      "mutedUntil": "你被靜音到 {{date}}",
+      "slowMode": "慢速模式：每個 {{interval}} 一個訊息"
+    },
+    "manage": {
+      "dismissAdminTitle": "解僱管理員",
+      "cancel": "取消",
+      "dismissAdmin": "解僱管理員",
+      "roleAdmin": "管理員",
+      "roleMember": "會員",
+      "whatCanTheyDo": "呢個管理員可以做啲咩？",
+      "rightNotHeld": "你自己都冇呢個權利",
+      "customTitle": "自訂標題",
+      "customTitlePlaceholder": "管理員",
+      "customTitleHint": "顯示而唔係預設嘅管理員徽章。",
+      "saveChanges": "儲存變更",
+      "promote": "提升",
+      "tabs": {
+        "members": "成員",
+        "admins": "管理員",
+        "permissions": "權限",
+        "invites": "邀請",
+        "rules": "規矩",
+        "recentActions": "最近嘅行動",
+        "danger": "危險地帶"
+      },
+      "title": "管理",
+      "purgeTitle": "刪除所有訊息？",
+      "purgeConfirm": "刪除",
+      "kickTitle": "移除成員？",
+      "kickConfirm": "去除",
+      "bannedPermanent": "禁止 — 永久性",
+      "mutedPermanent": "靜音 — 永久",
+      "editAdminRights": "編輯管理員權限",
+      "promoteToAdmin": "晉升為管理員",
+      "unmute": "解除禁言",
+      "mute": "禁言",
+      "unban": "解除封鎖",
+      "ban": "封鎖",
+      "deleteAllMessages": "刪除所有訊息",
+      "removeFromCommunity": "從社群移除",
+      "noActionsAvailable": "您無法管理此成員。",
+      "showMore": "顯示更多",
+      "joinRequests": "加入請求",
+      "approve": "批准",
+      "reject": "拒絕",
+      "members": "成員",
+      "searchMembers": "按錢包地址搜尋",
+      "noMembersMatch": "沒有成員符合。",
+      "noMembers": "尚無成員。",
+      "muted": "已禁言",
+      "banned": "已封鎖",
+      "muteEffect": "他們會留在社群中，但直到禁言到期前都無法發布訊息。",
+      "banEffect": "他們已被從聊天中移除，並且在解除封鎖前無法重新加入。",
+      "durationLabel": "持續時間",
+      "reasonLabel": "原因 (可選)",
+      "reasonPlaceholder": "為何要封鎖他們？",
+      "alsoDeleteMessages": "同時刪除他們的所有訊息",
+      "confirmMute": "禁言成員",
+      "confirmBan": "封鎖成員",
+      "rulesUpdated": "規則已更新",
+      "rulesTitle": "社群規則",
+      "rulesEmpty": "尚無規則 — 在下方新增第一個。",
+      "rulePlaceholder": "描述規則",
+      "addRule": "新增規則",
+      "saveRules": "儲存規則",
+      "dismissAdminBody": "{{wallet}} 將會變回普通成員。",
+      "purgeBody": "{{name}} 發送的每則訊息將會被移除。",
+      "kickBody": "{{name}} 將會被移除社群。他們之後可以再次加入。",
+      "bannedUntil": "封鎖至 {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "禁言至 {{date}}",
+      "bannedUntilShort": "直至 {{date}}",
+      "muteTitle": "禁言 {{name}}",
+      "banTitle": "封鎖 {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} 嘅 {{max}}",
+      "moveRuleUp": "向上移動規則",
+      "moveRuleDown": "向下移動規則",
+      "deleteRule": "刪除規則",
+      "rights": {
+        "changeInfo": "更改社群資訊",
+        "changeInfoHint": "編輯名稱、描述、頭像和橫幅",
+        "deleteMessages": "刪除訊息",
+        "deleteMessagesHint": "從社群聊天中移除任何訊息",
+        "restrictMembers": "封鎖使用者",
+        "restrictMembersHint": "禁言、移除和封鎖成員",
+        "inviteUsers": "透過連結邀請使用者",
+        "inviteUsersHint": "建立和撤銷邀請連結",
+        "pinMessages": "釘選訊息",
+        "pinMessagesHint": "將訊息釘選到聊天頂部",
+        "manageEvents": "管理活動",
+        "manageEventsHint": "建立和編輯社群活動",
+        "addAdmins": "新增管理員",
+        "addAdminsHint": "推廣成員並編輯他們新增管理員的權限",
+        "remainAnonymous": "保持匿名",
+        "remainAnonymousHint": "從成員列表中隱藏此管理員"
+      },
+      "durations": {
+        "oneHour": "1 小時",
+        "eightHours": "8 小時",
+        "oneDay": "1 天",
+        "oneWeek": "1 週",
+        "forever": "永久"
+      }
+    },
+    "chooseAvatar": "選擇頭像"
   },
   "work": {
     "title": "賞金",
@@ -2949,7 +3118,9 @@
       "shipped": "已寄出",
       "completed": "已完成",
       "cancelled": "已取消"
-    }
+    },
+    "removePhoto": "移除相片",
+    "listingOptions": "列表選項"
   },
   "accounts": {
     "subtitle": "出售緊嘅整個帳戶，用 DHB 計價",
@@ -3316,7 +3487,14 @@
     "removeFollowerHint": "長按追隨者即可將其移除。",
     "cancel": "取消",
     "remove": "移除",
-    "thisUser": "呢個用戶"
+    "thisUser": "呢個用戶",
+    "cancelRequestTo": "取消追蹤 @{{username}} 的請求",
+    "followingUser": "正在追蹤 @{{username}}",
+    "contentUnavailable": "內容無法顯示",
+    "youBlockedBody": "您將無法看到他們的帖子或與他們互動。解除封鎖即可恢復存取權。",
+    "restrictedBody": "此用戶已限制與您帳戶的互動。",
+    "requestPendingBody": "您的追蹤請求已發送。一旦他們批准您的請求，您就能看到他們的帖子。",
+    "followToSeePosts": "追蹤此帳戶以查看他們的帖子。"
   },
   "reactionInfo": {
     "title": "反應",
@@ -3631,7 +3809,8 @@
     "needGas": "喺 {{chain}} 上需要原生 {{token}} 嚟支付 gas。",
     "bridging": "跨鏈中…",
     "bridgeAction": "跨鏈 {{from}} → {{to}}",
-    "failed": "跨鏈失敗"
+    "failed": "跨鏈失敗",
+    "sentArriveShortly": "{{amount}} DHB 透過 {{from}} 發送至 {{to}}。代幣即將送達。"
   },
   "banned": {
     "title": "你嘅帳戶已被禁用",
@@ -3809,7 +3988,16 @@
     "legacyRecovered": "已經驗證咗你個舊帳戶{{suffix}}，亦都搵返個錢包。請設個密碼，由而家開始喺呢部電話同其他地方保護佢。",
     "passwordMin": "密碼（最少 {{min}} 個字元）",
     "newPasswordMin": "新密碼（最少 {{min}} 個字元）",
-    "newWalletPasswordMin": "新錢包密碼（最少 {{min}} 個字元）"
+    "newWalletPasswordMin": "新錢包密碼（最少 {{min}} 個字元）",
+    "deviceCheckCancelled": "裝置檢查已取消 — 未進行任何變更。",
+    "savePhraseTitle": "儲存您的恢復短語",
+    "startOverTitle": "從新錢包開始",
+    "secureNewWalletTitle": "保護您的新錢包",
+    "secureWalletTitle": "保護您的錢包",
+    "unlockOnMobileTitle": "在手機上解鎖",
+    "oldAccountFoundTitle": "找到舊帳戶",
+    "unlockWalletTitle": "解鎖您的錢包",
+    "phraseExplainer": "您的錢包將受此手機的生物辨識技術保護。此解鎖 <em>僅適用於此手機</em> — 如果您重新安裝 DeHub、更換手機或遺失手機，這 12 個單字是唯一能重新進入的方式。"
   },
   "transcript": {
     "title": "文字記錄",
@@ -3995,7 +4183,38 @@
     "subscribe": "訂閱",
     "subscriberCount_one": "{{count}} 位訂閱者",
     "subscriberCount_other": "{{count}} 位訂閱者",
-    "subscribeToForRich": "以 <price>{{price}}</price> 訂閱 <name>{{name}}</name>"
+    "subscribeToForRich": "以 <price>{{price}}</price> 訂閱 <name>{{name}}</name>",
+    "loadPlansFailed": "無法載入方案",
+    "subscriberContent": "訂閱者內容",
+    "subscriberContentSub": "創建計劃以提供獨家內容給訂閱者",
+    "createFirstPlan": "創建您的第一個計劃",
+    "addNewPlan": "添加新計劃",
+    "durations": {
+      "oneMonth": "1 個月",
+      "threeMonths": "3 個月",
+      "sixMonths": "6 個月",
+      "oneYear": "1 年",
+      "lifetime": "永久"
+    },
+    "planNameRequired": "計劃名稱是必需的",
+    "enterValidPrice": "輸入有效價格",
+    "availableChains": "訂閱目前可在 Base 和 BNB 上使用",
+    "waitForSwitch": "等待訂閱網絡完成切換",
+    "connectAndWait": "連接您的錢包並等待訂閱網絡",
+    "planUpdated": "計劃已更新",
+    "creating": "創建中…",
+    "planPublished": "計劃已創建並發布",
+    "createPlanTitle": "創建訂閱計劃",
+    "network": "訂閱網絡",
+    "planNameLabel": "計劃名稱 *",
+    "planNamePlaceholder": "例如：高級、黃金、VIP…",
+    "descriptionPlaceholder": "訂閱者將獲得什麼…",
+    "priceLabel": "價格 (美元) *",
+    "legacyMigrationNote": "儲蓄將此舊的 DHB 計劃遷移到美元定價，按上市前匯率計算。",
+    "benefits": "福利",
+    "benefitPlaceholder": "添加福利…",
+    "createAndPublish": "創建並發布",
+    "publishingOnChain": "發布是鏈上交易"
   },
   "live": {
     "notSet": "未設定",
@@ -4113,7 +4332,22 @@
     "acceptTerms": "我接受 <terms>服務條款</terms>",
     "sentTo": "{{amount}} {{symbol}} 被發送到 {{address}}",
     "tokensSentTo": "代幣已經寄咗去 {{address}}",
-    "goToProfile": "去個人檔案"
+    "goToProfile": "去個人檔案",
+    "aboutTitle": "關於 DeHub 和付款",
+    "aboutSubtitle": "您的無縫代幣支付網關",
+    "aboutTokenTitle": "DeHub 代幣",
+    "aboutTokenBody": "代幣可用於訂閱創作者、打賞主播或解鎖內容。你持有的代幣越多，費用越低，解鎖的超能力就越多，例如時間線趨勢加成和驗證徽章。",
+    "aboutInstantTitle": "即時付款",
+    "aboutInstantBody": "使用 Stripe，你可以即時無縫地將代幣購買到你已登錄的任何帳戶。DeHub 讓代幣變得簡單且適合所有人。如果你需要更多支援，只需進入我們的 24/7 線上社群聊天室，尋求管理員支援。",
+    "aboutSecureTitle": "安全閘道",
+    "aboutSecureBody": "所有付款詳情均經過加密，並由 Stripe 安全處理。我們無法存取或儲存你的敏感資訊或卡片詳情，讓你安心無憂。",
+    "transfersSummary": "轉帳摘要",
+    "availableToBuy": "現已開放購買",
+    "noSupplyShort": "無供應量",
+    "topUpSubtitle": "使用卡片購買 $DHB 並獲得免費 Gas 即時使用",
+    "noTxHash": "找不到交易雜湊",
+    "latestTransactions": "最新交易",
+    "showAll": "顯示全部"
   },
   "musicSheet": {
     "title": "創作一首歌",
@@ -4242,7 +4476,13 @@
     "followUpNote": "我哋可能會就你嘅意見再聯絡你問多啲",
     "submitFeedback": "提交意見",
     "provideFeedback": "請填寫你嘅意見",
-    "thankYou": "多謝你嘅意見！"
+    "thankYou": "多謝你嘅意見！",
+    "submitFailed": "無法提交回饋。請再試一次。",
+    "maybeLater": "稍後再說",
+    "helpUsImprove": "幫助我們改進",
+    "rateExperience": "你的體驗如何？",
+    "telegramOptional": "Telegram (可選)",
+    "discordOptional": "Discord (可選)"
   },
   "migrate": {
     "clearAll": "清除全部",
@@ -4359,7 +4599,14 @@
       "blueWhale": "有史以來最大嘅事。就係你。",
       "megalodon": "呢個係你嘅皇冠 — 你而家係應用程式版稅"
     },
-    "continue": "返去 DeHub"
+    "continue": "返去 DeHub",
+    "none": "無",
+    "noBadgeYet": "尚未獲得徽章",
+    "next": "下一個",
+    "topTier": "頂級",
+    "toNextTier": "{{amount}} DHB 至 {{tier}}",
+    "everyTierUnlocked": "所有等級均已解鎖",
+    "holdNote": "一旦徽章被解鎖，只要你持有 DHB，它就永遠屬於你。解鎖新徽章所需的代幣數量可能會隨著代幣價格而變化。"
   },
   "passwordStrength": {
     "veryWeak": "非常弱",
@@ -4441,7 +4688,11 @@
     },
     "ttsLabel": "大聲說出來",
     "ttsPlaceholder": "在串流中讀出...",
-    "ttsHint": "當禮物送達時，請大聲朗讀給所有觀眾。"
+    "ttsHint": "當禮物送達時，請大聲朗讀給所有觀眾。",
+    "sendAGift": "贈送禮物",
+    "minPlaceholder": "最低：{{amount}}",
+    "minGift": "最低禮物為 {{amount}}",
+    "sendGift": "贈送禮物"
   },
   "goLive": {
     "streamKey": "串流金鑰",
@@ -4824,7 +5075,8 @@
         "title": "睇下賺錢係點運作",
         "body": "睇下貼士、徽章同超級力量點樣將你喺呢度做嘅嘢變成你賺錢嘅嘢。"
       }
-    }
+    },
+    "swipeToStart": "滑動開始"
   },
   "conversation": {
     "commonGround": {
@@ -5306,5 +5558,18 @@
     "toastPaidSettled": "已付款 — 交易已結算",
     "walletNotReady": "你嘅錢包仲未準備好 — 等陣再試。",
     "wrongChain": "呢單交易喺 {{chain}} 結算。去設定切換到 {{chain}}，然後再試。"
+  },
+  "moderation": {
+    "appealDuplicate": "你已經上訴咗呢件事",
+    "appealSent": "已經發出咗上訴",
+    "appealFailed": "提出唔到上訴",
+    "appealTitle": "上訴呢個決定",
+    "appealSubtitle": "一個人會睇完呢篇，然後再睇下個決定。",
+    "appealPlaceholder": "你覺得錯過咗啲咩？有關內容嘅上下文比其他任何嘢都有幫助。",
+    "appealSend": "發送上訴",
+    "appealFootnote": "你會得到一個參考號碼，答案就會喺呢度返嚟。每個決定一次上訴。",
+    "appealRef": "參考 {{ref}}",
+    "appealSubtitleSubject": "一個人會睇完呢篇之後再睇 {{subject}} 。",
+    "appealMore": "仲需要嘅角色： {{count}}"
   }
 }

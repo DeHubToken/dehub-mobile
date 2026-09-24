@@ -690,7 +690,11 @@
       "hintAllow": "Sistem AI dan perayap yang menghormati isyarat ini boleh melatih audio, karya seni dan tulisan anda.",
       "hintDeny": "Sistem AI dan perayap yang menghormati isyarat ini diminta untuk tidak melatih audio, karya seni dan tulisan anda. Perayap yang mengabaikan isyarat tidak disekat olehnya.",
       "saved": "Pilihan latihan AI disimpan"
-    }
+    },
+    "chainIdLabel": "ID Rantaian: {{id}}",
+    "exportPkConfirmPhrase": "SAYA FAHAM",
+    "exportPkCopy": "Salin kunci peribadi",
+    "e2eAutomatic": "Automatik"
   },
   "common": {
     "mute": "Bisukan",
@@ -993,7 +997,17 @@
     "userAccountSuspiciousOut": "Akaun pengguna mencurigakan keluar",
     "userAccountSuspiciousOutFailed": "Tandakan akaun pengguna mencurigakan keluar gagal",
     "userAccountSafeOut": "Akaun pengguna selamat keluar",
-    "userAccountSafeOutFailed": "Tandakan akaun pengguna selamat keluar gagal"
+    "userAccountSafeOutFailed": "Tandakan akaun pengguna selamat keluar gagal",
+    "goesToHomeFeed": "Pergi ke suapan utama",
+    "openMenu": "Buka menu",
+    "scrollsFeedToTop": "Tatal ke bahagian atas suapan dan segarkannya",
+    "notificationsUnread": "Pemberitahuan, {{unread}} belum dibaca",
+    "errorDetails": "Butiran ralat:",
+    "failedToLoad": "Gagal dimuatkan",
+    "noInternetTitle": "Tiada Sambungan Internet",
+    "noInternetBody": "Sila semak sambungan internet anda dan cuba lagi. Anda perlu disambungkan ke internet untuk menggunakan DeHub.",
+    "noInternetStatus": "Luar Talian - Tiada sambungan rangkaian",
+    "noInternetHint": "Pastikan Wi-Fi atau data mudah alih dihidupkan, kemudian ketik \"{{action}}\""
   },
   "tip": {
     "title": "Send Tip",
@@ -1883,7 +1897,12 @@
     "chooseUsernameBody": "Pilih nama pengguna dan nama paparan untuk teruskan. Anda boleh ubahnya kemudian.",
     "checkingAvailability": "Menyemak ketersediaan…",
     "usernameTakenHint": "Nama sudah diambil — cuba tambah nombor atau garis bawah",
-    "displayNameLength": "Nama paparan mesti 2-50 aksara."
+    "displayNameLength": "Nama paparan mesti 2-50 aksara.",
+    "loginFailedRetry": "Gagal log masuk. Sila cuba lagi.",
+    "sendCodeFailedRetry": "Tidak dapat menghantar kod. Sila cuba lagi.",
+    "invalidCodeRetry": "Kod tidak sah. Sila cuba lagi.",
+    "invalidEmailOrPassword": "E-mel atau kata laluan tidak sah.",
+    "welcomeToDehub": "Selamat datang ke DeHub"
   },
   "messages": {
     "smartRepliesOff": "Balasan yang dicadangkan dimatikan",
@@ -1961,7 +1980,32 @@
     "offerWorthNow": "Kira-kira {{amount}} DHB pada kadar semasa",
     "offerNotePlaceholder": "Tambah nota (pilihan)",
     "offerCommitsNothing": "Membuat tawaran tidak memerlukan kos dan tidak mengunci DHB. Anda hanya membayar jika pemilik menerima.",
-    "offerNeedsHandle": "Akaun ini tiada nama pengguna untuk ditawar."
+    "offerNeedsHandle": "Akaun ini tiada nama pengguna untuk ditawar.",
+    "noPostsYet": "Tiada siaran lagi",
+    "noPostsYetSub": "Kandungan akan muncul di sini apabila disiarkan",
+    "noPinnedPosts": "Tiada siaran yang disemat lagi",
+    "noPinnedPostsSub": "Siaran yang disemat akan muncul di sini",
+    "emptyLiked": "Tiada siaran yang disukai lagi.",
+    "emptySaved": "Tiada siaran yang disimpan lagi.",
+    "emptyUnlocked": "Tiada siaran yang dibuka kunci lagi.",
+    "emptyWatched": "Tiada sejarah tontonan lagi.",
+    "emptyFolder": "Tiada siaran dalam folder ini lagi.",
+    "emptyPosts": "Tiada siaran lagi.",
+    "couldNotLoadPosts": "Tidak dapat memuatkan siaran.",
+    "noPostsOrReplies": "Tiada siaran, komen atau balasan lagi",
+    "noPostsOrRepliesSub": "Ia akan muncul di sini",
+    "avatarUpdated": "Avatar dikemas kini",
+    "coverUpdated": "Penutup dikemas kini",
+    "couldNotPickImage": "Tidak dapat memilih imej",
+    "changeCoverImage": "Tukar imej penutup",
+    "changeAvatar": "Tukar avatar",
+    "verifiedEnsName": "Nama ENS yang disahkan {{name}}",
+    "notFullyJoined": "Pengguna ini belum menyertai sepenuhnya. Mereka belum menuntut nama pengguna atau melengkapkan persediaan profil. Anda masih boleh melihat aktiviti awam dan menghantar petua jika ada.",
+    "loadRepliesFailed": "Gagal memuatkan balasan",
+    "refreshFailed": "Gagal segar semula",
+    "noRepliesYet": "Tiada Balasan Lagi",
+    "noRepliesYetSub": "Apabila pengguna ini membalas siaran, ia akan muncul di sini.",
+    "noMoreReplies": "Tiada lagi balasan"
   },
   "tv": {
     "title": "TV",
@@ -2044,7 +2088,11 @@
     "loadingPrice": "Memuatkan harga…",
     "topUpExplanation": "DHB dipindahkan atas rantai ke perbendaharaan iklan DeHub, kemudian baki anda dikreditkan selepas pengesahan bebas atas rantai.",
     "paymentHistory": "Sejarah pembayaran",
-    "noPayments": "Belum ada pembayaran"
+    "noPayments": "Belum ada pembayaran",
+    "sponsored": "Ditaja",
+    "morePosts": "Lebih banyak siaran",
+    "loadMorePosts": "Muatkan lebih banyak siaran",
+    "playAdVideo": "Mainkan video iklan"
   },
   "buyCoins": {
     "title": "Buy Coins",
@@ -2479,7 +2527,8 @@
     "privateBalanceMode": "Mod baki peribadi diaktifkan",
     "addressHidden": "Alamat disembunyikan",
     "allowInFeeds": "Benarkan pengguna ini muncul dalam suapan anda",
-    "hideContent": "Sembunyikan kandungan mereka dan hadkan interaksi"
+    "hideContent": "Sembunyikan kandungan mereka dan hadkan interaksi",
+    "a11yLabel": "Pilihan profil"
   },
   "toasts": {
     "saved_to_bookmarks": "Disimpan ke penanda buku",
@@ -2851,7 +2900,8 @@
     "roles": {
       "owner": "Pemilik",
       "moderator": "Moderator",
-      "member": "Ahli"
+      "member": "Ahli",
+      "admin": "Pentadbir"
     },
     "time": {
       "today": "hari ini",
@@ -2860,7 +2910,126 @@
       "weeks": "{{count}} mgg",
       "months": "{{count}} bln",
       "years": "{{count}} thn"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "disunting",
+      "deleteTitle": "Padam mesej",
+      "deleteConfirm": "Padamkan mesej ini? Ini tidak boleh dibatalkan.",
+      "muted": "Anda diredam",
+      "postingDisabled": "Penyiarannya dilumpuhkan untuk ahli di sini",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Mesej disematkan",
+      "showEarlier": "Tunjukkan mesej terdahulu",
+      "editingMessage": "Mengedit mesej",
+      "copied": "Mesej disalin",
+      "copyText": "Salin teks",
+      "mutedUntil": "Anda diredam sehingga {{date}}",
+      "slowMode": "Mod perlahan: satu mesej setiap {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Abaikan pentadbir",
+      "cancel": "Batal",
+      "dismissAdmin": "Abaikan pentadbir",
+      "roleAdmin": "Pentadbir",
+      "roleMember": "Ahli",
+      "whatCanTheyDo": "Apa yang pentadbir ini boleh lakukan?",
+      "rightNotHeld": "Anda tidak mempunyai hak ini sendiri",
+      "customTitle": "Tajuk tersuai",
+      "customTitlePlaceholder": "Pentadbir",
+      "customTitleHint": "Ditunjukkan dan bukannya lencana Pentadbir lalai.",
+      "saveChanges": "Simpan perubahan",
+      "promote": "Promosikan",
+      "tabs": {
+        "members": "Ahli",
+        "admins": "Pentadbir",
+        "permissions": "Kebenaran",
+        "invites": "Jemputan",
+        "rules": "Peraturan",
+        "recentActions": "Tindakan terkini",
+        "danger": "Zon bahaya"
+      },
+      "title": "Urus",
+      "purgeTitle": "Hapuskan semua mesej?",
+      "purgeConfirm": "Hapus",
+      "kickTitle": "Buang ahli?",
+      "kickConfirm": "Buang",
+      "bannedPermanent": "Diharamkan — kekal",
+      "mutedPermanent": "Dibisukan — kekal",
+      "editAdminRights": "Edit hak pentadbir",
+      "promoteToAdmin": "Tingkatkan kepada pentadbir",
+      "unmute": "Nyahsenyapkan",
+      "mute": "Senyapkan",
+      "unban": "Nyahharamkan",
+      "ban": "Haramkan",
+      "deleteAllMessages": "Padam semua mesej",
+      "removeFromCommunity": "Keluarkan daripada komuniti",
+      "noActionsAvailable": "Anda tidak boleh mengurus ahli ini.",
+      "showMore": "Tunjukkan lagi",
+      "joinRequests": "Permintaan sertai",
+      "approve": "Luluskan",
+      "reject": "Tolak",
+      "members": "Ahli",
+      "searchMembers": "Cari mengikut alamat dompet",
+      "noMembersMatch": "Tiada ahli yang sepadan.",
+      "noMembers": "Tiada ahli lagi.",
+      "muted": "Disenyapkan",
+      "banned": "Diharamkan",
+      "muteEffect": "Mereka kekal dalam komuniti tetapi tidak boleh menyiarkan sehingga tempoh senyap tamat.",
+      "banEffect": "Mereka dikeluarkan daripada sembang dan tidak boleh menyertai semula sehingga larangan ditarik balik.",
+      "durationLabel": "Tempoh",
+      "reasonLabel": "Sebab (pilihan)",
+      "reasonPlaceholder": "Mengapakah mereka diharamkan?",
+      "alsoDeleteMessages": "Padamkan juga semua mesej mereka",
+      "confirmMute": "Senyapkan ahli",
+      "confirmBan": "Haramkan ahli",
+      "rulesUpdated": "Peraturan dikemas kini",
+      "rulesTitle": "Peraturan komuniti",
+      "rulesEmpty": "Tiada peraturan lagi — tambahkan yang pertama di bawah.",
+      "rulePlaceholder": "Terangkan peraturan",
+      "addRule": "Tambah peraturan",
+      "saveRules": "Simpan peraturan",
+      "dismissAdminBody": "{{wallet}} akan kembali menjadi ahli biasa.",
+      "purgeBody": "Setiap mesej yang dihantar oleh {{name}} dalam komuniti ini akan dialih keluar.",
+      "kickBody": "{{name}} akan dialih keluar daripada komuniti. Mereka boleh menyertai semula kemudian.",
+      "bannedUntil": "Diharamkan sehingga {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Dibisukan sehingga {{date}}",
+      "bannedUntilShort": "Sehingga {{date}}",
+      "muteTitle": "Bisukan {{name}}",
+      "banTitle": "Haramkan {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} daripada {{max}}",
+      "moveRuleUp": "Gerakkan peraturan ke atas",
+      "moveRuleDown": "Gerakkan peraturan ke bawah",
+      "deleteRule": "Padam peraturan",
+      "rights": {
+        "changeInfo": "Tukar maklumat komuniti",
+        "changeInfoHint": "Edit nama, penerangan, avatar dan sepanduk",
+        "deleteMessages": "Padam mesej",
+        "deleteMessagesHint": "Alih keluar sebarang mesej daripada sembang komuniti",
+        "restrictMembers": "Haramkan pengguna",
+        "restrictMembersHint": "Bisukan, alih keluar dan haramkan ahli",
+        "inviteUsers": "Jemput pengguna melalui pautan",
+        "inviteUsersHint": "Cipta dan batalkan pautan jemputan",
+        "pinMessages": "Tanam mesej",
+        "pinMessagesHint": "Tanam mesej di bahagian atas sembang",
+        "manageEvents": "Urus acara",
+        "manageEventsHint": "Cipta dan edit acara komuniti",
+        "addAdmins": "Tambah pentadbir baharu",
+        "addAdminsHint": "Promosikan ahli dan edit hak pentadbir yang mereka tambahkan",
+        "remainAnonymous": "Kekal tanpa nama",
+        "remainAnonymousHint": "Sembunyikan pentadbir ini daripada senarai ahli"
+      },
+      "durations": {
+        "oneHour": "1 jam",
+        "eightHours": "8 jam",
+        "oneDay": "1 hari",
+        "oneWeek": "1 minggu",
+        "forever": "Selamanya"
+      }
+    },
+    "chooseAvatar": "Pilih avatar"
   },
   "work": {
     "title": "Ganjaran",
@@ -3212,7 +3381,9 @@
       "shipped": "Dihantar",
       "completed": "Selesai",
       "cancelled": "Dibatalkan"
-    }
+    },
+    "removePhoto": "Buang foto",
+    "listingOptions": "Pilihan penyenaraian"
   },
   "accounts": {
     "subtitle": "Akaun penuh untuk dijual, berharga dalam DHB",
@@ -3580,7 +3751,14 @@
     "removeFollowerHint": "Tekan dan tahan pengikut untuk mengalih keluarnya.",
     "cancel": "Batal",
     "remove": "Buang",
-    "thisUser": "Pengguna ini"
+    "thisUser": "Pengguna ini",
+    "cancelRequestTo": "Batalkan permintaan ikut @{{username}}?",
+    "followingUser": "Mengikuti @{{username}}",
+    "contentUnavailable": "Kandungan Tidak Tersedia",
+    "youBlockedBody": "Anda tidak akan melihat siaran mereka atau dapat berinteraksi dengan mereka. Buka sekatan untuk memulihkan akses.",
+    "restrictedBody": "Pengguna ini telah mengehadkan interaksi dengan akaun anda.",
+    "requestPendingBody": "Permintaan ikut anda telah dihantar. Anda akan dapat melihat siaran mereka setelah mereka meluluskan permintaan anda.",
+    "followToSeePosts": "Ikuti akaun ini untuk melihat siaran mereka."
   },
   "reactionInfo": {
     "title": "Tindak balas",
@@ -3895,7 +4073,8 @@
     "needGas": "Perlukan {{token}} asli untuk gas pada {{chain}}.",
     "bridging": "Menjambatani…",
     "bridgeAction": "Jambatan {{from}} → {{to}}",
-    "failed": "Jambatan gagal"
+    "failed": "Jambatan gagal",
+    "sentArriveShortly": "{{amount}} DHB dihantar dari {{from}} → {{to}}. Token akan tiba sebentar lagi."
   },
   "banned": {
     "title": "Akaun anda telah diharamkan",
@@ -4073,7 +4252,16 @@
     "legacyRecovered": "Akaun lama anda{{suffix}} telah disahkan dan dompetnya dipulihkan. Tetapkan kata laluan untuk melindunginya pada peranti ini — pada telefon ini dan di mana-mana sahaja, mulai sekarang.",
     "passwordMin": "Kata laluan (min {{min}} aksara)",
     "newPasswordMin": "Kata laluan baharu (min {{min}} aksara)",
-    "newWalletPasswordMin": "Kata laluan dompet baharu (min {{min}} aksara)"
+    "newWalletPasswordMin": "Kata laluan dompet baharu (min {{min}} aksara)",
+    "deviceCheckCancelled": "Semakan peranti dibatalkan — tiada apa yang diubah.",
+    "savePhraseTitle": "Simpan frasa pemulihan anda",
+    "startOverTitle": "Mulakan semula dengan dompet baharu",
+    "secureNewWalletTitle": "Lindungi dompet baharu anda",
+    "secureWalletTitle": "Lindungi dompet anda",
+    "unlockOnMobileTitle": "Buka kunci pada mudah alih",
+    "oldAccountFoundTitle": "Akaun lama ditemui",
+    "unlockWalletTitle": "Buka kunci dompet anda",
+    "phraseExplainer": "Dompet anda akan dilindungi oleh biometrik telefon ini. Buka kunci <em>ini hanya berfungsi pada telefon ini</em> — 12 perkataan ini adalah satu-satunya cara untuk kembali jika anda memasang semula DeHub, menukar telefon bimbit, atau kehilangannya."
   },
   "transcript": {
     "title": "Transkrip",
@@ -4260,7 +4448,38 @@
     "subscribe": "Langgan",
     "subscriberCount_one": "{{count}} pelanggan",
     "subscriberCount_other": "{{count}} pelanggan",
-    "subscribeToForRich": "Langgan <name>{{name}}</name> dengan harga <price>{{price}}</price>"
+    "subscribeToForRich": "Langgan <name>{{name}}</name> dengan harga <price>{{price}}</price>",
+    "loadPlansFailed": "Gagal memuatkan pelan",
+    "subscriberContent": "Kandungan pelanggan",
+    "subscriberContentSub": "Buat rancangan untuk menawarkan kandungan eksklusif kepada pelanggan",
+    "createFirstPlan": "Buat Rancangan Pertama Anda",
+    "addNewPlan": "Tambah Rancangan Baharu",
+    "durations": {
+      "oneMonth": "1 Bulan",
+      "threeMonths": "3 Bulan",
+      "sixMonths": "6 Bulan",
+      "oneYear": "1 Tahun",
+      "lifetime": "Seumur Hidup"
+    },
+    "planNameRequired": "Nama rancangan diperlukan",
+    "enterValidPrice": "Masukkan harga yang sah",
+    "availableChains": "Langganan kini tersedia di Base dan BNB",
+    "waitForSwitch": "Tunggu rangkaian langganan selesai bertukar",
+    "connectAndWait": "Sambungkan dompet anda dan tunggu rangkaian langganan",
+    "planUpdated": "Rancangan dikemas kini",
+    "creating": "Sedang mencipta…",
+    "planPublished": "Rancangan dicipta dan diterbitkan",
+    "createPlanTitle": "Cipta Rancangan Langganan",
+    "network": "Rangkaian langganan",
+    "planNameLabel": "Nama Rancangan *",
+    "planNamePlaceholder": "cth. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "Apa yang pelanggan dapat...",
+    "priceLabel": "Harga (USD) *",
+    "legacyMigrationNote": "Penjimatan memindahkan rancangan DHB lama ini kepada penetapan harga dolar pada kadar pra-senaraian.",
+    "benefits": "Faedah",
+    "benefitPlaceholder": "Tambah faedah...",
+    "createAndPublish": "Cipta & Terbitkan",
+    "publishingOnChain": "Penerbitan ialah urus niaga on-chain"
   },
   "live": {
     "notSet": "Belum ditetapkan",
@@ -4378,7 +4597,22 @@
     "acceptTerms": "Saya menerima <terms>Terma Perkhidmatan</terms>",
     "sentTo": "{{amount}} {{symbol}} telah dihantar kepada {{address}}",
     "tokensSentTo": "Token telah dihantar kepada {{address}}",
-    "goToProfile": "Pergi ke Profil"
+    "goToProfile": "Pergi ke Profil",
+    "aboutTitle": "Tentang DeHub & pembayaran",
+    "aboutSubtitle": "Gerbang anda kepada pembayaran token yang lancar",
+    "aboutTokenTitle": "Token DeHub",
+    "aboutTokenBody": "Token digunakan untuk melanggan pencipta, memberi tip kepada penstrim atau membuka kunci kandungan. Semakin banyak anda pegang, semakin rendah yuran anda dan semakin banyak kuasa super yang anda buka seperti peningkatan trend garis masa dan lencana pengesahan.",
+    "aboutInstantTitle": "Pembayaran Segera",
+    "aboutInstantBody": "Menggunakan Stripe, anda boleh membeli token dengan serta-merta dan lancar ke dalam akaun mana sahaja yang anda log masuk. DeHub menjadikan token mudah dan untuk semua. Jika anda memerlukan sokongan lanjut, hanya muncul dalam sembang komuniti langsung 24/7 kami dan minta sokongan pentadbir.",
+    "aboutSecureTitle": "Gerbang Selamat",
+    "aboutSecureBody": "Semua butiran pembayaran disulitkan dan diproses dengan selamat oleh Stripe. Kami tidak boleh mengakses atau menyimpan maklumat sensitif atau butiran kad anda, memberikan anda ketenangan fikiran yang muktamad.",
+    "transfersSummary": "Ringkasan Pemindahan",
+    "availableToBuy": "Tersedia untuk dibeli sekarang",
+    "noSupplyShort": "Tiada bekalan",
+    "topUpSubtitle": "Beli $DHB menggunakan kad dan dapatkan gas percuma untuk digunakan dengan segera",
+    "noTxHash": "Tidak dapat mencari hash transaksi",
+    "latestTransactions": "Urus Niaga Terkini",
+    "showAll": "Tunjukkan semua"
   },
   "musicSheet": {
     "title": "Cipta lagu",
@@ -4507,7 +4741,13 @@
     "followUpNote": "Kami mungkin menghubungi anda untuk soalan lanjut tentang maklum balas anda",
     "submitFeedback": "Hantar maklum balas",
     "provideFeedback": "Sila tuliskan maklum balas anda",
-    "thankYou": "Terima kasih atas maklum balas anda!"
+    "thankYou": "Terima kasih atas maklum balas anda!",
+    "submitFailed": "Gagal menghantar maklum balas. Sila cuba lagi.",
+    "maybeLater": "Mungkin Nanti",
+    "helpUsImprove": "Bantu kami menambah baik",
+    "rateExperience": "Bagaimana anda menilai pengalaman anda?",
+    "telegramOptional": "Telegram (pilihan)",
+    "discordOptional": "Discord (pilihan)"
   },
   "migrate": {
     "clearAll": "Kosongkan semua",
@@ -4625,7 +4865,14 @@
       "blueWhale": "Perkara terbesar yang pernah hidup. Itu awak.",
       "megalodon": "Inilah mahkota anda — anda adalah royalti aplikasi sekarang"
     },
-    "continue": "Kembali ke DeHub"
+    "continue": "Kembali ke DeHub",
+    "none": "Tiada",
+    "noBadgeYet": "Tiada lencana lagi",
+    "next": "Seterusnya",
+    "topTier": "Gred tertinggi",
+    "toNextTier": "{{amount}} DHB kepada {{tier}}",
+    "everyTierUnlocked": "Setiap gred dibuka",
+    "holdNote": "Sebaik sahaja lencana dibuka, ia adalah milik anda selagi anda memegang DHB anda. Bilangan token yang diperlukan untuk membuka lencana baharu boleh berubah dengan harga token."
   },
   "passwordStrength": {
     "veryWeak": "Sangat lemah",
@@ -4707,7 +4954,11 @@
     },
     "ttsLabel": "Katakan sesuatu dengan kuat",
     "ttsPlaceholder": "Bacakan kepada strim...",
-    "ttsHint": "Baca dengan kuat kepada semua orang yang menonton apabila hadiah anda tiba."
+    "ttsHint": "Baca dengan kuat kepada semua orang yang menonton apabila hadiah anda tiba.",
+    "sendAGift": "Hantar Hadiah",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Hadiah minimum ialah {{amount}}",
+    "sendGift": "Hantar Hadiah"
   },
   "goLive": {
     "streamKey": "Kunci Siaran",
@@ -5090,7 +5341,8 @@
         "title": "Lihat cara pendapatan berfungsi",
         "body": "Ketahui bagaimana tip, lencana dan SuperPower mengubah apa yang anda lakukan di sini menjadi sesuatu yang anda perolehi."
       }
-    }
+    },
+    "swipeToStart": "Leret untuk mula"
   },
   "conversation": {
     "commonGround": {
@@ -5572,5 +5824,18 @@
     "toastPaidSettled": "Dibayar — dagangan telah diselesaikan",
     "walletNotReady": "Dompet anda belum sedia — cuba lagi sebentar lagi.",
     "wrongChain": "Dagangan ini diselesaikan di {{chain}}. Tukar ke {{chain}} dalam Tetapan, kemudian cuba lagi."
+  },
+  "moderation": {
+    "appealDuplicate": "Anda telah membuat rayuan ini",
+    "appealSent": "Rayuan dihantar",
+    "appealFailed": "Tidak dapat memfailkan rayuan itu",
+    "appealTitle": "Rayuan keputusan ini",
+    "appealSubtitle": "Seseorang akan membaca ini dan melihat keputusan itu sekali lagi.",
+    "appealPlaceholder": "Apa yang anda rasa terlepas? Konteks mengenai kandungan membantu lebih daripada segalanya.",
+    "appealSend": "Hantar rayuan",
+    "appealFootnote": "Anda mendapat nombor rujukan, dan jawapannya kembali di sini. Satu rayuan bagi setiap keputusan.",
+    "appealRef": "Rujukan {{ref}}",
+    "appealSubtitleSubject": "Seseorang akan membaca ini dan melihat semula di {{subject}}.",
+    "appealMore": "Aksara masih diperlukan: {{count}}"
   }
 }

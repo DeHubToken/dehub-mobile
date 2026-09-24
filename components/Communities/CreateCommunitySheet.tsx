@@ -123,7 +123,7 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
               onPress={onClose}
               hitSlop={12}
               accessibilityRole="button"
-              accessibilityLabel="Close"
+              accessibilityLabel={t("common.close")}
             >
               <Icon name="X" size={20} color="#808089" />
             </TouchableOpacity>
@@ -143,7 +143,7 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
               style={styles.avatarPick}
               onPress={pickAvatar}
               accessibilityRole="button"
-              accessibilityLabel="Choose avatar"
+              accessibilityLabel={t("communities.chooseAvatar")}
             >
               {avatarUri ? (
                 <Image source={{ uri: avatarUri }} style={styles.avatarImg} contentFit="cover" />

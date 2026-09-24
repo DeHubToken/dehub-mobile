@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import * as Clipboard from "expo-clipboard";
 import GlassModal from "../ui/GlassModal";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
@@ -847,7 +847,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       } catch (e: any) {
         setError(
           e instanceof BiometricRejectedError
-            ? "Device check cancelled — nothing was changed."
+            ? t("walletSetup.deviceCheckCancelled")
             : e?.message || t("walletSetup.couldNotStartOver")
         );
       } finally {
@@ -857,22 +857,20 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 
     const title =
       recoveryPhrase
-        ? "Save your recovery phrase"
+        ? t("walletSetup.savePhraseTitle")
         : resetStage === "review"
-        ? "Start over with a new wallet"
+        ? t("walletSetup.startOverTitle")
         : mode === "create" && request?.mode === "create" && request.replacing
-        ? "Secure your new wallet"
+        ? t("walletSetup.secureNewWalletTitle")
         : mode === "create"
-        ? "Secure your wallet"
+        ? t("walletSetup.secureWalletTitle")
         : mode === "web-passkey-sync"
-        ? "Unlock on mobile"
+        ? t("walletSetup.unlockOnMobileTitle")
         : mode === "legacy-recovered"
-        ? "Old account found"
+        ? t("walletSetup.oldAccountFoundTitle")
         : mode === "restore"
         ? t("walletSetup.restoreTitle")
-        : mode === "biometric-unlock"
-        ? "Unlock your wallet"
-        : "Unlock your wallet";
+        : t("walletSetup.unlockWalletTitle");
 
     const unlockPasskeyOnly =
       mode === "unlock" &&
@@ -912,9 +910,10 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           {recoveryPhrase && (
             <View>
               <Text style={[authText.body, { marginBottom: 16 }]}>
-                Your wallet will be protected by this phone&apos;s biometrics. That unlock{" "}
-                <Text style={authText.emphasis}>only works on this phone</Text> — these 12 words
-                are the only way back in if you reinstall DeHub, switch handset, or lose it.
+                <Trans
+                  i18nKey="walletSetup.phraseExplainer"
+                  components={{ em: <Text style={authText.emphasis} /> }}
+                />
               </Text>
 
               <View style={styles.phraseCard}>

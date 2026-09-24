@@ -9,6 +9,7 @@ import {
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import type { ServedAd } from "../../hooks/useAds";
 import {
   hasTrackedAdEvent,
@@ -39,6 +40,7 @@ function SponsoredAdVideo({ uri }: { uri: string }) {
 
 /** Native presentation and viewability tracking for a served POVR creative. */
 export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
+  const { t } = useTranslation();
   const containerRef = useRef<View | null>(null);
   const visibleSinceRef = useRef<number | null>(null);
   const impressionSentRef = useRef(false);
@@ -114,7 +116,7 @@ export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
           <Text className="text-sm font-semibold text-theme-neutrals-100" numberOfLines={1}>
             {ad.advertiser}
           </Text>
-          <Text className="text-[11px] text-theme-neutrals-400">Sponsored</Text>
+          <Text className="text-[11px] text-theme-neutrals-400">{t("ads.sponsored")}</Text>
         </View>
         <View className="rounded bg-yellow-500 px-1.5 py-0.5">
           <Text className="text-xs font-bold text-black">AD</Text>
@@ -142,7 +144,7 @@ export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
                 setVideoPlaying(true);
               }}
               accessibilityRole="button"
-              accessibilityLabel="Play ad video"
+              accessibilityLabel={t("ads.playAdVideo")}
               className="h-full w-full items-center justify-center"
             >
               {ad.thumbnailUrl && (

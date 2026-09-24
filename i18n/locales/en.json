@@ -706,7 +706,11 @@
       "hintAllow": "AI systems and crawlers that respect this signal may train on your audio, artwork and writing.",
       "hintDeny": "AI systems and crawlers that respect this signal are asked not to train on your audio, artwork and writing. Crawlers that ignore the signal are not blocked by it.",
       "saved": "AI training preference saved"
-    }
+    },
+    "chainIdLabel": "Chain ID: {{id}}",
+    "exportPkConfirmPhrase": "I UNDERSTAND",
+    "exportPkCopy": "Copy private key",
+    "e2eAutomatic": "Automatic"
   },
   "common": {
     "mute": "Mute",
@@ -746,7 +750,17 @@
     "optionalSuffix": "(optional)",
     "yesterday": "Yesterday",
     "ok": "OK",
-    "continue": "Continue"
+    "continue": "Continue",
+    "goesToHomeFeed": "Goes to the home feed",
+    "openMenu": "Open menu",
+    "scrollsFeedToTop": "Scrolls to the top of the feed and refreshes it",
+    "notificationsUnread": "Notifications, {{unread}} unread",
+    "errorDetails": "Error details:",
+    "failedToLoad": "Failed to load",
+    "noInternetTitle": "No Internet Connection",
+    "noInternetBody": "Please check your internet connection and try again. You need to be connected to the internet to use DeHub.",
+    "noInternetStatus": "Offline - No network connection",
+    "noInternetHint": "Make sure Wi-Fi or mobile data is turned on, then tap \"{{action}}\""
   },
   "tip": {
     "title": "Send Tip",
@@ -1636,7 +1650,12 @@
     "chooseUsernameBody": "Choose a username and display name to continue. You can change them later.",
     "checkingAvailability": "Checking availability…",
     "usernameTakenHint": "Username taken — try adding numbers or an underscore",
-    "displayNameLength": "Display name must be 2-50 characters."
+    "displayNameLength": "Display name must be 2-50 characters.",
+    "loginFailedRetry": "Login failed. Please retry.",
+    "sendCodeFailedRetry": "Could not send code. Please retry.",
+    "invalidCodeRetry": "Invalid code. Please retry.",
+    "invalidEmailOrPassword": "Invalid email or password.",
+    "welcomeToDehub": "Welcome to DeHub"
   },
   "messages": {
     "smartRepliesOff": "Suggested replies turned off",
@@ -1714,7 +1733,32 @@
     "offerWorthNow": "About {{amount}} DHB at the current rate",
     "offerNotePlaceholder": "Add a note (optional)",
     "offerCommitsNothing": "Making an offer costs nothing and holds no DHB. You only pay if the owner accepts.",
-    "offerNeedsHandle": "This account has no username to offer for."
+    "offerNeedsHandle": "This account has no username to offer for.",
+    "noPostsYet": "No posts yet",
+    "noPostsYetSub": "Content will appear here when posted",
+    "noPinnedPosts": "No pinned posts yet",
+    "noPinnedPostsSub": "Pinned posts will appear here",
+    "emptyLiked": "No liked posts yet.",
+    "emptySaved": "No saved posts yet.",
+    "emptyUnlocked": "No unlocked posts yet.",
+    "emptyWatched": "No watch history yet.",
+    "emptyFolder": "No posts in this folder yet.",
+    "emptyPosts": "No posts yet.",
+    "couldNotLoadPosts": "Couldn't load posts.",
+    "noPostsOrReplies": "No posts, comments, or replies yet",
+    "noPostsOrRepliesSub": "They will appear here",
+    "avatarUpdated": "Avatar updated",
+    "coverUpdated": "Cover updated",
+    "couldNotPickImage": "Could not pick image",
+    "changeCoverImage": "Change cover image",
+    "changeAvatar": "Change avatar",
+    "verifiedEnsName": "Verified ENS name {{name}}",
+    "notFullyJoined": "This user hasn't fully joined yet. They haven't claimed a username or completed profile setup. You can still view public activity and send tips if available.",
+    "loadRepliesFailed": "Failed to load replies",
+    "refreshFailed": "Refresh failed",
+    "noRepliesYet": "No Replies Yet",
+    "noRepliesYetSub": "When this user replies to posts, they'll show up here.",
+    "noMoreReplies": "No more replies"
   },
   "tv": {
     "title": "TV",
@@ -1797,7 +1841,11 @@
     "loadingPrice": "Loading price…",
     "topUpExplanation": "DHB is transferred on-chain to the DeHub ads treasury, then your balance is credited after independent on-chain verification.",
     "paymentHistory": "Payment history",
-    "noPayments": "No payments yet"
+    "noPayments": "No payments yet",
+    "sponsored": "Sponsored",
+    "morePosts": "More posts",
+    "loadMorePosts": "Load more posts",
+    "playAdVideo": "Play ad video"
   },
   "buyCoins": {
     "title": "Buy Coins",
@@ -2233,7 +2281,8 @@
     "privateBalanceMode": "Private balance mode is enabled",
     "addressHidden": "Address hidden",
     "allowInFeeds": "Allow this user to appear in your feeds",
-    "hideContent": "Hide their content and restrict interactions"
+    "hideContent": "Hide their content and restrict interactions",
+    "a11yLabel": "Profile options"
   },
   "toasts": {
     "saved_to_bookmarks": "Saved to bookmarks",
@@ -2605,7 +2654,8 @@
     "roles": {
       "owner": "Owner",
       "moderator": "Moderator",
-      "member": "Member"
+      "member": "Member",
+      "admin": "Admin"
     },
     "time": {
       "today": "today",
@@ -2614,7 +2664,126 @@
       "weeks": "{{count}}w",
       "months": "{{count}}mo",
       "years": "{{count}}y"
-    }
+    },
+    "chatPanel": {
+      "anon": "Anon",
+      "edited": "edited",
+      "deleteTitle": "Delete message",
+      "deleteConfirm": "Delete this message? This cannot be undone.",
+      "muted": "You are muted",
+      "postingDisabled": "Posting is disabled for members here",
+      "mediaMessage": "Media",
+      "pinnedMessage": "Pinned message",
+      "showEarlier": "Show earlier messages",
+      "editingMessage": "Editing message",
+      "copied": "Message copied",
+      "copyText": "Copy text",
+      "mutedUntil": "You are muted until {{date}}",
+      "slowMode": "Slow mode: one message every {{interval}}"
+    },
+    "manage": {
+      "dismissAdminTitle": "Dismiss admin",
+      "cancel": "Cancel",
+      "dismissAdmin": "Dismiss admin",
+      "roleAdmin": "Administrator",
+      "roleMember": "Member",
+      "whatCanTheyDo": "What can this admin do?",
+      "rightNotHeld": "You do not have this right yourself",
+      "customTitle": "Custom title",
+      "customTitlePlaceholder": "Admin",
+      "customTitleHint": "Shown instead of the default Admin badge.",
+      "saveChanges": "Save changes",
+      "promote": "Promote",
+      "tabs": {
+        "members": "Members",
+        "admins": "Admins",
+        "permissions": "Permissions",
+        "invites": "Invites",
+        "rules": "Rules",
+        "recentActions": "Recent actions",
+        "danger": "Danger zone"
+      },
+      "title": "Manage",
+      "purgeTitle": "Delete all messages?",
+      "purgeConfirm": "Delete",
+      "kickTitle": "Remove member?",
+      "kickConfirm": "Remove",
+      "bannedPermanent": "Banned — permanent",
+      "mutedPermanent": "Muted — permanent",
+      "editAdminRights": "Edit admin rights",
+      "promoteToAdmin": "Promote to admin",
+      "unmute": "Unmute",
+      "mute": "Mute",
+      "unban": "Unban",
+      "ban": "Ban",
+      "deleteAllMessages": "Delete all messages",
+      "removeFromCommunity": "Remove from community",
+      "noActionsAvailable": "You cannot moderate this member.",
+      "showMore": "Show more",
+      "joinRequests": "Join requests",
+      "approve": "Approve",
+      "reject": "Reject",
+      "members": "Members",
+      "searchMembers": "Search by wallet address",
+      "noMembersMatch": "No member matches that.",
+      "noMembers": "No members yet.",
+      "muted": "Muted",
+      "banned": "Banned",
+      "muteEffect": "They stay in the community but cannot post until the mute expires.",
+      "banEffect": "They are removed from the chat and cannot rejoin until the ban is lifted.",
+      "durationLabel": "Duration",
+      "reasonLabel": "Reason (optional)",
+      "reasonPlaceholder": "Why are they being banned?",
+      "alsoDeleteMessages": "Also delete all their messages",
+      "confirmMute": "Mute member",
+      "confirmBan": "Ban member",
+      "rulesUpdated": "Rules updated",
+      "rulesTitle": "Community rules",
+      "rulesEmpty": "No rules yet — add the first one below.",
+      "rulePlaceholder": "Describe the rule",
+      "addRule": "Add rule",
+      "saveRules": "Save rules",
+      "dismissAdminBody": "{{wallet}} will go back to being an ordinary member.",
+      "purgeBody": "Every message {{name}} has sent in this community will be removed.",
+      "kickBody": "{{name}} will be removed from the community. They can join again later.",
+      "bannedUntil": "Banned until {{date}}",
+      "restrictionWithReason": "{{state}} — {{reason}}",
+      "mutedUntil": "Muted until {{date}}",
+      "bannedUntilShort": "Until {{date}}",
+      "muteTitle": "Mute {{name}}",
+      "banTitle": "Ban {{name}}",
+      "reasonCounter": "{{len}}/200",
+      "rulesCount": "{{used}} of {{max}}",
+      "moveRuleUp": "Move rule up",
+      "moveRuleDown": "Move rule down",
+      "deleteRule": "Delete rule",
+      "rights": {
+        "changeInfo": "Change community info",
+        "changeInfoHint": "Edit the name, description, avatar and banner",
+        "deleteMessages": "Delete messages",
+        "deleteMessagesHint": "Remove any message from the community chat",
+        "restrictMembers": "Ban users",
+        "restrictMembersHint": "Mute, remove and ban members",
+        "inviteUsers": "Invite users via link",
+        "inviteUsersHint": "Create and revoke invite links",
+        "pinMessages": "Pin messages",
+        "pinMessagesHint": "Pin a message to the top of the chat",
+        "manageEvents": "Manage events",
+        "manageEventsHint": "Create and edit community events",
+        "addAdmins": "Add new admins",
+        "addAdminsHint": "Promote members and edit the rights of admins they added",
+        "remainAnonymous": "Remain anonymous",
+        "remainAnonymousHint": "Hide this admin from the member list"
+      },
+      "durations": {
+        "oneHour": "1 hour",
+        "eightHours": "8 hours",
+        "oneDay": "1 day",
+        "oneWeek": "1 week",
+        "forever": "Forever"
+      }
+    },
+    "chooseAvatar": "Choose avatar"
   },
   "work": {
     "title": "Bounties",
@@ -2972,7 +3141,9 @@
       "shipped": "Shipped",
       "completed": "Completed",
       "cancelled": "Cancelled"
-    }
+    },
+    "removePhoto": "Remove photo",
+    "listingOptions": "Listing options"
   },
   "accounts": {
     "subtitle": "Whole accounts for sale, priced in DHB",
@@ -3389,7 +3560,14 @@
     "removeFollowerHint": "Press and hold a follower to remove them.",
     "cancel": "Cancel",
     "remove": "Remove",
-    "thisUser": "This user"
+    "thisUser": "This user",
+    "cancelRequestTo": "Cancel follow request to @{{username}}?",
+    "followingUser": "Following @{{username}}",
+    "contentUnavailable": "Content Unavailable",
+    "youBlockedBody": "You won't see their posts or be able to interact with them. Unblock to restore access.",
+    "restrictedBody": "This user has restricted interactions with your account.",
+    "requestPendingBody": "Your follow request has been sent. You'll be able to see their posts once they approve your request.",
+    "followToSeePosts": "Follow this account to see their posts."
   },
   "reactionInfo": {
     "title": "Reactions",
@@ -3704,7 +3882,8 @@
     "needGas": "Need native {{token}} for gas on {{chain}}.",
     "bridging": "Bridging…",
     "bridgeAction": "Bridge {{from}} → {{to}}",
-    "failed": "Bridge failed"
+    "failed": "Bridge failed",
+    "sentArriveShortly": "{{amount}} DHB sent from {{from}} → {{to}}. Tokens arrive shortly."
   },
   "banned": {
     "title": "Your account is banned",
@@ -3882,7 +4061,16 @@
     "legacyRecovered": "Verified your old account{{suffix}} and recovered its wallet. Set a password to protect it on this device — on this phone and everywhere else, from now on.",
     "passwordMin": "Password (min {{min}} chars)",
     "newPasswordMin": "New password (min {{min}} chars)",
-    "newWalletPasswordMin": "New wallet password (min {{min}} chars)"
+    "newWalletPasswordMin": "New wallet password (min {{min}} chars)",
+    "deviceCheckCancelled": "Device check cancelled — nothing was changed.",
+    "savePhraseTitle": "Save your recovery phrase",
+    "startOverTitle": "Start over with a new wallet",
+    "secureNewWalletTitle": "Secure your new wallet",
+    "secureWalletTitle": "Secure your wallet",
+    "unlockOnMobileTitle": "Unlock on mobile",
+    "oldAccountFoundTitle": "Old account found",
+    "unlockWalletTitle": "Unlock your wallet",
+    "phraseExplainer": "Your wallet will be protected by this phone's biometrics. That unlock <em>only works on this phone</em> — these 12 words are the only way back in if you reinstall DeHub, switch handset, or lose it."
   },
   "transcript": {
     "title": "Transcript",
@@ -4069,7 +4257,38 @@
     "subscribe": "Subscribe",
     "subscriberCount_one": "{{count}} subscriber",
     "subscriberCount_other": "{{count}} subscribers",
-    "subscribeToForRich": "Subscribe to <name>{{name}}</name> for <price>{{price}}</price>"
+    "subscribeToForRich": "Subscribe to <name>{{name}}</name> for <price>{{price}}</price>",
+    "loadPlansFailed": "Failed to load plans",
+    "subscriberContent": "Subscriber content",
+    "subscriberContentSub": "Create plans to offer exclusive content to subscribers",
+    "createFirstPlan": "Create Your First Plan",
+    "addNewPlan": "Add New Plan",
+    "durations": {
+      "oneMonth": "1 Month",
+      "threeMonths": "3 Months",
+      "sixMonths": "6 Months",
+      "oneYear": "1 Year",
+      "lifetime": "Lifetime"
+    },
+    "planNameRequired": "Plan name is required",
+    "enterValidPrice": "Enter a valid price",
+    "availableChains": "Subscriptions are currently available on Base and BNB",
+    "waitForSwitch": "Wait for the subscription network to finish switching",
+    "connectAndWait": "Connect your wallet and wait for the subscription network",
+    "planUpdated": "Plan updated",
+    "creating": "Creating…",
+    "planPublished": "Plan created and published",
+    "createPlanTitle": "Create Subscription Plan",
+    "network": "Subscription network",
+    "planNameLabel": "Plan Name *",
+    "planNamePlaceholder": "e.g. Premium, Gold, VIP...",
+    "descriptionPlaceholder": "What subscribers get...",
+    "priceLabel": "Price (USD) *",
+    "legacyMigrationNote": "Saving migrates this legacy DHB plan to dollar pricing at the pre-listing rate.",
+    "benefits": "Benefits",
+    "benefitPlaceholder": "Add a benefit...",
+    "createAndPublish": "Create & Publish",
+    "publishingOnChain": "Publishing is an on-chain transaction"
   },
   "live": {
     "notSet": "Not set",
@@ -4187,7 +4406,22 @@
     "acceptTerms": "I accept the <terms>Terms and Service</terms>",
     "sentTo": "{{amount}} {{symbol}} was sent to {{address}}",
     "tokensSentTo": "Tokens were sent to {{address}}",
-    "goToProfile": "Go to Profile"
+    "goToProfile": "Go to Profile",
+    "aboutTitle": "About DeHub & payments",
+    "aboutSubtitle": "Your gateway to seamless token payments",
+    "aboutTokenTitle": "DeHub Token",
+    "aboutTokenBody": "Tokens are used for subscribing to creators, tipping streamers or unlocking content. The more you hold, the lower your fees are and the more superpowers you unlock like timeline trend boosts and verification badges.",
+    "aboutInstantTitle": "Instant Payments",
+    "aboutInstantBody": "Using Stripe, you can buy tokens instantly and seamlessly into whatever account you're logged into. DeHub makes tokens simple and for all. If you need more support, just pop up in our 24/7 live community chat and ask for admin support.",
+    "aboutSecureTitle": "Secure Gateway",
+    "aboutSecureBody": "All payment details are encrypted and processed securely by Stripe. We can't access or store your sensitive information or card details, giving you ultimate peace of mind.",
+    "transfersSummary": "Transfers Summary",
+    "availableToBuy": "Available to buy now",
+    "noSupplyShort": "No supply",
+    "topUpSubtitle": "Buy $DHB using card and get free gas to use instantly",
+    "noTxHash": "Couldn't find transaction hash",
+    "latestTransactions": "Latest Transactions",
+    "showAll": "Show all"
   },
   "musicSheet": {
     "title": "Create a song",
@@ -4316,7 +4550,13 @@
     "followUpNote": "We may reach out to ask follow-up questions about your feedback",
     "submitFeedback": "Submit Feedback",
     "provideFeedback": "Please provide your feedback",
-    "thankYou": "Thank you for your feedback!"
+    "thankYou": "Thank you for your feedback!",
+    "submitFailed": "Failed to submit feedback. Please try again.",
+    "maybeLater": "Maybe Later",
+    "helpUsImprove": "Help us improve",
+    "rateExperience": "How would you rate your experience?",
+    "telegramOptional": "Telegram (optional)",
+    "discordOptional": "Discord (optional)"
   },
   "migrate": {
     "clearAll": "Clear all",
@@ -4427,7 +4667,14 @@
       "blueWhale": "The biggest thing that has ever lived. That’s you.",
       "megalodon": "Here’s your crown — you’re app royalty now"
     },
-    "continue": "Back to DeHub"
+    "continue": "Back to DeHub",
+    "none": "None",
+    "noBadgeYet": "No badge yet",
+    "next": "Next",
+    "topTier": "Top tier",
+    "toNextTier": "{{amount}} DHB to {{tier}}",
+    "everyTierUnlocked": "Every tier unlocked",
+    "holdNote": "Once a badge is unlocked, it is yours for as long as you hold your DHB. The number of tokens needed to unlock a new badge can change with the token price."
   },
   "passwordStrength": {
     "veryWeak": "Very weak",
@@ -4509,7 +4756,11 @@
     },
     "ttsLabel": "Say something out loud",
     "ttsPlaceholder": "Read out to the stream…",
-    "ttsHint": "Read aloud to everyone watching when your gift lands."
+    "ttsHint": "Read aloud to everyone watching when your gift lands.",
+    "sendAGift": "Send a Gift",
+    "minPlaceholder": "Min: {{amount}}",
+    "minGift": "Minimum gift is {{amount}}",
+    "sendGift": "Send Gift"
   },
   "goLive": {
     "streamKey": "Stream Key",
@@ -4892,7 +5143,8 @@
         "title": "See how earning works",
         "body": "Find out how tips, badges and SuperPowers turn what you do here into something you earn from."
       }
-    }
+    },
+    "swipeToStart": "Swipe to start"
   },
   "conversation": {
     "commonGround": {
@@ -5374,5 +5626,18 @@
     "toastPaidSettled": "Paid — the trade is settled",
     "walletNotReady": "Your wallet is not ready yet — try again in a moment.",
     "wrongChain": "This trade settles on {{chain}}. Switch to {{chain}} in Settings, then try again."
+  },
+  "moderation": {
+    "appealDuplicate": "You have already appealed this",
+    "appealSent": "Appeal sent",
+    "appealFailed": "Could not file that appeal",
+    "appealTitle": "Appeal this decision",
+    "appealSubtitle": "A person will read this and look at the decision again.",
+    "appealPlaceholder": "What do you think was missed? Context about the content helps more than anything else.",
+    "appealSend": "Send appeal",
+    "appealFootnote": "You get a reference number, and the answer comes back here. One appeal per decision.",
+    "appealRef": "Reference {{ref}}",
+    "appealSubtitleSubject": "A person will read this and look again at {{subject}}.",
+    "appealMore": "Characters still needed: {{count}}"
   }
 }
