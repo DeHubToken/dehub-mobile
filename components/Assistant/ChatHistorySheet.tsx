@@ -7,7 +7,7 @@ import {
   FlatList,
   Image,
   StyleSheet,
-  Dimensions,
+  useWindowDimensions,
   Modal,
 } from 'react-native';
 import Animated, {
@@ -30,10 +30,7 @@ import {
   type ConversationEntry,
 } from '../../hooks/useAIConversation';
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
-const SHEET_HEIGHT = SCREEN_HEIGHT * 0.7;
 const MEDIA_COLUMNS = 3;
-const MEDIA_TILE = (SCREEN_WIDTH - 32 - (MEDIA_COLUMNS - 1) * 6) / MEDIA_COLUMNS;
 
 interface ChatHistorySheetProps {
   visible: boolean;
@@ -105,6 +102,9 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
+  const sheetHeight = screenHeight * 0.7;
+  const mediaTile = (screenWidth - 32 - (MEDIA_COLUMNS - 1) * 6) / MEDIA_COLUMNS;
   const [activeTab, setActiveTab] = useState<'chats' | 'media'>('chats');
   const [media, setMedia] = useState<AssistantMediaItem[]>([]);
   const [mediaLoading, setMediaLoading] = useState(false);
@@ -130,7 +130,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
   useEffect(() => {
     if (!visible) setActiveTab('chats');
   }, [visible]);
-  const translateY = useSharedValue(SHEET_HEIGHT);
+  const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = React.useState(!visible);
 
@@ -144,7 +144,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
       backdropOpacity.value = withTiming(1, { duration: 200 });
     } else {
       translateY.value = withTiming(
-        SHEET_HEIGHT,
+        sheetHeight,
         { duration: 220, easing: Easing.in(Easing.cubic) },
         () => runOnJS(setIsFullyClosed)(true),
       );
@@ -154,12 +154,12 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
 
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(
-      SHEET_HEIGHT,
+      sheetHeight,
       { duration: 220, easing: Easing.in(Easing.cubic) },
       () => runOnJS(onClose)(),
     );
     backdropOpacity.value = withTiming(0, { duration: 180 });
-  }, [onClose]);
+  }, [onClose, sheetHeight]);
 
   const panGesture = Gesture.Pan()
     .onUpdate((e) => {
@@ -232,7 +232,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
         </Animated.View>
 
         <Animated.View
-          style={[s.sheet, { paddingBottom: insets.bottom }, sheetStyle]}
+          style={[s.sheet, { maxHeight: sheetHeight, paddingBottom: insets.bottom }, sheetStyle]}
         >
           <View style={[StyleSheet.absoluteFill, s.overlay]} />
 
@@ -289,7 +289,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item }) => (
                   <TouchableOpacity
-                    style={s.mediaTile}
+                    style={[s.mediaTile, { width: mediaTile, height: mediaTile }]}
                     activeOpacity={0.8}
                     disabled={item.type !== 'image'}
                     onPress={() => {
@@ -339,7 +339,6 @@ const s = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    maxHeight: SHEET_HEIGHT,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: 'hidden',
@@ -393,7 +392,7 @@ const s = StyleSheet.create({
   tabTextActive: { color: '#F9FBFF' },
   mediaList: { paddingHorizontal: 16, paddingBottom: 16 },
   mediaRow: { gap: 6, marginBottom: 6 },
-  mediaTile: { width: MEDIA_TILE, height: MEDIA_TILE, borderRadius: 10, overflow: 'hidden' },
+  mediaTile: { borderRadius: 10, overflow: 'hidden' },
   mediaImage: {
     width: '100%',
     height: '100%',

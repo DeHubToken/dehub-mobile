@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
   Pressable,
-  Dimensions,
+  useWindowDimensions,
   FlatList,
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -35,7 +35,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 
-const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get("window");
 const DISMISS_THRESHOLD = 150;
 
 const normalizeImageUri = (item: any): string => {
@@ -64,6 +63,9 @@ const ZoomableImage = memo(
     preview?: string;
     onZoomChange?: (zoomed: boolean) => void;
   }) => {
+    // Live size: the zoom maths centre on the window as it is now, not as it
+    // was at app start (split-screen, folds).
+    const { width: SCREEN_W, height: SCREEN_H } = useWindowDimensions();
     const [loaded, setLoaded] = useState(false);
     const showPreview = !loaded && !!preview && preview !== uri;
     const scale = useSharedValue(1);
@@ -262,6 +264,7 @@ const ImageViewerScreen = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
+  const { width: SCREEN_W, height: SCREEN_H } = useWindowDimensions();
 
   const {
     imageUrl,
@@ -397,7 +400,7 @@ const ImageViewerScreen = () => {
       offset: SCREEN_W * index,
       index,
     }),
-    [],
+    [SCREEN_W],
   );
 
   const onScrollEnd = useCallback(
@@ -409,8 +412,17 @@ const ImageViewerScreen = () => {
       setCurrentIndex(clamped);
       setIsZoomed(false);
     },
-    [images.length],
+    [images.length, SCREEN_W],
   );
+
+  // A split-screen or fold resize changes the page width; re-align to the
+  // current page so the pager does not rest between two images.
+  const pageWidthRef = useRef(SCREEN_W);
+  useEffect(() => {
+    if (pageWidthRef.current === SCREEN_W) return;
+    pageWidthRef.current = SCREEN_W;
+    mainListRef.current?.scrollToOffset({ offset: SCREEN_W * indexRef.current, animated: false });
+  }, [SCREEN_W]);
 
   const scrollToImage = useCallback(
     (idx: number) => {

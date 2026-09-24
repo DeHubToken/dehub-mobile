@@ -17,7 +17,7 @@
  */
 
 import React, { memo, useCallback, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
 import { useQuery } from '@tanstack/react-query';
@@ -40,12 +40,11 @@ export const MAX_ASSET_CARDS_PER_MESSAGE = 2;
  *
  * A bubble sizes itself to its text, so a card with no intrinsic width collapses
  * — and an address-only message is exactly the case where the text is stripped
- * to nothing and there is no width to inherit.
+ * to nothing and there is no width to inherit. Takes the live window width so
+ * it follows split-screen and fold changes.
  */
-export const BUBBLE_ASSET_CARD_WIDTH = Math.min(
-  240,
-  Math.round(Dimensions.get('window').width * 0.75) - 40,
-);
+export const bubbleAssetCardWidth = (windowWidth: number): number =>
+  Math.min(240, Math.round(windowWidth * 0.75) - 40);
 
 const SPARK_W = 260;
 const SPARK_H = 36;

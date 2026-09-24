@@ -1,18 +1,17 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { View, TouchableOpacity, StyleSheet, Dimensions, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import { View, TouchableOpacity, StyleSheet, useWindowDimensions, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
 import Icon from "../ui/Icon";
 import { getImageUrlApiSimple } from "../../libs";
 import { useAppTheme } from "../../context/ThemeContext";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
-
 // Tile sizes follow from the outer padding and the gap, so each theme gets its
 // own set: the system grid sits 8pt in from each edge with 2pt gutters; the
-// minimal grid runs edge to edge with 1pt gutters on black, like web.
-const makeGridMetrics = (gap: number, padding: number, placeholder: string) => {
-  const small = (SCREEN_WIDTH - padding - gap * 2) / 3;
+// minimal grid runs edge to edge with 1pt gutters on black, like web. The
+// width is the live window width, so split-screen and unfolding re-flow it.
+const makeGridMetrics = (screenWidth: number, gap: number, padding: number, placeholder: string) => {
+  const small = (screenWidth - padding - gap * 2) / 3;
   const large = small * 2 + gap;
   const rowHeights = [large + gap, large + gap, small + gap];
   return {
@@ -26,8 +25,6 @@ const makeGridMetrics = (gap: number, padding: number, placeholder: string) => {
   };
 };
 type GridMetrics = ReturnType<typeof makeGridMetrics>;
-const SYSTEM_GRID = makeGridMetrics(2, 16, "#1D1F21");
-const MINIMAL_GRID = makeGridMetrics(1, 0, "#000");
 
 interface ImagePost {
   id?: string | number;
@@ -145,7 +142,11 @@ const GridRow = memo<{ row: GridRowData; data: ImagePost[]; m: GridMetrics; onPr
 
 const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, listRef, onImagePress, scrollEnabled = true, onScroll, ListHeaderComponent }) => {
   const { isMinimal } = useAppTheme();
-  const m = isMinimal ? MINIMAL_GRID : SYSTEM_GRID;
+  const { width: screenWidth } = useWindowDimensions();
+  const m = useMemo(
+    () => (isMinimal ? makeGridMetrics(screenWidth, 1, 0, "#000") : makeGridMetrics(screenWidth, 2, 16, "#1D1F21")),
+    [isMinimal, screenWidth],
+  );
   const rows = useMemo(() => buildRows(images.length), [images.length]);
 
   const renderRow = useCallback(

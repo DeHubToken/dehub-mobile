@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { CARD_HEIGHT, CARD_WIDTH, GRID_GAP } from "./ShortsGridCard";
+import { useShortsCardSize, GRID_GAP } from "./ShortsGridCard";
 import { useAppTheme } from "../../context/ThemeContext";
 
 interface ShortsGridSkeletonProps {
@@ -15,6 +15,7 @@ interface ShortsGridSkeletonProps {
  */
 const ShortsGridSkeleton: React.FC<ShortsGridSkeletonProps> = ({ rows = 3 }) => {
   const { isMinimal } = useAppTheme();
+  const { width: CARD_WIDTH, height: CARD_HEIGHT } = useShortsCardSize();
   return (
     <View style={{ gap: GRID_GAP }}>
       {Array.from({ length: rows }).map((_, row) => (

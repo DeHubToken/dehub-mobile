@@ -12,7 +12,7 @@ import React, {
 import { useTranslation } from "react-i18next";
 import {
   BackHandler,
-  Dimensions,
+  useWindowDimensions,
   FlatList,
   Pressable,
   StyleSheet,
@@ -58,8 +58,6 @@ const VisibleImageCard = memo(function VisibleImageCard({
 import { colors } from "../../theme/colors";
 import { getUnifiedFeed } from "../../services/feed.unified.service";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
-
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 // Animated wrapper so a worklet onScroll runs on the UI thread; cast keeps FlatList generics.
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
@@ -158,6 +156,7 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
   onClose,
 }, ref) => {
   const { t } = useTranslation();
+  const { height: SCREEN_HEIGHT } = useWindowDimensions();
   const [items, setItems] = useState<UnifiedFeedItem[]>(initialItems);
   // Which card is in view lives in a store, not React state: as `useState` it
   // re-rendered this whole sheet — gesture, animation and list — on every
@@ -217,7 +216,7 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
       "worklet";
       if (finished) runOnJS(onClose)();
     });
-  }, [sheetY, onClose]);
+  }, [sheetY, onClose, SCREEN_HEIGHT]);
 
   // The host's nav bar drives the same animated dismissal the X and the flick
   // use, rather than unmounting the sheet from under itself.
