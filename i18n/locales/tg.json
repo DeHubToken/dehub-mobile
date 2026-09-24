@@ -4547,7 +4547,10 @@
     "pillDefaultTitle": "Боргузорӣ",
     "pillA11yFailed": "Боргузорӣ накард, ҳолати боргузориро васеъ кунед",
     "pillA11yProgress": "Боргузории {{percent}}% пурра шуд, ҳолати боргузориро васеъ кунед",
-    "pillMinimize": "Ҳолати боргузориро хурд кунед"
+    "pillMinimize": "Ҳолати боргузориро хурд кунед",
+    "uploadInProgressStay": "Ang iyong pag-upload ay patuloy. То ба итмом расидани экран дар ин экран бимонед.",
+    "removeUploadTitle": "Alisin ang pag-upload na ito?",
+    "removeQueuedBody": "Ҳанӯз интишор нашудааст. Тоза кардани он постро бекор мекунад."
   },
   "bounty": {
     "claimed": "Гирифта шуд",

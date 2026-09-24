@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  Alert,
 } from "react-native";
 import { useSnapshot } from "valtio";
 import Reanimated, {
@@ -52,9 +53,18 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
     }
   }, [job.id]);
 
+  // One tap on the bin used to drop the job outright — for a queued job that
+  // silently cancels a post that has not gone out yet — so it asks first.
   const handleRemove = useCallback(() => {
-    uploadActions.remove(job.id);
-  }, [job.id]);
+    Alert.alert(
+      t("upload.removeUploadTitle"),
+      job.status === "queued" ? t("upload.removeQueuedBody") : undefined,
+      [
+        { text: t("common.cancel"), style: "cancel" },
+        { text: t("common.delete"), style: "destructive", onPress: () => uploadActions.remove(job.id) },
+      ],
+    );
+  }, [job.id, job.status, t]);
 
   const handleCancel = useCallback(() => {
     cancelJob(job.id);

@@ -4582,7 +4582,10 @@
     "pillDefaultTitle": "Oplaai",
     "pillA11yFailed": "Oplaai misluk, brei oplaai status uit",
     "pillA11yProgress": "Oplaai {{percent}}% voltooi, brei oplaai status uit",
-    "pillMinimize": "Minimaliseer oplaai status"
+    "pillMinimize": "Minimaliseer oplaai status",
+    "uploadInProgressStay": "Jou opgradering is nog steeds aan die gang. Bly op die skerm totdat dit klaar is.",
+    "removeUploadTitle": "Verwyder hierdie oplaai?",
+    "removeQueuedBody": "Dit is nog nie gepubliseer nie. Die verwydering daarvan kanselleer die pos."
   },
   "bounty": {
     "claimed": "Opgeëis",

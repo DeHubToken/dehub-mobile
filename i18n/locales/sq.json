@@ -4549,7 +4549,10 @@
     "pillDefaultTitle": "Ngarkoni",
     "pillA11yFailed": "Ngarkimi dështoi, zgjero statusin e ngarkimit",
     "pillA11yProgress": "Ngarkimi {{percent}}% i plotë, zgjero statusin e ngarkimit",
-    "pillMinimize": "Minimizoni statusin e ngarkimit"
+    "pillMinimize": "Minimizoni statusin e ngarkimit",
+    "uploadInProgressStay": "Ngarkimi yt është ende në proces. Qëndro në këtë ekran derisa të përfundojë.",
+    "removeUploadTitle": "Do ta heqësh këtë ngarkim?",
+    "removeQueuedBody": "Nuk është postuar ende. Heqja e saj e anulon postimin."
   },
   "bounty": {
     "claimed": "E marrë",

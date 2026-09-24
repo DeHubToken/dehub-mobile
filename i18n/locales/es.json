@@ -4598,7 +4598,10 @@
     "pillDefaultTitle": "Subir",
     "pillA11yFailed": "Carga fallida, expandir estado de carga",
     "pillA11yProgress": "Carga de {{percent}}% completa, expandir estado de carga",
-    "pillMinimize": "Minimizar estado de carga"
+    "pillMinimize": "Minimizar estado de carga",
+    "uploadInProgressStay": "Tu carga aún está en marcha. Permanezca en esta pantalla hasta que termine.",
+    "removeUploadTitle": "¿Eliminar esta carga?",
+    "removeQueuedBody": "Todavía no se ha publicado. Si lo retiras, se cancela la publicación."
   },
   "bounty": {
     "claimed": "Reclamado",

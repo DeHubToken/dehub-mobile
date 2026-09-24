@@ -4579,7 +4579,10 @@
     "pillDefaultTitle": "Upload",
     "pillA11yFailed": "Upload fehlgschlage, Upload-Status usklappe",
     "pillA11yProgress": "Upload {{percent}}% fertig, Upload-Status usklappe",
-    "pillMinimize": "Upload-Status verchlinere"
+    "pillMinimize": "Upload-Status verchlinere",
+    "uploadInProgressStay": "Dini UPLOAD isch immer no am laufe. Blieb uf dere Bildschirm, bis es fertig isch.",
+    "removeUploadTitle": "Dä UPLOAD lösche?",
+    "removeQueuedBody": "Er isch no nöd publiziert worde. Wenn du en löschsch, wird au de Post annulliert."
   },
   "bounty": {
     "claimed": "Iiglöst",

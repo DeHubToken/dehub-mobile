@@ -4548,7 +4548,10 @@
     "pillDefaultTitle": "تحميل",
     "pillA11yFailed": "فشل التحميل، قم بتوسيع حالة التحميل",
     "pillA11yProgress": "تحميل {{percent}}% مكتمل، قم بتوسيع حالة التحميل",
-    "pillMinimize": "تصغير حالة التحميل"
+    "pillMinimize": "تصغير حالة التحميل",
+    "uploadInProgressStay": "تحميلك بعده مستمر. ابقى على هاي الشاشة لحد ما يكمل.",
+    "removeUploadTitle": "تريد تحذف هذا التحميل؟",
+    "removeQueuedBody": "بعده ما منشور. حذفه يلغي النشر."
   },
   "bounty": {
     "claimed": "متسلّم",

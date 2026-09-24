@@ -4545,7 +4545,10 @@
     "pillDefaultTitle": "अपलोड करा",
     "pillA11yFailed": "अपलोड अयशस्वी, अपलोड स्थिती विस्तृत करा",
     "pillA11yProgress": "अपलोड {{percent}}% पूर्ण, अपलोड स्थिती विस्तृत करा",
-    "pillMinimize": "अपलोड स्थिती कमी करा"
+    "pillMinimize": "अपलोड स्थिती कमी करा",
+    "uploadInProgressStay": "अभी घलो अपलोड करे जात हवय । ए स्क्रीन म बने रहव जब तक कि ए पूरा नी हो जावय ।",
+    "removeUploadTitle": "ये अपलोड ल मेटाव?",
+    "removeQueuedBody": "अभी तक प्रकाशित नी करे गए हवय पोस्ट ल हटा दे ।"
   },
   "bounty": {
     "claimed": "मिल गे",

@@ -4548,7 +4548,10 @@
     "pillDefaultTitle": "Soo dejiso",
     "pillA11yFailed": "Soo dejinta ayaa ku guuldareysatay, kordhi xaaladda soo dejinta",
     "pillA11yProgress": "Soo dejinta {{percent}}% dhamaystiran, kordhi xaaladda soo dejinta",
-    "pillMinimize": "Yaree xaaladda soo dejinta"
+    "pillMinimize": "Yaree xaaladda soo dejinta",
+    "uploadInProgressStay": "Your upload weli waa socdaa. Joog shaashaddan ilaa uu dhammaado.",
+    "removeUploadTitle": "Ka saar gelitaankan?",
+    "removeQueuedBody": "Ilaa iyo hadda lama soo bandhigin. Ka saarista waxay joojisaa boostada."
   },
   "bounty": {
     "claimed": "La qaatay",

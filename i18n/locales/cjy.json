@@ -4545,7 +4545,10 @@
     "pillDefaultTitle": "上传",
     "pillA11yFailed": "上传失败，展开上传状态",
     "pillA11yProgress": "上传 {{percent}}% 完成，展开上传状态",
-    "pillMinimize": "最小化上传状态"
+    "pillMinimize": "最小化上传状态",
+    "uploadInProgressStay": "您的上传仍在进行中。请保持在此屏幕，直到完成。",
+    "removeUploadTitle": "移除此上传？",
+    "removeQueuedBody": "它尚未发布。移除它将取消发布。"
   },
   "bounty": {
     "claimed": "已领取",

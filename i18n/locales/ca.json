@@ -4549,7 +4549,10 @@
     "pillDefaultTitle": "Pujar",
     "pillA11yFailed": "La pujada ha fallat, expandir estat de la pujada",
     "pillA11yProgress": "Pujant {{percent}}%, expandir estat de la pujada",
-    "pillMinimize": "Minimitzar estat de la pujada"
+    "pillMinimize": "Minimitzar estat de la pujada",
+    "uploadInProgressStay": "La teva càrrega encara està en marxa. Queda't en aquesta pantalla fins que acabi.",
+    "removeUploadTitle": "Vols eliminar aquesta càrrega?",
+    "removeQueuedBody": "Encara no s'ha publicat. Si l'elimines, es cancel·la la publicació."
   },
   "bounty": {
     "claimed": "Reclamat",

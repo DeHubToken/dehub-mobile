@@ -4595,7 +4595,10 @@
     "pillDefaultTitle": "업로드",
     "pillA11yFailed": "업로드 실패, 업로드 상태 확장",
     "pillA11yProgress": "업로드 {{percent}}% 완료, 업로드 상태 확장",
-    "pillMinimize": "업로드 상태 최소화"
+    "pillMinimize": "업로드 상태 최소화",
+    "uploadInProgressStay": "업로드가 아직 진행 중입니다. 완료될 때까지 이 화면을 유지합니다.",
+    "removeUploadTitle": "이 업로드를 삭제하시겠어요?",
+    "removeQueuedBody": "아직 게시되지 않았습니다. 포스트를 삭제하면 포스트가 취소됩니다."
   },
   "bounty": {
     "claimed": "수령 완료",

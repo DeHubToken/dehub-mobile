@@ -4598,7 +4598,10 @@
     "pillDefaultTitle": "Unggah",
     "pillA11yFailed": "Unggahan gagal, perluas status unggahan",
     "pillA11yProgress": "Unggahan {{percent}}% selesai, perluas status unggahan",
-    "pillMinimize": "Minimalkan status unggahan"
+    "pillMinimize": "Minimalkan status unggahan",
+    "uploadInProgressStay": "Unggahan Anda masih berlangsung. Tetap di layar ini sampai selesai.",
+    "removeUploadTitle": "Hapus unggahan ini?",
+    "removeQueuedBody": "Belum diposting. Menghapusnya akan membatalkan postingan."
   },
   "bounty": {
     "claimed": "Sudah diklaim",

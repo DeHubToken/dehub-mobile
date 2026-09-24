@@ -4548,7 +4548,10 @@
     "pillDefaultTitle": "Încarcă",
     "pillA11yFailed": "Încărcarea a eșuat, extinde starea încărcării",
     "pillA11yProgress": "Încărcare {{percent}}% completă, extinde starea încărcării",
-    "pillMinimize": "Minimizează starea încărcării"
+    "pillMinimize": "Minimizează starea încărcării",
+    "uploadInProgressStay": "Încărcarea dvs. continuă. Rămâneți pe acest ecran până când se termină.",
+    "removeUploadTitle": "Elimini această încărcare?",
+    "removeQueuedBody": "Nu a fost încă postat. Eliminarea acesteia anulează postarea."
   },
   "bounty": {
     "claimed": "Revendicat",

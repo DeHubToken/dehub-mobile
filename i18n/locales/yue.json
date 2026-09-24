@@ -4543,7 +4543,10 @@
     "pillDefaultTitle": "上傳",
     "pillA11yFailed": "上傳失敗，展開上傳狀態",
     "pillA11yProgress": "上傳 {{percent}}% 完成，展開上傳狀態",
-    "pillMinimize": "最小化上傳狀態"
+    "pillMinimize": "最小化上傳狀態",
+    "uploadInProgressStay": "你嘅上載仲繼續緊。留喺呢個畫面度直至佢完成。",
+    "removeUploadTitle": "移除呢個上載？",
+    "removeQueuedBody": "仲未發佈。移除佢會取消個帖子。"
   },
   "bounty": {
     "claimed": "已領取",

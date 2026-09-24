@@ -553,7 +553,16 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     [navigation],
   );
 
-  const bottomPadding = Math.max(Platform.OS === "android" ? 6 : 2, insets.bottom - 22);
+  // The pill's bottom edge sits at outerWrap's -12 plus this padding. On
+  // Android gesture navigation (an inset of roughly 16-34dp) the old
+  // max(6, inset - 22) left it at -6, inside the swipe-home zone, so a tap on
+  // the lower part of a tab could start a system gesture instead. There it now
+  // clears the whole inset. The 48dp three-button bar keeps the old maths
+  // (pill at 14dp), which it was laid out against.
+  const androidGestureNav = Platform.OS === "android" && insets.bottom > 0 && insets.bottom < 40;
+  const bottomPadding = androidGestureNav
+    ? insets.bottom + 12
+    : Math.max(Platform.OS === "android" ? 6 : 2, insets.bottom - 22);
   const TAB_BAR_SLIDE = 110; // distance to push off-screen (matches web's 110%)
 
   // Mirror header hide: slide tab bar down when header hides.

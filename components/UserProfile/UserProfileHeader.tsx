@@ -361,10 +361,13 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             )}
           </View>
 
-          <View className="flex-row items-center mt-0.5 gap-2">
+          {/* Wraps, so a long handle plus the .eth / follows-you / patron
+              chips drop to a second line instead of running off the edge, and
+              a handle too long for a line on its own truncates. */}
+          <View className="flex-row flex-wrap items-center mt-0.5 gap-2">
             {!!username && (
-              <TouchableOpacity onPress={handleCopyUsername} activeOpacity={0.7}>
-                <Text className="text-zinc-400 text-sm">@{username}</Text>
+              <TouchableOpacity onPress={handleCopyUsername} activeOpacity={0.7} style={{ flexShrink: 1, maxWidth: "100%" }}>
+                <Text className="text-zinc-400 text-sm" numberOfLines={1}>@{username}</Text>
               </TouchableOpacity>
             )}
             {/* Beside the handle, never instead of it: the username is what

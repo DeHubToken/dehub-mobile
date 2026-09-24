@@ -4553,7 +4553,10 @@
     "pillDefaultTitle": "Nahrát",
     "pillA11yFailed": "Nahrávání selhalo, rozbalte stav nahrávání",
     "pillA11yProgress": "Nahrávání {{percent}} % dokončeno, rozbalte stav nahrávání",
-    "pillMinimize": "Minimalizovat stav nahrávání"
+    "pillMinimize": "Minimalizovat stav nahrávání",
+    "uploadInProgressStay": "Nahrávání stále probíhá. Zůstaňte na této obrazovce, dokud neskončí.",
+    "removeUploadTitle": "Odebrat toto nahrávání?",
+    "removeQueuedBody": "Dosud nebyl zveřejněn. Jeho odebráním zrušíte příspěvek."
   },
   "bounty": {
     "claimed": "Vyzvednuto",

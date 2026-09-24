@@ -4580,7 +4580,10 @@
     "pillDefaultTitle": "Layisha",
     "pillA11yFailed": "Ukulayisha kuhlulekile, nweba isimo sokulayisha",
     "pillA11yProgress": "Ukulayisha kwe-{{percent}}% kuqediwe, nweba isimo sokulayisha",
-    "pillMinimize": "Nciphisa isimo sokulayisha"
+    "pillMinimize": "Nciphisa isimo sokulayisha",
+    "uploadInProgressStay": "Ukufaka kwakho kusaqhubeka. Hlala kulesi sikrini kuze kube yilapho sesiqedile.",
+    "removeUploadTitle": "Susa lokhu kufaka?",
+    "removeQueuedBody": "Ayikaphostwa okwamanje. Ukususa kukhansela iphosti."
   },
   "bounty": {
     "claimed": "Kuthathiwe",

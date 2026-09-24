@@ -4549,7 +4549,10 @@
     "pillDefaultTitle": "Įkelti",
     "pillA11yFailed": "Įkėlimas nepavyko, išplėskite įkėlimo būseną",
     "pillA11yProgress": "Įkeliama {{percent}}% baigta, išplėskite įkėlimo būseną",
-    "pillMinimize": "Sumažinti įkėlimo būseną"
+    "pillMinimize": "Sumažinti įkėlimo būseną",
+    "uploadInProgressStay": "Jūsų įkėlimas vis dar vyksta. Likite šiame ekrane, kol jis baigsis.",
+    "removeUploadTitle": "Pašalinti šį įkėlimą?",
+    "removeQueuedBody": "Jis dar nepaskelbtas. Pašalinus įrašą, jis atšaukiamas."
   },
   "bounty": {
     "claimed": "Atsiimta",
