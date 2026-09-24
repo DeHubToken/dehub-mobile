@@ -36,6 +36,7 @@ import {
   formatDhbPayment,
   subscriptionPaymentToken,
 } from "../../libs/subscription-pricing";
+import { sanitizeAmountInput } from "../../libs/amount-input";
 
 interface PlanFormSheetProps {
   visible: boolean;
@@ -354,7 +355,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
                 placeholderTextColor="#8B8D90"
                 placeholder="0.00"
                 value={price}
-                onChangeText={setPrice}
+                onChangeText={(v) => setPrice(sanitizeAmountInput(v, 2))}
                 keyboardType="decimal-pad"
               />
               <View pointerEvents="none" className="absolute right-3 inset-y-0 justify-center">

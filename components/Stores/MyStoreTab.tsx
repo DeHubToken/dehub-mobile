@@ -46,6 +46,7 @@ import {
   type StoreListing,
   type StoreOrder,
 } from "../../hooks/useStores";
+import { sanitizeAmountInput } from "../../libs/amount-input";
 
 type SubTab = "listings" | "orders" | "purchases";
 
@@ -394,7 +395,7 @@ const ListingForm: React.FC<{
               <Text style={styles.label}>{t("stores.priceUsd")}</Text>
               <TextInput
                 value={price}
-                onChangeText={setPrice}
+                onChangeText={(v) => setPrice(sanitizeAmountInput(v))}
                 placeholder="0.00"
                 placeholderTextColor="#8B8D90"
                 keyboardType="decimal-pad"
