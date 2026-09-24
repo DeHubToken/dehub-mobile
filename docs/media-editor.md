@@ -55,6 +55,12 @@ within 7/255.
    crop, corners, shadow, opacity, flip, fit/fill, layer order, text font,
    colour, style, label, outline. Undo/redo, autosave, PNG/JPG export to Photos
    or straight into a new post.
+   **Parity round (after the web's editor overhaul):** shapes (8 kinds), freehand
+   Draw (a "path" shape), Layers list with hide/lock/restack, 16 blend modes,
+   warmth/tint/vignette grading and Auto enhance (picture measured inside the
+   WebView). `types.ts` is back to identical with the web, and `canvasHtml.ts`
+   ports the web's shape, blend, hidden-layer and grade code; the web also
+   dropped its automatic 0.3s text fade-in, so the page did too.
 2. **Designs across devices.** Both apps keep projects on the device today, so
    the same design cannot yet move between them. Sync the snapshot to a table
    keyed by wallet and upload pictures to the `editor-assets` bucket the web's

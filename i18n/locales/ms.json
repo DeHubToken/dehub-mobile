@@ -5187,7 +5187,9 @@
       "hue": "Rona {{value}}°",
       "fontSize": "Saiz fon {{value}}",
       "padding": "Pelapik {{value}}",
-      "thickness": "Ketebalan {{value}}"
+      "thickness": "Ketebalan {{value}}",
+      "drawHint": "Seret pada halaman untuk melukis. Setiap lakaran ialah lapisan tersendiri yang boleh anda alihkan, ubah saiz atau padam. Ketik “Berhenti melukis” apabila selesai.",
+      "layersHint": "Bahagian atas senarai ialah bahagian hadapan. Gunakan anak panah untuk menyusun semula. Lapisan yang dikunci dan disembunyikan hanya boleh dipilih di sini."
     },
     "filters": {
       "none": "Asal",
@@ -5231,7 +5233,8 @@
       "alignCentre": "Selaras tengah",
       "alignRight": "Selaras kanan",
       "resetPosition": "Tetapkan semula kedudukan",
-      "rotation": "Putaran {{value}}°"
+      "rotation": "Putaran {{value}}°",
+      "blend": "Adunan"
     },
     "menu": {
       "addText": "Tambah teks",
@@ -5254,6 +5257,68 @@
       "jpg": "Imej JPG",
       "outputStill": "Output: {{width}}×{{height}}",
       "empty": "Tambahkan sesuatu pada reka bentuk anda dahulu."
+    },
+    "adjust": {
+      "auto": "Tingkatkan automatik",
+      "autoFailed": "Tidak dapat menganalisis gambar ini.",
+      "tint": "Rona {{value}}",
+      "vignette": "Vignet {{value}}%",
+      "warmth": "Kehangatan {{value}}"
+    },
+    "draw": {
+      "colour": "Warna pen",
+      "heading": "Lukis",
+      "start": "Mula melukis",
+      "stop": "Berhenti melukis",
+      "width": "Saiz pen {{value}}"
+    },
+    "layers": {
+      "empty": "Belum ada apa-apa pada halaman di kepala main.",
+      "hide": "Sembunyikan",
+      "lock": "Kunci",
+      "media": "Media",
+      "show": "Tunjukkan",
+      "text": "Teks",
+      "unlock": "Buka kunci"
+    },
+    "rail": {
+      "elements": "Elemen",
+      "layers": "Lapisan"
+    },
+    "blend": {
+      "normal": "Biasa",
+      "multiply": "Darab",
+      "screen": "Skrin",
+      "overlay": "Tindih",
+      "darken": "Gelapkan",
+      "lighten": "Cerahkan",
+      "colorDodge": "Elak warna",
+      "colorBurn": "Bakar warna",
+      "hardLight": "Cahaya keras",
+      "softLight": "Cahaya lembut",
+      "difference": "Perbezaan",
+      "exclusion": "Pengecualian",
+      "hue": "Rona",
+      "saturation": "Ketepuan",
+      "color": "Warna",
+      "luminosity": "Kilauan"
+    },
+    "shape": {
+      "rect": "Segi empat tepat",
+      "ellipse": "Bulatan",
+      "triangle": "Segi tiga",
+      "star": "Bintang",
+      "heart": "Hati",
+      "hexagon": "Heksagon",
+      "line": "Garisan",
+      "arrow": "Anak panah",
+      "style": "Gaya bentuk",
+      "fill": "Isian",
+      "fillOn": "Isian",
+      "outline": "Garis luar",
+      "outlineOn": "Garis luar",
+      "outlineWidth": "Lebar garis luar {{value}}",
+      "path": "Lukisan"
     }
   },
   "creator": {

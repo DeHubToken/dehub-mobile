@@ -4069,7 +4069,9 @@
       "hue": "رنگت {{value}}°",
       "fontSize": "فونٹ سائز {{value}}",
       "padding": "پیڈنگ {{value}}",
-      "thickness": "موٹائی {{value}}"
+      "thickness": "موٹائی {{value}}",
+      "drawHint": "ڈرا کرنے کو پیج پو انگلی کھینچو۔ ہر لکیر اپنی الگ لیئر ہوتی، اس کو ہلا سکتے، چھوٹا بڑا کر سکتے یا ہٹا سکتے۔ ہوگیا تو «ڈرائنگ بند کرو» دباؤ۔",
+      "layersHint": "لسٹ کا اوپر والا سب سے آگے ہوتا۔ ترتیب بدلنے کو تیر استعمال کرو۔ لاک اور چھپی ہوئی لیئرز اچ یہاں سے چُنے جاتے۔"
     },
     "filters": {
       "none": "اصلی",
@@ -4113,7 +4115,8 @@
       "alignCentre": "بیچ میں سیدھ",
       "alignRight": "دائیں سیدھ",
       "resetPosition": "جگہ ری سیٹ کرو",
-      "rotation": "گھماؤ {{value}}°"
+      "rotation": "گھماؤ {{value}}°",
+      "blend": "بلینڈ"
     },
     "menu": {
       "addText": "ٹیکسٹ ڈالو",
@@ -4136,6 +4139,68 @@
       "jpg": "JPG تصویر",
       "outputStill": "آؤٹ پٹ: {{width}}×{{height}}",
       "empty": "پہلے اپنے ڈیزائن میں کچھ ڈالو۔"
+    },
+    "adjust": {
+      "auto": "آٹو بہتر کرو",
+      "autoFailed": "اس تصویر کو پرکھ نئیں سکے۔",
+      "tint": "ٹِنٹ {{value}}",
+      "vignette": "وِگنیٹ {{value}}%",
+      "warmth": "گرمائی {{value}}"
+    },
+    "draw": {
+      "colour": "قلم کا رنگ",
+      "heading": "ڈرا کرو",
+      "start": "ڈرائنگ شروع کرو",
+      "stop": "ڈرائنگ بند کرو",
+      "width": "قلم کا سائز {{value}}"
+    },
+    "layers": {
+      "empty": "پلے ہیڈ پو ابھی پیج پو کچھ نئیں ہے۔",
+      "hide": "چھپاؤ",
+      "lock": "لاک کرو",
+      "media": "میڈیا",
+      "show": "دکھاؤ",
+      "text": "ٹیکسٹ",
+      "unlock": "ان لاک کرو"
+    },
+    "rail": {
+      "elements": "ایلیمنٹس",
+      "layers": "لیئرز"
+    },
+    "blend": {
+      "normal": "نارمل",
+      "multiply": "ملٹی پلائی",
+      "screen": "اسکرین",
+      "overlay": "اوورلے",
+      "darken": "ڈارکن",
+      "lighten": "لائٹن",
+      "colorDodge": "کلر ڈاج",
+      "colorBurn": "کلر برن",
+      "hardLight": "ہارڈ لائٹ",
+      "softLight": "سافٹ لائٹ",
+      "difference": "ڈفرنس",
+      "exclusion": "ایکسکلوژن",
+      "hue": "ہیو",
+      "saturation": "سیچوریشن",
+      "color": "کلر",
+      "luminosity": "لیومینوسٹی"
+    },
+    "shape": {
+      "rect": "مستطیل",
+      "ellipse": "دائرہ",
+      "triangle": "تکون",
+      "star": "تارا",
+      "heart": "دل",
+      "hexagon": "چھ کونا",
+      "line": "لکیر",
+      "arrow": "تیر",
+      "style": "شکل کا اسٹائل",
+      "fill": "فِل",
+      "fillOn": "فِل",
+      "outline": "آؤٹ لائن",
+      "outlineOn": "آؤٹ لائن",
+      "outlineWidth": "آؤٹ لائن کی چوڑائی {{value}}",
+      "path": "ڈرائنگ"
     }
   },
   "creator": {

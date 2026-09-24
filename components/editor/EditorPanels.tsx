@@ -15,17 +15,20 @@ import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import { FILTER_PRESETS, matchPreset } from "../../libs/editor/filterPresets";
 import { EDITOR_FONTS, fontFamilyCss, nearestWeight, primaryFamily } from "../../libs/editor/fonts";
-import { getTransform, placementPatch, type Arrange } from "../../libs/editor/project";
+import { getTransform, placementPatch, type Arrange, type ClipPatch } from "../../libs/editor/project";
 import type {
   AspectPreset,
   ClipShadow,
   MediaClip,
+  ShapeClip,
   TextBackground,
   TextClip,
   TextStroke,
 } from "../../libs/editor/types";
 
-export type Patch = Partial<MediaClip> | Partial<TextClip>;
+export type Patch = ClipPatch;
+/** Any layer that sits on the page. */
+export type LayerClip = MediaClip | TextClip | ShapeClip;
 
 export interface PanelProps<C> {
   clip: C;
@@ -45,7 +48,7 @@ const DEFAULT_OUTLINE: TextStroke = { color: "#000000", width: 6 };
 
 // ── building blocks ──
 
-function Labeled({ label, children }: { label: string; children: React.ReactNode }) {
+export function Labeled({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <View className="mb-2">
       <Text className="text-theme-neutrals-300 text-xs mb-1">{label}</Text>
@@ -54,7 +57,7 @@ function Labeled({ label, children }: { label: string; children: React.ReactNode
   );
 }
 
-function Range(props: {
+export function Range(props: {
   label: string;
   value: number;
   min: number;
@@ -111,7 +114,7 @@ export function Swatches({ value, onPick, label }: { value: string; onPick: (c: 
   );
 }
 
-function Toggle({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void }) {
+export function Toggle({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void }) {
   return (
     <View className="flex-row items-center justify-between mb-2">
       <Text className="text-white text-sm">{label}</Text>
@@ -135,7 +138,7 @@ export function Chip({ label, active, onPress, icon }: { label: string; active?:
   );
 }
 
-function ChipRow({ children }: { children: React.ReactNode }) {
+export function ChipRow({ children }: { children: React.ReactNode }) {
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingVertical: 2 }}>
       {children}
@@ -179,7 +182,7 @@ export function FiltersPanel({ clip, commit }: PanelProps<MediaClip>) {
   );
 }
 
-export function AdjustPanel({ clip, live, settle }: PanelProps<MediaClip>) {
+export function AdjustPanel({ clip, live, settle, onAutoEnhance }: PanelProps<MediaClip> & { onAutoEnhance?: () => void }) {
   const { t } = useTranslation();
   const e = clip.effects ?? {};
   const set = (k: keyof NonNullable<MediaClip["effects"]>) => (v: number) => live({ effects: { ...e, [k]: v } });
@@ -190,6 +193,14 @@ export function AdjustPanel({ clip, live, settle }: PanelProps<MediaClip>) {
       <Range label={t("editor.app.saturation", { value: Math.round((e.saturation ?? 1) * 100) })} value={e.saturation ?? 1} min={0} max={2} step={0.01} onLive={set("saturation")} onDone={settle} />
       <Range label={t("editor.app.hue", { value: Math.round(e.hueRotate ?? 0) })} value={e.hueRotate ?? 0} min={0} max={360} step={1} onLive={set("hueRotate")} onDone={settle} />
       <Range label={t("editor.layer.shadowBlur", { value: (e.blur ?? 0).toFixed(1) })} value={e.blur ?? 0} min={0} max={20} step={0.5} onLive={set("blur")} onDone={settle} />
+      <Range label={t("editor.adjust.warmth", { value: Math.round((e.warmth ?? 0) * 100) })} value={e.warmth ?? 0} min={-1} max={1} step={0.01} onLive={set("warmth")} onDone={settle} />
+      <Range label={t("editor.adjust.tint", { value: Math.round((e.tint ?? 0) * 100) })} value={e.tint ?? 0} min={-1} max={1} step={0.01} onLive={set("tint")} onDone={settle} />
+      <Range label={t("editor.adjust.vignette", { value: Math.round((e.vignette ?? 0) * 100) })} value={e.vignette ?? 0} min={0} max={1} step={0.01} onLive={set("vignette")} onDone={settle} />
+      {onAutoEnhance && (
+        <View className="mt-1 mb-2 flex-row">
+          <Chip icon="WandSparkles" label={t("editor.adjust.auto")} active onPress={onAutoEnhance} />
+        </View>
+      )}
     </View>
   );
 }
@@ -249,7 +260,7 @@ export function FitPanel({ clip, commit }: PanelProps<MediaClip>) {
 
 // ── any layer ──
 
-export function OpacityPanel({ clip, live, settle }: PanelProps<MediaClip | TextClip>) {
+export function OpacityPanel({ clip, live, settle }: PanelProps<LayerClip>) {
   const { t } = useTranslation();
   const tr = getTransform(clip);
   const opacity = tr.opacity ?? 1;
@@ -266,7 +277,7 @@ export function OpacityPanel({ clip, live, settle }: PanelProps<MediaClip | Text
   );
 }
 
-export function PositionPanel({ clip, live, commit, settle }: PanelProps<MediaClip | TextClip>) {
+export function PositionPanel({ clip, live, commit, settle }: PanelProps<LayerClip>) {
   const { t } = useTranslation();
   const tr = getTransform(clip);
   return (
@@ -304,7 +315,7 @@ export function ArrangePanel({ onArrange }: { onArrange: (a: Arrange) => void })
   );
 }
 
-export function ShadowPanel({ clip, live, commit, settle }: PanelProps<MediaClip | TextClip>) {
+export function ShadowPanel({ clip, live, commit, settle }: PanelProps<LayerClip>) {
   const { t } = useTranslation();
   const s = clip.shadow;
   return (

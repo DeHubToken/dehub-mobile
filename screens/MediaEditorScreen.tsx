@@ -49,11 +49,16 @@ import {
   Swatches,
   TextColourPanel,
   TextStylePanel,
+  type LayerClip,
   type Patch,
 } from "../components/editor/EditorPanels";
+import { BlendPanel, DrawPanel, LayersPanel, ShapeStylePanel, ShapesPanel } from "../components/editor/EditorLayerPanels";
 import {
   addImage,
+  addShape,
+  addStroke,
   addText,
+  layerList,
   arrangeClip,
   duplicateClip,
   getClip,
@@ -182,7 +187,8 @@ type Tool =
   | "page" | "background"
   | "filters" | "adjust" | "crop" | "corners" | "fit"
   | "font" | "colour" | "style" | "label" | "outline"
-  | "shadow" | "opacity" | "position" | "arrange";
+  | "shadow" | "opacity" | "position" | "arrange"
+  | "shapes" | "draw" | "layers" | "shapeStyle" | "blend";
 
 interface ToolButton {
   id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete";
@@ -253,6 +259,8 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
   const [renaming, setRenaming] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   const [busy, setBusy] = useState(false);
+  // Freehand pen; while set, one finger draws on the page.
+  const [pen, setPen] = useState<{ color: string; width: number } | null>(null);
 
   // Open an existing design.
   useEffect(() => {
@@ -295,6 +303,7 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
   const select = useCallback((id: string | null) => {
     setSelectedId(id);
     setTool(null);
+    setPen(null);
   }, []);
 
   const patchSelected = (patch: Patch, mode: "live" | "commit") => {
@@ -334,6 +343,24 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
     if (project && selectedId) h.commit(arrangeClip(project, selectedId, a));
   };
 
+  // Same maths as the web's Auto enhance (dehubweb src/lib/editor/autoEnhance.ts),
+  // with the picture measured inside the canvas page.
+  const autoEnhance = async () => {
+    if (!project || !selected || selected.kind !== "image") return;
+    const stats = await canvasRef.current?.pictureStats(selected.mediaId);
+    if (!stats) { toastError(t("editor.adjust.autoFailed")); return; }
+    const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
+    const round = (v: number) => Math.round(v * 100) / 100;
+    h.commit(updateClip(project, selected.id, {
+      effects: {
+        ...selected.effects,
+        brightness: round(clamp(1 + (0.5 - stats.mean) * 0.8, 0.85, 1.3)),
+        contrast: round(clamp(1 + (0.22 - stats.std) * 1.5, 0.95, 1.3)),
+        saturation: round(clamp(1 + (0.35 - stats.sat) * 0.8, 1, 1.3)),
+      },
+    }));
+  };
+
   const onToolPress = (id: ToolButton["id"]) => {
     if (!project) return;
     if (id === "photo") { void addPhoto(); return; }
@@ -349,6 +376,7 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
       select(null);
       return;
     }
+    if (id !== "draw") setPen(null);
     setTool((cur) => (cur === id ? null : (id as Tool)));
   };
 
@@ -357,6 +385,9 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
       return [
         { id: "photo", icon: "ImagePlus", label: t("editor.app.photo") },
         { id: "text", icon: "Type", label: t("editor.menu.addText") },
+        { id: "shapes", icon: "Shapes", label: t("editor.rail.elements") },
+        { id: "draw", icon: "PenLine", label: t("editor.draw.heading") },
+        { id: "layers", icon: "Layers", label: t("editor.rail.layers") },
         { id: "page", icon: "RectangleVertical", label: t("editor.app.pageSize") },
         { id: "background", icon: "PaintBucket", label: t("editor.app.background") },
       ];
@@ -366,9 +397,16 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
       { id: "opacity", icon: "Blend", label: t("editor.app.opacityTool") },
       { id: "position", icon: "Move", label: t("editor.app.position") },
       { id: "arrange", icon: "Layers", label: t("editor.app.arrange") },
+      { id: "blend", icon: "Blend", label: t("editor.layer.blend") },
       { id: "duplicate", icon: "Copy", label: t("editor.menu.duplicate") },
       { id: "delete", icon: "Trash2", label: t("editor.menu.delete") },
     ];
+    if (selected.kind === "shape") {
+      return [
+        { id: "shapeStyle", icon: "Palette", label: t("editor.shape.style") },
+        ...common,
+      ];
+    }
     if (selected.kind === "text") {
       return [
         { id: "edit", icon: "Pencil", label: t("editor.menu.editText") },
@@ -400,11 +438,43 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
     if (!project || !tool) return null;
     if (tool === "page") return <AspectPanel value={project.settings.aspectPreset} onPick={(a: Exclude<AspectPreset, "custom">) => h.commit(setAspect(project, a))} />;
     if (tool === "background") return <Swatches label={t("editor.app.background")} value={project.settings.background} onPick={(c) => h.commit(setBackground(project, c))} />;
-    if (!selected) return null;
+    if (tool === "shapes") {
+      return (
+        <ShapesPanel
+          onAdd={(shape) => {
+            const { project: next, clipId } = addShape(project, shape);
+            h.commit(next);
+            select(clipId);
+          }}
+        />
+      );
+    }
+    if (tool === "draw") return <DrawPanel pen={pen} onChange={setPen} />;
+    if (tool === "layers") {
+      return (
+        <LayersPanel
+          layers={layerList(project)}
+          selectedId={selectedId}
+          onSelect={(id) => { setSelectedId(id); }}
+          onToggle={(id, field) => {
+            const c = project.clips.find((x) => x.id === id);
+            if (c) h.commit(updateClip(project, id, { [field]: !c[field] }));
+          }}
+          onArrange={(id, dir) => h.commit(arrangeClip(project, id, dir))}
+        />
+      );
+    }
+    if (!selected || selected.kind === "audio") return null;
+    const layer = selected as LayerClip;
     if (tool === "arrange") return <ArrangePanel onArrange={onArrange} />;
-    if (tool === "shadow") return <ShadowPanel clip={selected as MediaClip | TextClip} {...panelProps} />;
-    if (tool === "opacity") return <OpacityPanel clip={selected as MediaClip | TextClip} {...panelProps} />;
-    if (tool === "position") return <PositionPanel clip={selected as MediaClip | TextClip} {...panelProps} />;
+    if (tool === "blend") return <BlendPanel clip={layer} {...panelProps} />;
+    if (tool === "shadow") return <ShadowPanel clip={layer} {...panelProps} />;
+    if (tool === "opacity") return <OpacityPanel clip={layer} {...panelProps} />;
+    if (tool === "position") return <PositionPanel clip={layer} {...panelProps} />;
+    if (selected.kind === "shape") {
+      if (tool === "shapeStyle") return <ShapeStylePanel clip={selected} {...panelProps} />;
+      return null;
+    }
     if (selected.kind === "text") {
       if (tool === "font") return <FontPanel clip={selected} {...panelProps} />;
       if (tool === "colour") return <TextColourPanel clip={selected} {...panelProps} />;
@@ -414,7 +484,7 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
       return null;
     }
     if (tool === "filters") return <FiltersPanel clip={selected} {...panelProps} />;
-    if (tool === "adjust") return <AdjustPanel clip={selected} {...panelProps} />;
+    if (tool === "adjust") return <AdjustPanel clip={selected} {...panelProps} onAutoEnhance={selected.kind === "image" ? () => { void autoEnhance(); } : undefined} />;
     if (tool === "crop") return <CropPanel clip={selected} {...panelProps} />;
     if (tool === "corners") return <CornersPanel clip={selected} {...panelProps} />;
     if (tool === "fit") return <FitPanel clip={selected} {...panelProps} />;
@@ -513,6 +583,11 @@ function Workspace({ initial, projectId, onClose }: { initial: ProjectSnapshot |
           onGestureEnd={h.settle}
           onEditText={setEditingText}
           onMissingMedia={(ids) => setMissing(ids.length > 0)}
+          pen={pen}
+          onStroke={(pts) => {
+            const r = addStroke(project, pts, pen ?? { color: "#ffffff", width: 12 });
+            if (r) h.commit(r.project);
+          }}
         />
         {project.clips.length === 0 && (
           <View pointerEvents="none" className="absolute inset-0 items-center justify-center">

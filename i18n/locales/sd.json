@@ -4893,7 +4893,9 @@
       "hue": "رنگت {{value}}°",
       "fontSize": "فونٽ سائيز {{value}}",
       "padding": "پيڊنگ {{value}}",
-      "thickness": "ٿولهه {{value}}"
+      "thickness": "ٿولهه {{value}}",
+      "drawHint": "ڊرا ڪرڻ لاءِ صفحي تي آڱر گهليو. هر لڪير پنهنجي الڳ پرت آهي، جنهن کي هٽائي، ماپ بدلائي يا ختم ڪري سگهو ٿا. پورو ٿيڻ تي «ڊرائنگ بند ڪريو» تي ٽيپ ڪريو.",
+      "layersHint": "لسٽ جي مٿين پرت سڀ کان اڳيان آهي. ترتيب بدلائڻ لاءِ تير استعمال ڪريو. بند ۽ لڪيل پرتون صرف هتان چونڊي سگهجن ٿيون."
     },
     "filters": {
       "none": "اصل",
@@ -4937,7 +4939,8 @@
       "alignCentre": "مرڪز ۾ ترتيب ڏيو",
       "alignRight": "ساڄي طرف ترتيب ڏيو",
       "resetPosition": "پوزيشن ري سيٽ ڪريو",
-      "rotation": "روٽيشن {{value}}°"
+      "rotation": "روٽيشن {{value}}°",
+      "blend": "ملاوٽ"
     },
     "menu": {
       "addText": "متن شامل ڪريو",
@@ -4960,6 +4963,68 @@
       "jpg": "JPG تصوير",
       "outputStill": "آئوٽ پُٽ: {{width}}×{{height}}",
       "empty": "پهرين پنهنجي ڊيزائن ۾ ڪجهه شامل ڪريو."
+    },
+    "adjust": {
+      "auto": "خودڪار بهتري",
+      "autoFailed": "هن تصوير جو تجزيو نه ٿي سگهيو.",
+      "tint": "رنگت {{value}}",
+      "vignette": "وِگنيٽ {{value}}%",
+      "warmth": "گرمائش {{value}}"
+    },
+    "draw": {
+      "colour": "قلم جو رنگ",
+      "heading": "ڊرا ڪريو",
+      "start": "ڊرائنگ شروع ڪريو",
+      "stop": "ڊرائنگ بند ڪريو",
+      "width": "قلم جي سائيز {{value}}"
+    },
+    "layers": {
+      "empty": "پلي هيڊ تي اڃا صفحي تي ڪجهه به ناهي.",
+      "hide": "لڪايو",
+      "lock": "لاڪ ڪريو",
+      "media": "ميڊيا",
+      "show": "ڏيکاريو",
+      "text": "متن",
+      "unlock": "ان لاڪ ڪريو"
+    },
+    "rail": {
+      "elements": "عنصر",
+      "layers": "پرتون"
+    },
+    "blend": {
+      "normal": "عام",
+      "multiply": "ضرب",
+      "screen": "اسڪرين",
+      "overlay": "اوورلي",
+      "darken": "اونداهو ڪريو",
+      "lighten": "هلڪو ڪريو",
+      "colorDodge": "ڪلر ڊاج",
+      "colorBurn": "ڪلر برن",
+      "hardLight": "سخت روشني",
+      "softLight": "نرم روشني",
+      "difference": "فرق",
+      "exclusion": "خارج ڪرڻ",
+      "hue": "رنگت",
+      "saturation": "گهاٽائي",
+      "color": "رنگ",
+      "luminosity": "چمڪ"
+    },
+    "shape": {
+      "rect": "مستطيل",
+      "ellipse": "گول",
+      "triangle": "ٽڪنڊو",
+      "star": "تارو",
+      "heart": "دل",
+      "hexagon": "ڇهه ڪنڊو",
+      "line": "لڪير",
+      "arrow": "تير",
+      "style": "شڪل جو انداز",
+      "fill": "ڀرڻ",
+      "fillOn": "ڀرڻ",
+      "outline": "آئوٽ لائين",
+      "outlineOn": "آئوٽ لائين",
+      "outlineWidth": "آئوٽ لائين جي ويڪر {{value}}",
+      "path": "ڊرائنگ"
     }
   },
   "creator": {

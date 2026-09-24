@@ -4995,7 +4995,9 @@
       "hue": "Tono {{value}}°",
       "fontSize": "Tamaño de fuente {{value}}",
       "padding": "Margen interno {{value}}",
-      "thickness": "Grosor {{value}}"
+      "thickness": "Grosor {{value}}",
+      "drawHint": "Arrastra sobre la página para dibujar. Cada trazo es su propia capa que puedes mover, cambiar de tamaño o eliminar. Toca «Dejar de dibujar» cuando termines.",
+      "layersHint": "La parte superior de la lista es el frente. Usa las flechas para reordenar. Las capas bloqueadas y ocultas solo se pueden seleccionar aquí."
     },
     "filters": {
       "none": "Original",
@@ -5039,7 +5041,8 @@
       "alignCentre": "Alinear al centro",
       "alignRight": "Alinear a la derecha",
       "resetPosition": "Restablecer posición",
-      "rotation": "Rotación {{value}}°"
+      "rotation": "Rotación {{value}}°",
+      "blend": "Fusión"
     },
     "menu": {
       "addText": "Añadir texto",
@@ -5062,6 +5065,68 @@
       "jpg": "Imagen JPG",
       "outputStill": "Salida: {{width}}×{{height}}",
       "empty": "Primero añade algo a tu diseño."
+    },
+    "adjust": {
+      "auto": "Mejora automática",
+      "autoFailed": "No se pudo analizar esta imagen.",
+      "tint": "Matiz {{value}}",
+      "vignette": "Viñeta {{value}}%",
+      "warmth": "Calidez {{value}}"
+    },
+    "draw": {
+      "colour": "Color del lápiz",
+      "heading": "Dibujar",
+      "start": "Empezar a dibujar",
+      "stop": "Dejar de dibujar",
+      "width": "Tamaño del lápiz {{value}}"
+    },
+    "layers": {
+      "empty": "Todavía no hay nada en la página en el cabezal de reproducción.",
+      "hide": "Ocultar",
+      "lock": "Bloquear",
+      "media": "Multimedia",
+      "show": "Mostrar",
+      "text": "Texto",
+      "unlock": "Desbloquear"
+    },
+    "rail": {
+      "elements": "Elementos",
+      "layers": "Capas"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Multiplicar",
+      "screen": "Trama",
+      "overlay": "Superponer",
+      "darken": "Oscurecer",
+      "lighten": "Aclarar",
+      "colorDodge": "Sobreexponer color",
+      "colorBurn": "Subexponer color",
+      "hardLight": "Luz fuerte",
+      "softLight": "Luz suave",
+      "difference": "Diferencia",
+      "exclusion": "Exclusión",
+      "hue": "Tono",
+      "saturation": "Saturación",
+      "color": "Color",
+      "luminosity": "Luminosidad"
+    },
+    "shape": {
+      "rect": "Rectángulo",
+      "ellipse": "Círculo",
+      "triangle": "Triángulo",
+      "star": "Estrella",
+      "heart": "Corazón",
+      "hexagon": "Hexágono",
+      "line": "Línea",
+      "arrow": "Flecha",
+      "style": "Estilo de forma",
+      "fill": "Relleno",
+      "fillOn": "Relleno",
+      "outline": "Contorno",
+      "outlineOn": "Contorno",
+      "outlineWidth": "Grosor del contorno {{value}}",
+      "path": "Dibujo"
     }
   },
   "creator": {

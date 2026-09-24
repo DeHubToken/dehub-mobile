@@ -4925,7 +4925,9 @@
       "hue": "To {{value}}°",
       "fontSize": "Mida de lletra {{value}}",
       "padding": "Marge interior {{value}}",
-      "thickness": "Gruix {{value}}"
+      "thickness": "Gruix {{value}}",
+      "drawHint": "Arrossega sobre la pàgina per dibuixar. Cada traç és una capa pròpia que pots moure, redimensionar o eliminar. Toca «Deixa de dibuixar» quan acabis.",
+      "layersHint": "La part superior de la llista és el davant. Fes servir les fletxes per reordenar. Les capes bloquejades i ocultes només es poden seleccionar aquí."
     },
     "filters": {
       "none": "Original",
@@ -4969,7 +4971,8 @@
       "alignCentre": "Alinea al centre",
       "alignRight": "Alinea a la dreta",
       "resetPosition": "Restableix la posició",
-      "rotation": "Rotació {{value}}°"
+      "rotation": "Rotació {{value}}°",
+      "blend": "Fusió"
     },
     "menu": {
       "addText": "Afegeix text",
@@ -4992,6 +4995,68 @@
       "jpg": "Imatge JPG",
       "outputStill": "Sortida: {{width}}×{{height}}",
       "empty": "Afegeix alguna cosa al teu disseny primer."
+    },
+    "adjust": {
+      "auto": "Millora automàtica",
+      "autoFailed": "No s'ha pogut analitzar aquesta imatge.",
+      "tint": "Tonalitat {{value}}",
+      "vignette": "Vinyetatge {{value}}%",
+      "warmth": "Calidesa {{value}}"
+    },
+    "draw": {
+      "colour": "Color del llapis",
+      "heading": "Dibuixa",
+      "start": "Comença a dibuixar",
+      "stop": "Deixa de dibuixar",
+      "width": "Mida del llapis {{value}}"
+    },
+    "layers": {
+      "empty": "Encara no hi ha res a la pàgina al capçal de reproducció.",
+      "hide": "Amaga",
+      "lock": "Bloca",
+      "media": "Multimèdia",
+      "show": "Mostra",
+      "text": "Text",
+      "unlock": "Desbloca"
+    },
+    "rail": {
+      "elements": "Elements",
+      "layers": "Capes"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Multiplica",
+      "screen": "Pantalla",
+      "overlay": "Superposició",
+      "darken": "Enfosqueix",
+      "lighten": "Aclareix",
+      "colorDodge": "Esvaïment de color",
+      "colorBurn": "Cremat de color",
+      "hardLight": "Llum forta",
+      "softLight": "Llum suau",
+      "difference": "Diferència",
+      "exclusion": "Exclusió",
+      "hue": "To",
+      "saturation": "Saturació",
+      "color": "Color",
+      "luminosity": "Lluminositat"
+    },
+    "shape": {
+      "rect": "Rectangle",
+      "ellipse": "Cercle",
+      "triangle": "Triangle",
+      "star": "Estrella",
+      "heart": "Cor",
+      "hexagon": "Hexàgon",
+      "line": "Línia",
+      "arrow": "Fletxa",
+      "style": "Estil de la forma",
+      "fill": "Emplenament",
+      "fillOn": "Emplenament",
+      "outline": "Contorn",
+      "outlineOn": "Contorn",
+      "outlineWidth": "Gruix del contorn {{value}}",
+      "path": "Dibuix"
     }
   },
   "creator": {

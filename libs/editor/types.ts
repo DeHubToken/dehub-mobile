@@ -7,7 +7,7 @@
  */
 
 export type TrackKind = "video" | "audio" | "text";
-export type ClipKind = "video" | "audio" | "image" | "text";
+export type ClipKind = "video" | "audio" | "image" | "text" | "shape";
 
 export interface Track {
   id: string;
@@ -46,7 +46,19 @@ interface BaseClip {
   transform?: ClipTransform;
   /** Drop shadow behind the element. Off by default. */
   shadow?: ClipShadow | null;
+  /** How the layer mixes with what is under it. Default "normal". */
+  blend?: BlendMode;
+  /** Locked layers cannot be picked or moved on the canvas. */
+  locked?: boolean;
+  /** Hidden layers are not drawn or exported. Per layer, unlike track hiding. */
+  hidden?: boolean;
 }
+
+export const BLEND_MODES = [
+  "normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn",
+  "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity",
+] as const;
+export type BlendMode = (typeof BLEND_MODES)[number];
 
 /**
  * Where a visual clip sits on the canvas. Media clips use every field; text
@@ -104,6 +116,12 @@ export interface ClipEffects {
   hueRotate?: number;
   /** 0..1, 0 = off */
   invert?: number;
+  /** -1 (cool/blue) .. 1 (warm/orange), 0 = neutral */
+  warmth?: number;
+  /** -1 (green) .. 1 (magenta), 0 = neutral */
+  tint?: number;
+  /** 0..1 darkening towards the edges, 0 = off */
+  vignette?: number;
 }
 
 export type ClipAnimationKind =
@@ -191,7 +209,33 @@ export interface TextClip extends BaseClip {
   lineHeight?: number;
 }
 
-export type Clip = MediaClip | TextClip;
+export const SHAPE_KINDS = ["rect", "ellipse", "triangle", "star", "heart", "hexagon", "line", "arrow"] as const;
+/** "path" is a freehand drawing; it is not offered in the shapes grid. */
+export type ShapeKindAll = (typeof SHAPE_KINDS)[number] | "path";
+export type ShapeKind = (typeof SHAPE_KINDS)[number];
+
+/** A vector shape. Size is a fraction of the page, before transform.scale. */
+export interface ShapeClip extends BaseClip {
+  kind: "shape";
+  shape: ShapeKindAll;
+  /**
+   * Freehand stroke for shape "path": points in the layer's own box, each
+   * coordinate -0.5..0.5 of its width/height, so the drawing scales, stretches
+   * and rotates with the layer like any other shape.
+   */
+  points?: [number, number][];
+  /** Width and height as fractions of the page width and height. */
+  w: number;
+  h: number;
+  /** Hex fill, or null for outline only. */
+  fill: string | null;
+  /** Outline; for line and arrow this is the stroke itself. */
+  stroke?: TextStroke | null;
+  /** Corner radius for rectangles, px relative to 1080p. */
+  radius?: number;
+}
+
+export type Clip = MediaClip | TextClip | ShapeClip;
 
 export type AspectPreset = "16:9" | "9:16" | "1:1" | "4:5" | "custom";
 
@@ -201,6 +245,14 @@ export interface ProjectSettings {
   fps: number;
   background: string; // hex
   aspectPreset: AspectPreset;
+  /**
+   * Start times (seconds) of each page, ascending, first is 0. Absent means a
+   * single page. A page runs until the next page starts; the last one until
+   * the end of the timeline (at least PAGE_MIN seconds). Pages are slices of
+   * the one timeline, so a carousel is a still per page and a video's pages
+   * are its scenes.
+   */
+  pages?: number[];
 }
 
 export interface ProjectSnapshot {

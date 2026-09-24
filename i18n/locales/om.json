@@ -4985,7 +4985,9 @@
       "hue": "Bifa halluu {{value}}°",
       "fontSize": "Hamma qubee {{value}}",
       "padding": "Iddoo keessaa {{value}}",
-      "thickness": "Furdina {{value}}"
+      "thickness": "Furdina {{value}}",
+      "drawHint": "Kaasuuf fuula irratti harkisi. Sararri hundi leeyarii mataa isaati, kan socho'suu, guddina jijjiiruu ykn haquu dandeessu. Yeroo xumurtu Kaasuu dhaabi tuqi.",
+      "layersHint": "Gubbaan tarreeffamaa fuula duraati. Tartiiba jijjiiruuf xiyya fayyadami. Leeyariiwwan cufamanii fi dhokataniin as qofatti filatamu."
     },
     "filters": {
       "none": "Kan jalqabaa",
@@ -5029,7 +5031,8 @@
       "alignCentre": "Giddugaleessa qindeessuu",
       "alignRight": "Mirga irratti hiriirsi",
       "resetPosition": "Bakka deebisi",
-      "rotation": "Naanna'uu {{value}}°"
+      "rotation": "Naanna'uu {{value}}°",
+      "blend": "Walmakuu"
     },
     "menu": {
       "addText": "Barruu itti dabali",
@@ -5052,6 +5055,68 @@
       "jpg": "Suuraa JPG",
       "outputStill": "Ba'uu: {{width}}×{{height}}",
       "empty": "Dursa dizaayinii kee irratti waan tokko itti dabali."
+    },
+    "adjust": {
+      "auto": "Ofumaan fooyyessi",
+      "autoFailed": "Suuraa kana xiinxaluu hin dandeenye.",
+      "tint": "Tintii {{value}}",
+      "vignette": "Vinyeetii {{value}}%",
+      "warmth": "Ho'a {{value}}"
+    },
+    "draw": {
+      "colour": "Halluu qalamaa",
+      "heading": "Kaasi",
+      "start": "Kaasuu jalqabi",
+      "stop": "Kaasuu dhaabi",
+      "width": "Hamma qalamaa {{value}}"
+    },
+    "layers": {
+      "empty": "Iddoo taphataa irratti ammallee fuula irra homtuu hin jiru.",
+      "hide": "Dhoksi",
+      "lock": "Cufi",
+      "media": "Miidiyaa",
+      "show": "Agarsiisi",
+      "text": "Barreeffama",
+      "unlock": "Bani"
+    },
+    "rail": {
+      "elements": "Elementoota",
+      "layers": "Leeyarii"
+    },
+    "blend": {
+      "normal": "Idilee",
+      "multiply": "Baay'isi",
+      "screen": "Iskiriinii",
+      "overlay": "Irra-kaa'i",
+      "darken": "Dukkaneessi",
+      "lighten": "Ifeessi",
+      "colorDodge": "Halluu ifeessi",
+      "colorBurn": "Halluu gubi",
+      "hardLight": "Ifa cimaa",
+      "softLight": "Ifa laafaa",
+      "difference": "Garaagarummaa",
+      "exclusion": "Ala baasuu",
+      "hue": "Bifa halluu",
+      "saturation": "Guutummaa halluu",
+      "color": "Halluu",
+      "luminosity": "Ifaa"
+    },
+    "shape": {
+      "rect": "Rektaangilii",
+      "ellipse": "Geengoo",
+      "triangle": "Rog-sadee",
+      "star": "Urjii",
+      "heart": "Onnee",
+      "hexagon": "Rog-jahee",
+      "line": "Sarara",
+      "arrow": "Xiyya",
+      "style": "Akkaataa bocaa",
+      "fill": "Guutuu",
+      "fillOn": "Guutuu",
+      "outline": "Daangaa",
+      "outlineOn": "Daangaa",
+      "outlineWidth": "Bal'ina daangaa {{value}}",
+      "path": "Fakkii"
     }
   },
   "creator": {
