@@ -3601,7 +3601,11 @@
     "total": "Kopā",
     "pricing": "Aprēķina cenu…",
     "payWithDhb": "Maksāt ar DHB",
-    "yourDhb": "Tavs DHB"
+    "yourDhb": "Tavs DHB",
+    "generateFree_one": "Ģenerēt bez maksas · {{count}} pa kreisi",
+    "generateFree_other": "Ģenerēt bez maksas · {{count}} pa kreisi",
+    "freeImagesLeft_one": "Jums ir atlicis {{count}} brīvs attēls. Maksājums nav nepieciešams.",
+    "freeImagesLeft_other": "Jums ir atlikuši {{count}} brīvi attēli. Maksājums nav nepieciešams."
   },
   "digest": {
     "andOthers_one": "{{names}} un {{count}} cits",

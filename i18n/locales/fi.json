@@ -3601,7 +3601,11 @@
     "total": "Yhteensä",
     "pricing": "Hinnoitellaan…",
     "payWithDhb": "Maksa DHB:llä",
-    "yourDhb": "Sinun DHB"
+    "yourDhb": "Sinun DHB",
+    "generateFree_one": "Luo ilmaiseksi · {{count}} jäljellä",
+    "generateFree_other": "Luo ilmaiseksi · {{count}} jäljellä",
+    "freeImagesLeft_one": "Sinulla on jäljellä {{count}} ilmaista kuvaa. Maksua ei tarvita.",
+    "freeImagesLeft_other": "Sinulla on jäljellä {{count}} ilmaista kuvaa. Maksua ei tarvita."
   },
   "digest": {
     "andOthers_one": "{{names}} ja {{count}} muu",

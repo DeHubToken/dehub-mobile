@@ -3601,7 +3601,11 @@
     "total": "Totalt",
     "pricing": "Beregner pris…",
     "payWithDhb": "Betal med DHB",
-    "yourDhb": "Dine DHB"
+    "yourDhb": "Dine DHB",
+    "generateFree_one": "Generer gratis · {{count}} venstre",
+    "generateFree_other": "Generer gratis · {{count}} venstre",
+    "freeImagesLeft_one": "Du har {{count}} gratis bilder igjen. Ingen betaling nødvendig.",
+    "freeImagesLeft_other": "Du har {{count}} gratis bilder igjen. Ingen betaling nødvendig."
   },
   "digest": {
     "andOthers_one": "{{names}} og {{count}} andre",

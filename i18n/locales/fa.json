@@ -3631,7 +3631,11 @@
     "total": "مجموع",
     "pricing": "در حال قیمت‌گذاری…",
     "payWithDhb": "پرداخت با DHB",
-    "yourDhb": "DHB شما"
+    "yourDhb": "DHB شما",
+    "generateFree_one": "تولید رایگان · {{count}} سمت چپ",
+    "generateFree_other": "تولید رایگان · {{count}} سمت چپ",
+    "freeImagesLeft_one": "شما {{count}} تصویر رایگان دارید. نیازی به پرداخت نیست.",
+    "freeImagesLeft_other": "شما {{count}} تصویر رایگان دیگر دارید. نیازی به پرداخت نیست."
   },
   "digest": {
     "andOthers_one": "{{names}} و {{count}} دیگر",

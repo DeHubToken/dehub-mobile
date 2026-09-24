@@ -3601,7 +3601,11 @@
     "total": "ڪل",
     "pricing": "قيمت جو حساب ٿي رهيو آهي…",
     "payWithDhb": "DHB سان ادا ڪريو",
-    "yourDhb": "توهان جو DHB"
+    "yourDhb": "توهان جو DHB",
+    "generateFree_one": "مفت پيدا ڪريو · {{count}} کاٻي پاسي",
+    "generateFree_other": "مفت پيدا ڪريو · {{count}} کاٻي پاسي",
+    "freeImagesLeft_one": "توهان وٽ {{count}} مفت تصوير ڇڏي وئي آهي. ڪابه ادائيگي جي ضرورت ناهي.",
+    "freeImagesLeft_other": "توهان وٽ {{count}} مفت تصويرون ڇڏي ويون آهن. ڪابه ادائيگي جي ضرورت ناهي."
   },
   "digest": {
     "andOthers_one": "{{names}} ۽ {{count}} ٻيا",

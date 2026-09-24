@@ -3650,7 +3650,11 @@
     "total": "Gesamt",
     "pricing": "Preis wird ermittelt…",
     "payWithDhb": "Mit DHB bezahlen",
-    "yourDhb": "Dein DHB"
+    "yourDhb": "Dein DHB",
+    "generateFree_one": "Kostenlos generieren · {{count}} verbleibend",
+    "generateFree_other": "Kostenlos generieren · {{count}} verbleibend",
+    "freeImagesLeft_one": "Sie haben noch ein freies Bild von {{count}}. Keine Zahlung erforderlich.",
+    "freeImagesLeft_other": "Du hast noch {{count}} kostenlose Bilder übrig. Keine Zahlung erforderlich."
   },
   "digest": {
     "andOthers_one": "{{names}} und {{count}} andere",

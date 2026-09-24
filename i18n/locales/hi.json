@@ -3656,7 +3656,11 @@
     "total": "कुल",
     "pricing": "कीमत तय की जा रही है…",
     "payWithDhb": "DHB से भुगतान करें",
-    "yourDhb": "आपका DHB"
+    "yourDhb": "आपका DHB",
+    "generateFree_one": "मुफ़्त जनरेट करें · {{count}} बाएँ",
+    "generateFree_other": "मुफ़्त जनरेट करें · {{count}} बाएँ",
+    "freeImagesLeft_one": "आपके पास {{count}} मुफ़्त इमेज बची है। किसी भुगतान की ज़रूरत नहीं है।",
+    "freeImagesLeft_other": "आपके पास {{count}} मुफ़्त इमेज बची हैं। किसी भुगतान की ज़रूरत नहीं है।"
   },
   "digest": {
     "andOthers_one": "{{names}} और {{count}} अन्य",

@@ -3619,7 +3619,11 @@
     "total": "სულ",
     "pricing": "ფასის გამოთვლა…",
     "payWithDhb": "გადახდა DHB-ით",
-    "yourDhb": "თქვენი DHB"
+    "yourDhb": "თქვენი DHB",
+    "generateFree_one": "Უფასო გამომუშავება · {{count}} მარცხნივ",
+    "generateFree_other": "Უფასო გამომუშავება · {{count}} მარცხნივ",
+    "freeImagesLeft_one": "Დარჩენილია {{count}} თავისუფალი სურათი. გადახდა არ არის საჭირო.",
+    "freeImagesLeft_other": "Დარჩენილია {{count}} უფასო სურათები. გადახდა არ არის საჭირო."
   },
   "digest": {
     "andOthers_one": "{{names}} და {{count}} სხვა",

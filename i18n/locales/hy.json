@@ -3601,7 +3601,11 @@
     "total": "Ընդամենը",
     "pricing": "Գինը հաշվարկվում է…",
     "payWithDhb": "Վճարել DHB-ով",
-    "yourDhb": "Ձեր DHB"
+    "yourDhb": "Ձեր DHB",
+    "generateFree_one": "Ստեղծել անվճար · {{count}} ձախ",
+    "generateFree_other": "Ստեղծել անվճար · {{count}} ձախ",
+    "freeImagesLeft_one": "Մնացել է {{count}} անվճար պատկեր ։ Վճարում չի պահանջվում ։",
+    "freeImagesLeft_other": "Մնացել են {{count}} անվճար նկարներ ։ Վճարում չի պահանջվում ։"
   },
   "digest": {
     "andOthers_one": "{{names}} և {{count}} այլ",

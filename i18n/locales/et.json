@@ -3601,7 +3601,11 @@
     "total": "Kokku",
     "pricing": "Hinna arvutamine…",
     "payWithDhb": "Maksa DHB-ga",
-    "yourDhb": "Sinu DHB"
+    "yourDhb": "Sinu DHB",
+    "generateFree_one": "Loo tasuta · {{count}} jäänud",
+    "generateFree_other": "Loo tasuta · {{count}} jäänud",
+    "freeImagesLeft_one": "Sul on jäänud {{count}} vaba pilti. Makse pole vajalik.",
+    "freeImagesLeft_other": "Sul on jäänud {{count}} tasuta pilti. Makse pole vajalik."
   },
   "digest": {
     "andOthers_one": "{{names}} ja {{count}} muu",

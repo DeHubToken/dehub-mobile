@@ -3601,7 +3601,11 @@
     "total": "ಒಟ್ಟು",
     "pricing": "ಬೆಲೆ ಲೆಕ್ಕ ಹಾಕಲಾಗುತ್ತಿದೆ…",
     "payWithDhb": "DHB ನಿಂದ ಪಾವತಿಸಿ",
-    "yourDhb": "ನಿಮ್ಮ DHB"
+    "yourDhb": "ನಿಮ್ಮ DHB",
+    "generateFree_one": "ಉಚಿತವಾಗಿ ರಚಿಸಿ · {{count}} ಎಡ",
+    "generateFree_other": "ಉಚಿತವಾಗಿ ರಚಿಸಿ · {{count}} ಎಡ",
+    "freeImagesLeft_one": "ನಿಮ್ಮ ಬಳಿ {{count}} ಉಚಿತ ಚಿತ್ರ ಉಳಿದಿದೆ. ಯಾವುದೇ ಪಾವತಿ ಅಗತ್ಯವಿಲ್ಲ.",
+    "freeImagesLeft_other": "ನೀವು {{count}} ಉಚಿತ ಚಿತ್ರಗಳನ್ನು ಹೊಂದಿದ್ದೀರಿ. ಯಾವುದೇ ಪಾವತಿ ಅಗತ್ಯವಿಲ್ಲ."
   },
   "digest": {
     "andOthers_one": "{{names}} ಮತ್ತು {{count}} ಇತರ",

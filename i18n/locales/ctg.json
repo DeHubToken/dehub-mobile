@@ -3710,7 +3710,11 @@
     "total": "মোট",
     "pricing": "দাম ঠিক গরা যার…",
     "payWithDhb": "DHB দি পেমেন্ট গরন",
-    "yourDhb": "তোঁয়ার DHB"
+    "yourDhb": "তোঁয়ার DHB",
+    "generateFree_one": "ফ্রি জেনারেট কর · {{count}} টা বাকি",
+    "generateFree_other": "ফ্রি জেনারেট কর · {{count}} টা বাকি",
+    "freeImagesLeft_one": "তোর {{count}} টা ফ্রি ইমেজ বাকি আছে। ট্যাকা লাগিবো না।",
+    "freeImagesLeft_other": "তোর {{count}} টা ফ্রি ইমেজ বাকি আছে। ট্যাকা লাগিবো না।"
   },
   "digest": {
     "andOthers_one": "{{names}} এবং {{count}} অন্য",

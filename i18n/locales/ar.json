@@ -3654,7 +3654,11 @@
     "total": "الإجمالي",
     "pricing": "جارٍ تسعير هذا التشغيل…",
     "payWithDhb": "الدفع بـ DHB",
-    "yourDhb": "رصيدك من DHB"
+    "yourDhb": "رصيدك من DHB",
+    "generateFree_one": "توليد مجاني ·{{count}} يسار",
+    "generateFree_other": "توليد مجاني ·{{count}} يسار",
+    "freeImagesLeft_one": "لديك {{count}} صورة مجانية متبقية. لا حاجة للدفع.",
+    "freeImagesLeft_other": "لديك {{count}} صور مجانية متبقية. لا حاجة للدفع."
   },
   "digest": {
     "andOthers_one": "{{names}} و {{count}} أخرى",

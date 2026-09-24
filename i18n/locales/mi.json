@@ -3601,7 +3601,11 @@
     "total": "Tapeke",
     "pricing": "E tatau ana i te utu…",
     "payWithDhb": "Utu mā te DHB",
-    "yourDhb": "Ō DHB"
+    "yourDhb": "Ō DHB",
+    "generateFree_one": "Te whakaputa koreutu · {{count}} mahue",
+    "generateFree_other": "Te whakaputa koreutu · {{count}} mahue",
+    "freeImagesLeft_one": "Kei a koe {{count}} Whakaahua koreutu i mahue. Kaore he utu e hiahiatia ana.",
+    "freeImagesLeft_other": "Kei a koe {{count}} free images mahue. Kaore he utu e hiahiatia ana."
   },
   "digest": {
     "andOthers_one": "{{names}} me {{count}} atu",

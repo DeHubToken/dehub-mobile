@@ -3654,7 +3654,11 @@
     "total": "Total",
     "pricing": "Calcul du prix…",
     "payWithDhb": "Payer en DHB",
-    "yourDhb": "Vos DHB"
+    "yourDhb": "Vos DHB",
+    "generateFree_one": "Générer gratuitement · {{count}} gauche",
+    "generateFree_other": "Générer gratuitement · {{count}} gauche",
+    "freeImagesLeft_one": "Il vous reste {{count}} image libre. Aucun paiement requis.",
+    "freeImagesLeft_other": "Il vous reste {{count}} images gratuites. Aucun paiement requis."
   },
   "digest": {
     "andOthers_one": "{{names}} et {{count}} autres",

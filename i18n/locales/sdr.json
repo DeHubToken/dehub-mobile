@@ -3615,7 +3615,11 @@
     "total": "মোট",
     "pricing": "দাম হিসাব হইছে…",
     "payWithDhb": "DHB দিয়া পেমেন্ট করো",
-    "yourDhb": "তোমার DHB"
+    "yourDhb": "তোমার DHB",
+    "generateFree_one": "تولید رایگان · {{count}} باقی مانده",
+    "generateFree_other": "تولید رایگان · {{count}} باقی مانده",
+    "freeImagesLeft_one": "شما {{count}} تصویر رایگان دیگر دارید. نیازی به پرداخت نیست.",
+    "freeImagesLeft_other": "شما {{count}} تصویر رایگان دیگر دارید. نیازی به پرداخت نیست."
   },
   "digest": {
     "andOthers_one": "{{names}} aur {{count}} doosra",

@@ -3601,7 +3601,11 @@
     "total": "合計",
     "pricing": "正在計算費用…",
     "payWithDhb": "用 DHB 支付",
-    "yourDhb": "你嘅 DHB"
+    "yourDhb": "你嘅 DHB",
+    "generateFree_one": "免費生成 · {{count}} 左",
+    "generateFree_other": "免費生成 · {{count}} 左",
+    "freeImagesLeft_one": "你仲有 {{count}} 免費圖片。唔使畀錢。",
+    "freeImagesLeft_other": "你仲有 {{count}} 免費圖片。唔使畀錢。"
   },
   "digest": {
     "andOthers_one": "{{names}} 同 {{count}} 其他",

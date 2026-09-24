@@ -3601,7 +3601,11 @@
     "total": "Jemi",
     "pricing": "Baha hasaplanýar…",
     "payWithDhb": "DHB bilen töläň",
-    "yourDhb": "Siziň DHB-ňyz"
+    "yourDhb": "Siziň DHB-ňyz",
+    "generateFree_one": "PULSUZ ýaratmak {{count}} çep",
+    "generateFree_other": "PULSUZ ýaratmak {{count}} çep",
+    "freeImagesLeft_one": "Sizde {{count}} pulsuz surat bar. Hiç hili töleg gerek däl.",
+    "freeImagesLeft_other": "Sizde {{count}} pulsuz suratlar bar. Hiç hili töleg gerek däl."
   },
   "digest": {
     "andOthers_one": "{{names}} we {{count}} başgalar",

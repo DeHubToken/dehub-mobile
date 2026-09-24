@@ -3601,7 +3601,11 @@
     "total": "کل",
     "pricing": "قیمت نکالی جا رہی ہے…",
     "payWithDhb": "DHB سے ادائیگی کرو",
-    "yourDhb": "تمہارا DHB"
+    "yourDhb": "تمہارا DHB",
+    "generateFree_one": "مفت بناؤ · {{count}} باقی",
+    "generateFree_other": "مفت بناؤ · {{count}} باقی",
+    "freeImagesLeft_one": "تمارے پاس {{count}} مفت تصویر باقی ہے۔ پیسے دینے کی ضرورت نئیں۔",
+    "freeImagesLeft_other": "تمارے پاس {{count}} مفت تصویراں باقی ہیں۔ پیسے دینے کی ضرورت نئیں۔"
   },
   "liveChat": {
     "deleteMessage": "پیغام حذف کریں",

@@ -3601,7 +3601,11 @@
     "total": "कुल",
     "pricing": "दाम निकालत हे…",
     "payWithDhb": "DHB ले भुगतान करव",
-    "yourDhb": "तोर DHB"
+    "yourDhb": "तोर DHB",
+    "generateFree_one": "मुक्त बनाव {{count}} left",
+    "generateFree_other": "मुक्त बनाव {{count}} left",
+    "freeImagesLeft_one": "आप मन के पास {{count}} free image हे. कोनो भुगतान नी करे जात हवय ।",
+    "freeImagesLeft_other": "आप मन के पास {{count}} FREE Images हे बाएं. कोनो भुगतान नी करे जात हवय ।"
   },
   "digest": {
     "someone": "केकरो",

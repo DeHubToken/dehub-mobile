@@ -3619,7 +3619,11 @@
     "total": "Барлығы",
     "pricing": "Бағасы есептелуде…",
     "payWithDhb": "DHB арқылы төлеу",
-    "yourDhb": "Сіздің DHB"
+    "yourDhb": "Сіздің DHB",
+    "generateFree_one": "Тегін генерациялау · {{count}} сол жақ",
+    "generateFree_other": "Тегін генерациялау · {{count}} сол жақ",
+    "freeImagesLeft_one": "Сізде {{count}} бос кескін қалды. Төлем қажет емес.",
+    "freeImagesLeft_other": "Сізде {{count}} тегін кескіндер қалды. Төлем қажет емес."
   },
   "digest": {
     "andOthers_one": "{{names}} және {{count}} басқа",

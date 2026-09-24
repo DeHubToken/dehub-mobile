@@ -3605,7 +3605,11 @@
     "total": "एकूण",
     "pricing": "किंमत काढत आहे…",
     "payWithDhb": "DHB ने पेमेंट करा",
-    "yourDhb": "तुमचे DHB"
+    "yourDhb": "तुमचे DHB",
+    "generateFree_one": "विनामूल्य व्युत्पन्न करा · {{count}} डावीकडे",
+    "generateFree_other": "विनामूल्य व्युत्पन्न करा · {{count}} डावीकडे",
+    "freeImagesLeft_one": "आपल्याकडे {{count}} विनामूल्य प्रतिमा शिल्लक आहे. पैसे देण्याची गरज नाही.",
+    "freeImagesLeft_other": "आपल्याकडे {{count}} विनामूल्य प्रतिमा शिल्लक आहेत. पैसे देण्याची गरज नाही."
   },
   "digest": {
     "andOthers_one": "{{names}} आणि {{count}} इतर",

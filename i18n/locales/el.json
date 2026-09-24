@@ -3631,7 +3631,11 @@
     "total": "Σύνολο",
     "pricing": "Υπολογισμός κόστους…",
     "payWithDhb": "Πληρωμή με DHB",
-    "yourDhb": "Τα DHB σας"
+    "yourDhb": "Τα DHB σας",
+    "generateFree_one": "Δημιουργήστε δωρεάν · {{count}} αριστερά",
+    "generateFree_other": "Δημιουργήστε δωρεάν · {{count}} αριστερά",
+    "freeImagesLeft_one": "Απομένει {{count}} δωρεάν εικόνα. Δεν απαιτείται πληρωμή.",
+    "freeImagesLeft_other": "Απομένουν {{count}} δωρεάν εικόνες. Δεν απαιτείται πληρωμή."
   },
   "digest": {
     "andOthers_one": "{{names}} και {{count}} άλλα",

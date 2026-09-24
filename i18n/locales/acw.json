@@ -3601,7 +3601,11 @@
     "total": "المجموع",
     "pricing": "نحسب سعر هالتشغيل…",
     "payWithDhb": "ادفع بـ DHB",
-    "yourDhb": "الـ DHB حقك"
+    "yourDhb": "الـ DHB حقك",
+    "generateFree_one": "توليد مجاني · {{count}} متبقي",
+    "generateFree_other": "توليد مجاني · {{count}} متبقي",
+    "freeImagesLeft_one": "لديك {{count}} صورة مجانية متبقية. لا حاجة للدفع.",
+    "freeImagesLeft_other": "لديك {{count}} صور مجانية متبقية. لا حاجة للدفع."
   },
   "digest": {
     "andOthers_one": "{{names}} و {{count}} آخر",

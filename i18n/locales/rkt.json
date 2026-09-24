@@ -3771,7 +3771,11 @@
     "total": "মোট",
     "pricing": "দাম হিসাব হইছে…",
     "payWithDhb": "DHB দিয়া পেমেন্ট করো",
-    "yourDhb": "তোমার DHB"
+    "yourDhb": "তোমার DHB",
+    "generateFree_one": "ফ্রিতে বানাও · {{count}}টা বাকি",
+    "generateFree_other": "ফ্রিতে বানাও · {{count}}টা বাকি",
+    "freeImagesLeft_one": "তোমার {{count}}টা ফ্রি ছবি বাকি আছে। টাকা দেওয়া নাগবে না।",
+    "freeImagesLeft_other": "তোমার {{count}}টা ফ্রি ছবি বাকি আছে। টাকা দেওয়া নাগবে না।"
   },
   "liveChat": {
     "deleteMessage": "বার্তা মুছেন",

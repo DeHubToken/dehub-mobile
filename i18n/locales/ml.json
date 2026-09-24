@@ -3601,7 +3601,11 @@
     "total": "ആകെ",
     "pricing": "വില കണക്കാക്കുന്നു…",
     "payWithDhb": "DHB ഉപയോഗിച്ച് പണമടയ്ക്കുക",
-    "yourDhb": "നിങ്ങളുടെ DHB"
+    "yourDhb": "നിങ്ങളുടെ DHB",
+    "generateFree_one": "സൗജന്യമായി ജനറേറ്റ് ചെയ്യുക · {{count}} ഇടത്",
+    "generateFree_other": "സൗജന്യമായി ജനറേറ്റ് ചെയ്യുക · {{count}} ഇടത്",
+    "freeImagesLeft_one": "നിങ്ങൾക്ക് {{count}} സ്വതന്ത്ര ഇമേജ് അവശേഷിക്കുന്നു. പണമടയ്ക്കൽ ആവശ്യമില്ല.",
+    "freeImagesLeft_other": "നിങ്ങൾക്ക് {{count}} സ്വതന്ത്ര ഇമേജുകൾ അവശേഷിക്കുന്നു. പണമടയ്ക്കൽ ആവശ്യമില്ല."
   },
   "digest": {
     "andOthers_one": "{{names}}, {{count}} മറ്റുള്ളവ",

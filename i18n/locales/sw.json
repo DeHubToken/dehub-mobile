@@ -3602,7 +3602,11 @@
     "total": "Jumla",
     "pricing": "Inakokotoa bei…",
     "payWithDhb": "Lipa kwa DHB",
-    "yourDhb": "DHB yako"
+    "yourDhb": "DHB yako",
+    "generateFree_one": "Zalisha bila malipo · {{count}} kushoto",
+    "generateFree_other": "Zalisha bila malipo · {{count}} kushoto",
+    "freeImagesLeft_one": "Umebakiza picha ya {{count}} bila malipo. Hakuna malipo yanayohitajika.",
+    "freeImagesLeft_other": "Umebakiza picha za {{count}} bila malipo. Hakuna malipo yanayohitajika."
   },
   "digest": {
     "andOthers_one": "{{names}} na {{count}}@ nyingine",
