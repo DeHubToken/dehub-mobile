@@ -2815,7 +2815,11 @@
     "vaultReleaseTitle": "{{handle}}-y boşatmakmy?",
     "vaultReleaseBody": "Ol ýene-de köpçülige dolanýar we islendik adam alyp biler. Ony yzyna alyp bolmaýar, ony yzyna almak bolsa täze eýesiniň isleýän bahasy bolar.",
     "swapHintKept": "Siz @ {{handle}} saklaýarsyňyz — bu siziň ulanýan adlaryňyza geçýär we siz ony ýene-de geýip ýa-da satyp bilersiňiz. Siziň postlaryňyz, yzyna eýerenleriňiz we çuwallaryňyz hiç hili täsir etmeýär.",
-    "swapHintNoChange": "Siziň postlaryňyz, yzyna eýerenleriňiz we çuwallaryňyz hiç hili täsir etmeýär."
+    "swapHintNoChange": "Siziň postlaryňyz, yzyna eýerenleriňiz we çuwallaryňyz hiç hili täsir etmeýär.",
+    "addedToYourUsernames": "Ulanyjy atlaryňyza goşulýar",
+    "boughtNameGoesToVault": "Siz @{{current}} bolup galýarsyňyz. @{{handle}} ulanyjy atlaryňyza goşulýar we islän wagtyňyz oňa geçip bilersiňiz.",
+    "youAreNow": "Indi siz @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} indi ulanyjy atlaryňyzda"
   },
   "stores": {
     "subtitle": "DeHub jemgyýetiniň önümlerini tapyň",

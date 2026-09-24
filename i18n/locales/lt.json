@@ -2833,7 +2833,11 @@
     "vaultReleaseTitle": "Atlaisvinti @{{handle}}?",
     "vaultReleaseBody": "Jis grįš į bendrą sąrašą ir jį galės pasiimti bet kas. Atšaukti nebegalima, o norint jį atpirkti, reikės mokėti tiek, kiek paprašys naujasis savininkas.",
     "swapHintKept": "Jūs pasiliekate @{{handle}} – jis patenka į jūsų vartotojo vardus, ir jūs galite jį vėl naudoti arba parduoti vėliau. Įrašai, sekėjai ir jūsų piniginė lieka nepaliesti.",
-    "swapHintNoChange": "Įrašai, sekėjai ir jūsų piniginė lieka nepaliesti."
+    "swapHintNoChange": "Įrašai, sekėjai ir jūsų piniginė lieka nepaliesti.",
+    "addedToYourUsernames": "Pridedamas prie jūsų naudotojo vardų",
+    "boughtNameGoesToVault": "Liekate @{{current}}. @{{handle}} patenka į jūsų naudotojo vardus, ir galite į jį persijungti bet kada.",
+    "youAreNow": "Dabar esate @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} dabar yra tarp jūsų naudotojo vardų"
   },
   "stores": {
     "subtitle": "Atraskite DeHub bendruomenės produktus",

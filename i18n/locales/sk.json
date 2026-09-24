@@ -2943,7 +2943,11 @@
     "vaultReleaseTitle": "Uvoľniť @{{handle}}?",
     "vaultReleaseBody": "Vráti sa do fondu a môže si ho vziať ktokoľvek. Nedá sa to vziať späť a jeho spätný odkúpenie by stálo toľko, koľko si vypýta nový majiteľ.",
     "swapHintKept": "Zostávate @{{handle}} — presunie sa do vašich používateľských mien a môžete ju nosiť znova alebo ju neskôr predať. Príspevky, sledujúci a vaša peňaženka zostávajú nedotknuté.",
-    "swapHintNoChange": "Príspevky, sledujúci a vaša peňaženka zostávajú nedotknuté."
+    "swapHintNoChange": "Príspevky, sledujúci a vaša peňaženka zostávajú nedotknuté.",
+    "addedToYourUsernames": "Pridá sa k vašim používateľským menám",
+    "boughtNameGoesToVault": "Zostávate @{{current}}. @{{handle}} pribudne k vašim používateľským menám a môžete naň kedykoľvek prepnúť.",
+    "youAreNow": "Teraz ste @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} je teraz medzi vašimi používateľskými menami"
   },
   "stores": {
     "subtitle": "Objav produkty od komunity DeHub",

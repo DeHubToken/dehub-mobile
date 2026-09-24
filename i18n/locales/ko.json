@@ -2854,7 +2854,11 @@
     "vaultReleaseTitle": "@{{handle}}? 해제",
     "vaultReleaseBody": "풀로 돌아가며 누구나 가져갈 수 있습니다. 되돌릴 수 없으며, 다시 구매하려면 새 소유자가 요구하는 가격을 지불해야 합니다.",
     "swapHintKept": "@ {{handle}} 을 (를) 보관하면 사용자 이름으로 이동하고 나중에 다시 착용하거나 판매할 수 있습니다. 게시물, 팔로워 및 지갑의 손길이 닿지 않았습니다.",
-    "swapHintNoChange": "게시물, 팔로워 및 지갑의 손길이 닿지 않았습니다."
+    "swapHintNoChange": "게시물, 팔로워 및 지갑의 손길이 닿지 않았습니다.",
+    "addedToYourUsernames": "내 사용자 이름에 추가됩니다",
+    "boughtNameGoesToVault": "계속 @{{current}}(으)로 남습니다. @{{handle}}은(는) 내 사용자 이름에 추가되며 언제든 전환할 수 있습니다.",
+    "youAreNow": "이제 @{{handle}}입니다",
+    "boughtToVaultToast": "@{{handle}}이(가) 내 사용자 이름에 추가되었습니다"
   },
   "stores": {
     "subtitle": "DeHub 커뮤니티의 상품을 둘러보세요",

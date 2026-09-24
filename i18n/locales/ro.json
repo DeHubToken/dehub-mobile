@@ -2833,7 +2833,11 @@
     "vaultReleaseTitle": "Eliberează @{{handle}}?",
     "vaultReleaseBody": "Se întoarce în pool și oricine o poate prelua. Nu există posibilitatea de anulare, iar răscumpărarea ei ar costa cât cere noul proprietar.",
     "swapHintKept": "Tu păstrezi @{{handle}} — acesta se mută în numele tale de utilizator și îl poți folosi din nou sau îl poți vinde mai târziu. Postările, urmăritorii și portofelul tău rămân neschimbate.",
-    "swapHintNoChange": "Postările, urmăritorii și portofelul tău rămân neschimbate."
+    "swapHintNoChange": "Postările, urmăritorii și portofelul tău rămân neschimbate.",
+    "addedToYourUsernames": "Se adaugă la numele tale de utilizator",
+    "boughtNameGoesToVault": "Rămâi @{{current}}. @{{handle}} intră în numele tale de utilizator și poți trece pe el oricând vrei.",
+    "youAreNow": "Acum ești @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} este acum în numele tale de utilizator"
   },
   "stores": {
     "subtitle": "Descoperă produse de la comunitatea DeHub",

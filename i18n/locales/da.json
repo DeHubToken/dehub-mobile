@@ -2839,7 +2839,11 @@
     "vaultReleaseTitle": "Frigiv @{{handle}}?",
     "vaultReleaseBody": "Det ryger tilbage i puljen, og enhver kan tage det. Der er ingen fortrydelsesret, og hvis du vil købe det tilbage, vil det koste, hvad den nye ejer beder om.",
     "swapHintKept": "Du beholder @{{handle}} – det flyttes til dine brugernavne, og du kan bruge det igen eller sælge det senere. Opslag, følgere og din pung forbliver urørte.",
-    "swapHintNoChange": "Opslag, følgere og din pung forbliver urørte."
+    "swapHintNoChange": "Opslag, følgere og din pung forbliver urørte.",
+    "addedToYourUsernames": "Føjes til dine brugernavne",
+    "boughtNameGoesToVault": "Du forbliver @{{current}}. @{{handle}} kommer ind under dine brugernavne, og du kan skifte til det når som helst.",
+    "youAreNow": "Du er nu @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} er nu blandt dine brugernavne"
   },
   "stores": {
     "subtitle": "Opdag produkter fra DeHub-fællesskabet",

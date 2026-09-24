@@ -2819,7 +2819,11 @@
     "vaultReleaseTitle": "Release @{{handle}}?",
     "vaultReleaseBody": "Ọ laghachiri na ọdọ mmiri ahụ ma onye ọ bụla nwere ike iburu ya. Enweghị ihe ọzọ a ga-eme, ịzụta ya azụ ga-efu ihe ọ bụla onye nwe ya ọhụrụ chọrọ.",
     "swapHintKept": "Ị ga-ejigide @{{handle}} — ọ ga-abanye na aha njirimara gị, ma ị nwere ike iyi ya ọzọ ma ọ bụ ree ya ma emechaa. Akwụkwọ, ndị na-eso ụzọ na akpa ego gị agaghị emetụ aka.",
-    "swapHintNoChange": "Akwụkwọ, ndị na-eso ụzọ na akpa ego gị agaghị emetụ aka."
+    "swapHintNoChange": "Akwụkwọ, ndị na-eso ụzọ na akpa ego gị agaghị emetụ aka.",
+    "addedToYourUsernames": "A ga-agbakwunye ya na aha njirimara gị",
+    "boughtNameGoesToVault": "Ị ka bụ @{{current}}. @{{handle}} na-abanye n'aha njirimara gị, ị nwere ike ịgbanwee gaa na ya mgbe ọ bụla ịchọrọ.",
+    "youAreNow": "Ị bụ @{{handle}} ugbu a",
+    "boughtToVaultToast": "@{{handle}} dị ugbu a n'aha njirimara gị"
   },
   "stores": {
     "subtitle": "Chọpụta ngwaahịa sitere n'obodo DeHub",

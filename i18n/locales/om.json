@@ -2862,7 +2862,11 @@
     "vaultReleaseTitle": "{{handle}} gad lakkisuu?",
     "vaultReleaseBody": "Bishaanitti deebi'ee namni kamiyyuu fudhachuu danda'a. Deebi'uu hin qabu, fi isaa deebifachuun gatii isa bilchinaan bitatuu barbaaduu siif jira.",
     "swapHintKept": "Ati @{{handle}} qabachaa jiraachuu dandeessa — mata duree kee keessa galuu fi yoo fedde deebistee itti fayyadamuu ykn gurguruu dandeessa. Barreessitoonni, hordoftoonni fi saanduqni kee hin tuqaman.",
-    "swapHintNoChange": "Barreessitoonni, hordoftoonni fi saanduqni kee hin tuqaman."
+    "swapHintNoChange": "Barreessitoonni, hordoftoonni fi saanduqni kee hin tuqaman.",
+    "addedToYourUsernames": "Maqaa fayyadamtootaa kee irratti dabalama",
+    "boughtNameGoesToVault": "Ati @{{current}} taatee turta. @{{handle}} maqaa fayyadamtootaa kee keessa gala, yeroo barbaadde gara isaatti jijjiiruu dandeessa.",
+    "youAreNow": "Amma ati @{{handle}} dha",
+    "boughtToVaultToast": "@{{handle}} amma maqaa fayyadamtootaa kee keessa jira"
   },
   "stores": {
     "subtitle": "Oomishaalee hawaasa DeHub irraa argadhu",

@@ -2835,7 +2835,11 @@
     "vaultReleaseTitle": "Lepaskan @{{handle}}?",
     "vaultReleaseBody": "Ini kembali ke kumpulan dan siapa pun dapat mengambilnya. Tidak ada pembatalan, dan membelinya kembali akan memakan biaya berapa pun yang diminta pemilik baru.",
     "swapHintKept": "Anda tetap menggunakan @{{handle}} — ini akan berpindah ke nama pengguna Anda, dan Anda bisa memakainya lagi atau menjualnya nanti. Postingan, pengikut, dan dompet Anda tidak tersentuh.",
-    "swapHintNoChange": "Postingan, pengikut, dan dompet Anda tidak tersentuh."
+    "swapHintNoChange": "Postingan, pengikut, dan dompet Anda tidak tersentuh.",
+    "addedToYourUsernames": "Ditambahkan ke nama pengguna Anda",
+    "boughtNameGoesToVault": "Anda tetap @{{current}}. @{{handle}} masuk ke nama pengguna Anda, dan Anda bisa beralih kapan saja.",
+    "youAreNow": "Anda sekarang @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} sekarang ada di nama pengguna Anda"
   },
   "stores": {
     "subtitle": "Temukan produk dari komunitas DeHub",

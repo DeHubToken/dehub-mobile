@@ -2690,7 +2690,11 @@
     "vaultSell": "Sell",
     "vaultEditListing": "Edit listing",
     "vaultRelease": "Release",
-    "vaultReleaseTitle": "Release @{{handle}}?"
+    "vaultReleaseTitle": "Release @{{handle}}?",
+    "addedToYourUsernames": "E go enter your usernames",
+    "boughtNameGoesToVault": "You go still be @{{current}}. @{{handle}} go enter your usernames, and you fit switch to am anytime wey you want.",
+    "youAreNow": "You don be @{{handle}} now",
+    "boughtToVaultToast": "@{{handle}} don dey your usernames now"
   },
   "stores": {
     "subtitle": "Discover products from di DeHub community",

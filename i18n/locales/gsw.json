@@ -2823,7 +2823,11 @@
     "vaultReleaseTitle": "Loslasse @{{handle}}?",
     "vaultReleaseBody": "Er gaht zrugg i Pool und jeder chan ihn näh. Es git kei Rückgängig, und wenn du ihn zrugg chaufsch, chostet er, was de neue Besitzer verlangt.",
     "swapHintKept": "Du behaltsch @{{handle}} – er gaht i din Username, und du chasch ihn wieder trage oder spöter verkaufe. Posts, Follower und din Wallet bliibe unberührt.",
-    "swapHintNoChange": "Posts, Follower und din Wallet bliibe unberührt."
+    "swapHintNoChange": "Posts, Follower und din Wallet bliibe unberührt.",
+    "addedToYourUsernames": "Wird zu dine Benutzernäme hinzuegfüegt",
+    "boughtNameGoesToVault": "Du bliibsch @{{current}}. @{{handle}} chunnt zu dine Benutzernäme, und du chasch jederziit druf wächsle.",
+    "youAreNow": "Du bisch jetzt @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} isch jetzt bi dine Benutzernäme"
   },
   "stores": {
     "subtitle": "Entdeck Produkt us de DeHub-Community",

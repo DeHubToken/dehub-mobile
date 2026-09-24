@@ -23,7 +23,24 @@ import { toastError, toastSuccess } from '../libs/toast';
 import {
   usernameOffersService,
   type MyUsernameOffers,
+  type UsernameOffer,
 } from '../services/username-offers.service';
+
+/**
+ * Write the server's answer into the list straight away, so the row flips
+ * (Accept → Withdraw acceptance) the moment the call returns instead of after
+ * the refetch. Without it a second tap on a still-visible Accept was possible.
+ */
+function applyOffer(qc: ReturnType<typeof useQueryClient>, offer: UsernameOffer) {
+  qc.setQueryData<MyUsernameOffers>(['username-offers-mine'], (prev) =>
+    prev
+      ? {
+          incoming: prev.incoming.map((o) => (o.id === offer.id ? { ...o, ...offer } : o)),
+          outgoing: prev.outgoing.map((o) => (o.id === offer.id ? { ...o, ...offer } : o)),
+        }
+      : prev,
+  );
+}
 
 /** Offers touch two surfaces, and answering one changes both. */
 function invalidateMarket(qc: ReturnType<typeof useQueryClient>) {
@@ -42,8 +59,10 @@ export function useMyUsernameOffers(enabled: boolean) {
     queryKey: ['username-offers-mine'],
     queryFn: () => usernameOffersService.mine(),
     enabled,
-    staleTime: 30 * 1000,
-    refetchInterval: focused ? 30 * 1000 : false,
+    // The other side acts from another device: an owner accepting has to reach
+    // the bidder's screen quickly, and a paid offer has to leave it.
+    staleTime: 5 * 1000,
+    refetchInterval: focused ? 10 * 1000 : false,
   });
 }
 
@@ -75,6 +94,7 @@ export function useAcceptUsernameOffer() {
     mutationFn: ({ offerId, replacementUsername }: { offerId: string; replacementUsername: string }) =>
       usernameOffersService.accept(offerId, { replacementUsername }),
     onSuccess: (offer) => {
+      applyOffer(qc, offer);
       invalidateMarket(qc);
       // Said as a next step rather than as a completion: the owner still holds
       // the handle, and will until the buyer actually pays for it.
@@ -88,7 +108,8 @@ export function useDeclineUsernameOffer() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: usernameOffersService.decline,
-    onSuccess: () => {
+    onSuccess: (offer) => {
+      applyOffer(qc, offer);
       invalidateMarket(qc);
       toastSuccess('Offer declined');
     },
@@ -100,7 +121,8 @@ export function useWithdrawUsernameOffer() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: usernameOffersService.withdraw,
-    onSuccess: () => {
+    onSuccess: (offer) => {
+      applyOffer(qc, offer);
       invalidateMarket(qc);
       toastSuccess('Offer withdrawn');
     },

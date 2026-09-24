@@ -2854,7 +2854,11 @@
     "vaultReleaseTitle": "Freigeben @{{handle}}?",
     "vaultReleaseBody": "Er kehrt in den Pool zurück und jeder kann ihn übernehmen. Es gibt kein Zurück, und wenn Sie ihn zurückkaufen, kostet er, was der neue Besitzer verlangt.",
     "swapHintKept": "Du behältst @{{handle}} — es wird in deine Benutzernamen verschoben und du kannst es wieder tragen oder später verkaufen. Posts, Follower und dein Wallet bleiben unberührt.",
-    "swapHintNoChange": "Posts, Follower und dein Wallet bleiben unberührt."
+    "swapHintNoChange": "Posts, Follower und dein Wallet bleiben unberührt.",
+    "addedToYourUsernames": "Wird deinen Nutzernamen hinzugefügt",
+    "boughtNameGoesToVault": "Du bleibst @{{current}}. @{{handle}} landet bei deinen Nutzernamen, und du kannst jederzeit dazu wechseln.",
+    "youAreNow": "Du bist jetzt @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} ist jetzt bei deinen Nutzernamen"
   },
   "stores": {
     "subtitle": "Entdecke Produkte aus der DeHub-Community",

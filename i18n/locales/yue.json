@@ -2833,7 +2833,11 @@
     "vaultReleaseTitle": "釋放 @{{handle}}?",
     "vaultReleaseBody": "它將回到池中，任何人都可以取走它。無法撤銷，並且買回它將花費新主人要求的任何價格。",
     "swapHintKept": "你保留 @{{handle}} — 佢會移到你嘅用戶名入面，你可以再次使用或者之後再賣。帖子、追隨者同埋你嘅錢包都唔會受影響。",
-    "swapHintNoChange": "帖子、追隨者同埋你嘅錢包都唔會受影響。"
+    "swapHintNoChange": "帖子、追隨者同埋你嘅錢包都唔會受影響。",
+    "addedToYourUsernames": "加入你嘅用戶名",
+    "boughtNameGoesToVault": "你仍然係 @{{current}}。@{{handle}} 會加入你嘅用戶名，你想幾時轉都得。",
+    "youAreNow": "你而家係 @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} 已經喺你嘅用戶名入面"
   },
   "stores": {
     "subtitle": "發掘 DeHub 社群嘅產品",

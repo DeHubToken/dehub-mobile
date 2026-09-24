@@ -2792,7 +2792,11 @@
     "vaultReleaseTitle": "Release @{{handle}}?",
     "vaultReleaseBody": "A be taga kɔlɔn kɔnɔ ani mɔgɔ o mɔgɔ be se k'a ta. O kama, a tun man nɔgɔ ka wari caaman sɔrɔ.",
     "swapHintKept": "I be {{handle}} — a be don i tɔgɔ la, i be se k'a don tugun wala k'a feere kɔfɛ. I ka lɛtɛrɛw, i ka kalandenw ani i ka warifaniw ma maga mɔgɔ si la.",
-    "swapHintNoChange": "I ka lɛtɛrɛw, i ka kalandenw ani i ka warifaniw ma maga mɔgɔ si la."
+    "swapHintNoChange": "I ka lɛtɛrɛw, i ka kalandenw ani i ka warifaniw ma maga mɔgɔ si la.",
+    "addedToYourUsernames": "A bɛ fara i tɔgɔw kan",
+    "boughtNameGoesToVault": "I bɛ to @{{current}} ye. @{{handle}} bɛ don i tɔgɔw la, i b'a sɔrɔ ka yɛlɛma ka taa a ma waati o waati.",
+    "youAreNow": "I ye @{{handle}} ye sisan",
+    "boughtToVaultToast": "@{{handle}} bɛ i tɔgɔw la sisan"
   },
   "stores": {
     "subtitle": "DeHub jɛkulu ka fɛnw ɲini",

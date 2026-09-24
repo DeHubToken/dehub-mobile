@@ -2834,7 +2834,11 @@
     "vaultReleaseTitle": "Lësho @{{handle}}?",
     "vaultReleaseBody": "Ai kthehet në pishinë dhe kushdo mund ta marrë. Nuk ka kthim pas, dhe blerja e tij përsëri do të kushtojë aq sa kërkon pronari i ri.",
     "swapHintKept": "Ju mbani @{{handle}} — ai lëviz në emrat tuaj të përdoruesve, dhe mund ta vishni përsëri ose ta shisni më vonë. Postimet, ndjekësit dhe kuletën tuaj nuk preken.",
-    "swapHintNoChange": "Postimet, ndjekësit dhe kuletën tuaj nuk preken."
+    "swapHintNoChange": "Postimet, ndjekësit dhe kuletën tuaj nuk preken.",
+    "addedToYourUsernames": "Shtohet te emrat e tu të përdoruesit",
+    "boughtNameGoesToVault": "Mbetesh @{{current}}. @{{handle}} shkon te emrat e tu të përdoruesit dhe mund të kalosh tek ai kur të duash.",
+    "youAreNow": "Tani je @{{handle}}",
+    "boughtToVaultToast": "@{{handle}} tani është te emrat e tu të përdoruesit"
   },
   "stores": {
     "subtitle": "Zbulo produkte nga komuniteti DeHub",

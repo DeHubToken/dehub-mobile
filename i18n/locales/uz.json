@@ -2847,7 +2847,11 @@
     "vaultListedCannotWear": "Ushbu nomdan foydalanishdan oldin ro&#39;yxatni olib tashlang.",
     "vaultReleaseBody": "U yana hovuzga qaytariladi va uni istalgan kishi olib ketishi mumkin. Uni qaytarib olishning iloji yo&#39;q va uni qaytarib sotib olish yangi egasi so&#39;ragan narxga tushadi.",
     "swapHintKept": "Siz @{{handle}} ni saqlab qolasiz — u sizning foydalanuvchi nomlaringizga o'tadi va siz uni yana ishlatishingiz yoki keyinroq sotishingiz mumkin. Postlar, obunachilar va hamyoningiz tegilmagan qoladi.",
-    "swapHintNoChange": "Postlar, obunachilar va hamyoningiz tegilmagan qoladi."
+    "swapHintNoChange": "Postlar, obunachilar va hamyoningiz tegilmagan qoladi.",
+    "addedToYourUsernames": "Foydalanuvchi nomlaringizga qo‘shiladi",
+    "boughtNameGoesToVault": "Siz @{{current}} bo‘lib qolasiz. @{{handle}} foydalanuvchi nomlaringizga qo‘shiladi va xohlagan vaqtda unga o‘tishingiz mumkin.",
+    "youAreNow": "Endi siz @{{handle}}siz",
+    "boughtToVaultToast": "@{{handle}} endi foydalanuvchi nomlaringizda"
   },
   "stores": {
     "subtitle": "DeHub hamjamiyati mahsulotlarini kashf eting",
