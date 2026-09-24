@@ -74,15 +74,24 @@ within 7/255.
 2. **Designs across devices.** Both apps keep projects on the device today, so
    the same design cannot yet move between them. Sync the snapshot to a table
    keyed by wallet and upload pictures to the `editor-assets` bucket the web's
-   `cloudMedia.ts` already uses; `mediaId` becomes the asset id. Backend changes
-   go through the Lovable agent.
-3. **Short video.** Add video clips to the same page (`<video>` in the WebView,
-   fed from a local file), a trim strip for the one-track case, and the web's
-   entrance/exit animations and transitions. Export through the WebView's
-   `MediaRecorder` on the canvas stream first; fall back to a server render if
-   devices struggle.
-4. **Web-only features after that:** templates, free-asset library, AI
-   generation panel, multi-track timeline.
+   `cloudMedia.ts` already uses; `mediaId` becomes the asset id.
+3. **Video (shipped).** Videos and sounds are copied into editor storage as
+   picked and handed to the canvas page in 1 MB base64 pieces, each acked
+   (`mediaBegin` / `mediaChunk` / `mediaEnd`), where they play from blob URLs
+   so the canvas stays exportable. The page runs the playback clock and reports
+   the playhead (`time`, `ended`); transitions are the web's `computeRenderOps`
+   ported into the page. `libs/editor/timeline.ts` holds the edits (videos back
+   to back with ripple trims, reorder by drag, split, speed, transitions) and
+   `components/editor/Timeline.tsx` the strip: fixed playhead, drag to scrub,
+   pinch to zoom, handles to trim, hold to move. Export is the web's exporter
+   inside the page: WebCodecs H.264 + AAC into mp4-muxer (jsdelivr), frame by
+   frame; phones without WebCodecs audio (iOS before 26) record the timeline in
+   real time with MediaRecorder. The file comes back in acked pieces and is
+   written with the expo-file-system File handle. An export with no progress
+   for 45 s is abandoned (the page pauses encoders when the app is in the
+   background).
+4. **Next:** captions and the AI's timing and audio ops on the phone, pages,
+   multi-select.
 
 ## Things to know
 

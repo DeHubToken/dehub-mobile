@@ -46,6 +46,8 @@ export type AppStackParamList = {
     initialText?: string;
     /** Pictures to open the composer with, e.g. an export from the editor. */
     images?: { uri: string; width: number; height: number; mimeType?: string }[];
+    /** A video to open the composer with, e.g. an export from the editor. Duration in ms, like the picker's. */
+    video?: { uri: string; width: number; height: number; duration?: number; mimeType?: string; fileName?: string };
   } | undefined;
   [ScreenNames.VideoPlayer]: {
     videoId?: string;
