@@ -3662,7 +3662,8 @@
     "unpinTitle": "إلغاء تثبيت الرسالة",
     "unpinConfirm": "هل تريد إزالة هذه الرسالة المثبتة ؟",
     "unpinMessage": "إلغاء تثبيت الرسالة",
-    "pinMessage": "رسالة مثبتة"
+    "pinMessage": "رسالة مثبتة",
+    "jumpToLatest": "الانتقال إلى آخر الرسائل"
   },
   "promptFeed": {
     "headline": "عايز تشوف إيه؟",
@@ -5475,7 +5476,8 @@
     "streamPausedReconnecting": "تم إيقاف البث مؤقتًا. جارٍ إعادة الاتصال...",
     "streamWillEnd": "سينتهي البث إذا لم تتم إعادة الاتصال",
     "endStreamConfirmBody": "سيؤدي الإغلاق الآن إلى إنهاء البث المباشر لجميع المشاهدين. يمكنك متابعة البث أو إنهائه بشكل دائم.",
-    "endStreamConfirmTitle": "إنهاء البث؟"
+    "endStreamConfirmTitle": "إنهاء البث؟",
+    "cameraReconnecting": "مرحبًا بعودتك — تم إعادة توصيل الكاميرا"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

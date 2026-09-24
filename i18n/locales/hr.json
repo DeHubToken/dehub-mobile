@@ -3663,7 +3663,8 @@
     "unpinTitle": "Otkvači poruku",
     "unpinConfirm": "Želite li ukloniti ovu prikvačenu poruku?",
     "pinMessage": "PIN poruka",
-    "unpinMessage": "Otkvači poruku"
+    "unpinMessage": "Otkvači poruku",
+    "jumpToLatest": "Prijeđi na najnovije poruke"
   },
   "promptFeed": {
     "headline": "Što želiš gledati?",
@@ -5477,7 +5478,8 @@
     "streamPausedReconnecting": "Vaš je stream pauziran. Ponovno povezivanje...",
     "streamWillEnd": "Prijenos će završiti ako se ponovno ne povežete",
     "endStreamConfirmTitle": "Završi stream?",
-    "endStreamConfirmBody": "Zatvaranje sada završit će tvoj prijenos uživo za sve gledatelje. Možete nastaviti s streamingom ili ga trajno prekinuti."
+    "endStreamConfirmBody": "Zatvaranje sada završit će tvoj prijenos uživo za sve gledatelje. Možete nastaviti s streamingom ili ga trajno prekinuti.",
+    "cameraReconnecting": "Dobro došli natrag — vaša se kamera ponovno povezuje"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

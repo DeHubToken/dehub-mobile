@@ -3554,7 +3554,8 @@
     "anon": "بێ ناو",
     "messageDeleted": "پەیام سڕایەوە",
     "pinned": "دانراوە",
-    "user": "بەکارهێنەر"
+    "user": "بەکارهێنەر",
+    "jumpToLatest": "Here peyamên herî dawî"
   },
   "promptFeed": {
     "headline": "Tu dixwazî çi bibînî?",
@@ -5249,7 +5250,8 @@
     "failedToUpdateSettings": "هەڵەی نوێکردنەوەی ڕێکخستنەکان",
     "networkLostReconnecting": "هێڵی نێو تۆڕ ون بوو - پەخش وەستاوە. دووبارە دەبەسترێتەوە…",
     "openingViewer": "کردنەوەی بینەر...",
-    "cameraPermissionRequired": "پێویستە ڕێگەپێدانی کامێرا بدرێت"
+    "cameraPermissionRequired": "پێویستە ڕێگەپێدانی کامێرا بدرێت",
+    "cameraReconnecting": "Bi xêr hatî — kameraya te ji nû ve tê girêdan"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

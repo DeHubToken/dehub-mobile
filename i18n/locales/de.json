@@ -3712,7 +3712,8 @@
     "unpinTitle": "Nachricht entfernen",
     "unpinConfirm": "Diese angeheftete Nachricht entfernen?",
     "pinMessage": "PIN-Nachricht",
-    "unpinMessage": "Nachricht lösen"
+    "unpinMessage": "Nachricht lösen",
+    "jumpToLatest": "Zu den neuesten Nachrichten springen"
   },
   "promptFeed": {
     "headline": "Was möchtest du sehen?",
@@ -5525,7 +5526,8 @@
     "streamPausedReconnecting": "Ihr Stream ist angehalten. Wiederverbindung wird hergestellt...",
     "streamWillEnd": "Der Stream endet, wenn er nicht wieder verbunden wird",
     "endStreamConfirmTitle": "Stream beenden?",
-    "endStreamConfirmBody": "Wenn Sie jetzt schließen, wird Ihr Live-Stream für alle Zuschauer beendet. Sie können das Streaming fortsetzen oder es dauerhaft beenden."
+    "endStreamConfirmBody": "Wenn Sie jetzt schließen, wird Ihr Live-Stream für alle Zuschauer beendet. Sie können das Streaming fortsetzen oder es dauerhaft beenden.",
+    "cameraReconnecting": "Willkommen zurück — Ihre Kamera verbindet sich wieder"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

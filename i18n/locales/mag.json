@@ -3656,7 +3656,8 @@
     "unpinTitle": "पिन हटा दीं",
     "unpinConfirm": "ई पिन कइल संदेश हटाईं?",
     "pinMessage": "पेपैल होल्डिंग्स, मैसेजिंग",
-    "unpinMessage": "अनंत संदेश, अनंत संदेश,"
+    "unpinMessage": "अनंत संदेश, अनंत संदेश,",
+    "jumpToLatest": "Latest संग्राहलय"
   },
   "promptFeed": {
     "headline": "अहाँ की देखल चाहैत छी?",
@@ -5460,7 +5461,8 @@
     "streamWillEnd": "प्रवाह समाप्त हो जायेगी, चाहे वो अनचाहे हो जाएं...",
     "endStreamConfirmTitle": "हल्दीघाटी के अंत?",
     "endStreamConfirmBody": "अब लॉगिन करे से आपके लाइव स्ट्रीम को सभी दर्शकों के लिए बंद कर देंगे । प्रभाव के लिए संभावित, आगे और पीछे, माना जा सकता है ।",
-    "scheduledAt": "{{date}} {{time}} पर"
+    "scheduledAt": "{{date}} {{time}} पर",
+    "cameraReconnecting": "Welcome Back — आपका Whatsapp नंबर कैसे पता करे"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

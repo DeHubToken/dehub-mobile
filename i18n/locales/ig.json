@@ -3663,7 +3663,8 @@
     "unpinTitle": "Unpin Ozi",
     "unpinConfirm": "Wepụ ozi a pinned?",
     "pinMessage": "Ozi PIN",
-    "unpinMessage": "Wepụ ozi"
+    "unpinMessage": "Wepụ ozi",
+    "jumpToLatest": "Gaa n 'ozi ndị ọfụụ"
   },
   "promptFeed": {
     "headline": "Gịnị ka ị chọrọ ịhụ?",
@@ -5475,7 +5476,8 @@
     "streamPausedReconnecting": "Akwụsịla iyi gị. Ijikọtagharịa...",
     "streamWillEnd": "Iyi ahụ ga-akwụsị ma ọ bụrụ na ejikọtaghị ya ọzọ",
     "endStreamConfirmTitle": "Ọgwụgwụ Stream?",
-    "endStreamConfirmBody": "Imechi ugbu a ga-akwụsị iyi ndụ gị maka ndị niile na-ekiri ya. Ị nwere ike ịga n 'ihu gụgharia ma ọ bụ kwụsị ya kpamkpam."
+    "endStreamConfirmBody": "Imechi ugbu a ga-akwụsị iyi ndụ gị maka ndị niile na-ekiri ya. Ị nwere ike ịga n 'ihu gụgharia ma ọ bụ kwụsị ya kpamkpam.",
+    "cameraReconnecting": "Mmadụ Bịa azụ — gị igwefoto na-reconcting"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

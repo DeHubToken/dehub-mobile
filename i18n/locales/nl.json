@@ -3850,7 +3850,8 @@
     "unpinTitle": "Bericht losmaken",
     "unpinConfirm": "Dit vastgezette bericht verwijderen?",
     "pinMessage": "PIN-bericht",
-    "unpinMessage": "Bericht losmaken"
+    "unpinMessage": "Bericht losmaken",
+    "jumpToLatest": "Ga naar laatste berichten"
   },
   "promptFeed": {
     "headline": "Wat wil je zien?",
@@ -5664,7 +5665,8 @@
     "streamPausedReconnecting": "Je stream is gepauzeerd. Opnieuw verbinding maken...",
     "streamWillEnd": "De stream wordt beëindigd als deze niet opnieuw wordt verbonden",
     "endStreamConfirmTitle": "Stroom beëindigen?",
-    "endStreamConfirmBody": "Als je nu sluit, wordt je livestream voor alle kijkers beëindigd. Je kunt doorgaan met streamen of het permanent beëindigen."
+    "endStreamConfirmBody": "Als je nu sluit, wordt je livestream voor alle kijkers beëindigd. Je kunt doorgaan met streamen of het permanent beëindigen.",
+    "cameraReconnecting": "Welkom terug — uw camera maakt opnieuw verbinding"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

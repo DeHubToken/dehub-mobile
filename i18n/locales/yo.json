@@ -3664,7 +3664,8 @@
     "unpinTitle": "Ifiranṣẹ Unpin",
     "unpinConfirm": "Yọ àtẹ̀jísẹ́ yìí kúrò?",
     "pinMessage": "Ìfiránṣẹ́ Pin",
-    "unpinMessage": "Ifiranṣẹ Unpin"
+    "unpinMessage": "Ifiranṣẹ Unpin",
+    "jumpToLatest": "Jabọ si awọn ifiranṣẹ tuntun"
   },
   "promptFeed": {
     "headline": "Kí ni o fẹ́ rí?",
@@ -5474,7 +5475,8 @@
     "streamPausedReconnecting": "Odò rẹ ti dá dúró. Ìsopọ̀ padà...",
     "streamWillEnd": "Sisan yoo pari ti a ko ba tun sopọ mọ",
     "endStreamConfirmTitle": "End Stream?",
-    "endStreamConfirmBody": "Titi di pipade bayi yoo pari ṣiṣan ifiwe rẹ fun gbogbo awọn oluwo. O lè tẹ̀síwájú síi lórí ẹ̀rọ ayélujára tàbí kí o fòpin sí i títí láéláé."
+    "endStreamConfirmBody": "Titi di pipade bayi yoo pari ṣiṣan ifiwe rẹ fun gbogbo awọn oluwo. O lè tẹ̀síwájú síi lórí ẹ̀rọ ayélujára tàbí kí o fòpin sí i títí láéláé.",
+    "cameraReconnecting": "Kaabọ pada — kamẹra rẹ n tun sopọ"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

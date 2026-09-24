@@ -3771,7 +3771,8 @@
     "unpinTitle": "Zrušiť pripnutie správy",
     "unpinConfirm": "Odstrániť túto pripnutú správu?",
     "pinMessage": "Správa s pripináčikom",
-    "unpinMessage": "Zrušiť pripnutie správy"
+    "unpinMessage": "Zrušiť pripnutie správy",
+    "jumpToLatest": "Prejsť na najnovšie správy"
   },
   "promptFeed": {
     "headline": "Čo chcete vidieť?",
@@ -5585,7 +5586,8 @@
     "streamPausedReconnecting": "Váš stream je pozastavený. Znovu sa pripája...",
     "streamWillEnd": "Stream sa ukončí, ak sa znova nepripojí",
     "endStreamConfirmTitle": "Ukončiť stream?",
-    "endStreamConfirmBody": "Zatvorením teraz ukončíte svoj živý prenos pre všetkých divákov. Môžete pokračovať v streamovaní alebo ho natrvalo ukončiť."
+    "endStreamConfirmBody": "Zatvorením teraz ukončíte svoj živý prenos pre všetkých divákov. Môžete pokračovať v streamovaní alebo ho natrvalo ukončiť.",
+    "cameraReconnecting": "Vitajte späť — fotoaparát sa znova pripája"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

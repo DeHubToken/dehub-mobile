@@ -3711,7 +3711,8 @@
     "unpinTitle": "I - unpin ang Mensahe",
     "unpinConfirm": "Alisin ang naka - pin na mensaheng ito?",
     "pinMessage": "Mensahe ng pin",
-    "unpinMessage": "I - unpin ang mensahe"
+    "unpinMessage": "I - unpin ang mensahe",
+    "jumpToLatest": "Pumunta sa mga pinakabagong mensahe"
   },
   "promptFeed": {
     "headline": "Ano ang gusto mong makita?",
@@ -5522,7 +5523,8 @@
     "streamPausedReconnecting": "Naka - pause ang iyong stream. Muling kumokonekta...",
     "streamWillEnd": "Magtatapos ang stream kung hindi muling nakakonekta",
     "endStreamConfirmTitle": "Tapusin ang Stream?",
-    "endStreamConfirmBody": "Ang pagsasara ngayon ay magtatapos sa iyong live stream para sa lahat ng mga manonood. Maaari mong ipagpatuloy ang streaming o tapusin ito nang permanente."
+    "endStreamConfirmBody": "Ang pagsasara ngayon ay magtatapos sa iyong live stream para sa lahat ng mga manonood. Maaari mong ipagpatuloy ang streaming o tapusin ito nang permanente.",
+    "cameraReconnecting": "Maligayang pagbabalik — muling kumokonekta ang iyong camera"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

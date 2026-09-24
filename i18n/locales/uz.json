@@ -3675,7 +3675,8 @@
     "unpinConfirm": "Ushbu qadalgan xabar olib tashlansinmi?",
     "pinMessage": "Xabarni qadash",
     "unpinMessage": "Xabarni olib tashlash",
-    "reply": "Ответить"
+    "reply": "Ответить",
+    "jumpToLatest": "So&#39;nggi xabarlarga o&#39;tish"
   },
   "promptFeed": {
     "headline": "Nimani ko‘rmoqchisiz?",
@@ -5481,7 +5482,8 @@
     "streamPausedReconnecting": "Translatsiyangiz to'xtatildi. Qayta ulanmoqda...",
     "streamWillEnd": "Qayta ulanmagan bo'lsangiz, translatsiya tugaydi",
     "endStreamConfirmTitle": "Strim tugallansinmi?",
-    "endStreamConfirmBody": "Hozir yopsangiz, jonli efiringiz barcha tomoshabinlar uchun tugaydi. Siz translyatsiyani davom ettirishingiz yoki butunlay tugatishingiz mumkin."
+    "endStreamConfirmBody": "Hozir yopsangiz, jonli efiringiz barcha tomoshabinlar uchun tugaydi. Siz translyatsiyani davom ettirishingiz yoki butunlay tugatishingiz mumkin.",
+    "cameraReconnecting": "Xush kelibsiz — kamerangiz qayta ulanmoqda"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -3661,7 +3661,8 @@
     "unpinConfirm": "कोई प्राप्त संदेश खोलना?",
     "pinMessage": "पिनं सन्देशः",
     "unpinMessage": "अनपिन सन्देश",
-    "pinnedMessageN": "उपयोगकर्ता समीक्षा - #{{n}}"
+    "pinnedMessageN": "उपयोगकर्ता समीक्षा - #{{n}}",
+    "jumpToLatest": "\"फलकम्ःLatest messages\" सम्बद्धानि पृष्ठानि"
   },
   "promptFeed": {
     "headline": "भवान् किं द्रष्टुम् इच्छति?",
@@ -5469,7 +5470,8 @@
     "streamPausedReconnecting": "भवतः सम्पर्कः अवरुद्धः अस्ति_भवतः संपर्कः अवरुद्धः अस्ति_",
     "streamWillEnd": "प्रवाहनं समाप्तं यदि पुनरेव न संशयः ॥",
     "endStreamConfirmTitle": "प्रवाहनं समाप्तम्?",
-    "endStreamConfirmBody": "अधुना तु सर्वेषामेवं सर्वेषामेवं समाप्यते ॥ यूयं चलितुं शक्नुथ अथवा नित्यं चलितुं शक्नुथ ।"
+    "endStreamConfirmBody": "अधुना तु सर्वेषामेवं सर्वेषामेवं समाप्यते ॥ यूयं चलितुं शक्नुथ अथवा नित्यं चलितुं शक्नुथ ।",
+    "cameraReconnecting": "सुस्वागतम... - विकिपीडिया"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

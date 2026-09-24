@@ -3663,7 +3663,8 @@
     "unpinTitle": "Fjern festing av melding",
     "unpinConfirm": "Fjerne denne festede meldingen?",
     "pinMessage": "Fest melding",
-    "unpinMessage": "Fjern festing av melding"
+    "unpinMessage": "Fjern festing av melding",
+    "jumpToLatest": "Hopp til siste meldinger"
   },
   "promptFeed": {
     "headline": "Hva vil du se?",
@@ -5466,7 +5467,8 @@
     "streamPausedReconnecting": "Strømmen din er satt på pause. Kobler til igjen ...",
     "streamWillEnd": "Strømmen avsluttes hvis den ikke kobles til igjen",
     "endStreamConfirmTitle": "Avslutte strømming?",
-    "endStreamConfirmBody": "Å avslutte nå vil avslutte direktesendingen din for alle seere. Du kan fortsette sendingen eller avslutte den permanent."
+    "endStreamConfirmBody": "Å avslutte nå vil avslutte direktesendingen din for alle seere. Du kan fortsette sendingen eller avslutte den permanent.",
+    "cameraReconnecting": "Velkommen tilbake – kameraet ditt kobler seg til igjen"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

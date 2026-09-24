@@ -3712,7 +3712,8 @@
     "unpinTitle": "Mesajın Sabitlemesini Kaldır",
     "unpinConfirm": "Bu sabitlenmiş mesaj kaldırılsın mı?",
     "pinMessage": "Pin mesajı",
-    "unpinMessage": "Mesajın sabitlemesini kaldır"
+    "unpinMessage": "Mesajın sabitlemesini kaldır",
+    "jumpToLatest": "En son mesajlara atla"
   },
   "promptFeed": {
     "headline": "Ne görmek istiyorsun?",
@@ -5525,7 +5526,8 @@
     "streamPausedReconnecting": "Akışınız duraklatıldı. Yeniden bağlanılıyor...",
     "streamWillEnd": "Yeniden bağlanılmazsa akış sona erecek",
     "endStreamConfirmTitle": "Akış Sonlandırılsın mı",
-    "endStreamConfirmBody": "Şimdi kapanış, tüm izleyiciler için canlı akışınızı sonlandıracaktır. Akışa devam edebilir veya kalıcı olarak sonlandırabilirsiniz."
+    "endStreamConfirmBody": "Şimdi kapanış, tüm izleyiciler için canlı akışınızı sonlandıracaktır. Akışa devam edebilir veya kalıcı olarak sonlandırabilirsiniz.",
+    "cameraReconnecting": "Tekrar hoş geldiniz — kameranız yeniden bağlanıyor"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

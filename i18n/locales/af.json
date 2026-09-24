@@ -3696,7 +3696,8 @@
     "unpinTitle": "Ontknop Boodskap",
     "unpinConfirm": "Verwyder hierdie vasgepen boodskap?",
     "pinMessage": "PIN-boodskap",
-    "unpinMessage": "Ontknop boodskap"
+    "unpinMessage": "Ontknop boodskap",
+    "jumpToLatest": "Spring na die nuutste boodskappe"
   },
   "promptFeed": {
     "headline": "Wat wil jy sien?",
@@ -5510,7 +5511,8 @@
     "streamPausedReconnecting": "Jou stroom is onderbreek. Herkoppel...",
     "streamWillEnd": "Stroom sal eindig as dit nie heraansluit word nie",
     "endStreamConfirmTitle": "Einde Stroom?",
-    "endStreamConfirmBody": "Deur nou te sluit, sal u regstreekse stroom vir alle kykers beëindig word. Jy kan voortgaan om te stroom of eindig dit permanent."
+    "endStreamConfirmBody": "Deur nou te sluit, sal u regstreekse stroom vir alle kykers beëindig word. Jy kan voortgaan om te stroom of eindig dit permanent.",
+    "cameraReconnecting": "Welkom terug — jou kamera is heraansluiting"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

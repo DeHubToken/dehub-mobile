@@ -3663,7 +3663,8 @@
     "unpinTitle": "Mesajı Bağla",
     "unpinConfirm": "Bu sancaqlanmış mesaj silinsin?",
     "pinMessage": "PİN kod mesajı",
-    "unpinMessage": "Mesajı ləğv et"
+    "unpinMessage": "Mesajı ləğv et",
+    "jumpToLatest": "Ən son mesajlara keç"
   },
   "promptFeed": {
     "headline": "Nə görmək istəyirsən?",
@@ -5472,7 +5473,8 @@
     "streamPausedReconnecting": "Axınınıza fasilə verilib. Yenidən qoşulur...",
     "streamWillEnd": "Yenidən qoşulmasa, axın bitəcək",
     "endStreamConfirmTitle": "Axın bitir?",
-    "endStreamConfirmBody": "İndi bağlanma bütün izləyicilər üçün canlı yayımınızı bitirəcək. Axına davam edə və ya həmişəlik bitirə bilərsiniz."
+    "endStreamConfirmBody": "İndi bağlanma bütün izləyicilər üçün canlı yayımınızı bitirəcək. Axına davam edə və ya həmişəlik bitirə bilərsiniz.",
+    "cameraReconnecting": "Yenidən xoş gəldiniz — kameranız yenidən qoşulur"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

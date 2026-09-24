@@ -3663,7 +3663,8 @@
     "unpinTitle": "Atspraust ziņojumu",
     "unpinConfirm": "Vai noņemt šo piesprausto ziņojumu?",
     "pinMessage": "Piespraust ziņojumu",
-    "unpinMessage": "Atspraust ziņojumu"
+    "unpinMessage": "Atspraust ziņojumu",
+    "jumpToLatest": "Pāriet uz jaunākajiem ziņojumiem"
   },
   "promptFeed": {
     "headline": "Ko tu vēlies redzēt?",
@@ -5476,7 +5477,8 @@
     "streamPausedReconnecting": "Jūsu straume ir apturēta. Notiek atkārtota savienojuma izveide...",
     "streamWillEnd": "Ja netiks izveidots atkārtots savienojums, straume tiks pārtraukta",
     "endStreamConfirmTitle": "Vai beigt straumēšanu?",
-    "endStreamConfirmBody": "Slēgšana tūlīt pārtrauks jūsu tiešraidi visiem skatītājiem. Varat turpināt straumēšanu vai pārtraukt to neatgriezeniski."
+    "endStreamConfirmBody": "Slēgšana tūlīt pārtrauks jūsu tiešraidi visiem skatītājiem. Varat turpināt straumēšanu vai pārtraukt to neatgriezeniski.",
+    "cameraReconnecting": "Apsveicam ar atgriešanos — notiek atkārtota kameras savienojuma izveide"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

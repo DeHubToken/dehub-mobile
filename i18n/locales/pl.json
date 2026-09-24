@@ -3663,7 +3663,8 @@
     "unpinTitle": "Odepnij wiadomość",
     "unpinConfirm": "Usunąć tę przypiętą wiadomość?",
     "pinMessage": "Wiadomość PIN",
-    "unpinMessage": "Odepnij wiadomość"
+    "unpinMessage": "Odepnij wiadomość",
+    "jumpToLatest": "Przejdź do najnowszych wiadomości"
   },
   "promptFeed": {
     "headline": "Co chcesz oglądać?",
@@ -5476,7 +5477,8 @@
     "streamPausedReconnecting": "Strumień został wstrzymany. Trwa ponowne łączenie...",
     "streamWillEnd": "Strumień zakończy się, jeśli nie zostanie ponownie połączony",
     "endStreamConfirmTitle": "Zakończyć strumień?",
-    "endStreamConfirmBody": "Zamknięcie teraz zakończy transmisję na żywo dla wszystkich widzów. Możesz kontynuować przesyłanie strumieniowe lub zakończyć je na stałe."
+    "endStreamConfirmBody": "Zamknięcie teraz zakończy transmisję na żywo dla wszystkich widzów. Możesz kontynuować przesyłanie strumieniowe lub zakończyć je na stałe.",
+    "cameraReconnecting": "Witamy ponownie — kamera ponownie się łączy"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

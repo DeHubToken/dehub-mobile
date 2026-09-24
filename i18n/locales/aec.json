@@ -3661,7 +3661,8 @@
     "unpinTitle": "إلغاء تثبيت الرسالة",
     "unpinConfirm": "هل تريد إزالة هذه الرسالة المثبتة؟",
     "pinMessage": "ثَبِّت الرِّسَالَة",
-    "unpinMessage": "اِفْكُك تَثْبِيت الرِّسَالَة"
+    "unpinMessage": "اِفْكُك تَثْبِيت الرِّسَالَة",
+    "jumpToLatest": "انزل لأخر رسالة"
   },
   "promptFeed": {
     "headline": "عايز تشوف إيه؟",
@@ -5474,7 +5475,8 @@
     "streamPausedReconnecting": "تم إيقاف البث مؤقتًا. جاري إعادة الاتصال...",
     "streamWillEnd": "سينتهي البث إذا لم يتم إعادة الاتصال",
     "endStreamConfirmTitle": "إنهاء البث؟",
-    "endStreamConfirmBody": "الإغلاق الآن سينهي بثك المباشر لجميع المشاهدين. يمكنك الاستمرار في البث أو إنهائه بشكل دائم."
+    "endStreamConfirmBody": "الإغلاق الآن سينهي بثك المباشر لجميع المشاهدين. يمكنك الاستمرار في البث أو إنهائه بشكل دائم.",
+    "cameraReconnecting": "أهلاً بيك تاني — الكاميرا بتاعتك بترجع تتصل"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",
