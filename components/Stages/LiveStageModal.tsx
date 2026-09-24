@@ -7,7 +7,7 @@ import {
   ScrollView,
   Animated,
   Share,
-  Dimensions,
+  useWindowDimensions,
   Image,
   StatusBar,
   TextInput,
@@ -30,14 +30,13 @@ import { toastError, toastSuccess } from "../../libs";
 import { useTranslation } from "react-i18next";
 import { confirmEndStage } from "./confirmEndStage";
 
-const { width: SW, height: SH } = Dimensions.get("window");
-
 /**
  * Ceiling for a shared screen inside the sheet. A 16:9 box off the full width
  * is fine held upright, but the same box on a phone turned landscape is taller
- * than the sheet itself and would hand the entire room over to it.
+ * than the sheet itself and would hand the entire room over to it. Takes the
+ * live window height, so it follows rotation, split-screen and folds.
  */
-const SCREEN_SHARE_MAX_H = Math.round(SH * 0.4);
+const screenShareMaxH = (windowHeight: number) => Math.round(windowHeight * 0.4);
 
 const REACTIONS = ["👍", "👎", "🔥", "💩", "🚀", "🎉", "🥶", "❤️", "👏"];
 
@@ -49,6 +48,7 @@ interface FloatingEmojiProps {
 }
 
 const FloatingEmoji: React.FC<FloatingEmojiProps> = ({ reaction, onDone }) => {
+  const { width: SW, height: SH } = useWindowDimensions();
   const translateY = useRef(new Animated.Value(0)).current;
   const opacity = useRef(new Animated.Value(1)).current;
   const scale = useRef(new Animated.Value(0.5)).current;
@@ -98,6 +98,7 @@ interface SpeakerCardProps {
 
 const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaking, onRemove }) => {
   const { t } = useTranslation();
+  const { width: SW } = useWindowDimensions();
   const name = participant.username || `${participant.wallet_address.slice(0, 6)}...`;
   const isParticipantHost = participant.role === "host";
   const speakingAnim = useRef(new Animated.Value(1)).current;
@@ -241,6 +242,7 @@ const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) =
 // ── LiveStageModal ─────────────────────────────────────────────────────────
 
 const LiveStageModal: React.FC = () => {
+  const { height: windowHeight } = useWindowDimensions();
   const {
     isModalOpen,
     initialModalView,
@@ -538,7 +540,7 @@ const LiveStageModal: React.FC = () => {
               when nobody is — this app can watch a share but never send one. */}
           <StageScreenShare
             sharerName={currentSpace.host_username}
-            maxHeight={SCREEN_SHARE_MAX_H}
+            maxHeight={screenShareMaxH(windowHeight)}
           />
 
           {/* Speakers grid */}

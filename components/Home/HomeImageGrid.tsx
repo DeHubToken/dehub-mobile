@@ -4,7 +4,7 @@ import {
   View,
   FlatList,
   TouchableOpacity,
-  Dimensions,
+  useWindowDimensions,
   StyleSheet,
   Text,
   NativeSyntheticEvent,
@@ -58,19 +58,19 @@ interface HomeImageGridProps {
 // Animated wrapper so a worklet onScroll runs on the UI thread; cast keeps FlatList generics.
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const GRID_GAP = 2;
 const GRID_PADDING = 16;
-const GRID_WIDTH = SCREEN_WIDTH - GRID_PADDING;
-const SMALL_SIZE = (GRID_WIDTH - GRID_GAP * 2) / 3;
-const BIG_SIZE = SMALL_SIZE * 2 + GRID_GAP;
 
-const ROW_HEIGHTS = [
-  BIG_SIZE + GRID_GAP,
-  BIG_SIZE + GRID_GAP,
-  SMALL_SIZE + GRID_GAP,
-];
-const PATTERN_HEIGHT = ROW_HEIGHTS[0] + ROW_HEIGHTS[1] + ROW_HEIGHTS[2];
+// Tile sizes come from the live window width (useWindowDimensions), so
+// split-screen and unfolding re-flow the grid instead of keeping the width
+// the app started with.
+const gridMetrics = (screenWidth: number) => {
+  const small = (screenWidth - GRID_PADDING - GRID_GAP * 2) / 3;
+  const big = small * 2 + GRID_GAP;
+  const rowHeights = [big + GRID_GAP, big + GRID_GAP, small + GRID_GAP];
+  return { small, big, rowHeights, patternHeight: rowHeights[0] + rowHeights[1] + rowHeights[2] };
+};
+type GridMetrics = ReturnType<typeof gridMetrics>;
 
 interface GridItemProps {
   item: UnifiedFeedItem;
@@ -150,10 +150,12 @@ interface GridRowProps {
   row: GridRowData;
   data: UnifiedFeedItem[];
   onItemPress: (index: number) => void;
+  m: GridMetrics;
 }
 
-const GridRow = memo<GridRowProps>(({ row, data, onItemPress }) => {
+const GridRow = memo<GridRowProps>(({ row, data, onItemPress, m }) => {
   const { rowType, startIndex } = row;
+  const { small: SMALL_SIZE, big: BIG_SIZE } = m;
   const a = data[startIndex];
   const b = data[startIndex + 1];
   const c = data[startIndex + 2];
@@ -191,6 +193,7 @@ const GridRow = memo<GridRowProps>(({ row, data, onItemPress }) => {
 
 const GridSkeleton: React.FC = () => {
   const { isMinimal } = useAppTheme();
+  const { small: SMALL_SIZE, big: BIG_SIZE } = gridMetrics(useWindowDimensions().width);
   const cell = isMinimal ? [styles.skeletonItem, styles.minimalSkeletonItem] : styles.skeletonItem;
   return (
     <View style={{ opacity: 0.6 }}>
@@ -221,14 +224,14 @@ const GridSkeleton: React.FC = () => {
   );
 };
 
-const getGridItemLayout = (_data: any, index: number) => {
+const getGridItemLayout = (m: GridMetrics, index: number) => {
   const patternGroup = Math.floor(index / 3);
   const rowInPattern = index % 3;
   const offset =
-    patternGroup * PATTERN_HEIGHT +
-    (rowInPattern >= 1 ? ROW_HEIGHTS[0] : 0) +
-    (rowInPattern >= 2 ? ROW_HEIGHTS[1] : 0);
-  return { length: ROW_HEIGHTS[rowInPattern], offset, index };
+    patternGroup * m.patternHeight +
+    (rowInPattern >= 1 ? m.rowHeights[0] : 0) +
+    (rowInPattern >= 2 ? m.rowHeights[1] : 0);
+  return { length: m.rowHeights[rowInPattern], offset, index };
 };
 
 const HomeImageGrid: React.FC<HomeImageGridProps> = ({
@@ -246,6 +249,8 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   const { t } = useTranslation();
   const [refreshing, setRefreshing] = useState(false);
   const { isMinimal } = useAppTheme();
+  const { width: screenWidth } = useWindowDimensions();
+  const metrics = useMemo(() => gridMetrics(screenWidth), [screenWidth]);
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
 
@@ -362,9 +367,13 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
 
   const renderGridRow = useCallback(
     ({ item: row }: { item: GridRowData }) => (
-      <GridRow row={row} data={items} onItemPress={handleGridItemPress} />
+      <GridRow row={row} data={items} onItemPress={handleGridItemPress} m={metrics} />
     ),
-    [items, handleGridItemPress],
+    [items, handleGridItemPress, metrics],
+  );
+  const itemLayout = useCallback(
+    (_data: any, index: number) => getGridItemLayout(metrics, index),
+    [metrics],
   );
 
   const keyExtractor = useCallback((item: GridRowData) => item.key, []);
@@ -405,7 +414,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         data={gridRows}
         keyExtractor={keyExtractor}
         renderItem={renderGridRow}
-        getItemLayout={getGridItemLayout}
+        getItemLayout={itemLayout}
         ListHeaderComponent={listHeader}
         // Reserve room for the floating nav pill; without it the last grid row
         // is stuck underneath it.

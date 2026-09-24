@@ -16,7 +16,7 @@ import SheetDismissHandle from "../ui/SheetDismissHandle";
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
-  Dimensions,
+  useWindowDimensions,
   KeyboardAvoidingView,
   Modal,
   ScrollView,
@@ -41,8 +41,6 @@ import { toastError } from '../../libs/toast';
 import { createLogger } from '../../libs/logger';
 
 const log = createLogger('MusicConfirmSheet');
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
-const SHEET_HEIGHT = SCREEN_HEIGHT * 0.86;
 
 export interface MusicParams {
   title: string;
@@ -109,6 +107,8 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
   onConfirm,
 }) => {
   const insets = useSafeAreaInsets();
+  const { height: screenHeight } = useWindowDimensions();
+  const sheetHeight = screenHeight * 0.86;
   const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [lyrics, setLyrics] = useState('');
@@ -116,7 +116,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
   const [voiceGender, setVoiceGender] = useState<MusicParams['voiceGender']>('auto');
   const [isGeneratingLyrics, setIsGeneratingLyrics] = useState(false);
 
-  const translateY = useSharedValue(SHEET_HEIGHT);
+  const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
 
@@ -132,7 +132,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
       backdropOpacity.value = withTiming(1, { duration: 200 });
     } else {
       translateY.value = withTiming(
-        SHEET_HEIGHT,
+        sheetHeight,
         { duration: 220, easing: Easing.in(Easing.cubic) },
         () => runOnJS(setIsFullyClosed)(true),
       );
@@ -143,12 +143,12 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
 
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(
-      SHEET_HEIGHT,
+      sheetHeight,
       { duration: 220, easing: Easing.in(Easing.cubic) },
       () => runOnJS(onClose)(),
     );
     backdropOpacity.value = withTiming(0, { duration: 180 });
-  }, [onClose, translateY, backdropOpacity]);
+  }, [onClose, translateY, backdropOpacity, sheetHeight]);
 
   const sheetStyle = useAnimatedStyle(() => ({ transform: [{ translateY: translateY.value }] }));
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropOpacity.value }));
@@ -192,7 +192,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
         style={s.keyboardWrap}
         pointerEvents="box-none"
       >
-        <Animated.View style={[s.sheet, { paddingBottom: insets.bottom + 12 }, sheetStyle]}>
+        <Animated.View style={[s.sheet, { maxHeight: sheetHeight, paddingBottom: insets.bottom + 12 }, sheetStyle]}>
           <View style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <SheetDismissHandle onClose={closeSheet} style={s.handleWrap}>
@@ -302,7 +302,6 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
 const s = StyleSheet.create({
   keyboardWrap: { flex: 1, justifyContent: 'flex-end' },
   sheet: {
-    maxHeight: SHEET_HEIGHT,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: 'hidden',

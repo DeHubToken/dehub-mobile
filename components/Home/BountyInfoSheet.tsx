@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Modal,
   Pressable,
-  Dimensions,
+  useWindowDimensions,
   StyleSheet,
   Platform,
   Image,
@@ -38,8 +38,6 @@ import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext
 import { writeContractAA } from "../../libs/aa.write";
 
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
-const SHEET_MAX_HEIGHT = SCREEN_HEIGHT * 0.65;
 
 const BOUNTY_TYPE_VIEWER = 0;
 const BOUNTY_TYPE_COMMENTOR = 1;
@@ -81,6 +79,8 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
   onBountyClaimed,
 }) => {
   const insets = useSafeAreaInsets();
+  const { height: screenHeight } = useWindowDimensions();
+  const SHEET_MAX_HEIGHT = screenHeight * 0.65;
   const user = useUser();
   const { isSignedIn } = useAuthState();
   const { requireAuth, switchChain } = useAuthActions();
@@ -178,7 +178,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
       () => runOnJS(onClose)(),
     );
     backdropOpacity.value = withTiming(0, { duration: 180 });
-  }, [onClose, txPending]);
+  }, [onClose, txPending, SHEET_MAX_HEIGHT]);
 
   const panGesture = Gesture.Pan()
     .onUpdate((e) => {

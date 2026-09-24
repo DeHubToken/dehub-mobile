@@ -6,7 +6,7 @@ import {
   DeviceEventEmitter,
   Text,
   TouchableOpacity,
-  Dimensions,
+  useWindowDimensions,
   Pressable,
   StyleSheet,
   type LayoutChangeEvent,
@@ -126,12 +126,11 @@ import env from "../../config/env";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import type { AIPostContext } from "../../services/ai.service";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 // Pre-measurement fallback only. The gallery measures its own box on layout
 // (handleGalleryLayout) because the true content width is the screen minus the
 // feed list's padding (8/side) *and* the card's own (12/side) — a hardcoded
 // guess drifted 8px per page here before, which desynced paging from the dots.
-const IMAGE_WIDTH = SCREEN_WIDTH - 40;
+const imageWidthFor = (screenWidth: number) => screenWidth - 40;
 // The single image gets its real width up front: screen minus the list's
 // padding (8/side), the card's padding (12/side) and its 1px border. Left to
 // measure itself, every card mounted at IMAGE_WIDTH and then shrank by 2px
@@ -139,7 +138,7 @@ const IMAGE_WIDTH = SCREEN_WIDTH - 40;
 // expo-image re-decoding the picture for the new size (traced: 143 image
 // views created on a fling, 149 resize re-renders). At 120Hz that was a
 // frame per card.
-const SINGLE_IMAGE_WIDTH = SCREEN_WIDTH - 42;
+const singleImageWidthFor = (screenWidth: number) => screenWidth - 42;
 // Width, in points, of the thumbnail a locked post blurs. 20px of blur on a
 // 96px-wide image reads exactly like 20px of blur on the full one.
 const LOCKED_PREVIEW_WIDTH = 32;
@@ -221,6 +220,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { isSignedIn } = useAuthState();
+  // Live window width, so split-screen and unfolding resize the card instead
+  // of keeping the width the app started with.
+  const { width: SCREEN_WIDTH } = useWindowDimensions();
+  const IMAGE_WIDTH = imageWidthFor(SCREEN_WIDTH);
+  const SINGLE_IMAGE_WIDTH = singleImageWidthFor(SCREEN_WIDTH);
 
   // Deep Current is the one power spent on somebody ELSE's post, so it is the
   // one row that belongs in the non-owner half of the options menu.
@@ -312,7 +316,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     const listWidth = e.nativeEvent.layout.width - 2 * minimalGutter;
     const next = Math.max(0, Math.round((SCREEN_WIDTH - listWidth) / 2));
     if (Math.abs(next - minimalGutter) > 1) setMinimalGutter(next);
-  }, [minimalGutter]);
+  }, [minimalGutter, SCREEN_WIDTH]);
 
   const [replacementImages, setReplacementImages] = useState<{ tokenId: string; imageUrls: string[] } | null>(null);
   // Only the owner can replace a post's images, so only the owner's own card
@@ -345,7 +349,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (rawImageUrls.length > 0) return buildFeedImageUrls(rawImageUrls, IMAGE_WIDTH);
     const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "", IMAGE_WIDTH);
     return single ? [single] : [];
-  }, [item, rawImageUrls]);
+  }, [item, rawImageUrls, IMAGE_WIDTH]);
   // A locked post shows its picture blurred. Blurring a full-width image
   // costs the same decode and upload as showing it; blurring a thumbnail
   // looks identical under a 20px blur and is a fraction of the work. It also
@@ -411,7 +415,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return getImageUrl(rawThumb, IMAGE_WIDTH);
     }
     return "";
-  }, [item, stream, isLive, isVideo, isShort, tokenId]);
+  }, [item, stream, isLive, isVideo, isShort, tokenId, IMAGE_WIDTH]);
 
   const [failedLiveThumbnail, setFailedLiveThumbnail] = useState<string | null>(null);
   const hasThumb = typeof thumbnail === "string" && thumbnail.trim().length > 0

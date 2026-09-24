@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, Pressable, Dimensions, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
@@ -10,11 +10,18 @@ import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { useAppTheme } from "../../context/ThemeContext";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const GRID_GAP = 4;
 const GRID_PADDING = 16;
-const CARD_WIDTH = (SCREEN_WIDTH - GRID_PADDING - GRID_GAP) / 2;
-const CARD_HEIGHT = CARD_WIDTH * (16 / 9);
+
+/**
+ * Card size from the live window width, so split-screen and unfolding re-flow
+ * the grid instead of keeping the width the app started with.
+ */
+const useShortsCardSize = () => {
+  const { width: screenWidth } = useWindowDimensions();
+  const width = (screenWidth - GRID_PADDING - GRID_GAP) / 2;
+  return { width, height: width * (16 / 9) };
+};
 const AUTOPLAY_DELAY = 250;
 
 interface ShortsGridCardProps {
@@ -117,6 +124,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   const tokenId = item.tokenId ?? item.id;
   const mediaKey = String(tokenId);
   const { isMinimal } = useAppTheme();
+  const { width: CARD_WIDTH, height: CARD_HEIGHT } = useShortsCardSize();
 
   // Resolve a raw API path (e.g. "shorts/123.jpg") or full URL to a CDN URL,
   // sized to the card rather than fetched at full resolution — this is a poster
@@ -133,7 +141,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
       getShortsThumbnailUrl(tokenId, CARD_WIDTH) ||
       ""
     );
-  }, [item.imageUrl, item.thumbnailUrl, tokenId]);
+  }, [item.imageUrl, item.thumbnailUrl, tokenId, CARD_WIDTH]);
 
   const avatarUri = useMemo(
     () => getAvatarUrl(item.minterUser?.avatarImageUrl || item.minterAvatarUrl),
@@ -175,7 +183,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 
   return (
     // Minimal: the cell behind a loading poster is black, not a grey box.
-    <Pressable onPress={handlePress} style={[styles.card, isMinimal && styles.minimalCard]}>
+    <Pressable onPress={handlePress} style={[styles.card, { width: CARD_WIDTH, height: CARD_HEIGHT }, isMinimal && styles.minimalCard]}>
       {/* Thumbnail base layer — always rendered */}
       <Image
         source={thumbnailUri}
@@ -240,12 +248,10 @@ const ShortsGridCard = memo(ShortsGridCardComponent, (prev, next) =>
 );
 
 export default ShortsGridCard;
-export { CARD_WIDTH, CARD_HEIGHT, GRID_GAP };
+export { useShortsCardSize, GRID_GAP };
 
 const styles = StyleSheet.create({
   card: {
-    width: CARD_WIDTH,
-    height: CARD_HEIGHT,
     borderRadius: 12,
     overflow: "hidden",
     backgroundColor: "#1A1A1A",

@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   FlatList,
-  Dimensions,
+  useWindowDimensions,
   ActivityIndicator,
   BackHandler,
   ListRenderItemInfo,
@@ -42,23 +42,27 @@ import { tabPressIntentOf } from "../navigation/tabPressIntent";
 
 const fallbackCategories = ["All"];
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const GRID_GAP = 2;
 
 // Grid layout constants — pattern repeats every 3 rows / 9 items:
 // Row 0: 1 big (2×2) + 2 small stacked = 3 items  (height = BIG_SIZE)
 // Row 1: 2 small stacked + 1 big (2×2) = 3 items  (height = BIG_SIZE)
 // Row 2: 3 equal = 3 items                         (height = SMALL_SIZE)
-const SMALL_SIZE = (SCREEN_WIDTH - GRID_GAP * 2) / 3;
-const BIG_SIZE = SMALL_SIZE * 2 + GRID_GAP;
-
-// Heights for each row in the 3-row pattern (including gap below)
-const ROW_HEIGHTS = [
-  BIG_SIZE + GRID_GAP,   // row 0 — big + 2 small
-  BIG_SIZE + GRID_GAP,   // row 1 — 2 small + big
-  SMALL_SIZE + GRID_GAP, // row 2 — 3 equal
-];
-const PATTERN_HEIGHT = ROW_HEIGHTS[0] + ROW_HEIGHTS[1] + ROW_HEIGHTS[2];
+// Sizes come from the live window width (useWindowDimensions), so split-screen
+// and unfolding re-flow the grid instead of keeping the start-up width.
+const gridMetrics = (screenWidth: number) => {
+  const SMALL_SIZE = (screenWidth - GRID_GAP * 2) / 3;
+  const BIG_SIZE = SMALL_SIZE * 2 + GRID_GAP;
+  // Heights for each row in the 3-row pattern (including gap below)
+  const ROW_HEIGHTS = [
+    BIG_SIZE + GRID_GAP,   // row 0 — big + 2 small
+    BIG_SIZE + GRID_GAP,   // row 1 — 2 small + big
+    SMALL_SIZE + GRID_GAP, // row 2 — 3 equal
+  ];
+  const PATTERN_HEIGHT = ROW_HEIGHTS[0] + ROW_HEIGHTS[1] + ROW_HEIGHTS[2];
+  return { SMALL_SIZE, BIG_SIZE, ROW_HEIGHTS, PATTERN_HEIGHT };
+};
+type GridMetrics = ReturnType<typeof gridMetrics>;
 
 // ─── GridItem ───────────────────────────────────────────────
 interface GridItemProps {
@@ -133,10 +137,12 @@ interface GridRowProps {
   row: GridRowData;
   data: UnifiedFeedItem[];
   onItemPress: (index: number) => void;
+  m: GridMetrics;
 }
 
-const GridRow = memo<GridRowProps>(({ row, data, onItemPress }) => {
+const GridRow = memo<GridRowProps>(({ row, data, onItemPress, m }) => {
   const { rowType, startIndex } = row;
+  const { SMALL_SIZE, BIG_SIZE } = m;
   const a = data[startIndex];
   const b = data[startIndex + 1];
   const c = data[startIndex + 2];
@@ -176,33 +182,36 @@ const GridRow = memo<GridRowProps>(({ row, data, onItemPress }) => {
 });
 
 // ─── Skeleton ───────────────────────────────────────────────
-const GridSkeleton: React.FC = () => (
-  <View style={{ opacity: 0.6 }}>
-    {[0, 1].map((p) => (
-      <React.Fragment key={p}>
-        <View style={styles.patternRow}>
-          <View style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
-          <View style={styles.stackedColumn}>
+const GridSkeleton: React.FC = () => {
+  const { SMALL_SIZE, BIG_SIZE } = gridMetrics(useWindowDimensions().width);
+  return (
+    <View style={{ opacity: 0.6 }}>
+      {[0, 1].map((p) => (
+        <React.Fragment key={p}>
+          <View style={styles.patternRow}>
+            <View style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
+            <View style={styles.stackedColumn}>
+              <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+              <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            </View>
+          </View>
+          <View style={styles.patternRow}>
+            <View style={styles.stackedColumn}>
+              <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+              <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            </View>
+            <View style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
+          </View>
+          <View style={styles.equalRow}>
+            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
             <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
             <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
           </View>
-        </View>
-        <View style={styles.patternRow}>
-          <View style={styles.stackedColumn}>
-            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-          </View>
-          <View style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
-        </View>
-        <View style={styles.equalRow}>
-          <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-          <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-          <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-        </View>
-      </React.Fragment>
-    ))}
-  </View>
-);
+        </React.Fragment>
+      ))}
+    </View>
+  );
+};
 
 // ─── Default filter state ───────────────────────────────────
 const defaultFilters: FeedFilters = {
@@ -213,7 +222,7 @@ const defaultFilters: FeedFilters = {
 };
 
 // ─── Deterministic row-height for getItemLayout ─────────────
-const getGridItemLayout = (_data: any, index: number) => {
+const getGridItemLayout = ({ PATTERN_HEIGHT, ROW_HEIGHTS }: GridMetrics, index: number) => {
   // Each row in the pattern has a known height
   const patternGroup = Math.floor(index / 3);
   const rowInPattern = index % 3;
@@ -227,21 +236,14 @@ const getGridItemLayout = (_data: any, index: number) => {
 // Convert a feed-item index to the grid-row index that contains it
 const itemIndexToRowIndex = (idx: number) => Math.floor(idx / 3);
 
-// Convert a grid-row index to the y-offset
-const rowIndexToOffset = (rowIdx: number) => {
-  const patternGroup = Math.floor(rowIdx / 3);
-  const rowInPattern = rowIdx % 3;
-  let offset = patternGroup * PATTERN_HEIGHT;
-  for (let r = 0; r < rowInPattern; r++) offset += ROW_HEIGHTS[r];
-  return offset;
-};
-
 const FeedScreen = () => {
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const isFocused = useIsFocused();
+  const { width: screenWidth } = useWindowDimensions();
+  const gridM = useMemo(() => gridMetrics(screenWidth), [screenWidth]);
 
   const {
     headerAnimatedStyle,
@@ -545,9 +547,13 @@ const FeedScreen = () => {
   // ── Grid row renderer ─────────────────────────────────────
   const renderGridRow = useCallback(
     ({ item }: ListRenderItemInfo<GridRowData>) => (
-      <GridRow row={item} data={feedData} onItemPress={handleGridItemPress} />
+      <GridRow row={item} data={feedData} onItemPress={handleGridItemPress} m={gridM} />
     ),
-    [feedData, handleGridItemPress],
+    [feedData, handleGridItemPress, gridM],
+  );
+  const gridItemLayout = useCallback(
+    (_data: any, index: number) => getGridItemLayout(gridM, index),
+    [gridM],
   );
 
   const gridKeyExtractor = useCallback((item: GridRowData) => item.key, []);
@@ -694,7 +700,7 @@ const FeedScreen = () => {
           data={gridRows}
           keyExtractor={gridKeyExtractor}
           renderItem={renderGridRow}
-          getItemLayout={getGridItemLayout}
+          getItemLayout={gridItemLayout}
           onViewableItemsChanged={handleGridViewableItemsChanged}
           viewabilityConfig={gridViewabilityConfig}
           initialNumToRender={8}

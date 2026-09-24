@@ -20,7 +20,7 @@
  * gaudy.
  */
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Dimensions, Modal, Pressable, StyleSheet, Text, View, Image } from "react-native";
+import { Modal, Pressable, StyleSheet, Text, View, Image, useWindowDimensions } from "react-native";
 import Animated, {
   type SharedValue,
   Easing,
@@ -58,10 +58,21 @@ interface Props {
   onDone: () => void;
 }
 
-const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get("window");
-const HERO_R = Math.max(50, Math.min(Math.min(SCREEN_W, SCREEN_H) * 0.155, 88));
-const HERO_X = SCREEN_W / 2;
-const HERO_Y = SCREEN_H * 0.42;
+/** Stage geometry from the live window, so the ceremony centres on the
+ *  screen it is actually shown on after split-screen or unfolding. */
+function useStage() {
+  const { width: SCREEN_W, height: SCREEN_H } = useWindowDimensions();
+  return useMemo(
+    () => ({
+      SCREEN_W,
+      SCREEN_H,
+      HERO_R: Math.max(50, Math.min(Math.min(SCREEN_W, SCREEN_H) * 0.155, 88)),
+      HERO_X: SCREEN_W / 2,
+      HERO_Y: SCREEN_H * 0.42,
+    }),
+    [SCREEN_W, SCREEN_H],
+  );
+}
 
 /** Fraction of the way through a beat. */
 function beat(p: number, b: readonly [number, number]) {
@@ -89,6 +100,7 @@ const RETURN_MS = 760;
 
 export default function BadgeAscension({ from, to, slot, balance, onDone }: Props) {
   const { t, i18n } = useTranslation();
+  const { SCREEN_W, SCREEN_H, HERO_R, HERO_X, HERO_Y } = useStage();
   const motion = useMemo(() => badgeMotion(to), [to]);
   const prior = useMemo(() => badgeMotion(from), [from]);
   const threshold = useMemo(() => badgeThreshold(to), [to]);
@@ -370,7 +382,7 @@ export default function BadgeAscension({ from, to, slot, balance, onDone }: Prop
 
         <Animated.View pointerEvents="none" style={[styles.flash, flashStyle]} />
 
-        <Animated.View pointerEvents="none" style={[styles.caption, captionStyle]}>
+        <Animated.View pointerEvents="none" style={[styles.caption, { bottom: SCREEN_H * 0.14 }, captionStyle]}>
           <Text style={[styles.hype, motion.rank >= 12 && styles.hypeCrown]}>{t(motion.lineKey)}</Text>
           <Text style={styles.tier}>{motion.tier}</Text>
           {threshold != null && (
@@ -409,6 +421,7 @@ export default function BadgeAscension({ from, to, slot, balance, onDone }: Prop
 /* ------------------------------------------------------------------ */
 
 function Mote({ p, spec }: { p: SharedValue<number>; spec: { angle: number; spread: number; size: number; lag: number; swirl: number } }) {
+  const { SCREEN_W, SCREEN_H, HERO_X, HERO_Y } = useStage();
   const far = Math.max(SCREEN_W, SCREEN_H) * 0.85;
   const style = useAnimatedStyle(() => {
     const conv = beat(p.value, BEATS.converge);
@@ -447,6 +460,7 @@ function Shard({
   spec: { col: number; row: number; grid: number; vx: number; vy: number; spin: number; grav: number; lag: number };
   asset: number;
 }) {
+  const { HERO_R, HERO_X, HERO_Y } = useStage();
   const tile = (HERO_R * 2) / spec.grid;
   const style = useAnimatedStyle(() => {
     const s = beat(p.value, BEATS.shatter);
@@ -481,6 +495,7 @@ function Shard({
 }
 
 function Shockwave({ p, index }: { p: SharedValue<number>; index: number }) {
+  const { HERO_R, HERO_X, HERO_Y } = useStage();
   const style = useAnimatedStyle(() => {
     const w = beat(p.value, BEATS.wave);
     const wp = Math.min(1, Math.max(0, (w - index * 0.15) / (1 - index * 0.15)));
@@ -509,6 +524,7 @@ function Spark({
   p: SharedValue<number>;
   spec: { bx: number; by: number; t0: number; vx: number; vy: number; life: number; size: number };
 }) {
+  const { SCREEN_W, SCREEN_H } = useStage();
   const style = useAnimatedStyle(() => {
     const age = p.value - spec.t0;
     if (age <= 0 || age > spec.life) return { opacity: 0 };
@@ -537,6 +553,7 @@ function Ember({
   p: SharedValue<number>;
   spec: { x: number; y: number; t0: number; drift: number; fall: number; size: number };
 }) {
+  const { SCREEN_W, SCREEN_H } = useStage();
   const style = useAnimatedStyle(() => {
     const age = p.value - spec.t0;
     if (age <= 0) return { opacity: 0 };
@@ -568,7 +585,7 @@ const styles = StyleSheet.create({
   ring: { position: "absolute", borderWidth: 1.5, borderColor: "#ffffff" },
   streak: { position: "absolute", height: 2, backgroundColor: "#ffffff" },
   flash: { ...StyleSheet.absoluteFillObject, backgroundColor: "#ffffff" },
-  caption: { position: "absolute", left: 20, right: 20, bottom: SCREEN_H * 0.14, alignItems: "center" },
+  caption: { position: "absolute", left: 20, right: 20, alignItems: "center" },
   hype: {
     color: "#d4d4d8",
     fontSize: 13,
