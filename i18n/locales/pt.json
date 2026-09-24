@@ -4602,7 +4602,10 @@
     "pillDefaultTitle": "Carregar",
     "pillA11yFailed": "Falha ao carregar, expanda o status do upload",
     "pillA11yProgress": "Upload {{percent}}% completo, expanda o status do upload",
-    "pillMinimize": "Minimizar status do upload"
+    "pillMinimize": "Minimizar status do upload",
+    "uploadInProgressStay": "O seu carregamento ainda está a decorrer. Permaneça nesta tela até que ela termine.",
+    "removeUploadTitle": "Remover este carregamento?",
+    "removeQueuedBody": "Ainda não foi publicado. Removê-lo cancela o post."
   },
   "bounty": {
     "claimed": "Resgatado",

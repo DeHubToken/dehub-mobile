@@ -3,16 +3,13 @@ import { useTranslation } from "react-i18next";
 import { View, TouchableOpacity, ViewStyle } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../theme/colors";
+import GlassModal from "./GlassModal";
 
 type InfoTooltipProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   children: React.ReactNode;
   triggerClassName?: string;
-  panelClassName?: string;
-  widthClassName?: string;
-  placement?: "right" | "left";
-  topClassName?: string;
   iconName?: keyof typeof Ionicons.glyphMap;
   iconSize?: number;
   iconColor?: string;
@@ -25,10 +22,6 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
   onOpenChange,
   children,
   triggerClassName,
-  panelClassName = "bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-lg p-3",
-  widthClassName = "w-64",
-  placement = "right",
-  topClassName = "top-10",
   iconName = "information-circle",
   iconSize = 18,
   iconColor = colors.neutrals[400],
@@ -48,20 +41,12 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
       >
         <Ionicons name={iconName} size={iconSize} color={iconColor} />
       </TouchableOpacity>
-      {open && (
-        <View className="absolute inset-0 z-20" pointerEvents="box-none">
-          <TouchableOpacity
-            className="absolute inset-0"
-            activeOpacity={1}
-            onPress={() => onOpenChange(false)}
-          />
-          <View
-            className={`absolute ${placement === "right" ? "right-2" : "left-2"} ${topClassName} ${widthClassName} ${panelClassName}`}
-          >
-            {children}
-          </View>
-        </View>
-      )}
+      {/* A small modal rather than an absolutely positioned panel: the panel
+          was clipped by its card, and Android back did not close it. The
+          modal closes on back and on a tap outside. */}
+      <GlassModal visible={open} onClose={() => onOpenChange(false)}>
+        <View style={{ padding: 16 }}>{children}</View>
+      </GlassModal>
     </>
   );
 };

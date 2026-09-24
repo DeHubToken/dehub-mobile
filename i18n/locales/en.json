@@ -4598,7 +4598,10 @@
     "pillDefaultTitle": "Upload",
     "pillA11yFailed": "Upload failed, expand upload status",
     "pillA11yProgress": "Upload {{percent}}% complete, expand upload status",
-    "pillMinimize": "Minimize upload status"
+    "pillMinimize": "Minimize upload status",
+    "uploadInProgressStay": "Your upload is still going. Stay on this screen until it finishes.",
+    "removeUploadTitle": "Remove this upload?",
+    "removeQueuedBody": "It has not been posted yet. Removing it cancels the post."
   },
   "bounty": {
     "claimed": "Claimed",

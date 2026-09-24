@@ -4544,7 +4544,10 @@
     "pillDefaultTitle": "Last opp",
     "pillA11yFailed": "Opplasting mislyktes, utvid opplastingsstatus",
     "pillA11yProgress": "Opplasting {{percent}}% fullført, utvid opplastingsstatus",
-    "pillMinimize": "Minimer opplastingsstatus"
+    "pillMinimize": "Minimer opplastingsstatus",
+    "uploadInProgressStay": "Opplastingen din pågår fortsatt. Bli på denne skjermen til den er ferdig.",
+    "removeUploadTitle": "Fjerne denne opplastingen?",
+    "removeQueuedBody": "Den har ikke blitt publisert ennå. Hvis du fjerner den, avbrytes innlegget."
   },
   "bounty": {
     "claimed": "Innløst",

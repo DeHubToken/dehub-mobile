@@ -4549,7 +4549,10 @@
     "pillDefaultTitle": "Unggah",
     "pillA11yFailed": "Unggah gagal, jembarake status unggah",
     "pillA11yProgress": "Unggah {{percent}}% rampung, jembarake status unggah",
-    "pillMinimize": "Minimalake status unggah"
+    "pillMinimize": "Minimalake status unggah",
+    "uploadInProgressStay": "Unggahane isih lumaku. Tetepa ing layar iki nganti rampung.",
+    "removeUploadTitle": "Batalake unggahan iki?",
+    "removeQueuedBody": "Durung dipos. Mbatalake bakal nggagalke pos."
   },
   "bounty": {
     "claimed": "Wis diklaim",

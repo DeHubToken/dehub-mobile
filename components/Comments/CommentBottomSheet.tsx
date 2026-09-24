@@ -14,6 +14,7 @@ import Icon from "../ui/Icon";
 import CommentSection from "./CommentSection";
 import RepostTab from "./RepostTab";
 import QuoteTab from "./QuoteTab";
+import useKeyboard from "../../hooks/useKeyboard";
 import type { PostCreator } from "../../libs/impersonation";
 import { useAppTheme } from "../../context/ThemeContext";
 import {
@@ -79,6 +80,11 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   /** Something unsent in the composer — CommentSection tells us. */
   const [hasUnsent, setHasUnsent] = useState(false);
   const [confirming, setConfirming] = useState(false);
+  // CommentSection lifts the composer by the keyboard height; at 82% of the
+  // screen that left only ~100dp of comments above it on a small phone, so the
+  // modal sheet grows to the full height below the status bar while typing.
+  const { isVisible: kbVisible } = useKeyboard();
+  const expandForKeyboard = !inline && kbVisible;
 
   useEffect(() => {
     if (visible) {
@@ -162,7 +168,11 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
 
   const onDirtyChange = useCallback((dirty: boolean) => setHasUnsent(dirty), []);
 
+  // Only a clear downward drag takes over, so taps on the tab row it now
+  // covers still switch tabs.
   const gesture = Gesture.Pan()
+    .activeOffsetY(10)
+    .failOffsetX([-20, 20])
     .onUpdate((e) => {
       if (e.translationY > 0) {
         translateY.value = e.translationY;
@@ -200,7 +210,9 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
         <Animated.View
           style={[
             glassStyles.sheet,
-            { height: SHEET_HEIGHT, paddingBottom: inline ? 0 : insets.bottom },
+            expandForKeyboard
+              ? { top: insets.top, paddingBottom: insets.bottom }
+              : { height: SHEET_HEIGHT, paddingBottom: inline ? 0 : insets.bottom },
             sheetStyle,
           ]}
         >
@@ -209,52 +221,56 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
               The blur/frost layers died with the translucency. */}
           <View style={[StyleSheet.absoluteFill, glassStyles.overlay, isMinimal && glassStyles.minimalOverlay]} />
 
+          {/* The handle and the tab row both start the swipe down — the 24dp
+              handle alone was too thin a target. */}
           <GestureDetector gesture={gesture}>
-            <Animated.View style={{ height: inline ? 44 : 24, alignItems: "center", justifyContent: "center" }}>
-              <View style={{ width: 36, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.2)" }} />
+            <Animated.View>
+              <Animated.View style={{ height: inline ? 44 : 24, alignItems: "center", justifyContent: "center" }}>
+                <View style={{ width: 36, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.2)" }} />
+              </Animated.View>
+
+              {/* Minimal turns this into a file-tab strip: one baseline across the
+                  sheet, the active tab outlined on three sides and breaking it. */}
+              <View style={[glassStyles.tabBar, isMinimal && glassStyles.minimalTabBar]}>
+                {TAB_CONFIG.map((tab) => {
+                  const isActive = activeTab === tab.key;
+                  return (
+                    <Pressable
+                      key={tab.key}
+                      onPress={() => setActiveTab(tab.key)}
+                      style={[
+                        glassStyles.tab,
+                        isActive && glassStyles.tabActive,
+                        isMinimal && (isActive ? minimalTabActive : minimalTab),
+                      ]}
+                      hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
+                      accessibilityRole="tab"
+                      accessibilityLabel={tab.label}
+                      accessibilityState={{ selected: isActive }}
+                    >
+                      <Icon
+                        name={tab.icon}
+                        size={18}
+                        color={
+                          isMinimal
+                            ? isActive ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
+                            : isActive ? "#F9FBFF" : "#6F7174"
+                        }
+                        strokeWidth={isActive ? 2.2 : 1.8}
+                      />
+                    </Pressable>
+                  );
+                })}
+
+
+                {inline && (
+                  <Pressable onPress={requestClose} accessibilityRole="button" accessibilityLabel={t("comments.closeComments")} style={{ marginLeft: "auto", padding: 8 }}>
+                    <Icon name="ChevronDown" size={22} color="#F9FBFF" />
+                  </Pressable>
+                )}
+              </View>
             </Animated.View>
           </GestureDetector>
-
-          {/* Minimal turns this into a file-tab strip: one baseline across the
-              sheet, the active tab outlined on three sides and breaking it. */}
-          <View style={[glassStyles.tabBar, isMinimal && glassStyles.minimalTabBar]}>
-            {TAB_CONFIG.map((tab) => {
-              const isActive = activeTab === tab.key;
-              return (
-                <Pressable
-                  key={tab.key}
-                  onPress={() => setActiveTab(tab.key)}
-                  style={[
-                    glassStyles.tab,
-                    isActive && glassStyles.tabActive,
-                    isMinimal && (isActive ? minimalTabActive : minimalTab),
-                  ]}
-                  hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
-                  accessibilityRole="tab"
-                  accessibilityLabel={tab.label}
-                  accessibilityState={{ selected: isActive }}
-                >
-                  <Icon
-                    name={tab.icon}
-                    size={18}
-                    color={
-                      isMinimal
-                        ? isActive ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
-                        : isActive ? "#F9FBFF" : "#6F7174"
-                    }
-                    strokeWidth={isActive ? 2.2 : 1.8}
-                  />
-                </Pressable>
-              );
-            })}
-
-
-            {inline && (
-              <Pressable onPress={requestClose} accessibilityRole="button" accessibilityLabel={t("comments.closeComments")} style={{ marginLeft: "auto", padding: 8 }}>
-                <Icon name="ChevronDown" size={22} color="#F9FBFF" />
-              </Pressable>
-            )}
-          </View>
 
           {activeTab === "comments" && (
             <CommentSection
@@ -371,8 +387,8 @@ const glassStyles = StyleSheet.create({
     borderBottomColor: "rgba(255,255,255,0.08)",
   },
   tab: {
-    width: 40,
-    height: 36,
+    width: 44,
+    minHeight: 44,
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",

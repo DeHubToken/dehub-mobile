@@ -4571,7 +4571,10 @@
     "pillDefaultTitle": "Ampidiro",
     "pillA11yFailed": "Tsy nahomby ny fampidirana, ampitomboina ny satan'ny fampidirana",
     "pillA11yProgress": "Vita {{percent}}% ny fampidirana, ampitomboina ny satan'ny fampidirana",
-    "pillMinimize": "Ahenao ny satan'ny fampidirana"
+    "pillMinimize": "Ahenao ny satan'ny fampidirana",
+    "uploadInProgressStay": "Mbola mandeha ny fampiakarana anao. Tohizo hatrany mandra-pahatapitry ny efijery.",
+    "removeUploadTitle": "Foanana ity fampakarana ity?",
+    "removeQueuedBody": "Hatreto dia tsy mbola namoaka toy izany. Nofoanana ny taratasiny."
   },
   "bounty": {
     "claimed": "Voaray",

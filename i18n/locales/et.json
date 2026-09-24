@@ -4549,7 +4549,10 @@
     "pillDefaultTitle": "Üleslaadimine",
     "pillA11yFailed": "Üleslaadimine ebaõnnestus, laienda üleslaadimise olekut",
     "pillA11yProgress": "Üleslaadimine {{percent}}%, laienda üleslaadimise olekut",
-    "pillMinimize": "Minimeeri üleslaadimise olek"
+    "pillMinimize": "Minimeeri üleslaadimise olek",
+    "uploadInProgressStay": "Sinu üleslaadimine on veel pooleli. Püsi sellel ekraanil, kuni see lõpeb.",
+    "removeUploadTitle": "Kas eemaldada see üleslaadimine?",
+    "removeQueuedBody": "Seda pole veel postitatud. Selle eemaldamine tühistab postituse."
   },
   "bounty": {
     "claimed": "Lunastatud",

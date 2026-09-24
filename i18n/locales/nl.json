@@ -4736,7 +4736,10 @@
     "pillDefaultTitle": "Uploaden",
     "pillA11yFailed": "Upload mislukt, vouw uploadstatus uit",
     "pillA11yProgress": "Upload {{percent}}% voltooid, vouw uploadstatus uit",
-    "pillMinimize": "Uploadstatus minimaliseren"
+    "pillMinimize": "Uploadstatus minimaliseren",
+    "uploadInProgressStay": "Je upload is nog steeds actief. Blijf op dit scherm totdat het klaar is.",
+    "removeUploadTitle": "Deze upload verwijderen?",
+    "removeQueuedBody": "Het is nog niet geplaatst. Als je het verwijdert, wordt de post geannuleerd."
   },
   "bounty": {
     "claimed": "Geclaimd",

@@ -4598,7 +4598,10 @@
     "pillDefaultTitle": "Carica",
     "pillA11yFailed": "Caricamento fallito, espandi stato caricamento",
     "pillA11yProgress": "Caricamento {{percent}}% completato, espandi stato caricamento",
-    "pillMinimize": "Riduci stato caricamento"
+    "pillMinimize": "Riduci stato caricamento",
+    "uploadInProgressStay": "Il caricamento è ancora in corso. Rimani su questa schermata fino al termine.",
+    "removeUploadTitle": "Rimuovere questo caricamento?",
+    "removeQueuedBody": "Non è stato ancora pubblicato. La rimozione annulla il post."
   },
   "bounty": {
     "claimed": "Riscosso",

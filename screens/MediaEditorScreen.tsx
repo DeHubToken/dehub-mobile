@@ -20,6 +20,7 @@ import {
   Text,
   TextInput,
   View,
+  useWindowDimensions,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
@@ -327,6 +328,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const { t } = useTranslation();
   const nav = useNavigation<Nav>();
   const insets = useSafeAreaInsets();
+  const { height: windowHeight } = useWindowDimensions();
   const h = useHistory(initial);
   const project = h.project;
   const canvasRef = useRef<EditorCanvasHandle>(null);
@@ -1096,9 +1098,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         />
       )}
 
-      {/* Tool panel */}
+      {/* Tool panel. A flat 260dp left a ~640dp phone about 200dp of canvas
+          once the header, timeline and toolbar took their share; past 35% of
+          the window the panel scrolls instead. */}
       {tool && (
-        <View className="bg-theme-neutrals-900 border-t border-white/10 px-4 pt-3 pb-1" style={{ maxHeight: 260 }}>
+        <View className="bg-theme-neutrals-900 border-t border-white/10 px-4 pt-3 pb-1" style={{ maxHeight: Math.min(260, windowHeight * 0.35) }}>
           <ScrollView keyboardShouldPersistTaps="handled">{renderPanel()}</ScrollView>
         </View>
       )}

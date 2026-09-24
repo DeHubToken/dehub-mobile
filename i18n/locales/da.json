@@ -4553,7 +4553,10 @@
     "pillDefaultTitle": "Upload",
     "pillA11yFailed": "Upload mislykkedes, udvid uploadstatus",
     "pillA11yProgress": "Upload {{percent}}% færdig, udvid uploadstatus",
-    "pillMinimize": "Minimer uploadstatus"
+    "pillMinimize": "Minimer uploadstatus",
+    "uploadInProgressStay": "Din upload er stadig i gang. Bliv på denne skærm, indtil den er færdig.",
+    "removeUploadTitle": "Vil du fjerne denne upload?",
+    "removeQueuedBody": "Det er ikke blevet slået op endnu. Hvis du fjerner det, annulleres indlægget."
   },
   "bounty": {
     "claimed": "Indløst",
