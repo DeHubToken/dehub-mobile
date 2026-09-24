@@ -804,7 +804,11 @@
     "select": "Zgjidh",
     "noResults": "Asnjë rezultat",
     "moreInfo": "Më shumë informacion",
-    "translate": "Përkthe"
+    "translate": "Përkthe",
+    "paste": "Ngjite",
+    "scanQr": "Skano QR",
+    "scanQrHint": "Drejtoje kamerën te një adresë portofoli me kodin QR",
+    "allowCameraForQr": "Lejo qasjen e kamerës për të skanuar një kod QR"
   },
   "tip": {
     "title": "Dërgo Bakshish",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Pagesa u kthye mbrapsht on-chain — nuk u krijua asnjë porosi.",
       "purchaseFailed": "Blerja dështoi",
       "transactionCancelled": "Transaksioni u anulua.",
-      "pickRating": "Zgjidh fillimisht një vlerësim me yje."
+      "pickRating": "Zgjidh fillimisht një vlerësim me yje.",
+      "confirmTitle": "Konfirmo blerjen",
+      "confirmBody": "Ju do të paguani {{amount}} DHB (rreth {{usd}}) në Bazë, direkt në portofolin e shitësit. Kjo nuk mund të zhbëhet."
     },
     "categories": {
       "all": "Të gjitha",

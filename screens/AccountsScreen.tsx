@@ -8,6 +8,7 @@
  * buyer is actually paying for — followers, uploads, badge, age — read live by
  * the server on every browse rather than trusted from the listing row.
  */
+import { appLocale } from "../libs/date.util";
 import React, { useCallback, useState } from "react";
 import {
   View,
@@ -134,7 +135,7 @@ const AccountCard: React.FC<{
       {/* Right: right-aligned so a column of rows lines up on the digits. */}
       <View style={styles.cardPriceCol}>
         <Text style={styles.cardPrice} numberOfLines={1}>
-          {listing.priceDhb.toLocaleString("en-US")}
+          {listing.priceDhb.toLocaleString(appLocale())}
         </Text>
         <Text style={styles.cardPriceUnit}>DHB</Text>
       </View>

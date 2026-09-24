@@ -804,7 +804,11 @@
     "select": "Select",
     "noResults": "No result",
     "moreInfo": "More info",
-    "translate": "Translate"
+    "translate": "Translate",
+    "paste": "Paste am",
+    "scanQr": "Scan di QR",
+    "scanQrHint": "Point di camera for di wallet address QR code",
+    "allowCameraForQr": "Allow camera make e fit scan QR code"
   },
   "tip": {
     "title": "Send Tip",
@@ -3244,7 +3248,9 @@
       "paymentReverted": "Payment reverse on-chain — no order dey created.",
       "purchaseFailed": "Purchase no work",
       "transactionCancelled": "Dem cancel di transaction.",
-      "pickRating": "Pick star rating first."
+      "pickRating": "Pick star rating first.",
+      "confirmTitle": "Confam say you wan buy",
+      "confirmBody": "You go pay {{amount}} DHB (about {{usd}}) for Base, straight enter di seller wallet. You no fit reverse am."
     },
     "categories": {
       "all": "All",

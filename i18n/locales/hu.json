@@ -804,7 +804,11 @@
     "select": "Kiválaszt",
     "noResults": "Nincs találat",
     "moreInfo": "További információ",
-    "translate": "Fordítás"
+    "translate": "Fordítás",
+    "paste": "Beillesztés",
+    "scanQr": "QR-kód beolvasása",
+    "scanQrHint": "Irányítsd a kamerát egy pénztárcacím QR-kódjára",
+    "allowCameraForQr": "Engedélyezze a kamera-hozzáférést QR-kód beolvasásához"
   },
   "tip": {
     "title": "Borravaló küldése",
@@ -3247,7 +3251,9 @@
       "paymentReverted": "A fizetés on-chain visszafordult — nem jött létre rendelés.",
       "purchaseFailed": "A vásárlás nem sikerült",
       "transactionCancelled": "Tranzakció megszakítva.",
-      "pickRating": "Először válassz csillagos értékelést."
+      "pickRating": "Először válassz csillagos értékelést.",
+      "confirmTitle": "Vásárlás megerősítése",
+      "confirmBody": "{{amount}} DHB-t (kb. {{usd}}) kell fizetnie az alapra, egyenesen az eladó pénztárcájába. A művelet nem vonható vissza."
     },
     "categories": {
       "all": "Összes",

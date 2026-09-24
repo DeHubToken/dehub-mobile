@@ -804,7 +804,11 @@
     "select": "Akllay",
     "noResults": "Mana tarisqachu",
     "moreInfo": "Aswan yachay",
-    "translate": "Takyay"
+    "translate": "Takyay",
+    "paste": "Laqay",
+    "scanQr": "Escanear QR",
+    "scanQrHint": "Camarata huk billetera dirección QR código nisqaman rikuchiy",
+    "allowCameraForQr": "Saqiy cámara yaykuyta huk QR código escanear"
   },
   "tip": {
     "title": "Propina apachiy",
@@ -3274,7 +3278,9 @@
       "paymentReverted": "Qullqi quy chakapi kutimurqan — mana kamachiy ruwasqachu.",
       "purchaseFailed": "Rantiy mana atirqanchu",
       "transactionCancelled": "Rantikuy chinkachisqa.",
-      "pickRating": "Ñawpaqta quyllur chaninchayta akllay."
+      "pickRating": "Ñawpaqta quyllur chaninchayta akllay.",
+      "confirmTitle": "Rantinakuyta takyachiy",
+      "confirmBody": "{{amount}} DHB (yaqa {{usd}}) Base kaqpi qullqita qunki, chiqan ranqhaqpa billeteranman. Kaytaqa manam kutichiyta atikunmanchu."
     },
     "categories": {
       "all": "Llapan",

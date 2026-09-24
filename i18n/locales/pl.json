@@ -804,7 +804,11 @@
     "select": "Wybierz",
     "noResults": "Brak wyników",
     "moreInfo": "Więcej informacji",
-    "translate": "Tłumacz"
+    "translate": "Tłumacz",
+    "paste": "Wklej",
+    "scanQr": "Zeskanuj QR",
+    "scanQrHint": "Skieruj kamerę na kod QR adresu portfela",
+    "allowCameraForQr": "Zezwól na dostęp do aparatu, aby zeskanować kod QR"
   },
   "tip": {
     "title": "Wyślij napiwek",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Płatność cofnięta on-chain — nie utworzono zamówienia.",
       "purchaseFailed": "Zakup nie powiódł się",
       "transactionCancelled": "Transakcja anulowana.",
-      "pickRating": "Najpierw wybierz ocenę w gwiazdkach."
+      "pickRating": "Najpierw wybierz ocenę w gwiazdkach.",
+      "confirmTitle": "Potwierdź zakup",
+      "confirmBody": "Zapłacisz {{amount}} DHB (około {{usd}}) w Base, bezpośrednio do portfela sprzedającego. Tej czynności nie można cofnąć."
     },
     "categories": {
       "all": "Wszystko",

@@ -804,7 +804,11 @@
     "select": "K'i yɛrɛ sugandi",
     "noResults": "Jaabi si tɛ",
     "moreInfo": "N'i b'a fɛ ka kunnafoni wɛrɛw sɔrɔ, a",
-    "translate": "Bibulu bayɛlɛmani"
+    "translate": "Bibulu bayɛlɛmani",
+    "paste": "Paste ka koo",
+    "scanQr": "O ye n' ka miiriya ye.",
+    "scanQrHint": "I ka telefɔni ka ɲɛsin telefɔni ka ɲɛsin telefɔni ma",
+    "allowCameraForQr": "QR code ka se ka kɛ sababu ye ka se ka fɛɛn dɔ ye min be se ka kɛ fɛɛn ye."
   },
   "tip": {
     "title": "Bonya ci",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Sarali seginna sirasira kan — sanni si ma dilan.",
       "purchaseFailed": "Sanni ma se",
       "transactionCancelled": "Fɛere in bɔsira.",
-      "pickRating": "Fɔlɔ, dolo hakɛ sugandi."
+      "pickRating": "Fɔlɔ, dolo hakɛ sugandi.",
+      "confirmTitle": "- I ka kan ka min san",
+      "confirmBody": "I bena {{amount}} DHB sara (ka tɛmɛ {{usd}} kan) basigilan kan, ka taga feerelikɛla ka wari la. O tɛ se ka ban."
     },
     "categories": {
       "all": "Bɛɛ",

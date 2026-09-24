@@ -804,7 +804,11 @@
     "select": "Chus",
     "noResults": "Notin no dey",
     "moreInfo": "Mo infoh",
-    "translate": "Tanslet"
+    "translate": "Tanslet",
+    "paste": "Paste-am",
+    "scanQr": "Skan QR",
+    "scanQrHint": "Make camera face wallet address QR code",
+    "allowCameraForQr": "Make camera fit see QR code"
   },
   "tip": {
     "title": "Sen Tip",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Payment don revers fo chain — no order don creat.",
       "purchaseFailed": "Buy no work",
       "transactionCancelled": "Dem don cancel di transaction.",
-      "pickRating": "Pick star rating fes."
+      "pickRating": "Pick star rating fes.",
+      "confirmTitle": "Confirm buy",
+      "confirmBody": "You go pay {{amount}} DHB (around {{usd}}) for Base, straight for the seller hand. This one no fit change back."
     },
     "categories": {
       "all": "Ol",

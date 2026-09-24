@@ -804,7 +804,11 @@
     "select": "Zaɓi",
     "noResults": "Babu sakamako",
     "moreInfo": "Ƙarin bayani",
-    "translate": "Fassara"
+    "translate": "Fassara",
+    "scanQrHint": "Nuna kyamarar a adireshin walat QR code",
+    "allowCameraForQr": "Bada damar kamara don bincika lambar QR",
+    "paste": "Manna",
+    "scanQr": "Duba QR"
   },
   "tip": {
     "title": "Aika Kyauta",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Biyan kuɗi ya juye kan sarka — ba a ƙirƙiri oda ba.",
       "purchaseFailed": "Sayayya ta gaza",
       "transactionCancelled": "An soke ma'amalar.",
-      "pickRating": "Da farko zaɓi ƙimar tauraro."
+      "pickRating": "Da farko zaɓi ƙimar tauraro.",
+      "confirmTitle": "Tabbatar sayan",
+      "confirmBody": "Za ku biya {{amount}} DHB (game da {{usd}}) akan Base, kai tsaye zuwa walat ɗin mai siyarwa. Ba za a iya cire wannan ba."
     },
     "categories": {
       "all": "Duka",

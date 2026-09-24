@@ -826,7 +826,11 @@
     "postNotFound": "Nepodarilo sa nám nájsť tento príspevok",
     "select": "Vybrať",
     "moreInfo": "Viac informácií",
-    "translate": "Preložiť"
+    "translate": "Preložiť",
+    "paste": "Vložiť",
+    "scanQr": "Skenovať QR",
+    "scanQrHint": "Nasmerujte kameru na QR kód adresy peňaženky",
+    "allowCameraForQr": "Povoliť prístup k fotoaparátu na naskenovanie QR kódu"
   },
   "tip": {
     "title": "Poslať prepitné",
@@ -3351,7 +3355,9 @@
       "paymentReverted": "Platba bola on-chain vrátená — objednávka nevznikla.",
       "purchaseFailed": "Nákup zlyhal",
       "transactionCancelled": "Transakcia zrušená.",
-      "pickRating": "Najprv vyber hodnotenie hviezdičkami."
+      "pickRating": "Najprv vyber hodnotenie hviezdičkami.",
+      "confirmTitle": "Potvrdiť kúpu",
+      "confirmBody": "Zaplatíte {{amount}} DHB (približne {{usd}}) na základni, priamo do peňaženky predajcu. Toto nie je možné vrátiť späť."
     },
     "categories": {
       "all": "Všetko",

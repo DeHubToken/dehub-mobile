@@ -804,7 +804,11 @@
     "select": "निवडा",
     "noResults": "निकाल नाही",
     "moreInfo": "अधिक माहिती",
-    "translate": "भाषांतर करा"
+    "translate": "भाषांतर करा",
+    "paste": "चिपकाउनुहोस्",
+    "scanQr": "स्कैनरः QR",
+    "scanQrHint": "Tag Archives: क्यूआर कोड पर भाषण",
+    "allowCameraForQr": "उपयोगकर्ता नामः QR कोड स्कैनर"
   },
   "tip": {
     "title": "उपहारं प्रेषयतु",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "प्रदानं शृङ्खलायां प्रत्यावृत्तम् — कोऽपि आदेशः न रचितः।",
       "purchaseFailed": "क्रयः विफलः",
       "transactionCancelled": "व्यवहारः निरस्तः।",
-      "pickRating": "प्रथमं तारकाङ्कनं चिनोतु।"
+      "pickRating": "प्रथमं तारकाङ्कनं चिनोतु।",
+      "confirmTitle": "अधिग्रहणस्य पुष्टिकरणम्",
+      "confirmBody": "You will pay {{amount}} DHB (लगभग {{usd}}) आधार पर, सीधे विक्रेता के बटुए पर । इह न संभवति ।"
     },
     "categories": {
       "all": "सर्वम्",

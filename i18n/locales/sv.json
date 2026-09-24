@@ -804,7 +804,11 @@
     "select": "Välj",
     "noResults": "Inga resultat",
     "moreInfo": "Mer information",
-    "translate": "Översätt"
+    "translate": "Översätt",
+    "paste": "Klistra",
+    "scanQr": "SKANNA QR",
+    "scanQrHint": "Rikta kameran mot en QR-kod för portföljadress",
+    "allowCameraForQr": "Tillåt kameraåtkomst för att skanna en QR-kod"
   },
   "tip": {
     "title": "Skicka dricks",
@@ -3247,7 +3251,9 @@
       "paymentReverted": "Betalningen återställdes on-chain — ingen order skapades.",
       "purchaseFailed": "Köpet misslyckades",
       "transactionCancelled": "Transaktionen avbröts.",
-      "pickRating": "Välj en stjärnbetygsättning först."
+      "pickRating": "Välj en stjärnbetygsättning först.",
+      "confirmTitle": "Bekräfta köp",
+      "confirmBody": "Du betalar {{amount}} DHB (ca {{usd}}) på Base, direkt till säljarens plånbok. Detta kan inte ångras."
     },
     "categories": {
       "all": "Alla",

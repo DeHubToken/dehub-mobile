@@ -804,7 +804,11 @@
     "select": "Safidio",
     "noResults": "Tsy misy valiny",
     "moreInfo": "Fampahalalana bebe kokoa",
-    "translate": "Mandika"
+    "translate": "Mandika",
+    "paste": "Apetao",
+    "scanQr": "Hizaha QR",
+    "scanQrHint": "Tsindrio ny fakan-tsary ao amin'ny kitapom-batsy adiresy QR code",
+    "allowCameraForQr": "Avelao ny fidirana amin'ny fakantsary hahitana kaody QR"
   },
   "tip": {
     "title": "Handefa fanomezana",
@@ -3266,7 +3270,9 @@
       "paymentReverted": "Niverina ny fandoavam-bola teo amin'ny rojo — tsy nisy baiko noforonina.",
       "purchaseFailed": "Tsy nahomby ny fividianana",
       "transactionCancelled": "Nofoanana ny fifanakalozana.",
-      "pickRating": "Fidio aloha ny naoty kintana."
+      "pickRating": "Fidio aloha ny naoty kintana.",
+      "confirmTitle": "Hanamafy ny fividianana",
+      "confirmBody": "Handoa {{amount}} DHB (eo ho eo amin'ny {{usd}}) amin'ny Base ianao, mivantana any amin'ny kitapom-bolan'ny mpivarotra. Tsy azo foanana izany."
     },
     "categories": {
       "all": "Rehetra",

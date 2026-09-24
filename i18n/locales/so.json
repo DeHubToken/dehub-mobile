@@ -804,7 +804,11 @@
     "select": "Xulo",
     "noResults": "Ma jiraan wax natiijo ah",
     "moreInfo": "Macluumaad dheeraad ah",
-    "translate": "Turjum"
+    "translate": "Turjum",
+    "paste": "Ku baddel",
+    "scanQr": "Raadi QR",
+    "scanQrHint": "Ku qor kamaradda cinwaanka boorsada QR code",
+    "allowCameraForQr": "U oggolow helitaanka kamaradda si aad u baarto koodhka QR"
   },
   "tip": {
     "title": "Dir Bakhshiish",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Lacag bixintii silsiladda ayay ka noqotay — dalab lama abuurin.",
       "purchaseFailed": "Iibsigii wuu fashilmay",
       "transactionCancelled": "Macaamilkii waa la joojiyay.",
-      "pickRating": "Marka hore dooro qiimeynta xiddigaha."
+      "pickRating": "Marka hore dooro qiimeynta xiddigaha.",
+      "confirmTitle": "Xaqiiji iibsiga",
+      "confirmBody": "Waxaad bixin doontaa {{amount}} DHB (oo ku saabsan {{usd}}) Base, si toos ah boorsada iibiyaha. Tani ma noqon karto mid aan la baabi 'in karin."
     },
     "categories": {
       "all": "Dhammaan",

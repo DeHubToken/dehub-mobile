@@ -804,7 +804,11 @@
     "select": "Seleccionar",
     "noResults": "Sin resultados",
     "moreInfo": "Más información",
-    "translate": "Traducir"
+    "translate": "Traducir",
+    "paste": "Pegar",
+    "scanQr": "Escanea el código QR",
+    "scanQrHint": "Apunta la cámara a un código QR de la dirección del monedero",
+    "allowCameraForQr": "Permitir el acceso a la cámara para escanear un código QR"
   },
   "tip": {
     "title": "Enviar propina",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "El pago se revirtió on-chain: no se creó ningún pedido.",
       "purchaseFailed": "La compra falló",
       "transactionCancelled": "Transacción cancelada.",
-      "pickRating": "Elige primero una puntuación."
+      "pickRating": "Elige primero una puntuación.",
+      "confirmTitle": "Confirmar la compra",
+      "confirmBody": "Pagarás a {{amount}} DHB (aproximadamente {{usd}}) en Base, directamente al monedero del vendedor. Esto no se puede deshacer."
     },
     "categories": {
       "all": "Todo",

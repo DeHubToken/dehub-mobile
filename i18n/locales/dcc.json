@@ -804,7 +804,11 @@
     "select": "منتخب کریں",
     "noResults": "کوئی نتیجہ نہیں",
     "moreInfo": "مزید معلومات",
-    "translate": "ترجمہ کریں"
+    "translate": "ترجمہ کریں",
+    "paste": "पेस्ट",
+    "scanQr": "QR اسکین کرو",
+    "scanQrHint": "کیمرے کو والیٹ ایڈریس کے QR کوڈ کی طرف کرو",
+    "allowCameraForQr": "QR کوڈ اسکین کرنے کے واسطے کیمرے کی اجازت دیو"
   },
   "tip": {
     "title": "ٹپ بھیجو",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "ادائیگی زنجیر پر واپس پلٹ گئی — کوئی آرڈر نہیں بنا۔",
       "purchaseFailed": "خریداری ناکام ہوئی",
       "transactionCancelled": "لین دین منسوخ ہوا۔",
-      "pickRating": "پہلے ستارہ درجہ چنو۔"
+      "pickRating": "پہلے ستارہ درجہ چنو۔",
+      "confirmTitle": "خریداری کی تصدیق کرو",
+      "confirmBody": "آپ Base پو {{amount}} DHB (لگ بھگ {{usd}}) سیدھا بیچنے والے کے والیٹ میں دیتے۔ یو واپس نکو ہوتا۔"
     },
     "categories": {
       "all": "سبھی",

@@ -804,7 +804,11 @@
     "select": "Selecciona",
     "noResults": "Sense resultats",
     "moreInfo": "Més informació",
-    "translate": "Tradueix"
+    "translate": "Tradueix",
+    "paste": "Enganxa",
+    "scanQr": "Escaneja QR",
+    "scanQrHint": "Apunta la càmera a un codi QR de l'adreça del moneder",
+    "allowCameraForQr": "Permet l'accés a la càmera per escanejar un codi QR"
   },
   "tip": {
     "title": "Enviar propina",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "El pagament s'ha revertit on-chain: no s'ha creat cap comanda.",
       "purchaseFailed": "La compra ha fallat",
       "transactionCancelled": "Transacció cancel·lada.",
-      "pickRating": "Tria primer una valoració amb estrelles."
+      "pickRating": "Tria primer una valoració amb estrelles.",
+      "confirmTitle": "Confirma la compra",
+      "confirmBody": "Pagaràs {{amount}} DHB (aproximadament {{usd}}) a Base, directament a la cartera del venedor. Això no es pot desfer."
     },
     "categories": {
       "all": "Tot",

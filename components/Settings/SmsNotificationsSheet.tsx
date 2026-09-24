@@ -22,6 +22,7 @@
  * than telling them to switch in Settings first.
  */
 
+import { appLocale } from '../../libs/date.util';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -54,7 +55,7 @@ const PAYABLE_CHAIN_IDS: number[] = [ChainId.BASE_MAINNET, ChainId.BSC_MAINNET];
 const CLAIM_ATTEMPTS = 12;
 const CLAIM_GAP_MS = 5_000;
 
-const nf = (value: number) => value.toLocaleString('en-US');
+const nf = (value: number) => value.toLocaleString(appLocale());
 
 export default function SmsNotificationsSheet({
   visible,

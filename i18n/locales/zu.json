@@ -804,7 +804,11 @@
     "select": "Khetha",
     "noResults": "Awekho imiphumela",
     "moreInfo": "Imininingwane eyengeziwe",
-    "translate": "Humusha"
+    "translate": "Humusha",
+    "paste": "Bheca",
+    "scanQr": "Skena i-QR",
+    "scanQrHint": "Khomba ikhamera kukhodi ye-QR yekheli lesikhwama semali",
+    "allowCameraForQr": "Vumela ukufinyelela kwekhamera ukuskena ikhodi ye-QR"
   },
   "tip": {
     "title": "Thumela Ithiphu",
@@ -3274,7 +3278,9 @@
       "paymentReverted": "Inkokhelo ibuyele emuva ku-chain — akukho i-oda elakhiwe.",
       "purchaseFailed": "Ukuthenga kuhlulekile",
       "transactionCancelled": "Ukuthengiselana kukhanseliwe.",
-      "pickRating": "Khetha kuqala isilinganiso senkanyezi."
+      "pickRating": "Khetha kuqala isilinganiso senkanyezi.",
+      "confirmTitle": "Qinisekisa ukuthenga",
+      "confirmBody": "Uzokhokha {{amount}} DHB (mayelana {{usd}}) ku-Base, uqonde ngqo esikhwameni semali somthengisi. Lokhu akukwazi ukuhlehliswa."
     },
     "categories": {
       "all": "Konke",

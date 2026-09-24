@@ -804,7 +804,11 @@
     "select": "ምረጽ",
     "noResults": "ውጽኢት የለን ።",
     "moreInfo": "ዝያዳ ሓበሬታ",
-    "translate": "ተርጉም"
+    "translate": "ተርጉም",
+    "scanQr": "QR ስካን",
+    "scanQrHint": "ነቲ ካሜራ ኣብ ናይ ቦርሳ ኣድራሻ QR ኮድ ጠቒስዎ",
+    "allowCameraForQr": "ካሜራ ናይ QR ኮድ ስካን ክኣቱ ይፍቀድ",
+    "paste": "ተለዊጥካ"
   },
   "tip": {
     "title": "ሽልማት ስደድ",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "ክፍሊት ኣብ ሰንሰለት ተመሊሱ — ዝኾነ ትእዛዝ ኣይተፈጥረን።",
       "purchaseFailed": "ዕድጊ ኣይሰለጠን",
       "transactionCancelled": "ልውውጥ ተሰሪዙ።",
-      "pickRating": "ቅድም ናይ ኮኸብ ደረጃ ምረጽ።"
+      "pickRating": "ቅድም ናይ ኮኸብ ደረጃ ምረጽ።",
+      "confirmTitle": "መግዛእቲ ኣረጋግጽ",
+      "confirmBody": "{{amount}}DHB (ብዛዕባ {{usd}}) ኣብ መሰረት ፡ ብቐጥታ ናብ ናይ ሸያጭ ቦርሳ ክትከፍል ኢኻ ። እዚ ክጠፍእ ኣይክእልን እዩ ።"
     },
     "categories": {
       "all": "ኩሉ",

@@ -31,6 +31,7 @@ import { toastError, toastSuccess } from "../../libs/toast";
 import { parseTxError } from "../../libs/web3.util";
 import { erc20TransferAA } from "../../libs/aa.write";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
+import AddressInputTools from "../common/AddressInputTools";
 import { sanitizeAmountInput } from "../../libs/amount-input";
 
 export interface TransferModalProps {
@@ -279,6 +280,43 @@ const TransferModal: React.FC<TransferModalProps> = ({
     },
     [recipient]
   );
+  // Typed, pasted and scanned text all go through here, so an address from the
+  // clipboard or a QR code selects the recipient exactly like a typed one.
+  const handleQueryChange = (value: string) => {
+    setQuery(value);
+    const trimmed = (value || "").trim();
+    // If a valid address is pasted/typed, set as recipient and bypass search
+    if (ethers.utils?.isAddress?.(trimmed)) {
+      setRecipient({
+        address: trimmed,
+        walletAddress: trimmed,
+      } as any);
+      setRecipientFromAddress(true);
+      setResults([]);
+      setLoading(false);
+      setShowResults(false);
+      searchIdRef.current++;
+      return;
+    }
+    // If editing after setting address, clear recipient
+    if (
+      recipientFromAddress &&
+      !ethers.utils?.isAddress?.(trimmed)
+    ) {
+      setRecipient(null);
+      setRecipientFromAddress(false);
+    }
+    // Regular search behavior
+    if (trimmed.length === 0) {
+      setResults([]);
+      setLoading(false);
+      setShowResults(false);
+      searchIdRef.current++;
+    } else {
+      setShowResults(trimmed.length >= 2);
+    }
+  };
+
   return (
     <GlassModal
       visible={open}
@@ -345,42 +383,12 @@ const TransferModal: React.FC<TransferModalProps> = ({
             <View className="relative">
               <TextInput
                 placeholder={t("transfer.searchPlaceholder")}
+                autoCapitalize="none"
+                autoCorrect={false}
+                spellCheck={false}
                 placeholderTextColor="#8B8D90"
                 value={query}
-                onChangeText={(t) => {
-                  setQuery(t);
-                  const trimmed = (t || "").trim();
-                  // If a valid address is pasted/typed, set as recipient and bypass search
-                  if (ethers.utils?.isAddress?.(trimmed)) {
-                    setRecipient({
-                      address: trimmed,
-                      walletAddress: trimmed,
-                    } as any);
-                    setRecipientFromAddress(true);
-                    setResults([]);
-                    setLoading(false);
-                    setShowResults(false);
-                    searchIdRef.current++;
-                    return;
-                  }
-                  // If editing after setting address, clear recipient
-                  if (
-                    recipientFromAddress &&
-                    !ethers.utils?.isAddress?.(trimmed)
-                  ) {
-                    setRecipient(null);
-                    setRecipientFromAddress(false);
-                  }
-                  // Regular search behavior
-                  if (trimmed.length === 0) {
-                    setResults([]);
-                    setLoading(false);
-                    setShowResults(false);
-                    searchIdRef.current++;
-                  } else {
-                    setShowResults(trimmed.length >= 2);
-                  }
-                }}
+                onChangeText={handleQueryChange}
                 onFocus={() =>
                   setShowResults(
                     !recipientFromAddress && (query || "").trim().length >= 2
@@ -408,6 +416,9 @@ const TransferModal: React.FC<TransferModalProps> = ({
                 </TouchableOpacity>
               )}
             </View>
+            {!recipientFromAddress && (
+              <AddressInputTools scan onValue={handleQueryChange} />
+            )}
             {!!recipient && !loading && !showResults && (
               <View className="mt-2">
                 <View className="flex-row items-center p-2 rounded-lg bg-theme-neutrals-900">

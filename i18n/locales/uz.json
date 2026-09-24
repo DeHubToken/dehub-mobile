@@ -804,7 +804,11 @@
     "select": "Tanlang",
     "noResults": "Natijalar yo'q",
     "moreInfo": "Qo'shimcha ma'lumot",
-    "translate": "Tarjima qilish"
+    "translate": "Tarjima qilish",
+    "paste": "Qo’shish",
+    "scanQr": "QR kodini skanerlang",
+    "scanQrHint": "Kamerani hamyon manzilining QR kodiga yo&#39;naltiring",
+    "allowCameraForQr": "QR kodini skanerlash uchun kameraga kirishga ruxsat bering"
   },
   "tip": {
     "title": "Tip yuborish",
@@ -3261,7 +3265,9 @@
       "paymentReverted": "To'lov zanjirda qaytarildi — buyurtma yaratilmadi.",
       "purchaseFailed": "Xarid amalga oshmadi",
       "transactionCancelled": "Tranzaksiya bekor qilindi.",
-      "pickRating": "Avval yulduzli bahoni tanlang."
+      "pickRating": "Avval yulduzli bahoni tanlang.",
+      "confirmTitle": "Xaridni tasdiqlang",
+      "confirmBody": "Siz Base’da to‘g‘ridan-to‘g‘ri sotuvchining hamyoniga {{amount}} DHB (taxminan {{usd}}) to‘laysiz. Buni qaytarib olib bo‘lmaydi."
     },
     "categories": {
       "all": "Hammasi",

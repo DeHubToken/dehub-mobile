@@ -804,7 +804,11 @@
     "select": "Yàn",
     "noResults": "Kò sí àwọn èsì.",
     "moreInfo": "Àlàyé díẹ̀ si",
-    "translate": "Túmọ̀"
+    "translate": "Túmọ̀",
+    "paste": "Lẹẹmọ",
+    "scanQr": "Ṣàyẹ̀wò QR",
+    "scanQrHint": "Tọ́ka kámẹ́rà náà sí àdírẹ́sì àpamọ́wọ́ QR",
+    "allowCameraForQr": "Fún ìfikúnsí fámà láti ṣe àyẹ̀wò kóódù QR"
   },
   "tip": {
     "title": "Fi Ẹ̀bùn Ránṣẹ́",
@@ -3244,7 +3248,9 @@
       "paymentReverted": "Ìsanwó padà sẹ́yìn lórí ẹ̀wọ̀n — kò sí àṣẹ tí a ṣẹ̀dá.",
       "purchaseFailed": "Ìrà kùnà",
       "transactionCancelled": "A fagilé ìdúnàádúrà náà.",
-      "pickRating": "Kọ́kọ́ yan ìdíwọ̀n ìràwọ̀."
+      "pickRating": "Kọ́kọ́ yan ìdíwọ̀n ìràwọ̀.",
+      "confirmTitle": "Jẹrisi rira",
+      "confirmBody": "O máa san {{amount}} DHB (nípa {{usd}}) lórí ìpìlẹ̀, lẹ́sẹ̀kẹsẹ̀ sí àpamọ́ owó oníṣòwò. Èyí kò lè di àtúnṣe."
     },
     "categories": {
       "all": "Gbogbo",

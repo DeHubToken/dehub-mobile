@@ -1,3 +1,4 @@
+import { appLocale } from '../libs/date.util';
 import React, { useState, useEffect, useCallback, useMemo, useSyncExternalStore } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -284,7 +285,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
     if (!smsStatus.available) return t('settings.smsUnavailable');
     if (!smsStatus.unlocked) {
       return t('settings.smsNotificationsLocked', {
-        dhb: smsStatus.minDepositDhb.toLocaleString('en-US'),
+        dhb: smsStatus.minDepositDhb.toLocaleString(appLocale()),
         usd: smsStatus.minDepositUsd,
       });
     }
@@ -294,7 +295,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
     }
     return t('settings.smsNotificationsDescReady', {
       phone: smsStatus.phone,
-      dhb: (smsStatus.priceDhb ?? 0).toLocaleString('en-US'),
+      dhb: (smsStatus.priceDhb ?? 0).toLocaleString(appLocale()),
       count: smsStatus.messagesRemaining ?? 0,
     });
   }, [smsStatus, t]);

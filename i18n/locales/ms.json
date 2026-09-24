@@ -1065,7 +1065,11 @@
     "offlineStatus": "Luar Talian - Tiada sambungan rangkaian",
     "postNotFound": "Kami tidak menemui hantaran itu",
     "moreInfo": "Maklumat lanjut",
-    "translate": "Terjemah"
+    "translate": "Terjemah",
+    "paste": "Tampal",
+    "scanQr": "Imbas QR",
+    "scanQrHint": "Halakan kamera ke alamat dompet Kod QR",
+    "allowCameraForQr": "Benarkan akses kamera untuk mengimbas kod QR"
   },
   "tip": {
     "title": "Hantar Petua",
@@ -3504,7 +3508,9 @@
       "paymentReverted": "Pembayaran dibatalkan atas rantai — tiada pesanan dicipta.",
       "purchaseFailed": "Pembelian gagal",
       "transactionCancelled": "Transaksi dibatalkan.",
-      "pickRating": "Pilih penarafan bintang dahulu."
+      "pickRating": "Pilih penarafan bintang dahulu.",
+      "confirmTitle": "Sahkan pembelian",
+      "confirmBody": "Anda akan membayar {{amount}} DHB (kira-kira {{usd}}) di Base, terus ke dompet penjual. Ini tidak boleh dibuat asal."
     },
     "categories": {
       "all": "Semua",

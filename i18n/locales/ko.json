@@ -804,7 +804,11 @@
     "select": "선택",
     "noResults": "결과 없음",
     "moreInfo": "추가 정보",
-    "translate": "번역"
+    "translate": "번역",
+    "paste": "붙여넣기",
+    "scanQr": "QR 스캔",
+    "scanQrHint": "카메라를 지갑 주소 QR 코드로 향하게 합니다.",
+    "allowCameraForQr": "QR 코드를 스캔할 수 있도록 카메라 액세스 허용"
   },
   "tip": {
     "title": "팁 보내기",
@@ -3247,7 +3251,9 @@
       "paymentReverted": "결제가 온체인에서 되돌려졌습니다 — 주문이 생성되지 않았습니다.",
       "purchaseFailed": "구매 실패",
       "transactionCancelled": "거래가 취소되었습니다.",
-      "pickRating": "먼저 별점을 선택하세요."
+      "pickRating": "먼저 별점을 선택하세요.",
+      "confirmTitle": "구매를 확인하시겠습니까?",
+      "confirmBody": "베이스에서 {{amount}} DHB (약 {{usd}}) 를 판매자의 지갑으로 직접 지불합니다. 이 작업은 취소할 수 없습니다."
     },
     "categories": {
       "all": "전체",

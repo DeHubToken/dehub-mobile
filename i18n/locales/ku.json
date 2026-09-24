@@ -804,7 +804,11 @@
     "select": "Neqandin",
     "noResults": "Encam tune",
     "moreInfo": "Zêdetir agahî",
-    "translate": "Wergerandin"
+    "translate": "Wergerandin",
+    "paste": "Pêve bike",
+    "scanQr": "QR bişopîne",
+    "scanQrHint": "Kamerayê ber bi koda QR ya navnîşana cûzdanê ve bigire",
+    "allowCameraForQr": "Destûrê bide kamerayê da ku koda QR bişopîne"
   },
   "tip": {
     "title": "Bexşîş Bişîne",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Dayîn li ser zincîrê vegeriya — tu sipariş nehate çêkirin.",
       "purchaseFailed": "Kirîn bi ser neket",
       "transactionCancelled": "Danûstendin hate betalkirin.",
-      "pickRating": "Pêşî nirxandina stêrkan hilbijêre."
+      "pickRating": "Pêşî nirxandina stêrkan hilbijêre.",
+      "confirmTitle": "Kirînê piştrast bike",
+      "confirmBody": "Tu yê {{amount}} DHB (nêzîkî {{usd}}) li ser Base rasterast bidî cûzdana firoşkar. Ev nayê paşvegerandin."
     },
     "categories": {
       "all": "Hemû",

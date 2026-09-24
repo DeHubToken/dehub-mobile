@@ -804,7 +804,11 @@
     "select": "选择",
     "noResults": "无结果",
     "moreInfo": "更多信息",
-    "translate": "翻译"
+    "translate": "翻译",
+    "paste": "粘贴",
+    "scanQr": "扫描二维码",
+    "scanQrHint": "将相机对准钱包地址二维码",
+    "allowCameraForQr": "允许相机访问以扫描二维码"
   },
   "tip": {
     "title": "发送打赏",
@@ -3247,7 +3251,9 @@
       "paymentReverted": "支付在链上被回滚——未创建订单。",
       "purchaseFailed": "购买失败",
       "transactionCancelled": "交易已取消。",
-      "pickRating": "请先选择星级评分。"
+      "pickRating": "请先选择星级评分。",
+      "confirmTitle": "购买确认",
+      "confirmBody": "您将在Base上直接向卖家的钱包支付{{amount}} DHB （约{{usd}} ）。此操作无法撤消。"
     },
     "categories": {
       "all": "全部",

@@ -9,6 +9,7 @@
  * useful answer is often "nobody has it". A marketplace that lets someone pay
  * for a name they could have claimed in Settings is not one they come back to.
  */
+import { appLocale } from "../libs/date.util";
 import { DhbCoin } from "../components/common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
 import {
@@ -151,9 +152,9 @@ const UsernameCard: React.FC<{
       {/* Right: right-aligned so a column of rows lines up on the digits. */}
       <View style={styles.cardPriceCol}>
         <Text style={styles.cardPrice} numberOfLines={1}>
-          ${listing.priceUsd.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+          ${listing.priceUsd.toLocaleString(appLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         </Text>
-        <Text style={styles.cardPriceUnit}><DhbCoin size={12} /> {listing.priceDhb.toLocaleString("en-US", { maximumFractionDigits: 6 })}</Text>
+        <Text style={styles.cardPriceUnit}><DhbCoin size={12} /> {listing.priceDhb.toLocaleString(appLocale(), { maximumFractionDigits: 6 })}</Text>
       </View>
     </Pressable>
   );

@@ -804,7 +804,11 @@
     "select": "Selecionar",
     "noResults": "Nenhum resultado",
     "moreInfo": "Mais informações",
-    "translate": "Traduzir"
+    "translate": "Traduzir",
+    "paste": "Colar",
+    "scanQr": "Digitalizar QR",
+    "scanQrHint": "Aponte a câmara para um código QR de endereço da carteira",
+    "allowCameraForQr": "Permitir o acesso à câmara para digitalizar um código QR"
   },
   "tip": {
     "title": "Enviar gorjeta",
@@ -3247,7 +3251,9 @@
       "paymentReverted": "Pagamento revertido on-chain — nenhuma encomenda foi criada.",
       "purchaseFailed": "A compra falhou",
       "transactionCancelled": "Transação cancelada.",
-      "pickRating": "Escolha primeiro uma classificação."
+      "pickRating": "Escolha primeiro uma classificação.",
+      "confirmTitle": "Confirme a Compra",
+      "confirmBody": "Você pagará {{amount}} DHB (cerca de {{usd}}) na base, diretamente na carteira do vendedor. Isso não pode ser desfeito."
     },
     "categories": {
       "all": "Tudo",

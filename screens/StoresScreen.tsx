@@ -4,6 +4,7 @@
  * Native port of the web StoresPage (/app/stores): Browse and My Store, same as
  * web's two tabs. Same Supabase marketplace tables — see hooks/useStores.ts.
  */
+import { appLocale } from "../libs/date.util";
 import React, { useCallback, useState } from "react";
 import {
   View,
@@ -48,7 +49,7 @@ const H_PADDING = 16;
 
 function money(n: number): string {
   const v = Number(n) || 0;
-  return `$${v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  return `$${v.toLocaleString(appLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
 function firstImage(l: StoreListing): string | null {

@@ -804,7 +804,11 @@
     "select": "ይምረጡ",
     "noResults": "ምንም ውጤቶች የሉም",
     "moreInfo": "ተጨማሪ መረጃ",
-    "translate": "ተርጉም"
+    "translate": "ተርጉም",
+    "paste": "ለጥፍ",
+    "scanQr": "QR ን ይቃኙ",
+    "scanQrHint": "ካሜራውን በኪስ አድራሻ QR ኮድ ይጠቁሙ",
+    "allowCameraForQr": "የ QR ኮድ ለመቃኘት የካሜራ መዳረሻ ይፍቀዱ"
   },
   "tip": {
     "title": "ጥቆማ ላክ",
@@ -3273,7 +3277,9 @@
       "paymentReverted": "ክፍያው በሰንሰለቱ ላይ ተመልሷል — ምንም ትዕዛዝ አልተፈጠረም።",
       "purchaseFailed": "ግዢው አልተሳካም",
       "transactionCancelled": "ግብይቱ ተሰርዟል።",
-      "pickRating": "መጀመሪያ የኮከብ ደረጃ ይምረጡ።"
+      "pickRating": "መጀመሪያ የኮከብ ደረጃ ይምረጡ።",
+      "confirmTitle": "ግዢን ያረጋግጡ",
+      "confirmBody": "እርስዎ ይከፍላሉ {{amount}}DHB (ስለ {{usd}}) በመሠረቱ ፣ በቀጥታ ወደ ሻጩ የኪስ ቦርሳ ። ይህ ሊወገድ አይችልም ።"
     },
     "categories": {
       "all": "ሁሉም",

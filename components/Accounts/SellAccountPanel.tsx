@@ -18,6 +18,7 @@
  * chain and delivery address, and Resume re-claims it until the account
  * demonstrably lives at the receiving wallet.
  */
+import { appLocale } from "../../libs/date.util";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useEffect, useState } from "react";
 import {
@@ -166,13 +167,13 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
             <Text style={styles.hint}>
               {priceValid && config
                 ? t("accounts.priceOk", {
-                    usd: (priceNumber * config.dhbUsdPeg).toLocaleString("en-US", {
+                    usd: (priceNumber * config.dhbUsdPeg).toLocaleString(appLocale(), {
                       maximumFractionDigits: 2,
                     }),
                   })
                 : t("accounts.priceRange", {
-                    min: minPrice.toLocaleString("en-US"),
-                    max: maxPrice.toLocaleString("en-US"),
+                    min: minPrice.toLocaleString(appLocale()),
+                    max: maxPrice.toLocaleString(appLocale()),
                   })}
             </Text>
           </View>
@@ -255,7 +256,7 @@ const SaleRow: React.FC<{ sale: AccountSale; label: string }> = ({ sale, label }
       </Text>
       <Text style={styles.rowSub}>{label}</Text>
     </View>
-    <Text style={styles.rowPrice}>{sale.paidDhb.toLocaleString("en-US")} <DhbCoin /></Text>
+    <Text style={styles.rowPrice}>{sale.paidDhb.toLocaleString(appLocale())} <DhbCoin /></Text>
   </View>
 );
 
@@ -273,7 +274,7 @@ const HistoryRow: React.FC<{ listing: MyAccountListing; soldLabel: string }> = (
         {listing.status === "cancelled" ? listing.cancelReason || "Withdrawn" : soldLabel}
       </Text>
     </View>
-    <Text style={styles.rowPriceMuted}>{listing.priceDhb.toLocaleString("en-US")} <DhbCoin /></Text>
+    <Text style={styles.rowPriceMuted}>{listing.priceDhb.toLocaleString(appLocale())} <DhbCoin /></Text>
   </View>
 );
 

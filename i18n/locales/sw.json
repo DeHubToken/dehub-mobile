@@ -804,7 +804,11 @@
     "select": "Chagua",
     "noResults": "Hakuna matokeo",
     "moreInfo": "Maelezo zaidi",
-    "translate": "Tafsiri"
+    "translate": "Tafsiri",
+    "paste": "Bandika",
+    "scanQr": "Skani QR",
+    "scanQrHint": "Elekeza kamera kwenye msimbo wa QR wa anwani ya mkoba",
+    "allowCameraForQr": "Ruhusu ufikiaji wa kamera kuchanganua msimbo wa QR"
   },
   "tip": {
     "title": "Tuma Kidokezo",
@@ -3244,7 +3248,9 @@
       "paymentReverted": "Malipo yamerudishwa kwenye mnyororo — hakuna agizo lililoundwa.",
       "purchaseFailed": "Ununuzi umeshindikana",
       "transactionCancelled": "Muamala umeghairiwa.",
-      "pickRating": "Chagua kwanza ukadiriaji wa nyota."
+      "pickRating": "Chagua kwanza ukadiriaji wa nyota.",
+      "confirmTitle": "Thibitisha ununuzi",
+      "confirmBody": "Utalipa {{amount}} DHB (kuhusu {{usd}}) kwenye Msingi, moja kwa moja kwenye pochi ya muuzaji. Hii haiwezi kutenduliwa."
     },
     "categories": {
       "all": "Zote",

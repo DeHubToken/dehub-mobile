@@ -4,6 +4,7 @@
  * Native port of the web StoreDetailPage (/app/stores/:storeId): a store's
  * banner, identity and its active listings.
  */
+import { appLocale } from "../libs/date.util";
 import React, { useEffect, useRef } from "react";
 import {
   View,
@@ -35,7 +36,7 @@ const H_PADDING = 16;
 
 function money(n: number): string {
   const v = Number(n) || 0;
-  return `$${v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  return `$${v.toLocaleString(appLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
 export default function StoreDetailScreen() {

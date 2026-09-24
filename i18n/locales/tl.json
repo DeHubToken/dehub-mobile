@@ -847,7 +847,10 @@
     "select": "Piliin",
     "noResults": "Walang resulta",
     "moreInfo": "Karagdagang impormasyon",
-    "translate": "Isalin"
+    "translate": "Isalin",
+    "scanQr": "I-scan ang QR",
+    "scanQrHint": "Ituro ang camera sa isang wallet address QR code",
+    "allowCameraForQr": "Pahintulutan ang access sa camera para mag-scan ng QR code"
   },
   "tip": {
     "title": "Magpadala ng Tip",
@@ -3291,7 +3294,9 @@
       "paymentReverted": "Nabaligtad ang bayad on-chain — walang nagawang order.",
       "purchaseFailed": "Nabigo ang pagbili",
       "transactionCancelled": "Kinansela ang transaksyon.",
-      "pickRating": "Pumili muna ng star rating."
+      "pickRating": "Pumili muna ng star rating.",
+      "confirmTitle": "Kumpirmahin ang pagbili",
+      "confirmBody": "Magbabayad ka ng {{amount}} DHB (tungkol sa {{usd}}) sa Base, diretso sa wallet ng nagbebenta. Hindi ito mababawi."
     },
     "categories": {
       "all": "Lahat",

@@ -804,7 +804,11 @@
     "select": "Sélectionner",
     "noResults": "Aucun résultat",
     "moreInfo": "Plus d'informations",
-    "translate": "Traduire"
+    "translate": "Traduire",
+    "paste": "Coller",
+    "scanQr": "Scanner le QR",
+    "scanQrHint": "Pointez la caméra sur un code QR d'adresse de portefeuille",
+    "allowCameraForQr": "Autoriser l'accès à la caméra pour scanner un code QR"
   },
   "tip": {
     "title": "Envoyer un pourboire",
@@ -3247,7 +3251,9 @@
       "paymentReverted": "Paiement annulé on-chain — aucune commande créée.",
       "purchaseFailed": "Achat échoué",
       "transactionCancelled": "Transaction annulée.",
-      "pickRating": "Choisissez d'abord une note."
+      "pickRating": "Choisissez d'abord une note.",
+      "confirmTitle": "Confirmer l’achat",
+      "confirmBody": "Vous paierez {{amount}} DHB (environ {{usd}}) sur Base, directement dans le portefeuille du vendeur. Cela ne peut pas être annulé."
     },
     "categories": {
       "all": "Tout",

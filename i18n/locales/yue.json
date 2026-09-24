@@ -804,7 +804,11 @@
     "select": "選擇",
     "noResults": "沒有結果",
     "moreInfo": "更多資訊",
-    "translate": "翻譯"
+    "translate": "翻譯",
+    "paste": "貼上",
+    "scanQr": "掃描 QR",
+    "scanQrHint": "將相機對準銀包地址二維碼",
+    "allowCameraForQr": "允許相機存取掃描二維碼"
   },
   "tip": {
     "title": "送禮物",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "付款喺鏈上退返 — 冇建立到訂單。",
       "purchaseFailed": "購買失敗",
       "transactionCancelled": "交易已取消。",
-      "pickRating": "先揀星級評分。"
+      "pickRating": "先揀星級評分。",
+      "confirmTitle": "確認購買",
+      "confirmBody": "你會喺 Base 上面畀 {{amount}} DHB （大約 {{usd}} ），直接去賣家嘅銀包。呢個係復原唔到嘅。"
     },
     "categories": {
       "all": "全部",

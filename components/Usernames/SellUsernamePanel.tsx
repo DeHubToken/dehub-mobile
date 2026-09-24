@@ -17,6 +17,7 @@
  * The picker only appears once there is something to pick between. An account
  * that has never bought a handle owns exactly one.
  */
+import { appLocale } from "../../libs/date.util";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useEffect, useState } from "react";
 import {
@@ -202,7 +203,7 @@ const SellUsernamePanel: React.FC<Props> = ({
             />
             <Text style={styles.hint}>
               {priceValid && config && config.dhbUsdPeg > 0 ? <>
-                ≈ <DhbCoin /> {(Math.ceil(priceNumber / config.dhbUsdPeg * 1e6) / 1e6).toLocaleString('en-US', { maximumFractionDigits: 6 })}
+                ≈ <DhbCoin /> {(Math.ceil(priceNumber / config.dhbUsdPeg * 1e6) / 1e6).toLocaleString(appLocale(), { maximumFractionDigits: 6 })}
                 {' · '}{t('usernames.fixedDollarPrice', 'Dollar price stays fixed; token amount updates.')}
               </> : t('usernames.dollarPriceRange', 'Enter $1–$1,000,000, with up to two decimal places.')}
             </Text>
@@ -317,7 +318,7 @@ const SaleRow: React.FC<{ sale: UsernameSale; label: string }> = ({ sale, label 
       </Text>
       <Text style={styles.rowSub}>{label}</Text>
     </View>
-    <Text style={styles.rowPrice}>${sale.priceUsd.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{"\n"}<DhbCoin /> {sale.paidDhb.toLocaleString("en-US")}</Text>
+    <Text style={styles.rowPrice}>${sale.priceUsd.toLocaleString(appLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{"\n"}<DhbCoin /> {sale.paidDhb.toLocaleString(appLocale())}</Text>
   </View>
 );
 
@@ -335,7 +336,7 @@ const HistoryRow: React.FC<{ listing: MyUsernameListing; soldLabel: string }> = 
         {listing.status === "cancelled" ? listing.cancelReason || "Withdrawn" : soldLabel}
       </Text>
     </View>
-    <Text style={styles.rowPriceMuted}>${listing.priceUsd.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{"\n"}<DhbCoin /> {listing.priceDhb.toLocaleString("en-US")}</Text>
+    <Text style={styles.rowPriceMuted}>${listing.priceUsd.toLocaleString(appLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{"\n"}<DhbCoin /> {listing.priceDhb.toLocaleString(appLocale())}</Text>
   </View>
 );
 

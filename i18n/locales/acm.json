@@ -804,7 +804,11 @@
     "select": "اختار",
     "noResults": "ماكو نتائج",
     "moreInfo": "مزيد من المعلومات",
-    "translate": "ترجم"
+    "translate": "ترجم",
+    "scanQr": "اسكن كي آر",
+    "scanQrHint": "وجّه الكاميرا على رمز QR لعنوان المحفظة",
+    "allowCameraForQr": "خَلّي الكاميرا تشوف حتى تگدر تسڪن QR code",
+    "paste": "لصق"
   },
   "tip": {
     "title": "أرسل إكرامية",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "الدفع رجع على السلسلة — ماتسوّى أي طلب.",
       "purchaseFailed": "الشراء فشل",
       "transactionCancelled": "المعاملة انلغت.",
-      "pickRating": "أول شي اختار تقييم النجوم."
+      "pickRating": "أول شي اختار تقييم النجوم.",
+      "confirmTitle": "تأكيد الشراء",
+      "confirmBody": "راح تدفع {{amount}} درهم (تقريباً {{usd}}) على بيس، مباشرة لمحفظة البائع. هالشي ما يتصلح."
     },
     "categories": {
       "all": "الكل",

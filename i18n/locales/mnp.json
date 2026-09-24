@@ -804,7 +804,11 @@
     "noResults": "無結果",
     "select": "选择",
     "moreInfo": "更多信息",
-    "translate": "翻译"
+    "translate": "翻译",
+    "scanQr": "掃描 QR",
+    "allowCameraForQr": "允许相机访问扫描二维码",
+    "scanQrHint": "點相機對準錢包地址 QR code",
+    "paste": "粘貼"
   },
   "tip": {
     "title": "送打赏",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "付款在链顶退转来 — 无做成订单。",
       "purchaseFailed": "买入无成",
       "transactionCancelled": "交易取消去。",
-      "pickRating": "先拣星级评分。"
+      "pickRating": "先拣星级评分。",
+      "confirmTitle": "確定購買",
+      "confirmBody": "汝會付 {{amount}} DHB (大約 {{usd}}) 在 Base，直接付予賣方錢包。此舉無法撤銷。"
     },
     "categories": {
       "all": "全部",

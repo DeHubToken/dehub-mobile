@@ -13,6 +13,7 @@
  * amount, which is the one thing web's Stores drawer had to be rewritten to
  * stop doing.
  */
+import { appLocale } from "../../libs/date.util";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, ActivityIndicator, Share } from "react-native";
@@ -142,10 +143,10 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
           <View style={styles.panel}>
             <Text style={styles.panelLabel}>{t("usernames.askingPrice")}</Text>
             <Text style={styles.price}>
-              ${priceUsd.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              ${priceUsd.toLocaleString(appLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </Text>
             <Text style={styles.panelHint}>
-              <DhbCoin size={14} /> {priceDhb.toLocaleString('en-US', { maximumFractionDigits: 6 })}
+              <DhbCoin size={14} /> {priceDhb.toLocaleString(appLocale(), { maximumFractionDigits: 6 })}
               {' · '}{t('usernames.tokensPaidToSeller', 'Paid directly to the seller')}
             </Text>
           </View>

@@ -16,6 +16,7 @@
  * app already had; the card is the inline summary that was missing.
  */
 
+import { appLocale } from '../../libs/date.util';
 import React, { memo, useCallback, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
@@ -52,7 +53,7 @@ const SPARK_H = 36;
 function formatPrice(value: number | null): string {
   if (value == null) return '—';
   if (value >= 1000)
-    return `$${value.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+    return `$${value.toLocaleString(appLocale(), { maximumFractionDigits: 0 })}`;
   if (value >= 1) return `$${value.toFixed(2)}`;
   if (value >= 0.01) return `$${value.toFixed(4)}`;
   if (value >= 0.0001) return `$${value.toFixed(6)}`;

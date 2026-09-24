@@ -804,7 +804,11 @@
     "select": "选择",
     "noResults": "无结果",
     "moreInfo": "更多信息",
-    "translate": "翻译"
+    "translate": "翻译",
+    "scanQr": "扫二维码",
+    "scanQrHint": "把摄像机对准钱包地址的二维码",
+    "allowCameraForQr": "允许相机访问以扫描二维码",
+    "paste": "粘贴"
   },
   "tip": {
     "title": "送礼物",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "付款勒链浪退转来 — 呒没做出订单。",
       "purchaseFailed": "买入失败",
       "transactionCancelled": "交易取消脱。",
-      "pickRating": "先拣星级评分。"
+      "pickRating": "先拣星级评分。",
+      "confirmTitle": "确认购买",
+      "confirmBody": "搿笔钱侬要付 {{amount}} 迪拜哈姆 (差弗多 {{usd}}) 勒 Base 上，直接付拨卖号个钱包里。迭个事体做脱了就弗能反悔了。"
     },
     "categories": {
       "all": "全部",

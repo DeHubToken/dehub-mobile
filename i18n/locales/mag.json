@@ -804,7 +804,11 @@
     "select": "चुनें",
     "noResults": "कवनो नतीजा नईं",
     "moreInfo": "आउर जानकारी",
-    "translate": "अनुवाद करीं"
+    "translate": "अनुवाद करीं",
+    "paste": "पेस्ट करे",
+    "scanQr": "क्यूआर स्कैन करे",
+    "scanQrHint": "QR Code के संदर्भ में फ़ोन नंबर दर्ज करे",
+    "allowCameraForQr": "QR Code स्कैन करे"
   },
   "tip": {
     "title": "टिप भेजो",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "भुगतान चेन पर वापस पलट गेल — कोनो ऑर्डर नै बनल।",
       "purchaseFailed": "खरीद विफल भेल",
       "transactionCancelled": "लेनदेन रद्द भ' गेल।",
-      "pickRating": "पहिने स्टार रेटिंग चुनूँ।"
+      "pickRating": "पहिने स्टार रेटिंग चुनूँ।",
+      "confirmTitle": "खरीदें के लिए कांटेक्ट करे",
+      "confirmBody": "अपने Base पर {{amount}} DHB (लगभग {{usd}}) सीधे बेचेवाला के वॉलेट में देबऽ। ई वापस न हो सकऽ हे।"
     },
     "categories": {
       "all": "सब",

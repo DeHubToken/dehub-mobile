@@ -804,7 +804,11 @@
     "select": "Họrọ",
     "noResults": "Enweghị nsonaazụ",
     "moreInfo": "Ozi ndị ọzọ",
-    "translate": "Tụgharịa asụsụ"
+    "translate": "Tụgharịa asụsụ",
+    "paste": "Tapawa",
+    "scanQr": "Nyochaa QR",
+    "scanQrHint": "Tụọ igwefoto na a obere akpa adreesị QR koodu",
+    "allowCameraForQr": "Ka igwefoto ohere iṅomi a QR koodu"
   },
   "tip": {
     "title": "Ziga Onyinye",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Ịkwụ ụgwọ laghachiri azụ n'agbụ — emepụtaghị iwu ọ bụla.",
       "purchaseFailed": "Ịzụta dara",
       "transactionCancelled": "Akagbuola azụmahịa ahụ.",
-      "pickRating": "Buru ụzọ họrọ ọkwa kpakpando."
+      "pickRating": "Buru ụzọ họrọ ọkwa kpakpando.",
+      "confirmTitle": "Gosi ịzụta",
+      "confirmBody": "Ị ga-akwụ {{amount}} DHB (banyere {{usd}}) na Base, ozugbo na onye na-ere akpa. Agaghị emezigharị ihe a."
     },
     "categories": {
       "all": "Niile",
