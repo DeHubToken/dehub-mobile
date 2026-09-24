@@ -101,7 +101,11 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
         </Text>
       </View>
 
-      {/* Progress Bar Track */}
+      {/* Progress Bar Track. The pan sits on the full 32dp strip, not the
+          6dp bar, so a drag starting anywhere near the bar scrubs. The pan is
+          disabled in live mode, so taps still fall through to the Pressable. */}
+      <GestureDetector gesture={panGesture}>
+      <Animated.View>
       <Pressable
         onLayout={(e) => onLayoutWidth(e.nativeEvent.layout.width)}
         onPress={(e) => !liveMode && onPressBar(e.nativeEvent.locationX)}
@@ -110,13 +114,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
         accessibilityLabel={`Video progress: ${Math.round(progressRatio * 100)}%`}
         accessibilityHint="Tap to seek to a specific position"
       >
-        {liveMode ? (
-          progressBarContent
-        ) : (
-          <GestureDetector gesture={panGesture}>
-            <Animated.View>{progressBarContent}</Animated.View>
-          </GestureDetector>
-        )}
+        {progressBarContent}
 
         {/* Scrubber Thumb (only in non-live mode) */}
         {!liveMode && (
@@ -137,6 +135,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
           />
         )}
       </Pressable>
+      </Animated.View>
+      </GestureDetector>
     </View>
   );
 };
