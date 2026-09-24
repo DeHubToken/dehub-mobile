@@ -5,6 +5,7 @@ import env from "../config/env";
 // that module imports nothing from here today, but a service importing a
 // sibling service to reach a two-line helper is how import cycles start.
 import { getAuthToken } from "../libs/auth.utils";
+import { createWalletSessionFetch } from "../libs/wallet-session";
 
 export const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_PUBLISHABLE_KEY, {
   auth: {
@@ -13,6 +14,8 @@ export const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_PUBLISHABLE_
     persistSession: true,
     detectSessionInUrl: false,
   },
+  // Signs wallet-scoped REST and storage requests; see libs/wallet-session.ts.
+  global: { fetch: createWalletSessionFetch() },
 });
 
 /**
