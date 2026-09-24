@@ -6537,5 +6537,34 @@
       "violence": "Ime ihe ike",
       "scam_or_fraud": "Scam ma ọ bụ wayo"
     }
+  },
+  "affiliateLanding": {
+    "title": "Hazie peeji òkù gị",
+    "subtitle": "Mee ka peeji dị ka gị. Ndị ọbịa na-ahụ ederede a tupu ha esonye.",
+    "headline": "Isiokwu",
+    "message": "Ozi nnabata",
+    "buttonText": "Ederede bọtịnụ isi",
+    "destination": "Ebe DeHub",
+    "extraTitle": "Bọtịnụ ndị ọzọ ({{count}}/{{max}})",
+    "extraHint": "Zipu ndị ọbịa ozugbo n'akụkụ DeHub ha nwere mmasị na ya. Bọtịnụ ọ bụla na-edebe ntụaka gị.",
+    "extraLabel": "Ederede bọtịnụ",
+    "removeButton": "Wepụ bọtịnụ",
+    "addCustom": "Nke ahaziri",
+    "presets": {
+      "edit": "Dezie",
+      "create": "Mepụta",
+      "build": "Wuo",
+      "import": "Bubata",
+      "explore": "Nyochaa"
+    },
+    "publish": "Bipụta mgbanwe",
+    "publishing": "Na-ebipụta…",
+    "reset": "Tọgharịa",
+    "preview": "Nlele ndụ",
+    "published": "E bipụtala peeji òkù",
+    "saveFailed": "Enweghị ike ịchekwa peeji òkù",
+    "clicksTitle": "Mpị dịka ebe",
+    "clicksRow_one": "{{clicks}} mpị · {{unique}} pụrụ iche",
+    "clicksRow_other": "{{clicks}} mpị · {{unique}} pụrụ iche"
   }
 }

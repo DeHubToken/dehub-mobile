@@ -6567,5 +6567,34 @@
       "violence": "العنف",
       "scam_or_fraud": "الغش أو الاحتيال"
     }
+  },
+  "affiliateLanding": {
+    "title": "خصّص صفحة الدعوة ديالك",
+    "subtitle": "خلّي الصفحة تشبه ليك. الزوار كيشوفو هاد الكلام قبل ما يدخلو.",
+    "headline": "العنوان",
+    "message": "رسالة الترحيب",
+    "buttonText": "الكتابة ديال الزر الرئيسي",
+    "destination": "البلاصة ف DeHub",
+    "extraTitle": "أزرار زايدين ({{count}}/{{max}})",
+    "extraHint": "صيفط الزوار نيشان للجزء اللي كيهمهم ف DeHub. كل زر كيحافظ على الإحالة ديالك.",
+    "extraLabel": "الكتابة ديال الزر",
+    "removeButton": "حيّد الزر",
+    "addCustom": "مخصص",
+    "presets": {
+      "edit": "بدّل",
+      "create": "صاوب",
+      "build": "بني",
+      "import": "جيب",
+      "explore": "اكتاشف"
+    },
+    "publish": "نشر التغييرات",
+    "publishing": "كينشر…",
+    "reset": "رجّع",
+    "preview": "معاينة مباشرة",
+    "published": "صفحة الدعوة تنشرات",
+    "saveFailed": "ما قدرناش نحفظو صفحة الدعوة",
+    "clicksTitle": "الكليكات حسب البلاصة",
+    "clicksRow_one": "{{clicks}} كليك · {{unique}} مختالفين",
+    "clicksRow_other": "{{clicks}} كليكات · {{unique}} مختالفين"
   }
 }

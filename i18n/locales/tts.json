@@ -6537,5 +6537,34 @@
       "violence": "ความรุนแรง",
       "scam_or_fraud": "หลอกลวง หรือ ฉ้อโกง"
     }
+  },
+  "affiliateLanding": {
+    "title": "ปรับแต่งหน้าคำเชิญของเจ้า",
+    "subtitle": "เฮ็ดให้หน้าเป็นแบบเจ้า คนเข้ามาเบิ่งสิเห็นข้อความนี้ก่อนเข้าฮ่วม",
+    "headline": "หัวข้อ",
+    "message": "ข้อความต้อนฮับ",
+    "buttonText": "ข้อความปุ่มหลัก",
+    "destination": "ปลายทางใน DeHub",
+    "extraTitle": "ปุ่มเพิ่ม ({{count}}/{{max}})",
+    "extraHint": "ส่งคนเข้ามาเบิ่งไปส่วนของ DeHub ที่เขามักได้เลย ทุกปุ่มยังเก็บการแนะนำของเจ้าไว้",
+    "extraLabel": "ข้อความปุ่ม",
+    "removeButton": "เอาปุ่มออก",
+    "addCustom": "กำหนดเอง",
+    "presets": {
+      "edit": "แก้ไข",
+      "create": "สร้าง",
+      "build": "สร้างสรรค์",
+      "import": "นำเข้า",
+      "explore": "สำรวจ"
+    },
+    "publish": "เผยแพร่การเปลี่ยนแปลง",
+    "publishing": "กำลังเผยแพร่…",
+    "reset": "รีเซ็ต",
+    "preview": "ตัวอย่างสด",
+    "published": "เผยแพร่หน้าคำเชิญแล้ว",
+    "saveFailed": "บันทึกหน้าคำเชิญบ่ได้",
+    "clicksTitle": "คลิกตามปลายทาง",
+    "clicksRow_one": "{{clicks}} คลิก · {{unique}} บ่ซ้ำ",
+    "clicksRow_other": "{{clicks}} คลิก · {{unique}} บ่ซ้ำ"
   }
 }

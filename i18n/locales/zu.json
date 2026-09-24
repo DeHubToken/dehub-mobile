@@ -6568,5 +6568,34 @@
       "violence": "Ubudlova",
       "scam_or_fraud": "Ukukhwabanisa noma ukukhwabanisa"
     }
+  },
+  "affiliateLanding": {
+    "title": "Yenza ikhasi lakho lesimemo libe ngelakho",
+    "subtitle": "Yenza ikhasi lizwakale njengawe. Izivakashi zibona lo mbhalo ngaphambi kokujoyina.",
+    "headline": "Isihloko",
+    "message": "Umlayezo wokwamukela",
+    "buttonText": "Umbhalo wenkinobho eyinhloko",
+    "destination": "Indawo ye-DeHub",
+    "extraTitle": "Izinkinobho ezengeziwe ({{count}}/{{max}})",
+    "extraHint": "Thumela izivakashi ngqo engxenyeni ye-DeHub ezithandayo. Inkinobho ngayinye igcina ukudlulisela kwakho.",
+    "extraLabel": "Umbhalo wenkinobho",
+    "removeButton": "Susa inkinobho",
+    "addCustom": "Ngokwezifiso",
+    "presets": {
+      "edit": "Hlela",
+      "create": "Dala",
+      "build": "Akha",
+      "import": "Ngenisa",
+      "explore": "Hlola"
+    },
+    "publish": "Shicilela izinguquko",
+    "publishing": "Iyashicilela…",
+    "reset": "Setha kabusha",
+    "preview": "Ukubuka kuqala okubukhoma",
+    "published": "Ikhasi lesimemo lishicilelwe",
+    "saveFailed": "Ayikwazanga ukulondoloza ikhasi lesimemo",
+    "clicksTitle": "Ukuchofoza ngendawo",
+    "clicksRow_one": "{{clicks}} ukuchofoza · {{unique}} okuhlukile",
+    "clicksRow_other": "{{clicks}} ukuchofoza · {{unique}} okuhlukile"
   }
 }

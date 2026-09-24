@@ -6581,5 +6581,34 @@
       "violence": "عنف",
       "scam_or_fraud": "نصب أو احتيال"
     }
+  },
+  "affiliateLanding": {
+    "title": "ظبّط صفحة الدعوة بتاعتك",
+    "subtitle": "خلّي الصفحة شبهك. الزوار بيشوفوا الكلام ده قبل ما ينضموا.",
+    "headline": "العنوان",
+    "message": "رسالة الترحيب",
+    "buttonText": "كلام الزرار الرئيسي",
+    "destination": "المكان في DeHub",
+    "extraTitle": "زراير زيادة ({{count}}/{{max}})",
+    "extraHint": "ابعت الزوار على طول للجزء اللي يهمهم في DeHub. كل زرار بيحافظ على الإحالة بتاعتك.",
+    "extraLabel": "كلام الزرار",
+    "removeButton": "شيل الزرار",
+    "addCustom": "مخصوص",
+    "presets": {
+      "edit": "عدّل",
+      "create": "اعمل",
+      "build": "ابني",
+      "import": "استورد",
+      "explore": "اكتشف"
+    },
+    "publish": "انشر التغييرات",
+    "publishing": "بينشر…",
+    "reset": "رجّع زي ما كان",
+    "preview": "معاينة مباشرة",
+    "published": "صفحة الدعوة اتنشرت",
+    "saveFailed": "ماقدرناش نحفظ صفحة الدعوة",
+    "clicksTitle": "الضغطات حسب المكان",
+    "clicksRow_one": "{{clicks}} ضغطة · {{unique}} مختلفة",
+    "clicksRow_other": "{{clicks}} ضغطات · {{unique}} مختلفة"
   }
 }

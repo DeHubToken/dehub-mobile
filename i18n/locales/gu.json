@@ -6537,5 +6537,34 @@
       "violence": "હિંસા",
       "scam_or_fraud": "કૌભાંડ અથવા છેતરપિંડી"
     }
+  },
+  "affiliateLanding": {
+    "title": "તમારું આમંત્રણ પેજ કસ્ટમાઇઝ કરો",
+    "subtitle": "પેજને તમારા જેવું બનાવો. જોડાતા પહેલાં મુલાકાતીઓ આ લખાણ જુએ છે.",
+    "headline": "શીર્ષક",
+    "message": "સ્વાગત સંદેશ",
+    "buttonText": "મુખ્ય બટનનું લખાણ",
+    "destination": "DeHub ગંતવ્ય",
+    "extraTitle": "વધારાના બટન ({{count}}/{{max}})",
+    "extraHint": "મુલાકાતીઓને સીધા DeHub ના તેમને રસ હોય તે ભાગમાં મોકલો. દરેક બટન તમારું રેફરલ જાળવી રાખે છે.",
+    "extraLabel": "બટન લખાણ",
+    "removeButton": "બટન દૂર કરો",
+    "addCustom": "કસ્ટમ",
+    "presets": {
+      "edit": "ફેરફાર કરો",
+      "create": "બનાવો",
+      "build": "નિર્માણ",
+      "import": "આયાત",
+      "explore": "શોધો"
+    },
+    "publish": "ફેરફારો પ્રકાશિત કરો",
+    "publishing": "પ્રકાશિત થઈ રહ્યું છે…",
+    "reset": "રીસેટ",
+    "preview": "લાઇવ પૂર્વાવલોકન",
+    "published": "આમંત્રણ પેજ પ્રકાશિત થયું",
+    "saveFailed": "આમંત્રણ પેજ સાચવી શકાયું નહીં",
+    "clicksTitle": "ગંતવ્ય મુજબ ક્લિક્સ",
+    "clicksRow_one": "{{clicks}} ક્લિક · {{unique}} અનન્ય",
+    "clicksRow_other": "{{clicks}} ક્લિક્સ · {{unique}} અનન્ય"
   }
 }

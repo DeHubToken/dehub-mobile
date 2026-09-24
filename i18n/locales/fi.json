@@ -6537,5 +6537,34 @@
       "violence": "Väkivalta",
       "scam_or_fraud": "Huijaus tai petos"
     }
+  },
+  "affiliateLanding": {
+    "title": "Muokkaa kutsusivuasi",
+    "subtitle": "Tee sivusta itsesi näköinen. Vierailijat näkevät tämän tekstin ennen liittymistä.",
+    "headline": "Otsikko",
+    "message": "Tervetuloviesti",
+    "buttonText": "Pääpainikkeen teksti",
+    "destination": "DeHub-kohde",
+    "extraTitle": "Lisäpainikkeet ({{count}}/{{max}})",
+    "extraHint": "Ohjaa vierailijat suoraan siihen DeHubin osaan, joka heitä kiinnostaa. Jokainen painike säilyttää suosituksesi.",
+    "extraLabel": "Painikkeen teksti",
+    "removeButton": "Poista painike",
+    "addCustom": "Mukautettu",
+    "presets": {
+      "edit": "Muokkaa",
+      "create": "Luo",
+      "build": "Rakenna",
+      "import": "Tuo",
+      "explore": "Tutki"
+    },
+    "publish": "Julkaise muutokset",
+    "publishing": "Julkaistaan…",
+    "reset": "Palauta",
+    "preview": "Reaaliaikainen esikatselu",
+    "published": "Kutsusivu julkaistu",
+    "saveFailed": "Kutsusivun tallennus epäonnistui",
+    "clicksTitle": "Klikkaukset kohteittain",
+    "clicksRow_one": "{{clicks}} klikkaus · {{unique}} yksilöllistä",
+    "clicksRow_other": "{{clicks}} klikkausta · {{unique}} yksilöllistä"
   }
 }

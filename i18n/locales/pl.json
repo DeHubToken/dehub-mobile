@@ -6605,5 +6605,34 @@
       "violence": "Przemoc",
       "scam_or_fraud": "Oszustwo lub oszustwo"
     }
+  },
+  "affiliateLanding": {
+    "title": "Dostosuj swoją stronę zaproszenia",
+    "subtitle": "Niech strona brzmi jak Ty. Odwiedzający widzą ten tekst przed dołączeniem.",
+    "headline": "Nagłówek",
+    "message": "Wiadomość powitalna",
+    "buttonText": "Tekst głównego przycisku",
+    "destination": "Cel w DeHub",
+    "extraTitle": "Dodatkowe przyciski ({{count}}/{{max}})",
+    "extraHint": "Kieruj odwiedzających prosto do części DeHub, która ich interesuje. Każdy przycisk zachowuje Twoje polecenie.",
+    "extraLabel": "Tekst przycisku",
+    "removeButton": "Usuń przycisk",
+    "addCustom": "Własny",
+    "presets": {
+      "edit": "Edytuj",
+      "create": "Twórz",
+      "build": "Buduj",
+      "import": "Importuj",
+      "explore": "Odkrywaj"
+    },
+    "publish": "Opublikuj zmiany",
+    "publishing": "Publikowanie…",
+    "reset": "Resetuj",
+    "preview": "Podgląd na żywo",
+    "published": "Strona zaproszenia opublikowana",
+    "saveFailed": "Nie udało się zapisać strony zaproszenia",
+    "clicksTitle": "Kliknięcia według celu",
+    "clicksRow_one": "{{clicks}} kliknięcie · {{unique}} unikalnych",
+    "clicksRow_other": "{{clicks}} kliknięć · {{unique}} unikalnych"
   }
 }

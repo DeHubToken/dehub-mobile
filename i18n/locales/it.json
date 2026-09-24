@@ -6537,5 +6537,34 @@
       "violence": "Violenza",
       "scam_or_fraud": "Truffa o frode"
     }
+  },
+  "affiliateLanding": {
+    "title": "Personalizza la tua pagina di invito",
+    "subtitle": "Fai parlare la pagina con la tua voce. I visitatori vedono questo testo prima di iscriversi.",
+    "headline": "Titolo",
+    "message": "Messaggio di benvenuto",
+    "buttonText": "Testo del pulsante principale",
+    "destination": "Destinazione DeHub",
+    "extraTitle": "Pulsanti extra ({{count}}/{{max}})",
+    "extraHint": "Porta i visitatori direttamente alla parte di DeHub che li interessa. Ogni pulsante mantiene il tuo referral.",
+    "extraLabel": "Testo del pulsante",
+    "removeButton": "Rimuovi pulsante",
+    "addCustom": "Personalizzato",
+    "presets": {
+      "edit": "Modifica",
+      "create": "Crea",
+      "build": "Costruisci",
+      "import": "Importa",
+      "explore": "Esplora"
+    },
+    "publish": "Pubblica modifiche",
+    "publishing": "Pubblicazione…",
+    "reset": "Ripristina",
+    "preview": "Anteprima dal vivo",
+    "published": "Pagina di invito pubblicata",
+    "saveFailed": "Impossibile salvare la pagina di invito",
+    "clicksTitle": "Clic per destinazione",
+    "clicksRow_one": "{{clicks}} clic · {{unique}} unici",
+    "clicksRow_other": "{{clicks}} clic · {{unique}} unici"
   }
 }

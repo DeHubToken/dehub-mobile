@@ -6537,5 +6537,34 @@
       "violence": "Violència",
       "scam_or_fraud": "Estafa o frau"
     }
+  },
+  "affiliateLanding": {
+    "title": "Personalitza la teva pàgina d'invitació",
+    "subtitle": "Fes que la pàgina soni com tu. Els visitants veuen aquest text abans d'unir-se.",
+    "headline": "Titular",
+    "message": "Missatge de benvinguda",
+    "buttonText": "Text del botó principal",
+    "destination": "Destinació a DeHub",
+    "extraTitle": "Botons addicionals ({{count}}/{{max}})",
+    "extraHint": "Porta els visitants directament a la part de DeHub que els interessa. Cada botó conserva la teva referència.",
+    "extraLabel": "Text del botó",
+    "removeButton": "Elimina el botó",
+    "addCustom": "Personalitzat",
+    "presets": {
+      "edit": "Edita",
+      "create": "Crea",
+      "build": "Construeix",
+      "import": "Importa",
+      "explore": "Explora"
+    },
+    "publish": "Publica els canvis",
+    "publishing": "Publicant…",
+    "reset": "Restableix",
+    "preview": "Previsualització en directe",
+    "published": "Pàgina d'invitació publicada",
+    "saveFailed": "No s'ha pogut desar la pàgina d'invitació",
+    "clicksTitle": "Clics per destinació",
+    "clicksRow_one": "{{clicks}} clic · {{unique}} únics",
+    "clicksRow_other": "{{clicks}} clics · {{unique}} únics"
   }
 }

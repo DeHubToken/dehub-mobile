@@ -6541,5 +6541,34 @@
       "violence": "Erőszak",
       "scam_or_fraud": "Átverés vagy csalás"
     }
+  },
+  "affiliateLanding": {
+    "title": "Szabd testre a meghívóoldaladat",
+    "subtitle": "Legyen az oldal a te hangod. A látogatók ezt a szöveget látják a csatlakozás előtt.",
+    "headline": "Címsor",
+    "message": "Üdvözlő üzenet",
+    "buttonText": "Fő gomb szövege",
+    "destination": "DeHub-cél",
+    "extraTitle": "Extra gombok ({{count}}/{{max}})",
+    "extraHint": "Küldd a látogatókat egyenesen a DeHub őket érdeklő részére. Minden gomb megőrzi az ajánlásodat.",
+    "extraLabel": "Gomb szövege",
+    "removeButton": "Gomb eltávolítása",
+    "addCustom": "Egyéni",
+    "presets": {
+      "edit": "Szerkesztés",
+      "create": "Létrehozás",
+      "build": "Építés",
+      "import": "Importálás",
+      "explore": "Felfedezés"
+    },
+    "publish": "Módosítások közzététele",
+    "publishing": "Közzététel…",
+    "reset": "Visszaállítás",
+    "preview": "Élő előnézet",
+    "published": "Meghívóoldal közzétéve",
+    "saveFailed": "Nem sikerült menteni a meghívóoldalt",
+    "clicksTitle": "Kattintások célonként",
+    "clicksRow_one": "{{clicks}} kattintás · {{unique}} egyedi",
+    "clicksRow_other": "{{clicks}} kattintás · {{unique}} egyedi"
   }
 }

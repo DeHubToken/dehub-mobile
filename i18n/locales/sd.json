@@ -6537,5 +6537,34 @@
       "violence": "تشدد",
       "scam_or_fraud": "ٺڳي يا ٺڳي"
     }
+  },
+  "affiliateLanding": {
+    "title": "پنهنجو دعوت وارو صفحو ترتيب ڏيو",
+    "subtitle": "صفحي کي پنهنجي جهڙو بڻايو. گهمڻ وارا شامل ٿيڻ کان اڳ هي متن ڏسن ٿا.",
+    "headline": "سرخي",
+    "message": "ڀليڪار پيغام",
+    "buttonText": "مکيه بٽڻ جو متن",
+    "destination": "DeHub منزل",
+    "extraTitle": "اضافي بٽڻ ({{count}}/{{max}})",
+    "extraHint": "گهمڻ وارن کي سڌو DeHub جي ان حصي ڏانهن موڪليو جنهن ۾ سندن دلچسپي آهي. هر بٽڻ توهان جو ريفرل برقرار رکي ٿو.",
+    "extraLabel": "بٽڻ جو متن",
+    "removeButton": "بٽڻ هٽايو",
+    "addCustom": "ذاتي",
+    "presets": {
+      "edit": "ايڊٽ",
+      "create": "ٺاهيو",
+      "build": "تعمير",
+      "import": "درآمد",
+      "explore": "ڳوليو"
+    },
+    "publish": "تبديليون شايع ڪريو",
+    "publishing": "شايع ٿي رهيو آهي…",
+    "reset": "ري سيٽ",
+    "preview": "لائيو پيش منظر",
+    "published": "دعوت وارو صفحو شايع ٿي ويو",
+    "saveFailed": "دعوت وارو صفحو محفوظ نه ٿي سگهيو",
+    "clicksTitle": "منزل موجب ڪلڪون",
+    "clicksRow_one": "{{clicks}} ڪلڪ · {{unique}} منفرد",
+    "clicksRow_other": "{{clicks}} ڪلڪون · {{unique}} منفرد"
   }
 }

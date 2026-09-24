@@ -6537,5 +6537,34 @@
       "scam_or_fraud": "Te tinihanga, te tinihanga rānei"
     },
     "whyName": "He aha koe e pūrongo ana mō te {{name}}?"
+  },
+  "affiliateLanding": {
+    "title": "Whakaritea tō whārangi pōwhiri",
+    "subtitle": "Kia rite te whārangi ki a koe. Ka kite ngā manuhiri i tēnei kupu i mua i te hono mai.",
+    "headline": "Upoko",
+    "message": "Karere pōwhiri",
+    "buttonText": "Kupu pātene matua",
+    "destination": "Ūnga DeHub",
+    "extraTitle": "Ētahi atu pātene ({{count}}/{{max}})",
+    "extraHint": "Tukuna tōtika ngā manuhiri ki te wāhanga o DeHub e aro ana rātou. Ka mau tonu i ia pātene tō tohutoro.",
+    "extraLabel": "Kupu pātene",
+    "removeButton": "Tangohia te pātene",
+    "addCustom": "Ritenga",
+    "presets": {
+      "edit": "Whakatika",
+      "create": "Waihanga",
+      "build": "Hanga",
+      "import": "Kawemai",
+      "explore": "Tūhura"
+    },
+    "publish": "Whakaputaina ngā huringa",
+    "publishing": "E whakaputa ana…",
+    "reset": "Tautuhi anō",
+    "preview": "Arokite ora",
+    "published": "Kua whakaputaina te whārangi pōwhiri",
+    "saveFailed": "Kāore i taea te tiaki i te whārangi pōwhiri",
+    "clicksTitle": "Pāwhiri mā te ūnga",
+    "clicksRow_one": "{{clicks}} pāwhiri · {{unique}} ahurei",
+    "clicksRow_other": "{{clicks}} pāwhiri · {{unique}} ahurei"
   }
 }

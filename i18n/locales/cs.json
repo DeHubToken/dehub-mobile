@@ -6541,5 +6541,34 @@
       "violence": "Násilí",
       "scam_or_fraud": "Podvod nebo podvod"
     }
+  },
+  "affiliateLanding": {
+    "title": "Přizpůsobte svou pozvánkovou stránku",
+    "subtitle": "Ať stránka zní jako vy. Návštěvníci uvidí tento text, než se připojí.",
+    "headline": "Nadpis",
+    "message": "Uvítací zpráva",
+    "buttonText": "Text hlavního tlačítka",
+    "destination": "Cíl v DeHub",
+    "extraTitle": "Další tlačítka ({{count}}/{{max}})",
+    "extraHint": "Pošlete návštěvníky rovnou do části DeHub, která je zajímá. Každé tlačítko zachová vaše doporučení.",
+    "extraLabel": "Text tlačítka",
+    "removeButton": "Odebrat tlačítko",
+    "addCustom": "Vlastní",
+    "presets": {
+      "edit": "Upravit",
+      "create": "Vytvořit",
+      "build": "Stavět",
+      "import": "Importovat",
+      "explore": "Prozkoumat"
+    },
+    "publish": "Zveřejnit změny",
+    "publishing": "Zveřejňování…",
+    "reset": "Obnovit",
+    "preview": "Živý náhled",
+    "published": "Pozvánková stránka zveřejněna",
+    "saveFailed": "Pozvánkovou stránku nelze uložit",
+    "clicksTitle": "Kliknutí podle cíle",
+    "clicksRow_one": "{{clicks}} kliknutí · {{unique}} unikátních",
+    "clicksRow_other": "{{clicks}} kliknutí · {{unique}} unikátních"
   }
 }

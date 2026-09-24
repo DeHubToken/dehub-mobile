@@ -6537,5 +6537,34 @@
     "liquidity": "ສະພາບຄ່ອງ",
     "change1h": "ການປ່ຽນແປງ 1 ຊົ່ວໂມງ",
     "viewOnDexScreener": "ເບິ່ງໃນ DexScreener"
+  },
+  "affiliateLanding": {
+    "title": "ປັບແຕ່ງໜ້າເຊີນຂອງທ່ານ",
+    "subtitle": "ເຮັດໃຫ້ໜ້າເປັນແບບຂອງທ່ານ. ຜູ້ເຂົ້າຊົມຈະເຫັນຂໍ້ຄວາມນີ້ກ່ອນເຂົ້າຮ່ວມ.",
+    "headline": "ຫົວຂໍ້",
+    "message": "ຂໍ້ຄວາມຕ້ອນຮັບ",
+    "buttonText": "ຂໍ້ຄວາມປຸ່ມຫຼັກ",
+    "destination": "ປາຍທາງໃນ DeHub",
+    "extraTitle": "ປຸ່ມເພີ່ມເຕີມ ({{count}}/{{max}})",
+    "extraHint": "ສົ່ງຜູ້ເຂົ້າຊົມໄປຫາສ່ວນຂອງ DeHub ທີ່ເຂົາເຈົ້າສົນໃຈໂດຍກົງ. ທຸກປຸ່ມຮັກສາການແນະນຳຂອງທ່ານ.",
+    "extraLabel": "ຂໍ້ຄວາມປຸ່ມ",
+    "removeButton": "ລຶບປຸ່ມ",
+    "addCustom": "ກຳນົດເອງ",
+    "presets": {
+      "edit": "ແກ້ໄຂ",
+      "create": "ສ້າງ",
+      "build": "ກໍ່ສ້າງ",
+      "import": "ນຳເຂົ້າ",
+      "explore": "ສຳຫຼວດ"
+    },
+    "publish": "ເຜີຍແຜ່ການປ່ຽນແປງ",
+    "publishing": "ກຳລັງເຜີຍແຜ່…",
+    "reset": "ຣີເຊັດ",
+    "preview": "ຕົວຢ່າງສົດ",
+    "published": "ເຜີຍແຜ່ໜ້າເຊີນແລ້ວ",
+    "saveFailed": "ບໍ່ສາມາດບັນທຶກໜ້າເຊີນໄດ້",
+    "clicksTitle": "ການຄລິກຕາມປາຍທາງ",
+    "clicksRow_one": "{{clicks}} ຄລິກ · {{unique}} ບໍ່ຊ້ຳ",
+    "clicksRow_other": "{{clicks}} ຄລິກ · {{unique}} ບໍ່ຊ້ຳ"
   }
 }

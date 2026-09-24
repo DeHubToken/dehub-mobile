@@ -6567,5 +6567,34 @@
       "violence": "Gewalt",
       "scam_or_fraud": "Betrug oder Täuschung"
     }
+  },
+  "affiliateLanding": {
+    "title": "Pass dini Iiladigssite aa",
+    "subtitle": "Lass d Site wie du töne. Bsuecher gsehnd dä Text, bevor si mitmache.",
+    "headline": "Überschrift",
+    "message": "Willkommensnachricht",
+    "buttonText": "Text vom Hauptchnopf",
+    "destination": "DeHub-Ziil",
+    "extraTitle": "Zuesätzlichi Chnöpf ({{count}}/{{max}})",
+    "extraHint": "Schick Bsuecher diräkt zu däm Teil vo DeHub, wo si interessiert. Jede Chnopf bhaltet dini Empfehlig.",
+    "extraLabel": "Chnopf-Text",
+    "removeButton": "Chnopf entferne",
+    "addCustom": "Eigeni",
+    "presets": {
+      "edit": "Bearbeite",
+      "create": "Erstelle",
+      "build": "Baue",
+      "import": "Importiere",
+      "explore": "Entdecke"
+    },
+    "publish": "Änderige veröffentliche",
+    "publishing": "Wird veröffentlicht…",
+    "reset": "Zruggsetze",
+    "preview": "Live-Vorschau",
+    "published": "Iiladigssite veröffentlicht",
+    "saveFailed": "Iiladigssite het nöd chöne gspeicheret werde",
+    "clicksTitle": "Klicks nach Ziil",
+    "clicksRow_one": "{{clicks}} Klick · {{unique}} eindüütig",
+    "clicksRow_other": "{{clicks}} Klicks · {{unique}} eindüütig"
   }
 }

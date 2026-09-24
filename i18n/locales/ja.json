@@ -6539,5 +6539,34 @@
       "violence": "暴力",
       "scam_or_fraud": "詐欺または不正行為"
     }
+  },
+  "affiliateLanding": {
+    "title": "招待ページをカスタマイズ",
+    "subtitle": "ページをあなたらしく。訪問者は参加前にこの文章を目にします。",
+    "headline": "見出し",
+    "message": "ウェルカムメッセージ",
+    "buttonText": "メインボタンのテキスト",
+    "destination": "DeHub の移動先",
+    "extraTitle": "追加ボタン ({{count}}/{{max}})",
+    "extraHint": "訪問者を DeHub の興味のある場所へ直接案内しましょう。どのボタンでも紹介は保持されます。",
+    "extraLabel": "ボタンのテキスト",
+    "removeButton": "ボタンを削除",
+    "addCustom": "カスタム",
+    "presets": {
+      "edit": "編集",
+      "create": "作成",
+      "build": "構築",
+      "import": "インポート",
+      "explore": "探索"
+    },
+    "publish": "変更を公開",
+    "publishing": "公開中…",
+    "reset": "リセット",
+    "preview": "ライブプレビュー",
+    "published": "招待ページを公開しました",
+    "saveFailed": "招待ページを保存できませんでした",
+    "clicksTitle": "移動先別クリック数",
+    "clicksRow_one": "{{clicks}} クリック · {{unique}} ユニーク",
+    "clicksRow_other": "{{clicks}} クリック · {{unique}} ユニーク"
   }
 }

@@ -6537,5 +6537,34 @@
       "violence": "Zalunci",
       "scam_or_fraud": "Yaudara ko yaudara"
     }
+  },
+  "affiliateLanding": {
+    "title": "Keɓance shafin gayyatarka",
+    "subtitle": "Sa shafin ya yi kama da kai. Baƙi suna ganin wannan rubutu kafin su shiga.",
+    "headline": "Kanun labari",
+    "message": "Saƙon maraba",
+    "buttonText": "Rubutun babban maɓalli",
+    "destination": "Wurin DeHub",
+    "extraTitle": "Ƙarin maɓallai ({{count}}/{{max}})",
+    "extraHint": "Tura baƙi kai tsaye zuwa ɓangaren DeHub da suke so. Kowane maɓalli yana riƙe da gayyatarka.",
+    "extraLabel": "Rubutun maɓalli",
+    "removeButton": "Cire maɓalli",
+    "addCustom": "Na musamman",
+    "presets": {
+      "edit": "Gyara",
+      "create": "Ƙirƙira",
+      "build": "Gina",
+      "import": "Shigo da",
+      "explore": "Bincika"
+    },
+    "publish": "Wallafa canje-canje",
+    "publishing": "Ana wallafawa…",
+    "reset": "Sake saitawa",
+    "preview": "Samfoti kai tsaye",
+    "published": "An wallafa shafin gayyata",
+    "saveFailed": "Ba a iya ajiye shafin gayyata ba",
+    "clicksTitle": "Dannawa bisa wuri",
+    "clicksRow_one": "{{clicks}} danna · {{unique}} na musamman",
+    "clicksRow_other": "{{clicks}} dannawa · {{unique}} na musamman"
   }
 }

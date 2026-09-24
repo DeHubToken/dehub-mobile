@@ -6543,5 +6543,34 @@
       "violence": "हिंसा",
       "scam_or_fraud": "धोखाधड़ी या धोखाधड़ी"
     }
+  },
+  "affiliateLanding": {
+    "title": "अपना आमंत्रण पेज कस्टमाइज़ करें",
+    "subtitle": "पेज को अपने जैसा बनाएं। विज़िटर जुड़ने से पहले यह टेक्स्ट देखते हैं।",
+    "headline": "हेडलाइन",
+    "message": "स्वागत संदेश",
+    "buttonText": "मुख्य बटन का टेक्स्ट",
+    "destination": "DeHub गंतव्य",
+    "extraTitle": "अतिरिक्त बटन ({{count}}/{{max}})",
+    "extraHint": "विज़िटर्स को सीधे DeHub के उस हिस्से पर भेजें जिसमें उनकी रुचि है। हर बटन आपका रेफ़रल बनाए रखता है।",
+    "extraLabel": "बटन टेक्स्ट",
+    "removeButton": "बटन हटाएं",
+    "addCustom": "कस्टम",
+    "presets": {
+      "edit": "संपादित करें",
+      "create": "बनाएं",
+      "build": "निर्माण",
+      "import": "आयात",
+      "explore": "खोजें"
+    },
+    "publish": "बदलाव प्रकाशित करें",
+    "publishing": "प्रकाशित हो रहा है…",
+    "reset": "रीसेट",
+    "preview": "लाइव प्रीव्यू",
+    "published": "आमंत्रण पेज प्रकाशित हुआ",
+    "saveFailed": "आमंत्रण पेज सहेजा नहीं जा सका",
+    "clicksTitle": "गंतव्य के अनुसार क्लिक",
+    "clicksRow_one": "{{clicks}} क्लिक · {{unique}} यूनिक",
+    "clicksRow_other": "{{clicks}} क्लिक · {{unique}} यूनिक"
   }
 }
