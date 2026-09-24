@@ -41,6 +41,7 @@ import { useDraft } from "../../hooks/useDraft";
 import type { SmartReplyTurn } from "../../services/ai.service";
 import type { DmMessage, DmFee } from "../../services/dm/dm.types";
 import { DM_TEXT_MAX_LENGTH } from "../../services/dm/dm.types";
+import { haptic } from "../../libs/haptics";
 
 
 export type ChatMediaAttachment = {
@@ -279,6 +280,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
 
   const handleSend = useCallback(() => {
     if (sending) return;
+    haptic.tap();
 
     // Whatever is in the tray was drafted against a thread that no longer ends
     // where it did, so it goes down with the send and comes back up on the next

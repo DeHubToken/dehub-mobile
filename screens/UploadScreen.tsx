@@ -100,6 +100,7 @@ import type { EnhanceMode } from "../services/ai.service";
 import PlanFormSheet from "../components/Subscription/PlanFormSheet";
 import { useQueryClient } from "@tanstack/react-query";
 import { POST_TITLE_MAX, splitTitleFromText } from "../libs/post-title-split";
+import { haptic } from "../libs/haptics";
 
 /** Same key web writes to localStorage — see hooks/useAppPrefs.ts on naming. */
 const SHOULD_MINT_KEY = "post_should_mint";
@@ -1288,6 +1289,7 @@ export default function UploadScreen() {
     // `submittingRef`, not `isSubmitting`: a second tap in the same frame reads
     // the state this one has not caused a render for yet. See the ref's doc.
     if (activeIsUploading || submittingRef.current) return;
+    haptic.press();
     if (isLiveMode) {
       // Live keeps its confirm step, and blocks the screen through the mint —
       // it is already guarded by `activeIsUploading`.

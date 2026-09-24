@@ -19,6 +19,7 @@ import {
   type PostReaction,
   type ReactionCounts,
 } from "../../libs/reactions";
+import { haptic } from "../../libs/haptics";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -96,6 +97,7 @@ const AnimatedActionButton: React.FC<{
       withTiming(1.3, { duration: 100 }),
       withSpring(1, BOUNCE_CONFIG),
     );
+    haptic.tap();
     onPress();
   }, [onPress, scale]);
 
@@ -108,7 +110,7 @@ const AnimatedActionButton: React.FC<{
   return (
     <Pressable
       onPress={handlePress}
-      onLongPress={onLongPress}
+      onLongPress={onLongPress ? () => { haptic.press(); onLongPress(); } : undefined}
       // Matches the web tray's 400ms hold so the gesture feels the same on both.
       delayLongPress={400}
       accessibilityRole="button"
