@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import { View, TouchableOpacity, Text, AccessibilityInfo } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 interface TopControlsProps {
@@ -33,6 +34,7 @@ const TopControls: React.FC<TopControlsProps> = ({
   title,
   showTitle = false,
 }) => {
+  const { t } = useTranslation();
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
@@ -40,16 +42,16 @@ const TopControls: React.FC<TopControlsProps> = ({
   const handleMute = useCallback(() => {
     onMute();
     AccessibilityInfo.announceForAccessibility(
-      isMuted ? 'Sound on' : 'Sound muted'
+      isMuted ? t('player.soundOn') : t('player.soundMuted')
     );
-  }, [onMute, isMuted]);
+  }, [onMute, isMuted, t]);
 
   const handleFullscreen = useCallback(() => {
     onFullscreen();
     AccessibilityInfo.announceForAccessibility(
-      fullscreen ? 'Exiting fullscreen' : 'Entering fullscreen'
+      fullscreen ? t('player.exitingFullscreen') : t('player.enteringFullscreen')
     );
-  }, [onFullscreen, fullscreen]);
+  }, [onFullscreen, fullscreen, t]);
 
   return (
     <View className="flex-row justify-between items-center">
@@ -59,7 +61,7 @@ const TopControls: React.FC<TopControlsProps> = ({
           onPress={handleClose}
           className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
           activeOpacity={0.7}
-          accessibilityLabel="Close video"
+          accessibilityLabel={t('player.closeVideo')}
           accessibilityRole="button"
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
@@ -85,7 +87,7 @@ const TopControls: React.FC<TopControlsProps> = ({
             onPress={onToggleSpeed}
             className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
             activeOpacity={0.7}
-            accessibilityLabel="Playback speed"
+            accessibilityLabel={t('player.playbackSpeed')}
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
@@ -98,7 +100,7 @@ const TopControls: React.FC<TopControlsProps> = ({
             onPress={onToggleLoop}
             className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
             activeOpacity={0.7}
-            accessibilityLabel="Toggle loop"
+            accessibilityLabel={t('player.toggleLoop')}
             accessibilityRole="button"
             accessibilityState={{ selected: isLooping }}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
@@ -112,7 +114,7 @@ const TopControls: React.FC<TopControlsProps> = ({
             onPress={onPiP}
             className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
             activeOpacity={0.7}
-            accessibilityLabel="Picture in picture"
+            accessibilityLabel={t('player.pictureInPicture')}
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
@@ -124,7 +126,7 @@ const TopControls: React.FC<TopControlsProps> = ({
           onPress={handleMute}
           className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
           activeOpacity={0.7}
-          accessibilityLabel={isMuted ? 'Unmute' : 'Mute'}
+          accessibilityLabel={isMuted ? t('common.unmute') : t('common.mute')}
           accessibilityRole="button"
           accessibilityState={{ selected: isMuted }}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
@@ -141,7 +143,7 @@ const TopControls: React.FC<TopControlsProps> = ({
             onPress={onRotateToPortrait}
             className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
             activeOpacity={0.7}
-            accessibilityLabel="Rotate orientation"
+            accessibilityLabel={t('player.rotateOrientation')}
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
@@ -153,7 +155,7 @@ const TopControls: React.FC<TopControlsProps> = ({
           onPress={handleFullscreen}
           className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
           activeOpacity={0.7}
-          accessibilityLabel={fullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+          accessibilityLabel={fullscreen ? t('common.exitFullscreen') : t('player.enterFullscreen')}
           accessibilityRole="button"
           accessibilityState={{ expanded: fullscreen }}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}

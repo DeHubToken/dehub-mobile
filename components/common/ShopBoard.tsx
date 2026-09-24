@@ -36,6 +36,7 @@
  */
 
 import React, { memo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, Modal, ScrollView, Linking, Image, ActivityIndicator } from "react-native";
 import Icon from "../ui/Icon";
 import { useStreamProducts, effectivePrice } from "../../hooks/useStreamShopping";
@@ -88,6 +89,7 @@ const ListingRow = memo(function ListingRow({
   product: StreamProduct;
   onBuy: () => void;
 }) {
+  const { t } = useTranslation();
   const listing = product.store_listings;
   const stock = listing?.stock_quantity;
   const image = listing?.images?.[0];
@@ -118,12 +120,12 @@ const ListingRow = memo(function ListingRow({
           <Text className="text-theme-neutrals-400 text-xs">${money(effectivePrice(product))}</Text>
           {stock !== null && stock !== undefined && stock <= LOW_STOCK_THRESHOLD ? (
             <Text className="text-amber-400 text-[10px] font-semibold ml-2 uppercase">
-              {stock === 1 ? "Last one" : `${stock} left`}
+              {stock === 1 ? t("liveShop.lastOne") : t("liveShop.stockLeft", { count: stock })}
             </Text>
           ) : null}
         </View>
       </View>
-      <Text className="text-white/70 text-xs font-medium">Buy</Text>
+      <Text className="text-white/70 text-xs font-medium">{t("wallet.buy")}</Text>
     </TouchableOpacity>
   );
 });
@@ -134,6 +136,7 @@ export default memo(function ShopBoard({
   listingCount,
   variant = "inline",
 }: ShopBoardProps) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [checkout, setCheckout] = useState<StreamProduct | null>(null);
 
@@ -158,7 +161,7 @@ export default memo(function ShopBoard({
         style={overlay ? { position: "absolute", left: 12, bottom: 12, zIndex: 20 } : { marginTop: 8 }}
       >
         <Icon name="ShoppingBag" size={15} color="#fff" />
-        <Text className="text-white text-sm font-medium ml-1.5">Shop</Text>
+        <Text className="text-white text-sm font-medium ml-1.5">{t("upload.shop")}</Text>
         <Text className="text-theme-neutrals-500 text-xs ml-1.5">{total}</Text>
       </TouchableOpacity>
 
@@ -176,7 +179,7 @@ export default memo(function ShopBoard({
             <View className="flex-row items-center justify-between px-4 pt-4 pb-2">
               <View className="flex-row items-center">
                 <Icon name="ShoppingBag" size={16} color="#fff" />
-                <Text className="text-white text-base font-semibold ml-2">Shop</Text>
+                <Text className="text-white text-base font-semibold ml-2">{t("upload.shop")}</Text>
               </View>
               <TouchableOpacity onPress={() => setOpen(false)} activeOpacity={0.7} hitSlop={10}>
                 <Icon name="X" size={18} color="#A1A1AA" />
@@ -200,8 +203,7 @@ export default memo(function ShopBoard({
                     <View className="h-px bg-white/10 my-2" />
                   ) : null}
                   <Text className="px-1 pb-2 text-theme-neutrals-500 text-xs leading-4">
-                    Affiliate links — the creator may earn a commission on anything you buy.
-                    Prices are the same for you.
+                    {t("liveShop.affiliateDisclosure")}
                   </Text>
                   {linkRows.map((link, index) => (
                     <TouchableOpacity
@@ -229,7 +231,7 @@ export default memo(function ShopBoard({
                   this post was published. Saying so beats an empty panel. */}
               {!isLoading && sellable.length === 0 && linkRows.length === 0 ? (
                 <Text className="py-4 text-center text-theme-neutrals-500 text-xs">
-                  Nothing on sale here right now.
+                  {t("liveShop.nothingOnSale")}
                 </Text>
               ) : null}
             </ScrollView>

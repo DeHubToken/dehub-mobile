@@ -109,7 +109,14 @@
     "publishChanges": "परिवर्तनहरू प्रकाशित गर्नुहोस्",
     "pagePublished": "निमन्त्रणा पृष्ठ प्रकाशित भयो",
     "pageSaveFailed": "निमन्त्रणा पृष्ठ सुरक्षित गर्न सकिएन",
-    "selfVisitsExcluded": "तपाईंको लिङ्कमा तपाईंको आफ्नै भ्रमणहरू गणना गरिएको छैन ।"
+    "selfVisitsExcluded": "तपाईंको लिङ्कमा तपाईंको आफ्नै भ्रमणहरू गणना गरिएको छैन ।",
+    "inviteLinkLoadFailed": "तपाईंको आमन्त्रण लिङ्क लोड गर्न सकिएन। फेरि प्रयास गर्नुहोस्।",
+    "shareFailed": "साझा गर्न असफल भयो",
+    "inviteCardTitle": "साथीहरूलाई आमन्त्रित गर्नुहोस् र {{pct}}% कमाउनुहोस्",
+    "inviteCardSubtitle": "तपाईंको लिङ्क साझा गर्नुहोस् — तिनीहरू सामेल भएर व्यापार गर्दा {{pct}}% कमिशन कमाउनुहोस्।",
+    "copyInviteLink": "आमन्त्रण लिङ्क प्रतिलिपि गर्नुहोस्",
+    "tapShareForLink": "तपाईंको लिङ्क प्राप्त गर्न साझेदारीमा ट्याप गर्नुहोस्",
+    "shareInviteLink": "आमन्त्रण लिङ्क साझा गर्नुहोस्"
   },
   "feed": {
     "home": "गृहपृष्ठ",
@@ -124,7 +131,15 @@
     "privateContentBody": "यो सामग्री निजी खाताबाट हो। पोस्टहरू हेर्नका लागि सिर्जनाकर्तालाई फलो गर्नुहोस्।",
     "noMoreContent": "थप सामग्री छैन",
     "noPostsYet": "अझै कुनै पोस्ट छैन।",
-    "pullToRefresh": "रिफ्रेस गर्न तान्नुहोस् वा पछि फेरि प्रयास गर्नुहोस्।"
+    "pullToRefresh": "रिफ्रेस गर्न तान्नुहोस् वा पछि फेरि प्रयास गर्नुहोस्।",
+    "noMorePosts": "थप पोस्टहरू छैनन्",
+    "noMoreImages": "थप छविहरू छैनन्",
+    "noImagesFound": "कुनै छविहरू फेला परेनन्",
+    "allCaughtUp": "तपाईं सबै कुरा हेर्नुभयो",
+    "closeImages": "छविहरू बन्द गर्नुहोस्",
+    "noMoreShorts": "थप सर्टहरू छैनन्",
+    "noShortsFound": "कुनै सर्टहरू फेला परेनन्",
+    "newMembersHint": "भर्खरै सामेल हुनुभयो — अभिवादन गर्नुहोस्"
   },
   "explore": {
     "all": "सबै",
@@ -133,7 +148,11 @@
     "images": "तस्बिरहरू",
     "videos": "भिडियोहरू",
     "music": "संगीत",
-    "live": "प्रत्यक्ष"
+    "live": "प्रत्यक्ष",
+    "trendingTopics": "ट्रेन्डिङ विषयहरू",
+    "nothingTrending": "यस विन्डोमा अहिलेसम्म केही पनि ट्रेन्डिङ छैन।",
+    "postCount_one": "{{count}} पोस्ट",
+    "postCount_other": "{{count}} पोस्टहरू"
   },
   "settings": {
     "smartReplies": "सुझाइएका जवाफ",
@@ -780,7 +799,11 @@
     "noInternetHint": "Wi-Fi वा मोबाइल डेटा अन छ भनी सुनिश्चित गर्नुहोस्, त्यसपछि \"{{action}}\" ट्याप गर्नुहोस्",
     "saving": "बचाइरहेको छ…",
     "offlineStatus": "अफलाइन - कुनै नेटवर्क जडान छैन",
-    "postNotFound": "हामीले त्यो पोस्ट फेला पार्न सकेनौं"
+    "postNotFound": "हामीले त्यो पोस्ट फेला पार्न सकेनौं",
+    "select": "चयन गर्नुहोस्",
+    "noResults": "कुनै नतिजा छैन",
+    "moreInfo": "थप जानकारी",
+    "translate": "अनुवाद गर्नुहोस्"
   },
   "tip": {
     "title": "टिप पठाउनुहोस्",
@@ -1124,7 +1147,10 @@
     "imageAttachedDescribe": "छवि संलग्न गरियो — तपाईंको सम्पादनहरूको वर्णन गर्नुहोस्",
     "couldNotPreparePost": "त्यो पोस्ट गर्न तयार गर्न सकिएन",
     "generateImage": "छवि उत्पन्न गर्नुहोस्",
-    "generateVideo": "भिडियो बनाउनुहोस्"
+    "generateVideo": "भिडियो बनाउनुहोस्",
+    "imageFailed": "छवि उत्पादन असफल भयो — फेरि प्रयास गर्नुहोस्",
+    "rateLimited": "धेरै अनुरोधहरू — छिट्टै फेरि प्रयास गर्नुहोस्",
+    "requestFailed": "एआई अनुरोध असफल भयो"
   },
   "commandCentre": {
     "title": "कमान्ड सेन्टर",
@@ -1348,7 +1374,8 @@
     "to": "मा",
     "selectToken": "टोकन छान्नुहोस्",
     "connectWallet": "वालेट जडान गर्नुहोस्",
-    "loginDescription": "वालेटमा पहुँच गर्न लगइन गर्नुहोस्।"
+    "loginDescription": "वालेटमा पहुँच गर्न लगइन गर्नुहोस्।",
+    "chooseNetwork": "नेटवर्क छान्नुहोस्"
   },
   "bookmarks": {
     "title": "तपाईंको बुकमार्कहरू",
@@ -2301,7 +2328,19 @@
     "unpinnedToast": "पिन हटाइयो",
     "pinFailed": "त्यो टिप्पणी पिन गर्न सकिएन",
     "kidsOnlyThread": "यो पोस्ट बच्चाहरूको लागि हो । किड्स मोडले मात्र यसमा टिप्पणी गर्न सक्छ ।",
-    "editFailed": "टिप्पणी सम्पादन गर्न असफल"
+    "editFailed": "टिप्पणी सम्पादन गर्न असफल",
+    "notFound": "टिप्पणी फेला परेन",
+    "notCreatorBadge": "निर्माता होइन",
+    "likersAuthorOnly": "टिप्पणी कसले लाइक गर्‍यो त्यो लेखकले मात्र हेर्न सक्छ।",
+    "noLikesYet": "अझै लाइक छैन।",
+    "anchoredFor_one": "{{count}} मिनेटको लागि माथि पिन गरियो",
+    "anchoredFor_other": "{{count}} मिनेटको लागि माथि पिन गरियो",
+    "anchorFailed": "त्यो टिप्पणी पिन गर्न सकिएन",
+    "assistantReplying": "DeHub सहायकले जवाफ दिइरहेछ...",
+    "noneYetBeFirst": "अझै टिप्पणी छैन। पहिलो बन्नुहोस्!",
+    "turnedOff": "यो पोस्टको लागि टिप्पणीहरू बन्द छन्",
+    "noQuotesYet": "अझै उद्धरण छैन।",
+    "noRepostsYet": "अझै रिपोस्ट छैन।"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",
@@ -2572,7 +2611,8 @@
     "error": "Error",
     "image_too_large_tier": "छवि धेरै ठूलो छ — तपाईंको {{tier}} टियरले {{limit}} MB सम्म छविहरू भण्डारण गर्दछ",
     "image_too_large_untiered": "छवि धेरै ठूलो छ — छविहरू {{limit}} MB सम्म भण्डार गरिएको छ",
-    "rate_limited": "रेट लिमिट, बिस्तारै गर्नुहोस्"
+    "rate_limited": "रेट लिमिट, बिस्तारै गर्नुहोस्",
+    "failedToUnfollowUser": "प्रयोगकर्तालाई अनफलो गर्न सकिएन"
   },
   "staking": {
     "title": "Staking",
@@ -3733,7 +3773,21 @@
     "boostCancelledRefunded": "बुस्ट रद्द भयो र तपाईंको कोटामा फिर्ता भयो",
     "boostCancelledSpent": "बुस्ट रद्द भयो। यो सुरु भइसकेको थियो, त्यसैले खर्च भएकै रहन्छ।",
     "cancelFailed": "त्यो बुस्ट रद्द गर्न सकिएन",
-    "screenTitle": "SuperPowers"
+    "screenTitle": "SuperPowers",
+    "countingNotifications": "सूचनाहरू गणना गर्दैछ...",
+    "flareSentPending": "{{label}} पठाइयो। अन्तिम गणना विगतको प्रयोगमा देखा पर्नेछ।",
+    "flareNotified_one": "{{label}} ले {{count}} व्यक्तिलाई सूचित गर्‍यो",
+    "flareNotified_other": "{{label}} ले {{count}} जनालाई सूचित गर्‍यो",
+    "boostPostFailed": "त्यो पोस्टलाई बूस्ट गर्न सकिएन",
+    "loadFailed": "तपाईंको सुपरपावरहरू अहिले लोड गर्न सकिएन। केही क्षणमा फेरि प्रयास गर्नुहोस्।",
+    "anyBadgeHolder": "कुनै पनि ब्याजवाहकले सुपरपावरहरू पाउँछन्। ब्याज अनलक गर्न DHB किन्नुहोस् — स्टेक गर्न आवश्यक छैन।",
+    "boostsLeftOf": "{{left}} मध्ये {{total}} बूस्टहरू बाँकी छन्",
+    "flaresCount_one": "{{count}} फ्लेयर",
+    "flaresCount_other": "{{count}} फ्लेयर्स",
+    "refillsShort": "{{date}} रिफिल गर्दछ",
+    "minutesUnit": "मिनेट",
+    "sendSignalFlare": "सिग्नल फ्लेयर पठाउनुहोस्",
+    "spend": "खर्च गर्नुहोस्"
   },
   "follow": {
     "followers": "अनुयायीहरू",
@@ -4200,7 +4254,15 @@
     "preparingWallet": "तपाईंको वालेट तयार हुँदैछ — केही बेरमा फेरि प्रयास गर्नुहोस्।",
     "swapSettling": "तपाईंको स्वाप अझै मिलान हुँदै हुन सक्छ। फेरि प्रयास गर्नुअघि DHB ब्यालेन्स हेर्नुहोस् — दुई पटक स्वाप नगर्नुहोस्।",
     "notEnoughBase": "Base मा तपाईंको वालेटमा यो पुर्‍याउन पर्याप्त छैन। रकम थप्नुहोस्, अनलक तपाईंलाई पर्खिरहेको छ।",
-    "otherChain": "यो पोस्ट अर्को चेनमा मिलान हुन्छ, त्यसैले त्यहाँको तपाईंको वालेटमा DHB चाहिन्छ।"
+    "otherChain": "यो पोस्ट अर्को चेनमा मिलान हुन्छ, त्यसैले त्यहाँको तपाईंको वालेटमा DHB चाहिन्छ।",
+    "unlockVideo": "भिडियो अनलक गर्नुहोस्",
+    "recipient": "प्राप्तकर्ता: {{address}}",
+    "aboutToSpend": "तपाईंले यो भिडियो अनलक गर्न <accent>{{amount}} {{symbol}}</accent> खर्च गर्न लाग्नुभएको छ।",
+    "tokenBalance": "टोकन ब्यालेन्स",
+    "lowTopUp": "{{symbol}} कम छ? अनलक गर्नु अघि हामी तपाईंलाई थप्नेछौं।",
+    "btnSwapping": "साट्दैछ...",
+    "payAndTip": "भुक्तान गर्नुहोस् र टिप दिनुहोस्",
+    "unlockedSuccess": "सफलतापूर्वक अनलक गरियो"
   },
   "walletSetup": {
     "tryBiometricsHint": "तपाईंले यो वालेट यही फोनमा बनाउनुभएको छ र की पहिले नै यहाँ हुनुपर्छ भने यो प्रयोग गर्नुहोस्",
@@ -4336,7 +4398,13 @@
     "renameHint": "यो पूरै प्रतिलिपिमा वक्ताको लेबल परिवर्तन गर्नुहोस्।",
     "searchPlaceholder": "प्रतिलिपिमा खोज्नुहोस्…",
     "speakerPlaceholder": "वक्ताको नाम वा ह्यान्डल राख्नुहोस्",
-    "detectedLanguage": "पत्ता लागेको भाषा: {{lang}}"
+    "detectedLanguage": "पत्ता लागेको भाषा: {{lang}}",
+    "fixThisLine": "यो लाइन सच्याउनुहोस्",
+    "fixPlayToLine": "तपाईंले सच्याउन चाहेको लाइनसम्म खेल्नुहोस्, त्यसपछि यसलाई फेरि खोल्नुहोस्।",
+    "fixAgreeHint": "अर्को एक दर्शक सहमत भएमा तपाईंको संस्करण सबैका लागि लाइभ हुनेछ।",
+    "fixNowReads": "अब पढ्छ",
+    "fixPlaceholder": "के भन्नुपर्छ",
+    "fixSubmit": "सुझाव दिनुहोस्"
   },
   "upload": {
     "solanaUnavailable": "Solana वालेट उपलब्ध छैन — यो उपकरणमा तपाईंको कुञ्जी छैन। फिर्ता ल्याउन फेरि साइन इन गर्नुहोस्।",
@@ -4437,7 +4505,57 @@
     "confirmLivestream": "लाइभस्ट्रीम पुष्टि गर्नुहोस्",
     "liveFeaturesTitle": "प्रत्यक्ष सुविधाहरू",
     "discardPostTitle": "पोस्ट खारेज गर्नुहुन्छ?",
-    "discardPostBody": "तपाईंको पोष्ट हराउनेछ । के तपाईं यसको सट्टा यसलाई मस्यौदाको रूपमा बचत गर्न चाहनुहुन्छ?"
+    "discardPostBody": "तपाईंको पोष्ट हराउनेछ । के तपाईं यसको सट्टा यसलाई मस्यौदाको रूपमा बचत गर्न चाहनुहुन्छ?",
+    "soundSelected": "चयन गरियो",
+    "soundAdd": "थप्नुहोस्",
+    "addSound": "ध्वनि थप्नुहोस्",
+    "searchSoundsPlaceholder": "ध्वनिहरू खोज्नुहोस्...",
+    "noSoundsFound": "कुनै ध्वनि फेला परेन",
+    "noAudioPosts": "अझै कुनै अडियो पोस्ट छैन",
+    "categories": "श्रेणीहरू",
+    "categoryMaxReached": "अधिकतम पुग्यो",
+    "categorySearchPlaceholder": "श्रेणी खोज्नुहोस् वा सिर्जना गर्नुहोस्",
+    "createCategory": "\"{{name}}\" सिर्जना गर्नुहोस्",
+    "noMatchingCategories": "मेल खाने श्रेणीहरू छैनन्",
+    "noCategories": "कुनै श्रेणी उपलब्ध छैन",
+    "joinCommunityToPost": "एउटामा पोस्ट गर्न समुदायमा सामेल हुनुहोस्।",
+    "stageUploading": "अपलोड गर्दैछ...",
+    "stageConfirming": "पुष्टि गर्दैछ...",
+    "stageMinting": "मिन्टिङ...",
+    "stageFinalizing": "अन्तिम गर्दैछ...",
+    "chooseStyle": "शैली छान्नुहोस्",
+    "enhance": "सुधार गर्नुहोस्",
+    "spellCheck": "हिज्जे जाँच",
+    "fixGrammar": "व्याकरण सच्याउनुहोस्",
+    "changeStyle": "शैली परिवर्तन गर्नुहोस्",
+    "generateContent": "सामग्री उत्पन्न गर्नुहोस्",
+    "scheduleLivestream": "लाइभस्ट्रिम अनुसूची गर्नुहोस्",
+    "scheduleMin30": "अबदेखि कम्तिमा ३० मिनेट हुनुपर्छ",
+    "minTipAmount": "न्यूनतम टिप रकम",
+    "schedulePostTitle": "पोष्ट अनुसूची गर्नुहोस्",
+    "scheduleTime": "समय",
+    "removeSchedule": "अनुसूची हटाउनुहोस्",
+    "shopIntro": "यस पोष्टमा आफ्नै सूची वा सम्बद्ध लिङ्कहरू राख्नुहोस् — दर्शकहरूले यसलाई पसल बटनबाट खोल्छन्।",
+    "shopAllowanceTier": "तपाईंको {{tier}} ब्याजले तपाईंलाई कुल {{allowance}} दिन्छ।",
+    "shopAllowanceBase": "तपाईंले कुल {{allowance}} पाउनुहुन्छ। प्रत्येक ब्याज स्तरले एक थप्छ।",
+    "shopFromYours": "तपाईंको पसलबाट",
+    "shopNothingOnSale": "तपाईंको पसलमा अहिले केही पनि बिक्रीमा छैन। तपाईंले त्यहाँ सूचीबद्ध गर्ने जुनसुकै कुरा पनि पोष्टमा जान सक्छ।",
+    "shopLinks": "लिङ्कहरू",
+    "shopAffiliateHint": "सम्बद्ध लिङ्कहरू स्वागत छ — Amazon Associates, रेफरल लिङ्कहरू, जहाँ पनि तपाईं बेच्नुहुन्छ।",
+    "shopLinkN": "लिङ्क {{n}}",
+    "shopLabelPlaceholder": "यो के हो — जस्तै मेरो माइक्रोफोन",
+    "shopInvalidUrl": "यो वेब ठेगाना जस्तो देखिँदैन।",
+    "shopAddLink": "लिङ्क थप्नुहोस्",
+    "shopAllowanceUsed": "{{allowance}} मध्ये {{allowance}} प्रयोग गरियो। उच्च ब्याज र अर्को स्लटको लागि थप DHB स्टेक गर्नुहोस्।",
+    "pillPosted": "पोष्ट गरियो!",
+    "pillFailedRetry": "विफल · पुन: प्रयास गर्न ट्याप गर्नुहोस्",
+    "pillFailedNoRetries": "विफल · पुन: प्रयास बाँकी छैन",
+    "pillUploadsFailed_one": "{{count}} अपलोड असफल भयो",
+    "pillUploadsFailed_other": "{{count}} अपलोडहरू असफल भए",
+    "pillDefaultTitle": "अपलोड गर्नुहोस्",
+    "pillA11yFailed": "अपलोड असफल भयो, अपलोड स्थिति विस्तार गर्नुहोस्",
+    "pillA11yProgress": "अपलोड {{percent}}% पूरा भयो, अपलोड स्थिति विस्तार गर्नुहोस्",
+    "pillMinimize": "अपलोड स्थिति कम गर्नुहोस्"
   },
   "bounty": {
     "claimed": "प्राप्त गरियो",
@@ -4467,7 +4585,9 @@
     "eligibilityFailed": "योग्यता जाँच्न सकिएन",
     "switchFirst": "लिनुअघि बाउन्टी नेटवर्कमा जानुहोस्",
     "missingSignature": "बाउन्टी दाबी हस्ताक्षर छैन",
-    "txReverted": "कारोबार अन-चेनमा फिर्ता भयो"
+    "txReverted": "कारोबार अन-चेनमा फिर्ता भयो",
+    "gasHint": "यसले अन-चेन लेनदेन सुरु गर्नेछ। ग्यास शुल्क लागू हुन सक्छ।",
+    "detailsLabel": "Watch2Earn बाउण्टी विवरण"
   },
   "poster": {
     "format": "ढाँचा",
@@ -4669,7 +4789,9 @@
     "buyNow": "अहिले किन्नुहोस्",
     "transfersPaused": "DHB स्थानान्तरणहरू रोकिएका छन्",
     "buyingUnavailable": "ट्रेडिङ पुनः सुरु नभएसम्म खरिद उपलब्ध छैन। केही पनि चार्ज गरिएको छैन।",
-    "dontClose": "यसलाई बन्द नगर्नुहोस् — Base मा स्थानान्तरण पुष्टि भएपछि अर्डर लेखिनेछ।"
+    "dontClose": "यसलाई बन्द नगर्नुहोस् — Base मा स्थानान्तरण पुष्टि भएपछि अर्डर लेखिनेछ।",
+    "affiliateDisclosure": "सम्बद्ध लिङ्कहरू — तपाईंले किन्ने कुनै पनि कुरामा सिर्जनाकर्ताले कमिशन कमाउन सक्छ। तपाईंको लागि मूल्यहरू समान छन्।",
+    "nothingOnSale": "यहाँ अहिले केही पनि बिक्रीमा छैन।"
   },
   "dpay": {
     "success": "सफल",
@@ -4762,7 +4884,8 @@
     "withdrawing": "झिकिँदै…",
     "usdtSent": "{{amount}} USDT पठाइयो",
     "withdrawableSoon": "सदस्यता शुल्क चाँडै झिक्न मिल्नेछ",
-    "dpayBaseOnly": "Dpay Base मा मात्र उपलब्ध छ।"
+    "dpayBaseOnly": "Dpay Base मा मात्र उपलब्ध छ।",
+    "tokensAndStocks": "टोकन र स्टक"
   },
   "feedCard": {
     "reactionFailed": "प्रतिक्रिया अद्यावधिक गर्न सकिएन",
@@ -4773,7 +4896,32 @@
     "mint": "मिन्ट",
     "stream": "स्ट्रिम",
     "boostPost": "पोस्ट बुस्ट गर्नुहोस्",
-    "openSuperPowers": "SuperPowers खोल्नुहोस्"
+    "openSuperPowers": "SuperPowers खोल्नुहोस्",
+    "subsOnly": "SUBS मात्र",
+    "shareAndRepost": "साझा गर्नुहोस् र पुन: पोस्ट गर्नुहोस्",
+    "saveToLibrary": "लाइब्रेरीमा बचत गर्नुहोस्",
+    "postDetails": "पोस्ट विवरण",
+    "unlockForAndHold": "{{price}} {{symbol}} + {{hold}} {{holdSymbol}} होल्ड गरेर अनलक गर्नुहोस्",
+    "unlockFor": "{{price}} {{symbol}} को लागि अनलक गर्नुहोस्",
+    "subscribersOnly": "सब्सक्राइबर मात्र",
+    "subscribeTo": "{{name}} को सदस्यता लिनुहोस्",
+    "subscribeToCreator": "यो सिर्जनाकर्ताको सदस्यता लिनुहोस्",
+    "holdingsRequired": "होल्डिङ आवश्यक",
+    "mustHold": "{{amount}} {{symbol}} होल्ड गर्नुपर्छ",
+    "reposted": "पुन: पोस्ट गरियो",
+    "matureDescription": "सिर्जनाकर्ताले यो पोस्टलाई वयस्क वा ग्राफिकको रूपमा चिन्ह लगायो।",
+    "viewAnyway": "जे भए पनि हेर्नुहोस्",
+    "seeWhoReacted": "कसले प्रतिक्रिया दियो हेर्नुहोस्",
+    "sendInMessage": "सन्देशमा पठाउनुहोस्",
+    "undoRepost": "पुन: पोस्ट अन्डू गर्नुहोस्",
+    "repost": "पुन: पोस्ट गर्नुहोस्",
+    "capturing": "क्याप्चर गर्दैछ...",
+    "shareAsImage": "छवि रूपमा साझेदारी गर्नुहोस्",
+    "loadingQuoted": "उद्धृत पोस्ट लोड गर्दैछ...",
+    "dehubCreator": "DeHub सिर्जनाकर्ता",
+    "imageTranslation": "छवि अनुवाद",
+    "imageTranslating": "पाठ निकाल्दै र अनुवाद गर्दै...",
+    "imageNoText": "छविमा कुनै पाठ फेला परेन"
   },
   "dm": {
     "attachFailed": "त्यो फाइल संलग्न गर्न सकिएन।",
@@ -4925,7 +5073,17 @@
     "descTooShort": "विवरण कम्तीमा ३ अक्षरको हुनुपर्छ",
     "updated": "पोस्ट अद्यावधिक भयो",
     "titlePlaceholder": "पोस्टको शीर्षक",
-    "descPlaceholder": "पोस्टको विवरण"
+    "descPlaceholder": "पोस्टको विवरण",
+    "commentsOffHint": "पोस्ट गरिएका प्रतिक्रियाहरू देखिने नै रहन्छन् — यसलाई फेरि अन गर्नाले तिनीहरू पुनर्स्थापित हुन्छन्।",
+    "allowCommentsHint": "यो पोस्ट कसले हेर्न सक्छ, उसले यसमा प्रतिक्रिया दिन सक्छ।",
+    "markedMature": "परिपक्व रूपमा चिन्ह लगाइयो",
+    "markMature": "परिपक्वको रूपमा चिन्ह लगाउनुहोस्",
+    "markedMatureHint": "सार्वजनिक फिडबाट हटाइयो। अनुयायीहरू, तपाईंको प्रोफाइल र लिङ्क अझै काम गर्छ।",
+    "markMatureHint": "वयस्क वा ग्राफिक पोस्टहरूको लागि। यसलाई अन गर्नाले यो सार्वजनिक फिडबाट हट्छ।",
+    "videoFile": "भिडियो फाइल",
+    "uploadingPercent": "अपलोड गर्दैछ… {{percent}}%",
+    "replaceVideoFile": "भिडियो फाइल बदल्नुहोस्",
+    "replaceVideoHint": "यो पोस्टको लिङ्क, भ्यू र कमेन्टहरू राख्छ। पुरानो फाइल नयाँ प्रशोधन नभएसम्म चल्छ।"
   },
   "player": {
     "openSettings": "सेटिङ खोल्नुहोस्",
@@ -4948,7 +5106,45 @@
     "downloadImage": "तस्बिर डाउनलोड गर्नुहोस्",
     "goToImage": "तस्बिर {{index}} मा जानुहोस्",
     "allCaughtUp": "तपाईंले सबै हेरिसक्नुभएको छ",
-    "checkBackForShorts": "थप सर्ट्सका लागि पछि फेरि हेर्नुहोला"
+    "checkBackForShorts": "थप सर्ट्सका लागि पछि फेरि हेर्नुहोला",
+    "segmentSkipped": {
+      "sponsor": "प्रायोजक छोडियो",
+      "intro": "परिचय छोडियो",
+      "outro": "आउट्रो छोडियो",
+      "selfpromo": "सेल्फ प्रोमो छोडियो",
+      "interaction": "लाइक र सब्स्क्राइब छोडियो",
+      "filler": "फिलर छोडियो"
+    },
+    "undo": "अनडू गर्नुहोस्",
+    "progress": "भिडियो प्रगति",
+    "transcoding": "ट्रान्सकोडिङ गर्दैछ…",
+    "signInToViewLive": "यसलाई हेर्नका लागि साइन इन गर्नुहोस्।",
+    "signInToUnlock": "यसलाई अनलक गर्न र यो भिडियो हेर्नका लागि साइन इन गर्नुहोस्।",
+    "holdAtLeast": "अनलक गर्न कृपया कम्तिमा {{amount}} {{symbol}} होल्ड गर्नुहोस्।",
+    "yourDhbBalance": "तपाईंको DHB ब्यालेन्स: {{amount}}",
+    "networkUnavailable": "यस सामग्रीलाई अब उपलब्ध नभएको नेटवर्क चाहिन्छ।",
+    "ppvUnsupportedNetwork": "समर्थन नगर्ने नेटवर्क कन्फिगरेसनका कारण यस भिडियोका लागि PPV अनुपलब्ध छ।",
+    "wrongNetwork": "तपाईं गलत नेटवर्कमा हुनुहुन्छ।",
+    "ppvRequiresChain": "यस सामग्रीलाई {{chain}} मा PPV चाहिन्छ। भुक्तानी गर्न सेटिङ्समा जानुहोस् र आवश्यक नेटवर्कमा स्विच गर्नुहोस्।",
+    "ppvRequiresOtherChain": "यस सामग्रीलाई अर्को नेटवर्कमा PPV चाहिन्छ। भुक्तानी गर्न सेटिङ्समा जानुहोस् र आवश्यक नेटवर्कमा स्विच गर्नुहोस्।",
+    "unlockPpvWith": "{{amount}} {{symbol}} प्रयोग गरेर PPV स्ट्रिम अनलक गर्नुहोस्",
+    "resolveFailed": "टोकन समाधान गर्न असफल भयो",
+    "durationLabel": "अवधि: {{time}}",
+    "progressPercent": "भिडियो प्रगति: {{percent}}%",
+    "seekHint": "विशेष स्थानमा जान ट्याप गर्नुहोस्",
+    "soundOn": "ध्वनि अन",
+    "soundMuted": "ध्वनि मौन",
+    "exitingFullscreen": "पूर्ण स्क्रिनबाट बाहिर निस्कँदै",
+    "enteringFullscreen": "पूर्ण स्क्रिनमा प्रवेश गर्दै",
+    "toggleLoop": "लुप टगल गर्नुहोस्",
+    "pictureInPicture": "पिक्चर-इन-पिक्चर",
+    "enterFullscreen": "पूर्ण स्क्रिनमा प्रवेश गर्नुहोस्",
+    "tapShowControls": "नियन्त्रणहरू देखाउन ट्याप गर्नुहोस्",
+    "doubleTapRewind": "पछाडि जान डबल ट्याप गर्नुहोस्",
+    "doubleTapForward": "अगाडि जान डबल ट्याप गर्नुहोस्",
+    "pipUnavailable": "पिक्चर-इन-पिक्चर अनुपलब्ध छ। आफ्नो यन्त्र सेटिङहरूमा DeHub को लागि यो अनुमति छ कि छैन जाँच गर्नुहोस्।",
+    "noVideo": "कुनै भिडियो छैन",
+    "rotate": "घुमाउनुहोस्"
   },
   "liveViewer": {
     "loadingStream": "स्ट्रिम लोड हुँदै...",
@@ -6253,5 +6449,68 @@
       "other": "अन्य"
     },
     "filedOn": "दायर गरिएको {{date}}"
+  },
+  "cashtag": {
+    "noData": "${{symbol}} को लागि कुनै डेटा फेला परेन",
+    "loadFailed": "टोकन डेटा लोड गर्न असफल भयो",
+    "fetching": "मूल्य डेटा प्राप्त गर्दैछ...",
+    "marketCap": "बजार पुँजीकरण",
+    "volume24h": "२४ घन्टाको भोल्युम",
+    "liquidity": "तरलता",
+    "change1h": "१ घन्टाको परिवर्तन",
+    "viewOnDexScreener": "DexScreener मा हेर्नुहोस्"
+  },
+  "linkCard": {
+    "inviteRevoked": "निमन्त्रणा रद्द गरियो",
+    "inviteExpired": "निमन्त्रणा म्याद सकियो",
+    "inviteExhausted": "निमन्त्रणा पूर्ण रूपमा प्रयोग गरियो",
+    "inviteNotFound": "निमन्त्रणा फेला परेन",
+    "inviteUnavailable": "निमन्त्रणा उपलब्ध छैन",
+    "inviteCannotBeUsed": "यो निमन्त्रणा प्रयोग गर्न सकिँदैन",
+    "communityInvite": "समुदाय निमन्त्रणा",
+    "aCommunity": "एउटा समुदाय",
+    "approvalNeeded": "स्वीकृति आवश्यक छ",
+    "item": "वस्तु",
+    "soldOut": "बिक्री सकियो",
+    "privateEvent": "निजी कार्यक्रम",
+    "event": "कार्यक्रम",
+    "listening_one": "{{count}} सुनिरहेका छन्",
+    "listening_other": "{{count}} सुनिरहेका छन्",
+    "ended": "समाप्त भयो",
+    "stage": "स्टेज",
+    "upcomingStage": "आगामी स्टेज",
+    "members": "{{compact}} सदस्यहरू"
+  },
+  "report": {
+    "whyVideo": "तपाईं यो भिडियो किन रिपोर्ट गर्दै हुनुहुन्छ?",
+    "whyName": "तपाईं {{name}} लाई किन रिपोर्ट गर्दै हुनुहुन्छ?",
+    "whyUser": "तपाईं यो प्रयोगकर्तालाई किन रिपोर्ट गर्दै हुनुहुन्छ?",
+    "submitFailed": "रिपोर्ट पेश गर्न असफल",
+    "alreadyReported": "तपाईंले यो पहिले नै रिपोर्ट गरिसक्नुभएको छ। हामी यसको समीक्षा गर्दैछौं।",
+    "additionalDetails": "थप विवरणहरू (वैकल्पिक)",
+    "contextPlaceholder": "थप सन्दर्भ प्रदान गर्नुहोस्…",
+    "submit": "रिपोर्ट पेश गर्नुहोस्",
+    "reasons": {
+      "sexual_content": "यौन सामग्री",
+      "violent_content": "हिंसक वा ग्राफिक सामग्री",
+      "hateful_content": "घृणित सामग्री",
+      "harassment_bullying": "उत्पीडन वा धम्की",
+      "harmful_dangerous": "हानिकारक वा खतरनाक कार्यहरू",
+      "misinformation": "गलत सूचना",
+      "child_abuse": "बाल दुर्व्यवहार",
+      "spam_misleading": "स्प्याम वा भ्रामक",
+      "scam_fraud": "ठगी वा ठगी",
+      "infringes_rights": "मेरो अधिकारको उल्लङ्घन गर्दछ",
+      "other": "अन्य",
+      "impersonation": "प्रतिरूपण",
+      "hateful_behavior": "घृणित व्यवहार",
+      "spam": "स्प्याम",
+      "underage": "नाबालिग प्रयोगकर्ता",
+      "inappropriate_profile": "अनुपयुक्त प्रोफाइल",
+      "harassment": "उत्पीडन",
+      "hate_speech": "घृणाको भाषण",
+      "violence": "हिंसा",
+      "scam_or_fraud": "ठगी वा ठगी"
+    }
   }
 }

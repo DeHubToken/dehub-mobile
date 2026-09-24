@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { Trans, useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -77,10 +78,11 @@ const PPVModal: React.FC<PPVModalProps> = ({
   canClose = true,
   trigger,
   triggerClassName,
-  triggerText = "Unlock",
+  triggerText,
   paymentChainId,
   onSuccess,
 }) => {
+  const { t } = useTranslation();
   const user = useUser();
   const { requireAuth, patchUser } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
@@ -235,7 +237,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
           } as any));
         } catch (e) {
           setPhase("error");
-          setPpvError(e instanceof Error ? e.message : "Solana payment failed");
+          setPpvError(e instanceof Error ? e.message : t("ppv.solanaFailed"));
         }
         return;
       }
@@ -249,11 +251,11 @@ const PPVModal: React.FC<PPVModalProps> = ({
         !tokenMeta ||
         !tokenAddress
       ) {
-        setPpvError("Missing web3 context");
+        setPpvError(t("ppv.missingWeb3"));
         return;
       }
       if (isSelf) {
-        setPpvError("You can't pay yourself");
+        setPpvError(t("ppv.cantPaySelf"));
         return;
       }
       try {
@@ -266,7 +268,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
         // Atomic ETH→DHB swap + PPV + tip in one tx via the payment router (#45).
         if (tipAmount > 0 && routerAvailable) {
           if (!paymentRouterContract) {
-            setPpvError("Preparing payment router… try again in a moment");
+            setPpvError(t("ppv.preparingRouter"));
             return;
           }
           setPhase("sending");
@@ -362,7 +364,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
             );
             if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
               setPhase("error");
-              setPpvError("Swap done but DHB still short. Try again.");
+              setPpvError(t("ppv.swapShort"));
               return;
             }
           } catch (e) {
@@ -478,7 +480,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
         } ${triggerClassName || ""}`}
       >
         <Ionicons name="pricetag-outline" size={16} color="#09090B" />
-        <Text className="text-theme-accent-foreground text-sm font-semibold">{triggerText}</Text>
+        <Text className="text-theme-accent-foreground text-sm font-semibold">{triggerText ?? t("walletSetup.unlock")}</Text>
       </TouchableOpacity>
     );
   };
@@ -500,10 +502,10 @@ const PPVModal: React.FC<PPVModalProps> = ({
           >
             <View className="gap-2">
               <Text className="text-white font-bold text-3xl tracking-wider">
-                {shortfall ? "Top up to unlock" : "Unlock video"}
+                {shortfall ? t("ppv.topUpToUnlock") : t("ppv.unlockVideo")}
               </Text>
               <Text className="text-white/70 text-xs">
-                Recipient: {toAddress.slice(0, 6)}...{toAddress.slice(-4)}
+                {t("ppv.recipient", { address: `${toAddress.slice(0, 6)}...${toAddress.slice(-4)}` })}
               </Text>
             </View>
             {phase !== "sent" && shortfall ? (
@@ -521,11 +523,11 @@ const PPVModal: React.FC<PPVModalProps> = ({
               <>
                 <View>
                   <Text className="text-base text-white mb-2">
-                    You are about to spend{" "}
-                    <Text className="text-theme-accent font-semibold">
-                      {amount} {tokenSymbol}
-                    </Text>{" "}
-                    to unlock this video.
+                    <Trans
+                      i18nKey="ppv.aboutToSpend"
+                      values={{ amount, symbol: tokenSymbol }}
+                      components={{ accent: <Text className="text-theme-accent font-semibold" /> }}
+                    />
                   </Text>
                   {/* <View className="flex-row justify-between mt-1">
                     <Text className="text-[11px] text-white/50">
@@ -540,7 +542,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                       {tokenSymbol}: {Number(userTokenBal).toFixed(4)}
                     </Text>
                     <Text className="text-[11px] text-white/30">
-                      Token Balance
+                      {t("ppv.tokenBalance")}
                     </Text>
                   </View>
 
@@ -558,7 +560,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                       >
                         <Ionicons name="gift-outline" size={15} color="#A6A9AC" />
                         <Text className="flex-1 text-white/70 text-sm">
-                          Add a tip for the creator
+                          {t("ppv.addTip")}
                         </Text>
                         <Ionicons
                           name={showTip ? "chevron-up" : "chevron-down"}
@@ -589,17 +591,17 @@ const PPVModal: React.FC<PPVModalProps> = ({
                       short. */}
                   {insufficient && phase === "idle" && (
                     <Text className="text-xs text-white/60 mt-2">
-                      Low on {tokenSymbol}? We'll top you up before unlocking.
+                      {t("ppv.lowTopUp", { symbol: tokenSymbol })}
                     </Text>
                   )}
                   {phase === "swapping" && (
                     <Text className="text-xs text-white/60 mt-2">
-                      Swapping ETH → DHB…
+                      {t("ppv.swapping")}
                     </Text>
                   )}
                   {isSelf && (
                     <Text className="text-xs text-white/80 mt-2">
-                      You can't pay yourself
+                      {t("ppv.cantPaySelf")}
                     </Text>
                   )}
                   {ppvError && (
@@ -632,11 +634,11 @@ const PPVModal: React.FC<PPVModalProps> = ({
                         />
                       )}
                       <Text className="text-white font-semibold">
-                        {phase === "swapping" && "Swapping..."}
-                        {phase === "approving" && "Approving..."}
-                        {phase === "sending" && "Processing..."}
-                        {phase === "idle" && (tipAmount > 0 ? "Pay & Tip" : "Confirm")}
-                        {phase === "error" && "Retry"}
+                        {phase === "swapping" && t("ppv.btnSwapping")}
+                        {phase === "approving" && t("tip.approving")}
+                        {phase === "sending" && t("toasts.processing")}
+                        {phase === "idle" && (tipAmount > 0 ? t("ppv.payAndTip") : t("common.confirm"))}
+                        {phase === "error" && t("common.retry")}
                       </Text>
                     </TouchableOpacity>
                   </AccentButtonGradient>
@@ -647,7 +649,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                       isBusy ? "opacity-60" : ""
                     }`}
                   >
-                    <Text className="text-white font-semibold">Cancel</Text>
+                    <Text className="text-white font-semibold">{t("common.cancel")}</Text>
                   </TouchableOpacity>
                 </View>
               </>
@@ -660,7 +662,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                   animateKey={phase}
                 />
                 <Text className="text-white text-base font-semibold">
-                  Unlocked successfully
+                  {t("ppv.unlockedSuccess")}
                 </Text>
                 <View className="flex-row gap-3">
                   <AccentButtonGradient style={{ borderRadius: 14 }}>
@@ -674,7 +676,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                       className="px-5 h-11 items-center justify-center"
                       activeOpacity={0.85}
                     >
-                      <Text className="text-white font-semibold">Continue</Text>
+                      <Text className="text-white font-semibold">{t("common.continue")}</Text>
                     </TouchableOpacity>
                   </AccentButtonGradient>
                 </View>

@@ -109,7 +109,12 @@
     "publishChanges": "发布更改",
     "pagePublished": "邀请页已发布",
     "pageSaveFailed": "无法保存邀请页",
-    "selfVisitsExcluded": "您自己对链接的访问不计入。"
+    "selfVisitsExcluded": "您自己对链接的访问不计入。",
+    "shareFailed": "分享失敗",
+    "inviteCardTitle": "邀请朋友，赚取 {{pct}}%",
+    "inviteCardSubtitle": "分享你的链接 — 他们加入并交易时，你可赚取 {{pct}}% 的佣金。",
+    "copyInviteLink": "复制邀请链接",
+    "shareInviteLink": "分享邀请链接"
   },
   "feed": {
     "home": "首页",
@@ -124,7 +129,12 @@
     "privateContentBody": "此內容來自私人帳號。追蹤創作者即可查看其貼文。",
     "noMoreContent": "沒有更多內容",
     "noPostsYet": "尚無貼文。",
-    "pullToRefresh": "下拉以重新整理或稍後再試。"
+    "pullToRefresh": "下拉以重新整理或稍後再試。",
+    "noMorePosts": "嘸再發了",
+    "allCaughtUp": "汝皆已追完",
+    "closeImages": "關閉圖像",
+    "noMoreShorts": "嘸価短褲",
+    "newMembersHint": "新加入——打个招呼"
   },
   "explore": {
     "all": "全部",
@@ -133,7 +143,10 @@
     "images": "图片",
     "videos": "视频",
     "music": "音乐",
-    "live": "直播"
+    "live": "直播",
+    "nothingTrending": "此窗口尚无热门内容。",
+    "postCount_one": "{{count}} 儂",
+    "postCount_other": "{{count}} 篇帖"
   },
   "settings": {
     "smartReplies": "建议回复",
@@ -740,7 +753,8 @@
     "noInternetHint": "確保 Wi-Fi 或移動數據已打開，然後點擊“{{action}}”",
     "saving": "正在儲存…",
     "offlineStatus": "離線 - 無網路連線",
-    "postNotFound": "尋無該帖子"
+    "postNotFound": "尋無該帖子",
+    "noResults": "無結果"
   },
   "tip": {
     "title": "送打赏",
@@ -1083,7 +1097,9 @@
     "imageAttachedDescribe": "已附加圖片 — 請描述您的編輯內容",
     "couldNotPreparePost": "無法為該貼文做準備",
     "generateImage": "生成图像",
-    "generateVideo": "生成视频"
+    "generateVideo": "生成视频",
+    "imageFailed": "生成图片失败 — 再试一次",
+    "requestFailed": "AI 請求失敗"
   },
   "commandCentre": {
     "title": "指挥中心",
@@ -1293,7 +1309,8 @@
     "evmAddressHint": "Base、BNB 和以太坊",
     "evmAddressCopied": "EVM 地址已复制",
     "solanaAddressHint": "仅限 SOL 和 SPL 代币",
-    "solanaAddressCopied": "Solana 地址已复制"
+    "solanaAddressCopied": "Solana 地址已复制",
+    "chooseNetwork": "選網絡"
   },
   "bookmarks": {
     "title": "你其书签",
@@ -2244,7 +2261,12 @@
     "unpinnedToast": "已取消置顶",
     "pinFailed": "无法置顶迄条评论",
     "kidsOnlyThread": "这个帖子是给孩子们的。只有儿童模式才能评论。",
-    "editFailed": "编辑评论失败"
+    "editFailed": "编辑评论失败",
+    "anchoredFor_one": "固定到頂部 {{count}} 分鐘",
+    "anchoredFor_other": "定佇 {{count}} 分鐘",
+    "assistantReplying": "DeHub 助手正在回复…",
+    "noneYetBeFirst": "無評論。做第一個！",
+    "turnedOff": "评论已关闭此帖子"
   },
   "postInfo": {
     "title": "帖子信息",
@@ -3668,7 +3690,18 @@
     "boostCancelledRefunded": "助推已取消，已退回你的额度",
     "boostCancelledSpent": "助推已取消。它已经开始了，所以仍然计为已用。",
     "cancelFailed": "无法取消该助推",
-    "screenTitle": "SuperPowers"
+    "screenTitle": "SuperPowers",
+    "countingNotifications": "計數通知...",
+    "flareSentPending": "{{label}} 寄出。最終計數將出現在「過往用量」。",
+    "flareNotified_one": "{{label}} 告{{count}} 人",
+    "flareNotified_other": "{{label}} 告{{count}} 人",
+    "anyBadgeHolder": "任何持有徽章者都将获得超能力。购买 DHB 以解锁徽章 — 无需质押。",
+    "boostsLeftOf": "{{left}} 箇 {{total}} 增強 剩",
+    "flaresCount_one": "{{count}} 嫑",
+    "flaresCount_other": "{{count}} 烘",
+    "refillsShort": "補藥 {{date}}",
+    "minutesUnit": "分",
+    "sendSignalFlare": "發信號彈"
   },
   "follow": {
     "followers": "关注者",
@@ -4136,7 +4169,14 @@
     "preparingWallet": "正在准备你的钱包 — 请稍后再试。",
     "swapSettling": "你的兑换可能仍在结算中。再试之前请先查看 DHB 余额 — 不要重复兑换。",
     "notEnoughBase": "你在 Base 上的钱包余额不足以支付。补充资金后，解锁在等你。",
-    "otherChain": "这条帖子在另一条链上结算，所以你在那条链的钱包里需要有 DHB。"
+    "otherChain": "这条帖子在另一条链上结算，所以你在那条链的钱包里需要有 DHB。",
+    "unlockVideo": "解鎖影片",
+    "recipient": "受贈者：{{address}}",
+    "aboutToSpend": "汝欲花 <accent>{{amount}} {{symbol}}</accent> 欲解鎖此影片。",
+    "tokenBalance": "Token 额度",
+    "lowTopUp": "{{symbol}} 囮？ 吾等 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 0 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮 囮",
+    "btnSwapping": "換...",
+    "payAndTip": "付錢佮賞錢"
   },
   "walletSetup": {
     "tryBiometricsHint": "如果你是在这部手机上设置的这个钱包，密钥应该已经在这里，就用这个",
@@ -4272,7 +4312,13 @@
     "renameHint": "在整份文字记录中更改发言人标签。",
     "searchPlaceholder": "搜索文字记录…",
     "speakerPlaceholder": "输入发言人姓名或账号",
-    "detectedLanguage": "检测到的语言：{{lang}}"
+    "detectedLanguage": "检测到的语言：{{lang}}",
+    "fixThisLine": "修繕此行",
+    "fixPlayToLine": "玩到你想修正的行，然后重新打开这个。",
+    "fixAgreeHint": "有另外一个观众同意，你的版本就可以对所有人公开了。",
+    "fixNowReads": "如今读",
+    "fixPlaceholder": "啥该讲",
+    "fixSubmit": "提議修復"
   },
   "upload": {
     "solanaUnavailable": "Solana 钱包不可用 — 本设备没有你的钱包密钥。请重新登录以恢复。",
@@ -4373,7 +4419,50 @@
     "confirmLivestream": "确认直播",
     "liveFeaturesTitle": "直播功能",
     "discardPostTitle": "放弃帖子？",
-    "discardPostBody": "您的帖子将会丢失。是否将其另存为草稿？"
+    "discardPostBody": "您的帖子将会丢失。是否将其另存为草稿？",
+    "addSound": "加聲",
+    "searchSoundsPlaceholder": "搜寻声...",
+    "noSoundsFound": "無聲響矣",
+    "categorySearchPlaceholder": "搜寻或创建分类",
+    "noMatchingCategories": "無對應分類",
+    "noCategories": "無分類項",
+    "joinCommunityToPost": "加入一个社群来发帖。",
+    "stageUploading": "上传中…",
+    "stageConfirming": "確定…",
+    "stageFinalizing": "定落...",
+    "chooseStyle": "選擇風格",
+    "enhance": "增強",
+    "spellCheck": "拼写检查",
+    "fixGrammar": "修改语法",
+    "changeStyle": "改变风格",
+    "generateContent": "生成内容",
+    "scheduleLivestream": "安排直播",
+    "scheduleMin30": "必须在 30 分钟后",
+    "minTipAmount": "最低打赏金额",
+    "schedulePostTitle": "安排帖子",
+    "scheduleTime": "时间",
+    "removeSchedule": "取消安排",
+    "shopIntro": "在此帖子中放置您自己的商品或联盟链接 — 观众可以从“商店”按钮打开它们。",
+    "shopAllowanceTier": "您的 {{tier}} 徽章总共为您提供 {{allowance}}。",
+    "shopAllowanceBase": "您总共获得 {{allowance}}。每个徽章等级会增加一个。",
+    "shopFromYours": "来自您的商店",
+    "shopNothingOnSale": "您的商店里还没有商品在售。您在那里列出的任何商品都可以发布到帖子中。",
+    "shopLinks": "链接",
+    "shopAffiliateHint": "欢迎使用联盟链接 — Amazon Associates、推荐链接、您销售的任何地方。",
+    "shopLinkN": "链接 {{n}}",
+    "shopLabelPlaceholder": "这是什么 — 例如 我的麦克风",
+    "shopInvalidUrl": "这看起来不像网址。",
+    "shopAddLink": "添加链接",
+    "shopAllowanceUsed": "已使用 {{allowance}} 个中的 {{allowance}}。质押更多 DHB 以获得更高的徽章和另一个插槽。",
+    "pillPosted": "已发布！",
+    "pillFailedRetry": "失败 · 点击重试",
+    "pillFailedNoRetries": "失败 · 没有重试机会了",
+    "pillUploadsFailed_one": "{{count}} 上传失败",
+    "pillUploadsFailed_other": "{{count}} 个上传失败",
+    "pillDefaultTitle": "上传",
+    "pillA11yFailed": "上传失败，展开上传状态",
+    "pillA11yProgress": "上传 {{percent}}% 完成，展开上传状态",
+    "pillMinimize": "最小化上传状态"
   },
   "bounty": {
     "claimed": "已领取",
@@ -4403,7 +4492,9 @@
     "eligibilityFailed": "无法检查资格",
     "switchFirst": "领取前请切换到赏金所在网络",
     "missingSignature": "缺少赏金领取签名",
-    "txReverted": "交易在链上被回滚"
+    "txReverted": "交易在链上被回滚",
+    "gasHint": "此举将发起链上交易。可能会收取 Gas 费。",
+    "detailsLabel": "Watch2Earn 赏金详情"
   },
   "poster": {
     "format": "格式",
@@ -4604,7 +4695,9 @@
     "buyNow": "立即购买",
     "buyingUnavailable": "交易恢復前無法購買。沒有任何收費。",
     "dontClose": "請勿關閉此訊息 — 訂單會在 Base 上確認轉帳後寫入。",
-    "transfersPaused": "DHB 轉帳已暫停"
+    "transfersPaused": "DHB 轉帳已暫停",
+    "affiliateDisclosure": "联盟链接 — 创作者可能会从您购买的任何商品中赚取佣金。价格对您来说是一样的。",
+    "nothingOnSale": "目前这里没有在售商品。"
   },
   "dpay": {
     "success": "成功",
@@ -4697,7 +4790,8 @@
     "withdrawing": "提现中…",
     "usdtSent": "已发送 {{amount}} USDT",
     "withdrawableSoon": "订阅费用很快就能提现",
-    "dpayBaseOnly": "Dpay 仅在 Base 上可用。"
+    "dpayBaseOnly": "Dpay 仅在 Base 上可用。",
+    "tokensAndStocks": "代币和股票"
   },
   "feedCard": {
     "reactionFailed": "无法更新表态",
@@ -4708,7 +4802,34 @@
     "mint": "铸造",
     "stream": "直播",
     "boostPost": "助推该帖子",
-    "openSuperPowers": "打开 SuperPowers"
+    "openSuperPowers": "打开 SuperPowers",
+    "subsOnly": "仅限订阅者",
+    "shareAndRepost": "分享和转发",
+    "saveToLibrary": "保存到库",
+    "postDetails": "帖子详情",
+    "unlockForAndHold": "解锁 {{price}} {{symbol}} + 持有 {{hold}} {{holdSymbol}}",
+    "unlockFor": "解锁 {{price}} {{symbol}}",
+    "subscribersOnly": "仅限订阅者",
+    "subscribeTo": "订阅 {{name}}",
+    "subscribeToCreator": "订阅此创作者",
+    "holdingsRequired": "所需持有量",
+    "mustHold": "必须持有 {{amount}} {{symbol}}",
+    "reposted": "已转发",
+    "matureDescription": "创作者将此帖子标记为成人或露骨内容。",
+    "viewAnyway": "仍要查看",
+    "seeWhoReacted": "查看谁有反应",
+    "sendInMessage": "发送消息",
+    "undoRepost": "取消转发",
+    "repost": "转发",
+    "capturing": "正在捕获…",
+    "shareAsImage": "分享为图片",
+    "loadingQuoted": "正在加载引用的帖子…",
+    "dehubCreator": "DeHub 创作者",
+    "imageTranslation": "图片翻译",
+    "imageTranslating": "正在提取和翻译文本…",
+    "imageNoText": "图片中未找到文本",
+    "translatedFrom": "{{lang}} 翻譯",
+    "originalText": "原始文字"
   },
   "dm": {
     "attachFailed": "无法附加该文件。",
@@ -4860,7 +4981,45 @@
     "descTooShort": "描述至少需要 3 个字符",
     "updated": "帖子已更新",
     "titlePlaceholder": "帖子标题",
-    "descPlaceholder": "帖子描述"
+    "descPlaceholder": "帖子描述",
+    "imageTooLarge": "圖片必須小於 42.069 MB",
+    "imageReplaced": "圖片已更換",
+    "replaceImageFailed": "無法更換該圖片",
+    "imageLimitTier_one": "您的徽章等級允許每篇貼文最多 {{count}} 張圖片",
+    "imageLimitTier_other": "您的徽章等級允許每篇貼文最多 {{count}} 張圖片",
+    "imagesTooLarge": "圖片必須小於 42.069 MB",
+    "imagesTotalTooLarge": "單次上傳的圖片總計不得超過 100 MB",
+    "imagesAdded": "圖片已新增",
+    "addImagesFailed": "無法新增這些圖片",
+    "loadingImages": "正在載入貼文圖片…",
+    "loadImagesFailed": "無法載入貼文圖片。請重試",
+    "imagesHint": "新增或更換圖片會立即儲存。您的貼文將保留連結、瀏覽次數和留言。",
+    "allowanceUnavailable": "圖片額度無法使用。請重試",
+    "imagesCount": "{{count}} / {{limit}} 張圖片 · 根據您的徽章等級",
+    "addingImages": "正在新增圖片…",
+    "imageLimitReached": "已達到徽章圖片上限",
+    "addImages": "新增圖片",
+    "replaceImageN": "更換圖片 {{n}}",
+    "replaceVideoTitle": "更換此影片？",
+    "replaceVideoBody": "貼文將保留其連結、瀏覽次數和留言。其後方的檔案將被覆寫，且此操作無法復原。",
+    "replace": "更換",
+    "replaceFileFailed": "無法更換該檔案",
+    "updateFailed": "更新貼文失敗",
+    "onShopBoard": "在 Shop 版塊的 {{count}}",
+    "addToShopBoard": "新增至 Shop 版塊",
+    "shopBoardHint": "您在 Shop 按鈕開啟的商店商品列表和聯盟連結。您可以新增 {{allowance}}。",
+    "commentsOff": "留言已關閉",
+    "allowComments": "允許留言",
+    "commentsOffHint": "已发布的回复仍然可见 — 重新开启此功能将恢复它们。",
+    "allowCommentsHint": "任何人都可以回复此帖子。",
+    "markedMature": "标记为成人内容",
+    "markMature": "标记为成人内容",
+    "markedMatureHint": "已从公开动态中移除。关注者、您的个人资料和链接仍然有效。",
+    "markMatureHint": "用于成人或露骨内容。开启此功能将从公开动态中移除。",
+    "videoFile": "视频文件",
+    "uploadingPercent": "正在上传… {{percent}}%",
+    "replaceVideoFile": "替换视频文件",
+    "replaceVideoHint": "保留此帖子的链接、观看次数和评论。旧文件将播放直到新文件处理完毕。"
   },
   "player": {
     "openSettings": "打开设置",
@@ -4883,7 +5042,45 @@
     "downloadImage": "下載圖片",
     "goToImage": "前往圖片 {{index}}",
     "allCaughtUp": "您已全部看完",
-    "checkBackForShorts": "稍後再回來查看更多短片"
+    "checkBackForShorts": "稍後再回來查看更多短片",
+    "segmentSkipped": {
+      "sponsor": "跳过赞助",
+      "intro": "跳过片头",
+      "outro": "跳过片尾",
+      "selfpromo": "跳过自我推广",
+      "interaction": "跳过点赞和订阅",
+      "filler": "跳过填充内容"
+    },
+    "undo": "撤销",
+    "progress": "视频进度",
+    "transcoding": "正在转码…",
+    "signInToViewLive": "登录以查看此直播。",
+    "signInToUnlock": "登录以解锁并观看此视频。",
+    "holdAtLeast": "请至少持有 {{amount}} {{symbol}} 才能解锁。",
+    "yourDhbBalance": "您的 DHB 余额： {{amount}}",
+    "networkUnavailable": "此内容需要一个不再可用的网络。",
+    "ppvUnsupportedNetwork": "由于不支持的网络配置，此视频无法进行 PPV。",
+    "wrongNetwork": "您不在正确的网络上。",
+    "ppvRequiresChain": "此内容需要在 {{chain}} 上进行 PPV。请前往设置并切换到所需网络进行支付。",
+    "ppvRequiresOtherChain": "此内容需要在其他网络上进行 PPV。请前往设置并切换到所需网络进行支付。",
+    "unlockPpvWith": "使用 {{amount}} {{symbol}} 解锁 PPV 流",
+    "resolveFailed": "令牌解析失败",
+    "durationLabel": "时长：{{time}}",
+    "progressPercent": "视频进度：{{percent}}%",
+    "seekHint": "轻触以跳转到特定位置",
+    "soundOn": "开启声音",
+    "soundMuted": "静音",
+    "exitingFullscreen": "退出全屏",
+    "enteringFullscreen": "进入全屏",
+    "toggleLoop": "切换循环播放",
+    "pictureInPicture": "画中画",
+    "enterFullscreen": "进入全屏",
+    "tapShowControls": "轻触以显示控件",
+    "doubleTapRewind": "双击以倒回",
+    "doubleTapForward": "双击以快进",
+    "pipUnavailable": "画中画不可用。请检查您的设备设置是否允许 DeHub 使用画中画。",
+    "noVideo": "无视频",
+    "rotate": "旋转"
   },
   "liveViewer": {
     "loadingStream": "正在加载直播……",
@@ -6193,5 +6390,68 @@
       "other": "其他"
     },
     "filedOn": "已提交 {{date}}"
+  },
+  "cashtag": {
+    "noData": "未找到 ${{symbol}} 的数据",
+    "loadFailed": "加载代币数据失败",
+    "fetching": "正在获取价格数据…",
+    "marketCap": "市值",
+    "volume24h": "24小时成交量",
+    "liquidity": "流动性",
+    "change1h": "1小时变化",
+    "viewOnDexScreener": "在 DexScreener 上查看"
+  },
+  "linkCard": {
+    "inviteRevoked": "邀请已撤销",
+    "inviteExpired": "邀请已过期",
+    "inviteExhausted": "邀请已用完",
+    "inviteNotFound": "未找到邀请",
+    "inviteUnavailable": "邀请不可用",
+    "inviteCannotBeUsed": "此邀请无法使用",
+    "communityInvite": "社区邀请",
+    "aCommunity": "一个社区",
+    "approvalNeeded": "需要批准",
+    "item": "物品",
+    "soldOut": "已售罄",
+    "privateEvent": "私人活动",
+    "event": "活动",
+    "listening_one": "{{count}} 正在收听",
+    "listening_other": "{{count}} 正在收听",
+    "ended": "已结束",
+    "stage": "舞台",
+    "upcomingStage": "即将举行的舞台",
+    "members": "{{compact}} 位成员"
+  },
+  "report": {
+    "whyVideo": "你为什么要举报此视频？",
+    "whyName": "你为什么要举报 {{name}}？",
+    "whyUser": "你为什么要举报此用户？",
+    "submitFailed": "提交举报失败",
+    "alreadyReported": "你已举报过此内容。我们正在审核。",
+    "additionalDetails": "其他详细信息（可选）",
+    "contextPlaceholder": "提供更多背景信息…",
+    "submit": "提交举报",
+    "reasons": {
+      "sexual_content": "色情内容",
+      "violent_content": "暴力或血腥内容",
+      "hateful_content": "仇恨内容",
+      "harassment_bullying": "骚扰或欺凌",
+      "harmful_dangerous": "有害或危险行为",
+      "misinformation": "虚假信息",
+      "child_abuse": "虐待儿童",
+      "spam_misleading": "垃圾或誤導",
+      "scam_fraud": "詐騙或欺詐",
+      "infringes_rights": "侵犯我的權利",
+      "other": "其他",
+      "impersonation": "冒充",
+      "hateful_behavior": "仇恨行為",
+      "spam": "垃圾郵件",
+      "underage": "未成年用戶",
+      "inappropriate_profile": "不當個人資料",
+      "harassment": "騷擾",
+      "hate_speech": "仇恨言論",
+      "violence": "暴力",
+      "scam_or_fraud": "詐騙或欺詐"
+    }
   }
 }

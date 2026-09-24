@@ -109,7 +109,12 @@
     "publishChanges": "Yɛlɛmaliw bɔ kɛnɛ kan",
     "pagePublished": "Weleli ɲɛ bɔra kɛnɛ kan",
     "pageSaveFailed": "Weleli ɲɛ ma se ka mara",
-    "selfVisitsExcluded": "I yɛrɛ ka taga bɔ i ka site web kan, o tɛ jate."
+    "selfVisitsExcluded": "I yɛrɛ ka taga bɔ i ka site web kan, o tɛ jate.",
+    "inviteLinkLoadFailed": "O tɛ se ka kɛ tugun.",
+    "shareFailed": "Fanga min be mɔgɔ la, o tɛ se",
+    "copyInviteLink": "Kopi kɛ link kan",
+    "tapShareForLink": "N'i b'a fɛ ka tɛmɛ o kan, i ka tɛmɛ o kan",
+    "shareInviteLink": "I ka kan ka tɛmɛ o kan"
   },
   "feed": {
     "home": "Kɛnɛ",
@@ -124,7 +129,15 @@
     "privateContentBody": "O kunnafoniw bɔra mɔgɔ ka sɛbɛ dɔ kɔnɔ. Aw ye tugu a danbaga kɔ k'a ka sɛbɛw lajɛ.",
     "noMoreContent": "Ne tun tɛ se ka n' yɛrɛ tanga o ma tugun",
     "noPostsYet": "Mɔgɔ si ma deli ka bɔ yen.",
-    "pullToRefresh": "N'i b'a fɛ ka dɔ fara i ka fanga kan, i ka kan ka dɔ fara i ka fanga kan."
+    "pullToRefresh": "N'i b'a fɛ ka dɔ fara i ka fanga kan, i ka kan ka dɔ fara i ka fanga kan.",
+    "noMorePosts": "O kama, an ka ɲi ka to ka baro kɛ",
+    "noMoreImages": "O kɔ, a ye fɛɛn wɛrɛw ye.",
+    "noImagesFound": "O ma ɲɛsin o ma",
+    "allCaughtUp": "I be se ka min kɛ, o ye tiɲɛ ye.",
+    "closeImages": "O ye ɲɛyirali ɲuman ye",
+    "noMoreShorts": "O tɛ se ka kɛ tugun",
+    "noShortsFound": "Désolé Aw ma foyi sɔrɔ",
+    "newMembersHint": "O kɔ, a y'a fɔ ko: \"Aw ye foli di ne ma\""
   },
   "explore": {
     "all": "Kɔrɔbɔ",
@@ -133,7 +146,11 @@
     "images": "Fɔlɔw",
     "videos": "Video",
     "music": "Musikɛ",
-    "live": "Kɛnɛ"
+    "live": "Kɛnɛ",
+    "trendingTopics": "Ɲiningaliw",
+    "nothingTrending": "Fɛɛn si tɛ yen o sira kan.",
+    "postCount_one": "{{count}} post",
+    "postCount_other": "{{count}} posts"
   },
   "settings": {
     "smartReplies": "Jaabi fɔlenw",
@@ -781,7 +798,11 @@
     "noInternetHint": "Aw ye a to Wi-Fi wala telefɔni ka kunnafoniw ka yɛlɛ, o kɔ, aw ye \"{{action}}\" sɛbɛn",
     "saving": "Saving…",
     "offlineStatus": "Mɔgɔ tɛ sɔn ka baara wɛrɛ kɛ, a tɛ se ka baara wɛrɛ kɛ.",
-    "postNotFound": "Ne ma se ka o ciin sɔrɔ"
+    "postNotFound": "Ne ma se ka o ciin sɔrɔ",
+    "select": "K'i yɛrɛ sugandi",
+    "noResults": "Désolé Aw ma foyi sɔrɔ",
+    "moreInfo": "N'i b'a fɛ ka kunnafoni wɛrɛw sɔrɔ, a",
+    "translate": "Bibulu bayɛlɛmani"
   },
   "tip": {
     "title": "Kɔrɔbɔ",
@@ -1125,7 +1146,10 @@
     "imageAttachedDescribe": "Jaa min be sɔrɔ o kɔnɔ, a sɛbɛnnin lo o kɔnɔ.",
     "couldNotPreparePost": "Nta yashoboye gutegurwa ngo bipostwe",
     "generateImage": "Jaa lajɛ",
-    "generateVideo": "Aw ye videwo nin lajɛ"
+    "generateVideo": "Aw ye videwo nin lajɛ",
+    "imageFailed": "TROP BELL TA BIMBO, ne sera ka o yɛrɛ ka",
+    "rateLimited": "I ka kan ka min kɛ, i ka o kɛ joona joona",
+    "requestFailed": "A ka fɔta ma dafa"
   },
   "commandCentre": {
     "title": "Kɔmɔ Kɛnɛ",
@@ -1337,7 +1361,8 @@
     "evmAddressCopied": "Adres min sɛbɛra",
     "solanaAddressLabel": "Solana ka koo",
     "solanaAddressHint": "Tile ni SPL tagamasiyɛnw dɔrɔn lo",
-    "solanaAddressCopied": "Adresɛ min sɛbɛra ka ɲɛ"
+    "solanaAddressCopied": "Adresɛ min sɛbɛra ka ɲɛ",
+    "chooseNetwork": "Aw ka kan ka tɛmɛ o kan"
   },
   "bookmarks": {
     "title": "I kɛ kɔrɔbɔ",
@@ -2289,7 +2314,18 @@
     "unpinnedToast": "Tugulan bɔra",
     "pinFailed": "O kumasen tugu ma se ka kɛ",
     "kidsOnlyThread": "O barokun ye denmisɛnw ka barokun ye. Denmisɛnw dɔrɔn lo be se ka kuma o koo la.",
-    "editFailed": "Mɔgɔ si ma sɔn ka kuma"
+    "editFailed": "Mɔgɔ si ma sɔn ka kuma",
+    "notFound": "O ma ɲɛsin o ma",
+    "notCreatorBadge": "O tɛ danbaga ye",
+    "likersAuthorOnly": "Mɔgɔ minw b'a fɛ ka kuma, olu dɔrɔn lo be se k'o faamu.",
+    "noLikesYet": "Ne t'a fɛ ka kɛ ten halibi.",
+    "anchoredFor_other": "O ye {{count}} min.",
+    "anchorFailed": "Ne tɛ se ka o fɔ",
+    "assistantReplying": "A tun b'a fɛ ka min fɔ, a tun b'o le fɔra.",
+    "noneYetBeFirst": "No comments yet. i ka kɛ fɔlɔ ye!",
+    "turnedOff": "Ka kuma o koo la",
+    "noQuotesYet": "O tɛ se ka kɛ halibi.",
+    "noRepostsYet": "O tɛ se ka kɛ tugun."
   },
   "postInfo": {
     "title": "Post kunnafoni",
@@ -2560,7 +2596,8 @@
     "error": "Error",
     "image_too_large_tier": "Image is too big — your {{tier}} tier stores images up to {{limit}} MB",
     "image_too_large_untiered": "Jaa ka bon kojugu — jaa ka kan ka mara fɔɔ ka taga se {{limit}} MB",
-    "rate_limited": "A ka teli kojugu, i sabali"
+    "rate_limited": "A ka teli kojugu, i sabali",
+    "failedToUnfollowUser": "Mɔgɔ min ma sɔn ka baara kɛ n'a ye, a ka kan ka baara kɛ n'o ye"
   },
   "staking": {
     "title": "Staking",
@@ -3714,7 +3751,20 @@
     "boostCancelledSpent": "Boost bɔra. A tun daminɛna ka ban, o de la a bɛ to a musaka la.",
     "cancelFailed": "O boost tun tɛ se ka bɔ",
     "screenTitle": "SuperPowers",
-    "spentFor": "{{power}} rɔniŋ fɔɔ {{minutes}} mɛniŋs"
+    "spentFor": "{{power}} rɔniŋ fɔɔ {{minutes}} mɛniŋs",
+    "countingNotifications": "Mɔgɔ minw be jatiminɛ kɛ, olu ka kan ka jatiminɛ kɛ.",
+    "flareSentPending": "{{label}}sent. laban hakɛ bena ye a ka baara tɛmɛninw na.",
+    "flareNotified_one": "{{label}} notified {{count}} person",
+    "flareNotified_other": "{{label}}notified {{count}} people",
+    "boostPostFailed": "Ne tɛ se ka nin barokun kalan",
+    "loadFailed": "O kama, a tun man nɔgɔ ka baara kɛ ni fanga ye. I be se k'a ɲini tugu miniti damanin kɔnɔ.",
+    "anyBadgeHolder": "O bɛɛ n'a ta, a ka ɲi ka kɛ ni fanga ye. I ka DHB san walisa ka batɛmu dɔ yɛlɛ — i mako t'a la ka batɛmu ta.",
+    "boostsLeftOf": "{{left}} ka {{total}} boosts left",
+    "flaresCount_one": "{{count}} flare",
+    "flaresCount_other": "{{count}} flares",
+    "minutesUnit": "dɔɔni fɔlɔ",
+    "sendSignalFlare": "I ka kan ka taga ni a ye",
+    "spend": "Ka tɛmɛ"
   },
   "follow": {
     "followers": "O kɔ, u ye tugu u kɔ.",
@@ -4182,7 +4232,12 @@
     "preparingWallet": "I ka warijɛ bɛ labɛn — a lajɛ tuguni waati dɔɔni kɔfɛ.",
     "swapSettling": "I ka falen bɛ se ka ban ka kɛ halibi. I ka DHB wari lajɛ sanni i ka a lajɛ tuguni — kana falen siɲɛ fila.",
     "notEnoughBase": "I ka warijɛ kɔnɔ Base kan, wari tɛ se. Wari fara a kan, da wulili bɛ i makɔnɔ.",
-    "otherChain": "Nin post bɛ ban chain wɛrɛ kan, o la DHB ka kan ka kɛ i ka warijɛ kɔnɔ yen."
+    "otherChain": "Nin post bɛ ban chain wɛrɛ kan, o la DHB ka kan ka kɛ i ka warijɛ kɔnɔ yen.",
+    "unlockVideo": "Aw kana a to a ka kɛ aw yɛrɛ la video",
+    "tokenBalance": "Ka to ka to ka miiri",
+    "btnSwapping": "Swapping...",
+    "payAndTip": "Pay & Tip",
+    "unlockedSuccess": "Unlocked successfully"
   },
   "walletSetup": {
     "tryBiometricsHint": "Nin kɛ ni i ye nin wari-mara labɛn nin telefɔni kan ani konnɛgɛ ka kan ka kɛ yan kaban",
@@ -4318,7 +4373,13 @@
     "renameHint": "Kumalaw tɔgɔ falen sɛbɛnni bɛɛ kɔnɔ.",
     "searchPlaceholder": "Ɲini sɛbɛnni kɔnɔ…",
     "speakerPlaceholder": "Kumalaw tɔgɔ walima tɔgɔsɛbɛn sɛbɛn",
-    "detectedLanguage": "Kan minnu sɔrɔla: {{lang}}"
+    "detectedLanguage": "Kan minnu sɔrɔla: {{lang}}",
+    "fixNowReads": "Now reads",
+    "fixSubmit": "Suggest fix",
+    "fixThisLine": "I be se ka o sira ta",
+    "fixPlayToLine": "I b'a fɛ ka sira min ta, i ka segi k'o yɛlɛ.",
+    "fixAgreeHint": "Mɔgɔ wɛrɛ be sɔn k'a fɔ ko i ka version be to niin na mɔgɔ bɛɛ fɛ.",
+    "fixPlaceholder": "Ne ka kan ka min fɔ"
   },
   "upload": {
     "solanaUnavailable": "Solana warijɛ tɛ yen — nin minɛn tɛ i ka warijɛ kilisi mara. Don kokura walisa k'a lasegin.",
@@ -4419,7 +4480,56 @@
     "discardPostTitle": "Discard Post?",
     "imagesTotalLimit": "Ni mɔgɔ dɔ ye foto dɔ ta, a ka kan ka kɛ MB 100 ye walima ka tɛmɛ o kan",
     "discardPostBody": "Ne tun b'a fɛ ka min kɛ, a tun b'o le kɛra. Yala i b'a fɛ k'a kɛ i ka sɛbɛ ye wa?",
-    "uploadsAppearHere": "I ka kunnafoniw bena sɔrɔ yan"
+    "uploadsAppearHere": "I ka kunnafoniw bena sɔrɔ yan",
+    "soundSelected": "Selected",
+    "soundAdd": "Add",
+    "addSound": "Add Sound",
+    "searchSoundsPlaceholder": "Search sounds...",
+    "noSoundsFound": "No sounds found",
+    "categories": "Categories",
+    "categoryMaxReached": "Maximum reached",
+    "createCategory": "Create \"{{name}}\"",
+    "noMatchingCategories": "No matching categories",
+    "noCategories": "No categories available",
+    "stageUploading": "Uploading…",
+    "stageConfirming": "Confirming…",
+    "stageMinting": "Minting…",
+    "stageFinalizing": "Finalizing…",
+    "chooseStyle": "Choose Style",
+    "enhance": "Enhance",
+    "spellCheck": "Spell Check",
+    "fixGrammar": "Fix Grammar",
+    "changeStyle": "Change Style",
+    "generateContent": "Generate Content",
+    "scheduleLivestream": "Schedule Livestream",
+    "minTipAmount": "Minimum Tip Amount",
+    "schedulePostTitle": "Schedule Post",
+    "scheduleTime": "Time",
+    "removeSchedule": "Remove Schedule",
+    "shopLinks": "Links",
+    "shopLinkN": "Link {{n}}",
+    "shopLabelPlaceholder": "What it is — e.g. My mic",
+    "shopAddLink": "Add a link",
+    "pillPosted": "Posted!",
+    "pillUploadsFailed_one": "{{count}} upload failed",
+    "pillUploadsFailed_other": "{{count}} uploads failed",
+    "pillDefaultTitle": "Upload",
+    "pillA11yFailed": "Upload failed, expand upload status",
+    "pillA11yProgress": "Upload {{percent}}% complete, expand upload status",
+    "pillMinimize": "Minimize upload status",
+    "noAudioPosts": "# Dɔgɔtɔrɔ tɛ yɔrɔ min na",
+    "categorySearchPlaceholder": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
+    "joinCommunityToPost": "I be se ka jɛnkulu dɔ kɛ walisa ka sɛbɛ dɔ ci.",
+    "scheduleMin30": "Aw ka kan ka miniti 30 kɛ ka bɔ sisan",
+    "shopIntro": "I yɛrɛ ka sɛbɛninw wala i ka linkw bila o yɔrɔ la — mɔgɔ minw b'u filɛ, u be se k'u yɛlɛ ka bɔ lɔgɔfiyɛ la.",
+    "shopAllowanceTier": "I ka {{tier}}badge be i di {{allowance}} in total.",
+    "shopAllowanceBase": "Get {{allowance}} in total. O ye n ka miiriya ye. Ɔnhɔn, san fila bɛɛ ka kan ka kɛ filɛli ye.",
+    "shopFromYours": "I ka soo kɔnɔ",
+    "shopNothingOnSale": "Fɛɛn si tɛ feere lɔgɔfiyɛ la. I be se ka fɛɛn o fɛɛn kofɔ, o be se ka kɛ lɛtɛrɛ dɔ kɔnɔ.",
+    "shopAffiliateHint": "I be se ka taga yɔrɔ o yɔrɔ, i be se ka taga yɔrɔ o yɔrɔ.",
+    "shopInvalidUrl": "O tɛ komi web site dɔ.",
+    "pillFailedRetry": "O kɔ, a ye n' ka soow lɔ.",
+    "pillFailedNoRetries": "Fanga t'a la: Fanga t'a la"
   },
   "bounty": {
     "claimed": "A tara",
@@ -4449,7 +4559,9 @@
     "eligibilityFailed": "Sɛgɛsɛgɛli ma ɲɛ",
     "switchFirst": "Sanni i ka ta, taga sara rezo kan",
     "missingSignature": "Sara tali bolonɔ tɛ yen",
-    "txReverted": "Fɛnfeere seginna chain kan"
+    "txReverted": "Fɛnfeere seginna chain kan",
+    "gasHint": "O bena kɛ sababu ye ka baara kɛ ni ɲɔgɔn ye. O kama, a ka ɲi ka to ka to ka baara kɛ ni tulu ye.",
+    "detailsLabel": "Watch2Earn Bounty ka kunnafoniw"
   },
   "poster": {
     "format": "Cogoya",
@@ -4650,7 +4762,9 @@
     "buyNow": "San sisan",
     "buyingUnavailable": "Kutengwa kutali na kutengwa mpaka kutengwa kutakapofunguliwa tena. Hakuna chochote kilichotozwa.",
     "dontClose": "Usifunge hii — agizo limeandikwa mara tu uhamisho utakapothibitishwa kwenye Base.",
-    "transfersPaused": "DHB ka kunnafoniw be bila ka suma"
+    "transfersPaused": "DHB ka kunnafoniw be bila ka suma",
+    "affiliateDisclosure": "I be fɛɛn o fɛɛn san, i be se ka baara kɛ n'o ye. O cogo kelen na, aw fana ka kan ka sɔn o ma.",
+    "nothingOnSale": "Fɛɛn si tɛ feere yan."
   },
   "dpay": {
     "success": "A ɲɛna",
@@ -4742,7 +4856,8 @@
     "withdrawing": "A bɛ bɔ la…",
     "usdtSent": "{{amount}} USDT cira",
     "withdrawableSoon": "Bilali wari bɛna se ka bɔ sɔɔni",
-    "dpayBaseOnly": "Dpay bɛ sɔrɔ Base dɔrɔn kan."
+    "dpayBaseOnly": "Dpay bɛ sɔrɔ Base dɔrɔn kan.",
+    "tokensAndStocks": "Fɛɛn minw be sɔrɔ a kɔnɔ, a ka ɲi ka kɛ olu ye"
   },
   "feedCard": {
     "reactionFailed": "Jaabi ma se ka kura",
@@ -4753,7 +4868,30 @@
     "mint": "Mint",
     "stream": "Stream",
     "boostPost": "Sɛbɛn boost",
-    "openSuperPowers": "SuperPowers da wuli"
+    "openSuperPowers": "SuperPowers da wuli",
+    "subsOnly": "Ka to ka to ka baara kɛ",
+    "shareAndRepost": "Ka segi ka na, ka segi ka na,",
+    "saveToLibrary": "Kɔrɔbɔli min be sɔrɔ Bibulu ka kalanw na",
+    "postDetails": "Barokunw lajɛ",
+    "subscribersOnly": "Mɔgɔ min y'a ka sɛbɛ ci",
+    "subscribeTo": "I ka kan ka sɛbɛri kɛ {{name}}",
+    "subscribeToCreator": "I ka kan ka sɛbɛri kɛ o danbaga ye",
+    "holdingsRequired": "Fɛɛn minw ka kan",
+    "reposted": "Ka segi ka taga",
+    "matureDescription": "A tun b'a fɛ ka baara kɛ n'o ye i n'a fɔ mɔgɔ min be baara kɛ ni mɔgɔ ye wala a be baara kɛ ni mɔgɔ",
+    "viewAnyway": "I be se k'a ye cogo o cogo",
+    "seeWhoReacted": "A filɛ mɔgɔ min y'a jaabi",
+    "sendInMessage": "A to ne ye kuma dɔ fɔ i ye.",
+    "undoRepost": "Ka segi ka na",
+    "repost": "Ka segi ka taga",
+    "capturing": "Ka to ka to ka baara kɛ...",
+    "shareAsImage": "A yira ko i ye mɔgɔ ye",
+    "loadingQuoted": "A fɔra yen ko: \"An ka kan ka taga yɔrɔ min na, o",
+    "dehubCreator": "Danbaga",
+    "imageTranslation": "Jaa min bayɛlɛmana",
+    "imageTranslating": "Ka Bibulu bayɛlɛma ani ka a bayɛlɛma...",
+    "imageNoText": "O jaa nin tɛ yen tugun.",
+    "originalText": "Original Text"
   },
   "dm": {
     "attachFailed": "O gafe ma se ka fara a kan.",
@@ -4903,7 +5041,43 @@
     "descTooShort": "Kunnafoni ka kan ka kɛ sɛbɛnden 3 ye fɔlɔ",
     "updated": "Sɛbɛn kuraya",
     "titlePlaceholder": "Sɛbɛn tɔgɔ",
-    "descPlaceholder": "Sɛbɛn kunnafoni"
+    "descPlaceholder": "Sɛbɛn kunnafoni",
+    "imageReplaced": "Image replaced",
+    "imagesAdded": "Images added",
+    "loadingImages": "Loading post images…",
+    "allowanceUnavailable": "Image allowance unavailable. Retry",
+    "addingImages": "Adding images…",
+    "imageLimitReached": "Badge image limit reached",
+    "addImages": "Add images",
+    "replaceImageN": "Replace image {{n}}",
+    "replace": "Replace",
+    "allowComments": "Allow comments",
+    "commentsOffHint": "O la, a tun be se ka kɛ ko a tun ye min fɔ, a tun b'o le fɔra.",
+    "allowCommentsHint": "Mɔgɔ o mɔgɔ be se ka barokun nin lajɛ, o tigi be se k'a jaabi.",
+    "markedMature": "Mɔgɔkɔrɔba",
+    "markMature": "Ka kɛ mɔgɔkɔrɔba ye",
+    "markedMatureHint": "O kama, a tun man nɔgɔ ka dumuni kɛ. I ka kalandenw, i ka kunnafoniw ani i ka linkw be baara kɛ halibi.",
+    "markMatureHint": "Mɔgɔkɔrɔbaw ka baara wala u ka baara. O kama, a tun man nɔgɔ ka dumuni kɛ.",
+    "videoFile": "Videogwɛlɛw",
+    "replaceVideoFile": "Ka videwo nin bila sen kan",
+    "replaceVideoHint": "N'i b'a fɛ ka tɛmɛ o kan, i ka tɛmɛ o kan ka tɛmɛ o kan. O kɔrɔ ko, a ka ɲi ka to ka to ka baara kɛ fɔɔ ka taga se a ka baara laban ma.",
+    "imageTooLarge": "O jaa ka kan ka kɛ MB 42.069 ye walima ka dɔgɔ",
+    "replaceImageFailed": "I tɛ se ka o jaa yɛlɛma",
+    "imageLimitTier_one": "I ka batɛmu be se ka kɛ {{count}} jaa ye post kelen kelen bɛɛ kɔnɔ",
+    "imageLimitTier_other": "I ka batɛmu be se ka mɔgɔ bila ka taga {{count}} images per post",
+    "imagesTooLarge": "O jaa nunu ka kan ka kɛ MB 42.069 ye walima ka dɔgɔ",
+    "imagesTotalTooLarge": "Ni mɔgɔ dɔ ye foto dɔ ta, a ka kan ka kɛ MB 100 ye walima ka tɛmɛ o kan",
+    "addImagesFailed": "Ne tɛ se ka o jaa nunu fara u kan",
+    "loadImagesFailed": "I tɛ se ka fotow bila. I tɛ se ka fotow bila.",
+    "imagesHint": "N'i ye jaa dɔ fara a kan wala n'i y'a nɔɔ ta, i bena a to a be se ka yɛlɛma joona joona. An b'i ka kumaw, i ka kumaw ani i ka kumaw mara.",
+    "replaceVideoTitle": "Yala i be se ka videwo nin yɛlɛma wa?",
+    "replaceVideoBody": "O barokun b'a ka link, a ka miiriya ani a ka kumaw mara. O kɔ, a be se ka kɛ ko a ye fɛɛn dɔ ye min be se ka yɛlɛma.",
+    "replaceFileFailed": "Ne tɛ se ka o sɛbɛ nin yɛlɛma",
+    "updateFailed": "N'i ma sɔn ka baro kɛ ni mɔgɔ wɛrɛw ye, i ka kan ka baro",
+    "onShopBoard": "{{count}} on the storeboard",
+    "addToShopBoard": "I ka taga ni a ye lɔgɔfiyɛ la",
+    "shopBoardHint": "I ka gafew ni i ka linkw be yɛlɛ ka bɔ gafew ka bulonda kan. I be se ka {{allowance}} fara a kan.",
+    "commentsOff": "An ka kuma dɔw to an bolo"
   },
   "player": {
     "openSettings": "Latigɛliw da wuli",
@@ -4926,7 +5100,42 @@
     "photoAccessToSaveImages": "A be se ka kɛ ko mɔgɔ be se ka fɛɛn dɔ ye min be se ka mɔgɔ bali ka",
     "failedToSaveImage": "An ka jaabili dɔ lajɛ min be ɲɛsin mɔgɔ ka koo ma.",
     "allCaughtUp": "I be se ka min kɛ, o ye tiɲɛ ye.",
-    "checkBackForShorts": "N'a sɔrɔ i bena a ye ko i ye mɔgɔ dɔ ye min be se ka kɛ i yɛrɛ ka"
+    "checkBackForShorts": "N'a sɔrɔ i bena a ye ko i ye mɔgɔ dɔ ye min be se ka kɛ i yɛrɛ ka",
+    "segmentSkipped": {
+      "sponsor": "Fanga min be mɔgɔ la, o ye ka to ka to ka to ka to",
+      "intro": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
+      "outro": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili.",
+      "selfpromo": "K'i yɛrɛ tanga",
+      "interaction": "I ka kan ka min kɛ, o ye ka to ka to ka o kɛ",
+      "filler": "Fanga min be mɔgɔ la, o ye ka to ka to ka to"
+    },
+    "undo": "O ye tiɲɛ ye.",
+    "progress": "Videow ka ɲɛtaga",
+    "transcoding": "O ye yɛlɛmaniba ye.",
+    "signInToViewLive": "I ka kan ka sɛbɛri kɛ walisa k'o ye.",
+    "signInToUnlock": "I ka kan ka tɛmɛ o kan ka videwo nin lajɛ.",
+    "networkUnavailable": "O kama, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+    "ppvUnsupportedNetwork": "PPV tɛ sɔrɔ videwo nin na sabu a tɛ se ka baara kɛ n'o ye.",
+    "wrongNetwork": "I be sira jugu kan.",
+    "ppvRequiresChain": "O kunnafoniw be PPV ɲini {{chain}} kan. I ka taga sigi yɔrɔ dɔw la ani i ka yɛlɛma yɔrɔ dɔw la walisa ka wari sara.",
+    "ppvRequiresOtherChain": "O kunnafoniw be PPV ɲini rezo wɛrɛ kan. I ka taga sigi yɔrɔ dɔw la ani i ka yɛlɛma yɔrɔ dɔw la walisa ka wari sara.",
+    "resolveFailed": "A ma se ka foyi kɛ, a ma se ka foyi kɛ.",
+    "durationLabel": "Durasi: {{time}}",
+    "progressPercent": "Kemajuan video: {{percent}}%",
+    "seekHint": "Ketuk untuk mencari posisi tertentu",
+    "soundOn": "Suara aktif",
+    "soundMuted": "Suara senyap",
+    "exitingFullscreen": "Keluar dari layar penuh",
+    "enteringFullscreen": "Masuk ke layar penuh",
+    "toggleLoop": "Alihkan putar ulang",
+    "pictureInPicture": "Gambar dalam gambar",
+    "enterFullscreen": "Masuk ke layar penuh",
+    "tapShowControls": "Ketuk untuk menampilkan kontrol",
+    "doubleTapRewind": "Ketuk dua kali untuk mundur",
+    "doubleTapForward": "Ketuk dua kali untuk maju",
+    "pipUnavailable": "Gambar dalam gambar tidak tersedia. Periksa apakah diizinkan untuk DeHub di pengaturan perangkat Anda.",
+    "noVideo": "Tidak ada video",
+    "rotate": "Putar"
   },
   "liveViewer": {
     "loadingStream": "Stream bɛ lajɛ...",
@@ -6146,5 +6355,67 @@
       "other": "Oɔtɛɛ"
     },
     "filedOn": "Fɛɛlɛd {{date}}"
+  },
+  "cashtag": {
+    "noData": "Tidak ada data yang ditemukan untuk ${{symbol}}",
+    "loadFailed": "Gagal memuat data token",
+    "fetching": "Mengambil data harga…",
+    "marketCap": "Kapitalisasi Pasar",
+    "volume24h": "Volume 24 jam",
+    "liquidity": "Likuiditas",
+    "change1h": "Perubahan 1 jam",
+    "viewOnDexScreener": "Lihat di DexScreener"
+  },
+  "linkCard": {
+    "inviteRevoked": "Undangan dicabut",
+    "inviteExpired": "Undangan kedaluwarsa",
+    "inviteExhausted": "Undangan terpakai sepenuhnya",
+    "inviteNotFound": "Undangan tidak ditemukan",
+    "inviteUnavailable": "Invite unavailable",
+    "communityInvite": "Community invite",
+    "aCommunity": "a community",
+    "approvalNeeded": "Approval needed",
+    "item": "Item",
+    "soldOut": "sold out",
+    "privateEvent": "Private event",
+    "event": "Event",
+    "listening_one": "{{count}} listening",
+    "listening_other": "{{count}} listening",
+    "ended": "Ended",
+    "stage": "Stage",
+    "upcomingStage": "Upcoming stage",
+    "inviteCannotBeUsed": "O weleli tɛ se ka kɛ",
+    "members": "{{compact}} members"
+  },
+  "report": {
+    "additionalDetails": "Additional Details (optional)",
+    "submit": "Submit Report",
+    "reasons": {
+      "sexual_content": "Sexual content",
+      "hateful_content": "Hateful content",
+      "harassment_bullying": "Harassment or bullying",
+      "misinformation": "Misinformation",
+      "child_abuse": "Child abuse",
+      "spam_misleading": "Spam or misleading",
+      "scam_fraud": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
+      "infringes_rights": "O be ne ka setigiya tiɲɛ",
+      "other": "Mɔgɔ wɛrɛw",
+      "impersonation": "Mɔgɔ min y'a yɛrɛ yira",
+      "hateful_behavior": "Mɔgɔ kɔnɔgwɛkow ka ca",
+      "spam": "Fanga be mɔgɔ minw na, olu ka kan",
+      "underage": "Mɔgɔ min be baara kɛ n'o ye",
+      "inappropriate_profile": "Mɔgɔ min ma sɔn ka koo dɔ kɛ, a ka kan ka kɛ o tigi",
+      "harassment": "Fanga be mɔgɔ minw na, olu ka kan",
+      "hate_speech": "Mɔgɔ minw be kuma ni kɔninya ye",
+      "violence": "Fanga be mɔgɔ la",
+      "scam_or_fraud": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
+      "violent_content": "Fanga min be mɔgɔ la ka kɛ mɔgɔ ye, o ye ka kɛ mɔgɔ ye.",
+      "harmful_dangerous": "Koo farimanw ni faratibaw"
+    },
+    "whyVideo": "Mun na an be se k'o videwo yira?",
+    "whyUser": "Mun na i be kunnafoni di o tigi ma?",
+    "submitFailed": "O koo kofɔra barokun nin na.",
+    "alreadyReported": "I y'a fɔ a ye ka ban. An y'a filɛ.",
+    "contextPlaceholder": "O ye koo dɔ ye min be se k'an dɛmɛ ka koo dɔw faamu"
   }
 }

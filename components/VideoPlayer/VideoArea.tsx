@@ -145,7 +145,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
       <View className={gatePlainClass}>
         <Ionicons name="videocam" size={48} color="#8B8D90" />
         <Text className="text-theme-neutrals-300 mt-2 text-sm">
-          Transcoding…
+          {t("player.transcoding")}
         </Text>
       </View>
     );
@@ -160,7 +160,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
           className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
           numberOfLines={3}
         >
-          Sign in to view this live.
+          {t("player.signInToViewLive")}
         </Text>
         <TouchableOpacity
           onPress={handleSignIn}
@@ -168,7 +168,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
           activeOpacity={0.85}
         >
           <Text className="text-white text-xs font-semibold">
-            Sign In
+            {t("common.signIn")}
           </Text>
         </TouchableOpacity>
       </View>
@@ -183,7 +183,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
           className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
           numberOfLines={3}
         >
-          Sign in to unlock and view this video.
+          {t("player.signInToUnlock")}
         </Text>
         <TouchableOpacity
           onPress={handleSignIn}
@@ -191,7 +191,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
           activeOpacity={0.85}
         >
           <Text className="text-white text-xs font-semibold">
-            Sign In
+            {t("common.signIn")}
           </Text>
         </TouchableOpacity>
       </View>
@@ -225,10 +225,10 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
             numberOfLines={3}
           >
-            Please hold at least {formatCompactNumber(neededAmt)} {neededSymbol} to unlock.
+            {t("player.holdAtLeast", { amount: formatCompactNumber(neededAmt), symbol: neededSymbol })}
           </Text>
           <Text className="text-theme-neutrals-400 mt-2 text-[11px]">
-            Your DHB balance: {formatCompactNumber(userDhbBalance)}
+            {t("player.yourDhbBalance", { amount: formatCompactNumber(userDhbBalance) })}
           </Text>
           <TouchableOpacity
             onPress={() => handleTopUp(neededAmt, neededSymbol)}
@@ -236,7 +236,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             activeOpacity={0.85}
           >
             <Text className="text-white text-xs font-semibold">
-              Top Up
+              {t("dpay.topUp")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -254,10 +254,10 @@ const VideoArea: React.FC<VideoAreaProps> = ({
               className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
               numberOfLines={3}
             >
-              This content requires a network that is no longer available.
+              {t("player.networkUnavailable")}
             </Text>
             <Text className="text-theme-neutrals-400 mt-2 text-center text-xs leading-5" numberOfLines={3}>
-              PPV is unavailable for this video due to unsupported network configuration.
+              {t("player.ppvUnsupportedNetwork")}
             </Text>
           </View>
         );
@@ -270,10 +270,10 @@ const VideoArea: React.FC<VideoAreaProps> = ({
               className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
               numberOfLines={3}
             >
-              You are on the wrong network.
+              {t("player.wrongNetwork")}
             </Text>
             <Text className="text-theme-neutrals-400 mt-2 text-center text-xs leading-5" numberOfLines={3}>
-              This content requires PPV on {requiredChainLabel || "another network"}. Go to Settings and switch to the required network to pay.
+              {requiredChainLabel ? t("player.ppvRequiresChain", { chain: requiredChainLabel }) : t("player.ppvRequiresOtherChain")}
             </Text>
             <TouchableOpacity
               onPress={goToSettings}
@@ -292,7 +292,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
             numberOfLines={3}
           >
-            Unlock PPV stream with {formatCompactNumber(ppvAmt)} {ppvSymbol}
+            {t("player.unlockPpvWith", { amount: formatCompactNumber(ppvAmt), symbol: ppvSymbol })}
           </Text>
           <PPVModal
             open={ppvOpen}
@@ -310,7 +310,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
               >
                 <Ionicons name="pricetag-outline" size={16} color="#fff" />
                 <Text className="text-white text-xs font-semibold">
-                  Unlock
+                  {t("walletSetup.unlock")}
                 </Text>
               </TouchableOpacity>
             }
@@ -333,7 +333,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
             numberOfLines={3}
           >
-            Subscribers only
+            {t("feedCard.subscribersOnly")}
           </Text>
           {minterAddress ? (
             <TouchableOpacity
@@ -354,7 +354,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
           className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
           numberOfLines={3}
         >
-          Failed to resolve token
+          {t("player.resolveFailed")}
         </Text>
       </View>
     );

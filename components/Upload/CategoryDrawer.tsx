@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useMemo, useRef, useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -34,6 +35,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
   onRemove,
   type,
 }) => {
+  const { t } = useTranslation();
   const inputRef = useRef<TextInput>(null);
   const [query, setQuery] = useState("");
 
@@ -119,7 +121,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
           list off the top once the keyboard opened. Let the list shrink instead. */}
       <View style={{ flexShrink: 1 }}>
           <View className="flex-row items-center justify-between px-4 pt-4 pb-2">
-            <Text className="text-white text-lg font-bold">Categories</Text>
+            <Text className="text-white text-lg font-bold">{t("upload.categories")}</Text>
             <View className="flex-row items-center">
               <Text
                 className={`text-xs mr-3 ${
@@ -168,7 +170,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
               onChangeText={setQuery}
               onSubmitEditing={handleSubmit}
               returnKeyType="done"
-              placeholder={atMax ? "Maximum reached" : "Search or create a category"}
+              placeholder={atMax ? t("upload.categoryMaxReached") : t("upload.categorySearchPlaceholder")}
               placeholderTextColor="#6F7174"
               editable={!atMax}
               className="flex-1 ml-2 text-white text-[14px]"
@@ -191,7 +193,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
             >
               <Ionicons name="add-circle-outline" size={18} color="#F4F4F5" />
               <Text className="text-theme-accent text-[14px] ml-2 font-medium">
-                Create "{cap(query.trim())}"
+                {t("upload.createCategory", { name: cap(query.trim()) })}
               </Text>
             </TouchableOpacity>
           )}
@@ -209,8 +211,8 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
                 <View className="items-center py-8">
                   <Text className="text-theme-neutrals-500 text-sm">
                     {query.trim()
-                      ? "No matching categories"
-                      : "No categories available"}
+                      ? t("upload.noMatchingCategories")
+                      : t("upload.noCategories")}
                   </Text>
                 </View>
               ) : null

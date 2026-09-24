@@ -1,5 +1,6 @@
 import SheetDismissHandle from "../ui/SheetDismissHandle";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -34,12 +35,13 @@ const LANG_NAMES: Record<string, string> = {
 };
 
 const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, error, result }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [showOriginal, setShowOriginal] = useState(false);
 
   const sourceLangName = result?.sourceLang
     ? LANG_NAMES[result.sourceLang] || result.sourceLang.toUpperCase()
-    : "Unknown";
+    : t("settings.unknown");
 
   return (
     <Modal
@@ -69,7 +71,7 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
             <SheetDismissHandle onClose={onClose} style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 16, borderBottomWidth: 1, borderBottomColor: "rgba(255,255,255,0.08)" }}>
               <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
                 <Ionicons name="language-outline" size={20} color="#fff" />
-                <Text style={{ color: "#fff", fontSize: 16, fontWeight: "600" }}>Image Translation</Text>
+                <Text style={{ color: "#fff", fontSize: 16, fontWeight: "600" }}>{t("feedCard.imageTranslation")}</Text>
               </View>
               <TouchableOpacity onPress={onClose} hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}>
                 <Ionicons name="close" size={22} color="#A6A9AC" />
@@ -81,7 +83,7 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
               {isLoading && (
                 <View style={{ alignItems: "center", paddingVertical: 40, gap: 12 }}>
                   <DeHubLoader size={56} />
-                  <Text style={{ color: "#A6A9AC", fontSize: 14 }}>Extracting and translating text...</Text>
+                  <Text style={{ color: "#A6A9AC", fontSize: 14 }}>{t("feedCard.imageTranslating")}</Text>
                 </View>
               )}
 
@@ -101,7 +103,7 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
                   <View style={{ width: 48, height: 48, borderRadius: 12, backgroundColor: "#383A3D", alignItems: "center", justifyContent: "center" }}>
                     <Ionicons name="document-text-outline" size={24} color="#6F7174" />
                   </View>
-                  <Text style={{ color: "#A6A9AC", fontSize: 14 }}>No text found in this image</Text>
+                  <Text style={{ color: "#A6A9AC", fontSize: 14 }}>{t("feedCard.imageNoText")}</Text>
                 </View>
               )}
 
@@ -110,7 +112,7 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
                 <>
                   <View style={{ flexDirection: "row" }}>
                     <View style={{ backgroundColor: "#383A3D", borderRadius: 8, paddingHorizontal: 10, paddingVertical: 4 }}>
-                      <Text style={{ color: "#C2C4C7", fontSize: 12 }}>Translated from {sourceLangName}</Text>
+                      <Text style={{ color: "#C2C4C7", fontSize: 12 }}>{t("feedCard.translatedFrom", { lang: sourceLangName })}</Text>
                     </View>
                   </View>
 
@@ -123,7 +125,7 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
                     style={{ flexDirection: "row", alignItems: "center", gap: 6 }}
                   >
                     <Text style={{ color: "#A6A9AC", fontSize: 12, fontWeight: "600", textTransform: "uppercase", letterSpacing: 0.5 }}>
-                      Original Text
+                      {t("feedCard.originalText")}
                     </Text>
                     <Ionicons name={showOriginal ? "chevron-up" : "chevron-down"} size={14} color="#A6A9AC" />
                   </TouchableOpacity>

@@ -11,6 +11,7 @@
  * account requests never look actionable again.
  */
 import React, { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import Avatar from "./Avatar";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -37,6 +38,7 @@ type FollowState = {
 };
 
 const NewMembersRail: FC = () => {
+  const { t } = useTranslation();
   const { showUserProfile } = useUserProfileSheet();
   const { isMinimal } = useAppTheme();
   const { requireAuth } = useAuth();
@@ -160,8 +162,8 @@ const NewMembersRail: FC = () => {
   return (
     <View className="mb-2">
       <View className="px-4 pt-3 pb-2">
-        <Text className="text-white text-base font-bold">New members</Text>
-        <Text className="text-theme-neutrals-500 text-xs mt-0.5">Just joined — say hello</Text>
+        <Text className="text-white text-base font-bold">{t("stats.newMembers")}</Text>
+        <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t("feed.newMembersHint")}</Text>
       </View>
       <ScrollView
         horizontal
@@ -207,7 +209,7 @@ const NewMembersRail: FC = () => {
                       isFollowed || isPending ? "text-white/40" : "text-white"
                     }`}
                   >
-                    {isPending ? "Requested" : isFollowed ? "Following" : "Follow"}
+                    {isPending ? t("follow.requested") : isFollowed ? t("follow.following") : t("follow.follow")}
                   </Text>
                 )}
               </TouchableOpacity>

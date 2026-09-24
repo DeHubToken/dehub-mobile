@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, Text, Image, TouchableOpacity, ActivityIndicator, DeviceEventEmitter } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system/legacy';
@@ -10,6 +11,7 @@ import { MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from '../../libs/post
 export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
   tokenId: number | string; disabled: boolean; onBusyChange: (busy: boolean) => void;
 }) {
+  const { t } = useTranslation();
   const [images, setImages] = useState<string[]>([]);
   const [imageLimit, setImageLimit] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
@@ -37,19 +39,19 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
     onBusyChange(true);
     try {
       const permission = await ensureMediaLibraryPermission();
-      if (!permission.granted) { toastError('Media library permission is required'); return; }
+      if (!permission.granted) { toastError(t('editPost.mediaPermission')); return; }
       const picked = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, quality: 1 });
       if (picked.canceled || !picked.assets?.[0]) return;
       const image = picked.assets[0];
-      if ((image.fileSize ?? 0) > MAX_IMAGE_UPLOAD_BYTES) { toastError('Image must be 42.069 MB or smaller'); return; }
+      if ((image.fileSize ?? 0) > MAX_IMAGE_UPLOAD_BYTES) { toastError(t('editPost.imageTooLarge')); return; }
       const updated = await replacePostImage(tokenId, index, {
         uri: image.uri, name: image.fileName || 'replacement.jpg', type: image.mimeType || 'image/jpeg',
       });
       setImages(updated);
       DeviceEventEmitter.emit('post-images-replaced', { tokenId: String(tokenId), imageUrls: updated });
-      toastSuccess('Image replaced');
+      toastSuccess(t('editPost.imageReplaced'));
     } catch (error: any) {
-      toastError(error?.message || 'Could not replace that image');
+      toastError(error?.message || t('editPost.replaceImageFailed'));
     } finally {
       setBusyIndex(null);
       onBusyChange(false);
@@ -62,55 +64,55 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
     onBusyChange(true);
     try {
       const permission = await ensureMediaLibraryPermission();
-      if (!permission.granted) { toastError('Media library permission is required'); return; }
+      if (!permission.granted) { toastError(t('editPost.mediaPermission')); return; }
       const picked = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images, quality: 1,
         allowsMultipleSelection: true, selectionLimit: imageLimit - images.length,
       });
       if (picked.canceled || !picked.assets?.length) return;
-      if (images.length + picked.assets.length > imageLimit) { toastError(`Your badge tier allows up to ${imageLimit} images per post`); return; }
-      if (picked.assets.some(image => (image.fileSize ?? 0) > MAX_IMAGE_UPLOAD_BYTES)) { toastError('Images must be 42.069 MB or smaller'); return; }
+      if (images.length + picked.assets.length > imageLimit) { toastError(t('editPost.imageLimitTier', { count: imageLimit })); return; }
+      if (picked.assets.some(image => (image.fileSize ?? 0) > MAX_IMAGE_UPLOAD_BYTES)) { toastError(t('editPost.imagesTooLarge')); return; }
       const totalBytes = (await Promise.all(picked.assets.map(async image => {
         if (image.fileSize != null) return image.fileSize;
         const info = await FileSystem.getInfoAsync(image.uri).catch(() => null);
         return (info as any)?.size ?? 0;
       }))).reduce((total, size) => total + size, 0);
-      if (totalBytes > MAX_REQUEST_IMAGE_BYTES) { toastError('Images in one upload must total 100 MB or less'); return; }
+      if (totalBytes > MAX_REQUEST_IMAGE_BYTES) { toastError(t('editPost.imagesTotalTooLarge')); return; }
       const updated = await addPostImages(tokenId, picked.assets.map(image => ({
         uri: image.uri, name: image.fileName || 'image.jpg', type: image.mimeType || 'image/jpeg',
       })));
       setImages(updated);
       DeviceEventEmitter.emit('post-images-replaced', { tokenId: String(tokenId), imageUrls: updated });
-      toastSuccess('Images added');
+      toastSuccess(t('editPost.imagesAdded'));
     } catch (error: any) {
-      toastError(error?.message || 'Could not add those images');
+      toastError(error?.message || t('editPost.addImagesFailed'));
     } finally {
       setBusyIndex(null);
       onBusyChange(false);
     }
   };
 
-  if (loading) return <Text className="text-zinc-400 text-sm mb-4">Loading post images…</Text>;
-  if (failed) return <TouchableOpacity onPress={() => setAttempt(value => value + 1)}><Text className="text-zinc-300 mb-4">Could not load post images. Retry</Text></TouchableOpacity>;
+  if (loading) return <Text className="text-zinc-400 text-sm mb-4">{t('editPost.loadingImages')}</Text>;
+  if (failed) return <TouchableOpacity onPress={() => setAttempt(value => value + 1)}><Text className="text-zinc-300 mb-4">{t('editPost.loadImagesFailed')}</Text></TouchableOpacity>;
   if (!images.length) return null;
   const previews = buildFeedImageUrls(images, 320);
   return <View className="mb-4">
-    <Text className="text-zinc-300 text-sm mb-2">Images</Text>
-    <Text className="text-zinc-400 text-xs mb-3">Adding or replacing images saves immediately. Your post keeps its link, views and comments.</Text>
-    {imageLimit === null ? <TouchableOpacity disabled={disabled || busyIndex !== null} onPress={() => setAttempt(value => value + 1)}><Text className="text-zinc-400 text-xs mb-3">Image allowance unavailable. Retry</Text></TouchableOpacity> :
-      <Text className="text-zinc-400 text-xs mb-3">{images.length} / {imageLimit} images · Based on your badge tier</Text>}
+    <Text className="text-zinc-300 text-sm mb-2">{t('feed.images')}</Text>
+    <Text className="text-zinc-400 text-xs mb-3">{t('editPost.imagesHint')}</Text>
+    {imageLimit === null ? <TouchableOpacity disabled={disabled || busyIndex !== null} onPress={() => setAttempt(value => value + 1)}><Text className="text-zinc-400 text-xs mb-3">{t('editPost.allowanceUnavailable')}</Text></TouchableOpacity> :
+      <Text className="text-zinc-400 text-xs mb-3">{t('editPost.imagesCount', { count: images.length, limit: imageLimit })}</Text>}
     <TouchableOpacity accessibilityRole="button" disabled={disabled || busyIndex !== null || imageLimit === null || images.length >= imageLimit}
       onPress={() => void add()} className="rounded-xl border border-white/10 bg-white/5 p-3 mb-3"
       style={{ opacity: disabled || busyIndex !== null || imageLimit === null || images.length >= imageLimit ? 0.5 : 1 }}>
-      <Text className="text-white text-sm text-center">{busyIndex === -1 ? 'Adding images…' : imageLimit !== null && images.length >= imageLimit ? 'Badge image limit reached' : 'Add images'}</Text>
+      <Text className="text-white text-sm text-center">{busyIndex === -1 ? t('editPost.addingImages') : imageLimit !== null && images.length >= imageLimit ? t('editPost.imageLimitReached') : t('editPost.addImages')}</Text>
     </TouchableOpacity>
     <View className="flex-row flex-wrap gap-3">
       {previews.map((uri, index) => <TouchableOpacity key={index} disabled={disabled || busyIndex !== null}
-        accessibilityRole="button" accessibilityLabel={`Replace image ${index + 1}`}
+        accessibilityRole="button" accessibilityLabel={t('editPost.replaceImageN', { n: index + 1 })}
         onPress={() => void replace(index)} style={{ width: '46%', opacity: disabled || busyIndex !== null ? 0.5 : 1 }}
         className="rounded-xl border border-white/10 overflow-hidden bg-white/5">
         <Image source={{ uri }} style={{ width: '100%', height: 112 }} resizeMode="contain" />
-        {busyIndex === index ? <ActivityIndicator color="white" style={{ margin: 10 }} /> : <Text className="text-white text-sm text-center p-2">Replace image {index + 1}</Text>}
+        {busyIndex === index ? <ActivityIndicator color="white" style={{ margin: 10 }} /> : <Text className="text-white text-sm text-center p-2">{t('editPost.replaceImageN', { n: index + 1 })}</Text>}
       </TouchableOpacity>)}
     </View>
   </View>;

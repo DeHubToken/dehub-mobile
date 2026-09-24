@@ -1013,9 +1013,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       { tokenId: 0, power: "comment_anchor", commentId: String(id) },
       {
         onSuccess: booking =>
-          toastSuccess(`Anchored to the top for ${booking.minutes} minutes`),
+          toastSuccess(t("comments.anchoredFor", { count: booking.minutes })),
         // The server writes these sentences for a person to read.
-        onError: (error: any) => toastError(error?.message || "Could not anchor that comment"),
+        onError: (error: any) => toastError(error?.message || t("comments.anchorFailed")),
       },
     );
   }, [contextComment, anchorComment]);
@@ -1128,7 +1128,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       await deleteComment({ commentId });
     } catch (e) {
       console.error('Failed to delete comment:', e);
-      toastError('Failed to delete comment');
+      toastError(t('toasts.failed_to_delete_comment'));
       // Revert by reloading
       await loadComments(true);
     }
@@ -1334,7 +1334,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               <View className="flex-row items-center py-3">
                 <ActivityIndicator size="small" color="#8B8D90" />
                 <Text style={{ color: "#8B8D90", fontSize: 13, marginLeft: 8 }}>
-                  DeHub Assistant is replying…
+                  {t("comments.assistantReplying")}
                 </Text>
               </View>
             ) : null
@@ -1342,7 +1342,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           ListEmptyComponent={
             <View className="flex-1 items-center justify-center py-16">
               <Text style={{ color: "#8B8D90", fontSize: 14 }}>
-                No comments yet. Be the first!
+                {t("comments.noneYetBeFirst")}
               </Text>
             </View>
           }
@@ -1451,7 +1451,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           >
             <Icon name="MessageSquare" size={16} color="#6F7174" />
             <Text className="text-theme-neutrals-400 text-sm">
-              Comments are turned off for this post
+              {t("comments.turnedOff")}
             </Text>
           </View>
         ) : kidsOnlyThread ? (
@@ -1548,7 +1548,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                         fontWeight: "600",
                       }}
                     >
-                      Post
+                      {t("sidebar.post")}
                     </Text>
                   )}
                 </View>

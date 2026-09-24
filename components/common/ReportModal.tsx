@@ -111,8 +111,8 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
     () =>
       type === "content"
         ? {
-            title: "Report Video",
-            subtitle: "Why are you reporting this video?",
+            title: t("postOptions.reportVideo"),
+            subtitle: t("report.whyVideo"),
             icon: "flag-outline" as keyof typeof Ionicons.glyphMap,
             iconColor: accentColor,
             iconBg: "bg-yellow-500/15",
@@ -128,10 +128,10 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
             successMessage: t("toasts.reported_for_moderation"),
           }
         : {
-            title: "Report User",
+            title: t("postOptions.reportUser"),
             subtitle: userName
-              ? `Why are you reporting ${userName}?`
-              : "Why are you reporting this user?",
+              ? t("report.whyName", { name: userName })
+              : t("report.whyUser"),
             icon: "person-remove-outline" as keyof typeof Ionicons.glyphMap,
             iconColor: accentColor,
             iconBg: "bg-orange-500/15",
@@ -181,13 +181,13 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
       setSubmitted(true);
     } catch (e: any) {
       console.error(`[ReportModal] ${type} report error`, e);
-      const msg = e?.message || "Failed to submit report";
+      const msg = e?.message || t("report.submitFailed");
       // Handle duplicate report gracefully
       if (msg.toLowerCase().includes("already reported")) {
         toastError(
           type === "comment"
             ? t("comments.reportCommentAlready")
-            : "You've already reported this. We're reviewing it."
+            : t("report.alreadyReported")
         );
       } else {
         toastError(msg);
@@ -311,7 +311,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
                       : "text-theme-neutrals-200"
                   }`}
                 >
-                  {reason.label}
+                  {t(`report.reasons.${reason.id}`)}
                 </Text>
                 {isSelected && (
                   <Ionicons
@@ -329,7 +329,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
         {selectedReason && (
           <View className="mb-4">
             <Text className="text-theme-neutrals-400 text-xs font-semibold uppercase tracking-wider mb-1.5">
-              Additional Details (optional)
+              {t("report.additionalDetails")}
             </Text>
             <TextInput
               value={additionalInfo}
@@ -338,7 +338,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
               placeholder={
                 type === "comment"
                   ? t("comments.reportReasonPlaceholder")
-                  : "Provide more context…"
+                  : t("report.contextPlaceholder")
               }
               placeholderTextColor="#8B8D90"
               multiline
@@ -362,7 +362,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
               <ActivityIndicator size="small" color="#fff" />
             ) : (
               <Text className="text-white text-sm font-semibold">
-                Submit Report
+                {t("report.submit")}
               </Text>
             )}
           </TouchableOpacity>

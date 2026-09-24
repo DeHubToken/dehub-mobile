@@ -6,6 +6,8 @@ jest.mock('expo-video', () => ({ isPictureInPictureSupported: jest.fn(() => true
 jest.mock('@expo/vector-icons', () => ({ MaterialIcons: 'Icon' }));
 jest.mock('../../libs', () => ({ toastInfo: jest.fn() }));
 jest.mock('react-native', () => ({ Pressable: 'Pressable' }));
+// Called as a plain function below, so hooks have no React context to read.
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 
 describe('picture-in-picture control', () => {
