@@ -36,6 +36,8 @@ import { useUserProfileSheet } from '../../context/UserProfileSheetContext';
 import StageRecordingPlayer from '../Stages/StageRecordingPlayer';
 import { useWorkJob, WORK_TYPE_LABEL } from '../../hooks/useWork';
 import { appLocale } from "../../libs/date.util";
+import { useAppTheme } from '../../context/ThemeContext';
+import { minimalFlat } from '../../theme/minimal';
 
 /** How many cards one message or caption may draw before the rest stay as text. */
 export const MAX_CARDS_PER_MESSAGE = 2;
@@ -75,61 +77,69 @@ const RowCard: React.FC<RowCardProps> = ({
   footer,
   onPress,
   onLongPress,
-}) => (
-  <TouchableOpacity
-    activeOpacity={0.8}
-    onPress={onPress}
-    onLongPress={onLongPress}
-    delayLongPress={350}
-    style={[styles.card, dimmed && styles.cardDimmed]}
-  >
-    {/* The cover, whole and uncropped — the same 16:9 contain-on-black
-        treatment the stage page itself uses. It used to be a dimmed
-        object-cover layer BEHIND the row, which reduced a full graphic to
-        ~68px of its middle. */}
-    {!!bannerUri && (
-      <Image source={{ uri: bannerUri }} style={styles.banner} contentFit="contain" />
-    )}
-    <View style={styles.row}>
-      {/* With the banner showing the artwork in full, repeating it as a 48px
-          square is noise — the thumb only earns its place bannerless. */}
-      {!bannerUri && (
-        <View style={styles.thumbWrap}>
-          {imageUri ? (
-            <Image source={{ uri: imageUri }} style={styles.thumb} contentFit="cover" />
-          ) : (
-            <Icon name={fallbackIcon} size={20} color="#808089" />
+}) => {
+  const { isMinimal } = useAppTheme();
+  // Minimal: no box around the card. The banner spans the text column and the
+  // row sits flush with the post text; only the thumb keeps a faint well.
+  return (
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={onPress}
+      onLongPress={onLongPress}
+      delayLongPress={350}
+      style={[styles.card, isMinimal && minimalFlat, dimmed && styles.cardDimmed]}
+    >
+      {/* The cover, whole and uncropped — the same 16:9 contain-on-black
+          treatment the stage page itself uses. It used to be a dimmed
+          object-cover layer BEHIND the row, which reduced a full graphic to
+          ~68px of its middle. */}
+      {!!bannerUri && (
+        <Image source={{ uri: bannerUri }} style={styles.banner} contentFit="contain" />
+      )}
+      <View style={[styles.row, isMinimal && styles.minimalRow]}>
+        {/* With the banner showing the artwork in full, repeating it as a 48px
+            square is noise — the thumb only earns its place bannerless. */}
+        {!bannerUri && (
+          <View style={[styles.thumbWrap, isMinimal && styles.minimalThumbWrap]}>
+            {imageUri ? (
+              <Image source={{ uri: imageUri }} style={styles.thumb} contentFit="cover" />
+            ) : (
+              <Icon name={fallbackIcon} size={20} color="#808089" />
+            )}
+          </View>
+        )}
+        <View style={styles.body}>
+          {!!eyebrow && <Text style={styles.eyebrow}>{eyebrow}</Text>}
+          <Text style={styles.title} numberOfLines={1}>
+            {title}
+          </Text>
+          {!!subtitle && (
+            <Text style={styles.subtitle} numberOfLines={1}>
+              {subtitle}
+            </Text>
           )}
+          {!!meta && <Text style={styles.meta}>{meta}</Text>}
+        </View>
+      </View>
+      {!!footer && (
+        // Claims the touch before the card does. Without this every press on the
+        // play button and every drag on the scrub bar also opened the stage.
+        <View
+          style={[styles.footer, isMinimal && styles.minimalFooter]}
+          onStartShouldSetResponder={() => true}
+          onResponderTerminationRequest={() => false}
+        >
+          {footer}
         </View>
       )}
-      <View style={styles.body}>
-        {!!eyebrow && <Text style={styles.eyebrow}>{eyebrow}</Text>}
-        <Text style={styles.title} numberOfLines={1}>
-          {title}
-        </Text>
-        {!!subtitle && (
-          <Text style={styles.subtitle} numberOfLines={1}>
-            {subtitle}
-          </Text>
-        )}
-        {!!meta && <Text style={styles.meta}>{meta}</Text>}
-      </View>
-    </View>
-    {!!footer && (
-      // Claims the touch before the card does. Without this every press on the
-      // play button and every drag on the scrub bar also opened the stage.
-      <View
-        style={styles.footer}
-        onStartShouldSetResponder={() => true}
-        onResponderTerminationRequest={() => false}
-      >
-        {footer}
-      </View>
-    )}
-  </TouchableOpacity>
-);
+    </TouchableOpacity>
+  );
+};
 
-const SkeletonCard = () => <View style={styles.skeleton} />;
+const SkeletonCard = () => {
+  const { isMinimal } = useAppTheme();
+  return <View style={[styles.skeleton, isMinimal && styles.minimalSkeleton]} />;
+};
 
 // ── Per-kind cards ──────────────────────────────────────────────────────────
 
@@ -715,6 +725,10 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     backgroundColor: 'rgba(255,255,255,0.05)',
   },
+  minimalRow: { paddingHorizontal: 0 },
+  minimalFooter: { paddingHorizontal: 0 },
+  minimalThumbWrap: { backgroundColor: 'rgba(255,255,255,0.04)' },
+  minimalSkeleton: { backgroundColor: 'rgba(255,255,255,0.04)' },
 });
 
 export default memo(DehubLinkCardComponent);

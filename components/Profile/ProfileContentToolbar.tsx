@@ -3,6 +3,14 @@ import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import Icon from "../ui/Icon";
 import { useTranslation } from "react-i18next";
 import { FIELD_TEXT } from "../../theme/inputs";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE, MINIMAL_TAB_LINE } from "../../theme/minimal";
+
+// Minimal: no filled chips. Every control is a bare 1px outline, and the
+// selected one is picked out by a brighter outline and white text — the same
+// line colour as the active file tab — rather than a lighter fill.
+const MINIMAL_CHIP = { backgroundColor: "transparent", borderWidth: 1, borderColor: MINIMAL_HAIRLINE } as const;
+const MINIMAL_CHIP_ACTIVE = { borderColor: MINIMAL_TAB_LINE } as const;
 
 /**
  * Sort, search and filter over one creator's own posts.
@@ -67,6 +75,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   // fallback ships the English immediately, and a key added to the catalogue
   // later starts being used without touching this file.
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const [isSearchOpen, setIsSearchOpen] = React.useState(Boolean(search));
   const searchInputRef = React.useRef<TextInput>(null);
 
@@ -82,7 +91,16 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   return (
     <View className="px-3 pb-2">
       {isSearchOpen ? (
-        <View className="flex-row items-center rounded-xl bg-white/5 border border-white/10 px-3 h-10">
+        // Minimal: the open search is a field on the page, not a box — no
+        // fill, just a hairline under it.
+        <View
+          className={
+            isMinimal
+              ? "flex-row items-center px-3 h-10"
+              : "flex-row items-center rounded-xl bg-white/5 border border-white/10 px-3 h-10"
+          }
+          style={isMinimal ? { borderBottomWidth: 1, borderBottomColor: MINIMAL_HAIRLINE } : undefined}
+        >
           <Icon name="Search" size={16} color="#808089" />
           <TextInput
             ref={searchInputRef}
@@ -118,6 +136,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
           accessibilityRole="button"
           accessibilityLabel={t("profile.searchThisChannel", "Search this channel")}
           className="h-10 w-10 rounded-xl items-center justify-center bg-white/5 border border-white/10"
+          style={isMinimal ? MINIMAL_CHIP : undefined}
         >
           <Icon name="Search" size={16} color="#a1a1aa" />
         </Pressable>
@@ -132,7 +151,11 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
               ? "flex-row items-center rounded-xl border border-white/30 bg-white/15 px-3 h-10"
               : "flex-row items-center rounded-xl border border-white/10 bg-white/5 px-3 h-10"
           }
-          style={{ gap: 6 }}
+          style={[
+            { gap: 6 },
+            isMinimal && MINIMAL_CHIP,
+            isMinimal && (filtersOpen || activeFilterCount > 0) && MINIMAL_CHIP_ACTIVE,
+          ]}
         >
           <Icon
             name="SlidersHorizontal"
@@ -154,8 +177,9 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
                   ? "h-10 px-3 rounded-xl items-center justify-center bg-white/20 border border-white/30"
                   : "h-10 px-3 rounded-xl items-center justify-center bg-white/5 border border-white/10"
               }
+              style={isMinimal ? [MINIMAL_CHIP, isActive && MINIMAL_CHIP_ACTIVE] : undefined}
             >
-              <Text className={isActive ? "text-white text-xs font-medium" : "text-zinc-300 text-xs font-medium"}>
+              <Text className={isActive ? "text-white text-xs font-medium" : isMinimal ? "text-zinc-400 text-xs font-medium" : "text-zinc-300 text-xs font-medium"}>
                 {t(labelKey, fallback)}
               </Text>
             </Pressable>

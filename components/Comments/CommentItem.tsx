@@ -28,6 +28,12 @@ const resolveMediaUrl = (path: string): string => {
   return buildCdnPath(path) ?? path;
 };
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { useAppTheme } from "../../context/ThemeContext";
+
+// Minimal theme: badge chips keep their outline but lose the fill, and media
+// and voice tiles sit straight on the black with no well behind them.
+const MINIMAL_UNFILLED = { backgroundColor: "transparent" } as const;
+const MINIMAL_VOICE_TILE = { backgroundColor: "transparent", paddingHorizontal: 0 } as const;
 import { useUser } from "../../context/AuthContext";
 import { LikeCommentResult, DislikeCommentResult, ReactCommentResult } from "../../services/nft.service";
 import type { Comment } from "../../services/nft.service";
@@ -138,6 +144,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   postCreator,
 }) => {
   const { showUserProfile } = useUserProfileSheet();
+  const { isMinimal } = useAppTheme();
   const currentUser = useUser();
   const [liked, setLiked] = useState(!!comment.isLiked);
   const [likeCount, setLikeCount] = useState(comment.likeCount || 0);
@@ -486,6 +493,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                   backgroundColor: "rgba(255,255,255,0.12)",
                   borderWidth: 1,
                   borderColor: "rgba(255,255,255,0.12)",
+                  ...(isMinimal ? MINIMAL_UNFILLED : null),
                 }}
               >
                 <Text style={{ fontSize: 10, fontWeight: "600", color: "rgba(255,255,255,0.75)" }}>
@@ -509,6 +517,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                   backgroundColor: "rgba(255,255,255,0.12)",
                   borderWidth: 1,
                   borderColor: "rgba(255,255,255,0.12)",
+                  ...(isMinimal ? MINIMAL_UNFILLED : null),
                 }}
               >
                 <Icon name="Pin" size={10} color="rgba(255,255,255,0.75)" />
@@ -529,6 +538,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                   backgroundColor: "rgba(255,255,255,0.15)",
                   borderWidth: 1,
                   borderColor: "rgba(255,255,255,0.30)",
+                  ...(isMinimal ? MINIMAL_UNFILLED : null),
                 }}
               >
                 <Text style={{ fontSize: 10, fontWeight: "600", color: "#F4F4F5" }}>
@@ -548,6 +558,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                   backgroundColor: "rgba(255,255,255,0.12)",
                   borderWidth: 1,
                   borderColor: "rgba(255,255,255,0.12)",
+                  ...(isMinimal ? MINIMAL_UNFILLED : null),
                 }}
               >
                 <Text style={{ fontSize: 10, fontWeight: "600", color: "rgba(255,255,255,0.75)" }}>
@@ -592,7 +603,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           )}
 
           {comment.imageUrl ? (
-            <View style={{ marginTop: 6, borderRadius: 10, overflow: "hidden", maxWidth: 220, backgroundColor: "rgba(255,255,255,0.04)" }}>
+            <View style={[{ marginTop: 6, borderRadius: 10, overflow: "hidden", maxWidth: 220, backgroundColor: "rgba(255,255,255,0.04)" }, isMinimal && MINIMAL_UNFILLED]}>
               <Image
                 source={{ uri: resolveMediaUrl(comment.imageUrl) }}
                 style={{ width: 220, height: 165 }}
@@ -602,7 +613,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           ) : null}
 
           {comment.gifUrl ? (
-            <View style={{ marginTop: 6, borderRadius: 10, overflow: "hidden", maxWidth: 220, backgroundColor: "rgba(255,255,255,0.04)" }}>
+            <View style={[{ marginTop: 6, borderRadius: 10, overflow: "hidden", maxWidth: 220, backgroundColor: "rgba(255,255,255,0.04)" }, isMinimal && MINIMAL_UNFILLED]}>
               <Image
                 source={{ uri: comment.gifUrl }}
                 style={{ width: 220, height: 165 }}
@@ -612,7 +623,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           ) : null}
 
           {comment.audioUrl ? (
-            <View style={{ marginTop: 6, borderRadius: 10, maxWidth: 260, backgroundColor: "rgba(255,255,255,0.04)", paddingHorizontal: 8 }}>
+            <View style={[{ marginTop: 6, borderRadius: 10, maxWidth: 260, backgroundColor: "rgba(255,255,255,0.04)", paddingHorizontal: 8 }, isMinimal && MINIMAL_VOICE_TILE]}>
               <VoiceNotePlayer
                 audioUrl={resolveMediaUrl(comment.audioUrl)}
                 duration={comment.audioDuration}

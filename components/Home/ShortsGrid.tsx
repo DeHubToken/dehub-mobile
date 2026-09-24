@@ -22,6 +22,8 @@ import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { theme } from "../../theme";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { flattenFeedPages } from "../../libs/feed-pages";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_TAB_LINE } from "../../theme/minimal";
 
 export interface ShortsGridHandle {
   scrollToTopAndRefresh: () => void;
@@ -60,6 +62,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   onRefresh: onRefreshProp,
 }) => {
   const [refreshing, setRefreshing] = useState(false);
+  const { isMinimal } = useAppTheme();
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
 
@@ -267,7 +270,12 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     return (
       <View className="flex-1 items-center justify-center px-4">
         <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
-        <Pressable onPress={() => refetch()} className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
+        <Pressable
+          onPress={() => refetch()}
+          className={isMinimal ? "px-5 py-2 border" : "px-5 py-2 rounded-xl bg-theme-neutrals-700"}
+          // Minimal: outline only, no fill.
+          style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
+        >
           <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
         </Pressable>
       </View>

@@ -58,6 +58,15 @@ import { myStagesKeys, useMyStages } from "../hooks/useMyStages";
 import { sameWallet, type AudioSpace } from "../hooks/useStages";
 import { getStagePlaybackState, stopStageRecording } from "../libs/stage-playback";
 import { theme } from "../theme";
+import { useAppTheme } from "../context/ThemeContext";
+import {
+  MINIMAL_INSET,
+  MINIMAL_TAB_LINE,
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  minimalFlat,
+  minimalTab,
+} from "../theme/minimal";
 
 type StagesTab = "live" | "upcoming" | "recorded" | "hosting";
 
@@ -96,6 +105,7 @@ type Row =
 
 export default function StagesScreen() {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const queryClient = useQueryClient();
 
@@ -461,7 +471,7 @@ export default function StagesScreen() {
           );
         case "header":
           return (
-            <View style={styles.sectionHeader}>
+            <View style={[styles.sectionHeader, isMinimal && styles.minimalSectionHeader]}>
               <Text style={styles.sectionTitle}>{item.label}</Text>
               {!!item.actionLabel && (
                 <TouchableOpacity onPress={item.onAction} hitSlop={8} accessibilityRole="button">
@@ -472,7 +482,7 @@ export default function StagesScreen() {
           );
         case "empty":
           return (
-            <View style={styles.empty}>
+            <View style={[styles.empty, isMinimal && minimalFlat]}>
               <Icon name={item.icon} size={40} color="#3F3F46" />
               <Text style={styles.emptyTitle}>{item.title}</Text>
               <Text style={styles.emptyHint}>{item.hint}</Text>
@@ -495,6 +505,7 @@ export default function StagesScreen() {
       handleEndLive,
       handleOpenLive,
       handleStartScheduled,
+      isMinimal,
       userAddress,
     ],
   );
@@ -539,11 +550,18 @@ export default function StagesScreen() {
 
       {/* Scrolls horizontally: four chips with translated labels do not fit
           across a phone in every language, and a clipped tab is an unreachable
-          one. Web's strip scrolls for the same reason. */}
+          one. Web's strip scrolls for the same reason.
+
+          Minimal turns the chips into file tabs. The baseline is a view behind
+          the ScrollView, not a border on it: a ScrollView clips its children,
+          so the active tab could never reach down over a border, but drawn
+          underneath, the tab's full-height black fill simply paints over it. */}
+      <View style={isMinimal ? styles.minimalStrip : undefined}>
+      {isMinimal && <View style={styles.minimalBaseline} pointerEvents="none" />}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.tabRow}
+        contentContainerStyle={[styles.tabRow, isMinimal && styles.minimalTabRow]}
         style={styles.tabScroller}
       >
         {tabs.map((tab) => {
@@ -553,16 +571,38 @@ export default function StagesScreen() {
               key={tab.key}
               onPress={() => chooseTab(tab.key)}
               hitSlop={{ top: 8, bottom: 8 }}
-              style={[styles.tabChip, active && styles.tabChipActive]}
+              style={[
+                styles.tabChip,
+                active && styles.tabChipActive,
+                isMinimal && styles.minimalTabChip,
+                isMinimal && active && styles.minimalTabChipActive,
+              ]}
               accessibilityRole="button"
               accessibilityState={{ selected: active }}
             >
-              <Icon name={tab.icon} size={14} color={active ? "#000000" : "#A1A1AA"} />
-              <Text style={[styles.tabText, active && styles.tabTextActive]}>{t(tab.labelKey)}</Text>
+              <Icon
+                name={tab.icon}
+                size={14}
+                color={
+                  isMinimal
+                    ? active ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
+                    : active ? "#000000" : "#A1A1AA"
+                }
+              />
+              <Text
+                style={[
+                  styles.tabText,
+                  active && styles.tabTextActive,
+                  isMinimal && { color: active ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
+                ]}
+              >
+                {t(tab.labelKey)}
+              </Text>
             </Pressable>
           );
         })}
       </ScrollView>
+      </View>
 
       {showFirstLoad ? (
         <View style={styles.center}>
@@ -573,11 +613,13 @@ export default function StagesScreen() {
           data={rows}
           keyExtractor={(row) => row.key}
           renderItem={renderItem}
+          // Minimal: stages are full-width hairline rows, so no side inset and
+          // no gap between them — the cards carry their own text inset.
           contentContainerStyle={{
-            paddingHorizontal: 12,
+            paddingHorizontal: isMinimal ? 0 : 12,
             paddingTop: 4,
             paddingBottom: insets.bottom + 32,
-            gap: 12,
+            gap: isMinimal ? 0 : 12,
           }}
           showsVerticalScrollIndicator={false}
           // Cards carry a cover image and a player each, so a long archive is
@@ -648,6 +690,37 @@ const styles = StyleSheet.create({
   tabChipActive: { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" },
   tabText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
   tabTextActive: { color: "#000000" },
+  minimalStrip: {
+    backgroundColor: "#000",
+    marginBottom: 4,
+  },
+  minimalBaseline: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 1,
+    backgroundColor: MINIMAL_TAB_LINE,
+  },
+  minimalTabRow: {
+    gap: 0,
+    paddingHorizontal: 0,
+    paddingBottom: 0,
+    alignItems: "stretch",
+  },
+  // 44pt tall so the tab stays a comfortable target once its chip is gone.
+  minimalTabChip: {
+    ...minimalTab,
+    minHeight: 44,
+    paddingVertical: 0,
+  },
+  minimalTabChipActive: {
+    backgroundColor: "#000",
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: MINIMAL_TAB_LINE,
+  },
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
   sectionHeader: {
     flexDirection: "row",
@@ -660,6 +733,12 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 14,
     fontWeight: "700",
+  },
+  minimalSectionHeader: {
+    paddingHorizontal: MINIMAL_INSET,
+    marginTop: 0,
+    paddingTop: 16,
+    paddingBottom: 8,
   },
   sectionAction: {
     color: "#A1A1AA",

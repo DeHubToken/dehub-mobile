@@ -16,6 +16,8 @@ import {
   trackAdEvent,
 } from "../../hooks/useAdServing";
 import { useFocusedInterval } from "../../hooks/useFocusedInterval";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_TAB_LINE } from "../../theme/minimal";
 
 interface SponsoredAdCardProps {
   ad: ServedAd;
@@ -46,6 +48,7 @@ export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
   const impressionSentRef = useRef(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const { height: viewportHeight } = useWindowDimensions();
+  const { isMinimal } = useAppTheme();
 
   // Whether the impression for this creative is still owed. State rather than
   // a bare ref so the measuring loop below can stop the moment it is sent.
@@ -105,8 +108,18 @@ export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
       onPress={openAdvert}
       accessibilityRole="link"
       accessibilityLabel={`${ad.advertiser}: ${ad.headline}`}
-      className="rounded-2xl border border-theme-neutrals-700 bg-theme-neutrals-800/50 p-3"
-      style={({ pressed }) => ({ opacity: pressed ? 0.82 : 1 })}
+      // Minimal: laid out like a minimal FeedCard — no box, text at the 16pt
+      // inset, the creative edge to edge and one hairline under the whole ad.
+      // The parent drops its side padding in minimal so this spans the screen.
+      className={isMinimal ? undefined : "rounded-2xl border border-theme-neutrals-700 bg-theme-neutrals-800/50 p-3"}
+      style={({ pressed }) => (isMinimal ? {
+        opacity: pressed ? 0.82 : 1,
+        paddingTop: 14,
+        paddingHorizontal: MINIMAL_INSET,
+        paddingBottom: 14,
+        borderBottomWidth: 1,
+        borderBottomColor: MINIMAL_HAIRLINE,
+      } : { opacity: pressed ? 0.82 : 1 })}
     >
       <View className="mb-2 flex-row items-center gap-2">
         <View className="h-8 w-8 items-center justify-center rounded-full bg-theme-neutrals-700">
@@ -125,8 +138,10 @@ export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
 
       {hasMedia && (
         <View
-          className="w-full overflow-hidden rounded-xl bg-theme-neutrals-900"
-          style={{ aspectRatio }}
+          // Minimal drops w-full so the negative margin widens it to the screen
+          // instead of just shifting a fixed-width box left.
+          className={isMinimal ? "overflow-hidden bg-black" : "w-full overflow-hidden rounded-xl bg-theme-neutrals-900"}
+          style={isMinimal ? { aspectRatio, marginHorizontal: -MINIMAL_INSET } : { aspectRatio }}
         >
           {ad.kind === "video" && videoPlaying ? (
             <SponsoredAdVideo uri={ad.mediaUrl!} />
@@ -172,7 +187,12 @@ export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
           </Text>
         )}
         {!!ad.ctaUrl && (
-          <View className="mt-3 self-start flex-row items-center gap-1.5 rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-700/60 px-4 py-2.5">
+          <View
+            className={isMinimal
+              ? "mt-3 self-start flex-row items-center gap-1.5 border px-4 py-2.5"
+              : "mt-3 self-start flex-row items-center gap-1.5 rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-700/60 px-4 py-2.5"}
+            style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
+          >
             <Text className="text-sm font-medium text-theme-neutrals-100">
               {ad.ctaLabel || "Learn more"}
             </Text>

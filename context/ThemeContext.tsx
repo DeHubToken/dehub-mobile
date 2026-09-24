@@ -8,6 +8,9 @@ import {
   type AppThemeName,
   type ThemeColors,
 } from '../theme/colors';
+// Plain JS shared with the JSX runtime, which loads before any of this.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { setSquaring } = require('../libs/jsx/shape') as { setSquaring: (on: boolean) => void };
 
 type AppThemeContextValue = {
   theme: AppThemeName;
@@ -48,6 +51,9 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const colors = getThemeColors(theme);
 
   setActiveTheme(theme);
+  // Inline StyleSheet radii (see libs/jsx/shape.js). Set during render so the
+  // children rendered below this already see it.
+  setSquaring(theme === 'minimal');
 
   useEffect(() => {
     colorScheme.set('dark');

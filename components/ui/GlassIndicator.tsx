@@ -2,6 +2,8 @@ import React from "react";
 import { View, StyleSheet, Platform } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { BlurView } from "expo-blur";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_TAB_LINE } from "../../theme/minimal";
 
 interface GlassIndicatorProps {
   borderRadius?: number;
@@ -24,43 +26,60 @@ const GRADIENT_COLORS: [string, string, string] = [
 const GlassIndicator: React.FC<GlassIndicatorProps> = ({
   borderRadius = 12,
   blurIntensity,
-}) => (
-  <View
-    style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]}
-    pointerEvents="none"
-  >
-    {Platform.OS === "ios" && !!blurIntensity && (
-      <BlurView
-        intensity={blurIntensity}
-        tint="dark"
+}) => {
+  const { isMinimal } = useAppTheme();
+  // Minimal has no glass: no blur, gradient or highlight lines, just the one
+  // flat outline that marks the selection.
+  if (isMinimal) {
+    return (
+      <View
+        style={[StyleSheet.absoluteFill, styles.minimalOutline]}
+        pointerEvents="none"
+      />
+    );
+  }
+  return (
+    <View
+      style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]}
+      pointerEvents="none"
+    >
+      {Platform.OS === "ios" && !!blurIntensity && (
+        <BlurView
+          intensity={blurIntensity}
+          tint="dark"
+          style={StyleSheet.absoluteFill}
+        />
+      )}
+      <LinearGradient
+        colors={GRADIENT_COLORS}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
         style={StyleSheet.absoluteFill}
       />
-    )}
-    <LinearGradient
-      colors={GRADIENT_COLORS}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={StyleSheet.absoluteFill}
-    />
-    <View
-      style={[
-        StyleSheet.absoluteFill,
-        {
-          borderRadius,
-          borderWidth: 1,
-          borderColor: "rgba(255,255,255,0.30)",
-        },
-      ]}
-    />
-    {/* Web's inset highlights: inset 0 1px 0 white/40 (top) and
-        inset 0 -1px 0 white/10 (bottom) — emulated with hairlines since RN
-        has no inset shadows. */}
-    <View style={styles.insetTop} />
-    <View style={styles.insetBottom} />
-  </View>
-);
+      <View
+        style={[
+          StyleSheet.absoluteFill,
+          {
+            borderRadius,
+            borderWidth: 1,
+            borderColor: "rgba(255,255,255,0.30)",
+          },
+        ]}
+      />
+      {/* Web's inset highlights: inset 0 1px 0 white/40 (top) and
+          inset 0 -1px 0 white/10 (bottom) — emulated with hairlines since RN
+          has no inset shadows. */}
+      <View style={styles.insetTop} />
+      <View style={styles.insetBottom} />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
+  minimalOutline: {
+    borderWidth: 1,
+    borderColor: MINIMAL_TAB_LINE,
+  },
   insetTop: {
     position: "absolute",
     top: 1,

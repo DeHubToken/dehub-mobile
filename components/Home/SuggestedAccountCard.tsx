@@ -22,6 +22,8 @@ import { reportActionError } from "../../libs/error-feedback";
 import Avatar from "../common/Avatar";
 import GlassFollowButton from "../ui/GlassFollowButton";
 import type { FollowState } from "../Search/SearchAccountChip";
+import { useAppTheme } from "../../context/ThemeContext";
+import { minimalFlat } from "../../theme/minimal";
 
 
 interface SuggestedAccountCardProps {
@@ -38,6 +40,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   onDismiss,
 }) => {
   const { showUserProfile } = useUserProfileSheet();
+  const { isMinimal } = useAppTheme();
   const authUser = useUser() as { address?: string } | null;
   const myAddress = authUser?.address;
 
@@ -155,7 +158,9 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
       activeOpacity={0.8}
       onPress={handlePress}
       className="w-[150px] items-center rounded-xl py-3.5 px-3 mr-2.5"
-      style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
+      // Minimal: no box — just avatar, name and the Follow button standing
+      // on the black, the column itself is the card.
+      style={isMinimal ? minimalFlat : { backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
     >
       {/* Dismiss (X) button */}
       <TouchableOpacity

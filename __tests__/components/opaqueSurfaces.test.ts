@@ -70,6 +70,8 @@ describe("app surfaces stay opaque", () => {
     );
     expect(source).not.toMatch(/<BlurView/);
     expect(source).not.toMatch(/rgba\(20,20,22,0\.55\)/);
-    expect(source.match(/backgroundColor: "#18181B"/g)?.length).toBe(7);
+    // The seven buttons now share one opaque base (the minimal theme swaps it
+    // for an outline), so the fill is written once rather than seven times.
+    expect(source).toMatch(/backgroundColor: "#18181B"/);
   });
 });

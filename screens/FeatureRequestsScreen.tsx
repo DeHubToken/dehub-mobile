@@ -38,7 +38,7 @@ import {
   Alert,
   Share,
   useWindowDimensions,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
@@ -55,6 +55,15 @@ import { getAvatarUrl } from "../libs/misc";
 import { formatCompactNumber } from "../libs";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
+import { useAppTheme } from "../context/ThemeContext";
+import {
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  minimalFlat,
+  minimalRow,
+  minimalTabActive,
+  minimalTabStrip,
+} from "../theme/minimal";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
@@ -383,6 +392,7 @@ const FeatureCard: React.FC<{
   defaultCommentsOpen?: boolean;
 }> = ({ feature, myVote, onVote, isAuthed, defaultCommentsOpen = false }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const user = useUser() as any;
   const { showUserProfile } = useUserProfileSheet();
   const [showComments, setShowComments] = useState(defaultCommentsOpen);
@@ -444,7 +454,7 @@ const FeatureCard: React.FC<{
   }, [feature.id, feature.title]);
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, isMinimal && styles.minimalCard]}>
       {/* Header — avatar, name, @handle · time, author menu */}
       <View style={styles.cardHead}>
         <Pressable
@@ -842,6 +852,10 @@ const SubmitSheet: React.FC<{
 
 export default function FeatureRequestsScreen() {
   const { t } = useTranslation();
+  // Minimal: the header bento and request cards become edge-to-edge hairline
+  // groups, the Requests/Shipping/Shipped strip becomes file tabs. Search,
+  // chips and buttons keep their fill.
+  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const navigation = useNavigation<any>();
@@ -1024,7 +1038,7 @@ export default function FeatureRequestsScreen() {
       )}
 
       {/* Header bento — the whole page header on web at this width. */}
-      <View style={styles.bento}>
+      <View style={[styles.bento, isMinimal && styles.minimalBento]}>
         <View style={styles.bentoTop}>
           {iconFailed ? (
             <View style={styles.headerIconFallback}>
@@ -1079,22 +1093,35 @@ export default function FeatureRequestsScreen() {
         </View>
 
         {/* Requests / Shipping / Shipped */}
-        <View style={styles.tabStrip}>
+        <View style={[styles.tabStrip, isMinimal && styles.minimalTabStrip]}>
           {TABS.map((tabDef) => {
             const active = tab === tabDef.key;
+            const idleColor = isMinimal ? MINIMAL_TAB_TEXT : "#808089";
             return (
               <Pressable
                 key={tabDef.key}
                 onPress={() => setTab(tabDef.key)}
-                style={[styles.tab, active && styles.tabActive]}
+                style={[
+                  styles.tab,
+                  active && styles.tabActive,
+                  isMinimal && (active ? minimalTabActive : styles.minimalTabIdle),
+                ]}
                 accessibilityRole="tab"
                 accessibilityState={{ selected: active }}
               >
                 {tabDef.icon && showTabIcons && (
-                  <Icon name={tabDef.icon} size={12} color={active ? "#FFFFFF" : "#808089"} />
+                  <Icon name={tabDef.icon} size={12} color={active ? "#FFFFFF" : idleColor} />
                 )}
                 {/* flexShrink: 0 — a shrinking label renders as a bare "…". */}
-                <Text style={[styles.tabText, active && styles.tabTextActive]}>{tabDef.label}</Text>
+                <Text
+                  style={[
+                    styles.tabText,
+                    active && styles.tabTextActive,
+                    isMinimal && { color: active ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
+                  ]}
+                >
+                  {tabDef.label}
+                </Text>
                 {tabDef.count > 0 && (
                   <View style={styles.tabBadge}>
                     <Text style={styles.tabBadgeText}>{formatCompactNumber(tabDef.count)}</Text>
@@ -1167,7 +1194,7 @@ export default function FeatureRequestsScreen() {
           <DeHubLoader size={56} />
         </View>
       ) : isError && tab === "requests" ? (
-        <View style={styles.emptyBento}>
+        <View style={[styles.emptyBento, isMinimal && minimalFlat]}>
           <Text style={styles.emptyTitle}>{t("features.loadFailed")}</Text>
           <Pressable onPress={() => refetch()} style={styles.glassBtnSm}>
             <Text style={styles.glassBtnText}>{t("common.retry")}</Text>
@@ -1178,11 +1205,12 @@ export default function FeatureRequestsScreen() {
           data={items}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
+          // Minimal: rows run edge to edge and butt up — the hairline is the gap.
           contentContainerStyle={{
-            paddingHorizontal: 8,
+            paddingHorizontal: isMinimal ? 0 : 8,
             paddingBottom: insets.bottom + 24,
-            paddingTop: 8,
-            gap: 12,
+            paddingTop: isMinimal ? 0 : 8,
+            gap: isMinimal ? 0 : 12,
           }}
           ListHeaderComponent={
             focusedRequest ? (
@@ -1214,7 +1242,7 @@ export default function FeatureRequestsScreen() {
             ) : null
           }
           ListEmptyComponent={
-            <View style={styles.emptyBento}>
+            <View style={[styles.emptyBento, isMinimal && minimalFlat]}>
               <Icon name="Lightbulb" size={44} color="#3F3F46" />
               <Text style={styles.emptyTitle}>{emptyCopy.title}</Text>
               {!!emptyCopy.body && <Text style={styles.emptyBody}>{emptyCopy.body}</Text>}
@@ -1262,6 +1290,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     marginTop: 4,
   },
+  // Edge to edge; the 16pt padding is what keeps the header off the screen edge.
+  minimalBento: { ...minimalRow, marginHorizontal: 0 },
   bentoTop: { flexDirection: "row", alignItems: "center", gap: 12, marginBottom: 16 },
   backRow: {
     width: 40,
@@ -1332,6 +1362,10 @@ const styles = StyleSheet.create({
     borderColor: "transparent",
   },
   tabActive: { backgroundColor: GLASS_BG, borderColor: GLASS_BORDER },
+  minimalTabStrip: { ...minimalTabStrip, padding: 0, gap: 0 },
+  // Keeps the 1pt transparent side/top border so the label doesn't shift a
+  // pixel when the tab turns active.
+  minimalTabIdle: { backgroundColor: "transparent", borderColor: "transparent", borderBottomWidth: 0 },
   // Measured: "Shipping" at 12pt is 46.8pt, so icon + label + a three-digit
   // badge comes to ~91pt against the 98.7pt tab a 360pt screen gives. The icon
   // drops below that (see showTabIcons). flexShrink: 0 so a label can never
@@ -1371,6 +1405,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.12)",
     padding: 12,
   },
+  minimalCard: { ...minimalRow, paddingHorizontal: 16 },
   cardHead: { flexDirection: "row", alignItems: "center", gap: 12 },
   cardHeadText: { flex: 1, minWidth: 0 },
   authorName: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },

@@ -51,10 +51,25 @@ import { TranslateButton } from "../ui/TranslateButton";
 import NewMemberChip from "../common/NewMemberChip";
 import BadgePatronChip from "../common/BadgePatronChip";
 import TotalReachPill from "./TotalReachPill";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE } from "../../theme/minimal";
+
+// Minimal header buttons: no glass slab, just a 1px outline, and a 44pt box so
+// losing the padded pill does not shrink the tap target.
+const MINIMAL_OUTLINE_BUTTON = {
+  height: 44,
+  borderWidth: 1,
+  borderColor: MINIMAL_HAIRLINE,
+  backgroundColor: "transparent",
+} as const;
+// Social icons stay bare at 32pt (seven of them share one row) and reach 44pt
+// through hitSlop instead.
+const MINIMAL_SOCIAL_HIT_SLOP = { top: 6, right: 6, bottom: 6, left: 6 };
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const user = useUser() as any;
   const { refreshUser, patchUser } = useAuthActions();
   const [translatedBio, setTranslatedBio] = useState<string | null>(null);
@@ -289,7 +304,11 @@ const ProfileHeader = () => {
           )
         }
       >
-        <View className="mx-4 rounded-xl overflow-hidden" style={{ height: 140 }}>
+        {/* Minimal: media runs edge to edge, so the cover drops its inset. */}
+        <View
+          className={isMinimal ? "overflow-hidden" : "mx-4 rounded-xl overflow-hidden"}
+          style={{ height: 140 }}
+        >
           <SmartImage
             source={
               localCoverUri
@@ -350,6 +369,29 @@ const ProfileHeader = () => {
             )}
           </View>
 
+          {isMinimal ? (
+            <View className="flex-row items-center gap-2 mb-1">
+              <TouchableOpacity
+                onPress={() => navigation.navigate(ScreenNames.EditProfile)}
+                accessibilityLabel={t("settings.editProfile")}
+                activeOpacity={0.85}
+                className="px-4 flex-row items-center"
+                style={[MINIMAL_OUTLINE_BUTTON, { gap: 6 }]}
+              >
+                <Ionicons name="pencil" size={14} color="#fff" />
+                <Text className="text-white font-semibold text-[13px]">{t("screens.editProfile")}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleShare}
+                accessibilityLabel={t("profileOptions.shareProfile")}
+                activeOpacity={0.85}
+                className="items-center justify-center"
+                style={[MINIMAL_OUTLINE_BUTTON, { width: 44 }]}
+              >
+                <Ionicons name="share-social" size={16} color="#fff" />
+              </TouchableOpacity>
+            </View>
+          ) : (
           <View className="flex-row items-center gap-2 mb-1">
             <LiquidGlass className="rounded-xl" intensity={40} noBlur>
               <TouchableOpacity
@@ -375,6 +417,7 @@ const ProfileHeader = () => {
               </LiquidGlass>
             </TouchableOpacity>
           </View>
+          )}
         </View>
 
         {/* Name + badge + socials */}
@@ -403,7 +446,16 @@ const ProfileHeader = () => {
                     onPress={() => openExternalLink(sc.url)}
                     activeOpacity={0.7}
                     accessibilityLabel={sc.label}
+                    hitSlop={isMinimal ? MINIMAL_SOCIAL_HIT_SLOP : undefined}
                   >
+                    {isMinimal ? (
+                      <View
+                        className="items-center justify-center"
+                        style={{ width: 32, height: 32 }}
+                      >
+                        <Ionicons name={sc.icon as any} size={14} color="#A1A1AA" />
+                      </View>
+                    ) : (
                     <LiquidGlass className="rounded-xl" intensity={30} noBlur>
                       <View
                         className="items-center justify-center"
@@ -412,6 +464,7 @@ const ProfileHeader = () => {
                         <Ionicons name={sc.icon as any} size={14} color="#A1A1AA" />
                       </View>
                     </LiquidGlass>
+                    )}
                   </TouchableOpacity>
                 ))}
               </View>

@@ -37,6 +37,8 @@ import { ShareLinks } from "../../navigation/linking.config";
 import { useStageReminder } from "../../hooks/useStageReminder";
 import type { AudioSpace } from "../../hooks/useStages";
 import { appLocale } from "../../libs/date.util";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_WASH, minimalRow } from "../../theme/minimal";
 
 /** How long the stage ran, from its own timestamps. Mirrors web's row. */
 export function stageDuration(space: AudioSpace): string | null {
@@ -106,6 +108,7 @@ const hostHandle = (space: AudioSpace, fallback: string) =>
  */
 export const StageReminderBell: React.FC<{ spaceId: string }> = ({ spaceId }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const { hasReminder, canRemind, toggleReminder, isToggling } = useStageReminder(spaceId);
   if (!canRemind) return null;
   const label = hasReminder ? t("stages.removeReminder") : t("stages.remindMe");
@@ -114,7 +117,7 @@ export const StageReminderBell: React.FC<{ spaceId: string }> = ({ spaceId }) =>
       onPress={toggleReminder}
       disabled={isToggling}
       hitSlop={8}
-      style={styles.iconBtn}
+      style={[styles.iconBtn, isMinimal && m.outline]}
       accessibilityRole="button"
       accessibilityState={{ selected: hasReminder, disabled: isToggling }}
       accessibilityLabel={label}
@@ -162,6 +165,7 @@ export const LiveStageCard: React.FC<{
   onEnd?: () => void;
 }> = ({ space, isCurrent, isMine, isBusy = false, onOpen, onEnd }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   // Web counts the host in; a stage with a host and no audience read as
   // "0 listening" here while web showed 1.
   const heads = Math.max(1, (space.speaker_count || 1) + (space.listener_count || 0));
@@ -175,7 +179,13 @@ export const LiveStageCard: React.FC<{
 
   return (
     <TouchableOpacity
-      style={[styles.card, isMine && styles.cardMine, isBusy && styles.cardBusy]}
+      style={[
+        styles.card,
+        isMine && styles.cardMine,
+        isMinimal && m.card,
+        isMinimal && isMine && m.cardMine,
+        isBusy && styles.cardBusy,
+      ]}
       onPress={onOpen}
       disabled={isBusy}
       activeOpacity={0.85}
@@ -184,9 +194,9 @@ export const LiveStageCard: React.FC<{
     >
       {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
 
-      <View style={styles.body}>
+      <View style={[styles.body, isMinimal && m.body]}>
         <View style={styles.topRow}>
-          <View style={styles.liveChip}>
+          <View style={[styles.liveChip, isMinimal && m.outline]}>
             <View style={styles.liveDot} />
             <Text style={styles.liveChipText}>
               {isCurrent ? t("stages.inThisStage") : t("stages.live")}
@@ -204,7 +214,7 @@ export const LiveStageCard: React.FC<{
             <TouchableOpacity
               onPress={() => shareStage(space)}
               hitSlop={8}
-              style={styles.iconBtn}
+              style={[styles.iconBtn, isMinimal && m.outline]}
               accessibilityRole="button"
               accessibilityLabel={t("stages.shareStage")}
             >
@@ -214,7 +224,7 @@ export const LiveStageCard: React.FC<{
               <TouchableOpacity
                 onPress={confirmEnd}
                 hitSlop={8}
-                style={styles.endBtn}
+                style={[styles.endBtn, isMinimal && m.outline]}
                 accessibilityRole="button"
                 accessibilityLabel={t("stages.endThisStage")}
               >
@@ -250,6 +260,7 @@ export const ScheduledStageCard: React.FC<{
   onCancel: () => void;
 }> = ({ space, isMine, isBusy = false, onStart, onCancel }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const startsAt = space.scheduled_at ? new Date(space.scheduled_at) : null;
   const isOverdue = !!startsAt && startsAt.getTime() < Date.now();
   const when = formatScheduledFor(space.scheduled_at);
@@ -262,12 +273,12 @@ export const ScheduledStageCard: React.FC<{
   }, [onCancel, space.title, t]);
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, isMinimal && m.card]}>
       {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
 
-      <View style={styles.body}>
+      <View style={[styles.body, isMinimal && m.body]}>
         <View style={styles.topRow}>
-          <View style={styles.chip}>
+          <View style={[styles.chip, isMinimal && m.outline]}>
             <Icon name="CalendarDays" size={12} color="#D4D4D8" />
             <Text style={styles.chipText}>
               {isOverdue ? t("stages.startingSoon") : t("stages.tabUpcoming")}
@@ -279,7 +290,7 @@ export const ScheduledStageCard: React.FC<{
             <TouchableOpacity
               onPress={() => shareStage(space, when)}
               hitSlop={8}
-              style={styles.iconBtn}
+              style={[styles.iconBtn, isMinimal && m.outline]}
               accessibilityRole="button"
               accessibilityLabel={t("stages.shareStage")}
             >
@@ -326,7 +337,7 @@ export const ScheduledStageCard: React.FC<{
             <TouchableOpacity
               onPress={confirmCancel}
               disabled={isBusy}
-              style={[styles.secondaryBtn, isBusy && styles.btnBusy]}
+              style={[styles.secondaryBtn, isMinimal && m.outline, isBusy && styles.btnBusy]}
               accessibilityRole="button"
               accessibilityState={{ disabled: isBusy }}
             >
@@ -348,6 +359,7 @@ export const RecordedStageCard: React.FC<{
   onDelete: () => void;
 }> = ({ space, isMine, onOpenTranscript, onDelete }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const heads = Math.max(1, (space.speaker_count || 0) + (space.listener_count || 0));
   const duration = stageDuration(space);
   const hasRecording = !!space.recording_url;
@@ -361,12 +373,12 @@ export const RecordedStageCard: React.FC<{
   }, [onDelete, t]);
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, isMinimal && m.card]}>
       {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
 
-      <View style={styles.body}>
+      <View style={[styles.body, isMinimal && m.body]}>
         <View style={styles.topRow}>
-          <View style={styles.chip}>
+          <View style={[styles.chip, isMinimal && m.outline]}>
             <Icon name="Clock" size={12} color="#D4D4D8" />
             <Text style={styles.chipText}>{t("stages.ended")}</Text>
           </View>
@@ -414,7 +426,7 @@ export const RecordedStageCard: React.FC<{
           {hasRecording && (
             <TouchableOpacity
               onPress={onOpenTranscript}
-              style={styles.secondaryBtn}
+              style={[styles.secondaryBtn, isMinimal && m.outline]}
               accessibilityRole="button"
             >
               <Icon name="FileText" size={13} color="#FFFFFF" />
@@ -620,5 +632,23 @@ const styles = StyleSheet.create({
     borderRadius: radius.lg,
     alignItems: "center",
     justifyContent: "center",
+  },
+});
+
+/**
+ * Minimal (web's html[data-theme="minimal"]): a stage is a list row, not a
+ * card — no fill or outline, one hairline under it, text inset from the screen
+ * edge, the cover still full width above. Your own live stage keeps a faint
+ * wash, and the small filled chips and buttons become 1px outlines. The white
+ * primary button keeps its fill: it is the one real call to action.
+ */
+const m = StyleSheet.create({
+  card: minimalRow,
+  cardMine: { backgroundColor: MINIMAL_WASH },
+  body: { paddingHorizontal: MINIMAL_INSET },
+  outline: {
+    backgroundColor: "transparent",
+    borderWidth: 1,
+    borderColor: MINIMAL_HAIRLINE,
   },
 });

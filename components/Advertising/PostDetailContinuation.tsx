@@ -7,6 +7,8 @@ import { useServedAds } from "../../hooks/useAdServing";
 import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { getNFT } from "../../services/nft.service";
 import SponsoredAdCard from "./SponsoredAdCard";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_TAB_LINE } from "../../theme/minimal";
 
 const HOUSE_AD_POST_ID = "2008";
 const POSTS_PER_PAGE = 6;
@@ -18,6 +20,7 @@ interface PostDetailContinuationProps {
 /** Ad first, then an explicitly paginated continuation of recent posts. */
 export default function PostDetailContinuation({ currentPostId }: PostDetailContinuationProps) {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const { data: servedAds = [], isLoading: servedAdLoading } = useServedAds("related", { count: 1 });
   const servedAd = servedAds[0] ?? null;
 
@@ -65,13 +68,21 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
   }, [currentPostId, data]);
 
   return (
-    <View className="border-t border-theme-neutrals-800 pt-5">
-      <View className="px-4">
+    <View
+      className="border-t border-theme-neutrals-800 pt-5"
+      style={isMinimal ? { borderTopColor: MINIMAL_HAIRLINE } : undefined}
+    >
+      {/* Minimal: no side padding here — the ad lays itself out as a full-width
+          feed row with its own 16pt text inset, like a minimal FeedCard. */}
+      <View className={isMinimal ? undefined : "px-4"}>
         {servedAd ? (
           <SponsoredAdCard ad={servedAd} />
         ) : houseAd ? (
-          <View className="rounded-2xl border border-theme-neutrals-700 bg-theme-neutrals-800/50 p-3">
-            <View className="mb-2 flex-row items-center justify-between">
+          <View className={isMinimal ? undefined : "rounded-2xl border border-theme-neutrals-700 bg-theme-neutrals-800/50 p-3"}>
+            <View
+              className="mb-2 flex-row items-center justify-between"
+              style={isMinimal ? { paddingHorizontal: MINIMAL_INSET } : undefined}
+            >
               <Text className="text-xs text-theme-neutrals-400">{t("ads.sponsored")}</Text>
               <View className="rounded bg-yellow-500 px-1.5 py-0.5">
                 <Text className="text-xs font-bold text-black">AD</Text>
@@ -80,7 +91,10 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
             <FeedCard item={houseAd} />
           </View>
         ) : servedAdLoading || houseAdLoading ? (
-          <View className="h-48 items-center justify-center rounded-2xl bg-theme-neutrals-800/50">
+          <View
+            className="h-48 items-center justify-center rounded-2xl bg-theme-neutrals-800/50"
+            style={isMinimal ? { backgroundColor: "rgba(255,255,255,0.04)" } : undefined}
+          >
             <ActivityIndicator color="#A1A1AA" />
           </View>
         ) : null}
@@ -91,7 +105,8 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
       </Text>
 
       {posts.map((post) => (
-        <View key={String(post.tokenId ?? post.id)} className="px-4 py-2">
+        // Minimal: FeedCards draw their own hairline, so no vertical gap between them.
+        <View key={String(post.tokenId ?? post.id)} className={isMinimal ? "px-4" : "px-4 py-2"}>
           <FeedCard item={post} />
         </View>
       ))}
@@ -109,7 +124,10 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
           activeOpacity={0.75}
           accessibilityRole="button"
           accessibilityLabel={t("ads.loadMorePosts")}
-          className="mx-4 my-4 items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800/60 py-3"
+          className={isMinimal
+            ? "mx-4 my-4 items-center border py-3"
+            : "mx-4 my-4 items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800/60 py-3"}
+          style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
         >
           {isFetchingNextPage ? (
             <ActivityIndicator size="small" color="#E4E4E7" />

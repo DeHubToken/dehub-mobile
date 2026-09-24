@@ -5,6 +5,10 @@ import GlassModal from '../../components/ui/GlassModal';
 import SheetDismissHandle from '../../components/ui/SheetDismissHandle';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+// The system theme, without the native modules the real provider loads.
+jest.mock('../../context/ThemeContext', () => ({
+  useAppTheme: () => ({ isMinimal: false, isLight: false, colors: jest.requireActual('../../theme/colors').systemColors }),
+}));
 jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', TextInput: 'TextInput', Modal: 'Modal',
   TouchableOpacity: 'TouchableOpacity', ScrollView: 'ScrollView',

@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import SmartImage from "./common/SmartImage";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useAppTheme } from "../context/ThemeContext";
+import { MINIMAL_HAIRLINE } from "../theme/minimal";
 
 /**
  * Height of the mark bar in points. Web's mobile chrome is a fixed 44px bar
@@ -29,9 +30,17 @@ export const APP_TOP_BAR_HEIGHT = 44;
  * rendering them would throw. Every screen that has those controls already
  * draws them in its own header row underneath.
  */
-const AppTopBar: React.FC<{ onPress?: () => void }> = ({ onPress }) => {
+const AppTopBar: React.FC<{
+  onPress?: () => void;
+  /**
+   * Minimal theme only: draw the full-width hairline under the bar. ScreenHeader
+   * turns it off and draws one under its own title row instead, so the mark bar
+   * and title read as one header with a single line beneath it.
+   */
+  hairline?: boolean;
+}> = ({ onPress, hairline = true }) => {
   const navigation = useNavigation<any>();
-  const { colors } = useAppTheme();
+  const { colors, isMinimal } = useAppTheme();
   const { t } = useTranslation();
 
   const handlePress = useCallback(() => {
@@ -45,7 +54,12 @@ const AppTopBar: React.FC<{ onPress?: () => void }> = ({ onPress }) => {
   return (
     <View
       className="flex-row items-center justify-center bg-theme-neutrals-900"
-      style={{ height: APP_TOP_BAR_HEIGHT }}
+      // The fixed height makes the border sit inside the 44pt, so
+      // APP_TOP_BAR_HEIGHT stays true in minimal too.
+      style={[
+        { height: APP_TOP_BAR_HEIGHT },
+        isMinimal && hairline && { borderBottomWidth: 1, borderBottomColor: MINIMAL_HAIRLINE },
+      ]}
     >
       <TouchableOpacity
         onPress={handlePress}

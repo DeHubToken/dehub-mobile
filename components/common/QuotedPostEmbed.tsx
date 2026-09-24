@@ -10,6 +10,13 @@ import { truncate } from "../../libs/strings.util";
 import { getNFT } from "../../services/nft.service";
 import Avatar from "./Avatar";
 import AudioPostPlayer from "../Home/AudioPostPlayer";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_TAB_LINE } from "../../theme/minimal";
+
+// Minimal theme: a quote is not a box. It keeps no border or fill and is
+// marked instead by a 2pt rule down its left edge, the way web draws it.
+const MINIMAL_QUOTE_CLASS = "mt-3 pl-3 border-l-2 overflow-hidden";
+const MINIMAL_QUOTE_STYLE = { borderLeftColor: MINIMAL_TAB_LINE } as const;
 
 interface QuotedPostEmbedProps {
   /** Full quoted post object from the API (may be null/undefined if unavailable) */
@@ -22,6 +29,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
   (props) => {
     const navigation = useNavigation<any>();
     const { hideUserProfile } = useUserProfileSheet();
+    const { isMinimal } = useAppTheme();
 
     // `quotedTokenId` was documented as "fallback when quotedPost is null" but
     // was only ever used for navigation — it was never actually fetched, so
@@ -75,7 +83,10 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
 
     if (!isAvailable && isFetching) {
       return (
-        <View className="mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/30 p-3">
+        <View
+          className={isMinimal ? `${MINIMAL_QUOTE_CLASS} py-1` : "mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/30 p-3"}
+          style={isMinimal ? MINIMAL_QUOTE_STYLE : undefined}
+        >
           <View className="flex-row items-center gap-2">
             <ActivityIndicator size="small" color="#666" />
             <Text className="text-theme-neutrals-500 text-sm">Loading quoted post…</Text>
@@ -86,7 +97,10 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
 
     if (!isAvailable) {
       return (
-        <View className="mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/30 p-3">
+        <View
+          className={isMinimal ? `${MINIMAL_QUOTE_CLASS} py-1` : "mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/30 p-3"}
+          style={isMinimal ? MINIMAL_QUOTE_STYLE : undefined}
+        >
           <View className="flex-row items-center gap-2">
             <Ionicons name="alert-circle-outline" size={16} color="#6F7174" />
             <Text className="text-theme-neutrals-500 text-sm">
@@ -145,11 +159,12 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
       <TouchableOpacity
         onPress={handlePress}
         activeOpacity={0.7}
-        className="mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/20 overflow-hidden"
+        className={isMinimal ? MINIMAL_QUOTE_CLASS : "mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/20 overflow-hidden"}
+        style={isMinimal ? MINIMAL_QUOTE_STYLE : undefined}
       >
         {/* Audio player for audio posts */}
         {isAudioPost && (
-          <View className="px-3 pt-3">
+          <View className={isMinimal ? "pt-1" : "px-3 pt-3"}>
             <AudioPostPlayer
               audioUrl={getAudioUrl(quotedPost.audioUrl)}
               duration={quotedPost.audioDuration || 0}
@@ -164,7 +179,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
 
         {/* Thumbnail */}
         {!isAudioPost && hasThumbnail && (
-          <View className="w-full h-32 bg-theme-neutrals-800">
+          <View className={isMinimal ? "w-full h-32 bg-black" : "w-full h-32 bg-theme-neutrals-800"}>
             <Image
               source={{ uri: thumbnailUrl }}
               className="w-full h-full"
@@ -179,7 +194,8 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
         )}
 
         {/* Content */}
-        <View className="p-3">
+        {/* Minimal: the rule's pl-3 already insets the text, so only vertical padding here. */}
+        <View className={isMinimal ? "pt-2 pb-1" : "p-3"}>
           {!!quotedPost.articleBody && <Text className="text-white/60 text-xs font-semibold uppercase mb-1">{t("articles.label")}</Text>}
           {/* Creator row */}
           <View className="flex-row items-center gap-2 mb-1.5">

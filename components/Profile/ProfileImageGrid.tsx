@@ -4,16 +4,30 @@ import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
 import Icon from "../ui/Icon";
 import { getImageUrlApiSimple } from "../../libs";
+import { useAppTheme } from "../../context/ThemeContext";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-const GRID_GAP = 2;
-const GRID_PADDING = 16;
-const GRID_WIDTH = SCREEN_WIDTH - GRID_PADDING;
-const SMALL = (GRID_WIDTH - GRID_GAP * 2) / 3;
-const LARGE = SMALL * 2 + GRID_GAP;
 
-const ROW_HEIGHTS = [LARGE + GRID_GAP, LARGE + GRID_GAP, SMALL + GRID_GAP];
-const PATTERN_HEIGHT = ROW_HEIGHTS[0] + ROW_HEIGHTS[1] + ROW_HEIGHTS[2];
+// Tile sizes follow from the outer padding and the gap, so each theme gets its
+// own set: the system grid sits 8pt in from each edge with 2pt gutters; the
+// minimal grid runs edge to edge with 1pt gutters on black, like web.
+const makeGridMetrics = (gap: number, padding: number, placeholder: string) => {
+  const small = (SCREEN_WIDTH - padding - gap * 2) / 3;
+  const large = small * 2 + gap;
+  const rowHeights = [large + gap, large + gap, small + gap];
+  return {
+    gap,
+    padding,
+    placeholder,
+    small,
+    large,
+    rowHeights,
+    patternHeight: rowHeights[0] + rowHeights[1] + rowHeights[2],
+  };
+};
+type GridMetrics = ReturnType<typeof makeGridMetrics>;
+const SYSTEM_GRID = makeGridMetrics(2, 16, "#1D1F21");
+const MINIMAL_GRID = makeGridMetrics(1, 0, "#000");
 
 interface ImagePost {
   id?: string | number;
@@ -52,8 +66,8 @@ const buildRows = (count: number): GridRowData[] => {
   return rows;
 };
 
-const ImageTile = memo<{ post: ImagePost; size: number; onPress: () => void }>(
-  ({ post, size, onPress }) => {
+const ImageTile = memo<{ post: ImagePost; size: number; placeholder: string; onPress: () => void }>(
+  ({ post, size, placeholder, onPress }) => {
     const uri = useMemo(() => {
       if (post.imageUrls?.length) return getImageUrlApiSimple(post.imageUrls[0]);
       return getImageUrlApiSimple(post.imageUrl || post.thumbnailUrl || "");
@@ -63,7 +77,7 @@ const ImageTile = memo<{ post: ImagePost; size: number; onPress: () => void }>(
       <TouchableOpacity
         activeOpacity={0.85}
         onPress={onPress}
-        style={{ width: size, height: size, backgroundColor: "#1D1F21" }}
+        style={{ width: size, height: size, backgroundColor: placeholder }}
       >
         <Image
           source={uri}
@@ -84,56 +98,61 @@ const ImageTile = memo<{ post: ImagePost; size: number; onPress: () => void }>(
   (prev, next) =>
     prev.onPress === next.onPress && prev.post === next.post &&
     (prev.post.id ?? prev.post.tokenId) ===
-      (next.post.id ?? next.post.tokenId) && prev.size === next.size,
+      (next.post.id ?? next.post.tokenId) && prev.size === next.size &&
+    prev.placeholder === next.placeholder,
 );
 
-const GridRow = memo<{ row: GridRowData; data: ImagePost[]; onPress: (index: number) => void }>(
-  ({ row, data, onPress }) => {
+const GridRow = memo<{ row: GridRowData; data: ImagePost[]; m: GridMetrics; onPress: (index: number) => void }>(
+  ({ row, data, m, onPress }) => {
     const { rowType, startIndex } = row;
     const a = data[startIndex];
     const b = data[startIndex + 1];
     const c = data[startIndex + 2];
+    const rowStyle = [s.row, { gap: m.gap, marginBottom: m.gap }];
+    const colStyle = { gap: m.gap };
 
     if (rowType === 0) {
       return (
-        <View style={[s.row, { marginBottom: GRID_GAP }]}>
-          {a && <ImageTile post={a} size={LARGE} onPress={() => onPress(startIndex)} />}
-          <View style={s.stackCol}>
-            {b && <ImageTile post={b} size={SMALL} onPress={() => onPress(startIndex + 1)} />}
-            {c && <ImageTile post={c} size={SMALL} onPress={() => onPress(startIndex + 2)} />}
+        <View style={rowStyle}>
+          {a && <ImageTile post={a} size={m.large} placeholder={m.placeholder} onPress={() => onPress(startIndex)} />}
+          <View style={colStyle}>
+            {b && <ImageTile post={b} size={m.small} placeholder={m.placeholder} onPress={() => onPress(startIndex + 1)} />}
+            {c && <ImageTile post={c} size={m.small} placeholder={m.placeholder} onPress={() => onPress(startIndex + 2)} />}
           </View>
         </View>
       );
     }
     if (rowType === 1) {
       return (
-        <View style={[s.row, { marginBottom: GRID_GAP }]}>
-          <View style={s.stackCol}>
-            {a && <ImageTile post={a} size={SMALL} onPress={() => onPress(startIndex)} />}
-            {b && <ImageTile post={b} size={SMALL} onPress={() => onPress(startIndex + 1)} />}
+        <View style={rowStyle}>
+          <View style={colStyle}>
+            {a && <ImageTile post={a} size={m.small} placeholder={m.placeholder} onPress={() => onPress(startIndex)} />}
+            {b && <ImageTile post={b} size={m.small} placeholder={m.placeholder} onPress={() => onPress(startIndex + 1)} />}
           </View>
-          {c && <ImageTile post={c} size={LARGE} onPress={() => onPress(startIndex + 2)} />}
+          {c && <ImageTile post={c} size={m.large} placeholder={m.placeholder} onPress={() => onPress(startIndex + 2)} />}
         </View>
       );
     }
     return (
-      <View style={[s.row, { marginBottom: GRID_GAP }]}>
-        {a && <ImageTile post={a} size={SMALL} onPress={() => onPress(startIndex)} />}
-        {b && <ImageTile post={b} size={SMALL} onPress={() => onPress(startIndex + 1)} />}
-        {c && <ImageTile post={c} size={SMALL} onPress={() => onPress(startIndex + 2)} />}
+      <View style={rowStyle}>
+        {a && <ImageTile post={a} size={m.small} placeholder={m.placeholder} onPress={() => onPress(startIndex)} />}
+        {b && <ImageTile post={b} size={m.small} placeholder={m.placeholder} onPress={() => onPress(startIndex + 1)} />}
+        {c && <ImageTile post={c} size={m.small} placeholder={m.placeholder} onPress={() => onPress(startIndex + 2)} />}
       </View>
     );
   },
 );
 
 const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, listRef, onImagePress, scrollEnabled = true, onScroll, ListHeaderComponent }) => {
+  const { isMinimal } = useAppTheme();
+  const m = isMinimal ? MINIMAL_GRID : SYSTEM_GRID;
   const rows = useMemo(() => buildRows(images.length), [images.length]);
 
   const renderRow = useCallback(
     ({ item: row }: { item: GridRowData }) => (
-      <GridRow row={row} data={images} onPress={onImagePress ?? (() => {})} />
+      <GridRow row={row} data={images} m={m} onPress={onImagePress ?? (() => {})} />
     ),
-    [images, onImagePress],
+    [images, m, onImagePress],
   );
 
   const keyExtractor = useCallback((item: GridRowData) => item.key, []);
@@ -142,12 +161,12 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, listRef, on
       const patternGroup = Math.floor(index / 3);
       const rowInPattern = index % 3;
       const offset =
-        patternGroup * PATTERN_HEIGHT +
-        (rowInPattern >= 1 ? ROW_HEIGHTS[0] : 0) +
-        (rowInPattern >= 2 ? ROW_HEIGHTS[1] : 0);
-      return { length: ROW_HEIGHTS[rowInPattern], offset, index };
+        patternGroup * m.patternHeight +
+        (rowInPattern >= 1 ? m.rowHeights[0] : 0) +
+        (rowInPattern >= 2 ? m.rowHeights[1] : 0);
+      return { length: m.rowHeights[rowInPattern], offset, index };
     },
-    [],
+    [m],
   );
 
   if (images.length === 0) return ListHeaderComponent ?? null;
@@ -162,12 +181,13 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, listRef, on
         ListHeaderComponent={
           <>
             {ListHeaderComponent}
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: GRID_GAP, paddingHorizontal: GRID_PADDING / 2 }}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: m.gap, paddingHorizontal: m.padding / 2 }}>
               {images.map((post, idx) => (
                 <ImageTile
                   key={post.id ?? post.tokenId ?? idx}
                   post={post}
-                  size={SMALL}
+                  size={m.small}
+                  placeholder={m.placeholder}
                   onPress={() => onImagePress?.(idx)}
                 />
               ))}
@@ -190,7 +210,7 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, listRef, on
       // getItemLayout assumes a fixed row pattern with no header; skip it when a
       // (variable-height) header is present so scroll offsets stay correct.
       getItemLayout={ListHeaderComponent ? undefined : getItemLayout}
-      contentContainerStyle={{ paddingHorizontal: GRID_PADDING / 2 }}
+      contentContainerStyle={{ paddingHorizontal: m.padding / 2 }}
       showsVerticalScrollIndicator={false}
       initialNumToRender={6}
       maxToRenderPerBatch={6}
@@ -205,8 +225,8 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, listRef, on
 };
 
 const s = StyleSheet.create({
-  row: { flexDirection: "row", gap: GRID_GAP },
-  stackCol: { gap: GRID_GAP },
+  // Gaps come from the active GridMetrics, applied inline by GridRow.
+  row: { flexDirection: "row" },
   multiIcon: { position: "absolute", top: 4, right: 4, backgroundColor: "rgba(0,0,0,0.4)", borderRadius: 6, padding: 3 },
 });
 

@@ -60,6 +60,15 @@ import { useUser } from "../context/AuthContext";
 import { storage } from "../libs/storage";
 import { ScreenNames } from "../navigation/ScreenNames";
 import TrendingTopicsList from "../components/common/TrendingTopicsList";
+import { useAppTheme } from "../context/ThemeContext";
+import {
+  MINIMAL_HAIRLINE,
+  MINIMAL_TAB_LINE,
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  minimalRow,
+  minimalTab,
+} from "../theme/minimal";
 
 type TabKey = "all" | "accounts" | "posts" | "images" | "videos" | "voice" | "live";
 
@@ -161,6 +170,7 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
 
 const SearchScreen: React.FC = () => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   // The header floats over the KeyboardAvoidingView rather than sitting above
   // it, so the view starts at the top of the screen and the only chrome above
@@ -854,18 +864,20 @@ const SearchScreen: React.FC = () => {
     // Focused + short query → recent searches
     if (inputFocused && q.length < SUGGEST_THRESHOLD && searchHistory.length > 0) {
       return (
-        <View className="px-4" style={{ paddingTop: headerHeight + 12 }}>
-          <Text className="text-theme-neutrals-400 text-xs font-semibold mb-2 px-1">
+        // Minimal: no grouped box — the rows run the full width, each with
+        // its own hairline, and only the text keeps the 16pt inset.
+        <View className={isMinimal ? undefined : "px-4"} style={{ paddingTop: headerHeight + 12 }}>
+          <Text className={`text-theme-neutrals-400 text-xs font-semibold mb-2 ${isMinimal ? "px-4" : "px-1"}`}>
             Recent Searches
           </Text>
-          <View className="rounded-xl overflow-hidden bg-theme-neutrals-800">
+          <View className={isMinimal ? undefined : "rounded-xl overflow-hidden bg-theme-neutrals-800"}>
             {topHistorySubset(searchHistory, 5).map((item, index) => (
               <TouchableOpacity
                 key={`history-${index}`}
                 className="px-4 py-3 flex-row items-center"
                 onPress={() => handleSuggestionClick(item)}
                 activeOpacity={0.8}
-                style={{
+                style={isMinimal ? minimalRow : {
                   borderBottomWidth: index === topHistorySubset(searchHistory, 5).length - 1 ? 0 : StyleSheet.hairlineWidth,
                   borderBottomColor: "#333",
                 }}
@@ -884,15 +896,16 @@ const SearchScreen: React.FC = () => {
     // Focused + >=threshold → suggestions
     if (isTyping && suggestions.length > 0) {
       return (
-        <View className="px-4" style={{ paddingTop: headerHeight + 12 }}>
-          <View className="rounded-xl overflow-hidden bg-theme-neutrals-800">
+        // Minimal: same flat, full-width hairline rows as recent searches.
+        <View className={isMinimal ? undefined : "px-4"} style={{ paddingTop: headerHeight + 12 }}>
+          <View className={isMinimal ? undefined : "rounded-xl overflow-hidden bg-theme-neutrals-800"}>
             {suggestions.map((item, index) => (
               <TouchableOpacity
                 key={`sugg-${index}`}
                 className="px-4 py-3 flex-row items-center"
                 onPress={() => handleSuggestionClick(item)}
                 activeOpacity={0.8}
-                style={{
+                style={isMinimal ? minimalRow : {
                   borderBottomWidth: index === suggestions.length - 1 ? 0 : StyleSheet.hairlineWidth,
                   borderBottomColor: "#333",
                 }}
@@ -903,6 +916,7 @@ const SearchScreen: React.FC = () => {
                 </Text>
                 <TouchableOpacity
                   className="w-8 h-8 rounded-xl bg-theme-neutrals-700 items-center justify-center"
+                  style={isMinimal ? styles.minimalOutlineBtn : undefined}
                   onPress={() => handleReplaceSearchBox(item)}
                 >
                   <Icon name="ArrowUpLeft" size={16} color="#E5E7EB" />
@@ -995,7 +1009,12 @@ const SearchScreen: React.FC = () => {
             underneath them rather than below them. */}
         <View className="bg-theme-neutrals-900">
           <View className="px-4 pb-2">
-            <View className="flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 py-2">
+            {/* Minimal: still reads as an input, but by a 1px outline on
+                black rather than a filled slab. */}
+            <View
+              className="flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 py-2"
+              style={isMinimal ? styles.minimalInput : undefined}
+            >
               <Icon name="Search" size={18} color="#9CA3AF" />
               <TextInput
                 ref={inputRef}
@@ -1073,12 +1092,20 @@ const SearchScreen: React.FC = () => {
             />
           </View>
 
-          <View className="px-4 py-2">
+          {/* Minimal: a file-tab strip, edge to edge. The baseline is a view
+              under the ScrollView rather than a border on it — a ScrollView
+              clips its children, so the sliding tab could never reach down
+              over a border — and the tab's black fill paints over it. */}
+          <View className={isMinimal ? undefined : "px-4 py-2"}>
+            {isMinimal && <View style={styles.minimalBaseline} pointerEvents="none" />}
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ position: "relative", gap: 8 }}
+              contentContainerStyle={{ position: "relative", gap: isMinimal ? 0 : 8 }}
             >
+              {isMinimal ? (
+                <Animated.View style={[styles.minimalIndicator, pillStyle]} />
+              ) : (
               <Animated.View style={[styles.indicator, pillStyle]}>
                 <LinearGradient
                   colors={["rgba(255,255,255,0.20)", "rgba(255,255,255,0.10)", "rgba(255,255,255,0.05)"]}
@@ -1088,6 +1115,7 @@ const SearchScreen: React.FC = () => {
                 />
                 <View style={styles.indicatorHighlight} />
               </Animated.View>
+              )}
 
               {(hasSearched ? TABS : EXPLORE_TABS).map((tab) => {
                 const isActive = activeTab === tab.key;
@@ -1099,18 +1127,24 @@ const SearchScreen: React.FC = () => {
                       const { x, width } = e.nativeEvent.layout;
                       handleTabLayout(tab.key, x, width);
                     }}
-                    style={[styles.tabBtn, !isActive && styles.tabBtnInactive]}
+                    style={[styles.tabBtn, !isActive && styles.tabBtnInactive, isMinimal && minimalTab]}
                     activeOpacity={0.8}
                   >
                     <Icon
                       name={tab.icon}
                       size={14}
-                      color={isActive ? "#F9FBFF" : "#A1A1AA"}
+                      color={
+                        isActive
+                          ? isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : "#F9FBFF"
+                          : isMinimal ? MINIMAL_TAB_TEXT : "#A1A1AA"
+                      }
                     />
                     <Text
                       style={[
                         styles.tabLabel,
+                        isMinimal && styles.minimalTabLabel,
                         isActive && styles.tabLabelActive,
+                        isMinimal && isActive && styles.minimalTabLabelActive,
                       ]}
                     >
                       {tab.label}
@@ -1172,6 +1206,40 @@ const styles = StyleSheet.create({
   },
   tabLabelActive: {
     color: "#F9FBFF",
+  },
+  minimalInput: {
+    backgroundColor: "transparent",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.10)",
+  },
+  minimalOutlineBtn: {
+    backgroundColor: "transparent",
+    borderWidth: 1,
+    borderColor: MINIMAL_HAIRLINE,
+  },
+  minimalBaseline: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 1,
+    backgroundColor: MINIMAL_TAB_LINE,
+  },
+  // Spans the strip's full height, so its black fill covers the baseline
+  // under the active tab; outlined on three sides so it opens into the page.
+  minimalIndicator: {
+    top: 0,
+    backgroundColor: "#000",
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: MINIMAL_TAB_LINE,
+  },
+  minimalTabLabel: {
+    color: MINIMAL_TAB_TEXT,
+  },
+  minimalTabLabelActive: {
+    color: MINIMAL_TAB_TEXT_ACTIVE,
   },
 });
 

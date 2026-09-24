@@ -21,7 +21,7 @@ import {
   ScrollView,
   ActivityIndicator,
   TextInput,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -51,6 +51,15 @@ import {
   type AffiliateStats,
   type AffiliateReferralEntry,
 } from "../libs/affiliate";
+import { useAppTheme } from "../context/ThemeContext";
+import {
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  minimalRow,
+  minimalTab,
+  minimalTabActive,
+  minimalTabStrip,
+} from "../theme/minimal";
 
 const AFFILIATES_PAGE_SIZE = 12;
 
@@ -88,22 +97,25 @@ const StatCard: React.FC<{
   label: string;
   value: string | null;
   hint?: string;
-}> = ({ icon, label, value, hint }) => (
-  <View style={styles.statCard}>
-    <View style={styles.statHead}>
-      <Icon name={icon} size={13} color="#A1A1AA" />
-      <Text style={styles.statLabel}>{label}</Text>
+}> = ({ icon, label, value, hint }) => {
+  const { isMinimal } = useAppTheme();
+  return (
+    <View style={[styles.statCard, isMinimal && minimalRow]}>
+      <View style={styles.statHead}>
+        <Icon name={icon} size={13} color="#A1A1AA" />
+        <Text style={styles.statLabel}>{label}</Text>
+      </View>
+      {value === null ? (
+        <View style={styles.statSkeleton} />
+      ) : (
+        <Text style={styles.statValue} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
+          {value}
+        </Text>
+      )}
+      {hint ? <Text style={styles.statHint}>{hint}</Text> : null}
     </View>
-    {value === null ? (
-      <View style={styles.statSkeleton} />
-    ) : (
-      <Text style={styles.statValue} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
-        {value}
-      </Text>
-    )}
-    {hint ? <Text style={styles.statHint}>{hint}</Text> : null}
-  </View>
-);
+  );
+};
 
 const Step: React.FC<{ n: number; title: string; body: string }> = ({ n, title, body }) => (
   <View style={styles.step}>
@@ -125,6 +137,7 @@ const Step: React.FC<{ n: number; title: string; body: string }> = ({ n, title, 
 const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry; profile?: AccountSummary }> = ({ entry, profile }) => {
   const { showUserProfile } = useUserProfileSheet();
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
 
   const username = profile?.username || null;
   const name = profile?.displayName || username || truncateAddress(entry.address);
@@ -132,7 +145,7 @@ const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry; profile?: AccountS
 
   return (
     <Pressable
-      style={styles.row}
+      style={[styles.row, isMinimal && styles.minimalListRow]}
       onPress={() => showUserProfile(username || entry.address, { source: "affiliate" })}
     >
       <Avatar
@@ -159,6 +172,10 @@ const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry; profile?: AccountS
 export default function AffiliateScreen() {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
+  // Minimal: section cards bleed to the screen edge as hairline-divided
+  // groups (their padding keeps text 16pt in); inputs and buttons keep fill.
+  const cardStyle = [styles.card, isMinimal && styles.minimalCard];
   const user = useUser() as any;
   const { isSignedIn, needsUsername } = useAuthState();
   useGateToHome(isSignedIn && !needsUsername);
@@ -368,7 +385,7 @@ export default function AffiliateScreen() {
         </View>
         <Text style={styles.statNote}>{t("affiliate.selfVisitsExcluded")}</Text>
 
-        <View style={styles.card}>
+        <View style={cardStyle}>
           <Text style={styles.cardTitle}>{t("affiliate.customizeTitle")}</Text>
           <Text style={styles.cardSub}>{t("affiliate.customizeSub")}</Text>
 
@@ -433,7 +450,7 @@ export default function AffiliateScreen() {
         </View>
 
         {/* Invite link */}
-        <View style={styles.card}>
+        <View style={cardStyle}>
           <Text style={styles.cardTitle}>{t("affiliate.yourLink", "Your invite link")}</Text>
           <Text style={styles.cardSub}>
             {t("affiliate.yourLinkSub", {
@@ -479,27 +496,47 @@ export default function AffiliateScreen() {
         </View>
 
         {/* Your affiliates */}
-        <View style={styles.card}>
+        <View style={cardStyle}>
           <Text style={styles.cardTitle}>{t("affiliate.yourAffiliates", "Your affiliates")}</Text>
           <Text style={styles.cardSub}>
             {t("affiliate.yourAffiliatesSub", "The accounts you've referred to DeHub.")}
           </Text>
 
           {hasSecondary && (
-            <View style={styles.tabs}>
+            <View style={[styles.tabs, isMinimal && styles.minimalTabs]}>
               <Pressable
                 onPress={() => setTab("direct")}
-                style={[styles.tab, tab === "direct" && styles.tabActive]}
+                style={[
+                  styles.tab,
+                  tab === "direct" && styles.tabActive,
+                  isMinimal && (tab === "direct" ? minimalTabActive : minimalTab),
+                ]}
               >
-                <Text style={[styles.tabText, tab === "direct" && styles.tabTextActive]}>
+                <Text
+                  style={[
+                    styles.tabText,
+                    tab === "direct" && styles.tabTextActive,
+                    isMinimal && { color: tab === "direct" ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
+                  ]}
+                >
                   {t("affiliate.direct", "Direct")} ({stats?.referrals ?? 0})
                 </Text>
               </Pressable>
               <Pressable
                 onPress={() => setTab("secondary")}
-                style={[styles.tab, tab === "secondary" && styles.tabActive]}
+                style={[
+                  styles.tab,
+                  tab === "secondary" && styles.tabActive,
+                  isMinimal && (tab === "secondary" ? minimalTabActive : minimalTab),
+                ]}
               >
-                <Text style={[styles.tabText, tab === "secondary" && styles.tabTextActive]}>
+                <Text
+                  style={[
+                    styles.tabText,
+                    tab === "secondary" && styles.tabTextActive,
+                    isMinimal && { color: tab === "secondary" ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
+                  ]}
+                >
                   {t("affiliate.secondary", "Secondary")} ({stats?.l2Referrals ?? 0})
                 </Text>
               </Pressable>
@@ -552,7 +589,7 @@ export default function AffiliateScreen() {
         </View>
 
         {/* How it works */}
-        <View style={styles.card}>
+        <View style={cardStyle}>
           <Text style={styles.cardTitle}>{t("affiliate.howItWorks", "How it works")}</Text>
           <Step
             n={1}
@@ -678,6 +715,9 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 16,
   },
+  // Out to the screen edge so the hairline runs full width; the card's own
+  // 16pt padding then sits exactly where the scroll gutter was.
+  minimalCard: { ...minimalRow, marginHorizontal: -16, marginBottom: 0 },
   cardTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "600" },
   cardSub: { color: "#A1A1AA", fontSize: 12.5, lineHeight: 18, marginTop: 4 },
 
@@ -736,6 +776,7 @@ const styles = StyleSheet.create({
   tabActive: { backgroundColor: "rgba(255,255,255,0.15)" },
   tabText: { color: "#A1A1AA", fontSize: 12.5, fontWeight: "600" },
   tabTextActive: { color: "#FFFFFF" },
+  minimalTabs: { ...minimalTabStrip, padding: 0, gap: 0 },
 
   row: {
     flexDirection: "row",
@@ -748,6 +789,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 8,
   },
+  // Referred accounts read as one list: hairline rows, no gaps between them.
+  minimalListRow: { ...minimalRow, marginTop: 0, paddingHorizontal: 0 },
   rowName: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   rowNameSkeleton: {
     height: 14,

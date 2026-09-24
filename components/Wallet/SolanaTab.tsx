@@ -24,6 +24,8 @@ import {
   getSolanaMintStatus,
 } from "../../services/solana.service";
 import { toastError, toastSuccess } from "../../libs/toast";
+import { useAppTheme } from "../../context/ThemeContext";
+import { minimalFlat, minimalRow } from "../../theme/minimal";
 
 const SOLSCAN = "https://solscan.io/account/";
 
@@ -40,6 +42,9 @@ function formatSol(value: number | null): string {
 
 const SolanaTab: React.FC = () => {
   const { t } = useTranslation();
+  // Minimal: section cards dissolve into hairline rows; buttons keep their fill.
+  const { isMinimal } = useAppTheme();
+  const mRow = isMinimal ? minimalRow : undefined;
   const [address, setAddress] = useState<string | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
@@ -126,7 +131,7 @@ const SolanaTab: React.FC = () => {
 
   if (!address) {
     return (
-      <View className="bg-white/5 border border-white/10 rounded-xl p-5">
+      <View className="bg-white/5 border border-white/10 rounded-xl p-5" style={isMinimal ? minimalFlat : undefined}>
         <Text className="text-white font-semibold text-base mb-2">
           {t("solana.unavailableTitle")}
         </Text>
@@ -140,7 +145,7 @@ const SolanaTab: React.FC = () => {
   return (
     <View className="flex-1">
       {/* Balance */}
-      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
+      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
         <View className="flex-row items-center justify-between mb-1">
           <Text className="text-white/50 text-xs uppercase tracking-wider">
             {t("commandCentre.balance")}
@@ -170,7 +175,7 @@ const SolanaTab: React.FC = () => {
       </View>
 
       {/* Address */}
-      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
+      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
         <Text className="text-white/50 text-xs uppercase tracking-wider mb-2">
           {t("solana.yourAddress")}
         </Text>
@@ -200,7 +205,7 @@ const SolanaTab: React.FC = () => {
       </View>
 
       {/* Why it needs funding */}
-      <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4">
+      <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
         <Text className="text-white font-semibold text-sm mb-2">
           {t("solana.fundingTitle")}
         </Text>
@@ -210,7 +215,7 @@ const SolanaTab: React.FC = () => {
       </View>
 
       {mintingEnabled === false && (
-        <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4">
+        <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
           <Text className="text-white/70 text-sm leading-5">
             {t("solana.mintingOff")}
           </Text>
@@ -219,7 +224,7 @@ const SolanaTab: React.FC = () => {
 
       {/* Older device-only wallet that still holds funds */}
       {legacyAddress && (
-        <View className="bg-white/[0.03] border border-white/20 rounded-xl p-4 mb-4">
+        <View className="bg-white/[0.03] border border-white/20 rounded-xl p-4 mb-4" style={mRow}>
           <Text className="text-white font-semibold text-sm mb-2">
             {t("solana.legacyTitle", { amount: formatSol(legacyBalance) })}
           </Text>

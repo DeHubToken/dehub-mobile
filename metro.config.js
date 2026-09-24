@@ -125,7 +125,17 @@ function _resolveForcedCjsEntry(moduleName) {
 const _STUBBED_PACKAGES = new Set(['ws', '@metamask/connect-multichain']);
 const _emptyModulePath = require.resolve('empty-module');
 
+// babel.config.js points JSX at "dehub-jsx"; it is a folder in this repo, not
+// a package, so it is resolved here.
+const _JSX_RUNTIMES = {
+	"dehub-jsx/jsx-runtime": _path.resolve(__dirname, "libs/jsx/jsx-runtime.js"),
+	"dehub-jsx/jsx-dev-runtime": _path.resolve(__dirname, "libs/jsx/jsx-dev-runtime.js"),
+};
+
 config.resolver.resolveRequest = (context, moduleName, platform) => {
+	if (_JSX_RUNTIMES[moduleName]) {
+		return { type: "sourceFile", filePath: _JSX_RUNTIMES[moduleName] };
+	}
 	const origin = (context.originModulePath || '').replace(/\\/g, '/');
 	if (origin.includes('/node_modules/ox/_cjs/') && moduleName.startsWith('./')) {
 		const filePath = _path.resolve(_path.dirname(context.originModulePath), moduleName);

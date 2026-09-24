@@ -14,7 +14,7 @@ import {
   ScrollView,
   TextInput,
   useWindowDimensions,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
@@ -26,6 +26,15 @@ import ScreenHeader from "../components/ScreenHeader";
 import MyStoreTab from "../components/Stores/MyStoreTab";
 import { theme } from "../theme";
 import { useAuthState } from "../context/AuthContext";
+import { useAppTheme } from "../context/ThemeContext";
+import {
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  minimalFlat,
+  minimalTab,
+  minimalTabActive,
+  minimalTabStrip,
+} from "../theme/minimal";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
   useBrowseListings,
@@ -54,11 +63,13 @@ const ListingCard: React.FC<{ listing: StoreListing; width: number; onPress: () 
   onPress,
 }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const img = firstImage(listing);
   const soldOut = listing.stock_quantity === 0;
 
+  // Minimal: the tile's box goes; the thumbnail and text are the card.
   return (
-    <Pressable style={[styles.card, { width }]} onPress={onPress}>
+    <Pressable style={[styles.card, { width }, isMinimal && minimalFlat]} onPress={onPress}>
       <View style={[styles.thumbWrap, { height: width }]}>
         {img ? (
           <Image source={{ uri: img }} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} />
@@ -96,6 +107,7 @@ const ListingCard: React.FC<{ listing: StoreListing; width: number; onPress: () 
 
 export default function StoresScreen() {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { width: screenW } = useWindowDimensions();
@@ -137,14 +149,25 @@ export default function StoresScreen() {
         rightContent={<Icon name="Store" size={22} color={theme.colors.accent} />}
       />
 
-      <View style={styles.segment}>
+      {/* Minimal: the segmented pill becomes an edge-to-edge file-tab strip. */}
+      <View style={[styles.segment, isMinimal && styles.minimalSegment]}>
         {(["browse", "my-store"] as const).map((tabKey) => (
           <Pressable
             key={tabKey}
             onPress={() => setTab(tabKey)}
-            style={[styles.segmentBtn, tab === tabKey && styles.segmentBtnActive]}
+            style={[
+              styles.segmentBtn,
+              tab === tabKey && styles.segmentBtnActive,
+              isMinimal && (tab === tabKey ? minimalTabActive : minimalTab),
+            ]}
           >
-            <Text style={[styles.segmentText, tab === tabKey && styles.segmentTextActive]}>
+            <Text
+              style={[
+                styles.segmentText,
+                tab === tabKey && styles.segmentTextActive,
+                isMinimal && { color: tab === tabKey ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
+              ]}
+            >
               {tabKey === "browse" ? t("stores.browse") : t("stores.myStore")}
             </Text>
           </Pressable>
@@ -272,6 +295,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 3,
   },
+  minimalSegment: { ...minimalTabStrip, marginHorizontal: 0, padding: 0, gap: 0 },
   segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 9, alignItems: "center" },
   segmentBtnActive: { backgroundColor: "rgba(255,255,255,0.15)" },
   segmentText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },

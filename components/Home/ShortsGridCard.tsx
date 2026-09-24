@@ -8,6 +8,7 @@ import { getShortsThumbnailUrl, getVideoUrl, getAvatarUrl, formatCompactNumber, 
 import { cdnImage } from "../../libs/cdnImage";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { resolveViewCount } from "../../libs/numbers.util";
+import { useAppTheme } from "../../context/ThemeContext";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const GRID_GAP = 4;
@@ -115,6 +116,7 @@ const CellPreview: React.FC<{ previewUrl: string }> = ({ previewUrl }) => {
 const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, isVisible = false, onPress, onUnavailable }) => {
   const tokenId = item.tokenId ?? item.id;
   const mediaKey = String(tokenId);
+  const { isMinimal } = useAppTheme();
 
   // Resolve a raw API path (e.g. "shorts/123.jpg") or full URL to a CDN URL,
   // sized to the card rather than fetched at full resolution — this is a poster
@@ -172,7 +174,8 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   if (thumbFailed) return null;
 
   return (
-    <Pressable onPress={handlePress} style={styles.card}>
+    // Minimal: the cell behind a loading poster is black, not a grey box.
+    <Pressable onPress={handlePress} style={[styles.card, isMinimal && styles.minimalCard]}>
       {/* Thumbnail base layer — always rendered */}
       <Image
         source={thumbnailUri}
@@ -199,7 +202,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
             // getAvatarUrl hands back the "default-avatar" sentinel, which expo-image
             // cannot load, so the creator showed as an empty dot.
             source={avatarUri && avatarUri !== "default-avatar" ? avatarUri : undefined}
-            style={styles.avatar}
+            style={[styles.avatar, isMinimal && styles.minimalAvatar]}
             contentFit="cover"
           />
           <Text numberOfLines={1} style={styles.username}>
@@ -247,6 +250,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: "#1A1A1A",
   },
+  minimalCard: { backgroundColor: "#000" },
+  minimalAvatar: { backgroundColor: "rgba(255,255,255,0.04)" },
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0,0,0,0.25)",

@@ -21,7 +21,7 @@ import {
   Pressable,
   ScrollView,
   ActivityIndicator,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import Svg, { Circle, Polyline, Line as SvgLine, Text as SvgText } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -35,6 +35,8 @@ import ProfileAssets from "../components/Profile/ProfileAssets";
 import { theme } from "../theme";
 import { formatCompactNumber } from "../libs";
 import { useUser, useAuthState } from "../context/AuthContext";
+import { useAppTheme } from "../context/ThemeContext";
+import { minimalRow } from "../theme/minimal";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { getMyAnalytics, type AnalyticsResponse } from "../services/nft.service";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -67,9 +69,12 @@ function timeAgo(iso: string, t: TFunction): string {
   return t("commandCentre.time.months", { count: Math.floor(d / 30) });
 }
 
-const Card: React.FC<{ children: React.ReactNode; style?: any }> = ({ children, style }) => (
-  <View style={[styles.card, style]}>{children}</View>
-);
+const Card: React.FC<{ children: React.ReactNode; style?: any }> = ({ children, style }) => {
+  // Minimal: each section is an edge-to-edge group under a hairline; the
+  // stat tiles and range chips inside keep their fill.
+  const { isMinimal } = useAppTheme();
+  return <View style={[styles.card, style, isMinimal && styles.minimalCard]}>{children}</View>;
+};
 
 const RangeRow: React.FC<{
   items: readonly string[];
@@ -241,6 +246,7 @@ const ActivityRow: React.FC<{ item: ActivityItem }> = ({ item }) => {
 
 export default function CommandCentreScreen() {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const user = useUser() as any;
@@ -329,7 +335,7 @@ export default function CommandCentreScreen() {
       />
 
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 28, gap: 12 }}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 28, gap: isMinimal ? 0 : 12 }}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <DeHubRefreshControl
@@ -510,6 +516,9 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.10)",
     padding: 16,
   },
+  // -16 cancels the scroll gutter so the hairline spans the screen; the
+  // card's 16pt padding keeps the text where it was.
+  minimalCard: { ...minimalRow, marginHorizontal: -16, paddingHorizontal: 16 },
   cardHead: { flexDirection: "row", alignItems: "center", marginBottom: 4 },
   cardTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700" },
   dim: { color: "#A1A1AA", fontSize: 12 },

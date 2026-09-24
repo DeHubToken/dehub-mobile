@@ -26,6 +26,8 @@ import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-g
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import CustomSwitch from "../ui/CustomSwitch";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import {
   getFolders,
   getFolderItems,
@@ -57,6 +59,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
   tokenId,
 }) => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const insets = useSafeAreaInsets();
   const { height: windowHeight } = useWindowDimensions();
   const sheetHeight = Math.max(0, windowHeight - Math.max(insets.top, 12) - 12);
@@ -329,7 +332,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
               sheetStyle,
             ]}
           >
-            <View style={[StyleSheet.absoluteFill, styles.overlay]} />
+            <View style={[StyleSheet.absoluteFill, styles.overlay, isMinimal && styles.minimalOverlay]} />
 
             <GestureDetector gesture={panGesture}>
               <Animated.View style={styles.handleWrap}>
@@ -486,6 +489,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#0C0C0E",
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.1)",
+  },
+  // Minimal: pure black body, a single hairline along the top edge.
+  minimalOverlay: {
+    backgroundColor: "#000",
+    borderColor: MINIMAL_HAIRLINE,
   },
   handleWrap: {
     alignItems: "center",

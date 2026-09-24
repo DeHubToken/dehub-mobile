@@ -22,6 +22,8 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { getBadgeOpticalStyle } from "../../libs/misc";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_INSET, minimalRow } from "../../theme/minimal";
 
 /** Matches the thumbnail's own box below (`width: 150`). */
 const COMPACT_THUMB_PT = 150;
@@ -128,6 +130,18 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const { showUserProfile, hideUserProfile } = useUserProfileSheet();
   const user = useUser();
   const navigation = useNavigation<any>();
+  const { isMinimal } = useAppTheme();
+  // Minimal: metadata chips read as plain muted text, not filled pills.
+  const chipClass = isMinimal ? "" : "bg-theme-neutrals-700 px-1.5 py-0.5 rounded";
+  const chipTextClass = isMinimal
+    ? "text-theme-neutrals-400 text-[9px] font-bold"
+    : "text-theme-neutrals-200 text-[9px] font-bold";
+  const pillClass = isMinimal
+    ? "flex-row items-center"
+    : "flex-row items-center bg-theme-neutrals-700 rounded-full px-2 py-0.5";
+  const pillTextClass = isMinimal
+    ? "ml-1 text-[9px] text-theme-neutrals-400"
+    : "ml-1 text-[9px] text-theme-neutrals-200";
   const handlePressCreator = useCallback(() => {
     const id = username || creator || address;
     if (!id) return;
@@ -169,15 +183,22 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     });
   }, [navigation, tokenId, isLive, nft, accessInfo, hideUserProfile, onBeforeNavigate]);
   return (
-    <View className="m-1 px-4 py-1">
+    // Minimal: a row, not a bordered card — no margins, box or fill, the 16pt
+    // inset, and one hairline under each row running the list's full width.
+    <View className={isMinimal ? undefined : "m-1 px-4 py-1"}>
       <TouchableOpacity
         activeOpacity={0.85}
         onPress={handlePressVideo}
-        className="bg-theme-neutrals-900 rounded-xl overflow-hidden flex-row items-start p-2 border border-theme-neutrals-700"
+        className={isMinimal
+          ? "overflow-hidden flex-row items-start"
+          : "bg-theme-neutrals-900 rounded-xl overflow-hidden flex-row items-start p-2 border border-theme-neutrals-700"}
+        style={isMinimal ? { ...minimalRow, paddingHorizontal: MINIMAL_INSET, paddingVertical: 10 } : undefined}
       >
         <View
           className="rounded-xl overflow-hidden bg-theme-neutrals-800 justify-center items-center"
-          style={{ width: 150, aspectRatio: 16 / 9 }}
+          style={isMinimal
+            ? { width: 150, aspectRatio: 16 / 9, backgroundColor: "rgba(255,255,255,0.04)" }
+            : { width: 150, aspectRatio: 16 / 9 }}
         >
           {hasThumbnail ? (
             <Image
@@ -186,7 +207,9 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               resizeMode="cover"
             />
           ) : (
-            <View className="absolute inset-0 w-full h-full bg-theme-neutrals-800 items-center justify-center">
+            <View className={isMinimal
+              ? "absolute inset-0 w-full h-full items-center justify-center"
+              : "absolute inset-0 w-full h-full bg-theme-neutrals-800 items-center justify-center"}>
               <Ionicons name="videocam-off" size={28} color="#666" />
             </View>
           )}
@@ -264,36 +287,36 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
           {(isLive || isPayPerView || isLocked || isBounty || isSubGated) && (
             <View className="flex-row flex-wrap items-center mt-1 gap-1">
               {isLive && (
-                <View className="bg-theme-neutrals-700 px-1.5 py-0.5 rounded">
-                  <Text className="text-theme-neutrals-200 text-[9px] font-bold">
+                <View className={chipClass}>
+                  <Text className={chipTextClass}>
                     LIVE
                   </Text>
                 </View>
               )}
               {isPayPerView && (
-                <View className="bg-theme-neutrals-700 px-1.5 py-0.5 rounded">
-                  <Text className="text-theme-neutrals-200 text-[9px] font-bold">
+                <View className={chipClass}>
+                  <Text className={chipTextClass}>
                     PPV {payPerViewAmount} {payPerViewTokenSymbol}
                   </Text>
                 </View>
               )}
               {isBounty && (
-                <View className="bg-theme-neutrals-700 px-1.5 py-0.5 rounded">
-                  <Text className="text-theme-neutrals-200 text-[9px] font-bold">
+                <View className={chipClass}>
+                  <Text className={chipTextClass}>
                     W2E {bountyAmount} {bountyTokenSymbol}
                   </Text>
                 </View>
               )}
               {isLocked && (
-                <View className="bg-theme-neutrals-700 px-1.5 py-0.5 rounded">
-                  <Text className="text-theme-neutrals-200 text-[9px] font-bold">
+                <View className={chipClass}>
+                  <Text className={chipTextClass}>
                     LOCK {lockContentAmount} {lockContentTokenSymbol}
                   </Text>
                 </View>
               )}
               {isSubGated && (
-                <View className="bg-theme-neutrals-700 px-1.5 py-0.5 rounded">
-                  <Text className="text-theme-neutrals-200 text-[9px] font-bold">
+                <View className={chipClass}>
+                  <Text className={chipTextClass}>
                     SUBS ONLY
                   </Text>
                 </View>
@@ -301,16 +324,16 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
             </View>
           )}
           <View className="flex-row items-center gap-2 mt-1.5">
-            <View className="flex-row items-center bg-theme-neutrals-700 rounded-full px-2 py-0.5">
+            <View className={pillClass}>
               <Ionicons name="heart" size={8} color="#D1D5DB" />
-              <Text className="ml-1 text-[9px] text-theme-neutrals-200">
+              <Text className={pillTextClass}>
                 {likes}
               </Text>
             </View>
             {commentCount > 0 && (
-              <View className="flex-row items-center bg-theme-neutrals-700 rounded-full px-2 py-0.5">
+              <View className={pillClass}>
                 <Ionicons name="chatbubble-outline" size={8} color="#D1D5DB" />
-                <Text className="ml-1 text-[9px] text-theme-neutrals-200">
+                <Text className={pillTextClass}>
                   {commentCount}
                 </Text>
               </View>

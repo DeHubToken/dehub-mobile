@@ -38,6 +38,11 @@ import MentionSuggestions from "../common/MentionSuggestions";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useKidsMode } from "../../hooks/useKidsMode";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE } from "../../theme/minimal";
+
+// Minimal composer field and chips: an outline says "control", no fill.
+const MINIMAL_INPUT_LINE = "rgba(255,255,255,0.10)";
 import {
   getCommentsForToken,
   getCommentReplies,
@@ -178,6 +183,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Input state. Whatever was left unsent last time comes back with it — the
   // text and the reply it was aimed at — read once so the two can't disagree.
   const [restoredDraft] = useState(() => loadCommentDraft(tokenId));
+  const { isMinimal } = useAppTheme();
   const [inputText, setInputText] = useState(restoredDraft?.text ?? "");
   const mentions = useMentions(inputText, setInputText);
   const [replyingTo, setReplyingTo] = useState<Comment | null>(() => draftReplyTarget(restoredDraft));
@@ -1352,7 +1358,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           right: 0,
           bottom: 0,
           borderTopWidth: 1,
-          borderTopColor: "rgba(255,255,255,0.06)",
+          // Minimal: black bar (the #0C0C0E maps to #000) under the shared hairline.
+          borderTopColor: isMinimal ? MINIMAL_HAIRLINE : "rgba(255,255,255,0.06)",
           // Opaque: the comment list scrolls underneath this bar, and the
           // translucent fill put scrolled text behind the input.
           backgroundColor: "#0C0C0E",
@@ -1362,7 +1369,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         {(replyingTo || editingComment) && !recorder.isRecording && (
           <View
             className="flex-row items-center py-2"
-            style={{ backgroundColor: "rgba(255,255,255,0.04)", paddingHorizontal: COMPOSER.gutter }}
+            style={{ backgroundColor: isMinimal ? "transparent" : "rgba(255,255,255,0.04)", paddingHorizontal: COMPOSER.gutter }}
           >
             <Icon name="CornerDownLeft" size={14} color="#6F7174" />
             <Text style={{ flex: 1, fontSize: 12, color: "#A6A9AC", marginLeft: 6 }}>
@@ -1411,7 +1418,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   accessibilityLabel={t("conversation.coach.checkTone")}
                   testID="coach-check-tone"
                   className="flex-row items-center"
-                  style={{ gap: 6, paddingVertical: 4, paddingHorizontal: 10, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.06)" }}
+                  style={[
+                    { gap: 6, paddingVertical: 4, paddingHorizontal: 10, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.06)" },
+                    isMinimal && { backgroundColor: "transparent", borderWidth: 1, borderColor: MINIMAL_INPUT_LINE },
+                  ]}
                 >
                   <Icon name="Sparkles" size={13} color="#A6A9AC" />
                   <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{t("conversation.coach.checkTone")}</Text>
@@ -1476,10 +1486,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 // inside a 40 box, and flex-end pinned it to the bottom edge. Once
                 // the text wraps the input grows past the minimum and this is moot.
                 alignItems: "center",
-                backgroundColor: "rgba(255,255,255,0.06)",
+                backgroundColor: isMinimal ? "transparent" : "rgba(255,255,255,0.06)",
                 borderRadius: COMPOSER.radius,
                 borderWidth: 1,
-                borderColor: "rgba(255,255,255,0.08)",
+                borderColor: isMinimal ? MINIMAL_INPUT_LINE : "rgba(255,255,255,0.08)",
                 paddingHorizontal: 12,
                 paddingVertical: 8,
                 minHeight: COMPOSER.control,

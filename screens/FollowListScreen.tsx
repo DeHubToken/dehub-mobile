@@ -38,6 +38,8 @@ import GlassFollowButton from "../components/ui/GlassFollowButton";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import GlassModal from "../components/ui/GlassModal";
 import { FIELD_TEXT } from "../theme/inputs";
+import { useAppTheme } from "../context/ThemeContext";
+import { MINIMAL_HAIRLINE } from "../theme/minimal";
 
 type RouteParams = {
   FollowList: {
@@ -287,6 +289,7 @@ const HiddenFollowersMessage: React.FC<{ username?: string }> = ({ username }) =
 
 const FollowListScreen: React.FC = () => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const route = useRoute<RouteProp<RouteParams, "FollowList">>();
   const authUser = useUser();
   const { showUserProfile } = useUserProfileSheet();
@@ -924,9 +927,14 @@ const FollowListScreen: React.FC = () => {
   const keyExtractor = useCallback((item: FollowListItem) => item.user.address, []);
   const requestKeyExtractor = useCallback((item: FollowRequestItem) => item.requestId, []);
 
+  // Minimal: full-width hairline instead of a rule indented past the avatar.
   const ItemSeparatorComponent = useCallback(() => (
-    <View className="h-[1px] bg-theme-neutrals-800/50 ml-[96px]" />
-  ), []);
+    isMinimal ? (
+      <View style={{ height: 1, backgroundColor: MINIMAL_HAIRLINE }} />
+    ) : (
+      <View className="h-[1px] bg-theme-neutrals-800/50 ml-[96px]" />
+    )
+  ), [isMinimal]);
 
   const ListFooterComponent = useMemo(() => {
     if (loadingMore) {

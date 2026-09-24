@@ -66,6 +66,8 @@ import SuggestedAccountsSection from "./SuggestedAccountsSection";
 import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getNFT } from "../../services/nft.service";
 import { useBoostSlot } from "../../hooks/useSuperpowers";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_TAB_LINE } from "../../theme/minimal";
 
 export interface InfiniteVideoFeedHandle {
   scrollToTopAndRefresh: () => void;
@@ -194,6 +196,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     __listKey: string;
   }
   const [refreshing, setRefreshing] = useState(false);
+  const { isMinimal } = useAppTheme();
   // Row visibility lives outside React state so a viewability tick re-renders
   // only the rows it changed, not every mounted cell. See libs/feedVisibility.
   // Created dark when this list mounts as a hidden pager page (the warm-up
@@ -959,7 +962,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // retry, which turns an outage into a page that is only an advert.
   if (initialLoading && cappedItems.length === 0) {
     return (
-      <View className="flex-1 px-2">
+      // Minimal: no side padding, so the skeleton rows span the screen the
+      // way minimal FeedCards do once they step out over the list gutter.
+      <View className={isMinimal ? "flex-1" : "flex-1 px-2"}>
         {/* Pushed below the collapsible header. The early return drops the
             list's ListHeaderComponent, which is where the header spacer lives —
             without this the skeleton starts at y=0 and its first cards render
@@ -977,7 +982,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         <Pressable
           accessibilityRole="button"
           onPress={handleRetry}
-          className="px-5 py-2 rounded-xl bg-theme-neutrals-700 active:opacity-80"
+          className={isMinimal ? "px-5 py-2 border active:opacity-80" : "px-5 py-2 rounded-xl bg-theme-neutrals-700 active:opacity-80"}
+          style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
         >
           <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
         </Pressable>

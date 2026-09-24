@@ -7,6 +7,7 @@ import { withScreenBoundary } from "../components/common/ScreenErrorFallback";
 import { useAuthState } from "../context/AuthContext";
 import { DrawerProvider, useDrawer } from "../context/DrawerContext";
 import AppDrawer from "../components/Home/AppDrawer";
+import { useAppTheme } from "../context/ThemeContext";
 
 /**
  * Native stack, not @react-navigation/stack.
@@ -73,6 +74,7 @@ function AppNavigatorContent() {
   const { isSignedIn, needsUsername } = useAuthState();
   const { drawerOpen, closeDrawer } = useDrawer();
   const isAuthed = isSignedIn && !needsUsername;
+  const { isMinimal } = useAppTheme();
 
   return (
     <>
@@ -81,7 +83,9 @@ function AppNavigatorContent() {
         screenLayout={withScreenBoundary}
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: '#010305' },
+          // An options object, not a JSX style prop, so the app-wide
+          // near-black -> #000 pass for minimal never sees it; branch here.
+          contentStyle: { backgroundColor: isMinimal ? '#000' : '#010305' },
           // A screen you have navigated away from keeps rendering otherwise —
           // this stack holds sixty-odd of them, so Home -> Profile -> Community
           // -> Post left four live at once, all re-rendering together on every

@@ -29,11 +29,23 @@ import {
   deleteFolder,
   BookmarkFolder,
 } from "../services/bookmark.service";
+import { useAppTheme } from "../context/ThemeContext";
+import {
+  MINIMAL_HAIRLINE,
+  MINIMAL_INSET,
+  MINIMAL_TAB_TEXT,
+  MINIMAL_TAB_TEXT_ACTIVE,
+  minimalFlat,
+  minimalTab,
+  minimalTabActive,
+  minimalTabStrip,
+} from "../theme/minimal";
 
 type ActiveTab = "all" | "folders";
 
 const SavedPostsScreen: React.FC = () => {
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
@@ -165,12 +177,13 @@ const SavedPostsScreen: React.FC = () => {
     return (
       <TouchableOpacity
         onPress={() => setSelectedFolder(item)}
-        style={styles.folderCard}
+        // Minimal: no box — the folder icon, name and count stand on the black.
+        style={[styles.folderCard, isMinimal && minimalFlat]}
         activeOpacity={0.7}
       >
-        <View style={styles.folderCardContent}>
+        <View style={[styles.folderCardContent, isMinimal && styles.minimalFolderCardContent]}>
           <View style={styles.folderHeader}>
-            <View style={styles.folderIconContainer}>
+            <View style={[styles.folderIconContainer, isMinimal && styles.minimalFolderIcon]}>
               <Icon name="Folder" size={32} color="#D4D4D8" />
             </View>
             <TouchableOpacity
@@ -371,23 +384,44 @@ const SavedPostsScreen: React.FC = () => {
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title={t("screens.savedPosts")} canGoBack />
 
-      {/* Tabs */}
-      <View style={styles.tabsContainer}>
+      {/* Tabs. Minimal: file tabs on one full-width baseline, the active tab
+          lifting off it (see theme/minimal), instead of a segmented pill. */}
+      <View style={[styles.tabsContainer, isMinimal && styles.minimalTabsContainer]}>
         <TouchableOpacity
           onPress={() => setActiveTab("all")}
-          style={[styles.tabButton, activeTab === "all" && styles.tabButtonActive]}
+          style={[
+            styles.tabButton,
+            activeTab === "all" && styles.tabButtonActive,
+            isMinimal && (activeTab === "all" ? minimalTabActive : minimalTab),
+          ]}
           activeOpacity={0.8}
         >
-          <Text style={[styles.tabText, activeTab === "all" && styles.tabTextActive]}>
+          <Text
+            style={[
+              styles.tabText,
+              activeTab === "all" && styles.tabTextActive,
+              isMinimal && { color: activeTab === "all" ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
+            ]}
+          >
             {t("savedPosts.allSaved")}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setActiveTab("folders")}
-          style={[styles.tabButton, activeTab === "folders" && styles.tabButtonActive]}
+          style={[
+            styles.tabButton,
+            activeTab === "folders" && styles.tabButtonActive,
+            isMinimal && (activeTab === "folders" ? minimalTabActive : minimalTab),
+          ]}
           activeOpacity={0.8}
         >
-          <Text style={[styles.tabText, activeTab === "folders" && styles.tabTextActive]}>
+          <Text
+            style={[
+              styles.tabText,
+              activeTab === "folders" && styles.tabTextActive,
+              isMinimal && { color: activeTab === "folders" ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
+            ]}
+          >
             {t("savedPosts.collections")}
           </Text>
         </TouchableOpacity>
@@ -417,7 +451,9 @@ const SavedPostsScreen: React.FC = () => {
                     setFolderPublic(false);
                     setShowCreateModal(true);
                   }}
-                  style={styles.createCard}
+                  // Minimal: a full-width row bounded by hairlines, stepping out
+                  // over the grid's 16pt padding and taking it back as inset.
+                  style={[styles.createCard, isMinimal && styles.minimalCreateCard]}
                   activeOpacity={0.8}
                 >
                   <Icon name="FolderPlus" size={24} color="#D4D4D8" />
@@ -632,6 +668,31 @@ const SavedPostsScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  minimalTabsContainer: {
+    ...minimalTabStrip,
+    padding: 0,
+    marginHorizontal: 0,
+    marginTop: 4,
+    marginBottom: 10,
+  },
+  minimalCreateCard: {
+    justifyContent: "flex-start",
+    backgroundColor: "transparent",
+    borderWidth: 0,
+    borderStyle: "solid",
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: MINIMAL_HAIRLINE,
+    marginHorizontal: -MINIMAL_INSET,
+    paddingHorizontal: MINIMAL_INSET,
+  },
+  minimalFolderCardContent: {
+    paddingHorizontal: 0,
+  },
+  minimalFolderIcon: {
+    backgroundColor: "transparent",
+    alignItems: "flex-start",
+  },
   tabsContainer: {
     flexDirection: "row",
     backgroundColor: "rgba(255,255,255,0.03)",

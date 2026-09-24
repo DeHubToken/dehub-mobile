@@ -23,6 +23,15 @@ import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
 import SuggestedAccountCard from "./SuggestedAccountCard";
 import type { FollowState } from "../Search/SearchAccountChip";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE, MINIMAL_INSET } from "../../theme/minimal";
+
+/**
+ * The feed list's side padding (InfiniteVideoFeed's contentContainerStyle).
+ * In minimal the section steps out over it, the same first guess FeedCard's
+ * DEFAULT_LIST_GUTTER makes, so its hairline meets the posts' at both edges.
+ */
+const MINIMAL_LIST_GUTTER = 8;
 
 /** Page size. Matches the web carousel so both rails page identically. */
 const BATCH_SIZE = 10;
@@ -36,6 +45,7 @@ const LOW_WATER_MARK = 3;
 const SuggestedAccountsSection: React.FC = () => {
   const user = useUser() as { address?: string } | null;
   const { t } = useTranslation();
+  const { isMinimal } = useAppTheme();
   const [accounts, setAccounts] = useState<SuggestedAccount[]>([]);
   /** Addresses followed or dismissed this session — never shown again. */
   const [hiddenAddresses, setHiddenAddresses] = useState<Set<string>>(new Set());
@@ -180,14 +190,28 @@ const SuggestedAccountsSection: React.FC = () => {
       nestedScrollEnabled
       onEndReached={handleEndReached}
       onEndReachedThreshold={0.6}
-      contentContainerStyle={{ paddingHorizontal: 8 }}
+      contentContainerStyle={{ paddingHorizontal: isMinimal ? MINIMAL_INSET : 8 }}
     />
   );
 
   return (
-    <View className="mb-3">
+    // Minimal: a feed row like the posts around it — no gap below, one
+    // full-width hairline under it, and the header held at the 16pt text inset.
+    <View
+      className={isMinimal ? undefined : "mb-3"}
+      style={isMinimal ? {
+        marginHorizontal: -MINIMAL_LIST_GUTTER,
+        paddingTop: 14,
+        paddingBottom: 14,
+        borderBottomWidth: 1,
+        borderBottomColor: MINIMAL_HAIRLINE,
+      } : undefined}
+    >
       {/* Header row */}
-      <View className="flex-row items-center justify-between px-2 mb-2.5">
+      <View
+        className="flex-row items-center justify-between px-2 mb-2.5"
+        style={isMinimal ? { paddingHorizontal: MINIMAL_INSET } : undefined}
+      >
         <Text className="text-white text-sm font-semibold">
           {t("profile.followSuggestions")}
         </Text>
