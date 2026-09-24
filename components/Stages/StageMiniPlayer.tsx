@@ -3,10 +3,13 @@ import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
 import Icon from "../ui/Icon";
 import { useStages } from "../../context/StageContext";
+import { useTranslation } from "react-i18next";
+import { confirmEndStage } from "./confirmEndStage";
 
 const StageMiniPlayer: React.FC = () => {
   const { currentSpace, isConnected, myRole, leaveSpace, endSpace, openModal, screenShareUid } =
     useStages();
+  const { t } = useTranslation();
 
   if (!currentSpace || !isConnected) return null;
 
@@ -35,7 +38,7 @@ const StageMiniPlayer: React.FC = () => {
         </View>
       </View>
       <TouchableOpacity
-        onPress={isHost ? endSpace : leaveSpace}
+        onPress={isHost ? () => confirmEndStage(t, currentSpace.title, endSpace) : leaveSpace}
         style={[styles.leaveBtn, isHost && styles.endBtn]}
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
       >
