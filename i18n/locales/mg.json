@@ -6636,5 +6636,34 @@
       "violence": "Herisetra",
       "scam_or_fraud": "Hosoka na hosoka"
     }
+  },
+  "affiliateLanding": {
+    "title": "Amboary ny pejin'ny fanasanao",
+    "subtitle": "Ataovy mitovy aminao ny pejy. Hitan'ny mpitsidika ity lahatsoratra ity alohan'ny hidirany.",
+    "headline": "Lohateny",
+    "message": "Hafatra fandraisana",
+    "buttonText": "Soratra amin'ny bokotra lehibe",
+    "destination": "Toerana ao amin'ny DeHub",
+    "extraTitle": "Bokotra fanampiny ({{count}}/{{max}})",
+    "extraHint": "Alefaso mivantana any amin'ny ampahany amin'ny DeHub tiany ny mpitsidika. Mitazona ny referal-nao ny bokotra tsirairay.",
+    "extraLabel": "Soratry ny bokotra",
+    "removeButton": "Esory ny bokotra",
+    "addCustom": "Manokana",
+    "presets": {
+      "edit": "Ovay",
+      "create": "Mamorona",
+      "build": "Manorina",
+      "import": "Manafatra",
+      "explore": "Mikaroka"
+    },
+    "publish": "Avoahy ny fanovana",
+    "publishing": "Mamoaka…",
+    "reset": "Averina",
+    "preview": "Topi-maso mivantana",
+    "published": "Navoaka ny pejin'ny fanasana",
+    "saveFailed": "Tsy voatahiry ny pejin'ny fanasana",
+    "clicksTitle": "Tsindry isaky ny toerana",
+    "clicksRow_one": "{{clicks}} tsindry · {{unique}} tokana",
+    "clicksRow_other": "{{clicks}} tsindry · {{unique}} tokana"
   }
 }

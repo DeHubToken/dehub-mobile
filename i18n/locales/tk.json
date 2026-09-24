@@ -6537,5 +6537,34 @@
       "violence": "Zorluk",
       "scam_or_fraud": "Ýalançyllyk ýa-da ýalançyllyk"
     }
+  },
+  "affiliateLanding": {
+    "title": "Çakylyk sahypaňy sazla",
+    "subtitle": "Sahypa seniň ýaly ýaňlansyn. Myhmanlar goşulmazdan öň bu teksti görýärler.",
+    "headline": "Sözbaşy",
+    "message": "Hoş geldiňiz haty",
+    "buttonText": "Esasy düwme teksti",
+    "destination": "DeHub ugry",
+    "extraTitle": "Goşmaça düwmeler ({{count}}/{{max}})",
+    "extraHint": "Myhmanlary DeHub-yň gyzyklanýan bölümine göni iber. Her düwme seniň referalyňy saklaýar.",
+    "extraLabel": "Düwme teksti",
+    "removeButton": "Düwmäni aýyr",
+    "addCustom": "Ýörite",
+    "presets": {
+      "edit": "Üýtget",
+      "create": "Döret",
+      "build": "Gur",
+      "import": "Import et",
+      "explore": "Öwren"
+    },
+    "publish": "Üýtgeşmeleri çap et",
+    "publishing": "Çap edilýär…",
+    "reset": "Täzeden goý",
+    "preview": "Göni öňünden görkeziş",
+    "published": "Çakylyk sahypasy çap edildi",
+    "saveFailed": "Çakylyk sahypasyny saklap bolmady",
+    "clicksTitle": "Ugur boýunça basmalar",
+    "clicksRow_one": "{{clicks}} basma · {{unique}} özboluşly",
+    "clicksRow_other": "{{clicks}} basma · {{unique}} özboluşly"
   }
 }

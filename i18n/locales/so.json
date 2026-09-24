@@ -6537,5 +6537,34 @@
       "violence": "Rabshado",
       "scam_or_fraud": "Khiyaamo ama khiyaano"
     }
+  },
+  "affiliateLanding": {
+    "title": "Habee boggaaga martiqaadka",
+    "subtitle": "Ka dhig boggu inuu u dhawaaqo sidaada oo kale. Booqdayaashu waxay arkaan qoraalkan ka hor intaysan ku biirin.",
+    "headline": "Cinwaan",
+    "message": "Fariinta soo dhawaynta",
+    "buttonText": "Qoraalka badhanka ugu weyn",
+    "destination": "Meesha DeHub",
+    "extraTitle": "Badhamo dheeraad ah ({{count}}/{{max}})",
+    "extraHint": "U dir booqdayaasha si toos ah qaybta DeHub ee ay xiisaynayaan. Badhan kastaa wuxuu hayaa gudbintaada.",
+    "extraLabel": "Qoraalka badhanka",
+    "removeButton": "Ka saar badhanka",
+    "addCustom": "Gaar ah",
+    "presets": {
+      "edit": "Wax ka beddel",
+      "create": "Samee",
+      "build": "Dhis",
+      "import": "Soo deji",
+      "explore": "Sahami"
+    },
+    "publish": "Daabac isbeddellada",
+    "publishing": "Waa la daabacayaa…",
+    "reset": "Dib u deji",
+    "preview": "Horudhac toos ah",
+    "published": "Bogga martiqaadka waa la daabacay",
+    "saveFailed": "Lama keydin karin bogga martiqaadka",
+    "clicksTitle": "Gujisyada meelaha",
+    "clicksRow_one": "{{clicks}} gujis · {{unique}} gaar ah",
+    "clicksRow_other": "{{clicks}} gujisyo · {{unique}} gaar ah"
   }
 }

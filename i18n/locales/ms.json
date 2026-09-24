@@ -6798,5 +6798,34 @@
       "violence": "Keganasan",
       "scam_or_fraud": "Penipuan atau penipuan"
     }
+  },
+  "affiliateLanding": {
+    "title": "Sesuaikan halaman jemputan anda",
+    "subtitle": "Jadikan halaman berbunyi seperti anda. Pelawat melihat teks ini sebelum menyertai.",
+    "headline": "Tajuk",
+    "message": "Mesej alu-aluan",
+    "buttonText": "Teks butang utama",
+    "destination": "Destinasi DeHub",
+    "extraTitle": "Butang tambahan ({{count}}/{{max}})",
+    "extraHint": "Hantar pelawat terus ke bahagian DeHub yang mereka minati. Setiap butang mengekalkan rujukan anda.",
+    "extraLabel": "Teks butang",
+    "removeButton": "Buang butang",
+    "addCustom": "Tersuai",
+    "presets": {
+      "edit": "Sunting",
+      "create": "Cipta",
+      "build": "Bina",
+      "import": "Import",
+      "explore": "Teroka"
+    },
+    "publish": "Terbitkan perubahan",
+    "publishing": "Menerbitkan…",
+    "reset": "Set semula",
+    "preview": "Pratonton langsung",
+    "published": "Halaman jemputan diterbitkan",
+    "saveFailed": "Tidak dapat menyimpan halaman jemputan",
+    "clicksTitle": "Klik mengikut destinasi",
+    "clicksRow_one": "{{clicks}} klik · {{unique}} unik",
+    "clicksRow_other": "{{clicks}} klik · {{unique}} unik"
   }
 }

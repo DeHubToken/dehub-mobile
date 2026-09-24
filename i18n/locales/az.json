@@ -6537,5 +6537,34 @@
       "violence": "Zorakılıq",
       "scam_or_fraud": "Fırıldaq və ya fırıldaq"
     }
+  },
+  "affiliateLanding": {
+    "title": "Dəvət səhifəni fərdiləşdir",
+    "subtitle": "Səhifə sənin kimi səslənsin. Ziyarətçilər qoşulmazdan əvvəl bu mətni görür.",
+    "headline": "Başlıq",
+    "message": "Xoş gəldin mesajı",
+    "buttonText": "Əsas düymə mətni",
+    "destination": "DeHub istiqaməti",
+    "extraTitle": "Əlavə düymələr ({{count}}/{{max}})",
+    "extraHint": "Ziyarətçiləri birbaşa DeHub-un maraqlandıqları hissəsinə göndər. Hər düymə sənin referalını saxlayır.",
+    "extraLabel": "Düymə mətni",
+    "removeButton": "Düyməni sil",
+    "addCustom": "Fərdi",
+    "presets": {
+      "edit": "Redaktə et",
+      "create": "Yarat",
+      "build": "Qur",
+      "import": "İdxal et",
+      "explore": "Kəşf et"
+    },
+    "publish": "Dəyişiklikləri dərc et",
+    "publishing": "Dərc edilir…",
+    "reset": "Sıfırla",
+    "preview": "Canlı önizləmə",
+    "published": "Dəvət səhifəsi dərc edildi",
+    "saveFailed": "Dəvət səhifəsi saxlanıla bilmədi",
+    "clicksTitle": "İstiqamətə görə kliklər",
+    "clicksRow_one": "{{clicks}} klik · {{unique}} unikal",
+    "clicksRow_other": "{{clicks}} klik · {{unique}} unikal"
   }
 }

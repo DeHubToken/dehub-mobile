@@ -6541,5 +6541,34 @@
       "violence": "Våld",
       "scam_or_fraud": "Bluff eller bedrägeri"
     }
+  },
+  "affiliateLanding": {
+    "title": "Anpassa din inbjudningssida",
+    "subtitle": "Få sidan att låta som du. Besökare ser den här texten innan de går med.",
+    "headline": "Rubrik",
+    "message": "Välkomstmeddelande",
+    "buttonText": "Text på huvudknapp",
+    "destination": "DeHub-destination",
+    "extraTitle": "Extra knappar ({{count}}/{{max}})",
+    "extraHint": "Skicka besökare direkt till den del av DeHub de bryr sig om. Varje knapp behåller din hänvisning.",
+    "extraLabel": "Knapptext",
+    "removeButton": "Ta bort knapp",
+    "addCustom": "Anpassad",
+    "presets": {
+      "edit": "Redigera",
+      "create": "Skapa",
+      "build": "Bygg",
+      "import": "Importera",
+      "explore": "Utforska"
+    },
+    "publish": "Publicera ändringar",
+    "publishing": "Publicerar…",
+    "reset": "Återställ",
+    "preview": "Liveförhandsvisning",
+    "published": "Inbjudningssida publicerad",
+    "saveFailed": "Kunde inte spara inbjudningssidan",
+    "clicksTitle": "Klick per destination",
+    "clicksRow_one": "{{clicks}} klick · {{unique}} unika",
+    "clicksRow_other": "{{clicks}} klick · {{unique}} unika"
   }
 }

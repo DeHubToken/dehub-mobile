@@ -6534,5 +6534,34 @@
     "liquidity": "Ликвидност",
     "change1h": "1х Промена",
     "viewOnDexScreener": "Прикажи на DexScreener-у"
+  },
+  "affiliateLanding": {
+    "title": "Прилагоди своју страницу позивнице",
+    "subtitle": "Нека страница звучи као ти. Посетиоци виде овај текст пре придруживања.",
+    "headline": "Наслов",
+    "message": "Порука добродошлице",
+    "buttonText": "Текст главног дугмета",
+    "destination": "Одредиште на DeHub-у",
+    "extraTitle": "Додатна дугмад ({{count}}/{{max}})",
+    "extraHint": "Пошаљи посетиоце право у део DeHub-а који их занима. Свако дугме задржава твоју препоруку.",
+    "extraLabel": "Текст дугмета",
+    "removeButton": "Уклони дугме",
+    "addCustom": "Прилагођено",
+    "presets": {
+      "edit": "Уреди",
+      "create": "Направи",
+      "build": "Гради",
+      "import": "Увези",
+      "explore": "Истражи"
+    },
+    "publish": "Објави измене",
+    "publishing": "Објављивање…",
+    "reset": "Ресетуј",
+    "preview": "Преглед уживо",
+    "published": "Страница позивнице објављена",
+    "saveFailed": "Није могуће сачувати страницу позивнице",
+    "clicksTitle": "Кликови по одредишту",
+    "clicksRow_one": "{{clicks}} клик · {{unique}} јединствених",
+    "clicksRow_other": "{{clicks}} кликова · {{unique}} јединствених"
   }
 }

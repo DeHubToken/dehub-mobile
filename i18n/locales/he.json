@@ -6541,5 +6541,34 @@
       "violence": "אלימות",
       "scam_or_fraud": "הונאה או הונאה"
     }
+  },
+  "affiliateLanding": {
+    "title": "התאם את דף ההזמנה שלך",
+    "subtitle": "תן לדף להישמע כמוך. המבקרים רואים את הטקסט הזה לפני שהם מצטרפים.",
+    "headline": "כותרת",
+    "message": "הודעת פתיחה",
+    "buttonText": "טקסט הכפתור הראשי",
+    "destination": "יעד ב-DeHub",
+    "extraTitle": "כפתורים נוספים ({{count}}/{{max}})",
+    "extraHint": "שלח מבקרים ישירות לחלק ב-DeHub שמעניין אותם. כל כפתור שומר על ההפניה שלך.",
+    "extraLabel": "טקסט הכפתור",
+    "removeButton": "הסר כפתור",
+    "addCustom": "מותאם אישית",
+    "presets": {
+      "edit": "עריכה",
+      "create": "יצירה",
+      "build": "בנייה",
+      "import": "ייבוא",
+      "explore": "גילוי"
+    },
+    "publish": "פרסם שינויים",
+    "publishing": "מפרסם…",
+    "reset": "איפוס",
+    "preview": "תצוגה מקדימה חיה",
+    "published": "דף ההזמנה פורסם",
+    "saveFailed": "לא ניתן לשמור את דף ההזמנה",
+    "clicksTitle": "קליקים לפי יעד",
+    "clicksRow_one": "{{clicks}} קליק · {{unique}} ייחודיים",
+    "clicksRow_other": "{{clicks}} קליקים · {{unique}} ייחודיים"
   }
 }

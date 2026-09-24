@@ -6791,5 +6791,34 @@
       "violence": "Geweld",
       "scam_or_fraud": "Oplichting of fraude"
     }
+  },
+  "affiliateLanding": {
+    "title": "Pas je uitnodigingspagina aan",
+    "subtitle": "Laat de pagina klinken zoals jij. Bezoekers zien deze tekst voordat ze lid worden.",
+    "headline": "Kop",
+    "message": "Welkomstbericht",
+    "buttonText": "Tekst hoofdknop",
+    "destination": "DeHub-bestemming",
+    "extraTitle": "Extra knoppen ({{count}}/{{max}})",
+    "extraHint": "Stuur bezoekers direct naar het deel van DeHub dat hen interesseert. Elke knop behoudt je verwijzing.",
+    "extraLabel": "Knoptekst",
+    "removeButton": "Knop verwijderen",
+    "addCustom": "Aangepast",
+    "presets": {
+      "edit": "Bewerken",
+      "create": "Maken",
+      "build": "Bouwen",
+      "import": "Importeren",
+      "explore": "Verkennen"
+    },
+    "publish": "Wijzigingen publiceren",
+    "publishing": "Publiceren…",
+    "reset": "Herstellen",
+    "preview": "Live voorbeeld",
+    "published": "Uitnodigingspagina gepubliceerd",
+    "saveFailed": "Kon uitnodigingspagina niet opslaan",
+    "clicksTitle": "Klikken per bestemming",
+    "clicksRow_one": "{{clicks}} klik · {{unique}} uniek",
+    "clicksRow_other": "{{clicks}} klikken · {{unique}} uniek"
   }
 }

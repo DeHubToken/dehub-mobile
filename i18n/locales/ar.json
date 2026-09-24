@@ -6541,5 +6541,34 @@
       "violence": "العنف",
       "scam_or_fraud": "الغش أو الاحتيال"
     }
+  },
+  "affiliateLanding": {
+    "title": "خصّص صفحة الدعوة الخاصة بك",
+    "subtitle": "اجعل الصفحة تعبّر عنك. يرى الزوار هذا النص قبل الانضمام.",
+    "headline": "العنوان",
+    "message": "رسالة الترحيب",
+    "buttonText": "نص الزر الرئيسي",
+    "destination": "الوجهة في DeHub",
+    "extraTitle": "أزرار إضافية ({{count}}/{{max}})",
+    "extraHint": "أرسل الزوار مباشرة إلى الجزء الذي يهمهم في DeHub. كل زر يحتفظ بإحالتك.",
+    "extraLabel": "نص الزر",
+    "removeButton": "إزالة الزر",
+    "addCustom": "مخصص",
+    "presets": {
+      "edit": "تعديل",
+      "create": "إنشاء",
+      "build": "بناء",
+      "import": "استيراد",
+      "explore": "استكشاف"
+    },
+    "publish": "نشر التغييرات",
+    "publishing": "جارٍ النشر…",
+    "reset": "إعادة تعيين",
+    "preview": "معاينة مباشرة",
+    "published": "تم نشر صفحة الدعوة",
+    "saveFailed": "تعذّر حفظ صفحة الدعوة",
+    "clicksTitle": "النقرات حسب الوجهة",
+    "clicksRow_one": "{{clicks}} نقرة · {{unique}} فريدة",
+    "clicksRow_other": "{{clicks}} نقرات · {{unique}} فريدة"
   }
 }

@@ -6537,5 +6537,34 @@
       "violence": "Dhunë",
       "scam_or_fraud": "Mashtrim ose mashtrim"
     }
+  },
+  "affiliateLanding": {
+    "title": "Personalizo faqen tënde të ftesës",
+    "subtitle": "Bëje faqen të tingëllojë si ti. Vizitorët e shohin këtë tekst para se të bashkohen.",
+    "headline": "Titulli",
+    "message": "Mesazhi i mirëseardhjes",
+    "buttonText": "Teksti i butonit kryesor",
+    "destination": "Destinacioni në DeHub",
+    "extraTitle": "Butona shtesë ({{count}}/{{max}})",
+    "extraHint": "Dërgoji vizitorët drejt pjesës së DeHub që u intereson. Çdo buton ruan rekomandimin tënd.",
+    "extraLabel": "Teksti i butonit",
+    "removeButton": "Hiq butonin",
+    "addCustom": "I personalizuar",
+    "presets": {
+      "edit": "Redakto",
+      "create": "Krijo",
+      "build": "Ndërto",
+      "import": "Importo",
+      "explore": "Eksploro"
+    },
+    "publish": "Publiko ndryshimet",
+    "publishing": "Duke publikuar…",
+    "reset": "Rivendos",
+    "preview": "Parapamje e drejtpërdrejtë",
+    "published": "Faqja e ftesës u publikua",
+    "saveFailed": "Faqja e ftesës nuk u ruajt dot",
+    "clicksTitle": "Klikime sipas destinacionit",
+    "clicksRow_one": "{{clicks}} klikim · {{unique}} unikë",
+    "clicksRow_other": "{{clicks}} klikime · {{unique}} unikë"
   }
 }

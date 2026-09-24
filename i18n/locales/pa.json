@@ -6541,5 +6541,34 @@
       "violence": "ਹਿੰਸਾ",
       "scam_or_fraud": "ਧੋਖਾਧੜੀ ਜਾਂ ਧੋਖਾਧੜੀ"
     }
+  },
+  "affiliateLanding": {
+    "title": "ਆਪਣਾ ਸੱਦਾ ਪੰਨਾ ਅਨੁਕੂਲਿਤ ਕਰੋ",
+    "subtitle": "ਪੰਨੇ ਨੂੰ ਆਪਣੇ ਵਰਗਾ ਬਣਾਓ। ਸ਼ਾਮਲ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਵਿਜ਼ਿਟਰ ਇਹ ਟੈਕਸਟ ਦੇਖਦੇ ਹਨ।",
+    "headline": "ਸਿਰਲੇਖ",
+    "message": "ਸਵਾਗਤ ਸੁਨੇਹਾ",
+    "buttonText": "ਮੁੱਖ ਬਟਨ ਦਾ ਟੈਕਸਟ",
+    "destination": "DeHub ਮੰਜ਼ਿਲ",
+    "extraTitle": "ਵਾਧੂ ਬਟਨ ({{count}}/{{max}})",
+    "extraHint": "ਵਿਜ਼ਿਟਰਾਂ ਨੂੰ ਸਿੱਧਾ DeHub ਦੇ ਉਸ ਹਿੱਸੇ ਭੇਜੋ ਜਿਸ ਵਿੱਚ ਉਹਨਾਂ ਦੀ ਦਿਲਚਸਪੀ ਹੈ। ਹਰ ਬਟਨ ਤੁਹਾਡਾ ਰੈਫ਼ਰਲ ਬਰਕਰਾਰ ਰੱਖਦਾ ਹੈ।",
+    "extraLabel": "ਬਟਨ ਟੈਕਸਟ",
+    "removeButton": "ਬਟਨ ਹਟਾਓ",
+    "addCustom": "ਕਸਟਮ",
+    "presets": {
+      "edit": "ਸੰਪਾਦਿਤ ਕਰੋ",
+      "create": "ਬਣਾਓ",
+      "build": "ਉਸਾਰੋ",
+      "import": "ਆਯਾਤ",
+      "explore": "ਖੋਜੋ"
+    },
+    "publish": "ਤਬਦੀਲੀਆਂ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰੋ",
+    "publishing": "ਪ੍ਰਕਾਸ਼ਿਤ ਹੋ ਰਿਹਾ ਹੈ…",
+    "reset": "ਰੀਸੈਟ",
+    "preview": "ਲਾਈਵ ਝਲਕ",
+    "published": "ਸੱਦਾ ਪੰਨਾ ਪ੍ਰਕਾਸ਼ਿਤ ਹੋਇਆ",
+    "saveFailed": "ਸੱਦਾ ਪੰਨਾ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਹੋ ਸਕਿਆ",
+    "clicksTitle": "ਮੰਜ਼ਿਲ ਅਨੁਸਾਰ ਕਲਿੱਕ",
+    "clicksRow_one": "{{clicks}} ਕਲਿੱਕ · {{unique}} ਵਿਲੱਖਣ",
+    "clicksRow_other": "{{clicks}} ਕਲਿੱਕ · {{unique}} ਵਿਲੱਖਣ"
   }
 }

@@ -6538,5 +6538,34 @@
       "violence": "Iwa-ipa",
       "scam_or_fraud": "Ìwà ìbàjẹ́ tàbí ìwà ìbàjẹ́"
     }
+  },
+  "affiliateLanding": {
+    "title": "Ṣe àtúnṣe ojú-ìwé ìpè rẹ",
+    "subtitle": "Jẹ́ kí ojú-ìwé dún bí ìwọ. Àwọn àlejò máa ń rí ọ̀rọ̀ yìí kí wọ́n tó darapọ̀.",
+    "headline": "Àkọlé",
+    "message": "Ìfiránṣẹ́ ìkíni",
+    "buttonText": "Ọ̀rọ̀ bọ́tìnnì àkọ́kọ́",
+    "destination": "Ibi-àfojúsùn DeHub",
+    "extraTitle": "Àwọn bọ́tìnnì àfikún ({{count}}/{{max}})",
+    "extraHint": "Rán àwọn àlejò tààrà sí apá DeHub tí wọ́n nífẹ̀ẹ́ sí. Gbogbo bọ́tìnnì ló ń pa ìtọ́kasí rẹ mọ́.",
+    "extraLabel": "Ọ̀rọ̀ bọ́tìnnì",
+    "removeButton": "Yọ bọ́tìnnì kúrò",
+    "addCustom": "Àdáni",
+    "presets": {
+      "edit": "Ṣàtúnṣe",
+      "create": "Ṣẹ̀dá",
+      "build": "Kọ́",
+      "import": "Gbé wọlé",
+      "explore": "Ṣàwárí"
+    },
+    "publish": "Tẹ àwọn àyípadà jáde",
+    "publishing": "Ó ń tẹ̀ jáde…",
+    "reset": "Tún ṣètò",
+    "preview": "Àwòtẹ́lẹ̀ láàyè",
+    "published": "A ti tẹ ojú-ìwé ìpè jáde",
+    "saveFailed": "Kò ṣeé ṣe láti fi ojú-ìwé ìpè pamọ́",
+    "clicksTitle": "Títẹ̀ nípa ibi-àfojúsùn",
+    "clicksRow_one": "{{clicks}} títẹ̀ · {{unique}} aláìlẹ́gbẹ́",
+    "clicksRow_other": "{{clicks}} títẹ̀ · {{unique}} aláìlẹ́gbẹ́"
   }
 }

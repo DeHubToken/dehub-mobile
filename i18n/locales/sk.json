@@ -6702,5 +6702,34 @@
       "violence": "Násilie",
       "scam_or_fraud": "Podvod alebo podvod"
     }
+  },
+  "affiliateLanding": {
+    "title": "Prispôsobte si pozývaciu stránku",
+    "subtitle": "Nech stránka znie ako vy. Návštevníci uvidia tento text pred pripojením.",
+    "headline": "Nadpis",
+    "message": "Uvítacia správa",
+    "buttonText": "Text hlavného tlačidla",
+    "destination": "Cieľ v DeHub",
+    "extraTitle": "Ďalšie tlačidlá ({{count}}/{{max}})",
+    "extraHint": "Pošlite návštevníkov priamo do časti DeHub, ktorá ich zaujíma. Každé tlačidlo zachová vaše odporúčanie.",
+    "extraLabel": "Text tlačidla",
+    "removeButton": "Odstrániť tlačidlo",
+    "addCustom": "Vlastné",
+    "presets": {
+      "edit": "Upraviť",
+      "create": "Vytvoriť",
+      "build": "Stavať",
+      "import": "Importovať",
+      "explore": "Preskúmať"
+    },
+    "publish": "Zverejniť zmeny",
+    "publishing": "Zverejňuje sa…",
+    "reset": "Obnoviť",
+    "preview": "Živý náhľad",
+    "published": "Pozývacia stránka zverejnená",
+    "saveFailed": "Pozývaciu stránku sa nepodarilo uložiť",
+    "clicksTitle": "Kliknutia podľa cieľa",
+    "clicksRow_one": "{{clicks}} kliknutie · {{unique}} unikátnych",
+    "clicksRow_other": "{{clicks}} kliknutí · {{unique}} unikátnych"
   }
 }

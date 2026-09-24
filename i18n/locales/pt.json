@@ -6541,5 +6541,34 @@
       "violence": "Violência",
       "scam_or_fraud": "Golpe ou fraude"
     }
+  },
+  "affiliateLanding": {
+    "title": "Personalize sua página de convite",
+    "subtitle": "Deixe a página com a sua cara. Os visitantes veem este texto antes de entrar.",
+    "headline": "Título",
+    "message": "Mensagem de boas-vindas",
+    "buttonText": "Texto do botão principal",
+    "destination": "Destino no DeHub",
+    "extraTitle": "Botões extras ({{count}}/{{max}})",
+    "extraHint": "Leve os visitantes direto para a parte do DeHub que lhes interessa. Cada botão mantém sua indicação.",
+    "extraLabel": "Texto do botão",
+    "removeButton": "Remover botão",
+    "addCustom": "Personalizado",
+    "presets": {
+      "edit": "Editar",
+      "create": "Criar",
+      "build": "Construir",
+      "import": "Importar",
+      "explore": "Explorar"
+    },
+    "publish": "Publicar alterações",
+    "publishing": "Publicando…",
+    "reset": "Redefinir",
+    "preview": "Pré-visualização ao vivo",
+    "published": "Página de convite publicada",
+    "saveFailed": "Não foi possível salvar a página de convite",
+    "clicksTitle": "Cliques por destino",
+    "clicksRow_one": "{{clicks}} clique · {{unique}} únicos",
+    "clicksRow_other": "{{clicks}} cliques · {{unique}} únicos"
   }
 }

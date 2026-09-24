@@ -6566,5 +6566,34 @@
       "violence": "ዓመፅ",
       "scam_or_fraud": "ማጭበርበር ወይም ማጭበርበር"
     }
+  },
+  "affiliateLanding": {
+    "title": "የግብዣ ገጽዎን ያብጁ",
+    "subtitle": "ገጹ እንደ እርስዎ እንዲመስል ያድርጉ። ጎብኚዎች ከመቀላቀላቸው በፊት ይህን ጽሑፍ ያያሉ።",
+    "headline": "ርዕስ",
+    "message": "የእንኳን ደህና መጡ መልዕክት",
+    "buttonText": "የዋና አዝራር ጽሑፍ",
+    "destination": "የDeHub መድረሻ",
+    "extraTitle": "ተጨማሪ አዝራሮች ({{count}}/{{max}})",
+    "extraHint": "ጎብኚዎችን በቀጥታ ወደሚፈልጉት የDeHub ክፍል ይላኩ። እያንዳንዱ አዝራር ሪፈራልዎን ይጠብቃል።",
+    "extraLabel": "የአዝራር ጽሑፍ",
+    "removeButton": "አዝራር አስወግድ",
+    "addCustom": "ብጁ",
+    "presets": {
+      "edit": "አርትዕ",
+      "create": "ፍጠር",
+      "build": "ገንባ",
+      "import": "አስመጣ",
+      "explore": "አስስ"
+    },
+    "publish": "ለውጦችን አትም",
+    "publishing": "በማተም ላይ…",
+    "reset": "ዳግም አስጀምር",
+    "preview": "የቀጥታ ቅድመ እይታ",
+    "published": "የግብዣ ገጹ ታትሟል",
+    "saveFailed": "የግብዣ ገጹን ማስቀመጥ አልተቻለም",
+    "clicksTitle": "ጠቅታዎች በመድረሻ",
+    "clicksRow_one": "{{clicks}} ጠቅታ · {{unique}} ልዩ",
+    "clicksRow_other": "{{clicks}} ጠቅታዎች · {{unique}} ልዩ"
   }
 }

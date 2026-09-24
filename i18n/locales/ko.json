@@ -6541,5 +6541,34 @@
       "violence": "폭력",
       "scam_or_fraud": "사기 또는 사기"
     }
+  },
+  "affiliateLanding": {
+    "title": "초대 페이지 맞춤 설정",
+    "subtitle": "페이지를 나답게 꾸며 보세요. 방문자는 가입 전에 이 문구를 봅니다.",
+    "headline": "헤드라인",
+    "message": "환영 메시지",
+    "buttonText": "메인 버튼 텍스트",
+    "destination": "DeHub 이동 위치",
+    "extraTitle": "추가 버튼 ({{count}}/{{max}})",
+    "extraHint": "방문자를 관심 있는 DeHub 영역으로 바로 보내세요. 모든 버튼에 추천이 유지됩니다.",
+    "extraLabel": "버튼 텍스트",
+    "removeButton": "버튼 삭제",
+    "addCustom": "사용자 지정",
+    "presets": {
+      "edit": "편집",
+      "create": "만들기",
+      "build": "빌드",
+      "import": "가져오기",
+      "explore": "탐색"
+    },
+    "publish": "변경 사항 게시",
+    "publishing": "게시 중…",
+    "reset": "초기화",
+    "preview": "실시간 미리보기",
+    "published": "초대 페이지가 게시되었습니다",
+    "saveFailed": "초대 페이지를 저장할 수 없습니다",
+    "clicksTitle": "이동 위치별 클릭",
+    "clicksRow_one": "{{clicks}} 클릭 · {{unique}} 고유",
+    "clicksRow_other": "{{clicks}} 클릭 · {{unique}} 고유"
   }
 }

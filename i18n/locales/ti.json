@@ -6537,5 +6537,34 @@
       "violence": "ዓመጽ",
       "scam_or_fraud": "ምትላል ወይ ምትላል"
     }
+  },
+  "affiliateLanding": {
+    "title": "ናይ ዕድመ ገጽካ ኣዳልው",
+    "subtitle": "ገጹ ከምኻ ክመስል ግበር። በጻሕቲ ቅድሚ ምጽንባሮም እዚ ጽሑፍ ይርእዩ።",
+    "headline": "ኣርእስቲ",
+    "message": "መልእኽቲ እንቋዕ ብደሓን መጻእኩም",
+    "buttonText": "ጽሑፍ ቀንዲ መጠወቒ",
+    "destination": "መዕለቢ DeHub",
+    "extraTitle": "ተወሳኺ መጠወቕቲ ({{count}}/{{max}})",
+    "extraHint": "በጻሕቲ ብቐጥታ ናብቲ ዝግደሱሉ ክፋል DeHub ስደዶም። ነፍሲ ወከፍ መጠወቒ ሪፈራልካ ይሕሉ።",
+    "extraLabel": "ጽሑፍ መጠወቒ",
+    "removeButton": "መጠወቒ ኣወግድ",
+    "addCustom": "ፍሉይ",
+    "presets": {
+      "edit": "ኣርም",
+      "create": "ፍጠር",
+      "build": "ሃንጽ",
+      "import": "ኣእቱ",
+      "explore": "ዳህስስ"
+    },
+    "publish": "ለውጥታት ኣሕትም",
+    "publishing": "ይሕተም ኣሎ…",
+    "reset": "ዳግም ኣጀምር",
+    "preview": "ቀጥታ ቅድመ ምርኣይ",
+    "published": "ናይ ዕድመ ገጽ ተሓቲሙ",
+    "saveFailed": "ናይ ዕድመ ገጽ ክዕቀብ ኣይከኣለን",
+    "clicksTitle": "ጠወቕታት ብመዕለቢ",
+    "clicksRow_one": "{{clicks}} ጠወቕ · {{unique}} ፍሉይ",
+    "clicksRow_other": "{{clicks}} ጠወቕታት · {{unique}} ፍሉይ"
   }
 }

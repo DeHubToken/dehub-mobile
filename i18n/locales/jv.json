@@ -6537,5 +6537,34 @@
       "violence": "Kekerasan",
       "scam_or_fraud": "Penipuan utawa ngapusi"
     }
+  },
+  "affiliateLanding": {
+    "title": "Atur kaca undanganmu",
+    "subtitle": "Gawe kaca kaya swaramu. Pengunjung ndeleng teks iki sadurunge gabung.",
+    "headline": "Irah-irahan",
+    "message": "Pesen sugeng rawuh",
+    "buttonText": "Teks tombol utama",
+    "destination": "Tujuan DeHub",
+    "extraTitle": "Tombol tambahan ({{count}}/{{max}})",
+    "extraHint": "Kirim pengunjung langsung menyang bagean DeHub sing dikarepake. Saben tombol tetep nyimpen referalmu.",
+    "extraLabel": "Teks tombol",
+    "removeButton": "Busak tombol",
+    "addCustom": "Kustom",
+    "presets": {
+      "edit": "Sunting",
+      "create": "Gawe",
+      "build": "Bangun",
+      "import": "Impor",
+      "explore": "Jelajahi"
+    },
+    "publish": "Terbitake owahan",
+    "publishing": "Lagi nerbitake…",
+    "reset": "Reset",
+    "preview": "Pratinjau langsung",
+    "published": "Kaca undangan wis diterbitake",
+    "saveFailed": "Ora bisa nyimpen kaca undangan",
+    "clicksTitle": "Klik miturut tujuan",
+    "clicksRow_one": "{{clicks}} klik · {{unique}} unik",
+    "clicksRow_other": "{{clicks}} klik · {{unique}} unik"
   }
 }
