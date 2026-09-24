@@ -374,6 +374,17 @@ export default function HomeScreen() {
     return () => subscription.remove();
   }, [feedProfileVisible, hideUserProfile]);
 
+  // The filter panel is an in-tree overlay, not a Modal, so Android back would
+  // otherwise skip it and leave the app. Close the panel first.
+  useEffect(() => {
+    if (!filterPanelVisible || feedProfileVisible) return;
+    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
+      setFilterPanelVisible(false);
+      return true;
+    });
+    return () => subscription.remove();
+  }, [filterPanelVisible, feedProfileVisible]);
+
   // Called from the UI thread once a drag has picked its landing page. The
   // animation is already running by then; this only catches React up.
   const commitIndex = useCallback(
