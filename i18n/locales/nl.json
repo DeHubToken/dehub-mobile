@@ -5196,7 +5196,10 @@
       "padding": "Opvulling {{value}}",
       "thickness": "Dikte {{value}}",
       "drawHint": "Sleep over de pagina om te tekenen. Elke streek is een eigen laag die je kunt verplaatsen, van formaat kunt veranderen of verwijderen. Tik op ‘Stop met tekenen’ als je klaar bent.",
-      "layersHint": "Bovenaan de lijst is vooraan. Gebruik de pijlen om de volgorde te wijzigen. Vergrendelde en verborgen lagen kun je alleen hier selecteren."
+      "layersHint": "Bovenaan de lijst is vooraan. Gebruik de pijlen om de volgorde te wijzigen. Vergrendelde en verborgen lagen kun je alleen hier selecteren.",
+      "agentWebOnly": "Een deel daarvan werkt voorlopig alleen in de webeditor.",
+      "brandLogoHint": "Selecteer een afbeelding op de pagina en gebruik die als je logo.",
+      "useAsLogo": "Geselecteerde afbeelding gebruiken"
     },
     "filters": {
       "none": "Origineel",
@@ -5290,7 +5293,8 @@
     },
     "rail": {
       "elements": "Elementen",
-      "layers": "Lagen"
+      "layers": "Lagen",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normaal",
@@ -5326,6 +5330,89 @@
       "outlineOn": "Omtrek",
       "outlineWidth": "Omtrekdikte {{value}}",
       "path": "Tekening"
+    },
+    "agent": {
+      "changes": "Bewerkingen: {{count}}",
+      "clear": "Chat wissen",
+      "done": "Klaar.",
+      "failed": "De AI kon dat nu niet doen. Probeer het zo opnieuw.",
+      "introBody": "Beschrijf het ontwerp of de wijziging in je eigen woorden. Het past het paginaformaat aan, schrijft en stijlt tekst, zoekt gratis foto's, video's en muziek, past filters toe, ordent lagen en animeert ze. Elk verzoek maak je in één keer ongedaan.",
+      "introTitle": "Vertel de AI wat je wilt",
+      "noStock": "Geen gratis materiaal gevonden voor ‘{{query}}’.",
+      "nothingToDo": "Ik kon daar niets aan veranderen. Beschrijf de bewerking die je wilt.",
+      "placeholder": "Beschrijf wat je wilt…",
+      "rateLimited": "Je hebt veel verzoeken verstuurd. Probeer het over een paar minuten opnieuw.",
+      "send": "Versturen",
+      "suggestFilter": "Maak de foto warmer en iets lichter",
+      "suggestPoster": "Maak een vierkante Instagram-post voor een zomeruitverkoop met een strandfoto en een vette titel",
+      "suggestStory": "Maak hier een 9:16-story van en vul de pagina met de foto",
+      "suggestTitle": "Voeg bovenaan een grote, vette titel toe met daaronder een kleinere ondertitel",
+      "undo": "Ongedaan maken",
+      "working": "Bezig…"
+    },
+    "brand": {
+      "addColor": "Merkkleur toevoegen",
+      "addLogo": "Logo toevoegen",
+      "applied": "Merk toegepast op {{count}} lagen.",
+      "apply": "Merk toepassen",
+      "bodyFont": "Lettertype hoofdtekst",
+      "colors": "Merkkleuren",
+      "heading": "Merkkit",
+      "headingFont": "Lettertype koppen",
+      "logo": "Logo",
+      "noLogo": "Geen logo",
+      "removeColor": "{{color}} verwijderen"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Binnenkort",
+        "title": "Groot nieuws op komst"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Gefeliciteerd"
+      },
+      "crypto": {
+        "change": "+42% deze week",
+        "title": "Koersupdate"
+      },
+      "event": {
+        "date": "Vrijdag 20.00 uur",
+        "place": "The Warehouse, centrum",
+        "title": "Livemuziekavond"
+      },
+      "heading": "Sjablonen",
+      "meme": {
+        "bottom": "In één keer",
+        "top": "Als de code werkt",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Aflevering 12 · Nu te horen",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Maak het simpel, maar betekenisvol.",
+        "title": "Citaatkaart"
+      },
+      "sale": {
+        "subtitle": "Tot 50% korting · Alleen dit weekend",
+        "title": "Zomersale"
+      },
+      "story": {
+        "cta": "Swipe omhoog om te shoppen",
+        "title": "Nieuwe drop"
+      },
+      "thumbnail": {
+        "badge": "Nieuw",
+        "title": "Dit geloof je niet"
+      },
+      "hint": "Kies er een om te beginnen. Elk woord, elke kleur en foto kun je aanpassen, of laat de AI het voor je doen.",
+      "use": "Sjabloon {{name}} gebruiken",
+      "replaceConfirm": "Huidig ontwerp vervangen door dit sjabloon? Je kunt het ongedaan maken.",
+      "replaceTitle": "Je ontwerp vervangen?",
+      "replace": "Vervangen"
     }
   },
   "creator": {

@@ -5094,7 +5094,10 @@
       "padding": "Odsadenie {{value}}",
       "thickness": "Hrúbka {{value}}",
       "drawHint": "Kreslite ťahaním po stránke. Každý ťah je samostatná vrstva, ktorú môžete presunúť, zmeniť jej veľkosť alebo odstrániť. Keď skončíte, ťuknite na Prestať kresliť.",
-      "layersHint": "Vrch zoznamu je vpredu. Poradie zmeníte šípkami. Zamknuté a skryté vrstvy sa dajú vybrať len tu."
+      "layersHint": "Vrch zoznamu je vpredu. Poradie zmeníte šípkami. Zamknuté a skryté vrstvy sa dajú vybrať len tu.",
+      "agentWebOnly": "Časť z toho zatiaľ funguje len vo webovom editore.",
+      "brandLogoHint": "Vyberte obrázok na stránke a potom ho použite ako logo.",
+      "useAsLogo": "Použiť vybraný obrázok"
     },
     "filters": {
       "none": "Originál",
@@ -5188,7 +5191,8 @@
     },
     "rail": {
       "elements": "Prvky",
-      "layers": "Vrstvy"
+      "layers": "Vrstvy",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normálny",
@@ -5224,6 +5228,89 @@
       "outlineOn": "Obrys",
       "outlineWidth": "Hrúbka obrysu {{value}}",
       "path": "Kresba"
+    },
+    "agent": {
+      "changes": "Vykonané úpravy: {{count}}",
+      "clear": "Vymazať chat",
+      "done": "Hotovo.",
+      "failed": "AI to teraz nedokázala urobiť. Skúste to znova o chvíľu.",
+      "introBody": "Opíšte dizajn alebo zmenu vlastnými slovami. Mení veľkosť stránky, píše a štýluje text, hľadá bezplatné fotky, videá a hudbu, používa filtre, usporadúva vrstvy a animuje ich. Každú požiadavku vrátite jedným Späť.",
+      "introTitle": "Povedzte AI, čo chcete",
+      "noStock": "Žiadny bezplatný obsah nezodpovedá „{{query}}“.",
+      "nothingToDo": "Nenašiel som nič, čo by sa pre to dalo zmeniť. Skúste opísať úpravu, ktorú chcete.",
+      "placeholder": "Opíšte, čo chcete…",
+      "rateLimited": "Poslali ste veľa požiadaviek. Skúste to znova o pár minút.",
+      "send": "Odoslať",
+      "suggestFilter": "Urob fotku teplejšiu a trochu jasnejšiu",
+      "suggestPoster": "Vytvor štvorcový príspevok na Instagram pre letný výpredaj s fotkou pláže a výrazným nadpisom",
+      "suggestStory": "Zmeň to na 9:16 story a vyplň stránku fotkou",
+      "suggestTitle": "Pridaj hore veľký tučný nadpis a pod neho menší podnadpis",
+      "undo": "Späť",
+      "working": "Pracujem na tom…"
+    },
+    "brand": {
+      "addColor": "Pridať farbu značky",
+      "addLogo": "Pridať logo",
+      "applied": "Značka použitá na {{count}} vrstiev.",
+      "apply": "Použiť značku",
+      "bodyFont": "Písmo textu",
+      "colors": "Farby značky",
+      "heading": "Balík značky",
+      "headingFont": "Písmo nadpisov",
+      "logo": "Logo",
+      "noLogo": "Žiadne logo",
+      "removeColor": "Odstrániť {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Už čoskoro",
+        "title": "Blíži sa veľká novinka"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Všetko najlepšie"
+      },
+      "crypto": {
+        "change": "+42 % tento týždeň",
+        "title": "Aktualizácia ceny"
+      },
+      "event": {
+        "date": "Piatok 20:00",
+        "place": "The Warehouse, centrum",
+        "title": "Večer živej hudby"
+      },
+      "heading": "Šablóny",
+      "meme": {
+        "bottom": "Na prvý pokus",
+        "top": "Keď kód funguje",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Epizóda 12 · Už vonku",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Jednoducho, ale výrazne.",
+        "title": "Karta s citátom"
+      },
+      "sale": {
+        "subtitle": "Zľavy až 50 % · Len tento víkend",
+        "title": "Letný výpredaj"
+      },
+      "story": {
+        "cta": "Potiahni hore a nakupuj",
+        "title": "Nová kolekcia"
+      },
+      "thumbnail": {
+        "badge": "Nové",
+        "title": "Tomuto neuveríte"
+      },
+      "hint": "Vyberte si jednu a začnite. Každé slovo, farbu aj fotku môžete zmeniť, alebo požiadajte AI, aby to spravila za vás.",
+      "use": "Použiť šablónu {{name}}",
+      "replaceConfirm": "Nahradiť aktuálny dizajn touto šablónou? Môžete to vrátiť späť.",
+      "replaceTitle": "Nahradiť váš dizajn?",
+      "replace": "Nahradiť"
     }
   },
   "creator": {

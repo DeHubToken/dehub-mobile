@@ -4914,7 +4914,10 @@
       "padding": "Tazara {{value}}",
       "thickness": "Kauri {{value}}",
       "drawHint": "Ja a kan shafin don yin zane. Kowane layi yadudduka ne na kansa da za ka iya motsawa, canza girmansa ko goge shi. Taɓa Dakatar da zane idan ka gama.",
-      "layersHint": "Saman jerin shi ne gaba. Yi amfani da kibiyoyi don sake tsara su. Yadudduka da aka kulle ko aka ɓoye za a iya zaɓar su nan kawai."
+      "layersHint": "Saman jerin shi ne gaba. Yi amfani da kibiyoyi don sake tsara su. Yadudduka da aka kulle ko aka ɓoye za a iya zaɓar su nan kawai.",
+      "agentWebOnly": "Wasu daga cikin wannan suna aiki ne kawai a editan yanar gizo a yanzu.",
+      "brandLogoHint": "Zaɓi hoto a shafin, sannan ka yi amfani da shi a matsayin tambarinka.",
+      "useAsLogo": "Yi amfani da hoton da aka zaɓa"
     },
     "filters": {
       "none": "Na asali",
@@ -5008,7 +5011,8 @@
     },
     "rail": {
       "elements": "Abubuwa",
-      "layers": "Yadudduka"
+      "layers": "Yadudduka",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Na al'ada",
@@ -5044,6 +5048,89 @@
       "outlineOn": "Iyaka",
       "outlineWidth": "Faɗin iyaka {{value}}",
       "path": "Zane"
+    },
+    "agent": {
+      "changes": "Gyare-gyaren da aka yi: {{count}}",
+      "clear": "Share hira",
+      "done": "An gama.",
+      "failed": "AI ba zai iya yin wannan yanzu ba. Sake gwadawa nan ba da jimawa ba.",
+      "introBody": "Bayyana zanen ko canjin da kalmominka. Yana canza girman shafi, yana rubuta rubutu da tsara shi, yana nemo hotuna, bidiyo da kiɗa kyauta, yana saka matattara, yana tsara lefuna kuma yana motsa su. Kowace buƙata ana iya soke ta a mataki ɗaya.",
+      "introTitle": "Faɗa wa AI abin da kake so",
+      "noStock": "Babu hoto kyauta da ya dace da “{{query}}”.",
+      "nothingToDo": "Ban sami wani abu da zan canza ba don wannan. Gwada bayyana gyaran da kake so.",
+      "placeholder": "Bayyana abin da kake so…",
+      "rateLimited": "Ka aika buƙatu da yawa. Sake gwadawa bayan 'yan mintuna.",
+      "send": "Aika",
+      "suggestFilter": "Sa hoton ya ƙara ɗumi kuma ya ɗan ƙara haske",
+      "suggestPoster": "Yi min rubutun Instagram mai murabba'i don rangwamen bazara tare da hoton bakin teku da babban take",
+      "suggestStory": "Mayar da wannan labari na 9:16 kuma ka cika shafin da hoton",
+      "suggestTitle": "Ƙara babban take mai kauri a sama da ƙaramin take a ƙarƙashinsa",
+      "undo": "Soke",
+      "working": "Ana aiki a kai…"
+    },
+    "brand": {
+      "addColor": "Ƙara launin alama",
+      "addLogo": "Ƙara tambari",
+      "applied": "An aiwatar da alama a kan yadudduka {{count}}.",
+      "apply": "Aiwatar da alama",
+      "bodyFont": "Rubutun jiki",
+      "colors": "Launukan alama",
+      "heading": "Kayan alama",
+      "headingFont": "Rubutun kanun labarai",
+      "logo": "Tambari",
+      "noLogo": "Babu tambari",
+      "removeColor": "Cire {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Nan ba da jimawa ba",
+        "title": "Babban labari na zuwa"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Barka da Ranar Haihuwa"
+      },
+      "crypto": {
+        "change": "+42% a wannan makon",
+        "title": "Sabunta farashi"
+      },
+      "event": {
+        "date": "Juma'a 8 na dare",
+        "place": "The Warehouse, cikin gari",
+        "title": "Daren kiɗa kai tsaye"
+      },
+      "heading": "Samfura",
+      "meme": {
+        "bottom": "A karon farko",
+        "top": "Idan kod ɗin ya yi aiki",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Kashi na 12 · Ya fito yanzu",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Ka sa ya zama mai sauƙi, amma mai ma'ana.",
+        "title": "Katin zance"
+      },
+      "sale": {
+        "subtitle": "Rangwame har 50% · Wannan karshen mako kaɗai",
+        "title": "Rangwamen Bazara"
+      },
+      "story": {
+        "cta": "Ja sama don siyayya",
+        "title": "Sabon kaya ya iso"
+      },
+      "thumbnail": {
+        "badge": "Sabo",
+        "title": "Ba za ka yarda da wannan ba"
+      },
+      "hint": "Zaɓi ɗaya don farawa. Ana iya canja kowace kalma, launi da hoto, ko ka nemi AI ya canja maka.",
+      "use": "Yi amfani da samfurin {{name}}",
+      "replaceConfirm": "Maye gurbin zanen yanzu da wannan samfurin? Za ka iya sokewa.",
+      "replaceTitle": "Maye gurbin zanenka?",
+      "replace": "Maye gurbi"
     }
   },
   "creator": {

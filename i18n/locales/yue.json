@@ -4926,7 +4926,10 @@
       "padding": "內距 {{value}}",
       "thickness": "粗幼 {{value}}",
       "drawHint": "喺頁面上拖動嚟畫。每一筆都係獨立嘅圖層，可以移動、調整大小或者刪除。畫完之後撳「停止繪畫」。",
-      "layersHint": "列表最頂嘅係最前面。用箭嘴重新排次序。鎖定咗同隱藏咗嘅圖層只可以喺呢度揀。"
+      "layersHint": "列表最頂嘅係最前面。用箭嘴重新排次序。鎖定咗同隱藏咗嘅圖層只可以喺呢度揀。",
+      "agentWebOnly": "當中有啲嘢暫時淨係喺網頁版編輯器用到。",
+      "brandLogoHint": "喺頁面揀一張圖，然後用佢做你嘅標誌。",
+      "useAsLogo": "用揀咗嘅圖"
     },
     "filters": {
       "none": "原圖",
@@ -5020,7 +5023,8 @@
     },
     "rail": {
       "elements": "元素",
-      "layers": "圖層"
+      "layers": "圖層",
+      "agent": "AI"
     },
     "blend": {
       "normal": "正常",
@@ -5056,6 +5060,89 @@
       "outlineOn": "外框",
       "outlineWidth": "外框闊度 {{value}}",
       "path": "繪圖"
+    },
+    "agent": {
+      "changes": "已作出編輯：{{count}}",
+      "clear": "清除對話",
+      "done": "完成。",
+      "failed": "AI 暫時做唔到。請稍後再試。",
+      "introBody": "用自己嘅說話描述設計或者改動。佢可以調整頁面大小、撰寫同設計文字、搵免費相片、影片同音樂、套用濾鏡、排列圖層同加動畫。每個要求都可以一次復原。",
+      "introTitle": "話畀 AI 知您想要乜",
+      "noStock": "冇免費素材符合「{{query}}」。",
+      "nothingToDo": "搵唔到有乜可以改。試下描述您想要嘅編輯。",
+      "placeholder": "描述您想要乜…",
+      "rateLimited": "您傳送咗好多要求。請過幾分鐘再試。",
+      "send": "傳送",
+      "suggestFilter": "將張相調暖啲、光少少",
+      "suggestPoster": "整一個正方形嘅 Instagram 帖，宣傳夏日減價，用沙灘相同粗體標題",
+      "suggestStory": "將佢變成 9:16 限時動態，用張相填滿成頁",
+      "suggestTitle": "喺頂部加個大粗體標題，下面加個細啲嘅副標題",
+      "undo": "復原",
+      "working": "處理緊…"
+    },
+    "brand": {
+      "addColor": "加品牌顏色",
+      "addLogo": "加標誌",
+      "applied": "已經將品牌套用到 {{count}} 個圖層。",
+      "apply": "套用品牌",
+      "bodyFont": "內文字型",
+      "colors": "品牌顏色",
+      "heading": "品牌套件",
+      "headingFont": "標題字型",
+      "logo": "標誌",
+      "noLogo": "冇標誌",
+      "removeColor": "移除 {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "即將推出",
+        "title": "大消息快到"
+      },
+      "birthday": {
+        "name": "Sam！",
+        "title": "生日快樂"
+      },
+      "crypto": {
+        "change": "今個禮拜 +42%",
+        "title": "價格更新"
+      },
+      "event": {
+        "date": "星期五 晚上 8 點",
+        "place": "The Warehouse，市中心",
+        "title": "現場音樂之夜"
+      },
+      "heading": "範本",
+      "meme": {
+        "bottom": "第一次就得",
+        "top": "當段 code 行到",
+        "title": "迷因"
+      },
+      "podcast": {
+        "episode": "第 12 集 · 已推出",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "簡單，但要有意義。",
+        "title": "金句卡"
+      },
+      "sale": {
+        "subtitle": "低至半價 · 只限今個週末",
+        "title": "夏日大減價"
+      },
+      "story": {
+        "cta": "向上掃即買",
+        "title": "新品登場"
+      },
+      "thumbnail": {
+        "badge": "新",
+        "title": "你一定唔信"
+      },
+      "hint": "揀一個開始。每個字、顏色同相片都改得，或者叫 AI 幫你改。",
+      "use": "使用 {{name}} 範本",
+      "replaceConfirm": "用呢個範本取代目前嘅設計？可以復原㗎。",
+      "replaceTitle": "要取代您的設計嗎？",
+      "replace": "取代"
     }
   },
   "creator": {

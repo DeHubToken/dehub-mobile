@@ -4926,7 +4926,10 @@
       "padding": "内边距 {{value}}",
       "thickness": "粗细 {{value}}",
       "drawHint": "在页面上拖动来绘制。每一笔都是单独的图层，可以移动、调整大小或删除。画完后点「停止绘制」。",
-      "layersHint": "列表最上面的在最前面。用箭头调整顺序。锁定和隐藏的图层只能在这里选中。"
+      "layersHint": "列表最上面的在最前面。用箭头调整顺序。锁定和隐藏的图层只能在这里选中。",
+      "agentWebOnly": "这里头有些功能眼下只能在网页版编辑器里用。",
+      "brandLogoHint": "在页面上选一张图片，再把它用作你的标志。",
+      "useAsLogo": "用选中的图片"
     },
     "filters": {
       "none": "原图",
@@ -5020,7 +5023,8 @@
     },
     "rail": {
       "elements": "元素",
-      "layers": "图层"
+      "layers": "图层",
+      "agent": "AI"
     },
     "blend": {
       "normal": "正常",
@@ -5056,6 +5060,89 @@
       "outlineOn": "描边",
       "outlineWidth": "描边宽度 {{value}}",
       "path": "绘图"
+    },
+    "agent": {
+      "changes": "已做的修改：{{count}}",
+      "clear": "清空聊天",
+      "done": "好了。",
+      "failed": "AI 现在弄不了这个。等一会儿再试试。",
+      "introBody": "用你自己的话说说设计或者要改的地方。它能调整页面大小，写字排版，找免费的照片、视频和音乐，加滤镜，排图层，还能加动画。每次请求都能一步撤销。",
+      "introTitle": "跟 AI 说你想要啥",
+      "noStock": "没有找到跟“{{query}}”匹配的免费素材。",
+      "nothingToDo": "没找到能改的地方。试试说清楚你想怎么改。",
+      "placeholder": "说说你想要啥…",
+      "rateLimited": "你发的请求太多了。过几分钟再试试。",
+      "send": "发送",
+      "suggestFilter": "把照片调暖一点，再亮一点",
+      "suggestPoster": "给夏季促销做个方形 Instagram 帖子，配张海滩照片和醒目的标题",
+      "suggestStory": "把这个改成 9:16 的快拍，让照片铺满整个页面",
+      "suggestTitle": "在顶上加个大号粗体标题，下面加个小一点的副标题",
+      "undo": "撤销",
+      "working": "正在弄…"
+    },
+    "brand": {
+      "addColor": "添加品牌颜色",
+      "addLogo": "添加标志",
+      "applied": "已将品牌应用到 {{count}} 个图层。",
+      "apply": "应用品牌",
+      "bodyFont": "正文字体",
+      "colors": "品牌颜色",
+      "heading": "品牌套件",
+      "headingFont": "标题字体",
+      "logo": "标志",
+      "noLogo": "无标志",
+      "removeColor": "移除 {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "即将上线",
+        "title": "大消息要来了"
+      },
+      "birthday": {
+        "name": "Sam！",
+        "title": "生日快乐"
+      },
+      "crypto": {
+        "change": "本周 +42%",
+        "title": "价格速报"
+      },
+      "event": {
+        "date": "周五晚8点",
+        "place": "市中心 The Warehouse",
+        "title": "现场音乐夜"
+      },
+      "heading": "模板",
+      "meme": {
+        "bottom": "一次就成",
+        "top": "代码跑通的时候",
+        "title": "表情包"
+      },
+      "podcast": {
+        "episode": "第12期 · 已上线",
+        "title": "创作者秀"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "简单，但有分量。",
+        "title": "语录卡片"
+      },
+      "sale": {
+        "subtitle": "低至五折 · 仅限本周末",
+        "title": "夏季大促"
+      },
+      "story": {
+        "cta": "上滑去抢购",
+        "title": "新品上架"
+      },
+      "thumbnail": {
+        "badge": "新",
+        "title": "你绝对想不到"
+      },
+      "hint": "挑一个开始。每个字、颜色和照片都能改，也能让 AI 帮你改。",
+      "use": "用{{name}}模板",
+      "replaceConfirm": "用这个模板替换当前设计？可以撤销。",
+      "replaceTitle": "替换您的设计？",
+      "replace": "替换"
     }
   },
   "creator": {

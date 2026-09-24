@@ -5003,7 +5003,10 @@
       "padding": "Elanelana anatiny {{value}}",
       "thickness": "Hateviny {{value}}",
       "drawHint": "Sintony eo amin'ny pejy mba hanaovana sary. Sosona manokana ny tsipika tsirairay, azonao afindra, ovaina habe na fafana. Tsindrio ny “Hampiato ny sary” rehefa vita.",
-      "layersHint": "Ny eo an-tampon'ny lisitra no eo aloha indrindra. Ampiasao ny zana-tsipìka hanovana ny filaharana. Eto ihany no ahafahana misafidy ireo sosona voahidy sy miafina."
+      "layersHint": "Ny eo an-tampon'ny lisitra no eo aloha indrindra. Ampiasao ny zana-tsipìka hanovana ny filaharana. Eto ihany no ahafahana misafidy ireo sosona voahidy sy miafina.",
+      "agentWebOnly": "Ny sasany amin'izany dia mandeha amin'ny tonian-dahatsoratra an-tranonkala ihany aloha.",
+      "brandLogoHint": "Misafidiana sary eo amin'ny pejy, dia ampiasao ho logonao.",
+      "useAsLogo": "Ampiasao ny sary voafidy"
     },
     "filters": {
       "none": "Tany am-boalohany",
@@ -5097,7 +5100,8 @@
     },
     "rail": {
       "elements": "Singa",
-      "layers": "Sosona"
+      "layers": "Sosona",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Mahazatra",
@@ -5133,6 +5137,89 @@
       "outlineOn": "Sisiny",
       "outlineWidth": "Hatevin'ny sisiny {{value}}",
       "path": "Sary vita"
+    },
+    "agent": {
+      "changes": "Fanovana natao: {{count}}",
+      "clear": "Fafao ny resaka",
+      "done": "Vita.",
+      "failed": "Tsy vitan'ny AI izany amin'izao fotoana izao. Andramo indray afaka kelikely.",
+      "introBody": "Lazalazao amin'ny teninao manokana ny endrika na ny fanovana. Manova ny haben'ny pejy izy, manoratra sy mandravaka soratra, mitady sary, video ary mozika maimaim-poana, mampihatra sivana, mandamina ny sosona ary mampihetsika azy ireo. Azo foanana indray mandeha ny fangatahana tsirairay.",
+      "introTitle": "Lazao amin'ny AI izay tianao",
+      "noStock": "Tsy misy fitaovana maimaim-poana mifanaraka amin'ny “{{query}}”.",
+      "nothingToDo": "Tsy nahita zavatra hovaina tamin'izany aho. Andramo lazalazaina ny fanovana tianao.",
+      "placeholder": "Lazalazao izay tianao…",
+      "rateLimited": "Nandefa fangatahana maro ianao. Andramo indray afaka minitra vitsivitsy.",
+      "send": "Alefa",
+      "suggestFilter": "Ataovy mafana kokoa sy mazava kely kokoa ilay sary",
+      "suggestPoster": "Manaova lahatsoratra Instagram efamira ho an'ny varotra lafo mora amin'ny fahavaratra misy sarin'ny tora-pasika sy lohateny matevina",
+      "suggestStory": "Avadiho ho tantara 9:16 ity ary fenoy amin'ilay sary ny pejy",
+      "suggestTitle": "Ampio lohateny lehibe sy matevina eo ambony ary lohateny kely kokoa eo ambaniny",
+      "undo": "Foano",
+      "working": "Eo am-panaovana azy…"
+    },
+    "brand": {
+      "addColor": "Hanampy loko marika",
+      "addLogo": "Hanampy logo",
+      "applied": "Nampiharina tamin'ny sosona {{count}} ny marika.",
+      "apply": "Ampiharo ny marika",
+      "bodyFont": "Endritsoratra votoaty",
+      "colors": "Loko marika",
+      "heading": "Kitapo marika",
+      "headingFont": "Endritsoratra lohateny",
+      "logo": "Logo",
+      "noLogo": "Tsy misy logo",
+      "removeColor": "Esory {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Ho avy tsy ho ela",
+        "title": "Vaovao lehibe ho avy"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Tratry ny tsingerintaona"
+      },
+      "crypto": {
+        "change": "+42% amin'ity herinandro ity",
+        "title": "Vidiny vaovao"
+      },
+      "event": {
+        "date": "Zoma 8 ora alina",
+        "place": "The Warehouse, afovoan-tanàna",
+        "title": "Alina mozika mivantana"
+      },
+      "heading": "Modely",
+      "meme": {
+        "bottom": "Tamin'ny andrana voalohany",
+        "top": "Rehefa mandeha ny kaody",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Fizarana 12 · Efa mivoaka",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Ataovy tsotra, nefa misy dikany.",
+        "title": "Karatra teny malaza"
+      },
+      "sale": {
+        "subtitle": "Hatramin'ny 50% fihenam-bidy · Ity faran'ny herinandro ity ihany",
+        "title": "Varotra fahavaratra"
+      },
+      "story": {
+        "cta": "Tosiho miakatra hividianana",
+        "title": "Vokatra vaovao"
+      },
+      "thumbnail": {
+        "badge": "Vaovao",
+        "title": "Tsy hino ianao"
+      },
+      "hint": "Misafidiana iray hanombohana. Azo ovaina ny teny, loko ary sary rehetra, na angataho ny AI hanova azy ho anao.",
+      "use": "Ampiasao ny modely {{name}}",
+      "replaceConfirm": "Soloina ity modely ity ve ny famolavolana ankehitriny? Azonao foanana izany.",
+      "replaceTitle": "Hosoloina ny famolavolanao?",
+      "replace": "Soloina"
     }
   },
   "creator": {

@@ -4911,7 +4911,10 @@
       "padding": "Whakakī {{value}}",
       "thickness": "Mātotoru {{value}}",
       "drawHint": "Tōia i runga i te whārangi hei tuhi. He paparanga motuhake ia rārangi, ka taea e koe te neke, te panoni rahi, te muku rānei. Pātōtia Kāti te tuhi ina oti koe.",
-      "layersHint": "Ko te runga o te rārangi te mua. Whakamahia ngā pere hei whakaraupapa anō. Ko ngā paparanga kua rakaina, kua hunaia rānei, ka taea anake te kōwhiri i konei."
+      "layersHint": "Ko te runga o te rārangi te mua. Whakamahia ngā pere hei whakaraupapa anō. Ko ngā paparanga kua rakaina, kua hunaia rānei, ka taea anake te kōwhiri i konei.",
+      "agentWebOnly": "Ko ētahi o ēnei ka mahi noa i te ētita tukutuku i tēnei wā.",
+      "brandLogoHint": "Tīpakohia he pikitia i te whārangi, kātahi ka whakamahia hei moko māu.",
+      "useAsLogo": "Whakamahia te pikitia kua tīpakohia"
     },
     "filters": {
       "none": "Taketake",
@@ -5005,7 +5008,8 @@
     },
     "rail": {
       "elements": "Huānga",
-      "layers": "Paparanga"
+      "layers": "Paparanga",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Noa",
@@ -5041,6 +5045,89 @@
       "outlineOn": "Tapa",
       "outlineWidth": "Whānui o te tapa {{value}}",
       "path": "Tuhinga"
+    },
+    "agent": {
+      "changes": "Ngā whakatika kua mahia: {{count}}",
+      "clear": "Ūkuia te kōrerorero",
+      "done": "Kua oti.",
+      "failed": "Kāore i taea e te AI te mahi i tēnei ināianei. Whakamātau anō ā tōna wā.",
+      "introBody": "Whakaahuatia te hoahoa, te panoni rānei ki ōu ake kupu. Ka panoni i te rahi o te whārangi, ka tuhi, ka whakahāngai i te kuputuhi, ka kimi whakaahua, ataata, puoro kore utu, ka tāpiri tātari, ka whakaraupapa i ngā paparanga, ka whakakorikori hoki. Ka taea te whakakore i ia tono i te hīkoi kotahi.",
+      "introTitle": "Kōrerotia ki te AI tō e hiahia ana",
+      "noStock": "Kāore he rawa kore utu i ōrite ki “{{query}}”.",
+      "nothingToDo": "Kāore i kitea he mea hei panoni mō tērā. Whakamātauria te whakaahua i te whakatika e hiahia ana koe.",
+      "placeholder": "Whakaahuatia tō e hiahia ana…",
+      "rateLimited": "He maha ō tono kua tukuna. Whakamātau anō ā ngā meneti torutoru.",
+      "send": "Tukua",
+      "suggestFilter": "Kia mahana ake te whakaahua, kia mārama iti ake hoki",
+      "suggestPoster": "Hangaia he pānui Instagram tapawhā mō te hoko raumati, he whakaahua tātahi me tētahi taitara mātotoru",
+      "suggestStory": "Hurihia tēnei hei kōrero 9:16, ka whakakī i te whārangi ki te whakaahua",
+      "suggestTitle": "Tāpirihia he taitara nui mātotoru ki runga me tētahi taitara iti ki raro",
+      "undo": "Wetekia",
+      "working": "Kei te mahi…"
+    },
+    "brand": {
+      "addColor": "Tāpiri tae waitohu",
+      "addLogo": "Tāpiri moko",
+      "applied": "Kua whakamahia te waitohu ki ngā paparanga {{count}}.",
+      "apply": "Whakamahia te waitohu",
+      "bodyFont": "Momotuhi tinana",
+      "colors": "Ngā tae waitohu",
+      "heading": "Kete waitohu",
+      "headingFont": "Momotuhi upoko",
+      "logo": "Moko",
+      "noLogo": "Kāore he moko",
+      "removeColor": "Tangohia {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Ākuanei",
+        "title": "He rongo nui e haere mai ana"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Rā Whānau Harikoa"
+      },
+      "crypto": {
+        "change": "+42% i tēnei wiki",
+        "title": "Whakahou utu"
+      },
+      "event": {
+        "date": "Rāmere 8 i te pō",
+        "place": "The Warehouse, tāone",
+        "title": "Pō waiata ora"
+      },
+      "heading": "Tauira",
+      "meme": {
+        "bottom": "I te whakamātau tuatahi",
+        "top": "Ina mahi te waehere",
+        "title": "Mīmi"
+      },
+      "podcast": {
+        "episode": "Wāhanga 12 · Kua puta",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Kia māmā, engari kia whai tikanga.",
+        "title": "Kāri kōrero"
+      },
+      "sale": {
+        "subtitle": "Tae atu ki te 50% te heke · Tēnei wiki whakatā anake",
+        "title": "Hoko Raumati"
+      },
+      "story": {
+        "cta": "Pāhekeheke ake hei hoko",
+        "title": "Taonga hou"
+      },
+      "thumbnail": {
+        "badge": "Hou",
+        "title": "Kāore koe e whakapono"
+      },
+      "hint": "Kōwhiria tētahi hei tīmata. Ka taea te panoni i ia kupu, tae, whakaahua hoki, ki te tono rānei ki te AI kia panonitia māu.",
+      "use": "Whakamahia te tauira {{name}}",
+      "replaceConfirm": "Whakakapia te hoahoa o nāianei ki tēnei tauira? Ka taea te wetewete.",
+      "replaceTitle": "Whakakapi i tō hoahoa?",
+      "replace": "Whakakapi"
     }
   },
   "creator": {

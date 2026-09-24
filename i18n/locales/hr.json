@@ -4930,7 +4930,10 @@
       "padding": "Unutarnji razmak {{value}}",
       "thickness": "Debljina {{value}}",
       "drawHint": "Povlačite po stranici za crtanje. Svaki potez zaseban je sloj koji možete pomaknuti, promijeniti mu veličinu ili izbrisati. Kad završite, dodirnite Prestani crtati.",
-      "layersHint": "Vrh popisa je sprijeda. Strelicama mijenjate redoslijed. Zaključani i skriveni slojevi mogu se odabrati samo ovdje."
+      "layersHint": "Vrh popisa je sprijeda. Strelicama mijenjate redoslijed. Zaključani i skriveni slojevi mogu se odabrati samo ovdje.",
+      "agentWebOnly": "Dio toga zasad radi samo u web-uređivaču.",
+      "brandLogoHint": "Odaberite sliku na stranici, a zatim je upotrijebite kao logotip.",
+      "useAsLogo": "Upotrijebi odabranu sliku"
     },
     "filters": {
       "none": "Original",
@@ -5024,7 +5027,8 @@
     },
     "rail": {
       "elements": "Elementi",
-      "layers": "Slojevi"
+      "layers": "Slojevi",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normalno",
@@ -5060,6 +5064,89 @@
       "outlineOn": "Obrub",
       "outlineWidth": "Debljina obruba {{value}}",
       "path": "Crtež"
+    },
+    "agent": {
+      "changes": "Napravljene izmjene: {{count}}",
+      "clear": "Očisti razgovor",
+      "done": "Gotovo.",
+      "failed": "AI to trenutačno ne može učiniti. Pokušajte ponovno malo kasnije.",
+      "introBody": "Opišite dizajn ili promjenu svojim riječima. Mijenja veličinu stranice, piše i oblikuje tekst, pronalazi besplatne fotografije, videozapise i glazbu, primjenjuje filtre, slaže slojeve i animira ih. Svaki se zahtjev poništava jednim korakom.",
+      "introTitle": "Recite AI-ju što želite",
+      "noStock": "Nema besplatnog materijala za „{{query}}”.",
+      "nothingToDo": "Nisam pronašao ništa za promijeniti. Pokušajte opisati izmjenu koju želite.",
+      "placeholder": "Opišite što želite…",
+      "rateLimited": "Poslali ste puno zahtjeva. Pokušajte ponovno za nekoliko minuta.",
+      "send": "Pošalji",
+      "suggestFilter": "Učini fotografiju toplijom i malo svjetlijom",
+      "suggestPoster": "Napravi kvadratnu Instagram objavu za ljetno sniženje s fotografijom plaže i upadljivim naslovom",
+      "suggestStory": "Pretvori ovo u priču 9:16 i ispuni stranicu fotografijom",
+      "suggestTitle": "Dodaj veliki podebljani naslov na vrh i manji podnaslov ispod njega",
+      "undo": "Poništi",
+      "working": "Radim na tome…"
+    },
+    "brand": {
+      "addColor": "Dodaj boju brenda",
+      "addLogo": "Dodaj logotip",
+      "applied": "Brend primijenjen na slojeve: {{count}}.",
+      "apply": "Primijeni brend",
+      "bodyFont": "Font teksta",
+      "colors": "Boje brenda",
+      "heading": "Paket brenda",
+      "headingFont": "Font naslova",
+      "logo": "Logotip",
+      "noLogo": "Nema logotipa",
+      "removeColor": "Ukloni {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Uskoro",
+        "title": "Stižu velike vijesti"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Sretan rođendan"
+      },
+      "crypto": {
+        "change": "+42 % ovaj tjedan",
+        "title": "Ažuriranje cijene"
+      },
+      "event": {
+        "date": "Petak u 20 h",
+        "place": "Skladište, centar",
+        "title": "Večer glazbe uživo"
+      },
+      "heading": "Predlošci",
+      "meme": {
+        "bottom": "Iz prve",
+        "top": "Kad kod radi",
+        "title": "Mem"
+      },
+      "podcast": {
+        "episode": "Epizoda 12 · Već vani",
+        "title": "Kreatorski show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Jednostavno, ali značajno.",
+        "title": "Kartica s citatom"
+      },
+      "sale": {
+        "subtitle": "Do −50 % · Samo ovaj vikend",
+        "title": "Ljetno sniženje"
+      },
+      "story": {
+        "cta": "Povuci gore i kupuj",
+        "title": "Nova kolekcija"
+      },
+      "thumbnail": {
+        "badge": "Novo",
+        "title": "Nećete vjerovati!"
+      },
+      "hint": "Odaberite jedan za početak. Svaku riječ, boju i fotografiju možete promijeniti ili zamoliti AI da to učini za vas.",
+      "use": "Koristi predložak {{name}}",
+      "replaceConfirm": "Zamijeniti trenutni dizajn ovim predloškom? Možete poništiti.",
+      "replaceTitle": "Zamijeniti vaš dizajn?",
+      "replace": "Zamijeni"
     }
   },
   "creator": {

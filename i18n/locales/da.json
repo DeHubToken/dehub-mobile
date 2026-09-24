@@ -4933,7 +4933,10 @@
       "padding": "Indvendig margen {{value}}",
       "thickness": "Tykkelse {{value}}",
       "drawHint": "Træk på siden for at tegne. Hvert strøg er sit eget lag, som du kan flytte, ændre størrelse på eller slette. Tryk på Stop tegning, når du er færdig.",
-      "layersHint": "Øverst på listen er forrest. Brug pilene til at ændre rækkefølgen. Låste og skjulte lag kan kun vælges her."
+      "layersHint": "Øverst på listen er forrest. Brug pilene til at ændre rækkefølgen. Låste og skjulte lag kan kun vælges her.",
+      "agentWebOnly": "Noget af det virker indtil videre kun i webeditoren.",
+      "brandLogoHint": "Vælg et billede på siden, og brug det derefter som dit logo.",
+      "useAsLogo": "Brug valgt billede"
     },
     "filters": {
       "none": "Original",
@@ -5027,7 +5030,8 @@
     },
     "rail": {
       "elements": "Elementer",
-      "layers": "Lag"
+      "layers": "Lag",
+      "agent": "AI"
     },
     "blend": {
       "normal": "Normal",
@@ -5063,6 +5067,89 @@
       "outlineOn": "Kontur",
       "outlineWidth": "Konturbredde {{value}}",
       "path": "Tegning"
+    },
+    "agent": {
+      "changes": "Redigeringer foretaget: {{count}}",
+      "clear": "Ryd chat",
+      "done": "Færdig.",
+      "failed": "AI'en kunne ikke gøre det lige nu. Prøv igen om lidt.",
+      "introBody": "Beskriv designet eller ændringen med dine egne ord. Den ændrer sidens størrelse, skriver og styler tekst, finder gratis fotos, videoer og musik, lægger filtre på, arrangerer lag og animerer dem. Hver anmodning kan fortrydes i ét trin.",
+      "introTitle": "Fortæl AI'en, hvad du vil have",
+      "noStock": "Intet gratis stockmateriale matchede „{{query}}“.",
+      "nothingToDo": "Jeg kunne ikke finde noget at ændre ud fra det. Prøv at beskrive den redigering, du vil have.",
+      "placeholder": "Beskriv, hvad du vil have…",
+      "rateLimited": "Du har sendt mange anmodninger. Prøv igen om et par minutter.",
+      "send": "Send",
+      "suggestFilter": "Gør billedet varmere og lidt lysere",
+      "suggestPoster": "Lav et kvadratisk Instagram-opslag til et sommerudsalg med et strandbillede og en fed overskrift",
+      "suggestStory": "Lav det om til en 9:16-story, og fyld siden med billedet",
+      "suggestTitle": "Tilføj en stor, fed overskrift øverst og en mindre undertitel under den",
+      "undo": "Fortryd",
+      "working": "Arbejder på det…"
+    },
+    "brand": {
+      "addColor": "Tilføj en brandfarve",
+      "addLogo": "Tilføj logo",
+      "applied": "Brand anvendt på {{count}} lag.",
+      "apply": "Anvend brand",
+      "bodyFont": "Skrifttype til brødtekst",
+      "colors": "Brandfarver",
+      "heading": "Brandkit",
+      "headingFont": "Skrifttype til overskrifter",
+      "logo": "Logo",
+      "noLogo": "Intet logo",
+      "removeColor": "Fjern {{color}}"
+    },
+    "templates": {
+      "announcement": {
+        "kicker": "Kommer snart",
+        "title": "Store nyheder på vej"
+      },
+      "birthday": {
+        "name": "Sam!",
+        "title": "Tillykke med fødselsdagen"
+      },
+      "crypto": {
+        "change": "+42% denne uge",
+        "title": "Kursopdatering"
+      },
+      "event": {
+        "date": "Fredag kl. 20",
+        "place": "The Warehouse, centrum",
+        "title": "Livemusik-aften"
+      },
+      "heading": "Skabeloner",
+      "meme": {
+        "bottom": "I første forsøg",
+        "top": "Når koden virker",
+        "title": "Meme"
+      },
+      "podcast": {
+        "episode": "Afsnit 12 · Ude nu",
+        "title": "The Creator Show"
+      },
+      "quote": {
+        "author": "Don Draper",
+        "body": "Gør det enkelt, men betydningsfuldt.",
+        "title": "Citatkort"
+      },
+      "sale": {
+        "subtitle": "Op til 50% rabat · Kun denne weekend",
+        "title": "Sommerudsalg"
+      },
+      "story": {
+        "cta": "Swipe op og shop",
+        "title": "Nyhed"
+      },
+      "thumbnail": {
+        "badge": "Ny",
+        "title": "Det her tror du ikke på"
+      },
+      "hint": "Vælg en for at starte. Alle ord, farver og billeder kan ændres, eller bed AI'en om at gøre det for dig.",
+      "use": "Brug skabelonen {{name}}",
+      "replaceConfirm": "Erstat det nuværende design med denne skabelon? Du kan fortryde det.",
+      "replaceTitle": "Erstat dit design?",
+      "replace": "Erstat"
     }
   },
   "creator": {

@@ -25,7 +25,9 @@ export const EDITOR_FONTS: EditorFont[] = [
   { family: "Pacifico", category: "handwriting", weights: [400] },
   { family: "Caveat", category: "handwriting", weights: [400, 500, 600, 700] },
   { family: "Permanent Marker", category: "handwriting", weights: [400] },
+  { family: "Archivo", category: "sans-serif", weights: [400, 500, 600, 700, 800, 900] },
   { family: "Roboto Mono", category: "monospace", weights: [300, 400, 500, 600, 700] },
+  { family: "Space Mono", category: "monospace", weights: [400, 700] },
 ];
 
 /** First family in a CSS font-family value, unquoted. Same as the web's primaryFamily. */

@@ -188,3 +188,105 @@ export function DrawPanel(props: {
   );
 }
 
+
+// ── brand kit ──
+
+export function BrandPanel(props: {
+  kit: import("../../libs/editor/brand").BrandKit;
+  /** Colours already on the page, offered as brand colours alongside the palette. */
+  designColors: string[];
+  palette: string[];
+  fonts: { family: string; css: string }[];
+  canUseSelectedAsLogo: boolean;
+  onChange: (kit: import("../../libs/editor/brand").BrandKit) => void;
+  onUseSelectedAsLogo: () => void;
+  onApply: () => void;
+  onAddLogo: () => void;
+}) {
+  const { t } = useTranslation();
+  const { kit } = props;
+  const toggleColor = (c: string) => {
+    const lc = c.toLowerCase();
+    const has = kit.colors.includes(lc);
+    props.onChange({ ...kit, colors: has ? kit.colors.filter((x) => x !== lc) : [lc, ...kit.colors].slice(0, 10) });
+  };
+  const candidates = [...new Set([...props.designColors.map((c) => c.toLowerCase()), ...props.palette.map((c) => c.toLowerCase())])];
+  const fontRow = (value: string | null, onPick: (css: string) => void) => (
+    <ChipRow>
+      {props.fonts.map((f) => (
+        <Chip key={f.family} label={f.family} active={value === f.css} onPress={() => onPick(f.css)} />
+      ))}
+    </ChipRow>
+  );
+  return (
+    <View style={{ gap: 10 }}>
+      <View>
+        <Text className="text-theme-neutrals-300 text-xs mb-1">{t("editor.brand.colors")}</Text>
+        <View className="flex-row flex-wrap" style={{ gap: 8 }}>
+          {candidates.map((c) => {
+            const on = kit.colors.includes(c);
+            return (
+              <Pressable
+                key={c}
+                onPress={() => toggleColor(c)}
+                accessibilityRole="button"
+                accessibilityState={{ selected: on }}
+                accessibilityLabel={on ? t("editor.brand.removeColor", { color: c }) : t("editor.brand.addColor")}
+                style={{ width: 30, height: 30, borderRadius: 8, backgroundColor: c, borderWidth: on ? 3 : 1, borderColor: on ? "#ffffff" : "rgba(255,255,255,0.3)" }}
+              />
+            );
+          })}
+        </View>
+      </View>
+      <View>
+        <Text className="text-theme-neutrals-300 text-xs mb-1">{t("editor.brand.headingFont")}</Text>
+        {fontRow(kit.headingFont, (css) => props.onChange({ ...kit, headingFont: css }))}
+      </View>
+      <View>
+        <Text className="text-theme-neutrals-300 text-xs mb-1">{t("editor.brand.bodyFont")}</Text>
+        {fontRow(kit.bodyFont, (css) => props.onChange({ ...kit, bodyFont: css }))}
+      </View>
+      <View>
+        <Text className="text-theme-neutrals-300 text-xs mb-1">{t("editor.brand.logo")}</Text>
+        <ChipRow>
+          <Chip icon="Image" label={t("editor.app.useAsLogo")} onPress={props.onUseSelectedAsLogo} active={false} />
+          {kit.logoMediaId && <Chip icon="X" label={t("editor.brand.noLogo")} onPress={() => props.onChange({ ...kit, logoMediaId: null })} />}
+        </ChipRow>
+        {!props.canUseSelectedAsLogo && !kit.logoMediaId && (
+          <Text className="text-theme-neutrals-400 text-xs mt-1">{t("editor.app.brandLogoHint")}</Text>
+        )}
+      </View>
+      <ChipRow>
+        <Chip icon="WandSparkles" label={t("editor.brand.apply")} active onPress={props.onApply} />
+        {kit.logoMediaId && <Chip icon="Stamp" label={t("editor.brand.addLogo")} onPress={props.onAddLogo} />}
+      </ChipRow>
+    </View>
+  );
+}
+
+// ── templates ──
+
+export function TemplateTiles(props: {
+  templates: { id: string; aspect: string; preview: { bg: string; fg: string }; title: string }[];
+  busyId: string | null;
+  onPick: (id: string) => void;
+}) {
+  return (
+    <View className="flex-row flex-wrap" style={{ gap: 10 }}>
+      {props.templates.map((tpl) => (
+        <Pressable
+          key={tpl.id}
+          onPress={() => props.onPick(tpl.id)}
+          disabled={!!props.busyId}
+          accessibilityRole="button"
+          accessibilityLabel={tpl.title}
+          className="rounded-2xl items-center justify-center p-3"
+          style={{ width: "47%", aspectRatio: 1.4, backgroundColor: tpl.preview.bg, opacity: props.busyId && props.busyId !== tpl.id ? 0.5 : 1 }}
+        >
+          <Text style={{ color: tpl.preview.fg }} className="text-base font-black text-center uppercase" numberOfLines={2}>{tpl.title}</Text>
+          <Text style={{ color: tpl.preview.fg, opacity: 0.7 }} className="text-[10px] mt-1">{tpl.aspect}</Text>
+        </Pressable>
+      ))}
+    </View>
+  );
+}
