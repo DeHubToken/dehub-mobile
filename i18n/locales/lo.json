@@ -119,7 +119,12 @@
     "music": "ເພງ",
     "live": "ສົດ",
     "newPosts_one": "{{count}} ໂພສໃໝ່",
-    "newPosts_other": "{{count}} ໂພສໃໝ່"
+    "newPosts_other": "{{count}} ໂພສໃໝ່",
+    "privateContent": "ເນື້ອໃນສ່ວນຕົວ",
+    "privateContentBody": "ເນື້ອໃນນີ້ມາຈາກບັນຊີສ່ວນຕົວ. ຕິດຕາມຜູ້ສ້າງເພື່ອເບິ່ງໂພສຂອງເຂົາເຈົ້າ.",
+    "noMoreContent": "ບໍ່ມີເນື້ອໃນອີກ",
+    "noPostsYet": "ຍັງບໍ່ມີໂພສ.",
+    "pullToRefresh": "ດຶງເພື່ອໂຫຼດຄືນໃໝ່ ຫຼືລອງອີກຄັ້ງໃນພາຍຫຼັງ."
   },
   "explore": {
     "all": "ທັງໝົດ",
@@ -709,7 +714,19 @@
     },
     "smsNotificationsLocked": "ປົດລັອກດ້ວຍເຄຣດິດ {{dhb}} DHB (${{usd}})",
     "smsNeedDhb": "ທ່ານຕ້ອງການ {{dhb}} DHB ເພື່ອປົດລັອກການແຈ້ງເຕືອນຂໍ້ຄວາມ.",
-    "smsBalanceMessages": "ອີກປະມານ {{count}} ຂໍ້ຄວາມ"
+    "smsBalanceMessages": "ອີກປະມານ {{count}} ຂໍ້ຄວາມ",
+    "avatarUpdateFailed": "ອັບເດດ Avatar ບໍ່ສຳເລັດ",
+    "coverUpdateFailed": "ອັບເດດ Cover ບໍ່ສຳເລັດ",
+    "fixInvalidSocialLinks": "ກະລຸນາແກ້ໄຂລິ້ງສັງຄົມທີ່ບໍ່ຖືກຕ້ອງ",
+    "updateFailed": "ອັບເດດບໍ່ສຳເລັດ",
+    "channelUrlOrHandle": "URL ຊ່ອງ ຫຼື handle",
+    "inviteLinkPlaceholder": "ລິ້ງເຊີນ",
+    "profileUrlOrUsername": "URL ໂປຣໄຟລ໌ ຫຼືຊື່ຜູ້ໃຊ້",
+    "yourDisplayName": "ຊື່ສະແດງຂອງທ່ານ",
+    "usernameAvailable": "ຊື່ຜູ້ໃຊ້ມີໃຫ້ໃຊ້",
+    "hideBadgeAndBalance": "ເຊື່ອງ badge ແລະຍອດເງິນ",
+    "hideBadgeAndBalanceDesc": "ເຊື່ອງລາຍລະອຽດທາງການເງິນ ແລະປິດການສົ່ງ ແລະ tips ຫາທ່ານ.",
+    "onChainPublicWarning": "ການເຮັດທຸລະກຳ On-chain ເປັນສາທາລະນະ. ການສົ່ງ tokens ຫຼື tips ສາມາດເປີດເຜີຍທີ່ຢູ່ wallet ຂອງທ່ານ, ລວມທັງການເຮັດທຸລະກຳທີ່ເຮັດກ່ອນເປີດໃຊ້ໂໝດຍອດເງິນສ່ວນຕົວ."
   },
   "common": {
     "mute": "ປິດສຽງ",
@@ -759,7 +776,9 @@
     "noInternetTitle": "ບໍ່ມີການເຊື່ອມຕໍ່ອິນເຕີເນັດ",
     "noInternetBody": "ກະລຸນາກວດສອບການເຊື່ອມຕໍ່ອິນເຕີເນັດຂອງທ່ານ ແລະລອງອີກຄັ້ງ. ທ່ານຕ້ອງເຊື່ອມຕໍ່ອິນເຕີເນັດເພື່ອໃຊ້ DeHub.",
     "noInternetStatus": "ອອບລາຍ - ບໍ່ມີການເຊື່ອມຕໍ່ເຄືອຂ່າຍ",
-    "noInternetHint": "ກວດໃຫ້ແນ່ໃຈວ່າ Wi-Fi ຫຼືຂໍ້ມູນມືຖືເປີດຢູ່, ຈາກນັ້ນແຕະ \"{{action}}\""
+    "noInternetHint": "ກວດໃຫ້ແນ່ໃຈວ່າ Wi-Fi ຫຼືຂໍ້ມູນມືຖືເປີດຢູ່, ຈາກນັ້ນແຕະ \"{{action}}\"",
+    "saving": "ກຳລັງບັນທຶກ…",
+    "offlineStatus": "ອອບລາຍ - ບໍ່ມີການເຊື່ອມຕໍ່ເຄືອຂ່າຍ"
   },
   "tip": {
     "title": "ສົ່ງທິບ",
@@ -1093,7 +1112,17 @@
     "post": "ໂພສ",
     "officialLogo": "ນີ້ຄືໂລໂກ້ DeHub ຢ່າງເປັນທາງການ! 🎨",
     "editedImage": "ນີ້ຄືຮູບທີ່ແກ້ໄຂແລ້ວ!",
-    "generatedImage": "ນີ້ຄືຮູບທີ່ສ້າງແລ້ວ!"
+    "generatedImage": "ນີ້ຄືຮູບທີ່ສ້າງແລ້ວ!",
+    "toolCompleted": "{{name}} ສຳເລັດ",
+    "aiTool": "ເຄື່ອງມື AI",
+    "cannotAnimateImage": "{{model}} ບໍ່ສາມາດ animate ຮູບພາບທີ່ຕິດຄັດມາໄດ້. ເລືອກ model ວິດີໂອອື່ນ.",
+    "needsImageToAnimate": "{{model}} ຕ້ອງການຮູບພາບເພື່ອ animate. ຕິດຄັດຮູບໜຶ່ງ ຫຼືເລືອກ model ອື່ນ.",
+    "couldNotReadImage": "ບໍ່ສາມາດອ່ານຮູບນັ້ນໄດ້",
+    "logoLoadFailed": "ບໍ່ສາມາດໂຫຼດໂລໂກ້ DeHub ໄດ້ — ກຳລັງສ້າງໂດຍບໍ່ມີມັນ",
+    "imageAttachedDescribe": "ຕິດຮູບພາບແລ້ວ — ອະທິບາຍການແກ້ໄຂຂອງທ່ານ",
+    "couldNotPreparePost": "ບໍ່ສາມາດກະກຽມສິ່ງນັ້ນສຳລັບການໂພສໄດ້",
+    "generateImage": "ສ້າງຮູບພາບ",
+    "generateVideo": "ສ້າງວິດີໂອ"
   },
   "commandCentre": {
     "title": "ສູນບັນຊາການ",
@@ -1603,7 +1632,10 @@
     "edit": "ແກ້ໄຂ",
     "deleteRequestTitle": "ລຶບຄຳຂໍນີ້ບໍ?",
     "deleteRequestDescription": "ບໍ່ສາມາດຍົກເລີກໄດ້.",
-    "attachmentTooLarge": "ແຕ່ລະໄຟລ໌ຕ້ອງນ້ອຍກວ່າ 20MB"
+    "attachmentTooLarge": "ແຕ່ລະໄຟລ໌ຕ້ອງນ້ອຍກວ່າ 20MB",
+    "deleteCommentA11y": "ລົບຄຳຄິດເຫັນ",
+    "sendCommentA11y": "ສົ່ງຄຳຄິດເຫັນ",
+    "requestOptions": "ທາງເລືອກການຮ້ອງຂໍ"
   },
   "auth": {
     "loginRequired": "ຕ້ອງເຂົ້າສູ່ລະບົບ",
@@ -1652,7 +1684,15 @@
     "sendCodeFailedRetry": "ສົ່ງລະຫັດບໍ່ສຳເລັດ. ກະລຸນາລອງອີກຄັ້ງ.",
     "invalidCodeRetry": "ລະຫັດບໍ່ຖືກຕ້ອງ. ກະລຸນາລອງອີກຄັ້ງ.",
     "invalidEmailOrPassword": "ອີເມລ໌ ຫຼືລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ.",
-    "welcomeToDehub": "ຍິນດີຕ້ອນຮັບສູ່ DeHub"
+    "welcomeToDehub": "ຍິນດີຕ້ອນຮັບສູ່ DeHub",
+    "importWalletOptional": "ນໍາເຂົ້າກະເປົາເງິນ (ເປັນທາງເລືອກ)",
+    "couldNotSendCodeRetry": "ບໍ່ສາມາດສົ່ງລະຫັດໄດ້. ກະລຸນາລອງໃໝ່.",
+    "exploreWithoutSignIn": "ສໍາ ຫຼວດໂດຍບໍ່ຕ້ອງລົງລາຍເຊັນເຂົ້າ",
+    "continueExploring": "ສືບຕໍ່ຄົ້ນຫາ",
+    "exploreWithoutSignInA11y": "ຄົ້ນຫາ DeHub ໂດຍບໍ່ຕ້ອງເຂົ້າສູ່ລະບົບ",
+    "continueExploringA11y": "ສືບຕໍ່ ສໍາ ຫຼວດ DeHub",
+    "importWalletRecommended": "ການເຂົ້າສູ່ລະບົບທາງສັງຄົມແມ່ນແນະ ນໍາ.",
+    "importWalletPurpose": "ເຄື່ອງມືນີ້ແມ່ນສໍາລັບການນໍາເຂົ້າບັນຊີທີ່ມີຢູ່ແລ້ວຈາກ DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "ປິດຄຳຕອບທີ່ແນະນຳແລ້ວ",
@@ -1767,7 +1807,29 @@
     "reportedAutomatically": "ໄດ້ຮັບການລາຍງານອັດຕະໂນມັດແລ້ວ.",
     "loadFailed": "ບໍ່ສາມາດໂຫຼດຊ່ອງໄດ້",
     "noSearchResults": "ບໍ່ມີຊ່ອງທີ່ກົງກັບການຄົ້ນຫາຂອງທ່ານ",
-    "noChannels": "ບໍ່ມີຊ່ອງໃຫ້ໃຊ້"
+    "noChannels": "ບໍ່ມີຊ່ອງໃຫ້ໃຊ້",
+    "pairCodeExpired": "ລະຫັດສະບັບນີ້ ຫມົດໄປແລ້ວ. ຖາມໂທລະພາບສໍາລັບຫນຶ່ງໃຫມ່.",
+    "signedInOnTv": "ລົງນາມໃນໂທລະພາບຂອງທ່ານ",
+    "pairRefused": "ປະຕິເສດແລ້ວ",
+    "pairIntro": "ເປີດ DeHub ໃນໂທລະພາບຂອງທ່ານແລະພິມລະຫັດທີ່ມັນສະແດງຢູ່ທີ່ນີ້.",
+    "pairNotFound": "ບໍ່ມີໂທລະພາບລໍຖ້າລະຫັດນັ້ນ. ມັນອາດຈະໄດ້ຫມົດອາຍຸ — ຖາມໂທລະພາບສໍາລັບຫນຶ່ງໃຫມ່.",
+    "wantsToSignIn": "ເຂົ້າສູ່ລະບົບຄືກັບທ່ານ",
+    "pairWarning": "ພຽງແຕ່ອະນຸມັດມັນຖ້າຫາກວ່າມັນເປັນໂທລະພາບທີ່ທ່ານກໍາລັງເບິ່ງໃນປັດຈຸບັນ. ການອະນຸມັດປ້າຍຜູ້ທີ່ ກໍາ ລັງຖືລະຫັດນັ້ນເຂົ້າໃນບັນຊີຂອງທ່ານ. ມັນຈະສາມາດເບິ່ງ, ມັກແລະຕິດຕາມ — ມັນບໍ່ສາມາດໃຊ້ຈ່າຍໄດ້, ແລະທ່ານສາມາດລົງທະບຽນໄດ້ໃນເວລາໃດກໍ່ຕາມຈາກການປະຊຸມທີ່ໃຊ້ງານ.",
+    "pairApprove": "ແມ່ນແລ້ວ, ລົງລາຍເຊັນໃນໂທລະພາບນີ້",
+    "pairDeny": "ບໍ່, ຂ້ອຍບໍ່ໄດ້ຖາມລາວ",
+    "pairDoneTitle": "ໂທລະພາບຂອງທ່ານໄດ້ຖືກລົງນາມໃນ",
+    "pairDoneBody": "ມັນຄວນຈະສະແດງບັນຊີຂອງທ່ານແລ້ວ. ລົງທະບຽນມັນທຸກເວລາຈາກການຕັ້ງຄ່າການປະຊຸມຄວາມເປັນສ່ວນຕົວທີ່ໃຊ້ງານ→ →.",
+    "closePlayer": "ປິດຜູ້ຫຼິ້ນ",
+    "declineFailed": "ມັນບໍ່ສາມາດປະຕິເສດໄດ້ — ມັນອາດຈະໄດ້ຫມົດອາຍຸແລ້ວ.",
+    "tipSentTvNotTold": "Tip ສົ່ງ, ແຕ່ໂທລະພາບບໍ່ສາມາດບອກໄດ້. ມັນຈະຫມົດເວລາ.",
+    "sentAmount": "ສົ່ງ {{amount}} DHB",
+    "nothingWaiting": "ບໍ່ມີຫຍັງລໍຖ້າ",
+    "nothingWaitingBody": "ເມື່ອທ່ານສົ່ງຄຳແນະນຳຈາກ DeHub ຜ່ານໂທລະພາບຂອງທ່ານ, ມັນຈະປາກົດຢູ່ທີ່ນີ້ເພື່ອໃຫ້ທ່ານອະນຸມັດ. ໂທລະພາບຂອງທ່ານບໍ່ເຄີຍຖືເງິນຂອງທ່ານ.",
+    "yourTelevision": "ໂທລະພາບຂອງທ່ານ",
+    "wantsToTip": "ຕ້ອງການສົ່ງຄຳແນະນຳ · {{time}} ໄດ້ອອກ",
+    "tipTo": "ໄປຫາ {{name}}",
+    "tipForPost": "ສຳລັບ “{{title}}”",
+    "reviewAndApprove": "ກວດສອບ ແລະ ອະນຸມັດ"
   },
   "top100": {
     "title": "ອັນດັບ 100",
@@ -2039,7 +2101,8 @@
     "submitApplication": "ສົ່ງໃບສະໝັກ",
     "nameEmailRequired": "ຊື່ ແລະ ອີເມວຈຳເປັນ",
     "applicationSuccess": "ສົ່ງໃບສະໝັກສຳເລັດ! ພວກເຮົາຈະຕິດຕໍ່ກັບ.",
-    "applicationFailed": "ສົ່ງບໍ່ສຳເລັດ. ກະລຸນາລອງໃໝ່."
+    "applicationFailed": "ສົ່ງບໍ່ສຳເລັດ. ກະລຸນາລອງໃໝ່.",
+    "namePlaceholder": "ການຫຸ້ມຫໍ່: wooden cr"
   },
   "dao": {
     "title": "ຄັງເງິນ DAO",
@@ -2199,7 +2262,8 @@
     "pinnedToast": "ປັກໝຸດໄວ້ເທິງສຸດຂອງໂພສນີ້",
     "unpinnedToast": "ເອົາໝຸດອອກແລ້ວ",
     "pinFailed": "ປັກໝຸດຄຳເຫັນນັ້ນບໍ່ໄດ້",
-    "kidsOnlyThread": "ບົດຄວາມນີ້ແມ່ນສໍາລັບເດັກນ້ອຍ. ມີພຽງແຕ່ Kids Mode ເທົ່ານັ້ນທີ່ສາມາດໃຫ້ ຄໍາ ເຫັນກ່ຽວກັບມັນ."
+    "kidsOnlyThread": "ບົດຄວາມນີ້ແມ່ນສໍາລັບເດັກນ້ອຍ. ມີພຽງແຕ່ Kids Mode ເທົ່ານັ້ນທີ່ສາມາດໃຫ້ ຄໍາ ເຫັນກ່ຽວກັບມັນ.",
+    "editFailed": "ແກ້ໄຂຄຳເຫັນບໍ່ສຳເລັດ"
   },
   "postInfo": {
     "title": "ຂໍ້ມູນໂພສ",
@@ -3240,14 +3304,40 @@
     "comingSoon": "ຈະມາໃນໄວໆນີ້",
     "signIn": "ເຂົ້າສູ່ລະບົບ",
     "tapToGetStarted": "ແຕະເພື່ອເລີ່ມ",
-    "soon": "ໄວໆນີ້"
+    "soon": "ໄວໆນີ້",
+    "glossarySubtitle": "ຮຽນຮູ້ຄວາມໝາຍຂອງທຸກໄອຄອນ ແລະ ຄຸນສົມບັດ",
+    "searchGlossary": "ຊອກຫາຄຳສັບ...",
+    "noResultsFor": "ບໍ່ພົບຜົນການຄົ້ນຫາສຳລັບ \"{{query}}\"",
+    "guideSubtitle": "ຄູ່ມືແນະນຳເທື່ອລະຂັ້ນຕອນສຳລັບທຸກຄຸນສົມບັດ",
+    "searchGuide": "ຊອກຫາຄູ່ມື...",
+    "repostsTab": "ການໂພສຄືນໃໝ່",
+    "quotesTab": "ຄຳເວົ້າ",
+    "noMoreReposts": "ບໍ່ມີການໂພສຄືນໃໝ່ອີກແລ້ວ",
+    "noMoreQuotes": "ບໍ່ມີຄຳເວົ້າອີກແລ້ວ",
+    "noRepostsYet": "ຍັງບໍ່ມີການໂພສຄືນໃໝ່",
+    "noQuotesYet": "ຍັງບໍ່ມີຄຳເວົ້າ"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "ເກມທີ່ແລ່ນຢູ່ໃນແອັບນີ້ເລີຍ. ບໍ່ຕ້ອງຕິດຕັ້ງ, ບໍ່ຕ້ອງຊື້ — ໂອເພນຊອດ, ແລະ DeHub ເປັນຜູ້ໃຫ້ບໍລິການເອງ."
+    "intro": "ເກມທີ່ແລ່ນຢູ່ໃນແອັບນີ້ເລີຍ. ບໍ່ຕ້ອງຕິດຕັ້ງ, ບໍ່ຕ້ອງຊື້ — ໂອເພນຊອດ, ແລະ DeHub ເປັນຜູ້ໃຫ້ບໍລິການເອງ.",
+    "noGameCalled": "ບໍ່ມີເກມຊື່ <slug>{{slug}}</slug> ໃນ Arcade.",
+    "seeWhatIsHere": "ເບິ່ງສິ່ງທີ່ມີຢູ່",
+    "locationNotGranted": "ບໍ່ໄດ້ຮັບອະນຸຍາດການເຂົ້າເຖິງສະຖານທີ່.",
+    "signInToPlaceOnGlobe": "ລົງຊື່ເຂົ້າໃຊ້ເພື່ອວາງຕົວທ່ານເອງເທິງໂລກ.",
+    "couldNotPlaceOnGlobe": "ບໍ່ສາມາດວາງທ່ານເທິງໂລກໄດ້.",
+    "onTheGlobe": "ທ່ານຢູ່ເທິງໂລກ — ສະແດງຢູ່ໃນເຂດປະມານ 25 ກິໂລແມັດ.",
+    "couldNotReach": "ບໍ່ສາມາດເຂົ້າເຖິງ Arcade ໄດ້",
+    "didNotLoad": "{{title}} ບໍ່ໄດ້ໂຫຼດ",
+    "needsConnection": "ເກມຖືກຮັບຈາກ dehub.io ແລະຖືກດາວໂຫຼດເມື່ອທ່ານເປີດມັນ, ສະນັ້ນມັນຕ້ອງການການເຊື່ອມຕໍ່ທີ່ໃຊ້ງານໄດ້ໃນຄັ້ງທຳອິດ. ກວດສອບຂອງທ່ານ ແລະ ລອງອີກຄັ້ງ.",
+    "backToArcade": "ກັບຄືນສູ່ອາເຂດ",
+    "openPrivacySettings": "ເປີດການຕັ້ງຄ່າຄວາມເປັນສ່ວນຕົວ",
+    "privacyWarning": "ຖ້າທ່ານຖືຄອບຄອງໂທເຄັນຈຳນວນຫຼາຍ ຫຼືອາໄສຢູ່ໃນເຂດທີ່ບໍ່ປອດໄພ, ໃຫ້ເຊື່ອງປ້າຍ ແລະຍອດເງິນຂອງທ່ານກ່ອນທີ່ຈະໃຊ້ຄຸນສົມບັດນີ້. ການເຮັດທຸລະກຳໃນລະບົບຕ່ອງໂສ້ຍັງຄົງເປີດເຜີຍທີ່ຢູ່ຂອງທ່ານ. ເປີດການຕັ້ງຄ່າ.",
+    "leaveGame": "ອອກຈາກເກມ",
+    "loadingGame": "ກຳລັງໂຫຼດ {{title}}",
+    "hideThis": "ເຊື່ອງສິ່ງນີ້"
   },
   "videoLooks": {
     "button": "ຮູບແບບກ້ອງ",
@@ -3372,7 +3462,21 @@
     "someone": "ບາງຄົນ",
     "oneTyping": "{{name}} ກຳລັງພິມ…",
     "fewTyping": "{{names}} ກຳລັງພິມ…",
-    "manyTyping": "{{count}} ຄົນກຳລັງພິມ…"
+    "manyTyping": "{{count}} ຄົນກຳລັງພິມ…",
+    "thisUser": "ຜູ້ໃຊ້ນີ້",
+    "unbanConfirm": "ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການປົດແບນ {{name}}?",
+    "unban": "ປົດແບນ",
+    "unbanFailed": "ບໍ່ສາມາດປົດແບນຜູ້ໃຊ້ໄດ້",
+    "onlineLabel": "ອອນໄລນ໌",
+    "usersCount_one": "ຜູ້ໃຊ້ {{count}}",
+    "usersCount_other": "ຜູ້ໃຊ້ {{count}}",
+    "totalMessages": "ຂໍ້ຄວາມທັງໝົດ",
+    "slowMode": "ໂໝດຊ້າ",
+    "cooldownSeconds": "{{seconds}}s ລະບົບລັອກ",
+    "minStakeRequired": "ຂັ້ນຕ່ຳທີ່ຕ້ອງການ",
+    "noParticipants": "ຍັງບໍ່ມີຜູ້ເຂົ້າຮ່ວມ",
+    "noModerators": "ບໍ່ມີຜູ້ຄຸ້ມຄອງ",
+    "noBannedUsers": "ບໍ່ມີຜູ້ຖືກຫ້າມ"
   },
   "promptFeed": {
     "headline": "ທ່ານຢາກເບິ່ງຫຍັງ?",
@@ -4123,7 +4227,26 @@
     "madeForKidsBlockedByMature": "ໂພສ໋ຕ໌ທີ່ຖືກຕິດປ້າຍວ່າ mature ບໍ່ສາມາດເຜີຍແພ່ສໍາລັບເດັກນ້ອຍໄດ້.",
     "encoderTitle": "OBS / ເຄື່ອງເຂົ້າລະຫັດ",
     "encoderHint": "ຮັບລາຍລະອຽດ RTMP",
-    "markMadeForKids": "ໝາຍວ່າສ້າງມາສຳລັບເດັກນ້ອຍ"
+    "markMadeForKids": "ໝາຍວ່າສ້າງມາສຳລັບເດັກນ້ອຍ",
+    "queueWaiting": "ລໍຖ້າ…",
+    "queueUploading": "ກຳລັງອັບໂຫຼດ",
+    "queueProcessing": "ກຳລັງປະມວນຜົນ…",
+    "queueMinting": "ກຳລັງສ້າງ…",
+    "queuePosted": "ໂພສແລ້ວ",
+    "queueFailed": "ລົ້ມເຫຼວ",
+    "noRetriesLeft": "(ບໍ່ມີການລອງໃໝ່)",
+    "noUploads": "ບໍ່ມີການອັບໂຫຼດ",
+    "uploadsAppearHere": "ການອັບໂຫຼດຂອງທ່ານຈະປາກົດຢູ່ທີ່ນີ້",
+    "imagesTotalLimit": "ຮູບພາບໃນການອັບໂຫຼດໜຶ່ງຄັ້ງຕ້ອງມີຂະໜາດລວມບໍ່ເກີນ 100 MB",
+    "chooseDatabase": "ເລືອກຖານຂໍ້ມູນແບບກະຈາຍສູນ",
+    "livestreamMode": "ໂໝດຖ່າຍທອດສົດ",
+    "addThumbnail": "ເພີ່ມຮູບໜ້າປົກ",
+    "showCover": "ສະແດງໜ້າປົກ",
+    "max60s": "ສູງສຸດ 60 ວິນາທີ",
+    "confirmLivestream": "ຢືນຢັນການຖ່າຍທອດສົດ",
+    "liveFeaturesTitle": "ຄຸນສົມບັດສົດ",
+    "discardPostTitle": "ຍົກເລີກໂພສບໍ?",
+    "discardPostBody": "ໂພສຂອງທ່ານຈະຫາຍໄປ. ທ່ານຕ້ອງການບັນທຶກເປັນຮ່າງແທນບໍ?"
   },
   "bounty": {
     "claimed": "ຮັບແລ້ວ",
@@ -4440,7 +4563,25 @@
     "allowNewDmsOff": "ເປີດ DM ເພື່ອອະນຸຍາດຂໍ້ຄວາມໃໝ່.",
     "perMessageFee": "ຄ່າຕໍ່ຂໍ້ຄວາມ (DHB)",
     "perMessageFeeSub": "ເກັບຄ່າຕໍ່ຂໍ້ຄວາມ. ຕັ້ງເປັນ 0 ເພື່ອ DM ຟຣີ. ທ່ານສາມາດໃຫ້ສິດຟຣີແກ່ຜູ້ໃຊ້ສະເພາະໄດ້.",
-    "allDisabled": "ຕອນນີ້ DM ທັງໝົດຖືກປິດ. DM ໃໝ່ຖືກບລັອກຕາມຄ່າເລີ່ມຕົ້ນ."
+    "allDisabled": "ຕອນນີ້ DM ທັງໝົດຖືກປິດ. DM ໃໝ່ຖືກບລັອກຕາມຄ່າເລີ່ມຕົ້ນ.",
+    "failedToEdit": "ແກ້ໄຂບໍ່ສຳເລັດ",
+    "messageDeleted": "ຂໍ້ຄວາມຖືກລຶບ",
+    "cantForwardFromDevice": "ອຸປະກອນນີ້ບໍ່ສາມາດສົ່ງຕໍ່ຂໍ້ຄວາມນີ້ໄດ້",
+    "messageForwarded": "ສົ່ງຕໍ່ຂໍ້ຄວາມແລ້ວ",
+    "clearMessages": "ລຶບຂໍ້ຄວາມ",
+    "clearMessagesConfirm": "ລຶບຂໍ້ຄວາມທັງໝົດໃນການສົນທະນານີ້ບໍ? ບໍ່ສາມາດຍົກເລີກໄດ້.",
+    "messagesCleared": "ລຶບຂໍ້ຄວາມແລ້ວ",
+    "failedToClearMessages": "ລຶບຂໍ້ຄວາມບໍ່ສຳເລັດ",
+    "removedFreeAccess": "ເອົາການເຂົ້າເຖິງຟຣີອອກສຳລັບ {{name}}",
+    "grantedFreeAccess": "ໃຫ້ການເຂົ້າເຖິງຟຣີແກ່ {{name}}",
+    "failedToUpdateFreeAccess": "ອັບເດດການເຂົ້າເຖິງຟຣີບໍ່ສຳເລັດ",
+    "searchComingSoon": "ກຳລັງຄົ້ນຫາໃນໄວໆນີ້",
+    "tapToUnblock": "ແຕະເພື່ອປົດບລັອກ",
+    "userFallback": "ຜູ້ໃຊ້",
+    "failedToBlock": "ບລັອກບໍ່ສຳເລັດ",
+    "failedToDeleteConversation": "ລຶບການສົນທະນາບໍ່ສຳເລັດ",
+    "newDm": "ຂໍ້ຄວາມໂດຍກົງໃໝ່",
+    "noConversationsFound": "ບໍ່ພົບການສົນທະນາ"
   },
   "editPost": {
     "mediaPermission": "ຕ້ອງການສິດເຂົ້າເຖິງຄັງສື່",
@@ -4462,7 +4603,17 @@
     "retry": "ລອງໃໝ່ອີກຄັ້ງ",
     "retrying": "ກຳລັງພະຍາຍາມໃໝ່...",
     "retryQueued": "ການປະມວນຜົນອີກຄັ້ງ",
-    "retryFailed": "ບໍ່ສາມາດສົ່ງຂໍ້ຄວາມນີ້ຄືນໄດ້"
+    "retryFailed": "ບໍ່ສາມາດສົ່ງຂໍ້ຄວາມນີ້ຄືນໄດ້",
+    "closeVideo": "ປິດວິດີໂອ",
+    "rotateOrientation": "ໝຸນການວາງແນວນອນ",
+    "videoProgress": "ຄວາມຄືບໜ້າຂອງວິດີໂອ: {{percent}}%",
+    "tapToSeek": "ແຕະເພື່ອຊອກຫາຕຳແໜ່ງສະເພາະ",
+    "photoAccessToSaveImages": "ອະນຸຍາດໃຫ້ເຂົ້າເຖິງຫ້ອງສະໝຸດຮູບພາບເພື່ອບັນທຶກຮູບພາບ",
+    "failedToSaveImage": "ບໍ່ສາມາດບັນທຶກຮູບພາບໄດ້",
+    "downloadImage": "ດາວໂຫລຸດຮູບພາບ",
+    "goToImage": "ໄປທີ່ຮູບພາບ {{index}}",
+    "allCaughtUp": "ທ່ານໄດ້ເບິ່ງໝົດແລ້ວ",
+    "checkBackForShorts": "ກວດສອບອີກຄັ້ງໃນພາຍຫລັງສຳລັບ shorts ເພີ່ມເຕີມ"
   },
   "liveViewer": {
     "loadingStream": "ກຳລັງໂຫຼດສະຕີມ...",
@@ -4472,7 +4623,22 @@
   },
   "search": {
     "endOfResults": "ສິ້ນສຸດຜົນລັບ",
-    "searchDehub": "ຄົ້ນຫາໃນ DeHub"
+    "searchDehub": "ຄົ້ນຫາໃນ DeHub",
+    "tabVoice": "ສຽງ",
+    "trendingThisWeek": "ທີ່ນິຍົມໃນອາທິດນີ້",
+    "trendingPosts": "ໂພສທີ່ນິຍົມ",
+    "trendingImages": "ຮູບພາບທີ່ນິຍົມ",
+    "trendingVideos": "ວິດີໂອທີ່ນິຍົມ",
+    "trendingVoicePosts": "ໂພສສຽງທີ່ນິຍົມ",
+    "trendingLive": "ຖ່າຍທອດສົດທີ່ນິຍົມ",
+    "seeAll": "ເບິ່ງທັງໝົດ",
+    "noAccountsFound": "ບໍ່ພົບບັນຊີ",
+    "tryDifferentKeywords": "ລອງໃຊ້ຄຳທີ່ແຕກຕ່າງກັນ ຫຼືກວດສອບການສະກົດຄຳຂອງທ່ານ",
+    "noContentResults": "ບໍ່ມີຜົນການຄົ້ນຫາເນື້ອຫາ",
+    "recentSearches": "ການຄົ້ນຫາຫຼ້າສຸດ",
+    "noTrendingThisWeek": "ບໍ່ມີເນື້ອຫາທີ່ນິຍົມໃນອາທິດນີ້",
+    "closeFilterOptions": "ປິດຕົວເລືອກການກັ່ນຕອງ",
+    "openFilterOptions": "ເປີດຕົວເລືອກການກັ່ນຕອງ"
   },
   "notifPrompt": {
     "stayInLoop": "ຕິດຕາມຂ່າວສານ",
@@ -4722,7 +4888,25 @@
     "externalTitle": "ໂໝດຖ່າຍທອດທາງນອກ",
     "externalLiveHint": "ການຖ່າຍທອດຂອງທ່ານແມ່ນມີຊີວິດໂດຍຜ່ານຊອບແວພາຍນອກ. ກ້ອງຖ່າຍຮູບໃນແອັບພິການ.",
     "externalHint": "ເຊື່ອມ ຕໍ່ ຊອບ ແວ streaming ຂອງ ທ່ານ ໂດຍ ນໍາ ໃຊ້ ລາຍ ລະ ອຽດ ຂ້າງ ລຸ່ມ ນີ້, ຫຼັງ ຈາກ ນັ້ນ ເລີ່ມ ຕົ້ນ ການ ຖ່າຍ ທອດ",
-    "useInAppCamera": "ໃຊ້ກ້ອງຖ່າຍຮູບໃນແອັບແທນ"
+    "useInAppCamera": "ໃຊ້ກ້ອງຖ່າຍຮູບໃນແອັບແທນ",
+    "livestreamEnded": "ການຖ່າຍທອດສົດສິ້ນສຸດລົງ",
+    "chatEnabled": "ເປີດໃຊ້ການສົນທະນາ",
+    "chatDisabled": "ປິດໃຊ້ການສົນທະນາ",
+    "failedToUpdateSettings": "ບໍ່ສາມາດອັບເດດການຕັ້ງຄ່າໄດ້",
+    "networkLostReconnecting": "ສູນເສຍການເຊື່ອມຕໍ່ເຄືອຂ່າຍ — ການຖ່າຍທອດຢຸດຊົ່ວຄາວ. ກຳລັງເຊື່ອມຕໍ່ຄືນໃໝ່…",
+    "openingViewer": "ກຳລັງເປີດຕົວເບິ່ງ...",
+    "cameraPermissionRequired": "ຕ້ອງການການອະນຸຍາດກ້ອງຖ່າຍຮູບ",
+    "grantPermission": "ອະນຸຍາດ",
+    "waitingForLivepeer": "ລໍຖ້າ Livepeer...",
+    "waitingForExternalSource": "ລໍຖ້າແຫຼ່ງຂໍ້ມູນພາຍນອກ...",
+    "settingUpPublisher": "ສ້າງຕັ້ງຜູ້ພິມ...",
+    "scheduledStream": "ສະຕີມທີ່ກຳນົດໄວ້",
+    "pressGoLiveWhenReady": "ກົດ Go Live ເມື່ອພ້ອມທີ່ຈະເລີ່ມຕົ້ນ",
+    "connectionInterrupted": "ການເຊື່ອມຕໍ່ຖືກລົບກວນ",
+    "streamPausedReconnecting": "ສະຕີມຂອງທ່ານຖືກໂຈະ. ການເຊື່ອມຕໍ່ຄືນໃໝ່...",
+    "streamWillEnd": "ສະຕີມຈະສິ້ນສຸດຖ້າບໍ່ເຊື່ອມຕໍ່ໃໝ່",
+    "endStreamConfirmTitle": "ສິ້ນສຸດການຖ່າຍທອດ?",
+    "endStreamConfirmBody": "ການປິດດຽວນີ້ຈະສິ້ນສຸດການຖ່າຍທອດສົດຂອງທ່ານສຳລັບຜູ້ຊົມທຸກຄົນ. ທ່ານສາມາດສືບຕໍ່ການຖ່າຍທອດ ຫຼື ສິ້ນສຸດລົງຢ່າງຖາວອນ."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -119,7 +119,12 @@
     "music": "Musikɛ",
     "live": "Kɛnɛ",
     "newPosts_one": "Sɛbɛn kura {{count}}",
-    "newPosts_other": "Sɛbɛn kura {{count}}"
+    "newPosts_other": "Sɛbɛn kura {{count}}",
+    "privateContent": "Ɲiningaliw",
+    "privateContentBody": "O kunnafoniw bɔra mɔgɔ ka sɛbɛ dɔ kɔnɔ. Aw ye tugu a danbaga kɔ k'a ka sɛbɛw lajɛ.",
+    "noMoreContent": "Ne tun tɛ se ka n' yɛrɛ tanga o ma tugun",
+    "noPostsYet": "Mɔgɔ si ma deli ka bɔ yen.",
+    "pullToRefresh": "N'i b'a fɛ ka dɔ fara i ka fanga kan, i ka kan ka dɔ fara i ka fanga kan."
   },
   "explore": {
     "all": "Kɔrɔbɔ",
@@ -710,7 +715,19 @@
     "smsTopUp": "Recarga {{dhb}} DHB",
     "smsCodeSent": "Código enviado. Eso costó {{price}} DHB.",
     "smsCodeLabel": "Código que enviamos por SMS a {{phone}}",
-    "badgeDelegationLendsAny": "Cada uno presta a otra cuenta cualquier insignia que hayas desbloqueado, hasta tu propio {{tier}}. Una insignia más pequeña todavía usa una ranura completa."
+    "badgeDelegationLendsAny": "Cada uno presta a otra cuenta cualquier insignia que hayas desbloqueado, hasta tu propio {{tier}}. Una insignia más pequeña todavía usa una ranura completa.",
+    "avatarUpdateFailed": "Avatar ka kunnafoniw ma se ka yɛlɛ",
+    "coverUpdateFailed": "COVER SUBJECT K'a sɔrɔ a ma se ka kɛ",
+    "fixInvalidSocialLinks": "Ka tɛmɛ o kan, i ka kan ka tɛmɛ o kan.",
+    "updateFailed": "Fɛɛn minw tun ma se ka kɛ",
+    "channelUrlOrHandle": "I ka kan ka min kɛ, o ye ka to ka o kɛ",
+    "inviteLinkPlaceholder": "Aw ye mɔgɔ dɔ weele ka na aw ka yɔrɔ dɔ",
+    "profileUrlOrUsername": "I tɔgɔ wala i ka tɔgɔ",
+    "yourDisplayName": "I tɔgɔ yira",
+    "usernameAvailable": "Mɔgɔ tɔgɔ min be yen",
+    "hideBadgeAndBalance": "Fanga ni sumanikɛlanModifier",
+    "hideBadgeAndBalanceDesc": "I ka wari koo dogo ani ka ladiliw di i ma.",
+    "onChainPublicWarning": "On-chain transactions jɛnɛn tɛnɛn. Sɛndiŋ tɔkɛn kɛ tiŋ kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛSɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn kɛnɛn"
   },
   "common": {
     "mute": "Kan bɔ",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Pas de connexion Internet",
     "noInternetBody": "N'i b'i ka ɛntɛrinɛti yɔrɔ lajɛ ani i ka segi k'a ɲini. I mako be ɛntɛrinɛti la walisa ka DeHub ta.",
     "noInternetStatus": "Mɔgɔ tɛ sɔn ka baara wɛrɛ kɛ, a tɛ se ka baara wɛrɛ kɛ.",
-    "noInternetHint": "Aw ye a to Wi-Fi wala telefɔni ka kunnafoniw ka yɛlɛ, o kɔ, aw ye \"{{action}}\" sɛbɛn"
+    "noInternetHint": "Aw ye a to Wi-Fi wala telefɔni ka kunnafoniw ka yɛlɛ, o kɔ, aw ye \"{{action}}\" sɛbɛn",
+    "saving": "Saving…",
+    "offlineStatus": "Mɔgɔ tɛ sɔn ka baara wɛrɛ kɛ, a tɛ se ka baara wɛrɛ kɛ."
   },
   "tip": {
     "title": "Kɔrɔbɔ",
@@ -1094,7 +1113,17 @@
     "post": "Kɔrɔbɔ",
     "officialLogo": "DeHub kɛ logo! 🎨",
     "editedImage": "Fɔlɔw kɛ",
-    "generatedImage": "Fɔlɔw kɛ"
+    "generatedImage": "Fɔlɔw kɛ",
+    "toolCompleted": "{{name}} ka dafa",
+    "aiTool": "Fɛɛrɛ dɔw",
+    "cannotAnimateImage": "{{model}} Can't add animate an image. O ye ka kɛ sababu ye ka mɔgɔ dɔ ka miiriya yɛlɛma. O kɔ, i ka videwo wɛrɛ sugandi.",
+    "needsImageToAnimate": "{{model}} ka kan ka kɛ ni foto ye. Aw ye dɔ ta, walima aw ye dɔ wɛrɛ ta.",
+    "couldNotReadImage": "Ne tɛ se ka o jaa ye",
+    "logoLoadFailed": "DeHub ka tagamasiɲɛ tun tɛ se ka sigi sen kan - a tun tɛ se ka sigi sen kan",
+    "imageAttachedDescribe": "Jaa min be sɔrɔ o kɔnɔ, a sɛbɛnnin lo o kɔnɔ.",
+    "couldNotPreparePost": "Nta yashoboye gutegurwa ngo bipostwe",
+    "generateImage": "Jaa lajɛ",
+    "generateVideo": "Aw ye videwo nin lajɛ"
   },
   "commandCentre": {
     "title": "Kɔmɔ Kɛnɛ",
@@ -1606,7 +1635,10 @@
     "edit": "Yɛlɛma",
     "deleteRequestTitle": "Nin ɲinini jɔsi wa?",
     "deleteRequestDescription": "Nin tɛ se ka segin.",
-    "attachmentTooLarge": "Dosiye kelen-kelen ka kan ka dɔgɔya ni 20MB ye"
+    "attachmentTooLarge": "Dosiye kelen-kelen ka kan ka dɔgɔya ni 20MB ye",
+    "deleteCommentA11y": "Ka kuma dɔ bɔ",
+    "sendCommentA11y": "Ka kuma dɔ ci",
+    "requestOptions": "Ɲiningaliw"
   },
   "auth": {
     "loginRequired": "Sɔgɔma kɛ",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "N'i ma se ka sɛbɛ ci, i ka segi k'a ci.",
     "invalidCodeRetry": "N'i b'a fɛ ka koo dɔ kɛ, i ka segi k'o kɛ.",
     "invalidEmailOrPassword": "I ka e-mail wala i ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye.",
-    "welcomeToDehub": "Bienvenue sur DeHub"
+    "welcomeToDehub": "Bienvenue sur DeHub",
+    "importWalletOptional": "Ɲɛjiracogo (Fɛɛn min ka kan ka kɛ)",
+    "couldNotSendCodeRetry": "N'i ma se ka sɛbɛ ci, i ka segi k'a ci.",
+    "exploreWithoutSignIn": "I ka kan ka min kɛ, i kana o kɛ",
+    "continueExploring": "Ka to ka ɲinini kɛ",
+    "exploreWithoutSignInA11y": "I ka kan ka min kɛ, o ye ka to ka to ka o kɛ",
+    "continueExploringA11y": "O kɔ, a ye dɔ fara a ka baara kan.",
+    "importWalletRecommended": "An b'a ɲini ka mɔgɔw weele ka na an ka lajɛnw na.",
+    "importWalletPurpose": "O baarakɛminan ye ka mɔgɔ dɔw ka ladɛrɛsiw don DeHub.io kɔnɔ."
   },
   "messages": {
     "smartRepliesOff": "Jaabi fɔlenw fagara",
@@ -1770,7 +1810,28 @@
     "reportedAutomatically": "A fɔra a yɛrɛma.",
     "loadFailed": "Kanaliw ma se ka don",
     "noSearchResults": "Kanali si tɛ yen min bɛ bɛn i ka ɲinini ma",
-    "noChannels": "Kanali si tɛ yen"
+    "noChannels": "Kanali si tɛ yen",
+    "pairCodeExpired": "Nka sisan, o koo labanna. N'i b'a fɛ ka dɔ wɛrɛ sɔrɔ, i ka telefɔni ɲininga.",
+    "signedInOnTv": "Mun na i be to ka to ka telewisɔn filɛ?",
+    "pairRefused": "A banna o la",
+    "pairIntro": "Aw ka DeHub yɛlɛ aw ka telefɔni kan ani aw ka code min yira yan, aw k'o sɛbɛ.",
+    "pairNotFound": "Telewisɔn si tɛ kɔnɔni kɛra o koo la. O be se ka kɛ ko a banna — a ɲini ka dɔ wɛrɛ ɲini telefɔni na.",
+    "wantsToSignIn": "i b'a fɛ k'a yira i la cogo min na",
+    "pairWarning": "N'i be telewisɔn filɛ sisan, i ka sɔn o ma. I b'a fɛ k'a fɔ i ye ko i ka banba k'a to a ka baara ka kɛ i ɲɛnako fɔlɔ ye. A bena se k'a filɛ, k'a kanu ani k'a to a be tugu a kɔ — a tɛ se ka wari caaman sɔrɔ, ani i be se k'a bila sira tuma o tuma ka bɔ baara kɛyɔrɔ la.",
+    "pairApprove": "N'a sɔrɔ i tun be se ka n' yɛrɛ tanga o ma.",
+    "pairDeny": "O bɛɛ n'a ta, ne ma foyi fɔ aw ye.",
+    "pairDoneTitle": "O la, an ka teli ka miiri o la.",
+    "pairDoneBody": "I ka kan ka i ka wari yira ka ban. N'i b'a fɛ ka siginidenw bila sen kan tuma o tuma, i → ka siginidenw → bila sen kan.",
+    "closePlayer": "A ka ɲi ka kɛ i ko mɔgɔ min",
+    "declineFailed": "A tun tɛ se k'o sɔsɔ — a tun be se ka kɛ ko a tun banna ka ban.",
+    "tipSentTvNotTold": "O kɔ, u y'a fɔ a ye ko a ka taga n'a ye. O bena kɛ wagati ye.",
+    "sentAmount": "Sent {{amount}} DHB",
+    "nothingWaiting": "Nothing waiting",
+    "yourTelevision": "Your television",
+    "tipTo": "to {{name}}",
+    "tipForPost": "for “{{title}}”",
+    "nothingWaitingBody": "N'i bɔra DeHub ka telefɔni na, a be komi i b'a fɛ k'a yira ko i b'a fɛ k'a yira. Telewisɔn tɛ se k'i ka wari mara.",
+    "reviewAndApprove": "Ka sɔn ani ka sɔn"
   },
   "top100": {
     "title": "Sanfɛ 100",
@@ -2042,7 +2103,8 @@
     "submitApplication": "Kɔrɔbɔ",
     "nameEmailRequired": "Kɔrɔbɔ",
     "applicationSuccess": "Kɔrɔbɔ",
-    "applicationFailed": "Kɔrɔbɔ bɔ"
+    "applicationFailed": "Kɔrɔbɔ bɔ",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO Treasury",
@@ -2202,7 +2264,8 @@
     "pinnedToast": "A tugura nin bataki sanfɛ",
     "unpinnedToast": "Tugulan bɔra",
     "pinFailed": "O kumasen tugu ma se ka kɛ",
-    "kidsOnlyThread": "O barokun ye denmisɛnw ka barokun ye. Denmisɛnw dɔrɔn lo be se ka kuma o koo la."
+    "kidsOnlyThread": "O barokun ye denmisɛnw ka barokun ye. Denmisɛnw dɔrɔn lo be se ka kuma o koo la.",
+    "editFailed": "Mɔgɔ si ma sɔn ka kuma"
   },
   "postInfo": {
     "title": "Post kunnafoni",
@@ -3239,14 +3302,38 @@
     "comingSoon": "A bɛ na",
     "signIn": "Don",
     "tapToGetStarted": "Digi walisa ka daminɛ",
-    "soon": "Sɔɔni"
+    "soon": "Sɔɔni",
+    "searchGlossary": "Search glossary...",
+    "repostsTab": "Reposts",
+    "quotesTab": "Quotes",
+    "noMoreReposts": "No more reposts",
+    "noMoreQuotes": "No more quotes",
+    "noRepostsYet": "No reposts yet",
+    "noQuotesYet": "No quotes yet",
+    "glossarySubtitle": "I be se k'a faamu fɛɛn min kama i be se k'i yɛrɛ tanga o ma.",
+    "guideSubtitle": "O cogo kelen na, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+    "searchGuide": "A ɲini ka ladili sɔrɔ..."
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Tulonw minnu bɛ boli yan porogaramu kɔnɔ. Foyi tɛ ka bila, foyi tɛ ka san — daaji dayɛlɛlen, DeHub yɛrɛ b'a di."
+    "intro": "Tulonw minnu bɛ boli yan porogaramu kɔnɔ. Foyi tɛ ka bila, foyi tɛ ka san — daaji dayɛlɛlen, DeHub yɛrɛ b'a di.",
+    "openPrivacySettings": "Open privacy settings",
+    "loadingGame": "Loading {{title}}",
+    "hideThis": "Hide this",
+    "seeWhatIsHere": "A filɛ min be yan",
+    "locationNotGranted": "Mɔgɔ tɛ se ka taga yen.",
+    "signInToPlaceOnGlobe": "I ka sɛbɛri kɛ walisa k'i yɛrɛ bila duniɲa kɔnɔ.",
+    "couldNotPlaceOnGlobe": "Ne tɛ se k'i bila diɲɛ na.",
+    "onTheGlobe": "I be dugukolo kan — a be yira kilomɛtɛrɛ 25 ɲɔgɔn kɔnɔ.",
+    "couldNotReach": "A tun tɛ se ka taga o yɔrɔ la.",
+    "didNotLoad": "{{title}} No loading",
+    "needsConnection": "O la, a ka ɲi ka baara kɛ ni ɲɔgɔn ye siɲɛ fɔlɔ. I ka koo lajɛ ani i ka segi k'a ɲini.",
+    "backToArcade": "O la, an bena segi ka na.",
+    "privacyWarning": "N'i ye tagamasiɲɛ caaman ta wala n'i be yɔrɔ min na i tɛ se ka la a la, i ka banba k'i ka tagamasiɲɛ n'i ka sumanikɛnan dogo sanni i ka baara kɛ n'o ye. O la, i ka ladɛrɛsi be se ka kɛ i ka ladɛrɛsi ye.",
+    "leaveGame": "Aw ye taga a fɔ a ye ko a ka na"
   },
   "videoLooks": {
     "button": "Kamera cogoya",
@@ -3372,7 +3459,21 @@
     "someone": "Mɔgɔ dɔ",
     "oneTyping": "{{name}} bɛ sɛbɛnni kɛ…",
     "fewTyping": "{{names}} bɛ sɛbɛnni kɛ…",
-    "manyTyping": "Mɔgɔ {{count}} bɛ sɛbɛnni kɛ…"
+    "manyTyping": "Mɔgɔ {{count}} bɛ sɛbɛnni kɛ…",
+    "modBadge": "MOD",
+    "thisUser": "this user",
+    "unban": "Unban",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} user",
+    "usersCount_other": "{{count}} users",
+    "totalMessages": "Total Messages",
+    "slowMode": "Slow Mode",
+    "cooldownSeconds": "{{seconds}}s cooldown",
+    "minStakeRequired": "Min Stake Required",
+    "noParticipants": "No participants yet",
+    "noModerators": "No moderators",
+    "noBannedUsers": "No banned users",
+    "unbanFailed": "Mɔgɔ min ma sɔn ka baara kɛ n'a ye, a ka kan ka baara kɛ n'o ye"
   },
   "promptFeed": {
     "headline": "I b'a fɛ ka mun ye?",
@@ -4124,7 +4225,26 @@
     "madeForKidsBlockedByMature": "Post ye ka jɔ ka sɔrɔ ka don ka tɛ ɲɔgɔn ka jɔ ka sɔrɔ ka don ka den ye ka gara.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "Get RTMP details",
-    "markMadeForKids": "Mɛɛk ɛz mɛɛd fɔɔ kiidɛs"
+    "markMadeForKids": "Mɛɛk ɛz mɛɛd fɔɔ kiidɛs",
+    "queueWaiting": "Waiting…",
+    "queueUploading": "Uploading",
+    "queueProcessing": "Processing…",
+    "queueMinting": "Minting…",
+    "queuePosted": "Posted",
+    "queueFailed": "Failed",
+    "noRetriesLeft": "(no retries left)",
+    "noUploads": "No uploads",
+    "chooseDatabase": "Choose Decentralized Database",
+    "livestreamMode": "Livestream Mode",
+    "addThumbnail": "Add Thumbnail",
+    "showCover": "Show cover",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Confirm Livestream",
+    "liveFeaturesTitle": "Live Features",
+    "discardPostTitle": "Discard Post?",
+    "imagesTotalLimit": "Ni mɔgɔ dɔ ye foto dɔ ta, a ka kan ka kɛ MB 100 ye walima ka tɛmɛ o kan",
+    "discardPostBody": "Ne tun b'a fɛ ka min kɛ, a tun b'o le kɛra. Yala i b'a fɛ k'a kɛ i ka sɛbɛ ye wa?",
+    "uploadsAppearHere": "I ka kunnafoniw bena sɔrɔ yan"
   },
   "bounty": {
     "claimed": "A tara",
@@ -4439,7 +4559,23 @@
     "allowNewDmsOff": "DM da wuli walisa ka cikan kuraw sɔn.",
     "perMessageFee": "Cikan kelen sara (DHB)",
     "perMessageFeeSub": "Sara ta cikan kelen kelen na. A bila 0 la walisa DM ka kɛ fu ye. I bɛ se ka sira gansan di mɔgɔ dɔw ma.",
-    "allDisabled": "DM bɛɛ fagalen don sisan. DM kuraw balilen don."
+    "allDisabled": "DM bɛɛ fagalen don sisan. DM kuraw balilen don.",
+    "failedToEdit": "Failed to edit",
+    "messageDeleted": "Message deleted",
+    "messageForwarded": "Message forwarded",
+    "clearMessages": "Clear messages",
+    "messagesCleared": "Messages cleared",
+    "searchComingSoon": "Search coming soon",
+    "tapToUnblock": "Tap to unblock",
+    "userFallback": "user",
+    "failedToBlock": "Failed to block",
+    "noConversationsFound": "No conversations found",
+    "cantForwardFromDevice": "O kuma tɛ se ka ci ka bɔ o baarakɛminan na",
+    "failedToClearMessages": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
+    "failedToUpdateFreeAccess": "I ka baara kɛ ni wari ye",
+    "failedToDeleteConversation": "Ka kumaɲɔgɔnya nɔgɔya",
+    "newDm": "Kibaro diimanw",
+    "clearMessagesConfirm": "Yala i be se ka kuma o kuma na wa? O tɛ se ka ban."
   },
   "editPost": {
     "mediaPermission": "Media gafemarayɔrɔ yamaruya wajibiyalen don",
@@ -4461,7 +4597,17 @@
     "retry": "Try tun tun tun",
     "retrying": "Ka segi ka na...",
     "retryQueued": "Ka segi ka baara kɛ",
-    "retryFailed": "Ne tɛ se ka o barokun ta tugun"
+    "retryFailed": "Ne tɛ se ka o barokun ta tugun",
+    "closeVideo": "Close video",
+    "rotateOrientation": "Rotate orientation",
+    "videoProgress": "Video progress: {{percent}}%",
+    "downloadImage": "Download image",
+    "goToImage": "Go to image {{index}}",
+    "tapToSeek": "O kama, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+    "photoAccessToSaveImages": "A be se ka kɛ ko mɔgɔ be se ka fɛɛn dɔ ye min be se ka mɔgɔ bali ka",
+    "failedToSaveImage": "An ka jaabili dɔ lajɛ min be ɲɛsin mɔgɔ ka koo ma.",
+    "allCaughtUp": "I be se ka min kɛ, o ye tiɲɛ ye.",
+    "checkBackForShorts": "N'a sɔrɔ i bena a ye ko i ye mɔgɔ dɔ ye min be se ka kɛ i yɛrɛ ka"
   },
   "liveViewer": {
     "loadingStream": "Stream bɛ lajɛ...",
@@ -4471,7 +4617,22 @@
   },
   "search": {
     "endOfResults": "Jaabiw laban",
-    "searchDehub": "DeHub kɔnɔ ɲini"
+    "searchDehub": "DeHub kɔnɔ ɲini",
+    "tabVoice": "Voice",
+    "trendingPosts": "Trending Posts",
+    "trendingImages": "Trending Images",
+    "trendingVideos": "Trending Videos",
+    "trendingVoicePosts": "Trending Voice Posts",
+    "trendingLive": "Trending Live",
+    "seeAll": "See All",
+    "noAccountsFound": "No accounts found",
+    "noContentResults": "No content results",
+    "recentSearches": "Recent Searches",
+    "closeFilterOptions": "Close filter options",
+    "openFilterOptions": "Open filter options",
+    "trendingThisWeek": "Lɔgɔkun hakilila-nyuma",
+    "tryDifferentKeywords": "I be se ka sɛbɛri kɛ ni kumaden dɔw ye wala i be se ka sɛbɛri kɛ ni kumaden dɔw ye.",
+    "noTrendingThisWeek": "O lɔgɔkun na, kunnafoniw tun tɛ yen."
   },
   "notifPrompt": {
     "stayInLoop": "To kunnafoni la",
@@ -4721,7 +4882,26 @@
     "externalTitle": "Fanga be yɔrɔ minw na, u be se ka bɔ yen.",
     "externalLiveHint": "I ka fɔrɔmasɔn be sɔrɔ yɔrɔ wɛrɛw la. O kama, a ka ɲi ka to ka to ka baara kɛ n'a ye.",
     "externalHint": "I ka fɔrɔmasɔn labɛn ka tɛmɛ kunnafoniw kan, o kɔ, i ka fɔrɔmasɔn daminɛ.",
-    "useInAppCamera": "O kama, an ka ɲi ka to ka baara kɛ n'an ka kamera ye."
+    "useInAppCamera": "O kama, an ka ɲi ka to ka baara kɛ n'an ka kamera ye.",
+    "livestreamEnded": "Livestream ended",
+    "chatEnabled": "Chat enabled",
+    "chatDisabled": "Chat disabled",
+    "networkLostReconnecting": "Network lost — stream paused. Reconnecting…",
+    "openingViewer": "Opening viewer...",
+    "cameraPermissionRequired": "Camera permission required",
+    "grantPermission": "N'i b'a fɛ ka taga, n'i b'a fɛ ka taga",
+    "waitingForLivepeer": "Ka to ka kɔnɔni kɛ...",
+    "waitingForExternalSource": "An be kɔnɔni kɛra ka bɔ kɛnɛ kan.",
+    "settingUpPublisher": "Ka sɛbɛri kɛ, ka sɛbɛri kɛ",
+    "scheduledStream": "Kalendɛri ka fɔta",
+    "scheduledAt": "{{date}} at {{time}}",
+    "pressGoLiveWhenReady": "I labɛnnin lo ka baara daminɛ tuma min na, i ka to ka to ka baara kɛ",
+    "connectionInterrupted": "O kɔ, u ye ɲɔgɔn kunbɛn.",
+    "streamPausedReconnecting": "O kɔ, a y'a fɔ ko: \"Aw ye to yen.",
+    "streamWillEnd": "Ni mɔgɔ tɛ se ka segi ka na, a tɛ se ka segi ka na.",
+    "endStreamConfirmTitle": "A laban, mun lo kɛra?",
+    "endStreamConfirmBody": "O la, i bena to ka to ka to ka to ka to ka to ka filɛli kɛ. I be se ka to ka to ka filɛli kɛ wala ka ban o la kudayi.",
+    "failedToUpdateSettings": "Fɛɛn minw be se ka sigi sen kan, u ka kan ka sigi sen kan"
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

@@ -119,7 +119,12 @@
     "music": "Musiikki",
     "live": "Suora",
     "newPosts_one": "{{count}} uusi julkaisu",
-    "newPosts_other": "{{count}} uutta julkaisua"
+    "newPosts_other": "{{count}} uutta julkaisua",
+    "privateContent": "Yksityinen sisältö",
+    "privateContentBody": "Tämä sisältö on yksityiseltä tililtä. Seuraa luojaa nähdäksesi hänen julkaisunsa.",
+    "noMoreContent": "Ei enempää sisältöä",
+    "noPostsYet": "Ei julkaisuja vielä.",
+    "pullToRefresh": "Vedä päivittääksesi tai yritä uudelleen myöhemmin."
   },
   "explore": {
     "all": "Kaikki",
@@ -710,7 +715,19 @@
       "replies": "Vain vastaukset kommentteihini",
       "account": "Vain ilmoitukset tilistäni"
     },
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Avatarin päivitys epäonnistui",
+    "coverUpdateFailed": "Kansikuvan päivitys epäonnistui",
+    "fixInvalidSocialLinks": "Korjaa virheelliset sosiaalisen median linkit",
+    "updateFailed": "Päivitys epäonnistui",
+    "channelUrlOrHandle": "Kanavan URL tai tunniste",
+    "inviteLinkPlaceholder": "Kutsu linkki",
+    "profileUrlOrUsername": "Profiilin URL tai käyttäjänimi",
+    "yourDisplayName": "Näyttönimesi",
+    "usernameAvailable": "Käyttäjänimi on saatavilla",
+    "hideBadgeAndBalance": "Piilota merkki ja saldo",
+    "hideBadgeAndBalanceDesc": "Piilottaa taloudelliset tiedot ja poistaa käytöstä lähetykset ja vinkit sinulle.",
+    "onChainPublicWarning": "Lohkoketjutapahtumat ovat julkisia. Tokenien tai vinkkien lähettäminen voi paljastaa lompakkosi osoitteen, mukaan lukien tapahtumat, jotka tehtiin ennen yksityisen saldon tilan käyttöönottoa."
   },
   "common": {
     "mute": "Mykistä",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Ei internetyhteyttä",
     "noInternetBody": "Tarkista internetyhteytesi ja yritä uudelleen. Tarvitset internet-yhteyden käyttääksesi DeHubia.",
     "noInternetStatus": "Offline - Ei verkkoyhteyttä",
-    "noInternetHint": "Varmista, että Wi-Fi tai mobiilidata on päällä, ja napauta sitten \"{{action}}\""
+    "noInternetHint": "Varmista, että Wi-Fi tai mobiilidata on päällä, ja napauta sitten \"{{action}}\"",
+    "saving": "Tallennetaan…",
+    "offlineStatus": "Offline - Ei verkkoyhteyttä"
   },
   "tip": {
     "title": "Send Tip",
@@ -1094,7 +1113,17 @@
     "post": "Julkaise",
     "officialLogo": "Tässä on DeHubin virallinen logo! 🎨",
     "editedImage": "Tässä on muokattu kuvasi!",
-    "generatedImage": "Tässä on luotu kuvasi!"
+    "generatedImage": "Tässä on luotu kuvasi!",
+    "toolCompleted": "{{name}} valmis",
+    "aiTool": "AI-työkalu",
+    "cannotAnimateImage": "{{model}} ei voi animoida liitettyä kuvaa. Valitse toinen videopohja.",
+    "needsImageToAnimate": "{{model}} tarvitsee kuvan animointiin. Liitä sellainen tai valitse toinen pohja.",
+    "couldNotReadImage": "Kuvan lukeminen epäonnistui",
+    "logoLoadFailed": "DeHub-logon lataaminen epäonnistui — luodaan ilman sitä",
+    "imageAttachedDescribe": "Kuva liitetty — kuvaile muokkauksesi",
+    "couldNotPreparePost": "Sen valmistelu julkaisua varten epäonnistui",
+    "generateImage": "Luo kuva",
+    "generateVideo": "Luo video"
   },
   "commandCentre": {
     "title": "Komentokeskus",
@@ -1606,7 +1635,10 @@
     "edit": "Muokkaa",
     "deleteRequestTitle": "Poistetaanko tämä pyyntö?",
     "deleteRequestDescription": "Tätä ei voi perua.",
-    "attachmentTooLarge": "Jokaisen tiedoston on oltava alle 20 Mt"
+    "attachmentTooLarge": "Jokaisen tiedoston on oltava alle 20 Mt",
+    "deleteCommentA11y": "Poista kommentti",
+    "sendCommentA11y": "Lähetä kommentti",
+    "requestOptions": "Pyyntövaihtoehdot"
   },
   "auth": {
     "loginRequired": "Kirjautuminen vaaditaan",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Koodia ei voitu lähettää. Yritä uudelleen.",
     "invalidCodeRetry": "Virheellinen koodi. Yritä uudelleen.",
     "invalidEmailOrPassword": "Virheellinen sähköpostiosoite tai salasana.",
-    "welcomeToDehub": "Tervetuloa DeHubiin"
+    "welcomeToDehub": "Tervetuloa DeHubiin",
+    "importWalletOptional": "Tuo lompakko (valinnainen)",
+    "couldNotSendCodeRetry": "Koodia ei voitu lähettää. Yritä uudelleen.",
+    "exploreWithoutSignIn": "Tutki kirjautumatta sisään",
+    "continueExploring": "Jatka tutustumista",
+    "exploreWithoutSignInA11y": "Tutustu DeHubiin kirjautumatta sisään",
+    "continueExploringA11y": "Jatka DeHubin tutkimista",
+    "importWalletRecommended": "Sosiaaliset kirjautumiset ovat suositeltavia.",
+    "importWalletPurpose": "Tämä työkalu on tarkoitettu olemassa olevien tilien tuomiseen DeHub.io: sta."
   },
   "messages": {
     "smartRepliesOff": "Ehdotetut vastaukset poistettiin käytöstä",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Siitä on ilmoitettu automaattisesti.",
     "loadFailed": "Kanavia ei voitu ladata",
     "noSearchResults": "Yksikään kanava ei vastaa hakuasi",
-    "noChannels": "Ei saatavilla olevia kanavia"
+    "noChannels": "Ei saatavilla olevia kanavia",
+    "pairCodeExpired": "Koodi on vanhentunut. Pyydä televisiosta uusi.",
+    "signedInOnTv": "Kirjautunut televisioon",
+    "pairRefused": "Evätty",
+    "pairIntro": "Avaa DeHub televisiossasi ja kirjoita sen näyttämä koodi tähän.",
+    "pairNotFound": "Mikään televisio ei odota tätä koodia. Se on saattanut vanhentua — pyydä televisiosta uusi.",
+    "wantsToSignIn": "haluaa kirjautua sisään sinuna",
+    "pairWarning": "Hyväksy tämä vain, jos se on televisio, jota katselet juuri nyt. Koodin tililläsi pitävän henkilön kylttien hyväksyminen. Se voi katsella, tykätä ja seurata — se ei voi kuluttaa, ja voit kirjata sen ulos milloin tahansa aktiivisista istunnoista.",
+    "pairApprove": "Kyllä, kirjaudu sisään tähän televisioon",
+    "pairDeny": "Ei, en pyytänyt tätä",
+    "pairDoneTitle": "Televisiosi on kirjautunut sisään",
+    "pairDoneBody": "Sen pitäisi jo näkyä tililläsi. Kirjaudu ulos milloin tahansa Settings → Privacy → Active -istunnoista.",
+    "closePlayer": "Sulje pelaaja",
+    "declineFailed": "Sitä ei voitu hylätä — se on saattanut jo vanhentua.",
+    "tipSentTvNotTold": "Vinkki lähetetty, mutta televisiota ei voitu kertoa. Se aikakatkaistaan.",
+    "sentAmount": "Lähetetty {{amount}} DHB",
+    "nothingWaiting": "Ei odottavia",
+    "nothingWaitingBody": "Kun lähetät tippiä DeHubista televisiostasi, se ilmestyy tänne hyväksyttäväksi. Televisiosi ei koskaan säilytä lompakkoasi.",
+    "yourTelevision": "Televisiosi",
+    "wantsToTip": "haluaa lähettää tipin · {{time}} jätti",
+    "tipTo": "kohteelle {{name}}",
+    "tipForPost": "varten “{{title}}”",
+    "reviewAndApprove": "Tarkista ja hyväksy"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Lähetä hakemus",
     "nameEmailRequired": "Nimi ja sähköposti ovat pakollisia",
     "applicationSuccess": "Hakemus lähetetty onnistuneesti! Otamme yhteyttä.",
-    "applicationFailed": "Lähetys epäonnistui. Yritä uudelleen."
+    "applicationFailed": "Lähetys epäonnistui. Yritä uudelleen.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO:n kassaholvi",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Kiinnitetty tämän julkaisun ylimmäksi",
     "unpinnedToast": "Kiinnitys poistettu",
     "pinFailed": "Kommenttia ei voitu kiinnittää",
-    "kidsOnlyThread": "Tämä viesti on tarkoitettu lapsille. Vain lapset-tila voi kommentoida sitä."
+    "kidsOnlyThread": "Tämä viesti on tarkoitettu lapsille. Vain lapset-tila voi kommentoida sitä.",
+    "editFailed": "Kommentin muokkaus epäonnistui"
   },
   "postInfo": {
     "title": "Julkaisun tiedot",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Tulossa pian",
     "signIn": "Kirjaudu sisään",
     "tapToGetStarted": "Aloita napauttamalla",
-    "soon": "Pian"
+    "soon": "Pian",
+    "glossarySubtitle": "Opi, mitä jokainen kuvake ja ominaisuus tarkoittaa",
+    "searchGlossary": "Hae sanastosta...",
+    "noResultsFor": "Ei tuloksia hakusanalle \"{{query}}\"",
+    "guideSubtitle": "Vaiheittainen opas jokaiselle ominaisuudelle",
+    "searchGuide": "Hae oppaasta...",
+    "repostsTab": "Uudelleenpostaukset",
+    "quotesTab": "Lainaukset",
+    "noMoreReposts": "Ei enää uudelleenpostauksia",
+    "noMoreQuotes": "Ei enää lainauksia",
+    "noRepostsYet": "Ei vielä uudelleenpostauksia",
+    "noQuotesYet": "Ei vielä lainauksia"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Pelejä, jotka pyörivät suoraan tässä sovelluksessa. Ei asennettavaa, ei ostettavaa — avointa lähdekoodia ja DeHubin itsensä tarjoamia."
+    "intro": "Pelejä, jotka pyörivät suoraan tässä sovelluksessa. Ei asennettavaa, ei ostettavaa — avointa lähdekoodia ja DeHubin itsensä tarjoamia.",
+    "noGameCalled": "Pelikirjastossa ei ole peliä nimeltä <slug>{{slug}}</slug>.",
+    "seeWhatIsHere": "Katso, mitä täällä on",
+    "locationNotGranted": "Sijaintilupaa ei myönnetty.",
+    "signInToPlaceOnGlobe": "Kirjaudu sisään sijoittaaksesi itsesi kartalle.",
+    "couldNotPlaceOnGlobe": "Sinua ei voitu sijoittaa kartalle.",
+    "onTheGlobe": "Olet kartalla — näytetään noin 25 km alueella.",
+    "couldNotReach": "PELIKIRJASTOON EI SAADA YHTEYTTÄ",
+    "didNotLoad": "{{title}} ei latautunut",
+    "needsConnection": "Peli tarjoillaan osoitteesta dehub.io ja se ladataan, kun avaat sen, joten se tarvitsee toimivan yhteyden ensimmäisellä kerralla. Tarkista yhteytesi ja yritä uudelleen.",
+    "backToArcade": "Takaisin pelihalliin",
+    "openPrivacySettings": "Avaa tietosuoja-asetukset",
+    "privacyWarning": "Jos sinulla on suuri määrä pelimerkkejä tai asut turvattomalla alueella, piilota merkkisi ja saldosi ennen tämän ominaisuuden käyttöä. Lohkoketjutapahtumat paljastavat edelleen osoitteesi. Avaa asetukset.",
+    "leaveGame": "Poistu pelistä",
+    "loadingGame": "Ladataan {{title}}",
+    "hideThis": "Piilota tämä"
   },
   "videoLooks": {
     "button": "Kameratyylit",
@@ -3376,7 +3466,22 @@
     "someone": "Joku",
     "oneTyping": "{{name}} kirjoittaa…",
     "fewTyping": "{{names}} kirjoittavat…",
-    "manyTyping": "{{count}} henkilöä kirjoittaa…"
+    "manyTyping": "{{count}} henkilöä kirjoittaa…",
+    "modBadge": "MOD",
+    "thisUser": "tämä käyttäjä",
+    "unbanConfirm": "Haluatko varmasti poistaa {{name}}:n eston?",
+    "unban": "Poista esto",
+    "unbanFailed": "Käyttäjän eston poistaminen epäonnistui",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} käyttäjä",
+    "usersCount_other": "{{count}} käyttäjää",
+    "totalMessages": "Viestien kokonaismäärä",
+    "slowMode": "Hidas tila",
+    "cooldownSeconds": "{{seconds}}s viive",
+    "minStakeRequired": "Minimi vaadittu panos",
+    "noParticipants": "Ei osallistujia vielä",
+    "noModerators": "Ei moderaattoreita",
+    "noBannedUsers": "Ei estettyjä käyttäjiä"
   },
   "promptFeed": {
     "headline": "Mitä haluat nähdä?",
@@ -4128,7 +4233,26 @@
     "madeForKidsOffDesc": "Näyttää tämän viestin lapsille, jotka käyttävät Kids Mode -tilaa, ja poistaa sen tavallisista syötteistä.",
     "madeForKidsBlockedByMature": "Kypsyydelle merkittyä viestiä ei voi myös julkaista lapsille.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Hanki RTMP-tiedot"
+    "encoderHint": "Hanki RTMP-tiedot",
+    "queueWaiting": "Odotetaan…",
+    "queueUploading": "Ladataan",
+    "queueProcessing": "Käsitellään…",
+    "queueMinting": "Luodaan…",
+    "queuePosted": "Lähetetty",
+    "queueFailed": "Epäonnistui",
+    "noRetriesLeft": "(ei yrityksiä jäljellä)",
+    "noUploads": "Ei latauksia",
+    "uploadsAppearHere": "Latauksesi ilmestyvät tähän",
+    "imagesTotalLimit": "Yhdessä latauksessa olevien kuvien kokonaismäärän on oltava enintään 100 Mt",
+    "chooseDatabase": "Valitse hajautettu tietokanta",
+    "livestreamMode": "Livestream-tila",
+    "addThumbnail": "Lisää oletuskuva",
+    "showCover": "Näytä kansikuva",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Vahvista livestriimi",
+    "liveFeaturesTitle": "Live-ominaisuudet",
+    "discardPostTitle": "Hylkää julkaisu?",
+    "discardPostBody": "Julkaisusi menetetään. Haluatko tallentaa sen sen sijaan luonnoksena?"
   },
   "bounty": {
     "claimed": "Lunastettu",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Ota viestit käyttöön salliaksesi uudet viestit.",
     "perMessageFee": "Viestikohtainen maksu (DHB)",
     "perMessageFeeSub": "Veloita viestikohtaisesti. Aseta 0, jos viestit ovat ilmaisia. Voit myöntää tietyille käyttäjille ilmaisen pääsyn.",
-    "allDisabled": "Kaikki viestit ovat nyt pois käytöstä. Uudet estetään oletuksena."
+    "allDisabled": "Kaikki viestit ovat nyt pois käytöstä. Uudet estetään oletuksena.",
+    "failedToEdit": "Roolin muokkaus epäonnistui!",
+    "messageDeleted": "Viesti poistettu",
+    "cantForwardFromDevice": "Tätä viestiä ei voi lähettää edelleen tältä laitteelta",
+    "messageForwarded": "Viesti välitetty",
+    "clearMessages": "SELKEITÄ VIESTEJÄ",
+    "clearMessagesConfirm": "Poistetaanko kaikki tämän keskustelun viestit? Tätä ei voi kumota.",
+    "messagesCleared": "Viestit tyhjennetty",
+    "failedToClearMessages": "Viestien tyhjentäminen epäonnistui",
+    "removedFreeAccess": "Poistettu ilmainen käyttöoikeus käyttäjältä {{name}}",
+    "grantedFreeAccess": "Myönnetty ilmainen käyttöoikeus kohteeseen {{name}}",
+    "failedToUpdateFreeAccess": "Pääsyavaimen päivitys epäonnistui",
+    "searchComingSoon": "Haku tulossa pian",
+    "tapToUnblock": "Avaa esto napauttamalla",
+    "userFallback": "käyttäjä",
+    "failedToBlock": "Estäminen epäonnistui",
+    "failedToDeleteConversation": "Keskustelun poistaminen epäonnistui",
+    "newDm": "Suora viesti",
+    "noConversationsFound": "Keskusteluja ei löytynyt"
   },
   "editPost": {
     "mediaPermission": "Mediakirjaston käyttöoikeus vaaditaan",
@@ -4467,7 +4609,17 @@
     "retry": "Yritä uudelleen",
     "retrying": "Yritetään uudelleen...",
     "retryQueued": "Käsitellään uudelleen",
-    "retryFailed": "Tätä julkaisua ei voitu yrittää uudelleen"
+    "retryFailed": "Tätä julkaisua ei voitu yrittää uudelleen",
+    "closeVideo": "Sulje video",
+    "rotateOrientation": "Kierrä suuntaa",
+    "videoProgress": "Videon edistyminen: {{percent}}%",
+    "tapToSeek": "Napauta siirtyäksesi tiettyyn kohtaan",
+    "photoAccessToSaveImages": "Salli pääsy kuvakirjastoon kuvien tallentamiseksi",
+    "failedToSaveImage": "Kuvan tallennus epäonnistui",
+    "downloadImage": "Lataa kuva",
+    "goToImage": "Siirry kuvaan {{index}}",
+    "allCaughtUp": "Olet ajan tasalla",
+    "checkBackForShorts": "Tarkista myöhemmin lisää lyhytvideoita"
   },
   "liveViewer": {
     "loadingStream": "Ladataan lähetystä...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Tulosten loppu",
-    "searchDehub": "Hae DeHubista"
+    "searchDehub": "Hae DeHubista",
+    "tabVoice": "Ääni",
+    "trendingThisWeek": "Viikon trendit",
+    "trendingPosts": "Trendaavat julkaisut",
+    "trendingImages": "Trendaavat kuvat",
+    "trendingVideos": "Trendaavat videot",
+    "trendingVoicePosts": "Trendaavat äänijulkaisut",
+    "trendingLive": "Trendaavat live-lähetykset",
+    "seeAll": "Näytä kaikki",
+    "noAccountsFound": "Tilejä ei löytynyt",
+    "tryDifferentKeywords": "Kokeile eri avainsanoja tai tarkista oikeinkirjoitus",
+    "noContentResults": "Ei sisältötuloksia",
+    "recentSearches": "Viimeaikaiset haut",
+    "noTrendingThisWeek": "Ei trendaavaa sisältöä tällä viikolla",
+    "closeFilterOptions": "Sulje suodatusvaihtoehdot",
+    "openFilterOptions": "Avaa suodatusvaihtoehdot"
   },
   "notifPrompt": {
     "stayInLoop": "Pysy ajan tasalla",
@@ -4727,7 +4894,26 @@
     "externalTitle": "Ulkoinen suoratoistotila",
     "externalLiveHint": "Suoratoistosi on suorassa lähetyksessä ulkoisen ohjelmiston kautta. Sovelluksen sisäinen kamera on poistettu käytöstä.",
     "externalHint": "Yhdistä suoratoisto-ohjelmistosi alla olevien tietojen avulla ja aloita sitten lähettäminen.",
-    "useInAppCamera": "Käytä sen sijaan sovelluksen sisäistä kameraa"
+    "useInAppCamera": "Käytä sen sijaan sovelluksen sisäistä kameraa",
+    "livestreamEnded": "Suora lähetys päättyi",
+    "chatEnabled": "Chat käytössä",
+    "chatDisabled": "Chat pois käytöstä",
+    "failedToUpdateSettings": "Asetusten päivitys epäonnistui",
+    "networkLostReconnecting": "Verkko-ongelma — striimi keskeytyi. Yhdistetään uudelleen…",
+    "openingViewer": "Avataan katseluohjelmaa…",
+    "cameraPermissionRequired": "Kameran käyttöoikeus vaaditaan",
+    "grantPermission": "Myönnä lupa",
+    "waitingForLivepeer": "Odotetaan Livepeeriä...",
+    "waitingForExternalSource": "Odotetaan ulkoista lähdettä...",
+    "settingUpPublisher": "Asetetaan julkaisijaa...",
+    "scheduledStream": "Aikataulutettu suoratoisto",
+    "scheduledAt": "{{date}} klo {{time}}",
+    "pressGoLiveWhenReady": "Paina Aloita Live, kun olet valmis aloittamaan",
+    "connectionInterrupted": "Yhteys katkennut",
+    "streamPausedReconnecting": "Suoratoistosi on keskeytetty. Yhdistetään uudelleen...",
+    "streamWillEnd": "Virta päättyy, jos sitä ei yhdistetä uudelleen",
+    "endStreamConfirmTitle": "Lopetetaanko suoratoisto?",
+    "endStreamConfirmBody": "Sulkeminen nyt lopettaa live-suoratoistosi kaikille katsojille. Voit jatkaa suoratoistoa tai lopettaa sen pysyvästi."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

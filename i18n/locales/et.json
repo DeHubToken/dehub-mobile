@@ -119,7 +119,12 @@
     "music": "Muusika",
     "live": "Otse",
     "newPosts_one": "{{count}} uus postitus",
-    "newPosts_other": "{{count}} uut postitust"
+    "newPosts_other": "{{count}} uut postitust",
+    "privateContent": "Privaatne sisu",
+    "privateContentBody": "See sisu pärineb privaatsest kontost. Jälgi loojat, et näha tema postitusi.",
+    "noMoreContent": "Rohkem sisu pole",
+    "noPostsYet": "Postitusi pole veel.",
+    "pullToRefresh": "Tõmba värskendamiseks või proovi hiljem uuesti."
   },
   "explore": {
     "all": "Kõik",
@@ -710,7 +715,19 @@
       "replies": "Ainult minu kommentaaridele vastused",
       "account": "Ainult teated minu konto kohta"
     },
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Avatari värskendamine ebaõnnestus",
+    "coverUpdateFailed": "Kaanepildi värskendamine ebaõnnestus",
+    "fixInvalidSocialLinks": "Palun paranda kehtetud sotsiaalsed lingid",
+    "updateFailed": "Värskendamine ebaõnnestus",
+    "channelUrlOrHandle": "Kanali URL või käepide",
+    "inviteLinkPlaceholder": "Kutselink",
+    "profileUrlOrUsername": "Profiili URL või kasutajanimi",
+    "yourDisplayName": "Sinu kuvatav nimi",
+    "usernameAvailable": "Kasutajanimi on saadaval",
+    "hideBadgeAndBalance": "Peida märge ja saldo",
+    "hideBadgeAndBalanceDesc": "Peidab finantsandmed ning keelab sulle saatmise ja jootraha andmise.",
+    "onChainPublicWarning": "Ahelasisesed tehingud on avalikud. Tokenite või jootraha saatmine võib paljastada sinu rahakoti aadressi, sealhulgas tehingud, mis tehti enne privaatse saldomoodi lubamist."
   },
   "common": {
     "mute": "Vaigista",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Pole internetiühendust",
     "noInternetBody": "Palun kontrollige oma internetiühendust ja proovige uuesti. DeHubi kasutamiseks peate olema ühendatud internetiga.",
     "noInternetStatus": "Võrguühenduseta – võrguühendust pole",
-    "noInternetHint": "Veenduge, et Wi-Fi või mobiilne andmeside on sisse lülitatud, seejärel puudutage \"{{action}}\""
+    "noInternetHint": "Veenduge, et Wi-Fi või mobiilne andmeside on sisse lülitatud, seejärel puudutage \"{{action}}\"",
+    "saving": "Salvestan…",
+    "offlineStatus": "Võrguühenduseta – pole võrguühendust"
   },
   "tip": {
     "title": "Saada jootraha",
@@ -1094,7 +1113,17 @@
     "post": "Postitus",
     "officialLogo": "Siin on ametlik DeHubi logo! 🎨",
     "editedImage": "Siin on sinu muudetud pilt!",
-    "generatedImage": "Siin on sinu genereeritud pilt!"
+    "generatedImage": "Siin on sinu genereeritud pilt!",
+    "toolCompleted": "{{name}} täidetud",
+    "aiTool": "AI tööriist",
+    "cannotAnimateImage": "{{model}} ei saa manustatud pilti animeerida. Vali teine video mudel.",
+    "needsImageToAnimate": "{{model}} vajab animeerimiseks pilti. Manusta üks või vali teine mudel.",
+    "couldNotReadImage": "Pilti ei saanud lugeda",
+    "logoLoadFailed": "DeHubi logo ei saanud laadida — genereerin ilma selleta",
+    "imageAttachedDescribe": "Pilt manustatud — kirjelda oma muudatusi",
+    "couldNotPreparePost": "Postitamiseks ei saanud ette valmistada",
+    "generateImage": "Genereeri pilt",
+    "generateVideo": "Loo videost"
   },
   "commandCentre": {
     "title": "Juhtimiskeskus",
@@ -1606,7 +1635,10 @@
     "edit": "Muuda",
     "deleteRequestTitle": "Kas kustutada see taotlus?",
     "deleteRequestDescription": "Seda ei saa tagasi võtta.",
-    "attachmentTooLarge": "Iga fail peab olema alla 20 MB"
+    "attachmentTooLarge": "Iga fail peab olema alla 20 MB",
+    "deleteCommentA11y": "Kustuta kommentaar",
+    "sendCommentA11y": "Saada kommentaar",
+    "requestOptions": "Tellimuse valikud"
   },
   "auth": {
     "loginRequired": "Sisselogimine nõutav",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Koodi ei saa saata. Palun proovige uuesti.",
     "invalidCodeRetry": "Kehtetu kood. Palun proovige uuesti.",
     "invalidEmailOrPassword": "Kehtetu e-posti aadress või parool.",
-    "welcomeToDehub": "Tere tulemast DeHubi"
+    "welcomeToDehub": "Tere tulemast DeHubi",
+    "importWalletOptional": "Impordi rahakott (valikuline)",
+    "couldNotSendCodeRetry": "Koodi saatmine ebaõnnestus. Proovige uuesti.",
+    "exploreWithoutSignIn": "Avasta ilma sisse logimata",
+    "continueExploring": "Jätka avastamist",
+    "exploreWithoutSignInA11y": "Tutvu DeHubiga ilma sisse logimata",
+    "continueExploringA11y": "Jätka DeHubiga tutvumist",
+    "importWalletRecommended": "Soovitatav on sisse logida suhtlusvõrgustikku",
+    "importWalletPurpose": "See tööriist on olemasolevate kontode importimiseks DeHub.io-st."
   },
   "messages": {
     "smartRepliesOff": "Soovitatud vastused on välja lülitatud",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Sellest on automaatselt teatatud.",
     "loadFailed": "Kanaleid ei õnnestunud laadida",
     "noSearchResults": "Ükski kanal ei vasta sinu otsingule",
-    "noChannels": "Kanaleid pole saadaval"
+    "noChannels": "Kanaleid pole saadaval",
+    "pairCodeExpired": "See kood on aegunud. Küsige telerilt uut.",
+    "signedInOnTv": "Sinu telerisse sisse logitud",
+    "pairRefused": "Tagasi lükatud",
+    "pairIntro": "Ava oma teleris DeHub ja trüki siia kood, mida see näitab.",
+    "pairNotFound": "Ükski televiisor ei oota seda koodi. See võib olla aegunud — küsi telerilt uut.",
+    "wantsToSignIn": "soovib sinu nime all sisse logida",
+    "pairWarning": "Kinnitage see ainult siis, kui see on televiisor, mida te praegu vaatate. Kinnitame märgid, kes seda koodi sinu kontol hoiab. See saab vaadata, meeldida ja jälgida — see ei saa kulutada ja saate selle igal ajal aktiivsetest seanssidest välja logida.",
+    "pairApprove": "Jah, logi sellesse telerisse sisse",
+    "pairDeny": "Ei, ma ei palunud seda",
+    "pairDoneTitle": "Sinu teler on sisse logitud",
+    "pairDoneBody": "See peaks juba sinu kontot näitama. Logi see igal ajal välja jaotisest Seaded → Privaatsus → Aktiivsed seansid.",
+    "closePlayer": "Sulge mängija",
+    "declineFailed": "Sellest ei saanud keelduda – see võib olla juba aegunud.",
+    "tipSentTvNotTold": "Näpunäide saadetud, kuid telerile ei saanud öelda. See aegub.",
+    "sentAmount": "Saadetud {{amount}} DHB",
+    "nothingWaiting": "Midagi pole ootel",
+    "nothingWaitingBody": "Kui maksad DeHubist oma televiisorist, ilmub see siia, et saaksite heaks kiita. Teie teler ei hoia kunagi teie rahakotti.",
+    "yourTelevision": "Teie televiisor",
+    "wantsToTip": "tahab saata tippi · {{time}} jättis",
+    "tipTo": "{{name}}-le",
+    "tipForPost": "kohta “{{title}}”",
+    "reviewAndApprove": "Vaadake üle ja kiitke heaks"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Esita avaldus",
     "nameEmailRequired": "Nimi ja e-post on kohustuslikud",
     "applicationSuccess": "Avaldus edukalt esitatud! Võtame ühendust.",
-    "applicationFailed": "Esitamine ebaõnnestus. Palun proovi uuesti."
+    "applicationFailed": "Esitamine ebaõnnestus. Palun proovi uuesti.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO rahakott",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Kinnitatud selle postituse etteotsa",
     "unpinnedToast": "Kinnitus eemaldatud",
     "pinFailed": "Seda kommentaari ei õnnestunud kinnitada",
-    "kidsOnlyThread": "See postitus on lastele. Ainult laste režiim saab seda kommenteerida."
+    "kidsOnlyThread": "See postitus on lastele. Ainult laste režiim saab seda kommenteerida.",
+    "editFailed": "Kommentaari redigeerimine ebaõnnestus"
   },
   "postInfo": {
     "title": "Postituse info",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Tulekul",
     "signIn": "Logi sisse",
     "tapToGetStarted": "Puuduta alustamiseks",
-    "soon": "Varsti"
+    "soon": "Varsti",
+    "glossarySubtitle": "Siit saate teada, mida iga ikoon ja funktsioon tähendab",
+    "searchGlossary": "Otsi sõnastikust...",
+    "noResultsFor": "Tulemusi \"{{query}}\" ei leitud",
+    "guideSubtitle": "Samm-sammult juhend iga funktsiooni kohta",
+    "searchGuide": "Otsi juhendist...",
+    "repostsTab": "Repostid",
+    "quotesTab": "Tsiteeringud",
+    "noMoreReposts": "Rohkem repostideta",
+    "noMoreQuotes": "Rohkem tsiteeringuteta",
+    "noRepostsYet": "Reposte pole veel",
+    "noQuotesYet": "Tsiteeringuid pole veel"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Mängud, mis töötavad siinsamas rakenduses. Midagi ei pea paigaldama ega ostma — avatud lähtekoodiga ja serveeritud DeHubi enda poolt."
+    "intro": "Mängud, mis töötavad siinsamas rakenduses. Midagi ei pea paigaldama ega ostma — avatud lähtekoodiga ja serveeritud DeHubi enda poolt.",
+    "noGameCalled": "Arcade'is pole mängu nimega <slug>{{slug}}</slug>.",
+    "seeWhatIsHere": "Vaata, mis siin on",
+    "locationNotGranted": "Asukohaluba ei antud.",
+    "signInToPlaceOnGlobe": "Logige sisse, et ennast maailmakaardil kuvada.",
+    "couldNotPlaceOnGlobe": "Ei õnnestunud teid maailmakaardile paigutada.",
+    "onTheGlobe": "Teie asukoht on maailmakaardil – kuvatakse ligikaudses 25 km raadiuses.",
+    "couldNotReach": "EI ÕNNESTUNUD ARCADE'I JUURDE PÄÄSEDA",
+    "didNotLoad": "{{title}} ei laadinud",
+    "needsConnection": "Mängu teenindab dehub.io ja see laaditakse alla, kui avate selle, seega vajab see esmakordsel kasutamisel toimivat ühendust. Kontrollige oma ühendust ja proovige uuesti.",
+    "backToArcade": "Tagasi arkaadi",
+    "openPrivacySettings": "Ava privaatsusseaded",
+    "privacyWarning": "Kui teil on palju žetoone või elate ebaturvalises piirkonnas, peitke oma märge ja saldo enne selle funktsiooni kasutamist. Plokiahela tehingud paljastavad endiselt teie aadressi. Ava sätted.",
+    "leaveGame": "Lahku mängust",
+    "loadingGame": "Laeb {{title}}",
+    "hideThis": "Peida see"
   },
   "videoLooks": {
     "button": "Kaamera stiilid",
@@ -3376,7 +3466,22 @@
     "someone": "Keegi",
     "oneTyping": "{{name}} kirjutab…",
     "fewTyping": "{{names}} kirjutavad…",
-    "manyTyping": "{{count}} inimest kirjutavad…"
+    "manyTyping": "{{count}} inimest kirjutavad…",
+    "modBadge": "MOD",
+    "thisUser": "see kasutaja",
+    "unbanConfirm": "Kas olete kindel, et soovite {{name}}-i debannida?",
+    "unban": "Debann",
+    "unbanFailed": "Kasutaja debannimine ebaõnnestus",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} kasutaja",
+    "usersCount_other": "{{count}} kasutajat",
+    "totalMessages": "Kokku sõnumeid",
+    "slowMode": "Aeglane režiim",
+    "cooldownSeconds": "{{seconds}}s jahe",
+    "minStakeRequired": "Minimaalne nõutav panus",
+    "noParticipants": "Veel osalejaid pole",
+    "noModerators": "Moderaatoreid pole",
+    "noBannedUsers": "Bännitud kasutajaid pole"
   },
   "promptFeed": {
     "headline": "Mida sa näha tahad?",
@@ -4128,7 +4233,26 @@
     "madeForKidsOffDesc": "Näitab seda postitust lastele, kes kasutavad lastemoodust, ja eemaldab selle tavalistest voogudest.",
     "madeForKidsBlockedByMature": "Täiskasvanuks märgitud postitust ei saa avaldada ka lastele.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Hankige RTMP-üksikasjad"
+    "encoderHint": "Hankige RTMP-üksikasjad",
+    "queueWaiting": "Ootan…",
+    "queueUploading": "Üleslaadimine",
+    "queueProcessing": "Töötlemine…",
+    "queueMinting": "Müntimine…",
+    "queuePosted": "Postitatud",
+    "queueFailed": "Ebaõnnestus",
+    "noRetriesLeft": "(korduskatseid pole jäänud)",
+    "noUploads": "Üleslaadimisi pole",
+    "uploadsAppearHere": "Teie üleslaadimised ilmuvad siia",
+    "imagesTotalLimit": "Pildid ühes üleslaadimises peavad olema kokku kuni 100 MB",
+    "chooseDatabase": "Vali detsentraliseeritud andmebaas",
+    "livestreamMode": "Reaalajas voogesituse režiim",
+    "addThumbnail": "Lisa pisipilt",
+    "showCover": "Kaanepildi näitamine",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Kinnita otseülekanne",
+    "liveFeaturesTitle": "Otseülekanded",
+    "discardPostTitle": "Kas loobuda postitusest?",
+    "discardPostBody": "Sinu postitus läheb kaotsi. Kas soovid selle hoopis mustandina salvestada?"
   },
   "bounty": {
     "claimed": "Lunastatud",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Lülita sõnumid sisse, et lubada uusi sõnumeid.",
     "perMessageFee": "Tasu sõnumi kohta (DHB)",
     "perMessageFeeSub": "Küsi tasu sõnumi kohta. Määra 0 tasuta sõnumite jaoks. Üksikutele kasutajatele saad anda tasuta juurdepääsu.",
-    "allDisabled": "Kõik sõnumid on praegu välja lülitatud. Uued blokeeritakse vaikimisi."
+    "allDisabled": "Kõik sõnumid on praegu välja lülitatud. Uued blokeeritakse vaikimisi.",
+    "failedToEdit": "Muutmine ebaõnnestus",
+    "messageDeleted": "Sõnum kustutatud.",
+    "cantForwardFromDevice": "Seda sõnumit ei saa sellest seadmest edastada",
+    "messageForwarded": "Sõnum edastatud",
+    "clearMessages": "SELGED SÕNUMID",
+    "clearMessagesConfirm": "Kas kustutada kõik selle vestluse sõnumid? Seda ei saa tagasi võtta.",
+    "messagesCleared": "Sõnumid on kustutatud",
+    "failedToClearMessages": "Sõnumite kustutamine ebaõnnestus",
+    "removedFreeAccess": "Eemaldatud tasuta juurdepääs kasutajale {{name}}",
+    "grantedFreeAccess": "Tasuta juurdepääs kasutajale {{name}}",
+    "failedToUpdateFreeAccess": "Vaba juurdepääsu värskendamine ebaõnnestus",
+    "searchComingSoon": "Otsing on peagi tulekul",
+    "tapToUnblock": "Blokeeringu tühistamiseks puuduta ekraani",
+    "userFallback": "kasutaja",
+    "failedToBlock": "Blokeerimine ebaõnnestus",
+    "failedToDeleteConversation": "Vestluse kustutamine ebaõnnestus",
+    "newDm": "Otsesõnum",
+    "noConversationsFound": "Vestlusi ei leitud"
   },
   "editPost": {
     "mediaPermission": "Meediakogu luba on nõutav",
@@ -4467,7 +4609,17 @@
     "retry": "Proovi uuesti",
     "retrying": "Uuesti proovimine...",
     "retryQueued": "Uuesti töötlemine",
-    "retryFailed": "Seda postitust ei saanud uuesti proovida"
+    "retryFailed": "Seda postitust ei saanud uuesti proovida",
+    "closeVideo": "Sulge video",
+    "rotateOrientation": "Pööra suunda",
+    "videoProgress": "Video progress: {{percent}}%",
+    "tapToSeek": "Puuduta, et liikuda kindlasse kohta",
+    "photoAccessToSaveImages": "Luba fototeegi juurdepääs piltide salvestamiseks",
+    "failedToSaveImage": "Pilti ei õnnestunud salvestada",
+    "downloadImage": "Laadi pilt alla",
+    "goToImage": "Ava pilt {{index}}",
+    "allCaughtUp": "Oled kõigest järele jõudnud",
+    "checkBackForShorts": "Vaata hiljem, et saada rohkem lühivideoid"
   },
   "liveViewer": {
     "loadingStream": "Voo laadimine...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Tulemuste lõpp",
-    "searchDehub": "Otsi DeHubist"
+    "searchDehub": "Otsi DeHubist",
+    "tabVoice": "Hääl",
+    "trendingThisWeek": "Sel nädalal populaarsed",
+    "trendingPosts": "Populaarsed postitused",
+    "trendingImages": "Populaarsed pildid",
+    "trendingVideos": "Populaarsed videod",
+    "trendingVoicePosts": "Populaarsed häälsalvestised",
+    "trendingLive": "Populaarsed otseülekanded",
+    "seeAll": "Vaata kõiki",
+    "noAccountsFound": "Kontosid ei leitud",
+    "tryDifferentKeywords": "Proovi teisi märksõnu või kontrolli oma õigekirja",
+    "noContentResults": "Sisu tulemusi pole",
+    "recentSearches": "Hiljutised otsingud",
+    "noTrendingThisWeek": "Sel nädalal pole populaarset sisu",
+    "closeFilterOptions": "Sulge filtrid",
+    "openFilterOptions": "Ava filtrid"
   },
   "notifPrompt": {
     "stayInLoop": "Ole kursis",
@@ -4727,7 +4894,26 @@
     "externalTitle": "Väline voogedastusrežiim",
     "externalLiveHint": "Teie voog on otseülekanne välise tarkvara kaudu. Rakendusesisene kaamera on keelatud.",
     "externalHint": "Ühendage oma voogedastustarkvara, kasutades allolevaid üksikasju, seejärel alustage edastamist.",
-    "useInAppCamera": "Kasuta selle asemel rakendusesisest kaamerat"
+    "useInAppCamera": "Kasuta selle asemel rakendusesisest kaamerat",
+    "livestreamEnded": "Otseülekanne lõppes",
+    "chatEnabled": "Vestlus lubatud",
+    "chatDisabled": "Vestlus keelatud",
+    "failedToUpdateSettings": "Sätteid ei õnnestunud värskendada",
+    "networkLostReconnecting": "Võrk kadus — voog peatati. Uuesti ühendamine…",
+    "openingViewer": "Vaataja avamine...",
+    "cameraPermissionRequired": "Kaamera luba nõutav",
+    "grantPermission": "Anna luba",
+    "waitingForLivepeer": "Livepeeri ootamine...",
+    "waitingForExternalSource": "Välise allika ootamine...",
+    "settingUpPublisher": "Avaldaja seadistamine...",
+    "scheduledStream": "Plaanitud voog",
+    "scheduledAt": "{{date}} kell {{time}}",
+    "pressGoLiveWhenReady": "Kui oled alustamiseks valmis, vajuta nuppu Alusta reaalajas",
+    "connectionInterrupted": "Ühendus katkes",
+    "streamPausedReconnecting": "Sinu voog on peatatud. Ühenduse taastamine...",
+    "streamWillEnd": "Voog lõpeb, kui seda ei ühendata uuesti",
+    "endStreamConfirmTitle": "Kas lõpetada voogedastus?",
+    "endStreamConfirmBody": "Sulgemine lõpetab otseülekande kõigile vaatajatele. Saad voogesitust jätkata või selle jäädavalt lõpetada."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

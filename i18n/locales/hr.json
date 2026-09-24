@@ -119,7 +119,12 @@
     "music": "Glazba",
     "live": "Uživo",
     "newPosts_one": "{{count}} nova objava",
-    "newPosts_other": "{{count}} novih objava"
+    "newPosts_other": "{{count}} novih objava",
+    "privateContent": "Privatni sadržaj",
+    "privateContentBody": "Ovaj sadržaj je s privatnog računa. Pratite kreatora da biste vidjeli njegove objave.",
+    "noMoreContent": "Nema više sadržaja",
+    "noPostsYet": "Nema još objava.",
+    "pullToRefresh": "Povucite za osvježavanje ili pokušajte ponovno kasnije."
   },
   "explore": {
     "all": "Sve",
@@ -710,7 +715,19 @@
       "replies": "Samo odgovori na moje komentare",
       "account": "Samo obavijesti o mom računu"
     },
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "avatarUpdateFailed": "Ažuriranje avatara nije uspjelo",
+    "coverUpdateFailed": "Ažuriranje naslovnice nije uspjelo",
+    "fixInvalidSocialLinks": "Molimo popravite nevažeće društvene poveznice",
+    "updateFailed": "Ažuriranje nije uspjelo",
+    "channelUrlOrHandle": "URL kanala ili korisničko ime",
+    "inviteLinkPlaceholder": "Link za pozivnicu",
+    "profileUrlOrUsername": "URL profila ili korisničko ime",
+    "yourDisplayName": "Vaše prikazano ime",
+    "usernameAvailable": "Korisničko ime je dostupno",
+    "hideBadgeAndBalance": "Sakrij značku i stanje",
+    "hideBadgeAndBalanceDesc": "Skriva financijske detalje i onemogućuje slanje i napojnice vama.",
+    "onChainPublicWarning": "Transakcije na lancu su javne. Slanje tokena ili napojnica može otkriti vašu adresu novčanika, uključujući transakcije napravljene prije omogućavanja načina privatnog stanja."
   },
   "common": {
     "mute": "Isključi zvuk",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Nema internetske veze",
     "noInternetBody": "Provjerite svoju internetsku vezu i pokušajte ponovno. Morate biti povezani na internet da biste koristili DeHub.",
     "noInternetStatus": "Izvan mreže - Nema mrežne veze",
-    "noInternetHint": "Provjerite je li Wi-Fi ili mobilni podaci uključeni, a zatim dodirnite \"{{action}}\""
+    "noInternetHint": "Provjerite je li Wi-Fi ili mobilni podaci uključeni, a zatim dodirnite \"{{action}}\"",
+    "saving": "Spremanje…",
+    "offlineStatus": "Izvan mreže - Nema mrežne veze"
   },
   "tip": {
     "title": "Pošalji napojnicu",
@@ -1094,7 +1113,17 @@
     "post": "Objavi",
     "officialLogo": "Evo službenog DeHub logotipa! 🎨",
     "editedImage": "Evo vaše uređene slike!",
-    "generatedImage": "Evo vaše generirane slike!"
+    "generatedImage": "Evo vaše generirane slike!",
+    "toolCompleted": "{{name}} dovršeno",
+    "aiTool": "AI alat",
+    "cannotAnimateImage": "{{model}} ne može animirati priloženu sliku. Odaberite drugi video model.",
+    "needsImageToAnimate": "{{model}} treba sliku za animiranje. Priložite jednu ili odaberite drugi model.",
+    "couldNotReadImage": "Nije moguće pročitati tu sliku",
+    "logoLoadFailed": "Nije moguće učitati DeHub logo — generiranje bez njega",
+    "imageAttachedDescribe": "Priložena slika — opišite svoje izmjene",
+    "couldNotPreparePost": "Nije moguće pripremiti to za objavu",
+    "generateImage": "Stvaranje FMX slike",
+    "generateVideo": "Generiraj videozapis"
   },
   "commandCentre": {
     "title": "Upravljačko središte",
@@ -1606,7 +1635,10 @@
     "edit": "Uredi",
     "deleteRequestTitle": "Izbrisati ovaj zahtjev?",
     "deleteRequestDescription": "Ovo se ne može poništiti.",
-    "attachmentTooLarge": "Svaka datoteka mora biti manja od 20 MB"
+    "attachmentTooLarge": "Svaka datoteka mora biti manja od 20 MB",
+    "deleteCommentA11y": "Izbriši komentar",
+    "sendCommentA11y": "Pošalji komentar",
+    "requestOptions": "Zatraži nove mogućnosti"
   },
   "auth": {
     "loginRequired": "Potrebna prijava",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Nije moguće poslati kod. Pokušajte ponovno.",
     "invalidCodeRetry": "Neispravan kod. Pokušajte ponovno.",
     "invalidEmailOrPassword": "Neispravna e-pošta ili lozinka.",
-    "welcomeToDehub": "Dobrodošli u DeHub"
+    "welcomeToDehub": "Dobrodošli u DeHub",
+    "importWalletOptional": "Uvoz novčanika (opcionalno)",
+    "couldNotSendCodeRetry": "Slanje koda nije uspjelo. Pokušajte ponovno.",
+    "exploreWithoutSignIn": "Istražite bez prijave",
+    "continueExploring": "Nastavite istraživati",
+    "exploreWithoutSignInA11y": "Istražite DeHub bez prijave",
+    "continueExploringA11y": "Nastavite istraživati DeHub",
+    "importWalletRecommended": "Preporučuju se prijave na društvene mreže.",
+    "importWalletPurpose": "Ovaj alat služi za uvoz postojećih računa s DeHub.io."
   },
   "messages": {
     "smartRepliesOff": "Predloženi odgovori isključeni",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Automatski je prijavljeno.",
     "loadFailed": "Kanale nije moguće učitati",
     "noSearchResults": "Nijedan kanal ne odgovara tvojoj pretrazi",
-    "noChannels": "Nema dostupnih kanala"
+    "noChannels": "Nema dostupnih kanala",
+    "pairCodeExpired": "Taj je kod istekao. Zatražite od televizora novi.",
+    "signedInOnTv": "Prijavljeni ste na svom televizoru",
+    "pairRefused": "Odbijeno",
+    "pairIntro": "Otvorite DeHub na svom televizoru i unesite kôd koji se ovdje prikazuje.",
+    "pairNotFound": "Nijedan televizor ne čeka na taj kôd. Možda je istekao — zatražite od TV-a novi.",
+    "wantsToSignIn": "želi se prijaviti kao vi",
+    "pairWarning": "Odobrite ovo samo ako je to televizor koji upravo gledate. Odobravanje potpisuje onaj tko drži taj kod na tvom računu. Moći će gledati, lajkati i pratiti — ne može trošiti, a možete ga odjaviti u bilo kojem trenutku iz Aktivnih sesija.",
+    "pairApprove": "Da, prijavi se na ovaj TV",
+    "pairDeny": "Ne, nisam to tražio/la",
+    "pairDoneTitle": "Vaš TV je prijavljen",
+    "pairDoneBody": "Već bi se trebao prikazivati tvoj račun. Odjavite se u bilo kojem trenutku iz Postavke → Privatnost → Aktivne sesije.",
+    "closePlayer": "Zatvori igrača",
+    "declineFailed": "To nije bilo moguće odbiti — možda je već isteklo.",
+    "tipSentTvNotTold": "Savjet je poslan, ali televizor se nije mogao prepoznati. Isteći će vrijeme.",
+    "sentAmount": "Poslano {{amount}} DHB",
+    "nothingWaiting": "Ništa ne čeka",
+    "nothingWaitingBody": "Kada pošaljete napojnicu s DeHub-a na vašem televizoru, ona se ovdje pojavljuje na odobrenje. Vaš TV nikada ne drži vaš novčanik.",
+    "yourTelevision": "Vaš televizor",
+    "wantsToTip": "želi poslati napojnicu · {{time}} je ostavio",
+    "tipTo": "za {{name}}",
+    "tipForPost": "za “{{title}}”",
+    "reviewAndApprove": "Pregledajte i odobrite"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Pošalji prijavu",
     "nameEmailRequired": "Ime i email su obavezni",
     "applicationSuccess": "Prijava uspješno poslana! Javit ćemo vam se.",
-    "applicationFailed": "Slanje neuspješno. Pokušajte ponovno."
+    "applicationFailed": "Slanje neuspješno. Pokušajte ponovno.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO Riznica",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Prikvačeno na vrh ove objave",
     "unpinnedToast": "Prikvačivanje uklonjeno",
     "pinFailed": "Taj komentar nije bilo moguće prikvačiti",
-    "kidsOnlyThread": "Ova je objava namijenjena djeci. Samo dječji način rada može komentirati."
+    "kidsOnlyThread": "Ova je objava namijenjena djeci. Samo dječji način rada može komentirati.",
+    "editFailed": "Nije uspjelo uređivanje komentara"
   },
   "postInfo": {
     "title": "Informacije o objavi",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Uskoro",
     "signIn": "Prijavi se",
     "tapToGetStarted": "Dodirnite za početak",
-    "soon": "Uskoro"
+    "soon": "Uskoro",
+    "glossarySubtitle": "Saznajte što svaki ikona i značajka znače",
+    "searchGlossary": "Pretraži rječnik...",
+    "noResultsFor": "Nema rezultata za \"{{query}}\"",
+    "guideSubtitle": "Vodič korak po korak kroz svaku značajku",
+    "searchGuide": "Pretraži vodič...",
+    "repostsTab": "Ponovno objavljeno",
+    "quotesTab": "Citati",
+    "noMoreReposts": "Nema više ponovnih objava",
+    "noMoreQuotes": "Nema više citata",
+    "noRepostsYet": "Još nema ponovnih objava",
+    "noQuotesYet": "Još nema citata"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Igre koje se pokreću ovdje u aplikaciji. Ništa za instalirati, ništa za kupiti — otvoreni kod i posluženo od samog DeHuba."
+    "intro": "Igre koje se pokreću ovdje u aplikaciji. Ništa za instalirati, ništa za kupiti — otvoreni kod i posluženo od samog DeHuba.",
+    "noGameCalled": "U igraonici nema igre pod nazivom <slug>{{slug}}</slug>.",
+    "seeWhatIsHere": "Pogledajte što je ovdje",
+    "locationNotGranted": "Dopuštenje za lokaciju nije odobreno.",
+    "signInToPlaceOnGlobe": "Prijavite se da biste se postavili na globus.",
+    "couldNotPlaceOnGlobe": "Nije vas bilo moguće postaviti na globus.",
+    "onTheGlobe": "Nalazite se na globusu — prikazani unutar približnog područja od 25 km.",
+    "couldNotReach": "NIJE MOGUĆE DOĆI DO IGRAONICE",
+    "didNotLoad": "{{title}} se nije učitao",
+    "needsConnection": "Igra se poslužuje s dehub.io i preuzima se kada je otvorite, stoga joj je potrebna radna veza prvi put. Provjerite svoju i pokušajte ponovno.",
+    "backToArcade": "Natrag u arkadu",
+    "openPrivacySettings": "Otvori postavke privatnosti",
+    "privacyWarning": "Ako posjedujete veliku količinu žetona ili živite u nesigurnom području, sakrijte svoju značku i stanje prije korištenja ove značajke. Transakcije na lancu i dalje otkrivaju vašu adresu. Otvori postavke.",
+    "leaveGame": "Napusti igru",
+    "loadingGame": "Učitavanje {{title}}",
+    "hideThis": "Sakrij ovo"
   },
   "videoLooks": {
     "button": "Izgledi kamere",
@@ -3376,7 +3466,22 @@
     "someone": "Netko",
     "oneTyping": "{{name}} piše…",
     "fewTyping": "{{names}} pišu…",
-    "manyTyping": "{{count}} osoba piše…"
+    "manyTyping": "{{count}} osoba piše…",
+    "modBadge": "MOD",
+    "thisUser": "ovaj korisnik",
+    "unbanConfirm": "Jeste li sigurni da želite ukloniti {{name}} s crne liste?",
+    "unban": "Ukloni s crne liste",
+    "unbanFailed": "Neuspješno uklanjanje korisnika s crne liste",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} korisnik",
+    "usersCount_other": "{{count}} korisnika",
+    "totalMessages": "Ukupno poruka",
+    "slowMode": "Spori način rada",
+    "cooldownSeconds": "{{seconds}}s hlađenje",
+    "minStakeRequired": "Potreban minimalni ulog",
+    "noParticipants": "Još nema sudionika",
+    "noModerators": "Nema moderatora",
+    "noBannedUsers": "Nema zabranjenih korisnika"
   },
   "promptFeed": {
     "headline": "Što želiš gledati?",
@@ -4128,7 +4233,26 @@
     "madeForKidsOffDesc": "Prikazuje ovaj post djeci koja koriste Dječji mod, i uklanja ga iz običnih feedova.",
     "madeForKidsBlockedByMature": "Post označen kao zreo ne može se objaviti i za djecu.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Dobijte RTMP detalje"
+    "encoderHint": "Dobijte RTMP detalje",
+    "queueWaiting": "Čekanje…",
+    "queueUploading": "Učitavanje",
+    "queueProcessing": "Obrada…",
+    "queueMinting": "Mintanje…",
+    "queuePosted": "Objavljeno",
+    "queueFailed": "Neuspjelo",
+    "noRetriesLeft": "(nema preostalih pokušaja)",
+    "noUploads": "Nema učitavanja",
+    "uploadsAppearHere": "Vaša učitavanja će se pojaviti ovdje",
+    "imagesTotalLimit": "Slike u jednom prijenosu moraju biti ukupno 100 MB ili manje",
+    "chooseDatabase": "Odaberite decentraliziranu bazu podataka",
+    "livestreamMode": "Način prijenosa uživo",
+    "addThumbnail": "Dodaj minijaturu",
+    "showCover": "Prikaži naslovnicu",
+    "max60s": "Maksimalno 60s",
+    "confirmLivestream": "Potvrdi prijenos uživo",
+    "liveFeaturesTitle": "Značajke uživo",
+    "discardPostTitle": "Odbaci objavu?",
+    "discardPostBody": "Vaša objava će biti izgubljena. Želite li je umjesto toga spremiti kao skicu?"
   },
   "bounty": {
     "claimed": "Preuzeto",
@@ -4445,7 +4569,25 @@
     "allowNewDmsOff": "Uključite poruke da dopustite nove.",
     "perMessageFee": "Naknada po poruci (DHB)",
     "perMessageFeeSub": "Naplaćujte po poruci. Postavite 0 za besplatne poruke. Pojedinim korisnicima možete dati besplatan pristup.",
-    "allDisabled": "Sve su poruke trenutačno isključene. Nove se prema zadanom blokiraju."
+    "allDisabled": "Sve su poruke trenutačno isključene. Nove se prema zadanom blokiraju.",
+    "failedToEdit": "Uređivanje nije uspjelo",
+    "messageDeleted": "Poruka izbrisana",
+    "cantForwardFromDevice": "Ova se poruka ne može proslijediti s ovog uređaja",
+    "messageForwarded": "Poruka proslijeđena",
+    "clearMessages": "Izbriši poruke",
+    "clearMessagesConfirm": "Izbrisati sve poruke u ovom razgovoru? Ovo se ne može poništiti.",
+    "messagesCleared": "Poruke izbrisane",
+    "failedToClearMessages": "Brisanje poruka nije uspjelo",
+    "removedFreeAccess": "Uklonjen besplatan pristup za {{name}}",
+    "grantedFreeAccess": "Dodijeljen besplatan pristup za {{name}}",
+    "failedToUpdateFreeAccess": "Ažuriranje besplatnog pristupa nije uspjelo",
+    "searchComingSoon": "Pretraživanje uskoro",
+    "tapToUnblock": "Dodirnite za deblokiranje",
+    "userFallback": "user",
+    "failedToBlock": "Nije uspjelo blokiranje",
+    "failedToDeleteConversation": "Brisanje razgovora nije uspjelo",
+    "newDm": "Nova izravna poruka",
+    "noConversationsFound": "Nema pronađenih razgovora"
   },
   "editPost": {
     "mediaPermission": "Potrebno je dopuštenje za medijsku knjižnicu",
@@ -4467,7 +4609,17 @@
     "retry": "Pokušajte ponovno",
     "retrying": "Pokušaj ponovno...",
     "retryQueued": "Ponovno se obrađuje",
-    "retryFailed": "Nije moguće ponovno pokušati tu objavu"
+    "retryFailed": "Nije moguće ponovno pokušati tu objavu",
+    "closeVideo": "Zatvori video",
+    "rotateOrientation": "Zakreni orijentaciju",
+    "videoProgress": "Napredak videozapisa: {{percent}}%",
+    "tapToSeek": "Dodirnite za premotavanje na određenu poziciju",
+    "photoAccessToSaveImages": "Dopusti pristup biblioteci fotografija za spremanje slika",
+    "failedToSaveImage": "Nije uspjelo spremanje slike",
+    "downloadImage": "Preuzmi sliku",
+    "goToImage": "Idi na sliku {{index}}",
+    "allCaughtUp": "Dovršili ste",
+    "checkBackForShorts": "Provjerite kasnije za još kratkih sadržaja"
   },
   "liveViewer": {
     "loadingStream": "Učitavanje prijenosa...",
@@ -4477,7 +4629,22 @@
   },
   "search": {
     "endOfResults": "Kraj rezultata",
-    "searchDehub": "Pretraži DeHub"
+    "searchDehub": "Pretraži DeHub",
+    "tabVoice": "Glas",
+    "trendingThisWeek": "Popularno Ovaj Tjedan",
+    "trendingPosts": "Popularni Postovi",
+    "trendingImages": "Popularne Slike",
+    "trendingVideos": "Popularni Videozapisi",
+    "trendingVoicePosts": "Popularni Glasovni Postovi",
+    "trendingLive": "Popularni Prijenosi Uživo",
+    "seeAll": "Vidi Sve",
+    "noAccountsFound": "Nema pronađenih računa",
+    "tryDifferentKeywords": "Isprobajte druga ključne riječi ili provjerite pravopis",
+    "noContentResults": "Nema rezultata sadržaja",
+    "recentSearches": "Nedavne Pretrage",
+    "noTrendingThisWeek": "Nema popularnog sadržaja ovaj tjedan",
+    "closeFilterOptions": "Zatvori opcije filtriranja",
+    "openFilterOptions": "Otvori opcije filtriranja"
   },
   "notifPrompt": {
     "stayInLoop": "Ostanite u toku",
@@ -4728,7 +4895,26 @@
     "externalTitle": "Način rada za vanjski streaming",
     "externalLiveHint": "Vaš stream je uživo putem vanjskog softvera. Kamera u aplikaciji je onemogućena.",
     "externalHint": "Povežite svoj softver za streaming pomoću dolje navedenih pojedinosti, a zatim započnite emitiranje.",
-    "useInAppCamera": "Umjesto toga upotrijebite kameru u aplikaciji"
+    "useInAppCamera": "Umjesto toga upotrijebite kameru u aplikaciji",
+    "livestreamEnded": "Prijenos uživo je završio",
+    "chatEnabled": "Chat omogućen",
+    "chatDisabled": "Chat onemogućen",
+    "failedToUpdateSettings": "Nije uspjelo ažuriranje postavki",
+    "networkLostReconnecting": "Izgubljena veza — prijenos je pauziran. Ponovno povezivanje…",
+    "openingViewer": "Otvaranje preglednika...",
+    "cameraPermissionRequired": "Potrebna dozvola kamere",
+    "grantPermission": "Dodijelite dopuštenje",
+    "waitingForLivepeer": "Čeka se Livepeer...",
+    "waitingForExternalSource": "Čeka se vanjski izvor...",
+    "settingUpPublisher": "Postavljanje izdavača...",
+    "scheduledStream": "Zakazani stream",
+    "scheduledAt": "{{date}} u {{time}}",
+    "pressGoLiveWhenReady": "Pritisnite Go Live kad budete spremni za početak",
+    "connectionInterrupted": "Veza prekinuta",
+    "streamPausedReconnecting": "Vaš je stream pauziran. Ponovno povezivanje...",
+    "streamWillEnd": "Prijenos će završiti ako se ponovno ne povežete",
+    "endStreamConfirmTitle": "Završi stream?",
+    "endStreamConfirmBody": "Zatvaranje sada završit će tvoj prijenos uživo za sve gledatelje. Možete nastaviti s streamingom ili ga trajno prekinuti."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

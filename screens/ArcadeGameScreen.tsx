@@ -36,11 +36,11 @@
  */
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, StatusBar, AppState, Alert } from "react-native";
-import { useTranslation } from "react-i18next";
 import { WebView } from "react-native-webview";
 import { Image } from "expo-image";
 import type { WebViewMessageEvent, WebViewNavigation } from "react-native-webview";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { Trans, useTranslation } from "react-i18next";
 import * as ScreenOrientation from "expo-screen-orientation";
 import Icon from "../components/ui/Icon";
 import { TrenchstarIcon } from "../components/trenchstar/TrenchstarIcon";
@@ -178,17 +178,20 @@ function useBootProgress(ready: boolean, tauMs: number) {
   return { pct, showBoot, dismiss: useCallback(() => setShowBoot(false), []) };
 }
 
-const NotInTheArcade = ({ slug, onBack }: { slug?: string; onBack: () => void }) => (
-  <View style={styles.panel}>
-    <Icon name="Gamepad2" size={30} color="#52525B" />
-    <Text style={styles.panelBody}>
-      There is no game called <Text style={styles.panelSlug}>{slug}</Text> in the arcade.
-    </Text>
-    <Pressable onPress={onBack} style={styles.panelButton}>
-      <Text style={styles.panelButtonLabel}>See what is here</Text>
-    </Pressable>
-  </View>
-);
+const NotInTheArcade = ({ slug, onBack }: { slug?: string; onBack: () => void }) => {
+  const { t } = useTranslation();
+  return (
+    <View style={styles.panel}>
+      <Icon name="Gamepad2" size={30} color="#52525B" />
+      <Text style={styles.panelBody}>
+        <Trans i18nKey="arcade.noGameCalled" values={{ slug }} components={{ slug: <Text style={styles.panelSlug} /> }} />
+      </Text>
+      <Pressable onPress={onBack} style={styles.panelButton}>
+        <Text style={styles.panelButtonLabel}>{t("arcade.seeWhatIsHere")}</Text>
+      </Pressable>
+    </View>
+  );
+};
 
 const ArcadeGameScreen = () => {
   const { t } = useTranslation();
@@ -330,11 +333,11 @@ const ArcadeGameScreen = () => {
           return;
         }
         if (game?.socialPresence && d.source === 'gods-eye-view') {
-          if (d.type === 'presence-location-error') toastError('Location permission was not granted.');
+          if (d.type === 'presence-location-error') toastError(t('arcade.locationNotGranted'));
           if (d.type === 'presence-location') {
             const token = await getAuthToken();
             const wallet = user?.walletAddress?.toLowerCase();
-            if (!token || !wallet) { toastError('Sign in to place yourself on the globe.'); return; }
+            if (!token || !wallet) { toastError(t('arcade.signInToPlaceOnGlobe')); return; }
             const response = await fetch(MAP_PRESENCE_ENDPOINT, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json', 'x-dehub-token': token, 'x-wallet-address': wallet },
@@ -343,9 +346,9 @@ const ArcadeGameScreen = () => {
                 username: user?.username, avatarUrl: user?.avatarImageUrl || user?.avatarUrl,
               }),
             });
-            if (!response.ok) { toastError('Could not place you on the globe.'); return; }
+            if (!response.ok) { toastError(t('arcade.couldNotPlaceOnGlobe')); return; }
             webRef.current?.injectJavaScript(`window.postMessage({source:'social-presence-host',type:'refresh'}, '*'); true;`);
-            toastSuccess('You are on the globe — shown within an approximate 25 km area.');
+            toastSuccess(t('arcade.onTheGlobe'));
           }
           return;
         }
@@ -394,17 +397,14 @@ const ArcadeGameScreen = () => {
 
       {failed ? (
         <View style={styles.panel}>
-          <Text style={styles.panelKicker}>COULD NOT REACH THE ARCADE</Text>
-          <Text style={styles.panelTitle}>{game.title} did not load</Text>
-          <Text style={styles.panelBody}>
-            The game is served from dehub.io and is downloaded when you open it, so it needs a
-            working connection the first time. Check yours and try again.
-          </Text>
+          <Text style={styles.panelKicker}>{t("arcade.couldNotReach")}</Text>
+          <Text style={styles.panelTitle}>{t("arcade.didNotLoad", { title: game.title })}</Text>
+          <Text style={styles.panelBody}>{t("arcade.needsConnection")}</Text>
           <Pressable onPress={retry} style={styles.panelButton}>
             <Text style={styles.panelButtonLabel}>{t("common.retry")}</Text>
           </Pressable>
           <Pressable onPress={goBack} style={styles.panelButton}>
-            <Text style={styles.panelButtonLabel}>Back to the arcade</Text>
+            <Text style={styles.panelButtonLabel}>{t("arcade.backToArcade")}</Text>
           </Pressable>
         </View>
       ) : suspended ? (
@@ -472,13 +472,11 @@ const ArcadeGameScreen = () => {
         <Pressable
           onPress={() => navigation.navigate(ScreenNames.PrivacySettings)}
           accessibilityRole="button"
-          accessibilityLabel="Open privacy settings"
+          accessibilityLabel={t("arcade.openPrivacySettings")}
           style={styles.privacyWarning}
         >
           <Icon name="TriangleAlert" size={16} color="#FCD34D" />
-          <Text style={styles.privacyWarningText}>
-            If you hold a large amount of tokens or live in an insecure area, hide your badge and balance before using this feature. On-chain transactions still reveal your address. Open settings.
-          </Text>
+          <Text style={styles.privacyWarningText}>{t("arcade.privacyWarning")}</Text>
         </Pressable>
       ) : null}
 
@@ -497,7 +495,7 @@ const ArcadeGameScreen = () => {
       <Pressable
         onPress={goBack}
         accessibilityRole="button"
-        accessibilityLabel="Leave the game"
+        accessibilityLabel={t("arcade.leaveGame")}
         hitSlop={12}
         style={[styles.exit, game.exitPlacement === "center" ? styles.exitCenter : styles.exitLeft]}
       >
@@ -515,7 +513,7 @@ const ArcadeGameScreen = () => {
           )}
           <View
             accessibilityRole="progressbar"
-            accessibilityLabel={`Loading ${game.title}`}
+            accessibilityLabel={t("arcade.loadingGame", { title: game.title })}
             accessibilityValue={{ min: 0, max: 100, now: pct }}
             style={styles.bootTrack}
           >
@@ -529,7 +527,7 @@ const ArcadeGameScreen = () => {
           </Text>
           {fault ? <Text style={styles.bootFault}>{fault}</Text> : null}
           <Pressable onPress={dismiss} hitSlop={10}>
-            <Text style={styles.bootHide}>Hide this</Text>
+            <Text style={styles.bootHide}>{t("arcade.hideThis")}</Text>
           </Pressable>
         </View>
       ) : null}

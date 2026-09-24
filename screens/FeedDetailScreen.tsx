@@ -623,7 +623,7 @@ export default function FeedDetailScreen() {
       await deleteComment({ commentId });
     } catch (e) {
       console.error('[FeedDetailScreen] deleteComment error', e);
-      toastError('Failed to delete comment');
+      toastError(t("toasts.failed_to_delete_comment"));
       // Revert by reloading
       await fetchData();
     }
@@ -977,7 +977,7 @@ export default function FeedDetailScreen() {
             await editComment({ commentId, content: text });
           } catch (e) {
             console.error('[FeedDetailScreen] editComment error', e);
-            toastError('Failed to edit comment');
+            toastError(t("comments.editFailed"));
             await fetchData();
           }
           return;
@@ -1036,7 +1036,7 @@ export default function FeedDetailScreen() {
           // The comment vanished from the thread with nothing said at all
           // before this. A refusal from the server explains itself — comments
           // turned off, too long, a link that cannot be posted — so say it.
-          toastError(e instanceof Error && e.message ? e.message : "Failed to post comment");
+          toastError(e instanceof Error && e.message ? e.message : t("toasts.failed_to_post_comment"));
         }
       } finally {
         setPosting(false);
@@ -1082,10 +1082,10 @@ export default function FeedDetailScreen() {
             <Ionicons name="lock-closed" size={40} color="#666" />
           </View>
           <Text className="text-white text-lg font-bold text-center mb-2">
-            Private Content
+            {t("feed.privateContent")}
           </Text>
           <Text className="text-gray-400 text-center text-sm leading-5">
-            This content is from a private account. Follow the creator to view their posts.
+            {t("feed.privateContentBody")}
           </Text>
         </View>
       ) : null}

@@ -119,7 +119,12 @@
     "music": "음악",
     "live": "라이브",
     "newPosts_one": "새 게시물 {{count}}개",
-    "newPosts_other": "새 게시물 {{count}}개"
+    "newPosts_other": "새 게시물 {{count}}개",
+    "privateContent": "비공개 콘텐츠",
+    "privateContentBody": "이 콘텐츠는 비공개 계정의 것입니다. 게시물을 보려면 크리에이터를 팔로우하세요.",
+    "noMoreContent": "더 이상 콘텐츠 없음",
+    "noPostsYet": "아직 게시물이 없습니다.",
+    "pullToRefresh": "새로고침하거나 나중에 다시 시도하세요."
   },
   "explore": {
     "all": "전체",
@@ -708,7 +713,19 @@
     "exportPkConfirmPhrase": "이해했습니다",
     "exportPkCopy": "개인 키 복사",
     "e2eAutomatic": "자동",
-    "smsTopUp": "{{dhb}} DHB 충전"
+    "smsTopUp": "{{dhb}} DHB 충전",
+    "avatarUpdateFailed": "아바타 업데이트 실패",
+    "coverUpdateFailed": "커버 업데이트 실패",
+    "fixInvalidSocialLinks": "잘못된 소셜 링크를 수정해주세요.",
+    "updateFailed": "업데이트 실패",
+    "channelUrlOrHandle": "채널 URL 또는 핸들",
+    "inviteLinkPlaceholder": "초대 링크",
+    "profileUrlOrUsername": "프로필 URL 또는 사용자 이름",
+    "yourDisplayName": "표시 이름",
+    "usernameAvailable": "사용자 이름을 사용할 수 있습니다.",
+    "hideBadgeAndBalance": "배지와 잔액 숨기기",
+    "hideBadgeAndBalanceDesc": "재정 정보를 숨기고 보내기 및 팁을 비활성화합니다.",
+    "onChainPublicWarning": "온체인 거래는 공개됩니다. 토큰 또는 팁을 보내면 비공개 잔액 모드가 활성화되기 전에 이루어진 거래를 포함하여 지갑 주소가 공개될 수 있습니다."
   },
   "common": {
     "mute": "음소거",
@@ -758,7 +775,9 @@
     "noInternetTitle": "인터넷 연결 없음",
     "noInternetBody": "인터넷 연결을 확인하고 다시 시도하세요. DeHub를 사용하려면 인터넷에 연결되어 있어야 합니다.",
     "noInternetStatus": "오프라인 - 네트워크 연결 없음",
-    "noInternetHint": "Wi-Fi 또는 모바일 데이터가 켜져 있는지 확인한 후 \"{{action}}\"을 탭하세요."
+    "noInternetHint": "Wi-Fi 또는 모바일 데이터가 켜져 있는지 확인한 후 \"{{action}}\"을 탭하세요.",
+    "saving": "저장 중…",
+    "offlineStatus": "오프라인 - 네트워크 연결 없음"
   },
   "tip": {
     "title": "팁 보내기",
@@ -1092,7 +1111,17 @@
     "post": "게시물",
     "officialLogo": "DeHub 공식 로고입니다! 🎨",
     "editedImage": "편집된 이미지입니다!",
-    "generatedImage": "생성된 이미지입니다!"
+    "generatedImage": "생성된 이미지입니다!",
+    "toolCompleted": "{{name}} 완료",
+    "aiTool": "AI 도구",
+    "cannotAnimateImage": "{{model}}는 첨부된 이미지를 애니메이션할 수 없습니다. 다른 비디오 모델을 선택하세요.",
+    "needsImageToAnimate": "{{model}}는 애니메이션할 이미지가 필요합니다. 이미지를 첨부하거나 다른 모델을 선택하세요.",
+    "couldNotReadImage": "해당 이미지를 읽을 수 없습니다.",
+    "logoLoadFailed": "DeHub 로고를 로드할 수 없습니다. 로고 없이 생성합니다.",
+    "imageAttachedDescribe": "이미지 첨부 — 편집 내용을 설명하세요.",
+    "couldNotPreparePost": "게시 준비를 할 수 없습니다.",
+    "generateImage": "이미지 생성",
+    "generateVideo": "동영상 생성"
   },
   "commandCentre": {
     "title": "커맨드 센터",
@@ -1603,7 +1632,10 @@
     "edit": "편집",
     "deleteRequestTitle": "이 요청을 삭제할까요?",
     "deleteRequestDescription": "되돌릴 수 없습니다.",
-    "attachmentTooLarge": "파일당 20MB 미만이어야 합니다"
+    "attachmentTooLarge": "파일당 20MB 미만이어야 합니다",
+    "deleteCommentA11y": "설명 삭제",
+    "sendCommentA11y": "댓글 보내기",
+    "requestOptions": "요청 옵션"
   },
   "auth": {
     "loginRequired": "로그인 필요",
@@ -1652,7 +1684,15 @@
     "sendCodeFailedRetry": "코드를 보낼 수 없습니다. 다시 시도하세요.",
     "invalidCodeRetry": "잘못된 코드입니다. 다시 시도하세요.",
     "invalidEmailOrPassword": "잘못된 이메일 또는 비밀번호입니다.",
-    "welcomeToDehub": "DeHub에 오신 것을 환영합니다"
+    "welcomeToDehub": "DeHub에 오신 것을 환영합니다",
+    "importWalletOptional": "지갑 가져오기 (선택 사항)",
+    "couldNotSendCodeRetry": "코드를 보낼 수 없습니다. 다시 시도하십시오.",
+    "exploreWithoutSignIn": "로그인하지 않고 둘러보기",
+    "continueExploring": "계속 둘러보기",
+    "exploreWithoutSignInA11y": "로그인하지 않고 DeHub 둘러보기",
+    "continueExploringA11y": "DeHub 둘러보기",
+    "importWalletRecommended": "소셜 로그인을 권장합니다.",
+    "importWalletPurpose": "이 도구는 DeHub.io에서 기존 계정을 가져오는 데 사용됩니다."
   },
   "messages": {
     "smartRepliesOff": "추천 답장을 껐습니다",
@@ -1767,7 +1807,29 @@
     "reportedAutomatically": "자동으로 신고되었습니다.",
     "loadFailed": "채널을 불러오지 못했습니다",
     "noSearchResults": "검색과 일치하는 채널이 없습니다",
-    "noChannels": "이용 가능한 채널이 없습니다"
+    "noChannels": "이용 가능한 채널이 없습니다",
+    "pairCodeExpired": "해당 코드는 만료되었습니다. TV에 새 TV를 요청하세요.",
+    "signedInOnTv": "TV에서 로그인됨",
+    "pairRefused": "거절됨",
+    "pairIntro": "TV에서 DeHub를 열고 여기에 표시된 코드를 입력합니다.",
+    "pairNotFound": "해당 코드에서 대기 중인 텔레비전이 없습니다. 만료되었을 수 있습니다. TV에 새 TV를 요청하세요.",
+    "wantsToSignIn": "님이 회원님으로 로그인하려고 합니다.",
+    "pairWarning": "지금 보고 있는 텔레비전인 경우에만 이를 승인하십시오. 귀하의 계정에 해당 코드를 보유하고 있는 모든 사람을 승인합니다. 보고, 좋아하고, 팔로우할 수 있습니다. 지출할 수 없으며, 활성 세션에서 언제든지 로그아웃할 수 있습니다.",
+    "pairApprove": "예, 이 TV에 로그인합니다",
+    "pairDeny": "아니요, 요청하지 않았습니다.",
+    "pairDoneTitle": "TV가 로그인되었습니다",
+    "pairDoneBody": "이미 계정이 표시되어 있을 것입니다. 설정 → 개인 정보 보호 → 활성 세션에서 언제든지 로그아웃하세요.",
+    "closePlayer": "플레이어 닫기",
+    "declineFailed": "거절할 수 없습니다. 이미 만료되었을 수 있습니다.",
+    "tipSentTvNotTold": "팁이 전송되었지만 TV를 알 수 없습니다. 시간이 초과됩니다.",
+    "sentAmount": "{{amount}} DHB 보냄",
+    "nothingWaiting": "대기 중인 항목 없음",
+    "nothingWaitingBody": "TV에서 DeHub로 팁을 보내면 승인을 위해 여기에 표시됩니다. TV는 지갑을 보관하지 않습니다.",
+    "yourTelevision": "귀하의 텔레비전",
+    "wantsToTip": "팁 보내기 · {{time}} 남음",
+    "tipTo": "{{name}}에게",
+    "tipForPost": "\"{{title}}\"에 대한",
+    "reviewAndApprove": "검토 및 승인"
   },
   "top100": {
     "title": "톱 100",
@@ -2043,7 +2105,8 @@
     "submitApplication": "지원서 제출",
     "nameEmailRequired": "이름과 이메일은 필수입니다",
     "applicationSuccess": "지원서가 성공적으로 제출되었습니다! 연락드리겠습니다.",
-    "applicationFailed": "제출에 실패했습니다. 다시 시도해 주세요."
+    "applicationFailed": "제출에 실패했습니다. 다시 시도해 주세요.",
+    "namePlaceholder": "제인 스미스"
   },
   "dao": {
     "title": "DAO 재무부",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "이 게시물 맨 위에 고정했습니다",
     "unpinnedToast": "고정을 해제했습니다",
     "pinFailed": "해당 댓글을 고정할 수 없습니다",
-    "kidsOnlyThread": "이 게시물은 어린이를 위한 것입니다. 어린이 모드만 댓글을 달 수 있습니다."
+    "kidsOnlyThread": "이 게시물은 어린이를 위한 것입니다. 어린이 모드만 댓글을 달 수 있습니다.",
+    "editFailed": "댓글 수정 실패"
   },
   "postInfo": {
     "title": "게시물 정보",
@@ -3243,14 +3307,40 @@
     "comingSoon": "곧 출시",
     "signIn": "로그인",
     "tapToGetStarted": "탭하여 시작",
-    "soon": "곧"
+    "soon": "곧",
+    "glossarySubtitle": "모든 아이콘과 기능의 의미 알아보기",
+    "searchGlossary": "용어집 검색...",
+    "noResultsFor": "\"{{query}}\"에 대한 결과 없음",
+    "guideSubtitle": "모든 기능 단계별 안내",
+    "searchGuide": "가이드 검색...",
+    "repostsTab": "리포스트",
+    "quotesTab": "인용",
+    "noMoreReposts": "더 이상 리포스트 없음",
+    "noMoreQuotes": "더 이상 인용 없음",
+    "noRepostsYet": "아직 리포스트 없음",
+    "noQuotesYet": "아직 인용 없음"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "앱 안에서 바로 실행되는 게임. 설치할 것도 살 것도 없습니다 — 오픈소스이며 DeHub에서 직접 제공합니다."
+    "intro": "앱 안에서 바로 실행되는 게임. 설치할 것도 살 것도 없습니다 — 오픈소스이며 DeHub에서 직접 제공합니다.",
+    "noGameCalled": "아케이드에 <slug>{{slug}}</slug>라는 게임이 없습니다.",
+    "seeWhatIsHere": "여기에서 무엇을 볼 수 있는지 확인",
+    "locationNotGranted": "위치 권한이 부여되지 않았습니다.",
+    "signInToPlaceOnGlobe": "로그인하여 지구에 자신을 표시하세요.",
+    "couldNotPlaceOnGlobe": "지구에 표시할 수 없습니다.",
+    "onTheGlobe": "지구에 표시되었습니다 — 약 25km 범위 내에서 표시됩니다.",
+    "couldNotReach": "아케이드에 연결할 수 없습니다",
+    "didNotLoad": "{{title}} 로드 실패",
+    "needsConnection": "게임은 dehub.io에서 제공되며 열 때 다운로드되므로 처음에는 작동하는 연결이 필요합니다. 연결을 확인하고 다시 시도하세요.",
+    "backToArcade": "아케이드로 돌아가기",
+    "openPrivacySettings": "개인 정보 설정 열기",
+    "privacyWarning": "토큰을 많이 보유하고 있거나 안전하지 않은 지역에 거주하는 경우, 이 기능을 사용하기 전에 배지와 잔액을 숨기세요. 온체인 거래는 여전히 주소를 공개합니다. 설정 열기.",
+    "leaveGame": "게임 나가기",
+    "loadingGame": "{{title}} 로딩 중",
+    "hideThis": "숨기기"
   },
   "videoLooks": {
     "button": "카메라 효과",
@@ -3424,7 +3514,21 @@
     "someone": "누군가",
     "oneTyping": "{{name}}님이 입력 중…",
     "fewTyping": "{{names}}님이 입력 중…",
-    "manyTyping": "{{count}}명이 입력 중…"
+    "manyTyping": "{{count}}명이 입력 중…",
+    "thisUser": "이 사용자",
+    "unbanConfirm": "{{name}} 의 차단을 해제하시겠습니까?",
+    "unban": "차단 해제",
+    "unbanFailed": "사용자 차단 해제 실패",
+    "onlineLabel": "온라인",
+    "usersCount_one": "{{count}} 명의 사용자",
+    "usersCount_other": "{{count}} 명의 사용자",
+    "totalMessages": "총 메시지 수",
+    "slowMode": "느린 모드",
+    "cooldownSeconds": "{{seconds}} 초 쿨다운",
+    "minStakeRequired": "최소 스테이크 필요",
+    "noParticipants": "아직 참가자가 없습니다",
+    "noModerators": "모더레이터 없음",
+    "noBannedUsers": "차단된 사용자 없음"
   },
   "promptFeed": {
     "headline": "무엇을 보고 싶으신가요?",
@@ -4175,7 +4279,26 @@
     "madeForKidsOffDesc": "키즈 모드를 사용하는 어린이에게 이 게시물을 보여주고 일반 피드에서 벗어납니다.",
     "madeForKidsBlockedByMature": "성인이라고 표시된 게시물은 어린이에게도 게시할 수 없습니다.",
     "encoderTitle": "OBS / 인코더",
-    "encoderHint": "RTMP 세부정보 가져오기"
+    "encoderHint": "RTMP 세부정보 가져오기",
+    "queueWaiting": "대기 중…",
+    "queueUploading": "업로드 중",
+    "queueProcessing": "처리 중…",
+    "queueMinting": "민팅 중…",
+    "queuePosted": "게시됨",
+    "queueFailed": "실패",
+    "noRetriesLeft": "(재시도 횟수 없음)",
+    "noUploads": "업로드 없음",
+    "uploadsAppearHere": "업로드가 여기에 표시됩니다",
+    "imagesTotalLimit": "한 번에 업로드할 수 있는 이미지는 총 100MB 이하여야 합니다.",
+    "chooseDatabase": "분산형 데이터베이스 선택",
+    "livestreamMode": "라이브 방송 모드",
+    "addThumbnail": "썸네일 추가",
+    "showCover": "년",
+    "max60s": "최대 60초",
+    "confirmLivestream": "라이브 방송 확인",
+    "liveFeaturesTitle": "라이브 기능",
+    "discardPostTitle": "게시물을 삭제하시겠습니까?",
+    "discardPostBody": "포스트가 삭제됩니다. 임시 저장하시겠습니까?"
   },
   "bounty": {
     "claimed": "수령 완료",
@@ -4492,7 +4615,25 @@
     "allowNewDmsOff": "새 메시지를 받으려면 DM을 켜세요.",
     "perMessageFee": "메시지당 요금 (DHB)",
     "perMessageFeeSub": "메시지마다 요금을 받습니다. 무료로 하려면 0으로 두세요. 특정 사용자에게는 무료 접근을 줄 수 있습니다.",
-    "allDisabled": "현재 모든 DM이 꺼져 있습니다. 새 DM은 기본적으로 차단됩니다."
+    "allDisabled": "현재 모든 DM이 꺼져 있습니다. 새 DM은 기본적으로 차단됩니다.",
+    "failedToEdit": "수정 실패",
+    "messageDeleted": "삭제된 메시지",
+    "cantForwardFromDevice": "이 메시지는 이 장치에서 전달할 수 없습니다",
+    "messageForwarded": "메시지 전달되었습니다.",
+    "clearMessages": "메시지 지우기",
+    "clearMessagesConfirm": "이 대화의 모든 메시지를 삭제하시겠어요? 이 작업은 취소할 수 없습니다.",
+    "messagesCleared": "메시지 지워짐",
+    "failedToClearMessages": "메시지를 지우지 못했습니다.",
+    "removedFreeAccess": "{{name}} 에 대한 무료 액세스가 제거되었습니다",
+    "grantedFreeAccess": "{{name}} 에 대한 무료 액세스 권한 부여됨",
+    "failedToUpdateFreeAccess": "무료 액세스를 업데이트하지 못했습니다",
+    "searchComingSoon": "검색 출시 예정",
+    "tapToUnblock": "탭하여 차단 해제",
+    "userFallback": "사용자",
+    "failedToBlock": "차단 실패",
+    "failedToDeleteConversation": "대화를 삭제하지 못했습니다",
+    "newDm": "메시지",
+    "noConversationsFound": "대화를 찾을 수 없습니다"
   },
   "editPost": {
     "mediaPermission": "미디어 라이브러리 권한이 필요합니다",
@@ -4514,7 +4655,17 @@
     "retry": "다시 시도하기",
     "retrying": "다시 시도 중...",
     "retryQueued": "다시 처리 중",
-    "retryFailed": "해당 게시물을 다시 시도할 수 없습니다"
+    "retryFailed": "해당 게시물을 다시 시도할 수 없습니다",
+    "closeVideo": "동영상 닫기",
+    "rotateOrientation": "방향 회전",
+    "videoProgress": "동영상 진행률: {{percent}}%",
+    "tapToSeek": "탭하여 특정 위치로 이동",
+    "photoAccessToSaveImages": "이미지 저장을 위해 사진 라이브러리 접근 허용",
+    "failedToSaveImage": "이미지 저장 실패",
+    "downloadImage": "이미지 다운로드",
+    "goToImage": "이미지 {{index}}로 이동",
+    "allCaughtUp": "모두 확인했습니다",
+    "checkBackForShorts": "나중에 더 많은 쇼츠를 확인하세요"
   },
   "liveViewer": {
     "loadingStream": "스트림 불러오는 중…",
@@ -4524,7 +4675,22 @@
   },
   "search": {
     "endOfResults": "결과 끝",
-    "searchDehub": "DeHub 검색"
+    "searchDehub": "DeHub 검색",
+    "tabVoice": "음성",
+    "trendingThisWeek": "이번 주 인기",
+    "trendingPosts": "인기 게시물",
+    "trendingImages": "인기 이미지",
+    "trendingVideos": "인기 동영상",
+    "trendingVoicePosts": "인기 음성 게시물",
+    "trendingLive": "인기 라이브",
+    "seeAll": "모두 보기",
+    "noAccountsFound": "계정을 찾을 수 없습니다",
+    "tryDifferentKeywords": "다른 키워드를 시도하거나 철자를 확인하세요",
+    "noContentResults": "콘텐츠 결과 없음",
+    "recentSearches": "최근 검색어",
+    "noTrendingThisWeek": "이번 주 인기 콘텐츠 없음",
+    "closeFilterOptions": "필터 옵션 닫기",
+    "openFilterOptions": "필터 옵션 열기"
   },
   "notifPrompt": {
     "stayInLoop": "소식을 놓치지 마세요",
@@ -4773,7 +4939,25 @@
     "externalTitle": "외부 스트리밍 모드",
     "externalLiveHint": "스트림은 외부 소프트웨어를 통해 실시간으로 제공됩니다. 앱 내 카메라가 비활성화되었습니다.",
     "externalHint": "아래 세부 정보를 사용하여 스트리밍 소프트웨어를 연결한 다음 방송을 시작하십시오.",
-    "useInAppCamera": "대신 앱 내 카메라를 사용하세요"
+    "useInAppCamera": "대신 앱 내 카메라를 사용하세요",
+    "livestreamEnded": "라이브 스트림 종료됨",
+    "chatEnabled": "채팅 활성화됨",
+    "chatDisabled": "채팅 비활성화됨",
+    "failedToUpdateSettings": "설정 업데이트 실패",
+    "networkLostReconnecting": "네트워크 연결 끊김 — 스트림 일시 중지됨. 다시 연결 중…",
+    "openingViewer": "뷰어 열기...",
+    "cameraPermissionRequired": "카메라 권한 필요",
+    "grantPermission": "권한 부여",
+    "waitingForLivepeer": "Livepeer를 기다리는 중...",
+    "waitingForExternalSource": "외부 출처를 기다리는 중...",
+    "settingUpPublisher": "게시자 설정 중...",
+    "scheduledStream": "예정된 스트림",
+    "pressGoLiveWhenReady": "시작할 준비가 되면 Go Live를 누르세요.",
+    "connectionInterrupted": "연결 중단됨",
+    "streamPausedReconnecting": "스트림이 일시 중지되었습니다. 다시 연결하는 중...",
+    "streamWillEnd": "다시 연결되지 않으면 스트림이 종료됩니다",
+    "endStreamConfirmTitle": "스트림을 종료하시겠습니까?",
+    "endStreamConfirmBody": "지금 종료하면 모든 시청자의 라이브 스트림이 종료됩니다. 스트리밍을 계속하거나 영구적으로 종료할 수 있습니다."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

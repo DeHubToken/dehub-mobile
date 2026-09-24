@@ -119,7 +119,12 @@
     "music": "Music",
     "live": "Live",
     "newPosts_one": "{{count}} new post",
-    "newPosts_other": "{{count}} new posts"
+    "newPosts_other": "{{count}} new posts",
+    "privateContent": "Private Content",
+    "privateContentBody": "This content is from a private account. Follow the creator to view their posts.",
+    "noMoreContent": "No more content",
+    "noPostsYet": "No posts yet.",
+    "pullToRefresh": "Pull to refresh or try again later."
   },
   "explore": {
     "all": "All",
@@ -710,7 +715,19 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "I UNDERSTAND",
     "exportPkCopy": "Copy private key",
-    "e2eAutomatic": "Automatic"
+    "e2eAutomatic": "Automatic",
+    "avatarUpdateFailed": "Avatar update failed",
+    "coverUpdateFailed": "Cover update failed",
+    "fixInvalidSocialLinks": "Please fix invalid social links",
+    "updateFailed": "Update failed",
+    "channelUrlOrHandle": "Channel URL or handle",
+    "inviteLinkPlaceholder": "Invite link",
+    "profileUrlOrUsername": "Profile URL or username",
+    "yourDisplayName": "Your display name",
+    "usernameAvailable": "Username is available",
+    "hideBadgeAndBalance": "Hide badge and balance",
+    "hideBadgeAndBalanceDesc": "Hides financial details and disables sends and tips to you.",
+    "onChainPublicWarning": "On-chain transactions are public. Sending tokens or tips can reveal your wallet address, including transactions made before private balance mode was enabled."
   },
   "common": {
     "mute": "Mute",
@@ -760,7 +777,9 @@
     "noInternetTitle": "No Internet Connection",
     "noInternetBody": "Please check your internet connection and try again. You need to be connected to the internet to use DeHub.",
     "noInternetStatus": "Offline - No network connection",
-    "noInternetHint": "Make sure Wi-Fi or mobile data is turned on, then tap \"{{action}}\""
+    "noInternetHint": "Make sure Wi-Fi or mobile data is turned on, then tap \"{{action}}\"",
+    "saving": "Saving…",
+    "offlineStatus": "Offline - No network connection"
   },
   "tip": {
     "title": "Send Tip",
@@ -1094,7 +1113,17 @@
     "post": "Post",
     "officialLogo": "Here's the official DeHub logo! 🎨",
     "editedImage": "Here's your edited image!",
-    "generatedImage": "Here's your generated image!"
+    "generatedImage": "Here's your generated image!",
+    "toolCompleted": "{{name}} completed",
+    "aiTool": "AI tool",
+    "cannotAnimateImage": "{{model}} cannot animate an attached image. Pick another video model.",
+    "needsImageToAnimate": "{{model}} needs an image to animate. Attach one or pick another model.",
+    "couldNotReadImage": "Could not read that image",
+    "logoLoadFailed": "Could not load the DeHub logo — generating without it",
+    "imageAttachedDescribe": "Image attached — describe your edits",
+    "couldNotPreparePost": "Could not prepare that for posting",
+    "generateImage": "Generate Image",
+    "generateVideo": "Generate Video"
   },
   "commandCentre": {
     "title": "Command Center",
@@ -1606,7 +1635,10 @@
     "edit": "Edit",
     "deleteRequestTitle": "Delete this request?",
     "deleteRequestDescription": "This can't be undone.",
-    "attachmentTooLarge": "Each file must be under 20MB"
+    "attachmentTooLarge": "Each file must be under 20MB",
+    "deleteCommentA11y": "Delete comment",
+    "sendCommentA11y": "Send comment",
+    "requestOptions": "Request options"
   },
   "auth": {
     "loginRequired": "Log in required",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "Could not send code. Please retry.",
     "invalidCodeRetry": "Invalid code. Please retry.",
     "invalidEmailOrPassword": "Invalid email or password.",
-    "welcomeToDehub": "Welcome to DeHub"
+    "welcomeToDehub": "Welcome to DeHub",
+    "importWalletOptional": "Import Wallet (Optional)",
+    "importWalletRecommended": "Social logins are recommended.",
+    "importWalletPurpose": "This tool is for importing existing accounts from DeHub.io.",
+    "couldNotSendCodeRetry": "Could not send code. Please retry.",
+    "exploreWithoutSignIn": "Explore without signing in",
+    "continueExploring": "Continue exploring",
+    "exploreWithoutSignInA11y": "Explore DeHub without signing in",
+    "continueExploringA11y": "Continue exploring DeHub"
   },
   "messages": {
     "smartRepliesOff": "Suggested replies turned off",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "It's been reported automatically.",
     "loadFailed": "Couldn't load channels",
     "noSearchResults": "No channels match your search",
-    "noChannels": "No channels available"
+    "noChannels": "No channels available",
+    "pairCodeExpired": "That code has expired. Ask the TV for a new one.",
+    "signedInOnTv": "Signed in on your TV",
+    "pairRefused": "Refused",
+    "pairIntro": "Open DeHub on your television and type the code it shows here.",
+    "pairNotFound": "No television is waiting on that code. It may have expired — ask the TV for a new one.",
+    "wantsToSignIn": "wants to sign in as you",
+    "pairWarning": "Only approve this if it is a television you are looking at right now. Approving signs whoever is holding that code into your account. It will be able to watch, like and follow — it cannot spend, and you can sign it out any time from Active sessions.",
+    "pairApprove": "Yes, sign in this TV",
+    "pairDeny": "No, I did not ask for this",
+    "pairDoneTitle": "Your TV is signed in",
+    "pairDoneBody": "It should be showing your account already. Sign it out any time from Settings → Privacy → Active sessions.",
+    "closePlayer": "Close player",
+    "declineFailed": "Could not decline that — it may have already expired.",
+    "tipSentTvNotTold": "Tip sent, but the TV could not be told. It will time out.",
+    "sentAmount": "Sent {{amount}} DHB",
+    "nothingWaiting": "Nothing waiting",
+    "nothingWaitingBody": "When you tip from DeHub on your television, it appears here for you to approve. Your TV never holds your wallet.",
+    "yourTelevision": "Your television",
+    "wantsToTip": "wants to send a tip · {{time}} left",
+    "tipTo": "to {{name}}",
+    "tipForPost": "for “{{title}}”",
+    "reviewAndApprove": "Review and approve"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Submit Application",
     "nameEmailRequired": "Name and email are required",
     "applicationSuccess": "Application submitted successfully! We'll be in touch.",
-    "applicationFailed": "Failed to submit. Please try again."
+    "applicationFailed": "Failed to submit. Please try again.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO Treasury",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Pinned to the top of this post",
     "unpinnedToast": "Pin removed",
     "pinFailed": "Could not pin that comment",
-    "kidsOnlyThread": "This post is for kids. Only Kids Mode can comment on it."
+    "kidsOnlyThread": "This post is for kids. Only Kids Mode can comment on it.",
+    "editFailed": "Failed to edit comment"
   },
   "postInfo": {
     "title": "Post Info",
@@ -3243,14 +3307,40 @@
     "comingSoon": "Coming soon",
     "signIn": "Sign in",
     "tapToGetStarted": "Tap to get started",
-    "soon": "Soon"
+    "soon": "Soon",
+    "glossarySubtitle": "Learn what every icon and feature means",
+    "searchGlossary": "Search glossary...",
+    "noResultsFor": "No results for \"{{query}}\"",
+    "guideSubtitle": "Step-by-step walkthrough of every feature",
+    "searchGuide": "Search the guide...",
+    "repostsTab": "Reposts",
+    "quotesTab": "Quotes",
+    "noMoreReposts": "No more reposts",
+    "noMoreQuotes": "No more quotes",
+    "noRepostsYet": "No reposts yet",
+    "noQuotesYet": "No quotes yet"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Games that run right here in the app. Nothing to install, nothing to buy — open source, and served from DeHub itself."
+    "intro": "Games that run right here in the app. Nothing to install, nothing to buy — open source, and served from DeHub itself.",
+    "noGameCalled": "There is no game called <slug>{{slug}}</slug> in the arcade.",
+    "seeWhatIsHere": "See what is here",
+    "locationNotGranted": "Location permission was not granted.",
+    "signInToPlaceOnGlobe": "Sign in to place yourself on the globe.",
+    "couldNotPlaceOnGlobe": "Could not place you on the globe.",
+    "onTheGlobe": "You are on the globe — shown within an approximate 25 km area.",
+    "couldNotReach": "COULD NOT REACH THE ARCADE",
+    "didNotLoad": "{{title}} did not load",
+    "needsConnection": "The game is served from dehub.io and is downloaded when you open it, so it needs a working connection the first time. Check yours and try again.",
+    "backToArcade": "Back to the arcade",
+    "openPrivacySettings": "Open privacy settings",
+    "privacyWarning": "If you hold a large amount of tokens or live in an insecure area, hide your badge and balance before using this feature. On-chain transactions still reveal your address. Open settings.",
+    "leaveGame": "Leave the game",
+    "loadingGame": "Loading {{title}}",
+    "hideThis": "Hide this"
   },
   "videoLooks": {
     "button": "Camera looks",
@@ -3425,7 +3515,22 @@
     "someone": "Someone",
     "oneTyping": "{{name}} is typing...",
     "fewTyping": "{{names}} are typing...",
-    "manyTyping": "{{count}} people are typing..."
+    "manyTyping": "{{count}} people are typing...",
+    "modBadge": "MOD",
+    "thisUser": "this user",
+    "unbanConfirm": "Are you sure you want to unban {{name}}?",
+    "unban": "Unban",
+    "unbanFailed": "Failed to unban user",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} user",
+    "usersCount_other": "{{count}} users",
+    "totalMessages": "Total Messages",
+    "slowMode": "Slow Mode",
+    "cooldownSeconds": "{{seconds}}s cooldown",
+    "minStakeRequired": "Min Stake Required",
+    "noParticipants": "No participants yet",
+    "noModerators": "No moderators",
+    "noBannedUsers": "No banned users"
   },
   "promptFeed": {
     "headline": "What do you want to see?",
@@ -4177,7 +4282,26 @@
     "madeForKidsOffDesc": "Shows this post to children using Kids Mode, and takes it off the ordinary feeds.",
     "madeForKidsBlockedByMature": "A post marked mature cannot also be published for children.",
     "encoderTitle": "OBS / Encoder",
-    "encoderHint": "Get RTMP details"
+    "encoderHint": "Get RTMP details",
+    "queueWaiting": "Waiting…",
+    "queueUploading": "Uploading",
+    "queueProcessing": "Processing…",
+    "queueMinting": "Minting…",
+    "queuePosted": "Posted",
+    "queueFailed": "Failed",
+    "noRetriesLeft": "(no retries left)",
+    "noUploads": "No uploads",
+    "uploadsAppearHere": "Your uploads will appear here",
+    "imagesTotalLimit": "Images in one upload must total 100 MB or less",
+    "chooseDatabase": "Choose Decentralized Database",
+    "livestreamMode": "Livestream Mode",
+    "addThumbnail": "Add Thumbnail",
+    "showCover": "Show cover",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Confirm Livestream",
+    "liveFeaturesTitle": "Live Features",
+    "discardPostTitle": "Discard Post?",
+    "discardPostBody": "Your post will be lost. Would you like to save it as a draft instead?"
   },
   "bounty": {
     "claimed": "Claimed",
@@ -4494,7 +4618,25 @@
     "allowNewDmsOff": "Turn on DMs to allow new messages.",
     "perMessageFee": "Per-Message Fee (DHB)",
     "perMessageFeeSub": "Charge users per message. Set to 0 for free DMs. You can grant free access to specific users.",
-    "allDisabled": "All DMs are currently disabled. New DMs are blocked by default."
+    "allDisabled": "All DMs are currently disabled. New DMs are blocked by default.",
+    "failedToEdit": "Failed to edit",
+    "messageDeleted": "Message deleted",
+    "cantForwardFromDevice": "This message can't be forwarded from this device",
+    "messageForwarded": "Message forwarded",
+    "clearMessages": "Clear messages",
+    "clearMessagesConfirm": "Delete all messages in this conversation? This can't be undone.",
+    "messagesCleared": "Messages cleared",
+    "failedToClearMessages": "Failed to clear messages",
+    "removedFreeAccess": "Removed free access for {{name}}",
+    "grantedFreeAccess": "Granted free access to {{name}}",
+    "failedToUpdateFreeAccess": "Failed to update free access",
+    "searchComingSoon": "Search coming soon",
+    "tapToUnblock": "Tap to unblock",
+    "userFallback": "user",
+    "failedToBlock": "Failed to block",
+    "failedToDeleteConversation": "Failed to delete conversation",
+    "newDm": "New direct message",
+    "noConversationsFound": "No conversations found"
   },
   "editPost": {
     "mediaPermission": "Media library permission is required",
@@ -4516,7 +4658,17 @@
     "retry": "Try again",
     "retrying": "Retrying…",
     "retryQueued": "Processing again",
-    "retryFailed": "Could not retry that post"
+    "retryFailed": "Could not retry that post",
+    "closeVideo": "Close video",
+    "rotateOrientation": "Rotate orientation",
+    "videoProgress": "Video progress: {{percent}}%",
+    "tapToSeek": "Tap to seek to a specific position",
+    "photoAccessToSaveImages": "Allow photo library access to save images",
+    "failedToSaveImage": "Failed to save image",
+    "downloadImage": "Download image",
+    "goToImage": "Go to image {{index}}",
+    "allCaughtUp": "You're all caught up",
+    "checkBackForShorts": "Check back later for more shorts"
   },
   "liveViewer": {
     "loadingStream": "Loading stream...",
@@ -4526,7 +4678,22 @@
   },
   "search": {
     "endOfResults": "End of results",
-    "searchDehub": "Search DeHub"
+    "searchDehub": "Search DeHub",
+    "tabVoice": "Voice",
+    "trendingThisWeek": "Trending This Week",
+    "trendingPosts": "Trending Posts",
+    "trendingImages": "Trending Images",
+    "trendingVideos": "Trending Videos",
+    "trendingVoicePosts": "Trending Voice Posts",
+    "trendingLive": "Trending Live",
+    "seeAll": "See All",
+    "noAccountsFound": "No accounts found",
+    "tryDifferentKeywords": "Try different keywords or check your spelling",
+    "noContentResults": "No content results",
+    "recentSearches": "Recent Searches",
+    "noTrendingThisWeek": "No trending content this week",
+    "closeFilterOptions": "Close filter options",
+    "openFilterOptions": "Open filter options"
   },
   "notifPrompt": {
     "stayInLoop": "Stay in the loop",
@@ -4770,7 +4937,26 @@
     "externalTitle": "External Streaming Mode",
     "externalLiveHint": "Your stream is live via external software. The in-app camera is disabled.",
     "externalHint": "Connect your streaming software using the details below, then start broadcasting.",
-    "useInAppCamera": "Use In-App Camera Instead"
+    "useInAppCamera": "Use In-App Camera Instead",
+    "livestreamEnded": "Livestream ended",
+    "chatEnabled": "Chat enabled",
+    "chatDisabled": "Chat disabled",
+    "failedToUpdateSettings": "Failed to update settings",
+    "networkLostReconnecting": "Network lost — stream paused. Reconnecting…",
+    "openingViewer": "Opening viewer...",
+    "cameraPermissionRequired": "Camera permission required",
+    "grantPermission": "Grant Permission",
+    "waitingForLivepeer": "Waiting for Livepeer...",
+    "waitingForExternalSource": "Waiting for external source...",
+    "settingUpPublisher": "Setting up publisher...",
+    "scheduledStream": "Scheduled Stream",
+    "scheduledAt": "{{date}} at {{time}}",
+    "pressGoLiveWhenReady": "Press Go Live when ready to start",
+    "connectionInterrupted": "Connection Interrupted",
+    "streamPausedReconnecting": "Your stream is paused. Reconnecting...",
+    "streamWillEnd": "Stream will end if not reconnected",
+    "endStreamConfirmTitle": "End Stream?",
+    "endStreamConfirmBody": "Closing now will end your live stream for all viewers. You can continue streaming or end it permanently."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

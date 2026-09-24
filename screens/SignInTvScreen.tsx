@@ -9,6 +9,7 @@ import {
   Keyboard,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import ScreenHeader from '../components/ScreenHeader';
 import Icon from '../components/ui/Icon';
 import GlassIndicator, { GLASS_SHADOW } from '../components/ui/GlassIndicator';
@@ -38,6 +39,7 @@ type Phase = 'entry' | 'confirm' | 'done';
  * is somebody approving a code that arrived by message.
  */
 export default function SignInTvScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [code, setCode] = useState('');
   const [phase, setPhase] = useState<Phase>('entry');
@@ -78,26 +80,26 @@ export default function SignInTvScreen() {
       const ok = await resolvePairing(code, approve);
       setBusy(false);
       if (!ok) {
-        toastError('That code has expired. Ask the TV for a new one.');
+        toastError(t('tv.pairCodeExpired'));
         setPhase('entry');
         setCode('');
         return;
       }
       if (approve) {
-        toastSuccess('Signed in on your TV');
+        toastSuccess(t('tv.signedInOnTv'));
         setPhase('done');
       } else {
-        toastSuccess('Refused');
+        toastSuccess(t('tv.pairRefused'));
         setPhase('entry');
         setCode('');
       }
     },
-    [code],
+    [code, t],
   );
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title="Sign in a TV" />
+      <ScreenHeader title={t('settings.signInTv')} />
       <ScrollView
         contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 32 }}
         keyboardShouldPersistTaps="handled"
@@ -105,7 +107,7 @@ export default function SignInTvScreen() {
         {phase === 'entry' && (
           <View>
             <Text className="text-theme-neutrals-300 text-sm mb-4">
-              Open DeHub on your television and type the code it shows here.
+              {t('tv.pairIntro')}
             </Text>
 
             <TextInput
@@ -127,14 +129,13 @@ export default function SignInTvScreen() {
             {busy && (
               <View className="flex-row items-center justify-center mt-4">
                 <ActivityIndicator size="small" color="#9ca3af" />
-                <Text className="text-theme-neutrals-500 text-xs ml-2">Checking…</Text>
+                <Text className="text-theme-neutrals-500 text-xs ml-2">{t('setProfile.checking')}</Text>
               </View>
             )}
 
             {notFound && !busy && (
               <Text className="text-white/80 text-sm mt-4 text-center">
-                No television is waiting on that code. It may have expired — ask the TV
-                for a new one.
+                {t('tv.pairNotFound')}
               </Text>
             )}
           </View>
@@ -147,7 +148,7 @@ export default function SignInTvScreen() {
                 <Icon name="Tv" size={32} color="#9ca3af" />
                 <Text className="text-white text-lg font-bold mt-3">{target.deviceName}</Text>
                 <Text className="text-theme-neutrals-500 text-xs mt-1">
-                  wants to sign in as you
+                  {t('tv.wantsToSignIn')}
                 </Text>
               </View>
             </View>
@@ -157,10 +158,7 @@ export default function SignInTvScreen() {
                 approving a code that arrived by message. */}
             <View className="bg-theme-neutrals-800/60 border border-theme-neutrals-700 rounded-xl px-4 py-3 mb-4">
               <Text className="text-theme-neutrals-300 text-xs leading-5">
-                Only approve this if it is a television you are looking at right now.
-                Approving signs whoever is holding that code into your account. It will
-                be able to watch, like and follow — it cannot spend, and you can sign it
-                out any time from Active sessions.
+                {t('tv.pairWarning')}
               </Text>
             </View>
 
@@ -177,7 +175,7 @@ export default function SignInTvScreen() {
                   <ActivityIndicator size="small" color="#fff" />
                 ) : (
                   <Text className="text-white text-sm font-semibold">
-                    Yes, sign in this TV
+                    {t('tv.pairApprove')}
                   </Text>
                 )}
               </View>
@@ -191,7 +189,7 @@ export default function SignInTvScreen() {
               style={{ opacity: busy ? 0.5 : 1 }}
             >
               <Text className="text-theme-neutrals-300 text-sm font-semibold">
-                No, I did not ask for this
+                {t('tv.pairDeny')}
               </Text>
             </TouchableOpacity>
           </View>
@@ -200,10 +198,9 @@ export default function SignInTvScreen() {
         {phase === 'done' && (
           <View className="items-center py-16">
             <Icon name="CircleCheck" size={44} color="#F4F4F5" />
-            <Text className="text-white text-lg font-bold mt-4">Your TV is signed in</Text>
+            <Text className="text-white text-lg font-bold mt-4">{t('tv.pairDoneTitle')}</Text>
             <Text className="text-theme-neutrals-500 text-sm mt-2 text-center px-8">
-              It should be showing your account already. Sign it out any time from
-              Settings → Privacy → Active sessions.
+              {t('tv.pairDoneBody')}
             </Text>
           </View>
         )}

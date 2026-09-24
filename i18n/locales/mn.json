@@ -119,7 +119,12 @@
     "music": "Хөгжим",
     "live": "Шууд",
     "newPosts_one": "{{count}} шинэ нийтлэл",
-    "newPosts_other": "{{count}} шинэ нийтлэл"
+    "newPosts_other": "{{count}} шинэ нийтлэл",
+    "privateContent": "Хувийн контент",
+    "privateContentBody": "Энэ контент нь хувийн хаягнаас авсан. Пост үзэхийн тулд бүтээгчийг дагана уу.",
+    "noMoreContent": "Цааш контент байхгүй",
+    "noPostsYet": "Одоогоор пост байхгүй байна.",
+    "pullToRefresh": "Сэргээхийн тулд доош татна уу эсвэл дараа нь дахин оролдоно уу."
   },
   "explore": {
     "all": "Бүгд",
@@ -709,7 +714,19 @@
     "smsBalanceMessages": "Ойролцоогоор {{count}} мессеж байна",
     "smsTopUp": "{{dhb}} DHB нэмэх",
     "smsCodeSent": "Код илгээгдлээ. Энэ нь {{price}} DHB болсон.",
-    "smsCodeLabel": "{{phone}} руу бидний илгээсэн код"
+    "smsCodeLabel": "{{phone}} руу бидний илгээсэн код",
+    "avatarUpdateFailed": "Аватар шинэчлэхэд алдаа гарлаа",
+    "coverUpdateFailed": "Хавтасны шинэчлэлт амжилтгүй боллоо",
+    "fixInvalidSocialLinks": "Буруу нийгмийн холбоосыг засаарай",
+    "updateFailed": "Шинэчлэлт амжилтгүй боллоо",
+    "channelUrlOrHandle": "Сувгийн URL эсвэл хандалт",
+    "inviteLinkPlaceholder": "Урилгын холбоос",
+    "profileUrlOrUsername": "Профайлын URL эсвэл хэрэглэгчийн нэр",
+    "yourDisplayName": "Таны харуулах нэр",
+    "usernameAvailable": "Хэрэглэгчийн нэр боломжтой",
+    "hideBadgeAndBalance": "Тэмдэг болон үлдэгдлийг нуух",
+    "hideBadgeAndBalanceDesc": "Санхүүгийн дэлгэрэнгүй мэдээллийг нуудаг бөгөөд танд илгээх, зөвлөгөө өгөхийг хориглоно.",
+    "onChainPublicWarning": "Сүлжээнд байгаа гүйлгээнүүд нь олон нийтэд нээлттэй байдаг. Токен эсвэл зөвлөгөө илгээх нь таны ví хаягийг илчилж болно, үүнд хувийн үлдэгдэл горим идэвхжүүлэхээс өмнө хийсэн гүйлгээнүүд орно."
   },
   "common": {
     "mute": "Дуугүй болгох",
@@ -759,7 +776,9 @@
     "noInternetTitle": "Интернэт холболт байхгүй",
     "noInternetBody": "Интернет холболтоо шалгаад дахин оролдоно уу. DeHub ашиглахын тулд та интернетэд холбогдсон байх ёстой.",
     "noInternetStatus": "Офлайн - Сүлжээний холболт байхгүй",
-    "noInternetHint": "Wi-Fi эсвэл гар утасны өгөгдөл асаалттай эсэхийг шалгаад \"{{action}}\" товчийг дарна уу."
+    "noInternetHint": "Wi-Fi эсвэл гар утасны өгөгдөл асаалттай эсэхийг шалгаад \"{{action}}\" товчийг дарна уу.",
+    "saving": "Хадгалж байна…",
+    "offlineStatus": "Офлайн - Сүлжээний холболт байхгүй"
   },
   "tip": {
     "title": "Бэлэг илгээх",
@@ -1093,7 +1112,16 @@
     "post": "Нийтлэх",
     "officialLogo": "Энд DeHub-ийн албан ёсны лого байна! 🎨",
     "editedImage": "Энд таны засварласан зураг!",
-    "generatedImage": "Энд таны үүсгэсэн зураг!"
+    "generatedImage": "Энд таны үүсгэсэн зураг!",
+    "toolCompleted": "{{name}} дууслаа",
+    "aiTool": "AI хэрэгсэл",
+    "cannotAnimateImage": "{{model}} нь хавсаргасан зургийг хөдөлгөх боломжгүй. Өөр видео загвар сонгоно уу.",
+    "needsImageToAnimate": "{{model}} нь хөдөлгөх зураг хэрэгтэй. Нэгийг хавсаргана уу эсвэл өөр загвар сонгоно уу.",
+    "couldNotReadImage": "Энэ зургийг уншиж чадсангүй",
+    "logoLoadFailed": "DeHub логог ачаалж чадсангүй — логогүйгээр үүсгэж байна",
+    "imageAttachedDescribe": "Зураг хавсаргасан — хийсэн засваруудаа тайлбарла",
+    "couldNotPreparePost": "Үүнийг нийтлэхэд бэлдэж чадсангүй",
+    "generateVideo": "Видео Үүсгэх"
   },
   "commandCentre": {
     "title": "Удирдлагын төв",
@@ -1604,7 +1632,9 @@
     "edit": "Засах",
     "deleteRequestTitle": "Энэ хүсэлтийг устгах уу?",
     "deleteRequestDescription": "Үүнийг буцаах боломжгүй.",
-    "attachmentTooLarge": "Файл бүр 20MB-аас бага байх ёстой"
+    "attachmentTooLarge": "Файл бүр 20MB-аас бага байх ёстой",
+    "sendCommentA11y": "Сэтгэгдэл илгээх",
+    "requestOptions": "Хүсэлтийн сонголтууд"
   },
   "auth": {
     "loginRequired": "Нэвтрэх шаардлагатай",
@@ -1653,7 +1683,15 @@
     "sendCodeFailedRetry": "Код илгээж чадсангүй. Дахин оролдоно уу.",
     "invalidCodeRetry": "Буруу код. Дахин оролдоно уу.",
     "invalidEmailOrPassword": "Буруу имэйл эсвэл нууц үг.",
-    "welcomeToDehub": "DeHub-т тавтай морил"
+    "welcomeToDehub": "DeHub-т тавтай морил",
+    "importWalletOptional": "Импортын Түрийвч (Заавал биш)",
+    "couldNotSendCodeRetry": "Код илгээх боломжгүй. Дахин оролдоно уу.",
+    "exploreWithoutSignIn": "Бүртгүүлээгүйг хайх",
+    "continueExploring": "Үргэлжлүүлэн судлах",
+    "exploreWithoutSignInA11y": "Нэвтрэхгүйгээр DeHub-г үзэх",
+    "continueExploringA11y": "Дебетийг үргэлжлүүлэн судлах",
+    "importWalletRecommended": "Нийгмийн нэвтрэхийг зөвлөж байна.",
+    "importWalletPurpose": "Энэ хэрэгсэл нь DeHub.io -аас одоо байгаа дансуудыг импортлоход юм."
   },
   "messages": {
     "smartRepliesOff": "Санал болгосон хариултуудыг унтраалаа",
@@ -1768,7 +1806,29 @@
     "reportedAutomatically": "Үүнийг автоматаар мэдээлсэн.",
     "loadFailed": "Сувгуудыг ачаалж чадсангүй",
     "noSearchResults": "Таны хайлтад тохирох суваг алга",
-    "noChannels": "Боломжтой суваг алга"
+    "noChannels": "Боломжтой суваг алга",
+    "pairCodeExpired": "Энэ код дууссан. Шинэ зурагт асуу.",
+    "signedInOnTv": "Таны телевизэд нэвтэрлээ",
+    "pairRefused": "Татгалзсан",
+    "pairIntro": "Телевиз дээрээ DeHub-ийг нээгээд доорх кодыг оруулна уу.",
+    "pairNotFound": "Ямар ч зурагт энэ кодыг хүлээж байгаагүй. Уг нь дууссан ч юм билүү — шинэ зурагт гуйгаарай.",
+    "wantsToSignIn": "тантай адилаар нэвтэрэхийг хүсч байна",
+    "pairWarning": "Хэрэв энэ бол одоо таны харж байгаа зурагт юм бол л үүнийг зөвшөөрнө үү. Таны бүртгэлд уг кодыг барьж байгаа хэн ч тэмдгүүдийг батлах. Энэ нь харж, дагаж мөрдөх боломжгүй бөгөөд та Идэвхтэй сессүүдээс ямар ч цаг хугацаанд гарын үсэг зурж болно.",
+    "pairApprove": "Тийм, энэ телевизэд нэвтрэх",
+    "pairDeny": "Үгүй, би энийг хүсээгүй",
+    "pairDoneTitle": "Таны ТВ нэвтэрсэн",
+    "pairDoneBody": "Таны бүртгэл аль хэдийн харагдах ёстой. Тохиргоо → Нууцлал → Идэвхтэй сессүүд хэсгээс хэдийд ч гарах боломжтой.",
+    "closePlayer": "Тоглогчыг хаах",
+    "declineFailed": "Энэ нь аль хэдийн дууссан бололтой.",
+    "tipSentTvNotTold": "Зөвлөгөө илгээсэн ч зурагтыг нь хэлж чадсангүй. Энэ нь дуусах цаг болно.",
+    "sentAmount": "{{amount}} DHB илгээсэн",
+    "nothingWaiting": "Хүлээж буй зүйл алга",
+    "nothingWaitingBody": "Та телевизээрээ DeHub-аас бэлэг илгээхэд энэ нь таны зөвшөөрөл авахаар энд гарч ирнэ. Таны телевиз таны түрийвчийг хэзээ ч хадгалдаггүй.",
+    "yourTelevision": "Таны телевиз",
+    "wantsToTip": "бэлэг илгээхийг хүсч байна · {{time}} үлдсэн",
+    "tipTo": "{{name}} руу",
+    "tipForPost": "“{{title}}”-ийн төлөө",
+    "reviewAndApprove": "Шүүж, зөвшөөрнө үү"
   },
   "top100": {
     "title": "Шилдэг 100",
@@ -2040,7 +2100,8 @@
     "submitApplication": "Өргөдөл илгээх",
     "nameEmailRequired": "Нэр болон имэйл шаардлагатай",
     "applicationSuccess": "Өргөдөл амжилттай илгээгдлээ! Бид тантай холбоо барина.",
-    "applicationFailed": "Илгээхэд алдаа гарлаа. Дахин оролдоно уу."
+    "applicationFailed": "Илгээхэд алдаа гарлаа. Дахин оролдоно уу.",
+    "namePlaceholder": "Жэйн Смит"
   },
   "dao": {
     "title": "DAO Сан",
@@ -2200,7 +2261,8 @@
     "pinnedToast": "Энэ нийтлэлийн хамгийн дээр бэхлэгдлээ",
     "unpinnedToast": "Бэхэлгээг арилгалаа",
     "pinFailed": "Тэр сэтгэгдлийг бэхлэж чадсангүй",
-    "kidsOnlyThread": "Энэ нийтлэл нь хүүхдэд зориулсан. Зөвхөн Хүүхдийн Горим үүн дээр сэтгэгдэл бичих боломжтой."
+    "kidsOnlyThread": "Энэ нийтлэл нь хүүхдэд зориулсан. Зөвхөн Хүүхдийн Горим үүн дээр сэтгэгдэл бичих боломжтой.",
+    "editFailed": "Сэтгэгдэл засварлаж чадсангүй"
   },
   "postInfo": {
     "title": "Нийтлэлийн мэдээлэл",
@@ -3241,14 +3303,40 @@
     "comingSoon": "Удахгүй",
     "signIn": "Нэвтрэх",
     "tapToGetStarted": "Эхлэхийн тулд дарна уу",
-    "soon": "Удахгүй"
+    "soon": "Удахгүй",
+    "glossarySubtitle": "Дүрс ба функц бүрийн утгыг мэдэж аваарай",
+    "searchGlossary": "Нэр томъёоны хайлт...",
+    "noResultsFor": "“{{query}}”-д хамаарах үр дүн алга",
+    "guideSubtitle": "Функц бүрийн алхам алхмаар гарын авлага",
+    "searchGuide": "Гарын авлагыг хайх...",
+    "repostsTab": "Давтан нийтлэх",
+    "quotesTab": "Д иш татлага",
+    "noMoreReposts": "Давтан нийтлэх байхгүй",
+    "noMoreQuotes": "Д иш татлага байхгүй",
+    "noRepostsYet": "Давтан нийтлэх зүйл байхгүй",
+    "noQuotesYet": "Д иш татлага байхгүй"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Яг энэ аппликейшн дотор ажилладаг тоглоомууд. Суулгах, худалдан авах шаардлагагүй — нээлттэй эх, DeHub өөрөө хүргэдэг."
+    "intro": "Яг энэ аппликейшн дотор ажилладаг тоглоомууд. Суулгах, худалдан авах шаардлагагүй — нээлттэй эх, DeHub өөрөө хүргэдэг.",
+    "noGameCalled": "Аркадад <slug>{{slug}}</slug> нэртэй тоглоом байхгүй байна.",
+    "seeWhatIsHere": "Энд байгаа зүйлсийг үзэх",
+    "locationNotGranted": "Байршлын зөвшөөрөл олгогдоогүй байна.",
+    "signInToPlaceOnGlobe": "Газрын зуунд өөрийгөө байрлуулахын тулд нэвтэрнэ үү.",
+    "couldNotPlaceOnGlobe": "Газрын зуунд байрлуулж чадсангүй.",
+    "onTheGlobe": "Та газрын зуунд байна — ойролцоогоор 25 км орчимд харагдана.",
+    "couldNotReach": "АРКАДАТ ХҮРЭХ БОЛОМЖГҮЙ БОЛЛОО",
+    "didNotLoad": "{{title}} ачаалагдсангүй",
+    "needsConnection": "Тоглоом нь dehub.io сайтаас үйлчилдэг бөгөөд та нээх үед татаж авдаг тул эхний удаа ажиллаж буй холболт шаардлагатай. Өөрийнхөө холболтыг шалгаад дахин оролдоно уу.",
+    "backToArcade": "Аркад руу буцах нь",
+    "openPrivacySettings": "Нууцлалын тохиргоог нээх",
+    "privacyWarning": "Хэрэв та их хэмжээний зоос эзэмшдэг эсвэл аюулгүй бус газарт амьдардаг бол энэ функцыг ашиглахаасаа өмнө тэмдэг болон үлдэгдлээ нуу. Сүлжээнд хийгдэх гүйлгээнүүд таны хаягийг илчилсээр байх болно. Тохиргоог нээх.",
+    "leaveGame": "Тоглоомоос гарах",
+    "loadingGame": "Ачаалж байна {{title}}",
+    "hideThis": "Үүнийг нуух"
   },
   "videoLooks": {
     "button": "Камерын загварууд",
@@ -3371,7 +3459,22 @@
     "someone": "Хэн нэгэн",
     "oneTyping": "{{name}} бичиж байна…",
     "fewTyping": "{{names}} бичиж байна…",
-    "manyTyping": "{{count}} хүн бичиж байна…"
+    "manyTyping": "{{count}} хүн бичиж байна…",
+    "thisUser": "энэ хэрэглэгч",
+    "unbanConfirm": "Та {{name}}-г хоригоос гаргахдаа итгэлтэй байна уу?",
+    "unban": "Хоригоос гаргах",
+    "unbanFailed": "Хэрэглэгчийг хоригоос гаргах боломжгүй боллоо",
+    "onlineLabel": "Онлайн",
+    "usersCount_one": "{{count}} хэрэглэгч",
+    "usersCount_other": "{{count}} хэрэглэгчид",
+    "totalMessages": "Нийт мессеж",
+    "slowMode": "Удаан горим",
+    "cooldownSeconds": "{{seconds}}с хүлээх хугацаа",
+    "minStakeRequired": "Хамгийн бага тавих шаардлагатай",
+    "noParticipants": "Одоогоор оролцогч байхгүй",
+    "noModerators": "Модератор байхгүй",
+    "noBannedUsers": "Хоригдсон хэрэглэгч байхгүй",
+    "modBadge": "Мод"
   },
   "promptFeed": {
     "headline": "Та юу үзэхийг хүсэж байна?",
@@ -4121,7 +4224,25 @@
     "madeForKidsBlockedByMature": "Насанд хүрэгчдэд зориулсан гэж тэмдэглэсэн постыг хүүхдүүдэд нийтлэх боломжгүй.",
     "encoderTitle": "ХАБЭА-н / кодлогч",
     "encoderHint": "RTMP дэлгэрэнгүй мэдээллийг авах",
-    "markMadeForKids": "Хүүхдэд зориулсан зүйлийг тэмдэглэ"
+    "markMadeForKids": "Хүүхдэд зориулсан зүйлийг тэмдэглэ",
+    "queueWaiting": "Хүлээж байна…",
+    "queueUploading": "Ачаалж байна",
+    "queueProcessing": "Боловсруулж байна…",
+    "queueMinting": "Үүсгэж байна…",
+    "queuePosted": "Нийтлэв",
+    "queueFailed": "Амжилтгүй боллоо",
+    "noRetriesLeft": "(дахин оролдох боломжгүй)",
+    "noUploads": "Ачаалал байхгүй",
+    "uploadsAppearHere": "Таны ачаалсан зүйлс энд гарч ирнэ",
+    "imagesTotalLimit": "Байршуулсан нэг зурагнууд нийт 100 MB буюу түүнээс бага байх ёстой",
+    "chooseDatabase": "Төвлөрсөн бус мэдээллийн санг сонгоно уу",
+    "livestreamMode": "Амьтны горим",
+    "showCover": "Хавтас харуулах",
+    "max60s": "Макс 60с",
+    "confirmLivestream": "Амьтаныг баталгаажуулна уу",
+    "liveFeaturesTitle": "Шууд онцлогууд",
+    "discardPostTitle": "Тусгахаа болих уу?",
+    "discardPostBody": "Таны бичлэг устах болно. Үүнийгээ оронд нь зураас болгон хадгалмаар байна уу?"
   },
   "bounty": {
     "claimed": "Авсан",
@@ -4437,7 +4558,25 @@
     "allowNewDmsOff": "Шинэ мессеж зөвшөөрөхийн тулд DM-ийг асаа.",
     "perMessageFee": "Мессеж тутмын төлбөр (DHB)",
     "perMessageFeeSub": "Мессеж тутамд төлбөр авна. Үнэгүй бол 0 болго. Тодорхой хэрэглэгчдэд үнэгүй хандалт өгч болно.",
-    "allDisabled": "Одоогоор бүх DM унтраалттай. Шинэ DM анхдагчаар хаагдана."
+    "allDisabled": "Одоогоор бүх DM унтраалттай. Шинэ DM анхдагчаар хаагдана.",
+    "failedToEdit": "Засаж чадсангүй",
+    "messageDeleted": "Зурвасыг устгасан",
+    "cantForwardFromDevice": "Энэ төхөөрөмжөөс дамжуулах боломжгүй",
+    "messageForwarded": "Мессеж дамжуулсан",
+    "clearMessages": "Зурвасыг арилгах",
+    "clearMessagesConfirm": "Энэ ярианд байгаа бүх мессежийг устгах уу? Энэ буцаах боломжгүй.",
+    "messagesCleared": "Мессежүүд цэвэрлэгдсэн",
+    "failedToClearMessages": "Зурвасыг арилгаж чадсангүй",
+    "removedFreeAccess": "{{name}} үнэгүй хандалтыг арилгасан",
+    "grantedFreeAccess": "{{name}} руу үнэгүй нэвтрэх боломжтой",
+    "failedToUpdateFreeAccess": "Чөлөөт хандалтыг шинэчилж чадсангүй",
+    "searchComingSoon": "Хайлт удахгүй ирнэ",
+    "tapToUnblock": "Блокыг тайлахын тулд товшино уу",
+    "userFallback": "Хэрэглэгч",
+    "failedToBlock": "Блоклож чадсангүй",
+    "failedToDeleteConversation": "Харилцааг устгаж чадсангүй",
+    "newDm": "Шинэ шууд мессеж",
+    "noConversationsFound": "Яриа олдсонгүй"
   },
   "editPost": {
     "mediaPermission": "Медиа сангийн зөвшөөрөл шаардлагатай",
@@ -4459,7 +4598,17 @@
     "retry": "Дахин оролд",
     "retrying": "Дахин оролдож байна...",
     "retryQueued": "Дахин боловсруулж байна",
-    "retryFailed": "Энэ нийтлэлийг дахин оролдож чадсангүй"
+    "retryFailed": "Энэ нийтлэлийг дахин оролдож чадсангүй",
+    "closeVideo": "Видеоийг хаах",
+    "rotateOrientation": "Чиглэлийг эргүүлэх",
+    "videoProgress": "Видео явц: {{percent}}%",
+    "tapToSeek": "Тодорхой байрлалд очихын тулд товшино уу",
+    "photoAccessToSaveImages": "Зургийг хадгалахын тулд зургийн санд нэвтрэх зөвшөөрөл олгоно уу",
+    "failedToSaveImage": "Зургийг хадгалж чадсангүй",
+    "downloadImage": "Зургийг татаж авах",
+    "goToImage": "Зураг {{index}} руу очих",
+    "allCaughtUp": "Та бүх зүйлийг үзсэн",
+    "checkBackForShorts": "Удахгүй дахин шалгана уу"
   },
   "liveViewer": {
     "loadingStream": "Дамжуулалт ачаалж байна...",
@@ -4469,7 +4618,22 @@
   },
   "search": {
     "endOfResults": "Үр дүнгийн төгсгөл",
-    "searchDehub": "DeHub-с хайх"
+    "searchDehub": "DeHub-с хайх",
+    "tabVoice": "Дуу",
+    "trendingThisWeek": "Энэ долоо хоногийн тренд",
+    "trendingPosts": "Тренд нийтлэлүүд",
+    "trendingImages": "Тренд зурагнууд",
+    "trendingVideos": "Тренд видеонууд",
+    "trendingVoicePosts": "Тренд дуутай нийтлэлүүд",
+    "trendingLive": "Тренд шууд дамжуулалт",
+    "seeAll": "Бүгдийг үзэх",
+    "noAccountsFound": "Бүртгэл олдсонгүй",
+    "tryDifferentKeywords": "Өөр түлхүүр үгс туршиж үзнэ үү эсвэл таны бичсэн үгийг шалгана уу",
+    "noContentResults": "Агуулга олдсонгүй",
+    "recentSearches": "Сүүлийн хайлтууд",
+    "noTrendingThisWeek": "Энэ долоо хоногт тренд агуулга байхгүй байна",
+    "closeFilterOptions": "Шүүлтүүрийн сонголтуудыг хаах",
+    "openFilterOptions": "Шүүлтүүрийн сонголтуудыг нээх"
   },
   "notifPrompt": {
     "stayInLoop": "Мэдээллээ аваарай",
@@ -4715,7 +4879,25 @@
     "externalTitle": "Гадаад урсгалын горим",
     "externalLiveHint": "Таны урсгал гадны програм хангамжаар дамждаг. Дотор апп-ын камерыг идэвхгүй болгосон.",
     "externalHint": "Доорх дэлгэрэнгүйг ашиглан урсгалын програмыг холбож, дараа нь цацаж эхэлнэ.",
-    "useInAppCamera": "Оронд нь аппликейшн доторх камерыг ашиглах"
+    "useInAppCamera": "Оронд нь аппликейшн доторх камерыг ашиглах",
+    "livestreamEnded": "Шууд дамжуулалт дууссан",
+    "chatEnabled": "Чат идэвхжсэн",
+    "chatDisabled": "Чат идэвхгүй болсон",
+    "failedToUpdateSettings": "Тохиргоог шинэчилж чадсангүй",
+    "networkLostReconnecting": "Сүлжээ алдагдсан — дамжуулалт зогссон. Дахин холбогдож байна…",
+    "openingViewer": "Үзэгчийг нээж байна...",
+    "cameraPermissionRequired": "Камерын зөвшөөрөл шаардлагатай",
+    "grantPermission": "Зөвшөөрөл олгох",
+    "waitingForLivepeer": "Livepeer-ийг хүлээж байна...",
+    "waitingForExternalSource": "Гадны эх үүсвэрийг хүлээж байна...",
+    "settingUpPublisher": "Хэвлэн нийтлэгчийг тохируулж байна...",
+    "scheduledStream": "Хуваарьт Урсгал",
+    "pressGoLiveWhenReady": "Эхлэхэд бэлэн болсон Go Live товчийг дарна уу",
+    "connectionInterrupted": "Холболтыг тасалдуулсан",
+    "streamPausedReconnecting": "Таны урсгал түр зогссон. Дахин холбогдох...",
+    "streamWillEnd": "Дахин холбогдохгүй бол урсгал дуусна",
+    "endStreamConfirmTitle": "Урсгалыг дуусгах уу?",
+    "endStreamConfirmBody": "Одоо хаах нь бүх үзэгчдэд таны шууд урсгалыг дуусгана. Та үргэлжлүүлэн гүйлгэж эсвэл бүрмөсөн дуусгаж болно."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

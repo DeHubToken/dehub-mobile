@@ -119,7 +119,12 @@
     "music": "Muuziqaa",
     "live": "Kallattii",
     "newPosts_one": "Barreeffama haaraa {{count}}",
-    "newPosts_other": "Barreeffamoota haaraa {{count}}"
+    "newPosts_other": "Barreeffamoota haaraa {{count}}",
+    "privateContent": "Qophii Dheeraa",
+    "privateContentBody": "Qophiin kunis akkountii dhuunfaa irraa dhufaa. Barreessaa hordofuuun barruulee isaa ilaaluuf.",
+    "noMoreContent": "Qophii Dabaloo Hin Jiru",
+    "noPostsYet": "Ammaaf barruuleen hin jiran.",
+    "pullToRefresh": "Booddee harkisuun deebisanii yaaluu ykn booddee deebisanii yaaluu."
   },
   "explore": {
     "all": "Hundaa",
@@ -710,7 +715,19 @@
     "chainIdLabel": "Chain ID: {{id}}",
     "exportPkConfirmPhrase": "ANIBAA",
     "exportPkCopy": "Keyii dhoksaa kopii godhi",
-    "e2eAutomatic": "Automaatiikii"
+    "e2eAutomatic": "Automaatiikii",
+    "avatarUpdateFailed": "Qubee Haaromsuun Dadhabe",
+    "coverUpdateFailed": "Qubee Fuula Haaromsuun Dadhabe",
+    "fixInvalidSocialLinks": "Walitti Makoo Soyalii Dogoggoraa Sirreessaa",
+    "updateFailed": "Haaromsuun Dadhabe",
+    "channelUrlOrHandle": "URLrra Chanala ykn Maqaa",
+    "inviteLinkPlaceholder": "Walitti makoo waamuu",
+    "profileUrlOrUsername": "URLrra Fuula ykn Maqaa",
+    "yourDisplayName": "Maqaa kee muldhisuu",
+    "usernameAvailable": "Maqaan kun ni jira",
+    "hideBadgeAndBalance": "Balaqqee fi Madaala Dhoksaa",
+    "hideBadgeAndBalanceDesc": "Madaala maallaqaa fi wantoota dhoksaa, erguu fi gargaarsa kennuu ni dhoorkaa.",
+    "onChainPublicWarning": "Tarsiimoo maallaqaa irratti godhaman ni muldhachuu danda'u. Maallaqa ykn gargaarsa erguun iddoo maallaqni kee jiru, akkasumas tarsiimoo madaala dhuunfaa dura godhame ni muldhisuu danda'a."
   },
   "common": {
     "mute": "Sagalee cufi",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Walitti qabamummaa Intarneetii hin qabu",
     "noInternetBody": "Walitti qabamummaa Intarneetii kee mirkaneeffadhuu deebiitii yaali. DeHub fayyadamuuuf Intarneetitti walitti qabamuun si barbaachisa.",
     "noInternetStatus": "Offline - Walitti qabamummaa network hin qabu",
-    "noInternetHint": "Wi-Fi ykn mobaayil daataa akka on godhamte mirkaneeffadhuu, achiin booda \"{{action}}\" tuqi"
+    "noInternetHint": "Wi-Fi ykn mobaayil daataa akka on godhamte mirkaneeffadhuu, achiin booda \"{{action}}\" tuqi",
+    "saving": "Eeguu…",
+    "offlineStatus": "Offline - Walitti qabamuu Network Hin Jiru"
   },
   "tip": {
     "title": "Tiippii Ergi",
@@ -1094,7 +1113,17 @@
     "post": "Barreeffama",
     "officialLogo": "Kun mallatoo DeHub beekamaa dha! 🎨",
     "editedImage": "Kun suuraa kee gulaalame dha!",
-    "generatedImage": "Kun suuraa kee uumame dha!"
+    "generatedImage": "Kun suuraa kee uumame dha!",
+    "toolCompleted": "{{name}} xumurame",
+    "aiTool": "AI meeshaalee",
+    "cannotAnimateImage": "{{model}} suuraa walitti qabamee hin sochoosu. Meeshaalee vidiyoo biraa filadhu.",
+    "needsImageToAnimate": "{{model}} sochoosuuf suuraa barbaada. Tokko walitti qabi ykn meeshaalee biraa filadhu.",
+    "couldNotReadImage": "Suraa sana dubbisuu dadhabe",
+    "logoLoadFailed": "Logo DeHub dubbisuu dadhabe — isaa malee hojjechuun",
+    "imageAttachedDescribe": "Suuraan walitti qabamee jira — wantoota sirreessite ibsi",
+    "couldNotPreparePost": "Meeshaalee erguuf qopheessuu dadhabe",
+    "generateImage": "Fakkii Uumuu",
+    "generateVideo": "Viidiyoo Maddisiisuu"
   },
   "commandCentre": {
     "title": "Wiirtuu Ajajaa",
@@ -1619,7 +1648,10 @@
     "edit": "Gulaali",
     "deleteRequestTitle": "Gaaffii kana haqi?",
     "deleteRequestDescription": "Kun deebi'uu hin danda'u.",
-    "attachmentTooLarge": "Faayiliin tokkoon tokkoon isaa 20MB gadi ta'uu qaba"
+    "attachmentTooLarge": "Faayiliin tokkoon tokkoon isaa 20MB gadi ta'uu qaba",
+    "deleteCommentA11y": "Yaada haquu",
+    "sendCommentA11y": "Yaada ergaa",
+    "requestOptions": "Filannoowwan gaafachuu"
   },
   "auth": {
     "loginRequired": "Seeninuun barbaachisa",
@@ -1668,7 +1700,15 @@
     "sendCodeFailedRetry": "Koodii erguun dadhabame. Deebiitii yaali.",
     "invalidCodeRetry": "Koodii sirrii miti. Deebiitii yaali.",
     "invalidEmailOrPassword": "Imeeyilii ykn paasweerdi sirrii miti.",
-    "welcomeToDehub": "DeHub irratti nagaan dhufe"
+    "welcomeToDehub": "DeHub irratti nagaan dhufe",
+    "importWalletOptional": "Wallet Galchuu (Filannoo) .",
+    "couldNotSendCodeRetry": "Koodii erguu hin dandeenye. Mee irra deebi'aa yaalaa.",
+    "exploreWithoutSignIn": "Osoo hin seenin qoradhu",
+    "continueExploring": "Qorannoo itti fufaa",
+    "exploreWithoutSignInA11y": "Osoo hin seenin DeHub qoradhu",
+    "continueExploringA11y": "DeHub qorachuu itti fufaa",
+    "importWalletRecommended": "Galmeen hawaasummaa ni gorfama.",
+    "importWalletPurpose": "Meeshaan kun herrega jiran DeHub.io irraa galchuuf."
   },
   "messages": {
     "smartRepliesOff": "Deebiiwwan yaadaman dhaamamaniiru",
@@ -1783,7 +1823,29 @@
     "reportedAutomatically": "Ofumaan gabaafameera.",
     "loadFailed": "Chaanaalota fe'uu hin dandeenye",
     "noSearchResults": "Chaanaalonni barbaacha keetiin walsiman hin jiran",
-    "noChannels": "Chaanaalonni hin jiran"
+    "noChannels": "Chaanaalonni hin jiran",
+    "pairCodeExpired": "Koodiin sun yeroon isaa darbee jira. TV haaraa gaafadhu.",
+    "signedInOnTv": "TV keessan irratti galmaa'aniiru",
+    "pairRefused": "Dide",
+    "pairIntro": "Televijiinii keessan irratti DeHub banaatii koodii inni asitti agarsiisu barreessi.",
+    "pairNotFound": "Televijiiniin koodii sanaan eegu kamiyyuu hin jiru. Yeroon isaa darbee ta’uu danda’a — TV haaraa gaafadhu.",
+    "wantsToSignIn": "akkuma kee galmaa'uu barbaada",
+    "pairWarning": "Kana raggaasi yoo televijiinii yeroo ammaa ilaalaa jirtu ta'e qofa. Raggaasisuun eenyullee koodii sana qabate akkaawuntii keessanitti mallatteessa. Daawwachuu, jaallachuu fi hordofuu ni danda'a — dabarsuu hin danda'u, yeroo kamiyyuu Active sessions irraa mallatteessuu dandeessa.",
+    "pairApprove": "Eeyyee, TV kana galmaa'aa",
+    "pairDeny": "Lakki ani kana hin gaafanne",
+    "pairDoneTitle": "TVn keessan galmaa'eera",
+    "pairDoneBody": "Duraanis akkaawuntii keessan agarsiisuu qaba. Yeroo kamiyyuu Sajoo → Iccitii → Kutaa sochii irraa mallatteessi.",
+    "closePlayer": "Taphataan dhiyoo",
+    "declineFailed": "Sana diduu hin dandeenye — yeroon isaa duraan darbuu danda'a.",
+    "tipSentTvNotTold": "Gorsi ergame, garuu TVn himamuu hin dandeenye. Yeroon isaa ni dhumata.",
+    "sentAmount": "{{amount}} DHB irratti ergame",
+    "nothingWaiting": "Waan eegu hin jiru",
+    "nothingWaitingBody": "Televijiinii keessan irratti DeHub irraa yeroo gorsa kennitan, akka isin raggaasisuuf asitti mul'ata. TVn keessan gonkumaa boorsaa keessan hin qabatu.",
+    "yourTelevision": "Televijiinii keessan",
+    "wantsToTip": "gorsa erguu barbaada · {{time}} bitaa",
+    "tipTo": "gara {{name}} tti.",
+    "tipForPost": "“{{title}}” jedhuuf.",
+    "reviewAndApprove": "Irra deebi’ee ni raggaasisa"
   },
   "top100": {
     "title": "Ol'aanaa 100",
@@ -2055,7 +2117,8 @@
     "submitApplication": "Iyyannoo Dhiyeessi",
     "nameEmailRequired": "Name and email are required",
     "applicationSuccess": "Application submitted successfully! We'll be in touch.",
-    "applicationFailed": "Failed to submit. Please try again."
+    "applicationFailed": "Failed to submit. Please try again.",
+    "namePlaceholder": "Jeen Ismiiz"
   },
   "dao": {
     "title": "Kasaa DAO",
@@ -2215,7 +2278,8 @@
     "pinnedToast": "Barreeffama kanaa gubbaatti maxxanfameera",
     "unpinnedToast": "Maxxansi kaafameera",
     "pinFailed": "Yaada sana maxxansuun hin danda'amne",
-    "kidsOnlyThread": "Barreeffamni kun ijoolleef kan qophaa&#39;edha. Kids Mode qofatu yaada irratti yaada kennuu danda&#39;a."
+    "kidsOnlyThread": "Barreeffamni kun ijoolleef kan qophaa&#39;edha. Kids Mode qofatu yaada irratti yaada kennuu danda&#39;a.",
+    "editFailed": "Yaada gulaaluu hin dandeenye"
   },
   "postInfo": {
     "title": "Odeeffannoo maxxansaa",
@@ -3256,14 +3320,40 @@
     "comingSoon": "Dhiyootti",
     "signIn": "Seeni",
     "tapToGetStarted": "Jalqabuuf tuqi",
-    "soon": "Dhiyootti"
+    "soon": "Dhiyootti",
+    "glossarySubtitle": "Mallattoo fi amala hunduu maal jechuu akka ta'e baradhu",
+    "searchGlossary": "Galmee jechootaa barbaadi...",
+    "noResultsFor": "\"{{query}}\" jechuun bu'aa hin qabu.",
+    "guideSubtitle": "Tarkaanfii tarkaanfiin deemsa amala hunda",
+    "searchGuide": "Qajeelfama kana barbaadi...",
+    "repostsTab": "Irra deebiin maxxansa",
+    "quotesTab": "Jechoota bebbeekamoo akka fakkeenyaatti fudhataman",
+    "noMoreReposts": "Kana booda deebi'ee maxxansuun hin jiru",
+    "noMoreQuotes": "Kana booda caqasni hin jiru",
+    "noRepostsYet": "Ammatti deebi'ee kan maxxansu hin jiru",
+    "noQuotesYet": "Hanga ammaatti caqasni hin jiru"
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Taphoota asuma appilikeeshinii keessatti hojjetan. Kan fe'amu hin jiru, kan bitamu hin jiru — madda banaa, DeHub mataan isaa kan dhiyeessu."
+    "intro": "Taphoota asuma appilikeeshinii keessatti hojjetan. Kan fe'amu hin jiru, kan bitamu hin jiru — madda banaa, DeHub mataan isaa kan dhiyeessu.",
+    "noGameCalled": "Tapha <slug>{{slug}}</slug> jedhamu arcade keessatti hin jiru.",
+    "seeWhatIsHere": "Waan as jiru ilaalaa",
+    "locationNotGranted": "Hayyamni bakka itti argamu hin kennamne.",
+    "signInToPlaceOnGlobe": "Globe irratti of kaa'uuf galmaa'i.",
+    "couldNotPlaceOnGlobe": "Globe irratti si kaa'uu hin dandeenye.",
+    "onTheGlobe": "Ati addunyaa irratti jirta — naannoo tilmaamaan km 25 keessatti agarsiifama.",
+    "couldNotReach": "ARCADE GAHUU HIN DANDEENYE",
+    "didNotLoad": "{{title}} hin fe'amne",
+    "needsConnection": "Taphni kun dehub.io irraa kan tajaajilamu yoo ta'u yeroo banattan kan buufamu waan ta'eef yeroo jalqabaaf qunnamtii hojii barbaada. Kan keessan ilaalaa irra deebi'aa yaalaa.",
+    "backToArcade": "Gara arcade tti deebi'a",
+    "openPrivacySettings": "Sajoo icciitii banaa",
+    "privacyWarning": "Yoo tookiin baay'ee qabatte ykn naannoo nageenya hin qabne jiraatte, amala kana fayyadamuu kee dura baajii fi madaallii kee dhoksi. Daldalli on-chain ammallee teessoo kee mul'isa. Sajoo banaa.",
+    "leaveGame": "Tapha dhiisaa",
+    "loadingGame": "{{title}} fe'amaa jira.",
+    "hideThis": "Kana dhoksi"
   },
   "videoLooks": {
     "button": "Bifannoota kaameraa",
@@ -3389,7 +3479,22 @@
     "someone": "Namni tokko",
     "oneTyping": "{{name}} barreessaa jira…",
     "fewTyping": "{{names}} barreessaa jiru…",
-    "manyTyping": "Namoonni {{count}} barreessaa jiru…"
+    "manyTyping": "Namoonni {{count}} barreessaa jiru…",
+    "modBadge": "MOD",
+    "thisUser": "fayyadamaa kana",
+    "unbanConfirm": "{{name}} uggura irraa kaasuu akka barbaaddu mirkaneeffatteettaa?",
+    "unban": "Balaama baasi",
+    "unbanFailed": "Fayyadamaa dhorkuu hin dandeenye",
+    "onlineLabel": "Toora intarneetiirraan",
+    "usersCount_one": "{{count}} fayyadamaa",
+    "usersCount_other": "{{count}} fayyadamtoota",
+    "totalMessages": "Ergaawwan Waliigalaa",
+    "slowMode": "Haala Suuta",
+    "cooldownSeconds": "{{seconds}}s qabbanaa'aa",
+    "minStakeRequired": "Min Stake Barbaachisa",
+    "noParticipants": "Hanga ammaatti hirmaattonni hin jiran",
+    "noModerators": "Moderators hin jiru",
+    "noBannedUsers": "Fayyadamtoonni dhorkaman hin jiru"
   },
   "promptFeed": {
     "headline": "Maal ilaaluu barbaadda?",
@@ -4140,7 +4245,26 @@
     "madeForKidsBlockedByMature": "Poost uumamaa ta'e ijoolleef dabarsuun hin danda'amu.",
     "encoderTitle": "OBS / Encoder",
     "encoderHint": "RTMP details argachuu",
-    "markMadeForKids": "Ijoolleef taasifame"
+    "markMadeForKids": "Ijoolleef taasifame",
+    "queueWaiting": "Eeguu…",
+    "queueUploading": "Olkaa'aa jira",
+    "queueProcessing": "Adeemsa hojii...",
+    "queueMinting": "Minting...",
+    "queuePosted": "Maxxanfame",
+    "queueFailed": "Kufe",
+    "noRetriesLeft": "(irra deebiin yaaluun hin hafu)",
+    "noUploads": "Olkaa'amuu hin qabu",
+    "uploadsAppearHere": "Uploads keessan asitti ni mul'ata",
+    "imagesTotalLimit": "Suuraaleen olkaa'iinsa tokko keessatti argaman walumaa galatti MB 100 fi isaa gadi ta'uu qabu",
+    "chooseDatabase": "Kuusaa Deetaa Giddugaleessa Hin Taane filadhu",
+    "livestreamMode": "Haala Tamsaasa Kallatti",
+    "addThumbnail": "Fakkii Xiqqaa Dabaluu",
+    "showCover": "Haguugduu agarsiisi",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Livestream Mirkaneessaa",
+    "liveFeaturesTitle": "Amaloota Kallattiin",
+    "discardPostTitle": "Post Gataa?",
+    "discardPostBody": "Barreeffamni keessan ni bada. Kanaa mannaa akka wixineetti qusachuu barbaadduu?"
   },
   "bounty": {
     "claimed": "Fudhatame",
@@ -4455,7 +4579,25 @@
     "allowNewDmsOff": "Ergaa haaraa hayyamuuf DM bani.",
     "perMessageFee": "Kaffaltii ergaa tokkoon (DHB)",
     "perMessageFeeSub": "Ergaa tokkoon kaffaltii fudhu. DM bilisaaf 0 godhi. Fayyadamtoota murtaaʼaniif bilisaan heyyamuu dandeessa.",
-    "allDisabled": "DM hundi amma dhaamaniiru. DM haaraan durtiidhaan ni ugguramu."
+    "allDisabled": "DM hundi amma dhaamaniiru. DM haaraan durtiidhaan ni ugguramu.",
+    "failedToEdit": "Gulaaluun hin danda'amne",
+    "messageDeleted": "Ergaan haqame",
+    "cantForwardFromDevice": "Ergaan kun meeshaa kana irraa dabarfamuu hin danda'u",
+    "messageForwarded": "Ergaan dabarfamee",
+    "clearMessages": "Ergaawwan qulqulleessi",
+    "clearMessagesConfirm": "Ergaawwan haasawa kana keessa jiran hunda haquu? Kun duubatti deebi'uu hin danda'u.",
+    "messagesCleared": "Ergaawwan qulqullaa'an",
+    "failedToClearMessages": "Ergaawwan qulqulleessuu hin dandeenye",
+    "removedFreeAccess": "{{name}}'f bilisaan argachuun haqame.",
+    "grantedFreeAccess": "{{name}} bilisaan akka argatan hayyamameera.",
+    "failedToUpdateFreeAccess": "Bilisaa argachuu haaromsuu hin dandeenye",
+    "searchComingSoon": "Search yeroo dhiyootti dhufaa jira",
+    "tapToUnblock": "Uggura hiikuuf tuqi",
+    "userFallback": "fayyadamaa",
+    "failedToBlock": "Ugguruu hin dandeenye",
+    "failedToDeleteConversation": "Haasaa haquu hin dandeenye",
+    "newDm": "Ergaa kallatti haaraa",
+    "noConversationsFound": "Haasaan tokkollee hin argamne"
   },
   "editPost": {
     "mediaPermission": "Hayyamni mana kitaabaa miidiyaa barbaachisa",
@@ -4477,7 +4619,17 @@
     "retry": "Ammas yaalaa",
     "retrying": "Irra deebiin yaalaa jira...",
     "retryQueued": "Ammas adeemsifamaa jira",
-    "retryFailed": "Maxxansa sana irra deebi&#39;ee yaalu hin dandeenye"
+    "retryFailed": "Maxxansa sana irra deebi&#39;ee yaalu hin dandeenye",
+    "closeVideo": "Viidiyoo cufi",
+    "rotateOrientation": "Orienteshinii naannessi",
+    "videoProgress": "Adeemsa viidiyoo: {{percent}}%",
+    "tapToSeek": "Bakka murtaa'e tokko barbaaduuf tuqi",
+    "photoAccessToSaveImages": "Fakkiiwwan qusachuuf qaqqabummaa mana kitaabaa suuraa hayyami",
+    "failedToSaveImage": "Fakkii qusachuu hin dandeenye",
+    "downloadImage": "Fakkii buufadhu",
+    "goToImage": "Gara suuraa {{index}} deemaa.",
+    "allCaughtUp": "Hundi keessan qabamtaniittu",
+    "checkBackForShorts": "Gabaabduu dabalataaf booda deebi'aa ilaalaa"
   },
   "liveViewer": {
     "loadingStream": "Tamsaasa fe'aa jira...",
@@ -4487,7 +4639,22 @@
   },
   "search": {
     "endOfResults": "Dhuma bu'aawwanii",
-    "searchDehub": "DeHub keessaa barbaadi"
+    "searchDehub": "DeHub keessaa barbaadi",
+    "tabVoice": "Sagalee",
+    "trendingThisWeek": "Torban Kana Trending",
+    "trendingPosts": "Maxxansaalee Trending ta'an",
+    "trendingImages": "Fakkiiwwan Trending Ta'an",
+    "trendingVideos": "Viidiyoowwan Trending ta'an",
+    "trendingVoicePosts": "Maxxansa Sagalee Trending",
+    "trendingLive": "Baraa'aa Amma",
+    "seeAll": "Hundaa Ilaali",
+    "noAccountsFound": "Akkaawuntii hin argamne",
+    "tryDifferentKeywords": "Jechoota ijoo adda addaa yaali ykn qubee kee ilaali",
+    "noContentResults": "Bu'aan qabiyyee hin jiru",
+    "recentSearches": "Barbaacha Dhiheenyaa",
+    "noTrendingThisWeek": "Torban kana qabiyyee trending hin jiru",
+    "closeFilterOptions": "Filannoowwan calaqqee cufi",
+    "openFilterOptions": "Filannoowwan calaqqee banaa"
   },
   "notifPrompt": {
     "stayInLoop": "Odeeffannoo argadhu",
@@ -4737,7 +4904,26 @@
     "externalTitle": "Haala Dhangala&#39;aa Alaa",
     "externalLiveHint": "Stream keessan karaa software alaa live ta&#39;a. Kaameeraan appii keessaa hojiirraa ooleera.",
     "externalHint": "Bal&#39;ina armaan gadii fayyadamuun software streaming keessan wal qunnamsiisaa, sana booda tamsaasa jalqabaa.",
-    "useInAppCamera": "Bakka isaa Kaameeraa Appii Keessaa Fayyadamaa"
+    "useInAppCamera": "Bakka isaa Kaameeraa Appii Keessaa Fayyadamaa",
+    "livestreamEnded": "Livestream xumurame",
+    "chatEnabled": "Chat dandeessifameera",
+    "chatDisabled": "Chat hojii irraa ooleera",
+    "failedToUpdateSettings": "Sajoo haaromsuu hin dandeenye",
+    "networkLostReconnecting": "Neetworkiin bade — yaa'aan dhaabbate. Irra deebiin wal qunnamsiisuu...",
+    "openingViewer": "Daawwataa banuun...",
+    "cameraPermissionRequired": "Hayyama kaameraa barbaachisa",
+    "grantPermission": "Hayyama Kennuu",
+    "waitingForLivepeer": "Livepeer eegaa jirra...",
+    "waitingForExternalSource": "Madda alaa eegaa jira...",
+    "settingUpPublisher": "Maxxansituu hundeessuun...",
+    "scheduledStream": "Dhangala'aa Sagantaa'e",
+    "scheduledAt": "{{date}} irraa {{time}}",
+    "pressGoLiveWhenReady": "Yeroo jalqabuuf qophooftan Go Live dhiibaa",
+    "connectionInterrupted": "Walitti Hidhamiinsi Addaan Cite",
+    "streamPausedReconnecting": "Sulula kee dhaabbateera. Irra deebiin wal qunnamsiisuu...",
+    "streamWillEnd": "Stream yoo deebi'ee hin walqabsiifamne ni xumurama",
+    "endStreamConfirmTitle": "Dhangala'aa Xumuraa?",
+    "endStreamConfirmBody": "Amma cufuun daawwattoota hundaaf live stream keessan xumura. Stream gochuu itti fufuu ykn dhaabbataadhaan xumuruu dandeessa."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",

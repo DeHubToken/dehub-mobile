@@ -516,7 +516,7 @@ function AIChatScreenInner() {
             ...history,
             { role: 'assistant', content: res.text || '', imageUrl: res.imageUrl },
           ]);
-          toastSuccess('Image generated');
+          toastSuccess(t('assistant.imageGenerated'));
         } else {
           await saveMessage([
             ...history,
@@ -614,7 +614,7 @@ function AIChatScreenInner() {
             isVideoGenerating: false,
             videoPredictionId: undefined,
           });
-          toastSuccess('Video generated');
+          toastSuccess(t('toasts.video_generated'));
         } else if (res.status === 'failed') {
           stopPoll(pending.predictionId);
           AsyncStorage.removeItem(PENDING_VIDEO_KEY).catch(() => {});
@@ -681,7 +681,7 @@ function AIChatScreenInner() {
         // Some providers answer immediately; most hand back a prediction id.
         if (res.videoUrl) {
           await saveMessage([...history, { role: 'assistant', content: '', videoUrl: res.videoUrl }]);
-          toastSuccess('Video generated');
+          toastSuccess(t('toasts.video_generated'));
           return;
         }
 
@@ -787,7 +787,7 @@ function AIChatScreenInner() {
             ...(res.audioUrl ? { audioUrl: res.audioUrl } : {}),
             ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
           });
-          toastSuccess(`${toolModel?.name || 'AI tool'} completed`);
+          toastSuccess(t('aiChat.toolCompleted', { name: toolModel?.name || t('aiChat.aiTool') }));
         } else if (res.status === 'failed') {
           stopPoll(pending.requestId);
           AsyncStorage.removeItem(PENDING_TOOL_KEY).catch(() => {});
@@ -864,7 +864,7 @@ function AIChatScreenInner() {
               ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
             },
           ]);
-          toastSuccess(`${toolModel?.name || 'AI tool'} completed`);
+          toastSuccess(t('aiChat.toolCompleted', { name: toolModel?.name || t('aiChat.aiTool') }));
           return;
         }
 
@@ -1025,11 +1025,11 @@ function AIChatScreenInner() {
         // endpoint for the other direction at all.
         const model = VIDEO_MODELS[settings.videoModel];
         if (model && !videoSupportsImage(model) && sourceImage) {
-          toastError(`${model.name} cannot animate an attached image. Pick another video model.`);
+          toastError(t('aiChat.cannotAnimateImage', { model: model.name }));
           return;
         }
         if (model && !videoSupportsText(model) && !sourceImage) {
-          toastError(`${model.name} needs an image to animate. Attach one or pick another model.`);
+          toastError(t('aiChat.needsImageToAnimate', { model: model.name }));
           return;
         }
         setPendingPrompt(text);
@@ -1082,7 +1082,7 @@ function AIChatScreenInner() {
         sourceImage = await toImageDataUrl(attachedImage);
       } catch (err) {
         log.error('could not read the attached image:', err);
-        toastError('Could not read that image');
+        toastError(t('aiChat.couldNotReadImage'));
       }
     }
     setAttachedImage(null);
@@ -1238,7 +1238,7 @@ function AIChatScreenInner() {
         log.error('logo asset unavailable:', err);
         // Without the wordmark this is not a brand poster, so say so rather
         // than quietly generating something off-brand.
-        toastError('Could not load the DeHub logo — generating without it');
+        toastError(t('aiChat.logoLoadFailed'));
       }
 
       // A template banner is free, so there is nothing to quote and no reason
@@ -1273,7 +1273,7 @@ function AIChatScreenInner() {
 
   const handleAttachGenerated = useCallback((url: string) => {
     setAttachedImage(url);
-    toastSuccess('Image attached — describe your edits');
+    toastSuccess(t('aiChat.imageAttachedDescribe'));
   }, []);
 
   const handlePostMedia = useCallback(
@@ -1283,7 +1283,7 @@ function AIChatScreenInner() {
         navigation.navigate(ScreenNames.Upload, { draft });
       } catch (err) {
         log.error('could not prepare media for posting:', err);
-        toastError('Could not prepare that for posting');
+        toastError(t('aiChat.couldNotPreparePost'));
       }
     },
     [navigation],
@@ -1550,7 +1550,7 @@ function AIChatScreenInner() {
 
       <CreditPaywallSheet
         visible={imagePaywallVisible}
-        title="Generate Image"
+        title={t('aiChat.generateImage')}
         icon="Image"
         models={imagePaywallModels}
         selectedModelId={imageModelOverride || settings.imageModel}
@@ -1571,7 +1571,7 @@ function AIChatScreenInner() {
 
       <CreditPaywallSheet
         visible={videoPaywallVisible}
-        title="Generate Video"
+        title={t('aiChat.generateVideo')}
         icon="Video"
         models={videoPaywallModels}
         selectedModelId={settings.videoModel}

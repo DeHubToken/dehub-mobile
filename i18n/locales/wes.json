@@ -119,7 +119,12 @@
     "music": "Music",
     "live": "Live",
     "newPosts_one": "{{count}} nyu post",
-    "newPosts_other": "{{count}} nyu post dem"
+    "newPosts_other": "{{count}} nyu post dem",
+    "privateContent": "Private Content",
+    "noMoreContent": "No more content",
+    "noPostsYet": "No posts yet.",
+    "privateContentBody": "Dis content na from private account. Follow di creator mek you see yi posts.",
+    "pullToRefresh": "Pull am down mek e refresh, or try again later."
   },
   "explore": {
     "all": "All",
@@ -710,7 +715,19 @@
     "smsCountryBlocked": "We never fit send text to that country yet.",
     "badgeDelegationNoteAny": "One slot go borrow another account one of the badges weh you don unlock. Collect am back anytime weh you like — the slot go free one day after.",
     "badgeDelegationRaisesOnlyTier": "The badge weh you borrow dem must high pass the one weh dem don already earn.",
-    "badgeDelegationLendsAny": "Each one go borrow another account any badge weh you don unlock, reach your own {{tier}}. Even small badge go still use one full slot."
+    "badgeDelegationLendsAny": "Each one go borrow another account any badge weh you don unlock, reach your own {{tier}}. Even small badge go still use one full slot.",
+    "avatarUpdateFailed": "Avatar update failed",
+    "coverUpdateFailed": "Cover update failed",
+    "updateFailed": "Update failed",
+    "inviteLinkPlaceholder": "Invite link",
+    "usernameAvailable": "Username is available",
+    "fixInvalidSocialLinks": "Abeg fix di social links weh no correct",
+    "channelUrlOrHandle": "Channel URL or handle",
+    "profileUrlOrUsername": "Profile URL or username",
+    "yourDisplayName": "Di name weh pipol go see",
+    "hideBadgeAndBalance": "Hide badge and balance",
+    "hideBadgeAndBalanceDesc": "E go hide ya money palava and block pipol for send or tip you.",
+    "onChainPublicWarning": "On-chain transactions na public. If you send tokens or tips, pipol fit see ya wallet address, plus di transactions weh you bin do before you on private balance mode."
   },
   "common": {
     "mute": "Off di sound",
@@ -760,7 +777,9 @@
     "noInternetTitle": "Internet no dey",
     "noInternetBody": "Abeg check your internet connection and try again. You need internet to use DeHub.",
     "noInternetStatus": "Offline - Network no dey",
-    "noInternetHint": "Make sure say Wi-Fi or mobile data dey on, then tap \"{{action}}\""
+    "noInternetHint": "Make sure say Wi-Fi or mobile data dey on, then tap \"{{action}}\"",
+    "saving": "Saving…",
+    "offlineStatus": "Offline - Network no dey"
   },
   "tip": {
     "title": "Send Tip",
@@ -1094,7 +1113,17 @@
     "post": "Post",
     "officialLogo": "See di official DeHub logo! 🎨",
     "editedImage": "See your edited image!",
-    "generatedImage": "See your generated image!"
+    "generatedImage": "See your generated image!",
+    "toolCompleted": "{{name}} completed",
+    "aiTool": "AI tool",
+    "generateImage": "Generate Image",
+    "generateVideo": "Make Video",
+    "cannotAnimateImage": "{{model}} no fit animate di image weh you attach. Pick another video model.",
+    "needsImageToAnimate": "{{model}} need image mek e animate. Attach one or pick another model.",
+    "couldNotReadImage": "We no fit read dat image",
+    "logoLoadFailed": "We no fit load DeHub logo — we di generate am without di logo",
+    "imageAttachedDescribe": "Image don attach — tok weti you want change",
+    "couldNotPreparePost": "We no fit prepare dat one for post"
   },
   "commandCentre": {
     "title": "Command Center",
@@ -1606,7 +1635,10 @@
     "edit": "Edit",
     "deleteRequestTitle": "Yu wan delet dis request?",
     "deleteRequestDescription": "Yu no fit undo dis wan.",
-    "attachmentTooLarge": "Eni file mos dei anda 20MB"
+    "attachmentTooLarge": "Eni file mos dei anda 20MB",
+    "deleteCommentA11y": "Delete comment",
+    "sendCommentA11y": "Send comment",
+    "requestOptions": "Request options"
   },
   "auth": {
     "loginRequired": "Log in required",
@@ -1655,7 +1687,15 @@
     "sendCodeFailedRetry": "We no fit send code. Abeg try again.",
     "invalidCodeRetry": "Di code no correct. Abeg try again.",
     "invalidEmailOrPassword": "Email or password no correct.",
-    "welcomeToDehub": "You don land DeHub, welcome"
+    "welcomeToDehub": "You don land DeHub, welcome",
+    "importWalletOptional": "Import Wallet (Optional)",
+    "couldNotSendCodeRetry": "No fit send code. Try again.",
+    "continueExploring": "Continue dey explore",
+    "continueExploringA11y": "Continue to explore DeHub",
+    "importWalletRecommended": "Na social login we recommend.",
+    "importWalletPurpose": "Dis tool na for import old accounts from DeHub.io.",
+    "exploreWithoutSignIn": "Waka around without sign in",
+    "exploreWithoutSignInA11y": "Waka around DeHub without sign in"
   },
   "messages": {
     "smartRepliesOff": "Dem don of di ansa dem weh wi propose",
@@ -1770,7 +1810,29 @@
     "reportedAutomatically": "Dem don report-am automatically.",
     "loadFailed": "I no fit load di channel dem",
     "noSearchResults": "No channel match wetin yu di search",
-    "noChannels": "No channel dei"
+    "noChannels": "No channel dei",
+    "pairCodeExpired": "Dat code don expire. Ask di TV for new one.",
+    "signedInOnTv": "Sign for your TV",
+    "pairRefused": "Refused",
+    "pairNotFound": "No television dey wait for dat code. E fit don expire — ask the TV for new one.",
+    "pairWarning": "Only approve dis if na television you dey look for now. If you approve, who dey hold dat code go enter your account. E go fit watch, like and follow — e no go fit spend money, and you fit sign am out anytime from Active sessions.",
+    "pairDeny": "No, I no ask for dis",
+    "pairDoneTitle": "Your TV is signed in",
+    "closePlayer": "Close player",
+    "declineFailed": "No fit deny dat — e fit don expire already.",
+    "tipSentTvNotTold": "Tip send, but TV no fit hear. E go time out.",
+    "sentAmount": "Sent {{amount}} DHB",
+    "nothingWaiting": "Nothing waiting",
+    "yourTelevision": "Your television",
+    "tipTo": "to {{name}}",
+    "tipForPost": "for “{{title}}”",
+    "pairIntro": "Open DeHub for ya TV and type di code weh e show for here.",
+    "wantsToSignIn": "want sign in as you",
+    "pairApprove": "Yes, sign in dis TV",
+    "pairDoneBody": "E suppose don di show ya account already. You fit sign am out anytime from Settings → Privacy → Active sessions.",
+    "nothingWaitingBody": "When you tip from DeHub for ya TV, e go show for here mek you approve am. Ya TV no di ever hold ya wallet.",
+    "wantsToTip": "want send tip · {{time}} remain",
+    "reviewAndApprove": "Check am and approve"
   },
   "top100": {
     "title": "Top 100",
@@ -2042,7 +2104,8 @@
     "submitApplication": "Submit Application",
     "nameEmailRequired": "Name and email dey required",
     "applicationSuccess": "Application don submit well well! We go reach out.",
-    "applicationFailed": "E no fit submit. Abeg try again."
+    "applicationFailed": "E no fit submit. Abeg try again.",
+    "namePlaceholder": "Jane Smith"
   },
   "dao": {
     "title": "DAO Treasury",
@@ -2202,7 +2265,8 @@
     "pinnedToast": "Dem don pin am for di top of dis post",
     "unpinnedToast": "Dem don comot di pin",
     "pinFailed": "We no fit pin dat comment",
-    "kidsOnlyThread": "Dis post na for pikin dem. Only Kids Mode fit comment on am."
+    "kidsOnlyThread": "Dis post na for pikin dem. Only Kids Mode fit comment on am.",
+    "editFailed": "We no fit edit di comment"
   },
   "postInfo": {
     "title": "Post Info",
@@ -3243,14 +3307,40 @@
     "comingSoon": "E di kam",
     "signIn": "Sign in",
     "tapToGetStarted": "Tap fo start",
-    "soon": "Soon"
+    "soon": "Soon",
+    "searchGlossary": "Search glossary...",
+    "repostsTab": "Reposts",
+    "quotesTab": "Quotes",
+    "noMoreReposts": "No more reposts",
+    "noMoreQuotes": "No more quotes",
+    "noRepostsYet": "No reposts yet",
+    "noQuotesYet": "No quotes yet",
+    "glossarySubtitle": "Learn weti every icon and feature mean",
+    "noResultsFor": "Notin show for \"{{query}}\"",
+    "guideSubtitle": "Step-by-step guide for every feature",
+    "searchGuide": "Search di guide..."
   },
   "arcade": {
     "submitAccessibility": "Submit a game to the arcade",
     "submitTitle": "Made a game?",
     "submitDescription": "Send us a playable link for review.",
     "submitAction": "Submit a game →",
-    "intro": "Game dem weh dem di run rait hia fo di app. Notin for install, notin for buy — open source, an na DeHub sef di serv-am."
+    "intro": "Game dem weh dem di run rait hia fo di app. Notin for install, notin for buy — open source, an na DeHub sef di serv-am.",
+    "openPrivacySettings": "Open privacy settings",
+    "loadingGame": "Loading {{title}}",
+    "hideThis": "Hide this",
+    "noGameCalled": "No game weh dem di call <slug>{{slug}}</slug> dey for di arcade.",
+    "seeWhatIsHere": "See weti dey here",
+    "locationNotGranted": "You no give location permission.",
+    "signInToPlaceOnGlobe": "Sign in mek you put yasef for di globe.",
+    "couldNotPlaceOnGlobe": "We no fit put you for di globe.",
+    "onTheGlobe": "You don dey for di globe — e di show inside area weh reach about 25 km.",
+    "couldNotReach": "WE NO FIT REACH DI ARCADE",
+    "didNotLoad": "{{title}} no load",
+    "needsConnection": "Di game di come from dehub.io and e di download when you open am, so e need correct connection di first time. Check ya own and try again.",
+    "backToArcade": "Go back for di arcade",
+    "privacyWarning": "If you hold plenti tokens or you di stay for area weh no safe, hide ya badge and balance before you use dis feature. On-chain transactions still di show ya address. Open settings.",
+    "leaveGame": "Komot for di game"
   },
   "videoLooks": {
     "button": "Camera looks",
@@ -3376,7 +3466,22 @@
     "oneTyping": "{{name}} dey type…",
     "fewTyping": "{{names}} dey type…",
     "manyTyping": "{{count}} people dey type…",
-    "attachTitle": "Add am to your message"
+    "attachTitle": "Add am to your message",
+    "modBadge": "MOD",
+    "thisUser": "this user",
+    "unban": "Unban",
+    "onlineLabel": "Online",
+    "usersCount_one": "{{count}} user",
+    "usersCount_other": "{{count}} users",
+    "totalMessages": "Total Messages",
+    "slowMode": "Slow Mode",
+    "cooldownSeconds": "{{seconds}}s cooldown",
+    "minStakeRequired": "Min Stake Required",
+    "noParticipants": "No participants yet",
+    "noModerators": "No moderators",
+    "noBannedUsers": "No banned users",
+    "unbanConfirm": "You sure sey you want unban {{name}}?",
+    "unbanFailed": "We no fit unban di user"
   },
   "promptFeed": {
     "headline": "Wetin you wan see?",
@@ -4109,7 +4214,26 @@
     "markMadeForKids": "Mark am as something for pikin dem",
     "madeForKidsOnDesc": "E go show to pikin dem for Kids Mode, and e go comot from the normal feeds. Na only Kids Mode fit comment.",
     "madeForKidsOffDesc": "E go show this post to pikin dem weh di use Kids Mode, and e go comot am from the normal feeds.",
-    "madeForKidsBlockedByMature": "Post weh dem mark as mature no fit also publish for pikin dem."
+    "madeForKidsBlockedByMature": "Post weh dem mark as mature no fit also publish for pikin dem.",
+    "queueWaiting": "Waiting…",
+    "queueUploading": "Uploading",
+    "queueProcessing": "Processing…",
+    "queueMinting": "Minting…",
+    "queuePosted": "Posted",
+    "queueFailed": "Failed",
+    "noRetriesLeft": "(no retries left)",
+    "noUploads": "No uploads",
+    "chooseDatabase": "Choose Decentralized Database",
+    "livestreamMode": "Livestream Mode",
+    "addThumbnail": "Add Thumbnail",
+    "showCover": "Show cover",
+    "max60s": "Max 60s",
+    "confirmLivestream": "Confirm Livestream",
+    "liveFeaturesTitle": "Live Features",
+    "discardPostTitle": "Discard Post?",
+    "uploadsAppearHere": "Ya uploads go show for here",
+    "imagesTotalLimit": "All di images for one upload no suppose pass 100 MB",
+    "discardPostBody": "Ya post go loss. You want save am as draft instead?"
   },
   "bounty": {
     "claimed": "Don claim",
@@ -4426,7 +4550,25 @@
     "allowNewDmsOff": "Turn on DMs mek new message fit enta.",
     "perMessageFee": "Fee for each message (DHB)",
     "perMessageFeeSub": "Charge pipol for each message. Put 0 mek DM free. You fit giv som users free access.",
-    "allDisabled": "All DMs dey off now. New DMs dey block by default."
+    "allDisabled": "All DMs dey off now. New DMs dey block by default.",
+    "failedToEdit": "Failed to edit",
+    "messageDeleted": "Message deleted",
+    "messageForwarded": "Message forwarded",
+    "clearMessages": "Clear messages",
+    "messagesCleared": "Messages cleared",
+    "searchComingSoon": "Search coming soon",
+    "tapToUnblock": "Tap to unblock",
+    "userFallback": "user",
+    "failedToBlock": "Failed to block",
+    "noConversationsFound": "No conversations found",
+    "cantForwardFromDevice": "You no fit forward dis message from dis device",
+    "clearMessagesConfirm": "Delete all di messages for dis conversation? You no go fit undo am.",
+    "failedToClearMessages": "We no fit clear di messages",
+    "removedFreeAccess": "Free access don komot for {{name}}",
+    "grantedFreeAccess": "{{name}} don get free access",
+    "failedToUpdateFreeAccess": "We no fit update free access",
+    "failedToDeleteConversation": "We no fit delete di conversation",
+    "newDm": "New direct message"
   },
   "editPost": {
     "mediaPermission": "You need media library permission",
@@ -4448,7 +4590,17 @@
     "retrying": "Retrying…",
     "retryQueued": "Processing again",
     "retryHint": "You no need upload again — we keep your file.",
-    "retryFailed": "We no fit try that post again"
+    "retryFailed": "We no fit try that post again",
+    "closeVideo": "Close video",
+    "rotateOrientation": "Rotate orientation",
+    "videoProgress": "Video progress: {{percent}}%",
+    "downloadImage": "Download image",
+    "goToImage": "Go to image {{index}}",
+    "tapToSeek": "Tap mek you jump go any position",
+    "photoAccessToSaveImages": "Allow photo library access mek you fit save images",
+    "failedToSaveImage": "We no fit save di image",
+    "allCaughtUp": "You don see everything",
+    "checkBackForShorts": "Come back later for more shorts"
   },
   "liveViewer": {
     "loadingStream": "Stream dey load...",
@@ -4458,7 +4610,22 @@
   },
   "search": {
     "endOfResults": "Results don finish",
-    "searchDehub": "Search DeHub"
+    "searchDehub": "Search DeHub",
+    "tabVoice": "Voice",
+    "trendingPosts": "Trending Posts",
+    "trendingImages": "Trending Images",
+    "trendingVideos": "Trending Videos",
+    "trendingVoicePosts": "Trending Voice Posts",
+    "trendingLive": "Trending Live",
+    "seeAll": "See All",
+    "noAccountsFound": "No accounts found",
+    "noContentResults": "No content results",
+    "recentSearches": "Recent Searches",
+    "closeFilterOptions": "Close filter options",
+    "openFilterOptions": "Open filter options",
+    "trendingThisWeek": "Weti Di Trend Dis Week",
+    "tryDifferentKeywords": "Try other keywords or check ya spelling",
+    "noTrendingThisWeek": "Notin di trend dis week"
   },
   "notifPrompt": {
     "stayInLoop": "Mek you dey hia wetin dey happen",
@@ -4706,7 +4873,26 @@
     "externalTitle": "External Streaming Mode",
     "externalLiveHint": "Your stream is live via external software. The in-app camera is disabled.",
     "externalHint": "Connect your streaming software using the details below, then start broadcasting.",
-    "useInAppCamera": "Use In-App Camera Instead"
+    "useInAppCamera": "Use In-App Camera Instead",
+    "livestreamEnded": "Livestream ended",
+    "chatEnabled": "Chat enabled",
+    "chatDisabled": "Chat disabled",
+    "networkLostReconnecting": "Network lost — stream paused. Reconnecting…",
+    "openingViewer": "Opening viewer...",
+    "cameraPermissionRequired": "Camera permission required",
+    "grantPermission": "Grant Permission",
+    "settingUpPublisher": "Setting up publisher...",
+    "scheduledStream": "Scheduled Stream",
+    "scheduledAt": "{{date}} at {{time}}",
+    "connectionInterrupted": "Connection Interrupted",
+    "endStreamConfirmTitle": "End Stream?",
+    "failedToUpdateSettings": "We no fit update settings",
+    "waitingForLivepeer": "We di wait for Livepeer...",
+    "waitingForExternalSource": "We di wait for external source...",
+    "pressGoLiveWhenReady": "Press Go Live when you ready for start",
+    "streamPausedReconnecting": "Ya stream don pause. E di reconnect...",
+    "streamWillEnd": "Stream go end if e no reconnect",
+    "endStreamConfirmBody": "If you close am now, ya live stream go end for all viewers. You fit continue di stream or end am finish."
   },
   "nearBuy": {
     "otherCurrencies": "Other currencies",
