@@ -44,6 +44,8 @@ const STAKING_ADDRESS = "0xcF573a682Bf7A7Cc58000e9eCA9c9d04dA102Da7";
 // Legacy BNB staking contract — still holds on-chain staked balances + rewards
 const BNB_STAKING_CONTRACT = "0x26d2cd7763106fdce443fadd36163e2ad33a76e6";
 const DHB_BNB = "0x680D3113caf77B61b510f332D5Ef4cf5b41A761D";
+// Earlier transfer-based staking address on Base; still holds deposits.
+const BASE_LEGACY_STAKING_ADDRESS = "0x7b10dd033Ac41B8AF85eE1701e344B86e446250B";
 const BASE_RPC = "https://mainnet.base.org";
 const BNB_RPC = "https://bsc-dataseed.binance.org";
 const BASE_CHAIN_HEX = "0x2105"; // 8453
@@ -63,7 +65,36 @@ const STAKING_ABI = [
   "function userInfos(address) view returns (uint256 totalAmount, uint256 unlockAt, uint256 lastTierIndex, uint256 lastRewardIndex, uint256 harvestTotal, uint256 harvestClaimed, uint256 lastStakeAt)",
   "function pendingHarvest(address account) view returns (uint256)",
   "function unstake(uint256 amount)",
+  "function totalStaked() view returns (uint256)",
 ];
+
+/**
+ * DHB staked across the whole protocol — the same four pools the web app sums:
+ * the unified address and the older transfer address on Base, the unified
+ * address on BNB, and the legacy BNB contract (its `totalStaked()`, since the
+ * token balance there also includes the reward pool). Reading only the Base
+ * unified address undercounts by everything still sitting in the others.
+ */
+async function readProtocolTotal(
+  baseProvider: ethers.providers.Provider,
+  bnbProvider: ethers.providers.Provider,
+): Promise<ethers.BigNumber | null> {
+  const baseDhb = new ethers.Contract(DHB_BASE, ERC20_ABI, baseProvider);
+  const bnbDhb = new ethers.Contract(DHB_BNB, ERC20_ABI, bnbProvider);
+  const legacy = new ethers.Contract(BNB_STAKING_CONTRACT, STAKING_ABI, bnbProvider);
+  try {
+    const parts: ethers.BigNumber[] = await Promise.all([
+      baseDhb.balanceOf(STAKING_ADDRESS),
+      baseDhb.balanceOf(BASE_LEGACY_STAKING_ADDRESS),
+      bnbDhb.balanceOf(STAKING_ADDRESS),
+      legacy.totalStaked(),
+    ]);
+    return parts.reduce((a, b) => a.add(b), ethers.BigNumber.from(0));
+  } catch (err) {
+    console.warn("[StakingTab] protocol total read failed:", err);
+    return null;
+  }
+}
 
 /**
  * True for a `staking_records` row that is still a *request* rather than a
@@ -138,6 +169,7 @@ const StakingTab: React.FC = () => {
     try {
       const baseProvider = new ethers.providers.JsonRpcProvider(BASE_RPC);
       const baseDhb = new ethers.Contract(DHB_BASE, ERC20_ABI, baseProvider);
+      const bnbProvider = new ethers.providers.JsonRpcProvider(BNB_RPC);
 
       const addr = walletAddress?.toLowerCase();
 
@@ -145,7 +177,7 @@ const StakingTab: React.FC = () => {
         ? new ethers.Contract(
             BNB_STAKING_CONTRACT,
             STAKING_ABI,
-            new ethers.providers.JsonRpcProvider(BNB_RPC),
+            bnbProvider,
           )
         : null;
       // A failed legacy read is logged, never folded into the total as a zero
@@ -164,7 +196,7 @@ const StakingTab: React.FC = () => {
           walletAddress
             ? baseDhb.balanceOf(walletAddress).catch(() => ethers.BigNumber.from(0))
             : Promise.resolve(ethers.BigNumber.from(0)),
-          baseDhb.balanceOf(STAKING_ADDRESS).catch(() => ethers.BigNumber.from(0)),
+          readProtocolTotal(baseProvider, bnbProvider),
           addr
             ? supabase
                 .from("staking_records")
@@ -206,7 +238,10 @@ const StakingTab: React.FC = () => {
         ]);
 
       setWalletBal(parseFloat(ethers.utils.formatUnits(userWalletBal, 18)));
-      setProtocolTotal(parseFloat(ethers.utils.formatUnits(totalStakedBal, 18)));
+      // A failed read keeps the last good figure rather than flashing a low one.
+      if (totalStakedBal) {
+        setProtocolTotal(parseFloat(ethers.utils.formatUnits(totalStakedBal, 18)));
+      }
 
       // The withdrawal queue, and a last-resort staked figure. `staking_records`
       // only ever held the deposits made through the apps, so it is a record of
