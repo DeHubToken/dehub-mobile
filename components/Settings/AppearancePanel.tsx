@@ -2,7 +2,9 @@
  * Appearance panel — mirrors web's `AppearanceSettings`
  * (dehubweb src/pages/app/SettingsPage.tsx).
  *
- * Ported: Language, Dim Lights (+ strength), Auto-play, Data Saver.
+ * Ported: Theme (System, Minimal), Language, Dim Lights (+ strength),
+ * Auto-play, Data Saver. Web's seasonal themes and Light are not: Light was
+ * tried and pulled (#673), and the seasonal ones are canvas art.
  * Not ported, deliberately:
  *  - Feed layout (comfortable/compact): web's is a desktop-sidebar collapse.
  *  - Shorts toggle: Home's pager addresses its six tabs by index
@@ -19,6 +21,7 @@ import {
   SettingsSection,
   SettingsLinkRow,
   SettingsToggleRow,
+  SettingsOptionModal,
   Divider,
 } from './SettingsPrimitives';
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
@@ -31,11 +34,21 @@ import {
 import i18nInstance, { SUPPORTED_LANGUAGES } from '../../i18n';
 import Icon from '../ui/Icon';
 import { useAppTheme } from '../../context/ThemeContext';
+import { isAppThemeName } from '../../theme/colors';
 
 const AppearancePanel: React.FC = () => {
   const { t } = useTranslation();
   const prefs = useAppPrefs();
-  const { colors } = useAppTheme();
+  const { colors, theme, setTheme } = useAppTheme();
+  const [themeModalVisible, setThemeModalVisible] = useState(false);
+  const themeOptions = [
+    { value: 'system', label: t('settings.system') },
+    {
+      value: 'minimal',
+      label: t('settings.minimal'),
+      description: t('settings.themeMinimalDesc'),
+    },
+  ];
   const { pref: dataSaverPref } = useDataSaver();
   const highQuality = useHighQualityImages();
   const [languageModalVisible, setLanguageModalVisible] = useState(false);
@@ -72,7 +85,19 @@ const AppearancePanel: React.FC = () => {
 
   return (
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
-      <SettingsSection label={t('settings.appearance')} icon="Monitor" className="mt-4" anchor="dim-lights">
+      {/* Same key and values as web (`dehub.theme`), so Minimal means the
+          same thing on both. */}
+      <SettingsSection label={t('settings.theme')} icon="Palette" className="mt-4" anchor="theme">
+        <SettingsLinkRow
+          icon="Palette"
+          label={t('settings.theme')}
+          description={t('settings.themeDesc')}
+          value={themeOptions.find((o) => o.value === theme)?.label}
+          onPress={() => setThemeModalVisible(true)}
+        />
+      </SettingsSection>
+
+      <SettingsSection label={t('settings.appearance')} icon="Monitor" anchor="dim-lights">
         <SettingsToggleRow
           icon="Lamp"
           label={t('settings.dimLights')}
@@ -171,6 +196,17 @@ const AppearancePanel: React.FC = () => {
           onPress={resetChannelSpeeds}
         />
       </SettingsSection>
+
+      <SettingsOptionModal
+        visible={themeModalVisible}
+        onClose={() => setThemeModalVisible(false)}
+        title={t('settings.theme')}
+        value={theme}
+        options={themeOptions}
+        onSelect={(v) => {
+          if (isAppThemeName(v)) setTheme(v);
+        }}
+      />
 
       <LanguageSelectModal
         visible={languageModalVisible}

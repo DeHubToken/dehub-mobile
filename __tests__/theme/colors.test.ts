@@ -4,6 +4,7 @@ import {
   isAppThemeName,
   setActiveTheme,
   systemColors,
+  minimalColors,
 } from '../../theme/colors';
 import { createToastTheme } from '../../theme/toastTheme';
 
@@ -24,9 +25,18 @@ describe('mobile app themes', () => {
 
   it('only accepts themes that the mobile engine currently implements', () => {
     expect(isAppThemeName('system')).toBe(true);
+    expect(isAppThemeName('minimal')).toBe(true);
     expect(isAppThemeName('light')).toBe(false);
     expect(isAppThemeName('cosmic')).toBe(false);
     expect(getThemeColors('system')).toBe(systemColors);
+  });
+
+  it('puts minimal on a pure black canvas and follows it at render time', () => {
+    expect(getThemeColors('minimal')).toBe(minimalColors);
+    expect(minimalColors.background).toBe('#000000');
+    expect(minimalColors.neutrals[900]).toBe('#000000');
+    setActiveTheme('minimal');
+    expect(colors.background).toBe('#000000');
   });
 
   it('builds toast surfaces from the system palette', () => {

@@ -154,10 +154,20 @@ module.exports = {
       // all and every chip, badge and skeleton using them rendered with square
       // corners. rem is no help either: NativeWind resolves it against React
       // Native's 14px root, so "0.5rem" is 7px here and 8px in the browser.
+      //
+      // Every step reads a variable (defaults in global.css) so the minimal
+      // theme can square the whole app off from the root view — see
+      // MINIMAL_ROOT_VARS in context/ThemeContext.tsx. A bare var() survives
+      // NativeWind's compile and resolves at runtime; calc() is what it drops.
       borderRadius: {
-        lg: "8px",
-        md: "6px",
-        sm: "4px",
+        sm: "var(--radius-sm)",
+        DEFAULT: "var(--radius)",
+        md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
+        xl: "var(--radius-xl)",
+        "2xl": "var(--radius-2xl)",
+        "3xl": "var(--radius-3xl)",
+        full: "var(--radius-full)",
       },
     },
   },

@@ -78,7 +78,7 @@ import { AppKit } from "@reown/appkit-ethers5-react-native";
 import { isWalletConnectAvailable } from "./config/reown.config";
 import { markBootRevealed } from "./libs/bootReveal";
 import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
-import { AppThemeProvider, useAppTheme } from "./context/ThemeContext";
+import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/ThemeContext";
 
 const logger = createLogger("App");
 
@@ -174,7 +174,7 @@ export default function App() {
           // open. See markRestoredCacheStale.
           onSuccess={markRestoredCacheStale}
         >
-        <GestureHandlerRootView className="flex-1 bg-theme-background">
+        <ThemedRootView>
           <SafeAreaProvider className="flex-1 select-none">
             <AuthProvider>
               <WebSocketProvider>
@@ -223,13 +223,23 @@ export default function App() {
               </View>
             )}
           </SafeAreaProvider>
-        </GestureHandlerRootView>
+        </ThemedRootView>
         </PersistQueryClientProvider>
       </ErrorBoundary>
       </I18nextProvider>
     </AppThemeProvider>
   );
 }
+
+/** The root view, carrying the active theme's CSS variables to everything below it. */
+const ThemedRootView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const style = useThemeRootStyle();
+  return (
+    <GestureHandlerRootView className="flex-1 bg-theme-background" style={style}>
+      {children}
+    </GestureHandlerRootView>
+  );
+};
 
 const ThemedToaster: React.FC = () => {
   const { colors } = useAppTheme();

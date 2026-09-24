@@ -1,4 +1,4 @@
-export type AppThemeName = 'system';
+export type AppThemeName = 'system' | 'minimal';
 
 export type ThemeColors = {
   background: string;
@@ -46,14 +46,33 @@ export const systemColors: ThemeColors = {
   },
 };
 
+/**
+ * Web's `minimal` theme: the same monochrome app on a pure black canvas, with
+ * the feed's bento cards dissolved into the page and a faint white hairline
+ * doing the separating. Sheets and toasts keep the system card surface so they
+ * still read as layers. Shape (square corners, edge-to-edge media) is not
+ * colour — see `MINIMAL_RADIUS_VARS` and the `isMinimal` consumers.
+ */
+export const minimalColors: ThemeColors = {
+  ...systemColors,
+  background: '#000000',
+  neutrals: { ...systemColors.neutrals, 900: '#000000' },
+};
+
+/** The hairline web draws between minimal feed items (index.css). */
+export const MINIMAL_HAIRLINE = 'rgba(255,255,255,0.08)';
+/** Baseline and active-tab outline of web's minimal "file tab" nav. */
+export const MINIMAL_TAB_LINE = 'rgba(255,255,255,0.69)';
+
 const palettes: Record<AppThemeName, ThemeColors> = {
   system: systemColors,
+  minimal: minimalColors,
 };
 
 let activeTheme: AppThemeName = 'system';
 
 export function isAppThemeName(value: unknown): value is AppThemeName {
-  return value === 'system';
+  return value === 'system' || value === 'minimal';
 }
 
 export function getThemeColors(name: AppThemeName): ThemeColors {
