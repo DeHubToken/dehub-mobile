@@ -804,7 +804,11 @@
     "select": "Auswählen",
     "noResults": "Keine Ergebnisse",
     "moreInfo": "Mehr Infos",
-    "translate": "Übersetzen"
+    "translate": "Übersetzen",
+    "paste": "Einfügen",
+    "scanQr": "QR scannen",
+    "scanQrHint": "Richten Sie die Kamera auf einen QR-Code für die Wallet-Adresse",
+    "allowCameraForQr": "Kamerazugriff zum Scannen eines QR-Codes zulassen"
   },
   "tip": {
     "title": "Trinkgeld senden",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Zahlung on-chain zurückgesetzt – es wurde keine Bestellung angelegt.",
       "purchaseFailed": "Kauf fehlgeschlagen",
       "transactionCancelled": "Transaktion abgebrochen.",
-      "pickRating": "Wähle zuerst eine Sternebewertung."
+      "pickRating": "Wähle zuerst eine Sternebewertung.",
+      "confirmTitle": "Kauf bestätigen",
+      "confirmBody": "Sie zahlen {{amount}} DHB (etwa {{usd}}) auf Base direkt an das Wallet des Verkäufers. Dies kann nicht rückgängig gemacht werden."
     },
     "categories": {
       "all": "Alle",

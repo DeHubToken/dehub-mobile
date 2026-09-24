@@ -804,7 +804,11 @@
     "select": "Izvēlieties",
     "noResults": "Nav rezultātu",
     "moreInfo": "Vairāk informācijas",
-    "translate": "Tulkot"
+    "translate": "Tulkot",
+    "paste": "Ielīmēt",
+    "scanQr": "Skenēt QR",
+    "scanQrHint": "Novietojiet kameru uz maka adreses QR kodu",
+    "allowCameraForQr": "Atļaut piekļuvi kamerai, lai skenētu QR kodu"
   },
   "tip": {
     "title": "Sūtīt dzeramnaudu",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Maksājums ķēdē atgriezts — pasūtījums netika izveidots.",
       "purchaseFailed": "Pirkums neizdevās",
       "transactionCancelled": "Darījums atcelts.",
-      "pickRating": "Vispirms izvēlies vērtējumu ar zvaigznītēm."
+      "pickRating": "Vispirms izvēlies vērtējumu ar zvaigznītēm.",
+      "confirmTitle": "Apstiprināt pirkumu",
+      "confirmBody": "Jūs maksāsiet {{amount}} DHB (par {{usd}}) bāzē, tieši uz pārdevēja maku. Šo darbību nevar atsaukt."
     },
     "categories": {
       "all": "Visi",

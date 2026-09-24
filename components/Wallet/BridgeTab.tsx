@@ -1,3 +1,4 @@
+import { appLocale } from "../../libs/date.util";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useState, useEffect, useCallback } from "react";
 import {
@@ -62,7 +63,7 @@ function formatDHB(raw: ethers.BigNumber | null): string {
   if (val === 0) return "0";
   if (val >= 1_000_000) return (val / 1_000_000).toFixed(2) + "M";
   if (val >= 1_000) return (val / 1_000).toFixed(2) + "K";
-  return val.toLocaleString("en-US", { maximumFractionDigits: 4 });
+  return val.toLocaleString(appLocale(), { maximumFractionDigits: 4 });
 }
 
 const BridgeTab: React.FC = () => {
@@ -369,7 +370,7 @@ const BridgeTab: React.FC = () => {
                 </View>
                 <View className="flex-1 min-w-0">
                   <Text className="text-white text-sm font-medium">
-                    {(Number(t.amount) || 0).toLocaleString("en-US", {
+                    {(Number(t.amount) || 0).toLocaleString(appLocale(), {
                       maximumFractionDigits: 4,
                     })}{" "}
                     DHB

@@ -804,7 +804,11 @@
     "select": "Seçin",
     "noResults": "Nəticə yoxdur",
     "moreInfo": "Daha ətraflı",
-    "translate": "Tərcümə et"
+    "translate": "Tərcümə et",
+    "paste": "Yapışdır",
+    "scanQr": "QR-ı skan edin",
+    "scanQrHint": "Cüzdan ünvanındakı QR koduna kameranı yerləşdirin",
+    "allowCameraForQr": "QR kodu skan etmək üçün kameraya girişə icazə verin"
   },
   "tip": {
     "title": "Bəxşiş Göndər",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Ödəniş zəncirdə geri qaytarıldı — sifariş yaradılmadı.",
       "purchaseFailed": "Alış alınmadı",
       "transactionCancelled": "Əməliyyat ləğv edildi.",
-      "pickRating": "Əvvəlcə ulduz reytinqi seç."
+      "pickRating": "Əvvəlcə ulduz reytinqi seç.",
+      "confirmTitle": "Satınalmanı təsdiq edin",
+      "confirmBody": "Baza üzrə {{amount}} DHB (təxminən {{usd}}) ilə birbaşa satıcının cüzdanına ödəyəcəksiniz. Bunu geri qaytarmaq mümkün deyil."
     },
     "categories": {
       "all": "Hamısı",

@@ -804,7 +804,11 @@
     "select": "Pilih",
     "noResults": "Tidak ada hasil",
     "moreInfo": "Info lebih lanjut",
-    "translate": "Terjemahkan"
+    "translate": "Terjemahkan",
+    "paste": "Tempel",
+    "scanQr": "Pindai QR",
+    "scanQrHint": "Arahkan kamera ke alamat dompet kode QR",
+    "allowCameraForQr": "Izinkan akses kamera untuk memindai kode QR"
   },
   "tip": {
     "title": "Kirim Tip",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Pembayaran dibatalkan on-chain — tidak ada pesanan yang dibuat.",
       "purchaseFailed": "Pembelian gagal",
       "transactionCancelled": "Transaksi dibatalkan.",
-      "pickRating": "Pilih peringkat bintang dulu."
+      "pickRating": "Pilih peringkat bintang dulu.",
+      "confirmTitle": "Konfirmasi Pembelian",
+      "confirmBody": "Anda akan membayar {{amount}} DHB (sekitar {{usd}}) di Base, langsung ke dompet penjual. Ini tidak dapat diurungkan."
     },
     "categories": {
       "all": "Semua",

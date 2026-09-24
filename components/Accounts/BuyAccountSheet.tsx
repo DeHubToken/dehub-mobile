@@ -16,6 +16,7 @@
  * in the list for days and the seller can reprice it. Nothing here computes
  * an amount.
  */
+import { appLocale } from "../../libs/date.util";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, TextInput, ActivityIndicator, Share } from "react-native";
@@ -26,6 +27,7 @@ import { ShareLinks } from "../../navigation/linking.config";
 import { useBuyAccount, useCheckReceiveAddress } from "../../hooks/useAccountMarket";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import { ChainId } from "../../config/constants";
+import AddressInputTools from "../common/AddressInputTools";
 import { accountSince, compactCount } from "../../screens/AccountsScreen";
 import type { AccountListing, AccountQuote, ReceiveCheck } from "../../services/account-market.service";
 
@@ -206,12 +208,12 @@ const BuyAccountSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed,
           <View style={styles.panel}>
             <Text style={styles.panelLabel}>{t("accounts.askingPrice")}</Text>
             <Text style={styles.price}>
-              {priceDhb.toLocaleString("en-US")}
+              {priceDhb.toLocaleString(appLocale())}
               <Text style={styles.priceUnit}> <DhbCoin size={14} /></Text>
             </Text>
             <Text style={styles.panelHint}>
               {t("accounts.priceHint", {
-                usd: priceUsd.toLocaleString("en-US", { maximumFractionDigits: 2 }),
+                usd: priceUsd.toLocaleString(appLocale(), { maximumFractionDigits: 2 }),
               })}
             </Text>
           </View>
@@ -244,6 +246,7 @@ const BuyAccountSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed,
                     autoCorrect={false}
                     spellCheck={false}
                   />
+                  <AddressInputTools scan onValue={setReceiveAddress} />
                   {checking ? (
                     <View style={styles.deliverRow}>
                       <ActivityIndicator size="small" color="#A1A1AA" />

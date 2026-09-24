@@ -804,7 +804,11 @@
     "select": "Valitse",
     "noResults": "Ei tuloksia",
     "moreInfo": "Lisätietoja",
-    "translate": "Käännä"
+    "translate": "Käännä",
+    "paste": "Liitä",
+    "scanQr": "Skannaa QR",
+    "scanQrHint": "Osoita kamera lompakon osoitteeseen QR-koodi",
+    "allowCameraForQr": "Salli kameran käyttö QR-koodin skannaamiseen"
   },
   "tip": {
     "title": "Lähetä vinkki",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Maksu peruuntui ketjussa — tilausta ei syntynyt.",
       "purchaseFailed": "Osto epäonnistui",
       "transactionCancelled": "Tapahtuma peruttiin.",
-      "pickRating": "Valitse ensin tähtiarvio."
+      "pickRating": "Valitse ensin tähtiarvio.",
+      "confirmTitle": "Vahvista ostos",
+      "confirmBody": "Maksat {{amount}} DHB (noin {{usd}}) Base-tilillä suoraan myyjän lompakkoon. Tätä ei voi kumota."
     },
     "categories": {
       "all": "Kaikki",

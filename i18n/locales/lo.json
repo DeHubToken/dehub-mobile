@@ -804,7 +804,11 @@
     "select": "ເລືອກ",
     "noResults": "ບໍ່ພົບຜົນລັບ",
     "moreInfo": "ຂໍ້ມູນເພີ່ມເຕີມ",
-    "translate": "ແປ"
+    "translate": "ແປ",
+    "paste": "ວາງ",
+    "scanQr": "ສະແກນ QR",
+    "scanQrHint": "ຊີ້ໄປທີ່ກ້ອງຖ່າຍຮູບທີ່ຢູ່ wallet ລະຫັດ QR",
+    "allowCameraForQr": "ອະນຸຍາດໃຫ້ເຂົ້າເຖິງກ້ອງສະແກນ QR Code"
   },
   "tip": {
     "title": "ສົ່ງທິບ",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "ການຈ່າຍເງິນຖືກຍ້ອນກັບເທິງເຄືອຂ່າຍ — ບໍ່ມີການສັ່ງຊື້ຖືກສ້າງ.",
       "purchaseFailed": "ການຊື້ລົ້ມເຫຼວ",
       "transactionCancelled": "ທຸລະກຳຖືກຍົກເລີກແລ້ວ.",
-      "pickRating": "ເລືອກຄະແນນດາວກ່ອນ."
+      "pickRating": "ເລືອກຄະແນນດາວກ່ອນ.",
+      "confirmTitle": "ຢືນຢັນການຊື້",
+      "confirmBody": "ທ່ານຈະຈ່າຍ {{amount}} DHB (ປະມານ {{usd}}) ໃນ Base, ໂດຍກົງກັບກະເປົາເງິນຂອງຜູ້ຂາຍ. ມັນບໍ່ຄວນຖືກລົບລ້າງ."
     },
     "categories": {
       "all": "ທັງໝົດ",

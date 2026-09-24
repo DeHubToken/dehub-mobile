@@ -804,7 +804,11 @@
     "select": "בחר",
     "noResults": "אין תוצאות",
     "moreInfo": "מידע נוסף",
-    "translate": "תרגם"
+    "translate": "תרגם",
+    "paste": "הדבק",
+    "scanQr": "סריקת QR",
+    "scanQrHint": "כוון את המצלמה לכתובת ארנק קוד QR",
+    "allowCameraForQr": "אפשר גישה למצלמה כדי לסרוק קוד QR"
   },
   "tip": {
     "title": "שלח טיפ",
@@ -3247,7 +3251,9 @@
       "paymentReverted": "התשלום בוטל on-chain — לא נוצרה הזמנה.",
       "purchaseFailed": "הרכישה נכשלה",
       "transactionCancelled": "העסקה בוטלה.",
-      "pickRating": "בחרו קודם דירוג כוכבים."
+      "pickRating": "בחרו קודם דירוג כוכבים.",
+      "confirmTitle": "אשר רכישה",
+      "confirmBody": "תשלמו {{amount}} DHB (בערך {{usd}}) על בסיס, ישירות לארנק המוכר. לא ניתן לבטל פעולה זו."
     },
     "categories": {
       "all": "הכול",

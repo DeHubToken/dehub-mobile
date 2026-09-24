@@ -804,7 +804,11 @@
     "select": "Odaberi",
     "noResults": "Nema rezultata",
     "moreInfo": "Više informacija",
-    "translate": "Prevedi"
+    "translate": "Prevedi",
+    "paste": "Zalijepi",
+    "scanQr": "Skenirajte QR",
+    "scanQrHint": "Usmjerite kameru prema QR kodu adrese novčanika",
+    "allowCameraForQr": "Omogućite pristup kameri za skeniranje QR koda"
   },
   "tip": {
     "title": "Pošalji napojnicu",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Plaćanje je poništeno on-chain — narudžba nije stvorena.",
       "purchaseFailed": "Kupnja nije uspjela",
       "transactionCancelled": "Transakcija otkazana.",
-      "pickRating": "Prvo odaberi ocjenu zvjezdicama."
+      "pickRating": "Prvo odaberi ocjenu zvjezdicama.",
+      "confirmTitle": "Potvrdi narudžbu",
+      "confirmBody": "Platit ćete {{amount}} DHB (oko {{usd}}) na bazi, izravno u novčanik prodavatelja. To se ne može poništiti."
     },
     "categories": {
       "all": "Sve",

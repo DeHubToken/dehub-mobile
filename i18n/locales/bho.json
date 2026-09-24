@@ -804,7 +804,11 @@
     "select": "चुनें",
     "noResults": "कोई परिणाम नहीं",
     "moreInfo": "अधिक जानकारी",
-    "translate": "अनुवाद करें"
+    "translate": "अनुवाद करें",
+    "paste": "पेस्ट करें",
+    "scanQr": "क्यूआर स्कैन करें, क्यूआर स्कैन करें",
+    "scanQrHint": "QR Code में फोटो डालें",
+    "allowCameraForQr": "QR code स्कैन करे पर क्लिक करे"
   },
   "tip": {
     "title": "उपहार भेजीं",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "भुगतान चेन पर वापस पलट गइल — कवनो ऑर्डर ना बनल।",
       "purchaseFailed": "खरीद विफल भइल",
       "transactionCancelled": "लेनदेन रद्द हो गइल।",
-      "pickRating": "पहिले स्टार रेटिंग चुनीं।"
+      "pickRating": "पहिले स्टार रेटिंग चुनीं।",
+      "confirmTitle": "खरीदें कन्फर्म करें",
+      "confirmBody": "रउआ Base पर {{amount}} DHB (लगभग {{usd}}) सीधे बेचे वाला के वॉलेट में भरब। ई वापस ना हो सकेला।"
     },
     "categories": {
       "all": "सभ",

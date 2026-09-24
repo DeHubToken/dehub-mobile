@@ -1,3 +1,4 @@
+import { appLocale } from "../../libs/date.util";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -40,7 +41,7 @@ function formatPrice(p: string | number | null | undefined): string {
   if (!p) return "—";
   const n = typeof p === "string" ? parseFloat(p) : p;
   if (isNaN(n)) return "—";
-  if (n >= 1) return `$${n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  if (n >= 1) return `$${n.toLocaleString(appLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   if (n >= 0.01) return `$${n.toFixed(4)}`;
   if (n >= 0.0001) return `$${n.toFixed(6)}`;
   return `$${n.toFixed(8)}`;

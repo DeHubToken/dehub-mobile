@@ -804,7 +804,11 @@
     "select": "Seç",
     "noResults": "Sonuç yok",
     "moreInfo": "Daha fazla bilgi",
-    "translate": "Çevir"
+    "translate": "Çevir",
+    "paste": "Yapıştır",
+    "scanQr": "QR tara",
+    "scanQrHint": "Kamerayı bir cüzdan adresi QR koduna doğrultun",
+    "allowCameraForQr": "QR kodunu taramak için kamera erişimine izin verin"
   },
   "tip": {
     "title": "Bahşiş Gönder",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Ödeme zincir üzerinde geri alındı — sipariş oluşturulmadı.",
       "purchaseFailed": "Satın alım başarısız oldu",
       "transactionCancelled": "İşlem iptal edildi.",
-      "pickRating": "Önce bir yıldız puanı seçin."
+      "pickRating": "Önce bir yıldız puanı seçin.",
+      "confirmTitle": "Satın almayı onayla",
+      "confirmBody": "Base'de doğrudan satıcının cüzdanına {{amount}} DHB (yaklaşık {{usd}}) ödeyeceksiniz. Bu işlem geri alınamaz."
     },
     "categories": {
       "all": "Tümü",

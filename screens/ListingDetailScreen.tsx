@@ -9,6 +9,7 @@
  * encoded ERC-20 transfer → sendTransaction → waitForTransaction), which is the
  * proven on-chain write path in this app.
  */
+import { appLocale } from "../libs/date.util";
 import React, { useCallback, useMemo, useState } from "react";
 import {
   View,
@@ -20,6 +21,7 @@ import {
   ActivityIndicator,
   useWindowDimensions,
   KeyboardAvoidingView,
+  Alert,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
@@ -37,6 +39,7 @@ import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
 import { toastError } from "../libs/toast";
+import { parseTxError } from "../libs/web3.util";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useERC20Contract, useWeb3Provider } from "../hooks/use-web3";
@@ -60,7 +63,7 @@ const DHB_BASE = DHB_ADDRESSESS[ChainId.BASE_MAINNET];
 
 function money(n: number): string {
   const v = Number(n) || 0;
-  return `$${v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  return `$${v.toLocaleString(appLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
 const shortAddr = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
@@ -148,7 +151,7 @@ export default function ListingDetailScreen() {
   const soldOut = listing?.stock_quantity === 0;
   const { avg, count } = averageRating(reviews.data);
 
-  const handleBuy = useCallback(async () => {
+  const purchase = useCallback(async () => {
     if (!isAuthed) {
       navigation.navigate(ScreenNames.SignIn);
       return;
@@ -215,11 +218,13 @@ export default function ListingDetailScreen() {
       setNotes("");
       void hasPurchased.refetch();
     } catch (err: any) {
-      const msg = String(err?.message || err || t("stores.detail.purchaseFailed"));
+      const msg = String(err?.message || err || "");
       if (msg.includes("user rejected") || msg.includes("cancelled")) {
         toastError(t("stores.detail.transactionCancelled"));
       } else {
-        toastError(msg.slice(0, 120));
+        // Raw ethers text ("cannot estimate gas; transaction may fail…") means
+        // nothing to a buyer; the shared parser turns it into a plain reason.
+        toastError(parseTxError(err, "send") || t("stores.detail.purchaseFailed"));
       }
     } finally {
       setBuying(false);
@@ -240,6 +245,27 @@ export default function ListingDetailScreen() {
     chainId,
     t,
   ]);
+
+  // The DHB transfer is irreversible, so show what is being paid, how much and
+  // on which network before anything is signed.
+  const handleBuy = useCallback(() => {
+    if (!isAuthed) {
+      navigation.navigate(ScreenNames.SignIn);
+      return;
+    }
+    if (!listing || priceDhb <= 0) return;
+    Alert.alert(
+      t("stores.detail.confirmTitle"),
+      `${listing.title}\n\n${t("stores.detail.confirmBody", {
+        amount: priceDhb.toLocaleString(appLocale()),
+        usd: money(priceUsd),
+      })}`,
+      [
+        { text: t("common.cancel"), style: "cancel" },
+        { text: t("common.confirm"), onPress: () => void purchase() },
+      ],
+    );
+  }, [isAuthed, navigation, listing, priceDhb, priceUsd, purchase, t]);
 
   const submitReview = useCallback(() => {
     if (!rating) {
@@ -351,7 +377,7 @@ export default function ListingDetailScreen() {
           <View style={styles.priceRow}>
             <Text style={styles.priceUsd}>{money(priceUsd)}</Text>
             {priceDhb > 0 && (
-              <Text style={styles.priceDhb}>≈ {priceDhb.toLocaleString("en-US")} DHB</Text>
+              <Text style={styles.priceDhb}>≈ {priceDhb.toLocaleString(appLocale())} DHB</Text>
             )}
           </View>
 
@@ -471,7 +497,7 @@ export default function ListingDetailScreen() {
                     <Text style={styles.buyBtnText}>
                       {priceDhb > 0
                         ? t("stores.detail.buyFor", {
-                            amount: priceDhb.toLocaleString("en-US"),
+                            amount: priceDhb.toLocaleString(appLocale()),
                           })
                         : t("stores.detail.loadingPrice")}
                     </Text>

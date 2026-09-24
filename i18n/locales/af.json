@@ -805,7 +805,11 @@
     "select": "Kies",
     "noResults": "Geen resultate nie",
     "moreInfo": "Meer inligting",
-    "translate": "Vertaal"
+    "translate": "Vertaal",
+    "paste": "Plak",
+    "scanQr": "Skandeer QR",
+    "scanQrHint": "Wys die kamera by 'n beursie adres QR-kode",
+    "allowCameraForQr": "Laat kamera toegang toe om 'n QR-kode te skandeer"
   },
   "tip": {
     "title": "Stuur Wenner",
@@ -3276,7 +3280,9 @@
       "paymentReverted": "Betaling is op die ketting teruggerol — geen bestelling is geskep nie.",
       "purchaseFailed": "Aankoop het misluk",
       "transactionCancelled": "Transaksie gekanselleer.",
-      "pickRating": "Kies eers 'n stergradering."
+      "pickRating": "Kies eers 'n stergradering.",
+      "confirmTitle": "Bevestig aankoop",
+      "confirmBody": "Jy sal betaal {{amount}} DHB (oor {{usd}}) op Base, reguit na die verkoper se beursie. Dit kan nie ongedaan gemaak word nie."
     },
     "categories": {
       "all": "Alles",

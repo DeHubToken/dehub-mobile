@@ -804,7 +804,11 @@
     "select": "Интихоб кунед",
     "noResults": "Натиҷаҳо нест",
     "moreInfo": "Маълумоти бештар",
-    "translate": "Тарҷума кунед"
+    "translate": "Тарҷума кунед",
+    "paste": "Гузоштан",
+    "scanQr": "Сканкунии QR",
+    "scanQrHint": "Нишон додани камера дар суроғаи ҳамён QR code",
+    "allowCameraForQr": "Иҷозати дастрасӣ ба камера барои скан кардани рамзи QR"
   },
   "tip": {
     "title": "Маслиҳат фиристед",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Пардохт дар занҷир баргашт — ҳеҷ фармоише сохта нашуд.",
       "purchaseFailed": "Харид ноком шуд",
       "transactionCancelled": "Амалиёт бекор карда шуд.",
-      "pickRating": "Аввал баҳои ситораро интихоб кунед."
+      "pickRating": "Аввал баҳои ситораро интихоб кунед.",
+      "confirmTitle": "Kumpirmahin ang pagbili",
+      "confirmBody": "{{amount}} DHB (about {{usd}}) on Base, right to the seller's wallet. Ин наметавонад барҳам дода шавад."
     },
     "categories": {
       "all": "Ҳама",

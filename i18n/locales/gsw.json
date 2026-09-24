@@ -804,7 +804,11 @@
     "select": "Uswähle",
     "noResults": "Keini Ergebniis",
     "moreInfo": "Meh Info",
-    "translate": "Übersetze"
+    "translate": "Übersetze",
+    "paste": "Iifüege",
+    "scanQr": "QR-Code scanne",
+    "scanQrHint": "Mach d Kamera uf en QR-Code vo de Wallet-Adress",
+    "allowCameraForQr": "Erlaube Kamera-Zugriff zum Scanne vo QR-Code"
   },
   "tip": {
     "title": "Trinkgäld schicke",
@@ -3273,7 +3277,9 @@
       "paymentReverted": "D'Zahlig isch uf de Chetti zruggrollt — kei Bstellig erstellt.",
       "purchaseFailed": "Chauf fehlgschlage",
       "transactionCancelled": "D'Transaktion isch abbroche worde.",
-      "pickRating": "Wähl zerscht e Stärne-Bewärtig."
+      "pickRating": "Wähl zerscht e Stärne-Bewärtig.",
+      "confirmTitle": "Bestätigung vom Chauf",
+      "confirmBody": "Du bezahlsch {{amount}} DHB (ca. {{usd}}) uf Base, direkt uf d Wallet vom Verchäufer. Das chan nöd zrugggnoh werde."
     },
     "categories": {
       "all": "Alli",

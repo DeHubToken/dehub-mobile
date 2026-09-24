@@ -804,7 +804,11 @@
     "select": "Vali",
     "noResults": "Tulemusi pole",
     "moreInfo": "Lisateave",
-    "translate": "Tõlgi"
+    "translate": "Tõlgi",
+    "paste": "Kleebi",
+    "scanQr": "Skanni QR",
+    "scanQrHint": "Suuna kaamera rahakoti aadressile QR-kood",
+    "allowCameraForQr": "Luba juurdepääs kaamerale QR-koodi skannimiseks"
   },
   "tip": {
     "title": "Saada jootraha",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Makse tühistati ahelas — tellimust ei loodud.",
       "purchaseFailed": "Ost ebaõnnestus",
       "transactionCancelled": "Tehing tühistati.",
-      "pickRating": "Vali enne tärnihinnang."
+      "pickRating": "Vali enne tärnihinnang.",
+      "confirmTitle": "Kinnita oma ost",
+      "confirmBody": "Maksad {{amount}} DHB (umbes {{usd}}) baasis, otse müüja rahakotti. Seda ei saa tagasi võtta."
     },
     "categories": {
       "all": "Kõik",

@@ -6,6 +6,7 @@
 // every Solana action failed on "Insufficient SOL for transaction fees" with
 // no route out. Showing the address and its balance is what makes the chain
 // usable at all.
+import { appLocale } from "../../libs/date.util";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -37,7 +38,7 @@ function formatSol(value: number | null): string {
   if (value == null) return "—";
   if (value === 0) return "0";
   if (value < 0.0001) return "<0.0001";
-  return value.toLocaleString("en-US", { maximumFractionDigits: 6 });
+  return value.toLocaleString(appLocale(), { maximumFractionDigits: 6 });
 }
 
 const SolanaTab: React.FC = () => {

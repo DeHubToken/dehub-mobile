@@ -804,7 +804,11 @@
     "select": "Seleziona",
     "noResults": "Nessun risultato",
     "moreInfo": "Maggiori informazioni",
-    "translate": "Traduci"
+    "translate": "Traduci",
+    "paste": "Incolla",
+    "scanQr": "Scansiona QR",
+    "scanQrHint": "Punta la fotocamera su un codice QR dell'indirizzo del portafoglio",
+    "allowCameraForQr": "Consenti l'accesso alla fotocamera per scansionare un codice QR"
   },
   "tip": {
     "title": "Invia mancia",
@@ -3243,7 +3247,9 @@
       "paymentReverted": "Pagamento annullato on-chain: nessun ordine è stato creato.",
       "purchaseFailed": "Acquisto non riuscito",
       "transactionCancelled": "Transazione annullata.",
-      "pickRating": "Scegli prima una valutazione."
+      "pickRating": "Scegli prima una valutazione.",
+      "confirmTitle": "Conferma acquisto",
+      "confirmBody": "Pagherai {{amount}} DHB (circa {{usd}}) su Base, direttamente sul portafoglio del venditore. Questa operazione non può essere annullata."
     },
     "categories": {
       "all": "Tutto",

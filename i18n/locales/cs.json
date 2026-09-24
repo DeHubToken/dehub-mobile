@@ -804,7 +804,11 @@
     "select": "Vybrat",
     "noResults": "Žádné výsledky",
     "moreInfo": "Další informace",
-    "translate": "Přeložit"
+    "translate": "Přeložit",
+    "paste": "Vložit",
+    "scanQr": "Naskenujte QR",
+    "scanQrHint": "Nasměrujte kameru na QR kód adresy peněženky",
+    "allowCameraForQr": "Povolit přístup k fotoaparátu pro naskenování QR kódu"
   },
   "tip": {
     "title": "Poslat spropitné",
@@ -3247,7 +3251,9 @@
       "paymentReverted": "Platba byla on-chain vrácena — objednávka nevznikla.",
       "purchaseFailed": "Nákup selhal",
       "transactionCancelled": "Transakce zrušena.",
-      "pickRating": "Nejdřív vyber hodnocení hvězdičkami."
+      "pickRating": "Nejdřív vyber hodnocení hvězdičkami.",
+      "confirmTitle": "Potvrdit nákup",
+      "confirmBody": "Zaplatíte {{amount}} DHB (asi {{usd}}) na základně, přímo do peněženky prodejce. Tuto akci nelze vrátit zpět."
     },
     "categories": {
       "all": "Vše",
