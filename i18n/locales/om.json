@@ -6587,5 +6587,34 @@
       "violence": "Goolii",
       "scam_or_fraud": "Gowwoomsaa ykn hanna"
     }
+  },
+  "affiliateLanding": {
+    "title": "Fuula affeerraa kee qindeessi",
+    "subtitle": "Fuulli akka kee akka dhagahamu godhi. Daawwattoonni osoo hin makamin barreeffama kana argu.",
+    "headline": "Mata duree",
+    "message": "Ergaa baga nagaan dhuftan",
+    "buttonText": "Barreeffama qabduu ijoo",
+    "destination": "Bakka DeHub",
+    "extraTitle": "Qabduulee dabalataa ({{count}}/{{max}})",
+    "extraHint": "Daawwattoota kallattiin gara kutaa DeHub isaan fedhanitti ergi. Qabduun hundi riferaala kee eega.",
+    "extraLabel": "Barreeffama qabduu",
+    "removeButton": "Qabduu haqi",
+    "addCustom": "Kan mataa",
+    "presets": {
+      "edit": "Gulaali",
+      "create": "Uumi",
+      "build": "Ijaari",
+      "import": "Galchi",
+      "explore": "Qoradhu"
+    },
+    "publish": "Jijjiirama maxxansi",
+    "publishing": "Maxxansaa jira…",
+    "reset": "Deebisi",
+    "preview": "Duraargii kallattii",
+    "published": "Fuulli affeerraa maxxanfameera",
+    "saveFailed": "Fuula affeerraa olkaa'uun hin danda'amne",
+    "clicksTitle": "Cuqaasa bakka irratti",
+    "clicksRow_one": "{{clicks}} cuqaasa · {{unique}} addaa",
+    "clicksRow_other": "{{clicks}} cuqaasota · {{unique}} addaa"
   }
 }

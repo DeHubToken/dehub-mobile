@@ -47,7 +47,11 @@ import {
   loadAffiliateStats,
   saveAffiliateLanding,
   DEFAULT_AFFILIATE_LANDING,
+  AFFILIATE_CTA_PRESETS,
+  MAX_AFFILIATE_LANDING_CTAS,
+  isSafeLandingDestination,
   type AffiliateLandingCustomization,
+  type AffiliateLandingCta,
   type AffiliateStats,
   type AffiliateReferralEntry,
 } from "../libs/affiliate";
@@ -249,6 +253,14 @@ export default function AffiliateScreen() {
     void shareProfile(inviteLink, buildInviteMessage(stats.code, inviteLink));
   }, [stats?.code, inviteLink]);
 
+  const landingCtas = landing.ctas ?? [];
+  const updateCta = (index: number, patch: Partial<AffiliateLandingCta>) =>
+    setLanding((v) => ({ ...v, ctas: (v.ctas ?? []).map((c, i) => (i === index ? { ...c, ...patch } : c)) }));
+  const addCta = (cta: AffiliateLandingCta) =>
+    setLanding((v) => ((v.ctas ?? []).length >= MAX_AFFILIATE_LANDING_CTAS ? v : { ...v, ctas: [...(v.ctas ?? []), cta] }));
+  const removeCta = (index: number) =>
+    setLanding((v) => ({ ...v, ctas: (v.ctas ?? []).filter((_, i) => i !== index) }));
+
   const onSaveLanding = useCallback(async () => {
     if (!wallet || !stats?.code) return;
     setSavingLanding(true);
@@ -432,10 +444,61 @@ export default function AffiliateScreen() {
             style={styles.input}
           />
 
+          <Text style={styles.fieldLabel}>
+            {t("affiliateLanding.extraTitle", { count: landingCtas.length, max: MAX_AFFILIATE_LANDING_CTAS })}
+          </Text>
+          <Text style={styles.cardSub}>{t("affiliateLanding.extraHint")}</Text>
+          {landingCtas.map((cta, i) => (
+            <View key={i} style={styles.ctaRow}>
+              <TextInput
+                value={cta.label}
+                onChangeText={(label) => updateCta(i, { label })}
+                maxLength={32}
+                placeholder={t("affiliateLanding.extraLabel")}
+                placeholderTextColor="#52525B"
+                accessibilityLabel={t("affiliateLanding.extraLabel")}
+                style={[styles.input, styles.ctaInput]}
+              />
+              <TextInput
+                value={cta.destination}
+                onChangeText={(destination) => updateCta(i, { destination })}
+                maxLength={200}
+                autoCapitalize="none"
+                autoCorrect={false}
+                placeholder="/editor"
+                placeholderTextColor="#52525B"
+                accessibilityLabel={t("affiliateLanding.destination")}
+                style={[styles.input, styles.ctaInput]}
+              />
+              <Pressable onPress={() => removeCta(i)} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("affiliateLanding.removeButton")} style={styles.ctaRemove}>
+                <Icon name="X" size={16} color="#A1A1AA" />
+              </Pressable>
+            </View>
+          ))}
+          {landingCtas.length < MAX_AFFILIATE_LANDING_CTAS && (
+            <View style={styles.ctaChips}>
+              {AFFILIATE_CTA_PRESETS.filter((p) => !landingCtas.some((c) => c.destination === p.destination)).map((p) => (
+                <Pressable key={p.key} style={styles.ctaChip} onPress={() => addCta({ label: t(`affiliateLanding.presets.${p.key}`), destination: p.destination })}>
+                  <Text style={styles.ctaChipText}>+ {t(`affiliateLanding.presets.${p.key}`)}</Text>
+                </Pressable>
+              ))}
+              <Pressable style={styles.ctaChip} onPress={() => addCta({ label: "", destination: "/" })}>
+                <Text style={styles.ctaChipText}>+ {t("affiliateLanding.addCustom")}</Text>
+              </Pressable>
+            </View>
+          )}
+
           <View style={styles.preview}>
             <Text style={styles.previewLabel}>{t("affiliate.livePreview")}</Text>
             <Text style={styles.previewHeadline}>{landing.headline || DEFAULT_AFFILIATE_LANDING.headline}</Text>
             <Text style={styles.previewMessage}>{landing.message || DEFAULT_AFFILIATE_LANDING.message}</Text>
+            {landingCtas.length > 0 && (
+              <View style={styles.ctaChips}>
+                {landingCtas.map((c, i) => (
+                  <View key={i} style={styles.ctaChip}><Text style={styles.ctaChipText}>{c.label || "…"}</Text></View>
+                ))}
+              </View>
+            )}
             <View style={styles.previewButton}><Text style={styles.previewButtonText}>{landing.ctaLabel || DEFAULT_AFFILIATE_LANDING.ctaLabel}</Text></View>
           </View>
 
@@ -443,10 +506,22 @@ export default function AffiliateScreen() {
             <Pressable style={styles.secondaryBtn} onPress={() => setLanding(DEFAULT_AFFILIATE_LANDING)}>
               <Text style={styles.secondaryBtnText}>{t("settings.reset")}</Text>
             </Pressable>
-            <Pressable style={styles.primaryBtn} onPress={() => void onSaveLanding()} disabled={savingLanding || !landing.headline.trim() || !landing.message.trim() || !landing.ctaLabel.trim()}>
+            <Pressable style={styles.primaryBtn} onPress={() => void onSaveLanding()} disabled={savingLanding || !landing.headline.trim() || !landing.message.trim() || !landing.ctaLabel.trim() || landingCtas.some((c) => !c.label.trim() || !isSafeLandingDestination(c.destination.trim()))}>
               {savingLanding ? <ActivityIndicator size="small" color="#000000" /> : <Text style={styles.primaryBtnText}>{t("affiliate.publishChanges")}</Text>}
             </Pressable>
           </View>
+
+          {(stats?.ctaClicks?.length ?? 0) > 0 && (
+            <View style={styles.ctaStats}>
+              <Text style={styles.fieldLabel}>{t("affiliateLanding.clicksTitle")}</Text>
+              {(stats?.ctaClicks ?? []).map((c) => (
+                <View key={c.destination} style={styles.ctaStatRow}>
+                  <Text style={styles.ctaStatDest} numberOfLines={1}>{c.destination}</Text>
+                  <Text style={styles.ctaStatCount}>{t("affiliateLanding.clicksRow", { count: c.clicks, clicks: c.clicks, unique: c.uniqueVisitors })}</Text>
+                </View>
+              ))}
+            </View>
+          )}
         </View>
 
         {/* Invite link */}
@@ -751,6 +826,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",
   },
+  ctaRow: { flexDirection: "row", alignItems: "center", gap: 6, marginTop: 8 },
+  ctaInput: { flex: 1 },
+  ctaRemove: { padding: 6 },
+  ctaChips: { flexDirection: "row", flexWrap: "wrap", gap: 6, marginTop: 10, justifyContent: "center" },
+  ctaChip: { borderWidth: 1, borderColor: "rgba(255,255,255,0.15)", borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6 },
+  ctaChipText: { color: "#E4E4E7", fontSize: 12, fontWeight: "600" },
+  ctaStats: { marginTop: 14 },
+  ctaStatRow: { flexDirection: "row", justifyContent: "space-between", gap: 8, paddingVertical: 6, borderTopWidth: 1, borderTopColor: "rgba(255,255,255,0.08)" },
+  ctaStatDest: { flex: 1, color: "#E4E4E7", fontSize: 13 },
+  ctaStatCount: { color: "#A1A1AA", fontSize: 12 },
   secondaryBtnText: { color: "#E4E4E7", fontSize: 13, fontWeight: "600" },
   primaryBtn: {
     flex: 1,

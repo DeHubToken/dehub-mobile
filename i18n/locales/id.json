@@ -6537,5 +6537,34 @@
       "violence": "Kekerasan",
       "scam_or_fraud": "Penipuan atau penipuan"
     }
+  },
+  "affiliateLanding": {
+    "title": "Sesuaikan halaman undanganmu",
+    "subtitle": "Buat halaman terdengar seperti dirimu. Pengunjung melihat teks ini sebelum bergabung.",
+    "headline": "Judul",
+    "message": "Pesan sambutan",
+    "buttonText": "Teks tombol utama",
+    "destination": "Tujuan DeHub",
+    "extraTitle": "Tombol tambahan ({{count}}/{{max}})",
+    "extraHint": "Arahkan pengunjung langsung ke bagian DeHub yang mereka minati. Setiap tombol tetap menyimpan referalmu.",
+    "extraLabel": "Teks tombol",
+    "removeButton": "Hapus tombol",
+    "addCustom": "Kustom",
+    "presets": {
+      "edit": "Edit",
+      "create": "Buat",
+      "build": "Bangun",
+      "import": "Impor",
+      "explore": "Jelajahi"
+    },
+    "publish": "Terbitkan perubahan",
+    "publishing": "Menerbitkan…",
+    "reset": "Atur ulang",
+    "preview": "Pratinjau langsung",
+    "published": "Halaman undangan diterbitkan",
+    "saveFailed": "Tidak dapat menyimpan halaman undangan",
+    "clicksTitle": "Klik per tujuan",
+    "clicksRow_one": "{{clicks}} klik · {{unique}} unik",
+    "clicksRow_other": "{{clicks}} klik · {{unique}} unik"
   }
 }

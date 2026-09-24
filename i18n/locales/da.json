@@ -6541,5 +6541,34 @@
       "violence": "Vold",
       "scam_or_fraud": "Svindel eller svindel"
     }
+  },
+  "affiliateLanding": {
+    "title": "Tilpas din invitationsside",
+    "subtitle": "Få siden til at lyde som dig. Besøgende ser denne tekst, før de tilmelder sig.",
+    "headline": "Overskrift",
+    "message": "Velkomstbesked",
+    "buttonText": "Tekst på hovedknap",
+    "destination": "DeHub-destination",
+    "extraTitle": "Ekstra knapper ({{count}}/{{max}})",
+    "extraHint": "Send besøgende direkte til den del af DeHub, de interesserer sig for. Hver knap bevarer din henvisning.",
+    "extraLabel": "Knaptekst",
+    "removeButton": "Fjern knap",
+    "addCustom": "Tilpasset",
+    "presets": {
+      "edit": "Rediger",
+      "create": "Opret",
+      "build": "Byg",
+      "import": "Importér",
+      "explore": "Udforsk"
+    },
+    "publish": "Udgiv ændringer",
+    "publishing": "Udgiver…",
+    "reset": "Nulstil",
+    "preview": "Live-forhåndsvisning",
+    "published": "Invitationsside udgivet",
+    "saveFailed": "Kunne ikke gemme invitationsside",
+    "clicksTitle": "Klik pr. destination",
+    "clicksRow_one": "{{clicks}} klik · {{unique}} unikke",
+    "clicksRow_other": "{{clicks}} klik · {{unique}} unikke"
   }
 }

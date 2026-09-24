@@ -6537,5 +6537,34 @@
       "violence": "عنف",
       "scam_or_fraud": "احتيال أو خداع"
     }
+  },
+  "affiliateLanding": {
+    "title": "خصّص صفحة الدعوة مالتك",
+    "subtitle": "خلّي الصفحة تشبهك. الزوار يشوفون هالكلام قبل ما ينضمون.",
+    "headline": "العنوان",
+    "message": "رسالة الترحيب",
+    "buttonText": "نص الدگمة الرئيسية",
+    "destination": "الوجهة بـ DeHub",
+    "extraTitle": "دگمات إضافية ({{count}}/{{max}})",
+    "extraHint": "دز الزوار عدل للقسم اللي يهمهم بـ DeHub. كل دگمة تحافظ على الإحالة مالتك.",
+    "extraLabel": "نص الدگمة",
+    "removeButton": "شيل الدگمة",
+    "addCustom": "مخصص",
+    "presets": {
+      "edit": "عدّل",
+      "create": "سوّي",
+      "build": "ابني",
+      "import": "استورد",
+      "explore": "استكشف"
+    },
+    "publish": "انشر التغييرات",
+    "publishing": "دا ينشر…",
+    "reset": "رجّع",
+    "preview": "معاينة مباشرة",
+    "published": "انتشرت صفحة الدعوة",
+    "saveFailed": "ما گدرنا نحفظ صفحة الدعوة",
+    "clicksTitle": "النقرات حسب الوجهة",
+    "clicksRow_one": "{{clicks}} نقرة · {{unique}} مختلفة",
+    "clicksRow_other": "{{clicks}} نقرات · {{unique}} مختلفة"
   }
 }

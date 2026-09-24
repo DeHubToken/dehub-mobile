@@ -6537,5 +6537,34 @@
       "violence": "Smurtas",
       "scam_or_fraud": "Apgaulė arba sukčiavimas"
     }
+  },
+  "affiliateLanding": {
+    "title": "Pritaikyk savo kvietimo puslapį",
+    "subtitle": "Tegul puslapis skamba kaip tu. Lankytojai mato šį tekstą prieš prisijungdami.",
+    "headline": "Antraštė",
+    "message": "Pasveikinimo žinutė",
+    "buttonText": "Pagrindinio mygtuko tekstas",
+    "destination": "DeHub paskirtis",
+    "extraTitle": "Papildomi mygtukai ({{count}}/{{max}})",
+    "extraHint": "Nukreipk lankytojus tiesiai į jiems įdomią DeHub dalį. Kiekvienas mygtukas išsaugo tavo rekomendaciją.",
+    "extraLabel": "Mygtuko tekstas",
+    "removeButton": "Pašalinti mygtuką",
+    "addCustom": "Pasirinktinis",
+    "presets": {
+      "edit": "Redaguoti",
+      "create": "Kurti",
+      "build": "Statyti",
+      "import": "Importuoti",
+      "explore": "Naršyti"
+    },
+    "publish": "Paskelbti pakeitimus",
+    "publishing": "Skelbiama…",
+    "reset": "Atstatyti",
+    "preview": "Tiesioginė peržiūra",
+    "published": "Kvietimo puslapis paskelbtas",
+    "saveFailed": "Nepavyko išsaugoti kvietimo puslapio",
+    "clicksTitle": "Paspaudimai pagal paskirtį",
+    "clicksRow_one": "{{clicks}} paspaudimas · {{unique}} unikalūs",
+    "clicksRow_other": "{{clicks}} paspaudimai · {{unique}} unikalūs"
   }
 }

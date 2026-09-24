@@ -6537,5 +6537,34 @@
       "violence": "暴力",
       "scam_or_fraud": "騙局或者欺詐"
     }
+  },
+  "affiliateLanding": {
+    "title": "自訂你嘅邀請頁面",
+    "subtitle": "等頁面似你。訪客加入之前會睇到呢段文字。",
+    "headline": "標題",
+    "message": "歡迎訊息",
+    "buttonText": "主按鈕文字",
+    "destination": "DeHub 目的地",
+    "extraTitle": "額外按鈕 ({{count}}/{{max}})",
+    "extraHint": "將訪客直接帶去佢哋有興趣嘅 DeHub 部分。每個按鈕都會保留你嘅推薦。",
+    "extraLabel": "按鈕文字",
+    "removeButton": "移除按鈕",
+    "addCustom": "自訂",
+    "presets": {
+      "edit": "編輯",
+      "create": "創作",
+      "build": "建構",
+      "import": "匯入",
+      "explore": "探索"
+    },
+    "publish": "發佈更改",
+    "publishing": "發佈緊…",
+    "reset": "重設",
+    "preview": "即時預覽",
+    "published": "邀請頁面已發佈",
+    "saveFailed": "儲存唔到邀請頁面",
+    "clicksTitle": "按目的地統計點擊",
+    "clicksRow_one": "{{clicks}} 次點擊 · {{unique}} 獨立",
+    "clicksRow_other": "{{clicks}} 次點擊 · {{unique}} 獨立"
   }
 }

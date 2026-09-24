@@ -6537,5 +6537,34 @@
       "violence": "Gewalt",
       "scam_or_fraud": "Betrug oder Betrug"
     }
+  },
+  "affiliateLanding": {
+    "title": "Passe deine Einladungsseite an",
+    "subtitle": "Lass die Seite nach dir klingen. Besucher sehen diesen Text, bevor sie beitreten.",
+    "headline": "Überschrift",
+    "message": "Willkommensnachricht",
+    "buttonText": "Text des Haupt-Buttons",
+    "destination": "DeHub-Ziel",
+    "extraTitle": "Zusätzliche Buttons ({{count}}/{{max}})",
+    "extraHint": "Schicke Besucher direkt zu dem Teil von DeHub, der sie interessiert. Jeder Button behält deine Empfehlung.",
+    "extraLabel": "Button-Text",
+    "removeButton": "Button entfernen",
+    "addCustom": "Eigene",
+    "presets": {
+      "edit": "Bearbeiten",
+      "create": "Erstellen",
+      "build": "Bauen",
+      "import": "Importieren",
+      "explore": "Entdecken"
+    },
+    "publish": "Änderungen veröffentlichen",
+    "publishing": "Wird veröffentlicht…",
+    "reset": "Zurücksetzen",
+    "preview": "Live-Vorschau",
+    "published": "Einladungsseite veröffentlicht",
+    "saveFailed": "Einladungsseite konnte nicht gespeichert werden",
+    "clicksTitle": "Klicks nach Ziel",
+    "clicksRow_one": "{{clicks}} Klick · {{unique}} eindeutig",
+    "clicksRow_other": "{{clicks}} Klicks · {{unique}} eindeutig"
   }
 }

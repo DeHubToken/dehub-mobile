@@ -6537,5 +6537,34 @@
       "violence": "Vardarbība",
       "scam_or_fraud": "Krāpšana vai krāpšana"
     }
+  },
+  "affiliateLanding": {
+    "title": "Pielāgo savu uzaicinājuma lapu",
+    "subtitle": "Lai lapa izklausās pēc tevis. Apmeklētāji redz šo tekstu pirms pievienošanās.",
+    "headline": "Virsraksts",
+    "message": "Sveiciena ziņa",
+    "buttonText": "Galvenās pogas teksts",
+    "destination": "DeHub galamērķis",
+    "extraTitle": "Papildu pogas ({{count}}/{{max}})",
+    "extraHint": "Novirzi apmeklētājus tieši uz to DeHub daļu, kas viņus interesē. Katra poga saglabā tavu ieteikumu.",
+    "extraLabel": "Pogas teksts",
+    "removeButton": "Noņemt pogu",
+    "addCustom": "Pielāgots",
+    "presets": {
+      "edit": "Rediģēt",
+      "create": "Izveidot",
+      "build": "Būvēt",
+      "import": "Importēt",
+      "explore": "Izpētīt"
+    },
+    "publish": "Publicēt izmaiņas",
+    "publishing": "Publicē…",
+    "reset": "Atiestatīt",
+    "preview": "Tiešraides priekšskatījums",
+    "published": "Uzaicinājuma lapa publicēta",
+    "saveFailed": "Neizdevās saglabāt uzaicinājuma lapu",
+    "clicksTitle": "Klikšķi pēc galamērķa",
+    "clicksRow_one": "{{clicks}} klikšķis · {{unique}} unikāli",
+    "clicksRow_other": "{{clicks}} klikšķi · {{unique}} unikāli"
   }
 }

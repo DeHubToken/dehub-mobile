@@ -6625,5 +6625,34 @@
       "scam_or_fraud": "Lừa đảo hoặc gian lận"
     },
     "whyName": "Tại sao bạn báo cáo {{name}}?"
+  },
+  "affiliateLanding": {
+    "title": "Tùy chỉnh trang mời của bạn",
+    "subtitle": "Làm cho trang mang giọng của bạn. Khách truy cập thấy nội dung này trước khi tham gia.",
+    "headline": "Tiêu đề",
+    "message": "Lời chào mừng",
+    "buttonText": "Chữ trên nút chính",
+    "destination": "Điểm đến trên DeHub",
+    "extraTitle": "Nút bổ sung ({{count}}/{{max}})",
+    "extraHint": "Đưa khách truy cập thẳng đến phần DeHub họ quan tâm. Mọi nút đều giữ lượt giới thiệu của bạn.",
+    "extraLabel": "Chữ trên nút",
+    "removeButton": "Xóa nút",
+    "addCustom": "Tùy chỉnh",
+    "presets": {
+      "edit": "Chỉnh sửa",
+      "create": "Tạo",
+      "build": "Xây dựng",
+      "import": "Nhập",
+      "explore": "Khám phá"
+    },
+    "publish": "Xuất bản thay đổi",
+    "publishing": "Đang xuất bản…",
+    "reset": "Đặt lại",
+    "preview": "Xem trước trực tiếp",
+    "published": "Đã xuất bản trang mời",
+    "saveFailed": "Không thể lưu trang mời",
+    "clicksTitle": "Lượt nhấp theo điểm đến",
+    "clicksRow_one": "{{clicks}} lượt nhấp · {{unique}} duy nhất",
+    "clicksRow_other": "{{clicks}} lượt nhấp · {{unique}} duy nhất"
   }
 }

@@ -6537,5 +6537,34 @@
       "violence": "暴力",
       "scam_or_fraud": "诈骗或欺诈"
     }
+  },
+  "affiliateLanding": {
+    "title": "定制侬个邀请页面",
+    "subtitle": "让页面像侬自家。访客加入之前会看到迭段文字。",
+    "headline": "标题",
+    "message": "欢迎语",
+    "buttonText": "主按钮文字",
+    "destination": "DeHub 目的地",
+    "extraTitle": "额外按钮 ({{count}}/{{max}})",
+    "extraHint": "拿访客直接带到伊拉感兴趣个 DeHub 板块。每只按钮侪会保留侬个推荐。",
+    "extraLabel": "按钮文字",
+    "removeButton": "移脱按钮",
+    "addCustom": "自定义",
+    "presets": {
+      "edit": "编辑",
+      "create": "创作",
+      "build": "构建",
+      "import": "导入",
+      "explore": "探索"
+    },
+    "publish": "发布更改",
+    "publishing": "发布当中…",
+    "reset": "重置",
+    "preview": "实时预览",
+    "published": "邀请页面已经发布",
+    "saveFailed": "邀请页面保存勿了",
+    "clicksTitle": "按目的地统计点击",
+    "clicksRow_one": "{{clicks}} 趟点击 · {{unique}} 独立",
+    "clicksRow_other": "{{clicks}} 趟点击 · {{unique}} 独立"
   }
 }

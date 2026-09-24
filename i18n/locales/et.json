@@ -6537,5 +6537,34 @@
       "violence": "Vägivald",
       "scam_or_fraud": "Pettus või pettus"
     }
+  },
+  "affiliateLanding": {
+    "title": "Kohanda oma kutselehte",
+    "subtitle": "Pane leht kõlama nagu sina. Külastajad näevad seda teksti enne liitumist.",
+    "headline": "Pealkiri",
+    "message": "Tervitussõnum",
+    "buttonText": "Põhinupu tekst",
+    "destination": "DeHubi sihtkoht",
+    "extraTitle": "Lisanupud ({{count}}/{{max}})",
+    "extraHint": "Suuna külastajad otse DeHubi ossa, mis neid huvitab. Iga nupp säilitab sinu soovituse.",
+    "extraLabel": "Nupu tekst",
+    "removeButton": "Eemalda nupp",
+    "addCustom": "Kohandatud",
+    "presets": {
+      "edit": "Muuda",
+      "create": "Loo",
+      "build": "Ehita",
+      "import": "Impordi",
+      "explore": "Avasta"
+    },
+    "publish": "Avalda muudatused",
+    "publishing": "Avaldamine…",
+    "reset": "Lähtesta",
+    "preview": "Reaalajas eelvaade",
+    "published": "Kutseleht avaldatud",
+    "saveFailed": "Kutselehte ei saanud salvestada",
+    "clicksTitle": "Klikid sihtkoha järgi",
+    "clicksRow_one": "{{clicks}} klikk · {{unique}} unikaalset",
+    "clicksRow_other": "{{clicks}} klikki · {{unique}} unikaalset"
   }
 }

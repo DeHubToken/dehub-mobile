@@ -21,14 +21,47 @@ export type AffiliateLandingCustomization = {
   message: string;
   ctaLabel: string;
   destination: string;
+  /** Extra destinations shown next to the primary button on the web invite page (0 to 5). */
+  ctas: AffiliateLandingCta[];
 };
+
+export type AffiliateLandingCta = { label: string; destination: string };
+
+export const MAX_AFFILIATE_LANDING_CTAS = 5;
+
+/** Ready-made DeHub destinations an affiliate can add in one tap (mirrors web). */
+export const AFFILIATE_CTA_PRESETS: Array<AffiliateLandingCta & { key: string }> = [
+  { key: "edit", label: "Edit", destination: "/editor" },
+  { key: "create", label: "Create", destination: "/creator" },
+  { key: "build", label: "Build", destination: "/builder" },
+  { key: "import", label: "Import", destination: "/converter" },
+  { key: "explore", label: "Explore", destination: "/app" },
+];
+
+export const isSafeLandingDestination = (d: string) =>
+  d.startsWith("/") && !d.startsWith("//") && !d.includes("\\") && !/^\/r\//i.test(d);
+
+/** Normalise whatever is stored in `landing_ctas` into a clean, capped list. */
+export function parseLandingCtas(raw: unknown): AffiliateLandingCta[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .map((c) => ({
+      label: String((c as AffiliateLandingCta)?.label ?? "").trim().slice(0, 32),
+      destination: String((c as AffiliateLandingCta)?.destination ?? "").trim().slice(0, 200),
+    }))
+    .filter((c) => c.label && isSafeLandingDestination(c.destination))
+    .slice(0, MAX_AFFILIATE_LANDING_CTAS);
+}
 
 export const DEFAULT_AFFILIATE_LANDING: AffiliateLandingCustomization = {
   headline: "Join me on DeHub",
   message: "Create, share and earn on a platform built for creators and their communities.",
   ctaLabel: "Join me on DeHub",
   destination: "/app",
+  ctas: [],
 };
+
+export type AffiliateCtaClickStat = { destination: string; clicks: number; uniqueVisitors: number };
 
 const randomCode = (len = 8) => {
   const alphabet = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
@@ -151,6 +184,7 @@ export type AffiliateStats = {
   totalViews: number;
   uniqueVisitors: number;
   views30d: number;
+  ctaClicks: AffiliateCtaClickStat[];
   landing: AffiliateLandingCustomization;
 };
 
@@ -179,7 +213,7 @@ export async function loadAffiliateStats(
   // All four queries only depend on the address — run them in parallel.
   // The referral queries select the rows with an exact count, so a single
   // round-trip yields both the "who" list and the counter total.
-  const [codeRes, refRes, l2RefRes, earnRes, viewRes] = await Promise.all([
+  const [codeRes, refRes, l2RefRes, earnRes, viewRes, ctaRes] = await Promise.all([
     getOrCreateAffiliateCode(addr, shareName),
     // @ts-ignore - affiliate_referrals not in generated Database types
     supabase
@@ -207,6 +241,11 @@ export async function loadAffiliateStats(
       supabase.rpc("get_affiliate_page_stats" as never),
       addr,
     ) as unknown as Promise<{ data: Array<{ total_views: number; unique_visitors: number; views_30d: number }> | null }>,
+    withWalletHeader(
+      // @ts-ignore - RPC introduced with multi-destination landing pages
+      supabase.rpc("get_affiliate_cta_stats" as never),
+      addr,
+    ) as unknown as Promise<{ data: Array<{ destination: string; clicks: number; unique_visitors: number }> | null }>,
   ]);
 
   const l1List = mapReferralRows(refRes.data);
@@ -219,9 +258,9 @@ export async function loadAffiliateStats(
   // @ts-ignore - customization columns are introduced by the shared migration
   const { data: landingRow } = code ? await supabase
     .from("affiliate_codes" as never)
-    .select("landing_headline,landing_message,landing_cta_label,landing_destination")
+    .select("landing_headline,landing_message,landing_cta_label,landing_destination,landing_ctas")
     .eq("code", code)
-    .maybeSingle() as unknown as { data: { landing_headline: string | null; landing_message: string | null; landing_cta_label: string | null; landing_destination: string | null } | null } : { data: null };
+    .maybeSingle() as unknown as { data: { landing_headline: string | null; landing_message: string | null; landing_cta_label: string | null; landing_destination: string | null; landing_ctas: unknown } | null } : { data: null };
   const view = viewRes.data?.[0];
 
   return {
@@ -240,11 +279,17 @@ export async function loadAffiliateStats(
     totalViews: Number(view?.total_views ?? 0),
     uniqueVisitors: Number(view?.unique_visitors ?? 0),
     views30d: Number(view?.views_30d ?? 0),
+    ctaClicks: (ctaRes?.data ?? []).map((r) => ({
+      destination: r.destination,
+      clicks: Number(r.clicks ?? 0),
+      uniqueVisitors: Number(r.unique_visitors ?? 0),
+    })),
     landing: {
       headline: landingRow?.landing_headline || DEFAULT_AFFILIATE_LANDING.headline,
       message: landingRow?.landing_message || DEFAULT_AFFILIATE_LANDING.message,
       ctaLabel: landingRow?.landing_cta_label || DEFAULT_AFFILIATE_LANDING.ctaLabel,
       destination: landingRow?.landing_destination || DEFAULT_AFFILIATE_LANDING.destination,
+      ctas: parseLandingCtas(landingRow?.landing_ctas),
     },
   };
 }
@@ -256,8 +301,12 @@ export async function saveAffiliateLanding(
 ): Promise<void> {
   const addr = ownerAddress.toLowerCase();
   const destination = value.destination.trim();
-  if (!destination.startsWith("/") || destination.startsWith("//") || destination.startsWith("/r/")) {
+  if (!isSafeLandingDestination(destination)) {
     throw new Error("Choose a DeHub destination beginning with /");
+  }
+  const ctas = (value.ctas ?? []).map((c) => ({ label: c.label.trim(), destination: c.destination.trim() }));
+  if (ctas.some((c) => !c.label || !isSafeLandingDestination(c.destination))) {
+    throw new Error("Every extra button needs text and a DeHub destination beginning with /");
   }
   const { error } = await withWalletHeader(
     // @ts-ignore - customization columns are introduced by the shared migration
@@ -266,6 +315,7 @@ export async function saveAffiliateLanding(
       landing_message: value.message.trim().slice(0, 280) || null,
       landing_cta_label: value.ctaLabel.trim().slice(0, 32) || null,
       landing_destination: destination.slice(0, 200),
+      landing_ctas: parseLandingCtas(ctas),
     } as never).eq("code", code).ilike("owner_address", addr),
     addr,
   ) as unknown as { error: { message?: string } | null };
