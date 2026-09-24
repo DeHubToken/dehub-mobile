@@ -28,6 +28,7 @@ import {
   setVolume as persistVolume,
 } from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
+import { useAppTheme } from "../../context/ThemeContext";
 import Spinner from "../common/Spinner";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
@@ -435,6 +436,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
   // extracted from the video itself; 16:9 until that resolves.
   const mediaAspect = useMediaAspect(thumbnail);
+  const { isMinimal } = useAppTheme();
 
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -998,10 +1000,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           aspectRatio: mediaAspect,
           // Fills the card when the clip is wide enough; a portrait clip caps
           // at MAX_MEDIA_HEIGHT and shrinks its own width, hugged to the left.
-          width: Math.min(CARD_WIDTH, Math.round(MAX_MEDIA_HEIGHT * mediaAspect)),
+          width: Math.min(isMinimal ? SCREEN_WIDTH : CARD_WIDTH, Math.round(MAX_MEDIA_HEIGHT * mediaAspect)),
           maxWidth: "100%",
-          alignSelf: "flex-start",
+          alignSelf: isMinimal ? "center" : "flex-start",
         },
+        isMinimal && MINIMAL_MEDIA,
       ]}
     >
       {thumbnail ? (
@@ -1101,7 +1104,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           accessibilityLabel="Watch2Earn bounty details"
           onPress={onBountyPress}
           activeOpacity={0.75}
-          style={styles.bountyPill}
+          style={[styles.bountyPill, isMinimal && { left: MINIMAL_EDGE }]}
         >
           <Image
             source={require("../../assets/web-icons/dehub-coin.png")}
@@ -1161,7 +1164,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 </View>
               </Pressable>
             )}
-            <View style={styles.topControls}>
+            <View style={[styles.topControls, isMinimal && { paddingHorizontal: MINIMAL_EDGE }]}>
               <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
                 <View style={styles.glassOverlay} />
                 <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
@@ -1199,7 +1202,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               </Pressable>
             </View>
 
-            <View style={styles.bottomControls}>
+            <View style={[styles.bottomControls, isMinimal && { paddingHorizontal: MINIMAL_EDGE }]}>
               <View style={styles.progressRow}>
                 <View style={styles.timePill}>
                   <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
@@ -1323,13 +1326,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       )}
 
       {!hideControls && !isContentGated && duration && !isPlaying && (
-        <View style={styles.durationBadge}>
+        <View style={[styles.durationBadge, isMinimal && { right: MINIMAL_EDGE }]}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>
       )}
 
       {!hideControls && isContentGated && duration && (
-        <View style={styles.durationBadge}>
+        <View style={[styles.durationBadge, isMinimal && { right: MINIMAL_EDGE }]}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>
       )}
@@ -1340,6 +1343,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 // Player chips sit on top of the video: opaque, or the frame behind them
 // reads through the icons. expo-blur does not blur on Android at all.
 const CONTROL_FILL = "#1D1F21";
+
+// Minimal theme: edge to edge, square, on the page's own black.
+const MINIMAL_MEDIA = { borderRadius: 0, backgroundColor: "#000" } as const;
+// Edge-to-edge media puts its controls on the screen edge, where Android's
+// back gesture lives. Web pushes them in the same way (index.css, minimal).
+const MINIMAL_EDGE = 16;
 
 const styles = StyleSheet.create({
   container: {
@@ -1638,6 +1647,7 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
 const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "thumbnail" | "duration" | "hideControls" | "onPress">> = memo(
   ({ thumbnail, duration, hideControls, onPress }) => {
     const mediaAspect = useMediaAspect(thumbnail);
+    const { isMinimal } = useAppTheme();
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
       <View
@@ -1645,10 +1655,11 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "thumbnail" | "durati
           styles.container,
           {
             aspectRatio: mediaAspect,
-            width: Math.min(CARD_WIDTH, Math.round(MAX_MEDIA_HEIGHT * mediaAspect)),
+            width: Math.min(isMinimal ? SCREEN_WIDTH : CARD_WIDTH, Math.round(MAX_MEDIA_HEIGHT * mediaAspect)),
             maxWidth: "100%",
-            alignSelf: "flex-start",
+            alignSelf: isMinimal ? "center" : "flex-start",
           },
+          isMinimal && MINIMAL_MEDIA,
         ]}
       >
         {thumbnail ? (
@@ -1675,7 +1686,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "thumbnail" | "durati
           </Pressable>
         )}
         {!hideControls && duration ? (
-          <View style={styles.durationBadge}>
+          <View style={[styles.durationBadge, isMinimal && { right: MINIMAL_EDGE }]}>
             <Text style={styles.durationText}>{duration}</Text>
           </View>
         ) : null}

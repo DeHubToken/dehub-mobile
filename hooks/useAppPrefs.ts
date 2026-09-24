@@ -15,6 +15,7 @@
  */
 import { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { AppThemeName } from '../theme/colors';
 
 /** Web key names — see dehubweb src/contexts/*.tsx and src/hooks/use-buy-bot-hidden.ts. */
 const KEYS = {
@@ -49,7 +50,7 @@ const KEYS = {
 export type AppPrefKey = keyof typeof KEYS;
 
 export interface AppPrefs {
-  theme: 'system';
+  theme: AppThemeName;
   autoplay: boolean;
   animations: boolean;
   shorts: boolean;
@@ -128,7 +129,7 @@ function init() {
         AsyncStorage.setItem(KEYS.theme, 'system').catch(() => { /* best effort migration */ });
       }
       cache = {
-        theme: 'system',
+        theme: get('theme') === 'minimal' ? 'minimal' : 'system',
         autoplay: parseBool(get('autoplay'), DEFAULT_APP_PREFS.autoplay),
         animations: parseBool(get('animations'), DEFAULT_APP_PREFS.animations),
         shorts: parseBool(get('shorts'), DEFAULT_APP_PREFS.shorts),

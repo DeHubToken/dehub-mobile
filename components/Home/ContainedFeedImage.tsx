@@ -3,6 +3,7 @@ import { View, type LayoutChangeEvent } from "react-native";
 import { FEED_BENTO_RADIUS, fitFeedImageWithin } from "../../libs/feed-image-layout";
 import { useImageAspect } from "../../hooks/useImageAspect";
 import SmartImage from "../common/SmartImage";
+import { useAppTheme } from "../../context/ThemeContext";
 
 interface ContainedFeedImageProps {
   uri: string;
@@ -23,6 +24,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   priority,
 }) => {
   const { ratio: aspectRatio, onLoad } = useImageAspect(uri);
+  const { isMinimal } = useAppTheme();
   const [measuredWidth, setMeasuredWidth] = useState(fallbackWidth);
   const availableWidth = width ?? measuredWidth;
   const dimensions = useMemo(
@@ -44,7 +46,9 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
       style={{
         width: compact ? dimensions.width : (width ?? "100%"),
         height: dimensions.height,
-        alignItems: "flex-start",
+        // Minimal runs the column edge to edge, so a portrait image that stops
+        // short of the width sits centred rather than hugging one side.
+        alignItems: isMinimal && !compact ? "center" : "flex-start",
       }}
     >
       {/* Android does not consistently clip expo-image's native surface when
@@ -55,7 +59,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         style={{
           width: dimensions.width,
           height: dimensions.height,
-          borderRadius: FEED_BENTO_RADIUS,
+          borderRadius: isMinimal ? 0 : FEED_BENTO_RADIUS,
           overflow: "hidden",
         }}
       >

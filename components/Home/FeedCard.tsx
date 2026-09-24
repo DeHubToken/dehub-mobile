@@ -35,6 +35,8 @@ import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
+import { useAppTheme } from "../../context/ThemeContext";
+import { MINIMAL_HAIRLINE } from "../../theme/colors";
 import MarkdownText from "../ui/MarkdownText";
 import ContainedFeedImage from "./ContainedFeedImage";
 import PostTapSurface from "./PostTapSurface";
@@ -142,6 +144,14 @@ const SINGLE_IMAGE_WIDTH = SCREEN_WIDTH - 42;
 // 96px-wide image reads exactly like 20px of blur on the full one.
 const LOCKED_PREVIEW_WIDTH = 32;
 
+
+// Minimal theme text inset from the screen edge — the common 16pt mobile
+// gutter. Media bleeds back out by exactly this much to reach both edges.
+const MINIMAL_TEXT_INSET = 16;
+// The side padding every feed list gives its cards. A minimal card steps out
+// over it; measured per card (handleMinimalLayout) because not every list
+// that renders a FeedCard pads the same, this is only the first guess.
+const DEFAULT_LIST_GUTTER = 8;
 
 type PostContentType = "image" | "video" | "audio" | "live" | "short";
 
@@ -291,6 +301,18 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isOwnerPost = !!(item as any).isOwner || (
     userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
   );
+
+  const { isMinimal } = useAppTheme();
+  // How far this card has to step out to span the screen. Worked out from the
+  // width the list actually gives it, so a list with other padding still
+  // lands edge to edge. The applied margin is added back before comparing, or
+  // the measurement would chase its own correction.
+  const [minimalGutter, setMinimalGutter] = useState(DEFAULT_LIST_GUTTER);
+  const handleMinimalLayout = useCallback((e: LayoutChangeEvent) => {
+    const listWidth = e.nativeEvent.layout.width - 2 * minimalGutter;
+    const next = Math.max(0, Math.round((SCREEN_WIDTH - listWidth) / 2));
+    if (Math.abs(next - minimalGutter) > 1) setMinimalGutter(next);
+  }, [minimalGutter]);
 
   const [replacementImages, setReplacementImages] = useState<{ tokenId: string; imageUrls: string[] } | null>(null);
   // Only the owner can replace a post's images, so only the owner's own card
@@ -1247,8 +1269,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         >
           <ContainedFeedImage
             uri={galleryImages[0]}
-            width={SINGLE_IMAGE_WIDTH}
-            fallbackWidth={SINGLE_IMAGE_WIDTH}
+            width={isMinimal ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
+            fallbackWidth={isMinimal ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
             priority={prioritizeMedia ? "high" : "normal"}
           />
         </PostTapSurface>
@@ -1446,19 +1468,26 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     </Pressable>
   );
 
+  // Minimal: media runs edge to edge while the text keeps its inset. Only the
+  // picture bleeds — an audio post's player stays in the column with the text.
+  const bleed = (node: React.ReactNode) =>
+    isMinimal && node ? (
+      <View style={{ marginHorizontal: -MINIMAL_TEXT_INSET }}>{node}</View>
+    ) : node;
+
   const renderContent = () => {
     switch (contentType) {
       case "live":
-        return renderLiveThumbnail();
+        return bleed(renderLiveThumbnail());
       // Shorts render identically to normal videos in the feed — same player
       // with full controls, no special "short" badge — to match the web app.
       case "short":
       case "video":
-        return renderVideoThumbnail();
+        return bleed(renderVideoThumbnail());
       case "audio":
         return (
           <>
-            {renderImageContent()}
+            {bleed(renderImageContent())}
             {tokenId != null && (
               <AudioPostPlayer
                 audioUrl={getAudioUrl(item.audioUrl!)}
@@ -1485,7 +1514,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         );
       case "image":
       default:
-        return renderImageContent();
+        return bleed(renderImageContent());
     }
   };
 
@@ -1511,7 +1540,20 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // and one 12pt inset on every edge. Keeping the action row's bottom
       // inset equal to its side inset makes the controls sit squarely in the
       // bento instead of looking dropped toward its lower edge.
-      style={{
+      //
+      // Minimal (web `html[data-theme="minimal"] [data-feed-item]`): no bento
+      // at all. The card steps out over the list's side padding to span the
+      // screen, posts are split by one full-width hairline, and media bleeds
+      // past the text inset to both edges.
+      onLayout={isMinimal ? handleMinimalLayout : undefined}
+      style={isMinimal ? {
+        marginHorizontal: -minimalGutter,
+        paddingTop: 14,
+        paddingHorizontal: MINIMAL_TEXT_INSET,
+        paddingBottom: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: MINIMAL_HAIRLINE,
+      } : {
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.12)',
         backgroundColor: 'rgba(255,255,255,0.03)',

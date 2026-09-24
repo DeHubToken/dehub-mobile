@@ -31,6 +31,19 @@
     --color-theme-accent: 244 244 245;
     --color-theme-accent-foreground: 9 9 11;
     --color-theme-accent-secondary: 161 161 170;
+
+    /* Corner radii behind every rounded-* class (tailwind.config.js). The
+       minimal theme zeroes them from the root view (MINIMAL_ROOT_VARS).
+       xl/2xl/3xl and the bare step are Tailwind's rem values against
+       NativeWind's 14px root, i.e. exactly what they compiled to before. */
+    --radius-sm: 4px;
+    --radius: 3.5px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 10.5px;
+    --radius-2xl: 14px;
+    --radius-3xl: 21px;
+    --radius-full: 9999px;
   }
 
   .light:root {
