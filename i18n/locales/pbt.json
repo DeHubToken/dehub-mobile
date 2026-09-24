@@ -3601,7 +3601,11 @@
     "total": "ټول",
     "pricing": "بیه محاسبه کیږي…",
     "payWithDhb": "په DHB تادیه وکړئ",
-    "yourDhb": "ستاسو DHB"
+    "yourDhb": "ستاسو DHB",
+    "generateFree_one": "وړیا جوړ کړئ · {{count}} پاتې",
+    "generateFree_other": "وړیا جوړ کړئ · {{count}} پاتې",
+    "freeImagesLeft_one": "تاسو {{count}} وړیا انځور لرئ. تادیې ته اړتیا نشته.",
+    "freeImagesLeft_other": "تاسو {{count}} وړیا انځورونه لرئ. تادیې ته اړتیا نشته."
   },
   "digest": {
     "someone": "څوک په",

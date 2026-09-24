@@ -3605,7 +3605,11 @@
     "total": "Celkem",
     "pricing": "Počítám cenu…",
     "payWithDhb": "Zaplatit v DHB",
-    "yourDhb": "Váš DHB"
+    "yourDhb": "Váš DHB",
+    "generateFree_one": "Vygenerovat zdarma · {{count}} zbývá",
+    "generateFree_other": "Vygenerovat zdarma · {{count}} zbývá",
+    "freeImagesLeft_one": "Zbývá vám {{count}} volný obrázek. Není nutná žádná platba.",
+    "freeImagesLeft_other": "Zbývají vám {{count}} volné obrázky. Není nutná žádná platba."
   },
   "digest": {
     "andOthers_one": "{{names}} a {{count}} další",

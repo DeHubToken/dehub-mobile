@@ -41,7 +41,7 @@ import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-g
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon, { type IconName } from '../ui/Icon';
-import { useJobQuote, useJobPayment } from '../../hooks/useAiPayment';
+import { useJobQuote, useJobPayment, useFreeImages } from '../../hooks/useAiPayment';
 import { formatDhb, indicativeDhb, withMarkup } from '../../config/ai-models.constants';
 import type { AiJobKind } from '../../services/ai.service';
 import { ScreenNames } from '../../navigation/ScreenNames';
@@ -81,6 +81,12 @@ export interface CreditPaywallSheetProps {
   onClose: () => void;
   /** Receives the hash of the transfer that paid for this run. */
   onConfirm: (txHash: string) => void;
+  /**
+   * Run on a free starter image instead of paying. Only image paywalls pass
+   * it; the sheet offers it when the selected model is one the free images
+   * cover and some are left.
+   */
+  onConfirmFree?: () => void;
 }
 
 const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
@@ -98,6 +104,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   isBusy = false,
   onClose,
   onConfirm,
+  onConfirmFree,
 }) => {
   const insets = useSafeAreaInsets();
   const { height: screenHeight } = useWindowDimensions();
@@ -116,6 +123,9 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
     () => models.find((m) => m.id === selectedModelId) || models[0],
     [models, selectedModelId],
   );
+  const freeImages = useFreeImages(visible && !!onConfirmFree && quoteKind === 'image');
+  const freeAvailable =
+    !!onConfirmFree && quantity === 1 && !!model && freeImages.remaining > 0 && freeImages.models.includes(model.id);
 
   const { priceDhb, isLoading: isQuoting, error: quoteError } = useJobQuote(
     model
@@ -240,13 +250,16 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
 
   if (isFullyClosed && !visible) return null;
 
-  const confirmDisabled =
-    isQuoting || isWalletLoading || isBusy || isPaying || priceDhb <= 0 || !model;
+  const confirmDisabled = freeAvailable
+    ? isBusy || !model
+    : isQuoting || isWalletLoading || isBusy || isPaying || priceDhb <= 0 || !model;
 
   const buttonLabel = isPaying
     ? t('paywall.paying')
     : isBusy
       ? t('paywall.generating')
+      : freeAvailable
+        ? t('paywall.generateFree', { count: freeImages.remaining })
       : needsTokens
         ? t('paywall.buyDhb')
         : t('paywall.payAmount', { amount: formatDhb(priceDhb), action: confirmLabel });
@@ -399,6 +412,10 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
 
             {!!footnote && <Text style={s.footnote}>{footnote}</Text>}
 
+            {freeAvailable && (
+              <Text style={s.footnote}>{t('paywall.freeImagesLeft', { count: freeImages.remaining })}</Text>
+            )}
+
             {!!unsupportedChain && !isQuoting && (
               <View style={s.warnBanner}>
                 <Text style={s.warnText}>{unsupportedChain}</Text>
@@ -424,14 +441,15 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
               <Text style={s.cancelBtnText}>{t('common.cancel')}</Text>
             </TouchableOpacity>
             {/* The App Store build can price a run but not sell it (3.1.1). */}
-            {!DIGITAL_PURCHASES_ENABLED ? (
+            {/* A free image is not a purchase, so it stays available where selling is off. */}
+            {!DIGITAL_PURCHASES_ENABLED && !freeAvailable ? (
               <View style={[s.confirmBtn, s.confirmBtnDisabled]}>
                 <Text style={s.confirmBtnText}>{t('storefront.unavailable')}</Text>
               </View>
             ) : (
             <TouchableOpacity
               style={[s.confirmBtn, confirmDisabled && s.confirmBtnDisabled]}
-              onPress={handleConfirm}
+              onPress={freeAvailable ? onConfirmFree : handleConfirm}
               disabled={confirmDisabled}
               activeOpacity={0.8}
             >

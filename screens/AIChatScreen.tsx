@@ -474,6 +474,8 @@ function AIChatScreenInner() {
         bannerFormat?: 'landscape' | 'square' | 'portrait';
         /** Hash of the DHB transfer that paid for this job. Absent when free. */
         txHash?: string;
+        /** Spend a free starter image; only sent when there is no hash. */
+        useFree?: boolean;
       },
     ) => {
       setIsLoading(true);
@@ -492,6 +494,7 @@ function AIChatScreenInner() {
             bannerRenderer: extras?.bannerRenderer,
             bannerFormat: extras?.bannerFormat,
             txHash: extras?.txHash,
+            ...(extras?.useFree && !extras?.txHash ? { useFree: true } : {}),
           },
           walletAddress,
         );
@@ -1122,7 +1125,7 @@ function AIChatScreenInner() {
     (
       cfg: PosterConfig | null,
       model: string,
-      opts: { logoImage?: string; sourceImage?: string; txHash?: string },
+      opts: { logoImage?: string; sourceImage?: string; txHash?: string; useFree?: boolean },
     ) => {
       doGenerateImage(
         cfg ? buildDeHubBrandPrompt(cfg.finalPrompt) : pendingPrompt,
@@ -1132,6 +1135,7 @@ function AIChatScreenInner() {
           sourceImage: opts.sourceImage,
           logoImage: opts.logoImage,
           txHash: opts.txHash,
+          useFree: opts.useFree,
           ...(cfg
             ? {
                 headline: cfg.tagline.trim(),
@@ -1168,6 +1172,14 @@ function AIChatScreenInner() {
     pendingLogoImage,
     startImageGeneration,
   ]);
+
+  const handleImageFree = useCallback(() => {
+    setImagePaywallVisible(false);
+    startImageGeneration(null, imageModelOverride || settings.imageModel, {
+      sourceImage: pendingSourceImage,
+      useFree: true,
+    });
+  }, [imageModelOverride, settings.imageModel, pendingSourceImage, startImageGeneration]);
 
   const handleVideoConfirm = useCallback((txHash: string) => {
     setVideoPaywallVisible(false);
@@ -1562,6 +1574,8 @@ function AIChatScreenInner() {
         isBusy={isGeneratingImage}
         onClose={() => setImagePaywallVisible(false)}
         onConfirm={handleImageConfirm}
+        // Posters run their own pipeline and are not covered by free images.
+        onConfirmFree={pendingPosterConfig ? undefined : handleImageFree}
         footnote={
           pendingPosterConfig
             ? 'The wordmark and headline are composited after generation, crisply.'

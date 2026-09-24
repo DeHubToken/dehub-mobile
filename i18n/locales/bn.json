@@ -3601,7 +3601,11 @@
     "total": "মোট",
     "pricing": "মূল্য নির্ধারণ হচ্ছে…",
     "payWithDhb": "DHB দিয়ে পেমেন্ট করুন",
-    "yourDhb": "আপনার DHB"
+    "yourDhb": "আপনার DHB",
+    "generateFree_one": "বিনামূল্যে জেনারেট করুন · {{count}} বামে",
+    "generateFree_other": "বিনামূল্যে জেনারেট করুন · {{count}} বামে",
+    "freeImagesLeft_one": "আপনার কাছে {{count}} মুক্ত ছবি বাকি আছে । কোনও পেমেন্টের প্রয়োজন নেই ।",
+    "freeImagesLeft_other": "আপনার কাছে {{count}} বিনামূল্যে ছবি বাকি আছে । কোনও পেমেন্টের প্রয়োজন নেই ।"
   },
   "digest": {
     "andOthers_one": "{{names}} এবং {{count}} অন্যান্য",

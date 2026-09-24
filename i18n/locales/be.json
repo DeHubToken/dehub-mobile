@@ -3614,7 +3614,11 @@
     "total": "Разам",
     "pricing": "Разлік кошту…",
     "payWithDhb": "Аплаціць DHB",
-    "yourDhb": "Ваш DHB"
+    "yourDhb": "Ваш DHB",
+    "generateFree_one": "Згенераваць бясплатна · {{count}} left",
+    "generateFree_other": "Згенераваць бясплатна · {{count}} left",
+    "freeImagesLeft_one": "У вас застаўся {{count}} свабодны малюнак. Не патрабуецца аплата.",
+    "freeImagesLeft_other": "У вас засталіся {{count}} свабодныя выявы. Не патрабуецца аплата."
   },
   "digest": {
     "andOthers_one": "{{names}} і {{count}} іншыя",

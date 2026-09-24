@@ -3601,7 +3601,11 @@
     "total": "Total",
     "pricing": "Ngetung rega…",
     "payWithDhb": "Bayar nganggo DHB",
-    "yourDhb": "DHB sampeyan"
+    "yourDhb": "DHB sampeyan",
+    "generateFree_one": "Gawe gratis · {{count}} isih",
+    "generateFree_other": "Gawe gratis · {{count}} isih",
+    "freeImagesLeft_one": "Sampeyan isih duwe {{count}} gambar gratis. Ora perlu mbayar.",
+    "freeImagesLeft_other": "Sampeyan isih duwe {{count}} gambar gratis. Ora perlu mbayar."
   },
   "digest": {
     "andOthers_one": "{{names}} lan {{count}} liyane",

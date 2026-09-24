@@ -3614,7 +3614,11 @@
     "total": "စုစုပေါင်း",
     "pricing": "ဈေးနှုန်း တွက်ချက်နေသည်…",
     "payWithDhb": "DHB ဖြင့် ပေးချေရန်",
-    "yourDhb": "သင့် DHB"
+    "yourDhb": "သင့် DHB",
+    "generateFree_one": "အခမဲ့ ထုတ်ယူပါ · {{count}} left",
+    "generateFree_other": "အခမဲ့ ထုတ်ယူပါ · {{count}} left",
+    "freeImagesLeft_one": "သင့်တွင် {{count}} အခမဲ့ပုံရိပ်ကျန်ရှိနေသေးသည် ။ ငွေပေးချေမှု မလိုအပ်ပါ ။",
+    "freeImagesLeft_other": "{{count}} အခမဲ့ရုပ်ပုံများကျန်ရှိနေသေးသည် ။ ငွေပေးချေမှု မလိုအပ်ပါ ။"
   },
   "digest": {
     "andOthers_one": "{{names}} နှင့် {{count}} အခြား",

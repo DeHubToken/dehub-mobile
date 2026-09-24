@@ -3601,7 +3601,11 @@
     "total": "Total",
     "pricing": "Calculant el preu…",
     "payWithDhb": "Paga amb DHB",
-    "yourDhb": "El teu DHB"
+    "yourDhb": "El teu DHB",
+    "generateFree_one": "Genera gratis · {{count}} left",
+    "generateFree_other": "Genera gratis · {{count}} left",
+    "freeImagesLeft_one": "Tens {{count}} imatge gratuïta. No cal fer cap pagament.",
+    "freeImagesLeft_other": "Et queden {{count}} imatges gratuïtes. No cal fer cap pagament."
   },
   "digest": {
     "andOthers_one": "{{names}} i {{count}} més",

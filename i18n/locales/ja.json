@@ -3652,7 +3652,11 @@
     "total": "合計",
     "pricing": "料金を計算中…",
     "payWithDhb": "DHB で支払う",
-    "yourDhb": "保有 DHB"
+    "yourDhb": "保有 DHB",
+    "generateFree_one": "無料生成・残り{{count}}",
+    "generateFree_other": "無料生成・残り{{count}}",
+    "freeImagesLeft_one": "残りの空き画像は{{count}}枚です。お支払いは必要ありません。",
+    "freeImagesLeft_other": "{{count}}枚の無料画像が残っています。お支払いは必要ありません。"
   },
   "digest": {
     "andOthers_one": "{{names}}と他{{count}}人",

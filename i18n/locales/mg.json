@@ -3624,7 +3624,11 @@
     "total": "Totaly",
     "pricing": "Mikajy ny vidiny…",
     "payWithDhb": "Mandoa amin'ny DHB",
-    "yourDhb": "Ny DHB-nao"
+    "yourDhb": "Ny DHB-nao",
+    "generateFree_one": "Hiteraka maimaim-poana · {{count}} left",
+    "generateFree_other": "Hiteraka maimaim-poana · {{count}} left",
+    "freeImagesLeft_one": "Manana ny {{count}} maimaim-poana ny sary havia ianao. Tsy misy vola miditra loatra manko no dikan'izany.",
+    "freeImagesLeft_other": "Manana ny {{count}} free images left ianao. Tsy misy vola miditra loatra manko no dikan'izany."
   },
   "digest": {
     "someone": "Olona iray",

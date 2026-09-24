@@ -3601,7 +3601,11 @@
     "total": "ລວມ",
     "pricing": "ກຳລັງຄິດລາຄາ…",
     "payWithDhb": "ຈ່າຍດ້ວຍ DHB",
-    "yourDhb": "DHB ຂອງທ່ານ"
+    "yourDhb": "DHB ຂອງທ່ານ",
+    "generateFree_one": "ສ້າງໂດຍບໍ່ເສຍຄ່າ · {{count}} ຊ້າຍ",
+    "generateFree_other": "ສ້າງໂດຍບໍ່ເສຍຄ່າ · {{count}} ຊ້າຍ",
+    "freeImagesLeft_one": "ທ່ານມີ {{count}} ຮູບທີ່ບໍ່ເສຍຄ່າຢູ່ເບື້ອງຊ້າຍ. ບໍ່ ຈໍາ ເປັນຕ້ອງຈ່າຍເງີນ.",
+    "freeImagesLeft_other": "ເຈົ້າມີ {{count}} ຮູບພາບທີ່ບໍ່ເສຍຄ່າຢູ່ເບື້ອງຊ້າຍ. ບໍ່ ຈໍາ ເປັນຕ້ອງຈ່າຍເງີນ."
   },
   "digest": {
     "andOthers_one": "{{names}} ແລະ {{count}} ອື່ນ ໆ",

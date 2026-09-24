@@ -3601,7 +3601,11 @@
     "total": "कुल",
     "pricing": "दाम निकालल जा रहल…",
     "payWithDhb": "DHB से भुगतान करू",
-    "yourDhb": "अहाँक DHB"
+    "yourDhb": "अहाँक DHB",
+    "generateFree_one": "मुफ्त में बनावऽ · {{count}} बचल",
+    "generateFree_other": "मुफ्त में बनावऽ · {{count}} बचल",
+    "freeImagesLeft_one": "तोहरा पास {{count}} गो मुफ्त फोटो बचल हे। पइसा के जरूरत न हे।",
+    "freeImagesLeft_other": "तोहरा पास {{count}} गो मुफ्त फोटो बचल हे। पइसा के जरूरत न हे।"
   },
   "digest": {
     "someone": "कोउ ना कोई के संग में",

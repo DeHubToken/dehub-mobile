@@ -3601,7 +3601,11 @@
     "total": "جەمئىي",
     "pricing": "باھاسى ھېسابلىنىۋاتىدۇ…",
     "payWithDhb": "DHB بىلەن تۆلەش",
-    "yourDhb": "سىزنىڭ DHB"
+    "yourDhb": "سىزنىڭ DHB",
+    "freeImagesLeft_one": "سىزدە {{count}} ھەقسىز سۈرەت قالدۇرۇلدى. ھەق تەلەپ قىلىنمايدۇ.",
+    "freeImagesLeft_other": "سىزدە {{count}} ئەركىن سۈرەتلەر قالدى. ھەق تەلەپ قىلىنمايدۇ.",
+    "generateFree_one": "ھەقسىز ھاسىل قىلىش · {{count}} قالدى",
+    "generateFree_other": "ھەقسىز ھاسىل قىلىش · {{count}} قالدى"
   },
   "digest": {
     "andOthers_one": "{{names}} ۋە {{count}} يەنە بىرسى",

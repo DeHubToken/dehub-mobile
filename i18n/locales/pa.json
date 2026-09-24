@@ -3605,7 +3605,11 @@
     "total": "ਕੁੱਲ",
     "pricing": "ਕੀਮਤ ਕੱਢੀ ਜਾ ਰਹੀ ਹੈ…",
     "payWithDhb": "DHB ਨਾਲ ਭੁਗਤਾਨ ਕਰੋ",
-    "yourDhb": "ਤੁਹਾਡਾ DHB"
+    "yourDhb": "ਤੁਹਾਡਾ DHB",
+    "generateFree_one": "ਮੁਫਤ ਤਿਆਰ ਕਰੋ · {{count}} ਖੱਬੇ ਪਾਸੇ",
+    "generateFree_other": "ਮੁਫਤ ਤਿਆਰ ਕਰੋ · {{count}} ਖੱਬੇ ਪਾਸੇ",
+    "freeImagesLeft_one": "ਤੁਹਾਡੇ ਕੋਲ {{count}} ਮੁਫਤ ਚਿੱਤਰ ਬਚਿਆ ਹੈ. ਕੋਈ ਭੁਗਤਾਨ ਦੀ ਲੋੜ ਨਹੀਂ.",
+    "freeImagesLeft_other": "ਤੁਹਾਡੇ ਕੋਲ {{count}} ਮੁਫਤ ਚਿੱਤਰ ਬਚੇ ਹਨ. ਕੋਈ ਭੁਗਤਾਨ ਦੀ ਲੋੜ ਨਹੀਂ."
   },
   "digest": {
     "andOthers_one": "{{names}} ਅਤੇ {{count}} ਹੋਰ",

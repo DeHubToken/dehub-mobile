@@ -3601,7 +3601,11 @@
     "total": "Cəmi",
     "pricing": "Bu icra qiymətləndirilir…",
     "payWithDhb": "DHB ilə ödə",
-    "yourDhb": "Sənin DHB-n"
+    "yourDhb": "Sənin DHB-n",
+    "generateFree_one": "Pulsuz · {{count}} sol",
+    "generateFree_other": "Pulsuz · {{count}} sol",
+    "freeImagesLeft_other": "{{count}} pulsuz şəkilləriniz qalıb. Ödəniş tələb olunmur.",
+    "freeImagesLeft_one": "{{count}} pulsuz şəkliniz qalıb. Ödəniş lazım deyil."
   },
   "digest": {
     "andOthers_one": "{{names}} və {{count}} digər",

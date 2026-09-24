@@ -3605,7 +3605,11 @@
     "total": "Общо",
     "pricing": "Изчисляване на цената…",
     "payWithDhb": "Плати с DHB",
-    "yourDhb": "Вашият DHB"
+    "yourDhb": "Вашият DHB",
+    "generateFree_one": "Остава да генерирате безплатно ·{{count}}",
+    "generateFree_other": "Остава да генерирате безплатно ·{{count}}",
+    "freeImagesLeft_one": "Остава ви {{count}} безплатно изображение. Не е необходимо плащане.",
+    "freeImagesLeft_other": "Остават ви {{count}} безплатни изображения. Не е необходимо плащане."
   },
   "digest": {
     "andOthers_one": "{{names}} и {{count}} други",

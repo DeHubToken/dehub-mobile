@@ -3605,7 +3605,11 @@
     "total": "Totalt",
     "pricing": "Beräknar pris…",
     "payWithDhb": "Betala med DHB",
-    "yourDhb": "Dina DHB"
+    "yourDhb": "Dina DHB",
+    "generateFree_one": "Skapa gratis · {{count}} kvar",
+    "generateFree_other": "Skapa gratis · {{count}} kvar",
+    "freeImagesLeft_one": "Du har {{count}} gratis bild kvar. Ingen betalning krävs.",
+    "freeImagesLeft_other": "Du har {{count}} gratis bilder kvar. Ingen betalning krävs."
   },
   "digest": {
     "andOthers_one": "{{names}} och {{count}} annan",

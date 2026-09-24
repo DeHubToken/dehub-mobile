@@ -3771,7 +3771,11 @@
     "total": "মোট",
     "pricing": "দাম হিসাব হইছে…",
     "payWithDhb": "DHB দিয়া পেমেন্ট করো",
-    "yourDhb": "তোমার DHB"
+    "yourDhb": "তোমার DHB",
+    "generateFree_one": "ফ্রি জেনারেট করুন · {{count}} বাকি",
+    "generateFree_other": "ফ্রি জেনারেট করুন · {{count}} বাকি",
+    "freeImagesLeft_one": "আপনার {{count}} টি ফ্রি ইমেজ বাকি আছে। কোনো পেমেন্টের প্রয়োজন নেই।",
+    "freeImagesLeft_other": "আপনার {{count}} টি ফ্রি ইমেজ বাকি আছে। কোনো পেমেন্টের প্রয়োজন নেই।"
   },
   "digest": {
     "andOthers_one": "{{names}} এবং {{count}} অন্য",

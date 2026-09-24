@@ -3631,7 +3631,11 @@
     "total": "المجموع",
     "pricing": "كنحسبو الثمن…",
     "payWithDhb": "خلص بـ DHB",
-    "yourDhb": "الـ DHB ديالك"
+    "yourDhb": "الـ DHB ديالك",
+    "generateFree_one": "توليد مجاني ·{{count}} يسار",
+    "generateFree_other": "توليد مجاني ·{{count}} يسار",
+    "freeImagesLeft_one": "لديك {{count}} صورة مجانية متبقية. لا حاجة للدفع.",
+    "freeImagesLeft_other": "لديك {{count}} صور مجانية متبقية. لا حاجة للدفع."
   },
   "digest": {
     "andOthers_one": "{{names}} و {{count}} أخرى",

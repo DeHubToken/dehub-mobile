@@ -3601,7 +3601,11 @@
     "total": "कुल",
     "pricing": "दाम निकालल जाता…",
     "payWithDhb": "DHB से भुगतान करीं",
-    "yourDhb": "रउरा DHB"
+    "yourDhb": "रउरा DHB",
+    "generateFree_one": "मुफ्त में बनाईं · {{count}} बाचल",
+    "generateFree_other": "मुफ्त में बनाईं · {{count}} बाचल",
+    "freeImagesLeft_one": "रउआ लगे {{count}} गो मुफ्त फोटो बाचल बा। पइसा के जरूरत नइखे।",
+    "freeImagesLeft_other": "रउआ लगे {{count}} गो मुफ्त फोटो बाचल बा। पइसा के जरूरत नइखे।"
   },
   "digest": {
     "someone": "कोही त आऊ",

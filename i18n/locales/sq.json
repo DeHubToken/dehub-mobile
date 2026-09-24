@@ -3601,7 +3601,11 @@
     "total": "Gjithsej",
     "pricing": "Po llogaritet çmimi…",
     "payWithDhb": "Paguaj me DHB",
-    "yourDhb": "DHB-ja jote"
+    "yourDhb": "DHB-ja jote",
+    "generateFree_one": "Gjenero falas · {{count}} majtas",
+    "generateFree_other": "Gjenero falas · {{count}} majtas",
+    "freeImagesLeft_one": "Të ka mbetur {{count}} imazh i lirë. Nuk nevojitet pagesë.",
+    "freeImagesLeft_other": "Të kanë mbetur imazhe falas {{count}}. Nuk nevojitet pagesë."
   },
   "digest": {
     "andOthers_one": "{{names}} dhe {{count}} tjetër",

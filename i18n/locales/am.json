@@ -3631,7 +3631,11 @@
     "total": "ጠቅላላ",
     "pricing": "የዚህን ሂደት ዋጋ በማስላት ላይ…",
     "payWithDhb": "በ DHB ይክፈሉ",
-    "yourDhb": "የእርስዎ DHB"
+    "yourDhb": "የእርስዎ DHB",
+    "generateFree_one": "ነፃ ያመነጩ · {{count}} ግራ",
+    "generateFree_other": "ነፃ ያመነጩ · {{count}} ግራ",
+    "freeImagesLeft_one": "{{count}} ነፃ ምስል ይቀራል ። ምንም ክፍያ አያስፈልግም.",
+    "freeImagesLeft_other": "{{count}} ነፃ ምስሎች ይቀራሉ ። ምንም ክፍያ አያስፈልግም."
   },
   "digest": {
     "andOthers_one": "{{names}} እና {{count}} ሌላ",

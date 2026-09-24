@@ -3601,7 +3601,11 @@
     "total": "Жалпы",
     "pricing": "Баасы эсептелүүдө…",
     "payWithDhb": "DHB менен төлөө",
-    "yourDhb": "Сиздин DHB"
+    "yourDhb": "Сиздин DHB",
+    "generateFree_one": "Бекер жаратуу · {{count}} left",
+    "generateFree_other": "Бекер жаратуу · {{count}} left",
+    "freeImagesLeft_one": "Сизде {{count}} акысыз сүрөт калды. Төлөм талап кылынбайт.",
+    "freeImagesLeft_other": "Сизде {{count}} акысыз сүрөттөр калды. Төлөм талап кылынбайт."
   },
   "digest": {
     "andOthers_one": "{{names}} жана {{count}} башка",
