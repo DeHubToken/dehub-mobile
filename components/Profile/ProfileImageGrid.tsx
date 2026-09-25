@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet, useWindowDimensions, type NativeSyn
 import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
 import Icon from "../ui/Icon";
-import { getImageUrlApiSimple } from "../../libs";
+import { getImageUrlApiSimple } from "../../libs/misc";
 import { useAppTheme } from "../../context/ThemeContext";
 
 // Tile sizes follow from the outer padding and the gap, so each theme gets its

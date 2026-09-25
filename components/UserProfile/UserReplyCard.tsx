@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
-import { getAvatarUrl } from "../../libs";
+import { getAvatarUrl } from "../../libs/misc";
 import { buildCdnPath, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
 import { WEBSITE_LINK } from "../../config/links";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";

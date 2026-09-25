@@ -2,7 +2,7 @@ import React, { FC, useCallback, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
-import { getAvatarUrl, getBadgeUrl } from "../../libs";
+import { getAvatarUrl, getBadgeUrl } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { followUser, unfollowUser } from "../../services/user.service";
 import Avatar from "../common/Avatar";

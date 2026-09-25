@@ -8,14 +8,7 @@ import env from "../../config/env"; // kept if needed for other props
 import VideoPreview from "./VideoPreview";
 import { formatDistance } from "date-fns";
 import { secondsToHMMSS } from "../../libs/date.util";
-import {
-  getAvatarUrl,
-  resolveThumbnail,
-  DEFAULT_BANNER_SENTINEL,
-  getImageUrl,
-  getBadgeUrlFor,
-  getVideoUrl,
-} from "../../libs";
+import { getAvatarUrl, resolveThumbnail, DEFAULT_BANNER_SENTINEL, getImageUrl, getBadgeUrlFor, getVideoUrl } from "../../libs/misc";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
