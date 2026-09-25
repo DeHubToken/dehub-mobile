@@ -1,7 +1,8 @@
 import { isHoldGated, isSubscriberGated } from "../../libs/content-gate";
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { Ionicons } from "@expo/vector-icons";
 import StatusBadge from "./StatusBadge";
 import env from "../../config/env"; // kept if needed for other props
@@ -196,10 +197,11 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
             : { width: 150, aspectRatio: 16 / 9 }}
         >
           {hasThumbnail ? (
-            <Image
+            <SmartImage
               source={{ uri: thumbnail }}
-              className="absolute inset-0 w-full h-full"
-              resizeMode="cover"
+              recyclingKey={thumbnail}
+              style={StyleSheet.absoluteFill}
+              contentFit="cover"
             />
           ) : (
             <View className={isMinimal
@@ -236,9 +238,10 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
             <View className="flex-row items-baseline mt-1">
               {avatarUrl ? (
                 <TouchableOpacity activeOpacity={0.7} onPress={handlePressAvatar}>
-                  <Image
+                  <SmartImage
                     source={{ uri: avatarUrl }}
-                    className="w-4 h-4 rounded mr-1"
+                    recyclingKey={avatarUrl}
+                    style={{ width: 16, height: 16, borderRadius: 4, marginRight: 4 }}
                   />
                 </TouchableOpacity>
               ) : null}
@@ -259,7 +262,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
                   onPress={handlePressCreator}
                   className="self-baseline"
                 >
-                  <Image source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} resizeMode="contain" />
+                  <SmartImage source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} contentFit="contain" />
                 </TouchableOpacity>
               )}
             </View>

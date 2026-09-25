@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, Pressable, Image, Share, ActivityIndicator } from "react-native";
+import { View, Text, Pressable, Share, ActivityIndicator } from "react-native";
+import SmartImage from "../common/SmartImage";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -472,10 +473,10 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                   style={{ flexShrink: 0, height: 20, marginLeft: 2, justifyContent: "center" }}
                   hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                 >
-                  <Image
+                  <SmartImage
                     source={badgeImg}
                     style={[getBadgeOpticalStyle(badgeImg, 16, 0, 20), { marginLeft: 0 }]}
-                    resizeMode="contain"
+                    contentFit="contain"
                   />
                 </Pressable>
               )}
@@ -603,20 +604,22 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
 
           {comment.imageUrl ? (
             <View style={[{ marginTop: 6, borderRadius: 10, overflow: "hidden", maxWidth: 220, backgroundColor: "rgba(255,255,255,0.04)" }, isMinimal && MINIMAL_UNFILLED]}>
-              <Image
+              <SmartImage
                 source={{ uri: resolveMediaUrl(comment.imageUrl) }}
+                recyclingKey={resolveMediaUrl(comment.imageUrl)}
                 style={{ width: 220, height: 165 }}
-                resizeMode="cover"
+                contentFit="cover"
               />
             </View>
           ) : null}
 
           {comment.gifUrl ? (
             <View style={[{ marginTop: 6, borderRadius: 10, overflow: "hidden", maxWidth: 220, backgroundColor: "rgba(255,255,255,0.04)" }, isMinimal && MINIMAL_UNFILLED]}>
-              <Image
+              <SmartImage
                 source={{ uri: comment.gifUrl }}
+                recyclingKey={comment.gifUrl}
                 style={{ width: 220, height: 165 }}
-                resizeMode="cover"
+                contentFit="cover"
               />
             </View>
           ) : null}

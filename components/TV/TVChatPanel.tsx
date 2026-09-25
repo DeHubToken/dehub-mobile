@@ -20,9 +20,9 @@ import {
   FlatList,
   Platform,
   ActivityIndicator,
-  Image,
   StyleSheet,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
@@ -84,7 +84,7 @@ const ChatRow: React.FC<{
             {displayName}
           </Text>
           {!!badgeImg && (
-            <Image source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13), { marginLeft: 0 }]} resizeMode="contain" />
+            <SmartImage source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13), { marginLeft: 0 }]} contentFit="contain" />
           )}
           <Text className="text-white/60 text-xs ml-auto">
             {formatTime(message.created_at)}

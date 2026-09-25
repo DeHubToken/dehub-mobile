@@ -1,7 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
-  Image,
   Text,
   TouchableOpacity,
   Pressable,
@@ -16,6 +15,7 @@ import {
   ActivityIndicator,
   ToastAndroid,
 } from "react-native";
+import SmartImage from "../components/common/SmartImage";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -227,18 +227,27 @@ const ZoomableImage = memo(
             ]}
           >
             {showPreview && (
-              <Image
+              // Same expo-image cache the feed painted it from, so it is a
+              // memory hit rather than a second decode.
+              <SmartImage
                 source={{ uri: preview }}
                 style={{ position: "absolute", width: SCREEN_W, height: SCREEN_H }}
-                resizeMode="contain"
+                contentFit="contain"
               />
             )}
-            <Image
+            <SmartImage
               source={{ uri }}
               // Both are `contain` in the same box, so the swap lands the
               // original exactly where the preview was — no jump, no reflow.
               style={{ width: SCREEN_W, height: SCREEN_H, opacity: showPreview ? 0 : 1 }}
-              resizeMode="contain"
+              contentFit="contain"
+              // Every source pixel, for pinch-zoom. expo-image still scales an
+              // original past Android's 100 MB canvas limit down to fit, where
+              // RN Image drew it as-is and crashed with "trying to draw too
+              // large bitmap". Disk only, so a few full-size originals do not
+              // evict the feed's thumbnails from the memory cache.
+              allowDownscaling={false}
+              cachePolicy="disk"
               onLoad={() => setLoaded(true)}
             />
           </Animated.View>

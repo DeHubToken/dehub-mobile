@@ -34,8 +34,8 @@ import {
   Pressable,
   ScrollView,
   ActivityIndicator,
-  Image,
 } from "react-native";
+import SmartImage from "./SmartImage";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import GlassModal from "../ui/GlassModal";
@@ -368,10 +368,11 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
                     className={row(picked)}
                   >
                     {thumb ? (
-                      <Image
+                      <SmartImage
                         source={{ uri: thumb }}
-                        resizeMode="cover"
-                        className="h-14 w-14 rounded-xl bg-white/5"
+                        recyclingKey={thumb}
+                        contentFit="cover"
+                        style={{ width: 56, height: 56, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.05)" }}
                       />
                     ) : (
                       <View className="h-14 w-14 items-center justify-center rounded-xl bg-white/[0.07]">

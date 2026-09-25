@@ -6,8 +6,8 @@ import {
   FlatList,
   Pressable,
   ActivityIndicator,
-  Image,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
@@ -60,10 +60,10 @@ const RepostUserRow: React.FC<RepostUserRowProps> = memo(({ item, onPress }) => 
             {displayName}
           </Text>
           {!!badgeImage && (
-            <Image
+            <SmartImage
               source={badgeImage}
               style={getBadgeOpticalStyle(badgeImage, 14)}
-              resizeMode="contain"
+              contentFit="contain"
             />
           )}
           <NewMemberChip address={item.address} />

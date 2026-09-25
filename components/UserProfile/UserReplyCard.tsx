@@ -3,11 +3,11 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   Animated,
   Share,
   StyleSheet,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
@@ -174,10 +174,10 @@ const AuthorHeader: React.FC<AuthorDisplay & { time?: string; onPress?: () => vo
           {name}
         </Text>
         {badgeImg ? (
-          <Image
+          <SmartImage
             source={badgeImg}
             style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
-            resizeMode="contain"
+            contentFit="contain"
           />
         ) : null}
       </View>
@@ -262,7 +262,7 @@ const ThreadPostRow: React.FC<{ post: UserReplyPost; tokenId: number; onUserPres
         {thumbnail ? (
           // Minimal: no tinted frame behind the media while it loads.
           <View style={{ marginTop: 8, borderRadius: 12, overflow: "hidden", backgroundColor: isMinimal ? "transparent" : "rgba(255,255,255,0.05)" }}>
-            <Image source={{ uri: thumbnail }} style={{ width: "100%", height: 170 }} resizeMode="cover" />
+            <SmartImage source={{ uri: thumbnail }} recyclingKey={thumbnail} style={{ width: "100%", height: 170 }} contentFit="cover" />
             {isVideo && (
               <View
                 style={{
@@ -311,10 +311,11 @@ const ThreadParentCommentRow: React.FC<{ parent: UserReplyParentComment; onUserP
         ) : null}
         {image ? (
           <View className="mt-2 rounded-lg overflow-hidden" style={{ maxWidth: 240 }}>
-            <Image
+            <SmartImage
               source={{ uri: resolveMediaUrl(image) }}
+              recyclingKey={resolveMediaUrl(image)}
               style={{ width: 240, height: 160, borderRadius: 8 }}
-              resizeMode="cover"
+              contentFit="cover"
             />
           </View>
         ) : null}
@@ -495,20 +496,22 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
 
           {item.imageUrl ? (
             <View className="mt-2 rounded-lg overflow-hidden" style={{ maxWidth: 240 }}>
-              <Image
+              <SmartImage
                 source={{ uri: resolveMediaUrl(item.imageUrl) }}
+                recyclingKey={resolveMediaUrl(item.imageUrl)}
                 style={{ width: 240, height: 160, borderRadius: 8 }}
-                resizeMode="cover"
+                contentFit="cover"
               />
             </View>
           ) : null}
 
           {item.gifUrl ? (
             <View className="mt-2 rounded-lg overflow-hidden" style={{ maxWidth: 240 }}>
-              <Image
+              <SmartImage
                 source={{ uri: item.gifUrl }}
+                recyclingKey={item.gifUrl}
                 style={{ width: 240, height: 160, borderRadius: 8 }}
-                resizeMode="cover"
+                contentFit="cover"
               />
             </View>
           ) : null}

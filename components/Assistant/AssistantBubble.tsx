@@ -8,6 +8,7 @@ import {
   StyleSheet,
   useWindowDimensions,
 } from 'react-native';
+import SmartImage from "../common/SmartImage";
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { VideoView, useVideoPlayer } from 'expo-video';
 import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
@@ -152,7 +153,7 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
       <Animated.View entering={FadeInDown.duration(200)} style={[s.bubble, s.userBubble]}>
         <View style={s.userColumn}>
           {!!message.attachedImage && (
-            <Image source={{ uri: message.attachedImage }} style={s.attachedPreview} />
+            <SmartImage source={{ uri: message.attachedImage }} recyclingKey={message.attachedImage} style={s.attachedPreview} />
           )}
           {!!message.content && (
             <View style={[s.content, s.userContent]}>
@@ -217,10 +218,11 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
         {imageUrls.map((url) => (
           <View key={url} style={s.mediaWrap}>
             <Pressable onPress={() => handlePress(url)}>
-              <Image
+              <SmartImage
                 source={{ uri: url }}
+                recyclingKey={url}
                 style={[s.media, { height: mediaWidth }]}
-                resizeMode="cover"
+                contentFit="cover"
               />
             </Pressable>
             <MediaActions

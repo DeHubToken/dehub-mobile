@@ -1,5 +1,6 @@
 import React, { memo } from "react";
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
+import SmartImage from "../common/SmartImage";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import Icon from "../ui/Icon";
@@ -90,13 +91,13 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
                 justifyContent: "center",
               }}
             >
-              <Image
+              <SmartImage
                 source={badgeImage}
                 style={[
                   getBadgeOpticalStyle(badgeImage, HOLDER_BADGE_SIZE, 0, DISPLAY_NAME_LINE_HEIGHT),
                   { marginLeft: 0 },
                 ]}
-                resizeMode="contain"
+                contentFit="contain"
               />
             </View>
           )}

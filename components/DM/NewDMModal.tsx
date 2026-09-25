@@ -8,13 +8,13 @@ import React, {
 import {
   ActivityIndicator,
   FlatList,
-  Image,
   Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { Ionicons } from "@expo/vector-icons";
 import { User } from "../../context/AuthContext";
 import { usersSearch } from "../../services/user.service";
@@ -59,7 +59,7 @@ const ResultRow: React.FC<ResultRowProps> = ({ item, onPress, inContacts }) => {
             {display}
           </Text>
           {badgeImg ? (
-            <Image source={badgeImg} style={{ width: 15, height: 15 }} resizeMode="contain" />
+            <SmartImage source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
           ) : null}
         </View>
         <Text className="text-theme-neutrals-400 text-[12px] mt-0.5" numberOfLines={1}>
@@ -337,10 +337,10 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
                             {display}
                           </Text>
                           {badgeImg ? (
-                            <Image
+                            <SmartImage
                               source={badgeImg}
                               style={{ width: 15, height: 15 }}
-                              resizeMode="contain"
+                              contentFit="contain"
                             />
                           ) : null}
                         </View>

@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
-import { View, Text, Image, ImageBackground, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { LinearGradient } from "expo-linear-gradient";
 import { SvgXml } from "react-native-svg";
 import Avatar from "../common/Avatar";
@@ -287,11 +288,13 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           className={isMinimal ? "overflow-hidden" : "mx-4 rounded-xl overflow-hidden"}
           style={{ height: 140 }}
         >
-          <ImageBackground
+          {/* coverUrl is the unsized original (the viewer opens it too); expo-image
+              decodes it at banner size where ImageBackground decoded every pixel. */}
+          <SmartImage
             source={coverUrl === "default-banner" ? FallbackBanner : { uri: coverUrl as string }}
-            style={{ width: "100%", height: "100%" }}
-            imageStyle={isMinimal ? undefined : { borderRadius: 12 }}
-            resizeMode="cover"
+            recyclingKey={coverUrl}
+            style={[{ width: "100%", height: "100%" }, isMinimal ? null : { borderRadius: 12 }]}
+            contentFit="cover"
           />
         </View>
       </TouchableOpacity>
@@ -331,7 +334,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             <View className="flex-row items-center gap-1.5 flex-1 mr-2">
               <Text className="text-white text-xl font-bold" numberOfLines={1} style={{ flexShrink: 1 }}>{displayName}</Text>
               {badge && badgeImage && (
-                <Image source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} resizeMode="contain" />
+                <SmartImage source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />
               )}
             </View>
             {socialItems.length > 0 && (

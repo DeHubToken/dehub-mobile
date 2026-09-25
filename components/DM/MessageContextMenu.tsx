@@ -7,8 +7,8 @@ import {
   Pressable,
   Platform,
   useWindowDimensions,
-  Image,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -245,10 +245,11 @@ const FloatingMessage: React.FC<{
         {/* Media */}
         {mediaUrl && (
           <View className="bg-theme-neutrals-700">
-            <Image
+            <SmartImage
               source={{ uri: mediaUrl }}
+              recyclingKey={mediaUrl}
               style={{ width: FLOAT_MAX_IMAGE_W, height: Math.round(FLOAT_MAX_IMAGE_W / (4 / 3)) }}
-              resizeMode="cover"
+              contentFit="cover"
             />
           </View>
         )}
