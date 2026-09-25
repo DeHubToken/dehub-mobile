@@ -45,6 +45,8 @@ interface FeedActionBarProps {
   onLike: () => void;
   onDislike: () => void;
   onComment: () => void;
+  /** Touch-down on the comment button — a head start on the thread's reads. */
+  onCommentPressIn?: () => void;
   /** Opens the Share sheet (repost / quote / copy-link / send-in-DM / share-as-image). */
   onShare: () => void;
   onTip?: () => void;
@@ -71,6 +73,7 @@ const BOUNCE_CONFIG = { damping: 12, stiffness: 300 };
 
 const AnimatedActionButton: React.FC<{
   onPress: () => void;
+  onPressIn?: () => void;
   onLongPress?: () => void;
   iconName: React.ComponentProps<typeof Icon>["name"];
   iconNameActive?: React.ComponentProps<typeof Icon>["name"];
@@ -86,7 +89,7 @@ const AnimatedActionButton: React.FC<{
   /** Renders in place of the icon — used to show a reaction emoji. */
   glyph?: string;
   accessibilityLabel?: string;
-}> = ({ onPress, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, accessibilityLabel }) => {
+}> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, accessibilityLabel }) => {
   const scale = useSharedValue(1);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -111,6 +114,7 @@ const AnimatedActionButton: React.FC<{
   return (
     <Pressable
       onPress={handlePress}
+      onPressIn={onPressIn}
       onLongPress={onLongPress ? () => { haptic.press(); onLongPress(); } : undefined}
       // Matches the web tray's 400ms hold so the gesture feels the same on both.
       delayLongPress={400}
@@ -165,6 +169,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   onLike,
   onDislike,
   onComment,
+  onCommentPressIn,
   onShare,
   onTip,
   onSave,
@@ -265,6 +270,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
       />
       <AnimatedActionButton
         onPress={onComment}
+        onPressIn={onCommentPressIn}
         accessibilityLabel={t("postInfo.comments")}
         iconName="MessageSquare"
         count={commentCount}
