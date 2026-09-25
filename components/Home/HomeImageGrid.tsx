@@ -18,7 +18,7 @@ import { useNavigation, useScrollToTop } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import { getUnifiedFeed } from "../../services/feed.unified.service";
 import type { UnifiedFeedItem, UnifiedFeedParams } from "../../services/feed.unified.service";
-import { buildFeedImageUrls, getImageUrl } from "../../libs";
+import { buildFeedImageUrls, getImageUrl } from "../../libs/misc";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { theme } from "../../theme";

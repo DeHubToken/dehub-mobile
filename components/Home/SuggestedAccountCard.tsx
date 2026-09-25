@@ -11,7 +11,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
-import { getAvatarUrl, getBadgeUrlFor } from "../../libs";
+import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import {
   followUser,
