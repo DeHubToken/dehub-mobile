@@ -25,6 +25,9 @@ import AudioPostPlayer from "./AudioPostPlayer";
 import FeedVideoPlayer from "./FeedVideoPlayer";
 import StatusBadge from "./StatusBadge";
 import { CommentBottomSheet } from "../Comments";
+import { warmCommentThread } from "../Comments/CommentSection";
+import { useQueryClient } from "@tanstack/react-query";
+import { seedPostDetail, warmRequest } from "../../libs/navPrefetch";
 import ReactionInfoSheet from "./ReactionInfoSheet";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
@@ -99,7 +102,7 @@ import {
 import { isTokenUnlocked, markTokenUnlocked } from "../../libs/unlocked-tokens";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { useStreamAccessInfo } from "../../libs/validators.util";
-import { voteOnNFT, reactToNFT, getPpvSalesCount } from "../../services/nft.service";
+import { voteOnNFT, reactToNFT, getPpvSalesCount, getNFT } from "../../services/nft.service";
 import {
   applyReactionDelta,
   isPositiveReaction,
@@ -652,6 +655,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         initialItems: [item],
       });
     } else if (tokenId != null) {
+      // Hand the detail screen this card's post to paint at once, and start
+      // its fetch now rather than after the new screen has rendered.
+      seedPostDetail(tokenId, item);
+      warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [
@@ -898,6 +905,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       setShowComments(true);
     }
   }, [tokenId, onCommentPressProp, isLive, handleCardPress]);
+
+  // The sheet opens on release; its reads can start on touch-down.
+  const queryClient = useQueryClient();
+  const handleCommentPressIn = useCallback(() => {
+    if (onCommentPressProp || isLive || tokenId == null) return;
+    warmCommentThread(queryClient, tokenId, userAddress || undefined);
+  }, [queryClient, tokenId, onCommentPressProp, isLive, userAddress]);
 
   // Open the Share sheet. Ungated so logged-out users can still copy the link /
   // share as image; repost & quote gate themselves via requireAuth.
@@ -1752,6 +1766,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           myReaction={myReaction}
           reactionCounts={reactionCounts}
           onComment={handleCommentPress}
+          onCommentPressIn={handleCommentPressIn}
           onShare={handleOpenShare}
           onTip={DIGITAL_PURCHASES_ENABLED && !minterUser?.hideBadgeAndBalance ? handleTipPress : undefined}
           onSave={handleSavePress}
