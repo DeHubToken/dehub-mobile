@@ -3918,6 +3918,12 @@
     "listens_one": "{{count}} tinglang"
   },
   "transfer": {
+    "arcTitle": "Arc tarmog‘ida USDC yuborish",
+    "recipientAddress": "Qabul qiluvchi manzili",
+    "invalidAddress": "To‘g‘ri 0x manzilini kiriting",
+    "arcFeeNote": "Arc tarmog‘i to‘lovlari shu balansdan USDC bilan to‘lanadi.",
+    "unlockToSend": "Yuborish uchun hamyoningizni oching.",
+    "arcUnavailable": "Arc hozircha bu hisob uchun mavjud emas.",
     "title": "Tokenlarni o‘tkazish",
     "recipient": "Qabul qiluvchi: {{address}}",
     "enterAmount": "Miqdorni kiriting:",
@@ -4914,6 +4920,8 @@
     "lyricsFailed": "Matn yaratib bo'lmadi"
   },
   "assets": {
+    "arcUsdc": "Arc tarmog‘idagi USDC",
+    "send": "Yuborish",
     "topUp": "To'ldirish",
     "bridge": "Ko'prik",
     "comingSoon": "tez orada",

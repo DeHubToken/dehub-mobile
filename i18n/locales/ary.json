@@ -3930,6 +3930,12 @@
     "listens_other": "{{count}} يستمع"
   },
   "transfer": {
+    "arcTitle": "صيفط USDC على Arc",
+    "recipientAddress": "العنوان ديال المستلم",
+    "invalidAddress": "دخّل عنوان 0x صحيح",
+    "arcFeeNote": "مصاريف شبكة Arc كتخلّص بـ USDC من هاد الرصيد.",
+    "unlockToSend": "حلّ البزطام ديالك باش تصيفط.",
+    "arcUnavailable": "Arc ماكاينش لهاد الحساب دابا.",
     "title": "حول التوكنات",
     "recipient": "المستلم: {{address}}",
     "enterAmount": "دخل المبلغ ديال",
@@ -4926,6 +4932,8 @@
     "lyricsFailed": "ما قدرناش نكتبو الكلمات"
   },
   "assets": {
+    "arcUsdc": "USDC على Arc",
+    "send": "صيفط",
     "topUp": "عمّر",
     "bridge": "جسر",
     "comingSoon": "قريباً",

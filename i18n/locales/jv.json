@@ -3900,6 +3900,12 @@
     "pause": "Jeda"
   },
   "transfer": {
+    "arcTitle": "Kirim USDC ing Arc",
+    "recipientAddress": "Alamat panampa",
+    "invalidAddress": "Lebokna alamat 0x sing valid",
+    "arcFeeNote": "Biaya jaringan Arc dibayar nganggo USDC saka saldo iki.",
+    "unlockToSend": "Bukak kunci dompet sampeyan kanggo ngirim.",
+    "arcUnavailable": "Arc saiki ora kasedhiya kanggo akun iki.",
     "title": "Transfer token",
     "recipient": "Panampa: {{address}}",
     "enterAmount": "Lebokake jumlah",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Gagal nggawe lirik"
   },
   "assets": {
+    "arcUsdc": "USDC ing Arc",
+    "send": "Kirim",
     "topUp": "Isi ulang",
     "bridge": "Kreteg",
     "comingSoon": "bakal teka",

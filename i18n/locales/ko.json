@@ -3953,6 +3953,12 @@
     "listens_other": "{{count}}회 재생"
   },
   "transfer": {
+    "arcTitle": "Arc에서 USDC 보내기",
+    "recipientAddress": "받는 사람 주소",
+    "invalidAddress": "올바른 0x 주소를 입력하세요",
+    "arcFeeNote": "Arc 네트워크 수수료는 이 잔액에서 USDC로 지불됩니다.",
+    "unlockToSend": "보내려면 지갑 잠금을 해제하세요.",
+    "arcUnavailable": "현재 이 계정에서는 Arc를 사용할 수 없습니다.",
     "title": "토큰 전송",
     "recipient": "받는 사람: {{address}}",
     "enterAmount": "금액 입력:",
@@ -4949,6 +4955,8 @@
     "lyricsFailed": "가사를 만들지 못했습니다"
   },
   "assets": {
+    "arcUsdc": "Arc의 USDC",
+    "send": "보내기",
     "topUp": "충전",
     "bridge": "브릿지",
     "comingSoon": "출시 예정",

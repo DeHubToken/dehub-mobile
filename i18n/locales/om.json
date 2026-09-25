@@ -3913,6 +3913,12 @@
     "listens_one": "{{count}} dhaggeeffadhaa"
   },
   "transfer": {
+    "arcTitle": "USDC Arc irratti ergi",
+    "recipientAddress": "Teessoo fudhataa",
+    "invalidAddress": "Teessoo 0x sirrii galchi",
+    "arcFeeNote": "Kaffaltiin networkii Arc herrega kana irraa USDC'n kaffalama.",
+    "unlockToSend": "Erguuf boorsaa kee bani.",
+    "arcUnavailable": "Arc amma herrega kanaaf hin argamu.",
     "title": "Tokenoota dabarsi",
     "recipient": "Fudhataa: {{address}}",
     "enterAmount": "Hamma galchi:",
@@ -4909,6 +4915,8 @@
     "lyricsFailed": "Jechoota sirbaa uumuun hin dandaʼamne"
   },
   "assets": {
+    "arcUsdc": "USDC Arc irratti",
+    "send": "Ergi",
     "topUp": "Guuti",
     "bridge": "Riqicha",
     "comingSoon": "dhiyootti",

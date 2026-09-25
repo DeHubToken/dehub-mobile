@@ -4090,6 +4090,12 @@
     "listens_other": "{{count}} keer beluisterd"
   },
   "transfer": {
+    "arcTitle": "USDC versturen op Arc",
+    "recipientAddress": "Adres ontvanger",
+    "invalidAddress": "Voer een geldig 0x-adres in",
+    "arcFeeNote": "Netwerkkosten op Arc worden in USDC van dit saldo betaald.",
+    "unlockToSend": "Ontgrendel je wallet om te versturen.",
+    "arcUnavailable": "Arc is momenteel niet beschikbaar voor dit account.",
     "title": "Tokens overmaken",
     "recipient": "Ontvanger: {{address}}",
     "enterAmount": "Voer bedrag in van",
@@ -5086,6 +5092,8 @@
     "lyricsFailed": "Kan songtekst niet genereren"
   },
   "assets": {
+    "arcUsdc": "USDC op Arc",
+    "send": "Versturen",
     "topUp": "Opwaarderen",
     "bridge": "Brug",
     "comingSoon": "binnenkort",

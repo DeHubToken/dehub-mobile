@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} klausās"
   },
   "transfer": {
+    "arcTitle": "Sūtīt USDC Arc tīklā",
+    "recipientAddress": "Saņēmēja adrese",
+    "invalidAddress": "Ievadiet derīgu 0x adresi",
+    "arcFeeNote": "Arc tīkla maksas tiek maksātas USDC no šī atlikuma.",
+    "unlockToSend": "Atbloķējiet maku, lai sūtītu.",
+    "arcUnavailable": "Arc pašlaik šim kontam nav pieejams.",
     "title": "Pārskaitīt tokenus",
     "recipient": "Saņēmējs: {{address}}",
     "enterAmount": "Ievadi summu:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Neizdevās izveidot vārdus"
   },
   "assets": {
+    "arcUsdc": "USDC Arc tīklā",
+    "send": "Sūtīt",
     "topUp": "Papildināt",
     "bridge": "Tilts",
     "comingSoon": "drīzumā",

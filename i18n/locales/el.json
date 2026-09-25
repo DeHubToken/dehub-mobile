@@ -3930,6 +3930,12 @@
     "listens_other": "{{count}} ακούει"
   },
   "transfer": {
+    "arcTitle": "Αποστολή USDC στο Arc",
+    "recipientAddress": "Διεύθυνση παραλήπτη",
+    "invalidAddress": "Εισαγάγετε μια έγκυρη διεύθυνση 0x",
+    "arcFeeNote": "Οι χρεώσεις δικτύου Arc πληρώνονται σε USDC από αυτό το υπόλοιπο.",
+    "unlockToSend": "Ξεκλειδώστε το πορτοφόλι σας για αποστολή.",
+    "arcUnavailable": "Το Arc δεν είναι διαθέσιμο για αυτόν τον λογαριασμό αυτή τη στιγμή.",
     "title": "Μεταφορά token",
     "recipient": "Παραλήπτης: {{address}}",
     "enterAmount": "Εισάγετε ποσό σε",
@@ -4926,6 +4932,8 @@
     "lyricsFailed": "Δεν ήταν δυνατή η δημιουργία στίχων"
   },
   "assets": {
+    "arcUsdc": "USDC στο Arc",
+    "send": "Αποστολή",
     "topUp": "Ανανέωση",
     "bridge": "Γέφυρα",
     "comingSoon": "σύντομα",

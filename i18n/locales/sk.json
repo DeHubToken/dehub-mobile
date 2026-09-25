@@ -4008,6 +4008,12 @@
     "listens_other": "{{count}} počúva"
   },
   "transfer": {
+    "arcTitle": "Odoslať USDC v sieti Arc",
+    "recipientAddress": "Adresa príjemcu",
+    "invalidAddress": "Zadajte platnú adresu 0x",
+    "arcFeeNote": "Poplatky siete Arc sa platia v USDC z tohto zostatku.",
+    "unlockToSend": "Na odoslanie odomknite peňaženku.",
+    "arcUnavailable": "Arc momentálne nie je pre tento účet dostupný.",
     "title": "Previesť tokeny",
     "recipient": "Príjemca: {{address}}",
     "enterAmount": "Zadajte sumu v",
@@ -5004,6 +5010,8 @@
     "lyricsFailed": "Text sa nepodarilo vytvoriť"
   },
   "assets": {
+    "arcUsdc": "USDC v sieti Arc",
+    "send": "Odoslať",
     "topUp": "Dobiť",
     "bridge": "Most",
     "comingSoon": "už čoskoro",

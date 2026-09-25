@@ -3913,6 +3913,12 @@
     "listens_other": "{{count}} lượt nghe"
   },
   "transfer": {
+    "arcTitle": "Gửi USDC trên Arc",
+    "recipientAddress": "Địa chỉ người nhận",
+    "invalidAddress": "Nhập địa chỉ 0x hợp lệ",
+    "arcFeeNote": "Phí mạng Arc được trả bằng USDC từ số dư này.",
+    "unlockToSend": "Mở khóa ví để gửi.",
+    "arcUnavailable": "Arc hiện không khả dụng cho tài khoản này.",
     "title": "Chuyển token",
     "recipient": "Người nhận: {{address}}",
     "enterAmount": "Nhập số lượng",
@@ -4909,6 +4915,8 @@
     "lyricsFailed": "Không tạo được lời bài hát"
   },
   "assets": {
+    "arcUsdc": "USDC trên Arc",
+    "send": "Gửi",
     "topUp": "Nạp thêm",
     "bridge": "Cầu nối",
     "comingSoon": "sắp ra mắt",

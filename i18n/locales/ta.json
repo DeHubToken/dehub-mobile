@@ -3904,6 +3904,12 @@
     "listens_other": "{{count}} கேட்கிறது"
   },
   "transfer": {
+    "arcTitle": "Arc-இல் USDC அனுப்பு",
+    "recipientAddress": "பெறுநர் முகவரி",
+    "invalidAddress": "சரியான 0x முகவரியை உள்ளிடவும்",
+    "arcFeeNote": "Arc நெட்வொர்க் கட்டணங்கள் இந்த இருப்பிலிருந்து USDC-இல் செலுத்தப்படும்.",
+    "unlockToSend": "அனுப்ப உங்கள் வாலட்டைத் திறக்கவும்.",
+    "arcUnavailable": "Arc தற்போது இந்தக் கணக்கிற்குக் கிடைக்கவில்லை.",
     "title": "டோக்கன்களை மாற்று",
     "recipient": "பெறுநர்: {{address}}",
     "enterAmount": "தொகையை உள்ளிடவும்:",
@@ -4900,6 +4906,8 @@
     "lyricsFailed": "பாடல் வரிகளை உருவாக்க முடியவில்லை"
   },
   "assets": {
+    "arcUsdc": "Arc-இல் USDC",
+    "send": "அனுப்பு",
     "topUp": "டாப் அப்",
     "bridge": "பிரிட்ஜ்",
     "comingSoon": "விரைவில்",

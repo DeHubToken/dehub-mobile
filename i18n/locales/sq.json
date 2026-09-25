@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} listens"
   },
   "transfer": {
+    "arcTitle": "Dërgo USDC në Arc",
+    "recipientAddress": "Adresa e marrësit",
+    "invalidAddress": "Fut një adresë 0x të vlefshme",
+    "arcFeeNote": "Tarifat e rrjetit Arc paguhen në USDC nga kjo gjendje.",
+    "unlockToSend": "Shkyç portofolin për të dërguar.",
+    "arcUnavailable": "Arc nuk është i disponueshëm për këtë llogari tani.",
     "title": "Transfero tokena",
     "recipient": "Marrësi: {{address}}",
     "enterAmount": "Vendos shumën në",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Teksti nuk u gjenerua dot"
   },
   "assets": {
+    "arcUsdc": "USDC në Arc",
+    "send": "Dërgo",
     "topUp": "Rimbush",
     "bridge": "Urë",
     "comingSoon": "së shpejti",

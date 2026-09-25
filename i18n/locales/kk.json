@@ -3918,6 +3918,12 @@
     "listens_other": "{{count}} тыңдау"
   },
   "transfer": {
+    "arcTitle": "Arc желісінде USDC жіберу",
+    "recipientAddress": "Алушының мекенжайы",
+    "invalidAddress": "Жарамды 0x мекенжайын енгізіңіз",
+    "arcFeeNote": "Arc желісінің комиссиясы осы баланстан USDC түрінде төленеді.",
+    "unlockToSend": "Жіберу үшін әмиянның құлпын ашыңыз.",
+    "arcUnavailable": "Arc қазір бұл аккаунт үшін қолжетімсіз.",
     "title": "Токендерді аудару",
     "recipient": "Алушы: {{address}}",
     "enterAmount": "Соманы енгізіңіз:",
@@ -4914,6 +4920,8 @@
     "lyricsFailed": "Мәтінді жасау мүмкін болмады"
   },
   "assets": {
+    "arcUsdc": "Arc желісіндегі USDC",
+    "send": "Жіберу",
     "topUp": "Толтыру",
     "bridge": "Көпір",
     "comingSoon": "жақында",

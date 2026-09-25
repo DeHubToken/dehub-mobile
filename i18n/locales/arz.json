@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} يستمع"
   },
   "transfer": {
+    "arcTitle": "ابعت USDC على Arc",
+    "recipientAddress": "عنوان المستلم",
+    "invalidAddress": "اكتب عنوان 0x صحيح",
+    "arcFeeNote": "رسوم شبكة Arc بتتدفع بـ USDC من الرصيد ده.",
+    "unlockToSend": "افتح محفظتك عشان تبعت.",
+    "arcUnavailable": "Arc مش متاح للحساب ده دلوقتي.",
     "title": "تحويل التوكنات",
     "recipient": "المستلم: {{address}}",
     "enterAmount": "أدخل مبلغ",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "مقدرناش نكتب الكلمات"
   },
   "assets": {
+    "arcUsdc": "USDC على Arc",
+    "send": "إرسال",
     "topUp": "شحن",
     "bridge": "جسر",
     "comingSoon": "قريب",

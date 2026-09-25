@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} ऐकतो"
   },
   "transfer": {
+    "arcTitle": "Arc इत्यत्र USDC प्रेषयतु",
+    "recipientAddress": "प्राप्तुः सङ्केतः",
+    "invalidAddress": "मान्यं 0x सङ्केतं लिखतु",
+    "arcFeeNote": "Arc जालशुल्कानि अस्मात् शेषात् USDC द्वारा दीयन्ते।",
+    "unlockToSend": "प्रेषणाय स्वकोषम् उद्घाटयतु।",
+    "arcUnavailable": "Arc अधुना अस्य खातस्य कृते उपलब्धं नास्ति।",
     "title": "टोकनान् प्रेषयतु",
     "recipient": "प्रापकः: {{address}}",
     "enterAmount": "परिमाणं प्रविशतु:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "गीतपदानि निर्मातुं न शक्यन्ते स्म"
   },
   "assets": {
+    "arcUsdc": "Arc इत्यत्र USDC",
+    "send": "प्रेषयतु",
     "topUp": "पूरयतु",
     "bridge": "सेतुः",
     "comingSoon": "शीघ्रम्",

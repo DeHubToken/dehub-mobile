@@ -4161,6 +4161,12 @@
     "listens_other": "{{count}} mendengar"
   },
   "transfer": {
+    "arcTitle": "Hantar USDC di Arc",
+    "recipientAddress": "Alamat penerima",
+    "invalidAddress": "Masukkan alamat 0x yang sah",
+    "arcFeeNote": "Yuran rangkaian Arc dibayar dalam USDC daripada baki ini.",
+    "unlockToSend": "Buka kunci dompet anda untuk menghantar.",
+    "arcUnavailable": "Arc tidak tersedia untuk akaun ini buat masa ini.",
     "title": "Pindahkan token",
     "recipient": "Penerima: {{address}}",
     "enterAmount": "Masukkan jumlah",
@@ -5157,6 +5163,8 @@
     "lyricsFailed": "Gagal menjana lirik"
   },
   "assets": {
+    "arcUsdc": "USDC di Arc",
+    "send": "Hantar",
     "topUp": "Tambah nilai",
     "bridge": "Jambatan",
     "comingSoon": "akan datang",

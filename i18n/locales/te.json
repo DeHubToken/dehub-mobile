@@ -3904,6 +3904,12 @@
     "listens_other": "{{count}} వింటుంది"
   },
   "transfer": {
+    "arcTitle": "Arc లో USDC పంపండి",
+    "recipientAddress": "గ్రహీత చిరునామా",
+    "invalidAddress": "చెల్లుబాటు అయ్యే 0x చిరునామాను నమోదు చేయండి",
+    "arcFeeNote": "Arc నెట్‌వర్క్ ఫీజులు ఈ బ్యాలెన్స్ నుండి USDC లో చెల్లించబడతాయి.",
+    "unlockToSend": "పంపడానికి మీ వాలెట్‌ను అన్‌లాక్ చేయండి.",
+    "arcUnavailable": "Arc ప్రస్తుతం ఈ ఖాతాకు అందుబాటులో లేదు.",
     "title": "టోకెన్లు బదిలీ చేయండి",
     "recipient": "గ్రహీత: {{address}}",
     "enterAmount": "మొత్తం నమోదు చేయండి:",
@@ -4900,6 +4906,8 @@
     "lyricsFailed": "సాహిత్యం రూపొందించలేకపోయాం"
   },
   "assets": {
+    "arcUsdc": "Arc లో USDC",
+    "send": "పంపండి",
     "topUp": "టాప్ అప్",
     "bridge": "బ్రిడ్జ్",
     "comingSoon": "త్వరలో",

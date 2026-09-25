@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} লিসেনস"
   },
   "transfer": {
+    "arcTitle": "Arc-এ USDC পাঠান",
+    "recipientAddress": "প্রাপকের ঠিকানা",
+    "invalidAddress": "একটি বৈধ 0x ঠিকানা লিখুন",
+    "arcFeeNote": "Arc নেটওয়ার্ক ফি এই ব্যালেন্স থেকে USDC-তে পরিশোধ করা হয়।",
+    "unlockToSend": "পাঠাতে আপনার ওয়ালেট আনলক করুন।",
+    "arcUnavailable": "Arc এই মুহূর্তে এই অ্যাকাউন্টের জন্য উপলব্ধ নয়।",
     "title": "টোকেন স্থানান্তর",
     "recipient": "প্রাপক: {{address}}",
     "enterAmount": "পরিমাণ লিখুন",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "গানের কথা তৈরি করা গেল না"
   },
   "assets": {
+    "arcUsdc": "Arc-এ USDC",
+    "send": "পাঠান",
     "topUp": "টপ আপ",
     "bridge": "ব্রিজ",
     "comingSoon": "শীঘ্রই",

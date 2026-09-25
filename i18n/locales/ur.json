@@ -3904,6 +3904,12 @@
     "listens_other": "{{count}} فہرستیں"
   },
   "transfer": {
+    "arcTitle": "Arc پر USDC بھیجیں",
+    "recipientAddress": "وصول کنندہ کا پتہ",
+    "invalidAddress": "درست 0x پتہ درج کریں",
+    "arcFeeNote": "Arc نیٹ ورک فیس اسی بیلنس سے USDC میں ادا کی جاتی ہے۔",
+    "unlockToSend": "بھیجنے کے لیے اپنا والیٹ ان لاک کریں۔",
+    "arcUnavailable": "Arc فی الحال اس اکاؤنٹ کے لیے دستیاب نہیں ہے۔",
     "title": "ٹوکن منتقل کریں",
     "recipient": "وصول کنندہ: {{address}}",
     "enterAmount": "رقم درج کریں:",
@@ -4900,6 +4906,8 @@
     "lyricsFailed": "بول نہیں بن سکے"
   },
   "assets": {
+    "arcUsdc": "Arc پر USDC",
+    "send": "بھیجیں",
     "topUp": "ٹاپ اپ",
     "bridge": "برج",
     "comingSoon": "جلد",

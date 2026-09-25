@@ -3930,6 +3930,12 @@
     "listens_other": "{{count}} ያዳምጡ"
   },
   "transfer": {
+    "arcTitle": "USDC በArc ላይ ላክ",
+    "recipientAddress": "የተቀባይ አድራሻ",
+    "invalidAddress": "ትክክለኛ የ0x አድራሻ ያስገቡ",
+    "arcFeeNote": "የArc አውታረ መረብ ክፍያዎች ከዚህ ቀሪ ሂሳብ በUSDC ይከፈላሉ።",
+    "unlockToSend": "ለመላክ ቦርሳዎን ይክፈቱ።",
+    "arcUnavailable": "Arc ለዚህ መለያ አሁን አይገኝም።",
     "title": "ቶከኖችን ያስተላልፉ",
     "recipient": "ተቀባይ፦ {{address}}",
     "enterAmount": "የሚከተለውን መጠን ያስገቡ፦",
@@ -4926,6 +4932,8 @@
     "lyricsFailed": "ግጥም መፍጠር አልተቻለም"
   },
   "assets": {
+    "arcUsdc": "USDC በArc ላይ",
+    "send": "ላክ",
     "topUp": "ሙላ",
     "bridge": "ድልድይ",
     "comingSoon": "በቅርቡ",

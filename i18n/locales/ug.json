@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} ئاڭلايدۇ"
   },
   "transfer": {
+    "arcTitle": "Arc دا USDC يوللاش",
+    "recipientAddress": "تاپشۇرۇۋالغۇچىنىڭ ئادرېسى",
+    "invalidAddress": "توغرا 0x ئادرېسىنى كىرگۈزۈڭ",
+    "arcFeeNote": "Arc تورىنىڭ ھەققى بۇ قالدۇقتىن USDC بىلەن تۆلىنىدۇ.",
+    "unlockToSend": "يوللاش ئۈچۈن ھەميانىڭىزنى ئېچىڭ.",
+    "arcUnavailable": "Arc ھازىر بۇ ھېسابقا ئىشلەتكىلى بولمايدۇ.",
     "title": "توكېن يۆتكەش",
     "recipient": "تاپشۇرۇۋالغۇچى: {{address}}",
     "enterAmount": "سوممىنى كىرگۈزۈڭ:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "ناخشا تېكىستى قۇرغىلى بولمىدى"
   },
   "assets": {
+    "arcUsdc": "Arc دىكى USDC",
+    "send": "يوللاش",
     "topUp": "تولۇقلاش",
     "bridge": "كۆۋرۈك",
     "comingSoon": "پات ئۇزۇن ئەمەس",

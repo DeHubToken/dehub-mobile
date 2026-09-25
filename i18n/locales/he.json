@@ -3904,6 +3904,12 @@
     "listens_other": "{{count}} מקשיבים"
   },
   "transfer": {
+    "arcTitle": "שליחת USDC ברשת Arc",
+    "recipientAddress": "כתובת הנמען",
+    "invalidAddress": "יש להזין כתובת 0x תקינה",
+    "arcFeeNote": "עמלות רשת Arc משולמות ב-USDC מהיתרה הזו.",
+    "unlockToSend": "יש לפתוח את הארנק כדי לשלוח.",
+    "arcUnavailable": "Arc אינו זמין לחשבון זה כרגע.",
     "title": "העברת טוקנים",
     "recipient": "נמען: {{address}}",
     "enterAmount": "הזן סכום של",
@@ -4900,6 +4906,8 @@
     "lyricsFailed": "יצירת המילים נכשלה"
   },
   "assets": {
+    "arcUsdc": "USDC ברשת Arc",
+    "send": "שליחה",
     "topUp": "טעינה",
     "bridge": "גשר",
     "comingSoon": "בקרוב",

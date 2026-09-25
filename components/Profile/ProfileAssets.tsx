@@ -20,6 +20,9 @@ import {
   dhbPosition as computeDhbPosition,
 } from "../../libs/dhb-position";
 import TransferModal from "../Transfer/TransferModal";
+import ArcSendSheet from "../Wallet/ArcSendSheet";
+import arcIcon from "../../assets/chains/arc-icon.png";
+import { getArcUsdcBalance } from "../../libs/arc-wallet";
 import { useTranslation } from "react-i18next";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import {
@@ -66,6 +69,20 @@ const ProfileAssets = () => {
   // Every 30s while the host screen is the one on screen — not for as long as
   // a profile or the wallet sits somewhere in the stack.
   useFocusedInterval(refreshSubscriptionEarnings, 30_000, { catchUp: true });
+
+  // USDC on Arc lives outside the active-chain balances: Arc is never the
+  // active chain, so it is read directly and shown whenever there is any.
+  const sessionAddress = (user?.walletAddress || user?.address || "") as string;
+  const [arcUsdc, setArcUsdc] = useState(0);
+  const [arcSendOpen, setArcSendOpen] = useState(false);
+  const refreshArcUsdc = useCallback(() => {
+    if (!sessionAddress) return;
+    getArcUsdcBalance(sessionAddress)
+      .then((value) => { if (mountedRef.current) setArcUsdc(value); })
+      .catch(() => { /* an Arc RPC hiccup must not affect the other balances */ });
+  }, [sessionAddress]);
+  React.useEffect(() => { refreshArcUsdc(); }, [refreshArcUsdc]);
+  useFocusedInterval(refreshArcUsdc, 60_000, { catchUp: true });
 
   const walletBalances =
     (user?.tokenBalances as Record<string, number> | undefined) || {};
@@ -308,6 +325,26 @@ const ProfileAssets = () => {
           )}
         </View>
       ))}
+      {arcUsdc > 0 && (
+        <View className="mb-1">
+          <View className="flex-row items-center justify-between py-2">
+            <View className="flex-row items-center flex-1">
+              <View className="mr-3">
+                <Image source={usdcIcon} className="w-8 h-8 rounded-full" />
+                <Image source={arcIcon} className="w-4 h-4 rounded absolute -bottom-0.5 -right-0.5" />
+              </View>
+              <Text className="text-lg text-white">{t("assets.arcUsdc")}</Text>
+            </View>
+            <Text className="text-lg text-gray-300">{formatCompactNumber(arcUsdc)}</Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => setArcSendOpen(true)}
+            className="ml-11 mb-2 py-2 px-3 rounded-xl bg-theme-neutrals-700 self-start"
+          >
+            <Text className="text-xs text-white">{t("assets.send")}</Text>
+          </TouchableOpacity>
+        </View>
+      )}
       {subscriptionEarnings && (subscriptionEarnings.pendingUsdt + subscriptionEarnings.processingUsdt) > 0 && (
         <View className="mt-2 pt-3 border-t border-white/10">
           <View className="flex-row items-center justify-between">
@@ -338,6 +375,15 @@ const ProfileAssets = () => {
         </View>
       )}
       <TransferModal open={transferOpen} onOpenChange={setTransferOpen} />
+      {!!sessionAddress && (
+        <ArcSendSheet
+          open={arcSendOpen}
+          onClose={() => setArcSendOpen(false)}
+          address={sessionAddress}
+          balance={arcUsdc}
+          onSent={refreshArcUsdc}
+        />
+      )}
     </View>
   );
 };
