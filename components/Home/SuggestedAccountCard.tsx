@@ -7,7 +7,8 @@
  *   • No extra line for engagement_overlap / suggested fallback
  */
 import React, { FC, useCallback, useState, useMemo } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
@@ -189,10 +190,10 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
           {displayName}
         </Text>
         {badgeImage ? (
-          <Image
+          <SmartImage
             source={badgeImage}
             style={{ width: 14, height: 14, marginLeft: 3 }}
-            resizeMode="contain"
+            contentFit="contain"
           />
         ) : null}
       </View>

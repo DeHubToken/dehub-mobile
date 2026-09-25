@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity} from "react-native";
+import SmartImage from "../common/SmartImage";
 import Animated, { FadeIn } from "react-native-reanimated";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
@@ -218,7 +219,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
                 {displayName}
               </Text>
               {badgeImg && (
-                <Image source={badgeImg} style={{ width: 15, height: 15 }} resizeMode="contain" />
+                <SmartImage source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
               )}
               <NewMemberChip address={other?.address} />
               {username && (

@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
-import { View, Text, Image, TouchableOpacity, Pressable } from "react-native";
+import { View, Text, TouchableOpacity, Pressable } from "react-native";
+import SmartImage from "../common/SmartImage";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -213,7 +214,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             </View>
           )}
           {!!badgeImg && (
-            <Image source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 14), { marginLeft: 0 }]} resizeMode="contain" />
+            <SmartImage source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 14), { marginLeft: 0 }]} contentFit="contain" />
           )}
           <Text className="text-white/50 text-[11px] ml-auto">
             {formatTime(message.createdAt)}
@@ -264,10 +265,11 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
 
             {gif && (
               <View className="mt-1 rounded-xl overflow-hidden bg-white/5" style={{ maxWidth: 240 }}>
-                <Image
+                <SmartImage
                   source={{ uri: gif.url }}
+                  recyclingKey={gif.url}
                   style={gifBox(gif)}
-                  resizeMode="contain"
+                  contentFit="contain"
                 />
               </View>
             )}
@@ -284,10 +286,11 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               <View className="mt-1 flex-row flex-wrap gap-1">
                 {attachments.map((m, i) => (
                   <View key={i} className="rounded-xl overflow-hidden">
-                    <Image
+                    <SmartImage
                       source={{ uri: m.url }}
+                      recyclingKey={m.url}
                       style={{ width: 200, height: 150 }}
-                      resizeMode="cover"
+                      contentFit="cover"
                     />
                   </View>
                 ))}

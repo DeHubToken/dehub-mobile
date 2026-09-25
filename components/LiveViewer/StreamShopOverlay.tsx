@@ -24,7 +24,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   Modal,
   ScrollView,
   ActivityIndicator,
@@ -32,6 +31,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import ShoppingBag from "lucide-react-native/dist/esm/icons/shopping-bag";
 import X from "lucide-react-native/dist/esm/icons/x";
 import Package from "lucide-react-native/dist/esm/icons/package";
@@ -87,7 +87,7 @@ const Thumb = memo(function Thumb({
       className="bg-white/10 overflow-hidden items-center justify-center"
     >
       {uri ? (
-        <Image source={{ uri }} style={{ width: size, height: size }} resizeMode="cover" />
+        <SmartImage source={{ uri }} recyclingKey={uri} style={{ width: size, height: size }} contentFit="cover" />
       ) : (
         <Package size={size * 0.4} color="#808089" />
       )}

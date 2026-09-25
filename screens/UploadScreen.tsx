@@ -7,7 +7,6 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  Image,
   ScrollView,
   ActivityIndicator,
   Pressable,
@@ -18,6 +17,7 @@ import {
   Keyboard,
   PanResponder,
 } from "react-native";
+import SmartImage from "../components/common/SmartImage";
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
@@ -2215,7 +2215,7 @@ export default function UploadScreen() {
                 <TouchableOpacity accessibilityRole="button" onPress={pickArticleImage} className="overflow-hidden rounded-xl border border-white/20 bg-white/5">
                   {articleShareImageUri ? (
                     <View>
-                      <Image source={{ uri: articleShareImageUri }} className="w-full" style={{ aspectRatio: 1.91 }} resizeMode="cover" />
+                      <SmartImage source={{ uri: articleShareImageUri }} style={{ width: "100%", aspectRatio: 1.91 }} contentFit="cover" />
                       <View className="p-3">
                         <Text className="text-white text-sm font-semibold" numberOfLines={1}>{titleText.trim() || "Your article title"}</Text>
                         <Text className="text-white/60 text-xs mt-1" numberOfLines={2}>{bodyText.trim() || "Your article summary will appear here when this is shared."}</Text>
@@ -2296,10 +2296,11 @@ export default function UploadScreen() {
                   <View className="w-full rounded-xl overflow-hidden border border-theme-neutrals-700 relative"
                     style={{ aspectRatio: 16 / 9 }}
                   >
-                    <Image
+                    <SmartImage
                       source={{ uri: liveThumbnailUri }}
+                      recyclingKey={liveThumbnailUri}
                       style={{ width: "100%", height: "100%" }}
-                      resizeMode="cover"
+                      contentFit="cover"
                     />
                     <View className="absolute top-2 right-2 flex-row">
                       <TouchableOpacity
@@ -2368,10 +2369,11 @@ export default function UploadScreen() {
                         accessibilityRole="button"
                         accessibilityLabel={t("upload.viewImageFullscreen")}
                       >
-                        <Image
+                        <SmartImage
                           source={{ uri: img.uri }}
-                          className="w-full h-40"
-                          resizeMode="cover"
+                          recyclingKey={img.uri}
+                          style={{ width: "100%", height: 160 }}
+                          contentFit="cover"
                         />
                       </TouchableOpacity>
                       <TouchableOpacity
@@ -2493,10 +2495,11 @@ export default function UploadScreen() {
                       className="relative rounded-lg overflow-hidden border border-white/30"
                       style={{ width: 80, height: 45 }}
                     >
-                      <Image
+                      <SmartImage
                         source={{ uri: coverUri ?? thumbnailUri! }}
+                        recyclingKey={coverUri ?? thumbnailUri!}
                         style={{ width: 80, height: 45 }}
-                        resizeMode="cover"
+                        contentFit="cover"
                       />
                       <View className="absolute inset-0 dark-surface bg-black/40 items-center justify-center">
                         <Icon name="Pencil" size={20} color="#fff" />
@@ -3530,10 +3533,10 @@ export default function UploadScreen() {
       >
         <View className="flex-1 bg-black items-center justify-center">
           {fullscreenImageUri && (
-            <Image
+            <SmartImage
               source={{ uri: fullscreenImageUri }}
-              className="w-full h-full"
-              resizeMode="contain"
+              style={{ width: "100%", height: "100%" }}
+              contentFit="contain"
             />
           )}
           <TouchableOpacity

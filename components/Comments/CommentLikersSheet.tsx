@@ -22,10 +22,10 @@ import {
   Pressable,
   FlatList,
   ActivityIndicator,
-  Image,
   useWindowDimensions,
   StyleSheet,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -70,10 +70,10 @@ const PersonRow: React.FC<{ item: CommentLiker; onPress: (address: string) => vo
               {displayName}
             </Text>
             {badgeImg ? (
-              <Image
+              <SmartImage
                 source={badgeImg}
                 style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
-                resizeMode="contain"
+                contentFit="contain"
               />
             ) : null}
           </View>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, Image, TouchableOpacity, ActivityIndicator, DeviceEventEmitter } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, DeviceEventEmitter } from 'react-native';
+import SmartImage from './SmartImage';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system/legacy';
 import { getNFT, replacePostImage, addPostImages, getPostImageAllowance } from '../../services/nft.service';
@@ -111,7 +112,7 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
         accessibilityRole="button" accessibilityLabel={t('editPost.replaceImageN', { n: index + 1 })}
         onPress={() => void replace(index)} style={{ width: '46%', opacity: disabled || busyIndex !== null ? 0.5 : 1 }}
         className="rounded-xl border border-white/10 overflow-hidden bg-white/5">
-        <Image source={{ uri }} style={{ width: '100%', height: 112 }} resizeMode="contain" />
+        <SmartImage source={{ uri }} recyclingKey={uri} style={{ width: '100%', height: 112 }} contentFit="contain" />
         {busyIndex === index ? <ActivityIndicator color="white" style={{ margin: 10 }} /> : <Text className="text-white text-sm text-center p-2">{t('editPost.replaceImageN', { n: index + 1 })}</Text>}
       </TouchableOpacity>)}
     </View>

@@ -12,11 +12,11 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Image,
   Keyboard,
   Platform,
   ActivityIndicator,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import Animated, { FadeIn, FadeOut, SlideInDown } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
@@ -701,12 +701,14 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                   </View>
                 </View>
               ) : (
-                <Image
-                  source={{ uri: media?.thumbnailUri || media?.uri || gifUrl || "" }}
-                  style={{ width: 80, height: 80, borderRadius: 12 }}
-                  resizeMode="cover"
-                  className="bg-theme-neutrals-700"
-                />
+                // expo-image takes no className, so the backdrop lives on a wrapper.
+                <View className="bg-theme-neutrals-700" style={{ width: 80, height: 80, borderRadius: 12 }}>
+                  <SmartImage
+                    source={{ uri: media?.thumbnailUri || media?.uri || gifUrl || "" }}
+                    style={{ width: 80, height: 80, borderRadius: 12 }}
+                    contentFit="cover"
+                  />
+                </View>
               )}
               {media?.type === "video" && (
                 <View className="absolute inset-0 items-center justify-center">

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ActivityIndicator, Image, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import SmartImage from './common/SmartImage';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
@@ -19,7 +20,7 @@ export function usePools() {
 export function DexPoolAvatar({ pool, size = 34 }: { pool: Pick<DexPool, 'image_url' | 'symbol'> | null; size?: number }) {
   const round = { width: size, height: size, borderRadius: size / 2 };
   if (!pool) return <Image source={DEHUB_COIN} style={round} />;
-  if (pool.image_url) return <Image source={{ uri: pool.image_url }} style={[round, s.avatarBg]} />;
+  if (pool.image_url) return <SmartImage source={{ uri: pool.image_url }} recyclingKey={pool.image_url} style={[round, s.avatarBg]} />;
   return <View style={[round, s.avatarBg, s.initials]}><Text style={[s.initialsText, { fontSize: size * 0.36 }]}>{pool.symbol.slice(0, 2).toUpperCase()}</Text></View>;
 }
 

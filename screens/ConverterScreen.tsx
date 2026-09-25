@@ -22,10 +22,11 @@ import {
   Text,
   TextInput,
   FlatList,
-  Image,
   Pressable,
   ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
+import SmartImage from "../components/common/SmartImage";
 import * as Clipboard from 'expo-clipboard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -368,10 +369,11 @@ export default function ConverterScreen() {
         <View className="rounded-2xl overflow-hidden bg-theme-neutrals-900 mb-3">
           <View className="relative w-full aspect-video bg-theme-neutrals-800">
             {thumbnail && (
-              <Image
+              <SmartImage
                 source={{ uri: thumbnail }}
-                className="absolute top-0 left-0 right-0 bottom-0"
-                resizeMode="cover"
+                recyclingKey={thumbnail}
+                style={StyleSheet.absoluteFill}
+                contentFit="cover"
               />
             )}
 

@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image, ImageSourcePropType } from "react-native";
+import { View, Text, TouchableOpacity, ImageSourcePropType } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import { truncate } from "../../libs/strings.util";
@@ -96,7 +97,7 @@ const LeaderboardRowItem: React.FC<Props> = ({ item, sort, period, onPress }) =>
       {/* Rank */}
       <View className="w-9 items-center justify-center">
         {medalImage ? (
-          <Image source={medalImage} className="w-7 h-7" resizeMode="contain" />
+          <SmartImage source={medalImage} style={{ width: 28, height: 28 }} contentFit="contain" />
         ) : (
           <Text className="text-theme-neutrals-400 text-sm font-semibold">
             {item.rank}
@@ -113,7 +114,7 @@ const LeaderboardRowItem: React.FC<Props> = ({ item, sort, period, onPress }) =>
               {item.displayName || item.username || truncate(item.account, 10, "..")}
             </Text>
             {badgeImage ? (
-              <Image source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} resizeMode="contain" />
+              <SmartImage source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} contentFit="contain" />
             ) : null}
           </View>
           {item.username ? (

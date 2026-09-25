@@ -7,8 +7,8 @@ import {
   Pressable,
   Platform,
   useWindowDimensions,
-  Image,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
 import Icon, { type IconName } from "../ui/Icon";
@@ -115,7 +115,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
           </View>
         )}
         {!!badgeImg && (
-          <Image source={badgeImg} style={{ width: 13, height: 13 }} resizeMode="contain" />
+          <SmartImage source={badgeImg} style={{ width: 13, height: 13 }} contentFit="contain" />
         )}
         <Text className="text-white/50 text-[11px] ml-auto">
           {formatTime(message.createdAt)}
@@ -150,10 +150,11 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
           {/* GIF */}
           {gif && (
             <View className="mt-1 rounded-xl overflow-hidden bg-white/5" style={{ maxWidth: 200 }}>
-              <Image
+              <SmartImage
                 source={{ uri: gif.url }}
+                recyclingKey={gif.url}
                 style={gifBox(gif, 200, 200)}
-                resizeMode="contain"
+                contentFit="contain"
               />
             </View>
           )}
@@ -163,10 +164,11 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
             <View className="mt-1 flex-row flex-wrap gap-1">
               {attachments.map((m, i) => (
                 <View key={i} className="rounded-xl overflow-hidden">
-                  <Image
+                  <SmartImage
                     source={{ uri: m.url }}
+                    recyclingKey={m.url}
                     style={{ width: 160, height: 120 }}
-                    resizeMode="cover"
+                    contentFit="cover"
                   />
                 </View>
               ))}

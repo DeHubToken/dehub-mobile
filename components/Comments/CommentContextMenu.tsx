@@ -15,8 +15,8 @@ import {
   Platform,
   useWindowDimensions,
   Share,
-  Image,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import Animated, {
   FadeIn,
   FadeOut,
@@ -209,20 +209,22 @@ const FloatingComment: React.FC<{
 
         {comment.imageUrl ? (
           <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 220 }}>
-            <Image
+            <SmartImage
               source={{ uri: resolveMediaUrl(comment.imageUrl) }}
+              recyclingKey={resolveMediaUrl(comment.imageUrl)}
               style={{ width: 220, height: 165 }}
-              resizeMode="cover"
+              contentFit="cover"
             />
           </View>
         ) : null}
 
         {comment.gifUrl ? (
           <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 220 }}>
-            <Image
+            <SmartImage
               source={{ uri: comment.gifUrl }}
+              recyclingKey={comment.gifUrl}
               style={{ width: 220, height: 165 }}
-              resizeMode="cover"
+              contentFit="cover"
             />
           </View>
         ) : null}

@@ -7,7 +7,8 @@
  * - Voice note: VoiceNotePlayer waveform with remove (trash) and send buttons
  */
 import React, { memo, useCallback } from "react";
-import { View, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, TouchableOpacity, ActivityIndicator } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { Ionicons } from "@expo/vector-icons";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 import { useTranslation } from "react-i18next";
@@ -77,10 +78,11 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
   return (
     <View className="px-4 py-2 bg-theme-neutrals-800/80 flex-row items-center">
       <View className="w-16 h-16 rounded-lg overflow-hidden bg-theme-neutrals-700 relative mr-3">
-        <Image
+        <SmartImage
           source={{ uri }}
+          recyclingKey={uri}
           style={{ width: "100%", height: "100%" }}
-          resizeMode="cover"
+          contentFit="cover"
         />
         <TouchableOpacity
           onPress={handleRemove}
