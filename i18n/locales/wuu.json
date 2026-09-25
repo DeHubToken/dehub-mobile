@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} 听"
   },
   "transfer": {
+    "arcTitle": "勒 Arc 上发送 USDC",
+    "recipientAddress": "收款地址",
+    "invalidAddress": "请输入有效个 0x 地址",
+    "arcFeeNote": "Arc 网络费用从搿个余额里用 USDC 付。",
+    "unlockToSend": "解锁钱包再好发送。",
+    "arcUnavailable": "Arc 现在对搿个账户用勿来。",
     "title": "转账代币",
     "recipient": "收款人：{{address}}",
     "enterAmount": "输入金额",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "无法生成歌词"
   },
   "assets": {
+    "arcUsdc": "Arc 上个 USDC",
+    "send": "发送",
     "topUp": "充值",
     "bridge": "跨链",
     "comingSoon": "即将推出",

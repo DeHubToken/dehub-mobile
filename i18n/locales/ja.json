@@ -3951,6 +3951,12 @@
     "listens_other": "{{count}}回再生"
   },
   "transfer": {
+    "arcTitle": "ArcでUSDCを送金",
+    "recipientAddress": "受取人のアドレス",
+    "invalidAddress": "有効な0xアドレスを入力してください",
+    "arcFeeNote": "Arcのネットワーク手数料はこの残高からUSDCで支払われます。",
+    "unlockToSend": "送金するにはウォレットのロックを解除してください。",
+    "arcUnavailable": "現在、このアカウントではArcを利用できません。",
     "title": "トークンを送金",
     "recipient": "受取先：{{address}}",
     "enterAmount": "金額を入力：",
@@ -4947,6 +4953,8 @@
     "lyricsFailed": "歌詞を生成できませんでした"
   },
   "assets": {
+    "arcUsdc": "Arc上のUSDC",
+    "send": "送金",
     "topUp": "チャージ",
     "bridge": "ブリッジ",
     "comingSoon": "近日公開",

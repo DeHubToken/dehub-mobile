@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} lisɛŋs"
   },
   "transfer": {
+    "arcTitle": "USDC ci Arc kan",
+    "recipientAddress": "Mɔgɔ min bɛ a sɔrɔ, o ka adrɛsi",
+    "invalidAddress": "0x adrɛsi ɲuman sɛbɛn",
+    "arcFeeNote": "Arc rezo sara bɛ sara ni USDC ye ka bɔ nin wari in na.",
+    "unlockToSend": "I ka wallet dayɛlɛ walasa ka ci.",
+    "arcUnavailable": "Arc tɛ sɔrɔ nin jatebila in ye sisan.",
     "title": "Tokenw ci",
     "recipient": "Sɔrɔbaga: {{address}}",
     "enterAmount": "Hakɛ sɛbɛn",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Dɔnkili kumaw ma se ka dilan"
   },
   "assets": {
+    "arcUsdc": "USDC Arc kan",
+    "send": "Ka ci",
     "topUp": "A fa",
     "bridge": "Tɛmɛsira",
     "comingSoon": "sɔɔni",

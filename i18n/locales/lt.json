@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} klauso"
   },
   "transfer": {
+    "arcTitle": "Siųsti USDC Arc tinkle",
+    "recipientAddress": "Gavėjo adresas",
+    "invalidAddress": "Įveskite galiojantį 0x adresą",
+    "arcFeeNote": "Arc tinklo mokesčiai mokami USDC iš šio likučio.",
+    "unlockToSend": "Atrakinkite piniginę, kad galėtumėte siųsti.",
+    "arcUnavailable": "Arc šiuo metu šiai paskyrai nepasiekiamas.",
     "title": "Pervesti žetonus",
     "recipient": "Gavėjas: {{address}}",
     "enterAmount": "Įveskite sumą:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Nepavyko sukurti žodžių"
   },
   "assets": {
+    "arcUsdc": "USDC Arc tinkle",
+    "send": "Siųsti",
     "topUp": "Papildyti",
     "bridge": "Tiltas",
     "comingSoon": "netrukus",

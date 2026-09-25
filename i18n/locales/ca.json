@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} escolta"
   },
   "transfer": {
+    "arcTitle": "Envia USDC a Arc",
+    "recipientAddress": "Adreça del destinatari",
+    "invalidAddress": "Introdueix una adreça 0x vàlida",
+    "arcFeeNote": "Les comissions de la xarxa Arc es paguen en USDC d'aquest saldo.",
+    "unlockToSend": "Desbloqueja la cartera per enviar.",
+    "arcUnavailable": "Arc no està disponible per a aquest compte ara mateix.",
     "title": "Transfereix tokens",
     "recipient": "Destinatari: {{address}}",
     "enterAmount": "Introdueix la quantitat de",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "No s'ha pogut generar la lletra"
   },
   "assets": {
+    "arcUsdc": "USDC a Arc",
+    "send": "Envia",
     "topUp": "Recarrega",
     "bridge": "Pont",
     "comingSoon": "aviat",

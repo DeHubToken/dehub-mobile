@@ -3901,6 +3901,12 @@
     "listens_other": "{{count}} anasikiliza"
   },
   "transfer": {
+    "arcTitle": "Tuma USDC kwenye Arc",
+    "recipientAddress": "Anwani ya mpokeaji",
+    "invalidAddress": "Weka anwani sahihi ya 0x",
+    "arcFeeNote": "Ada za mtandao wa Arc hulipwa kwa USDC kutoka salio hili.",
+    "unlockToSend": "Fungua pochi yako ili kutuma.",
+    "arcUnavailable": "Arc haipatikani kwa akaunti hii kwa sasa.",
     "title": "Hamisha tokeni",
     "recipient": "Mpokeaji: {{address}}",
     "enterAmount": "Weka kiasi cha",
@@ -4897,6 +4903,8 @@
     "lyricsFailed": "Imeshindwa kutunga maneno"
   },
   "assets": {
+    "arcUsdc": "USDC kwenye Arc",
+    "send": "Tuma",
     "topUp": "Ongeza",
     "bridge": "Daraja",
     "comingSoon": "hivi karibuni",

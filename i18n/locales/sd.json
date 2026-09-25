@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} سنين"
   },
   "transfer": {
+    "arcTitle": "Arc تي USDC موڪليو",
+    "recipientAddress": "وصول ڪندڙ جو پتو",
+    "invalidAddress": "صحيح 0x پتو داخل ڪريو",
+    "arcFeeNote": "Arc نيٽ ورڪ جي فيس هن بيلنس مان USDC ۾ ادا ٿيندي آهي.",
+    "unlockToSend": "موڪلڻ لاءِ پنهنجو والٽ ان لاڪ ڪريو.",
+    "arcUnavailable": "Arc هن وقت هن اڪائونٽ لاءِ دستياب ناهي.",
     "title": "ٽوڪن موڪليو",
     "recipient": "وصول ڪندڙ: {{address}}",
     "enterAmount": "رقم داخل ڪريو:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "لفظ ٺاهي نه سگهياسين"
   },
   "assets": {
+    "arcUsdc": "Arc تي USDC",
+    "send": "موڪليو",
     "topUp": "ٽاپ اپ",
     "bridge": "پل",
     "comingSoon": "جلد",

@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} ຟັງ"
   },
   "transfer": {
+    "arcTitle": "ສົ່ງ USDC ໃນ Arc",
+    "recipientAddress": "ທີ່ຢູ່ຜູ້ຮັບ",
+    "invalidAddress": "ປ້ອນທີ່ຢູ່ 0x ທີ່ຖືກຕ້ອງ",
+    "arcFeeNote": "ຄ່າທຳນຽມເຄືອຂ່າຍ Arc ຈ່າຍເປັນ USDC ຈາກຍອດເງິນນີ້.",
+    "unlockToSend": "ປົດລັອກກະເປົາຂອງທ່ານເພື່ອສົ່ງ.",
+    "arcUnavailable": "Arc ບໍ່ສາມາດໃຊ້ໄດ້ກັບບັນຊີນີ້ໃນຕອນນີ້.",
     "title": "ໂອນໂທເຄັນ",
     "recipient": "ຜູ້ຮັບ: {{address}}",
     "enterAmount": "ປ້ອນຈຳນວນ",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "ສ້າງເນື້ອເພງບໍ່ສຳເລັດ"
   },
   "assets": {
+    "arcUsdc": "USDC ໃນ Arc",
+    "send": "ສົ່ງ",
     "topUp": "ເຕີມເງິນ",
     "bridge": "ບຣິດ",
     "comingSoon": "ໄວໆນີ້",

@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} ይሰምዕ"
   },
   "transfer": {
+    "arcTitle": "USDC ኣብ Arc ስደድ",
+    "recipientAddress": "ኣድራሻ ተቐባሊ",
+    "invalidAddress": "ቅኑዕ ኣድራሻ 0x ኣእቱ",
+    "arcFeeNote": "ክፍሊት መርበብ Arc ካብዚ ተረፍ ብUSDC ይኽፈል።",
+    "unlockToSend": "ንምልኣኽ ቦርሳኻ ክፈት።",
+    "arcUnavailable": "Arc ሕጂ ነዚ ሕሳብ ኣይርከብን።",
     "title": "ቶከናት ኣመሓላልፍ",
     "recipient": "ተቐባሊ፡ {{address}}",
     "enterAmount": "መጠን ኣእቱ፡",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "ግጥሚ ክፍጠር ኣይተኻእለን"
   },
   "assets": {
+    "arcUsdc": "USDC ኣብ Arc",
+    "send": "ስደድ",
     "topUp": "ምምላእ",
     "bridge": "ድልድል",
     "comingSoon": "ኣብ ቀረባ ግዜ",

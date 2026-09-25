@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} угуу"
   },
   "transfer": {
+    "arcTitle": "Arc тармагында USDC жөнөтүү",
+    "recipientAddress": "Алуучунун дареги",
+    "invalidAddress": "Туура 0x дарегин киргизиңиз",
+    "arcFeeNote": "Arc тармагынын комиссиясы ушул баланстан USDC менен төлөнөт.",
+    "unlockToSend": "Жөнөтүү үчүн капчыгыңыздын кулпусун ачыңыз.",
+    "arcUnavailable": "Arc азыр бул аккаунт үчүн жеткиликсиз.",
     "title": "Токендерди которуу",
     "recipient": "Алуучу: {{address}}",
     "enterAmount": "Сумманы киргизиңиз:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Текст түзүлгөн жок"
   },
   "assets": {
+    "arcUsdc": "Arc тармагындагы USDC",
+    "send": "Жөнөтүү",
     "topUp": "Толуктоо",
     "bridge": "Көпүрө",
     "comingSoon": "жакында",

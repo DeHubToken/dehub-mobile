@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} сонсож байна"
   },
   "transfer": {
+    "arcTitle": "Arc сүлжээнд USDC илгээх",
+    "recipientAddress": "Хүлээн авагчийн хаяг",
+    "invalidAddress": "Зөв 0x хаяг оруулна уу",
+    "arcFeeNote": "Arc сүлжээний шимтгэлийг энэ үлдэгдлээс USDC-ээр төлнө.",
+    "unlockToSend": "Илгээхийн тулд хэтэвчийнхээ түгжээг тайлна уу.",
+    "arcUnavailable": "Arc одоогоор энэ бүртгэлд боломжгүй байна.",
     "title": "Токен шилжүүлэх",
     "recipient": "Хүлээн авагч: {{address}}",
     "enterAmount": "Дүнг оруулна уу:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Үг үүсгэж чадсангүй"
   },
   "assets": {
+    "arcUsdc": "Arc сүлжээн дэх USDC",
+    "send": "Илгээх",
     "topUp": "Цэнэглэх",
     "bridge": "Гүүр",
     "comingSoon": "удахгүй",

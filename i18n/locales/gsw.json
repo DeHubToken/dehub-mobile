@@ -3930,6 +3930,12 @@
     "listens_other": "{{count}} höört"
   },
   "transfer": {
+    "arcTitle": "USDC uf Arc schicke",
+    "recipientAddress": "Empfängeradrässe",
+    "invalidAddress": "Gib e gültigi 0x-Adrässe ii",
+    "arcFeeNote": "D Arc-Netzwärkgebüehre wärde in USDC vo däm Guethabe zahlt.",
+    "unlockToSend": "Entsperr dis Wallet, zum schicke.",
+    "arcUnavailable": "Arc isch für das Konto grad nöd verfüegbar.",
     "title": "Token überträge",
     "recipient": "Empfänger: {{address}}",
     "enterAmount": "Betrag iigäh in",
@@ -4926,6 +4932,8 @@
     "lyricsFailed": "De Liedtext het nöd chöne gmacht werde"
   },
   "assets": {
+    "arcUsdc": "USDC uf Arc",
+    "send": "Schicke",
     "topUp": "Uflade",
     "bridge": "Bridge",
     "comingSoon": "bald",

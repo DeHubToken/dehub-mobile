@@ -3904,6 +3904,12 @@
     "listens_other": "{{count}} слуша"
   },
   "transfer": {
+    "arcTitle": "Изпрати USDC в Arc",
+    "recipientAddress": "Адрес на получателя",
+    "invalidAddress": "Въведете валиден 0x адрес",
+    "arcFeeNote": "Таксите на мрежата Arc се плащат в USDC от този баланс.",
+    "unlockToSend": "Отключете портфейла си, за да изпратите.",
+    "arcUnavailable": "Arc в момента не е достъпен за този акаунт.",
     "title": "Прехвърляне на токени",
     "recipient": "Получател: {{address}}",
     "enterAmount": "Въведи сума в",
@@ -4900,6 +4906,8 @@
     "lyricsFailed": "Текстът не можа да бъде създаден"
   },
   "assets": {
+    "arcUsdc": "USDC в Arc",
+    "send": "Изпрати",
     "topUp": "Зареди",
     "bridge": "Мост",
     "comingSoon": "скоро",

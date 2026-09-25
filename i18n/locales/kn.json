@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} ಕೇಳುತ್ತದೆ"
   },
   "transfer": {
+    "arcTitle": "Arc ನಲ್ಲಿ USDC ಕಳುಹಿಸಿ",
+    "recipientAddress": "ಸ್ವೀಕರಿಸುವವರ ವಿಳಾಸ",
+    "invalidAddress": "ಮಾನ್ಯ 0x ವಿಳಾಸ ನಮೂದಿಸಿ",
+    "arcFeeNote": "Arc ನೆಟ್‌ವರ್ಕ್ ಶುಲ್ಕವನ್ನು ಈ ಬ್ಯಾಲೆನ್ಸ್‌ನಿಂದ USDC ನಲ್ಲಿ ಪಾವತಿಸಲಾಗುತ್ತದೆ.",
+    "unlockToSend": "ಕಳುಹಿಸಲು ನಿಮ್ಮ ವಾಲೆಟ್ ಅನ್‌ಲಾಕ್ ಮಾಡಿ.",
+    "arcUnavailable": "Arc ಈಗ ಈ ಖಾತೆಗೆ ಲಭ್ಯವಿಲ್ಲ.",
     "title": "ಟೋಕನ್ ವರ್ಗಾಯಿಸಿ",
     "recipient": "ಸ್ವೀಕರಿಸುವವರು: {{address}}",
     "enterAmount": "ಮೊತ್ತ ನಮೂದಿಸಿ:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "ಸಾಹಿತ್ಯ ರಚಿಸಲಾಗಲಿಲ್ಲ"
   },
   "assets": {
+    "arcUsdc": "Arc ನಲ್ಲಿ USDC",
+    "send": "ಕಳುಹಿಸಿ",
     "topUp": "ಟಾಪ್ ಅಪ್",
     "bridge": "ಬ್ರಿಡ್ಜ್",
     "comingSoon": "ಶೀಘ್ರದಲ್ಲಿ",

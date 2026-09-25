@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} kuuntelee"
   },
   "transfer": {
+    "arcTitle": "Lähetä USDC Arc-verkossa",
+    "recipientAddress": "Vastaanottajan osoite",
+    "invalidAddress": "Anna kelvollinen 0x-osoite",
+    "arcFeeNote": "Arc-verkon maksut maksetaan USDC:nä tästä saldosta.",
+    "unlockToSend": "Avaa lompakko lähettääksesi.",
+    "arcUnavailable": "Arc ei ole juuri nyt käytettävissä tälle tilille.",
     "title": "Siirrä tokeneita",
     "recipient": "Vastaanottaja: {{address}}",
     "enterAmount": "Syötä määrä:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Sanoituksen luonti epäonnistui"
   },
   "assets": {
+    "arcUsdc": "USDC Arc-verkossa",
+    "send": "Lähetä",
     "topUp": "Lataa",
     "bridge": "Silta",
     "comingSoon": "pian",

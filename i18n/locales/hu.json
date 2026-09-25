@@ -3904,6 +3904,12 @@
     "listens_other": "{{count}} figyel"
   },
   "transfer": {
+    "arcTitle": "USDC küldése Arc hálózaton",
+    "recipientAddress": "Címzett címe",
+    "invalidAddress": "Adj meg egy érvényes 0x-címet",
+    "arcFeeNote": "Az Arc hálózati díjait USDC-ben vonjuk le ebből az egyenlegből.",
+    "unlockToSend": "A küldéshez oldd fel a tárcádat.",
+    "arcUnavailable": "Az Arc jelenleg nem érhető el ehhez a fiókhoz.",
     "title": "Tokenek átutalása",
     "recipient": "Címzett: {{address}}",
     "enterAmount": "Add meg az összeget:",
@@ -4900,6 +4906,8 @@
     "lyricsFailed": "Nem sikerült dalszöveget készíteni"
   },
   "assets": {
+    "arcUsdc": "USDC az Arc hálózaton",
+    "send": "Küldés",
     "topUp": "Feltöltés",
     "bridge": "Híd",
     "comingSoon": "hamarosan",

@@ -3913,6 +3913,12 @@
     "listens_other": "{{count}} ඇහුම්කන් දීම"
   },
   "transfer": {
+    "arcTitle": "Arc හි USDC යවන්න",
+    "recipientAddress": "ලබන්නාගේ ලිපිනය",
+    "invalidAddress": "වලංගු 0x ලිපිනයක් ඇතුළත් කරන්න",
+    "arcFeeNote": "Arc ජාල ගාස්තු මෙම ශේෂයෙන් USDC ලෙස ගෙවනු ලැබේ.",
+    "unlockToSend": "යැවීමට ඔබේ පසුම්බිය අගුළු හරින්න.",
+    "arcUnavailable": "Arc දැනට මෙම ගිණුමට ලබා ගත නොහැක.",
     "title": "ටෝකන මාරු කරන්න",
     "recipient": "ලබන්නා: {{address}}",
     "enterAmount": "ප්‍රමාණය ඇතුළත් කරන්න:",
@@ -4909,6 +4915,8 @@
     "lyricsFailed": "පද සෑදීම අසාර්ථකයි"
   },
   "assets": {
+    "arcUsdc": "Arc හි USDC",
+    "send": "යවන්න",
     "topUp": "ටොප් අප්",
     "bridge": "පාලම",
     "comingSoon": "ළඟදීම",

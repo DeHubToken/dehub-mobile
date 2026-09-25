@@ -3947,6 +3947,12 @@
     "listens_other": "{{count}} listens"
   },
   "transfer": {
+    "arcTitle": "Magpadala ng USDC sa Arc",
+    "recipientAddress": "Address ng tatanggap",
+    "invalidAddress": "Maglagay ng valid na 0x address",
+    "arcFeeNote": "Ang network fee ng Arc ay binabayaran sa USDC mula sa balanseng ito.",
+    "unlockToSend": "I-unlock ang iyong wallet para makapagpadala.",
+    "arcUnavailable": "Hindi available ang Arc para sa account na ito ngayon.",
     "title": "Maglipat ng token",
     "recipient": "Tatanggap: {{address}}",
     "enterAmount": "Ilagay ang halaga ng",
@@ -4943,6 +4949,8 @@
     "lyricsFailed": "Hindi makabuo ng liriko"
   },
   "assets": {
+    "arcUsdc": "USDC sa Arc",
+    "send": "Ipadala",
     "topUp": "Mag-top up",
     "bridge": "Tulay",
     "comingSoon": "malapit na",
