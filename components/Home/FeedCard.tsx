@@ -83,8 +83,7 @@ import PollCard from "../DM/PollCard";
 // client and auth utils into every card module.
 import { getAvatarUrl, getBadgeUrlFor, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getVideoUrl, getShortsThumbnailUrl, resolveThumbnail, DEFAULT_BANNER_SENTINEL } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
-import { toastError, toastSuccess, toastInfo, toastWithAction } from "../../libs/toast";
-import { useMintExistingPost } from "../../hooks/useMintExistingPost";
+import { toastError, toastSuccess } from "../../libs/toast";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import {
   usePostLinkCopyCount,
@@ -112,7 +111,6 @@ import {
 import { savePost } from "../../services/feed.service";
 import { toggleRepost } from "../../services/repost.service";
 import { WEBSITE_LINK } from "../../config";
-import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import env from "../../config/env";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import type { AIPostContext } from "../../services/ai.service";
@@ -227,7 +225,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     p => p.key === 'deep_current' && p.unlocked && p.available,
   );
   const { showUserProfile, hideUserProfile } = useUserProfileSheet();
-  const { mint: mintExisting } = useMintExistingPost();
 
   const contentType = useMemo(() => resolveContentType(item), [item]);
 
@@ -235,7 +232,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const stream = (item as any).stream;
   const streamInfo = (item as any).streamInfo || stream?.streamInfo;
   const tokenId = item.tokenId ?? (item as any).id ?? stream?.tokenId;
-  const mintTxHash = (item as any).mintTxHash || (item as any).transactionHash || (item as any).txHash;
   const chainId = (item as any).chainId || 8453;
 
   const minterUser = item.minterUser;
@@ -1003,28 +999,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     });
   }, [navigation, tokenId, item, hideUserProfile, requireAuth]);
 
+  // Post info is a page on web and here — the on-chain block inside it is
+  // the only part that waits on a mint, not the whole page.
   const handleInfoPress = useCallback(() => {
-    if (mintTxHash) {
-      const url = getTransactionLink(chainId, mintTxHash);
-      if (url) openInApp(url);
-      return;
-    }
-    // Published off-chain: there is no transaction to open. Say so instead of
-    // a button that silently does nothing — and hand the owner the mint
-    // directly, which is the same path as Mint post in the options menu.
-    if (rawStatus === "signed") {
-      if (isOwnerPost && tokenId != null) {
-        toastWithAction(
-          "info",
-          t("feedCard.mintToGenerate"),
-          t("feedCard.mint"),
-          () => { mintExisting(Number(tokenId), chainId); },
-        );
-      } else {
-        toastInfo(t("feedCard.mintToGenerate"));
-      }
-    }
-  }, [mintTxHash, chainId, rawStatus, isOwnerPost, tokenId, mintExisting]);
+    if (tokenId == null) return;
+    navigation.navigate(ScreenNames.PostInfo, { tokenId: String(tokenId) });
+  }, [navigation, tokenId]);
 
   const handleOpenOptions = useCallback(() => {
     setShowOptionsMenu(true);

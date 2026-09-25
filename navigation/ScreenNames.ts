@@ -13,6 +13,7 @@ export enum ScreenNames {
   Stats = 'Stats',
   Feed = 'Feed',
   FeedDetail = 'FeedDetail',
+  PostInfo = 'PostInfo',
   Upload = 'Upload',
   UploadTab = 'UploadTab',
   // NOTE: the DM list is mounted as `DM` (BottomTabNavigator). A second

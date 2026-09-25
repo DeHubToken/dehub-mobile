@@ -130,6 +130,7 @@ export const getDeepLinkPrefix = (): string[] => {
 export const DeepLinkPaths = {
   // Content — dehub.io/app/post/:tokenId
   POST: 'app/post/:tokenId',
+  POST_INFO: 'app/post/:tokenId/info',
 
   // An off-chain post's own slug — dehub.io/newpost/:newPostId. Top-level,
   // like the canonical share form web hands out. PostResolverScreen resolves
@@ -213,6 +214,14 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           // URL: dehub.io/app/post/:tokenId  (also handles ?c=commentId)
           [ScreenNames.PostResolver]: {
             path: DeepLinkPaths.POST,
+            parse: {
+              tokenId: (tokenId: string) => tokenId,
+            },
+          },
+
+          // URL: dehub.io/app/post/:tokenId/info
+          [ScreenNames.PostInfo]: {
+            path: DeepLinkPaths.POST_INFO,
             parse: {
               tokenId: (tokenId: string) => tokenId,
             },

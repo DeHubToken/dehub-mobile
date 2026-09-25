@@ -262,6 +262,10 @@ function AppNavigatorContent() {
           getComponent={() => require("../screens/FeedDetailScreen").default}
         />
         <Stack.Screen
+          name={ScreenNames.PostInfo}
+          getComponent={() => require("../screens/PostInfoScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Search}
           getComponent={() => require("../screens/SearchScreen").default}
         />
