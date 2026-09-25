@@ -50,7 +50,7 @@ import { useAppPrefs } from "../../hooks/useAppPrefs";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
 import { useMediaAspect } from "../../hooks/useMediaAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
-import { toastInfo } from "../../libs";
+import { toastInfo } from "../../libs/toast";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { retryTranscode } from "../../services/nft.service";
 import CaptionOverlay from "../VideoPlayerCore/CaptionOverlay";
