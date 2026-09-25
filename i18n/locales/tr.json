@@ -3949,6 +3949,12 @@
     "listens_other": "{{count}} dinlenme"
   },
   "transfer": {
+    "arcTitle": "Arc'ta USDC gönder",
+    "recipientAddress": "Alıcı adresi",
+    "invalidAddress": "Geçerli bir 0x adresi girin",
+    "arcFeeNote": "Arc ağ ücretleri bu bakiyeden USDC olarak ödenir.",
+    "unlockToSend": "Göndermek için cüzdanınızın kilidini açın.",
+    "arcUnavailable": "Arc şu anda bu hesap için kullanılamıyor.",
     "title": "Token aktar",
     "recipient": "Alıcı: {{address}}",
     "enterAmount": "Tutarı gir:",
@@ -4945,6 +4951,8 @@
     "lyricsFailed": "Sözler oluşturulamadı"
   },
   "assets": {
+    "arcUsdc": "Arc'ta USDC",
+    "send": "Gönder",
     "topUp": "Yükle",
     "bridge": "Köprü",
     "comingSoon": "yakında",

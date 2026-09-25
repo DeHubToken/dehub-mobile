@@ -3913,6 +3913,12 @@
     "listens_other": "{{count}} ស្តាប់"
   },
   "transfer": {
+    "arcTitle": "ផ្ញើ USDC លើ Arc",
+    "recipientAddress": "អាសយដ្ឋានអ្នកទទួល",
+    "invalidAddress": "បញ្ចូលអាសយដ្ឋាន 0x ដែលត្រឹមត្រូវ",
+    "arcFeeNote": "ថ្លៃបណ្ដាញ Arc ត្រូវបង់ជា USDC ពីសមតុល្យនេះ។",
+    "unlockToSend": "ដោះសោកាបូបរបស់អ្នកដើម្បីផ្ញើ។",
+    "arcUnavailable": "Arc មិនមានសម្រាប់គណនីនេះទេនៅពេលនេះ។",
     "title": "ផ្ទេរថូខឹន",
     "recipient": "អ្នកទទួល៖ {{address}}",
     "enterAmount": "បញ្ចូលចំនួន",
@@ -4909,6 +4915,8 @@
     "lyricsFailed": "មិនអាចបង្កើតទំនុកច្រៀងបានទេ"
   },
   "assets": {
+    "arcUsdc": "USDC លើ Arc",
+    "send": "ផ្ញើ",
     "topUp": "បញ្ចូលទឹកប្រាក់",
     "bridge": "ស្ពាន",
     "comingSoon": "នឹងមកដល់ឆាប់ៗ",

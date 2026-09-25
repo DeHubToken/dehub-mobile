@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} dhagaystayaasha"
   },
   "transfer": {
+    "arcTitle": "Dir USDC ee Arc",
+    "recipientAddress": "Cinwaanka qaataha",
+    "invalidAddress": "Geli cinwaan 0x sax ah",
+    "arcFeeNote": "Khidmadaha shabakadda Arc waxaa lagu bixiyaa USDC haraagan.",
+    "unlockToSend": "Fur boorsadaada si aad u dirto.",
+    "arcUnavailable": "Arc hadda looma heli karo koontadan.",
     "title": "Wareeji tokens",
     "recipient": "Qaataha: {{address}}",
     "enterAmount": "Geli lacagta",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Lama abuuri karin erayada"
   },
   "assets": {
+    "arcUsdc": "USDC ee Arc",
+    "send": "Dir",
     "topUp": "Shubo",
     "bridge": "Buundo",
     "comingSoon": "dhawaan",

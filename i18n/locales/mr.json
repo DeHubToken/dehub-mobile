@@ -3904,6 +3904,12 @@
     "listens_other": "{{count}} वेळा ऐकले"
   },
   "transfer": {
+    "arcTitle": "Arc वर USDC पाठवा",
+    "recipientAddress": "प्राप्तकर्त्याचा पत्ता",
+    "invalidAddress": "वैध 0x पत्ता टाका",
+    "arcFeeNote": "Arc नेटवर्क शुल्क या शिलकीतून USDC मध्ये भरले जाते.",
+    "unlockToSend": "पाठवण्यासाठी तुमचे वॉलेट अनलॉक करा.",
+    "arcUnavailable": "Arc सध्या या खात्यासाठी उपलब्ध नाही.",
     "title": "टोकन हस्तांतरित करा",
     "recipient": "प्राप्तकर्ता: {{address}}",
     "enterAmount": "रक्कम टाका:",
@@ -4900,6 +4906,8 @@
     "lyricsFailed": "गीत तयार करता आले नाही"
   },
   "assets": {
+    "arcUsdc": "Arc वरील USDC",
+    "send": "पाठवा",
     "topUp": "टॉप अप",
     "bridge": "ब्रिज",
     "comingSoon": "लवकरच",

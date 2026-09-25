@@ -92,6 +92,7 @@ export const NETWORK_URLS: {
   // Public sequencer RPC, same reasoning as Base.
   [ChainId.ROBINHOOD_MAINNET]: `https://rpc.mainnet.chain.robinhood.com`,
   [ChainId.ROBINHOOD_TESTNET]: `https://rpc.testnet.chain.robinhood.com`,
+  [ChainId.ARC_MAINNET]: `https://rpc.mainnet.arc.io`,
 };
 const testNetworks = [
   {

@@ -7,6 +7,7 @@ import GorliTestnet from "../assets/chains/gorli-icon.png";
 // Placeholder mark in the monochrome house style — swap for the official
 // Robinhood Chain logo once we have one we are licensed to ship.
 import RobinhoodIcon from "../assets/chains/robinhood-icon.png";
+import ArcIcon from "../assets/chains/arc-icon.png";
 
 // export const isDevMode = env.APP_ENV === "development";
 export const isDevMode = false;
@@ -29,6 +30,8 @@ export enum ChainId {
   // Robinhood Chain — Arbitrum Orbit L2 settling to Ethereum, ETH for gas.
   ROBINHOOD_MAINNET = 4663,
   ROBINHOOD_TESTNET = 46630,
+  // Arc — Circle's L1, USDC for gas. Wallet-only (see libs/arc-wallet.ts).
+  ARC_MAINNET = 5042,
   SEPOLIA = 11155111,
 }
 
@@ -70,6 +73,7 @@ export const chainIcons: Record<number, any> = {
   [ChainId.BSC_TESTNET]: BnbTestnet,
   [ChainId.GORLI]: GorliTestnet,
   [ChainId.ROBINHOOD_MAINNET]: RobinhoodIcon,
+  [ChainId.ARC_MAINNET]: ArcIcon,
   [ChainId.SEPOLIA]: "https://sepolia.etherscan.io/images/logo-128.png",
 };
 

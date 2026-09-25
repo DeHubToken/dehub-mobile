@@ -4070,6 +4070,12 @@
     "listens_other": "{{count}} শোনে"
   },
   "transfer": {
+    "arcTitle": "Arc-এ USDC পাঠাও",
+    "recipientAddress": "যে পাইবা তান ঠিকানা",
+    "invalidAddress": "ঠিক 0x ঠিকানা দেও",
+    "arcFeeNote": "Arc নেটওয়ার্কর ফি এই ব্যালেন্সর থাকি USDC-এ দেওয়া অয়।",
+    "unlockToSend": "পাঠাইবার লাগি ওয়ালেট আনলক করো।",
+    "arcUnavailable": "Arc অখন এই অ্যাকাউন্টর লাগি নাই।",
     "title": "টোকেন পাঠাও",
     "recipient": "প্রাপক: {{address}}",
     "enterAmount": "পরিমাণ লেখো:",
@@ -5066,6 +5072,8 @@
     "lyricsFailed": "গানর কথা বানানি গেল না"
   },
   "assets": {
+    "arcUsdc": "Arc-এ USDC",
+    "send": "পাঠাও",
     "topUp": "টপ আপ",
     "bridge": "ব্রিজ",
     "comingSoon": "তাড়াতাড়ি",

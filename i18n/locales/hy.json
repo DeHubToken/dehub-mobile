@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} լսում"
   },
   "transfer": {
+    "arcTitle": "Ուղարկել USDC Arc-ում",
+    "recipientAddress": "Ստացողի հասցե",
+    "invalidAddress": "Մուտքագրեք վավեր 0x հասցե",
+    "arcFeeNote": "Arc ցանցի վճարները վճարվում են USDC-ով այս մնացորդից։",
+    "unlockToSend": "Ուղարկելու համար ապակողպեք դրամապանակը։",
+    "arcUnavailable": "Arc-ը այս պահին հասանելի չէ այս հաշվի համար։",
     "title": "Փոխանցել թոքեններ",
     "recipient": "Ստացող՝ {{address}}",
     "enterAmount": "Մուտքագրեք գումարը՝",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Չհաջողվեց ստեղծել բառերը"
   },
   "assets": {
+    "arcUsdc": "USDC Arc-ում",
+    "send": "Ուղարկել",
     "topUp": "Համալրել",
     "bridge": "Կամուրջ",
     "comingSoon": "շուտով",

@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} اوري"
   },
   "transfer": {
+    "arcTitle": "په Arc کې USDC ولېږئ",
+    "recipientAddress": "د ترلاسه کوونکي پته",
+    "invalidAddress": "یوه سمه 0x پته ولیکئ",
+    "arcFeeNote": "د Arc شبکې فیسونه له دې بیلانس څخه په USDC ورکول کېږي.",
+    "unlockToSend": "د لېږلو لپاره خپل والټ خلاص کړئ.",
+    "arcUnavailable": "Arc اوس مهال د دې حساب لپاره شتون نه لري.",
     "title": "ټوکنونه ولېږدوئ",
     "recipient": "ترلاسه کوونکی: {{address}}",
     "enterAmount": "اندازه ولیکئ:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "متن جوړ نشو"
   },
   "assets": {
+    "arcUsdc": "په Arc کې USDC",
+    "send": "ولېږئ",
     "topUp": "ډکول",
     "bridge": "پل",
     "comingSoon": "ژر راځي",

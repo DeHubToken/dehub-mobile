@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} diňleýär"
   },
   "transfer": {
+    "arcTitle": "Arc-da USDC iber",
+    "recipientAddress": "Alyjynyň salgysy",
+    "invalidAddress": "Dogry 0x salgysyny giriziň",
+    "arcFeeNote": "Arc ulgamynyň tölegleri bu balansdan USDC bilen tölenýär.",
+    "unlockToSend": "Ibermek üçin gapjygyňyzy açyň.",
+    "arcUnavailable": "Arc häzirki wagtda bu hasap üçin elýeterli däl.",
     "title": "Tokenleri geçir",
     "recipient": "Alyjy: {{address}}",
     "enterAmount": "Mukdary giriziň:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Sözleri döredip bolmady"
   },
   "assets": {
+    "arcUsdc": "Arc-daky USDC",
+    "send": "Iber",
     "topUp": "Doldur",
     "bridge": "Köpri",
     "comingSoon": "tiz wagtda",

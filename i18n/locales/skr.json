@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} سنے"
   },
   "transfer": {
+    "arcTitle": "Arc تے USDC بھیجو",
+    "recipientAddress": "گھنݨ آلے دا پتہ",
+    "invalidAddress": "درست 0x پتہ پاؤ",
+    "arcFeeNote": "Arc نیٹ ورک دی فیس ایں بیلنس توں USDC وچ ڈتی ویندی اے۔",
+    "unlockToSend": "بھیجݨ کیتے اپݨا والٹ ان لاک کرو۔",
+    "arcUnavailable": "Arc ہݨ ایں اکاؤنٹ کیتے دستیاب کائنی۔",
     "title": "ٹوکن بھیجو",
     "recipient": "وصول کرݨ آلا: {{address}}",
     "enterAmount": "رقم درج کرو:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "بول کائنی بݨ سگھے"
   },
   "assets": {
+    "arcUsdc": "Arc تے USDC",
+    "send": "بھیجو",
     "topUp": "ٹاپ اپ",
     "bridge": "پل",
     "comingSoon": "چھیتی",

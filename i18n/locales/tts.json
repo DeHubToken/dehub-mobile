@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} ฟัง"
   },
   "transfer": {
+    "arcTitle": "ส่ง USDC บน Arc",
+    "recipientAddress": "ที่อยู่ผู้รับ",
+    "invalidAddress": "ใส่ที่อยู่ 0x ที่ถืกต้อง",
+    "arcFeeNote": "ค่าธรรมเนียมเครือข่าย Arc จ่ายเป็น USDC จากยอดเงินนี่",
+    "unlockToSend": "ปลดล็อกกระเป๋าเงินก่อนจั่งส่งได้",
+    "arcUnavailable": "Arc ยังใช้บ่ได้กับบัญชีนี้ตอนนี้",
     "title": "โอนโทเค็น",
     "recipient": "ผู้รับ: {{address}}",
     "enterAmount": "ใส่จำนวน",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "สร้างเนื้อเปลงบ่ได้"
   },
   "assets": {
+    "arcUsdc": "USDC บน Arc",
+    "send": "ส่ง",
     "topUp": "เติมเงิน",
     "bridge": "บริดจ์",
     "comingSoon": "อีกบ่เมิน",

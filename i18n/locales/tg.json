@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} гӯш мекунанд"
   },
   "transfer": {
+    "arcTitle": "Фиристодани USDC дар Arc",
+    "recipientAddress": "Суроғаи гиранда",
+    "invalidAddress": "Суроғаи дурусти 0x ворид кунед",
+    "arcFeeNote": "Ҳаққи шабакаи Arc аз ин баланс бо USDC пардохт мешавад.",
+    "unlockToSend": "Барои фиристодан ҳамёнатонро кушоед.",
+    "arcUnavailable": "Arc ҳоло барои ин ҳисоб дастрас нест.",
     "title": "Интиқоли токенҳо",
     "recipient": "Гиранда: {{address}}",
     "enterAmount": "Маблағро ворид кунед:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Матн эҷод нашуд"
   },
   "assets": {
+    "arcUsdc": "USDC дар Arc",
+    "send": "Фиристодан",
     "topUp": "Пур кардан",
     "bridge": "Пул",
     "comingSoon": "ба зудӣ",

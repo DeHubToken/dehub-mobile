@@ -3900,6 +3900,12 @@
     "untitled": "Rubutun sauti"
   },
   "transfer": {
+    "arcTitle": "Aika USDC a kan Arc",
+    "recipientAddress": "Adireshin mai karɓa",
+    "invalidAddress": "Shigar da ingantaccen adireshin 0x",
+    "arcFeeNote": "Ana biyan kuɗin hanyar sadarwar Arc da USDC daga wannan ma'auni.",
+    "unlockToSend": "Buɗe walat ɗinka don aikawa.",
+    "arcUnavailable": "Arc ba ya samuwa ga wannan asusu a yanzu.",
     "title": "Tura tokens",
     "recipient": "Mai karɓa: {{address}}",
     "enterAmount": "Shigar da adadin",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "An kasa ƙirƙirar kalmomin waƙa"
   },
   "assets": {
+    "arcUsdc": "USDC a kan Arc",
+    "send": "Aika",
     "topUp": "Ƙara kuɗi",
     "bridge": "Gada",
     "comingSoon": "nan ba da jimawa ba",

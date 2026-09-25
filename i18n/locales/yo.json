@@ -3901,6 +3901,12 @@
     "listens_one": "{{count}} gbọ"
   },
   "transfer": {
+    "arcTitle": "Fi USDC ránṣẹ́ lórí Arc",
+    "recipientAddress": "Àdírẹ́sì olùgbà",
+    "invalidAddress": "Tẹ àdírẹ́sì 0x tó tọ́ sí i",
+    "arcFeeNote": "A máa ń san owó nẹ́tíwọ̀ọ̀kì Arc ní USDC láti inú ìyókù owó yìí.",
+    "unlockToSend": "Ṣí àpamọ́wọ́ rẹ láti fi ránṣẹ́.",
+    "arcUnavailable": "Arc kò sí fún àkáǹtì yìí báyìí.",
     "title": "Gbé àwọn tọ́kìn",
     "recipient": "Olùgbà: {{address}}",
     "enterAmount": "Tẹ iye",
@@ -4897,6 +4903,8 @@
     "lyricsFailed": "Kò ṣeé ṣe láti kọ ọ̀rọ̀ orin"
   },
   "assets": {
+    "arcUsdc": "USDC lórí Arc",
+    "send": "Fi ránṣẹ́",
     "topUp": "Fikún",
     "bridge": "Afárá",
     "comingSoon": "ń bọ̀",

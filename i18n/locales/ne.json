@@ -3913,6 +3913,12 @@
     "listens_other": "{{count}} लिस्टेन्स"
   },
   "transfer": {
+    "arcTitle": "Arc मा USDC पठाउनुहोस्",
+    "recipientAddress": "प्रापकको ठेगाना",
+    "invalidAddress": "मान्य 0x ठेगाना प्रविष्ट गर्नुहोस्",
+    "arcFeeNote": "Arc नेटवर्क शुल्क यही ब्यालेन्सबाट USDC मा तिरिन्छ।",
+    "unlockToSend": "पठाउन आफ्नो वालेट अनलक गर्नुहोस्।",
+    "arcUnavailable": "Arc अहिले यो खाताका लागि उपलब्ध छैन।",
     "title": "टोकन स्थानान्तरण",
     "recipient": "प्राप्तकर्ता: {{address}}",
     "enterAmount": "रकम हाल्नुहोस्:",
@@ -4909,6 +4915,8 @@
     "lyricsFailed": "बोल बनाउन सकिएन"
   },
   "assets": {
+    "arcUsdc": "Arc मा USDC",
+    "send": "पठाउनुहोस्",
     "topUp": "टप अप",
     "bridge": "ब्रिज",
     "comingSoon": "चाँडै",

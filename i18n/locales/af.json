@@ -3933,6 +3933,12 @@
     "listens_other": "{{count}} luisteraars"
   },
   "transfer": {
+    "arcTitle": "Stuur USDC op Arc",
+    "recipientAddress": "Ontvanger se adres",
+    "invalidAddress": "Voer 'n geldige 0x-adres in",
+    "arcFeeNote": "Arc-netwerkfooie word in USDC uit hierdie saldo betaal.",
+    "unlockToSend": "Ontsluit jou beursie om te stuur.",
+    "arcUnavailable": "Arc is nie tans vir hierdie rekening beskikbaar nie.",
     "title": "Dra tokens oor",
     "recipient": "Ontvanger: {{address}}",
     "enterAmount": "Voer bedrag in van",
@@ -4929,6 +4935,8 @@
     "lyricsFailed": "Kon nie lirieke skryf nie"
   },
   "assets": {
+    "arcUsdc": "USDC op Arc",
+    "send": "Stuur",
     "topUp": "Laai op",
     "bridge": "Brug",
     "comingSoon": "binnekort",

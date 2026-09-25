@@ -3931,6 +3931,12 @@
     "listens_other": "{{count}} uyarin"
   },
   "transfer": {
+    "arcTitle": "USDC Arc-pi kachay",
+    "recipientAddress": "Chaskiqpa tiyanan",
+    "invalidAddress": "Allin 0x tiyananta qillqay",
+    "arcFeeNote": "Arc llikapa pagunkunaqa kay qullqimanta USDC-wan pagakun.",
+    "unlockToSend": "Kachanaykipaq billeteraykita kichay.",
+    "arcUnavailable": "Arc manam kunan kay cuentapaq kanchu.",
     "title": "Tokenkunata apachiy",
     "recipient": "Chaskiq: {{address}}",
     "enterAmount": "Hayk'a kasqanta churay:",
@@ -4927,6 +4933,8 @@
     "lyricsFailed": "Taki simita mana ruwayta atinchu"
   },
   "assets": {
+    "arcUsdc": "USDC Arc-pi",
+    "send": "Kachay",
     "topUp": "Huntachiy",
     "bridge": "Chaka",
     "comingSoon": "ñachu",

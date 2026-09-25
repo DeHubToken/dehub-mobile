@@ -3923,6 +3923,12 @@
     "listens_one": "{{count}} mihaino"
   },
   "transfer": {
+    "arcTitle": "Alefaso ny USDC amin'ny Arc",
+    "recipientAddress": "Adiresin'ny mpandray",
+    "invalidAddress": "Ampidiro adiresy 0x manan-kery",
+    "arcFeeNote": "Aloa amin'ny USDC avy amin'ity fitambarambola ity ny saran'ny tambajotra Arc.",
+    "unlockToSend": "Sokafy ny kitaponao mba handefasana.",
+    "arcUnavailable": "Tsy azo ampiasaina amin'ity kaonty ity ny Arc amin'izao fotoana izao.",
     "title": "Mamindra tokens",
     "recipient": "Mpandray: {{address}}",
     "enterAmount": "Ampidiro ny habetsahan'ny",
@@ -4919,6 +4925,8 @@
     "lyricsFailed": "Tsy voaforona ny tononkira"
   },
   "assets": {
+    "arcUsdc": "USDC amin'ny Arc",
+    "send": "Alefa",
     "topUp": "Ampio vola",
     "bridge": "Tetezana",
     "comingSoon": "tsy ho ela",

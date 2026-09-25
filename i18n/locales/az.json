@@ -3900,6 +3900,12 @@
     "play": "Oxut"
   },
   "transfer": {
+    "arcTitle": "Arc-da USDC göndər",
+    "recipientAddress": "Alıcının ünvanı",
+    "invalidAddress": "Düzgün 0x ünvanı daxil edin",
+    "arcFeeNote": "Arc şəbəkə haqları bu balansdan USDC ilə ödənilir.",
+    "unlockToSend": "Göndərmək üçün pulqabının kilidini açın.",
+    "arcUnavailable": "Arc hazırda bu hesab üçün əlçatan deyil.",
     "title": "Tokenləri köçür",
     "recipient": "Alıcı: {{address}}",
     "enterAmount": "Məbləği daxil et:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Sözlər yaradıla bilmədi"
   },
   "assets": {
+    "arcUsdc": "Arc-da USDC",
+    "send": "Göndər",
     "topUp": "Balansı artır",
     "bridge": "Körpü",
     "comingSoon": "tezliklə",

@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} 聽緊"
   },
   "transfer": {
+    "arcTitle": "喺 Arc 傳送 USDC",
+    "recipientAddress": "收款地址",
+    "invalidAddress": "請輸入有效嘅 0x 地址",
+    "arcFeeNote": "Arc 網絡費用會由呢個餘額以 USDC 支付。",
+    "unlockToSend": "解鎖錢包先可以傳送。",
+    "arcUnavailable": "Arc 暫時唔適用於呢個帳戶。",
     "title": "轉帳代幣",
     "recipient": "收款人：{{address}}",
     "enterAmount": "輸入金額",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "無法生成歌詞"
   },
   "assets": {
+    "arcUsdc": "Arc 上嘅 USDC",
+    "send": "傳送",
     "topUp": "增值",
     "bridge": "跨鏈",
     "comingSoon": "即將推出",

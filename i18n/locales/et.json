@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} kuulab"
   },
   "transfer": {
+    "arcTitle": "Saada USDC Arc-võrgus",
+    "recipientAddress": "Saaja aadress",
+    "invalidAddress": "Sisesta kehtiv 0x-aadress",
+    "arcFeeNote": "Arc-võrgu tasud makstakse sellelt saldolt USDC-s.",
+    "unlockToSend": "Saatmiseks ava rahakott.",
+    "arcUnavailable": "Arc pole selle konto jaoks praegu saadaval.",
     "title": "Kanna tokenid üle",
     "recipient": "Saaja: {{address}}",
     "enterAmount": "Sisesta summa:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Sõnade loomine ebaõnnestus"
   },
   "assets": {
+    "arcUsdc": "USDC Arc-võrgus",
+    "send": "Saada",
     "topUp": "Lae üles",
     "bridge": "Sild",
     "comingSoon": "tulekul",

@@ -3900,6 +3900,12 @@
     "pause": "Waihokeyboard label"
   },
   "transfer": {
+    "arcTitle": "Tukua he USDC ki Arc",
+    "recipientAddress": "Wāhitau o te kaiwhiwhi",
+    "invalidAddress": "Tāurua he wāhitau 0x tika",
+    "arcFeeNote": "Ka utua ngā utu whatunga Arc ki te USDC mai i tēnei toenga.",
+    "unlockToSend": "Wetekina tō pūkoro kia tukua.",
+    "arcUnavailable": "Kāore a Arc i te wātea mō tēnei pūkete i tēnei wā.",
     "title": "Whakawhiti tohu",
     "recipient": "Kaiwhiwhi: {{address}}",
     "enterAmount": "Whakaurua te moni o",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Kāore i taea te waihanga kupu waiata"
   },
   "assets": {
+    "arcUsdc": "USDC ki Arc",
+    "send": "Tukua",
     "topUp": "Whakakī",
     "bridge": "Piriti",
     "comingSoon": "kei te haere mai",

@@ -3949,6 +3949,12 @@
     "listens_other": "{{count}} listens"
   },
   "transfer": {
+    "arcTitle": "Send USDC on Arc",
+    "recipientAddress": "Recipient address",
+    "invalidAddress": "Enter a valid 0x address",
+    "arcFeeNote": "Arc network fees are paid in USDC from this balance.",
+    "unlockToSend": "Unlock your wallet to send.",
+    "arcUnavailable": "Arc is not available for this account right now.",
     "title": "Transfer tokens",
     "recipient": "Recipient: {{address}}",
     "enterAmount": "Enter amount of",
@@ -4945,6 +4951,8 @@
     "lyricsFailed": "Failed to generate lyrics"
   },
   "assets": {
+    "arcUsdc": "USDC on Arc",
+    "send": "Send",
     "topUp": "Top up",
     "bridge": "Bridge",
     "comingSoon": "coming soon",

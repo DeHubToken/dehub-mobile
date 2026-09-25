@@ -3914,6 +3914,12 @@
     "listens_other": "{{count}} सुनता है"
   },
   "transfer": {
+    "arcTitle": "Arc में USDC भेजा",
+    "recipientAddress": "पावे वाला कर पता",
+    "invalidAddress": "सही 0x पता डाला",
+    "arcFeeNote": "Arc नेटवर्क कर फीस ई बैलेंस ले USDC में देल जाथे।",
+    "unlockToSend": "भेजे ले आपन वॉलेट अनलॉक करा।",
+    "arcUnavailable": "Arc अभी ई खाता ले उपलब्ध नखे।",
     "title": "টোকেন পাঠাও",
     "recipient": "প্রাপক: {{address}}",
     "enterAmount": "পরিমাণ লেখো:",
@@ -4910,6 +4916,8 @@
     "lyricsFailed": "نەتوانرا دەق دروست بکرێت"
   },
   "assets": {
+    "arcUsdc": "Arc में USDC",
+    "send": "भेजा",
     "topUp": "پڕکردنەوە",
     "bridge": "پرد",
     "comingSoon": "بەم زووانە",
