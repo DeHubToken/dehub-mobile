@@ -8,11 +8,11 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
-  Image,
   KeyboardAvoidingView,
   Platform,
   useWindowDimensions,
 } from "react-native";
+import SmartImage from "../components/common/SmartImage";
 import { SvgXml } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
@@ -417,10 +417,11 @@ const EditProfileScreen = () => {
               style={{ aspectRatio: 3 }}
             >
               {(localCover || (coverUrl && coverUrl !== "default-banner")) && (
-                <Image
+                <SmartImage
                   source={{ uri: localCover || coverUrl }}
+                  recyclingKey={localCover || coverUrl}
                   style={{ position: "absolute", width: "100%", height: "100%" }}
-                  resizeMode="cover"
+                  contentFit="cover"
                 />
               )}
               <View className="flex-1 items-center justify-center dark-surface bg-black/30">

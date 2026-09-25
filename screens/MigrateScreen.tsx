@@ -34,10 +34,10 @@ import {
   Text,
   TextInput,
   FlatList,
-  Image,
   Pressable,
   ActivityIndicator,
 } from 'react-native';
+import SmartImage from "../components/common/SmartImage";
 import * as Clipboard from 'expo-clipboard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -375,7 +375,7 @@ export default function MigrateScreen() {
         >
           <View className="w-24 h-14 rounded-xl overflow-hidden bg-theme-neutrals-900 items-center justify-center">
             {thumb ? (
-              <Image source={{ uri: thumb }} className="w-full h-full" resizeMode="cover" />
+              <SmartImage source={{ uri: thumb }} recyclingKey={thumb} style={{ width: "100%", height: "100%" }} contentFit="cover" />
             ) : (
               <Icon name="Image" size={18} color="#3f3f46" />
             )}
@@ -450,7 +450,7 @@ export default function MigrateScreen() {
         >
           <View className="w-24 h-14 rounded-xl overflow-hidden bg-theme-neutrals-900 items-center justify-center">
             {thumb ? (
-              <Image source={{ uri: thumb }} className="w-full h-full" resizeMode="cover" />
+              <SmartImage source={{ uri: thumb }} recyclingKey={thumb} style={{ width: "100%", height: "100%" }} contentFit="cover" />
             ) : (
               <Icon name="Image" size={18} color="#3f3f46" />
             )}

@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 import { t } from "i18next";
-import { View, Text, Image, TouchableOpacity, ActivityIndicator, useWindowDimensions } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator, useWindowDimensions } from "react-native";
+import SmartImage from "../common/SmartImage";
 import Icon from "../ui/Icon";
 import { getNFT } from "../../services/nft.service";
 import { getAvatarUrl, buildFeedImageUrls } from "../../libs/misc";
@@ -146,10 +147,11 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
           <ActivityIndicator size="small" color={isMine ? "#fff" : "#888"} />
         </View>
       ) : meta?.thumbnail ? (
-        <Image
+        <SmartImage
           source={{ uri: meta.thumbnail }}
+          recyclingKey={meta.thumbnail}
           style={{ width: "100%", height: 132 }}
-          resizeMode="cover"
+          contentFit="cover"
         />
       ) : null}
 
@@ -166,8 +168,9 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
         {!!meta?.creator && (
           <View className="flex-row items-center gap-1.5 mt-1.5">
             {meta.creatorAvatar && meta.creatorAvatar !== "default-avatar" ? (
-              <Image
+              <SmartImage
                 source={{ uri: meta.creatorAvatar }}
+                recyclingKey={meta.creatorAvatar}
                 style={{ width: 16, height: 16, borderRadius: 3 }}
               />
             ) : null}

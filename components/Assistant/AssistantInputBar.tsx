@@ -5,11 +5,11 @@ import {
   TouchableOpacity,
   StyleSheet,
   ActivityIndicator,
-  Image,
   useWindowDimensions,
   type NativeSyntheticEvent,
   type TextInputSelectionChangeEventData,
 } from 'react-native';
+import SmartImage from '../common/SmartImage';
 import Icon from '../ui/Icon';
 import { useTranslation } from 'react-i18next';
 
@@ -53,7 +53,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
       {attachedImage && (
         <View style={s.previewRow}>
           <View style={s.previewWrap}>
-            <Image source={{ uri: attachedImage }} style={s.previewImg} />
+            <SmartImage source={{ uri: attachedImage }} recyclingKey={attachedImage} style={s.previewImg} />
             <TouchableOpacity
               style={s.previewRemove}
               onPress={onRemoveImage}

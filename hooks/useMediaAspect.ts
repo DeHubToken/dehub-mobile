@@ -14,9 +14,12 @@
  * first render of a recycled cell.
  */
 import { useEffect, useState } from "react";
-import { Image } from "react-native";
+import { Image } from "expo-image";
 
 const cache = new Map<string, number>();
+
+/** Enough pixels to read a ratio to a fraction of a percent, few enough to decode for free. */
+const MEASURE_MAX_PX = 512;
 
 /**
  * Ratios outside this band are clamped. The lower bound is full-height 9:16 —
@@ -56,17 +59,22 @@ export function useMediaAspect(uri?: string | null): number {
     }
 
     let cancelled = false;
-    Image.getSize(
-      uri,
-      (w, h) => {
+    // Measured through expo-image, the same pipeline and cache that paints the
+    // poster, capped small. RN's Image.getSize downloaded the file again
+    // through Fresco and decoded it at full size into a second memory cache,
+    // once per video card. The cap keeps the aspect ratio, which is all this
+    // needs.
+    Image.loadAsync(uri, { maxWidth: MEASURE_MAX_PX, maxHeight: MEASURE_MAX_PX })
+      .then((ref) => {
+        const { width: w, height: h } = ref;
+        ref.release();
         if (cancelled || !w || !h) return;
         const measured = w / h;
         cache.set(uri, measured);
         setRatio(measured);
-      },
+      })
       // Unmeasurable thumbnail (offline, 404) just leaves the default frame.
-      () => {},
-    );
+      .catch(() => {});
 
     return () => {
       cancelled = true;

@@ -13,9 +13,9 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  Image,
   useWindowDimensions,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
 import type { Community } from "../../types/community";
@@ -71,8 +71,9 @@ const CommunityDrawer: React.FC<CommunityDrawerProps> = ({
           className="flex-row items-center px-4 py-3 border-b border-white/5"
         >
           {item.avatar_url ? (
-            <Image
+            <SmartImage
               source={{ uri: item.avatar_url }}
+              recyclingKey={item.avatar_url}
               style={{ width: 34, height: 34, borderRadius: 5 }}
             />
           ) : (

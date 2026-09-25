@@ -1,3 +1,4 @@
+import SmartImage from "../components/common/SmartImage";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -6,7 +7,6 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
-  Image,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
@@ -79,7 +79,7 @@ const UserRow: React.FC<{
             {displayName}
           </Text>
           {!!badgeImg && (
-            <Image source={badgeImg} style={{ width: 14, height: 14 }} resizeMode="contain" />
+            <SmartImage source={badgeImg} style={{ width: 14, height: 14 }} contentFit="contain" />
           )}
           {user.isModerator && (
             <View className="bg-amber-500/20 rounded px-1 py-0.5">

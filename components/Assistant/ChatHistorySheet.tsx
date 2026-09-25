@@ -5,11 +5,11 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  Image,
   StyleSheet,
   useWindowDimensions,
   Modal,
 } from 'react-native';
+import SmartImage from '../common/SmartImage';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -298,7 +298,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
                     }}
                   >
                     {item.type === 'image' ? (
-                      <Image source={{ uri: item.url }} style={s.mediaImage} />
+                      <SmartImage source={{ uri: item.url }} recyclingKey={item.url} style={s.mediaImage} />
                     ) : (
                       <View style={[s.mediaImage, s.mediaPlaceholder]}>
                         <Icon

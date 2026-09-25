@@ -33,9 +33,9 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  Image,
   ActivityIndicator,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import { useMyListings } from "../../hooks/useStores";
@@ -180,10 +180,11 @@ export default function ShopSheet({
                   className="bg-white/10 overflow-hidden items-center justify-center mr-3"
                 >
                   {listing.images?.[0] ? (
-                    <Image
+                    <SmartImage
                       source={{ uri: listing.images[0] }}
+                      recyclingKey={listing.images[0]}
                       style={{ width: 40, height: 40 }}
-                      resizeMode="cover"
+                      contentFit="cover"
                     />
                   ) : (
                     <Icon name="Package" size={16} color="#808089" />

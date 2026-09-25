@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   TextInput,
   ActivityIndicator,
-  Image,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
@@ -100,7 +100,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
               {name}
             </Text>
             {badgeImg ? (
-              <Image source={badgeImg} style={{ width: 15, height: 15 }} resizeMode="contain" />
+              <SmartImage source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
             ) : null}
           </View>
           <Ionicons name="send-outline" size={18} color="#D4D4D8" />

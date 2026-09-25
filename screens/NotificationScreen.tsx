@@ -7,7 +7,6 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
-  Image,
   Platform,
   UIManager,
 } from "react-native";
@@ -758,7 +757,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             }}
             numberOfLines={3}
           >
-            {showActorBadge ? <>{sentence.slice(0, actorNameAt)}{actorName}<Image source={actorBadge!} style={{ width: 16, height: 16 }} />{sentence.slice(actorNameAt + actorName!.length)}</> : sentence}
+            {showActorBadge ? <>{sentence.slice(0, actorNameAt)}{actorName}<SmartImage source={actorBadge!} style={{ width: 16, height: 16 }} />{sentence.slice(actorNameAt + actorName!.length)}</> : sentence}
           </Text>
 
           {/* Aggregation indicator */}

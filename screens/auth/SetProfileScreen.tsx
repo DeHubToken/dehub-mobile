@@ -3,7 +3,6 @@ import {
   View,
   Text,
   ActivityIndicator,
-  Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -12,6 +11,7 @@ import {
   StyleSheet,
   type ViewStyle,
 } from "react-native";
+import SmartImage from "../../components/common/SmartImage";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, CommonActions } from "@react-navigation/native";
@@ -295,7 +295,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
               style={styles.avatarTarget}
             >
               {localAvatar ? (
-                <Image source={{ uri: localAvatar }} style={styles.avatarImage} />
+                <SmartImage source={{ uri: localAvatar }} recyclingKey={localAvatar} style={styles.avatarImage} />
               ) : (
                 <View style={styles.avatarPlaceholder}>
                   <Ionicons name="person" size={40} color={authColors.subtle} />

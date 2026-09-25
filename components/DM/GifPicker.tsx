@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, FlatList, Image, KeyboardAvoidingView, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import SmartImage from '../common/SmartImage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
@@ -110,10 +111,11 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
         accessibilityLabel={item.title || undefined}
       >
         <View className="w-full aspect-square rounded-md overflow-hidden bg-theme-neutrals-800 items-center justify-center">
-          <Image
+          <SmartImage
             source={{ uri: thumb }}
+            recyclingKey={thumb}
             style={{ width: '100%', height: '100%' }}
-            resizeMode="cover"
+            contentFit="cover"
           />
         </View>
       </TouchableOpacity>

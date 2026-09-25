@@ -24,6 +24,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -177,10 +178,11 @@ const ChatBubble = memo<ChatBubbleProps>(({ message, onImagePress }) => {
               onPress={() => handlePress(url)}
               style={styles.bubbleImageWrap}
             >
-              <Image
+              <SmartImage
                 source={{ uri: url }}
+                recyclingKey={url}
                 style={[styles.bubbleImage, { width: imageWidth, height: imageWidth * 0.75 }]}
-                resizeMode="cover"
+                contentFit="cover"
               />
             </Pressable>
           ))}
