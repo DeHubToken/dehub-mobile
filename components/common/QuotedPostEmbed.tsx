@@ -1,7 +1,8 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
-import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import SmartImage from "./SmartImage";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -182,10 +183,11 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
         {/* Thumbnail */}
         {!isAudioPost && hasThumbnail && (
           <View className={isMinimal ? "w-full h-32 bg-black" : "w-full h-32 bg-theme-neutrals-800"}>
-            <Image
+            <SmartImage
               source={{ uri: thumbnailUrl }}
-              className="w-full h-full"
-              resizeMode="cover"
+              recyclingKey={thumbnailUrl}
+              style={{ width: "100%", height: "100%" }}
+              contentFit="cover"
             />
             {quotedPost.postType === "video" && (
               <View className="absolute bottom-2 right-2 dark-surface bg-black/60 rounded px-1.5 py-0.5">
@@ -206,10 +208,10 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
               {displayName}
             </Text>
             {!!badgeImage && (
-              <Image
+              <SmartImage
                 source={badgeImage}
                 style={getBadgeOpticalStyle(badgeImage, 13)}
-                resizeMode="contain"
+                contentFit="contain"
               />
             )}
             {username && (

@@ -5,10 +5,10 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  Image,
   StyleSheet,
   Alert,
 } from "react-native";
+import SmartImage from "../components/common/SmartImage";
 import { useSnapshot } from "valtio";
 import Reanimated, {
   useAnimatedStyle,
@@ -74,10 +74,11 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
     <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700 mb-3">
       <View className="flex-row items-center px-4 py-3.5">
         {job.thumbnailUri ? (
-          <Image
+          <SmartImage
             source={{ uri: job.thumbnailUri }}
-            className="w-11 h-11 rounded-xl mr-3"
-            resizeMode="cover"
+            recyclingKey={job.thumbnailUri}
+            style={{ width: 44, height: 44, borderRadius: 12, marginRight: 12 }}
+            contentFit="cover"
           />
         ) : (
           <View className="w-11 h-11 rounded-xl bg-theme-neutrals-700/50 items-center justify-center mr-3">

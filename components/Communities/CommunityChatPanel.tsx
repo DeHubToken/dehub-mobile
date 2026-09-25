@@ -36,9 +36,9 @@ import {
   ActivityIndicator,
   Modal,
   Alert,
-  Image as RNImage,
   StyleSheet,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
@@ -180,7 +180,7 @@ const ChatRow: React.FC<{
             {displayName}
           </Text>
           {!!badgeImg && (
-            <RNImage source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13), { marginLeft: 0 }]} resizeMode="contain" />
+            <SmartImage source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13), { marginLeft: 0 }]} contentFit="contain" />
           )}
           {!!message.pinned_at && <Icon name="Pin" size={10} color="#A1A1AA" />}
           <Text className="text-zinc-400 text-xs ml-auto">

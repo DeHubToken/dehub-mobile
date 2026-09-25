@@ -18,7 +18,23 @@ type SmartImageProps = {
   placeholder?: ImageProps["placeholder"];
   /** Locked-post previews blur their thumbnail; expo-image does this on the GPU. */
   blurRadius?: number;
+  /** Recolours every opaque pixel, like RN Image's tintColor — for monochrome icons. */
+  tintColor?: string | null;
+  /**
+   * Defaults to true: decode at the rendered size, not the file's size. Only
+   * turn off for a surface that genuinely needs every source pixel.
+   */
+  allowDownscaling?: boolean;
+  /** Animated GIF/WebP play by default; pass false for a still first frame. */
+  autoplay?: boolean;
+  accessible?: boolean;
+  accessibilityLabel?: string;
+  testID?: string;
   style?: StyleProp<ImageStyle>;
+  /**
+   * Ignored at runtime: NativeWind has no interop registered for expo-image,
+   * so a className never reaches it. Size and position with `style`.
+   */
   className?: string;
   onLoadStart?: () => void;
   onLoad?: ImageProps["onLoad"];
@@ -36,6 +52,12 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   priority,
   placeholder,
   blurRadius,
+  tintColor,
+  allowDownscaling,
+  autoplay,
+  accessible,
+  accessibilityLabel,
+  testID,
   style,
   className,
   onLoadStart,
@@ -53,6 +75,12 @@ export const SmartImage: React.FC<SmartImageProps> = ({
       priority={priority}
       placeholder={placeholder}
       blurRadius={blurRadius}
+      tintColor={tintColor}
+      allowDownscaling={allowDownscaling}
+      autoplay={autoplay}
+      accessible={accessible}
+      accessibilityLabel={accessibilityLabel}
+      testID={testID}
       style={style}
       className={className as any}
       onLoadStart={onLoadStart}

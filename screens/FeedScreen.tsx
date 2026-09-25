@@ -35,7 +35,7 @@ import { getCategoriesCached } from "../services/nft.service";
 import { getUnifiedFeed } from "../services/feed.unified.service";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import type { FeedRange, FeedSortBy } from "../services/feed.unified.service";
-import { getImageUrl, getImageUrlApiSimple } from "../libs";
+import { buildFeedImageUrls, getImageUrl } from "../libs";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { tabPressIntentOf } from "../navigation/tabPressIntent";
@@ -72,13 +72,31 @@ interface GridItemProps {
   onPress: (index: number) => void;
 }
 
+/** The tile URL, sized to the tile — same builder HomeImageGrid uses. */
+const gridImageUri = (item: UnifiedFeedItem, size: number): string | null => {
+  const urls: string[] = Array.isArray(item.imageUrls) ? item.imageUrls : [];
+  // The raw API origin served the full-resolution original for a third-of-a-
+  // screen tile; the CDN path is resized to the tile. Tapping still opens the
+  // original in the viewer.
+  if (urls.length > 0) return buildFeedImageUrls([urls[0]], size)[0] || null;
+  return getImageUrl(item.imageUrl || item.thumbnailUrl || "", size) || null;
+};
+
+/** Tile size at a feedData index, following buildGridRows' 3-row pattern. */
+const gridTileSize = (index: number, m: GridMetrics): number => {
+  const rowType = Math.floor(index / 3) % 3;
+  const pos = index % 3;
+  return (rowType === 0 && pos === 0) || (rowType === 1 && pos === 2)
+    ? m.BIG_SIZE
+    : m.SMALL_SIZE;
+};
+
 const GridItem = memo<GridItemProps>(({ item, index, size, onPress }) => {
-  const imageUri = useMemo(() => {
-    const urls: string[] = Array.isArray(item.imageUrls) ? item.imageUrls : [];
-    if (urls.length > 0) return getImageUrlApiSimple(urls[0]);
-    const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "");
-    return single || null;
-  }, [item.imageUrls, item.imageUrl, item.thumbnailUrl]);
+  const imageUri = useMemo(
+    () => gridImageUri(item, size),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [item.imageUrls, item.imageUrl, item.thumbnailUrl, size],
+  );
 
   const hasMultiple = (item.imageUrls?.length ?? 0) > 1;
   const handlePress = useCallback(() => onPress(index), [onPress, index]);
@@ -400,22 +418,19 @@ const FeedScreen = () => {
     }
   }, [fetchFeedData, feedHasMore, feedPage]);
 
-  // Prefetch grid images so they're cached before scrolling into view
+  // Prefetch the grid's tiles so they're cached before scrolling into view.
+  // Built with the exact URL each tile renders, or the prefetch is a second
+  // download nobody displays. Disk only: a memory prefetch decodes every image
+  // in the page up front, at full size, with no view to downscale to.
   useEffect(() => {
-    if (feedData.length === 0) return;
+    if (!isGridView || feedData.length === 0) return;
     const urls: string[] = [];
-    for (const item of feedData) {
-      const imgs = Array.isArray(item.imageUrls) ? item.imageUrls : [];
-      if (imgs.length > 0) {
-        const u = getImageUrlApiSimple(imgs[0]);
-        if (u) urls.push(u);
-      } else {
-        const u = getImageUrl(item.imageUrl || item.thumbnailUrl || "");
-        if (u) urls.push(u);
-      }
-    }
-    if (urls.length > 0) Image.prefetch(urls);
-  }, [feedData]);
+    feedData.forEach((item, i) => {
+      const u = gridImageUri(item, gridTileSize(i, gridM));
+      if (u) urls.push(u);
+    });
+    if (urls.length > 0) Image.prefetch(urls, "disk");
+  }, [feedData, isGridView, gridM]);
 
   // ── Feed-view callbacks ────────────────────────────────────
   const handleScrollToIndexFailed = useCallback(

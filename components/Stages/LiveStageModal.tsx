@@ -8,12 +8,12 @@ import {
   Animated,
   Share,
   useWindowDimensions,
-  Image,
   StatusBar,
   TextInput,
   ActivityIndicator,
   KeyboardAvoidingView,
 } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
@@ -343,10 +343,11 @@ const LiveStageModal: React.FC = () => {
             pointerEvents="none"
             style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
           >
-            <Image
+            <SmartImage
               source={{ uri: currentSpace.cover_image_url }}
+              recyclingKey={currentSpace.cover_image_url}
               style={{ width: "100%", height: "100%", opacity: 0.22 }}
-              resizeMode="cover"
+              contentFit="cover"
             />
             <View
               style={{

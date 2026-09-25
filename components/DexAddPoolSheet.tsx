@@ -1,6 +1,7 @@
 import { appLocale } from '../libs/date.util';
 import React, { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import SmartImage from './common/SmartImage';
 import { useTranslation } from 'react-i18next';
 import GlassModal from './ui/GlassModal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -159,7 +160,7 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
             {check?.token && !check.exists && <>
               <View style={s.preview}>
                 <TouchableOpacity disabled={locked} accessibilityRole="button" accessibilityLabel={t('dex.pools.setImage')} onPress={() => void pickImage()} style={s.tokenImage}>
-                  {tokenImage ? <Image source={{ uri: tokenImage }} style={s.tokenImageFill} /> : <Text style={s.plus}>+</Text>}
+                  {tokenImage ? <SmartImage source={{ uri: tokenImage }} recyclingKey={tokenImage} style={s.tokenImageFill} /> : <Text style={s.plus}>+</Text>}
                 </TouchableOpacity>
                 <View style={s.flex}>
                   <Text style={s.white}>{check.token.name}</Text>

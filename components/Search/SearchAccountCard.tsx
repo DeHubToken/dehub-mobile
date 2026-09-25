@@ -1,5 +1,6 @@
 import React, { FC, useCallback, useState } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity} from "react-native";
+import SmartImage from "../common/SmartImage";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs/misc";
@@ -103,10 +104,10 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
             {displayName}
           </Text>
           {badgeImg ? (
-            <Image
+            <SmartImage
               source={badgeImg}
               style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
-              resizeMode="contain"
+              contentFit="contain"
             />
           ) : null}
         </View>

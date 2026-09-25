@@ -1,5 +1,6 @@
 import React from 'react';
-import { FlatList, Image, Pressable, Text, View, ActivityIndicator } from 'react-native';
+import { FlatList, Pressable, Text, View, ActivityIndicator } from 'react-native';
+import SmartImage from '../components/common/SmartImage';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
@@ -51,7 +52,7 @@ export default function CreatorScreen() {
         ListEmptyComponent={<Text className="text-theme-neutrals-400">{!wallet ? t('creator.signInToSee') : query.error instanceof Error ? query.error.message : query.isLoading ? '' : t('creator.libraryEmpty')}</Text>}
         renderItem={({ item }) => (
           <Pressable accessibilityRole="button" accessibilityLabel={t('creator.openGeneration', { prompt: item.prompt || item.modelName })} onPress={() => { if (item.url) void openInApp(item.url); }} className="rounded-xl bg-theme-neutrals-800 p-4">
-            {item.kind === 'image' && item.url && <Image source={{ uri: item.url }} style={{ width: '100%', height: 180, borderRadius: 8 }} resizeMode="contain" />}
+            {item.kind === 'image' && item.url && <SmartImage source={{ uri: item.url }} recyclingKey={item.url} style={{ width: '100%', height: 180, borderRadius: 8 }} contentFit="contain" />}
             <Text className="text-theme-neutrals-100" numberOfLines={3}>{item.prompt || item.modelName}</Text>
             <Text className="text-theme-neutrals-400">{item.kind} · {item.modelName}</Text>
             {item.transcript && <Text selectable className="mt-2 text-theme-neutrals-100">{item.transcript}</Text>}

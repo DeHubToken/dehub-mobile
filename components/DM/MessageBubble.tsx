@@ -2,13 +2,14 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "
 import {
   View,
   Text,
-  Image,
   TouchableOpacity,
   Pressable,
   ActivityIndicator,
   useWindowDimensions,
   Linking,
 } from "react-native";
+import type { ImageLoadEventData } from "expo-image";
+import SmartImage from "../common/SmartImage";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -103,23 +104,18 @@ const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongP
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    let cancelled = false;
     setLoading(true);
     setError(false);
-    Image.getSize(
-      uri,
-      (w, h) => {
-        if (cancelled) return;
-        if (w && h) setAspect(w / h);
-        setLoading(false);
-      },
-      () => {
-        if (cancelled) return;
-        setLoading(false);
-      },
-    );
-    return () => { cancelled = true; };
   }, [uri]);
+
+  // The aspect comes off the image's own load event. Image.getSize fetched
+  // the file a second time through a different pipeline and decoded it at full
+  // resolution just to read two numbers.
+  const handleLoad = useCallback((e: ImageLoadEventData) => {
+    const { width: w, height: h } = e.source;
+    if (w > 0 && h > 0) setAspect(w / h);
+    setLoading(false);
+  }, []);
 
   // Calculate display dimensions
   let displayW = maxImageWidth(windowWidth);
@@ -168,14 +164,17 @@ const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongP
             <ActivityIndicator size="small" color="#555" />
           </View>
         )}
-        <Image
-          source={{ uri }}
-          style={{ width: displayW, height: displayH }}
-          resizeMode="cover"
-          className="bg-theme-neutrals-700"
-          onLoad={() => setLoading(false)}
-          onError={() => { setLoading(false); setError(true); }}
-        />
+        {/* expo-image takes no className, so the backdrop lives on a wrapper. */}
+        <View className="bg-theme-neutrals-700" style={{ width: displayW, height: displayH }}>
+          <SmartImage
+            source={{ uri }}
+            recyclingKey={uri}
+            style={{ width: displayW, height: displayH }}
+            contentFit="cover"
+            onLoad={handleLoad}
+            onError={() => { setLoading(false); setError(true); }}
+          />
+        </View>
         {isGif && (
           <View className="absolute bottom-1.5 left-1.5 dark-surface bg-black/60 rounded px-1.5 py-0.5">
             <Text className="text-[11px] text-white font-bold">GIF</Text>
@@ -218,10 +217,11 @@ const VideoThumb: React.FC<VideoThumbProps> = memo(({ uri, width, height, onPres
     >
       <View className="bg-theme-neutrals-700" style={{ width, height }}>
         {thumb ? (
-          <Image
+          <SmartImage
             source={{ uri: thumb }}
+            recyclingKey={thumb}
             style={{ width, height }}
-            resizeMode="cover"
+            contentFit="cover"
           />
         ) : failed ? (
           <View className="flex-1 items-center justify-center">
@@ -743,10 +743,11 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                     </View>
                   ) : message.replyTo.mediaUrls?.length ? (
                     <View className="flex-row items-center gap-1.5">
-                      <Image
+                      <SmartImage
                         source={{ uri: resolveUrl(message.replyTo.mediaUrls[0]?.url) }}
+                        recyclingKey={resolveUrl(message.replyTo.mediaUrls[0]?.url)}
                         style={{ width: 32, height: 32, borderRadius: 4 }}
-                        resizeMode="cover"
+                        contentFit="cover"
                       />
                       <Text
                         className={`text-[12px] flex-1 ${
