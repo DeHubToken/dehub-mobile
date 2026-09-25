@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import GlassModal from '../ui/GlassModal';
 import { LiveStreamEntity } from '../../services/live.service';
 import { truncate } from '../../libs/strings.util';
-import { X, Copy } from 'lucide-react-native';
+import X from 'lucide-react-native/dist/esm/icons/x';
+import Copy from 'lucide-react-native/dist/esm/icons/copy';
 import { LIVEPEER_RTMP_SERVER } from '../../config/constants';
 import { copyToClipboard } from '../../libs/clipboard.utils';
 

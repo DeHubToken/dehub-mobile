@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
-import { icons } from "lucide-react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -22,8 +21,10 @@ import Animated, {
 import { colors } from "../../theme/colors";
 import { useReadyAfterScroll } from "../../libs/scrollActivity";
 import GlassIndicator, { GLASS_SHADOW } from "./GlassIndicator";
+// Not lucide's `icons` barrel: that bundles and evaluates every icon at boot.
+import { iconRegistry, type IconName } from "./iconRegistry";
 
-export type IconName = keyof typeof icons;
+export type { IconName };
 
 export interface IconProps {
   name: IconName;
@@ -60,7 +61,7 @@ const Icon: React.FC<IconProps> = ({
   onLongPress,
   accessibilityLabel,
 }) => {
-  const LucideIcon = icons[name];
+  const LucideIcon = iconRegistry[name];
   const iconRef = useRef<View>(null);
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number; w: number } | null>(null);
@@ -91,7 +92,7 @@ const Icon: React.FC<IconProps> = ({
   }, [onLongPress, showTooltip]);
 
   if (!LucideIcon) {
-    if (__DEV__) console.warn(`[Icon] "${name}" not found in lucide-react-native`);
+    if (__DEV__) console.warn(`[Icon] "${name}" is not in iconRegistry; run \`npm run icons:write\``);
     return <View style={{ width: size, height: size }} />;
   }
   if (!ready) {

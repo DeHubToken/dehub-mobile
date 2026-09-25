@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { truncate } from '../../libs/strings.util';
 import { LIVEPEER_RTMP_SERVER } from '../../config/constants';
 import { encoderCredentials } from '../../libs/live-ingest';
-import { Copy, Wifi } from 'lucide-react-native';
+import Copy from 'lucide-react-native/dist/esm/icons/copy';
+import Wifi from 'lucide-react-native/dist/esm/icons/wifi';
 import { copyToClipboard } from '../../libs/clipboard.utils';
 import { encoderKeyService, type EncoderCredentials } from '../../services/encoder-key.service';
 
