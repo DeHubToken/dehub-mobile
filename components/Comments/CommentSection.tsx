@@ -68,7 +68,8 @@ import { mentionsAssistant } from "../../libs/assistant";
 import { useCommentTipTotals } from "../../hooks/useCommentTipTotals";
 import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
 import { getNFT } from "../../services/nft.service";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, type QueryClient } from "@tanstack/react-query";
+import { takeWarmRequest, warmRequest } from "../../libs/navPrefetch";
 import type { PostCreator } from "../../libs/impersonation";
 import type { PostReaction } from "../../libs/reactions";
 import { useBannedAccount } from "../../hooks/useBannedAccount";
@@ -137,6 +138,34 @@ function draftReplyTarget(draft: CommentDraft | null): Comment | null {
 }
 
 const PAGE_SIZE = 50;
+
+const firstPageWarmKey = (tokenId: number | string, address?: string) =>
+  `comments:${tokenId}:${address ?? ""}`;
+
+/**
+ * Start a thread's reads on press-in, ahead of the sheet mounting. The first
+ * page goes through a one-use warm request (see libs/navPrefetch) that the
+ * initial load below joins; the post read is the same cached query this
+ * component opens with.
+ */
+export function warmCommentThread(
+  queryClient: QueryClient,
+  tokenId: number | string,
+  address?: string,
+): void {
+  warmRequest(firstPageWarmKey(tokenId, address), () =>
+    getCommentsForToken(tokenId, { page: 0, limit: PAGE_SIZE, address }),
+  );
+  queryClient
+    .prefetchQuery({
+      queryKey: ["boosted-post", String(tokenId)],
+      queryFn: () => getNFT(tokenId),
+      staleTime: 5 * 60 * 1000,
+      retry: false,
+    })
+    .catch(() => {});
+}
+
 /** How many replies a thread shows before it needs a tap to open up. */
 const REPLIES_SHOWN_COLLAPSED = 1;
 
@@ -395,13 +424,20 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Load comments
   const loadComments = useCallback(async (isRefresh = false) => {
     try {
-      const res = await getCommentsForToken(tokenId, {
-        page: 0,
-        limit: PAGE_SIZE,
-        address: userAddress,
-        commentId: highlightCommentId,
-        topTipped: topTippedIds,
-      });
+      const fetchPage = () =>
+        getCommentsForToken(tokenId, {
+          page: 0,
+          limit: PAGE_SIZE,
+          address: userAddress,
+          commentId: highlightCommentId,
+          topTipped: topTippedIds,
+        });
+      // A plain first open joins the request the comment button started on
+      // press-in; refreshes and targeted opens always ask afresh.
+      const res =
+        !isRefresh && highlightCommentId == null && topTippedIds.length === 0
+          ? await takeWarmRequest(firstPageWarmKey(tokenId, userAddress), fetchPage)
+          : await fetchPage();
 
       const { items } = res.result;
       const flat = buildFlatComments(items);

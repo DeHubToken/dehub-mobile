@@ -42,6 +42,8 @@ import type { PostReaction } from "../libs/reactions";
 import PostDetailContinuation from "../components/Advertising/PostDetailContinuation";
 import { useAppTheme } from "../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_INSET } from "../theme/minimal";
+import { peekPostDetailSeed, takeWarmRequest } from "../libs/navPrefetch";
+import { useTransitionSettled } from "../hooks/useTransitionSettled";
 
 // Minimal composer field: still reads as an input, but by outline alone.
 const MINIMAL_INPUT_LINE = "rgba(255,255,255,0.10)";
@@ -92,7 +94,14 @@ export default function FeedDetailScreen() {
 
   const [loading, setLoading] = useState(true);
   const [privateError, setPrivateError] = useState(false);
-  const [item, setItem] = useState<UnifiedFeedItem | null>(null);
+  // The card that was tapped, when there was one: the post paints on the first
+  // frame and the fetch below only brings the comments and fresh counts.
+  const [item, setItem] = useState<UnifiedFeedItem | null>(() =>
+    peekPostDetailSeed<UnifiedFeedItem>(tokenId),
+  );
+  // The ad and the more-posts list under the comments are up to seven more
+  // feed cards; mounting them in the first render held the push back.
+  const transitionSettled = useTransitionSettled();
   const [comments, setComments] = useState<ThreadedComment[]>([]);
   // Whatever was left unsent last time, restored whole: the text and the reply
   // it was aimed at. Backing out of this screen is the commonest way to lose a
@@ -273,10 +282,15 @@ export default function FeedDetailScreen() {
     if (tokenId == null) return;
     setLoading(true);
     try {
-      const res = await getNFT(tokenId, {
+      const options = {
         ...(commentIdParam ? { commentId: commentIdParam } : {}),
         topTipped: topTippedIds,
-      });
+      };
+      // A plain open is the request the feed card started on tap — join it.
+      const res =
+        !commentIdParam && topTippedIds.length === 0
+          ? await takeWarmRequest(`nft:${tokenId}`, () => getNFT(tokenId, options))
+          : await getNFT(tokenId, options);
       const payload = res?.result || res || {};
       
       // console.log("[FeedDetailScreen] fetched data", payload.comments);
@@ -395,10 +409,13 @@ export default function FeedDetailScreen() {
     } catch (e: any) {
       console.error("[FeedDetailScreen] fetchData error", e);
       const msg = e?.message || e?.toString() || '';
-      if (msg.toLowerCase().includes('private account')) {
+      const isPrivate = msg.toLowerCase().includes('private account');
+      if (isPrivate) {
         setPrivateError(true);
       }
-      setItem(null);
+      // A post seeded from the feed stays up through a failed fetch; only a
+      // private account takes it down.
+      setItem((prev) => (isPrivate ? null : prev));
       setComments([]);
     } finally {
       setLoading(false);
@@ -826,6 +843,18 @@ export default function FeedDetailScreen() {
     });
   }, []);
 
+  // One object for every row: a fresh literal per row per render defeated
+  // CommentItem's memo, and reading `item` without depending on it left the
+  // creator chips on whatever the first render saw.
+  // Keyed on the strings, not `item`, which changes with every comment count.
+  const creatorAddress: string | undefined = item?.minter || (item as any)?.minterUser?.address;
+  const creatorDisplayName: string | undefined = (item as any)?.minterUser?.displayName || (item as any)?.minterDisplayName;
+  const creatorUsername: string | undefined = (item as any)?.minterUser?.username || (item as any)?.minterUsername;
+  const postCreator = useMemo(
+    () => ({ address: creatorAddress, displayName: creatorDisplayName, username: creatorUsername }),
+    [creatorAddress, creatorDisplayName, creatorUsername],
+  );
+
   const renderCommentItem = useCallback(
     ({ item: c }: { item: ThreadedComment }) => {
       const isReply = c.depth > 0;
@@ -859,17 +888,13 @@ export default function FeedDetailScreen() {
             onLongPress={handleCommentLongPress}
             tokenId={tokenId}
             contentType="feed"
-            postCreator={{
-              address: item?.minter || (item as any)?.minterUser?.address,
-              displayName: (item as any)?.minterUser?.displayName || (item as any)?.minterDisplayName,
-              username: (item as any)?.minterUser?.username || (item as any)?.minterUsername,
-            }}
+            postCreator={postCreator}
             highlighted={isHighlighted}
           />
         </View>
       );
     },
-    [handleReplyPress, handleUserPress, tipTotals, handleLikeComment, handleDislikeComment, handleCommentLongPress, tokenId, highlightedCommentId, threadMeta, handleToggleThread]
+    [handleReplyPress, handleUserPress, tipTotals, handleLikeComment, handleDislikeComment, handleCommentLongPress, tokenId, highlightedCommentId, threadMeta, handleToggleThread, postCreator]
   );
 
   // Send media comment
@@ -1150,7 +1175,7 @@ export default function FeedDetailScreen() {
         ListFooterComponent={(
           <View>
             {showAllCommentsRow}
-            {item && tokenId != null && (
+            {item && tokenId != null && transitionSettled && (
               <PostDetailContinuation currentPostId={String(tokenId)} />
             )}
           </View>
@@ -1169,6 +1194,11 @@ export default function FeedDetailScreen() {
           </View>
         )}
         renderItem={renderCommentItem}
+        // The post itself heads the list, so the first screen holds only a
+        // handful of comments; the default ten doubled the first render's rows.
+        initialNumToRender={6}
+        maxToRenderPerBatch={6}
+        windowSize={11}
         contentContainerStyle={{ paddingHorizontal: 0, paddingBottom: listBottomPadding }}
         keyboardShouldPersistTaps="handled"
         viewabilityConfig={viewabilityConfig}
