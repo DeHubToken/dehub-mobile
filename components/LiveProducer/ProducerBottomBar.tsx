@@ -1,16 +1,14 @@
 import React, { memo, useCallback } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
-import {
-  Radio,
-  Video,
-  VideoOff,
-  Mic,
-  MicOff,
-  RefreshCw,
-  Server,
-  Palette,
-} from "lucide-react-native";
+import Radio from "lucide-react-native/dist/esm/icons/radio";
+import Video from "lucide-react-native/dist/esm/icons/video";
+import VideoOff from "lucide-react-native/dist/esm/icons/video-off";
+import Mic from "lucide-react-native/dist/esm/icons/mic";
+import MicOff from "lucide-react-native/dist/esm/icons/mic-off";
+import RefreshCw from "lucide-react-native/dist/esm/icons/refresh-cw";
+import Server from "lucide-react-native/dist/esm/icons/server";
+import Palette from "lucide-react-native/dist/esm/icons/palette";
 
 type Stage =
   | "idle"

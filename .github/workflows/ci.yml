@@ -65,6 +65,12 @@ jobs:
       - name: Mangled encoding check
         run: npm run i18n:mojibake
 
+      # <Icon> only renders icons listed in components/ui/iconRegistry.ts, so
+      # the whole lucide set stays out of the bundle. A name used but not
+      # registered renders as an empty box; tsc misses it behind `as any`.
+      - name: Icon registry check
+        run: npm run icons:check
+
       - name: TypeScript check
         run: npx tsc --noEmit
 

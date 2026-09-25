@@ -32,7 +32,9 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { ShoppingBag, X, Package } from "lucide-react-native";
+import ShoppingBag from "lucide-react-native/dist/esm/icons/shopping-bag";
+import X from "lucide-react-native/dist/esm/icons/x";
+import Package from "lucide-react-native/dist/esm/icons/package";
 import {
   useStreamProducts,
   useLiveCheckout,
