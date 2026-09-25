@@ -19,7 +19,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import Icon from "../ui/Icon";
 import { fetchBadgePatron } from "../../services/badge-delegation.service";
-import { badgeImageFor } from "../../libs";
+import { badgeImageFor } from "../../libs/misc";
 
 interface BadgePatronChipProps {
   /** Username or wallet address of the account being drawn. */

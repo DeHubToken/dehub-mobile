@@ -76,23 +76,11 @@ import { useEngagementWeight } from "../../hooks/useEngagementWeight";
 import { appliedEngagementWeight } from "../../libs/engagement-weight";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import PollCard from "../DM/PollCard";
-import {
-  getAvatarUrl,
-  getBadgeUrlFor,
-  getImageUrl,
-  getImageUrlApiSimple,
-  buildFeedImageUrls,
-  getAudioUrl,
-  getVideoUrl,
-  getShortsThumbnailUrl,
-  resolveThumbnail,
-  DEFAULT_BANNER_SENTINEL,
-  formatCompactNumber,
-  toastError,
-  toastSuccess,
-  toastInfo,
-  toastWithAction,
-} from "../../libs";
+// Direct module imports, not the `libs` barrel — it `export *`s the axios
+// client and auth utils into every card module.
+import { getAvatarUrl, getBadgeUrlFor, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getVideoUrl, getShortsThumbnailUrl, resolveThumbnail, DEFAULT_BANNER_SENTINEL } from "../../libs/misc";
+import { formatCompactNumber } from "../../libs/numbers.util";
+import { toastError, toastSuccess, toastInfo, toastWithAction } from "../../libs/toast";
 import { useMintExistingPost } from "../../hooks/useMintExistingPost";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import {

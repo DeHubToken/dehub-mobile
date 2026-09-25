@@ -35,12 +35,7 @@ import {
   isLiveItem,
 } from "../../services/feed.unified.service";
 import { secondsToHMMSS } from "../../libs/date.util";
-import {
-  getAvatarUrl,
-  resolveThumbnail,
-  getImageUrl,
-  getBadgeUrl,
-} from "../../libs";
+import { getAvatarUrl, resolveThumbnail, getImageUrl, getBadgeUrl } from "../../libs/misc";
 import { theme } from "../../theme";
 import {
   createPostViewTracker,
