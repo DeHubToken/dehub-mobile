@@ -5612,6 +5612,7 @@
     "balanceAmount": "Inapatikana: {{amount}}{{symbol}}"
   },
   "dex": {
+    "launchNotice": "Soko hili maalum la kubadilishana limejengwa juu ya Uniswap na linalindwa nalo. Sasa liko hewani na linafanya kazi kikamilifu, na orodha rasmi zitatangazwa hivi karibuni. Unakaribishwa kuongeza ukwasi sasa — mashamba na motisha zitafichuliwa hivi punde.",
     "lowestPrice": "Bei ya chini kabisa · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

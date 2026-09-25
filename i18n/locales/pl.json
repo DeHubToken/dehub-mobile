@@ -5611,6 +5611,7 @@
     "balanceAmount": "Dostępne: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Ta dedykowana giełda jest zbudowana na Uniswap i przez niego zabezpieczona. Działa już w pełni, a oficjalne listingi zostaną wkrótce ogłoszone. Zapraszamy do dodawania płynności już teraz — farmy i zachęty zostaną ujawnione lada chwila.",
     "lowestPrice": "Najniższa cena · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

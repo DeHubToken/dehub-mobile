@@ -5611,6 +5611,7 @@
     "balanceAmount": "Mövcuddur: {{amount}}{{symbol}}"
   },
   "dex": {
+    "launchNotice": "Bu xüsusi birja Uniswap üzərində qurulub və onun tərəfindən qorunur. Hazırda aktivdir və tam işləkdir, rəsmi listinqlər tezliklə elan olunacaq. İndi likvidlik əlavə etməyə dəvətlisiniz — fermalar və təşviqlər çox yaxında açıqlanacaq.",
     "lowestPrice": "Ən aşağı qiymət · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

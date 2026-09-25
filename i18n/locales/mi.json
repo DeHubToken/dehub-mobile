@@ -5611,6 +5611,7 @@
     "balanceAmount": "E wātea ana: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Kua hangaia tēnei whakawhitinga motuhake ki runga i a Uniswap, ā, nāna e whakahaumaru. Kei te ora, kei te mahi katoa ināianei, ā, ka pānuitia ngā rārangi ōkawa ā tōna wā tata nei. E pōwhiritia ana koe ki te tāpiri moni wai ināianei — ka hurahia ngā pāmu me ngā whakatenatena ā kō tata nei.",
     "lowestPrice": "Utu iti rawa · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

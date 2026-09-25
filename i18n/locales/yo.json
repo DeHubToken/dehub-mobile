@@ -5612,6 +5612,7 @@
     "balanceAmount": "Wa: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Pàṣípààrọ̀ àkànṣe yìí ni a kọ́ lórí Uniswap, ó sì ń dáàbò bò ó. Ó ti ń ṣiṣẹ́ báyìí ní kíkún, a ó sì kéde àwọn àkójọ ìjọba láìpẹ́. A pè ọ́ láti ṣàfikún owó ìṣàn báyìí — a ó ṣí àwọn oko àti àwọn ẹ̀bùn ìwúrí payá láìpẹ́ jọjọ.",
     "lowestPrice": "Iye tó kéré jù · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",
