@@ -26,7 +26,11 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
-import { ShoppingBag, X, Package, Radio, Trash2 } from "lucide-react-native";
+import ShoppingBag from "lucide-react-native/dist/esm/icons/shopping-bag";
+import X from "lucide-react-native/dist/esm/icons/x";
+import Package from "lucide-react-native/dist/esm/icons/package";
+import Radio from "lucide-react-native/dist/esm/icons/radio";
+import Trash2 from "lucide-react-native/dist/esm/icons/trash-2";
 import {
   useStreamProducts,
   useStreamProductActions,

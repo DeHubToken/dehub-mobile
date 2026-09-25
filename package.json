@@ -20,7 +20,9 @@
     "i18n:generate": "node scripts/generate-translations.js",
     "i18n:coverage": "node scripts/i18n-coverage.js",
     "i18n:literals": "node scripts/i18n-literals.js",
-    "i18n:mojibake": "node scripts/mojibake-check.js"
+    "i18n:mojibake": "node scripts/mojibake-check.js",
+    "icons:check": "node scripts/icons-registry.js",
+    "icons:write": "node scripts/icons-registry.js --write"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.2",

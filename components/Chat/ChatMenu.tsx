@@ -3,7 +3,7 @@ import { Modal, Pressable, TouchableOpacity, View, Text, ScrollView } from 'reac
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
-import type { icons } from 'lucide-react-native';
+import type { IconName } from '../ui/Icon';
 
 export type ChatMenuProps = {
   visible: boolean;
@@ -22,7 +22,7 @@ export type ChatMenuProps = {
 };
 
 type MenuRowProps = {
-  icon: keyof typeof icons;
+  icon: IconName;
   label: string;
   onPress: () => void;
   color?: string;

@@ -10,7 +10,8 @@ import {
 } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
-import { ArrowUpCircle, MessageCircleOff } from "lucide-react-native";
+import ArrowUpCircle from "lucide-react-native/dist/esm/icons/circle-arrow-up";
+import MessageCircleOff from "lucide-react-native/dist/esm/icons/message-circle-off";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Avatar from "../common/Avatar";
