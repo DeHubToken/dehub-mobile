@@ -3918,6 +3918,12 @@
     "listens_other": "{{count}} უსმენს"
   },
   "transfer": {
+    "arcTitle": "USDC-ის გაგზავნა Arc-ზე",
+    "recipientAddress": "მიმღების მისამართი",
+    "invalidAddress": "შეიყვანეთ სწორი 0x მისამართი",
+    "arcFeeNote": "Arc ქსელის საკომისიო ამ ბალანსიდან USDC-ით იხდება.",
+    "unlockToSend": "გასაგზავნად განბლოკეთ საფულე.",
+    "arcUnavailable": "Arc ამჟამად ამ ანგარიშისთვის მიუწვდომელია.",
     "title": "ტოკენების გადარიცხვა",
     "recipient": "მიმღები: {{address}}",
     "enterAmount": "შეიყვანეთ თანხა:",
@@ -4914,6 +4920,8 @@
     "lyricsFailed": "ტექსტის შექმნა ვერ მოხერხდა"
   },
   "assets": {
+    "arcUsdc": "USDC Arc-ზე",
+    "send": "გაგზავნა",
     "topUp": "შევსება",
     "bridge": "ხიდი",
     "comingSoon": "მალე",

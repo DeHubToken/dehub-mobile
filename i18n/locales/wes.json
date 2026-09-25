@@ -3888,6 +3888,12 @@
     "newMessage": "{{name}} send you message"
   },
   "transfer": {
+    "arcTitle": "Send USDC fo Arc",
+    "recipientAddress": "Address fo pesin weh i go collect",
+    "invalidAddress": "Put correct 0x address",
+    "arcFeeNote": "Arc network fee go comot fo dis balance fo USDC.",
+    "unlockToSend": "Open ya wallet fo send.",
+    "arcUnavailable": "Arc no dey fo dis account now.",
     "title": "Transfer token dem",
     "recipient": "Pesin weh i go kolek: {{address}}",
     "enterAmount": "Put amount fo",
@@ -4877,6 +4883,8 @@
     "lyricsFailed": "We no fit generate lyrics"
   },
   "assets": {
+    "arcUsdc": "USDC fo Arc",
+    "send": "Send",
     "topUp": "Ad moni",
     "bridge": "Bridge",
     "comingSoon": "e di kam",

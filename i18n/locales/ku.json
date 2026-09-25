@@ -3893,6 +3893,12 @@
     "listens_one": "{{count}} guhdarî bike"
   },
   "transfer": {
+    "arcTitle": "USDC li ser Arc bişîne",
+    "recipientAddress": "Navnîşana wergir",
+    "invalidAddress": "Navnîşaneke 0x ya derbasdar binivîse",
+    "arcFeeNote": "Xercên tora Arc bi USDC ji vê balansê têne dayîn.",
+    "unlockToSend": "Ji bo şandinê cûzdana xwe veke.",
+    "arcUnavailable": "Arc niha ji bo vê hesabê ne berdest e.",
     "title": "Tokenan veguhezîne",
     "recipient": "Wergir: {{address}}",
     "enterAmount": "Mîqdarê binivîse:",
@@ -4882,6 +4888,8 @@
     "lyricsFailed": "Gotin nehatin çêkirin"
   },
   "assets": {
+    "arcUsdc": "USDC li ser Arc",
+    "send": "Bişîne",
     "topUp": "Bar bike",
     "bridge": "Pir",
     "comingSoon": "di demek nêz de",

@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} ascultări"
   },
   "transfer": {
+    "arcTitle": "Trimite USDC pe Arc",
+    "recipientAddress": "Adresa destinatarului",
+    "invalidAddress": "Introdu o adresă 0x validă",
+    "arcFeeNote": "Comisioanele rețelei Arc se plătesc în USDC din acest sold.",
+    "unlockToSend": "Deblochează portofelul pentru a trimite.",
+    "arcUnavailable": "Arc nu este disponibil momentan pentru acest cont.",
     "title": "Transferă tokenuri",
     "recipient": "Destinatar: {{address}}",
     "enterAmount": "Introdu suma în",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Nu s-au putut genera versurile"
   },
   "assets": {
+    "arcUsdc": "USDC pe Arc",
+    "send": "Trimite",
     "topUp": "Alimentează",
     "bridge": "Punte",
     "comingSoon": "în curând",

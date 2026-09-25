@@ -3904,6 +3904,12 @@
     "listens_other": "{{count}} listens"
   },
   "transfer": {
+    "arcTitle": "Send USDC på Arc",
+    "recipientAddress": "Modtagerens adresse",
+    "invalidAddress": "Indtast en gyldig 0x-adresse",
+    "arcFeeNote": "Netværksgebyrer på Arc betales i USDC fra denne saldo.",
+    "unlockToSend": "Lås din wallet op for at sende.",
+    "arcUnavailable": "Arc er ikke tilgængelig for denne konto lige nu.",
     "title": "Overfør tokens",
     "recipient": "Modtager: {{address}}",
     "enterAmount": "Indtast beløb i",
@@ -4900,6 +4906,8 @@
     "lyricsFailed": "Kunne ikke generere teksten"
   },
   "assets": {
+    "arcUsdc": "USDC på Arc",
+    "send": "Send",
     "topUp": "Fyld op",
     "bridge": "Bro",
     "comingSoon": "kommer snart",

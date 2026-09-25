@@ -3888,6 +3888,12 @@
     "listens_other": "{{count}} فہرستیں"
   },
   "transfer": {
+    "arcTitle": "Arc پر USDC بھیجو",
+    "recipientAddress": "لینے والے کا پتہ",
+    "invalidAddress": "صحیح 0x پتہ ڈالو",
+    "arcFeeNote": "Arc نیٹ ورک کی فیس اس بیلنس سے USDC میں دیے جاتے۔",
+    "unlockToSend": "بھیجنے کو اپنا والیٹ ان لاک کرو۔",
+    "arcUnavailable": "Arc ابھی اس اکاؤنٹ کے واسطے دستیاب نئیں۔",
     "title": "ٹوکن بھیجو",
     "recipient": "وصول کنندہ: {{address}}",
     "enterAmount": "رقم درج کرو",
@@ -4877,6 +4883,8 @@
     "lyricsFailed": "بول نہیں بن سکے"
   },
   "assets": {
+    "arcUsdc": "Arc پر USDC",
+    "send": "بھیجو",
     "topUp": "ٹاپ اپ",
     "bridge": "برج",
     "comingSoon": "جلد",

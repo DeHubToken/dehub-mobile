@@ -72,6 +72,17 @@ const AA_CHAIN_CONFIGS: Record<number, AAChainInfo> = {
     ticker: "BNB",
     tickerName: "BNB",
   },
+  // Arc. Safe 1.4.1, its 4337 module, factory and EntryPoint 0.7 are at the
+  // canonical addresses, so the Safe is the same account as on Base. Only
+  // libs/arc-wallet.ts builds a provider here, and it pays gas in USDC.
+  5042: {
+    chainId: "0x13b2",
+    rpcTarget: "https://rpc.mainnet.arc.io",
+    displayName: "Arc",
+    blockExplorerUrl: "https://explorer.arc.io",
+    ticker: "USDC",
+    tickerName: "USD Coin",
+  },
 };
 
 /** Why a gasless setup attempt for a chain ended the way it did. */

@@ -3904,6 +3904,12 @@
     "listens_other": "{{count}} ਸੁਣਦਾ ਹੈ"
   },
   "transfer": {
+    "arcTitle": "Arc 'ਤੇ USDC ਭੇਜੋ",
+    "recipientAddress": "ਪ੍ਰਾਪਤਕਰਤਾ ਦਾ ਪਤਾ",
+    "invalidAddress": "ਇੱਕ ਵੈਧ 0x ਪਤਾ ਦਾਖਲ ਕਰੋ",
+    "arcFeeNote": "Arc ਨੈੱਟਵਰਕ ਫੀਸ ਇਸ ਬਕਾਏ ਵਿੱਚੋਂ USDC ਵਿੱਚ ਅਦਾ ਹੁੰਦੀ ਹੈ।",
+    "unlockToSend": "ਭੇਜਣ ਲਈ ਆਪਣਾ ਵਾਲਿਟ ਅਨਲੌਕ ਕਰੋ।",
+    "arcUnavailable": "Arc ਇਸ ਵੇਲੇ ਇਸ ਖਾਤੇ ਲਈ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।",
     "title": "ਟੋਕਨ ਭੇਜੋ",
     "recipient": "ਪ੍ਰਾਪਤਕਰਤਾ: {{address}}",
     "enterAmount": "ਰਕਮ ਦਰਜ ਕਰੋ:",
@@ -4900,6 +4906,8 @@
     "lyricsFailed": "ਬੋਲ ਨਹੀਂ ਬਣ ਸਕੇ"
   },
   "assets": {
+    "arcUsdc": "Arc 'ਤੇ USDC",
+    "send": "ਭੇਜੋ",
     "topUp": "ਟਾਪ ਅੱਪ",
     "bridge": "ਬ੍ਰਿਜ",
     "comingSoon": "ਜਲਦੀ",

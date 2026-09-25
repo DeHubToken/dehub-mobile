@@ -3955,6 +3955,12 @@
     "listens_other": "{{count}} बार सुना गया"
   },
   "transfer": {
+    "arcTitle": "Arc पर USDC भेजें",
+    "recipientAddress": "प्राप्तकर्ता का पता",
+    "invalidAddress": "मान्य 0x पता दर्ज करें",
+    "arcFeeNote": "Arc नेटवर्क शुल्क इसी बैलेंस से USDC में चुकाया जाता है।",
+    "unlockToSend": "भेजने के लिए अपना वॉलेट अनलॉक करें।",
+    "arcUnavailable": "Arc अभी इस खाते के लिए उपलब्ध नहीं है।",
     "title": "टोकन ट्रांसफ़र करें",
     "recipient": "प्राप्तकर्ता: {{address}}",
     "enterAmount": "राशि दर्ज करें",
@@ -4951,6 +4957,8 @@
     "lyricsFailed": "बोल नहीं बन सके"
   },
   "assets": {
+    "arcUsdc": "Arc पर USDC",
+    "send": "भेजें",
     "topUp": "टॉप अप",
     "bridge": "ब्रिज",
     "comingSoon": "जल्द आ रहा है",

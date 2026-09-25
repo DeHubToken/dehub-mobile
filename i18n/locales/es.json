@@ -3949,6 +3949,12 @@
     "listens_other": "{{count}} reproducciones"
   },
   "transfer": {
+    "arcTitle": "Enviar USDC en Arc",
+    "recipientAddress": "Dirección del destinatario",
+    "invalidAddress": "Introduce una dirección 0x válida",
+    "arcFeeNote": "Las comisiones de la red Arc se pagan en USDC con este saldo.",
+    "unlockToSend": "Desbloquea tu billetera para enviar.",
+    "arcUnavailable": "Arc no está disponible para esta cuenta en este momento.",
     "title": "Transferir tokens",
     "recipient": "Destinatario: {{address}}",
     "enterAmount": "Introduce la cantidad de",
@@ -4945,6 +4951,8 @@
     "lyricsFailed": "No se pudo generar la letra"
   },
   "assets": {
+    "arcUsdc": "USDC en Arc",
+    "send": "Enviar",
     "topUp": "Recargar",
     "bridge": "Puente",
     "comingSoon": "próximamente",

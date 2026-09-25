@@ -3900,6 +3900,12 @@
     "untitled": "Post egwu"
   },
   "transfer": {
+    "arcTitle": "Zipu USDC na Arc",
+    "recipientAddress": "Adreesị onye nnata",
+    "invalidAddress": "Tinye adreesị 0x ziri ezi",
+    "arcFeeNote": "A na-akwụ ụgwọ netwọk Arc na USDC site na ego a.",
+    "unlockToSend": "Mepee obere akpa gị ka i zipu.",
+    "arcUnavailable": "Arc adịghị maka akaụntụ a ugbu a.",
     "title": "Nyefee tokens",
     "recipient": "Onye nnata: {{address}}",
     "enterAmount": "Tinye ego nke",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Enweghị ike ịmepụta okwu abụ"
   },
   "assets": {
+    "arcUsdc": "USDC na Arc",
+    "send": "Zipu",
     "topUp": "Tinye ego",
     "bridge": "Àkwà",
     "comingSoon": "na-abịa",

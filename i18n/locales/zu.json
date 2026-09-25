@@ -3931,6 +3931,12 @@
     "listens_other": "{{count}} uyalalela"
   },
   "transfer": {
+    "arcTitle": "Thumela i-USDC ku-Arc",
+    "recipientAddress": "Ikheli lomamukeli",
+    "invalidAddress": "Faka ikheli le-0x elivumelekile",
+    "arcFeeNote": "Izimali zenethiwekhi ye-Arc zikhokhelwa nge-USDC kule bhalansi.",
+    "unlockToSend": "Vula isikhwama sakho ukuze uthumele.",
+    "arcUnavailable": "I-Arc ayitholakali kule akhawunti okwamanje.",
     "title": "Dlulisela amathokheni",
     "recipient": "Umamukeli: {{address}}",
     "enterAmount": "Faka inani le-",
@@ -4927,6 +4933,8 @@
     "lyricsFailed": "Ayikwazanga ukwakha amagama engoma"
   },
   "assets": {
+    "arcUsdc": "USDC ku-Arc",
+    "send": "Thumela",
     "topUp": "Faka imali",
     "bridge": "Ibhuloho",
     "comingSoon": "kuyeza",

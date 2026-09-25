@@ -3949,6 +3949,12 @@
     "listens_other": "{{count}} Wiedergaben"
   },
   "transfer": {
+    "arcTitle": "USDC auf Arc senden",
+    "recipientAddress": "Empfängeradresse",
+    "invalidAddress": "Gib eine gültige 0x-Adresse ein",
+    "arcFeeNote": "Arc-Netzwerkgebühren werden in USDC von diesem Guthaben bezahlt.",
+    "unlockToSend": "Entsperre deine Wallet, um zu senden.",
+    "arcUnavailable": "Arc ist für dieses Konto gerade nicht verfügbar.",
     "title": "Token übertragen",
     "recipient": "Empfänger: {{address}}",
     "enterAmount": "Betrag eingeben in",
@@ -4945,6 +4951,8 @@
     "lyricsFailed": "Songtext konnte nicht erstellt werden"
   },
   "assets": {
+    "arcUsdc": "USDC auf Arc",
+    "send": "Senden",
     "topUp": "Aufladen",
     "bridge": "Brücke",
     "comingSoon": "bald",

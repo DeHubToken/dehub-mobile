@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} sluša"
   },
   "transfer": {
+    "arcTitle": "Pošalji USDC na mreži Arc",
+    "recipientAddress": "Adresa primatelja",
+    "invalidAddress": "Unesite valjanu 0x adresu",
+    "arcFeeNote": "Naknade mreže Arc plaćaju se u USDC-u s ovog salda.",
+    "unlockToSend": "Otključajte novčanik za slanje.",
+    "arcUnavailable": "Arc trenutačno nije dostupan za ovaj račun.",
     "title": "Prijenos tokena",
     "recipient": "Primatelj: {{address}}",
     "enterAmount": "Unesi iznos u",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "Tekst nije moguće generirati"
   },
   "assets": {
+    "arcUsdc": "USDC na mreži Arc",
+    "send": "Pošalji",
     "topUp": "Nadoplati",
     "bridge": "Most",
     "comingSoon": "uskoro",

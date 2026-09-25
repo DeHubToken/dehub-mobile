@@ -3930,6 +3930,12 @@
     "listens_other": "{{count}} گوش می‌دهد"
   },
   "transfer": {
+    "arcTitle": "ارسال USDC در Arc",
+    "recipientAddress": "آدرس گیرنده",
+    "invalidAddress": "یک آدرس 0x معتبر وارد کنید",
+    "arcFeeNote": "کارمزدهای شبکه Arc با USDC از همین موجودی پرداخت می‌شود.",
+    "unlockToSend": "برای ارسال، کیف پول خود را باز کنید.",
+    "arcUnavailable": "Arc در حال حاضر برای این حساب در دسترس نیست.",
     "title": "انتقال توکن‌ها",
     "recipient": "گیرنده: {{address}}",
     "enterAmount": "مبلغ را وارد کنید:",
@@ -4926,6 +4932,8 @@
     "lyricsFailed": "ساخت متن آهنگ ناموفق بود"
   },
   "assets": {
+    "arcUsdc": "USDC در Arc",
+    "send": "ارسال",
     "topUp": "شارژ",
     "bridge": "پل",
     "comingSoon": "به‌زودی",

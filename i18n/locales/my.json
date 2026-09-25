@@ -3913,6 +3913,12 @@
     "listens_other": "{{count}} နားထောင်သည်"
   },
   "transfer": {
+    "arcTitle": "Arc ပေါ်တွင် USDC ပို့ရန်",
+    "recipientAddress": "လက်ခံသူ၏ လိပ်စာ",
+    "invalidAddress": "မှန်ကန်သော 0x လိပ်စာ ထည့်ပါ",
+    "arcFeeNote": "Arc ကွန်ရက် အခကြေးငွေကို ဤလက်ကျန်မှ USDC ဖြင့် ပေးချေသည်။",
+    "unlockToSend": "ပို့ရန် သင့်ပိုက်ဆံအိတ်ကို လော့ခ်ဖွင့်ပါ။",
+    "arcUnavailable": "ယခု ဤအကောင့်အတွက် Arc မရနိုင်ပါ။",
     "title": "တိုကင်များ လွှဲပြောင်းရန်",
     "recipient": "လက်ခံသူ- {{address}}",
     "enterAmount": "ပမာဏ ထည့်ပါ-",
@@ -4909,6 +4915,8 @@
     "lyricsFailed": "စာသား ဖန်တီး၍ မရပါ"
   },
   "assets": {
+    "arcUsdc": "Arc ပေါ်ရှိ USDC",
+    "send": "ပို့ရန်",
     "topUp": "ငွေဖြည့်",
     "bridge": "တံတား",
     "comingSoon": "မကြာမီ",

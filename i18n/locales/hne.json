@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} सुनता है"
   },
   "transfer": {
+    "arcTitle": "Arc म USDC भेजव",
+    "recipientAddress": "पाने वाला के पता",
+    "invalidAddress": "सही 0x पता डारव",
+    "arcFeeNote": "Arc नेटवर्क के फीस इही बैलेंस ले USDC म दे जाथे।",
+    "unlockToSend": "भेजे बर अपन वॉलेट अनलॉक करव।",
+    "arcUnavailable": "Arc अभी ए खाता बर उपलब्ध नइ हे।",
     "title": "टोकन भेजव",
     "recipient": "पाइया: {{address}}",
     "enterAmount": "रकम डारव",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "बोल नइ बन सकिस"
   },
   "assets": {
+    "arcUsdc": "Arc म USDC",
+    "send": "भेजव",
     "topUp": "टॉप अप",
     "bridge": "ब्रिज",
     "comingSoon": "जल्दिच",

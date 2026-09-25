@@ -3880,6 +3880,12 @@
     "newMessage": "{{name}} ти је послао поруку"
   },
   "transfer": {
+    "arcTitle": "Пошаљи USDC на мрежи Arc",
+    "recipientAddress": "Адреса примаоца",
+    "invalidAddress": "Унесите исправну 0x адресу",
+    "arcFeeNote": "Накнаде мреже Arc плаћају се у USDC са овог салда.",
+    "unlockToSend": "Откључајте новчаник да бисте послали.",
+    "arcUnavailable": "Arc тренутно није доступан за овај налог.",
     "title": "Пренос токена",
     "recipient": "Прималац: {{address}}",
     "enterAmount": "Унеси износ у",
@@ -4869,6 +4875,8 @@
     "lyricsFailed": "Текст није било могуће генерисати"
   },
   "assets": {
+    "arcUsdc": "USDC на мрежи Arc",
+    "send": "Пошаљи",
     "topUp": "Допуни",
     "bridge": "Мост",
     "comingSoon": "ускоро",

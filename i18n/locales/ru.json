@@ -3953,6 +3953,12 @@
     "listens_other": "{{count}} прослушиваний"
   },
   "transfer": {
+    "arcTitle": "Отправить USDC в сети Arc",
+    "recipientAddress": "Адрес получателя",
+    "invalidAddress": "Введите корректный адрес 0x",
+    "arcFeeNote": "Комиссии сети Arc оплачиваются в USDC с этого баланса.",
+    "unlockToSend": "Разблокируйте кошелёк, чтобы отправить.",
+    "arcUnavailable": "Arc сейчас недоступен для этого аккаунта.",
     "title": "Перевести токены",
     "recipient": "Получатель: {{address}}",
     "enterAmount": "Введите сумму",
@@ -4949,6 +4955,8 @@
     "lyricsFailed": "Не удалось создать текст"
   },
   "assets": {
+    "arcUsdc": "USDC в сети Arc",
+    "send": "Отправить",
     "topUp": "Пополнить",
     "bridge": "Мост",
     "comingSoon": "скоро",

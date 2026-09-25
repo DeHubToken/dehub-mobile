@@ -3900,6 +3900,12 @@
     "listens_other": "{{count}} കേൾക്കുന്നു"
   },
   "transfer": {
+    "arcTitle": "Arc-ൽ USDC അയയ്ക്കുക",
+    "recipientAddress": "സ്വീകർത്താവിന്റെ വിലാസം",
+    "invalidAddress": "സാധുവായ 0x വിലാസം നൽകുക",
+    "arcFeeNote": "Arc നെറ്റ്‌വർക്ക് ഫീസ് ഈ ബാലൻസിൽ നിന്ന് USDC-യിൽ അടയ്ക്കുന്നു.",
+    "unlockToSend": "അയയ്ക്കാൻ നിങ്ങളുടെ വാലറ്റ് അൺലോക്ക് ചെയ്യുക.",
+    "arcUnavailable": "Arc ഇപ്പോൾ ഈ അക്കൗണ്ടിന് ലഭ്യമല്ല.",
     "title": "ടോക്കണുകൾ കൈമാറുക",
     "recipient": "സ്വീകർത്താവ്: {{address}}",
     "enterAmount": "തുക നൽകുക:",
@@ -4896,6 +4902,8 @@
     "lyricsFailed": "വരികൾ സൃഷ്ടിക്കാനായില്ല"
   },
   "assets": {
+    "arcUsdc": "Arc-ലെ USDC",
+    "send": "അയയ്ക്കുക",
     "topUp": "ടോപ്പ് അപ്പ്",
     "bridge": "ബ്രിഡ്ജ്",
     "comingSoon": "ഉടൻ",
