@@ -5629,6 +5629,7 @@
     "balanceAmount": "Mavjud: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Ushbu maxsus birja Uniswap asosida qurilgan va u orqali himoyalangan. U hozir to'liq ishlamoqda, rasmiy listinglar esa tez orada e'lon qilinadi. Sizni hoziroq likvidlik qo'shishga taklif qilamiz — fermalar va rag'batlar juda tez orada ochiladi.",
     "lowestPrice": "Eng past narx · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

@@ -5658,6 +5658,7 @@
     "balanceAmount": "Available:{{amount}}{{symbol}}"
   },
   "dex": {
+    "launchNotice": "Ang custom na exchange na ito ay binuo sa Uniswap at pinoprotektahan nito. Live na ito at ganap na gumagana, at iaanunsyo sa lalong madaling panahon ang mga opisyal na listing. Iniimbitahan kang magdagdag ng liquidity ngayon — ilalantad na sa lalong madaling panahon ang mga farm at insentibo.",
     "lowestPrice": "Pinakamababang presyo · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

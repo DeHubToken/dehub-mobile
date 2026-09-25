@@ -5801,6 +5801,7 @@
     "balanceAmount": "Beschikbaar: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Deze aangepaste exchange is gebouwd op en beveiligd door Uniswap. Hij is live en volledig functioneel, en officiële listings worden binnenkort aangekondigd. Je bent uitgenodigd om nu al liquiditeit toe te voegen — farms en incentives worden zeer binnenkort onthuld.",
     "lowestPrice": "Laagste prijs · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

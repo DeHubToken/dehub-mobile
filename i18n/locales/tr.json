@@ -5660,6 +5660,7 @@
     "balanceAmount": "Mevcut: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Bu özel borsa Uniswap üzerine kurulmuştur ve onun tarafından güvence altına alınır. Şu anda yayında ve tamamen işlevseldir; resmi listelemeler yakında duyurulacak. Şimdiden likidite eklemeye davetlisiniz — farmlar ve teşvikler çok yakında açıklanacak.",
     "lowestPrice": "En düşük fiyat · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

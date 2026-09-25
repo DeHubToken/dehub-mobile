@@ -5664,6 +5664,7 @@
     "balanceAmount": "Disponível: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Esta exchange personalizada é construída sobre a Uniswap e protegida por ela. Já está ativa e totalmente funcional, e as listagens oficiais serão anunciadas em breve. Você está convidado a adicionar liquidez agora — farms e incentivos serão revelados muito em breve.",
     "lowestPrice": "Preço mais baixo · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

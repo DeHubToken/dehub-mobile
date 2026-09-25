@@ -5641,6 +5641,7 @@
     "balanceAmount": "Verfügbar: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Die eigeti Börse isch uf Uniswap bout und wird dur das gsicheret. Si lauft scho und funktioniert volläschtändig, offizielli Listings wärde bald bekannt gäh. Du bisch iiglade, jetzt scho Liquidität drzuezgäh — Farms und Aareiz wärde gly enthüllt.",
     "lowestPrice": "Tiefschte Priis · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

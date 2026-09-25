@@ -5872,6 +5872,7 @@
     "balanceAmount": "Tersedia: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Bursa tersuai ini dibina di atas Uniswap dan dilindungi olehnya. Ia kini aktif dan berfungsi sepenuhnya, dan penyenaraian rasmi akan diumumkan tidak lama lagi. Anda dijemput untuk menambah kecairan sekarang — ladang dan insentif akan didedahkan tidak lama lagi.",
     "lowestPrice": "Harga terendah · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

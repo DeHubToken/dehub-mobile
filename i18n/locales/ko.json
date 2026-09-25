@@ -5664,6 +5664,7 @@
     "balanceAmount": "사용 가능: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "이 맞춤형 거래소는 Uniswap 기반으로 구축되었으며 Uniswap으로 보호됩니다. 현재 운영 중이며 모든 기능을 이용할 수 있고, 공식 상장은 곧 발표될 예정입니다. 지금 바로 유동성을 추가해 보세요 — 파밍과 인센티브가 곧 공개됩니다.",
     "lowestPrice": "최저가 · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

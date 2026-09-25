@@ -5611,6 +5611,7 @@
     "balanceAmount": "Tilgjengelig: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Denne skreddersydde børsen er bygget på og sikret av Uniswap. Den er i drift og fullt funksjonell, og offisielle noteringer blir kunngjort snart. Du inviteres til å legge til likviditet nå — farmer og insentiver avsløres svært snart.",
     "lowestPrice": "Laveste pris · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",
