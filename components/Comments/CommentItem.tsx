@@ -641,7 +641,9 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 positioning context. No tray on your own comment's thumbs-up,
                 because every reaction it could cast the server would refuse. */}
             <View style={{ position: "relative" }}>
-              {reactionsEnabled && !isOwnComment && (
+              {/* Mounted only while open — it renders nothing closed, but two
+                  per row still ran their hooks on every comment in the list. */}
+              {reactionsEnabled && !isOwnComment && openTray === "positive" && (
                 <ReactionPicker
                   open={openTray === "positive"}
                   current={myReaction}
@@ -690,7 +692,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 were never sent. */}
             {(onDislike || onReact) && (
               <View style={{ position: "relative" }}>
-                {reactionsEnabled && (
+                {reactionsEnabled && openTray === "negative" && (
                   <ReactionPicker
                     open={openTray === "negative"}
                     polarity="negative"
