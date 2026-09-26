@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useIsFocused } from "@react-navigation/native";
 import { getLivepeerStream } from "../services/livepeer.service";
 import { liveProviderOf } from "../libs/live-ingest";
 import { toastError } from "../libs/toast";
@@ -131,6 +132,11 @@ export const useLive = (opts?: UseLiveOptions) => {
   const endPollRef = useRef<NodeJS.Timeout | null>(null);
   const livePollStartedRef = useRef(false);
   const endPollStartedRef = useRef(false);
+  // Status polls only run while the producer screen is in front; a blurred
+  // screen pauses them (and their timeout) instead of spending requests.
+  const isFocused = useIsFocused();
+  const focusedRef = useRef(isFocused);
+  focusedRef.current = isFocused;
   const stageRef = useRef(stage);
   useEffect(() => {
     stageRef.current = stage;
@@ -248,10 +254,15 @@ export const useLive = (opts?: UseLiveOptions) => {
     console.log("[useLive] live polling loop initiated", {
       livepeerId: opts?.livepeerId,
     });
-    const POLL_MS = 3000;
-    const startedAt = Date.now();
+    const POLL_MS = 10000;
+    let startedAt = Date.now();
     const poll = async () => {
       if (stageRef.current !== "starting") return;
+      if (!focusedRef.current) {
+        startedAt += POLL_MS;
+        livePollRef.current = setTimeout(poll, POLL_MS);
+        return;
+      }
       try {
         const info = await getLivepeerStream(opts.livepeerId!);
         console.log("[useLive] live poll tick", {
@@ -293,10 +304,15 @@ export const useLive = (opts?: UseLiveOptions) => {
     console.log("[useLive] end polling loop initiated", {
       livepeerId: opts?.livepeerId,
     });
-    const POLL_MS = 3000;
-    const startedAt = Date.now();
+    const POLL_MS = 10000;
+    let startedAt = Date.now();
     const poll = async () => {
       if (stageRef.current !== "ending") return;
+      if (!focusedRef.current) {
+        startedAt += POLL_MS;
+        endPollRef.current = setTimeout(poll, POLL_MS);
+        return;
+      }
       try {
         const info = await getLivepeerStream(opts.livepeerId!);
         console.log("[useLive] end poll tick", {
