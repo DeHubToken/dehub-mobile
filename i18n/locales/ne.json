@@ -853,7 +853,11 @@
     "stageBridge": "{{chain}} बाट {{symbol}} पठाउँदै…",
     "stageArriving": "Base मा आइपुग्दै, प्रायः केही सेकेन्ड…",
     "stageSwap": "Uniswap मा DHB किन्दै…",
-    "payFailed": "{{symbol}} लाई DHB मा परिवर्तन गर्न सकिएन"
+    "payFailed": "{{symbol}} लाई DHB मा परिवर्तन गर्न सकिएन",
+    "stagePay": "{{symbol}} ले DeHub Pay लाई भुक्तानी गर्दै…",
+    "stageDelivering": "DeHub Pay ले तपाईंको DHB पठाउँदै छ…",
+    "payViaDpay": "DeHub Pay लाई भुक्तानी गरियो, DHB करिब 30 सेकेन्डमा आइपुग्छ",
+    "payViaBridgeDpay": "Base मा सारेर DeHub Pay लाई भुक्तानी गरियो, DHB करिब एक मिनेटमा आइपुग्छ"
   },
   "postOptions": {
     "options": "विकल्पहरू",
@@ -4318,7 +4322,8 @@
     "lowTopUp": "{{symbol}} कम छ? अनलक गर्नु अघि हामी तपाईंलाई थप्नेछौं।",
     "btnSwapping": "साट्दैछ...",
     "payAndTip": "भुक्तान गर्नुहोस् र टिप दिनुहोस्",
-    "unlockedSuccess": "सफलतापूर्वक अनलक गरियो"
+    "unlockedSuccess": "सफलतापूर्वक अनलक गरियो",
+    "payHint": "तपाईंको वालेटमा भएको जुनसुकै कुराले भुक्तानी गर्नुहोस्। यो DHB बन्छ र तुरुन्तै अनलक हुन्छ।"
   },
   "walletSetup": {
     "tryBiometricsHint": "तपाईंले यो वालेट यही फोनमा बनाउनुभएको छ र की पहिले नै यहाँ हुनुपर्छ भने यो प्रयोग गर्नुहोस्",

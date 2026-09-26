@@ -853,7 +853,11 @@
     "stageBridge": "Siunčiama {{symbol}} iš {{chain}}…",
     "stageArriving": "Keliauja į Base, paprastai per kelias sekundes…",
     "stageSwap": "Perkama DHB per Uniswap…",
-    "payFailed": "Nepavyko konvertuoti {{symbol}} į DHB"
+    "payFailed": "Nepavyko konvertuoti {{symbol}} į DHB",
+    "stagePay": "Mokama DeHub Pay su {{symbol}}…",
+    "stageDelivering": "DeHub Pay siunčia jūsų DHB…",
+    "payViaDpay": "Sumokėta DeHub Pay, DHB pasieks maždaug per 30 s",
+    "payViaBridgeDpay": "Perkelta į Base ir sumokėta DeHub Pay, DHB pasieks maždaug per minutę"
   },
   "postOptions": {
     "options": "Parinktys",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Trūksta {{symbol}}? Papildysime prieš atrakinant.",
     "btnSwapping": "Keičiama...",
     "payAndTip": "Mokėti irbatpinigius",
-    "unlockedSuccess": "Sėkmingai atrakinta"
+    "unlockedSuccess": "Sėkmingai atrakinta",
+    "payHint": "Mokėkite bet kuo, kas yra jūsų piniginėje. Tai virsta DHB ir iškart atrakina."
   },
   "walletSetup": {
     "tryBiometricsHint": "Naudokite, jei šią piniginę nustatėte šiame telefone ir raktas jau turėtų būti čia",

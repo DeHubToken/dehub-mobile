@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} {{chain}} şəbəkəsindən göndərilir…",
     "stageArriving": "Base-ə çatır, adətən bir neçə saniyə…",
     "stageSwap": "Uniswap-da DHB alınır…",
-    "payFailed": "{{symbol}} DHB-yə çevrilə bilmədi"
+    "payFailed": "{{symbol}} DHB-yə çevrilə bilmədi",
+    "stagePay": "DeHub Pay-ə {{symbol}} ilə ödənilir…",
+    "stageDelivering": "DeHub Pay DHB-nizi göndərir…",
+    "payViaDpay": "DeHub Pay-ə ödənildi, DHB təxminən 30 san ərzində çatır",
+    "payViaBridgeDpay": "Base-ə köçürüldü və DeHub Pay-ə ödənildi, DHB təxminən bir dəqiqəyə çatır"
   },
   "postOptions": {
     "options": "Seçimlər",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "{{symbol}} azdır? Kilidi açmadan əvvəl dolduracağıq.",
     "btnSwapping": "Dəyişdirilir...",
     "payAndTip": "Ödəyin & Ucu verin",
-    "unlockedSuccess": "Uğurla kilidi açıldı"
+    "unlockedSuccess": "Uğurla kilidi açıldı",
+    "payHint": "Pul kisənizdəki istənilən vəsaitlə ödəyin. O, DHB-yə çevrilir və dərhal kilidi açır."
   },
   "walletSetup": {
     "tryBiometricsHint": "Bu pulqabını bu telefonda qurmusansa və açar artıq burada olmalıdırsa, bundan istifadə et",

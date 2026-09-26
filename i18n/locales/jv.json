@@ -853,7 +853,11 @@
     "stageBridge": "Ngirim {{symbol}} saka {{chain}}…",
     "stageArriving": "Lagi tekan ing Base, biasane mung sawetara detik…",
     "stageSwap": "Tuku DHB ing Uniswap…",
-    "payFailed": "Ora bisa ngowahi {{symbol}} dadi DHB"
+    "payFailed": "Ora bisa ngowahi {{symbol}} dadi DHB",
+    "stagePay": "Mbayar DeHub Pay nganggo {{symbol}}…",
+    "stageDelivering": "DeHub Pay lagi ngirim DHB-mu…",
+    "payViaDpay": "Wis dibayar menyang DeHub Pay, DHB tekan kira-kira 30 detik",
+    "payViaBridgeDpay": "Dipindhah menyang Base lan dibayar menyang DeHub Pay, DHB tekan kira-kira sak menit"
   },
   "postOptions": {
     "options": "Opsi",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Kurang {{symbol}}? Bakal diisi nganti kebak sadurunge dibukak.",
     "btnSwapping": "Ngganti...",
     "payAndTip": "Bayar & Tip",
-    "unlockedSuccess": "Sukses dibukak"
+    "unlockedSuccess": "Sukses dibukak",
+    "payHint": "Bayar nganggo apa wae sing ana ing dompetmu. Bakal dadi DHB lan langsung kebukak."
   },
   "walletSetup": {
     "tryBiometricsHint": "Gunakake iki yen sampeyan nyiyapake dompet iki ing ponsel iki lan kuncine mesthine wis ana ing kene",

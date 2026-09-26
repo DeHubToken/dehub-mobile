@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} {{chain}} tarmog‘idan yuborilmoqda…",
     "stageArriving": "Base’ga yetib kelmoqda, odatda bir necha soniya…",
     "stageSwap": "Uniswap’da DHB sotib olinmoqda…",
-    "payFailed": "{{symbol}} DHB’ga aylantirilmadi"
+    "payFailed": "{{symbol}} DHB’ga aylantirilmadi",
+    "stagePay": "DeHub Pay'ga {{symbol}} bilan to'lanmoqda…",
+    "stageDelivering": "DeHub Pay DHB'ingizni yubormoqda…",
+    "payViaDpay": "DeHub Pay'ga to'landi, DHB taxminan 30 soniyada keladi",
+    "payViaBridgeDpay": "Base'ga o'tkazildi va DeHub Pay'ga to'landi, DHB taxminan bir daqiqada keladi"
   },
   "postOptions": {
     "options": "Parametrlar",
@@ -4323,7 +4327,8 @@
     "lowTopUp": "{{symbol}} kammi? Ochishdan oldin to'ldiramiz.",
     "btnSwapping": "Almashtirilmoqda...",
     "payAndTip": "To'lash va havola qilish",
-    "unlockedSuccess": "Muvaffaqiyatli ochildi"
+    "unlockedSuccess": "Muvaffaqiyatli ochildi",
+    "payHint": "Hamyoningizdagi istalgan narsa bilan to'lang. U DHB'ga aylanadi va darhol ochiladi."
   },
   "walletSetup": {
     "tryBiometricsHint": "Agar bu hamyonni shu telefonda sozlagan bo'lsangiz va kalit allaqachon shu yerda bo'lishi kerak bo'lsa, shundan foydalaning",

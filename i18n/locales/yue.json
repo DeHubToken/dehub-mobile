@@ -853,7 +853,11 @@
     "stageBridge": "由 {{chain}} 傳送緊 {{symbol}}…",
     "stageArriving": "就快到 Base，通常幾秒…",
     "stageSwap": "喺 Uniswap 買緊 DHB…",
-    "payFailed": "冇辦法將 {{symbol}} 換成 DHB"
+    "payFailed": "冇辦法將 {{symbol}} 換成 DHB",
+    "stagePay": "用 {{symbol}} 俾錢畀 DeHub Pay…",
+    "stageDelivering": "DeHub Pay 傳送緊你嘅 DHB…",
+    "payViaDpay": "已經俾咗 DeHub Pay，DHB 大約 30 秒到",
+    "payViaBridgeDpay": "已經轉去 Base 再俾咗 DeHub Pay，DHB 大約一分鐘到"
   },
   "postOptions": {
     "options": "選項",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "{{symbol}}唔夠？我哋會幫你補滿先解鎖。",
     "btnSwapping": "交換緊...",
     "payAndTip": "付款及畀貼士",
-    "unlockedSuccess": "成功解鎖"
+    "unlockedSuccess": "成功解鎖",
+    "payHint": "用錢包入面任何資產俾錢。會變成 DHB，即刻解鎖。"
   },
   "walletSetup": {
     "tryBiometricsHint": "如果你係喺呢部手機設定呢個錢包，密鑰應該已經喺度，請用呢個",

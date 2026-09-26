@@ -490,7 +490,6 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
               <PPVTopUpStep
                 shortfall={shortfall}
                 account={account}
-                swapRouterContract={swapRouterContract}
                 // Funded, so send the unlock immediately — handleUnlock clears
                 // the shortfall itself and the sheet returns to paying.
                 onFunded={handleUnlock}

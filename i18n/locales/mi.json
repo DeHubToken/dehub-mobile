@@ -853,7 +853,11 @@
     "stageBridge": "E tuku ana i {{symbol}} mai i {{chain}}…",
     "stageArriving": "E tae mai ana ki Base, he hēkona torutoru noa…",
     "stageSwap": "E hoko ana i DHB i Uniswap…",
-    "payFailed": "Kāore i taea te huri i {{symbol}} ki DHB"
+    "payFailed": "Kāore i taea te huri i {{symbol}} ki DHB",
+    "stagePay": "E utu ana ki DeHub Pay mā te {{symbol}}…",
+    "stageDelivering": "Kei te tuku a DeHub Pay i ō DHB…",
+    "payViaDpay": "Kua utua ki DeHub Pay, ka tae mai ngā DHB i roto i te 30 hēkona pea",
+    "payViaBridgeDpay": "Kua nekehia ki Base, kua utua ki DeHub Pay, ka tae mai ngā DHB i roto i te meneti kotahi pea"
   },
   "postOptions": {
     "options": "Kōwhiringa",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Kua iti te {{symbol}}? Ka whakakiia e mātou i mua i te whakatuwheratanga.",
     "btnSwapping": "Kei te whakawhiti...",
     "payAndTip": "Utua me te Tohu",
-    "unlockedSuccess": "Kua angitu te whakatuwhera"
+    "unlockedSuccess": "Kua angitu te whakatuwhera",
+    "payHint": "Utua ki tētahi mea i tō pūkoro. Ka huri hei DHB, ka wetekia tonutia."
   },
   "walletSetup": {
     "tryBiometricsHint": "Whakamahia tēnei mēnā nāu i whakarite tēnei pūkoro i runga i tēnei waea, ā, me kua tae kē mai te kī ki konei",

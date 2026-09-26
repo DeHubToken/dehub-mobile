@@ -853,7 +853,11 @@
     "stageBridge": "Lähetetään {{symbol}} verkosta {{chain}}…",
     "stageArriving": "Saapuu Baseen, yleensä muutamassa sekunnissa…",
     "stageSwap": "Ostetaan DHB:tä Uniswapissa…",
-    "payFailed": "{{symbol}}-muunto DHB:ksi epäonnistui"
+    "payFailed": "{{symbol}}-muunto DHB:ksi epäonnistui",
+    "stagePay": "Maksetaan DeHub Paylle käyttäen {{symbol}}…",
+    "stageDelivering": "DeHub Pay lähettää DHB:si…",
+    "payViaDpay": "Maksettu DeHub Paylle, DHB saapuu noin 30 sekunnissa",
+    "payViaBridgeDpay": "Siirretty Baseen ja maksettu DeHub Paylle, DHB saapuu noin minuutissa"
   },
   "postOptions": {
     "options": "Vaihtoehdot",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Vähissä {{symbol}}? Täydennämme ennen avaamista.",
     "btnSwapping": "Vaihdetaan...",
     "payAndTip": "Maksa & Juomaraha",
-    "unlockedSuccess": "Avattu onnistuneesti"
+    "unlockedSuccess": "Avattu onnistuneesti",
+    "payHint": "Maksa millä tahansa lompakkosi varoilla. Se muuttuu DHB:ksi ja avautuu heti."
   },
   "walletSetup": {
     "tryBiometricsHint": "Käytä tätä, jos loit tämän lompakon tällä puhelimella ja avaimen pitäisi jo olla täällä",

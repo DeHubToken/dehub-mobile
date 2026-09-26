@@ -853,7 +853,11 @@
     "stageBridge": "Αποστολή {{symbol}} από {{chain}}…",
     "stageArriving": "Άφιξη στο Base, συνήθως σε λίγα δευτερόλεπτα…",
     "stageSwap": "Αγορά DHB στο Uniswap…",
-    "payFailed": "Δεν ήταν δυνατή η μετατροπή {{symbol}} σε DHB"
+    "payFailed": "Δεν ήταν δυνατή η μετατροπή {{symbol}} σε DHB",
+    "stagePay": "Πληρωμή στο DeHub Pay με {{symbol}}…",
+    "stageDelivering": "Το DeHub Pay στέλνει τα DHB σας…",
+    "payViaDpay": "Πληρώθηκε στο DeHub Pay, τα DHB φτάνουν σε περίπου 30 δλ",
+    "payViaBridgeDpay": "Μεταφέρθηκε στο Base και πληρώθηκε στο DeHub Pay, τα DHB φτάνουν σε περίπου ένα λεπτό"
   },
   "postOptions": {
     "options": "Επιλογές",
@@ -4335,7 +4339,8 @@
     "lowTopUp": "Χαμηλά σε {{symbol}}; Θα σε συμπληρώσουμε πριν ξεκλειδώσουμε.",
     "btnSwapping": "Αντιμεταβολή...",
     "payAndTip": "Πληρωμή & Φιλοδώρημα",
-    "unlockedSuccess": "Ξεκλειδώθηκε επιτυχώς"
+    "unlockedSuccess": "Ξεκλειδώθηκε επιτυχώς",
+    "payHint": "Πληρώστε με οτιδήποτε έχετε στο πορτοφόλι σας. Γίνεται DHB και ξεκλειδώνει αμέσως."
   },
   "walletSetup": {
     "tryBiometricsHint": "Χρησιμοποιήστε το αν ρυθμίσατε αυτό το πορτοφόλι σε αυτό το τηλέφωνο και θα έπρεπε ήδη να έχει το κλειδί",

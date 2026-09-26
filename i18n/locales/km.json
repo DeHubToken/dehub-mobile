@@ -853,7 +853,11 @@
     "stageBridge": "កំពុងផ្ញើ {{symbol}} ពី {{chain}}…",
     "stageArriving": "កំពុងមកដល់ Base ជាធម្មតាប៉ុន្មានវិនាទីប៉ុណ្ណោះ…",
     "stageSwap": "កំពុងទិញ DHB នៅលើ Uniswap…",
-    "payFailed": "មិនអាចបម្លែង {{symbol}} ទៅ DHB បានទេ"
+    "payFailed": "មិនអាចបម្លែង {{symbol}} ទៅ DHB បានទេ",
+    "stagePay": "កំពុងបង់ទៅ DeHub Pay ដោយ {{symbol}}…",
+    "stageDelivering": "DeHub Pay កំពុងផ្ញើ DHB របស់អ្នក…",
+    "payViaDpay": "បានបង់ទៅ DeHub Pay, DHB មកដល់ក្នុងប្រហែល 30 វិនាទី",
+    "payViaBridgeDpay": "បានផ្ទេរទៅ Base ហើយបង់ទៅ DeHub Pay, DHB មកដល់ក្នុងប្រហែលមួយនាទី"
   },
   "postOptions": {
     "options": "ជម្រើស",
@@ -4318,7 +4322,8 @@
     "lowTopUp": "ខ្វះ {{symbol}} មែនទេ? យើងនឹងបំពេញឱ្យអ្នកមុនពេលដោះសោ។",
     "btnSwapping": "កំពុងផ្លាស់ប្តូរ...",
     "payAndTip": "បង់ប្រាក់ & គន្លឹះ",
-    "unlockedSuccess": "បានដោះសោដោយជោគជ័យ"
+    "unlockedSuccess": "បានដោះសោដោយជោគជ័យ",
+    "payHint": "បង់ដោយអ្វីក៏បាននៅក្នុងកាបូបរបស់អ្នក។ វានឹងក្លាយជា DHB ហើយដោះសោភ្លាមៗ។"
   },
   "walletSetup": {
     "tryBiometricsHint": "ប្រើវាប្រសិនបើអ្នកបានរៀបចំកាបូបនេះនៅលើទូរស័ព្ទនេះ ហើយសោគួរតែមាននៅទីនេះរួចហើយ",

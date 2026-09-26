@@ -853,7 +853,11 @@
     "stageBridge": "{{chain}} توں {{symbol}} گھلیندے پئے ہیں…",
     "stageArriving": "Base تے پہنچدا پئے، عام طور تے کجھ سیکنڈ…",
     "stageSwap": "Uniswap تے DHB خریدیندے پئے ہیں…",
-    "payFailed": "{{symbol}} کوں DHB وچ نئیں بدل سڳے"
+    "payFailed": "{{symbol}} کوں DHB وچ نئیں بدل سڳے",
+    "stagePay": "{{symbol}} نال DeHub Pay کوں ادائیگی تھیندی پئی اے…",
+    "stageDelivering": "DeHub Pay تہاݙے DHB گھلدا پئے…",
+    "payViaDpay": "DeHub Pay کوں ادا تھی ڳیا، DHB لڳ بھڳ 30 سیکنڈ وچ آسن",
+    "payViaBridgeDpay": "Base تے گھن ونڄ تے DeHub Pay کوں ادا تھی ڳیا، DHB لڳ بھڳ ہک منٹ وچ آسن"
   },
   "postOptions": {
     "options": "اختیارات",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "{{symbol}} گھٹ اے؟ ان لاک کرݨ توں پہلیں اساں تہاݙا بل بوتا پورا کریسوں۔",
     "btnSwapping": "تبدیل کریندا پیا اے...",
     "payAndTip": "ادائیگی تے ٹپ",
-    "unlockedSuccess": "کامیابی نال ان لاک تھی ڳیا"
+    "unlockedSuccess": "کامیابی نال ان لاک تھی ڳیا",
+    "payHint": "اپݨے والٹ وچ کہیں وی شئے نال ادا کرو۔ او DHB بݨ ویسی تے فوراً کھل ویسی۔"
   },
   "walletSetup": {
     "tryBiometricsHint": "ایہ تدوں ورتو جدوں تساں ایہ والٹ ایں فون تے بݨایا ہووے تے کنجی پہلے توں ایتھاں ہوݨی چاہیدی اے",
