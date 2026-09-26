@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Tocca l'icona informazioni su un post coniato per aprirne la transazione di conio nel block explorer e verificare il record on-chain.",
     "guideMintIntro": "Coniare un post come NFT sulla blockchain è facoltativo. Conialo quando pubblichi, oppure pubblicalo ora e conialo più tardi dal menu del post.",
     "guideMintPublishStep": "Scegli se coniare, poi fai clic su 'Pubblica'. Se salti il conio, puoi coniare il post più tardi dal suo menu.",
+    "guideMintFractionsStep": "Ricevi tutte le 1.000 frazioni (proprietà al 100%) del post appena coniato.",
     "glossaryMintTxDesc": "Tocca l'icona informazioni su un post coniato per aprirne la transazione di conio nel block explorer e verificare il record on-chain. La pagina completa Info post — statistiche, detentori, marketplace — si trova nell'app web su dehub.io.",
     "glossaryTokenIdDesc": "Un identificatore univoco on-chain assegnato a un post quando viene coniato come NFT.",
     "repostsTab": "Repost",

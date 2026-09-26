@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Puuduta vermitud postituse infoikooni, et avada selle vermimistehing plokiuurijas ja kontrollida ahelas olevat kirjet.",
     "guideMintIntro": "Postituse vermimine NFT-na plokiahelas on valikuline. Vermi see avaldamisel või avalda kohe ja vermi hiljem postituse menüüst.",
     "guideMintPublishStep": "Vali, kas vermida, ja klõpsa siis avaldamiseks 'Postita'. Kui jätad vermimise vahele, saad postituse hiljem selle menüüst vermida.",
+    "guideMintFractionsStep": "Saad kõik 1000 fraktsiooni (100% omandiõigus) oma äsja vermitud postitusest.",
     "glossaryMintTxDesc": "Puuduta vermitud postituse infoikooni, et avada selle vermimistehing plokiuurijas ja kontrollida ahelas olevat kirjet. Täielik postituse teabe leht — statistika, omanikud, turg — asub veebirakenduses aadressil dehub.io.",
     "glossaryTokenIdDesc": "Unikaalne ahelas olev tunnus, mis antakse postitusele, kui see vermitakse NFT-na.",
     "repostsTab": "Repostid",

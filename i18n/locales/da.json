@@ -3431,6 +3431,7 @@
     "guideInfoStep": "Tryk på infoikonet på et præget opslag for at åbne dets prægningstransaktion i blokudforskeren og bekræfte registreringen på kæden.",
     "guideMintIntro": "Det er valgfrit at præge et opslag som en NFT på blockchainen. Præg det, når du udgiver, eller udgiv nu og præg det senere fra opslagets menu.",
     "guideMintPublishStep": "Vælg, om du vil præge, og klik derefter på 'Opslå' for at udgive. Springer du prægningen over, kan du præge opslaget senere fra dets menu.",
+    "guideMintFractionsStep": "Du modtager alle 1.000 fraktioner (100 % ejerskab) af dit nyprægede opslag.",
     "glossaryMintTxDesc": "Tryk på infoikonet på et præget opslag for at åbne dets prægningstransaktion i blokudforskeren og bekræfte registreringen på kæden. Den fulde Opslagsinfo-side — statistik, ejere, markedsplads — findes i webappen på dehub.io.",
     "glossaryTokenIdDesc": "En unik identifikator på kæden, som et opslag får, når det præges som en NFT.",
     "repostsTab": "Genindlæg",

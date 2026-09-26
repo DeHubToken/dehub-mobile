@@ -3434,6 +3434,7 @@
     "guideInfoStep": "Tap the info icon for post wey dem don mint to open im mint transaction for block explorer and check the on-chain record.",
     "guideMintIntro": "To mint post as NFT for blockchain na your choice. Mint am when you dey publish, or publish now and mint am later from the post menu.",
     "guideMintPublishStep": "Choose whether you go mint, then click 'Post' to publish. If you skip mint, you fit mint the post later from the post menu.",
+    "guideMintFractionsStep": "You go collect all 1,000 fraction (100% ownership) of di post wey you just mint.",
     "glossaryMintTxDesc": "Tap the info icon for post wey dem don mint to open im mint transaction for block explorer and check the on-chain record. The full Post Info page — stats, holders, marketplace — dey for the web app for dehub.io.",
     "glossaryTokenIdDesc": "One unique on-chain ID wey dem give post when dem mint am as NFT."
   },

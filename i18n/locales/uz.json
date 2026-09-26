@@ -3445,6 +3445,7 @@
     "guideInfoStep": "Mint tranzaksiyasini blok eksplorerida ochish va zanjirdagi yozuvni tekshirish uchun mint qilingan postdagi ma’lumot belgisiga bosing.",
     "guideMintIntro": "Postni blokcheynda NFT sifatida mint qilish ixtiyoriy. Nashr qilayotganda mint qiling yoki hozir nashr qilib, keyinroq post menyusidan mint qiling.",
     "guideMintPublishStep": "Mint qilish-qilmaslikni tanlang, so‘ng nashr qilish uchun 'Post' tugmasini bosing. Mintni o‘tkazib yuborsangiz, postni keyinroq uning menyusidan mint qilishingiz mumkin.",
+    "guideMintFractionsStep": "Yangi mint qilingan postingizning barcha 1,000 ta fraksiyasini (100% egalik) olasiz.",
     "glossaryMintTxDesc": "Mint tranzaksiyasini blok eksplorerida ochish va zanjirdagi yozuvni tekshirish uchun mint qilingan postdagi ma’lumot belgisiga bosing. Post haqida to‘liq ma’lumot sahifasi — statistika, egalari, bozor — dehub.io veb-ilovasida joylashgan.",
     "glossaryTokenIdDesc": "Post NFT sifatida mint qilinganda unga beriladigan zanjirdagi noyob identifikator.",
     "repostsTab": "Qayta joylashtirishlar",

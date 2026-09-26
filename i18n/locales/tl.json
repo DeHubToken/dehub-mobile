@@ -3474,6 +3474,7 @@
     "guideInfoStep": "I-tap ang info icon sa isang na-mint na post para buksan ang mint transaction nito sa block explorer at i-verify ang on-chain na record.",
     "guideMintIntro": "Opsyonal ang pag-mint ng post bilang NFT sa blockchain. I-mint ito kapag nagpa-publish ka, o i-publish ngayon at i-mint mamaya mula sa menu ng post.",
     "guideMintPublishStep": "Piliin kung magmi-mint, pagkatapos ay i-click ang 'Post' para i-publish. Kung laktawan mo ang pag-mint, puwede mong i-mint ang post mamaya mula sa menu nito.",
+    "guideMintFractionsStep": "Matatanggap mo ang lahat ng 1,000 fractions (100% pagmamay-ari) ng bago mong na-mint na post.",
     "glossaryMintTxDesc": "I-tap ang info icon sa isang na-mint na post para buksan ang mint transaction nito sa block explorer at i-verify ang on-chain na record. Ang buong Post Info page — stats, holders, marketplace — ay nasa web app sa dehub.io.",
     "glossaryTokenIdDesc": "Isang natatanging on-chain identifier na ibinibigay sa isang post kapag na-mint ito bilang NFT.",
     "repostsTab": "Mga repost",
