@@ -65,7 +65,7 @@ export default function TvRequestsScreen() {
   // happens once in a while; the push notification is the right answer for
   // that and is not built yet. "Mounted" was not enough either: a screen left
   // in the stack stays mounted, and this kept fetching under Home.
-  useFocusedInterval(() => void load(), 10_000, { catchUp: true });
+  useFocusedInterval(() => void load(), 30_000, { catchUp: true });
 
   // Re-render once a second so the countdown actually counts and an expired
   // card leaves the list rather than sitting there looking answerable. Only

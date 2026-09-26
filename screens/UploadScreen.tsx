@@ -38,7 +38,7 @@ import * as VideoThumbnails from "expo-video-thumbnails";
 import {
   runWithPermissions,
 } from "../libs/permissions.util";
-import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
+import { openCroppedImagePicker, getFileName, guessMime, prepareImageForUpload } from "../libs/assets.util";
 import { getCategoriesCached, getMintFee } from "../services/nft.service";
 import type { MintFeeQuoteResponse } from "../services/nft.service";
 import { getAuthMethod } from "../libs/auth.utils";
@@ -1524,7 +1524,10 @@ export default function UploadScreen() {
   }, [incomingVideo]);
 
   /** Size-filters image assets and appends them up to the creator's badge cap. */
-  const adoptImageAssets = useCallback(async (assets: PickedAsset[]) => {
+  const adoptImageAssets = useCallback(async (picked: PickedAsset[]) => {
+    // Downscaled before the size checks, so a large camera photo is judged
+    // on what will actually be uploaded.
+    const assets = await Promise.all(picked.map((a) => prepareImageForUpload(a)));
     const validAssets: PickedAsset[] = [];
     let requestImageBytes = (await Promise.all(pickedImages.map(async image => {
       const info = await FileSystem.getInfoAsync(image.uri).catch(() => null);
@@ -1741,7 +1744,7 @@ export default function UploadScreen() {
         });
         if (result.canceled || !result.assets?.[0]?.uri) return;
 
-        const asset = result.assets[0];
+        const asset = await prepareImageForUpload(result.assets[0]);
         try {
           const info = await FileSystem.getInfoAsync(asset.uri);
           const size = (info as any)?.size as number | undefined;

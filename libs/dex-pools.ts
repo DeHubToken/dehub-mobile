@@ -10,7 +10,7 @@
  */
 import { ethers } from 'ethers';
 import * as Crypto from 'expo-crypto';
-import env from '../config/env';
+import { getDhbPricePayload } from './dhbPrice';
 import { ChainId, ROBINHOOD_TOKENS } from '../config/constants';
 import { DHB_TOKEN_ADDRESSES } from '../config/web3.constants';
 import { supabase } from '../services/supabase';
@@ -175,8 +175,7 @@ export interface FeeBalance { asset: FeeAsset; amount: number; usd: number }
 /** USD prices from the shared price endpoint, keyed by symbol. */
 export async function fetchUsdPrices(): Promise<Record<string, number>> {
   try {
-    const res = await fetch(`${env.SUPABASE_EDGE_BASE_URL}/get-dhb-price`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
-    const data = await res.json();
+    const data = await getDhbPricePayload();
     const prices: Record<string, number> = {};
     for (const [key, value] of Object.entries(data?.prices ?? {})) if (Number(value) > 0) prices[key] = Number(value);
     if (!prices.DHB && Number(data?.price) > 0) prices.DHB = Number(data.price);

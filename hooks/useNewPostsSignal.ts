@@ -32,7 +32,7 @@ const HEAD_SIZE = 20;
  * The response is also merged into every cached copy of each post, so views
  * and reactions move on screen without the reader pulling to refresh.
  */
-export const LIVE_ENGAGEMENT_POLL_MS = 10_000;
+export const LIVE_ENGAGEMENT_POLL_MS = 45_000;
 
 interface UseNewPostsSignalOptions {
   /** Poll only while this tab is on screen. */

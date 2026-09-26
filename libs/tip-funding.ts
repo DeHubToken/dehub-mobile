@@ -24,7 +24,7 @@
  */
 import { ethers } from 'ethers';
 import { ChainId, ROBINHOOD_TOKENS } from '../config/constants';
-import env from '../config/env';
+import { getDhbPricePayload } from './dhbPrice';
 import { apiClient } from './api.client';
 import { getLocalAccountDetails } from './wallets.local';
 import { setupAAProvider } from './wallet-core/smart-account';
@@ -160,8 +160,7 @@ async function waitForBalance(chainId: number, token: string, owner: string, atL
 
 async function prices(): Promise<Record<string, number>> {
   try {
-    const res = await fetch(`${env.SUPABASE_EDGE_BASE_URL}/get-dhb-price`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
-    return (await res.json())?.prices ?? {};
+    return (await getDhbPricePayload()).prices ?? {};
   } catch { return {}; }
 }
 

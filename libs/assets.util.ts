@@ -73,6 +73,67 @@ export const resizeAndCompress = async (
   return manip.uri;
 };
 
+/** Longest side a post photo is uploaded at. Phone cameras shoot 4000px+. */
+export const UPLOAD_IMAGE_MAX_SIDE = 2048;
+const UPLOAD_IMAGE_QUALITY = 0.85;
+
+type UploadableImage = {
+  uri: string;
+  width?: number;
+  height?: number;
+  mimeType?: string | null;
+  fileName?: string | null;
+  fileSize?: number | null;
+};
+
+/**
+ * Shrink a picked photo to at most UPLOAD_IMAGE_MAX_SIDE on its long side and
+ * re-encode at 0.85 before it is uploaded. GIFs pass through untouched (a
+ * re-encode would drop the animation), PNG and WebP keep their format so
+ * transparency survives, and anything that fails comes back as picked.
+ */
+export async function prepareImageForUpload<T extends UploadableImage>(asset: T): Promise<T> {
+  const lowerName = (asset.fileName || asset.uri || "").toLowerCase().split("?")[0];
+  const mime = (asset.mimeType || "").toLowerCase();
+  if (mime === "image/gif" || lowerName.endsWith(".gif")) return asset;
+
+  const w = asset.width ?? 0;
+  const h = asset.height ?? 0;
+  if (!w || !h) return asset;
+
+  const scale = Math.min(1, UPLOAD_IMAGE_MAX_SIDE / Math.max(w, h));
+  const keepFormat: "png" | "webp" | null =
+    mime === "image/png" || lowerName.endsWith(".png") ? "png"
+    : mime === "image/webp" || lowerName.endsWith(".webp") ? "webp"
+    : null;
+  // A lossless format already within bounds gains nothing from a re-encode.
+  if (keepFormat && scale === 1) return asset;
+
+  const width = Math.max(1, Math.round(w * scale));
+  const height = Math.max(1, Math.round(h * scale));
+  try {
+    const uri = await resizeAndCompress(asset.uri, {
+      width,
+      height,
+      compress: UPLOAD_IMAGE_QUALITY,
+      format: keepFormat ?? "jpeg",
+    });
+    const ext = keepFormat ?? "jpg";
+    const base = (asset.fileName || "image").replace(/\.[^.]+$/, "");
+    return {
+      ...asset,
+      uri,
+      width,
+      height,
+      mimeType: keepFormat ? `image/${keepFormat}` : "image/jpeg",
+      fileName: `${base}.${ext}`,
+      fileSize: undefined,
+    } as T;
+  } catch {
+    return asset;
+  }
+}
+
 export type RNFile = { uri: string; name: string; type: string };
 
 export const createRNImageFile = (

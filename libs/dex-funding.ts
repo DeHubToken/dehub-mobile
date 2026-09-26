@@ -15,7 +15,7 @@
  * with a deep ETH/USDC route. The BNB book takes BNB-chain USDC directly.
  */
 import { ethers } from 'ethers';
-import env from '../config/env';
+import { getDhbPricePayload } from './dhbPrice';
 import { ChainId } from '../config/constants';
 import { writeBatchAA } from './aa.write';
 import { dexProvider } from './dex-rpc';
@@ -72,8 +72,7 @@ const PERMIT = new ethers.utils.Interface(['function approve(address token,addre
 /** ETH in dollars from the shared price endpoint. Zero when unreadable, which hides ETH as an option rather than mispricing it. */
 async function ethUsd(): Promise<number> {
   try {
-    const res = await fetch(`${env.SUPABASE_EDGE_BASE_URL}/get-dhb-price`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
-    const data = await res.json();
+    const data = await getDhbPricePayload();
     const price = Number(data?.prices?.ETH);
     return Number.isFinite(price) && price > 0 ? price : 0;
   } catch { return 0; }

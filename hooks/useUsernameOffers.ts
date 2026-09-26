@@ -62,7 +62,7 @@ export function useMyUsernameOffers(enabled: boolean) {
     // The other side acts from another device: an owner accepting has to reach
     // the bidder's screen quickly, and a paid offer has to leave it.
     staleTime: 5 * 1000,
-    refetchInterval: focused ? 10 * 1000 : false,
+    refetchInterval: focused ? 30 * 1000 : false,
   });
 }
 

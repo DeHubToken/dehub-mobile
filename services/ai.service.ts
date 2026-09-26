@@ -1,4 +1,5 @@
 import env from '../config/env';
+import { getDhbPricePayload } from '../libs/dhbPrice';
 import { createLogger } from '../libs/logger';
 import { getAuthToken } from '../libs/auth.utils';
 import { tokenRefreshManager } from '../libs/token-refresh';
@@ -1007,24 +1008,8 @@ export function describeTools(tools: string[]): string {
 }
 
 export async function getDHBPrice(): Promise<number> {
-  const url = `${EDGE_BASE}/get-dhb-price`;
-  log.debug('getDHBPrice: fetching from', url);
   try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({}),
-    });
-    log.debug('getDHBPrice: response status', res.status);
-    const text = await res.text();
-    log.debug('getDHBPrice: raw response', text.substring(0, 500));
-
-    if (!res.ok) {
-      log.error('getDHBPrice: HTTP error', res.status, text);
-      throw new Error(`getDHBPrice failed (${res.status}): ${text}`);
-    }
-
-    const data = JSON.parse(text);
+    const data = await getDhbPricePayload();
     const price =
       data?.prices?.DHB ??
       data?.price ??
