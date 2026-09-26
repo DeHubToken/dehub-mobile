@@ -1,4 +1,5 @@
 /**
+import { normalizeCategoryName } from "../../libs/strings.util";
  * EditPostModal - Glass modal for editing post title, description & categories
  *
  * Uses GlassModal with center presentation and category chips.
@@ -223,7 +224,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
 
   const addCategory = useCallback(
     (cat: string) => {
-      const normalized = cat.trim();
+      const normalized = normalizeCategoryName(cat);
       if (!normalized) return;
       setSelectedCategories((prev) => {
         if (prev.find((c) => c.toLowerCase() === normalized.toLowerCase())) return prev;
