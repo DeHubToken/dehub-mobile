@@ -1210,7 +1210,11 @@
     "stageBridge": "Надсилаємо {{symbol}} з {{chain}}…",
     "stageArriving": "Зарахування в Base, зазвичай кілька секунд…",
     "stageSwap": "Купуємо DHB на Uniswap…",
-    "payFailed": "Не вдалося конвертувати {{symbol}} у DHB"
+    "payFailed": "Не вдалося конвертувати {{symbol}} у DHB",
+    "stagePay": "Оплата DeHub Pay у {{symbol}}…",
+    "stageDelivering": "DeHub Pay надсилає ваші DHB…",
+    "payViaDpay": "Оплачено через DeHub Pay, DHB надійдуть приблизно за 30 с",
+    "payViaBridgeDpay": "Переміщено в Base та оплачено через DeHub Pay, DHB надійдуть приблизно за хвилину"
   },
   "postOptions": {
     "options": "Опції",
@@ -4662,7 +4666,8 @@
     "lowTopUp": "Не вистачає {{symbol}}? Ми поповнимо його перед розблокуванням.",
     "btnSwapping": "Обмін...",
     "payAndTip": "Оплатити та залишити чайові",
-    "unlockedSuccess": "Успішно розблоковано"
+    "unlockedSuccess": "Успішно розблоковано",
+    "payHint": "Платіть будь-чим із гаманця. Це перетвориться на DHB і одразу розблокує контент."
   },
   "walletSetup": {
     "tryBiometricsHint": "Скористайтеся цим, якщо ви налаштували цей гаманець на цьому телефоні й ключ уже має бути тут",

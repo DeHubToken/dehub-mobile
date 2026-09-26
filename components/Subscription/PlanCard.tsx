@@ -30,6 +30,8 @@ import { ethers } from "ethers";
 import { toastSuccess, toastError } from "../../libs/toast";
 import { DHB_PRELISTING_USD, dhbForUsd, formatDhbPayment } from "../../libs/subscription-pricing";
 import ERC20_ABI from "../../config/abis/erc20.json";
+import TipPayWith, { tipStageLabel } from "../Tip/TipPayWith";
+import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
 
 const GLASS_GRADIENT: [string, string, string] = [
   "rgba(255,255,255,0.12)",
@@ -54,6 +56,8 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [subscribing, setSubscribing] = useState(false);
   const [stage, setStage] = useState<string>("");
+  // Another token to pay with; it becomes the plan's DHB on Base first.
+  const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
   const { requireAuth, switchChain } = useAuthActions();
   const { account, chainId, provider } = useWeb3Provider();
 
@@ -110,6 +114,17 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
         !intent.dhbAmountWei
       ) {
         throw new Error("The DHB subscription checkout is not ready. Try again shortly");
+      }
+
+      // Paying with another token: DeHub Pay (or Uniswap as the fallback)
+      // turns it into exactly this plan's DHB on Base before the transfer.
+      if (payWith && targetChainId === 8453) {
+        await fundTip({
+          source: payWith,
+          amountDhb: Number(ethers.utils.formatUnits(intent.dhbAmountWei, 18)),
+          walletAddress: account,
+          onStage: (s) => setStage(tipStageLabel(t as any, s, payWith)),
+        });
       }
 
       // DHB is transferred into treasury custody and is not sold. The server
@@ -295,6 +310,15 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
               {t("subscriptions.custodyNote")}
             </Text>
           )}
+          {targetChainId === 8453 && account && totalDhbEstimate ? (
+            <TipPayWith
+              visible={confirmVisible}
+              amountDhb={totalDhbEstimate}
+              walletAddress={account}
+              value={payWith}
+              onChange={setPayWith}
+            />
+          ) : null}
           {!!stage && <Text style={s.confirmStage}>{stage}</Text>}
           <View style={s.confirmBtns}>
             <TouchableOpacity

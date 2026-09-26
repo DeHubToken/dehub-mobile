@@ -877,7 +877,11 @@
     "stageBridge": "กำลังส่ง {{symbol}} จาก {{chain}}…",
     "stageArriving": "กำลังเข้าสู่ Base โดยปกติใช้เวลาไม่กี่วินาที…",
     "stageSwap": "กำลังซื้อ DHB บน Uniswap…",
-    "payFailed": "ไม่สามารถแปลง {{symbol}} เป็น DHB ได้"
+    "payFailed": "ไม่สามารถแปลง {{symbol}} เป็น DHB ได้",
+    "stagePay": "กำลังชำระ DeHub Pay ด้วย {{symbol}}…",
+    "stageDelivering": "DeHub Pay กำลังส่ง DHB ของคุณ…",
+    "payViaDpay": "ชำระให้ DeHub Pay แล้ว DHB จะมาถึงในประมาณ 30 วินาที",
+    "payViaBridgeDpay": "ย้ายไปยัง Base และชำระให้ DeHub Pay แล้ว DHB จะมาถึงในประมาณหนึ่งนาที"
   },
   "postOptions": {
     "options": "ตัวเลือก",
@@ -4329,7 +4333,8 @@
     "lowTopUp": "มี {{symbol}} ไม่พอใช่ไหม? เราจะเติมให้คุณก่อนปลดล็อก",
     "btnSwapping": "กำลังสลับ...",
     "payAndTip": "ชำระเงิน & ให้ทิป",
-    "unlockedSuccess": "ปลดล็อกสำเร็จ"
+    "unlockedSuccess": "ปลดล็อกสำเร็จ",
+    "payHint": "ชำระด้วยอะไรก็ได้ในกระเป๋าเงินของคุณ ระบบจะแปลงเป็น DHB และปลดล็อกทันที"
   },
   "walletSetup": {
     "tryBiometricsHint": "ใช้ตัวเลือกนี้หากคุณตั้งค่ากระเป๋าเงินนี้บนโทรศัพท์เครื่องนี้และคีย์ควรอยู่ที่นี่แล้ว",

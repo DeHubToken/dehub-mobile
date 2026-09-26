@@ -853,7 +853,11 @@
     "stageBridge": "À ń fi {{symbol}} ránṣẹ́ láti {{chain}}…",
     "stageArriving": "Ó ń dé Base, ó sábà máa ń gba ìṣẹ́jú-àáyá díẹ̀…",
     "stageSwap": "À ń ra DHB lórí Uniswap…",
-    "payFailed": "A kò lè yí {{symbol}} padà sí DHB"
+    "payFailed": "A kò lè yí {{symbol}} padà sí DHB",
+    "stagePay": "Ó ń san DeHub Pay pẹ̀lú {{symbol}}…",
+    "stageDelivering": "DeHub Pay ń fi DHB rẹ ránṣẹ́…",
+    "payViaDpay": "A ti san án fún DeHub Pay, DHB yóò dé ní nǹkan bí ìṣẹ́jú-àáyá 30",
+    "payViaBridgeDpay": "A ti gbé e lọ sí Base, a sì san án fún DeHub Pay, DHB yóò dé ní nǹkan bí ìṣẹ́jú kan"
   },
   "postOptions": {
     "options": "Àwọn àṣàyàn",
@@ -4306,7 +4310,8 @@
     "payAndTip": "Sanwo & Italolobo",
     "unlockedSuccess": "Ti ṣii ni ifijišẹ",
     "recipient": "Olugba: {{address}}",
-    "aboutToSpend": "O fẹ́ ná <accent>{{amount}} {{symbol}}</accent> láti ṣí fídíò yìí."
+    "aboutToSpend": "O fẹ́ ná <accent>{{amount}} {{symbol}}</accent> láti ṣí fídíò yìí.",
+    "payHint": "Sanwó pẹ̀lú ohunkóhun nínú àpamọ́wọ́ rẹ. Yóò di DHB, yóò sì ṣí lẹ́sẹ̀kẹsẹ̀."
   },
   "walletSetup": {
     "tryBiometricsHint": "Lo èyí tí o bá ṣètò àpamọ́wọ́ yìí lórí fóònù yìí tí kọ́kọ́rọ́ náà sì yẹ kí ó ti wà níbí",

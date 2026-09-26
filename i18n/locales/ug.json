@@ -853,7 +853,11 @@
     "stageBridge": "{{chain}} دىن {{symbol}} يوللىنىۋاتىدۇ…",
     "stageArriving": "Base قا يېتىپ كېلىۋاتىدۇ، ئادەتتە بىر نەچچە سېكۇنت…",
     "stageSwap": "Uniswap دا DHB سېتىۋېلىنىۋاتىدۇ…",
-    "payFailed": "{{symbol}} نى DHB غا ئايلاندۇرغىلى بولمىدى"
+    "payFailed": "{{symbol}} نى DHB غا ئايلاندۇرغىلى بولمىدى",
+    "stagePay": "{{symbol}} ئارقىلىق DeHub Pay غا تۆلەۋاتىدۇ…",
+    "stageDelivering": "DeHub Pay سىزنىڭ DHB نى ئەۋەتىۋاتىدۇ…",
+    "payViaDpay": "DeHub Pay غا تۆلەندى، DHB تەخمىنەن 30 سېكۇنتتا يېتىپ كېلىدۇ",
+    "payViaBridgeDpay": "Base غا يۆتكىلىپ DeHub Pay غا تۆلەندى، DHB تەخمىنەن بىر مىنۇتتا يېتىپ كېلىدۇ"
   },
   "postOptions": {
     "options": "تاللانمىلار",
@@ -4305,7 +4309,8 @@
     "btnSwapping": "ئالماشتۇرۇلماقتا...",
     "payAndTip": "چىقىم قىلىش ۋە ئۇچىغا بېرىش",
     "unlockedSuccess": "مۇۋەپپەقىيەتلىك ئېچىلدى",
-    "aboutToSpend": "بۇ سىننى ئېچىش ئۈچۈن <accent>{{amount}} {{symbol}}</accent> خېرىدارلىق ھوقۇقىنى ئىشلىتىسىز."
+    "aboutToSpend": "بۇ سىننى ئېچىش ئۈچۈن <accent>{{amount}} {{symbol}}</accent> خېرىدارلىق ھوقۇقىنى ئىشلىتىسىز.",
+    "payHint": "ھەميانىڭىزدىكى خالىغان نەرسە بىلەن تۆلەڭ. ئۇ DHB غا ئايلىنىپ دەرھال ئېچىلىدۇ."
   },
   "walletSetup": {
     "tryBiometricsHint": "ئەگەر بۇ ھەمياننى بۇ تېلېفوندا قۇرغان بولسىڭىز ۋە ئاچقۇچ ئاللىقاچان بۇ يەردە بولۇشى كېرەك بولسا بۇنى ئىشلىتىڭ",

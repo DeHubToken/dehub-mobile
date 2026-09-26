@@ -853,7 +853,11 @@
     "stageBridge": "Адпраўка {{symbol}} з {{chain}}…",
     "stageArriving": "Паступленне ў Base, звычайна некалькі секунд…",
     "stageSwap": "Купля DHB у Uniswap…",
-    "payFailed": "Не ўдалося канвертаваць {{symbol}} у DHB"
+    "payFailed": "Не ўдалося канвертаваць {{symbol}} у DHB",
+    "stagePay": "Аплата ў DeHub Pay праз {{symbol}}…",
+    "stageDelivering": "DeHub Pay адпраўляе вашы DHB…",
+    "payViaDpay": "Аплачана ў DeHub Pay, DHB паступяць прыкладна праз 30 с",
+    "payViaBridgeDpay": "Перанесена ў Base і аплачана ў DeHub Pay, DHB паступяць прыкладна праз хвіліну"
   },
   "postOptions": {
     "options": "Параметры",
@@ -4318,7 +4322,8 @@
     "lowTopUp": "Нізкі ўзровень {{symbol}}? Мы папоўнім яго перад разблакіроўкай.",
     "btnSwapping": "Абмен...",
     "payAndTip": "Аплаціць і пакінуць чаявыя",
-    "unlockedSuccess": "Паспяхова разблакіравана"
+    "unlockedSuccess": "Паспяхова разблакіравана",
+    "payHint": "Плаціце любымі сродкамі з кашалька. Яны ператворацца ў DHB, і кантэнт адкрыецца адразу."
   },
   "walletSetup": {
     "tryBiometricsHint": "Выкарыстоўвайце гэта, калі вы наладзілі гэты кашалёк на гэтым тэлефоне і ключ ужо павінен быць тут",

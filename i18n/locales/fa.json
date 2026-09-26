@@ -853,7 +853,11 @@
     "stageBridge": "در حال ارسال {{symbol}} از {{chain}}…",
     "stageArriving": "در حال رسیدن به Base، معمولاً چند ثانیه…",
     "stageSwap": "در حال خرید DHB در Uniswap…",
-    "payFailed": "تبدیل {{symbol}} به DHB ممکن نشد"
+    "payFailed": "تبدیل {{symbol}} به DHB ممکن نشد",
+    "stagePay": "در حال پرداخت به DeHub Pay با {{symbol}}…",
+    "stageDelivering": "DeHub Pay در حال ارسال DHB شماست…",
+    "payViaDpay": "به DeHub Pay پرداخت شد، DHB حدود ۳۰ ثانیه دیگر می‌رسد",
+    "payViaBridgeDpay": "به Base منتقل و به DeHub Pay پرداخت شد، DHB حدود یک دقیقه دیگر می‌رسد"
   },
   "postOptions": {
     "options": "گزینه‌ها",
@@ -4335,7 +4339,8 @@
     "lowTopUp": "کمبود {{symbol}} دارید؟ قبل از باز کردن قفل، آن را برایتان پر می‌کنیم.",
     "btnSwapping": "در حال مبادله...",
     "payAndTip": "پرداخت و انعام",
-    "unlockedSuccess": "با موفقیت باز شد"
+    "unlockedSuccess": "با موفقیت باز شد",
+    "payHint": "با هر چیزی که در کیف پولتان دارید پرداخت کنید. به DHB تبدیل می‌شود و فوراً باز می‌شود."
   },
   "walletSetup": {
     "tryBiometricsHint": "اگر این کیف پول را روی همین گوشی ساخته‌اید و کلید باید از قبل اینجا باشد، از این گزینه استفاده کنید",

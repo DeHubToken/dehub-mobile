@@ -853,7 +853,11 @@
     "stageBridge": "Odesílání {{symbol}} z {{chain}}…",
     "stageArriving": "Připisování na Base, obvykle pár sekund…",
     "stageSwap": "Nákup DHB přes Uniswap…",
-    "payFailed": "{{symbol}} nelze převést na DHB"
+    "payFailed": "{{symbol}} nelze převést na DHB",
+    "stagePay": "Platba DeHub Pay pomocí {{symbol}}…",
+    "stageDelivering": "DeHub Pay posílá tvoje DHB…",
+    "payViaDpay": "Zaplaceno DeHub Pay, DHB dorazí asi za 30 s",
+    "payViaBridgeDpay": "Přesunuto na Base a zaplaceno DeHub Pay, DHB dorazí asi za minutu"
   },
   "postOptions": {
     "options": "Možnosti",
@@ -4309,7 +4313,8 @@
     "lowTopUp": "Málo {{symbol}}? Před odemknutím doplníme.",
     "btnSwapping": "Výměna...",
     "payAndTip": "Zaplatit a dát spropitné",
-    "unlockedSuccess": "Úspěšně odemčeno"
+    "unlockedSuccess": "Úspěšně odemčeno",
+    "payHint": "Zaplať čímkoli v peněžence. Změní se na DHB a hned se odemkne."
   },
   "walletSetup": {
     "tryBiometricsHint": "Použijte, pokud jste tuto peněženku nastavili v tomto telefonu a klíč by zde už měl být",

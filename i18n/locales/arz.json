@@ -853,7 +853,11 @@
     "stageBridge": "بنبعت {{symbol}} من {{chain}}…",
     "stageArriving": "بيوصل على Base، عادةً في ثواني…",
     "stageSwap": "بنشتري DHB على Uniswap…",
-    "payFailed": "مقدرناش نحوّل {{symbol}} لـ DHB"
+    "payFailed": "مقدرناش نحوّل {{symbol}} لـ DHB",
+    "stagePay": "بندفع لـ DeHub Pay بـ {{symbol}}…",
+    "stageDelivering": "DeHub Pay بيبعتلك الـ DHB…",
+    "payViaDpay": "اتدفع لـ DeHub Pay، الـ DHB هيوصل خلال حوالي 30 ثانية",
+    "payViaBridgeDpay": "اتنقل لـ Base واتدفع لـ DeHub Pay، الـ DHB هيوصل خلال حوالي دقيقة"
   },
   "postOptions": {
     "options": "خيارات",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "قليل في {{symbol}}؟ سنقوم بتعبئته لك قبل الفتح.",
     "btnSwapping": "جارٍ التبديل...",
     "payAndTip": "ادفع وأعطِ بقشيشًا",
-    "unlockedSuccess": "تم الفتح بنجاح"
+    "unlockedSuccess": "تم الفتح بنجاح",
+    "payHint": "ادفع بأي حاجة في محفظتك. هتتحوّل لـ DHB وتفتح على طول."
   },
   "walletSetup": {
     "tryBiometricsHint": "استخدم ده لو عملت المحفظة دي على الموبايل ده والمفتاح المفروض يكون موجود هنا أصلاً",

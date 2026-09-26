@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} {{chain}} желісінен жіберілуде…",
     "stageArriving": "Base желісіне келуде, әдетте бірнеше секунд…",
     "stageSwap": "Uniswap-та DHB сатып алынуда…",
-    "payFailed": "{{symbol}} DHB-ге айырбасталмады"
+    "payFailed": "{{symbol}} DHB-ге айырбасталмады",
+    "stagePay": "{{symbol}} арқылы DeHub Pay-ге төленуде…",
+    "stageDelivering": "DeHub Pay сіздің DHB-ңізді жіберуде…",
+    "payViaDpay": "DeHub Pay-ге төленді, DHB шамамен 30 секундта келеді",
+    "payViaBridgeDpay": "Base-ке ауыстырылып, DeHub Pay-ге төленді, DHB шамамен бір минутта келеді"
   },
   "postOptions": {
     "options": "Параметрлер",
@@ -4323,7 +4327,8 @@
     "lowTopUp": "{{symbol}} аз ба? Ашу алдында толтырамыз.",
     "btnSwapping": "Ауыстыруда...",
     "payAndTip": "Төлеу және кеңес беру",
-    "unlockedSuccess": "Сәтті ашылды"
+    "unlockedSuccess": "Сәтті ашылды",
+    "payHint": "Әмияныңыздағы кез келген активпен төлеңіз. Ол DHB-ге айналып, бірден ашылады."
   },
   "walletSetup": {
     "tryBiometricsHint": "Бұл әмиянды осы телефонда орнатсаңыз және кілт осында болуы тиіс болса, осыны пайдаланыңыз",

@@ -895,7 +895,11 @@
     "stageBridge": "Ipinapadala ang {{symbol}} mula sa {{chain}}…",
     "stageArriving": "Darating sa Base, karaniwang ilang segundo lang…",
     "stageSwap": "Bumibili ng DHB sa Uniswap…",
-    "payFailed": "Hindi ma-convert ang {{symbol}} sa DHB"
+    "payFailed": "Hindi ma-convert ang {{symbol}} sa DHB",
+    "stagePay": "Nagbabayad sa DeHub Pay gamit ang {{symbol}}…",
+    "stageDelivering": "Ipinapadala ng DeHub Pay ang iyong DHB…",
+    "payViaDpay": "Nabayaran sa DeHub Pay, darating ang DHB sa loob ng mga 30s",
+    "payViaBridgeDpay": "Inilipat sa Base at binayaran sa DeHub Pay, darating ang DHB sa loob ng mga isang minuto"
   },
   "postOptions": {
     "options": "Mga Opsyon",
@@ -4352,7 +4356,8 @@
     "lowTopUp": "Kulang sa {{symbol}}? Pupunuin namin bago i-unlock.",
     "btnSwapping": "Nagpapalit...",
     "payAndTip": "Bayaran at Magbigay ng Tip",
-    "unlockedSuccess": "Matagumpay na na-unlock"
+    "unlockedSuccess": "Matagumpay na na-unlock",
+    "payHint": "Magbayad gamit ang kahit ano sa iyong wallet. Magiging DHB ito at maa-unlock agad."
   },
   "walletSetup": {
     "tryBiometricsHint": "Gamitin ito kung dito sa teleponong ito mo na-set up ang wallet at dapat nandito na ang key",

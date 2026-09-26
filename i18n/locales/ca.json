@@ -853,7 +853,11 @@
     "stageBridge": "Enviant {{symbol}} des de {{chain}}…",
     "stageArriving": "Arribant a Base, normalment uns segons…",
     "stageSwap": "Comprant DHB a Uniswap…",
-    "payFailed": "No s'ha pogut convertir {{symbol}} a DHB"
+    "payFailed": "No s'ha pogut convertir {{symbol}} a DHB",
+    "stagePay": "Pagant DeHub Pay amb {{symbol}}…",
+    "stageDelivering": "DeHub Pay t'està enviant els DHB…",
+    "payViaDpay": "Pagat a DeHub Pay, els DHB arriben en uns 30 s",
+    "payViaBridgeDpay": "Mogut a Base i pagat a DeHub Pay, els DHB arriben en un minut aproximadament"
   },
   "postOptions": {
     "options": "Opcions",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Teniu poc {{symbol}}? Us omplirem abans de desbloquejar.",
     "btnSwapping": "Canviant...",
     "payAndTip": "Paga i propina",
-    "unlockedSuccess": "Desbloquejat correctament"
+    "unlockedSuccess": "Desbloquejat correctament",
+    "payHint": "Paga amb qualsevol cosa de la teva cartera. Es converteix en DHB i es desbloqueja a l'instant."
   },
   "walletSetup": {
     "tryBiometricsHint": "Fes servir això si vas configurar aquesta cartera en aquest telèfon i ja hauria de tenir la clau",

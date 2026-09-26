@@ -866,7 +866,11 @@
     "stageBridge": "Đang gửi {{symbol}} từ {{chain}}…",
     "stageArriving": "Đang về Base, thường chỉ vài giây…",
     "stageSwap": "Đang mua DHB trên Uniswap…",
-    "payFailed": "Không thể chuyển đổi {{symbol}} sang DHB"
+    "payFailed": "Không thể chuyển đổi {{symbol}} sang DHB",
+    "stagePay": "Đang thanh toán DeHub Pay bằng {{symbol}}…",
+    "stageDelivering": "DeHub Pay đang gửi DHB của bạn…",
+    "payViaDpay": "Đã thanh toán cho DeHub Pay, DHB sẽ đến sau khoảng 30 giây",
+    "payViaBridgeDpay": "Đã chuyển sang Base và thanh toán cho DeHub Pay, DHB sẽ đến sau khoảng một phút"
   },
   "postOptions": {
     "options": "Tuỳ chọn",
@@ -4318,7 +4322,8 @@
     "lowTopUp": "Hết {{symbol}}? Chúng tôi sẽ nạp thêm cho bạn trước khi mở khóa.",
     "btnSwapping": "Đang hoán đổi...",
     "payAndTip": "Thanh toán & Típ",
-    "unlockedSuccess": "Đã mở khóa thành công"
+    "unlockedSuccess": "Đã mở khóa thành công",
+    "payHint": "Thanh toán bằng bất cứ thứ gì trong ví. Nó sẽ thành DHB và mở khóa ngay."
   },
   "walletSetup": {
     "tryBiometricsHint": "Dùng cách này nếu bạn đã tạo ví này trên chính điện thoại này và khóa lẽ ra đã có ở đây",

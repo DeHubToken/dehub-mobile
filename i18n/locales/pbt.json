@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} له {{chain}} څخه لېږل کېږي…",
     "stageArriving": "Base ته رسېږي، معمولاً څو ثانیې…",
     "stageSwap": "په Uniswap کې DHB اخیستل کېږي…",
-    "payFailed": "{{symbol}} په DHB بدل نه شو"
+    "payFailed": "{{symbol}} په DHB بدل نه شو",
+    "stagePay": "DeHub Pay ته په {{symbol}} پیسې ورکول کېږي…",
+    "stageDelivering": "DeHub Pay ستاسو DHB لېږي…",
+    "payViaDpay": "DeHub Pay ته ورکړل شو، DHB شاوخوا په 30 ثانیو کې رسېږي",
+    "payViaBridgeDpay": "Base ته ولېږدول شو او DeHub Pay ته ورکړل شو، DHB شاوخوا په یوه دقیقه کې رسېږي"
   },
   "postOptions": {
     "options": "اختیارونه",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "په {{symbol}} کم شوئ؟ د خلاصیدو نه مخکې به مو ډک کړو.",
     "btnSwapping": "تبادله کیږي...",
     "payAndTip": "پیسې ورکړئ او انعام ورکړئ",
-    "unlockedSuccess": "په بریالیتوب سره خلاص شو"
+    "unlockedSuccess": "په بریالیتوب سره خلاص شو",
+    "payHint": "په خپل والټ کې په هر څه پیسې ورکړئ. دا په DHB بدلېږي او سمدستي خلاصېږي."
   },
   "walletSetup": {
     "tryBiometricsHint": "دا وکاروئ که تاسو دا بټوه په دې تلیفون کې جوړه کړې وي او کیلي باید له مخکې دلته وي",

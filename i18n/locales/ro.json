@@ -853,7 +853,11 @@
     "stageBridge": "Se trimite {{symbol}} de pe {{chain}}…",
     "stageArriving": "Ajunge pe Base, de obicei câteva secunde…",
     "stageSwap": "Se cumpără DHB pe Uniswap…",
-    "payFailed": "Nu s-a putut converti {{symbol}} în DHB"
+    "payFailed": "Nu s-a putut converti {{symbol}} în DHB",
+    "stagePay": "Se plătește DeHub Pay cu {{symbol}}…",
+    "stageDelivering": "DeHub Pay trimite DHB-ul dumneavoastră…",
+    "payViaDpay": "Plătit către DeHub Pay, DHB ajunge în aproximativ 30s",
+    "payViaBridgeDpay": "Mutat pe Base și plătit către DeHub Pay, DHB ajunge în aproximativ un minut"
   },
   "postOptions": {
     "options": "Opțiuni",
@@ -4305,7 +4309,8 @@
     "btnSwapping": "Schimbare...",
     "payAndTip": "Plătește și lasă bacșiș",
     "unlockedSuccess": "Deblocat cu succes",
-    "recipient": "Destinatar: {{address}}"
+    "recipient": "Destinatar: {{address}}",
+    "payHint": "Plătiți cu orice aveți în portofel. Se transformă în DHB și deblochează imediat."
   },
   "walletSetup": {
     "tryBiometricsHint": "Folosește asta dacă ai configurat acest portofel pe acest telefon și cheia ar trebui să fie deja aici",
