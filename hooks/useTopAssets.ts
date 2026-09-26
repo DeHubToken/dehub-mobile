@@ -73,8 +73,9 @@ export function useCmcTop100() {
       }
       return (data as any)?.coins ?? [];
     },
-    staleTime: 300_000,
-    gcTime: 600_000,
+    // The edge function caches for an hour; refetching sooner just re-reads it.
+    staleTime: 3_600_000,
+    gcTime: 3_600_000,
   });
 }
 

@@ -492,8 +492,11 @@ export function toChatTurns(messages: AIChatMessage[]): AIChatMessage[] {
 }
 
 export async function sendAIChat(request: AIChatRequest): Promise<AIChatResponse> {
+  // The server gives the full model and higher limit only to a verified
+  // DeHub token, so every signed-in caller sends it, not just the assistant.
   return edgeFetch<AIChatResponse>('general-ai-chat', {
     ...request,
+    dehubToken: request.dehubToken || (await getAuthToken()) || undefined,
     messages: toChatTurns(request.messages),
   } as unknown as Record<string, unknown>);
 }
