@@ -35,6 +35,7 @@ import { getAccount } from "../services/user.service";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { useDaoTreasury, useContributeToDao } from "../hooks/useDaoTreasury";
 import { appLocale } from "../libs/date.util";
+import { DhbCoin } from "../components/common/DhbCoin";
 import {
   DAO_TREASURY_ADDRESS,
   daoTxUrl,
@@ -91,7 +92,7 @@ const ContributorRow: React.FC<{ row: DaoContributor; rank: number; isSelf: bool
         </View>
       </View>
       <View style={styles.rowRight}>
-        <Text style={styles.rowAmount}>{formatDhb(row.amount)} DHB</Text>
+        <Text style={styles.rowAmount}>{formatDhb(row.amount)} <DhbCoin /></Text>
         <Text style={styles.rowShare}>{formatShare(row.share)} {t("dao.power")}</Text>
       </View>
     </View>
@@ -179,7 +180,7 @@ export default function DaoScreen() {
             {isLoading ? (
               <ActivityIndicator color="#71717A" style={{ alignSelf: "flex-start", marginTop: 6 }} />
             ) : (
-              <Text style={styles.balance}>{formatDhb(data?.totalBalance ?? 0)} DHB</Text>
+              <Text style={styles.balance}>{formatDhb(data?.totalBalance ?? 0)} <DhbCoin size={24} /></Text>
             )}
           </View>
           <Pressable onPress={() => refetch()} hitSlop={8} style={styles.iconBtn}>

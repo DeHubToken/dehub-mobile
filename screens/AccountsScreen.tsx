@@ -38,6 +38,7 @@ import type { AppStackParamList } from "../navigation/types";
 import { useDebouncedValue } from "../hooks/useDebouncedValue";
 import { useBrowseAccounts, ACCOUNT_SORTS } from "../hooks/useAccountMarket";
 import type { AccountListing, AccountSort } from "../services/account-market.service";
+import { DhbCoin } from "../components/common/DhbCoin";
 
 /** Vertical gap between listing rows. */
 const ROW_GAP = 10;
@@ -137,7 +138,7 @@ const AccountCard: React.FC<{
         <Text style={styles.cardPrice} numberOfLines={1}>
           {listing.priceDhb.toLocaleString(appLocale())}
         </Text>
-        <Text style={styles.cardPriceUnit}>DHB</Text>
+        <Text style={styles.cardPriceUnit}><DhbCoin size={11} /></Text>
       </View>
     </Pressable>
   );

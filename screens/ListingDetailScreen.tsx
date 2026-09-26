@@ -49,6 +49,7 @@ import { writeContractAA } from "../libs/aa.write";
 import { ChainId, DHB_ADDRESSESS } from "../config/constants";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
+import { DhbCoin } from "../components/common/DhbCoin";
 import {
   useStoreListing,
   useTokenPrices,
@@ -381,7 +382,7 @@ export default function ListingDetailScreen() {
           <View style={styles.priceRow}>
             <Text style={styles.priceUsd}>{money(priceUsd)}</Text>
             {priceDhb > 0 && (
-              <Text style={styles.priceDhb}>≈ {priceDhb.toLocaleString(appLocale())} DHB</Text>
+              <Text style={styles.priceDhb}>≈ {priceDhb.toLocaleString(appLocale())} <DhbCoin /></Text>
             )}
           </View>
 

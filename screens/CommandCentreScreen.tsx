@@ -40,6 +40,7 @@ import { minimalRow } from "../theme/minimal";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { getMyAnalytics, type AnalyticsResponse } from "../services/nft.service";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { DhbCoin } from "../components/common/DhbCoin";
 import {
   useTipsReceived,
   usePpvSales,
@@ -359,7 +360,7 @@ export default function CommandCentreScreen() {
           </View>
           <Text style={styles.balanceBig}>
             {fmt(user?.badgeBalance ?? user?.balance ?? 0)}
-            <Text style={styles.balanceUnit}> DHB</Text>
+            <Text style={styles.balanceUnit}> <DhbCoin size={26} /></Text>
           </Text>
           <ProfileAssets />
         </Card>
@@ -370,7 +371,7 @@ export default function CommandCentreScreen() {
             <View style={{ flex: 1 }}>
               <Text style={styles.cardTitle}>{t("commandCentre.income")}</Text>
               {totalEarned > 0 && (
-                <Text style={styles.incomeTotal}>{totalEarned.toLocaleString()} DHB</Text>
+                <Text style={styles.incomeTotal}>{totalEarned.toLocaleString()} <DhbCoin /></Text>
               )}
             </View>
           </View>
@@ -479,7 +480,7 @@ export default function CommandCentreScreen() {
               <View style={styles.spendBox}>
                 <Text style={styles.dim}>{t("commandCentre.estMonthlySpend")}</Text>
                 <Text style={styles.spendValue}>
-                  {Math.round(subs.monthlySpend).toLocaleString()} DHB
+                  {Math.round(subs.monthlySpend).toLocaleString()} <DhbCoin size={18} />
                 </Text>
               </View>
             </>

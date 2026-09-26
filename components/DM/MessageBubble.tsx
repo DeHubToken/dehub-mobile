@@ -585,13 +585,16 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   }
 
   if (isTipMsg) {
+    const tipSym = message.tipSymbol && message.tipSymbol !== "DHB" ? message.tipSymbol : null;
     const amountLabel = message.tipAmount
-      ? `${Number(message.tipAmount).toLocaleString()} ${message.tipSymbol || "DHB"}`
-      : "DHB";
+      ? tipSym
+        ? `${Number(message.tipAmount).toLocaleString()} ${tipSym}`
+        : t("dm.tokenAmount", { amount: Number(message.tipAmount).toLocaleString() })
+      : tipSym || t("dm.tokensUnit");
     const isPending = message.paymentStatus === "pending";
     const label = isMine
-      ? `You tipped ${amountLabel}`
-      : `Tipped you ${amountLabel}`;
+      ? t("dm.youTipped", { amount: amountLabel })
+      : t("dm.tippedYouAmount", { amount: amountLabel });
 
     return (
       <View className="items-center py-2 px-4">

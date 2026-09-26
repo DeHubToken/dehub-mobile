@@ -160,7 +160,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
     [evmGateChainId],
   );
   const evmChainLabel = EVM_CHAIN_LABELS[evmGateChainId] || "Base";
-  const ppvCurrency = isSolana ? (state.ppvData.tokenSymbol || "SOL") : "DHB";
+  const ppvCurrency = isSolana ? (state.ppvData.tokenSymbol || "SOL") : t("monetization.tokensUnit");
   const gateCurrency = isSolana
     ? (state.tokenGateData.tokenSymbol || "SOL")
     : (state.tokenGateData.tokenSymbol || "DHB");
@@ -610,7 +610,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             </>
           )}
           <Text className="text-theme-neutrals-400 text-xs mb-1.5">
-            Minimum {gateCurrency} Required
+            {t("monetization.minimumRequired", { currency: gateCurrency === "DHB" ? t("monetization.tokensUnit") : gateCurrency })}
           </Text>
           <TextInput
             value={tokenGateDraft.minAmount}

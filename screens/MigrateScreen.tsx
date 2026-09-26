@@ -50,6 +50,7 @@ import { useAuthState } from '../context/AuthContext';
 import { toastError, toastSuccess } from '../libs';
 import { ScreenNames } from '../navigation/ScreenNames';
 import { payPostQuota } from '../services/post-quota-payment';
+import { DhbCoin } from '../components/common/DhbCoin';
 import {
   getActiveMigrationCharge,
   getMigrationChargeStatus,
@@ -561,13 +562,13 @@ export default function MigrateScreen() {
       <Text className="text-theme-neutrals-400 text-sm">
         {t(quote.videoCount === 1 ? 'migrate.videoCountOne' : 'migrate.videoCountMany', { n: quote.videoCount })}
         {quote.creditAppliedDhb > 0
-          ? ` — ${quote.creditAppliedDhb.toLocaleString()} DHB ${t('migrate.creditApplied')}`
-          : ''}
+          ? <> — {quote.creditAppliedDhb.toLocaleString()} <DhbCoin size={14} /> {t('migrate.creditApplied')}</>
+          : null}
       </Text>
       <Text className="text-theme-neutrals-50 text-lg font-semibold">
         {quote.amountDhb === 0
           ? t('migrate.freeCovered')
-          : `${quote.amountDhb.toLocaleString()} DHB`}
+          : <>{quote.amountDhb.toLocaleString()} <DhbCoin size={18} /></>}
       </Text>
       <Pressable
         onPress={handlePay}
@@ -579,7 +580,7 @@ export default function MigrateScreen() {
         <Text className="text-theme-neutrals-50 text-sm font-medium">
           {quote.amountDhb === 0
             ? t('migrate.startMigration')
-            : `${t('migrate.pay')} ${quote.amountDhb.toLocaleString()} DHB`}
+            : <>{t('migrate.pay')} {quote.amountDhb.toLocaleString()} <DhbCoin size={14} /></>}
         </Text>
       </Pressable>
     </View>
@@ -621,7 +622,7 @@ export default function MigrateScreen() {
                     {t('migrate.videosCount', { videos: count.toLocaleString() })}
                   </Text>
                   <Text className="text-theme-neutrals-50 text-sm">
-                    {tier.priceUsd === 0 ? t('migrate.free') : `${tier.priceDhb.toLocaleString()} DHB`}
+                    {tier.priceUsd === 0 ? t('migrate.free') : <>{tier.priceDhb.toLocaleString()} <DhbCoin size={14} /></>}
                   </Text>
                 </View>
               );

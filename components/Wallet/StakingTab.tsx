@@ -640,7 +640,7 @@ const StakingTab: React.FC = () => {
             <Text className="text-white text-lg font-bold">{fmt(userStaked)}</Text>
           )}
           <Text className="text-white/60 text-xs mt-0.5">
-            DHB{unstakeQueued > 0
+            {t("staking.tokensUnit")}{unstakeQueued > 0
               ? ` · ${t("staking.amountUnstaking", { amount: fmt(unstakeQueued) })}`
               : ""}
           </Text>
@@ -772,7 +772,7 @@ const StakingTab: React.FC = () => {
       <View className="flex-row items-center justify-between bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4" style={mRow}>
         <Text className="text-white/50 text-xs">{t("staking.totalStakedProtocol")}</Text>
         <Text className="text-white font-semibold text-sm">
-          {loading ? "…" : `${fmt(protocolTotal ?? 0)} DHB`}
+          {loading ? "…" : t("staking.tokenAmount", { amount: fmt(protocolTotal ?? 0) })}
         </Text>
       </View>
 

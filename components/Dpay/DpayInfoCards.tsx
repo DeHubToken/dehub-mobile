@@ -37,7 +37,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
               className="w-6 h-6 rounded-full -ml-4 border border-theme-neutrals-900"
             />
           </View>
-          <Text className="text-zinc-300 text-lg font-semibold ml-2">DHB</Text>
+          <Text className="text-zinc-300 text-lg font-semibold ml-2">{t("dpay.tokensLabel")}</Text>
         </View>
         <Text className="text-theme-accent text-2xl font-bold">
           {typeof transfersTotal === "number"
@@ -54,12 +54,12 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
               className="w-6 h-6 rounded-full -ml-4 border border-theme-neutrals-900"
             />
           </View>
-          <Text className="text-zinc-300 text-lg font-semibold ml-2">DHB</Text>
+          <Text className="text-zinc-300 text-lg font-semibold ml-2">{t("dpay.tokensLabel")}</Text>
         </View>
         {typeof supplyAmount === "number" ? (
           supplyAmount === 0 ? (
             <Text className="text-zinc-300 text-sm">
-              DHB : <Text className="text-[#F4F4F5]">{t("dpay.noSupplyShort")}</Text>
+              <Text className="text-[#F4F4F5]">{t("dpay.noSupplyShort")}</Text>
             </Text>
           ) : (
             <Text className="text-theme-accent text-2xl font-bold">
@@ -69,7 +69,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
             </Text>
           )
         ) : (
-          <Text className="text-zinc-400 text-sm">DHB : —</Text>
+          <Text className="text-zinc-400 text-sm">—</Text>
         )}
       </Card>
     </View>
