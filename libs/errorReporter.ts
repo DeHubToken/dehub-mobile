@@ -81,6 +81,29 @@ export function setLogUserAddress(address?: string | null): void {
   userAddress = address ? String(address).toLowerCase() : null;
 }
 
+/**
+ * Which JS bundle this launch is on. appVersion comes from the bundle's own
+ * config, so it cannot tell an old APK's baked-in bundle from a fresh update
+ * on the same runtime — and "is this phone running the fix?" is the first
+ * question every report raises.
+ */
+function runningBundle(): Record<string, unknown> {
+  try {
+    // Lazy: binds to native at import, which a test runner does not have.
+    const Updates = require("expo-updates");
+    return {
+      updateId: Updates.updateId ?? null,
+      updateCreatedAt: Updates.createdAt ? new Date(Updates.createdAt).toISOString() : null,
+      embeddedLaunch: Updates.isEmbeddedLaunch,
+      emergencyLaunch: Updates.isEmergencyLaunch,
+      channel: Updates.channel ?? null,
+      runtimeVersion: Updates.runtimeVersion ?? null,
+    };
+  } catch {
+    return {};
+  }
+}
+
 let cachedDevice: Record<string, unknown> | null = null;
 function deviceContext(): Record<string, unknown> {
   if (cachedDevice) return cachedDevice;
@@ -95,6 +118,7 @@ function deviceContext(): Record<string, unknown> {
       Platform.OS === "android"
         ? expo?.android?.versionCode
         : expo?.ios?.buildNumber,
+    ...runningBundle(),
     model: Device.modelName,
     // The number an OutOfMemoryError report is meaningless without: the same
     // feed behaves differently on a 3GB phone and an 8GB one.
