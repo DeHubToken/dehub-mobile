@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Pira DHB sing arep sampeyan adol?",
     "aiFailed": "AI ora bisa nyiyapake. Coba diucapake kanthi cara liya, utawa diisi ing ngisor iki.",
     "cancelled": "Dibatalkake. Ora ana sing kajual."
+  },
+  "tipFunding": {
+    "noRoute": "Saiki ora ana rute Uniswap menyang DHB kanggo token iki",
+    "lowLiquidity": "Saiki likuiditas Uniswap ora cukup kanggo pambayaran sagedhe iki",
+    "dpayNoAmount": "DeHub Pay ora ngasilake jumlah pambayaran",
+    "dpayDelayed": "DeHub Pay wis nampa pambayaranmu lan lagi ngirim DHB. Sedhela maneh bakal tekan ing dompetmu; kirim maneh yen wis tekan.",
+    "noBridgeRoute": "Saiki ora ana rute cross-chain sing kasedhiya",
+    "bridgeCancelled": "Pesenan cross-chain dibatalake lan dhuwité dibalèkaké menyang dompetmu",
+    "bridgeSlow": "Transfer cross-chain luwih suwe tinimbang biasane. Bakal tekan ing dompetmu ing Base; kirim maneh yen wis tekan.",
+    "notEnoughOnBase": "{{symbol}} ing Base ora cukup kanggo pambayaran iki",
+    "notEnoughWithFees": "{{symbol}} ora cukup kanggo pambayaran iki, kalebu biaya jaringan",
+    "notEnough": "{{symbol}} ora cukup kanggo pambayaran iki",
+    "noGasForFee": "Koin jaringan ora cukup kanggo mbayar biaya cross-chain",
+    "priceMoved": "Rega DHB owah nalika USDC-mu lagi tekan. USDC wis ana ing dompetmu ing Base; kirim maneh kanggo ngrampungake.",
+    "usdcPending": "USDC-mu wis tekan ing Base nanging durung katon. Kirim maneh sedhela engkas.",
+    "dhbPending": "Tuku DHB wis dikonfirmasi nanging durung katon. Kirim maneh sedhela engkas.",
+    "unlockWallet": "Bukak kunci dompetmu kanggo mbayar nganggo token iki",
+    "chainUnavailable": "Mbayar saka {{chain}} ora kasedhiya kanggo dompet iki"
   }
 }

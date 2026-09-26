@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "E hia nga DHB e hiahia ana koe ki te hoko?",
     "aiFailed": "Kāore i taea e te AI te whakarite. Kōrerotia mā tētahi atu ara, whakakīia rānei i raro nei.",
     "cancelled": "Whakakorea. Kaore he mea i hokona."
+  },
+  "tipFunding": {
+    "noRoute": "Kāore he ara Uniswap ki DHB mō tēnei token i tēnei wā",
+    "lowLiquidity": "Kāore i te nui te moniwai i Uniswap mō tētahi utu pēnei te rahi i tēnei wā",
+    "dpayNoAmount": "Kāore a DeHub Pay i whakahoki mai i te rahi o te utu",
+    "dpayDelayed": "Kua riro i a DeHub Pay tō utu, ā, kei te tuku ia i ngā DHB. Ka tae mai ki tō pūkoro ākuanei; tukuna anō ina tae mai.",
+    "noBridgeRoute": "Kāore he ara whakawhiti-mekameka e wātea ana i tēnei wā",
+    "bridgeCancelled": "I whakakorea te tono whakawhiti-mekameka, ā, kua whakahokia ki tō pūkoro",
+    "bridgeSlow": "He roa ake te whakawhitinga whakawhiti-mekameka i te tikanga. Ka tae ki tō pūkoro i Base; tukuna anō ina tae mai.",
+    "notEnoughOnBase": "Kāore i te nui ngā {{symbol}} i Base mō tēnei utu",
+    "notEnoughWithFees": "Kāore i te nui ngā {{symbol}} mō tēnei utu, tae atu ki ngā utu whatunga",
+    "notEnough": "Kāore i te nui ngā {{symbol}} mō tēnei utu",
+    "noGasForFee": "Kāore i te nui te moni whatunga hei utu i te utu whakawhiti-mekameka",
+    "priceMoved": "I neke te utu o DHB i te wā e tae mai ana ō USDC. Kei tō pūkoro i Base ngā USDC; tukuna anō kia oti.",
+    "usdcPending": "Kua tae ō USDC ki Base engari kāore anō kia kitea. Tukuna anō ākuanei.",
+    "dhbPending": "Kua whakaūngia te hoko DHB engari kāore anō kia puta. Tukuna anō ākuanei.",
+    "unlockWallet": "Whakatuwherahia tō pūkoro kia utu ai ki tēnei token",
+    "chainUnavailable": "Kāore e wātea te utu mai i {{chain}} mō tēnei pūkoro"
   }
 }

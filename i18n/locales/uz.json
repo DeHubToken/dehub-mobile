@@ -6710,5 +6710,23 @@
     "aiNeedAmount": "Qancha DHB sotmoqchisiz?",
     "aiFailed": "Sun'iy intellekt buni sozlay olmadi. Boshqacha ayting yoki quyida to'ldiring.",
     "cancelled": "Bekor qilindi. Hech narsa sotilmadi."
+  },
+  "tipFunding": {
+    "noRoute": "Hozircha bu token uchun DHB’ga Uniswap yo‘nalishi yo‘q",
+    "lowLiquidity": "Hozircha bu hajmdagi to‘lov uchun Uniswap’da yetarli likvidlik yo‘q",
+    "dpayNoAmount": "DeHub Pay to‘lov summasini qaytarmadi",
+    "dpayDelayed": "DeHub Pay to‘lovingizni oldi va DHB yubormoqda. Tez orada hamyoningizga keladi; kelgach, qayta yuboring.",
+    "noBridgeRoute": "Hozircha zanjirlararo yo‘nalish mavjud emas",
+    "bridgeCancelled": "Zanjirlararo buyurtma bekor qilindi va mablag‘ hamyoningizga qaytarildi",
+    "bridgeSlow": "Zanjirlararo o‘tkazma odatdagidan uzoqroq davom etmoqda. U Base’dagi hamyoningizga keladi; kelgach, qayta yuboring.",
+    "notEnoughOnBase": "Bu to‘lov uchun Base’da {{symbol}} yetarli emas",
+    "notEnoughWithFees": "Tarmoq to‘lovlarini qo‘shganda bu to‘lov uchun {{symbol}} yetarli emas",
+    "notEnough": "Bu to‘lov uchun {{symbol}} yetarli emas",
+    "noGasForFee": "Zanjirlararo to‘lovni qoplash uchun tarmoq tangasi yetarli emas",
+    "priceMoved": "USDC’ingiz kelayotganda DHB narxi o‘zgardi. USDC Base’dagi hamyoningizda; yakunlash uchun qayta yuboring.",
+    "usdcPending": "USDC’ingiz Base’ga keldi, lekin hali ko‘rinmayapti. Birozdan so‘ng qayta yuboring.",
+    "dhbPending": "DHB xaridi tasdiqlandi, lekin hali ko‘rinmadi. Birozdan so‘ng qayta yuboring.",
+    "unlockWallet": "Bu token bilan to‘lash uchun hamyoningizni oching",
+    "chainUnavailable": "Bu hamyon uchun {{chain}} tarmog‘idan to‘lov mavjud emas"
   }
 }

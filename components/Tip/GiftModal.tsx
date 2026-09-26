@@ -38,6 +38,7 @@ import NearIntentBuy from "../Dpay/NearIntentBuy";
 import { sanitizeAmountInput } from "../../libs/amount-input";
 import TipPayWith, { tipStageLabel } from "./TipPayWith";
 import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
+import { fundingErrorText } from "../../libs/tip-funding-error";
 
 export interface GiftModalProps {
   open: boolean;
@@ -210,7 +211,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
             });
           } catch (e) {
             setPhase("error");
-            setGiftError(e instanceof Error ? e.message : (t("tip.payFailed", { symbol: payWith.symbol }) as string));
+            setGiftError(fundingErrorText(t as any, e) || (t("tip.payFailed", { symbol: payWith.symbol }) as string));
             return;
           }
         }

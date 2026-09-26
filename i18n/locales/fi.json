@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Kuinka paljon DHB: tä haluat myydä?",
     "aiFailed": "Tekoäly ei voinut määrittää sitä. Yritä sanoa se toisella tavalla tai täytä se alla.",
     "cancelled": "Peruttu. Mitään ei myyty."
+  },
+  "tipFunding": {
+    "noRoute": "Tälle tokenille ei ole juuri nyt Uniswap-reittiä DHB:hen",
+    "lowLiquidity": "Uniswapissa ei ole juuri nyt tarpeeksi likviditeettiä näin suurelle maksulle",
+    "dpayNoAmount": "DeHub Pay ei palauttanut maksun summaa",
+    "dpayDelayed": "DeHub Pay on vastaanottanut maksusi ja lähettää DHB:t. Ne saapuvat lompakkoosi pian; lähetä uudelleen, kun ne ovat perillä.",
+    "noBridgeRoute": "Ketjujen välistä reittiä ei ole juuri nyt saatavilla",
+    "bridgeCancelled": "Ketjujen välinen tilaus peruttiin ja hyvitettiin lompakkoosi",
+    "bridgeSlow": "Ketjujen välinen siirto kestää tavallista kauemmin. Se saapuu lompakkoosi Basessa; lähetä uudelleen, kun se on perillä.",
+    "notEnoughOnBase": "{{symbol}}-saldo Basessa ei riitä tähän maksuun",
+    "notEnoughWithFees": "{{symbol}}-saldo ei riitä tähän maksuun verkkomaksut mukaan lukien",
+    "notEnough": "{{symbol}}-saldo ei riitä tähän maksuun",
+    "noGasForFee": "Verkon kolikkoa ei ole tarpeeksi ketjujen välisen maksun kattamiseen",
+    "priceMoved": "DHB:n hinta muuttui, kun USDC:si oli matkalla. USDC on lompakossasi Basessa; lähetä uudelleen viimeistelläksesi.",
+    "usdcPending": "USDC:si saapui Baseen, mutta se ei näy vielä. Lähetä uudelleen hetken kuluttua.",
+    "dhbPending": "DHB-osto vahvistettiin, mutta se ei näy vielä. Lähetä uudelleen hetken kuluttua.",
+    "unlockWallet": "Avaa lompakkosi lukitus maksaaksesi tällä tokenilla",
+    "chainUnavailable": "Maksaminen verkosta {{chain}} ei ole käytettävissä tälle lompakolle"
   }
 }

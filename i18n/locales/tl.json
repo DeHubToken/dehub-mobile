@@ -6836,5 +6836,23 @@
     "aiNeedAmount": "Magkano ang DHB na gusto mong ibenta?",
     "aiFailed": "Hindi iyon maitakda ni AI. Subukang sabihin ito sa ibang paraan, o punan ito sa ibaba.",
     "cancelled": "Kinansela. Walang naibenta."
+  },
+  "tipFunding": {
+    "noRoute": "Walang Uniswap route papuntang DHB para sa token na ito ngayon",
+    "lowLiquidity": "Kulang ang liquidity sa Uniswap para sa bayad na ganito kalaki ngayon",
+    "dpayNoAmount": "Hindi nagbalik ng halaga ng bayad ang DeHub Pay",
+    "dpayDelayed": "Natanggap na ng DeHub Pay ang bayad mo at ipinapadala na ang DHB. Darating ito sa iyong wallet maya-maya; magpadala ulit kapag dumating na.",
+    "noBridgeRoute": "Walang available na cross-chain route ngayon",
+    "bridgeCancelled": "Kinansela ang cross-chain order at ibinalik sa iyong wallet",
+    "bridgeSlow": "Mas matagal kaysa karaniwan ang cross-chain transfer. Darating ito sa iyong wallet sa Base; magpadala ulit kapag dumating na.",
+    "notEnoughOnBase": "Kulang ang {{symbol}} sa Base para sa bayad na ito",
+    "notEnoughWithFees": "Kulang ang {{symbol}} para sa bayad na ito, kasama ang network fees",
+    "notEnough": "Kulang ang {{symbol}} para sa bayad na ito",
+    "noGasForFee": "Kulang ang network coin para sa cross-chain fee",
+    "priceMoved": "Gumalaw ang presyo ng DHB habang dumarating ang USDC mo. Nasa iyong wallet sa Base ang USDC; magpadala ulit para matapos.",
+    "usdcPending": "Dumating na sa Base ang USDC mo pero hindi pa nakikita. Magpadala ulit maya-maya.",
+    "dhbPending": "Nakumpirma ang pagbili ng DHB pero hindi pa lumalabas. Magpadala ulit maya-maya.",
+    "unlockWallet": "I-unlock ang iyong wallet para magbayad gamit ang token na ito",
+    "chainUnavailable": "Hindi available ang pagbabayad mula sa {{chain}} para sa wallet na ito"
   }
 }

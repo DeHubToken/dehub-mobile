@@ -6686,5 +6686,23 @@
     "aiNeedAmount": "¿Hayka DHBtataq rantikuyta munanki?",
     "aiFailed": "AIqa manam chayta churayta atirqachu. Huk hinata niyta kallpachakuy, otaq uraypi hunt’achiy.",
     "cancelled": "Cancelasqa. Manam imapas rantikusqachu."
+  },
+  "tipFunding": {
+    "noRoute": "Kunanqa manam kay token-paq DHB-man Uniswap ñan kanchu",
+    "lowLiquidity": "Kunanqa manam Uniswap-pi aypanchu liquidity kay hina hatun pagopaq",
+    "dpayNoAmount": "DeHub Pay manam pago qullqi yupayta kutichirqanchu",
+    "dpayDelayed": "DeHub Pay-qa pagoykita chaskirqanña, DHB-tataq kachachkan. Utqaylla billeteraykiman chayamunqa; chayamuptin hukmanta kachay.",
+    "noBridgeRoute": "Kunanqa manam cross-chain ñan kanchu",
+    "bridgeCancelled": "Cross-chain mañakuyqa chinkachisqa, qullqitaq billeteraykiman kutichisqa",
+    "bridgeSlow": "Cross-chain apachiyqa sapa kutimanta aswan unaychakun. Base-pi billeteraykiman chayamunqa; chayamuptin hukmanta kachay.",
+    "notEnoughOnBase": "Manam aypanchu {{symbol}} Base-pi kay pagopaq",
+    "notEnoughWithFees": "Manam aypanchu {{symbol}} kay pagopaq, red pagokunapiwan",
+    "notEnough": "Manam aypanchu {{symbol}} kay pagopaq",
+    "noGasForFee": "Manam aypanchu red qullqi cross-chain pagota pagapunapaq",
+    "priceMoved": "USDC-ykiq chayamuchkaptin DHB-q chanin tikrakurqan. USDC-qa Base-pi billeteraykipim; tukunaykipaq hukmanta kachay.",
+    "usdcPending": "USDC-yki Base-man chayamunña ichaqa manaraq rikukunchu. Huk ratullamanta hukmanta kachay.",
+    "dhbPending": "DHB rantiyqa takyachisqaña ichaqa manaraq rikhurinchu. Huk ratullamanta hukmanta kachay.",
+    "unlockWallet": "Kay token-wan pagaykipaq billeteraykita kichay",
+    "chainUnavailable": "Kay billeterapaq manam {{chain}}-manta pagay kanchu"
   }
 }

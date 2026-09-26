@@ -6705,5 +6705,23 @@
     "aiNeedAmount": "DHB meeqa gurguruu barbaadda?",
     "aiFailed": "AI sana dhaabuu hin dandeenye. Karaa biraatiin jechuu yaali, ykn armaan gaditti guuti.",
     "cancelled": "Haqameera. Wanti gurgurame hin jiru."
+  },
+  "tipFunding": {
+    "noRoute": "Amma tokenii kanaaf karaan Uniswap gara DHB hin jiru",
+    "lowLiquidity": "Amma kaffaltii hamma kanaatiif liquidity Uniswap gahaan hin jiru",
+    "dpayNoAmount": "DeHub Pay hanga kaffaltii hin deebisne",
+    "dpayDelayed": "DeHub Pay kaffaltii kee argateera, DHB ergaa jira. Yeroo gabaabaa keessatti waleetii kee keessa ga'a; erga ga'ee booda irra deebi'ii ergi.",
+    "noBridgeRoute": "Amma karaan cross-chain hin jiru",
+    "bridgeCancelled": "Ajajni cross-chain haqamee maallaqni waleetii keetti deebi'eera",
+    "bridgeSlow": "Dabarsi cross-chain yeroo baramaa caalaa fudhachaa jira. Waleetii kee Base irra jirutti ga'a; erga ga'ee booda irra deebi'ii ergi.",
+    "notEnoughOnBase": "Kaffaltii kanaaf Base irratti {{symbol}} gahaan hin jiru",
+    "notEnoughWithFees": "Kaffaltii networkii dabalatee, kaffaltii kanaaf {{symbol}} gahaan hin jiru",
+    "notEnough": "Kaffaltii kanaaf {{symbol}} gahaan hin jiru",
+    "noGasForFee": "Kaffaltii cross-chain kaffaluuf coin networkii gahaan hin jiru",
+    "priceMoved": "Utuu USDC kee ga'aa jiruu gatiin DHB jijjiirame. USDC waleetii kee Base irra jiru keessa jira; xumuruuf irra deebi'ii ergi.",
+    "usdcPending": "USDC kee Base irra ga'eera garuu ammallee hin mul'atu. Yeroo muraasa booda irra deebi'ii ergi.",
+    "dhbPending": "Bittaan DHB mirkanaa'eera garuu ammallee hin mul'anne. Yeroo muraasa booda irra deebi'ii ergi.",
+    "unlockWallet": "Tokenii kanaan kaffaluuf waleetii kee bani",
+    "chainUnavailable": "Waleetii kanaaf {{chain}} irraa kaffaluun hin danda'amu"
   }
 }

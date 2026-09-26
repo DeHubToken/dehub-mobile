@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Ne kadar DHB satmak istiyorsunuz?",
     "aiFailed": "Yapay zeka bunu ayarlayamadı. Başka bir şekilde söylemeyi deneyin veya aşağıda doldurun.",
     "cancelled": "İptal edildi. Hiçbir şey satılmadı."
+  },
+  "tipFunding": {
+    "noRoute": "Şu anda bu token için DHB'ye Uniswap rotası yok",
+    "lowLiquidity": "Şu anda bu büyüklükte bir ödeme için Uniswap'ta yeterli likidite yok",
+    "dpayNoAmount": "DeHub Pay bir ödeme tutarı döndürmedi",
+    "dpayDelayed": "DeHub Pay ödemeni aldı ve DHB gönderiyor. Kısa süre içinde cüzdanına ulaşacak; ulaştığında tekrar gönder.",
+    "noBridgeRoute": "Şu anda kullanılabilir zincirler arası rota yok",
+    "bridgeCancelled": "Zincirler arası emir iptal edildi ve cüzdanına iade edildi",
+    "bridgeSlow": "Zincirler arası transfer normalden uzun sürüyor. Base'teki cüzdanına ulaşacak; ulaştığında tekrar gönder.",
+    "notEnoughOnBase": "Bu ödeme için Base'te yeterli {{symbol}} yok",
+    "notEnoughWithFees": "Ağ ücretleri dahil bu ödeme için yeterli {{symbol}} yok",
+    "notEnough": "Bu ödeme için yeterli {{symbol}} yok",
+    "noGasForFee": "Zincirler arası ücreti karşılamaya yetecek ağ coini yok",
+    "priceMoved": "USDC'n ulaşırken DHB fiyatı değişti. USDC, Base'teki cüzdanında; tamamlamak için tekrar gönder.",
+    "usdcPending": "USDC'n Base'e ulaştı ama henüz görünmüyor. Birazdan tekrar gönder.",
+    "dhbPending": "DHB alımı onaylandı ama henüz görünmüyor. Birazdan tekrar gönder.",
+    "unlockWallet": "Bu token ile ödemek için cüzdanının kilidini aç",
+    "chainUnavailable": "Bu cüzdan için {{chain}} üzerinden ödeme kullanılamıyor"
   }
 }

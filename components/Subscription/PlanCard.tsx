@@ -32,6 +32,7 @@ import { DHB_PRELISTING_USD, dhbForUsd, formatDhbPayment } from "../../libs/subs
 import ERC20_ABI from "../../config/abis/erc20.json";
 import TipPayWith, { tipStageLabel } from "../Tip/TipPayWith";
 import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
+import { FundingError, fundingErrorText } from "../../libs/tip-funding-error";
 
 const GLASS_GRADIENT: [string, string, string] = [
   "rgba(255,255,255,0.12)",
@@ -157,7 +158,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
       toastSuccess(t("filters.subscribed"));
       setConfirmVisible(false);
     } catch (e: any) {
-      toastError(null, parseTxError(e, "send"));
+      toastError(null, e instanceof FundingError ? fundingErrorText(t as any, e) : parseTxError(e, "send"));
     } finally {
       setSubscribing(false);
       setStage("");

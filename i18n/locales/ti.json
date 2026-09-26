@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "ኣየናይ መጠን DHB ክትሸይጥ ትደሊ?",
     "aiFailed": "AI ኣይከኣለን ንኽሰርዖ። ብ ካልእ መገዲ በሎ፣ ወይ ከኣ ኣብ ታሕቲ መልኦ።",
     "cancelled": "ተቛሪጹ ፡ ዋላ ሓንቲ ኣይተሸጠን ።"
+  },
+  "tipFunding": {
+    "noRoute": "ነዚ ቶከን እዚ ሕጂ ናብ DHB ዝወስድ መንገዲ Uniswap የለን",
+    "lowLiquidity": "ሕጂ ንክንድዚ ዝኣክል ክፍሊት ኣብ Uniswap እኹል ፈሳሲ ገንዘብ የለን",
+    "dpayNoAmount": "DeHub Pay መጠን ክፍሊት ኣይመለሰን",
+    "dpayDelayed": "DeHub Pay ክፍሊትካ ተቐቢሉ DHB ይሰድድ ኣሎ። ቀልጢፉ ናብ ቦርሳኻ ክበጽሕ እዩ፤ ምስ በጽሐ እንደገና ስደድ።",
+    "noBridgeRoute": "ሕጂ ኣብ መንጎ ሰንሰለታት ዝሰርሕ መንገዲ የለን",
+    "bridgeCancelled": "ኣብ መንጎ ሰንሰለታት ዝነበረ ትእዛዝ ተሰሪዙ ናብ ቦርሳኻ ተመሊሱ",
+    "bridgeSlow": "ኣብ መንጎ ሰንሰለታት ዝግበር ምስግጋር ካብ ልሙድ ንላዕሊ ግዜ ይወስድ ኣሎ። ኣብ Base ናብ ቦርሳኻ ክበጽሕ እዩ፤ ምስ በጽሐ እንደገና ስደድ።",
+    "notEnoughOnBase": "ነዚ ክፍሊት ኣብ Base እኹል {{symbol}} የለን",
+    "notEnoughWithFees": "ክፍሊት መርበብ ሓዊስካ ነዚ ክፍሊት እኹል {{symbol}} የለን",
+    "notEnough": "ነዚ ክፍሊት እኹል {{symbol}} የለን",
+    "noGasForFee": "ክፍሊት ኣብ መንጎ ሰንሰለታት ንምሽፋን እኹል ሳንቲም መርበብ የለን",
+    "priceMoved": "USDC ክበጽሕ ከሎ ዋጋ DHB ተቐይሩ። እቲ USDC ኣብ Base ኣብ ቦርሳኻ ኣሎ፤ ንምዝዛም እንደገና ስደድ።",
+    "usdcPending": "USDC ናብ Base በጺሑ ግን ገና ኣይረኣየን። ድሕሪ ቁሩብ እንደገና ስደድ።",
+    "dhbPending": "ዕድጊ DHB ተረጋጊጹ ግን ገና ኣይተራእየን። ድሕሪ ቁሩብ እንደገና ስደድ።",
+    "unlockWallet": "ብዚ ቶከን ንምኽፋል ቦርሳኻ ክፈት",
+    "chainUnavailable": "ካብ {{chain}} ምኽፋል ነዚ ቦርሳ ኣይከኣልን"
   }
 }

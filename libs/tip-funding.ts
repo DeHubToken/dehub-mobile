@@ -33,6 +33,7 @@ import { evmProvider, quoteSwap, runSwap, type SwapCall } from './dex-evm-swap';
 import { readWithTimeout } from './dex-read-timeout';
 import { cryptoPurchaseApi } from '../services/crypto-purchase.service';
 import type { Purchase } from './crypto-purchase';
+import { FundingError } from './tip-funding-error';
 
 const DLN_API = 'https://dln.debridge.finance/v1.0';
 const USDC_BASE = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
@@ -105,19 +106,23 @@ interface DlnOrder {
   amountIn: bigint;
   usdcOut: bigint;
   fillSeconds: number;
+  /** deBridge's dollar value of what the order spends, fees included. */
+  usd: number | null;
 }
 
 interface DpayQuote {
   originAsset: string;
   tokensToReceive: number;
   amountIn: bigint;
+  /** Dollar value DPay charges for the DHB. */
+  usd: number | null;
 }
 
 export type TipFundingPlan =
   | { kind: 'none' }
-  | { kind: 'dpay'; source: TipFundingSource; dpay: DpayQuote; payAmount: bigint }
-  | { kind: 'swap'; source: TipFundingSource; swap: SwapCall; payAmount: bigint }
-  | { kind: 'bridge'; source: TipFundingSource; order: DlnOrder; payAmount: bigint; fillSeconds: number; via: 'dpay' | 'uniswap' };
+  | { kind: 'dpay'; source: TipFundingSource; dpay: DpayQuote; payAmount: bigint; payUsd: number | null }
+  | { kind: 'swap'; source: TipFundingSource; swap: SwapCall; payAmount: bigint; payUsd: number | null }
+  | { kind: 'bridge'; source: TipFundingSource; order: DlnOrder; payAmount: bigint; payUsd: number | null; fillSeconds: number; via: 'dpay' | 'uniswap' };
 
 type Call = { to: string; data: `0x${string}`; value?: ethers.BigNumber };
 
@@ -190,7 +195,7 @@ async function quoteUniswap(tokenIn: string, amountIn: bigint, recipient: string
 /** Kyber quotes exact input only: probe the rate, size the input, correct for price impact. */
 async function sizeDhbBuy(tokenIn: string, probeIn: bigint, dhbOut: bigint, recipient: string): Promise<SwapCall> {
   const probe = await quoteUniswap(tokenIn, probeIn, recipient);
-  if (probe.minAmountOut <= 0n) throw new Error('No Uniswap route to DHB for this token right now');
+  if (probe.minAmountOut <= 0n) throw new FundingError('noRoute', 'No Uniswap route to DHB for this token right now');
   let amountIn = withBps((probeIn * dhbOut) / probe.minAmountOut, 30n);
   for (let attempt = 0; attempt < 4; attempt++) {
     const swap = await quoteUniswap(tokenIn, amountIn, recipient);
@@ -198,7 +203,7 @@ async function sizeDhbBuy(tokenIn: string, probeIn: bigint, dhbOut: bigint, reci
     if (swap.minAmountOut <= 0n) break;
     amountIn = withBps((amountIn * dhbOut) / swap.minAmountOut, 30n);
   }
-  throw new Error('There is not enough Uniswap liquidity for a payment this size right now');
+  throw new FundingError('lowLiquidity', 'There is not enough Uniswap liquidity for a payment this size right now');
 }
 
 /* ── Signing ──────────────────────────────────────────────────────── */
@@ -206,12 +211,13 @@ async function sizeDhbBuy(tokenIn: string, probeIn: bigint, dhbOut: bigint, reci
 /** The session's Safe on `chainId`, built from the device key. Refuses anything but the session address. */
 async function safeOn(chainId: number, sessionAddress: string): Promise<any> {
   const details = await getLocalAccountDetails(sessionAddress);
-  if (!details?.privateKey) throw new Error('Unlock your wallet to pay with this token');
+  if (!details?.privateKey) throw new FundingError('unlockWallet', 'Unlock your wallet to pay with this token');
   const owner = new ethers.Wallet(details.privateKey).address;
   const safe = await setupAAProvider(owner, details.privateKey, chainId);
   const [from] = ((await safe?.request({ method: 'eth_accounts' })) as string[] | undefined) ?? [];
   if (!safe || from?.toLowerCase() !== sessionAddress.toLowerCase()) {
-    throw new Error(`Paying from ${TIP_CHAIN_NAMES[chainId] ?? 'this network'} is not available for this wallet`);
+    const chain = TIP_CHAIN_NAMES[chainId] ?? 'this network';
+    throw new FundingError('chainUnavailable', `Paying from ${chain} is not available for this wallet`, { chain });
   }
   return safe;
 }
@@ -247,19 +253,19 @@ async function quoteDpay(originAsset: string, tokensToReceive: number, decimals:
   try {
     const [stock, quote] = await Promise.all([
       apiClient.get<{ balance?: Record<string, { DHB?: number }> }>('/dpay/available/tokens'),
-      cryptoPurchaseApi.quote({ originAsset, tokensToReceive, address: wallet }) as Promise<{ amountIn?: string; paymentDecimals?: number }>,
+      cryptoPurchaseApi.quote({ originAsset, tokensToReceive, address: wallet }) as Promise<{ amountIn?: string; amountInUsd?: string; paymentDecimals?: number }>,
     ]);
     if (Number(stock?.balance?.[ChainId.BASE_MAINNET]?.DHB ?? 0) < tokensToReceive || !quote.amountIn) return null;
     // Decimals that disagree with the chain would misprice the payment by orders of magnitude.
     if (quote.paymentDecimals != null && quote.paymentDecimals !== decimals) return null;
-    return { originAsset, tokensToReceive, amountIn: BigInt(quote.amountIn) };
+    return { originAsset, tokensToReceive, amountIn: BigInt(quote.amountIn), usd: Number(quote.amountInUsd) || null };
   } catch {
     return null;
   }
 }
 
 function dpayPaymentCalls(p: Purchase): Call[] {
-  if (p.paymentDecimals == null) throw new Error('DeHub Pay did not return a payment amount');
+  if (p.paymentDecimals == null) throw new FundingError('dpayNoAmount', 'DeHub Pay did not return a payment amount');
   const amount = ethers.utils.parseUnits(p.amountInFormatted, p.paymentDecimals);
   if (p.wrapNativePayment && p.paymentTokenAddress) {
     return [
@@ -298,12 +304,13 @@ async function buyFromDpay(originAsset: string, tokensToReceive: number, chainId
     ? await cryptoPurchaseApi.confirm(purchase.id, txHash).catch(() => null)
     : null;
   while (status?.tokenSendStatus !== 'sent' && Date.now() - started < DPAY_DELIVERY_TIMEOUT_MS) {
+    if (status?.tokenSendStatus === 'failed' || status?.tokenSendStatus === 'cancelled') break;
     await sleep(POLL_MS * 2);
     status = await cryptoPurchaseApi.status(purchase.id).catch(() => status);
   }
   const dhb = await waitForBalance(ChainId.BASE_MAINNET, DHB_BASE, wallet, needed, 10);
   if (dhb < needed) {
-    throw new Error('DeHub Pay has your payment and is sending the DHB. It will arrive in your wallet shortly; send again once it does.');
+    throw new FundingError('dpayDelayed', 'DeHub Pay has your payment and is sending the DHB. It will arrive in your wallet shortly; send again once it does.');
   }
 }
 
@@ -312,7 +319,11 @@ async function buyFromDpay(originAsset: string, tokensToReceive: number, chainId
 async function dln<T>(path: string): Promise<T> {
   const res = await readWithTimeout(fetch(`${DLN_API}${path}`), 'Cross-chain quote', 20000);
   const json = await res.json().catch(() => null) as (T & { errorMessage?: string }) | null;
-  if (!res.ok || !json || json.errorMessage) throw new Error(json?.errorMessage || 'No cross-chain route is available right now');
+  if (!res.ok || !json || json.errorMessage) {
+    // deBridge's own wording stays in the log; the reader gets a translated line.
+    if (json?.errorMessage) console.warn('[tip-funding] deBridge:', json.errorMessage);
+    throw new FundingError('noBridgeRoute', 'No cross-chain route is available right now');
+  };
   return json;
 }
 
@@ -332,17 +343,18 @@ async function createDlnOrder(source: TipFundingSource, usdcOut: bigint, wallet:
   ].map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
   const res = await dln<{
     orderId: string;
-    estimation: { srcChainTokenIn: { amount: string }; dstChainTokenOut: { amount: string } };
+    estimation: { srcChainTokenIn: { amount: string; approximateUsdValue?: number }; dstChainTokenOut: { amount: string } };
     tx: { to?: string; data?: string; value?: string; allowanceTarget?: string };
     order?: { approximateFulfillmentDelay?: number };
   }>(`/dln/order/create-tx?${params}`);
-  if (!res.tx?.to || !res.tx.data) throw new Error('No cross-chain route is available right now');
+  if (!res.tx?.to || !res.tx.data) throw new FundingError('noBridgeRoute', 'No cross-chain route is available right now');
   return {
     orderId: res.orderId, to: res.tx.to, data: res.tx.data, value: BigInt(res.tx.value || '0'),
     allowanceTarget: res.tx.allowanceTarget,
     amountIn: BigInt(res.estimation.srcChainTokenIn.amount),
     usdcOut: BigInt(res.estimation.dstChainTokenOut.amount),
     fillSeconds: res.order?.approximateFulfillmentDelay ?? 10,
+    usd: Number(res.estimation.srcChainTokenIn.approximateUsdValue) || null,
   };
 }
 
@@ -351,10 +363,10 @@ async function waitForFill(orderId: string): Promise<void> {
   while (Date.now() - started < FILL_TIMEOUT_MS) {
     const status = await dln<{ status?: string }>(`/dln/order/${orderId}/status`).then(r => r.status).catch(() => undefined);
     if (status === 'Fulfilled' || status === 'SentUnlock' || status === 'ClaimedUnlock') return;
-    if (status && /cancel/i.test(status)) throw new Error('The cross-chain order was cancelled and refunded to your wallet');
+    if (status && /cancel/i.test(status)) throw new FundingError('bridgeCancelled', 'The cross-chain order was cancelled and refunded to your wallet');
     await sleep(POLL_MS);
   }
-  throw new Error('The cross-chain transfer is taking longer than usual. It will arrive in your wallet on Base; send again once it does.');
+  throw new FundingError('bridgeSlow', 'The cross-chain transfer is taking longer than usual. It will arrive in your wallet on Base; send again once it does.');
 }
 
 /* ── Planning ─────────────────────────────────────────────────────── */
@@ -372,7 +384,7 @@ export async function planTipFunding(input: { source: TipFundingSource; amountDh
   if (assetId) {
     const dpay = await quoteDpay(assetId, dpayTokensFor(shortfall), source.decimals, walletAddress);
     if (dpay && dpay.amountIn + (isNativeSource(source) ? reserve : 0n) <= source.balance) {
-      return { kind: 'dpay', source, dpay, payAmount: dpay.amountIn };
+      return { kind: 'dpay', source, dpay, payAmount: dpay.amountIn, payUsd: dpay.usd };
     }
   }
 
@@ -380,8 +392,8 @@ export async function planTipFunding(input: { source: TipFundingSource; amountDh
   const dhbOut = withBps(shortfall, DHB_BUFFER_BPS);
   if (source.chainId === ChainId.BASE_MAINNET) {
     const swap = await sizeDhbBuy(source.address, source.balance / 20n || 1n, dhbOut, walletAddress);
-    if (swap.amountIn > source.balance) throw new Error(`Not enough ${source.symbol} on Base for this payment`);
-    return { kind: 'swap', source, swap, payAmount: swap.amountIn };
+    if (swap.amountIn > source.balance) throw new FundingError('notEnoughOnBase', `Not enough ${source.symbol} on Base for this payment`, { symbol: source.symbol });
+    return { kind: 'swap', source, swap, payAmount: swap.amountIn, payUsd: swap.amountInUsd };
   }
 
   // 2 / 3b. Bridge exactly the USDC that DPay (or failing that, Uniswap) needs.
@@ -389,16 +401,16 @@ export async function planTipFunding(input: { source: TipFundingSource; amountDh
   const usdcNeeded = dpayUsdc ? dpayUsdc.amountIn : (await sizeDhbBuy(USDC_BASE, 10_000_000n, dhbOut, walletAddress)).amountIn;
   const order = await createDlnOrder(source, withBps(usdcNeeded, USDC_BUFFER_BPS), walletAddress);
   if (isNativeSource(source)) {
-    if (order.value + reserve > source.balance) throw new Error(`Not enough ${source.symbol} for this payment, including network fees`);
+    if (order.value + reserve > source.balance) throw new FundingError('notEnoughWithFees', `Not enough ${source.symbol} for this payment, including network fees`, { symbol: source.symbol });
   } else {
-    if (order.amountIn > source.balance) throw new Error(`Not enough ${source.symbol} for this payment`);
+    if (order.amountIn > source.balance) throw new FundingError('notEnough', `Not enough ${source.symbol} for this payment`, { symbol: source.symbol });
     if (order.value + reserve > await tokenBalance(source.chainId, '0x0', walletAddress)) {
-      throw new Error('Not enough of the network coin to cover the cross-chain fee');
+      throw new FundingError('noGasForFee', 'Not enough of the network coin to cover the cross-chain fee');
     }
   }
   return {
     kind: 'bridge', source, order, fillSeconds: order.fillSeconds, via: dpayUsdc ? 'dpay' : 'uniswap',
-    payAmount: isNativeSource(source) ? order.value : order.amountIn,
+    payAmount: isNativeSource(source) ? order.value : order.amountIn, payUsd: order.usd,
   };
 }
 
@@ -417,7 +429,7 @@ async function spendBaseUsdc(usdc: bigint, wallet: string, needed: bigint, dhbOn
   }
   const swap = await quoteUniswap(USDC_BASE, usdc, wallet);
   if (dhbOnBase + swap.minAmountOut < needed) {
-    throw new Error('DHB moved while your USDC was arriving. The USDC is in your wallet on Base; send again to finish.');
+    throw new FundingError('priceMoved', 'DHB moved while your USDC was arriving. The USDC is in your wallet on Base; send again to finish.');
   }
   stage('swap');
   await runSwap(swap, await safeOn(ChainId.BASE_MAINNET, wallet), wallet);
@@ -446,6 +458,7 @@ export async function fundTip(input: { source: TipFundingSource; amountDhb: numb
       const dhbOut = withBps(needed - dhbOnBase, DHB_BUFFER_BPS);
       if (source.chainId === ChainId.BASE_MAINNET) {
         const swap = await sizeDhbBuy(source.address, source.balance / 20n || 1n, dhbOut, wallet);
+        if (swap.amountIn > source.balance) throw new FundingError('notEnoughOnBase', `Not enough ${source.symbol} on Base for this payment`, { symbol: source.symbol });
         stage('swap');
         await runSwap(swap, await safeOn(ChainId.BASE_MAINNET, wallet), wallet);
         return;
@@ -454,7 +467,7 @@ export async function fundTip(input: { source: TipFundingSource; amountDhb: numb
       const order = await createDlnOrder(source, withBps(usdcSwap.amountIn, USDC_BUFFER_BPS), wallet);
       plan = {
         kind: 'bridge', source, order, fillSeconds: order.fillSeconds, via: 'uniswap',
-        payAmount: isNativeSource(source) ? order.value : order.amountIn,
+        payAmount: isNativeSource(source) ? order.value : order.amountIn, payUsd: order.usd,
       };
     }
   }
@@ -481,12 +494,12 @@ export async function fundTip(input: { source: TipFundingSource; amountDhb: numb
     stage('arriving');
     await waitForFill(order.orderId);
     const usdc = await waitForBalance(ChainId.BASE_MAINNET, USDC_BASE, wallet, usdcBefore + order.usdcOut, 20);
-    if (usdc < usdcBefore + order.usdcOut) throw new Error('Your USDC arrived on Base but is not visible yet. Send again in a moment.');
+    if (usdc < usdcBefore + order.usdcOut) throw new FundingError('usdcPending', 'Your USDC arrived on Base but is not visible yet. Send again in a moment.');
     await spendBaseUsdc(order.usdcOut, wallet, needed, dhbOnBase, stage);
   }
 
   const dhb = await waitForBalance(ChainId.BASE_MAINNET, DHB_BASE, wallet, needed, 10);
-  if (dhb < needed) throw new Error('The DHB purchase confirmed but has not shown up yet. Send again in a moment.');
+  if (dhb < needed) throw new FundingError('dhbPending', 'The DHB purchase confirmed but has not shown up yet. Send again in a moment.');
 }
 
 export function formatPayAmount(plan: TipFundingPlan): string | null {

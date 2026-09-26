@@ -6659,5 +6659,23 @@
     "aiNeedAmount": "您想卖出多少DHB ？",
     "aiFailed": "AI无法设置它。 请尝试换一种说法，或在下方填写。",
     "cancelled": "已取消。未售出任何东西。"
+  },
+  "tipFunding": {
+    "noRoute": "目前没有可将此代币兑换为 DHB 的 Uniswap 路径",
+    "lowLiquidity": "目前 Uniswap 的流动性不足以完成这么大金额的付款",
+    "dpayNoAmount": "DeHub Pay 未返回付款金额",
+    "dpayDelayed": "DeHub Pay 已收到你的付款，正在发送 DHB。很快就会到达你的钱包；到账后请再次发送。",
+    "noBridgeRoute": "目前没有可用的跨链路径",
+    "bridgeCancelled": "跨链订单已取消，款项已退回你的钱包",
+    "bridgeSlow": "跨链转账耗时比平时长。资金会到达你在 Base 上的钱包；到账后请再次发送。",
+    "notEnoughOnBase": "Base 上的 {{symbol}} 不足以支付此笔款项",
+    "notEnoughWithFees": "{{symbol}} 不足以支付此笔款项（含网络手续费）",
+    "notEnough": "{{symbol}} 不足以支付此笔款项",
+    "noGasForFee": "网络原生币不足以支付跨链手续费",
+    "priceMoved": "你的 USDC 到账期间 DHB 价格发生了变动。USDC 已在你 Base 上的钱包中；请再次发送以完成。",
+    "usdcPending": "你的 USDC 已到达 Base，但暂未显示。请稍后再次发送。",
+    "dhbPending": "DHB 购买已确认，但暂未显示。请稍后再次发送。",
+    "unlockWallet": "解锁钱包即可使用此代币付款",
+    "chainUnavailable": "此钱包不支持从 {{chain}} 付款"
   }
 }

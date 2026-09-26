@@ -6909,5 +6909,23 @@
     "aiNeedAmount": "Hoeveel DHB wilt u verkopen?",
     "aiFailed": "AI kon dat niet instellen. Probeer het op een andere manier te zeggen of vul het hieronder in.",
     "cancelled": "Geannuleerd. Er is niets verkocht."
+  },
+  "tipFunding": {
+    "noRoute": "Er is momenteel geen Uniswap-route naar DHB voor deze token",
+    "lowLiquidity": "Er is momenteel niet genoeg Uniswap-liquiditeit voor een betaling van deze omvang",
+    "dpayNoAmount": "DeHub Pay gaf geen betaalbedrag terug",
+    "dpayDelayed": "DeHub Pay heeft je betaling ontvangen en verstuurt de DHB. Ze komen zo in je wallet aan; verstuur opnieuw zodra ze er zijn.",
+    "noBridgeRoute": "Er is momenteel geen cross-chain route beschikbaar",
+    "bridgeCancelled": "De cross-chain order is geannuleerd en terugbetaald naar je wallet",
+    "bridgeSlow": "De cross-chain overboeking duurt langer dan normaal. Het komt aan in je wallet op Base; verstuur opnieuw zodra het er is.",
+    "notEnoughOnBase": "Niet genoeg {{symbol}} op Base voor deze betaling",
+    "notEnoughWithFees": "Niet genoeg {{symbol}} voor deze betaling, inclusief netwerkkosten",
+    "notEnough": "Niet genoeg {{symbol}} voor deze betaling",
+    "noGasForFee": "Niet genoeg netwerkmunt om de cross-chain kosten te betalen",
+    "priceMoved": "De DHB-prijs veranderde terwijl je USDC onderweg was. De USDC staat in je wallet op Base; verstuur opnieuw om af te ronden.",
+    "usdcPending": "Je USDC is op Base aangekomen maar nog niet zichtbaar. Verstuur zo opnieuw.",
+    "dhbPending": "De DHB-aankoop is bevestigd maar nog niet zichtbaar. Verstuur zo opnieuw.",
+    "unlockWallet": "Ontgrendel je wallet om met deze token te betalen",
+    "chainUnavailable": "Betalen vanaf {{chain}} is niet beschikbaar voor deze wallet"
   }
 }
