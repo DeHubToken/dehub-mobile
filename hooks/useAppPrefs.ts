@@ -16,6 +16,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { AppThemeName } from '../theme/colors';
+import { claimMinimalLaunch } from '../libs/minimalBootGuard';
 
 /** Web key names — see dehubweb src/contexts/*.tsx and src/hooks/use-buy-bot-hidden.ts. */
 const KEYS = {
@@ -128,8 +129,15 @@ function init() {
       if (get('theme') === 'light') {
         AsyncStorage.setItem(KEYS.theme, 'system').catch(() => { /* best effort migration */ });
       }
+      // A minimal launch that never reached the screen falls back to System
+      // for good, rather than repeating on every launch (libs/minimalBootGuard).
+      const wantsMinimal = get('theme') === 'minimal';
+      const theme: AppThemeName = wantsMinimal && claimMinimalLaunch() ? 'minimal' : 'system';
+      if (wantsMinimal && theme === 'system') {
+        AsyncStorage.setItem(KEYS.theme, 'system').catch(() => { /* best effort */ });
+      }
       cache = {
-        theme: get('theme') === 'minimal' ? 'minimal' : 'system',
+        theme,
         autoplay: parseBool(get('autoplay'), DEFAULT_APP_PREFS.autoplay),
         animations: parseBool(get('animations'), DEFAULT_APP_PREFS.animations),
         shorts: parseBool(get('shorts'), DEFAULT_APP_PREFS.shorts),

@@ -9,8 +9,12 @@
  * in the session (auth stack replace, sign-out/in) happen after the flag is
  * set and keep their entrance.
  */
+import { settleMinimalLaunch } from "./minimalBootGuard";
+
 export let bootRevealed = false;
 
 export function markBootRevealed(): void {
   bootRevealed = true;
+  // The app made it on screen, so this launch's theme is known good.
+  settleMinimalLaunch();
 }
