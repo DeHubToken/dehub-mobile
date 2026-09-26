@@ -5735,7 +5735,6 @@
     "balanceAmount": "Dostupné: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Táto vlastná burza je postavená na Uniswape a ním zabezpečená. Je spustená a plne funkčná, oficiálne listingy budú čoskoro oznámené. Pozývame vás pridať likviditu už teraz — farmy a stimuly budú odhalené už veľmi skoro.",
     "lowestPrice": "Najnižšia cena · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

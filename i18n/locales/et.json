@@ -5627,7 +5627,6 @@
     "balanceAmount": "Saadaval: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "See kohandatud börs on ehitatud Uniswapile ja on selle poolt turvatud. See töötab juba täies mahus ning ametlikud noteeringud kuulutatakse peagi välja. Oled oodatud juba praegu likviidsust lisama — farmid ja stiimulid avalikustatakse õige pea.",
     "lowestPrice": "Madalaim hind · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

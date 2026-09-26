@@ -5605,7 +5605,6 @@
     "balanceAmount": "E dey: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Dis special exchange na for Uniswap dem build am, and na Uniswap di protect am. E don live and e di work fine fine, and dem go announce official listing soon. Dem di invite you for add liquidity now — farm dem and incentive dem go show soon soon.",
     "lowestPrice": "Price wey e low pass · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

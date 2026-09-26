@@ -5676,7 +5676,6 @@
     "balanceAmount": "Verfügbar: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Diese eigene Börse basiert auf Uniswap und wird dadurch abgesichert. Sie ist live und voll funktionsfähig, offizielle Listings werden in Kürze bekannt gegeben. Du bist eingeladen, schon jetzt Liquidität hinzuzufügen — Farms und Anreize werden in Kürze enthüllt.",
     "lowestPrice": "Niedrigster Preis · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

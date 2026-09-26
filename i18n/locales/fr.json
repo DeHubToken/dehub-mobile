@@ -5680,7 +5680,6 @@
     "balanceAmount": "Disponible : {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Cette plateforme d'échange sur mesure est construite sur Uniswap et sécurisée par celui-ci. Elle est en ligne et pleinement fonctionnelle, et les listings officiels seront annoncés prochainement. Vous êtes invité à ajouter de la liquidité dès maintenant — les farms et les incitations seront dévoilées très bientôt.",
     "lowestPrice": "Prix le plus bas · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

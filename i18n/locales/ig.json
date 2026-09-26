@@ -5627,7 +5627,6 @@
     "balanceAmount": "Dị: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "E wuru ahịa mgbanwe a pụrụ iche n'elu Uniswap, ọ na-echekwa ya. Ọ na-arụ ọrụ ugbu a nke ọma, a ga-ekwupụta ndepụta gọọmentị n'oge na-adịghị anya. A na-akpọ gị ka ị tinye ego mmiri ugbu a — a ga-ekpughe ugbo na ihe mkpali n'oge na-adịghị anya.",
     "lowestPrice": "Ọnụahịa kacha ala · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

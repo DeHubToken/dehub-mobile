@@ -5658,7 +5658,6 @@
     "balanceAmount": "Iyatholakala: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Lolu shintshiselwano olukhethekile lwakhelwe ku-Uniswap futhi luvikelwe yilo. Selusebenza ngokugcwele manje, futhi uhlu olusemthethweni luzomenyezelwa maduze. Uyamenywa ukuthi wengeze uketshezi manje — amapulazi nezikhuthazo kuzovezwa maduze nje.",
     "lowestPrice": "Intengo ephansi kakhulu · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

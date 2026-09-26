@@ -5627,7 +5627,6 @@
     "balanceAmount": "Akwai: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "An gina wannan musayar ta musamman a kan Uniswap kuma tana da tsaro ta hanyarsa. Tana aiki yanzu kuma cikakke, kuma za a sanar da jerin sunayen hukuma nan ba da jimawa ba. Ana gayyatar ku don ƙara ruwan kuɗi yanzu — za a bayyana gonaki da abubuwan ƙarfafawa nan kusa.",
     "lowestPrice": "Farashi mafi ƙanƙanta · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

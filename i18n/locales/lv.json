@@ -5627,7 +5627,6 @@
     "balanceAmount": "Pieejams: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Šī pielāgotā birža ir veidota uz Uniswap bāzes un to aizsargā Uniswap. Tā jau darbojas ar pilnu funkcionalitāti, un oficiālie listingi tiks paziņoti drīzumā. Aicinām pievienot likviditāti jau tagad — fermas un stimuli tiks atklāti pavisam drīz.",
     "lowestPrice": "Zemākā cena · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

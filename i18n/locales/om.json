@@ -5640,7 +5640,6 @@
     "balanceAmount": "Jiru: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Jijjiirraan addaa kun Uniswap irratti ijaarame, isaan immoo eegama. Amma hojii irra jira guutummaatti hojjeta, tarreeffamni seeraa dhiheenyatti ni beeksifama. Amma dhangala'aa maallaqaa akka dabaltan isin afeerra — qonnaa fi kakaasaaleen yeroo dhihootti ni ifa ta'u.",
     "lowestPrice": "Gatii gadi aanaa · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

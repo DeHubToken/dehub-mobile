@@ -5640,7 +5640,6 @@
     "balanceAmount": "Có sẵn: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Sàn giao dịch tùy chỉnh này được xây dựng trên Uniswap và được Uniswap bảo mật. Sàn đã hoạt động và đầy đủ chức năng, các niêm yết chính thức sẽ sớm được công bố. Mời bạn thêm thanh khoản ngay bây giờ — các farm và ưu đãi sắp được hé lộ.",
     "lowestPrice": "Giá thấp nhất · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",
