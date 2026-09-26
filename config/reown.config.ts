@@ -1,18 +1,10 @@
 // Reown AppKit (WalletConnect) setup for the "Connect Wallet" sign-in option —
 // lets a user authenticate with an EXTERNAL wallet app (MetaMask, Trust
 // Wallet, Coinbase Wallet, Rainbow, ...) instead of DeHub provisioning one.
-//
-// Created lazily. createAppKit starts WalletConnect core (key storage, a relay
-// socket) and <AppKit /> prefetches the wallet listing, all of which used to
-// run on every cold start for a sign-in option most people never tap. It now
-// runs the first time Connect Wallet is opened (ensureAppKit), or at boot when
-// a WalletConnect pairing is already persisted (restoreAppKitSession), so a
-// returning Connect Wallet user still gets their wallet back as the signer.
+// Imported once, for its side effect (createAppKit), from index.ts.
 //
 // Side-effect imports for walletconnect & ethers shims are already loaded once in index.ts.
 // Avoid duplicating them here to prevent multiple relayer/event listener registrations.
-import { useSyncExternalStore } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   createAppKit,
   defaultConfig,
@@ -28,16 +20,17 @@ export const projectId = env.REOWN_PROJECT_ID;
 /**
  * Whether the "Connect Wallet" option is usable in this build.
  *
- * This module is imported from index.ts, which runs before
+ * This module is a side-effect import from index.ts, which runs before
  * registerRootComponent — so anything it throws happens before React exists, let
  * alone the ErrorBoundary. A missing REOWN_PROJECT_ID (or a malformed
  * supportedNetworks) used to take the whole app down to a white screen with no
  * message, on a build where every other sign-in method would have worked fine.
  *
  * Connect Wallet is one of five sign-in options. Losing it is a degraded build;
- * losing boot is a dead one. Callers gate on this instead. Defined below, once
- * the chain list has been validated.
+ * losing boot is a dead one. Callers gate on this instead.
  */
+export let isWalletConnectAvailable = false;
+
 if (!projectId) {
   log.error(
     "REOWN_PROJECT_ID is missing — Connect Wallet will be unavailable in this build",
@@ -54,6 +47,8 @@ export const metadata = {
     universal: "https://dehub.io",
   },
 };
+
+export const config = defaultConfig({ metadata });
 
 // The web app's 4-wallet list (src/lib/wagmi.ts's RainbowKit connectors) is
 // MetaMask, Phantom, Trust, Rabby — but Phantom is deliberately excluded
@@ -110,99 +105,46 @@ function resolveChains() {
 
 const chains = resolveChains();
 
-/**
- * Configured well enough to try. createAppKit itself only runs on demand, so
- * this is what the sign-in button gates on; a failure at creation time now
- * surfaces where the user asked for Connect Wallet instead of at boot.
- */
-export const isWalletConnectAvailable = !!projectId && !!chains;
-
-// Survives Fast Refresh re-evaluating this file without losing the instance.
+// Guard against multiple inits on Fast Refresh / repeated imports.
+const APPKIT_GLOBAL_KEY = "__REOWN_APPKIT_INITIALIZED__" as const;
 const APPKIT_INSTANCE_KEY = "__REOWN_APPKIT_INSTANCE__" as const;
 
-type AppKitInstance = ReturnType<typeof createAppKit>;
-
-const listeners = new Set<() => void>();
-
-/**
- * The live AppKit instance, for callers that need to act on it outside a
- * component (e.g. disconnecting the WalletConnect session on DeHub sign-out —
- * see useAuthSession.ts's signOut). Undefined until ensureAppKit or
- * restoreAppKitSession has created it — reading it never creates it.
- */
-export function getAppKitInstance(): AppKitInstance | undefined {
-  return (globalThis as any)[APPKIT_INSTANCE_KEY];
-}
-
-/**
- * Creates AppKit if it does not exist yet and returns it. Call this where the
- * user asks for Connect Wallet. Returns undefined when this build cannot
- * configure it or creation throws — never throws itself.
- */
-export function ensureAppKit(): AppKitInstance | undefined {
-  const existing = getAppKitInstance();
-  if (existing) return existing;
-  if (!projectId || !chains) return undefined;
+if (!projectId || !chains) {
+  // Already logged above. Leaves isWalletConnectAvailable false, so App.tsx
+  // skips <AppKit /> and the sign-in sheet hides the Connect Wallet button.
+} else if (!(globalThis as any)[APPKIT_GLOBAL_KEY]) {
   try {
     const instance = createAppKit({
       projectId,
       metadata,
       chains,
-      config: defaultConfig({ metadata }),
+      config,
       enableAnalytics: false,
       includeWalletIds: WEB_PARITY_WALLET_IDS,
       featuredWalletIds: WEB_PARITY_WALLET_IDS,
     });
+    (globalThis as any)[APPKIT_GLOBAL_KEY] = true;
     (globalThis as any)[APPKIT_INSTANCE_KEY] = instance;
+    isWalletConnectAvailable = true;
     log.info("AppKit initialized", { chainsCount: chains.length });
-    listeners.forEach((listener) => listener());
-    return instance;
   } catch (e) {
     // createAppKit reaches the WalletConnect relay and the wallet explorer at
-    // construction time. Whatever it dislikes, it must not take the caller down.
+    // construction time. Whatever it dislikes, it must not be the reason the
+    // app fails to start.
     log.error("AppKit failed to initialize — Connect Wallet unavailable", e);
-    return undefined;
   }
+} else {
+  isWalletConnectAvailable = true;
+  log.debug("AppKit already initialized, skipping");
 }
-
-// What AppKit writes to AsyncStorage when a wallet connects and clears on
-// disconnect. The ethers client only restores a WalletConnect session on
-// start when '@w3m/wallet_id' is set, so either key present means there is a
-// pairing worth restoring.
-const PERSISTED_SESSION_KEYS = ["@w3m/wallet_id", "@w3m/connected_connector"];
-
-let restorePromise: Promise<void> | undefined;
 
 /**
- * Creates AppKit at boot only if a WalletConnect session is already
- * persisted, so a Connect Wallet user's pairing comes back as it always did
- * while everyone else skips the startup cost. Idempotent: callers that need
- * the restored instance (signer adoption, sign-out) await this, then read
- * getAppKitInstance().
+ * The live AppKit instance, for callers that need to act on it outside a
+ * component (e.g. disconnecting the WalletConnect session on DeHub sign-out —
+ * see useAuthSession.ts's signOut). Kept off the global key rather than a
+ * plain module-level variable so it survives Fast Refresh re-evaluating this
+ * file's top level without losing the original instance.
  */
-export function restoreAppKitSession(): Promise<void> {
-  if (!restorePromise) {
-    restorePromise = (async () => {
-      if (!isWalletConnectAvailable || getAppKitInstance()) return;
-      try {
-        const entries = await AsyncStorage.multiGet(PERSISTED_SESSION_KEYS);
-        if (entries.some(([, value]) => value != null)) ensureAppKit();
-      } catch (e) {
-        log.warn("could not read persisted WalletConnect session", e);
-      }
-    })();
-  }
-  return restorePromise;
-}
-
-function subscribeAppKitInstance(listener: () => void) {
-  listeners.add(listener);
-  return () => {
-    listeners.delete(listener);
-  };
-}
-
-/** The AppKit instance as React state: re-renders once it has been created. */
-export function useAppKitInstance(): AppKitInstance | undefined {
-  return useSyncExternalStore(subscribeAppKitInstance, getAppKitInstance, getAppKitInstance);
+export function getAppKitInstance(): ReturnType<typeof createAppKit> | undefined {
+  return (globalThis as any)[APPKIT_INSTANCE_KEY];
 }

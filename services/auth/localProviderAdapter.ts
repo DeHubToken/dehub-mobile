@@ -8,7 +8,7 @@ import { ethers } from 'ethers';
 import { ethersService } from '../ethers.service';
 import { isChainAASupported, setupAAProvider } from '../../libs/wallet-core/smart-account';
 import { createLockedEip1193 } from './lockedProviderShim';
-import { getAppKitInstance, restoreAppKitSession } from '../../config/reown.config';
+import { getAppKitInstance } from '../../config/reown.config';
 import { createLogger } from '../../libs/logger';
 import { selectSessionProvider } from '../../libs/wallet-core/session-provider';
 import { assertWalletAddress } from '../../libs/wallet-core/assert-wallet-address';
@@ -289,9 +289,6 @@ export class LocalProviderAdapter implements AuthAdapter {
    */
   private async adoptConnectedWallet(activeAddr: string): Promise<Eip1193Shim | null> {
     try {
-      // AppKit is only created at boot when a pairing is persisted; let that
-      // check finish before deciding there is no connected wallet.
-      await restoreAppKitSession();
       const kit = getAppKitInstance();
       if (!kit?.getIsConnected?.()) return null;
       const connected = kit.getAddress?.();

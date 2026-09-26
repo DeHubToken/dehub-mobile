@@ -18,7 +18,7 @@ import { useAuthActions } from "../context/AuthContext";
 import { ChainId } from "../config/constants";
 import { getPreferredChainId as getStoredPreferredChainId } from "../libs/auth.utils";
 import { setSigningProvider, clearSigningProvider } from "../libs/provider.registry";
-import { ensureAppKit, useAppKitInstance } from "../config/reown.config";
+import { getAppKitInstance } from "../config/reown.config";
 import { createLogger } from "../libs/logger";
 
 const log = createLogger("useWalletAuth");
@@ -43,20 +43,9 @@ export const useWalletAuth = () => {
   // REOWN_PROJECT_ID), which took the whole sign-in screen and sheet down on
   // such a build even though only the Connect Wallet button is gated. The
   // account and provider hooks below read a store and are safe without it.
-  // AppKit is created here, on the tap, rather than at boot (see
-  // reown.config); the yield lets App mount <AppKit /> before it opens.
-  const appKit = useAppKitInstance();
   const open = useCallback(async () => {
-    const existed = !!appKit;
-    const kit = ensureAppKit();
-    if (!kit) {
-      awaitingUserInitiatedConnectRef.current = false;
-      toastError(null, "Wallet authentication failed. Please try again.");
-      return;
-    }
-    if (!existed) await new Promise((resolve) => setTimeout(resolve, 0));
-    await kit.open();
-  }, [appKit]);
+    await getAppKitInstance()?.open();
+  }, []);
   const { address: accountAddress, chainId: currentChainId } = useAppKitAccount();
   const { walletProvider } = useAppKitProvider();
   const { signInWithWallet } = useAuthActions();
@@ -77,12 +66,13 @@ export const useWalletAuth = () => {
   const awaitingUserInitiatedConnectRef = useRef(false);
 
   useEffect(() => {
-    if (!appKit) return;
-    setIsWalletSheetOpen(!!appKit.getState().open);
-    return appKit.subscribeStateKey("open", (value) => {
+    const instance = getAppKitInstance();
+    if (!instance) return;
+    setIsWalletSheetOpen(!!instance.getState().open);
+    return instance.subscribeStateKey("open", (value) => {
       setIsWalletSheetOpen(!!value);
     });
-  }, [appKit]);
+  }, []);
 
   const authenticateWithWallet = useCallback(
     async (address: string, chainId: number) => {
