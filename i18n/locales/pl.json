@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Tokeny i akcje"
   },
   "feedCard": {
+    "reactionTip": "Przytrzymaj przycisk Lubię to, aby zobaczyć więcej reakcji",
     "reactionFailed": "Nie udało się zaktualizować reakcji",
     "saveFailed": "Nie udało się zapisać",
     "linkCopied": "Skopiowano link do posta",

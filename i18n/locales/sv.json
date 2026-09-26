@@ -4942,6 +4942,7 @@
     "tokensAndStocks": "Tokens & aktier"
   },
   "feedCard": {
+    "reactionTip": "Håll in gilla-knappen för fler reaktioner",
     "reactionFailed": "Det gick inte att uppdatera reaktionen",
     "saveFailed": "Det gick inte att spara",
     "linkCopied": "Inläggslänken kopierad",

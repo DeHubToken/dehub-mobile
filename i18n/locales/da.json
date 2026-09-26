@@ -4942,6 +4942,7 @@
     "tokensAndStocks": "Tokens & aktier"
   },
   "feedCard": {
+    "reactionTip": "Hold liker-knappen nede for flere reaktioner",
     "reactionFailed": "Kunne ikke opdatere reaktionen",
     "saveFailed": "Kunne ikke gemme",
     "linkCopied": "Link til opslaget er kopieret",

@@ -4991,6 +4991,7 @@
     "tokensAndStocks": "토큰 및 주식"
   },
   "feedCard": {
+    "reactionTip": "좋아요 버튼을 길게 누르면 더 많은 반응을 남길 수 있어요",
     "reactionFailed": "반응을 업데이트하지 못했습니다",
     "saveFailed": "저장하지 못했습니다",
     "linkCopied": "게시물 링크를 복사했습니다",

@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Tokenid ja aktsiad"
   },
   "feedCard": {
+    "reactionTip": "Rohkemate reaktsioonide jaoks hoia meeldib-nuppu all",
     "reactionFailed": "Reaktsiooni uuendamine ebaõnnestus",
     "saveFailed": "Salvestamine ebaõnnestus",
     "linkCopied": "Postituse link kopeeritud",

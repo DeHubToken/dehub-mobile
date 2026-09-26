@@ -4939,6 +4939,7 @@
     "tokensAndStocks": "Tokeni na hisa"
   },
   "feedCard": {
+    "reactionTip": "Bonyeza na ushikilie kitufe cha kupenda kwa maoni zaidi",
     "reactionFailed": "Imeshindwa kusasisha mwitikio",
     "saveFailed": "Imeshindwa kuhifadhi",
     "linkCopied": "Kiungo cha chapisho kimenakiliwa",

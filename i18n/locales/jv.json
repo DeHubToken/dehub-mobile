@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Token & saham"
   },
   "feedCard": {
+    "reactionTip": "Pencet suwe tombol seneng kanggo reaksi liyane",
     "reactionFailed": "Gagal nganyari reaksi",
     "saveFailed": "Gagal nyimpen",
     "linkCopied": "Tautan kiriman wis disalin",

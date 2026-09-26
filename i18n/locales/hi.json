@@ -4993,6 +4993,7 @@
     "tokensAndStocks": "टोकन और स्टॉक"
   },
   "feedCard": {
+    "reactionTip": "और प्रतिक्रियाओं के लिए लाइक बटन दबाकर रखें",
     "reactionFailed": "प्रतिक्रिया अपडेट नहीं हो सकी",
     "saveFailed": "सेव नहीं हो सका",
     "linkCopied": "पोस्ट लिंक कॉपी हो गया",

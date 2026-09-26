@@ -4969,6 +4969,7 @@
     "tokensAndStocks": "Amathokheni & izitoko"
   },
   "feedCard": {
+    "reactionTip": "Bamba inkinobho yokuthanda ukuze uthole okunye ukusabela",
     "reactionFailed": "Ayikwazanga ukubuyekeza ukusabela",
     "saveFailed": "Ayikwazanga ukulondoloza",
     "linkCopied": "Isixhumanisi sokuthunyelwe sikopishiwe",

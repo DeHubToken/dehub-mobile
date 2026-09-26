@@ -4987,6 +4987,7 @@
     "tokensAndStocks": "Token e azioni"
   },
   "feedCard": {
+    "reactionTip": "Tieni premuto il pulsante Mi piace per altre reazioni",
     "reactionFailed": "Impossibile aggiornare la reazione",
     "saveFailed": "Salvataggio non riuscito",
     "linkCopied": "Link del post copiato",

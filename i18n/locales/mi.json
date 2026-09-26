@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Tōkena me ngā hea"
   },
   "feedCard": {
+    "reactionTip": "Pēhi roa i te pātene pai ki ahau mō ētahi atu tauhohenga",
     "reactionFailed": "Kāore i taea te whakahou i te urupare",
     "saveFailed": "Kāore i taea te tiaki",
     "linkCopied": "Kua tāruatia te hono pou",

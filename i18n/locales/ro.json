@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Tokenuri și acțiuni"
   },
   "feedCard": {
+    "reactionTip": "Țineți apăsat butonul Îmi place pentru mai multe reacții",
     "reactionFailed": "Reacția nu a putut fi actualizată",
     "saveFailed": "Salvarea a eșuat",
     "linkCopied": "Linkul postării a fost copiat",

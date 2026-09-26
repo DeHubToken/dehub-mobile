@@ -5128,6 +5128,7 @@
     "tokensAndStocks": "Tokens & aandelen"
   },
   "feedCard": {
+    "reactionTip": "Houd de vind-ik-leuk-knop ingedrukt voor meer reacties",
     "reactionFailed": "Kan reactie niet bijwerken",
     "saveFailed": "Opslaan mislukt",
     "linkCopied": "Berichtlink gekopieerd",

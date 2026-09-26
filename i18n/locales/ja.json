@@ -4989,6 +4989,7 @@
     "tokensAndStocks": "トークンと株式"
   },
   "feedCard": {
+    "reactionTip": "いいねボタンを長押しすると、ほかのリアクションを選べます",
     "reactionFailed": "リアクションを更新できませんでした",
     "saveFailed": "保存できませんでした",
     "linkCopied": "投稿リンクをコピーしました",

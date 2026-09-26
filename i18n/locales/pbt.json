@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "توکنونه او سټاکونه"
   },
   "feedCard": {
+    "reactionTip": "د نورو غبرګونونو لپاره د خوښې تڼۍ ونیسئ",
     "reactionFailed": "غبرګون تازه نشو",
     "saveFailed": "ونه ساتل شو",
     "linkCopied": "د پوسټ لینک کاپي شو",

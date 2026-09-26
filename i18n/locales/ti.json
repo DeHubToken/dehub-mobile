@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "ኣቑሑትን ኣቑሑትን"
   },
   "feedCard": {
+    "reactionTip": "ንዝያዳ ግብረ-መልሲ መጠወቒ ፍቶ ጠዊቕኩም ሓዙ",
     "reactionFailed": "ግብረመልሲ ክሕደስ ኣይተኻእለን",
     "saveFailed": "ክዕቀብ ኣይተኻእለን",
     "linkCopied": "መላግቦ ጽሑፍ ተቐዲሑ",
