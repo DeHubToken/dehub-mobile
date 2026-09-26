@@ -6739,5 +6739,33 @@
     "transferredConfirming": "Wọ́n ti gbé àwọn àmì rẹ lọ. A ó parí sísọ owó náà di mímọ̀ láìpẹ́.",
     "sentUnconfirmed": "Wọ́n rán àwọn àmì rẹ ṣùgbọ́n a kò lè fi ìdí owó náà múlẹ̀. Má ṣe sanwó lẹ́ẹ̀kan síi.",
     "transferIncomplete": "Ìfipamọ́ àfipamọ́ náà kò parí. Wọ́n máa béèrè lọ́wọ́ rẹ lẹ́ẹ̀kan sí i kí wọ́n tó san owó ìfìwéránṣẹ́ rẹ tó kàn."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Wá emoji",
+    "noEmoji": "Kò rí emoji kankan",
+    "searchResults": "Àbájáde ìwádìí",
+    "skinTone": "Àwọ̀ ara",
+    "moreReactions": "Ìdáhùn míì",
+    "group": {
+      "recent": "Tí a lò láìpẹ́",
+      "dehub": "Àṣàyàn DeHub",
+      "smileys": "Ẹ̀rín & ìmọ̀lára",
+      "people": "Ènìyàn & ara",
+      "animals": "Ẹranko & ìṣẹ̀dá",
+      "food": "Oúnjẹ & ohun mímu",
+      "travel": "Ìrìnàjò & ibi",
+      "activities": "Ìgbòkègbodò",
+      "objects": "Àwọn nǹkan",
+      "symbols": "Àwọn àmì",
+      "flags": "Àwọn àsíá"
+    },
+    "tone": {
+      "default": "Àkọ́kọ́",
+      "light": "Àwọ̀ ara fúyẹ́",
+      "mediumLight": "Àwọ̀ ara fúyẹ́ díẹ̀",
+      "medium": "Àwọ̀ ara àárín",
+      "mediumDark": "Àwọ̀ ara dúdú díẹ̀",
+      "dark": "Àwọ̀ ara dúdú"
+    }
   }
 }

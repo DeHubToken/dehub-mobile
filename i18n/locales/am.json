@@ -6767,5 +6767,33 @@
     "transferredConfirming": "የእርስዎ ምልክቶች ተላልፈዋል. ክፍያውን በአጭር ጊዜ ውስጥ በማረጋገጥ እንጨርሳለን ።",
     "sentUnconfirmed": "የእርስዎ ምልክቶች ተልኳል ነገር ግን ክፍያውን ማረጋገጥ አልቻልንም. እንደገና አይክፈሉ ።",
     "transferIncomplete": "የቶክ ማስተላለፊያ አልተጠናቀቀም ። ከሚቀጥለው የሚከፈልበት ልኡክ ጽሁፍዎ በፊት እንደገና ይጠየቃሉ ።"
+  },
+  "emojiPicker": {
+    "searchEmoji": "ኢሞጂ ፈልግ",
+    "noEmoji": "ምንም ኢሞጂ አልተገኘም",
+    "searchResults": "የፍለጋ ውጤቶች",
+    "skinTone": "የቆዳ ቀለም",
+    "moreReactions": "ተጨማሪ ምላሾች",
+    "group": {
+      "recent": "በቅርቡ የተጠቀሙባቸው",
+      "dehub": "የDeHub ምርጫዎች",
+      "smileys": "ፈገግታዎች እና ስሜቶች",
+      "people": "ሰዎች እና አካል",
+      "animals": "እንስሳት እና ተፈጥሮ",
+      "food": "ምግብ እና መጠጥ",
+      "travel": "ጉዞ እና ቦታዎች",
+      "activities": "እንቅስቃሴዎች",
+      "objects": "ዕቃዎች",
+      "symbols": "ምልክቶች",
+      "flags": "ባንዲራዎች"
+    },
+    "tone": {
+      "default": "ነባሪ",
+      "light": "ፈካ ያለ የቆዳ ቀለም",
+      "mediumLight": "መካከለኛ ፈካ ያለ የቆዳ ቀለም",
+      "medium": "መካከለኛ የቆዳ ቀለም",
+      "mediumDark": "መካከለኛ ጠቆር ያለ የቆዳ ቀለም",
+      "dark": "ጠቆር ያለ የቆዳ ቀለም"
+    }
   }
 }

@@ -6742,5 +6742,33 @@
     "transferredConfirming": "Dina tokens har överförts. Vi kommer att slutföra bekräftelsen av betalningen inom kort.",
     "sentUnconfirmed": "Dina tokens skickades men vi kunde inte bekräfta betalningen. Betala inte igen.",
     "transferIncomplete": "Tokenöverföringen slutfördes inte. Du kommer att bli ombedd igen innan ditt nästa betalda inlägg."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Sök emoji",
+    "noEmoji": "Inga emoji hittades",
+    "searchResults": "Sökresultat",
+    "skinTone": "Hudton",
+    "moreReactions": "Fler reaktioner",
+    "group": {
+      "recent": "Senast använda",
+      "dehub": "DeHubs val",
+      "smileys": "Smileys & känslor",
+      "people": "Människor & kropp",
+      "animals": "Djur & natur",
+      "food": "Mat & dryck",
+      "travel": "Resor & platser",
+      "activities": "Aktiviteter",
+      "objects": "Föremål",
+      "symbols": "Symboler",
+      "flags": "Flaggor"
+    },
+    "tone": {
+      "default": "Standard",
+      "light": "Ljus hudton",
+      "mediumLight": "Mellanljus hudton",
+      "medium": "Mellan hudton",
+      "mediumDark": "Mellanmörk hudton",
+      "dark": "Mörk hudton"
+    }
   }
 }

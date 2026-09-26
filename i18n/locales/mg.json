@@ -6837,5 +6837,33 @@
     "transferredConfirming": "Nafindra ny marinao. Mino izahay fa ho voasambotra tsy ho ela izy ireo.",
     "sentUnconfirmed": "Nalefa ny mari-pamantaranareo saingy tsy afaka nanamafy ny fandoavana izahay. Aza mividy na inona na inona izay manjo anao.",
     "transferIncomplete": "Tsy vita ilay mari-pamantarana. Noho izany dia hodinihina indray izany alohan'ny handoavanao ny taratasinao manaraka."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Hikaroka emoji",
+    "noEmoji": "Tsy nahitana emoji",
+    "searchResults": "Valin'ny fikarohana",
+    "skinTone": "Lokon'ny hoditra",
+    "moreReactions": "Fanehoan-kevitra hafa",
+    "group": {
+      "recent": "Vao nampiasaina",
+      "dehub": "Safidin'ny DeHub",
+      "smileys": "Tarehy mitsiky sy fihetseham-po",
+      "people": "Olona sy vatana",
+      "animals": "Biby sy natiora",
+      "food": "Sakafo sy zava-pisotro",
+      "travel": "Dia sy toerana",
+      "activities": "Hetsika",
+      "objects": "Zavatra",
+      "symbols": "Marika",
+      "flags": "Saina firenena"
+    },
+    "tone": {
+      "default": "Mahazatra",
+      "light": "Hoditra mazava",
+      "mediumLight": "Hoditra antonony mazava",
+      "medium": "Hoditra antonony",
+      "mediumDark": "Hoditra antonony maizina",
+      "dark": "Hoditra maizina"
+    }
   }
 }

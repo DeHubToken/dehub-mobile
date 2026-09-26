@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Jetonlarınız aktarıldı. Ödemeyi kısa süre içinde onaylayacağız.",
     "sentUnconfirmed": "Jetonlarınız gönderildi ancak ödemeyi onaylayamadık. Bir daha ödeme yapmayın.",
     "transferIncomplete": "Token transferi tamamlanmadı. Bir sonraki ücretli gönderinizden önce tekrar sorulacaktır."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Emoji ara",
+    "noEmoji": "Emoji bulunamadı",
+    "searchResults": "Arama sonuçları",
+    "skinTone": "Ten rengi",
+    "moreReactions": "Daha fazla tepki",
+    "group": {
+      "recent": "Son kullanılanlar",
+      "dehub": "DeHub seçkileri",
+      "smileys": "İfadeler & duygular",
+      "people": "İnsanlar & vücut",
+      "animals": "Hayvanlar & doğa",
+      "food": "Yiyecek & içecek",
+      "travel": "Seyahat & yerler",
+      "activities": "Etkinlikler",
+      "objects": "Nesneler",
+      "symbols": "Semboller",
+      "flags": "Bayraklar"
+    },
+    "tone": {
+      "default": "Varsayılan",
+      "light": "Açık ten rengi",
+      "mediumLight": "Orta açık ten rengi",
+      "medium": "Orta ten rengi",
+      "mediumDark": "Orta koyu ten rengi",
+      "dark": "Koyu ten rengi"
+    }
   }
 }

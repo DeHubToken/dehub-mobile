@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Els teus tokens han estat transferits. En breu acabarem de confirmar el pagament.",
     "sentUnconfirmed": "Els teus tokens s'han enviat però no hem pogut confirmar el pagament. No paguis de nou.",
     "transferIncomplete": "La transferència del token no s'ha completat. Se't demanarà de nou abans de la teva propera publicació de pagament."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Cerca emojis",
+    "noEmoji": "No s'han trobat emojis",
+    "searchResults": "Resultats de la cerca",
+    "skinTone": "To de pell",
+    "moreReactions": "Més reaccions",
+    "group": {
+      "recent": "Utilitzats recentment",
+      "dehub": "Seleccions de DeHub",
+      "smileys": "Cares i emocions",
+      "people": "Persones i cos",
+      "animals": "Animals i natura",
+      "food": "Menjar i beure",
+      "travel": "Viatges i llocs",
+      "activities": "Activitats",
+      "objects": "Objectes",
+      "symbols": "Símbols",
+      "flags": "Banderes"
+    },
+    "tone": {
+      "default": "Predeterminat",
+      "light": "To de pell clar",
+      "mediumLight": "To de pell mitjà-clar",
+      "medium": "To de pell mitjà",
+      "mediumDark": "To de pell mitjà-fosc",
+      "dark": "To de pell fosc"
+    }
   }
 }

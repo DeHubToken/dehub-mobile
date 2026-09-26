@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Calaamadahaaga waa la wareejiyay. Waxaan ku dhammeyn doonnaa xaqiijinta lacag-bixinta dhowaan.",
     "sentUnconfirmed": "Calaamadahaagu waa la diray laakiin ma xaqiijin karno lacag bixinta. Mar dambe ha bixin.",
     "transferIncomplete": "Wareejinta calaamadda ma aysan dhammaystirin. Waxaa mar kale la weydiin doonaa ka hor inta aan la bixin boostadaada soo socota."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Raadi emoji",
+    "noEmoji": "Emoji lama helin",
+    "searchResults": "Natiijooyinka raadinta",
+    "skinTone": "Midabka maqaarka",
+    "moreReactions": "Falcelino kale",
+    "group": {
+      "recent": "Dhawaan la isticmaalay",
+      "dehub": "Xulashada DeHub",
+      "smileys": "Dhoolacaddeyn & dareen",
+      "people": "Dad & jir",
+      "animals": "Xayawaan & dabeecad",
+      "food": "Cunto & cabbitaan",
+      "travel": "Safar & meelo",
+      "activities": "Hawlo",
+      "objects": "Walxo",
+      "symbols": "Calaamado",
+      "flags": "Calanno"
+    },
+    "tone": {
+      "default": "Caadi",
+      "light": "Midab maqaar khafiif ah",
+      "mediumLight": "Midab maqaar khafiif-dhexe ah",
+      "medium": "Midab maqaar dhexe ah",
+      "mediumDark": "Midab maqaar madow-dhexe ah",
+      "dark": "Midab maqaar madow ah"
+    }
   }
 }

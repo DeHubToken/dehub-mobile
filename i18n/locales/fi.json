@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Polettisi on siirretty. Vahvistamme maksun pian.",
     "sentUnconfirmed": "Tunnuksesi on lähetetty, mutta emme pystyneet vahvistamaan maksua. Älä maksa uudelleen.",
     "transferIncomplete": "Tunnuksen siirtoa ei suoritettu loppuun. Sinulta kysytään uudelleen ennen seuraavaa maksullista julkaisuasi."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Hae emojeja",
+    "noEmoji": "Emojeja ei löytynyt",
+    "searchResults": "Hakutulokset",
+    "skinTone": "Ihonväri",
+    "moreReactions": "Lisää reaktioita",
+    "group": {
+      "recent": "Viimeksi käytetyt",
+      "dehub": "DeHubin valinnat",
+      "smileys": "Hymiöt ja tunteet",
+      "people": "Ihmiset ja keho",
+      "animals": "Eläimet ja luonto",
+      "food": "Ruoka ja juoma",
+      "travel": "Matkailu ja paikat",
+      "activities": "Aktiviteetit",
+      "objects": "Esineet",
+      "symbols": "Symbolit",
+      "flags": "Liput"
+    },
+    "tone": {
+      "default": "Oletus",
+      "light": "Vaalea ihonväri",
+      "mediumLight": "Keskivaalea ihonväri",
+      "medium": "Keskisävyinen ihonväri",
+      "mediumDark": "Keskitumma ihonväri",
+      "dark": "Tumma ihonväri"
+    }
   }
 }

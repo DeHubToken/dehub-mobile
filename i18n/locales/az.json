@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Ayaq işarələriniz köçürülüb. Ödənişi qısa müddətdə təsdiqləməyi yekunlaşdıracağıq.",
     "sentUnconfirmed": "Tokeniz göndərildi, lakin ödənişi təsdiq edə bilmədik. Yenidən ödəməyin.",
     "transferIncomplete": "Mötədil köçürmə tamamlanmadı. Növbəti ödənişli yazıdan əvvəl sizdən yenidən soruşulacaq."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Emoji axtar",
+    "noEmoji": "Emoji tapılmadı",
+    "searchResults": "Axtarış nəticələri",
+    "skinTone": "Dəri rəngi",
+    "moreReactions": "Daha çox reaksiya",
+    "group": {
+      "recent": "Son istifadə olunanlar",
+      "dehub": "DeHub seçimləri",
+      "smileys": "Smayliklər və emosiyalar",
+      "people": "İnsanlar və bədən",
+      "animals": "Heyvanlar və təbiət",
+      "food": "Yemək və içki",
+      "travel": "Səyahət və yerlər",
+      "activities": "Fəaliyyətlər",
+      "objects": "Əşyalar",
+      "symbols": "Simvollar",
+      "flags": "Bayraqlar"
+    },
+    "tone": {
+      "default": "Standart",
+      "light": "Açıq dəri rəngi",
+      "mediumLight": "Orta-açıq dəri rəngi",
+      "medium": "Orta dəri rəngi",
+      "mediumDark": "Orta-tünd dəri rəngi",
+      "dark": "Tünd dəri rəngi"
+    }
   }
 }

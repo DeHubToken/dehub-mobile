@@ -6738,5 +6738,33 @@
     "transferredConfirming": "你嘅代幣已經轉移咗。我哋會好快完成確認付款。",
     "sentUnconfirmed": "你嘅代幣已經寄出，但係我哋確認唔到付款。唔好再畀錢。",
     "transferIncomplete": "代幣轉移未完成。喺你下一個付費帖子之前，我哋會再問你一次。"
+  },
+  "emojiPicker": {
+    "searchEmoji": "搜尋表情符號",
+    "noEmoji": "搵唔到表情符號",
+    "searchResults": "搜尋結果",
+    "skinTone": "膚色",
+    "moreReactions": "更多反應",
+    "group": {
+      "recent": "最近用過",
+      "dehub": "DeHub 精選",
+      "smileys": "笑臉同情緒",
+      "people": "人物同身體",
+      "animals": "動物同大自然",
+      "food": "食物同飲品",
+      "travel": "旅遊同地方",
+      "activities": "活動",
+      "objects": "物件",
+      "symbols": "符號",
+      "flags": "旗幟"
+    },
+    "tone": {
+      "default": "預設",
+      "light": "淺膚色",
+      "mediumLight": "中淺膚色",
+      "medium": "中等膚色",
+      "mediumDark": "中深膚色",
+      "dark": "深膚色"
+    }
   }
 }

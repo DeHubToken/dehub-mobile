@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Sinu märgid on üle kantud. Lõpetame makse kinnitamise peagi.",
     "sentUnconfirmed": "Sinu märgid on saadetud, kuid me ei saanud makset kinnitada. Ära maksa uuesti.",
     "transferIncomplete": "Loa edastamist ei viidud lõpule. Enne järgmist tasulist postitust küsitakse sinult uuesti."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Otsi emojit",
+    "noEmoji": "Emojisid ei leitud",
+    "searchResults": "Otsingutulemused",
+    "skinTone": "Nahatoon",
+    "moreReactions": "Rohkem reaktsioone",
+    "group": {
+      "recent": "Hiljuti kasutatud",
+      "dehub": "DeHubi valik",
+      "smileys": "Naerunäod ja emotsioonid",
+      "people": "Inimesed ja keha",
+      "animals": "Loomad ja loodus",
+      "food": "Toit ja jook",
+      "travel": "Reisimine ja kohad",
+      "activities": "Tegevused",
+      "objects": "Objektid",
+      "symbols": "Sümbolid",
+      "flags": "Lipud"
+    },
+    "tone": {
+      "default": "Vaikimisi",
+      "light": "Hele nahatoon",
+      "mediumLight": "Keskmiselt hele nahatoon",
+      "medium": "Keskmine nahatoon",
+      "mediumDark": "Keskmiselt tume nahatoon",
+      "dark": "Tume nahatoon"
+    }
   }
 }

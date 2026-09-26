@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Vaši su tokeni preneseni. Uskoro ćemo dovršiti potvrdu plaćanja.",
     "sentUnconfirmed": "Vaši su tokeni poslani, ali nismo uspjeli potvrditi plaćanje. Nemojte ponovno plaćati.",
     "transferIncomplete": "Prijenos tokena nije dovršen. Ponovno ćemo te pitati prije sljedeće plaćene objave."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Pretraži emoji",
+    "noEmoji": "Nema pronađenih emojija",
+    "searchResults": "Rezultati pretraživanja",
+    "skinTone": "Boja kože",
+    "moreReactions": "Više reakcija",
+    "group": {
+      "recent": "Nedavno korišteno",
+      "dehub": "DeHub odabir",
+      "smileys": "Smajlići i emocije",
+      "people": "Ljudi i tijelo",
+      "animals": "Životinje i priroda",
+      "food": "Hrana i piće",
+      "travel": "Putovanja i mjesta",
+      "activities": "Aktivnosti",
+      "objects": "Predmeti",
+      "symbols": "Simboli",
+      "flags": "Zastave"
+    },
+    "tone": {
+      "default": "Zadano",
+      "light": "Svijetla boja kože",
+      "mediumLight": "Srednje svijetla boja kože",
+      "medium": "Srednja boja kože",
+      "mediumDark": "Srednje tamna boja kože",
+      "dark": "Tamna boja kože"
+    }
   }
 }

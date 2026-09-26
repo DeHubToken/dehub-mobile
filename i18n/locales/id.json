@@ -6738,5 +6738,33 @@
     "transferredConfirming": "Token Anda telah ditransfer. Kami akan segera menyelesaikan konfirmasi pembayaran.",
     "sentUnconfirmed": "Token Anda telah dikirim tetapi kami tidak dapat mengonfirmasi pembayaran. Jangan bayar lagi.",
     "transferIncomplete": "Transfer token tidak selesai. Anda akan ditanya lagi sebelum postingan berbayar berikutnya."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Cari emoji",
+    "noEmoji": "Emoji tidak ditemukan",
+    "searchResults": "Hasil pencarian",
+    "skinTone": "Warna kulit",
+    "moreReactions": "Reaksi lainnya",
+    "group": {
+      "recent": "Baru digunakan",
+      "dehub": "Pilihan DeHub",
+      "smileys": "Smiley & emosi",
+      "people": "Orang & tubuh",
+      "animals": "Hewan & alam",
+      "food": "Makanan & minuman",
+      "travel": "Perjalanan & tempat",
+      "activities": "Aktivitas",
+      "objects": "Objek",
+      "symbols": "Simbol",
+      "flags": "Bendera"
+    },
+    "tone": {
+      "default": "Bawaan",
+      "light": "Warna kulit terang",
+      "mediumLight": "Warna kulit agak terang",
+      "medium": "Warna kulit sedang",
+      "mediumDark": "Warna kulit agak gelap",
+      "dark": "Warna kulit gelap"
+    }
   }
 }

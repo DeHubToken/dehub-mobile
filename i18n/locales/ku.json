@@ -6489,5 +6489,33 @@
     "transferredConfirming": "Tokenên te hatin veguhastin. Em ê di demek nêzîk de piştrastkirina dravdanê temam bikin.",
     "sentUnconfirmed": "Tokenên te hatin şandin lê me nekarî dravdanê piştrast bikin. Careke din drav nedin.",
     "transferIncomplete": "Veguhestina nîşanekê temam nebû. Berî posta we ya din a bi pere, dê ji we dîsa were pirsîn."
+  },
+  "emojiPicker": {
+    "searchEmoji": "Emojiyan bigerin",
+    "noEmoji": "Tu emojî nehat dîtin",
+    "searchResults": "Encamên lêgerînê",
+    "skinTone": "Rengê çerm",
+    "moreReactions": "Bertekên zêdetir",
+    "group": {
+      "recent": "Dawî hatine bikaranîn",
+      "dehub": "Bijartinên DeHub",
+      "smileys": "Smaylî û hest",
+      "people": "Mirov û beden",
+      "animals": "Heywan û xweza",
+      "food": "Xwarin û vexwarin",
+      "travel": "Rêwîtî û cih",
+      "activities": "Çalakî",
+      "objects": "Tişt",
+      "symbols": "Sembol",
+      "flags": "Ala"
+    },
+    "tone": {
+      "default": "Standard",
+      "light": "Rengê çermê vekirî",
+      "mediumLight": "Rengê çermê nîvvekirî",
+      "medium": "Rengê çermê navîn",
+      "mediumDark": "Rengê çermê nîvtarî",
+      "dark": "Rengê çermê tarî"
+    }
   }
 }

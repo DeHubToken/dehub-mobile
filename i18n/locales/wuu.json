@@ -6738,5 +6738,33 @@
     "transferredConfirming": "侬的代币已经转账。我们会尽快完成付款确认。",
     "sentUnconfirmed": "侬的代币已发送，但我们未能确认付款。请勿重复付款。",
     "transferIncomplete": "代币转账未完成。侬下一篇付费帖子之前会再问侬一次。"
+  },
+  "emojiPicker": {
+    "searchEmoji": "搜索表情",
+    "noEmoji": "呒没寻着表情",
+    "searchResults": "搜索结果",
+    "skinTone": "肤色",
+    "moreReactions": "更多回应",
+    "group": {
+      "recent": "最近用过个",
+      "dehub": "DeHub 精选",
+      "smileys": "笑脸搭情绪",
+      "people": "人搭身体",
+      "animals": "动物搭自然",
+      "food": "吃个搭喝个",
+      "travel": "旅行搭地方",
+      "activities": "活动",
+      "objects": "物品",
+      "symbols": "符号",
+      "flags": "旗帜"
+    },
+    "tone": {
+      "default": "默认",
+      "light": "浅肤色",
+      "mediumLight": "中浅肤色",
+      "medium": "中等肤色",
+      "mediumDark": "中深肤色",
+      "dark": "深肤色"
+    }
   }
 }
