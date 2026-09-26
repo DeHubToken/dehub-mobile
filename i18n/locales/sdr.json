@@ -843,7 +843,17 @@
     "attachDescription": "अपने संदेश में DHB टोकन को टिप के रूप में संलग्न करें",
     "minAmount": "न्यूनतम {{amount}} DHB।",
     "attachAmount": "{{amount}} DHB संलग्न करें",
-    "removeTip": "टिप हटाएं"
+    "removeTip": "टिप हटाएं",
+    "payWith": "ایکر سے بھگتان کرو",
+    "payQuoting": "سب سے بڑھیا دام کھوجت ہئی…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}} میں",
+    "payViaBridge": "Uniswap میں DHB میں بدلل گیلک، قریب {{seconds}} سیکنڈ میں پہنچی",
+    "payViaSwap": "Uniswap میں DHB میں بدلل گیلک",
+    "stageApprove": "{{symbol}} منظور کرت ہئی…",
+    "stageBridge": "{{chain}} سے {{symbol}} بھیجت ہئی…",
+    "stageArriving": "Base میں پہنچت ہے، اکثر کچھ سیکنڈ لاگیلا…",
+    "stageSwap": "Uniswap میں DHB خریدت ہئی…",
+    "payFailed": "{{symbol}} کے DHB میں نی بدل پارلی"
   },
   "postOptions": {
     "options": "آپشن",

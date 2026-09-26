@@ -843,7 +843,17 @@
     "attachDescription": "DHB token-kuna tip hina rikchariy",
     "minAmount": "Min {{amount}} DHB nisqapi.",
     "attachAmount": "{{amount}} DHB rikchariy",
-    "removeTip": "Tip qichuy"
+    "removeTip": "Tip qichuy",
+    "payWith": "Kaywan payllay",
+    "payQuoting": "Aswan allin chanita maskachkan…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}}-pi",
+    "payViaBridge": "Uniswap-pi DHB-man tikrasqa, ~{{seconds}} sikundupi chayamunqa",
+    "payViaSwap": "Uniswap-pi DHB-man tikrasqa",
+    "stageApprove": "{{symbol}}-ta ari nichkan…",
+    "stageBridge": "{{symbol}}-ta {{chain}}-manta kachachkan…",
+    "stageArriving": "Base-man chayamuchkan, sapa kuti pisi sikundukunallapi…",
+    "stageSwap": "Uniswap-pi DHB rantichkan…",
+    "payFailed": "Manam {{symbol}}-ta DHB-man tikrayta atikurqanchu"
   },
   "postOptions": {
     "options": "Akllakuna",

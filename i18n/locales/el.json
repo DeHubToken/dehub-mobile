@@ -843,7 +843,17 @@
     "attachDescription": "Επισύναψε DHB tokens ως συμβουλή στο μήνυμά σου",
     "minAmount": "Ελάχ. {{amount}} DHB.",
     "attachAmount": "Επισύναψε {{amount}} DHB",
-    "removeTip": "Αφαίρεση συμβουλής"
+    "removeTip": "Αφαίρεση συμβουλής",
+    "payWith": "Πληρωμή με",
+    "payQuoting": "Αναζήτηση καλύτερης τιμής…",
+    "payQuote": "≈ {{amount}} {{symbol}} στο {{chain}}",
+    "payViaBridge": "Ανταλλάχθηκε σε DHB στο Uniswap, φτάνει σε ~{{seconds}} δλ",
+    "payViaSwap": "Ανταλλάχθηκε σε DHB στο Uniswap",
+    "stageApprove": "Έγκριση {{symbol}}…",
+    "stageBridge": "Αποστολή {{symbol}} από {{chain}}…",
+    "stageArriving": "Άφιξη στο Base, συνήθως σε λίγα δευτερόλεπτα…",
+    "stageSwap": "Αγορά DHB στο Uniswap…",
+    "payFailed": "Δεν ήταν δυνατή η μετατροπή {{symbol}} σε DHB"
   },
   "postOptions": {
     "options": "Επιλογές",

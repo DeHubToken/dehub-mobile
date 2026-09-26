@@ -843,7 +843,17 @@
     "attachDescription": "Jikọ DHB tokens dị ka tip na ụmụ ọmụmụ gị",
     "minAmount": "Nke kacha nta {{amount}} DHB.",
     "attachAmount": "Jikọ {{amount}} DHB",
-    "removeTip": "Wepụ Tip"
+    "removeTip": "Wepụ Tip",
+    "payWith": "Kwụọ site na",
+    "payQuoting": "Na-achọ ọnụahịa kacha mma…",
+    "payQuote": "≈ {{amount}} {{symbol}} na {{chain}}",
+    "payViaBridge": "Agbanweela ya ka ọ bụrụ DHB na Uniswap, ọ ga-abịa n'ime ~{{seconds}} sekọnd",
+    "payViaSwap": "Agbanweela ya ka ọ bụrụ DHB na Uniswap",
+    "stageApprove": "Na-akwado {{symbol}}…",
+    "stageBridge": "Na-ezipu {{symbol}} site na {{chain}}…",
+    "stageArriving": "Na-abịa na Base, ọ na-abụkarị sekọnd ole na ole…",
+    "stageSwap": "Na-azụ DHB na Uniswap…",
+    "payFailed": "Enweghị ike ịgbanwe {{symbol}} ka ọ bụrụ DHB"
   },
   "postOptions": {
     "options": "Nhọrọ",

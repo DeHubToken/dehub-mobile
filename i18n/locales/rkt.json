@@ -886,7 +886,17 @@
     "processing": "প্রসেস হইতাছে...",
     "success": "টিপ পাঠানো হইছে!",
     "failed": "টিপ পাঠানো ব্যর্থ",
-    "confirmTip": "টিপ নিশ্চিত করো"
+    "confirmTip": "টিপ নিশ্চিত করো",
+    "payWith": "এটা দিয়া পেমেন্ট করেন",
+    "payQuoting": "সবচাইতে ভালো দাম খোঁজা হইতেছে…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}}-ত",
+    "payViaBridge": "Uniswap-ত DHB-ত বদলা হইছে, ~{{seconds}} সেকেন্ডে আসিবে",
+    "payViaSwap": "Uniswap-ত DHB-ত বদলা হইছে",
+    "stageApprove": "{{symbol}} অনুমোদন হইতেছে…",
+    "stageBridge": "{{chain}} থাকি {{symbol}} পাঠানো হইতেছে…",
+    "stageArriving": "Base-ত আসিতেছে, সাধারণত কয়েক সেকেন্ড…",
+    "stageSwap": "Uniswap-ত DHB কেনা হইতেছে…",
+    "payFailed": "{{symbol}}-ক DHB-ত বদলা গেইল না"
   },
   "postOptions": {
     "options": "বিকল্প",

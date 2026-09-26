@@ -843,7 +843,17 @@
     "attachDescription": "Attach DHB tokens as a tip to your message",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Attach {{amount}} DHB",
-    "removeTip": "Remove Tip"
+    "removeTip": "Remove Tip",
+    "payWith": "Pay with",
+    "payQuoting": "Getting the best price…",
+    "payQuote": "≈ {{amount}} {{symbol}} on {{chain}}",
+    "payViaBridge": "Swapped to DHB on Uniswap, arrives in ~{{seconds}}s",
+    "payViaSwap": "Swapped to DHB on Uniswap",
+    "stageApprove": "Approving {{symbol}}…",
+    "stageBridge": "Sending {{symbol}} from {{chain}}…",
+    "stageArriving": "Arriving on Base, usually a few seconds…",
+    "stageSwap": "Buying DHB on Uniswap…",
+    "payFailed": "Could not convert {{symbol}} to DHB"
   },
   "postOptions": {
     "options": "Options",

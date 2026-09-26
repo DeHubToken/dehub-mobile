@@ -843,7 +843,17 @@
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB pê ve bike",
     "removeTip": "Serişteyê Rake",
-    "privateBalanceError": "Dema ku moda hevsengiya taybet vekirî ye, serişteyên vê hesabê neçalak in."
+    "privateBalanceError": "Dema ku moda hevsengiya taybet vekirî ye, serişteyên vê hesabê neçalak in.",
+    "payWith": "Dravdan bi",
+    "payQuoting": "Bihayê herî baş tê dîtin…",
+    "payQuote": "≈ {{amount}} {{symbol}} li ser {{chain}}",
+    "payViaBridge": "Li Uniswap bi DHB hat guhertin, di ~{{seconds}} çirkeyan de digihîje",
+    "payViaSwap": "Li Uniswap bi DHB hat guhertin",
+    "stageApprove": "{{symbol}} tê pejirandin…",
+    "stageBridge": "{{symbol}} ji {{chain}} tê şandin…",
+    "stageArriving": "Digihîje Base, bi gelemperî çend çirke…",
+    "stageSwap": "DHB li Uniswap tê kirîn…",
+    "payFailed": "{{symbol}} nehat guhertin bo DHB"
   },
   "postOptions": {
     "options": "Vebijêrk",

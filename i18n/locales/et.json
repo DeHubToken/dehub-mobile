@@ -843,7 +843,17 @@
     "attachDescription": "Manusta DHB märke nõuandena oma sõnumile",
     "minAmount": "Minu {{amount}} DHB.",
     "attachAmount": "Manusta {{amount}} DHB",
-    "removeTip": "Eemalda nõuanne"
+    "removeTip": "Eemalda nõuanne",
+    "payWith": "Maksa vahendiga",
+    "payQuoting": "Parima hinna leidmine…",
+    "payQuote": "≈ {{amount}} {{symbol}} võrgus {{chain}}",
+    "payViaBridge": "Vahetatud Uniswapis DHB vastu, jõuab kohale ~{{seconds}} s pärast",
+    "payViaSwap": "Vahetatud Uniswapis DHB vastu",
+    "stageApprove": "{{symbol}} kinnitamine…",
+    "stageBridge": "{{symbol}} saatmine võrgust {{chain}}…",
+    "stageArriving": "Jõuab Base'i, tavaliselt mõne sekundiga…",
+    "stageSwap": "DHB ostmine Uniswapis…",
+    "payFailed": "{{symbol}} ei õnnestunud DHB-ks teisendada"
   },
   "postOptions": {
     "options": "Valikud",

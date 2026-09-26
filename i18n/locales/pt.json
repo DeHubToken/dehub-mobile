@@ -843,7 +843,17 @@
     "attachDescription": "Anexe tokens DHB como gorjeta à sua mensagem",
     "minAmount": "Mín {{amount}} DHB.",
     "attachAmount": "Anexar {{amount}} DHB",
-    "removeTip": "Remover Gorjeta"
+    "removeTip": "Remover Gorjeta",
+    "payWith": "Pagar com",
+    "payQuoting": "Obtendo o melhor preço…",
+    "payQuote": "≈ {{amount}} {{symbol}} na {{chain}}",
+    "payViaBridge": "Trocado por DHB na Uniswap, chega em ~{{seconds}}s",
+    "payViaSwap": "Trocado por DHB na Uniswap",
+    "stageApprove": "Aprovando {{symbol}}…",
+    "stageBridge": "Enviando {{symbol}} de {{chain}}…",
+    "stageArriving": "Chegando na Base, geralmente em poucos segundos…",
+    "stageSwap": "Comprando DHB na Uniswap…",
+    "payFailed": "Não foi possível converter {{symbol}} em DHB"
   },
   "postOptions": {
     "options": "Opções",

@@ -843,7 +843,17 @@
     "attachDescription": "Xabaringizga DHB tokenlarini tip sifatida qo'shing",
     "minAmount": "Minimal {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB qo'shish",
-    "removeTip": "Tipni olib tashlash"
+    "removeTip": "Tipni olib tashlash",
+    "payWith": "To‘lov usuli",
+    "payQuoting": "Eng yaxshi narx izlanmoqda…",
+    "payQuote": "≈ {{chain}} tarmog‘ida {{amount}} {{symbol}}",
+    "payViaBridge": "Uniswap’da DHB’ga almashtirildi, taxminan {{seconds}} soniyada yetib keladi",
+    "payViaSwap": "Uniswap’da DHB’ga almashtirildi",
+    "stageApprove": "{{symbol}} tasdiqlanmoqda…",
+    "stageBridge": "{{symbol}} {{chain}} tarmog‘idan yuborilmoqda…",
+    "stageArriving": "Base’ga yetib kelmoqda, odatda bir necha soniya…",
+    "stageSwap": "Uniswap’da DHB sotib olinmoqda…",
+    "payFailed": "{{symbol}} DHB’ga aylantirilmadi"
   },
   "postOptions": {
     "options": "Parametrlar",

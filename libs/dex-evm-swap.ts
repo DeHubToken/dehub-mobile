@@ -109,13 +109,14 @@ async function kyber<T>(url: string, init?: RequestInit): Promise<T> {
   return json.data;
 }
 
-export async function quoteSwap(input: { chainId: number; tokenIn: string; tokenOut: string; amountIn: bigint; recipient: string; slippageBps?: number }): Promise<SwapCall> {
+/** `sources` narrows the route to named Kyber DEX ids, e.g. `uniswap-v4`. */
+export async function quoteSwap(input: { chainId: number; tokenIn: string; tokenOut: string; amountIn: bigint; recipient: string; slippageBps?: number; sources?: string }): Promise<SwapCall> {
   const slug = SLUGS[input.chainId];
   if (!slug) throw new Error('Instant swaps are not available on this network');
   if (input.amountIn <= 0n) throw new Error('Enter an amount');
   const tokenIn = isNative(input.tokenIn) ? NATIVE : input.tokenIn;
   const tokenOut = isNative(input.tokenOut) ? NATIVE : input.tokenOut;
-  const params = `tokenIn=${tokenIn}&tokenOut=${tokenOut}&amountIn=${input.amountIn.toString()}&gasInclude=true`;
+  const params = `tokenIn=${tokenIn}&tokenOut=${tokenOut}&amountIn=${input.amountIn.toString()}&gasInclude=true${input.sources ? `&includedSources=${encodeURIComponent(input.sources)}` : ''}`;
   const route = await kyber<{ routeSummary: Record<string, unknown> & { amountOut: string; amountInUsd?: string; amountOutUsd?: string }; routerAddress: string }>(
     `${KYBER}/${slug}/api/v1/routes?${params}`);
   const built = await kyber<{ data: string; routerAddress: string; transactionValue?: string; amountOut: string }>(

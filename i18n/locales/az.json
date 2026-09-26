@@ -843,7 +843,17 @@
     "attachDescription": "Mesajınıza DHB tokenləri tip kimi əlavə edin",
     "minAmount": "Minimum {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB Əlavə Et",
-    "removeTip": "Tipi Sil"
+    "removeTip": "Tipi Sil",
+    "payWith": "Ödəniş vasitəsi",
+    "payQuoting": "Ən yaxşı qiymət tapılır…",
+    "payQuote": "≈ {{amount}} {{symbol}} ({{chain}})",
+    "payViaBridge": "Uniswap-da DHB-yə dəyişdirildi, ~{{seconds}} san ərzində çatır",
+    "payViaSwap": "Uniswap-da DHB-yə dəyişdirildi",
+    "stageApprove": "{{symbol}} təsdiqlənir…",
+    "stageBridge": "{{symbol}} {{chain}} şəbəkəsindən göndərilir…",
+    "stageArriving": "Base-ə çatır, adətən bir neçə saniyə…",
+    "stageSwap": "Uniswap-da DHB alınır…",
+    "payFailed": "{{symbol}} DHB-yə çevrilə bilmədi"
   },
   "postOptions": {
     "options": "Seçimlər",

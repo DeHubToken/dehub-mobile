@@ -843,7 +843,17 @@
     "minAmount": "न्यूनतम {{amount}} DHB।",
     "attachAmount": "{{amount}} DHB संलग्न करें",
     "removeTip": "टिप हटाएं",
-    "toContent": "कंटेंट को टिप दें"
+    "toContent": "कंटेंट को टिप दें",
+    "payWith": "भुगतान के साधन",
+    "payQuoting": "सबसे बढ़िया दाम खोजात बा…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}} पर",
+    "payViaBridge": "Uniswap पर DHB में बदलल गइल, ~{{seconds}} सेकंड में पहुँची",
+    "payViaSwap": "Uniswap पर DHB में बदलल गइल",
+    "stageApprove": "{{symbol}} के मंजूरी दिहल जात बा…",
+    "stageBridge": "{{chain}} से {{symbol}} भेजल जात बा…",
+    "stageArriving": "Base पर पहुँचत बा, आमतौर पर कुछ सेकंड…",
+    "stageSwap": "Uniswap पर DHB खरीदल जात बा…",
+    "payFailed": "{{symbol}} के DHB में ना बदलल जा सकल"
   },
   "postOptions": {
     "options": "विकल्प",

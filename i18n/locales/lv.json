@@ -843,7 +843,17 @@
     "attachDescription": "Pievienojiet DHB žetones kā padomu savai ziņai",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Pievienojiet {{amount}} DHB",
-    "removeTip": "Noņemt padomu"
+    "removeTip": "Noņemt padomu",
+    "payWith": "Maksāt ar",
+    "payQuoting": "Meklē labāko cenu…",
+    "payQuote": "≈ {{amount}} {{symbol}} tīklā {{chain}}",
+    "payViaBridge": "Apmainīts pret DHB Uniswap, pienāks ~{{seconds}} s laikā",
+    "payViaSwap": "Apmainīts pret DHB Uniswap",
+    "stageApprove": "Apstiprina {{symbol}}…",
+    "stageBridge": "Sūta {{symbol}} no {{chain}}…",
+    "stageArriving": "Ceļā uz Base, parasti dažas sekundes…",
+    "stageSwap": "Pērk DHB Uniswap…",
+    "payFailed": "Neizdevās konvertēt {{symbol}} uz DHB"
   },
   "postOptions": {
     "options": "Opcijas",

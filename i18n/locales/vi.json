@@ -856,7 +856,17 @@
     "attachDescription": "Đính kèm token DHB làm tip cho tin nhắn của bạn",
     "minAmount": "Tối thiểu {{amount}} DHB.",
     "attachAmount": "Đính kèm {{amount}} DHB",
-    "removeTip": "Xóa Tip"
+    "removeTip": "Xóa Tip",
+    "payWith": "Thanh toán bằng",
+    "payQuoting": "Đang tìm giá tốt nhất…",
+    "payQuote": "≈ {{amount}} {{symbol}} trên {{chain}}",
+    "payViaBridge": "Đã đổi sang DHB trên Uniswap, đến sau ~{{seconds}} giây",
+    "payViaSwap": "Đã đổi sang DHB trên Uniswap",
+    "stageApprove": "Đang phê duyệt {{symbol}}…",
+    "stageBridge": "Đang gửi {{symbol}} từ {{chain}}…",
+    "stageArriving": "Đang về Base, thường chỉ vài giây…",
+    "stageSwap": "Đang mua DHB trên Uniswap…",
+    "payFailed": "Không thể chuyển đổi {{symbol}} sang DHB"
   },
   "postOptions": {
     "options": "Tuỳ chọn",

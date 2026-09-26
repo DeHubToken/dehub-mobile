@@ -843,7 +843,17 @@
     "insufficientShort": "ප්‍රමාණවත් නැත",
     "insufficientDhb": "DHB ප්‍රමාණවත් නැත",
     "sent": "ඉඟිය යවන ලදී!",
-    "minAmount": "අවම {{amount}} DHB."
+    "minAmount": "අවම {{amount}} DHB.",
+    "payWith": "ගෙවන්න",
+    "payQuoting": "හොඳම මිල සොයමින්…",
+    "payQuote": "≈ {{chain}} මත {{amount}} {{symbol}}",
+    "payViaBridge": "Uniswap හි DHB බවට හුවමාරු කළා, තත්පර ~{{seconds}} කින් ලැබේ",
+    "payViaSwap": "Uniswap හි DHB බවට හුවමාරු කළා",
+    "stageApprove": "{{symbol}} අනුමත කරමින්…",
+    "stageBridge": "{{chain}} සිට {{symbol}} යවමින්…",
+    "stageArriving": "Base වෙත ලැබෙමින්, සාමාන්‍යයෙන් තත්පර කිහිපයක්…",
+    "stageSwap": "Uniswap හි DHB මිලදී ගනිමින්…",
+    "payFailed": "{{symbol}} DHB බවට පරිවර්තනය කළ නොහැකි විය"
   },
   "postOptions": {
     "options": "විකල්ප",

@@ -843,7 +843,17 @@
     "removeTip": "ടിപ് നീക്കം ചെയ്യുക",
     "toContent": "ഉള്ളടക്കത്തിന് ടിപ്പ് ചെയ്യുക",
     "max": "മാക്സ്: {{amount}}",
-    "minAmount": "മിൻ {{amount}} DHB."
+    "minAmount": "മിൻ {{amount}} DHB.",
+    "payWith": "ഇതുപയോഗിച്ച് പണമടയ്ക്കുക",
+    "payQuoting": "മികച്ച വില കണ്ടെത്തുന്നു…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}}-ൽ",
+    "payViaBridge": "Uniswap-ൽ DHB ആയി മാറ്റി, ~{{seconds}} സെക്കൻഡിൽ എത്തും",
+    "payViaSwap": "Uniswap-ൽ DHB ആയി മാറ്റി",
+    "stageApprove": "{{symbol}} അംഗീകരിക്കുന്നു…",
+    "stageBridge": "{{chain}}-ൽ നിന്ന് {{symbol}} അയയ്ക്കുന്നു…",
+    "stageArriving": "Base-ൽ എത്തുന്നു, സാധാരണ കുറച്ച് സെക്കൻഡുകൾ മാത്രം…",
+    "stageSwap": "Uniswap-ൽ DHB വാങ്ങുന്നു…",
+    "payFailed": "{{symbol}} DHB ആയി മാറ്റാനായില്ല"
   },
   "postOptions": {
     "options": "ഓപ്ഷനുകൾ",

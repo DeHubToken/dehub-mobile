@@ -843,7 +843,17 @@
     "attachDescription": "将 DHB 代币作为提示附加到您的消息",
     "minAmount": "最少 {{amount}} DHB。",
     "attachAmount": "附加 {{amount}} DHB",
-    "removeTip": "移除提示"
+    "removeTip": "移除提示",
+    "payWith": "用搿个付",
+    "payQuoting": "正勒寻最好个价钿…",
+    "payQuote": "≈ {{chain}} 浪 {{amount}} {{symbol}}",
+    "payViaBridge": "已经勒 Uniswap 浪换成 DHB，大约 {{seconds}} 秒到账",
+    "payViaSwap": "已经勒 Uniswap 浪换成 DHB",
+    "stageApprove": "正勒授权 {{symbol}}…",
+    "stageBridge": "正勒从 {{chain}} 发 {{symbol}}…",
+    "stageArriving": "正勒到 Base，一般几秒钟…",
+    "stageSwap": "正勒 Uniswap 浪买 DHB…",
+    "payFailed": "{{symbol}} 换勿成 DHB"
   },
   "postOptions": {
     "options": "选项",

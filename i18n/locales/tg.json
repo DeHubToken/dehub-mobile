@@ -843,7 +843,17 @@
     "attachDescription": "Токенҳои DHB-ро ҳамчун tip ба паёми худ ҳамроҳ кунед",
     "minAmount": "Ҳадди ақал {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB ҳамроҳ кунед",
-    "removeTip": "Tip-ро ҳазф кунед"
+    "removeTip": "Tip-ро ҳазф кунед",
+    "payWith": "Пардохт бо",
+    "payQuoting": "Беҳтарин нарх ҷустуҷӯ мешавад…",
+    "payQuote": "≈ {{amount}} {{symbol}} дар {{chain}}",
+    "payViaBridge": "Дар Uniswap ба DHB иваз шуд, тақрибан пас аз {{seconds}} сония мерасад",
+    "payViaSwap": "Дар Uniswap ба DHB иваз шуд",
+    "stageApprove": "{{symbol}} тасдиқ мешавад…",
+    "stageBridge": "{{symbol}} аз {{chain}} фиристода мешавад…",
+    "stageArriving": "Ба Base мерасад, одатан чанд сония…",
+    "stageSwap": "DHB дар Uniswap харида мешавад…",
+    "payFailed": "{{symbol}}-ро ба DHB табдил додан нашуд"
   },
   "postOptions": {
     "options": "Имконот",

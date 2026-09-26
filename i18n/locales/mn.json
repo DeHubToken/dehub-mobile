@@ -843,7 +843,17 @@
     "minAmount": "Хамгийн бага {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB хавсаргана",
     "removeTip": "Зөвлөмжийг хасах",
-    "toContent": "Контент руу зөвлөмж өгөх"
+    "toContent": "Контент руу зөвлөмж өгөх",
+    "payWith": "Төлөх хэрэгсэл",
+    "payQuoting": "Хамгийн сайн үнийг хайж байна…",
+    "payQuote": "≈ {{amount}} {{symbol}}, {{chain}} дээр",
+    "payViaBridge": "Uniswap дээр DHB болгон сольсон, ~{{seconds}} секундэд ирнэ",
+    "payViaSwap": "Uniswap дээр DHB болгон сольсон",
+    "stageApprove": "{{symbol}}-г баталгаажуулж байна…",
+    "stageBridge": "{{chain}}-аас {{symbol}} илгээж байна…",
+    "stageArriving": "Base рүү ирж байна, ихэвчлэн хэдхэн секунд…",
+    "stageSwap": "Uniswap дээр DHB худалдан авч байна…",
+    "payFailed": "{{symbol}}-г DHB болгон хөрвүүлж чадсангүй"
   },
   "postOptions": {
     "options": "Сонголтууд",

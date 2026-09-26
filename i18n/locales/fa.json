@@ -843,7 +843,17 @@
     "attachDescription": "توکن‌های DHB را به عنوان نکه به پیام خود پیوست کنید",
     "minAmount": "حداقل {{amount}} DHB.",
     "attachAmount": "پیوست {{amount}} DHB",
-    "removeTip": "حذف نکه"
+    "removeTip": "حذف نکه",
+    "payWith": "پرداخت با",
+    "payQuoting": "در حال یافتن بهترین قیمت…",
+    "payQuote": "≈ {{amount}} {{symbol}} روی {{chain}}",
+    "payViaBridge": "در Uniswap به DHB تبدیل شد، ظرف ~{{seconds}} ثانیه می‌رسد",
+    "payViaSwap": "در Uniswap به DHB تبدیل شد",
+    "stageApprove": "در حال تأیید {{symbol}}…",
+    "stageBridge": "در حال ارسال {{symbol}} از {{chain}}…",
+    "stageArriving": "در حال رسیدن به Base، معمولاً چند ثانیه…",
+    "stageSwap": "در حال خرید DHB در Uniswap…",
+    "payFailed": "تبدیل {{symbol}} به DHB ممکن نشد"
   },
   "postOptions": {
     "options": "گزینه‌ها",

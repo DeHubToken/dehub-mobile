@@ -843,7 +843,17 @@
     "attachDescription": "Ձեր հաղորդագրությանը DHB տոկեն կցել որպես թիպ",
     "minAmount": "Նվազագույն {{amount}} DHB:",
     "attachAmount": "Կցել {{amount}} DHB",
-    "removeTip": "Հեռացնել թիպ"
+    "removeTip": "Հեռացնել թիպ",
+    "payWith": "Վճարել՝",
+    "payQuoting": "Լավագույն գնի որոնում…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}}-ում",
+    "payViaBridge": "Փոխանակվել է DHB-ի Uniswap-ում, կհասնի ~{{seconds}} վրկ-ում",
+    "payViaSwap": "Փոխանակվել է DHB-ի Uniswap-ում",
+    "stageApprove": "{{symbol}}-ի հաստատում…",
+    "stageBridge": "{{symbol}}-ի ուղարկում {{chain}}-ից…",
+    "stageArriving": "Հասնում է Base, սովորաբար մի քանի վայրկյան…",
+    "stageSwap": "DHB-ի գնում Uniswap-ում…",
+    "payFailed": "Չհաջողվեց {{symbol}}-ը փոխարկել DHB-ի"
   },
   "postOptions": {
     "options": "Ընտրանքներ",

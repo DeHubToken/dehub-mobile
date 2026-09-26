@@ -1104,7 +1104,17 @@
     "attachDescription": "Lampirkan token DHB sebagai tip pada mesej anda",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Lampirkan {{amount}} DHB",
-    "removeTip": "Buang Tip"
+    "removeTip": "Buang Tip",
+    "payWith": "Bayar dengan",
+    "payQuoting": "Mendapatkan harga terbaik…",
+    "payQuote": "≈ {{amount}} {{symbol}} di {{chain}}",
+    "payViaBridge": "Ditukar kepada DHB di Uniswap, tiba dalam ~{{seconds}}s",
+    "payViaSwap": "Ditukar kepada DHB di Uniswap",
+    "stageApprove": "Meluluskan {{symbol}}…",
+    "stageBridge": "Menghantar {{symbol}} dari {{chain}}…",
+    "stageArriving": "Tiba di Base, biasanya beberapa saat…",
+    "stageSwap": "Membeli DHB di Uniswap…",
+    "payFailed": "Tidak dapat menukar {{symbol}} kepada DHB"
   },
   "postOptions": {
     "options": "Pilihan",
