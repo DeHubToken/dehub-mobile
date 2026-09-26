@@ -1,4 +1,3 @@
-import { DhbCoin } from "../common/DhbCoin";
 import React, {
   useCallback,
   useEffect,
@@ -10,7 +9,6 @@ import { Trans, useTranslation } from "react-i18next";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ActivityIndicator,
   Animated,
@@ -24,7 +22,6 @@ import {
   useWeb3Provider,
   useERC20Contract,
   useStreamControllerContract,
-  usePaymentRouterContract,
 } from "../../hooks/use-web3";
 import * as ethersImport from "ethers";
 import { supportedTokens } from "../../config/constants";
@@ -32,16 +29,7 @@ import { applyGasMargin, parseTxError } from "../../libs/web3.util";
 import { writeContractAA } from "../../libs/aa.write";
 import {
   confirmPPVPurchase,
-  getPaymentConfig,
-  getPaymentRouterAddress,
 } from "../../services/payment.service";
-import {
-  isPaymentRouterAvailable,
-  unlockPPVAndTipViaRouter,
-} from "../../services/payment-router.service";
-import {
-  isAutoSwapSupported,
-} from "../../services/swap.service";
 import { sendSolanaPayment } from "../../services/solana-payment.service";
 import { isSolanaChain } from "../../config/solana.constants";
 import PPVTopUpStep, { type PPVShortfall } from "./PPVTopUpStep";
@@ -81,18 +69,13 @@ const PPVModal: React.FC<PPVModalProps> = ({
   const { requireAuth, patchUser } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
   const [phase, setPhase] = useState<
-    "idle" | "swapping" | "approving" | "sending" | "sent" | "error"
+    "idle" | "approving" | "sending" | "sent" | "error"
   >("idle");
   const [ppvError, setPpvError] = useState<string | null>(null);
   // Not enough DHB is a step, not an error: the modal turns into a top-up.
   const [shortfall, setShortfall] = useState<PPVShortfall | null>(null);
   const successScale = useRef(new Animated.Value(0.6)).current;
 
-  // Atomic swap + PPV + tip in one tx via DeHubPaymentRouter (#45)
-  const [routerAddress, setRouterAddress] = useState<string | undefined>(undefined);
-  const [showTip, setShowTip] = useState(false);
-  const [tipInput, setTipInput] = useState("");
-  const tipAmount = Number(tipInput) || 0;
 
   const isControlled =
     typeof open === "boolean" && typeof onOpenChange === "function";
@@ -110,8 +93,8 @@ const PPVModal: React.FC<PPVModalProps> = ({
   const isSelf =
     !!user?.walletAddress &&
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
-  const isBusy = phase === "swapping" || phase === "approving" || phase === "sending";
-  const canAutoSwap = tokenSymbol === "DHB" && isAutoSwapSupported(chainId);
+  const isBusy = phase === "approving" || phase === "sending";
+  const canAutoSwap = tokenSymbol === "DHB" && chainId === 8453;
 
   const tokenMeta = useMemo(() => {
     if (!chainId) return undefined;
@@ -125,23 +108,6 @@ const PPVModal: React.FC<PPVModalProps> = ({
   const tokenContract = useERC20Contract(tokenAddress);
   const controllerContract = useStreamControllerContract();
 
-  // Router-based atomic tip is DHB-on-Base only, and only when deployed (#45)
-  const routerAvailable = tokenSymbol === "DHB" && isPaymentRouterAvailable(chainId, routerAddress);
-  const paymentRouterContract = usePaymentRouterContract(
-    routerAvailable ? routerAddress : undefined,
-  );
-
-  // Fetch payment-router config for the active chain when the modal opens.
-  useEffect(() => {
-    if (!actualOpen || !chainId) return;
-    let cancelled = false;
-    getPaymentConfig().then((cfg) => {
-      if (!cancelled) setRouterAddress(getPaymentRouterAddress(cfg, chainId));
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [actualOpen, chainId]);
 
   // Fetch native ETH for gas awareness
   const [ethBalance, setEthBalance] = useState<string>("");
@@ -187,8 +153,6 @@ const PPVModal: React.FC<PPVModalProps> = ({
       setPhase("idle");
       setPpvError(null);
       setShortfall(null);
-      setShowTip(false);
-      setTipInput("");
     }
   }, [actualOpen]);
 
@@ -258,41 +222,6 @@ const PPVModal: React.FC<PPVModalProps> = ({
           tokenDecimals
         );
 
-        // Atomic ETH→DHB swap + PPV + tip in one tx via the payment router (#45).
-        if (tipAmount > 0 && routerAvailable) {
-          if (!paymentRouterContract) {
-            setPpvError(t("ppv.preparingRouter"));
-            return;
-          }
-          setPhase("sending");
-          try {
-            const tipBN = ethers.utils.parseUnits(String(tipAmount), tokenDecimals);
-            const tx = await unlockPPVAndTipViaRouter({
-              routerContract: paymentRouterContract,
-              tokenId,
-              ppvAmountWei: amountBN,
-              tipAmountWei: tipBN,
-              creator: toAddress,
-            });
-            setPhase("sent");
-            const idStr = String(tokenId);
-            if (tx?.hash) {
-              confirmPPVPurchase({ tokenId, txHash: tx.hash, chainId }).catch((err) => {
-                console.warn("[PPV] Backend confirm fallback to webhook:", err);
-              });
-            }
-            await patchUser(
-              (prev) =>
-                ({
-                  unlocked: Array.from(new Set([...(prev.unlocked || []), idStr])),
-                } as any)
-            );
-          } catch (e) {
-            setPhase("error");
-            setPpvError(parseTxError(e, "send"));
-          }
-          return;
-        }
 
         // Short of DHB: hand the gap to the top-up step.
         const dhbBalance = await tokenContract.balanceOf(account);
@@ -411,9 +340,6 @@ const PPVModal: React.FC<PPVModalProps> = ({
     toAddress,
     patchUser,
     tokenSymbol,
-    tipAmount,
-    routerAvailable,
-    paymentRouterContract,
     isSolanaPpv,
     paymentChainId,
   ]);
@@ -495,44 +421,6 @@ const PPVModal: React.FC<PPVModalProps> = ({
                     </Text>
                   </View>
 
-                  {/* Optional tip — swap + unlock + tip in one tx via router (#45) */}
-                  {routerAvailable && !isSelf && (
-                    <View className="mt-3">
-                      <TouchableOpacity
-                        onPress={() => {
-                          if (isBusy) return;
-                          setShowTip((v) => !v);
-                          if (showTip) setTipInput("");
-                        }}
-                        className="flex-row items-center gap-2 py-1"
-                        activeOpacity={0.7}
-                      >
-                        <Ionicons name="gift-outline" size={15} color="#A6A9AC" />
-                        <Text className="flex-1 text-white/70 text-sm">
-                          {t("ppv.addTip")}
-                        </Text>
-                        <Ionicons
-                          name={showTip ? "chevron-up" : "chevron-down"}
-                          size={16}
-                          color="#A6A9AC"
-                        />
-                      </TouchableOpacity>
-                      {showTip && (
-                        <View className="flex-row items-center mt-2 px-4 rounded-xl bg-white/5 border border-white/10">
-                          <TextInput
-                            value={tipInput}
-                            onChangeText={setTipInput}
-                            placeholder="0"
-                            placeholderTextColor="#6F7174"
-                            keyboardType="decimal-pad"
-                            editable={!isBusy}
-                            className="flex-1 h-11 text-white text-base"
-                          />
-                          <DhbCoin size={14} />
-                        </View>
-                      )}
-                    </View>
-                  )}
 
                   {/* Looking short is no longer a reason to block the button:
                       the balance here is the cached one, and the real check
@@ -541,11 +429,6 @@ const PPVModal: React.FC<PPVModalProps> = ({
                   {insufficient && phase === "idle" && (
                     <Text className="text-xs text-white/60 mt-2">
                       {t("ppv.lowTopUp", { symbol: tokenSymbol })}
-                    </Text>
-                  )}
-                  {phase === "swapping" && (
-                    <Text className="text-xs text-white/60 mt-2">
-                      {t("ppv.swapping")}
                     </Text>
                   )}
                   {isSelf && (
@@ -583,10 +466,9 @@ const PPVModal: React.FC<PPVModalProps> = ({
                         />
                       )}
                       <Text className="text-white font-semibold">
-                        {phase === "swapping" && t("ppv.btnSwapping")}
                         {phase === "approving" && t("tip.approving")}
                         {phase === "sending" && t("toasts.processing")}
-                        {phase === "idle" && (tipAmount > 0 ? t("ppv.payAndTip") : t("common.confirm"))}
+                        {phase === "idle" && t("common.confirm")}
                         {phase === "error" && t("common.retry")}
                       </Text>
                     </TouchableOpacity>
