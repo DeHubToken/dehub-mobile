@@ -17,7 +17,7 @@ describe('notification content', () => {
   });
   it('preserves comment previews and payment amounts', () => {
     expect(localizedNotificationContent({ type: 'comment_like', actorUsername: 'Araf', commentPreview: 'hello' }, translate('en'))).toContain('"hello"');
-    expect(localizedNotificationContent({ type: 'tip', actorUsername: 'Araf', amount: 20, currency: 'DHB' }, translate('en'))).toContain('20 DHB');
+    expect(localizedNotificationContent({ type: 'tip', actorUsername: 'Araf', amount: 20, currency: 'DHB' }, translate('en'))).toContain('20 tokens');
   });
   it('keeps follow requests distinct from accepted follows', () => {
     expect(localizedNotificationContent({ type: 'following', actorUsername: 'Araf', content: 'Araf requested to follow you' }, translate('en'))).toContain('requested');
