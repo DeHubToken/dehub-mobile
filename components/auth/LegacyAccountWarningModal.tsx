@@ -269,9 +269,9 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
                     ? `@${emailAccount.username}`
                     : t("legacy.matchedProfile"),
                 })}
-                {typeof emailAccount.badgeBalance === "number"
-                  ? `, ${emailAccount.badgeBalance.toLocaleString()} DHB`
-                  : ""}
+                {typeof emailAccount.badgeBalance === "number" ? (
+                  <>, {emailAccount.badgeBalance.toLocaleString()} <DhbCoin /></>
+                ) : null}
               </Text>
             )}
           </View>

@@ -21,7 +21,7 @@ type Copy = string | { key: string };
 
 interface GuideSection {
   id: string;
-  title: string;
+  title: Copy;
   icon: IconName;
   intro: Copy;
   steps: Copy[];
@@ -98,7 +98,7 @@ const SECTIONS: GuideSection[] = [
     steps: [
       "Upvote or downvote a post using the arrow icons on the left side of any post.",
       "Click the comment icon to open the comment section and leave a reply.",
-      "Click the gem/tip icon to send a DHB tip to the post creator.",
+      { key: "screens.guideTipStep" },
       "Click the bookmark icon to save a post for later.",
       "Click the share icon to copy the post link or share externally.",
       "Click the translate button (globe icon) on any post to translate text to your language.",
@@ -106,7 +106,7 @@ const SECTIONS: GuideSection[] = [
       "Click on any post to open it in full-screen single-post view.",
     ],
     tips: [
-      "Tips go directly to the creator's wallet in DHB tokens.",
+      { key: "screens.guideTipWalletTip" },
       "You can set a tip amount via quick-select buttons or enter a custom amount.",
       "Bookmarked posts are accessible from the Bookmarks page in the sidebar.",
     ],
@@ -199,17 +199,17 @@ const SECTIONS: GuideSection[] = [
     ],
     tips: [
       "The notification badge shows the count of unread notifications.",
-      "Tip notifications show the amount of DHB you received.",
+      { key: "screens.guideTipNotificationsTip" },
     ],
   },
   {
     id: "wallet",
     title: "Wallet",
     icon: "Wallet",
-    intro: "View your DHB balances across multiple chains, check staking deposits, and manage your assets.",
+    intro: { key: "screens.guideWalletIntro" },
     steps: [
       "Click 'Wallet' in the sidebar to open the wallet page.",
-      "View your total DHB balance aggregated across all supported chains.",
+      { key: "screens.guideWalletTotalStep" },
       "See per-chain breakdowns: Ethereum, Base, BNB Chain, and more.",
       "Check your staking deposits and rewards.",
       "Click 'Refresh Scan' to update your balances from on-chain data.",
@@ -224,10 +224,10 @@ const SECTIONS: GuideSection[] = [
     id: "staking",
     title: "Staking",
     icon: "Landmark",
-    intro: "Stake your DHB tokens to earn rewards and increase your governance voting power.",
+    intro: { key: "screens.guideStakingIntro" },
     steps: [
       "Navigate to the 'Staking' page from the sidebar.",
-      "Enter the amount of DHB you want to stake.",
+      { key: "screens.guideStakingAmountStep" },
       "Select the chain you want to stake on.",
       "Confirm the transaction in your wallet (external wallets) or it auto-executes (social login).",
       "View your staked amounts and any pending rewards.",
@@ -247,7 +247,7 @@ const SECTIONS: GuideSection[] = [
     steps: [
       "Navigate to the 'Leaderboard' page from the sidebar.",
       "Switch between tabs: Balance, Daily Spent, and Talk of the Town.",
-      "Balance tab ranks users by their total DHB holdings.",
+      { key: "screens.guideLeaderboardBalanceStep" },
       "Daily Spent tab shows who's been most active tipping in the last 24 hours.",
       "Talk of the Town shows the most-discussed topics/categories.",
       "Click on any user to visit their profile.",
@@ -280,12 +280,12 @@ const SECTIONS: GuideSection[] = [
       "Navigate to 'Governance' from the sidebar.",
       "Browse active proposals submitted by the community.",
       "Click on a proposal to read its full description and discussion.",
-      "Vote on proposals using the thumbs up/down buttons — your vote weight depends on your DHB stake.",
+      { key: "screens.guideGovernanceVoteStep" },
       "Leave comments on proposals to discuss with the community.",
       "Submit your own proposal by clicking the 'Create Proposal' button.",
     ],
     tips: [
-      "Your voting power is determined by your staked DHB amount.",
+      { key: "screens.guideGovernancePowerTip" },
       "Badge holders may get additional vote weight.",
       "Proposals go through stages: Active → Passed/Rejected.",
     ],
@@ -325,17 +325,17 @@ const SECTIONS: GuideSection[] = [
   },
   {
     id: "buying-dhb",
-    title: "Buying DHB",
+    title: { key: "upload.buyTokens" },
     icon: "ShoppingCart",
-    intro: "Buy DHB tokens directly in DPay using card or supported crypto.",
+    intro: { key: "screens.guideBuyIntro" },
     steps: [
       "Navigate to the 'Buy' page from the sidebar.",
       "Select the token you want to swap from (e.g., ETH, USDC).",
-      "Enter the amount you want to spend or the amount of DHB you want to receive.",
+      { key: "screens.guideBuyAmountStep" },
       "Review the exchange rate and estimated output.",
       "Click the settings gear icon to adjust slippage tolerance (default is 1%).",
       "Confirm the swap transaction.",
-      "DHB tokens will appear in your wallet once the transaction completes.",
+      { key: "screens.guideBuyDeliveredStep" },
     ],
     tips: [
       "Higher slippage tolerance = more likely to execute, but potential for worse pricing.",
@@ -347,12 +347,12 @@ const SECTIONS: GuideSection[] = [
     id: "bridge",
     title: "Bridge",
     icon: "ArrowLeftRight",
-    intro: "Move your DHB tokens between supported blockchains using the cross-chain bridge.",
+    intro: { key: "screens.guideBridgeIntro" },
     steps: [
       "Navigate to the 'Bridge' page from the sidebar.",
-      "Select the source chain (where your DHB currently is).",
-      "Select the destination chain (where you want to send DHB).",
-      "Enter the amount of DHB to bridge.",
+      { key: "screens.guideBridgeSourceStep" },
+      { key: "screens.guideBridgeDestStep" },
+      { key: "screens.guideBridgeAmountStep" },
       "Review the bridge fee and estimated arrival time.",
       "Confirm the bridge transaction.",
       "Wait for the transaction to complete — bridging may take a few minutes.",
@@ -453,7 +453,7 @@ const SECTIONS: GuideSection[] = [
 
 function sectionMatches(section: GuideSection, tokens: string[], say: (line: Copy) => string): boolean {
   if (tokens.length === 0) return true;
-  const haystack = [section.title, say(section.intro), ...section.steps.map(say), ...(section.tips || []).map(say)]
+  const haystack = [say(section.title), say(section.intro), ...section.steps.map(say), ...(section.tips || []).map(say)]
     .join(" ")
     .toLowerCase();
   return tokens.every((tok) => haystack.includes(tok));
@@ -520,7 +520,7 @@ export default function GuideScreen() {
                   <View style={styles.sectionIcon}>
                     <Icon name={section.icon} size={18} color="#FFFFFF" strokeWidth={1.8} />
                   </View>
-                  <Text style={styles.sectionTitle}>{section.title}</Text>
+                  <Text style={styles.sectionTitle}>{say(section.title)}</Text>
                   <Icon name={isOpen ? "ChevronUp" : "ChevronDown"} size={18} color="#808089" />
                 </Pressable>
 

@@ -436,7 +436,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
             ) : null}
 
             <View className="mt-4">
-              <Text className="text-white text-xs mb-1">{t("tip.amountIn", { currency: "DHB" }) as string}</Text>
+              <Text className="text-white text-xs mb-1">{t("tip.amountIn", { currency: t("tip.tokensUnit") }) as string}</Text>
               <View className="flex-row items-center bg-white/10 rounded-xl px-3 py-2">
                 <Ionicons name="cash-outline" size={16} color="#fff" />
                 <TextInput

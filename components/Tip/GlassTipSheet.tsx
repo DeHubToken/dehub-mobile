@@ -830,7 +830,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   entering={FadeInDown.delay(300).duration(350)}
                   style={styles.successAmount}
                 >
-                  {lastAmount?.toLocaleString()} {tipCurrency}
+                  {isSolanaTip
+                    ? `${lastAmount?.toLocaleString()} ${tipCurrency}`
+                    : t("tip.tokenAmount", { amount: lastAmount?.toLocaleString() })}
                 </Animated.Text>
                 <Animated.Text
                   entering={FadeIn.delay(400).duration(300)}

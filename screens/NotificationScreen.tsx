@@ -68,6 +68,7 @@ import {
   BADGE_LADDER_TYPES,
 } from "../services/enums/notification.enums";
 import { useAppTheme } from "../context/ThemeContext";
+import { DhbCoin } from "../components/common/DhbCoin";
 import {
   MINIMAL_HAIRLINE,
   MINIMAL_TAB_LINE,
@@ -781,7 +782,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
               <View style={[{ backgroundColor: 'rgba(255,255,255,0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }, isMinimal && MINIMAL_OUTLINE]}>
                 <Text style={{ color: '#F4F4F5', fontSize: 12, fontWeight: '600' }}>
-                  +{item.amount} {item.currency || 'DHB'}
+                  +{item.amount} {item.currency && item.currency.toUpperCase() !== 'DHB' ? item.currency : <DhbCoin size={12} />}
                 </Text>
               </View>
             </View>

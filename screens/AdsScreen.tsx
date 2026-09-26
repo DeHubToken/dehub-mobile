@@ -65,6 +65,7 @@ import {
   type CampaignStatus,
 } from "../hooks/useAds";
 import { sanitizeAmountInput } from "../libs/amount-input";
+import { DhbCoin } from "../components/common/DhbCoin";
 
 /** Same treasury the AI credits / paywalls pay into (see ads-topup edge fn). */
 const ADS_TREASURY = "0xbf3039b0bb672b268e8384e30d81b1e6a8a43b2c";
@@ -624,7 +625,7 @@ export default function AdsScreen() {
                     <View style={{ flex: 1 }}>
                       <Text style={styles.payAmount}>{usd(p.usd_value)}</Text>
                       <Text style={styles.dim}>
-                        {p.dhb_amount.toLocaleString()} DHB · {p.chain}
+                        {p.dhb_amount.toLocaleString()} <DhbCoin size={12} /> · {p.chain}
                       </Text>
                     </View>
                     <Text style={styles.dim}>

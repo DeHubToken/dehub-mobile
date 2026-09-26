@@ -317,7 +317,7 @@ export default function TeamUpSheet({
                     <Text style={styles.memberName} numberOfLines={1}>
                       {memberName(member)} {owner ? <Text style={styles.owner}>{t('communities.owner')}</Text> : null}
                     </Text>
-                    <Text style={styles.muted}>{compact.format(member.ownBadgeBalance)} DHB</Text>
+                    <Text style={styles.muted}>{t('teamUp.memberTokens', { amount: compact.format(member.ownBadgeBalance) })}</Text>
                   </View>
                   {canRemove ? (
                     <Pressable

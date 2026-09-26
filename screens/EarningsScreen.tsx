@@ -19,6 +19,7 @@ import { supabase } from "../services/supabase";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { appLocale } from "../libs/date.util";
+import { DhbCoin } from "../components/common/DhbCoin";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 interface TipRecord {
@@ -145,7 +146,7 @@ function PieChart({ tips, ppv }: { tips: number; ppv: number }) {
         <Text style={{ color: "#F9FBFF", fontSize: 14, fontWeight: "700" }}>
           {fmtAmount(total)}
         </Text>
-        <Text style={{ color: "#8B8D90", fontSize: 12 }}>DHB</Text>
+        <DhbCoin size={12} />
       </View>
     </View>
   );
@@ -272,19 +273,19 @@ const EarningsScreen: React.FC = () => {
                   <View style={[styles.dot, { backgroundColor: SOURCE_COLORS.tips }]} />
                   <View>
                     <Text style={styles.legendLabel}>{t("earnings.tips")}</Text>
-                    <Text style={styles.legendValue}>{fmtAmount(tipsTotal)} DHB</Text>
+                    <Text style={styles.legendValue}>{fmtAmount(tipsTotal)} <DhbCoin size={14} /></Text>
                   </View>
                 </View>
                 <View style={styles.legend}>
                   <View style={[styles.dot, { backgroundColor: SOURCE_COLORS.ppv }]} />
                   <View>
                     <Text style={styles.legendLabel}>{t("earnings.ppvSales")}</Text>
-                    <Text style={styles.legendValue}>{fmtAmount(ppvTotal)} DHB</Text>
+                    <Text style={styles.legendValue}>{fmtAmount(ppvTotal)} <DhbCoin size={14} /></Text>
                   </View>
                 </View>
                 <View style={styles.totalBox}>
                   <Text style={styles.totalLabel}>{t("earnings.total")}</Text>
-                  <Text style={styles.totalValue}>{fmtAmount(totalEarned)} DHB</Text>
+                  <Text style={styles.totalValue}>{fmtAmount(totalEarned)} <DhbCoin size={16} /></Text>
                 </View>
               </View>
             </View>
@@ -333,7 +334,7 @@ const EarningsScreen: React.FC = () => {
                   </View>
                   <View style={{ alignItems: "flex-end" }}>
                     <Text style={[styles.txAmount, { color: tx.type === "tip" ? SOURCE_COLORS.tips : SOURCE_COLORS.ppv }]}>
-                      +{fmtAmount(tx.amount)} DHB
+                      +{fmtAmount(tx.amount)} <DhbCoin />
                     </Text>
                     <Text style={styles.txDate}>{fmtDate(tx.date)}</Text>
                   </View>

@@ -86,7 +86,7 @@ const LOGO_VARIANTS: { value: LogoVariant; label: string; hint: string }[] = [
   { value: 'both', label: 'Both', hint: 'Wordmark + icon lockup' },
 ];
 
-const FEATURE_GROUPS: { group: string; items: { value: string; label: string; blurb: string }[] }[] = [
+const FEATURE_GROUPS: { group: string; items: { value: string; label: string; blurb: string; labelKey?: string; blurbKey?: string }[] }[] = [
   {
     group: 'Social & Feed',
     items: [
@@ -120,12 +120,12 @@ const FEATURE_GROUPS: { group: string; items: { value: string; label: string; bl
   {
     group: 'Token & DeFi',
     items: [
-      { value: 'dhb-staking', label: '💎 DHB Staking (Base)', blurb: 'Stake DHB, earn rewards' },
+      { value: 'dhb-staking', label: '💎 Token Staking (Base)', blurb: 'Stake DeHub tokens, earn rewards', labelKey: 'poster.features.stakingLabel', blurbKey: 'poster.features.stakingBlurb' },
       { value: 'lp-farming', label: '🌾 LP Farming', blurb: 'Provide liquidity, earn yield' },
       { value: 'token-bridge', label: '🌉 Token Bridge', blurb: 'BNB ↔ Base cross-chain' },
       { value: 'governance', label: '🗳️ Governance', blurb: 'On-chain proposals & voting' },
-      { value: 'token-utility', label: '🪙 DHB Utility', blurb: 'Fees, boosts, gating, tipping' },
-      { value: 'fiat-onramp', label: '💳 Fiat On-Ramp', blurb: 'Card → USDC → DHB' },
+      { value: 'token-utility', label: '🪙 Token Utility', blurb: 'Fees, boosts, gating, tipping', labelKey: 'poster.features.tokenUtilityLabel' },
+      { value: 'fiat-onramp', label: '💳 Fiat On-Ramp', blurb: 'Card → USDC → DeHub tokens', blurbKey: 'poster.features.fiatOnrampBlurb' },
       { value: 'fiat-offramp', label: '💵 Fiat Off-Ramp', blurb: 'Token-to-cash conversion' },
       { value: 'uniswap-swap', label: '🔄 In-App Swap', blurb: 'Uniswap V3, one click' },
       { value: 'wallet', label: '👛 Cross-Chain Wallet', blurb: 'BNB + Base aggregated' },
@@ -134,7 +134,7 @@ const FEATURE_GROUPS: { group: string; items: { value: string; label: string; bl
   {
     group: 'Marketplace & Commerce',
     items: [
-      { value: 'stores', label: '🛍️ DeHub Stores', blurb: 'P2P commerce on Base DHB' },
+      { value: 'stores', label: '🛍️ DeHub Stores', blurb: 'P2P commerce with DeHub tokens on Base', blurbKey: 'poster.features.storesBlurb' },
       { value: 'fractions', label: '🧩 Fractions', blurb: 'Fractional NFT marketplace' },
       { value: 'work', label: '🧑‍💻 DeHub Bounties', blurb: 'Escrow bounties: social, clips, contracts' },
       { value: 'tipping', label: '💸 Tipping', blurb: 'Reward creators on any post' },
@@ -557,8 +557,8 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
                           activeOpacity={0.75}
                         >
                           <View style={{ flex: 1 }}>
-                            <Text style={s.optionName}>{item.label}</Text>
-                            <Text style={s.optionDesc}>{item.blurb}</Text>
+                            <Text style={s.optionName}>{item.labelKey ? t(item.labelKey) : item.label}</Text>
+                            <Text style={s.optionDesc}>{item.blurbKey ? t(item.blurbKey) : item.blurb}</Text>
                           </View>
                           {selected && <Icon name="Check" size={15} color="#F9FBFF" />}
                         </TouchableOpacity>

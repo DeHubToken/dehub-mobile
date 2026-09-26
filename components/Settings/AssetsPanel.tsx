@@ -136,7 +136,7 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
         <Divider />
         <SettingsLinkRow
           icon="Coins"
-          label={`${formatCompactNumber(dhbBalance)} DHB`}
+          label={t('settings.tokenBalanceAmount', { amount: formatCompactNumber(dhbBalance) })}
           description={t('settings.dhbBalanceIncludesStaked')}
           onPress={() => navigation.navigate(ScreenNames.Dpay)}
         />

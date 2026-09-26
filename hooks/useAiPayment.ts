@@ -17,6 +17,7 @@
  * quotes it, so the number a paywall shows is the number that gets charged.
  */
 
+import i18n from 'i18next';
 import { apiClient } from '../libs/api.client';
 import { useCallback, useEffect, useState } from 'react';
 import * as ethersImport from 'ethers';
@@ -224,9 +225,7 @@ export function useJobPayment(enabled = true): JobPaymentState {
             return submittedHash;
           } catch (recordErr) {
             log.error('transfer could not be confirmed or recorded:', recordErr);
-            throw new Error(
-              'Your DHB transfer was sent but we could not confirm it. It is saved and will pay for your next attempt — do not send it again.',
-            );
+            throw new Error(i18n.t('paywall.transferUnconfirmed'));
           }
         }
         throw err;

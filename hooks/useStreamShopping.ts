@@ -18,6 +18,7 @@
  */
 
 import { useEffect, useMemo, useRef } from "react";
+import i18n from "i18next";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
 import { useUser } from "../context/AuthContext";
@@ -314,9 +315,7 @@ export function useLiveCheckout(
       const { quote, shippingAddress, notes, paidTxHash } = params;
 
       if (quote.paymentsFrozen && !paidTxHash) {
-        throw new Error(
-          "DHB transfers are paused right now, so this purchase would fail. Try again once trading resumes.",
-        );
+        throw new Error(i18n.t("liveShop.transfersPausedError"));
       }
 
       const hash =

@@ -72,7 +72,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   const dhbEstimate = isUsdPriced ? dhbForUsd(Number(price || 0), dhbUsd) : Number(price || 0);
   const formattedPrice = isUsdPriced
     ? `${formatAmount(price, 2)} ${settlementCurrency}`
-    : `${formatAmount(price)} DHB`;
+    : t("subscriptions.tokenPrice", { amount: formatAmount(price) });
   const published = isPlanPublished(plan);
   // 999 is what lifetime plans were stored as before the contract's 0–12 range
   // was respected. Buying one reverts, so it is surfaced rather than hidden.

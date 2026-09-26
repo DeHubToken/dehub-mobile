@@ -75,9 +75,12 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
     }
     // Standalone tip message (msgType === 'tip') — centred system pill
     if (last.msgType === "tip") {
+      const sym = last.tipSymbol && last.tipSymbol !== "DHB" ? last.tipSymbol : null;
       const amt = last.tipAmount
-        ? `${Number(last.tipAmount).toLocaleString()} ${last.tipSymbol || "DHB"}`
-        : "DHB";
+        ? sym
+          ? `${Number(last.tipAmount).toLocaleString()} ${sym}`
+          : t("dm.tokenAmount", { amount: Number(last.tipAmount).toLocaleString() })
+        : sym || t("dm.tokensUnit");
       return {
         previewText: isMine ? t("dm.youTipped", { amount: amt }) : t("dm.tipped", { amount: amt }),
         previewIcon: "diamond" as const,
@@ -85,7 +88,9 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
     }
     // Tipped message (regular content with voluntary tip attached)
     if (last.tipAmount && last.tipAmount > 0) {
-      const amt = `${Number(last.tipAmount).toLocaleString()} ${last.tipSymbol || "DHB"}`;
+      const amt = last.tipSymbol && last.tipSymbol !== "DHB"
+        ? `${Number(last.tipAmount).toLocaleString()} ${last.tipSymbol}`
+        : t("dm.tokenAmount", { amount: Number(last.tipAmount).toLocaleString() });
       const contentPreview = last.content?.replace(/\n/g, " ")?.trim();
       const msgLabel = last.msgType === "gif" ? "GIF" : last.msgType === "media" ? t("dm.photo") : contentPreview || t("dm.message");
       return {

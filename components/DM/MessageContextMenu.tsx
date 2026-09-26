@@ -152,10 +152,15 @@ const FloatingMessage: React.FC<{
   }, [message]);
 
   if (isStandaloneTip) {
+    const tipSym = message.tipSymbol && message.tipSymbol !== "DHB" ? message.tipSymbol : null;
     const amountLabel = message.tipAmount
-      ? `${Number(message.tipAmount).toLocaleString()} ${message.tipSymbol || "DHB"}`
-      : "DHB";
-    const label = isMine ? `You tipped ${amountLabel}` : `Tipped you ${amountLabel}`;
+      ? tipSym
+        ? `${Number(message.tipAmount).toLocaleString()} ${tipSym}`
+        : t("dm.tokenAmount", { amount: Number(message.tipAmount).toLocaleString() })
+      : tipSym || t("dm.tokensUnit");
+    const label = isMine
+      ? t("dm.youTipped", { amount: amountLabel })
+      : t("dm.tippedYouAmount", { amount: amountLabel });
     return (
       <View className="items-center py-2 px-4">
         <View className="flex-row items-center bg-theme-neutrals-800/60 rounded-full px-3 py-1.5 gap-1.5">

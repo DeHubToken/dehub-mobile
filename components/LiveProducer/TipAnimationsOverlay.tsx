@@ -253,7 +253,7 @@ const SpartansEffect = memo(({ item }: { item: TipAnimationItem }) => {
 /** The banner under the shield wall. Split out so the row itself stays static. */
 const SpartansPill = memo(({ amount }: { amount: number }) => {
   const { t } = useTranslation();
-  return <Pill text={t("liveGift.tier.spartans", "Spartans Army")} extra={`${amount.toLocaleString()} DHB`} />;
+  return <Pill text={t("liveGift.tier.spartans", "Spartans Army")} extra={t("liveGift.tokenAmount", { amount: amount.toLocaleString() })} />;
 });
 
 const Shield = memo(({ index }: { index: number }) => {
@@ -428,7 +428,7 @@ const Caption = memo(({ item }: { item: TipAnimationItem }) => {
         </Text>
         <Text className="text-white/70 text-[11px]">
           {who}
-          {item.amount.toLocaleString()} DHB
+          {t("liveGift.tokenAmount", { amount: item.amount.toLocaleString() })}
         </Text>
         {item.message ? (
           <Text className="text-white/80 text-[11px] mt-0.5" numberOfLines={2}>
