@@ -96,7 +96,7 @@ ExpoSplashScreen.preventAutoHideAsync().catch(() => {
 const FONT_WAIT_MS = 300;
 
 export default function App() {
-  const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
+  const { hasInternet, isReady: networkReady, checkConnection } = useNetworkStatus();
 
   // Exo is the web app's global typeface (dehubweb/src/index.css:46). Builds
   // from here on embed the TTFs natively (android/app/src/main/assets/fonts
@@ -172,7 +172,7 @@ export default function App() {
   // immediately and does its boot work hidden behind the preloader instead of
   // serialised ahead of it.
   const staged =
-    fontsSettled && languageSettled && hasInternet !== null && isConnected !== null;
+    fontsSettled && languageSettled && networkReady;
 
   return (
     <AppThemeProvider>
@@ -234,7 +234,7 @@ export default function App() {
                 useNetworkStatus debounces the drop; this covers the app while
                 it lasts and gets out of the way the moment it is over.
                 Strictly `false`, never falsy: `null` is "NetInfo has not
-                answered yet", and the preloader is covering that window. */}
+                answered yet", which must not block the app indefinitely. */}
             {hasInternet === false && (
               <View style={StyleSheet.absoluteFill} pointerEvents="auto">
                 <NoInternetScreen onRetry={checkConnection} />
