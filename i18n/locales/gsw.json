@@ -4968,6 +4968,7 @@
     "tokensAndStocks": "Token & Aktie"
   },
   "feedCard": {
+    "reactionTip": "Heb dr Gfallt-mr-Chnopf druckt für meh Reaktione",
     "reactionFailed": "D Reaktion het nöd chöne aktualisiert werde",
     "saveFailed": "Speichere fehlgschlage",
     "linkCopied": "Biitragslink kopiert",

@@ -4942,6 +4942,7 @@
     "tokensAndStocks": "Tokeny a akcie"
   },
   "feedCard": {
+    "reactionTip": "Pro další reakce podržte tlačítko To se mi líbí",
     "reactionFailed": "Reakci se nepodařilo aktualizovat",
     "saveFailed": "Uložení se nezdařilo",
     "linkCopied": "Odkaz na příspěvek zkopírován",

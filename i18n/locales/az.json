@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Tokenlər və səhmlər"
   },
   "feedCard": {
+    "reactionTip": "Daha çox reaksiya üçün bəyən düyməsini basıb saxlayın",
     "reactionFailed": "Reaksiya yenilənə bilmədi",
     "saveFailed": "Saxlanıla bilmədi",
     "linkCopied": "Paylaşım linki kopyalandı",

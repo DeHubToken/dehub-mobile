@@ -4920,6 +4920,7 @@
     "tokensAndStocks": "Tokens & stocks"
   },
   "feedCard": {
+    "reactionTip": "Press and hold the like button make you see more reactions",
     "reactionFailed": "We no fit update di reaction",
     "saveFailed": "We no fit save am",
     "linkCopied": "Post link don copy",

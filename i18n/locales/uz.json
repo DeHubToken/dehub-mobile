@@ -4956,6 +4956,7 @@
     "tokensAndStocks": "Tokenlar va aktsiyalar"
   },
   "feedCard": {
+    "reactionTip": "Ko‘proq reaksiyalar uchun yoqdi tugmasini bosib turing",
     "reactionFailed": "Reaksiyani yangilab bo'lmadi",
     "saveFailed": "Saqlab bo'lmadi",
     "linkCopied": "Post havolasi nusxalandi",

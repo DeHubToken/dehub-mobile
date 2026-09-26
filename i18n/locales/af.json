@@ -4971,6 +4971,7 @@
     "tokensAndStocks": "Tokens & aandele"
   },
   "feedCard": {
+    "reactionTip": "Hou die hou-van-knoppie in vir meer reaksies",
     "reactionFailed": "Kon nie die reaksie opdateer nie",
     "saveFailed": "Kon nie stoor nie",
     "linkCopied": "Plasingskakel na knipbord gekopieer",

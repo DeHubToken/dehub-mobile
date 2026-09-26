@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Žetonai ir akcijos"
   },
   "feedCard": {
+    "reactionTip": "Daugiau reakcijų – palaikykite paspaudę mygtuką „Patinka“",
     "reactionFailed": "Nepavyko atnaujinti reakcijos",
     "saveFailed": "Nepavyko išsaugoti",
     "linkCopied": "Įrašo nuoroda nukopijuota",

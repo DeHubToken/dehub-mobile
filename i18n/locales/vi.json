@@ -4951,6 +4951,7 @@
     "tokensAndStocks": "Token & cổ phiếu"
   },
   "feedCard": {
+    "reactionTip": "Nhấn giữ nút thích để có thêm cảm xúc",
     "reactionFailed": "Không cập nhật được biểu cảm",
     "saveFailed": "Không lưu được",
     "linkCopied": "Đã sao chép liên kết bài đăng",

@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "代币和股票"
   },
   "feedCard": {
+    "reactionTip": "长按点赞按钮，就会选更多表情",
     "reactionFailed": "无法更新表态",
     "saveFailed": "保存失败",
     "linkCopied": "帖子链接已复制",

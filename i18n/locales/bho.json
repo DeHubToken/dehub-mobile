@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "टोकन और स्टॉक"
   },
   "feedCard": {
+    "reactionTip": "अउरी रिएक्शन खातिर लाइक बटन दबा के रखीं",
     "reactionFailed": "प्रतिक्रिया अपडेट ना हो सकल",
     "saveFailed": "सेव ना हो सकल",
     "linkCopied": "पोस्ट लिंक कॉपी हो गइल",

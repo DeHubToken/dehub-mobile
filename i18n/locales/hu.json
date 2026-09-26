@@ -4942,6 +4942,7 @@
     "tokensAndStocks": "Tokenek és részvények"
   },
   "feedCard": {
+    "reactionTip": "További reakciókért tartsd lenyomva a Tetszik gombot",
     "reactionFailed": "A reakciót nem sikerült frissíteni",
     "saveFailed": "A mentés nem sikerült",
     "linkCopied": "A bejegyzés linkje kimásolva",

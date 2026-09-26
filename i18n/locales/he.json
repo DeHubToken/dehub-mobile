@@ -4942,6 +4942,7 @@
     "tokensAndStocks": "אסימונים ומניות"
   },
   "feedCard": {
+    "reactionTip": "לחצו לחיצה ארוכה על כפתור הלייק לתגובות נוספות",
     "reactionFailed": "עדכון התגובה נכשל",
     "saveFailed": "השמירה נכשלה",
     "linkCopied": "קישור הפוסט הועתק",
