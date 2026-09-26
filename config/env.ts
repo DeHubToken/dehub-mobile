@@ -2,11 +2,13 @@ import {
   REOWN_PROJECT_ID,
   API_URL,
   APP_ENV,
+  ALCHEMY_API_KEY,
   WEB3AUTH_CLIENT_ID,
   WEB3AUTH_APPLE_VERIFIER,
   CDN_BASE_URL,
   APP_ORIGIN,
   WEBSOCKET_URL,
+  LIVEPEER_API_KEY,
   DEBUG,
   AUTH_PROVIDER,
   TENOR_API_KEY,
@@ -25,6 +27,7 @@ const env = {
   // API_URL: "http://192.168.1.233:9015/api",
   // API_URL: "https://api.dehub.io/api",
   APP_ENV: APP_ENV || "development",
+  ALCHEMY_API_KEY: ALCHEMY_API_KEY,
   WEB3AUTH_CLIENT_ID: WEB3AUTH_CLIENT_ID,
   // Name of the custom JWT verifier that validates Apple's identity tokens.
   // Unset means the Apple button doesn't render.
@@ -34,6 +37,7 @@ const env = {
   WEBSOCKET_URL:
     WEBSOCKET_URL || API_URL?.replace(/\/$/, "") || "https://api.dehub.io",
   // WEBSOCKET_URL: "http://192.168.1.233:9015",
+  LIVEPEER_API_KEY: LIVEPEER_API_KEY,
   DEBUG: DEBUG,
   AUTH_PROVIDER: AUTH_PROVIDER,
   TENOR_API_KEY: TENOR_API_KEY,
