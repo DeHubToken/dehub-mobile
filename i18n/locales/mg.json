@@ -6740,6 +6740,13 @@
     "doneListHint": "Mivarotra ho azy ireo rehefa tonga amin'ny vidiny ny tsena. Miresaka momba ny fifanakalozana izy io.",
     "openExchange": "Open Exchange",
     "done": "DONE",
-    "back": "_Mihemotra"
+    "back": "_Mihemotra",
+    "aiLabel": "Angataho ny AI hanangana ny varotrao",
+    "aiPlaceholder": "Miezaha \"mivarotra ny antsasaky ny DHB amin'ny 3 cents\"",
+    "aiSend": "Alefaso any amin'ny AI",
+    "aiHint": "Teneno izay tianao amin'ny teny tsotra. Fenoy ny zavatra rehetra ao amin'ny AI, tsindrio fotsiny ny Confirm.",
+    "aiBuyOnly": "Mora ny varotra mivarotra DHB. Mba hividianana ny DHB, OPEN Exchange.",
+    "aiNeedAmount": "Ohatrinona ny mety ataharanao amin'ny varotra?",
+    "aiFailed": "Tsy afaka mandamina azy ireo ihany koa izy. Miezaha hilaza izany amin'ny fomba hafa, na fenoy eto ambany."
   }
 }

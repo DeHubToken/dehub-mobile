@@ -6641,6 +6641,13 @@
     "doneListHint": "Automatski se prodaje kad tržište dosegne vašu cijenu. Upravljajte njime na burzi.",
     "openExchange": "Otvori Exchange",
     "done": "Gotovo",
-    "back": "Natrag"
+    "back": "Natrag",
+    "aiLabel": "Zamolite umjetnu inteligenciju da uspostavi vašu trgovinu",
+    "aiPlaceholder": "Pokušajte \"prodati pola DHB-a za 3 centa\"",
+    "aiSend": "Pošalji umjetnoj inteligenciji",
+    "aiHint": "Jednostavnim riječima recite što želite. AI popunjava sve, samo pritisnete Potvrdi.",
+    "aiBuyOnly": "Easy Trade prodaje DHB. Da biste kupili DHB, otvorite Exchange.",
+    "aiNeedAmount": "Koliko DHB-a želite prodati?",
+    "aiFailed": "AI to nije mogao postaviti. Pokušaj to izgovoriti na drugi način ili ga ispuni u nastavku."
   }
 }

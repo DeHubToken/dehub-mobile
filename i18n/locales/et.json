@@ -6641,6 +6641,13 @@
     "doneListHint": "See müüb automaatselt, kui turg jõuab teie hinnani. Hallake seda Exchange 'is.",
     "openExchange": "Avatud vahetus",
     "done": "Valmis",
-    "back": "Tagasi"
+    "back": "Tagasi",
+    "aiLabel": "Palu tehisintellektil oma äri seadistada",
+    "aiPlaceholder": "Proovi \"müü pool oma DHB-d 3 sendiga\"",
+    "aiSend": "Saada tehisintellekti",
+    "aiHint": "Öelge, mida tahate, lihtsate sõnadega. Tehisintellekt täidab kõik, vajuta lihtsalt nuppu Kinnita.",
+    "aiBuyOnly": "Easy Trade müüb DHB-d. DHB ostmiseks avage Exchange.",
+    "aiNeedAmount": "Kui palju DHB-d soovite müüa?",
+    "aiFailed": "AI ei saanud seda seadistada. Proovi seda teisiti öelda või täida see allpool."
   }
 }

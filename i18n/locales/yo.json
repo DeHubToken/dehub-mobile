@@ -6642,6 +6642,13 @@
     "doneListHint": "Ó máa ń tà á lọ́nà àdáni nígbà tí ọjà bá dé iye rẹ. Ṣàkóso rẹ̀ lórí pàṣípààrọ̀ náà.",
     "openExchange": "Ṣí pàṣípààrọ̀",
     "done": "Ṣe",
-    "back": "Pada"
+    "back": "Pada",
+    "aiLabel": "Beere AI lati ṣeto iṣowo rẹ.",
+    "aiPlaceholder": "Gbìyànjú láti \"ta ìdajì DHB mi ní owó dínárì 3\"",
+    "aiSend": "Fi ranṣẹ si AI",
+    "aiHint": "Sọ ohun tí o fẹ́ ní àwọn ọ̀rọ̀ tí ó rọrùn. AI kún ohun gbogbo, o kàn tẹ Confirm.",
+    "aiBuyOnly": "Ọjà tí ó rọrùn máa ń ta DHB. Láti ra DHB, ṣí pàṣípààrọ̀.",
+    "aiNeedAmount": "Èló ni DHB tí o fẹ́ ta?",
+    "aiFailed": "AI kò lè ṣètò ìyẹn. Gbìyànjú láti sọ ọ́ lọ́nà mìíràn, tàbí kí o kún un ní ìsàlẹ̀."
   }
 }

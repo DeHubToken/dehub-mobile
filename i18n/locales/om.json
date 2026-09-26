@@ -6691,6 +6691,13 @@
     "doneListHint": "Yeroo gabaan gatii keessan gahu ofumaan gurgurama. Jijjiirraa irratti bulchi.",
     "openExchange": "Jijjiirraa Banaa",
     "done": "Raawwatame",
-    "back": "Dugda"
+    "back": "Dugda",
+    "aiLabel": "AI daldala kee akka diriirsu gaafadhu",
+    "aiPlaceholder": "\"DHB koo walakkaa saantima 3n gurguraa\" yaalaa.",
+    "aiSend": "Gara AItti ergaa",
+    "aiHint": "Waan barbaadde jechoota ifa ta'een dubbadhu. AI waan hunda guuta, ati Confirm qofa dhiibdee.",
+    "aiBuyOnly": "Daldalli salphaan DHB gurgura. DHB bitachuuf Exchange banaa.",
+    "aiNeedAmount": "DHB meeqa gurguruu barbaadda?",
+    "aiFailed": "AI sana dhaabuu hin dandeenye. Karaa biraatiin jechuu yaali, ykn armaan gaditti guuti."
   }
 }

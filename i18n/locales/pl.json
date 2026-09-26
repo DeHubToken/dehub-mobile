@@ -6709,6 +6709,13 @@
     "doneListHint": "Sprzedaje się automatycznie, gdy rynek osiągnie Twoją cenę. Zarządzaj nim na Giełdzie.",
     "openExchange": "Otwórz Exchange",
     "done": "Gotowe",
-    "back": "Wstecz"
+    "back": "Wstecz",
+    "aiLabel": "Poproś sztuczną inteligencję o skonfigurowanie transakcji",
+    "aiPlaceholder": "Spróbuj \"sprzedaj połowę mojego DHB za 3 centy\"",
+    "aiSend": "Wyślij do sztucznej inteligencji",
+    "aiHint": "Mów, co chcesz, prostymi słowami. AI wypełnia wszystko, wystarczy nacisnąć Potwierdź.",
+    "aiBuyOnly": "Easy Trade sprzedaje DHB. Aby kupić DHB, otwórz Exchange.",
+    "aiNeedAmount": "Ile DHB chcesz sprzedać?",
+    "aiFailed": "Sztuczna inteligencja nie mogła tego skonfigurować. Spróbuj powiedzieć to w inny sposób lub wypełnij poniższy formularz."
   }
 }

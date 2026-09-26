@@ -6641,6 +6641,13 @@
     "doneListHint": "Den selges automatisk når markedet når prisen din. Administrer den på børsen.",
     "openExchange": "Åpen børs",
     "done": "Ferdig",
-    "back": "Tilbake"
+    "back": "Tilbake",
+    "aiLabel": "Be AI om å sette opp handelen din",
+    "aiPlaceholder": "Prøv å «selg halvparten av DHB-en min for 3 cent».",
+    "aiSend": "Send til AI",
+    "aiHint": "Si hva du vil med enkle ord. AI fyller ut alt, du trykker bare på Bekreft.",
+    "aiBuyOnly": "Enkel handel selger DHB. For å kjøpe DHB, åpne Børsen.",
+    "aiNeedAmount": "Hvor mye DHB ønsker du å selge?",
+    "aiFailed": "AI kunne ikke sette opp det. Prøv å si det på en annen måte, eller fyll det ut nedenfor."
   }
 }

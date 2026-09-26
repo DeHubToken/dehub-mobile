@@ -6766,6 +6766,13 @@
     "doneListHint": "Dit verkoop outomaties wanneer die mark jou prys bereik. Beheer het op het uitwisselen.",
     "openExchange": "Open Exchange",
     "done": "Klaar",
-    "back": "Terug"
+    "back": "Terug",
+    "aiLabel": "Vra AI om jou handel op te stel",
+    "aiPlaceholder": "Probeer \"verkoop die helfte van my DHB teen 3 sent\"",
+    "aiSend": "Stuur na AI",
+    "aiHint": "Sê wat jy wil in eenvoudige woorde. AI vul alles in, jy druk net Bevestig.",
+    "aiBuyOnly": "Maklik handel verkoop DHB. Om DHB te koop, oop ruil.",
+    "aiNeedAmount": "Hoeveel DStv wil jy verkoop?",
+    "aiFailed": "Ai kon dit nie regkry nie. Probeer dit op 'n ander manier sê, of vul dit hieronder in."
   }
 }

@@ -6642,6 +6642,13 @@
     "doneListHint": "Inauzwa kiotomatiki wakati soko linapofikia bei yako. Simamia kwenye Exchange.",
     "openExchange": "Open Exchange",
     "done": "Imekamilika",
-    "back": "Nyuma"
+    "back": "Nyuma",
+    "aiLabel": "Omba AI ianzishe biashara yako",
+    "aiPlaceholder": "Jaribu \"kuuza nusu ya DHB yangu kwa senti 3\"",
+    "aiSend": "Tuma kwa AI",
+    "aiHint": "Sema unachotaka kwa maneno wazi. AI inajaza kila kitu, unabonyeza tu Thibitisha.",
+    "aiBuyOnly": "Biashara rahisi inauza DHB. Ili kununua DHB, fungua Exchange.",
+    "aiNeedAmount": "Unataka kuuza DHB kiasi gani?",
+    "aiFailed": "AI haikuweza kusanidi hiyo. Jaribu kuisema kwa njia nyingine, au ijaze hapa chini."
   }
 }

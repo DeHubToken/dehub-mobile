@@ -17,6 +17,8 @@ import { DHB_BASE, POOL_CHAIN_INFO } from "../../libs/dex-pools";
 import { mintSell, quoteSell, type SellInput } from "../../libs/dex-v4";
 import { withWalletHeader } from "../../libs/supabase-wallet-client";
 import { supabase } from "../../services/supabase";
+import { parseSharedMarket } from "../../libs/dex-live-market";
+import { readTradeIntent } from "../../libs/dex-trade-intent";
 
 const USDC = POOL_CHAIN_INFO.base.usdc;
 const ERC20 = ["function balanceOf(address) view returns (uint256)"];
@@ -26,6 +28,10 @@ const pendingKey = (wallet: string) => `dex-pending:${wallet.toLowerCase()}`;
 
 type Step = "choose" | "amount" | "price" | "review" | "done";
 type Route = "instant" | "list";
+type Mode = "market" | "custom";
+/** Only a price above what the market pays right now needs to wait on the book. */
+const routeFor = (mode: Mode, price: number, rate: number | null): Route => mode === "custom" && rate != null && price > rate ? "list" : "instant";
+const rateOf = (quote: SwapCall, units: bigint) => Number(ethers.utils.formatUnits(quote.amountOut.toString(), 6)) / Number(ethers.utils.formatUnits(units.toString(), 18));
 
 const decimal = (value: string) => value.replace(",", ".").replace(/[^\d.]/g, "");
 const toUnits = (value: string) => {
@@ -34,7 +40,7 @@ const toUnits = (value: string) => {
 };
 const units18 = (value: bigint) => ethers.utils.formatUnits(value.toString(), 18);
 
-/** Wallet "Trade": pick Easy trade or the full Exchange. Easy trade sells DHB on Base in three
+/** Wallet "Trade": pick Easy trade or the full Exchange, or just tell the AI what to do. Easy trade sells DHB on Base in three
  *  steps. A market or at/below-market price sells instantly; a price above market is listed as a
  *  single-sided position on the exchange's own book. */
 export default function TradeSheet({ visible, onClose, address }: { visible: boolean; onClose: () => void; address: string }) {
@@ -45,7 +51,7 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
   const [step, setStep] = useState<Step>("choose");
   const [balance, setBalance] = useState<bigint>(0n);
   const [amount, setAmount] = useState("");
-  const [mode, setMode] = useState<"market" | "custom">("market");
+  const [mode, setMode] = useState<Mode>("market");
   const [price, setPrice] = useState("");
   const [quote, setQuote] = useState<SwapCall | null>(null);
   const [quotedAt, setQuotedAt] = useState(0);
@@ -54,12 +60,15 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
   const [busy, setBusy] = useState(false);
   const [stage, setStage] = useState("");
   const [error, setError] = useState("");
+  const [ask, setAsk] = useState("");
+  const [asking, setAsking] = useState(false);
+  const [aiReply, setAiReply] = useState("");
   const [result, setResult] = useState<{ route: Route; amount: string; usdc: number; price: number } | null>(null);
 
   useEffect(() => {
     if (!visible) {
       setStep("choose"); setAmount(""); setMode("market"); setPrice(""); setQuote(null);
-      setNotice(""); setError(""); setStage(""); setResult(null);
+      setNotice(""); setError(""); setStage(""); setResult(null); setAsk(""); setAiReply("");
       return;
     }
     let live = true;
@@ -76,8 +85,8 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
   const marketRate = quote && Number(amount) > 0 ? quotedUsdc / Number(amount) : null;
   const myPrice = Number(price);
 
-  async function fetchQuote() {
-    const next = await quoteSwap({ chainId: ChainId.BASE_MAINNET, tokenIn: DHB_BASE, tokenOut: USDC, amountIn: amountUnits!, recipient: address });
+  async function fetchQuote(units = amountUnits!) {
+    const next = await quoteSwap({ chainId: ChainId.BASE_MAINNET, tokenIn: DHB_BASE, tokenOut: USDC, amountIn: units, recipient: address });
     setQuote(next); setQuotedAt(Date.now());
     return next;
   }
@@ -92,9 +101,51 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
   function toReview() {
     setError(""); setNotice("");
     if (mode === "custom" && !(myPrice > 0)) { setError(t("easyTrade.enterPrice")); return; }
-    // Only a price above what the market pays right now needs to wait on the book.
-    setRoute(mode === "custom" && marketRate != null && myPrice > marketRate ? "list" : "instant");
+    setRoute(routeFor(mode, myPrice, marketRate));
     setStep("review");
+  }
+
+  /** Read the request and fill in as much of the sheet as it covers; a complete one lands on
+   *  the review, so the only thing left is Confirm. */
+  async function askAi() {
+    const text = ask.trim();
+    if (!text || asking || busy) return;
+    if (!address) { setError(t("dex.connectWallet")); return; }
+    setAsking(true); setError(""); setNotice(""); setAiReply("");
+    try {
+      const intent = await readTradeIntent(text);
+      if (intent.side === "buy") { setAiReply(t("easyTrade.aiBuyOnly")); return; }
+      const amountValue = Number(intent.amount);
+      let units: bigint | null = null;
+      if (intent.amountUnit === "dhb" && amountValue > 0) units = toUnits(intent.amount);
+      else if (intent.amountUnit === "percent" && amountValue > 0) units = balance * BigInt(Math.round(Math.min(amountValue, 100) * 100)) / 10000n;
+      else if (intent.amountUnit === "usd" && amountValue > 0) {
+        let per = intent.priceType === "fixed" ? Number(intent.price) : 0;
+        if (!(per > 0)) {
+          const { data } = await supabase.rpc("get_dex_market");
+          per = parseSharedMarket(data).usdPrice ?? 0;
+        }
+        if (per > 0) units = toUnits((amountValue / per).toFixed(6));
+      }
+      setAiReply(intent.reply);
+      if (!units || units <= 0n) { setStep("amount"); if (!intent.reply) setAiReply(t("easyTrade.aiNeedAmount")); return; }
+      setAmount(units18(units));
+      if (units > balance) { setStep("amount"); return; }
+
+      const live = await fetchQuote(units);
+      const rate = rateOf(live, units);
+      if (intent.priceType === "none") { setMode("market"); setStep("price"); return; }
+      const nextMode: Mode = intent.priceType === "market" ? "market" : "custom";
+      const nextPrice = intent.priceType === "fixed" ? Number(intent.price)
+        : intent.priceType === "relative" ? rate * (1 + Number(intent.relativePercent || 0) / 100) : 0;
+      if (nextMode === "custom" && !(nextPrice > 0)) { setMode("custom"); setStep("price"); return; }
+      setMode(nextMode);
+      setPrice(nextMode === "custom" ? String(Number(nextPrice.toPrecision(6))) : "");
+      setRoute(routeFor(nextMode, nextPrice, rate));
+      setStep("review");
+    } catch (e) {
+      setError(dexActionError(e, t("easyTrade.aiFailed")));
+    } finally { setAsking(false); }
   }
 
   async function sellInstantly() {
@@ -159,6 +210,7 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
   const stepIndex = step === "amount" ? 1 : step === "price" ? 2 : step === "review" ? 3 : 0;
   const row = "px-4 py-3.5 rounded-2xl bg-theme-neutrals-800/60 border border-white/10";
   const selected = "border-white/60 bg-white/10";
+  const showAsk = step === "choose" || step === "amount" || step === "price";
 
   const Primary = ({ label, onPress, disabled }: { label: string; onPress: () => void; disabled?: boolean }) => (
     <TouchableOpacity activeOpacity={0.8} disabled={disabled || busy} onPress={onPress}
@@ -181,6 +233,28 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
           {stepIndex > 0 && <Text className="text-theme-neutrals-400 text-xs">{t("easyTrade.stepOf", { step: stepIndex, total: 3 })}</Text>}
         </View>
 
+        {showAsk && (
+          <View className="mb-3">
+            <View className="flex-row items-center rounded-2xl border border-white/15 bg-white/5 pl-3 pr-1.5 py-1.5">
+              <Icon name="Sparkles" size={16} color="#d4d4d8" />
+              <TextInput value={ask} onChangeText={setAsk} editable={!asking} maxLength={300} returnKeyType="send"
+                onSubmitEditing={() => void askAi()} placeholder={t("easyTrade.aiPlaceholder")} placeholderTextColor="#71717a"
+                accessibilityLabel={t("easyTrade.aiLabel")} className="flex-1 px-2 py-2 text-sm text-white" />
+              <TouchableOpacity onPress={() => void askAi()} disabled={!ask.trim() || asking} accessibilityLabel={t("easyTrade.aiSend")}
+                className={`w-9 h-9 rounded-xl bg-white items-center justify-center ${!ask.trim() || asking ? "opacity-30" : ""}`}>
+                {asking ? <ActivityIndicator color="#000" size="small" /> : <Icon name="ArrowUp" size={16} color="#000000" />}
+              </TouchableOpacity>
+            </View>
+            {!aiReply && step === "choose" && <Text className="text-xs text-theme-neutrals-400 mt-2 px-1">{t("easyTrade.aiHint")}</Text>}
+          </View>
+        )}
+        {!!aiReply && step !== "done" && (
+          <View className="flex-row rounded-xl bg-white/5 border border-white/10 px-3 py-2.5 mb-3">
+            <Icon name="Sparkles" size={14} color="#d4d4d8" />
+            <Text className="flex-1 text-sm text-zinc-200 ml-2 leading-5">{aiReply}</Text>
+          </View>
+        )}
+
         {step === "choose" && (
           <View>
             <TouchableOpacity activeOpacity={0.7} onPress={() => setStep("amount")} className={`${row} flex-row items-center mb-2`}>
@@ -199,7 +273,7 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
         {step === "amount" && (
           <View>
             <View className="flex-row items-center rounded-xl border border-white/10 bg-white/5">
-              <TextInput autoFocus keyboardType="decimal-pad" placeholder="0" placeholderTextColor="#52525b" value={amount}
+              <TextInput keyboardType="decimal-pad" placeholder="0" placeholderTextColor="#52525b" value={amount}
                 accessibilityLabel={t("easyTrade.sellTitle")}
                 onChangeText={(v) => { setAmount(decimal(v)); setQuote(null); }}
                 className="flex-1 px-4 py-4 text-3xl font-semibold text-white" />

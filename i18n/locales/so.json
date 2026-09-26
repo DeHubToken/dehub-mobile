@@ -6641,6 +6641,13 @@
     "doneListHint": "Waxay si otomaatig ah u iibisaa marka suuqa uu gaaro qiimahaaga. Ku maamul sarrifka.",
     "openExchange": "Isweydaarsiga Furan",
     "done": "Waxaa la sameeyay",
-    "back": "Dib u noqoshada"
+    "back": "Dib u noqoshada",
+    "aiLabel": "Weydii AI inay dejiso ganacsigaaga",
+    "aiPlaceholder": "Isku day \"iibso badhkayga DHB 3 senti\"",
+    "aiSend": "U dir AI",
+    "aiHint": "U sheeg waxa aad rabto ereyo cad. AI waxay buuxisaa wax kasta oo gudaha ah, kaliya riix Xaqiijinta.",
+    "aiBuyOnly": "Ganacsi fudud ayaa iibiya DHB. Si aad u iibsato DHB, Open Exchange.",
+    "aiNeedAmount": "Immisa DHB ayaad rabtaa inaad iibiso?",
+    "aiFailed": "Aaaaah can 't set that. Isku day inaad si kale u sheegto, ama hoos ku buuxi."
   }
 }
