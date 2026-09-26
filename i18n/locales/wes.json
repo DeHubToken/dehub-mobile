@@ -6638,6 +6638,13 @@
     "doneListHint": "E go sell hisself when market reach your price. Manage am for Exchange.",
     "openExchange": "Open Exchange",
     "done": "Done",
-    "back": "Back"
+    "back": "Back",
+    "aiLabel": "Ask AI make e set your trade",
+    "aiPlaceholder": "Try \"sell half my DHB for 3 cents\"",
+    "aiSend": "Send to AI",
+    "aiHint": "Talk weti you want for simple word. AI go fill all thing, you go just press Confirm.",
+    "aiBuyOnly": "Easy trade na for sell DHB. For buy DHB, open Exchange.",
+    "aiNeedAmount": "How much DHB you want sell?",
+    "aiFailed": "AI no fit set am. Try talk am another way, or fill am for down."
   }
 }

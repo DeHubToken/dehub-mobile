@@ -6672,6 +6672,13 @@
     "doneListHint": "Kikinmanta qhatukun qhatu chaninniykiman chayaqtin. Chayta Intercambio nisqapi kamachiy.",
     "openExchange": "Kichasqa Intercambio",
     "done": "Ñam",
-    "back": "Qipaman"
+    "back": "Qipaman",
+    "aiLabel": "AI nisqaman mañakuy qhatuyniyki churananpaq",
+    "aiPlaceholder": "\"3 centavoswan kuskan DHB-yta rantikuy\" kallpanchakuy.",
+    "aiSend": "AI nisqaman apachiy",
+    "aiHint": "Munasqaykita sut’i simikunawan niy. AI tukuy imata hunt'achin, Confirmar ñit'iylla.",
+    "aiBuyOnly": "Facil comercio rantikun DHB. DHB rantiyta munaspaqa, Exchange nisqa kichay.",
+    "aiNeedAmount": "¿Hayka DHBtataq rantikuyta munanki?",
+    "aiFailed": "AIqa manam chayta churayta atirqachu. Huk hinata niyta kallpachakuy, otaq uraypi hunt’achiy."
   }
 }

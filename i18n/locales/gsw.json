@@ -6671,6 +6671,13 @@
     "doneListHint": "Es verchouft sich automatisch, wenn de Markt din Priis erreicht. Verwalte es im Exchange.",
     "openExchange": "Exchange öppne",
     "done": "Fertig",
-    "back": "Zurück"
+    "back": "Zurück",
+    "aiLabel": "Frag d'AI, din Trade ufzsetze",
+    "aiPlaceholder": "Probier \"verchauf die Helfti vo minere DHB für 3 Rappe\"",
+    "aiSend": "Schick's an d'AI",
+    "aiHint": "Sag, was du wotsch, mit einfache Wort. D'AI füllt alles us, du drucksch nume no \"Bestätige\".",
+    "aiBuyOnly": "Eifachi Trades verchaufed DHB. Zum DHB choufe, öffne Exchange.",
+    "aiNeedAmount": "Wie viel DHB wotsch verchoufe?",
+    "aiFailed": "D'AI hät's nöd chönne ufsetze. Probier's anders z'sage, oder füll's hie uus."
   }
 }

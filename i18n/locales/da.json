@@ -6645,6 +6645,13 @@
     "doneListHint": "Den sælges automatisk, når markedet når din pris. Administrer det på Exchange.",
     "openExchange": "Åbn Exchange",
     "done": "Færdig",
-    "back": "Tilbage"
+    "back": "Tilbage",
+    "aiLabel": "Bed AI om at konfigurere din handel",
+    "aiPlaceholder": "Prøv \"sælg halvdelen af min DHB til 3 cent\"",
+    "aiSend": "Send til AI",
+    "aiHint": "Sig, hvad du vil, med klare ord. AI udfylder alt, du skal bare trykke på Bekræft.",
+    "aiBuyOnly": "Easy Trade sælger DHB. Åbn Exchange for at købe DHB.",
+    "aiNeedAmount": "Hvor meget DHB vil du sælge?",
+    "aiFailed": "AI kunne ikke sætte det op. Prøv at sige det på en anden måde, eller udfyld det nedenfor."
   }
 }

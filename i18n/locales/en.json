@@ -6634,6 +6634,13 @@
     "doneListHint": "It sells automatically when the market reaches your price. Manage it on the Exchange.",
     "openExchange": "Open Exchange",
     "done": "Done",
-    "back": "Back"
+    "back": "Back",
+    "aiLabel": "Ask AI to set up your trade",
+    "aiPlaceholder": "Try \"sell half my DHB at 3 cents\"",
+    "aiSend": "Send to AI",
+    "aiHint": "Say what you want in plain words. AI fills everything in, you just press Confirm.",
+    "aiBuyOnly": "Easy trade sells DHB. To buy DHB, open Exchange.",
+    "aiNeedAmount": "How much DHB do you want to sell?",
+    "aiFailed": "AI could not set that up. Try saying it another way, or fill it in below."
   }
 }

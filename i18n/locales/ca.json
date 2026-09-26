@@ -6641,6 +6641,13 @@
     "doneListHint": "Es ven automàticament quan el mercat arriba al teu preu. Gestiona'l a l'Intercanvi.",
     "openExchange": "Intercanvi obert",
     "done": "Fet",
-    "back": "Enrere"
+    "back": "Enrere",
+    "aiLabel": "Demana a la IA que configuri la teva operació",
+    "aiPlaceholder": "Prova \"vendre la meitat del meu DHB a 3 cèntims\"",
+    "aiSend": "Envia a la IA",
+    "aiHint": "Digues el que vulguis en paraules clares. La IA ho omple tot, només has de prémer Confirmar.",
+    "aiBuyOnly": "Easy trade ven DHB. Per comprar DHB, obre Exchange.",
+    "aiNeedAmount": "Quant DHB vols vendre?",
+    "aiFailed": "La IA no ha pogut configurar-ho. Prova de dir-ho d'una altra manera, o omple-ho a continuació."
   }
 }

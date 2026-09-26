@@ -6655,6 +6655,13 @@
     "doneListHint": "Se vinde automat atunci când piața ajunge la prețul tău. Gestionați-l pe Exchange.",
     "openExchange": "Open Exchange",
     "done": "Gata",
-    "back": "Înapoi"
+    "back": "Înapoi",
+    "aiLabel": "Cere-i IA să-ți configureze tranzacția",
+    "aiPlaceholder": "Încercați „vindeți jumătate din DHB la 3 cenți”",
+    "aiSend": "Trimite către AI",
+    "aiHint": "Spune ce vrei în cuvinte simple. AI completează totul, trebuie doar să apeși pe Confirmă.",
+    "aiBuyOnly": "Easy Trade vinde DHB. Pentru a cumpăra DHB, deschideți Exchange.",
+    "aiNeedAmount": "Cât DHB doriți să vindeți?",
+    "aiFailed": "AI nu a putut configura acest lucru. Încercați să o spuneți în alt mod sau completați-o mai jos."
   }
 }

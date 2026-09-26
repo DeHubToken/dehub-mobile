@@ -6645,6 +6645,13 @@
     "doneListHint": "Automatikus eladás, ha a piac eléri az általad beállított árat. Kezeld a Tőzsdén.",
     "openExchange": "Tőzsde megnyitása",
     "done": "Kész",
-    "back": "Vissza"
+    "back": "Vissza",
+    "aiLabel": "Kérd meg az AI-t, hogy állítsa be a kereskedésedet",
+    "aiPlaceholder": "Próbáld meg: \"add el a DHB-m felét 3 centért\"",
+    "aiSend": "Küldd el az AI-nak",
+    "aiHint": "Mondd el, mit szeretnél egyszerű szavakkal. Az AI mindent kitölt, neked csak a Megerősítés gombot kell megnyomnod.",
+    "aiBuyOnly": "Az Easy trade eladja a DHB-t. DHB vásárlásához nyisd meg a Tőzsdét.",
+    "aiNeedAmount": "Mennyi DHB-t szeretnél eladni?",
+    "aiFailed": "Az AI nem tudta beállítani. Próbáld meg másképp megfogalmazni, vagy töltsd ki lentebb."
   }
 }

@@ -6641,6 +6641,13 @@
     "doneListHint": "Se myy automaattisesti, kun markkinat saavuttavat hintasi. Hallinnoi sitä Exchange-palvelussa.",
     "openExchange": "Avoin vaihto",
     "done": "Valmis",
-    "back": "Takaisin"
+    "back": "Takaisin",
+    "aiLabel": "Pyydä tekoälyä määrittämään kauppasi",
+    "aiPlaceholder": "Kokeile \"myy puolet DHB: stäni 3 sentillä\"",
+    "aiSend": "Lähetä tekoälylle",
+    "aiHint": "Sano mitä haluat selkokielellä. Tekoäly täyttää kaiken, paina vain Vahvista.",
+    "aiBuyOnly": "Helppo kauppa myy DHB: tä. Jos haluat ostaa DHB: n, avaa Exchange.",
+    "aiNeedAmount": "Kuinka paljon DHB: tä haluat myydä?",
+    "aiFailed": "Tekoäly ei voinut määrittää sitä. Yritä sanoa se toisella tavalla tai täytä se alla."
   }
 }

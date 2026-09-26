@@ -6685,6 +6685,13 @@
     "doneListHint": "当市场达到您的价格时，它会自动出售。在交易所管理。",
     "openExchange": "打开交易所",
     "done": "完成",
-    "back": "返回"
+    "back": "返回",
+    "aiLabel": "让 AI 设置你的交易",
+    "aiPlaceholder": "试试“以 3 美分卖出我的 DHB 的一半”",
+    "aiSend": "发送给 AI",
+    "aiHint": "用通俗的语言说出你想要什么。AI 会填写所有内容，你只需按“确认”。",
+    "aiBuyOnly": "Easy trade 卖出 DHB。要购买 DHB，请打开 Exchange。",
+    "aiNeedAmount": "你想卖多少 DHB？",
+    "aiFailed": "AI 无法设置。试试换一种说法，或在下方填写。"
   }
 }

@@ -6641,6 +6641,13 @@
     "doneListHint": "Piyasa fiyatınıza ulaştığında otomatik olarak satılır. Borsada yönetin.",
     "openExchange": "Open Exchange",
     "done": "Bitti",
-    "back": "Geri"
+    "back": "Geri",
+    "aiLabel": "Yapay zekadan işleminizi ayarlamasını isteyin",
+    "aiPlaceholder": "\"DHB'min yarısını 3 sente satmayı\" deneyin",
+    "aiSend": "Yapay Zekaya Gönder",
+    "aiHint": "İstediğini sade kelimelerle söyle. Yapay zeka her şeyi doldurur, sadece Onayla'ya basarsınız.",
+    "aiBuyOnly": "Kolay ticaret DHB satar. DHB satın almak için Exchange'i açın.",
+    "aiNeedAmount": "Ne kadar DHB satmak istiyorsunuz?",
+    "aiFailed": "Yapay zeka bunu ayarlayamadı. Başka bir şekilde söylemeyi deneyin veya aşağıda doldurun."
   }
 }

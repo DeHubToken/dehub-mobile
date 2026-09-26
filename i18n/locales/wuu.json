@@ -6641,6 +6641,13 @@
     "doneListHint": "当市场达到您设定的价格时，它会自动售出。在交易所进行管理。",
     "openExchange": "敞开交易",
     "done": "好了",
-    "back": "返"
+    "back": "返",
+    "aiLabel": "叫AI帮你设交易",
+    "aiPlaceholder": "试试“卖掉一半DHB，每股3分”",
+    "aiSend": "发给AI",
+    "aiHint": "用大白话讲你想做啥。AI会填好所有东西，你只需点“确认”。",
+    "aiBuyOnly": "“轻松交易”卖DHB。想买DHB，打开“交易所”。",
+    "aiNeedAmount": "你想卖多少DHB？",
+    "aiFailed": "AI没法设好。试试换个说法，或者在下面填。"
   }
 }

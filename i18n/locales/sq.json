@@ -6641,6 +6641,13 @@
     "doneListHint": "Ajo shet automatikisht kur tregu arrin çmimin tënd. Menaxhoje atë në Shkëmbim.",
     "openExchange": "Shkëmbim i hapur",
     "done": "Përfundoi",
-    "back": "Prapa"
+    "back": "Prapa",
+    "aiLabel": "Kërkoji AI të organizojë tregtinë tënde",
+    "aiPlaceholder": "Provo \"të shesësh gjysmën e DHB-së time me 3 cent\"",
+    "aiSend": "Dërgoja UA-së",
+    "aiHint": "Thuaj çfarë të duash me fjalë të thjeshta. AI plotëson gjithçka, thjesht shtyp Konfirmo.",
+    "aiBuyOnly": "Tregtia e lehtë shet DHB. Për të blerë DHB, hapni Exchange.",
+    "aiNeedAmount": "Sa DHB doni të shisni?",
+    "aiFailed": "IA nuk mund ta kurdiste këtë. Provo ta thuash në një mënyrë tjetër ose plotësoje më poshtë."
   }
 }

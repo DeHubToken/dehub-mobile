@@ -6641,6 +6641,13 @@
     "doneListHint": "Bazar siziň bahanyza ýetende, ol awtomatiki satylar. Ony birja arkaly dolandyryň.",
     "openExchange": "Biržany aç",
     "done": "Tamam",
-    "back": "Yza"
+    "back": "Yza",
+    "aiLabel": "Ähtimal, siz öz söwda- satyk işleriňizi goýup bilersiňiz.",
+    "aiPlaceholder": "\"Meniň DHB-imiň ýarysyny 3 sentde sat\"",
+    "aiSend": "Men ony iberýärin",
+    "aiHint": "Siz näme isleseňiz, ony aýdyň söz bilen aýdyň. Ähli zady doldurmak üçin, siz diňe tassyklamak üçin basyň.",
+    "aiBuyOnly": "Ýönekeý söwda DHB satýar. DHB satyn almak üçin, açyk birja.",
+    "aiNeedAmount": "Sen näçe köp kagyzy satýarsyň?",
+    "aiFailed": "Ol muny goýup bilmedi. Muny başgaça aýtmaga çalyşyň ýa-da aşakda dolduryň."
   }
 }

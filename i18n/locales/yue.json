@@ -6641,6 +6641,13 @@
     "doneListHint": "當市場達到你嘅價錢嗰陣，佢會自動賣出。喺交易所管理佢。",
     "openExchange": "開放交易所",
     "done": "搞掂",
-    "back": "返回"
+    "back": "返回",
+    "aiLabel": "叫 AI 設定你嘅交易",
+    "aiPlaceholder": "試下「以三蚊賣我一半嘅 DHB 」",
+    "aiSend": "傳送去 AI",
+    "aiHint": "用簡單嘅語言講你想講嘅嘢。人工智能會填晒所有嘢，你只需要撳確認。",
+    "aiBuyOnly": "易交易賣 DHB 。要買 DHB ，打開交易所。",
+    "aiNeedAmount": "你想賣幾多 DHB?",
+    "aiFailed": "AI 設定唔到嗰個。試下用其他方法講，或者喺下面填寫。"
   }
 }

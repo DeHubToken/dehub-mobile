@@ -6895,6 +6895,13 @@
     "doneListHint": "Het verkoopt automatisch wanneer de markt je prijs bereikt. Beheer het op de Exchange.",
     "openExchange": "Open Exchange",
     "done": "Klaar",
-    "back": "Terug"
+    "back": "Terug",
+    "aiLabel": "Vraag AI om uw transactie in te stellen",
+    "aiPlaceholder": "Probeer \"verkoop de helft van mijn DHB voor 3 cent\"",
+    "aiSend": "Verzenden naar AI",
+    "aiHint": "Zeg wat je wilt in duidelijke woorden. AI vult alles in, je drukt gewoon op Bevestigen.",
+    "aiBuyOnly": "Easytrade verkoopt DHB. Open Exchange om DHB te kopen.",
+    "aiNeedAmount": "Hoeveel DHB wilt u verkopen?",
+    "aiFailed": "AI kon dat niet instellen. Probeer het op een andere manier te zeggen of vul het hieronder in."
   }
 }
