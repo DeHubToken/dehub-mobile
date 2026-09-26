@@ -887,6 +887,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       <GlassModal
         visible={visible}
         onClose={handleClose}
+        yieldToWalletUnlock={false}
         presentation="bottom"
         blurIntensity={50}
         maxHeight="92%"
