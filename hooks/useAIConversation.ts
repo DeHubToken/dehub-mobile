@@ -235,10 +235,11 @@ async function appendRemoteMessage(
   message: AIChatMessage,
 ): Promise<void> {
   try {
-    const [imageUrl, videoUrl, audioUrl] = await Promise.all([
+    const [imageUrl, videoUrl, audioUrl, attachedImage] = await Promise.all([
       persistMediaUrl(message.imageUrl, 'image'),
       persistMediaUrl(message.videoUrl, 'video'),
       persistMediaUrl(message.audioUrl, 'audio'),
+      persistMediaUrl(message.attachedImage, 'image'),
     ]);
 
     const { error } = await withWalletHeader(
@@ -251,7 +252,7 @@ async function appendRemoteMessage(
         image_url: imageUrl,
         video_url: videoUrl,
         audio_url: audioUrl,
-        attached_image: message.attachedImage || null,
+        attached_image: attachedImage,
       }),
       wallet,
     );
