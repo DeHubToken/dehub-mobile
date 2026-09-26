@@ -17,10 +17,13 @@ import NetInfo from '@react-native-community/netinfo';
  * wait for good news.
  */
 const OFFLINE_DEBOUNCE_MS = 4000;
+const INITIAL_STATUS_WAIT_MS = 5000;
 
 export const useNetworkStatus = () => {
+  const [isReady, setIsReady] = useState(false);
   const [isConnected, setIsConnected] = useState<boolean | null>(null);
   const [isInternetReachable, setIsInternetReachable] = useState<boolean | null>(null);
+  const hasDefiniteStatusRef = useRef(false);
   const offlineTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const clearOfflineTimer = useCallback(() => {
@@ -37,6 +40,13 @@ export const useNetworkStatus = () => {
   const apply = useCallback(
     (connected: boolean | null, reachable: boolean | null, immediate = false) => {
       const looksOffline = connected === false || reachable === false;
+      const definite = connected !== null || reachable === false;
+      // A transient unknown reading must not erase the last known status.
+      if (!definite && hasDefiniteStatusRef.current) return;
+      if (definite) {
+        hasDefiniteStatusRef.current = true;
+        setIsReady(true);
+      }
 
       if (!looksOffline || immediate) {
         clearOfflineTimer();
@@ -57,18 +67,30 @@ export const useNetworkStatus = () => {
   );
 
   useEffect(() => {
+    let mounted = true;
     const unsubscribe = NetInfo.addEventListener((state) => {
-      apply(state.isConnected, state.isInternetReachable);
+      if (!mounted) return;
+      const initialReading = !hasDefiniteStatusRef.current;
+      apply(state.isConnected, state.isInternetReachable, initialReading);
     });
 
-    // Initial state. Committed immediately in both directions: at boot there is
-    // no previous state to protect, and a cold start with no network should show
-    // the offline screen rather than a splash that sits there for four seconds.
-    NetInfo.fetch().then((state) => {
-      apply(state.isConnected, state.isInternetReachable, true);
-    });
+    // Unknown connectivity must not hold the logo forever. Only release the
+    // boot gate: do not invent an online reading or discard a late real one.
+    const initialTimer = setTimeout(() => {
+      if (mounted) setIsReady(true);
+    }, INITIAL_STATUS_WAIT_MS);
+
+    void NetInfo.fetch().then(
+      (state) => {
+        if (!mounted || hasDefiniteStatusRef.current) return;
+        apply(state.isConnected, state.isInternetReachable, true);
+      },
+      () => { /* The deadline above releases boot if NetInfo is unavailable. */ },
+    );
 
     return () => {
+      mounted = false;
+      clearTimeout(initialTimer);
       clearOfflineTimer();
       unsubscribe();
     };
@@ -81,9 +103,12 @@ export const useNetworkStatus = () => {
   }, [apply]);
 
   return {
+    isReady,
     isConnected,
     isInternetReachable,
     checkConnection,
-    hasInternet: isConnected && (isInternetReachable !== false),
+    hasInternet: isConnected === false || isInternetReachable === false
+      ? false
+      : isConnected === true ? true : null,
   };
 };
