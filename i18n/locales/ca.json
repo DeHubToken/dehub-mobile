@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Quant DHB vols vendre?",
     "aiFailed": "La IA no ha pogut configurar-ho. Prova de dir-ho d'una altra manera, o omple-ho a continuació.",
     "cancelled": "S'ha cancel·lat. No s'ha venut res."
+  },
+  "tipFunding": {
+    "noRoute": "Ara mateix no hi ha cap ruta d'Uniswap cap a DHB per a aquest token",
+    "lowLiquidity": "Ara mateix no hi ha prou liquiditat a Uniswap per a un pagament d'aquesta mida",
+    "dpayNoAmount": "DeHub Pay no ha retornat cap import de pagament",
+    "dpayDelayed": "DeHub Pay té el teu pagament i està enviant els DHB. Arribaran aviat a la teva cartera; torna a enviar quan hi siguin.",
+    "noBridgeRoute": "Ara mateix no hi ha cap ruta entre cadenes disponible",
+    "bridgeCancelled": "La comanda entre cadenes s'ha cancel·lat i s'ha reemborsat a la teva cartera",
+    "bridgeSlow": "La transferència entre cadenes està trigant més del normal. Arribarà a la teva cartera a Base; torna a enviar quan hi sigui.",
+    "notEnoughOnBase": "No hi ha prou {{symbol}} a Base per a aquest pagament",
+    "notEnoughWithFees": "No hi ha prou {{symbol}} per a aquest pagament, incloses les comissions de xarxa",
+    "notEnough": "No hi ha prou {{symbol}} per a aquest pagament",
+    "noGasForFee": "No hi ha prou moneda de la xarxa per cobrir la comissió entre cadenes",
+    "priceMoved": "El preu de DHB ha canviat mentre arribaven els teus USDC. Els USDC són a la teva cartera a Base; torna a enviar per acabar.",
+    "usdcPending": "Els teus USDC han arribat a Base però encara no es veuen. Torna a enviar d'aquí a un moment.",
+    "dhbPending": "La compra de DHB s'ha confirmat però encara no apareix. Torna a enviar d'aquí a un moment.",
+    "unlockWallet": "Desbloqueja la teva cartera per pagar amb aquest token",
+    "chainUnavailable": "Pagar des de {{chain}} no està disponible per a aquesta cartera"
   }
 }

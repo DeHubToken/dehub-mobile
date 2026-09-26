@@ -6916,5 +6916,23 @@
     "aiNeedAmount": "Berapa banyak DHB yang anda mahu jual?",
     "aiFailed": "AI tidak dapat menetapkannya. Cuba katakan dengan cara lain, atau isi di bawah.",
     "cancelled": "Dibatalkan. Tiada apa yang dijual."
+  },
+  "tipFunding": {
+    "noRoute": "Tiada laluan Uniswap ke DHB untuk token ini buat masa ini",
+    "lowLiquidity": "Kecairan Uniswap tidak mencukupi untuk pembayaran sebesar ini buat masa ini",
+    "dpayNoAmount": "DeHub Pay tidak memulangkan jumlah pembayaran",
+    "dpayDelayed": "DeHub Pay telah menerima pembayaran anda dan sedang menghantar DHB. Ia akan tiba dalam dompet anda sebentar lagi; hantar semula setelah ia tiba.",
+    "noBridgeRoute": "Tiada laluan rentas rantaian tersedia buat masa ini",
+    "bridgeCancelled": "Pesanan rentas rantaian telah dibatalkan dan dipulangkan ke dompet anda",
+    "bridgeSlow": "Pemindahan rentas rantaian mengambil masa lebih lama daripada biasa. Ia akan tiba dalam dompet anda di Base; hantar semula setelah ia tiba.",
+    "notEnoughOnBase": "{{symbol}} di Base tidak mencukupi untuk pembayaran ini",
+    "notEnoughWithFees": "{{symbol}} tidak mencukupi untuk pembayaran ini, termasuk yuran rangkaian",
+    "notEnough": "{{symbol}} tidak mencukupi untuk pembayaran ini",
+    "noGasForFee": "Syiling rangkaian tidak mencukupi untuk menampung yuran rentas rantaian",
+    "priceMoved": "Harga DHB berubah semasa USDC anda sedang tiba. USDC berada dalam dompet anda di Base; hantar semula untuk selesaikan.",
+    "usdcPending": "USDC anda telah tiba di Base tetapi belum kelihatan. Hantar semula sebentar lagi.",
+    "dhbPending": "Pembelian DHB telah disahkan tetapi belum muncul. Hantar semula sebentar lagi.",
+    "unlockWallet": "Buka kunci dompet anda untuk membayar dengan token ini",
+    "chainUnavailable": "Pembayaran dari {{chain}} tidak tersedia untuk dompet ini"
   }
 }

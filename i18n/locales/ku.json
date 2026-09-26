@@ -6649,5 +6649,23 @@
     "aiNeedAmount": "Hûn dixwazin çiqas DHB bifroşin?",
     "aiFailed": "AI nekarî wê saz bike. Biceribînin ku bi awayekî din bibêjin, an jî li jêr binivîsin.",
     "cancelled": "Hate betalkirin. Tiştek nehat firotin."
+  },
+  "tipFunding": {
+    "noRoute": "Niha ji bo vê tokenê rêya Uniswap bo DHB tune ye",
+    "lowLiquidity": "Niha ji bo dayîneke bi vê mezinahiyê têra xwe likîdîteya Uniswap tune ye",
+    "dpayNoAmount": "DeHub Pay mîqdara dayînê venegerand",
+    "dpayDelayed": "DeHub Pay dayîna te wergirt û DHB dişîne. Di demeke nêzîk de digihîje berîka te; dema gihîşt dîsa bişîne.",
+    "noBridgeRoute": "Niha tu rêya navzincîrî tune ye",
+    "bridgeCancelled": "Fermana navzincîrî hat betalkirin û pere li berîka te hat vegerandin",
+    "bridgeSlow": "Veguhestina navzincîrî ji ya asayî dirêjtir dikişîne. Ew ê li ser Base bigihîje berîka te; dema gihîşt dîsa bişîne.",
+    "notEnoughOnBase": "Ji bo vê dayînê li ser Base têra xwe {{symbol}} tune ye",
+    "notEnoughWithFees": "Ji bo vê dayînê, bi xercên torê re, têra xwe {{symbol}} tune ye",
+    "notEnough": "Ji bo vê dayînê têra xwe {{symbol}} tune ye",
+    "noGasForFee": "Ji bo xerca navzincîrî têra xwe pereyê torê tune ye",
+    "priceMoved": "Dema USDC-ya te digihîşt, bihayê DHB guherî. USDC li ser Base di berîka te de ye; ji bo qedandinê dîsa bişîne.",
+    "usdcPending": "USDC-ya te gihîşt Base lê hîn nayê dîtin. Piştî kêliyekê dîsa bişîne.",
+    "dhbPending": "Kirîna DHB hat piştrastkirin lê hîn xuya nebûye. Piştî kêliyekê dîsa bişîne.",
+    "unlockWallet": "Ji bo ku bi vê tokenê bidî, qufla berîka xwe veke",
+    "chainUnavailable": "Dayîn ji {{chain}} ji bo vê berîkê ne berdest e"
   }
 }

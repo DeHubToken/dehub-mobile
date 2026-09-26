@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Cik daudz DHB vēlaties pārdot?",
     "aiFailed": "MI nevarēja to iestatīt. Mēģiniet to pateikt citā veidā vai aizpildiet to tālāk.",
     "cancelled": "Atcelts. Nekas netika pārdots."
+  },
+  "tipFunding": {
+    "noRoute": "Šobrīd šim žetonam nav Uniswap maršruta uz DHB",
+    "lowLiquidity": "Šobrīd Uniswap nav pietiekamas likviditātes šāda apjoma maksājumam",
+    "dpayNoAmount": "DeHub Pay neatgrieza maksājuma summu",
+    "dpayDelayed": "DeHub Pay ir saņēmis jūsu maksājumu un sūta DHB. Tie drīz pienāks jūsu makā; kad pienāks, sūtiet vēlreiz.",
+    "noBridgeRoute": "Šobrīd nav pieejams neviens starpķēžu maršruts",
+    "bridgeCancelled": "Starpķēžu pasūtījums tika atcelts, un līdzekļi atmaksāti jūsu makā",
+    "bridgeSlow": "Starpķēžu pārskaitījums aizņem ilgāku laiku nekā parasti. Tas pienāks jūsu makā Base tīklā; kad pienāks, sūtiet vēlreiz.",
+    "notEnoughOnBase": "Base tīklā nepietiek {{symbol}} šim maksājumam",
+    "notEnoughWithFees": "Nepietiek {{symbol}} šim maksājumam, ieskaitot tīkla maksas",
+    "notEnough": "Nepietiek {{symbol}} šim maksājumam",
+    "noGasForFee": "Nepietiek tīkla monētas, lai segtu starpķēžu maksu",
+    "priceMoved": "Kamēr ceļā bija jūsu USDC, DHB cena mainījās. USDC ir jūsu makā Base tīklā; sūtiet vēlreiz, lai pabeigtu.",
+    "usdcPending": "Jūsu USDC ir pienākuši Base tīklā, bet vēl nav redzami. Pēc brīža sūtiet vēlreiz.",
+    "dhbPending": "DHB pirkums ir apstiprināts, bet vēl nav parādījies. Pēc brīža sūtiet vēlreiz.",
+    "unlockWallet": "Atbloķējiet maku, lai maksātu ar šo žetonu",
+    "chainUnavailable": "Maksājumi no {{chain}} šim makam nav pieejami"
   }
 }

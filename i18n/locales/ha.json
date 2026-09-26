@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Nawa DHB kuke son siyarwa?",
     "aiFailed": "AI ba zai iya saita wannan ba. Gwada cewa shi wata hanya, ko cika shi a kasa.",
     "cancelled": "An soke. Ba a sayar da komai ba."
+  },
+  "tipFunding": {
+    "noRoute": "Babu hanyar Uniswap zuwa DHB don wannan token a yanzu",
+    "lowLiquidity": "Babu isasshen liquidity a Uniswap don biyan wannan girman a yanzu",
+    "dpayNoAmount": "DeHub Pay bai dawo da adadin biyan kuɗi ba",
+    "dpayDelayed": "DeHub Pay ya karɓi biyan kuɗinka kuma yana aika DHB. Zai iso walat ɗinka nan ba da jimawa ba; sake aika idan ya iso.",
+    "noBridgeRoute": "Babu hanyar cross-chain da ake da ita a yanzu",
+    "bridgeCancelled": "An soke odar cross-chain kuma an mayar da kuɗin zuwa walat ɗinka",
+    "bridgeSlow": "Canja wurin cross-chain yana ɗaukar lokaci fiye da yadda aka saba. Zai iso walat ɗinka a kan Base; sake aika idan ya iso.",
+    "notEnoughOnBase": "{{symbol}} a kan Base bai isa don wannan biyan kuɗi ba",
+    "notEnoughWithFees": "{{symbol}} bai isa don wannan biyan kuɗi ba, har da kuɗin hanyar sadarwa",
+    "notEnough": "{{symbol}} bai isa don wannan biyan kuɗi ba",
+    "noGasForFee": "Kuɗin hanyar sadarwa bai isa don biyan kuɗin cross-chain ba",
+    "priceMoved": "Farashin DHB ya canza yayin da USDC ɗinka ke isowa. USDC yana cikin walat ɗinka a kan Base; sake aika don kammalawa.",
+    "usdcPending": "USDC ɗinka ya iso kan Base amma ba a gani ba tukuna. Sake aika nan da ɗan lokaci.",
+    "dhbPending": "An tabbatar da sayen DHB amma bai bayyana ba tukuna. Sake aika nan da ɗan lokaci.",
+    "unlockWallet": "Buɗe walat ɗinka don biya da wannan token",
+    "chainUnavailable": "Biyan kuɗi daga {{chain}} ba ya samuwa ga wannan walat"
   }
 }

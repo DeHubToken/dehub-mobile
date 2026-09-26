@@ -6723,5 +6723,23 @@
     "aiNeedAmount": "Ile DHB chcesz sprzedać?",
     "aiFailed": "Sztuczna inteligencja nie mogła tego skonfigurować. Spróbuj powiedzieć to w inny sposób lub wypełnij poniższy formularz.",
     "cancelled": "Anulowano. Nic nie zostało sprzedane."
+  },
+  "tipFunding": {
+    "noRoute": "Obecnie brak trasy Uniswap do DHB dla tego tokena",
+    "lowLiquidity": "Obecnie brakuje płynności w Uniswap na płatność tej wielkości",
+    "dpayNoAmount": "DeHub Pay nie zwrócił kwoty płatności",
+    "dpayDelayed": "DeHub Pay otrzymał Twoją płatność i wysyła DHB. Wkrótce trafią do Twojego portfela; gdy dotrą, wyślij ponownie.",
+    "noBridgeRoute": "Obecnie brak dostępnej trasy międzyłańcuchowej",
+    "bridgeCancelled": "Zlecenie międzyłańcuchowe zostało anulowane, a środki zwrócone do Twojego portfela",
+    "bridgeSlow": "Transfer międzyłańcuchowy trwa dłużej niż zwykle. Trafi do Twojego portfela w Base; gdy dotrze, wyślij ponownie.",
+    "notEnoughOnBase": "Za mało {{symbol}} w Base na tę płatność",
+    "notEnoughWithFees": "Za mało {{symbol}} na tę płatność, wliczając opłaty sieciowe",
+    "notEnough": "Za mało {{symbol}} na tę płatność",
+    "noGasForFee": "Za mało natywnej monety sieci na pokrycie opłaty międzyłańcuchowej",
+    "priceMoved": "Cena DHB zmieniła się, gdy Twoje USDC było w drodze. USDC jest w Twoim portfelu w Base; wyślij ponownie, aby dokończyć.",
+    "usdcPending": "Twoje USDC dotarło do Base, ale nie jest jeszcze widoczne. Wyślij ponownie za chwilę.",
+    "dhbPending": "Zakup DHB został potwierdzony, ale jeszcze się nie pojawił. Wyślij ponownie za chwilę.",
+    "unlockWallet": "Odblokuj portfel, aby zapłacić tym tokenem",
+    "chainUnavailable": "Płatność z {{chain}} nie jest dostępna dla tego portfela"
   }
 }

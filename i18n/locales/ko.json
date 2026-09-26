@@ -6659,5 +6659,23 @@
     "aiNeedAmount": "얼마나 많은 DHB를 판매하시겠습니까?",
     "aiFailed": "AI가 이를 설정할 수 없습니다. 다른 방법으로 입력하거나 아래에 입력하세요.",
     "cancelled": "취소되었습니다. 아무것도 판매되지 않았습니다."
+  },
+  "tipFunding": {
+    "noRoute": "지금은 이 토큰에서 DHB로 가는 Uniswap 경로가 없어요",
+    "lowLiquidity": "지금은 이 금액을 결제할 만큼 Uniswap 유동성이 충분하지 않아요",
+    "dpayNoAmount": "DeHub Pay가 결제 금액을 반환하지 않았어요",
+    "dpayDelayed": "DeHub Pay가 결제를 받아 DHB를 보내는 중이에요. 곧 지갑에 도착하니, 도착하면 다시 보내 주세요.",
+    "noBridgeRoute": "지금은 사용할 수 있는 크로스체인 경로가 없어요",
+    "bridgeCancelled": "크로스체인 주문이 취소되어 지갑으로 환불되었어요",
+    "bridgeSlow": "크로스체인 전송이 평소보다 오래 걸리고 있어요. Base의 지갑으로 도착하니, 도착하면 다시 보내 주세요.",
+    "notEnoughOnBase": "이 결제에 필요한 {{symbol}}이(가) Base에 부족해요",
+    "notEnoughWithFees": "네트워크 수수료를 포함해 이 결제에 필요한 {{symbol}}이(가) 부족해요",
+    "notEnough": "이 결제에 필요한 {{symbol}}이(가) 부족해요",
+    "noGasForFee": "크로스체인 수수료를 낼 네트워크 코인이 부족해요",
+    "priceMoved": "USDC가 도착하는 동안 DHB 가격이 변동됐어요. USDC는 Base의 지갑에 있으니, 다시 보내서 완료해 주세요.",
+    "usdcPending": "USDC가 Base에 도착했지만 아직 표시되지 않아요. 잠시 후 다시 보내 주세요.",
+    "dhbPending": "DHB 구매가 확정됐지만 아직 표시되지 않아요. 잠시 후 다시 보내 주세요.",
+    "unlockWallet": "이 토큰으로 결제하려면 지갑 잠금을 해제하세요",
+    "chainUnavailable": "이 지갑에서는 {{chain}}에서 결제할 수 없어요"
   }
 }

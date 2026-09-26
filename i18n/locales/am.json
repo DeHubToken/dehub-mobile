@@ -6684,5 +6684,23 @@
     "aiNeedAmount": "ምን ያህል DHB ለመሸጥ ይፈልጋሉ?",
     "aiFailed": "ኢሕአፓ ያንን ማዋቀር አልቻለም ። በሌላ መንገድ ለመናገር ይሞክሩ ፣ ወይም ከዚህ በታች ይሙሉ ።",
     "cancelled": "ተሰርዟል። ምንም አልተሸጠም።"
+  },
+  "tipFunding": {
+    "noRoute": "ለዚህ ቶከን አሁን ወደ DHB የሚወስድ የUniswap መስመር የለም",
+    "lowLiquidity": "ለዚህ መጠን ክፍያ አሁን በቂ የUniswap ፈሳሽነት የለም",
+    "dpayNoAmount": "DeHub Pay የክፍያ መጠን አልመለሰም",
+    "dpayDelayed": "DeHub Pay ክፍያዎን ተቀብሎ DHB እየላከ ነው። በቅርቡ ቦርሳዎ ይደርሳል፤ ሲደርስ እንደገና ይላኩ።",
+    "noBridgeRoute": "አሁን የሚገኝ የተሻገረ ሰንሰለት መስመር የለም",
+    "bridgeCancelled": "የተሻገረ ሰንሰለት ትዕዛዙ ተሰርዞ ገንዘቡ ወደ ቦርሳዎ ተመልሷል",
+    "bridgeSlow": "የተሻገረ ሰንሰለት ዝውውሩ ከወትሮው በላይ እየዘገየ ነው። በBase ላይ ወዳለው ቦርሳዎ ይደርሳል፤ ሲደርስ እንደገና ይላኩ።",
+    "notEnoughOnBase": "ለዚህ ክፍያ በBase ላይ በቂ {{symbol}} የለም",
+    "notEnoughWithFees": "የኔትወርክ ክፍያዎችን ጨምሮ ለዚህ ክፍያ በቂ {{symbol}} የለም",
+    "notEnough": "ለዚህ ክፍያ በቂ {{symbol}} የለም",
+    "noGasForFee": "የተሻገረ ሰንሰለት ክፍያውን ለመሸፈን በቂ የኔትወርክ ሳንቲም የለም",
+    "priceMoved": "USDCዎ እየደረሰ ሳለ የDHB ዋጋ ተቀይሯል። USDCው በBase ላይ ባለው ቦርሳዎ ውስጥ ነው፤ ለማጠናቀቅ እንደገና ይላኩ።",
+    "usdcPending": "USDCዎ Base ላይ ደርሷል ግን ገና አይታይም። ከአፍታ በኋላ እንደገና ይላኩ።",
+    "dhbPending": "የDHB ግዢው ተረጋግጧል ግን ገና አልታየም። ከአፍታ በኋላ እንደገና ይላኩ።",
+    "unlockWallet": "በዚህ ቶከን ለመክፈል ቦርሳዎን ይክፈቱ",
+    "chainUnavailable": "ከ {{chain}} መክፈል ለዚህ ቦርሳ አይገኝም"
   }
 }

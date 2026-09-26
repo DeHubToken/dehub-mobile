@@ -6743,5 +6743,23 @@
     "aiNeedAmount": "Bạn muốn bán bao nhiêu DHB?",
     "aiFailed": "AI không thể thiết lập điều đó. Hãy thử nói theo cách khác hoặc điền vào bên dưới.",
     "cancelled": "Đã hủy. Không có gì được bán."
+  },
+  "tipFunding": {
+    "noRoute": "Hiện không có tuyến Uniswap sang DHB cho token này",
+    "lowLiquidity": "Hiện Uniswap không đủ thanh khoản cho khoản thanh toán lớn như vậy",
+    "dpayNoAmount": "DeHub Pay không trả về số tiền thanh toán",
+    "dpayDelayed": "DeHub Pay đã nhận thanh toán của bạn và đang gửi DHB. DHB sẽ sớm về ví của bạn; hãy gửi lại khi đã nhận được.",
+    "noBridgeRoute": "Hiện không có tuyến liên chuỗi nào",
+    "bridgeCancelled": "Lệnh liên chuỗi đã bị hủy và được hoàn tiền về ví của bạn",
+    "bridgeSlow": "Giao dịch chuyển liên chuỗi đang lâu hơn bình thường. Tiền sẽ về ví của bạn trên Base; hãy gửi lại khi đã nhận được.",
+    "notEnoughOnBase": "Không đủ {{symbol}} trên Base cho khoản thanh toán này",
+    "notEnoughWithFees": "Không đủ {{symbol}} cho khoản thanh toán này, bao gồm phí mạng",
+    "notEnough": "Không đủ {{symbol}} cho khoản thanh toán này",
+    "noGasForFee": "Không đủ coin của mạng để trả phí liên chuỗi",
+    "priceMoved": "Giá DHB đã thay đổi trong lúc USDC của bạn đang về. USDC đang ở trong ví của bạn trên Base; hãy gửi lại để hoàn tất.",
+    "usdcPending": "USDC của bạn đã về Base nhưng chưa hiển thị. Hãy gửi lại sau giây lát.",
+    "dhbPending": "Giao dịch mua DHB đã xác nhận nhưng chưa hiển thị. Hãy gửi lại sau giây lát.",
+    "unlockWallet": "Mở khóa ví để thanh toán bằng token này",
+    "chainUnavailable": "Ví này không hỗ trợ thanh toán từ {{chain}}"
   }
 }

@@ -6659,5 +6659,23 @@
     "aiNeedAmount": "Hur mycket DHB vill du sälja?",
     "aiFailed": "AI kunde inte ställa in det. Prova att säga det på ett annat sätt, eller fyll i det nedan.",
     "cancelled": "Avbruten. Ingenting såldes."
+  },
+  "tipFunding": {
+    "noRoute": "Ingen Uniswap-rutt till DHB för den här token just nu",
+    "lowLiquidity": "Det finns inte tillräckligt med likviditet på Uniswap för en betalning av den här storleken just nu",
+    "dpayNoAmount": "DeHub Pay returnerade inget betalningsbelopp",
+    "dpayDelayed": "DeHub Pay har tagit emot din betalning och skickar DHB. Den kommer till din plånbok inom kort; skicka igen när den har kommit.",
+    "noBridgeRoute": "Ingen kedjeöverskridande rutt är tillgänglig just nu",
+    "bridgeCancelled": "Den kedjeöverskridande ordern avbröts och återbetalades till din plånbok",
+    "bridgeSlow": "Den kedjeöverskridande överföringen tar längre tid än vanligt. Den kommer till din plånbok på Base; skicka igen när den har kommit.",
+    "notEnoughOnBase": "Inte tillräckligt med {{symbol}} på Base för den här betalningen",
+    "notEnoughWithFees": "Inte tillräckligt med {{symbol}} för den här betalningen, inklusive nätverksavgifter",
+    "notEnough": "Inte tillräckligt med {{symbol}} för den här betalningen",
+    "noGasForFee": "Inte tillräckligt med nätverkets mynt för att täcka den kedjeöverskridande avgiften",
+    "priceMoved": "DHB-priset rörde sig medan dina USDC var på väg. Dina USDC finns i din plånbok på Base; skicka igen för att slutföra.",
+    "usdcPending": "Dina USDC har kommit fram på Base men syns inte än. Skicka igen om en stund.",
+    "dhbPending": "DHB-köpet bekräftades men har inte dykt upp än. Skicka igen om en stund.",
+    "unlockWallet": "Lås upp din plånbok för att betala med den här token",
+    "chainUnavailable": "Betalning från {{chain}} är inte tillgänglig för den här plånboken"
   }
 }
