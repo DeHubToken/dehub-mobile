@@ -44,6 +44,9 @@ const DHB_BUFFER_BPS = 100n;
 const USDC_BUFFER_BPS = 150n;
 /** DPay holds back 0.5% of a sale and sends it as gas, so ask for a touch more DHB. */
 const DPAY_DELIVERED_SHARE = 0.995;
+/** DPay's smallest sale is $0.50 (500 DHB at the peg). A smaller gap is rounded
+ *  up to it — the spare DHB stays in the wallet — rather than skipping DPay. */
+const DPAY_MIN_TOKENS = 501;
 const NATIVE_GAS_RESERVE: Record<number, bigint> = { [ChainId.ARC_MAINNET]: 10n ** 17n };
 const FILL_TIMEOUT_MS = 15 * 60_000;
 const DPAY_DELIVERY_TIMEOUT_MS = 5 * 60_000;
@@ -229,13 +232,15 @@ async function sendFromSafe(chainId: number, wallet: string, calls: Call[], cont
 function dpayAssetId(source: { chainId: number; address: string }): string | null {
   const list = DPAY_ACCEPTED[source.chainId];
   if (!list) return null;
-  if (isNativeSource(source)) return `direct:${source.chainId}:native`;
+  // DPay ids the gas coin as `native` on Base/Ethereum/BNB, but as the zero
+  // address on Robinhood, where it comes from the token list instead.
+  if (isNativeSource(source)) return source.chainId === ChainId.ROBINHOOD_MAINNET ? `direct:${source.chainId}:${ZERO}` : `direct:${source.chainId}:native`;
   const hit = list.find(a => a.toLowerCase() === source.address.toLowerCase());
   return hit ? `direct:${source.chainId}:${hit.toLowerCase()}` : null;
 }
 
 const dpayTokensFor = (shortfallWei: bigint) =>
-  Math.ceil(Number(ethers.utils.formatUnits(shortfallWei.toString(), 18)) / DPAY_DELIVERED_SHARE) + 1;
+  Math.max(DPAY_MIN_TOKENS, Math.ceil(Number(ethers.utils.formatUnits(shortfallWei.toString(), 18)) / DPAY_DELIVERED_SHARE) + 1);
 
 /** Price DHB from DPay in `originAsset`. Null when DPay cannot sell it right now. */
 async function quoteDpay(originAsset: string, tokensToReceive: number, decimals: number, wallet: string): Promise<DpayQuote | null> {
