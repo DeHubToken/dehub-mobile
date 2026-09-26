@@ -5611,6 +5611,7 @@
     "balanceAmount": "Në dispozicion: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Kjo bursë e personalizuar është ndërtuar mbi Uniswap dhe sigurohet prej tij. Është tashmë aktive dhe plotësisht funksionale, dhe listimet zyrtare do të njoftohen së shpejti. Ju ftojmë të shtoni likuiditet që tani — fermat dhe stimujt do të zbulohen shumë shpejt.",
     "lowestPrice": "Çmimi më i ulët · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

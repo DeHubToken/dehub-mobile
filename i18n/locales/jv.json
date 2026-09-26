@@ -5611,6 +5611,7 @@
     "balanceAmount": "Available: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Bursa khusus iki dibangun ing Uniswap lan diamanké déning Uniswap. Saiki wis aktif lan mlaku kanthi lengkap, lan listing resmi bakal diumumaké enggal. Sampéyan diundang nambah likuiditas saiki — farm lan insentif bakal dibukak sedhela manèh.",
     "lowestPrice": "Rega paling murah · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

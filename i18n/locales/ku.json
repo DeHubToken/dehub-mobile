@@ -5564,6 +5564,7 @@
     "balanceAmount": "Berdest: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Ev borsaya taybet li ser Uniswap hatiye avakirin û ji hêla wê ve tê parastin. Ew niha çalak e û bi tevahî dixebite, û lîstekirinên fermî dê di demek nêzîk de bên ragihandin. Hûn vexwendî ne ku niha lîkîdîtê zêde bikin — cotgeh û teşwîq dê pir zû bên eşkerekirin.",
     "lowestPrice": "Bihayê herî kêm · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

@@ -5660,6 +5660,7 @@
     "balanceAmount": "Tersedia: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Bursa khusus ini dibangun di atas Uniswap dan diamankan olehnya. Bursa ini sudah aktif dan berfungsi penuh, dan listing resmi akan segera diumumkan. Anda diundang untuk menambahkan likuiditas sekarang — farm dan insentif akan segera diungkap.",
     "lowestPrice": "Harga terendah · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

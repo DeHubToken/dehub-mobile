@@ -5611,6 +5611,7 @@
     "balanceAmount": "Maýdaly: {{amount}}{{symbol}}"
   },
   "dex": {
+    "launchNotice": "Bu ýörite birža Uniswap esasynda guruldy we onuň bilen goralýar. Ol häzir doly işleýär, resmi listingler bolsa ýakyn wagtda yglan ediler. Sizi häzirden likwidlik goşmaga çagyrýarys — fermalar we höweslendirmeler gaty ýakyn wagtda açylar.",
     "lowestPrice": "Iň pes baha · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",
