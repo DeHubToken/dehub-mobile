@@ -491,6 +491,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (!data.session) return false;
       return await signInWithSupabaseSession(data.session.access_token, chainIdRef.current ?? 8453, undefined, data.session.user.id, { allowLocked: true }) === 'linked';
     },
+    // The restored user is refetched by boot once verified, not by the
+    // post-boot effect below the moment the cached copy paints.
+    holdRestoredRefetch: () => {
+      didBootRefetchRef.current = true;
+    },
+    refetchRestoredUser: (restored) => enrichAndStoreUser(restored, { refetch: true }),
     log,
   });
 
