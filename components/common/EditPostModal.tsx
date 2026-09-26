@@ -3,6 +3,7 @@
  *
  * Uses GlassModal with center presentation and category chips.
  */
+import { normalizeCategoryName } from "../../libs/strings.util";
 import { MATURE_CONTENT_ENABLED } from "../../config/storefront";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import {
@@ -223,7 +224,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
 
   const addCategory = useCallback(
     (cat: string) => {
-      const normalized = cat.trim();
+      const normalized = normalizeCategoryName(cat);
       if (!normalized) return;
       setSelectedCategories((prev) => {
         if (prev.find((c) => c.toLowerCase() === normalized.toLowerCase())) return prev;
