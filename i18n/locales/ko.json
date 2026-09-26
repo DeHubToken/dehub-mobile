@@ -843,7 +843,17 @@
     "attachDescription": "메시지에 DHB 토큰을 팁으로 첨부",
     "minAmount": "최소 {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB 첨부",
-    "removeTip": "팁 제거"
+    "removeTip": "팁 제거",
+    "payWith": "결제 수단",
+    "payQuoting": "최적 가격 확인 중…",
+    "payQuote": "≈ {{amount}} {{symbol}} ({{chain}})",
+    "payViaBridge": "Uniswap에서 DHB로 교환, 약 {{seconds}}초 후 도착",
+    "payViaSwap": "Uniswap에서 DHB로 교환됨",
+    "stageApprove": "{{symbol}} 승인 중…",
+    "stageBridge": "{{chain}}에서 {{symbol}} 전송 중…",
+    "stageArriving": "Base로 도착 중, 보통 몇 초 걸려요…",
+    "stageSwap": "Uniswap에서 DHB 구매 중…",
+    "payFailed": "{{symbol}}을(를) DHB로 변환할 수 없습니다"
   },
   "postOptions": {
     "options": "옵션",

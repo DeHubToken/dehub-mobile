@@ -1033,7 +1033,17 @@
     "amountIn": "Bedrag ({{currency}})",
     "balanceAmount": "Saldo: {{amount}}",
     "max": "Max: {{amount}}",
-    "toRecipient": "naar {{name}}"
+    "toRecipient": "naar {{name}}",
+    "payWith": "Betalen met",
+    "payQuoting": "Beste prijs ophalen…",
+    "payQuote": "≈ {{amount}} {{symbol}} op {{chain}}",
+    "payViaBridge": "Omgewisseld naar DHB op Uniswap, komt aan in ~{{seconds}}s",
+    "payViaSwap": "Omgewisseld naar DHB op Uniswap",
+    "stageApprove": "{{symbol}} goedkeuren…",
+    "stageBridge": "{{symbol}} verzenden vanaf {{chain}}…",
+    "stageArriving": "Onderweg naar Base, meestal een paar seconden…",
+    "stageSwap": "DHB kopen op Uniswap…",
+    "payFailed": "Kan {{symbol}} niet omzetten naar DHB"
   },
   "postOptions": {
     "options": "Opties",

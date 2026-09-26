@@ -843,7 +843,17 @@
     "minAmount": "گهٽ {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB منسلک ڪريو",
     "removeTip": "ٽپ ختم ڪريو",
-    "toContent": "مواد کي ٽپ ڏيو"
+    "toContent": "مواد کي ٽپ ڏيو",
+    "payWith": "هن سان ادا ڪريو",
+    "payQuoting": "بهترين قيمت ڳولي رهيا آهيون…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}} تي",
+    "payViaBridge": "Uniswap تي DHB ۾ مٽايو ويو، لڳ ڀڳ {{seconds}} سيڪنڊن ۾ پهچندو",
+    "payViaSwap": "Uniswap تي DHB ۾ مٽايو ويو",
+    "stageApprove": "{{symbol}} منظور ڪري رهيا آهيون…",
+    "stageBridge": "{{chain}} مان {{symbol}} موڪلي رهيا آهيون…",
+    "stageArriving": "Base تي پهچي رهيو آهي، عام طور تي ڪجهه سيڪنڊ…",
+    "stageSwap": "Uniswap تي DHB خريد ڪري رهيا آهيون…",
+    "payFailed": "{{symbol}} کي DHB ۾ تبديل نه ڪري سگهياسين"
   },
   "postOptions": {
     "options": "اختيار",

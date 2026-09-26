@@ -843,7 +843,17 @@
     "attachDescription": "Füge DHB-Token als Trinkgeld zu deiner Nachricht hinzu",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB anhängen",
-    "removeTip": "Trinkgeld entfernen"
+    "removeTip": "Trinkgeld entfernen",
+    "payWith": "Bezahlen mit",
+    "payQuoting": "Bester Preis wird ermittelt…",
+    "payQuote": "≈ {{amount}} {{symbol}} auf {{chain}}",
+    "payViaBridge": "Auf Uniswap in DHB getauscht, kommt in ~{{seconds}} s an",
+    "payViaSwap": "Auf Uniswap in DHB getauscht",
+    "stageApprove": "{{symbol}} wird freigegeben…",
+    "stageBridge": "{{symbol}} wird von {{chain}} gesendet…",
+    "stageArriving": "Kommt auf Base an, meist in wenigen Sekunden…",
+    "stageSwap": "DHB wird auf Uniswap gekauft…",
+    "payFailed": "{{symbol}} konnte nicht in DHB umgewandelt werden"
   },
   "postOptions": {
     "options": "Optionen",

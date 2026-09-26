@@ -843,7 +843,17 @@
     "attachAmount": "{{amount}} DHB সংযুক্ত করুন",
     "removeTip": "বকশিস সরান",
     "balanceAmount": "ব্যালেন্স: {{amount}}",
-    "max": "সর্বোচ্চ: {{amount}}"
+    "max": "সর্বোচ্চ: {{amount}}",
+    "payWith": "পেমেন্ট মাধ্যম",
+    "payQuoting": "সেরা দাম খোঁজা হচ্ছে…",
+    "payQuote": "≈ {{amount}} {{symbol}}, {{chain}}-এ",
+    "payViaBridge": "Uniswap-এ DHB-তে বদলানো হয়েছে, ~{{seconds}} সেকেন্ডে পৌঁছাবে",
+    "payViaSwap": "Uniswap-এ DHB-তে বদলানো হয়েছে",
+    "stageApprove": "{{symbol}} অনুমোদন করা হচ্ছে…",
+    "stageBridge": "{{chain}} থেকে {{symbol}} পাঠানো হচ্ছে…",
+    "stageArriving": "Base-এ পৌঁছাচ্ছে, সাধারণত কয়েক সেকেন্ড…",
+    "stageSwap": "Uniswap-এ DHB কেনা হচ্ছে…",
+    "payFailed": "{{symbol}} DHB-তে রূপান্তর করা যায়নি"
   },
   "postOptions": {
     "options": "বিকল্প",

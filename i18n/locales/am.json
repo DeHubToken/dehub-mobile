@@ -843,7 +843,17 @@
     "minAmount": "ዝቅተኛ {{amount}} DHB።",
     "attachAmount": "{{amount}} DHB ያያይዝ",
     "removeTip": "ጠቃሚ ምክር ያስወግዱ",
-    "toContent": "ይዘትን ይስጡ"
+    "toContent": "ይዘትን ይስጡ",
+    "payWith": "ክፍያ በ",
+    "payQuoting": "ምርጡን ዋጋ በማግኘት ላይ…",
+    "payQuote": "≈ {{amount}} {{symbol}} በ {{chain}} ላይ",
+    "payViaBridge": "በ Uniswap ወደ DHB ተቀይሯል፣ በ~{{seconds}} ሰከንድ ውስጥ ይደርሳል",
+    "payViaSwap": "በ Uniswap ወደ DHB ተቀይሯል",
+    "stageApprove": "{{symbol}} በማጽደቅ ላይ…",
+    "stageBridge": "{{symbol}} ከ {{chain}} በመላክ ላይ…",
+    "stageArriving": "ወደ Base በመድረስ ላይ፣ ብዙውን ጊዜ ጥቂት ሰከንዶች…",
+    "stageSwap": "DHB በ Uniswap በመግዛት ላይ…",
+    "payFailed": "{{symbol}} ወደ DHB መቀየር አልተቻለም"
   },
   "postOptions": {
     "options": "አማራጮች",

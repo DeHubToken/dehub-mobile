@@ -843,7 +843,17 @@
     "attachDescription": "Liitä DHB-tokeneita juomarahaksi viestiin",
     "minAmount": "Vähintään {{amount}} DHB.",
     "attachAmount": "Liitä {{amount}} DHB",
-    "removeTip": "Poista juomavaha"
+    "removeTip": "Poista juomavaha",
+    "payWith": "Maksa käyttäen",
+    "payQuoting": "Haetaan parasta hintaa…",
+    "payQuote": "≈ {{amount}} {{symbol}} verkossa {{chain}}",
+    "payViaBridge": "Vaihdettu DHB:ksi Uniswapissa, perillä ~{{seconds}} s kuluttua",
+    "payViaSwap": "Vaihdettu DHB:ksi Uniswapissa",
+    "stageApprove": "Hyväksytään {{symbol}}…",
+    "stageBridge": "Lähetetään {{symbol}} verkosta {{chain}}…",
+    "stageArriving": "Saapuu Baseen, yleensä muutamassa sekunnissa…",
+    "stageSwap": "Ostetaan DHB:tä Uniswapissa…",
+    "payFailed": "{{symbol}}-muunto DHB:ksi epäonnistui"
   },
   "postOptions": {
     "options": "Vaihtoehdot",

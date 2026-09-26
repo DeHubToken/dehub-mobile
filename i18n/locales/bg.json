@@ -843,7 +843,17 @@
     "attachDescription": "Прикачете DHB токени като съвет към вашето съобщение",
     "minAmount": "Мин {{amount}} DHB.",
     "attachAmount": "Прикачи {{amount}} DHB",
-    "removeTip": "Премахни съвет"
+    "removeTip": "Премахни съвет",
+    "payWith": "Плащане с",
+    "payQuoting": "Търсим най-добрата цена…",
+    "payQuote": "≈ {{amount}} {{symbol}} в {{chain}}",
+    "payViaBridge": "Обменено в DHB в Uniswap, пристига след ~{{seconds}} сек",
+    "payViaSwap": "Обменено в DHB в Uniswap",
+    "stageApprove": "Одобряване на {{symbol}}…",
+    "stageBridge": "Изпращане на {{symbol}} от {{chain}}…",
+    "stageArriving": "Пристига в Base, обикновено за няколко секунди…",
+    "stageSwap": "Купуване на DHB в Uniswap…",
+    "payFailed": "Неуспешно конвертиране на {{symbol}} в DHB"
   },
   "postOptions": {
     "options": "Опции",

@@ -843,7 +843,17 @@
     "attachDescription": "ភ្ជាប់토ークន DHB ជាគន្ថិបទៅលើសារររបស់អ្នក",
     "minAmount": "អប្បបរមា {{amount}} DHB។",
     "attachAmount": "ភ្ជាប់ {{amount}} DHB",
-    "removeTip": "ដកចេញគន្ថិប"
+    "removeTip": "ដកចេញគន្ថិប",
+    "payWith": "បង់ដោយ",
+    "payQuoting": "កំពុងស្វែងរកតម្លៃល្អបំផុត…",
+    "payQuote": "≈ {{amount}} {{symbol}} នៅលើ {{chain}}",
+    "payViaBridge": "បានប្ដូរទៅ DHB នៅលើ Uniswap មកដល់ក្នុង ~{{seconds}} វិនាទី",
+    "payViaSwap": "បានប្ដូរទៅ DHB នៅលើ Uniswap",
+    "stageApprove": "កំពុងអនុម័ត {{symbol}}…",
+    "stageBridge": "កំពុងផ្ញើ {{symbol}} ពី {{chain}}…",
+    "stageArriving": "កំពុងមកដល់ Base ជាធម្មតាប៉ុន្មានវិនាទីប៉ុណ្ណោះ…",
+    "stageSwap": "កំពុងទិញ DHB នៅលើ Uniswap…",
+    "payFailed": "មិនអាចបម្លែង {{symbol}} ទៅ DHB បានទេ"
   },
   "postOptions": {
     "options": "ជម្រើស",

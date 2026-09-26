@@ -843,7 +843,17 @@
     "attachDescription": "Tokko ykn gorsaa DHB irratti ergaa kee irra maxxansi",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB maxxansi",
-    "removeTip": "Gorsaa Balleessaa"
+    "removeTip": "Gorsaa Balleessaa",
+    "payWith": "Ittiin kaffali",
+    "payQuoting": "Gatii gaarii barbaadaa jira…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}} irratti",
+    "payViaBridge": "Uniswap irratti gara DHB-tti jijjiirame, sekondii ~{{seconds}} keessatti ga'a",
+    "payViaSwap": "Uniswap irratti gara DHB-tti jijjiirame",
+    "stageApprove": "{{symbol}} mirkaneessaa jira…",
+    "stageBridge": "{{symbol}} {{chain}} irraa ergaa jira…",
+    "stageArriving": "Base irra ga'aa jira, yeroo baay'ee sekondii muraasa…",
+    "stageSwap": "Uniswap irratti DHB bitaa jira…",
+    "payFailed": "{{symbol}} gara DHB-tti jijjiiruun hin danda'amne"
   },
   "postOptions": {
     "options": "Filannoowwan",

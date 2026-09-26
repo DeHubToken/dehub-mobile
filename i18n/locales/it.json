@@ -843,7 +843,17 @@
     "attachDescription": "Allega token DHB come suggerimento al tuo messaggio",
     "minAmount": "DHB min {{amount}}.",
     "attachAmount": "Allega {{amount}} DHB",
-    "removeTip": "Rimuovi suggerimento"
+    "removeTip": "Rimuovi suggerimento",
+    "payWith": "Paga con",
+    "payQuoting": "Ricerca del prezzo migliore…",
+    "payQuote": "≈ {{amount}} {{symbol}} su {{chain}}",
+    "payViaBridge": "Convertito in DHB su Uniswap, arriva in ~{{seconds}}s",
+    "payViaSwap": "Convertito in DHB su Uniswap",
+    "stageApprove": "Approvazione di {{symbol}}…",
+    "stageBridge": "Invio di {{symbol}} da {{chain}}…",
+    "stageArriving": "In arrivo su Base, di solito pochi secondi…",
+    "stageSwap": "Acquisto di DHB su Uniswap…",
+    "payFailed": "Impossibile convertire {{symbol}} in DHB"
   },
   "postOptions": {
     "options": "Opzioni",

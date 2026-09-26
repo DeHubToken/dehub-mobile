@@ -885,7 +885,17 @@
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Maglakip ng {{amount}} DHB",
     "removeTip": "Alisin ang Tip",
-    "paidInSol": "Binayaran sa SOL sa Solana"
+    "paidInSol": "Binayaran sa SOL sa Solana",
+    "payWith": "Magbayad gamit ang",
+    "payQuoting": "Kinukuha ang pinakamagandang presyo…",
+    "payQuote": "≈ {{amount}} {{symbol}} sa {{chain}}",
+    "payViaBridge": "Na-swap sa DHB sa Uniswap, darating sa loob ng ~{{seconds}}s",
+    "payViaSwap": "Na-swap sa DHB sa Uniswap",
+    "stageApprove": "Ina-approve ang {{symbol}}…",
+    "stageBridge": "Ipinapadala ang {{symbol}} mula sa {{chain}}…",
+    "stageArriving": "Darating sa Base, karaniwang ilang segundo lang…",
+    "stageSwap": "Bumibili ng DHB sa Uniswap…",
+    "payFailed": "Hindi ma-convert ang {{symbol}} sa DHB"
   },
   "postOptions": {
     "options": "Mga Opsyon",

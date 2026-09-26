@@ -843,7 +843,17 @@
     "attachDescription": "Joignez des jetons DHB en tant que pourboire à votre message",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Joindre {{amount}} DHB",
-    "removeTip": "Supprimer le pourboire"
+    "removeTip": "Supprimer le pourboire",
+    "payWith": "Payer avec",
+    "payQuoting": "Recherche du meilleur prix…",
+    "payQuote": "≈ {{amount}} {{symbol}} sur {{chain}}",
+    "payViaBridge": "Converti en DHB sur Uniswap, arrive dans ~{{seconds}} s",
+    "payViaSwap": "Converti en DHB sur Uniswap",
+    "stageApprove": "Approbation de {{symbol}}…",
+    "stageBridge": "Envoi de {{symbol}} depuis {{chain}}…",
+    "stageArriving": "Arrivée sur Base, généralement en quelques secondes…",
+    "stageSwap": "Achat de DHB sur Uniswap…",
+    "payFailed": "Impossible de convertir {{symbol}} en DHB"
   },
   "postOptions": {
     "options": "Options",

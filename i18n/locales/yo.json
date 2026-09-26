@@ -843,7 +843,17 @@
     "attachDescription": "Ṣàfikún àwọn tókin DHB gẹ́gẹ́ ìtọ́nà sí ìròyìn rẹ",
     "minAmount": "Kékeré {{amount}} DHB.",
     "attachAmount": "Ṣàfikún {{amount}} DHB",
-    "removeTip": "Yọ Ìtọ́nà"
+    "removeTip": "Yọ Ìtọ́nà",
+    "payWith": "Sanwó pẹ̀lú",
+    "payQuoting": "À ń wá iye owó tó dára jù…",
+    "payQuote": "≈ {{amount}} {{symbol}} lórí {{chain}}",
+    "payViaBridge": "A ti pààrọ̀ rẹ̀ sí DHB lórí Uniswap, yóò dé ní ~{{seconds}} ìṣẹ́jú-àáyá",
+    "payViaSwap": "A ti pààrọ̀ rẹ̀ sí DHB lórí Uniswap",
+    "stageApprove": "À ń fọwọ́ sí {{symbol}}…",
+    "stageBridge": "À ń fi {{symbol}} ránṣẹ́ láti {{chain}}…",
+    "stageArriving": "Ó ń dé Base, ó sábà máa ń gba ìṣẹ́jú-àáyá díẹ̀…",
+    "stageSwap": "À ń ra DHB lórí Uniswap…",
+    "payFailed": "A kò lè yí {{symbol}} padà sí DHB"
   },
   "postOptions": {
     "options": "Àwọn àṣàyàn",

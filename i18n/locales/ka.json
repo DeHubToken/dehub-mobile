@@ -843,7 +843,17 @@
     "minAmount": "მინ {{amount}} DHB.",
     "attachAmount": "დაამატეთ {{amount}} DHB",
     "removeTip": "Tip-ის ამოშლა",
-    "toContent": "რჩევის შინაარსი"
+    "toContent": "რჩევის შინაარსი",
+    "payWith": "გადახდა",
+    "payQuoting": "საუკეთესო ფასის ძიება…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}}-ზე",
+    "payViaBridge": "Uniswap-ზე გადაცვლილია DHB-ში, მოვა ~{{seconds}} წამში",
+    "payViaSwap": "Uniswap-ზე გადაცვლილია DHB-ში",
+    "stageApprove": "{{symbol}}-ის დადასტურება…",
+    "stageBridge": "{{symbol}}-ის გაგზავნა {{chain}}-დან…",
+    "stageArriving": "Base-ზე ჩამოდის, ჩვეულებრივ რამდენიმე წამში…",
+    "stageSwap": "DHB-ის ყიდვა Uniswap-ზე…",
+    "payFailed": "{{symbol}}-ის DHB-ში კონვერტაცია ვერ მოხერხდა"
   },
   "postOptions": {
     "options": "პარამეტრები",

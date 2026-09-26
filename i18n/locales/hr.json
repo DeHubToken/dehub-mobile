@@ -843,7 +843,17 @@
     "attachDescription": "Priloži DHB tokene kao savjet svojoj poruci",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Priloži {{amount}} DHB",
-    "removeTip": "Ukloni savjet"
+    "removeTip": "Ukloni savjet",
+    "payWith": "Plati s",
+    "payQuoting": "Tražimo najbolju cijenu…",
+    "payQuote": "≈ {{amount}} {{symbol}} na {{chain}}",
+    "payViaBridge": "Zamijenjeno za DHB na Uniswapu, stiže za ~{{seconds}} s",
+    "payViaSwap": "Zamijenjeno za DHB na Uniswapu",
+    "stageApprove": "Odobravanje {{symbol}}…",
+    "stageBridge": "Slanje {{symbol}} s {{chain}}…",
+    "stageArriving": "Stiže na Base, obično za nekoliko sekundi…",
+    "stageSwap": "Kupnja DHB-a na Uniswapu…",
+    "payFailed": "Nije moguće pretvoriti {{symbol}} u DHB"
   },
   "postOptions": {
     "options": "Mogućnosti",

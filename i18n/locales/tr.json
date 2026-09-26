@@ -843,7 +843,17 @@
     "attachAmount": "{{amount}} DHB ekle",
     "removeTip": "İpucunu Kaldır",
     "amountIn": "Tutar ({{currency}})",
-    "balanceAmount": "Bakiye: {{amount}}"
+    "balanceAmount": "Bakiye: {{amount}}",
+    "payWith": "Şununla öde",
+    "payQuoting": "En iyi fiyat alınıyor…",
+    "payQuote": "≈ {{chain}} üzerinde {{amount}} {{symbol}}",
+    "payViaBridge": "Uniswap'ta DHB'ye takas edildi, ~{{seconds}} sn içinde ulaşır",
+    "payViaSwap": "Uniswap'ta DHB'ye takas edildi",
+    "stageApprove": "{{symbol}} onaylanıyor…",
+    "stageBridge": "{{symbol}}, {{chain}} ağından gönderiliyor…",
+    "stageArriving": "Base'e ulaşıyor, genellikle birkaç saniye…",
+    "stageSwap": "Uniswap'ta DHB satın alınıyor…",
+    "payFailed": "{{symbol}} DHB'ye dönüştürülemedi"
   },
   "postOptions": {
     "options": "Seçenekler",

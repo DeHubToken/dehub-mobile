@@ -843,7 +843,17 @@
     "attachDescription": "Pridėkite DHB žetonus kaip arbatpinigius prie savo žinutės",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Pridėti {{amount}} DHB",
-    "removeTip": "Pašalinti arbatpinigius"
+    "removeTip": "Pašalinti arbatpinigius",
+    "payWith": "Mokėti su",
+    "payQuoting": "Ieškoma geriausios kainos…",
+    "payQuote": "≈ {{amount}} {{symbol}} tinkle {{chain}}",
+    "payViaBridge": "Iškeista į DHB per Uniswap, pasieks per ~{{seconds}} s",
+    "payViaSwap": "Iškeista į DHB per Uniswap",
+    "stageApprove": "Tvirtinama {{symbol}}…",
+    "stageBridge": "Siunčiama {{symbol}} iš {{chain}}…",
+    "stageArriving": "Keliauja į Base, paprastai per kelias sekundes…",
+    "stageSwap": "Perkama DHB per Uniswap…",
+    "payFailed": "Nepavyko konvertuoti {{symbol}} į DHB"
   },
   "postOptions": {
     "options": "Parinktys",

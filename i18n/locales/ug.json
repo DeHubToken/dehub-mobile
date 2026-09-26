@@ -843,7 +843,17 @@
     "attachDescription": "ئۆز خەۋەرىڭگە DHB توكەن tip سىپاتىدە قوشۇڭ",
     "minAmount": "ئەڭ ئاز {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB قوش",
-    "removeTip": "Tip چىقىرىۋەت"
+    "removeTip": "Tip چىقىرىۋەت",
+    "payWith": "بۇنىڭ بىلەن تۆلەش",
+    "payQuoting": "ئەڭ ياخشى باھا ئىزدەلمەكتە…",
+    "payQuote": "≈ {{chain}} دا {{amount}} {{symbol}}",
+    "payViaBridge": "Uniswap دا DHB غا ئالماشتۇرۇلدى، تەخمىنەن {{seconds}} سېكۇنتتا يېتىپ كېلىدۇ",
+    "payViaSwap": "Uniswap دا DHB غا ئالماشتۇرۇلدى",
+    "stageApprove": "{{symbol}} تەستىقلىنىۋاتىدۇ…",
+    "stageBridge": "{{chain}} دىن {{symbol}} يوللىنىۋاتىدۇ…",
+    "stageArriving": "Base قا يېتىپ كېلىۋاتىدۇ، ئادەتتە بىر نەچچە سېكۇنت…",
+    "stageSwap": "Uniswap دا DHB سېتىۋېلىنىۋاتىدۇ…",
+    "payFailed": "{{symbol}} نى DHB غا ئايلاندۇرغىلى بولمىدى"
   },
   "postOptions": {
     "options": "تاللانمىلار",

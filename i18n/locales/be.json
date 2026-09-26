@@ -843,7 +843,17 @@
     "attachDescription": "Прыкрепіце токены DHB як совет да вашага паведамлення",
     "minAmount": "Мін {{amount}} DHB.",
     "attachAmount": "Прыкрепіце {{amount}} DHB",
-    "removeTip": "Выдаліць совет"
+    "removeTip": "Выдаліць совет",
+    "payWith": "Аплаціць праз",
+    "payQuoting": "Шукаем найлепшую цану…",
+    "payQuote": "≈ {{amount}} {{symbol}} у {{chain}}",
+    "payViaBridge": "Абменена на DHB у Uniswap, паступіць праз ~{{seconds}} с",
+    "payViaSwap": "Абменена на DHB у Uniswap",
+    "stageApprove": "Пацвярджэнне {{symbol}}…",
+    "stageBridge": "Адпраўка {{symbol}} з {{chain}}…",
+    "stageArriving": "Паступленне ў Base, звычайна некалькі секунд…",
+    "stageSwap": "Купля DHB у Uniswap…",
+    "payFailed": "Не ўдалося канвертаваць {{symbol}} у DHB"
   },
   "postOptions": {
     "options": "Параметры",
