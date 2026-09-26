@@ -843,7 +843,17 @@
     "attachAmount": "{{amount}} DHB જોડો",
     "removeTip": "ટીપ દૂર કરો",
     "amountRequested": "વિનંતી કરેલી રકમ",
-    "balanceAmount": "બેલેન્સ: {{amount}}"
+    "balanceAmount": "બેલેન્સ: {{amount}}",
+    "payWith": "ચુકવણી માધ્યમ",
+    "payQuoting": "શ્રેષ્ઠ ભાવ મેળવી રહ્યા છીએ…",
+    "payQuote": "≈ {{amount}} {{symbol}}, {{chain}} પર",
+    "payViaBridge": "Uniswap પર DHB માં બદલાયું, ~{{seconds}} સેકન્ડમાં પહોંચશે",
+    "payViaSwap": "Uniswap પર DHB માં બદલાયું",
+    "stageApprove": "{{symbol}} મંજૂર કરી રહ્યા છીએ…",
+    "stageBridge": "{{chain}} થી {{symbol}} મોકલી રહ્યા છીએ…",
+    "stageArriving": "Base પર પહોંચી રહ્યું છે, સામાન્ય રીતે થોડી સેકન્ડ…",
+    "stageSwap": "Uniswap પર DHB ખરીદી રહ્યા છીએ…",
+    "payFailed": "{{symbol}} ને DHB માં બદલી શકાયું નહીં"
   },
   "postOptions": {
     "options": "વિકલ્પો",

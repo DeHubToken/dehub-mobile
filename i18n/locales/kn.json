@@ -843,7 +843,17 @@
     "attachDescription": "ನಿಮ್ಮ ಸಂದೇಶಕ್ಕೆ DHB ಟೋಕನ್ ಅನ್ನು ಟಿಪ್ ಆಗಿ ಸಂಪರ್ಕಿಸಿ",
     "minAmount": "ನ್ಯೂನತಮ {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB ಸಂಪರ್ಕಿಸಿ",
-    "removeTip": "ಟಿಪ್ ತೆಗೆದುಹಾಕಿ"
+    "removeTip": "ಟಿಪ್ ತೆಗೆದುಹಾಕಿ",
+    "payWith": "ಇದರಿಂದ ಪಾವತಿಸಿ",
+    "payQuoting": "ಉತ್ತಮ ಬೆಲೆಯನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}} ನಲ್ಲಿ",
+    "payViaBridge": "Uniswap ನಲ್ಲಿ DHB ಗೆ ಬದಲಾಯಿಸಲಾಗಿದೆ, ~{{seconds}} ಸೆಕೆಂಡುಗಳಲ್ಲಿ ತಲುಪುತ್ತದೆ",
+    "payViaSwap": "Uniswap ನಲ್ಲಿ DHB ಗೆ ಬದಲಾಯಿಸಲಾಗಿದೆ",
+    "stageApprove": "{{symbol}} ಅನುಮೋದಿಸಲಾಗುತ್ತಿದೆ…",
+    "stageBridge": "{{chain}} ನಿಂದ {{symbol}} ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…",
+    "stageArriving": "Base ಗೆ ತಲುಪುತ್ತಿದೆ, ಸಾಮಾನ್ಯವಾಗಿ ಕೆಲವು ಸೆಕೆಂಡುಗಳು…",
+    "stageSwap": "Uniswap ನಲ್ಲಿ DHB ಖರೀದಿಸಲಾಗುತ್ತಿದೆ…",
+    "payFailed": "{{symbol}} ಅನ್ನು DHB ಗೆ ಪರಿವರ್ತಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"
   },
   "postOptions": {
     "options": "ಆಯ್ಕೆಗಳು",

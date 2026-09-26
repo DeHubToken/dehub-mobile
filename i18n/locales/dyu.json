@@ -843,7 +843,17 @@
     "attachDescription": "DHB token sɛbɛ a ka jɔ i kɔnɔ tip la",
     "minAmount": "A dɔgɔman {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB sɛbɛ",
-    "removeTip": "Tip Kɔfɛ"
+    "removeTip": "Tip Kɔfɛ",
+    "payWith": "Sara ni",
+    "payQuoting": "Sɔngɔ ɲuman bɛ ɲini…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}} kan",
+    "payViaBridge": "A falen na ka kɛ DHB ye Uniswap kan, a bɛ se ~{{seconds}} segɔni kɔnɔ",
+    "payViaSwap": "A falen na ka kɛ DHB ye Uniswap kan",
+    "stageApprove": "{{symbol}} bɛ sɔn na…",
+    "stageBridge": "{{symbol}} bɛ ci ka bɔ {{chain}} kan…",
+    "stageArriving": "A bɛ sera Base kan, a ka teli ka kɛ segɔni dama ye…",
+    "stageSwap": "DHB bɛ san Uniswap kan…",
+    "payFailed": "{{symbol}} ma se ka falen ka kɛ DHB ye"
   },
   "postOptions": {
     "options": "Sugandiliw",

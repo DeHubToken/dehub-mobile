@@ -77,6 +77,8 @@ import { ButtonLoader } from "../DeHubLoader";
 import { getAccount } from "../../services/user.service";
 import { sanitizeAmountInput } from "../../libs/amount-input";
 import { haptic } from "../../libs/haptics";
+import TipPayWith, { tipStageLabel } from "./TipPayWith";
+import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -245,8 +247,11 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   const [amount, setAmount] = useState(isLocked ? String(lockedAmount) : "");
   const [selectedPreset, setSelectedPreset] = useState<number | null>(null);
   const [phase, setPhase] = useState<
-    "idle" | "approving" | "sending" | "sent" | "error"
+    "idle" | "funding" | "approving" | "sending" | "sent" | "error"
   >("idle");
+  // Another token to pay with; it becomes DHB on Base before the tip is sent.
+  const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
+  const [fundingLabel, setFundingLabel] = useState("");
   const [tipError, setTipError] = useState<string | null>(null);
   const [lastAmount, setLastAmount] = useState<number | null>(null);
   const [recipientPrivate, setRecipientPrivate] = useState(false);
@@ -279,11 +284,13 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   // as a hint, but it must not be the thing that refuses a tip: when it reads
   // low the owner is blocked from spending DHB they actually hold. The real
   // refusal is prepareDhbSpend, which reads the chain at send time.
-  const insufficient = !isSolanaTip && numericAmount > balance;
+  const insufficient = !isSolanaTip && !payWith && numericAmount > balance;
+  // Funding lands DHB on Base, so it is offered only when the tip goes out on Base.
+  const canPayWithOther = !isSolanaTip && !isLocked && chainId === 8453 && !!account;
   const isSelf =
     !!user?.walletAddress &&
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
-  const isBusy = phase === "approving" || phase === "sending";
+  const isBusy = phase === "funding" || phase === "approving" || phase === "sending";
   const disableSend =
     isBusy || privacyChecking || recipientPrivate || numericAmount <= 0 || overLimit || isSelf;
 
@@ -423,6 +430,23 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           tokenMeta.decimals || 18,
         );
 
+        if (payWith && canPayWithOther) {
+          setPhase("funding");
+          try {
+            await fundTip({
+              source: payWith,
+              amountDhb: numericAmount,
+              walletAddress: account,
+              onStage: (stage) => setFundingLabel(tipStageLabel(t as any, stage, payWith)),
+            });
+          } catch (e) {
+            setPhase("error");
+            haptic.error();
+            setTipError(e instanceof Error ? e.message : t("tip.payFailed", "Could not convert {{symbol}} to DHB", { symbol: payWith.symbol }));
+            return;
+          }
+        }
+
         // Balance, allowance and approval, all against the address that will
         // actually sign. Replaces a cached-balance gate that could not see a
         // spend made anywhere else.
@@ -545,6 +569,8 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     patchUser,
     isSolanaTip,
     paymentChainId,
+    payWith,
+    canPayWithOther,
     t,
   ]);
 
@@ -724,6 +750,15 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                     {t("tip.cannotTipSelf", "You can't tip yourself")}
                   </Text>
                 )}
+                {canPayWithOther ? (
+                  <TipPayWith
+                    visible={visible}
+                    amountDhb={numericAmount}
+                    walletAddress={account || undefined}
+                    value={payWith}
+                    onChange={setPayWith}
+                  />
+                ) : null}
                 {tipError && <Text style={styles.errorText}>{tipError}</Text>}
 
                 {/* Buttons */}
@@ -756,7 +791,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                           <Icon name="CircleAlert" size={16} color="#fff" />
                         ) : null}
                         <Text style={styles.sendBtnText}>
-                          {phase === "approving"
+                          {phase === "funding"
+                            ? fundingLabel || t("tip.payQuoting", "Getting the best price…")
+                            : phase === "approving"
                             ? t("tip.approving", "Approving...")
                             : phase === "sending"
                               ? t("tip.sending", "Sending...")

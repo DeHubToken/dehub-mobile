@@ -843,7 +843,17 @@
     "minAmount": "最小 {{amount}} DHB。",
     "attachAmount": "{{amount}} DHB を添付",
     "removeTip": "チップを削除",
-    "toContent": "チップの内容"
+    "toContent": "チップの内容",
+    "payWith": "支払い方法",
+    "payQuoting": "最適な価格を取得中…",
+    "payQuote": "≈ {{amount}} {{symbol}}（{{chain}}）",
+    "payViaBridge": "UniswapでDHBに交換、約{{seconds}}秒で到着",
+    "payViaSwap": "UniswapでDHBに交換",
+    "stageApprove": "{{symbol}}を承認中…",
+    "stageBridge": "{{chain}}から{{symbol}}を送信中…",
+    "stageArriving": "Baseに到着中、通常は数秒です…",
+    "stageSwap": "UniswapでDHBを購入中…",
+    "payFailed": "{{symbol}}をDHBに変換できませんでした"
   },
   "postOptions": {
     "options": "オプション",

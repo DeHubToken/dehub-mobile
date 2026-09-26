@@ -843,7 +843,17 @@
     "minAmount": "کم از کم {{amount}} DHB ۔",
     "attachAmount": "{{amount}} DHB منسلک کریں",
     "removeTip": "ٹپ ہٹائیں",
-    "max": "زیادہ سے زیادہ: {{amount}}"
+    "max": "زیادہ سے زیادہ: {{amount}}",
+    "payWith": "اس سے ادائیگی کریں",
+    "payQuoting": "بہترین قیمت حاصل کی جا رہی ہے…",
+    "payQuote": "≈ {{chain}} پر {{amount}} {{symbol}}",
+    "payViaBridge": "Uniswap پر DHB میں تبدیل کیا گیا، تقریباً {{seconds}} سیکنڈ میں پہنچ جائے گا",
+    "payViaSwap": "Uniswap پر DHB میں تبدیل کیا گیا",
+    "stageApprove": "{{symbol}} کی منظوری دی جا رہی ہے…",
+    "stageBridge": "{{chain}} سے {{symbol}} بھیجا جا رہا ہے…",
+    "stageArriving": "Base پر پہنچ رہا ہے، عموماً چند سیکنڈ…",
+    "stageSwap": "Uniswap پر DHB خریدا جا رہا ہے…",
+    "payFailed": "{{symbol}} کو DHB میں تبدیل نہیں کیا جا سکا"
   },
   "postOptions": {
     "options": "اختیارات",

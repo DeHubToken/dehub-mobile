@@ -843,7 +843,17 @@
     "attachDescription": "Bashkangitni token DHB si këshillë në mesazhin tuaj",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Bashkangitni {{amount}} DHB",
-    "removeTip": "Hiqni këshillën"
+    "removeTip": "Hiqni këshillën",
+    "payWith": "Paguaj me",
+    "payQuoting": "Po kërkojmë çmimin më të mirë…",
+    "payQuote": "≈ {{amount}} {{symbol}} në {{chain}}",
+    "payViaBridge": "U këmbye në DHB në Uniswap, mbërrin për ~{{seconds}} s",
+    "payViaSwap": "U këmbye në DHB në Uniswap",
+    "stageApprove": "Po miratohet {{symbol}}…",
+    "stageBridge": "Po dërgohet {{symbol}} nga {{chain}}…",
+    "stageArriving": "Po mbërrin në Base, zakonisht disa sekonda…",
+    "stageSwap": "Po blihet DHB në Uniswap…",
+    "payFailed": "{{symbol}} nuk u konvertua dot në DHB"
   },
   "postOptions": {
     "options": "Opsionet",

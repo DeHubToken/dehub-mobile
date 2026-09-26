@@ -843,7 +843,17 @@
     "attachDescription": "Сиздин билдирүүңүзгө DHB токендерин чайын катары бекитиңиз",
     "minAmount": "Минимум {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB бекитиңиз",
-    "removeTip": "Чайынды алып салуу"
+    "removeTip": "Чайынды алып салуу",
+    "payWith": "Төлөө ыкмасы",
+    "payQuoting": "Эң жакшы баа изделүүдө…",
+    "payQuote": "≈ {{amount}} {{symbol}}, {{chain}} тармагында",
+    "payViaBridge": "Uniswap'та DHB'ге алмаштырылды, ~{{seconds}} сек ичинде келет",
+    "payViaSwap": "Uniswap'та DHB'ге алмаштырылды",
+    "stageApprove": "{{symbol}} ырасталууда…",
+    "stageBridge": "{{symbol}} {{chain}} тармагынан жөнөтүлүүдө…",
+    "stageArriving": "Base'ке келүүдө, адатта бир нече секунд…",
+    "stageSwap": "Uniswap'та DHB сатып алынууда…",
+    "payFailed": "{{symbol}} DHB'ге алмаштырылган жок"
   },
   "postOptions": {
     "options": "Тандоолор",

@@ -843,7 +843,17 @@
     "attachDescription": "ਆਪਣੇ ਸੁਨੇਹੇ ਵਿੱਚ DHB ਟੋਕਨ ਨੂੰ ਇੱਕ ਟਿਪ ਦੇ ਤੌਰ ਤੇ ਜੋੜੋ",
     "minAmount": "ਘੱਟੋ-ਘੱਟ {{amount}} DHB।",
     "attachAmount": "{{amount}} DHB ਜੋੜੋ",
-    "removeTip": "ਟਿਪ ਹਟਾਓ"
+    "removeTip": "ਟਿਪ ਹਟਾਓ",
+    "payWith": "ਇਸ ਨਾਲ ਭੁਗਤਾਨ ਕਰੋ",
+    "payQuoting": "ਸਭ ਤੋਂ ਵਧੀਆ ਕੀਮਤ ਲੱਭ ਰਹੇ ਹਾਂ…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}} 'ਤੇ",
+    "payViaBridge": "Uniswap 'ਤੇ DHB ਵਿੱਚ ਬਦਲਿਆ, ~{{seconds}} ਸਕਿੰਟਾਂ ਵਿੱਚ ਪਹੁੰਚੇਗਾ",
+    "payViaSwap": "Uniswap 'ਤੇ DHB ਵਿੱਚ ਬਦਲਿਆ",
+    "stageApprove": "{{symbol}} ਮਨਜ਼ੂਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…",
+    "stageBridge": "{{chain}} ਤੋਂ {{symbol}} ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ…",
+    "stageArriving": "Base 'ਤੇ ਪਹੁੰਚ ਰਿਹਾ ਹੈ, ਆਮ ਤੌਰ 'ਤੇ ਕੁਝ ਸਕਿੰਟ…",
+    "stageSwap": "Uniswap 'ਤੇ DHB ਖਰੀਦਿਆ ਜਾ ਰਿਹਾ ਹੈ…",
+    "payFailed": "{{symbol}} ਨੂੰ DHB ਵਿੱਚ ਬਦਲਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ"
   },
   "postOptions": {
     "options": "ਵਿਕਲਪ",

@@ -843,7 +843,17 @@
     "attachDescription": "Прикрепите токены DHB в качестве чаевых к вашему сообщению",
     "minAmount": "Мин {{amount}} DHB.",
     "attachAmount": "Прикрепить {{amount}} DHB",
-    "removeTip": "Удалить чаевые"
+    "removeTip": "Удалить чаевые",
+    "payWith": "Оплатить с помощью",
+    "payQuoting": "Ищем лучшую цену…",
+    "payQuote": "≈ {{amount}} {{symbol}} в сети {{chain}}",
+    "payViaBridge": "Обмен на DHB через Uniswap, поступит примерно через {{seconds}} с",
+    "payViaSwap": "Обмен на DHB через Uniswap",
+    "stageApprove": "Подтверждаем {{symbol}}…",
+    "stageBridge": "Отправляем {{symbol}} из {{chain}}…",
+    "stageArriving": "Зачисление в Base, обычно за несколько секунд…",
+    "stageSwap": "Покупаем DHB на Uniswap…",
+    "payFailed": "Не удалось конвертировать {{symbol}} в DHB"
   },
   "postOptions": {
     "options": "Опции",

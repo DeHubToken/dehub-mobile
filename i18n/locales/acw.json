@@ -843,7 +843,17 @@
     "attachDescription": "ألحق توكنات DHB كبقشيش مع رسالتك",
     "minAmount": "الحد الأدنى {{amount}} DHB.",
     "attachAmount": "ألحق {{amount}} DHB",
-    "removeTip": "احذف البقشيش"
+    "removeTip": "احذف البقشيش",
+    "payWith": "ادفع بـ",
+    "payQuoting": "قاعدين نجيب لك أحسن سعر…",
+    "payQuote": "≈ {{amount}} {{symbol}} على {{chain}}",
+    "payViaBridge": "انبدل لـ DHB على Uniswap، يوصل خلال ~{{seconds}} ثانية",
+    "payViaSwap": "انبدل لـ DHB على Uniswap",
+    "stageApprove": "قاعدين نوافق على {{symbol}}…",
+    "stageBridge": "قاعدين نرسل {{symbol}} من {{chain}}…",
+    "stageArriving": "قاعد يوصل على Base، عادةً كم ثانية…",
+    "stageSwap": "قاعدين نشتري DHB على Uniswap…",
+    "payFailed": "ما قدرنا نحوّل {{symbol}} لـ DHB"
   },
   "postOptions": {
     "options": "خيارات",

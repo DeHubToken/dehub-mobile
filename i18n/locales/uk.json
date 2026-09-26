@@ -1200,7 +1200,17 @@
     "attachDescription": "Додайте токени DHB як чайові до вашого повідомлення",
     "minAmount": "Мін {{amount}} DHB.",
     "attachAmount": "Додайте {{amount}} DHB",
-    "removeTip": "Видалити чайові"
+    "removeTip": "Видалити чайові",
+    "payWith": "Оплатити через",
+    "payQuoting": "Шукаємо найкращу ціну…",
+    "payQuote": "≈ {{amount}} {{symbol}} у мережі {{chain}}",
+    "payViaBridge": "Обміняно на DHB через Uniswap, надійде приблизно за {{seconds}} с",
+    "payViaSwap": "Обміняно на DHB через Uniswap",
+    "stageApprove": "Підтверджуємо {{symbol}}…",
+    "stageBridge": "Надсилаємо {{symbol}} з {{chain}}…",
+    "stageArriving": "Зарахування в Base, зазвичай кілька секунд…",
+    "stageSwap": "Купуємо DHB на Uniswap…",
+    "payFailed": "Не вдалося конвертувати {{symbol}} у DHB"
   },
   "postOptions": {
     "options": "Опції",

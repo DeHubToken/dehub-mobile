@@ -843,7 +843,17 @@
     "attachDescription": "แนบโทเค็น DHB เป็นทิปกับข้อความของคุณ",
     "minAmount": "ขั้นต่ำ {{amount}} DHB",
     "attachAmount": "แนบ {{amount}} DHB",
-    "removeTip": "ลบทิป"
+    "removeTip": "ลบทิป",
+    "payWith": "จ่ายด้วย",
+    "payQuoting": "กำลังซอกหาราคาดีที่สุด…",
+    "payQuote": "≈ {{amount}} {{symbol}} อยู่ {{chain}}",
+    "payViaBridge": "แลกเป็น DHB อยู่ Uniswap แล้ว สิฮอดในอีก ~{{seconds}} วินาที",
+    "payViaSwap": "แลกเป็น DHB อยู่ Uniswap แล้ว",
+    "stageApprove": "กำลังอนุมัติ {{symbol}}…",
+    "stageBridge": "กำลังส่ง {{symbol}} จาก {{chain}}…",
+    "stageArriving": "กำลังสิฮอด Base ส่วนหลายกะแค่ไม่กี่วินาที…",
+    "stageSwap": "กำลังซื้อ DHB อยู่ Uniswap…",
+    "payFailed": "บ่สามารถแปลง {{symbol}} เป็น DHB ได้"
   },
   "postOptions": {
     "options": "ตัวเลือก",

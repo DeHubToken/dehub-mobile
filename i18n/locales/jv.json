@@ -843,7 +843,17 @@
     "attachDescription": "Pasang token DHB minangka tip ing pesen sampeyan",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Pasang {{amount}} DHB",
-    "removeTip": "Busak Tip"
+    "removeTip": "Busak Tip",
+    "payWith": "Bayar nganggo",
+    "payQuoting": "Nggoleki rega paling apik…",
+    "payQuote": "≈ {{amount}} {{symbol}} ing {{chain}}",
+    "payViaBridge": "Diijolke dadi DHB ing Uniswap, tekan sajrone ~{{seconds}} detik",
+    "payViaSwap": "Diijolke dadi DHB ing Uniswap",
+    "stageApprove": "Nyetujoni {{symbol}}…",
+    "stageBridge": "Ngirim {{symbol}} saka {{chain}}…",
+    "stageArriving": "Lagi tekan ing Base, biasane mung sawetara detik…",
+    "stageSwap": "Tuku DHB ing Uniswap…",
+    "payFailed": "Ora bisa ngowahi {{symbol}} dadi DHB"
   },
   "postOptions": {
     "options": "Opsi",

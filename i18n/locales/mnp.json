@@ -843,7 +843,17 @@
     "minAmount": "最少 {{amount}} DHB。",
     "attachAmount": "附加 {{amount}} DHB",
     "removeTip": "移除小费",
-    "toContent": "提示内容"
+    "toContent": "提示内容",
+    "payWith": "付款方式",
+    "payQuoting": "正在找最好价钱…",
+    "payQuote": "≈ {{amount}} {{symbol}}（{{chain}}）",
+    "payViaBridge": "已在 Uniswap 换成 DHB，约 {{seconds}} 秒到",
+    "payViaSwap": "已在 Uniswap 换成 DHB",
+    "stageApprove": "正在批准 {{symbol}}…",
+    "stageBridge": "正在从 {{chain}} 送 {{symbol}}…",
+    "stageArriving": "正在到 Base，一般几秒钟…",
+    "stageSwap": "正在 Uniswap 买 DHB…",
+    "payFailed": "{{symbol}} 换不成 DHB"
   },
   "postOptions": {
     "options": "选项",

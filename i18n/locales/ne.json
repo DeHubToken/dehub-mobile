@@ -843,7 +843,17 @@
     "minAmount": "न्यूनतम {{amount}} DHB।",
     "attachAmount": "{{amount}} DHB संलग्न गर्नुहोस्",
     "removeTip": "टिप हटाउनुहोस्",
-    "toContent": "सामग्री टिप गर्नुहोस्"
+    "toContent": "सामग्री टिप गर्नुहोस्",
+    "payWith": "यसबाट भुक्तानी गर्नुहोस्",
+    "payQuoting": "उत्तम मूल्य खोज्दै…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}} मा",
+    "payViaBridge": "Uniswap मा DHB मा साटियो, ~{{seconds}} सेकेन्डमा आइपुग्छ",
+    "payViaSwap": "Uniswap मा DHB मा साटियो",
+    "stageApprove": "{{symbol}} स्वीकृत गर्दै…",
+    "stageBridge": "{{chain}} बाट {{symbol}} पठाउँदै…",
+    "stageArriving": "Base मा आइपुग्दै, प्रायः केही सेकेन्ड…",
+    "stageSwap": "Uniswap मा DHB किन्दै…",
+    "payFailed": "{{symbol}} लाई DHB मा परिवर्तन गर्न सकिएन"
   },
   "postOptions": {
     "options": "विकल्पहरू",

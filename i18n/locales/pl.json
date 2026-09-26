@@ -843,7 +843,17 @@
     "attachDescription": "Dołącz tokeny DHB jako napiwek do swojej wiadomości",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Dołącz {{amount}} DHB",
-    "removeTip": "Usuń napiwek"
+    "removeTip": "Usuń napiwek",
+    "payWith": "Zapłać za pomocą",
+    "payQuoting": "Pobieranie najlepszej ceny…",
+    "payQuote": "≈ {{amount}} {{symbol}} w sieci {{chain}}",
+    "payViaBridge": "Wymieniono na DHB w Uniswap, dotrze w ~{{seconds}} s",
+    "payViaSwap": "Wymieniono na DHB w Uniswap",
+    "stageApprove": "Zatwierdzanie {{symbol}}…",
+    "stageBridge": "Wysyłanie {{symbol}} z {{chain}}…",
+    "stageArriving": "Przesyłanie do Base, zwykle kilka sekund…",
+    "stageSwap": "Kupowanie DHB w Uniswap…",
+    "payFailed": "Nie udało się przekonwertować {{symbol}} na DHB"
   },
   "postOptions": {
     "options": "Opcje",

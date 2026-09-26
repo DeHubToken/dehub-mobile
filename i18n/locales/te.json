@@ -843,7 +843,17 @@
     "minAmount": "కనీసం {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB జోడించండి",
     "removeTip": "చిట్కను తీసివేయండి",
-    "toContent": "కంటెంట్ చిట్కా"
+    "toContent": "కంటెంట్ చిట్కా",
+    "payWith": "దీనితో చెల్లించండి",
+    "payQuoting": "ఉత్తమ ధర పొందుతోంది…",
+    "payQuote": "≈ {{chain}} లో {{amount}} {{symbol}}",
+    "payViaBridge": "Uniswap లో DHB గా మార్చబడింది, ~{{seconds}} సెకన్లలో చేరుతుంది",
+    "payViaSwap": "Uniswap లో DHB గా మార్చబడింది",
+    "stageApprove": "{{symbol}} ఆమోదిస్తోంది…",
+    "stageBridge": "{{chain}} నుండి {{symbol}} పంపుతోంది…",
+    "stageArriving": "Base కి చేరుతోంది, సాధారణంగా కొన్ని సెకన్లు…",
+    "stageSwap": "Uniswap లో DHB కొంటోంది…",
+    "payFailed": "{{symbol}} ను DHB గా మార్చలేకపోయాం"
   },
   "postOptions": {
     "options": "ఎంపికలు",

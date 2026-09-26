@@ -886,7 +886,17 @@
     "success": "টিপ পাঠানো অইসে!",
     "failed": "টিপ পাঠানো ব্যর্থ",
     "confirmTip": "টিপ নিশ্চিত করো",
-    "toContent": "বকশিশের বিষয়বস্তু"
+    "toContent": "বকশিশের বিষয়বস্তু",
+    "payWith": "ইটা দিয়া পে করো",
+    "payQuoting": "সবথাকি বালা দাম বিসরার…",
+    "payQuote": "≈ {{chain}}-এ {{amount}} {{symbol}}",
+    "payViaBridge": "Uniswap-এ DHB-তে বদলানি অইছে, মোটামুটি {{seconds}} সেকেন্ডে আইবো",
+    "payViaSwap": "Uniswap-এ DHB-তে বদলানি অইছে",
+    "stageApprove": "{{symbol}} অনুমোদন অইরার…",
+    "stageBridge": "{{chain}} থাকি {{symbol}} পাঠানি অইরার…",
+    "stageArriving": "Base-এ আইরার, সাধারণত কয়েক সেকেন্ড লাগে…",
+    "stageSwap": "Uniswap-এ DHB কিনা অইরার…",
+    "payFailed": "{{symbol}} DHB-তে বদলানি গেলো না"
   },
   "postOptions": {
     "options": "বিকল্প",

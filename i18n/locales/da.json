@@ -843,7 +843,17 @@
     "attachDescription": "Vedhæft DHB-tokens som et tip til din besked",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Vedhæft {{amount}} DHB",
-    "removeTip": "Fjern tip"
+    "removeTip": "Fjern tip",
+    "payWith": "Betal med",
+    "payQuoting": "Finder den bedste pris…",
+    "payQuote": "≈ {{amount}} {{symbol}} på {{chain}}",
+    "payViaBridge": "Byttet til DHB på Uniswap, ankommer om ~{{seconds}} s",
+    "payViaSwap": "Byttet til DHB på Uniswap",
+    "stageApprove": "Godkender {{symbol}}…",
+    "stageBridge": "Sender {{symbol}} fra {{chain}}…",
+    "stageArriving": "Ankommer på Base, normalt få sekunder…",
+    "stageSwap": "Køber DHB på Uniswap…",
+    "payFailed": "Kunne ikke konvertere {{symbol}} til DHB"
   },
   "postOptions": {
     "options": "Valgmuligheder",

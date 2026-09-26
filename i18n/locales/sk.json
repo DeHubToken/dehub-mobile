@@ -865,7 +865,17 @@
     "attachDescription": "Pripojte DHB tokeny ako tip k vašej správe",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Pripojte {{amount}} DHB",
-    "removeTip": "Odstrániť tip"
+    "removeTip": "Odstrániť tip",
+    "payWith": "Zaplatiť cez",
+    "payQuoting": "Hľadáme najlepšiu cenu…",
+    "payQuote": "≈ {{amount}} {{symbol}} na {{chain}}",
+    "payViaBridge": "Vymenené na DHB cez Uniswap, dorazí o ~{{seconds}} s",
+    "payViaSwap": "Vymenené na DHB cez Uniswap",
+    "stageApprove": "Schvaľuje sa {{symbol}}…",
+    "stageBridge": "Odosiela sa {{symbol}} z {{chain}}…",
+    "stageArriving": "Prichádza na Base, zvyčajne pár sekúnd…",
+    "stageSwap": "Nakupuje sa DHB na Uniswap…",
+    "payFailed": "{{symbol}} sa nepodarilo previesť na DHB"
   },
   "postOptions": {
     "options": "Možnosti",

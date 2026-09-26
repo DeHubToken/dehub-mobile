@@ -879,7 +879,17 @@
     "attachDescription": "আপনার বার্তায় DHB টোকেন টিপ হিসেবে সংযুক্ত করুন",
     "minAmount": "সর্বনিম্ন {{amount}} DHB।",
     "attachAmount": "{{amount}} DHB সংযুক্ত করুন",
-    "removeTip": "টিপ সরান"
+    "removeTip": "টিপ সরান",
+    "payWith": "পেমেন্ট গরিবার মাধ্যম",
+    "payQuoting": "সবত্তুন ভালা দাম খুঁজির…",
+    "payQuote": "≈ {{amount}} {{symbol}}, {{chain}}-ত",
+    "payViaBridge": "Uniswap-ত DHB-ত বদলাই দিয়ে, ~{{seconds}} সেকেন্ডত আইবো",
+    "payViaSwap": "Uniswap-ত DHB-ত বদলাই দিয়ে",
+    "stageApprove": "{{symbol}} অনুমোদন গরির…",
+    "stageBridge": "{{chain}} তুন {{symbol}} পাঠাইর…",
+    "stageArriving": "Base-ত আইয়ের, সাধারণত কয়েক সেকেন্ড…",
+    "stageSwap": "Uniswap-ত DHB কিনির…",
+    "payFailed": "{{symbol}} রে DHB-ত বদলাই ন পারির"
   },
   "postOptions": {
     "options": "অপশন",

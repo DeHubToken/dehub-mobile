@@ -843,7 +843,17 @@
     "minAmount": "குறைந்தபட்சம் {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB இணைக்கவும்",
     "removeTip": "குறிப்பு அகற்றவும்",
-    "toContent": "உள்ளடக்கத்திற்கு குறிப்பு"
+    "toContent": "உள்ளடக்கத்திற்கு குறிப்பு",
+    "payWith": "இதன் மூலம் செலுத்து",
+    "payQuoting": "சிறந்த விலையைப் பெறுகிறது…",
+    "payQuote": "≈ {{chain}} இல் {{amount}} {{symbol}}",
+    "payViaBridge": "Uniswap இல் DHB ஆக மாற்றப்பட்டது, ~{{seconds}} வினாடிகளில் வந்துசேரும்",
+    "payViaSwap": "Uniswap இல் DHB ஆக மாற்றப்பட்டது",
+    "stageApprove": "{{symbol}} அங்கீகரிக்கப்படுகிறது…",
+    "stageBridge": "{{chain}} இலிருந்து {{symbol}} அனுப்பப்படுகிறது…",
+    "stageArriving": "Base இல் வந்துசேர்கிறது, பொதுவாக சில வினாடிகள்…",
+    "stageSwap": "Uniswap இல் DHB வாங்கப்படுகிறது…",
+    "payFailed": "{{symbol}} ஐ DHB ஆக மாற்ற முடியவில்லை"
   },
   "postOptions": {
     "options": "விருப்பங்கள்",

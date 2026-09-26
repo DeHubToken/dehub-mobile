@@ -843,7 +843,17 @@
     "attachDescription": "צרף אסימוני DHB כטיפ להודעה שלך",
     "minAmount": "דקות {{amount}} DHB.",
     "attachAmount": "צרף {{amount}} DHB",
-    "removeTip": "הסר טיפ"
+    "removeTip": "הסר טיפ",
+    "payWith": "תשלום באמצעות",
+    "payQuoting": "מחפשים את המחיר הטוב ביותר…",
+    "payQuote": "≈ {{amount}} {{symbol}} ב-{{chain}}",
+    "payViaBridge": "הומר ל-DHB ב-Uniswap, יגיע תוך ~{{seconds}} שנ׳",
+    "payViaSwap": "הומר ל-DHB ב-Uniswap",
+    "stageApprove": "מאשרים את {{symbol}}…",
+    "stageBridge": "שולחים {{symbol}} מ-{{chain}}…",
+    "stageArriving": "מגיע ל-Base, בדרך כלל תוך כמה שניות…",
+    "stageSwap": "קונים DHB ב-Uniswap…",
+    "payFailed": "לא ניתן היה להמיר {{symbol}} ל-DHB"
   },
   "postOptions": {
     "options": "אפשרויות",
