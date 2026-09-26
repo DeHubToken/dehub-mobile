@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Mint işlemini blok gezgininde açmak ve zincirdeki kaydı doğrulamak için mint edilmiş gönderideki bilgi simgesine dokunun.",
     "guideMintIntro": "Bir gönderiyi blokzincirde NFT olarak mint etmek isteğe bağlıdır. Yayınlarken mint edin ya da şimdi yayınlayıp daha sonra gönderi menüsünden mint edin.",
     "guideMintPublishStep": "Mint edip etmeyeceğinizi seçin, ardından yayınlamak için 'Gönder'e tıklayın. Mint etmeyi atlarsanız gönderiyi daha sonra menüsünden mint edebilirsiniz.",
+    "guideMintFractionsStep": "Yeni basılan gönderinin 1.000 payının tamamını (%100 sahiplik) alırsın.",
     "glossaryMintTxDesc": "Mint işlemini blok gezgininde açmak ve zincirdeki kaydı doğrulamak için mint edilmiş gönderideki bilgi simgesine dokunun. Tam Gönderi Bilgisi sayfası — istatistikler, sahipler, pazar yeri — dehub.io adresindeki web uygulamasındadır.",
     "glossaryTokenIdDesc": "Bir gönderi NFT olarak mint edildiğinde ona atanan benzersiz zincir üstü tanımlayıcı.",
     "repostsTab": "Tekrar Gönderiler",

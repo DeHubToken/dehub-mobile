@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Taabo astaanta macluumaadka ee qoraal la mint gareeyay si aad ugu furto macaamilkiisa mint-ka block explorer-ka oo aad u xaqiijiso diiwaanka silsiladda.",
     "guideMintIntro": "Mint garaynta qoraal ahaan NFT ahaan blockchain-ka waa ikhtiyaari. Mint garee markaad daabacayso, ama hadda daabac oo mar dambe ka mint garee liiska qoraalka.",
     "guideMintPublishStep": "Dooro inaad mint gareyso iyo in kale, kadibna guji 'Dir' si aad u daabacdo. Haddii aad ka boodo mint-ka, mar dambe ayaad qoraalka ka mint garayn kartaa liiskiisa.",
+    "guideMintFractionsStep": "Waxaad helaysaa dhammaan 1,000 qaybood (lahaansho 100%) ee qoraalkaaga cusub ee la mint-gareeyay.",
     "glossaryMintTxDesc": "Taabo astaanta macluumaadka ee qoraal la mint gareeyay si aad ugu furto macaamilkiisa mint-ka block explorer-ka oo aad u xaqiijiso diiwaanka silsiladda. Bogga buuxa ee Macluumaadka Qoraalka — tirakoob, haystayaal, suuq — wuxuu ku yaal app-ka webka ee dehub.io.",
     "glossaryTokenIdDesc": "Aqoonsi gaar ah oo silsiladda ku jira oo qoraalka la siiyo marka loo mint gareeyo NFT ahaan.",
     "repostsTab": "Dib u dhajiyay",

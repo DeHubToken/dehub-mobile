@@ -3440,6 +3440,7 @@
     "guideInfoStep": "Nhấn vào biểu tượng thông tin trên bài đăng đã đúc để mở giao dịch đúc trong trình khám phá khối và xác minh bản ghi on-chain.",
     "guideMintIntro": "Việc đúc bài đăng thành NFT trên blockchain là tùy chọn. Đúc khi bạn đăng, hoặc đăng ngay và đúc sau từ menu bài đăng.",
     "guideMintPublishStep": "Chọn có đúc hay không, rồi nhấn 'Đăng' để xuất bản. Nếu bỏ qua bước đúc, bạn có thể đúc bài đăng sau từ menu của nó.",
+    "guideMintFractionsStep": "Bạn nhận toàn bộ 1.000 phân số (sở hữu 100%) của bài viết vừa đúc.",
     "glossaryMintTxDesc": "Nhấn vào biểu tượng thông tin trên bài đăng đã đúc để mở giao dịch đúc trong trình khám phá khối và xác minh bản ghi on-chain. Trang Thông tin bài đăng đầy đủ — thống kê, người nắm giữ, chợ — nằm trên ứng dụng web tại dehub.io.",
     "glossaryTokenIdDesc": "Mã định danh duy nhất on-chain được gán cho bài đăng khi nó được đúc thành NFT.",
     "repostsTab": "Đăng lại",

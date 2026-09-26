@@ -3460,6 +3460,7 @@
     "guideInfoStep": "Tik op die inligtingsikoon op 'n gemunte plasing om sy munttransaksie in die blokverkenner oop te maak en die rekord op die ketting te verifieer.",
     "guideMintIntro": "Om 'n plasing as 'n NFT op die blokketting te munt is opsioneel. Munt dit wanneer jy publiseer, of publiseer nou en munt dit later uit die plasingkieslys.",
     "guideMintPublishStep": "Kies of jy wil munt, en klik dan 'Plaas' om te publiseer. As jy munt oorslaan, kan jy die plasing later uit die plasingkieslys munt.",
+    "guideMintFractionsStep": "Jy ontvang al 1,000 fraksies (100% eienaarskap) van jou pas gemunte plasing.",
     "glossaryMintTxDesc": "Tik op die inligtingsikoon op 'n gemunte plasing om sy munttransaksie in die blokverkenner oop te maak en die rekord op die ketting te verifieer. Die volledige Plasinginligting-bladsy — statistieke, houers, mark — is op die webtoep by dehub.io.",
     "glossaryTokenIdDesc": "'n Unieke identifiseerder op die ketting wat aan 'n plasing toegeken word wanneer dit as 'n NFT gemunt word.",
     "repostsTab": "Herplasings",

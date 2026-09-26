@@ -423,7 +423,7 @@ const SECTIONS: GuideSection[] = [
       "Write your text, attach media (images, videos, audio), and add categories.",
       { key: "screens.guideMintPublishStep" },
       "Each minted post gets a unique Token ID and a transaction hash you can verify on-chain.",
-      "You automatically receive all 100 fractions (100% ownership) of your newly minted post.",
+      { key: "screens.guideMintFractionsStep" },
       "View your post's on-chain details anytime by tapping the info icon on the post.",
     ],
     tips: [

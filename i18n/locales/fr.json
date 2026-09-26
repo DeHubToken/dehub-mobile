@@ -3431,6 +3431,7 @@
     "guideInfoStep": "Touchez l'icône d'information d'une publication frappée pour ouvrir sa transaction de frappe dans l'explorateur de blocs et vérifier l'enregistrement on-chain.",
     "guideMintIntro": "Frapper une publication en NFT sur la blockchain est facultatif. Frappez-la en la publiant, ou publiez-la maintenant et frappez-la plus tard depuis le menu de la publication.",
     "guideMintPublishStep": "Choisissez de frapper ou non, puis cliquez sur « Publier ». Si vous passez la frappe, vous pourrez frapper la publication plus tard depuis son menu.",
+    "guideMintFractionsStep": "Vous recevez les 1 000 fractions (100 % de propriété) de votre publication tout juste frappée.",
     "glossaryMintTxDesc": "Touchez l'icône d'information d'une publication frappée pour ouvrir sa transaction de frappe dans l'explorateur de blocs et vérifier l'enregistrement on-chain. La page complète d'informations de la publication — statistiques, détenteurs, marché — se trouve sur l'application web à dehub.io.",
     "glossaryTokenIdDesc": "Un identifiant unique on-chain attribué à une publication lorsqu'elle est frappée en NFT.",
     "repostsTab": "Repostes",

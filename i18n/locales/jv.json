@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Tutul lambang info ing kiriman sing wis di-mint kanggo mbukak transaksi mint-e ing block explorer lan mriksa cathetan on-chain.",
     "guideMintIntro": "Mint kiriman minangka NFT ing blockchain iku pilihan. Mint nalika sampeyan nerbitake, utawa terbitake saiki lan mint mengko saka menu kiriman.",
     "guideMintPublishStep": "Pilih arep mint apa ora, banjur klik 'Kirim' kanggo nerbitake. Yen sampeyan ngliwati mint, kiriman bisa di-mint mengko saka menune.",
+    "guideMintFractionsStep": "Sampéyan nampa kabèh 1,000 bagean (kepemilikan 100%) saka postingan sing lagi wae di-mint.",
     "glossaryMintTxDesc": "Tutul lambang info ing kiriman sing wis di-mint kanggo mbukak transaksi mint-e ing block explorer lan mriksa cathetan on-chain. Kaca Info Kiriman lengkap — statistik, sing nyekel, pasar — ana ing aplikasi web ing dehub.io.",
     "glossaryTokenIdDesc": "Pengenal on-chain unik sing diwenehake marang kiriman nalika di-mint minangka NFT.",
     "repostsTab": "Repost",

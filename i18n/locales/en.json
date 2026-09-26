@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Tap the info icon on a minted post to open its mint transaction on the block explorer and verify the on-chain record.",
     "guideMintIntro": "Minting a post as an NFT on the blockchain is optional. Mint it when you publish, or publish now and mint it later from the post menu.",
     "guideMintPublishStep": "Choose whether to mint, then click 'Post' to publish. If you skip minting, you can mint the post later from the post menu.",
+    "guideMintFractionsStep": "You receive all 1,000 fractions (100% ownership) of your newly minted post.",
     "glossaryMintTxDesc": "Tap the info icon on a minted post to open its mint transaction on the block explorer and verify the on-chain record. The full Post Info page — stats, holders, marketplace — lives on the web app at dehub.io.",
     "glossaryTokenIdDesc": "A unique on-chain identifier assigned to a post when it's minted as an NFT.",
     "repostsTab": "Reposts",

@@ -3427,6 +3427,7 @@
     "guideInfoStep": "点击铸造过的帖子上的信息图标，即可在区块浏览器中打开其铸造交易并核实链上记录。",
     "guideMintIntro": "把帖子铸造成区块链上的 NFT 是可选的。发布时铸造，或者先发布，之后再从帖子菜单铸造。",
     "guideMintPublishStep": "选择是否铸造，然后点「发布」。如果跳过铸造，之后可以从帖子菜单铸造。",
+    "guideMintFractionsStep": "你会得到你新铸造帖子其全部 1,000 份碎片（100% 所有权）。",
     "glossaryMintTxDesc": "点击铸造过的帖子上的信息图标，即可在区块浏览器中打开其铸造交易并核实链上记录。完整的帖子信息页——数据、持有人、市场——在 dehub.io 的网页版上。",
     "glossaryTokenIdDesc": "帖子铸造为 NFT 时分配给它的唯一链上标识。",
     "repostsTab": "转发",

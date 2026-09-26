@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Napauta mintatun julkaisun tietokuvaketta avataksesi sen minttaustapahtuman lohkoselaimessa ja tarkistaaksesi ketjussa olevan tiedon.",
     "guideMintIntro": "Julkaisun minttaaminen NFT:ksi lohkoketjuun on vapaaehtoista. Minttaa se julkaistessa tai julkaise nyt ja minttaa myöhemmin julkaisun valikosta.",
     "guideMintPublishStep": "Valitse, minttaatko, ja napsauta sitten 'Julkaise'. Jos ohitat minttauksen, voit mintata julkaisun myöhemmin sen valikosta.",
+    "guideMintFractionsStep": "Saat kaikki 1 000 fraktiota (100 % omistus) juuri lyödystä julkaisustasi.",
     "glossaryMintTxDesc": "Napauta mintatun julkaisun tietokuvaketta avataksesi sen minttaustapahtuman lohkoselaimessa ja tarkistaaksesi ketjussa olevan tiedon. Koko julkaisun tietosivu — tilastot, omistajat, markkinapaikka — on verkkosovelluksessa osoitteessa dehub.io.",
     "glossaryTokenIdDesc": "Yksilöllinen ketjussa oleva tunniste, joka annetaan julkaisulle, kun se mintataan NFT:ksi.",
     "repostsTab": "Uudelleenpostaukset",

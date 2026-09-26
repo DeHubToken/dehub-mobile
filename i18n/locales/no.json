@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Trykk på infoikonet på et preget innlegg for å åpne pregetransaksjonen i blokkutforskeren og bekrefte registreringen på kjeden.",
     "guideMintIntro": "Det er valgfritt å prege et innlegg som en NFT på blokkjeden. Preg det når du publiserer, eller publiser nå og preg det senere fra innleggsmenyen.",
     "guideMintPublishStep": "Velg om du vil prege, og klikk deretter på «Publiser». Hopper du over pregingen, kan du prege innlegget senere fra menyen.",
+    "guideMintFractionsStep": "Du får alle 1000 fraksjonene (100 % eierskap) av det nypregede innlegget ditt.",
     "glossaryMintTxDesc": "Trykk på infoikonet på et preget innlegg for å åpne pregetransaksjonen i blokkutforskeren og bekrefte registreringen på kjeden. Hele innleggsinfo-siden — statistikk, eiere, markedsplass — finnes i nettappen på dehub.io.",
     "glossaryTokenIdDesc": "En unik identifikator på kjeden som et innlegg får når det preges som en NFT.",
     "repostsTab": "Reposts",

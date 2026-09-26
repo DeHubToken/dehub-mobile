@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Dodirnite ikonu informacija na iskovanoj objavi da otvorite njezinu transakciju kovanja u pregledniku blokova i provjerite zapis na lancu.",
     "guideMintIntro": "Kovanje objave kao NFT-a na blockchainu nije obavezno. Iskujte je pri objavi ili je objavite sada i iskujte kasnije iz izbornika objave.",
     "guideMintPublishStep": "Odaberite želite li kovati, a zatim kliknite 'Objavi'. Ako preskočite kovanje, objavu možete iskovati kasnije iz njezina izbornika.",
+    "guideMintFractionsStep": "Dobivaš svih 1.000 frakcija (100 % vlasništva) svoje tek iskovane objave.",
     "glossaryMintTxDesc": "Dodirnite ikonu informacija na iskovanoj objavi da otvorite njezinu transakciju kovanja u pregledniku blokova i provjerite zapis na lancu. Cijela stranica s informacijama o objavi — statistika, vlasnici, tržnica — nalazi se u web-aplikaciji na dehub.io.",
     "glossaryTokenIdDesc": "Jedinstveni identifikator na lancu dodijeljen objavi kad se iskuje kao NFT.",
     "repostsTab": "Ponovno objavljeno",

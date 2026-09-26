@@ -3450,6 +3450,7 @@
     "guideInfoStep": "Tsindrio ny kisary fampahalalana amin'ny lahatsoratra voa-mint mba hanokafana ny fifanakalozana mint ao amin'ny block explorer sy hanamarinana ny firaketana ao amin'ny rojo.",
     "guideMintIntro": "Tsy voatery ny manao mint ny lahatsoratra ho NFT ao amin'ny blockchain. Mint-eo rehefa mamoaka ianao, na avoahy izao ary mint-eo any aoriana avy amin'ny menion'ny lahatsoratra.",
     "guideMintPublishStep": "Safidio raha hanao mint ianao, avy eo tsindrio 'Alefa' hamoahana. Raha tsy manao mint ianao, azonao atao ny mint-eo any aoriana avy amin'ny meniony.",
+    "guideMintFractionsStep": "Azonao avokoa ireo ampahany 1,000 (fananana 100%) amin'ny lahatsoratrao vao voa-mint.",
     "glossaryMintTxDesc": "Tsindrio ny kisary fampahalalana amin'ny lahatsoratra voa-mint mba hanokafana ny fifanakalozana mint ao amin'ny block explorer sy hanamarinana ny firaketana ao amin'ny rojo. Ny pejy feno momba ny lahatsoratra — antontan'isa, tompony, tsena — dia ao amin'ny rindranasa web ao amin'ny dehub.io.",
     "glossaryTokenIdDesc": "Famantarana tokana ao amin'ny rojo omena ny lahatsoratra rehefa atao mint ho NFT.",
     "repostsTab": "Fametrahana indray",

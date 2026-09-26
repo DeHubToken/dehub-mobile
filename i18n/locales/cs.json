@@ -3431,6 +3431,7 @@
     "guideInfoStep": "Klepněte na ikonu informací u raženého příspěvku, otevřete jeho transakci ražby v průzkumníku bloků a ověřte záznam v řetězci.",
     "guideMintIntro": "Ražba příspěvku jako NFT na blockchainu je volitelná. Vyražte ho při zveřejnění, nebo ho zveřejněte hned a vyražte později z nabídky příspěvku.",
     "guideMintPublishStep": "Zvolte, zda razit, a poté klikněte na „Přidat“. Pokud ražbu vynecháte, můžete příspěvek vyrazit později z jeho nabídky.",
+    "guideMintFractionsStep": "Získáte všech 1 000 frakcí (100% vlastnictví) svého nově vyraženého příspěvku.",
     "glossaryMintTxDesc": "Klepněte na ikonu informací u raženého příspěvku, otevřete jeho transakci ražby v průzkumníku bloků a ověřte záznam v řetězci. Celá stránka Informace o příspěvku — statistiky, držitelé, tržiště — je ve webové aplikaci na dehub.io.",
     "glossaryTokenIdDesc": "Jedinečný identifikátor v řetězci přidělený příspěvku, když je vyražen jako NFT.",
     "repostsTab": "Reposty",
