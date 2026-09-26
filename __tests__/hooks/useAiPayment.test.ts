@@ -12,6 +12,11 @@
 
 import { renderHook, act } from '@testing-library/react-native';
 
+jest.mock('i18next', () => {
+  const en = jest.requireActual('../../i18n/locales/en.json');
+  const t = (key: string) => key.split('.').reduce<unknown>((node, part) => (node as Record<string, unknown> | undefined)?.[part], en) ?? key;
+  return { __esModule: true, t, default: { t } };
+});
 const mockVerifySession = jest.fn();
 jest.mock('../../libs/api.client', () => ({ apiClient: { fetch: (...args: unknown[]) => mockVerifySession(...args) } }));
 

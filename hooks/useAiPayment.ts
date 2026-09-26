@@ -17,7 +17,7 @@
  * quotes it, so the number a paywall shows is the number that gets charged.
  */
 
-import i18n from '../i18n';
+import i18n from 'i18next';
 import { apiClient } from '../libs/api.client';
 import { useCallback, useEffect, useState } from 'react';
 import * as ethersImport from 'ethers';
