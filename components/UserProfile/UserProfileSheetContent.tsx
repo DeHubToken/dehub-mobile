@@ -206,12 +206,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     setShowProfileMenu(false);
   }, [profileData]);
 
-  const handleMenuCopyAddress = useCallback(() => {
-    if (profileData?.address) {
-      copyToClipboard(profileData.address);
-    }
-    setShowProfileMenu(false);
-  }, [profileData]);
   const ProfileHeader = useMemo(() => {
     if (!profileData) return null;
     const rawDmSettings = (data as any)?.dmSettings ?? (data as any)?.dmSetting;
@@ -470,25 +464,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               <Text className="text-white text-[15px] font-medium">{t("profileOptions.copyProfileUrl")}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
                 {t("profileOptions.copyLinkHint")}
-              </Text>
-            </View>
-          </TouchableOpacity>
-
-          <View className="mx-5 my-1 h-px bg-white/10" />
-
-          <TouchableOpacity
-            onPress={handleMenuCopyAddress}
-            disabled={paymentsHidden}
-            activeOpacity={0.7}
-            className={`mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10 ${paymentsHidden ? "opacity-40" : ""}`}
-          >
-            <View className="w-5 h-5 items-center justify-center mr-3">
-              <Icon name="Copy" size={18} color="#fff" />
-            </View>
-            <View className="flex-1">
-              <Text className="text-white text-[15px] font-medium">{paymentsHidden ? t("profileOptions.addressHidden") : t("profileOptions.copyAddress")}</Text>
-              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                {t("profileOptions.copyAddressHint")}
               </Text>
             </View>
           </TouchableOpacity>
