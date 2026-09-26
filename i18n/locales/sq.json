@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Fshihni shenjën dhe bilancin",
     "hideBadgeAndBalanceDesc": "Fsheh detajet financiare dhe çaktivizon dërgimet dhe këshillat drejtuar jush.",
     "onChainPublicWarning": "Transaksionet në zinxhir janë publike. Dërgimi i tokeneve ose këshillave mund të zbulojë adresën tuaj të portofolit, duke përfshirë transaksionet e bëra para se të aktivizohej modaliteti i bilancit privat.",
-    "languageLoadFailed": "Nuk mund ta ndërroja gjuhën. Provo përsëri."
+    "languageLoadFailed": "Nuk mund ta ndërroja gjuhën. Provo përsëri.",
+    "leftHanded": "Modaliteti për mëngjarashë",
+    "leftHandedDesc": "Zhvendos butonin e pëlqimit në anën e majtë të shiritit të reagimeve"
   },
   "common": {
     "mute": "Hiq zërin",

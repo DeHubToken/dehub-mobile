@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Masquer le badge et le solde",
     "hideBadgeAndBalanceDesc": "Masque les détails financiers et désactive les envois et les pourboires à votre attention.",
     "onChainPublicWarning": "Les transactions sur la chaîne sont publiques. L'envoi de jetons ou de pourboires peut révéler votre adresse de portefeuille, y compris les transactions effectuées avant l'activation du mode de solde privé.",
-    "languageLoadFailed": "Impossible de changer de langue. Réessayez."
+    "languageLoadFailed": "Impossible de changer de langue. Réessayez.",
+    "leftHanded": "Mode gaucher",
+    "leftHandedDesc": "Place le bouton j'aime à gauche de la barre de réactions"
   },
   "common": {
     "mute": "Couper le son",

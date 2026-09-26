@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Abzeichen und Guthaben ausblenden",
     "hideBadgeAndBalanceDesc": "Blendet Finanzdetails aus und deaktiviert das Senden und Trinkgelder an dich.",
     "onChainPublicWarning": "On-Chain-Transaktionen sind öffentlich. Das Senden von Token oder Trinkgeldern kann deine Wallet-Adresse preisgeben, einschließlich Transaktionen, die vor der Aktivierung des privaten Guthabenmodus getätigt wurden.",
-    "languageLoadFailed": "Sprache konnte nicht gewechselt werden. Versuchen Sie es erneut."
+    "languageLoadFailed": "Sprache konnte nicht gewechselt werden. Versuchen Sie es erneut.",
+    "leftHanded": "Linkshändermodus",
+    "leftHandedDesc": "Verschiebt den Gefällt-mir-Button auf die linke Seite der Reaktionsleiste"
   },
   "common": {
     "mute": "Stumm schalten",

@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Nyşany we balansi gizle",
     "hideBadgeAndBalanceDesc": "Bu maliýe maglumatlaryny gizleýär we size iberilenleri we maslahatlary öçürýär.",
     "onChainPublicWarning": "Zynjyrdaky amallar köpçülikleýin. Tokenlary ýa-da maslahatlary ibermek, hususy balans tertibi işjeňleşdirilmezden ozal edilen amallar bilen birlikde, siziň hamyň salgyňyzy açyp biler.",
-    "languageLoadFailed": "Dilini üýtgetmek mümkin däl, ýene synanyň."
+    "languageLoadFailed": "Dilini üýtgetmek mümkin däl, ýene synanyň.",
+    "leftHanded": "Çepbeçer tertibi",
+    "leftHandedDesc": "Halamak düwmesini reaksiýalar setiriniň çep tarapyna geçiriň"
   },
   "common": {
     "mute": "Sesi öçür",

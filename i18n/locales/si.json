@@ -747,7 +747,9 @@
     "hideBadgeAndBalanceDesc": "මූල්‍ය විස්තර සඟවන අතර ඔබට යැවීම් සහ ඉඟි අබල කරයි.",
     "onChainPublicWarning": "On-chain ගනුදෙනු පොදු වේ. ටෝකන යැවීම හෝ ඉඟි කිරීම ඔබේ පසුම්බි ලිපිනය හෙළි කළ හැකිය, පුද්ගලික ශේෂ මාදිවිය සක්‍රිය කිරීමට පෙර කරන ලද ගනුදෙනු ඇතුළුව.",
     "languageLoadFailed": "භාෂාව මාරු කළ නොහැකි විය. නැවත උත්සාහ කරන්න.",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "වම් අත් ප්‍රකාරය",
+    "leftHandedDesc": "කැමති බොත්තම ප්‍රතිචාර තීරුවේ වම් පැත්තට ගෙන යන්න"
   },
   "common": {
     "mute": "නිහඬ කරන්න",

@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Skjul badge og saldo",
     "hideBadgeAndBalanceDesc": "Skjuler finansielle detaljer og deaktiverer afsendelse og drikkepenge til dig.",
     "onChainPublicWarning": "On-chain transaktioner er offentlige. Afsendelse af tokens eller drikkepenge kan afsløre din wallet-adresse, inklusive transaktioner foretaget før privat saldotilstand blev aktiveret.",
-    "languageLoadFailed": "Kunne ikke skifte sprog. Prøv igen."
+    "languageLoadFailed": "Kunne ikke skifte sprog. Prøv igen.",
+    "leftHanded": "Venstrehåndstilstand",
+    "leftHandedDesc": "Flyt synes godt om-knappen til venstre side af reaktionslinjen"
   },
   "common": {
     "mute": "Slå lyd fra",

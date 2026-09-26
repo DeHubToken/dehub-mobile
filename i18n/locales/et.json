@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Peida märge ja saldo",
     "hideBadgeAndBalanceDesc": "Peidab finantsandmed ning keelab sulle saatmise ja jootraha andmise.",
     "onChainPublicWarning": "Ahelasisesed tehingud on avalikud. Tokenite või jootraha saatmine võib paljastada sinu rahakoti aadressi, sealhulgas tehingud, mis tehti enne privaatse saldomoodi lubamist.",
-    "languageLoadFailed": "Keelt ei saanud vahetada. Proovige uuesti."
+    "languageLoadFailed": "Keelt ei saanud vahetada. Proovige uuesti.",
+    "leftHanded": "Vasakukäelise režiim",
+    "leftHandedDesc": "Liiguta meeldimise nupp reaktsiooniriba vasakule poole"
   },
   "common": {
     "mute": "Vaigista",

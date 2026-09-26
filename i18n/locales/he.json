@@ -747,7 +747,9 @@
     "hideBadgeAndBalanceDesc": "מסתיר פרטים פיננסיים ומשבית שליחות וטיפים אליך.",
     "onChainPublicWarning": "עסקאות על הבלוקצ'יין הן ציבוריות. שליחת אסימונים או טיפים יכולה לחשוף את כתובת הארנק שלך, כולל עסקאות שבוצעו לפני הפעלת מצב יתרה פרטית.",
     "languageLoadFailed": "לא ניתן להחליף שפה. יש לנסות שוב.",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "מצב שמאלי",
+    "leftHandedDesc": "העברת כפתור הלייק לצד השמאלי של סרגל התגובות"
   },
   "common": {
     "mute": "השתק",

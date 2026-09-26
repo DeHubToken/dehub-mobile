@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Sakrij bedž i stanje",
     "hideBadgeAndBalanceDesc": "Sakriva finansijske detalje i onemogućava slanje i savete tebi.",
     "onChainPublicWarning": "On-chain transakcije su javne. Slanje tokena ili saveta može otkriti tvoju adresu novčanika, uključujući transakcije napravljene pre nego što je omogućen režim privatnog stanja.",
-    "languageLoadFailed": "भाषा बदलि सकलें नहिं। फेर सूं कोशिश कर।"
+    "languageLoadFailed": "भाषा बदलि सकलें नहिं। फेर सूं कोशिश कर।",
+    "leftHanded": "बाँया हाथ वाला मोड",
+    "leftHandedDesc": "लाइक बटन के रिएक्शन बार कर बाँया बगल ले जाव"
   },
   "common": {
     "mute": "आवाज बंद करा",

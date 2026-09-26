@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Dölj badge och saldo",
     "hideBadgeAndBalanceDesc": "Döljer finansiella detaljer och inaktiverar skickningar och dricks till dig.",
     "onChainPublicWarning": "Transaktioner på kedjan är offentliga. Att skicka tokens eller dricks kan avslöja din plånboksadress, inklusive transaktioner som gjorts innan privat saldoläge aktiverades.",
-    "languageLoadFailed": "Det gick inte att byta språk. Försök igen."
+    "languageLoadFailed": "Det gick inte att byta språk. Försök igen.",
+    "leftHanded": "Vänsterhänt läge",
+    "leftHandedDesc": "Flytta gilla-knappen till vänster sida av reaktionsfältet"
   },
   "common": {
     "mute": "Stäng av ljud",

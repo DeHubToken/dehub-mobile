@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Slėpti ženklelį ir balansą",
     "hideBadgeAndBalanceDesc": "Slepiama finansinė informacija ir išjungiami siuntimai bei patarimai jums.",
     "onChainPublicWarning": "On-chain transakcijos yra viešos. Siunčiant žetonus ar patarimus gali būti atskleistas jūsų piniginės adresas, įskaitant transakcijas, atliktas prieš įjungiant privatų balanso režimą.",
-    "languageLoadFailed": "Nepavyko pakeisti kalbos. Bandykite dar kartą."
+    "languageLoadFailed": "Nepavyko pakeisti kalbos. Bandykite dar kartą.",
+    "leftHanded": "Kairiarankio režimas",
+    "leftHandedDesc": "Perkelia patinka mygtuką į kairę reakcijų juostos pusę"
   },
   "common": {
     "mute": "Nutildyti",

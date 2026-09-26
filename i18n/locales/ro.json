@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Ascunde insigna și soldul",
     "hideBadgeAndBalanceDesc": "Ascunde detaliile financiare și dezactivează trimiterile și sfaturile către tine.",
     "onChainPublicWarning": "Tranzacțiile on-chain sunt publice. Trimiterea de tokenuri sau sfaturi poate dezvălui adresa portofelului tău, inclusiv tranzacțiile efectuate înainte ca modul de sold privat să fie activat.",
-    "languageLoadFailed": "Nu s-a putut schimba limba. Încearcă din nou."
+    "languageLoadFailed": "Nu s-a putut schimba limba. Încearcă din nou.",
+    "leftHanded": "Mod stângaci",
+    "leftHandedDesc": "Mută butonul de apreciere în partea stângă a barei de reacții"
   },
   "common": {
     "mute": "Dezactivează sunetul",

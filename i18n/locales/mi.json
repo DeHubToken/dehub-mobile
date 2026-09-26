@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Whakaerihia te tohu me te toenga",
     "hideBadgeAndBalanceDesc": "Ka huna i ngā taipitopito pūtea, ā, ka whakakore i ngā tuku me ngā tohutohu ki a koe.",
     "onChainPublicWarning": "He tūmatanui ngā whakawhitiwhiti i runga mekameka. Ko te tuku tohu, tohutohu rānei ka whakaatu i tō wāhitau putea, tae atu ki ngā whakawhitiwhiti i mahia i mua i te whakahoahoatanga o te aratau toenga motuhake.",
-    "languageLoadFailed": "E kore e taea e ahau te huri i te reo. tamata ano."
+    "languageLoadFailed": "E kore e taea e ahau te huri i te reo. tamata ano.",
+    "leftHanded": "Aratau ringa mauī",
+    "leftHandedDesc": "Nekehia te pātene makau ki te taha mauī o te pae tauhohenga"
   },
   "common": {
     "mute": "Whakangū",

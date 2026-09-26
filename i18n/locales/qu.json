@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Pakay insignia hinaspa balanza",
     "hideBadgeAndBalanceDesc": "Qullqimanta willakuykunata pakan chaymanta mana llamk'achinchu apachiykunata chaymanta yuyaychaykunata qamman.",
     "onChainPublicWarning": "Cadena nisqapi ruwaykunaqa llapa runapaqmi. Tokenkuna utaq yuyaychaykunata apachiyqa billetera direccionniyki riqsichinman, chaymanta ruwanakuna ruwasqa manaraq sapalla saldo modo atichisqa kachkaptin.",
-    "languageLoadFailed": "Mana simita tikrayta atirqanchu. Hukmanta kallpachakuy."
+    "languageLoadFailed": "Mana simita tikrayta atirqanchu. Hukmanta kallpachakuy.",
+    "leftHanded": "Lluq'i makiyuq modo",
+    "leftHandedDesc": "Munay botónta kutichiykuna barrap lluq'i ladonman astay"
   },
   "common": {
     "mute": "Upallachiy",

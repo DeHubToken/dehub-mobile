@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Sembunyikan lencana dan baki",
     "hideBadgeAndBalanceDesc": "Menyembunyikan butiran kewangan dan melumpuhkan penghantaran dan petua kepada anda.",
     "onChainPublicWarning": "Urus niaga atas rantaian adalah awam. Menghantar token atau petua boleh mendedahkan alamat dompet anda, termasuk urus niaga yang dibuat sebelum mod baki peribadi didayakan.",
-    "languageLoadFailed": "Tidak dapat menukar bahasa. Cuba lagi."
+    "languageLoadFailed": "Tidak dapat menukar bahasa. Cuba lagi.",
+    "leftHanded": "Mod kidal",
+    "leftHandedDesc": "Alihkan butang suka ke sebelah kiri bar reaksi"
   },
   "common": {
     "mute": "Bisukan",

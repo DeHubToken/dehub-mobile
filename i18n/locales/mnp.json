@@ -747,7 +747,9 @@
     "smsVerifyFailed": "我们无法确认该验证码。",
     "smsRemoveNumber": "删除此号码",
     "smsRemoveFailed": "我们无法删除该号码。",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "左手模式",
+    "leftHandedDesc": "共點讚按鈕徙到反應欄左爿"
   },
   "common": {
     "mute": "静音",

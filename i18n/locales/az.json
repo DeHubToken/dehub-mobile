@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Nişanı və balansı gizləyin",
     "hideBadgeAndBalanceDesc": "Maliyyə məlumatlarını gizlədir və sizə göndərişləri və məsləhətləri deaktiv edir.",
     "onChainPublicWarning": "Zəncirdəki əməliyyatlar ictimaiyyətdir. Token göndərmək və ya məsləhətlər vermək, şəxsi balans rejimi aktiv edilməzdən əvvəl edilən əməliyyatlar daxil olmaqla, sizin pul kisəsi ünvanınızı aşkar edə bilər.",
-    "languageLoadFailed": "Dili dəyişmək mümkün olmadı. Yenidən cəhd edin."
+    "languageLoadFailed": "Dili dəyişmək mümkün olmadı. Yenidən cəhd edin.",
+    "leftHanded": "Solaxay rejimi",
+    "leftHandedDesc": "Bəyən düyməsini reaksiyalar panelinin sol tərəfinə keçirin"
   },
   "common": {
     "mute": "Səssiz et",

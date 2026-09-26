@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Ẩn huy hiệu và số dư",
     "hideBadgeAndBalanceDesc": "Ẩn thông tin tài chính và vô hiệu hóa việc gửi và mẹo cho bạn.",
     "onChainPublicWarning": "Các giao dịch trên chuỗi là công khai. Gửi token hoặc mẹo có thể tiết lộ địa chỉ ví của bạn, bao gồm cả các giao dịch được thực hiện trước khi bật chế độ số dư riêng tư.",
-    "languageLoadFailed": "Không thể đổi ngôn ngữ. Hãy thử lại."
+    "languageLoadFailed": "Không thể đổi ngôn ngữ. Hãy thử lại.",
+    "leftHanded": "Chế độ tay trái",
+    "leftHandedDesc": "Chuyển nút thích sang bên trái thanh cảm xúc"
   },
   "common": {
     "mute": "Tắt tiếng",

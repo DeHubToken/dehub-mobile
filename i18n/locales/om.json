@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Balaqqee fi Madaala Dhoksaa",
     "hideBadgeAndBalanceDesc": "Madaala maallaqaa fi wantoota dhoksaa, erguu fi gargaarsa kennuu ni dhoorkaa.",
     "onChainPublicWarning": "Tarsiimoo maallaqaa irratti godhaman ni muldhachuu danda'u. Maallaqa ykn gargaarsa erguun iddoo maallaqni kee jiru, akkasumas tarsiimoo madaala dhuunfaa dura godhame ni muldhisuu danda'a.",
-    "languageLoadFailed": "Afaan jijjiiruu hin dandeenye. Ammas yaalaa."
+    "languageLoadFailed": "Afaan jijjiiruu hin dandeenye. Ammas yaalaa.",
+    "leftHanded": "Haala harka bitaa",
+    "leftHandedDesc": "Qabduu jaallachuu gara bitaa sararaa deebii tti siksi"
   },
   "common": {
     "mute": "Sagalee cufi",

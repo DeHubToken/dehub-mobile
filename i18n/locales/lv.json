@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Slēpt emblēmu un atlikumu",
     "hideBadgeAndBalanceDesc": "Slēpj finanšu datus un atspējo sūtījumus un padomus jums.",
     "onChainPublicWarning": "Darījumi ķēdē ir publiski. Žetonu vai padomu sūtīšana var atklāt jūsu maka adresi, ieskaitot darījumus, kas veikti pirms privātā atlikuma režīma iespējošanas.",
-    "languageLoadFailed": "Nevarēja pārslēgt valodu. Mēģiniet vēlreiz."
+    "languageLoadFailed": "Nevarēja pārslēgt valodu. Mēģiniet vēlreiz.",
+    "leftHanded": "Kreiļu režīms",
+    "leftHandedDesc": "Pārvieto patīk pogu uz reakciju joslas kreiso pusi"
   },
   "common": {
     "mute": "Izslēgt skaņu",

@@ -747,7 +747,9 @@
     "languageLoadFailed": "ቋንቋ ክቕይር ኣይከኣልኩን ። ደጊምካ ፈትኖ ።",
     "smsDepositAction": "\"{{dhb}}\" DHB ስደድ",
     "smsBalance": "\"{{dhb}}\" DHB ተሪፉ (${{usd}})",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "ናይ ጸጋም ኢድ ኣገባብ",
+    "leftHandedDesc": "ቁልፊ ምፍታው ናብ ጸጋማይ ጎድኒ መስመር ግብረ-መልሲ ኣግዕዝ"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",

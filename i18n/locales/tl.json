@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Itago ang badge at balanse",
     "hideBadgeAndBalanceDesc": "Itinatago ang mga detalye sa pananalapi at pinapagana ang mga pagpapadala at tip sa iyo.",
     "onChainPublicWarning": "Ang mga transaksyon sa on-chain ay pampubliko. Ang pagpapadala ng mga token o tip ay maaaring magbunyag ng iyong wallet address, kabilang ang mga transaksyon na ginawa bago paganahin ang pribadong mode ng balanse.",
-    "languageLoadFailed": "Hindi makapagpalit ng wika. Subukan muli."
+    "languageLoadFailed": "Hindi makapagpalit ng wika. Subukan muli.",
+    "leftHanded": "Mode na kaliwete",
+    "leftHandedDesc": "Ilipat ang like button sa kaliwang bahagi ng reactions bar"
   },
   "common": {
     "mute": "I-mute",

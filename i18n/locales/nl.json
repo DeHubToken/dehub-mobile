@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Badge en saldo verbergen",
     "hideBadgeAndBalanceDesc": "Verbergt financiële details en schakelt verzendingen en fooien naar jou uit.",
     "onChainPublicWarning": "On-chain transacties zijn openbaar. Het verzenden van tokens of fooien kan je portemonneeadres onthullen, inclusief transacties die zijn gedaan voordat de privébalansmodus werd ingeschakeld.",
-    "languageLoadFailed": "Kan niet van taal wisselen. Probeer het opnieuw."
+    "languageLoadFailed": "Kan niet van taal wisselen. Probeer het opnieuw.",
+    "leftHanded": "Linkshandige modus",
+    "leftHandedDesc": "Zet de vind-ik-leuk-knop aan de linkerkant van de reactiebalk"
   },
   "common": {
     "mute": "Dempen",

@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Jelvény és egyenleg elrejtése",
     "hideBadgeAndBalanceDesc": "Elrejti a pénzügyi részleteket, és letiltja a küldést és a borravalót neked.",
     "onChainPublicWarning": "A láncon belüli tranzakciók nyilvánosak. Tokenek vagy borravalók küldése felfedheti a pénztárca címét, beleértve azokat a tranzakciókat is, amelyeket a privát egyenleg mód engedélyezése előtt tettek.",
-    "languageLoadFailed": "Nem sikerült nyelvet váltani. Próbálkozz újra."
+    "languageLoadFailed": "Nem sikerült nyelvet váltani. Próbálkozz újra.",
+    "leftHanded": "Balkezes mód",
+    "leftHandedDesc": "A tetszik gomb a reakciósáv bal oldalára kerül"
   },
   "common": {
     "mute": "Némítás",

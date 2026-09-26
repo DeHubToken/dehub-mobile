@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Piilota merkki ja saldo",
     "hideBadgeAndBalanceDesc": "Piilottaa taloudelliset tiedot ja poistaa käytöstä lähetykset ja vinkit sinulle.",
     "onChainPublicWarning": "Lohkoketjutapahtumat ovat julkisia. Tokenien tai vinkkien lähettäminen voi paljastaa lompakkosi osoitteen, mukaan lukien tapahtumat, jotka tehtiin ennen yksityisen saldon tilan käyttöönottoa.",
-    "languageLoadFailed": "Kieltä ei voitu vaihtaa. Yritä uudelleen."
+    "languageLoadFailed": "Kieltä ei voitu vaihtaa. Yritä uudelleen.",
+    "leftHanded": "Vasenkätinen tila",
+    "leftHandedDesc": "Siirrä tykkäyspainike reaktiopalkin vasempaan reunaan"
   },
   "common": {
     "mute": "Mykistä",

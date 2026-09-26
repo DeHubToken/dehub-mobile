@@ -747,7 +747,9 @@
     "hideBadgeAndBalanceDesc": "隐藏财务详情，并禁用向你发送消息和打赏。",
     "onChainPublicWarning": "链上交易是公开的。发送代币或打赏可能会暴露你的钱包地址，包括在启用私密余额模式之前进行的交易。",
     "languageLoadFailed": "无法切换语言。请重试。",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "左撇子模式",
+    "leftHandedDesc": "把点赞按钮挪到反应栏左边"
   },
   "common": {
     "mute": "静音",

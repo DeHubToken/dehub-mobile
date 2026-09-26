@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Ocultar distintivo e saldo",
     "hideBadgeAndBalanceDesc": "Oculta detalhes financeiros e desativa envios e gorjetas para si.",
     "onChainPublicWarning": "As transações na cadeia são públicas. Enviar tokens ou gorjetas pode revelar o endereço da sua carteira, incluindo transações feitas antes de o modo de saldo privado ser ativado.",
-    "languageLoadFailed": "Não foi possível mudar o idioma. Tente novamente."
+    "languageLoadFailed": "Não foi possível mudar o idioma. Tente novamente.",
+    "leftHanded": "Modo canhoto",
+    "leftHandedDesc": "Move o botão de curtir para o lado esquerdo da barra de reações"
   },
   "common": {
     "mute": "Silenciar",

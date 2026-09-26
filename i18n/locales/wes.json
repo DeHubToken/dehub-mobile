@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Hide badge an balance",
     "hideBadgeAndBalanceDesc": "E go hide ya money palava and block pipol for send or tip you.",
     "onChainPublicWarning": "On-chain transactions na public. If you send tokens or tips, pipol fit see ya wallet address, plus di transactions weh you bin do before you on private balance mode.",
-    "languageLoadFailed": "No fit change language. Try again."
+    "languageLoadFailed": "No fit change language. Try again.",
+    "leftHanded": "Left-hand mode",
+    "leftHandedDesc": "Move di like button go for left side for di reactions bar"
   },
   "common": {
     "mute": "Off di sound",

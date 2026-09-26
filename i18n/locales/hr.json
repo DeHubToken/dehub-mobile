@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Sakrij značku i stanje",
     "hideBadgeAndBalanceDesc": "Skriva financijske detalje i onemogućuje slanje i napojnice vama.",
     "onChainPublicWarning": "Transakcije na lancu su javne. Slanje tokena ili napojnica može otkriti vašu adresu novčanika, uključujući transakcije napravljene prije omogućavanja načina privatnog stanja.",
-    "languageLoadFailed": "Promjena jezika nije uspjela. Pokušajte ponovno."
+    "languageLoadFailed": "Promjena jezika nije uspjela. Pokušajte ponovno.",
+    "leftHanded": "Način za ljevake",
+    "leftHandedDesc": "Premjesti gumb za sviđanje na lijevu stranu trake reakcija"
   },
   "common": {
     "mute": "Isključi zvuk",

@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Fi badge pamọ́ àti ìdúróṣánṣán",
     "hideBadgeAndBalanceDesc": "Fi àwọn kúlẹ̀kúlẹ̀ nípa owó pamọ́, kí ó sì dáwọ́ dúró láti fi ránṣẹ́ àti láti fún ọ ní ìmọ̀ràn.",
     "onChainPublicWarning": "Àwọn ìdúnàádúrà lórí pq jẹ́ ti gbogbo ènìyàn. Fífi àfihàn tàbí ìmọ̀ràn ránṣẹ́ lè ṣí àdírẹ́sì àpamọ́wọ́ rẹ payá, títí kan àwọn ìṣòwò tí a ṣe kí wọ́n tó mú ipò ìdúróṣánṣán ara ẹni ṣiṣẹ́.",
-    "languageLoadFailed": "Mi ò lè yí èdè padà. Gbìyànjú lẹ́ẹ̀kan síi."
+    "languageLoadFailed": "Mi ò lè yí èdè padà. Gbìyànjú lẹ́ẹ̀kan síi.",
+    "leftHanded": "Ipò ọwọ́ òsì",
+    "leftHandedDesc": "Gbé bọ́tìnnì ìfẹ́ lọ sí ẹ̀gbẹ́ òsì ti ọ̀pá ìdáhùn"
   },
   "common": {
     "mute": "Pa ohùn",

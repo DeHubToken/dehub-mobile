@@ -748,7 +748,9 @@
     "hideBadgeAndBalance": "Versteek kenteken en balans",
     "hideBadgeAndBalanceDesc": "Versteek finansiële besonderhede en skakel versendings en wenke na jou toe uit.",
     "onChainPublicWarning": "On-chain transaksies is publiek. Die versending van tokens of wenke kan jou beursie-adres openbaar, insluitend transaksies wat gemaak is voordat privaat balansmodus geaktiveer is.",
-    "languageLoadFailed": "Kon nie taal verander nie. Probeer weer."
+    "languageLoadFailed": "Kon nie taal verander nie. Probeer weer.",
+    "leftHanded": "Linkshandige modus",
+    "leftHandedDesc": "Skuif die hou-van-knoppie na die linkerkant van die reaksiebalk"
   },
   "common": {
     "mute": "Demp",
