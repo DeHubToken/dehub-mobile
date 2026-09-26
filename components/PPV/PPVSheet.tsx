@@ -1,4 +1,3 @@
-import { DhbCoin } from "../common/DhbCoin";
 import React, {
   memo,
   useCallback,
@@ -9,7 +8,6 @@ import React, {
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   Modal,
   Pressable,
@@ -43,23 +41,13 @@ import {
   useWeb3Provider,
   useERC20Contract,
   useStreamControllerContract,
-  usePaymentRouterContract,
 } from "../../hooks/use-web3";
 import * as ethersImport from "ethers";
 import { applyGasMargin, parseTxError } from "../../libs/web3.util";
 import { writeContractAA } from "../../libs/aa.write";
 import {
   confirmPPVPurchase,
-  getPaymentConfig,
-  getPaymentRouterAddress,
 } from "../../services/payment.service";
-import {
-  isPaymentRouterAvailable,
-  unlockPPVAndTipViaRouter,
-} from "../../services/payment-router.service";
-import {
-  isAutoSwapSupported,
-} from "../../services/swap.service";
 import { sendSolanaPayment } from "../../services/solana-payment.service";
 import { isSolanaChain } from "../../config/solana.constants";
 import { formatCompactNumber } from "../../libs";
@@ -107,17 +95,12 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
 
   const [phase, setPhase] = useState<
-    "idle" | "swapping" | "approving" | "sending" | "sent" | "error"
+    "idle" | "approving" | "sending" | "sent" | "error"
   >("idle");
   const [ppvError, setPpvError] = useState<string | null>(null);
   // Not enough DHB is a step, not an error: the sheet turns into a top-up.
   const [shortfall, setShortfall] = useState<PPVShortfall | null>(null);
 
-  // Atomic swap + PPV + tip in one tx via DeHubPaymentRouter (#45)
-  const [routerAddress, setRouterAddress] = useState<string | undefined>(undefined);
-  const [showTip, setShowTip] = useState(false);
-  const [tipInput, setTipInput] = useState("");
-  const tipAmount = Number(tipInput) || 0;
 
   const isSolanaPpv = isSolanaChain(paymentChainId);
   const numericAmount = Number(amount) || 0;
@@ -125,11 +108,11 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   // Solana balance is enforced on-chain by the transfer itself.
   const insufficient = !isSolanaPpv && numericAmount > userTokenBal;
   // ETH → DHB auto-swap available only for DHB PPV on Base (#44)
-  const canAutoSwap = tokenSymbol === "DHB" && isAutoSwapSupported(chainId);
+  const canAutoSwap = tokenSymbol === "DHB" && chainId === 8453;
   const isSelf =
     !!user?.walletAddress &&
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
-  const isBusy = phase === "swapping" || phase === "approving" || phase === "sending";
+  const isBusy = phase === "approving" || phase === "sending";
 
   const tokenMeta = useMemo(() => {
     if (!chainId) return undefined;
@@ -146,23 +129,6 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   const tokenContract = useERC20Contract(tokenAddress);
   const controllerContract = useStreamControllerContract();
 
-  // Router-based atomic tip is DHB-on-Base only, and only when deployed (#45)
-  const routerAvailable = tokenSymbol === "DHB" && isPaymentRouterAvailable(chainId, routerAddress);
-  const paymentRouterContract = usePaymentRouterContract(
-    routerAvailable ? routerAddress : undefined,
-  );
-
-  // Fetch the payment-router config for the active chain when the sheet opens.
-  useEffect(() => {
-    if (!visible || !chainId) return;
-    let cancelled = false;
-    getPaymentConfig().then((cfg) => {
-      if (!cancelled) setRouterAddress(getPaymentRouterAddress(cfg, chainId));
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [visible, chainId]);
 
   useEffect(() => {
     if (visible) {
@@ -170,8 +136,6 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
       setPhase("idle");
       setPpvError(null);
       setShortfall(null);
-      setShowTip(false);
-      setTipInput("");
       translateY.value = withTiming(0, {
         duration: 300,
         easing: Easing.out(Easing.cubic),
@@ -265,39 +229,6 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
         const ethers = (ethersImport as any).ethers || ethersImport;
         const amountBN = ethers.utils.parseUnits(String(numericAmount), tokenDecimals);
 
-        // Atomic ETH→DHB swap + PPV + tip in one tx via the payment router (#45).
-        // Used when a tip is added and the router is deployed for this chain.
-        if (tipAmount > 0 && routerAvailable) {
-          if (!paymentRouterContract) {
-            setPpvError(t("ppv.preparingRouter"));
-            return;
-          }
-          setPhase("sending");
-          try {
-            const tipBN = ethers.utils.parseUnits(String(tipAmount), tokenDecimals);
-            const tx = await unlockPPVAndTipViaRouter({
-              routerContract: paymentRouterContract,
-              tokenId,
-              ppvAmountWei: amountBN,
-              tipAmountWei: tipBN,
-              creator: toAddress,
-            });
-            setPhase("sent");
-            const idStr = String(tokenId);
-            if (tx?.hash) {
-              confirmPPVPurchase({ tokenId, txHash: tx.hash, chainId }).catch((err) => {
-                console.warn("[PPV] Backend confirm fallback to webhook:", err);
-              });
-            }
-            await patchUser((prev) => ({
-              unlocked: Array.from(new Set([...(prev.unlocked || []), idStr])),
-            } as any));
-          } catch (e) {
-            setPhase("error");
-            setPpvError(parseTxError(e, "send"));
-          }
-          return;
-        }
 
         // Short of DHB: hand the gap to the top-up step.
         const dhbBalance = await tokenContract.balanceOf(account);
@@ -380,7 +311,6 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
     tokenMeta, tokenAddress,
     controllerAddress, isSelf, numericAmount, tokenDecimals,
     tokenId, toAddress, patchUser, tokenSymbol,
-    tipAmount, routerAvailable, paymentRouterContract,
     isSolanaPpv, paymentChainId,
   ]);
 
@@ -462,42 +392,6 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                 </Text>
               </View>
 
-              {/* Optional tip — swap + unlock + tip in one tx via router (#45) */}
-              {routerAvailable && !isSelf && (
-                <View style={styles.tipWrap}>
-                  <TouchableOpacity
-                    style={styles.tipToggle}
-                    onPress={() => {
-                      if (isBusy) return;
-                      setShowTip((v) => !v);
-                      if (showTip) setTipInput("");
-                    }}
-                    activeOpacity={0.7}
-                  >
-                    <Icon name="Gift" size={15} color="#A6A9AC" />
-                    <Text style={styles.tipToggleText}>{t("ppv.addTip")}</Text>
-                    <Icon
-                      name={showTip ? "ChevronUp" : "ChevronDown"}
-                      size={16}
-                      color="#A6A9AC"
-                    />
-                  </TouchableOpacity>
-                  {showTip && (
-                    <View style={styles.tipInputRow}>
-                      <TextInput
-                        value={tipInput}
-                        onChangeText={setTipInput}
-                        placeholder="0"
-                        placeholderTextColor="#6F7174"
-                        keyboardType="decimal-pad"
-                        editable={!isBusy}
-                        style={styles.tipInput}
-                      />
-                      <DhbCoin size={14} />
-                    </View>
-                  )}
-                </View>
-              )}
 
               {/* Looking short is no longer a reason to block the button: the
                   balance here is the cached one, and the real check happens
@@ -512,12 +406,6 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
               )}
               {ppvError && <Text style={styles.errorText}>{ppvError}</Text>}
 
-              {phase === "swapping" && (
-                <View style={styles.statusRow}>
-                  <ActivityIndicator size="small" color="#A6A9AC" />
-                  <Text style={styles.statusText}>{t("ppv.swapping")}</Text>
-                </View>
-              )}
               {phase === "approving" && (
                 <View style={styles.statusRow}>
                   <ActivityIndicator size="small" color="#A6A9AC" />
@@ -553,8 +441,6 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                     <Text style={styles.payBtnText}>
                       {phase === "error"
                         ? "Retry"
-                        : tipAmount > 0
-                        ? `Pay & Tip ${formatCompactNumber(numericAmount + tipAmount)} ${tokenSymbol}`
                         : `Pay ${formatCompactNumber(numericAmount)} ${tokenSymbol}`}
                     </Text>
                   )}
@@ -651,42 +537,6 @@ const styles = StyleSheet.create({
     color: "#F9FBFF",
     fontSize: 16,
     fontWeight: "700",
-  },
-  tipWrap: {
-    marginBottom: 12,
-  },
-  tipToggle: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    paddingVertical: 4,
-  },
-  tipToggleText: {
-    flex: 1,
-    color: "#A6A9AC",
-    fontSize: 13,
-    fontWeight: "500",
-  },
-  tipInputRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.1)",
-    paddingHorizontal: 14,
-    marginTop: 8,
-  },
-  tipInput: {
-    flex: 1,
-    height: 44,
-    color: "#F9FBFF",
-    fontSize: 15,
-  },
-  tipSuffix: {
-    color: "#A6A9AC",
-    fontSize: 13,
-    fontWeight: "600",
   },
   errorText: {
     color: "#F4F4F5",
