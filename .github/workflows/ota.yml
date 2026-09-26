@@ -1,7 +1,13 @@
 name: OTA Update
 
-# Publishes the JS bundle to EAS Update after CI goes green on main, so a
-# JS-only fix reaches installed apps without a 200 MB APK and a manual release.
+# Publishes the JS bundle to EAS Update, so a JS-only fix reaches installed
+# apps without a 200 MB APK and a manual release.
+#
+# Cadence: twice a day on a schedule, to the preview channel only, and only
+# when main has a green commit newer than the last preview publish (tracked by
+# the `ota-published-preview` tag). Publishing on every merge meant hundreds of
+# bundles a month, each one downloaded by every installed app. The production
+# channel only ever receives a manual dispatch - that is the release step.
 #
 # READ THIS BEFORE CHANGING THE PUBLISH STEP.
 #
@@ -30,10 +36,8 @@ name: OTA Update
 #     summary step below flags when a published commit touched those paths.
 
 on:
-  workflow_run:
-    workflows: [CI]
-    types: [completed]
-    branches: [main]
+  schedule:
+    - cron: '0 6,18 * * *'
   workflow_dispatch:
     inputs:
       branch:
@@ -53,30 +57,68 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  decide:
+    name: Pick the commit to publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+      contents: read
+    outputs:
+      publish: ${{ steps.pick.outputs.publish }}
+      sha: ${{ steps.pick.outputs.sha }}
+      branches: ${{ steps.pick.outputs.branches }}
+      last: ${{ steps.pick.outputs.last }}
+    steps:
+      - name: Pick
+        id: pick
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          INPUT_BRANCH: ${{ github.event.inputs.branch }}
+          EVENT: ${{ github.event_name }}
+          DISPATCH_SHA: ${{ github.sha }}
+        run: |
+          LAST="$(gh api "repos/$REPO/git/ref/tags/ota-published-preview" --jq .object.sha 2>/dev/null || true)"
+          echo "last=$LAST" >> "$GITHUB_OUTPUT"
+
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            # A manual dispatch is the release: publish exactly what was asked.
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+            echo "sha=$DISPATCH_SHA" >> "$GITHUB_OUTPUT"
+            echo "branches=${INPUT_BRANCH:-production preview}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Scheduled runs publish the newest main commit whose CI passed on a
+          # PUSH. That keeps the gates the old workflow_run trigger enforced:
+          # CI green, a push rather than a pull_request run (so no fork or
+          # unmerged PR code), and on main. Pushes only ever come from this repo.
+          SHA="$(gh run list --repo "$REPO" --workflow CI --branch main --event push \
+            --status success --limit 1 --json headSha,headBranch,event \
+            --jq '[.[] | select(.event == "push" and .headBranch == "main")][0].headSha // empty')"
+          echo "branches=preview" >> "$GITHUB_OUTPUT"
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          if [ -z "$SHA" ]; then
+            echo "No green CI push run on main found; nothing to publish."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          elif [ "$SHA" = "$LAST" ]; then
+            echo "Nothing new on main since the last publish ($SHA); skipping."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "### OTA skipped - no new commits since \`${SHA:0:7}\`" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
   publish:
     name: Publish JS bundle
-    # Four things have to be true before a bundle reaches installed apps, and
-    # the `branches:` filter above establishes none of them on its own — it
-    # matches the HEAD BRANCH NAME of the run that triggered this one.
-    #
-    #   conclusion       CI passed. workflow_run fires on failure too, and a
-    #                    bundle that did not typecheck would ship to everyone.
-    #   event            it was a push. CI also runs on `pull_request`, so
-    #                    without this a PR run publishes — and the checkout
-    #                    below takes its head SHA, so `npm ci` and the bundle
-    #                    both come from code nobody merged.
-    #   head_repository  it was OUR push. This repo is public and takes fork
-    #                    PRs; a fork whose own branch is called `main` produces
-    #                    a completed CI run whose head_branch is `main`, which
-    #                    the filter above happily matches. #152 was merged from
-    #                    exactly that shape of fork, so this is not theoretical.
-    #   head_branch      belt and braces, in case the filter is ever relaxed.
-    if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.workflow_run.conclusion == 'success' &&
-       github.event.workflow_run.event == 'push' &&
-       github.event.workflow_run.head_repository.full_name == github.repository &&
-       github.event.workflow_run.head_branch == 'main')
+    needs: decide
+    # A dispatch always runs (check_only included). A scheduled run only runs
+    # when decide found a green, unpublished commit on main - see its gates.
+    if: needs.decide.outputs.publish == 'true'
+    permissions:
+      # write only to move the ota-published-preview tag after a publish.
+      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
@@ -99,12 +141,11 @@ jobs:
       - uses: actions/checkout@v4
         if: env.EXPO_TOKEN != ''
         with:
-          # The commit CI actually verified — workflow_run otherwise checks out
-          # whatever the default branch points at now, which may have moved on.
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
-          # Two commits so the native-change check below has something to diff
-          # against. main is squash-merged, so HEAD~1 is the previous PR.
-          fetch-depth: 2
+          # The green main commit decide picked, or the dispatched ref.
+          ref: ${{ needs.decide.outputs.sha }}
+          # Full history so the native-change check can diff against the last
+          # published commit, which may be several merges back.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         if: env.EXPO_TOKEN != ''
@@ -176,7 +217,7 @@ jobs:
           # profile behind the APK people are actually given — listen on
           # preview. Publishing to production alone meant every installed test
           # build sat there never seeing an update.
-          UPDATE_BRANCHES: ${{ github.event.inputs.branch || 'production preview' }}
+          UPDATE_BRANCHES: ${{ needs.decide.outputs.branches }}
         run: |
           # Read the subject out of git rather than interpolating it into the
           # command, so a commit message cannot become shell.
@@ -202,18 +243,34 @@ jobs:
             done
           done
 
+      - name: Record the published commit
+        if: >-
+          env.EXPO_TOKEN != '' && github.event.inputs.check_only != 'true' &&
+          contains(format(' {0} ', needs.decide.outputs.branches), ' preview ')
+        run: |
+          # The scheduled run compares main against this tag to decide whether
+          # there is anything new. A failure here only costs a repeat publish.
+          git push --force origin "HEAD:refs/tags/ota-published-preview" \
+            || echo "::warning::Could not move ota-published-preview; the next scheduled run may republish."
+
       - name: Flag native changes an update cannot carry
         if: env.EXPO_TOKEN != '' && github.event.inputs.check_only != 'true'
+        env:
+          LAST: ${{ needs.decide.outputs.last }}
+          BRANCHES: ${{ needs.decide.outputs.branches }}
         run: |
-          NATIVE="$(git diff --name-only HEAD~1..HEAD -- android ios app.json package.json || true)"
+          # Everything since the previous publish, not only the last merge.
+          BASE="HEAD~1"
+          if [ -n "$LAST" ] && git cat-file -e "$LAST^{commit}" 2>/dev/null; then BASE="$LAST"; fi
+          NATIVE="$(git diff --name-only "$BASE"..HEAD -- android ios app.json package.json || true)"
           {
             echo "### OTA published"
             echo
-            echo "Branch: \`${{ github.event.inputs.branch || 'production preview' }}\`"
+            echo "Branch: \`$BRANCHES\`"
             echo "Commit: \`$(git log -1 --pretty='%h %s')\`"
             if [ -n "$NATIVE" ]; then
               echo
-              echo "**This commit also touched native config.** An update carries JS only,"
+              echo "**Commits in this update touched native config.** An update carries JS only,"
               echo "so the following need a build before they reach anyone:"
               echo
               echo '```'
