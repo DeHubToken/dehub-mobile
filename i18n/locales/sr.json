@@ -3643,7 +3643,7 @@
     "paymentFailed": "Плаћање није успело",
     "paying": "Плаћање…",
     "generating": "Генерише се…",
-    "buyDhb": "Купи DHB",
+    "buyDhb": "Купи токене",
     "payAmount": "Плати {{amount}} DHB и {{action}}",
     "stakerDiscount": "Попуст за стејкере",
     "total": "Укупно",
@@ -3750,7 +3750,7 @@
     "failed": "Налог није било могуће променити. Провери приватни кључ и покушај поново."
   },
   "superpowers": {
-    "getDhb": "Набави DHB",
+    "getDhb": "Купи токене",
     "unlocksAt": "Откључава се на",
     "openToEveryone": "Отворено за све",
     "locked": "Закључано",

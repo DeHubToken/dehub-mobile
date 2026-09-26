@@ -3640,7 +3640,7 @@
     "paymentFailed": "Payment fail",
     "paying": "Dey pay…",
     "generating": "Dey generate…",
-    "buyDhb": "Buy DHB",
+    "buyDhb": "Buy tokens",
     "payAmount": "Pay {{amount}} DHB and {{action}}",
     "stakerDiscount": "Staker discount",
     "total": "Total",
@@ -3760,7 +3760,7 @@
   },
   "superpowers": {
     "noPostsFound": "No post dey.",
-    "getDhb": "Get DHB",
+    "getDhb": "Buy tokens",
     "unlocksAt": "E dey open at",
     "openToEveryone": "Open to everybody",
     "locked": "Lock",
