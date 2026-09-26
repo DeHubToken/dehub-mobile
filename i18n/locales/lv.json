@@ -6643,11 +6643,12 @@
     "done": "Gatavs",
     "back": "Atpakaļ",
     "aiLabel": "Palūdziet AI iestatīt jūsu tirdzniecību",
-    "aiPlaceholder": "Izmēģiniet \"pārdot pusi no mana DHB par 3 centiem\"",
+    "aiPlaceholder": "Izmēģiniet \"pārdot pusi no mana DHB par 6 centiem\"",
     "aiSend": "Nosūtīt MI",
     "aiHint": "Izsakiet to, ko vēlaties, vienkāršiem vārdiem. AI aizpilda visu, jūs vienkārši nospiežat Apstiprināt.",
     "aiBuyOnly": "Viegla tirdzniecība pārdod DHB. Lai iegādātos DHB, atveriet Exchange.",
     "aiNeedAmount": "Cik daudz DHB vēlaties pārdot?",
-    "aiFailed": "MI nevarēja to iestatīt. Mēģiniet to pateikt citā veidā vai aizpildiet to tālāk."
+    "aiFailed": "MI nevarēja to iestatīt. Mēģiniet to pateikt citā veidā vai aizpildiet to tālāk.",
+    "cancelled": "Atcelts. Nekas netika pārdots."
   }
 }

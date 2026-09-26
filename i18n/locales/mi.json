@@ -6643,11 +6643,12 @@
     "done": "Kua oti te mahi",
     "back": "Hoki",
     "aiLabel": "Pātai AI ki te whakarite i to koutou hokohoko",
-    "aiPlaceholder": "Whakamātauria \"Hokona te haurua o taku DHB i te 3 hēkona\"",
+    "aiPlaceholder": "Whakamātauria \"hokona te haurua o taku DHB ki te 6 hēneti\"",
     "aiSend": "Tukuna atu ki a AI",
     "aiHint": "Korerohia nga mea e hiahia ana koe i roto i nga kupu ngawari. Ka whakakiia e AI nga mea katoa i roto, ka pēhi noa koe i te Confirm.",
     "aiBuyOnly": "Ko te hokohoko ngawari e hoko ana i te DHB. Hei hoko i te DHB, Open Exchange.",
     "aiNeedAmount": "E hia nga DHB e hiahia ana koe ki te hoko?",
-    "aiFailed": "Kaore e taea e au te whakatika i tenei. Whakamātauria ki te korero i tetahi atu ara, ki te whakakii ranei i te reira i raro nei."
+    "aiFailed": "Kāore i taea e te AI te whakarite. Kōrerotia mā tētahi atu ara, whakakīia rānei i raro nei.",
+    "cancelled": "Whakakorea. Kaore he mea i hokona."
   }
 }

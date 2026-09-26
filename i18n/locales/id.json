@@ -6643,11 +6643,12 @@
     "done": "Selesai",
     "back": "Kembali",
     "aiLabel": "Minta AI untuk menyiapkan perdagangan Anda",
-    "aiPlaceholder": "Coba \"jual setengah DHB saya seharga 3 sen\"",
+    "aiPlaceholder": "Coba \"jual setengah DHB saya seharga 6 sen\"",
     "aiSend": "Kirim ke AI",
     "aiHint": "Katakan apa yang Anda inginkan dengan kata-kata biasa. AI mengisi semuanya, Anda tinggal tekan Konfirmasi.",
     "aiBuyOnly": "Perdagangan mudah menjual DHB. Untuk membeli DHB, buka Bursa.",
     "aiNeedAmount": "Berapa banyak DHB yang ingin Anda jual?",
-    "aiFailed": "AI tidak dapat menyiapkan itu. Coba katakan dengan cara lain, atau isi di bawah ini."
+    "aiFailed": "AI tidak dapat menyiapkan itu. Coba katakan dengan cara lain, atau isi di bawah ini.",
+    "cancelled": "Dibatalkan. Tidak ada yang terjual."
   }
 }

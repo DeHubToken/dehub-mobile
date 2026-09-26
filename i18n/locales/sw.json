@@ -6604,7 +6604,7 @@
     "clicksRow_other": "{{clicks}} mibofyo · {{unique}} ya kipekee"
   },
   "easyTrade": {
-    "chooseTitle": "Unataka kufanya biashara vipi?",
+    "chooseTitle": "Ungependa kufanya biashara vipi?",
     "easyTitle": "Biashara rahisi",
     "easyHint": "Uza DHB kwa kugonga mara chache. Tunachagua njia bora ya kukamilisha.",
     "exchangeTitle": "Badilisha",
@@ -6622,7 +6622,7 @@
     "myPrice": "Weka bei yangu",
     "myPriceHint": "Bei yako kwa kila DHB kwa USD",
     "enterPrice": "Weka bei.",
-    "routeList": "Juu ya soko: DHB yako imeorodheshwa kwenye ubadilishaji na inauzwa kiotomatiki bei inapofikia ${{price}}.",
+    "routeList": "Juu ya soko: DHB yako imeorodheshwa kwenye mfumo wa kubadilishana na inauzwa kiotomatiki bei inapofikia ${{price}}.",
     "routeInstant": "Sawa au chini ya soko: unauza mara moja kwa kiwango bora cha soko.",
     "reviewTitle": "Kagua",
     "youSell": "Unauza",
@@ -6631,7 +6631,7 @@
     "methodList": "Imeorodheshwa kwa ${{price}}",
     "youGet": "Unapata takriban",
     "ifFilled": "Unapata itakapouzwa",
-    "listNote": "DHB yako inabaki kuwa yako hadi itakapouzwa. Unaweza kuiondoa wakati wowote kutoka kwa Ubadilishaji. Gharama za mtandao zinatumika.",
+    "listNote": "DHB yako inabaki kuwa yako hadi itakapouzwa. Unaweza kuiondoa wakati wowote kutoka kwa mfumo wa kubadilishana. Gharama za mtandao zinatumika.",
     "marketMoved": "Soko tayari linatoa bei yako, kwa hivyo hii inauzwa mara moja badala yake.",
     "confirm": "Thibitisha",
     "working": "Inafanya kazi...",
@@ -6644,11 +6644,12 @@
     "done": "Imekamilika",
     "back": "Nyuma",
     "aiLabel": "Omba AI ianzishe biashara yako",
-    "aiPlaceholder": "Jaribu \"kuuza nusu ya DHB yangu kwa senti 3\"",
+    "aiPlaceholder": "Jaribu \"kuuza nusu ya DHB yangu kwa senti 6\"",
     "aiSend": "Tuma kwa AI",
     "aiHint": "Sema unachotaka kwa maneno wazi. AI inajaza kila kitu, unabonyeza tu Thibitisha.",
     "aiBuyOnly": "Biashara rahisi inauza DHB. Ili kununua DHB, fungua Exchange.",
     "aiNeedAmount": "Unataka kuuza DHB kiasi gani?",
-    "aiFailed": "AI haikuweza kusanidi hiyo. Jaribu kuisema kwa njia nyingine, au ijaze hapa chini."
+    "aiFailed": "AI haikuweza kusanidi hiyo. Jaribu kuisema kwa njia nyingine, au ijaze hapa chini.",
+    "cancelled": "Imeghairiwa. Hakuna kilichouzwa."
   }
 }

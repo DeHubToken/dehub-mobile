@@ -6904,11 +6904,12 @@
     "done": "Selesai",
     "back": "Kembali",
     "aiLabel": "Minta AI untuk menyediakan perdagangan anda",
-    "aiPlaceholder": "Cuba \"jual separuh DHB saya pada harga 3 sen\"",
+    "aiPlaceholder": "Cuba \"jual separuh DHB saya pada harga 6 sen\"",
     "aiSend": "Hantar kepada AI",
     "aiHint": "Katakan apa yang anda mahu dengan kata-kata biasa. AI mengisi semuanya, anda hanya tekan Sahkan.",
     "aiBuyOnly": "Perdagangan mudah menjual DHB. Untuk membeli DHB, buka Bursa.",
     "aiNeedAmount": "Berapa banyak DHB yang anda mahu jual?",
-    "aiFailed": "AI tidak dapat menetapkannya. Cuba katakan dengan cara lain, atau isi di bawah."
+    "aiFailed": "AI tidak dapat menetapkannya. Cuba katakan dengan cara lain, atau isi di bawah.",
+    "cancelled": "Dibatalkan. Tiada apa yang dijual."
   }
 }

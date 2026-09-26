@@ -6643,11 +6643,12 @@
     "done": "Fet",
     "back": "Enrere",
     "aiLabel": "Demana a la IA que configuri la teva operació",
-    "aiPlaceholder": "Prova \"vendre la meitat del meu DHB a 3 cèntims\"",
+    "aiPlaceholder": "Prova \"vendre la meitat del meu DHB a 6 cèntims\"",
     "aiSend": "Envia a la IA",
     "aiHint": "Digues el que vulguis en paraules clares. La IA ho omple tot, només has de prémer Confirmar.",
     "aiBuyOnly": "Easy trade ven DHB. Per comprar DHB, obre Exchange.",
     "aiNeedAmount": "Quant DHB vols vendre?",
-    "aiFailed": "La IA no ha pogut configurar-ho. Prova de dir-ho d'una altra manera, o omple-ho a continuació."
+    "aiFailed": "La IA no ha pogut configurar-ho. Prova de dir-ho d'una altra manera, o omple-ho a continuació.",
+    "cancelled": "S'ha cancel·lat. No s'ha venut res."
   }
 }

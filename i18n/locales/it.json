@@ -6643,11 +6643,12 @@
     "done": "Fatto",
     "back": "Indietro",
     "aiLabel": "Chiedi all'IA di impostare il tuo trade",
-    "aiPlaceholder": "Prova a \"vendere metà del mio DHB a 3 centesimi\"",
+    "aiPlaceholder": "Prova a \"vendere metà del mio DHB a 6 centesimi\"",
     "aiSend": "Invia all'IA",
     "aiHint": "Dite quello che volete con parole semplici. L'intelligenza artificiale riempie tutto, basta premere Conferma.",
     "aiBuyOnly": "Easy Trade vende DHB. Per acquistare DHB, apri Exchange.",
     "aiNeedAmount": "Quanto DHB vuoi vendere?",
-    "aiFailed": "L'intelligenza artificiale non è riuscita a configurarlo. Prova a dirlo in un altro modo o riempilo qui sotto."
+    "aiFailed": "L'intelligenza artificiale non è riuscita a configurarlo. Prova a dirlo in un altro modo o riempilo qui sotto.",
+    "cancelled": "Annullato. Non è stato venduto nulla."
   }
 }

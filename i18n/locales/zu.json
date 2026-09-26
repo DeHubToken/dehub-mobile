@@ -6674,11 +6674,12 @@
     "done": "Iqedile",
     "back": "Emuva",
     "aiLabel": "Cela i-AI ukuthi ilungise i-trade yakho",
-    "aiPlaceholder": "Zama \"thengisa ingxenye yami ye-DHB ngama-3 cents\"",
+    "aiPlaceholder": "Zama \"thengisa ingxenye yami ye-DHB ngama-6 cents\"",
     "aiSend": "Thumela ku-AI",
     "aiHint": "Yisho lokho ofuna ukukwenza ngamazwi acacile. I-AI igcwalisa konke, wena ucindezela u-Confirm.",
     "aiBuyOnly": "I-Easy trade ithengisa i-DHB. Ukuthenga i-DHB, vula i-Exchange.",
     "aiNeedAmount": "Ungakanani i-DHB ongathanda ukuyithengisa?",
-    "aiFailed": "I-AI ayikwazanga ukuyilungisa. Zama ukuyisho ngendlela ehlukile, noma uyigcwalise ngezansi."
+    "aiFailed": "I-AI ayikwazanga ukuyilungisa. Zama ukuyisho ngendlela ehlukile, noma uyigcwalise ngezansi.",
+    "cancelled": "Ikhanseliwe. Akukho okuthengisiwe."
   }
 }

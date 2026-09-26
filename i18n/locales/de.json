@@ -6643,11 +6643,12 @@
     "done": "Fertig",
     "back": "Zurück",
     "aiLabel": "Bitten Sie die KI, Ihren Trade einzurichten",
-    "aiPlaceholder": "Versuchen Sie, \"die Hälfte meines DHB für 3 Cent zu verkaufen\"",
+    "aiPlaceholder": "Versuchen Sie, \"die Hälfte meines DHB für 6 Cent zu verkaufen\"",
     "aiSend": "An KI senden",
     "aiHint": "Sagen Sie in einfachen Worten, was Sie wollen. Die KI füllt alles aus, Sie drücken einfach auf Bestätigen.",
     "aiBuyOnly": "Easy Trade verkauft DHB. Um DHB zu kaufen, öffnen Sie Exchange.",
     "aiNeedAmount": "Wie viel DHB möchten Sie verkaufen?",
-    "aiFailed": "KI konnte das nicht einrichten. Versuchen Sie, es auf eine andere Weise zu sagen, oder füllen Sie es unten aus."
+    "aiFailed": "KI konnte das nicht einrichten. Versuchen Sie, es auf eine andere Weise zu sagen, oder füllen Sie es unten aus.",
+    "cancelled": "Abgebrochen. Es wurde nichts verkauft."
   }
 }

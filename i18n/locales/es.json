@@ -6643,11 +6643,12 @@
     "done": "Listo",
     "back": "Atrás",
     "aiLabel": "Pídele a la IA que configure tu operación",
-    "aiPlaceholder": "Intenta \"vender la mitad de mi DHB a 3 centavos\"",
+    "aiPlaceholder": "Intenta \"vender la mitad de mi DHB a 6 centavos\"",
     "aiSend": "Enviar a IA",
     "aiHint": "Di lo que quieras con palabras sencillas. La IA rellena todo, solo tienes que pulsar Confirmar.",
     "aiBuyOnly": "Easy Trade vende DHB. Para comprar DHB, abra Exchange.",
     "aiNeedAmount": "¿Cuánto DHB quieres vender?",
-    "aiFailed": "La IA no pudo configurarlo. Intenta decirlo de otra manera o rellénalo a continuación."
+    "aiFailed": "La IA no pudo configurarlo. Intenta decirlo de otra manera o rellénalo a continuación.",
+    "cancelled": "Cancelado. No se vendió nada."
   }
 }

@@ -6643,11 +6643,12 @@
     "done": "Hazırdır",
     "back": "Geri",
     "aiLabel": "Ticarətinizi qurmaq üçün AI-dən soruşun",
-    "aiPlaceholder": "\"DHB-imin yarısını 3 sentə sat\"",
+    "aiPlaceholder": "\"DHB-imin yarısını 6 sentə sat\"",
     "aiSend": "AI-yə göndərin",
     "aiHint": "Açıq sözlərlə nə istədiyinizi deyin. AI hər şeyi doldurur, sadəcə Təsdiq et düyməsini basırsınız.",
     "aiBuyOnly": "Asan ticarət DHB satır. DHB almaq üçün Mübadilə açın.",
     "aiNeedAmount": "Nə qədər DHB satmaq istəyirsiniz?",
-    "aiFailed": "AI bunu qura bilmədi. Başqa üsulla deməyə çalışın və ya aşağıda qeyd edin."
+    "aiFailed": "AI bunu qura bilmədi. Başqa üsulla deməyə çalışın və ya aşağıda qeyd edin.",
+    "cancelled": "Ləğv edildi. Heç nə satılmadı."
   }
 }

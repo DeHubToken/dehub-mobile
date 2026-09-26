@@ -6643,11 +6643,12 @@
     "done": "Emere",
     "back": "Azụ",
     "aiLabel": "Jụọ AI ka ịtọlite ahịa gị",
-    "aiPlaceholder": "Gbalịa \"na-ere ọkara m DHB na 3 cents\"",
+    "aiPlaceholder": "Gbalịa \"na-ere ọkara m DHB na 6 cents\"",
     "aiSend": "Were ya na AI.",
     "aiHint": "Kwuo ihe ị chọrọ n 'okwu doro anya. AI na-emejupụta ihe niile, ị pịa nkwenye.",
     "aiBuyOnly": "Easy ahia na-ere DHB. Ịzụta DHB, mepee Exchange.",
     "aiNeedAmount": "DHB ole ka ị chọrọ ire?",
-    "aiFailed": "AI enweghị ike ịtọlite nke ahụ. Gbalịa na-ekwu ya n 'ụzọ ọzọ, ma ọ bụ dejupụta ya n' okpuru."
+    "aiFailed": "AI enweghị ike ịtọlite nke ahụ. Gbalịa na-ekwu ya n 'ụzọ ọzọ, ma ọ bụ dejupụta ya n' okpuru.",
+    "cancelled": "Akagbuola. O nweghị ihe e rere."
   }
 }

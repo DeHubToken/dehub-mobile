@@ -6647,11 +6647,12 @@
     "done": "Hotovo",
     "back": "Zpět",
     "aiLabel": "Požádejte umělou inteligenci o založení obchodu",
-    "aiPlaceholder": "Zkuste „prodat polovinu DHB za 3 centy“",
+    "aiPlaceholder": "Zkuste „prodat polovinu DHB za 6 centy“",
     "aiSend": "Odeslat do AI",
     "aiHint": "Jednoduše řekněte, co chcete. AI vyplní vše, stačí stisknout Potvrdit.",
     "aiBuyOnly": "Easy Trade prodává DHB. Chcete-li koupit DHB, otevřete Exchange.",
     "aiNeedAmount": "Kolik DHB chcete prodat?",
-    "aiFailed": "Umělá inteligence to nemohla nastavit. Zkus to říct jinak, nebo to vyplň dole."
+    "aiFailed": "Umělá inteligence to nemohla nastavit. Zkus to říct jinak, nebo to vyplň dole.",
+    "cancelled": "Zrušeno. Nic nebylo prodáno."
   }
 }

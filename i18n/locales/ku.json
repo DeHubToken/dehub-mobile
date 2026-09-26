@@ -6637,11 +6637,12 @@
     "done": "Qediya",
     "back": "Paş",
     "aiLabel": "Ji AI-ê bipirsin ku bazirganiya we saz bike",
-    "aiPlaceholder": "Biceribîne \"nîvê DHB-ya xwe bi 3 sentan bifroşe\"",
+    "aiPlaceholder": "Biceribîne \"nîvê DHB-ya xwe bi 6 sentan bifroşe\"",
     "aiSend": "Ji AI re bişîne",
     "aiHint": "Bi gotinên sade bêje çi dixwazî. AI her tiştî tijî dike, tu tenê bişkoja \"Piştrastkirinê\" ditikînî.",
     "aiBuyOnly": "Bazirganiya hêsan DHB difiroşe. Ji bo kirîna DHB, Borsayê veke.",
     "aiNeedAmount": "Hûn dixwazin çiqas DHB bifroşin?",
-    "aiFailed": "AI nekarî wê saz bike. Biceribînin ku bi awayekî din bibêjin, an jî li jêr binivîsin."
+    "aiFailed": "AI nekarî wê saz bike. Biceribînin ku bi awayekî din bibêjin, an jî li jêr binivîsin.",
+    "cancelled": "Hate betalkirin. Tiştek nehat firotin."
   }
 }
