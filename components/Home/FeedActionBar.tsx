@@ -20,6 +20,7 @@ import {
   type PostReaction,
   type ReactionCounts,
 } from "../../libs/reactions";
+import { ReactionEmoji } from "./ReactionEmoji";
 import { haptic } from "../../libs/haptics";
 import { maybeShowReactionTip, markReactionTipSeen } from "../../libs/reaction-tip";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
@@ -88,10 +89,12 @@ const AnimatedActionButton: React.FC<{
   count?: number;
   countColor?: string;
   formatCount?: boolean;
-  /** Renders in place of the icon — used to show a reaction emoji. */
-  glyph?: string;
+  /** Renders in place of the icon — the reaction whose emoji to show. */
+  glyph?: PostReaction;
+  /** The glyph is the viewer's own reaction, so it plays its animation. */
+  glyphAnimated?: boolean;
   accessibilityLabel?: string;
-}> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, accessibilityLabel }) => {
+}> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, glyphAnimated, accessibilityLabel }) => {
   const scale = useSharedValue(1);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -141,9 +144,12 @@ const AnimatedActionButton: React.FC<{
     >
       <Animated.View style={animatedStyle}>
         {glyph ? (
-          <Text style={{ fontSize: iconSize - 2, lineHeight: iconSize + 4, width: iconSize, textAlign: "center" }}>
-            {glyph}
-          </Text>
+          <ReactionEmoji
+            reaction={glyph}
+            animate={glyphAnimated}
+            size={iconSize + 2}
+            textStyle={{ fontSize: iconSize - 2, lineHeight: iconSize + 4, width: iconSize, textAlign: "center" }}
+          />
         ) : (
           <Icon name={resolvedIcon} size={iconSize} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
         )}
@@ -205,13 +211,13 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
    * also what a tap casts, so the two can never disagree.
    */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
-  const leadGlyph = leadReaction ? reactionMeta(leadReaction).emoji : undefined;
+  const leadGlyph = leadReaction ?? undefined;
   /** A downvote belongs to the thumbs-DOWN; this button must not announce it. */
   const myPositiveReaction = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
   /** …and that button would wear it, though 👎 is its own glyph already. */
   const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
   const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
-  const negativeGlyph = negativeLeadReaction ? reactionMeta(negativeLeadReaction).emoji : undefined;
+  const negativeGlyph = negativeLeadReaction ?? undefined;
 
   // Single row, every button a direct child spread edge-to-edge (matches the
   // web ActionBar). Order left → right: tip · dislike · share · comment · like
@@ -253,6 +259,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           }
           iconName="ThumbsDown"
           glyph={negativeGlyph}
+          glyphAnimated
           active={disliked}
           activeFill={ICON_ACTIVE}
           count={dislikeCount}
@@ -309,6 +316,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           onLongPress={reactionsEnabled ? () => { markReactionTipSeen(); setOpenTray("positive"); } : undefined}
           iconName="ThumbsUp"
           glyph={leadGlyph}
+          glyphAnimated={!!leadGlyph && leadGlyph === myPositiveReaction}
           active={liked}
           activeFill={ICON_ACTIVE}
           count={likeCount}

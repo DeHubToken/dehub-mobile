@@ -110,6 +110,7 @@ import {
   resolveNegativeLeadReaction,
   type PostReaction,
 } from "../libs/reactions";
+import { ReactionEmoji } from "../components/Home/ReactionEmoji";
 import {
   applyEngagement,
   engagementKeyOf,
@@ -221,7 +222,10 @@ const LOVE_BLOOM = [
 interface ActionButtonProps {
   icon: IconName;
   /** Renders in place of the icon — used to show a reaction emoji. */
-  glyph?: string;
+  /** The reaction whose emoji replaces the icon. */
+  glyph?: PostReaction;
+  /** The glyph is the viewer's own reaction, so it plays its animation. */
+  glyphAnimated?: boolean;
   active?: boolean;
   label?: string;
   onPress: () => void;
@@ -243,6 +247,7 @@ interface ActionButtonProps {
 const ActionButton: React.FC<ActionButtonProps> = ({
   icon,
   glyph,
+  glyphAnimated,
   active,
   label,
   onPress,
@@ -275,7 +280,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     >
       <Animated.View style={{ transform: [{ scale }] }}>
         {glyph ? (
-          <Text style={styles.actionGlyph}>{glyph}</Text>
+          <ReactionEmoji reaction={glyph} animate={glyphAnimated} size={22} textStyle={styles.actionGlyph} />
         ) : (
           // Web's `w-5 h-5`.
           <Icon
@@ -842,13 +847,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
 
   /** The one glyph the thumb wears — and, on a tap, the reaction it casts. */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
-  const leadGlyph = leadReaction ? reactionMeta(leadReaction).emoji : undefined;
+  const leadGlyph = leadReaction ?? undefined;
   /** A downvote belongs to the thumbs-DOWN; this button must not announce it. */
   const myPositiveReaction = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
   /* …and that button would wear it, though 👎 is its own glyph already. */
   const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
   const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
-  const negativeGlyph = negativeLeadReaction ? reactionMeta(negativeLeadReaction).emoji : undefined;
+  const negativeGlyph = negativeLeadReaction ?? undefined;
 
   const handleTip = useCallback(() => {
     if (!minterAddress) return;
@@ -1538,6 +1543,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
                     style={styles.actionInline}
                     icon="ThumbsDown"
                     glyph={negativeGlyph}
+                    glyphAnimated
                     active={disliked}
                     label={formatCompactNumber(dislikeCount)}
                     onPress={() => { if (openTray === "negative") { setOpenTray(null); return; } handleDislike(); }}
@@ -1589,6 +1595,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
                     style={styles.actionInline}
                     icon="ThumbsUp"
                     glyph={leadGlyph}
+                    glyphAnimated={!!leadGlyph && leadGlyph === myPositiveReaction}
                     active={liked}
                     label={formatCompactNumber(likeCount)}
                     onPress={() => { if (openTray === "positive") { setOpenTray(null); return; } handleLike(); }}
