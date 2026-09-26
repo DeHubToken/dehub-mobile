@@ -5631,7 +5631,6 @@
     "balanceAmount": "Elérhető: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Ez az egyedi tőzsde a Uniswapra épül, és az biztosítja a védelmét. Már élesben, teljes funkcionalitással működik, a hivatalos listázásokat hamarosan bejelentjük. Meghívunk, hogy már most adj hozzá likviditást — a farmokat és ösztönzőket nagyon hamar bemutatjuk.",
     "lowestPrice": "Legalacsonyabb ár · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

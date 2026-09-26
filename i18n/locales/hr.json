@@ -5627,7 +5627,6 @@
     "balanceAmount": "Dostupno: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Ova prilagođena mjenjačnica izgrađena je na Uniswapu i njime zaštićena. Već radi i potpuno je funkcionalna, a službena uvrštenja bit će uskoro objavljena. Pozivamo vas da već sada dodate likvidnost — farme i poticaji bit će otkriveni vrlo brzo.",
     "lowestPrice": "Najniža cijena · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

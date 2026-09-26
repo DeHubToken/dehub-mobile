@@ -5627,7 +5627,6 @@
     "balanceAmount": "Galima: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Ši speciali birža sukurta Uniswap pagrindu ir jo apsaugota. Ji jau veikia visu pajėgumu, o oficialūs listingai bus netrukus paskelbti. Kviečiame pridėti likvidumo jau dabar — ūkiai ir paskatos bus atskleisti visai netrukus.",
     "lowestPrice": "Mažiausia kaina · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

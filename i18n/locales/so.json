@@ -5627,7 +5627,6 @@
     "balanceAmount": "La heli karo: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Is-weydaarsigan gaarka ah waxa lagu dhisay Uniswap waxaana sugaya isaga. Hadda wuu shaqaynayaa si buuxda, liisaska rasmiga ahna dhawaan ayaa la shaacin doonaa. Waxaa laguu martiqaaday inaad hadda ku darto dareere — beeraha iyo dhiirigelinnada dhawaan ayaa la soo bandhigi doonaa.",
     "lowestPrice": "Qiimaha ugu hooseeya · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",
