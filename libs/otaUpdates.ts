@@ -14,7 +14,9 @@
  */
 import * as Updates from "expo-updates";
 
-const CHECK_INTERVAL_MS = 15 * 60 * 1000;
+// Updates publish twice a day, so checking more often than this only costs
+// requests to the update server.
+const CHECK_INTERVAL_MS = 6 * 60 * 60 * 1000;
 // A reload interrupts whatever the user was doing, so only take it after an
 // absence long enough that they are effectively re-opening the app.
 export const APPLY_AFTER_BACKGROUND_MS = 60 * 1000;

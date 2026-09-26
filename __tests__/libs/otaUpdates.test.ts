@@ -31,28 +31,28 @@ describe("over-the-air updates on foreground", () => {
   });
 
   it("downloads an available update and marks it ready", async () => {
-    await checkForOtaUpdate(1_000_000);
+    await checkForOtaUpdate(1_000_000_000);
     expect(mocked.fetchUpdateAsync).toHaveBeenCalledTimes(1);
     expect(isUpdateReady()).toBe(true);
   });
 
   it("treats an update the launch check already downloaded as ready", async () => {
     mocked.fetchUpdateAsync.mockResolvedValue({ isNew: false });
-    await checkForOtaUpdate(1_000_000);
+    await checkForOtaUpdate(1_000_000_000);
     expect(isUpdateReady()).toBe(true);
   });
 
   it("does not hit the update server more than once per interval", async () => {
     mocked.checkForUpdateAsync.mockResolvedValue({ isAvailable: false });
-    await checkForOtaUpdate(1_000_000);
-    await checkForOtaUpdate(1_000_000 + 60_000);
+    await checkForOtaUpdate(1_000_000_000);
+    await checkForOtaUpdate(1_000_000_000 + 5 * 60 * 60_000);
     expect(mocked.checkForUpdateAsync).toHaveBeenCalledTimes(1);
-    await checkForOtaUpdate(1_000_000 + 16 * 60_000);
+    await checkForOtaUpdate(1_000_000_000 + 6 * 60 * 60_000 + 60_000);
     expect(mocked.checkForUpdateAsync).toHaveBeenCalledTimes(2);
   });
 
   it("applies a ready update only after a long enough absence", async () => {
-    await checkForOtaUpdate(1_000_000);
+    await checkForOtaUpdate(1_000_000_000);
     expect(await applyOtaUpdateIfReady(APPLY_AFTER_BACKGROUND_MS - 1)).toBe(false);
     expect(mocked.reloadAsync).not.toHaveBeenCalled();
     expect(await applyOtaUpdateIfReady(APPLY_AFTER_BACKGROUND_MS)).toBe(true);
@@ -67,7 +67,7 @@ describe("over-the-air updates on foreground", () => {
 
   it("swallows a failed check so the next foreground retries", async () => {
     mocked.checkForUpdateAsync.mockRejectedValue(new Error("offline"));
-    await expect(checkForOtaUpdate(1_000_000)).resolves.toBeUndefined();
+    await expect(checkForOtaUpdate(1_000_000_000)).resolves.toBeUndefined();
     expect(isUpdateReady()).toBe(false);
   });
 });
