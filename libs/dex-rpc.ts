@@ -1,4 +1,5 @@
 import { ethers } from 'ethers';
+import env from '../config/env';
 import { ChainId } from '../config/constants';
 import type { DexChainId } from './dex-v4';
 
@@ -21,7 +22,7 @@ export function dexProvider(chainId: DexChainId) {
   let provider = providers.get(chainId);
   if (!provider) {
     const urls = chainId === ChainId.BASE_MAINNET
-      ? ['https://base-rpc.publicnode.com', 'https://base.drpc.org']
+      ? [...(env.ALCHEMY_API_KEY ? ['https://base-mainnet.g.alchemy.com/v2/' + env.ALCHEMY_API_KEY] : []), 'https://base-rpc.publicnode.com', 'https://base.drpc.org']
       : ['https://bsc-dataseed.binance.org', 'https://bsc-rpc.publicnode.com'];
     provider = new ethers.providers.FallbackProvider(urls.map((url, index) => ({
       provider: new DexEndpointProvider({ url, timeout: 10000, throttleLimit: 1 }, chainId),
