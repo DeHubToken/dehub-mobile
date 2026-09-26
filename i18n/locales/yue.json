@@ -5611,6 +5611,7 @@
     "balanceAmount": "可用：{{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "呢個定制交易所建基於 Uniswap，亦由佢保障安全。而家已經上線，功能齊全，正式上幣好快會公佈。歡迎你而家就嚟添加流動性——流動性挖礦同獎勵即將揭曉。",
     "lowestPrice": "最低價 · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

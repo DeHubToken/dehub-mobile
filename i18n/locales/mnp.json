@@ -5611,6 +5611,7 @@
     "balanceAmount": "可用： {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "伓个定制交易所是起在 Uniswap 上个，由佢保障安全。现在已经上线，功能齐全，正式上币快快就会公布。欢迎现在就来添加流动性——流动性挖矿抑奖励马上就会揭晓。",
     "lowestPrice": "最低价 · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

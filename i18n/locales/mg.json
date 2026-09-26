@@ -5634,6 +5634,7 @@
     "balanceAmount": "Azo ampiasaina: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Ity fifanakalozana manokana ity dia naorina teo ambonin'ny Uniswap ary arovan'izy io. Efa mandeha sy miasa tanteraka izy izao, ary hambara tsy ho ela ny lisitra ofisialy. Asaina ianao hanampy likidité ankehitriny — haseho tsy ho ela ny toeram-pambolena sy ny fandrisihana.",
     "lowestPrice": "Vidiny ambany indrindra · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

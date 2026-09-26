@@ -5642,6 +5642,7 @@
     "balanceAmount": "Kachkan: {{amount}} {{symbol}}"
   },
   "dex": {
+    "launchNotice": "Kay sapaq rantinakuy wasiqa Uniswap patapi ruwasqa, paywantaq amachasqa. Kunanmi llamk'achkan tukuy atiyninwan, riqsisqa listakunataq pisi p'unchawllapi willakunqa. Kunanpacha likidésta yapanaykipaq minkakuyku — chakrakuna, kallpachaykunapas ñapallanmi rikhurinqa.",
     "lowestPrice": "Aswan pisi chanin · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",
