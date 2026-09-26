@@ -21,6 +21,7 @@ import {
 } from "../../libs/dhb-position";
 import TransferModal from "../Transfer/TransferModal";
 import ArcSendSheet from "../Wallet/ArcSendSheet";
+import TradeSheet from "../Wallet/TradeSheet";
 import arcIcon from "../../assets/chains/arc-icon.png";
 import { getArcUsdcBalance } from "../../libs/arc-wallet";
 import { useTranslation } from "react-i18next";
@@ -148,9 +149,10 @@ const ProfileAssets = () => {
 
   const { t } = useTranslation();
   const [transferOpen, setTransferOpen] = useState(false);
+  const [tradeOpen, setTradeOpen] = useState(false);
   const dhbActions = [
     { key: "topUp", label: t("assets.topUp"), subtitle: undefined, disabled: false },
-    { key: "sell", label: "Trade", subtitle: undefined, disabled: false },
+    { key: "sell", label: t("wallet.trade"), subtitle: undefined, disabled: false },
     { key: "bridge", label: t("assets.bridge"), subtitle: t("assets.comingSoon"), disabled: true },
     { key: "transfer", label: t("commandCentre.transfer"), disabled: false },
   ];
@@ -300,7 +302,7 @@ const ProfileAssets = () => {
                       : action.key === "topUp"
                       ? handleTopUp
                       : action.key === "sell"
-                      ? () => navigation.navigate(ScreenNames.Dex)
+                      ? () => setTradeOpen(true)
                       : action.key === "transfer"
                       ? () => setTransferOpen(true)
                       : undefined
@@ -375,6 +377,7 @@ const ProfileAssets = () => {
         </View>
       )}
       <TransferModal open={transferOpen} onOpenChange={setTransferOpen} />
+      <TradeSheet visible={tradeOpen} onClose={() => setTradeOpen(false)} address={sessionAddress} />
       {!!sessionAddress && (
         <ArcSendSheet
           open={arcSendOpen}
