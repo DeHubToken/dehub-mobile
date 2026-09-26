@@ -1,8 +1,7 @@
 /**
  * i18n Configuration — Mobile (Expo/React Native)
  *
- * English is always bundled. Other languages ship as asset files (see
- * ./localeAssets.ts) and are read on demand.
+ * English is always bundled. Other languages are lazy-loaded on demand.
  * Works with expo-localization for device locale detection.
  */
 
@@ -11,8 +10,6 @@ import { initReactI18next } from 'react-i18next';
 import * as Localization from 'expo-localization';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { I18nManager } from 'react-native';
-import { Asset } from 'expo-asset';
-import * as FileSystem from 'expo-file-system/legacy';
 
 /**
  * Locales written right to left. Arabic and its regional forms, Persian, Urdu
@@ -42,7 +39,6 @@ export function applyLayoutDirection(lang: string): boolean {
 }
 
 import en from './locales/en.json';
-import { localeAssets } from './localeAssets';
 import { fillMissingPluralForms } from './plural-fallback';
 
 const STORAGE_KEY = 'user-preferred-language';
@@ -161,50 +157,144 @@ export const SUPPORTED_LANGUAGES = [
   { code: 'ky', name: 'Kyrgyz', nativeName: 'Кыргызча' }
 ];
 
-// Non-English locales are read from their asset file on first use, never
-// bundled. Concurrent requests for the same locale share one read.
-const pendingLoads = new Map<string, Promise<boolean>>();
-
-async function readLocaleAsset(lang: string): Promise<Record<string, unknown>> {
-  const asset = Asset.fromModule(localeAssets[lang]());
-  await asset.downloadAsync();
-  const raw = await FileSystem.readAsStringAsync(asset.localUri ?? asset.uri);
-  return JSON.parse(raw);
-}
+// Lazy-loaders for all non-English locales
+const localeLoaders: Record<string, () => Record<string, unknown>> = {
+  da: () => require('./locales/da.json'),
+  dcc: () => require('./locales/dcc.json'),
+  dyu: () => require('./locales/dyu.json'),
+  om: () => require('./locales/om.json'),
+  af: () => require('./locales/af.json'),
+  az: () => require('./locales/az.json'),
+  am: () => require('./locales/am.json'),
+  ar: () => require('./locales/ar.json'),
+  acm: () => require('./locales/acm.json'),
+  acw: () => require('./locales/acw.json'),
+  aec: () => require('./locales/aec.json'),
+  ajp: () => require('./locales/ajp.json'),
+  ayn: () => require('./locales/ayn.json'),
+  apd: () => require('./locales/apd.json'),
+  bho: () => require('./locales/bho.json'),
+  be: () => require('./locales/be.json'),
+  bn: () => require('./locales/bn.json'),
+  bg: () => require('./locales/bg.json'),
+  my: () => require('./locales/my.json'),
+  cs: () => require('./locales/cs.json'),
+  zh: () => require('./locales/zh.json'),
+  cjy: () => require('./locales/cjy.json'),
+  mnp: () => require('./locales/mnp.json'),
+  ctg: () => require('./locales/ctg.json'),
+  hne: () => require('./locales/hne.json'),
+  nl: () => require('./locales/nl.json'),
+  arz: () => require('./locales/arz.json'),
+  fr: () => require('./locales/fr.json'),
+  de: () => require('./locales/de.json'),
+  el: () => require('./locales/el.json'),
+  gsw: () => require('./locales/gsw.json'),
+  ha: () => require('./locales/ha.json'),
+  he: () => require('./locales/he.json'),
+  ka: () => require('./locales/ka.json'),
+  hi: () => require('./locales/hi.json'),
+  hr: () => require('./locales/hr.json'),
+  hu: () => require('./locales/hu.json'),
+  ig: () => require('./locales/ig.json'),
+  id: () => require('./locales/id.json'),
+  it: () => require('./locales/it.json'),
+  ja: () => require('./locales/ja.json'),
+  jv: () => require('./locales/jv.json'),
+  kk: () => require('./locales/kk.json'),
+  ku: () => require('./locales/ku.json'),
+  kn: () => require('./locales/kn.json'),
+  ko: () => require('./locales/ko.json'),
+  lo: () => require('./locales/lo.json'),
+  mag: () => require('./locales/mag.json'),
+  mr: () => require('./locales/mr.json'),
+  mn: () => require('./locales/mn.json'),
+  mg: () => require('./locales/mg.json'),
+  yue: () => require('./locales/yue.json'),
+  wuu: () => require('./locales/wuu.json'),
+  ms: () => require('./locales/ms.json'),
+  ary: () => require('./locales/ary.json'),
+  km: () => require('./locales/km.json'),
+  ne: () => require('./locales/ne.json'),
+  pcm: () => require('./locales/pcm.json'),
+  fa: () => require('./locales/fa.json'),
+  wes: () => require('./locales/wes.json'),
+  pbt: () => require('./locales/pbt.json'),
+  pa: () => require('./locales/pa.json'),
+  pl: () => require('./locales/pl.json'),
+  pt: () => require('./locales/pt.json'),
+  qu: () => require('./locales/qu.json'),
+  rkt: () => require('./locales/rkt.json'),
+  ro: () => require('./locales/ro.json'),
+  ru: () => require('./locales/ru.json'),
+  sdr: () => require('./locales/sdr.json'),
+  skr: () => require('./locales/skr.json'),
+  es: () => require('./locales/es.json'),
+  sr: () => require('./locales/sr.json'),
+  si: () => require('./locales/si.json'),
+  so: () => require('./locales/so.json'),
+  sk: () => require('./locales/sk.json'),
+  sv: () => require('./locales/sv.json'),
+  sw: () => require('./locales/sw.json'),
+  syl: () => require('./locales/syl.json'),
+  tl: () => require('./locales/tl.json'),
+  ta: () => require('./locales/ta.json'),
+  te: () => require('./locales/te.json'),
+  th: () => require('./locales/th.json'),
+  tts: () => require('./locales/tts.json'),
+  tr: () => require('./locales/tr.json'),
+  uk: () => require('./locales/uk.json'),
+  ur: () => require('./locales/ur.json'),
+  uz: () => require('./locales/uz.json'),
+  vi: () => require('./locales/vi.json'),
+  sa: () => require('./locales/sa.json'),
+  yo: () => require('./locales/yo.json'),
+  no: () => require('./locales/no.json'),
+  fi: () => require('./locales/fi.json'),
+  zu: () => require('./locales/zu.json'),
+  ti: () => require('./locales/ti.json'),
+  ca: () => require('./locales/ca.json'),
+  lt: () => require('./locales/lt.json'),
+  et: () => require('./locales/et.json'),
+  lv: () => require('./locales/lv.json'),
+  mi: () => require('./locales/mi.json'),
+  gu: () => require('./locales/gu.json'),
+  ml: () => require('./locales/ml.json'),
+  or: () => require('./locales/or.json'),
+  sd: () => require('./locales/sd.json'),
+  sq: () => require('./locales/sq.json'),
+  ug: () => require('./locales/ug.json'),
+  tg: () => require('./locales/tg.json'),
+  tk: () => require('./locales/tk.json'),
+  hy: () => require('./locales/hy.json'),
+  ky: () => require('./locales/ky.json')
+};
 
 /**
  * Load a locale's translations. Returns true if loaded (or already loaded).
  */
-export function loadLanguage(lang: string): Promise<boolean> {
-  if (lang === 'en') return Promise.resolve(true);
-  if (i18n.hasResourceBundle(lang, 'translation')) return Promise.resolve(true);
+export async function loadLanguage(lang: string): Promise<boolean> {
+  if (lang === 'en') return true;
+  if (i18n.hasResourceBundle(lang, 'translation')) return true;
 
-  if (!localeAssets[lang]) {
+  const loader = localeLoaders[lang];
+  if (!loader) {
     console.warn(`[i18n] No loader for locale "${lang}"`);
-    return Promise.resolve(false);
+    return false;
   }
 
-  const pending = pendingLoads.get(lang);
-  if (pending) return pending;
-
-  const load = (async () => {
-    try {
-      const resources = await readLocaleAsset(lang);
-      i18n.addResourceBundle(lang, 'translation', resources, true, true);
-      // Every plural category this language actually uses, filled from the
-      // strings the locale already carries. Without it Arabic count=2/3/11,
-      // Polish 2/5/22 and every other >2-form language render English.
-      fillMissingPluralForms(i18n, lang);
-      return true;
-    } catch (err) {
-      console.warn(`[i18n] Failed to load locale "${lang}"`, err);
-      return false;
-    } finally {
-      pendingLoads.delete(lang);
-    }
-  })();
-  pendingLoads.set(lang, load);
-  return load;
+  try {
+    const module = loader();
+    i18n.addResourceBundle(lang, 'translation', module, true, true);
+    // Every plural category this language actually uses, filled from the
+    // strings the locale already carries. Without it Arabic count=2/3/11,
+    // Polish 2/5/22 and every other >2-form language render English.
+    fillMissingPluralForms(i18n, lang);
+    return true;
+  } catch (err) {
+    console.warn(`[i18n] Failed to load locale "${lang}"`, err);
+    return false;
+  }
 }
 
 /**
@@ -232,7 +322,7 @@ i18n.use(initReactI18next).init({
 fillMissingPluralForms(i18n, 'en');
 
 // On startup, switch to saved or device language
-async function applyStartupLanguage(): Promise<void> {
+(async () => {
   try {
     const saved = await AsyncStorage.getItem(STORAGE_KEY);
     const target = saved || detectLanguage();
@@ -250,20 +340,6 @@ async function applyStartupLanguage(): Promise<void> {
   } catch {
     // Silently fall back to English
   }
-}
-
-// The saved language is a local file read, so the preloader waits for it and
-// the first screen paints in the right language. Capped so a slow read can
-// never hold the splash: past the cap the app starts in English and switches
-// as soon as the file is in.
-const STARTUP_LANGUAGE_WAIT_MS = 1500;
-
-export const i18nReady: Promise<void> = new Promise((resolve) => {
-  const timer = setTimeout(resolve, STARTUP_LANGUAGE_WAIT_MS);
-  applyStartupLanguage().finally(() => {
-    clearTimeout(timer);
-    resolve();
-  });
-});
+})();
 
 export default i18n;
