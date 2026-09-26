@@ -5074,7 +5074,12 @@
     "allowCommentsHint": "Anybody wey fit see this post fit reply am.",
     "markedMatureHint": "E no go show for public feed. Followers, your profile and the link still dey work.",
     "markMatureHint": "For adult or graphic posts. If you on this one, e go comot the post from public feed.",
-    "replaceVideoHint": "E go keep this post link, views and comments. The old file go dey play until the new one finish processing."
+    "replaceVideoHint": "E go keep this post link, views and comments. The old file go dey play until the new one finish processing.",
+    "coverTitle": "Cover",
+    "coverHint": "Pick one frame or upload picture. E go save sharp sharp.",
+    "coverUpload": "Upload cover picture",
+    "coverSaved": "Cover don change",
+    "coverFailed": "Cover no fit change"
   },
   "player": {
     "openSettings": "Open settings",

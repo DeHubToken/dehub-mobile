@@ -5271,7 +5271,12 @@
     "videoFile": "File video",
     "uploadingPercent": "Caricamento in corso… {{percent}}%",
     "replaceVideoFile": "Sostituisci file video",
-    "replaceVideoHint": "Mantiene il link, le visualizzazioni e i commenti di questo post. Il vecchio file verrà riprodotto finché il nuovo non avrà finito l'elaborazione."
+    "replaceVideoHint": "Mantiene il link, le visualizzazioni e i commenti di questo post. Il vecchio file verrà riprodotto finché il nuovo non avrà finito l'elaborazione.",
+    "coverTitle": "Copertina",
+    "coverHint": "Scegli un fotogramma o carica un'immagine. Si salva subito.",
+    "coverUpload": "Carica un'immagine di copertina",
+    "coverSaved": "Copertina aggiornata",
+    "coverFailed": "Impossibile cambiare la copertina"
   },
   "player": {
     "openSettings": "Apri impostazioni",

@@ -5222,7 +5222,12 @@
     "uploadingPercent": "ይጭነግ… {{percent}}%",
     "replaceVideoFile": "ቪድዮ ፋይል ተክእ",
     "replaceVideoHint": "ሊንክ፣ ርእይቶታት ከምኡ እውን መልሲታት እዚ ፖስቲ ይሕሉ እዩ። እቲ ሓድሽ ክሳብ ዝውድእ እቲ ብርቱዕ ፋይል ይጻወት።",
-    "replace": "ምትክያር"
+    "replace": "ምትክያር",
+    "coverTitle": "ሽፋን",
+    "coverHint": "ፍሬም ምረጽ ወይ ስእሊ ጸዓን። ብቕልጡፍ ይዕቀብ።",
+    "coverUpload": "ናይ ሽፋን ስእሊ ጸዓን",
+    "coverSaved": "ሽፋን ተሓዲሱ",
+    "coverFailed": "ሽፋን ክቕየር ኣይተኻእለን"
   },
   "player": {
     "openSettings": "ቅንብራት ክፈት",

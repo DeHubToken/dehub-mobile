@@ -5255,7 +5255,12 @@
     "videoFile": "Video lêer",
     "uploadingPercent": "Oplaai… {{percent}}%",
     "replaceVideoFile": "Vervang video lêer",
-    "replaceVideoHint": "Hou hierdie plasing se skakel, kyke en kommentaar. Die ou lêer speel totdat die nuwe een klaar verwerk is."
+    "replaceVideoHint": "Hou hierdie plasing se skakel, kyke en kommentaar. Die ou lêer speel totdat die nuwe een klaar verwerk is.",
+    "coverTitle": "Voorblad",
+    "coverHint": "Kies 'n raam of laai 'n prent op. Word dadelik gestoor.",
+    "coverUpload": "Laai 'n voorbladprent op",
+    "coverSaved": "Voorblad opgedateer",
+    "coverFailed": "Kon nie die voorblad verander nie"
   },
   "player": {
     "openSettings": "Open instellings",

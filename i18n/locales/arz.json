@@ -5222,7 +5222,12 @@
     "uploadingPercent": "جارٍ التحميل… {{percent}}%",
     "replaceVideoFile": "استبدال ملف الفيديو",
     "replaceVideoHint": "يحتفظ برابط هذا المنشور ومشاهداته وتعليقاته. سيتم تشغيل الملف القديم حتى ينتهي معالجة الملف الجديد.",
-    "replaceImageN": "استبدال الصورة {{n}}"
+    "replaceImageN": "استبدال الصورة {{n}}",
+    "coverTitle": "الغلاف",
+    "coverHint": "اختر لقطة أو ارفع صورة. يُحفظ فورًا.",
+    "coverUpload": "ارفع صورة غلاف",
+    "coverSaved": "تم تحديث الغلاف",
+    "coverFailed": "تعذّر تغيير الغلاف"
   },
   "player": {
     "openSettings": "افتح الإعدادات",

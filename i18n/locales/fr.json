@@ -5275,7 +5275,12 @@
     "videoFile": "Fichier vidéo",
     "uploadingPercent": "Téléchargement… {{percent}}%",
     "replaceVideoFile": "Remplacer le fichier vidéo",
-    "replaceVideoHint": "Conserve le lien, les vues et les commentaires de cette publication. L'ancien fichier sera lu jusqu'à ce que le nouveau soit traité."
+    "replaceVideoHint": "Conserve le lien, les vues et les commentaires de cette publication. L'ancien fichier sera lu jusqu'à ce que le nouveau soit traité.",
+    "coverTitle": "Couverture",
+    "coverHint": "Choisissez une image de la vidéo ou importez une image. Enregistré immédiatement.",
+    "coverUpload": "Importer une image de couverture",
+    "coverSaved": "Couverture mise à jour",
+    "coverFailed": "Impossible de changer la couverture"
   },
   "player": {
     "openSettings": "Ouvrir les réglages",

@@ -5273,7 +5273,12 @@
     "videoFile": "動画ファイル",
     "uploadingPercent": "アップロード中… {{percent}}%",
     "replaceVideoFile": "動画ファイルを置き換える",
-    "replaceVideoHint": "この投稿のリンク、再生数、コメントは保持されます。古いファイルは、新しいファイルの処理が完了するまで再生されます。"
+    "replaceVideoHint": "この投稿のリンク、再生数、コメントは保持されます。古いファイルは、新しいファイルの処理が完了するまで再生されます。",
+    "coverTitle": "カバー",
+    "coverHint": "フレームを選ぶか画像をアップロードしてください。すぐに保存されます。",
+    "coverUpload": "カバー画像をアップロード",
+    "coverSaved": "カバーを更新しました",
+    "coverFailed": "カバーを変更できませんでした"
   },
   "player": {
     "openSettings": "設定を開く",

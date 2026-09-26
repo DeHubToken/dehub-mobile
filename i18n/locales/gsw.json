@@ -5252,7 +5252,12 @@
     "videoFile": "Video-Datei",
     "uploadingPercent": "Am Uflade… {{percent}}%",
     "replaceVideoFile": "Video-Datei ersetze",
-    "replaceVideoHint": "Behaltet de Link, d'Uusichte und Kommentär vo dem Post. D'alt Datei wird abgspilt, bis d'neui fertig verarbeitet isch."
+    "replaceVideoHint": "Behaltet de Link, d'Uusichte und Kommentär vo dem Post. D'alt Datei wird abgspilt, bis d'neui fertig verarbeitet isch.",
+    "coverTitle": "Cover",
+    "coverHint": "Wähle ein Standbild oder lade ein Bild hoch. Wird sofort gespeichert.",
+    "coverUpload": "Coverbild hochladen",
+    "coverSaved": "Cover aktualisiert",
+    "coverFailed": "Cover konnte nicht geändert werden"
   },
   "player": {
     "openSettings": "Iistellige uftue",

@@ -5235,7 +5235,12 @@
     "videoFile": "Faayila viidiyoo",
     "uploadingPercent": "Olkaa'aa jira... {{percent}}%",
     "replaceVideoFile": "Faayila viidiyoo bakka buusi",
-    "replaceVideoHint": "Liinkii, ilaalchaa fi yaada barreeffama kanaa eega. Faayilli durii hanga inni haaraan adeemsa xumurutti taphata."
+    "replaceVideoHint": "Liinkii, ilaalchaa fi yaada barreeffama kanaa eega. Faayilli durii hanga inni haaraan adeemsa xumurutti taphata.",
+    "coverTitle": "Haguuggii",
+    "coverHint": "Fireemii tokko filadhu ykn suuraa ol fe'i. Battaluma kuufama.",
+    "coverUpload": "Suuraa haguuggii ol fe'i",
+    "coverSaved": "Haguuggiin haaromfameera",
+    "coverFailed": "Haguuggii jijjiiruun hin danda'amne"
   },
   "player": {
     "openSettings": "Qindaaʼina bani",
