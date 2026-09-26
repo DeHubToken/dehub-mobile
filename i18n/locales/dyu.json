@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "I b'a fɛ ka DHB hakɛ jumɛn feere?",
     "aiFailed": "AI ma se k'o labɛn. A fɔ cogo wɛrɛ la, walima a fa duguma.",
     "cancelled": "A dabilara. Foyi ma feere."
+  },
+  "tipFunding": {
+    "noRoute": "Sisan, Uniswap sira si tɛ nin token in ma ka taa DHB la",
+    "lowLiquidity": "Sisan, wari ma ca Uniswap kan ka sarali bonba nin ɲɔgɔn kɛ",
+    "dpayNoAmount": "DeHub Pay ma sarali hakɛ di",
+    "dpayDelayed": "DeHub Pay ye i ka sarali sɔrɔ, a bɛ DHB ci. A bɛna se i ka wari foroko kɔnɔ sɔɔni; ni a sera, i ka ci tugun.",
+    "noBridgeRoute": "Sisan, cross-chain sira si tɛ yen",
+    "bridgeCancelled": "Cross-chain ci in bɔra yen, wari seginna i ka wari foroko kɔnɔ",
+    "bridgeSlow": "Cross-chain ci in bɛ mɛn ka tɛmɛ a cogo kɔrɔ kan. A bɛna se i ka wari foroko kɔnɔ Base kan; ni a sera, i ka ci tugun.",
+    "notEnoughOnBase": "{{symbol}} ma ca Base kan nin sarali in kama",
+    "notEnoughWithFees": "{{symbol}} ma ca nin sarali in kama, rezo sara fana b'a la",
+    "notEnough": "{{symbol}} ma ca nin sarali in kama",
+    "noGasForFee": "Rezo wari ma ca ka cross-chain sara sara",
+    "priceMoved": "DHB sɔngɔ yɛlɛmana i ka USDC tun bɛ na tuma min. USDC bɛ i ka wari foroko kɔnɔ Base kan; i ka ci tugun walisa ka a ban.",
+    "usdcPending": "I ka USDC sera Base kan nka a ma ye fɔlɔ. I ka ci tugun sɔɔni.",
+    "dhbPending": "DHB sanni dafara nka a ma ye fɔlɔ. I ka ci tugun sɔɔni.",
+    "unlockWallet": "I ka wari foroko da wuli walisa ka sara ni nin token in ye",
+    "chainUnavailable": "Ka sara ka bɔ {{chain}} kan tɛ se ka kɛ nin wari foroko in na"
   }
 }

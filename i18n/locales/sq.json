@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Sa DHB doni të shisni?",
     "aiFailed": "IA nuk mund ta kurdiste këtë. Provo ta thuash në një mënyrë tjetër ose plotësoje më poshtë.",
     "cancelled": "Anuluar. Asgjë nuk u shit."
+  },
+  "tipFunding": {
+    "noRoute": "Për momentin nuk ka rrugë Uniswap drejt DHB për këtë token",
+    "lowLiquidity": "Për momentin nuk ka likuiditet të mjaftueshëm në Uniswap për një pagesë të kësaj madhësie",
+    "dpayNoAmount": "DeHub Pay nuk ktheu shumën e pagesës",
+    "dpayDelayed": "DeHub Pay e ka marrë pagesën tënde dhe po dërgon DHB. Do të mbërrijë së shpejti në portofolin tënd; dërgo sërish pasi të mbërrijë.",
+    "noBridgeRoute": "Për momentin nuk ka rrugë ndërzinxhirore të disponueshme",
+    "bridgeCancelled": "Porosia ndërzinxhirore u anulua dhe u rimbursua në portofolin tënd",
+    "bridgeSlow": "Transferimi ndërzinxhiror po zgjat më shumë se zakonisht. Do të mbërrijë në portofolin tënd në Base; dërgo sërish pasi të mbërrijë.",
+    "notEnoughOnBase": "Nuk ka mjaftueshëm {{symbol}} në Base për këtë pagesë",
+    "notEnoughWithFees": "Nuk ka mjaftueshëm {{symbol}} për këtë pagesë, përfshirë tarifat e rrjetit",
+    "notEnough": "Nuk ka mjaftueshëm {{symbol}} për këtë pagesë",
+    "noGasForFee": "Nuk ka mjaftueshëm monedhë rrjeti për të mbuluar tarifën ndërzinxhirore",
+    "priceMoved": "Çmimi i DHB ndryshoi ndërsa po mbërrinin USDC-të e tua. USDC-të janë në portofolin tënd në Base; dërgo sërish për ta përfunduar.",
+    "usdcPending": "USDC-të e tua mbërritën në Base, por ende nuk duken. Dërgo sërish pas pak.",
+    "dhbPending": "Blerja e DHB u konfirmua, por ende nuk është shfaqur. Dërgo sërish pas pak.",
+    "unlockWallet": "Shkyç portofolin për të paguar me këtë token",
+    "chainUnavailable": "Pagesa nga {{chain}} nuk është e disponueshme për këtë portofol"
   }
 }

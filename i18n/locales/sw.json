@@ -6656,5 +6656,23 @@
     "aiNeedAmount": "Unataka kuuza DHB kiasi gani?",
     "aiFailed": "AI haikuweza kusanidi hiyo. Jaribu kuisema kwa njia nyingine, au ijaze hapa chini.",
     "cancelled": "Imeghairiwa. Hakuna kilichouzwa."
+  },
+  "tipFunding": {
+    "noRoute": "Hakuna njia ya Uniswap kwenda DHB kwa tokeni hii kwa sasa",
+    "lowLiquidity": "Hakuna ukwasi wa kutosha kwenye Uniswap kwa malipo ya kiasi hiki kwa sasa",
+    "dpayNoAmount": "DeHub Pay haikurudisha kiasi cha malipo",
+    "dpayDelayed": "DeHub Pay imepokea malipo yako na inatuma DHB. Itafika kwenye pochi yako hivi karibuni; tuma tena ikishafika.",
+    "noBridgeRoute": "Hakuna njia ya kati ya minyororo inayopatikana kwa sasa",
+    "bridgeCancelled": "Agizo la kati ya minyororo limeghairiwa na pesa zimerudishwa kwenye pochi yako",
+    "bridgeSlow": "Uhamisho wa kati ya minyororo unachukua muda mrefu kuliko kawaida. Utafika kwenye pochi yako kwenye Base; tuma tena ukishafika.",
+    "notEnoughOnBase": "{{symbol}} haitoshi kwenye Base kwa malipo haya",
+    "notEnoughWithFees": "{{symbol}} haitoshi kwa malipo haya, pamoja na ada za mtandao",
+    "notEnough": "{{symbol}} haitoshi kwa malipo haya",
+    "noGasForFee": "Sarafu ya mtandao haitoshi kulipia ada ya kati ya minyororo",
+    "priceMoved": "Bei ya DHB ilibadilika wakati USDC yako ikifika. USDC iko kwenye pochi yako kwenye Base; tuma tena ili kukamilisha.",
+    "usdcPending": "USDC yako imefika kwenye Base lakini bado haionekani. Tuma tena baada ya muda mfupi.",
+    "dhbPending": "Ununuzi wa DHB umethibitishwa lakini bado haujaonekana. Tuma tena baada ya muda mfupi.",
+    "unlockWallet": "Fungua pochi yako ili kulipa kwa tokeni hii",
+    "chainUnavailable": "Kulipa kutoka {{chain}} hakupatikani kwa pochi hii"
   }
 }

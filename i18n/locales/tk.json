@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Näçe DHB satmak isleýärsiň?",
     "aiFailed": "Ol muny goýup bilmedi. Muny başgaça aýtmaga çalyşyň ýa-da aşakda dolduryň.",
     "cancelled": "Ýatyryldy. Hiç zat satylmady."
+  },
+  "tipFunding": {
+    "noRoute": "Häzirki wagtda bu token üçin DHB-a Uniswap ugry ýok",
+    "lowLiquidity": "Häzirki wagtda bu möçberdäki töleg üçin Uniswap-da ýeterlik likwidlik ýok",
+    "dpayNoAmount": "DeHub Pay töleg mukdaryny gaýtarmady",
+    "dpayDelayed": "DeHub Pay tölegiňizi aldy we DHB iberýär. Ýakyn wagtda gapjygyňyza geler; gelensoň gaýtadan iberiň.",
+    "noBridgeRoute": "Häzirki wagtda zynjyrara ugur ýok",
+    "bridgeCancelled": "Zynjyrara sargyt ýatyryldy we gapjygyňyza gaýtaryldy",
+    "bridgeSlow": "Zynjyrara geçirim adatdakydan uzak wagt alýar. Ol Base-däki gapjygyňyza geler; gelensoň gaýtadan iberiň.",
+    "notEnoughOnBase": "Bu töleg üçin Base-de ýeterlik {{symbol}} ýok",
+    "notEnoughWithFees": "Tor tölegleri bilen bilelikde bu töleg üçin ýeterlik {{symbol}} ýok",
+    "notEnough": "Bu töleg üçin ýeterlik {{symbol}} ýok",
+    "noGasForFee": "Zynjyrara tölegi ýapmak üçin toruň teňňesi ýeterlik däl",
+    "priceMoved": "USDC-ňiz gelýärkä DHB-nyň bahasy üýtgedi. USDC Base-däki gapjygyňyzda; tamamlamak üçin gaýtadan iberiň.",
+    "usdcPending": "USDC-ňiz Base-e geldi, ýöne entek görünmeýär. Birazdan gaýtadan iberiň.",
+    "dhbPending": "DHB satyn alşy tassyklandy, ýöne entek görünmedi. Birazdan gaýtadan iberiň.",
+    "unlockWallet": "Bu token bilen tölemek üçin gapjygyňyzy açyň",
+    "chainUnavailable": "Bu gapjyk üçin {{chain}}-dan tölemek elýeter däl"
   }
 }

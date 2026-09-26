@@ -24,6 +24,7 @@ import Icon from "../ui/Icon";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { formatCompactNumber } from "../../libs";
 import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
+import { fundingErrorText } from "../../libs/tip-funding-error";
 import TipPayWith, { tipStageLabel } from "../Tip/TipPayWith";
 
 /** An unlock that cannot be sent yet because the wallet is short of DHB. */
@@ -89,7 +90,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
       // never taps twice.
       onFunded();
     } catch (e) {
-      setError(e instanceof Error ? e.message : t("tip.payFailed", { symbol: payWith.symbol }));
+      setError(fundingErrorText(t as any, e) || t("tip.payFailed", { symbol: payWith.symbol }));
       setPhase("error");
     }
   }, [payWith, account, shortfall.priceDhb, onFunded, t]);

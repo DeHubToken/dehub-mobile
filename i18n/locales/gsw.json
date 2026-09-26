@@ -6685,5 +6685,23 @@
     "aiNeedAmount": "Wie viel DHB wotsch verchoufe?",
     "aiFailed": "D'AI hät's nöd chönne ufsetze. Probier's anders z'sage, oder füll's hie uus.",
     "cancelled": "Abgsagt. Nüt isch verchouft worde."
+  },
+  "tipFunding": {
+    "noRoute": "Grad kei Uniswap-Route zu DHB für dä Token",
+    "lowLiquidity": "Uf Uniswap hets grad nöd gnueg Liquidität für e Zahlig vo dere Grössi",
+    "dpayNoAmount": "DeHub Pay het kei Zahligsbetrag zruggäh",
+    "dpayDelayed": "DeHub Pay het dini Zahlig und schickt d DHB. Si chömed bald i dinere Wallet aa; schick nomal, sobald si da sind.",
+    "noBridgeRoute": "Grad isch kei chetteübergryfendi Route verfüegbar",
+    "bridgeCancelled": "Dr chetteübergryfendi Uftrag isch storniert und uf dini Wallet zruggzahlt worde",
+    "bridgeSlow": "Dr chetteübergryfendi Transfer duuret länger als süsch. Er chunnt i dinere Wallet uf Base aa; schick nomal, sobald er da isch.",
+    "notEnoughOnBase": "Nöd gnueg {{symbol}} uf Base für die Zahlig",
+    "notEnoughWithFees": "Nöd gnueg {{symbol}} für die Zahlig, inklusiv Netzwärchgebühre",
+    "notEnough": "Nöd gnueg {{symbol}} für die Zahlig",
+    "noGasForFee": "Nöd gnueg vom Netzwärch-Coin für d chetteübergryfendi Gebühr",
+    "priceMoved": "Dr DHB-Kurs het sich bewegt, während dini USDC unterwegs gsi sind. D USDC sind i dinere Wallet uf Base; schick nomal zum Abschlüsse.",
+    "usdcPending": "Dini USDC sind uf Base aacho, sind aber no nöd sichtbar. Schick grad nomal.",
+    "dhbPending": "Dr DHB-Chauf isch bestätigt, isch aber no nöd sichtbar. Schick grad nomal.",
+    "unlockWallet": "Entsperr dini Wallet zum mit dem Token zahle",
+    "chainUnavailable": "Zahle vo {{chain}} isch für die Wallet nöd verfüegbar"
   }
 }

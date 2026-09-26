@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Kui palju DHB-d soovite müüa?",
     "aiFailed": "AI ei saanud seda seadistada. Proovi seda teisiti öelda või täida see allpool.",
     "cancelled": "Tühistatud. Midagi ei müüdud."
+  },
+  "tipFunding": {
+    "noRoute": "Selle tokeni jaoks pole praegu Uniswapi marsruuti DHB-ni",
+    "lowLiquidity": "Uniswapis pole praegu piisavalt likviidsust nii suure makse jaoks",
+    "dpayNoAmount": "DeHub Pay ei tagastanud makse summat",
+    "dpayDelayed": "DeHub Pay sai sinu makse kätte ja saadab DHB-d. Need jõuavad peagi sinu rahakotti; kui on kohal, saada uuesti.",
+    "noBridgeRoute": "Ahelateülest marsruuti pole praegu saadaval",
+    "bridgeCancelled": "Ahelateülene tellimus tühistati ja raha tagastati sinu rahakotti",
+    "bridgeSlow": "Ahelateülene ülekanne võtab tavapärasest kauem. See jõuab sinu rahakotti Base'is; kui on kohal, saada uuesti.",
+    "notEnoughOnBase": "Base'is pole selle makse jaoks piisavalt {{symbol}}",
+    "notEnoughWithFees": "Selle makse jaoks pole piisavalt {{symbol}}, võrgutasud kaasa arvatud",
+    "notEnough": "Selle makse jaoks pole piisavalt {{symbol}}",
+    "noGasForFee": "Võrgu mündist ei piisa ahelateülese tasu katmiseks",
+    "priceMoved": "DHB hind muutus, kui sinu USDC teel oli. USDC on sinu rahakotis Base'is; lõpetamiseks saada uuesti.",
+    "usdcPending": "Sinu USDC jõudis Base'i, kuid pole veel nähtav. Saada hetke pärast uuesti.",
+    "dhbPending": "DHB ost kinnitati, kuid pole veel nähtav. Saada hetke pärast uuesti.",
+    "unlockWallet": "Selle tokeniga maksmiseks ava oma rahakott",
+    "chainUnavailable": "Maksmine võrgust {{chain}} pole selle rahakoti jaoks saadaval"
   }
 }

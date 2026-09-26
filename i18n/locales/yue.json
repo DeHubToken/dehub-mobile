@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "你想賣幾多 DHB?",
     "aiFailed": "AI 設定唔到嗰個。試下用其他方法講，或者喺下面填寫。",
     "cancelled": "取消咗。冇嘢賣咗。"
+  },
+  "tipFunding": {
+    "noRoute": "而家呢隻代幣冇 Uniswap 路徑換到 DHB",
+    "lowLiquidity": "而家 Uniswap 嘅流動性唔夠應付咁大筆付款",
+    "dpayNoAmount": "DeHub Pay 冇回傳付款金額",
+    "dpayDelayed": "DeHub Pay 已經收到你嘅付款，而家傳送緊 DHB。好快就會到你嘅錢包；到咗之後再傳多次。",
+    "noBridgeRoute": "而家冇可用嘅跨鏈路徑",
+    "bridgeCancelled": "跨鏈訂單已經取消，並已退款到你嘅錢包",
+    "bridgeSlow": "跨鏈轉賬用嘅時間比平時長。會到你喺 Base 嘅錢包；到咗之後再傳多次。",
+    "notEnoughOnBase": "Base 上面嘅 {{symbol}} 唔夠付呢筆款",
+    "notEnoughWithFees": "計埋網絡手續費，{{symbol}} 唔夠付呢筆款",
+    "notEnough": "{{symbol}} 唔夠付呢筆款",
+    "noGasForFee": "網絡幣唔夠俾跨鏈手續費",
+    "priceMoved": "你嘅 USDC 到緊嗰陣 DHB 價格變咗。USDC 喺你 Base 嘅錢包入面；再傳多次就完成。",
+    "usdcPending": "你嘅 USDC 已經到咗 Base，但暫時未見到。等陣再傳多次。",
+    "dhbPending": "DHB 購買已經確認，但暫時未顯示。等陣再傳多次。",
+    "unlockWallet": "解鎖你嘅錢包先可以用呢隻代幣付款",
+    "chainUnavailable": "呢個錢包唔支援由 {{chain}} 付款"
   }
 }

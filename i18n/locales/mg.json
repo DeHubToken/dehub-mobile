@@ -6754,5 +6754,23 @@
     "aiNeedAmount": "Firy ny DHB tianao hamidy?",
     "aiFailed": "Tsy afaka mandamina azy ireo ihany koa izy. Miezaha hilaza izany amin'ny fomba hafa, na fenoy eto ambany.",
     "cancelled": "Nofoanana. Tsy nisy nivarotra."
+  },
+  "tipFunding": {
+    "noRoute": "Tsy misy lalana Uniswap mankany amin'ny DHB ho an'ity token ity amin'izao fotoana izao",
+    "lowLiquidity": "Tsy ampy ny liquidity ao amin'ny Uniswap ho an'ny fandoavana lehibe toy izao amin'izao fotoana izao",
+    "dpayNoAmount": "Tsy namerina ny sandan'ny fandoavana ny DeHub Pay",
+    "dpayDelayed": "Efa voarain'ny DeHub Pay ny fandoavanao ary mandefa ny DHB izy. Ho tonga ao amin'ny kitaponao tsy ho ela izany; mandefasa indray rehefa tonga.",
+    "noBridgeRoute": "Tsy misy lalana cross-chain azo ampiasaina amin'izao fotoana izao",
+    "bridgeCancelled": "Nofoanana ny baiko cross-chain ary naverina tao amin'ny kitaponao ny vola",
+    "bridgeSlow": "Maharitra kokoa noho ny mahazatra ny famindrana cross-chain. Ho tonga ao amin'ny kitaponao ao amin'ny Base izany; mandefasa indray rehefa tonga.",
+    "notEnoughOnBase": "Tsy ampy ny {{symbol}} ao amin'ny Base ho an'ity fandoavana ity",
+    "notEnoughWithFees": "Tsy ampy ny {{symbol}} ho an'ity fandoavana ity, ao anatin'izany ny saran'ny tambajotra",
+    "notEnough": "Tsy ampy ny {{symbol}} ho an'ity fandoavana ity",
+    "noGasForFee": "Tsy ampy ny coin an'ny tambajotra handoavana ny sarany cross-chain",
+    "priceMoved": "Niova ny vidin'ny DHB raha mbola ho tonga ny USDC-nao. Ao amin'ny kitaponao ao amin'ny Base ny USDC; mandefasa indray mba hamitana.",
+    "usdcPending": "Tonga tao amin'ny Base ny USDC-nao saingy mbola tsy hita. Mandefasa indray afaka kelikely.",
+    "dhbPending": "Voamarina ny fividianana DHB saingy mbola tsy niseho. Mandefasa indray afaka kelikely.",
+    "unlockWallet": "Sokafy ny kitaponao mba handoavana amin'ity token ity",
+    "chainUnavailable": "Tsy azo atao ho an'ity kitapo ity ny fandoavana avy amin'ny {{chain}}"
   }
 }

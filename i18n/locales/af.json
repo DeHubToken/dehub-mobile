@@ -6780,5 +6780,23 @@
     "aiNeedAmount": "Hoeveel DHB wil jy verkoop?",
     "aiFailed": "Ai kon dit nie regkry nie. Probeer dit op 'n ander manier sê, of vul dit hieronder in.",
     "cancelled": "Gekanselleer. Niks is verkoop nie."
+  },
+  "tipFunding": {
+    "noRoute": "Tans geen Uniswap-roete na DHB vir hierdie token nie",
+    "lowLiquidity": "Daar is tans nie genoeg Uniswap-likiditeit vir 'n betaling van hierdie grootte nie",
+    "dpayNoAmount": "DeHub Pay het nie 'n betalingsbedrag teruggestuur nie",
+    "dpayDelayed": "DeHub Pay het jou betaling en stuur die DHB. Dit kom binnekort in jou beursie aan; stuur weer sodra dit daar is.",
+    "noBridgeRoute": "Daar is tans geen kruisketting-roete beskikbaar nie",
+    "bridgeCancelled": "Die kruisketting-bestelling is gekanselleer en na jou beursie terugbetaal",
+    "bridgeSlow": "Die kruisketting-oordrag neem langer as gewoonlik. Dit kom in jou beursie op Base aan; stuur weer sodra dit daar is.",
+    "notEnoughOnBase": "Nie genoeg {{symbol}} op Base vir hierdie betaling nie",
+    "notEnoughWithFees": "Nie genoeg {{symbol}} vir hierdie betaling nie, netwerkfooie ingesluit",
+    "notEnough": "Nie genoeg {{symbol}} vir hierdie betaling nie",
+    "noGasForFee": "Nie genoeg van die netwerk se munt om die kruisketting-fooi te dek nie",
+    "priceMoved": "Die DHB-prys het geskuif terwyl jou USDC op pad was. Die USDC is in jou beursie op Base; stuur weer om klaar te maak.",
+    "usdcPending": "Jou USDC het op Base aangekom maar is nog nie sigbaar nie. Stuur oor 'n oomblik weer.",
+    "dhbPending": "Die DHB-aankoop is bevestig maar wys nog nie. Stuur oor 'n oomblik weer.",
+    "unlockWallet": "Ontsluit jou beursie om met hierdie token te betaal",
+    "chainUnavailable": "Betaling vanaf {{chain}} is nie vir hierdie beursie beskikbaar nie"
   }
 }

@@ -21,6 +21,7 @@ import {
   type TipFundingPlan,
   type TipFundingSource,
 } from "../../libs/tip-funding";
+import { fundingErrorText } from "../../libs/tip-funding-error";
 
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
 
@@ -38,7 +39,7 @@ interface Props {
 }
 
 export default function TipPayWith({ visible, amountDhb, walletAddress, value, onChange, requireSource = false }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [sources, setSources] = useState<TipFundingSource[]>([]);
   const [dhbOnBase, setDhbOnBase] = useState<bigint>(0n);
   const [open, setOpen] = useState(false);
@@ -69,17 +70,17 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
   }, [amountDhb]);
 
   const [plan, setPlan] = useState<TipFundingPlan | null>(null);
-  const [planError, setPlanError] = useState("");
+  const [planError, setPlanError] = useState<unknown>(null);
   const [quoting, setQuoting] = useState(false);
   useEffect(() => {
     setPlan(null);
-    setPlanError("");
+    setPlanError(null);
     if (!value || !walletAddress || !(debounced > 0)) return;
     let cancelled = false;
     setQuoting(true);
     planTipFunding({ source: value, amountDhb: debounced, dhbOnBase, walletAddress })
       .then(p => { if (!cancelled) setPlan(p); })
-      .catch(e => { if (!cancelled) setPlanError(e instanceof Error ? e.message : String(e)); })
+      .catch(e => { if (!cancelled) setPlanError(e ?? new Error("")); })
       .finally(() => { if (!cancelled) setQuoting(false); });
     return () => { cancelled = true; };
   }, [value?.chainId, value?.address, debounced, walletAddress, dhbOnBase]);
@@ -92,6 +93,10 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
     setOpen(false);
   };
   const payAmount = plan ? formatPayAmount(plan) : null;
+  // A dollar figure beside the coin amount, so 0.0018 ETH reads as roughly $5.
+  const payUsd = plan && plan.kind !== "none" && plan.payUsd
+    ? new Intl.NumberFormat(i18n.language, { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(plan.payUsd)
+    : null;
 
   return (
     <View style={styles.box}>
@@ -114,12 +119,13 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
               <Text style={styles.quoteMuted}>{t("tip.payQuoting", "Getting the best price…")}</Text>
             </View>
           ) : planError ? (
-            <Text style={styles.quoteError}>{planError}</Text>
+            <Text style={styles.quoteError}>{fundingErrorText(t as any, planError)}</Text>
           ) : payAmount && plan && plan.kind !== "none" ? (
             <Text style={styles.quoteText}>
               {t("tip.payQuote", "≈ {{amount}} {{symbol}} on {{chain}}", {
                 amount: payAmount, symbol: plan.source.symbol, chain: TIP_CHAIN_NAMES[plan.source.chainId] ?? "",
               })}
+              {payUsd ? <Text style={styles.quoteUsd}> (~{payUsd})</Text> : null}
               <Text style={styles.quoteMuted}>
                 {" · "}
                 {planUsesDpay(plan)
@@ -174,6 +180,7 @@ const styles = StyleSheet.create({
   quoteRow: { flexDirection: "row", alignItems: "center", gap: 6 },
   quoteText: { fontSize: 11, lineHeight: 16, color: "rgba(255,255,255,0.7)" },
   quoteMuted: { fontSize: 11, color: "rgba(255,255,255,0.45)" },
+  quoteUsd: { fontSize: 11, color: "rgba(255,255,255,0.9)" },
   quoteError: { fontSize: 11, lineHeight: 16, color: "rgba(252,211,77,0.9)" },
   list: { maxHeight: 220, borderTopWidth: 1, borderTopColor: "rgba(255,255,255,0.10)" },
   item: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 12, paddingVertical: 9 },

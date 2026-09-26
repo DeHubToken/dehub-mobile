@@ -6648,5 +6648,23 @@
     "aiNeedAmount": "How much DHB do you want to sell?",
     "aiFailed": "AI could not set that up. Try saying it another way, or fill it in below.",
     "cancelled": "Cancelled. Nothing was sold."
+  },
+  "tipFunding": {
+    "noRoute": "No Uniswap route to DHB for this token right now",
+    "lowLiquidity": "There is not enough Uniswap liquidity for a payment this size right now",
+    "dpayNoAmount": "DeHub Pay did not return a payment amount",
+    "dpayDelayed": "DeHub Pay has your payment and is sending the DHB. It will arrive in your wallet shortly; send again once it does.",
+    "noBridgeRoute": "No cross-chain route is available right now",
+    "bridgeCancelled": "The cross-chain order was cancelled and refunded to your wallet",
+    "bridgeSlow": "The cross-chain transfer is taking longer than usual. It will arrive in your wallet on Base; send again once it does.",
+    "notEnoughOnBase": "Not enough {{symbol}} on Base for this payment",
+    "notEnoughWithFees": "Not enough {{symbol}} for this payment, including network fees",
+    "notEnough": "Not enough {{symbol}} for this payment",
+    "noGasForFee": "Not enough of the network coin to cover the cross-chain fee",
+    "priceMoved": "DHB moved while your USDC was arriving. The USDC is in your wallet on Base; send again to finish.",
+    "usdcPending": "Your USDC arrived on Base but is not visible yet. Send again in a moment.",
+    "dhbPending": "The DHB purchase confirmed but has not shown up yet. Send again in a moment.",
+    "unlockWallet": "Unlock your wallet to pay with this token",
+    "chainUnavailable": "Paying from {{chain}} is not available for this wallet"
   }
 }

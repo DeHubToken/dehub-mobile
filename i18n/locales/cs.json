@@ -6659,5 +6659,23 @@
     "aiNeedAmount": "Kolik DHB chcete prodat?",
     "aiFailed": "Umělá inteligence to nemohla nastavit. Zkus to říct jinak, nebo to vyplň dole.",
     "cancelled": "Zrušeno. Nic nebylo prodáno."
+  },
+  "tipFunding": {
+    "noRoute": "Pro tento token teď neexistuje žádná trasa přes Uniswap na DHB",
+    "lowLiquidity": "Na Uniswapu teď není dost likvidity pro platbu takové velikosti",
+    "dpayNoAmount": "DeHub Pay nevrátil částku platby",
+    "dpayDelayed": "DeHub Pay má tvou platbu a posílá DHB. Brzy dorazí do tvé peněženky; až dorazí, pošli znovu.",
+    "noBridgeRoute": "Teď není k dispozici žádná cross-chain trasa",
+    "bridgeCancelled": "Cross-chain objednávka byla zrušena a peníze se vrátily do tvé peněženky",
+    "bridgeSlow": "Cross-chain převod trvá déle než obvykle. Dorazí do tvé peněženky na Base; až dorazí, pošli znovu.",
+    "notEnoughOnBase": "Nedostatek {{symbol}} na Base pro tuto platbu",
+    "notEnoughWithFees": "Nedostatek {{symbol}} pro tuto platbu včetně síťových poplatků",
+    "notEnough": "Nedostatek {{symbol}} pro tuto platbu",
+    "noGasForFee": "Nedostatek síťové mince na pokrytí cross-chain poplatku",
+    "priceMoved": "Cena DHB se změnila, zatímco tvé USDC přicházely. USDC jsou v tvé peněžence na Base; pro dokončení pošli znovu.",
+    "usdcPending": "Tvé USDC dorazily na Base, ale zatím nejsou vidět. Za chvíli pošli znovu.",
+    "dhbPending": "Nákup DHB byl potvrzen, ale zatím se neobjevil. Za chvíli pošli znovu.",
+    "unlockWallet": "Pro platbu tímto tokenem odemkni peněženku",
+    "chainUnavailable": "Platba z {{chain}} není pro tuto peněženku dostupná"
   }
 }
