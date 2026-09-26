@@ -142,7 +142,17 @@
         }
       ],
       "expo-audio",
-      "expo-font",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./node_modules/@expo-google-fonts/exo/400Regular/Exo_400Regular.ttf",
+            "./node_modules/@expo-google-fonts/exo/500Medium/Exo_500Medium.ttf",
+            "./node_modules/@expo-google-fonts/exo/600SemiBold/Exo_600SemiBold.ttf",
+            "./node_modules/@expo-google-fonts/exo/700Bold/Exo_700Bold.ttf"
+          ]
+        }
+      ],
       "expo-asset",
       "@config-plugins/react-native-webrtc",
       "@react-native-community/datetimepicker",

@@ -21,9 +21,10 @@ import "./i18n";
 // the tree below it has already rendered in the platform font.
 import "./libs/globalFont";
 
-// Initializes the "Connect Wallet" (Reown/WalletConnect) sign-in option —
-// side-effect import, must run once at startup before any screen renders.
-import "./config/reown.config";
+// "Connect Wallet" (Reown/WalletConnect) is created on demand. At startup it is
+// only brought up when a WalletConnect pairing is already persisted, so a
+// returning Connect Wallet user keeps their session; see reown.config.
+import { restoreAppKitSession } from "./config/reown.config";
 
 // Silence noisy deprecation warning from transitive deps in dev
 //   LogBox.ignoreLogs(["SafeAreaView has been deprecated", "Failed to obtain view for PanGestureHandler"]);
@@ -45,6 +46,8 @@ installGlobalErrorHandler();
 // an OOM kills the process without the handler above ever running; Android
 // keeps the record, and this ships it with the next launch.
 reportProcessExits();
+
+void restoreAppKitSession();
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
 // It also ensures that whether you load the app in Expo Go or in a native build,
