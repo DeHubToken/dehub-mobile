@@ -54,7 +54,7 @@ import { getPreferredChainId } from "../../libs/auth.utils";
 import { ChainId } from "../../config/constants";
 import { useAuthActions } from "../../context/AuthContext";
 import { setSigningProvider } from "../../libs/provider.registry";
-import { ensureAppKit, getAppKitInstance } from "../../config/reown.config";
+import { getAppKitInstance } from "../../config/reown.config";
 import { createLogger } from "../../libs/logger";
 
 const log = createLogger("WalletUnlockHost");
@@ -320,12 +320,8 @@ const WalletUnlockHost: React.FC = () => {
     const current = pendingRef.current;
     if (!current || current.request.mode !== "restore") return;
     const address = current.request.address.toLowerCase();
-    // Created on demand (see reown.config); a fresh one gets a tick so App
-    // has mounted <AppKit /> before the picker is asked to open.
-    const existed = !!getAppKitInstance();
-    const kit = ensureAppKit();
+    const kit = getAppKitInstance();
     if (!kit) throw new Error(i18n.t("wallet.connectUnavailable"));
-    if (!existed) await new Promise((resolve) => setTimeout(resolve, 0));
 
     const short = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
     const adopt = (provider: any): boolean => {

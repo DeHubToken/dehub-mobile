@@ -55,7 +55,7 @@ import { loadHueState } from "./libs/audioHueState";
 import { useNavigationPersistence } from "./hooks/useNavigationPersistence";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { I18nextProvider } from "react-i18next";
-import i18n, { i18nReady } from "./i18n";
+import i18n from "./i18n";
 import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { applyOtaUpdateIfReady, checkForOtaUpdate } from "./libs/otaUpdates";
 import { createLogger } from "./libs/logger";
@@ -75,7 +75,7 @@ import StageRecordingMiniPlayer from "./components/Stages/StageRecordingMiniPlay
 import RadioMiniPlayer from "./components/Music/RadioMiniPlayer";
 import AudioPostMiniPlayer from "./components/Home/AudioPostMiniPlayer";
 import { AppKit } from "@reown/appkit-ethers5-react-native";
-import { useAppKitInstance } from "./config/reown.config";
+import { isWalletConnectAvailable } from "./config/reown.config";
 import { markBootRevealed } from "./libs/bootReveal";
 import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
 import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/ThemeContext";
@@ -92,42 +92,25 @@ ExpoSplashScreen.preventAutoHideAsync().catch(() => {
   // Ignore errors - splash screen might already be hidden
 });
 
-// Longest the splash waits on the runtime font load; see App.
-const FONT_WAIT_MS = 300;
-
 export default function App() {
   const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
 
-  // Exo is the web app's global typeface (dehubweb/src/index.css:46). Builds
-  // from here on embed the TTFs natively (android/app/src/main/assets/fonts
-  // and the expo-font plugin in app.json), registered under these same family
-  // names, so they exist before the first frame. Binaries already installed
-  // only get them from this runtime load. The splash waits for it at most
-  // FONT_WAIT_MS: long enough that an old binary does not paint the first
-  // screen in the fallback face (already-rendered text does not swap), short
-  // enough that fonts are never what holds a cold start.
+  // Exo is the web app's global typeface (dehubweb/src/index.css:46). Nothing
+  // loaded it here before, so every screen rendered in the platform default.
+  // These are bundled TTFs, not a network fetch, so the wait is negligible —
+  // and `fontError` is treated as "done" so a font failure degrades to the
+  // system font instead of holding the splash forever.
   const [fontsLoaded, fontError] = useFonts({
     Exo_400Regular,
     Exo_500Medium,
     Exo_600SemiBold,
     Exo_700Bold,
   });
-  const [fontWaitOver, setFontWaitOver] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => setFontWaitOver(true), FONT_WAIT_MS);
-    return () => clearTimeout(timer);
-  }, []);
-  const fontsSettled = fontsLoaded || !!fontError || fontWaitOver;
-
-  // The saved language is read from a local asset file. i18nReady never
-  // rejects and is capped, so this only ever holds the preloader briefly.
-  const [languageSettled, setLanguageSettled] = useState(false);
-  useEffect(() => {
-    void i18nReady.then(() => setLanguageSettled(true));
-  }, []);
+  const fontsSettled = fontsLoaded || !!fontError;
 
   // Exo itself is installed over the JSX runtime from index.ts, before any
-  // element exists.
+  // element exists; all that is left here is holding the splash until the TTFs
+  // have actually registered, so nothing paints in the fallback face first.
 
   // Complete any pending browser auth sessions (Supabase Google OAuth). In an
   // effect, not the render body: it was running on every re-render of the
@@ -168,11 +151,10 @@ export default function App() {
   }, []);
 
   // Everything the preloader waits on before the navigator may mount. Fonts
-  // (capped, above) and network resolve in parallel with the provider tree, which now mounts
+  // and network resolve in parallel with the provider tree, which now mounts
   // immediately and does its boot work hidden behind the preloader instead of
   // serialised ahead of it.
-  const staged =
-    fontsSettled && languageSettled && hasInternet !== null && isConnected !== null;
+  const staged = fontsSettled && hasInternet !== null && isConnected !== null;
 
   return (
     <AppThemeProvider>
@@ -216,11 +198,11 @@ export default function App() {
             <BadgeLadderSync />
             <ThemedToaster />
             <PermissionModalProvider />
-            {/* Only once AppKit exists — created when Connect Wallet is first
-                opened, or at boot for a persisted pairing (see reown.config).
-                Mounting it earlier would prefetch the wallet listing on every
-                cold start for a sheet most sessions never open. */}
-            <WalletConnectModal />
+            {/* Only when createAppKit actually succeeded — see reown.config.
+                Rendering AppKit against a configuration that never initialised
+                is what a missing REOWN_PROJECT_ID now degrades to, instead of
+                a module-scope throw that killed boot before React existed. */}
+            {isWalletConnectAvailable && <AppKit />}
             {/* Settings → Appearance → Dim Lights. Above every surface,
                 below nothing — same stacking as web's fixed overlay. */}
             <DimLightsOverlay />
@@ -257,11 +239,6 @@ const ThemedRootView: React.FC<{ children: React.ReactNode }> = ({ children }) =
       {children}
     </GestureHandlerRootView>
   );
-};
-
-const WalletConnectModal: React.FC = () => {
-  const appKit = useAppKitInstance();
-  return appKit ? <AppKit /> : null;
 };
 
 const ThemedToaster: React.FC = () => {
@@ -420,10 +397,9 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   }, []);
 
   // Failsafe. Armed only once the navigator is mounted, so what it uncovers is
-  // always the real app. Auth boot no longer waits on the network (a saved
-  // session paints from cache and is verified behind it, see useAuthBoot), but
-  // timing out before the navigator exists would still trade a covered wait
-  // for a bare black screen.
+  // always the real app: `settled` waits on auth boot, which waits on a token
+  // refresh over the network, and a slow connection makes that window minutes
+  // wide. Timing out on it would trade a covered wait for a bare black screen.
   useEffect(() => {
     if (!settled) return;
     const timer = setTimeout(beginReveal, REVEAL_FAILSAFE_MS);

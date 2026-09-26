@@ -62,6 +62,3 @@ dhb-service-key.json
 coverage/
 jest-junit.xml
 hs_err_pid*.log
-
-# Non-English locales mirrored as Metro assets (scripts/sync-locale-assets.js)
-i18n/locale-assets/

@@ -22,7 +22,7 @@ import { apiClient } from "../libs/api.client";
 import { clearEoaSigningProvider, clearSigningProvider } from "../libs/provider.registry";
 import { clearPersistedNavigationState } from "./useNavigationPersistence";
 import { unregisterPushTokens } from "../services/push/push.service";
-import { getAppKitInstance, restoreAppKitSession } from "../config/reown.config";
+import { getAppKitInstance } from "../config/reown.config";
 import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
 import { fetchWalletReliably } from "../libs/wallet-core/store";
 import { predictSafeAddress } from "../libs/wallet-core/predict-safe-address";
@@ -266,9 +266,6 @@ export function useAuthSession({
       // last connected instead of showing the sign-in options. Mirrors
       // dehubweb's clearWagmiStorage() call on disconnect.
       try {
-        // A persisted pairing brings AppKit up at boot; wait for that check so
-        // a sign-out straight after launch still reaches it.
-        await restoreAppKitSession();
         await getAppKitInstance()?.disconnect();
       } catch (e) {
         log.warn('signOut:disconnectWalletConnect:error', e as any);
