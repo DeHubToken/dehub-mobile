@@ -43,7 +43,6 @@ import {
   useWeb3Provider,
   useERC20Contract,
   useStreamControllerContract,
-  useSwapRouterContract,
   usePaymentRouterContract,
 } from "../../hooks/use-web3";
 import * as ethersImport from "ethers";
@@ -60,11 +59,6 @@ import {
 } from "../../services/payment-router.service";
 import {
   isAutoSwapSupported,
-  getSwapQuote,
-  applySlippage,
-  getNativeBalanceBase,
-  swapETHForDHB,
-  waitForBalance,
 } from "../../services/swap.service";
 import { sendSolanaPayment } from "../../services/solana-payment.service";
 import { isSolanaChain } from "../../config/solana.constants";
@@ -151,7 +145,6 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
     : undefined;
   const tokenContract = useERC20Contract(tokenAddress);
   const controllerContract = useStreamControllerContract();
-  const swapRouterContract = useSwapRouterContract();
 
   // Router-based atomic tip is DHB-on-Base only, and only when deployed (#45)
   const routerAvailable = tokenSymbol === "DHB" && isPaymentRouterAvailable(chainId, routerAddress);
@@ -306,10 +299,9 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
           return;
         }
 
-        // Auto-swap ETH → DHB on Base when the on-chain DHB balance falls short (#44)
-        let dhbBalance = await tokenContract.balanceOf(account);
+        // Short of DHB: hand the gap to the top-up step.
+        const dhbBalance = await tokenContract.balanceOf(account);
         if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
-          const shortfallWei = ethers.BigNumber.from(amountBN).sub(dhbBalance);
           const heldHuman = Number(ethers.utils.formatUnits(dhbBalance, tokenDecimals));
 
           // Every branch from here down that cannot pay hands the gap to the
@@ -331,52 +323,11 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
             });
           };
 
-          if (!canAutoSwap || !swapRouterContract) {
-            raiseShortfall(false);
-            return;
-          }
-          setPhase("swapping");
-          try {
-            const quote = await getSwapQuote(shortfallWei);
-            // No quote means no liquidity at this size — offering a swap would
-            // only fail the same way a second time.
-            if (!quote) {
-              raiseShortfall(false);
-              return;
-            }
-            const maxETH = applySlippage(quote.amountIn);
-            const ethBal = await getNativeBalanceBase(account);
-            // Too little ETH to cover the gap silently. The step can still get
-            // there from any other Base token, so it opens with the swap route
-            // offered rather than closed.
-            if (ethBal.lt(maxETH)) {
-              raiseShortfall(true);
-              return;
-            }
-            await swapETHForDHB({
-              routerContract: swapRouterContract,
-              amountOutDHB: shortfallWei,
-              maxETH,
-              recipient: account,
-              feeTier: quote.feeTier,
-            });
-            // Read back with patience: a mined swap can still be invisible to
-            // whichever public RPC node answers next, and treating that as a
-            // failed swap sends someone who has already paid back to the start.
-            dhbBalance = await waitForBalance(
-              () => tokenContract.balanceOf(account),
-              amountBN,
-            );
-            if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
-              setPhase("error");
-              setPpvError(t("ppv.swapShort"));
-              return;
-            }
-          } catch (e) {
-            setPhase("error");
-            setPpvError(parseTxError(e, "swap"));
-            return;
-          }
+          // The top-up step funds the gap from any token, DeHub Pay first and
+          // Uniswap only as its fallback. A silent ETH swap here would skip
+          // DeHub Pay entirely, so every Base shortfall goes to the step.
+          raiseShortfall(canAutoSwap);
+          return;
         }
 
         setPhase("approving");
@@ -425,7 +376,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
     });
   }, [
     requireAuth, isBusy, phase, provider, account, chainId,
-    tokenContract, controllerContract, swapRouterContract, canAutoSwap,
+    tokenContract, controllerContract, canAutoSwap,
     tokenMeta, tokenAddress,
     controllerAddress, isSelf, numericAmount, tokenDecimals,
     tokenId, toAddress, patchUser, tokenSymbol,
