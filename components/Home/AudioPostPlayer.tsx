@@ -1035,23 +1035,17 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     <View pointerEvents="box-none" style={styles.bottomChrome}>
       {/* Scrubber with elapsed / total, live in every style */}
       <View pointerEvents="box-none" className="flex-row items-center gap-2">
-        <Text
-          className="text-white/70 text-[11px]"
-          style={styles.timeLabel}
-        >
-          {fmtDuration(shownTime)}
-        </Text>
+        <View style={styles.timePill}>
+          <Text style={styles.timeText}>{fmtDuration(shownTime)}</Text>
+        </View>
         <View className="flex-1">
           <ScrubSurface surface={seekBarSurface}>
             <SeekBar position={position} hue={hue} />
           </ScrubSurface>
         </View>
-        <Text
-          className="text-white/50 text-[11px]"
-          style={styles.timeLabel}
-        >
-          {fmtDuration(shownDuration)}
-        </Text>
+        <View style={styles.timePill}>
+          <Text style={styles.timeText}>{fmtDuration(shownDuration)}</Text>
+        </View>
       </View>
 
       {/* Play sits with the colour and animation pickers rather than alone in
@@ -1182,11 +1176,19 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.28)",
     borderColor: "rgba(255,255,255,0.35)",
   },
-  timeLabel: {
-    fontVariant: ["tabular-nums"],
-    textShadowColor: "rgba(0,0,0,0.6)",
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
+  // Same pill as FeedVideoPlayer, so the times stay readable over a full waveform.
+  timePill: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+    borderRadius: 4,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+  },
+  timeText: {
+    color: "#fff",
+    fontSize: 11,
+    fontWeight: "500",
+    textAlign: "center",
+    minWidth: 28,
   },
   fullscreenRoot: {
     flex: 1,
