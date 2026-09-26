@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Toca el icono de información de una publicación acuñada para abrir su transacción de acuñación en el explorador de bloques y verificar el registro en cadena.",
     "guideMintIntro": "Acuñar una publicación como NFT en la blockchain es opcional. Acúñala al publicar, o publícala ahora y acúñala más tarde desde el menú de la publicación.",
     "guideMintPublishStep": "Elige si quieres acuñar y luego pulsa 'Publicar'. Si te saltas la acuñación, puedes acuñar la publicación más tarde desde su menú.",
+    "guideMintFractionsStep": "Recibes las 1.000 fracciones (100 % de propiedad) de tu publicación recién acuñada.",
     "glossaryMintTxDesc": "Toca el icono de información de una publicación acuñada para abrir su transacción de acuñación en el explorador de bloques y verificar el registro en cadena. La página completa de Información de la publicación — estadísticas, titulares, mercado — está en la app web en dehub.io.",
     "glossaryTokenIdDesc": "Un identificador único en cadena que se asigna a una publicación cuando se acuña como NFT.",
     "repostsTab": "Reposts",

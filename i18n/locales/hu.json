@@ -3431,6 +3431,7 @@
     "guideInfoStep": "Koppints egy vert bejegyzés információs ikonjára, hogy megnyisd a verési tranzakcióját a blokkfelfedezőben, és ellenőrizd a láncon lévő bejegyzést.",
     "guideMintIntro": "Egy bejegyzés NFT-ként való verése a blokkláncon nem kötelező. Verd közzétételkor, vagy tedd közzé most, és verd később a bejegyzés menüjéből.",
     "guideMintPublishStep": "Válaszd ki, hogy versz-e, majd kattints a „Közzététel” gombra. Ha kihagyod a verést, később a bejegyzés menüjéből is megverheted.",
+    "guideMintFractionsStep": "Megkapod újonnan vert bejegyzésed mind az 1000 frakcióját (100%-os tulajdonjog).",
     "glossaryMintTxDesc": "Koppints egy vert bejegyzés információs ikonjára, hogy megnyisd a verési tranzakcióját a blokkfelfedezőben, és ellenőrizd a láncon lévő bejegyzést. A teljes Bejegyzés adatai oldal — statisztikák, tulajdonosok, piactér — a dehub.io webalkalmazásában található.",
     "glossaryTokenIdDesc": "Egyedi, láncon lévő azonosító, amelyet egy bejegyzés akkor kap, amikor NFT-ként verik.",
     "repostsTab": "Újraküldések",

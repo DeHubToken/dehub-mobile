@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Prek ikonën e informacionit te një postim i mintuar për të hapur transaksionin e mintimit në eksploruesin e blloqeve dhe për të verifikuar regjistrimin në zinxhir.",
     "guideMintIntro": "Mintimi i një postimi si NFT në blockchain është opsional. Mintoje kur e publikon, ose publikoje tani dhe mintoje më vonë nga menyja e postimit.",
     "guideMintPublishStep": "Zgjidh nëse do ta mintosh, pastaj kliko 'Posto' për ta publikuar. Nëse e kalon mintimin, mund ta mintosh postimin më vonë nga menyja e tij.",
+    "guideMintFractionsStep": "Ti merr të 1.000 pjesët (100% pronësi) të postimit tënd të sapomintuar.",
     "glossaryMintTxDesc": "Prek ikonën e informacionit te një postim i mintuar për të hapur transaksionin e mintimit në eksploruesin e blloqeve dhe për të verifikuar regjistrimin në zinxhir. Faqja e plotë e Informacionit të postimit — statistika, zotërues, treg — ndodhet në aplikacionin web në dehub.io.",
     "glossaryTokenIdDesc": "Një identifikues unik në zinxhir që i caktohet një postimi kur mintohet si NFT.",
     "repostsTab": "Ripostimet",

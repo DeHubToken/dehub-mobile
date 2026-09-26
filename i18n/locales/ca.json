@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Toca la icona d'informació d'una publicació encunyada per obrir-ne la transacció d'encunyació a l'explorador de blocs i verificar el registre a la cadena.",
     "guideMintIntro": "Encunyar una publicació com a NFT a la cadena de blocs és opcional. Encunya-la en publicar, o publica-la ara i encunya-la més tard des del menú de la publicació.",
     "guideMintPublishStep": "Tria si vols encunyar i després fes clic a 'Publica'. Si t'ho saltes, pots encunyar la publicació més tard des del seu menú.",
+    "guideMintFractionsStep": "Reps les 1.000 fraccions (100% de propietat) de la publicació que acabes d'encunyar.",
     "glossaryMintTxDesc": "Toca la icona d'informació d'una publicació encunyada per obrir-ne la transacció d'encunyació a l'explorador de blocs i verificar el registre a la cadena. La pàgina completa d'Informació de la publicació — estadístiques, titulars, mercat — és a l'aplicació web a dehub.io.",
     "glossaryTokenIdDesc": "Un identificador únic a la cadena assignat a una publicació quan s'encunya com a NFT.",
     "repostsTab": "Reposts",

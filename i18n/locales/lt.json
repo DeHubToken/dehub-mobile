@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Bakstelėkite nukaldinto įrašo informacijos piktogramą, kad atidarytumėte jo kaldinimo operaciją blokų naršyklėje ir patikrintumėte įrašą grandinėje.",
     "guideMintIntro": "Kaldinti įrašą kaip NFT blokų grandinėje nebūtina. Nukaldinkite jį skelbdami arba paskelbkite dabar ir nukaldinkite vėliau iš įrašo meniu.",
     "guideMintPublishStep": "Pasirinkite, ar kaldinti, tada spustelėkite „Skelbti“. Jei praleisite kaldinimą, įrašą galėsite nukaldinti vėliau iš jo meniu.",
+    "guideMintFractionsStep": "Gaunate visas 1 000 ką tik nukaldinto įrašo dalių (100 % nuosavybė).",
     "glossaryMintTxDesc": "Bakstelėkite nukaldinto įrašo informacijos piktogramą, kad atidarytumėte jo kaldinimo operaciją blokų naršyklėje ir patikrintumėte įrašą grandinėje. Visas įrašo informacijos puslapis — statistika, savininkai, prekyvietė — yra žiniatinklio programėlėje adresu dehub.io.",
     "glossaryTokenIdDesc": "Unikalus identifikatorius grandinėje, suteikiamas įrašui, kai jis nukaldinamas kaip NFT.",
     "repostsTab": "Pakartotiniai įrašai",

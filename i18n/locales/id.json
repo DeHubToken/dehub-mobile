@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Ketuk ikon info pada postingan yang di-mint untuk membuka transaksi mint-nya di block explorer dan memverifikasi catatan on-chain.",
     "guideMintIntro": "Mint postingan sebagai NFT di blockchain bersifat opsional. Mint saat Anda memublikasikan, atau publikasikan sekarang dan mint nanti dari menu postingan.",
     "guideMintPublishStep": "Pilih apakah akan mint, lalu klik 'Posting' untuk memublikasikan. Jika Anda melewatkan mint, Anda bisa mint postingan nanti dari menu postingan.",
+    "guideMintFractionsStep": "Kamu menerima seluruh 1.000 fraksi (kepemilikan 100%) dari kiriman yang baru kamu cetak.",
     "glossaryMintTxDesc": "Ketuk ikon info pada postingan yang di-mint untuk membuka transaksi mint-nya di block explorer dan memverifikasi catatan on-chain. Halaman Info Postingan lengkap — statistik, pemegang, marketplace — ada di aplikasi web di dehub.io.",
     "glossaryTokenIdDesc": "Pengenal on-chain unik yang diberikan ke postingan saat di-mint sebagai NFT.",
     "repostsTab": "Repost",

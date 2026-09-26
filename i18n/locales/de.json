@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Tippe bei einem geminteten Beitrag auf das Info-Symbol, um seine Mint-Transaktion im Block-Explorer zu öffnen und den On-Chain-Eintrag zu prüfen.",
     "guideMintIntro": "Einen Beitrag als NFT auf der Blockchain zu minten ist optional. Minte ihn beim Veröffentlichen oder veröffentliche ihn jetzt und minte ihn später über das Beitragsmenü.",
     "guideMintPublishStep": "Wähle, ob du minten möchtest, und tippe dann auf „Posten“. Wenn du das Minten überspringst, kannst du den Beitrag später über das Beitragsmenü minten.",
+    "guideMintFractionsStep": "Du erhältst alle 1.000 Bruchteile (100 % Eigentum) deines neu geprägten Beitrags.",
     "glossaryMintTxDesc": "Tippe bei einem geminteten Beitrag auf das Info-Symbol, um seine Mint-Transaktion im Block-Explorer zu öffnen und den On-Chain-Eintrag zu prüfen. Die vollständige Beitragsinfo-Seite — Statistiken, Inhaber, Marktplatz — findest du in der Web-App auf dehub.io.",
     "glossaryTokenIdDesc": "Eine eindeutige On-Chain-Kennung, die ein Beitrag erhält, wenn er als NFT gemintet wird.",
     "repostsTab": "Reposts",

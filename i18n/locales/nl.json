@@ -3617,6 +3617,7 @@
     "guideInfoStep": "Tik op het info-icoon van een geminte post om de mint-transactie in de blockverkenner te openen en de on-chain registratie te controleren.",
     "guideMintIntro": "Een post minten als NFT op de blockchain is optioneel. Mint hem bij het publiceren, of publiceer nu en mint later via het postmenu.",
     "guideMintPublishStep": "Kies of je wilt minten en klik dan op 'Plaatsen' om te publiceren. Sla je het minten over, dan kun je de post later via het postmenu minten.",
+    "guideMintFractionsStep": "Je ontvangt alle 1.000 fracties (100% eigendom) van je net geminte bericht.",
     "glossaryMintTxDesc": "Tik op het info-icoon van een geminte post om de mint-transactie in de blockverkenner te openen en de on-chain registratie te controleren. De volledige Postinfo-pagina — statistieken, houders, marktplaats — staat in de webapp op dehub.io.",
     "glossaryTokenIdDesc": "Een unieke on-chain identificatie die een post krijgt wanneer hij als NFT wordt gemint.",
     "repostsTab": "Opnieuw posten",
