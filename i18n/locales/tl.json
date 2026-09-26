@@ -6824,11 +6824,12 @@
     "done": "Tapos na",
     "back": "Bumalik",
     "aiLabel": "Hilingin sa AI na i - set up ang iyong kalakalan",
-    "aiPlaceholder": "Subukan ang \"ibenta ang kalahati ng aking DHB sa 3 cents\"",
+    "aiPlaceholder": "Subukan ang \"ibenta ang kalahati ng aking DHB sa 6 cents\"",
     "aiSend": "Ipadala sa AI",
     "aiHint": "Sabihin mo kung ano ang gusto mo sa plain words. Pinupuno ng AI ang lahat, pindutin mo lang ang Kumpirmahin.",
     "aiBuyOnly": "Madaling kalakalan nagbebenta ng DHB. Para bumili ng DHB, open Exchange.",
     "aiNeedAmount": "Magkano ang DHB na gusto mong ibenta?",
-    "aiFailed": "Hindi iyon maitakda ni AI. Subukang sabihin ito sa ibang paraan, o punan ito sa ibaba."
+    "aiFailed": "Hindi iyon maitakda ni AI. Subukang sabihin ito sa ibang paraan, o punan ito sa ibaba.",
+    "cancelled": "Kinansela. Walang naibenta."
   }
 }

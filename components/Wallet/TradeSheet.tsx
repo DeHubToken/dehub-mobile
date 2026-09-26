@@ -29,6 +29,11 @@ const pendingKey = (wallet: string) => `dex-pending:${wallet.toLowerCase()}`;
 type Step = "choose" | "amount" | "price" | "review" | "done";
 type Route = "instant" | "list";
 type Mode = "market" | "custom";
+/** A wallet prompt the user closed or declined, as opposed to a trade that failed. */
+const isCancel = (e: unknown) => {
+  const err = e as { code?: unknown; message?: unknown } | null;
+  return err?.code === 4001 || err?.code === "ACTION_REJECTED" || /user (rejected|denied|cancel)|rejected the request|request rejected|cancell?ed/i.test(String(err?.message ?? ""));
+};
 /** Only a price above what the market pays right now needs to wait on the book. */
 const routeFor = (mode: Mode, price: number, rate: number | null): Route => mode === "custom" && rate != null && price > rate ? "list" : "instant";
 const rateOf = (quote: SwapCall, units: bigint) => Number(ethers.utils.formatUnits(quote.amountOut.toString(), 6)) / Number(ethers.utils.formatUnits(units.toString(), 18));
@@ -191,7 +196,8 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
       }
       await sellInstantly();
     } catch (e) {
-      setError(dexActionError(e, t("dex.prepareFailed")));
+      setAiReply("");
+      setError(isCancel(e) ? t("easyTrade.cancelled") : dexActionError(e, t("dex.prepareFailed")));
     } finally { setBusy(false); setStage(""); }
   }
 
@@ -203,14 +209,14 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
       : t("easyTrade.doneInstant", { amount: formatSize(Number(amount)) }));
   }
   function openExchange() { onClose(); navigation.navigate(ScreenNames.Dex); }
-  const back = () => { setError(""); setNotice(""); setStep(step === "review" ? "price" : step === "price" ? "amount" : "choose"); };
+  const back = () => { setError(""); setNotice(""); setAiReply(""); setStep(step === "review" ? "price" : step === "price" ? "amount" : "choose"); };
 
   const title = step === "choose" ? t("easyTrade.chooseTitle") : step === "amount" ? t("easyTrade.sellTitle")
     : step === "price" ? t("easyTrade.priceTitle") : step === "review" ? t("easyTrade.reviewTitle") : t("easyTrade.doneTitle");
   const stepIndex = step === "amount" ? 1 : step === "price" ? 2 : step === "review" ? 3 : 0;
   const row = "px-4 py-3.5 rounded-2xl bg-theme-neutrals-800/60 border border-white/10";
   const selected = "border-white/60 bg-white/10";
-  const showAsk = step === "choose" || step === "amount" || step === "price";
+  const showAsk = step === "amount" || step === "price";
 
   const Primary = ({ label, onPress, disabled }: { label: string; onPress: () => void; disabled?: boolean }) => (
     <TouchableOpacity activeOpacity={0.8} disabled={disabled || busy} onPress={onPress}
@@ -245,7 +251,7 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
                 {asking ? <ActivityIndicator color="#000" size="small" /> : <Icon name="ArrowUp" size={16} color="#000000" />}
               </TouchableOpacity>
             </View>
-            {!aiReply && step === "choose" && <Text className="text-xs text-theme-neutrals-400 mt-2 px-1">{t("easyTrade.aiHint")}</Text>}
+            {!aiReply && step === "amount" && <Text className="text-xs text-theme-neutrals-400 mt-2 px-1">{t("easyTrade.aiHint")}</Text>}
           </View>
         )}
         {!!aiReply && step !== "done" && (
@@ -275,14 +281,14 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
             <View className="flex-row items-center rounded-xl border border-white/10 bg-white/5">
               <TextInput keyboardType="decimal-pad" placeholder="0" placeholderTextColor="#52525b" value={amount}
                 accessibilityLabel={t("easyTrade.sellTitle")}
-                onChangeText={(v) => { setAmount(decimal(v)); setQuote(null); }}
+                onChangeText={(v) => { setAmount(decimal(v)); setQuote(null); setAiReply(""); }}
                 className="flex-1 px-4 py-4 text-3xl font-semibold text-white" />
               <Text className="pr-4 text-sm text-theme-neutrals-400">DHB</Text>
             </View>
             <View className="flex-row items-center justify-between mt-3 mb-4">
               <Text className="text-xs text-theme-neutrals-400 flex-1">{t("easyTrade.available", { amount: formatSize(Number(units18(balance))) })}</Text>
               {[25, 50, 100].map((pct) => (
-                <TouchableOpacity key={pct} disabled={balance === 0n} onPress={() => { setAmount(units18(balance * BigInt(pct) / 100n)); setQuote(null); }}
+                <TouchableOpacity key={pct} disabled={balance === 0n} onPress={() => { setAmount(units18(balance * BigInt(pct) / 100n)); setQuote(null); setAiReply(""); }}
                   className={`ml-1.5 px-2.5 py-1 rounded-lg border border-white/10 ${balance === 0n ? "opacity-40" : ""}`}>
                   <Text className="text-xs text-white">{pct === 100 ? t("easyTrade.max") : `${pct}%`}</Text>
                 </TouchableOpacity>
@@ -296,14 +302,14 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
 
         {step === "price" && (
           <View>
-            <TouchableOpacity activeOpacity={0.7} onPress={() => setMode("market")} className={`${row} mb-2 flex-row items-center ${mode === "market" ? selected : ""}`}>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => { setMode("market"); setAiReply(""); }} className={`${row} mb-2 flex-row items-center ${mode === "market" ? selected : ""}`}>
               <View className="flex-1">
                 <Text className="text-white text-sm font-semibold">{t("easyTrade.marketRate")}</Text>
                 <Text className="text-theme-neutrals-400 text-xs mt-0.5">{t("easyTrade.marketRateHint", { price: formatPrice(marketRate), usdc: formatSize(quotedUsdc) })}</Text>
               </View>
               {mode === "market" && <Icon name="Check" size={18} color="#ffffff" />}
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.9} onPress={() => setMode("custom")} className={`${row} mb-4 ${mode === "custom" ? selected : ""}`}>
+            <TouchableOpacity activeOpacity={0.9} onPress={() => { if (mode !== "custom") setAiReply(""); setMode("custom"); }} className={`${row} mb-4 ${mode === "custom" ? selected : ""}`}>
               <View className="flex-row items-center">
                 <View className="flex-1">
                   <Text className="text-white text-sm font-semibold">{t("easyTrade.myPrice")}</Text>
@@ -315,7 +321,7 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
                 <>
                   <View className="flex-row items-center rounded-lg border border-white/10 bg-black/30 mt-3">
                     <Text className="pl-3 text-theme-neutrals-400">$</Text>
-                    <TextInput autoFocus keyboardType="decimal-pad" value={price} onChangeText={(v) => setPrice(decimal(v))}
+                    <TextInput autoFocus keyboardType="decimal-pad" value={price} onChangeText={(v) => { setPrice(decimal(v)); setAiReply(""); }}
                       placeholder={marketRate ? marketRate.toFixed(6) : "0.00"} placeholderTextColor="#52525b"
                       accessibilityLabel={t("easyTrade.myPriceHint")} className="flex-1 px-2 py-3 text-lg text-white" />
                   </View>

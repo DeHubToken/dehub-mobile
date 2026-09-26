@@ -6643,11 +6643,12 @@
     "done": "An yi",
     "back": "Komawa",
     "aiLabel": "Ka tambayi AI don kafa kasuwancinku",
-    "aiPlaceholder": "Gwada \"sayar da rabin DHB dina a 3 cents\"",
+    "aiPlaceholder": "Gwada \"sayar da rabin DHB dina a 6 cents\"",
     "aiSend": "Aika zuwa AI",
     "aiHint": "Ka ce abin da kake so a cikin kalmomi masu tsabta. AI ta cika komai a ciki, kawai kuna latsa Tabbatarwa.",
     "aiBuyOnly": "Kasuwanci mai sauƙi yana sayar da DHB. Don sayen DHB, bude Exchange.",
     "aiNeedAmount": "Nawa DHB kuke son siyarwa?",
-    "aiFailed": "AI ba zai iya saita wannan ba. Gwada cewa shi wata hanya, ko cika shi a kasa."
+    "aiFailed": "AI ba zai iya saita wannan ba. Gwada cewa shi wata hanya, ko cika shi a kasa.",
+    "cancelled": "An soke. Ba a sayar da komai ba."
   }
 }

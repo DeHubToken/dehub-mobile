@@ -6689,15 +6689,16 @@
     "doneInstantHint": "Waa'ee {{usdc}} USDC gara boorsaa keessaniitti karaa irra jira.",
     "doneList": "{{amount}} DHB irratti ${{price}} irratti tarreeffame.",
     "doneListHint": "Yeroo gabaan gatii keessan gahu ofumaan gurgurama. Jijjiirraa irratti bulchi.",
-    "openExchange": "Jijjiirraa Banaa",
-    "done": "Raawwatame",
+    "openExchange": "Jijjiirraa banaa",
+    "done": "Xumureera",
     "back": "Dugda",
     "aiLabel": "AI daldala kee akka diriirsu gaafadhu",
-    "aiPlaceholder": "\"DHB koo walakkaa saantima 3n gurguraa\" yaalaa.",
+    "aiPlaceholder": "\"DHB koo keessaa walakkaa fiixee 6 sentitti gurguruuf yaali\"",
     "aiSend": "Gara AItti ergaa",
     "aiHint": "Waan barbaadde jechoota ifa ta'een dubbadhu. AI waan hunda guuta, ati Confirm qofa dhiibdee.",
     "aiBuyOnly": "Daldalli salphaan DHB gurgura. DHB bitachuuf Exchange banaa.",
     "aiNeedAmount": "DHB meeqa gurguruu barbaadda?",
-    "aiFailed": "AI sana dhaabuu hin dandeenye. Karaa biraatiin jechuu yaali, ykn armaan gaditti guuti."
+    "aiFailed": "AI sana dhaabuu hin dandeenye. Karaa biraatiin jechuu yaali, ykn armaan gaditti guuti.",
+    "cancelled": "Haqameera. Wanti gurgurame hin jiru."
   }
 }
