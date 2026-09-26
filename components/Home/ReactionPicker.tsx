@@ -47,10 +47,10 @@ import {
   POSITIVE_REACTION_LIST,
   type PostReaction,
 } from "../../libs/reactions";
+import { ReactionEmoji } from "./ReactionEmoji";
 
 const TRAY_BG = "#0A0A0BE6";      // zinc-950 @ 90%
 const TRAY_BORDER = "#FFFFFF1A";  // white @ 10%
-const ACTIVE_BG = "#FFFFFF26";    // white @ 15%
 
 /** How close to the edge of the screen the tray is allowed to sit. */
 const EDGE_MARGIN = 8;
@@ -191,10 +191,28 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
             alignItems: "center",
             justifyContent: "center",
             borderRadius: 12,
-            backgroundColor: current === reaction.key ? ACTIVE_BG : "transparent",
           }}
         >
-          <Text style={{ fontSize: 19, lineHeight: 24 }}>{reaction.emoji}</Text>
+          {/* Yours plays its animation and carries a dot underneath, as on
+              web — no disc behind it. */}
+          <ReactionEmoji
+            reaction={reaction.key}
+            animate={current === reaction.key}
+            size={24}
+            textStyle={{ fontSize: 19, lineHeight: 24 }}
+          />
+          {current === reaction.key && (
+            <View
+              style={{
+                position: "absolute",
+                bottom: 0,
+                width: 4,
+                height: 4,
+                borderRadius: 2,
+                backgroundColor: "#FFFFFFCC",
+              }}
+            />
+          )}
         </Pressable>
       ))}
 
