@@ -66,7 +66,7 @@ export const useNetworkStatus = () => {
       apply(connected, reachable, true);
     };
     const unsubscribe = NetInfo.addEventListener((state) => {
-      if (!mounted) return;
+      if (!mounted || (state.isConnected === null && hasDefiniteStatus)) return;
       if (state.isConnected !== null) hasDefiniteStatus = true;
       apply(state.isConnected, state.isInternetReachable);
     });
