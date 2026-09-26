@@ -6686,5 +6686,23 @@
     "aiNeedAmount": "Ungakanani i-DHB ongathanda ukuyithengisa?",
     "aiFailed": "I-AI ayikwazanga ukuyilungisa. Zama ukuyisho ngendlela ehlukile, noma uyigcwalise ngezansi.",
     "cancelled": "Ikhanseliwe. Akukho okuthengisiwe."
+  },
+  "tipFunding": {
+    "noRoute": "Ayikho indlela ye-Uniswap eya ku-DHB yale thokheni okwamanje",
+    "lowLiquidity": "Awukho u-liquidity owanele ku-Uniswap wenkokhelo engaka okwamanje",
+    "dpayNoAmount": "I-DeHub Pay ayibuyisanga inani lenkokhelo",
+    "dpayDelayed": "I-DeHub Pay inenkokhelo yakho futhi ithumela i-DHB. Izofika ku-wallet yakho maduze; thumela futhi uma isifikile.",
+    "noBridgeRoute": "Ayikho indlela ye-cross-chain etholakalayo okwamanje",
+    "bridgeCancelled": "I-oda le-cross-chain likhanseliwe futhi imali ibuyiselwe ku-wallet yakho",
+    "bridgeSlow": "Ukudluliselwa kwe-cross-chain kuthatha isikhathi eside kunokujwayelekile. Kuzofika ku-wallet yakho ku-Base; thumela futhi uma sekufikile.",
+    "notEnoughOnBase": "I-{{symbol}} ku-Base ayanele kule nkokhelo",
+    "notEnoughWithFees": "I-{{symbol}} ayanele kule nkokhelo, kuhlanganise nezimali zenethiwekhi",
+    "notEnough": "I-{{symbol}} ayanele kule nkokhelo",
+    "noGasForFee": "Uhlamvu lwemali lwenethiwekhi alwanele ukukhokhela imali ye-cross-chain",
+    "priceMoved": "I-DHB ishintshile ngenkathi i-USDC yakho isafika. I-USDC iku-wallet yakho ku-Base; thumela futhi ukuze uqedele.",
+    "usdcPending": "I-USDC yakho ifikile ku-Base kodwa ayikabonakali. Thumela futhi emzuzwini.",
+    "dhbPending": "Ukuthenga i-DHB kuqinisekisiwe kodwa akukaveli. Thumela futhi emzuzwini.",
+    "unlockWallet": "Vula i-wallet yakho ukuze ukhokhe ngale thokheni",
+    "chainUnavailable": "Ukukhokha kusuka ku-{{chain}} akutholakali kule wallet"
   }
 }

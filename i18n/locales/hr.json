@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Koliko DHB-a želite prodati?",
     "aiFailed": "AI to nije mogao postaviti. Pokušaj to izgovoriti na drugi način ili ga ispuni u nastavku.",
     "cancelled": "Otkazano. Ništa nije prodano."
+  },
+  "tipFunding": {
+    "noRoute": "Trenutačno nema Uniswap rute do DHB-a za ovaj token",
+    "lowLiquidity": "Na Uniswapu trenutačno nema dovoljno likvidnosti za plaćanje ove veličine",
+    "dpayNoAmount": "DeHub Pay nije vratio iznos plaćanja",
+    "dpayDelayed": "DeHub Pay je primio vašu uplatu i šalje DHB. Uskoro će stići u vaš novčanik; pošaljite ponovno kad stigne.",
+    "noBridgeRoute": "Trenutačno nije dostupna nijedna ruta između lanaca",
+    "bridgeCancelled": "Nalog između lanaca je otkazan, a sredstva su vraćena u vaš novčanik",
+    "bridgeSlow": "Prijenos između lanaca traje dulje nego obično. Stići će u vaš novčanik na Base; pošaljite ponovno kad stigne.",
+    "notEnoughOnBase": "Nedovoljno {{symbol}} na Base za ovo plaćanje",
+    "notEnoughWithFees": "Nedovoljno {{symbol}} za ovo plaćanje, uključujući mrežne naknade",
+    "notEnough": "Nedovoljno {{symbol}} za ovo plaćanje",
+    "noGasForFee": "Nedovoljno mrežnog coina za pokrivanje naknade između lanaca",
+    "priceMoved": "Cijena DHB-a promijenila se dok su vaši USDC stizali. USDC su u vašem novčaniku na Base; pošaljite ponovno za dovršetak.",
+    "usdcPending": "Vaši USDC stigli su na Base, ali još nisu vidljivi. Pošaljite ponovno za trenutak.",
+    "dhbPending": "Kupnja DHB-a je potvrđena, ali se još nije pojavila. Pošaljite ponovno za trenutak.",
+    "unlockWallet": "Otključajte novčanik za plaćanje ovim tokenom",
+    "chainUnavailable": "Plaćanje s {{chain}} nije dostupno za ovaj novčanik"
   }
 }

@@ -79,6 +79,7 @@ import { sanitizeAmountInput } from "../../libs/amount-input";
 import { haptic } from "../../libs/haptics";
 import TipPayWith, { tipStageLabel } from "./TipPayWith";
 import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
+import { fundingErrorText } from "../../libs/tip-funding-error";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -442,7 +443,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           } catch (e) {
             setPhase("error");
             haptic.error();
-            setTipError(e instanceof Error ? e.message : t("tip.payFailed", "Could not convert {{symbol}} to DHB", { symbol: payWith.symbol }));
+            setTipError(fundingErrorText(t as any, e) || t("tip.payFailed", "Could not convert {{symbol}} to DHB", { symbol: payWith.symbol }));
             return;
           }
         }

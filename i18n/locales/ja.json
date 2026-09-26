@@ -6657,5 +6657,23 @@
     "aiNeedAmount": "どのくらいのDHBを販売したいですか？",
     "aiFailed": "AIはそれを設定できませんでした。 別の言い方をするか、以下に記入してください。",
     "cancelled": "キャンセルされました。何も売れませんでした。"
+  },
+  "tipFunding": {
+    "noRoute": "現在、このトークンからDHBへのUniswapルートがありません",
+    "lowLiquidity": "現在、この金額の支払いに十分なUniswapの流動性がありません",
+    "dpayNoAmount": "DeHub Payから支払い金額が返されませんでした",
+    "dpayDelayed": "DeHub Payが支払いを受け取り、DHBを送信中です。まもなくウォレットに届きます。届いたらもう一度送信してください。",
+    "noBridgeRoute": "現在利用できるクロスチェーンルートがありません",
+    "bridgeCancelled": "クロスチェーン注文はキャンセルされ、ウォレットに返金されました",
+    "bridgeSlow": "クロスチェーン送金に通常より時間がかかっています。Baseのウォレットに届きます。届いたらもう一度送信してください。",
+    "notEnoughOnBase": "この支払いに必要な{{symbol}}がBaseに足りません",
+    "notEnoughWithFees": "ネットワーク手数料を含め、この支払いに必要な{{symbol}}が足りません",
+    "notEnough": "この支払いに必要な{{symbol}}が足りません",
+    "noGasForFee": "クロスチェーン手数料を支払うためのネットワークのコインが足りません",
+    "priceMoved": "USDCの到着中にDHBの価格が変動しました。USDCはBaseのウォレットにあります。もう一度送信して完了してください。",
+    "usdcPending": "USDCはBaseに届きましたが、まだ表示されていません。少し待ってからもう一度送信してください。",
+    "dhbPending": "DHBの購入は承認されましたが、まだ表示されていません。少し待ってからもう一度送信してください。",
+    "unlockWallet": "このトークンで支払うにはウォレットのロックを解除してください",
+    "chainUnavailable": "このウォレットでは{{chain}}からの支払いは利用できません"
   }
 }

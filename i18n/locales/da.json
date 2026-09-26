@@ -6659,5 +6659,23 @@
     "aiNeedAmount": "Hvor meget DHB vil du sælge?",
     "aiFailed": "AI kunne ikke sætte det op. Prøv at sige det på en anden måde, eller udfyld det nedenfor.",
     "cancelled": "Annulleret. Intet blev solgt."
+  },
+  "tipFunding": {
+    "noRoute": "Ingen Uniswap-rute til DHB for denne token lige nu",
+    "lowLiquidity": "Der er ikke nok likviditet på Uniswap til en betaling af denne størrelse lige nu",
+    "dpayNoAmount": "DeHub Pay returnerede ikke et betalingsbeløb",
+    "dpayDelayed": "DeHub Pay har din betaling og sender dine DHB. De lander i din wallet om lidt; send igen, når de er kommet.",
+    "noBridgeRoute": "Ingen cross-chain-rute er tilgængelig lige nu",
+    "bridgeCancelled": "Cross-chain-ordren blev annulleret og refunderet til din wallet",
+    "bridgeSlow": "Cross-chain-overførslen tager længere tid end normalt. Den lander i din wallet på Base; send igen, når den er kommet.",
+    "notEnoughOnBase": "Ikke nok {{symbol}} på Base til denne betaling",
+    "notEnoughWithFees": "Ikke nok {{symbol}} til denne betaling, inklusive netværksgebyrer",
+    "notEnough": "Ikke nok {{symbol}} til denne betaling",
+    "noGasForFee": "Ikke nok af netværkets mønt til at dække cross-chain-gebyret",
+    "priceMoved": "DHB-prisen ændrede sig, mens dine USDC var på vej. Dine USDC ligger i din wallet på Base; send igen for at gøre det færdigt.",
+    "usdcPending": "Dine USDC er ankommet på Base, men er ikke synlige endnu. Send igen om et øjeblik.",
+    "dhbPending": "DHB-købet er bekræftet, men er ikke dukket op endnu. Send igen om et øjeblik.",
+    "unlockWallet": "Lås din wallet op for at betale med denne token",
+    "chainUnavailable": "Betaling fra {{chain}} er ikke tilgængelig for denne wallet"
   }
 }

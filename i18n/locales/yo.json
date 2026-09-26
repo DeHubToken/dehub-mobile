@@ -6656,5 +6656,23 @@
     "aiNeedAmount": "Èló ni DHB tí o fẹ́ ta?",
     "aiFailed": "AI kò lè ṣètò ìyẹn. Gbìyànjú láti sọ ọ́ lọ́nà mìíràn, tàbí kí o kún un ní ìsàlẹ̀.",
     "cancelled": "A fagilé. Kò sí ohun tí a tà."
+  },
+  "tipFunding": {
+    "noRoute": "Kò sí ọ̀nà Uniswap sí DHB fún token yìí báyìí",
+    "lowLiquidity": "Uniswap kò ní liquidity tó tó fún ìsanwó tó tóbi báyìí lọ́wọ́lọ́wọ́",
+    "dpayNoAmount": "DeHub Pay kò dá iye owó ìsanwó padà",
+    "dpayDelayed": "DeHub Pay ti gba ìsanwó rẹ, ó sì ń fi DHB ránṣẹ́. Yóò dé inú àpamọ́wọ́ rẹ láìpẹ́; tún fi ránṣẹ́ nígbà tó bá dé.",
+    "noBridgeRoute": "Kò sí ọ̀nà cross-chain kankan báyìí",
+    "bridgeCancelled": "A ti fagilé àṣẹ cross-chain náà, a sì dá owó padà sínú àpamọ́wọ́ rẹ",
+    "bridgeSlow": "Ìgbésẹ̀ cross-chain náà ń pẹ́ ju bó ṣe máa ń rí lọ. Yóò dé inú àpamọ́wọ́ rẹ lórí Base; tún fi ránṣẹ́ nígbà tó bá dé.",
+    "notEnoughOnBase": "{{symbol}} lórí Base kò tó fún ìsanwó yìí",
+    "notEnoughWithFees": "{{symbol}} kò tó fún ìsanwó yìí, pẹ̀lú owó network",
+    "notEnough": "{{symbol}} kò tó fún ìsanwó yìí",
+    "noGasForFee": "Coin network kò tó láti san owó cross-chain náà",
+    "priceMoved": "Iye DHB yí padà nígbà tí USDC rẹ ń bọ̀. USDC náà wà nínú àpamọ́wọ́ rẹ lórí Base; tún fi ránṣẹ́ láti parí.",
+    "usdcPending": "USDC rẹ ti dé Base ṣùgbọ́n kò tíì hàn. Tún fi ránṣẹ́ ní ìṣẹ́jú díẹ̀.",
+    "dhbPending": "Ìrà DHB ti jẹ́rìí ṣùgbọ́n kò tíì hàn. Tún fi ránṣẹ́ ní ìṣẹ́jú díẹ̀.",
+    "unlockWallet": "Ṣí àpamọ́wọ́ rẹ láti sanwó pẹ̀lú token yìí",
+    "chainUnavailable": "Sísanwó láti {{chain}} kò sí fún àpamọ́wọ́ yìí"
   }
 }

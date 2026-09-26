@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Kiek DHB norite parduoti?",
     "aiFailed": "Dirbtinis intelektas negalėjo to nustatyti. Pabandykite tai pasakyti kitu būdu arba užpildykite žemiau.",
     "cancelled": "Atšaukta. Niekas nebuvo parduota."
+  },
+  "tipFunding": {
+    "noRoute": "Šiuo metu nėra Uniswap maršruto iš šio žetono į DHB",
+    "lowLiquidity": "Šiuo metu Uniswap nepakanka likvidumo tokio dydžio mokėjimui",
+    "dpayNoAmount": "DeHub Pay negrąžino mokėjimo sumos",
+    "dpayDelayed": "DeHub Pay gavo jūsų mokėjimą ir siunčia DHB. Netrukus jie pasieks jūsų piniginę; kai pasieks, siųskite dar kartą.",
+    "noBridgeRoute": "Šiuo metu nėra galimo tarpgrandininio maršruto",
+    "bridgeCancelled": "Tarpgrandininis užsakymas atšauktas, o lėšos grąžintos į jūsų piniginę",
+    "bridgeSlow": "Tarpgrandininis pervedimas užtrunka ilgiau nei įprastai. Jis pasieks jūsų piniginę Base tinkle; kai pasieks, siųskite dar kartą.",
+    "notEnoughOnBase": "Base tinkle nepakanka {{symbol}} šiam mokėjimui",
+    "notEnoughWithFees": "Nepakanka {{symbol}} šiam mokėjimui, įskaitant tinklo mokesčius",
+    "notEnough": "Nepakanka {{symbol}} šiam mokėjimui",
+    "noGasForFee": "Nepakanka tinklo monetos tarpgrandininiam mokesčiui padengti",
+    "priceMoved": "Kol keliavo jūsų USDC, DHB kaina pasikeitė. USDC yra jūsų piniginėje Base tinkle; siųskite dar kartą, kad užbaigtumėte.",
+    "usdcPending": "Jūsų USDC pasiekė Base, bet dar nematomi. Po akimirkos siųskite dar kartą.",
+    "dhbPending": "DHB pirkimas patvirtintas, bet dar nepasirodė. Po akimirkos siųskite dar kartą.",
+    "unlockWallet": "Atrakinkite piniginę, kad galėtumėte mokėti šiuo žetonu",
+    "chainUnavailable": "Mokėjimas iš {{chain}} šiai piniginei negalimas"
   }
 }

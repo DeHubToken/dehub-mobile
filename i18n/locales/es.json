@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "¿Cuánto DHB quieres vender?",
     "aiFailed": "La IA no pudo configurarlo. Intenta decirlo de otra manera o rellénalo a continuación.",
     "cancelled": "Cancelado. No se vendió nada."
+  },
+  "tipFunding": {
+    "noRoute": "Ahora mismo no hay ruta de Uniswap a DHB para este token",
+    "lowLiquidity": "Ahora mismo no hay suficiente liquidez en Uniswap para un pago de este tamaño",
+    "dpayNoAmount": "DeHub Pay no devolvió un importe de pago",
+    "dpayDelayed": "DeHub Pay tiene tu pago y está enviando los DHB. Llegarán a tu cartera en breve; vuelve a enviar cuando lleguen.",
+    "noBridgeRoute": "Ahora mismo no hay ninguna ruta entre cadenas disponible",
+    "bridgeCancelled": "La orden entre cadenas se canceló y se reembolsó a tu cartera",
+    "bridgeSlow": "La transferencia entre cadenas está tardando más de lo normal. Llegará a tu cartera en Base; vuelve a enviar cuando llegue.",
+    "notEnoughOnBase": "No hay suficiente {{symbol}} en Base para este pago",
+    "notEnoughWithFees": "No hay suficiente {{symbol}} para este pago, incluidas las comisiones de red",
+    "notEnough": "No hay suficiente {{symbol}} para este pago",
+    "noGasForFee": "No hay suficiente moneda de la red para cubrir la comisión entre cadenas",
+    "priceMoved": "El precio de DHB cambió mientras llegaban tus USDC. Los USDC están en tu cartera en Base; vuelve a enviar para terminar.",
+    "usdcPending": "Tus USDC llegaron a Base pero aún no se ven. Vuelve a enviar en un momento.",
+    "dhbPending": "La compra de DHB se confirmó pero aún no aparece. Vuelve a enviar en un momento.",
+    "unlockWallet": "Desbloquea tu cartera para pagar con este token",
+    "chainUnavailable": "Pagar desde {{chain}} no está disponible para esta cartera"
   }
 }

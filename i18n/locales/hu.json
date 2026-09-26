@@ -6659,5 +6659,23 @@
     "aiNeedAmount": "Mennyi DHB-t szeretnél eladni?",
     "aiFailed": "Az AI nem tudta beállítani. Próbáld meg másképp megfogalmazni, vagy töltsd ki lentebb.",
     "cancelled": "Törölve. Semmi sem lett eladva."
+  },
+  "tipFunding": {
+    "noRoute": "Jelenleg nincs Uniswap-útvonal DHB-re ehhez a tokenhez",
+    "lowLiquidity": "Jelenleg nincs elég likviditás a Uniswapon egy ekkora fizetéshez",
+    "dpayNoAmount": "A DeHub Pay nem adott vissza fizetési összeget",
+    "dpayDelayed": "A DeHub Pay megkapta a fizetését, és küldi a DHB-t. Hamarosan megérkezik a tárcájába; ha megérkezett, küldje újra.",
+    "noBridgeRoute": "Jelenleg nem érhető el láncok közötti útvonal",
+    "bridgeCancelled": "A láncok közötti megbízást törölték, és az összeget visszatérítették a tárcájába",
+    "bridgeSlow": "A láncok közötti átutalás a szokásosnál tovább tart. A Base-en lévő tárcájába fog megérkezni; ha megérkezett, küldje újra.",
+    "notEnoughOnBase": "Nincs elég {{symbol}} a Base-en ehhez a fizetéshez",
+    "notEnoughWithFees": "Nincs elég {{symbol}} ehhez a fizetéshez a hálózati díjakkal együtt",
+    "notEnough": "Nincs elég {{symbol}} ehhez a fizetéshez",
+    "noGasForFee": "Nincs elég hálózati coin a láncok közötti díj fedezésére",
+    "priceMoved": "A DHB ára elmozdult, miközben a USDC-je érkezett. A USDC a Base-en lévő tárcájában van; a befejezéshez küldje újra.",
+    "usdcPending": "A USDC-je megérkezett a Base-re, de még nem látható. Küldje újra egy pillanat múlva.",
+    "dhbPending": "A DHB-vásárlás megerősítve, de még nem jelent meg. Küldje újra egy pillanat múlva.",
+    "unlockWallet": "Oldja fel a tárcáját, hogy ezzel a tokennel fizethessen",
+    "chainUnavailable": "A(z) {{chain}} hálózatról való fizetés nem érhető el ennél a tárcánál"
   }
 }

@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "DHB ole ka ị chọrọ ire?",
     "aiFailed": "AI enweghị ike ịtọlite nke ahụ. Gbalịa na-ekwu ya n 'ụzọ ọzọ, ma ọ bụ dejupụta ya n' okpuru.",
     "cancelled": "Akagbuola. O nweghị ihe e rere."
+  },
+  "tipFunding": {
+    "noRoute": "Ugbu a, enweghị ụzọ Uniswap gaa DHB maka token a",
+    "lowLiquidity": "Ugbu a, enweghị liquidity zuru ezu na Uniswap maka ịkwụ ụgwọ nke nha a",
+    "dpayNoAmount": "DeHub Pay eweghachighị ego a ga-akwụ",
+    "dpayDelayed": "DeHub Pay nwetara ụgwọ gị ma na-ezipu DHB. Ọ ga-abịa n'obere akpa ego gị n'oge na-adịghị anya; zipu ọzọ ozugbo ọ bịara.",
+    "noBridgeRoute": "Ugbu a, enweghị ụzọ cross-chain dị",
+    "bridgeCancelled": "Akagburu iwu cross-chain ahụ ma weghachite ego ahụ n'obere akpa ego gị",
+    "bridgeSlow": "Mbufe cross-chain ahụ na-ewe ogologo oge karịa ka ọ na-adị. Ọ ga-abịa n'obere akpa ego gị na Base; zipu ọzọ ozugbo ọ bịara.",
+    "notEnoughOnBase": "{{symbol}} dị na Base ezughị maka ịkwụ ụgwọ a",
+    "notEnoughWithFees": "{{symbol}} ezughị maka ịkwụ ụgwọ a, gụnyere ụgwọ netwọk",
+    "notEnough": "{{symbol}} ezughị maka ịkwụ ụgwọ a",
+    "noGasForFee": "Mkpụrụ ego netwọk ezughị iji kwụọ ụgwọ cross-chain",
+    "priceMoved": "Ọnụahịa DHB gbanwere mgbe USDC gị na-abịa. USDC dị n'obere akpa ego gị na Base; zipu ọzọ iji mechaa.",
+    "usdcPending": "USDC gị abịala na Base mana a hụbeghị ya. Zipu ọzọ n'otu ntabi anya.",
+    "dhbPending": "Ịzụta DHB ahụ akwadola mana ọ pụtabeghị. Zipu ọzọ n'otu ntabi anya.",
+    "unlockWallet": "Kpọghee obere akpa ego gị iji jiri token a kwụọ ụgwọ",
+    "chainUnavailable": "Ịkwụ ụgwọ site na {{chain}} adịghị maka obere akpa ego a"
   }
 }

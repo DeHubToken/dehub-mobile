@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Immisa DHB ayaad rabtaa inaad iibiso?",
     "aiFailed": "Aaaaah can 't set that. Isku day inaad si kale u sheegto, ama hoos ku buuxi.",
     "cancelled": "Waa la joojiyay. Waxba lama iibin."
+  },
+  "tipFunding": {
+    "noRoute": "Hadda ma jiro waddo Uniswap oo tokenkan DHB loogu beddelo",
+    "lowLiquidity": "Hadda ma jiro liquidity Uniswap oo ku filan lacag-bixin cabbirkan leh",
+    "dpayNoAmount": "DeHub Pay ma soo celin qadarka lacag-bixinta",
+    "dpayDelayed": "DeHub Pay wuu helay lacag-bixintaada wuxuuna dirayaa DHB. Dhowaan ayuu jeebkaaga soo gaari doonaa; markuu yimaado mar kale dir.",
+    "noBridgeRoute": "Hadda ma jiro waddo cross-chain ah oo la heli karo",
+    "bridgeCancelled": "Dalabkii cross-chain waa la joojiyay, lacagtiina waxaa lagu celiyay jeebkaaga",
+    "bridgeSlow": "Wareejinta cross-chain waxay qaadanaysaa waqti ka badan sidii caadiga ahayd. Waxay jeebkaaga ku soo gaari doontaa Base; markay timaado mar kale dir.",
+    "notEnoughOnBase": "{{symbol}} kugu filan kuma jiro Base lacag-bixintan",
+    "notEnoughWithFees": "{{symbol}} kuguma filna lacag-bixintan, oo ay ku jiraan khidmadaha shabakadda",
+    "notEnough": "{{symbol}} kuguma filna lacag-bixintan",
+    "noGasForFee": "Coin-ka shabakadda kuguma filna khidmadda cross-chain",
+    "priceMoved": "Qiimaha DHB wuu is beddelay intii USDC-gaagu soo socday. USDC-gu wuxuu ku jiraa jeebkaaga Base; mar kale dir si aad u dhammaystirto.",
+    "usdcPending": "USDC-gaagu wuu soo gaaray Base laakiin weli lama arko. Mar kale dir wax yar kadib.",
+    "dhbPending": "Iibsiga DHB waa la xaqiijiyay laakiin weli ma muuqdo. Mar kale dir wax yar kadib.",
+    "unlockWallet": "Fur jeebkaaga si aad tokenkan ugu bixiso",
+    "chainUnavailable": "Ka bixinta {{chain}} looma heli karo jeebkan"
   }
 }

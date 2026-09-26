@@ -6655,5 +6655,23 @@
     "aiNeedAmount": "Nə qədər DHB satmaq istəyirsiniz?",
     "aiFailed": "AI bunu qura bilmədi. Başqa üsulla deməyə çalışın və ya aşağıda qeyd edin.",
     "cancelled": "Ləğv edildi. Heç nə satılmadı."
+  },
+  "tipFunding": {
+    "noRoute": "Hazırda bu token üçün DHB-yə Uniswap marşrutu yoxdur",
+    "lowLiquidity": "Hazırda bu həcmdə ödəniş üçün Uniswap-da kifayət qədər likvidlik yoxdur",
+    "dpayNoAmount": "DeHub Pay ödəniş məbləğini qaytarmadı",
+    "dpayDelayed": "DeHub Pay ödənişinizi aldı və DHB-ni göndərir. Tezliklə cüzdanınıza çatacaq; çatdıqdan sonra yenidən göndərin.",
+    "noBridgeRoute": "Hazırda zəncirlərarası marşrut mövcud deyil",
+    "bridgeCancelled": "Zəncirlərarası sifariş ləğv edildi və vəsait cüzdanınıza qaytarıldı",
+    "bridgeSlow": "Zəncirlərarası köçürmə adi haldan uzun çəkir. Base-dəki cüzdanınıza çatacaq; çatdıqdan sonra yenidən göndərin.",
+    "notEnoughOnBase": "Bu ödəniş üçün Base-də kifayət qədər {{symbol}} yoxdur",
+    "notEnoughWithFees": "Şəbəkə haqları daxil olmaqla bu ödəniş üçün kifayət qədər {{symbol}} yoxdur",
+    "notEnough": "Bu ödəniş üçün kifayət qədər {{symbol}} yoxdur",
+    "noGasForFee": "Zəncirlərarası haqqı ödəmək üçün kifayət qədər şəbəkə koini yoxdur",
+    "priceMoved": "USDC-niz çatarkən DHB qiyməti dəyişdi. USDC Base-dəki cüzdanınızdadır; tamamlamaq üçün yenidən göndərin.",
+    "usdcPending": "USDC-niz Base-ə çatdı, amma hələ görünmür. Bir azdan yenidən göndərin.",
+    "dhbPending": "DHB alışı təsdiqləndi, amma hələ görünmür. Bir azdan yenidən göndərin.",
+    "unlockWallet": "Bu tokenlə ödəmək üçün cüzdanınızın kilidini açın",
+    "chainUnavailable": "Bu cüzdan üçün {{chain}} şəbəkəsindən ödəniş mümkün deyil"
   }
 }
