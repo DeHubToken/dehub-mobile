@@ -17,6 +17,7 @@ import NetInfo from '@react-native-community/netinfo';
  * wait for good news.
  */
 const OFFLINE_DEBOUNCE_MS = 4000;
+const INITIAL_STATUS_WAIT_MS = 5000;
 
 export const useNetworkStatus = () => {
   const [isConnected, setIsConnected] = useState<boolean | null>(null);
@@ -57,18 +58,39 @@ export const useNetworkStatus = () => {
   );
 
   useEffect(() => {
+    let mounted = true;
+    let hasDefiniteStatus = false;
+    const commitInitial = (connected: boolean | null, reachable: boolean | null) => {
+      if (!mounted || hasDefiniteStatus) return;
+      if (connected !== null) hasDefiniteStatus = true;
+      apply(connected, reachable, true);
+    };
     const unsubscribe = NetInfo.addEventListener((state) => {
+      if (!mounted) return;
+      if (state.isConnected !== null) hasDefiniteStatus = true;
       apply(state.isConnected, state.isInternetReachable);
     });
 
-    // Initial state. Committed immediately in both directions: at boot there is
-    // no previous state to protect, and a cold start with no network should show
-    // the offline screen rather than a splash that sits there for four seconds.
-    NetInfo.fetch().then((state) => {
-      apply(state.isConnected, state.isInternetReachable, true);
-    });
+    // Android can leave both the initial callback and fetch at "unknown",
+    // or fetch can hang. Do not keep navigation behind the logo indefinitely.
+    // Unknown is allowed through as connected; a later definite offline
+    // reading still replaces it and shows the offline overlay.
+    const initialTimer = setTimeout(() => {
+      if (mounted && !hasDefiniteStatus) {
+        hasDefiniteStatus = true;
+        apply(true, null, true);
+      }
+    }, INITIAL_STATUS_WAIT_MS);
+
+    // At boot a definite offline reading must bypass the normal debounce.
+    void NetInfo.fetch().then(
+      (state) => commitInitial(state.isConnected, state.isInternetReachable),
+      () => { /* The deadline above settles an unavailable NetInfo fetch. */ },
+    );
 
     return () => {
+      mounted = false;
+      clearTimeout(initialTimer);
       clearOfflineTimer();
       unsubscribe();
     };
