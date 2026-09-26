@@ -4,15 +4,14 @@
  * What the PPV sheet shows instead of a greyed-out Pay button when the wallet
  * is short of DHB.
  *
- * The old behaviour was "Insufficient DHB balance" in red with the button
- * disabled — a dead end, shown to someone who had already decided to buy. This
- * keeps them where they are: it works out the cheapest way to buy the missing
- * DHB out of what they already hold on Base, does it in one tap, and hands
- * straight back to the unlock.
+ * It keeps the viewer where they are: they pick anything they hold — USDC on
+ * Arc, ETH on Ethereum, USDT on BNB, anything on Base — and one tap turns it
+ * into DHB and hands straight back to the unlock. The DHB comes from DeHub Pay
+ * first and the Uniswap pool only if DPay cannot fill it (libs/tip-funding).
  */
 
 import { useTranslation } from "react-i18next";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   View,
   Text,
@@ -21,32 +20,11 @@ import {
   StyleSheet,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { ethers } from "ethers";
 import Icon from "../ui/Icon";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { useERC20Contract } from "../../hooks/use-web3";
-import { supportedTokens } from "../../config/constants";
-import { parseTxError } from "../../libs/web3.util";
 import { formatCompactNumber } from "../../libs";
-import {
-  applySlippage,
-  buyDhbViaRoute,
-  getERC20BalanceBase,
-  getNativeBalanceBase,
-  quoteDhbPurchase,
-  waitForBalance,
-  DHB_BASE,
-  type DhbBuyRoute,
-} from "../../services/swap.service";
-
-const BASE_CHAIN_ID = 8453;
-
-/**
- * Which wallet token to spend first. Gas token ahead of stables so a
- * stablecoin balance is left alone when there is ETH to spend, and the
- * cheapest route — DHB's one direct pool — is tried before any hop.
- */
-const SPEND_ORDER = ["ETH", "WETH", "USDC", "USDT"];
+import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
+import TipPayWith, { tipStageLabel } from "../Tip/TipPayWith";
 
 /** An unlock that cannot be sent yet because the wallet is short of DHB. */
 export interface PPVShortfall {
@@ -59,40 +37,18 @@ export interface PPVShortfall {
   /** The full unlock price. */
   priceDhb: number;
   /**
-   * Whether DHB can be bought from inside the sheet. Uniswap liquidity for DHB
-   * is Base-only, so elsewhere the viewer has to bring DHB with them and the
-   * step offers funding routes instead of a swap.
+   * Whether DHB can be bought from inside the sheet. Funding lands DHB on
+   * Base, so elsewhere the viewer has to bring DHB with them and the step
+   * offers funding routes instead.
    */
   canTopUpInApp: boolean;
 }
 
-interface Candidate {
-  symbol: string;
-  address: string;
-  decimals: number;
-  balance: ethers.BigNumber;
-}
-
-interface Pick {
-  token: Candidate;
-  route: DhbBuyRoute;
-  /** Slippage-padded ceiling; the router only pulls what the trade costs. */
-  maxIn: ethers.BigNumber;
-}
-
-type Phase = "scanning" | "ready" | "buying" | "nofunds" | "error";
-
-function formatToken(wei: ethers.BigNumber, decimals: number): string {
-  const value = Number(ethers.utils.formatUnits(wei, decimals));
-  if (!Number.isFinite(value) || value === 0) return "0";
-  if (value >= 1000) return value.toLocaleString(undefined, { maximumFractionDigits: 2 });
-  return value.toFixed(value >= 1 ? 4 : 6).replace(/0+$/, "").replace(/\.$/, "");
-}
+type Phase = "choose" | "funding" | "error";
 
 export interface PPVTopUpStepProps {
   shortfall: PPVShortfall;
   account?: string;
-  swapRouterContract: any;
   /** DHB has landed — the parent sends the unlock straight away. */
   onFunded: () => void;
   /** Back to the price view, sheet still open. */
@@ -104,163 +60,39 @@ export interface PPVTopUpStepProps {
 const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
   shortfall,
   account,
-  swapRouterContract,
   onFunded,
   onCancel,
   onClose,
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
-  const [phase, setPhase] = useState<Phase>("scanning");
-  const [pick, setPick] = useState<Pick | null>(null);
+  const [phase, setPhase] = useState<Phase>("choose");
+  const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
+  const [stageText, setStageText] = useState("");
   const [error, setError] = useState("");
-  const needWeiRef = useRef(ethers.utils.parseUnits(String(shortfall.needDhb), 18));
-
-  // An ERC20 route has to approve the router first, and that needs an
-  // AA-aware contract for whichever token the scan settled on. WETH counts:
-  // it is a token like any other here, and only native ETH is paid as value.
-  const needsApproval = pick?.route.kind === "path" || pick?.route.kind === "singleToken";
-  const payTokenContract = useERC20Contract(
-    pick && needsApproval ? pick.token.address : undefined,
-  );
-
-  useEffect(() => {
-    needWeiRef.current = ethers.utils.parseUnits(String(shortfall.needDhb), 18);
-    let cancelled = false;
-
-    (async () => {
-      setPhase("scanning");
-      setError("");
-
-      // Off Base there is no DHB pool to buy from, so there is nothing to
-      // quote — the step goes straight to the funding routes.
-      if (!shortfall.canTopUpInApp || !account) {
-        if (!cancelled) setPhase("nofunds");
-        return;
-      }
-
-      try {
-        const erc20s = supportedTokens.filter(
-          (t: any) => t.chainId === BASE_CHAIN_ID && t.symbol !== "DHB",
-        );
-        const balances: Candidate[] = await Promise.all([
-          getNativeBalanceBase(account)
-            .then((balance) => ({ symbol: "ETH", address: "0x0", decimals: 18, balance }))
-            .catch(() => ({
-              symbol: "ETH",
-              address: "0x0",
-              decimals: 18,
-              balance: ethers.BigNumber.from(0),
-            })),
-          ...erc20s.map(async (token: any) => ({
-            symbol: token.symbol,
-            address: token.address,
-            decimals: token.decimals ?? 18,
-            balance: await getERC20BalanceBase(token.address, account),
-          })),
-        ]);
-        if (cancelled) return;
-
-        const funded = balances
-          .filter((t) => t.balance.gt(0))
-          .sort((a, b) => {
-            const ai = SPEND_ORDER.indexOf(a.symbol);
-            const bi = SPEND_ORDER.indexOf(b.symbol);
-            return (ai < 0 ? SPEND_ORDER.length : ai) - (bi < 0 ? SPEND_ORDER.length : bi);
-          });
-
-        // First token that both has a route and covers the padded quote wins.
-        // Quoting the whole wallet up front would be seconds of RPC to answer a
-        // question one token usually settles.
-        for (const token of funded) {
-          const route = await quoteDhbPurchase(needWeiRef.current, token.address);
-          if (cancelled) return;
-          if (!route) continue;
-          // A hop crosses two pools, one of them DHB's thin 1% pool, so it gets
-          // more headroom than a direct swap.
-          const maxIn = applySlippage(route.amountIn, route.kind === "path" ? 400 : 200);
-          if (token.balance.lt(maxIn)) continue;
-          setPick({ token, route, maxIn });
-          setPhase("ready");
-          return;
-        }
-
-        setPhase("nofunds");
-      } catch (e) {
-        console.warn("[PPV] Top-up scan failed:", e);
-        if (!cancelled) {
-          setError(t("ppv.checkWalletFailed"));
-          setPhase("error");
-        }
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [shortfall, account]);
+  const inApp = shortfall.canTopUpInApp && !!account && shortfall.symbol === "DHB";
 
   const handleTopUp = useCallback(async () => {
-    if (!pick || !account || !swapRouterContract) return;
-    if (needsApproval && !payTokenContract) {
-      setError(t("ppv.preparingWallet"));
-      setPhase("error");
-      return;
-    }
-
-    setPhase("buying");
+    if (!payWith || !account) return;
+    setPhase("funding");
     setError("");
     try {
-      // Measured, not derived from the displayed price: turning a float back
-      // into wei can set a target the balance never quite reaches. Any
-      // increase at all means the swap has been seen.
-      const before = await getERC20BalanceBase(DHB_BASE, account);
-
-      await buyDhbViaRoute({
-        routerContract: swapRouterContract,
-        tokenContract: payTokenContract,
-        route: pick.route,
-        amountOutDhb: needWeiRef.current,
-        maxAmountIn: pick.maxIn,
-        recipient: account,
+      // The whole unlock price, not the gap: funding measures the Base balance
+      // itself and only buys what is missing.
+      await fundTip({
+        source: payWith,
+        amountDhb: shortfall.priceDhb,
+        walletAddress: account,
+        onStage: (stage) => setStageText(tipStageLabel(t as any, stage, payWith)),
       });
-
-      // Let the balance actually show up before handing back. The swap is
-      // mined, but the next read goes to whichever public RPC node answers,
-      // and one a block behind would make the unlock believe nothing arrived
-      // and buy the shortfall a second time.
-      //
-      // waitForBalance does not throw when it runs out of attempts — it just
-      // returns the last thing it read — so its result has to be checked.
-      // Discarding it is what let a lagging node hand straight back to the
-      // unlock, which found the wallet still short and redrew this same step,
-      // one tap away from signing a second swap for the same shortfall.
-      //
-      // getERC20BalanceBase also answers 0 for an unreadable balance rather
-      // than failing, so `after` can be 0 here while the swap was fine. That
-      // is the conservative direction: stop and let the viewer look, rather
-      // than resume on a number nothing confirmed.
-      const target = before.add(1);
-      const after = await waitForBalance(
-        () => getERC20BalanceBase(DHB_BASE, account),
-        target,
-      );
-      if (!after.gte(target)) {
-        setError(
-          t("ppv.swapSettling"),
-        );
-        setPhase("error");
-        return;
-      }
-
       // Straight back into the unlock — the sheet never closes and the viewer
       // never taps twice.
       onFunded();
     } catch (e) {
-      setError(parseTxError(e, "swap") || "Top-up failed.");
+      setError(e instanceof Error ? e.message : t("tip.payFailed", { symbol: payWith.symbol }));
       setPhase("error");
     }
-  }, [pick, account, swapRouterContract, payTokenContract, onFunded]);
+  }, [payWith, account, shortfall.priceDhb, onFunded, t]);
 
   const goToBuy = () => {
     onClose();
@@ -291,56 +123,56 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
         </View>
       </View>
 
-      {phase === "scanning" && (
-        <View style={styles.statusRow}>
-          <ActivityIndicator size="small" color="#A6A9AC" />
-          <Text style={styles.statusText}>{t("ppv.scanning")}</Text>
-        </View>
-      )}
-
-      {(phase === "ready" || phase === "buying") && pick && (
+      {inApp ? (
         <>
           <Text style={styles.hintText}>
-            Pays about {formatToken(pick.route.amountIn, pick.token.decimals)}{" "}
-            {pick.token.symbol} from your wallet, then unlocks straight away.
+            {t("ppv.payHint", "Pay with anything in your wallet. It becomes DHB and unlocks straight away.")}
           </Text>
+          <TipPayWith
+            visible
+            amountDhb={shortfall.priceDhb}
+            walletAddress={account}
+            value={payWith}
+            onChange={setPayWith}
+            requireSource
+          />
+          {phase === "error" ? <Text style={styles.errorText}>{error}</Text> : null}
           <View style={styles.buttonRow}>
             <TouchableOpacity
-              onPress={phase === "buying" ? undefined : onCancel}
-              disabled={phase === "buying"}
-              style={[styles.closeBtn, phase === "buying" && { opacity: 0.5 }]}
+              onPress={phase === "funding" ? undefined : onCancel}
+              disabled={phase === "funding"}
+              style={[styles.closeBtn, phase === "funding" && { opacity: 0.5 }]}
               activeOpacity={0.7}
             >
               <Text style={styles.closeBtnText}>{t("common.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleTopUp}
-              disabled={phase === "buying"}
-              style={[styles.payBtn, phase === "buying" && { opacity: 0.5 }]}
+              disabled={phase === "funding" || !payWith}
+              style={[styles.payBtn, (phase === "funding" || !payWith) && { opacity: 0.5 }]}
               activeOpacity={0.7}
             >
-              {phase === "buying" ? (
+              {phase === "funding" ? (
                 <ActivityIndicator size="small" color="#010305" />
               ) : (
                 <Text style={styles.payBtnText}>{t("ppv.topUpAndUnlock")}</Text>
               )}
             </TouchableOpacity>
           </View>
+          {phase === "funding" && stageText ? (
+            <View style={styles.statusRow}>
+              <Text style={styles.statusText}>{stageText}</Text>
+            </View>
+          ) : null}
         </>
+      ) : (
+        <Text style={styles.hintText}>
+          {shortfall.canTopUpInApp ? t("ppv.notEnoughBase") : t("ppv.otherChain")}
+        </Text>
       )}
 
-      {(phase === "nofunds" || phase === "error") && (
+      {phase !== "funding" && (
         <>
-          {phase === "error" ? (
-            <Text style={styles.errorText}>{error}</Text>
-          ) : (
-            <Text style={styles.hintText}>
-              {shortfall.canTopUpInApp
-                ? t("ppv.notEnoughBase")
-                : t("ppv.otherChain")}
-            </Text>
-          )}
-
           <TouchableOpacity style={styles.routeBtn} onPress={goToBuy} activeOpacity={0.7}>
             <Icon name="CreditCard" size={18} color="#F9FBFF" />
             <View style={styles.routeTextWrap}>
@@ -350,13 +182,15 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
             <Icon name="ChevronRight" size={16} color="#6F7174" />
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.closeBtnWide}
-            onPress={onCancel}
-            activeOpacity={0.7}
-          >
-            <Text style={styles.closeBtnText}>{t("ppv.notNow")}</Text>
-          </TouchableOpacity>
+          {!inApp && (
+            <TouchableOpacity
+              style={styles.closeBtnWide}
+              onPress={onCancel}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.closeBtnText}>{t("ppv.notNow")}</Text>
+            </TouchableOpacity>
+          )}
         </>
       )}
     </View>

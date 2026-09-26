@@ -853,7 +853,11 @@
     "stageBridge": "Ana aika {{symbol}} daga {{chain}}…",
     "stageArriving": "Yana isowa kan Base, yawanci 'yan daƙiƙoƙi…",
     "stageSwap": "Ana sayen DHB a Uniswap…",
-    "payFailed": "Ba a iya canza {{symbol}} zuwa DHB ba"
+    "payFailed": "Ba a iya canza {{symbol}} zuwa DHB ba",
+    "stagePay": "Ana biyan DeHub Pay da {{symbol}}…",
+    "stageDelivering": "DeHub Pay yana aika DHB ɗinka…",
+    "payViaDpay": "An biya DeHub Pay, DHB zai iso cikin kusan daƙiƙa 30",
+    "payViaBridgeDpay": "An matsar zuwa Base kuma an biya DeHub Pay, DHB zai iso cikin kusan minti ɗaya"
   },
   "postOptions": {
     "options": "Zaɓuɓɓuka",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Yana da ƙarancin {{symbol}}? Za mu cika maka kafin mu buɗe.",
     "btnSwapping": "Canzawa...",
     "payAndTip": "Biyan kuɗi & Ba da kyauta",
-    "unlockedSuccess": "An buɗe da kyau"
+    "unlockedSuccess": "An buɗe da kyau",
+    "payHint": "Biya da komai da ke cikin walat ɗinka. Zai zama DHB kuma ya buɗe nan take."
   },
   "walletSetup": {
     "tryBiometricsHint": "Yi amfani da wannan idan ka saita wannan walat ɗin a wannan wayar kuma ya kamata maɓallin ya riga ya kasance a nan",

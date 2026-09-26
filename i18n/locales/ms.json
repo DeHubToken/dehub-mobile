@@ -1114,7 +1114,11 @@
     "stageBridge": "Menghantar {{symbol}} dari {{chain}}…",
     "stageArriving": "Tiba di Base, biasanya beberapa saat…",
     "stageSwap": "Membeli DHB di Uniswap…",
-    "payFailed": "Tidak dapat menukar {{symbol}} kepada DHB"
+    "payFailed": "Tidak dapat menukar {{symbol}} kepada DHB",
+    "stagePay": "Membayar DeHub Pay dengan {{symbol}}…",
+    "stageDelivering": "DeHub Pay sedang menghantar DHB anda…",
+    "payViaDpay": "Dibayar kepada DeHub Pay, DHB tiba dalam kira-kira 30s",
+    "payViaBridgeDpay": "Dipindahkan ke Base dan dibayar kepada DeHub Pay, DHB tiba dalam kira-kira seminit"
   },
   "postOptions": {
     "options": "Pilihan",
@@ -4566,7 +4570,8 @@
     "lowTopUp": "Rendah pada {{symbol}}? Kami akan menambah anda sebelum membuka kunci.",
     "btnSwapping": "Bertukar...",
     "payAndTip": "Bayar & Beri Tip",
-    "unlockedSuccess": "Berjaya dibuka"
+    "unlockedSuccess": "Berjaya dibuka",
+    "payHint": "Bayar dengan apa sahaja dalam dompet anda. Ia ditukar kepada DHB dan dibuka serta-merta."
   },
   "walletSetup": {
     "tryBiometricsHint": "Gunakan ini jika anda menyediakan dompet ini pada telefon ini dan kuncinya sepatutnya sudah ada di sini",

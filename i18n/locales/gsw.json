@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} wird vo {{chain}} gschickt…",
     "stageArriving": "Chunnt uf Base aa, meischt i paar Sekunde…",
     "stageSwap": "DHB wird uf Uniswap kauft…",
-    "payFailed": "{{symbol}} het nöd chöne in DHB umgwandlet wärde"
+    "payFailed": "{{symbol}} het nöd chöne in DHB umgwandlet wärde",
+    "stagePay": "DeHub Pay wird mit {{symbol}} zahlt…",
+    "stageDelivering": "DeHub Pay schickt dini DHB…",
+    "payViaDpay": "A DeHub Pay zahlt, DHB chömed in öppe 30 s aa",
+    "payViaBridgeDpay": "Uf Base verschobe und a DeHub Pay zahlt, DHB chömed in öppe ere Minute aa"
   },
   "postOptions": {
     "options": "Optione",
@@ -4335,7 +4339,8 @@
     "lowTopUp": "Uf {{symbol}}? Mir fülle di uuf, bevor mir ufschaltsched.",
     "btnSwapping": "Wächsle...",
     "payAndTip": "Bezahle & Trinkgeld",
-    "unlockedSuccess": "Erfolgriich uufgschalted"
+    "unlockedSuccess": "Erfolgriich uufgschalted",
+    "payHint": "Zahl mit allem, wo i dim Wallet isch. Es wird zu DHB und schaltet grad frei."
   },
   "walletSetup": {
     "tryBiometricsHint": "Bruuch das, wenn du die Wallet uf dem Telefon iigrichtet hesch und de Schlüssel scho da sii sött",

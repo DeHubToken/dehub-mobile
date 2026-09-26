@@ -896,7 +896,11 @@
     "stageBridge": "{{chain}} থাকি {{symbol}} পাঠানি অইরার…",
     "stageArriving": "Base-এ আইরার, সাধারণত কয়েক সেকেন্ড লাগে…",
     "stageSwap": "Uniswap-এ DHB কিনা অইরার…",
-    "payFailed": "{{symbol}} DHB-তে বদলানি গেলো না"
+    "payFailed": "{{symbol}} DHB-তে বদলানি গেলো না",
+    "stagePay": "{{symbol}} দিয়া DeHub Pay-রে পেমেন্ট অইতাসে…",
+    "stageDelivering": "DeHub Pay তোমার DHB পাঠাইতাসে…",
+    "payViaDpay": "DeHub Pay-রে পেমেন্ট অইসে, DHB মোটামুটি ৩০ সেকেন্ডে আইবো",
+    "payViaBridgeDpay": "Base-এ নিয়া DeHub Pay-রে পেমেন্ট অইসে, DHB মোটামুটি এক মিনিটে আইবো"
   },
   "postOptions": {
     "options": "বিকল্প",
@@ -4475,7 +4479,8 @@
     "aboutToSpend": "আপনি এই ভিডিওটি আনলক করতে <accent>{{amount}} {{symbol}}</accent> খরচ করতে চলেছেন।",
     "tokenBalance": "টোকেন ব্যালেন্স",
     "lowTopUp": "{{symbol}} কম? আনলক করার আগে আমরা আপনাকে টপ আপ করব।",
-    "payAndTip": "পেমেন্ট করুন ও টিপ দিন"
+    "payAndTip": "পেমেন্ট করুন ও টিপ দিন",
+    "payHint": "ওয়ালেটর যেকুনু জিনিস দিয়া পেমেন্ট করো। ইটা DHB অই যাইবো আর লগে লগে খুলি যাইবো।"
   },
   "walletSetup": {
     "tryBiometricsHint": "ই ওয়ালেটটা ই ফোনোউ বানাইলে আর কী আগেত্তে ইনো থাকার কথা অইলে ইটা ব্যবহার করউক্কা",

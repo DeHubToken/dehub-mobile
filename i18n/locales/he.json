@@ -853,7 +853,11 @@
     "stageBridge": "שולחים {{symbol}} מ-{{chain}}…",
     "stageArriving": "מגיע ל-Base, בדרך כלל תוך כמה שניות…",
     "stageSwap": "קונים DHB ב-Uniswap…",
-    "payFailed": "לא ניתן היה להמיר {{symbol}} ל-DHB"
+    "payFailed": "לא ניתן היה להמיר {{symbol}} ל-DHB",
+    "stagePay": "משלמים ל-DeHub Pay עם {{symbol}}…",
+    "stageDelivering": "DeHub Pay שולח לך את ה-DHB…",
+    "payViaDpay": "שולם ל-DeHub Pay, ה-DHB יגיע תוך כ-30 שנ׳",
+    "payViaBridgeDpay": "הועבר ל-Base ושולם ל-DeHub Pay, ה-DHB יגיע תוך כדקה"
   },
   "postOptions": {
     "options": "אפשרויות",
@@ -4309,7 +4313,8 @@
     "lowTopUp": "חסר לך {{symbol}}? נמלא לך לפני הפתיחה.",
     "btnSwapping": "מחליף...",
     "payAndTip": "שלם וטיפ",
-    "unlockedSuccess": "נפתח בהצלחה"
+    "unlockedSuccess": "נפתח בהצלחה",
+    "payHint": "שלם עם כל מה שיש בארנק שלך. זה הופך ל-DHB ונפתח מיד."
   },
   "walletSetup": {
     "tryBiometricsHint": "השתמשו בזה אם הגדרתם את הארנק הזה בטלפון הזה והמפתח כבר אמור להיות כאן",

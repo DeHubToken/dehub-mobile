@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} {{chain}}-dan iberilýär…",
     "stageArriving": "Base-e gelýär, adatça birnäçe sekunt…",
     "stageSwap": "Uniswap-da DHB satyn alynýar…",
-    "payFailed": "{{symbol}} DHB-a öwrülip bilinmedi"
+    "payFailed": "{{symbol}} DHB-a öwrülip bilinmedi",
+    "stagePay": "{{symbol}} bilen DeHub Pay-e tölenýär…",
+    "stageDelivering": "DeHub Pay DHB-ňizi iberýär…",
+    "payViaDpay": "DeHub Pay-e tölendi, DHB takmynan 30 sekuntda geler",
+    "payViaBridgeDpay": "Base-e geçirildi we DeHub Pay-e tölendi, DHB takmynan bir minutda geler"
   },
   "postOptions": {
     "options": "Saýlawlar",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "{{symbol}} azmy? Açylmazdan ozal doldurarys.",
     "btnSwapping": "Çalyşýarys...",
     "payAndTip": "Töle we Goşmaça töle",
-    "unlockedSuccess": "Üstünlikli açyldy"
+    "unlockedSuccess": "Üstünlikli açyldy",
+    "payHint": "Gapjygyňyzdaky islendik zat bilen töläň. Ol DHB-e öwrülýär we derrew açylýar."
   },
   "walletSetup": {
     "tryBiometricsHint": "Bu gapjygy şu telefonda gurnan bolsaňyz we açar eýýäm şu ýerde bolmaly bolsa, muny ulanyň",

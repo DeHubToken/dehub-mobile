@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} ካብ {{chain}} ይለኣኽ ኣሎ…",
     "stageArriving": "ናብ Base ይበጽሕ ኣሎ፡ ብልሙድ ቅሩብ ካልኢታት…",
     "stageSwap": "ኣብ Uniswap DHB ይዕደግ ኣሎ…",
-    "payFailed": "{{symbol}} ናብ DHB ክቕየር ኣይከኣለን"
+    "payFailed": "{{symbol}} ናብ DHB ክቕየር ኣይከኣለን",
+    "stagePay": "ብ{{symbol}} ን DeHub Pay ይኽፈል ኣሎ…",
+    "stageDelivering": "DeHub Pay ናትካ DHB ይሰድድ ኣሎ…",
+    "payViaDpay": "ን DeHub Pay ተኸፊሉ፣ DHB ኣብ ዳርጋ 30 ካልኢት ክበጽሕ እዩ",
+    "payViaBridgeDpay": "ናብ Base ተሰጋጊሩ ን DeHub Pay ተኸፊሉ፣ DHB ኣብ ዳርጋ ሓንቲ ደቒቕ ክበጽሕ እዩ"
   },
   "postOptions": {
     "options": "ምርጫታት",
@@ -4305,7 +4309,8 @@
     "btnSwapping": "ምቕያር...",
     "payAndTip": "ከፍሊን ጸገም ኣቕንዕ",
     "unlockedSuccess": "ብsuccess ተኸፊቱ።",
-    "aboutToSpend": "ንኽትከፍት እዚ ቪድዮ እዚ <accent>{{amount}} {{symbol}}</accent> ክትከስር ኢኻ።"
+    "aboutToSpend": "ንኽትከፍት እዚ ቪድዮ እዚ <accent>{{amount}} {{symbol}}</accent> ክትከስር ኢኻ።",
+    "payHint": "ኣብ ቦርሳኻ ብዘሎ ዝኾነ ክፈል። ናብ DHB ተቐይሩ ብቕጽበት ይኽፈት።"
   },
   "walletSetup": {
     "tryBiometricsHint": "እዚ ቦርሳ ኣብዚ ስልኪ ኣዳሊኻዮ እንተኾይንካን መፍትሕ ኣብዚ ክህሉ ዝግብኦ እንተኾይኑን እዚ ተጠቐም",

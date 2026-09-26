@@ -853,7 +853,11 @@
     "stageBridge": "Изпращане на {{symbol}} от {{chain}}…",
     "stageArriving": "Пристига в Base, обикновено за няколко секунди…",
     "stageSwap": "Купуване на DHB в Uniswap…",
-    "payFailed": "Неуспешно конвертиране на {{symbol}} в DHB"
+    "payFailed": "Неуспешно конвертиране на {{symbol}} в DHB",
+    "stagePay": "Плащане към DeHub Pay с {{symbol}}…",
+    "stageDelivering": "DeHub Pay изпраща вашите DHB…",
+    "payViaDpay": "Платено към DeHub Pay, DHB пристигат след около 30 сек",
+    "payViaBridgeDpay": "Прехвърлено в Base и платено към DeHub Pay, DHB пристигат след около минута"
   },
   "postOptions": {
     "options": "Опции",
@@ -4309,7 +4313,8 @@
     "lowTopUp": "Нямате достатъчно {{symbol}}? Ще ви допълним, преди да отключим.",
     "btnSwapping": "Размяна...",
     "payAndTip": "Плати и бакшиш",
-    "unlockedSuccess": "Успешно отключено"
+    "unlockedSuccess": "Успешно отключено",
+    "payHint": "Платете с каквото и да е от портфейла си. То се превръща в DHB и отключва веднага."
   },
   "walletSetup": {
     "tryBiometricsHint": "Използвайте това, ако сте настроили този портфейл на този телефон и ключът вече би трябвало да е тук",

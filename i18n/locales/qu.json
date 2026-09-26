@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}}-ta {{chain}}-manta kachachkan…",
     "stageArriving": "Base-man chayamuchkan, sapa kuti pisi sikundukunallapi…",
     "stageSwap": "Uniswap-pi DHB rantichkan…",
-    "payFailed": "Manam {{symbol}}-ta DHB-man tikrayta atikurqanchu"
+    "payFailed": "Manam {{symbol}}-ta DHB-man tikrayta atikurqanchu",
+    "stagePay": "DeHub Pay-man {{symbol}}-wan pagachkan…",
+    "stageDelivering": "DeHub Pay DHB-ykita apachichkan…",
+    "payViaDpay": "DeHub Pay-man pagasqa, DHB yaqa 30 sikundupi chayamunqa",
+    "payViaBridgeDpay": "Base-man astasqa, DeHub Pay-man pagasqa, DHB yaqa huk minutupi chayamunqa"
   },
   "postOptions": {
     "options": "Akllakuna",
@@ -4336,7 +4340,8 @@
     "lowTopUp": "{{symbol}}wanachaw kachkanki? Ñawpaqtam hunt'achisun, chaymanta kicharisun.",
     "btnSwapping": "Tukuyta tikraspa...",
     "payAndTip": "Pagay & Propina",
-    "unlockedSuccess": "Kicharisqa allinllam"
+    "unlockedSuccess": "Kicharisqa allinllam",
+    "payHint": "Billeteraykipi ima kaqwanpas pagay. DHB-man tukun, chaylla kichakun."
   },
   "walletSetup": {
     "tryBiometricsHint": "Kayta servichikuy sichus kay qullqi waqaychanata kay celularpi churarqanki hinaspa llaveqa kaypiñam kanan",

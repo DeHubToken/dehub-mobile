@@ -853,7 +853,11 @@
     "stageBridge": "Po dërgohet {{symbol}} nga {{chain}}…",
     "stageArriving": "Po mbërrin në Base, zakonisht disa sekonda…",
     "stageSwap": "Po blihet DHB në Uniswap…",
-    "payFailed": "{{symbol}} nuk u konvertua dot në DHB"
+    "payFailed": "{{symbol}} nuk u konvertua dot në DHB",
+    "stagePay": "Po paguhet DeHub Pay me {{symbol}}…",
+    "stageDelivering": "DeHub Pay po dërgon DHB-të e tua…",
+    "payViaDpay": "U pagua te DeHub Pay, DHB mbërrin për rreth 30 s",
+    "payViaBridgeDpay": "U kalua në Base dhe u pagua te DeHub Pay, DHB mbërrin për rreth një minutë"
   },
   "postOptions": {
     "options": "Opsionet",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Të pakësuar {{symbol}}? Do t'ju plotësojmë para se të zhbllokojmë.",
     "btnSwapping": "Duke shkëmbyer...",
     "payAndTip": "Paguaj & Bakshish",
-    "unlockedSuccess": "U zhbllokua me sukses"
+    "unlockedSuccess": "U zhbllokua me sukses",
+    "payHint": "Paguaj me çdo gjë në portofol. Kthehet në DHB dhe zhbllokohet menjëherë."
   },
   "walletSetup": {
     "tryBiometricsHint": "Përdore këtë nëse e ke konfiguruar këtë portofol në këtë telefon dhe çelësi duhet të jetë tashmë këtu",

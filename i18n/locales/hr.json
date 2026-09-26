@@ -853,7 +853,11 @@
     "stageBridge": "Slanje {{symbol}} s {{chain}}…",
     "stageArriving": "Stiže na Base, obično za nekoliko sekundi…",
     "stageSwap": "Kupnja DHB-a na Uniswapu…",
-    "payFailed": "Nije moguće pretvoriti {{symbol}} u DHB"
+    "payFailed": "Nije moguće pretvoriti {{symbol}} u DHB",
+    "stagePay": "Plaćanje DeHub Payu s {{symbol}}…",
+    "stageDelivering": "DeHub Pay šalje vaše DHB…",
+    "payViaDpay": "Plaćeno DeHub Payu, DHB stiže za oko 30 s",
+    "payViaBridgeDpay": "Prebačeno na Base i plaćeno DeHub Payu, DHB stiže za otprilike minutu"
   },
   "postOptions": {
     "options": "Mogućnosti",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Ponestaje {{symbol}}? Napunit ćemo ga prije otključavanja.",
     "btnSwapping": "Zamjenjujem...",
     "payAndTip": "Plati i napojnicu",
-    "unlockedSuccess": "Uspješno otključano"
+    "unlockedSuccess": "Uspješno otključano",
+    "payHint": "Platite bilo čime iz novčanika. Pretvara se u DHB i odmah otključava."
   },
   "walletSetup": {
     "tryBiometricsHint": "Koristite ovo ako ste ovaj novčanik postavili na ovom telefonu i ključ bi već trebao biti ovdje",

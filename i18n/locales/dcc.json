@@ -853,7 +853,11 @@
     "stageBridge": "{{chain}} سے {{symbol}} بھیج رئیں…",
     "stageArriving": "Base پو پہنچ ریا، عام طور پو چند سیکنڈ…",
     "stageSwap": "Uniswap پو DHB خرید رئیں…",
-    "payFailed": "{{symbol}} کو DHB میں نئیں بدل سکے"
+    "payFailed": "{{symbol}} کو DHB میں نئیں بدل سکے",
+    "stagePay": "{{symbol}} سے DeHub Pay کو پیمنٹ کر رئیں…",
+    "stageDelivering": "DeHub Pay آپ کا DHB بھیج ریا…",
+    "payViaDpay": "DeHub Pay کو پیمنٹ ہو گیا، DHB لگ بھگ 30 سیکنڈ میں پہنچتا",
+    "payViaBridgeDpay": "Base پو لے جا کو DeHub Pay کو پیمنٹ ہو گیا، DHB لگ بھگ ایک منٹ میں پہنچتا"
   },
   "postOptions": {
     "options": "آپشن",
@@ -4286,7 +4290,8 @@
     "lowTopUp": "{{symbol}} کم ہے؟ ان لاک کرنے سے پہلے ہم اسے بھر دیں گے۔",
     "btnSwapping": "تبدیل ہو رہا ہے...",
     "payAndTip": "ادا کریں اور ٹپ دیں",
-    "unlockedSuccess": "کامیابی سے ان لاک ہو گیا"
+    "unlockedSuccess": "کامیابی سے ان لاک ہو گیا",
+    "payHint": "اپنے والیٹ میں جو کچھ بھی ہے اس سے پیمنٹ کرو۔ وہ DHB بن جاتا اور فوراً کھل جاتا۔"
   },
   "walletSetup": {
     "tryBiometricsHint": "یہ تب استعمال کرو جب تم نے یہ والٹ اسی فون پر بنایا ہو اور کلید پہلے سے یہاں ہونی چاہیے",

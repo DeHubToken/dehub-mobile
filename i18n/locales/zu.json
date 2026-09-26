@@ -853,7 +853,11 @@
     "stageBridge": "Kuthunyelwa i-{{symbol}} isuka ku-{{chain}}…",
     "stageArriving": "Kufika ku-Base, imizuzwana embalwa ngokuvamile…",
     "stageSwap": "Kuthengwa i-DHB ku-Uniswap…",
-    "payFailed": "Akukwazanga ukuguqula i-{{symbol}} ibe yi-DHB"
+    "payFailed": "Akukwazanga ukuguqula i-{{symbol}} ibe yi-DHB",
+    "stagePay": "Kukhokhelwa i-DeHub Pay nge-{{symbol}}…",
+    "stageDelivering": "I-DeHub Pay ithumela i-DHB yakho…",
+    "payViaDpay": "Kukhokhelwe i-DeHub Pay, i-DHB izofika cishe emizuzwaneni engu-30",
+    "payViaBridgeDpay": "Kudluliselwe ku-Base futhi kwakhokhelwa i-DeHub Pay, i-DHB izofika cishe emzuzwini owodwa"
   },
   "postOptions": {
     "options": "Izinketho",
@@ -4336,7 +4340,8 @@
     "lowTopUp": "Uyaphela nge-{{symbol}}? Sizokugcwalisa ngaphambi kokuvula.",
     "btnSwapping": "Ukushintsha...",
     "payAndTip": "Khokha & Qondisa",
-    "unlockedSuccess": "Ivulwe ngempumelelo"
+    "unlockedSuccess": "Ivulwe ngempumelelo",
+    "payHint": "Khokha nganoma yini ekwi-wallet yakho. Iba yi-DHB futhi ivuleke ngokushesha."
   },
   "walletSetup": {
     "tryBiometricsHint": "Sebenzisa lokhu uma usethe lesi sikhwama kule foni futhi ukhiye kufanele ukuthi usevele ulapha",

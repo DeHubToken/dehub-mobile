@@ -853,7 +853,11 @@
     "stageBridge": "Skickar {{symbol}} från {{chain}}…",
     "stageArriving": "Anländer till Base, brukar ta några sekunder…",
     "stageSwap": "Köper DHB på Uniswap…",
-    "payFailed": "Kunde inte konvertera {{symbol}} till DHB"
+    "payFailed": "Kunde inte konvertera {{symbol}} till DHB",
+    "stagePay": "Betalar DeHub Pay med {{symbol}}…",
+    "stageDelivering": "DeHub Pay skickar dina DHB…",
+    "payViaDpay": "Betalt till DeHub Pay, DHB kommer om cirka 30 s",
+    "payViaBridgeDpay": "Flyttat till Base och betalt till DeHub Pay, DHB kommer om ungefär en minut"
   },
   "postOptions": {
     "options": "Alternativ",
@@ -4309,7 +4313,8 @@
     "lowTopUp": "Lite {{symbol}}? Vi fyller på innan upplåsning.",
     "btnSwapping": "Byter...",
     "payAndTip": "Betala & Dricks",
-    "unlockedSuccess": "Upplåst"
+    "unlockedSuccess": "Upplåst",
+    "payHint": "Betala med vad som helst i din plånbok. Det blir DHB och låses upp direkt."
   },
   "walletSetup": {
     "tryBiometricsHint": "Använd detta om du skapade den här plånboken på den här telefonen och nyckeln redan borde finnas här",

@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} bɛ ci ka bɔ {{chain}} kan…",
     "stageArriving": "A bɛ sera Base kan, a ka teli ka kɛ segɔni dama ye…",
     "stageSwap": "DHB bɛ san Uniswap kan…",
-    "payFailed": "{{symbol}} ma se ka falen ka kɛ DHB ye"
+    "payFailed": "{{symbol}} ma se ka falen ka kɛ DHB ye",
+    "stagePay": "DeHub Pay bɛ sara ni {{symbol}} ye…",
+    "stageDelivering": "DeHub Pay bɛ i ka DHB ci…",
+    "payViaDpay": "A sarala DeHub Pay ma, DHB bɛ se segɔni 30 ɲɔgɔn kɔnɔ",
+    "payViaBridgeDpay": "A taara Base kan ani a sarala DeHub Pay ma, DHB bɛ se miniti kelen ɲɔgɔn kɔnɔ"
   },
   "postOptions": {
     "options": "Sugandiliw",
@@ -4305,7 +4309,8 @@
     "unlockedSuccess": "A dayɛlɛla ka ɲɛ",
     "recipient": "Sɔrɔbaga: {{address}}",
     "aboutToSpend": "I bɛ ka <accent>{{amount}} {{symbol}}</accent> bɔ walasa ka video nin da wuli.",
-    "lowTopUp": "{{symbol}} ma ca i fɛ? An bɛna a fara a kan sani ka da wuli."
+    "lowTopUp": "{{symbol}} ma ca i fɛ? An bɛna a fara a kan sani ka da wuli.",
+    "payHint": "Sara ni fɛn o fɛn ye min bɛ i ka waribon kɔnɔ. A bɛ kɛ DHB ye ani a bɛ dayɛlɛ o yɔrɔnin bɛɛ."
   },
   "walletSetup": {
     "tryBiometricsHint": "Nin kɛ ni i ye nin wari-mara labɛn nin telefɔni kan ani konnɛgɛ ka kan ka kɛ yan kaban",

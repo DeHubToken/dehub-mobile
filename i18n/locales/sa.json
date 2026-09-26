@@ -853,7 +853,11 @@
     "stageBridge": "{{chain}} तः {{symbol}} प्रेष्यते…",
     "stageArriving": "Base इत्यत्र आगच्छति, प्रायः कतिपयक्षणेषु…",
     "stageSwap": "Uniswap इत्यत्र DHB क्रीयते…",
-    "payFailed": "{{symbol}} DHB रूपेण परिवर्तयितुं न शक्यते"
+    "payFailed": "{{symbol}} DHB रूपेण परिवर्तयितुं न शक्यते",
+    "stagePay": "{{symbol}} द्वारा DeHub Pay इत्यस्मै भुक्तिः क्रियते…",
+    "stageDelivering": "DeHub Pay भवतः DHB प्रेषयति…",
+    "payViaDpay": "DeHub Pay इत्यस्मै दत्तम्, DHB प्रायः ३० क्षणेषु आगमिष्यति",
+    "payViaBridgeDpay": "Base प्रति नीतं DeHub Pay इत्यस्मै दत्तं च, DHB प्रायः एकस्मिन् निमेषे आगमिष्यति"
   },
   "postOptions": {
     "options": "विकल्पाः",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "{{symbol}} मध्ये कमी आहे? अनलॉक करण्यापूर्वी आम्ही तुम्हाला भरून देऊ.",
     "btnSwapping": "बदलत आहे...",
     "payAndTip": "पे आणि टीप",
-    "unlockedSuccess": "यशस्वीरित्या अनलॉक झाले"
+    "unlockedSuccess": "यशस्वीरित्या अनलॉक झाले",
+    "payHint": "कोषे विद्यमानेन केनापि भुक्तिं करोतु। तत् DHB भवति, विषयः च सद्यः उद्घाट्यते।"
   },
   "walletSetup": {
     "tryBiometricsHint": "यदि भवान् एतं कोशम् अस्मिन् एव दूरवाण्यां निर्मितवान् कुञ्चिका च अत्र पूर्वमेव भवितुम् अर्हति तर्हि एतत् उपयुज्यताम्",

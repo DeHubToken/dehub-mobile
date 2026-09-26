@@ -853,7 +853,11 @@
     "stageBridge": "{{chain}}-аас {{symbol}} илгээж байна…",
     "stageArriving": "Base рүү ирж байна, ихэвчлэн хэдхэн секунд…",
     "stageSwap": "Uniswap дээр DHB худалдан авч байна…",
-    "payFailed": "{{symbol}}-г DHB болгон хөрвүүлж чадсангүй"
+    "payFailed": "{{symbol}}-г DHB болгон хөрвүүлж чадсангүй",
+    "stagePay": "{{symbol}}-ээр DeHub Pay-д төлж байна…",
+    "stageDelivering": "DeHub Pay таны DHB-г илгээж байна…",
+    "payViaDpay": "DeHub Pay-д төлсөн, DHB ойролцоогоор 30 секундэд ирнэ",
+    "payViaBridgeDpay": "Base рүү шилжүүлж DeHub Pay-д төлсөн, DHB ойролцоогоор нэг минутад ирнэ"
   },
   "postOptions": {
     "options": "Сонголтууд",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "{{symbol}} бага байна уу? Нээхээс өмнө нэмж өгнө.",
     "btnSwapping": "Солилцож байна...",
     "payAndTip": "Төлбөр ба бэлэг",
-    "unlockedSuccess": "Амжилттай нээгдлээ"
+    "unlockedSuccess": "Амжилттай нээгдлээ",
+    "payHint": "Түрийвчиндээ байгаа ямар ч хөрөнгөөр төлөөрэй. Энэ нь DHB болж шууд нээгдэнэ."
   },
   "walletSetup": {
     "tryBiometricsHint": "Энэ хэтэвчийг энэ утсан дээр тохируулсан бөгөөд түлхүүр аль хэдийн энд байх ёстой бол үүнийг ашиглана уу",

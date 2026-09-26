@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} wird von {{chain}} gesendet…",
     "stageArriving": "Kommt auf Base an, meist in wenigen Sekunden…",
     "stageSwap": "DHB wird auf Uniswap gekauft…",
-    "payFailed": "{{symbol}} konnte nicht in DHB umgewandelt werden"
+    "payFailed": "{{symbol}} konnte nicht in DHB umgewandelt werden",
+    "stagePay": "DeHub Pay wird mit {{symbol}} bezahlt…",
+    "stageDelivering": "DeHub Pay sendet Ihre DHB…",
+    "payViaDpay": "An DeHub Pay bezahlt, DHB kommen in etwa 30 s an",
+    "payViaBridgeDpay": "Auf Base verschoben und an DeHub Pay bezahlt, DHB kommen in etwa einer Minute an"
   },
   "postOptions": {
     "options": "Optionen",
@@ -4354,7 +4358,8 @@
     "lowTopUp": "Wenig {{symbol}}? Wir füllen auf, bevor wir entsperren.",
     "btnSwapping": "Wird getauscht...",
     "payAndTip": "Bezahlen & Trinkgeld",
-    "unlockedSuccess": "Erfolgreich entsperrt"
+    "unlockedSuccess": "Erfolgreich entsperrt",
+    "payHint": "Bezahlen Sie mit allem in Ihrer Wallet. Es wird zu DHB und schaltet sofort frei."
   },
   "walletSetup": {
     "tryBiometricsHint": "Nutze dies, wenn du diese Wallet auf diesem Telefon eingerichtet hast und der Schlüssel bereits hier sein sollte",

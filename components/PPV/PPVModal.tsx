@@ -512,7 +512,6 @@ const PPVModal: React.FC<PPVModalProps> = ({
               <PPVTopUpStep
                 shortfall={shortfall}
                 account={account}
-                swapRouterContract={swapRouterContract}
                 // Funded, so send the unlock immediately — handleUnlock clears
                 // the shortfall itself and the modal returns to paying.
                 onFunded={handleUnlock}

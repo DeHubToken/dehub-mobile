@@ -853,7 +853,11 @@
     "stageBridge": "Inatuma {{symbol}} kutoka {{chain}}…",
     "stageArriving": "Inafika kwenye Base, kwa kawaida sekunde chache…",
     "stageSwap": "Inanunua DHB kwenye Uniswap…",
-    "payFailed": "Imeshindwa kubadilisha {{symbol}} kuwa DHB"
+    "payFailed": "Imeshindwa kubadilisha {{symbol}} kuwa DHB",
+    "stagePay": "Inalipa DeHub Pay kwa {{symbol}}…",
+    "stageDelivering": "DeHub Pay inatuma DHB zako…",
+    "payViaDpay": "Imelipwa kwa DeHub Pay, DHB itafika baada ya sekunde 30 hivi",
+    "payViaBridgeDpay": "Imehamishwa kwenda Base na kulipwa kwa DeHub Pay, DHB itafika baada ya dakika moja hivi"
   },
   "postOptions": {
     "options": "Chaguzi",
@@ -4306,7 +4310,8 @@
     "lowTopUp": "{{symbol}} imepungua? Tutakujaza kabla ya kufungua.",
     "btnSwapping": "Inabadilisha...",
     "payAndTip": "Lipa & Toa Kidokezo",
-    "unlockedSuccess": "Imefunguliwa kwa mafanikio"
+    "unlockedSuccess": "Imefunguliwa kwa mafanikio",
+    "payHint": "Lipa kwa chochote kilicho kwenye pochi yako. Kinakuwa DHB na kufungua mara moja."
   },
   "walletSetup": {
     "tryBiometricsHint": "Tumia hii ikiwa uliweka pochi hii kwenye simu hii na ufunguo unapaswa kuwa tayari hapa",

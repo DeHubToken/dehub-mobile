@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} ji {{chain}} tê şandin…",
     "stageArriving": "Digihîje Base, bi gelemperî çend çirke…",
     "stageSwap": "DHB li Uniswap tê kirîn…",
-    "payFailed": "{{symbol}} nehat guhertin bo DHB"
+    "payFailed": "{{symbol}} nehat guhertin bo DHB",
+    "stagePay": "Bi {{symbol}} ji DeHub Pay re tê dayîn…",
+    "stageDelivering": "DeHub Pay DHB-ya te dişîne…",
+    "payViaDpay": "Ji DeHub Pay re hat dayîn, DHB di nêzîkî 30 çirkeyan de digihîje",
+    "payViaBridgeDpay": "Hat veguhestin bo Base û ji DeHub Pay re hat dayîn, DHB di nêzîkî deqeyekê de digihîje"
   },
   "postOptions": {
     "options": "Vebijêrk",
@@ -4291,7 +4295,8 @@
     "lowTopUp": "{{symbol}} kêm e? Berî vekirinê, em ê hesabê we şarj bikin.",
     "btnSwapping": "Guhertin...",
     "payAndTip": "Pere û Baxşîş",
-    "unlockedSuccess": "Bi serkeftî hate vekirin"
+    "unlockedSuccess": "Bi serkeftî hate vekirin",
+    "payHint": "Bi her tiştê di berîka xwe de bide. Dibe DHB û yekser vedibe."
   },
   "walletSetup": {
     "tryBiometricsHint": "Vê bi kar bîne eger te ev cizdan li ser vê telefonê saz kiribe û divê mifte jixwe li vir be",

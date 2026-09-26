@@ -853,7 +853,11 @@
     "stageBridge": "Sūta {{symbol}} no {{chain}}…",
     "stageArriving": "Ceļā uz Base, parasti dažas sekundes…",
     "stageSwap": "Pērk DHB Uniswap…",
-    "payFailed": "Neizdevās konvertēt {{symbol}} uz DHB"
+    "payFailed": "Neizdevās konvertēt {{symbol}} uz DHB",
+    "stagePay": "Maksā DeHub Pay ar {{symbol}}…",
+    "stageDelivering": "DeHub Pay sūta jūsu DHB…",
+    "payViaDpay": "Samaksāts DeHub Pay, DHB pienāks aptuveni 30 s laikā",
+    "payViaBridgeDpay": "Pārvietots uz Base un samaksāts DeHub Pay, DHB pienāks aptuveni minūtes laikā"
   },
   "postOptions": {
     "options": "Opcijas",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Vai {{symbol}} ir maz? Mēs papildināsim to pirms atbloķēšanas.",
     "btnSwapping": "Apmaiņa...",
     "payAndTip": "Maksāt un dot dzeramnaudu",
-    "unlockedSuccess": "Veiksmīgi atbloķēts"
+    "unlockedSuccess": "Veiksmīgi atbloķēts",
+    "payHint": "Maksājiet ar jebko, kas ir jūsu makā. Tas kļūst par DHB un uzreiz atbloķē."
   },
   "walletSetup": {
     "tryBiometricsHint": "Izmantojiet šo, ja šo maku iestatījāt šajā tālrunī un atslēgai jau vajadzētu būt šeit",

@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} waxaa laga dirayaa {{chain}}…",
     "stageArriving": "Wuxuu ku soo gaarayaa Base, badanaa dhowr ilbiriqsi…",
     "stageSwap": "DHB waxaa laga iibsanayaa Uniswap…",
-    "payFailed": "Lama beddeli karin {{symbol}} oo loo beddelo DHB"
+    "payFailed": "Lama beddeli karin {{symbol}} oo loo beddelo DHB",
+    "stagePay": "Lacag bixinta DeHub Pay adoo isticmaalaya {{symbol}}…",
+    "stageDelivering": "DeHub Pay wuxuu dirayaa DHB-gaaga…",
+    "payViaDpay": "Waxaa lagu bixiyay DeHub Pay, DHB wuxuu imanayaa qiyaastii 30 ilbiriqsi",
+    "payViaBridgeDpay": "Waxaa loo wareejiyay Base waxaana lagu bixiyay DeHub Pay, DHB wuxuu imanayaa qiyaastii hal daqiiqo"
   },
   "postOptions": {
     "options": "Ikhtiyaarada",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Hoos ayuu kaaga dhacayaa {{symbol}}? Waxaan ku buuxin doonaa ka hor intaanan furin.",
     "btnSwapping": "Beddelid...",
     "payAndTip": "Bixi & Bixinta",
-    "unlockedSuccess": "Si guul leh ayaa loo furay"
+    "unlockedSuccess": "Si guul leh ayaa loo furay",
+    "payHint": "Ku bixi wax kasta oo jeebkaaga ku jira. Wuxuu noqonayaa DHB wuuna furmayaa isla markiiba."
   },
   "walletSetup": {
     "tryBiometricsHint": "Tan isticmaal haddii aad boorsadan ku samaysay taleefankan oo furaha uu horeba halkan u jiro",
