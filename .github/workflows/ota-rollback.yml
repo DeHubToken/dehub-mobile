@@ -22,6 +22,15 @@ on:
         description: EAS update branch(es) to roll back, space separated.
         default: production preview
         required: false
+      platform:
+        description: Platform to roll back; use android for the Android launch incident.
+        type: choice
+        options:
+          - android
+          - ios
+          - all
+        default: all
+        required: true
 
 concurrency:
   group: ota-publish
@@ -62,16 +71,23 @@ jobs:
         if: env.EXPO_TOKEN != ''
         env:
           ROLLBACK_BRANCHES: ${{ github.event.inputs.branch }}
+          ROLLBACK_PLATFORM: ${{ github.event.inputs.platform }}
         run: |
           # Non-interactive mode will not infer this, and it has to match the
           # runtimeVersion the bad updates were published at or the directive
           # reaches nobody. Read it from app.json so it cannot drift.
           RUNTIME="$(node -p "require('./app.json').expo.runtimeVersion")"
-          echo "Rolling back runtime $RUNTIME"
+          case "${ROLLBACK_PLATFORM:-all}" in
+            android) PLATFORMS="android" ;;
+            ios) PLATFORMS="ios" ;;
+            all) PLATFORMS="android ios" ;;
+            *) echo "::error::Invalid rollback platform"; exit 1 ;;
+          esac
+          echo "Rolling back runtime $RUNTIME ($PLATFORMS)"
           # Unquoted on purpose: this is a space-separated list, not one branch.
           for BRANCH in ${ROLLBACK_BRANCHES:-production preview}; do
-            for PLATFORM in android ios; do
+            for PLATFORM in $PLATFORMS; do
               echo "Rolling back $BRANCH ($PLATFORM)"
-              eas update:roll-back-to-embedded --branch "$BRANCH" --platform "$PLATFORM" --runtime-version "$RUNTIME" --message "Roll back: CI-built bundle shipped without the app env vars" --non-interactive
+              eas update:roll-back-to-embedded --branch "$BRANCH" --platform "$PLATFORM" --runtime-version "$RUNTIME" --message "Roll back to the embedded bundle to recover app launch" --non-interactive
             done
           done
