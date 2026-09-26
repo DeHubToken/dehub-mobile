@@ -853,7 +853,11 @@
     "stageBridge": "{{chain}}에서 {{symbol}} 전송 중…",
     "stageArriving": "Base로 도착 중, 보통 몇 초 걸려요…",
     "stageSwap": "Uniswap에서 DHB 구매 중…",
-    "payFailed": "{{symbol}}을(를) DHB로 변환할 수 없습니다"
+    "payFailed": "{{symbol}}을(를) DHB로 변환할 수 없습니다",
+    "stagePay": "{{symbol}}(으)로 DeHub Pay에 결제 중…",
+    "stageDelivering": "DeHub Pay가 DHB를 보내는 중…",
+    "payViaDpay": "DeHub Pay에 결제 완료, DHB는 약 30초 후 도착",
+    "payViaBridgeDpay": "Base로 옮겨 DeHub Pay에 결제 완료, DHB는 약 1분 후 도착"
   },
   "postOptions": {
     "options": "옵션",
@@ -4358,7 +4362,8 @@
     "lowTopUp": "{{symbol}}이(가) 부족하신가요? 잠금 해제 전에 채워드리겠습니다.",
     "btnSwapping": "교환 중...",
     "payAndTip": "결제 및 팁",
-    "unlockedSuccess": "성공적으로 잠금 해제됨"
+    "unlockedSuccess": "성공적으로 잠금 해제됨",
+    "payHint": "지갑에 있는 어떤 자산으로도 결제할 수 있어요. DHB로 바뀌어 바로 잠금 해제돼요."
   },
   "walletSetup": {
     "tryBiometricsHint": "이 휴대폰에서 이 지갑을 설정했고 키가 이미 여기 있어야 한다면 이 옵션을 사용하세요",

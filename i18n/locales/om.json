@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} {{chain}} irraa ergaa jira…",
     "stageArriving": "Base irra ga'aa jira, yeroo baay'ee sekondii muraasa…",
     "stageSwap": "Uniswap irratti DHB bitaa jira…",
-    "payFailed": "{{symbol}} gara DHB-tti jijjiiruun hin danda'amne"
+    "payFailed": "{{symbol}} gara DHB-tti jijjiiruun hin danda'amne",
+    "stagePay": "{{symbol}}-n DeHub Pay-f kaffalaa jira…",
+    "stageDelivering": "DeHub Pay DHB kee ergaa jira…",
+    "payViaDpay": "DeHub Pay-f kaffalame, DHB sekondii 30 naannoo keessatti ga'a",
+    "payViaBridgeDpay": "Gara Base-tti ceesifamee DeHub Pay-f kaffalame, DHB daqiiqaa tokko naannoo keessatti ga'a"
   },
   "postOptions": {
     "options": "Filannoowwan",
@@ -4318,7 +4322,8 @@
     "lowTopUp": "Magaala {{symbol}} keessatti hir'achaa? Gadi lakkisuu dura si guutuuf jirra.",
     "btnSwapping": "Jijjiirraa...",
     "payAndTip": "Kaffaltii & Kennaa",
-    "unlockedSuccess": "Baanameera milkooinaan"
+    "unlockedSuccess": "Baanameera milkooinaan",
+    "payHint": "Waan waleetii kee keessa jiru kamiinuu kaffali. DHB ta'ee battaluma banama."
   },
   "walletSetup": {
     "tryBiometricsHint": "Waalatii kana bilbila kana irratti yoo qopheessite fi furtuun duraan as jiraachuu qaba yoo ta'e kana fayyadami",

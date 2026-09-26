@@ -1043,7 +1043,11 @@
     "stageBridge": "{{symbol}} verzenden vanaf {{chain}}…",
     "stageArriving": "Onderweg naar Base, meestal een paar seconden…",
     "stageSwap": "DHB kopen op Uniswap…",
-    "payFailed": "Kan {{symbol}} niet omzetten naar DHB"
+    "payFailed": "Kan {{symbol}} niet omzetten naar DHB",
+    "stagePay": "DeHub Pay betalen met {{symbol}}…",
+    "stageDelivering": "DeHub Pay verstuurt je DHB…",
+    "payViaDpay": "Betaald aan DeHub Pay, DHB komt aan in ongeveer 30 s",
+    "payViaBridgeDpay": "Naar Base verplaatst en betaald aan DeHub Pay, DHB komt aan in ongeveer een minuut"
   },
   "postOptions": {
     "options": "Opties",
@@ -4495,7 +4499,8 @@
     "lowTopUp": "Weinig {{symbol}}? We vullen het aan voordat we ontgrendelen.",
     "btnSwapping": "Wisselen...",
     "payAndTip": "Betalen & Fooi",
-    "unlockedSuccess": "Succesvol ontgrendeld"
+    "unlockedSuccess": "Succesvol ontgrendeld",
+    "payHint": "Betaal met alles in je wallet. Het wordt DHB en ontgrendelt meteen."
   },
   "walletSetup": {
     "tryBiometricsHint": "Gebruik dit als je deze wallet op deze telefoon hebt ingesteld en de sleutel er al zou moeten zijn",

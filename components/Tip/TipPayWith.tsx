@@ -1,10 +1,11 @@
 /**
- * "Pay with" for a DHB tip or gift. Mirror of web's TipPayWith.
+ * "Pay with" for anything paid in DHB: tips, gifts, pay-per-view,
+ * subscriptions. Mirror of web's TipPayWith.
  *
  * DHB stays the default and behaves exactly as before. When the Safe does not
  * hold enough DHB on Base, the richest other balance is picked instead — USDC
  * on Arc, ETH on Ethereum, anything on Base — and the sheet funds the tip from
- * it on send (deBridge to Base, then Uniswap into DHB; see libs/tip-funding).
+ * it on send — DeHub Pay first, Uniswap as the fallback (see libs/tip-funding).
  */
 import React, { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -16,6 +17,7 @@ import {
   formatPayAmount,
   loadTipSources,
   planTipFunding,
+  planUsesDpay,
   type TipFundingPlan,
   type TipFundingSource,
 } from "../../libs/tip-funding";
@@ -31,9 +33,11 @@ interface Props {
   walletAddress?: string;
   value: TipFundingSource | null;
   onChange: (source: TipFundingSource | null) => void;
+  /** Only other tokens: for a surface that already knows the DHB is short. */
+  requireSource?: boolean;
 }
 
-export default function TipPayWith({ visible, amountDhb, walletAddress, value, onChange }: Props) {
+export default function TipPayWith({ visible, amountDhb, walletAddress, value, onChange, requireSource = false }: Props) {
   const { t } = useTranslation();
   const [sources, setSources] = useState<TipFundingSource[]>([]);
   const [dhbOnBase, setDhbOnBase] = useState<bigint>(0n);
@@ -51,7 +55,7 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
   }, [visible, walletAddress]);
 
   const dhbHeld = Number(ethers.utils.formatUnits(dhbOnBase.toString(), 18));
-  const short = amountDhb > 0 && amountDhb > dhbHeld;
+  const short = requireSource || (amountDhb > 0 && amountDhb > dhbHeld);
   useEffect(() => {
     if (userPicked.current) return;
     if (short && !value && sources.length) onChange(sources[0]);
@@ -118,9 +122,13 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
               })}
               <Text style={styles.quoteMuted}>
                 {" · "}
-                {plan.kind === "bridge"
-                  ? t("tip.payViaBridge", "Swapped to DHB on Uniswap, arrives in ~{{seconds}}s", { seconds: Math.max(2, plan.fillSeconds) })
-                  : t("tip.payViaSwap", "Swapped to DHB on Uniswap")}
+                {planUsesDpay(plan)
+                  ? plan.kind === "bridge"
+                    ? t("tip.payViaBridgeDpay", "Moved to Base and paid to DeHub Pay, DHB arrives in about a minute")
+                    : t("tip.payViaDpay", "Paid to DeHub Pay, DHB arrives in about 30s")
+                  : plan.kind === "bridge"
+                    ? t("tip.payViaBridge", "Swapped to DHB on Uniswap, arrives in ~{{seconds}}s", { seconds: Math.max(2, plan.fillSeconds) })
+                    : t("tip.payViaSwap", "Swapped to DHB on Uniswap")}
               </Text>
             </Text>
           ) : null}
@@ -129,11 +137,13 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
 
       {open ? (
         <ScrollView style={styles.list} nestedScrollEnabled keyboardShouldPersistTaps="handled">
-          <TouchableOpacity style={[styles.item, !value && styles.itemActive]} onPress={() => pick(null)}>
-            <Image source={DEHUB_COIN} style={styles.coin} resizeMode="contain" />
-            <Text style={styles.itemText}>DHB</Text>
-            <Text style={styles.itemValue}>{dhbHeld.toLocaleString(undefined, { maximumFractionDigits: 2 })}</Text>
-          </TouchableOpacity>
+          {!requireSource && (
+            <TouchableOpacity style={[styles.item, !value && styles.itemActive]} onPress={() => pick(null)}>
+              <Image source={DEHUB_COIN} style={styles.coin} resizeMode="contain" />
+              <Text style={styles.itemText}>DHB</Text>
+              <Text style={styles.itemValue}>{dhbHeld.toLocaleString(undefined, { maximumFractionDigits: 2 })}</Text>
+            </TouchableOpacity>
+          )}
           {sources.map(s => (
             <TouchableOpacity
               key={`${s.chainId}:${s.address}`}
@@ -184,6 +194,8 @@ export function tipStageLabel(
     case "approve": return t("tip.stageApprove", "Approving {{symbol}}…", vars);
     case "bridge": return t("tip.stageBridge", "Sending {{symbol}} from {{chain}}…", vars);
     case "arriving": return t("tip.stageArriving", "Arriving on Base, usually a few seconds…");
+    case "pay": return t("tip.stagePay", "Paying DeHub Pay with {{symbol}}…", vars);
+    case "delivering": return t("tip.stageDelivering", "DeHub Pay is sending your DHB…");
     case "swap": return t("tip.stageSwap", "Buying DHB on Uniswap…");
     default: return t("tip.payQuoting", "Getting the best price…");
   }

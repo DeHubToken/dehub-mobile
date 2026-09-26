@@ -853,7 +853,11 @@
     "stageBridge": "ກຳລັງສົ່ງ {{symbol}} ຈາກ {{chain}}…",
     "stageArriving": "ກຳລັງມາຮອດ Base, ປົກກະຕິພຽງບໍ່ເທົ່າໃດວິນາທີ…",
     "stageSwap": "ກຳລັງຊື້ DHB ເທິງ Uniswap…",
-    "payFailed": "ບໍ່ສາມາດແປງ {{symbol}} ເປັນ DHB ໄດ້"
+    "payFailed": "ບໍ່ສາມາດແປງ {{symbol}} ເປັນ DHB ໄດ້",
+    "stagePay": "ກຳລັງຈ່າຍໃຫ້ DeHub Pay ດ້ວຍ {{symbol}}…",
+    "stageDelivering": "DeHub Pay ກຳລັງສົ່ງ DHB ຂອງທ່ານ…",
+    "payViaDpay": "ຈ່າຍໃຫ້ DeHub Pay ແລ້ວ, DHB ມາຮອດໃນປະມານ 30 ວິນາທີ",
+    "payViaBridgeDpay": "ຍ້າຍໄປ Base ແລະ ຈ່າຍໃຫ້ DeHub Pay ແລ້ວ, DHB ມາຮອດໃນປະມານໜຶ່ງນາທີ"
   },
   "postOptions": {
     "options": "ຕົວເລືອກ",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "ຂາດ {{symbol}} ບໍ? ເຮົາຈະເຕີມໃຫ້ທ່ານກ່ອນປົດລັອກ.",
     "btnSwapping": "ກຳລັງແລກປ່ຽນ...",
     "payAndTip": "ຈ່າຍ & ໃຫ້ທິບ",
-    "unlockedSuccess": "ປົດລັອກສຳເລັດແລ້ວ"
+    "unlockedSuccess": "ປົດລັອກສຳເລັດແລ້ວ",
+    "payHint": "ຈ່າຍດ້ວຍອັນໃດກໍໄດ້ໃນກະເປົາເງິນຂອງທ່ານ. ມັນຈະກາຍເປັນ DHB ແລະ ປົດລັອກທັນທີ."
   },
   "walletSetup": {
     "tryBiometricsHint": "ໃຊ້ອັນນີ້ຖ້າທ່ານຕັ້ງກະເປົາເງິນນີ້ໃນໂທລະສັບເຄື່ອງນີ້ ແລະ ກະແຈຄວນຢູ່ບ່ອນນີ້ແລ້ວ",

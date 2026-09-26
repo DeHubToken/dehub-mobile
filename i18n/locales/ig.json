@@ -853,7 +853,11 @@
     "stageBridge": "Na-ezipu {{symbol}} site na {{chain}}…",
     "stageArriving": "Na-abịa na Base, ọ na-abụkarị sekọnd ole na ole…",
     "stageSwap": "Na-azụ DHB na Uniswap…",
-    "payFailed": "Enweghị ike ịgbanwe {{symbol}} ka ọ bụrụ DHB"
+    "payFailed": "Enweghị ike ịgbanwe {{symbol}} ka ọ bụrụ DHB",
+    "stagePay": "Na-akwụ DeHub Pay site na {{symbol}}…",
+    "stageDelivering": "DeHub Pay na-ezipu DHB gị…",
+    "payViaDpay": "A kwụrụ DeHub Pay, DHB ga-abịa n'ihe dị ka sekọnd 30",
+    "payViaBridgeDpay": "E bugara ya na Base ma kwụọ DeHub Pay, DHB ga-abịa n'ihe dị ka otu nkeji"
   },
   "postOptions": {
     "options": "Nhọrọ",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Nnọọ na {{symbol}}? Anyị ga-ejupụta gị tupu anyị emeghee ya.",
     "btnSwapping": "Na-agbanwe...",
     "payAndTip": "Kwụọ ụgwọ & Nye Ndu",
-    "unlockedSuccess": "Emeghewo nke ọma"
+    "unlockedSuccess": "Emeghewo nke ọma",
+    "payHint": "Kwụọ ụgwọ site na ihe ọ bụla dị n'obere akpa gị. Ọ ga-aghọ DHB ma meghee ozugbo."
   },
   "walletSetup": {
     "tryBiometricsHint": "Jiri nke a ma ọ bụrụ na ị haziri obere akpa ego a na ekwentị a ma igodo ahụ kwesịrị ịdịlarị ebe a",

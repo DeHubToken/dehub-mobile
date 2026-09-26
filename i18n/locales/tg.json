@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} аз {{chain}} фиристода мешавад…",
     "stageArriving": "Ба Base мерасад, одатан чанд сония…",
     "stageSwap": "DHB дар Uniswap харида мешавад…",
-    "payFailed": "{{symbol}}-ро ба DHB табдил додан нашуд"
+    "payFailed": "{{symbol}}-ро ба DHB табдил додан нашуд",
+    "stagePay": "Пардохт ба DeHub Pay бо {{symbol}}…",
+    "stageDelivering": "DeHub Pay DHB-и шуморо мефиристад…",
+    "payViaDpay": "Ба DeHub Pay пардохт шуд, DHB тақрибан дар 30 сония мерасад",
+    "payViaBridgeDpay": "Ба Base гузаронида шуд ва ба DeHub Pay пардохт шуд, DHB тақрибан дар як дақиқа мерасад"
   },
   "postOptions": {
     "options": "Имконот",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Дар {{symbol}} кам шуд? Мо онро пур мекунем ва баъд мекушоем.",
     "btnSwapping": "Иваз карда истодааст...",
     "payAndTip": "Пардохт ва Туҳфа",
-    "unlockedSuccess": "Бомуваффақият кушода шуд"
+    "unlockedSuccess": "Бомуваффақият кушода шуд",
+    "payHint": "Бо ҳар чизе, ки дар ҳамёнатон ҳаст, пардохт кунед. Он ба DHB табдил ёфта, фавран кушода мешавад."
   },
   "walletSetup": {
     "tryBiometricsHint": "Агар шумо ин ҳамёнро дар ин телефон танзим карда бошед ва калид аллакай дар ин ҷо бошад, инро истифода баред",

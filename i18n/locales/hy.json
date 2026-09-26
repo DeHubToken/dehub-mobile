@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}}-ի ուղարկում {{chain}}-ից…",
     "stageArriving": "Հասնում է Base, սովորաբար մի քանի վայրկյան…",
     "stageSwap": "DHB-ի գնում Uniswap-ում…",
-    "payFailed": "Չհաջողվեց {{symbol}}-ը փոխարկել DHB-ի"
+    "payFailed": "Չհաջողվեց {{symbol}}-ը փոխարկել DHB-ի",
+    "stagePay": "Վճարում DeHub Pay-ին {{symbol}}-ով…",
+    "stageDelivering": "DeHub Pay-ը ուղարկում է ձեր DHB-ն…",
+    "payViaDpay": "Վճարվեց DeHub Pay-ին, DHB-ն կհասնի մոտ 30 վրկ-ում",
+    "payViaBridgeDpay": "Տեղափոխվեց Base և վճարվեց DeHub Pay-ին, DHB-ն կհասնի մոտ մեկ րոպեում"
   },
   "postOptions": {
     "options": "Ընտրանքներ",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Դեֆիցիտ ունե՞ք {{symbol}}-ի։ Մենք կլրացնենք մինչև բացելը։",
     "btnSwapping": "Փոխանակում...",
     "payAndTip": "Վճարել և թեյավճար",
-    "unlockedSuccess": "Հաջողությամբ բացվեց"
+    "unlockedSuccess": "Հաջողությամբ բացվեց",
+    "payHint": "Վճարեք ձեր դրամապանակում եղած ցանկացած միջոցով։ Այն դառնում է DHB և անմիջապես բացվում է։"
   },
   "walletSetup": {
     "tryBiometricsHint": "Օգտագործեք սա, եթե այս դրամապանակը կարգավորել եք այս հեռախոսում, և բանալին արդեն պետք է այստեղ լինի",

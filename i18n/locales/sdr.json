@@ -853,7 +853,11 @@
     "stageBridge": "{{chain}} سے {{symbol}} بھیجت ہئی…",
     "stageArriving": "Base میں پہنچت ہے، اکثر کچھ سیکنڈ لاگیلا…",
     "stageSwap": "Uniswap میں DHB خریدت ہئی…",
-    "payFailed": "{{symbol}} کے DHB میں نی بدل پارلی"
+    "payFailed": "{{symbol}} کے DHB میں نی بدل پارلی",
+    "stagePay": "{{symbol}} سے DeHub Pay کو ادائیگی ہوت ہے…",
+    "stageDelivering": "DeHub Pay توہر DHB بھیجت ہے…",
+    "payViaDpay": "DeHub Pay کو ادا ہوئی گیل، DHB لگ بھگ 30 سیکنڈ میں آئی",
+    "payViaBridgeDpay": "Base پر لے جائے کے DeHub Pay کو ادا ہوئی گیل، DHB لگ بھگ ایک منٹ میں آئی"
   },
   "postOptions": {
     "options": "آپشن",
@@ -4319,7 +4323,8 @@
     "btnSwapping": "تبدیل ہو رہا ہے...",
     "payAndTip": "ادا کریں اور ٹپ دیں",
     "unlockedSuccess": "کامیابی سے ان لاک ہو گیا",
-    "lowTopUp": "{{symbol}} کم ہے؟ ان لاک کرنے سے پہلے ہم اسے بھر دیں گے۔"
+    "lowTopUp": "{{symbol}} کم ہے؟ ان لاک کرنے سے پہلے ہم اسے بھر دیں گے۔",
+    "payHint": "اپن والیٹ میں کونو بھی چیز سے ادا کرو۔ او DHB بن جائی اور تورنتے ان لاک ہوئی جائی۔"
   },
   "walletSetup": {
     "tryBiometricsHint": "ای تب ورتو جب تم ای والٹ ای فون میں بنایا ہو اور کلید پہلے سے یہاں ہونا چاہیے",

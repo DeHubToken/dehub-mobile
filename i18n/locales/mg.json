@@ -853,7 +853,11 @@
     "stageBridge": "Mandefa {{symbol}} avy amin'ny {{chain}}…",
     "stageArriving": "Ho tonga ao amin'ny Base, matetika segondra vitsy…",
     "stageSwap": "Mividy DHB ao amin'ny Uniswap…",
-    "payFailed": "Tsy afaka nanova {{symbol}} ho DHB"
+    "payFailed": "Tsy afaka nanova {{symbol}} ho DHB",
+    "stagePay": "Mandoa amin'ny DeHub Pay amin'ny {{symbol}}…",
+    "stageDelivering": "Mandefa ny DHB-nao ny DeHub Pay…",
+    "payViaDpay": "Voaloa tamin'ny DeHub Pay, tonga ao anatin'ny 30 segondra eo ho eo ny DHB",
+    "payViaBridgeDpay": "Nafindra tany Base ary voaloa tamin'ny DeHub Pay, tonga ao anatin'ny iray minitra eo ho eo ny DHB"
   },
   "postOptions": {
     "options": "Safidy",
@@ -4328,7 +4332,8 @@
     "lowTopUp": "Mena {{symbol}}? Hamafisinay izany alohan'ny hamahana azy.",
     "btnSwapping": "Mifanakalo...",
     "payAndTip": "Mandoa & Manome Vola",
-    "unlockedSuccess": "Voavaha soa aman-tsara"
+    "unlockedSuccess": "Voavaha soa aman-tsara",
+    "payHint": "Mandoava amin'izay rehetra ao amin'ny kitaponao. Lasa DHB izany ary misokatra avy hatrany."
   },
   "walletSetup": {
     "tryBiometricsHint": "Ampiasao ity raha tamin'ity finday ity no nanamboaranao ity kitapo ity ary tokony efa eto ny fanalahidy",

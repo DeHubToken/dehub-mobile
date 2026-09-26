@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} ከ {{chain}} በመላክ ላይ…",
     "stageArriving": "ወደ Base በመድረስ ላይ፣ ብዙውን ጊዜ ጥቂት ሰከንዶች…",
     "stageSwap": "DHB በ Uniswap በመግዛት ላይ…",
-    "payFailed": "{{symbol}} ወደ DHB መቀየር አልተቻለም"
+    "payFailed": "{{symbol}} ወደ DHB መቀየር አልተቻለም",
+    "stagePay": "DeHub Pay በ{{symbol}} በመክፈል ላይ…",
+    "stageDelivering": "DeHub Pay DHBዎን በመላክ ላይ ነው…",
+    "payViaDpay": "ለDeHub Pay ተከፍሏል፣ DHB በ30 ሰከንድ ገደማ ይደርሳል",
+    "payViaBridgeDpay": "ወደ Base ተዛውሮ ለDeHub Pay ተከፍሏል፣ DHB በአንድ ደቂቃ ገደማ ይደርሳል"
   },
   "postOptions": {
     "options": "አማራጮች",
@@ -4335,7 +4339,8 @@
     "lowTopUp": "በ{{symbol}} እጥረት አለብዎት? ከማንሳችን በፊት እንሞላለን።",
     "btnSwapping": "እየተቀያየረ ነው...",
     "payAndTip": "ይክፈሉ እና ጠቃሚ ምክር ይስጡ",
-    "unlockedSuccess": "በስኬት ተከፍቷል"
+    "unlockedSuccess": "በስኬት ተከፍቷል",
+    "payHint": "በቦርሳዎ ውስጥ ባለ ማንኛውም ነገር ይክፈሉ። ወደ DHB ይቀየራል እና ወዲያውኑ ይከፈታል።"
   },
   "walletSetup": {
     "tryBiometricsHint": "ይህን ቦርሳ በዚህ ስልክ ላይ ካዘጋጁት እና ቁልፉ አስቀድሞ እዚህ መሆን ካለበት ይህን ይጠቀሙ",

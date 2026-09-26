@@ -853,7 +853,11 @@
     "stageBridge": "{{chain}}から{{symbol}}を送信中…",
     "stageArriving": "Baseに到着中、通常は数秒です…",
     "stageSwap": "UniswapでDHBを購入中…",
-    "payFailed": "{{symbol}}をDHBに変換できませんでした"
+    "payFailed": "{{symbol}}をDHBに変換できませんでした",
+    "stagePay": "{{symbol}}でDeHub Payに支払い中…",
+    "stageDelivering": "DeHub PayがDHBを送信中…",
+    "payViaDpay": "DeHub Payに支払い済み、DHBは約30秒で到着",
+    "payViaBridgeDpay": "Baseに移動してDeHub Payに支払い済み、DHBは約1分で到着"
   },
   "postOptions": {
     "options": "オプション",
@@ -4356,7 +4360,8 @@
     "lowTopUp": "{{symbol}}が足りませんか？解除前に補充します。",
     "btnSwapping": "交換中…",
     "payAndTip": "支払い＆チップ",
-    "unlockedSuccess": "正常に解除されました"
+    "unlockedSuccess": "正常に解除されました",
+    "payHint": "ウォレット内のどのトークンでも支払えます。DHBに交換され、すぐにアンロックされます。"
   },
   "walletSetup": {
     "tryBiometricsHint": "このウォレットをこの端末で設定し、鍵がすでにここにあるはずの場合に使用してください",

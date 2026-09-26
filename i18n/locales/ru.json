@@ -853,7 +853,11 @@
     "stageBridge": "Отправляем {{symbol}} из {{chain}}…",
     "stageArriving": "Зачисление в Base, обычно за несколько секунд…",
     "stageSwap": "Покупаем DHB на Uniswap…",
-    "payFailed": "Не удалось конвертировать {{symbol}} в DHB"
+    "payFailed": "Не удалось конвертировать {{symbol}} в DHB",
+    "stagePay": "Оплата DeHub Pay в {{symbol}}…",
+    "stageDelivering": "DeHub Pay отправляет ваши DHB…",
+    "payViaDpay": "Оплачено через DeHub Pay, DHB поступят примерно через 30 с",
+    "payViaBridgeDpay": "Перенесено в Base и оплачено через DeHub Pay, DHB поступят примерно через минуту"
   },
   "postOptions": {
     "options": "Опции",
@@ -4358,7 +4362,8 @@
     "lowTopUp": "Не хватает {{symbol}}? Мы пополним баланс перед разблокировкой.",
     "btnSwapping": "Обмен...",
     "payAndTip": "Оплатить и оставить чаевые",
-    "unlockedSuccess": "Успешно разблокировано"
+    "unlockedSuccess": "Успешно разблокировано",
+    "payHint": "Платите любым активом из кошелька. Он превратится в DHB, и контент откроется сразу."
   },
   "walletSetup": {
     "tryBiometricsHint": "Используйте это, если вы настроили этот кошелёк на этом телефоне и ключ уже должен быть здесь",

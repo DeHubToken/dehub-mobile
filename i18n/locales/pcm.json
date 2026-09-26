@@ -853,7 +853,11 @@
     "stageBridge": "E dey send {{symbol}} from {{chain}}…",
     "stageArriving": "E dey land for Base, e no dey pass few seconds…",
     "stageSwap": "E dey buy DHB for Uniswap…",
-    "payFailed": "We no fit change {{symbol}} to DHB"
+    "payFailed": "We no fit change {{symbol}} to DHB",
+    "stagePay": "E dey pay DeHub Pay with {{symbol}}…",
+    "stageDelivering": "DeHub Pay dey send your DHB…",
+    "payViaDpay": "Don pay DeHub Pay, DHB go land in like 30s",
+    "payViaBridgeDpay": "Don move am go Base and pay DeHub Pay, DHB go land in like one minute"
   },
   "postOptions": {
     "options": "Options",
@@ -4287,7 +4291,8 @@
     "payAndTip": "Pay & Tip",
     "unlockedSuccess": "E don unlock",
     "aboutToSpend": "You wan spend <accent>{{amount}} {{symbol}}</accent> to unlock this video.",
-    "lowTopUp": "{{symbol}} don low? We go top you up before we unlock am."
+    "lowTopUp": "{{symbol}} don low? We go top you up before we unlock am.",
+    "payHint": "Pay with anything wey dey your wallet. E go turn DHB and open sharp sharp."
   },
   "walletSetup": {
     "tryBiometricsHint": "Use dis one if na dis phone you set up di wallet and di key suppose don dey here already",

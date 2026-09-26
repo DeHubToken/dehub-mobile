@@ -854,7 +854,11 @@
     "stageBridge": "Stuur {{symbol}} vanaf {{chain}}…",
     "stageArriving": "Kom aan op Base, gewoonlik 'n paar sekondes…",
     "stageSwap": "Koop DHB op Uniswap…",
-    "payFailed": "Kon nie {{symbol}} na DHB omskakel nie"
+    "payFailed": "Kon nie {{symbol}} na DHB omskakel nie",
+    "stagePay": "Betaal DeHub Pay met {{symbol}}…",
+    "stageDelivering": "DeHub Pay stuur jou DHB…",
+    "payViaDpay": "Aan DeHub Pay betaal, DHB kom binne sowat 30s aan",
+    "payViaBridgeDpay": "Na Base geskuif en aan DeHub Pay betaal, DHB kom binne sowat 'n minuut aan"
   },
   "postOptions": {
     "options": "Opsies",
@@ -4338,7 +4342,8 @@
     "lowTopUp": "Laag op {{symbol}}? Ons sal jou aanvul voordat ons ontsluit.",
     "btnSwapping": "Ruil...",
     "payAndTip": "Betaal & Wenke",
-    "unlockedSuccess": "Suksesvol ontsluit"
+    "unlockedSuccess": "Suksesvol ontsluit",
+    "payHint": "Betaal met enigiets in jou beursie. Dit word DHB en ontsluit dadelik."
   },
   "walletSetup": {
     "tryBiometricsHint": "Gebruik dit as jy hierdie beursie op hierdie foon opgestel het en die sleutel reeds hier behoort te wees",

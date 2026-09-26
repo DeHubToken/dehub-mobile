@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} saatmine võrgust {{chain}}…",
     "stageArriving": "Jõuab Base'i, tavaliselt mõne sekundiga…",
     "stageSwap": "DHB ostmine Uniswapis…",
-    "payFailed": "{{symbol}} ei õnnestunud DHB-ks teisendada"
+    "payFailed": "{{symbol}} ei õnnestunud DHB-ks teisendada",
+    "stagePay": "Makse DeHub Payle vahendiga {{symbol}}…",
+    "stageDelivering": "DeHub Pay saadab sinu DHB-d…",
+    "payViaDpay": "Makstud DeHub Payle, DHB jõuab kohale umbes 30 s pärast",
+    "payViaBridgeDpay": "Viidud Base'i ja makstud DeHub Payle, DHB jõuab kohale umbes minuti pärast"
   },
   "postOptions": {
     "options": "Valikud",
@@ -4305,7 +4309,8 @@
     "lowTopUp": "Jäänud on vähe {{symbol}}? Täiendame enne avamist.",
     "btnSwapping": "Vahetan...",
     "payAndTip": "Maksa ja jäta jootraha",
-    "unlockedSuccess": "Edukaelt avatud"
+    "unlockedSuccess": "Edukaelt avatud",
+    "payHint": "Maksa ükskõik millega oma rahakotis. See muutub DHB-ks ja avab kohe."
   },
   "walletSetup": {
     "tryBiometricsHint": "Kasuta seda, kui seadistasid selle rahakoti selles telefonis ja võti peaks juba siin olema",

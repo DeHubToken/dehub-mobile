@@ -889,7 +889,11 @@
     "stageBridge": "{{chain}} তুন {{symbol}} পাঠাইর…",
     "stageArriving": "Base-ত আইয়ের, সাধারণত কয়েক সেকেন্ড…",
     "stageSwap": "Uniswap-ত DHB কিনির…",
-    "payFailed": "{{symbol}} রে DHB-ত বদলাই ন পারির"
+    "payFailed": "{{symbol}} রে DHB-ত বদলাই ন পারির",
+    "stagePay": "{{symbol}} দি DeHub Pay-ত পেমেন্ট গরির…",
+    "stageDelivering": "DeHub Pay অনর DHB পাঠাইর…",
+    "payViaDpay": "DeHub Pay-ত পেমেন্ট হই গেইয়ে, DHB মোটামুটি 30 সেকেন্ডত আইবো",
+    "payViaBridgeDpay": "Base-ত সরাই DeHub Pay-ত পেমেন্ট হই গেইয়ে, DHB মোটামুটি এক মিনিটত আইবো"
   },
   "postOptions": {
     "options": "অপশন",
@@ -4414,7 +4418,8 @@
     "aboutToSpend": "আপনি এই ভিডিওটি আনলক করতে <accent>{{amount}} {{symbol}}</accent> খরচ করতে চলেছেন।",
     "tokenBalance": "টোকেন ব্যালেন্স",
     "lowTopUp": "{{symbol}} কম? আনলক করার আগে আমরা আপনাকে টপ আপ করব।",
-    "payAndTip": "পেমেন্ট করুন ও টিপ দিন"
+    "payAndTip": "পেমেন্ট করুন ও টিপ দিন",
+    "payHint": "অনর ওয়ালেটত যিয়ান আছে তা দি পেমেন্ট গরন। ইবা DHB হই যাইবো আর লগে লগে আনলক হইবো।"
   },
   "walletSetup": {
     "tryBiometricsHint": "এই ওয়ালেটটা এই ফোনতই বানাই থাকিলে আর কী আগেত্তুন এড়ে থাকার কথা অইলে ইটা ব্যবহার গরো",

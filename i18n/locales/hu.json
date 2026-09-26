@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}} küldése innen: {{chain}}…",
     "stageArriving": "Érkezés a Base-re, általában pár másodperc…",
     "stageSwap": "DHB vásárlása a Uniswapon…",
-    "payFailed": "Nem sikerült a(z) {{symbol}} DHB-re váltása"
+    "payFailed": "Nem sikerült a(z) {{symbol}} DHB-re váltása",
+    "stagePay": "Fizetés a DeHub Pay felé ezzel: {{symbol}}…",
+    "stageDelivering": "A DeHub Pay küldi a DHB-jét…",
+    "payViaDpay": "Kifizetve a DeHub Pay felé, a DHB kb. 30 mp múlva érkezik",
+    "payViaBridgeDpay": "Áthelyezve a Base-re és kifizetve a DeHub Pay felé, a DHB kb. egy perc múlva érkezik"
   },
   "postOptions": {
     "options": "Lehetőségek",
@@ -4309,7 +4313,8 @@
     "lowTopUp": "Alacsony az {{symbol}}-od? Feltöltjük, mielőtt feloldanánk.",
     "btnSwapping": "Csere...",
     "payAndTip": "Fizetés és borravaló",
-    "unlockedSuccess": "Sikeresen feloldva"
+    "unlockedSuccess": "Sikeresen feloldva",
+    "payHint": "Fizessen bármivel a pénztárcájából. DHB lesz belőle, és azonnal feloldja a tartalmat."
   },
   "walletSetup": {
     "tryBiometricsHint": "Ezt használd, ha ezt a tárcát ezen a telefonon állítottad be, és a kulcsnak már itt kellene lennie",

@@ -853,7 +853,11 @@
     "stageBridge": "{{symbol}}-ის გაგზავნა {{chain}}-დან…",
     "stageArriving": "Base-ზე ჩამოდის, ჩვეულებრივ რამდენიმე წამში…",
     "stageSwap": "DHB-ის ყიდვა Uniswap-ზე…",
-    "payFailed": "{{symbol}}-ის DHB-ში კონვერტაცია ვერ მოხერხდა"
+    "payFailed": "{{symbol}}-ის DHB-ში კონვერტაცია ვერ მოხერხდა",
+    "stagePay": "DeHub Pay-ში გადახდა {{symbol}}-ით…",
+    "stageDelivering": "DeHub Pay აგზავნის თქვენს DHB-ს…",
+    "payViaDpay": "გადახდილია DeHub Pay-ში, DHB მოვა დაახლოებით 30 წამში",
+    "payViaBridgeDpay": "გადატანილია Base-ზე და გადახდილია DeHub Pay-ში, DHB მოვა დაახლოებით ერთ წუთში"
   },
   "postOptions": {
     "options": "პარამეტრები",
@@ -4323,7 +4327,8 @@
     "lowTopUp": "გაქვთ {{symbol}}-ის ნაკლებობა? შევსებას მოგცემთ განბლოკვამდე.",
     "btnSwapping": "გაცვლა...",
     "payAndTip": "გადახდა და რჩევა",
-    "unlockedSuccess": "წარმატებით განბლოკილი"
+    "unlockedSuccess": "წარმატებით განბლოკილი",
+    "payHint": "გადაიხადეთ თქვენს საფულეში არსებული ნებისმიერი აქტივით. ის DHB-ად გადაიქცევა და მაშინვე გაიხსნება."
   },
   "walletSetup": {
     "tryBiometricsHint": "გამოიყენეთ, თუ ეს საფულე ამ ტელეფონზე შექმენით და გასაღები უკვე აქ უნდა იყოს",
