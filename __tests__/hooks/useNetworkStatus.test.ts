@@ -65,6 +65,41 @@ describe('hooks/useNetworkStatus', () => {
     expect(result.current.hasInternet).toBe(true);
   });
 
+  it('lets boot continue when NetInfo never resolves', async () => {
+    jest.useFakeTimers();
+    mockFetch.mockReturnValue(new Promise(() => {}));
+    const { result } = renderHook(() => useNetworkStatus());
+
+    act(() => {
+      jest.advanceTimersByTime(5000);
+    });
+
+    expect(result.current.isConnected).toBe(true);
+    expect(result.current.hasInternet).toBe(true);
+
+    act(() => {
+      subscriberCallback?.({ isConnected: false, isInternetReachable: false });
+      jest.advanceTimersByTime(4000);
+    });
+    expect(result.current.hasInternet).toBe(false);
+  });
+
+  it('does not let a late initial fetch replace a newer network reading', async () => {
+    let resolveFetch: (state: any) => void = () => {};
+    mockFetch.mockReturnValue(new Promise((resolve) => { resolveFetch = resolve; }));
+    const { result } = renderHook(() => useNetworkStatus());
+
+    act(() => {
+      subscriberCallback?.({ isConnected: true, isInternetReachable: true });
+    });
+    await act(async () => {
+      resolveFetch({ isConnected: false, isInternetReachable: false });
+      await Promise.resolve();
+    });
+
+    expect(result.current.hasInternet).toBe(true);
+  });
+
   it('checkConnection triggers manual fetch', async () => {
     const { result } = renderHook(() => useNetworkStatus());
 
