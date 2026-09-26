@@ -55,7 +55,7 @@ import { loadHueState } from "./libs/audioHueState";
 import { useNavigationPersistence } from "./hooks/useNavigationPersistence";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { I18nextProvider } from "react-i18next";
-import i18n from "./i18n";
+import i18n, { i18nReady } from "./i18n";
 import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { applyOtaUpdateIfReady, checkForOtaUpdate } from "./libs/otaUpdates";
 import { createLogger } from "./libs/logger";
@@ -108,6 +108,13 @@ export default function App() {
   });
   const fontsSettled = fontsLoaded || !!fontError;
 
+  // The saved language is read from a local asset file. i18nReady never
+  // rejects and is capped, so this only ever holds the preloader briefly.
+  const [languageSettled, setLanguageSettled] = useState(false);
+  useEffect(() => {
+    void i18nReady.then(() => setLanguageSettled(true));
+  }, []);
+
   // Exo itself is installed over the JSX runtime from index.ts, before any
   // element exists; all that is left here is holding the splash until the TTFs
   // have actually registered, so nothing paints in the fallback face first.
@@ -154,7 +161,8 @@ export default function App() {
   // and network resolve in parallel with the provider tree, which now mounts
   // immediately and does its boot work hidden behind the preloader instead of
   // serialised ahead of it.
-  const staged = fontsSettled && hasInternet !== null && isConnected !== null;
+  const staged =
+    fontsSettled && languageSettled && hasInternet !== null && isConnected !== null;
 
   return (
     <AppThemeProvider>
