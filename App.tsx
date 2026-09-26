@@ -284,6 +284,8 @@ const REVEAL_FADE_MS = 220;
 // A shell that mounts but never reports ready (deep-link edge case, a thrown
 // navigator, a layout pass that never lands) must not hold the curtain forever.
 const REVEAL_FAILSAFE_MS = 5000;
+// Long enough that a slow network boot is not reported as a stall.
+const BOOT_STALL_MS = 15000;
 
 /** The same navigation state as a fresh one: every route gets a new key, so every screen remounts. */
 function withFreshRouteKeys(state: NavigationState): any {
@@ -398,6 +400,24 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
       if (settleTimer) clearTimeout(settleTimer);
     };
   }, [staged, navReady, beginReveal]);
+
+  // A launch that never gets past the preloader reports nothing else — every
+  // other log path lives in screens it never reaches — so one still up after
+  // BOOT_STALL_MS says which gate it is waiting on. Read through a ref so the
+  // single timer sees the latest values, not the ones from the first render.
+  const bootGatesRef = useRef({ staged, isBootLoading, isReady, settled, navReady, theme });
+  bootGatesRef.current = { staged, isBootLoading, isReady, settled, navReady, theme };
+  useEffect(() => {
+    const startedAt = Date.now();
+    const timer = setTimeout(() => {
+      if (revealingRef.current) return;
+      logger.error("Boot stalled behind the preloader", {
+        ...bootGatesRef.current,
+        elapsedMs: Date.now() - startedAt,
+      });
+    }, BOOT_STALL_MS);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Failsafe. Armed only once the navigator is mounted, so what it uncovers is
   // always the real app. Auth boot no longer waits on the network (a saved
