@@ -8,6 +8,7 @@ import { getNFT, replacePostImage, addPostImages, getPostImageAllowance } from '
 import { ensureMediaLibraryPermission } from '../../libs/permissions.util';
 import { buildFeedImageUrls, toastError, toastSuccess } from '../../libs';
 import { MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from '../../libs/post-image-allowance';
+import { prepareImageForUpload } from '../../libs/assets.util';
 
 export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
   tokenId: number | string; disabled: boolean; onBusyChange: (busy: boolean) => void;
@@ -43,7 +44,7 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
       if (!permission.granted) { toastError(t('editPost.mediaPermission')); return; }
       const picked = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, quality: 1 });
       if (picked.canceled || !picked.assets?.[0]) return;
-      const image = picked.assets[0];
+      const image = await prepareImageForUpload(picked.assets[0]);
       if ((image.fileSize ?? 0) > MAX_IMAGE_UPLOAD_BYTES) { toastError(t('editPost.imageTooLarge')); return; }
       const updated = await replacePostImage(tokenId, index, {
         uri: image.uri, name: image.fileName || 'replacement.jpg', type: image.mimeType || 'image/jpeg',
@@ -71,15 +72,16 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
         allowsMultipleSelection: true, selectionLimit: imageLimit - images.length,
       });
       if (picked.canceled || !picked.assets?.length) return;
-      if (images.length + picked.assets.length > imageLimit) { toastError(t('editPost.imageLimitTier', { count: imageLimit })); return; }
-      if (picked.assets.some(image => (image.fileSize ?? 0) > MAX_IMAGE_UPLOAD_BYTES)) { toastError(t('editPost.imagesTooLarge')); return; }
-      const totalBytes = (await Promise.all(picked.assets.map(async image => {
+      const assets = await Promise.all(picked.assets.map(image => prepareImageForUpload(image)));
+      if (images.length + assets.length > imageLimit) { toastError(t('editPost.imageLimitTier', { count: imageLimit })); return; }
+      if (assets.some(image => (image.fileSize ?? 0) > MAX_IMAGE_UPLOAD_BYTES)) { toastError(t('editPost.imagesTooLarge')); return; }
+      const totalBytes = (await Promise.all(assets.map(async image => {
         if (image.fileSize != null) return image.fileSize;
         const info = await FileSystem.getInfoAsync(image.uri).catch(() => null);
         return (info as any)?.size ?? 0;
       }))).reduce((total, size) => total + size, 0);
       if (totalBytes > MAX_REQUEST_IMAGE_BYTES) { toastError(t('editPost.imagesTotalTooLarge')); return; }
-      const updated = await addPostImages(tokenId, picked.assets.map(image => ({
+      const updated = await addPostImages(tokenId, assets.map(image => ({
         uri: image.uri, name: image.fileName || 'image.jpg', type: image.mimeType || 'image/jpeg',
       })));
       setImages(updated);

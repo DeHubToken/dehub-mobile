@@ -54,6 +54,16 @@ export const FEED_BUFFER_OPTIONS: BufferOptions = {
 };
 
 /**
+ * The muted, looping preview on a shorts grid tile. It is a glance, not a
+ * watch, and a tap opens the full player, so a few seconds is plenty.
+ */
+export const GRID_PREVIEW_BUFFER_OPTIONS: BufferOptions = {
+  ...FEED_BUFFER_OPTIONS,
+  preferredForwardBufferDuration: 5,
+  maxBufferBytes: 4 * 1024 * 1024,
+};
+
+/**
  * The full-screen, TV and mini-player surfaces, where one player has the screen
  * to itself and a stall is far more annoying than the memory is expensive.
  */

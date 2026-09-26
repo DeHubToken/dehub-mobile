@@ -20,7 +20,7 @@ import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { useUser } from "../context/AuthContext";
 import { toastError, toastSuccess } from "../libs/toast";
 import { createLogger } from "../libs/logger";
-import env from "../config/env";
+import { getTokenPrices } from "../libs/dhbPrice";
 import {
   contentTypeForExtension,
   fileExtension,
@@ -112,14 +112,7 @@ function useWallet(): string | null {
 export function useTokenPrices() {
   return useQuery({
     queryKey: ["token-prices"],
-    queryFn: async () => {
-      const res = await fetch(`${env.SUPABASE_URL}/functions/v1/get-dhb-price`, {
-        headers: { apikey: env.SUPABASE_PUBLISHABLE_KEY },
-      });
-      if (!res.ok) throw new Error("Failed to fetch prices");
-      const data = await res.json();
-      return (data?.prices ?? {}) as Record<string, number>;
-    },
+    queryFn: getTokenPrices,
     staleTime: 60_000,
   });
 }

@@ -44,6 +44,15 @@ const RECORDING_EXT = "aac";
 const RECORDING_MIME = "audio/aac";
 const RECORDING_OBJECT = `recording.${RECORDING_EXT}`;
 
+/** Every column AudioSpace declares; the stage lists never need the rest. */
+const SPACE_COLUMNS =
+  "id,host_wallet_address,host_username,host_avatar,title,description,status,channel_name," +
+  "listener_count,speaker_count,started_at,ended_at,created_at,recording_url,scheduled_at," +
+  "cover_image_url,short_id";
+
+/** Trailing debounce on list refreshes driven by realtime status changes. */
+const SPACES_REFRESH_DEBOUNCE_MS = 2000;
+
 export interface AudioSpace {
   id: string;
   host_wallet_address: string;
@@ -456,20 +465,20 @@ export function useStages(): UseStagesReturn {
     try {
       const { data, error } = await supabase
         .from("audio_spaces")
-        .select("*")
+        .select(SPACE_COLUMNS)
         .eq("status", "live")
         .order("started_at", { ascending: false });
       if (error) throw error;
-      setLiveSpaces((data as AudioSpace[]) || []);
+      setLiveSpaces((data as unknown as AudioSpace[]) || []);
 
       const { data: endedData, error: endedError } = await supabase
         .from("audio_spaces")
-        .select("*")
+        .select(SPACE_COLUMNS)
         .eq("status", "ended")
         .order("ended_at", { ascending: false })
         .limit(20);
       if (endedError) throw endedError;
-      setPastSpaces((endedData as AudioSpace[]) || []);
+      setPastSpaces((endedData as unknown as AudioSpace[]) || []);
 
       // Upcoming, soonest first. Stages whose time came and went without the
       // host starting them drop off the shelf after a grace period rather than
@@ -478,12 +487,12 @@ export function useStages(): UseStagesReturn {
       const cutoff = new Date(Date.now() - SCHEDULED_GRACE_MS).toISOString();
       const { data: scheduledData, error: scheduledError } = await supabase
         .from("audio_spaces")
-        .select("*")
+        .select(SPACE_COLUMNS)
         .eq("status", "scheduled")
         .gte("scheduled_at", cutoff)
         .order("scheduled_at", { ascending: true });
       if (scheduledError) throw scheduledError;
-      setScheduledSpaces((scheduledData as AudioSpace[]) || []);
+      setScheduledSpaces((scheduledData as unknown as AudioSpace[]) || []);
     } catch (err) {
       log.error("Error fetching stages:", err);
     }
@@ -1664,17 +1673,66 @@ export function useStages(): UseStagesReturn {
 
   // ── Initial fetch + live spaces realtime ──────────────────────────────────
 
+  // Status of every stage the lists hold, so a realtime UPDATE can tell a
+  // status change (the lists need re-querying) from a headcount tick (patch the
+  // row in place). listener_count moves on every join and leave, and treating
+  // those as list changes re-ran three queries per event on every client.
+  const knownStatusRef = useRef<Map<string, AudioSpace["status"]>>(new Map());
+  useEffect(() => {
+    const m = new Map<string, AudioSpace["status"]>();
+    for (const list of [liveSpaces, pastSpaces, scheduledSpaces]) {
+      for (const sp of list) m.set(sp.id, sp.status);
+    }
+    knownStatusRef.current = m;
+  }, [liveSpaces, pastSpaces, scheduledSpaces]);
+
   useEffect(() => {
     refreshSpaces();
 
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const scheduleRefresh = () => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        timer = null;
+        refreshSpaces();
+      }, SPACES_REFRESH_DEBOUNCE_MS);
+    };
+
+    const patch = (row: Partial<AudioSpace> & { id: string }) => {
+      const apply = (prev: AudioSpace[]) =>
+        prev.some((sp) => sp.id === row.id)
+          ? prev.map((sp) => (sp.id === row.id ? { ...sp, ...row } : sp))
+          : prev;
+      setLiveSpaces(apply);
+      setScheduledSpaces(apply);
+      setPastSpaces(apply);
+    };
+
     const listChan = supabase
       .channel("live-spaces-list")
-      .on("postgres_changes", { event: "*", schema: "public", table: "audio_spaces" }, () => {
-        refreshSpaces();
+      .on("postgres_changes", { event: "*", schema: "public", table: "audio_spaces" }, (payload: any) => {
+        if (payload?.eventType === "UPDATE") {
+          const next = payload.new as (Partial<AudioSpace> & { id?: string }) | undefined;
+          const id = next?.id;
+          // old carries status only under REPLICA IDENTITY FULL; otherwise
+          // fall back to the status the lists last saw for this row.
+          const before = (payload.old as Partial<AudioSpace> | undefined)?.status
+            ?? (id ? knownStatusRef.current.get(id) : undefined);
+          if (id && next?.status && before === next.status) {
+            patch(next as Partial<AudioSpace> & { id: string });
+            return;
+          }
+          // A non-status update to a row none of the lists hold.
+          if (id && next?.status && before === undefined && next.status === "ended") return;
+        }
+        scheduleRefresh();
       })
       .subscribe();
 
-    return () => { supabase.removeChannel(listChan); };
+    return () => {
+      if (timer) clearTimeout(timer);
+      supabase.removeChannel(listChan);
+    };
   }, [refreshSpaces]);
 
   // Memoised because StageProvider hands this straight to its context value and

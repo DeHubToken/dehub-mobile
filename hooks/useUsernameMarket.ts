@@ -82,7 +82,7 @@ export function useUsernameMarketConfig() {
     queryKey: ['username-market-config'],
     queryFn: () => usernameMarketService.config(),
     staleTime: 30 * 1000,
-    refetchInterval: focused ? 30 * 1000 : false,
+    refetchInterval: focused ? 60 * 1000 : false,
     gcTime: 24 * 60 * 60 * 1000,
   });
 }
@@ -102,7 +102,7 @@ export function useBrowseUsernames(params: BrowseParams) {
     // flashing an empty state between keystrokes.
     placeholderData: keepPreviousData,
     staleTime: 30 * 1000,
-    refetchInterval: focused ? 30 * 1000 : false,
+    refetchInterval: focused ? 60 * 1000 : false,
   });
 }
 
@@ -113,7 +113,7 @@ export function useMyUsernameMarket(enabled: boolean) {
     queryFn: () => usernameMarketService.mine(),
     enabled,
     staleTime: 30 * 1000,
-    refetchInterval: focused ? 30 * 1000 : false,
+    refetchInterval: focused ? 60 * 1000 : false,
   });
 }
 
