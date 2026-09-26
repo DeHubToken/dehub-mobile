@@ -42,6 +42,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon, { type IconName } from '../ui/Icon';
 import { useJobQuote, useJobPayment, useFreeImages } from '../../hooks/useAiPayment';
+import { useYieldToWalletUnlock } from '../../hooks/useYieldToWalletUnlock';
 import { formatDhb, indicativeDhb, withMarkup } from '../../config/ai-models.constants';
 import type { AiJobKind } from '../../services/ai.service';
 import { ScreenNames } from '../../navigation/ScreenNames';
@@ -161,6 +162,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const yielded = useYieldToWalletUnlock(!isFullyClosed);
 
   useEffect(() => {
     if (visible) {
@@ -266,7 +268,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
 
   return (
     <Modal
-      visible={!isFullyClosed}
+      visible={!isFullyClosed && !yielded}
       transparent
       animationType="none"
       statusBarTranslucent

@@ -80,6 +80,7 @@ import { haptic } from "../../libs/haptics";
 import TipPayWith, { tipStageLabel } from "./TipPayWith";
 import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
 import { fundingErrorText } from "../../libs/tip-funding-error";
+import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -242,6 +243,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   }));
 
   const { t } = useTranslation();
+  const yielded = useYieldToWalletUnlock(visible);
 
   // ── Tip state ────────────────────────────────────────────────────────────
   const isLocked = typeof lockedAmount === "number" && lockedAmount > 0;
@@ -587,7 +589,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
 
   return (
     <Modal
-      visible={visible}
+      visible={visible && !yielded}
       transparent
       animationType="none"
       statusBarTranslucent

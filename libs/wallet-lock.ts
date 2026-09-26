@@ -36,6 +36,65 @@ let inFlight: Promise<boolean> | null = null;
 let refusal: string | null = null;
 
 /**
+ * Every sheet in this app is its own native modal window, and the unlock
+ * sheet is mounted once at the root. When a tip, gift or checkout sheet raises
+ * the prompt, the unlock sheet opens behind the sheet that asked for it, so
+ * tapping Send looks like it did nothing.
+ *
+ * So an open sheet steps aside while the prompt is up and comes back once it
+ * is answered, with its state intact. Sheets opt in with
+ * useYieldToWalletUnlock; the host brackets the prompt with
+ * openWalletUnlockPrompt / closeWalletUnlockPrompt.
+ */
+let promptOpen = false;
+let yieldingSheets = 0;
+const promptListeners = new Set<(open: boolean) => void>();
+// Long enough for a native modal to finish dismissing: iOS will not present
+// one window while another is still animating away.
+const MODAL_HANDOFF_MS = 350;
+
+function setPromptOpen(open: boolean): void {
+  if (promptOpen === open) return;
+  promptOpen = open;
+  promptListeners.forEach((fn) => fn(open));
+}
+
+export function isWalletUnlockPromptOpen(): boolean {
+  return promptOpen;
+}
+
+export function subscribeWalletUnlockPrompt(fn: (open: boolean) => void): () => void {
+  promptListeners.add(fn);
+  return () => {
+    promptListeners.delete(fn);
+  };
+}
+
+/** Counts a visible sheet that will hide itself while the prompt is up. */
+export function registerYieldingSheet(): () => void {
+  yieldingSheets += 1;
+  let released = false;
+  return () => {
+    if (released) return;
+    released = true;
+    yieldingSheets -= 1;
+  };
+}
+
+/** Hide any open sheet, and wait for it to be gone before the prompt shows. */
+export async function openWalletUnlockPrompt(): Promise<void> {
+  const hadSheets = yieldingSheets > 0;
+  setPromptOpen(true);
+  if (hadSheets) await new Promise<void>((resolve) => setTimeout(resolve, MODAL_HANDOFF_MS));
+}
+
+/** Bring the sheets back once the prompt itself has finished closing. */
+export function closeWalletUnlockPrompt(): void {
+  if (!promptOpen) return;
+  setTimeout(() => setPromptOpen(false), MODAL_HANDOFF_MS);
+}
+
+/**
  * Why the last unlock came back false, in the user's words — set by the host
  * right before it returns false, read once by whoever throws the error. Every
  * message keeps the words "wallet is locked" so isWalletLockedError still

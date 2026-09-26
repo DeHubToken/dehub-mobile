@@ -43,6 +43,7 @@ import {
 } from "../../hooks/useStreamShopping";
 import type { StreamProduct, LiveQuote } from "../../hooks/useStreamShopping";
 import { useERC20Contract } from "../../hooks/use-web3";
+import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 import { writeContractAA } from "../../libs/aa.write";
 import { DHB_ADDRESSESS, ChainId } from "../../config/constants";
 import { useUser } from "../../context/AuthContext";
@@ -131,6 +132,7 @@ export function CheckoutSheet({
   onClose: () => void;
 }) {
   const { t } = useTranslation();
+  const yielded = useYieldToWalletUnlock(visible);
   const user = useUser() as any;
   const wallet = (user?.walletAddress || user?.address || null) as string | null;
   const dhbAddress = DHB_ADDRESSESS[ChainId.BASE_MAINNET];
@@ -225,7 +227,7 @@ export function CheckoutSheet({
   };
 
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+    <Modal visible={visible && !yielded} transparent animationType="slide" onRequestClose={onClose}>
       {/* The shipping and note inputs sit near the bottom of the sheet; without
           this the keyboard covered them on both platforms (edge-to-edge Android
           ignores adjustResize, iOS never resizes a modal window). */}
