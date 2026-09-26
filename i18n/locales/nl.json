@@ -5412,7 +5412,12 @@
     "videoFile": "Videobestand",
     "uploadingPercent": "Uploaden… {{percent}}%",
     "replaceVideoFile": "Videobestand vervangen",
-    "replaceVideoHint": "Behoudt de link, weergaven en reacties van dit bericht. Het oude bestand wordt afgespeeld totdat het nieuwe bestand klaar is met verwerken."
+    "replaceVideoHint": "Behoudt de link, weergaven en reacties van dit bericht. Het oude bestand wordt afgespeeld totdat het nieuwe bestand klaar is met verwerken.",
+    "coverTitle": "Omslag",
+    "coverHint": "Kies een frame of upload een afbeelding. Wordt direct opgeslagen.",
+    "coverUpload": "Omslagafbeelding uploaden",
+    "coverSaved": "Omslag bijgewerkt",
+    "coverFailed": "Kon de omslag niet wijzigen"
   },
   "player": {
     "openSettings": "Instellingen openen",

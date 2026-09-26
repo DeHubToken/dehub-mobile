@@ -5330,7 +5330,12 @@
     "uploadingPercent": "Nahrávanie… {{percent}}%",
     "replaceVideoFile": "Nahradiť video súbor",
     "replaceVideoHint": "Zachováva odkaz, zobrazenia a komentáre k tomuto príspevku. Starý súbor sa prehráva, kým sa nový spracuje.",
-    "replaceImageN": "Nahradiť obrázok {{n}}"
+    "replaceImageN": "Nahradiť obrázok {{n}}",
+    "coverTitle": "Obálka",
+    "coverHint": "Vyberte snímku alebo nahrajte obrázok. Uloží sa hneď.",
+    "coverUpload": "Nahrať obrázok obálky",
+    "coverSaved": "Obálka aktualizovaná",
+    "coverFailed": "Obálku sa nepodarilo zmeniť"
   },
   "player": {
     "openSettings": "Otvoriť nastavenia",

@@ -5018,7 +5018,12 @@
     "videoFile": "Pelê vîdyoyê",
     "uploadingPercent": "Barkirin… {{percent}}%",
     "replaceVideoFile": "Pelê vîdyoyê biguherîne",
-    "replaceVideoHint": "Girêdan, dîtin û şîroveyên vê postê diparêze. Pelê kevin heta ku pêvajoykirina pelê nû biqede tê lîstin."
+    "replaceVideoHint": "Girêdan, dîtin û şîroveyên vê postê diparêze. Pelê kevin heta ku pêvajoykirina pelê nû biqede tê lîstin.",
+    "coverTitle": "Berg",
+    "coverHint": "Çarçoveyekê hilbijêre an wêneyek bar bike. Yekser tê tomarkirin.",
+    "coverUpload": "Wêneyê bergê bar bike",
+    "coverSaved": "Berg hate nûkirin",
+    "coverFailed": "Berg nehat guhertin"
   },
   "player": {
     "openSettings": "Mîhengan veke",

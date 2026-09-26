@@ -5226,7 +5226,12 @@
     "videoFile": "Videofil",
     "uploadingPercent": "Overfører… {{percent}}%",
     "replaceVideoFile": "Erstat videofil",
-    "replaceVideoHint": "Beholder dette opslags link, visninger og kommentarer. Den gamle fil afspilles, indtil den nye er færdigbehandlet."
+    "replaceVideoHint": "Beholder dette opslags link, visninger og kommentarer. Den gamle fil afspilles, indtil den nye er færdigbehandlet.",
+    "coverTitle": "Forside",
+    "coverHint": "Vælg et billede fra videoen eller upload et billede. Gemmes med det samme.",
+    "coverUpload": "Upload et forsidebillede",
+    "coverSaved": "Forside opdateret",
+    "coverFailed": "Kunne ikke ændre forsiden"
   },
   "player": {
     "openSettings": "Åbn indstillinger",

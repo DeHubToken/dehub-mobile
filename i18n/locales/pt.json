@@ -5275,7 +5275,12 @@
     "videoFile": "Arquivo de vídeo",
     "uploadingPercent": "Carregando… {{percent}}%",
     "replaceVideoFile": "Substituir arquivo de vídeo",
-    "replaceVideoHint": "Mantém o link, visualizações e comentários desta publicação. O arquivo antigo é reproduzido até que o novo termine de processar."
+    "replaceVideoHint": "Mantém o link, visualizações e comentários desta publicação. O arquivo antigo é reproduzido até que o novo termine de processar.",
+    "coverTitle": "Capa",
+    "coverHint": "Escolha um quadro ou envie uma imagem. Salva na hora.",
+    "coverUpload": "Enviar imagem de capa",
+    "coverSaved": "Capa atualizada",
+    "coverFailed": "Não foi possível alterar a capa"
   },
   "player": {
     "openSettings": "Abrir definições",

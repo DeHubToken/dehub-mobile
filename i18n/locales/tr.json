@@ -5271,7 +5271,12 @@
     "videoFile": "Video dosyası",
     "uploadingPercent": "Yükleniyor… {{percent}}%",
     "replaceVideoFile": "Video dosyasını değiştir",
-    "replaceVideoHint": "Bu gönderinin bağlantısını, görüntülenmelerini ve yorumlarını korur. Eski dosya, yenisi işlenene kadar oynatılır."
+    "replaceVideoHint": "Bu gönderinin bağlantısını, görüntülenmelerini ve yorumlarını korur. Eski dosya, yenisi işlenene kadar oynatılır.",
+    "coverTitle": "Kapak",
+    "coverHint": "Bir kare seçin veya görsel yükleyin. Hemen kaydedilir.",
+    "coverUpload": "Kapak görseli yükle",
+    "coverSaved": "Kapak güncellendi",
+    "coverFailed": "Kapak değiştirilemedi"
   },
   "player": {
     "openSettings": "Ayarları aç",

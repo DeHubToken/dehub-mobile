@@ -5216,7 +5216,12 @@
     "imageLimitTier_one": "Tohor badge tier toh_ल_{{count}}_image_per_post_देथे",
     "imageLimitTier_other": "Tohor badge tier toh_ल_{{count}}_images_per_post_देथे",
     "imagesCount": "{{count}} / {{limit}} फोटू · तुंहर बैज स्तर के हिसाब ले",
-    "onShopBoard": "दुकान बोर्ड म {{count}}"
+    "onShopBoard": "दुकान बोर्ड म {{count}}",
+    "coverTitle": "कवर",
+    "coverHint": "कोई फ़्रेम चुनें या इमेज अपलोड करें। तुरंत सेव हो जाता है।",
+    "coverUpload": "कवर इमेज अपलोड करें",
+    "coverSaved": "कवर अपडेट हो गया",
+    "coverFailed": "कवर नहीं बदला जा सका"
   },
   "player": {
     "openSettings": "सेटिंग खोलव",

@@ -5253,7 +5253,12 @@
     "videoFile": "Video k'atachana",
     "uploadingPercent": "Challkuchkán… {{percent}}%",
     "replaceVideoFile": "Video k'atachana kutimuchiy",
-    "replaceVideoHint": "Video k'atachanaqa waqaychayta atin, rikuykuna chaynataq kutichiykuna. Ñawpaq k'atachanaqa pukllakunqa chaykama musuq k'atachana allichkaptin."
+    "replaceVideoHint": "Video k'atachanaqa waqaychayta atin, rikuykuna chaynataq kutichiykuna. Ñawpaq k'atachanaqa pukllakunqa chaykama musuq k'atachana allichkaptin.",
+    "coverTitle": "Qatana",
+    "coverHint": "Huk rikchayta akllay utaq huk siq'ita churay. Chaylla waqaychakun.",
+    "coverUpload": "Qatana siq'ita churay",
+    "coverSaved": "Qatana musuqyachisqa",
+    "coverFailed": "Manam qatanata tikrayta atikurqanchu"
   },
   "player": {
     "openSettings": "Allichaykunata kichay",

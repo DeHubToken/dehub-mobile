@@ -5222,7 +5222,12 @@
     "videoFile": "Faylka fiidiyowga",
     "uploadingPercent": "Waa la soo geliyay… {{percent}}%",
     "replaceVideoFile": "Beddel faylka fiidiyowga",
-    "replaceVideoHint": "Waxay ilaalinaysaa xiriirka boostadan, aragtida iyo faallooyinka. Faylkii hore wuu ciyaaraa ilaa kan cusub uu dhammaystiro habaynta."
+    "replaceVideoHint": "Waxay ilaalinaysaa xiriirka boostadan, aragtida iyo faallooyinka. Faylkii hore wuu ciyaaraa ilaa kan cusub uu dhammaystiro habaynta.",
+    "coverTitle": "Dabool",
+    "coverHint": "Dooro fareem ama soo geli sawir. Isla markiiba waa la keydiyaa.",
+    "coverUpload": "Soo geli sawirka daboolka",
+    "coverSaved": "Daboolka waa la cusboonaysiiyay",
+    "coverFailed": "Lama beddeli karin daboolka"
   },
   "player": {
     "openSettings": "Fur goobaha",

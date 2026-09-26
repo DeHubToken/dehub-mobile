@@ -5222,7 +5222,12 @@
     "videoFile": "Wideo faýly",
     "uploadingPercent": "Ýüklenýär… {{percent}}%",
     "replaceVideoFile": "Wideo faýlyny çalşyryň",
-    "replaceVideoHint": "Bu postaň baglanyşygyny, görnüşlerini we teswirlerini saklaýar. Köne faýl täze işlenip gutarýança işleýär."
+    "replaceVideoHint": "Bu postaň baglanyşygyny, görnüşlerini we teswirlerini saklaýar. Köne faýl täze işlenip gutarýança işleýär.",
+    "coverTitle": "Örtük",
+    "coverHint": "Kadr saýlaň ýa-da surat ýükläň. Derrew ýatda saklanýar.",
+    "coverUpload": "Örtük suratyny ýükläň",
+    "coverSaved": "Örtük täzelendi",
+    "coverFailed": "Örtügi üýtgedip bolmady"
   },
   "player": {
     "openSettings": "Sazlamalary aç",

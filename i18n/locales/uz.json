@@ -5240,7 +5240,12 @@
     "videoFile": "Video fayli",
     "uploadingPercent": "Yuklanmoqda… {{percent}}%",
     "replaceVideoFile": "Video faylini almashtirish",
-    "replaceVideoHint": "Bu postning havolasi, ko'rishlari va sharhlarini saqlaydi. Eski fayl yangisi qayta ishlanib bo'lguncha ijro etiladi."
+    "replaceVideoHint": "Bu postning havolasi, ko'rishlari va sharhlarini saqlaydi. Eski fayl yangisi qayta ishlanib bo'lguncha ijro etiladi.",
+    "coverTitle": "Muqova",
+    "coverHint": "Kadr tanlang yoki rasm yuklang. Darhol saqlanadi.",
+    "coverUpload": "Muqova rasmini yuklash",
+    "coverSaved": "Muqova yangilandi",
+    "coverFailed": "Muqovani oʻzgartirib boʻlmadi"
   },
   "player": {
     "openSettings": "Sozlamalarni ochish",

@@ -5222,7 +5222,12 @@
     "videoFile": "Fitxer de vídeo",
     "uploadingPercent": "Pujant… {{percent}}%",
     "replaceVideoFile": "Reemplaçar fitxer de vídeo",
-    "replaceVideoHint": "Manté l'enllaç, les visualitzacions i els comentaris d'aquesta publicació. El fitxer antic es reprodueix fins que el nou acabi de processar-se."
+    "replaceVideoHint": "Manté l'enllaç, les visualitzacions i els comentaris d'aquesta publicació. El fitxer antic es reprodueix fins que el nou acabi de processar-se.",
+    "coverTitle": "Portada",
+    "coverHint": "Tria un fotograma o puja una imatge. Es desa a l'instant.",
+    "coverUpload": "Puja una imatge de portada",
+    "coverSaved": "Portada actualitzada",
+    "coverFailed": "No s'ha pogut canviar la portada"
   },
   "player": {
     "openSettings": "Obre la configuració",

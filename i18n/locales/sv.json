@@ -5226,7 +5226,12 @@
     "replaceVideoFile": "Ersätt videofil",
     "replaceVideoHint": "Behåller den här inläggets länk, visningar och kommentarer. Den gamla filen spelas tills den nya är klar med bearbetningen.",
     "replaceImageN": "Ersätt bild {{n}}",
-    "allowComments": "Tillåt kommentarer"
+    "allowComments": "Tillåt kommentarer",
+    "coverTitle": "Omslag",
+    "coverHint": "Välj en bildruta eller ladda upp en bild. Sparas direkt.",
+    "coverUpload": "Ladda upp omslagsbild",
+    "coverSaved": "Omslaget uppdaterades",
+    "coverFailed": "Det gick inte att ändra omslaget"
   },
   "player": {
     "openSettings": "Öppna inställningar",

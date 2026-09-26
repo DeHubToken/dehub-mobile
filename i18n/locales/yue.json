@@ -5222,7 +5222,12 @@
     "videoFile": "影片檔案",
     "uploadingPercent": "正在上傳… {{percent}}%",
     "replaceVideoFile": "取代影片檔案",
-    "replaceVideoHint": "保留此貼文的連結、觀看次數和留言。舊檔案會播放直到新檔案處理完成。"
+    "replaceVideoHint": "保留此貼文的連結、觀看次數和留言。舊檔案會播放直到新檔案處理完成。",
+    "coverTitle": "封面",
+    "coverHint": "選擇一幀畫面或上載圖片，即時儲存。",
+    "coverUpload": "上載封面圖片",
+    "coverSaved": "封面已更新",
+    "coverFailed": "無法更換封面"
   },
   "player": {
     "openSettings": "打開設定",
