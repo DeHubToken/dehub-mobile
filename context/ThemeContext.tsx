@@ -31,6 +31,28 @@ const AppThemeContext = createContext<AppThemeContextValue | null>(null);
  * modal without touching the ~1000 call sites. The canvas goes pure black
  * with it, as web's does.
  */
+/**
+ * The system values of the same variables (global.css :root). The root sets
+ * variables in BOTH themes on purpose: NativeWind treats a component that
+ * starts setting variables after its first render as a structural change and
+ * remounts it — at the root that is the whole app, auth and navigator
+ * included, which left it stuck behind the black boot cover. Setting them from
+ * the first frame means a theme switch only changes values.
+ */
+export const SYSTEM_ROOT_VARS = vars({
+  '--radius-sm': 4,
+  '--radius': 3.5,
+  '--radius-md': 6,
+  '--radius-lg': 8,
+  '--radius-xl': 10.5,
+  '--radius-2xl': 14,
+  '--radius-3xl': 21,
+  '--radius-full': 9999,
+  '--color-theme-background': '1 3 5',
+  '--color-theme-neutrals-900': '1 3 5',
+  '--color-zinc-950': '9 9 11',
+});
+
 export const MINIMAL_ROOT_VARS = vars({
   '--radius-sm': 0,
   '--radius': 0,
@@ -78,8 +100,8 @@ export function useAppTheme(): AppThemeContextValue {
   return value;
 }
 
-/** Style for the app's root view: the minimal variables, or nothing. */
+/** Style for the app's root view: always a set of variables — see SYSTEM_ROOT_VARS. */
 export function useThemeRootStyle() {
   const { isMinimal } = useAppTheme();
-  return isMinimal ? MINIMAL_ROOT_VARS : undefined;
+  return isMinimal ? MINIMAL_ROOT_VARS : SYSTEM_ROOT_VARS;
 }
