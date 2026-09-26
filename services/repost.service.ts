@@ -184,7 +184,8 @@ export interface GetQuotePostsResponse {
 }
 
 /**
- * Create a quote post (new minted token referencing another post).
+ * Create a quote post (its own token referencing another post; minting it
+ * on-chain is optional, same as any other post).
  * Endpoint: POST /quote_post (multipart/form-data)
  *
  * Returns mint signature to complete on-chain mint (same 2-step as user_mint).

@@ -5,7 +5,7 @@
 DeHub supports two types of content sharing:
 
 1. **Repost** — Lightweight reshare (like a retweet). Not a new token; surfaces the original post on the reposter's timeline.
-2. **Quote Post** — Full minted token that references another post. The quote post is its own NFT with independent engagement (likes, comments, tips, etc.).
+2. **Quote Post** — A full post of its own that references another post, with independent engagement (likes, comments, tips, etc.). Like any post, it can be minted as its own NFT, but minting is optional.
 
 Both systems follow platform patterns: privacy filtering, block filtering, activity logging, and push notifications.
 
@@ -77,8 +77,8 @@ Returns the user's reposts with full original post data. Each item includes:
 ## Quote Post System
 
 ### How it Works
-- A quote post is a **new minted token** that references another post.
-- Uses the same `user_mint` minting flow (signature + on-chain mint).
+- A quote post is a **new token** that references another post.
+- Uses the same `user_mint` flow (signature + on-chain mint); as with any post, minting is optional (`mintOptOut=true` skips it).
 - The quote post has its own `tokenId`, engagement counters, and tokenomics.
 - The original post's `quotes` count is incremented.
 - The original creator receives a notification.

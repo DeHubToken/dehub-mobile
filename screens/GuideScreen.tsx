@@ -16,13 +16,16 @@ if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
+/** Plain text, or an i18n key for a line that has already been translated. */
+type Copy = string | { key: string };
+
 interface GuideSection {
   id: string;
   title: string;
   icon: IconName;
-  intro: string;
-  steps: string[];
-  tips?: string[];
+  intro: Copy;
+  steps: Copy[];
+  tips?: Copy[];
 }
 
 const SECTIONS: GuideSection[] = [
@@ -384,12 +387,12 @@ const SECTIONS: GuideSection[] = [
     icon: "BookOpen",
     intro: "Every minted post on DeHub is an NFT split into fractions, so a post can be co-owned. On mobile you can see your holdings; buying, selling and offers happen on the web app.",
     steps: [
-      "Tap the info icon on any post to open its mint transaction on the block explorer and verify the on-chain record.",
+      { key: "screens.guideInfoStep" },
       "Open a profile and switch to the Fractions tab to see which posts that account holds fractions of, with quantities.",
       "Your own Fractions tab is the same view of everything you co-own.",
     ],
     tips: [
-      "Every post starts with the creator holding all of its fractions (100% ownership).",
+      { key: "screens.guideFractionsTip" },
       "The mint transaction links to the block explorer for the chain the post was minted on.",
     ],
   },
@@ -414,11 +417,11 @@ const SECTIONS: GuideSection[] = [
     id: "minting-posts",
     title: "Minting Posts (Creating NFTs)",
     icon: "SquarePen",
-    intro: "When you create a post on DeHub, it's automatically minted as an NFT on the blockchain. You don't need to do anything special — every post is an NFT.",
+    intro: { key: "screens.guideMintIntro" },
     steps: [
       "Click the 'Post' button in the sidebar (desktop) or the + button (mobile).",
       "Write your text, attach media (images, videos, audio), and add categories.",
-      "Click 'Post' to publish — your content is immediately minted as an NFT on the Base blockchain.",
+      { key: "screens.guideMintPublishStep" },
       "Each minted post gets a unique Token ID and a transaction hash you can verify on-chain.",
       "You automatically receive all 100 fractions (100% ownership) of your newly minted post.",
       "View your post's on-chain details anytime by tapping the info icon on the post.",
@@ -448,9 +451,9 @@ const SECTIONS: GuideSection[] = [
   },
 ];
 
-function sectionMatches(section: GuideSection, tokens: string[]): boolean {
+function sectionMatches(section: GuideSection, tokens: string[], say: (line: Copy) => string): boolean {
   if (tokens.length === 0) return true;
-  const haystack = [section.title, section.intro, ...section.steps, ...(section.tips || [])]
+  const haystack = [section.title, say(section.intro), ...section.steps.map(say), ...(section.tips || []).map(say)]
     .join(" ")
     .toLowerCase();
   return tokens.every((tok) => haystack.includes(tok));
@@ -467,7 +470,9 @@ export default function GuideScreen() {
     [query],
   );
 
-  const filtered = useMemo(() => SECTIONS.filter((s) => sectionMatches(s, tokens)), [tokens]);
+  const say = useCallback((line: Copy) => (typeof line === "string" ? line : t(line.key)), [t]);
+
+  const filtered = useMemo(() => SECTIONS.filter((s) => sectionMatches(s, tokens, say)), [tokens, say]);
 
   const toggle = useCallback((id: string) => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -521,14 +526,14 @@ export default function GuideScreen() {
 
                 {isOpen && (
                   <View style={styles.sectionBody}>
-                    <Text style={styles.intro}>{section.intro}</Text>
+                    <Text style={styles.intro}>{say(section.intro)}</Text>
 
                     {section.steps.map((step, i) => (
                       <View key={i} style={styles.stepRow}>
                         <View style={styles.stepNum}>
                           <Text style={styles.stepNumText}>{i + 1}</Text>
                         </View>
-                        <Text style={styles.stepText}>{step}</Text>
+                        <Text style={styles.stepText}>{say(step)}</Text>
                       </View>
                     ))}
 
@@ -537,7 +542,7 @@ export default function GuideScreen() {
                         {section.tips.map((tip, i) => (
                           <View key={i} style={styles.tipRow}>
                             <Icon name="Lightbulb" size={13} color="#D4D4D8" />
-                            <Text style={styles.tipText}>{tip}</Text>
+                            <Text style={styles.tipText}>{say(tip)}</Text>
                           </View>
                         ))}
                       </View>

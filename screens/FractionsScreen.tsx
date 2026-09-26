@@ -4,7 +4,7 @@
  * Native port of web's /app/fractions: browse every listing, manage what you
  * hold, and read the tape.
  *
- * Every upload is minted as 1000 ERC-1155 units of one token id, so every post
+ * A minted post is 1000 ERC-1155 units of one token id, so every minted post
  * is already divisible. The drawer row used to open the website for this;
  * buying from a listing, settling an open trade and answering an offer all
  * sign from the wallet the app already holds, so they belong here.
