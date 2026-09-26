@@ -6641,6 +6641,13 @@
     "doneListHint": "O b'a to i be se k'i yɛrɛ tanga o ma. O la, a tun ka kan ka kɛ i n'a fɔ a tun y'a fɔ cogo min na.",
     "openExchange": "Fanga min be sɔrɔ o la",
     "done": "Mun lo kɛra?",
-    "back": "Ka segi ka na"
+    "back": "Ka segi ka na",
+    "aiLabel": "N'i b'a fɛ ka baara kɛ n'i ka denbaya ye, i ka kan ka taga n'a ye.",
+    "aiPlaceholder": "O kɔ, a y'a fɔ ko: \"Ne ye wari min sɔrɔ, o ye wari min ye, o ye wari min ye, o ye",
+    "aiSend": "I ka kan ka min kɛ",
+    "aiHint": "I b'a fɛ ka min fɔ, i k'o fɔ ni kuma dafanin ye. I ka kan ka koo bɛɛ kɛ, i ka kan ka min fɔ, o ye tiɲɛ ye.",
+    "aiBuyOnly": "O la, a tun be se ka kɛ ko a tun be se ka baara kɛ ni O kama, a tun ka di a ye ka wari caaman sɔrɔ.",
+    "aiNeedAmount": "I b'a fɛ ka wagati joli ta k'o feere?",
+    "aiFailed": "O tun tɛ se ka kɛ. Aw k'a ɲini k'a fɔ cogo wɛrɛ la, walima aw k'a fɔ a kɔnɔ."
   }
 }

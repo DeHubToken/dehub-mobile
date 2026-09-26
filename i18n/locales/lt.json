@@ -6641,6 +6641,13 @@
     "doneListHint": "Jis parduodamas automatiškai, kai rinka pasiekia jūsų kainą. Tvarkykite tai biržoje.",
     "openExchange": "Atidaryti „Exchange“",
     "done": "Atlikta",
-    "back": "Atgal"
+    "back": "Atgal",
+    "aiLabel": "Paprašykite dirbtinio intelekto nustatyti jūsų prekybą",
+    "aiPlaceholder": "Pabandykite „parduoti pusę savo DHB už 3 centus“",
+    "aiSend": "Siųsti DI",
+    "aiHint": "Paprastais žodžiais pasakykite, ko norite. Dirbtinis intelektas viską užpildo, tiesiog paspauskite „Patvirtinti“.",
+    "aiBuyOnly": "Lengva prekyba parduoda DHB. Norėdami įsigyti DHB, atidarykite „Exchange“.",
+    "aiNeedAmount": "Kiek DHB norite parduoti?",
+    "aiFailed": "Dirbtinis intelektas negalėjo to nustatyti. Pabandykite tai pasakyti kitu būdu arba užpildykite žemiau."
   }
 }

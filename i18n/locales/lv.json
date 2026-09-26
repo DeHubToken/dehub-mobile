@@ -6641,6 +6641,13 @@
     "doneListHint": "Tas tiek pārdots automātiski, kad tirgus sasniedz jūsu cenu. Pārvaldiet to biržā.",
     "openExchange": "Atvērt Exchange",
     "done": "Gatavs",
-    "back": "Atpakaļ"
+    "back": "Atpakaļ",
+    "aiLabel": "Palūdziet AI iestatīt jūsu tirdzniecību",
+    "aiPlaceholder": "Izmēģiniet \"pārdot pusi no mana DHB par 3 centiem\"",
+    "aiSend": "Nosūtīt MI",
+    "aiHint": "Izsakiet to, ko vēlaties, vienkāršiem vārdiem. AI aizpilda visu, jūs vienkārši nospiežat Apstiprināt.",
+    "aiBuyOnly": "Viegla tirdzniecība pārdod DHB. Lai iegādātos DHB, atveriet Exchange.",
+    "aiNeedAmount": "Cik daudz DHB vēlaties pārdot?",
+    "aiFailed": "MI nevarēja to iestatīt. Mēģiniet to pateikt citā veidā vai aizpildiet to tālāk."
   }
 }

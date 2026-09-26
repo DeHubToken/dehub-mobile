@@ -6645,6 +6645,13 @@
     "doneListHint": "시장이 가격에 도달하면 자동으로 판매됩니다. 거래소에서 관리하세요.",
     "openExchange": "거래소 열기",
     "done": "완료",
-    "back": "뒤로"
+    "back": "뒤로",
+    "aiLabel": "AI에 거래 설정 요청",
+    "aiPlaceholder": "\"DHB의 절반을 3센트에 판매\" 를 시도해보세요",
+    "aiSend": "AI로 보내기",
+    "aiHint": "원하는 것을 간단명료하게 말하세요. AI가 모든 것을 채우면 확인을 누르기만 하면 됩니다.",
+    "aiBuyOnly": "간편한 거래는 DHB를 판매합니다. DHB를 구매하려면 Exchange를 엽니다.",
+    "aiNeedAmount": "얼마나 많은 DHB를 판매하시겠습니까?",
+    "aiFailed": "AI가 이를 설정할 수 없습니다. 다른 방법으로 입력하거나 아래에 입력하세요."
   }
 }

@@ -6806,6 +6806,13 @@
     "doneListHint": "Predáva sa automaticky, keď trh dosiahne vašu cenu. Spravujte ho na burze.",
     "openExchange": "Otvoriť burzu",
     "done": "Hotovo",
-    "back": "Späť"
+    "back": "Späť",
+    "aiLabel": "Požiadajte umelú inteligenciu, aby nastavila váš obchod",
+    "aiPlaceholder": "Skúste „predať polovicu môjho DHB za 3 centy“",
+    "aiSend": "Odoslať do umelej inteligencie",
+    "aiHint": "Jednoducho povedzte, čo chcete. AI vyplní všetko, stačí stlačiť tlačidlo Potvrdiť.",
+    "aiBuyOnly": "Easy trade predáva DHB. Ak chcete kúpiť DHB, otvorte Exchange.",
+    "aiNeedAmount": "Koľko DHB chcete predať?",
+    "aiFailed": "AI to nemohla nastaviť. Skúste to povedať inak alebo vyplňte nižšie."
   }
 }

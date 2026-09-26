@@ -6641,6 +6641,13 @@
     "doneListHint": "Bazar qiymətinizə çatdıqda avtomatik olaraq satılır. Birjada onu idarə edin.",
     "openExchange": "Açıq Mübadilə",
     "done": "Hazırdır",
-    "back": "Geri"
+    "back": "Geri",
+    "aiLabel": "Ticarətinizi qurmaq üçün AI-dən soruşun",
+    "aiPlaceholder": "\"DHB-imin yarısını 3 sentə sat\"",
+    "aiSend": "AI-yə göndərin",
+    "aiHint": "Açıq sözlərlə nə istədiyinizi deyin. AI hər şeyi doldurur, sadəcə Təsdiq et düyməsini basırsınız.",
+    "aiBuyOnly": "Asan ticarət DHB satır. DHB almaq üçün Mübadilə açın.",
+    "aiNeedAmount": "Nə qədər DHB satmaq istəyirsiniz?",
+    "aiFailed": "AI bunu qura bilmədi. Başqa üsulla deməyə çalışın və ya aşağıda qeyd edin."
   }
 }
