@@ -5669,7 +5669,6 @@
     "balanceAmount": "Available: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "This custom exchange is built on and secured by Uniswap. It's live and fully functional, and official listings will be announced soon. You're invited to add liquidity now — farms and incentives will be revealed imminently.",
     "lowestPrice": "Lowest price · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

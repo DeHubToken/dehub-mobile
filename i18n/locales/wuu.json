@@ -5627,7 +5627,6 @@
     "balanceAmount": "可用：{{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "搿个定制交易所是造勒 Uniswap 高头个，由伊保障安全。现在已经上线，功能齐全，正式上币老快就要公布。欢迎侬现在就来添加流动性——流动性挖矿搭奖励马上就要揭晓。",
     "lowestPrice": "最低价 · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

@@ -5627,7 +5627,6 @@
     "balanceAmount": "Saatavilla: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Tämä räätälöity pörssi on rakennettu Uniswapin päälle ja sen suojaama. Se on jo käytössä ja täysin toimiva, ja viralliset listaukset julkistetaan pian. Sinut kutsutaan lisäämään likviditeettiä jo nyt — farmit ja kannustimet paljastetaan aivan pian.",
     "lowestPrice": "Alin hinta · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

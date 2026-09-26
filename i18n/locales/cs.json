@@ -5631,7 +5631,6 @@
     "balanceAmount": "Dostupné: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Tato vlastní burza je postavena na Uniswapu a jím zabezpečena. Je spuštěná a plně funkční, oficiální listingy budou brzy oznámeny. Zveme vás, abyste přidali likviditu už nyní — farmy a pobídky budou odhaleny již velmi brzy.",
     "lowestPrice": "Nejnižší cena · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

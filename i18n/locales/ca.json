@@ -5627,7 +5627,6 @@
     "balanceAmount": "Disponible: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Aquest exchange personalitzat està construït sobre Uniswap i protegit per aquest. Ja està en funcionament i és plenament operatiu, i els llistats oficials s'anunciaran aviat. Et convidem a afegir liquiditat ara — les granges i els incentius es revelaran de manera imminent.",
     "lowestPrice": "Preu més baix · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

@@ -5678,7 +5678,6 @@
     "balanceAmount": "利用可能：{{amount}}{{symbol}}"
   },
   "dex": {
-    "launchNotice": "このカスタム取引所は Uniswap 上に構築され、Uniswap によって保護されています。すでに稼働中でフル機能をご利用いただけます。正式な上場は近日発表予定です。今すぐ流動性の追加にご参加ください。ファームとインセンティブはまもなく公開されます。",
     "lowestPrice": "最安値 · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",

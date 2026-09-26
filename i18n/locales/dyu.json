@@ -5627,7 +5627,6 @@
     "balanceAmount": "Min bɛ yen: {{amount}} {{symbol}}"
   },
   "dex": {
-    "launchNotice": "Nin echanji kɛrɛnkɛrɛnnen in jɔra Uniswap kan, a lakananen don a fɛ. A bɛ baara la sisan, a bɛɛ bɛ baara kɛ, ani lisiti fɔlenw na fɔ joona. Aw welelen don ka likidite fara a kan sisan — foroba ni sara dɔw na jira joona kosɛbɛ.",
     "lowestPrice": "Sɔngɔ dɔgɔmannin · USD",
     "lpDhb": "LP · DHB",
     "lpUsd": "LP · USD",
