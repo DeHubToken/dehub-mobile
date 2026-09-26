@@ -3431,6 +3431,7 @@
     "guideInfoStep": "Toque no ícone de informações de uma publicação cunhada para abrir a transação de cunhagem no explorador de blocos e verificar o registro on-chain.",
     "guideMintIntro": "Cunhar uma publicação como NFT na blockchain é opcional. Cunhe ao publicar, ou publique agora e cunhe depois pelo menu da publicação.",
     "guideMintPublishStep": "Escolha se quer cunhar e clique em 'Publicar'. Se pular a cunhagem, você pode cunhar a publicação depois pelo menu dela.",
+    "guideMintFractionsStep": "Você recebe todas as 1.000 frações (100% de propriedade) do seu post recém-cunhado.",
     "glossaryMintTxDesc": "Toque no ícone de informações de uma publicação cunhada para abrir a transação de cunhagem no explorador de blocos e verificar o registro on-chain. A página completa de Informações da publicação — estatísticas, detentores, mercado — fica no app web em dehub.io.",
     "glossaryTokenIdDesc": "Um identificador único on-chain atribuído a uma publicação quando ela é cunhada como NFT.",
     "repostsTab": "Repostagens",

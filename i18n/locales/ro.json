@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Atinge pictograma de informații a unei postări mintate pentru a deschide tranzacția de mintare în exploratorul de blocuri și a verifica înregistrarea on-chain.",
     "guideMintIntro": "Mintarea unei postări ca NFT pe blockchain este opțională. Mintează-o când publici sau publică acum și mintează mai târziu din meniul postării.",
     "guideMintPublishStep": "Alege dacă mintezi, apoi apasă „Postează” pentru a publica. Dacă sari peste mintare, poți minta postarea mai târziu din meniul ei.",
+    "guideMintFractionsStep": "Primești toate cele 1.000 de fracțiuni (100% proprietate) ale postării tale proaspăt mintate.",
     "glossaryMintTxDesc": "Atinge pictograma de informații a unei postări mintate pentru a deschide tranzacția de mintare în exploratorul de blocuri și a verifica înregistrarea on-chain. Pagina completă Informații postare — statistici, deținători, piață — se află în aplicația web de pe dehub.io.",
     "glossaryTokenIdDesc": "Un identificator unic on-chain atribuit unei postări atunci când este mintată ca NFT.",
     "repostsTab": "Repostează",

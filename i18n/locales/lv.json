@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Pieskarieties izkalta ieraksta informācijas ikonai, lai bloku pārlūkā atvērtu tā kalšanas darījumu un pārbaudītu ierakstu ķēdē.",
     "guideMintIntro": "Ieraksta kalšana kā NFT blokķēdē nav obligāta. Izkaliet to publicējot vai publicējiet tagad un izkaliet vēlāk no ieraksta izvēlnes.",
     "guideMintPublishStep": "Izvēlieties, vai kalt, un pēc tam noklikšķiniet uz 'Publicēt'. Ja kalšanu izlaidīsiet, ierakstu varēsiet izkalt vēlāk no tā izvēlnes.",
+    "guideMintFractionsStep": "Jūs saņemat visas 1 000 tikko izkaltā ieraksta daļas (100 % īpašumtiesības).",
     "glossaryMintTxDesc": "Pieskarieties izkalta ieraksta informācijas ikonai, lai bloku pārlūkā atvērtu tā kalšanas darījumu un pārbaudītu ierakstu ķēdē. Pilnā ieraksta informācijas lapa — statistika, turētāji, tirgus — atrodas tīmekļa lietotnē dehub.io.",
     "glossaryTokenIdDesc": "Unikāls identifikators ķēdē, ko ieraksts saņem, kad tas tiek izkalts kā NFT.",
     "repostsTab": "Reposti",

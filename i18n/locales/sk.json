@@ -3535,6 +3535,7 @@
     "guideInfoStep": "Ťuknite na ikonu informácií pri razenom príspevku, otvorte jeho transakciu razenia v prehliadači blokov a overte záznam v reťazci.",
     "guideMintIntro": "Razenie príspevku ako NFT na blockchaine je voliteľné. Vyrazte ho pri zverejnení, alebo ho zverejnite teraz a vyrazte neskôr z ponuky príspevku.",
     "guideMintPublishStep": "Vyberte, či raziť, a potom kliknite na „Uverejniť“. Ak razenie preskočíte, príspevok môžete vyraziť neskôr z jeho ponuky.",
+    "guideMintFractionsStep": "Získate všetkých 1 000 podielov (100 % vlastníctvo) svojho novo vyrazeného príspevku.",
     "glossaryMintTxDesc": "Ťuknite na ikonu informácií pri razenom príspevku, otvorte jeho transakciu razenia v prehliadači blokov a overte záznam v reťazci. Celá stránka Informácie o príspevku — štatistiky, držitelia, trhovisko — je vo webovej aplikácii na dehub.io.",
     "glossaryTokenIdDesc": "Jedinečný identifikátor v reťazci pridelený príspevku, keď je vyrazený ako NFT.",
     "repostsTab": "Opakované zverejnenia",

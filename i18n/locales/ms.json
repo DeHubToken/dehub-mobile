@@ -3688,6 +3688,7 @@
     "guideInfoStep": "Ketik ikon maklumat pada siaran yang di-mint untuk membuka transaksi mint-nya dalam penjelajah blok dan mengesahkan rekod on-chain.",
     "guideMintIntro": "Mint siaran sebagai NFT pada blockchain adalah pilihan. Mint semasa anda menerbitkan, atau terbitkan sekarang dan mint kemudian daripada menu siaran.",
     "guideMintPublishStep": "Pilih sama ada hendak mint, kemudian klik 'Siar' untuk menerbitkan. Jika anda langkau mint, anda boleh mint siaran itu kemudian daripada menunya.",
+    "guideMintFractionsStep": "Anda menerima kesemua 1,000 pecahan (pemilikan 100%) siaran yang baru dicetak.",
     "glossaryMintTxDesc": "Ketik ikon maklumat pada siaran yang di-mint untuk membuka transaksi mint-nya dalam penjelajah blok dan mengesahkan rekod on-chain. Halaman Maklumat Siaran penuh — statistik, pemegang, pasaran — ada dalam aplikasi web di dehub.io.",
     "glossaryTokenIdDesc": "Pengecam on-chain unik yang diberikan kepada siaran apabila ia di-mint sebagai NFT.",
     "repostsTab": "Siaran semula",

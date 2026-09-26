@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Stuknij ikonę informacji przy zmintowanym poście, aby otworzyć jego transakcję mintowania w eksploratorze bloków i sprawdzić zapis w łańcuchu.",
     "guideMintIntro": "Mintowanie postu jako NFT w blockchainie jest opcjonalne. Zmintuj go przy publikacji albo opublikuj teraz i zmintuj później z menu postu.",
     "guideMintPublishStep": "Wybierz, czy mintować, a potem kliknij „Opublikuj”. Jeśli pominiesz mintowanie, możesz zmintować post później z jego menu.",
+    "guideMintFractionsStep": "Otrzymujesz wszystkie 1000 frakcji (100% własności) swojego świeżo wybitego posta.",
     "glossaryMintTxDesc": "Stuknij ikonę informacji przy zmintowanym poście, aby otworzyć jego transakcję mintowania w eksploratorze bloków i sprawdzić zapis w łańcuchu. Pełna strona Informacje o poście — statystyki, posiadacze, rynek — jest w aplikacji internetowej na dehub.io.",
     "glossaryTokenIdDesc": "Unikalny identyfikator w łańcuchu przypisywany postowi, gdy zostaje zmintowany jako NFT.",
     "repostsTab": "Reposty",

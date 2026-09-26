@@ -3431,6 +3431,7 @@
     "guideInfoStep": "Tryck på infoikonen på ett präglat inlägg för att öppna dess präglingstransaktion i blockutforskaren och verifiera posten på kedjan.",
     "guideMintIntro": "Att prägla ett inlägg som en NFT på blockkedjan är valfritt. Prägla det när du publicerar, eller publicera nu och prägla senare från inläggets meny.",
     "guideMintPublishStep": "Välj om du vill prägla och klicka sedan på 'Publicera'. Hoppar du över präglingen kan du prägla inlägget senare från dess meny.",
+    "guideMintFractionsStep": "Du får alla 1 000 fraktioner (100 % ägande) av ditt nymintade inlägg.",
     "glossaryMintTxDesc": "Tryck på infoikonen på ett präglat inlägg för att öppna dess präglingstransaktion i blockutforskaren och verifiera posten på kedjan. Hela sidan Inläggsinfo — statistik, innehavare, marknadsplats — finns i webbappen på dehub.io.",
     "glossaryTokenIdDesc": "En unik identifierare på kedjan som ett inlägg får när det präglas som en NFT.",
     "repostsTab": "Reposts",

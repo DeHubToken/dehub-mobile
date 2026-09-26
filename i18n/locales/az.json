@@ -3427,6 +3427,7 @@
     "guideInfoStep": "Zərb əməliyyatını blok kəşfiyyatçısında açmaq və zəncirdəki qeydi yoxlamaq üçün zərb olunmuş paylaşımda məlumat ikonuna toxunun.",
     "guideMintIntro": "Paylaşımı blokçeyndə NFT kimi zərb etmək isteğe bağlıdır. Dərc edərkən zərb edin və ya indi dərc edib sonra paylaşım menyusundan zərb edin.",
     "guideMintPublishStep": "Zərb edib-etməyəcəyinizi seçin, sonra dərc etmək üçün 'Paylaş' düyməsinə basın. Zərbi keçsəniz, paylaşımı sonra paylaşım menyusundan zərb edə bilərsiniz.",
+    "guideMintFractionsStep": "Yeni zərb edilmiş postunuzun bütün 1 000 fraksiyasını (100% sahiblik) alırsınız.",
     "glossaryMintTxDesc": "Zərb əməliyyatını blok kəşfiyyatçısında açmaq və zəncirdəki qeydi yoxlamaq üçün zərb olunmuş paylaşımda məlumat ikonuna toxunun. Tam Paylaşım Məlumatı səhifəsi — statistika, sahiblər, bazar — dehub.io-dakı veb tətbiqdədir.",
     "glossaryTokenIdDesc": "Paylaşım NFT kimi zərb olunanda ona verilən zəncirdə unikal identifikator.",
     "repostsTab": "Yenidən göndərmələr",
