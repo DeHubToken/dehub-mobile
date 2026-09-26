@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { withPistolEmoji } from "./pistolEmoji";
 
 /**
  * Applies Exo globally, matching the web app.
@@ -129,6 +130,9 @@ function exoStyleFor(style: unknown, className: unknown) {
  */
 let textTypes: Set<unknown> | null = null;
 
+/** The input subset of textTypes — they cannot hold inline images. */
+let inputTypes: Set<unknown> | null = null;
+
 function resolveTextTypes(): Set<unknown> {
   const types = new Set<unknown>();
   try {
@@ -153,10 +157,29 @@ function resolveTextTypes(): Set<unknown> {
   return types;
 }
 
+function resolveInputTypes(): Set<unknown> {
+  const types = new Set<unknown>();
+  try {
+    const RN = require("react-native");
+    types.add(RN.TextInput);
+    types.add(RN.Animated?.TextInput);
+  } catch {
+    /* nothing to exclude */
+  }
+  try {
+    const reanimated = require("react-native-reanimated");
+    types.add((reanimated?.default ?? reanimated)?.TextInput);
+  } catch {
+    /* reanimated is optional here */
+  }
+  return types;
+}
+
 function wrap(jsx: any) {
   if (typeof jsx !== "function") return jsx;
   return function exoJsx(type: unknown, props: any, ...rest: unknown[]) {
     if (textTypes === null) textTypes = resolveTextTypes();
+    if (inputTypes === null) inputTypes = resolveInputTypes();
     if (props && textTypes.has(type)) {
       const injected = exoStyleFor(props.style, props.className);
       // Appended, not prepended: it has to outrank whatever NativeWind derives
@@ -168,6 +191,7 @@ function wrap(jsx: any) {
       if (props.maxFontSizeMultiplier == null) {
         props = { ...props, maxFontSizeMultiplier: MAX_FONT_SCALE };
       }
+      if (!inputTypes.has(type)) props = withPistolEmoji(props);
     }
     return jsx(type, props, ...rest);
   };
