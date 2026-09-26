@@ -16,7 +16,7 @@
  *   evaluates the same SELECT policy but has no way to send a request header,
  *   so a private community receives no live events at all.
  */
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
 import { useUser } from "../context/AuthContext";
@@ -34,6 +34,13 @@ const log = createLogger("useCommunityChat");
 
 const QUERY_KEY = "community-chat-messages";
 const PAGE_LIMIT = 200;
+/** Private chats poll; each tick fetches only what arrived since the last one. */
+const PRIVATE_POLL_MS = 15_000;
+/**
+ * Edits, deletes, pins and reactions do not change the newest created_at, so an
+ * incremental tick cannot see them. A full reload this often picks them up.
+ */
+const PRIVATE_FULL_RELOAD_MS = 60_000;
 
 export function useCommunityChat(
   communityId: string | undefined,
@@ -52,10 +59,35 @@ export function useCommunityChat(
     [communityId, walletAddress],
   );
 
+  const lastFullLoadRef = useRef<{ key: string; at: number } | null>(null);
+
   const { data: rawMessages = [], isLoading } = useQuery({
     queryKey: key,
     queryFn: async () => {
       if (!communityId) return [] as CommunityChatMessage[];
+      const keyId = `${communityId}|${walletAddress ?? ""}`;
+      const held = queryClient.getQueryData<CommunityChatMessage[]>(key) ?? [];
+      const newest = held.length ? held[held.length - 1]?.created_at : undefined;
+      const last = lastFullLoadRef.current;
+      const fullDue = !last || last.key !== keyId || Date.now() - last.at >= PRIVATE_FULL_RELOAD_MS;
+      if (isPrivate && newest && !fullDue) {
+        const { data, error } = await withWalletHeader(
+          supabase
+            .from("community_chat_messages")
+            .select("*")
+            .eq("community_id", communityId)
+            .gt("created_at", newest)
+            .order("created_at", { ascending: true })
+            .limit(PAGE_LIMIT),
+          walletAddress,
+        );
+        if (error) throw error;
+        const fresh = (data || []) as unknown as CommunityChatMessage[];
+        if (!fresh.length) return held;
+        const seen = new Set(held.map((m) => m.id));
+        const merged = [...held, ...fresh.filter((m) => !seen.has(m.id))];
+        return merged.length > PAGE_LIMIT ? merged.slice(merged.length - PAGE_LIMIT) : merged;
+      }
       // Newest N, then flipped back to reading order — a community that has been
       // chatting for months should open on the current conversation.
       const { data, error } = await withWalletHeader(
@@ -68,11 +100,12 @@ export function useCommunityChat(
         walletAddress,
       );
       if (error) throw error;
+      lastFullLoadRef.current = { key: keyId, at: Date.now() };
       return ((data || []) as unknown as CommunityChatMessage[]).slice().reverse();
     },
     enabled: active,
     staleTime: 30_000,
-    refetchInterval: active && isPrivate ? 5_000 : false,
+    refetchInterval: active && isPrivate ? PRIVATE_POLL_MS : false,
   });
 
   const messages: CommunityChatMessage[] = useMemo(() => {
@@ -167,8 +200,11 @@ export function useCommunityChat(
         toastError(communityErrorMessage(error, "Failed to send message"));
         throw error;
       }
+      // No realtime echo in a private community: fetch the new tail now rather
+      // than leaving the sender waiting on the next poll.
+      if (isPrivate) void queryClient.invalidateQueries({ queryKey: key });
     },
-    [communityId, walletAddress, user],
+    [communityId, walletAddress, user, isPrivate, queryClient, key],
   );
 
   const editMessage = useCallback(

@@ -75,7 +75,10 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   // on every list render.
   const listHeader = useMemo(() => <View style={topSpacerStyle} />, [topSpacerStyle]);
   const navigation = useNavigation<any>();
-  const [visibleIndices, setVisibleIndices] = useState<Set<number>>(new Set());
+  // The one cell that autoplays. Every visible cell playing its full video
+  // meant four to six concurrent streams per screen of grid; the rest show
+  // their poster, and the viewer opens on tap anyway.
+  const [playIndex, setPlayIndex] = useState<number | null>(null);
 
   useScrollToTop(listRef);
 
@@ -214,35 +217,29 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   }, [displayItems, mergedParams, navigation, shuffleSeed]);
 
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
-    const indices = new Set(
-      viewableItems
-        .filter((v) => v.isViewable && v.index != null)
-        .map((v) => v.index as number),
-    );
-    // Bail when membership is unchanged so scroll frames don't trigger re-renders
-    setVisibleIndices((prev) => {
-      if (prev.size === indices.size) {
-        let same = true;
-        for (const i of indices) if (!prev.has(i)) { same = false; break; }
-        if (same) return prev;
-      }
-      return indices;
-    });
+    // Viewability here means (nearly) fully on screen, so the first such cell
+    // in reading order is the one most in view.
+    let first: number | null = null;
+    for (const v of viewableItems) {
+      if (v.isViewable && v.index != null && (first === null || v.index < first)) first = v.index;
+    }
+    // Same index bails out of the re-render on its own.
+    setPlayIndex(first);
   }).current;
 
-  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 30, minimumViewTime: 150 }).current;
+  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 80, minimumViewTime: 150 }).current;
 
   const renderItem = useCallback(
     ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
       <ShortsGridCard
         item={item}
         index={index}
-        isVisible={active && visibleIndices.has(index)}
+        isVisible={active && playIndex === index}
         onPress={handleItemPress}
         onUnavailable={markUnavailable}
       />
     ),
-    [handleItemPress, visibleIndices, markUnavailable, active],
+    [handleItemPress, playIndex, markUnavailable, active],
   );
 
   const keyExtractor = useCallback(

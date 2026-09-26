@@ -702,7 +702,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     let interval: ReturnType<typeof setInterval> | null = null;
     const start = () => {
       if (interval) return;
-      interval = setInterval(() => void refreshUnreadCount(), 60_000);
+      interval = setInterval(() => void refreshUnreadCount(), 120_000);
     };
     const stop = () => {
       if (!interval) return;

@@ -79,6 +79,14 @@ export function useStageAlerts() {
    */
   const alertedRef = useRef<Set<string>>(new Set());
 
+  /**
+   * Live stages already looked at. A live stage keeps emitting UPDATEs (every
+   * listener join and leave rewrites listener_count), and only its first one
+   * after going live is news. Without this each headcount tick re-ran the
+   * stage_reminders lookup on every signed-in client.
+   */
+  const seenLiveRef = useRef<Set<string>>(new Set());
+
   const raise = useCallback(
     (args: { type: "stage_live" | "stage_reminder"; stage: AudioSpace; sentence: string }) => {
       const key = `${args.type}@${args.stage.id}`;
@@ -151,7 +159,13 @@ export function useStageAlerts() {
           filter: "status=eq.live",
         },
         (payload: any) => {
-          void announce(payload.new as AudioSpace).catch((err) =>
+          const space = payload.new as AudioSpace;
+          // old carries status only under REPLICA IDENTITY FULL. When it does,
+          // an update that was already live is a headcount tick, not a start.
+          if (payload.old?.status === "live") return;
+          if (!space?.id || seenLiveRef.current.has(space.id)) return;
+          seenLiveRef.current.add(space.id);
+          void announce(space).catch((err) =>
             log.error("Stage live alert failed:", err),
           );
         },

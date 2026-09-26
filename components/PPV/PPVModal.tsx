@@ -132,7 +132,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
       }
     };
     load();
-    const id = setInterval(load, 15_000);
+    const id = setInterval(load, 30_000);
     return () => {
       cancelled = true;
       clearInterval(id);

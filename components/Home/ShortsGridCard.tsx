@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "
 import { View, Text, Pressable, StyleSheet, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
-import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
+import { GRID_PREVIEW_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import Icon from "../ui/Icon";
 import { getShortsThumbnailUrl, getVideoUrl, getAvatarUrl, buildCdnPath } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
@@ -51,7 +51,7 @@ const CellPreview: React.FC<{ previewUrl: string }> = ({ previewUrl }) => {
   const player = useVideoPlayer(previewUrl, (p) => {
     p.loop = true;
     p.muted = true;
-    p.bufferOptions = FEED_BUFFER_OPTIONS;
+    p.bufferOptions = GRID_PREVIEW_BUFFER_OPTIONS;
   });
 
   useEffect(() => {
@@ -149,7 +149,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
     [item.minterUser?.avatarImageUrl, item.minterAvatarUrl],
   );
 
-  // Autoplay the full video like web (ShortsFeed → AutoplayVideo uses videos/{id}.mp4).
+  // Autoplay (only the one cell the grid picks) the full video like web (ShortsFeed → AutoplayVideo uses videos/{id}.mp4).
   // Only use item.previewUrl if the API actually returns one; the derived
   // previews/{id}.mp4 path does NOT exist on the CDN, so never fall back to it.
   const previewUrl = useMemo(
@@ -196,7 +196,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
         onError={() => setThumbFailed(true)}
       />
 
-      {/* Video preview layer — only the visible cells mount a player at all.
+      {/* Video preview layer — only the cell the grid picked mounts a player.
           expo-video builds a native ExoPlayer in the constructor whether or not
           a source is attached, so a player per mounted cell (20+ in this grid)
           was a player object graph per cell regardless of the null source. */}

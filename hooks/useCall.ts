@@ -319,7 +319,7 @@ export function useCall(): UseCallReturn {
     };
   }, [subscribeIncomingCalls, unsubscribeIncomingCalls]);
 
-  // ── Polling fallback (every 15s) in case realtime misses the event ─────────
+  // ── Polling fallback (every 60s) in case realtime misses the event ─────────
 
   const isCallActiveRef = useRef(isCallActive);
   const isIncomingRef = useRef(isIncoming);
@@ -335,7 +335,7 @@ export function useCall(): UseCallReturn {
       if (isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
       // CallProvider wraps the whole navigator, so this interval lives for the
       // entire app session. Without this guard it keeps hitting Supabase every
-      // 15s while backgrounded. Realtime (subscribeIncomingCalls) plus push are
+      // minute while backgrounded. Realtime (subscribeIncomingCalls) plus push are
       // the backgrounded path; this is only the foreground fallback. Mirrors
       // hooks/useProviderLifecycle.ts:407.
       if (AppState.currentState !== "active") return;
@@ -361,9 +361,10 @@ export function useCall(): UseCallReturn {
     };
 
     void poll();
-    const interval = setInterval(poll, 15_000);
+    // Realtime and push are the primary path; this only catches a missed event.
+    const interval = setInterval(poll, 60_000);
     // Poll immediately on foreground so a call that started while the app was
-    // backgrounded is picked up at once rather than up to 15s later.
+    // backgrounded is picked up at once rather than up to a minute later.
     const sub = AppState.addEventListener("change", (s) => {
       if (s === "active") void poll();
     });

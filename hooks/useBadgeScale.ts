@@ -21,7 +21,7 @@
 
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import env from "../config/env";
+import { getTokenPrices } from "../libs/dhbPrice";
 import {
   activeBadgeScale,
   badgeScaleForPrice,
@@ -33,14 +33,7 @@ export const TOKEN_PRICES_QUERY_KEY = ["token-prices"] as const;
 
 type TokenPrices = Record<string, number>;
 
-async function fetchTokenPrices(): Promise<TokenPrices> {
-  const res = await fetch(`${env.SUPABASE_URL}/functions/v1/get-dhb-price`, {
-    headers: { apikey: env.SUPABASE_PUBLISHABLE_KEY },
-  });
-  if (!res.ok) throw new Error(`Price lookup failed: ${res.status}`);
-  const data = await res.json();
-  return (data?.prices ?? {}) as TokenPrices;
-}
+const fetchTokenPrices = (): Promise<TokenPrices> => getTokenPrices();
 
 /**
  * Own the ladder scale: fetch the price, publish the scale, hand it back.

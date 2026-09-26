@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, Linking, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import * as ImagePicker from 'expo-image-picker';
@@ -36,6 +36,8 @@ type InstantQuote = { evm?: SwapCall; sol?: SolanaQuote; out: number };
 
 const PAGE_SIZE = 15;
 const BOOK_ROWS = 12;
+/** DexScreener / GeckoTerminal refresh while the pool screen is focused. */
+const MARKET_POLL_MS = 120_000;
 const decimalInput = (value: string) => value.replace(',', '.').trim();
 const numeric = <T extends object>(row: T, keys: (keyof T)[]) => { for (const k of keys) (row as Record<string, unknown>)[k as string] = Number(row[k]); return row; };
 /** Cut a decimal string to what the token can hold, so parseUnits never throws on precision. */
@@ -107,13 +109,17 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
   const [imageBusy, setImageBusy] = useState(false);
 
   // ── Market data ──
+  // DexScreener and GeckoTerminal are called from the phone (the shared server
+  // snapshot only covers the DHB markets, not arbitrary pool tokens), so they
+  // poll slowly and only while this screen is the one in front.
+  const focused = useIsFocused();
   const { data: stats, refetch: refetchStats, isFetching: statsFetching } = useQuery({
     queryKey: ['dex-pool-market', pool.chain, pool.token_address], queryFn: () => tokenMarket(pool.chain, pool.token_address),
-    refetchInterval: 30_000, staleTime: 15_000,
+    refetchInterval: focused ? MARKET_POLL_MS : false, staleTime: 60_000,
   });
   const { data: candles = [], isLoading: candlesLoading } = useQuery({
     queryKey: ['dex-pool-candles', pool.chain, stats?.pairAddress, period], enabled: !!stats?.pairAddress,
-    queryFn: () => tokenCandles(pool.chain, stats!.pairAddress!, pool.token_address, period), refetchInterval: 60_000, staleTime: 55_000,
+    queryFn: () => tokenCandles(pool.chain, stats!.pairAddress!, pool.token_address, period), refetchInterval: focused ? MARKET_POLL_MS : false, staleTime: 60_000,
   });
   const marketPrice = stats?.priceUsd ?? candles.at(-1)?.close ?? null;
   const increments = useMemo(() => incrementsFor(marketPrice), [marketPrice]);
@@ -163,7 +169,7 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
           fill: filled, status: filled > 0 ? 'In range' as const : 'Open' as const }];
       });
     },
-    refetchInterval: 30_000, staleTime: 10_000,
+    refetchInterval: focused ? 30_000 : false, staleTime: 10_000,
   });
   useEffect(() => {
     const channel = supabase.channel(`dex-pool-${pool.id}`)
@@ -208,7 +214,7 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
       ]);
       return { token: Number(ethers.utils.formatUnits(token, pool.decimals)), usdc: Number(ethers.utils.formatUnits(usdc, info.usdcDecimals)), native: Number(ethers.utils.formatUnits(native, 18)) };
     },
-    refetchInterval: 60_000,
+    refetchInterval: focused ? 60_000 : false,
   });
   const nativeSymbol = isSolana ? 'SOL' : 'ETH';
   const spendSymbol = side === 'sell' ? symbol : payNative && mode === 'instant' ? nativeSymbol : 'USDC';
