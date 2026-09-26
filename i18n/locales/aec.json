@@ -843,7 +843,17 @@
     "attachDescription": "اربط توكنات DHB كتلميح على رسالتك",
     "minAmount": "الحد الأدنى {{amount}} DHB.",
     "attachAmount": "اربط {{amount}} DHB",
-    "removeTip": "شيل التلميح"
+    "removeTip": "شيل التلميح",
+    "payWith": "ادفع بـ",
+    "payQuoting": "بنجيبلك أحسن سعر…",
+    "payQuote": "≈ {{amount}} {{symbol}} على {{chain}}",
+    "payViaBridge": "اتحوّل لـ DHB على Uniswap، هيوصل في ~{{seconds}} ثانية",
+    "payViaSwap": "اتحوّل لـ DHB على Uniswap",
+    "stageApprove": "بنوافق على {{symbol}}…",
+    "stageBridge": "بنبعت {{symbol}} من {{chain}}…",
+    "stageArriving": "بيوصل على Base، عادةً كام ثانية…",
+    "stageSwap": "بنشتري DHB على Uniswap…",
+    "payFailed": "معرفناش نحوّل {{symbol}} لـ DHB"
   },
   "postOptions": {
     "options": "خيارات",

@@ -843,7 +843,17 @@
     "attachDescription": "Ku xidh tokens DHB ah oo tip ah farriintaada",
     "minAmount": "Ugu yar {{amount}} DHB.",
     "attachAmount": "Ku xidh {{amount}} DHB",
-    "removeTip": "Tuur Tip"
+    "removeTip": "Tuur Tip",
+    "payWith": "Ku bixi",
+    "payQuoting": "Waxaa la raadinayaa qiimaha ugu fiican…",
+    "payQuote": "≈ {{amount}} {{symbol}} ee {{chain}}",
+    "payViaBridge": "Waxaa loo beddelay DHB Uniswap, wuxuu imanayaa ~{{seconds}} ilbiriqsi gudahood",
+    "payViaSwap": "Waxaa loo beddelay DHB Uniswap",
+    "stageApprove": "Waxaa la oggolaanayaa {{symbol}}…",
+    "stageBridge": "{{symbol}} waxaa laga dirayaa {{chain}}…",
+    "stageArriving": "Wuxuu ku soo gaarayaa Base, badanaa dhowr ilbiriqsi…",
+    "stageSwap": "DHB waxaa laga iibsanayaa Uniswap…",
+    "payFailed": "Lama beddeli karin {{symbol}} oo loo beddelo DHB"
   },
   "postOptions": {
     "options": "Ikhtiyaarada",

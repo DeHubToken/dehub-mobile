@@ -843,7 +843,17 @@
     "attachDescription": "Whakatuhi i ngā tōkena DHB hei tip ki tō karere",
     "minAmount": "Iti {{amount}} DHB.",
     "attachAmount": "Whakatuhi {{amount}} DHB",
-    "removeTip": "Tango Tip"
+    "removeTip": "Tango Tip",
+    "payWith": "Utu mā",
+    "payQuoting": "E rapu ana i te utu pai rawa…",
+    "payQuote": "≈ {{amount}} {{symbol}} i runga i {{chain}}",
+    "payViaBridge": "Kua whakawhitia ki DHB i Uniswap, ka tae mai i roto i te ~{{seconds}} hēkona",
+    "payViaSwap": "Kua whakawhitia ki DHB i Uniswap",
+    "stageApprove": "E whakaae ana i {{symbol}}…",
+    "stageBridge": "E tuku ana i {{symbol}} mai i {{chain}}…",
+    "stageArriving": "E tae mai ana ki Base, he hēkona torutoru noa…",
+    "stageSwap": "E hoko ana i DHB i Uniswap…",
+    "payFailed": "Kāore i taea te huri i {{symbol}} ki DHB"
   },
   "postOptions": {
     "options": "Kōwhiringa",

@@ -843,7 +843,17 @@
     "attachDescription": "Manampy DHB tokens ho toy ny tip amin'ny iyong hafatra",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Manampy {{amount}} DHB",
-    "removeTip": "Esorina ang Tip"
+    "removeTip": "Esorina ang Tip",
+    "payWith": "Handoa amin'ny",
+    "payQuoting": "Mitady ny vidiny tsara indrindra…",
+    "payQuote": "≈ {{amount}} {{symbol}} amin'ny {{chain}}",
+    "payViaBridge": "Nosoloina DHB tao amin'ny Uniswap, tonga ao anatin'ny ~{{seconds}} segondra",
+    "payViaSwap": "Nosoloina DHB tao amin'ny Uniswap",
+    "stageApprove": "Manamarina {{symbol}}…",
+    "stageBridge": "Mandefa {{symbol}} avy amin'ny {{chain}}…",
+    "stageArriving": "Ho tonga ao amin'ny Base, matetika segondra vitsy…",
+    "stageSwap": "Mividy DHB ao amin'ny Uniswap…",
+    "payFailed": "Tsy afaka nanova {{symbol}} ho DHB"
   },
   "postOptions": {
     "options": "Safidy",

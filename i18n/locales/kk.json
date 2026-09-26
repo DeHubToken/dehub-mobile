@@ -843,7 +843,17 @@
     "minAmount": "Минимум {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB қосу",
     "removeTip": "Сыйлықты алып тастау",
-    "toContent": "Мазмұнға кеңес беріңіз"
+    "toContent": "Мазмұнға кеңес беріңіз",
+    "payWith": "Төлеу тәсілі",
+    "payQuoting": "Ең жақсы баға ізделуде…",
+    "payQuote": "≈ {{amount}} {{symbol}}, {{chain}} желісінде",
+    "payViaBridge": "Uniswap-та DHB-ге айырбасталды, ~{{seconds}} с ішінде келеді",
+    "payViaSwap": "Uniswap-та DHB-ге айырбасталды",
+    "stageApprove": "{{symbol}} расталуда…",
+    "stageBridge": "{{symbol}} {{chain}} желісінен жіберілуде…",
+    "stageArriving": "Base желісіне келуде, әдетте бірнеше секунд…",
+    "stageSwap": "Uniswap-та DHB сатып алынуда…",
+    "payFailed": "{{symbol}} DHB-ге айырбасталмады"
   },
   "postOptions": {
     "options": "Параметрлер",

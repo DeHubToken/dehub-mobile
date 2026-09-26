@@ -844,7 +844,17 @@
     "attachDescription": "Heg DHB-tokens as 'n tippie aan jou boodskap",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Heg {{amount}} DHB aan",
-    "removeTip": "Verwyder Tippie"
+    "removeTip": "Verwyder Tippie",
+    "payWith": "Betaal met",
+    "payQuoting": "Kry die beste prys…",
+    "payQuote": "≈ {{amount}} {{symbol}} op {{chain}}",
+    "payViaBridge": "Na DHB omgeruil op Uniswap, kom binne ~{{seconds}}s aan",
+    "payViaSwap": "Na DHB omgeruil op Uniswap",
+    "stageApprove": "Keur {{symbol}} goed…",
+    "stageBridge": "Stuur {{symbol}} vanaf {{chain}}…",
+    "stageArriving": "Kom aan op Base, gewoonlik 'n paar sekondes…",
+    "stageSwap": "Koop DHB op Uniswap…",
+    "payFailed": "Kon nie {{symbol}} na DHB omskakel nie"
   },
   "postOptions": {
     "options": "Opsies",

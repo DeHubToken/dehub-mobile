@@ -843,7 +843,17 @@
     "attachDescription": "DHB tokeneket csatolj tippként az üzenetedhez",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB csatolása",
-    "removeTip": "Tipp eltávolítása"
+    "removeTip": "Tipp eltávolítása",
+    "payWith": "Fizetés ezzel",
+    "payQuoting": "A legjobb ár keresése…",
+    "payQuote": "≈ {{amount}} {{symbol}} a(z) {{chain}} hálózaton",
+    "payViaBridge": "DHB-re váltva a Uniswapon, kb. ~{{seconds}} mp múlva érkezik",
+    "payViaSwap": "DHB-re váltva a Uniswapon",
+    "stageApprove": "{{symbol}} jóváhagyása…",
+    "stageBridge": "{{symbol}} küldése innen: {{chain}}…",
+    "stageArriving": "Érkezés a Base-re, általában pár másodperc…",
+    "stageSwap": "DHB vásárlása a Uniswapon…",
+    "payFailed": "Nem sikerült a(z) {{symbol}} DHB-re váltása"
   },
   "postOptions": {
     "options": "Lehetőségek",

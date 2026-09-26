@@ -843,7 +843,17 @@
     "privacyCheckFailed": "We no fit check the privacy setting of the person weh go receive am. We no send any tip.",
     "paidInSol": "Dem pay am with SOL for Solana",
     "cannotTipSelf": "You no fit tip yourself",
-    "attachDescription": "Add DHB tokens as tip for your message"
+    "attachDescription": "Add DHB tokens as tip for your message",
+    "payWith": "Pay wit",
+    "payQuoting": "We di find best price…",
+    "payQuote": "≈ {{amount}} {{symbol}} for {{chain}}",
+    "payViaBridge": "We don change am to DHB for Uniswap, e go reach for ~{{seconds}}s",
+    "payViaSwap": "We don change am to DHB for Uniswap",
+    "stageApprove": "We di approve {{symbol}}…",
+    "stageBridge": "We di send {{symbol}} from {{chain}}…",
+    "stageArriving": "E di reach Base, normally na small seconds…",
+    "stageSwap": "We di buy DHB for Uniswap…",
+    "payFailed": "We no fit change {{symbol}} to DHB"
   },
   "postOptions": {
     "options": "Options",

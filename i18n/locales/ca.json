@@ -843,7 +843,17 @@
     "attachDescription": "Adjunta tokens DHB com a propina al teu missatge",
     "minAmount": "Mínim {{amount}} DHB.",
     "attachAmount": "Adjunta {{amount}} DHB",
-    "removeTip": "Eliminar propina"
+    "removeTip": "Eliminar propina",
+    "payWith": "Paga amb",
+    "payQuoting": "Obtenint el millor preu…",
+    "payQuote": "≈ {{amount}} {{symbol}} a {{chain}}",
+    "payViaBridge": "Canviat a DHB a Uniswap, arriba en ~{{seconds}} s",
+    "payViaSwap": "Canviat a DHB a Uniswap",
+    "stageApprove": "Aprovant {{symbol}}…",
+    "stageBridge": "Enviant {{symbol}} des de {{chain}}…",
+    "stageArriving": "Arribant a Base, normalment uns segons…",
+    "stageSwap": "Comprant DHB a Uniswap…",
+    "payFailed": "No s'ha pogut convertir {{symbol}} a DHB"
   },
   "postOptions": {
     "options": "Opcions",

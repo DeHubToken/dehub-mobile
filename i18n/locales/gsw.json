@@ -843,7 +843,17 @@
     "attachDescription": "Hänge DHB-Token as Tip a dini Nachricht a",
     "minAmount": "Minimum {{amount}} DHB.",
     "attachAmount": "Hänge {{amount}} DHB a",
-    "removeTip": "Tip entferne"
+    "removeTip": "Tip entferne",
+    "payWith": "Zahle mit",
+    "payQuoting": "Bescht Priis wird gsuecht…",
+    "payQuote": "≈ {{amount}} {{symbol}} uf {{chain}}",
+    "payViaBridge": "Uf Uniswap in DHB tuuscht, chunnt in ~{{seconds}} s aa",
+    "payViaSwap": "Uf Uniswap in DHB tuuscht",
+    "stageApprove": "{{symbol}} wird freigää…",
+    "stageBridge": "{{symbol}} wird vo {{chain}} gschickt…",
+    "stageArriving": "Chunnt uf Base aa, meischt i paar Sekunde…",
+    "stageSwap": "DHB wird uf Uniswap kauft…",
+    "payFailed": "{{symbol}} het nöd chöne in DHB umgwandlet wärde"
   },
   "postOptions": {
     "options": "Optione",

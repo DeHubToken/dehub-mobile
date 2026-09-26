@@ -843,7 +843,17 @@
     "attachDescription": "Habarynyzga DHB token-leri tip hökmünde goşuň",
     "minAmount": "Minimum {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB goşuň",
-    "removeTip": "Tipi aýyryň"
+    "removeTip": "Tipi aýyryň",
+    "payWith": "Töleg bilen",
+    "payQuoting": "Iň gowy baha gözlenýär…",
+    "payQuote": "≈ {{chain}}-da {{amount}} {{symbol}}",
+    "payViaBridge": "Uniswap-da DHB-a çalşyldy, takmynan {{seconds}} sekuntda geler",
+    "payViaSwap": "Uniswap-da DHB-a çalşyldy",
+    "stageApprove": "{{symbol}} tassyklanýar…",
+    "stageBridge": "{{symbol}} {{chain}}-dan iberilýär…",
+    "stageArriving": "Base-e gelýär, adatça birnäçe sekunt…",
+    "stageSwap": "Uniswap-da DHB satyn alynýar…",
+    "payFailed": "{{symbol}} DHB-a öwrülip bilinmedi"
   },
   "postOptions": {
     "options": "Saýlawlar",

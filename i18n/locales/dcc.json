@@ -843,7 +843,17 @@
     "attachDescription": "اپنے پیغام میں ٹپ کے طور پر DHB ٹوکنز منسلک کریں",
     "minAmount": "کم از کم {{amount}} DHB ۔",
     "attachAmount": "{{amount}} DHB منسلک کریں",
-    "removeTip": "ٹپ ہٹائیں"
+    "removeTip": "ٹپ ہٹائیں",
+    "payWith": "پیمنٹ کا ذریعہ",
+    "payQuoting": "سب سے اچھا دام ڈھونڈ رئیں…",
+    "payQuote": "≈ {{amount}} {{symbol}}، {{chain}} پو",
+    "payViaBridge": "Uniswap پو DHB میں بدل گیا، ~{{seconds}} سیکنڈ میں پہنچتا",
+    "payViaSwap": "Uniswap پو DHB میں بدل گیا",
+    "stageApprove": "{{symbol}} منظور کر رئیں…",
+    "stageBridge": "{{chain}} سے {{symbol}} بھیج رئیں…",
+    "stageArriving": "Base پو پہنچ ریا، عام طور پو چند سیکنڈ…",
+    "stageSwap": "Uniswap پو DHB خرید رئیں…",
+    "payFailed": "{{symbol}} کو DHB میں نئیں بدل سکے"
   },
   "postOptions": {
     "options": "آپشن",

@@ -843,7 +843,17 @@
     "attachDescription": "Atașați jetoane DHB ca sfat la mesajul dvs",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Atașați {{amount}} DHB",
-    "removeTip": "Eliminați sfatul"
+    "removeTip": "Eliminați sfatul",
+    "payWith": "Plătește cu",
+    "payQuoting": "Se obține cel mai bun preț…",
+    "payQuote": "≈ {{amount}} {{symbol}} pe {{chain}}",
+    "payViaBridge": "Schimbat în DHB pe Uniswap, ajunge în ~{{seconds}}s",
+    "payViaSwap": "Schimbat în DHB pe Uniswap",
+    "stageApprove": "Se aprobă {{symbol}}…",
+    "stageBridge": "Se trimite {{symbol}} de pe {{chain}}…",
+    "stageArriving": "Ajunge pe Base, de obicei câteva secunde…",
+    "stageSwap": "Se cumpără DHB pe Uniswap…",
+    "payFailed": "Nu s-a putut converti {{symbol}} în DHB"
   },
   "postOptions": {
     "options": "Opțiuni",

@@ -843,7 +843,17 @@
     "attachDescription": "Namathisela ama-DHB token njengomtipelo kumyalezo yakho",
     "minAmount": "Min {{amount}} DHB.",
     "attachAmount": "Namathisela {{amount}} DHB",
-    "removeTip": "Susa i-Tip"
+    "removeTip": "Susa i-Tip",
+    "payWith": "Khokha nge",
+    "payQuoting": "Kutholwa intengo engcono kakhulu…",
+    "payQuote": "≈ {{amount}} {{symbol}} ku-{{chain}}",
+    "payViaBridge": "Kushintshwe kwaba yi-DHB ku-Uniswap, kuzofika emizuzwaneni engu-~{{seconds}}",
+    "payViaSwap": "Kushintshwe kwaba yi-DHB ku-Uniswap",
+    "stageApprove": "Kugunyazwa i-{{symbol}}…",
+    "stageBridge": "Kuthunyelwa i-{{symbol}} isuka ku-{{chain}}…",
+    "stageArriving": "Kufika ku-Base, imizuzwana embalwa ngokuvamile…",
+    "stageSwap": "Kuthengwa i-DHB ku-Uniswap…",
+    "payFailed": "Akukwazanga ukuguqula i-{{symbol}} ibe yi-DHB"
   },
   "postOptions": {
     "options": "Izinketho",

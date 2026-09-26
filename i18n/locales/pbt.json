@@ -843,7 +843,17 @@
     "minAmount": "کم {{amount}} DHB.",
     "attachAmount": "{{amount}} DHB ضمیمه کړئ",
     "removeTip": "ټپ ړنګ کړئ",
-    "toContent": "مینځپانګه لارښوونه کړئ"
+    "toContent": "مینځپانګه لارښوونه کړئ",
+    "payWith": "په دې ورکړه وکړئ",
+    "payQuoting": "غوره بیه موندل کېږي…",
+    "payQuote": "≈ {{amount}} {{symbol}} په {{chain}} کې",
+    "payViaBridge": "په Uniswap کې په DHB بدل شو، په ~{{seconds}} ثانیو کې رسېږي",
+    "payViaSwap": "په Uniswap کې په DHB بدل شو",
+    "stageApprove": "{{symbol}} تاییدېږي…",
+    "stageBridge": "{{symbol}} له {{chain}} څخه لېږل کېږي…",
+    "stageArriving": "Base ته رسېږي، معمولاً څو ثانیې…",
+    "stageSwap": "په Uniswap کې DHB اخیستل کېږي…",
+    "payFailed": "{{symbol}} په DHB بدل نه شو"
   },
   "postOptions": {
     "options": "اختیارونه",

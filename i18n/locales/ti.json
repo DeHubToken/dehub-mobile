@@ -843,7 +843,17 @@
     "minAmount": "ዝተዓወተ {{amount}} DHB።",
     "attachAmount": "{{amount}} DHB ልካት",
     "removeTip": "ጫፍ ወግድ",
-    "toContent": "ትሕዝቶ ጠውቑ"
+    "toContent": "ትሕዝቶ ጠውቑ",
+    "payWith": "ብዚ ክፈል",
+    "payQuoting": "ዝበለጸ ዋጋ ይድለ ኣሎ…",
+    "payQuote": "≈ {{amount}} {{symbol}} ኣብ {{chain}}",
+    "payViaBridge": "ኣብ Uniswap ናብ DHB ተቐይሩ፡ ኣብ ~{{seconds}} ካልኢት ይበጽሕ",
+    "payViaSwap": "ኣብ Uniswap ናብ DHB ተቐይሩ",
+    "stageApprove": "{{symbol}} ይጽደቕ ኣሎ…",
+    "stageBridge": "{{symbol}} ካብ {{chain}} ይለኣኽ ኣሎ…",
+    "stageArriving": "ናብ Base ይበጽሕ ኣሎ፡ ብልሙድ ቅሩብ ካልኢታት…",
+    "stageSwap": "ኣብ Uniswap DHB ይዕደግ ኣሎ…",
+    "payFailed": "{{symbol}} ናብ DHB ክቕየር ኣይከኣለን"
   },
   "postOptions": {
     "options": "ምርጫታት",

@@ -843,7 +843,17 @@
     "attachDescription": "Haɗa DHB tokens azaman tip ga saƙonka",
     "minAmount": "Ƙarami {{amount}} DHB.",
     "attachAmount": "Haɗa {{amount}} DHB",
-    "removeTip": "Cire Tip"
+    "removeTip": "Cire Tip",
+    "payWith": "Biya da",
+    "payQuoting": "Ana neman mafi kyawun farashi…",
+    "payQuote": "≈ {{amount}} {{symbol}} a kan {{chain}}",
+    "payViaBridge": "An musanya zuwa DHB a Uniswap, zai iso cikin ~{{seconds}} daƙiƙa",
+    "payViaSwap": "An musanya zuwa DHB a Uniswap",
+    "stageApprove": "Ana amincewa da {{symbol}}…",
+    "stageBridge": "Ana aika {{symbol}} daga {{chain}}…",
+    "stageArriving": "Yana isowa kan Base, yawanci 'yan daƙiƙoƙi…",
+    "stageSwap": "Ana sayen DHB a Uniswap…",
+    "payFailed": "Ba a iya canza {{symbol}} zuwa DHB ba"
   },
   "postOptions": {
     "options": "Zaɓuɓɓuka",

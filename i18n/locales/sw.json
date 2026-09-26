@@ -843,7 +843,17 @@
     "attachDescription": "Ambatanisha DHB tokens kama tip kwenye ujumbe wako",
     "minAmount": "Kiwango cha chini {{amount}} DHB.",
     "attachAmount": "Ambatanisha {{amount}} DHB",
-    "removeTip": "Ondoa Tip"
+    "removeTip": "Ondoa Tip",
+    "payWith": "Lipa kwa",
+    "payQuoting": "Tunatafuta bei bora zaidi…",
+    "payQuote": "≈ {{amount}} {{symbol}} kwenye {{chain}}",
+    "payViaBridge": "Imebadilishwa kuwa DHB kwenye Uniswap, itafika baada ya ~{{seconds}} s",
+    "payViaSwap": "Imebadilishwa kuwa DHB kwenye Uniswap",
+    "stageApprove": "Inaidhinisha {{symbol}}…",
+    "stageBridge": "Inatuma {{symbol}} kutoka {{chain}}…",
+    "stageArriving": "Inafika kwenye Base, kwa kawaida sekunde chache…",
+    "stageSwap": "Inanunua DHB kwenye Uniswap…",
+    "payFailed": "Imeshindwa kubadilisha {{symbol}} kuwa DHB"
   },
   "postOptions": {
     "options": "Chaguzi",

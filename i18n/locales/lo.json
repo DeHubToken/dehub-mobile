@@ -843,7 +843,17 @@
     "attachDescription": "ແນບໂທກັນ DHB ເປັນຄຳແນະນຳກັບຂໍ້ຄວາມຂອງທ່ານ",
     "minAmount": "ຕໍ່າສຸດ {{amount}} DHB.",
     "attachAmount": "ແນບ {{amount}} DHB",
-    "removeTip": "ລຶບຄຳແນະນຳ"
+    "removeTip": "ລຶບຄຳແນະນຳ",
+    "payWith": "ຈ່າຍດ້ວຍ",
+    "payQuoting": "ກຳລັງຊອກຫາລາຄາດີທີ່ສຸດ…",
+    "payQuote": "≈ {{amount}} {{symbol}} ເທິງ {{chain}}",
+    "payViaBridge": "ແລກເປັນ DHB ເທິງ Uniswap, ມາຮອດໃນ ~{{seconds}} ວິນາທີ",
+    "payViaSwap": "ແລກເປັນ DHB ເທິງ Uniswap",
+    "stageApprove": "ກຳລັງອະນຸມັດ {{symbol}}…",
+    "stageBridge": "ກຳລັງສົ່ງ {{symbol}} ຈາກ {{chain}}…",
+    "stageArriving": "ກຳລັງມາຮອດ Base, ປົກກະຕິພຽງບໍ່ເທົ່າໃດວິນາທີ…",
+    "stageSwap": "ກຳລັງຊື້ DHB ເທິງ Uniswap…",
+    "payFailed": "ບໍ່ສາມາດແປງ {{symbol}} ເປັນ DHB ໄດ້"
   },
   "postOptions": {
     "options": "ຕົວເລືອກ",

@@ -843,7 +843,17 @@
     "attachDescription": "ضيف توكنات DHB كنصيحة لرسالتك",
     "minAmount": "الحد الأدنى {{amount}} DHB.",
     "attachAmount": "ضيف {{amount}} DHB",
-    "removeTip": "شيل النصيحة"
+    "removeTip": "شيل النصيحة",
+    "payWith": "خلّص بـ",
+    "payQuoting": "كنجيبو ليك أحسن ثمن…",
+    "payQuote": "≈ {{amount}} {{symbol}} ف {{chain}}",
+    "payViaBridge": "تبدّل لـ DHB ف Uniswap، غادي يوصل ف ~{{seconds}} ثانية",
+    "payViaSwap": "تبدّل لـ DHB ف Uniswap",
+    "stageApprove": "كنوافقو على {{symbol}}…",
+    "stageBridge": "كنصيفطو {{symbol}} من {{chain}}…",
+    "stageArriving": "كيوصل ل Base، عادةً شي ثواني…",
+    "stageSwap": "كنشريو DHB ف Uniswap…",
+    "payFailed": "ماقدرناش نبدّلو {{symbol}} لـ DHB"
   },
   "postOptions": {
     "options": "خيارات",

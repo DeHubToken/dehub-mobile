@@ -36,6 +36,8 @@ import { toastError, toastSuccess } from "../../libs/toast";
 import DpayTopUpForm from "../Dpay/DpayTopUpForm";
 import NearIntentBuy from "../Dpay/NearIntentBuy";
 import { sanitizeAmountInput } from "../../libs/amount-input";
+import TipPayWith, { tipStageLabel } from "./TipPayWith";
+import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
 
 export interface GiftModalProps {
   open: boolean;
@@ -122,8 +124,11 @@ const GiftModal: React.FC<GiftModalProps> = ({
   const [amount, setAmount] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [phase, setPhase] = useState<
-    "idle" | "approving" | "sending" | "error"
+    "idle" | "funding" | "approving" | "sending" | "error"
   >("idle");
+  // Another token to pay with; it becomes DHB on Base before the gift is sent.
+  const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
+  const [fundingLabel, setFundingLabel] = useState("");
   const [giftError, setGiftError] = useState<string | null>(null);
   // `phase` alone does not stop a double tap: the second tap of a quick
   // double-tap runs before React re-renders the disabled button, reads the
@@ -143,11 +148,13 @@ const GiftModal: React.FC<GiftModalProps> = ({
   const numericAmount = Number(amount) || 0;
   const balance = (user?.tokenBalances?.DHB ?? 0) as number;
   const overLimit = numericAmount > limitTip;
-  const insufficient = numericAmount > balance;
+  const insufficient = !payWith && numericAmount > balance;
+  // Funding lands DHB on Base, so it is offered only when the gift goes out on Base.
+  const canPayWithOther = chainId === 8453 && !!account;
   const isSelf =
     !!user?.walletAddress &&
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
-  const isBusy = phase === "approving" || phase === "sending";
+  const isBusy = phase === "funding" || phase === "approving" || phase === "sending";
   const disableSend =
     isBusy ||
     numericAmount <= 0 ||
@@ -192,6 +199,21 @@ const GiftModal: React.FC<GiftModalProps> = ({
           String(numericAmount),
           tokenMeta.decimals || 18
         );
+        if (payWith && canPayWithOther) {
+          setPhase("funding");
+          try {
+            await fundTip({
+              source: payWith,
+              amountDhb: numericAmount,
+              walletAddress: account,
+              onStage: (stage) => setFundingLabel(tipStageLabel(t as any, stage, payWith)),
+            });
+          } catch (e) {
+            setPhase("error");
+            setGiftError(e instanceof Error ? e.message : (t("tip.payFailed", { symbol: payWith.symbol }) as string));
+            return;
+          }
+        }
         setPhase("approving");
         // Check allowance
         const currentAllowance = await tokenContract.allowance(
@@ -313,6 +335,8 @@ const GiftModal: React.FC<GiftModalProps> = ({
     message,
     patchUser,
     stream,
+    payWith,
+    canPayWithOther,
     t,
   ]);
 
@@ -466,6 +490,15 @@ const GiftModal: React.FC<GiftModalProps> = ({
                 </View>
               </View>
 
+              {canPayWithOther ? (
+                <TipPayWith
+                  visible={open}
+                  amountDhb={numericAmount}
+                  walletAddress={account || undefined}
+                  value={payWith}
+                  onChange={setPayWith}
+                />
+              ) : null}
               {insufficient && (
                 <Text className="text-xs text-white/80 mt-1">
                   {t("tip.insufficientBalance") as string}
@@ -508,6 +541,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                     <Ionicons name="gift-outline" size={18} color="#fff" />
                   )}
                   <Text className="text-white font-semibold">
+                    {phase === "funding" && (fundingLabel || (t("tip.payQuoting") as string))}
                     {phase === "approving" && (t("tip.approving") as string)}
                     {phase === "sending" && (t("tip.sending") as string)}
                     {phase === "idle" && (t("liveGift.sendGift") as string)}

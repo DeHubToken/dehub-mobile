@@ -843,7 +843,17 @@
     "attachDescription": "ଆପଣଙ୍କ ବାର୍ତ୍ତାରେ DHB ଟୋକେନ୍ ଏକ ଟିପ୍ ଭାବରେ ସଂଲଗ୍ନ କରନ୍ତୁ",
     "minAmount": "ସର୍ବନିମ୍ନ {{amount}} DHB।",
     "attachAmount": "{{amount}} DHB ସଂଲଗ୍ନ କରନ୍ତୁ",
-    "removeTip": "ଟିପ୍ ଅପସାରଣ କରନ୍ତୁ"
+    "removeTip": "ଟିପ୍ ଅପସାରଣ କରନ୍ତୁ",
+    "payWith": "ଏହା ଦ୍ୱାରା ପେମେଣ୍ଟ କରନ୍ତୁ",
+    "payQuoting": "ସର୍ବୋତ୍ତମ ମୂଲ୍ୟ ଖୋଜୁଛି…",
+    "payQuote": "≈ {{amount}} {{symbol}} {{chain}} ରେ",
+    "payViaBridge": "Uniswap ରେ DHB କୁ ବଦଳାଗଲା, ~{{seconds}} ସେକେଣ୍ଡରେ ପହଞ୍ଚିବ",
+    "payViaSwap": "Uniswap ରେ DHB କୁ ବଦଳାଗଲା",
+    "stageApprove": "{{symbol}} ଅନୁମୋଦନ କରୁଛି…",
+    "stageBridge": "{{chain}} ରୁ {{symbol}} ପଠାଉଛି…",
+    "stageArriving": "Base ରେ ପହଞ୍ଚୁଛି, ସାଧାରଣତଃ କିଛି ସେକେଣ୍ଡ…",
+    "stageSwap": "Uniswap ରେ DHB କିଣୁଛି…",
+    "payFailed": "{{symbol}} କୁ DHB ରେ ବଦଳାଇ ପାରିଲା ନାହିଁ"
   },
   "postOptions": {
     "options": "ବିକଳ୍ପ",
