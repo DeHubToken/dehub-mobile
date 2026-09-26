@@ -747,7 +747,9 @@
     "hideBadgeAndBalanceDesc": "Ndelikake rincian finansial lan mateni kiriman lan tips kanggo sampeyan.",
     "onChainPublicWarning": "Transaksi ing rantai iku umum. Ngirim token utawa tip bisa mbukak alamat dompetmu, kalebu transaksi sing dilakoni sadurunge mode saldo pribadi diaktifake.",
     "channelUrlOrHandle": "URL utawa gagang Channel",
-    "languageLoadFailed": "Ora bisa ganti basa. Coba maneh."
+    "languageLoadFailed": "Ora bisa ganti basa. Coba maneh.",
+    "leftHanded": "Mode kidal",
+    "leftHandedDesc": "Pindhahake tombol seneng menyang sisih kiwa bar reaksi"
   },
   "common": {
     "mute": "Bisu",

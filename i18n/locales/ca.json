@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Oculta la insígnia i el saldo",
     "hideBadgeAndBalanceDesc": "Oculta els detalls financers i desactiva els enviaments i les propines.",
     "onChainPublicWarning": "Les transaccions a la cadena són públiques. Enviar fitxes o fer propines pot revelar la teva adreça de cartera, incloses les transaccions fetes abans d'habilitar el mode de saldo privat.",
-    "languageLoadFailed": "No s'ha pogut canviar l'idioma. Torna-ho a provar."
+    "languageLoadFailed": "No s'ha pogut canviar l'idioma. Torna-ho a provar.",
+    "leftHanded": "Mode esquerrà",
+    "leftHandedDesc": "Mou el botó de m'agrada a l'esquerra de la barra de reaccions"
   },
   "common": {
     "mute": "Silencia",

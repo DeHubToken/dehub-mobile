@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Hide badge plus balance",
     "hideBadgeAndBalanceDesc": "E go hide your money details and block people from sending or tipping you.",
     "onChainPublicWarning": "On-chain transactions dey public. If you send tokens or tips, people fit see your wallet address, plus di transactions wey you do before you on private balance mode.",
-    "languageLoadFailed": "We no fit change di language. Try again."
+    "languageLoadFailed": "We no fit change di language. Try again.",
+    "leftHanded": "Left-hand mode",
+    "leftHandedDesc": "Move di like button go di left side of di reactions bar"
   },
   "common": {
     "mute": "Off di sound",

@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Skrýt odznak a zůstatek",
     "hideBadgeAndBalanceDesc": "Skryje finanční údaje a zakáže odesílání a tipy vám.",
     "onChainPublicWarning": "On-chain transakce jsou veřejné. Odesílání tokenů nebo tipů může odhalit vaši adresu peněženky, včetně transakcí provedených před povolením režimu soukromého zůstatku.",
-    "languageLoadFailed": "Nelze přepnout jazyk. Zkuste to znovu."
+    "languageLoadFailed": "Nelze přepnout jazyk. Zkuste to znovu.",
+    "leftHanded": "Režim pro leváky",
+    "leftHandedDesc": "Přesune tlačítko To se mi líbí na levou stranu lišty reakcí"
   },
   "common": {
     "mute": "Ztlumit",

@@ -173,6 +173,14 @@ const AppearancePanel: React.FC = () => {
           onValueChange={setHighQualityImages}
         />
         <Divider />
+        <SettingsToggleRow
+          icon="Hand"
+          label={t('settings.leftHanded')}
+          description={t('settings.leftHandedDesc')}
+          value={prefs.leftHanded}
+          onValueChange={(v) => setAppPref('leftHanded', v)}
+        />
+        <Divider />
         {/* Changing speed on a video pins that speed to its creator (see
             libs/video-preferences.ts), which is what makes 1.5× on one channel
             and 1× on another stick. That is invisible once set, so the count

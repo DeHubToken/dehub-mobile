@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Ukryj odznakę i saldo",
     "hideBadgeAndBalanceDesc": "Ukrywa dane finansowe i wyłącza wysyłanie oraz napiwki do Ciebie.",
     "onChainPublicWarning": "Transakcje on-chain są publiczne. Wysyłanie tokenów lub napiwków może ujawnić adres Twojego portfela, w tym transakcje dokonane przed włączeniem trybu prywatnego salda.",
-    "languageLoadFailed": "Nie można zmienić języka. Spróbuj ponownie."
+    "languageLoadFailed": "Nie można zmienić języka. Spróbuj ponownie.",
+    "leftHanded": "Tryb dla leworęcznych",
+    "leftHandedDesc": "Przenosi przycisk polubienia na lewą stronę paska reakcji"
   },
   "common": {
     "mute": "Wycisz",

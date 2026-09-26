@@ -747,7 +747,9 @@
     "hideBadgeAndBalanceDesc": "ເຊື່ອງລາຍລະອຽດທາງການເງິນ ແລະປິດການສົ່ງ ແລະ tips ຫາທ່ານ.",
     "onChainPublicWarning": "ການເຮັດທຸລະກຳ On-chain ເປັນສາທາລະນະ. ການສົ່ງ tokens ຫຼື tips ສາມາດເປີດເຜີຍທີ່ຢູ່ wallet ຂອງທ່ານ, ລວມທັງການເຮັດທຸລະກຳທີ່ເຮັດກ່ອນເປີດໃຊ້ໂໝດຍອດເງິນສ່ວນຕົວ.",
     "languageLoadFailed": "ບໍ່ສາມາດປ່ຽນພາສາໄດ້. ລອງໃໝ່ອີກຄັ້ງ.",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "ໂໝດຄົນຖະນັດຊ້າຍ",
+    "leftHandedDesc": "ຍ້າຍປຸ່ມຖືກໃຈໄປທາງຊ້າຍຂອງແຖບປະຕິກິລິຍາ"
   },
   "common": {
     "mute": "ປິດສຽງ",

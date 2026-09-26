@@ -747,7 +747,9 @@
     "hideBadgeAndBalanceDesc": "Moliya ma'lumotlarini yashiradi va sizga yuborish va maslahatlar berishni o'chiradi.",
     "onChainPublicWarning": "On-chain (blokcheyn) operatsiyalari ommaviy hisoblanadi. Tokenlar yoki maslahatlar yuborish sizning hamyon manzilingizni oshkor qilishi mumkin, shu jumladan maxfiy balans rejimi yoqilishidan oldin amalga oshirilgan operatsiyalar ham.",
     "languageLoadFailed": "Tilni almashtirib bo'lmadi. Qaytadan urinib ko'ring.",
-    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) kredit bilan oching"
+    "smsNotificationsLocked": "{{dhb}} DHB (${{usd}}) kredit bilan oching",
+    "leftHanded": "Chapaqay rejimi",
+    "leftHandedDesc": "Yoqtirish tugmasini reaksiyalar panelining chap tomoniga ko‘chiring"
   },
   "common": {
     "mute": "Ovozni o‘chirish",

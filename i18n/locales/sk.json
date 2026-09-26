@@ -751,7 +751,9 @@
     "hideBadgeAndBalance": "Skryť odznak a zostatok",
     "hideBadgeAndBalanceDesc": "Skryje finančné údaje a zakáže odosielanie a tipy vám.",
     "onChainPublicWarning": "Transakcie na reťazci sú verejné. Odosielanie tokenov alebo tipov môže odhaliť vašu adresu peňaženky vrátane transakcií uskutočnených pred povolením režimu súkromného zostatku.",
-    "languageLoadFailed": "Nepodarilo sa zmeniť jazyk. Skúste to znova."
+    "languageLoadFailed": "Nepodarilo sa zmeniť jazyk. Skúste to znova.",
+    "leftHanded": "Režim pre ľavákov",
+    "leftHandedDesc": "Presunie tlačidlo Páči sa mi na ľavú stranu lišty reakcií"
   },
   "common": {
     "mute": "Stlmiť",

@@ -747,7 +747,9 @@
     "hideBadgeAndBalanceDesc": "財務情報が非表示になり、あなたへの送信とヒントが無効になります。",
     "onChainPublicWarning": "オンチェーントランザクションは公開されます。トークンまたはヒントを送信すると、プライベート残高モードが有効になる前に作成されたトランザクションを含め、ウォレットアドレスが公開される可能性があります。",
     "languageLoadFailed": "言語を切り替えられませんでした。もう一度お試しください。",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "左利きモード",
+    "leftHandedDesc": "いいねボタンをリアクションバーの左側に移動します"
   },
   "common": {
     "mute": "ミュート",

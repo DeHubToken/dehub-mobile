@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Ocultar insignia y saldo",
     "hideBadgeAndBalanceDesc": "Oculta los detalles financieros y deshabilita los envíos y propinas hacia ti.",
     "onChainPublicWarning": "Las transacciones en cadena son públicas. Enviar tokens o propinas puede revelar tu dirección de billetera, incluidas las transacciones realizadas antes de que se habilitara el modo de saldo privado.",
-    "languageLoadFailed": "No se ha podido cambiar el idioma. Inténtalo de nuevo."
+    "languageLoadFailed": "No se ha podido cambiar el idioma. Inténtalo de nuevo.",
+    "leftHanded": "Modo zurdo",
+    "leftHandedDesc": "Mueve el botón de me gusta al lado izquierdo de la barra de reacciones"
   },
   "common": {
     "mute": "Silenciar",

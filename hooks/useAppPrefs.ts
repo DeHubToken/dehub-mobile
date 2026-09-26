@@ -46,6 +46,9 @@ const KEYS = {
   // Skip crowdsourced sponsor reads and intros. Web's key, same meaning.
   skipSegments: 'skip-video-segments',
   geoBlockedCountries: 'dehub_geo_blocked',
+  // Mirrors the post reactions bar so the like sits under a left thumb.
+  // Web's key name.
+  leftHanded: 'left-handed-mode',
 } as const;
 
 export type AppPrefKey = keyof typeof KEYS;
@@ -67,6 +70,7 @@ export interface AppPrefs {
   hideWatched: boolean;
   skipSegments: boolean;
   geoBlockedCountries: string[];
+  leftHanded: boolean;
 }
 
 /** Same defaults web falls back to when a key is absent. */
@@ -95,6 +99,7 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   // they discover has been made for them.
   skipSegments: false,
   geoBlockedCountries: [],
+  leftHanded: false,
 };
 
 let cache: AppPrefs = { ...DEFAULT_APP_PREFS };
@@ -152,6 +157,7 @@ function init() {
         autoSaveDrafts: parseBool(get('autoSaveDrafts'), DEFAULT_APP_PREFS.autoSaveDrafts),
         hideWatched: parseBool(get('hideWatched'), DEFAULT_APP_PREFS.hideWatched),
         skipSegments: parseBool(get('skipSegments'), DEFAULT_APP_PREFS.skipSegments),
+        leftHanded: parseBool(get('leftHanded'), DEFAULT_APP_PREFS.leftHanded),
         geoBlockedCountries: (() => {
           try {
             const parsed = JSON.parse(get('geoBlockedCountries') || '[]');

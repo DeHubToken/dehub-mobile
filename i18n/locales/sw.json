@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Ficha beji na salio",
     "hideBadgeAndBalanceDesc": "Inaficha maelezo ya kifedha na kuzima utumaji na vidokezo kwako.",
     "onChainPublicWarning": "Miamala kwenye mnyororo ni ya umma. Kutuma tokeni au vidokezo kunaweza kufichua anwani yako ya pochi, ikijumuisha miamala iliyofanywa kabla ya hali ya salio la kibinafsi kuwezeshwa.",
-    "languageLoadFailed": "Imeshindwa kubadilisha lugha. Jaribu tena."
+    "languageLoadFailed": "Imeshindwa kubadilisha lugha. Jaribu tena.",
+    "leftHanded": "Hali ya mkono wa kushoto",
+    "leftHandedDesc": "Hamisha kitufe cha kupenda upande wa kushoto wa upau wa maoni"
   },
   "common": {
     "mute": "Nyamazisha",

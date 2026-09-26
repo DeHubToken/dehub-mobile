@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Skjul merke og saldo",
     "hideBadgeAndBalanceDesc": "Skjuler økonomiske detaljer og deaktiverer sendinger og tips til deg.",
     "onChainPublicWarning": "Transaksjoner på kjeden er offentlige. Sending av tokens eller tips kan avsløre lommebokadressen din, inkludert transaksjoner gjort før privat balansemodus ble aktivert.",
-    "languageLoadFailed": "Kunne ikke bytte språk. Prøv på nytt."
+    "languageLoadFailed": "Kunne ikke bytte språk. Prøv på nytt.",
+    "leftHanded": "Venstrehåndsmodus",
+    "leftHandedDesc": "Flytt liker-knappen til venstre side av reaksjonslinjen"
   },
   "common": {
     "mute": "Demp",

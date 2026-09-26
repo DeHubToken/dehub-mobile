@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Sembunyikan lencana dan saldo",
     "hideBadgeAndBalanceDesc": "Menyembunyikan detail keuangan dan menonaktifkan pengiriman serta tip kepada Anda.",
     "onChainPublicWarning": "Transaksi on-chain bersifat publik. Mengirim token atau tip dapat mengungkapkan alamat dompet Anda, termasuk transaksi yang dilakukan sebelum mode saldo pribadi diaktifkan.",
-    "languageLoadFailed": "Tidak dapat beralih bahasa. Coba lagi."
+    "languageLoadFailed": "Tidak dapat beralih bahasa. Coba lagi.",
+    "leftHanded": "Mode kidal",
+    "leftHandedDesc": "Pindahkan tombol suka ke sisi kiri bilah reaksi"
   },
   "common": {
     "mute": "Bisukan",

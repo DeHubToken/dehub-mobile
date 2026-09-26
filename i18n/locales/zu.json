@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Fihla ibheji nebhalansi",
     "hideBadgeAndBalanceDesc": "Ifihla imininingwane yezezimali futhi ivimela ukuthumela nokunikeza amathiphu kuwe.",
     "onChainPublicWarning": "Imisebenzi ye-On-chain iyimfihlo. Ukuthumela amathokheni noma amathiphu kungaveza ikheli lakho le-wallet, okuhlanganisa nemisebenzi eyenziwe ngaphambi kokuthi imodi yebhalansi eyimfihlo yenziwe yasebenza.",
-    "languageLoadFailed": "Ayikwazanga ukushintsha ulimi. Zama futhi."
+    "languageLoadFailed": "Ayikwazanga ukushintsha ulimi. Zama futhi.",
+    "leftHanded": "Imodi yesandla sobunxele",
+    "leftHandedDesc": "Hambisa inkinobho yokuthanda iye ohlangothini lwesobunxele lwebha yokusabela"
   },
   "common": {
     "mute": "Thulisa",

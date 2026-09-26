@@ -747,7 +747,9 @@
     "hideBadgeAndBalanceDesc": "隱藏財務詳細資訊並停用向你發送訊息和提示。",
     "onChainPublicWarning": "鏈上交易是公開的。發送代幣或提示可能會顯示你的錢包地址，包括在啟用私人餘額模式之前進行的交易。",
     "languageLoadFailed": "轉唔到語言。再試多次。",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "左撇模式",
+    "leftHandedDesc": "將讚好掣搬去反應欄左邊"
   },
   "common": {
     "mute": "靜音",
