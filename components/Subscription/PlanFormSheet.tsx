@@ -362,7 +362,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
               />
               <View pointerEvents="none" className="absolute right-3 inset-y-0 justify-center">
                 <Text className="text-theme-neutrals-400 text-xs">
-                  {price ? formatDhbPayment(dhbEstimate) : "DHB"}
+                  {price ? formatDhbPayment(dhbEstimate) : t("subscriptions.tokensUnit")}
                 </Text>
               </View>
             </View>

@@ -178,11 +178,11 @@ const EarningsComparisonCard: React.FC = () => {
             <View style={styles.tile}>
               <Text style={styles.tileLabel}>{t("earningsVs.earnedOnDehub")}</Text>
               <Text style={styles.tileValue}>
-                {priceKnown ? usd(dehubUsd) : `${compact(tipsEarnedDhb)} DHB`}
+                {priceKnown ? usd(dehubUsd) : t("earningsVs.tokenAmount", { amount: compact(tipsEarnedDhb) })}
               </Text>
               <Text style={styles.tileSub}>
                 {priceKnown
-                  ? `${compact(tipsEarnedDhb)} DHB`
+                  ? t("earningsVs.tokenAmount", { amount: compact(tipsEarnedDhb) })
                   : t("earningsVs.priceUnavailable")}
               </Text>
             </View>

@@ -373,7 +373,7 @@ const BridgeTab: React.FC = () => {
                     {(Number(t.amount) || 0).toLocaleString(appLocale(), {
                       maximumFractionDigits: 4,
                     })}{" "}
-                    DHB
+                    <DhbCoin />
                   </Text>
                   <Text className="text-white/50 text-xs mt-0.5">
                     from {t.chain} · {timeAgo(t.timestamp)}

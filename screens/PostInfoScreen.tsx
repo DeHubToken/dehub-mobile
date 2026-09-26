@@ -40,6 +40,7 @@ import { copyToClipboard } from "../libs/clipboard.utils";
 import { getTransactionLink, openInApp } from "../libs/links.utils";
 import { toastError, toastSuccess } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { DhbCoin } from "../components/common/DhbCoin";
 
 const CHAIN_NAMES: Record<number, string> = { 8453: "Base", 56: "BNB Chain" };
 const EXPLORER_NAMES: Record<number, string> = { 8453: "BaseScan", 56: "BscScan" };
@@ -60,7 +61,7 @@ const Section: React.FC<{ title?: string; right?: React.ReactNode; children: Rea
   </View>
 );
 
-const Stat: React.FC<{ icon: keyof typeof Ionicons.glyphMap; value: string; label: string; wide?: boolean }> = ({
+const Stat: React.FC<{ icon: keyof typeof Ionicons.glyphMap; value: React.ReactNode; label: string; wide?: boolean }> = ({
   icon,
   value,
   label,
@@ -104,6 +105,7 @@ export default function PostInfoScreen() {
   const isPPV = !!(post?.is_ppv || post?.streamInfo?.isPayPerView);
   const ppvPrice = post?.ppv_price ?? post?.streamInfo?.payPerViewAmount;
   const ppvCurrency = post?.ppv_currency || "DHB";
+  const ppvUnit = ppvCurrency.toUpperCase() === "DHB" ? <DhbCoin size={15} /> : ppvCurrency;
 
   const { data: ppvSales } = useQuery({
     queryKey: ["ppv-sales-count", tokenId],
@@ -405,12 +407,12 @@ export default function PostInfoScreen() {
             <View style={styles.grid}>
               <Stat icon="ticket-outline" value={String(ppvSales ?? 0)} label={t("postInfo.ppvSales")} />
               {ppvPrice != null && (
-                <Stat icon="lock-closed-outline" value={`${ppvPrice} ${ppvCurrency}`} label={t("postInfo.price")} />
+                <Stat icon="lock-closed-outline" value={<>{ppvPrice} {ppvUnit}</>} label={t("postInfo.price")} />
               )}
               {ppvPrice != null && (
                 <Stat
                   icon="cash-outline"
-                  value={`${((ppvSales ?? 0) * Number(ppvPrice)).toLocaleString()} ${ppvCurrency}`}
+                  value={<>{((ppvSales ?? 0) * Number(ppvPrice)).toLocaleString()} {ppvUnit}</>}
                   label={t("postInfo.totalRevenue")}
                   wide
                 />

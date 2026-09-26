@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useSnapshot } from "valtio";
+import i18n from "i18next";
 import {
   uploadState,
   uploadActions,
@@ -511,13 +512,13 @@ async function processJob(job: UploadJob): Promise<void> {
       const payment = await payPostQuota(quotaBill.amountDhb, quotaBill.recipient);
       const settled = await settleWithRetry(payment.txHash, payment.chainId);
       if (settled === "settled") {
-        toastSuccess(`Paid ${quotaBill.amountDhb.toLocaleString()} DHB for this post`);
+        toastSuccess(i18n.t("postQuota.paidForPost", { amount: quotaBill.amountDhb.toLocaleString() }));
       } else if (settled === "pending") {
         // The DHB has left the wallet. Never offer a retry here — the transfer
         // is the part that cannot be repeated safely, and the hash is stashed
         // and re-sent on its own.
         toastSuccess("Payment sent — still confirming", {
-          description: "Your DHB has been transferred. We will finish confirming it shortly.",
+          description: i18n.t("postQuota.transferredConfirming"),
         });
       } else {
         // Retries are spent. Saying "we will finish confirming it shortly" here
@@ -528,7 +529,7 @@ async function processJob(job: UploadJob): Promise<void> {
         // it has one and only falls back to this string otherwise.
         toastError(
           null,
-          "Your DHB was sent but we could not confirm it. Do not pay again.",
+          i18n.t("postQuota.sentUnconfirmed"),
           {
             description: `Quote this transaction to support: ${ref.slice(0, 10)}…${ref.slice(-8)}`,
           },
@@ -537,7 +538,7 @@ async function processJob(job: UploadJob): Promise<void> {
     } catch (e: any) {
       toastError(
         e,
-        "The DHB transfer did not complete. You will be asked again before your next paid post.",
+        i18n.t("postQuota.transferIncomplete"),
         { description: "This post is published but unpaid." },
       );
     }

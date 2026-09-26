@@ -343,7 +343,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
         <View>
           <Text className="text-base text-white mb-2">
             {t("transfer.enterAmount")}{" "}
-            <Text className="text-theme-accent font-semibold">$DHB:</Text>
+            <DhbCoin />:
           </Text>
           <TextInput
             keyboardType="numeric"

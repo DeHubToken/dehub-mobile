@@ -23,6 +23,7 @@ import {
 import type { LiveChatRoom, LiveChatUser } from "../services/livechat.service";
 import { getAvatarUrl, getBadgeUrlFor } from "../libs/misc";
 import { getAccountSummaries } from "../services/user.service";
+import { DhbCoin } from "../components/common/DhbCoin";
 
 /* ─── Types ─────────────────────────────────────────────────── */
 
@@ -101,7 +102,7 @@ const UserRow: React.FC<{
 const InfoRow: React.FC<{
   icon: keyof typeof Ionicons.glyphMap;
   label: string;
-  value: string;
+  value: React.ReactNode;
 }> = ({ icon, label, value }) => (
   <View className="flex-row items-center px-4 py-3 gap-3">
     <View className="w-8 h-8 bg-white/5 rounded-lg items-center justify-center">
@@ -324,7 +325,7 @@ const LiveChatInfoScreen: React.FC = () => {
               <InfoRow
                 icon="lock-closed-outline"
                 label={t("liveChat.minStakeRequired")}
-                value={`${room.minStakeRequired.toLocaleString()} DHB`}
+                value={<>{room.minStakeRequired.toLocaleString()} <DhbCoin size={14} /></>}
               />
             </>
           )}

@@ -18,6 +18,7 @@ import ScreenHeader from "../components/ScreenHeader";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { theme } from "../theme";
 import { toastInfo, toastError } from "../libs";
+import { DhbCoin } from "../components/common/DhbCoin";
 import {
   getEvents,
   getMyRsvps,
@@ -82,7 +83,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
           {(event.gate_fee ?? 0) > 0 && (
             <>
               <Text style={styles.metaDot}>·</Text>
-              <Text style={styles.gateFee}>{event.gate_fee} DHB</Text>
+              <Text style={styles.gateFee}>{event.gate_fee} <DhbCoin size={12} /></Text>
             </>
           )}
         </View>

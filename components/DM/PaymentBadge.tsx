@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 interface PaymentBadgeProps {
   /** Amount paid (fee or tip). Null while pending if amount unknown. */
@@ -22,24 +23,29 @@ const PaymentBadgeComponent: React.FC<PaymentBadgeProps> = ({
   isMine = true,
   failed = false,
 }) => {
+  const { t } = useTranslation();
   const isPending = status === "pending" && !failed;
   const isConfirmed = status === "confirmed" && !failed;
   const displayAmount = amount ? Number(amount).toLocaleString() : null;
-  const tokenLabel = symbol || "DHB";
+  const amountText = displayAmount
+    ? symbol && symbol !== "DHB"
+      ? `${displayAmount} ${symbol}`
+      : t("dm.tokenAmount", { amount: displayAmount })
+    : null;
 
   // Build the label
   let label: string;
   if (failed) {
     label = displayAmount
-      ? `Failed · ${displayAmount} ${tokenLabel}`
+      ? t("dm.paymentFailedAmount", { amount: amountText })
       : `Payment failed`;
   } else if (isPending) {
     label = displayAmount
-      ? `Sending · ${displayAmount} ${tokenLabel}`
+      ? t("dm.paymentSendingAmount", { amount: amountText })
       : `Confirming payment…`;
   } else {
     label = displayAmount
-      ? `Sent with ${displayAmount} ${tokenLabel}`
+      ? t("dm.paymentSentWith", { amount: amountText })
       : `Paid message`;
   }
 

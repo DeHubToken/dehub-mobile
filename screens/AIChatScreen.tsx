@@ -363,7 +363,7 @@ function AIChatScreenInner() {
           return 'Too many requests — try again shortly.';
         case 'CREDITS_EXHAUSTED':
         case 'INSUFFICIENT_CREDITS':
-          return 'Out of DHB credit for AI. Top up to keep going.';
+          return t('aiChat.outOfCredit');
         case 'TIMEOUT':
           return 'That request timed out. Try again.';
         case 'UNAUTHENTICATED':

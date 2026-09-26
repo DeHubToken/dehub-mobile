@@ -18,6 +18,7 @@
  */
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import i18n from "i18next";
 import { ethers } from "ethers";
 import { buildContract } from "../libs/contract.factory";
 import { createAuthAdapter } from "./auth/authAdapter";
@@ -125,7 +126,11 @@ export async function payPostQuota(
       0,
     );
     throw new Error(
-      `${subjectLabel} costs ${amount.toLocaleString()} DHB and you hold ${Math.floor(held).toLocaleString()}.`,
+      i18n.t("postQuota.notEnoughTokens", {
+        subject: subjectLabel,
+        amount: amount.toLocaleString(),
+        held: Math.floor(held).toLocaleString(),
+      }),
     );
   }
 

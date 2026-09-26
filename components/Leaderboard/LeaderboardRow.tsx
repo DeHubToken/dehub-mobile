@@ -66,7 +66,7 @@ const LeaderboardRowItem: React.FC<Props> = ({ item, sort, period, onPress }) =>
 
   const value = getEntryValue(item, sort, period);
   const isDelta = period !== "all" && sort !== "affiliates" && typeof item.delta === "number";
-  const suffix = DHB_SORTS.has(sort) ? " DHB" : "";
+  const withUnit = (text: string) => (DHB_SORTS.has(sort) ? t("leaderboard.tokenAmount", { amount: text }) : text);
 
   let valueText: string;
   let valueClass = "text-white";
@@ -82,10 +82,10 @@ const LeaderboardRowItem: React.FC<Props> = ({ item, sort, period, onPress }) =>
       : direct;
   } else if (isDelta) {
     const prefix = value > 0 ? "+" : "";
-    valueText = `${prefix}${formatCompactNumber(value)}${suffix}`;
+    valueText = withUnit(`${prefix}${formatCompactNumber(value)}`);
     if (Math.abs(value) > 0.01) valueClass = value > 0 ? "text-theme-green-400" : "text-theme-red-400";
   } else {
-    valueText = `${formatCompactNumber(value)}${suffix}`;
+    valueText = withUnit(formatCompactNumber(value));
   }
 
   return (

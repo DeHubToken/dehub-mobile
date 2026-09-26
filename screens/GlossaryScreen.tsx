@@ -39,7 +39,7 @@ const SECTIONS: GlossarySection[] = [
       { icon: "MessageSquare", title: "Comment", description: "Opens the comment section where you can reply to a post, join discussions, and interact with other users." },
       { icon: "Share2", title: "Share", description: "Share a post externally via a link, or copy the post URL to your clipboard to send to others." },
       { icon: "Bookmark", title: "Bookmark", description: "Save a post to your bookmarks for later. Access all saved posts from the Bookmarks page in the sidebar." },
-      { icon: "Gem", title: "Tip", description: "Send DHB tokens directly to a content creator as a reward for their content. Tips are recorded on-chain." },
+      { icon: "Gem", title: "Tip", description: { key: "screens.glossaryTipDesc" } },
       { icon: "Flag", title: "Report", description: "Flag inappropriate or harmful content for review. Reports help keep the community safe." },
       { icon: "Ellipsis", title: "More Options (⋯)", description: "Opens additional actions like editing, deleting, or reporting a post." },
     ],
@@ -66,7 +66,7 @@ const SECTIONS: GlossarySection[] = [
     entries: [
       { icon: "LockOpen", title: "Public", description: "Content visible to everyone. Anyone can view, like, and comment on public posts." },
       { icon: "Lock", title: "Private", description: "Content only visible to you. Private posts are hidden from other users and the public feed." },
-      { icon: "Ticket", title: "Pay-Per-View (PPV)", description: "Premium content that requires a DHB token payment to unlock. Creators set the price and earn revenue from each view." },
+      { icon: "Ticket", title: "Pay-Per-View (PPV)", description: { key: "screens.glossaryPpvDesc" } },
       { icon: "Crown", title: "Subscriber Only", description: "Content restricted to users who have subscribed to the creator's channel." },
     ],
   },
@@ -92,10 +92,10 @@ const SECTIONS: GlossarySection[] = [
   {
     title: "Wallet & Tokens",
     entries: [
-      { icon: "Coins", title: "DHB Token", description: "The native utility token of DeHub. Used for tipping, pay-per-view content, governance voting, and staking." },
-      { icon: "Wallet", title: "Wallet", description: "Your on-chain wallet that holds your DHB tokens and other crypto assets. Connected via Web3Auth for easy access." },
+      { icon: "Coins", title: "DHB Token", description: { key: "screens.glossaryDhbTokenDesc" } },
+      { icon: "Wallet", title: "Wallet", description: { key: "screens.glossaryWalletDesc" } },
       { icon: "ArrowUpDown", title: "Swap", description: "Exchange one token for another directly within the app. Swaps happen on-chain using decentralized exchanges." },
-      { icon: "TrendingUp", title: "Staking", description: "Lock your DHB tokens to earn rewards over time. Staked tokens also give you increased voting power in governance." },
+      { icon: "TrendingUp", title: "Staking", description: { key: "screens.glossaryStakingDesc" } },
       { icon: "Copy", title: "Transaction Hash", description: "A unique identifier for any on-chain transaction. Open it to view the full transaction details on a blockchain explorer." },
     ],
   },
@@ -121,7 +121,7 @@ const SECTIONS: GlossarySection[] = [
   {
     title: "Governance & Community",
     entries: [
-      { icon: "ShieldCheck", title: "Governance", description: "Submit and vote on proposals that shape the platform. Your voting power is weighted by your DHB holdings." },
+      { icon: "ShieldCheck", title: "Governance", description: { key: "screens.glossaryGovernanceDesc" } },
       { icon: "Lightbulb", title: "Feature Requests", description: "Suggest new features and vote on community ideas. Popular requests get prioritized for development." },
       { icon: "ChevronUp", title: "Upvote", description: "Vote in favor of a governance proposal or feature request. Helps signal community support." },
       { icon: "ChevronDown", title: "Downvote", description: "Vote against a governance proposal or feature request. Helps signal community opposition." },
@@ -130,8 +130,8 @@ const SECTIONS: GlossarySection[] = [
   {
     title: "Badges & Ranking",
     entries: [
-      { icon: "CircleCheckBig", title: "Staking Badges", description: "Badges displayed next to your username based on your total DHB holdings (wallet + staked). There are 13 tiers — the more DHB you hold, the higher your badge rank. Higher tiers grant more governance voting power and lower platform fees." },
-      { icon: "Trophy", title: "Leaderboard Ranking", description: "Users are ranked by total DHB balance (wallet + staked across all chains). Rankings update periodically and track 1-day and 1-week changes. You can also sort by tips sent, tips received, followers, likes, or subscribers." },
+      { icon: "CircleCheckBig", title: "Staking Badges", description: { key: "screens.glossaryStakingBadgesDesc" } },
+      { icon: "Trophy", title: "Leaderboard Ranking", description: { key: "screens.glossaryLeaderboardDesc" } },
       { icon: "TrendingUp", title: "Ranking Delta (▲▼)", description: "The green or red arrow next to a leaderboard entry shows how much a user's balance changed over the selected time period (1 day, 1 week, etc.)." },
       { icon: "Zap", title: "Token ID", description: { key: "screens.glossaryTokenIdDesc" } },
     ],

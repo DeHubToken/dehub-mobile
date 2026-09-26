@@ -668,10 +668,10 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               }`}
             >
               {tipBelowFee
-                ? `Tip must be at least ${effectiveFee} DHB (message fee)`
+                ? t("dm.tipBelowFee", { amount: effectiveFee })
                 : insufficientBalance
-                ? `Insufficient balance · ${Number(dhbBalance).toLocaleString()} DHB`
-                : `Balance: ${Number(dhbBalance!).toLocaleString()} DHB`}
+                ? t("dm.insufficientTokenBalance", { amount: Number(dhbBalance).toLocaleString() })
+                : t("dm.tokenBalance", { amount: Number(dhbBalance!).toLocaleString() })}
             </Text>
           </Animated.View>
         )}

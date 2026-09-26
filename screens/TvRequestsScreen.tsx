@@ -15,6 +15,7 @@ import GlassIndicator, { GLASS_SHADOW } from '../components/ui/GlassIndicator';
 import GlassTipSheet from '../components/Tip/GlassTipSheet';
 import { formatCompactNumber, toastError, toastSuccess } from '../libs';
 import { useFocusedInterval } from '../hooks/useFocusedInterval';
+import { DhbCoin } from '../components/common/DhbCoin';
 import {
   getPendingTvRequests,
   resolveTvRequest,
@@ -218,7 +219,7 @@ const RequestCard = React.memo<{
 
         <View className="bg-theme-neutrals-900/60 rounded-lg px-3 py-3 mb-3">
           <Text className="text-white text-lg font-bold">
-            {formatCompactNumber(amount)} DHB
+            {formatCompactNumber(amount)} <DhbCoin size={16} />
           </Text>
           <Text className="text-theme-neutrals-300 text-sm mt-0.5">{t('tv.tipTo', { name: to })}</Text>
           {!!request.payload.postTitle && (
