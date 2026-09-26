@@ -38,19 +38,22 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
 
         {/* Same slot on web (LoginModalBody): two more ways in, both of which
             still need one of the sign-ins above first. */}
-        <AuthButton
-          icon="download-outline"
-          label={t("auth.migrateAccount")}
-          onPress={() => setMigrateVisible(true)}
-          disabled={isDisabled}
-        />
+        {/* Same 12pt rhythm as the sign-in stack above (SocialLoginIcons). */}
+        <View style={{ gap: 12 }}>
+          <AuthButton
+            icon="download-outline"
+            label={t("auth.migrateAccount")}
+            onPress={() => setMigrateVisible(true)}
+            disabled={isDisabled}
+          />
 
-        <AuthButton
-          icon="key"
-          label={t("auth.importExternalWallet")}
-          onPress={handlePress}
-          disabled={isDisabled}
-        />
+          <AuthButton
+            icon="key"
+            label={t("auth.importExternalWallet")}
+            onPress={handlePress}
+            disabled={isDisabled}
+          />
+        </View>
 
         {/* Import Wallet Modal - shown when used outside navigation context */}
         <ImportWalletModal visible={modalVisible} onClose={handleCloseModal} />
