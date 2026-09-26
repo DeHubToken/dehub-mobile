@@ -49,6 +49,32 @@ export function formatBytes(bytes: number): string {
 }
 
 
+/**
+ * A category is a bare word. /get_categories returns whatever posts were saved
+ * with, and the free-text box used to keep a typed "#business" or "@bollywood"
+ * as-is, and a whole selection sometimes landed as one "a|||b" entry — which
+ * rendered as hashtag- and mention-looking chips that match no post.
+ */
+export function normalizeCategoryName(raw: string): string {
+  return raw.replace(/^[s#@]+/, '').replace(/s+/g, ' ').trim();
+}
+
+/** Split joined entries, clean each, drop empties, dedupe case-insensitively. */
+export function normalizeCategoryList(raw: readonly string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const entry of raw) {
+    for (const part of String(entry ?? '').split(/||||,/)) {
+      const name = normalizeCategoryName(part);
+      const key = name.toLowerCase();
+      if (!name || seen.has(key)) continue;
+      seen.add(key);
+      out.push(name);
+    }
+  }
+  return out;
+}
+
 const HASHTAG_RE = /#([A-Za-z][A-Za-z0-9_]{0,49})/g;
 
 /**
@@ -74,8 +100,8 @@ export function mergeHashtagCategories(
   const titleTags = Array.from(title.matchAll(HASHTAG_RE)).map((m) => toTitleCaseTag(m[1]));
   const descTags = Array.from(description.matchAll(HASHTAG_RE)).map((m) => toTitleCaseTag(m[1]));
 
-  return [...new Set([...baseCategories, ...titleTags, ...descTags])];
+  return normalizeCategoryList([...baseCategories, ...titleTags, ...descTags]);
 }
 
-export const StringsUtil = { truncateAddress, isBlank, truncate, toTitleCase, miniAddress, formatBytes, mergeHashtagCategories };
+export const StringsUtil = { truncateAddress, isBlank, truncate, toTitleCase, miniAddress, formatBytes, mergeHashtagCategories, normalizeCategoryName, normalizeCategoryList };
 export default StringsUtil;

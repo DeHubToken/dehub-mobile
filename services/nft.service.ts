@@ -1,4 +1,5 @@
 import { apiClient } from "../libs";
+import { normalizeCategoryList } from "../libs/strings.util";
 import { streamInfoKeys } from "../config/constants";
 import type { PostReaction } from "../libs/reactions";
 import { xhrUploadFormData } from "../libs/xhr-upload";
@@ -233,10 +234,11 @@ const DEFAULT_CATEGORIES_TTL = 10 * 60 * 1000; // 10 minutes
 export async function getCategories(): Promise<string[]> {
   try {
     const res = await apiClient.get<any>('/get_categories', { isAuthRequired: false });
-    if (Array.isArray(res)) return res as string[];
-    if (Array.isArray(res?.result)) return res.result as string[];
-    if (Array.isArray(res?.data)) return res.data as string[];
-    return [];
+    const list = Array.isArray(res) ? res
+      : Array.isArray(res?.result) ? res.result
+      : Array.isArray(res?.data) ? res.data
+      : [];
+    return normalizeCategoryList(list as string[]);
   } catch (e) {
     console.error('[NFTService] getCategories error', e);
     return [];

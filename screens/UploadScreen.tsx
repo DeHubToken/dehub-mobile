@@ -1,4 +1,5 @@
 import { DIGITAL_PURCHASES_ENABLED, MATURE_CONTENT_ENABLED } from "../config/storefront";
+import { normalizeCategoryName } from "../libs/strings.util";
 import { t } from "i18next";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -795,7 +796,7 @@ export default function UploadScreen() {
 
   const addCategory = useCallback(
     (name: string) => {
-      const n = name.trim();
+      const n = normalizeCategoryName(name);
       if (!n) return;
       if (categories.find((c) => c.toLowerCase() === n.toLowerCase())) return;
       if (categories.length >= CATEGORIES_MAX) return;
