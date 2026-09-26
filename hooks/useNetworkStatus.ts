@@ -20,8 +20,10 @@ const OFFLINE_DEBOUNCE_MS = 4000;
 const INITIAL_STATUS_WAIT_MS = 5000;
 
 export const useNetworkStatus = () => {
+  const [isReady, setIsReady] = useState(false);
   const [isConnected, setIsConnected] = useState<boolean | null>(null);
   const [isInternetReachable, setIsInternetReachable] = useState<boolean | null>(null);
+  const hasDefiniteStatusRef = useRef(false);
   const offlineTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const clearOfflineTimer = useCallback(() => {
@@ -38,6 +40,13 @@ export const useNetworkStatus = () => {
   const apply = useCallback(
     (connected: boolean | null, reachable: boolean | null, immediate = false) => {
       const looksOffline = connected === false || reachable === false;
+      const definite = connected !== null || reachable === false;
+      // A transient unknown reading must not erase the last known status.
+      if (!definite && hasDefiniteStatusRef.current) return;
+      if (definite) {
+        hasDefiniteStatusRef.current = true;
+        setIsReady(true);
+      }
 
       if (!looksOffline || immediate) {
         clearOfflineTimer();
@@ -59,34 +68,24 @@ export const useNetworkStatus = () => {
 
   useEffect(() => {
     let mounted = true;
-    let hasDefiniteStatus = false;
-    const commitInitial = (connected: boolean | null, reachable: boolean | null) => {
-      if (!mounted || hasDefiniteStatus) return;
-      if (connected !== null) hasDefiniteStatus = true;
-      apply(connected, reachable, true);
-    };
     const unsubscribe = NetInfo.addEventListener((state) => {
-      if (!mounted || (state.isConnected === null && hasDefiniteStatus)) return;
-      const initialReading = !hasDefiniteStatus && state.isConnected !== null;
-      if (state.isConnected !== null) hasDefiniteStatus = true;
+      if (!mounted) return;
+      const initialReading = !hasDefiniteStatusRef.current;
       apply(state.isConnected, state.isInternetReachable, initialReading);
     });
 
-    // Android can leave both the initial callback and fetch at "unknown",
-    // or fetch can hang. Do not keep navigation behind the logo indefinitely.
-    // Unknown is allowed through as connected; a later definite offline
-    // reading still replaces it and shows the offline overlay.
+    // Unknown connectivity must not hold the logo forever. Only release the
+    // boot gate: do not invent an online reading or discard a late real one.
     const initialTimer = setTimeout(() => {
-      if (mounted && !hasDefiniteStatus) {
-        hasDefiniteStatus = true;
-        apply(true, null, true);
-      }
+      if (mounted) setIsReady(true);
     }, INITIAL_STATUS_WAIT_MS);
 
-    // At boot a definite offline reading must bypass the normal debounce.
     void NetInfo.fetch().then(
-      (state) => commitInitial(state.isConnected, state.isInternetReachable),
-      () => { /* The deadline above settles an unavailable NetInfo fetch. */ },
+      (state) => {
+        if (!mounted || hasDefiniteStatusRef.current) return;
+        apply(state.isConnected, state.isInternetReachable, true);
+      },
+      () => { /* The deadline above releases boot if NetInfo is unavailable. */ },
     );
 
     return () => {
@@ -104,9 +103,12 @@ export const useNetworkStatus = () => {
   }, [apply]);
 
   return {
+    isReady,
     isConnected,
     isInternetReachable,
     checkConnection,
-    hasInternet: isConnected && (isInternetReachable !== false),
+    hasInternet: isConnected === false || isInternetReachable === false
+      ? false
+      : isConnected === true ? true : null,
   };
 };
