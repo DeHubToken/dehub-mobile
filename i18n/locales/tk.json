@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Tokenler we aksiýalar"
   },
   "feedCard": {
+    "reactionTip": "Has köp reaksiýa üçin halamak düwmesini basyp saklaň",
     "reactionFailed": "Reaksiýany täzeläp bolmady",
     "saveFailed": "Ýatda saklap bolmady",
     "linkCopied": "Ýazgy salgysy göçürildi",

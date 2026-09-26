@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "代幣與股票"
   },
   "feedCard": {
+    "reactionTip": "㩒住讚好掣唔放，就可以揀更多反應",
     "reactionFailed": "無法更新表態",
     "saveFailed": "儲存失敗",
     "linkCopied": "帖子連結已複製",

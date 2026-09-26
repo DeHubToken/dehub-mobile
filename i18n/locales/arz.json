@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "رموز وأسهم"
   },
   "feedCard": {
+    "reactionTip": "دوس مطوّل على زرار اللايك عشان تشوف تفاعلات أكتر",
     "reactionFailed": "مقدرناش نحدث التفاعل",
     "saveFailed": "مقدرناش نحفظ",
     "linkCopied": "اتنسخ لينك البوست",

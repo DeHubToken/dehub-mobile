@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Tokens i accions"
   },
   "feedCard": {
+    "reactionTip": "Mantén premut el botó de m'agrada per a més reaccions",
     "reactionFailed": "No s'ha pogut actualitzar la reacció",
     "saveFailed": "No s'ha pogut desar",
     "linkCopied": "Enllaç de la publicació copiat",

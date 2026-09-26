@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Shenjat dhe aksionet"
   },
   "feedCard": {
+    "reactionTip": "Mbani shtypur butonin Pëlqej për më shumë reagime",
     "reactionFailed": "Reagimi nuk u përditësua dot",
     "saveFailed": "Nuk u ruajt dot",
     "linkCopied": "Lidhja e postimit u kopjua",
