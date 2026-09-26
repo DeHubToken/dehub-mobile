@@ -56,7 +56,7 @@ export function formatBytes(bytes: number): string {
  * rendered as hashtag- and mention-looking chips that match no post.
  */
 export function normalizeCategoryName(raw: string): string {
-  return raw.replace(/^[s#@]+/, '').replace(/s+/g, ' ').trim();
+  return raw.replace(/^[\s#@]+/, '').replace(/\s+/g, ' ').trim();
 }
 
 /** Split joined entries, clean each, drop empties, dedupe case-insensitively. */
@@ -64,7 +64,7 @@ export function normalizeCategoryList(raw: readonly string[]): string[] {
   const seen = new Set<string>();
   const out: string[] = [];
   for (const entry of raw) {
-    for (const part of String(entry ?? '').split(/||||,/)) {
+    for (const part of String(entry ?? '').split(/\|\|\||,/)) {
       const name = normalizeCategoryName(part);
       const key = name.toLowerCase();
       if (!name || seen.has(key)) continue;
