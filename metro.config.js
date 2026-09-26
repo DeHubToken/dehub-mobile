@@ -34,6 +34,15 @@ if (config.resolver.assetExts && !config.resolver.assetExts.includes('riv')) {
 	config.resolver.assetExts.push('riv');
 }
 
+// Non-English translations ship as assets, not bundled JS: compressed in the
+// APK, and an OTA update only re-downloads the ones that changed. See
+// scripts/sync-locale-assets.js and i18n/localeAssets.ts.
+const { syncLocaleAssets, ASSET_EXT: LOCALE_ASSET_EXT } = require('./scripts/sync-locale-assets');
+syncLocaleAssets(__dirname);
+if (config.resolver.assetExts && !config.resolver.assetExts.includes(LOCALE_ASSET_EXT)) {
+	config.resolver.assetExts.push(LOCALE_ASSET_EXT);
+}
+
 // Ensure TypeScript/TSX supported (Expo already includes these; safeguard only)
 if (config.resolver.sourceExts) {
 	['cjs','mjs','js','jsx','ts','tsx'].forEach(ext => {
