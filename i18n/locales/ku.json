@@ -747,7 +747,9 @@
     "smsCodeSent": "Kod hat şandin. Ew lêçûn {{price}} DHB.",
     "smsCodeFailed": "Em nekarîn wê kodê bişînin.",
     "smsCodeLabel": "Koda ku me ji {{phone}} re şandiye",
-    "smsVerify": "Kodê piştrast bike"
+    "smsVerify": "Kodê piştrast bike",
+    "leftHanded": "Moda çepgir",
+    "leftHandedDesc": "Bişkoka hezkirinê bibe aliyê çepê yê barika reaksiyonan"
   },
   "common": {
     "mute": "Bêdeng bike",

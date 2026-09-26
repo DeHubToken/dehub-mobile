@@ -747,7 +747,9 @@
     "hideBadgeAndBalanceDesc": "वित्तीय विवरण छिपाईं आउर आपके पास भेजल आउर टिप बंद करीं।",
     "onChainPublicWarning": "ऑन-चेन लेनदेन सार्वजनिक होला। टोकन या टिप भेजला से आपके वॉलेट के पता चल जाई, जवन निजी बैलेंस मोड चालू करे से पहिले कइल गइल लेनदेन के भी शामिल बा।",
     "languageLoadFailed": "Please don't mind अगर बोला हई गलत्त कुच",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "बायाँ हाथ वाला मोड",
+    "leftHandedDesc": "लाइक बटन के रिएक्शन बार के बायाँ ओर ले जाथिन"
   },
   "common": {
     "mute": "आवाज बंद करू",

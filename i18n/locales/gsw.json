@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Abzeiche und Saldo verstecke",
     "hideBadgeAndBalanceDesc": "Versteckt finanzielli Details und schaltet Sende und Trinkgeld a dich us.",
     "onChainPublicWarning": "On-chain Transaktione sind öffentlich. Token oder Trinkgeld z'sende chan dini Wallet-Adress zeige, inklusiv Transaktione wo gmacht worde sind, bevor de private Saldo-Modus aktiviert worde isch.",
-    "languageLoadFailed": "Han d'Sproch nöd chönne wächsle. Versuechs no einisch."
+    "languageLoadFailed": "Han d'Sproch nöd chönne wächsle. Versuechs no einisch.",
+    "leftHanded": "Linkshänder-Modus",
+    "leftHandedDesc": "Tuet dr Gfallt-mr-Chnopf uf di linggi Siite vo dr Reaktionsleischte"
   },
   "common": {
     "mute": "Stumm schalte",

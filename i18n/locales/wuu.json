@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "隐藏徽章和余额",
     "hideBadgeAndBalanceDesc": "隐藏财务信息，并禁用向您发送消息和打赏。",
     "onChainPublicWarning": "链上交易是公开个。发送代币或打赏可能会暴露您个钱包地址，包括在启用私密余额模式之前进行个交易。",
-    "languageLoadFailed": "换语言失败。请重试。"
+    "languageLoadFailed": "换语言失败。请重试。",
+    "leftHanded": "左撇子模式",
+    "leftHandedDesc": "拿点赞按钮移到反应栏左面"
   },
   "common": {
     "mute": "静音",

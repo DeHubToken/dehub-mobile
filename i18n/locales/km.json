@@ -747,7 +747,9 @@
     "languageLoadFailed": "មិនអាចប្តូរភាសាបានទេ ។ ព្យាយាមម្តងទៀត ។",
     "smsNotificationsLocked": "ដោះសោដោយ {{dhb}} DHB (${{usd}}) នៃឥណទាន",
     "smsNeedDhb": "អ្នកត្រូវការ {{dhb}} DHB ដើម្បីដោះសោការជូនដំណឹងតាមសារ។",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "របៀបដៃឆ្វេង",
+    "leftHandedDesc": "ផ្លាស់ប្ដូរប៊ូតុងចូលចិត្តទៅខាងឆ្វេងនៃរបារប្រតិកម្ម"
   },
   "common": {
     "mute": "បិទសំឡេង",

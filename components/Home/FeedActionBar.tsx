@@ -22,6 +22,7 @@ import {
 } from "../../libs/reactions";
 import { haptic } from "../../libs/haptics";
 import { maybeShowReactionTip, markReactionTipSeen } from "../../libs/reaction-tip";
+import { useAppPrefs } from "../../hooks/useAppPrefs";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -181,6 +182,8 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   onShowReactionInfo,
 }) => {
   const { t } = useTranslation();
+  // Left-handed mode mirrors the whole row so the thumb lands on the left.
+  const { leftHanded } = useAppPrefs();
   // One tray per thumb: every positive face on the thumbs-up, the downvote on
   // the thumbs-down — which no longer opens a tray at all, holding one option.
   // Only ever one open either way: they sit inches apart on the same row, and
@@ -214,7 +217,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   // web ActionBar). Order left → right: tip · dislike · share · comment · like
   // · bookmark · info.
   return (
-    <View className="flex-row items-center justify-between pt-2">
+    <View className={`${leftHanded ? "flex-row-reverse" : "flex-row"} items-center justify-between pt-2`}>
       {onTip ? (
         <AnimatedActionButton
           onPress={onTip}
@@ -235,7 +238,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           polarity="negative"
           current={myReaction}
           onSelect={handleSelect}
-          align="left"
+          align={leftHanded ? "right" : "left"}
         />
         <AnimatedActionButton
           onPress={() => {
@@ -285,7 +288,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           open={openTray === "positive" && reactionsEnabled}
           current={myReaction}
           onSelect={handleSelect}
-          align="right"
+          align={leftHanded ? "left" : "right"}
           onShowInfo={
             onShowReactionInfo
               ? () => {

@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Nascondi badge e saldo",
     "hideBadgeAndBalanceDesc": "Nasconde i dettagli finanziari e disabilita invii e mance a te.",
     "onChainPublicWarning": "Le transazioni on-chain sono pubbliche. L'invio di token o mance può rivelare il tuo indirizzo del wallet, comprese le transazioni effettuate prima che la modalità saldo privato fosse abilitata.",
-    "languageLoadFailed": "Impossibile cambiare lingua. Riprova."
+    "languageLoadFailed": "Impossibile cambiare lingua. Riprova.",
+    "leftHanded": "Modalità mancina",
+    "leftHandedDesc": "Sposta il pulsante mi piace sul lato sinistro della barra delle reazioni"
   },
   "common": {
     "mute": "Disattiva audio",

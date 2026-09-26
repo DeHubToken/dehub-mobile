@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Boye alamar da ma'auni",
     "hideBadgeAndBalanceDesc": "Yana boye bayanan kuɗi kuma yana hana aika sako da bayar da kuɗi gare ka.",
     "onChainPublicWarning": "Ayyukan kan-rantar jama'a ne. Aiko da kuɗi ko bayarwa na iya bayyana adireshin walat ɗinka, gami da ayyukan da aka yi kafin a kunna yanayin ma'auni na sirri.",
-    "languageLoadFailed": "Ba za a iya canza harshe ba. sake gwadawa."
+    "languageLoadFailed": "Ba za a iya canza harshe ba. sake gwadawa.",
+    "leftHanded": "Yanayin mai hannun hagu",
+    "leftHandedDesc": "Matsar da maɓallin so zuwa gefen hagu na sandar martani"
   },
   "common": {
     "mute": "Kashe sauti",

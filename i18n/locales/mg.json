@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Aza aseho ny mari-pahaizana sy ny fifandanjana",
     "hideBadgeAndBalanceDesc": "Manasongadina ny antsipiriany ara-bola sy manakana ny fandefasana ary torohevitra ho anao.",
     "onChainPublicWarning": "Ny fifanakalozana amin'ny rojo dia ampahibemaso. Ny fandefasana famantarana na torohevitra dia mety hampiseho ny adiresin'ny poketrao, ao anatin'izany ny fifanakalozana natao talohan'ny nampidirana ny fomba fifandanjana manokana.",
-    "languageLoadFailed": "Tsy afaka mifamadika ny fiteny. Andramo indray."
+    "languageLoadFailed": "Tsy afaka mifamadika ny fiteny. Andramo indray.",
+    "leftHanded": "Fomba ho an'ny havia",
+    "leftHandedDesc": "Afindrao eo amin'ny ilany havian'ny tsipika fihetsika ny bokotra tia"
   },
   "common": {
     "mute": "Hampangina",

@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Zoo akara na nguzozi",
     "hideBadgeAndBalanceDesc": "Na-ezobe nkọwa ego ma na-eme ka izipu na ndụmọdụ nye gị ghara ịrụ ọrụ.",
     "onChainPublicWarning": "Azụmahịa dị na-agbụ na-apụta ìhè. Izipu akara ma ọ bụ ndụmọdụ nwere ike ikpughe adreesị akpa gị, gụnyere azụmahịa emere tupu ọnọdụ nguzozi nzuzo agbanye.",
-    "languageLoadFailed": "Agbanwenwughị asụsụ. Gbalịa ọzọ."
+    "languageLoadFailed": "Agbanwenwughị asụsụ. Gbalịa ọzọ.",
+    "leftHanded": "Ọnọdụ onye aka ekpe",
+    "leftHandedDesc": "Bugharịa bọtịnụ amasịrị m gaa n'akụkụ aka ekpe nke ogwe mmeghachi omume"
   },
   "common": {
     "mute": "Mechie ụda",

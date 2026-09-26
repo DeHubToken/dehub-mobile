@@ -747,7 +747,9 @@
     "hideBadgeAndBalanceDesc": "مالي توضیحات پټوي او تاسو ته لیږل او لارښوونې غیر فعالوي.",
     "onChainPublicWarning": "آن-چین لیږدونه عام دي. ټوکن یا لارښوونې لیږل ستاسو د والټ پته ښکاره کولی شي، پشمول د خصوصي بیلانس حالت فعالولو دمخه شوي لیږدونه.",
     "languageLoadFailed": "تاسو نشئ کولی ژبه بدله کړئ، بیا هڅه وکړئ.",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "د چپ لاس حالت",
+    "leftHandedDesc": "د خوښې تڼۍ د غبرګونونو پټې کيڼ اړخ ته ولېږدوئ"
   },
   "common": {
     "mute": "غږ بند کړئ",

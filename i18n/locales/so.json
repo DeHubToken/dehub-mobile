@@ -747,7 +747,9 @@
     "hideBadgeAndBalance": "Qari calaamada iyo dheelitirka",
     "hideBadgeAndBalanceDesc": "Waxay qarinaysaa faahfaahinta maaliyadeed waxayna joojinaysaa dirida iyo talooyinka adiga.",
     "onChainPublicWarning": "Qoraalada on-chain waa kuwo dadweyne. Dirida calaamadaha ama talooyinka waxay kashifaysaa ciwaanka jeebkaaga, oo ay ku jiraan qoraalada la sameeyay ka hor inta aan la hawlgelin habka dheelitirka gaarka ah.",
-    "languageLoadFailed": "Ma bedeli karo luqad. isku day mar kale."
+    "languageLoadFailed": "Ma bedeli karo luqad. isku day mar kale.",
+    "leftHanded": "Habka gacan-bidix",
+    "leftHandedDesc": "U rar badhanka jeclaysiga dhinaca bidix ee barka falcelinta"
   },
   "common": {
     "mute": "Aamusi",

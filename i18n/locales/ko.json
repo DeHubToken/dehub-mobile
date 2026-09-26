@@ -747,7 +747,9 @@
     "onChainPublicWarning": "온체인 거래는 공개됩니다. 토큰 또는 팁을 보내면 비공개 잔액 모드가 활성화되기 전에 이루어진 거래를 포함하여 지갑 주소가 공개될 수 있습니다.",
     "languageLoadFailed": "언어를 변경할 수 없습니다. 다시 시도하세요.",
     "smsNotificationsLocked": "크레딧 {{dhb}} DHB (${{usd}})로 잠금 해제",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "왼손잡이 모드",
+    "leftHandedDesc": "좋아요 버튼을 반응 바의 왼쪽으로 옮깁니다"
   },
   "common": {
     "mute": "음소거",

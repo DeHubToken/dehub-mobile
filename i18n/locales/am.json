@@ -747,7 +747,9 @@
     "hideBadgeAndBalanceDesc": "የገንዘብ ዝርዝሮችን ይደብቃል እና ወደ እርስዎ መላክ እና ምክሮችን ያሰናክላል።",
     "onChainPublicWarning": "በሰንሰለት ላይ ያሉ ግብይቶች ይፋዊ ናቸው። ቶከኖችን ወይም ምክሮችን መላክ የኪስ ቦርሳዎን አድራሻ ሊገልጥ ይችላል፣ የግል ቀሪ ሂሳብ ሁነታ ከመጀመሩ በፊት የተደረጉ ግብይቶችን ጨምሮ።",
     "languageLoadFailed": "ቋንቋ መቀየር አልተቻለም ፡ ፡ እንደገና ሞክር ፡ ፡",
-    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})"
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "leftHanded": "የግራ እጅ ሁነታ",
+    "leftHandedDesc": "የመውደድ አዝራሩን ወደ ምላሾች አሞሌው ግራ ጎን ያንቀሳቅሱ"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",
