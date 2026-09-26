@@ -67,8 +67,9 @@ export const useNetworkStatus = () => {
     };
     const unsubscribe = NetInfo.addEventListener((state) => {
       if (!mounted || (state.isConnected === null && hasDefiniteStatus)) return;
+      const initialReading = !hasDefiniteStatus && state.isConnected !== null;
       if (state.isConnected !== null) hasDefiniteStatus = true;
-      apply(state.isConnected, state.isInternetReachable);
+      apply(state.isConnected, state.isInternetReachable, initialReading);
     });
 
     // Android can leave both the initial callback and fetch at "unknown",
