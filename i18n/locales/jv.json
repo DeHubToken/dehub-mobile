@@ -5222,7 +5222,12 @@
     "videoFile": "File video",
     "uploadingPercent": "Ngunggahake… {{percent}}%",
     "replaceVideoFile": "Ganti file video",
-    "replaceVideoHint": "Njaga link, tampilan lan komentar kiriman iki. File lawas bakal diputer nganti sing anyar rampung diproses."
+    "replaceVideoHint": "Njaga link, tampilan lan komentar kiriman iki. File lawas bakal diputer nganti sing anyar rampung diproses.",
+    "coverTitle": "Sampul",
+    "coverHint": "Pilih pigura utawa unggah gambar. Langsung kasimpen.",
+    "coverUpload": "Unggah gambar sampul",
+    "coverSaved": "Sampul dianyari",
+    "coverFailed": "Ora bisa ngganti sampul"
   },
   "player": {
     "openSettings": "Bukak setelan",

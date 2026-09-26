@@ -5275,7 +5275,12 @@
     "uploadingPercent": "업로드 중… {{percent}}%",
     "replaceVideoFile": "동영상 파일 바꾸기",
     "replaceVideoHint": "이 게시물의 링크, 조회수, 댓글을 유지합니다. 새 파일이 처리되는 동안 이전 파일이 재생됩니다.",
-    "replaceImageN": "이미지 교체 {{n}}"
+    "replaceImageN": "이미지 교체 {{n}}",
+    "coverTitle": "커버",
+    "coverHint": "프레임을 고르거나 이미지를 업로드하세요. 바로 저장됩니다.",
+    "coverUpload": "커버 이미지 업로드",
+    "coverSaved": "커버가 업데이트되었습니다",
+    "coverFailed": "커버를 변경할 수 없습니다"
   },
   "player": {
     "openSettings": "설정 열기",

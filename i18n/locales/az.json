@@ -5222,7 +5222,12 @@
     "videoFile": "Video faylı",
     "uploadingPercent": "Yüklənir… {{percent}}%",
     "replaceVideoFile": "Video faylını dəyişdirin",
-    "replaceVideoHint": "Bu postun linkini, baxışlarını və şərhlərini saxlayır. Köhnə fayl yeni fayl emal edilənə qədər oynayır."
+    "replaceVideoHint": "Bu postun linkini, baxışlarını və şərhlərini saxlayır. Köhnə fayl yeni fayl emal edilənə qədər oynayır.",
+    "coverTitle": "Üz qabığı",
+    "coverHint": "Kadr seçin və ya şəkil yükləyin. Dərhal yadda saxlanılır.",
+    "coverUpload": "Üz qabığı şəkli yükləyin",
+    "coverSaved": "Üz qabığı yeniləndi",
+    "coverFailed": "Üz qabığını dəyişmək mümkün olmadı"
   },
   "player": {
     "openSettings": "Parametrləri aç",

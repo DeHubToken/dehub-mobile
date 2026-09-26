@@ -5222,7 +5222,12 @@
     "videoFile": "Plik wideo",
     "uploadingPercent": "Przesyłanie… {{percent}}%",
     "replaceVideoFile": "Zastąp plik wideo",
-    "replaceVideoHint": "Zachowuje link, wyświetlenia i komentarze do tego posta. Stary plik będzie odtwarzany do momentu przetworzenia nowego."
+    "replaceVideoHint": "Zachowuje link, wyświetlenia i komentarze do tego posta. Stary plik będzie odtwarzany do momentu przetworzenia nowego.",
+    "coverTitle": "Okładka",
+    "coverHint": "Wybierz klatkę lub prześlij obraz. Zapisuje się od razu.",
+    "coverUpload": "Prześlij obraz okładki",
+    "coverSaved": "Okładka zaktualizowana",
+    "coverFailed": "Nie udało się zmienić okładki"
   },
   "player": {
     "openSettings": "Otwórz ustawienia",

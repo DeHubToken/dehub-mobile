@@ -5222,7 +5222,12 @@
     "videoFile": "Ndekọ vidiyo",
     "uploadingPercent": "Na-ebupụta… {{percent}}%",
     "replaceVideoFile": "Dochie ndekọ vidiyo",
-    "replaceVideoHint": "Na-edobe njikọ post a, echiche na nkọwa. Ndekọ ochie ahụ na-egwu ruo mgbe nke ọhụrụ ahụ gwụchara nhazi ya."
+    "replaceVideoHint": "Na-edobe njikọ post a, echiche na nkọwa. Ndekọ ochie ahụ na-egwu ruo mgbe nke ọhụrụ ahụ gwụchara nhazi ya.",
+    "coverTitle": "Mkpuchi",
+    "coverHint": "Họrọ otu foto site na vidiyo ma ọ bụ bulite onyonyo. Ọ na-echekwa ozugbo.",
+    "coverUpload": "Bulite onyonyo mkpuchi",
+    "coverSaved": "Emelitere mkpuchi",
+    "coverFailed": "Enweghị ike ịgbanwe mkpuchi"
   },
   "player": {
     "openSettings": "Mepee ntọala",

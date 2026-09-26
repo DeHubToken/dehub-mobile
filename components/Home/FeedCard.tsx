@@ -315,6 +315,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     });
     return () => subscription.remove();
   }, [tokenId, isOwnerPost]);
+  const [replacementCover, setReplacementCover] = useState<{ tokenId: string; imageUrl: string } | null>(null);
+  useEffect(() => {
+    if (!isOwnerPost) return;
+    const subscription = DeviceEventEmitter.addListener('post-cover-replaced', (updated: { tokenId: string; imageUrl: string }) => {
+      if (updated.tokenId === String(tokenId)) setReplacementCover(updated);
+    });
+    return () => subscription.remove();
+  }, [tokenId, isOwnerPost]);
   // --- Gallery images (for image posts) ---
   // Measured on a Galaxy S24+ with Android's frame log: a third of frames
   // janky on the home feed, every one of them a "slow bitmap upload". Two
@@ -390,7 +398,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return resolved === DEFAULT_BANNER_SENTINEL ? "" : resolved;
     }
     if (isVideo) {
+      // A cover just changed from Edit Post, before the feed refetches.
+      if (replacementCover?.tokenId === String(tokenId)) return cdnImage(`${env.CDN_BASE_URL}/${replacementCover.imageUrl}`, { width: IMAGE_WIDTH });
       if (isShort) {
+        // A changed cover sits on its own key; read it rather than the id-built one.
+        if (item.imageUrl?.startsWith("shorts/")) return cdnImage(`${env.CDN_BASE_URL}/${item.imageUrl}`, { width: IMAGE_WIDTH });
         return getShortsThumbnailUrl(tokenId, IMAGE_WIDTH) || "";
       }
       const rawThumb =
@@ -402,7 +414,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return getImageUrl(rawThumb, IMAGE_WIDTH);
     }
     return "";
-  }, [item, stream, isLive, isVideo, isShort, tokenId, IMAGE_WIDTH]);
+  }, [item, stream, isLive, isVideo, isShort, tokenId, IMAGE_WIDTH, replacementCover]);
 
   const [failedLiveThumbnail, setFailedLiveThumbnail] = useState<string | null>(null);
   const hasThumb = typeof thumbnail === "string" && thumbnail.trim().length > 0

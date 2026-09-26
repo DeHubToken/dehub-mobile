@@ -5245,7 +5245,12 @@
     "videoFile": "Rakikely video",
     "uploadingPercent": "Mampiakatra… {{percent}}%",
     "replaceVideoFile": "Soloy ny rakikely video",
-    "replaceVideoHint": "Mampitoetra ny rohy, ny fijery ary ny fanehoan-kevitra amin'ity lahatsoratra ity. Ny rakikely taloha dia milalao mandra-pahatapitry ny fanodinana ny vaovao."
+    "replaceVideoHint": "Mampitoetra ny rohy, ny fijery ary ny fanehoan-kevitra amin'ity lahatsoratra ity. Ny rakikely taloha dia milalao mandra-pahatapitry ny fanodinana ny vaovao.",
+    "coverTitle": "Fonony",
+    "coverHint": "Misafidiana sary iray avy amin'ny horonantsary na mampidira sary. Voatahiry avy hatrany.",
+    "coverUpload": "Hampiditra sary fonony",
+    "coverSaved": "Voavao ny fonony",
+    "coverFailed": "Tsy nety novana ny fonony"
   },
   "player": {
     "openSettings": "Sokafy ny fandrindrana",

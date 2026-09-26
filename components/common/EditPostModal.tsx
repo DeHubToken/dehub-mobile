@@ -32,6 +32,7 @@ import { toastSuccess, toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
 import EditPostImages from './EditPostImages';
+import EditPostCover from './EditPostCover';
 import { useTranslation } from "react-i18next";
 
 interface EditPostModalProps {
@@ -417,6 +418,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         </View>
 
         {visible && tokenId != null && <EditPostImages tokenId={tokenId} disabled={saving || replacing} onBusyChange={setReplacing} />}
+        {visible && tokenId != null && canReplaceVideo && <EditPostCover tokenId={tokenId} disabled={saving || replacing} onBusyChange={setReplacing} />}
         {/* Title — only shown if the post has a title */}
         {initialTitle ? (
           <>

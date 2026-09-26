@@ -5206,7 +5206,12 @@
     "onShopBoard": "شاپ بورڈ پر {{count}}",
     "addToShopBoard": "شاپ بورڈ میں شامل کریں",
     "shopBoardHint": "آپ کی دکان کی فہرستیں اور وابستہ لنکس، شاپ بٹن سے کھولے گئے۔ آپ {{allowance}} شامل کر سکتے ہیں۔",
-    "commentsOff": "تبصرے بند ہیں"
+    "commentsOff": "تبصرے بند ہیں",
+    "coverTitle": "कवर",
+    "coverHint": "कोई फ़्रेम चुनें या इमेज अपलोड करें। तुरंत सेव हो जाता है।",
+    "coverUpload": "कवर इमेज अपलोड करें",
+    "coverSaved": "कवर अपडेट हो गया",
+    "coverFailed": "कवर नहीं बदला जा सका"
   },
   "player": {
     "openSettings": "ڕێکخستنەکان بکەرەوە",

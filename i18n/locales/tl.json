@@ -5269,7 +5269,12 @@
     "videoFile": "File ng video",
     "uploadingPercent": "Nag-a-upload… {{percent}}%",
     "replaceVideoFile": "Palitan ang video file",
-    "replaceVideoHint": "Pinapanatili ang link, view, at komento ng post na ito. Magpe-play ang lumang file hanggang matapos ang pag-proseso ng bago."
+    "replaceVideoHint": "Pinapanatili ang link, view, at komento ng post na ito. Magpe-play ang lumang file hanggang matapos ang pag-proseso ng bago.",
+    "coverTitle": "Cover",
+    "coverHint": "Pumili ng frame o mag-upload ng larawan. Agad itong nase-save.",
+    "coverUpload": "Mag-upload ng cover na larawan",
+    "coverSaved": "Na-update ang cover",
+    "coverFailed": "Hindi mapalitan ang cover"
   },
   "player": {
     "openSettings": "Buksan ang settings",

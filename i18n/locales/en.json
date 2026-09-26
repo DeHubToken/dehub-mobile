@@ -5271,7 +5271,12 @@
     "videoFile": "Video file",
     "uploadingPercent": "Uploading… {{percent}}%",
     "replaceVideoFile": "Replace video file",
-    "replaceVideoHint": "Keeps this post's link, views and comments. The old file plays until the new one finishes processing."
+    "replaceVideoHint": "Keeps this post's link, views and comments. The old file plays until the new one finishes processing.",
+    "coverTitle": "Cover",
+    "coverHint": "Pick a frame or upload an image. Saves right away.",
+    "coverUpload": "Upload a cover image",
+    "coverSaved": "Cover updated",
+    "coverFailed": "Could not change the cover"
   },
   "player": {
     "openSettings": "Open Settings",

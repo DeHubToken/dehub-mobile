@@ -5222,7 +5222,12 @@
     "videoFile": "Skedar video",
     "uploadingPercent": "Duke u ngarkuar… {{percent}}%",
     "replaceVideoFile": "Zëvendëso skedarin video",
-    "replaceVideoHint": "Mban lidhjen, pamjet dhe komentet e këtij postimi. Skedari i vjetër luhet derisa të përfundojë përpunimi i të riut."
+    "replaceVideoHint": "Mban lidhjen, pamjet dhe komentet e këtij postimi. Skedari i vjetër luhet derisa të përfundojë përpunimi i të riut.",
+    "coverTitle": "Kopertina",
+    "coverHint": "Zgjidh një kuadër ose ngarko një imazh. Ruhet menjëherë.",
+    "coverUpload": "Ngarko imazhin e kopertinës",
+    "coverSaved": "Kopertina u përditësua",
+    "coverFailed": "Kopertina nuk mund të ndryshohej"
   },
   "player": {
     "openSettings": "Hap cilësimet",

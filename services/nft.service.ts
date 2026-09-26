@@ -1232,6 +1232,17 @@ export async function replacePostImage(tokenId: number | string, index: number, 
   return response.data.imageUrls;
 }
 
+/** Swap the cover on a video or short. Saves immediately; returns the stored path. */
+export async function replaceVideoCover(tokenId: number | string, image: ReplaceVideoFile): Promise<string> {
+  const formData = new FormData();
+  formData.append('thumbnail', { uri: image.uri, name: image.name || 'cover.jpg', type: image.type || 'image/jpeg' } as any);
+  const response = await xhrUploadFormData<{ result: boolean; data?: { imageUrl: string }; error?: string }>({
+    endpoint: `/nft/${encodeURIComponent(String(tokenId))}/thumbnail`, formData,
+  });
+  if (!response.result || !response.data?.imageUrl) throw new Error(response.error || 'Could not change the cover');
+  return response.data.imageUrl;
+}
+
 export interface ReplaceVideoFile {
   uri: string;
   name?: string;

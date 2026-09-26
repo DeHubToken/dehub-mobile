@@ -5222,7 +5222,12 @@
     "videoFile": "Fișier video",
     "uploadingPercent": "Se încarcă… {{percent}}%",
     "replaceVideoFile": "Înlocuiește fișierul video",
-    "replaceVideoHint": "Păstrează linkul, vizualizările și comentariile acestei postări. Fișierul vechi rulează până când cel nou termină procesarea."
+    "replaceVideoHint": "Păstrează linkul, vizualizările și comentariile acestei postări. Fișierul vechi rulează până când cel nou termină procesarea.",
+    "coverTitle": "Copertă",
+    "coverHint": "Alege un cadru sau încarcă o imagine. Se salvează imediat.",
+    "coverUpload": "Încarcă o imagine de copertă",
+    "coverSaved": "Copertă actualizată",
+    "coverFailed": "Coperta nu a putut fi schimbată"
   },
   "player": {
     "openSettings": "Deschide setările",

@@ -5222,7 +5222,12 @@
     "videoFile": "Video datoteka",
     "uploadingPercent": "Učitavanje… {{percent}}%",
     "replaceVideoFile": "Zamijeni video datoteku",
-    "replaceVideoHint": "Zadržava poveznicu, preglede i komentare ove objave. Stara datoteka reproducira se dok se nova ne završi s obradom."
+    "replaceVideoHint": "Zadržava poveznicu, preglede i komentare ove objave. Stara datoteka reproducira se dok se nova ne završi s obradom.",
+    "coverTitle": "Naslovnica",
+    "coverHint": "Odaberite kadar ili prenesite sliku. Sprema se odmah.",
+    "coverUpload": "Prenesi sliku naslovnice",
+    "coverSaved": "Naslovnica ažurirana",
+    "coverFailed": "Naslovnicu nije moguće promijeniti"
   },
   "player": {
     "openSettings": "Otvori postavke",

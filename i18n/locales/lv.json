@@ -5222,7 +5222,12 @@
     "videoFile": "Video fails",
     "uploadingPercent": "Augšupielāde… {{percent}}%",
     "replaceVideoFile": "Aizstāt video failu",
-    "replaceVideoHint": "Saglabā šīs ziņas saiti, skatījumus un komentārus. Vecais fails tiek atskaņots, līdz jaunais tiek apstrādāts."
+    "replaceVideoHint": "Saglabā šīs ziņas saiti, skatījumus un komentārus. Vecais fails tiek atskaņots, līdz jaunais tiek apstrādāts.",
+    "coverTitle": "Vāks",
+    "coverHint": "Izvēlieties kadru vai augšupielādējiet attēlu. Saglabājas uzreiz.",
+    "coverUpload": "Augšupielādēt vāka attēlu",
+    "coverSaved": "Vāks atjaunināts",
+    "coverFailed": "Neizdevās nomainīt vāku"
   },
   "player": {
     "openSettings": "Atvērt iestatījumus",

@@ -5222,7 +5222,12 @@
     "videoFile": "Fayil bidiyo",
     "uploadingPercent": "Ana loda… {{percent}}%",
     "replaceVideoFile": "Sauya fayil bidiyo",
-    "replaceVideoHint": "Yana kiyaye hanyar haɗin wannan sakon, ra'ayoyi da sharhi. Tsohon fayil yana kunnawa har sai sabon ya gama sarrafawa."
+    "replaceVideoHint": "Yana kiyaye hanyar haɗin wannan sakon, ra'ayoyi da sharhi. Tsohon fayil yana kunnawa har sai sabon ya gama sarrafawa.",
+    "coverTitle": "Murfi",
+    "coverHint": "Zaɓi hoto daga bidiyon ko ɗora hoto. Ana ajiyewa nan take.",
+    "coverUpload": "Ɗora hoton murfi",
+    "coverSaved": "An sabunta murfi",
+    "coverFailed": "An kasa canza murfi"
   },
   "player": {
     "openSettings": "Buɗe saituna",

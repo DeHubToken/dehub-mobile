@@ -5271,7 +5271,12 @@
     "videoFile": "File video",
     "uploadingPercent": "Mengunggah… {{percent}}%",
     "replaceVideoFile": "Ganti file video",
-    "replaceVideoHint": "Menyimpan tautan, tayangan, dan komentar postingan ini. File lama diputar hingga yang baru selesai diproses."
+    "replaceVideoHint": "Menyimpan tautan, tayangan, dan komentar postingan ini. File lama diputar hingga yang baru selesai diproses.",
+    "coverTitle": "Sampul",
+    "coverHint": "Pilih bingkai atau unggah gambar. Langsung tersimpan.",
+    "coverUpload": "Unggah gambar sampul",
+    "coverSaved": "Sampul diperbarui",
+    "coverFailed": "Tidak dapat mengubah sampul"
   },
   "player": {
     "openSettings": "Buka pengaturan",

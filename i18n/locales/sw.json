@@ -5223,7 +5223,12 @@
     "videoFile": "Faili ya video",
     "uploadingPercent": "Inapakia… {{percent}}%",
     "replaceVideoFile": "Badilisha faili ya video",
-    "replaceVideoHint": "Inaweka kiungo cha chapisho hili, maoni na maoni. Faili ya zamani huchezwa hadi mpya ikamilishe kuchakata."
+    "replaceVideoHint": "Inaweka kiungo cha chapisho hili, maoni na maoni. Faili ya zamani huchezwa hadi mpya ikamilishe kuchakata.",
+    "coverTitle": "Jalada",
+    "coverHint": "Chagua fremu au pakia picha. Huhifadhiwa papo hapo.",
+    "coverUpload": "Pakia picha ya jalada",
+    "coverSaved": "Jalada limesasishwa",
+    "coverFailed": "Imeshindikana kubadilisha jalada"
   },
   "player": {
     "openSettings": "Fungua mipangilio",
