@@ -34,8 +34,8 @@ import type { AppStackParamList } from "../navigation/types";
 
 type WalletTab = "buy" | "stake" | "bridge" | "solana";
 
-const TABS: { key: WalletTab; label: string; icon: IconName }[] = [
-  { key: "buy", label: "Buy DHB", icon: "CreditCard" },
+const TABS: { key: WalletTab; label: string; labelKey?: string; icon: IconName }[] = [
+  { key: "buy", label: "Buy Tokens", labelKey: "upload.buyTokens", icon: "CreditCard" },
   { key: "stake", label: "Stake", icon: "Lock" },
   { key: "bridge", label: "Bridge", icon: "ArrowLeftRight" },
   { key: "solana", label: "Solana", icon: "Coins" },
@@ -229,7 +229,7 @@ const DpayScreen: React.FC = () => {
                   activeTab === tab.key ? "text-white" : "text-white/50"
                 }`}
               >
-                {tab.label}
+                {tab.labelKey ? t(tab.labelKey) : tab.label}
               </Text>
             </TouchableOpacity>
           ))}

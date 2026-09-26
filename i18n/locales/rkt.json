@@ -3811,7 +3811,7 @@
     "paymentFailed": "পেমেন্ট ফেল হইল",
     "paying": "পেমেন্ট হইছে…",
     "generating": "বানাইছে…",
-    "buyDhb": "DHB কেনো",
+    "buyDhb": "টোকেন কিনেন",
     "payAmount": "{{amount}} DHB দেও আর {{action}}",
     "stakerDiscount": "স্টেকার ছাড়",
     "total": "মোট",
@@ -3918,7 +3918,7 @@
     "failed": "একাউন্ট বদলানো গেইল না। প্রাইভেট কী দেখি আবার চেষ্টা করো।"
   },
   "superpowers": {
-    "getDhb": "DHB নেন",
+    "getDhb": "টোকেন কিনেন",
     "unlocksAt": "খুলে",
     "openToEveryone": "সগারে লাগি খোলা",
     "locked": "তালা",
