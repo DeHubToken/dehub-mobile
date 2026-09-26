@@ -5046,6 +5046,7 @@
     "tokensAndStocks": "Tokeny a akcie"
   },
   "feedCard": {
+    "reactionTip": "Pre ďalšie reakcie podržte tlačidlo Páči sa mi to",
     "reactionFailed": "Reakciu sa nepodarilo aktualizovať",
     "saveFailed": "Uloženie zlyhalo",
     "linkCopied": "Odkaz na príspevok skopírovaný",

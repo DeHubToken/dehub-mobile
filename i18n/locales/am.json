@@ -4968,6 +4968,7 @@
     "tokensAndStocks": "ቶከኖች እና አክሲዮኖች"
   },
   "feedCard": {
+    "reactionTip": "ለተጨማሪ ምላሾች የመውደድ ቁልፉን ተጭነው ይያዙ",
     "reactionFailed": "ምላሹን ማዘመን አልተቻለም",
     "saveFailed": "ማስቀመጥ አልተቻለም",
     "linkCopied": "የልጥፉ አገናኝ ተቀድቷል",

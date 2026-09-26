@@ -4919,6 +4919,7 @@
     "tokensAndStocks": "ٹکٹس اور اسٹاکس"
   },
   "feedCard": {
+    "reactionTip": "اور ری ایکشنز کے واسطے لائک بٹن دبا کو رکھو",
     "reactionFailed": "ردعمل اپ ڈیٹ نہیں ہو سکا",
     "saveFailed": "محفوظ نہیں ہو سکا",
     "linkCopied": "پوسٹ کا لنک کاپی ہو گیا",

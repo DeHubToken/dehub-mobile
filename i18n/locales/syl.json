@@ -5108,6 +5108,7 @@
     "tokensAndStocks": "টোকেন ও স্টক"
   },
   "feedCard": {
+    "reactionTip": "আরো রিঅ্যাকশনর লাগি লাইক বাটন চাপি ধরি রাখউকা",
     "reactionFailed": "প্রতিক্রিয়া আপডেট করা গেল না",
     "saveFailed": "সেভ করা গেল না",
     "linkCopied": "পোস্টর লিংক কপি অইছে",

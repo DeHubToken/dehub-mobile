@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Tokeni i dionice"
   },
   "feedCard": {
+    "reactionTip": "Za više reakcija pritisnite i držite gumb Sviđa mi se",
     "reactionFailed": "Reakciju nije bilo moguće ažurirati",
     "saveFailed": "Spremanje nije uspjelo",
     "linkCopied": "Poveznica objave kopirana",

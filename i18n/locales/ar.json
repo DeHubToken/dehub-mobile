@@ -4991,6 +4991,7 @@
     "tokensAndStocks": "رموز وأسهم"
   },
   "feedCard": {
+    "reactionTip": "اضغط مطولًا على زر الإعجاب لمزيد من التفاعلات",
     "reactionFailed": "تعذّر تحديث التفاعل",
     "saveFailed": "تعذّر الحفظ",
     "linkCopied": "تم نسخ رابط المنشور",

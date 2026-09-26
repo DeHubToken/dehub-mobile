@@ -4991,6 +4991,7 @@
     "tokensAndStocks": "Tokens et actions"
   },
   "feedCard": {
+    "reactionTip": "Maintenez le bouton J'aime pour plus de réactions",
     "reactionFailed": "Impossible de mettre à jour la réaction",
     "saveFailed": "Échec de l'enregistrement",
     "linkCopied": "Lien de la publication copié",

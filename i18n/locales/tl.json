@@ -4985,6 +4985,7 @@
     "tokensAndStocks": "Mga Token at stock"
   },
   "feedCard": {
+    "reactionTip": "Pindutin nang matagal ang like button para sa iba pang reaksyon",
     "reactionFailed": "Hindi na-update ang reaksyon",
     "saveFailed": "Hindi na-save",
     "linkCopied": "Nakopya ang link ng post",

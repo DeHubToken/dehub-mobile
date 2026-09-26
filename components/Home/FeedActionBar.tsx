@@ -21,6 +21,7 @@ import {
   type ReactionCounts,
 } from "../../libs/reactions";
 import { haptic } from "../../libs/haptics";
+import { maybeShowReactionTip, markReactionTipSeen } from "../../libs/reaction-tip";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -297,9 +298,12 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         <AnimatedActionButton
           onPress={() => {
             if (openTray === "positive") { setOpenTray(null); return; }
+            // A first plain like is when the viewer has found the button but
+            // not the tray behind it — point them at it, once.
+            if (!liked && reactionsEnabled) maybeShowReactionTip();
             onLike();
           }}
-          onLongPress={reactionsEnabled ? () => setOpenTray("positive") : undefined}
+          onLongPress={reactionsEnabled ? () => { markReactionTipSeen(); setOpenTray("positive"); } : undefined}
           iconName="ThumbsUp"
           glyph={leadGlyph}
           active={liked}

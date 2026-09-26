@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Tokenit ja osakkeet"
   },
   "feedCard": {
+    "reactionTip": "Pidä tykkää-painiketta painettuna nähdäksesi lisää reaktioita",
     "reactionFailed": "Reaktion päivitys epäonnistui",
     "saveFailed": "Tallennus epäonnistui",
     "linkCopied": "Julkaisun linkki kopioitu",

@@ -4987,6 +4987,7 @@
     "tokensAndStocks": "Tokenlar ve hisse senetleri"
   },
   "feedCard": {
+    "reactionTip": "Daha fazla tepki için beğen düğmesini basılı tutun",
     "reactionFailed": "Tepki güncellenemedi",
     "saveFailed": "Kaydedilemedi",
     "linkCopied": "Gönderi bağlantısı kopyalandı",

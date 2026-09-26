@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Žetoni un akcijas"
   },
   "feedCard": {
+    "reactionTip": "Lai redzētu vairāk reakciju, turiet nospiestu pogu “Patīk”",
     "reactionFailed": "Neizdevās atjaunināt reakciju",
     "saveFailed": "Neizdevās saglabāt",
     "linkCopied": "Ieraksta saite nokopēta",

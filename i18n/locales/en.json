@@ -4987,6 +4987,7 @@
     "tokensAndStocks": "Tokens & stocks"
   },
   "feedCard": {
+    "reactionTip": "Hold down the like button for more reactions",
     "reactionFailed": "Failed to update reaction",
     "saveFailed": "Failed to save",
     "linkCopied": "Post link copied to clipboard",

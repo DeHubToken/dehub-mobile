@@ -4968,6 +4968,7 @@
     "tokensAndStocks": "توکن‌ها و سهام"
   },
   "feedCard": {
+    "reactionTip": "برای واکنش‌های بیشتر، دکمه پسندیدن را نگه دارید",
     "reactionFailed": "به‌روزرسانی واکنش ناموفق بود",
     "saveFailed": "ذخیره ناموفق بود",
     "linkCopied": "لینک پست کپی شد",

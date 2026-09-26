@@ -4991,6 +4991,7 @@
     "tokensAndStocks": "Tokens e ações"
   },
   "feedCard": {
+    "reactionTip": "Mantenha pressionado o botão de curtir para mais reações",
     "reactionFailed": "Não foi possível atualizar a reação",
     "saveFailed": "Não foi possível guardar",
     "linkCopied": "Link da publicação copiado",

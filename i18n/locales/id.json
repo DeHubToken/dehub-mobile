@@ -4987,6 +4987,7 @@
     "tokensAndStocks": "Token & saham"
   },
   "feedCard": {
+    "reactionTip": "Tekan lama tombol suka untuk reaksi lainnya",
     "reactionFailed": "Gagal memperbarui reaksi",
     "saveFailed": "Gagal menyimpan",
     "linkCopied": "Tautan postingan disalin",

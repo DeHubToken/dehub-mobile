@@ -4942,6 +4942,7 @@
     "tokensAndStocks": "ਟੋਕਨ ਅਤੇ ਸਟਾਕ"
   },
   "feedCard": {
+    "reactionTip": "ਹੋਰ ਪ੍ਰਤੀਕਿਰਿਆਵਾਂ ਲਈ ਲਾਈਕ ਬਟਨ ਦਬਾ ਕੇ ਰੱਖੋ",
     "reactionFailed": "ਪ੍ਰਤੀਕਿਰਿਆ ਅੱਪਡੇਟ ਨਹੀਂ ਹੋ ਸਕੀ",
     "saveFailed": "ਸੇਵ ਨਹੀਂ ਹੋ ਸਕਿਆ",
     "linkCopied": "ਪੋਸਟ ਲਿੰਕ ਕਾਪੀ ਹੋ ਗਿਆ",

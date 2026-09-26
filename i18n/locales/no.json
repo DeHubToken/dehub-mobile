@@ -4938,6 +4938,7 @@
     "tokensAndStocks": "Tokens og aksjer"
   },
   "feedCard": {
+    "reactionTip": "Hold inne liker-knappen for flere reaksjoner",
     "reactionFailed": "Klarte ikke å oppdatere reaksjonen",
     "saveFailed": "Kunne ikke lagre",
     "linkCopied": "Innleggslenken er kopiert",
