@@ -16,6 +16,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
+import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 
 export interface GlassModalProps {
   visible: boolean;
@@ -34,6 +35,11 @@ export interface GlassModalProps {
   dismissible?: boolean;
   /** For static sheet content. Lists keep their own scroll container. */
   scrollable?: boolean;
+  /**
+   * Hide while the wallet unlock prompt is up so it is not opened behind this
+   * sheet (see useYieldToWalletUnlock). Off only for the unlock sheet itself.
+   */
+  yieldToWalletUnlock?: boolean;
 }
 
 /**
@@ -62,8 +68,10 @@ const GlassModal: React.FC<GlassModalProps> = ({
   wrapPanel = true,
   dismissible = true,
   scrollable = false,
+  yieldToWalletUnlock = true,
 }) => {
   const insets = useSafeAreaInsets();
+  const yielded = useYieldToWalletUnlock(visible, yieldToWalletUnlock);
   const { isMinimal } = useAppTheme();
   const isBottom = presentation === "bottom";
   const translateY = useRef(new Animated.Value(0)).current;
@@ -124,12 +132,13 @@ const GlassModal: React.FC<GlassModalProps> = ({
 
   return (
     <Modal
-      visible={visible}
+      visible={visible && !yielded}
       transparent
       animationType="fade"
       // Prevent Android back button from closing when not dismissible
       onRequestClose={dismissible ? onClose : () => {}}
-      onDismiss={onDismiss}
+      // Stepping aside for the unlock prompt is not the sheet closing.
+      onDismiss={yielded ? undefined : onDismiss}
       hardwareAccelerated
       // Every other sheet in the app sets this; GlassModal was the one that
       // did not, so on Android its window stopped short of the system bars and

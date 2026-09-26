@@ -52,6 +52,7 @@ import { sendSolanaPayment } from "../../services/solana-payment.service";
 import { isSolanaChain } from "../../config/solana.constants";
 import { formatCompactNumber } from "../../libs";
 import PPVTopUpStep, { type PPVShortfall } from "./PPVTopUpStep";
+import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 
 export interface PPVSheetProps {
   visible: boolean;
@@ -78,6 +79,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   onSuccess,
 }) => {
   const { t } = useTranslation();
+  const yielded = useYieldToWalletUnlock(visible);
   const insets = useSafeAreaInsets();
   const { height: screenHeight } = useWindowDimensions();
   const SHEET_MAX_HEIGHT = screenHeight * 0.52;
@@ -330,7 +332,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
 
   return (
     <Modal
-      visible={visible}
+      visible={visible && !yielded}
       transparent
       animationType="none"
       statusBarTranslucent

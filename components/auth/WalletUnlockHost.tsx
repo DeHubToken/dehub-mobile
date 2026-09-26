@@ -30,7 +30,12 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import i18n from "i18next";
 import WalletSetupScreen, { type WalletSetupRequest } from "./WalletSetupScreen";
-import { registerWalletUnlockHandler, setWalletUnlockRefusal } from "../../libs/wallet-lock";
+import {
+  registerWalletUnlockHandler,
+  setWalletUnlockRefusal,
+  openWalletUnlockPrompt,
+  closeWalletUnlockPrompt,
+} from "../../libs/wallet-lock";
 import { getSupabaseUserId } from "../../services/auth/supabaseAuth.service";
 import {
   resolveEvmWalletForIdentity,
@@ -141,6 +146,7 @@ const WalletUnlockHost: React.FC = () => {
     const current = pendingRef.current;
     pendingRef.current = null;
     setPending(null);
+    closeWalletUnlockPrompt();
     if (current) {
       log.error("unlock:sheet-settled", { unlocked, mode: current.request.mode });
       current.resolve(unlocked);
@@ -152,12 +158,16 @@ const WalletUnlockHost: React.FC = () => {
       const supabaseUserId = await getSupabaseUserId();
       const sessionAddress = await sessionAddressOf();
 
-      const ask = (request: WalletSetupRequest) =>
-        new Promise<boolean>((resolve) => {
+      const ask = async (request: WalletSetupRequest) => {
+        // The sheet that asked (tip, gift, checkout) is its own modal window;
+        // it has to step aside first or this one opens behind it.
+        await openWalletUnlockPrompt();
+        return new Promise<boolean>((resolve) => {
           const next: Pending = { request, sessionAddress, resolve };
           pendingRef.current = next;
           setPending(next);
         });
+      };
 
       const refuse = (why: string, message: string): false => {
         log.error(`unlock:${why}`);
