@@ -1,9 +1,9 @@
 /**
-import { normalizeCategoryName } from "../../libs/strings.util";
  * EditPostModal - Glass modal for editing post title, description & categories
  *
  * Uses GlassModal with center presentation and category chips.
  */
+import { normalizeCategoryName } from "../../libs/strings.util";
 import { MATURE_CONTENT_ENABLED } from "../../config/storefront";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import {
