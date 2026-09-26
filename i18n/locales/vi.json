@@ -6731,11 +6731,12 @@
     "done": "Hoàn tất",
     "back": "Quay lại",
     "aiLabel": "Yêu cầu AI thiết lập giao dịch của bạn",
-    "aiPlaceholder": "Hãy thử \"bán một nửa DHB của tôi với giá 3 xu\"",
+    "aiPlaceholder": "Hãy thử \"bán một nửa DHB của tôi với giá 6 xu\"",
     "aiSend": "Gửi đến AI",
     "aiHint": "Nói những gì bạn muốn bằng những từ đơn giản. AI điền mọi thứ vào, bạn chỉ cần nhấn Xác nhận.",
     "aiBuyOnly": "Giao dịch dễ dàng bán DHB. Để mua DHB, hãy mở Exchange.",
     "aiNeedAmount": "Bạn muốn bán bao nhiêu DHB?",
-    "aiFailed": "AI không thể thiết lập điều đó. Hãy thử nói theo cách khác hoặc điền vào bên dưới."
+    "aiFailed": "AI không thể thiết lập điều đó. Hãy thử nói theo cách khác hoặc điền vào bên dưới.",
+    "cancelled": "Đã hủy. Không có gì được bán."
   }
 }

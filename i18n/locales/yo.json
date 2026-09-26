@@ -6644,11 +6644,12 @@
     "done": "Ṣe",
     "back": "Pada",
     "aiLabel": "Beere AI lati ṣeto iṣowo rẹ.",
-    "aiPlaceholder": "Gbìyànjú láti \"ta ìdajì DHB mi ní owó dínárì 3\"",
+    "aiPlaceholder": "Gbìyànjú láti \"ta ìdajì DHB mi ní owó dínárì 6\"",
     "aiSend": "Fi ranṣẹ si AI",
     "aiHint": "Sọ ohun tí o fẹ́ ní àwọn ọ̀rọ̀ tí ó rọrùn. AI kún ohun gbogbo, o kàn tẹ Confirm.",
     "aiBuyOnly": "Ọjà tí ó rọrùn máa ń ta DHB. Láti ra DHB, ṣí pàṣípààrọ̀.",
     "aiNeedAmount": "Èló ni DHB tí o fẹ́ ta?",
-    "aiFailed": "AI kò lè ṣètò ìyẹn. Gbìyànjú láti sọ ọ́ lọ́nà mìíràn, tàbí kí o kún un ní ìsàlẹ̀."
+    "aiFailed": "AI kò lè ṣètò ìyẹn. Gbìyànjú láti sọ ọ́ lọ́nà mìíràn, tàbí kí o kún un ní ìsàlẹ̀.",
+    "cancelled": "A fagilé. Kò sí ohun tí a tà."
   }
 }

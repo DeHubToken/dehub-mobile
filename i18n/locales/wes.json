@@ -6640,11 +6640,12 @@
     "done": "Done",
     "back": "Back",
     "aiLabel": "Ask AI make e set your trade",
-    "aiPlaceholder": "Try \"sell half my DHB for 3 cents\"",
+    "aiPlaceholder": "Try \"sell half my DHB for 6 cents\"",
     "aiSend": "Send to AI",
     "aiHint": "Talk weti you want for simple word. AI go fill all thing, you go just press Confirm.",
     "aiBuyOnly": "Easy trade na for sell DHB. For buy DHB, open Exchange.",
     "aiNeedAmount": "How much DHB you want sell?",
-    "aiFailed": "AI no fit set am. Try talk am another way, or fill am for down."
+    "aiFailed": "AI no fit set am. Try talk am another way, or fill am for down.",
+    "cancelled": "You don cancel am. Nothing sell."
   }
 }

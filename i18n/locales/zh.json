@@ -6647,11 +6647,12 @@
     "done": "完成",
     "back": "返回",
     "aiLabel": "要求人工智能设置您的交易",
-    "aiPlaceholder": "尝试“以3美分卖掉我的一半DHB”",
+    "aiPlaceholder": "尝试“以6美分卖掉我的一半DHB”",
     "aiSend": "发送到AI",
     "aiHint": "用简单的语言说出你想要的。 AI填写所有内容，只需按确认即可。",
     "aiBuyOnly": "轻松交易出售DHB。 要购买DHB ，请打开Exchange。",
     "aiNeedAmount": "您想卖出多少DHB ？",
-    "aiFailed": "AI无法设置它。 请尝试换一种说法，或在下方填写。"
+    "aiFailed": "AI无法设置它。 请尝试换一种说法，或在下方填写。",
+    "cancelled": "已取消。未售出任何东西。"
   }
 }

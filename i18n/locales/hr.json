@@ -6643,11 +6643,12 @@
     "done": "Gotovo",
     "back": "Natrag",
     "aiLabel": "Zamolite umjetnu inteligenciju da uspostavi vašu trgovinu",
-    "aiPlaceholder": "Pokušajte \"prodati pola DHB-a za 3 centa\"",
+    "aiPlaceholder": "Pokušajte \"prodati pola DHB-a za 6 centa\"",
     "aiSend": "Pošalji umjetnoj inteligenciji",
     "aiHint": "Jednostavnim riječima recite što želite. AI popunjava sve, samo pritisnete Potvrdi.",
     "aiBuyOnly": "Easy Trade prodaje DHB. Da biste kupili DHB, otvorite Exchange.",
     "aiNeedAmount": "Koliko DHB-a želite prodati?",
-    "aiFailed": "AI to nije mogao postaviti. Pokušaj to izgovoriti na drugi način ili ga ispuni u nastavku."
+    "aiFailed": "AI to nije mogao postaviti. Pokušaj to izgovoriti na drugi način ili ga ispuni u nastavku.",
+    "cancelled": "Otkazano. Ništa nije prodano."
   }
 }

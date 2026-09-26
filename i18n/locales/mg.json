@@ -6742,11 +6742,12 @@
     "done": "DONE",
     "back": "_Mihemotra",
     "aiLabel": "Angataho ny AI hanangana ny varotrao",
-    "aiPlaceholder": "Miezaha \"mivarotra ny antsasaky ny DHB amin'ny 3 cents\"",
+    "aiPlaceholder": "Miezaha \"mivarotra ny antsasaky ny DHB amin'ny 6 cents\"",
     "aiSend": "Alefaso any amin'ny AI",
     "aiHint": "Teneno izay tianao amin'ny teny tsotra. Fenoy ny zavatra rehetra ao amin'ny AI, tsindrio fotsiny ny Confirm.",
     "aiBuyOnly": "Mora ny varotra mivarotra DHB. Mba hividianana ny DHB, OPEN Exchange.",
-    "aiNeedAmount": "Ohatrinona ny mety ataharanao amin'ny varotra?",
-    "aiFailed": "Tsy afaka mandamina azy ireo ihany koa izy. Miezaha hilaza izany amin'ny fomba hafa, na fenoy eto ambany."
+    "aiNeedAmount": "Firy ny DHB tianao hamidy?",
+    "aiFailed": "Tsy afaka mandamina azy ireo ihany koa izy. Miezaha hilaza izany amin'ny fomba hafa, na fenoy eto ambany.",
+    "cancelled": "Nofoanana. Tsy nisy nivarotra."
   }
 }
