@@ -12,15 +12,22 @@ import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 
+/** Plain text, or an i18n key for a line that has already been translated. */
+type Copy = string | { key: string };
+
 interface GlossaryEntry {
   icon: IconName;
   title: string;
-  description: string;
+  description: Copy;
 }
 
 interface GlossarySection {
   title: string;
   entries: GlossaryEntry[];
+}
+
+interface ResolvedEntry extends Omit<GlossaryEntry, "description"> {
+  description: string;
 }
 
 const SECTIONS: GlossarySection[] = [
@@ -66,7 +73,7 @@ const SECTIONS: GlossarySection[] = [
   {
     title: "On-Chain Post Details",
     entries: [
-      { icon: "Info", title: "Mint Transaction", description: "Tap the info icon on any post to open its mint transaction on the block explorer and verify the on-chain record. The full Post Info page — stats, holders, marketplace — lives on the web app at dehub.io." },
+      { icon: "Info", title: "Mint Transaction", description: { key: "screens.glossaryMintTxDesc" } },
       { icon: "Hash", title: "Token ID", description: "The unique on-chain identifier assigned when a post is minted as an NFT." },
       { icon: "ExternalLink", title: "Transaction Hash", description: "The blockchain transaction hash from when the post was minted. Open it in the block explorer to verify the on-chain record." },
       { icon: "EyeOff", title: "Hidden Post", description: "Post owners can hide a post from public feeds (and show it again) from the post's options menu. A hidden post stays visible to its owner, marked with a Hidden chip." },
@@ -126,7 +133,7 @@ const SECTIONS: GlossarySection[] = [
       { icon: "CircleCheckBig", title: "Staking Badges", description: "Badges displayed next to your username based on your total DHB holdings (wallet + staked). There are 13 tiers — the more DHB you hold, the higher your badge rank. Higher tiers grant more governance voting power and lower platform fees." },
       { icon: "Trophy", title: "Leaderboard Ranking", description: "Users are ranked by total DHB balance (wallet + staked across all chains). Rankings update periodically and track 1-day and 1-week changes. You can also sort by tips sent, tips received, followers, likes, or subscribers." },
       { icon: "TrendingUp", title: "Ranking Delta (▲▼)", description: "The green or red arrow next to a leaderboard entry shows how much a user's balance changed over the selected time period (1 day, 1 week, etc.)." },
-      { icon: "Zap", title: "Token ID", description: "A unique on-chain identifier assigned to each post when it's minted as an NFT on the blockchain." },
+      { icon: "Zap", title: "Token ID", description: { key: "screens.glossaryTokenIdDesc" } },
     ],
   },
   {
@@ -140,7 +147,7 @@ const SECTIONS: GlossarySection[] = [
   },
 ];
 
-function GlossaryCard({ icon, title, description }: GlossaryEntry) {
+function GlossaryCard({ icon, title, description }: ResolvedEntry) {
   return (
     <View style={styles.card}>
       <View style={styles.cardIcon}>
@@ -159,16 +166,28 @@ export default function GlossaryScreen() {
   const insets = useSafeAreaInsets();
   const [query, setQuery] = useState("");
 
+  const sections = useMemo(
+    () =>
+      SECTIONS.map((s) => ({
+        ...s,
+        entries: s.entries.map((e): ResolvedEntry => ({
+          ...e,
+          description: typeof e.description === "string" ? e.description : t(e.description.key),
+        })),
+      })),
+    [t],
+  );
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return SECTIONS;
-    return SECTIONS.map((s) => ({
+    if (!q) return sections;
+    return sections.map((s) => ({
       ...s,
       entries: s.entries.filter(
         (e) => e.title.toLowerCase().includes(q) || e.description.toLowerCase().includes(q),
       ),
     })).filter((s) => s.entries.length > 0);
-  }, [query]);
+  }, [query, sections]);
 
   return (
     <View style={styles.root}>

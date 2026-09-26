@@ -2,7 +2,7 @@
 
 ## Overview
 
-The livestream system uses a **single-endpoint flow** where creating a livestream and minting the NFT happen in one API call (`POST /nft/user_mint`). The stream then transitions through status changes driven by **Livepeer webhooks** — the frontend does not manually start/stop the stream via API.
+The livestream system uses a **single-endpoint flow** where creating a livestream (and, if the creator chooses to, minting it as an NFT) happens in one API call (`POST /nft/user_mint`). Minting is optional: sending `mintOptOut=true` creates the stream without an on-chain mint. The stream then transitions through status changes driven by **Livepeer webhooks** — the frontend does not manually start/stop the stream via API.
 
 ---
 
@@ -13,7 +13,7 @@ The livestream system uses a **single-endpoint flow** where creating a livestrea
 |  1. Creator fills form (title, description, thumbnail, etc.)     |
 |  2. POST /nft/user_mint  (postType=live, with stream settings)   |
 |     -> Returns: mint signature + stream entity                   |
-|  3. Frontend sends on-chain mint transaction                     |
+|  3. Frontend sends on-chain mint transaction (skipped on opt-out)|
 |  4. Navigate to producer page with stream data                   |
 |  5. Connect WHIP (WebRTC) to Livepeer ingest URL                |
 |     (fetch via GET /live/:streamId/ingesturl)                    |
