@@ -1,20 +1,7 @@
 import React, { PropsWithChildren } from 'react';
-import { LivepeerConfig, createReactClient, studioProvider } from '@livepeer/react-native';
-import env from './env';
 
-// Minimal, eagerly-created client. Avoids dynamic wrapping complexity.
-const LIVEPEER_API_KEY: string | undefined = (env as any)?.LIVEPEER_API_KEY;
-if (!LIVEPEER_API_KEY) {
-  console.warn('[Livepeer] LIVEPEER_API_KEY missing. Add it to your .env to enable authenticated streaming.');
-}
-
-// NOTE: Passing empty string if undefined to satisfy type, library should handle anonymous usage.
-const livepeerClient = createReactClient({
-  provider: studioProvider({ apiKey: LIVEPEER_API_KEY || '' }),
-});
-
-export const LivepeerProvider: React.FC<PropsWithChildren> = ({ children }) => (
-  <LivepeerConfig client={livepeerClient}>{children}</LivepeerConfig>
-);
-
-export default livepeerClient;
+// Nothing in the app reads a Livepeer client from context: stream status goes
+// through the livepeer-stream-status edge function (services/livepeer.service)
+// and playback is plain HLS/WebRTC. The provider stays as a passthrough so the
+// navigator's wrapping keeps working, but no Livepeer API key ships in the app.
+export const LivepeerProvider: React.FC<PropsWithChildren> = ({ children }) => <>{children}</>;

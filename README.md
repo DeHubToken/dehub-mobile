@@ -61,8 +61,6 @@ Create a `.env` file in the project root. Required variables:
 | `WEBSOCKET_URL` | WebSocket server URL |
 | `REOWN_PROJECT_ID` | Reown (WalletConnect) project ID |
 | `WEB3AUTH_CLIENT_ID` | Web3Auth client ID |
-| `ALCHEMY_API_KEY` | Alchemy RPC key for Ethereum mainnet (optional — falls back to a public endpoint) |
-| `LIVEPEER_API_KEY` | Livepeer streaming API key |
 | `STRIPE_PUBLISHABLE_KEY` | Stripe payments key |
 | `TENOR_API_KEY` | Tenor GIF API key |
 | `SUPABASE_EDGE_BASE_URL` | Supabase edge functions URL |
