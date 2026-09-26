@@ -49,6 +49,7 @@ import {
   type PostReaction,
   type ReactionCounts,
 } from "../../libs/reactions";
+import { ReactionEmoji } from "../Home/ReactionEmoji";
 import type { CommentLayout } from "./CommentContextMenu";
 import { WEBSITE_LINK } from "../../config";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
@@ -211,11 +212,13 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const reactionsEnabled = !!onReact;
   /** The glyph the thumbs-up wears — yours, else the thread's most-used. */
   const leadReaction = isOwnComment ? null : resolveLeadReaction(reactionCounts, myReaction);
-  const leadGlyph = leadReaction ? reactionMeta(leadReaction).emoji : undefined;
+  const leadGlyph = leadReaction ?? undefined;
+  /** Your own reaction is the one that moves. */
+  const leadAnimated = !!leadReaction && leadReaction === myReaction;
   /** …and the thumbs-DOWN would wear it, though 👎 is its own glyph already. */
   const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
   const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
-  const negativeGlyph = negativeLeadReaction ? reactionMeta(negativeLeadReaction).emoji : undefined;
+  const negativeGlyph = negativeLeadReaction ?? undefined;
 
   // Address is the identity; the name is only ever evidence. A commenter with
   // no address makes no claim either way.
@@ -668,9 +671,12 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               >
                 <Animated.View style={likeAnimStyle}>
                   {leadGlyph ? (
-                    <Text style={{ fontSize: 13, lineHeight: 17, width: 14, textAlign: "center" }}>
-                      {leadGlyph}
-                    </Text>
+                    <ReactionEmoji
+                      reaction={leadGlyph}
+                      animate={leadAnimated}
+                      size={16}
+                      textStyle={{ fontSize: 13, lineHeight: 17, width: 14, textAlign: "center" }}
+                    />
                   ) : (
                     <Icon
                       name="ThumbsUp"
@@ -718,9 +724,12 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 >
                   <Animated.View style={dislikeAnimStyle}>
                     {negativeGlyph ? (
-                      <Text style={{ fontSize: 13, lineHeight: 17, width: 14, textAlign: "center" }}>
-                        {negativeGlyph}
-                      </Text>
+                      <ReactionEmoji
+                        reaction={negativeGlyph}
+                        animate
+                        size={16}
+                        textStyle={{ fontSize: 13, lineHeight: 17, width: 14, textAlign: "center" }}
+                      />
                     ) : (
                       <Icon
                         name="ThumbsDown"
