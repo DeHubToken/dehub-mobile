@@ -5222,7 +5222,12 @@
     "videoFile": "Videofail",
     "uploadingPercent": "Üleslaadimine… {{percent}}%",
     "replaceVideoFile": "Videofaili asendamine",
-    "replaceVideoHint": "Säilitab selle postituse lingi, vaatamised ja kommentaarid. Vana fail mängib seni, kuni uus töötlemise lõpetab."
+    "replaceVideoHint": "Säilitab selle postituse lingi, vaatamised ja kommentaarid. Vana fail mängib seni, kuni uus töötlemise lõpetab.",
+    "coverTitle": "Kaanepilt",
+    "coverHint": "Vali kaader või laadi üles pilt. Salvestub kohe.",
+    "coverUpload": "Laadi üles kaanepilt",
+    "coverSaved": "Kaanepilt uuendatud",
+    "coverFailed": "Kaanepilti ei õnnestunud muuta"
   },
   "player": {
     "openSettings": "Ava seaded",

@@ -5271,7 +5271,12 @@
     "videoFile": "Videodatei",
     "uploadingPercent": "Hochladen… {{percent}}%",
     "replaceVideoFile": "Videodatei ersetzen",
-    "replaceVideoHint": "Behält den Link, die Aufrufe und Kommentare dieses Beitrags bei. Die alte Datei wird abgespielt, bis die neue verarbeitet ist."
+    "replaceVideoHint": "Behält den Link, die Aufrufe und Kommentare dieses Beitrags bei. Die alte Datei wird abgespielt, bis die neue verarbeitet ist.",
+    "coverTitle": "Cover",
+    "coverHint": "Wähle ein Standbild oder lade ein Bild hoch. Wird sofort gespeichert.",
+    "coverUpload": "Coverbild hochladen",
+    "coverSaved": "Cover aktualisiert",
+    "coverFailed": "Cover konnte nicht geändert werden"
   },
   "player": {
     "openSettings": "Einstellungen öffnen",

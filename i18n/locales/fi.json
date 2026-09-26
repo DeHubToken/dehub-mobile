@@ -5222,7 +5222,12 @@
     "videoFile": "Videotiedosto",
     "uploadingPercent": "Ladataan… {{percent}}%",
     "replaceVideoFile": "Korvaa videotiedosto",
-    "replaceVideoHint": "Säilyttää tämän julkaisun linkin, katselukerrat ja kommentit. Vanha tiedosto toistuu, kunnes uusi on käsitelty."
+    "replaceVideoHint": "Säilyttää tämän julkaisun linkin, katselukerrat ja kommentit. Vanha tiedosto toistuu, kunnes uusi on käsitelty.",
+    "coverTitle": "Kansikuva",
+    "coverHint": "Valitse ruutu tai lataa kuva. Tallentuu heti.",
+    "coverUpload": "Lataa kansikuva",
+    "coverSaved": "Kansikuva päivitetty",
+    "coverFailed": "Kansikuvaa ei voitu vaihtaa"
   },
   "player": {
     "openSettings": "Avaa asetukset",

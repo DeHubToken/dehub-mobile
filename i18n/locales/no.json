@@ -5222,7 +5222,12 @@
     "videoFile": "Videofil",
     "uploadingPercent": "Laster opp… {{percent}}%",
     "replaceVideoFile": "Erstatt videofil",
-    "replaceVideoHint": "Beholder denne postens lenke, visninger og kommentarer. Den gamle filen spilles av til den nye er ferdigbehandlet."
+    "replaceVideoHint": "Beholder denne postens lenke, visninger og kommentarer. Den gamle filen spilles av til den nye er ferdigbehandlet.",
+    "coverTitle": "Forsidebilde",
+    "coverHint": "Velg et bilde fra videoen eller last opp et bilde. Lagres med en gang.",
+    "coverUpload": "Last opp forsidebilde",
+    "coverSaved": "Forsidebilde oppdatert",
+    "coverFailed": "Kunne ikke endre forsidebildet"
   },
   "player": {
     "openSettings": "Åpne innstillinger",

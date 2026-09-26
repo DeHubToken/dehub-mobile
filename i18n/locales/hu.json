@@ -5226,7 +5226,12 @@
     "videoFile": "Videofájl",
     "uploadingPercent": "Feltöltés… {{percent}}%",
     "replaceVideoFile": "Videofájl cseréje",
-    "replaceVideoHint": "Megtartja a bejegyzés linkjét, megtekintéseit és kommentjeit. A régi fájl addig játszik, amíg az új feldolgozása befejeződik."
+    "replaceVideoHint": "Megtartja a bejegyzés linkjét, megtekintéseit és kommentjeit. A régi fájl addig játszik, amíg az új feldolgozása befejeződik.",
+    "coverTitle": "Borítókép",
+    "coverHint": "Válassz egy képkockát vagy tölts fel egy képet. Azonnal mentődik.",
+    "coverUpload": "Borítókép feltöltése",
+    "coverSaved": "Borítókép frissítve",
+    "coverFailed": "Nem sikerült módosítani a borítóképet"
   },
   "player": {
     "openSettings": "Beállítások megnyitása",

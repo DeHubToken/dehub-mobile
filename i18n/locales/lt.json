@@ -5222,7 +5222,12 @@
     "videoFile": "Vaizdo failas",
     "uploadingPercent": "Įkeliama… {{percent}}%",
     "replaceVideoFile": "Pakeisti vaizdo failą",
-    "replaceVideoHint": "Išsaugo šio įrašo nuorodą, peržiūras ir komentarus. Senas failas bus rodomas, kol naujas bus apdorojamas."
+    "replaceVideoHint": "Išsaugo šio įrašo nuorodą, peržiūras ir komentarus. Senas failas bus rodomas, kol naujas bus apdorojamas.",
+    "coverTitle": "Viršelis",
+    "coverHint": "Pasirinkite kadrą arba įkelkite paveikslėlį. Išsaugoma iš karto.",
+    "coverUpload": "Įkelti viršelio paveikslėlį",
+    "coverSaved": "Viršelis atnaujintas",
+    "coverFailed": "Nepavyko pakeisti viršelio"
   },
   "player": {
     "openSettings": "Atidaryti nustatymus",

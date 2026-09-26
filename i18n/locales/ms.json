@@ -5483,7 +5483,12 @@
     "videoFile": "Fail video",
     "uploadingPercent": "Memuat naik… {{percent}}%",
     "replaceVideoFile": "Ganti fail video",
-    "replaceVideoHint": "Menyimpan pautan, tontonan dan ulasan siaran ini. Fail lama akan dimainkan sehingga fail baharu selesai diproses."
+    "replaceVideoHint": "Menyimpan pautan, tontonan dan ulasan siaran ini. Fail lama akan dimainkan sehingga fail baharu selesai diproses.",
+    "coverTitle": "Kulit",
+    "coverHint": "Pilih bingkai atau muat naik imej. Disimpan serta-merta.",
+    "coverUpload": "Muat naik imej kulit",
+    "coverSaved": "Kulit dikemas kini",
+    "coverFailed": "Tidak dapat menukar kulit"
   },
   "player": {
     "openSettings": "Buka tetapan",

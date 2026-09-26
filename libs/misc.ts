@@ -235,6 +235,9 @@ export function buildImageUrl(
 ): string {
   if (!apiImagePath) return '';
   if (apiImagePath.startsWith('http')) return cdnImage(apiImagePath, { width: widthPt });
+  // A changed cover lands on a fresh key (images/{tokenId}-{uuid}.jpg) so no
+  // cache in front of the bucket can keep serving the old one. Read it as-is.
+  if (apiImagePath.startsWith('images/')) return cdnImage(`${baseUrlWithoutSlash}/${apiImagePath}`, { width: widthPt });
   const ext = getExtension(apiImagePath);
   return cdnImage(`${baseUrlWithoutSlash}/images/${tokenId}.${ext}`, { width: widthPt });
 }

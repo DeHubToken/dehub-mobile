@@ -5253,7 +5253,12 @@
     "videoFile": "Ifayela levidiyo",
     "uploadingPercent": "Ilayisha… {{percent}}%",
     "replaceVideoFile": "Buyisela ifayela levidiyo",
-    "replaceVideoHint": "Kugcina isixhumanisi sale ncwadana, ukubukwa kanye nokuphawula. Ifayela elidala lizodlala kuze kuphele ukucubungula okusha."
+    "replaceVideoHint": "Kugcina isixhumanisi sale ncwadana, ukubukwa kanye nokuphawula. Ifayela elidala lizodlala kuze kuphele ukucubungula okusha.",
+    "coverTitle": "Ikhava",
+    "coverHint": "Khetha ifreyimu noma layisha isithombe. Kulondolozwa ngokushesha.",
+    "coverUpload": "Layisha isithombe sekhava",
+    "coverSaved": "Ikhava ibuyekeziwe",
+    "coverFailed": "Ayikwazanga ukushintsha ikhava"
   },
   "player": {
     "openSettings": "Vula izilungiselelo",

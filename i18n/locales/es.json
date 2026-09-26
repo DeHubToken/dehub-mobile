@@ -5271,7 +5271,12 @@
     "videoFile": "Archivo de video",
     "uploadingPercent": "Subiendo… {{percent}}%",
     "replaceVideoFile": "Reemplazar archivo de video",
-    "replaceVideoHint": "Mantiene el enlace, las vistas y los comentarios de esta publicación. El archivo antiguo se reproduce hasta que el nuevo termina de procesarse."
+    "replaceVideoHint": "Mantiene el enlace, las vistas y los comentarios de esta publicación. El archivo antiguo se reproduce hasta que el nuevo termina de procesarse.",
+    "coverTitle": "Portada",
+    "coverHint": "Elige un fotograma o sube una imagen. Se guarda al instante.",
+    "coverUpload": "Subir imagen de portada",
+    "coverSaved": "Portada actualizada",
+    "coverFailed": "No se pudo cambiar la portada"
   },
   "player": {
     "openSettings": "Abrir ajustes",

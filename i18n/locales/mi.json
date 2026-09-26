@@ -5222,7 +5222,12 @@
     "videoFile": "Kōnae ataata",
     "uploadingPercent": "E tukuna ana… {{percent}}%",
     "replaceVideoFile": "Whakakapi kōnae ataata",
-    "replaceVideoHint": "Ka mau tonu te hononga, ngā tirohanga, me ngā kōrero o tēnei whakairinga. Ka takaro te kōnae tawhito kia mutu ra ano te tukatuka o te kōnae hou."
+    "replaceVideoHint": "Ka mau tonu te hononga, ngā tirohanga, me ngā kōrero o tēnei whakairinga. Ka takaro te kōnae tawhito kia mutu ra ano te tukatuka o te kōnae hou.",
+    "coverTitle": "Uhi",
+    "coverHint": "Kōwhiria he anga, tukuake rānei he whakaahua. Ka tiakina tonutia.",
+    "coverUpload": "Tukuake he whakaahua uhi",
+    "coverSaved": "Kua whakahōungia te uhi",
+    "coverFailed": "Kāore i taea te huri i te uhi"
   },
   "player": {
     "openSettings": "Whakatuwherahia ngā tautuhinga",

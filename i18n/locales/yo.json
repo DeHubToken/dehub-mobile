@@ -5223,7 +5223,12 @@
     "uploadingPercent": "Ìfàjísílẹ̀… {{percent}}%",
     "replaceVideoFile": "Rọ́pò fáìlì fídíò",
     "replaceVideoHint": "Ó máa ń mú ìjápọ̀ ìwé yìí, àwọn ìwò, àti àwọn ìdáhùn wà. Fáìlì àtijọ́ yóò ṣeré títí tí èyí tuntun yóò fi parí ìgbékalẹ̀ rẹ̀.",
-    "onShopBoard": "{{count}} lórí pátákó Ìtajà"
+    "onShopBoard": "{{count}} lórí pátákó Ìtajà",
+    "coverTitle": "Èèpo",
+    "coverHint": "Yan fírémù kan tàbí gbé àwòrán sókè. Ó máa fipamọ́ lẹ́sẹ̀kẹsẹ̀.",
+    "coverUpload": "Gbé àwòrán èèpo sókè",
+    "coverSaved": "A ti ṣe àtúnṣe èèpo",
+    "coverFailed": "A kò lè yí èèpo padà"
   },
   "player": {
     "openSettings": "Ṣí àwọn ètò",

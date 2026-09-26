@@ -5176,7 +5176,12 @@
     "shopBoardHint": "I ka gafew ni i ka linkw be yɛlɛ ka bɔ gafew ka bulonda kan. I be se ka {{allowance}} fara a kan.",
     "commentsOff": "An ka kuma dɔw to an bolo",
     "imagesCount": "Ja {{count}} / {{limit}} · I ka badge hakɛ kan",
-    "uploadingPercent": "A bɛ ka bila… {{percent}}%"
+    "uploadingPercent": "A bɛ ka bila… {{percent}}%",
+    "coverTitle": "Kuru",
+    "coverHint": "Jaa kelen sugandi walima ja dɔ bila. A bɛ mara o yɔrɔnin bɛɛ.",
+    "coverUpload": "Kuru ja bila",
+    "coverSaved": "Kuru yɛlɛmana",
+    "coverFailed": "Kuru ma se ka yɛlɛma"
   },
   "player": {
     "openSettings": "Latigɛliw da wuli",

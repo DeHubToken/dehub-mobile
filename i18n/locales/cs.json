@@ -5226,7 +5226,12 @@
     "videoFile": "Video soubor",
     "uploadingPercent": "Nahrávání… {{percent}}%",
     "replaceVideoFile": "Nahradit video soubor",
-    "replaceVideoHint": "Zachová odkaz, zhlédnutí a komentáře k tomuto příspěvku. Starý soubor se přehrává, dokud se nový nedokončí zpracovávat."
+    "replaceVideoHint": "Zachová odkaz, zhlédnutí a komentáře k tomuto příspěvku. Starý soubor se přehrává, dokud se nový nedokončí zpracovávat.",
+    "coverTitle": "Obálka",
+    "coverHint": "Vyberte snímek nebo nahrajte obrázek. Uloží se hned.",
+    "coverUpload": "Nahrát obrázek obálky",
+    "coverSaved": "Obálka aktualizována",
+    "coverFailed": "Obálku se nepodařilo změnit"
   },
   "player": {
     "openSettings": "Otevřít nastavení",

@@ -5235,7 +5235,12 @@
     "replaceVideoFile": "Thay thế tệp video",
     "replaceVideoHint": "Giữ lại liên kết, lượt xem và bình luận của bài đăng này. Tệp cũ sẽ phát cho đến khi tệp mới xử lý xong.",
     "replaceImageN": "Thay thế hình ảnh {{n}}",
-    "imagesCount": "{{count}} / {{limit}} ảnh · Dựa trên cấp độ huy hiệu của bạn"
+    "imagesCount": "{{count}} / {{limit}} ảnh · Dựa trên cấp độ huy hiệu của bạn",
+    "coverTitle": "Ảnh bìa",
+    "coverHint": "Chọn một khung hình hoặc tải ảnh lên. Lưu ngay lập tức.",
+    "coverUpload": "Tải ảnh bìa lên",
+    "coverSaved": "Đã cập nhật ảnh bìa",
+    "coverFailed": "Không thể đổi ảnh bìa"
   },
   "player": {
     "openSettings": "Mở cài đặt",

@@ -5252,7 +5252,12 @@
     "videoFile": "የቪዲዮ ፋይል",
     "uploadingPercent": "በመጫን ላይ… {{percent}}%",
     "replaceVideoFile": "የቪዲዮ ፋይል ይተኩ",
-    "replaceVideoHint": "የዚህ ልጥፍ አገናኝ፣ እይታዎች እና አስተያየቶች ይቀጥላሉ። አሮጌው ፋይል አዲሱ እስኪሰራ ድረስ ይጫወታል።"
+    "replaceVideoHint": "የዚህ ልጥፍ አገናኝ፣ እይታዎች እና አስተያየቶች ይቀጥላሉ። አሮጌው ፋይል አዲሱ እስኪሰራ ድረስ ይጫወታል።",
+    "coverTitle": "ሽፋን",
+    "coverHint": "ፍሬም ይምረጡ ወይም ምስል ይስቀሉ። ወዲያውኑ ይቀመጣል።",
+    "coverUpload": "የሽፋን ምስል ይስቀሉ",
+    "coverSaved": "ሽፋኑ ተዘምኗል",
+    "coverFailed": "ሽፋኑን መቀየር አልተቻለም"
   },
   "player": {
     "openSettings": "ቅንብሮችን ክፈት",
