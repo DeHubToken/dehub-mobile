@@ -45,9 +45,9 @@ describe("over-the-air updates on foreground", () => {
   it("does not hit the update server more than once per interval", async () => {
     mocked.checkForUpdateAsync.mockResolvedValue({ isAvailable: false });
     await checkForOtaUpdate(1_000_000);
-    await checkForOtaUpdate(1_000_000 + 60_000);
+    await checkForOtaUpdate(1_000_000 + 5 * 60 * 60_000);
     expect(mocked.checkForUpdateAsync).toHaveBeenCalledTimes(1);
-    await checkForOtaUpdate(1_000_000 + 16 * 60_000);
+    await checkForOtaUpdate(1_000_000 + 6 * 60 * 60_000 + 60_000);
     expect(mocked.checkForUpdateAsync).toHaveBeenCalledTimes(2);
   });
 
