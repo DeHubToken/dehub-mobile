@@ -1,5 +1,11 @@
 module.exports = function (api) {
-  api.cache(true);
+  // Release bundles only. Expo sets NODE_ENV=production when it bundles for a
+  // release build, and Metro passes isDev=false; jest runs as NODE_ENV=test.
+  const isRelease =
+    process.env.NODE_ENV === "production" ||
+    api.caller((caller) => !!caller && caller.isDev === false);
+  api.cache.using(() => process.env.NODE_ENV);
+
   return {
     // ignore: ["**/*.css"],
     presets: [
@@ -25,6 +31,7 @@ module.exports = function (api) {
       "module:react-native-dotenv",
       // Reanimated 4: plugin moved to react-native-worklets
       "react-native-worklets/plugin",
+      ...(isRelease ? ["./babel/remove-console"] : []),
     ],
   };
 };
