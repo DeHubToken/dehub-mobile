@@ -1,4 +1,5 @@
 import { ethers } from 'ethers';
+jest.mock('../../config/env', () => ({ __esModule: true, default: { ALCHEMY_API_KEY: 'test-key' } }));
 jest.mock('../../config/constants', () => ({ ChainId: { BASE_MAINNET: 8453, BSC_MAINNET: 56 } }));
 import { dexProvider } from '../dex-rpc';
 import { dexActionError } from '../dex-action-error';
@@ -7,7 +8,7 @@ it('uses the configured RPC and reads through a backup after rate limiting', asy
   const provider = dexProvider(8453);
   const configs = provider.providerConfigs;
   expect(configs.map(c => (c.provider as ethers.providers.StaticJsonRpcProvider).connection.url)).toEqual([
-    'https://base-rpc.publicnode.com', 'https://base.drpc.org',
+    'https://base-mainnet.g.alchemy.com/v2/test-key', 'https://base-rpc.publicnode.com', 'https://base.drpc.org',
   ]);
   const calls = configs.map((config, index) => jest.spyOn(config.provider as ethers.providers.StaticJsonRpcProvider, 'send').mockImplementation(async method => {
     if (method === 'eth_call' && index === 0) throw Object.assign(new Error('429 over rate limit'), { code: 'SERVER_ERROR' });

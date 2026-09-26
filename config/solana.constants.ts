@@ -1,6 +1,7 @@
 /**
  * Solana chain + SPL token constants (#41) — mirrors dehub-stream-backend config.
  */
+import env from "./env";
 
 export const SOLANA_MAINNET_CHAIN_ID = 101 as const;
 export const SOLANA_DEVNET_CHAIN_ID = 103 as const;
@@ -26,6 +27,17 @@ export const SOLANA_RPC_URLS: Record<number, string> = {
 };
 
 export function getSolanaRpcUrl(chainId: number = SOLANA_MAINNET_CHAIN_ID): string {
+  // Prefer a dedicated, authenticated RPC on mainnet when one is configured —
+  // the public fallback below works but is shared/rate-limited. Set
+  // ALCHEMY_API_KEY in .env (gitignored, never committed) to opt in — either
+  // the bare key or the full https://.../v2/<key> URL both work, since
+  // pasting the dashboard's full URL in as "the key" is an easy mistake and
+  // wrapping it again silently doubles it into a broken URL.
+  if (chainId === SOLANA_MAINNET_CHAIN_ID && env.ALCHEMY_API_KEY) {
+    return env.ALCHEMY_API_KEY.startsWith("http")
+      ? env.ALCHEMY_API_KEY
+      : `https://solana-mainnet.g.alchemy.com/v2/${env.ALCHEMY_API_KEY}`;
+  }
   return SOLANA_RPC_URLS[chainId] || SOLANA_RPC_URLS[SOLANA_MAINNET_CHAIN_ID];
 }
 

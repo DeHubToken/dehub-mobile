@@ -1,4 +1,5 @@
 import { ChainId, isDevMode } from "./constants";
+import env from "./env";
 
 export const VAULT_CONTRACT_ADDRESSES = {
   [ChainId.BSC_TESTNET]: "0xc90f5CbB3bb3e9a181b8Fed7d8a4835B291b7c9F",
@@ -72,12 +73,17 @@ export const STREAM_COLLECTION_CONTRACT_ADDRESSES = {
   //BSC_TESTNET dummy 0x5ae62df56ff1e68fb1772a337859b856caeefab6
 };
 
+const alchemyKey = env.ALCHEMY_API_KEY;
 export const NETWORK_URLS: {
   [chainId: number]: string;
 } = {
-  // Public endpoint: a paid RPC key bundled into the app can be pulled out of
-  // the APK and billed by anyone, so no provider key ships here.
-  [ChainId.MAINNET]: "https://ethereum-rpc.publicnode.com",
+  // Alchemy when a key is configured, matching the backend. The key is optional
+  // in this app, so fall back to a public endpoint rather than shipping a URL
+  // with an empty key in it — Ethereum is a supported chain for minting and for
+  // the wallet-add payload below, so this has to resolve either way.
+  [ChainId.MAINNET]: alchemyKey
+    ? `https://eth-mainnet.g.alchemy.com/v2/${alchemyKey}`
+    : "https://ethereum-rpc.publicnode.com",
   [ChainId.BSC_MAINNET]: "https://binance.nodereal.io",
   [ChainId.BSC_TESTNET]: `https://data-seed-prebsc-1-s2.binance.org:8545`, //'https://bsc-testnet-rpc.publicnode.com',//`
   [ChainId.POLYGON_MAINNET]: "https://polygon-rpc.co",
