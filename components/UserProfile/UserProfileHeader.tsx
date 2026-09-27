@@ -468,7 +468,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 
         {/* The streamer ladder. Renders nothing until a stream has ended,
             so a non-streamer's profile is unchanged. */}
-        {!isBlocked && <StreamerLevelCard address={address} className="mt-3" />}
+        {isOwnProfile && !isBlocked && <StreamerLevelCard address={address} className="mt-3" />}
 
         {/* Subscribe CTA — web parity. A creator who has published a plan sells
             to anyone, so this does not wait on following; it jumps the sheet to
