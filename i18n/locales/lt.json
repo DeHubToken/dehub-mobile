@@ -3432,11 +3432,6 @@
     "noResultsFor": "Nėra rezultatų, susijusių su „{{query}}“",
     "guideSubtitle": "Žingsnis po žingsnio vadovas po kiekvieną funkciją",
     "searchGuide": "Ieškoti vadove...",
-    "guideFractionsTip": "Kiekvieno nukaldinto įrašo visos dalys iš pradžių priklauso kūrėjui (100 % nuosavybė).",
-    "guideInfoStep": "Bakstelėkite nukaldinto įrašo informacijos piktogramą, kad atidarytumėte jo kaldinimo operaciją blokų naršyklėje ir patikrintumėte įrašą grandinėje.",
-    "guideMintIntro": "Kaldinti įrašą kaip NFT blokų grandinėje nebūtina. Nukaldinkite jį skelbdami arba paskelbkite dabar ir nukaldinkite vėliau iš įrašo meniu.",
-    "guideMintPublishStep": "Pasirinkite, ar kaldinti, tada spustelėkite „Skelbti“. Jei praleisite kaldinimą, įrašą galėsite nukaldinti vėliau iš jo meniu.",
-    "guideMintFractionsStep": "Gaunate visas 1 000 ką tik nukaldinto įrašo dalių (100 % nuosavybė).",
     "glossaryMintTxDesc": "Bakstelėkite nukaldinto įrašo informacijos piktogramą, kad atidarytumėte jo kaldinimo operaciją blokų naršyklėje ir patikrintumėte įrašą grandinėje. Visas įrašo informacijos puslapis — statistika, savininkai, prekyvietė — yra žiniatinklio programėlėje adresu dehub.io.",
     "glossaryTokenIdDesc": "Unikalus identifikatorius grandinėje, suteikiamas įrašui, kai jis nukaldinamas kaip NFT.",
     "repostsTab": "Pakartotiniai įrašai",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Užrakinkite savo „DeHub“ žetonus, kad laikui bėgant uždirbtumėte atlygį. Statyti žetonai taip pat suteikia jums didesnę balsavimo galią valdyme.",
     "glossaryGovernanceDesc": "Pateikite ir balsuokite dėl pasiūlymų, kurie formuoja platformą. Jūsų balsavimo galia priklauso nuo to, kiek „DeHub“ žetonų turite.",
     "glossaryStakingBadgesDesc": "Ženkleliai, rodomi šalia jūsų vartotojo vardo, atsižvelgiant į jūsų bendrą „DeHub“ žetonų kiekį (piniginė + statyti). Yra 13 lygių – kuo daugiau žetonų turite, tuo aukštesnis jūsų ženklelio rangas. Aukštesni lygiai suteikia daugiau balsavimo galios valdyme ir mažesnius platformos mokesčius.",
-    "glossaryLeaderboardDesc": "Vartotojai reitinguojami pagal bendrą „DeHub“ žetonų balansą (piniginė + statyti visose grandinėse). Reitingai atnaujinami periodiškai ir stebimi 1 dienos ir 1 savaitės pokyčiai. Taip pat galite rūšiuoti pagal išsiųstus arbatpinigius, gautus arbatpinigius, sekėjus, patiktukus arba prenumeratorius.",
-    "guideTipStep": "Spustelėkite brangakmenio/arbatpinigių piktogramą, kad nusiųstumėte įrašo autoriui arbatpinigių „DeHub“ žetonais.",
-    "guideTipWalletTip": "Arbatpinigiai tiesiogiai patenka į kūrėjo piniginę kaip „DeHub“ žetonai.",
-    "guideTipNotificationsTip": "Pranešimai apie patarimus rodo, kiek „DeHub“ žetonų gavote.",
-    "guideWalletIntro": "Peržiūrėkite savo „DeHub“ žetonų likučius keliose grandinėse, patikrinkite statymų indėlius ir tvarkykite savo turtą.",
-    "guideWalletTotalStep": "Peržiūrėkite bendrą „DeHub“ žetonų likutį, sujungtą visose palaikomose grandinėse.",
-    "guideStakingIntro": "Statykite savo „DeHub“ žetonus, kad uždirbtumėte apdovanojimus ir padidintumėte savo balsavimo galią valdant.",
-    "guideStakingAmountStep": "Įveskite, kiek „DeHub“ žetonų norite statyti.",
-    "guideLeaderboardBalanceStep": "Skirtukas „Likutis“ reitinguoja vartotojus pagal jų bendrą „DeHub“ žetonų turėjimą.",
-    "guideGovernanceVoteStep": "Balsuokite dėl pasiūlymų naudodami mygtukus „patinka“/„nepatinka“ – jūsų balsavimo svoris priklauso nuo to, kiek „DeHub“ žetonų esate pastatę.",
-    "guideGovernancePowerTip": "Jūsų balsavimo galia nustatoma pagal tai, kiek „DeHub“ žetonų esate pastatę.",
-    "guideBuyIntro": "Pirkite „DeHub“ žetonus tiesiogiai DPay naudodami kortelę arba palaikomą kriptovaliutą.",
-    "guideBuyAmountStep": "Įveskite sumą, kurią norite išleisti, arba kiek „DeHub“ žetonų norite gauti.",
-    "guideBuyDeliveredStep": "Jūsų „DeHub“ žetonai pasirodys jūsų piniginėje, kai bus baigta operacija.",
-    "guideBridgeIntro": "Perkelkite savo „DeHub“ žetonus tarp palaikomų blokų grandinių naudodami tarpgrandžių tiltą.",
-    "guideBridgeSourceStep": "Pasirinkite šaltinio grandinę (kurioje šiuo metu yra jūsų „DeHub“ žetonai).",
-    "guideBridgeDestStep": "Pasirinkite paskirties grandinę (kur norite siųsti savo „DeHub“ žetonus).",
-    "guideBridgeAmountStep": "Įveskite, kiek „DeHub“ žetonų perkelti."
+    "glossaryLeaderboardDesc": "Vartotojai reitinguojami pagal bendrą „DeHub“ žetonų balansą (piniginė + statyti visose grandinėse). Reitingai atnaujinami periodiškai ir stebimi 1 dienos ir 1 savaitės pokyčiai. Taip pat galite rūšiuoti pagal išsiųstus arbatpinigius, gautus arbatpinigius, sekėjus, patiktukus arba prenumeratorius."
   },
   "arcade": {
     "submitAccessibility": "Pateikti žaidimą į arkadą",
@@ -6792,6 +6770,504 @@
       "packEmpty": "Šiuo adresu nerasta jokių jaustukų",
       "shortcodeTaken": "{{name}} jau užimta",
       "shortcodeStandard": "{{name}} jau yra standartinė jaustukų piktograma"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Pradžia",
+        "intro": "Yra penki būdai patekti į DeHub, ir nė vienam nereikia, kad jau turėtumėte piniginę: Google, Apple, el. paštu atsiųstas kodas, SMS žinute atsiųstas kodas arba esama piniginė, kurią prijungiate. Viskas, išskyrus piniginės maršrutą, fone sukuria jums nepatikėtiną piniginę – jūs laikote raktus, o DeHub apmoka dujas, kad galėtumėte skelbti, siųsti arbatpinigius ir rinkti nesukurdami gimtojo žetono.",
+        "steps": {
+          "1": "Apsilankykite dehub.io – pagrindinis kanalas yra pagrindinis puslapis, todėl galite apžiūrėti, prieš prisijungdami.",
+          "2": "Spustelėkite „Prisijungti“. Pamatysite Google ir Apple, laukus el. pašto adresui ar telefono numeriui, ir „Prijungti piniginę“ esamai.",
+          "3": "Su Google arba Apple užbaikite teikėjo procesą. Su el. paštu arba SMS įveskite gautą kodą.",
+          "4": "Pirmą kartą prisijungus jums sukurta ir apsaugota piniginė. Prijungus savo piniginę, reikia vieno parašo, kad įrodytumėte adresą.",
+          "5": "Pasirinkite vartotojo vardą. Tai yra tai, ką mato žmonės, ir tai yra jūsų dehub.io/<username> profilio nuoroda.",
+          "6": "Jūs esate prisijungę. Naršykite kanalą, nustatykite savo profilį ir pradėkite skelbti."
+        },
+        "tips": {
+          "1": "Prisijungimai per socialinius tinklus, el. paštą ir SMS niekada nemoka už dujas – DeHub jas apmoka. Prijungtos piniginės moka savo ETH arba BNB.",
+          "2": "Grįžtate į seną DeHub paskyrą? Prisijunkite naudodami el. paštą arba telefono numerį, kurį ji naudojo, ir migracija ją suras.",
+          "3": "Galite laikyti kelias paskyras viename įrenginyje ir perjungti jas Nustatymuose → Profilis."
+        }
+      },
+      "home-feed": {
+        "title": "Pagrindinis kanalas",
+        "intro": "Pagrindinis kanalas yra vieta, kur matote žmonių, kuriuos sekate, įrašus ir populiarų turinį. Jis palaiko kelis turinio tipų skirtukus ir rūšiavimo parinktis.",
+        "steps": {
+          "1": "Eikite į /app – tai jūsų pagrindinis kanalas.",
+          "2": "Filtruokite pagal turinio tipą naudodami viršutinius skirtukus: Pagrindinis (viskas), Vaizdo įrašai, Vaizdai, „Shorts“, Muzika arba Tiesioginės transliacijos.",
+          "3": "Pabraukite kairėn/deinėn skirtukuose, kad pamatytumėte daugiau parinkčių mobiliajame telefone.",
+          "4": "Naudokite filtravimo/rūšiavimo mygtuką (viršutiniame dešiniajame kanalo kampe), kad pakeistumėte rūšiavimą: Karščiausi, Naujausi arba Populiariausi.",
+          "5": "Patraukite žemyn, kad atnaujintumėte kanalą mobiliajame telefone.",
+          "6": "Slinkite žemyn, kad automatiškai įkeltumėte daugiau įrašų (begalinis slinkimas).",
+          "7": "Perjunkite tarp tinklelį ir kanalo rodinio naudodami išdėstymo jungiklį."
+        },
+        "tips": {
+          "1": "Tinklelio rodinys puikiai tinka greitai naršyti vaizdus.",
+          "2": "Skirtuke „Pagrindinis“ rodomi visi turinio tipai, sumaišyti kartu.",
+          "3": "Skirtuke „Tiesioginė“ rodomos šiuo metu aktyvios tiesioginės transliacijos."
+        }
+      },
+      "creating-posts": {
+        "title": "Įrašų kūrimas",
+        "intro": "Kurkite tekstinius įrašus, bendrinkite vaizdus, vaizdo įrašus, balso įrašus, GIF ir kt. NaudokiteHashtagus, „cashtagus“ ir paminėjimus, kad padidintumėte pasiekiamumą.",
+        "steps": {
+          "1": "Spustelėkite mygtuką „Įrašas“ šoninėje juostoje (darbalaukyje) arba + mygtuką (mobiliajame telefone).",
+          "2": "Įveskite savo tekstą sudarymo srityje.",
+          "3": "Norėdami pridėti vaizdą ar vaizdo įrašą, spustelėkite laikmenos piktogramą ir pasirinkite failą.",
+          "4": "Norėdami įrašyti balso įrašą, spustelėkite mikrofono piktogramą.",
+          "5": "Norėdami pridėti GIF, spustelėkite GIF piktogramą ir ieškokite jo.",
+          "6": "Naudokite #Hashtagus, kad suskirstytumėte savo įrašą į kategorijas (pvz., #crypto, #defi).",
+          "7": "Naudokite $cashtagus, kad nurodytumėte žetonus (pvz., $DHB, $ETH).",
+          "8": "Naudokite @paminėjimus, kad pažymėtumėte kitus vartotojus (pvz., @vartotojo vardas).",
+          "9": "Spustelėkite „Įrašas“, kad paskelbtumėte. Jūsų įrašas iškart pasirodys kanale."
+        },
+        "tips": {
+          "1": "Įrašai palaiko „markdown“ stiliaus formatavimą.",
+          "2": "Galite cituoti įrašą spustelėdami pakartotinio įrašo piktogramą bet kuriame įraše ir pasirinkę „Cituoti“.",
+          "3": "Kategorijos (Hashtagai) pasirodo „Talk of the Town“ lyderių lentelėje."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Sąveika su įrašais",
+        "intro": "Bendraukite su turiniu balsuodami, komentuodami, dovanodami, žymėdami, bendrindami ir versdami.",
+        "steps": {
+          "1": "Balsuokite už arba prieš įrašą naudodami rodyklių piktogramas kairėje bet kurio įrašo pusėje.",
+          "2": "Spustelėkite komentaro piktogramą, kad atidarytumėte komentarų skiltį ir paliktumėte atsakymą.",
+          "3": "Spustelėkite brangakmenio/patarimo piktogramą, kad nusiųstumėte patarimą „DeHub“ žetonais įrašo autoriui.",
+          "4": "Spustelėkite žymės piktogramą, kad išsaugotumėte įrašą vėlesniam laikui.",
+          "5": "Spustelėkite bendrinimo piktogramą, kad nukopijuotumėte įrašo nuorodą arba bendrintumėte išoriškai.",
+          "6": "Spustelėkite vertimo mygtuką (gaublio piktogramą) bet kuriame įraše, kad išverstumėte tekstą į savo kalbą.",
+          "7": "Vaizdiniams įrašams naudokite mygtuką „Versti vaizdą“, kad gautumėte dirbtinio intelekto išverstą vaizdo įrašo teksto versiją.",
+          "8": "Spustelėkite bet kurį įrašą, kad atidarytumėte jį viso ekrano vieno įrašo rodinyje."
+        },
+        "tips": {
+          "1": "Patarimai patenka tiesiai į kūrėjo piniginę „DeHub“ žetonais.",
+          "2": "Galite nustatyti patarimo sumą naudodami greito pasirinkimo mygtukus arba įvesti pasirinktinę sumą.",
+          "3": "Pažymėti įrašai pasiekiami puslapyje „Pažymėta“ šoninėje juostoje."
+        }
+      },
+      "explore-search": {
+        "title": "Naršyti ir ieškoti",
+        "intro": "Atraskite naują turinį ir vartotojus per naršymo puslapį ir galingą paieškos funkciją.",
+        "steps": {
+          "1": "Eikite į /app/explore iš šoninės juostos.",
+          "2": "Naudokite viršuje esančią paieškos juostą, kad ieškotumėte vartotojų, įrašų ar turinio.",
+          "3": "Filtruokite rezultatus pagal skirtuką: Visi, Žmonės, Įrašai, Vaizdai, Vaizdo įrašai, Muzika, Tiesiogiai.",
+          "4": "Naršykite populiarias temas ir kategorijas naršymo puslapyje.",
+          "5": "Spustelėkite populiarią temą, kad pamatytumėte visus susijusius įrašus.",
+          "6": "Spustelėkite vartotoją paieškos rezultatuose, kad apsilankytumėte jo profilyje."
+        },
+        "tips": {
+          "1": "Paieška palaiko vartotojo vardus, piniginės adresus ir turinio raktinius žodžius.",
+          "2": "Populiarios temos atnaujinamos pagal naujausią skelbimo veiklą."
+        }
+      },
+      "profile": {
+        "title": "Profilis",
+        "intro": "Jūsų profilis rodo jūsų įrašus, sekėjus, sekamus ir piniginės informaciją.",
+        "steps": {
+          "1": "Spustelėkite savo avatarą arba „Profilis“ šoninėje juostoje, kad peržiūrėtumėte savo profilį.",
+          "2": "Spustelėkite „Redaguoti profilį“, kad atnaujintumėte savo rodomąjį vardą, biografiją ir avatarą.",
+          "3": "Įkelkite profilio nuotrauką spustelėdami savo avatarą redagavimo režimu.",
+          "4": "Peržiūrėkite savo sekėjų ir sekamų skaičius savo profilio puslapyje.",
+          "5": "Naršykite savo įrašus, mediją ir patikusį turinį per profilio skirtukus.",
+          "6": "Nukopijuokite savo piniginės adresą spustelėdami kopijavimo piktogramą šalia jo.",
+          "7": "Apsilankykite kitų vartotojų profiliuose spustelėdami jų vartotojo vardą ar avatarą bet kurioje platformoje."
+        },
+        "tips": {
+          "1": "Jūsų vartotojo vardas yra unikalus ir rodomas jūsų profilio URL (dehub.io/@vartotojo_vardas).",
+          "2": "Privatumo nustatymai leidžia kontroliuoti, kas gali matyti jūsų sekėjų skaičius."
+        }
+      },
+      "messages": {
+        "title": "Pranešimai",
+        "intro": "Siųskite tiesioginius pranešimus kitiems platformos vartotojams.",
+        "steps": {
+          "1": "Spustelėkite „Pranešimai“ šoninėje juostoje, kad atidarytumėte pranešimų puslapį.",
+          "2": "Spustelėkite mygtuką „Kurti“ norėdami pradėti naują pokalbį.",
+          "3": "Ieškokite vartotojo pagal vartotojo vardą, kad galėtumėte jam parašyti.",
+          "4": "Įveskite savo pranešimą ir paspauskite „Siųsti“.",
+          "5": "Peržiūrėkite savo pokalbių istoriją pranešimų sąraše.",
+          "6": "Spustelėkite pokalbį, kad tęstumėte pokalbį."
+        },
+        "tips": {
+          "1": "Gausite pranešimą, kai kas nors jums parašys.",
+          "2": "Kūrėjai gali užrakinti pranešimus, reikalaujant atlygio."
+        }
+      },
+      "ai-assistant": {
+        "title": "Pagalbininkas dirbtinio intelekto",
+        "intro": "Kalbėkitės su „DeHub“ integruotu dirbtinio intelekto asistentu, kad gautumėte pagalbos, informacijos ir kūrybinių užduočių.",
+        "steps": {
+          "1": "Spustelėkite „Asistentas“ šoninėje juostoje, kad atidarytumėte dirbtinio intelekto pokalbį.",
+          "2": "Įveskite savo klausimą ar prašymą pokalbio laukelyje.",
+          "3": "Dirbtinis intelektas gali padėti su kriptovaliutų informacija, platformos klausimais ir bendromis žiniomis.",
+          "4": "Pradėkite naują pokalbį spustelėję naujo pokalbio mygtuką.",
+          "5": "Peržiūrėkite savo pokalbių istoriją asistento puslapio šoninėje juostoje.",
+          "6": "Galite pridėti vaizdų, kad dirbtinis intelektas juos analizuotų."
+        },
+        "tips": {
+          "1": "Dirbtinis intelektas atsimena kontekstą pokalbio metu.",
+          "2": "Galite klausti dirbtinio intelekto apie „DeHub“ funkcijas, kriptovaliutų terminus ar bendrus klausimus.",
+          "3": "Ankstesni pokalbiai yra išsaugomi ir pasiekiami bet kuriuo metu."
+        }
+      },
+      "notifications": {
+        "title": "Pranešimai",
+        "intro": "Gaukite naujausią informaciją apie paspaudimus, komentarus, atlygius, sekėjus ir kitą jūsų turinio veiklą.",
+        "steps": {
+          "1": "Spustelėkite varpelio piktogramą arba „Pranešimai“ šoninėje juostoje.",
+          "2": "Peržiūrėkite visus pranešimus chronologiniame sąraše.",
+          "3": "Spustelėkite pranešimą, kad pereitumėte į susijusį turinį.",
+          "4": "Pranešimai apima: naujus sekėjus, balsavimus už įrašus, komentarus, atlygius ir paminėjimus.",
+          "5": "Neperskaityti pranešimai yra paryškinti – jie pažymimi kaip perskaityti peržiūrėjus."
+        },
+        "tips": {
+          "1": "Pranešimų ženkliukas rodo neperskaitytų pranešimų skaičių.",
+          "2": "Pranešimai apie atlygius rodo, kiek žetonų gavote."
+        }
+      },
+      "wallet": {
+        "title": "Piniginė",
+        "intro": "Peržiūrėkite savo „DeHub“ žetonų likučius keliose grandinėse, patikrinkite statymų indėlius ir tvarkykite savo turtą.",
+        "steps": {
+          "1": "Spustelėkite „Piniginė“ šoninėje juostoje, kad atidarytumėte piniginės puslapį.",
+          "2": "Peržiūrėkite savo bendrą žetonų balansą, suagreguotą visose palaikomose grandinėse.",
+          "3": "Peržiūrėkite suskirstymą pagal grandines: Ethereum, Base, BNB Chain ir kt.",
+          "4": "Patikrinkite savo stakingo indėlius ir apdovanojimus.",
+          "5": "Spustelėkite „Atnaujinti skenavimą“, kad atnaujintumėte savo balansus iš grandinės duomenų.",
+          "6": "Nukopijuokite savo piniginės adresą, kad gautumėte žetonų iš kitų."
+        },
+        "tips": {
+          "1": "Balansai atnaujinami automatiškai, tačiau galite priverstinai atnaujinti bet kuriuo metu.",
+          "2": "Piniginėje rodomi tiek likvidūs (pasiekiami), tiek stakingo balansai."
+        }
+      },
+      "staking": {
+        "title": "Stakingas",
+        "intro": "Statykite savo DeHub žetonus, kad uždirbtumėte apdovanojimus ir padidintumėte savo balsavimo galią valdyme.",
+        "steps": {
+          "1": "Iš šoninės juostos pereikite į puslapį „Stakingas“.",
+          "2": "Įveskite norimų statyti žetonų skaičių.",
+          "3": "Pasirinkite grandinę, kurioje norite statyti.",
+          "4": "Patvirtinkite operaciją savo piniginėje (išorinės piniginės) arba ji automatiškai įvykdoma (socialinis prisijungimas).",
+          "5": "Peržiūrėkite savo statytas sumas ir visus laukiančius apdovanojimus.",
+          "6": "Norėdami atsiimti, įveskite sumą ir patvirtinkite atsiėmimo operaciją."
+        },
+        "tips": {
+          "1": "Stakingas padidina jūsų balsavimo svorį valdymo pasiūlymuose.",
+          "2": "Socialinio prisijungimo vartotojams nereikia dujų, kad galėtų statyti – tai be dujų.",
+          "3": "Galite statyti keliose grandinėse vienu metu."
+        }
+      },
+      "leaderboard": {
+        "title": "Lyderių lentelė",
+        "intro": "Pažiūrėkite, kas yra viršuje! Lyderių lentelė reitinguoja vartotojus pagal balansą, dienos išlaidas ir populiarias temas.",
+        "steps": {
+          "1": "Iš šoninės juostos pereikite į puslapį „Lyderių lentelė“.",
+          "2": "Perjunkite tarp skirtukų: Balansas, Dienos išlaidos ir Miesto kalba.",
+          "3": "Skirtukas „Balansas“ reitinguoja vartotojus pagal jų bendrą žetonų turėjimą.",
+          "4": "Skirtukas „Dienos išlaidos“ rodo, kas buvo aktyviausias skiriant arbatpinigius per pastarąsias 24 valandas.",
+          "5": "„Miesto kalba“ rodo daugiausiai aptariamas temas/kategorijas.",
+          "6": "Spustelėkite bet kurį vartotoją, kad apsilankytumėte jo profilyje.",
+          "7": "Lyderių lentelė periodiškai atnaujinama visą dieną."
+        },
+        "tips": {
+          "1": "Dienos reitingai atstatomi kas 24 valandas.",
+          "2": "„Miesto kalba“ seka vieno žodžio kategorijas iš grotažymių."
+        }
+      },
+      "command-centre": {
+        "title": "Komandų centras",
+        "intro": "Informacinis suvestinės vaizdas, kuriame trumpai pateikiami jūsų pagrindiniai rodikliai ir platformos veikla.",
+        "steps": {
+          "1": "Šoninėje juostoje spustelėkite „Command Centre“.",
+          "2": "Peržiūrėkite savo profilio santrauką, įskaitant įrašų skaičių, sekėjus ir įsitraukimą.",
+          "3": "Pamatykite savo naujausią veiklą ir populiarias temas.",
+          "4": "Pasiekite spartųs nuorodas į dažniausiai naudojamas funkcijas."
+        },
+        "tips": {
+          "1": "„Command Centre“ suteikia jums apžvalginį vaizdą apie jūsų DeHub buvimą."
+        }
+      },
+      "governance": {
+        "title": "Valdymas",
+        "intro": "Dalyvaukite platformos valdyme kurdami pasiūlymus ir balsuodami dėl bendruomenės sprendimų.",
+        "steps": {
+          "1": "Šoninėje juostoje pereikite į „Governance“.",
+          "2": "Naršykite aktyvius bendruomenės pateiktus pasiūlymus.",
+          "3": "Spustelėkite pasiūlymą, kad perskaitytumėte jo visą aprašymą ir diskusiją.",
+          "4": "Balsuokite dėl pasiūlymų naudodami mygtukus „patinka“/„nepatinka“ – jūsų balsavimo svoris priklauso nuo to, kiek DeHub žetonų esate pastatę.",
+          "5": "Palikite komentarus prie pasiūlymų, kad galėtumėte diskutuoti su bendruomene.",
+          "6": "Pateikite savo pasiūlymą spustelėdami mygtuką „Create Proposal“."
+        },
+        "tips": {
+          "1": "Jūsų balsavimo galia nustatoma pagal jūsų pastatytų žetonų skaičių.",
+          "2": "Ženklelių turėtojai gali gauti papildomą balsavimo svorį.",
+          "3": "Pasiūlymai pereina etapus: Aktyvus → Priimtas/Atmestas."
+        }
+      },
+      "bookmarks": {
+        "title": "Žymelės",
+        "intro": "Išsaugokite įrašus savo žymelėse, kad vėliau juos būtų lengva pasiekti.",
+        "steps": {
+          "1": "Spustelėkite žymelės piktogramą bet kuriame įraše, kad jį išsaugotumėte.",
+          "2": "Šoninėje juostoje pereikite į „Bookmarks“, kad peržiūrėtumėte visus išsaugotus įrašus.",
+          "3": "Spustelėkite pažymėtą įrašą, kad jį peržiūrėtumėte visą.",
+          "4": "Pašalinkite žymelę dar kartą spustelėdami žymelės piktogramą."
+        },
+        "tips": {
+          "1": "Žymelės yra privačios – tik jūs galite matyti savo išsaugotus įrašus.",
+          "2": "Nėra limito, kiek įrašų galite pažymėti."
+        }
+      },
+      "settings": {
+        "title": "Nustatymai",
+        "intro": "Tinkinkite savo DeHub patirtį naudodami kalbos, privatumo ir ekrano nuostatas.",
+        "steps": {
+          "1": "Šoninėje juostoje spustelėkite „Settings“.",
+          "2": "Pakeiskite ekrano kalbą naudodami kalbos parinktį.",
+          "3": "Tinkinkite privatumo nuostatas: kontroliuokite, kas mato jūsų sekėjų skaičių ir sekamųjų sąrašą.",
+          "4": "Nustatykite numatytuosius įrašų matomumo nustatymus.",
+          "5": "Tvarkykite pranešimų nuostatas."
+        },
+        "tips": {
+          "1": "„DeHub“ palaiko kelias kalbas – visas sąsajos vertimas.",
+          "2": "Privatumo nustatymai taikomi nedelsiant."
+        }
+      },
+      "posting-allowance": {
+        "title": "Jūsų dienos įrašų kvota",
+        "intro": "Įrašai nemokamai kasdien iki kvotos, kuri didėja kartu su jūsų „staking“ ženkleliu. Kiekvienas pradeda su dešimčia teksto įrašų ir vienu gigabaitu vaizdo, vaizdų ir garso per dieną. Viršijus bet kurį iš jų, likusią tos dienos dalį apmokėsite „DeHub“ žetonais – tik už viršytą dalį.",
+        "steps": {
+          "1": "Rašykite kaip įprastai. Kvotos ribose niekas neapmokestinama ir nieko iš jūsų nereikalaujama.",
+          "2": "Teksto įrašai ir medija yra atskiri fondai, todėl diena, praleista įkeliant vaizdo įrašus, vis tiek palieka nemokamus visus dešimt teksto įrašų.",
+          "3": "Kai įrašas viršytų kvotą, programa pirmiausia nustatys jo kainą ir patikrins, ar jūsų piniginė gali jį padengti, prieš ką nors įkeliant.",
+          "4": "Įrašas skelbiamas lygiai taip pat, kaip ir kvotos ribose – skelbimas niekada nelaukia apmokėjimo.",
+          "5": "Tada patvirtinate vieną pervedimą tik tam įrašui, atliktą „Base“ arba „BNB Chain“, kuriame yra pakankamai „DeHub“ žetonų.",
+          "6": "Abu fondai atstatomi vidurnaktį UTC."
+        },
+        "tips": {
+          "1": "Viršijimas yra proporcingas: 200 MB viršijus kvotą kainuoja 200 MB, o ne visą gigabaitą.",
+          "2": "Pakartotiniai įrašai, komentarai, reakcijos, arbatpinigiai ir pranešimai nieko nekainuoja ir niekada nenaudoja kvotos.",
+          "3": "Atmesti mokėjimą ir įrašas lieka – suma tiesiog blokuoja jūsų kitą apmokėtą įrašą, kol jis bus apmokėtas. Rytojaus nemokama kvota visada jūsų.",
+          "4": "„Staking“ ženklelis padidina nemokamą kvotą ir sumažina bet ko, kas ją viršija, kainą."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reakcijos, nutildymas ir brandus turinys",
+        "intro": "Po „patinka“ mygtuku yra devynios reakcijos ir valdiklių rinkinys, skirtas nuspręsti, ką matote ir kas gali su jumis susisiekti.",
+        "steps": {
+          "1": "Palaikykite „nykštuką į viršų“ bet kuriame įraše, kad atidarytumėte reakcijų dėklą: patinka, meilė, pagarba, karšta, lol, liūdna, verkti, nepatinka ir išmatos.",
+          "2": "Septynios teigiamos reakcijos įskaitomos į įrašo „patinka“ skaičių; „nepatenka“ ir „išmatos“ įskaitomos prieš jį.",
+          "3": "Jūsų reakcija yra sveriama pagal jūsų „staking“ ženklelį, todėl ženklelio turėtojo reakcija labiau paveikia skaičių nei vienas balsas.",
+          "4": "Palietę X įrašo antraštėje, nutildysite jo autorių – jie iš karto dings iš jūsų kanalo.",
+          "5": "Kūrėjai kurdami savo įrašus pažymi kaip brandžius; tie įrašai lieka neviešame pagrindiniame kanale.",
+          "6": "Norėdami matyti brandžius įrašus visur, nustatymuose įjunkite „Rodyti brandų turinį“."
+        },
+        "tips": {
+          "1": "Brandus įrašas vis tiek yra visiškai matomas kūrėjo profilyje ir tiems, kurie jį seka.",
+          "2": "Blokavimas iš profilio veikia plačiau nei nutildymas ir taip pat nutraukia pranešimų siuntimą.",
+          "3": "Reakcijų dėkle rodoma, kas ir su kuo reagavo, todėl galite matyti kambarį, o ne tik skaičių."
+        }
+      },
+      "stages": {
+        "title": "Etapai (tiesioginės garso patalpos)",
+        "intro": "Etapai yra tiesioginės garso patalpos, integruotos į „DeHub“. Vedėjas atidaro kambarį, pakviečia kalbėtojus, o bet kas gali prisijungti, kad klausytųsi iš „Etapų“ puslapio arba bendrinamo nuorodos.",
+        "steps": {
+          "1": "Atidarykite „Etapai“ šoninėje juostoje, kad pamatytumėte, kas vyksta dabar ir kas suplanuota.",
+          "2": "Palieskite tiesioginę sceną, kad prisijungtumėte kaip klausytojas, arba nustatykite priminimą suplanuotai scenai ir gaukite pranešimą, kai ji prasidės.",
+          "3": "Pradėkite savo sceną tame pačiame puslapyje – galite pradėti tiesioginę transliaciją tiesiai iš naršyklės, be OBS ar transliacijos rakto.",
+          "4": "Kaip vedėjas, pakvieskite pranešėjus į sceną, nutildykite arba pašalinkite juos, bendrinkite savo ekraną ir valdykite garso pultą.",
+          "5": "Klausytojai siunčia tiesiogines reakcijas ir kalba kambario pokalbyje, neateidami į sceną.",
+          "6": "Kiekviena scena įrašoma, o įrašas vėliau atkuriama iš kortelės, kurioje jis rodomas."
+        },
+        "tips": {
+          "1": "Tiesioginiai subtitrai užrašo kiekvieną pranešėją ir išverčia į bet kurią kalbą, kuria skaitote.",
+          "2": "Tiesioginis dubliavimas gali garsiai perskaityti kambarį vedėjo balsu, apmokestinamas už minutę DeHub žetonais.",
+          "3": "Vedėjai gali įjungti radijo stotį arba leisti savo muzikos klipus tarp pokalbių.",
+          "4": "Mini grotuvas palaiko kambarį veikiantį kampe, kol naršote likusią programėlės dalį."
+        }
+      },
+      "communities": {
+        "title": "Bendruomenės ir Renginiai",
+        "intro": "Bendruomenės yra narių valdomos erdvės su savo sklaida, nariais ir veikla. Renginiai prideda laiko apribotą programavimą virš jų.",
+        "steps": {
+          "1": "Atidarykite „Bendruomenės“ šoninėje juostoje ir naršykite viešas.",
+          "2": "Prisijunkite vienu palietimu. Nauja veikla rodoma kaip neperskaitytas ženklelis navigacijoje.",
+          "3": "Skelbkite, diskutuokite, rengkite apklausas ir duokite arbatpinigių bendruomenės sklaidoje.",
+          "4": "Bendruomenių savininkai moderuoja savo erdvę ir gali suteikti administracines teises kitiems.",
+          "5": "Atidarykite „Renginiai“ suplanuotam programavimui, su pilnu puslapiu kiekvienam renginiui, kurį galite sekti gyvai."
+        },
+        "tips": {
+          "1": "Bendruomenės pokalbiai palaiko @paminėjimus ir @here, todėl įrašas gali pasiekti kambarį.",
+          "2": "Kvietimo nuoroda leidžia jums tiesiogiai pakviesti žmones į bendruomenę."
+        }
+      },
+      "arcade": {
+        "title": "Arkada",
+        "intro": "Penki žaidimai veikia „DeHub“ naršyklės skirtuke – nieko nereikia diegti, nieko pirkti.",
+        "steps": {
+          "1": "Atidarykite „Arkada“ šoninėje juostoje.",
+          "2": "Pasirinkite žaidimą: „King's Gambit“ (3D šachmatai su internetiniu Elo reitingu), „Claude of Duty“ (šaudyklė, kuri generuoja savo meną kraunantis), „Jungle Trail“ (procedūrinis atogrąžų miško pasivaikščiojimas), „Street Slayer“ (muštynių žaidimas sukurtas „DeHub“) arba „Chartopia“ (prekybos aukštas, kuriame galima vaikščioti).",
+          "3": "Žaiskite skirtuke. „King's Gambit“ ir „Street Slayer“ palaiko lyderių lenteles.",
+          "4": "„Chartopia“ taip pat veikia VR ausinėse per WebXR."
+        },
+        "tips": {
+          "1": "Du iš jų paslėpti išvaizdos temose – nustatykite programėlę į „War“ „Claude of Duty“ arba „Jungle“ „Jungle Trail“.",
+          "2": "Kiekvienas žaidimas turi savo bendrinimo kortelę, todėl nuoroda į jį tinkamai atsiskleidžia, kur ją paskelbsite."
+        }
+      },
+      "bounties-stores": {
+        "title": "Atlygiai ir Parduotuvės",
+        "intro": "Du būdai paversti platformą pajamomis: paskelbkite arba pareikalaukite atlygio, arba atidarykite parduotuvę ir parduokite savo auditorijai.",
+        "steps": {
+          "1": "Atidarykite „Atlygiai“, kad naršytumėte atvirus darbus, filtruotus pagal kategoriją ar valiutą.",
+          "2": "Pareikalaukite vieno, atlikite darbą ir pateikite jį, kad gautumėte apdovanojimą – kiekvienas gali būti medžiotojas, nereikia jokios paraiškos.",
+          "3": "Sukurkite savo atlygį su trumpu aprašymu ir apdovanojimu „DeHub“ žetonais arba USDC. Jis įnešamas į depozitą tą akimirką, kai jį paskelbiate.",
+          "4": "Atidarykite „Parduotuvės“, kad sukurtumėte parduotuvę su savo puslapiu, prekės ženklu ir sąrašais.",
+          "5": "Produktai yra įkainojami ir apmokami „DeHub“ žetonais per integruotą piniginę, be išorinio atsiskaitymo."
+        },
+        "tips": {
+          "1": "Atlygiai yra suskirstyti į socialinę mediją, iškarpas ir sutartis.",
+          "2": "Ginčų sprendimo procesas sprendžia nesutarimus dėl pristatymo, todėl depozitas visada sprendžiamas sąžiningai.",
+          "3": "Kūrėjai naudoja atlygius, kad augintų bendruomenę – dalijimasis, iškarpos ir reakcijos yra tinkamos užduotys."
+        }
+      },
+      "creator-studio": {
+        "title": "Kūrėjo studija ir redaktorius",
+        "intro": "Kūrėjo studija generuoja vaizdus, vaizdo įrašus, muziką, balsą ir 3D modelius iš raginimo ir perduoda juos redaktoriui – įskaitant visą daugialypį vaizdo redaktorių, veikiantį naršyklėje.",
+        "steps": {
+          "1": "Atidarykite Kūrėjo studiją ir apibūdinkite, ką norite sukurti.",
+          "2": "Serveris nurodo kainą prieš atliekant darbą, todėl matote, kiek tai kainuoja prieš išleidžiant pinigus.",
+          "3": "Renderinimas tęsiasi bendroje eilėje, kol jūs toliau naršote programėlę.",
+          "4": "Sutvarkykite rezultatus „Canva“ stiliaus redaktoriuje arba atidarykite vaizdo redaktorių, kad gautumėte tikrą laiko juostą su pjovimu, sluoksniavimu ir eksportavimu.",
+          "5": "Perkelkite baigtą kūrinį tiesiai į įrašą, trumpą arba parduotuvės sąrašą."
+        },
+        "tips": {
+          "1": "Nemokama atsarginių išteklių biblioteka yra šalia studijos, skirta viskam, ko nenorėtumėte generuoti.",
+          "2": "Generavimas apmokamas „DeHub“ žetonais iš jūsų piniginės – pasirašote vieną pervedimą už darbą, o kaina nurodoma prieš mokant.",
+          "3": "Daugiau naudojančių vartotojų gali pasirinkti „Ultra“, „Team“ arba „Scale“ planą, kuris kas mėnesį siunčia žetonų leidimą tiesiai į jų piniginę."
+        }
+      },
+      "buying-dhb": {
+        "title": "Žetonų pirkimas",
+        "intro": "Pirkite „DeHub“ žetonus tiesiai programėlėje naudodami integruotą keitimo sąsają.",
+        "steps": {
+          "1": "Iš šoninės juostos pereikite į puslapį „Pirkti“.",
+          "2": "Pasirinkite žetoną, iš kurio norite keisti (pvz., ETH, USDC).",
+          "3": "Įveskite sumą, kurią norite išleisti, arba žetonų skaičių, kurį norite gauti.",
+          "4": "Peržiūrėkite valiutos kursą ir numatomą rezultatą.",
+          "5": "Spustelėkite nustatymų krumpliaračio piktogramą, kad sureguliuotumėte slydimo toleranciją (numatytasis yra 1%).",
+          "6": "Patvirtinkite keitimo operaciją.",
+          "7": "„DeHub“ žetonai pasirodys jūsų piniginėje, kai operacija bus baigta."
+        },
+        "tips": {
+          "1": "Didesnė slydimo tolerancija = didesnė tikimybė įvykdyti, bet galimybė gauti blogesnę kainą.",
+          "2": "Visada patikrinkite valiutos kursą prieš patvirtindami.",
+          "3": "Galite nustatyti pasirinktinį slydimą nustatymų skydelyje."
+        }
+      },
+      "bridge": {
+        "title": "Tiltas",
+        "intro": "Perkelkite savo „DeHub“ žetonus tarp palaikomų blokų grandinių naudodami tarpgrandžių tiltą.",
+        "steps": {
+          "1": "Eikite į „Tiltas“ puslapį iš šoninės juostos.",
+          "2": "Pasirinkite šaltinio grandinę (kur šiuo metu yra jūsų žetonai).",
+          "3": "Pasirinkite paskirties grandinę (kur norite juos nusiųsti).",
+          "4": "Įveskite žetonų, kuriuos norite perkelti, skaičių.",
+          "5": "Peržiūrėkite tilto mokestį ir numatomą atvykimo laiką.",
+          "6": "Patvirtinkite tilto operaciją.",
+          "7": "Palaukite, kol operacija bus baigta – perkėlimas gali užtrukti kelias minutes."
+        },
+        "tips": {
+          "1": "Tilto mokesčiai skiriasi priklausomai nuo grandžių poros.",
+          "2": "Perkėlimas paprastai trunka 1–5 minutes, priklausomai nuo dalyvaujančių grandžių.",
+          "3": "Visada du kartus patikrinkite paskirties grandinę prieš patvirtindami."
+        }
+      },
+      "music-tv": {
+        "title": "Muzika ir TV",
+        "intro": "Mėgaukitės medijos turiniu tiesiogiai „DeHub“ – transliuokite muziką ir žiūrėkite tiesiogines TV laidas.",
+        "steps": {
+          "1": "Eikite į „Muzika“ iš šoninės juostos, kad naršytumėte ir leistumėte muzikinius įrašus.",
+          "2": "Eikite į „TV“, kad pasiektumėte tiesiogines TV laidas.",
+          "3": "Naršykite kanalus pagal kategoriją arba šalį.",
+          "4": "Spustelėkite kanalą, kad pradėtumėte žiūrėti.",
+          "5": "Naudokite grotuvo valdiklius, kad reguliuotumėte garsumą ir atkūrimą.",
+          "6": "Praneškite apie sugedusius kanalus naudodami pranešimo mygtuką."
+        },
+        "tips": {
+          "1": "TV kanalai yra patvirtinti bendruomenės dėl patikimumo.",
+          "2": "Muzikinius įrašus galima leisti naršant kitą turinį."
+        }
+      },
+      "post-info": {
+        "title": "Įrašo informacija ir dalys",
+        "intro": "Sukurtas įrašas yra NFT, padalintas į 1000 dalių. Puslapyje „Įrašo informacija“ rodomi grandinės duomenys, įsitraukimo statistika, nuosavybės pasiskirstymas ir leidžia prekiauti bet kurio įrašo dalimis – nesukurtame įraše siūloma jį sukurti.",
+        "steps": {
+          "1": "Palietkite „ⓘ“ piktogramą bet kuriame įraše, kad atidarytumėte jo „Įrašo informacijos“ puslapį.",
+          "2": "Viršuje pamatysite žetono ID (unikalų grandinės identifikatorių) ir operacijos maišą – spustelėkite maišą, kad peržiūrėtumėte jį blokų tyrinėtoje.",
+          "3": "Žemiau pateikiama įsitraukimo statistika, rodanti bendrą patiktukų, nepatiktukų, peržiūrų, komentarų ir gautų arbatpinigių skaičių.",
+          "4": "„Laikiklių“ skiltyje rodomas progreso juosta, rodanti, kiek iš 1000 dalių vis dar priklauso kūrėjui, taip pat visų dalių turėtojų sąrašas su jų likučiais ir procentais.",
+          "5": "Jei įrašas yra mokamas už peržiūrą (PPV), pamatysite kainą, valiutą ir kiek vartotojų įsigijo prieigą.",
+          "6": "Įrašų savininkai gali keisti matomumą (Viešas, Neparodytas arba Privatus) ir redaguoti pavadinimą/aprašymą tiesiai iš šio puslapio."
+        },
+        "tips": {
+          "1": "Šviežiai sukurtas įrašas prasideda tuo, kad kūrėjas valdo visas 1000 dalių (100% nuosavybė).",
+          "2": "Operacijos maišas nuoroda į „BaseScan“ arba „BscScan“, priklausomai nuo grandinės.",
+          "3": "Neparodyti įrašai neatsiranda naujienų kanaluose, bet vis tiek pasiekiami tiesiogine nuoroda."
+        }
+      },
+      "trading-fractions": {
+        "title": "Prekyba frakcijomis",
+        "intro": "Frakcijų prekyba — skelbimų naršymas, pasiūlymų teikimas, savų skelbimų skelbimas — veikia žiniatinklio programėlėje adresu dehub.io, kiekvieno įrašo skelbimo informacijos puslapyje.",
+        "steps": {
+          "1": "Naršyklėje atidarykite dehub.io ir prisijunkite naudodami tą pačią paskyrą.",
+          "2": "Atidarykite įrašo puslapį „Skelbimo informacija“ ir perjunkite į skirtuką „Prekyvietė“.",
+          "3": "Peržiūrėkite skelbimus, pateikite pasiūlymą už savo kainą arba nurodykite turimas dalis.",
+          "4": "Kai sandoris bus baigtas, pokytis bus rodomas mobiliojo telefono skirtuke „Frakcijos“."
+        },
+        "tips": {
+          "1": "Įrašo dalių turėjimas reiškia, kad turite dalį to grandininio NFT.",
+          "2": "Prieš pirkdami patikrinkite įrašo turėtojus internetinėje prekyvietėje, kad pamatytumėte nuosavybės paskirstymą.",
+          "3": "Kadangi esi kūrėjas, parduodami trupmenas, tavo turinys priklauso ir kūrybos mėgėjams."
+        }
+      },
+      "minting-posts": {
+        "title": "Įrašų kūrimas (NFT kūrimas)",
+        "intro": "Kūrimas yra neprivalomas. Įrašas paskelbiamas „off-chain“ tą akimirką, kai jį išsiunčiate – nereikia piniginės, parašo, mokesčio – ir galite jį sukurti kaip NFT bet kada, tiek rašydami, tiek vėliau iš paties įrašo.",
+        "steps": {
+          "1": "Spustelėkite mygtuką „Post“ šoninėje juostoje (darbalaukyje) arba mygtuką + (mobiliajame telefone).",
+          "2": "Parašykite tekstą, pridėkite medijos (vaizdai, vaizdo įrašai, garsas) ir pasirinkite kategorijas.",
+          "3": "Palikite „Mint post“ išjungtą, kad paskelbtumėte „off-chain“, arba įjunkite, kad sukurtumėte NFT skelbimo metu.",
+          "4": "Leidyba niekada nelaukia ant grandinės: įrašas bet kuriuo atveju pasirodo sklaidos kanale.",
+          "5": "Jei vėliau norėsi kaldinti, atidaryk įrašo informacijos puslapį ir naudok ten esantį veiksmą „Mint“.",
+          "6": "Iškaltas įrašas gauna atpažinimo ženklą ir operacijos maišą, kuriuos galite patvirtinti grandinėje, ir turite visas 1000 jo dalių."
+        },
+        "tips": {
+          "1": "Prisijungimai socialiniuose tinkluose, el. paštu ir SMS žinutėmis neapmokestinami dujomis — „DeHub“ remia kalyklos mokesčius.",
+          "2": "Išorinių piniginių naudotojams reikia ETH bazėje ARBA BNB BNB grandinėje dujoms.",
+          "3": "Minting yra tai, kas daro postą prekybiniu ir už kurį mokamas autorinis atlyginimas. Neišspausdintas įrašas vis dar sulaukia patarimų ir peržiūrų.",
+          "4": "Iškaltas įrašas grandinėje yra nuolatinis, net jei įrašas vėliau ištrinamas iš sklaidos kanalo."
+        }
+      },
+      "glossary": {
+        "title": "Terminų žodynėlis",
+        "intro": "Išsamus kriptovaliutų ir platformos terminų žodynas, padėsiantis naršyti Web3.",
+        "steps": {
+          "1": "Šoninėje juostoje eikite į „Žodynėlį“.",
+          "2": "Naršykite terminus abėcėlės tvarka arba naudokite paiešką, kad rastumėte konkrečius terminus.",
+          "3": "Spustelėkite terminą, kad pamatytumėte visą jo apibrėžimą ir paaiškinimą.",
+          "4": "Sąlygos apima kriptovaliutų sąvokas, DeFi terminologiją ir DeHub specifines funkcijas."
+        },
+        "tips": {
+          "1": "Puikus šaltinis kriptovaliutų ir Web3 naujokams.",
+          "2": "Terminų žodynėlis reguliariai atnaujinamas naujais terminais."
+        }
+      }
     }
   }
 }

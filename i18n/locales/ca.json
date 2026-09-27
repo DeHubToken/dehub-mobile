@@ -3432,11 +3432,6 @@
     "noResultsFor": "No hi ha resultats per a \"{{query}}\"",
     "guideSubtitle": "Guia pas a pas de cada funció",
     "searchGuide": "Cerca a la guia...",
-    "guideFractionsTip": "Cada publicació encunyada comença amb el creador tenint-ne totes les fraccions (100% de propietat).",
-    "guideInfoStep": "Toca la icona d'informació d'una publicació encunyada per obrir-ne la transacció d'encunyació a l'explorador de blocs i verificar el registre a la cadena.",
-    "guideMintIntro": "Encunyar una publicació com a NFT a la cadena de blocs és opcional. Encunya-la en publicar, o publica-la ara i encunya-la més tard des del menú de la publicació.",
-    "guideMintPublishStep": "Tria si vols encunyar i després fes clic a 'Publica'. Si t'ho saltes, pots encunyar la publicació més tard des del seu menú.",
-    "guideMintFractionsStep": "Reps les 1.000 fraccions (100% de propietat) de la publicació que acabes d'encunyar.",
     "glossaryMintTxDesc": "Toca la icona d'informació d'una publicació encunyada per obrir-ne la transacció d'encunyació a l'explorador de blocs i verificar el registre a la cadena. La pàgina completa d'Informació de la publicació — estadístiques, titulars, mercat — és a l'aplicació web a dehub.io.",
     "glossaryTokenIdDesc": "Un identificador únic a la cadena assignat a una publicació quan s'encunya com a NFT.",
     "repostsTab": "Reposts",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Bloqueja les teves fitxes DeHub per guanyar recompenses al llarg del temps. Les fitxes apostades també et donen més poder de vot en la governança.",
     "glossaryGovernanceDesc": "Envia i vota propostes que configuren la plataforma. El teu poder de vot es pondera per la quantitat de fitxes DeHub que tens.",
     "glossaryStakingBadgesDesc": "Distintius que es mostren al costat del teu nom d'usuari basats en les teves possessions totals de fitxes DeHub (cartera + apostades). Hi ha 13 nivells: com més fitxes tinguis, més alt serà el teu rang de distintiu. Els nivells més alts concedeixen més poder de vot en la governança i menors comissions de la plataforma.",
-    "glossaryLeaderboardDesc": "Els usuaris es classifiquen pel saldo total de fitxes DeHub (cartera + apostades a totes les cadenes). Les classificacions s'actualitzen periòdicament i fan un seguiment dels canvis d'1 dia i d'1 setmana. També pots ordenar per propines enviades, propines rebudes, seguidors, m'agrada o subscriptors.",
-    "guideTipStep": "Fes clic a la icona de la gemma/propina per enviar una propina al creador de la publicació en fitxes DeHub.",
-    "guideTipWalletTip": "Les propines van directament a la cartera del creador com a fitxes DeHub.",
-    "guideTipNotificationsTip": "Les notificacions de consells mostren quants tokens DeHub has rebut.",
-    "guideWalletIntro": "Visualitza els saldos dels teus tokens DeHub a diverses cadenes, comprova els dipòsits de staking i gestiona els teus actius.",
-    "guideWalletTotalStep": "Visualitza el saldo total dels teus tokens DeHub agregat a totes les cadenes compatibles.",
-    "guideStakingIntro": "Fes staking dels teus tokens DeHub per guanyar recompenses i augmentar el teu poder de vot de governança.",
-    "guideStakingAmountStep": "Introdueix quants tokens DeHub vols posar en staking.",
-    "guideLeaderboardBalanceStep": "La pestanya \"Saldo\" classifica els usuaris pel seu total de tokens DeHub.",
-    "guideGovernanceVoteStep": "Vota propostes utilitzant els botons de polze amunt/avall: el pes del teu vot depèn de quants tokens DeHub tens en staking.",
-    "guideGovernancePowerTip": "El teu poder de vot ve determinat per quants tokens DeHub tens en staking.",
-    "guideBuyIntro": "Compra tokens DeHub directament a DPay utilitzant una targeta o cripto compatible.",
-    "guideBuyAmountStep": "Introdueix la quantitat que vols gastar o quants tokens DeHub vols rebre.",
-    "guideBuyDeliveredStep": "Els teus tokens DeHub apareixeran a la teva cartera un cop la transacció es completi.",
-    "guideBridgeIntro": "Mou els teus tokens DeHub entre cadenes compatibles utilitzant el pont entre cadenes.",
-    "guideBridgeSourceStep": "Selecciona la cadena d'origen (on es troben actualment els teus tokens DeHub).",
-    "guideBridgeDestStep": "Selecciona la cadena de destinació (on vols enviar els teus tokens DeHub).",
-    "guideBridgeAmountStep": "Introdueix quants tokens DeHub vols transferir."
+    "glossaryLeaderboardDesc": "Els usuaris es classifiquen pel saldo total de fitxes DeHub (cartera + apostades a totes les cadenes). Les classificacions s'actualitzen periòdicament i fan un seguiment dels canvis d'1 dia i d'1 setmana. També pots ordenar per propines enviades, propines rebudes, seguidors, m'agrada o subscriptors."
   },
   "arcade": {
     "submitAccessibility": "Envia un joc a l'arcade",
@@ -6792,6 +6770,504 @@
       "packEmpty": "No s'ha trobat cap emoji a aquesta adreça",
       "shortcodeTaken": "{{name}} ja està en curs",
       "shortcodeStandard": "{{name}} ja és un emoji estàndard"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Com començar",
+        "intro": "Hi ha cinc maneres d'entrar a DeHub i cap d'elles requereix que ja tinguis una cartera: Google, Apple, un codi enviat al teu correu electrònic, un codi enviat per SMS o una cartera existent que connectis. Tot excepte la ruta de la cartera crea una cartera no custodiada per a tu en segon pla: tu tens les claus i DeHub patrocina el gas perquè puguis publicar, donar propines i recopilar sense haver de comprar mai un token natiu.",
+        "steps": {
+          "1": "Visita dehub.io: el feed d'inici és la pàgina principal, així que pots mirar al voltant abans d'iniciar sessió.",
+          "2": "Fes clic a 'Inicia sessió'. Veureu Google i Apple, camps per a una adreça de correu electrònic o un número de telèfon, i 'Connecta la cartera' per a una existent.",
+          "3": "Amb Google o Apple, completa el flux del proveïdor. Amb correu electrònic o SMS, introdueix el codi que arriba.",
+          "4": "Es crea i es protegeix una cartera per a tu en el primer inici de sessió. Connectar la teva pròpia cartera en lloc d'això requereix una signatura per provar l'adreça.",
+          "5": "Tria un nom d'usuari. És el que la gent veu i també serveix com a enllaç al teu perfil de dehub.io/<username>.",
+          "6": "Ja has entrat. Explora el feed, configura el teu perfil i comença a publicar."
+        },
+        "tips": {
+          "1": "Els inicis de sessió socials, per correu electrònic i SMS mai paguen gas: DeHub el patrocina. Les carteres connectades paguen el seu propi ETH o BNB.",
+          "2": "Tornes a un compte antic de DeHub? Inicia sessió amb el correu electrònic o el número de telèfon que utilitzava i la migració el trobarà per a tu.",
+          "3": "Pots mantenir diversos comptes en un mateix dispositiu i canviar entre ells a Configuració → Perfil."
+        }
+      },
+      "home-feed": {
+        "title": "Feed d'inici",
+        "intro": "El feed d'inici és on veus publicacions de persones que segueixes i contingut de tendència. Admet pestanyes de diversos tipus de contingut i opcions d'ordenació.",
+        "steps": {
+          "1": "Navega a /app: aquest és el teu feed d'inici.",
+          "2": "Utilitza les pestanyes superiors per filtrar per tipus de contingut: Inici (tot), Vídeos, Imatges, Shorts, Música o Transmissions en directe.",
+          "3": "Fes lliscar cap a l'esquerra/dreta a les pestanyes per veure més opcions al mòbil.",
+          "4": "Utilitza el botó de filtre/ordenació (a la part superior dreta del feed) per canviar l'ordenació: Calent, Nou o Millor.",
+          "5": "Estira cap avall per actualitzar el feed al mòbil.",
+          "6": "Desplaça't cap avall per carregar més publicacions automàticament (scroll infinit).",
+          "7": "Canvia entre la vista de quadrícula i la vista de feed utilitzant el selector de disseny."
+        },
+        "tips": {
+          "1": "La vista de quadrícula és ideal per navegar ràpidament per les imatges.",
+          "2": "La pestanya 'Inici' mostra tots els tipus de contingut barrejats.",
+          "3": "La pestanya En directe mostra les transmissions en directe actives actualment."
+        }
+      },
+      "creating-posts": {
+        "title": "Creació de publicacions",
+        "intro": "Crea publicacions de text, comparteix imatges, vídeos, notes de veu, GIFs i molt més. Utilitza hashtags, cashtags i mencions per augmentar l'abast.",
+        "steps": {
+          "1": "Fes clic al botó 'Publicar' a la barra lateral (escriptori) o al botó + (mòbil).",
+          "2": "Escriu el teu text a l'àrea de redacció.",
+          "3": "Per afegir una imatge o un vídeo, fes clic a la icona de mitjans i selecciona un fitxer.",
+          "4": "Per gravar una nota de veu, fes clic a la icona del micròfon.",
+          "5": "Per afegir un GIF, fes clic a la icona del GIF i cerca'n un.",
+          "6": "Utilitza #hashtags per categoritzar la teva publicació (per exemple, #crypto, #defi).",
+          "7": "Utilitza $cashtags per fer referència a tokens (per exemple, $DHB, $ETH).",
+          "8": "Utilitza @mentions per etiquetar altres usuaris (per exemple, @nomdusuari).",
+          "9": "Fes clic a 'Publicar' per publicar. La teva publicació apareix al feed immediatament."
+        },
+        "tips": {
+          "1": "Les publicacions admeten format d'estil markdown.",
+          "2": "Pots fer una publicació de cita fent clic a la icona de reposte de qualsevol publicació i seleccionant 'Cita'.",
+          "3": "Les categories (hashtags) apareixen a la classificació 'El més parlat'."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Interacció amb les publicacions",
+        "intro": "Interactua amb el contingut votant, comentant, donant propines, marcant com a preferit, compartint i traduint.",
+        "steps": {
+          "1": "Vota a favor o en contra d'una publicació utilitzant les icones de fletxa a la banda esquerra de qualsevol publicació.",
+          "2": "Fes clic a la icona de comentari per obrir la secció de comentaris i deixar una resposta.",
+          "3": "Fes clic a la icona de gemma/propina per enviar una propina en tokens DeHub al creador de la publicació.",
+          "4": "Fes clic a la icona de marcador per desar una publicació per a més tard.",
+          "5": "Fes clic a la icona de compartir per copiar l'enllaç de la publicació o compartir-la externament.",
+          "6": "Feu clic al botó de traducció (icona del globus) a qualsevol publicació per traduir el text al vostre idioma.",
+          "7": "Per a les publicacions d'imatges, utilitzeu el botó 'Tradueix imatge' per obtenir una versió traduïda per IA del text dins de la imatge.",
+          "8": "Feu clic a qualsevol publicació per obrir-la en mode de pantalla completa d'una sola publicació."
+        },
+        "tips": {
+          "1": "Les propines van directament a la cartera del creador en fitxes DeHub.",
+          "2": "Podeu establir una quantitat de propina mitjançant botons de selecció ràpida o introduir una quantitat personalitzada.",
+          "3": "Les publicacions marcades als marcadors són accessibles des de la pàgina de marcadors a la barra lateral."
+        }
+      },
+      "explore-search": {
+        "title": "Explora i cerca",
+        "intro": "Descobreix contingut i usuaris nous a través de la pàgina d'exploració i una potent funcionalitat de cerca.",
+        "steps": {
+          "1": "Navega a /app/explore des de la barra lateral.",
+          "2": "Utilitza la barra de cerca a la part superior per cercar usuaris, publicacions o contingut.",
+          "3": "Filtra els resultats per pestanya: Tot, Persones, Publicacions, Imatges, Vídeos, Música, En directe.",
+          "4": "Navega per temes i categories populars a la pàgina d'exploració.",
+          "5": "Fes clic en un tema popular per veure totes les publicacions relacionades.",
+          "6": "Fes clic en un usuari als resultats de la cerca per visitar el seu perfil."
+        },
+        "tips": {
+          "1": "La cerca admet noms d'usuari, adreces de cartera i paraules clau de contingut.",
+          "2": "Els temes populars s'actualitzen en funció de l'activitat de publicació recent."
+        }
+      },
+      "profile": {
+        "title": "Perfil",
+        "intro": "El teu perfil mostra les teves publicacions, seguidors, següents i informació de la cartera.",
+        "steps": {
+          "1": "Fes clic al teu avatar o a 'Perfil' a la barra lateral per veure el teu perfil.",
+          "2": "Fes clic a 'Edita el perfil' per actualitzar el teu nom visible, biografia i avatar.",
+          "3": "Puja una imatge de perfil fent clic al teu avatar en mode d'edició.",
+          "4": "Visualitza els recomptes de seguidors i següents a la teva pàgina de perfil.",
+          "5": "Navega per les teves pròpies publicacions, mitjans i contingut que t'ha agradat a través de les pestanyes del perfil.",
+          "6": "Copia la teva adreça de cartera fent clic a la icona de còpia al costat.",
+          "7": "Visita els perfils d'altres usuaris fent clic al seu nom d'usuari o avatar a qualsevol lloc de la plataforma."
+        },
+        "tips": {
+          "1": "El teu nom d'usuari és únic i apareix a l'URL del teu perfil (dehub.io/@username).",
+          "2": "La configuració de privadesa et permet controlar qui pot veure els teus recomptes de seguidors."
+        }
+      },
+      "messages": {
+        "title": "Missatges",
+        "intro": "Envia missatges directes a altres usuaris de la plataforma.",
+        "steps": {
+          "1": "Fes clic a 'Missatges' a la barra lateral per obrir la pàgina de missatgeria.",
+          "2": "Feu clic al botó de redacció per iniciar una nova conversa.",
+          "3": "Cerqueu un usuari pel nom d'usuari per enviar-li un missatge.",
+          "4": "Escriviu el vostre missatge i premeu enviar.",
+          "5": "Consulteu el vostre historial de converses a la llista de missatges.",
+          "6": "Feu clic en una conversa per continuar xerrant."
+        },
+        "tips": {
+          "1": "Rebreu una notificació quan algú us enviï un missatge.",
+          "2": "Els creadors poden bloquejar missatges darrere d'un requisit de propina."
+        }
+      },
+      "ai-assistant": {
+        "title": "Assistent d'IA",
+        "intro": "Xategeu amb l'assistent d'IA integrat de DeHub per obtenir ajuda, informació i tasques creatives.",
+        "steps": {
+          "1": "Feu clic a 'Assistent' a la barra lateral per obrir el xat d'IA.",
+          "2": "Escriviu la vostra pregunta o sol·licitud a l'entrada del xat.",
+          "3": "La IA pot ajudar amb informació sobre criptomonedes, preguntes sobre la plataforma i coneixements generals.",
+          "4": "Inicieu una nova conversa fent clic al botó de nou xat.",
+          "5": "Consulteu el vostre historial de converses a la barra lateral de la pàgina de l'assistent.",
+          "6": "Podeu adjuntar imatges perquè la IA les analitzi."
+        },
+        "tips": {
+          "1": "La IA recorda el context dins d'una conversa.",
+          "2": "Podeu preguntar a la IA sobre les funcions de DeHub, termes de criptomonedes o preguntes generals.",
+          "3": "Les converses anteriors es guarden i són accessibles en qualsevol moment."
+        }
+      },
+      "notifications": {
+        "title": "Notificacions",
+        "intro": "Estigueu al dia dels m'agrada, comentaris, propines, seguidors i altres activitats del vostre contingut.",
+        "steps": {
+          "1": "Feu clic a la icona del cascavell o a 'Notificacions' a la barra lateral.",
+          "2": "Consulteu totes les notificacions en una llista cronològica.",
+          "3": "Feu clic en una notificació per navegar al contingut relacionat.",
+          "4": "Les notificacions inclouen: nous seguidors, vots de publicacions, comentaris, propines i mencions.",
+          "5": "Les notificacions no llegides es ressalten: es marquen com a llegides quan es visualitzen."
+        },
+        "tips": {
+          "1": "La insígnia de notificacions mostra el recompte de notificacions no llegides.",
+          "2": "Les notificacions de propina mostren quants fitxes heu rebut."
+        }
+      },
+      "wallet": {
+        "title": "Cartera",
+        "intro": "Consulteu els vostres saldos de fitxes de DeHub a través de diverses cadenes, comproveu els dipòsits de staking i gestioneu els vostres actius.",
+        "steps": {
+          "1": "Feu clic a 'Cartera' a la barra lateral per obrir la pàgina de la cartera.",
+          "2": "Visualitza el teu saldo total de tokens agregat a totes les cadenes compatibles.",
+          "3": "Consulta els desglossaments per cadena: Ethereum, Base, BNB Chain i més.",
+          "4": "Comprova els teus dipòsits i recompenses de staking.",
+          "5": "Fes clic a 'Actualitza l'escaneig' per actualitzar els teus saldos de les dades on-chain.",
+          "6": "Copia la teva adreça de cartera per rebre tokens d'altres."
+        },
+        "tips": {
+          "1": "Els saldos s'actualitzen automàticament, però pots forçar una actualització en qualsevol moment.",
+          "2": "La cartera mostra tant els saldos líquids (disponibles) com els de staking."
+        }
+      },
+      "staking": {
+        "title": "Staking",
+        "intro": "Fes staking dels teus tokens DeHub per guanyar recompenses i augmentar el teu poder de vot en la governança.",
+        "steps": {
+          "1": "Vés a la pàgina 'Staking' des de la barra lateral.",
+          "2": "Introdueix el nombre de tokens que vols posar en staking.",
+          "3": "Selecciona la cadena en la qual vols fer staking.",
+          "4": "Confirma la transacció a la teva cartera (carteres externes) o s'executa automàticament (inici de sessió social).",
+          "5": "Visualitza les teves quantitats en staking i qualsevol recompensa pendent.",
+          "6": "Per retirar el staking, introdueix la quantitat i confirma la transacció de retirada."
+        },
+        "tips": {
+          "1": "El staking augmenta el pes del teu vot en les propostes de governança.",
+          "2": "Els usuaris amb inici de sessió social no necessiten gas per fer staking; és sense gas.",
+          "3": "Pots fer staking en diverses cadenes simultàniament."
+        }
+      },
+      "leaderboard": {
+        "title": "Taula de classificació",
+        "intro": "Mira qui està al capdavant! La taula de classificació classifica els usuaris per saldo, despesa diària i temes de tendència.",
+        "steps": {
+          "1": "Vés a la pàgina 'Taula de classificació' des de la barra lateral.",
+          "2": "Canvia entre les pestanyes: Saldo, Despesa Diària i Tema del Moment.",
+          "3": "La pestanya Saldo classifica els usuaris per les seves possessions totals de tokens.",
+          "4": "La pestanya Despesa Diària mostra qui ha estat més actiu donant propines en les últimes 24 hores.",
+          "5": "Tema del Moment mostra els temes/categories més discutits.",
+          "6": "Fes clic a qualsevol usuari per visitar el seu perfil.",
+          "7": "La taula de classificació s'actualitza periòdicament al llarg del dia."
+        },
+        "tips": {
+          "1": "Les classificacions diàries es reinicien cada 24 hores.",
+          "2": "Tema del Moment fa un seguiment de categories d'una sola paraula dels hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Centre de Comandament",
+        "intro": "Una visió general del tauler que mostra les vostres mètriques clau i l'activitat de la plataforma d'un cop d'ull.",
+        "steps": {
+          "1": "Feu clic a 'Centre de comandament' a la barra lateral.",
+          "2": "Consulteu el resum del vostre perfil, incloent el nombre de publicacions, seguidors i interacció.",
+          "3": "Consulteu la vostra activitat recent i els temes de tendència.",
+          "4": "Accediu a enllaços ràpids a les funcions d'ús comú."
+        },
+        "tips": {
+          "1": "El Centre de comandament us ofereix una visió general de la vostra presència a DeHub."
+        }
+      },
+      "governance": {
+        "title": "Govern",
+        "intro": "Participeu en el govern de la plataforma creant propostes i votant decisions de la comunitat.",
+        "steps": {
+          "1": "Navegueu a 'Govern' des de la barra lateral.",
+          "2": "Navegueu per les propostes actives presentades per la comunitat.",
+          "3": "Feu clic en una proposta per llegir-ne la descripció completa i el debat.",
+          "4": "Voteu les propostes utilitzant els botons de polze amunt/avall: el pes del vostre vot depèn de quants tokens de DeHub tingueu apostats.",
+          "5": "Deixeu comentaris a les propostes per debatre amb la comunitat.",
+          "6": "Presenteu la vostra pròpia proposta fent clic al botó 'Crear proposta'."
+        },
+        "tips": {
+          "1": "El vostre poder de vot es determina pel nombre de tokens que teniu apostats.",
+          "2": "Els titulars de distintius poden obtenir un pes de vot addicional.",
+          "3": "Les propostes passen per etapes: Activa → Aprovada/Rebutjada."
+        }
+      },
+      "bookmarks": {
+        "title": "Marcadors",
+        "intro": "Deseu publicacions als vostres marcadors per accedir-hi fàcilment més tard.",
+        "steps": {
+          "1": "Feu clic a la icona de marcador de qualsevol publicació per desar-la.",
+          "2": "Navegueu a 'Marcadors' a la barra lateral per veure totes les publicacions desades.",
+          "3": "Feu clic en una publicació marcada per veure-la sencera.",
+          "4": "Elimineu un marcador fent clic de nou a la icona de marcador."
+        },
+        "tips": {
+          "1": "Els marcadors són privats: només vosaltres podeu veure les vostres publicacions desades.",
+          "2": "No hi ha límit en el nombre de publicacions que podeu marcar."
+        }
+      },
+      "settings": {
+        "title": "Configuració",
+        "intro": "Personalitzeu la vostra experiència DeHub amb preferències d'idioma, privadesa i visualització.",
+        "steps": {
+          "1": "Feu clic a 'Configuració' a la barra lateral.",
+          "2": "Canvieu l'idioma de visualització des del selector d'idioma.",
+          "3": "Ajusteu la configuració de privadesa: controleu qui veu els vostres recomptes de seguidors i la llista de seguiment.",
+          "4": "Defineix les teves preferències de visibilitat de publicacions per defecte.",
+          "5": "Gestiona les preferències de notificacions."
+        },
+        "tips": {
+          "1": "DeHub admet diversos idiomes: tota la interfície es tradueix.",
+          "2": "La configuració de privadesa s'aplica immediatament."
+        }
+      },
+      "posting-allowance": {
+        "title": "La teva assignació diària de publicacions",
+        "intro": "Les publicacions són gratuïtes cada dia fins a una assignació que escala amb la teva insígnia d'aposta. Tothom comença amb deu publicacions de text i un gigabyte de vídeo, imatges i àudio per dia. Si superes alguna de les dues, la resta d'aquell dia es paga amb fitxes DeHub, només per la part que excedeix.",
+        "steps": {
+          "1": "Publica com de costum. Dins de l'assignació no es cobra res i no se't demana res.",
+          "2": "Les publicacions de text i els mitjans són grups separats, de manera que un dia dedicat a penjar vídeos encara deixa les deu publicacions de text gratuïtes.",
+          "3": "Quan una publicació excedeix l'assignació, l'aplicació la preuifica primer i comprova si la teva cartera pot cobrir-la abans que es carregui res.",
+          "4": "La publicació es mostra exactament com ho faria dins de l'assignació; la publicació mai no espera un pagament.",
+          "5": "A continuació, aproves una transferència només per a aquesta publicació, liquidada a la cadena Base o BNB que tingui prou fitxes DeHub.",
+          "6": "Ambdós grups es reinicien a la mitjanit UTC."
+        },
+        "tips": {
+          "1": "L'excés és proporcional: 200 MB per sobre de la teva assignació costen 200 MB, no un gigabyte sencer.",
+          "2": "Les reposticions, els comentaris, les reaccions, les propines i els missatges no costen res i mai no afecten l'assignació.",
+          "3": "Rebutja el pagament i la publicació es manté activa; l'import simplement bloqueja la teva propera publicació de pagament fins que es liquidi. L'assignació gratuïta de demà és sempre teva.",
+          "4": "Una insígnia d'aposta augmenta l'assignació gratuïta i redueix el preu de qualsevol cosa que la superi."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reaccions, silenci i contingut per a adults",
+        "intro": "Hi ha nou reaccions darrere del botó \"m'agrada\", i un conjunt de controls per decidir què veus i qui pot contactar amb tu.",
+        "steps": {
+          "1": "Mantén el polze cap amunt en qualsevol publicació per obrir la safata de reaccions: m'agrada, amor, respecte, calent, lol, trist, plor, no m'agrada i caca.",
+          "2": "Les set positives compten per al total de \"m'agrada\" de la publicació; \"no m'agrada\" i \"caca\" compten en contra.",
+          "3": "La teva reacció està ponderada per la teva insígnia d'aposta, de manera que la reacció d'un titular d'insígnia mou el recompte més que un vot.",
+          "4": "Toca la X a l'encapçalament d'una publicació per silenciar el seu autor; desapareixen del teu feed immediatament.",
+          "5": "Els creadors marquen les seves pròpies publicacions com a per a adults mentre les componen; aquestes publicacions no apareixen al feed principal públic.",
+          "6": "Per veure publicacions per a adults a tot arreu, activa \"Mostra contingut per a adults\" a la configuració."
+        },
+        "tips": {
+          "1": "Una publicació per a adults encara és totalment visible al perfil del creador i per a les persones que el segueixen.",
+          "2": "Bloquejar des d'un perfil va més enllà de silenciar i també talla la missatgeria.",
+          "3": "La safata de reaccions mostra qui ha reaccionat i amb què, de manera que pots veure l'ambient en lloc de només un número."
+        }
+      },
+      "stages": {
+        "title": "Escenaris (Sales d'àudio en directe)",
+        "intro": "Els escenaris són sales d'àudio en directe integrades a DeHub. Un amfitrió obre una sala, convida ponents i qualsevol pot entrar per escoltar des de la pàgina d'Escenaris o un enllaç compartit.",
+        "steps": {
+          "1": "Obre \"Escenaris\" a la barra lateral per veure què està en directe ara i què està programat.",
+          "2": "Toca un escenari en directe per unir-te com a oient, o estableix un recordatori en un programat i et notificarem quan comenci.",
+          "3": "Comença el teu propi des de la mateixa pàgina: pots emetre en directe directament des del navegador, sense OBS ni clau de transmissió.",
+          "4": "Com a amfitrió, porta parlants a l'escenari, silencia'ls o elimina'ls, comparteix la teva pantalla i gestiona la taula de so.",
+          "5": "Els oients envien reaccions en directe i parlen al xat de la sala sense pujar a l'escenari.",
+          "6": "Cada escenari es grava i la gravació es reprodueix posteriorment des de la targeta on apareix."
+        },
+        "tips": {
+          "1": "Els subtítols en directe transcriuen cada parlant i tradueixen a qualsevol idioma que estiguis llegint.",
+          "2": "El doblatge en directe pot parlar la sala en veu alta amb la veu clonada de l'amfitrió, facturat per minut en tokens DeHub.",
+          "3": "Els amfitrions poden posar una emissora de ràdio en antena o reproduir els seus propis clips musicals entre converses.",
+          "4": "Un mini-reproductor manté la sala en marxa a la cantonada mentre navegues per la resta de l'aplicació."
+        }
+      },
+      "communities": {
+        "title": "Comunitats i Esdeveniments",
+        "intro": "Les comunitats són espais gestionats pels membres amb el seu propi feed, membres i activitat. Els esdeveniments afegeixen programació limitada en el temps per sobre d'elles.",
+        "steps": {
+          "1": "Obre 'Comunitats' a la barra lateral i navega per les públiques.",
+          "2": "Uneix-te amb un sol toc. Les noves activitats es mostren com una insígnia no llegida a la navegació.",
+          "3": "Publica, discuteix, fes enquestes i dóna propines dins del feed propi d'una comunitat.",
+          "4": "Els propietaris de la comunitat moderen el seu propi espai i poden atorgar drets d'administració a altres.",
+          "5": "Obre 'Esdeveniments' per a la programació programada, amb una pàgina completa per a cada esdeveniment que pots seguir en directe."
+        },
+        "tips": {
+          "1": "El xat de la comunitat admet @mencions i @here, de manera que una publicació pot arribar a la sala.",
+          "2": "Un enllaç d'invitació et permet portar gent directament a una comunitat."
+        }
+      },
+      "arcade": {
+        "title": "Arcade",
+        "intro": "Cinc jocs s'executen dins de DeHub en una pestanya del navegador: res a instal·lar, res a comprar.",
+        "steps": {
+          "1": "Obre 'Arcade' a la barra lateral.",
+          "2": "Tria un joc: King's Gambit (escacs 3D amb una escala Elo en línia), Claude of Duty (un shooter que genera el seu propi art mentre es carrega), Jungle Trail (un passeig per la selva procedural), Street Slayer (un beat 'em up fet per a DeHub) o Chartopia (un terra de negociació transitable).",
+          "3": "Juga a la pestanya. King's Gambit i Street Slayer mantenen taules de classificació.",
+          "4": "Chartopia també s'executa en un casc de RV a través de WebXR."
+        },
+        "tips": {
+          "1": "Dos d'ells s'amaguen dins dels temes d'aparença: estableix l'aplicació a War per a Claude of Duty, o Jungle per a Jungle Trail.",
+          "2": "Cada joc té la seva pròpia targeta per compartir, de manera que un enllaç a un es desplega correctament allà on el publiquis."
+        }
+      },
+      "bounties-stores": {
+        "title": "Recompenses i Botigues",
+        "intro": "Dues maneres de convertir la plataforma en ingressos: publicar o reclamar una recompensa, o obrir una botiga i vendre al teu públic.",
+        "steps": {
+          "1": "Obre 'Recompenses' per navegar pel treball obert, filtrat per categoria o moneda.",
+          "2": "Reclama'n una, fes la feina i envia-la per cobrar la recompensa: qualsevol pot ser un caçador, no cal sol·licitud.",
+          "3": "Publica la teva pròpia recompensa amb una descripció breu i una recompensa en fitxes DeHub o USDC. Entra en garantia en el moment que la publiquis.",
+          "4": "Obre 'Botigues' per configurar una botiga amb la seva pròpia pàgina, marca i llistats.",
+          "5": "Els productes tenen preu i es liquiden en fitxes DeHub a través de la cartera integrada, sense pagament extern."
+        },
+        "tips": {
+          "1": "Les recompenses s'organitzen en Xarxes Socials, Retalls i Contractes.",
+          "2": "Un flux de disputa resol desacords sobre el lliurament, de manera que la garantia sempre es resol de manera justa.",
+          "3": "Els creadors utilitzen recompenses per fer créixer una comunitat: les accions, els retalls i les reaccions són tasques vàlides."
+        }
+      },
+      "creator-studio": {
+        "title": "Estudi de Creador i Editor",
+        "intro": "L'Estudi de Creador genera imatges, vídeo, música, veu i models 3D a partir d'una indicació, i els lliura a un editor, inclòs un editor de vídeo multitrack complet que s'executa al navegador.",
+        "steps": {
+          "1": "Obre l'Estudi de Creador i descriu el que vols que es faci.",
+          "2": "El servidor pressuposta el cost abans que s'executi la feina, així que veus quant costa abans de gastar-ho.",
+          "3": "Les renderitzacions continuen en una cua compartida mentre tu continues navegant per l'aplicació.",
+          "4": "Organitza els resultats a l'editor estil Canva, o obre l'editor de vídeo per a una línia de temps real amb retall, superposició i exportació.",
+          "5": "Deixa la peça acabada directament en una publicació, un curtmetratge o un anunci de botiga."
+        },
+        "tips": {
+          "1": "Una biblioteca gratuïta d'actius d'estoc es troba al costat de l'Estudi per a qualsevol cosa que prefereixis no generar.",
+          "2": "La generació es paga amb fitxes DeHub de la teva cartera: signes una transferència per feina, i el preu es pressuposta abans de pagar.",
+          "3": "Els usuaris més intensius poden agafar un pla Ultra, Equip o Escala, que envia una assignació mensual de fitxes directament a la seva cartera."
+        }
+      },
+      "buying-dhb": {
+        "title": "Comprar Fitxes",
+        "intro": "Compra fitxes DeHub directament dins de l'aplicació utilitzant la interfície d'intercanvi integrada.",
+        "steps": {
+          "1": "Navega a la pàgina 'Comprar' des de la barra lateral.",
+          "2": "Selecciona la fitxa de la qual vols intercanviar (per exemple, ETH, USDC).",
+          "3": "Introdueix la quantitat que vols gastar o el nombre de fitxes que vols rebre.",
+          "4": "Revisa la taxa de canvi i la sortida estimada.",
+          "5": "Fes clic a la icona de l'engranatge de configuració per ajustar la tolerància al lliscament (el valor predeterminat és l'1%).",
+          "6": "Confirma la transacció d'intercanvi.",
+          "7": "Les fitxes DeHub apareixeran a la teva cartera un cop es completi la transacció."
+        },
+        "tips": {
+          "1": "Una major tolerància al lliscament = més probabilitat d'execució, però potencial de pitjor preu.",
+          "2": "Sempre comprova la taxa de canvi abans de confirmar.",
+          "3": "Pots establir un lliscament personalitzat al panell de configuració."
+        }
+      },
+      "bridge": {
+        "title": "Pont",
+        "intro": "Mou les teves fitxes DeHub entre cadenes de blocs compatibles utilitzant el pont entre cadenes.",
+        "steps": {
+          "1": "Navega a la pàgina 'Bridge' des de la barra lateral.",
+          "2": "Selecciona la cadena d'origen (on es troben actualment els teus tokens).",
+          "3": "Selecciona la cadena de destinació (on vols enviar-los).",
+          "4": "Introdueix el nombre de tokens a transferir.",
+          "5": "Revisa la tarifa de transferència i el temps estimat d'arribada.",
+          "6": "Confirma la transacció de transferència.",
+          "7": "Espera que la transacció es completi; la transferència pot trigar uns minuts."
+        },
+        "tips": {
+          "1": "Les tarifes de transferència varien segons el parell de cadenes.",
+          "2": "La transferència sol trigar entre 1 i 5 minuts, depenent de les cadenes implicades.",
+          "3": "Comprova sempre la cadena de destinació abans de confirmar."
+        }
+      },
+      "music-tv": {
+        "title": "Música i TV",
+        "intro": "Gaudeix de contingut multimèdia directament dins de DeHub: reprodueix música i mira canals de televisió en directe.",
+        "steps": {
+          "1": "Navega a 'Música' des de la barra lateral per explorar i reproduir publicacions de música.",
+          "2": "Navega a 'TV' per accedir als canals de televisió en directe.",
+          "3": "Explora els canals per categoria o país.",
+          "4": "Fes clic en un canal per començar a veure'l.",
+          "5": "Utilitza els controls del reproductor per ajustar el volum i la reproducció.",
+          "6": "Informa de canals trencats utilitzant el botó d'informe."
+        },
+        "tips": {
+          "1": "Els canals de televisió són verificats per la comunitat per a la seva fiabilitat.",
+          "2": "Les publicacions de música es poden reproduir mentre es navega per altres continguts."
+        }
+      },
+      "post-info": {
+        "title": "Informació de la publicació i fraccions",
+        "intro": "Una publicació encunyada és un NFT dividit en 1.000 fraccions. La pàgina d'Informació de la publicació mostra dades on-chain, estadístiques d'interacció, desglossament de la propietat i et permet negociar fraccions de qualsevol publicació; en una publicació no encunyada, ofereix encunyar en el seu lloc.",
+        "steps": {
+          "1": "Toca la icona 'ⓘ' de qualsevol publicació per obrir la seva pàgina d'Informació de la publicació.",
+          "2": "A la part superior veuràs l'ID del token (identificador únic on-chain) i el hash de la transacció; fes clic al hash per veure'l al explorador de blocs.",
+          "3": "A sota, les estadístiques d'interacció mostren el total de \"m'agrada\", \"no m'agrada\", visualitzacions, comentaris i propines rebudes.",
+          "4": "La secció 'Titulars' mostra una barra de progrés de quantes de les 1.000 fraccions encara posseeix el creador, a més d'una llista de tots els titulars de fraccions amb els seus saldos i percentatges.",
+          "5": "Si la publicació és de pagament per visualització (PPV), veuràs el preu, la moneda i quants usuaris han comprat accés.",
+          "6": "Els propietaris de publicacions poden canviar la visibilitat (Pública, No llistada o Privada) i editar el títol/descripció directament des d'aquesta pàgina."
+        },
+        "tips": {
+          "1": "Una publicació recentment encunyada comença amb el creador posseint les 1.000 fraccions (100% de propietat).",
+          "2": "El hash de la transacció enllaça a BaseScan o BscScan depenent de la cadena.",
+          "3": "Les publicacions no llistades no apareixen als feeds, però encara es poden accedir mitjançant un enllaç directe."
+        }
+      },
+      "trading-fractions": {
+        "title": "Fraccions de comerç",
+        "intro": "El comerç de fraccions (navegar pels anuncis, fer ofertes, publicar les teves pròpies) viu a l'aplicació web a dehub.io, a la pàgina d'informació de cada publicació.",
+        "steps": {
+          "1": "Obre dehub.io en un navegador i inicia la sessió amb el mateix compte.",
+          "2": "Obre la pàgina Informació de l'entrada i canvia a la pestanya Marketplace.",
+          "3": "Descobreix anuncis, fes una oferta al teu preu o publica fraccions que tinguis.",
+          "4": "Un cop finalitzada una operació, el canvi apareixerà a la pestanya Fraccions del mòbil."
+        },
+        "tips": {
+          "1": "Ser propietari de fraccions d'una publicació significa que tens una part d'aquest NFT en cadena.",
+          "2": "Consulta els titulars d'una publicació al mercat web per veure la distribució de la propietat abans de comprar.",
+          "3": "Com a creador, les fraccions de venda permeten als fans ser copropietaris del teu contingut."
+        }
+      },
+      "minting-posts": {
+        "title": "Encunyar publicacions (crear NFTs)",
+        "intro": "L'encunyació és opcional. Una publicació es publica fora de cadena en el moment que l'envies —sense moneder, sense signatura, sense gas— i pots encunyar-la com a NFT quan vulguis, ja sigui mentre la composes o més tard des de la pròpia publicació.",
+        "steps": {
+          "1": "Fes clic al botó 'Publicar' a la barra lateral (escriptori) o al botó + (mòbil).",
+          "2": "Escriu el teu text, adjunta mitjans (imatges, vídeos, àudio) i afegeix categories.",
+          "3": "Deixa 'Encunyar publicació' desactivat per publicar fora de cadena, o activa'l per encunyar mentre publiques.",
+          "4": "La publicació mai espera a la cadena: la publicació apareix al feed de qualsevol manera.",
+          "5": "Per encunyar-lo més tard, obre la pàgina d'informació de la publicació amb la paraula «i» i utilitza l'acció de la Casa de la Moneda.",
+          "6": "Un cop encunyada, la publicació obtindrà un Token ID i un hash de transacció que podràs verificar a la cadena, i mantindràs les 1.000 fraccions de la mateixa."
+        },
+        "tips": {
+          "1": "Els inicis de sessió socials, per correu electrònic i per SMS no paguen gas: DeHub patrocina les tarifes d'encunyació.",
+          "2": "Els usuaris de moneder extern necessiten ETH a la base o BNB a la cadena BNB per al gas.",
+          "3": "L'encunyació és el que fa que un post sigui negociable i porti drets. Encara rebràs suggeriments i visualitzacions per a les publicacions que no s'hagin publicat.",
+          "4": "El registre en cadena és permanent un cop encunyat, fins i tot si la publicació s'elimina posteriorment del canal d'informació."
+        }
+      },
+      "glossary": {
+        "title": "Glossari",
+        "intro": "Un glossari complet de terminologia criptogràfica i de plataforma per ajudar-te a navegar pel Web3.",
+        "steps": {
+          "1": "Navega fins a \"Glossari\" des de la barra lateral.",
+          "2": "Navega per termes alfabèticament o utilitza la cerca per trobar termes específics.",
+          "3": "Feu clic a un terme per veure la seva definició i explicació completes.",
+          "4": "Els termes inclouen conceptes criptogràfics, terminologia DeFi i funcions específiques de DeHub."
+        },
+        "tips": {
+          "1": "Gran recurs per als nouvinguts a la criptografia i la Web3.",
+          "2": "El glossari s'actualitza periòdicament amb termes nous."
+        }
+      }
     }
   }
 }

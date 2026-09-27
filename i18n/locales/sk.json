@@ -3540,11 +3540,6 @@
     "noResultsFor": "Žiadne výsledky pre „{{query}}“",
     "guideSubtitle": "Podrobný návod ku každej funkcii",
     "searchGuide": "Hľadať v sprievodcovi...",
-    "guideFractionsTip": "Každý razený príspevok začína tým, že tvorca drží všetky jeho podiely (100 % vlastníctvo).",
-    "guideInfoStep": "Ťuknite na ikonu informácií pri razenom príspevku, otvorte jeho transakciu razenia v prehliadači blokov a overte záznam v reťazci.",
-    "guideMintIntro": "Razenie príspevku ako NFT na blockchaine je voliteľné. Vyrazte ho pri zverejnení, alebo ho zverejnite teraz a vyrazte neskôr z ponuky príspevku.",
-    "guideMintPublishStep": "Vyberte, či raziť, a potom kliknite na „Uverejniť“. Ak razenie preskočíte, príspevok môžete vyraziť neskôr z jeho ponuky.",
-    "guideMintFractionsStep": "Získate všetkých 1 000 podielov (100 % vlastníctvo) svojho novo vyrazeného príspevku.",
     "glossaryMintTxDesc": "Ťuknite na ikonu informácií pri razenom príspevku, otvorte jeho transakciu razenia v prehliadači blokov a overte záznam v reťazci. Celá stránka Informácie o príspevku — štatistiky, držitelia, trhovisko — je vo webovej aplikácii na dehub.io.",
     "glossaryTokenIdDesc": "Jedinečný identifikátor v reťazci pridelený príspevku, keď je vyrazený ako NFT.",
     "repostsTab": "Opakované zverejnenia",
@@ -3561,24 +3556,7 @@
     "glossaryStakingDesc": "Uzamknite svoje tokeny DeHub a získavajte odmeny v priebehu času. Stakované tokeny vám tiež poskytujú zvýšenú hlasovaciu silu v správe.",
     "glossaryGovernanceDesc": "Odošlite a hlasujte o návrhoch, ktoré formujú platformu. Vaša hlasovacia sila je vážená počtom tokenov DeHub, ktoré držíte.",
     "glossaryStakingBadgesDesc": "Odznaky zobrazené vedľa vášho používateľského mena na základe vašich celkových držaných tokenov DeHub (peňaženka + stakované). Existuje 13 úrovní – čím viac tokenov držíte, tým vyšší je váš rebríček odznakov. Vyššie úrovne poskytujú väčšiu hlasovaciu silu v správe a nižšie poplatky platformy.",
-    "glossaryLeaderboardDesc": "Používatelia sú zoradení podľa celkového zostatku tokenov DeHub (peňaženka + stakované naprieč všetkými reťazcami). Rebríčky sa pravidelne aktualizujú a sledujú zmeny za 1 deň a 1 týždeň. Môžete tiež triediť podľa odoslaných tipov, prijatých tipov, sledovateľov, lajkov alebo odberateľov.",
-    "guideTipStep": "Kliknite na ikonu drahokamu/tipu a pošlite tvorcovi príspevku tip v tokenoch DeHub.",
-    "guideTipWalletTip": "Tipy idú priamo na peňaženku tvorcu ako tokeny DeHub.",
-    "guideTipNotificationsTip": "Upozornenia na tipy zobrazujú, koľko tokenov DeHub ste dostali.",
-    "guideWalletIntro": "Zobrazte si zostatky tokenov DeHub na viacerých reťazcoch, skontrolujte vklady do stakovania a spravujte svoje aktíva.",
-    "guideWalletTotalStep": "Zobrazte si celkový zostatok tokenov DeHub agregovaný naprieč všetkými podporovanými reťazcami.",
-    "guideStakingIntro": "Stakujte svoje tokeny DeHub, aby ste získali odmeny a zvýšili svoju hlasovaciu silu v správe.",
-    "guideStakingAmountStep": "Zadajte, koľko tokenov DeHub chcete stakovať.",
-    "guideLeaderboardBalanceStep": "Karta Zostatok radí používateľov podľa ich celkových držieb tokenov DeHub.",
-    "guideGovernanceVoteStep": "Hlasujte o návrhoch pomocou tlačidiel palec hore/dole — vaša váha hlasu závisí od toho, koľko tokenov DeHub máte stakovaných.",
-    "guideGovernancePowerTip": "Vaša hlasovacia sila je určená počtom tokenov DeHub, ktoré máte stakované.",
-    "guideBuyIntro": "Kúpte si tokeny DeHub priamo v DPay pomocou karty alebo podporovanej kryptomeny.",
-    "guideBuyAmountStep": "Zadajte sumu, ktorú chcete minúť, alebo koľko tokenov DeHub chcete získať.",
-    "guideBuyDeliveredStep": "Vaše tokeny DeHub sa zobrazia vo vašej peňaženke po dokončení transakcie.",
-    "guideBridgeIntro": "Presúvajte svoje tokeny DeHub medzi podporovanými blockchainmi pomocou cross-chain mosta.",
-    "guideBridgeSourceStep": "Vyberte zdrojový reťazec (kde sa momentálne nachádzajú vaše tokeny DeHub).",
-    "guideBridgeDestStep": "Vyberte cieľový reťazec (kam chcete poslať svoje tokeny DeHub).",
-    "guideBridgeAmountStep": "Zadajte, koľko tokenov DeHub chcete preniesť cez most."
+    "glossaryLeaderboardDesc": "Používatelia sú zoradení podľa celkového zostatku tokenov DeHub (peňaženka + stakované naprieč všetkými reťazcami). Rebríčky sa pravidelne aktualizujú a sledujú zmeny za 1 deň a 1 týždeň. Môžete tiež triediť podľa odoslaných tipov, prijatých tipov, sledovateľov, lajkov alebo odberateľov."
   },
   "arcade": {
     "submitAccessibility": "Odošlite hru do herne",
@@ -6957,6 +6935,504 @@
       "packEmpty": "Na tejto adrese sa nenašiel žiadny emoji",
       "shortcodeTaken": "{{name}} je už obsadené",
       "shortcodeStandard": "{{name}} je už štandardným emotikonom"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Začíname",
+        "intro": "Do DeHub sa dostanete piatimi spôsobmi a žiadny z nich nevyžaduje, aby ste už vlastnili peňaženku: Google, Apple, kód zaslaný na váš e-mail, kód zaslaný SMS alebo existujúcu peňaženku, ktorú pripojíte. Všetko okrem možnosti peňaženky vytvorí na pozadí neúschovnú peňaženku — vy držíte kľúče a DeHub sponzoruje poplatky za plyn, takže môžete publikovať, tipovať a zbierať bez toho, aby ste si kedykoľvek kúpili natívny token.",
+        "steps": {
+          "1": "Navštívte dehub.io — domovská nástenka je titulná stránka, takže sa môžete rozhliadnuť pred prihlásením.",
+          "2": "Kliknite na „Prihlásiť sa“. Uvidíte Google a Apple, polia pre e-mailovú adresu alebo telefónne číslo a „Pripojiť peňaženku“ pre existujúcu.",
+          "3": "S Google alebo Apple dokončite proces poskytovateľa. S e-mailom alebo SMS zadajte kód, ktorý príde.",
+          "4": "Peňaženka sa vytvorí a zabezpečí pre vás pri prvom prihlásení. Pripojenie vlastnej peňaženky namiesto toho znamená jeden podpis na overenie adresy.",
+          "5": "Vyberte si používateľské meno. Je to to, čo ľudia vidia, a slúži aj ako váš profilový odkaz dehub.io/<username>.",
+          "6": "Ste prihlásený. Preskúmajte nástenku, nastavte si profil a začnite publikovať."
+        },
+        "tips": {
+          "1": "Prihlásenia cez sociálne siete, e-mail a SMS nikdy neplatia poplatky za plyn — DeHub ich sponzoruje. Pripojené peňaženky platia vlastné ETH alebo BNB.",
+          "2": "Vracajú sa k staršiemu účtu DeHub? Prihláste sa pomocou e-mailu alebo telefónneho čísla, ktoré používal, a migrácia ho nájde za vás.",
+          "3": "Na jednom zariadení môžete mať viacero účtov a prepínať medzi nimi v Nastavenia → Profil."
+        }
+      },
+      "home-feed": {
+        "title": "Domovská nástenka",
+        "intro": "Domovská nástenka je miesto, kde vidíte príspevky od ľudí, ktorých sledujete, a trendy obsah. Podporuje karty s viacerými typmi obsahu a možnosti triedenia.",
+        "steps": {
+          "1": "Navigujte na /app — toto je vaša domovská nástenka.",
+          "2": "Použite horné karty na filtrovanie podľa typu obsahu: Domov (všetko), Videá, Obrázky, Shorts, Hudba alebo Živé prenosy.",
+          "3": "Potiahnutím kariet doľava/doprava zobrazíte viac možností na mobilných zariadeniach.",
+          "4": "Použite tlačidlo filtra/triedenia (vpravo hore v informačnom kanáli) na zmenu triedenia: Horúce, Nové alebo Najlepšie.",
+          "5": "Potiahnutím nadol obnovíte informačný kanál na mobilných zariadeniach.",
+          "6": "Prejdite nadol a automaticky sa načítajú ďalšie príspevky (nekonečné posúvanie).",
+          "7": "Prepnite medzi zobrazením mriežky a informačného kanála pomocou prepínača rozloženia."
+        },
+        "tips": {
+          "1": "Zobrazenie mriežky je skvelé na rýchle prezeranie obrázkov.",
+          "2": "Karta „Domov“ zobrazuje všetky typy obsahu zmiešané dohromady.",
+          "3": "Karta Živé zobrazuje aktuálne aktívne živé prenosy."
+        }
+      },
+      "creating-posts": {
+        "title": "Vytváranie príspevkov",
+        "intro": "Vytvárajte textové príspevky, zdieľajte obrázky, videá, hlasové poznámky, GIFy a ďalšie. Použite hashtagy, cashtagy a zmienky na zvýšenie dosahu.",
+        "steps": {
+          "1": "Kliknite na tlačidlo „Príspevok“ na bočnom paneli (desktop) alebo na tlačidlo + (mobil).",
+          "2": "Napíšte svoj text do oblasti písania.",
+          "3": "Ak chcete pridať obrázok alebo video, kliknite na ikonu médií a vyberte súbor.",
+          "4": "Ak chcete nahrať hlasovú poznámku, kliknite na ikonu mikrofónu.",
+          "5": "Ak chcete pridať GIF, kliknite na ikonu GIF a vyhľadajte ho.",
+          "6": "Použite #hashtagy na kategorizáciu svojho príspevku (napr. #crypto, #defi).",
+          "7": "Použite $cashtagy na odkazovanie na tokeny (napr. $DHB, $ETH).",
+          "8": "Použite @zmienky na označenie iných používateľov (napr. @používateľské meno).",
+          "9": "Kliknite na „Príspevok“ na publikovanie. Váš príspevok sa okamžite zobrazí v informačnom kanáli."
+        },
+        "tips": {
+          "1": "Príspevky podporujú formátovanie v štýle markdown.",
+          "2": "Môžete citovať príspevok kliknutím na ikonu preposlania na akomkoľvek príspevku a výberom možnosti „Citovať“.",
+          "3": "Kategórie (hashtagy) sa zobrazujú v rebríčku „Talk of the Town“."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Interakcia s príspevkami",
+        "intro": "Zapojte sa do obsahu hlasovaním, komentovaním, tipovaním, ukladaním do záložiek, zdieľaním a prekladom.",
+        "steps": {
+          "1": "Hlasujte nahor alebo nadol pre príspevok pomocou ikon šípok na ľavej strane akéhokoľvek príspevku.",
+          "2": "Kliknite na ikonu komentára na otvorenie sekcie komentárov a zanechanie odpovede.",
+          "3": "Kliknite na ikonu drahokamu/tipu na odoslanie tipu v tokenoch DeHub tvorcovi príspevku.",
+          "4": "Kliknite na ikonu záložky na uloženie príspevku na neskôr.",
+          "5": "Kliknite na ikonu zdieľania na skopírovanie odkazu na príspevok alebo na zdieľanie externe.",
+          "6": "Kliknite na tlačidlo prekladu (ikona zemegule) na ľubovoľnom príspevku, aby ste preložili text do vášho jazyka.",
+          "7": "Pre príspevky s obrázkami použite tlačidlo „Preložiť obrázok“, aby ste získali verziu textu v obrázku preloženú pomocou AI.",
+          "8": "Kliknite na ľubovoľný príspevok, aby ste ho otvorili v zobrazení jedného príspevku na celú obrazovku."
+        },
+        "tips": {
+          "1": "Tipy idú priamo do peňaženky tvorcu v tokenoch DeHub.",
+          "2": "Výšku tipu môžete nastaviť pomocou tlačidiel rýchleho výberu alebo zadať vlastnú sumu.",
+          "3": "Záložkované príspevky sú dostupné na stránke Záložky v postrannom paneli."
+        }
+      },
+      "explore-search": {
+        "title": "Preskúmajte a hľadajte",
+        "intro": "Objavte nový obsah a používateľov prostredníctvom stránky preskúmania a výkonnej funkcie vyhľadávania.",
+        "steps": {
+          "1": "Prejdite na /app/explore z postranného panela.",
+          "2": "Na vyhľadávanie používateľov, príspevkov alebo obsahu použite vyhľadávací panel v hornej časti.",
+          "3": "Filtrujte výsledky podľa karty: Všetko, Ľudia, Príspevky, Obrázky, Videá, Hudba, Živé vysielanie.",
+          "4": "Prezerajte si trendy témy a kategórie na stránke preskúmania.",
+          "5": "Kliknite na trendovú tému, aby ste videli všetky súvisiace príspevky.",
+          "6": "Kliknite na používateľa vo výsledkoch vyhľadávania, aby ste navštívili jeho profil."
+        },
+        "tips": {
+          "1": "Vyhľadávanie podporuje používateľské mená, adresy peňaženiek a kľúčové slová obsahu.",
+          "2": "Trendy témy sa aktualizujú na základe nedávnej aktivity zverejňovania."
+        }
+      },
+      "profile": {
+        "title": "Profil",
+        "intro": "Váš profil zobrazuje vaše príspevky, sledovateľov, tých, ktorých sledujete, a informácie o peňaženke.",
+        "steps": {
+          "1": "Kliknite na svoj avatar alebo „Profil“ v postrannom paneli, aby ste zobrazili svoj profil.",
+          "2": "Kliknite na „Upraviť profil“, aby ste aktualizovali svoje zobrazované meno, bio a avatar.",
+          "3": "Nahrajte profilový obrázok kliknutím na svoj avatar v režime úprav.",
+          "4": "Zobrazte počty svojich sledovateľov a tých, ktorých sledujete, na svojej profilovej stránke.",
+          "5": "Prezerajte si svoje vlastné príspevky, médiá a obsah, ktorý sa vám páčil, prostredníctvom kariet profilu.",
+          "6": "Skopírujte adresu svojej peňaženky kliknutím na ikonu kopírovania vedľa nej.",
+          "7": "Navštívte profily iných používateľov kliknutím na ich používateľské meno alebo avatar kdekoľvek na platforme."
+        },
+        "tips": {
+          "1": "Vaše používateľské meno je jedinečné a zobrazuje sa v URL vášho profilu (dehub.io/@username).",
+          "2": "Nastavenia súkromia vám umožňujú ovládať, kto môže vidieť počty vašich sledovateľov."
+        }
+      },
+      "messages": {
+        "title": "Správy",
+        "intro": "Posielajte priame správy iným používateľom na platforme.",
+        "steps": {
+          "1": "Kliknite na „Správy“ v postrannom paneli, aby ste otvorili stránku správ.",
+          "2": "Kliknite na tlačidlo \"Vytvoriť\" na začatie novej konverzácie.",
+          "3": "Vyhľadajte používateľa podľa používateľského mena, aby ste mu poslali správu.",
+          "4": "Napíšte svoju správu a stlačte \"Odoslať\".",
+          "5": "Zobrazte históriu konverzácií v zozname správ.",
+          "6": "Kliknite na konverzáciu a pokračujte v rozhovore."
+        },
+        "tips": {
+          "1": "Dostanete upozornenie, keď vám niekto pošle správu.",
+          "2": "Tvorcovia môžu uzamknúť správy za požiadavku na tip."
+        }
+      },
+      "ai-assistant": {
+        "title": "Asistent AI",
+        "intro": "Chatujte so vstavaným asistentom AI od DeHub pre pomoc, informácie a kreatívne úlohy.",
+        "steps": {
+          "1": "Kliknite na \"Asistent\" v bočnom paneli a otvorte chat s AI.",
+          "2": "Napíšte svoju otázku alebo požiadavku do vstupného poľa chatu.",
+          "3": "AI vám môže pomôcť s informáciami o kryptomenách, otázkami týkajúcimi sa platformy a všeobecnými znalosťami.",
+          "4": "Začnite novú konverzáciu kliknutím na tlačidlo \"Nový chat\".",
+          "5": "Zobrazte históriu konverzácií v bočnom paneli stránky asistenta.",
+          "6": "Môžete pripojiť obrázky, ktoré AI analyzuje."
+        },
+        "tips": {
+          "1": "AI si pamätá kontext v rámci konverzácie.",
+          "2": "Môžete sa AI opýtať na funkcie DeHub, kryptomenové pojmy alebo všeobecné otázky.",
+          "3": "Predchádzajúce konverzácie sú uložené a prístupné kedykoľvek."
+        }
+      },
+      "notifications": {
+        "title": "Upozornenia",
+        "intro": "Zostaňte informovaní o lajkoch, komentároch, tipech, sledovaniach a iných aktivitách na vašom obsahu.",
+        "steps": {
+          "1": "Kliknite na ikonu zvončeka alebo na \"Upozornenia\" v bočnom paneli.",
+          "2": "Zobrazte všetky upozornenia v chronologickom zozname.",
+          "3": "Kliknite na upozornenie a prejdite na súvisiaci obsah.",
+          "4": "Upozornenia zahŕňajú: nových sledovateľov, hlasy na príspevky, komentáre, tipy a zmienky.",
+          "5": "Neprečítané upozornenia sú zvýraznené – po zobrazení sa označia ako prečítané."
+        },
+        "tips": {
+          "1": "Odznak upozornení zobrazuje počet neprečítaných upozornení.",
+          "2": "Upozornenia na tipy zobrazujú, koľko tokenov ste dostali."
+        }
+      },
+      "wallet": {
+        "title": "Peňaženka",
+        "intro": "Zobrazte svoje zostatky tokenov DeHub na viacerých reťazcoch, skontrolujte vklady do stakovania a spravujte svoje aktíva.",
+        "steps": {
+          "1": "Kliknite na \"Peňaženka\" v bočnom paneli a otvorte stránku peňaženky.",
+          "2": "Zobrazte si celkovú rovnováhu tokenov agregovanú naprieč všetkými podporovanými reťazcami.",
+          "3": "Pozrite si rozdelenie podľa reťazcov: Ethereum, Base, BNB Chain a ďalšie.",
+          "4": "Skontrolujte svoje vklady a odmeny za stakovanie.",
+          "5": "Kliknite na 'Obnoviť skenovanie' na aktualizáciu zostatkov z údajov na reťazci.",
+          "6": "Skopírujte svoju adresu peňaženky na prijímanie tokenov od ostatných."
+        },
+        "tips": {
+          "1": "Zostatky sa aktualizujú automaticky, ale môžete kedykoľvek vynútiť obnovenie.",
+          "2": "Peňaženka zobrazuje ako likvidné (dostupné), tak aj stakované zostatky."
+        }
+      },
+      "staking": {
+        "title": "Stakovanie",
+        "intro": "Stakujte svoje DeHub tokeny, aby ste získali odmeny a zvýšili svoju hlasovaciu silu v správe.",
+        "steps": {
+          "1": "Prejdite na stránku 'Stakovanie' z bočného panela.",
+          "2": "Zadajte počet tokenov, ktoré chcete stakovať.",
+          "3": "Vyberte reťazec, na ktorom chcete stakovať.",
+          "4": "Potvrďte transakciu vo svojej peňaženke (externé peňaženky) alebo sa automaticky vykoná (sociálne prihlásenie).",
+          "5": "Zobrazte si svoje stakované sumy a akékoľvek čakajúce odmeny.",
+          "6": "Na zrušenie stakovania zadajte sumu a potvrďte transakciu zrušenia stakovania."
+        },
+        "tips": {
+          "1": "Stakovanie zvyšuje vašu váhu hlasu v návrhoch správy.",
+          "2": "Používatelia so sociálnym prihlásením nepotrebujú plyn na stakovanie – je to bez plynu.",
+          "3": "Môžete stakovať na viacerých reťazcoch súčasne."
+        }
+      },
+      "leaderboard": {
+        "title": "Rebríček",
+        "intro": "Pozrite sa, kto je na vrchole! Rebríček radí používateľov podľa zostatku, denného výdavku a trendových tém.",
+        "steps": {
+          "1": "Prejdite na stránku 'Rebríček' z bočného panela.",
+          "2": "Prepínajte medzi kartami: Zostatok, Denné výdavky a Téma dňa.",
+          "3": "Karta Zostatok radí používateľov podľa ich celkových držieb tokenov.",
+          "4": "Karta Denné výdavky ukazuje, kto bol najaktívnejší pri tipovaní za posledných 24 hodín.",
+          "5": "Téma dňa zobrazuje najdiskutovanejšie témy/kategórie.",
+          "6": "Kliknite na ľubovoľného používateľa a navštívte jeho profil.",
+          "7": "Rebríček sa priebežne aktualizuje počas dňa."
+        },
+        "tips": {
+          "1": "Denné rebríčky sa resetujú každých 24 hodín.",
+          "2": "Téma dňa sleduje jednoslovné kategórie z hashtagov."
+        }
+      },
+      "command-centre": {
+        "title": "Centrum príkazov",
+        "intro": "Prehľad ovládacieho panela zobrazujúci vaše kľúčové metriky a aktivitu na platforme na prvý pohľad.",
+        "steps": {
+          "1": "Kliknite na „Command Centre“ v bočnom paneli.",
+          "2": "Zobrazte si súhrn svojho profilu vrátane počtu príspevkov, sledovateľov a zapojenia.",
+          "3": "Pozrite si svoju nedávnu aktivitu a trendy témy.",
+          "4": "Získajte rýchly prístup k často používaným funkciám."
+        },
+        "tips": {
+          "1": "Command Centre vám poskytuje pohľad z vtáčej perspektívy na vašu prítomnosť na DeHub."
+        }
+      },
+      "governance": {
+        "title": "Správa",
+        "intro": "Zapojte sa do správy platformy vytváraním návrhov a hlasovaním o rozhodnutiach komunity.",
+        "steps": {
+          "1": "Prejdite na „Governance“ z bočného panela.",
+          "2": "Prehliadajte aktívne návrhy predložené komunitou.",
+          "3": "Kliknite na návrh, aby ste si prečítali jeho úplný popis a diskusiu.",
+          "4": "Hlasujte o návrhoch pomocou tlačidiel palec hore/dole – váha vášho hlasu závisí od počtu tokenov DeHub, ktoré máte stakované.",
+          "5": "Zanechajte komentáre k návrhom, aby ste ich mohli diskutovať s komunitou.",
+          "6": "Odošlite svoj vlastný návrh kliknutím na tlačidlo „Create Proposal“."
+        },
+        "tips": {
+          "1": "Vaša hlasovacia sila je určená počtom tokenov, ktoré máte stakované.",
+          "2": "Držitelia odznakov môžu získať dodatočnú váhu hlasu.",
+          "3": "Návrhy prechádzajú fázami: Aktívne → Schválené/Zamietnuté."
+        }
+      },
+      "bookmarks": {
+        "title": "Záložky",
+        "intro": "Uložte si príspevky do svojich záložiek pre ľahký prístup neskôr.",
+        "steps": {
+          "1": "Kliknite na ikonu záložky na akomkoľvek príspevku, aby ste si ho uložili.",
+          "2": "Prejdite na „Bookmarks“ v bočnom paneli, aby ste si zobrazili všetky uložené príspevky.",
+          "3": "Kliknite na príspevok so záložkou, aby ste si ho zobrazili v plnom znení.",
+          "4": "Odstráňte záložku opätovným kliknutím na ikonu záložky."
+        },
+        "tips": {
+          "1": "Záložky sú súkromné – iba vy môžete vidieť svoje uložené príspevky.",
+          "2": "Neexistuje žiadny limit na počet príspevkov, ktoré si môžete uložiť do záložiek."
+        }
+      },
+      "settings": {
+        "title": "Nastavenia",
+        "intro": "Prispôsobte si svoje skúsenosti s DeHub pomocou preferencií jazyka, súkromia a zobrazenia.",
+        "steps": {
+          "1": "Kliknite na „Settings“ v bočnom paneli.",
+          "2": "Zmeňte svoj zobrazovací jazyk pomocou výberu jazyka.",
+          "3": "Upravte nastavenia súkromia: ovládajte, kto vidí vaše počty sledovateľov a zoznam sledovaných osôb.",
+          "4": "Nastavte si predvolené preferencie viditeľnosti príspevkov.",
+          "5": "Spravujte nastavenia upozornení."
+        },
+        "tips": {
+          "1": "DeHub podporuje viacero jazykov — celé rozhranie sa prekladá.",
+          "2": "Nastavenia ochrany osobných údajov platia okamžite."
+        }
+      },
+      "posting-allowance": {
+        "title": "Vaše denné povolené množstvo príspevkov",
+        "intro": "Zverejňovanie je každý deň bezplatné až do výšky povoleného množstva, ktoré sa škáluje podľa vášho odznaku stávkovania. Každý začína s desiatimi textovými príspevkami a jedným gigabajtom videa, obrázkov a zvuku denne. Ak prekročíte jedno z nich, zvyšok toho dňa sa platí v tokenoch DeHub — iba za časť, ktorá presahuje.",
+        "steps": {
+          "1": "Zverejňujte ako obvykle. V rámci povoleného množstva sa nič neúčtuje a nič sa od vás nevyžaduje.",
+          "2": "Textové príspevky a médiá sú oddelené, takže deň strávený nahrávaním videa stále ponecháva všetkých desať textových príspevkov bezplatných.",
+          "3": "Keď príspevok prekročí povolené množstvo, aplikácia ho najprv ocení a skontroluje, či ho váš peňaženka môže pokryť, skôr ako sa čokoľvek nahraje.",
+          "4": "Príspevok sa zverejní presne tak, ako by sa zverejnil v rámci povoleného množstva — zverejňovanie nikdy nečaká na platbu.",
+          "5": "Potom schválite jeden prevod iba pre daný príspevok, ktorý sa vyrovná na sieti Base alebo BNB Chain, ktorá má dostatok tokenov DeHub.",
+          "6": "Obe množstvá sa resetujú o polnoci UTC."
+        },
+        "tips": {
+          "1": "Prekročenie je pomerné: 200 MB nad vaše povolené množstvo stojí 200 MB, nie celý gigabajt.",
+          "2": "Opätovné zverejnenia, komentáre, reakcie, tipy a správy nestoja nič a nikdy sa nedotýkajú povoleného množstva.",
+          "3": "Odmietnite platbu a príspevok zostane zverejnený — suma len zablokuje váš ďalší platený príspevok, kým nebude vyrovnaná. Zajtrajšie bezplatné povolené množstvo je vždy vaše.",
+          "4": "Odznak stávkovania zvyšuje bezplatné povolené množstvo a znižuje cenu čohokoľvek nad ním."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reakcie, stlmenie a obsah pre dospelých",
+        "intro": "Za tlačidlom \"Páči sa mi\" sa skrýva deväť reakcií a sada ovládacích prvkov na rozhodovanie o tom, čo vidíte a kto vás môže kontaktovať.",
+        "steps": {
+          "1": "Podržte palec hore na akomkoľvek príspevku, aby ste otvorili ponuku reakcií: páči sa mi, láska, rešpekt, horúce, lol, smutné, plač, nepáči sa mi a hovno.",
+          "2": "Sedem pozitívnych reakcií sa započítava do celkového počtu lajkov príspevku; nepáči sa mi a hovno sa počítajú proti nemu.",
+          "3": "Vaša reakcia je vážená vaším odznakom stávkovania, takže reakcia držiteľa odznaku posúva počet ďalej ako jeden hlas.",
+          "4": "Klepnutím na X v hlavičke príspevku stlmíte jeho autora — okamžite zmizne z vášho feedu.",
+          "5": "Tvorcovia označujú svoje príspevky ako obsah pre dospelých pri ich tvorbe; tieto príspevky zostávajú mimo verejného domovského feedu.",
+          "6": "Ak chcete vidieť obsah pre dospelých všade, zapnite v Nastaveniach možnosť \"Zobraziť obsah pre dospelých\"."
+        },
+        "tips": {
+          "1": "Príspevok pre dospelých je stále plne viditeľný na profile tvorcu a pre ľudí, ktorí ho sledujú.",
+          "2": "Blokovanie z profilu ide ďalej ako stlmenie a prerušuje aj zasielanie správ.",
+          "3": "Ponuka reakcií zobrazuje, kto reagoval a čím, takže môžete vidieť miestnosť, nie len číslo."
+        }
+      },
+      "stages": {
+        "title": "Stages (Živé zvukové miestnosti)",
+        "intro": "Stages sú živé zvukové miestnosti integrované do DeHub. Hostiteľ otvorí miestnosť, pozve rečníkov a ktokoľvek sa môže pripojiť a počúvať zo stránky Stages alebo zo zdieľaného odkazu.",
+        "steps": {
+          "1": "Otvorte \"Stages\" v postrannom paneli, aby ste videli, čo je práve naživo a čo je naplánované.",
+          "2": "Klepnutím na živú scénu sa pripojíte ako poslucháč, alebo si nastavte pripomienku na naplánovanú scénu a budete upozornení, keď sa začne.",
+          "3": "Spustite si vlastnú scénu z tej istej stránky — môžete ísť naživo priamo z prehliadača, bez OBS alebo streamovacieho kľúča.",
+          "4": "Ako hostiteľ privádzajte rečníkov na pódium, stlmte ich alebo ich odstráňte, zdieľajte svoju obrazovku a ovládajte zvukovú dosku.",
+          "5": "Poslucháči posielajú živé reakcie a rozprávajú sa v chate miestnosti bez toho, aby prišli na pódium.",
+          "6": "Každá scéna sa nahráva a nahrávka sa prehrá neskôr z karty, na ktorej sa zobrazí."
+        },
+        "tips": {
+          "1": "Živé titulky zachytávajú každého rečníka a prekladajú do akéhokoľvek jazyka, v ktorom čítate.",
+          "2": "Živé dabovanie dokáže prečítať miestnosť nahlas vlastným klonovaným hlasom hostiteľa, účtované za minútu v tokenoch DeHub.",
+          "3": "Hostitelia môžu zapnúť rádio alebo prehrávať svoje vlastné hudobné klipy medzi konverzáciami.",
+          "4": "Minihráč udržiava miestnosť v prevádzke v rohu, zatiaľ čo si prezeráte zvyšok aplikácie."
+        }
+      },
+      "communities": {
+        "title": "Komunity a udalosti",
+        "intro": "Komunity sú priestory spravované členmi s vlastným feedom, členmi a aktivitou. Udalosti pridávajú nad ne časovo obmedzené programovanie.",
+        "steps": {
+          "1": "Otvorte \"Komunity\" v postrannom paneli a prezrite si verejné komunity.",
+          "2": "Pripojte sa jedným klepnutím. Nová aktivita sa zobrazí ako neprečítaná značka v navigácii.",
+          "3": "Publikujte, diskutujte, spúšťajte ankety a tipujte v rámci vlastného feedu komunity.",
+          "4": "Vlastníci komunít moderujú svoj vlastný priestor a môžu udeliť práva administrátora iným.",
+          "5": "Otvorte \"Udalosti\" pre naplánované programovanie, s plnou stránkou pre každú udalosť, ktorú môžete sledovať naživo."
+        },
+        "tips": {
+          "1": "Chat komunity podporuje @spomenutia a @here, takže príspevok môže dosiahnuť celú miestnosť.",
+          "2": "Odkaz na pozvánku vám umožní priviesť ľudí priamo do komunity."
+        }
+      },
+      "arcade": {
+        "title": "Arkáda",
+        "intro": "Päť hier beží v DeHub v prehliadačovej karte — nič na inštaláciu, nič na kúpu.",
+        "steps": {
+          "1": "Otvorte \"Arkádu\" v postrannom paneli.",
+          "2": "Vyberte si hru: King's Gambit (3D šach s online Elo rebríčkom), Claude of Duty (strieľačka, ktorá generuje vlastné umenie pri načítaní), Jungle Trail (procedurálna prechádzka dažďovým pralesom), Street Slayer (beat 'em up vytvorený pre DeHub) alebo Chartopia (prechodná obchodná podlaha).",
+          "3": "Hrajte v karte. King's Gambit a Street Slayer si udržiavajú rebríčky.",
+          "4": "Chartopia beží aj v VR náhlavnej súprave cez WebXR."
+        },
+        "tips": {
+          "1": "Dve z nich sa skrývajú v témach vzhľadu — nastavte aplikáciu na War pre Claude of Duty, alebo Jungle pre Jungle Trail.",
+          "2": "Každá hra má svoju vlastnú kartu zdieľania, takže odkaz na jednu sa správne rozbalí všade, kde ho zverejníte."
+        }
+      },
+      "bounties-stores": {
+        "title": "Odmeny a obchody",
+        "intro": "Dva spôsoby, ako premeniť platformu na príjem: zverejnite alebo si nárokujte odmenu, alebo otvorte výklad a predávajte svojej komunite.",
+        "steps": {
+          "1": "Otvorte \"Odmeny\" na prehliadanie otvorených prác, filtrovaných podľa kategórie alebo meny.",
+          "2": "Nárokujte si jednu, vykonajte prácu a odošlite ju na získanie odmeny — každý môže byť lovec, nie je potrebné žiadne prihlásenie.",
+          "3": "Uverejnite si vlastnú odmenu s krátkym popisom a odmenou v tokenoch DeHub alebo USDC. V momente jej uverejnenia sa presunie do úschovy.",
+          "4": "Otvorte „Obchody“ a nastavte si výklad s vlastnou stránkou, značkou a ponukami.",
+          "5": "Produkty sú ocenené a vysporiadané v tokenoch DeHub prostredníctvom vstavaného peňaženky, bez externého platobného procesu."
+        },
+        "tips": {
+          "1": "Odmeny sú organizované do sociálnych médií, strihania a zmlúv.",
+          "2": "Proces riešenia sporov vyrieši nezhody týkajúce sa dodávky, takže úschova sa vždy vyrieši spravodlivo.",
+          "3": "Tvorcovia používajú odmeny na rast komunity – zdieľania, klipy a reakcie sú platné úlohy."
+        }
+      },
+      "creator-studio": {
+        "title": "Creator Studio & Editor",
+        "intro": "Creator Studio generuje obrázky, video, hudbu, hlas a 3D modely z výzvy a odovzdáva ich do editora – vrátane plnohodnotného viacstopového video editora, ktorý beží v prehliadači.",
+        "steps": {
+          "1": "Otvorte Creator Studio a popíšte, čo chcete vytvoriť.",
+          "2": "Server pred spustením úlohy uvedie cenu, takže vidíte, koľko to stojí, predtým, ako to miniete.",
+          "3": "Vykresľovanie pokračuje v zdieľanom fronte, zatiaľ čo vy pokračujete v prehliadaní aplikácie.",
+          "4": "Usporiadajte výsledky v editore v štýle Canva alebo otvorte video editor pre skutočnú časovú os s rezaním, vrstvením a exportom.",
+          "5": "Hotový kus vložte priamo do príspevku, krátkeho videa alebo ponuky v obchode."
+        },
+        "tips": {
+          "1": "Bezplatná knižnica akciových aktív je umiestnená vedľa štúdia pre čokoľvek, čo by ste radšej negenerovali.",
+          "2": "Generovanie sa platí v tokenoch DeHub z vašej peňaženky – podpíšete jeden prevod za úlohu a cena sa uvedie pred platbou.",
+          "3": "Intenzívnejší používatelia si môžu vziať plán Ultra, Team alebo Scale, ktorý posiela mesačný príspevok tokenov priamo do ich peňaženky."
+        }
+      },
+      "buying-dhb": {
+        "title": "Nákup tokenov",
+        "intro": "Kúpte si tokeny DeHub priamo v aplikácii pomocou vstavaného rozhrania na výmenu.",
+        "steps": {
+          "1": "Z bočného panela prejdite na stránku „Kúpiť“.",
+          "2": "Vyberte token, z ktorého chcete vymeniť (napr. ETH, USDC).",
+          "3": "Zadajte sumu, ktorú chcete minúť, alebo počet tokenov, ktoré chcete prijať.",
+          "4": "Skontrolujte výmenný kurz a odhadovaný výstup.",
+          "5": "Kliknite na ikonu nastavení ozubeného kolieska a upravte toleranciu sklzu (predvolená hodnota je 1 %).",
+          "6": "Potvrďte transakciu výmeny.",
+          "7": "Tokeny DeHub sa objavia vo vašej peňaženke po dokončení transakcie."
+        },
+        "tips": {
+          "1": "Vyššia tolerancia sklzu = vyššia pravdepodobnosť vykonania, ale potenciál pre horšie ceny.",
+          "2": "Pred potvrdením si vždy skontrolujte výmenný kurz.",
+          "3": "V paneli nastavení môžete nastaviť vlastný sklzu."
+        }
+      },
+      "bridge": {
+        "title": "Bridge",
+        "intro": "Presuňte svoje tokeny DeHub medzi podporovanými blockchainmi pomocou cross-chain bridge.",
+        "steps": {
+          "1": "Prejdite na stránku 'Bridge' z bočného panela.",
+          "2": "Vyberte zdrojový reťazec (kde sa momentálne nachádzajú vaše tokeny).",
+          "3": "Vyberte cieľový reťazec (kam ich chcete poslať).",
+          "4": "Zadajte počet tokenov na premostenie.",
+          "5": "Skontrolujte poplatok za premostenie a odhadovaný čas príchodu.",
+          "6": "Potvrďte transakciu premostenia.",
+          "7": "Počkajte na dokončenie transakcie — premostenie môže trvať niekoľko minút."
+        },
+        "tips": {
+          "1": "Poplatky za premostenie sa líšia v závislosti od páru reťazcov.",
+          "2": "Premostenie zvyčajne trvá 1-5 minút v závislosti od zapojených reťazcov.",
+          "3": "Pred potvrdením si vždy dvakrát skontrolujte cieľový reťazec."
+        }
+      },
+      "music-tv": {
+        "title": "Hudba a TV",
+        "intro": "Vychutnajte si mediálny obsah priamo v DeHub — streamujte hudbu a sledujte živé televízne kanály.",
+        "steps": {
+          "1": "Prejdite na 'Hudba' z bočného panela, aby ste si prezerali a prehrávali hudobné príspevky.",
+          "2": "Prejdite na 'TV', aby ste získali prístup k živým televíznym kanálom.",
+          "3": "Prezerajte si kanály podľa kategórie alebo krajiny.",
+          "4": "Kliknite na kanál, aby ste začali sledovať.",
+          "5": "Použite ovládacie prvky prehrávača na úpravu hlasitosti a prehrávania.",
+          "6": "Nahláste nefunkčné kanály pomocou tlačidla nahlásenia."
+        },
+        "tips": {
+          "1": "Televízne kanály sú overené komunitou pre spoľahlivosť.",
+          "2": "Hudobné príspevky je možné prehrávať pri prehliadaní iného obsahu."
+        }
+      },
+      "post-info": {
+        "title": "Informácie o príspevku a zlomky",
+        "intro": "Vytlačený príspevok je NFT rozdelený na 1 000 zlomkov. Stránka s informáciami o príspevku zobrazuje údaje na reťazci, štatistiky zapojenia, rozdelenie vlastníctva a umožňuje vám obchodovať so zlomkami akéhokoľvek príspevku — na nevytlačenom príspevku ponúka namiesto toho vytlačenie.",
+        "steps": {
+          "1": "Ťuknite na ikonu 'ⓘ' na akomkoľvek príspevku, aby ste otvorili jeho stránku s informáciami o príspevku.",
+          "2": "V hornej časti uvidíte ID tokenu (unikátny identifikátor na reťazci) a hash transakcie — kliknite na hash, aby ste si ho zobrazili v prehliadači blokov.",
+          "3": "Nižšie štatistiky zapojenia zobrazujú celkový počet označení páči sa mi, nepáči sa mi, zobrazení, komentárov a prijatých tipov.",
+          "4": "Sekcia Držitelia zobrazuje ukazovateľ priebehu, koľko z 1 000 zlomkov stále vlastní tvorca, plus zoznam všetkých držiteľov zlomkov s ich zostatkami a percentami.",
+          "5": "Ak je príspevok platený za zobrazenie (PPV), uvidíte cenu, menu a koľko používateľov si zakúpilo prístup.",
+          "6": "Vlastníci príspevkov môžu meniť viditeľnosť (Verejné, Nezaradené alebo Súkromné) a upravovať názov/popis priamo z tejto stránky."
+        },
+        "tips": {
+          "1": "Čerstvo vytlačený príspevok začína s tvorcom, ktorý drží všetkých 1 000 zlomkov (100% vlastníctvo).",
+          "2": "Hash transakcie odkazuje na BaseScan alebo BscScan v závislosti od reťazca.",
+          "3": "Nezaradené príspevky sa nezobrazujú vo feedoch, ale sú prístupné prostredníctvom priameho odkazu."
+        }
+      },
+      "trading-fractions": {
+        "title": "Obchodné frakcie",
+        "intro": "Obchodovanie so zlomkami — prehliadanie ponúk, vytváranie ponúk, ponúkanie vlastných — žije vo webovej aplikácii na dehub.io, na stránke s informáciami o príspevkoch každého príspevku.",
+        "steps": {
+          "1": "Otvorte dehub.io v prehliadači a prihláste sa pomocou toho istého účtu.",
+          "2": "Otvorte stránku Informácie o príspevku a prejdite na kartu Trhovisko.",
+          "3": "Prezrite si ponuky, vytvorte ponuku za svoju cenu alebo uveďte zlomky, ktoré vlastníte.",
+          "4": "Po dokončení obchodu sa zmena zobrazí na karte Zlomky tu na mobile."
+        },
+        "tips": {
+          "1": "Vlastniť zlomky príspevku znamená, že vlastníte podiel na tomto reťazci NFT.",
+          "2": "Pred nákupom skontrolujte držiteľov príspevku na webovom trhovisku, aby ste videli rozdelenie vlastníctva.",
+          "3": "Ako tvorca umožňuje predaj zlomkov fanúšikom spoluvlastniť váš obsah."
+        }
+      },
+      "minting-posts": {
+        "title": "Ražba príspevkov (Vytváranie NFT)",
+        "intro": "Ražba je voliteľná. Príspevok sa zverejní mimo reťazca v okamihu, keď ho odošlete — žiadna peňaženka, žiadny podpis, žiadny plyn — a môžete ho vyraziť ako NFT kedykoľvek chcete, buď pri jeho písaní, alebo neskôr z neho samotného.",
+        "steps": {
+          "1": "Kliknite na tlačidlo 'Príspevok' v postrannom paneli (desktop) alebo na tlačidlo + (mobil).",
+          "2": "Napíšte svoj text, pripojte médiá (obrázky, videá, zvuk) a pridajte kategórie.",
+          "3": "Nechajte 'Ražba príspevku' vypnuté, aby sa publikoval mimo reťazca, alebo ho zapnite, aby sa vyrazil pri publikovaní.",
+          "4": "Publikovanie nikdy nečaká na reťazci: príspevok sa objaví v informačnom kanáli tak či tak.",
+          "5": "Ak chcete minúť neskôr, otvorte stránku s informáciami o príspevku a použite akciu Mincovňa.",
+          "6": "Po razení dostane príspevok ID tokenu a hash transakcie, ktorý môžete overiť v reťazci, a máte v ňom všetkých 1 000 zlomkov."
+        },
+        "tips": {
+          "1": "Sociálne, e-mailové a SMS prihlásenie neplatí žiadny plyn — DeHub sponzoruje poplatky za ťažbu.",
+          "2": "Používatelia externých peňaženiek potrebujú ETH na báze alebo BNB na reťazci BNB pre plyn.",
+          "3": "Minting je to, čo robí poštu obchodovateľnou a licenčnou. Nezmätený príspevok stále získava rady a zobrazenia.",
+          "4": "Záznam v reťazci je po razení trvalý, aj keď je príspevok neskôr odstránený z informačného kanála."
+        }
+      },
+      "glossary": {
+        "title": "Obsah",
+        "intro": "Komplexný slovník kryptografickej terminológie a terminológie platformy, ktorý vám pomôže s navigáciou na webe3.",
+        "steps": {
+          "1": "Na bočnom paneli prejdite na položku Glosár.",
+          "2": "Prehliadajte výrazy abecedne alebo použite vyhľadávanie na vyhľadanie konkrétnych výrazov.",
+          "3": "Kliknutím na výraz zobrazíte jeho úplnú definíciu a vysvetlenie.",
+          "4": "Pojmy zahŕňajú krypto koncepty, terminológiu DeFi a funkcie špecifické pre DeHub."
+        },
+        "tips": {
+          "1": "Skvelý zdroj pre nováčikov na kryptomeny a Web3.",
+          "2": "Slovník je pravidelne aktualizovaný o nové pojmy."
+        }
+      }
     }
   }
 }

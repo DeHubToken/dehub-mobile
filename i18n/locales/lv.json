@@ -3432,11 +3432,6 @@
     "noResultsFor": "Nav rezultātu priekš “{{query}}”",
     "guideSubtitle": "Detalizēta pamācība par katru funkciju",
     "searchGuide": "Meklēt ceļvedī...",
-    "guideFractionsTip": "Katra izkalta ieraksta visas daļas sākumā pieder autoram (100% īpašumtiesības).",
-    "guideInfoStep": "Pieskarieties izkalta ieraksta informācijas ikonai, lai bloku pārlūkā atvērtu tā kalšanas darījumu un pārbaudītu ierakstu ķēdē.",
-    "guideMintIntro": "Ieraksta kalšana kā NFT blokķēdē nav obligāta. Izkaliet to publicējot vai publicējiet tagad un izkaliet vēlāk no ieraksta izvēlnes.",
-    "guideMintPublishStep": "Izvēlieties, vai kalt, un pēc tam noklikšķiniet uz 'Publicēt'. Ja kalšanu izlaidīsiet, ierakstu varēsiet izkalt vēlāk no tā izvēlnes.",
-    "guideMintFractionsStep": "Jūs saņemat visas 1 000 tikko izkaltā ieraksta daļas (100 % īpašumtiesības).",
     "glossaryMintTxDesc": "Pieskarieties izkalta ieraksta informācijas ikonai, lai bloku pārlūkā atvērtu tā kalšanas darījumu un pārbaudītu ierakstu ķēdē. Pilnā ieraksta informācijas lapa — statistika, turētāji, tirgus — atrodas tīmekļa lietotnē dehub.io.",
     "glossaryTokenIdDesc": "Unikāls identifikators ķēdē, ko ieraksts saņem, kad tas tiek izkalts kā NFT.",
     "repostsTab": "Reposti",
@@ -3453,24 +3448,7 @@
     "glossaryStakingDesc": "Bloķējiet savus DeHub žetonus, lai laika gaitā nopelnītu atlīdzības. Likmē liktie žetoni arī dod jums lielāku balsošanas spēku pārvaldībā.",
     "glossaryGovernanceDesc": "Iesniedziet un balsojiet par priekšlikumiem, kas veido platformu. Jūsu balsošanas spēks tiek svērts pēc tā, cik daudz DeHub žetonu jums pieder.",
     "glossaryStakingBadgesDesc": "Emblēmas, kas tiek rādītas blakus jūsu lietotājvārdam, pamatojoties uz jūsu kopējo DeHub žetonu daudzumu (maksā + likmē). Ir 13 līmeņi — jo vairāk žetonu jums pieder, jo augstāks ir jūsu emblēmas rangs. Augstāki līmeņi piešķir lielāku balsošanas spēku pārvaldībā un zemākas platformas maksas.",
-    "glossaryLeaderboardDesc": "Lietotāji tiek ranžēti pēc kopējā DeHub žetonu atlikuma (maksā + likmē visās ķēdēs). Rangojumi tiek periodiski atjaunināti un izseko 1 dienas un 1 nedēļas izmaiņas. Varat arī kārtot pēc nosūtītajiem padomiem, saņemtajiem padomiem, sekotājiem, atzīmēm Patīk vai abonentiem.",
-    "guideTipStep": "Noklikšķiniet uz dārgakmens/padoma ikonas, lai nosūtītu posta radītājam padomu DeHub žetonos.",
-    "guideTipWalletTip": "Padomi nonāk tieši radītāja makā kā DeHub žetoni.",
-    "guideTipNotificationsTip": "Paziņojumi par dzeramnaudām parāda, cik DeHub marķieru esat saņēmis.",
-    "guideWalletIntro": "Skatiet savus DeHub marķieru atlikumus vairākās ķēdēs, pārbaudiet likmju noguldījumus un pārvaldiet savus aktīvus.",
-    "guideWalletTotalStep": "Skatiet savu kopējo DeHub marķieru atlikumu, kas apkopots visās atbalstītajās ķēdēs.",
-    "guideStakingIntro": "Nolikiet savus DeHub marķierus, lai nopelnītu atlīdzības un palielinātu savu balsošanas spēku pārvaldībā.",
-    "guideStakingAmountStep": "Ievadiet, cik DeHub marķieru vēlaties nolikt.",
-    "guideLeaderboardBalanceStep": "Cilne \"Atlikums\" ierindo lietotājus pēc viņu kopējā DeHub marķieru daudzuma.",
-    "guideGovernanceVoteStep": "Balsojiet par priekšlikumiem, izmantojot īkšķa uz augšu/uz leju pogas — jūsu balsošanas svars ir atkarīgs no tā, cik DeHub marķieru esat nolikuši.",
-    "guideGovernancePowerTip": "Jūsu balsošanas spēks tiek noteikts pēc tā, cik DeHub marķieru esat nolikuši.",
-    "guideBuyIntro": "Pērciet DeHub marķierus tieši DPay, izmantojot karti vai atbalstīto kriptovalūtu.",
-    "guideBuyAmountStep": "Ievadiet summu, kuru vēlaties tērēt, vai cik DeHub marķieru vēlaties saņemt.",
-    "guideBuyDeliveredStep": "Jūsu DeHub marķieri parādīsies jūsu makā, kad darījums būs pabeigts.",
-    "guideBridgeIntro": "Pārvietojiet savus DeHub marķierus starp atbalstītajām blokķēdēm, izmantojot starpķēžu tiltu.",
-    "guideBridgeSourceStep": "Atlasiet avota ķēdi (kur pašlaik atrodas jūsu DeHub marķieri).",
-    "guideBridgeDestStep": "Atlasiet mērķa ķēdi (kur vēlaties nosūtīt savus DeHub marķierus).",
-    "guideBridgeAmountStep": "Ievadiet, cik DeHub marķieru pārsūtīt."
+    "glossaryLeaderboardDesc": "Lietotāji tiek ranžēti pēc kopējā DeHub žetonu atlikuma (maksā + likmē visās ķēdēs). Rangojumi tiek periodiski atjaunināti un izseko 1 dienas un 1 nedēļas izmaiņas. Varat arī kārtot pēc nosūtītajiem padomiem, saņemtajiem padomiem, sekotājiem, atzīmēm Patīk vai abonentiem."
   },
   "arcade": {
     "submitAccessibility": "Iesniegt spēli arkādē",
@@ -6792,6 +6770,504 @@
       "packEmpty": "Šajā adresē netika atrasta neviena emocijzīme",
       "shortcodeTaken": "{{name}} jau ir aizņemts",
       "shortcodeStandard": "{{name}} jau ir standarta emocijzīmes"
+    }
+  },
+  "guide": {
+    "sections": {
+      "getting-started": {
+        "title": "Darba sākšana",
+        "intro": "DeHub varat piekļūt piecos veidos, un nevienam no tiem nav nepieciešams, lai jums jau piederētu maks: Google, Apple, kods, kas nosūtīts uz jūsu e-pastu, kods, kas nosūtīts ar SMS, vai esošais maks, ko savienojat. Viss, izņemot maka maršrutu, fona režīmā izveido jums neuzraudzītu maku — jūs kontrolējat atslēgas, un DeHub sponsorē gāzi, lai jūs varētu publicēt, dot dzeramnaudu un savākt, nekad neiegādājoties vietējo žetonu.",
+        "steps": {
+          "1": "Apmeklējiet dehub.io — sākumlapas plūsma ir galvenā lapa, tāpēc varat aplūkot saturu pirms pieteikšanās.",
+          "2": "Noklikšķiniet uz 'Sign In'. Jūs redzēsiet Google un Apple, laukus e-pasta adreses vai tālruņa numura ievadīšanai un 'Connect Wallet' esošajam makam.",
+          "3": "Izmantojot Google vai Apple, pabeidziet pakalpojumu sniedzēja plūsmu. Izmantojot e-pastu vai SMS, ievadiet saņemto kodu.",
+          "4": "Pirmajā pieteikšanās reizē jums tiek izveidots un nodrošināts maks. Savienojot savu maku, ir nepieciešams viens paraksts, lai pierādītu adresi.",
+          "5": "Izvēlieties lietotājvārdu. Tas ir tas, ko redz cilvēki, un tas dubultojas kā jūsu dehub.io/<username> profila saite.",
+          "6": "Jūs esat iekšā. Izpētiet plūsmu, iestatiet savu profilu un sāciet publicēt."
+        },
+        "tips": {
+          "1": "Sociālie, e-pasta un SMS pieteikšanās nekad nemaksā gāzi — DeHub to sponsorē. Savienotie maki maksā savu ETH vai BNB.",
+          "2": "Atgriežaties pie iepriekšējā DeHub konta? Piesakieties ar izmantoto e-pastu vai tālruņa numuru, un migrācija to atradīs.",
+          "3": "Jūs varat saglabāt vairākus kontus vienā ierīcē un pārslēgties starp tiem sadaļā Settings → Profile."
+        }
+      },
+      "home-feed": {
+        "title": "Sākumlapas plūsma",
+        "intro": "Sākumlapas plūsmā redzēsit cilvēku, kuriem sekojat, un populāro saturu. Tā atbalsta vairākas satura veidu cilnes un kārtošanas opcijas.",
+        "steps": {
+          "1": "Dodieties uz /app — šī ir jūsu sākumlapas plūsma.",
+          "2": "Izmantojiet augšējos cilnes, lai filtrētu pēc satura veida: Sākums (visu), Video, Attēli, Shorts, Mūzika vai Tiešraides.",
+          "3": "Velciet pa kreisi/pa labi pa cilnēm, lai redzētu vairāk opciju mobilajā ierīcē.",
+          "4": "Izmantojiet filtra/kārtošanas pogu (augšējā labajā stūrī), lai mainītu kārtošanu: Karstākie, Jaunākie vai Labākie.",
+          "5": "Velciet uz leju, lai atsvaidzinātu plūsmu mobilajā ierīcē.",
+          "6": "Ritiniet uz leju, lai automātiski ielādētu vairāk ziņu (bezgalīga ritināšana).",
+          "7": "Pārslēdzieties starp režīmiem \"Režģis\" un \"Plūsma\", izmantojot izkārtojuma pārslēdzēju."
+        },
+        "tips": {
+          "1": "Režģa skats ir lieliski piemērots attēlu ātrai pārlūkošanai.",
+          "2": "Cilne \"Sākums\" parāda visus satura veidus sajauktus kopā.",
+          "3": "Cilne \"Tiešraide\" parāda pašlaik aktīvās tiešraides."
+        }
+      },
+      "creating-posts": {
+        "title": "Ziņu izveide",
+        "intro": "Izveidojiet teksta ziņas, kopīgojiet attēlus, video, balss piezīmes, GIF un daudz ko citu. Izmantojiet hashtags, cashtags un mentions, lai palielinātu sasniedzamību.",
+        "steps": {
+          "1": "Noklikšķiniet uz pogas \"Ziņa\" sānu joslā (darbvirsmas versijā) vai pogas + (mobilajā ierīcē).",
+          "2": "Ierakstiet savu tekstu kompozīcijas laukā.",
+          "3": "Lai pievienotu attēlu vai video, noklikšķiniet uz multivides ikonas un atlasiet failu.",
+          "4": "Lai ierakstītu balss piezīmi, noklikšķiniet uz mikrofona ikonas.",
+          "5": "Lai pievienotu GIF, noklikšķiniet uz GIF ikonas un meklējiet to.",
+          "6": "Izmantojiet #hashtags, lai kategorizētu savu ziņu (piemēram, #crypto, #defi).",
+          "7": "Izmantojiet $cashtags, lai atsauktos uz žetoniem (piemēram, $DHB, $ETH).",
+          "8": "Izmantojiet @mentions, lai atzīmētu citus lietotājus (piemēram, @lietotājvārds).",
+          "9": "Noklikšķiniet uz \"Ziņa\", lai publicētu. Jūsu ziņa nekavējoties parādīsies plūsmā."
+        },
+        "tips": {
+          "1": "Ziņas atbalsta markdown stila formatējumu.",
+          "2": "Jūs varat citēt ziņu, noklikšķinot uz atkārtotas ziņas ikonas uz jebkuras ziņas un izvēloties \"Citēt\".",
+          "3": "Kategorijas (hashtags) parādās \"Talk of the Town\" līderu sarakstā."
+        }
+      },
+      "interacting-with-posts": {
+        "title": "Sazināšanās ar ziņām",
+        "intro": "Iesaistieties saturā, balsojot, komentējot, dodot dzeramnaudu, pievienojot grāmatzīmēm, kopīgojot un tulkojot.",
+        "steps": {
+          "1": "Balsojiet par vai pret ziņu, izmantojot bultu ikonas jebkuras ziņas kreisajā pusē.",
+          "2": "Noklikšķiniet uz komentāru ikonas, lai atvērtu komentāru sadaļu un atstātu atbildi.",
+          "3": "Noklikšķiniet uz dārgakmens/dzeramnaudas ikonas, lai nosūtītu dzeramnaudu DeHub žetonos ziņas autoram.",
+          "4": "Noklikšķiniet uz grāmatzīmes ikonas, lai saglabātu ziņu vēlākai lietošanai.",
+          "5": "Noklikšķiniet uz kopīgošanas ikonas, lai kopētu ziņas saiti vai kopīgotu to ārēji.",
+          "6": "Noklikšķiniet uz tulkot pogas (globusa ikonas) jebkurā ziņā, lai tulkotu tekstu savā valodā.",
+          "7": "Attēlu ziņojumiem izmantojiet pogu \"Tulkot attēlu\", lai iegūtu AI tulkotu versiju attēlā esošajam tekstam.",
+          "8": "Noklikšķiniet uz jebkura ziņojuma, lai atvērtu to pilnekrāna skatījumā."
+        },
+        "tips": {
+          "1": "Padomi nonāk tieši radītāja makā DeHub žetonos.",
+          "2": "Varat iestatīt padoma summu, izmantojot ātrās izvēles pogas, vai ievadīt pielāgotu summu.",
+          "3": "Grāmatzīmēm pievienotie ziņojumi ir pieejami lapā Grāmatzīmes sānu joslā."
+        }
+      },
+      "explore-search": {
+        "title": "Izpētīt un meklēt",
+        "intro": "Atklājiet jaunu saturu un lietotājus, izmantojot izpētes lapu un jaudīgo meklēšanas funkcionalitāti.",
+        "steps": {
+          "1": "Sānu joslā dodieties uz /app/explore.",
+          "2": "Izmantojiet meklēšanas joslu augšdaļā, lai meklētu lietotājus, ziņojumus vai saturu.",
+          "3": "Filtrējiet rezultātus pēc cilnes: Viss, Cilvēki, Ziņojumi, Attēli, Video, Mūzika, Tiešraide.",
+          "4": "Izpētes lapā pārlūkojiet populārākās tēmas un kategorijas.",
+          "5": "Noklikšķiniet uz populāras tēmas, lai skatītu visus saistītos ziņojumus.",
+          "6": "Meklēšanas rezultātos noklikšķiniet uz lietotāja, lai apmeklētu viņa profilu."
+        },
+        "tips": {
+          "1": "Meklēšana atbalsta lietotājvārdus, maka adreses un satura atslēgvārdus.",
+          "2": "Populārās tēmas tiek atjauninātas, pamatojoties uz neseno publicēšanas aktivitāti."
+        }
+      },
+      "profile": {
+        "title": "Profils",
+        "intro": "Jūsu profils parāda jūsu ziņojumus, sekotājus, sekotos un maka informāciju.",
+        "steps": {
+          "1": "Noklikšķiniet uz sava iemiesojuma vai \"Profils\" sānu joslā, lai skatītu savu profilu.",
+          "2": "Noklikšķiniet uz \"Rediģēt profilu\", lai atjauninātu savu vārdu, biogrāfiju un iemiesojumu.",
+          "3": "Augšupielādējiet profila attēlu, rediģēšanas režīmā noklikšķinot uz sava iemiesojuma.",
+          "4": "Skatīt savu sekotāju un sekoto skaitu savā profila lapā.",
+          "5": "Pārlūkojiet savus ziņojumus, medijus un patiku saturu, izmantojot profila cilnes.",
+          "6": "Kopējiet savu maka adresi, noklikšķinot uz kopēšanas ikonas blakus tai.",
+          "7": "Apmeklējiet citu lietotāju profilus, noklikšķinot uz viņu lietotājvārda vai iemiesojuma jebkurā vietā platformā."
+        },
+        "tips": {
+          "1": "Jūsu lietotājvārds ir unikāls un parādās jūsu profila URL (dehub.io/@username).",
+          "2": "Privātuma iestatījumi ļauj kontrolēt, kas var redzēt jūsu sekotāju skaitu."
+        }
+      },
+      "messages": {
+        "title": "Ziņojumi",
+        "intro": "Sūtiet tiešos ziņojumus citiem lietotājiem platformā.",
+        "steps": {
+          "1": "Noklikšķiniet uz \"Ziņojumi\" sānu joslā, lai atvērtu ziņojumu lapu.",
+          "2": "Noklikšķiniet uz pogas \"Izveidot\", lai sāktu jaunu sarunu.",
+          "3": "Meklējiet lietotāju pēc lietotājvārda, lai nosūtītu viņam ziņojumu.",
+          "4": "Ierakstiet savu ziņojumu un nospiediet sūtīt.",
+          "5": "Skatīt sarunu vēsturi ziņojumu sarakstā.",
+          "6": "Noklikšķiniet uz sarunas, lai turpinātu tērzēt."
+        },
+        "tips": {
+          "1": "Saņemsiet paziņojumu, kad kāds jums nosūtīs ziņojumu.",
+          "2": "Veidotāji var bloķēt ziņojumus, pieprasot dzeramnaudu."
+        }
+      },
+      "ai-assistant": {
+        "title": "AI palīgs",
+        "intro": "Tērzējiet ar DeHub iebūvēto AI palīgu, lai saņemtu palīdzību, informāciju un radošus uzdevumus.",
+        "steps": {
+          "1": "Noklikšķiniet uz \"Palīgs\" sānu joslā, lai atvērtu AI tērzēšanu.",
+          "2": "Ierakstiet savu jautājumu vai pieprasījumu tērzēšanas ievades laukā.",
+          "3": "AI var palīdzēt ar informāciju par kriptovalūtām, platformas jautājumiem un vispārējām zināšanām.",
+          "4": "Sāciet jaunu sarunu, noklikšķinot uz pogas \"Jauna tērzēšana\".",
+          "5": "Skatīt sarunu vēsturi palīga lapas sānu joslā.",
+          "6": "Varat pievienot attēlus, lai AI tos analizētu."
+        },
+        "tips": {
+          "1": "AI atceras kontekstu sarunas ietvaros.",
+          "2": "Varat jautāt AI par DeHub funkcijām, kriptovalūtu terminiem vai vispārīgiem jautājumiem.",
+          "3": "Iepriekšējās sarunas tiek saglabātas un pieejamas jebkurā laikā."
+        }
+      },
+      "notifications": {
+        "title": "Paziņojumi",
+        "intro": "Saņemiet jaunāko informāciju par atzīmēm \"patīk\", komentāriem, dzeramnaudām, sekotājiem un citu aktivitāti jūsu saturā.",
+        "steps": {
+          "1": "Noklikšķiniet uz zvana ikonas vai \"Paziņojumi\" sānu joslā.",
+          "2": "Skatīt visus paziņojumus hronoloģiskā sarakstā.",
+          "3": "Noklikšķiniet uz paziņojuma, lai pārietu uz saistīto saturu.",
+          "4": "Paziņojumi ietver: jaunus sekotājus, balsojumus par ierakstiem, komentārus, dzeramnaudas un pieminējumus.",
+          "5": "Nelasītie paziņojumi ir izcelti — tie tiek atzīmēti kā izlasīti, kad tiek apskatīti."
+        },
+        "tips": {
+          "1": "Paziņojumu emblēma parāda nelasīto paziņojumu skaitu.",
+          "2": "Paziņojumi par dzeramnaudām parāda saņemto žetonu skaitu."
+        }
+      },
+      "wallet": {
+        "title": "Maks",
+        "intro": "Skatīt savus DeHub žetonu atlikumus vairākās ķēdēs, pārbaudīt iemaksas likmēs un pārvaldīt savus līdzekļus.",
+        "steps": {
+          "1": "Noklikšķiniet uz \"Maks\" sānu joslā, lai atvērtu maka lapu.",
+          "2": "Skatīt jūsu kopējo marķieru atlikumu, kas apkopots visās atbalstītajās ķēdēs.",
+          "3": "Skatīt sadalījumu pa ķēdēm: Ethereum, Base, BNB Chain un citām.",
+          "4": "Pārbaudiet savus depozītus un atlīdzības par likmēm.",
+          "5": "Noklikšķiniet uz \"Atsvaidzināt skenēšanu\", lai atjauninātu savus atlikumus no ķēdes datiem.",
+          "6": "Kopējiet savu maka adresi, lai saņemtu marķierus no citiem."
+        },
+        "tips": {
+          "1": "Atlikumi tiek automātiski atjaunināti, taču jūs varat piespiedu kārtā atsvaidzināt jebkurā laikā.",
+          "2": "Maksā tiek rādīti gan likvīdie (pieejamie), gan likmē liktie atlikumi."
+        }
+      },
+      "staking": {
+        "title": "Likmes",
+        "intro": "Likiet savus DeHub marķierus, lai nopelnītu atlīdzības un palielinātu savu balsošanas spēku pārvaldībā.",
+        "steps": {
+          "1": "Dodieties uz lapu \"Likmes\" no sānu paneļa.",
+          "2": "Ievadiet marķieru skaitu, ko vēlaties likt.",
+          "3": "Izvēlieties ķēdi, uz kuras vēlaties likt.",
+          "4": "Apstipriniet darījumu savā makā (ārējie maki) vai tas tiek automātiski izpildīts (sociālais pieteikšanās).",
+          "5": "Skatīt savus likmē liktos apjomus un visas gaidāmās atlīdzības.",
+          "6": "Lai izņemtu likmes, ievadiet apjomu un apstipriniet izņemšanas darījumu."
+        },
+        "tips": {
+          "1": "Likmes palielina jūsu balsošanas svaru pārvaldības priekšlikumos.",
+          "2": "Sociālā pieteikšanās lietotājiem nav nepieciešama gāze likmju veikšanai — tā ir bez gāzes.",
+          "3": "Jūs varat likt uz vairākām ķēdēm vienlaicīgi."
+        }
+      },
+      "leaderboard": {
+        "title": "Līderu saraksts",
+        "intro": "Skaties, kas ir augšgalā! Līderu saraksts ierindo lietotājus pēc atlikuma, ikdienas tēriņiem un aktuālām tēmām.",
+        "steps": {
+          "1": "Dodieties uz lapu \"Līderu saraksts\" no sānu paneļa.",
+          "2": "Pārslēdzieties starp cilnēm: Atlikums, Dienas tēriņi un Pilsētas runas.",
+          "3": "Cilne \"Atlikums\" ierindo lietotājus pēc viņu kopējā marķieru krājuma.",
+          "4": "Cilne \"Dienas tēriņi\" parāda, kas ir bijis visaktīvākais dzeramnaudu došana pēdējo 24 stundu laikā.",
+          "5": "\"Pilsētas runas\" parāda visvairāk apspriestās tēmas/kategorijas.",
+          "6": "Noklikšķiniet uz jebkura lietotāja, lai apmeklētu viņa profilu.",
+          "7": "Līderu saraksts tiek periodiski atjaunināts visas dienas garumā."
+        },
+        "tips": {
+          "1": "Dienas reitingi tiek atiestatīti ik pēc 24 stundām.",
+          "2": "\"Pilsētas runas\" izseko vienvārdu kategorijas no hashtags."
+        }
+      },
+      "command-centre": {
+        "title": "Komandcentrs",
+        "intro": "Informācijas panelis, kas sniedz pārskatu par jūsu galvenajiem rādītājiem un platformas aktivitāti.",
+        "steps": {
+          "1": "Sānjoslā noklikšķiniet uz \"Command Centre\".",
+          "2": "Skatiet savu profila kopsavilkumu, ieskaitot ierakstu skaitu, sekotājus un iesaisti.",
+          "3": "Skatiet savu jaunāko aktivitāti un populārākās tēmas.",
+          "4": "Piekļūstiet ātrajiem saitēm uz bieži lietotām funkcijām."
+        },
+        "tips": {
+          "1": "\"Command Centre\" sniedz jums DeHub klātbūtnes vispārēju skatījumu."
+        }
+      },
+      "governance": {
+        "title": "Pārvaldība",
+        "intro": "Piedalieties platformas pārvaldībā, izveidojot priekšlikumus un balsojot par kopienas lēmumiem.",
+        "steps": {
+          "1": "Sānjoslā dodieties uz sadaļu \"Governance\".",
+          "2": "Pārlūkojiet aktīvos priekšlikumus, ko iesniegusi kopiena.",
+          "3": "Noklikšķiniet uz priekšlikuma, lai izlasītu tā pilnu aprakstu un diskusiju.",
+          "4": "Balsojiet par priekšlikumiem, izmantojot īkšķa uz augšu/uz leju pogas — jūsu balsojuma svars ir atkarīgs no tā, cik daudz DeHub marķieru esat iemaksājis.",
+          "5": "Atstājiet komentārus pie priekšlikumiem, lai apspriestu tos ar kopienu.",
+          "6": "Iesniedziet savu priekšlikumu, noklikšķinot uz pogas \"Create Proposal\"."
+        },
+        "tips": {
+          "1": "Jūsu balsošanas spēks tiek noteikts pēc iemaksāto marķieru skaita.",
+          "2": "Žetonu turētāji var saņemt papildu balsojuma svaru.",
+          "3": "Priekšlikumi iet cauri posmiem: Aktīvs → Izskatīts/Noraidīts."
+        }
+      },
+      "bookmarks": {
+        "title": "Grāmatzīmes",
+        "intro": "Saglabājiet ierakstus savās grāmatzīmēs, lai tos vēlāk būtu viegli piekļūt.",
+        "steps": {
+          "1": "Noklikšķiniet uz grāmatzīmes ikonas pie jebkura ieraksta, lai to saglabātu.",
+          "2": "Sānjoslā dodieties uz sadaļu \"Bookmarks\", lai skatītu visus saglabātos ierakstus.",
+          "3": "Noklikšķiniet uz grāmatzīmē saglabātā ieraksta, lai to skatītu pilnībā.",
+          "4": "Noņemiet grāmatzīmi, vēlreiz noklikšķinot uz grāmatzīmes ikonas."
+        },
+        "tips": {
+          "1": "Grāmatzīmes ir privātas — tikai jūs varat redzēt savus saglabātos ierakstus.",
+          "2": "Nav ierobežojuma tam, cik ierakstus varat pievienot grāmatzīmēm."
+        }
+      },
+      "settings": {
+        "title": "Iestatījumi",
+        "intro": "Pielāgojiet savu DeHub pieredzi ar valodas, privātuma un displeja preferencēm.",
+        "steps": {
+          "1": "Sānjoslā noklikšķiniet uz \"Settings\".",
+          "2": "Mainiet displeja valodu, izmantojot valodu izvēlni.",
+          "3": "Pielāgojiet privātuma iestatījumus: kontrolējiet, kas redz jūsu sekotāju skaitu un sekoto sarakstu.",
+          "4": "Iestatiet savas noklusējuma ziņojumu redzamības preferences.",
+          "5": "Pārvaldiet paziņojumu preferences."
+        },
+        "tips": {
+          "1": "DeHub atbalsta vairākas valodas — viss interfeiss tiek tulkots.",
+          "2": "Privātuma iestatījumi tiek piemēroti nekavējoties."
+        }
+      },
+      "posting-allowance": {
+        "title": "Jūsu ikdienas ziņošanas atļauja",
+        "intro": "Ziņošana ir bezmaksas katru dienu līdz noteiktai atļaujai, kas palielinās atkarībā no jūsu likmju emblēmas. Ikviens sāk ar desmit teksta ziņojumiem un vienu gigabaitu video, attēlu un audio dienā. Ja pārsniegsiet jebkuru no šiem, atlikušā dienas daļa tiks apmaksāta DeHub žetonos — tikai par daļu, kas pārsniedz atļauju.",
+        "steps": {
+          "1": "Ziņojiet kā parasti. Atļaujas ietvaros nekas netiek iekasēts un nekas netiek prasīts no jums.",
+          "2": "Teksta ziņojumi un multivide ir atsevišķi kopumi, tāpēc diena, kas pavadīta augšupielādējot video, joprojām atstāj visas desmit teksta ziņojumu vietas brīvas.",
+          "3": "Kad ziņojums pārsniegtu atļauju, lietotne vispirms aprēķina tā cenu un pārbauda, vai jūsu maciņš to var segt, pirms kaut kas tiek augšupielādēts.",
+          "4": "Ziņojums tiek publicēts tieši tā, kā tas būtu atļaujas ietvaros — publicēšana nekad negaida maksājumu.",
+          "5": "Pēc tam jūs apstiprināt vienu pārskaitījumu tikai par šo ziņojumu, kas tiek veikts neatkarīgi no tā, vai Base vai BNB Chain ir pietiekami daudz DeHub žetonu.",
+          "6": "Abi kopumi tiek atiestatīti pusnaktī UTC."
+        },
+        "tips": {
+          "1": "Pārsniegums ir proporcionāls: 200 MB virs jūsu atļaujas maksā 200 MB, nevis veselu gigabaitu.",
+          "2": "Pārpublicēšana, komentāri, reakcijas, dzeramnaudas un ziņojumi neko nemaksā un nekad neizmanto atļauju.",
+          "3": "Noraidiet maksājumu, un ziņojums paliek aktīvs — summa vienkārši bloķē jūsu nākamo apmaksāto ziņojumu, līdz tas tiek nokārtots. Rītdienas bezmaksas atļauja vienmēr ir jūsu.",
+          "4": "Likmju emblēma palielina bezmaksas atļauju un samazina cenu par visu, kas to pārsniedz."
+        }
+      },
+      "reactions-and-safety": {
+        "title": "Reakcijas, izslēgšana un saturam pieaugušajiem paredzēts saturs",
+        "intro": "Aiz \"patīk\" pogas ir deviņas reakcijas un vadīklas, lai noteiktu, ko jūs redzat un kas var jūs sasniegt.",
+        "steps": {
+          "1": "Turiet īkšķi uz augšu uz jebkura ziņojuma, lai atvērtu reakciju paliktni: patīk, mīlu, cienu, karsti, lol, skumji, raudāt, nepatīk un kakas.",
+          "2": "Septiņas pozitīvās skaitās pie ziņojuma \"patīk\" kopsummas; \"nepatiīk\" un \"kakas\" skaitās pret to.",
+          "3": "Jūsu reakcija tiek svērta atkarībā no jūsu likmju emblēmas, tāpēc emblēmas turētāja reakcija ietekmē skaitījumu vairāk nekā viens balsojums.",
+          "4": "Pieskarieties X ziņojuma galvenē, lai izslēgtu tā autoru — viņi nekavējoties pazudīs no jūsu plūsmas.",
+          "5": "Veidotāji paši atzīmē savus ziņojumus kā saturam pieaugušajiem paredzētus, tos veidojot; šie ziņojumi netiek rādīti publiskajā sākuma plūsmā.",
+          "6": "Lai visur redzētu saturam pieaugušajiem paredzētus ziņojumus, iestatījumos ieslēdziet \"Rādīt saturam pieaugušajiem paredzētu saturu\"."
+        },
+        "tips": {
+          "1": "Saturam pieaugušajiem paredzēts ziņojums joprojām ir pilnībā redzams veidotāja profilā un tiem, kas viņus seko.",
+          "2": "Bloķēšana no profila iet tālāk nekā izslēgšana un pārtrauc arī ziņojumapmaiņu.",
+          "3": "Reakciju paletnē redzams, kas un ar ko reaģējis, lai jūs varētu redzēt telpu, nevis tikai skaitli."
+        }
+      },
+      "stages": {
+        "title": "Skatuves (tiešraides audio istabas)",
+        "intro": "Skatuves ir DeHub iebūvētas tiešraides audio istabas. Saimnieks atver istabu, uzaicina runātājus, un ikviens var iekļūt, lai klausītos no Skatuves lapas vai kopīgotas saites.",
+        "steps": {
+          "1": "Atveriet \"Skatuves\" sānu joslā, lai redzētu, kas ir tiešraidē tagad un kas ir plānots.",
+          "2": "Piesitiniet tiešraides skatuvi, lai pievienotos kā klausītājs, vai iestatiet atgādinājumu ieplānotai skatuvei un saņemiet paziņojumu, kad tā sāksies.",
+          "3": "Izveidojiet savu no tās pašas lapas — varat sākt tiešraidi tieši no pārlūkprogrammas, bez OBS vai straumēšanas atslēgas.",
+          "4": "Kā saimnieks uzaiciniet runātājus uz skatuves, izslēdziet viņu skaņu vai izslēdziet viņus, kopīgojiet savu ekrānu un pārvaldiet skaņu paneli.",
+          "5": "Klausītāji sūta tiešraides reakcijas un sarunājas istabas tērzētavā, neuzkāpjot uz skatuves.",
+          "6": "Katra skatuve tiek ierakstīta, un ieraksts pēc tam tiek atskaņots no kartītes, uz kuras tas parādās."
+        },
+        "tips": {
+          "1": "Tiešraides subtitri parāda katru runātāju un tulko valodā, kurā jūs lasāt.",
+          "2": "Tiešraides dublēšana var nolasīt istabu saimnieka paša klonētā balsī, rēķinot par minūti DeHub žetonos.",
+          "3": "Saimnieki var palaist radio staciju vai atskaņot savus mūzikas klipus sarunu starpā.",
+          "4": "Mini atskaņotājs uztur istabu aktīvu stūrī, kamēr jūs pārlūkojat pārējo lietotni."
+        }
+      },
+      "communities": {
+        "title": "Kopienas un pasākumi",
+        "intro": "Kopienas ir dalībnieku vadītas telpas ar savu plūsmu, dalībniekiem un aktivitātēm. Pasākumi pievieno tām laika ierobežotu programmēšanu.",
+        "steps": {
+          "1": "Atveriet \"Kopienas\" sānu joslā un pārlūkojiet publiskās.",
+          "2": "Pievienojieties ar vienu pieskārienu. Jaunas aktivitātes parādās kā nelasīts indikators navigācijā.",
+          "3": "Publicējiet, diskutējiet, rīkojiet aptaujas un dodiet dzeramnaudu kopienas savā plūsmā.",
+          "4": "Kopienu īpašnieki pārvalda savu telpu un var piešķirt administratora tiesības citiem.",
+          "5": "Atveriet \"Pasākumi\" ieplānotai programmēšanai, ar pilnu lapu katram pasākumam, ko varat sekot līdzi tiešraidē."
+        },
+        "tips": {
+          "1": "Kopienas tērzētava atbalsta @pieminējumus un @here, lai ziņa varētu sasniegt istabu.",
+          "2": "Ielūguma saite ļauj jums uzaicināt cilvēkus tieši kopienā."
+        }
+      },
+      "arcade": {
+        "title": "Arkāde",
+        "intro": "Piecas spēles darbojas DeHub iekšienē pārlūkprogrammas cilnē — nekas nav jāinstalē, nekas nav jāpērk.",
+        "steps": {
+          "1": "Atveriet \"Arkāde\" sānu joslā.",
+          "2": "Izvēlieties spēli: King's Gambit (3D šahs ar tiešsaistes Elo reitingu), Claude of Duty (šāvējs, kas ģenerē savu mākslu, kad tiek ielādēts), Jungle Trail (procedurāla lietus meža pastaiga), Street Slayer (beat 'em up spēle, kas izveidota DeHub) vai Chartopia (tirdzniecības grīda, pa kuru var staigāt).",
+          "3": "Spēlējiet cilnē. King's Gambit un Street Slayer uztur līderu sarakstus.",
+          "4": "Chartopia darbojas arī VR austiņās, izmantojot WebXR."
+        },
+        "tips": {
+          "1": "Divas no tām ir paslēptas izskata tēmās — iestatiet lietotni uz War, lai spēlētu Claude of Duty, vai Jungle, lai spēlētu Jungle Trail.",
+          "2": "Katrai spēlei ir sava kopīgošanas karte, tāpēc saite uz vienu pareizi atvērsies, lai kur jūs to publicētu."
+        }
+      },
+      "bounties-stores": {
+        "title": "Atlīdzības un veikali",
+        "intro": "Divi veidi, kā platformu pārvērst ienākumos: publicējiet vai pieprasiet atlīdzību, vai atveriet veikalu un pārdodiet savai auditorijai.",
+        "steps": {
+          "1": "Atveriet \"Atlīdzības\", lai pārlūkotu pieejamo darbu, filtrējot pēc kategorijas vai valūtas.",
+          "2": "Pieprasiet vienu, veiciet darbu un iesniedziet to, lai saņemtu atlīdzību — ikviens var būt mednieks, nav nepieciešama pieteikšanās.",
+          "3": "Publicē savu atlīdzību ar īsu aprakstu un atalgojumu DeHub žetonos vai USDC. Tā tiek ieskaitīta darījumā brīdī, kad to publicē.",
+          "4": "Atveriet \"Veikali\", lai izveidotu savu veikala lapu ar savu zīmolu un piedāvājumiem.",
+          "5": "Produktu cenas tiek noteiktas un apmaksātas DeHub žetonos, izmantojot iebūvēto maku, bez ārējas norēķināšanās."
+        },
+        "tips": {
+          "1": "Atlīdzības ir sadalītas pa kategorijām: Sociālie mediji, Klipingu un Līgumi.",
+          "2": "Strīdu izšķiršanas process atrisina domstarpības par piegādi, tāpēc darījumi vienmēr tiek izpildīti godīgi.",
+          "3": "Veidotāji izmanto atlīdzības, lai veidotu kopienu — kopīgošanas, klipingu un reakcijas ir visi derīgi uzdevumi."
+        }
+      },
+      "creator-studio": {
+        "title": "Veidotāju studija un redaktors",
+        "intro": "Veidotāju studija ģenerē attēlus, video, mūziku, balsis un 3D modeļus no norādījumiem un nodod tos redaktoram — ieskaitot pilnvērtīgu daudzkanālu video redaktoru, kas darbojas pārlūkprogrammā.",
+        "steps": {
+          "1": "Atveriet Veidotāju studiju un aprakstiet, ko vēlaties izveidot.",
+          "2": "Serveris norāda izmaksas pirms darba uzsākšanas, lai jūs redzētu, cik tas maksās pirms iztērēšanas.",
+          "3": "Renderēšana turpinās kopīgā rindā, kamēr jūs turpināt pārlūkot lietotni.",
+          "4": "Sakārtojiet rezultātus Canva stila redaktorā vai atveriet video redaktoru, lai izmantotu reālu laika joslu ar griešanu, slāņošanu un eksportēšanu.",
+          "5": "Nometiet pabeigto darbu tieši ierakstā, īsziņā vai veikala sarakstā."
+        },
+        "tips": {
+          "1": "Bezmaksas krājumu resursu bibliotēka atrodas blakus studijai visam, ko jūs labāk nevēlaties ģenerēt.",
+          "2": "Ģenerēšana tiek apmaksāta DeHub žetonos no jūsu maka — jūs parakstāt vienu pārskaitījumu par katru darbu, un cena tiek norādīta pirms apmaksas.",
+          "3": "Intensīvāki lietotāji var izvēlēties Ultra, Team vai Scale plānu, kas nosūta ikmēneša žetonu atļauju tieši uz viņu maku."
+        }
+      },
+      "buying-dhb": {
+        "title": "Žetonu iegāde",
+        "intro": "Pērciet DeHub žetonus tieši lietotnē, izmantojot iebūvēto maiņas saskarni.",
+        "steps": {
+          "1": "Dodieties uz lapu \"Pirkt\" no sānu paneļa.",
+          "2": "Izvēlieties žetonu, no kura vēlaties mainīt (piemēram, ETH, USDC).",
+          "3": "Ievadiet summu, kuru vēlaties iztērēt, vai žetonu skaitu, kuru vēlaties saņemt.",
+          "4": "Pārskatiet maiņas kursu un paredzamo rezultātu.",
+          "5": "Noklikšķiniet uz zobrata ikonas, lai pielāgotu slīdēšanas toleranci (noklusējums ir 1%).",
+          "6": "Apstipriniet maiņas darījumu.",
+          "7": "DeHub žetoni parādīsies jūsu makā pēc darījuma pabeigšanas."
+        },
+        "tips": {
+          "1": "Augstāka slīdēšanas tolerance = lielāka iespēja izpildīt, bet potenciāli sliktāka cena.",
+          "2": "Pirms apstiprināšanas vienmēr pārbaudiet maiņas kursu.",
+          "3": "Jūs varat iestatīt pielāgotu slīdēšanu iestatījumu panelī."
+        }
+      },
+      "bridge": {
+        "title": "Tilts",
+        "intro": "Pārvietojiet savus DeHub žetonus starp atbalstītajām blokķēdēm, izmantojot starpķēžu tiltu.",
+        "steps": {
+          "1": "Dodieties uz lapu 'Bridge' no sānu izvēlnes.",
+          "2": "Izvēlieties avota ķēdi (kur pašlaik atrodas jūsu marķieri).",
+          "3": "Izvēlieties mērķa ķēdi (kur vēlaties tos nosūtīt).",
+          "4": "Ievadiet marķieru skaitu, ko vēlaties pārsūtīt.",
+          "5": "Pārskatiet pārsūtīšanas maksu un paredzamo ierašanās laiku.",
+          "6": "Apstipriniet pārsūtīšanas darījumu.",
+          "7": "Uzgaidiet, līdz darījums tiek pabeigts — pārsūtīšana var ilgt dažas minūtes."
+        },
+        "tips": {
+          "1": "Pārsūtīšanas maksas atšķiras atkarībā no ķēžu pāra.",
+          "2": "Pārsūtīšana parasti aizņem 1–5 minūtes atkarībā no iesaistītajām ķēdēm.",
+          "3": "Pirms apstiprināšanas vienmēr vēlreiz pārbaudiet mērķa ķēdi."
+        }
+      },
+      "music-tv": {
+        "title": "Mūzika un TV",
+        "intro": "Izbaudiet mediju saturu tieši DeHub — straumējiet mūziku un skatieties tiešraides TV kanālus.",
+        "steps": {
+          "1": "Dodieties uz sadaļu 'Mūzika' no sānu izvēlnes, lai pārlūkotu un atskaņotu mūzikas ierakstus.",
+          "2": "Dodieties uz sadaļu 'TV', lai piekļūtu tiešraides TV kanāliem.",
+          "3": "Pārlūkojiet kanālus pēc kategorijas vai valsts.",
+          "4": "Noklikšķiniet uz kanāla, lai sāktu skatīties.",
+          "5": "Izmantojiet atskaņotāja vadīklas, lai pielāgotu skaļumu un atskaņošanu.",
+          "6": "Ziņojiet par nedarbojošiemies kanāliem, izmantojot ziņošanas pogu."
+        },
+        "tips": {
+          "1": "TV kanāli ir kopienas pārbaudīti attiecībā uz uzticamību.",
+          "2": "Mūzikas ierakstus var atskaņot, pārlūkojot citu saturu."
+        }
+      },
+      "post-info": {
+        "title": "Informācija par ierakstu un daļām",
+        "intro": "Iemintēts ieraksts ir NFT, kas sadalīts 1000 daļās. Lapa \"Informācija par ierakstu\" parāda datus ķēdē, statistiku par iesaisti, īpašumtiesību sadalījumu un ļauj tirgot jebkura ieraksta daļas — neiemintētam ierakstam tā piedāvā iepriekš ieņemt.",
+        "steps": {
+          "1": "Pieskarieties ikonai 'ⓘ' pie jebkura ieraksta, lai atvērtu tā lapu \"Informācija par ierakstu\".",
+          "2": "Augšpusē redzēsiet Token ID (unikāls identifikators ķēdē) un darījuma jaucējkodu — noklikšķiniet uz jaucējkoda, lai to skatītu blokķēdes izpētītājā.",
+          "3": "Zemāk iesaistes statistika parāda kopējo saņemto atzīmju \"patīk\", \"nepatīk\", skatījumu, komentāru un dzeramnaudu skaitu.",
+          "4": "Sadaļā \"Turētāji\" redzams progresa josla, kas parāda, cik no 1000 daļām joprojām pieder autoram, kā arī visu daļu turētāju saraksts ar viņu atlikumiem un procentiem.",
+          "5": "Ja ieraksts ir maksas par skatīšanos (PPV), redzēsiet cenu, valūtu un to, cik lietotāju ir iegādājušies piekļuvi.",
+          "6": "Ierakstu īpašnieki var mainīt redzamību (Publisks, Nav iekļauts sarakstā vai Privāts) un rediģēt nosaukumu/aprakstu tieši no šīs lapas."
+        },
+        "tips": {
+          "1": "Svaigi iemintēts ieraksts sākas ar to, ka autors tur visas 1000 daļas (100% īpašumtiesības).",
+          "2": "Darījuma jaucējkods saista ar BaseScan vai BscScan atkarībā no ķēdes.",
+          "3": "Nenodēvēti (Unlisted) ieraksti neparādās plūsmās, taču tos joprojām var sasniegt, izmantojot tiešu saiti."
+        }
+      },
+      "trading-fractions": {
+        "title": "Frakciju tirdzniecība",
+        "intro": "Frakciju tirdzniecība — sludinājumu pārlūkošana, piedāvājumu izteikšana, savu sludinājumu publicēšana — notiek tīmekļa lietotnē vietnē dehub.io, katras ziņas publicēšanas informācijas lapā.",
+        "steps": {
+          "1": "Pārlūkprogrammā atver dehub.io un pieraksties ar to pašu kontu.",
+          "2": "Atveriet ziņas lapu Publicēt informāciju un pārslēdzieties uz cilni Veikals.",
+          "3": "Pārlūkojiet sludinājumus, izsakiet piedāvājumu par savu cenu vai norādiet jūsu rīcībā esošās daļas.",
+          "4": "Kad darījums ir pabeigts, izmaiņas tiek parādītas cilnē Frakcijas šeit mobilajā ierīcē."
+        },
+        "tips": {
+          "1": "Ja jums pieder ziņas daļas, tas nozīmē, ka jums pieder daļa no šīs ķēdes NFT.",
+          "2": "Pirms pirkšanas pārbaudiet ziņu turētājus tīmekļa vietnē, lai redzētu īpašumtiesību sadalījumu.",
+          "3": "Frakciju pārdošana ļauj faniem būt tava satura līdzīpašniekiem kā radītājiem."
+        }
+      },
+      "minting-posts": {
+        "title": "Ierakstu kalšana (NFT izveide)",
+        "intro": "Kalšana ir obligāta. Ieraksts tiek publicēts ārpus ķēdes (off-chain) tajā brīdī, kad to nosūtāt — bez maka, bez paraksta, bez maksas (gas) — un jūs varat to kalt kā NFT jebkurā laikā, gan rakstīšanas laikā, gan vēlāk no paša ieraksta.",
+        "steps": {
+          "1": "Noklikšķiniet uz pogas 'Ieraksts' (Post) sānu joslā (darbvirsma) vai pogas + (mobilais).",
+          "2": "Uzrakstiet savu tekstu, pievienojiet medijus (attēlus, video, audio) un pievienojiet kategorijas.",
+          "3": "Atstājiet 'Kalšanas ieraksts' (Mint post) izslēgtu, lai publicētu ārpus ķēdes, vai ieslēdziet to, lai kaltu publicēšanas laikā.",
+          "4": "Publicēšana nekad negaida ķēdi: ziņa jebkurā gadījumā tiek parādīta plūsmā.",
+          "5": "Lai izkaltu vēlāk, atveriet ziņas informācijas lapu un izmantojiet tajā kaltuves darbību.",
+          "6": "Pēc izkalšanas ziņa saņem marķiera ID un darījuma jaukšanu, ko varat pārbaudīt ķēdē, un jūs glabājat visas 1000 tā daļas."
+        },
+        "tips": {
+          "1": "Pierakstīšanās sociālajos tīklos, e-pastā un SMS maksā nulles gāzi — DeHub sponsorē kalšanas maksas.",
+          "2": "Ārējiem maku lietotājiem ir nepieciešama ETH uz bāzes VAI BNB UZ BNB ķēdes gāzei.",
+          "3": "Kalšana ir tas, kas padara amatu par tirgojamu un autoratlīdzību nesošu. Neminēta ziņa joprojām saņem padomus un skatījumus.",
+          "4": "Ķēdes ieraksts ir pastāvīgs, kad tas ir izkalts, pat ja ieraksts vēlāk tiek izdzēsts no plūsmas."
+        }
+      },
+      "glossary": {
+        "title": "Glosārijs",
+        "intro": "Visaptverošs kriptogrāfijas un platformas terminoloģijas glosārijs, kas palīdzēs jums pārvietoties tīmeklī3.",
+        "steps": {
+          "1": "Sānjoslā pārejiet uz \"Glossary\".",
+          "2": "Pārlūkojiet terminus alfabētiskā secībā vai izmantojiet meklēšanu, lai atrastu konkrētus terminus.",
+          "3": "Noklikšķiniet uz termina, lai skatītu tā pilnu definīciju un skaidrojumu.",
+          "4": "Noteikumi attiecas uz kriptogrāfijas jēdzieniem, DeFi terminoloģiju un DeHub specifiskajām funkcijām."
+        },
+        "tips": {
+          "1": "Lielisks resurss jaunpienācējiem kriptogrāfijā un tīmeklī3.",
+          "2": "Vārdnīca tiek regulāri papildināta ar jauniem terminiem."
+        }
+      }
     }
   }
 }
