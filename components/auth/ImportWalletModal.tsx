@@ -208,6 +208,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
         presentation="center"
         blurIntensity={50}
         dismissible={!busy}
+        scrollable
       >
         <View style={styles.sheet}>
           <Text style={authText.modalTitle}>{t("auth.importExternalWallet")}</Text>
@@ -226,6 +227,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
             placeholder="0x… (64 hex)"
             autoCapitalize="none"
             autoCorrect={false}
+            editable={!busy}
             secureTextEntry={!showPk}
             importantForAutofill="no"
             autoComplete="off"
