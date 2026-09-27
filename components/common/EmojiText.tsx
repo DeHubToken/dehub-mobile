@@ -17,6 +17,7 @@ import React, { Fragment, useEffect, useState, useSyncExternalStore, type ReactN
 import { Image, Text } from "react-native";
 import { discordEmojiUrl, mayContainEmojiTokens, tokenizeEmoji } from "../../libs/emoji/tokens";
 import { getShortcodes } from "../../libs/emoji/shortcodes";
+import { useKidsModeLock } from "../../hooks/useKidsModeLock";
 import {
   customEmojisLoaded,
   getCustomEmoji,
@@ -42,7 +43,9 @@ export function useCustomEmojis() {
  */
 export function EmojiImage({ src, name, size }: { src: string; name: string; size: number }) {
   const [broken, setBroken] = useState(false);
-  if (broken) return <>{`:${name}:`}</>;
+  // Custom and Discord emoji are unreviewed images: Kids Mode reads the name.
+  const kids = useKidsModeLock();
+  if (broken || kids) return <>{`:${name}:`}</>;
   return (
     <Image
       source={{ uri: src }}
