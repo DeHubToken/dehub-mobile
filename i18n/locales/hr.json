@@ -3492,7 +3492,12 @@
     "original": "Izvorni zvuk",
     "dubbed": "Dijagnosticirani zvuk",
     "preparing": "Priprema sinkroniziranog zvuka…",
-    "unavailable": "Diferencirani zvuk nije dostupan za ovaj videozapis."
+    "unavailable": "Diferencirani zvuk nije dostupan za ovaj videozapis.",
+    "menuLabel": "Sinkronizacija",
+    "menuDesc": "Poslušajte ovaj videozapis na svom jeziku",
+    "menuOn": "Uključeno · dodirnite za izvorni zvuk",
+    "noTranscript": "Ovaj videozapis još nema transkript.",
+    "noVoice": "Vaš uređaj nema glas za ovaj jezik."
   },
   "stages": {
     "cancelConfirm": "Otkaži \"{{title}}\"? Veza prestaje raditi.",

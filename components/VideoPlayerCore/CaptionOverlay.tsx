@@ -28,13 +28,9 @@ import {
   useTranscriptTranslation,
   type TranscriptSegment,
 } from '../../hooks/useTranscript';
-import {
-  useVideoDub,
-  useDubbedAudio,
-  dubLangFor,
-  getDubEnabled,
-  setDubEnabled,
-} from '../../hooks/useVideoDub';
+import { useDubSettings, setDubSettings } from '../../hooks/useVideoDub';
+import { useVoiceDub, baseLang, findVoice } from '../../hooks/useVoiceDub';
+import { toastInfo } from '../../libs';
 import {
   SUBTITLE_LANGUAGES,
   SUBTITLE_SIZES,
@@ -61,8 +57,9 @@ interface Props {
   controlsVisible?: boolean;
   /** Lift the caption line above whatever sits at the bottom of the player. */
   bottomOffset?: number;
-  /** The video's player and state — needed to run dubbed audio against it. */
+  /** The video's player — the dub follows its clock and ducks its volume. */
   player?: VideoPlayer | null;
+  /** Unused since the dub reads play state off the player; kept for callers. */
   isPlaying?: boolean;
 }
 
@@ -72,7 +69,6 @@ const CaptionOverlay: React.FC<Props> = ({
   controlsVisible = true,
   bottomOffset = 64,
   player = null,
-  isPlaying = false,
 }) => {
   const { t, i18n } = useTranslation();
   const ref = useMemo(() => {
@@ -85,7 +81,7 @@ const CaptionOverlay: React.FC<Props> = ({
   const [size] = useState<SubtitleSize>(getSubtitleSize);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [fixOpen, setFixOpen] = useState(false);
-  const [dubOn, setDubOn] = useState<boolean>(getDubEnabled);
+  const { on: dubOn, lang: dubPref } = useDubSettings();
 
   // Only fetch once the viewer has shown intent — including asking for a
   // dub, which is keyed on the transcript too.
@@ -115,45 +111,57 @@ const CaptionOverlay: React.FC<Props> = ({
     !!ref && enabled && isReady && targetLang !== 'original',
   );
 
-  // Dubbed audio follows the caption language: Spanish captions + "Dubbed"
-  // plays Spanish speech in the creator's cloned voice. Only languages the
-  // synthesiser knows qualify; the rest keep captions only.
-  const dubLang = targetLang === 'original' ? null : dubLangFor(targetLang);
+  // The dub is spoken on the device from the translated transcript, in the
+  // language it was switched on in — the caption language from this sheet,
+  // the app language from the post menu. Speaking the video's own language
+  // over itself would be noise, so that case is simply off.
+  const dubLang = useMemo(() => {
+    const l = baseLang(dubPref || i18n.language);
+    return l && l !== sourceLang ? l : null;
+  }, [dubPref, i18n.language, sourceLang]);
   const wantDub = dubOn && isReady && !!dubLang && !!player;
-  const { dub, stalled: dubStalled } = useVideoDub(transcript?.id ?? null, dubLang, wantDub);
-  useDubbedAudio({
-    url: wantDub && dub?.status === 'ready' && dub.audio_url ? dub.audio_url : null,
+  // Same query as the captions when both are in one language, so the second
+  // one is a cache read.
+  const { translation: dubTranslation } = useTranscriptTranslation(
+    transcript?.id ?? null,
+    dubLang ?? 'original',
+    !!ref && wantDub,
+  );
+  useVoiceDub({
     player,
-    isPlaying,
+    segments: dubTranslation?.status === 'ready' ? dubTranslation.segments : null,
+    lang: dubLang,
+    enabled: wantDub,
   });
-  // A row that has not moved in ten minutes is not on its way — say so rather
-  // than spinning at someone indefinitely.
-  const dubHint = !wantDub || dub?.status === 'ready'
+  const dubHint = !wantDub || dubTranslation?.status === 'ready'
     ? null
-    : dub?.status === 'failed' || dubStalled
+    : dubTranslation?.status === 'failed'
     ? t('dub.unavailable')
     : t('dub.preparing');
 
-  // Nothing to dub into while captions sit on Original, so the toggle borrows
-  // the app's language — but only when it can be voiced and is not already
-  // what was spoken. An English viewer on an English video has nowhere to go,
-  // and the pill has to say so by dimming: switching on and then doing
-  // nothing, with no hint, is how this looked broken.
-  const autoDubLang = useMemo(() => {
-    if (targetLang !== 'original') return null;
-    const guess = dubLangFor(i18n.language);
-    return guess && guess !== sourceLang ? guess : null;
+  // Captions on a language pick that; captions on Original borrow the app's
+  // language. Either way it has to differ from what was spoken — an English
+  // viewer on an English video has nowhere to go, and the pill says so by
+  // dimming rather than switching on and doing nothing.
+  const nextDubLang = useMemo(() => {
+    const l = baseLang(targetLang !== 'original' ? targetLang : i18n.language);
+    return l && l !== sourceLang ? l : null;
   }, [targetLang, i18n.language, sourceLang]);
 
-  const dubPossible = !!player && (!!dubLang || !!autoDubLang);
+  const dubPossible = !!player && (dubOn || !!nextDubLang);
 
   const toggleDub = (next: boolean) => {
-    if (next && autoDubLang) {
-      setLang(autoDubLang);
-      setSubtitleLang(autoDubLang);
+    if (!next) {
+      setDubSettings({ on: false });
+      return;
     }
-    setDubOn(next);
-    setDubEnabled(next);
+    if (!nextDubLang) return;
+    setDubSettings({ on: true, lang: nextDubLang });
+    // On anyway — the transcript may arrive later, but a missing voice will
+    // not, and silence with no reason given reads as broken.
+    void findVoice(nextDubLang).then((voice) => {
+      if (voice === null) toastInfo(t('dub.noVoice'));
+    });
   };
 
   // Fixes other viewers have had accepted. Applied to the transcript's own
@@ -291,8 +299,8 @@ const CaptionOverlay: React.FC<Props> = ({
             </Pressable>
           </View>
 
-          {/* Audio: the original track, or the same lines spoken in the
-              caption language in the creator's cloned voice. */}
+          {/* Audio: the original track, or the same lines spoken by the
+              device's voice in the caption language. */}
           <View style={styles.audioRow}>
             <Text style={styles.audioLabel}>{t('dub.audio')}</Text>
             <View style={styles.audioPills}>
@@ -348,6 +356,8 @@ const CaptionOverlay: React.FC<Props> = ({
                 onPress={() => {
                   setLang(l.code);
                   setSubtitleLang(l.code);
+                  // A running dub follows the captions to the new language.
+                  if (dubOn && l.code !== 'original') setDubSettings({ lang: baseLang(l.code) });
                   if (!enabled) {
                     setEnabled(true);
                     setSubtitlesEnabled(true);

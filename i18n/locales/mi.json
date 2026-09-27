@@ -3492,7 +3492,12 @@
     "original": "Oro taketake",
     "dubbed": "Oro reo irirangi",
     "preparing": "Te whakarite i te oro e kiia nei ko...",
-    "unavailable": "E kore e wātea ana te oro o te kōpaki mō tēnei ataata."
+    "unavailable": "E kore e wātea ana te oro o te kōpaki mō tēnei ataata.",
+    "menuLabel": "Whakareo",
+    "menuDesc": "Whakarongo ki tēnei ataata i tō reo",
+    "menuOn": "Kei te kā · pātō mō te oro taketake",
+    "noTranscript": "Kāore anō he tuhinga mō tēnei ataata.",
+    "noVoice": "Kāore he reo i tō pūrere mō tēnei reo."
   },
   "stages": {
     "cancelConfirm": "Whakakorea “{{title}}”? Ka mutu te mahi o te hono.",

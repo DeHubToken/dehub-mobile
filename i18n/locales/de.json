@@ -3492,7 +3492,12 @@
     "original": "Original-Audio",
     "dubbed": "Synchronisiertes Audio",
     "preparing": "Synchronisiertes Audio wird vorbereitet...",
-    "unavailable": "Synchronisiertes Audio ist für dieses Video nicht verfügbar."
+    "unavailable": "Synchronisiertes Audio ist für dieses Video nicht verfügbar.",
+    "menuLabel": "Synchronisation",
+    "menuDesc": "Hör dir dieses Video in deiner Sprache an",
+    "menuOn": "An · tippen für den Originalton",
+    "noTranscript": "Für dieses Video gibt es noch kein Transkript.",
+    "noVoice": "Dein Gerät hat keine Stimme für diese Sprache."
   },
   "support": {
     "title": "Support",

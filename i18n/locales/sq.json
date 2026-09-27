@@ -3492,7 +3492,12 @@
     "original": "Orgjinali Gjerësia:",
     "dubbed": "Audio e quajtur",
     "preparing": "Duke përgatitur audion e quajtur...",
-    "unavailable": "Audio e quajtur nuk është e disponueshme për këtë video."
+    "unavailable": "Audio e quajtur nuk është e disponueshme për këtë video.",
+    "menuLabel": "Dublim",
+    "menuDesc": "Dëgjojeni këtë video në gjuhën tuaj",
+    "menuOn": "Aktiv · prekni për audion origjinale",
+    "noTranscript": "Kjo video nuk ka ende transkriptim.",
+    "noVoice": "Pajisja juaj nuk ka zë për këtë gjuhë."
   },
   "stages": {
     "cancelConfirm": "Ta anulosh “{{title}}”? Lidhja nuk do të funksionojë më.",

@@ -3753,7 +3753,12 @@
     "original": "Audio asal",
     "dubbed": "Audio bergelar",
     "preparing": "Menyediakan audio yang digelar...",
-    "unavailable": "Audio bergelar tidak tersedia untuk video ini."
+    "unavailable": "Audio bergelar tidak tersedia untuk video ini.",
+    "menuLabel": "Alih suara",
+    "menuDesc": "Dengar video ini dalam bahasa anda",
+    "menuOn": "Hidup · ketik untuk audio asal",
+    "noTranscript": "Video ini belum mempunyai transkrip.",
+    "noVoice": "Peranti anda tiada suara untuk bahasa ini."
   },
   "stages": {
     "cancelConfirm": "Batalkan \"{{title}}\"? Pautan berhenti berfungsi.",

@@ -3492,7 +3492,12 @@
     "original": "原始音頻",
     "dubbed": "配音為音頻",
     "preparing": "準備緊配音音頻⋯",
-    "unavailable": "呢段片冇配音音訊。"
+    "unavailable": "呢段片冇配音音訊。",
+    "menuLabel": "配音",
+    "menuDesc": "用你嘅語言聽呢段片",
+    "menuOn": "已開 · 㩒一下聽原聲",
+    "noTranscript": "呢段片仲未有文字稿。",
+    "noVoice": "你部機冇呢種語言嘅語音。"
   },
   "stages": {
     "cancelConfirm": "取消「{{title}}」？連結就用唔到喇。",

@@ -3492,7 +3492,12 @@
     "original": "Sauti na asali",
     "dubbed": "Sauti mai ban sha'awa",
     "preparing": "Shirya sautin da aka yi wa lakabi...",
-    "unavailable": "Dubbed audio ba samuwa ga wannan video."
+    "unavailable": "Dubbed audio ba samuwa ga wannan video.",
+    "menuLabel": "Fassarar murya",
+    "menuDesc": "Saurari wannan bidiyon da harshenka",
+    "menuOn": "A kunne · danna don ainihin sauti",
+    "noTranscript": "Wannan bidiyon bai da rubutaccen bayani tukuna.",
+    "noVoice": "Na'urarka ba ta da murya don wannan harshe."
   },
   "stages": {
     "cancelConfirm": "A soke “{{title}}”? Hanyar haɗin ba za ta ƙara aiki ba.",

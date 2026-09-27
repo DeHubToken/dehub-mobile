@@ -3525,7 +3525,12 @@
     "original": "Oorspronklike klank",
     "dubbed": "Dubbele klank",
     "preparing": "Voorbereiding van benoemde oudio...",
-    "unavailable": "Dubbele klank is nie beskikbaar vir hierdie video nie."
+    "unavailable": "Dubbele klank is nie beskikbaar vir hierdie video nie.",
+    "menuLabel": "Oorklank",
+    "menuDesc": "Hoor hierdie video in jou taal",
+    "menuOn": "Aan · tik vir die oorspronklike klank",
+    "noTranscript": "Hierdie video het nog geen transkripsie nie.",
+    "noVoice": "Jou toestel het geen stem vir hierdie taal nie."
   },
   "stages": {
     "cancelConfirm": "Kanselleer \"{{title}}\"? Die skakel hou op werk.",

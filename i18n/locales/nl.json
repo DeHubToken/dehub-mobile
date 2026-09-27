@@ -3682,7 +3682,12 @@
     "original": "Origineel geluid",
     "dubbed": "Gesynchroniseerde audio",
     "preparing": "Voorbereiden van nagesynchroniseerde audio...",
-    "unavailable": "Gesynchroniseerde audio is niet beschikbaar voor deze video."
+    "unavailable": "Gesynchroniseerde audio is niet beschikbaar voor deze video.",
+    "menuLabel": "Nasynchronisatie",
+    "menuDesc": "Beluister deze video in je eigen taal",
+    "menuOn": "Aan · tik voor het originele geluid",
+    "noTranscript": "Deze video heeft nog geen transcript.",
+    "noVoice": "Je apparaat heeft geen stem voor deze taal."
   },
   "stages": {
     "cancelConfirm": "\"{{title}}\" annuleren? De link werkt niet meer.",

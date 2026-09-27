@@ -1894,6 +1894,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           }
           onTranslatePress={handleTranslate}
           onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
+          canDub={isVideo && !isLive}
           // Also on the action bar as icons. Both are wanted: the icon is for
           // the thumb, the labelled row is for anyone who opens the menu
           // looking for the action by name.
