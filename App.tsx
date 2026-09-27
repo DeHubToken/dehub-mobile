@@ -237,7 +237,7 @@ export default function App() {
 const ThemedRootView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const style = useThemeRootStyle();
   return (
-    <GestureHandlerRootView className="flex-1 bg-theme-background" style={style}>
+    <GestureHandlerRootView className="bg-theme-background" style={[{ flex: 1 }, style]}>
       {children}
     </GestureHandlerRootView>
   );
