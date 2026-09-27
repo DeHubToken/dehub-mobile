@@ -7207,5 +7207,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "প্যাক",
+    "subtitle": "কাস্টম ইমোজি, স্টিকার আর জিআইএফ যা ব্যাজ হোল্ডাররা বানাইসে। যেকোনো প্যাক আপনার পিকারে যোগ করুন আর চ্যাট, কমেন্ট আর রিঅ্যাকশনে ব্যবহার করুন।",
+    "tabStickers": "স্টিকার",
+    "tab": {
+      "emoji": "ইমোজি",
+      "sticker": "স্টিকার",
+      "gif": "জিআইএফ"
+    },
+    "kind": {
+      "emoji": "ইমোজি প্যাক",
+      "sticker": "স্টিকার প্যাক",
+      "gif": "জিআইএফ প্যাক"
+    },
+    "manage": "প্যাক বানান বা যোগ করুন",
+    "browse": "প্যাক ব্রাউজ করুন",
+    "browseCreate": "প্যাক খুঁজুন বা বানান",
+    "emptyStickers": "এখনো কোনো স্টিকার প্যাক নাই। ব্যাজ দিয়ে একটা বানান, অথবা অন্য কারোটা যোগ করুন।",
+    "emptyGifs": "এখনো কোনো জিআইএফ প্যাক নাই।",
+    "lockedTitle": "প্যাক ব্যাজ হোল্ডারদের জন্য",
+    "lockedBody": "নিজের ইমোজি, স্টিকার আর জিআইএফ প্যাক বানানোর জন্য ডিএইচবি স্টেক করে ব্যাজ নিন। হাই টিয়ারে বেশি প্যাক আর প্রতি প্যাকে বেশি জায়গা পাওয়া যায়।",
+    "getBadge": "ব্যাজ নিন",
+    "pack": "প্যাক",
+    "newPackOption": "+ নতুন প্যাক",
+    "packNamePlaceholder": "প্যাকের নাম",
+    "yourTier": "{{tier}} ব্যাজ: প্রতি ধরনের {{packs}} প্যাক, প্রতি প্যাকে {{emoji}} ইমোজি, {{stickers}} স্টিকার অথবা {{gifs}} জিআইএফ পর্যন্ত।",
+    "tierTable": "প্রতিটা ব্যাজ টিয়ারে কী কী পাওয়া যায়",
+    "tierTableHint": "প্যাক প্রতি ধরনের জন্য। অন্য কলামগুলো হলো প্রতি প্যাকে কতগুলো আইটেম ধরে। আপনার টিয়ার কমলে, আপনার প্যাকগুলো থাকবে কিন্তু নতুন লিমিটের বেশি যোগ করতে পারবেন না।",
+    "col": {
+      "tier": "টিয়ার",
+      "packs": "প্যাক",
+      "emoji": "ইমোজি",
+      "stickers": "স্টিকার",
+      "gifs": "GIF"
+    },
+    "signInToCreate": "প্যাক বানানির লাই Login কর",
+    "signInToAdd": "যোগ করির লাই Login কর",
+    "yourPacks": "তোর প্যাক",
+    "addedPacks": "তোর যোগ করা প্যাক",
+    "popular": "বেশি যোগ করা",
+    "noneYet": "এখুনো কোন প্যাক নাই।",
+    "createPack": "বানান",
+    "itemCount_one": "{{count}} টা",
+    "itemCount_other": "{{count}} টা",
+    "saveCount_one": "{{count}} যোগ",
+    "saveCount_other": "{{count}} যোগ",
+    "by": "{{owner}} এর",
+    "notFound": "এই প্যাক নাই বা ডিলিট অই গেয়ি।",
+    "addToPicker": "আমার picker এ যোগ কর",
+    "removeFromPicker": "আমার picker থেইনা সরা",
+    "addedToPicker": "প্যাক তোর picker এ যোগ অই গেয়ি",
+    "removedFromPicker": "প্যাক তোর picker থেইনা সরা অই গেয়ি",
+    "copyLink": "Link কপি কর",
+    "linkCopied": "Link কপি অই গেয়ি",
+    "rename": "নাম বদল কর",
+    "save": "সেভ কর",
+    "deletePack": "প্যাক ডিলিট কর",
+    "deleteConfirm": "{{name}} ডিলিট করবি? এর ভিতরের সব সরা অই যাইবো।",
+    "addItems": "এই প্যাকে যোগ কর",
+    "shortcodePlaceholder": "ইমোজির নাম (ইচ্ছা)",
+    "stickerEmojiPlaceholder": "এই স্টিকার কোন ইমোজির লাই (ইচ্ছা)",
+    "linkPlaceholder": "Image বা GIF link পেস্ট কর",
+    "addFromLink": "Link থেইনা যোগ কর",
+    "uploadFiles": "Image আপলোড কর",
+    "uploadHint": "PNG, GIF, WebP বা JPEG, প্রতিটা ২ MB পর্যন্ত। একসাথে কয়েকটা বাছতে পারো।",
+    "uploadHintGif": "GIF, PNG, WebP বা JPEG, প্রতিটা ৮ MB পর্যন্ত। একসাথে কয়েকটা বাছতে পারো।",
+    "itemsAdded": "{{count}} যোগ অইছে ({{skipped}} বাদ দিছি)",
+    "removeItem": "মুছে ফেলুন",
+    "packEmpty": "এই প্যাকে এখনো কিছু নাই।",
+    "errors": {
+      "noBadge": "প্যাক বানাইতে স্ট্যাকিং ব্যাজ লাগিবো।",
+      "packLimit": "এই ধরনের প্যাকের জন্য তোমার ব্যাজ টায়ারে যতগুলা স্লট আছে, সবগুলা ব্যবহার করিলাইছো।",
+      "itemLimit": "তোমার ব্যাজ টায়ারের জন্য এই প্যাকটা ফুল।",
+      "fileType": "PNG, GIF, WebP বা JPEG ছবি ব্যবহার করো",
+      "fileSize": "ফাইল {{mb}} MB বা তার কম অইবো",
+      "generic": "কিছু একটা ভুল অইছে। আবার চেষ্টা করো।"
+    }
   }
 }

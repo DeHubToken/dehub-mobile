@@ -6719,5 +6719,83 @@
         "title": "Glossary"
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Packs",
+    "subtitle": "Custom emoji, sticker and GIF weh badge holders make. Add any pack for your picker and use am for chat, comment and reaction.",
+    "tabStickers": "Stickers",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Stickers",
+      "gif": "GIFs"
+    },
+    "kind": {
+      "emoji": "Emoji pack",
+      "sticker": "Sticker pack",
+      "gif": "GIF pack"
+    },
+    "manage": "Make or add packs",
+    "browse": "Browse packs",
+    "browseCreate": "Find or make packs",
+    "emptyStickers": "No sticker pack yet. Make one if you get badge, or add another man yi own.",
+    "emptyGifs": "No GIF pack yet.",
+    "lockedTitle": "Packs na for badge holders",
+    "lockedBody": "Stake DHB for get badge so you fit make your own emoji, sticker and GIF packs. Higher tier di get more packs and more place for each one.",
+    "getBadge": "Get a badge",
+    "pack": "Pack",
+    "newPackOption": "+ New pack",
+    "packNamePlaceholder": "Pack name",
+    "yourTier": "{{tier}} badge: {{packs}} packs for each kind, reach {{emoji}} emoji, {{stickers}} stickers or {{gifs}} GIFs for each one.",
+    "tierTable": "Weti each badge tier di get",
+    "tierTableHint": "Packs na for each kind. The other columns na how many items fit enter one pack. If your tier go down, your packs go still dey but you no fit add pass the new limit.",
+    "col": {
+      "tier": "Tier",
+      "packs": "Packs",
+      "emoji": "Emoji",
+      "stickers": "Stickers",
+      "gifs": "GIFs"
+    },
+    "signInToCreate": "Sign in for make packs",
+    "signInToAdd": "Sign in to add",
+    "yourPacks": "Your packs",
+    "addedPacks": "Packs weh you add",
+    "popular": "Most added",
+    "noneYet": "No pack dey here yet.",
+    "createPack": "Create",
+    "itemCount_one": "{{count}} item",
+    "itemCount_other": "{{count}} items",
+    "saveCount_one": "{{count}} add",
+    "saveCount_other": "{{count}} adds",
+    "by": "by {{owner}}",
+    "notFound": "This pack no dey or dem don delete am.",
+    "addToPicker": "Add to my picker",
+    "removeFromPicker": "Comot am for my picker",
+    "addedToPicker": "Pack don enter your picker",
+    "removedFromPicker": "Pack don comot for your picker",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied",
+    "rename": "Rename",
+    "save": "Save",
+    "deletePack": "Delete pack",
+    "deleteConfirm": "Delete {{name}}? All thing weh e dey inside go comot.",
+    "addItems": "Add for this pack",
+    "shortcodePlaceholder": "name for the emoji (if you want)",
+    "stickerEmojiPlaceholder": "emoji weh this sticker mean (if you want)",
+    "linkPlaceholder": "Paste picture or GIF link",
+    "addFromLink": "Add from link",
+    "uploadFiles": "Upload images",
+    "uploadHint": "PNG, GIF, WebP or JPEG, each one reach 2 MB. You fit choose plenty one time.",
+    "uploadHintGif": "GIF, PNG, WebP or JPEG, each one reach 8 MB. You fit choose plenty one time.",
+    "itemsAdded": "Added {{count}} ({{skipped}} skipped)",
+    "removeItem": "Remove",
+    "packEmpty": "Nothing dey for this pack yet.",
+    "errors": {
+      "noBadge": "You need staking badge for make packs.",
+      "packLimit": "You don use all the pack place weh your badge tier allow for this kind.",
+      "itemLimit": "This pack don full for your badge tier.",
+      "fileType": "Use PNG, GIF, WebP or JPEG picture",
+      "fileSize": "File no fit pass {{mb}} MB",
+      "generic": "Something went wrong. Try again."
+    }
   }
 }

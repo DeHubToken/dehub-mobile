@@ -7274,5 +7274,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Pacchetti",
+    "subtitle": "Emoji, sticker e GIF personalizzati creati dai titolari di badge. Aggiungi qualsiasi pacchetto al tuo selettore e usalo in chat, commenti e reazioni.",
+    "tabStickers": "Sticker",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Sticker",
+      "gif": "GIF"
+    },
+    "kind": {
+      "emoji": "Pacchetto emoji",
+      "sticker": "Pacchetto sticker",
+      "gif": "Pacchetto GIF"
+    },
+    "manage": "Crea o aggiungi pacchetti",
+    "browse": "Sfoglia pacchetti",
+    "browseCreate": "Trova o crea pacchetti",
+    "emptyStickers": "Nessun pacchetto sticker ancora. Creane uno con un badge, o aggiungi quello di qualcun altro.",
+    "emptyGifs": "Nessun pacchetto GIF ancora.",
+    "lockedTitle": "I pacchetti sono per i titolari di badge",
+    "lockedBody": "Metti in stake DHB per ottenere un badge e creare i tuoi pacchetti di emoji, sticker e GIF. I livelli più alti ottengono più pacchetti e più spazio in ciascuno.",
+    "getBadge": "Ottieni un badge",
+    "pack": "Pacchetto",
+    "newPackOption": "+ Nuovo pacchetto",
+    "packNamePlaceholder": "Nome pacchetto",
+    "yourTier": "Badge {{tier}}: {{packs}} pacchetti di ogni tipo, fino a {{emoji}} emoji, {{stickers}} sticker o {{gifs}} GIF in ciascuno.",
+    "tierTable": "Cosa ottiene ogni livello di badge",
+    "tierTableHint": "I pacchetti sono per tipo. Le altre colonne indicano quanti elementi entrano in un pacchetto. Se il tuo livello scende, i tuoi pacchetti rimangono ma non puoi aggiungere oltre i nuovi limiti.",
+    "col": {
+      "tier": "Livello",
+      "packs": "Pacchetti",
+      "emoji": "Emoji",
+      "stickers": "Sticker",
+      "gifs": "GIF"
+    },
+    "signInToCreate": "Accedi per creare pacchetti",
+    "signInToAdd": "Accedi per aggiungere",
+    "yourPacks": "I tuoi pacchetti",
+    "addedPacks": "Pacchetti che hai aggiunto",
+    "popular": "Più aggiunti",
+    "noneYet": "Nessun pacchetto qui ancora.",
+    "createPack": "Crea",
+    "itemCount_one": "{{count}} elemento",
+    "itemCount_other": "{{count}} elementi",
+    "saveCount_one": "{{count}} aggiungi",
+    "saveCount_other": "{{count}} aggiunte",
+    "by": "di {{owner}}",
+    "notFound": "Questo pacchetto non esiste o è stato eliminato.",
+    "addToPicker": "Aggiungi al mio selezionatore",
+    "removeFromPicker": "Rimuovi dal mio selezionatore",
+    "addedToPicker": "Pacchetto aggiunto al tuo selezionatore",
+    "removedFromPicker": "Pacchetto rimosso dal tuo selezionatore",
+    "copyLink": "Copia link",
+    "linkCopied": "Link copiato",
+    "rename": "Rinomina",
+    "save": "Salva",
+    "deletePack": "Elimina pacchetto",
+    "deleteConfirm": "Eliminare {{name}}? Tutto ciò che contiene verrà rimosso.",
+    "addItems": "Aggiungi a questo pacchetto",
+    "shortcodePlaceholder": "nome per l'emoji (facoltativo)",
+    "stickerEmojiPlaceholder": "emoji che questo adesivo rappresenta (facoltativo)",
+    "linkPlaceholder": "Incolla un link di immagine o GIF",
+    "addFromLink": "Aggiungi da link",
+    "uploadFiles": "Carica immagini",
+    "uploadHint": "PNG, GIF, WebP o JPEG fino a 2 MB ciascuno. Puoi sceglierne diversi contemporaneamente.",
+    "uploadHintGif": "GIF, PNG, WebP o JPEG fino a 8 MB ciascuno. Puoi sceglierne diversi contemporaneamente.",
+    "itemsAdded": "Aggiunto {{count}} ({{skipped}} saltato)",
+    "removeItem": "Rimuovi",
+    "packEmpty": "Non c'è ancora niente in questo pacchetto.",
+    "errors": {
+      "noBadge": "Per creare i pacchetti è necessario un badge di staking.",
+      "packLimit": "Hai utilizzato tutti gli slot del pacchetto consentiti dal tuo livello di badge per questo tipo.",
+      "itemLimit": "Questo pacchetto è completo per il tuo livello di badge.",
+      "fileType": "Usa un'immagine PNG, GIF, WebP o JPEG",
+      "fileSize": "I file devono avere una dimensione pari o inferiore a {{mb}} MB",
+      "generic": "Si è verificato un errore. Riprova."
+    }
   }
 }

@@ -7278,5 +7278,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Packs",
+    "subtitle": "Emojis, stickers et GIFs personnalisés créés par les détenteurs de badges. Ajoutez n'importe quel pack à votre sélecteur et utilisez-le dans les chats, les commentaires et les réactions.",
+    "tabStickers": "Stickers",
+    "tab": {
+      "emoji": "Emojis",
+      "sticker": "Stickers",
+      "gif": "GIFs"
+    },
+    "kind": {
+      "emoji": "Pack d'emojis",
+      "sticker": "Pack de stickers",
+      "gif": "Pack de GIFs"
+    },
+    "manage": "Créer ou ajouter des packs",
+    "browse": "Parcourir les packs",
+    "browseCreate": "Trouver ou créer des packs",
+    "emptyStickers": "Pas encore de packs de stickers. Créez-en un avec un badge, ou ajoutez celui de quelqu'un d'autre.",
+    "emptyGifs": "Pas encore de packs de GIFs.",
+    "lockedTitle": "Les packs sont réservés aux détenteurs de badges",
+    "lockedBody": "Staké DHB pour obtenir un badge et créer vos propres packs d'emojis, de stickers et de GIFs. Les niveaux supérieurs obtiennent plus de packs et plus d'espace dans chacun.",
+    "getBadge": "Obtenir un badge",
+    "pack": "Pack",
+    "newPackOption": "+ Nouveau pack",
+    "packNamePlaceholder": "Nom du pack",
+    "yourTier": "Badge {{tier}} : {{packs}} packs de chaque type, jusqu'à {{emoji}} emojis, {{stickers}} stickers ou {{gifs}} GIFs dans chacun.",
+    "tierTable": "Ce que chaque niveau de badge obtient",
+    "tierTableHint": "Les packs sont par type. Les autres colonnes indiquent le nombre d'éléments qui tiennent dans un pack. Si votre niveau baisse, vos packs restent mais vous ne pouvez pas dépasser les nouvelles limites.",
+    "col": {
+      "tier": "Niveau",
+      "packs": "Packs",
+      "emoji": "Emojis",
+      "stickers": "Stickers",
+      "gifs": "GIFs"
+    },
+    "signInToCreate": "Se connecter pour créer des packs",
+    "signInToAdd": "Se connecter pour ajouter",
+    "yourPacks": "Vos packs",
+    "addedPacks": "Packs que vous avez ajoutés",
+    "popular": "Les plus ajoutés",
+    "noneYet": "Aucun pack ici pour le moment.",
+    "createPack": "Créer",
+    "itemCount_one": "{{count}} élément",
+    "itemCount_other": "{{count}} éléments",
+    "saveCount_one": "{{count}} ajouter",
+    "saveCount_other": "{{count}} ajouts",
+    "by": "par {{owner}}",
+    "notFound": "Ce pack n'existe pas ou a été supprimé.",
+    "addToPicker": "Ajouter à mon sélecteur",
+    "removeFromPicker": "Retirer de mon sélecteur",
+    "addedToPicker": "Pack ajouté à votre sélecteur",
+    "removedFromPicker": "Pack retiré de votre sélecteur",
+    "copyLink": "Copier le lien",
+    "linkCopied": "Lien copié",
+    "rename": "Renommer",
+    "save": "Enregistrer",
+    "deletePack": "Supprimer le pack",
+    "deleteConfirm": "Supprimer {{name}} ? Tout son contenu sera supprimé.",
+    "addItems": "Ajouter à ce pack",
+    "shortcodePlaceholder": "nom de l'emoji (facultatif)",
+    "stickerEmojiPlaceholder": "emoji que ce sticker représente (facultatif)",
+    "linkPlaceholder": "Coller un lien d'image ou de GIF",
+    "addFromLink": "Ajouter depuis un lien",
+    "uploadFiles": "Télécharger des images",
+    "uploadHint": "PNG, GIF, WebP ou JPEG jusqu'à 2 Mo chacun. Vous pouvez en choisir plusieurs à la fois.",
+    "uploadHintGif": "GIF, PNG, WebP ou JPEG jusqu'à 8 Mo chacun. Vous pouvez en choisir plusieurs à la fois.",
+    "itemsAdded": "Ajouté {{count}} ({{skipped}} ignoré)",
+    "removeItem": "Supprimer",
+    "packEmpty": "Rien dans ce pack pour le moment.",
+    "errors": {
+      "noBadge": "Vous avez besoin d'un badge de jalonnement pour créer des packs.",
+      "packLimit": "Vous avez utilisé tous les emplacements de pack que votre niveau de badge permet pour ce type.",
+      "itemLimit": "Ce pack est complet pour votre niveau de badge.",
+      "fileType": "Utiliser une image PNG, GIF, WebP ou JPEG",
+      "fileSize": "Les fichiers doivent être de {{mb}} Mo ou moins",
+      "generic": "Une erreur s'est produite. Réessayez."
+    }
   }
 }

@@ -7305,5 +7305,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Amaphakethe",
+    "subtitle": "Ama-emoji, izitika nama-GIF enziwe abanikazi bamabheji. Faka noma yiliphi iphakethe kumkhethi wakho bese ulisebenzisa ezingxoxweni, kumazwana nokusabela.",
+    "tabStickers": "Izitika",
+    "tab": {
+      "emoji": "Ama-emoji",
+      "sticker": "Izitika",
+      "gif": "Ama-GIF"
+    },
+    "kind": {
+      "emoji": "Iphakethe lama-emoji",
+      "sticker": "Iphakethe lezitika",
+      "gif": "Iphakethe lama-GIF"
+    },
+    "manage": "Dala noma faka amaphakethe",
+    "browse": "Dlulisa amehlo emaphaketheni",
+    "browseCreate": "Thola noma dala amaphakethe",
+    "emptyStickers": "Awekho amaphakethe ezitika okwamanje. Yidale nge-badge, noma faka eyomunye umuntu.",
+    "emptyGifs": "Awekho amaphakethe ama-GIF okwamanje.",
+    "lockedTitle": "Amaphakethe angawabanikazi bamabheji",
+    "lockedBody": "Beka i-DHB ukuze uthole ibheji ukuze udale amaphakethe akho ama-emoji, izitika nama-GIF. Izinga eliphezulu lithola amaphakethe engeziwe nendawo eyengeziwe kuwo wonke.",
+    "getBadge": "Thola ibheji",
+    "pack": "Iphakethe",
+    "newPackOption": "+ Iphakethe elisha",
+    "packNamePlaceholder": "Igama lephakethe",
+    "yourTier": "Ibheji ye-{{tier}}: amaphakethe angu-{{packs}} ohlobo ngalunye, kufika kuma-emoji angu-{{emoji}}, izitika ezingungu-{{stickers}} noma ama-GIF angu-{{gifs}} kuwo wonke.",
+    "tierTable": "Okutholwa yilokho nalokho izinga lebheji",
+    "tierTableHint": "Amaphakethe angawohlobo ngalunye. Amakholomu amanye achaza ukuthi zingaki izinto ezilingana ephaketheni elilodwa. Uma izinga lakho lehla, amaphakethe akho ahlala khona kodwa awukwazi ukufaka ngaphezu kwemikhawulo emisha.",
+    "col": {
+      "tier": "Izinga",
+      "packs": "Amaphakethe",
+      "emoji": "Ama-emoji",
+      "stickers": "Izitika",
+      "gifs": "Ama-GIF"
+    },
+    "signInToCreate": "Ngena ukuze udale amaphakethe",
+    "signInToAdd": "Ngena ukuze ungeze",
+    "yourPacks": "Amaphakethe akho",
+    "addedPacks": "Amaphakethe owangezile",
+    "popular": "Engezwe kakhulu",
+    "noneYet": "Amaphakethe akekho lapha okwamanje.",
+    "createPack": "Dala",
+    "itemCount_one": "Into eyi-{{count}}",
+    "itemCount_other": "Izinto ezingama-{{count}}",
+    "saveCount_one": "Engeza i-{{count}}",
+    "saveCount_other": "Ama-{{count}} engeziwe",
+    "by": "ngu-{{owner}}",
+    "notFound": "Leli phakethe alikhona noma lisusiwe.",
+    "addToPicker": "Engeza ku-picker yami",
+    "removeFromPicker": "Susa ku-picker yami",
+    "addedToPicker": "Iphakethe lengeziwe ku-picker yakho",
+    "removedFromPicker": "Iphakethe lisusiwe ku-picker yakho",
+    "copyLink": "Kopisha isixhumanisi",
+    "linkCopied": "Isixhumanisi sikopishiwe",
+    "rename": "Qamba kabusha",
+    "save": "Londoloza",
+    "deletePack": "Sula iphakethe",
+    "deleteConfirm": "Sula i-{{name}}? Konke okukulo kuzosuswa.",
+    "addItems": "Engeza kuleli phakethe",
+    "shortcodePlaceholder": "igama le-emoji (uyazikhethela)",
+    "stickerEmojiPlaceholder": "i-emoji leli sticker limele yona (uyazikhethela)",
+    "linkPlaceholder": "Namathisela isixhumanisi sesithombe noma se-GIF",
+    "addFromLink": "Engeza kusixhumanisi",
+    "uploadFiles": "Layisha izithombe",
+    "uploadHint": "I-PNG, i-GIF, i-WebP noma i-JPEG kuze kufike ku-2 MB ngamunye. Ungakhetha eziningana ngesikhathi esisodwa.",
+    "uploadHintGif": "I-GIF, i-PNG, i-WebP noma i-JPEG kuze kufike ku-8 MB ngamunye. Ungakhetha eziningana ngesikhathi esisodwa.",
+    "itemsAdded": "Kufakiwe {{count}} ({{skipped}} kweqiwe)",
+    "removeItem": "Susa",
+    "packEmpty": "Akukho lutho kuleli phakethe okwamanje.",
+    "errors": {
+      "noBadge": "Udinga ibheji lokukhangisa ukuze usungule amaphakethe.",
+      "packLimit": "Usebenzise zonke izikhala zephakethe lebheji lakho elivumela lolu hlobo.",
+      "itemLimit": "Leli phakethe ligcwele ibanga lebheji lakho.",
+      "fileType": "Sebenzisa isithombe se-PNG, se-GIF, se-WebP noma se-JPEG",
+      "fileSize": "Amafayela kufanele abe {{mb}} MB noma abe mancane",
+      "generic": "Kukhona okungahambanga kahle. Zama futhi."
+    }
   }
 }

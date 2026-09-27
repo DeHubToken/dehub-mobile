@@ -7274,5 +7274,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Paketler",
+    "subtitle": "Rozet sahipleri tarafından oluşturulan özel emojiler, çıkartmalar ve GIF'ler. Herhangi bir paketi seçicinize ekleyin ve sohbetlerde, yorumlarda ve tepkilerde kullanın.",
+    "tabStickers": "Çıkartmalar",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Çıkartmalar",
+      "gif": "GIF'ler"
+    },
+    "kind": {
+      "emoji": "Emoji paketi",
+      "sticker": "Çıkartma paketi",
+      "gif": "GIF paketi"
+    },
+    "manage": "Paket oluştur veya ekle",
+    "browse": "Paketlere göz at",
+    "browseCreate": "Paket bul veya oluştur",
+    "emptyStickers": "Henüz çıkartma paketi yok. Bir rozetle oluşturun veya başkasınınkini ekleyin.",
+    "emptyGifs": "Henüz GIF paketi yok.",
+    "lockedTitle": "Paketler rozet sahipleri içindir",
+    "lockedBody": "Kendi emoji, çıkartma ve GIF paketlerinizi oluşturmak için rozet almak üzere DHB stake edin. Daha yüksek seviyeler daha fazla paket ve her birinde daha fazla alan elde eder.",
+    "getBadge": "Rozet al",
+    "pack": "Paket",
+    "newPackOption": "+ Yeni paket",
+    "packNamePlaceholder": "Paket adı",
+    "yourTier": "{{tier}} rozeti: her türden {{packs}} paket, her birinde en fazla {{emoji}} emoji, {{stickers}} çıkartma veya {{gifs}} GIF.",
+    "tierTable": "Her rozet seviyesi ne kazanır",
+    "tierTableHint": "Paketler tür başına geçerlidir. Diğer sütunlar, bir pakete kaç öğenin sığdığını gösterir. Seviyeniz düşerse, paketleriniz kalır ancak yeni limitlerin ötesine ekleme yapamazsınız.",
+    "col": {
+      "tier": "Seviye",
+      "packs": "Paketler",
+      "emoji": "Emoji",
+      "stickers": "Çıkartmalar",
+      "gifs": "GIF'ler"
+    },
+    "signInToCreate": "Paket oluşturmak için giriş yapın",
+    "signInToAdd": "Eklemek için giriş yapın",
+    "yourPacks": "Paketleriniz",
+    "addedPacks": "Eklediğiniz paketler",
+    "popular": "En çok eklenenler",
+    "noneYet": "Henüz paket yok.",
+    "createPack": "Oluştur",
+    "itemCount_one": "{{count}} öğe",
+    "itemCount_other": "{{count}} öğe",
+    "saveCount_one": "{{count}} ekle",
+    "saveCount_other": "{{count}} eklemeler",
+    "by": "{{owner}} tarafından",
+    "notFound": "Bu paket mevcut değil veya silinmiş.",
+    "addToPicker": "Seçicime ekle",
+    "removeFromPicker": "Seçicimden kaldır",
+    "addedToPicker": "Paket seçicinize eklendi",
+    "removedFromPicker": "Paket seçicinizden kaldırıldı",
+    "copyLink": "Bağlantıyı kopyala",
+    "linkCopied": "Bağlantı kopyalandı",
+    "rename": "Yeniden adlandır",
+    "save": "Kaydet",
+    "deletePack": "Paketi sil",
+    "deleteConfirm": "{{name}} silinsin mi? İçindeki her şey kaldırılacak.",
+    "addItems": "Bu pakete ekle",
+    "shortcodePlaceholder": "emojinin adı (isteğe bağlı)",
+    "stickerEmojiPlaceholder": "bu etiketin temsil ettiği emoji (isteğe bağlı)",
+    "linkPlaceholder": "Bir resim veya GIF bağlantısı yapıştırın",
+    "addFromLink": "Bağlantıdan ekle",
+    "uploadFiles": "Resim yükle",
+    "uploadHint": "Her biri 2 MB'a kadar PNG, GIF, WebP veya JPEG. Aynı anda birkaç tane seçebilirsiniz.",
+    "uploadHintGif": "Her biri 8 MB'a kadar GIF, PNG, WebP veya JPEG. Aynı anda birkaç tane seçebilirsiniz.",
+    "itemsAdded": "{{count}} eklendi ({{skipped}} atlandı)",
+    "removeItem": "Kaldır",
+    "packEmpty": "Bu pakette henüz bir şey yok.",
+    "errors": {
+      "noBadge": "Paket oluşturmak için bir staking rozetine ihtiyacın var.",
+      "packLimit": "Rozet seviyenin bu tür için izin verdiği tüm paket yuvalarını kullandın.",
+      "itemLimit": "Bu paket, rozet seviyen için dolu.",
+      "fileType": "PNG, GIF, WebP veya JPEG görüntüsü kullanın",
+      "fileSize": "Dosyalar {{mb}} MB veya daha küçük olmalıdır",
+      "generic": "Bir hata oluştu. Tekrar deneyin."
+    }
   }
 }

@@ -7274,5 +7274,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Pakuotės",
+    "subtitle": "Badge turėtojų sukurti pasirinktiniai jaustukai, lipdukai ir GIF. Pridėkite bet kurią pakuotę prie savo rinkiklio ir naudokite ją pokalbiuose, komentaruose ir reakcijose.",
+    "tabStickers": "Lipdukai",
+    "tab": {
+      "emoji": "Jaustukai",
+      "sticker": "Lipdukai",
+      "gif": "GIF"
+    },
+    "kind": {
+      "emoji": "Jaustukų pakuotė",
+      "sticker": "Lipdukų pakuotė",
+      "gif": "GIF pakuotė"
+    },
+    "manage": "Kurti arba pridėti pakuotes",
+    "browse": "Naršyti pakuotes",
+    "browseCreate": "Rasti arba kurti pakuotes",
+    "emptyStickers": "Dar nėra lipdukų pakuočių. Sukurkite vieną su badge arba pridėkite kito asmens.",
+    "emptyGifs": "Dar nėra GIF pakuočių.",
+    "lockedTitle": "Pakuotės yra badge turėtojams",
+    "lockedBody": "Statykite DHB, kad gautumėte badge ir sukurtumėte savo jaustukų, lipdukų ir GIF pakuotes. Aukštesni lygiai gauna daugiau pakuočių ir daugiau vietos kiekvienoje.",
+    "getBadge": "Gauti badge",
+    "pack": "Pakuotė",
+    "newPackOption": "+ Nauja pakuotė",
+    "packNamePlaceholder": "Pakuotės pavadinimas",
+    "yourTier": "{{tier}} badge: {{packs}} pakuotės kiekvieno tipo, iki {{emoji}} jaustukų, {{stickers}} lipdukų arba {{gifs}} GIF kiekvienoje.",
+    "tierTable": "Ką gauna kiekvienas badge lygis",
+    "tierTableHint": "Pakuotės yra pagal tipą. Kiti stulpeliai rodo, kiek elementų telpa vienoje pakuotėje. Jei jūsų lygis sumažėja, jūsų pakuotės lieka, bet negalėsite pridėti viršijant naujus limitus.",
+    "col": {
+      "tier": "Lygis",
+      "packs": "Pakuotės",
+      "emoji": "Jaustukai",
+      "stickers": "Lipdukai",
+      "gifs": "GIF"
+    },
+    "signInToCreate": "Prisijunkite, kad sukurtumėte pakuotes",
+    "signInToAdd": "Prisijunkite, kad pridėtumėte",
+    "yourPacks": "Jūsų pakuotės",
+    "addedPacks": "Pakuotės, kurias pridėjote",
+    "popular": "Dažniausiai pridedamos",
+    "noneYet": "Čia dar nėra pakuočių.",
+    "createPack": "Sukurti",
+    "itemCount_one": "{{count}} elementas",
+    "itemCount_other": "{{count}} elementai",
+    "saveCount_one": "{{count}} pridėti",
+    "saveCount_other": "{{count}} pridėjimai",
+    "by": "pagal {{owner}}",
+    "notFound": "Šios pakuotės nėra arba ji buvo ištrinta.",
+    "addToPicker": "Pridėti prie mano rinkinio",
+    "removeFromPicker": "Pašalinti iš mano rinkinio",
+    "addedToPicker": "Pakuotė pridėta prie jūsų rinkinio",
+    "removedFromPicker": "Pakuotė pašalinta iš jūsų rinkinio",
+    "copyLink": "Nukopijuoti nuorodą",
+    "linkCopied": "Nuoroda nukopijuota",
+    "rename": "Pervardyti",
+    "save": "Išsaugoti",
+    "deletePack": "Ištrinti pakuotę",
+    "deleteConfirm": "Ištrinti {{name}}? Viskas joje bus pašalinta.",
+    "addItems": "Pridėti prie šios pakuotės",
+    "shortcodePlaceholder": "emodži pavadinimas (pasirinktinai)",
+    "stickerEmojiPlaceholder": "emodži, kurį šis lipdukas atstovauja (pasirinktinai)",
+    "linkPlaceholder": "Įklijuokite paveikslėlio ar GIF nuorodą",
+    "addFromLink": "Pridėti iš nuorodos",
+    "uploadFiles": "Įkelti paveikslėlius",
+    "uploadHint": "PNG, GIF, WebP arba JPEG iki 2 MB kiekvienam. Galite pasirinkti kelis iš karto.",
+    "uploadHintGif": "GIF, PNG, WebP arba JPEG iki 8 MB kiekvienam. Galite pasirinkti kelis iš karto.",
+    "itemsAdded": "Pridėta {{count}} ({{skipped}} praleista)",
+    "removeItem": "Šalinti",
+    "packEmpty": "Šiame pakete dar nieko nėra.",
+    "errors": {
+      "noBadge": "Norint sukurti paketus, reikia ženklelio.",
+      "packLimit": "Panaudojai visus pakuočių lizdus, kuriuos tavo ženklelio lygis leidžia šiam tipui.",
+      "itemLimit": "Ši pakuotė pilna tavo ženklelio lygiui.",
+      "fileType": "Naudokite PNG, GIF, WebP arba JPEG vaizdą",
+      "fileSize": "Failai turi būti {{mb}} MB arba mažesni",
+      "generic": "Įvyko klaida. Bandykite dar kartą."
+    }
   }
 }

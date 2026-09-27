@@ -173,6 +173,11 @@ export const DeepLinkPaths = {
   // onto. `?handle=` on a shared listing link seeds the search box.
   ACCOUNTS: 'accounts',
 
+  // Creator packs — dehub.io/packs is the hub, /packs/:slug one pack's share
+  // link. The slug path is declared first, like the community invite.
+  PACK: 'packs/:slug',
+  PACKS: 'packs',
+
   // Fraction marketplace — dehub.io/app/fractions. Web answers the bare
   // /fractions too; the /app rewrite below maps it here.
   FRACTIONS: 'app/fractions',
@@ -277,6 +282,12 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Usernames]: DeepLinkPaths.USERNAMES,
 
           [ScreenNames.Accounts]: DeepLinkPaths.ACCOUNTS,
+
+          [ScreenNames.Pack]: {
+            path: DeepLinkPaths.PACK,
+            parse: { slug: (slug: string) => slug },
+          },
+          [ScreenNames.Packs]: DeepLinkPaths.PACKS,
 
           [ScreenNames.Fractions]: DeepLinkPaths.FRACTIONS,
 

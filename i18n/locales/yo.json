@@ -7275,5 +7275,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Àwọn àgbà",
+    "subtitle": "Àwọn àmì ìyàtọ̀ àtọ̀wọ́, àwọn àmì ìdánilẹ́kọ̀ọ́ àti àwọn GIF tí àwọn tó ní àmì-ìyàtọ̀ ṣe. Fi àgbàkigbà sí ààyè rẹ kí o sì lo nínú ìfọ̀rọ̀wérọ̀, àwọn àlàyé àti ìdáhùn.",
+    "tabStickers": "Àwọn àmì ìdánilẹ́kọ̀ọ́",
+    "tab": {
+      "emoji": "Àmì ìyàtọ̀",
+      "sticker": "Àwọn àmì ìdánilẹ́kọ̀ọ́",
+      "gif": "GIF"
+    },
+    "kind": {
+      "emoji": "Àgbà àmì ìyàtọ̀",
+      "sticker": "Àgbà àmì ìdánilẹ́kọ̀ọ́",
+      "gif": "Àgbà GIF"
+    },
+    "manage": "Ṣẹ̀dá tàbí fi àgbà kún",
+    "browse": "Wá àwọn àgbà",
+    "browseCreate": "Wá tàbí ṣẹ̀dá àwọn àgbà",
+    "emptyStickers": "Kò tíì sí àgbà àmì ìdánilẹ́kọ̀ọ́. Ṣẹ̀dá ọ̀kan pẹ̀lú àmì-ìyàtọ̀, tàbí fi ti ẹlòmíì kún.",
+    "emptyGifs": "Kò tíì sí àgbà GIF.",
+    "lockedTitle": "Àwọn àgbà jẹ́ fún àwọn tó ní àmì-ìyàtọ̀",
+    "lockedBody": "Fi DHB sílẹ̀ fún àmì-ìyàtọ̀ láti ṣẹ̀dá àwọn àmì ìyàtọ̀, àmì ìdánilẹ́kọ̀ọ́ àti GIF tirẹ̀. Àwọn ìpele gíga ní àwọn àgbà púpọ̀ sí i àti ààyè púpọ̀ sí i nínú ọ̀kọ̀ọ̀kan.",
+    "getBadge": "Gba àmì-ìyàtọ̀",
+    "pack": "Àgbà",
+    "newPackOption": "+ Àgbà tuntun",
+    "packNamePlaceholder": "Orúkọ àgbà",
+    "yourTier": "{{tier}} àmì-ìyàtọ̀: {{packs}} àgbà ti irú kọ̀ọ̀kan, tó tó {{emoji}} àmì ìyàtọ̀, {{stickers}} àmì ìdánilẹ́kọ̀ọ́ tàbí {{gifs}} GIF nínú ọ̀kọ̀ọ̀kan.",
+    "tierTable": "Ohun tí olúkúlùkù ìpele àmì-ìyàtọ̀ gba",
+    "tierTableHint": "Àwọn àgbà jẹ́ fún irú kọ̀ọ̀kan. Àwọn àtòkọ̀ tí ó kù jẹ́ iye ohun èlò tí ó wà nínú àgbà kan. Tí ìpele rẹ bá ṣubú, àwọn àgbà rẹ yóò wà, ṣùgbọ́n o kò lè fi kún tí ó ju àwọn ààlà tuntun lọ.",
+    "col": {
+      "tier": "Ìpele",
+      "packs": "Àwọn àgbà",
+      "emoji": "Àmì ìyàtọ̀",
+      "stickers": "Àwọn àmì ìdánilẹ́kọ̀ọ́",
+      "gifs": "GIFs"
+    },
+    "signInToCreate": "Wọlé láti ṣẹ̀dá àwọn àpò",
+    "signInToAdd": "Wọlé láti fi kún",
+    "yourPacks": "Àwọn àpò rẹ",
+    "addedPacks": "Àwọn àpò tí o fi kún",
+    "popular": "Àwọn tí a fi kún jùlọ",
+    "noneYet": "Kò sí àpò kankan níbí sibẹ.",
+    "createPack": "Ṣẹ̀dá",
+    "itemCount_one": "{{count}} nkan",
+    "itemCount_other": "{{count}} àwọn nkan",
+    "saveCount_one": "{{count}} fi kún",
+    "saveCount_other": "{{count}} àwọn àfikún",
+    "by": "láti ọwọ́ {{owner}}",
+    "notFound": "Àpò yìí kò sí tàbí a ti fò ó rẹ.",
+    "addToPicker": "Fi kún àwọn ohun èlò mi",
+    "removeFromPicker": "Yọ kúrò láti àwọn ohun èlò mi",
+    "addedToPicker": "Àpò ti a fi kún sí àwọn ohun èlò rẹ",
+    "removedFromPicker": "Àpò tí a yọ kúrò láti àwọn ohun èlò rẹ",
+    "copyLink": "Ẹ̀dà ìjápọ̀",
+    "linkCopied": "Ìjápọ̀ ti a ẹ̀dà",
+    "rename": "Sọ orúkọ tuntun",
+    "save": "Fipamọ́",
+    "deletePack": "Fò àpò rẹ",
+    "deleteConfirm": "Fò {{name}}? Ohun gbogbo tí ó wà nínú rẹ̀ ni a óò yọ kúrò.",
+    "addItems": "Fi kún àpò yìí",
+    "shortcodePlaceholder": "orúkọ fún emoji (ìfẹ́-ẹni-ní)",
+    "stickerEmojiPlaceholder": "emoji tí àwòrán yìí dúró fún (ìfẹ́-ẹni-ní)",
+    "linkPlaceholder": "Lẹ̀ mọ́ àwòrán tàbí ìjápọ̀ GIF kan",
+    "addFromLink": "Fi kún láti ìjápọ̀",
+    "uploadFiles": "Gbé àwòrán sókè",
+    "uploadHint": "PNG, GIF, WebP tàbí JPEG tó 2 MB níkọ̀ọ̀kan. O lè yan ọ̀pọ̀lọpọ̀ lẹ́ẹ̀kan náà.",
+    "uploadHintGif": "GIF, PNG, WebP tàbí JPEG tó 8 MB níkọ̀ọ̀kan. O lè yan ọ̀pọ̀lọpọ̀ lẹ́ẹ̀kan náà.",
+    "itemsAdded": "Ṣafikun {{count}} ({{skipped}} fo)",
+    "removeItem": "Yọ",
+    "packEmpty": "Kò sí nǹkankan nínú àpò yìí.",
+    "errors": {
+      "noBadge": "O nílò àmì ìfipamọ́ láti ṣẹ̀dá àwọn àkójọpọ̀.",
+      "packLimit": "O ti lo gbogbo àwọn ìgò ìgò ìgò ìgò tí ìgò ìgò rẹ gbà fún irú èyí.",
+      "itemLimit": "Àkójọ yìí kún fún ìpele ìbánisọ̀rọ̀ rẹ.",
+      "fileType": "Lo àwòrán PNG, GIF, WebP tàbí JPEG",
+      "fileSize": "Àwọn fáìlì gbọ́dọ̀ jẹ́ {{mb}} MB tàbí kéékèèké",
+      "generic": "Nǹkan kan kò lọ dáadáa. Gbìyànjú lẹ́ẹ̀kan síi."
+    }
   }
 }

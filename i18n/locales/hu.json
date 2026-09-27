@@ -7278,5 +7278,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Csomagok",
+    "subtitle": "Egyedi emojik, matricák és GIF-ek, amelyeket a jelvénytulajdonosok készítettek. Add hozzá bármelyik csomagot a választódhoz, és használd csevegésekben, megjegyzésekben és reakciókban.",
+    "tabStickers": "Matricák",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Matricák",
+      "gif": "GIF-ek"
+    },
+    "kind": {
+      "emoji": "Emoji csomag",
+      "sticker": "Matrica csomag",
+      "gif": "GIF csomag"
+    },
+    "manage": "Csomagok létrehozása vagy hozzáadása",
+    "browse": "Csomagok böngészése",
+    "browseCreate": "Csomagok keresése vagy létrehozása",
+    "emptyStickers": "Még nincsenek matricacsomagok. Hozz létre egyet egy jelvénnyel, vagy adj hozzá valaki mástól.",
+    "emptyGifs": "Még nincsenek GIF csomagok.",
+    "lockedTitle": "A csomagok jelvénytulajdonosoknak szólnak",
+    "lockedBody": "Tétezz DHB-t egy jelvényért, hogy létrehozd saját emoji, matrica és GIF csomagjaidat. A magasabb szintek több csomagot és több helyet kapnak minden csomagban.",
+    "getBadge": "Szerezz egy jelvényt",
+    "pack": "Csomag",
+    "newPackOption": "+ Új csomag",
+    "packNamePlaceholder": "Csomag neve",
+    "yourTier": "{{tier}} jelvény: {{packs}} csomag minden típusból, legfeljebb {{emoji}} emoji, {{stickers}} matrica vagy {{gifs}} GIF minden csomagban.",
+    "tierTable": "Mit kap minden jelvényszint",
+    "tierTableHint": "A csomagok típusonként értendők. A többi oszlop azt mutatja, hány elem fér el egy csomagban. Ha a szinted csökken, a csomagjaid megmaradnak, de nem adhatsz hozzá a korlátozott mennyiségen túl.",
+    "col": {
+      "tier": "Szint",
+      "packs": "Csomagok",
+      "emoji": "Emoji",
+      "stickers": "Matricák",
+      "gifs": "GIF-ek"
+    },
+    "signInToCreate": "Jelentkezz be csomagok létrehozásához",
+    "signInToAdd": "Jelentkezz be hozzáadáshoz",
+    "yourPacks": "A te csomagjaid",
+    "addedPacks": "Hozzáadott csomagok",
+    "popular": "Legtöbbet hozzáadott",
+    "noneYet": "Még nincsenek csomagok.",
+    "createPack": "Létrehozás",
+    "itemCount_one": "{{count}} elem",
+    "itemCount_other": "{{count}} elem",
+    "saveCount_one": "{{count}} hozzáadás",
+    "saveCount_other": "{{count}} hozzáadás",
+    "by": "{{owner}} által",
+    "notFound": "Ez a csomag nem létezik, vagy törölve lett.",
+    "addToPicker": "Hozzáadás a gyűjteményemhez",
+    "removeFromPicker": "Eltávolítás a gyűjteményemből",
+    "addedToPicker": "Csomag hozzáadva a gyűjteményedhez",
+    "removedFromPicker": "Csomag eltávolítva a gyűjteményedből",
+    "copyLink": "Hivatkozás másolása",
+    "linkCopied": "Hivatkozás másolva",
+    "rename": "Átnevezés",
+    "save": "Mentés",
+    "deletePack": "Csomag törlése",
+    "deleteConfirm": "Törlöd a(z) {{name}} csomagot? Minden benne lévő elem eltávolításra kerül.",
+    "addItems": "Hozzáadás ehhez a csomaghoz",
+    "shortcodePlaceholder": "név az emojinak (opcionális)",
+    "stickerEmojiPlaceholder": "emoji, amit ez a matrica képvisel (opcionális)",
+    "linkPlaceholder": "Illessz be egy kép vagy GIF hivatkozást",
+    "addFromLink": "Hozzáadás hivatkozásról",
+    "uploadFiles": "Képek feltöltése",
+    "uploadHint": "PNG, GIF, WebP vagy jpeg legfeljebb 2 MB. Egyszerre többet is kiválaszthatsz.",
+    "uploadHintGif": "GIF, PNG, WebP vagy jpeg legfeljebb 8 MB. Egyszerre többet is kiválaszthatsz.",
+    "itemsAdded": "{{count}} hozzáadva ({{skipped}} kihagyva)",
+    "removeItem": "Eltávolítás",
+    "packEmpty": "Ebben a csomagban még nincs semmi.",
+    "errors": {
+      "noBadge": "Csomagok létrehozásához staking-jelvényre van szükség.",
+      "packLimit": "Az összes olyan csomaghelyet felhasználta, amelyet a jelvényszintje lehetővé tesz ehhez a típushoz.",
+      "itemLimit": "Ez a csomag tele van a jelvényszintedhez.",
+      "fileType": "PNG, GIF, WebP vagy jpeg kép használata",
+      "fileSize": "A fájloknak {{mb}} MB-osnak vagy kisebbnek kell lenniük",
+      "generic": "Hiba történt. Próbálkozz újra."
+    }
   }
 }

@@ -7287,5 +7287,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Pachete",
+    "subtitle": "Emoji, stickere și GIF-uri personalizate create de deținătorii de insigne. Adaugă orice pachet în selectorul tău și folosește-l în conversații, comentarii și reacții.",
+    "tabStickers": "Stickere",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Stickere",
+      "gif": "GIF-uri"
+    },
+    "kind": {
+      "emoji": "Pachet emoji",
+      "sticker": "Pachet stickere",
+      "gif": "Pachet GIF"
+    },
+    "manage": "Creează sau adaugă pachete",
+    "browse": "Răsfoiește pachete",
+    "browseCreate": "Găsește sau creează pachete",
+    "emptyStickers": "Încă nu există pachete de stickere. Creează unul cu o insignă sau adaugă-l pe al altcuiva.",
+    "emptyGifs": "Încă nu există pachete GIF.",
+    "lockedTitle": "Pachetele sunt pentru deținătorii de insigne",
+    "lockedBody": "Mizează DHB pentru o insignă pentru a crea propriile pachete de emoji, stickere și GIF-uri. Nivelurile superioare obțin mai multe pachete și mai mult spațiu în fiecare.",
+    "getBadge": "Obține o insignă",
+    "pack": "Pachet",
+    "newPackOption": "+ Pachet nou",
+    "packNamePlaceholder": "Nume pachet",
+    "yourTier": "Insigna {{tier}}: {{packs}} pachete de fiecare tip, până la {{emoji}} emoji, {{stickers}} stickere sau {{gifs}} GIF-uri în fiecare.",
+    "tierTable": "Ce primește fiecare nivel de insignă",
+    "tierTableHint": "Pachetele sunt pe tip. Celelalte coloane arată câte articole încap într-un pachet. Dacă nivelul tău scade, pachetele tale rămân, dar nu poți adăuga peste noile limite.",
+    "col": {
+      "tier": "Nivel",
+      "packs": "Pachete",
+      "emoji": "Emoji",
+      "stickers": "Stickere",
+      "gifs": "GIF-uri"
+    },
+    "signInToCreate": "Autentifică-te pentru a crea pachete",
+    "signInToAdd": "Autentifică-te pentru a adăuga",
+    "yourPacks": "Pachetele tale",
+    "addedPacks": "Pachete pe care le-ai adăugat",
+    "popular": "Cele mai adăugate",
+    "noneYet": "Nu există pachete aici încă.",
+    "createPack": "Creează",
+    "itemCount_one": "{{count}} element",
+    "itemCount_other": "{{count}} elemente",
+    "saveCount_one": "{{count}} adaugă",
+    "saveCount_other": "{{count}} adăugări",
+    "by": "de {{owner}}",
+    "notFound": "Acest pachet nu există sau a fost șters.",
+    "addToPicker": "Adaugă la selectorul meu",
+    "removeFromPicker": "Elimină din selectorul meu",
+    "addedToPicker": "Pachet adăugat la selectorul tău",
+    "removedFromPicker": "Pachet eliminat din selectorul tău",
+    "copyLink": "Copiază linkul",
+    "linkCopied": "Link copiat",
+    "rename": "Redenumește",
+    "save": "Salvează",
+    "deletePack": "Șterge pachetul",
+    "deleteConfirm": "Șterge {{name}}? Tot ce conține va fi eliminat.",
+    "addItems": "Adaugă la acest pachet",
+    "shortcodePlaceholder": "nume pentru emoji (opțional)",
+    "stickerEmojiPlaceholder": "emoji pentru acest sticker (opțional)",
+    "linkPlaceholder": "Lipește un link către o imagine sau un GIF",
+    "addFromLink": "Adaugă din link",
+    "uploadFiles": "Încarcă imagini",
+    "uploadHint": "PNG, GIF, WebP sau JPEG până la 2 MB fiecare. Puteți alege mai multe deodată.",
+    "uploadHintGif": "GIF, PNG, WebP sau JPEG până la 8 MB fiecare. Puteți alege mai multe deodată.",
+    "itemsAdded": "Adăugat {{count}} ({{skipped}} omis)",
+    "removeItem": "Elimină",
+    "packEmpty": "Nimic în acest pachet încă.",
+    "errors": {
+      "noBadge": "Aveți nevoie de o insignă pentru a crea pachete.",
+      "packLimit": "Ai folosit toate sloturile pentru pachete pe care nivelul tău de insignă le permite pentru acest tip.",
+      "itemLimit": "Acest pachet este plin pentru nivelul tău de insignă.",
+      "fileType": "Utilizați o imagine PNG, GIF, WebP sau JPEG",
+      "fileSize": "Fișierele trebuie să fie {{mb}} MB sau mai mici",
+      "generic": "Ceva nu a mers bine. Încearcă din nou."
+    }
   }
 }

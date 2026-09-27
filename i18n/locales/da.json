@@ -7278,5 +7278,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Pakker",
+    "subtitle": "Brugerdefinerede emojis, klistermærker og GIF'er lavet af badge-indehavere. Tilføj enhver pakke til din vælger og brug den i chats, kommentarer og reaktioner.",
+    "tabStickers": "Klistermærker",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Klistermærker",
+      "gif": "GIF'er"
+    },
+    "kind": {
+      "emoji": "Emoji-pakke",
+      "sticker": "Klistermærke-pakke",
+      "gif": "GIF-pakke"
+    },
+    "manage": "Opret eller tilføj pakker",
+    "browse": "Gennemse pakker",
+    "browseCreate": "Find eller opret pakker",
+    "emptyStickers": "Ingen klistermærke-pakker endnu. Opret en med et badge, eller tilføj en andens.",
+    "emptyGifs": "Ingen GIF-pakker endnu.",
+    "lockedTitle": "Pakker er til badge-indehavere",
+    "lockedBody": "Stak DHB for et badge for at oprette dine egne emoji-, klistermærke- og GIF-pakker. Højere niveauer får flere pakker og mere plads i hver.",
+    "getBadge": "Få et badge",
+    "pack": "Pakke",
+    "newPackOption": "+ Ny pakke",
+    "packNamePlaceholder": "Pakkenavn",
+    "yourTier": "{{tier}} badge: {{packs}} pakker af hver slags, op til {{emoji}} emojis, {{stickers}} klistermærker eller {{gifs}} GIF'er i hver.",
+    "tierTable": "Hvad hvert badge-niveau får",
+    "tierTableHint": "Pakker er pr. slags. De andre kolonner viser, hvor mange elementer der passer i en pakke. Hvis dit niveau falder, forbliver dine pakker, men du kan ikke tilføje ud over de nye grænser.",
+    "col": {
+      "tier": "Niveau",
+      "packs": "Pakker",
+      "emoji": "Emoji",
+      "stickers": "Klistermærker",
+      "gifs": "GIF'er"
+    },
+    "signInToCreate": "Log ind for at oprette pakker",
+    "signInToAdd": "Log ind for at tilføje",
+    "yourPacks": "Dine pakker",
+    "addedPacks": "Pakker du har tilføjet",
+    "popular": "Mest tilføjede",
+    "noneYet": "Ingen pakker her endnu.",
+    "createPack": "Opret",
+    "itemCount_one": "{{count}} element",
+    "itemCount_other": "{{count}} elementer",
+    "saveCount_one": "{{count}} tilføj",
+    "saveCount_other": "{{count}} tilføjelser",
+    "by": "af {{owner}}",
+    "notFound": "Denne pakke findes ikke eller er blevet slettet.",
+    "addToPicker": "Tilføj til min vælger",
+    "removeFromPicker": "Fjern fra min vælger",
+    "addedToPicker": "Pakke tilføjet til din vælger",
+    "removedFromPicker": "Pakke fjernet fra din vælger",
+    "copyLink": "Kopier link",
+    "linkCopied": "Link kopieret",
+    "rename": "Omdøb",
+    "save": "Gem",
+    "deletePack": "Slet pakke",
+    "deleteConfirm": "Slet {{name}}? Alt i den vil blive fjernet.",
+    "addItems": "Tilføj til denne pakke",
+    "shortcodePlaceholder": "navn på emoji (valgfrit)",
+    "stickerEmojiPlaceholder": "emoji denne sticker står for (valgfrit)",
+    "linkPlaceholder": "Indsæt et billede eller GIF-link",
+    "addFromLink": "Tilføj fra link",
+    "uploadFiles": "Upload billeder",
+    "uploadHint": "PNG, GIF, WebP eller JPEG op til 2 MB hver. Du kan vælge flere på én gang.",
+    "uploadHintGif": "GIF, PNG, WebP eller JPEG op til 8 MB hver. Du kan vælge flere på én gang.",
+    "itemsAdded": "Tilføjet {{count}}({{skipped}} sprunget over)",
+    "removeItem": "Fjern",
+    "packEmpty": "Intet i denne pakke endnu.",
+    "errors": {
+      "noBadge": "Du skal bruge et indsatsmærke for at oprette pakker.",
+      "packLimit": "Du har brugt alle de pakkepladser, dit badge-niveau tillader til denne slags.",
+      "itemLimit": "Denne pakke er fuld til dit badgeniveau.",
+      "fileType": "Brug et PNG-, GIF-, WEBP- eller JPEG-billede",
+      "fileSize": "Filer skal være {{mb}}MB eller mindre",
+      "generic": "Noget gik galt. Prøv igen."
+    }
   }
 }

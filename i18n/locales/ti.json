@@ -7264,5 +7264,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "ሓነጽቲ",
+    "subtitle": "ብመያሓይቲ መለለዪ ዝተሰርሑ ብርቱዕ ስእሊ፣ ተለጣፊታት ከምኡ’ውን ጂኣይኣፍ። ንዝኾነ ሓነጽቲ ናብ መጻሕፍቲ መረጻኻ ኣስዕብካዮን ኣብ ጸሓፍቲ፣ ርእይቶታት ከምኡ’ውን ምላሽ ተጠቐመሉ።",
+    "tabStickers": "ተለጣፊታት",
+    "tab": {
+      "emoji": "ብርቱዕ ስእሊ",
+      "sticker": "ተለጣፊታት",
+      "gif": "ጂኣይኣፍ"
+    },
+    "kind": {
+      "emoji": "ሓነጽቲ ብርቱዕ ስእሊ",
+      "sticker": "ሓነጽቲ ተለጣፊ",
+      "gif": "ሓነጽቲ ጂኣይኣፍ"
+    },
+    "manage": "ሓነጽቲ ጽረ               ወይ’ውን ኣስዕብ",
+    "browse": "ሓነጽቲ ፈልግ",
+    "browseCreate": "ሓነጽቲ ፈልግ ወይ’ውን ጽረ",
+    "emptyStickers": "ኣይተረኽቡን ተለጣፊታት። ብመለለዪ ሓነጽቲ ጽረ፣ ወይ’ውን ሓነጽቲ ካልኦት ኣስዕብ።",
+    "emptyGifs": "ኣይተረኽቡን ሓነጽቲ ጂኣይኣፍ።",
+    "lockedTitle": "ሓነጽቲ ንመያሓይቲ መለለዪ እዩ",
+    "lockedBody": "ንገዛእ ርእኻ ብርቱዕ ስእሊ፣ ተለጣፊ ከምኡ’ውን ጂኣይኣፍ ሓነጽቲ ንኽትፈጥር መለለዪ ንምርካብ ደይሁብ ስተኽ። ዝለዓለ ደረጃታት ዝበለጸ ሓነጽቲ ከምኡ’ውን ዝበለጸ ቦታ ኣብ ውሽጢ ሓነጽቲ ይረኽቡ።",
+    "getBadge": "መለለዪ ረኸብ",
+    "pack": "ሓነጽቲ",
+    "newPackOption": "+ ሓዳስ ሓነጽቲ",
+    "packNamePlaceholder": "ስም ሓነጽቲ",
+    "yourTier": "{{tier}} መለለዪ፦ {{packs}} ሓነጽቲ ብዝኾነ ዓይነት፣ ክሳብ {{emoji}} ብርቱዕ ስእሊ፣ {{stickers}} ተለጣፊታት ወይ’ውን {{gifs}} ጂኣይኣፍ ኣብ ውሽጢ ሓነጽቲ።",
+    "tierTable": "ንዝኾነ ደረጃ እንታይ ይረኽብ",
+    "tierTableHint": "ሓነጽቲ ንዝኾነ ዓይነት እዩ። ካልኦት ዓምድታት ድማ ንሓደ ሓነጽቲ ዝኣትዉ ነገራት እዮም። እንተኾይኑ ደረጃኻ እንተወሪዱ፣ ሓነጽትኻ ይጸንዓ ግን ክሳብ ሓዳስ ገደብ ኣይትኽእልን።",
+    "col": {
+      "tier": "ደረጃ",
+      "packs": "ሓነጽቲ",
+      "emoji": "ብርቱዕ ስእሊ",
+      "stickers": "ተለጣፊታት",
+      "gifs": "GIF"
+    },
+    "signInToCreate": "ኣብ ግብኣት ኣትው ንጥቅልልታት ንምፍጣር",
+    "signInToAdd": "ኣብ ግብኣት ኣትው ንምጥዋቕ",
+    "yourPacks": "ጥቅልልታትካ",
+    "addedPacks": "ጥቅልልታት ዝኣከልካዮም",
+    "popular": "ብዙሓት ዝኣከሉዎም",
+    "noneYet": "ኣብዚ ገና ኣይርከቡን።",
+    "createPack": "ፍጠር",
+    "itemCount_one": "{{count}} ንጥፈት",
+    "itemCount_other": "{{count}} ንጥፈታት",
+    "saveCount_one": "{{count}} ኣኽእል",
+    "saveCount_other": "{{count}} ኣኽእላት",
+    "by": "ብ {{owner}}",
+    "notFound": "እዚ ጥቅልሊ ኣይነበረን ወይ ተኣሪዩ።",
+    "addToPicker": "ንኣኻሪኻ ኣኽእል",
+    "removeFromPicker": "ካብ ኣኻሪኻ ኣወግድ",
+    "addedToPicker": "ጥቅልሊ ናብ ኣኻሪኻ ተኣኪሉ",
+    "removedFromPicker": "ጥቅልሊ ካብ ኣኻሪኻ ተኣዊጉ",
+    "copyLink": "መራኸቢ ቅዳሕ",
+    "linkCopied": "መራኸቢ ተቐዲሑ",
+    "rename": "ስም ለውጥ",
+    "save": "ኣህጉስ",
+    "deletePack": "ጥቅልሊ ኣጥፍእ",
+    "deleteConfirm": "{{name}} ተኣሪዩ? ኩሉ ነገር ኣብኡ ክጠፍእ እዩ።",
+    "addItems": "ንዚ ጥቅልሊ ኣኽእል",
+    "shortcodePlaceholder": "ንጽህሪ ስም (ኣማራጺ)",
+    "stickerEmojiPlaceholder": "ጽህሪ እዚ ተለጣፊ ዝውክል (ኣማራጺ)",
+    "linkPlaceholder": "መራኸቢ ስእሊ ወይ GIF ጸርፍ",
+    "addFromLink": "ካብ መራኸቢ ኣኽእል",
+    "uploadFiles": "ስእሊ ኣስዕር",
+    "uploadHint": "PNG ፣ GIF ፣ WebP ወይ JPEG ክሳብ 2 ሜባ ነፍሲ ወከፍ ። ሓደ ሓደ ግዜ ብዙሕ ክትመርጽ ትኽእል ኢኻ ።",
+    "uploadHintGif": "GIF ፣ PNG ፣ WebP ወይ JPEG ክሳብ 8 ሜባ ነፍሲ ወከፍ ። ሓደ ሓደ ግዜ ብዙሕ ክትመርጽ ትኽእል ኢኻ ።",
+    "itemsAdded": "ተወሰኸ {{count}} ({{skipped}} skipped)",
+    "removeItem": "ኣወግድ",
+    "packEmpty": "ኣብዚ ፓኬጅ እዚ ዋላ ሓንቲ ነገር የለን ።",
+    "errors": {
+      "noBadge": "ፓኬጃት ንምፍጣር ፡ ናይ ምቁራጽ ባጅ የድልየካ እዩ ።",
+      "packLimit": "ነቲ ናይ ባጅ ደረጃኻ ዝፈቅድ ኩሉ ፓኬጅታት ተጠቒምካዮ ኢኻ ።",
+      "itemLimit": "እዚ ፓኬጅ እዚ ንናይ ባጅ ደረጃኻ መሊኡ እዩ ።",
+      "fileType": "ስእሊ PNG ፣ GIF ፣ WebP ወይ JPEG ተጠቐም",
+      "fileSize": "እቲ ፋይላት {{mb}} MB ወይ ትሑት ክኸውን ኣለዎ",
+      "generic": "ገለ ነገር ጌጋ እዩ ነይሩ ፡ ደጊምካ ፈትኖ ።"
+    }
   }
 }

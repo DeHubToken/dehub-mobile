@@ -7278,5 +7278,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "팩",
+    "subtitle": "뱃지 보유자가 만든 커스텀 이모지, 스티커, GIF. 팩을 피커에 추가하여 채팅, 댓글, 반응에 사용하세요.",
+    "tabStickers": "스티커",
+    "tab": {
+      "emoji": "이모지",
+      "sticker": "스티커",
+      "gif": "GIF"
+    },
+    "kind": {
+      "emoji": "이모지 팩",
+      "sticker": "스티커 팩",
+      "gif": "GIF 팩"
+    },
+    "manage": "팩 만들기 또는 추가하기",
+    "browse": "팩 둘러보기",
+    "browseCreate": "팩 찾기 또는 만들기",
+    "emptyStickers": "아직 스티커 팩이 없습니다. 뱃지로 만들거나 다른 사람의 팩을 추가하세요.",
+    "emptyGifs": "아직 GIF 팩이 없습니다.",
+    "lockedTitle": "팩은 뱃지 보유자를 위한 것입니다",
+    "lockedBody": "DHB를 스테이킹하여 뱃지를 획득하고 나만의 이모지, 스티커, GIF 팩을 만드세요. 등급이 높을수록 더 많은 팩과 각 팩에 더 많은 아이템을 담을 수 있습니다.",
+    "getBadge": "뱃지 받기",
+    "pack": "팩",
+    "newPackOption": "+ 새 팩",
+    "packNamePlaceholder": "팩 이름",
+    "yourTier": "{{tier}} 뱃지: 각 종류별 {{packs}}개의 팩, 각 팩당 최대 {{emoji}}개의 이모지, {{stickers}}개의 스티커 또는 {{gifs}}개의 GIF.",
+    "tierTable": "각 뱃지 등급별 혜택",
+    "tierTableHint": "팩은 종류별입니다. 다른 열은 팩에 들어가는 아이템 수입니다. 등급이 낮아지면 기존 팩은 유지되지만 새 제한을 초과하여 추가할 수 없습니다.",
+    "col": {
+      "tier": "등급",
+      "packs": "팩",
+      "emoji": "이모지",
+      "stickers": "스티커",
+      "gifs": "GIF"
+    },
+    "signInToCreate": "팩을 만들려면 로그인하세요",
+    "signInToAdd": "추가하려면 로그인하세요",
+    "yourPacks": "내 팩",
+    "addedPacks": "내가 추가한 팩",
+    "popular": "가장 많이 추가된 팩",
+    "noneYet": "아직 팩이 없습니다.",
+    "createPack": "만들기",
+    "itemCount_one": "{{count}}개 항목",
+    "itemCount_other": "{{count}}개 항목",
+    "saveCount_one": "{{count}}개 추가",
+    "saveCount_other": "{{count}}개 추가",
+    "by": "{{owner}}님 작성",
+    "notFound": "이 팩은 존재하지 않거나 삭제되었습니다.",
+    "addToPicker": "내 선택기에 추가",
+    "removeFromPicker": "내 선택기에서 제거",
+    "addedToPicker": "팩이 선택기에 추가되었습니다.",
+    "removedFromPicker": "팩이 선택기에서 제거되었습니다.",
+    "copyLink": "링크 복사",
+    "linkCopied": "링크 복사됨",
+    "rename": "이름 변경",
+    "save": "저장",
+    "deletePack": "팩 삭제",
+    "deleteConfirm": "{{name}}개를 삭제하시겠습니까? 팩 안의 모든 것이 삭제됩니다.",
+    "addItems": "이 팩에 추가",
+    "shortcodePlaceholder": "이모티콘 이름 (선택 사항)",
+    "stickerEmojiPlaceholder": "이 스티커가 나타내는 이모티콘 (선택 사항)",
+    "linkPlaceholder": "이미지 또는 GIF 링크 붙여넣기",
+    "addFromLink": "링크에서 추가",
+    "uploadFiles": "이미지 업로드",
+    "uploadHint": "PNG, GIF, WEBP 또는 JPEG 각각 최대 2MB. 한 번에 여러 개를 선택할 수 있습니다.",
+    "uploadHintGif": "GIF, PNG, WEBP 또는 JPEG 각각 최대 8MB. 한 번에 여러 개를 선택할 수 있습니다.",
+    "itemsAdded": "{{count}} 추가됨 ({{skipped}} 건너뜀)",
+    "removeItem": "삭제",
+    "packEmpty": "이 팩에는 아직 아무 것도 없습니다.",
+    "errors": {
+      "noBadge": "팩을 만들려면 스테이킹 배지가 필요합니다.",
+      "packLimit": "배지 등급에서 허용하는 모든 팩 슬롯을 사용했습니다.",
+      "itemLimit": "이 팩은 배지 티어에 가득 찼습니다.",
+      "fileType": "PNG, GIF, WebP 또는 JPEG 이미지 사용",
+      "fileSize": "파일 크기는 {{mb}} MB 이하여야 합니다",
+      "generic": "문제가 발생했습니다. 다시 시도하세요."
+    }
   }
 }

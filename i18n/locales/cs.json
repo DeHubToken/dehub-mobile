@@ -7278,5 +7278,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Balíčky",
+    "subtitle": "Vlastní emotikony, samolepky a GIFy vytvořené držiteli odznaků. Přidejte jakýkoli balíček do svého výběru a používejte ho v chatech, komentářích a reakcích.",
+    "tabStickers": "Samolepky",
+    "tab": {
+      "emoji": "Emotikony",
+      "sticker": "Samolepky",
+      "gif": "GIFy"
+    },
+    "kind": {
+      "emoji": "Balíček emotikonů",
+      "sticker": "Balíček samolepek",
+      "gif": "Balíček GIFů"
+    },
+    "manage": "Vytvořit nebo přidat balíčky",
+    "browse": "Prohlížet balíčky",
+    "browseCreate": "Najít nebo vytvořit balíčky",
+    "emptyStickers": "Zatím žádné balíčky samolepek. Vytvořte si jeden s odznakem nebo přidejte balíček někoho jiného.",
+    "emptyGifs": "Zatím žádné balíčky GIFů.",
+    "lockedTitle": "Balíčky jsou pro držitele odznaků",
+    "lockedBody": "Vsaďte DHB a získejte odznak, abyste mohli vytvářet vlastní balíčky emotikonů, samolepek a GIFů. Vyšší úrovně získají více balíčků a více místa v každém z nich.",
+    "getBadge": "Získat odznak",
+    "pack": "Balíček",
+    "newPackOption": "+ Nový balíček",
+    "packNamePlaceholder": "Název balíčku",
+    "yourTier": "Odznak {{tier}}: {{packs}} balíčků od každého druhu, až {{emoji}} emotikonů, {{stickers}} samolepek nebo {{gifs}} GIFů v každém.",
+    "tierTable": "Co získá každá úroveň odznaku",
+    "tierTableHint": "Balíčky jsou na druh. Ostatní sloupce ukazují, kolik položek se vejde do jednoho balíčku. Pokud vaše úroveň klesne, vaše balíčky zůstanou, ale nebudete moci přidávat nad nové limity.",
+    "col": {
+      "tier": "Úroveň",
+      "packs": "Balíčky",
+      "emoji": "Emotikony",
+      "stickers": "Samolepky",
+      "gifs": "GIFy"
+    },
+    "signInToCreate": "Přihlaste se pro vytvoření balíčků",
+    "signInToAdd": "Přihlaste se pro přidání",
+    "yourPacks": "Vaše balíčky",
+    "addedPacks": "Balíčky, které jste přidali",
+    "popular": "Nejvíce přidané",
+    "noneYet": "Zatím zde nejsou žádné balíčky.",
+    "createPack": "Vytvořit",
+    "itemCount_one": "{{count}} položka",
+    "itemCount_other": "{{count}} položky",
+    "saveCount_one": "{{count}} přidat",
+    "saveCount_other": "{{count}} přidání",
+    "by": "od {{owner}}",
+    "notFound": "Tento balíček neexistuje nebo byl smazán.",
+    "addToPicker": "Přidat do mého výběru",
+    "removeFromPicker": "Odebrat z mého výběru",
+    "addedToPicker": "Balíček byl přidán do vašeho výběru",
+    "removedFromPicker": "Balíček byl odebrán z vašeho výběru",
+    "copyLink": "Zkopírovat odkaz",
+    "linkCopied": "Odkaz zkopírován",
+    "rename": "Přejmenovat",
+    "save": "Uložit",
+    "deletePack": "Smazat balíček",
+    "deleteConfirm": "Smazat {{name}}? Vše v něm bude odstraněno.",
+    "addItems": "Přidat do tohoto balíčku",
+    "shortcodePlaceholder": "název pro emoji (volitelné)",
+    "stickerEmojiPlaceholder": "emoji, kterou tento sticker představuje (volitelné)",
+    "linkPlaceholder": "Vložte odkaz na obrázek nebo GIF",
+    "addFromLink": "Přidat z odkazu",
+    "uploadFiles": "Nahrát obrázky",
+    "uploadHint": "PNG, GIF, WebP nebo JPEG do 2 MB. Můžete vybrat několik najednou.",
+    "uploadHintGif": "GIF, PNG, WebP nebo JPEG každý až do 8 MB. Můžete vybrat několik najednou.",
+    "itemsAdded": "Přidáno {{count}} ({{skipped}} přeskočeno)",
+    "removeItem": "Odstranit",
+    "packEmpty": "V tomto balíčku zatím nic není.",
+    "errors": {
+      "noBadge": "K vytvoření balíčků potřebujete odznak.",
+      "packLimit": "Použili jste všechny sloty balíčku, které vaše úroveň odznaku umožňuje pro tento druh.",
+      "itemLimit": "Tento balíček je plný pro vaši úroveň odznaků.",
+      "fileType": "Použijte obrázek PNG, GIF, WebP nebo JPEG",
+      "fileSize": "Soubory musí být {{mb}} MB nebo menší",
+      "generic": "Něco se pokazilo. Zkus to znovu."
+    }
   }
 }

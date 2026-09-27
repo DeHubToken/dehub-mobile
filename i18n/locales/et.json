@@ -7269,5 +7269,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Pakid",
+    "subtitle": "Märgiomanike loodud kohandatud emotikonid, kleebised ja GIF-id. Lisa mis tahes pakk oma valikusse ja kasuta seda vestlustes, kommentaarides ja reaktsioonides.",
+    "tabStickers": "Kleebised",
+    "tab": {
+      "emoji": "Emotikonid",
+      "sticker": "Kleebised",
+      "gif": "GIF-id"
+    },
+    "kind": {
+      "emoji": "Emotikonide pakk",
+      "sticker": "Kleebiste pakk",
+      "gif": "GIF-i pakk"
+    },
+    "manage": "Loo või lisa pakke",
+    "browse": "Sirvi pakke",
+    "browseCreate": "Leia või loo pakke",
+    "emptyStickers": "Veel pole kleebisepakke. Loo üks märgiga või lisa kellegi teise oma.",
+    "emptyGifs": "Veel pole GIF-i pakke.",
+    "lockedTitle": "Pakid on märgiomanikele",
+    "lockedBody": "Panusta DHB-d, et saada märk ja luua oma emotikonide, kleebiste ja GIF-ide pakke. Kõrgemad tasemed saavad rohkem pakke ja igas pakis rohkem ruumi.",
+    "getBadge": "Hangi märk",
+    "pack": "Pakk",
+    "newPackOption": "+ Uus pakk",
+    "packNamePlaceholder": "Paki nimi",
+    "yourTier": "{{tier}} märk: {{packs}} pakki igat liiki, kuni {{emoji}} emotikoni, {{stickers}} kleebist või {{gifs}} GIF-i igas.",
+    "tierTable": "Mida iga märgi tase saab",
+    "tierTableHint": "Pakid on liigiti. Teised veerud näitavad, kui palju esemeid ühte pakki mahub. Kui sinu tase langeb, jäävad sinu pakid alles, kuid sa ei saa lisada üle uute piiride.",
+    "col": {
+      "tier": "Tase",
+      "packs": "Pakid",
+      "emoji": "Emotikonid",
+      "stickers": "Kleebised",
+      "gifs": "GIF-id"
+    },
+    "signInToCreate": "Pakkide loomiseks logige sisse",
+    "signInToAdd": "Lisamiseks logige sisse",
+    "yourPacks": "Teie pakid",
+    "addedPacks": "Teie lisatud pakid",
+    "popular": "Enim lisatud",
+    "noneYet": "Siin pole veel ühtegi pakki.",
+    "createPack": "Loo",
+    "itemCount_one": "{{count}} üksus",
+    "itemCount_other": "{{count}} üksust",
+    "saveCount_one": "{{count}} lisa",
+    "saveCount_other": "{{count}} lisamist",
+    "by": "autoriga {{owner}}",
+    "notFound": "See pakk ei eksisteeri või on kustutatud.",
+    "addToPicker": "Lisa minu valikusse",
+    "removeFromPicker": "Eemalda minu valikust",
+    "addedToPicker": "Pakk lisati teie valikusse",
+    "removedFromPicker": "Pakk eemaldati teie valikust",
+    "copyLink": "Kopeeri link",
+    "linkCopied": "Link kopeeritud",
+    "rename": "Nimeta ümber",
+    "save": "Salvesta",
+    "deletePack": "Kustuta pakk",
+    "deleteConfirm": "Kustuta {{name}}? Kõik selles olev kustutatakse.",
+    "addItems": "Lisa sellesse pakki",
+    "shortcodePlaceholder": "emotikoni nimi (valikuline)",
+    "stickerEmojiPlaceholder": "emotikon, mida see kleebis tähistab (valikuline)",
+    "linkPlaceholder": "Kleepige pildi või GIF-i link",
+    "addFromLink": "Lisa lingilt",
+    "uploadFiles": "Laadi pildid üles",
+    "uploadHint": "PNG, GIF, WebP või JPEG kuni 2 MB. Korraga saab valida mitu.",
+    "uploadHintGif": "GIF, PNG, WebP või JPEG kuni 8 MB. Korraga saab valida mitu.",
+    "itemsAdded": "Lisatud {{count}} ({{skipped}} vahele jäetud)",
+    "removeItem": "Eemalda",
+    "packEmpty": "Selles pakis pole veel midagi.",
+    "errors": {
+      "noBadge": "Pakkide loomiseks on vaja panustamismärki.",
+      "packLimit": "Olete kasutanud kõiki pakiautomaate, mida teie märgitasand seda tüüpi jaoks võimaldab.",
+      "itemLimit": "See pakk on sinu märgitaseme jaoks täis.",
+      "fileType": "Kasuta PNG-, GIF-, WebP- või JPEG-pilti",
+      "fileSize": "Failid peavad olema {{mb}} MB või väiksemad",
+      "generic": "Midagi läks valesti. Proovi uuesti."
+    }
   }
 }

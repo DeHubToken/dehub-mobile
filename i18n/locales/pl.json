@@ -7342,5 +7342,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Pakiety",
+    "subtitle": "Niestandardowe emoji, naklejki i GIF-y stworzone przez posiadaczy odznak. Dodaj dowolny pakiet do swojego selektora i używaj go na czatach, w komentarzach i reakcjach.",
+    "tabStickers": "Naklejki",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Naklejki",
+      "gif": "GIF-y"
+    },
+    "kind": {
+      "emoji": "Pakiet emoji",
+      "sticker": "Pakiet naklejek",
+      "gif": "Pakiet GIF-ów"
+    },
+    "manage": "Twórz lub dodawaj pakiety",
+    "browse": "Przeglądaj pakiety",
+    "browseCreate": "Znajdź lub twórz pakiety",
+    "emptyStickers": "Nie ma jeszcze pakietów naklejek. Utwórz jeden z odznaką lub dodaj pakiet kogoś innego.",
+    "emptyGifs": "Nie ma jeszcze pakietów GIF-ów.",
+    "lockedTitle": "Pakiety są dla posiadaczy odznak",
+    "lockedBody": "Postaw DHB, aby zdobyć odznakę i tworzyć własne pakiety emoji, naklejek i GIF-ów. Wyższe poziomy otrzymują więcej pakietów i więcej miejsca w każdym z nich.",
+    "getBadge": "Zdobądź odznakę",
+    "pack": "Pakiet",
+    "newPackOption": "+ Nowy pakiet",
+    "packNamePlaceholder": "Nazwa pakietu",
+    "yourTier": "Odznaka {{tier}}: {{packs}} pakietów każdego rodzaju, do {{emoji}} emoji, {{stickers}} naklejek lub {{gifs}} GIF-ów w każdym.",
+    "tierTable": "Co otrzymuje każdy poziom odznaki",
+    "tierTableHint": "Pakiety są na rodzaj. Pozostałe kolumny pokazują, ile przedmiotów mieści się w jednym pakiecie. Jeśli Twój poziom spadnie, Twoje pakiety pozostaną, ale nie będziesz mógł dodawać więcej niż nowe limity.",
+    "col": {
+      "tier": "Poziom",
+      "packs": "Pakiety",
+      "emoji": "Emoji",
+      "stickers": "Naklejki",
+      "gifs": "GIF-y"
+    },
+    "signInToCreate": "Zaloguj się, aby tworzyć pakiety",
+    "signInToAdd": "Zaloguj się, aby dodać",
+    "yourPacks": "Twoje pakiety",
+    "addedPacks": "Pakiety, które dodałeś",
+    "popular": "Najczęściej dodawane",
+    "noneYet": "Nie ma tu jeszcze żadnych pakietów.",
+    "createPack": "Utwórz",
+    "itemCount_one": "{{count}} element",
+    "itemCount_other": "{{count}} elementy",
+    "saveCount_one": "{{count}} dodaj",
+    "saveCount_other": "{{count}} dodania",
+    "by": "przez {{owner}}",
+    "notFound": "Ten pakiet nie istnieje lub został usunięty.",
+    "addToPicker": "Dodaj do mojego selektora",
+    "removeFromPicker": "Usuń z mojego selektora",
+    "addedToPicker": "Pakiet dodany do Twojego selektora",
+    "removedFromPicker": "Pakiet usunięty z Twojego selektora",
+    "copyLink": "Kopiuj link",
+    "linkCopied": "Link skopiowany",
+    "rename": "Zmień nazwę",
+    "save": "Zapisz",
+    "deletePack": "Usuń pakiet",
+    "deleteConfirm": "Usunąć {{name}}? Wszystko w nim zostanie usunięte.",
+    "addItems": "Dodaj do tego pakietu",
+    "shortcodePlaceholder": "nazwa emotikony (opcjonalnie)",
+    "stickerEmojiPlaceholder": "emotikona, którą oznacza ta naklejka (opcjonalnie)",
+    "linkPlaceholder": "Wklej link do obrazu lub GIF-a",
+    "addFromLink": "Dodaj z linku",
+    "uploadFiles": "Prześlij obrazy",
+    "uploadHint": "PNG, GIF, WebP lub JPEG do 2 MB każdy. Możesz wybrać kilka na raz.",
+    "uploadHintGif": "GIF, PNG, WebP lub JPEG do 8 MB każdy. Możesz wybrać kilka na raz.",
+    "itemsAdded": "Dodano {{count}} ({{skipped}} pominięto)",
+    "removeItem": "Usuń",
+    "packEmpty": "W tym pakiecie jeszcze nic nie ma.",
+    "errors": {
+      "noBadge": "Do tworzenia pakietów potrzebna jest odznaka.",
+      "packLimit": "Wykorzystałeś wszystkie miejsca na pakiety, na które pozwala Twój poziom odznak.",
+      "itemLimit": "Ten pakiet jest pełny dla Twojego poziomu odznaki.",
+      "fileType": "Użyj obrazu PNG, GIF, WebP lub JPEG",
+      "fileSize": "Pliki muszą mieć {{mb}} MB lub mniej",
+      "generic": "Coś poszło nie tak. Spróbuj ponownie."
+    }
   }
 }

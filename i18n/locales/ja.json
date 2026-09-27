@@ -7276,5 +7276,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "パック",
+    "subtitle": "バッジ保有者が作成したカスタム絵文字、ステッカー、GIF。パックをピッカーに追加して、チャット、コメント、リアクションで使用できます。",
+    "tabStickers": "ステッカー",
+    "tab": {
+      "emoji": "絵文字",
+      "sticker": "ステッカー",
+      "gif": "GIF"
+    },
+    "kind": {
+      "emoji": "絵文字パック",
+      "sticker": "ステッカーパック",
+      "gif": "GIFパック"
+    },
+    "manage": "パックを作成または追加する",
+    "browse": "パックをブラウズする",
+    "browseCreate": "パックを見つけるか作成する",
+    "emptyStickers": "まだステッカーパックはありません。バッジで作成するか、他のユーザーのパックを追加してください。",
+    "emptyGifs": "まだGIFパックはありません。",
+    "lockedTitle": "パックはバッジ保有者向けです",
+    "lockedBody": "DHBをステークしてバッジを取得し、独自の絵文字、ステッカー、GIFパックを作成しましょう。上位ティアほど、より多くのパックと各パック内のより多くのアイテムを利用できます。",
+    "getBadge": "バッジを取得する",
+    "pack": "パック",
+    "newPackOption": "+ 新規パック",
+    "packNamePlaceholder": "パック名",
+    "yourTier": "{{tier}} バッジ: 各種 {{packs}} 個のパック、各パックに最大 {{emoji}} 個の絵文字、{{stickers}} 個のステッカー、または {{gifs}} 個のGIF。",
+    "tierTable": "各バッジティアで利用できるもの",
+    "tierTableHint": "パックは種類ごとにカウントされます。他の列は、1つのパックに収まるアイテム数を示します。ティアが下がった場合でも、パックは保持されますが、新しい制限を超えて追加することはできません。",
+    "col": {
+      "tier": "ティア",
+      "packs": "パック",
+      "emoji": "絵文字",
+      "stickers": "ステッカー",
+      "gifs": "GIF"
+    },
+    "signInToCreate": "パックを作成するにはサインインしてください",
+    "signInToAdd": "追加するにはサインインしてください",
+    "yourPacks": "あなたのパック",
+    "addedPacks": "追加したパック",
+    "popular": "最も追加された",
+    "noneYet": "パックはまだありません。",
+    "createPack": "作成",
+    "itemCount_one": "{{count}} アイテム",
+    "itemCount_other": "{{count}} アイテム",
+    "saveCount_one": "{{count}} 追加",
+    "saveCount_other": "{{count}} 追加",
+    "by": "{{owner}} 作",
+    "notFound": "このパックは存在しないか、削除されました。",
+    "addToPicker": "ピッカーに追加",
+    "removeFromPicker": "ピッカーから削除",
+    "addedToPicker": "パックがピッカーに追加されました",
+    "removedFromPicker": "パックがピッカーから削除されました",
+    "copyLink": "リンクをコピー",
+    "linkCopied": "リンクがコピーされました",
+    "rename": "名前を変更",
+    "save": "保存",
+    "deletePack": "パックを削除",
+    "deleteConfirm": "{{name}} を削除しますか？ すべての内容が削除されます。",
+    "addItems": "このパックに追加",
+    "shortcodePlaceholder": "絵文字の名前（任意）",
+    "stickerEmojiPlaceholder": "このステッカーが表す絵文字（任意）",
+    "linkPlaceholder": "画像またはGIFリンクを貼り付けます",
+    "addFromLink": "リンクから追加",
+    "uploadFiles": "画像をアップロード",
+    "uploadHint": "PNG、GIF、WebP、またはJPEGそれぞれ最大2 MB。 一度にいくつか選ぶことができます。",
+    "uploadHintGif": "GIF、PNG、WebP、またはJPEGそれぞれ最大8 MB。 一度にいくつか選ぶことができます。",
+    "itemsAdded": "{{count}}を追加しました({{skipped}}をスキップ)",
+    "removeItem": "削除",
+    "packEmpty": "このパックにはまだ入っていません。",
+    "errors": {
+      "noBadge": "パックを作成するには、ステーキングバッジが必要です。",
+      "packLimit": "この種のバッジティアで使用できるすべてのパックスロットを使用しました。",
+      "itemLimit": "このパックはバッジティアでいっぱいです。",
+      "fileType": "PNG、GIF、WebP、またはJPEG画像を使用する",
+      "fileSize": "ファイルは{{mb}} MB以下である必要があります",
+      "generic": "エラーが発生しました。もう一度お試しください。"
+    }
   }
 }

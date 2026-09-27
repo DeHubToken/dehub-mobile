@@ -7274,5 +7274,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Paket",
+    "subtitle": "Emoji, stiker, lan GIF khusus digawe dening pemegang lencana. Tambahake paket apa wae menyang pemilih sampeyan lan gunakake ing obrolan, komentar, lan reaksi.",
+    "tabStickers": "Stiker",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Stiker",
+      "gif": "GIF"
+    },
+    "kind": {
+      "emoji": "Paket emoji",
+      "sticker": "Paket stiker",
+      "gif": "Paket GIF"
+    },
+    "manage": "Gawe utawa tambahake paket",
+    "browse": "Jelajahi paket",
+    "browseCreate": "Temokake utawa gawe paket",
+    "emptyStickers": "Durung ana paket stiker. Gawe siji nganggo lencana, utawa tambahake liyane.",
+    "emptyGifs": "Durung ana paket GIF.",
+    "lockedTitle": "Paket kanggo pemegang lencana",
+    "lockedBody": "Stake DHB kanggo lencana kanggo nggawe paket emoji, stiker, lan GIF dhewe. Tingkat sing luwih dhuwur entuk luwih akeh paket lan luwih akeh ruang ing saben paket.",
+    "getBadge": "Entuk lencana",
+    "pack": "Paket",
+    "newPackOption": "+ Paket anyar",
+    "packNamePlaceholder": "Jeneng paket",
+    "yourTier": "Lencana {{tier}}: {{packs}} paket saka saben jinis, nganti {{emoji}} emoji, {{stickers}} stiker utawa {{gifs}} GIF ing saben paket.",
+    "tierTable": "Apa sing dipikolehi saben tingkat lencana",
+    "tierTableHint": "Paket saben jinis. Kolom liyane nuduhake pirang-pirang item sing pas ing siji paket. Yen tingkat sampeyan mudhun, paket sampeyan tetep ana nanging sampeyan ora bisa nambah ngluwihi watesan anyar.",
+    "col": {
+      "tier": "Tingkat",
+      "packs": "Paket",
+      "emoji": "Emoji",
+      "stickers": "Stiker",
+      "gifs": "GIF"
+    },
+    "signInToCreate": "Tandha tangan kanggo nggawe paket",
+    "signInToAdd": "Tandha tangan kanggo nambah",
+    "yourPacks": "Paketmu",
+    "addedPacks": "Paket sing koktambahake",
+    "popular": "Paling akeh ditambahake",
+    "noneYet": "Durung ana paket ing kene.",
+    "createPack": "Gawe",
+    "itemCount_one": "{{count}} item",
+    "itemCount_other": "{{count}} item-item",
+    "saveCount_one": "{{count}} tambah",
+    "saveCount_other": "{{count}} tambahan",
+    "by": "dening {{owner}}",
+    "notFound": "Paket iki ora ana utawa wis dibusak.",
+    "addToPicker": "Tambahake menyang pemilihku",
+    "removeFromPicker": "Copot saka pemilihku",
+    "addedToPicker": "Paket ditambahake menyang pemilihmu",
+    "removedFromPicker": "Paket dicopot saka pemilihmu",
+    "copyLink": "Salin tautan",
+    "linkCopied": "Tautan disalin",
+    "rename": "Ganti jeneng",
+    "save": "Simpen",
+    "deletePack": "Busak paket",
+    "deleteConfirm": "Busak {{name}}? Kabeh isine bakal dibusak.",
+    "addItems": "Tambahake menyang paket iki",
+    "shortcodePlaceholder": "jeneng kanggo emoji (opsional)",
+    "stickerEmojiPlaceholder": "emoji sing diwakili stiker iki (opsional)",
+    "linkPlaceholder": "Tempel tautan gambar utawa GIF",
+    "addFromLink": "Tambahake saka tautan",
+    "uploadFiles": "Unggah gambar",
+    "uploadHint": "PNG, GIF, WebP utawa JPEG nganti 2 MB saben siji. Sampeyan bisa milih sawetara sekaligus.",
+    "uploadHintGif": "GIF, PNG, WebP utawa JPEG nganti 8 MB saben siji. Sampeyan bisa milih sawetara sekaligus.",
+    "itemsAdded": "Nambahake {{count}} ({{skipped}} dilewati)",
+    "removeItem": "Busak",
+    "packEmpty": "Durung ana apa-apa ing paket iki.",
+    "errors": {
+      "noBadge": "Sampeyan butuh lencana staking kanggo nggawe paket.",
+      "packLimit": "Sampeyan wis nggunakake kabeh slot paket sing diidini dening tingkatan lencana sampeyan kanggo jinis iki.",
+      "itemLimit": "Paket iki wis kebak kanggo tingkatan lencana sampeyan.",
+      "fileType": "Gunakake gambar PNG, GIF, WebP utawa JPEG",
+      "fileSize": "File kudu {{mb}} MB utawa luwih cilik",
+      "generic": "Ana sing salah. Coba maneh."
+    }
   }
 }

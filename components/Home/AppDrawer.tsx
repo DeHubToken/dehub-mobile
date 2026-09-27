@@ -97,6 +97,9 @@ const NAV_ITEMS: DrawerItem[] = [
   // ladder is worth reading before you hold a badge, which is the whole point
   // of the screen.
   { icon: "Zap", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers, storefrontHidden: true },
+  // Emoji, sticker and GIF packs — creating one is a badge perk, so it sits with
+  // the other things staking buys. Browsing and adding packs is open to all.
+  { icon: "Smile", labelKey: "creatorPacks.title", screen: ScreenNames.Packs },
   { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance, storefrontHidden: true },
   { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao, storefrontHidden: true },
   { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work, storefrontHidden: true },

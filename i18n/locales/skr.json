@@ -7159,5 +7159,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "پیک",
+    "subtitle": "مخصوص ایموجی، اسٹیکرز اور GIF جو بیج ہولڈرز نے بنائے ہیں۔ کوئی بھی پیک اپنے پکّر میں شامل کریں اور اسے چیٹس، تبصروں اور ردعمل میں استعمال کریں۔",
+    "tabStickers": "اسٹیکرز",
+    "tab": {
+      "emoji": "ایموجی",
+      "sticker": "اسٹیکرز",
+      "gif": "GIF"
+    },
+    "kind": {
+      "emoji": "ایموجی پیک",
+      "sticker": "اسٹیکر پیک",
+      "gif": "GIF پیک"
+    },
+    "manage": "پیک بنائیں یا شامل کریں",
+    "browse": "پیک براؤز کریں",
+    "browseCreate": "پیک تلاش کریں یا بنائیں",
+    "emptyStickers": "ابھی تک کوئی اسٹیکر پیک نہیں۔ بیج کے ساتھ ایک بنائیں، یا کسی اور کا شامل کریں۔",
+    "emptyGifs": "ابھی تک کوئی GIF پیک نہیں۔",
+    "lockedTitle": "پیک بیج ہولڈرز کے لیے ہیں",
+    "lockedBody": "اپنے خود کے ایموجی، اسٹیکر اور GIF پیک بنانے کے لیے بیج حاصل کرنے کے لیے DHB اسٹیک کریں۔ اعلیٰ ٹائرز کو زیادہ پیک اور ہر ایک میں زیادہ جگہ ملتی ہے۔",
+    "getBadge": "بیج حاصل کریں",
+    "pack": "پیک",
+    "newPackOption": "+ نیا پیک",
+    "packNamePlaceholder": "پیک کا نام",
+    "yourTier": "{{tier}} بیج: ہر قسم کے {{packs}} پیک، ہر ایک میں {{emoji}} ایموجی، {{stickers}} اسٹیکرز یا {{gifs}} GIFs تک۔",
+    "tierTable": "ہر بیج ٹائر کو کیا ملتا ہے",
+    "tierTableHint": "پیک فی قسم ہیں۔ دوسرے کالم یہ ہیں کہ ایک پیک میں کتنی آئٹمز فٹ ہوتی ہیں۔ اگر آپ کا ٹائر گرتا ہے، تو آپ کے پیک وہیں رہتے ہیں لیکن آپ نئی حدود سے آگے شامل نہیں کر سکتے۔",
+    "col": {
+      "tier": "ٹائر",
+      "packs": "پیک",
+      "emoji": "ایموجی",
+      "stickers": "اسٹیکرز",
+      "gifs": "GIF"
+    },
+    "signInToCreate": "Packs ٺاھن لسٹ سائن ان کرو",
+    "signInToAdd": "Add لسٹ سائن ان کرو",
+    "yourPacks": "توهان جا Packs",
+    "addedPacks": "توهان Add ڪيل Packs",
+    "popular": "سڀ کان وڌيڪ Add ٿيل",
+    "noneYet": "هتي اڃا تائين ڪو Pack ڪونهي.",
+    "createPack": "ٺاھيو",
+    "itemCount_one": "{{count}} شي",
+    "itemCount_other": "{{count}} شيون",
+    "saveCount_one": "{{count}} شامل کرو",
+    "saveCount_other": "{{count}} شامل کردا",
+    "by": "{{owner}} پاران",
+    "notFound": "هي Pack ڪونهي يا ختم ڪيو ويو آهي.",
+    "addToPicker": "منهنجي Picker ۾ Add ڪريو",
+    "removeFromPicker": "منهنجي Picker مان ڪڍو",
+    "addedToPicker": "Pack توهان جي Picker ۾ Add ٿي ويو",
+    "removedFromPicker": "Pack توهان جي Picker مان ڪڍيو ويو",
+    "copyLink": "Link ڪاپي ڪريو",
+    "linkCopied": "Link ڪاپي ٿي ويو",
+    "rename": "نئون نالو ڏيو",
+    "save": "محفوظ ڪريو",
+    "deletePack": "Pack ختم ڪريو",
+    "deleteConfirm": "{{name}} ختم ڪريو؟ ان ۾ موجود سڀ شيون ختم ٿي وينديون.",
+    "addItems": "هن Pack ۾ Add ڪريو",
+    "shortcodePlaceholder": "Emoji جو نالو (اختياري)",
+    "stickerEmojiPlaceholder": "Emoji جنهن جي لاءِ هي اسٽيڪر آهي (اختياري)",
+    "linkPlaceholder": "تصوير يا GIF جو Link پيسٽ ڪريو",
+    "addFromLink": "Link مان Add ڪريو",
+    "uploadFiles": "تصويرون اپلوڊ ڪريو",
+    "uploadHint": "PNG، GIF، WebP یا JPEG ہر ایک 2 MB تک۔ تساں اکٹھے کئی چُک سکدے او۔",
+    "uploadHintGif": "GIF، PNG، WebP یا JPEG ہر ایک 8 MB تک۔ تساں اکٹھے کئی چُک سکدے او۔",
+    "itemsAdded": "{{count}} شامل کیتا گیا ({{skipped}} چھڈیا گیا)",
+    "removeItem": "لَے جاؤ",
+    "packEmpty": "ہجے اِس پیک وچ کُجھ وی نئیں اے۔",
+    "errors": {
+      "noBadge": "پیک بَݨاوݨ واسطے توانوں سٹیکنگ بیج دی لوڑ اے۔",
+      "packLimit": "تساں اِس قسم واسطے توانوں جِتنے پیک سلاٹ تہاڈے بیج ٹائر دی اجازت اے۔",
+      "itemLimit": "تہاڈے بیج ٹائر واسطے اِس پیک وچ جیہڑی جگہ اے۔",
+      "fileType": "PNG، GIF، WebP یا JPEG تصویر استعمال کرو",
+      "fileSize": "فائلز {{mb}} MB یا اِس توں گھٹ ہوݨیاں چاہیدن",
+      "generic": "کُجھ غلط تھی گیا اے۔ دوبارہ کوشش کرو۔"
+    }
   }
 }

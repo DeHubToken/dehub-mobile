@@ -7399,5 +7399,83 @@
         }
       }
     }
+  },
+  "creatorPacks": {
+    "title": "Pakkies",
+    "subtitle": "Pasgemaakte emoji, plakkers en GIF's gemaak deur kentekenhouers. Voeg enige pakkie by jou kieser en gebruik dit in kletse, opmerkings en reaksies.",
+    "tabStickers": "Plakkers",
+    "tab": {
+      "emoji": "Emoji",
+      "sticker": "Plakkers",
+      "gif": "GIF's"
+    },
+    "kind": {
+      "emoji": "Emoji-pakkie",
+      "sticker": "Plakker-pakkie",
+      "gif": "GIF-pakkie"
+    },
+    "manage": "Skep of voeg pakkies by",
+    "browse": "Verken pakkies",
+    "browseCreate": "Vind of skep pakkies",
+    "emptyStickers": "Nog geen plakker-pakkies nie. Skep een met 'n kenteken, of voeg iemand anders s'n by.",
+    "emptyGifs": "Nog geen GIF-pakkies nie.",
+    "lockedTitle": "Pakkies is vir kentekenhouers",
+    "lockedBody": "Stake DHB vir 'n kenteken om jou eie emoji-, plakker- en GIF-pakkies te skep. Hoër vlakke kry meer pakkies en meer spasie in elkeen.",
+    "getBadge": "Kry 'n kenteken",
+    "pack": "Pakkie",
+    "newPackOption": "+ Nuwe pakkie",
+    "packNamePlaceholder": "Pakkie naam",
+    "yourTier": "{{tier}} kenteken: {{packs}} pakkies van elke soort, tot {{emoji}} emoji, {{stickers}} plakkers of {{gifs}} GIF's in elkeen.",
+    "tierTable": "Wat elke kentekenvlak kry",
+    "tierTableHint": "Pakkies is per soort. Die ander kolomme is hoeveel items in een pakkie pas. As jou vlak daal, bly jou pakkies, maar jy kan nie byvoeg verby die nuwe limiete nie.",
+    "col": {
+      "tier": "Vlak",
+      "packs": "Pakkies",
+      "emoji": "Emoji",
+      "stickers": "Plakkers",
+      "gifs": "GIFs"
+    },
+    "signInToCreate": "Teken in om pakke te skep",
+    "signInToAdd": "Teken in om by te voeg",
+    "yourPacks": "Jou pakke",
+    "addedPacks": "Pakkies wat jy bygevoeg het",
+    "popular": "Meeste bygevoeg",
+    "noneYet": "Nog geen pakke hier nie.",
+    "createPack": "Skep",
+    "itemCount_one": "{{count}} item",
+    "itemCount_other": "{{count}} items",
+    "saveCount_one": "{{count}} byvoeging",
+    "saveCount_other": "{{count}} byvoegings",
+    "by": "deur {{owner}}",
+    "notFound": "Hierdie pak bestaan nie of is uitgevee.",
+    "addToPicker": "Voeg by my keurder",
+    "removeFromPicker": "Verwyder uit my keurder",
+    "addedToPicker": "Pakkie by jou keurder gevoeg",
+    "removedFromPicker": "Pakkie uit jou keurder verwyder",
+    "copyLink": "Kopieer skakel",
+    "linkCopied": "Skakel gekopieer",
+    "rename": "Hernoem",
+    "save": "Stoor",
+    "deletePack": "Vee pak uit",
+    "deleteConfirm": "Vee {{name}} uit? Alles daarin sal verwyder word.",
+    "addItems": "Voeg by hierdie pak",
+    "shortcodePlaceholder": "naam vir die emoji (opsioneel)",
+    "stickerEmojiPlaceholder": "emoji waarvoor hierdie plakker staan (opsioneel)",
+    "linkPlaceholder": "Plak 'n prent- of GIF-skakel",
+    "addFromLink": "Voeg by vanaf skakel",
+    "uploadFiles": "Laai beelde op",
+    "uploadHint": "PNG, GIF, WebP of JPEG tot 2 MB elk. Jy kan dadelik 'n paar kies.",
+    "uploadHintGif": "GIF, PNG, WebP of JPEG tot 8 MB elk. Jy kan dadelik 'n paar kies.",
+    "itemsAdded": "Bygevoeg {{count}} ({{skipped}} oorgeslaan)",
+    "removeItem": "Verwyder",
+    "packEmpty": "Niks in die pakkie nie.",
+    "errors": {
+      "noBadge": "Jy het 'n staking badge nodig om pakkies te skep.",
+      "packLimit": "Jy het al die pakkies gebruik wat jou badge vlak toelaat vir hierdie soort.",
+      "itemLimit": "Hierdie pakkie is vol vir jou badge vlak.",
+      "fileType": "Gebruik 'n PNG-, GIF-, WebP- of JPEG-beeld",
+      "fileSize": "Lêers moet {{mb}} MB of kleiner wees",
+      "generic": "Iets het verkeerd geloop, probeer weer"
+    }
   }
 }
