@@ -4757,7 +4757,10 @@
     "earningsWorth": "قیمت {{amount}}",
     "earningsPaidInTokens": "آج دی قیمت تے ٹوکنز وچ ادا کیتا گیا",
     "earningsPendingReserve": "قائم شدہ خزانچی ریزرو",
-    "tokensSent": "{{amount}} ٹوکنز بھیجے گئے"
+    "tokensSent": "{{amount}} ٹوکنز بھیجے گئے",
+    "percentUsed": "{{percent}}% استعمال تھیندا",
+    "spentOfTotal": "{{spent}} دا {{total}}",
+    "viewInWallet": "والٹ وچ ویکھو"
   },
   "live": {
     "notSet": "مقرر کائنی",

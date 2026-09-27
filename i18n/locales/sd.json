@@ -4772,7 +4772,10 @@
     "earningsWorth": "ورٿ {{amount}}",
     "earningsPaidInTokens": "اڄ جي قيمت تي ٽوڪن ۾ ادا",
     "earningsPendingReserve": "منتظر خزاني جو ذخيرو",
-    "tokensSent": "{{amount}} ٽوڪن موڪليا ويا"
+    "tokensSent": "{{amount}} ٽوڪن موڪليا ويا",
+    "percentUsed": "{{percent}}٪ استعمال ڪيو ويو",
+    "spentOfTotal": "{{spent}} جي {{total}}",
+    "viewInWallet": "پرس ۾ ڏسو"
   },
   "live": {
     "notSet": "مقرر ناهي",

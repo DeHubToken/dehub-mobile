@@ -4821,7 +4821,10 @@
     "earningsWorth": "Wert {{amount}}",
     "earningsPaidInTokens": "In Token zum heutigen Preis bezahlt",
     "earningsPendingReserve": "Ausstehende Treasury-Rücklage",
-    "tokensSent": "{{amount}} Token gesendet"
+    "tokensSent": "{{amount}} Token gesendet",
+    "percentUsed": "{{percent}}% verwendet",
+    "spentOfTotal": "{{spent}} von {{total}}",
+    "viewInWallet": "In Wallet anzeigen"
   },
   "live": {
     "notSet": "Nicht festgelegt",

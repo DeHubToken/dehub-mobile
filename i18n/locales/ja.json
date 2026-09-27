@@ -4823,7 +4823,10 @@
     "earningsWorth": "価値{{amount}}",
     "earningsPaidInTokens": "今日の価格でトークンを支払った",
     "earningsPendingReserve": "保留中の国庫準備金",
-    "tokensSent": "{{amount}}トークンが送信されました"
+    "tokensSent": "{{amount}}トークンが送信されました",
+    "percentUsed": "{{percent}}%使用済み",
+    "spentOfTotal": "{{total}}の{{spent}}",
+    "viewInWallet": "ウォレットで表示"
   },
   "live": {
     "notSet": "未設定",

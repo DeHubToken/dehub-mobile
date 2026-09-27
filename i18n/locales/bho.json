@@ -4770,7 +4770,10 @@
     "earningsWorth": "कीमत {{amount}}",
     "earningsPaidInTokens": "सोनल - आज कीमत पे कम रहे",
     "earningsPendingReserve": "खजाने की खातिर",
-    "tokensSent": "{{amount}} टोकन भेजल गइल"
+    "tokensSent": "{{amount}} टोकन भेजल गइल",
+    "percentUsed": "{{percent}}% खर्चा भइल",
+    "spentOfTotal": "{{total}} में से {{spent}}",
+    "viewInWallet": "वॉलेट में देखने के बिंदु"
   },
   "live": {
     "notSet": "सेट नइखे",

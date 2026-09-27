@@ -4776,7 +4776,10 @@
     "earningsWorth": "V hodnotě {{amount}}",
     "earningsPaidInTokens": "Zaplaceno v žetonech za dnešní cenu",
     "earningsPendingReserve": "Nevyřízená pokladní rezerva",
-    "tokensSent": "Žetony {{amount}} odeslány"
+    "tokensSent": "Žetony {{amount}} odeslány",
+    "percentUsed": "{{percent}}% použito",
+    "spentOfTotal": "{{spent}} z {{total}}",
+    "viewInWallet": "Zobrazit v peněžence"
   },
   "live": {
     "notSet": "Nenastaveno",

@@ -98,6 +98,9 @@ export interface SubscriptionIntent {
 export interface SubscriptionCreditBalance {
   tokens: number;
   usd: number;
+  /** Lifetime dollars added and spent. Absent from older API builds. */
+  totalAddedUsd?: number;
+  totalSpentUsd?: number;
   dhbPriceUsd: number;
   withdrawable: false;
   tradable: false;

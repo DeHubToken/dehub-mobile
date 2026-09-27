@@ -4776,7 +4776,10 @@
     "earningsWorth": "मूल्य {{amount}}",
     "earningsPaidInTokens": "आजच्या किंमतीत टोकनमध्ये पैसे दिले",
     "earningsPendingReserve": "ट्रेझरी रिझर्व्ह प्रलंबित",
-    "tokensSent": "{{amount}} टोकन पाठवले"
+    "tokensSent": "{{amount}} टोकन पाठवले",
+    "percentUsed": "{{percent}}% वापरलेले",
+    "spentOfTotal": "{{spent}} चे {{total}}",
+    "viewInWallet": "वॉलेटमध्ये पहा"
   },
   "live": {
     "notSet": "सेट केलेले नाही",

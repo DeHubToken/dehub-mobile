@@ -4772,7 +4772,10 @@
     "earningsWorth": "Արժե {{amount}}",
     "earningsPaidInTokens": "Վճարվել է տոկեններով ՝ այսօրվա գնով",
     "earningsPendingReserve": "Առկախ գանձապետական պահուստ",
-    "tokensSent": "{{amount}} թոքեն ուղարկվեց"
+    "tokensSent": "{{amount}} թոքեն ուղարկվեց",
+    "percentUsed": "{{percent}}% օգտագործված",
+    "spentOfTotal": "{{spent}}՝ {{total}}-ից",
+    "viewInWallet": "Դիտել դրամապանակում"
   },
   "live": {
     "notSet": "Սահմանված չէ",

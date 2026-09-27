@@ -4775,7 +4775,10 @@
     "earningsWorth": "قابل قدر {{amount}}",
     "earningsPaidInTokens": "ٹوکنز میں آج کی قیمت پر ادائیگی کی گئی",
     "earningsPendingReserve": "زیر التواء ٹریژری ریزرو",
-    "tokensSent": "{{amount}} ٹوکن بھیجے گئے"
+    "tokensSent": "{{amount}} ٹوکن بھیجے گئے",
+    "percentUsed": "{{percent}}% استعمال کیا گیا",
+    "spentOfTotal": "{{spent}} از {{total}}",
+    "viewInWallet": "والٹ میں دیکھیں"
   },
   "live": {
     "notSet": "مقرر نہیں",

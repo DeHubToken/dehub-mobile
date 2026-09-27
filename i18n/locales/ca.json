@@ -4772,7 +4772,10 @@
     "earningsWorth": "Val {{amount}}",
     "earningsPaidInTokens": "Pagat en fitxes al preu d'avui",
     "earningsPendingReserve": "Reserva de tresoreria pendent",
-    "tokensSent": "{{amount}} fitxes enviades"
+    "tokensSent": "{{amount}} fitxes enviades",
+    "percentUsed": "S'ha utilitzat el {{percent}}%",
+    "spentOfTotal": "{{spent}} de {{total}}",
+    "viewInWallet": "Veure a la cartera"
   },
   "live": {
     "notSet": "Sense definir",

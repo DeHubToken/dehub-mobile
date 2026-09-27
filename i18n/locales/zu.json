@@ -4803,7 +4803,10 @@
     "earningsWorth": "Kubiza {{amount}}",
     "earningsPaidInTokens": "Kukhokhelwe ngamathokheni ngenani lanamuhla",
     "earningsPendingReserve": "Inqolobane yomgcinimafa esalindile",
-    "tokensSent": "{{amount}} amathokheni athunyelwe"
+    "tokensSent": "{{amount}} amathokheni athunyelwe",
+    "percentUsed": "{{percent}}% isetshenzisiwe",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "viewInWallet": "Buka esikhwameni semali"
   },
   "live": {
     "notSet": "Akuzange kusethwe",

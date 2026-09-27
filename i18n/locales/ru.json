@@ -4825,7 +4825,10 @@
     "earningsWorth": "Стоимость {{amount}}",
     "earningsPaidInTokens": "Оплачено токенами по сегодняшней цене",
     "earningsPendingReserve": "Резерв казначейства на рассмотрении",
-    "tokensSent": "Отправлено токенов:{{amount}}"
+    "tokensSent": "Отправлено токенов:{{amount}}",
+    "percentUsed": "Использовано: {{percent}}%",
+    "spentOfTotal": "{{spent}} из {{total}}",
+    "viewInWallet": "Посмотреть в кошельке"
   },
   "live": {
     "notSet": "Не задано",

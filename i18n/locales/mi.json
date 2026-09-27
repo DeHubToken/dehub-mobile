@@ -4772,7 +4772,10 @@
     "earningsWorth": "Ko te utu {{amount}}",
     "earningsPaidInTokens": "Utu i roto i te tohu i te utu o tenei ra",
     "earningsPendingReserve": "Te tiaki i nga taonga",
-    "tokensSent": "{{amount}} tokens tonoa"
+    "tokensSent": "{{amount}} tokens tonoa",
+    "percentUsed": "{{percent}}% used",
+    "spentOfTotal": "{{spent}} of {{total}}",
+    "viewInWallet": "Tiro i te pūkete"
   },
   "live": {
     "notSet": "Kāore i tautuhia",

@@ -4772,7 +4772,10 @@
     "earningsWorth": "Qiimihiisu waa {{amount}}",
     "earningsPaidInTokens": "Ra 'iisul Wasaare Kheyre oo maanta ku wajahan Dhuusamareeb",
     "earningsPendingReserve": "Kaydka khasnadda sugaya",
-    "tokensSent": "{{amount}} calaamadaha la diray"
+    "tokensSent": "{{amount}} calaamadaha la diray",
+    "percentUsed": "{{percent}}% loo isticmaalo",
+    "spentOfTotal": "{{spent}} ee {{total}}",
+    "viewInWallet": "Eeg boorsada"
   },
   "live": {
     "notSet": "Lama dejin",

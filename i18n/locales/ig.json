@@ -4772,7 +4772,10 @@
     "earningsWorth": "Ogo {{amount}}",
     "earningsPaidInTokens": "Akwụ ụgwọ na tokens na taa price",
     "earningsPendingReserve": "Na-echere Treasury reserve",
-    "tokensSent": "{{amount}} tokens zitere"
+    "tokensSent": "{{amount}} tokens zitere",
+    "percentUsed": "{{percent}}% used",
+    "spentOfTotal": "{{spent}} nke {{total}}",
+    "viewInWallet": "Gosi na obere akpa"
   },
   "live": {
     "notSet": "Edobeghị",

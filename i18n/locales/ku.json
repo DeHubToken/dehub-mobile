@@ -4609,7 +4609,10 @@
     "earningsWorth": "بەها {{amount}}",
     "earningsPaidInTokens": "بە تۆکن و بە نرخی ئەمڕۆ دەدرێت",
     "earningsPendingReserve": "یەدەگی گەنجینە چاوەڕوانە",
-    "tokensSent": "{{amount}} تۆکن نێردرا"
+    "tokensSent": "{{amount}} تۆکن نێردرا",
+    "percentUsed": "{{percent}}% بەکارهاتووە",
+    "spentOfTotal": "{{spent}} لە {{total}}",
+    "viewInWallet": "لە جزدان ببینە"
   },
   "live": {
     "notSet": "Nehatiye danîn",

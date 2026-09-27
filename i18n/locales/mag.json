@@ -4772,7 +4772,10 @@
     "earningsWorth": "कीमत {{amount}}",
     "earningsPaidInTokens": "आज के कीमत पर कैलकुलेशन",
     "earningsPendingReserve": "होल्डिंग होल्डिंग रिजर्व",
-    "tokensSent": "{{amount}} टोकन भेजल गेल"
+    "tokensSent": "{{amount}} टोकन भेजल गेल",
+    "percentUsed": "{{percent}}% खरच भेल",
+    "spentOfTotal": "{{total}} में से {{spent}}",
+    "viewInWallet": "होल्ड होल्ड ऑन लियोन"
   },
   "live": {
     "notSet": "सेट नै अछि",

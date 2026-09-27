@@ -4776,7 +4776,10 @@
     "earningsWorth": "மதிப்பு {{amount}}",
     "earningsPaidInTokens": "இன்றைய விலையில் டோக்கன்களில் செலுத்தப்பட்டது",
     "earningsPendingReserve": "நிலுவையில் உள்ள கருவூல இருப்பு",
-    "tokensSent": "{{amount}} டோக்கன்கள் அனுப்பப்பட்டன"
+    "tokensSent": "{{amount}} டோக்கன்கள் அனுப்பப்பட்டன",
+    "percentUsed": "{{percent}}% பயன்படுத்தப்பட்டது",
+    "spentOfTotal": "{{spent}} இன் {{total}}",
+    "viewInWallet": "வாலெட்டில் பார்க்கவும்"
   },
   "live": {
     "notSet": "அமைக்கப்படவில்லை",

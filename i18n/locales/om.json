@@ -4785,7 +4785,10 @@
     "earningsWorth": "Gatii {{amount}} .",
     "earningsPaidInTokens": "Gatii har&#39;aatiin tookiin kaffalame",
     "earningsPendingReserve": "Kuusaa tizrii eegamaa jiru",
-    "tokensSent": "{{amount}} mallattoo ergame"
+    "tokensSent": "{{amount}} mallattoo ergame",
+    "percentUsed": "{{percent}}% fayyadameera",
+    "spentOfTotal": "{{spent}} kan {{total}}",
+    "viewInWallet": "Wallet keessatti ilaali"
   },
   "live": {
     "notSet": "Hin qindoofne",

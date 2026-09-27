@@ -4805,7 +4805,10 @@
     "earningsWorth": "Die moeite werd {{amount}}",
     "earningsPaidInTokens": "Betaal in tokens teen vandag se prys",
     "earningsPendingReserve": "Hangende tesourie reservaat",
-    "tokensSent": "{{amount}} tokens gestuur"
+    "tokensSent": "{{amount}} tokens gestuur",
+    "percentUsed": "{{percent}}% gebruik",
+    "spentOfTotal": "{{spent}} van {{total}}",
+    "viewInWallet": "Besigtig in beursie"
   },
   "live": {
     "notSet": "Nie gestel nie",

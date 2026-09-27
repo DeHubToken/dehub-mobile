@@ -4785,7 +4785,10 @@
     "earningsWorth": "ප් ‍ රති-පිළිතුරු සැපයීම {{amount}}",
     "earningsPaidInTokens": "අද දින මිල දී ටෝකන වලින් ගෙවා ඇත",
     "earningsPendingReserve": "අපේක් ‍ ෂිත භාණ්ඩාගාර සංචිතය",
-    "tokensSent": "{{amount}} ටෝකන් යවන ලදි"
+    "tokensSent": "{{amount}} ටෝකන් යවන ලදි",
+    "percentUsed": "{{percent}}% භාවිතා කර ඇත",
+    "spentOfTotal": "{{total}} න් {{spent}}",
+    "viewInWallet": "පසුම්බියේ බලන්න"
   },
   "live": {
     "notSet": "සකසා නැත",
