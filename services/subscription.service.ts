@@ -98,7 +98,6 @@ export interface SubscriptionIntent {
 export interface SubscriptionCreditBalance {
   tokens: number;
   usd: number;
-  lockedPriceUsd: number | null;
   dhbPriceUsd: number;
   withdrawable: false;
   tradable: false;
@@ -124,7 +123,11 @@ export interface SubscriptionCreditQuote {
 }
 
 export interface SubscriptionEarnings {
-  currency: "USDT";
+  currency: "USDT" | "DHB";
+  /** Held in dollars, paid in tokens at today's price. `*Usdt` fields are dollar values. */
+  dhbPriceUsd?: number;
+  pendingTokens?: number;
+  processingTokens?: number;
   payoutChainId: number;
   pendingUsdt: number;
   processingUsdt: number;
@@ -290,12 +293,14 @@ export async function getSubscriptionEarnings(): Promise<SubscriptionEarnings> {
 export async function withdrawSubscriptionEarnings(): Promise<{
   success: true;
   amountUsdt: number;
+  amountTokens?: number;
   txHash: string;
   status: SubscriptionEarnings;
 }> {
   return apiClient.post<{
     success: true;
     amountUsdt: number;
+    amountTokens?: number;
     txHash: string;
     status: SubscriptionEarnings;
   }>("/subscription/earnings/withdraw", {});
@@ -376,4 +381,15 @@ export async function confirmSubscriptionPurchase(
   chainId: number,
 ): Promise<void> {
   await apiClient.post("/plan/webhook/purchased", { subId, hash, chainId, isSuccess: true });
+}
+
+/** Unwithdrawn earnings, in dollars and in tokens at today's price. */
+export function outstandingEarnings(earnings: SubscriptionEarnings | null | undefined): { usd: number; tokens: number } {
+  const usd = (earnings?.pendingUsdt || 0) + (earnings?.processingUsdt || 0);
+  const price = earnings?.dhbPriceUsd || 0.001;
+  const tokens =
+    earnings?.pendingTokens !== undefined
+      ? (earnings.pendingTokens || 0) + (earnings.processingTokens || 0)
+      : usd / price;
+  return { usd, tokens };
 }

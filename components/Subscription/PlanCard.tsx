@@ -188,7 +188,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
 
       // DHB is transferred into treasury custody and is not sold. The server
       // verifies this payment before it activates access and credits the
-      // creator the plan's frozen USDT value.
+      // creator the plan's dollar value, paid out in tokens.
       setStage(t("subscriptions.confirmInWallet"));
       const dhbContract = await buildContract(provider, ERC20_ABI, intent.dhbToken, true);
       const tx = await writeContractAA(
@@ -232,7 +232,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   // bought now, at today's price. The API makes the final call at checkout.
   const coveredUsd = Math.min(credits?.usd ?? 0, total || 0);
   const tokensFromBalance =
-    coveredUsd > 0 && credits?.lockedPriceUsd ? coveredUsd / credits.lockedPriceUsd : 0;
+    coveredUsd > 0 && credits?.dhbPriceUsd ? coveredUsd / credits.dhbPriceUsd : 0;
   const shortfallUsd = Math.max(0, (total || 0) - coveredUsd);
   const topUpTokens = shortfallUsd > 0 ? dhbForUsd(shortfallUsd, credits?.dhbPriceUsd || dhbUsd) : 0;
   const payNowTokens = topUpTokens ?? totalDhbEstimate;
@@ -375,12 +375,12 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           </Text>
           {totalDhbEstimate !== null && (
             <Text style={s.confirmCheckoutDhb}>
-              {t("subscriptions.creatorReceives", { amount: formatAmount(total ?? undefined, 2) })}
+              {t("subscriptions.creatorGetsTokens", { amount: `$${formatAmount(total ?? undefined, 2)}` })}
             </Text>
           )}
           {isUsdPriced && (
             <Text style={s.smartFundingText}>
-              {t("subscriptions.subscriptionTokensNote")}
+              {t("subscriptions.subscriptionTokensValueNote")}
             </Text>
           )}
           {targetChainId === 8453 && account && payNowTokens ? (
