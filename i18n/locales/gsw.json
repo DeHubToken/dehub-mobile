@@ -3522,7 +3522,12 @@
     "original": "Original Audio",
     "dubbed": "Dübbedi Tohn",
     "preparing": "Tön vorbereite zum Synchronisiere...",
-    "unavailable": "Für das Video isch kei synchronisierti Audio verfügbar."
+    "unavailable": "Für das Video isch kei synchronisierti Audio verfügbar.",
+    "menuLabel": "Synchronisation",
+    "menuDesc": "Los das Video i dinere Sprach",
+    "menuOn": "Aa · tippe für de Originalton",
+    "noTranscript": "Für das Video gits no kei Transkript.",
+    "noVoice": "Dis Grät het kei Stimm für die Sprach."
   },
   "stages": {
     "cancelConfirm": "„{{title}}“ absäge? De Link gaht dänn nüme.",

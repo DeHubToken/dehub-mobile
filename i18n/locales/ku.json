@@ -3374,7 +3374,12 @@
     "original": "Dengê orîjînal",
     "dubbed": "Dengê dublajkirî",
     "preparing": "Dengê dublajkirî tê amadekirin…",
-    "unavailable": "Dengê dublajkirî ji bo vê vîdyoyê peyda nabe."
+    "unavailable": "Dengê dublajkirî ji bo vê vîdyoyê peyda nabe.",
+    "menuLabel": "Dublaj",
+    "menuDesc": "Vê vîdyoyê bi zimanê xwe guhdar bike",
+    "menuOn": "Vekirî · ji bo dengê orîjînal bitikîne",
+    "noTranscript": "Vê vîdyoyê hêj transkrîpt tune.",
+    "noVoice": "Di cîhaza te de ji bo vî zimanî deng tune."
   },
   "stages": {
     "cancelConfirm": "“{{title}}” betal bike? Girêdan dê nema bixebite.",

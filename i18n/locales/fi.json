@@ -3492,7 +3492,12 @@
     "original": "Alkuperäinen ääni",
     "dubbed": "Kutsuttu ääni",
     "preparing": "Valmistellaan dubattua ääntä...",
-    "unavailable": "Toistettu ääni ei ole käytettävissä tälle videolle."
+    "unavailable": "Toistettu ääni ei ole käytettävissä tälle videolle.",
+    "menuLabel": "Dubbaus",
+    "menuDesc": "Kuuntele tämä video omalla kielelläsi",
+    "menuOn": "Päällä · napauta kuullaksesi alkuperäisen äänen",
+    "noTranscript": "Tällä videolla ei ole vielä litterointia.",
+    "noVoice": "Laitteessasi ei ole ääntä tälle kielelle."
   },
   "stages": {
     "cancelConfirm": "Peruuta \"{{title}}\"? Linkki lakkaa toimimasta.",

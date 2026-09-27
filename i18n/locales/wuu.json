@@ -3492,7 +3492,12 @@
     "original": "原文音频",
     "dubbed": "配音",
     "preparing": "准备配音音频…",
-    "unavailable": "迭段视频呒没配音。"
+    "unavailable": "迭段视频呒没配音。",
+    "menuLabel": "配音",
+    "menuDesc": "用侬个语言听迭段视频",
+    "menuOn": "已开 · 点一记听原声",
+    "noTranscript": "迭段视频还呒没文字稿。",
+    "noVoice": "侬个设备呒没迭种语言个语音。"
   },
   "stages": {
     "cancelConfirm": "取消“{{title}}”？链接就用勿着了。",

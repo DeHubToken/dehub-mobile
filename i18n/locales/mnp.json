@@ -3492,7 +3492,12 @@
     "original": "原聲",
     "dubbed": "配音",
     "preparing": "準備配音音檔…",
-    "unavailable": "此视频无配音版本。"
+    "unavailable": "此视频无配音版本。",
+    "menuLabel": "配音",
+    "menuDesc": "用你的语言听此视频",
+    "menuOn": "已开 · 点一下听原声",
+    "noTranscript": "此视频还无文字稿。",
+    "noVoice": "你的设备无此语言的语音。"
   },
   "stages": {
     "cancelConfirm": "取消“{{title}}”？链接就用弗了。",

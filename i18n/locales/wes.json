@@ -3407,7 +3407,12 @@
     "original": "Audio original",
     "dubbed": "Audio wey dem dub",
     "preparing": "Prepare audio wey dem go dub…",
-    "unavailable": "Dubbed audio no dey for this video."
+    "unavailable": "Dubbed audio no dey for this video.",
+    "menuLabel": "Dub",
+    "menuDesc": "Hear dis video for ya language",
+    "menuOn": "E dey on · tap for di original sound",
+    "noTranscript": "Dis video no get transcript yet.",
+    "noVoice": "Ya phone no get voice for dis language."
   },
   "stages": {
     "cancelConfirm": "You wan cancel “{{title}}”? Di link no go work again.",
