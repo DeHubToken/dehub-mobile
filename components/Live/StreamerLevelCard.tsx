@@ -67,19 +67,19 @@ const StreamerLevelCard: React.FC<Props> = ({ address, className }) => {
   return (
     <>
       <View className={`rounded-2xl border border-white/10 bg-white/5 p-4 ${className || ""}`}>
-        <View className="flex-row items-center">
-          <View className="w-12 h-12 rounded-xl border border-white/15 bg-white/5 items-center justify-center mr-3">
-            <Text className="text-white/40 text-[8px] uppercase tracking-wider">{t("live.progress.title")}</Text>
+        <View className="flex-row flex-wrap items-center justify-center gap-3">
+          <View className="w-20 min-h-20 p-2 rounded-xl border border-white/15 bg-white/5 items-center justify-center">
+            <Text className="w-full text-center text-white/40 text-[9px] leading-3 uppercase tracking-wider">{t("live.progress.title")}</Text>
             <Text className="text-white text-xl font-bold">{data.level}</Text>
           </View>
-          <View className="flex-1 min-w-0">
+          <View className="flex-1 min-w-0 basis-32">
             <View className="flex-row items-center">
               <Icon name="Radio" size={13} color="rgba(255,255,255,0.6)" />
-              <Text className="text-white text-sm font-semibold ml-1.5" numberOfLines={1}>
+              <Text className="flex-1 text-white text-sm font-semibold ml-1.5">
                 {t("live.progress.level", { level: data.level })}
               </Text>
             </View>
-            <Text className="text-white/50 text-[11px] mt-0.5" numberOfLines={1}>
+            <Text className="text-white/50 text-[11px] mt-1 leading-4">
               {t("live.progress.xp", { xp: data.xp.toLocaleString() })}
               {" · "}
               {t("live.progress.hours", { hours: formatHours(data.qualifyingMinutes) })}
@@ -106,7 +106,7 @@ const StreamerLevelCard: React.FC<Props> = ({ address, className }) => {
         </View>
         <View className="mt-2 flex-row items-center justify-between">
           <Text className="text-white/40 text-[11px]">{percent}%</Text>
-          <Text className="text-white/60 text-[11px] flex-1 text-right ml-2" numberOfLines={1}>
+          <Text className="text-white/60 text-[11px] leading-4 flex-1 text-right ml-2">
             {t("live.progress.toNext", { minutes: minutesToNext, level: data.level + 1 })}
           </Text>
         </View>
