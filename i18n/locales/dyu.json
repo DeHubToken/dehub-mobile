@@ -3470,7 +3470,12 @@
     "original": "O ye Bibulu ka maanaw ye.",
     "dubbed": "Audio ka baara kɛ",
     "preparing": "O ye kumakanw ye minw man kan ka mɛn.",
-    "unavailable": "O video nin tɛ se ka mɔgɔ bali ka kuma n'a ye."
+    "unavailable": "O video nin tɛ se ka mɔgɔ bali ka kuma n'a ye.",
+    "menuLabel": "Kan yɛlɛma",
+    "menuDesc": "I ka nin videyo lamɛn i ka kan na",
+    "menuOn": "A bɛ baara la · digi ka kan fɔlɔ lamɛn",
+    "noTranscript": "Nin videyo sɛbɛnni tɛ yen fɔlɔ.",
+    "noVoice": "Kumakan si tɛ i ka minɛn kan nin kan in na."
   },
   "stages": {
     "cancelConfirm": "I b'a fɛ ka “{{title}}” bɔ? Jurusira tɛna baara kɛ tugun.",

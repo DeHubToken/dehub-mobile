@@ -3622,7 +3622,12 @@
     "original": "Originálny zvuk",
     "dubbed": "Dabovaný zvuk",
     "preparing": "Pripravuje sa dabovaný zvuk...",
-    "unavailable": "Pre toto video nie je k dispozícii dabovaný zvuk."
+    "unavailable": "Pre toto video nie je k dispozícii dabovaný zvuk.",
+    "menuLabel": "Dabing",
+    "menuDesc": "Vypočujte si toto video vo svojom jazyku",
+    "menuOn": "Zapnuté · ťuknite pre pôvodný zvuk",
+    "noTranscript": "Toto video zatiaľ nemá prepis.",
+    "noVoice": "Vaše zariadenie nemá hlas pre tento jazyk."
   },
   "stages": {
     "cancelConfirm": "Zrušiť „{{title}}“? Odkaz prestane fungovať.",

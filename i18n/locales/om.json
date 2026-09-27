@@ -3527,7 +3527,12 @@
     "original": "Sagalee jalqabaa",
     "dubbed": "Sagalee maqaa itti moggaafame",
     "preparing": "Sagalee dubbed qopheessuu...",
-    "unavailable": "Viidiyoo kanaaf sagaleen dubbed ta'e hin jiru."
+    "unavailable": "Viidiyoo kanaaf sagaleen dubbed ta'e hin jiru.",
+    "menuLabel": "Sagalee hiikuu",
+    "menuDesc": "Viidiyoo kana afaan keetiin dhaggeeffadhu",
+    "menuOn": "Banaa · sagalee jalqabaatiif tuqi",
+    "noTranscript": "Viidiyoon kun ammallee barreeffama hin qabu.",
+    "noVoice": "Meeshaan kee afaan kanaaf sagalee hin qabu."
   },
   "stages": {
     "cancelConfirm": "“{{title}}” haquu? Geessituun sun hojjechuu ni dhaaba.",

@@ -3514,7 +3514,12 @@
     "original": "Oryginalny dźwięk",
     "dubbed": "Dźwięk dubbingowany",
     "preparing": "Przygotowywanie dubbingowanego dźwięku…",
-    "unavailable": "Dźwięk dubbingowany nie jest dostępny dla tego filmu."
+    "unavailable": "Dźwięk dubbingowany nie jest dostępny dla tego filmu.",
+    "menuLabel": "Dubbing",
+    "menuDesc": "Posłuchaj tego filmu w swoim języku",
+    "menuOn": "Wł. · dotknij, aby usłyszeć oryginalny dźwięk",
+    "noTranscript": "Ten film nie ma jeszcze transkrypcji.",
+    "noVoice": "Twoje urządzenie nie ma głosu dla tego języka."
   },
   "stages": {
     "cancelConfirm": "Anulować \"{{title}}\"? Link przestanie działać.",

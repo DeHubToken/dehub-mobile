@@ -3532,7 +3532,12 @@
     "original": "Asl audio",
     "dubbed": "Dublyaj qilingan audio",
     "preparing": "Dublyaj qilingan audio tayyorlanmoqda…",
-    "unavailable": "Bu video uchun dublyaj qilingan audio mavjud emas."
+    "unavailable": "Bu video uchun dublyaj qilingan audio mavjud emas.",
+    "menuLabel": "Dublyaj",
+    "menuDesc": "Bu videoni o‘z tilingizda tinglang",
+    "menuOn": "Yoqilgan · asl ovoz uchun bosing",
+    "noTranscript": "Bu videoning hali transkripti yo‘q.",
+    "noVoice": "Qurilmangizda bu til uchun ovoz yo‘q."
   },
   "stages": {
     "cancelConfirm": "“{{title}}” bekor qilinsinmi? Havola ishlashdan to'xtaydi.",

@@ -3518,7 +3518,12 @@
     "original": "áudio original",
     "dubbed": "Áudio dublado",
     "preparing": "A preparar áudio dublado...",
-    "unavailable": "O áudio dublado não está disponível para este vídeo."
+    "unavailable": "O áudio dublado não está disponível para este vídeo.",
+    "menuLabel": "Dublagem",
+    "menuDesc": "Ouça este vídeo no seu idioma",
+    "menuOn": "Ativado · toque para o áudio original",
+    "noTranscript": "Este vídeo ainda não tem transcrição.",
+    "noVoice": "Seu dispositivo não tem uma voz para este idioma."
   },
   "support": {
     "title": "Suporte",

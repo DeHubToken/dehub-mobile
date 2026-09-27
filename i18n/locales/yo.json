@@ -3515,7 +3515,12 @@
     "original": "Oríṣìíríṣìí ohun afetigbọ",
     "dubbed": "Ohun afetigbọ ti a pe ni",
     "preparing": "Ṣíṣe ìmúrasílẹ̀ ohun afetigbọ méjì...",
-    "unavailable": "Oríṣìíríṣìí ohùn kò sí fún fídíò yìí."
+    "unavailable": "Oríṣìíríṣìí ohùn kò sí fún fídíò yìí.",
+    "menuLabel": "Ìtumọ̀ ohùn",
+    "menuDesc": "Tẹ́tí sí fídíò yìí ní èdè rẹ",
+    "menuOn": "Ó wà ní títàn · tẹ̀ fún ohùn àtilẹ̀wá",
+    "noTranscript": "Fídíò yìí kò tíì ní àkọsílẹ̀.",
+    "noVoice": "Ẹ̀rọ rẹ kò ní ohùn fún èdè yìí."
   },
   "stages": {
     "cancelConfirm": "Fagilé “{{title}}”? Ọ̀nà àsopọ̀ náà kò ní ṣiṣẹ́ mọ́.",

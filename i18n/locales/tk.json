@@ -3514,7 +3514,12 @@
     "original": "Aslynda ses",
     "dubbed": "Saýlamalary nusgalamak",
     "preparing": "Saýlanan sesleri tapmak üçin...",
-    "unavailable": "Désolé, bu video indi ýok."
+    "unavailable": "Désolé, bu video indi ýok.",
+    "menuLabel": "Dublýaž",
+    "menuDesc": "Bu wideony öz diliňizde diňläň",
+    "menuOn": "Açyk · asyl ses üçin basyň",
+    "noTranscript": "Bu wideonyň entek transkripti ýok.",
+    "noVoice": "Enjamyňyzda bu dil üçin ses ýok."
   },
   "stages": {
     "cancelConfirm": "“{{title}}” ýatyrylsynmy? Baglanyşyk işlemesini goýar.",

@@ -3514,7 +3514,12 @@
     "original": "原始音频",
     "dubbed": "配音",
     "preparing": "正在准备配音音频…",
-    "unavailable": "此视频没有提供配音音频。"
+    "unavailable": "此视频没有提供配音音频。",
+    "menuLabel": "配音",
+    "menuDesc": "用你的语言听这个视频",
+    "menuOn": "已开启 · 点一下听原声",
+    "noTranscript": "这个视频还没有文字稿。",
+    "noVoice": "你的设备没有这种语言的语音。"
   },
   "stages": {
     "cancelConfirm": "取消“{{title}}”？链接就不能用咧。",

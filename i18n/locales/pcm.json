@@ -3414,7 +3414,12 @@
     "original": "Original audio",
     "dubbed": "Dubbed audio",
     "preparing": "We dey prepare di dubbed audio…",
-    "unavailable": "Dubbed audio no dey for dis video."
+    "unavailable": "Dubbed audio no dey for dis video.",
+    "menuLabel": "Dub",
+    "menuDesc": "Hear dis video for your language",
+    "menuOn": "E dey on · tap for di original sound",
+    "noTranscript": "Dis video never get transcript yet.",
+    "noVoice": "Your phone no get voice for dis language."
   },
   "stages": {
     "cancelConfirm": "You wan cancel “{{title}}”? Di link no go work again.",

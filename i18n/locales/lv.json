@@ -3514,7 +3514,12 @@
     "original": "Oriģinālais audio",
     "dubbed": "Dublēts audio",
     "preparing": "Notiek dublētā audio sagatavošana...",
-    "unavailable": "Šim videoklipam dublētais audio nav pieejams."
+    "unavailable": "Šim videoklipam dublētais audio nav pieejams.",
+    "menuLabel": "Dublēšana",
+    "menuDesc": "Klausieties šo video savā valodā",
+    "menuOn": "Ieslēgts · pieskarieties oriģinālajai skaņai",
+    "noTranscript": "Šim video vēl nav transkripcijas.",
+    "noVoice": "Jūsu ierīcē nav balss šai valodai."
   },
   "stages": {
     "cancelConfirm": "Atcelt “{{title}}”? Saite pārstās darboties.",

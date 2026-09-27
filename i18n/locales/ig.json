@@ -3514,7 +3514,12 @@
     "original": "Mbụ ọdịyo",
     "dubbed": "Egwú a dọgburu adọ",
     "preparing": "Ịkwadebe ụda a na-akpọ dubbed...",
-    "unavailable": "E nweghị ụda dọbbed maka ihe onyonyo a."
+    "unavailable": "E nweghị ụda dọbbed maka ihe onyonyo a.",
+    "menuLabel": "Ntụgharị olu",
+    "menuDesc": "Gee vidiyo a ntị n'asụsụ gị",
+    "menuOn": "Ọ na-arụ · pịa maka ụda mbụ",
+    "noTranscript": "Vidiyo a enweghị ederede ya ugbu a.",
+    "noVoice": "Ngwaọrụ gị enweghị olu maka asụsụ a."
   },
   "stages": {
     "cancelConfirm": "Kagbuo “{{title}}”? Njikọ ahụ agaghị arụkwa ọrụ.",

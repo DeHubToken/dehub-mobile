@@ -3518,7 +3518,12 @@
     "original": "Originalljud",
     "dubbed": "Dubbade ljud",
     "preparing": "Förbereder dubbat ljud...",
-    "unavailable": "Dubbat ljud är inte tillgängligt för den här videon."
+    "unavailable": "Dubbat ljud är inte tillgängligt för den här videon.",
+    "menuLabel": "Dubbning",
+    "menuDesc": "Lyssna på den här videon på ditt språk",
+    "menuOn": "På · tryck för originalljud",
+    "noTranscript": "Den här videon har ingen transkription än.",
+    "noVoice": "Din enhet har ingen röst för det här språket."
   },
   "stages": {
     "cancelConfirm": "Avbryt \"{{title}}\"? Länken slutar fungera.",

@@ -3514,7 +3514,12 @@
     "original": "Maqalka asalka ah",
     "dubbed": "Maqalka la dubay",
     "preparing": "Diyaarinta maqalka loo yaqaan...",
-    "unavailable": "Codadka codka ah ee la duubay lama heli karo fiidiyowgaan."
+    "unavailable": "Codadka codka ah ee la duubay lama heli karo fiidiyowgaan.",
+    "menuLabel": "Cod turjumid",
+    "menuDesc": "Ku dhageyso fiidiyowgan luqaddaada",
+    "menuOn": "Shidan · taabo codka asalka ah",
+    "noTranscript": "Fiidiyowgan weli ma laha qoraal.",
+    "noVoice": "Qalabkaagu ma laha cod luqaddan."
   },
   "stages": {
     "cancelConfirm": "Ma joojinaysaa “{{title}}”? Linkigu wuu shaqayn doonin.",

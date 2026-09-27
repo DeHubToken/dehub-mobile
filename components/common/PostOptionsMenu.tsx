@@ -33,11 +33,13 @@ import { followUser, unfollowUser } from "../../services/user.service";
 import { blockUser, unblockUser } from "../../services/block.service";
 import { muteUser } from "../../services/mute.service";
 import { useUser, useAuthActions } from "../../context/AuthContext";
-import { toastSuccess, toastError } from "../../libs";
+import { toastSuccess, toastError, toastInfo } from "../../libs";
 import { WEBSITE_LINK } from "../../config";
 import { markPostDeleted } from "../../libs/deleted-posts-store";
 import { useMintExistingPost } from "../../hooks/useMintExistingPost";
 import { useIsPostPinned, useTogglePin } from "../../hooks/usePinnedPosts";
+import { useDubSettings, setDubSettings, checkDubbable } from "../../hooks/useVideoDub";
+import { baseLang } from "../../hooks/useVoiceDub";
 import { defaultChainId } from "../../config/constants";
 
 export interface PostOptionsMenuProps {
@@ -121,6 +123,12 @@ export interface PostOptionsMenuProps {
   onTranslatePress?: () => void;
   /** Called when user taps Translate Image (image posts only) */
   onTranslateImagePress?: () => void;
+  /**
+   * Offer the Dub row — video posts only, and only where the player runs the
+   * captions overlay that speaks it. Toggles the same switch as the Audio row
+   * in the captions sheet.
+   */
+  canDub?: boolean;
   /** Whether the viewer has blocked the creator */
   isBlocked?: boolean;
   /** Called after block/unblock to update parent state */
@@ -215,6 +223,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onGiftBoostPress,
   onTranslatePress,
   onTranslateImagePress,
+  canDub = false,
   isBlocked: isBlockedProp = false,
   onBlockChange,
   onMuteChange,
@@ -224,8 +233,31 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   hideReportContent = false,  hideEdit = false,}) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { mint: mintExisting, isMinting } = useMintExistingPost();
+  const { on: dubOn } = useDubSettings();
+
+  // Dub in the app's language. Switching on checks first, because the menu is
+  // gone by the time anything would play: a video with no transcript or a
+  // phone with no voice for the language would otherwise switch on to silence.
+  const handleDubToggle = useCallback(async () => {
+    onClose();
+    if (dubOn) {
+      setDubSettings({ on: false });
+      return;
+    }
+    const lang = baseLang(i18n.language);
+    const check = await checkDubbable(tokenId, lang);
+    if (check === "no-transcript") {
+      toastInfo(t("dub.noTranscript"));
+      return;
+    }
+    if (check === "no-voice") {
+      toastInfo(t("dub.noVoice"));
+      return;
+    }
+    setDubSettings({ on: true, lang });
+  }, [onClose, dubOn, i18n.language, tokenId, t]);
 
   // Pin state is shared across every card on screen, so this row opens on the
   // right label rather than assuming the post is unpinned.
@@ -557,6 +589,17 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               label={t("postOptions.translateImage")}
               sublabel={t("postOptions.translateImageDesc")}
               onPress={() => { onClose(); setTimeout(() => onTranslateImagePress(), 300); }}
+            />
+          )}
+
+          {/* Dub — speak the video in the viewer's language */}
+          {canDub && (
+            <OptionRow
+              icon={dubOn ? "mic" : "mic-outline"}
+              label={t("dub.menuLabel")}
+              sublabel={dubOn ? t("dub.menuOn") : t("dub.menuDesc")}
+              color={dubOn ? "#FFFFFF" : undefined}
+              onPress={() => { void handleDubToggle(); }}
             />
           )}
 

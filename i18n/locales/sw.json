@@ -3515,7 +3515,12 @@
     "original": "Sauti ya awali",
     "dubbed": "Sauti iliyochapishwa mara mbili",
     "preparing": "Inaandaa sauti iliyopewa jina...",
-    "unavailable": "Sauti iliyosambazwa haipatikani kwa video hii."
+    "unavailable": "Sauti iliyosambazwa haipatikani kwa video hii.",
+    "menuLabel": "Sauti ya tafsiri",
+    "menuDesc": "Sikiliza video hii kwa lugha yako",
+    "menuOn": "Imewashwa · gusa kwa sauti asili",
+    "noTranscript": "Video hii bado haina manukuu.",
+    "noVoice": "Kifaa chako hakina sauti ya lugha hii."
   },
   "stages": {
     "cancelConfirm": "Ghairi \"{{title}}\"? Kiungo kitaacha kufanya kazi.",
