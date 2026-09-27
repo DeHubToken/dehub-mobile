@@ -4748,7 +4748,15 @@
     "custodyNote": "تبقى توكناتك في عهدة خزانة DeHub ولا تُباع. يتلقى المنشئ رصيد اشتراك مُسعّر بـ USDT.",
     "legacyMigrationNote": "الهجرة تحفظ هذه الخطة القديمة المسعّرة بالتوكنات إلى التسعير بالدولار بالسعر قبل الإدراج.",
     "tokenPrice": "{{amount}} توكن",
-    "tokensUnit": "توكنات"
+    "tokensUnit": "توكنات",
+    "atPreListingRate": "{{amount}} بسعر ما قبل الإدراج",
+    "fromSubscriptionTokensAmount": "من توكنات الاشتراك مالك: {{amount}}",
+    "subscriptionTokensNote": "توكنات الاشتراك تتقفل بالسعر اللي تضيفها بيه، فالتغيّر بالسعر ما يغيّر أبدًا تكلفة الاشتراك لك. ما تكدر تستخدمها إلا للاشتراكات.",
+    "subscriptionTokens": "توكنات الاشتراك",
+    "untradableTokens": "هذي توكنات اشتراك غير قابلة للتداول",
+    "lockedValue": "متقفل بسعر {{amount}}",
+    "withdraw": "سحب",
+    "trade": "تبديل"
   },
   "live": {
     "notSet": "مو محدد",

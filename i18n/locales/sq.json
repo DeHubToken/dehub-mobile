@@ -4748,7 +4748,15 @@
     "custodyNote": "Tokenat tuaja qëndrojnë në kujdestarinë e thesarit të DeHub dhe nuk shiten. Krijuesi merr një bilanc abonimi të denominuar në USDT.",
     "legacyMigrationNote": "Kursimi migron këtë plan të vjetër me çmim tokenash në çmime dollarësh me normën para-listimit.",
     "tokenPrice": "{{amount}} tokena",
-    "tokensUnit": "tokena"
+    "tokensUnit": "tokena",
+    "atPreListingRate": "{{amount}} në normën e listimit paraprak",
+    "fromSubscriptionTokensAmount": "Nga shenjat e abonimit: {{amount}}",
+    "subscriptionTokensNote": "Shenjat e abonimit bllokohen me çmimin kur i shton ato, kështu që një lëvizje e çmimit nuk ndryshon kurrë atë që të kushton një abonim. Ato mund të shpenzohen vetëm për abonimet.",
+    "subscriptionTokens": "Shenjat e abonimit",
+    "untradableTokens": "Këto janë shenja të pakontestueshme të abonimit",
+    "lockedValue": "Mbyllur në {{amount}}",
+    "withdraw": "Tërhiq",
+    "trade": "Tregtia"
   },
   "live": {
     "notSet": "I pacaktuar",

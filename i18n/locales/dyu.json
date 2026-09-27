@@ -4704,7 +4704,15 @@
     "custodyNote": "Yɔ tɔkɛns stɛ na DeHub tɛzɔri kɔstɔdi ɛn dɛn nɔ sɔl. Di krietɔ risiv a USDT-dɛnimɛnɛt sabsɛpshɔn bɛlɛns.",
     "legacyMigrationNote": "Sɛvin migrɛt dis legɛsi tɔkɛn-prɛs plɛn tɔ dɔla prɛsin na di prɛ-listin rɛt.",
     "tokenPrice": "{{amount}} tɔkɛns",
-    "tokensUnit": "tɔkɛns"
+    "tokensUnit": "tɔkɛns",
+    "atPreListingRate": "{{amount}} ka tɛmɛ sanga ni wagati kan",
+    "subscriptionTokensNote": "N'i ye tagamasiɲɛ dɔw fara u kan, u be se ka kɛ tagamasiɲɛ ye. O kama, n'i ye tagamasiɲɛ dɔ bila sen kan, o tɛ yɛlɛma. Mɔgɔ minw be yen, olu dɔrɔn lo be se k'o sɛbɛ.",
+    "subscriptionTokens": "Siginidenw",
+    "untradableTokens": "O ye siginidenw ye minw tɛ se ka yɛlɛma.",
+    "lockedValue": "O ye {{amount}}",
+    "withdraw": "Ka bɔ yen",
+    "trade": "Jagokɛla",
+    "fromSubscriptionTokensAmount": "I ka abonman token la: {{amount}}"
   },
   "live": {
     "notSet": "A ma sigi",

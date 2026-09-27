@@ -4748,7 +4748,15 @@
     "custodyNote": "Jūsų žetonai lieka DeHub iždo saugojime ir nėra parduodami. Kūrėjas gauna USDT denominuotą prenumeratos balansą.",
     "legacyMigrationNote": "Taupymas migruoja šį seną žetonų kainų planą į dolerių kainas pagal išankstinį kainų nustatymą.",
     "tokenPrice": "{{amount}} žetonai",
-    "tokensUnit": "žetonai"
+    "tokensUnit": "žetonai",
+    "atPreListingRate": "{{amount}} pagal išankstinio skelbimo įkainį",
+    "fromSubscriptionTokensAmount": "Iš jūsų prenumeratos žetonų: {{amount}}",
+    "subscriptionTokensNote": "Pridėjus prenumeratos žetonus užrakinama kaina, todėl kainos perkėlimas niekada nekeičia prenumeratos kainos. Juos galima išleisti tik prenumeratoms.",
+    "subscriptionTokens": "Prenumeratos prieigos raktai",
+    "untradableTokens": "Tai yra neprekybiniai prenumeratos žetonai",
+    "lockedValue": "Užrakinta {{amount}}",
+    "withdraw": "Atsiimti",
+    "trade": "Prekyba"
   },
   "live": {
     "notSet": "Nenustatyta",

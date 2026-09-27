@@ -4748,7 +4748,15 @@
     "custodyNote": "Tokenii tăi rămân în custodia trezoreriei DeHub și nu sunt vânduți. Creatorul primește un sold de abonament denominat în USDT.",
     "legacyMigrationNote": "Salvarea migrează acest plan vechi, prețuit în tokeni, la prețuri în dolari la rata de dinainte de listare.",
     "tokenPrice": "{{amount}} tokeni",
-    "tokensUnit": "tokeni"
+    "tokensUnit": "tokeni",
+    "atPreListingRate": "{{amount}} la tariful de pre-listare",
+    "fromSubscriptionTokensAmount": "Din jetoanele de abonament: {{amount}}",
+    "subscriptionTokensNote": "Jetoanele de abonament sunt blocate la preț atunci când le adăugați, astfel încât o mutare de preț nu schimbă niciodată cât vă costă un abonament. Acestea pot fi cheltuite numai pe abonamente.",
+    "subscriptionTokens": "Jetoane de abonament",
+    "untradableTokens": "Acestea sunt jetoane de abonament netranzacționabile",
+    "lockedValue": "Blocat la {{amount}}",
+    "withdraw": "Retragere",
+    "trade": "Reg."
   },
   "live": {
     "notSet": "Nesetat",

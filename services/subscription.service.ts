@@ -79,13 +79,48 @@ export interface SubscriptionIntent {
   price: number;
   currency: string;
   decimals?: number;
-  settlementMode?: "onchain_usdt" | "dhb_custody";
+  settlementMode?: "onchain_usdt" | "dhb_custody" | "credits";
   dhbToken?: string;
   treasuryAddress?: string;
   dhbAmount?: number;
   dhbAmountWei?: string;
   usdtCredit?: number;
   quoteExpiresAt?: string;
+  /** Subscription-token checkout. Absent from older API builds. */
+  credits?: SubscriptionCreditQuote;
+}
+
+/**
+ * Subscription tokens: DHB held by DeHub and locked at its dollar value when
+ * it was added. Shown as tokens, spent on subscriptions, never withdrawn or
+ * traded.
+ */
+export interface SubscriptionCreditBalance {
+  tokens: number;
+  usd: number;
+  lockedPriceUsd: number | null;
+  dhbPriceUsd: number;
+  withdrawable: false;
+  tradable: false;
+  message: string;
+}
+
+export interface SubscriptionCreditQuote {
+  priceUsd: number;
+  priceTokens: number;
+  balanceTokens: number;
+  balanceUsd: number;
+  tokensFromBalance: number;
+  shortfallUsd: number;
+  dhbPriceUsd: number;
+  topUp: {
+    chainId: number;
+    dhbAmount: number;
+    dhbAmountWei: string;
+    dhbToken: string;
+    treasuryAddress: string;
+  } | null;
+  message: string;
 }
 
 export interface SubscriptionEarnings {
@@ -104,6 +139,8 @@ interface PendingSubscriptionPayment {
   subId: string;
   hash: string;
   chainId: number;
+  /** Settled through subscription tokens rather than the direct transfer. */
+  mode?: "credits";
 }
 
 const PENDING_SUBSCRIPTION_PAYMENTS_KEY = "dehub.pending-subscription-payments.v1";
@@ -146,7 +183,11 @@ export async function clearPendingSubscriptionPayment(subId: string): Promise<vo
 export async function reconcilePendingSubscriptionPayments(): Promise<void> {
   for (const payment of await pendingSubscriptionPayments()) {
     try {
-      await confirmSubscriptionPurchase(payment.subId, payment.hash, payment.chainId);
+      if (payment.mode === "credits") {
+        await payPlanWithCredits(payment.subId, payment.hash, payment.chainId);
+      } else {
+        await confirmSubscriptionPurchase(payment.subId, payment.hash, payment.chainId);
+      }
       await clearPendingSubscriptionPayment(payment.subId);
     } catch {
       // Keep the verified transaction for the next authenticated read. The
@@ -309,6 +350,23 @@ export async function buyPlan(
 /** Tell the API a plan is now listed on chain, so it can verify and publish it. */
 export async function confirmPlanPublished(planId: string, chainId: number): Promise<void> {
   await apiClient.post("/plan/webhook/create", { planId, chainId, isSuccess: true });
+}
+
+/**
+ * Settle an intent from subscription tokens. `hash` is the DHB top-up sent
+ * for any shortfall; the API credits it at the price when it landed first.
+ */
+export async function payPlanWithCredits(subId: string, hash?: string, chainId?: number): Promise<void> {
+  await apiClient.post("/plan/buy/credits", {
+    subId,
+    ...(hash ? { hash } : {}),
+    ...(chainId ? { chainId } : {}),
+  });
+}
+
+export async function getSubscriptionCredits(): Promise<SubscriptionCreditBalance | null> {
+  const res = await apiClient.get<{ credits?: SubscriptionCreditBalance }>("/subscription-credits");
+  return (res as any)?.credits ?? null;
 }
 
 /** Tell the API a purchase landed, so it can verify it against the chain. */

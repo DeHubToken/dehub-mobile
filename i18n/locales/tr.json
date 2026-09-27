@@ -4797,7 +4797,15 @@
     "custodyNote": "Jetonlarınız DeHub hazine emanetinde kalır ve satılmaz. Oluşturucu, USDT cinsinden bir abonelik bakiyesi alır.",
     "legacyMigrationNote": "Kaydetme, bu eski jeton fiyatlı planı listeleme öncesi kurdan dolar fiyatlandırmasına geçirir.",
     "tokenPrice": "{{amount}} jeton",
-    "tokensUnit": "jetonlar"
+    "tokensUnit": "jetonlar",
+    "atPreListingRate": "Ön kayıt ücretinde {{amount}}",
+    "fromSubscriptionTokensAmount": "Abonelik jetonlarınızdan: {{amount}}",
+    "subscriptionTokensNote": "Abonelik tokenleri eklediğinizde fiyata kilitlenir, bu nedenle bir fiyat hareketi bir aboneliğin size maliyetini asla değiştirmez. Sadece aboneliklere harcanabilir.",
+    "subscriptionTokens": "Abonelik tokenleri",
+    "untradableTokens": "Bunlar takas edilemez abonelik belirteçleridir",
+    "lockedValue": "{{amount}} konumunda kilitli",
+    "withdraw": "Para Çekme",
+    "trade": "Tic."
   },
   "live": {
     "notSet": "Ayarlanmadı",

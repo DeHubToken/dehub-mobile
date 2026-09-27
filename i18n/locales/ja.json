@@ -4799,7 +4799,15 @@
     "custodyNote": "あなたのトークンは DeHub トレジャリーの管理下にあり、売却されません。クリエイターは USDT 建てのサブスクリプション残高を受け取ります。",
     "legacyMigrationNote": "保存により、このレガシートークン価格プランは、リスティング前のレートでのドル価格に移行します。",
     "tokenPrice": "{{amount}} トークン",
-    "tokensUnit": "トークン"
+    "tokensUnit": "トークン",
+    "atPreListingRate": "事前公開料金で{{amount}}",
+    "fromSubscriptionTokensAmount": "サブスクリプショントークンから：{{amount}}",
+    "subscriptionTokensNote": "サブスクリプショントークンは追加時の価格でロックされるため、価格の変更によってサブスクリプションの費用が変わることはありません。 これらはサブスクリプションにのみ使用できます。",
+    "subscriptionTokens": "サブスクリプショントークン",
+    "untradableTokens": "これらは取引不可能なサブスクリプショントークンです",
+    "lockedValue": "{{amount}}にロックされています",
+    "withdraw": "出金",
+    "trade": "取引"
   },
   "live": {
     "notSet": "未設定",

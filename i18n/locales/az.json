@@ -4748,7 +4748,15 @@
     "custodyNote": "Tokenləriniz DeHub xəzinəsinin nəzarətində qalır və satılmır. Yaradıcı USDT ilə ifadə edilmiş abunə balansı alır.",
     "legacyMigrationNote": "Saxlama, bu köhnə token qiymətli planı siyahıya alınmamış dərəcədə dollar qiymətinə köçürür.",
     "tokenPrice": "{{amount}} token",
-    "tokensUnit": "tokenlər"
+    "tokensUnit": "tokenlər",
+    "atPreListingRate": "{{amount}} əvvəlcədən elan qiyməti ilə",
+    "fromSubscriptionTokensAmount": "Abunə nişanlarınızdan: {{amount}}",
+    "subscriptionTokensNote": "Abunə nişanları əlavə etdiyiniz zaman qiymət kilidlənir, buna görə də qiymət hərəkəti heç vaxt abunə xərclərinizi dəyişmir. Onlar yalnız abunələrə xərclənə bilər.",
+    "subscriptionTokens": "Abunə nişanları",
+    "untradableTokens": "Bunlar təkraredilməz abunə ayələridir",
+    "lockedValue": "{{amount}} ünvanında kilidlənib",
+    "withdraw": "Geri götür",
+    "trade": "Ticarət"
   },
   "live": {
     "notSet": "Təyin edilməyib",

@@ -4779,7 +4779,15 @@
     "custodyNote": "Amathokheni akho ahlala ekugcineni kwe-DeHub futhi awathengiswa. Umdali uthola ibhalansi yokubhalisa ehlanganiswe ne-USDT.",
     "legacyMigrationNote": "Ukulondoloza kuthutha leli ce plan elibizwa ngamathokheni libuyele ekubizeni ngamadola ngesilinganiso sangaphambi kokufakwa kuhlu.",
     "tokenPrice": "{{amount}} amathokheni",
-    "tokensUnit": "amathokheni"
+    "tokensUnit": "amathokheni",
+    "atPreListingRate": "{{amount}} ngesilinganiso sangaphambi kokufaka indlu",
+    "fromSubscriptionTokensAmount": "Kusuka kumathokheni akho okubhalisa: {{amount}}",
+    "subscriptionTokensNote": "Amathokheni okubhalisa akhiywa ngenani uma uwafaka, ngakho ukunyakaza kwamanani akushintshi neze ukuthi okubhaliselwe kukubiza malini. Zingasetshenziswa kuphela ekubhaliseni.",
+    "subscriptionTokens": "Amathokheni okubhalisa",
+    "untradableTokens": "Lawa amathokheni okubhalisa angenakudluliswa",
+    "lockedValue": "Kukhiyiwe ku- {{amount}}",
+    "withdraw": "Hoxisa",
+    "trade": "Ukuhweba"
   },
   "live": {
     "notSet": "Akuzange kusethwe",

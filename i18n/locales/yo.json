@@ -4749,7 +4749,15 @@
     "custodyNote": "Àwọn àmi-òwo rẹ dúró nínú ìfipamọ́ DeHub, a kò sì tà wọ́n. Olùdásílẹ̀ náà yóò gba ìwọ̀n ìkówọ́ tí a fi USDT ṣe àmì-òwo.",
     "legacyMigrationNote": "Ìfipamọ́ yí yóò yí ètò àtijọ́ yìí tí a fi iye àmi-òwo ṣe àmì-òwo sí ìwọ̀n dọla níye tí a fi ṣaaju ìfagbà-ṣíṣílẹ̀.",
     "tokenPrice": "{{amount}} àmi-òwo",
-    "tokensUnit": "àmi-òwo"
+    "tokensUnit": "àmi-òwo",
+    "atPreListingRate": "{{amount}} ní iye àkójọ",
+    "fromSubscriptionTokensAmount": "Láti inú àwọn àmì ìforúkọsílẹ̀ rẹ: {{amount}}",
+    "subscriptionTokensNote": "Àmì ìforúkọsílẹ̀ ni wọ́n fi pamọ́ ní iye tí o bá fi wọ́n kún un, nítorí náà owó ìforúkọsílẹ̀ kò yí ohun tí ìforúkọsílẹ̀ ń ná ọ padà. Wọ́n lè ná wọn lórí ìforúkọsílẹ̀ nìkan.",
+    "subscriptionTokens": "Àmì ìforúkọsílẹ̀",
+    "untradableTokens": "Àwọn wọ̀nyí ni àwọn àmì ìforúkọsílẹ̀ tí a kò lè fà mọ́ra.",
+    "lockedValue": "Ti pa ni {{amount}}",
+    "withdraw": "Yiyọ kuro",
+    "trade": "Ọjà"
   },
   "live": {
     "notSet": "Kò tíì ṣètò",

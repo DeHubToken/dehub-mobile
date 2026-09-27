@@ -4779,7 +4779,15 @@
     "custodyNote": "Qanpa tokennikuna DeHub k'aspichapi waqaychasqa kachkan, mana salt'asqachu. Kamachiqqa USDT-pi sutichasqa qullqita hapin.",
     "legacyMigrationNote": "Wakichiyqa kay qhipa token-ninpi kaq llamk'ayta dolarninpi kaqman tukunqa, salt'aymanta p'unchaypi kaqninman hina.",
     "tokenPrice": "{{amount}} tokenkuna",
-    "tokensUnit": "tokenkuna"
+    "tokensUnit": "tokenkuna",
+    "atPreListingRate": "{{amount}} chay tarifa pre-lista nisqapi",
+    "fromSubscriptionTokensAmount": "Suscripción tokens nisqaykimanta: {{amount}}",
+    "subscriptionTokensNote": "Suscripción tokenkuna chaninpi wichq'asqa kanku mayk'aq yapanki, chayrayku huk chanin kuyuy mana hayk'aqpas tikranchu imatachus huk suscripción qullqita qusunki. Chaykunataqa suscripcionkunallapim gastakunman.",
+    "subscriptionTokens": "Suscripción nisqamanta tokenkuna",
+    "untradableTokens": "Kaykunaqa mana qhatuy atiy suscripción tokenkunam",
+    "lockedValue": "{{amount}} nisqapi wichq'asqa.",
+    "withdraw": "Suchuy",
+    "trade": "Qatuna"
   },
   "live": {
     "notSet": "Mana churasqa",

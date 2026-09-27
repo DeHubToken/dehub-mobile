@@ -4801,7 +4801,15 @@
     "custodyNote": "تبقى رموزك في عهدة خزانة DeHub ولا يتم بيعها. يتلقى المنشئ رصيد اشتراك مقوم بالدولار الأمريكي.",
     "legacyMigrationNote": "الهجرة إلى التوفير تحول هذه الخطة القديمة المسعرة بالرموز إلى تسعير بالدولار بالسعر قبل الإدراج.",
     "tokenPrice": "{{amount}} رمزًا",
-    "tokensUnit": "رموز"
+    "tokensUnit": "رموز",
+    "atPreListingRate": "{{amount}} بسعر الإعلان المسبق",
+    "fromSubscriptionTokensAmount": "من رموز اشتراكك: {{amount}}",
+    "subscriptionTokensNote": "يتم قفل رموز الاشتراك بالسعر عند إضافتها، لذلك لا تغير حركة السعر أبدًا ما يكلفك الاشتراك. لا يمكن إنفاقها إلا على الاشتراكات.",
+    "subscriptionTokens": "رموز الاشتراك",
+    "untradableTokens": "هذه رموز اشتراك غير قابلة للتداول",
+    "lockedValue": "مغلق عند {{amount}}",
+    "withdraw": "سحب",
+    "trade": "تداول"
   },
   "live": {
     "notSet": "غير محدّد",

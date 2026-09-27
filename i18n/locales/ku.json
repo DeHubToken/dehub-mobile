@@ -4581,7 +4581,19 @@
     "benefits": "Feydeyên",
     "benefitPlaceholder": "Sûdek lê zêde bike...",
     "createAndPublish": "Biafirîne û Weşan bike",
-    "publishingOnChain": "Weşanxane danûstandinek li ser zincîrê ye"
+    "publishingOnChain": "Weşanxane danûstandinek li ser zincîrê ye",
+    "custodyNote": "Tokenên te di bin çavdêriya xezîneya DeHub de dimînin û nayên firotin. Afirîner hevsengiya abonetiyê ya bi denomînasyona USDT werdigire.",
+    "legacyMigrationNote": "Saving vê plana bihayê tokenê ya kevn vediguhezîne bihayê dolarî li gorî rêjeya pêş-lîstekirinê.",
+    "tokenPrice": "{{amount}} nîşanekan",
+    "tokensUnit": "nîşanekan",
+    "atPreListingRate": "{{amount}} bi rêjeya pêş-lîstekirinê",
+    "fromSubscriptionTokensAmount": "Ji nîşanekanên abonetiya te: {{amount}}",
+    "subscriptionTokensNote": "Dema ku hûn nîşaneyên abonetiyê lê zêde dikin, bihayê wan li ser wan girtî ye, ji ber vê yekê guhertina bihayê qet lêçûna abonetiyê naguherîne. Ew tenê dikarin li ser abonetiyan werin xerckirin.",
+    "subscriptionTokens": "Nîşaneyên abonetiyê",
+    "untradableTokens": "Ev nîşaneyên abonetiyê yên nebazirganî ne",
+    "lockedValue": "Li {{amount}} hatiye girtin",
+    "withdraw": "Perekişandin",
+    "trade": "بازرگانی، بازرگانی کردن، بازرگانی دەکات، بازرگان، دان و ستان، ئاڵووێر، سەودا، مامڵە، پیشە، سەوداکردن، وەرگرتن و پێدان، بازاڕکاری"
   },
   "live": {
     "notSet": "Nehatiye danîn",

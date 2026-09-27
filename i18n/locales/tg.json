@@ -4748,7 +4748,15 @@
     "custodyNote": "Токенҳои шумо дар хазинадории DeHub нигоҳ дошта мешаванд ва фурӯхта намешаванд. Эҷодкунанда бақияи обунаи бо USDT номбаршударо мегирад.",
     "legacyMigrationNote": "Захира ин нақшаи нархгузории токенҳои кӯҳнаро ба нархгузории долларӣ бо нархи пеш аз листинг муҳоҷир мекунад.",
     "tokenPrice": "{{amount}} токен",
-    "tokensUnit": "токен"
+    "tokensUnit": "токен",
+    "fromSubscriptionTokensAmount": "Аз нишонаҳои обуна: {{amount}}",
+    "subscriptionTokensNote": "Нишонаҳои обуна вақте ки шумо онҳоро илова мекунед, бо нарх баста мешаванд, бинобар ин, ҳаракати нарх ҳеҷ гоҳ тағйир намеёбад, ки обуна ба шумо чӣ арзиш дорад. Ang mga ito ay maaaring ginagamit lamang sa mga subscription.",
+    "subscriptionTokens": "Нишонаҳои обуна",
+    "untradableTokens": "Ин нишонаҳои обунанашаванда мебошанд",
+    "withdraw": "Баровардан",
+    "trade": "Савдо",
+    "atPreListingRate": "{{amount}} бо нархи пеш аз листинг",
+    "lockedValue": "Бо {{amount}} қулф шудааст"
   },
   "live": {
     "notSet": "Муқаррар нашудааст",

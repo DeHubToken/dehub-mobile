@@ -4746,7 +4746,15 @@
     "custodyNote": "आपके टोकन DeHub ट्रेजरी कस्टडी में रहते हैं और बेचे नहीं जाते हैं। निर्माता को यूएसडीटी- the-denominated सदस्यता शेष प्राप्त होता है।",
     "legacyMigrationNote": "बचत इस विरासत टोकन-कीमत वाली योजना को प्री-लिस्टिंग दर पर डॉलर मूल्य निर्धारण में माइग्रेट करती है।",
     "tokenPrice": "{{amount}} टोकन",
-    "tokensUnit": "टोकन"
+    "tokensUnit": "टोकन",
+    "subscriptionTokensNote": "सब्सक्रिप्शन टोकन मूल्य जोड़ते समय लॉक हो जाता है, इसलिए मूल्य परिवर्तन कभी नहीं बदलेगा कि सब्सक्रिप्शन आपके लिए कितना महंगा हो सकता है । कुछ मामला में, छुट्टी केवल नाममात्र के देखल जा सकेला.",
+    "subscriptionTokens": "सब्सक्राइब करें टोकन",
+    "untradableTokens": "ई सभ पन्ना सम्बन्धित बा टेम्पलेटःCountry data Uncategorized",
+    "withdraw": "हटावे खातिर",
+    "trade": "कारोबार कइल",
+    "atPreListingRate": "प्री-लिस्टिंग रेट पर {{amount}}",
+    "fromSubscriptionTokensAmount": "रउरा सब्सक्रिप्शन टोकन से: {{amount}}",
+    "lockedValue": "{{amount}} पर लॉक"
   },
   "live": {
     "notSet": "सेट नइखे",

@@ -4752,7 +4752,15 @@
     "custodyNote": "Vaše tokeny zůstávají v úschově pokladnice DeHub a neprodávají se. Tvůrce obdrží předplatné v USD.",
     "legacyMigrationNote": "Úspory migrují tento starý plán s cenou v tokenech na dolarové ceny za předlistovací sazbu.",
     "tokenPrice": "{{amount}} tokenů",
-    "tokensUnit": "tokenů"
+    "tokensUnit": "tokenů",
+    "atPreListingRate": "{{amount}} při sazbě před zveřejněním nabídky",
+    "fromSubscriptionTokensAmount": "Z vašich tokenů předplatného: {{amount}}",
+    "subscriptionTokensNote": "Předplacené tokeny jsou po přidání uzamčeny za cenu, takže pohyb ceny nikdy nemění to, co vás předplatné stojí. Lze je utratit pouze za předplatné.",
+    "subscriptionTokens": "Žetony předplatného",
+    "untradableTokens": "Jedná se o neobchodovatelné tokeny předplatného",
+    "lockedValue": "Zamčeno v {{amount}}",
+    "withdraw": "Vybrat",
+    "trade": "Obchod"
   },
   "live": {
     "notSet": "Nenastaveno",

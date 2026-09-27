@@ -4748,7 +4748,15 @@
     "custodyNote": "आपके टोकन DeHub ट्रेजरी की हिरासत में रहते हैं और बेचे नहीं जाते हैं। निर्माता को USDT-मूल्यवान सदस्यता शेष प्राप्त होता है।",
     "legacyMigrationNote": "बचत इस विरासत टोकन-मूल्यवान योजना को पूर्व-सूचीबद्ध दर पर डॉलर मूल्य निर्धारण में स्थानांतरित करती है।",
     "tokenPrice": "{{amount}} टोकन",
-    "tokensUnit": "टोकन"
+    "tokensUnit": "टोकन",
+    "subscriptionTokensNote": "मते कारकलक्षणादिकं शब्दार्थरत्नेऽस्मामिर्दर्शितं यथा केवलं पञ्जीकरणं कर्तुं शक्यम् ।",
+    "subscriptionTokens": "उपसर्गः tokens",
+    "untradableTokens": "यं यं यं यं यं यं यं यं यं यं यं",
+    "withdraw": "निवर्त्यताम्",
+    "trade": "व्यापारः",
+    "atPreListingRate": "प्राक्-सूचीकरण-मूल्ये {{amount}}",
+    "fromSubscriptionTokensAmount": "भवतः अभिदान-टोकनेभ्यः: {{amount}}",
+    "lockedValue": "{{amount}} मूल्ये बद्धम्"
   },
   "live": {
     "notSet": "न निर्धारितम्",

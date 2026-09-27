@@ -4801,7 +4801,15 @@
     "custodyNote": "Seus tokens permanecem sob custódia do tesouro DeHub e não são vendidos. O criador recebe um saldo de assinatura denominado em USDT.",
     "legacyMigrationNote": "A economia migra este plano com preço em token legado para preços em dólar na taxa pré-listagem.",
     "tokenPrice": "{{amount}} tokens",
-    "tokensUnit": "tokens"
+    "tokensUnit": "tokens",
+    "atPreListingRate": "{{amount}} à taxa de pré-listagem",
+    "fromSubscriptionTokensAmount": "Dos seus tokens de assinatura: {{amount}}",
+    "subscriptionTokensNote": "Os tokens de assinatura são bloqueados ao preço quando você os adiciona, portanto, um movimento de preço nunca muda o custo de uma assinatura. Eles só podem ser gastos em assinaturas.",
+    "subscriptionTokens": "Tokens de subscrição",
+    "untradableTokens": "Estes são tokens de assinatura não negociáveis",
+    "lockedValue": "Bloqueado em {{amount}}",
+    "withdraw": "Levantar",
+    "trade": "Comércio"
   },
   "live": {
     "notSet": "Não definido",

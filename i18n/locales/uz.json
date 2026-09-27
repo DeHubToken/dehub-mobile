@@ -4766,7 +4766,15 @@
     "custodyNote": "Sizning tokenlaringiz DeHub xazina nazoratida qoladi va sotilmaydi. Yaratuvchi USDT qiymatidagi obuna balansini oladi.",
     "legacyMigrationNote": "Saqlash ushbu eski token narxidagi rejani roʻyxatdan oldingi stavkada dollar narxlariga oʻtkazadi.",
     "tokenPrice": "{{amount}} token",
-    "tokensUnit": "tokenlar"
+    "tokensUnit": "tokenlar",
+    "atPreListingRate": "{{amount}} ro'yxatga olishdan oldingi narxda",
+    "fromSubscriptionTokensAmount": "Obuna tokenlaringizdan: {{amount}}",
+    "subscriptionTokensNote": "Obuna tokenlari qo'shilganda ularning narxi o'zgaradi, shuning uchun narxning o'zgarishi hech qachon obuna narxini o'zgartirmaydi. Ularni faqat obunalarga sarflash mumkin.",
+    "subscriptionTokens": "Obuna tokenlari",
+    "untradableTokens": "Bular savdo qilib bo'lmaydigan obuna tokenlari",
+    "lockedValue": "{{amount}} da qulflangan",
+    "withdraw": "Yechib olish",
+    "trade": "Savdo"
   },
   "live": {
     "notSet": "Belgilanmagan",

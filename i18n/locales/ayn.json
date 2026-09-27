@@ -4748,7 +4748,15 @@
     "custodyNote": "تبقى توكنزك في عهدة خزينة DeHub ولا تباع. يتلقى المنشئ رصيد اشتراك مقوم بالدولار الأمريكي.",
     "legacyMigrationNote": "الهجرة الادخارية لهذا المخطط المسعر بالتوكنز القديم إلى التسعير بالدولار بسعر ما قبل الإدراج.",
     "tokenPrice": "{{amount}} توكنز",
-    "tokensUnit": "توكنز"
+    "tokensUnit": "توكنز",
+    "atPreListingRate": "{{amount}} بسعر ما قبل الإدراج",
+    "fromSubscriptionTokensAmount": "من رموز اشتراكك: {{amount}}",
+    "subscriptionTokensNote": "رموز الاشتراك مقفلة بالسعر عند إضافتها، لذا فإن تحرك السعر لا يغير أبدًا تكلفة الاشتراك بالنسبة لك. يمكن إنفاقها فقط على الاشتراكات.",
+    "subscriptionTokens": "رموز الاشتراك",
+    "untradableTokens": "هذه رموز اشتراك غير قابلة للتداول",
+    "lockedValue": "مقفل عند {{amount}}",
+    "withdraw": "سحب",
+    "trade": "تجارة"
   },
   "live": {
     "notSet": "مو محدد",
