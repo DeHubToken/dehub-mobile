@@ -199,6 +199,7 @@ export type AppStackParamList = {
   [ScreenNames.Events]: undefined;
   [ScreenNames.Stages]: undefined;
   [ScreenNames.Careers]: undefined;
+  [ScreenNames.Creators]: undefined;
   [ScreenNames.Affiliate]: undefined;
   /** `requestId` is a notification's deep link into one request, `commentId`
    *  the comment inside it the row was about. */
